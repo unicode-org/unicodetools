@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Main.java,v $
-* $Date: 2001-09-01 00:06:48 $
-* $Revision: 1.1 $
+* $Date: 2001-09-06 01:29:48 $
+* $Revision: 1.2 $
 *
 *******************************************************************************
 */
@@ -36,6 +36,8 @@ public final class Main {
                 ConvertUCD.main(new String[]{ucdVersion});
             } else if (arg.equalsIgnoreCase("version")) ucdVersion = args[++i];
             else if (arg.equalsIgnoreCase("generateXML")) VerifyUCD.generateXML();
+            else if (arg.equalsIgnoreCase("checkSpeed")) VerifyUCD.checkSpeed();
+
             else if (arg.equalsIgnoreCase("testDerivedProperties")) DerivedProperty.test();
             else if (arg.equalsIgnoreCase("checkCase")) VerifyUCD.checkCase();
             else if (arg.equalsIgnoreCase("checkCase2")) VerifyUCD.checkCase2();
