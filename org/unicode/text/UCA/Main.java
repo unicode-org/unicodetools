@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
-* $Date: 2003-08-21 07:32:52 $ 
-* $Revision: 1.15 $
+* $Date: 2003-08-22 16:51:21 $ 
+* $Revision: 1.16 $
 *
 *******************************************************************************
 */
@@ -22,7 +22,8 @@ public class Main {
 		"WriteRules", "WriteRulesXML", "writeconformance", "writeconformanceshifted", 
 		"short", 
 		"WriteRules", "WriteRulesXML", "writeconformance", "writeconformanceshifted",
-        "noCE", "short",        "WriteRules" 
+        "noCE", "short",        "WriteRules",
+        "collationChart" 
     };
 	
 	public static void main(String args[]) throws Exception {
