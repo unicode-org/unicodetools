@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MLStreamWriter.java,v $
-* $Date: 2001-12-13 23:35:57 $
-* $Revision: 1.3 $
+* $Date: 2003-04-25 01:39:15 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package com.ibm.text.UCD;
 
 import java.io.*;
 import java.util.*;
