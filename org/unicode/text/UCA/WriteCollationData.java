@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
-* $Date: 2004-01-15 01:08:30 $ 
-* $Revision: 1.37 $
+* $Date: 2004-01-16 01:22:26 $ 
+* $Revision: 1.38 $
 *
 *******************************************************************************
 */
@@ -3493,7 +3493,7 @@ F900..FAFF; CJK Compatibility Ideographs
     }
         
 	static int getImplicitPrimaryFromSwapped(int cp) {
-        return implicit.getRawImplicit(cp);
+        return implicit.getImplicitFromRaw(cp);
     }
         
     
