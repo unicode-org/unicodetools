@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UData.java,v $
-* $Date: 2001-10-25 20:33:46 $
-* $Revision: 1.3 $
+* $Date: 2002-06-13 21:14:05 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
@@ -18,6 +18,7 @@ import com.ibm.text.utility.*;
 
 class UData implements UCD_Types {
     String name;
+    String shortName = ""; // cache
     String decompositionMapping;
     String simpleUppercase;
     String simpleLowercase;
