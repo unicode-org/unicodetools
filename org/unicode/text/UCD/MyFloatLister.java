@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MyFloatLister.java,v $
-* $Date: 2001-08-31 00:30:17 $
-* $Revision: 1.2 $
+* $Date: 2001-09-19 23:33:16 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
@@ -17,7 +17,7 @@ import java.io.*;
 class MyFloatLister extends PropertyLister {
     private float propMask;
 
-    public MyFloatLister(UCD ucd, float f, PrintStream output) {
+    public MyFloatLister(UCD ucd, float f, PrintWriter output) {
         this.propMask = f;
         this.output = output;
         this.ucdData = ucd;

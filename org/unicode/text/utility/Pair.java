@@ -5,15 +5,15 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Pair.java,v $
-* $Date: 2001-08-31 00:19:16 $
-* $Revision: 1.2 $
+* $Date: 2001-09-19 23:33:52 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
 package com.ibm.text.utility;
 
-public final class Pair implements java.lang.Comparable {
+public final class Pair implements java.lang.Comparable, Cloneable {
 
   public Comparable first, second;
 
@@ -40,5 +40,13 @@ public final class Pair implements java.lang.Comparable {
         int trial = first.compareTo(that.first);
         if (trial != 0) return trial;
         return second.compareTo(that.second);
+    }
+    
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }
