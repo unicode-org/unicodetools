@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateCaseFolding.java,v $
-* $Date: 2002-03-15 00:34:46 $
-* $Revision: 1.5 $
+* $Date: 2002-03-15 01:57:01 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
@@ -15,7 +15,7 @@ package com.ibm.text.UCD;
 
 import java.util.*;
 import java.io.*;
-import com.ibm.text.UTF16;
+import com.ibm.icu.text.UTF16;
 
 import com.ibm.text.utility.*;
 
