@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNormalization.java,v $
-* $Date: 2004-02-07 01:01:13 $
-* $Revision: 1.7 $
+* $Date: 2004-02-12 08:23:16 $
+* $Revision: 1.8 $
 *
 *******************************************************************************
 */
@@ -237,7 +237,7 @@ public final class TestNormalization {
             UnicodeSet t = (UnicodeSet) it.next();
             UnicodeSet l = (UnicodeSet) map.get(t);
             System.out.println("<tr><td>" 
-                + bf.showSetNames("",l)                + "</td><td>"                + bf.showSetNames("",t)
+                + bf.showSetNames(l)                + "</td><td>"                + bf.showSetNames(t)
                 + "</td></tr>");
         }
     }
