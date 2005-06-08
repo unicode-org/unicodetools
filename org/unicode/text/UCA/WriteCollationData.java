@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
-* $Date: 2005-05-02 15:39:54 $ 
-* $Revision: 1.41 $
+* $Date: 2005-06-08 01:44:48 $ 
+* $Revision: 1.42 $
 *
 *******************************************************************************
 */
@@ -3170,7 +3170,7 @@ F900..FAFF; CJK Compatibility Ideographs
         }
         
         int firstImplicit = getImplicitPrimary(CJK_BASE);
-        int lastImplicit = getImplicitPrimary(0x10FFFF);
+        int lastImplicit = getImplicitPrimary(0x10FFFD);
         
         log.println();
         log.println("# VALUES BASED ON UCA");
