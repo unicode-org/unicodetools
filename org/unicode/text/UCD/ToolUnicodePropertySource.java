@@ -1,5 +1,7 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,12 +11,23 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.impl.ICUData;
+import com.ibm.icu.impl.ICUResourceBundle;
+import com.ibm.icu.impl.StringUCharacterIterator;
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.IDNA;
+import com.ibm.icu.text.RawCollationKey;
+import com.ibm.icu.text.StringPrep;
+import com.ibm.icu.text.StringPrepParseException;
+import com.ibm.icu.text.UCharacterIterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.text.utility.Utility;
+import org.unicode.text.utility.Utility;
 
 public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
   static final boolean DEBUG = false;
@@ -53,12 +66,93 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
-        if ((ODD_BALLS & ucd.getCategoryMask(codepoint)) != 0)
+        int catMask = ucd.getCategoryMask(codepoint);
+        if (((1 << UCD_Types.Cc) & catMask) != 0) {
+          return "<control>";
+        }
+        if ((ODD_BALLS & catMask) != 0) {
           return null;
+        }
         return ucd.getName(codepoint);
       }
     }.setValues("<string>").setMain("Name", "na", UnicodeProperty.MISC, version));
 
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return UCharacter.getName1_0(codepoint);
+      }
+    }.setValues("<string>").setMain("Unicode_1_Name", "na1", UnicodeProperty.MISC, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getDecompositionMapping(codepoint);
+      }
+    }.setValues("<string>").setMain("Decomposition_Mapping", "dm", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getCase(codepoint,UCD.FULL, UCD.LOWER);
+      }
+    }.setValues("<string>").setMain("Lowercase_Mapping", "lc", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getCase(codepoint,UCD.FULL, UCD.LOWER);
+      }
+    }.setValues("<string>").setMain("Lowercase_Mapping", "lc", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getCase(codepoint,UCD.SIMPLE, UCD.LOWER);
+      }
+    }.setValues("<string>").setMain("Simple_Lowercase_Mapping", "slc", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getCase(codepoint,UCD.FULL, UCD.UPPER);
+      }
+    }.setValues("<string>").setMain("Uppercase_Mapping", "uc", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getCase(codepoint,UCD.SIMPLE, UCD.UPPER);
+      }
+    }.setValues("<string>").setMain("Simple_Uppercase_Mapping", "suc", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getCase(codepoint,UCD.FULL, UCD.TITLE);
+      }
+    }.setValues("<string>").setMain("Titlecase_Mapping", "tc", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getCase(codepoint,UCD.SIMPLE, UCD.TITLE);
+      }
+    }.setValues("<string>").setMain("Simple_Titlecase_Mapping", "stc", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getCase(codepoint,UCD.FULL, UCD.FOLD);
+      }
+    }.setValues("<string>").setMain("Case_Folding", "cf", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return ucd.getCase(codepoint,UCD.SIMPLE, UCD.FOLD);
+      }
+    }.setValues("<string>").setMain("Simple_Case_Folding", "sfc", UnicodeProperty.STRING, version));
+
+    /*
+    cp=00FD, isc=<> != <MISSING>
+    cp=00FD, lc=<> != <MISSING>
+    cp=00FD, slc=<> != <MISSING>
+    cp=00FD, stc=<00DD> != <MISSING>
+    cp=00FD, suc=<00DD> != <MISSING>
+    cp=00FD, tc=<> != <MISSING>
+    cp=00FD, uc=<> != <MISSING>
+    */
+    
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
         if (DEBUG && codepoint == 0x1D100) {
@@ -86,6 +180,28 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         return ucd.getCase(codepoint, UCD_Types.FULL, UCD_Types.FOLD);
       }
     }.setValues("<string>").setMain("Case_Folding", "cf", UnicodeProperty.STRING, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        //if ((ODD_BALLS & ucd.getCategoryMask(codepoint)) != 0) return null;
+        return equals(codepoint, ucd.getCase(codepoint, UCD_Types.FULL, UCD_Types.FOLD)) ? "True" : "False";
+      }
+    }.setMain("Case_Stable", "cs", UnicodeProperty.EXTENDED_BINARY, version));
+
+    add(new UnicodeProperty.SimpleProperty() {
+      IdnaInfo info;
+      {
+        try {
+          info = new IdnaInfo();
+        } catch (IOException e) {
+          throw new IllegalArgumentException("Can't find data");
+        }
+      }
+      public String _getValue(int codepoint) {
+        //if ((ODD_BALLS & ucd.getCategoryMask(codepoint)) != 0) return null;
+        return info.getIDNAType(codepoint) == IdnaInfo.IdnaType.OK ? "True" : "False";
+      }
+    }.setMain("IdnOutput", "idnOut", UnicodeProperty.EXTENDED_BINARY, version));
 
     add(new UnicodeProperty.SimpleProperty() {
       NumberFormat nf = NumberFormat.getInstance();
@@ -297,11 +413,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         unicodeMap.putAll(new UnicodeSet("[\\u000A\\u000D\\u0085\\u2028\\u2029]"), "Sep");
         UnicodeProperty cat = getProperty("General_Category");
         unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
-        unicodeMap.putAll(getProperty("Whitespace").getSet("true").removeAll(unicodeMap.getSet("Sep")).remove(0xA0), "Sp");
+        unicodeMap.putAll(getProperty("Whitespace").getSet("true").removeAll(unicodeMap.getSet("Sep")), "Sp");
         UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet("true");
         unicodeMap.putAll(getProperty("Lowercase").getSet("true").removeAll(graphemeExtend), "Lower");
         unicodeMap.putAll(getProperty("Uppercase").getSet("true").addAll(cat.getSet("Titlecase_Letter")), "Upper");
-        UnicodeSet temp = getProperty("Alphabetic").getSet("true").add(0xA0).add(0x5F3).removeAll(unicodeMap.getSet("Lower")).removeAll(unicodeMap.getSet("Upper")).removeAll(graphemeExtend);
+        UnicodeSet temp = getProperty("Alphabetic").getSet("true").add(0x5F3).removeAll(unicodeMap.getSet("Lower")).removeAll(unicodeMap.getSet("Upper")).removeAll(graphemeExtend);
         unicodeMap.putAll(temp, "OLetter");
         UnicodeProperty lineBreak = getProperty("Line_Break");
         unicodeMap.putAll(lineBreak.getSet("Numeric"), "Numeric");
@@ -415,13 +531,13 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }
   }
 
-  static final int ODD_BALLS = (1 << UCD_Types.Cn) | (1 << UCD_Types.Co) | (1 << UCD_Types.Cs) | (1 << UCD.Cc);
+  static final int ODD_BALLS = (1 << UCD_Types.Cn) | (1 << UCD_Types.Cs) | (1 << UCD_Types.Co); // | (1 << UCD.Cc)
 
   /* (non-Javadoc)
    * @see com.ibm.icu.dev.test.util.UnicodePropertySource#getPropertyAliases(java.util.Collection)
    */
   private class ToolUnicodeProperty extends UnicodeProperty {
-    com.ibm.text.UCD.UCDProperty up;
+    org.unicode.text.UCD.UCDProperty up;
 
     int propMask;
 
@@ -726,6 +842,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }
     return result;
   }
+  
+  static public boolean equals(int codepoint, String string) {
+    return UTF16.valueOf(codepoint).equals(string);
+  }
 
   static List lookup(String valueAlias, String[] main, String[] aux, Map aux2, List result) {
     //System.out.println(valueAlias + "=>");
@@ -777,4 +897,45 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
    
    }
    */
+  
+  public static class IdnaInfo {
+    public enum IdnaType {OK, DELETED, ILLEGAL, REMAPPED};
+    private UCD ucdIdna = UCD.make(); // latest
+    private StringPrep namePrep;
+    private StringUCharacterIterator uci = new StringUCharacterIterator("");
+    
+    IdnaInfo() throws IOException {
+      InputStream stream = ICUData.getRequiredStream(ICUResourceBundle.ICU_BUNDLE+"/uidna.spp");
+      namePrep = new StringPrep(stream);
+      stream.close();
+    }
+    
+    public IdnaType getIDNAType(int cp) {    
+      if (ucdIdna.isPUA(cp) || !ucdIdna.isAllocated(cp)) {
+        return IdnaType.ILLEGAL;
+      }
+      if (cp == '-') return IdnaType.OK;
+      String source = UTF16.valueOf(cp);
+      uci.setText(source);
+      StringBuffer outbuffer = null;
+      try {
+        outbuffer = namePrep.prepare(uci, IDNA.DEFAULT);
+      } catch (StringPrepParseException e) {
+        return IdnaType.ILLEGAL;
+      } catch (Exception e) {
+        System.out.println("Failure at: " + Utility.hex(cp));
+        return IdnaType.ILLEGAL;
+      }
+      if (!TestData.equals(source, outbuffer)) {
+        return IdnaType.REMAPPED;
+      }
+      return IdnaType.OK;
+    }
+  }
+
+  
+  static final Pattern WELL_FORMED_LANGUAGE_TAG = Pattern.compile("..."); // ... is ugly mess that someone supplies
+  static boolean isWellFormedLanguageTag(String tag) {
+    return WELL_FORMED_LANGUAGE_TAG.matcher(tag).matches();
+  }
 }

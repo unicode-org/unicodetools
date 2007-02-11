@@ -5,21 +5,21 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CheckCollator.java,v $
-* $Date: 2002-08-09 23:56:24 $
-* $Revision: 1.2 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
 // http://java.sun.com/j2se/1.3/docs/guide/intl/encoding.doc.html
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.*;
 import java.io.*;
 import java.text.NumberFormat;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 

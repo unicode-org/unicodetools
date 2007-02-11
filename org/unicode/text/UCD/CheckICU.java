@@ -1,4 +1,4 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +23,7 @@ import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
-import com.ibm.text.utility.Utility;
+import org.unicode.text.utility.Utility;
 
 public class CheckICU {
     static final BagFormatter bf = new BagFormatter();

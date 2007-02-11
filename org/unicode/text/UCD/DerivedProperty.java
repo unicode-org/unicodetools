@@ -5,14 +5,14 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedProperty.java,v $
-* $Date: 2004-03-11 19:03:17 $
-* $Revision: 1.26 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.27 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
-import com.ibm.text.utility.*;
+package org.unicode.text.UCD;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.*;

@@ -1,5 +1,5 @@
-package com.ibm.text.UCD;
-import com.ibm.text.utility.*;
+package org.unicode.text.UCD;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 

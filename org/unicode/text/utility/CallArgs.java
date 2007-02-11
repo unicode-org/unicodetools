@@ -1,4 +1,4 @@
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

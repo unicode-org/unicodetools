@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DiffPropertyLister.java,v $
-* $Date: 2004-02-06 18:30:22 $
-* $Revision: 1.9 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.10 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import com.ibm.icu.text.UnicodeSet;
 import java.io.*;
 

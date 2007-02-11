@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/DualWriter.java,v $
-* $Date: 2001-08-31 00:19:16 $
-* $Revision: 1.2 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.awt.*;
 import java.io.*;

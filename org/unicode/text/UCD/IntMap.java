@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/IntMap.java,v $
-* $Date: 2003-03-18 00:10:47 $
-* $Revision: 1.1 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.2 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import java.util.HashMap;
 
 public class IntMap {

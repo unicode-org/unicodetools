@@ -1,6 +1,6 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import java.util.*;
 
 // Enumerated properties will be IntCodePointProperty.

@@ -6,13 +6,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/FastBinarySearch.java,v $
-* $Date: 2002-10-01 01:43:21 $
-* $Revision: 1.3 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.util.Random;
 import java.util.Arrays;

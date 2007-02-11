@@ -4,13 +4,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/SampleEnum.java,v $
-* $Date: 2002-10-05 01:28:56 $
-* $Revision: 1.1 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.2 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.util.*;
 

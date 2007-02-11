@@ -5,18 +5,18 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateData.java,v $
-* $Date: 2006-04-05 22:12:44 $
-* $Revision: 1.40 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.41 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.*;
 import java.io.*;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

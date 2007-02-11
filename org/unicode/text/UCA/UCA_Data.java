@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Data.java,v $ 
-* $Date: 2006-06-08 18:16:40 $ 
-* $Revision: 1.4 $
+* $Date: 2007-02-11 08:15:10 $ 
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCA;
+package org.unicode.text.UCA;
 
 import java.util.*;
 import java.io.BufferedReader;
@@ -20,9 +20,9 @@ import java.io.PrintWriter;
 import java.io.FileReader;
 import java.text.MessageFormat;
 import java.io.IOException;
-import com.ibm.text.UCD.Normalizer;
-import com.ibm.text.UCD.UCD;
-import com.ibm.text.utility.*;
+import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 

@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/FileLineIterator.java,v $
-* $Date: 2003-02-25 23:38:22 $
-* $Revision: 1.2 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.util.*;
 import java.text.*;
@@ -22,7 +22,7 @@ import com.ibm.icu.text.Replaceable;
 import com.ibm.icu.text.ReplaceableString;
 import com.ibm.icu.text.UnicodeMatcher;
 
-import com.ibm.text.UCD.*;
+import org.unicode.text.UCD.*;
 
 /**
  * Opens a file, and iterates through the lines in the file.

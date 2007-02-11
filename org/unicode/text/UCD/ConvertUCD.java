@@ -5,15 +5,15 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/ConvertUCD.java,v $
-* $Date: 2006-04-05 22:12:44 $
-* $Revision: 1.18 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.19 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 import java.util.*;
 import java.text.NumberFormat;
@@ -60,7 +60,7 @@ public final class ConvertUCD implements UCD_Types {
         //*
         // 01CA;LATIN CAPITAL LETTER NJ;Lu;0; L; <compat> 004E 004A;  ;  ;  ;N ;LATIN CAPITAL LETTER N J;    ;  ;01CC;01CB
         //      n                       gc cc bc dm                 dd dv nv bm on                       cm,  uc lc   tc
-        {"UnicodeData", "n", "gc", "cc", "bc", "dm", "dd", "dv", "nv", "bm", "on", "OMIT", "*uc", "*lc", "*tc"},
+        {"UnicodeData", "n", "gc", "ccc", "bc", "dm", "dd", "dv", "nv", "bm", "on", "OMIT", "*uc", "*lc", "*tc"},
         //{"ExtraProperties", "xp"},
         {"PropList", "binary"},
 
@@ -883,7 +883,7 @@ public final class ConvertUCD implements UCD_Types {
                     if (fieldValue.equals("-")) return;
                 }
                 uData.numericValue = Utility.doubleFrom(fieldValue);
-            } else if (fieldName.equals("cc")) {
+            } else if (fieldName.equals("ccc")) {
                 uData.combiningClass = (byte)Utility.intFrom(fieldValue);
                 if (uData.combiningClass == 9 && major >= 5) {
                 	System.out.println("setting Grapheme_Link " + Utility.hex(uData.codePoint) + "\t" + uData.name);

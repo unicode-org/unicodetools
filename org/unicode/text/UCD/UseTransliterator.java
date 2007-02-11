@@ -1,4 +1,4 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.File;
 import java.io.IOException;

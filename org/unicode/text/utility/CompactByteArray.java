@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/CompactByteArray.java,v $
-* $Date: 2001-08-31 00:19:16 $
-* $Revision: 1.2 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 /*
  * %W% %E%
@@ -97,8 +97,8 @@ public final class CompactByteArray implements Serializable {
     public void writeArrays(PrintWriter output)
     {
         int i;
-        output.println("package com.ibm.text.unicode;");
-        output.println("import com.ibm.text.collections.*;");
+        output.println("package org.unicode.text.unicode;");
+        output.println("import org.unicode.text.collections.*;");
 
         output.println("public final class GeneralCategory {");
 

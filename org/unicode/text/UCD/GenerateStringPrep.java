@@ -3,7 +3,7 @@
  * Copyright (C) 2004-2005, Unicode, Inc., International Business Machines Corporation, and others.
  * For terms of use, see http://www.unicode.org/terms_of_use.html
  */
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,9 +28,9 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.util.ULocale;
-import com.ibm.text.UCD.GenerateHanTransliterator.MultiComparator;
-import com.ibm.text.UCD.TestData.RegexMatcher;
-import com.ibm.text.utility.Utility;
+import org.unicode.text.UCD.GenerateHanTransliterator.MultiComparator;
+import org.unicode.text.UCD.TestData.RegexMatcher;
+import org.unicode.text.utility.Utility;
 
 
 class GenerateStringPrep implements UCD_Types {

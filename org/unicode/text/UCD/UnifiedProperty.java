@@ -5,17 +5,17 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UnifiedProperty.java,v $
-* $Date: 2004-02-18 03:09:02 $
-* $Revision: 1.7 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.8 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import java.io.*;
 import java.util.*;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UnicodeSet;
 
 public final class UnifiedProperty extends UCDProperty {

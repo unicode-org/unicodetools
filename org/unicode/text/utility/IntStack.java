@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/IntStack.java,v $
-* $Date: 2002-06-15 02:47:14 $
-* $Revision: 1.4 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 // =============================================================
 // Simple stack mechanism, with push, pop and access

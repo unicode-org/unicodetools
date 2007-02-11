@@ -5,13 +5,13 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/TestUtility.java,v $
- * $Date: 2005-10-11 19:39:15 $
- * $Revision: 1.4 $
+ * $Date: 2007-02-11 08:15:10 $
+ * $Revision: 1.5 $
  *
  *******************************************************************************
  */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -34,7 +34,7 @@ import com.ibm.icu.dev.test.util.UnicodePropertySource;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.text.UCD.Default;
+import org.unicode.text.UCD.Default;
 
 public class TestUtility {
 	/*

@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MyFloatLister.java,v $
-* $Date: 2004-03-11 19:03:17 $
-* $Revision: 1.6 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.7 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import java.io.*;
 import java.text.NumberFormat;
 import java.util.Locale;

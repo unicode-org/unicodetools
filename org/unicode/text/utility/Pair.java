@@ -1,31 +1,31 @@
 /**
-*******************************************************************************
-* Copyright (C) 1996-2001, International Business Machines Corporation and    *
-* others. All Rights Reserved.                                                *
-*******************************************************************************
-*
-* $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Pair.java,v $
-* $Date: 2002-06-13 21:14:05 $
-* $Revision: 1.4 $
-*
-*******************************************************************************
-*/
+ *******************************************************************************
+ * Copyright (C) 1996-2001, International Business Machines Corporation and    *
+ * others. All Rights Reserved.                                                *
+ *******************************************************************************
+ *
+ * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Pair.java,v $
+ * $Date: 2007-02-11 08:15:10 $
+ * $Revision: 1.5 $
+ *
+ *******************************************************************************
+ */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 public final class Pair implements java.lang.Comparable, Cloneable {
-
+  
   public Comparable first, second;
-
+  
   public Pair (Comparable first, Comparable second) {
     this.first = first;
     this.second = second;
   }
-
+  
   public int hashCode() {
     return first.hashCode() * 37 + second.hashCode();
   }
-
+  
   public boolean equals(Object other) {
     try {
       Pair that = (Pair)other;
@@ -34,24 +34,24 @@ public final class Pair implements java.lang.Comparable, Cloneable {
       return false;
     }
   }
-
-    public int compareTo(Object other) {
-        Pair that = (Pair)other;
-        int trial = first.compareTo(that.first);
-        if (trial != 0) return trial;
-        return second.compareTo(that.second);
+  
+  public int compareTo(Object other) {
+    Pair that = (Pair)other;
+    int trial = first.compareTo(that.first);
+    if (trial != 0) return trial;
+    return second.compareTo(that.second);
+  }
+  
+  public Object clone() {
+    try {
+      return super.clone();
+    } catch (CloneNotSupportedException e) {
+      return null;
     }
-    
-    public Object clone() {
-        try {
-            return super.clone();
-        } catch (CloneNotSupportedException e) {
-            return null;
-        }
-    }
-    
-    public String toString() {
-        return '(' + (first == null ? "null" : first.toString())
-            + ',' + (second == null ? "null" : second.toString()) + ')';
-    }
+  }
+  
+  public String toString() {
+    return '(' + (first == null ? "null" : first.toString())
+    + ',' + (second == null ? "null" : second.toString()) + ')';
+  }
 }

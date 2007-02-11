@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/ChainException.java,v $
-* $Date: 2005-11-01 00:10:53 $
-* $Revision: 1.4 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 
 import java.text.*;

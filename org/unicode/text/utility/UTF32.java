@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF32.java,v $
-* $Date: 2004-04-17 18:21:38 $
-* $Revision: 1.3 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 /**
 * Utility class for demonstrating UTF16 character conversions and indexing conversions.

@@ -5,15 +5,15 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/IANANames.java,v $
-* $Date: 2002-10-05 01:28:58 $
-* $Revision: 1.2 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.lang.UCharacter;

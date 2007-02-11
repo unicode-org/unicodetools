@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CompactName.java,v $
-* $Date: 2001-08-31 00:30:17 $
-* $Revision: 1.2 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.IOException;
 import java.util.*;

@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Normalizer.java,v $
-* $Date: 2006-09-24 23:32:44 $
-* $Revision: 1.18 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.19 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.*;
 
@@ -19,7 +19,7 @@ import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import com.sun.java_cup.internal.internal_error;
 
 

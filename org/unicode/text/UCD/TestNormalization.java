@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNormalization.java,v $
-* $Date: 2004-02-12 08:23:16 $
-* $Revision: 1.8 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.9 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.*;
 import java.io.*;
@@ -19,7 +19,7 @@ import java.io.*;
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 public final class TestNormalization {
     static final String DIR = "C:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.0.1\\";

@@ -5,20 +5,20 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
-* $Date: 2006-09-24 23:32:44 $
-* $Revision: 1.15 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.16 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.*;
 import java.io.*;
 
 import org.unicode.cldr.util.Segmenter;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.text.UTF16;

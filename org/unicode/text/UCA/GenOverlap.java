@@ -5,18 +5,18 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/GenOverlap.java,v $ 
-* $Date: 2005-04-06 08:48:16 $ 
-* $Revision: 1.13 $
+* $Date: 2007-02-11 08:15:10 $ 
+* $Revision: 1.14 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCA;
+package org.unicode.text.UCA;
 
 import java.util.*;
 import java.io.*;
-import com.ibm.text.UCD.*;
-import com.ibm.text.utility.*;
+import org.unicode.text.UCD.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UTF16;
 
 public class GenOverlap implements UCD_Types, UCA_Types {

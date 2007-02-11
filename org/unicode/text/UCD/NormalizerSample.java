@@ -1,10 +1,10 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.*;
-import com.ibm.text.*;
+import org.unicode.text.*;
 import com.ibm.icu.text.UTF16;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 
 /**

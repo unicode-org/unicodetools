@@ -1,6 +1,6 @@
-Generate: .*BreakTest.*
-DeltaVersion: 17
-CopyrightYear: 2006
+Generate: .*
+DeltaVersion: 3
+CopyrightYear: 2007
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
@@ -68,7 +68,7 @@ Value:	4.1
 # Newly assigned in Unicode 4.1.0 (March, 2005)
 
 Value:	5.0
-# Newly assigned in Unicode 5.0.0 (XXX, 2006)
+# Newly assigned in Unicode 5.0.0 (July, 2006)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class

@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestData.java,v $
-* $Date: 2006-04-05 22:12:43 $
-* $Revision: 1.25 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.26 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.*;
 import java.io.*;
@@ -39,7 +39,7 @@ import java.math.BigDecimal;
 import java.util.regex.*;
 
 import com.ibm.icu.text.*;
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 public class TestData implements UCD_Types {
     
@@ -258,7 +258,7 @@ public class TestData implements UCD_Types {
 				"vicepresident",
 				"vice president",
 				"vice-president",
-				"vice-président",
+				"vice-prï¿½sident",
 				"vice-president's offices",
 				"vice-presidents' offices",
 				"vice-presidents offices",
@@ -309,7 +309,7 @@ public class TestData implements UCD_Types {
 	 * @param outbuffer
 	 * @return
 	 */
-	public static boolean equals(StringBuffer inbuffer, StringBuffer outbuffer) {
+	public static boolean equals(CharSequence inbuffer, CharSequence outbuffer) {
 		if (inbuffer.length() != outbuffer.length()) return false;
 		for (int i = inbuffer.length() - 1; i >= 0; --i) {
 			if (inbuffer.charAt(i) != outbuffer.charAt(i)) return false;

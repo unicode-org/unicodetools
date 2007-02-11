@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF8StreamWriter.java,v $
-* $Date: 2002-03-15 00:34:46 $
-* $Revision: 1.5 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 import java.io.*;
 
 /**

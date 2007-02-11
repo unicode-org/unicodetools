@@ -1,17 +1,17 @@
 /**
 *******************************************************************************
-* Copyright (C) 1996-2006, International Business Machines Corporation and    *
+* Copyright (C) 1996-2001, International Business Machines Corporation and    *
 * others. All Rights Reserved.                                                *
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
-* $Date: 2006-10-29 18:13:56 $ 
-* $Revision: 1.45 $
+* $Date: 2007-02-11 08:15:10 $ 
+* $Revision: 1.46 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCA;
+package org.unicode.text.UCA;
 
 import java.util.*;
 import com.ibm.icu.text.UTF16;
@@ -25,7 +25,7 @@ import com.ibm.icu.impl.UCharacterProperty;
 
 import java.io.*;
 //import java.text.*;
-//import com.ibm.text.unicode.*;
+//import org.unicode.text.unicode.*;
 
 import java.text.RuleBasedCollator;
 import java.text.CollationElementIterator;
@@ -33,9 +33,9 @@ import java.text.Collator;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import com.ibm.text.UCD.*;
-import com.ibm.text.utility.*;
-import com.ibm.text.UCD.Normalizer;
+import org.unicode.text.UCD.*;
+import org.unicode.text.utility.*;
+import org.unicode.text.UCD.Normalizer;
 
 public class WriteCollationData implements UCD_Types, UCA_Types {
 	
@@ -1818,7 +1818,7 @@ F900..FAFF; CJK Compatibility Ideographs
             "Generated:   " + getNormalDate(),
         	"NOTE: Since UCA handles canonical equivalents, no composites are necessary",
         	"(except in extensions).",
-        	"For syntax description, see: http://icu.sourceforge.net/userguide/Collate_Intro.html"
+        	"For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_Intro.html"
         };
         
         if (option == IN_XML) {
@@ -2837,7 +2837,7 @@ F900..FAFF; CJK Compatibility Ideographs
             if (type >= UCA.FIXED_CE && !nfd.hasDecomposition(ch))
                 continue;
             }
-            String s = com.ibm.text.UTF16.valueOf(ch);
+            String s = org.unicode.text.UTF16.valueOf(ch);
             ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
         }
         
