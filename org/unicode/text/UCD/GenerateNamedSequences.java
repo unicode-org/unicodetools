@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateNamedSequences.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.3 $
+* $Date: 2007-02-11 19:38:32 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
@@ -117,7 +117,7 @@ public final class GenerateNamedSequences implements UCD_Types {
             "@date@", Default.getDate(),
             "@table@", table};
                 
-        Utility.appendFile("com/ibm/text/UCD/NamedSequences-Template.html", Utility.UTF8, out, replacementList);
+        Utility.appendFile("org/unicode/text/UCD/NamedSequences-Template.html", Utility.UTF8, out, replacementList);
      
         out.close();
         //Utility.renameIdentical(mostRecent, Utility.getOutputName(filename), batName[0]);

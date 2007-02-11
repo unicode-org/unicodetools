@@ -295,7 +295,7 @@ public class MakeUnicodeFiles {
             */
             try {
                 BufferedReader br =
-                    Utility.openReadFile("com/ibm/text/UCD/MakeUnicodeFiles.txt", Utility.UTF8);
+                    Utility.openReadFile("org/unicode/text/UCD/MakeUnicodeFiles.txt", Utility.UTF8);
                 String key = null;
                 String file = null, property = null, value = "", comments = "";
                 while (true) {

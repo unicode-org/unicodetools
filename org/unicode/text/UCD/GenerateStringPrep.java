@@ -131,7 +131,7 @@ class GenerateStringPrep implements UCD_Types {
 		textOut.println('\uFEFF');
 		textOut.println("For documentation, see idn-chars.html");
 		
-		Utility.appendFile("./com/ibm/text/UCD/idn-charsHeader.html", Utility.UTF8_WINDOWS, htmlOut, 
+		Utility.appendFile("./org/unicode/text/UCD/idn-charsHeader.html", Utility.UTF8_WINDOWS, htmlOut, 
 				new String[] {"%date%", Default.getDate()});
 		/*
 		out
