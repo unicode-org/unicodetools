@@ -154,7 +154,7 @@ would write &quot;version 3.1.1&quot;. If you want the latest version (4.1.0), y
 		<li>In Eclipse, open the Package Explorer (Use Window&gt;Show View if you 
 		don't see it)</li>
 		<li>Open UnicodeTools<ul>
-			<li>com.ibm.text.UCD<ul>
+			<li>org.unicode.text.UCD<ul>
 				<li>MakeUnicodeFiles.<span style="background-color: #FFFF00">txt</span><p>This file drives the production of 
 				the derived Unicode files. The first three lines contain 
 				parameters that you may want to modify at some times:</p>
@@ -168,7 +168,7 @@ CopyrightYear: <b>2006</b> <i> // Pick the current year</i></pre>
 		</li>
 		<li>Open in Package Explorer 
 		<ul>
-			<li>com.ibm.text.UCD<ul>
+			<li>org.unicode.text.UCD<ul>
 				<li>Main</li>
 			</ul>
 			</li>
@@ -248,7 +248,7 @@ UNCHANGED-Diff_PropertyValueAliases-5.0.0d10.txt.bat</pre>
 <ol>
 	<li>Setup<ol>
 		<li>Open in Package Explorer<ul>
-			<li>com.ibm.text.UCD<ul>
+			<li>org.unicode.text.UCD<ul>
 				<li>TestUnicodeInvariants.java</li>
 			</ul>
 			</li>
@@ -271,16 +271,16 @@ TestFailureCount=1</pre>
 		Note that usually there is a comment that explains what the following 
 		line or lines are supposed to test. Then will come FALSE (indicating 
 		that the test failed), then the detailed error report.<pre><span style="font-size: 9pt"># Canonical decompositions (minus exclusions) must be identical across releases
-[$Decomposition_Type:Canonical - $Full_Composition_Exclusion] = [$×Decomposition_Type:Canonical - $×Full_Composition_Exclusion]
+[$Decomposition_Type:Canonical - $Full_Composition_Exclusion] = [$ï¿½Decomposition_Type:Canonical - $ï¿½Full_Composition_Exclusion]
 
 FALSE
 **** START Error Info ****
 
-In [$×Decomposition_Type:Canonical - $×Full_Composition_Exclusion], but not in [$Decomposition_Type:Canonical - $Full_Composition_Exclusion] :
+In [$ï¿½Decomposition_Type:Canonical - $ï¿½Full_Composition_Exclusion], but not in [$Decomposition_Type:Canonical - $Full_Composition_Exclusion] :
 
 # Total code points: 0
 
-Not in [$×Decomposition_Type:Canonical - $×Full_Composition_Exclusion], but in [$Decomposition_Type:Canonical - $Full_Composition_Exclusion] :
+Not in [$ï¿½Decomposition_Type:Canonical - $ï¿½Full_Composition_Exclusion], but in [$Decomposition_Type:Canonical - $Full_Composition_Exclusion] :
 1B06           # Lo       BALINESE LETTER AKARA TEDUNG
 1B08           # Lo       BALINESE LETTER IKARA TEDUNG
 1B0A           # Lo       BALINESE LETTER UKARA TEDUNG
@@ -294,7 +294,7 @@ Not in [$×Decomposition_Type:Canonical - $×Full_Composition_Exclusion], but in [
 
 # Total code points: 11
 
-In both [$×Decomposition_Type:Canonical - $×Full_Composition_Exclusion], and in [$Decomposition_Type:Canonical - $Full_Composition_Exclusion] :
+In both [$ï¿½Decomposition_Type:Canonical - $ï¿½Full_Composition_Exclusion], and in [$Decomposition_Type:Canonical - $Full_Composition_Exclusion] :
 00C0..00C5     # L&amp;   [6] LATIN CAPITAL LETTER A WITH GRAVE..LATIN CAPITAL LETTER A WITH RING ABOVE
 00C7..00CF     # L&amp;   [9] LATIN CAPITAL LETTER C WITH CEDILLA..LATIN CAPITAL LETTER I WITH DIAERESIS
 00D1..00D6     # L&amp;   [6] LATIN CAPITAL LETTER N WITH TILDE..LATIN CAPITAL LETTER O WITH DIAERESIS
@@ -332,7 +332,7 @@ AC00..D7A3     # Lo [11172] HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
 </ol>
 <h3>5. UCA</h3>
 <ol>
-	<li>You will use com.ibm.text.UCA.Main as your main class, creating along 
+	<li>You will use org.unicode.text.UCA.Main as your main class, creating along 
 	the same lines as above.</li>
 	<li>To test whether the UCA files are valid, use the
 	<span style="font-weight: 400">options (<i>note: you must also build the ICU 
