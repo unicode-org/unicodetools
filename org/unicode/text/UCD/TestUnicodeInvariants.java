@@ -114,7 +114,7 @@ public class TestUnicodeInvariants {
     } else {
       out.write('\uFEFF'); // BOM
     }
-    BufferedReader in = BagFormatter.openUTF8Reader("com/ibm/text/UCD/", outputFile);
+    BufferedReader in = BagFormatter.openUTF8Reader("org/unicode/text/UCD/", outputFile);
     
     BagFormatter errorLister = new BagFormatter();
     errorLister.setMergeRanges(doRange);
