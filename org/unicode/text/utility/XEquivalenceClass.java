@@ -1,4 +1,4 @@
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.util.ArrayList;
 import java.util.Collections;

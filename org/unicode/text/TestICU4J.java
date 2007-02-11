@@ -1,4 +1,4 @@
-package com.ibm.text;
+package org.unicode.text;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.text.UTF16;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.Iterator;
 import java.text.NumberFormat;
-import com.ibm.text.utility.FastIntBinarySearch;
+import org.unicode.text.utility.FastIntBinarySearch;
 
 public class TestICU4J {
   public static void main(String[] args) {

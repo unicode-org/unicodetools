@@ -5,20 +5,20 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
-* $Date: 2005-04-06 15:15:43 $ 
-* $Revision: 1.20 $
+* $Date: 2007-02-11 08:15:10 $ 
+* $Revision: 1.21 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCA;
+package org.unicode.text.UCA;
 import java.io.File;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.UTF16;
-import com.ibm.text.UCD.*;
-import com.ibm.text.utility.*;
+import org.unicode.text.UCD.*;
+import org.unicode.text.utility.*;
 
 
 public class Main {

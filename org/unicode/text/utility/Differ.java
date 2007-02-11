@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Differ.java,v $
-* $Date: 2001-08-31 00:19:16 $
-* $Revision: 1.2 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 /** Basic Diff program. Compares two sequences of objects fed into it, and
  * lets you know where they are different. For a usage example, see DifferTest

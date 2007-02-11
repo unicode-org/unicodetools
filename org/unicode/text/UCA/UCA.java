@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
-* $Date: 2006-06-08 18:16:40 $ 
-* $Revision: 1.26 $
+* $Date: 2007-02-11 08:15:10 $ 
+* $Revision: 1.27 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCA;
+package org.unicode.text.UCA;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -22,17 +22,17 @@ import java.io.PrintWriter;
 import java.io.FileReader;
 import java.text.MessageFormat;
 import java.io.IOException;
-import com.ibm.text.UCD.Normalizer;
-import com.ibm.text.UCD.UCD;
-import com.ibm.text.utility.*;
-import com.ibm.text.UCD.UnifiedBinaryProperty;
-import com.ibm.text.UCD.UCDProperty;
+import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.utility.*;
+import org.unicode.text.UCD.UnifiedBinaryProperty;
+import org.unicode.text.UCD.UCDProperty;
 
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
-//import com.ibm.text.CollationData.*;
+//import org.unicode.text.CollationData.*;
 
 /**
 * Collator is a working version of UTR#10 Unicode Collation Algorithm,

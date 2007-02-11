@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
-* $Date: 2006-11-27 23:15:21 $
-* $Revision: 1.42 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.43 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -29,7 +29,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.BufferedReader;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
@@ -42,12 +42,13 @@ public final class UCD implements UCD_Types {
     private static int SPOT_CHECK = 0x20AC;
 
     static final boolean DEBUG = false;
+    static final boolean SHOW_LOADING = false;
     
     /**
      * Used for the default version.
      */
-    public static final String latestVersion = "5.0.0";
-    public static final String lastVersion = "4.1.0";
+    public static final String latestVersion = "5.0.1";
+    public static final String lastVersion = "5.0.0";
 
     /**
      * Create singleton instance for default (latest) version
@@ -421,23 +422,32 @@ public final class UCD implements UCD_Types {
             }
             */
             
-            System.out.println("BIDI_R_SET: " + BIDI_R_SET);
-            System.out.println("BIDI_AL_SET: " + BIDI_AL_SET);
+            if (SHOW_LOADING) {
+              System.out.println("BIDI_R_SET: " + BIDI_R_SET);
+              System.out.println("BIDI_AL_SET: " + BIDI_AL_SET);
+            }
 
             UnicodeSet BIDI_R_Delta = new UnicodeSet(0xFB1D, 0xFB4F).add(0x10800, 0x10FFF).add(0x07C0,0x8FF);
             BIDI_R_Delta.removeAll(BIDI_R_SET);
-            System.out.println("R: Adding " + BIDI_R_Delta);
+            if (SHOW_LOADING) {
+              System.out.println("R: Adding " + BIDI_R_Delta);
+            }
             BIDI_R_SET.addAll(BIDI_R_Delta);
             
             UnicodeSet BIDI_AL_Delta = new UnicodeSet(0x0750, 0x077F);
             BIDI_AL_Delta.removeAll(BIDI_AL_SET);
-            System.out.println("AL: Adding " + BIDI_AL_Delta);
+            if (SHOW_LOADING) {            
+              System.out.println("AL: Adding " + BIDI_AL_Delta);
+            }
+
             BIDI_AL_SET.addAll(BIDI_AL_Delta);
             
             UnicodeSet noncharacters = UnifiedBinaryProperty.make(BINARY_PROPERTIES + Noncharacter_Code_Point, this).getSet();
             noncharacters.remove(Utility.BOM);
             
-            System.out.println("Removing Noncharacters/BOM  " + noncharacters);
+            if (SHOW_LOADING) {
+              System.out.println("Removing Noncharacters/BOM  " + noncharacters);
+            }
             BIDI_R_SET.removeAll(noncharacters);
             BIDI_AL_SET.removeAll(noncharacters);
             
@@ -445,13 +455,17 @@ public final class UCD implements UCD_Types {
             if (compositeVersion >= 0x40001) {
                 BIDI_BN_SET.addAll(noncharacters);
                 UnicodeSet DefaultIg = DerivedProperty.make(DefaultIgnorable, this).getSet();
-                System.out.println("DefaultIg: " + DefaultIg);
+                if (SHOW_LOADING) {
+                  System.out.println("DefaultIg: " + DefaultIg);
+                }
                 BIDI_BN_SET.addAll(DefaultIg);
             }                       
             
-            System.out.println("BIDI_R_SET: " + BIDI_R_SET);
+            if (SHOW_LOADING) {
+              System.out.println("BIDI_R_SET: " + BIDI_R_SET);
             System.out.println("BIDI_AL_SET: " + BIDI_AL_SET);
             System.out.println("BIDI_BN_SET: " + BIDI_BN_SET);
+            }
             
             if (BIDI_R_SET.containsSome(BIDI_AL_SET)) {
                 throw new ChainException("BIDI values for Cf characters overlap!!", null);
@@ -560,7 +574,9 @@ public final class UCD implements UCD_Types {
                 int hack = propertyValue.indexOf(' ');
                 if (hack >= 0) {
                     Utility.fixDot();
-                    System.out.println("BAD NUMBER: " + line);
+                    if (SHOW_LOADING) {
+                      System.out.println("BAD NUMBER: " + line);
+                    }
                     propertyValue = propertyValue.substring(0,hack);
                 }
                 
@@ -1395,6 +1411,7 @@ to guarantee identifier closure.
             result.name = null; // clean this up, since we reuse UNASSIGNED
             result.shortName = null;
             result.decompositionType = NONE;
+            result.lineBreak = LB_XX;
             if (fixStrings) {
                 constructedName = "<reserved-" + Utility.hex(codePoint, 4) + ">";
                 //result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
@@ -1415,7 +1432,11 @@ to guarantee identifier closure.
         }
         if (isHangul) {
             if (fixStrings) result.decompositionMapping = getHangulDecompositionPair(codePoint);
-            if (isLV(codePoint)) result.lineBreak = LB_H2; else result.lineBreak = LB_H3;
+            if (isLV(codePoint)) {
+              result.lineBreak = LB_H2; 
+            } else {
+              result.lineBreak = LB_H3;
+            }
             result.decompositionType = CANONICAL;
         }
         return result;
@@ -1597,7 +1618,9 @@ to guarantee identifier closure.
             size = uDataFileCount = dataIn.readInt();
 
             boolean didJoiningHack = false;
-            System.out.println("Loading UCD " + foundVersion);
+            if (SHOW_LOADING) {
+              System.out.println("Loading UCD " + foundVersion);
+            }
 
 
             // records
@@ -1623,15 +1646,19 @@ to guarantee identifier closure.
                 }
                 */
                 if (!didJoiningHack && uData.joiningType != old) {
+                  if (SHOW_LOADING) {
                     System.out.println("HACK " + foundVersion + ": Setting "
                         + UCD_Names.LONG_JOINING_TYPE[uData.joiningType]
                         + ": " + Utility.hex(cp) + " " + uData.name);
+                    }
                     didJoiningHack = true;
                 }
 
                 combiningClassSet.set(uData.combiningClass & 0xFF);
                 if (cp == 0xE000) {
-                	System.out.println("Check: " + uData.script);
+                  if (SHOW_LOADING) {
+                    System.out.println("Check: " + uData.script);
+                  }
                 }
                 add(uData);
             }
@@ -1674,9 +1701,9 @@ to guarantee identifier closure.
         return (List)blockData.getAvailableValues(result);
     }
     public UnicodeSet getBlockSet(String value, UnicodeSet result) {
-        if (result == null) result = new UnicodeSet();
+      String blockName = UnicodeProperty.regularize(value, true);
         if (blockData == null) loadBlocks();
-        return blockData.getSet(value, result);
+        return blockData.getSet(blockName, result);
     }
     
     static final Matcher blockPattern = Pattern.compile("([0-9A-F]+)\\s*(?:[.][.]|[;])\\s*([0-9A-F]+)\\s*[;](.*)").matcher("");
@@ -1701,7 +1728,7 @@ to guarantee identifier closure.
                     try {
                       int start = Integer.parseInt(blockPattern.group(1), 16);
                       int end = Integer.parseInt(blockPattern.group(2), 16);
-                      String name = blockPattern.group(3).trim().replace(' ', '_');
+                      String name = UnicodeProperty.regularize(blockPattern.group(3).trim(), true);
                       blockData.putAll(start,end, name);
                     } catch (RuntimeException e) {
                       System.err.println("Failed on line " + i + "\t" + line);

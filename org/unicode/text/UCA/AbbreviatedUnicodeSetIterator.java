@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/AbbreviatedUnicodeSetIterator.java,v $ 
-* $Date: 2004-02-06 18:32:04 $ 
-* $Revision: 1.2 $
+* $Date: 2007-02-11 08:15:10 $ 
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCA;
+package org.unicode.text.UCA;
 
 import java.util.*;
 import java.io.BufferedReader;
@@ -20,11 +20,11 @@ import java.io.PrintWriter;
 import java.io.FileReader;
 import java.text.MessageFormat;
 import java.io.IOException;
-import com.ibm.text.UCD.Normalizer;
-import com.ibm.text.UCD.UCD;
-import com.ibm.text.utility.*;
-import com.ibm.text.UCD.UnifiedBinaryProperty;
-import com.ibm.text.UCD.UCDProperty;
+import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.utility.*;
+import org.unicode.text.UCD.UnifiedBinaryProperty;
+import org.unicode.text.UCD.UCDProperty;
 
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

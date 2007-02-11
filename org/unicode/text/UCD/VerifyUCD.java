@@ -5,18 +5,18 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/VerifyUCD.java,v $
-* $Date: 2005-03-10 02:37:20 $
-* $Revision: 1.27 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.28 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 
-//import com.ibm.text.unicode.UInfo;
+//import org.unicode.text.unicode.UInfo;
 import java.util.*;
 import java.io.*;
 //import java.text.Un;
@@ -25,7 +25,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 import com.ibm.icu.text.UTF16;
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import java.text.NumberFormat;
 
 public class VerifyUCD implements UCD_Types {

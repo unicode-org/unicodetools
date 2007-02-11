@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF16Plus.java,v $
-* $Date: 2001-09-06 01:29:14 $
-* $Revision: 1.3 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 public class UTF16Plus {
 }

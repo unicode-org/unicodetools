@@ -1,14 +1,14 @@
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.ibm.text.UCD.Default;
-import com.ibm.text.UCD.GenerateData;
-import com.ibm.text.UCD.MakeUnicodeFiles;
-import com.ibm.text.UCD.UCD_Types;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.GenerateData;
+import org.unicode.text.UCD.MakeUnicodeFiles;
+import org.unicode.text.UCD.UCD_Types;
 
 public class UnicodeDataFile {
     public PrintWriter out;

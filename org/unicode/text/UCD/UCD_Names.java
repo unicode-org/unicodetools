@@ -5,20 +5,20 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
-* $Date: 2006-04-05 22:12:44 $
-* $Revision: 1.32 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.33 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 
 final class UCD_Names implements UCD_Types {

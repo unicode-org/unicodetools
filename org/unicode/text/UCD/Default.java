@@ -1,5 +1,5 @@
-package com.ibm.text.UCD;
-import com.ibm.text.utility.*;
+package org.unicode.text.UCD;
+import org.unicode.text.utility.*;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

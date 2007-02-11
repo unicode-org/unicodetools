@@ -5,20 +5,20 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Main.java,v $
-* $Date: 2006-04-05 22:12:44 $
-* $Revision: 1.37 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.38 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import java.util.Date;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 public final class Main implements UCD_Types {
     
-    static final String classPrefix = "com.ibm.text.UCD.";
+    static final String classPrefix = "org.unicode.text.UCD.";
     
     static final String[] CORE_FILES = {
         "CaseFolding",

@@ -1,6 +1,6 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 public abstract class UCDProperty implements UCD_Types {
   
@@ -136,7 +136,7 @@ public abstract class UCDProperty implements UCD_Types {
                     default: throw new IllegalArgumentException("Bad property: " + style);
                 }
             } catch (RuntimeException e) {
-                throw new com.ibm.text.utility.ChainException("Unset value string in " + getName(LONG), null, e);
+                throw new org.unicode.text.utility.ChainException("Unset value string in " + getName(LONG), null, e);
             }
       }
       

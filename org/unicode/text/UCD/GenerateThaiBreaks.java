@@ -5,18 +5,18 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateThaiBreaks.java,v $
-* $Date: 2006-09-24 23:32:44 $
-* $Revision: 1.5 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import java.io.*;
 import com.ibm.icu.text.UTF16;
-//import com.ibm.text.utility;
+//import org.unicode.text.utility;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.text.utility.Utility;
+import org.unicode.text.utility.Utility;
 //import java.util.*;
 
 public class GenerateThaiBreaks {

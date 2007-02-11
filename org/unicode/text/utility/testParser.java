@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/testParser.java,v $
-* $Date: 2003-04-25 01:39:15 $
-* $Revision: 1.3 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 /** Simple Test program for XMLParse
  */

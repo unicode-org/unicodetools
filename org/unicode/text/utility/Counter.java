@@ -5,17 +5,17 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Counter.java,v $
-* $Date: 2006-04-05 22:12:45 $
-* $Revision: 1.4 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 
 import java.io.IOException;
-//import com.ibm.text.unicode.UInfo;
+//import org.unicode.text.unicode.UInfo;
 import java.util.*;
 import java.io.*;
 import java.text.*;

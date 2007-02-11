@@ -5,14 +5,14 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateStandardizedVariants.java,v $
-* $Date: 2006-04-05 22:12:44 $
-* $Revision: 1.7 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.8 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
-import com.ibm.text.utility.*;
+package org.unicode.text.UCD;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.*;

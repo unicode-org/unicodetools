@@ -1,4 +1,4 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import com.ibm.icu.impl.CollectionUtilities;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
@@ -6,7 +6,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 import java.util.BitSet;
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import java.io.PrintWriter;
 
 

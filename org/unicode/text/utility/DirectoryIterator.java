@@ -1,10 +1,10 @@
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.util.*;
 import java.io.*;
 import java.io.*;
 
-import com.ibm.text.UCD.UCD_Types;
+import org.unicode.text.UCD.UCD_Types;
 
 public class DirectoryIterator {
     

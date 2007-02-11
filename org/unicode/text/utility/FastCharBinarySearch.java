@@ -10,7 +10,7 @@ attribution to Taligent may not be removed.
   Taligent is a registered trademark of Taligent, Inc.
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 
 public class FastCharBinarySearch

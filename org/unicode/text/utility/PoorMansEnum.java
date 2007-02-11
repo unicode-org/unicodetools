@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/PoorMansEnum.java,v $
-* $Date: 2002-10-05 01:28:57 $
-* $Revision: 1.1 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.2 $
 *
 *******************************************************************************
 */
@@ -16,7 +16,7 @@
  * ID <-> int
  * ID <-> string name
  */
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.util.*;
 

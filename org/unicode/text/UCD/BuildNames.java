@@ -5,23 +5,23 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/BuildNames.java,v $
-* $Date: 2004-03-11 19:03:18 $
-* $Revision: 1.9 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.10 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.IOException;
 import com.ibm.icu.text.UTF16;
 
-//import com.ibm.text.unicode.UInfo;
+//import org.unicode.text.unicode.UInfo;
 import java.util.*;
 import java.io.*;
 //import java.text.*;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 
 public class BuildNames implements UCD_Types {

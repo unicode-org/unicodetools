@@ -5,15 +5,15 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/CEList.java,v $ 
-* $Date: 2002-07-03 02:15:47 $ 
-* $Revision: 1.6 $
+* $Date: 2007-02-11 08:15:10 $ 
+* $Revision: 1.7 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCA;
-import com.ibm.text.UCD.*;
-import com.ibm.text.utility.*;
+package org.unicode.text.UCA;
+import org.unicode.text.UCD.*;
+import org.unicode.text.utility.*;
 
 public final class CEList implements java.lang.Comparable, UCD_Types {
   int[] contents;

@@ -1,4 +1,4 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.lang.UScript;

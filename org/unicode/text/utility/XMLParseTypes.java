@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/XMLParseTypes.java,v $
-* $Date: 2001-08-31 00:19:16 $
-* $Revision: 1.2 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 /** Interface of values for use with XMLParse.
  * Others classes can "implements" this also, to avoid typing XMLParseTypes.XXX

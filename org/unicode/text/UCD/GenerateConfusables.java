@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateConfusables.java,v $
-* $Date: 2006-09-24 23:32:44 $
-* $Revision: 1.12 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.13 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,7 +43,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
-import com.ibm.text.utility.Utility;
+import org.unicode.text.utility.Utility;
 
 
 public class GenerateConfusables {
@@ -457,8 +457,8 @@ public class GenerateConfusables {
 			//reviews.putAll(UNASSIGNED, "");
 //			out.print("\uFEFF");
 //			out.println("# Review List for IDN");
-//			out.println("# $Revision: 1.12 $");
-//			out.println("# $Date: 2006-09-24 23:32:44 $");
+//			out.println("# $Revision: 1.13 $");
+//			out.println("# $Date: 2007-02-11 08:15:09 $");
 //			out.println("");
 
 			UnicodeSet fullSet = reviews.getSet("").complement();
@@ -580,8 +580,8 @@ public class GenerateConfusables {
 			/* PrintWriter out = BagFormatter.openUTF8Writer(outdir, "xidmodifications.txt");
 
 			out.println("# Security Profile for General Identifiers");
-			out.println("# $Revision: 1.12 $");
-			out.println("# $Date: 2006-09-24 23:32:44 $");
+			out.println("# $Revision: 1.13 $");
+			out.println("# $Date: 2007-02-11 08:15:09 $");
             */
 
 
@@ -653,8 +653,8 @@ public class GenerateConfusables {
 			//someRemovals = removals;
 			out = BagFormatter.openUTF8Writer(outdir, "draft-restrictions.txt");
 			out.println("# Characters restricted in domain names");
-			out.println("# $Revision: 1.12 $");
-			out.println("# $Date: 2006-09-24 23:32:44 $");
+			out.println("# $Revision: 1.13 $");
+			out.println("# $Date: 2007-02-11 08:15:09 $");
 			out.println("#");
 			out.println("# This file contains a draft list of characters for use in");
 			out.println("#     UTR #36: Unicode Security Considerations");
@@ -1253,8 +1253,8 @@ public static int getSingleScript(String source) {
             PrintWriter out = openAndWriteHeader(filename, "Source File for IDN Confusables");
 //			PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
 //			out.println("# Source File for IDN Confusables");
-//			out.println("# $Revision: 1.12 $");
-//			out.println("# $Date: 2006-09-24 23:32:44 $");
+//			out.println("# $Revision: 1.13 $");
+//			out.println("# $Date: 2007-02-11 08:15:09 $");
 //			out.println("");
 			dataMixedAnycase.writeSource(out);
 			out.close();
@@ -1264,8 +1264,8 @@ public static int getSingleScript(String source) {
             PrintWriter out = openAndWriteHeader(filename, "Recommended confusable mapping for IDN");
 //            PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
 //			out.println("# Recommended confusable mapping for IDN");
-//			out.println("# $Revision: 1.12 $");
-//			out.println("# $Date: 2006-09-24 23:32:44 $");
+//			out.println("# $Revision: 1.13 $");
+//			out.println("# $Date: 2007-02-11 08:15:09 $");
 //			out.println("");
 
 			if (appendFile) {
@@ -1496,8 +1496,8 @@ public static int getSingleScript(String source) {
 //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
 //			out.print('\uFEFF');
 //			out.println("# Summary: Recommended confusable mapping for IDN");
-//			out.println("# $Revision: 1.12 $");
-//			out.println("# $Date: 2006-09-24 23:32:44 $");
+//			out.println("# $Revision: 1.13 $");
+//			out.println("# $Date: 2007-02-11 08:15:09 $");
 //			out.println("");
             UnicodeSet representable = new UnicodeSet();
 			MyEquivalenceClass data = dataMixedAnycase;
@@ -1623,8 +1623,8 @@ public static int getSingleScript(String source) {
 //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
 //			out.print('\uFEFF');
 //			out.println("# Summary: Whole-Script Confusables");
-//			out.println("# $Revision: 1.12 $");
-//			out.println("# $Date: 2006-09-24 23:32:44 $");
+//			out.println("# $Revision: 1.13 $");
+//			out.println("# $Date: 2007-02-11 08:15:09 $");
 			out.println("# This data is used for determining whether a strings is a");
 			out.println("# whole-script or mixed-script confusable.");
 			out.println("# The mappings here ignore common and inherited script characters,");
@@ -2133,7 +2133,7 @@ public static int getSingleScript(String source) {
          out.println("# File: " + filename);
          out.println("# Version: " + version);
          out.println("# Generated: " + Default.getDate());
-         out.println("# Checkin: $Revision: 1.12 $");
+         out.println("# Checkin: $Revision: 1.13 $");
          out.println("#");
          out.println("# For documentation and usage, see http://www.unicode.org/reports/tr39/");
          out.println("#");

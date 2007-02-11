@@ -5,16 +5,16 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UData.java,v $
-* $Date: 2006-04-05 22:12:44 $
-* $Revision: 1.12 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.13 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.*;
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 class UData implements UCD_Types {
     String name;

@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
-* $Date: 2006-11-27 23:15:21 $
-* $Revision: 1.14 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.15 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import org.unicode.cldr.util.Counter;
 
@@ -141,7 +141,7 @@ public class QuickTest implements UCD_Types {
                 }
             }
             if (decomposition.length() != 2) System.out.println("Failed decomp: " + Default.ucd().getCodeAndName(source));
-            diff.put(source.charAt(0), com.ibm.text.utility.Utility.hex(decomposition, " "));
+            diff.put(source.charAt(0), org.unicode.text.utility.Utility.hex(decomposition, " "));
         }
         UnicodeMapProperty p = new UnicodeMapProperty().set(diff);
         BagFormatter bf = new BagFormatter().setValueSource(p);
@@ -271,9 +271,9 @@ public class QuickTest implements UCD_Types {
 	}
 
 	private static void getCaseFoldingUnstable() {
-		for (int i = 3; i < com.ibm.text.utility.Utility.searchPath.length - 1; ++i) {
-			String newName = com.ibm.text.utility.Utility.searchPath[i];
-			String oldName = com.ibm.text.utility.Utility.searchPath[i+1];
+		for (int i = 3; i < org.unicode.text.utility.Utility.searchPath.length - 1; ++i) {
+			String newName = org.unicode.text.utility.Utility.searchPath[i];
+			String oldName = org.unicode.text.utility.Utility.searchPath[i+1];
 			showMemoryUsage();		
 			UCD ucdNew = UCD.make(newName);
 			showMemoryUsage();
@@ -292,7 +292,7 @@ public class QuickTest implements UCD_Types {
 				}
 			}
 			if (differenceSet.size() != 0) {
-				System.out.println("Differences in " + com.ibm.text.utility.Utility.searchPath[i]);
+				System.out.println("Differences in " + org.unicode.text.utility.Utility.searchPath[i]);
 				for (UnicodeSetIterator it = new UnicodeSetIterator(differenceSet); it.next();) {
 					System.out.println(ucdNew.getCodeAndName(it.codepoint));
 					String[] strings = (String[]) differences.getValue(it.codepoint);

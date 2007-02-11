@@ -1,7 +1,7 @@
-package com.ibm.text.UCA;
+package org.unicode.text.UCA;
 
-import com.ibm.text.UCD.UCD_Types;
-import com.ibm.text.utility.Utility;
+import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Utility;
 
 /**
  * For generation of Implicit CEs

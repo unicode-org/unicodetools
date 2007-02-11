@@ -1,4 +1,4 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 public class ListNFComplete {
     
     // find all the characters that are 

@@ -1,4 +1,4 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -34,13 +34,13 @@ import com.ibm.icu.text.SymbolTable;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
-import com.ibm.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
-import com.ibm.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;
-import com.ibm.text.UCD.GenerateBreakTest.GenerateWordBreakTest;
-import com.ibm.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
-import com.ibm.text.utility.UnicodeDataFile;
-import com.ibm.text.utility.Utility;
+import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
+import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
+import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;
+import org.unicode.text.UCD.GenerateBreakTest.GenerateWordBreakTest;
+import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
+import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.Utility;
 import com.ibm.icu.text.Collator;
 
 public class MakeUnicodeFiles {

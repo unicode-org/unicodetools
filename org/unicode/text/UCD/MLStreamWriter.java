@@ -5,17 +5,17 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MLStreamWriter.java,v $
-* $Date: 2003-04-25 01:39:15 $
-* $Revision: 1.4 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.*;
 import java.util.*;
-import com.ibm.text.UCD.*;
+import org.unicode.text.UCD.*;
 
 public class MLStreamWriter extends Writer {
     public static final String copyright =

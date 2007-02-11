@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2005-11-01 00:10:53 $
-* $Revision: 1.51 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.52 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 
 import java.util.*;
 import java.text.*;
@@ -26,7 +26,7 @@ import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 
-import com.ibm.text.UCD.*;
+import org.unicode.text.UCD.*;
 
 public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
@@ -1017,6 +1017,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             if (line1.equals("#")) continue;
             if (line1.startsWith("# Generated")) continue;
             if (line1.startsWith("# Date")) continue;
+            if (line1.startsWith("# Copyright")) continue;
+
             if (line1.equals("# ================================================")) continue;
             if (first && line1.startsWith("#")) {
                 first = false;

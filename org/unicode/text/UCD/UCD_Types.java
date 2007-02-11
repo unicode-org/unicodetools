@@ -5,13 +5,13 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
-* $Date: 2006-04-05 22:12:44 $
-* $Revision: 1.33 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.34 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 public interface UCD_Types {
     

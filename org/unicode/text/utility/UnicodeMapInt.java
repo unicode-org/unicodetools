@@ -1,4 +1,4 @@
-package com.ibm.text.utility;
+package org.unicode.text.utility;
 import com.ibm.icu.text.UnicodeSet;
 
 final class UnicodeMapInt {

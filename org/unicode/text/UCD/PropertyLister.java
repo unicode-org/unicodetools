@@ -5,16 +5,16 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/PropertyLister.java,v $
-* $Date: 2003-03-19 17:30:56 $
-* $Revision: 1.11 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.12 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.*;
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UnicodeSet;
 import java.text.NumberFormat;
 

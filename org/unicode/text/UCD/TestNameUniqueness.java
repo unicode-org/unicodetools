@@ -5,20 +5,20 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNameUniqueness.java,v $
-* $Date: 2004-10-14 17:54:56 $
-* $Revision: 1.3 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.util.*;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.text.UnicodeSet;

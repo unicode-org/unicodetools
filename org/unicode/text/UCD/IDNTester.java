@@ -1,4 +1,4 @@
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,7 +9,7 @@ import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.text.utility.Utility;
+import org.unicode.text.utility.Utility;
 
 public class IDNTester {
 	static StringBuffer inbuffer = new StringBuffer();

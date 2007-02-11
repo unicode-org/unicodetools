@@ -5,16 +5,16 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateHanTransliterator.java,v $
-* $Date: 2004-06-26 00:26:16 $
-* $Revision: 1.16 $
+* $Date: 2007-02-11 08:15:09 $
+* $Revision: 1.17 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCD;
+package org.unicode.text.UCD;
 import java.io.*;
 
-import com.ibm.text.utility.*;
+import org.unicode.text.utility.*;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;

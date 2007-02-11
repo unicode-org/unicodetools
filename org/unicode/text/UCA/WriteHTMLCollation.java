@@ -5,22 +5,22 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteHTMLCollation.java,v $ 
-* $Date: 2005-03-04 02:50:25 $ 
-* $Revision: 1.9 $
+* $Date: 2007-02-11 08:15:10 $ 
+* $Revision: 1.10 $
 *
 *******************************************************************************
 */
 
 //WARNING: OLD FILE. DON"T COMPILE.
 
-package com.ibm.text.UCA;
+package org.unicode.text.UCA;
 
 import java.util.*;
 import java.io.*;
 //import java.text.*;
-//import com.ibm.text.unicode.*;
-import com.ibm.text.UCD.*;
-import com.ibm.text.utility.*;
+//import org.unicode.text.unicode.*;
+import org.unicode.text.UCD.*;
+import org.unicode.text.utility.*;
 
 public class WriteHTMLCollation implements UCD_Types {
 
@@ -261,7 +261,7 @@ public class WriteHTMLCollation implements UCD_Types {
     static void addStringX(String s, byte option) {
         addStringY(s + 'a', option);
         addStringY(s + 'A', option);
-        addStringY(s + 'á', option);
+        addStringY(s + 'ï¿½', option);
         addStringY(s + 'b', option);
         addStringY(s + '\u0325', option);
         addStringY(s + '_', option);

@@ -5,19 +5,19 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCharts.java,v $
-* $Date: 2006-06-08 18:16:40 $
-* $Revision: 1.22 $
+* $Date: 2007-02-11 08:15:10 $
+* $Revision: 1.23 $
 *
 *******************************************************************************
 */
 
-package com.ibm.text.UCA;
+package org.unicode.text.UCA;
 
 import java.util.*;
 
 import java.io.*;
-import com.ibm.text.UCD.*;
-import com.ibm.text.utility.*;
+import org.unicode.text.UCD.*;
+import org.unicode.text.utility.*;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.text.Transliterator;
