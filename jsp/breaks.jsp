@@ -2,10 +2,11 @@
 
 <head>
 <meta http-equiv="Content-Language" content="en-us">
-<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Unicode Break Demo</title>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="com.ibm.icu.text.*" %> <%@ page import="java.util.regex.*" %>
 <style>
 <!--
