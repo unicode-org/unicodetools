@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.33 $
+* $Date: 2007-04-27 00:44:28 $
+* $Revision: 1.34 $
 *
 *******************************************************************************
 */
@@ -14,10 +14,14 @@
 package org.unicode.text.UCD;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+
+import org.unicode.cldr.util.Relation;
 import org.unicode.text.utility.*;
 
 
@@ -242,8 +246,13 @@ final class UCD_Names implements UCD_Types {
         "Unassigned_Code_Point"
     };
 
-	static final String[] YN_TABLE = {"F", "T"};
-	static final String[] YN_TABLE_LONG = {"False", "True"};
+	static final String[] YN_TABLE = {"N", "Y"};
+	static final String[] YN_TABLE_LONG = {"No", "Yes"};
+  
+  public static final String YES = "Yes";
+  public static final String NO = "No";
+  public static final String Y = "Y";
+  public static final String N = "N";
 
     static String[] EAST_ASIAN_WIDTH = {
         "N", "A", "H", "W", "F", "Na"
@@ -353,7 +362,7 @@ final class UCD_Names implements UCD_Types {
     "Unknown"
   };
 
-	public static final Map EXTRA_SCRIPT = new HashMap();
+	public static final Relation<String,String> EXTRA_SCRIPT = new Relation(new TreeMap(), LinkedHashSet.class);
 	static {
 		EXTRA_SCRIPT.put("Coptic", "Qaac");
 	}
@@ -549,7 +558,7 @@ final class UCD_Names implements UCD_Types {
         {"LC", "Cased Letter", null, "Ll | Lt | Lu"},
     };
 
-	public static final Map EXTRA_GENERAL_CATEGORY = new HashMap();
+	public static final Relation<String,String> EXTRA_GENERAL_CATEGORY = new Relation(new TreeMap(), LinkedHashSet.class);
 	static {
 		EXTRA_GENERAL_CATEGORY.put("Decimal_Number", "digit");
 		EXTRA_GENERAL_CATEGORY.put("Control", "cntrl");

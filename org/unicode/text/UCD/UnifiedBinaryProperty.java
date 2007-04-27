@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UnifiedBinaryProperty.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.18 $
+* $Date: 2007-04-27 00:44:28 $
+* $Revision: 1.19 $
 *
 *******************************************************************************
 */
@@ -142,8 +142,8 @@ public final class UnifiedBinaryProperty extends UCDProperty {
             name = ucd.getBinaryPropertiesID_fromIndex((byte)propValue, LONG);
             shortName = ucd.getBinaryPropertiesID_fromIndex((byte)propValue, SHORT);
             defaultPropertyStyle = defaultValueStyle;
-            valueName = "True";
-            shortValueName = "T";
+            valueName = UCD_Names.YES;
+            shortValueName = UCD_Names.Y;
         }
         
         // System.out.println("Value = " + getValue(defaultValueStyle));

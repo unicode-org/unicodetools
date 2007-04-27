@@ -16,8 +16,9 @@
 #
 # NOTE: case folding does not preserve normalization formats!
 #
-# For information on case folding, see
-# UTR #21 Case Mappings, at http://www.unicode.org/unicode/reports/tr21/
+# For information on case folding, including how to have case folding 
+# preserve normalization formats, see Section 3.13 Default Case Algorithms in
+# The Unicode Standard, Version 5.0.
 #
 # ================================================================================
 # Format
@@ -44,4 +45,4 @@
 #    behavior. (The default option is to exclude them.)
 #
 # =================================================================
-
+# @missing 0000..10FFFF; <codepoint>

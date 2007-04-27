@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedProperty.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.27 $
+* $Date: 2007-04-27 00:44:27 $
+* $Revision: 1.28 $
 *
 *******************************************************************************
 */
@@ -906,8 +906,8 @@ of characters, the first of which has a non-zero combining class.
             if (up == null) continue;
             if (up.getValueType() != BINARY_PROP) continue;
             up.setValue(NUMBER, "1");
-            up.setValue(SHORT, "T");
-            up.setValue(LONG, "True");
+            up.setValue(SHORT, "Y");
+            up.setValue(LONG, UCD_Names.YES);
         }
     }
     

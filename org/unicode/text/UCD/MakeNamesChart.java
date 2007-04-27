@@ -53,7 +53,7 @@ public class MakeNamesChart {
 		skipChars = new UnicodeSet(up.getSet("gc=cn")).removeAll(up.getSet("gc=cn"));
 		//"[[:gc=cn:]-[:noncharactercodepoint:]]");
 		rtl = new UnicodeSet(up.getSet("bidiclass=r")).addAll(up.getSet("bidiclass=al"));// "[[:bidiclass=r:][:bidiclass=al:]]");
-		usePicture = new UnicodeSet(up.getSet("whitespace=true")).addAll(up.getSet("defaultignorablecodepoint=true"));// new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
+		usePicture = new UnicodeSet(up.getSet("whitespace=Yes")).addAll(up.getSet("defaultignorablecodepoint=Yes"));// new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
 
 		List nameList = new ArrayList();
 		ArrayList lines = new ArrayList();
