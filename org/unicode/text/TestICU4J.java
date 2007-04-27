@@ -275,7 +275,7 @@ public class TestICU4J {
 	 *
 	 */
 	public static boolean test(String booleanPropertyName, int codePoint) {
-		return test(booleanPropertyName, "true", codePoint);
+		return test(booleanPropertyName, UnicodeProperty.binaryTrue, codePoint);
 	}
 
 	// ===============================================

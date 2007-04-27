@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.52 $
+* $Date: 2007-04-27 00:44:28 $
+* $Revision: 1.53 $
 *
 *******************************************************************************
 */
@@ -199,7 +199,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     public static byte lookup(String source, String[] target, boolean skeletonize) {
         int result = Utility.find(source, target, skeletonize);
         if (result != -1) return (byte)result;
-        throw new ChainException("Could not find \"{0}\" in table [{1}]", new Object [] {source, target});
+        throw new ChainException("Could not find \"{0}\" in table [{1}]", new Object [] {source, Arrays.asList(target)});
     }
 
     /**
@@ -702,6 +702,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static final String[] searchPath = {
         "EXTRAS",
+        "5.0.1",
         "5.0.0",
         "4.1.0",
         "4.0.1",

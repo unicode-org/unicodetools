@@ -1,6 +1,13 @@
 
 # ================================================================================
-# Conditional mappings
+# Conditional Mappings
+# The remainder of this file provides conditional casing data used to produce 
+# full case mappings.
+# ================================================================================
+# Language-Insensitive Mappings
+# These are characters whose full case mappings do not depend on language, but do
+# depend on context (which characters come before or after). For more information
+# see the header of this file and the Unicode Standard.
 # ================================================================================
 
 # Special case for final form of sigma
@@ -19,7 +26,10 @@
 # 03C2; 03C3; 03A3; 03A3; Not_Final_Sigma; # GREEK SMALL LETTER FINAL SIGMA
 
 # ================================================================================
-# Locale-sensitive mappings
+# Language-Sensitive Mappings
+# These are characters whose full case mappings depend on language and perhaps also
+# context (which characters come before or after). For more information
+# see the header of this file and the Unicode Standard.
 # ================================================================================
 
 # Lithuanian

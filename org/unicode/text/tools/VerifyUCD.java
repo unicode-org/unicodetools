@@ -223,7 +223,7 @@ public class VerifyUCD {
       if ((type & UnicodeProperty.STRING_OR_MISC_MASK) != 0) {
         value1 = UTF16.valueOf(codepoint);
       } else if ((type & UnicodeProperty.BINARY_MASK) != 0) {
-        value1 = "False";
+        value1 = UCD_Names.NO;
       }
     }
     return value1;

@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 3
+DeltaVersion: 4
 CopyrightYear: 2007
 
 File: auxiliary/GraphemeBreakProperty
@@ -145,7 +145,7 @@ Property:	XID_Continue
 
 Property:	Default_Ignorable_Code_Point
 # Derived Property: Default_Ignorable_Code_Point
-#  Generated from Other_Default_Ignorable_Code_Point + Cf + Cc + Cs + Noncharacters
+#  Generated from Other_Default_Ignorable_Code_Point + Cf + Cc + Cs + Noncharacters + Variation_Selectors
 #  - White_Space - FFF9..FFFB (Annotation Characters)
 
 Property:	Grapheme_Extend
@@ -272,10 +272,13 @@ Format: skipValue=None
 File:	extracted/DerivedNumericValues
 Property:	Numeric_Value
 # Numeric Values (from UnicodeData.txt, field 6/7/8)
-# WARNING: Certain valus, such as 0.16666667, are repeating fractions
+# WARNING: Certain values, such as 0.16666667, are repeating fractions
 # Although they are only printed with a limited number of decimal places
 # in this file, they should be expressed to the limits of the precision
 # available when used.
+# A second field was added in Unicode 5.0.1 that contains the rational form.
+#
+# @missing: 0000..10FFFF; NaN
 Format: sortNumeric
 
 File:	HangulSyllableType

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestData.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.26 $
+* $Date: 2007-04-27 00:44:27 $
+* $Revision: 1.27 $
 *
 *******************************************************************************
 */
@@ -320,10 +320,10 @@ public class TestData implements UCD_Types {
 	private static void checkForCaseStability(boolean mergeRanges) {
 		UCD ucd = Default.ucd();
 		ToolUnicodePropertySource ups = ToolUnicodePropertySource.make("");
-		UnicodeSet propUppercase = ups.getSet("Uppercase=true");
-		UnicodeSet propLowercase = ups.getSet("Lowercase=true");
+		UnicodeSet propUppercase = ups.getSet("Uppercase=Yes");
+		UnicodeSet propLowercase = ups.getSet("Lowercase=Yes");
 		UnicodeSet isGcLt = ups.getSet("gc=Lt");
-		UnicodeSet otherAlphabetic = ups.getSet("Alphabetic=true").addAll(ups.getSet("gc=Sk"));
+		UnicodeSet otherAlphabetic = ups.getSet("Alphabetic=Yes").addAll(ups.getSet("gc=Sk"));
 		// create the following
 		UnicodeSet hasFold = new UnicodeSet();
 		UnicodeSet hasUpper = new UnicodeSet();

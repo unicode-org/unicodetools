@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.15 $
+* $Date: 2007-04-27 00:44:27 $
+* $Revision: 1.16 $
 *
 *******************************************************************************
 */
@@ -787,7 +787,7 @@ public class QuickTest implements UCD_Types {
 				switch (range) {
 				default: propValue = "???"; break;
 				case 0: ival = UCharacter.getIntPropertyValue(cp, propIndex);
-				if (ival != 0) propValue = "True";
+				if (ival != 0) propValue = UCD_Names.YES;
 				break;
 				case 2: propValue = String.valueOf(UCharacter.getNumericValue(cp)); break;
 				case 3: 

@@ -48,7 +48,7 @@ class GenerateStringPrep implements UCD_Types {
 	ToolUnicodePropertySource ups = ToolUnicodePropertySource.make("");
 	ToolUnicodePropertySource ups32 = ToolUnicodePropertySource.make("3.2.0");
 	//UnicodeSet id_continue = ups.getSet("ID_Continue=true");
-	UnicodeSet xid_continue = ups.getSet("XID_Continue=true");
+	UnicodeSet xid_continue = ups.getSet("XID_Continue=Yes");
 	UnicodeSet wordChars = new UnicodeSet();
 	{
 		if (false) {
@@ -61,11 +61,11 @@ class GenerateStringPrep implements UCD_Types {
 		//wordChars.removeAll(xid_continue);
 	}
 	
-	UnicodeSet patternProp = ups.getSet("Pattern_Syntax=true").removeAll(wordChars);
+	UnicodeSet patternProp = ups.getSet("Pattern_Syntax=Yes").removeAll(wordChars);
 	UnicodeSet isNFKC = ups.getSet("NFKC_Quickcheck=NO").complement();
 	UnicodeSet non_spacing = new UnicodeSet(ups.getSet("gc=Me"))
 		.addAll(ups.getSet("gc=Mn"))
-		.removeAll(ups.getSet("Default_Ignorable_Code_Point=true"));
+		.removeAll(ups.getSet("Default_Ignorable_Code_Point=Yes"));
 	
 	UnicodeSet not_xid_continue = new UnicodeSet(xid_continue).complement().removeAll(wordChars);
 	
