@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 
 <head>
 <meta http-equiv="Content-Language" content="en-us">
@@ -24,6 +24,7 @@ table {border:0px solid blue; border-collapse: collapse}
 <h1>Unicode Property Demo (<a target="c" href="properties.jsp">List</a>)</h1>
 <form name="myform" action="http://unicode.org/cldr/utility/character.jsp" method="POST">
   <%
+		request.setCharacterEncoding("UTF-8");
 		String text = request.getParameter("a");
 		if (text == null || text.length() == 0) text = "�";
 %> <%

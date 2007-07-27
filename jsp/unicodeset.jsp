@@ -20,6 +20,8 @@ span.break   { border-right: 1px solid red;}
 <body>
 
 <%
+		request.setCharacterEncoding("UTF-8");
+
 String BASE_RULES =
   	"'<' > '&lt;' ;" +
     "'<' < '&'[lL][Tt]';' ;" +
