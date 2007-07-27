@@ -19,7 +19,7 @@ span.break   { border-right: 1px solid red;}
 <body>
 
 <%
-		//request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 
 		String text = request.getParameter("a");
 		if (text == null) text = "Sample Text.";
@@ -27,7 +27,7 @@ span.break   { border-right: 1px solid red;}
 		if (choice == null) choice = "Word";
 %>
 <h1>Unicode Break Demo</h1>
-<form name="myform" action="http://unicode.org/cldr/utility/breaks.jsp" method="POST">
+<form name="myform" action="<%= request.getContextPath() + request.getServletPath() %>" method="POST">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
     <tr>
       <td style="width:50%"><b>Input </b></td>

@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 
 <head>
 <meta http-equiv="Content-Language" content="en-us">
@@ -23,6 +23,7 @@ span.break   { border-right: 1px solid red;}
 
 <h1>Unicode Property List (<a target="c" href="character.jsp">Check</a>)</h1>
 <%
+		request.setCharacterEncoding("UTF-8");
 		int[][] ranges = {{UProperty.BINARY_START, UProperty.BINARY_LIMIT},
 				{UProperty.INT_START, UProperty.INT_LIMIT},
 				{UProperty.DOUBLE_START, UProperty.DOUBLE_LIMIT},
