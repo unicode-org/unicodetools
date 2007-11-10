@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/ConvertUCD.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.19 $
+* $Date: 2007-11-10 23:30:42 $
+* $Revision: 1.20 $
 *
 *******************************************************************************
 */
@@ -239,6 +239,7 @@ public final class ConvertUCD implements UCD_Types {
 
     */
     static final String dataFilePrefix = "UCD_Data";
+    private static final boolean DEBUG_SCRIPT = true;
 
 
     // MAIN!!
@@ -531,16 +532,17 @@ public final class ConvertUCD implements UCD_Types {
 					        }
 					    }
 					}
-				} catch (Exception e) {
-		            System.err.println("*Exception at: " + line + ", " + e.getMessage());
-					//System.err.println(e.getMessage());
-				}
+                } catch (Exception e) {
+                  System.err.println("*Exception at: " + line + ", " + e.getMessage());
+                  throw e;
+                  //System.err.println(e.getMessage());
+                }
             }
         } catch (Exception e) {
-            System.out.println("Exception at: " + line + ", " + e.getMessage());
-            throw e;
+          System.out.println("Exception at: " + line + ", " + e.getMessage());
+          throw e;
         } finally {
-            input.close();
+          input.close();
         }
         //printValues("JOINING_TYPE", jtSet);
         //printValues("JOINING_GROUP", jgSet);
@@ -870,6 +872,9 @@ public final class ConvertUCD implements UCD_Types {
 
             } else if (fieldName.equals("sn")) {
                 uData.script = Utility.lookup(fieldValue, UCD_Names.LONG_SCRIPT, true);
+                if (DEBUG_SCRIPT && fieldValue.equals("Vai")) {
+                  System.out.print("Test");
+                }
 
             } else if (fieldName.equals("jt")) {
                 uData.joiningType = Utility.lookup(fieldValue, UCD_Names.JOINING_TYPE, true);

@@ -121,19 +121,20 @@ Transliterator toHTML = Transliterator.createFromRules(
 
 		String x;
 		String upper = x = UCharacter.toUpperCase(ULocale.ENGLISH,text);
-		if (!text.equals(x)) alpha.put("Uppercase", x);
+		if (!text.equals(x)) alpha.put("toUppercase", x);
 		String lower = x = UCharacter.toLowerCase(ULocale.ENGLISH,text);
-		if (!text.equals(x)) alpha.put("Lowercase", x);
+		if (!text.equals(x)) alpha.put("toLowercase", x);
 		String title = x = UCharacter.toTitleCase(ULocale.ENGLISH,text,null);
-		if (!text.equals(x)) alpha.put("Titlecase", x);
+		if (!text.equals(x)) alpha.put("toTitlecase", x);
+
 		String nfc = x = Normalizer.normalize(text,Normalizer.NFC);
-		if (!text.equals(x)) alpha.put("NFC", x);
+		if (!text.equals(x)) alpha.put("toNFC", x);
 		String nfd = x = Normalizer.normalize(text,Normalizer.NFD);
-		if (!text.equals(x)) alpha.put("NFD", x);
+		if (!text.equals(x)) alpha.put("toNFD", x);
 		x = Normalizer.normalize(text,Normalizer.NFKD);
-		if (!text.equals(x)) alpha.put("NFKD", x);
+		if (!text.equals(x)) alpha.put("toNFKD", x);
 		x = Normalizer.normalize(text,Normalizer.NFKC);
-		if (!text.equals(x)) alpha.put("NFKC", x);
+		if (!text.equals(x)) alpha.put("toNFKC", x);
 
 		
 		CanonicalIterator ci = new CanonicalIterator(text);
@@ -142,7 +143,7 @@ Transliterator toHTML = Transliterator.createFromRules(
 			if (item.equals(text)) continue;
 			if (item.equals(nfc)) continue;
 			if (item.equals(nfd)) continue;
-			alpha.put("Other_Canonical_Equivalent#" + (++count), item);
+			alpha.put("toOther_Canonical_Equivalent#" + (++count), item);
 		}
 
 		/*
@@ -154,7 +155,7 @@ Transliterator toHTML = Transliterator.createFromRules(
 			if (item.equals(upper)) continue;
 			if (item.equals(lower)) continue;
 			if (item.equals(title)) continue;
-			alpha.put("Other_Case_Equivalent#" + (++count), item);
+			alpha.put("toOther_Case_Equivalent#" + (++count), item);
 		}
 		*/
 		
@@ -188,7 +189,9 @@ Transliterator toHTML = Transliterator.createFromRules(
 				"Soft_Dotted", "STerm", "Terminal_Punctuation",
 				"Unified_Ideograph", "Uppercase", "Variation_Selector",
 				"White_Space", "XID_Continue", "XID_Start", "Expands_On_NFC",
-				"Expands_On_NFD", "Expands_On_NFKC", "Expands_On_NFKD" }));
+				"Expands_On_NFD", "Expands_On_NFKC", "Expands_On_NFKD",
+				"toNFC", "toNFD", "toNFKC", "toNFKD", 
+		 }));
 		
 		Set regexProps = new TreeSet(Arrays.asList(new String[] {
 				"xdigit", "alnum", "blank", "graph", "print", "word"}));
@@ -214,9 +217,9 @@ Transliterator toHTML = Transliterator.createFromRules(
 			String pName = propName;
 			if (unicodeProps.contains(propName)) {
 			} else if (regexProps.contains(propName)) {
-				pName = "<tt>\u00AE\u00A0" + pName + "</tt>";
+				pName = "<tt>" + pName + "\u00A0\u00AE</tt>";
 			} else {
-				pName = "<i>\u00A9\u00A0" + pName + "</i>";
+				pName = "<i>" + pName + "\u00A0\u00A9</i>";
 			}
 
 			
@@ -229,7 +232,7 @@ Transliterator toHTML = Transliterator.createFromRules(
 Unicode property<br>
 © = ICU-Only Property (not Unicode or Regex)<br>
 <i><br>
-</i>Built using ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
+</i>1. Built using ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
 
 </body>
 

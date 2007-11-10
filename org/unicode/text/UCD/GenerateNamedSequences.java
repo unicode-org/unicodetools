@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateNamedSequences.java,v $
-* $Date: 2007-02-11 19:38:32 $
-* $Revision: 1.4 $
+* $Date: 2007-11-10 23:30:43 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
@@ -44,7 +44,7 @@ public final class GenerateNamedSequences implements UCD_Types {
 #	this field lists them. The possible values are: isolated, initial, medial, final.
 #	If more than one is present, there are spaces between them.
 */
-    static public void generate() throws IOException {
+    static public void generate(String filename2) throws IOException {
         
         
         // read the data and compose the table
@@ -55,7 +55,7 @@ public final class GenerateNamedSequences implements UCD_Types {
         String[] codes = new String[20];
         String[] shapes = new String[4];
         
-        BufferedReader in = Utility.openUnicodeFile("NamedSequences", Default.ucdVersion(), true, Utility.LATIN1);
+        BufferedReader in = Utility.openUnicodeFile(filename2, Default.ucdVersion(), true, Utility.LATIN1);
         Transliterator unicodexml = Transliterator.getInstance("hex/xml");
         while (true) {
             String line = Utility.readDataLine(in);
@@ -65,12 +65,13 @@ public final class GenerateNamedSequences implements UCD_Types {
             
             int count = Utility.split(line, ';', splits);
             String name = splits[0];
-            int codeCount = Utility.split(splits[1], ' ', codes);
+            int codeCount = Utility.split(splits[1].trim(), ' ', codes);
             StringBuffer codeBuffer = new StringBuffer();
             for (int i = 0; i < codeCount; ++i) {
+              if (codes[i].length() == 0) continue;
             	UTF16.append(codeBuffer, Integer.parseInt(codes[i],16));
             }
-            String codeWithHyphens = splits[1].replaceAll("\\s", "-");
+            String codeWithHyphens = splits[1].replaceAll("\\s+", "-");
             String codeAlt = "U+" + splits[1].replaceAll("\\s", " U+");
             String codeString = unicodexml.transliterate(codeBuffer.toString());
             
@@ -97,7 +98,7 @@ public final class GenerateNamedSequences implements UCD_Types {
         // now write out the results
         
         String directory = "DerivedData/";
-        String filename = directory + "NamedSequences" + UnicodeDataFile.getHTMLFileSuffix(true);
+        String filename = directory + filename2 + UnicodeDataFile.getHTMLFileSuffix(true);
         PrintWriter out = Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
         /*
         String[] batName = {""};

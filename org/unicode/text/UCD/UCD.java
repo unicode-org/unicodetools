@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
-* $Date: 2007-04-27 00:44:28 $
-* $Revision: 1.44 $
+* $Date: 2007-11-10 23:30:43 $
+* $Revision: 1.45 $
 *
 *******************************************************************************
 */
@@ -47,8 +47,8 @@ public final class UCD implements UCD_Types {
     /**
      * Used for the default version.
      */
-    public static final String latestVersion = "5.0.1";
-    public static final String lastVersion = "5.0.1"; // last released version
+    public static final String latestVersion = "5.1.0";
+    public static final String lastVersion = "5.0.0"; // last released version
 
     /**
      * Create singleton instance for default (latest) version
@@ -1137,6 +1137,7 @@ public final class UCD implements UCD_Types {
             if (ch <= 0x4E00) return ch;         // CJK Ideograph
             if (ch <= 0x9FA5) return 0x4E00;
             if (ch <= 0x9FBB && rCompositeVersion >= 0x40100) return 0x4E00;
+            if (ch <= 0x9FC3 && rCompositeVersion >= 0x50100) return 0x4E00;
             if (ch <= 0xAC00) return ch;         // Hangul Syllable
             if (ch <= 0xD7A3) return 0xAC00;
             if (ch <= 0xD800) return ch;         // Non Private Use High Surrogate

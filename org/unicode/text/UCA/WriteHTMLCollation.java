@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteHTMLCollation.java,v $ 
-* $Date: 2007-02-11 08:15:10 $ 
-* $Revision: 1.10 $
+* $Date: 2007-11-10 23:30:43 $ 
+* $Revision: 1.11 $
 *
 *******************************************************************************
 */
@@ -418,7 +418,7 @@ public class WriteHTMLCollation implements UCD_Types {
                     log.println("    Successfully Compressed a la Ken");
                     log.println("    [XXXX.0020.YYYY][0000.ZZZZ.0002] => [XXXX.ZZZZ.YYYY]");
                 } else if ((type & MULTIPLES) != 0) {
-                    log.println("    MULTIPLE ACCENTS");
+                    log.println("    PLURAL ACCENTS");
                 }
                 log.println("===============================================================");
                 log.println();

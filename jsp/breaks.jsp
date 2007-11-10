@@ -28,7 +28,7 @@ span.break   { border-right: 1px solid red;}
 %>
 <h1>Unicode Break Demo</h1>
 <form name="myform" action="<%= request.getContextPath() + request.getServletPath() %>" method="POST">
-  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
       <td style="width:50%"><b>Input </b></td>
       <td style="width:50%"><select size="1" name="D1" onchange="document.myform.submit();">
@@ -39,7 +39,7 @@ span.break   { border-right: 1px solid red;}
       </select> <input type="submit" value="Test" /></td>
     </tr>
     <tr>
-      <td><textarea name="a" rows="10" cols="10" style="width:100%; height:100%"><%=text%></textarea></td>
+      <td><textarea name="a" rows="30" cols="30" style="width:100%; height:100%"><%=text%></textarea></td>
       <td>
       <%	
 String BASE_RULES =

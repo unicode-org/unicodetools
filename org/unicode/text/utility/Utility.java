@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2007-04-27 00:44:28 $
-* $Revision: 1.53 $
+* $Date: 2007-11-10 23:30:43 $
+* $Revision: 1.54 $
 *
 *******************************************************************************
 */
@@ -702,7 +702,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static final String[] searchPath = {
         "EXTRAS",
-        "5.0.1",
+        "5.1.0",
         "5.0.0",
         "4.1.0",
         "4.0.1",
@@ -1104,6 +1104,12 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 if (attempt != null) return attempt;
             }
             if (fn.endsWith(fileType) && fn.startsWith(filename)) {
+                // must be filename ([-] .*)? fileType
+                if (fn.length() == filename.length() + fileType.length()) {
+                  // ok
+                } else if (fn.charAt(filename.length()) != '-') {
+                  continue;
+                }
                 if (show) System.out.println("\tFound: '" + fn + "'");
                 return foo.getCanonicalPath();
             }
@@ -1319,6 +1325,15 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         if (pos >= 0) id = id.substring(0, pos);
         //System.out.println(buffer);
         return Transliterator.createFromRules(id, buffer.toString(), direction);
+    }
+
+    public static String getPreviousUcdVersion(String version) {
+      for (int i = 0; i < searchPath.length; ++i) {
+        if (version.compareTo(searchPath[i]) > 0) {
+          return searchPath[i];
+        }
+      }
+      return null;
     }
 
 }
