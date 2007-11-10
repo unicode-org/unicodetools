@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateStandardizedVariants.java,v $
-* $Date: 2007-02-11 19:38:32 $
-* $Revision: 1.9 $
+* $Date: 2007-11-10 23:30:43 $
+* $Revision: 1.10 $
 *
 *******************************************************************************
 */
@@ -103,8 +103,10 @@ public final class GenerateStandardizedVariants implements UCD_Types {
         //String mostRecent = UnicodeDataFile.generateBat(directory, filename, UnicodeDataFile.getFileSuffix(true), batName);
         
         String version = Default.ucd().getVersion();
+        String lastVersion = Utility.getPreviousUcdVersion(version);
         int lastDot = version.lastIndexOf('.');
         String updateDirectory;
+        String lastDirectory;
         String partialFilename;
         if (version.compareTo("4.1.0") < 0) {
         	updateDirectory = version.substring(0,lastDot) + "-Update";
@@ -119,11 +121,13 @@ public final class GenerateStandardizedVariants implements UCD_Types {
         	updateDirectory = version + "/ucd";
             partialFilename = "StandardizedVariants";
         }
+        lastDirectory = lastVersion + "/ucd";
 
         
         String[] replacementList = {
             "@revision@", Default.ucd().getVersion(),
             "@updateDirectory@", updateDirectory,
+            "@lastDirectory@", lastDirectory,
             "@filename@", partialFilename,
             "@date@", Default.getDate(),
             "@table@", table};

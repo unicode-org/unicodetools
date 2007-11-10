@@ -1,5 +1,5 @@
-Generate: .*
-DeltaVersion: 4
+Generate: .*proplist.*
+DeltaVersion: 12
 CopyrightYear: 2007
 
 File: auxiliary/GraphemeBreakProperty
@@ -145,7 +145,8 @@ Property:	XID_Continue
 
 Property:	Default_Ignorable_Code_Point
 # Derived Property: Default_Ignorable_Code_Point
-#  Generated from Other_Default_Ignorable_Code_Point + Cf + Cc + Cs + Noncharacters + Variation_Selectors
+#  Generated from Other_Default_Ignorable_Code_Point + Cf + Cc + Cs
+#  + Noncharacter_Code_Point + Variation_Selector
 #  - White_Space - FFF9..FFFB (Annotation Characters)
 
 Property:	Grapheme_Extend
@@ -276,7 +277,9 @@ Property:	Numeric_Value
 # Although they are only printed with a limited number of decimal places
 # in this file, they should be expressed to the limits of the precision
 # available when used.
-# A second field was added in Unicode 5.0.1 that contains the rational form.
+# A third field was added to this extracted data as of
+# Unicode 5.1.0, expressing the same numeric value either as
+# a whole integer where possible or as a rational fraction, e.g. "1/6".
 #
 # @missing: 0000..10FFFF; NaN
 Format: sortNumeric
@@ -370,6 +373,9 @@ File:	StandardizedVariants
 Property: SPECIAL
 
 File:	NamedSequences
+Property: SPECIAL
+
+File:	NamedSequencesProv
 Property: SPECIAL
 
 HackName:	noBreak

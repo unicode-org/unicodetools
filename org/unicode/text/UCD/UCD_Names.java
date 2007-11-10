@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
-* $Date: 2007-04-27 00:44:28 $
-* $Revision: 1.34 $
+* $Date: 2007-11-10 23:30:43 $
+* $Revision: 1.35 $
 *
 *******************************************************************************
 */
@@ -359,7 +359,18 @@ final class UCD_Names implements UCD_Types {
     "Phoenician",
     "Phags-pa",
     "Nko",
-    "Unknown"
+    "Unknown",
+    "Sundanese",
+    "Lepcha",
+    "Ol Chiki",
+    "Vai",
+    "Saurashtra",
+    "Kayah Li",
+    "Rejang",
+    "Lycian",
+    "Carian",
+    "Lydian",
+    "Cham",
   };
 
 	public static final Relation<String,String> EXTRA_SCRIPT = new Relation(new TreeMap(), LinkedHashSet.class);
@@ -445,7 +456,18 @@ final class UCD_Names implements UCD_Types {
     "Phnx",
     "Phag",
     "Nkoo",
-    "Zzzz"
+    "Zzzz",
+    "Sund",
+    "Lepc",
+    "Olck",
+    "Vaii",
+    "Saur",
+    "Kali",
+    "Rjng",
+    "Lyci",
+    "Cari",
+    "Lydi",
+    "Cham",
   };
 
   static final String[] AGE = {
@@ -858,6 +880,7 @@ final class UCD_Names implements UCD_Types {
         "ZHAIN",
         "KHAPH",
         "FE",
+        "BURUSHASHKI_YEH_BARREE",
     };
     static {
         fixArray(JOINING_GROUP);

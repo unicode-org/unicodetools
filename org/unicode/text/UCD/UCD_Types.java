@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.34 $
+* $Date: 2007-11-10 23:30:43 $
+* $Revision: 1.35 $
 *
 *******************************************************************************
 */
@@ -403,9 +403,20 @@ public interface UCD_Types {
 	    Phoenician = 65,
 	    Phags_Pa = 66,
 	    NKo = 67,
-	    Unknown_Script = 68,
+      Unknown_Script = 68,
+      Sundanese = 69,
+      Lepcha = 70,
+      Ol_Chiki = 71,
+      Vai = 72,
+      Saurashtra = 73,
+      Kayah_Li = 74,
+      Rejang = 75,
+      Lycian = 76,
+      Carian = 77,
+      Lydian= 78,
+      Cham = 79,
 
-        LIMIT_SCRIPT = 69;
+        LIMIT_SCRIPT = Cham + 1;
 
   static final int
     UNKNOWN = 0,
