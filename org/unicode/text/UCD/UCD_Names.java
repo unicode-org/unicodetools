@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
-* $Date: 2007-11-10 23:30:43 $
-* $Revision: 1.35 $
+* $Date: 2007-11-11 20:58:47 $
+* $Revision: 1.36 $
 *
 *******************************************************************************
 */
@@ -480,7 +480,8 @@ final class UCD_Names implements UCD_Types {
     "3.2",
     "4.0",
 	"4.1",
-	"5.0",
+  "5.0",
+  "5.1",
   };
 
     static final String[] GENERAL_CATEGORY = {
