@@ -1,4 +1,4 @@
-Generate: .*proplist.*
+Generate: .*age.*
 DeltaVersion: 12
 CopyrightYear: 2007
 
@@ -69,6 +69,9 @@ Value:	4.1
 
 Value:	5.0
 # Newly assigned in Unicode 5.0.0 (July, 2006)
+
+Value:	5.1
+# Newly assigned in Unicode 5.1.0 (expected March, 2006)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class

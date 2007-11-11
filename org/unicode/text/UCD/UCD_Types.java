@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
-* $Date: 2007-11-10 23:30:43 $
-* $Revision: 1.35 $
+* $Date: 2007-11-11 20:58:47 $
+* $Revision: 1.36 $
 *
 *******************************************************************************
 */
@@ -14,7 +14,8 @@
 package org.unicode.text.UCD;
 
 public interface UCD_Types {
-    
+  static final int FIX_FOR_NEW_VERSION = 0;
+
     static final byte BINARY_FORMAT = 17; // bumped if binary format of UCD changes. Forces rebuild   
     
     public static final String BASE_DIR = "C:\\DATA\\";
@@ -418,6 +419,7 @@ public interface UCD_Types {
 
         LIMIT_SCRIPT = Cham + 1;
 
+
   static final int
     UNKNOWN = 0,
     AGE11 = 1,
@@ -429,7 +431,8 @@ public interface UCD_Types {
     AGE40 = 7,
     AGE41 = 8,
     AGE50 = 9,
-    LIMIT_AGE = 10;
+    AGE51 = 10,
+    LIMIT_AGE = AGE51 + 1 + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
         "?",
@@ -441,7 +444,8 @@ public interface UCD_Types {
         "3.2.0",
         "4.0.0",  
         "4.1.0",      
-        "5.0.0"       
+        "5.0.0",
+        "5.1.0"
     };
 
 public static byte
