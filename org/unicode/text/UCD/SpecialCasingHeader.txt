@@ -27,6 +27,7 @@
 #   NOT in the resulting string.
 # - Case distinctions in the condition list are not significant.
 # - Conditions preceded by "Not_" represent the negation of the condition.
+# The condition list is not represented in the UCD as a formal property.
 #
 # A language ID is defined by BCP 47, with '-' and '_' treated equivalently.
 #

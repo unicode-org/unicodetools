@@ -55,7 +55,7 @@ public class MakeUnicodeFiles {
    }
    */
   
-  static boolean DEBUG = true;
+  static boolean DEBUG = false;
   
   public static void main(String[] args) throws IOException {
     generateFile();

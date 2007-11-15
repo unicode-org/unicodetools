@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
-* $Date: 2007-11-11 20:58:47 $
-* $Revision: 1.46 $
+* $Date: 2007-11-15 04:15:15 $
+* $Revision: 1.47 $
 *
 *******************************************************************************
 */
@@ -384,14 +384,18 @@ public final class UCD implements UCD_Types {
             BIDI_R_SET = new UnicodeSet();
             BIDI_AL_SET = new UnicodeSet();
             
+            if (blockData == null) loadBlocks();
+            
             blockData.getSet("Hebrew",BIDI_R_SET);
             blockData.getSet("Cypriot_Syllabary",BIDI_R_SET);
+            blockData.getSet("Kharoshthi",BIDI_R_SET);
             
             blockData.getSet("Arabic",BIDI_AL_SET);
             blockData.getSet("Syriac",BIDI_AL_SET);
+            blockData.getSet("Arabic_Supplement",BIDI_AL_SET);
             blockData.getSet("Thaana",BIDI_AL_SET);
-            blockData.getSet("Arabic_Presentation_Forms-A",BIDI_AL_SET);
-            blockData.getSet("Arabic_Presentation_Forms-B",BIDI_AL_SET);
+            blockData.getSet("Arabic_Presentation_Forms_A",BIDI_AL_SET);
+            blockData.getSet("Arabic_Presentation_Forms_B",BIDI_AL_SET);
             /*
             int blockId = 0;
             BlockData blockData = new BlockData();
@@ -427,7 +431,11 @@ public final class UCD implements UCD_Types {
               System.out.println("BIDI_AL_SET: " + BIDI_AL_SET);
             }
 
-            UnicodeSet BIDI_R_Delta = new UnicodeSet(0xFB1D, 0xFB4F).add(0x10800, 0x10FFF).add(0x07C0,0x8FF);
+            UnicodeSet BIDI_R_Delta = new UnicodeSet()
+              .add(0x07C0,0x8FF)
+              .add(0xFB1D, 0xFB4F)
+              .add(0x10800, 0x10FFF)
+              ;
             BIDI_R_Delta.removeAll(BIDI_R_SET);
             if (SHOW_LOADING) {
               System.out.println("R: Adding " + BIDI_R_Delta);

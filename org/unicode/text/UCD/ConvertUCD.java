@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/ConvertUCD.java,v $
-* $Date: 2007-11-10 23:30:42 $
-* $Revision: 1.20 $
+* $Date: 2007-11-15 04:15:15 $
+* $Revision: 1.21 $
 *
 *******************************************************************************
 */
@@ -28,6 +28,7 @@ public final class ConvertUCD implements UCD_Types {
     public static final boolean SHOW = false;
     public static final boolean DEBUG = false;
     static final boolean SHOW_SAMPLE = false;
+    private static final boolean DEBUG_SCRIPT = false;
 
 
     int major;
@@ -239,7 +240,6 @@ public final class ConvertUCD implements UCD_Types {
 
     */
     static final String dataFilePrefix = "UCD_Data";
-    private static final boolean DEBUG_SCRIPT = true;
 
 
     // MAIN!!
@@ -891,9 +891,9 @@ public final class ConvertUCD implements UCD_Types {
             } else if (fieldName.equals("ccc")) {
                 uData.combiningClass = (byte)Utility.intFrom(fieldValue);
                 if (uData.combiningClass == 9 && major >= 5) {
-                	System.out.println("setting Grapheme_Link " + Utility.hex(uData.codePoint) + "\t" + uData.name);
+                	if (DEBUG) System.out.println("setting Grapheme_Link " + Utility.hex(uData.codePoint) + "\t" + uData.name);
                 	uData.binaryProperties |= (1<<GraphemeLink);
-                	System.out.println(uData);
+                  if (DEBUG) System.out.println(uData);
             	}
             } else if (fieldName.equals("bp")) {
                 uData.binaryProperties = (byte)Utility.longFrom(fieldValue);
