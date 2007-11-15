@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2007-11-11 20:58:47 $
-* $Revision: 1.55 $
+* $Date: 2007-11-15 04:15:15 $
+* $Revision: 1.56 $
 *
 *******************************************************************************
 */
@@ -1019,6 +1019,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             if (line1.startsWith("# Generated")) continue;
             if (line1.startsWith("# Date")) continue;
             if (line1.startsWith("# Copyright")) continue;
+            if (line1.startsWith("<p><b>Date:</b>")) continue;
 
             if (line1.equals("# ================================================")) continue;
             if (first && line1.startsWith("#")) {

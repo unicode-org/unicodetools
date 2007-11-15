@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedProperty.java,v $
-* $Date: 2007-04-27 00:44:27 $
-* $Revision: 1.28 $
+* $Date: 2007-11-15 04:15:15 $
+* $Revision: 1.29 $
 *
 *******************************************************************************
 */
@@ -659,16 +659,21 @@ of characters, the first of which has a non-zero combining class.
 
             }
             public String getHeader() {
-                if (ucdData.getCompositeVersion() > 0x040000) return "# Derived Property: " + name
+                if (ucdData.getCompositeVersion() > 0x040000) {
+                  return "# Derived Property: " + name
                    + "\r\n#  Generated from (Other_Default_Ignorable_Code_Point + Variation_Selector"
                    + "\r\n#    + Noncharacter_Code_Point + Cf + Cc + Cs) - White_Space"
                    + "\r\n#    -  U+FFF9..U+FFFB// INTERLINEAR ANNOTATION characters";
-                   //+ "\r\n#    - U+0600..U+0603 - U+06DD - U+070F"
+                }
+
                return  "# Derived Property: " + name
                 + "\r\n#  Generated from (Other_Default_Ignorable_Code_Point + Cf + Cc + Cs) - White_Space";
             }
 
+            UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0603 \\u06DD \\u070F]");
+            
             public boolean hasValue(int cp) {
+              if (removals.contains(cp)) return false;
                 if (ucdData.getBinaryProperty(cp, White_space)) return false;
                 if (ucdData.getBinaryProperty(cp, Other_Default_Ignorable_Code_Point)) return true;
                 

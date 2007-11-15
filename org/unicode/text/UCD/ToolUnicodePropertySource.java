@@ -421,7 +421,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         //.removeAll(script.getSet("Thai"))
             //.removeAll(script.getSet("Lao"))
             .removeAll(lineBreak.getSet("SA")).removeAll(script.getSet("Hiragana")).removeAll(graphemeExtend), "ALetter");
-        unicodeMap.putAll(new UnicodeSet("[\\u0027\\u00B7\\u05F4\\u2019\\u2027\\u003A\\u0387]"), "MidLetter");
+        unicodeMap.putAll(new UnicodeSet("[\\u0027\\u00B7\\u05F4\\u2019\\u2027\\u003A\\u0387\\u2018]"), "MidLetter");
         unicodeMap.putAll(lineBreak.getSet("Infix_Numeric").remove(0x003A), "MidNum");
         unicodeMap.putAll(new UnicodeSet(lineBreak.getSet("Numeric")), "Numeric"); // .remove(0x387)
         unicodeMap.putAll(cat.getSet("Connector_Punctuation").remove(0x30FB).remove(0xFF65), "ExtendNumLet");
@@ -437,14 +437,25 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
       {
         unicodeMap = new UnicodeMap();
         unicodeMap.setErrorOnReset(true);
-        unicodeMap.putAll(new UnicodeSet("[\\u000A\\u000D\\u0085\\u2028\\u2029]"), "Sep");
+        unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
+        unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
         UnicodeProperty cat = getProperty("General_Category");
+        unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(cat.getSet("Spacing_Mark")), "Extend");
+        unicodeMap.putAll(new UnicodeSet("[\\u0085\\u2028\\u2029]"), "Sep");
         unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
-        unicodeMap.putAll(getProperty("Whitespace").getSet(UCD_Names.YES).removeAll(unicodeMap.getSet("Sep")), "Sp");
+        unicodeMap.putAll(getProperty("Whitespace").getSet(UCD_Names.YES)
+            .removeAll(unicodeMap.getSet("Sep"))
+            .removeAll(unicodeMap.getSet("CR"))
+            .removeAll(unicodeMap.getSet("LF")), "Sp");
         UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
         unicodeMap.putAll(getProperty("Lowercase").getSet(UCD_Names.YES).removeAll(graphemeExtend), "Lower");
         unicodeMap.putAll(getProperty("Uppercase").getSet(UCD_Names.YES).addAll(cat.getSet("Titlecase_Letter")), "Upper");
-        UnicodeSet temp = getProperty("Alphabetic").getSet(UCD_Names.YES).add(0x5F3).removeAll(unicodeMap.getSet("Lower")).removeAll(unicodeMap.getSet("Upper")).removeAll(graphemeExtend);
+        UnicodeSet temp = getProperty("Alphabetic").getSet(UCD_Names.YES)
+         // .add(0x00A0)
+          .add(0x05F3)
+          .removeAll(unicodeMap.getSet("Lower"))
+          .removeAll(unicodeMap.getSet("Upper"))
+          .removeAll(unicodeMap.getSet("Extend"));
         unicodeMap.putAll(temp, "OLetter");
         UnicodeProperty lineBreak = getProperty("Line_Break");
         unicodeMap.putAll(lineBreak.getSet("Numeric"), "Numeric");
@@ -452,7 +463,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         unicodeMap.putAll(getProperty("STerm").getSet(UCD_Names.YES).removeAll(unicodeMap.getSet("ATerm")), "STerm");
         unicodeMap.putAll(cat.getSet("Open_Punctuation").addAll(cat.getSet("Close_Punctuation")).addAll(lineBreak.getSet("Quotation")).remove(0x05F3).removeAll(unicodeMap.getSet("ATerm")).removeAll(
             unicodeMap.getSet("STerm")), "Close");
-        unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none of the above touch it.
+        unicodeMap.putAll(new UnicodeSet("[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C\\u003A\\uFE13\\uFF1A\\u003B\\uFE14\\uFF1B\\u2014\\uFE31\\u002D\\uFF0D]"), "SContinue");
+        // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none of the above touch it.
         unicodeMap.setMissing("Other");
       }
     }.setMain("Sentence_Break", "SB", UnicodeProperty.ENUMERATED, version).addValueAliases(

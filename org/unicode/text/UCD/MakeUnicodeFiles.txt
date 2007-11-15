@@ -1,5 +1,5 @@
-Generate: .*age.*
-DeltaVersion: 12
+Generate: .*sentence.*
+DeltaVersion: 18
 CopyrightYear: 2007
 
 File: auxiliary/GraphemeBreakProperty
@@ -33,6 +33,7 @@ Property: Block
 #         For example, "Latin Extended-A" and "latin extended a" are equivalent.
 #         For more information on the comparison of property values, 
 #            see UCD.html.
+
 Format:	valueList skipUnassigned=No_Block
 
 File:	CaseFolding
@@ -78,12 +79,28 @@ Property:	Bidi_Class
 # Bidi Class (listing UnicodeData.txt, field 4: see UCD.html)
 # Unlike other properties, unassigned code points in blocks 
 # reserved for right-to-left scripts are given either types R or AL.
-# The unassigned characters that default to R are:
-#   Hebrew, Cypriot_Syllabary, Kharoshthi, and the ranges \u07C0-\u08FF
-#   \uFB1D-\uFB4F \U00010840-\U000109FF \U00010A60-\U00010FFF
+#
 # The unassigned characters that default to AL are:
-#   Arabic, Syriac, Arabic_Supplement, Thaana, Arabic_Presentation_Forms_A,
-#   Arabic_Presentation_Forms_B, minus the Noncharacter_Code_Points
+#     Arabic [U+0600 - U+06FF]
+#     Syriac [U+0700 - U+074F]
+#     Arabic_Supplement [U+0750 - U+077F]
+#     Thaana [U+0780 - U+07BF]
+#     Arabic_Presentation_Forms_A [U+FB50 - U+FDFF]
+#     Arabic_Presentation_Forms_B [U+FE70 - U+FEFF]
+#     minus noncharacter code points.
+#
+# The unassigned characters that default to R are:
+#     Hebrew [U+0590 - U+05FF]
+#     NKo [U+07C0 - U+07FF]
+#     Cypriot_Syllabary [U+00010800 - U+0001083F]
+#     Phoenician [U+00010900 - U+0001091F]
+#     Lydian [U+00010920 - U+0001093F]
+#     Kharoshthi [U+00010A00 - U+00010A5F]
+#     and any otherwise in the ranges:
+#            U+0800 - U+08FF,
+#            U+FB1D - U+FB4F,
+#            U+00010840 - U+00010FFF
+#
 # For all other cases:
 Format:	valueStyle=short skipUnassigned=Left_To_Right
 
@@ -151,6 +168,7 @@ Property:	Default_Ignorable_Code_Point
 #  Generated from Other_Default_Ignorable_Code_Point + Cf + Cc + Cs
 #  + Noncharacter_Code_Point + Variation_Selector
 #  - White_Space - FFF9..FFFB (Annotation Characters)
+#  - 0600..0603, 06DD, 070F
 
 Property:	Grapheme_Extend
 # Derived Property: Grapheme_Extend

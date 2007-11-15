@@ -5,47 +5,115 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestData.java,v $
-* $Date: 2007-04-27 00:44:27 $
-* $Revision: 1.27 $
+* $Date: 2007-11-15 04:15:15 $
+* $Revision: 1.28 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.ICUPropertyFactory;
-import com.ibm.icu.dev.test.util.UnicodeLabel;
-import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.impl.CollectionUtilities;
-import com.ibm.icu.impl.ICUData;
-import com.ibm.icu.impl.ICUResourceBundle;
-import com.ibm.icu.impl.UCharArrayIterator;
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.DecimalFormat;
+import com.ibm.icu.text.DecimalFormatSymbols;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.StringPrep;
-import com.ibm.icu.text.StringPrepParseException;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.ULocale;
 
-import java.math.BigDecimal;
-
-import java.util.regex.*;
-
-import com.ibm.icu.text.*;
-import org.unicode.text.utility.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TestData implements UCD_Types {
     
     static UnicodeProperty.Factory upf;
     
 	public static void main (String[] args) throws IOException {
+    UCD ucd = Default.ucd();
+    System.out.println(ucd.getVersion());
+    Set<String> alBlocks = new LinkedHashSet<String>();
+    Set<String> rBlocks = new LinkedHashSet<String>();
+    UnicodeSet r = new UnicodeSet();
+    
+    UnicodeSet rr = new UnicodeSet("[[\u07C0-\u08FF \uFB1D-\uFB4F \\U00010840-\\U000109FF \\U00010A60-\\U00010FFF]-[\uFDD0-\uFDEF]]");
+    UnicodeSet rOrAl = new UnicodeSet(rr);
+
+    for (int cp = 0; cp < 0x110000; ++cp) {
+      if (ucd.isAllocated(cp)) {
+        rr.remove(cp);
+      } else {
+        continue;
+      }
+      int bidiClass = ucd.getBidiClass(cp);
+      if (bidiClass == BIDI_AL) {
+        String block = ucd.getBlock(cp);
+        alBlocks.add(block);
+        rOrAl.add(cp);
+      } else if (bidiClass == BIDI_R) {
+        String block = ucd.getBlock(cp);
+        rBlocks.add(block);
+        r.add(cp);
+        rOrAl.add(cp);
+      } 
+    }
+    
+    rBlocks.remove("General_Punctuation");
+    rBlocks.remove("No_Block");
+    rBlocks.remove("Alphabetic_Presentation_Forms");
+        
+    for (String block : rBlocks) {
+      final UnicodeSet blockSet = ucd.getBlockSet(block,new UnicodeSet());
+      //rr.removeAll(blockSet);
+      rOrAl.addAll(blockSet);
+    }
+    for (String block : alBlocks) {
+      final UnicodeSet blockSet = ucd.getBlockSet(block,new UnicodeSet());
+      rr.removeAll(blockSet);
+      rOrAl.addAll(blockSet);
+    }
+
+    System.out.println(fixUnicodeSet(rOrAl));
+
+   System.out.println("# The unassigned characters that default to AL are:");
+
+    for (String block : alBlocks) {
+      final UnicodeSet blockSet = ucd.getBlockSet(block,new UnicodeSet());
+      System.out.println("#     " + block + " " + fixUnicodeSet(blockSet));
+    }
+    System.out.println("#     minus noncharacter code points. ");
+    System.out.println("# The unassigned characters that default to R are:");
+    for (String block : rBlocks) {
+      final UnicodeSet blockSet = ucd.getBlockSet(block,new UnicodeSet());
+      System.out.println("#     " + block + " " + fixUnicodeSet(blockSet));
+    }
+    System.out.println("#     and the ranges: " + fixUnicodeSet(rr));
+
+    if (true) return;
 		tryConsole2();
 		if (true) return;
 		
@@ -158,6 +226,10 @@ public class TestData implements UCD_Types {
 			log.close();
 				}
 	}
+
+  private static String fixUnicodeSet(final UnicodeSet blockSet) {
+    return blockSet.toString().replace("\\u", " U+").replace("\\U", " U+").replace("-"," -").replace("[ ","[");
+  }
 	
 	private static void showNonCompatFull(boolean compat) {
 		UCD ucd = UCD.make("4.1.0");
