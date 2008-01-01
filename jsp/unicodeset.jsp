@@ -24,29 +24,7 @@ span.break   { border-right: 1px solid red;}
 <body>
 
 <%
-		request.setCharacterEncoding("UTF-8");
-
-String BASE_RULES =
-  	"'<' > '&lt;' ;" +
-    "'<' < '&'[lL][Tt]';' ;" +
-    "'&' > '&amp;' ;" +
-    "'&' < '&'[aA][mM][pP]';' ;" +
-    "'>' < '&'[gG][tT]';' ;" +
-    "'\"' < '&'[qQ][uU][oO][tT]';' ; " +
-    "'' < '&'[aA][pP][oO][sS]';' ; ";
-
-String CONTENT_RULES =
-    "'>' > '&gt;' ;";
-
-String HTML_RULES = BASE_RULES + CONTENT_RULES + 
-"'\"' > '&quot;' ; ";
-
-String HTML_RULES_CONTROLS = HTML_RULES + 
-"([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:][\\u0080-\\U0010FFFF]]) > &hex/xml($1) ; ";
-
-Transliterator toHTML = Transliterator.createFromRules(
-        "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
-        
+		request.setCharacterEncoding("UTF-8"); 
 
 		String setA = request.getParameter("a");
 		if (setA == null) setA = "[:Lowercase:]";
@@ -76,15 +54,15 @@ Transliterator toHTML = Transliterator.createFromRules(
 		     
 			UnicodeSet temp = new UnicodeSet(a).removeAll(b);
 			a_bSize = temp.size();
-			a_b = toHTML.transliterate(pp.toPattern(temp));
+			a_b = UnicodeUtilities.toHTML(pp.toPattern(temp));
 			
 			temp = new UnicodeSet(b).removeAll(a);
 			b_aSize = temp.size();
-			b_a = toHTML.transliterate(pp.toPattern(temp));
+			b_a = UnicodeUtilities.toHTML(pp.toPattern(temp));
 			
 			temp = new UnicodeSet(a).retainAll(b);
 			abSize = temp.size();
-			ab = toHTML.transliterate(pp.toPattern(temp));
+			ab = UnicodeUtilities.toHTML(pp.toPattern(temp));
 		}
 		NumberFormat nf = NumberFormat.getIntegerInstance();
 %>
