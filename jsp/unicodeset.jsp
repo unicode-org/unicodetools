@@ -7,8 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>UnicodeSet Demo</title>
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="com.ibm.icu.text.*" %> <%@ page import="com.ibm.icu.lang.*" %>
-<%@ page import="java.util.regex.*" %> <%@ page import="com.ibm.icu.impl.*" %>
+<%@ page import="com.ibm.icu.text.*" %> 
+<%@ page import="com.ibm.icu.lang.*" %>
+<%@ page import="com.ibm.icu.impl.*" %>
+<%@ page import="java.util.regex.*" %>
+<%@ page import="jsp.*" %>
+<%@ page import="org.unicode.cldr.icu.*" %>
 <style>
 <!--
 td {vertical-align: top}
@@ -55,14 +59,14 @@ Transliterator toHTML = Transliterator.createFromRules(
 		UnicodeSet a = null;
 		try {
 		     setA = Normalizer.normalize(setA, Normalizer.NFC);
-			a = new UnicodeSet(setA);
+			a = UnicodeUtilities.parseUnicodeSet(setA);
 		} catch (Exception e) {
 			a_b = e.getMessage();
 		}
 		UnicodeSet b = null;
 		try {
 		     setB = Normalizer.normalize(setB, Normalizer.NFC);
-			b = new UnicodeSet(setB);
+			b = UnicodeUtilities.parseUnicodeSet(setB);
 		} catch (Exception e) {
 			b_a = e.getMessage();
 		}
