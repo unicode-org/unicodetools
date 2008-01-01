@@ -13,70 +13,25 @@
 <%@ page import="java.util.regex.*" %>
 <%@ page import="jsp.*" %>
 <%@ page import="org.unicode.cldr.icu.*" %>
-<style>
-<!--
-td {vertical-align: top}
-span.break   { border-right: 1px solid red;}
--->
-</style>
+
 </head>
 
 <body>
 
 <%
 		request.setCharacterEncoding("UTF-8");
-
-String BASE_RULES =
-  	"'<' > '&lt;' ;" +
-    "'<' < '&'[lL][Tt]';' ;" +
-    "'&' > '&amp;' ;" +
-    "'&' < '&'[aA][mM][pP]';' ;" +
-    "'>' < '&'[gG][tT]';' ;" +
-    "'\"' < '&'[qQ][uU][oO][tT]';' ; " +
-    "'' < '&'[aA][pP][oO][sS]';' ; ";
-
-String CONTENT_RULES =
-    "'>' > '&gt;' ;";
-
-String HTML_RULES = BASE_RULES + CONTENT_RULES + 
-"'\"' > '&quot;' ; ";
-
-String HTML_RULES_CONTROLS = HTML_RULES + 
-"([[:C:][:Default_Ignorable_Code_Point:]]) > \u25a0 ; "
-+ 
-":: [\\u0080-\\U0010FFFF] hex/xml ; ";
-
-Transliterator toHTML = Transliterator.createFromRules(
-        "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
-        
-
+		
 		String setA = request.getParameter("a");
-		boolean abbreviate = request.getParameter("abb") != null;
-		if (setA == null) 
+		if (setA == null) {
 			setA = "[:ASCII:]";
-/*
-		UnicodeSet a = new UnicodeSet();
-		String a_out;
-		try {
-		     setA = Normalizer.normalize(setA, Normalizer.NFC);
-			a = UnicodeUtilities.parseUnicodeSet(setA);
-			if (a.size() < 10000 && !abbreviate) {
-		     	PrettyPrinter pp = new PrettyPrinter();
-				a_out = toHTML.transliterate(pp.toPattern(a));
-			} else {
-			    a.complement().complement();
-				a_out = toHTML.transliterate(a.toPattern(false));
-			}
-		} catch (Exception e) {
-			a_out = e.getMessage();
 		}
-		*/
+		boolean abbreviate = request.getParameter("abb") != null;
 		
 		UnicodeSet a = new UnicodeSet();
 		String a_out = UnicodeUtilities.getSimpleSet(setA, a, abbreviate);
 		
-			NumberFormat nf = NumberFormat.getIntegerInstance();
-			String sizeStr = nf.format(a.size());
+		NumberFormat nf = NumberFormat.getIntegerInstance();
+		String sizeStr = nf.format(a.size());
 %>
 <h1>UnicodeSet Demo (<a target="u" href="unicodeset.jsp">Compare</a>)</h1>
 <form name="myform" action="http://unicode.org/cldr/utility/list-unicodeset.jsp" method="POST">
