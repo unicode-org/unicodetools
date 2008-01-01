@@ -8,6 +8,7 @@
 <title>Unicode Break Demo</title>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="com.ibm.icu.text.*" %> <%@ page import="java.util.regex.*" %>
+<%@ page import="jsp.*" %>
 <style>
 <!--
 td {vertical-align: top}
@@ -89,7 +90,9 @@ b.first();
 for (int nextBreak = b.next(); nextBreak != b.DONE; nextBreak = b.next()) {
 	int status = b.getRuleStatus();
 	String piece = text.substring(lastBreak, nextBreak);
-	piece = toHTML.transliterate(piece);
+	//piece = toHTML.transliterate(piece);
+	piece = UnicodeUtilities.toHTML(piece);
+	
 	piece = piece.replaceAll("&#xA;","<br>");
 	result.append("<span class='break'>").append(piece).append("</span>");
 	lastBreak = nextBreak;
@@ -100,7 +103,7 @@ out.println(result.toString());
     </tr>
   </table>
 </form>
-<p>Built with ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
+<p>Version 3, Built with ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
 
 </body>
 
