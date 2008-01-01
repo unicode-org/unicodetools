@@ -8,7 +8,10 @@
 <title>UnicodeSet Demo</title>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="com.ibm.icu.text.*" %> <%@ page import="com.ibm.icu.lang.*" %>
-<%@ page import="com.ibm.icu.impl.*" %> <%@ page import="java.util.regex.*" %>
+<%@ page import="com.ibm.icu.impl.*" %>
+ <%@ page import="java.util.regex.*" %>
+  <%@ page import="jsp.*" %>
+  <%@ page import="org.unicode.cldr.icu.*" %>
 <style>
 <!--
 td {vertical-align: top}
@@ -54,7 +57,7 @@ Transliterator toHTML = Transliterator.createFromRules(
 		String a_out;
 		try {
 		     setA = Normalizer.normalize(setA, Normalizer.NFC);
-			a = new UnicodeSet(setA);
+			a = UnicodeUtilities.parseUnicodeSet(setA);
 			if (a.size() < 100000) {
 		     	PrettyPrinter pp = new PrettyPrinter();
 				a_out = toHTML.transliterate(pp.toPattern(a));
@@ -87,7 +90,7 @@ Transliterator toHTML = Transliterator.createFromRules(
 		}
  %>
 </form>
-<p>Built with ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
+<p>Version 3, Built with ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
 <p></p>
 
 </body>
