@@ -7,11 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>UnicodeSet Demo</title>
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="com.ibm.icu.text.*" %> <%@ page import="com.ibm.icu.lang.*" %>
+<%@ page import="com.ibm.icu.text.*" %> 
+<%@ page import="com.ibm.icu.lang.*" %>
 <%@ page import="com.ibm.icu.impl.*" %>
- <%@ page import="java.util.regex.*" %>
-  <%@ page import="jsp.*" %>
-  <%@ page import="org.unicode.cldr.icu.*" %>
+<%@ page import="java.util.regex.*" %>
+<%@ page import="jsp.*" %>
+<%@ page import="org.unicode.cldr.icu.*" %>
 <style>
 <!--
 td {vertical-align: top}
@@ -50,45 +51,44 @@ Transliterator toHTML = Transliterator.createFromRules(
         
 
 		String setA = request.getParameter("a");
+		boolean abbreviate = request.getParameter("abb") != null;
 		if (setA == null) 
 			setA = "[:ASCII:]";
-
+/*
 		UnicodeSet a = new UnicodeSet();
 		String a_out;
 		try {
 		     setA = Normalizer.normalize(setA, Normalizer.NFC);
 			a = UnicodeUtilities.parseUnicodeSet(setA);
-			if (a.size() < 100000) {
+			if (a.size() < 10000 && !abbreviate) {
 		     	PrettyPrinter pp = new PrettyPrinter();
 				a_out = toHTML.transliterate(pp.toPattern(a));
 			} else {
-				a_out = toHTML.transliterate(a.toString());
+			    a.complement().complement();
+				a_out = toHTML.transliterate(a.toPattern(false));
 			}
 		} catch (Exception e) {
 			a_out = e.getMessage();
 		}
+		*/
+		
+		UnicodeSet a = new UnicodeSet();
+		String a_out = UnicodeUtilities.getSimpleSet(setA, a, abbreviate);
+		
 			NumberFormat nf = NumberFormat.getIntegerInstance();
 			String sizeStr = nf.format(a.size());
 %>
 <h1>UnicodeSet Demo (<a target="u" href="unicodeset.jsp">Compare</a>)</h1>
 <form name="myform" action="http://unicode.org/cldr/utility/list-unicodeset.jsp" method="POST">
   <p><textarea name="a" rows="3" cols="10" style="width: 100%"><%=setA%></textarea></p>
-  <p><input type="submit" value="Show Set" /> <%= sizeStr %> Code Points</p>
+  <p><input type="submit" value="Show Set" />&nbsp;
+  <input type="checkbox" <%=abbreviate ? "checked" : ""%> name="abb"><label for="abb">abbreviate</label></p>
+  <hr>
+  <p><%= sizeStr %> Code Points</p>
   <hr>
   <p><%=a_out%></p>
   <hr>
-  <%
-          if (a.size() > 50000) out.println("<i>Too many to list individually</i>");
- 		else if (a != null) for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.next();) {
-			int s = it.codepoint;
-			String literal = toHTML.transliterate(UTF16.valueOf(s));
-			String hex = com.ibm.icu.impl.Utility.hex(s,4);
-			String name = UCharacter.getName(s);
-			if (name == null) name = "<i>no name</i>";
-			out.println("<code><a target='c' href='character.jsp?a=" + hex + "'>" + hex + "</a></code> ( " + literal
-					+ " ) " + name + "<br>");
-		}
- %>
+  <% UnicodeUtilities.showSet(a, abbreviate, out); %>
 </form>
 <p>Version 3, Built with ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
 <p></p>

@@ -1,18 +1,28 @@
 package jsp;
 
+import org.unicode.cldr.icu.PrettyPrinter;
+
 import com.ibm.icu.text.*;
 import com.ibm.icu.lang.*;
 import com.ibm.icu.util.*;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.text.ParsePosition;
 import java.util.Arrays;
 
 public class UnicodeUtilities {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
+    final PrintWriter printWriter = new PrintWriter(System.out);
+    final UnicodeSet unicodeSet = new UnicodeSet();
+    System.out.println("simple: " + UnicodeUtilities.getSimpleSet("[a-bm-p\uAc00]", unicodeSet, true));
+    showSet(unicodeSet, true, printWriter);
+    printWriter.flush();
     test("[:idna:]");
-    test("[:idna=deleted:]");
+    test("[:idna=ignored:]");
     test("[:idna=remapped:]");
-    test("[:idna=illegal:]");
+    test("[:idna=disallowed:]");
     test("[:iscased:]");
   }
 
@@ -34,7 +44,7 @@ public class UnicodeUtilities {
     String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; ";
 
     String HTML_RULES_CONTROLS = HTML_RULES
-        + "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:][\\u0080-\\U0010FFFF]]) > &hex/xml($1) ; ";
+        + "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]-[\\u0020]]) > &hex/xml($1) ; "; // [\\u0080-\\U0010FFFF]
 
     toHTML = Transliterator.createFromRules("any-xml", HTML_RULES_CONTROLS,
         Transliterator.FORWARD);
@@ -51,13 +61,13 @@ public class UnicodeUtilities {
   static UnicodeSet isUppercase = new UnicodeSet();
 
   static UnicodeSet isTitlecase = new UnicodeSet();
-  
+
   static UnicodeSet isCased = new UnicodeSet();
 
-  static final int OK = 0, DELETED = 1, ILLEGAL = 2, REMAPPED = 3,
+  static final int OUTPUT = 0, IGNORED = 1, REMAPPED = 2, DISALLOWED = 3, 
       IDNA_TYPE_LIMIT = 4;
 
-  static final String[] IdnaNames = { "OK ", "DELETED", "ILLEGAL", "REMAPPED" };
+  static final String[] IdnaNames = { "OUTPUT", "IGNORED", "REMAPPED", "DISALLOWED" };
 
   static UnicodeSet idnaTypeSet[] = new UnicodeSet[IDNA_TYPE_LIMIT];
   static {
@@ -69,26 +79,28 @@ public class UnicodeUtilities {
    * 
    */
   static public int getIDNAType(int cp) {
-    if (cp == '-') return OK;
+    if (cp == '-')
+      return OUTPUT;
     inbuffer.setLength(0);
     UTF16.append(inbuffer, cp);
     try {
-      intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES, DEFAULT
+      intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+                                                                          // DEFAULT
       if (intermediate.length() == 0)
-        return DELETED;
+        return IGNORED;
       outbuffer = IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES);
     } catch (StringPrepParseException e) {
       if (e.getMessage().startsWith("Found zero length")) {
-        return DELETED;
+        return IGNORED;
       }
-      return ILLEGAL;
+      return DISALLOWED;
     } catch (Exception e) {
       System.out.println("Failure at: " + Integer.toString(cp, 16));
-      return ILLEGAL;
+      return DISALLOWED;
     }
     if (!equals(inbuffer, outbuffer))
       return REMAPPED;
-    return OK;
+    return OUTPUT;
   }
 
   static StringBuffer inbuffer = new StringBuffer();
@@ -100,14 +112,14 @@ public class UnicodeUtilities {
 
       int cat = UCharacter.getType(cp);
       if (cat == Character.UNASSIGNED || cat == Character.PRIVATE_USE) {
-        idnaTypeSet[ILLEGAL].add(cp); // faster
+        idnaTypeSet[DISALLOWED].add(cp); // faster
         isCaseFolded.add(cp);
         isLowercase.add(cp);
         isTitlecase.add(cp);
         isUppercase.add(cp);
         continue;
       }
-      
+
       int idnaType = getIDNAType(cp);
       idnaTypeSet[idnaType].add(cp);
 
@@ -127,7 +139,8 @@ public class UnicodeUtilities {
     }
     // isCased if isLowercase=false OR isUppercase=false OR isTitlecase=false
     // or := ! (isLowercase && isUppercase && isTitlecase)
-    isCased = new UnicodeSet(isLowercase).retainAll(isUppercase).retainAll(isTitlecase).complement();
+    isCased = new UnicodeSet(isLowercase).retainAll(isUppercase).retainAll(
+        isTitlecase).complement();
   }
 
   static UnicodeSet.XSymbolTable myXSymbolTable = new UnicodeSet.XSymbolTable() {
@@ -195,7 +208,7 @@ public class UnicodeUtilities {
     }
     if (i >= IdnaNames.length) {
       throw new IllegalArgumentException(
-          "PropertyValue must be empty (= OK) or one of: "
+          "PropertyValue must be empty (= OUTPUT) or one of: "
               + Arrays.asList(IdnaNames));
     }
     result.clear().addAll(idnaTypeSet[i]);
@@ -220,12 +233,75 @@ public class UnicodeUtilities {
     }
     return invert;
   }
-  
+
   public static boolean equals(CharSequence inbuffer, CharSequence outbuffer) {
-    if (inbuffer.length() != outbuffer.length()) return false;
+    if (inbuffer.length() != outbuffer.length())
+      return false;
     for (int i = inbuffer.length() - 1; i >= 0; --i) {
-      if (inbuffer.charAt(i) != outbuffer.charAt(i)) return false;
+      if (inbuffer.charAt(i) != outbuffer.charAt(i))
+        return false;
     }
     return true;
   }
+
+  public static void showSet(UnicodeSet a, boolean abbreviate, Writer out) throws IOException {
+    if (a.size() < 20000 && !abbreviate) {
+      for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.next();) {
+        int s = it.codepoint;
+        showCodePoint(s, out);
+      }
+    } else if (a.getRangeCount() < 10000) {
+      for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.nextRange();) {
+        int s = it.codepoint;
+        int end = it.codepointEnd;
+        showCodePoint(s, out);
+        if (end != s) {
+          if (end > s + 1) {
+            out.write("\u2026 ");
+          }
+          showCodePoint(end, out);
+        }
+      }
+    } else {
+      out.write("<i>Too many to list individually</i>\r\n");
+    }
+  }
+
+  private static void showCodePoint(int s, Writer out) throws IOException {
+    String literal = toHTML.transliterate(UTF16.valueOf(s));
+    String hex = com.ibm.icu.impl.Utility.hex(s, 4);
+    String name = UCharacter.getExtendedName(s);
+    if (name == null || name.length() == 0) {
+      name = "<i>no name</i>";
+    }
+    out.write("<code><a target='c' href='character.jsp?a=" + hex + "'>U+"
+        + hex + "</a></code> ( " + literal + " ) " + name + "<br>\r\n");
+  }
+
+  public static String getSimpleSet(String setA, UnicodeSet a, boolean abbreviate) {
+    String a_out;
+    a.clear();
+    try {
+      setA = Normalizer.normalize(setA, Normalizer.NFC);
+      a.addAll(parseUnicodeSet(setA));
+      if (a.size() < 10000 && !abbreviate) {
+        PrettyPrinter pp = new PrettyPrinter();
+        a_out = toHTML(pp.toPattern(a));
+      } else {
+        a.complement().complement();
+        a_out = toHTML(a.toPattern(false));
+      }
+    } catch (Exception e) {
+      a_out = e.getMessage();
+    }
+    return a_out;
+  }
 }
+/*
+ * <% http://www.devshed.com/c/a/Java/Developing-JavaServer-Pages/ Enumeration
+ * parameterNames = request.getParameterNames(); while
+ * (parameterNames.hasMoreElements()){ String parameterName = (String)
+ * parameterNames.nextElement(); String parameterValue =
+ * request.getParameter(parameterName); %> <%= parameterName %> has value <%=
+ * parameterValue %>. <br> <% } %>
+ */
