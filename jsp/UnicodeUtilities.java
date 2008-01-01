@@ -1,8 +1,5 @@
 package jsp;
 
-import org.unicode.text.UCD.TestData;
-import org.unicode.text.utility.Utility;
-
 import com.ibm.icu.text.*;
 import com.ibm.icu.lang.*;
 import com.ibm.icu.util.*;
@@ -16,6 +13,7 @@ public class UnicodeUtilities {
     test("[:idna=deleted:]");
     test("[:idna=remapped:]");
     test("[:idna=illegal:]");
+    test("[:iscased:]");
   }
 
   private static void test(String testString) {
@@ -48,11 +46,13 @@ public class UnicodeUtilities {
 
   static UnicodeSet isCaseFolded = new UnicodeSet();
 
-  static UnicodeSet isLower = new UnicodeSet();
+  static UnicodeSet isLowercase = new UnicodeSet();
 
-  static UnicodeSet isUpper = new UnicodeSet();
+  static UnicodeSet isUppercase = new UnicodeSet();
 
-  static UnicodeSet isTitle = new UnicodeSet();
+  static UnicodeSet isTitlecase = new UnicodeSet();
+  
+  static UnicodeSet isCased = new UnicodeSet();
 
   static final int OK = 0, DELETED = 1, ILLEGAL = 2, REMAPPED = 3,
       IDNA_TYPE_LIMIT = 4;
@@ -83,7 +83,7 @@ public class UnicodeUtilities {
       }
       return ILLEGAL;
     } catch (Exception e) {
-      System.out.println("Failure at: " + Utility.hex(cp));
+      System.out.println("Failure at: " + Integer.toString(cp, 16));
       return ILLEGAL;
     }
     if (!equals(inbuffer, outbuffer))
@@ -101,6 +101,10 @@ public class UnicodeUtilities {
       int cat = UCharacter.getType(cp);
       if (cat == Character.UNASSIGNED || cat == Character.PRIVATE_USE) {
         idnaTypeSet[ILLEGAL].add(cp); // faster
+        isCaseFolded.add(cp);
+        isLowercase.add(cp);
+        isTitlecase.add(cp);
+        isUppercase.add(cp);
         continue;
       }
       
@@ -112,15 +116,18 @@ public class UnicodeUtilities {
         isCaseFolded.add(cp);
       }
       if (UCharacter.toLowerCase(ULocale.ROOT, s).equals(s)) {
-        isLower.add(cp);
+        isLowercase.add(cp);
       }
       if (UCharacter.toUpperCase(ULocale.ROOT, s).equals(s)) {
-        isUpper.add(cp);
+        isUppercase.add(cp);
       }
       if (UCharacter.toTitleCase(ULocale.ROOT, s, null).equals(s)) {
-        isTitle.add(cp);
+        isTitlecase.add(cp);
       }
     }
+    // isCased if isLowercase=false OR isUppercase=false OR isTitlecase=false
+    // or := ! (isLowercase && isUppercase && isTitlecase)
+    isCased = new UnicodeSet(isLowercase).retainAll(isUppercase).retainAll(isTitlecase).complement();
   }
 
   static UnicodeSet.XSymbolTable myXSymbolTable = new UnicodeSet.XSymbolTable() {
@@ -137,21 +144,28 @@ public class UnicodeUtilities {
         return true;
       }
       if (propertyName.equalsIgnoreCase("isLowercase")) {
-        result.clear().addAll(isLower);
+        result.clear().addAll(isLowercase);
         if (getBinaryValue(propertyValue)) {
           result.complement();
         }
         return true;
       }
       if (propertyName.equalsIgnoreCase("isUppercase")) {
-        result.clear().addAll(isUpper);
+        result.clear().addAll(isUppercase);
         if (getBinaryValue(propertyValue)) {
           result.complement();
         }
         return true;
       }
       if (propertyName.equalsIgnoreCase("isTitlecase")) {
-        result.clear().addAll(isTitle);
+        result.clear().addAll(isTitlecase);
+        if (getBinaryValue(propertyValue)) {
+          result.complement();
+        }
+        return true;
+      }
+      if (propertyName.equalsIgnoreCase("isCased")) {
+        result.clear().addAll(isCased);
         if (getBinaryValue(propertyValue)) {
           result.complement();
         }
@@ -161,7 +175,7 @@ public class UnicodeUtilities {
     }
   };
 
-  static UnicodeSet parseUnicodeSet(String input) {
+  public static UnicodeSet parseUnicodeSet(String input) {
     ParsePosition parsePosition = new ParsePosition(0);
     if (!input.startsWith("[")) {
       input = "[" + input + "]";
