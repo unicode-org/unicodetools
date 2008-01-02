@@ -36,10 +36,13 @@
 		String sizeStr = nf.format(a.size());
 %>
 <h1>UnicodeSet Demo</h1>
-<p><a target="character" href="character.jsp">Character</a>
-<a target="properties" href="properties.jsp">Properties</a>
-<a target="list" href="list-unicodeset.jsp">List</a>
-<a target="compare" href="unicodeset.jsp">Compare</a></p>
+<p>
+	<a target="character" href="character.jsp">character</a> |
+	<a target="properties" href="properties.jsp">properties</a> |
+	<a target="list" href="list-unicodeset.jsp">unicode-set</a> |
+	<a target="compare" href="unicodeset.jsp">compare-sets</a> |
+	<a target="help" href="index.jsp">help</a>
+</p>
 <form name="myform" action="http://unicode.org/cldr/utility/list-unicodeset.jsp" method="POST">
   <p><textarea name="a" rows="3" cols="10" style="width: 100%"><%=setA%></textarea></p>
   <p><input type="submit" value="Show Set" />&nbsp;
