@@ -14,6 +14,14 @@ import java.util.Arrays;
 
 public class UnicodeUtilities {
   public static void main(String[] args) throws IOException {
+    
+    String[] abResults = new String[3];
+    int[] abSizes = new int[3];
+    UnicodeUtilities.getDifferences("[:letter:]", "[:idna:]", false, abResults, abSizes);
+    for (int i = 0; i < abResults.length; ++i) {
+      System.out.println(abSizes[i] + "\t" + abResults[i]);
+    }
+    
     final PrintWriter printWriter = new PrintWriter(System.out);
     final UnicodeSet unicodeSet = new UnicodeSet();
     System.out.println("simple: " + UnicodeUtilities.getSimpleSet("[a-bm-p\uAc00]", unicodeSet, true));
@@ -284,17 +292,102 @@ public class UnicodeUtilities {
     try {
       setA = Normalizer.normalize(setA, Normalizer.NFC);
       a.addAll(parseUnicodeSet(setA));
-      if (a.size() < 10000 && !abbreviate) {
-        PrettyPrinter pp = new PrettyPrinter();
-        a_out = toHTML(pp.toPattern(a));
-      } else {
-        a.complement().complement();
-        a_out = toHTML(a.toPattern(false));
-      }
+      a_out = getPrettySet(a, abbreviate);
     } catch (Exception e) {
       a_out = e.getMessage();
     }
     return a_out;
+  }
+
+  private static String getPrettySet(UnicodeSet a, boolean abbreviate) {
+    String a_out;
+    if (a.size() < 10000 && !abbreviate) {
+      PrettyPrinter pp = new PrettyPrinter();
+      a_out = toHTML(pp.toPattern(a));
+    } else {
+      a.complement().complement();
+      a_out = toHTML(a.toPattern(false));
+    }
+    // insert spaces occasionally
+    int cp;
+    int oldCp = 0;
+    StringBuffer out = new StringBuffer();
+    int charCount = 0;
+    for (int i = 0; i < a_out.length(); i+= UTF16.getCharCount(cp)) {
+      cp = UTF16.charAt(a_out, i);
+      ++charCount;
+      if (charCount > 20) {
+        if (cp != '-' && oldCp != '-') {
+          out.append(' ');
+          charCount = 0;
+        }
+      }
+      UTF16.append(out, cp);
+      oldCp = cp;
+    }
+    return out.toString();
+  }
+  
+  public static UnicodeSet  parseSimpleSet(String setA, String[] exceptionMessage) {
+    try {
+      exceptionMessage[0] = null;
+      setA = Normalizer.normalize(setA, Normalizer.NFC);
+      return parseUnicodeSet(setA);
+    } catch (Exception e) {
+      exceptionMessage[0] = e.getMessage();
+    }
+    return null;
+  }
+  
+  public static void getDifferences(String setA, String setB,
+      boolean abbreviate, String[] abResults, int[] abSizes) {
+    
+    String[] aMessage = new String[1];
+    String[] bMessage = new String[1];
+    UnicodeSet a = UnicodeUtilities.parseSimpleSet(setA, aMessage);
+    UnicodeSet b = UnicodeUtilities.parseSimpleSet(setB, bMessage);
+
+    String a_b;
+    String b_a;
+    String ab;
+
+    // try {
+    // setA = Normalizer.normalize(setA, Normalizer.NFC);
+    // a = UnicodeUtilities.parseUnicodeSet(setA);
+    // } catch (Exception e) {
+    // a_b = e.getMessage();
+    // }
+    // UnicodeSet b = null;
+    // try {
+    // setB = Normalizer.normalize(setB, Normalizer.NFC);
+    // b = UnicodeUtilities.parseUnicodeSet(setB);
+    // } catch (Exception e) {
+    // b_a = e.getMessage();
+    // }
+    int a_bSize = 0, b_aSize = 0, abSize = 0;
+    if (a == null || b == null) {
+      a_b = a == null ? aMessage[0] : "error" ;
+      b_a = b == null ? bMessage[0] : "error" ;
+      ab = "error";
+    } else  {
+      UnicodeSet temp = new UnicodeSet(a).removeAll(b);
+      a_bSize = temp.size();
+      a_b = getPrettySet(temp, abbreviate);
+
+      temp = new UnicodeSet(b).removeAll(a);
+      b_aSize = temp.size();
+      b_a = getPrettySet(temp, abbreviate);
+
+      temp = new UnicodeSet(a).retainAll(b);
+      abSize = temp.size();
+      ab = getPrettySet(temp, abbreviate);
+    }
+    abResults[0] = a_b;
+    abSizes[0] = a_bSize;
+    abResults[1] = b_a;
+    abSizes[1] = b_aSize;
+    abResults[2] = ab;
+    abSizes[2] = abSize;
   }
 }
 /*
