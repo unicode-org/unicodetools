@@ -34,12 +34,16 @@ th           { text-align: left }
 
 <body>
 
-<h1>Unicode Property Demo (<a target="c" href="properties.jsp">List</a>)</h1>
+<h1>Unicode Property Demo</h1>
+<p><a target="character" href="character.jsp">Character</a>
+<a target="properties" href="properties.jsp">Properties</a>
+<a target="list" href="list-unicodeset.jsp">List</a>
+<a target="compare" href="unicodeset.jsp">Compare</a></p>
 <form name="myform" action="http://unicode.org/cldr/utility/character.jsp" method="POST">
   <%
 		request.setCharacterEncoding("UTF-8");
 		String text = request.getParameter("a");
-		if (text == null || text.length() == 0) text = "�";
+		if (text == null || text.length() == 0) text = "a";
 %> <%
 String BASE_RULES =
   	"'<' > '&lt;' ;" +
@@ -91,7 +95,7 @@ Transliterator toHTML = Transliterator.createFromRules(
 Unicode property<br>
 © = ICU-Only Property (not Unicode or Regex)<br>
 <i><br>
-</i>1. Built using ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
+</i>Version 4, Built using ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
 
 </body>
 
