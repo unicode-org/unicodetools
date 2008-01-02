@@ -1,4 +1,4 @@
-td,th			{ padding:1px; border:1px solid gray; vertical-align:top }
-table		{ border:1px solid gray; border-collapse: collapse }
-th           { background-color: #EEEEEE }
-textarea	{width: 100%}
+td,th,table			{ padding:1px; border:1px solid #CCCCFF; vertical-align:top }
+table		{ border-collapse: collapse }
+th           { background-color: #EEEEFF }
+textarea	{width: 100%; background-color: #EEFFEE; border:1px solid #CCFFCC; }

@@ -158,6 +158,14 @@ public class UnicodeUtilities {
     isCased = new UnicodeSet(isLowercase).retainAll(isUppercase).retainAll(
         isTitlecase).complement();
   }
+  
+  static Object[][] specialProperties = {
+    {"isCaseFolded", isCaseFolded},
+    {"isUppercase", isUppercase},
+    {"isLowercase", isLowercase},
+    {"isTitlecase", isTitlecase},
+    {"isCased", isCased},
+    };
 
   static UnicodeSet.XSymbolTable myXSymbolTable = new UnicodeSet.XSymbolTable() {
     public boolean applyPropertyAlias(String propertyName,
@@ -165,41 +173,51 @@ public class UnicodeUtilities {
       if (propertyName.equalsIgnoreCase("idna")) {
         return getIdnaProperty(propertyName, propertyValue, result);
       }
-      if (propertyName.equalsIgnoreCase("isCaseFolded")) {
-        result.clear().addAll(isCaseFolded);
-        if (getBinaryValue(propertyValue)) {
-          result.complement();
+      for (int i = 0; i < specialProperties.length; ++i) {
+        if (propertyName.equalsIgnoreCase((String)specialProperties[i][0])) {
+          result.clear().addAll((UnicodeSet)specialProperties[i][1]);
+          if (getBinaryValue(propertyValue)) {
+            result.complement();
+          }
+          return true;
         }
-        return true;
       }
-      if (propertyName.equalsIgnoreCase("isLowercase")) {
-        result.clear().addAll(isLowercase);
-        if (getBinaryValue(propertyValue)) {
-          result.complement();
-        }
-        return true;
-      }
-      if (propertyName.equalsIgnoreCase("isUppercase")) {
-        result.clear().addAll(isUppercase);
-        if (getBinaryValue(propertyValue)) {
-          result.complement();
-        }
-        return true;
-      }
-      if (propertyName.equalsIgnoreCase("isTitlecase")) {
-        result.clear().addAll(isTitlecase);
-        if (getBinaryValue(propertyValue)) {
-          result.complement();
-        }
-        return true;
-      }
-      if (propertyName.equalsIgnoreCase("isCased")) {
-        result.clear().addAll(isCased);
-        if (getBinaryValue(propertyValue)) {
-          result.complement();
-        }
-        return true;
-      }
+//      }
+//      if (propertyName.equalsIgnoreCase("isCaseFolded")) {
+//        result.clear().addAll(isCaseFolded);
+//        if (getBinaryValue(propertyValue)) {
+//          result.complement();
+//        }
+//        return true;
+//      }
+//      if (propertyName.equalsIgnoreCase("isLowercase")) {
+//        result.clear().addAll(isLowercase);
+//        if (getBinaryValue(propertyValue)) {
+//          result.complement();
+//        }
+//        return true;
+//      }
+//      if (propertyName.equalsIgnoreCase("isUppercase")) {
+//        result.clear().addAll(isUppercase);
+//        if (getBinaryValue(propertyValue)) {
+//          result.complement();
+//        }
+//        return true;
+//      }
+//      if (propertyName.equalsIgnoreCase("isTitlecase")) {
+//        result.clear().addAll(isTitlecase);
+//        if (getBinaryValue(propertyValue)) {
+//          result.complement();
+//        }
+//        return true;
+//      }
+//      if (propertyName.equalsIgnoreCase("isCased")) {
+//        result.clear().addAll(isCased);
+//        if (getBinaryValue(propertyValue)) {
+//          result.complement();
+//        }
+//        return true;
+//      }
       return false;
     }
   };
@@ -537,6 +555,9 @@ public class UnicodeUtilities {
 
     Set regexProps = new TreeSet(Arrays.asList(new String[] { "xdigit",
         "alnum", "blank", "graph", "print", "word" }));
+    Set icuProps = new TreeSet(alpha.keySet());
+    icuProps.removeAll(unicodeProps);
+    icuProps.removeAll(regexProps);
 
     out.write("<table>\r\n");
     String name = (String) alpha.get("Name");
@@ -549,9 +570,9 @@ public class UnicodeUtilities {
         + com.ibm.icu.impl.Utility.hex(cp, 4) + "</td></tr>\r\n");
     out.write("<tr><th>" + "Name" + "</th><td>" + name + "</td></tr>\r\n");
     alpha.remove("Name");
-    showPropertyValue(alpha, showLink, "\u00AE", unicodeProps, out); 
-    showPropertyValue(alpha, showLink, "\u00AE", regexProps, out);
-    showPropertyValue(alpha, showLink, "\u00AE", icuProps, out);
+    showPropertyValue(alpha, showLink, "", unicodeProps, out); 
+    showPropertyValue(alpha, showLink, "® ", regexProps, out);
+    showPropertyValue(alpha, showLink, "© ", icuProps, out);
     out.write("</table>\r\n");
   }
 
@@ -567,16 +588,8 @@ public class UnicodeUtilities {
           + propName + "=" + propValue + ":]'>" + hValue + "</a>"
           : hValue;
 
-      String pName = propName;
-      if (unicodeProps.contains(propName)) {
-      } else if (regexProps.contains(propName)) {
-        pName = "<tt>" + pName + "\u00A0\u00AE</tt>";
-      } else {
-        pName = "<i>" + pName + "\u00A0\u00A9</i>";
-      }
-
       out.write("<tr><th><a target='c' href='properties.jsp#" + propName + "'>"
-          + pName + "</a></th><td>" + hValue + "</td></tr>\r\n");
+          + flag + propName + "</a></th><td>" + hValue + "</td></tr>\r\n");
     }
   }
 }

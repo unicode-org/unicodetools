@@ -11,13 +11,7 @@
 <%@ page import="java.util.*" %> <%@ page import="java.lang.*" %> <%@ page import="com.ibm.icu.text.*" %>
 <%@ page import="com.ibm.icu.lang.*" %> <%@ page import="com.ibm.icu.util.*" %>
 <%@ page import="java.util.regex.*" %>
-<style>
-<!--
-table, td, th {border:1px solid green; padding:1; margin:0; vertical-align: top;}
-table {border:0px solid blue; border-collapse: collapse}
-span.break   { border-right: 1px solid red;}
--->
-</style>
+
 <style>
 <!--
 th           { text-align: left }
@@ -27,7 +21,11 @@ th           { text-align: left }
 
 <body>
 
-<h1>Unicode Property List (<a target="c" href="character.jsp">Check</a>)</h1>
+<h1>Unicode Property List</h1>
+<p><a target="character" href="character.jsp">Character</a>
+<a target="properties" href="properties.jsp">Properties</a>
+<a target="list" href="list-unicodeset.jsp">List</a>
+<a target="compare" href="unicodeset.jsp">Compare</a></p>
 <%
 		request.setCharacterEncoding("UTF-8");
 		int[][] ranges = {{UProperty.BINARY_START, UProperty.BINARY_LIMIT},
