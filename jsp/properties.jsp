@@ -6,6 +6,7 @@
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Unicode Property List</title>
+<link rel="stylesheet" type="text/css" href="index.css">
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.util.*" %> <%@ page import="java.lang.*" %> <%@ page import="com.ibm.icu.text.*" %>
 <%@ page import="com.ibm.icu.lang.*" %> <%@ page import="com.ibm.icu.util.*" %>
@@ -15,6 +16,11 @@
 table, td, th {border:1px solid green; padding:1; margin:0; vertical-align: top;}
 table {border:0px solid blue; border-collapse: collapse}
 span.break   { border-right: 1px solid red;}
+-->
+</style>
+<style>
+<!--
+th           { text-align: left }
 -->
 </style>
 </head>
@@ -119,7 +125,7 @@ span.break   { border-right: 1px solid red;}
 				sPropName = "<i>\u00A9\u00A0" + sPropName + "</i>";
 			}
 
-			out.println("<tr><td width='1%'><a name='" + propName + "'>" + sPropName + "</a></td>");
+			out.println("<tr><th width='1%'><a name='" + propName + "'>" + sPropName + "</a></th>");
 			out.println("<td>");
 			boolean first = true;
 			for (Iterator it2 = values.iterator(); it2.hasNext();) {

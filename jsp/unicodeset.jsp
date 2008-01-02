@@ -6,6 +6,8 @@
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>UnicodeSet Comparison Demo</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="com.ibm.icu.text.*" %> 
 <%@ page import="com.ibm.icu.lang.*" %>
@@ -13,9 +15,7 @@
 <%@ page import="java.util.regex.*" %>
 <%@ page import="jsp.*" %>
 <%@ page import="org.unicode.cldr.icu.*" %>
-<style>
-<link rel="stylesheet" type="text/css" href="index.css">
-</style>
+
 </head>
 <body>
 <%

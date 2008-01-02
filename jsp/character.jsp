@@ -6,17 +6,30 @@
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Unicode Property Demo</title>
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="java.util.*" %> <%@ page import="java.lang.*" %> <%@ page import="com.ibm.icu.text.*" %>
-<%@ page import="com.ibm.icu.lang.*" %> <%@ page import="com.ibm.icu.util.*" %>
-<%@ page import="java.util.regex.*" %> <%@ page import="com.ibm.icu.dev.demo.translit.*" %>
-<%@ page import="com.ibm.icu.impl.*" %>
+<link rel="stylesheet" type="text/css" href="index.css">
 <style>
 <!--
-table, td {border:1px solid magenta; padding:2; margin:0; vertical-align: top}
-table {border:0px solid blue; border-collapse: collapse}
+th           { text-align: left }
 -->
 </style>
+
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="java.lang.*" %>
+<%@ page import="com.ibm.icu.text.*" %>
+<%@ page import="com.ibm.icu.lang.*" %>
+ <%@ page import="com.ibm.icu.util.*" %>
+<%@ page import="java.util.regex.*" %>
+ <%@ page import="com.ibm.icu.dev.demo.translit.*" %>
+<%@ page import="com.ibm.icu.impl.*" %>
+
+<%@ page import="com.ibm.icu.text.*" %> 
+<%@ page import="com.ibm.icu.lang.*" %>
+<%@ page import="com.ibm.icu.impl.*" %>
+<%@ page import="java.util.regex.*" %>
+<%@ page import="jsp.*" %>
+<%@ page import="org.unicode.cldr.icu.*" %>
+
 </head>
 
 <body>
@@ -50,15 +63,6 @@ String HTML_RULES_CONTROLS = HTML_RULES +
 Transliterator toHTML = Transliterator.createFromRules(
         "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
         
-		int[][] ranges = {{UProperty.BINARY_START, UProperty.BINARY_LIMIT},
-				{UProperty.INT_START, UProperty.INT_LIMIT},
-				{UProperty.DOUBLE_START, UProperty.DOUBLE_LIMIT},
-				{UProperty.STRING_START, UProperty.STRING_LIMIT},
-		};
-		Collator col = Collator.getInstance(ULocale.ROOT);
-		((RuleBasedCollator)col).setNumericCollation(true);
-		Map alpha = new TreeMap(col);
-
 		String HTML_INPUT = "::hex-any/xml10; ::hex-any/unicode; ::hex-any/java;";
 		Transliterator fromHTML = Transliterator.createFromRules(
 				"any-xml", HTML_INPUT, Transliterator.FORWARD);
@@ -80,152 +84,7 @@ Transliterator toHTML = Transliterator.createFromRules(
   <input type="button" value="Next" name="B2" onClick="window.location.href='<%=nextHex%>'"></p>
 </form>
 <%
-		text = UTF16.valueOf(text,0);
-		Set showLink = new HashSet();
-		for (int range = 0; range < ranges.length; ++range) {
-			for (int propIndex = ranges[range][0]; propIndex < ranges[range][1]; ++propIndex) {
-				String propName = UCharacter.getPropertyName(propIndex, UProperty.NameChoice.LONG);
-				String propValue = null;
-				int ival;
-				switch (range) {
-				default: propValue = "???"; break;
-				case 0: ival = UCharacter.getIntPropertyValue(cp, propIndex);
-					if (ival != 0) propValue = "True";
-					showLink.add(propName);
-					break;
-				case 2:
-					double nval = UCharacter.getNumericValue(cp);
-					if (nval != -1) {
-						propValue = String.valueOf(nval);
-						showLink.add(propName);
-					}
-					break;
-				case 3: 
-					propValue = UCharacter.getStringPropertyValue(propIndex, cp, UProperty.NameChoice.LONG); 
-					if (text.equals(propValue)) propValue = null;
-					break;
-				case 1: ival = UCharacter.getIntPropertyValue(cp, propIndex);
-					if (ival != 0) {
-						propValue = UCharacter.getPropertyValueName(propIndex, ival, UProperty.NameChoice.LONG);
-						if (propValue == null) propValue = String.valueOf(ival);
-					}
-					showLink.add(propName);
-					break;					
-				}
-				if (propValue != null) {
-					alpha.put(propName, propValue);
-				}
-			}
-		}
-		showLink.add("Age");
-
-		String x;
-		String upper = x = UCharacter.toUpperCase(ULocale.ENGLISH,text);
-		if (!text.equals(x)) alpha.put("toUppercase", x);
-		String lower = x = UCharacter.toLowerCase(ULocale.ENGLISH,text);
-		if (!text.equals(x)) alpha.put("toLowercase", x);
-		String title = x = UCharacter.toTitleCase(ULocale.ENGLISH,text,null);
-		if (!text.equals(x)) alpha.put("toTitlecase", x);
-
-		String nfc = x = Normalizer.normalize(text,Normalizer.NFC);
-		if (!text.equals(x)) alpha.put("toNFC", x);
-		String nfd = x = Normalizer.normalize(text,Normalizer.NFD);
-		if (!text.equals(x)) alpha.put("toNFD", x);
-		x = Normalizer.normalize(text,Normalizer.NFKD);
-		if (!text.equals(x)) alpha.put("toNFKD", x);
-		x = Normalizer.normalize(text,Normalizer.NFKC);
-		if (!text.equals(x)) alpha.put("toNFKC", x);
-
-		
-		CanonicalIterator ci = new CanonicalIterator(text);
-		int count = 0;
-		for (String item = ci.next(); item != null; item = ci.next()) {
-			if (item.equals(text)) continue;
-			if (item.equals(nfc)) continue;
-			if (item.equals(nfd)) continue;
-			alpha.put("toOther_Canonical_Equivalent#" + (++count), item);
-		}
-
-		/*
-		CaseIterator cai = new CaseIterator();
-		cai.reset(text);
-		count = 0;
-		for (String item = cai.next(); item != null; item = cai.next()) {
-			if (item.equals(text)) continue;
-			if (item.equals(upper)) continue;
-			if (item.equals(lower)) continue;
-			if (item.equals(title)) continue;
-			alpha.put("toOther_Case_Equivalent#" + (++count), item);
-		}
-		*/
-		
-				Set unicodeProps = new TreeSet(Arrays.asList(new String[] {
-				"Numeric_Value", "Bidi_Mirroring_Glyph", "Case_Folding",
-				"Decomposition_Mapping", "FC_NFKC_Closure",
-				"Lowercase_Mapping", "Special_Case_Condition",
-				"Simple_Case_Folding", "Simple_Lowercase_Mapping",
-				"Simple_Titlecase_Mapping", "Simple_Uppercase_Mapping",
-				"Titlecase_Mapping", "Uppercase_Mapping", "ISO_Comment",
-				"Name", "Unicode_1_Name", "Unicode_Radical_Stroke", "Age",
-				"Block", "Script", "Bidi_Class", "Canonical_Combining_Class",
-				"Decomposition_Type", "East_Asian_Width", "General_Category",
-				"Grapheme_Cluster_Break", "Hangul_Syllable_Type",
-				"Joining_Group", "Joining_Type", "Line_Break",
-				"NFC_Quick_Check", "NFD_Quick_Check", "NFKC_Quick_Check",
-				"NFKD_Quick_Check", "Numeric_Type", "Sentence_Break",
-				"Word_Break", "ASCII_Hex_Digit", "Alphabetic", "Bidi_Control",
-				"Bidi_Mirrored", "Composition_Exclusion",
-				"Full_Composition_Exclusion", "Dash", "Deprecated",
-				"Default_Ignorable_Code_Point", "Diacritic", "Extender",
-				"Grapheme_Base", "Grapheme_Extend", "Grapheme_Link",
-				"Hex_Digit", "Hyphen", "ID_Continue", "Ideographic",
-				"ID_Start", "IDS_Binary_Operator", "IDS_Trinary_Operator",
-				"Join_Control", "Logical_Order_Exception", "Lowercase", "Math",
-				"Noncharacter_Code_Point", "Other_Alphabetic",
-				"Other_Default_Ignorable_Code_Point", "Other_Grapheme_Extend",
-				"Other_ID_Continue", "Other_ID_Start", "Other_Lowercase",
-				"Other_Math", "Other_Uppercase", "Pattern_Syntax",
-				"Pattern_White_Space", "Quotation_Mark", "Radical",
-				"Soft_Dotted", "STerm", "Terminal_Punctuation",
-				"Unified_Ideograph", "Uppercase", "Variation_Selector",
-				"White_Space", "XID_Continue", "XID_Start", "Expands_On_NFC",
-				"Expands_On_NFD", "Expands_On_NFKC", "Expands_On_NFKD",
-				"toNFC", "toNFD", "toNFKC", "toNFKD", 
-		 }));
-		
-		Set regexProps = new TreeSet(Arrays.asList(new String[] {
-				"xdigit", "alnum", "blank", "graph", "print", "word"}));
-
-		out.println("<table>");
-		String name = (String)alpha.get("Name");
-		if (name != null) name = toHTML.transliterate(name);
-		
-		out.println("<tr><td><b>" + "Character" + "</b></td><td><b>" + toHTML.transliterate(text) + "</b></td></tr>");
-		out.println("<tr><td><b>" + "Code_Point" + "</b></td><td><b>" + com.ibm.icu.impl.Utility.hex(cp,4) + "</b></td></tr>");
-		out.println("<tr><td><b>" + "Name" + "</b></td><td><b>" + name + "</b></td></tr>");
-		alpha.remove("Name");
-		for (Iterator it = alpha.keySet().iterator(); it.hasNext();) {
-			String propName = (String) it.next();
-			String propValue = (String) alpha.get(propName);
-			
-			String hValue = toHTML.transliterate(propValue);
-			hValue = showLink.contains(propName)
-			? "<a target='u' href='list-unicodeset.jsp?a=[:" + propName + "=" + propValue+ ":]'>"
-			  + hValue + "</a>" 
-			: hValue;
-			
-			String pName = propName;
-			if (unicodeProps.contains(propName)) {
-			} else if (regexProps.contains(propName)) {
-				pName = "<tt>" + pName + "\u00A0\u00AE</tt>";
-			} else {
-				pName = "<i>" + pName + "\u00A0\u00A9</i>";
-			}
-
-			
-			out.println("<tr><td><a target='c' href='properties.jsp#" + propName + "'>" + pName + "</a></td><td>" + hValue + "</td></tr>");
-		}
-		out.println("</table>");
+	UnicodeUtilities.showProperties(text, out);
 %>
 <p><i>(only includes properties with non-default values)<br>
 </i>® = Regex Property (<a href="http://www.unicode.org/reports/tr18/">UTS #18</a>): not formal 

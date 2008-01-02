@@ -11,9 +11,18 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.text.ParsePosition;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class UnicodeUtilities {
   public static void main(String[] args) throws IOException {
+    final PrintWriter printWriter = new PrintWriter(System.out);
+    showProperties("a", printWriter);
+    printWriter.flush();
     
     String[] abResults = new String[3];
     int[] abSizes = new int[3];
@@ -22,7 +31,6 @@ public class UnicodeUtilities {
       System.out.println(abSizes[i] + "\t" + abResults[i]);
     }
     
-    final PrintWriter printWriter = new PrintWriter(System.out);
     final UnicodeSet unicodeSet = new UnicodeSet();
     System.out.println("simple: " + UnicodeUtilities.getSimpleSet("[a-bm-p\uAc00]", unicodeSet, true));
     showSet(unicodeSet, true, printWriter);
@@ -388,6 +396,188 @@ public class UnicodeUtilities {
     abSizes[1] = b_aSize;
     abResults[2] = ab;
     abSizes[2] = abSize;
+  }
+  
+  static int[][] ranges = { { UProperty.BINARY_START, UProperty.BINARY_LIMIT },
+      { UProperty.INT_START, UProperty.INT_LIMIT },
+      { UProperty.DOUBLE_START, UProperty.DOUBLE_LIMIT },
+      { UProperty.STRING_START, UProperty.STRING_LIMIT }, };
+
+  static Collator col = Collator.getInstance(ULocale.ROOT);
+  static {
+    ((RuleBasedCollator) col).setNumericCollation(true);
+  }
+
+  public static void showProperties(String text, Writer out) throws IOException {
+    text = UTF16.valueOf(text, 0);
+    int cp = UTF16.charAt(text, 0);
+    Set showLink = new HashSet();
+    Map alpha = new TreeMap(col);
+
+    for (int range = 0; range < ranges.length; ++range) {
+      for (int propIndex = ranges[range][0]; propIndex < ranges[range][1]; ++propIndex) {
+        String propName = UCharacter.getPropertyName(propIndex,
+            UProperty.NameChoice.LONG);
+        String propValue = null;
+        int ival;
+        switch (range) {
+          default:
+            propValue = "???";
+            break;
+          case 0:
+            ival = UCharacter.getIntPropertyValue(cp, propIndex);
+            if (ival != 0)
+              propValue = "True";
+            showLink.add(propName);
+            break;
+          case 2:
+            double nval = UCharacter.getNumericValue(cp);
+            if (nval != -1) {
+              propValue = String.valueOf(nval);
+              showLink.add(propName);
+            }
+            break;
+          case 3:
+            propValue = UCharacter.getStringPropertyValue(propIndex, cp,
+                UProperty.NameChoice.LONG);
+            if (text.equals(propValue))
+              propValue = null;
+            break;
+          case 1:
+            ival = UCharacter.getIntPropertyValue(cp, propIndex);
+            if (ival != 0) {
+              propValue = UCharacter.getPropertyValueName(propIndex, ival,
+                  UProperty.NameChoice.LONG);
+              if (propValue == null)
+                propValue = String.valueOf(ival);
+            }
+            showLink.add(propName);
+            break;
+        }
+        if (propValue != null) {
+          alpha.put(propName, propValue);
+        }
+      }
+    }
+    showLink.add("Age");
+
+    String x;
+    String upper = x = UCharacter.toUpperCase(ULocale.ENGLISH, text);
+    if (!text.equals(x))
+      alpha.put("toUppercase", x);
+    String lower = x = UCharacter.toLowerCase(ULocale.ENGLISH, text);
+    if (!text.equals(x))
+      alpha.put("toLowercase", x);
+    String title = x = UCharacter.toTitleCase(ULocale.ENGLISH, text, null);
+    if (!text.equals(x))
+      alpha.put("toTitlecase", x);
+
+    String nfc = x = Normalizer.normalize(text, Normalizer.NFC);
+    if (!text.equals(x))
+      alpha.put("toNFC", x);
+    String nfd = x = Normalizer.normalize(text, Normalizer.NFD);
+    if (!text.equals(x))
+      alpha.put("toNFD", x);
+    x = Normalizer.normalize(text, Normalizer.NFKD);
+    if (!text.equals(x))
+      alpha.put("toNFKD", x);
+    x = Normalizer.normalize(text, Normalizer.NFKC);
+    if (!text.equals(x))
+      alpha.put("toNFKC", x);
+
+    CanonicalIterator ci = new CanonicalIterator(text);
+    int count = 0;
+    for (String item = ci.next(); item != null; item = ci.next()) {
+      if (item.equals(text))
+        continue;
+      if (item.equals(nfc))
+        continue;
+      if (item.equals(nfd))
+        continue;
+      alpha.put("toOther_Canonical_Equivalent#" + (++count), item);
+    }
+
+    /*
+     * CaseIterator cai = new CaseIterator(); cai.reset(text); count = 0; for
+     * (String item = cai.next(); item != null; item = cai.next()) { if
+     * (item.equals(text)) continue; if (item.equals(upper)) continue; if
+     * (item.equals(lower)) continue; if (item.equals(title)) continue;
+     * alpha.put("toOther_Case_Equivalent#" + (++count), item); }
+     */
+
+    Set unicodeProps = new TreeSet(Arrays.asList(new String[] {
+        "Numeric_Value", "Bidi_Mirroring_Glyph", "Case_Folding",
+        "Decomposition_Mapping", "FC_NFKC_Closure", "Lowercase_Mapping",
+        "Special_Case_Condition", "Simple_Case_Folding",
+        "Simple_Lowercase_Mapping", "Simple_Titlecase_Mapping",
+        "Simple_Uppercase_Mapping", "Titlecase_Mapping", "Uppercase_Mapping",
+        "ISO_Comment", "Name", "Unicode_1_Name", "Unicode_Radical_Stroke",
+        "Age", "Block", "Script", "Bidi_Class", "Canonical_Combining_Class",
+        "Decomposition_Type", "East_Asian_Width", "General_Category",
+        "Grapheme_Cluster_Break", "Hangul_Syllable_Type", "Joining_Group",
+        "Joining_Type", "Line_Break", "NFC_Quick_Check", "NFD_Quick_Check",
+        "NFKC_Quick_Check", "NFKD_Quick_Check", "Numeric_Type",
+        "Sentence_Break", "Word_Break", "ASCII_Hex_Digit", "Alphabetic",
+        "Bidi_Control", "Bidi_Mirrored", "Composition_Exclusion",
+        "Full_Composition_Exclusion", "Dash", "Deprecated",
+        "Default_Ignorable_Code_Point", "Diacritic", "Extender",
+        "Grapheme_Base", "Grapheme_Extend", "Grapheme_Link", "Hex_Digit",
+        "Hyphen", "ID_Continue", "Ideographic", "ID_Start",
+        "IDS_Binary_Operator", "IDS_Trinary_Operator", "Join_Control",
+        "Logical_Order_Exception", "Lowercase", "Math",
+        "Noncharacter_Code_Point", "Other_Alphabetic",
+        "Other_Default_Ignorable_Code_Point", "Other_Grapheme_Extend",
+        "Other_ID_Continue", "Other_ID_Start", "Other_Lowercase", "Other_Math",
+        "Other_Uppercase", "Pattern_Syntax", "Pattern_White_Space",
+        "Quotation_Mark", "Radical", "Soft_Dotted", "STerm",
+        "Terminal_Punctuation", "Unified_Ideograph", "Uppercase",
+        "Variation_Selector", "White_Space", "XID_Continue", "XID_Start",
+        "Expands_On_NFC", "Expands_On_NFD", "Expands_On_NFKC",
+        "Expands_On_NFKD", "toNFC", "toNFD", "toNFKC", "toNFKD", }));
+
+    Set regexProps = new TreeSet(Arrays.asList(new String[] { "xdigit",
+        "alnum", "blank", "graph", "print", "word" }));
+
+    out.write("<table>\r\n");
+    String name = (String) alpha.get("Name");
+    if (name != null)
+      name = toHTML.transliterate(name);
+
+    out.write("<tr><th>" + "Character" + "</th><td>"
+        + toHTML.transliterate(text) + "</td></tr>\r\n");
+    out.write("<tr><th>" + "Code_Point" + "</th><td>"
+        + com.ibm.icu.impl.Utility.hex(cp, 4) + "</td></tr>\r\n");
+    out.write("<tr><th>" + "Name" + "</th><td>" + name + "</td></tr>\r\n");
+    alpha.remove("Name");
+    showPropertyValue(alpha, showLink, "\u00AE", unicodeProps, out); 
+    showPropertyValue(alpha, showLink, "\u00AE", regexProps, out);
+    showPropertyValue(alpha, showLink, "\u00AE", icuProps, out);
+    out.write("</table>\r\n");
+  }
+
+  private static void showPropertyValue(Map alpha, Set showLink, String flag, 
+      Set unicodeProps, Writer out) throws IOException {
+    for (Iterator it = alpha.keySet().iterator(); it.hasNext();) {
+      String propName = (String) it.next();
+      if (!unicodeProps.contains(propName)) continue;
+      String propValue = (String) alpha.get(propName);
+
+      String hValue = toHTML.transliterate(propValue);
+      hValue = showLink.contains(propName) ? "<a target='u' href='list-unicodeset.jsp?a=[:"
+          + propName + "=" + propValue + ":]'>" + hValue + "</a>"
+          : hValue;
+
+      String pName = propName;
+      if (unicodeProps.contains(propName)) {
+      } else if (regexProps.contains(propName)) {
+        pName = "<tt>" + pName + "\u00A0\u00AE</tt>";
+      } else {
+        pName = "<i>" + pName + "\u00A0\u00A9</i>";
+      }
+
+      out.write("<tr><th><a target='c' href='properties.jsp#" + propName + "'>"
+          + pName + "</a></th><td>" + hValue + "</td></tr>\r\n");
+    }
   }
 }
 /*
