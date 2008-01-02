@@ -38,10 +38,13 @@
 		NumberFormat nf = NumberFormat.getIntegerInstance();
 %>
 <h1>UnicodeSet Demo</h1>
-<p><a target="character" href="character.jsp">Character</a>
-<a target="properties" href="properties.jsp">Properties</a>
-<a target="list" href="list-unicodeset.jsp">List</a>
-<a target="compare" href="unicodeset.jsp">Compare</a></p>
+<p>
+	<a target="character" href="character.jsp">character</a> |
+	<a target="properties" href="properties.jsp">properties</a> |
+	<a target="list" href="list-unicodeset.jsp">unicode-set</a> |
+	<a target="compare" href="unicodeset.jsp">compare-sets</a> |
+	<a target="help" href="index.jsp">help</a>
+</p>
 <form name="myform" action="http://unicode.org/cldr/utility/unicodeset.jsp" method="POST">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>

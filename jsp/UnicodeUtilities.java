@@ -17,9 +17,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UnicodeUtilities {
   public static void main(String[] args) throws IOException {
+    test("[:name=/WITH/:]");
     final PrintWriter printWriter = new PrintWriter(System.out);
     showProperties("a", printWriter);
     printWriter.flush();
@@ -127,7 +130,7 @@ public class UnicodeUtilities {
     for (int cp = 0; cp <= 0x10FFFF; ++cp) {
 
       int cat = UCharacter.getType(cp);
-      if (cat == Character.UNASSIGNED || cat == Character.PRIVATE_USE) {
+      if (cat == Character.UNASSIGNED || cat == Character.PRIVATE_USE  || cat == Character.SURROGATE) {
         idnaTypeSet[DISALLOWED].add(cp); // faster
         isCaseFolded.add(cp);
         isLowercase.add(cp);
@@ -182,42 +185,22 @@ public class UnicodeUtilities {
           return true;
         }
       }
-//      }
-//      if (propertyName.equalsIgnoreCase("isCaseFolded")) {
-//        result.clear().addAll(isCaseFolded);
-//        if (getBinaryValue(propertyValue)) {
-//          result.complement();
-//        }
-//        return true;
-//      }
-//      if (propertyName.equalsIgnoreCase("isLowercase")) {
-//        result.clear().addAll(isLowercase);
-//        if (getBinaryValue(propertyValue)) {
-//          result.complement();
-//        }
-//        return true;
-//      }
-//      if (propertyName.equalsIgnoreCase("isUppercase")) {
-//        result.clear().addAll(isUppercase);
-//        if (getBinaryValue(propertyValue)) {
-//          result.complement();
-//        }
-//        return true;
-//      }
-//      if (propertyName.equalsIgnoreCase("isTitlecase")) {
-//        result.clear().addAll(isTitlecase);
-//        if (getBinaryValue(propertyValue)) {
-//          result.complement();
-//        }
-//        return true;
-//      }
-//      if (propertyName.equalsIgnoreCase("isCased")) {
-//        result.clear().addAll(isCased);
-//        if (getBinaryValue(propertyValue)) {
-//          result.complement();
-//        }
-//        return true;
-//      }
+      if (propertyName.equalsIgnoreCase("Name") && propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
+        Matcher matcher = Pattern.compile(propertyValue.substring(1, propertyValue.length()-1)).matcher("");
+        result.clear();
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+
+          int cat = UCharacter.getType(cp);
+          if (cat == Character.UNASSIGNED || cat == Character.PRIVATE_USE) {
+            continue;
+          }
+          String name = UCharacter.getExtendedName(cp);
+          if (matcher.reset(name).find()) {
+            result.add(cp);
+          }
+        }
+        return true;
+      }
       return false;
     }
   };
@@ -291,7 +274,7 @@ public class UnicodeUtilities {
         showCodePoint(s, out);
         if (end != s) {
           if (end > s + 1) {
-            out.write("\u2026 ");
+            out.write("\u2026{" + (end-s-1) + "}\u2026");
           }
           showCodePoint(end, out);
         }
