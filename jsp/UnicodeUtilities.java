@@ -22,16 +22,22 @@ import java.util.regex.Pattern;
 
 public class UnicodeUtilities {
   public static void main(String[] args) throws IOException {
-    test("[:name=/WITH/:]");
     final PrintWriter printWriter = new PrintWriter(System.out);
+ 
+    showSet(new UnicodeSet("[\\u0080\\U0010FFFF]"), true, printWriter);
+    printWriter.flush();
+    
+    
+    test("[:name=/WITH/:]");
     showProperties("a", printWriter);
     printWriter.flush();
     
     String[] abResults = new String[3];
+    String[] abLinks = new String[3];
     int[] abSizes = new int[3];
-    UnicodeUtilities.getDifferences("[:letter:]", "[:idna:]", false, abResults, abSizes);
+    UnicodeUtilities.getDifferences("[:letter:]", "[:idna:]", false, abResults, abSizes, abLinks);
     for (int i = 0; i < abResults.length; ++i) {
-      System.out.println(abSizes[i] + "\t" + abResults[i]);
+      System.out.println(abSizes[i] + "\r\n\t" + abResults[i] + "\r\n\t" + abLinks[i]);
     }
     
     final UnicodeSet unicodeSet = new UnicodeSet();
@@ -63,7 +69,9 @@ public class UnicodeUtilities {
     String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; ";
 
     String HTML_RULES_CONTROLS = HTML_RULES
-        + "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]-[\\u0020]]) > &hex/xml($1) ; "; // [\\u0080-\\U0010FFFF]
+    + "[[:di:]-[:cc:]-[:cs:]-[\\u200E\\u200F]] > ; " // remove, should ignore in rendering (but may not be in browser)
+    + "[[:nchar:][:cn:][:cs:][:co:][:cc:]-[:whitespace:]-[\\u200E\\u200F]] > \\uFFFD ; "; // should be missing glyph (but may not be in browser)
+   //     + "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]-[\\u0020]]) > &hex/xml($1) ; "; // [\\u0080-\\U0010FFFF]
 
     toHTML = Transliterator.createFromRules("any-xml", HTML_RULES_CONTROLS,
         Transliterator.FORWARD);
@@ -284,12 +292,23 @@ public class UnicodeUtilities {
     }
   }
 
+  static private UnicodeSet RTL= new UnicodeSet("[[:bc=R:][:bc=AL:]]");
+  
   private static void showCodePoint(int s, Writer out) throws IOException {
     String literal = toHTML.transliterate(UTF16.valueOf(s));
+    if (RTL.containsSome(literal)) {
+      literal = '\u200E' + literal + '\u200E';
+    }
     String hex = com.ibm.icu.impl.Utility.hex(s, 4);
     String name = UCharacter.getExtendedName(s);
     if (name == null || name.length() == 0) {
       name = "<i>no name</i>";
+    } else {
+      boolean special = name.indexOf('<') >= 0;
+      name = toHTML.transliterate(name);
+      if (special) {
+        name = "<i>" + name + "</i>";
+      }
     }
     out.write("<code><a target='c' href='character.jsp?a=" + hex + "'>U+"
         + hex + "</a></code> ( " + literal + " ) " + name + "<br>\r\n");
@@ -349,10 +368,16 @@ public class UnicodeUtilities {
   }
   
   public static void getDifferences(String setA, String setB,
-      boolean abbreviate, String[] abResults, int[] abSizes) {
+      boolean abbreviate, String[] abResults, int[] abSizes, String[] abLinks) {
     
+    String setAr = setA.replace("&", "%26");
+    String setBr = setB.replace("&", "%26");
+    abLinks[0] = "http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[" + setAr + '-' + setBr + "]";
+    abLinks[1] = "http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[" + setBr + '-' + setAr + "]";
+    abLinks[2] = "http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[" + setAr + "%26" + setBr + "]";
     String[] aMessage = new String[1];
     String[] bMessage = new String[1];
+    
     UnicodeSet a = UnicodeUtilities.parseSimpleSet(setA, aMessage);
     UnicodeSet b = UnicodeUtilities.parseSimpleSet(setB, bMessage);
 
