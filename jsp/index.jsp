@@ -68,12 +68,12 @@ notation (<code>[:script=arabic:]</code>). For more information, see
 	the value, enclosed in /.../. For example in the following expression, the first term will select 
 	all those Unicode characters whose names contain &quot;CJK&quot;. The rest of the expression will then subtract 
 	the ideographic characters, showing that these can be used in arbitrary combinations.<ul>
-		<li><code>[[:name=/CJK/:]-[:ideographic:]]</code> - the set of all characters with names that contain CJK 
+		<li><code><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[[:name=/CJK/:]-[:ideographic:]]">[[:name=/CJK/:]-[:ideographic:]]</a></code> - the set of all characters with names that contain CJK 
 		that are not Ideographic</li>
-		<li><code>[:name=/\bDOT$/:]</code> - the set of all characters with names that end with the word DOT</li>
-		<li><code>[:block=/(?i)arab/:]</code> - the set of all characters in blocks that contain the sequence of 
+		<li><code><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:name=/\bDOT$/:]">[:name=/\bDOT$/:]</a></code> - the set of all characters with names that end with the word DOT</li>
+		<li><code><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:block=/(?i)arab/:]">[:block=/(?i)arab/:]</a></code> - the set of all characters in blocks that contain the sequence of 
 		letters &quot;arab&quot; (case-insensitive)</li>
-		<li><code>[:toNFKC=/\./:]</code> - the set of all characters with toNFKC values that contain a literal 
+		<li><code><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFKC=/\./:]">[:toNFKC=/\./:]</a></code> - the set of all characters with toNFKC values that contain a literal 
 		period</li>
 	</ul>
 	<p>Some particularly useful regex features are:<ul>
@@ -165,9 +165,11 @@ notation (<code>[:script=arabic:]</code>). For more information, see
 		</ul>
 		</li>
 		<li><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:idna=remapped:]"><code>[:idna=remapped:]</code></a> The set of characters 
-		remapped to other characters by IDNA (NamePrep). An example is:<ul>
+		remapped to other characters by IDNA (NamePrep). Examples are:<ul>
 			<li><code><a target="character" href="http://unicode.org/cldr/utility/character.jsp?a=00C0">U+00C0</a></code> 
 			( À ) LATIN CAPITAL LETTER A WITH GRAVE (remapped to the lowercase version).</li>
+			<li><code><a target="c" href="http://unicode.org/cldr/utility/character.jsp?a=FF21">
+			U+FF21</a></code> ( &#65313; ) FULLWIDTH LATIN CAPITAL LETTER A</li>
 		</ul>
 		</li>
 		<li><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:idna=disallowed:]"><code>[:idna=disallowed:]</code></a> These are characters 
