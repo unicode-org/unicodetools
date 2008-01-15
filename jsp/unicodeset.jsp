@@ -53,8 +53,8 @@
       <th style="width: 50%">Input B</th>
     </tr>
     <tr>
-      <td ><textarea name="a" rows="5" cols="10" style="width: 100%; height: 100%"><%=setA%></textarea></td>
-      <td ><textarea name="b" rows="5" cols="10" style="width: 100%; height: 100%"><%=setB%></textarea></td>
+      <td ><textarea name="a" rows="8" cols="10" style="width: 100%; height: 100%"><%=setA%></textarea></td>
+      <td ><textarea name="b" rows="8" cols="10" style="width: 100%; height: 100%"><%=setB%></textarea></td>
     </tr>
     <tr>
       <td colspan="2"><input type="submit" value="Compare" />
