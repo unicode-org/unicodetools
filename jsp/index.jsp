@@ -68,18 +68,18 @@ notation (<code>[:script=arabic:]</code>). For more information, see
 	the value, enclosed in /.../. For example in the following expression, the first term will select 
 	all those Unicode characters whose names contain &quot;CJK&quot;. The rest of the expression will then subtract 
 	the ideographic characters, showing that these can be used in arbitrary combinations.<ul>
-		<li><code>[[:name=/CJK/:]-[:ideographic:]]</code> - characters with names that contain CJK 
+		<li><code>[[:name=/CJK/:]-[:ideographic:]]</code> - the set of all characters with names that contain CJK 
 		that are not Ideographic</li>
-		<li><code>[:name=/\bDOT$/:]</code> - characters with names that end with the word DOT</li>
-		<li><code>[:block=/(?i)arab/:]</code> - characters in blocks that contain the sequence of 
+		<li><code>[:name=/\bDOT$/:]</code> - the set of all characters with names that end with the word DOT</li>
+		<li><code>[:block=/(?i)arab/:]</code> - the set of all characters in blocks that contain the sequence of 
 		letters &quot;arab&quot; (case-insensitive)</li>
-		<li><code>[:toNFKC=/\./:]</code> - characters with toNFC values that contain a literal 
+		<li><code>[:toNFKC=/\./:]</code> - the set of all characters with toNFKC values that contain a literal 
 		period</li>
 	</ul>
 	<p>Some particularly useful regex features are:<ul>
 		<li>\b means a word break, ^ means front of the string, and $ means end. So /^DOT\b/ means 
 		the word DOT at the start.</li>
-		<li>(?i) means case-insensitive</li>
+		<li>(?i) means case-insensitive matching.</li>
 	</ul>
 	<p><i><b>Caveats:</b></i><ol>
 	<li>The regex uses the standard
@@ -95,19 +95,60 @@ notation (<code>[:script=arabic:]</code>). For more information, see
 </ol>
 
 	</li>
-	<li><b>Casing Properties. </b>Unicode defines a number of string functions and&nbsp; in <i>Section 
-	3.13 Default Case Algorithms</i>. These string functions can also be applied to single characters. 
-	The binary testing operations are supplied as: <code> <a href="list-unicodeset.jsp?a=[:isLowercase:]">[:isLowercase:]</code></a>,
-	<a href="list-unicodeset.jsp?a=[:isUppercase:]"><code>[:isUppercase:]</code></a>,
-	<a href="list-unicodeset.jsp?a=[:isTitlecase:]"><code>[:isTitlecase:]</code></a>,
-	<a href="list-unicodeset.jsp?a=[:isCaseFolded:]"><code>[:isCaseFolded:]</code></a>, and
-	<a href="list-unicodeset.jsp?a=[:isCased:]"><code>[:isCased:]</a>.</code><ul>
-		<li><b>Warning:</b> the first three sets may be somewhat misleading: isLowercase means that 
-		the character is the same as its lowercase version, which includes all uncased characters. To 
+	<li><b>Casing Properties. </b>Unicode defines a number of string casing functions in <i>Section 
+	3.13 Default Case Algorithms</i>. These string functions can also be applied to single characters.
+	<i><b>Warning:</b> </i>the first three sets may be somewhat misleading: isLowercase means that 
+		the character is the same as its lowercase version, which includes <i>all uncased</i> characters. To 
 		get those characters that are <i>cased</i> characters and lowercase, use
 		<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp&a=[[:isLowercase:]-[:^isCased:]]">
-		<code>[[:isLowercase:]&amp;[:isCased:]]</code></a></li>
+		<code>[[:isLowercase:]&amp;[:isCased:]]</code></a><ol>
+	<li>The binary testing operations take no argument:<ul>
+		<li><code><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:isLowercase:]">[:isLowercase:]</a></code></li>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:isUppercase:]"><code>[:isUppercase:]</code></a></li>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:isTitlecase:]"><code>[:isTitlecase:]</code></a></li>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:isCaseFolded:]"><code>[:isCaseFolded:]</code></a></li>
+		<li><code><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:isCased:]">[:isCased:]</a>.</code></li>
 	</ul>
+	</li>
+	<li>The string functions are also provided, and require an argument. For example:<ul>
+		<li><code><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toLowercase=a:]">
+		[:toLowercase=a:]</a> </code>- the set of all characters X such that toLowercase(X) = a</li>
+		<li><code><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toCaseFold=a:]">
+		[:toCaseFold=a:]</a> </code></li>
+		<li><code><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toUppercase=A:]">
+		[:toUppercase=A:]</a> </code></li>
+		<li><code><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toTitlecase=A:]">
+		[:toTitlecase=A:]</a></code></li>
+	</ul>
+	<p>Note: The Unassigned, Surrogate, and Private Use code points are skipped in generation of the 
+	sets.</li>
+</ol>
+
+	</li>
+	<li><b>Normalization Properties. </b>Unicode defines a number of string normalization functions 
+	UAX #15. These string functions can also be applied to single characters.<ol>
+	<li>The binary testing operations have somewhat odd constructions:<ul>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:^NFCquickcheck=N:]">
+		[:^NFCquickcheck=N:]</a> (use for [:isNFC:], and so on).</li>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:^NFKCquickcheck=N:]">
+		[:^NFKCquickcheck=N:]</a></li>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:^NFDquickcheck=N:]">
+		[:^NFDquickcheck=N:]</a></li>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:^NFKDquickcheck=N:]">
+		[:^NFKDquickcheck=N:]</a></li>
+	</ul>
+	</li>
+	<li>The string functions are also provided, and require an argument. For example:<ul>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFC=Å:]">[:toNFC=Å:]</a><code> </code>
+		- the set of all characters X such that toNFC(X) = a</li>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFD=A\u0300:]">[:toNFD=A\u0300:]</a></li>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFKC=A:]">[:toNFKC=A:]</a></li>
+		<li><a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFKD=A\u0300:]">[:toNFKD=A\u0300:]</a></li>
+	</ul>
+	<p>Note: The Unassigned, Surrogate, and Private Use code points are skipped in the generation of 
+	the sets.</li>
+</ol>
+
 	</li>
 	<li><b>IDNA Properties.</b> The status of characters with respect to IDNA (internationalized domain 
 	names) can also be determined. The available properties are listed below.<ol>
@@ -118,8 +159,7 @@ notation (<code>[:script=arabic:]</code>). For more information, see
 		</ul>
 		</li>
 		<li><a href="list-unicodeset.jsp?a=[:idna=ignored:]"><code>[:idna=ignored:]</code></a> The set of all characters 
-		ignored by IDNA. (These are characters mapped to nothing by NamePrep.) An example is
-		<ul>
+		ignored by IDNA on input. That is, these characters are mapped to nothing -- removed -- by NamePrep. An example is:<ul>
 			<li><code><a target="c" href="http://unicode.org/cldr/utility/character.jsp?a=00AD">U+00AD</a></code> 
 			( ­ ) SOFT HYPHEN.</li>
 		</ul>
