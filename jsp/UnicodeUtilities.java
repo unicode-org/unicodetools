@@ -27,6 +27,9 @@ public class UnicodeUtilities {
     final PrintWriter printWriter = new PrintWriter(System.out);
  
     test("[:toNFKC=a:]");
+    test("[:toNFD=A\u0300:]");
+    test("[:toLowercase= /a/ :]");
+    test("[:toLowercase= /a/ :]");
     test("[:ASCII:]");
     test("[:lowercase:]");
     test("[:toNFC=/\\./:]");
@@ -97,6 +100,8 @@ public class UnicodeUtilities {
   public static String toHTML(String input) {
     return toHTML.transliterate(input);
   }
+  
+  static Transliterator UNICODE = Transliterator.getInstance("hex-any");
 
   static UnicodeSet isCaseFolded = new UnicodeSet();
 
@@ -216,10 +221,10 @@ public class UnicodeUtilities {
       } catch (RuntimeException e) {
         return false;
       }
-
-      if (propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
+      String trimmedPropertyValue = propertyValue.trim();
+      if (trimmedPropertyValue.startsWith("/") && trimmedPropertyValue.endsWith("/")) {
         Matcher matcher = Pattern.compile(
-            propertyValue.substring(1, propertyValue.length() - 1)).matcher("");
+            trimmedPropertyValue.substring(1, trimmedPropertyValue.length() - 1)).matcher("");
         result.clear();
         boolean onlyOnce = propertyEnum >= UProperty.STRING_START
             && propertyEnum < XSTRING_LIMIT;
@@ -245,6 +250,7 @@ public class UnicodeUtilities {
       } else if (propertyEnum >= UProperty.STRING_LIMIT
           && propertyEnum < XSTRING_LIMIT) {
         // support extra string routines
+        String fixedPropertyValue = UNICODE.transform(propertyValue);
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
           int cat = UCharacter.getType(cp);
           if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE
@@ -253,7 +259,7 @@ public class UnicodeUtilities {
           }
           String value = getXStringPropertyValue(propertyEnum, cp,
               UProperty.NameChoice.SHORT);
-          if (propertyValue.equals(value)) {
+          if (fixedPropertyValue.equals(value)) {
             result.add(cp);
           }
         }
