@@ -13,6 +13,8 @@ import java.text.ParsePosition;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -24,6 +26,21 @@ public class UnicodeUtilities {
   public static void main(String[] args) throws IOException {
     final PrintWriter printWriter = new PrintWriter(System.out);
  
+    test("[:toNFKC=a:]");
+    test("[:ASCII:]");
+    test("[:lowercase:]");
+    test("[:toNFC=/\\./:]");
+    test("[:toNFKC=/\\./:]");
+    test("[:toNFD=/\\./:]");
+    test("[:toNFKD=/\\./:]");
+    test("[:toLowercase=/a/:]");
+    test("[:toUppercase=/A/:]");
+    test("[:toCaseFold=/a/:]");
+    test("[:toTitlecase=/A/:]");
+     printWriter.flush();
+    
+    if (true) return;
+    
     showSet(new UnicodeSet("[\\u0080\\U0010FFFF]"), true, printWriter);
     printWriter.flush();
     
@@ -185,25 +202,58 @@ public class UnicodeUtilities {
         return getIdnaProperty(propertyName, propertyValue, result);
       }
       for (int i = 0; i < specialProperties.length; ++i) {
-        if (propertyName.equalsIgnoreCase((String)specialProperties[i][0])) {
-          result.clear().addAll((UnicodeSet)specialProperties[i][1]);
+        if (propertyName.equalsIgnoreCase((String) specialProperties[i][0])) {
+          result.clear().addAll((UnicodeSet) specialProperties[i][1]);
           if (getBinaryValue(propertyValue)) {
             result.complement();
           }
           return true;
         }
       }
-      if (propertyName.equalsIgnoreCase("Name") && propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
-        Matcher matcher = Pattern.compile(propertyValue.substring(1, propertyValue.length()-1)).matcher("");
-        result.clear();
-        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+      int propertyEnum;
+      try {
+        propertyEnum = getXPropertyEnum(propertyName);
+      } catch (RuntimeException e) {
+        return false;
+      }
 
+      if (propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
+        Matcher matcher = Pattern.compile(
+            propertyValue.substring(1, propertyValue.length() - 1)).matcher("");
+        result.clear();
+        boolean onlyOnce = propertyEnum >= UProperty.STRING_START
+            && propertyEnum < XSTRING_LIMIT;
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
           int cat = UCharacter.getType(cp);
-          if (cat == Character.UNASSIGNED || cat == Character.PRIVATE_USE) {
+          if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE
+              || cat == UCharacter.SURROGATE) {
             continue;
           }
-          String name = UCharacter.getExtendedName(cp);
-          if (matcher.reset(name).find()) {
+          for (int nameChoice = UProperty.NameChoice.SHORT; nameChoice <= UProperty.NameChoice.LONG; ++nameChoice) {
+            String value = getXStringPropertyValue(propertyEnum, cp, nameChoice);
+            if (value == null) {
+              continue;
+            }
+            if (matcher.reset(value).find()) {
+              result.add(cp);
+            }
+            if (onlyOnce)
+              break;
+          }
+        }
+        return true;
+      } else if (propertyEnum >= UProperty.STRING_LIMIT
+          && propertyEnum < XSTRING_LIMIT) {
+        // support extra string routines
+        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+          int cat = UCharacter.getType(cp);
+          if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE
+              || cat == UCharacter.SURROGATE) {
+            continue;
+          }
+          String value = getXStringPropertyValue(propertyEnum, cp,
+              UProperty.NameChoice.SHORT);
+          if (propertyValue.equals(value)) {
             result.add(cp);
           }
         }
@@ -212,6 +262,42 @@ public class UnicodeUtilities {
       return false;
     }
   };
+  
+  static final int 
+  TO_NFC = UProperty.STRING_LIMIT,
+  TO_NFD = UProperty.STRING_LIMIT + 1,
+  TO_NFKC = UProperty.STRING_LIMIT + 2,
+  TO_NFKD = UProperty.STRING_LIMIT + 3,
+  TO_CASEFOLD  = UProperty.STRING_LIMIT + 4,
+  TO_LOWERCASE  = UProperty.STRING_LIMIT + 5,
+  TO_UPPERCASE  = UProperty.STRING_LIMIT + 6,
+  TO_TITLECASE  = UProperty.STRING_LIMIT + 7,
+  XSTRING_LIMIT = UProperty.STRING_LIMIT + 8;
+  
+  static List XPROPERTY_NAMES = Arrays.asList(new String[]{"tonfc", "tonfd", "tonfkc", "tonfkd", "tocasefold", "tolowercase", "touppercase", "totitlecase"});
+  
+  static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
+    switch (propertyEnum) {
+      case TO_NFC: return Normalizer.normalize(codepoint, Normalizer.NFC, 0);
+      case TO_NFD: return Normalizer.normalize(codepoint, Normalizer.NFD, 0);
+      case TO_NFKC: return Normalizer.normalize(codepoint, Normalizer.NFKC, 0);
+      case TO_NFKD: return Normalizer.normalize(codepoint, Normalizer.NFKD, 0);
+      case TO_CASEFOLD: return UCharacter.foldCase(UTF16.valueOf(codepoint), true);
+      case TO_LOWERCASE: return UCharacter.toLowerCase(ULocale.ROOT, UTF16.valueOf(codepoint));
+      case TO_UPPERCASE: return UCharacter.toUpperCase(ULocale.ROOT, UTF16.valueOf(codepoint));
+      case TO_TITLECASE: return UCharacter.toTitleCase(ULocale.ROOT, UTF16.valueOf(codepoint), null);
+    }
+    return UCharacter.getStringPropertyValue(propertyEnum, codepoint, nameChoice);
+  }
+  
+  static int getXPropertyEnum(String propertyAlias) {
+    int extra = XPROPERTY_NAMES.indexOf(propertyAlias
+        .toLowerCase(Locale.ENGLISH));
+    if (extra != -1) {
+      return UProperty.STRING_LIMIT + extra;
+    }
+    return UCharacter.getPropertyEnum(propertyAlias);
+  }
 
   public static UnicodeSet parseUnicodeSet(String input) {
     ParsePosition parsePosition = new ParsePosition(0);

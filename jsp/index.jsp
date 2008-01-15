@@ -68,8 +68,32 @@ notation (<code>[:script=arabic:]</code>). For more information, see
 	the value, enclosed in /.../. For example in the following expression, the first term will select 
 	all those Unicode characters whose names contain &quot;CJK&quot;. The rest of the expression will then subtract 
 	the ideographic characters, showing that these can be used in arbitrary combinations.<ul>
-		<li><code>[[:name=/CJK/:]-[:ideographic:]]</code></li>
+		<li><code>[[:name=/CJK/:]-[:ideographic:]]</code> - characters with names that contain CJK 
+		that are not Ideographic</li>
+		<li><code>[:name=/\bDOT$/:]</code> - characters with names that end with the word DOT</li>
+		<li><code>[:block=/(?i)arab/:]</code> - characters in blocks that contain the sequence of 
+		letters &quot;arab&quot; (case-insensitive)</li>
+		<li><code>[:toNFKC=/\./:]</code> - characters with toNFC values that contain a literal 
+		period</li>
 	</ul>
+	<p>Some particularly useful regex features are:<ul>
+		<li>\b means a word break, ^ means front of the string, and $ means end. So /^DOT\b/ means 
+		the word DOT at the start.</li>
+		<li>(?i) means case-insensitive</li>
+	</ul>
+	<p><i><b>Caveats:</b></i><ol>
+	<li>The regex uses the standard
+	<a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">Java Pattern</a>. 
+	In particular, it does not have the extended functions in UnicodeSet, nor is it up-to-date with 
+	the latest Unicode. So be aware that you shouldn't depend on properties inside of the /.../ 
+	pattern.</li>
+	<li>The Unassigned, Surrogate, and Private Use code points are skipped in the Regex comparison, 
+	so [:Block=/Aegean_Numbers/:] returns a different number of characters than [:Block=Aegean_Numbers:], 
+	because it skips Unassigned code points.</li>
+	<li>None of the normal &quot;loose matching&quot; is enabled. So [:Block=aegeannumbers:] works, but 
+	[:Block=/aegeannumbers/:] fails -- you have to use [:Block=/Aegean_Numbers/:] or [:Block=/(?i)aegean_numbers/:].</li>
+</ol>
+
 	</li>
 	<li><b>Casing Properties. </b>Unicode defines a number of string functions and&nbsp; in <i>Section 
 	3.13 Default Case Algorithms</i>. These string functions can also be applied to single characters. 
