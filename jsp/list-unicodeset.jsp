@@ -44,10 +44,18 @@
 	<a target="help" href="index.jsp">help</a>
 </p>
 <form name="myform" action="http://unicode.org/cldr/utility/list-unicodeset.jsp" method="POST">
-  <p><textarea name="a" rows="3" cols="10" style="width: 100%"><%=setA%></textarea></p>
-  <p><input type="submit" value="Show Set" />&nbsp;
-  <input type="checkbox" <%=abbreviate ? "checked" : ""%> name="abb"><label for="abb">abbreviate</label></p>
-  <hr>
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
+    <tr>
+      <th style="width: 50%">Input</th>
+    </tr>
+    <tr>
+      <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=setA%></textarea></td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="Show Set" />&nbsp;
+      <input type="checkbox" <%=abbreviate ? "checked" : ""%> name="abb"><label for="abb">abbreviate</label></td>
+    </tr>
+</table>
   <p><%= sizeStr %> Code Points</p>
   <hr>
   <p><%=a_out%></p>

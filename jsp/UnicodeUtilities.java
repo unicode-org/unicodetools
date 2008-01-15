@@ -345,7 +345,7 @@ public class UnicodeUtilities {
       cp = UTF16.charAt(a_out, i);
       ++charCount;
       if (charCount > 20) {
-        if (cp != '-' && oldCp != '-') {
+        if (cp == '\\' && oldCp != '-' && oldCp != '\\'  && oldCp != '[') {
           out.append(' ');
           charCount = 0;
         }
