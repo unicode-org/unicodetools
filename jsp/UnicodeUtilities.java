@@ -26,6 +26,9 @@ public class UnicodeUtilities {
   public static void main(String[] args) throws IOException {
     final PrintWriter printWriter = new PrintWriter(System.out);
  
+    if (!parseUnicodeSet("[:idna=output:]").contains('-')) {
+      System.out.println("FAILURE");
+    }
     test("[:toNFKC=a:]");
     test("[:toNFD=A\u0300:]");
     test("[:toLowercase= /a/ :]");
@@ -160,7 +163,7 @@ public class UnicodeUtilities {
     for (int cp = 0; cp <= 0x10FFFF; ++cp) {
 
       int cat = UCharacter.getType(cp);
-      if (cat == Character.UNASSIGNED || cat == Character.PRIVATE_USE  || cat == Character.SURROGATE) {
+      if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE  || cat == UCharacter.SURROGATE) {
         idnaTypeSet[DISALLOWED].add(cp); // faster
         isCaseFolded.add(cp);
         isLowercase.add(cp);
@@ -437,7 +440,12 @@ public class UnicodeUtilities {
       cp = UTF16.charAt(a_out, i);
       ++charCount;
       if (charCount > 20) {
-        if (cp == '\\' && oldCp != '-' && oldCp != '\\'  && oldCp != '[') {
+        // add a space, but not in x-y, or \\uXXXX
+        if (cp == '-' || oldCp == '-') {
+          // do nothing
+        } else if (oldCp == '\\' || cp < 0x80) {
+          // do nothing
+        } else {
           out.append(' ');
           charCount = 0;
         }
