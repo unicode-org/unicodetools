@@ -9,6 +9,7 @@ import com.ibm.icu.util.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -25,10 +26,19 @@ import java.util.regex.Pattern;
 public class UnicodeUtilities {
   public static void main(String[] args) throws IOException {
     final PrintWriter printWriter = new PrintWriter(System.out);
+    
+    showIDNARemapDifferences(printWriter);
  
+    try {
+      parseUnicodeSet("[:idna=output:][abc]");
+      System.out.println("Failure to detect syntax error.");
+    } catch (IllegalArgumentException e) {
+      System.out.println("Expected error: " + e.getMessage());
+    }
     if (!parseUnicodeSet("[:idna=output:]").contains('-')) {
       System.out.println("FAILURE");
     }
+
     test("[:toNFKC=a:]");
     test("[:toNFD=A\u0300:]");
     test("[:toLowercase= /a/ :]");
@@ -72,6 +82,55 @@ public class UnicodeUtilities {
     test("[:idna=remapped:]");
     test("[:idna=disallowed:]");
     test("[:iscased:]");
+  }
+  
+  private static void showIDNARemapDifferences(Writer out) throws IOException {
+    UnicodeSet diffs = new UnicodeSet();
+    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+      if (cp >= 'A' && cp <= 'Z') {
+        continue;
+      }
+      int cat = UCharacter.getType(cp);
+      if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE  || cat == UCharacter.SURROGATE) {
+        continue;
+      }
+      String idna = getIDNAValue(cp);
+      if (idna == null) continue;
+      if (idna.length() == 0) continue;
+      String cased0 = UCharacter.foldCase(UTF16.valueOf(cp), true);
+      String folded = Normalizer.normalize(cased0, Normalizer.NFKC, 0);
+      String cased = UCharacter.foldCase(folded, true);
+      String folded2 = Normalizer.normalize(cased, Normalizer.NFKC, 0);
+      String cased2 = UCharacter.foldCase(folded2, true);
+      if (!cased2.equals(folded2) && !cased2.equals(cased)) {
+        out.write("ERROR:\r\n");
+        showCodePoint(cp, out);
+        out.write("folded:\r\n");
+        showString(folded, "\t", out);
+        out.write("cased:\r\n");
+        showString(cased, "\t", out);
+        out.write("folded2:\r\n");
+        showString(folded2, "\t", out);
+        out.write("cased2:\r\n");
+        showString(cased2, "\t", out);
+        out.flush();
+        //throw new IllegalArgumentException("Internal error!!!" + Integer.toString(cp,16) + " " + UCharacter.getName(cp));
+      }
+      String casedAndNFKC = folded2;
+      if (!idna.equals(casedAndNFKC)) {
+        out.write("Source: ");
+        showCodePoint(cp, out);
+        out.write("IDNA2003: ");
+        showString(idna, ", ", out);
+        out.write("Case-NFKC: ");
+        showString(casedAndNFKC, ", ", out);
+        out.write("<br>\r\n");
+        out.flush();
+        diffs.add(cp);
+      }
+    }
+    out.write(diffs.toString());
+    out.flush();
   }
 
   private static void test(String testString) {
@@ -137,7 +196,7 @@ public class UnicodeUtilities {
     UTF16.append(inbuffer, cp);
     try {
       intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
-                                                                          // DEFAULT
+      // DEFAULT
       if (intermediate.length() == 0)
         return IGNORED;
       outbuffer = IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES);
@@ -153,6 +212,29 @@ public class UnicodeUtilities {
     if (!equals(inbuffer, outbuffer))
       return REMAPPED;
     return OUTPUT;
+  }
+  
+  static public String getIDNAValue(int cp) {
+    if (cp == '-')
+      return "-";
+    inbuffer.setLength(0);
+    UTF16.append(inbuffer, cp);
+    try {
+      intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+      // DEFAULT
+      if (intermediate.length() == 0)
+        return "";
+      outbuffer = IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES);
+    } catch (StringPrepParseException e) {
+      if (e.getMessage().startsWith("Found zero length")) {
+        return "";
+      }
+      return null;
+    } catch (Exception e) {
+      System.out.println("Failure at: " + Integer.toString(cp, 16));
+      return null;
+    }
+    return outbuffer.toString();
   }
 
   static StringBuffer inbuffer = new StringBuffer();
@@ -309,11 +391,18 @@ public class UnicodeUtilities {
   }
 
   public static UnicodeSet parseUnicodeSet(String input) {
+    input = input.trim();
     ParsePosition parsePosition = new ParsePosition(0);
-    if (!input.startsWith("[")) {
-      input = "[" + input + "]";
+    UnicodeSet result = new UnicodeSet(input, parsePosition, myXSymbolTable);
+    if (parsePosition.getIndex() != input.length()) {
+      throw new IllegalArgumentException("Additional characters past the end of the set, at " 
+          + parsePosition.getIndex() + ", ..." 
+          + input.substring(Math.max(0, parsePosition.getIndex() - 10), parsePosition.getIndex())
+          + "|"
+          + input.substring(parsePosition.getIndex(), Math.min(input.length(), parsePosition.getIndex() + 10))
+          );
     }
-    return new UnicodeSet(input, parsePosition, myXSymbolTable);
+    return result;
   }
 
   protected static boolean getIdnaProperty(String propertyName,
@@ -409,6 +498,15 @@ public class UnicodeUtilities {
         + hex + "</a></code> ( " + literal + " ) " + name + "<br>\r\n");
   }
 
+  private static void showString(String s, String separator, Writer out) throws IOException {
+    int cp;
+    for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+      if (i != 0) {
+        out.write(separator);
+      }
+      showCodePoint(cp = UTF16.charAt(s, i), out);
+    }
+  }
   public static String getSimpleSet(String setA, UnicodeSet a, boolean abbreviate) {
     String a_out;
     a.clear();
