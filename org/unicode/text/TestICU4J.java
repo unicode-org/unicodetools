@@ -3,6 +3,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.lang.UCharacter;
 import java.util.BitSet;
 import java.util.Set;
@@ -275,7 +276,7 @@ public class TestICU4J {
 	 *
 	 */
 	public static boolean test(String booleanPropertyName, int codePoint) {
-		return test(booleanPropertyName, UnicodeProperty.binaryTrue, codePoint);
+		return test(booleanPropertyName, "True", codePoint);
 	}
 
 	// ===============================================

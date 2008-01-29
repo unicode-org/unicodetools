@@ -1,10 +1,7 @@
-package com.ibm.icu.dev.test.translit;
+package org.unicode.text.utility;
 
-import com.ibm.icu.text.FastUnicodeSet;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UnicodeSet;
-
-import java.util.Timer;
 
 public class FastUnicodeSetTest {
   

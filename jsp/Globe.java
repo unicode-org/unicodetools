@@ -1411,12 +1411,13 @@ public class Globe {
 		Graphics2D graphics2D = thumbImage.createGraphics();
 		graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
 				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		Color meridian = Color.red;
+    Color meridian = Color.red;
+    Color everyOtherLine = Color.orange;
 		if (lightness > 0) {
 			graphics2D.setClip(0,0,thumbWidth, thumbHeight);
 			graphics2D.setColor(new Color((int)(0xFF * lightness), (int)(0xFF * lightness), (int)(0xFF * lightness)));
 			graphics2D.fillRect(0,0,thumbWidth, thumbHeight);
-			meridian = new Color(0xFF, (int)(0xFF * lightness), (int)(0xFF * lightness));
+      meridian = new Color(0xFF, (int)(0xFF * lightness), (int)(0xFF * lightness));
 		}
 		graphics2D.setClip(trans.getClip());
 		graphics2D.drawImage(image, 0, 0, thumbWidth, thumbHeight, null);
@@ -1508,8 +1509,11 @@ public class Globe {
                 if (angleI == 0 || angleI == halfAngle) {
                 	graphics2D.setColor(meridian);
                     graphics2D.setStroke(thick);
+                } else if ((angleI % 3) == 0) {
+                  graphics2D.setColor(everyOtherLine);
+                    graphics2D.setStroke(thick);
                 } else {
-                	graphics2D.setColor(Color.white);
+                  graphics2D.setColor(Color.white);
                     graphics2D.setStroke(normal);
                 }
                 pathTransform.setAngle(angle);

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
-* $Date: 2007-11-15 04:15:15 $
-* $Revision: 1.17 $
+* $Date: 2008-01-29 15:52:59 $
+* $Revision: 1.18 $
 *
 *******************************************************************************
 */
@@ -331,15 +331,25 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
 
         out.println("<body bgcolor='#FFFFFF'>");
-        out.println("<h2>" + fileName + " Break Chart</h2>");
-        out.println("<p><b>Unicode Version:</b> " + ucd.getVersion() + "</p>");
-        out.println("<p><b>Date:</b> " + Default.getDate() + "</p>");
-        out.println("<p>This page illustrates the application of a particular boundary specifications. The material here is informative, not normative.</p> " +
-        		"<p>The first chart shows where breaks would appear between different sample characters or strings. " +
-        		"The sample characters are chosen mechanically to represent the different properties used by the specification. " +
-        		"</p>");
-        generateTable(out);
-        
+    out.println("<h2>" + fileName + " Break Chart</h2>");
+    out.println("<p><b>Unicode Version:</b> " + ucd.getVersion() + "</p>");
+    out.println("<p><b>Date:</b> " + Default.getDate() + "</p>");
+    out
+        .println("<p>This page illustrates the application of a particular boundary specifications. The material here is informative, not normative.</p> "
+            + "<p>The first chart shows where breaks would appear between different sample characters or strings. "
+            + "The sample characters are chosen mechanically to represent the different properties used by the specification.</p>"
+            + "<p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. "
+            + "The × symbol indicates no break, while the ÷ symbol indicated a break. "
+            + "The cells with × are also shaded to make it easier to scan the table. "
+            + "For example, in the cell at the intersection of the row headed by 'CR' and the column headed by 'LF', there is a × symbol, indicating that there is no break between CR and LF.</p>");
+    out.println("<p>If you browser handles titles (tool tips), then hovering the mouse over the row header will show a sample character of that type. "
+        + "Hovering over a column header will show the sample character, plus its (abbreviated) general category and script. "
+        + "Hovering over the intersected cells shows the rule number that produces the break-status. "
+        + "For example, in GraphemeBreakTest, hovering over the cell at the intersection of LVT and T shows ×, with the rule 8.0. "
+        + "Checking below, the rule 8.0 is '( LVT | T) × T', which is the one that applies to that case. "
+        + "Note that a rule is invoked only when no lower-numbered rules have applied.</p>");
+    generateTable(out);
+   
 
         if (false) {
             out.println("<h3>Character Type Breakdown</h3>");
@@ -576,7 +586,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         
         out.println("<h3>Rules</h3>");
         out.println("<p>The second section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and" +
-            "thus do not match the UAX rules precisely. " +
+            " thus do not match the UAX rules precisely. " +
         		"In particular:</p>"+
         		"<ol>" +
         		"<li>The rules are cast into a more regex-style.</li>"+

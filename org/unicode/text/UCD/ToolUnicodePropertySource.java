@@ -395,6 +395,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         unicodeMap.putAll(temp, "Control");
         UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
         unicodeMap.putAll(graphemeExtend, "Extend");
+        unicodeMap.putAll(cat.getSet("Spacing_Mark").removeAll(unicodeMap.getSet("Extend")), "SpacingMark");
         UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
         unicodeMap.putAll(hangul.getSet("L"), "L");
         unicodeMap.putAll(hangul.getSet("V"), "V");
@@ -403,7 +404,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         unicodeMap.putAll(hangul.getSet("LVT"), "LVT");
         unicodeMap.setMissing("Other");
       }
-    }.setMain("Grapheme_Cluster_Break", "GCB", UnicodeProperty.ENUMERATED, version).addValueAliases(new String[][] { { "Control", "CN" }, { "Extend", "EX" }, { "Other", "XX" }, }, true)
+    }.setMain("Grapheme_Cluster_Break", "GCB", UnicodeProperty.ENUMERATED, version).addValueAliases(new String[][] { { "Control", "CN" }, { "Extend", "EX" }, { "Other", "XX" }, 
+       { "SpacingMark", "SM" },
+        }, true)
         .swapFirst2ValueAliases());
 
     if (compositeVersion >= 0x040000) add(new UnicodeProperty.UnicodeMapProperty() {
@@ -411,26 +414,57 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         unicodeMap = new UnicodeMap();
         unicodeMap.setErrorOnReset(true);
         UnicodeProperty cat = getProperty("General_Category");
+        unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
+        unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
+        unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(cat.getSet("Spacing_Mark")), "Extend");
         unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
         UnicodeProperty script = getProperty("Script");
-        unicodeMap.putAll(script.getSet("Katakana").addAll(new UnicodeSet("[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70\uFF9E\uFF9F]")), "Katakana");
+        unicodeMap.putAll(script.getSet("Katakana").addAll(new UnicodeSet("[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70]")), "Katakana"); // \uFF9E\uFF9F
         Object foo = unicodeMap.getSet("Katakana");
-        UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES).remove(0xFF9E,0xFF9F);
+        //UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES).remove(0xFF9E,0xFF9F);
         UnicodeProperty lineBreak = getProperty("Line_Break");
         unicodeMap.putAll(getProperty("Alphabetic").getSet(UCD_Names.YES).add(0x05F3).removeAll(getProperty("Ideographic").getSet(UCD_Names.YES)).removeAll(unicodeMap.getSet("Katakana"))
         //.removeAll(script.getSet("Thai"))
             //.removeAll(script.getSet("Lao"))
-            .removeAll(lineBreak.getSet("SA")).removeAll(script.getSet("Hiragana")).removeAll(graphemeExtend), "ALetter");
-        unicodeMap.putAll(new UnicodeSet("[\\u0027\\u00B7\\u05F4\\u2019\\u2027\\u003A\\u0387\\u2018]"), "MidLetter");
-        unicodeMap.putAll(lineBreak.getSet("Infix_Numeric").remove(0x003A), "MidNum");
-        unicodeMap.putAll(new UnicodeSet(lineBreak.getSet("Numeric")), "Numeric"); // .remove(0x387)
+            .removeAll(lineBreak.getSet("SA")).removeAll(script.getSet("Hiragana")).removeAll(unicodeMap.getSet("Extend")), "ALetter");
+        unicodeMap.putAll(new UnicodeSet("[\\u00B7\\u05F4\\u2027\\u003A\\u0387\\u0387\\uFE13\\uFE55\\uFF1A]"), "MidLetter");
+        /*
+         *   0387 ( · ) GREEK ANO TELEIA
+FE13 ( ︓ ) PRESENTATION FORM FOR VERTICAL COLON
+FE55 ( ﹕ ) SMALL COLON
+FF1A ( ： ) FULLWIDTH COLON
+         */
+        unicodeMap.putAll(lineBreak.getSet("Infix_Numeric")
+            .add(0x066C)
+            .add(0xFE50)
+            .add(0xFE54)
+            .add(0xFF0C)
+            .add(0xFF1B)
+            .remove(0x002E)
+            .remove(0x003A)
+            .remove(0xFE13)
+            , "MidNum");
+        /*
+         *   066C ( ٬ ) ARABIC THOUSANDS SEPARATOR
+
+FE50 ( ﹐ ) SMALL COMMA
+FE54 ( ﹔ ) SMALL SEMICOLON
+FF0C ( ， ) FULLWIDTH COMMA
+FF1B ( ； ) FULLWIDTH SEMICOLON
+         */
+        unicodeMap.putAll(new UnicodeSet("[\\u0027\\u002E\\u2018\\u2019\\u2024\\uFE52\\uFF07\\uFF0E]"), "MidNumLet");
+            
+        unicodeMap.putAll(new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C), "Numeric"); // .remove(0x387)
         unicodeMap.putAll(cat.getSet("Connector_Punctuation").remove(0x30FB).remove(0xFF65), "ExtendNumLet");
-        unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none of the above touch it.
+        //unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none of the above touch it.
         unicodeMap.setMissing("Other");
         // 0387 Wordbreak = Other → MidLetter
       }
     }.setMain("Word_Break", "WB", UnicodeProperty.ENUMERATED, version).addValueAliases(
-        new String[][] { { "Format", "FO" }, { "Katakana", "KA" }, { "ALetter", "LE" }, { "MidLetter", "ML" }, { "MidNum", "MN" }, { "Numeric", "NU" }, { "ExtendNumLet", "EX" }, { "Other", "XX" }, },
+        new String[][] { { "Format", "FO" }, { "Katakana", "KA" }, { "ALetter", "LE" }, { "MidLetter", "ML" }, { "MidNum", "MN" },  
+            { "MidNumLet", "MB" }, 
+            { "MidNumLet", "MB" }, 
+            { "Numeric", "NU" }, { "ExtendNumLet", "EX" }, { "Other", "XX" }, },
         true).swapFirst2ValueAliases());
 
     if (compositeVersion >= 0x040000) add(new UnicodeProperty.UnicodeMapProperty() {
@@ -459,7 +493,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         unicodeMap.putAll(temp, "OLetter");
         UnicodeProperty lineBreak = getProperty("Line_Break");
         unicodeMap.putAll(lineBreak.getSet("Numeric"), "Numeric");
-        unicodeMap.put(0x002E, "ATerm");
+        unicodeMap.putAll(new UnicodeSet("[\\u002E\\u2024\\uFE52\\uFF0E]"), "ATerm");
         unicodeMap.putAll(getProperty("STerm").getSet(UCD_Names.YES).removeAll(unicodeMap.getSet("ATerm")), "STerm");
         unicodeMap.putAll(cat.getSet("Open_Punctuation").addAll(cat.getSet("Close_Punctuation")).addAll(lineBreak.getSet("Quotation")).remove(0x05F3).removeAll(unicodeMap.getSet("ATerm")).removeAll(
             unicodeMap.getSet("STerm")), "Close");
@@ -469,7 +503,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
       }
     }.setMain("Sentence_Break", "SB", UnicodeProperty.ENUMERATED, version).addValueAliases(
         new String[][] { { "Sep", "SE" }, { "Format", "FO" }, { "Sp", "SP" }, { "Lower", "LO" }, { "Upper", "UP" }, { "OLetter", "LE" }, { "Numeric", "NU" }, { "ATerm", "AT" }, { "STerm", "ST" },
-            { "Close", "CL" }, { "Other", "XX" }, }, false).swapFirst2ValueAliases());
+            { "Extend", "EX" },
+            { "SContinue", "SC" },
+            { "Close", "CL" },
+            { "Other", "XX" }, }, false).swapFirst2ValueAliases());
   }
 
   static String[] YES_NO_MAYBE = { "N", "M", "Y" };

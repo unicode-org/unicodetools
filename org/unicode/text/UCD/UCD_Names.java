@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
-* $Date: 2007-11-11 20:58:47 $
-* $Revision: 1.36 $
+* $Date: 2008-01-29 15:52:59 $
+* $Revision: 1.37 $
 *
 *******************************************************************************
 */
@@ -25,7 +25,7 @@ import org.unicode.cldr.util.Relation;
 import org.unicode.text.utility.*;
 
 
-final class UCD_Names implements UCD_Types {
+public final class UCD_Names implements UCD_Types {
     
     public static String[][] NON_ENUMERATED_NAMES = {
         {"na", "Name"},

@@ -15,6 +15,7 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
+import org.unicode.text.UCD.UCD_Names;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -121,7 +122,8 @@ public class VerifyUCD {
     Log.getLog().println("<tr><td><b>Testing:</b></td><td>" + availablePropertyNames + "</td><tr>");
     Log.getLog().println("<tr><td><b>Skipping:</b></td><td>" + removals + "</td><tr>");
     Log.getLog().println("</table><br>");
-    UnicodeMap results = new UnicodeMap();
+    Log.logln("<hr>");
+   UnicodeMap results = new UnicodeMap();
     Map<String,UnicodeMap> sidewaysResults = new TreeMap<String,UnicodeMap>();
     
     // http://demo.icu-project.org/icu-bin/ubrowse?go=2224
@@ -188,6 +190,7 @@ public class VerifyUCD {
       Log.logln(bf.showSetNames(results.getSet(props)));
     }
     
+    Log.logln("<hr>");
     Log.logln("<h2>" + "By Property" + "</h1>");
     for (String propName : sidewaysResults.keySet()) {
       UnicodeMap map = sidewaysResults.get(propName);
