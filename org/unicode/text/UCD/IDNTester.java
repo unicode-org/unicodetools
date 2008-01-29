@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.impl.PrettyPrinter;
+import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;

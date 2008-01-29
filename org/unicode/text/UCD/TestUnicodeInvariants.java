@@ -14,7 +14,6 @@ import com.ibm.icu.dev.test.util.Tabber;
 import com.ibm.icu.dev.test.util.TransliteratorUtilities;
 import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.tool.UOption;
-import com.ibm.icu.text.CompoundTransliterator;
 import com.ibm.icu.text.RuleBasedTransliterator;
 import com.ibm.icu.text.SymbolTable;
 import com.ibm.icu.text.Transliterator;

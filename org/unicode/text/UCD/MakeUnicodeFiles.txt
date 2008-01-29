@@ -1,5 +1,5 @@
-Generate: .*sentence.*
-DeltaVersion: 18
+Generate: .*
+DeltaVersion: 22
 CopyrightYear: 2007
 
 File: auxiliary/GraphemeBreakProperty

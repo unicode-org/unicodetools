@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
-* $Date: 2007-04-27 00:44:27 $
-* $Revision: 1.16 $
+* $Date: 2008-01-29 15:52:58 $
+* $Revision: 1.17 $
 *
 *******************************************************************************
 */
@@ -17,10 +17,10 @@ import org.unicode.cldr.util.Counter;
 
 import com.ibm.icu.dev.demo.translit.CaseIterator;
 import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Tabber;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
-import com.ibm.icu.impl.PrettyPrinter;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;

@@ -1,4 +1,6 @@
-package com.ibm.icu.text;
+package org.unicode.text.utility;
+
+import com.ibm.icu.text.UnicodeSet;
 
 public final class FastUnicodeSet {
   static final int index1Length = 272;
