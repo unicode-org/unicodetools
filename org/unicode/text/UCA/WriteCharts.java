@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCharts.java,v $
-* $Date: 2007-02-11 19:38:32 $
-* $Revision: 1.24 $
+* $Date: 2008-02-05 23:36:06 $
+* $Revision: 1.25 $
 *
 *******************************************************************************
 */
@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 
 public class WriteCharts implements UCD_Types {
 
-	static String WORKING_DIR = ".\\com\\ibm\\text\\UCA\\";
+	static String WORKING_DIR = ".\\org\\unicode\\text\\UCA\\";
     static boolean HACK_KANA = false;
 
     static public void special() {
