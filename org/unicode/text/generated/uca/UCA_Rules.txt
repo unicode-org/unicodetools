@@ -1,0 +1,30 @@
+﻿#	UCA Rules
+#	This file contains the UCA tables for the given version, but transformed into rule syntax.
+#	Generated:   2008-02-05, 23:31:51 GMT [MD]
+#	NOTE: Since UCA handles canonical equivalents, no composites are necessary
+#	(except in extensions).
+#	For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_Intro.html
+# VERSION: UCA=5.1.0, UCD=5.1.0
+& [last tertiary ignorable]
+	# [0000.0000.0000] U+0000 <NULL>
+    =	 ''	# [0000.0000.0000] U+0001 <START OF HEADING>
+    =	 ''	# [0000.0000.0000] U+0002 <START OF TEXT>
+    =	 ''	# [0000.0000.0000] U+0003 <END OF TEXT>
+    =	 ''	# [0000.0000.0000] U+0004 <END OF TRANSMISSION>
+    =	 ''	# [0000.0000.0000] U+0005 <ENQUIRY>
+    =	 ''	# [0000.0000.0000] U+0006 <ACKNOWLEDGE>
+    =	 ''	# [0000.0000.0000] U+0007 <BELL>
+    =	 ''	# [0000.0000.0000] U+0008 <BACKSPACE>
+    =	 ''	# [0000.0000.0000] U+000E <SHIFT OUT>
+    =	 ''	# [0000.0000.0000] U+000F <SHIFT IN>
+    =	 ''	# [0000.0000.0000] U+0010 <DATA LINK ESCAPE>
+    =	 ''	# [0000.0000.0000] U+0011 <DEVICE CONTROL ONE>
+    =	 ''	# [0000.0000.0000] U+0012 <DEVICE CONTROL TWO>
+    =	 ''	# [0000.0000.0000] U+0013 <DEVICE CONTROL THREE>
+    =	 ''	# [0000.0000.0000] U+0014 <DEVICE CONTROL FOUR>
+    =	 ''	# [0000.0000.0000] U+0015 <NEGATIVE ACKNOWLEDGE>
+    =	 ''	# [0000.0000.0000] U+0016 <SYNCHRONOUS IDLE>
+    =	 ''	# [0000.0000.0000] U+0017 <END OF TRANSMISSION BLOCK>
+    =	 ''	# [0000.0000.0000] U+0018 <CANCEL>
+    =	 ''	# [0000.0000.0000] U+0019 <END OF MEDIUM>
+    =	 '
