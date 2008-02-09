@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
-* $Date: 2007-02-11 08:15:10 $ 
-* $Revision: 1.27 $
+* $Date: 2008-02-09 06:36:22 $ 
+* $Revision: 1.28 $
 *
 *******************************************************************************
 */
@@ -17,6 +17,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.Reader;
 import java.io.PrintWriter;
 import java.io.FileReader;
@@ -1815,7 +1816,13 @@ public String getFileVersion() {
  * @return Returns the uCA_GEN_DIR.
  */
 public String getUCA_GEN_DIR() {
-	return BASE_UCA_GEN_DIR + getDataVersion() + "\\";
+//  try {
+//    System.out.println(new File(BASE_UCA_GEN_DIR).getCanonicalPath());
+//    if (true) throw new IllegalArgumentException();
+//  } catch (IOException e) {
+//    throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
+//  }
+	return BASE_UCA_GEN_DIR; //  + getDataVersion() + "\\";
 }
 
 

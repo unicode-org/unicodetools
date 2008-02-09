@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
-* $Date: 2007-11-10 23:30:43 $ 
-* $Revision: 1.47 $
+* $Date: 2008-02-09 06:36:22 $ 
+* $Revision: 1.48 $
 *
 *******************************************************************************
 */
@@ -2080,6 +2080,9 @@ F900..FAFF; CJK Compatibility Ideographs
                 if (expansion.length() > 0) log.print(" / " + quoteOperand(expansion));
                 if (!shortPrint) {
                     log.print("\t# ");
+                    if (containsNew(chr)) {
+                      log.print("\u2020 ");
+                    }
                     if (!noCE) log.print(CEList.toString(ces, len) + " ");
                     log.print(ucd.getCodeAndName(chr));
                     if (expansion.length() > 0) log.print(" / " + Utility.hex(expansion));
@@ -2095,6 +2098,12 @@ F900..FAFF; CJK Compatibility Ideographs
         Utility.fixDot();
     }
     
+    static UnicodeSet oldCharacters = new UnicodeSet("[:assigned:]");
+    
+    private static boolean containsNew(String chr) {
+      return (!oldCharacters.containsAll(chr));
+    }
+
     static final int NONE = 0, T_IGNORE = 1, S_IGNORE = 2, P_IGNORE = 3, VARIABLE = 4, NON_IGNORE = 5, IMPLICIT = 6, TRAILING = 7;
     
     static int getCELayout(int ce) {
@@ -2524,22 +2533,29 @@ F900..FAFF; CJK Compatibility Ideographs
     
     static UnicodeSet needsQuoting = null;
     static UnicodeSet needsUnicodeForm = null;
+    
+    // copied from RBBI
+    static private String gRuleSet_rule_char_pattern       = "[^[\\p{Z}\\u0020-\\u007f]-[\\p{L}]-[\\p{N}]]";
+    static private String gRuleSet_white_space_pattern     = "[\\p{Pattern_White_Space}]";
         
     static final String quoteOperand(String s) {
         if (needsQuoting == null) {
+          ToolUnicodePropertySource ups = ToolUnicodePropertySource.make(Default.ucdVersion());
+          UnicodeProperty cat = ups.getProperty("gc");
+          UnicodeSet cn = cat.getSet("Cn");
             /*
             c >= 'a' && c <= 'z' 
               || c >= 'A' && c <= 'Z' 
               || c >= '0' && c <= '9'
               || (c >= 0xA0 && !UCharacterProperty.isRuleWhiteSpace(c))
               */
-            needsQuoting = new UnicodeSet(            "[[:whitespace:][:c:][:z:][:ascii:]-[a-zA-Z0-9]]"); // 
+            needsQuoting = new UnicodeSet("[[:whitespace:][:z:][:c:][:ascii:]-[a-zA-Z0-9]-[:cn:]]").addAll(cn); // 
             //"[[:ascii:]-[a-zA-Z0-9]-[:c:]-[:z:]]"); // [:whitespace:][:c:][:z:]
             //for (int i = 0; i <= 0x10FFFF; ++i) {
             //	if (UCharacterProperty.isRuleWhiteSpace(i)) needsQuoting.add(i);
             //}
             // needsQuoting.remove();
-            needsUnicodeForm = new UnicodeSet("[\\u000d\\u000a[:zl:][:zp:]]");
+            needsUnicodeForm = new UnicodeSet("[\\u000d\\u000a[:zl:][:zp:][:c:][:di:]-[:cn:]]").addAll(cn);
         }
     	s = Default.nfc().normalize(s);
         quoteOperandBuffer.setLength(0);
