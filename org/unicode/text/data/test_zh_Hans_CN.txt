@@ -1,2 +1,0 @@
- # sample disk name
- s3=Meine Platte
