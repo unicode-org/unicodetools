@@ -28,6 +28,7 @@
 			setA = "[:ASCII:]";
 		}
 		boolean abbreviate = request.getParameter("abb") != null;
+		boolean ucdFormat = request.getParameter("ucd") != null;
 		
 		UnicodeSet a = new UnicodeSet();
 		String a_out = UnicodeUtilities.getSimpleSet(setA, a, abbreviate);
@@ -53,14 +54,15 @@
     </tr>
     <tr>
       <td><input type="submit" value="Show Set" />&nbsp;
-      <input type="checkbox" <%=abbreviate ? "checked" : ""%> name="abb"><label for="abb">abbreviate</label></td>
+      <input type="checkbox" <%=abbreviate ? "checked" : ""%> name="abb"><label for="abb">abbreviate</label>
+      <input type="checkbox" <%=ucdFormat ? "checked" : ""%> name="ucd"><label for="ucd">UCD format</label></td>
     </tr>
 </table>
   <p><%= sizeStr %> Code Points</p>
   <hr>
   <p><%=a_out%></p>
   <hr>
-  <% UnicodeUtilities.showSet(a, abbreviate, out); %>
+  <% UnicodeUtilities.showSet(a, abbreviate, ucdFormat, out); %>
 </form>
 <p>Version 3, Built with ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
 <p></p>
