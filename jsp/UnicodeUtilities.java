@@ -57,7 +57,7 @@ public class UnicodeUtilities {
     
     if (true) return;
     
-    showSet(new UnicodeSet("[\\u0080\\U0010FFFF]"), true, printWriter);
+    showSet(new UnicodeSet("[\\u0080\\U0010FFFF]"), true, true, printWriter);
     printWriter.flush();
     
     
@@ -75,7 +75,7 @@ public class UnicodeUtilities {
     
     final UnicodeSet unicodeSet = new UnicodeSet();
     System.out.println("simple: " + UnicodeUtilities.getSimpleSet("[a-bm-p\uAc00]", unicodeSet, true));
-    showSet(unicodeSet, true, printWriter);
+    showSet(unicodeSet, true, true, printWriter);
     printWriter.flush();
     test("[:idna:]");
     test("[:idna=ignored:]");
@@ -104,26 +104,26 @@ public class UnicodeUtilities {
       String cased2 = UCharacter.foldCase(folded2, true);
       if (!cased2.equals(folded2) && !cased2.equals(cased)) {
         out.write("ERROR:\r\n");
-        showCodePoint(cp, out);
+        showCodePoint(cp, true, out);
         out.write("folded:\r\n");
-        showString(folded, "\t", out);
+        showString(folded, "\t", true, out);
         out.write("cased:\r\n");
-        showString(cased, "\t", out);
+        showString(cased, "\t", true, out);
         out.write("folded2:\r\n");
-        showString(folded2, "\t", out);
+        showString(folded2, "\t", true, out);
         out.write("cased2:\r\n");
-        showString(cased2, "\t", out);
+        showString(cased2, "\t", true, out);
         out.flush();
         //throw new IllegalArgumentException("Internal error!!!" + Integer.toString(cp,16) + " " + UCharacter.getName(cp));
       }
       String casedAndNFKC = folded2;
       if (!idna.equals(casedAndNFKC)) {
         out.write("Source: ");
-        showCodePoint(cp, out);
+        showCodePoint(cp, true, out);
         out.write("IDNA2003: ");
-        showString(idna, ", ", out);
+        showString(idna, ", ", true, out);
         out.write("Case-NFKC: ");
-        showString(casedAndNFKC, ", ", out);
+        showString(casedAndNFKC, ", ", true, out);
         out.write("<br>\r\n");
         out.flush();
         diffs.add(cp);
@@ -453,22 +453,32 @@ public class UnicodeUtilities {
     return true;
   }
 
-  public static void showSet(UnicodeSet a, boolean abbreviate, Writer out) throws IOException {
+  public static void showSet(UnicodeSet a, boolean abbreviate, boolean ucdFormat, Writer out) throws IOException {
     if (a.size() < 20000 && !abbreviate) {
       for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.next();) {
         int s = it.codepoint;
-        showCodePoint(s, out);
+        showCodePoint(s, ucdFormat, out);
       }
     } else if (a.getRangeCount() < 10000) {
       for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.nextRange();) {
         int s = it.codepoint;
         int end = it.codepointEnd;
-        showCodePoint(s, out);
-        if (end != s) {
-          if (end > s + 1) {
+        if (end == s) {
+          showCodePoint(s, ucdFormat, out);
+        } else if (end == s + 1) {
+          showCodePoint(s, ucdFormat, out);
+          showCodePoint(end, ucdFormat, out);
+        } else {
+
+          if (ucdFormat) {
+            out.write(getHex(s, ucdFormat));
+            out.write("..");
+            showCodePoint(end, ucdFormat, out);
+          } else {
+            showCodePoint(s, ucdFormat, out);
             out.write("\u2026{" + (end-s-1) + "}\u2026");
+            showCodePoint(end, ucdFormat, out);
           }
-          showCodePoint(end, out);
         }
       }
     } else {
@@ -478,12 +488,11 @@ public class UnicodeUtilities {
 
   static private UnicodeSet RTL= new UnicodeSet("[[:bc=R:][:bc=AL:]]");
   
-  private static void showCodePoint(int s, Writer out) throws IOException {
+  private static void showCodePoint(int s, boolean ucdFormat, Writer out) throws IOException {
     String literal = toHTML.transliterate(UTF16.valueOf(s));
     if (RTL.containsSome(literal)) {
       literal = '\u200E' + literal + '\u200E';
     }
-    String hex = com.ibm.icu.impl.Utility.hex(s, 4);
     String name = UCharacter.getExtendedName(s);
     if (name == null || name.length() == 0) {
       name = "<i>no name</i>";
@@ -494,17 +503,24 @@ public class UnicodeUtilities {
         name = "<i>" + name + "</i>";
       }
     }
-    out.write("<code><a target='c' href='character.jsp?a=" + hex + "'>U+"
-        + hex + "</a></code> ( " + literal + " ) " + name + "<br>\r\n");
+    out.write(getHex(s, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name + "<br>\r\n");
   }
 
-  private static void showString(String s, String separator, Writer out) throws IOException {
+  private static String getHex(int s, boolean ucdFormat) {
+    String hex = com.ibm.icu.impl.Utility.hex(s, 4);
+    final String string = "<code><a target='c' href='character.jsp?a=" + hex + "'>"
+            + (ucdFormat ? "" : "U+")
+            + hex + "</a></code>";
+    return string;
+  }
+
+  private static void showString(String s, String separator, boolean ucdFormat, Writer out) throws IOException {
     int cp;
     for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
       if (i != 0) {
         out.write(separator);
       }
-      showCodePoint(cp = UTF16.charAt(s, i), out);
+      showCodePoint(cp = UTF16.charAt(s, i), ucdFormat, out);
     }
   }
   public static String getSimpleSet(String setA, UnicodeSet a, boolean abbreviate) {
