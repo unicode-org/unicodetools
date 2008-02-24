@@ -5,23 +5,25 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
-* $Date: 2007-11-11 20:58:47 $
-* $Revision: 1.36 $
+* $Date: 2008-02-24 05:28:03 $
+* $Revision: 1.37 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
+import org.unicode.cldr.util.Utility;
+
 public interface UCD_Types {
   static final int FIX_FOR_NEW_VERSION = 0;
 
     static final byte BINARY_FORMAT = 17; // bumped if binary format of UCD changes. Forces rebuild   
     
-    public static final String BASE_DIR = "C:\\DATA\\";
-    public static final String UCD_DIR = BASE_DIR + "UCD\\";
-    public static final String BIN_DIR = BASE_DIR + "BIN\\";
-    public static final String GEN_DIR = BASE_DIR + "GEN\\";
+    public static final String BASE_DIR = Utility.getProperty("dir", "../DATA/");
+    public static final String UCD_DIR = BASE_DIR + "UCD/";
+    public static final String BIN_DIR = BASE_DIR + "BIN/";
+    public static final String GEN_DIR = BASE_DIR + "GEN/";
     
     public static final char DOTTED_CIRCLE = '\u25CC';
     
