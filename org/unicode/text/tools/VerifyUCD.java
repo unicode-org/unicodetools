@@ -16,7 +16,9 @@ import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Names;
+import org.unicode.text.UCD.UCD_Types;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -31,6 +33,7 @@ import java.util.TreeSet;
 public class VerifyUCD {
   
   public static void main(String[] args) throws IOException {
+	  // System.out.println(new File(UCD_Types.BASE_DIR).getCanonicalPath());
     String x = Default.ucd().getCase("\u0130", UCD.FULL, UCD.LOWER);
     String y = Default.ucd().getCase(Default.nfd().normalize("\u0130"), UCD.FULL, UCD.LOWER);
     

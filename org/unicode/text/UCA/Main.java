@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
-* $Date: 2007-02-11 08:15:10 $ 
-* $Revision: 1.21 $
+* $Date: 2008-02-24 05:27:49 $ 
+* $Revision: 1.22 $
 *
 *******************************************************************************
 */
@@ -56,7 +56,7 @@ public class Main {
                 }
                 if (WriteCollationData.collator == null) {
                     System.out.println("Building UCA");
-                    String file = Utility.searchDirectory(new File(UCD_Types.BASE_DIR + "UCA\\" + Default.ucdVersion() + "\\"), "allkeys", true, ".txt");
+                    String file = Utility.searchDirectory(new File(UCD_Types.BASE_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
                     WriteCollationData.collator = new UCA(file, Default.ucdVersion());
                     System.out.println("Built version " + WriteCollationData.collator.getDataVersion()
                     	+ "/ucd: " + WriteCollationData.collator.getUCDVersion());

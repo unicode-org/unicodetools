@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2007-11-15 04:15:15 $
-* $Revision: 1.56 $
+* $Date: 2008-02-24 05:28:33 $
+* $Revision: 1.57 $
 *
 *******************************************************************************
 */
@@ -1080,7 +1080,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return null;
     }
     
-    public static Set getDirectoryContentsLastFirst(File directory) {
+    public static Set getDirectoryContentsLastFirst(File directory) throws IOException {
+    	System.out.println(directory.getCanonicalPath());
         Set result = new TreeSet(new Comparator() {
                 public int compare(Object a, Object b) {
                     return ((Comparable) b).compareTo(a);
