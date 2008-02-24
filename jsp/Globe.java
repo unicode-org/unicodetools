@@ -30,8 +30,11 @@ import java.awt.image.ImageProducer;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +63,6 @@ import javax.swing.MutableComboBoxModel;
 //import org.unicode.cldr.util.TimezoneFormatter;
 //import org.unicode.cldr.util.Utility;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
@@ -83,7 +85,15 @@ public class Globe {
 			"Zürich (ZRH)",
 			"Tokyo (NRT)", 
     		"Wellington (WLG)", 
-			"Honolulu"};
+			"Honolulu",
+    		"Melbourne (MEL)",
+    		"Caen (CFR)"
+    		};
+    // Melbourne, Australia	37	47 S	144	58 E
+    // Caen — 49° 10' 59" N 00° 22' 10" W
+    // sundance latitude 44.406 and longitude -104.376
+    // San Diego, Calif.	32	42	117	10	9:00 a.m.
+    // Moscow, ID Latitude: 46.73 N, Longitude: 117.00 W
     
     static double[][] origins = { // lat, long
         {-Math.PI/2 + 0.0001, 0.0001}, //
@@ -92,6 +102,8 @@ public class Globe {
         {Navigator.toRadians(35, 45, 50, false), Navigator.toRadians(140.0, 23.0, 30, true)}, // Narita 35°45´50"N 140°23´30"E 
         {Navigator.toRadians(41, 20, 0, true), Navigator.toRadians(174.0, 48.0, 0, true)}, // Wellington 41° 20' 0" S 174° 48' 0" E  
         {Navigator.toRadians(21, 18, 0, false), Navigator.toRadians(157, 50, 0, false)},   
+        {Navigator.toRadians(37, 39, 42, true), Navigator.toRadians(144, 50, 0, true)},   
+        {Navigator.toRadians(49, 10, 24, false), Navigator.toRadians(0, 26, 53, false)},   
     };
     
     static int [][] sizeValues = {
@@ -101,11 +113,14 @@ public class Globe {
     	{1280, 1024},
 		{1400, 700},
 		{1400, 1050},
+		{1440, 720},
 		{1600, 800},
+		{1920, 960},
+		{1920, 1200},
 		{2400, 1200},
     };
     
-    static String[] sizeList = new String[] {"640×320", "1024×512", "1280×640", "1280×1024", "1400×700", "1400×1050", "1600×800", "2400×1200"};
+    static String[] sizeList = new String[] {"640×320", "1024×512", "1280×640", "1280×1024", "1400×700", "1400×1050", "1440×720", "1600×800", "1920×960", "1920×1200", "2400×1200"};
     static int sizeChoice = 0;
     
     static String[] gridList = new String[] {"5°", "10°", "15°"};
@@ -144,7 +159,7 @@ public class Globe {
 	 * @throws IOException
 	 */
     static JLabel mainPicture = new JLabel();
-    static String myPictures0 = "classes/jsp/images/";
+    static String myPictures0 = "bin/jsp/images/";
     static String SOURCE_DIR = myPictures0;
     static String TARGET_DIR = myPictures0 + "projections/";
 
@@ -456,7 +471,11 @@ public class Globe {
 	  File file = new File("classes/jsp/");
 	  System.out.println(file.getAbsolutePath());
 	  
-		BufferedReader br = BagFormatter.openUTF8Reader("classes/jsp/", "Globe.txt");
+		BufferedReader br = new BufferedReader(
+				new InputStreamReader(
+						new FileInputStream("bin/jsp/Globe.txt"), 
+						"UTF-8"));
+						//BagFormatter.openUTF8Reader("classes/jsp/", "Globe.txt");
 		String pat = "([^;]+) \\s* [;] \\s* "
 			+ "([0-9.]+) [°]* \\s* ([0-9.]+)? [']* \\s* ([0-9.]+)? [\"]* \\s* "
 			+ "([NS]) \\s* "
