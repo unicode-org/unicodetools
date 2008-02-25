@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 22
+DeltaVersion: 24
 CopyrightYear: 2007
 
 File: auxiliary/GraphemeBreakProperty
