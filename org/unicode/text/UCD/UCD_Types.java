@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
-* $Date: 2008-02-24 05:28:03 $
-* $Revision: 1.37 $
+* $Date: 2008-02-25 00:11:45 $
+* $Revision: 1.38 $
 *
 *******************************************************************************
 */
@@ -18,7 +18,7 @@ import org.unicode.cldr.util.Utility;
 public interface UCD_Types {
   static final int FIX_FOR_NEW_VERSION = 0;
 
-    static final byte BINARY_FORMAT = 17; // bumped if binary format of UCD changes. Forces rebuild   
+    static final byte BINARY_FORMAT = 18; // bumped if binary format of UCD changes. Forces rebuild   
     
     public static final String BASE_DIR = Utility.getProperty("dir", "../DATA/");
     public static final String UCD_DIR = BASE_DIR + "UCD/";

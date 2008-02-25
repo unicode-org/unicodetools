@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
-* $Date: 2008-01-29 15:52:59 $
-* $Revision: 1.37 $
+* $Date: 2008-02-25 00:11:45 $
+* $Revision: 1.38 $
 *
 *******************************************************************************
 */
@@ -871,7 +871,7 @@ public final class UCD_Names implements UCD_Types {
         "TEH_MARBUTA",
         "TETH",
         "WAW",
-        "SYRIAC WAW",
+        "SYRIAC_WAW",
         "YEH",
         "YEH_BARREE",
         "YEH_WITH_TAIL",
@@ -881,7 +881,8 @@ public final class UCD_Names implements UCD_Types {
         "ZHAIN",
         "KHAPH",
         "FE",
-        "BURUSHASHKI_YEH_BARREE",
+        "BURUSHASKI_YEH_BARREE",
+      // BURUSHASHKI YEH BARREE
     };
     static {
         fixArray(JOINING_GROUP);
