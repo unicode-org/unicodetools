@@ -45,7 +45,7 @@ public final class TernaryStore {
             
             //if (true) return;
             
-            BufferedReader br = Utility.openReadFile(UCD_Types.BASE_DIR + "dict\\DiploFreq.txt", Utility.LATIN1);
+            BufferedReader br = Utility.openReadFile(UCD_Types.BASE_DIR + "dict/DiploFreq.txt", Utility.LATIN1);
             String line;
             counter = 0;
             while (counter < tests.length) {

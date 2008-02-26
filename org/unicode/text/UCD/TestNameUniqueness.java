@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNameUniqueness.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.4 $
+* $Date: 2008-02-26 00:20:30 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
@@ -43,8 +43,8 @@ public class TestNameUniqueness implements UCD_Types {
          * @return null when done
          */
         static String[][] files = {
-                {"C:\\DATA\\", "pdam1040630.lst"},
-				{"C:\\DATA\\UCD\\4.1.0-Update\\", "NamedCompositeEntities-4.1.0d2.txt"}
+                {UCD_Types.BASE_DIR + "", "pdam1040630.lst"},
+				{UCD_Types.UCD_DIR + "4.1.0-Update/", "NamedCompositeEntities-4.1.0d2.txt"}
         };
         
         public String next() {

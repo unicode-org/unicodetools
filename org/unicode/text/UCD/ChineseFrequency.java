@@ -18,7 +18,7 @@ import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
 public class ChineseFrequency {
-    static final String DICT_DIR = "C:\\DATA\\dict\\";
+    static final String DICT_DIR = UCD_Types.BASE_DIR + "dict/";
     static NumberFormat percent = new DecimalFormat("0.000000%");
     static NumberFormat percent3 = new DecimalFormat("000.000000%");
     static NumberFormat number = new DecimalFormat("#,##0");

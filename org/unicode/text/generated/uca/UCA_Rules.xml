@@ -2,7 +2,7 @@
 <!--
 UCA Rules
 This file contains the UCA tables for the given version, but transformed into rule syntax.
-Generated:   2008-02-09, 06:10:13 GMT [MD]
+Generated:   2008-02-24, 05:26:21 GMT [MD]
 NOTE: Since UCA handles canonical equivalents, no composites are necessary
 (except in extensions).
 For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_Intro.html

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateStandardizedVariants.java,v $
-* $Date: 2007-11-10 23:30:43 $
-* $Revision: 1.10 $
+* $Date: 2008-02-26 00:20:30 $
+* $Revision: 1.11 $
 *
 *******************************************************************************
 */
@@ -96,7 +96,7 @@ public final class GenerateStandardizedVariants implements UCD_Types {
      
         // now write out the results
         
-        String directory = "DerivedData/";
+        String directory = "UCD/";
         String filename = directory + "StandardizedVariants" + UnicodeDataFile.getHTMLFileSuffix(true);
         PrintWriter out = Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
         //String[] batName = {""};

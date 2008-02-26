@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
-* $Date: 2008-02-09 06:36:22 $ 
-* $Revision: 1.48 $
+* $Date: 2008-02-26 00:20:30 $ 
+* $Revision: 1.49 $
 *
 *******************************************************************************
 */
@@ -109,8 +109,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         return result + "]";
     }
     
-    //private static final String DIR = "c:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.0.1\\";
-    //private static final String DIR31 = "c:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.1\\";
+    //private static final String DIR = "c:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.0.1/";
+    //private static final String DIR31 = "c:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.1/";
     
     static public void writeCaseExceptions() {
         System.err.println("Writing Case Exceptions");

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateNamedSequences.java,v $
-* $Date: 2007-11-10 23:30:43 $
-* $Revision: 1.5 $
+* $Date: 2008-02-26 00:20:30 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
@@ -97,7 +97,7 @@ public final class GenerateNamedSequences implements UCD_Types {
      
         // now write out the results
         
-        String directory = "DerivedData/";
+        String directory = "UCD/";
         String filename = directory + filename2 + UnicodeDataFile.getHTMLFileSuffix(true);
         PrintWriter out = Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
         /*

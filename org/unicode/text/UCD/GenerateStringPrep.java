@@ -403,7 +403,7 @@ class GenerateStringPrep implements UCD_Types {
 	 */
 	private UnicodeMap getPositions() throws IOException {
 		UnicodeMap result = new UnicodeMap();
-		BufferedReader in = bf.openUTF8Reader("C:\\DATA\\confusables\\", "positions.txt");
+		BufferedReader in = bf.openUTF8Reader(UCD_Types.BASE_DIR + "confusables/", "positions.txt");
 		String type="Undetermined";
 		while (true) {
 			String line = Utility.readDataLine(in);

@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/TestUtility.java,v $
- * $Date: 2007-02-11 08:15:10 $
- * $Revision: 1.5 $
+ * $Date: 2008-02-26 00:20:37 $
+ * $Revision: 1.6 $
  *
  *******************************************************************************
  */
@@ -35,6 +35,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.UCD_Types;
 
 public class TestUtility {
 	/*
@@ -168,8 +169,8 @@ public class TestUtility {
         total = testUnicodeMapSerialization(iterations, total, pname, umap);
 	}
 
-    static String outdircore = "C:\\DATA\\bin\\UCD_Data";
-    static String outdir = outdircore + "4.1.0\\";
+    static String outdircore = UCD_Types.GEN_DIR + "UCD_Data/";
+    static String outdir = outdircore + "4.1.0/";
 	/**
 	 * @param pname
 	 * 
@@ -439,7 +440,7 @@ public class TestUtility {
             private Factory() {}
             public static Factory make(String version) {
                 Factory result = new Factory();
-                File f = new File(outdircore + version + "\\");
+                File f = new File(outdircore + version + "/");
                 File[] files = f.listFiles();
                 for (int i = 0; i < files.length; ++i) {
                     result.add(new FileUnicodeProperty(files[i], version));

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/testParser.java,v $
-* $Date: 2007-02-11 08:15:10 $
-* $Revision: 1.4 $
+* $Date: 2008-02-26 00:20:37 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
@@ -18,8 +18,10 @@ package org.unicode.text.utility;
 import java.io.*;
 import java.util.*;
 
+import org.unicode.text.UCD.UCD_Types;
+
 public class testParser implements XMLParseTypes {
-    public static final String BASE_DIR = "C:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\UNIDATA 3.0.1\\";
+    public static final String BASE_DIR = UCD_Types.UCD_DIR + "/UNIDATA 3.0.1/";
     public static final boolean VERBOSE = false;
 
     private static final String testFile = BASE_DIR + "UCD-Main.xml"; // "test.xml"; // BASE_DIR + "UCD-Main.xml";

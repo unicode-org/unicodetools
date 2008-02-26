@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Compare14652.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.4 $
+* $Date: 2008-02-26 00:20:30 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
@@ -175,7 +175,7 @@ tolower
                 Utility.showSetDifferences("ID", ID, "Alphabetic+Digit+Pc", alphanumSet, false, Default.ucd());
             }
             
-            BufferedReader br = Utility.openReadFile("C:\\DATA\\ISO14652_CTYPE.txt", Utility.LATIN1);
+            BufferedReader br = Utility.openReadFile(UCD_Types.BASE_DIR + "ISO14652_CTYPE.txt", Utility.LATIN1);
             while (true) {
                 String line = br.readLine();
                 if (line == null) break;

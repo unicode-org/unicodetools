@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
-* $Date: 2008-01-29 15:52:59 $
-* $Revision: 1.18 $
+* $Date: 2008-02-26 00:20:30 $
+* $Revision: 1.19 $
 *
 *******************************************************************************
 */
@@ -314,10 +314,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
         //printLine(out, samples[LB_ZW], "", samples[LB_CL]);
         //printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
 
-        UnicodeDataFile fc = UnicodeDataFile.openHTMLAndWriteHeader("DerivedData\\auxiliary\\", fileName + "BreakTest");
+        UnicodeDataFile fc = UnicodeDataFile.openHTMLAndWriteHeader("UCD/auxiliary/", fileName + "BreakTest");
         PrintWriter out = fc.out;
 
-/*        PrintWriter out = Utility.openPrintWriter("auxiliary\\" 
+/*        PrintWriter out = Utility.openPrintWriter("auxiliary/" 
             + fileName + "BreakTest-"
             + ucd.getVersion()
             + ".html", Utility.UTF8_WINDOWS);
@@ -372,10 +372,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
         String[] testCase = new String[50];
         // do main test
 
-        UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader("DerivedData\\auxiliary\\", fileName + "BreakTest" 
+        UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader("UCD/auxiliary/", fileName + "BreakTest" 
                 + (shortVersion ? "_SHORT" : ""));
         PrintWriter out = fc.out;
-/*        PrintWriter out = Utility.openPrintWriter("TR29\\" + fileName + "BreakTest" 
+/*        PrintWriter out = Utility.openPrintWriter("TR29/" + fileName + "BreakTest" 
             + (shortVersion ? "_SHORT" : "")
             + "-" + ucd.getVersion()
             + ".txt", Utility.UTF8_WINDOWS);

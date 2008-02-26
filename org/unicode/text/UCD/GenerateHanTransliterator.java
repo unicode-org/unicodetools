@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateHanTransliterator.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.17 $
+* $Date: 2008-02-26 00:20:30 $
+* $Revision: 1.18 $
 *
 *******************************************************************************
 */
@@ -314,8 +314,8 @@ public final class GenerateHanTransliterator implements UCD_Types {
     
     public static void quickMandarin() throws Exception {
         UnicodeMap gcl = new UnicodeMap();
-        addField("C:\\DATA\\dict\\", "gcl_icu.txt", 2, 3, gcl);
-        addField("C:\\DATA\\dict\\", "gcl_other.txt", 2, 5, gcl);        
+        addField(UCD_Types.BASE_DIR + "dict/", "gcl_icu.txt", 2, 3, gcl);
+        addField(UCD_Types.BASE_DIR + "dict/", "gcl_other.txt", 2, 5, gcl);        
         Transliterator icuPinyin = Transliterator.getInstance("han-latin");
         UnicodeMap kMandarin = Default.ucd().getHanValue("kMandarin");
         UnicodeMap kHanyuPinlu = Default.ucd().getHanValue("kHanyuPinlu");
@@ -1370,7 +1370,7 @@ U+7878	·	nüè	#nuè
             
             if (type == CHINESE) {
                 System.out.println("Reading chinese_frequency.txt");
-                br = Utility.openReadFile(BASE_DIR + "dict\\chinese_frequency.txt", Utility.UTF8);
+                br = Utility.openReadFile(BASE_DIR + "dict/chinese_frequency.txt", Utility.UTF8);
                 counter = 0;
                 while (true) {
                     line = Utility.readDataLine(br);
@@ -1389,7 +1389,7 @@ U+7878	·	nüè	#nuè
             if (type == JAPANESE) {
                 System.out.println("Reading japanese_frequency.txt");
          
-                br = Utility.openReadFile( BASE_DIR + "dict\\japanese_frequency.txt", Utility.UTF8);
+                br = Utility.openReadFile( BASE_DIR + "dict/japanese_frequency.txt", Utility.UTF8);
                 Map japaneseMap = new HashMap();
                 while (true) {
                     line = Utility.readDataLine(br);
@@ -1573,7 +1573,7 @@ U+7878	·	nüè	#nuè
         if (type == JAPANESE) fname = "edict.txt";
         
         System.out.println("Reading " + fname);
-        BufferedReader br = Utility.openReadFile(BASE_DIR + "dict\\" + fname, Utility.UTF8);
+        BufferedReader br = Utility.openReadFile(BASE_DIR + "dict/" + fname, Utility.UTF8);
         int counter = 0;
         String[] pieces = new String[50];
         String line = "";
@@ -1620,7 +1620,7 @@ U+7878	·	nüè	#nuè
         String fname = "Chinese_override.txt";
         
         System.out.println("Reading " + fname);
-        BufferedReader br = Utility.openReadFile(BASE_DIR + "dict\\" + fname, Utility.UTF8);
+        BufferedReader br = Utility.openReadFile(BASE_DIR + "dict/" + fname, Utility.UTF8);
         int counter = 0;
         String[] pieces = new String[50];
         String line = "";
@@ -1683,7 +1683,7 @@ Bad pinyin data: \u4E7F	?	LE
             String pinyinPrefix = "Bad pinyin data: ";
             
             System.out.println("Reading " + fname);
-            BufferedReader br = Utility.openReadFile(BASE_DIR + "dict\\" + fname, Utility.UTF8);
+            BufferedReader br = Utility.openReadFile(BASE_DIR + "dict/" + fname, Utility.UTF8);
             try {
                 while (true) {
                     line = Utility.readDataLine(br);
@@ -1960,7 +1960,7 @@ Bad pinyin data: \u4E7F	?	LE
         System.out.println("Reading cdict.txt");
         String fname = "cdict.txt";
         
-        BufferedReader br = Utility.openReadFile(BASE_DIR + "dict\\" + fname, Utility.UTF8);
+        BufferedReader br = Utility.openReadFile(BASE_DIR + "dict/" + fname, Utility.UTF8);
         int counter = 0;
         String[] pieces = new String[50];
         String line = "";
