@@ -500,7 +500,7 @@ public class MakeUnicodeFiles {
       if (filename.endsWith("ValueAliases")) generateValueAliasFile(filename);
       else generateAliasFile(filename);
     } else if (filename.equals("NormalizationTest")) {
-      GenerateData.writeNormalizerTestSuite("DerivedData/", "NormalizationTest");
+      GenerateData.writeNormalizerTestSuite("UCD/", "NormalizationTest");
     } else if (filename.equals("CaseFolding")) {
       GenerateCaseFolding.makeCaseFold(false);
     } else if (filename.equals("SpecialCasing")) {
@@ -525,7 +525,7 @@ public class MakeUnicodeFiles {
   static final String SEPARATOR = "# ================================================";
   
   public static void generateAliasFile(String filename) throws IOException {
-    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("DerivedData/", filename);
+    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("UCD/", filename);
     PrintWriter pw = udf.out;
     UnicodeProperty.Factory ups 
     = ToolUnicodePropertySource.make(Default.ucdVersion());
@@ -618,7 +618,7 @@ public class MakeUnicodeFiles {
   "gc\t;\tZ\t;\tSeparator\t# Zl | Zp | Zs"};
   
   public static void generateValueAliasFile(String filename) throws IOException {
-    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("DerivedData/", filename);
+    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("UCD/", filename);
     PrintWriter pw = udf.out;
     Format.theFormat.printFileComments(pw, filename);
     UnicodeProperty.Factory toolFactory 
@@ -735,7 +735,7 @@ public class MakeUnicodeFiles {
     String dir = (String) Format.theFormat.fileToDirectory.get(filename);
     if (dir == null) dir = "";
     UnicodeDataFile udf =
-      UnicodeDataFile.openAndWriteHeader("DerivedData/" + dir, filename);
+      UnicodeDataFile.openAndWriteHeader("UCD/" + dir, filename);
     PrintWriter pw = udf.out;
     // bf2.openUTF8Writer(UCD_Types.GEN_DIR, "Test" + filename + ".txt");
     Format.theFormat.printFileComments(pw, filename);

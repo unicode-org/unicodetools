@@ -81,7 +81,7 @@ public class TestIdentifiers {
 		}
 	}
 
-	private static final String indir = "C:\\Unicode-CVS2\\draft\\reports\\tr36\\data\\";
+	private static final String indir = "C:\\Unicode-CVS2\\draft\\reports\\tr36\\data/";
 
 	private static UnicodeSet commonAndInherited = new UnicodeSet(
 			"[[:script=common:][:script=inherited:]]");

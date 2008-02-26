@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNormalization.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.9 $
+* $Date: 2008-02-26 00:20:30 $
+* $Revision: 1.10 $
 *
 *******************************************************************************
 */
@@ -22,7 +22,7 @@ import com.ibm.icu.text.UnicodeSetIterator;
 import org.unicode.text.utility.*;
 
 public final class TestNormalization {
-    static final String DIR = "C:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.0.1\\";
+    static final String DIR = UCD_Types.UCD_DIR + "Update 3.0.1/";
     static final boolean SKIP_FILE = true;
 
     static PrintWriter out = null;

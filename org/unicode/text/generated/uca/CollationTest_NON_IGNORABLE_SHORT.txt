@@ -1,7 +1,7 @@
 # File:        CollationTest_NON_IGNORABLE_SHORT.txt
 # UCA Version: 5.1.0
 # UCD Version: 5.1.0
-# Generated:   2008-02-09, 06:10:27 GMT [MD]
+# Generated:   2008-02-24, 05:26:41 GMT [MD]
 
 0338 0334
 0334 0591

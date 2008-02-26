@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
-* $Date: 2008-02-09 06:36:22 $ 
-* $Revision: 1.28 $
+* $Date: 2008-02-26 00:20:30 $ 
+* $Revision: 1.29 $
 *
 *******************************************************************************
 */
@@ -25,6 +25,7 @@ import java.text.MessageFormat;
 import java.io.IOException;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
+import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.*;
 import org.unicode.text.UCD.UnifiedBinaryProperty;
 import org.unicode.text.UCD.UCDProperty;
@@ -85,7 +86,7 @@ final public class UCA implements Comparator, UCA_Types {
     private static final String codeVersion = "7";
 
     // base directory will change depending on the installation
-    public static final String BASE_DIR = "c:\\DATA\\";
+    public static final String BASE_DIR = UCD_Types.BASE_DIR;
     
     
 // =============================================================
@@ -1822,7 +1823,7 @@ public String getUCA_GEN_DIR() {
 //  } catch (IOException e) {
 //    throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
 //  }
-	return BASE_UCA_GEN_DIR; //  + getDataVersion() + "\\";
+	return BASE_UCA_GEN_DIR; //  + getDataVersion() + "/";
 }
 
 

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteHTMLCollation.java,v $ 
-* $Date: 2007-11-10 23:30:43 $ 
-* $Revision: 1.11 $
+* $Date: 2008-02-26 00:20:30 $ 
+* $Revision: 1.12 $
 *
 *******************************************************************************
 */
@@ -103,8 +103,8 @@ public class WriteHTMLCollation implements UCD_Types {
         System.out.println("Done");
     }
     
-    private static final String DIR = "c:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.0.1\\";
-    private static final String DIR31 = "c:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.1\\";
+    private static final String DIR = "c:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.0.1/";
+    private static final String DIR31 = "c:\\Documents and Settings\\Davis\\My Documents\\UnicodeData\\Update 3.1/";
     
     static public void writeCaseExceptions() {
         System.err.println("Writing Case Exceptions");
@@ -1936,7 +1936,7 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
         PrintWriter out = new PrintWriter(
             new BufferedWriter(
             new OutputStreamWriter(
-                new FileOutputStream(UCA.BASE_DIR+"\\generated\\collation\\" + title + pad(counter) + ".html"),
+                new FileOutputStream(UCA.BASE_DIR+"\\generated\\collation/" + title + pad(counter) + ".html"),
                 "UTF8"),
             4*1024));
         copyFile(out, "HTML-Part1.txt");

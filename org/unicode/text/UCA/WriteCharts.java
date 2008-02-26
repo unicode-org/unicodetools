@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCharts.java,v $
-* $Date: 2008-02-05 23:36:06 $
-* $Revision: 1.25 $
+* $Date: 2008-02-26 00:20:30 $
+* $Revision: 1.26 $
 *
 *******************************************************************************
 */
@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 
 public class WriteCharts implements UCD_Types {
 
-	static String WORKING_DIR = ".\\org\\unicode\\text\\UCA\\";
+	static String WORKING_DIR = UCD_Types.BASE_DIR + "uca/";
     static boolean HACK_KANA = false;
 
     static public void special() {
@@ -83,7 +83,7 @@ public class WriteCharts implements UCD_Types {
         int columnCount = 0;
 
         String[] replacement = new String[] {"%%%", "Collation Charts"};
-        String folder = "charts\\uca\\";
+        String folder = "charts\\uca/";
 
         Utility.copyTextFile(WORKING_DIR + "index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile(WORKING_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");
@@ -265,7 +265,7 @@ public class WriteCharts implements UCD_Types {
         int counter = 0;
 
         String[] replacement = new String[] {"%%%", "Normalization Charts"};
-        String folder = "charts\\normalization\\";
+        String folder = "charts\\normalization/";
         
         //System.out.println("File: " + new File(".").getCanonicalPath());
 
@@ -375,7 +375,7 @@ public class WriteCharts implements UCD_Types {
 
         int counter = 0;
         String[] replacement = new String[] {"%%%", "Case Charts"};
-        String folder = "charts\\case\\";
+        String folder = "charts\\case/";
 
         Utility.copyTextFile("org/unicode/text/UCA/index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");
@@ -487,7 +487,7 @@ public class WriteCharts implements UCD_Types {
 
 			int counter = 0;
 			String[] replacement = new String[] {"%%%", "Script Charts"};
-			String folder = "charts\\script\\";
+			String folder = "charts\\script/";
 
 			Utility.copyTextFile("org/unicode/text/UCA/index.html", Utility.UTF8, folder + "index.html", replacement);
 			Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");
@@ -609,7 +609,7 @@ public class WriteCharts implements UCD_Types {
 
         int counter = 0;
         String[] replacement = new String[] {"%%%", "Name Charts"};
-        String folder = "charts\\name\\";
+        String folder = "charts\\name/";
 
         Utility.copyTextFile("org/unicode/text/UCA/index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");

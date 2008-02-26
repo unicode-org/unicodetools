@@ -1,7 +1,7 @@
 # File:        CollationTest_SHIFTED_SHORT.txt
 # UCA Version: 5.1.0
 # UCD Version: 5.1.0
-# Generated:   2008-02-09, 06:10:29 GMT [MD]
+# Generated:   2008-02-24, 05:26:43 GMT [MD]
 
 0009 0021
 0009 003F

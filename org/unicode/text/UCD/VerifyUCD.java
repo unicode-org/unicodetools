@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/VerifyUCD.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.28 $
+* $Date: 2008-02-26 00:20:30 $
+* $Revision: 1.29 $
 *
 *******************************************************************************
 */
@@ -550,7 +550,7 @@ can help you narrow these down.
         return true;
     }
 
-    public static final String IDN_DIR = BASE_DIR + "\\IDN\\";
+    public static final String IDN_DIR = BASE_DIR + "IDN/";
 
         /*
         System.out.println(Default.ucd.toString(0x0387));

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Types.java,v $ 
-* $Date: 2008-02-09 06:36:22 $ 
-* $Revision: 1.9 $
+* $Date: 2008-02-26 00:20:30 $ 
+* $Revision: 1.10 $
 *
 *******************************************************************************
 */
@@ -24,7 +24,7 @@ public interface UCA_Types {
     //public static final String VERSION = "-" + UCA_BASE; //  + "d6" ""; // "-2.1.9d7"; 
     public static final String ALLFILES = "allkeys"; // null if not there
 
-    public static final String BASE_UCA_GEN_DIR = "org/unicode/text/generated/uca/"; // UCD_Types.GEN_DIR + "collation" + "\\";
+    public static final String BASE_UCA_GEN_DIR = UCD_Types.GEN_DIR + "uca/"; // UCD_Types.GEN_DIR + "collation" + "/";
     public static final char LEVEL_SEPARATOR = '\u0000'; 
     /**
      * Expanding characters are marked with a exception bit combination
