@@ -1,5 +1,5 @@
-Generate: .*
-DeltaVersion: 25
+Generate: .*Grapheme.*
+DeltaVersion: 26
 CopyrightYear: 2007
 
 File: auxiliary/GraphemeBreakProperty
@@ -165,10 +165,13 @@ Property:	XID_Continue
 
 Property:	Default_Ignorable_Code_Point
 # Derived Property: Default_Ignorable_Code_Point
-#  Generated from Other_Default_Ignorable_Code_Point + Cf + Cc + Cs
-#  + Noncharacter_Code_Point + Variation_Selector
-#  - White_Space - FFF9..FFFB (Annotation Characters)
-#  - 0600..0603, 06DD, 070F
+#  Generated from 
+#    Other_Default_Ignorable_Code_Point
+#  + Cf (Format characters)
+#  + Variation_Selector
+#  - White_Space
+#  - FFF9..FFFB (Annotation Characters)
+#  - 0600..0603, 06DD, 070F (exceptional Cf characters that should be visible)
 
 Property:	Grapheme_Extend
 # Derived Property: Grapheme_Extend
@@ -298,11 +301,12 @@ Property:	Numeric_Value
 # Although they are only printed with a limited number of decimal places
 # in this file, they should be expressed to the limits of the precision
 # available when used.
-# A third field was added to this extracted data as of
+# The third field is empty; it used to be a copy of the numeric type.
+# A fourth field was added to this extracted data as of
 # Unicode 5.1.0, expressing the same numeric value either as
 # a whole integer where possible or as a rational fraction, e.g. "1/6".
 #
-# @missing: 0000..10FFFF; NaN
+# @missing: 0000..10FFFF; ; NaN
 Format: sortNumeric
 
 File:	HangulSyllableType

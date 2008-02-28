@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedProperty.java,v $
-* $Date: 2007-11-15 04:15:15 $
-* $Revision: 1.29 $
+* $Date: 2008-02-28 02:50:30 $
+* $Revision: 1.30 $
 *
 *******************************************************************************
 */
@@ -680,7 +680,7 @@ of characters, the first of which has a non-zero combining class.
                 if (ucdData.getCompositeVersion() > 0x040000 && cp >= 0xFFF9 && cp <= 0xFFFB) return false;
 
                 byte cat = ucdData.getCategory(cp);
-                if (cat == Cf || cat == Cs || cat == Cc) return true;
+                if (cat == Cf /*|| cat == Cs || cat == Cc */) return true;
 
                 if (ucdData.getCompositeVersion() <= 0x040000) return false;
                 
@@ -689,7 +689,7 @@ of characters, the first of which has a non-zero combining class.
             	//if (0x0600 <= cp && cp <= 0x0603 || 0x06DD == cp || 0x070F == cp) return false;
             	
                 if (ucdData.getBinaryProperty(cp, Variation_Selector)) return true;
-                if (ucdData.getBinaryProperty(cp, Noncharacter_Code_Point)) return true;
+                //if (ucdData.getBinaryProperty(cp, Noncharacter_Code_Point)) return true;
                 return false;
             }
         };

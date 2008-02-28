@@ -661,8 +661,9 @@ public class MakeUnicodeFiles {
       
       String shortProp = up.getFirstNameAlias();
       sortedSet.clear();
+      final boolean isJamoShortName = propName.equals("Jamo_Short_Name");
       
-      if (((1<<type) & (UnicodeProperty.STRING_OR_MISC_MASK | (1<<UnicodeProperty.NUMERIC))) == 0) {
+      if (isJamoShortName || ((1<<type) & (UnicodeProperty.STRING_OR_MISC_MASK | (1<<UnicodeProperty.NUMERIC))) == 0) {
         for (Iterator it2 = up.getAvailableValues().iterator(); it2.hasNext();) {
           String value = (String) it2.next();
           List l = up.getValueAliases(value);
@@ -670,10 +671,12 @@ public class MakeUnicodeFiles {
           
           // HACK
           Tabber mt = mt2;
-          if (l.size() == 1) {
+          if (propName.equals("Block")) {
+        	  l.add(0, "n/a");
+          } else if (l.size() == 1) {
             if (propName.equals("Canonical_Combining_Class")) continue;
-            if (propName.equals("Block") 
-                || propName.equals("Joining_Group")
+            if (// propName.equals("Block") || 
+                propName.equals("Joining_Group")
                 //|| propName.equals("Numeric_Type")
                 || propName.equals("Age")) {
               l.add(0, "n/a");
@@ -705,31 +708,34 @@ public class MakeUnicodeFiles {
       pw.println();
       pw.println("# " + propName + " (" + shortProp + ")");
       pw.println();
-      if (sortedSet.size() == 0) {
-        String defaultValue = "<code point>";
-        if (propName.equals("Numeric_Value")) {
-          defaultValue = "NaN";
-        } else if (propName.equals("Bidi_Mirroring_Glyph")
-            || propName.equals("ISO_Comment")
-            || propName.equals("Name")
-            || propName.equals("Unicode_Radical_Stroke")
-            || propName.equals("Unicode_1_Name")
-            || propName.equals("Jamo_Short_Name")
-            ) {
-          defaultValue = "<none>";
-        }
-        pw.println("# @missing: 0000..10FFFF; " + propName + "; " + defaultValue);
-      } else {
+	if (sortedSet.size() == 0 || isJamoShortName) {
+        printDefaultValueComment(pw, propName);
+      }
       for (Iterator it4 = sortedSet.iterator(); it4.hasNext();) {
         String line = (String) it4.next();
         pw.println(line);
-      }
       }
     }
     pw.println();
     pw.println("# EOF");
     udf.close();
   }
+
+private static void printDefaultValueComment(PrintWriter pw, String propName) {
+	String defaultValue = "<code point>";
+	if (propName.equals("Numeric_Value")) {
+	  defaultValue = "NaN";
+	} else if (propName.equals("Bidi_Mirroring_Glyph")
+	    || propName.equals("ISO_Comment")
+	    || propName.equals("Name")
+	    || propName.equals("Unicode_Radical_Stroke")
+	    || propName.equals("Unicode_1_Name")
+	    || propName.equals("Jamo_Short_Name")
+	    ) {
+	  defaultValue = "<none>";
+	}
+	pw.println("# @missing: 0000..10FFFF; " + propName + "; " + defaultValue);
+}
   
   public static void generatePropertyFile(String filename) throws IOException {
     String dir = (String) Format.theFormat.fileToDirectory.get(filename);
@@ -900,7 +906,7 @@ public class MakeUnicodeFiles {
         if (DEBUG) System.out.println("Changing value2 " + displayValue);
       }
       if (numeric) {
-        displayValue += " ; " + dumbFraction(displayValue);
+        displayValue += " ; ; " + dumbFraction(displayValue);
         if (DEBUG) System.out.println("Changing value3 " + displayValue);
       }
       if (DEBUG) System.out.println("Setting value " + displayValue);

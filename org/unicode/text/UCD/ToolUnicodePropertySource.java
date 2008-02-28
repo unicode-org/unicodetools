@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -96,11 +97,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
       }
     }.setValues("<string>").setMain("ISO_Comment", "isc", UnicodeProperty.MISC, version));
     
-    add(new UnicodeProperty.SimpleProperty() {
-      public String _getValue(int codepoint) {
-        return "";
-      }
-    }.setValues("<string>").setMain("Jamo_Short_Name", "JSN", UnicodeProperty.MISC, version));
+//    add(new UnicodeProperty.SimpleProperty() {
+//      public String _getValue(int codepoint) {
+//        return "";
+//      }
+//    }.setValues("<string>").setMain("Jamo_Short_Name", "JSN", UnicodeProperty.MISC, version));
     
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
@@ -190,7 +191,55 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
       protected UnicodeMap _getUnicodeMap() {
         return ucd.blockData;
       }
-    }.setValues(ucd.getBlockNames(null)).setMain("Block", "blk", UnicodeProperty.CATALOG, version));
+    }.setValues(ucd.getBlockNames(null))
+    .setMain("Block", "blk", UnicodeProperty.CATALOG, version)
+    .addValueAliases(new String[][] { 
+    		{ "Basic_Latin", "ASCII" }, 
+    		{ "Latin_1_Supplement", "Latin_1" },
+    		{ "Unified_Canadian_Aboriginal_Syllabics", "Canadian_Syllabics" },
+    		{ "Greek_And_Coptic", "Greek" },
+    		{ "Private_Use_Area", "Private_Use" },
+    		{ "Combining_Diacritical_Marks_For_Symbols", "Combining_Marks_For_Symbols" },
+    		{ "Arabic_Presentation_Forms_A", "Arabic_Presentation_Forms-A" },
+    }, true)
+    //.swapFirst2ValueAliases()
+    );
+    
+
+//  add(new UnicodeProperty.SimpleProperty() {
+//  public String _getValue(int codepoint) {
+//    return "";
+//  }
+//}.setValues("<string>").setMain("Jamo_Short_Name", "JSN", UnicodeProperty.MISC, version));
+// UCD_Names.JAMO_L_TABLE[LIndex] + UCD_Names.JAMO_V_TABLE[VIndex] + UCD_Names.JAMO_T_TABLE[TIndex]
+    // LBase = 0x1100, VBase = 0x1161, TBase = 0x11A7
+    Set tempValues = new LinkedHashSet();
+    tempValues.addAll(Arrays.asList(UCD_Names.JAMO_L_TABLE));
+    tempValues.addAll(Arrays.asList(UCD_Names.JAMO_V_TABLE));
+    tempValues.addAll(Arrays.asList(UCD_Names.JAMO_T_TABLE));
+    tempValues.remove("");
+    //tempValues.add("none");
+    
+    add(new UnicodeProperty.SimpleProperty() {
+        public String _getValue(int codepoint) {
+        	int temp;
+        	temp = codepoint - UCD.TBase;
+        	if (temp > 1) {
+        		return temp >= UCD_Names.JAMO_T_TABLE.length ? null : UCD_Names.JAMO_T_TABLE[temp];
+        	}
+        	temp = codepoint - UCD.VBase;
+        	if (temp > 0) {
+        		return temp >= UCD_Names.JAMO_V_TABLE.length ? null : UCD_Names.JAMO_V_TABLE[temp];
+        	}
+        	temp = codepoint - UCD.LBase;
+        	if (temp > 0) {
+        		return temp >= UCD_Names.JAMO_L_TABLE.length ? null : UCD_Names.JAMO_L_TABLE[temp];
+        	}
+        	return null;
+        }
+      }.setValues(new ArrayList(tempValues))
+      .setMain("Jamo_Short_Name", "JSN", UnicodeProperty.MISC, version)
+      );
 
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
@@ -395,6 +444,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         unicodeMap.putAll(temp, "Control");
         UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
         unicodeMap.putAll(graphemeExtend, "Extend");
+        unicodeMap.putAll(new UnicodeSet("[[\u0e30-\u0e3a\u0e45\u0eb0-\u0ebb]-[:cn:]]"), "Extend");
+        UnicodeSet graphemePrepend = getProperty("Logical_Order_Exception").getSet(UCD_Names.YES);
+        unicodeMap.putAll(graphemePrepend, "Prepend");
         unicodeMap.putAll(cat.getSet("Spacing_Mark").removeAll(unicodeMap.getSet("Extend")), "SpacingMark");
         UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
         unicodeMap.putAll(hangul.getSet("L"), "L");
@@ -404,10 +456,14 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         unicodeMap.putAll(hangul.getSet("LVT"), "LVT");
         unicodeMap.setMissing("Other");
       }
-    }.setMain("Grapheme_Cluster_Break", "GCB", UnicodeProperty.ENUMERATED, version).addValueAliases(new String[][] { { "Control", "CN" }, { "Extend", "EX" }, { "Other", "XX" }, 
-       { "SpacingMark", "SM" },
-        }, true)
-        .swapFirst2ValueAliases());
+    }.setMain("Grapheme_Cluster_Break", "GCB", UnicodeProperty.ENUMERATED, version).addValueAliases(new String[][] { 
+    		{ "Control", "CN" },
+    		{ "Extend", "EX" },
+    		{ "Prepend", "PR" },
+    		{ "Other", "XX" }, 
+    		{ "SpacingMark", "SM" },
+    }, true)
+    .swapFirst2ValueAliases());
 
     if (compositeVersion >= 0x040000) add(new UnicodeProperty.UnicodeMapProperty() {
       {
@@ -416,6 +472,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         UnicodeProperty cat = getProperty("General_Category");
         unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
         unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
+        unicodeMap.putAll(new UnicodeSet("[\\u0085\\u000B\\u000C\\u000C\\u2028\\u2029]"), "Newline");
         unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(cat.getSet("Spacing_Mark")), "Extend");
         unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
         UnicodeProperty script = getProperty("Script");
@@ -464,7 +521,11 @@ FF1B ( ； ) FULLWIDTH SEMICOLON
         new String[][] { { "Format", "FO" }, { "Katakana", "KA" }, { "ALetter", "LE" }, { "MidLetter", "ML" }, { "MidNum", "MN" },  
             { "MidNumLet", "MB" }, 
             { "MidNumLet", "MB" }, 
-            { "Numeric", "NU" }, { "ExtendNumLet", "EX" }, { "Other", "XX" }, },
+            { "Numeric", "NU" }, 
+            { "ExtendNumLet", "EX" }, 
+            { "Other", "XX" }, 
+            { "Newline", "NL"}
+            },
         true).swapFirst2ValueAliases());
 
     if (compositeVersion >= 0x040000) add(new UnicodeProperty.UnicodeMapProperty() {
@@ -497,7 +558,14 @@ FF1B ( ； ) FULLWIDTH SEMICOLON
         unicodeMap.putAll(getProperty("STerm").getSet(UCD_Names.YES).removeAll(unicodeMap.getSet("ATerm")), "STerm");
         unicodeMap.putAll(cat.getSet("Open_Punctuation").addAll(cat.getSet("Close_Punctuation")).addAll(lineBreak.getSet("Quotation")).remove(0x05F3).removeAll(unicodeMap.getSet("ATerm")).removeAll(
             unicodeMap.getSet("STerm")), "Close");
-        unicodeMap.putAll(new UnicodeSet("[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C\\u003A\\uFE13\\uFF1A\\u003B\\uFE14\\uFF1B\\u2014\\uFE31\\u002D\\uFF0D]"), "SContinue");
+        unicodeMap.putAll(new UnicodeSet("[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C" +
+        		"\\uFE50\\uFF64\\uFE51\\uFE51\\u055D\\u060C\\u060D\\u07F8\\u1802\\u1808" + // new from L2/08-029
+        		"\\u003A\\uFE13\\uFF1A" +
+        		"\\uFE55" + // new from L2/08-029
+        		//"\\u003B\\uFE14\\uFF1B" +
+        		"\\u2014\\uFE31\\u002D\\uFF0D" +
+        		"\\u2013\\uFE32\\uFE58\\uFE63" + // new from L2/08-029
+        		"]"), "SContinue");
         // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none of the above touch it.
         unicodeMap.setMissing("Other");
       }
@@ -760,7 +828,8 @@ FF1B ( ； ) FULLWIDTH SEMICOLON
               case UCD_Types.BIDI_CLASS >> 8:
                 return lookup(valueAlias, UCD_Names.LONG_BIDI_CLASS, UCD_Names.BIDI_CLASS, null, result);
               case UCD_Types.DECOMPOSITION_TYPE >> 8:
-                return lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE, FIXED_DECOMPOSITION_TYPE, null, result);
+                lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE, FIXED_DECOMPOSITION_TYPE, null, result);
+                return lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE, UCD_Names.DECOMPOSITION_TYPE, null, result);
               case UCD_Types.NUMERIC_TYPE >> 8:
                 return lookup(valueAlias, UCD_Names.LONG_NUMERIC_TYPE, UCD_Names.NUMERIC_TYPE, null, result);
               case UCD_Types.EAST_ASIAN_WIDTH >> 8:
