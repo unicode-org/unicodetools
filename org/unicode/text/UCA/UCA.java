@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
-* $Date: 2008-02-26 00:20:30 $ 
-* $Revision: 1.29 $
+* $Date: 2008-03-05 23:49:14 $ 
+* $Revision: 1.30 $
 *
 *******************************************************************************
 */
@@ -1818,7 +1818,9 @@ public String getFileVersion() {
  */
 public String getUCA_GEN_DIR() {
 //  try {
-//    System.out.println(new File(BASE_UCA_GEN_DIR).getCanonicalPath());
+//    final File file = new File("org/unicode/data/gen/uca");
+//	System.out.println(file.getCanonicalPath());
+//	System.out.println(file.isDirectory());
 //    if (true) throw new IllegalArgumentException();
 //  } catch (IOException e) {
 //    throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
