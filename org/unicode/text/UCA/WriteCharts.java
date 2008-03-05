@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCharts.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.26 $
+* $Date: 2008-03-05 23:49:14 $
+* $Revision: 1.27 $
 *
 *******************************************************************************
 */
@@ -83,7 +83,7 @@ public class WriteCharts implements UCD_Types {
         int columnCount = 0;
 
         String[] replacement = new String[] {"%%%", "Collation Charts"};
-        String folder = "charts\\uca/";
+        String folder = "charts/uca/";
 
         Utility.copyTextFile(WORKING_DIR + "index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile(WORKING_DIR + "charts.css", Utility.LATIN1, folder + "charts.css");

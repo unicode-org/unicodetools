@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
-* $Date: 2008-02-26 00:20:30 $ 
-* $Revision: 1.49 $
+* $Date: 2008-03-05 23:49:14 $ 
+* $Revision: 1.50 $
 *
 *******************************************************************************
 */
@@ -2983,11 +2983,31 @@ F900..FAFF; CJK Compatibility Ideographs
             oldStr.setLength(0);
             chr.getChars(0, chr.length(), codeUnits, 0);
             
-            log.print(Utility.hex(codeUnits, 0, chr.length(), " ") + "; ");
+            /* HACK
+006C 00B7; [42, 05, 05][, E5 B1, 05]	# [1262.0020.0002][0000.01AF.0002]	* LATIN SMALL LETTER L ...
+=>
+006C | 00B7; [, E5 B1, 05]	# [1262.0020.0002][0000.01AF.0002]	* LATIN SMALL LETTER L ...
+006C 0387; [42, 05, 05][, E5 B1, 05]	# [1262.0020.0002][0000.01AF.0002]	* LATIN SMALL LETTER L ...
+0140; [42, 05, 05][, E5 B1, 05]	# [1262.0020.0002][0000.01AF.0002]	* LATIN SMALL LETTER L WITH MIDDLE DOT
+004C 00B7; [42, 05, 8F][, E5 B1, 05]	# [1262.0020.0008][0000.01AF.0002]	* LATIN CAPITAL LETTER L ...
+004C 0387; [42, 05, 8F][, E5 B1, 05]	# [1262.0020.0008][0000.01AF.0002]	* LATIN CAPITAL LETTER L ...
+013F; [42, 05, 8F][, E5 B1, 05]	# [1262.0020.0008][0000.01AF.0002]	* LATIN CAPITAL LETTER L WITH MIDDLE DOT
+             */
+            boolean middleDotHack = chr.length() == 2
+            && (codeUnits[0] == 'l' || codeUnits[0] == 'L')
+            && (codeUnits[1] == '\u00B7' || codeUnits[1] == '\u0387');
+            
+            if (middleDotHack) {
+            	log.print(Utility.hex(codeUnits, 0, chr.length(), " | ") + "; ");            
+            } else {
+            	log.print(Utility.hex(codeUnits, 0, chr.length(), " ") + "; ");
+            }
             boolean nonePrinted = true;
             boolean isFirst = true;
             
-            for (int q = 0; q < len; ++q) {
+            int firstCE = middleDotHack ? 1 : 0;
+            
+            for (int q = firstCE; q < len; ++q) {
                 nonePrinted = false;
                 newPrimary.setLength(0);
                 newSecondary.setLength(0);
@@ -3132,7 +3152,10 @@ F900..FAFF; CJK Compatibility Ideographs
                 log.print("[,,]");
                 oldStr.append(CEList.toString(0));
             }
-            longLog.print("\t# " + oldStr + "\t* " + ucd.getName(UTF16.charAt(chr, 0)));
+            String name = UTF16.hasMoreCodePointsThan(chr, 1) 
+            		? ucd.getName(UTF16.charAt(chr, 0)) + " ..."
+            		: ucd.getName(chr);
+			longLog.print("\t# " + oldStr + "\t* " + name);
             log.println();
             lastChr = chr;
         }
