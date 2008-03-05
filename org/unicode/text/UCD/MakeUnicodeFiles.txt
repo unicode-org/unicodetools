@@ -1,6 +1,6 @@
-Generate: .*Grapheme.*
-DeltaVersion: 26
-CopyrightYear: 2007
+Generate: .*Core.*
+DeltaVersion: 31
+CopyrightYear: 2008
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
@@ -72,7 +72,7 @@ Value:	5.0
 # Newly assigned in Unicode 5.0.0 (July, 2006)
 
 Value:	5.1
-# Newly assigned in Unicode 5.1.0 (expected March, 2006)
+# Newly assigned in Unicode 5.1.0 (March, 2008)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
@@ -136,15 +136,23 @@ Property:	Uppercase
 Property:	ID_Start
 # Derived Property: ID_Start
 #  Characters that can start an identifier.
-#  Generated from Lu+Ll+Lt+Lm+Lo+Nl+Other_ID_Start
+#  Generated from:
+#      Lu + Ll + Lt + Lm + Lo + Nl
+#    + Other_ID_Start
+#    - Pattern_Syntax
+#    - Pattern_White_Space
 #  NOTE: See UAX #31 for more information
 
 Property:	ID_Continue
 # Derived Property: ID_Continue
 #  Characters that can continue an identifier.
-#  Generated from: ID_Start + Mn+Mc+Nd+Pc + Other_ID_Continue
+#  Generated from:
+#      ID_Start
+#    + Mn + Mc + Nd + Pc
+#    + Other_ID_Continue
+#    - Pattern_Syntax
+#    - Pattern_White_Space
 #  NOTE: See UAX #31 for more information
-
 
 Property:	XID_Start
 # Derived Property: XID_Start
@@ -229,7 +237,6 @@ Property:	FC_NFKC_Closure
 #  Uses the full case folding from CaseFolding.txt, without the T option.
 Format:	nameStyle=short
 
-
 Property:	Full_Composition_Exclusion
 # Derived Property: Full_Composition_Exclusion
 #  Generated from: Composition Exclusions + Singletons + Non-Starter Decompositions
@@ -240,7 +247,6 @@ Property:	NFD_QuickCheck
 #  Generated from computing decomposibles
 Format: nameStyle=short valueStyle=short skipValue=Yes
 
-
 Property:	NFC_QuickCheck
 # Derived Property: NFC_QuickCheck
 #  Generated from computing decomposibles (and characters that may compose with previous ones)
@@ -250,7 +256,6 @@ Property:	NFKD_QuickCheck
 # Derived Property: NFKD_QuickCheck
 #  Generated from computing decomposibles
 Format: nameStyle=short valueStyle=short skipValue=Yes
-
 
 Property:	NFKC_QuickCheck
 # Derived Property: NFKC_QuickCheck

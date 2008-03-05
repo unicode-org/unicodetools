@@ -5,20 +5,22 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateNamedSequences.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.6 $
+* $Date: 2008-03-05 18:25:43 $
+* $Revision: 1.7 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import org.unicode.text.utility.*;
-import com.ibm.icu.dev.test.util.BagFormatter;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import java.util.*;
-import java.io.*;
 
 public final class GenerateNamedSequences implements UCD_Types {
     
@@ -99,7 +101,9 @@ public final class GenerateNamedSequences implements UCD_Types {
         
         String directory = "UCD/";
         String filename = directory + filename2 + UnicodeDataFile.getHTMLFileSuffix(true);
-        PrintWriter out = Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
+        UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader(directory, filename2).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        
+        PrintWriter out = outfile.out; // Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
         /*
         String[] batName = {""};
         String mostRecent = UnicodeDataFile.generateBat(directory, filename, UnicodeDataFile.getFileSuffix(true), batName);
@@ -120,7 +124,7 @@ public final class GenerateNamedSequences implements UCD_Types {
                 
         Utility.appendFile("org/unicode/text/UCD/NamedSequences-Template.html", Utility.UTF8, out, replacementList);
      
-        out.close();
+        outfile.close();
         //Utility.renameIdentical(mostRecent, Utility.getOutputName(filename), batName[0]);
     }
 }

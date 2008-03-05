@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2008-02-24 05:28:33 $
-* $Revision: 1.57 $
+* $Date: 2008-03-05 18:25:43 $
+* $Revision: 1.58 $
 *
 *******************************************************************************
 */
@@ -946,13 +946,13 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
     }
     
-    public static boolean renameIdentical(String file1, String file2, String batFile) throws IOException {
+    public static boolean renameIdentical(String file1, String file2, String batFile, boolean skipCopyright) throws IOException {
         if (file1 == null) {
             System.out.println("Null file");
             return false;
         }
         String lines[] = new String[2];
-        boolean identical = filesAreIdentical(file1, file2, lines);
+        boolean identical = filesAreIdentical(file1, file2, skipCopyright, lines);
         if (identical) {
             renameIdentical(file2);
             if (batFile != null) renameIdentical(batFile);
@@ -967,15 +967,15 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
     }
     
-    public static boolean filesAreIdentical(String file1, String file2, String[] lines) throws IOException {
+    public static boolean filesAreIdentical(String file1, String file2, boolean skipCopyright, String[] lines) throws IOException {
         BufferedReader br1 = new BufferedReader(new FileReader(file1), 32*1024);
         BufferedReader br2 = new BufferedReader(new FileReader(file2), 32*1024);
         String line1 = "";
         String line2 = "";
         try {
             for (int lineCount = 0; ; ++lineCount) {
-                line1 = getLineWithoutFluff(br1, lineCount == 0);
-                line2 = getLineWithoutFluff(br2, lineCount == 0);
+                line1 = getLineWithoutFluff(br1, lineCount == 0, skipCopyright);
+                line2 = getLineWithoutFluff(br2, lineCount == 0, skipCopyright);
                 if (line1 == null) {
                     if (line2 == null) return true;
                     break;
@@ -997,10 +997,10 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     
     static void renameIdentical(String file2) {
         File foo = new File(file2);
-        File newName = new File(foo.getParent(), "UNCHANGED-" + foo.getName());
+        File newName = new File(foo.getParent(), "ZZZ-UNCHANGED-" + foo.getName());
         if (newName.exists()) {
             for (int i = 1; newName.exists(); ++i) {
-                newName = new File(foo.getParent(), "UNCHANGED" + i + "-" + foo.getName());
+                newName = new File(foo.getParent(), "ZZZ-UNCHANGED" + i + "-" + foo.getName());
             }
         }
         System.out.println("IDENTICAL TO PREVIOUS, RENAMING : " + foo);
@@ -1009,7 +1009,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         if (!renameResult) System.out.println("Couldn't rename!");
     }
     
-    static String getLineWithoutFluff(BufferedReader br1, boolean first) throws IOException {
+    static String getLineWithoutFluff(BufferedReader br1, boolean first, boolean skipCopyright) throws IOException {
         while (true) {
             String line1 = br1.readLine();
             if (line1 == null) return line1;
@@ -1018,7 +1018,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             if (line1.equals("#")) continue;
             if (line1.startsWith("# Generated")) continue;
             if (line1.startsWith("# Date")) continue;
-            if (line1.startsWith("# Copyright")) continue;
+            if (skipCopyright && line1.startsWith("# Copyright")) continue;
             if (line1.startsWith("<p><b>Date:</b>")) continue;
 
             if (line1.equals("# ================================================")) continue;

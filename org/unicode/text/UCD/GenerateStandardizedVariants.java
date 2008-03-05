@@ -5,14 +5,15 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateStandardizedVariants.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.11 $
+* $Date: 2008-03-05 18:25:43 $
+* $Revision: 1.12 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 import org.unicode.text.utility.*;
+
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import java.util.*;
@@ -98,7 +99,9 @@ public final class GenerateStandardizedVariants implements UCD_Types {
         
         String directory = "UCD/";
         String filename = directory + "StandardizedVariants" + UnicodeDataFile.getHTMLFileSuffix(true);
-        PrintWriter out = Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
+        UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader("UCD/", "StandardizedVariants").setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+
+        PrintWriter out = outfile.out; // Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
         //String[] batName = {""};
         //String mostRecent = UnicodeDataFile.generateBat(directory, filename, UnicodeDataFile.getFileSuffix(true), batName);
         

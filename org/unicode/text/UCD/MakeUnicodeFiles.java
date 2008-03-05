@@ -525,7 +525,7 @@ public class MakeUnicodeFiles {
   static final String SEPARATOR = "# ================================================";
   
   public static void generateAliasFile(String filename) throws IOException {
-    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("UCD/", filename);
+    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("UCD/", filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
     PrintWriter pw = udf.out;
     UnicodeProperty.Factory ups 
     = ToolUnicodePropertySource.make(Default.ucdVersion());
@@ -618,7 +618,7 @@ public class MakeUnicodeFiles {
   "gc\t;\tZ\t;\tSeparator\t# Zl | Zp | Zs"};
   
   public static void generateValueAliasFile(String filename) throws IOException {
-    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("UCD/", filename);
+    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("UCD/", filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
     PrintWriter pw = udf.out;
     Format.theFormat.printFileComments(pw, filename);
     UnicodeProperty.Factory toolFactory 
@@ -741,7 +741,7 @@ private static void printDefaultValueComment(PrintWriter pw, String propName) {
     String dir = (String) Format.theFormat.fileToDirectory.get(filename);
     if (dir == null) dir = "";
     UnicodeDataFile udf =
-      UnicodeDataFile.openAndWriteHeader("UCD/" + dir, filename);
+      UnicodeDataFile.openAndWriteHeader("UCD/" + dir, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
     PrintWriter pw = udf.out;
     // bf2.openUTF8Writer(UCD_Types.GEN_DIR, "Test" + filename + ".txt");
     Format.theFormat.printFileComments(pw, filename);

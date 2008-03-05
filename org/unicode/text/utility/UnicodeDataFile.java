@@ -18,6 +18,7 @@ public class UnicodeDataFile {
     private String filename;
     private UnicodeDataFile(){};
     private String fileType = ".txt";
+    private boolean skipCopyright = true;
     
     public static UnicodeDataFile openAndWriteHeader(String directory, String filename) throws IOException {
         return new UnicodeDataFile(directory, filename, false);
@@ -66,7 +67,7 @@ public class UnicodeDataFile {
             Utility.appendFile(filename + "Footer" + fileType, Utility.UTF8_UNIX, out);
         } catch (FileNotFoundException e) {}
         out.close();           
-        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName);
+        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName, skipCopyright);
     }
 
     public static String generateDateLine() {
@@ -152,5 +153,14 @@ public class UnicodeDataFile {
         }
         return mostRecent;
     }
+
+	public boolean isSkipCopyright() {
+		return skipCopyright;
+	}
+
+	public UnicodeDataFile setSkipCopyright(boolean skipCopyright) {
+		this.skipCopyright = skipCopyright;
+		return this;
+	}
 }
     
