@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedProperty.java,v $
-* $Date: 2008-02-28 02:50:30 $
-* $Revision: 1.30 $
+* $Date: 2008-03-05 18:25:43 $
+* $Revision: 1.31 $
 *
 *******************************************************************************
 */
@@ -397,7 +397,8 @@ public final class DerivedProperty implements UCD_Types {
         for (int cp = 0; cp < 0x10FFFF; ++cp) {
             // skip cases that can't matter
             if (!ucdData.isAssigned(cp)) continue;
-            
+        	if (ucdData.getBinaryProperty(cp, Pattern_Syntax) || ucdData.getBinaryProperty(cp, Pattern_White_Space)) continue;
+
             // find out normal status
             int status = 0;
             if (ucdData.isIdentifierStart(cp)) status = 1;

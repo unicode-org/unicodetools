@@ -5,18 +5,17 @@ import java.io.InputStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.regex.Pattern;
+
+import org.unicode.cldr.util.Relation;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
@@ -24,18 +23,20 @@ import com.ibm.icu.impl.ICUData;
 import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.impl.StringUCharacterIterator;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
-import com.ibm.icu.text.RawCollationKey;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.UCharacterIterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
-import org.unicode.cldr.util.Relation;
-import org.unicode.text.utility.Utility;
-
+/**
+ * Class that provides all of the properties for formatting in the Unicode standard
+ * data files. Note that many of these are generated directly from UCD, and many from
+ * {@link DerivedProperty}. So fixes to some will go there.
+ * 
+ * @author markdavis
+ *
+ */
 public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
   static final boolean DEBUG = false;
 
@@ -296,12 +297,21 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int cp) {
-        if (!ucd.isRepresented(cp))
+        if (!ucd.isRepresented(cp)) {
           return null;
+        }
+        if (cp == '\u1E9E') {
+        	System.out.println("@#$ debug");
+        }
         String b = nfkc.normalize(ucd.getCase(cp, UCD_Types.FULL, UCD_Types.FOLD));
         String c = nfkc.normalize(ucd.getCase(b, UCD_Types.FULL, UCD_Types.FOLD));
-        if (c.equals(b))
+        if (c.equals(b)) {
           return null;
+        }
+        String d = nfkc.normalize(ucd.getCase(b, UCD_Types.FULL, UCD_Types.FOLD));
+        if (!d.equals(c)) {
+        	throw new IllegalArgumentException("Serious failure in FC_NFKC!!!");
+        }
         return c;
       }
 
@@ -459,7 +469,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }.setMain("Grapheme_Cluster_Break", "GCB", UnicodeProperty.ENUMERATED, version).addValueAliases(new String[][] { 
     		{ "Control", "CN" },
     		{ "Extend", "EX" },
-    		{ "Prepend", "PR" },
+    		{ "Prepend", "PP" },
     		{ "Other", "XX" }, 
     		{ "SpacingMark", "SM" },
     }, true)

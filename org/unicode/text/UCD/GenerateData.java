@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateData.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.41 $
+* $Date: 2008-03-05 18:25:43 $
+* $Revision: 1.42 $
 *
 *******************************************************************************
 */
@@ -744,7 +744,7 @@ public class GenerateData implements UCD_Types {
     */    
     static public void writeNormalizerTestSuite(String directory, String fileName) throws IOException {
         
-    	UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, fileName);
+    	UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, fileName).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
         PrintWriter log = fc.out;
         
         String newFile = directory + fileName + UnicodeDataFile.getFileSuffix(true);

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
-* $Date: 2007-11-15 04:15:15 $
-* $Revision: 1.47 $
+* $Date: 2008-03-05 18:25:43 $
+* $Revision: 1.48 $
 *
 *******************************************************************************
 */
@@ -1190,6 +1190,7 @@ public final class UCD implements UCD_Types {
             if (cp >= 0xFE70 && cp <= 0xFE7E && (cp & 1) == 0) return false;
         }
         */
+    	if (getBinaryProperty(cp, Pattern_Syntax) || getBinaryProperty(cp, Pattern_White_Space)) return false;
         byte cat = getCategory(cp);
         if (cat == Lu || cat == Ll || cat == Lt || cat == Lm || cat == Lo || cat == Nl) return true;
         if (getBinaryProperty(cp, Other_ID_Start)) return true;
@@ -1204,6 +1205,7 @@ public final class UCD implements UCD_Types {
             if (cp == 0x0E33 || cp == 0x0EB3 || cp == 0xFF9E || cp == 0xFF9F) return true;
         }
         */
+    	if (getBinaryProperty(cp, Pattern_Syntax) || getBinaryProperty(cp, Pattern_White_Space)) return false;
         byte cat = getCategory(cp);
         if (cat == Mn || cat == Mc || cat == Nd || cat == Pc) return true;
         if (getBinaryProperty(cp, Other_ID_Start)) return true;

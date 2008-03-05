@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.39 $
+* $Date: 2008-03-05 18:25:43 $
+* $Revision: 1.40 $
 *
 *******************************************************************************
 */
@@ -25,6 +25,8 @@ public interface UCD_Types {
     public static final String BIN_DIR = BASE_DIR + "BIN/";
     public static final String GEN_DIR = BASE_DIR + "GEN/";
     public static final String GEN_UCD_DIR = GEN_DIR + "UCD/";
+    
+    public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(Utility.getProperty("copyright", "skip"));
     
     public static final char DOTTED_CIRCLE = '\u25CC';
     

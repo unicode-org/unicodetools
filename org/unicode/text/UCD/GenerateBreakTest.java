@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.19 $
+* $Date: 2008-03-05 18:25:43 $
+* $Revision: 1.20 $
 *
 *******************************************************************************
 */
@@ -314,7 +314,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         //printLine(out, samples[LB_ZW], "", samples[LB_CL]);
         //printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
 
-        UnicodeDataFile fc = UnicodeDataFile.openHTMLAndWriteHeader("UCD/auxiliary/", fileName + "BreakTest");
+        UnicodeDataFile fc = UnicodeDataFile.openHTMLAndWriteHeader("UCD/auxiliary/", fileName + "BreakTest").setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
         PrintWriter out = fc.out;
 
 /*        PrintWriter out = Utility.openPrintWriter("auxiliary/" 
@@ -373,7 +373,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         // do main test
 
         UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader("UCD/auxiliary/", fileName + "BreakTest" 
-                + (shortVersion ? "_SHORT" : ""));
+                + (shortVersion ? "_SHORT" : "")).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
         PrintWriter out = fc.out;
 /*        PrintWriter out = Utility.openPrintWriter("TR29/" + fileName + "BreakTest" 
             + (shortVersion ? "_SHORT" : "")
@@ -885,7 +885,12 @@ abstract public class GenerateBreakTest implements UCD_Types {
 		public GenerateLineBreakTest(UCD ucd) {
 	        super(ucd, Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()),"LineBreak"), "aa", "Line",
 	        	new String[]{}, new String[] {
-	        	"can't", "can\u2019t", "ab\u00ADby",
+	        	"can't", "can\u2019t", 
+	        	"'can' not",
+	        	"can 'not'",
+	        	"bug(s)",
+	        	"..ます。XMLの..",
+	        	"ab\u00ADby",
 	             "-3",
 	             "e.g.",
 	             "\u4e00.\u4e00.",
