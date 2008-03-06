@@ -77,6 +77,43 @@ Let $gcAllMarks = [$gc:Nonspacing_Mark $gc:Enclosing_Mark $gc:Spacing_Mark]
 #### REAL INVARIANTS FOLLOW ####
 
 ##########################
+# Stability
+##########################
+
+# Once assigned, always assigned
+
+$GC:unassigned ⊆ $×GC:unassigned
+
+# The General_Category property value Control (Cc) is immutable: the set of code points with that value will never change.
+
+$GC:Cc = $×GC:Cc
+    
+# All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
+
+$CCC:0 ⊇ [^ $GC:Mc $GC:Mn]
+
+# The General_Category property value Private_Use (Co) is immutable: the set of code points with that value will never change.
+
+$GC:Co = $×GC:Co
+
+# The General_Category property value Surrogate (Cs) is immutable: the set of code points with that value will never change.
+
+$GC:Cs = $×GC:Cs
+
+# The Noncharacter_Code_Point property is an immutable code point property, which means that its property values for all Unicode code points will never change.
+
+$NChar = $×NChar
+
+# All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property .
+
+$Alphabetic ⊃ [$Uppercase $Lowercase]
+
+# The Pattern_Syntax and Pattern_Whitespace properties are immutable code point properties, which means that their property values for all Unicode code points will never change.
+
+$Pattern_Whitespace = $×Pattern_Whitespace
+$Pattern_Syntax = $×Pattern_Syntax
+
+##########################
 # Misc Properties
 ##########################
 
@@ -87,15 +124,10 @@ $Dash ⊃ [$GC:Pd]
 
 $Script:Common ! [$GC:Mn $GC:Me \u200c \u200d]
 $Script:Inherited ⊆ [$GC:Mn $GC:Me \u200c \u200d]
+$Script:Unknown = [$GC:Cn $GC:Co $GC:Cs]
 
 # [$Alphabetic] ! $Script:Common
 #  & [$Decomposition_Type:None $Decomposition_Type:Canonical]
-
-$Alphabetic ⊃ [$Uppercase $Lowercase]
-
-# Unassigned only decreases
-
-$gc:unassigned ⊆ $×gc:unassigned
 
 ##########################
 # Numbers
@@ -149,9 +181,7 @@ $XID_Continue ! [$Pattern_Whitespace $Pattern_Syntax]
 $Pattern_Whitespace ! [$XID_Continue $Pattern_Syntax]
 $Pattern_Syntax ! [$XID_Continue $Pattern_Whitespace]
 
-#These are invariant!
-$Pattern_Whitespace = $×Pattern_Whitespace
-$Pattern_Syntax = $×Pattern_Syntax
+
 
 ##########################
 # LineBreak property
