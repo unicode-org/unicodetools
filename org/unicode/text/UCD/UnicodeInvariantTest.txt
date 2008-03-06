@@ -1,14 +1,14 @@
-﻿# Invariance tests
-# Each line indicates an invariant set relationship to be tested,
-# and is of the form:
+﻿# Invariance Tests
+#
+# A normal line indicates an invariant set relationship to be tested, and is of the form:
 #
 # 	line := set relation set
 #
 #   relation := '='             // has identical contents to
-#            := ('>' | '⊃')    // is proper superset of
-#            := ('≥' | '⊇')    // is superset of 
-#            := ('<' | '⊂')    // is proper subset of
-#            := ('≤' | '⊆')    // is subset of
+#            := ('>' | '⊃')     // is proper superset of
+#            := ('≥' | '⊇')     // is superset of 
+#            := ('<' | '⊂')     // is proper subset of
+#            := ('≤' | '⊆')     // is subset of
 #            := '!'             // has no intersection
 #            := '?'             // none of the above (they overlap, and neither contains the other)
 #
@@ -18,6 +18,7 @@
 #
 # The × indicates that the property is the previous released version.
 #  That is, if the version is 4.0.1, then the × version is 4.0.0
+#
 # If the value is missing, it is defaulted to true
 # If the value is of the form «...», then the ... is interpreted as a regular expression
 # The property can be the short or long form as in the PropertyAliases.txt
@@ -26,28 +27,36 @@
 # A UnicodeSet is a boolean combinations of properties and character ranges, as you would see in
 #  Perl or other regular-expression languages. Examples:
 #	[$General_Category:Unassigned-[a-zA-Z]]
-# For details, see http://oss.software.ibm.com/icu/userguide/unicodeSet.html
+# For details, see LDML
 #
 # WARNING: do not use \p{...} or [:...:] syntax, since those will be
 # ICU's current version of properties, not the current snapshot's.
 # Use the $ notation for properties (listed above) instead.
 #
-# When this file is parsed, an error message may contain <@>
-#  to indicate the location of an error in the input line.
+# TODO: fix to use same syntax, and fail instead of falling back to ICU
+#
+# When this file is parsed, a parse error message may contain <@>
+# to indicate the location of an error in the input line.
+#
+# If there is an error in the test, a comparison listing of the two sides of the relation is generated.
+#
 # The Show command can be used to list any set on the console, for comparison.
+# The Let command can be used to create variables
 
+##########################
 # General Constants
+##########################
+
 Let $gcAllPunctuation = [$gc:Open_Punctuation $gc:Close_Punctuation $gc:Dash_Punctuation $gc:Connector_Punctuation $gc:Other_Punctuation $gc:Initial_Punctuation $gc:Final_Punctuation]
 Let $gcAllSymbols = [$gc:Currency_Symbol $gc:Modifier_Symbol $gc:Math_Symbol $gc:Other_Symbol]
 Let $gcAllMarks = [$gc:Nonspacing_Mark $gc:Enclosing_Mark $gc:Spacing_Mark]
 
 ##### EXAMPLES OF USAGE #####
 
-#Show [[^$gc:unassigned]-[^$×gc:unassigned]-[^$dt:none]]
-#$GC:Zs ! $GC:Zp
-#$East_Asian_Width:Neutral ? $GC:Uppercase_Letter
-$GC:Zs ? $Name:«.*SPACE.*»
-#$Script:Common ! [$Alphabetic - $Math]
+# Show [[^$gc:unassigned]-[^$×gc:unassigned]-[^$dt:none]]
+# $GC:Zs ! $GC:Zp
+# $East_Asian_Width:Neutral ? $GC:Uppercase_Letter
+# $Script:Common ! [$Alphabetic - $Math]
 
 # $Pattern_Whitespace = [$Whitespace \u200E \u200F]
 # $Pattern_Syntax = [$gcAllSymbols $gcAllPunctuation [\u2190-\u2BFF\u2e00-\u2e7F]]
@@ -67,18 +76,30 @@ $GC:Zs ? $Name:«.*SPACE.*»
 
 #### REAL INVARIANTS FOLLOW ####
 
-# For illustration, different alias styles are used
+##########################
+# Misc Properties
+##########################
 
-$Line_Break:Unknown = [$General_Category:Unassigned $GeneralCategory:PrivateUse]
-$LB:OP = $GC:Ps
 $Whitespace ⊃ [$GC:Zs $GC:Zp $GC:Zl]
+$GC:Zs ? $Name:«.*SPACE.*»
+
 $Dash ⊃ [$GC:Pd]
+
 $Script:Common ! [$GC:Mn $GC:Me \u200c \u200d]
 $Script:Inherited ⊆ [$GC:Mn $GC:Me \u200c \u200d]
+
 # [$Alphabetic] ! $Script:Common
 #  & [$Decomposition_Type:None $Decomposition_Type:Canonical]
 
 $Alphabetic ⊃ [$Uppercase $Lowercase]
+
+# Unassigned only decreases
+
+$gc:unassigned ⊆ $×gc:unassigned
+
+##########################
+# Numbers
+##########################
 
 # Numbers: the following must be equal
 
@@ -94,8 +115,16 @@ $decimalValue ⊇ $General_Category:Decimal_Number
 Let $anyNumericValue = $Numeric_Value:«-?[0-9]+.[0-9]+»
 [$Numeric_Type:Decimal $Numeric_Type:Digit $Numeric_Type:Numeric] = $anyNumericValue
 
+##########################
+# Decompositions
+##########################
+
 # Canonical decompositions (minus exclusions) must be identical across releases
 [$Decomposition_Type:Canonical - $Full_Composition_Exclusion] = [$×Decomposition_Type:Canonical - $×Full_Composition_Exclusion]
+
+##########################
+# Identifiers
+##########################
 
 # Identifiers must be backwards compatible
 $ID_Start ⊇ $×ID_Start
@@ -107,6 +136,10 @@ $XID_Continue ⊇ $×XID_Continue
 $ID_Continue ⊇ $ID_Start
 $XID_Continue ⊇ $XID_Start
 
+# The X versions are subsets of the the plain versions
+$ID_Continue ⊇ $XID_Continue
+$ID_Start ⊇ $XID_Start
+
 # Identifiers can't intersect pattern stuff
 $ID_Continue ! [$Pattern_Whitespace $Pattern_Syntax]
 $Pattern_Whitespace ! [$ID_Continue $Pattern_Syntax]
@@ -116,38 +149,37 @@ $XID_Continue ! [$Pattern_Whitespace $Pattern_Syntax]
 $Pattern_Whitespace ! [$XID_Continue $Pattern_Syntax]
 $Pattern_Syntax ! [$XID_Continue $Pattern_Whitespace]
 
-# Test SA characters
+#These are invariant!
+$Pattern_Whitespace = $×Pattern_Whitespace
+$Pattern_Syntax = $×Pattern_Syntax
 
-# They are limited to certain scripts:
+##########################
+# LineBreak property
+##########################
+
+$Line_Break:Unknown = [$General_Category:Unassigned $GeneralCategory:PrivateUse]
+$LB:OP = [$GC:Ps \u00A1 \u00BF]
+$LB:CL ⊃ $GC:Pe
+$LB:CM = [$GC:Mn $GC:Me $GC:Mc $GC:Cc $GC:Cf -$LB:SA -$LB:WJ -$LB:ZW]
+$LB:NU = [$GC:Nd - $EA:F \u066B\u066C]
+$LB:PR = [$GC:Sc - $LB:PO \u002b\u005c\u00b1\u2116\u2212\u2213]
+$LB:QU = [$GC:Pf $GC:Pi \u0022\u0027\u275B-\u275E]
+$LB:SG = $GC:Cs
+$LB:SP = [\u0020]
+$LB:SY = [\u002F]
+$LB:WJ = [\u2060\uFEFF]
+$LB:ZW = [\u200B]
+
+# SA are limited to certain scripts:
 Let $SAScripts = [$script:thai $script:lao $script:myanmar $script:khmer $script:Tai_Le $script:New_Tai_Lue]
 $SAScripts ⊇ $LineBreak:SA
 
 # And in those scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn
 [$SAScripts & [$Alphabetic $gc:cf $gc:Mn \u19DE \u19DF]] = [$SAScripts & [$LineBreak:SA $LineBreak:CM]]
 
-#MY TEST
-#Show [$gc:Mn - $Alphabetic]
-#Show [$Alphabetic & $gc:Mn]
-
-# Try removing M* from alphabetic, and matching to SA
-#Show [$SAScripts & [$Alphabetic $gc:cf - $gcAllMarks]] = $LineBreak:SA
-
-# Try adding M* to alphabetic, and matching to SA
-#Show [$SAScripts & [$Alphabetic $gc:cf $gcAllMarks]] = $LineBreak:SA
-
-# testing
-# [$Pattern_Whitespace $Pattern_Syntax] ! [[^$WB:Format $WB:Other] \u2019 \u0027 \u02BC \u002d \u00ad \u2027 \u058A]
-Let $otherword = [\u2019 \u0027 \u02BC \u002d \u00ad \u2027 \u058A]
-Let $currentword = [[^$WB:Format $WB:Other $WB:MidNum] $Grapheme_Extend $alphabetic]
-Show [$currentword $otherword - $ID_Continue]
-Show [$currentword $otherword - [$alphabetic $anyNumericValue $gcAllMarks]]
-Show [$otherword - $currentword]
-Show [$name:«.*LETTER.*» - $alphabetic]
-
-# Pattern characters are invariant!
-# Add after 4.1.0
-$Pattern_Whitespace = $×Pattern_Whitespace
-$Pattern_Syntax = $×Pattern_Syntax
+##########################
+# BIDI
+##########################
 
 #BIDI invariant constants
 Let $R_blocks = [$block:Kharoshthi $block:Hebrew $block:Cypriot_Syllabary  \u07C0-\u08FF \uFB1D-\uFB4F \U00010840-\U00010FFF]
@@ -163,17 +195,22 @@ $R_blocks ! [$Bidi_Class:L $Bidi_Class:AL]
 $AL_blocks ! [$Bidi_Class:L $Bidi_Class:R]
 [$R_blocks $AL_blocks \u200F] ⊇ [$Bidi_Class:AL $Bidi_Class:R]
 
-# Derivations must match
+##########################
+# Derivations
+##########################
 
-$Math = [$GC:Sm $Other_Math]
-$Alphabetic = [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl $Other_Alphabetic]
-$Lowercase = [$GC:Ll $Other_Lowercase]
-$Uppercase = [$GC:Lu $Other_Uppercase]
-$ID_Start = [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl $Other_ID_Start]
-$ID_Continue = [$ID_Start $GC:Mn $GC:Mc $GC:Nd $GC:Pc $Other_ID_Continue] 
-$Default_Ignorable_Code_Point = [[$Other_Default_Ignorable_Code_Point $GC:Cf $GC:Cc $GC:Cs $Variation_Selector $Noncharacter_Code_Point] - [$White_Space\uFFF9-\uFFFB]]
-$Grapheme_Extend = [$GC:Me $GC:Mn $Other_Grapheme_Extend]
+$Math = [$Other_Math $GC:Sm]
+$Alphabetic = [$Other_Alphabetic $GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]
+$Lowercase = [$Other_Lowercase $GC:Ll]
+$Uppercase = [$Other_Uppercase $GC:Lu]
+$ID_Start = [$Other_ID_Start $GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl - $Pattern_Syntax - $Pattern_White_Space]
+$ID_Continue = [$Other_ID_Continue $ID_Start $GC:Mn $GC:Mc $GC:Nd $GC:Pc - $Pattern_Syntax - $Pattern_White_Space] 
+$Default_Ignorable_Code_Point = [$Other_Default_Ignorable_Code_Point $GC:Cf $Variation_Selector - [$White_Space\uFFF9-\uFFFB\u0600-\u0603\u06DD\u070F]]
+
+$Grapheme_Extend = [$Other_Grapheme_Extend $GC:Me $GC:Mn]
+
 $Grapheme_Base = [^$GC:Cc $GC:Cf $GC:Cs $GC:Co $GC:Cn $GC:Zl $GC:Zp $Grapheme_Extend]
+$Grapheme_Link = $CCC:Virama
 
 # "Minimal" Other_: NOT hard requirements; just if we want to be minimal
 # (Should add way to make these warnings, not errors)
@@ -182,14 +219,16 @@ $Other_Math = [$Math - $GC:Sm]
 $Other_Alphabetic = [$Alphabetic - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]]
 $Other_Lowercase = [$Lowercase - $GC:Ll]
 $Other_Uppercase = [$Uppercase - $GC:Lu]
-$Other_ID_Start = [$ID_Start - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]]
-$Other_Default_Ignorable_Code_Point = [$Default_Ignorable_Code_Point - [[$GC:Cf $GC:Cc $GC:Cs $Variation_Selector $Noncharacter_Code_Point] - [$White_Space\uFFF9-\uFFFB]]]
+$Other_ID_Start = [$ID_Start - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl - $Pattern_Syntax - $Pattern_White_Space]]
+$Other_ID_Continue = [$ID_Continue - [$ID_Start $GC:Mn $GC:Mc $GC:Nd $GC:Pc - $Pattern_Syntax - $Pattern_White_Space]]
+
+$Other_Default_Ignorable_Code_Point = [$Default_Ignorable_Code_Point - [$GC:Cf $Variation_Selector - [$White_Space\uFFF9-\uFFFB]]]
 $Other_Grapheme_Extend = [$Grapheme_Extend - [$GC:Me $GC:Mn]]
 
-# ===========================
-
+##########################
 # POSIX Compatibility Properties (UTS#18)
 # http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html
+##########################
 
 # constants
 
