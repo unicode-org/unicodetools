@@ -2,6 +2,40 @@
 <title>UCD Canonical Check</title></head><body>
 <h2 align='right'>L2/06-386R2</h2>
 <h1>UCD Canonical Check</title></h1>
+<h2>*Characters with Bidi_Mirrored=True containing one or more marks*</h2>
+<table><tr><td>2204</td><td> #</td><td>Sm</td><td> </td><td>(∄) </td><td> THERE DOES NOT EXIST</td></tr>
+<tr><td>2209</td><td> #</td><td>Sm</td><td> </td><td>(∉) </td><td> NOT AN ELEMENT OF</td></tr>
+<tr><td>220C</td><td> #</td><td>Sm</td><td> </td><td>(∌) </td><td> DOES NOT CONTAIN AS MEMBER</td></tr>
+<tr><td>2224</td><td> #</td><td>Sm</td><td> </td><td>(∤) </td><td> DOES NOT DIVIDE</td></tr>
+<tr><td>2226</td><td> #</td><td>Sm</td><td> </td><td>(∦) </td><td> NOT PARALLEL TO</td></tr>
+<tr><td>2241</td><td> #</td><td>Sm</td><td> </td><td>(≁) </td><td> NOT TILDE</td></tr>
+<tr><td>2244</td><td> #</td><td>Sm</td><td> </td><td>(≄) </td><td> NOT ASYMPTOTICALLY EQUAL TO</td></tr>
+<tr><td>2247</td><td> #</td><td>Sm</td><td> </td><td>(≇) </td><td> NEITHER APPROXIMATELY NOR ACTUALLY EQUAL TO</td></tr>
+<tr><td>2249</td><td> #</td><td>Sm</td><td> </td><td>(≉) </td><td> NOT ALMOST EQUAL TO</td></tr>
+<tr><td>2260</td><td> #</td><td>Sm</td><td> </td><td>(≠) </td><td> NOT EQUAL TO</td></tr>
+<tr><td>2262</td><td> #</td><td>Sm</td><td> </td><td>(≢) </td><td> NOT IDENTICAL TO</td></tr>
+<tr><td>226E..2271</td><td> #</td><td>Sm</td><td> [4] </td><td>(≮..≱) </td><td> NOT LESS-THAN..NEITHER GREATER-THAN NOR EQUAL TO</td></tr>
+<tr><td>2274..2275</td><td> #</td><td>Sm</td><td> [2] </td><td>(≴..≵) </td><td> NEITHER LESS-THAN NOR EQUIVALENT TO..NEITHER GREATER-THAN NOR EQUIVALENT TO</td></tr>
+<tr><td>2278..2279</td><td> #</td><td>Sm</td><td> [2] </td><td>(≸..≹) </td><td> NEITHER LESS-THAN NOR GREATER-THAN..NEITHER GREATER-THAN NOR LESS-THAN</td></tr>
+<tr><td>2280..2281</td><td> #</td><td>Sm</td><td> [2] </td><td>(⊀..⊁) </td><td> DOES NOT PRECEDE..DOES NOT SUCCEED</td></tr>
+<tr><td>2284..2285</td><td> #</td><td>Sm</td><td> [2] </td><td>(⊄..⊅) </td><td> NOT A SUBSET OF..NOT A SUPERSET OF</td></tr>
+<tr><td>2288..2289</td><td> #</td><td>Sm</td><td> [2] </td><td>(⊈..⊉) </td><td> NEITHER A SUBSET OF NOR EQUAL TO..NEITHER A SUPERSET OF NOR EQUAL TO</td></tr>
+<tr><td>22AC..22AF</td><td> #</td><td>Sm</td><td> [4] </td><td>(⊬..⊯) </td><td> DOES NOT PROVE..NEGATED DOUBLE VERTICAL BAR DOUBLE RIGHT TURNSTILE</td></tr>
+<tr><td>22E0..22E3</td><td> #</td><td>Sm</td><td> [4] </td><td>(⋠..⋣) </td><td> DOES NOT PRECEDE OR EQUAL..NOT SQUARE ORIGINAL OF OR EQUAL TO</td></tr>
+<tr><td>22EA..22ED</td><td> #</td><td>Sm</td><td> [4] </td><td>(⋪..⋭) </td><td> NOT NORMAL SUBGROUP OF..DOES NOT CONTAIN AS NORMAL SUBGROUP OR EQUAL</td></tr>
+<tr><td>2ADC</td><td> #</td><td>Sm</td><td> </td><td>(⫝̸) </td><td> FORKING</td></tr>
+</table><p></p>
+<p># Total code points: 38</p>
+<h2><b>Characters that break within their NFD form.</b></h2>
+<h3>Testing for breaks in toNFD(chars) with GraphemeClusterBreak</h3>
+<p>Failures: 0</p>
+<h3>Testing for breaks in toNFD(chars) with WordBreak</h3>
+<p>Failures: 0</p>
+<h3>Testing for breaks in toNFD(chars) with LineBreak</h3>
+<p>Failures: 0</p>
+<h3>Testing for breaks in toNFD(chars) with SentenceBreak</h3>
+<p>Failures: 0</p>
+<h2>CANONICAL Equivalence of Properties</h2>
 <table>
 <tr><td><b>Testing:</b></td><td>[ASCII_Hex_Digit, Alphabetic, Bidi_Class, Bidi_Control, Bidi_Mirrored, Bidi_Mirroring_Glyph, Case_Fold_Turkish_I, Case_Folding, Dash, Default_Ignorable_Code_Point, Diacritic, Extender, FC_NFKC_Closure, General_Category, Grapheme_Base, Grapheme_Cluster_Break, Grapheme_Extend, Grapheme_Link, Hangul_Syllable_Type, Hex_Digit, Hyphen, IDS_Binary_Operator, IDS_Trinary_Operator, ID_Continue, ID_Start, ISO_Comment, Ideographic, Jamo_Short_Name, Join_Control, Joining_Group, Joining_Type, Line_Break, Logical_Order_Exception, Lowercase, Lowercase_Mapping, Math, Non_Break, Noncharacter_Code_Point, Numeric_Type, Numeric_Value, Quotation_Mark, Radical, STerm, Script, Sentence_Break, Soft_Dotted, Terminal_Punctuation, Titlecase_Mapping, Unicode_Radical_Stroke, Uppercase, Uppercase_Mapping, Variation_Selector, White_Space, Word_Break, XID_Continue, XID_Start]</td><tr>
 <tr><td><b>Skipping:</b></td><td>[Age, Block, Canonical_Combining_Class, Case_Stable, Composition_Exclusion, Decomposition_Mapping, Decomposition_Type, Deprecated, East_Asian_Width, Expands_On_NFC, Expands_On_NFD, Expands_On_NFKC, Expands_On_NFKD, Full_Composition_Exclusion, IdnOutput, NFC_Quick_Check, NFD_Quick_Check, NFKC_Quick_Check, NFKD_Quick_Check, Name, Other_Alphabetic, Other_Default_Ignorable_Code_Point, Other_Grapheme_Extend, Other_ID_Continue, Other_ID_Start, Other_Lowercase, Other_Math, Other_Uppercase, Pattern_Syntax, Pattern_White_Space, Simple_Case_Folding, Simple_Lowercase_Mapping, Simple_Titlecase_Mapping, Simple_Uppercase_Mapping, Unicode_1_Name, Unified_Ideograph]</td><tr>
