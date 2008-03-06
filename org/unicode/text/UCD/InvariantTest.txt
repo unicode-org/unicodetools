@@ -139,3 +139,23 @@ $symOther = $gcAllSymbols
 
 
 [$symOther & $nfc] = [$gcAllSymbols & $nfc]
+
+
+#MY TEST
+#Show [$gc:Mn - $Alphabetic]
+#Show [$Alphabetic & $gc:Mn]
+
+# Try removing M* from alphabetic, and matching to SA
+#Show [$SAScripts & [$Alphabetic $gc:cf - $gcAllMarks]] = $LineBreak:SA
+
+# Try adding M* to alphabetic, and matching to SA
+#Show [$SAScripts & [$Alphabetic $gc:cf $gcAllMarks]] = $LineBreak:SA
+
+# testing
+# [$Pattern_Whitespace $Pattern_Syntax] ! [[^$WB:Format $WB:Other] \u2019 \u0027 \u02BC \u002d \u00ad \u2027 \u058A]
+Let $otherword = [\u2019 \u0027 \u02BC \u002d \u00ad \u2027 \u058A]
+Let $currentword = [[^$WB:Format $WB:Other $WB:MidNum] $Grapheme_Extend $alphabetic]
+Show [$currentword $otherword - $ID_Continue]
+Show [$currentword $otherword - [$alphabetic $anyNumericValue $gcAllMarks]]
+Show [$otherword - $currentword]
+Show [$name:«.*LETTER.*» - $alphabetic]
