@@ -34,6 +34,8 @@ import java.util.TreeSet;
 
 public class VerifyUCD {
 
+  private static final boolean FULL = false;
+
   public static void main(String[] args) throws IOException {
     // System.out.println(new File(UCD_Types.BASE_DIR).getCanonicalPath());
     String x = Default.ucd().getCase("\u0130", UCD.FULL, UCD.LOWER);
@@ -52,9 +54,9 @@ public class VerifyUCD {
         org.unicode.cldr.util.Utility.callMethod(property, VerifyUCD.class);
       } else {
         checkBidiMirroredNonspacingMarks();
-        checkGraphemeCluster();
+        checkSegmentation();
         checkCanonicalEquivalenceOfProperties();
-        checkCompatibilityEquivalenceOfProperties();
+        if (FULL) checkCompatibilityEquivalenceOfProperties();
       }
      
     } finally {
@@ -314,9 +316,9 @@ public class VerifyUCD {
 
   }
   
-  static public void checkGraphemeCluster() {
+  static public void checkSegmentation() {
     // verify that every character is a single grapheme cluster, even if canonically decomposed.
-    Log.logln("<h2><b>Characters that are not single grapheme clusters, when decomposed.</b></h2>");
+    Log.logln("<h2><b>Characters that break within their NFD form.</b></h2>");
     for (String type : new String[] {"GraphemeClusterBreak", "WordBreak", "LineBreak", "SentenceBreak"}) {
       Builder segBuilder = Segmenter.make(ToolUnicodePropertySource.make(Default.ucdVersion()), type);
       Segmenter seg = segBuilder.make();
