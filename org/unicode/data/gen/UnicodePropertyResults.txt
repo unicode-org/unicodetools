@@ -1,0 +1,1197 @@
+﻿# Invariance Tests
+#
+# A normal line indicates an invariant set relationship to be tested, and is of the form:
+#
+# 	line := set relation set
+#
+#   relation := '='             // has identical contents to
+#            := ('>' | '⊃')     // is proper superset of
+#            := ('≥' | '⊇')     // is superset of 
+#            := ('<' | '⊂')     // is proper subset of
+#            := ('≤' | '⊆')     // is subset of
+#            := '!'             // has no intersection
+#            := '?'             // none of the above (they overlap, and neither contains the other)
+#
+# A set is a standard UnicodeSet, but where $pv can be used to express properties
+#
+# 	pv := '$' '×'? prop (('=' | ':') value)?
+#
+# The × indicates that the property is the previous released version.
+#  That is, if the version is 4.0.1, then the × version is 4.0.0
+#
+# If the value is missing, it is defaulted to true
+# If the value is of the form «...», then the ... is interpreted as a regular expression
+# The property can be the short or long form as in the PropertyAliases.txt
+# The value (if enumerated) can be the short or long form as in PropertyValueAliases.txt
+#
+# A UnicodeSet is a boolean combinations of properties and character ranges, as you would see in
+#  Perl or other regular-expression languages. Examples:
+#	[$General_Category:Unassigned-[a-zA-Z]]
+# For details, see LDML
+#
+# WARNING: do not use \p{...} or [:...:] syntax, since those will be
+# ICU's current version of properties, not the current snapshot's.
+# Use the $ notation for properties (listed above) instead.
+#
+# TODO: fix to use same syntax, and fail instead of falling back to ICU
+#
+# When this file is parsed, a parse error message may contain <@>
+# to indicate the location of an error in the input line.
+#
+# If there is an error in the test, a comparison listing of the two sides of the relation is generated.
+#
+# The Show command can be used to list any set on the console, for comparison.
+# The Let command can be used to create variables
+
+##########################
+# General Constants
+##########################
+
+Let $gcAllPunctuation = [$gc:Open_Punctuation $gc:Close_Punctuation $gc:Dash_Punctuation $gc:Connector_Punctuation $gc:Other_Punctuation $gc:Initial_Punctuation $gc:Final_Punctuation]
+Let $gcAllSymbols = [$gc:Currency_Symbol $gc:Modifier_Symbol $gc:Math_Symbol $gc:Other_Symbol]
+Let $gcAllMarks = [$gc:Nonspacing_Mark $gc:Enclosing_Mark $gc:Spacing_Mark]
+
+##### EXAMPLES OF USAGE #####
+
+# Show [[^$gc:unassigned]-[^$×gc:unassigned]-[^$dt:none]]
+# $GC:Zs ! $GC:Zp
+# $East_Asian_Width:Neutral ? $GC:Uppercase_Letter
+# $Script:Common ! [$Alphabetic - $Math]
+
+# $Pattern_Whitespace = [$Whitespace \u200E \u200F]
+# $Pattern_Syntax = [$gcAllSymbols $gcAllPunctuation [\u2190-\u2BFF\u2e00-\u2e7F]]
+# $Pattern_Syntax ! $Alphabetic
+# $Pattern_Syntax ! $ID_Continue
+
+# [$script:greek&$gc:«.*letter.*»] = [;\u00B5\u00B7\u00C4\u00CB\u00CF\u00D6\u00DC\u00E4\u00EB\u00EF\u00F6\u00FC\u00FF-\u0101\u0112-\u0113\u012A-\u012B\u014C-\u014D\u016A-\u016B\u0178\u01D5-\u01DC\u01DE-\u01E3\u01EC-\u01ED\u022A-\u022D\u0230-\u0233\u0304\u0308\u0313-\u0314\u0342-\u0345\u037A\u037E\u0386-\u038A\u038C\u038E-\u03A1\u03A3-\u03CE\u03D0-\u03D7\u03DB\u03DD\u03DF\u03E1\u03E3\u03E5\u03E7\u03E9\u03EB\u03ED\u03EF-\u03F5\u0401\u0407\u0451\u0457\u04D2-\u04D3\u04DA-\u04DF\u04E2-\u04E7\u04EA-\u04F1\u04F4-\u04F5\u04F8-\u04F9\u1E14-\u1E17\u1E20-\u1E21\u1E26-\u1E27\u1E2E-\u1E2F\u1E38-\u1E39\u1E4E-\u1E53\u1E5C-\u1E5D\u1E7A-\u1E7B\u1E84-\u1E85\u1E8C-\u1E8D\u1E97\u1F00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC1-\u1FC4\u1FC6-\u1FCC\u1FCF-\u1FD3\u1FD6-\u1FDB\u1FDF-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2126]
+
+# $script:greek = $×script:greek
+# $gc:lm = $script:inherited
+
+# Examples of parsing errors
+
+# $LBA:Neutral =  $GC:Zp # example of non-existant property
+# $LB:foo =  $GC:Zp # example of non-existant value
+# $GC:Zs @ $GC:Zp # example of unknown relation
+
+#### REAL INVARIANTS FOLLOW ####
+
+##########################
+# Misc Properties
+##########################
+
+$Whitespace ⊃ [$GC:Zs $GC:Zp $GC:Zl]
+$GC:Zs ? $Name:«.*SPACE.*»
+
+$Dash ⊃ [$GC:Pd]
+
+FALSE
+**** START Error Info #1 ****
+
+In [$GC:Pd], but not in $Dash :
+2E1A           # Pd      (⸚)  HYPHEN WITH DIAERESIS
+
+# Total code points: 1
+
+Not in [$GC:Pd], but in $Dash :
+2053           # Po      (⁓)  SWUNG DASH
+207B           # Sm      (⁻)  SUPERSCRIPT MINUS
+208B           # Sm      (₋)  SUBSCRIPT MINUS
+2212           # Sm      (−)  MINUS SIGN
+
+# Total code points: 4
+
+In both [$GC:Pd], and in $Dash :
+002D           # Pd      (-)  HYPHEN-MINUS
+058A           # Pd      (֊)  ARMENIAN HYPHEN
+05BE           # Pd      (־)  HEBREW PUNCTUATION MAQAF
+1806           # Pd      (᠆)  MONGOLIAN TODO SOFT HYPHEN
+2010..2015     # Pd  [6] (‐..―)  HYPHEN..HORIZONTAL BAR
+2E17           # Pd      (⸗)  DOUBLE OBLIQUE HYPHEN
+301C           # Pd      (〜)  WAVE DASH
+3030           # Pd      (〰)  WAVY DASH
+30A0           # Pd      (゠)  KATAKANA-HIRAGANA DOUBLE HYPHEN
+FE31..FE32     # Pd  [2] (︱..︲)  PRESENTATION FORM FOR VERTICAL EM DASH..PRESENTATION FORM FOR VERTICAL EN DASH
+FE58           # Pd      (﹘)  SMALL EM DASH
+FE63           # Pd      (﹣)  SMALL HYPHEN-MINUS
+FF0D           # Pd      (－)  FULLWIDTH HYPHEN-MINUS
+
+# Total code points: 19
+**** END Error Info #1 ****
+
+
+$Script:Common ! [$GC:Mn $GC:Me \u200c \u200d]
+$Script:Inherited ⊆ [$GC:Mn $GC:Me \u200c \u200d]
+
+# [$Alphabetic] ! $Script:Common
+#  & [$Decomposition_Type:None $Decomposition_Type:Canonical]
+
+$Alphabetic ⊃ [$Uppercase $Lowercase]
+
+# Unassigned only decreases
+
+$gc:unassigned ⊆ $×gc:unassigned
+
+##########################
+# Numbers
+##########################
+
+# Numbers: the following must be equal
+
+$General_Category:Decimal_Number = $Numeric_Type:Decimal
+
+# Decimals are 0..9
+
+Let $decimalValue = $Numeric_Value:«[0-9].0»
+$decimalValue ⊇ $General_Category:Decimal_Number
+
+# All and only those items with numeric types have numeric values
+
+Let $anyNumericValue = $Numeric_Value:«-?[0-9]+.[0-9]+»
+[$Numeric_Type:Decimal $Numeric_Type:Digit $Numeric_Type:Numeric] = $anyNumericValue
+
+##########################
+# Decompositions
+##########################
+
+# Canonical decompositions (minus exclusions) must be identical across releases
+[$Decomposition_Type:Canonical - $Full_Composition_Exclusion] = [$×Decomposition_Type:Canonical - $×Full_Composition_Exclusion]
+
+##########################
+# Identifiers
+##########################
+
+# Identifiers must be backwards compatible
+$ID_Start ⊇ $×ID_Start
+$ID_Continue ⊇ $×ID_Continue
+$XID_Start ⊇ $×XID_Start
+$XID_Continue ⊇ $×XID_Continue
+
+# Continue must contain start
+$ID_Continue ⊇ $ID_Start
+$XID_Continue ⊇ $XID_Start
+
+# The X versions are subsets of the the plain versions
+$ID_Continue ⊇ $XID_Continue
+$ID_Start ⊇ $XID_Start
+
+# Identifiers can't intersect pattern stuff
+$ID_Continue ! [$Pattern_Whitespace $Pattern_Syntax]
+$Pattern_Whitespace ! [$ID_Continue $Pattern_Syntax]
+$Pattern_Syntax ! [$ID_Continue $Pattern_Whitespace]
+
+$XID_Continue ! [$Pattern_Whitespace $Pattern_Syntax]
+$Pattern_Whitespace ! [$XID_Continue $Pattern_Syntax]
+$Pattern_Syntax ! [$XID_Continue $Pattern_Whitespace]
+
+#These are invariant!
+$Pattern_Whitespace = $×Pattern_Whitespace
+$Pattern_Syntax = $×Pattern_Syntax
+
+##########################
+# LineBreak property
+##########################
+
+$Line_Break:Unknown = [$General_Category:Unassigned $GeneralCategory:PrivateUse]
+$LB:OP = [$GC:Ps \u00A1 \u00BF]
+
+FALSE
+**** START Error Info #2 ****
+
+In [$GC:Ps \u00A1 \u00BF], but not in $LB:OP :
+
+# Total code points: 0
+
+Not in [$GC:Ps \u00A1 \u00BF], but in $LB:OP :
+2E18           # Po      (⸘)  INVERTED INTERROBANG
+
+# Total code points: 1
+
+In both [$GC:Ps \u00A1 \u00BF], and in $LB:OP :
+0028           # Ps      (()  LEFT PARENTHESIS
+005B           # Ps      ([)  LEFT SQUARE BRACKET
+007B           # Ps      ({)  LEFT CURLY BRACKET
+00A1           # Po      (¡)  INVERTED EXCLAMATION MARK
+00BF           # Po      (¿)  INVERTED QUESTION MARK
+0F3A           # Ps      (༺)  TIBETAN MARK GUG RTAGS GYON
+0F3C           # Ps      (༼)  TIBETAN MARK ANG KHANG GYON
+169B           # Ps      (᚛)  OGHAM FEATHER MARK
+201A           # Ps      (‚)  SINGLE LOW-9 QUOTATION MARK
+201E           # Ps      („)  DOUBLE LOW-9 QUOTATION MARK
+2045           # Ps      (⁅)  LEFT SQUARE BRACKET WITH QUILL
+207D           # Ps      (⁽)  SUPERSCRIPT LEFT PARENTHESIS
+208D           # Ps      (₍)  SUBSCRIPT LEFT PARENTHESIS
+2329           # Ps      (〈)  LEFT-POINTING ANGLE BRACKET
+2768           # Ps      (❨)  MEDIUM LEFT PARENTHESIS ORNAMENT
+276A           # Ps      (❪)  MEDIUM FLATTENED LEFT PARENTHESIS ORNAMENT
+276C           # Ps      (❬)  MEDIUM LEFT-POINTING ANGLE BRACKET ORNAMENT
+276E           # Ps      (❮)  HEAVY LEFT-POINTING ANGLE QUOTATION MARK ORNAMENT
+2770           # Ps      (❰)  HEAVY LEFT-POINTING ANGLE BRACKET ORNAMENT
+2772           # Ps      (❲)  LIGHT LEFT TORTOISE SHELL BRACKET ORNAMENT
+2774           # Ps      (❴)  MEDIUM LEFT CURLY BRACKET ORNAMENT
+27C5           # Ps      (⟅)  LEFT S-SHAPED BAG DELIMITER
+27E6           # Ps      (⟦)  MATHEMATICAL LEFT WHITE SQUARE BRACKET
+27E8           # Ps      (⟨)  MATHEMATICAL LEFT ANGLE BRACKET
+27EA           # Ps      (⟪)  MATHEMATICAL LEFT DOUBLE ANGLE BRACKET
+27EC           # Ps      (⟬)  MATHEMATICAL LEFT WHITE TORTOISE SHELL BRACKET
+27EE           # Ps      (⟮)  MATHEMATICAL LEFT FLATTENED PARENTHESIS
+2983           # Ps      (⦃)  LEFT WHITE CURLY BRACKET
+2985           # Ps      (⦅)  LEFT WHITE PARENTHESIS
+2987           # Ps      (⦇)  Z NOTATION LEFT IMAGE BRACKET
+2989           # Ps      (⦉)  Z NOTATION LEFT BINDING BRACKET
+298B           # Ps      (⦋)  LEFT SQUARE BRACKET WITH UNDERBAR
+298D           # Ps      (⦍)  LEFT SQUARE BRACKET WITH TICK IN TOP CORNER
+298F           # Ps      (⦏)  LEFT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
+2991           # Ps      (⦑)  LEFT ANGLE BRACKET WITH DOT
+2993           # Ps      (⦓)  LEFT ARC LESS-THAN BRACKET
+2995           # Ps      (⦕)  DOUBLE LEFT ARC GREATER-THAN BRACKET
+2997           # Ps      (⦗)  LEFT BLACK TORTOISE SHELL BRACKET
+29D8           # Ps      (⧘)  LEFT WIGGLY FENCE
+29DA           # Ps      (⧚)  LEFT DOUBLE WIGGLY FENCE
+29FC           # Ps      (⧼)  LEFT-POINTING CURVED ANGLE BRACKET
+2E22           # Ps      (⸢)  TOP LEFT HALF BRACKET
+2E24           # Ps      (⸤)  BOTTOM LEFT HALF BRACKET
+2E26           # Ps      (⸦)  LEFT SIDEWAYS U BRACKET
+2E28           # Ps      (⸨)  LEFT DOUBLE PARENTHESIS
+3008           # Ps      (〈)  LEFT ANGLE BRACKET
+300A           # Ps      (《)  LEFT DOUBLE ANGLE BRACKET
+300C           # Ps      (「)  LEFT CORNER BRACKET
+300E           # Ps      (『)  LEFT WHITE CORNER BRACKET
+3010           # Ps      (【)  LEFT BLACK LENTICULAR BRACKET
+3014           # Ps      (〔)  LEFT TORTOISE SHELL BRACKET
+3016           # Ps      (〖)  LEFT WHITE LENTICULAR BRACKET
+3018           # Ps      (〘)  LEFT WHITE TORTOISE SHELL BRACKET
+301A           # Ps      (〚)  LEFT WHITE SQUARE BRACKET
+301D           # Ps      (〝)  REVERSED DOUBLE PRIME QUOTATION MARK
+FD3E           # Ps      (﴾)  ORNATE LEFT PARENTHESIS
+FE17           # Ps      (︗)  PRESENTATION FORM FOR VERTICAL LEFT WHITE LENTICULAR BRACKET
+FE35           # Ps      (︵)  PRESENTATION FORM FOR VERTICAL LEFT PARENTHESIS
+FE37           # Ps      (︷)  PRESENTATION FORM FOR VERTICAL LEFT CURLY BRACKET
+FE39           # Ps      (︹)  PRESENTATION FORM FOR VERTICAL LEFT TORTOISE SHELL BRACKET
+FE3B           # Ps      (︻)  PRESENTATION FORM FOR VERTICAL LEFT BLACK LENTICULAR BRACKET
+FE3D           # Ps      (︽)  PRESENTATION FORM FOR VERTICAL LEFT DOUBLE ANGLE BRACKET
+FE3F           # Ps      (︿)  PRESENTATION FORM FOR VERTICAL LEFT ANGLE BRACKET
+FE41           # Ps      (﹁)  PRESENTATION FORM FOR VERTICAL LEFT CORNER BRACKET
+FE43           # Ps      (﹃)  PRESENTATION FORM FOR VERTICAL LEFT WHITE CORNER BRACKET
+FE47           # Ps      (﹇)  PRESENTATION FORM FOR VERTICAL LEFT SQUARE BRACKET
+FE59           # Ps      (﹙)  SMALL LEFT PARENTHESIS
+FE5B           # Ps      (﹛)  SMALL LEFT CURLY BRACKET
+FE5D           # Ps      (﹝)  SMALL LEFT TORTOISE SHELL BRACKET
+FF08           # Ps      (（)  FULLWIDTH LEFT PARENTHESIS
+FF3B           # Ps      (［)  FULLWIDTH LEFT SQUARE BRACKET
+FF5B           # Ps      (｛)  FULLWIDTH LEFT CURLY BRACKET
+FF5F           # Ps      (｟)  FULLWIDTH LEFT WHITE PARENTHESIS
+FF62           # Ps      (｢)  HALFWIDTH LEFT CORNER BRACKET
+
+# Total code points: 74
+**** END Error Info #2 ****
+
+$LB:CL ⊃ $GC:Pe
+$LB:CM = [$GC:Mn $GC:Me $GC:Mc $GC:Cc $GC:Cf -$LB:SA -$LB:WJ -$LB:ZW]
+
+FALSE
+**** START Error Info #3 ****
+
+In [$GC:Mn $GC:Me $GC:Mc $GC:Cc $GC:Cf -$LB:SA -$LB:WJ -$LB:ZW], but not in $LB:CM :
+0009..000D     # Cc  [5] (   ..)  <control-0009>..<control-000D>
+0085           # Cc      ()  <control-0085>
+00AD           # Cf      (­)  SOFT HYPHEN
+034F           # Mn      (͏)  COMBINING GRAPHEME JOINER
+035C..0362     # Mn  [7] (͜..͢)  COMBINING DOUBLE BREVE BELOW..COMBINING DOUBLE RIGHTWARDS ARROW BELOW
+0600..0603     # Cf  [4] (؀..؃)  ARABIC NUMBER SIGN..ARABIC SIGN SAFHA
+06DD           # Cf      (۝)  ARABIC END OF AYAH
+070F           # Cf      (܏)  SYRIAC ABBREVIATION MARK
+0F7F           # Mc      (ཿ)  TIBETAN SIGN RNAM BCAD
+2061..2064     # Cf  [4] (⁡..⁤)  FUNCTION APPLICATION..INVISIBLE PLUS
+
+# Total code points: 26
+
+Not in [$GC:Mn $GC:Me $GC:Mc $GC:Cc $GC:Cf -$LB:SA -$LB:WJ -$LB:ZW], but in $LB:CM :
+
+# Total code points: 0
+
+In both [$GC:Mn $GC:Me $GC:Mc $GC:Cc $GC:Cf -$LB:SA -$LB:WJ -$LB:ZW], and in $LB:CM :
+0000..0008     # Cc  [9] ( ..)  <control-0000>..<control-0008>
+000E..001F     # Cc [18] (..)  <control-000E>..<control-001F>
+007F..0084     # Cc  [6] (..)  <control-007F>..<control-0084>
+0086..009F     # Cc [26] (..)  <control-0086>..<control-009F>
+0300..034E     # Mn [79] (̀..͎)  COMBINING GRAVE ACCENT..COMBINING UPWARDS ARROW BELOW
+0350..035B     # Mn [12] (͐..͛)  COMBINING RIGHT ARROWHEAD ABOVE..COMBINING ZIGZAG ABOVE
+0363..036F     # Mn [13] (ͣ..ͯ)  COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
+0483..0487     # Mn  [5] (҃..҇)  COMBINING CYRILLIC TITLO..COMBINING CYRILLIC POKRYTIE
+0488..0489     # Me  [2] (҈..҉)  COMBINING CYRILLIC HUNDRED THOUSANDS SIGN..COMBINING CYRILLIC MILLIONS SIGN
+0591..05BD     # Mn [45] (֑..ֽ)  HEBREW ACCENT ETNAHTA..HEBREW POINT METEG
+05BF           # Mn      (ֿ)  HEBREW POINT RAFE
+05C1..05C2     # Mn  [2] (ׁ..ׂ)  HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
+05C4..05C5     # Mn  [2] (ׄ..ׅ)  HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
+05C7           # Mn      (ׇ)  HEBREW POINT QAMATS QATAN
+0610..061A     # Mn [11] (ؐ..ؚ)  ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
+064B..065E     # Mn [20] (ً..ٞ)  ARABIC FATHATAN..ARABIC FATHA WITH TWO DOTS
+0670           # Mn      (ٰ)  ARABIC LETTER SUPERSCRIPT ALEF
+06D6..06DC     # Mn  [7] (ۖ..ۜ)  ARABIC SMALL HIGH LIGATURE SAD WITH LAM WITH ALEF MAKSURA..ARABIC SMALL HIGH SEEN
+06DE           # Me      (۞)  ARABIC START OF RUB EL HIZB
+06DF..06E4     # Mn  [6] (۟..ۤ)  ARABIC SMALL HIGH ROUNDED ZERO..ARABIC SMALL HIGH MADDA
+06E7..06E8     # Mn  [2] (ۧ..ۨ)  ARABIC SMALL HIGH YEH..ARABIC SMALL HIGH NOON
+06EA..06ED     # Mn  [4] (۪..ۭ)  ARABIC EMPTY CENTRE LOW STOP..ARABIC SMALL LOW MEEM
+0711           # Mn      (ܑ)  SYRIAC LETTER SUPERSCRIPT ALAPH
+0730..074A     # Mn [27] (ܰ..݊)  SYRIAC PTHAHA ABOVE..SYRIAC BARREKH
+07A6..07B0     # Mn [11] (ަ..ް)  THAANA ABAFILI..THAANA SUKUN
+07EB..07F3     # Mn  [9] (߫..߳)  NKO COMBINING SHORT HIGH TONE..NKO COMBINING DOUBLE DOT ABOVE
+0901..0902     # Mn  [2] (ँ..ं)  DEVANAGARI SIGN CANDRABINDU..DEVANAGARI SIGN ANUSVARA
+0903           # Mc      (ः)  DEVANAGARI SIGN VISARGA
+093C           # Mn      (़)  DEVANAGARI SIGN NUKTA
+093E..0940     # Mc  [3] (ा..ी)  DEVANAGARI VOWEL SIGN AA..DEVANAGARI VOWEL SIGN II
+0941..0948     # Mn  [8] (ु..ै)  DEVANAGARI VOWEL SIGN U..DEVANAGARI VOWEL SIGN AI
+0949..094C     # Mc  [4] (ॉ..ौ)  DEVANAGARI VOWEL SIGN CANDRA O..DEVANAGARI VOWEL SIGN AU
+094D           # Mn      (्)  DEVANAGARI SIGN VIRAMA
+0951..0954     # Mn  [4] (॑..॔)  DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI ACUTE ACCENT
+0962..0963     # Mn  [2] (ॢ..ॣ)  DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
+0981           # Mn      (ঁ)  BENGALI SIGN CANDRABINDU
+0982..0983     # Mc  [2] (ং..ঃ)  BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+09BC           # Mn      (়)  BENGALI SIGN NUKTA
+09BE..09C0     # Mc  [3] (া..ী)  BENGALI VOWEL SIGN AA..BENGALI VOWEL SIGN II
+09C1..09C4     # Mn  [4] (ু..ৄ)  BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
+09C7..09C8     # Mc  [2] (ে..ৈ)  BENGALI VOWEL SIGN E..BENGALI VOWEL SIGN AI
+09CB..09CC     # Mc  [2] (ো..ৌ)  BENGALI VOWEL SIGN O..BENGALI VOWEL SIGN AU
+09CD           # Mn      (্)  BENGALI SIGN VIRAMA
+09D7           # Mc      (ৗ)  BENGALI AU LENGTH MARK
+09E2..09E3     # Mn  [2] (ৢ..ৣ)  BENGALI VOWEL SIGN VOCALIC L..BENGALI VOWEL SIGN VOCALIC LL
+0A01..0A02     # Mn  [2] (ਁ..ਂ)  GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
+0A03           # Mc      (ਃ)  GURMUKHI SIGN VISARGA
+0A3C           # Mn      (਼)  GURMUKHI SIGN NUKTA
+0A3E..0A40     # Mc  [3] (ਾ..ੀ)  GURMUKHI VOWEL SIGN AA..GURMUKHI VOWEL SIGN II
+0A41..0A42     # Mn  [2] (ੁ..ੂ)  GURMUKHI VOWEL SIGN U..GURMUKHI VOWEL SIGN UU
+0A47..0A48     # Mn  [2] (ੇ..ੈ)  GURMUKHI VOWEL SIGN EE..GURMUKHI VOWEL SIGN AI
+0A4B..0A4D     # Mn  [3] (ੋ..੍)  GURMUKHI VOWEL SIGN OO..GURMUKHI SIGN VIRAMA
+0A51           # Mn      (ੑ)  GURMUKHI SIGN UDAAT
+0A70..0A71     # Mn  [2] (ੰ..ੱ)  GURMUKHI TIPPI..GURMUKHI ADDAK
+0A75           # Mn      (ੵ)  GURMUKHI SIGN YAKASH
+0A81..0A82     # Mn  [2] (ઁ..ં)  GUJARATI SIGN CANDRABINDU..GUJARATI SIGN ANUSVARA
+0A83           # Mc      (ઃ)  GUJARATI SIGN VISARGA
+0ABC           # Mn      (઼)  GUJARATI SIGN NUKTA
+0ABE..0AC0     # Mc  [3] (ા..ી)  GUJARATI VOWEL SIGN AA..GUJARATI VOWEL SIGN II
+0AC1..0AC5     # Mn  [5] (ુ..ૅ)  GUJARATI VOWEL SIGN U..GUJARATI VOWEL SIGN CANDRA E
+0AC7..0AC8     # Mn  [2] (ે..ૈ)  GUJARATI VOWEL SIGN E..GUJARATI VOWEL SIGN AI
+0AC9           # Mc      (ૉ)  GUJARATI VOWEL SIGN CANDRA O
+0ACB..0ACC     # Mc  [2] (ો..ૌ)  GUJARATI VOWEL SIGN O..GUJARATI VOWEL SIGN AU
+0ACD           # Mn      (્)  GUJARATI SIGN VIRAMA
+0AE2..0AE3     # Mn  [2] (ૢ..ૣ)  GUJARATI VOWEL SIGN VOCALIC L..GUJARATI VOWEL SIGN VOCALIC LL
+0B01           # Mn      (ଁ)  ORIYA SIGN CANDRABINDU
+0B02..0B03     # Mc  [2] (ଂ..ଃ)  ORIYA SIGN ANUSVARA..ORIYA SIGN VISARGA
+0B3C           # Mn      (଼)  ORIYA SIGN NUKTA
+0B3E           # Mc      (ା)  ORIYA VOWEL SIGN AA
+0B3F           # Mn      (ି)  ORIYA VOWEL SIGN I
+0B40           # Mc      (ୀ)  ORIYA VOWEL SIGN II
+0B41..0B44     # Mn  [4] (ୁ..ୄ)  ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
+0B47..0B48     # Mc  [2] (େ..ୈ)  ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
+0B4B..0B4C     # Mc  [2] (ୋ..ୌ)  ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
+0B4D           # Mn      (୍)  ORIYA SIGN VIRAMA
+0B56           # Mn      (ୖ)  ORIYA AI LENGTH MARK
+0B57           # Mc      (ୗ)  ORIYA AU LENGTH MARK
+0B62..0B63     # Mn  [2] (ୢ..ୣ)  ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
+0B82           # Mn      (ஂ)  TAMIL SIGN ANUSVARA
+0BBE..0BBF     # Mc  [2] (ா..ி)  TAMIL VOWEL SIGN AA..TAMIL VOWEL SIGN I
+0BC0           # Mn      (ீ)  TAMIL VOWEL SIGN II
+0BC1..0BC2     # Mc  [2] (ு..ூ)  TAMIL VOWEL SIGN U..TAMIL VOWEL SIGN UU
+0BC6..0BC8     # Mc  [3] (ெ..ை)  TAMIL VOWEL SIGN E..TAMIL VOWEL SIGN AI
+0BCA..0BCC     # Mc  [3] (ொ..ௌ)  TAMIL VOWEL SIGN O..TAMIL VOWEL SIGN AU
+0BCD           # Mn      (்)  TAMIL SIGN VIRAMA
+0BD7           # Mc      (ௗ)  TAMIL AU LENGTH MARK
+0C01..0C03     # Mc  [3] (ఁ..ః)  TELUGU SIGN CANDRABINDU..TELUGU SIGN VISARGA
+0C3E..0C40     # Mn  [3] (ా..ీ)  TELUGU VOWEL SIGN AA..TELUGU VOWEL SIGN II
+0C41..0C44     # Mc  [4] (ు..ౄ)  TELUGU VOWEL SIGN U..TELUGU VOWEL SIGN VOCALIC RR
+0C46..0C48     # Mn  [3] (ె..ై)  TELUGU VOWEL SIGN E..TELUGU VOWEL SIGN AI
+0C4A..0C4D     # Mn  [4] (ొ..్)  TELUGU VOWEL SIGN O..TELUGU SIGN VIRAMA
+0C55..0C56     # Mn  [2] (ౕ..ౖ)  TELUGU LENGTH MARK..TELUGU AI LENGTH MARK
+0C62..0C63     # Mn  [2] (ౢ..ౣ)  TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
+0C82..0C83     # Mc  [2] (ಂ..ಃ)  KANNADA SIGN ANUSVARA..KANNADA SIGN VISARGA
+0CBC           # Mn      (಼)  KANNADA SIGN NUKTA
+0CBE           # Mc      (ಾ)  KANNADA VOWEL SIGN AA
+0CBF           # Mn      (ಿ)  KANNADA VOWEL SIGN I
+0CC0..0CC4     # Mc  [5] (ೀ..ೄ)  KANNADA VOWEL SIGN II..KANNADA VOWEL SIGN VOCALIC RR
+0CC6           # Mn      (ೆ)  KANNADA VOWEL SIGN E
+0CC7..0CC8     # Mc  [2] (ೇ..ೈ)  KANNADA VOWEL SIGN EE..KANNADA VOWEL SIGN AI
+0CCA..0CCB     # Mc  [2] (ೊ..ೋ)  KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
+0CCC..0CCD     # Mn  [2] (ೌ..್)  KANNADA VOWEL SIGN AU..KANNADA SIGN VIRAMA
+0CD5..0CD6     # Mc  [2] (ೕ..ೖ)  KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
+0CE2..0CE3     # Mn  [2] (ೢ..ೣ)  KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
+0D02..0D03     # Mc  [2] (ം..ഃ)  MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
+0D3E..0D40     # Mc  [3] (ാ..ീ)  MALAYALAM VOWEL SIGN AA..MALAYALAM VOWEL SIGN II
+0D41..0D44     # Mn  [4] (ു..ൄ)  MALAYALAM VOWEL SIGN U..MALAYALAM VOWEL SIGN VOCALIC RR
+0D46..0D48     # Mc  [3] (െ..ൈ)  MALAYALAM VOWEL SIGN E..MALAYALAM VOWEL SIGN AI
+0D4A..0D4C     # Mc  [3] (ൊ..ൌ)  MALAYALAM VOWEL SIGN O..MALAYALAM VOWEL SIGN AU
+0D4D           # Mn      (്)  MALAYALAM SIGN VIRAMA
+0D57           # Mc      (ൗ)  MALAYALAM AU LENGTH MARK
+0D62..0D63     # Mn  [2] (ൢ..ൣ)  MALAYALAM VOWEL SIGN VOCALIC L..MALAYALAM VOWEL SIGN VOCALIC LL
+0D82..0D83     # Mc  [2] (ං..ඃ)  SINHALA SIGN ANUSVARAYA..SINHALA SIGN VISARGAYA
+0DCA           # Mn      (්)  SINHALA SIGN AL-LAKUNA
+0DCF..0DD1     # Mc  [3] (ා..ෑ)  SINHALA VOWEL SIGN AELA-PILLA..SINHALA VOWEL SIGN DIGA AEDA-PILLA
+0DD2..0DD4     # Mn  [3] (ි..ු)  SINHALA VOWEL SIGN KETTI IS-PILLA..SINHALA VOWEL SIGN KETTI PAA-PILLA
+0DD6           # Mn      (ූ)  SINHALA VOWEL SIGN DIGA PAA-PILLA
+0DD8..0DDF     # Mc  [8] (ෘ..ෟ)  SINHALA VOWEL SIGN GAETTA-PILLA..SINHALA VOWEL SIGN GAYANUKITTA
+0DF2..0DF3     # Mc  [2] (ෲ..ෳ)  SINHALA VOWEL SIGN DIGA GAETTA-PILLA..SINHALA VOWEL SIGN DIGA GAYANUKITTA
+0F18..0F19     # Mn  [2] (༘..༙)  TIBETAN ASTROLOGICAL SIGN -KHYUD PA..TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
+0F35           # Mn      (༵)  TIBETAN MARK NGAS BZUNG NYI ZLA
+0F37           # Mn      (༷)  TIBETAN MARK NGAS BZUNG SGOR RTAGS
+0F39           # Mn      (༹)  TIBETAN MARK TSA -PHRU
+0F3E..0F3F     # Mc  [2] (༾..༿)  TIBETAN SIGN YAR TSHES..TIBETAN SIGN MAR TSHES
+0F71..0F7E     # Mn [14] (ཱ..ཾ)  TIBETAN VOWEL SIGN AA..TIBETAN SIGN RJES SU NGA RO
+0F80..0F84     # Mn  [5] (ྀ..྄)  TIBETAN VOWEL SIGN REVERSED I..TIBETAN MARK HALANTA
+0F86..0F87     # Mn  [2] (྆..྇)  TIBETAN SIGN LCI RTAGS..TIBETAN SIGN YANG RTAGS
+0F90..0F97     # Mn  [8] (ྐ..ྗ)  TIBETAN SUBJOINED LETTER KA..TIBETAN SUBJOINED LETTER JA
+0F99..0FBC     # Mn [36] (ྙ..ྼ)  TIBETAN SUBJOINED LETTER NYA..TIBETAN SUBJOINED LETTER FIXED-FORM RA
+0FC6           # Mn      (࿆)  TIBETAN SYMBOL PADMA GDAN
+135F           # Mn      (፟)  ETHIOPIC COMBINING GEMINATION MARK
+1712..1714     # Mn  [3] (ᜒ..᜔)  TAGALOG VOWEL SIGN I..TAGALOG SIGN VIRAMA
+1732..1734     # Mn  [3] (ᜲ..᜴)  HANUNOO VOWEL SIGN I..HANUNOO SIGN PAMUDPOD
+1752..1753     # Mn  [2] (ᝒ..ᝓ)  BUHID VOWEL SIGN I..BUHID VOWEL SIGN U
+1772..1773     # Mn  [2] (ᝲ..ᝳ)  TAGBANWA VOWEL SIGN I..TAGBANWA VOWEL SIGN U
+180B..180D     # Mn  [3] (᠋..᠍)  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
+18A9           # Mn      (ᢩ)  MONGOLIAN LETTER ALI GALI DAGALGA
+1920..1922     # Mn  [3] (ᤠ..ᤢ)  LIMBU VOWEL SIGN A..LIMBU VOWEL SIGN U
+1923..1926     # Mc  [4] (ᤣ..ᤦ)  LIMBU VOWEL SIGN EE..LIMBU VOWEL SIGN AU
+1927..1928     # Mn  [2] (ᤧ..ᤨ)  LIMBU VOWEL SIGN E..LIMBU VOWEL SIGN O
+1929..192B     # Mc  [3] (ᤩ..ᤫ)  LIMBU SUBJOINED LETTER YA..LIMBU SUBJOINED LETTER WA
+1930..1931     # Mc  [2] (ᤰ..ᤱ)  LIMBU SMALL LETTER KA..LIMBU SMALL LETTER NGA
+1932           # Mn      (ᤲ)  LIMBU SMALL LETTER ANUSVARA
+1933..1938     # Mc  [6] (ᤳ..ᤸ)  LIMBU SMALL LETTER TA..LIMBU SMALL LETTER LA
+1939..193B     # Mn  [3] (᤹..᤻)  LIMBU SIGN MUKPHRENG..LIMBU SIGN SA-I
+1A17..1A18     # Mn  [2] (ᨗ..ᨘ)  BUGINESE VOWEL SIGN I..BUGINESE VOWEL SIGN U
+1A19..1A1B     # Mc  [3] (ᨙ..ᨛ)  BUGINESE VOWEL SIGN E..BUGINESE VOWEL SIGN AE
+1B00..1B03     # Mn  [4] (ᬀ..ᬃ)  BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
+1B04           # Mc      (ᬄ)  BALINESE SIGN BISAH
+1B34           # Mn      (᬴)  BALINESE SIGN REREKAN
+1B35           # Mc      (ᬵ)  BALINESE VOWEL SIGN TEDUNG
+1B36..1B3A     # Mn  [5] (ᬶ..ᬺ)  BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
+1B3B           # Mc      (ᬻ)  BALINESE VOWEL SIGN RA REPA TEDUNG
+1B3C           # Mn      (ᬼ)  BALINESE VOWEL SIGN LA LENGA
+1B3D..1B41     # Mc  [5] (ᬽ..ᭁ)  BALINESE VOWEL SIGN LA LENGA TEDUNG..BALINESE VOWEL SIGN TALING REPA TEDUNG
+1B42           # Mn      (ᭂ)  BALINESE VOWEL SIGN PEPET
+1B43..1B44     # Mc  [2] (ᭃ..᭄)  BALINESE VOWEL SIGN PEPET TEDUNG..BALINESE ADEG ADEG
+1B6B..1B73     # Mn  [9] (᭫..᭳)  BALINESE MUSICAL SYMBOL COMBINING TEGEH..BALINESE MUSICAL SYMBOL COMBINING GONG
+1B80..1B81     # Mn  [2] (ᮀ..ᮁ)  SUNDANESE SIGN PANYECEK..SUNDANESE SIGN PANGLAYAR
+1B82           # Mc      (ᮂ)  SUNDANESE SIGN PANGWISAD
+1BA1           # Mc      (ᮡ)  SUNDANESE CONSONANT SIGN PAMINGKAL
+1BA2..1BA5     # Mn  [4] (ᮢ..ᮥ)  SUNDANESE CONSONANT SIGN PANYAKRA..SUNDANESE VOWEL SIGN PANYUKU
+1BA6..1BA7     # Mc  [2] (ᮦ..ᮧ)  SUNDANESE VOWEL SIGN PANAELAENG..SUNDANESE VOWEL SIGN PANOLONG
+1BA8..1BA9     # Mn  [2] (ᮨ..ᮩ)  SUNDANESE VOWEL SIGN PAMEPET..SUNDANESE VOWEL SIGN PANEULEUNG
+1BAA           # Mc      (᮪)  SUNDANESE SIGN PAMAAEH
+1C24..1C2B     # Mc  [8] (ᰤ..ᰫ)  LEPCHA SUBJOINED LETTER YA..LEPCHA VOWEL SIGN UU
+1C2C..1C33     # Mn  [8] (ᰬ..ᰳ)  LEPCHA VOWEL SIGN E..LEPCHA CONSONANT SIGN T
+1C34..1C35     # Mc  [2] (ᰴ..ᰵ)  LEPCHA CONSONANT SIGN NYIN-DO..LEPCHA CONSONANT SIGN KANG
+1C36..1C37     # Mn  [2] (ᰶ..᰷)  LEPCHA SIGN RAN..LEPCHA SIGN NUKTA
+1DC0..1DE6     # Mn [39] (᷀..ᷦ)  COMBINING DOTTED GRAVE ACCENT..COMBINING LATIN SMALL LETTER Z
+1DFE..1DFF     # Mn  [2] (᷾..᷿)  COMBINING LEFT ARROWHEAD ABOVE..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
+200C..200F     # Cf  [4] (‌..‏)  ZERO WIDTH NON-JOINER..RIGHT-TO-LEFT MARK
+202A..202E     # Cf  [5] (‪..‮)  LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
+206A..206F     # Cf  [6] (⁪..⁯)  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
+20D0..20DC     # Mn [13] (⃐..⃜)  COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
+20DD..20E0     # Me  [4] (⃝..⃠)  COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
+20E1           # Mn      (⃡)  COMBINING LEFT RIGHT ARROW ABOVE
+20E2..20E4     # Me  [3] (⃢..⃤)  COMBINING ENCLOSING SCREEN..COMBINING ENCLOSING UPWARD POINTING TRIANGLE
+20E5..20F0     # Mn [12] (⃥..⃰)  COMBINING REVERSE SOLIDUS OVERLAY..COMBINING ASTERISK ABOVE
+2DE0..2DFF     # Mn [32] (ⷠ..ⷿ)  COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
+302A..302F     # Mn  [6] (〪..〯)  IDEOGRAPHIC LEVEL TONE MARK..HANGUL DOUBLE DOT TONE MARK
+3099..309A     # Mn  [2] (゙..゚)  COMBINING KATAKANA-HIRAGANA VOICED SOUND MARK..COMBINING KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
+A66F           # Mn      (꙯)  COMBINING CYRILLIC VZMET
+A670..A672     # Me  [3] (꙰..꙲)  COMBINING CYRILLIC TEN MILLIONS SIGN..COMBINING CYRILLIC THOUSAND MILLIONS SIGN
+A67C..A67D     # Mn  [2] (꙼..꙽)  COMBINING CYRILLIC KAVYKA..COMBINING CYRILLIC PAYEROK
+A802           # Mn      (ꠂ)  SYLOTI NAGRI SIGN DVISVARA
+A806           # Mn      (꠆)  SYLOTI NAGRI SIGN HASANTA
+A80B           # Mn      (ꠋ)  SYLOTI NAGRI SIGN ANUSVARA
+A823..A824     # Mc  [2] (ꠣ..ꠤ)  SYLOTI NAGRI VOWEL SIGN A..SYLOTI NAGRI VOWEL SIGN I
+A825..A826     # Mn  [2] (ꠥ..ꠦ)  SYLOTI NAGRI VOWEL SIGN U..SYLOTI NAGRI VOWEL SIGN E
+A827           # Mc      (ꠧ)  SYLOTI NAGRI VOWEL SIGN OO
+A880..A881     # Mc  [2] (ꢀ..ꢁ)  SAURASHTRA SIGN ANUSVARA..SAURASHTRA SIGN VISARGA
+A8B4..A8C3     # Mc [16] (ꢴ..ꣃ)  SAURASHTRA CONSONANT SIGN HAARU..SAURASHTRA VOWEL SIGN AU
+A8C4           # Mn      (꣄)  SAURASHTRA SIGN VIRAMA
+A926..A92D     # Mn  [8] (ꤦ..꤭)  KAYAH LI VOWEL UE..KAYAH LI TONE CALYA PLOPHU
+A947..A951     # Mn [11] (ꥇ..ꥑ)  REJANG VOWEL SIGN I..REJANG CONSONANT SIGN R
+A952..A953     # Mc  [2] (ꥒ..꥓)  REJANG CONSONANT SIGN H..REJANG VIRAMA
+AA29..AA2E     # Mn  [6] (ꨩ..ꨮ)  CHAM VOWEL SIGN AA..CHAM VOWEL SIGN OE
+AA2F..AA30     # Mc  [2] (ꨯ..ꨰ)  CHAM VOWEL SIGN O..CHAM VOWEL SIGN AI
+AA31..AA32     # Mn  [2] (ꨱ..ꨲ)  CHAM VOWEL SIGN AU..CHAM VOWEL SIGN UE
+AA33..AA34     # Mc  [2] (ꨳ..ꨴ)  CHAM CONSONANT SIGN YA..CHAM CONSONANT SIGN RA
+AA35..AA36     # Mn  [2] (ꨵ..ꨶ)  CHAM CONSONANT SIGN LA..CHAM CONSONANT SIGN WA
+AA43           # Mn      (ꩃ)  CHAM CONSONANT SIGN FINAL NG
+AA4C           # Mn      (ꩌ)  CHAM CONSONANT SIGN FINAL M
+AA4D           # Mc      (ꩍ)  CHAM CONSONANT SIGN FINAL H
+FB1E           # Mn      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
+FE00..FE0F     # Mn [16] (︀..️)  VARIATION SELECTOR-1..VARIATION SELECTOR-16
+FE20..FE26     # Mn  [7] (︠..︦)  COMBINING LIGATURE LEFT HALF..COMBINING CONJOINING MACRON
+FFF9..FFFB     # Cf  [3] (￹..￻)  INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATION TERMINATOR
+101FD          # Mn      (𐇽)  PHAISTOS DISC SIGN COMBINING OBLIQUE STROKE
+10A01..10A03   # Mn  [3] (𐨁..𐨃)  KHAROSHTHI VOWEL SIGN I..KHAROSHTHI VOWEL SIGN VOCALIC R
+10A05..10A06   # Mn  [2] (𐨅..𐨆)  KHAROSHTHI VOWEL SIGN E..KHAROSHTHI VOWEL SIGN O
+10A0C..10A0F   # Mn  [4] (𐨌..𐨏)  KHAROSHTHI VOWEL LENGTH MARK..KHAROSHTHI SIGN VISARGA
+10A38..10A3A   # Mn  [3] (𐨸..𐨺)  KHAROSHTHI SIGN BAR ABOVE..KHAROSHTHI SIGN DOT BELOW
+10A3F          # Mn      (𐨿)  KHAROSHTHI VIRAMA
+1D165..1D166   # Mc  [2] (𝅥..𝅦)  MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
+1D167..1D169   # Mn  [3] (𝅧..𝅩)  MUSICAL SYMBOL COMBINING TREMOLO-1..MUSICAL SYMBOL COMBINING TREMOLO-3
+1D16D..1D172   # Mc  [6] (𝅭..𝅲)  MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
+1D173..1D17A   # Cf  [8] (𝅳..𝅺)  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
+1D17B..1D182   # Mn  [8] (𝅻..𝆂)  MUSICAL SYMBOL COMBINING ACCENT..MUSICAL SYMBOL COMBINING LOURE
+1D185..1D18B   # Mn  [7] (𝆅..𝆋)  MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
+1D1AA..1D1AD   # Mn  [4] (𝆪..𝆭)  MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
+1D242..1D244   # Mn  [3] (𝉂..𝉄)  COMBINING GREEK MUSICAL TRISEME..COMBINING GREEK MUSICAL PENTASEME
+E0001          # Cf      (󠀁)  LANGUAGE TAG
+E0020..E007F   # Cf [96] (󠀠..󠁿)  TAG SPACE..CANCEL TAG
+E0100..E01EF   # Mn [240] (󠄀..󠇯)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
+
+# Total code points: 1319
+**** END Error Info #3 ****
+
+$LB:NU = [$GC:Nd - $EA:F \u066B\u066C]
+$LB:PR = [$GC:Sc - $LB:PO \u002b\u005c\u00b1\u2116\u2212\u2213]
+$LB:QU = [$GC:Pf $GC:Pi \u0022\u0027\u275B-\u275E]
+
+FALSE
+**** START Error Info #4 ****
+
+In [$GC:Pf $GC:Pi \u0022\u0027\u275B-\u275E], but not in $LB:QU :
+
+# Total code points: 0
+
+Not in [$GC:Pf $GC:Pi \u0022\u0027\u275B-\u275E], but in $LB:QU :
+2E00..2E01     # Po  [2] (⸀..⸁)  RIGHT ANGLE SUBSTITUTION MARKER..RIGHT ANGLE DOTTED SUBSTITUTION MARKER
+2E06..2E08     # Po  [3] (⸆..⸈)  RAISED INTERPOLATION MARKER..DOTTED TRANSPOSITION MARKER
+2E0B           # Po      (⸋)  RAISED SQUARE
+
+# Total code points: 6
+
+In both [$GC:Pf $GC:Pi \u0022\u0027\u275B-\u275E], and in $LB:QU :
+0022           # Po      (&quot;)  QUOTATION MARK
+0027           # Po      (&apos;)  APOSTROPHE
+00AB           # Pi      («)  LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+00BB           # Pf      (»)  RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+2018           # Pi      (‘)  LEFT SINGLE QUOTATION MARK
+2019           # Pf      (’)  RIGHT SINGLE QUOTATION MARK
+201B..201C     # Pi  [2] (‛..“)  SINGLE HIGH-REVERSED-9 QUOTATION MARK..LEFT DOUBLE QUOTATION MARK
+201D           # Pf      (”)  RIGHT DOUBLE QUOTATION MARK
+201F           # Pi      (‟)  DOUBLE HIGH-REVERSED-9 QUOTATION MARK
+2039           # Pi      (‹)  SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+203A           # Pf      (›)  SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+275B..275E     # So  [4] (❛..❞)  HEAVY SINGLE TURNED COMMA QUOTATION MARK ORNAMENT..HEAVY DOUBLE COMMA QUOTATION MARK ORNAMENT
+2E02           # Pi      (⸂)  LEFT SUBSTITUTION BRACKET
+2E03           # Pf      (⸃)  RIGHT SUBSTITUTION BRACKET
+2E04           # Pi      (⸄)  LEFT DOTTED SUBSTITUTION BRACKET
+2E05           # Pf      (⸅)  RIGHT DOTTED SUBSTITUTION BRACKET
+2E09           # Pi      (⸉)  LEFT TRANSPOSITION BRACKET
+2E0A           # Pf      (⸊)  RIGHT TRANSPOSITION BRACKET
+2E0C           # Pi      (⸌)  LEFT RAISED OMISSION BRACKET
+2E0D           # Pf      (⸍)  RIGHT RAISED OMISSION BRACKET
+2E1C           # Pi      (⸜)  LEFT LOW PARAPHRASE BRACKET
+2E1D           # Pf      (⸝)  RIGHT LOW PARAPHRASE BRACKET
+2E20           # Pi      (⸠)  LEFT VERTICAL BAR WITH QUILL
+2E21           # Pf      (⸡)  RIGHT VERTICAL BAR WITH QUILL
+
+# Total code points: 28
+**** END Error Info #4 ****
+
+$LB:SG = $GC:Cs
+$LB:SP = [\u0020]
+$LB:SY = [\u002F]
+$LB:WJ = [\u2060\uFEFF]
+$LB:ZW = [\u200B]
+
+# SA are limited to certain scripts:
+Let $SAScripts = [$script:thai $script:lao $script:myanmar $script:khmer $script:Tai_Le $script:New_Tai_Lue]
+$SAScripts ⊇ $LineBreak:SA
+
+# And in those scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn
+[$SAScripts & [$Alphabetic $gc:cf $gc:Mn \u19DE \u19DF]] = [$SAScripts & [$LineBreak:SA $LineBreak:CM]]
+
+FALSE
+**** START Error Info #5 ****
+
+In [[$script:thai $script:lao $script:myanmar $script:khmer $script:Tai_Le $script:New_Tai_Lue] & [$LineBreak:SA $LineBreak:CM]], but not in [[$script:thai $script:lao $script:myanmar $script:khmer $script:Tai_Le $script:New_Tai_Lue] & [$Alphabetic $gc:cf $gc:Mn \u19DE \u19DF]] :
+1063..1064     # Mc  [2] (ၣ..ၤ)  MYANMAR TONE MARK SGAW KAREN HATHI..MYANMAR TONE MARK SGAW KAREN KE PHO
+1069..106D     # Mc  [5] (ၩ..ၭ)  MYANMAR SIGN WESTERN PWO KAREN TONE-1..MYANMAR SIGN WESTERN PWO KAREN TONE-5
+1087..108C     # Mc  [6] (ႇ..ႌ)  MYANMAR SIGN SHAN TONE-2..MYANMAR SIGN SHAN COUNCIL TONE-3
+108F           # Mc      (ႏ)  MYANMAR SIGN RUMAI PALAUNG TONE-5
+109E..109F     # So  [2] (႞..႟)  MYANMAR SYMBOL SHAN ONE..MYANMAR SYMBOL SHAN EXCLAMATION
+
+# Total code points: 16
+
+Not in [[$script:thai $script:lao $script:myanmar $script:khmer $script:Tai_Le $script:New_Tai_Lue] & [$LineBreak:SA $LineBreak:CM]], but in [[$script:thai $script:lao $script:myanmar $script:khmer $script:Tai_Le $script:New_Tai_Lue] & [$Alphabetic $gc:cf $gc:Mn \u19DE \u19DF]] :
+
+# Total code points: 0
+
+In both [[$script:thai $script:lao $script:myanmar $script:khmer $script:Tai_Le $script:New_Tai_Lue] & [$LineBreak:SA $LineBreak:CM]], and in [[$script:thai $script:lao $script:myanmar $script:khmer $script:Tai_Le $script:New_Tai_Lue] & [$Alphabetic $gc:cf $gc:Mn \u19DE \u19DF]] :
+0E01..0E30     # Lo [48] (ก..ะ)  THAI CHARACTER KO KAI..THAI CHARACTER SARA A
+0E31           # Mn      (ั)  THAI CHARACTER MAI HAN-AKAT
+0E32..0E33     # Lo  [2] (า..ำ)  THAI CHARACTER SARA AA..THAI CHARACTER SARA AM
+0E34..0E3A     # Mn  [7] (ิ..ฺ)  THAI CHARACTER SARA I..THAI CHARACTER PHINTHU
+0E40..0E45     # Lo  [6] (เ..ๅ)  THAI CHARACTER SARA E..THAI CHARACTER LAKKHANGYAO
+0E46           # Lm      (ๆ)  THAI CHARACTER MAIYAMOK
+0E47..0E4E     # Mn  [8] (็..๎)  THAI CHARACTER MAITAIKHU..THAI CHARACTER YAMAKKAN
+0E81..0E82     # Lo  [2] (ກ..ຂ)  LAO LETTER KO..LAO LETTER KHO SUNG
+0E84           # Lo      (ຄ)  LAO LETTER KHO TAM
+0E87..0E88     # Lo  [2] (ງ..ຈ)  LAO LETTER NGO..LAO LETTER CO
+0E8A           # Lo      (ຊ)  LAO LETTER SO TAM
+0E8D           # Lo      (ຍ)  LAO LETTER NYO
+0E94..0E97     # Lo  [4] (ດ..ທ)  LAO LETTER DO..LAO LETTER THO TAM
+0E99..0E9F     # Lo  [7] (ນ..ຟ)  LAO LETTER NO..LAO LETTER FO SUNG
+0EA1..0EA3     # Lo  [3] (ມ..ຣ)  LAO LETTER MO..LAO LETTER LO LING
+0EA5           # Lo      (ລ)  LAO LETTER LO LOOT
+0EA7           # Lo      (ວ)  LAO LETTER WO
+0EAA..0EAB     # Lo  [2] (ສ..ຫ)  LAO LETTER SO SUNG..LAO LETTER HO SUNG
+0EAD..0EB0     # Lo  [4] (ອ..ະ)  LAO LETTER O..LAO VOWEL SIGN A
+0EB1           # Mn      (ັ)  LAO VOWEL SIGN MAI KAN
+0EB2..0EB3     # Lo  [2] (າ..ຳ)  LAO VOWEL SIGN AA..LAO VOWEL SIGN AM
+0EB4..0EB9     # Mn  [6] (ິ..ູ)  LAO VOWEL SIGN I..LAO VOWEL SIGN UU
+0EBB..0EBC     # Mn  [2] (ົ..ຼ)  LAO VOWEL SIGN MAI KON..LAO SEMIVOWEL SIGN LO
+0EBD           # Lo      (ຽ)  LAO SEMIVOWEL SIGN NYO
+0EC0..0EC4     # Lo  [5] (ເ..ໄ)  LAO VOWEL SIGN E..LAO VOWEL SIGN AI
+0EC6           # Lm      (ໆ)  LAO KO LA
+0EC8..0ECD     # Mn  [6] (່..ໍ)  LAO TONE MAI EK..LAO NIGGAHITA
+0EDC..0EDD     # Lo  [2] (ໜ..ໝ)  LAO HO NO..LAO HO MO
+1000..102A     # Lo [43] (က..ဪ)  MYANMAR LETTER KA..MYANMAR LETTER AU
+102B..102C     # Mc  [2] (ါ..ာ)  MYANMAR VOWEL SIGN TALL AA..MYANMAR VOWEL SIGN AA
+102D..1030     # Mn  [4] (ိ..ူ)  MYANMAR VOWEL SIGN I..MYANMAR VOWEL SIGN UU
+1031           # Mc      (ေ)  MYANMAR VOWEL SIGN E
+1032..1037     # Mn  [6] (ဲ..့)  MYANMAR VOWEL SIGN AI..MYANMAR SIGN DOT BELOW
+1038           # Mc      (း)  MYANMAR SIGN VISARGA
+1039..103A     # Mn  [2] (္..်)  MYANMAR SIGN VIRAMA..MYANMAR SIGN ASAT
+103B..103C     # Mc  [2] (ျ..ြ)  MYANMAR CONSONANT SIGN MEDIAL YA..MYANMAR CONSONANT SIGN MEDIAL RA
+103D..103E     # Mn  [2] (ွ..ှ)  MYANMAR CONSONANT SIGN MEDIAL WA..MYANMAR CONSONANT SIGN MEDIAL HA
+103F           # Lo      (ဿ)  MYANMAR LETTER GREAT SA
+1050..1055     # Lo  [6] (ၐ..ၕ)  MYANMAR LETTER SHA..MYANMAR LETTER VOCALIC LL
+1056..1057     # Mc  [2] (ၖ..ၗ)  MYANMAR VOWEL SIGN VOCALIC R..MYANMAR VOWEL SIGN VOCALIC RR
+1058..1059     # Mn  [2] (ၘ..ၙ)  MYANMAR VOWEL SIGN VOCALIC L..MYANMAR VOWEL SIGN VOCALIC LL
+105A..105D     # Lo  [4] (ၚ..ၝ)  MYANMAR LETTER MON NGA..MYANMAR LETTER MON BBE
+105E..1060     # Mn  [3] (ၞ..ၠ)  MYANMAR CONSONANT SIGN MON MEDIAL NA..MYANMAR CONSONANT SIGN MON MEDIAL LA
+1061           # Lo      (ၡ)  MYANMAR LETTER SGAW KAREN SHA
+1062           # Mc      (ၢ)  MYANMAR VOWEL SIGN SGAW KAREN EU
+1065..1066     # Lo  [2] (ၥ..ၦ)  MYANMAR LETTER WESTERN PWO KAREN THA..MYANMAR LETTER WESTERN PWO KAREN PWA
+1067..1068     # Mc  [2] (ၧ..ၨ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN EU..MYANMAR VOWEL SIGN WESTERN PWO KAREN UE
+106E..1070     # Lo  [3] (ၮ..ၰ)  MYANMAR LETTER EASTERN PWO KAREN NNA..MYANMAR LETTER EASTERN PWO KAREN GHWA
+1071..1074     # Mn  [4] (ၱ..ၴ)  MYANMAR VOWEL SIGN GEBA KAREN I..MYANMAR VOWEL SIGN KAYAH EE
+1075..1081     # Lo [13] (ၵ..ႁ)  MYANMAR LETTER SHAN KA..MYANMAR LETTER SHAN HA
+1082           # Mn      (ႂ)  MYANMAR CONSONANT SIGN SHAN MEDIAL WA
+1083..1084     # Mc  [2] (ႃ..ႄ)  MYANMAR VOWEL SIGN SHAN AA..MYANMAR VOWEL SIGN SHAN E
+1085..1086     # Mn  [2] (ႅ..ႆ)  MYANMAR VOWEL SIGN SHAN E ABOVE..MYANMAR VOWEL SIGN SHAN FINAL Y
+108D           # Mn      (ႍ)  MYANMAR SIGN SHAN COUNCIL EMPHATIC TONE
+108E           # Lo      (ႎ)  MYANMAR LETTER RUMAI PALAUNG FA
+1780..17B3     # Lo [52] (ក..ឳ)  KHMER LETTER KA..KHMER INDEPENDENT VOWEL QAU
+17B4..17B5     # Cf  [2] (឴..឵)  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
+17B6           # Mc      (ា)  KHMER VOWEL SIGN AA
+17B7..17BD     # Mn  [7] (ិ..ួ)  KHMER VOWEL SIGN I..KHMER VOWEL SIGN UA
+17BE..17C5     # Mc  [8] (ើ..ៅ)  KHMER VOWEL SIGN OE..KHMER VOWEL SIGN AU
+17C6           # Mn      (ំ)  KHMER SIGN NIKAHIT
+17C7..17C8     # Mc  [2] (ះ..ៈ)  KHMER SIGN REAHMUK..KHMER SIGN YUUKALEAPINTU
+17C9..17D3     # Mn [11] (៉..៓)  KHMER SIGN MUUSIKATOAN..KHMER SIGN BATHAMASAT
+17D7           # Lm      (ៗ)  KHMER SIGN LEK TOO
+17DC           # Lo      (ៜ)  KHMER SIGN AVAKRAHASANYA
+17DD           # Mn      (៝)  KHMER SIGN ATTHACAN
+1950..196D     # Lo [30] (ᥐ..ᥭ)  TAI LE LETTER KA..TAI LE LETTER AI
+1970..1974     # Lo  [5] (ᥰ..ᥴ)  TAI LE LETTER TONE-2..TAI LE LETTER TONE-6
+1980..19A9     # Lo [42] (ᦀ..ᦩ)  NEW TAI LUE LETTER HIGH QA..NEW TAI LUE LETTER LOW XVA
+19B0..19C0     # Mc [17] (ᦰ..ᧀ)  NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW TAI LUE VOWEL SIGN IY
+19C1..19C7     # Lo  [7] (ᧁ..ᧇ)  NEW TAI LUE LETTER FINAL V..NEW TAI LUE LETTER FINAL B
+19C8..19C9     # Mc  [2] (ᧈ..ᧉ)  NEW TAI LUE TONE MARK-1..NEW TAI LUE TONE MARK-2
+19DE..19DF     # Po  [2] (᧞..᧟)  NEW TAI LUE SIGN LAE..NEW TAI LUE SIGN LAEV
+
+# Total code points: 434
+**** END Error Info #5 ****
+
+
+##########################
+# BIDI
+##########################
+
+#BIDI invariant constants
+Let $R_blocks = [$block:Kharoshthi $block:Hebrew $block:Cypriot_Syllabary  \u07C0-\u08FF \uFB1D-\uFB4F \U00010840-\U00010FFF]
+Let $AL_blocks = [[$block:Arabic_Supplement $block:Arabic $block:Syriac $block:Arabic $block:Thaana $block:Arabic_Presentation_Forms_A $block:Arabic_Presentation_Forms_B [\u0750-\u077F]] -$Noncharacter_Code_Point]
+
+#Unassigned characters in these blocks have R or AL respectively
+$Bidi_Class:R ⊇ [$R_blocks & $gc:Cn]
+$Bidi_Class:AL ⊇ [$AL_blocks & $gc:Cn]
+
+# There are no strong characters of the other directionalities (out of L, AL, R) in these blocks, 
+# and anything R or L is in the block (or RLM)
+$R_blocks ! [$Bidi_Class:L $Bidi_Class:AL]
+$AL_blocks ! [$Bidi_Class:L $Bidi_Class:R]
+[$R_blocks $AL_blocks \u200F] ⊇ [$Bidi_Class:AL $Bidi_Class:R]
+
+##########################
+# Derivations
+##########################
+
+$Math = [$Other_Math $GC:Sm]
+$Alphabetic = [$Other_Alphabetic $GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]
+$Lowercase = [$Other_Lowercase $GC:Ll]
+$Uppercase = [$Other_Uppercase $GC:Lu]
+$ID_Start = [$Other_ID_Start $GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl - $Pattern_Syntax - $Pattern_White_Space]
+$ID_Continue = [$Other_ID_Continue $ID_Start $GC:Mn $GC:Mc $GC:Nd $GC:Pc - $Pattern_Syntax - $Pattern_White_Space] 
+$Default_Ignorable_Code_Point = [$Other_Default_Ignorable_Code_Point $GC:Cf $Variation_Selector - [$White_Space\uFFF9-\uFFFB\u0600-\u0603\u06DD\u070F]]
+
+$Grapheme_Extend = [$Other_Grapheme_Extend $GC:Me $GC:Mn]
+
+$Grapheme_Base = [^$GC:Cc $GC:Cf $GC:Cs $GC:Co $GC:Cn $GC:Zl $GC:Zp $Grapheme_Extend]
+$Grapheme_Link = $CCC:Virama
+
+# "Minimal" Other_: NOT hard requirements; just if we want to be minimal
+# (Should add way to make these warnings, not errors)
+
+$Other_Math = [$Math - $GC:Sm]
+
+FALSE
+**** START Error Info #6 ****
+
+In [$Math - $GC:Sm], but not in $Other_Math :
+
+# Total code points: 0
+
+Not in [$Math - $GC:Sm], but in $Other_Math :
+21A0           # Sm      (↠)  RIGHTWARDS TWO HEADED ARROW
+25FB..25FD     # Sm  [3] (◻..◽)  WHITE MEDIUM SQUARE..WHITE MEDIUM SMALL SQUARE
+
+# Total code points: 4
+
+In both [$Math - $GC:Sm], and in $Other_Math :
+005E           # Sk      (^)  CIRCUMFLEX ACCENT
+03D0..03D2     # L&  [3] (ϐ..ϒ)  GREEK BETA SYMBOL..GREEK UPSILON WITH HOOK SYMBOL
+03D5           # L&      (ϕ)  GREEK PHI SYMBOL
+03F0..03F1     # L&  [2] (ϰ..ϱ)  GREEK KAPPA SYMBOL..GREEK RHO SYMBOL
+03F4..03F5     # L&  [2] (ϴ..ϵ)  GREEK CAPITAL THETA SYMBOL..GREEK LUNATE EPSILON SYMBOL
+2016           # Po      (‖)  DOUBLE VERTICAL LINE
+2032..2034     # Po  [3] (′..‴)  PRIME..TRIPLE PRIME
+2040           # Pc      (⁀)  CHARACTER TIE
+2061..2064     # Cf  [4] (⁡..⁤)  FUNCTION APPLICATION..INVISIBLE PLUS
+207D           # Ps      (⁽)  SUPERSCRIPT LEFT PARENTHESIS
+207E           # Pe      (⁾)  SUPERSCRIPT RIGHT PARENTHESIS
+208D           # Ps      (₍)  SUBSCRIPT LEFT PARENTHESIS
+208E           # Pe      (₎)  SUBSCRIPT RIGHT PARENTHESIS
+20D0..20DC     # Mn [13] (⃐..⃜)  COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
+20E1           # Mn      (⃡)  COMBINING LEFT RIGHT ARROW ABOVE
+20E5..20E6     # Mn  [2] (⃥..⃦)  COMBINING REVERSE SOLIDUS OVERLAY..COMBINING DOUBLE VERTICAL STROKE OVERLAY
+20EB..20EF     # Mn  [5] (⃫..⃯)  COMBINING LONG DOUBLE SOLIDUS OVERLAY..COMBINING RIGHT ARROW BELOW
+2102           # L&      (ℂ)  DOUBLE-STRUCK CAPITAL C
+210A..2113     # L& [10] (ℊ..ℓ)  SCRIPT SMALL G..SCRIPT SMALL L
+2115           # L&      (ℕ)  DOUBLE-STRUCK CAPITAL N
+2119..211D     # L&  [5] (ℙ..ℝ)  DOUBLE-STRUCK CAPITAL P..DOUBLE-STRUCK CAPITAL R
+2124           # L&      (ℤ)  DOUBLE-STRUCK CAPITAL Z
+2128           # L&      (ℨ)  BLACK-LETTER CAPITAL Z
+2129           # So      (℩)  TURNED GREEK SMALL LETTER IOTA
+212C..212D     # L&  [2] (ℬ..ℭ)  SCRIPT CAPITAL B..BLACK-LETTER CAPITAL C
+212F..2131     # L&  [3] (ℯ..ℱ)  SCRIPT SMALL E..SCRIPT CAPITAL F
+2133..2134     # L&  [2] (ℳ..ℴ)  SCRIPT CAPITAL M..SCRIPT SMALL O
+2135..2138     # Lo  [4] (ℵ..ℸ)  ALEF SYMBOL..DALET SYMBOL
+213C..213F     # L&  [4] (ℼ..ℿ)  DOUBLE-STRUCK SMALL PI..DOUBLE-STRUCK CAPITAL PI
+2145..2149     # L&  [5] (ⅅ..ⅉ)  DOUBLE-STRUCK ITALIC CAPITAL D..DOUBLE-STRUCK ITALIC SMALL J
+2195..2199     # So  [5] (↕..↙)  UP DOWN ARROW..SOUTH WEST ARROW
+219C..219F     # So  [4] (↜..↟)  LEFTWARDS WAVE ARROW..UPWARDS TWO HEADED ARROW
+21A1..21A2     # So  [2] (↡..↢)  DOWNWARDS TWO HEADED ARROW..LEFTWARDS ARROW WITH TAIL
+21A4..21A5     # So  [2] (↤..↥)  LEFTWARDS ARROW FROM BAR..UPWARDS ARROW FROM BAR
+21A7           # So      (↧)  DOWNWARDS ARROW FROM BAR
+21A9..21AD     # So  [5] (↩..↭)  LEFTWARDS ARROW WITH HOOK..LEFT RIGHT WAVE ARROW
+21B0..21B1     # So  [2] (↰..↱)  UPWARDS ARROW WITH TIP LEFTWARDS..UPWARDS ARROW WITH TIP RIGHTWARDS
+21B6..21B7     # So  [2] (↶..↷)  ANTICLOCKWISE TOP SEMICIRCLE ARROW..CLOCKWISE TOP SEMICIRCLE ARROW
+21BC..21CD     # So [18] (↼..⇍)  LEFTWARDS HARPOON WITH BARB UPWARDS..LEFTWARDS DOUBLE ARROW WITH STROKE
+21D0..21D1     # So  [2] (⇐..⇑)  LEFTWARDS DOUBLE ARROW..UPWARDS DOUBLE ARROW
+21D3           # So      (⇓)  DOWNWARDS DOUBLE ARROW
+21D5..21DB     # So  [7] (⇕..⇛)  UP DOWN DOUBLE ARROW..RIGHTWARDS TRIPLE ARROW
+21DD           # So      (⇝)  RIGHTWARDS SQUIGGLE ARROW
+21E4..21E5     # So  [2] (⇤..⇥)  LEFTWARDS ARROW TO BAR..RIGHTWARDS ARROW TO BAR
+23B4..23B5     # So  [2] (⎴..⎵)  TOP SQUARE BRACKET..BOTTOM SQUARE BRACKET
+23B7           # So      (⎷)  RADICAL SYMBOL BOTTOM
+23D0           # So      (⏐)  VERTICAL LINE EXTENSION
+23E2           # So      (⏢)  WHITE TRAPEZIUM
+25A0..25A1     # So  [2] (■..□)  BLACK SQUARE..WHITE SQUARE
+25AE..25B6     # So  [9] (▮..▶)  BLACK VERTICAL RECTANGLE..BLACK RIGHT-POINTING TRIANGLE
+25BC..25C0     # So  [5] (▼..◀)  BLACK DOWN-POINTING TRIANGLE..BLACK LEFT-POINTING TRIANGLE
+25C6..25C7     # So  [2] (◆..◇)  BLACK DIAMOND..WHITE DIAMOND
+25CA..25CB     # So  [2] (◊..○)  LOZENGE..WHITE CIRCLE
+25CF..25D3     # So  [5] (●..◓)  BLACK CIRCLE..CIRCLE WITH UPPER HALF BLACK
+25E2           # So      (◢)  BLACK LOWER RIGHT TRIANGLE
+25E4           # So      (◤)  BLACK UPPER LEFT TRIANGLE
+25E7..25EC     # So  [6] (◧..◬)  SQUARE WITH LEFT HALF BLACK..WHITE UP-POINTING TRIANGLE WITH DOT
+2605..2606     # So  [2] (★..☆)  BLACK STAR..WHITE STAR
+2640           # So      (♀)  FEMALE SIGN
+2642           # So      (♂)  MALE SIGN
+2660..2663     # So  [4] (♠..♣)  BLACK SPADE SUIT..BLACK CLUB SUIT
+266D..266E     # So  [2] (♭..♮)  MUSIC FLAT SIGN..MUSIC NATURAL SIGN
+27C5           # Ps      (⟅)  LEFT S-SHAPED BAG DELIMITER
+27C6           # Pe      (⟆)  RIGHT S-SHAPED BAG DELIMITER
+27E6           # Ps      (⟦)  MATHEMATICAL LEFT WHITE SQUARE BRACKET
+27E7           # Pe      (⟧)  MATHEMATICAL RIGHT WHITE SQUARE BRACKET
+27E8           # Ps      (⟨)  MATHEMATICAL LEFT ANGLE BRACKET
+27E9           # Pe      (⟩)  MATHEMATICAL RIGHT ANGLE BRACKET
+27EA           # Ps      (⟪)  MATHEMATICAL LEFT DOUBLE ANGLE BRACKET
+27EB           # Pe      (⟫)  MATHEMATICAL RIGHT DOUBLE ANGLE BRACKET
+27EC           # Ps      (⟬)  MATHEMATICAL LEFT WHITE TORTOISE SHELL BRACKET
+27ED           # Pe      (⟭)  MATHEMATICAL RIGHT WHITE TORTOISE SHELL BRACKET
+27EE           # Ps      (⟮)  MATHEMATICAL LEFT FLATTENED PARENTHESIS
+27EF           # Pe      (⟯)  MATHEMATICAL RIGHT FLATTENED PARENTHESIS
+2983           # Ps      (⦃)  LEFT WHITE CURLY BRACKET
+2984           # Pe      (⦄)  RIGHT WHITE CURLY BRACKET
+2985           # Ps      (⦅)  LEFT WHITE PARENTHESIS
+2986           # Pe      (⦆)  RIGHT WHITE PARENTHESIS
+2987           # Ps      (⦇)  Z NOTATION LEFT IMAGE BRACKET
+2988           # Pe      (⦈)  Z NOTATION RIGHT IMAGE BRACKET
+2989           # Ps      (⦉)  Z NOTATION LEFT BINDING BRACKET
+298A           # Pe      (⦊)  Z NOTATION RIGHT BINDING BRACKET
+298B           # Ps      (⦋)  LEFT SQUARE BRACKET WITH UNDERBAR
+298C           # Pe      (⦌)  RIGHT SQUARE BRACKET WITH UNDERBAR
+298D           # Ps      (⦍)  LEFT SQUARE BRACKET WITH TICK IN TOP CORNER
+298E           # Pe      (⦎)  RIGHT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
+298F           # Ps      (⦏)  LEFT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
+2990           # Pe      (⦐)  RIGHT SQUARE BRACKET WITH TICK IN TOP CORNER
+2991           # Ps      (⦑)  LEFT ANGLE BRACKET WITH DOT
+2992           # Pe      (⦒)  RIGHT ANGLE BRACKET WITH DOT
+2993           # Ps      (⦓)  LEFT ARC LESS-THAN BRACKET
+2994           # Pe      (⦔)  RIGHT ARC GREATER-THAN BRACKET
+2995           # Ps      (⦕)  DOUBLE LEFT ARC GREATER-THAN BRACKET
+2996           # Pe      (⦖)  DOUBLE RIGHT ARC LESS-THAN BRACKET
+2997           # Ps      (⦗)  LEFT BLACK TORTOISE SHELL BRACKET
+2998           # Pe      (⦘)  RIGHT BLACK TORTOISE SHELL BRACKET
+29D8           # Ps      (⧘)  LEFT WIGGLY FENCE
+29D9           # Pe      (⧙)  RIGHT WIGGLY FENCE
+29DA           # Ps      (⧚)  LEFT DOUBLE WIGGLY FENCE
+29DB           # Pe      (⧛)  RIGHT DOUBLE WIGGLY FENCE
+29FC           # Ps      (⧼)  LEFT-POINTING CURVED ANGLE BRACKET
+29FD           # Pe      (⧽)  RIGHT-POINTING CURVED ANGLE BRACKET
+FE61           # Po      (﹡)  SMALL ASTERISK
+FE63           # Pd      (﹣)  SMALL HYPHEN-MINUS
+FE68           # Po      (﹨)  SMALL REVERSE SOLIDUS
+FF3C           # Po      (＼)  FULLWIDTH REVERSE SOLIDUS
+FF3E           # Sk      (＾)  FULLWIDTH CIRCUMFLEX ACCENT
+1D400..1D454   # L& [85] (𝐀..𝑔)  MATHEMATICAL BOLD CAPITAL A..MATHEMATICAL ITALIC SMALL G
+1D456..1D49C   # L& [71] (𝑖..𝒜)  MATHEMATICAL ITALIC SMALL I..MATHEMATICAL SCRIPT CAPITAL A
+1D49E..1D49F   # L&  [2] (𝒞..𝒟)  MATHEMATICAL SCRIPT CAPITAL C..MATHEMATICAL SCRIPT CAPITAL D
+1D4A2          # L&      (𝒢)  MATHEMATICAL SCRIPT CAPITAL G
+1D4A5..1D4A6   # L&  [2] (𝒥..𝒦)  MATHEMATICAL SCRIPT CAPITAL J..MATHEMATICAL SCRIPT CAPITAL K
+1D4A9..1D4AC   # L&  [4] (𝒩..𝒬)  MATHEMATICAL SCRIPT CAPITAL N..MATHEMATICAL SCRIPT CAPITAL Q
+1D4AE..1D4B9   # L& [12] (𝒮..𝒹)  MATHEMATICAL SCRIPT CAPITAL S..MATHEMATICAL SCRIPT SMALL D
+1D4BB          # L&      (𝒻)  MATHEMATICAL SCRIPT SMALL F
+1D4BD..1D4C3   # L&  [7] (𝒽..𝓃)  MATHEMATICAL SCRIPT SMALL H..MATHEMATICAL SCRIPT SMALL N
+1D4C5..1D505   # L& [65] (𝓅..𝔅)  MATHEMATICAL SCRIPT SMALL P..MATHEMATICAL FRAKTUR CAPITAL B
+1D507..1D50A   # L&  [4] (𝔇..𝔊)  MATHEMATICAL FRAKTUR CAPITAL D..MATHEMATICAL FRAKTUR CAPITAL G
+1D50D..1D514   # L&  [8] (𝔍..𝔔)  MATHEMATICAL FRAKTUR CAPITAL J..MATHEMATICAL FRAKTUR CAPITAL Q
+1D516..1D51C   # L&  [7] (𝔖..𝔜)  MATHEMATICAL FRAKTUR CAPITAL S..MATHEMATICAL FRAKTUR CAPITAL Y
+1D51E..1D539   # L& [28] (𝔞..𝔹)  MATHEMATICAL FRAKTUR SMALL A..MATHEMATICAL DOUBLE-STRUCK CAPITAL B
+1D53B..1D53E   # L&  [4] (𝔻..𝔾)  MATHEMATICAL DOUBLE-STRUCK CAPITAL D..MATHEMATICAL DOUBLE-STRUCK CAPITAL G
+1D540..1D544   # L&  [5] (𝕀..𝕄)  MATHEMATICAL DOUBLE-STRUCK CAPITAL I..MATHEMATICAL DOUBLE-STRUCK CAPITAL M
+1D546          # L&      (𝕆)  MATHEMATICAL DOUBLE-STRUCK CAPITAL O
+1D54A..1D550   # L&  [7] (𝕊..𝕐)  MATHEMATICAL DOUBLE-STRUCK CAPITAL S..MATHEMATICAL DOUBLE-STRUCK CAPITAL Y
+1D552..1D6A5   # L& [340] (𝕒..𝚥)  MATHEMATICAL DOUBLE-STRUCK SMALL A..MATHEMATICAL ITALIC SMALL DOTLESS J
+1D6A8..1D6C0   # L& [25] (𝚨..𝛀)  MATHEMATICAL BOLD CAPITAL ALPHA..MATHEMATICAL BOLD CAPITAL OMEGA
+1D6C2..1D6DA   # L& [25] (𝛂..𝛚)  MATHEMATICAL BOLD SMALL ALPHA..MATHEMATICAL BOLD SMALL OMEGA
+1D6DC..1D6FA   # L& [31] (𝛜..𝛺)  MATHEMATICAL BOLD EPSILON SYMBOL..MATHEMATICAL ITALIC CAPITAL OMEGA
+1D6FC..1D714   # L& [25] (𝛼..𝜔)  MATHEMATICAL ITALIC SMALL ALPHA..MATHEMATICAL ITALIC SMALL OMEGA
+1D716..1D734   # L& [31] (𝜖..𝜴)  MATHEMATICAL ITALIC EPSILON SYMBOL..MATHEMATICAL BOLD ITALIC CAPITAL OMEGA
+1D736..1D74E   # L& [25] (𝜶..𝝎)  MATHEMATICAL BOLD ITALIC SMALL ALPHA..MATHEMATICAL BOLD ITALIC SMALL OMEGA
+1D750..1D76E   # L& [31] (𝝐..𝝮)  MATHEMATICAL BOLD ITALIC EPSILON SYMBOL..MATHEMATICAL SANS-SERIF BOLD CAPITAL OMEGA
+1D770..1D788   # L& [25] (𝝰..𝞈)  MATHEMATICAL SANS-SERIF BOLD SMALL ALPHA..MATHEMATICAL SANS-SERIF BOLD SMALL OMEGA
+1D78A..1D7A8   # L& [31] (𝞊..𝞨)  MATHEMATICAL SANS-SERIF BOLD EPSILON SYMBOL..MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL OMEGA
+1D7AA..1D7C2   # L& [25] (𝞪..𝟂)  MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL ALPHA..MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL OMEGA
+1D7C4..1D7CB   # L&  [8] (𝟄..𝟋)  MATHEMATICAL SANS-SERIF BOLD ITALIC EPSILON SYMBOL..MATHEMATICAL BOLD SMALL DIGAMMA
+1D7CE..1D7FF   # Nd [50] (𝟎..𝟿)  MATHEMATICAL BOLD DIGIT ZERO..MATHEMATICAL MONOSPACE DIGIT NINE
+
+# Total code points: 1216
+**** END Error Info #6 ****
+
+$Other_Alphabetic = [$Alphabetic - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]]
+
+FALSE
+**** START Error Info #7 ****
+
+In [$Alphabetic - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]], but not in $Other_Alphabetic :
+
+# Total code points: 0
+
+Not in [$Alphabetic - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]], but in $Other_Alphabetic :
+0374           # Lm      (ʹ)  GREEK NUMERAL SIGN
+
+# Total code points: 1
+
+In both [$Alphabetic - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]], and in $Other_Alphabetic :
+0345           # Mn      (ͅ)  COMBINING GREEK YPOGEGRAMMENI
+05B0..05BD     # Mn [14] (ְ..ֽ)  HEBREW POINT SHEVA..HEBREW POINT METEG
+05BF           # Mn      (ֿ)  HEBREW POINT RAFE
+05C1..05C2     # Mn  [2] (ׁ..ׂ)  HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
+05C4..05C5     # Mn  [2] (ׄ..ׅ)  HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
+05C7           # Mn      (ׇ)  HEBREW POINT QAMATS QATAN
+0610..061A     # Mn [11] (ؐ..ؚ)  ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
+064B..0657     # Mn [13] (ً..ٗ)  ARABIC FATHATAN..ARABIC INVERTED DAMMA
+0659..065E     # Mn  [6] (ٙ..ٞ)  ARABIC ZWARAKAY..ARABIC FATHA WITH TWO DOTS
+0670           # Mn      (ٰ)  ARABIC LETTER SUPERSCRIPT ALEF
+06D6..06DC     # Mn  [7] (ۖ..ۜ)  ARABIC SMALL HIGH LIGATURE SAD WITH LAM WITH ALEF MAKSURA..ARABIC SMALL HIGH SEEN
+06E1..06E4     # Mn  [4] (ۡ..ۤ)  ARABIC SMALL HIGH DOTLESS HEAD OF KHAH..ARABIC SMALL HIGH MADDA
+06E7..06E8     # Mn  [2] (ۧ..ۨ)  ARABIC SMALL HIGH YEH..ARABIC SMALL HIGH NOON
+06ED           # Mn      (ۭ)  ARABIC SMALL LOW MEEM
+0711           # Mn      (ܑ)  SYRIAC LETTER SUPERSCRIPT ALAPH
+0730..073F     # Mn [16] (ܰ..ܿ)  SYRIAC PTHAHA ABOVE..SYRIAC RWAHA
+07A6..07B0     # Mn [11] (ަ..ް)  THAANA ABAFILI..THAANA SUKUN
+0901..0902     # Mn  [2] (ँ..ं)  DEVANAGARI SIGN CANDRABINDU..DEVANAGARI SIGN ANUSVARA
+0903           # Mc      (ः)  DEVANAGARI SIGN VISARGA
+093E..0940     # Mc  [3] (ा..ी)  DEVANAGARI VOWEL SIGN AA..DEVANAGARI VOWEL SIGN II
+0941..0948     # Mn  [8] (ु..ै)  DEVANAGARI VOWEL SIGN U..DEVANAGARI VOWEL SIGN AI
+0949..094C     # Mc  [4] (ॉ..ौ)  DEVANAGARI VOWEL SIGN CANDRA O..DEVANAGARI VOWEL SIGN AU
+0962..0963     # Mn  [2] (ॢ..ॣ)  DEVANAGARI VOWEL SIGN VOCALIC L..DEVANAGARI VOWEL SIGN VOCALIC LL
+0981           # Mn      (ঁ)  BENGALI SIGN CANDRABINDU
+0982..0983     # Mc  [2] (ং..ঃ)  BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+09BE..09C0     # Mc  [3] (া..ী)  BENGALI VOWEL SIGN AA..BENGALI VOWEL SIGN II
+09C1..09C4     # Mn  [4] (ু..ৄ)  BENGALI VOWEL SIGN U..BENGALI VOWEL SIGN VOCALIC RR
+09C7..09C8     # Mc  [2] (ে..ৈ)  BENGALI VOWEL SIGN E..BENGALI VOWEL SIGN AI
+09CB..09CC     # Mc  [2] (ো..ৌ)  BENGALI VOWEL SIGN O..BENGALI VOWEL SIGN AU
+09D7           # Mc      (ৗ)  BENGALI AU LENGTH MARK
+09E2..09E3     # Mn  [2] (ৢ..ৣ)  BENGALI VOWEL SIGN VOCALIC L..BENGALI VOWEL SIGN VOCALIC LL
+0A01..0A02     # Mn  [2] (ਁ..ਂ)  GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
+0A03           # Mc      (ਃ)  GURMUKHI SIGN VISARGA
+0A3E..0A40     # Mc  [3] (ਾ..ੀ)  GURMUKHI VOWEL SIGN AA..GURMUKHI VOWEL SIGN II
+0A41..0A42     # Mn  [2] (ੁ..ੂ)  GURMUKHI VOWEL SIGN U..GURMUKHI VOWEL SIGN UU
+0A47..0A48     # Mn  [2] (ੇ..ੈ)  GURMUKHI VOWEL SIGN EE..GURMUKHI VOWEL SIGN AI
+0A4B..0A4C     # Mn  [2] (ੋ..ੌ)  GURMUKHI VOWEL SIGN OO..GURMUKHI VOWEL SIGN AU
+0A51           # Mn      (ੑ)  GURMUKHI SIGN UDAAT
+0A70..0A71     # Mn  [2] (ੰ..ੱ)  GURMUKHI TIPPI..GURMUKHI ADDAK
+0A75           # Mn      (ੵ)  GURMUKHI SIGN YAKASH
+0A81..0A82     # Mn  [2] (ઁ..ં)  GUJARATI SIGN CANDRABINDU..GUJARATI SIGN ANUSVARA
+0A83           # Mc      (ઃ)  GUJARATI SIGN VISARGA
+0ABE..0AC0     # Mc  [3] (ા..ી)  GUJARATI VOWEL SIGN AA..GUJARATI VOWEL SIGN II
+0AC1..0AC5     # Mn  [5] (ુ..ૅ)  GUJARATI VOWEL SIGN U..GUJARATI VOWEL SIGN CANDRA E
+0AC7..0AC8     # Mn  [2] (ે..ૈ)  GUJARATI VOWEL SIGN E..GUJARATI VOWEL SIGN AI
+0AC9           # Mc      (ૉ)  GUJARATI VOWEL SIGN CANDRA O
+0ACB..0ACC     # Mc  [2] (ો..ૌ)  GUJARATI VOWEL SIGN O..GUJARATI VOWEL SIGN AU
+0AE2..0AE3     # Mn  [2] (ૢ..ૣ)  GUJARATI VOWEL SIGN VOCALIC L..GUJARATI VOWEL SIGN VOCALIC LL
+0B01           # Mn      (ଁ)  ORIYA SIGN CANDRABINDU
+0B02..0B03     # Mc  [2] (ଂ..ଃ)  ORIYA SIGN ANUSVARA..ORIYA SIGN VISARGA
+0B3E           # Mc      (ା)  ORIYA VOWEL SIGN AA
+0B3F           # Mn      (ି)  ORIYA VOWEL SIGN I
+0B40           # Mc      (ୀ)  ORIYA VOWEL SIGN II
+0B41..0B44     # Mn  [4] (ୁ..ୄ)  ORIYA VOWEL SIGN U..ORIYA VOWEL SIGN VOCALIC RR
+0B47..0B48     # Mc  [2] (େ..ୈ)  ORIYA VOWEL SIGN E..ORIYA VOWEL SIGN AI
+0B4B..0B4C     # Mc  [2] (ୋ..ୌ)  ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
+0B56           # Mn      (ୖ)  ORIYA AI LENGTH MARK
+0B57           # Mc      (ୗ)  ORIYA AU LENGTH MARK
+0B62..0B63     # Mn  [2] (ୢ..ୣ)  ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
+0B82           # Mn      (ஂ)  TAMIL SIGN ANUSVARA
+0BBE..0BBF     # Mc  [2] (ா..ி)  TAMIL VOWEL SIGN AA..TAMIL VOWEL SIGN I
+0BC0           # Mn      (ீ)  TAMIL VOWEL SIGN II
+0BC1..0BC2     # Mc  [2] (ு..ூ)  TAMIL VOWEL SIGN U..TAMIL VOWEL SIGN UU
+0BC6..0BC8     # Mc  [3] (ெ..ை)  TAMIL VOWEL SIGN E..TAMIL VOWEL SIGN AI
+0BCA..0BCC     # Mc  [3] (ொ..ௌ)  TAMIL VOWEL SIGN O..TAMIL VOWEL SIGN AU
+0BD7           # Mc      (ௗ)  TAMIL AU LENGTH MARK
+0C01..0C03     # Mc  [3] (ఁ..ః)  TELUGU SIGN CANDRABINDU..TELUGU SIGN VISARGA
+0C3E..0C40     # Mn  [3] (ా..ీ)  TELUGU VOWEL SIGN AA..TELUGU VOWEL SIGN II
+0C41..0C44     # Mc  [4] (ు..ౄ)  TELUGU VOWEL SIGN U..TELUGU VOWEL SIGN VOCALIC RR
+0C46..0C48     # Mn  [3] (ె..ై)  TELUGU VOWEL SIGN E..TELUGU VOWEL SIGN AI
+0C4A..0C4C     # Mn  [3] (ొ..ౌ)  TELUGU VOWEL SIGN O..TELUGU VOWEL SIGN AU
+0C55..0C56     # Mn  [2] (ౕ..ౖ)  TELUGU LENGTH MARK..TELUGU AI LENGTH MARK
+0C62..0C63     # Mn  [2] (ౢ..ౣ)  TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
+0C82..0C83     # Mc  [2] (ಂ..ಃ)  KANNADA SIGN ANUSVARA..KANNADA SIGN VISARGA
+0CBE           # Mc      (ಾ)  KANNADA VOWEL SIGN AA
+0CBF           # Mn      (ಿ)  KANNADA VOWEL SIGN I
+0CC0..0CC4     # Mc  [5] (ೀ..ೄ)  KANNADA VOWEL SIGN II..KANNADA VOWEL SIGN VOCALIC RR
+0CC6           # Mn      (ೆ)  KANNADA VOWEL SIGN E
+0CC7..0CC8     # Mc  [2] (ೇ..ೈ)  KANNADA VOWEL SIGN EE..KANNADA VOWEL SIGN AI
+0CCA..0CCB     # Mc  [2] (ೊ..ೋ)  KANNADA VOWEL SIGN O..KANNADA VOWEL SIGN OO
+0CCC           # Mn      (ೌ)  KANNADA VOWEL SIGN AU
+0CD5..0CD6     # Mc  [2] (ೕ..ೖ)  KANNADA LENGTH MARK..KANNADA AI LENGTH MARK
+0CE2..0CE3     # Mn  [2] (ೢ..ೣ)  KANNADA VOWEL SIGN VOCALIC L..KANNADA VOWEL SIGN VOCALIC LL
+0D02..0D03     # Mc  [2] (ം..ഃ)  MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISARGA
+0D3E..0D40     # Mc  [3] (ാ..ീ)  MALAYALAM VOWEL SIGN AA..MALAYALAM VOWEL SIGN II
+0D41..0D44     # Mn  [4] (ു..ൄ)  MALAYALAM VOWEL SIGN U..MALAYALAM VOWEL SIGN VOCALIC RR
+0D46..0D48     # Mc  [3] (െ..ൈ)  MALAYALAM VOWEL SIGN E..MALAYALAM VOWEL SIGN AI
+0D4A..0D4C     # Mc  [3] (ൊ..ൌ)  MALAYALAM VOWEL SIGN O..MALAYALAM VOWEL SIGN AU
+0D57           # Mc      (ൗ)  MALAYALAM AU LENGTH MARK
+0D62..0D63     # Mn  [2] (ൢ..ൣ)  MALAYALAM VOWEL SIGN VOCALIC L..MALAYALAM VOWEL SIGN VOCALIC LL
+0D82..0D83     # Mc  [2] (ං..ඃ)  SINHALA SIGN ANUSVARAYA..SINHALA SIGN VISARGAYA
+0DCF..0DD1     # Mc  [3] (ා..ෑ)  SINHALA VOWEL SIGN AELA-PILLA..SINHALA VOWEL SIGN DIGA AEDA-PILLA
+0DD2..0DD4     # Mn  [3] (ි..ු)  SINHALA VOWEL SIGN KETTI IS-PILLA..SINHALA VOWEL SIGN KETTI PAA-PILLA
+0DD6           # Mn      (ූ)  SINHALA VOWEL SIGN DIGA PAA-PILLA
+0DD8..0DDF     # Mc  [8] (ෘ..ෟ)  SINHALA VOWEL SIGN GAETTA-PILLA..SINHALA VOWEL SIGN GAYANUKITTA
+0DF2..0DF3     # Mc  [2] (ෲ..ෳ)  SINHALA VOWEL SIGN DIGA GAETTA-PILLA..SINHALA VOWEL SIGN DIGA GAYANUKITTA
+0E31           # Mn      (ั)  THAI CHARACTER MAI HAN-AKAT
+0E34..0E3A     # Mn  [7] (ิ..ฺ)  THAI CHARACTER SARA I..THAI CHARACTER PHINTHU
+0E4D           # Mn      (ํ)  THAI CHARACTER NIKHAHIT
+0EB1           # Mn      (ັ)  LAO VOWEL SIGN MAI KAN
+0EB4..0EB9     # Mn  [6] (ິ..ູ)  LAO VOWEL SIGN I..LAO VOWEL SIGN UU
+0EBB..0EBC     # Mn  [2] (ົ..ຼ)  LAO VOWEL SIGN MAI KON..LAO SEMIVOWEL SIGN LO
+0ECD           # Mn      (ໍ)  LAO NIGGAHITA
+0F71..0F7E     # Mn [14] (ཱ..ཾ)  TIBETAN VOWEL SIGN AA..TIBETAN SIGN RJES SU NGA RO
+0F7F           # Mc      (ཿ)  TIBETAN SIGN RNAM BCAD
+0F80..0F81     # Mn  [2] (ྀ..ཱྀ)  TIBETAN VOWEL SIGN REVERSED I..TIBETAN VOWEL SIGN REVERSED II
+0F90..0F97     # Mn  [8] (ྐ..ྗ)  TIBETAN SUBJOINED LETTER KA..TIBETAN SUBJOINED LETTER JA
+0F99..0FBC     # Mn [36] (ྙ..ྼ)  TIBETAN SUBJOINED LETTER NYA..TIBETAN SUBJOINED LETTER FIXED-FORM RA
+102B..102C     # Mc  [2] (ါ..ာ)  MYANMAR VOWEL SIGN TALL AA..MYANMAR VOWEL SIGN AA
+102D..1030     # Mn  [4] (ိ..ူ)  MYANMAR VOWEL SIGN I..MYANMAR VOWEL SIGN UU
+1031           # Mc      (ေ)  MYANMAR VOWEL SIGN E
+1032..1036     # Mn  [5] (ဲ..ံ)  MYANMAR VOWEL SIGN AI..MYANMAR SIGN ANUSVARA
+1038           # Mc      (း)  MYANMAR SIGN VISARGA
+103B..103C     # Mc  [2] (ျ..ြ)  MYANMAR CONSONANT SIGN MEDIAL YA..MYANMAR CONSONANT SIGN MEDIAL RA
+103D..103E     # Mn  [2] (ွ..ှ)  MYANMAR CONSONANT SIGN MEDIAL WA..MYANMAR CONSONANT SIGN MEDIAL HA
+1056..1057     # Mc  [2] (ၖ..ၗ)  MYANMAR VOWEL SIGN VOCALIC R..MYANMAR VOWEL SIGN VOCALIC RR
+1058..1059     # Mn  [2] (ၘ..ၙ)  MYANMAR VOWEL SIGN VOCALIC L..MYANMAR VOWEL SIGN VOCALIC LL
+105E..1060     # Mn  [3] (ၞ..ၠ)  MYANMAR CONSONANT SIGN MON MEDIAL NA..MYANMAR CONSONANT SIGN MON MEDIAL LA
+1062           # Mc      (ၢ)  MYANMAR VOWEL SIGN SGAW KAREN EU
+1067..1068     # Mc  [2] (ၧ..ၨ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN EU..MYANMAR VOWEL SIGN WESTERN PWO KAREN UE
+1071..1074     # Mn  [4] (ၱ..ၴ)  MYANMAR VOWEL SIGN GEBA KAREN I..MYANMAR VOWEL SIGN KAYAH EE
+1082           # Mn      (ႂ)  MYANMAR CONSONANT SIGN SHAN MEDIAL WA
+1083..1084     # Mc  [2] (ႃ..ႄ)  MYANMAR VOWEL SIGN SHAN AA..MYANMAR VOWEL SIGN SHAN E
+1085..1086     # Mn  [2] (ႅ..ႆ)  MYANMAR VOWEL SIGN SHAN E ABOVE..MYANMAR VOWEL SIGN SHAN FINAL Y
+135F           # Mn      (፟)  ETHIOPIC COMBINING GEMINATION MARK
+1712..1713     # Mn  [2] (ᜒ..ᜓ)  TAGALOG VOWEL SIGN I..TAGALOG VOWEL SIGN U
+1732..1733     # Mn  [2] (ᜲ..ᜳ)  HANUNOO VOWEL SIGN I..HANUNOO VOWEL SIGN U
+1752..1753     # Mn  [2] (ᝒ..ᝓ)  BUHID VOWEL SIGN I..BUHID VOWEL SIGN U
+1772..1773     # Mn  [2] (ᝲ..ᝳ)  TAGBANWA VOWEL SIGN I..TAGBANWA VOWEL SIGN U
+17B6           # Mc      (ា)  KHMER VOWEL SIGN AA
+17B7..17BD     # Mn  [7] (ិ..ួ)  KHMER VOWEL SIGN I..KHMER VOWEL SIGN UA
+17BE..17C5     # Mc  [8] (ើ..ៅ)  KHMER VOWEL SIGN OE..KHMER VOWEL SIGN AU
+17C6           # Mn      (ំ)  KHMER SIGN NIKAHIT
+17C7..17C8     # Mc  [2] (ះ..ៈ)  KHMER SIGN REAHMUK..KHMER SIGN YUUKALEAPINTU
+18A9           # Mn      (ᢩ)  MONGOLIAN LETTER ALI GALI DAGALGA
+1920..1922     # Mn  [3] (ᤠ..ᤢ)  LIMBU VOWEL SIGN A..LIMBU VOWEL SIGN U
+1923..1926     # Mc  [4] (ᤣ..ᤦ)  LIMBU VOWEL SIGN EE..LIMBU VOWEL SIGN AU
+1927..1928     # Mn  [2] (ᤧ..ᤨ)  LIMBU VOWEL SIGN E..LIMBU VOWEL SIGN O
+1929..192B     # Mc  [3] (ᤩ..ᤫ)  LIMBU SUBJOINED LETTER YA..LIMBU SUBJOINED LETTER WA
+1930..1931     # Mc  [2] (ᤰ..ᤱ)  LIMBU SMALL LETTER KA..LIMBU SMALL LETTER NGA
+1932           # Mn      (ᤲ)  LIMBU SMALL LETTER ANUSVARA
+1933..1938     # Mc  [6] (ᤳ..ᤸ)  LIMBU SMALL LETTER TA..LIMBU SMALL LETTER LA
+19B0..19C0     # Mc [17] (ᦰ..ᧀ)  NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW TAI LUE VOWEL SIGN IY
+19C8..19C9     # Mc  [2] (ᧈ..ᧉ)  NEW TAI LUE TONE MARK-1..NEW TAI LUE TONE MARK-2
+1A17..1A18     # Mn  [2] (ᨗ..ᨘ)  BUGINESE VOWEL SIGN I..BUGINESE VOWEL SIGN U
+1A19..1A1B     # Mc  [3] (ᨙ..ᨛ)  BUGINESE VOWEL SIGN E..BUGINESE VOWEL SIGN AE
+1B00..1B03     # Mn  [4] (ᬀ..ᬃ)  BALINESE SIGN ULU RICEM..BALINESE SIGN SURANG
+1B04           # Mc      (ᬄ)  BALINESE SIGN BISAH
+1B35           # Mc      (ᬵ)  BALINESE VOWEL SIGN TEDUNG
+1B36..1B3A     # Mn  [5] (ᬶ..ᬺ)  BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
+1B3B           # Mc      (ᬻ)  BALINESE VOWEL SIGN RA REPA TEDUNG
+1B3C           # Mn      (ᬼ)  BALINESE VOWEL SIGN LA LENGA
+1B3D..1B41     # Mc  [5] (ᬽ..ᭁ)  BALINESE VOWEL SIGN LA LENGA TEDUNG..BALINESE VOWEL SIGN TALING REPA TEDUNG
+1B42           # Mn      (ᭂ)  BALINESE VOWEL SIGN PEPET
+1B43           # Mc      (ᭃ)  BALINESE VOWEL SIGN PEPET TEDUNG
+1B80..1B81     # Mn  [2] (ᮀ..ᮁ)  SUNDANESE SIGN PANYECEK..SUNDANESE SIGN PANGLAYAR
+1B82           # Mc      (ᮂ)  SUNDANESE SIGN PANGWISAD
+1BA1           # Mc      (ᮡ)  SUNDANESE CONSONANT SIGN PAMINGKAL
+1BA2..1BA5     # Mn  [4] (ᮢ..ᮥ)  SUNDANESE CONSONANT SIGN PANYAKRA..SUNDANESE VOWEL SIGN PANYUKU
+1BA6..1BA7     # Mc  [2] (ᮦ..ᮧ)  SUNDANESE VOWEL SIGN PANAELAENG..SUNDANESE VOWEL SIGN PANOLONG
+1BA8..1BA9     # Mn  [2] (ᮨ..ᮩ)  SUNDANESE VOWEL SIGN PAMEPET..SUNDANESE VOWEL SIGN PANEULEUNG
+1C24..1C2B     # Mc  [8] (ᰤ..ᰫ)  LEPCHA SUBJOINED LETTER YA..LEPCHA VOWEL SIGN UU
+1C2C..1C33     # Mn  [8] (ᰬ..ᰳ)  LEPCHA VOWEL SIGN E..LEPCHA CONSONANT SIGN T
+1C34..1C35     # Mc  [2] (ᰴ..ᰵ)  LEPCHA CONSONANT SIGN NYIN-DO..LEPCHA CONSONANT SIGN KANG
+24B6..24E9     # So [52] (Ⓐ..ⓩ)  CIRCLED LATIN CAPITAL LETTER A..CIRCLED LATIN SMALL LETTER Z
+2DE0..2DFF     # Mn [32] (ⷠ..ⷿ)  COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
+A823..A824     # Mc  [2] (ꠣ..ꠤ)  SYLOTI NAGRI VOWEL SIGN A..SYLOTI NAGRI VOWEL SIGN I
+A825..A826     # Mn  [2] (ꠥ..ꠦ)  SYLOTI NAGRI VOWEL SIGN U..SYLOTI NAGRI VOWEL SIGN E
+A827           # Mc      (ꠧ)  SYLOTI NAGRI VOWEL SIGN OO
+A880..A881     # Mc  [2] (ꢀ..ꢁ)  SAURASHTRA SIGN ANUSVARA..SAURASHTRA SIGN VISARGA
+A8B4..A8C3     # Mc [16] (ꢴ..ꣃ)  SAURASHTRA CONSONANT SIGN HAARU..SAURASHTRA VOWEL SIGN AU
+A926..A92A     # Mn  [5] (ꤦ..ꤪ)  KAYAH LI VOWEL UE..KAYAH LI VOWEL O
+A947..A951     # Mn [11] (ꥇ..ꥑ)  REJANG VOWEL SIGN I..REJANG CONSONANT SIGN R
+A952           # Mc      (ꥒ)  REJANG CONSONANT SIGN H
+AA29..AA2E     # Mn  [6] (ꨩ..ꨮ)  CHAM VOWEL SIGN AA..CHAM VOWEL SIGN OE
+AA2F..AA30     # Mc  [2] (ꨯ..ꨰ)  CHAM VOWEL SIGN O..CHAM VOWEL SIGN AI
+AA31..AA32     # Mn  [2] (ꨱ..ꨲ)  CHAM VOWEL SIGN AU..CHAM VOWEL SIGN UE
+AA33..AA34     # Mc  [2] (ꨳ..ꨴ)  CHAM CONSONANT SIGN YA..CHAM CONSONANT SIGN RA
+AA35..AA36     # Mn  [2] (ꨵ..ꨶ)  CHAM CONSONANT SIGN LA..CHAM CONSONANT SIGN WA
+AA43           # Mn      (ꩃ)  CHAM CONSONANT SIGN FINAL NG
+AA4C           # Mn      (ꩌ)  CHAM CONSONANT SIGN FINAL M
+AA4D           # Mc      (ꩍ)  CHAM CONSONANT SIGN FINAL H
+FB1E           # Mn      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
+10A01..10A03   # Mn  [3] (𐨁..𐨃)  KHAROSHTHI VOWEL SIGN I..KHAROSHTHI VOWEL SIGN VOCALIC R
+10A05..10A06   # Mn  [2] (𐨅..𐨆)  KHAROSHTHI VOWEL SIGN E..KHAROSHTHI VOWEL SIGN O
+10A0C..10A0F   # Mn  [4] (𐨌..𐨏)  KHAROSHTHI VOWEL LENGTH MARK..KHAROSHTHI SIGN VISARGA
+
+# Total code points: 663
+**** END Error Info #7 ****
+
+$Other_Lowercase = [$Lowercase - $GC:Ll]
+$Other_Uppercase = [$Uppercase - $GC:Lu]
+$Other_ID_Start = [$ID_Start - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl - $Pattern_Syntax - $Pattern_White_Space]]
+$Other_ID_Continue = [$ID_Continue - [$ID_Start $GC:Mn $GC:Mc $GC:Nd $GC:Pc - $Pattern_Syntax - $Pattern_White_Space]]
+
+$Other_Default_Ignorable_Code_Point = [$Default_Ignorable_Code_Point - [$GC:Cf $Variation_Selector - [$White_Space\uFFF9-\uFFFB]]]
+$Other_Grapheme_Extend = [$Grapheme_Extend - [$GC:Me $GC:Mn]]
+
+##########################
+# POSIX Compatibility Properties (UTS#18)
+# http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html
+##########################
+
+# constants
+
+Let $SP = [\u0020]	# [\N{space}]
+Let $TAB = [\u0009] # [\N{CHARACTER TABULATION}]
+Let $LF = [\u000A]	# \N{linefeed}
+Let $VTAB = [\u000B]	# [\N{LINE TABULATION}]
+Let $FF = [\u000C]	# [\N{formfeed}]
+Let $CR = [\u000D]	# \N{carriage return}
+Let $NEL = [\u0085]	# \N{next line}
+Let $ZWNJ = [\u200C]	# [\N{ZERO WIDTH NON-JOINER}]
+Let $ZWJ = [\u200D]	# [\N{ZERO WIDTH JOINER}]
+
+Let $strange = [\u24B6-\u24E9]
+
+# Unassigned, Control, Format, Private_Use, Surrogate, 
+# Uppercase_Letter, Lowercase_Letter, Titlecase_Letter, Modifier_Letter, Other_Letter,
+# Nonspacing_Mark, Enclosing_Mark, Spacing_Mark,
+# Decimal_Number, Letter_Number, Other_Number, 
+# Space_Separator, Line_Separator, Paragraph_Separator, 
+# Dash_Punctuation, Open_Punctuation, Close_Punctuation, Connector_Punctuation, Other_Punctuation, Initial_Punctuation, Final_Punctuation
+# Math_Symbol, Currency_Symbol, Modifier_Symbol, Other_Symbol
+
+# UTS Rules
+
+Let $alpha = [$Alphabetic $strange] # $Uppercase $ZWNJ $ZWJ]
+Let $lower = $Lowercase 
+Let $upper = [$Uppercase]
+Let $punct = [$gcAllPunctuation $gcAllSymbols - $alpha]
+Let $digit = $gc:Decimal_Number 
+Let $xdigit = [$gc:Decimal_Number $Hex_Digit] # in both!
+Let $alnum = [$alpha $digit]
+Let $space = $Whitespace 
+Let $blank = [$Whitespace - [$LF $VTAB $FF $CR $NEL $gc:Line_Separator $gc:Paragraph_Separator]]
+Let $cntrl = $gc:Control 
+Let $graph = [^$space $gc:Control $gc:Surrogate $gc:Unassigned] # $ZWNJ $ZWJ]
+Let $print = [$graph $blank - $cntrl]
+Let $word = [$alpha $gcAllMarks $digit $gc:Connector_Punctuation] 
+
+# ===========================
+
+# POSIX locale definition file constraints
+
+$upper ! [$cntrl $digit $punct $space]
+$upper ≥ [A-Z]
+
+$lower ! [$cntrl $digit $punct $space]
+$lower ≥ [a-z]
+
+$alpha ! [$cntrl $digit $punct $space]
+$alpha ≥ [$lower $upper]
+
+$digit ≥ [0-9]
+
+$alnum = [$alpha $digit]
+
+$space ! [$upper $lower $alpha $digit $graph $xdigit]
+$space ≥ [$SP $FF $LF $CR] # $TAB $VTAB $NEL]
+$space ≥ $blank
+
+$cntrl ! [$upper $lower $alpha $digit $punct $graph $print $xdigit]
+
+$punct ! [$upper $lower $alpha $digit $cntrl $xdigit $SP]
+
+$graph ≥ [$upper $lower $alpha $digit $xdigit $punct]
+$graph ! [$SP $cntrl]
+
+$print ≥ [$upper $lower $alpha $digit $xdigit $punct $graph $SP]
+$print ! $cntrl
+
+$xdigit ≥ [$digit [a-f A-F]]
+
+$blank ≥ [$SP $TAB]
+
+# Extra POSIX 'POSIX locale' constraints
+
+$cntrl ≥  [\u0000-\u001F]
+
+$punct  ≥ [[\u0021-\u007E] - [0-9 A-Z a-z]]
+
+[$alpha $lower $upper $punct $digit $xdigit $alnum $space $blank $cntrl $graph $print $word] = [^$gc:unassigned $gc:surrogate]
+
+**** SUMMARY ****
+
+# ParseErrorCount=0
+# TestFailureCount=7
