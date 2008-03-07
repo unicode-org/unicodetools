@@ -261,26 +261,46 @@ public class TestUnicodeInvariants {
 			}
 
 			boolean ok = true;
+			int right_left = 1, left_right=2, rightAndLeft=4;
+      int flags = 7;
 			switch(relation) {
-			case '=': case '\u2261': ok = leftSet.equals(rightSet); break;
-			case '<': case '\u2282': ok = rightSet.containsAll(leftSet) && !leftSet.equals(rightSet); break;
-			case '>': case '\u2283': ok = leftSet.containsAll(rightSet) && !leftSet.equals(rightSet); break;
-			case '\u2264': case '\u2286': ok = rightSet.containsAll(leftSet); break;
-			case '\u2265': case '\u2287': ok = leftSet.containsAll(rightSet); break;
-			case '!': ok = leftSet.containsNone(rightSet); break;
-			case '?': ok = !leftSet.equals(rightSet) 
-			&& !leftSet.containsAll(rightSet) 
-			&& !rightSet.containsAll(leftSet)
-			&& !leftSet.containsNone(rightSet); 
-			break;
-			default: throw new IllegalArgumentException("Internal Error");
+			  case '=': case '\u2261': 
+			    ok = leftSet.equals(rightSet); 
+			    flags = right_left + left_right; 
+			    break;
+			  case '<': case '\u2282': 
+			    ok = rightSet.containsAll(leftSet) && !leftSet.equals(rightSet);
+			    flags = right_left + left_right; 
+			    break;
+			  case '>': case '\u2283': 
+			    ok = leftSet.containsAll(rightSet) && !leftSet.equals(rightSet); 
+			    flags = right_left + left_right; 
+			    break;
+			  case '\u2264': case '\u2286': 
+			    ok = rightSet.containsAll(leftSet); 
+			    flags = left_right; 
+			    break;
+			  case '\u2265': case '\u2287': 
+			    ok = leftSet.containsAll(rightSet); 
+			    flags = right_left; 
+			    break;
+			  case '!': 
+			    ok = leftSet.containsNone(rightSet); 
+			    flags = rightAndLeft;
+			    break;
+			  case '?': ok = !leftSet.equals(rightSet) 
+  			  && !leftSet.containsAll(rightSet) 
+  			  && !rightSet.containsAll(leftSet)
+  			  && !leftSet.containsNone(rightSet); 
+  			  break;
+			  default: throw new IllegalArgumentException("Internal Error");
 			}
 			if (ok) continue;
 			testFailureCount++;      
 			println(out);
 			println(out, String.valueOf(ok).toUpperCase(Locale.ENGLISH));
 			printErrorLine(out, Side.START, testFailureCount);
-			errorLister.showSetDifferences(out, rightSide, rightSet, leftSide, leftSet);
+			errorLister.showSetDifferences(out, rightSide, rightSet, leftSide, leftSet, flags);
 			printErrorLine(out, Side.END, testFailureCount);
 			println(out);
 		}

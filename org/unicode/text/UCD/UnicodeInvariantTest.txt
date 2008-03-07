@@ -108,6 +108,11 @@ $NChar = $×NChar
 
 $Alphabetic ⊃ [$Uppercase $Lowercase]
 
+$Alphabetic ⊇ [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl $GC:Mc]
+
+Show [$GC:Mc - $alphabetic]
+Show [$GC:Mc & $alphabetic]
+
 # The Pattern_Syntax and Pattern_Whitespace properties are immutable code point properties, which means that their property values for all Unicode code points will never change.
 
 $Pattern_Whitespace = $×Pattern_Whitespace
@@ -188,12 +193,12 @@ $Pattern_Syntax ! [$XID_Continue $Pattern_Whitespace]
 ##########################
 
 $Line_Break:Unknown = [$General_Category:Unassigned $GeneralCategory:PrivateUse]
-$LB:OP = [$GC:Ps \u00A1 \u00BF]
+$LB:OP = [$GC:Ps \u00A1 \u00BF \u2E18]
 $LB:CL ⊃ $GC:Pe
-$LB:CM = [$GC:Mn $GC:Me $GC:Mc $GC:Cc $GC:Cf -$LB:SA -$LB:WJ -$LB:ZW]
+$LB:CM = [$GC:Mn $GC:Me $GC:Mc $GC:Cc $GC:Cf -$LB:SA -$LB:WJ -$LB:ZW -$LB:BA -$LB:LF -$LB:BK -$LB:CR -$LB:NL -$LB:GL -$LB:AL]
 $LB:NU = [$GC:Nd - $EA:F \u066B\u066C]
 $LB:PR = [$GC:Sc - $LB:PO \u002b\u005c\u00b1\u2116\u2212\u2213]
-$LB:QU = [$GC:Pf $GC:Pi \u0022\u0027\u275B-\u275E]
+$LB:QU = [$GC:Pf $GC:Pi \u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
 $LB:SG = $GC:Cs
 $LB:SP = [\u0020]
 $LB:SY = [\u002F]
@@ -206,6 +211,9 @@ $SAScripts ⊇ $LineBreak:SA
 
 # And in those scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn
 [$SAScripts & [$Alphabetic $gc:cf $gc:Mn \u19DE \u19DF]] = [$SAScripts & [$LineBreak:SA $LineBreak:CM]]
+
+# 1063;MYANMAR TONE MARK SGAW KAREN HATHI;Mc;0;L;;;;;N;;;;;
+# 1063;SA # MYANMAR TONE MARK SGAW KAREN HATHI
 
 ##########################
 # BIDI
