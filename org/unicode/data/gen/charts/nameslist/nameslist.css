@@ -1,0 +1,18 @@
+table       { 
+    border-spacing: 0; 
+    border-collapse: collapse;
+    border-style: solid; 
+    border-color: white; 
+    border-width: 0px;
+    width: 100%;
+}
+th, td      { 
+    border-spacing: 0; 
+    border-style: solid; 
+    border-color: white; 
+    border-width: 0px;
+    vertical-align: top;
+}
+td.new, td.cellwnew, td.cellnew {
+    background-color: #FFFFCC;
+}

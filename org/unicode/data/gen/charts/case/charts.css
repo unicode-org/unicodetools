@@ -1,5 +1,9 @@
-td			{ border: 1 solid #0000FF; color: #000000; background-color: #FFFFFF; 
-            font-size: 120%; text-align: Center; vertical-align: top; width: 48px }
+table       { border-spacing: 0; border-collapse: collapse;
+                    border-style: solid; border-color: black; border-width: 1px;                    }
+th, td      { border-spacing: 0; 
+                border-style: solid; border-color: teal; border-width: 1px;
+                    color: black; vertical-align: top; }
+td			{ font-size: 120%; text-align: Center; vertical-align: top; width: 48px }
 td.p		{ color: #000000; background-color: #7777FF }
 td.s		{ color: #000000; background-color: #BBBBFF }
 td.t		{ color: #000000; background-color: #DDDDFF }
