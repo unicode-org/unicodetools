@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
-* $Date: 2008-03-06 17:09:11 $
-* $Revision: 1.41 $
+* $Date: 2008-03-07 21:54:51 $
+* $Revision: 1.42 $
 *
 *******************************************************************************
 */
@@ -26,6 +26,8 @@ public interface UCD_Types {
     
     public static final String GEN_DIR = "org/unicode/data/gen/";
     public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
+    
+    public static final String SRC_DIR = "org/unicode/text/";
     
     public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(Utility.getProperty("copyright", "skip"));
     

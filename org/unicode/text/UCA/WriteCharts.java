@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCharts.java,v $
-* $Date: 2008-03-05 23:49:14 $
-* $Revision: 1.27 $
+* $Date: 2008-03-07 21:54:26 $
+* $Revision: 1.28 $
 *
 *******************************************************************************
 */
@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 
 public class WriteCharts implements UCD_Types {
 
-	static String WORKING_DIR = UCD_Types.BASE_DIR + "uca/";
+	public static String WORKING_DIR = UCD_Types.SRC_DIR + "UCA/";
     static boolean HACK_KANA = false;
 
     static public void special() {
@@ -265,7 +265,7 @@ public class WriteCharts implements UCD_Types {
         int counter = 0;
 
         String[] replacement = new String[] {"%%%", "Normalization Charts"};
-        String folder = "charts\\normalization/";
+        String folder = "charts/normalization/";
         
         //System.out.println("File: " + new File(".").getCanonicalPath());
 
@@ -375,7 +375,7 @@ public class WriteCharts implements UCD_Types {
 
         int counter = 0;
         String[] replacement = new String[] {"%%%", "Case Charts"};
-        String folder = "charts\\case/";
+        String folder = "charts/case/";
 
         Utility.copyTextFile("org/unicode/text/UCA/index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");
@@ -487,7 +487,7 @@ public class WriteCharts implements UCD_Types {
 
 			int counter = 0;
 			String[] replacement = new String[] {"%%%", "Script Charts"};
-			String folder = "charts\\script/";
+			String folder = "charts//script/";
 
 			Utility.copyTextFile("org/unicode/text/UCA/index.html", Utility.UTF8, folder + "index.html", replacement);
 			Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");
@@ -536,7 +536,7 @@ public class WriteCharts implements UCD_Types {
 			}
 
 			closeFile(output);
-			closeIndexFile(indexFile, "", CASE);
+			closeIndexFile(indexFile, "", SCRIPT);
 		}
 
     static public void addMapChar(Map m, Set stoplist, String key, String ch) {
@@ -609,7 +609,7 @@ public class WriteCharts implements UCD_Types {
 
         int counter = 0;
         String[] replacement = new String[] {"%%%", "Name Charts"};
-        String folder = "charts\\name/";
+        String folder = "charts//name/";
 
         Utility.copyTextFile("org/unicode/text/UCA/index.html", Utility.UTF8, folder + "index.html", replacement);
         Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");
@@ -651,7 +651,7 @@ public class WriteCharts implements UCD_Types {
             		output.println("</tr><tr><td></td>");
             		columnCount = 1;
             	}
-            	showCell(output, ch, "<td ", "", true);
+            	showCell(output, ch, "<td ", "", false);
             	++columnCount;
             	continue;
             }
@@ -661,7 +661,7 @@ public class WriteCharts implements UCD_Types {
         }
 
         closeFile(output);
-        closeIndexFile(indexFile, "", CASE);
+        closeIndexFile(indexFile, "", NAME);
     }
 
     static void showCell(PrintWriter output, String s, 
@@ -798,7 +798,7 @@ public class WriteCharts implements UCD_Types {
     }
 
 
-	static final byte COLLATION = 0, NORMALIZATION = 1, CASE = 2;
+	static final byte COLLATION = 0, NORMALIZATION = 1, CASE = 2, NAME = 3, SCRIPT = 4;
 
     static void closeIndexFile(PrintWriter indexFile, String extra, byte choice) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
@@ -807,18 +807,28 @@ public class WriteCharts implements UCD_Types {
         indexFile.println("</p><hr width='50%'><p>");
         boolean gotOne = false;
         if (choice != COLLATION) {
-        	indexFile.println("<a href='..\\uca\\index.html' target='_top'>Collation&nbsp;Charts</a>");
+        	indexFile.println("<a href='../uca/index.html' target='_top'>Collation&nbsp;Charts</a>");
         	gotOne = true;
         }
         if (choice != NORMALIZATION) {
         	if (gotOne) indexFile.println("<br>");
-        	indexFile.println("<a href='..\\normalization\\index.html' target='_top'>Normalization&nbsp;Charts</a>");
+        	indexFile.println("<a href='../normalization/index.html' target='_top'>Normalization&nbsp;Charts</a>");
         	gotOne = true;
         }
         if (choice != CASE) {
         	if (gotOne) indexFile.println("<br>");
-        	indexFile.println("<a href='..\\case\\index.html' target='_top'>Case&nbsp;Charts</a>");
+        	indexFile.println("<a href='../case/index.html' target='_top'>Case&nbsp;Charts</a>");
         	gotOne = true;
+        }
+        if (choice != SCRIPT) {
+          if (gotOne) indexFile.println("<br>");
+          indexFile.println("<a href='../script/index.html' target='_top'>Script&nbsp;Charts</a>");
+          gotOne = true;
+        }
+        if (choice != NAME) {
+          if (gotOne) indexFile.println("<br>");
+          indexFile.println("<a href='../name/index.html' target='_top'>Name&nbsp;Charts</a>");
+          gotOne = true;
         }
         indexFile.println("</p><hr width='50%'><p style='font-size: 70%'>");
         indexFile.println("UCD: " + Default.ucd().getVersion() + extra);

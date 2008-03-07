@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
-* $Date: 2008-02-24 05:27:49 $ 
-* $Revision: 1.22 $
+* $Date: 2008-03-07 21:54:26 $ 
+* $Revision: 1.23 $
 *
 *******************************************************************************
 */
@@ -27,9 +27,17 @@ public class Main {
 		"WriteRules", "WriteRulesXML", "writeconformance", "writeconformanceshifted", 
 		"short", 
 		"WriteRules", "WriteRulesXML", "writeconformance", "writeconformanceshifted",
-        "noCE", "short",        "WriteRules",
-        "collationChart" 
+        "noCE", "short",        "WriteRules" 
     };
+	
+	 static final String[] CHART_FILES = {
+	        "collationChart",
+	        "scriptChart",
+	        "normalizationChart",
+	        "caseChart",
+	        "indexChart",
+	        "nameslistChart"
+	    };
 	
 	public static void main(String args[]) throws Exception {
 		// NOTE: so far, we don't need to build the UCA with anything but the latest versions.
@@ -45,11 +53,16 @@ public class Main {
                 System.out.println("OPTION: " + arg);
     			if (arg.charAt(0) == '#') return; // skip rest of line
                 
-                if (arg.equalsIgnoreCase("ICU")) {
-                    args = Utility.append(ICU_FILES, Utility.subarray(args, i+1));
-                    i = -1;
-                    continue;     
-                }
+          if (arg.equalsIgnoreCase("ICU")) {
+            args = Utility.append(ICU_FILES, Utility.subarray(args, i+1));
+            i = -1;
+            continue;     
+        }
+          if (arg.equalsIgnoreCase("charts")) {
+            args = Utility.append(CHART_FILES, Utility.subarray(args, i+1));
+            i = -1;
+            continue;     
+        }
                 if (arg.equalsIgnoreCase("version")) {
                 	Default.setUCD(args[++i]); // get next arg
                 	continue;
@@ -74,6 +87,7 @@ public class Main {
                 else if (arg.equalsIgnoreCase("normalizationChart")) WriteCharts.normalizationChart();
                 else if (arg.equalsIgnoreCase("caseChart")) WriteCharts.caseChart();
                 else if (arg.equalsIgnoreCase("indexChart")) WriteCharts.indexChart();
+                else if (arg.equalsIgnoreCase("nameslistChart")) MakeNamesChart.main(null);
                 else if (arg.equalsIgnoreCase("special")) WriteCharts.special();
                 
                 else if (arg.equalsIgnoreCase("writeCompositionChart")) WriteCharts.writeCompositionChart();

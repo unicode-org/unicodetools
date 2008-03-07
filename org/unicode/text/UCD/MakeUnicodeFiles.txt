@@ -1,4 +1,4 @@
-Generate: .*Core.*
+Generate: .*PropList.*
 DeltaVersion: 31
 CopyrightYear: 2008
 

@@ -41,19 +41,26 @@ public class MakeNamesChart {
 	static UnicodeSet rtl;// = new UnicodeSet("[[:bidiclass=r:][:bidiclass=al:]]");
 	static UnicodeSet usePicture;// = new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
 	
-	static UCD ucd41;
+	static UCD lastUCDVersion;
 
 	public static void main(String[] args) throws Exception {
 		//ConvertUCD.main(new String[]{"5.0.0"});
-		BlockInfo blockInfo = new BlockInfo("5.0.0", "NamesList.txt");
+		BlockInfo blockInfo = new BlockInfo(Default.ucdVersion(), "NamesList");
 		// http://www.unicode.org/~book/incoming/kenfiles/U50M051010.lst
-		Default.setUCD("5.0.0");
-		ucd41 = UCD.make("4.1.0");
-		ToolUnicodePropertySource up = ToolUnicodePropertySource.make("5.0.0");
+		//Default.setUCD("5.0.0");
+		lastUCDVersion = UCD.make(UCD.lastVersion);
+		ToolUnicodePropertySource up = ToolUnicodePropertySource.make(Default.ucdVersion());
 		skipChars = new UnicodeSet(up.getSet("gc=cn")).removeAll(up.getSet("gc=cn"));
 		//"[[:gc=cn:]-[:noncharactercodepoint:]]");
 		rtl = new UnicodeSet(up.getSet("bidiclass=r")).addAll(up.getSet("bidiclass=al"));// "[[:bidiclass=r:][:bidiclass=al:]]");
 		usePicture = new UnicodeSet(up.getSet("whitespace=Yes")).addAll(up.getSet("defaultignorablecodepoint=Yes"));// new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
+
+    String folder = "charts/nameslist/";
+
+    Utility.copyTextFile("org/unicode/text/UCA/nameslist_index.html", Utility.UTF8, folder + "index.html");
+    Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");
+    Utility.copyTextFile("org/unicode/text/UCA/nameslist_help.html", Utility.UTF8, folder + "help.html");
+    Utility.copyTextFile("org/unicode/text/UCA/nameslist.css", Utility.LATIN1, folder + "nameslist.css");
 
 		List nameList = new ArrayList();
 		ArrayList lines = new ArrayList();
@@ -70,10 +77,11 @@ public class MakeNamesChart {
 			nameList.add(firstLine);
 			System.out.println();
 			System.out.println("file: " + chartPrefix + fileName);
-			PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", chartPrefix + fileName);
+			//PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", chartPrefix + fileName);
+			PrintWriter out = Utility.openPrintWriter("charts/nameslist/" + chartPrefix + fileName, Utility.UTF8_WINDOWS);
 			out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>" +
 					TransliteratorUtilities.toHTML.transliterate(getHeading(lineParts[2])) +
-					"</title><link rel='stylesheet' type='text/css' href='namelist.css'>" +
+					"</title><link rel='stylesheet' type='text/css' href='charts.css'>" +
 					"<base target='names'></head><body>");
 
 			// header
@@ -133,9 +141,10 @@ public class MakeNamesChart {
 				}
 			}
 			out.close();
-			out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", namePrefix + fileName);
+			//out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", namePrefix + fileName);
+	    out = Utility.openPrintWriter("charts/nameslist/" + namePrefix + fileName, Utility.UTF8_WINDOWS);
 			out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
-					"<link rel='stylesheet' type='text/css' href='namelist.css'></head><body>");
+					"<link rel='stylesheet' type='text/css' href='nameslist.css'></head><body>");
 
 			// now do the characters
 			boolean inTable = false;
@@ -173,6 +182,7 @@ public class MakeNamesChart {
 							char firstChar = body.charAt(0);
 							switch (firstChar) {
 							case '*': body = "\u2022 " + body.substring(2); break;
+							case '%': body = "\u203B " + body.substring(2); break;
 							case ':': body = checkCanonical(lastCodePoint, body); break;
 							case '#': body = checkCompatibility(lastCodePoint, body); break;
 							case 'x': body = getOther(body); break;
@@ -207,9 +217,11 @@ public class MakeNamesChart {
 			out.close();
 		}
 		blockInfo.in.close();
-		PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", "mainList.html");
+		// PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", "mainList.html");
+		PrintWriter out = Utility.openPrintWriter("charts/nameslist/" + "mainList.html", Utility.UTF8_WINDOWS);
+
 		out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
-				"<title>Main List</title><link rel='stylesheet' type='text/css' href='namelist.css'>" +
+				"<title>Main List</title><link rel='stylesheet' type='text/css' href='nameslist.css'>" +
 				"<base target='chart'></head><body><table>");
 		for (int i = 0; i < nameList.size(); ++i) {
 			String line = (String) nameList.get(i);
@@ -236,7 +248,7 @@ public class MakeNamesChart {
 	}
 
 	private static boolean isNew(int codepoint) {
-		return Default.ucd().isAllocated(codepoint) && !ucd41.isAllocated(codepoint);
+		return Default.ucd().isAllocated(codepoint) && !lastUCDVersion.isAllocated(codepoint);
 	}
 
 	private static void showNameDifferences(Map hasName, Map hasNoName) {
@@ -254,15 +266,15 @@ public class MakeNamesChart {
 		System.out.println("Count: " + both.size());
 	}
 	
-	static TestIdentifiers ti;
-	static {
-		try {
-			ti = new TestIdentifiers("L");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	static TestIdentifiers ti;
+//	static {
+//		try {
+//			ti = new TestIdentifiers("L");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	private static void finishItem(PrintWriter out) {
 		if (lastCodePoint < 0) return;
@@ -280,26 +292,26 @@ public class MakeNamesChart {
 		//String nfc = showForm(out, dc, null, Default.nfc().normalize(lastCodePoint), "\u21DB");
 		String nfkd = showForm(out, dc, str, nfd, Default.nfkd().normalize(lastCodePoint), "\u21DD");
 		
-		if (nfkd.equals(str)) {
-			Set s = ti.getConfusables(lastCodePoint, "MA");
-			if (s.size() > 1) {
-				sortedSet.clear();
-				for (Iterator it = s.iterator(); it.hasNext();) {
-					sortedSet.add(Default.nfkd().normalize((String)it.next()));
-				}
-				sortedSet.remove(nfkd); // remove me
-				for (Iterator it = sortedSet.iterator(); it.hasNext();) {
-					String other = (String)it.next();
-					if (nfkd.equals(Default.nfkd().normalize(other))) continue;
-					out.println("<tr><td>\u00A0</td><td>\u00A0</td><td class='conf'>\u279F\u00A0"
-							+ showTextConvertingHex(Utility.hex(other, 4, " + "), true)
-							+ " "
-							+ Default.ucd().getName(other, UCD.NORMAL, " + ").toLowerCase()
-							// maybeNameStyle(showTextConvertingHex(upper, firstChar != '='), firstChar == '=')
-							+ "</td></tr>");
-				}
-			}
-		}
+//		if (nfkd.equals(str)) {
+//			Set s = ti.getConfusables(lastCodePoint, "MA");
+//			if (s.size() > 1) {
+//				sortedSet.clear();
+//				for (Iterator it = s.iterator(); it.hasNext();) {
+//					sortedSet.add(Default.nfkd().normalize((String)it.next()));
+//				}
+//				sortedSet.remove(nfkd); // remove me
+//				for (Iterator it = sortedSet.iterator(); it.hasNext();) {
+//					String other = (String)it.next();
+//					if (nfkd.equals(Default.nfkd().normalize(other))) continue;
+//					out.println("<tr><td>\u00A0</td><td>\u00A0</td><td class='conf'>\u279F\u00A0"
+//							+ showTextConvertingHex(Utility.hex(other, 4, " + "), true)
+//							+ " "
+//							+ Default.ucd().getName(other, UCD.NORMAL, " + ").toLowerCase()
+//							// maybeNameStyle(showTextConvertingHex(upper, firstChar != '='), firstChar == '=')
+//							+ "</td></tr>");
+//				}
+//			}
+//		}
 		lastCodePoint = -1;
 	}
 	
