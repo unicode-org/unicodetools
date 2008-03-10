@@ -1,5 +1,5 @@
-Generate: .*PropList.*
-DeltaVersion: 31
+Generate: .*Break.*
+DeltaVersion: 32
 CopyrightYear: 2008
 
 File: auxiliary/GraphemeBreakProperty
