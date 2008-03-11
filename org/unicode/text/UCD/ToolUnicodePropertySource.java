@@ -225,15 +225,15 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         public String _getValue(int codepoint) {
         	int temp;
         	temp = codepoint - UCD.TBase;
-        	if (temp > 1) {
+        	if (temp > 0) { // skip first
         		return temp >= UCD_Names.JAMO_T_TABLE.length ? null : UCD_Names.JAMO_T_TABLE[temp];
         	}
         	temp = codepoint - UCD.VBase;
-        	if (temp > 0) {
+        	if (temp >= 0) {
         		return temp >= UCD_Names.JAMO_V_TABLE.length ? null : UCD_Names.JAMO_V_TABLE[temp];
         	}
         	temp = codepoint - UCD.LBase;
-        	if (temp > 0) {
+        	if (temp >= 0) {
         		return temp >= UCD_Names.JAMO_L_TABLE.length ? null : UCD_Names.JAMO_L_TABLE[temp];
         	}
         	return null;

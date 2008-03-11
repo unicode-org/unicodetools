@@ -15,6 +15,8 @@ import com.ibm.icu.util.ULocale;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -31,11 +33,19 @@ import java.util.regex.Pattern;
 public class VerifyXmlUcd {
   public static final boolean USE_ICU = false;
   public static final boolean ABBREVIATED = true;
+  private static Factory factory;
   
-  public static void main(String[] args) {
+  static Factory getFactory() {
+    if (factory == null) {
+      factory = USE_ICU ? ICUPropertyFactory.make() : ToolUnicodePropertySource.make(Default.ucdVersion());
+    }
+    return factory;
+  }
+  
+  public static void main(String[] args) throws IOException {
     try {
       //checkRegex();
-      testFile("C:/DATA/UCD/xml/ucd.nounihan.grouped.xml");
+      testFile("/Users/markdavis/Documents/workspace/DATA/UCD/xml/ucd.nounihan.grouped.xml");
       // too many errors to test: testFile("C:/DATA/UCD/xml/ucd.nounihan.grouped.xml");
     } finally {
       System.out.println("DONE");
@@ -43,7 +53,7 @@ public class VerifyXmlUcd {
   }
   
   private static void checkRegex() {
-    com.ibm.icu.dev.test.util.UnicodeProperty.Factory factory = USE_ICU ? ICUPropertyFactory.make() : ToolUnicodePropertySource.make("5.0.0");
+    Factory factory = getFactory();
     List<String> props = factory.getAvailableNames();
     for (String prop : props) {
       UnicodeProperty property = factory.getProperty(prop);
@@ -104,8 +114,13 @@ public class VerifyXmlUcd {
   
   
   
-  private static void testFile(String file) {
+  private static void testFile(String file) throws IOException {
     System.out.format("\r\nTesting: %s\r\n\r\n", file);
+    final File file2 = new File(file);
+    if (!file2.canRead()) {
+      System.out.println("Can't read " + file2.getCanonicalPath());
+      System.out.println("Current Location: " + new File(".").getCanonicalPath());
+    }
     XMLFileReader xmlFileReader = new XMLFileReader();
     MySimpleHandler handler = new MySimpleHandler();
     xmlFileReader.setHandler(handler);
@@ -126,7 +141,7 @@ public class VerifyXmlUcd {
     int pathNumber = 0;
     XPathParts parser = new XPathParts();
     UnicodeSet seenSoFar = new UnicodeSet();
-    com.ibm.icu.dev.test.util.UnicodeProperty.Factory factory = USE_ICU ? ICUPropertyFactory.make() : ToolUnicodePropertySource.make("5.0.0");
+    Factory factory = getFactory();
     // test prop
     private Set accummulatedProperties = new HashSet();
     private Set accummulatedBlocks = new HashSet();

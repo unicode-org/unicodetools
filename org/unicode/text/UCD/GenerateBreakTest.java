@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2008-03-10 01:22:04 $
- * $Revision: 1.21 $
+ * $Date: 2008-03-11 23:06:48 $
+ * $Revision: 1.22 $
  *
  *******************************************************************************
  */
@@ -346,8 +346,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
             + "The × symbol indicates no break, while the ÷ symbol indicated a break. "
             + "The cells with × are also shaded to make it easier to scan the table. "
             + "For example, in the cell at the intersection of the row headed by 'CR' and the column headed by 'LF', there is a × symbol, indicating that there is no break between CR and LF.</p>");
-    out.println("<p>If you browser handles titles (tool tips), then hovering the mouse over the row header will show a sample character of that type. "
-            + "Hovering over a column header will show the sample character, plus its (abbreviated) general category and script. "
+    out.println("<p>If your browser handles titles (tool tips), then hovering the mouse over the row header will show a sample character of that type. "
+            + "Hovering over a column header will show the sample character, plus its abbreviated general category and script. "
             + "Hovering over the intersected cells shows the rule number that produces the break-status. "
             + "For example, in GraphemeBreakTest, hovering over the cell at the intersection of LVT and T shows ×, with the rule 8.0. "
             + "Checking below, the rule 8.0 is '( LVT | T) × T', which is the one that applies to that case. "
@@ -373,7 +373,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
   }
 
   public void generateTest(boolean shortVersion) throws IOException {
-    String[] testCase = new String[50];
+    List<String> testCases = new ArrayList<String>();
     // do main test
 
     UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader("UCD/auxiliary/", fileName + "BreakTest" 
@@ -411,9 +411,13 @@ abstract public class GenerateBreakTest implements UCD_Types {
         String after = samples[jj];
 
         // do line straight
-        int len = genTestItems(before, after, testCase);
-        for (int q = 0; q < len; ++q) {
-          printLine(out, testCase[q], !shortVersion && q == 0, false);
+        testCases.clear();
+        genTestItems(before, after, testCases);
+        genTestItems(before + "\u0308", after, testCases);
+        boolean isFirst = true;
+        for (String testCase : testCases) {
+          printLine(out, testCase, !shortVersion /*&& isFirst */, false);
+          isFirst = false;
           ++counter;
         }
       }
@@ -477,9 +481,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
     return DONE;
   }
 
-  public int genTestItems(String before, String after, String[] results) {
-    results[0] = before + after;
-    return 1;
+  public List<String> genTestItems(String before, String after, List<String> results) {
+    results.add(before + after);
+    return results;
   }
 
   public String getTableEntry(String before, String after, String[] ruleOut) {
@@ -589,20 +593,22 @@ abstract public class GenerateBreakTest implements UCD_Types {
     }
 
     out.println("<h3>Rules</h3>");
-    out.println("<p>The second section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and" +
-            " thus do not match the UAX rules precisely. " +
-            "In particular:</p>"+
-            "<ol>" +
-            "<li>The rules are cast into a more regex-style.</li>"+
-            "<li>The rules \"sot ÷\", \"÷ eot\", and \"÷ Any\" are added mechanically, and have artificial numbers.</li>"+
-            "<li>The rules are given decimal numbers, so rules such as 11a are given a number using tenths, such as 11.1.</li>"+
-            "<li>Where a rule has multiple parts (lines), each one is numbered using hundredths, such as 21.01) × BA, 21.02) × HY,...</li>"+
-            "<li>Any 'treat as' or 'ignore' rules are handled as discussed in Unicode Standard Annex #29, and thus" +
-            " reflected in a transformation of the rules usually not visible here. (Where it does show up, the variable CM* or FE* [for either Format or Extend] will appear.)</li>" +
-            "</ol>" +
-            "<p>For the original rules, see the UAX.</p>"
+    out
+            .println("<p>The second section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and"
+                    + " thus do not match the UAX rules precisely. "
+                    + "In particular:</p>"
+                    + "<ol>"
+                    + "<li>The rules are cast into a more form that is more like regular expressions.</li>"
+                    + "<li>The rules \"sot ÷\", \"÷ eot\", and \"÷ Any\" are added mechanically, and have artificial numbers.</li>"
+                    + "<li>The rules are given decimal numbers, so rules such as 11a are given a number using tenths, such as 11.1.</li>"
+                    + "<li>Any 'treat as' or 'ignore' rules are handled as discussed in Unicode Standard Annex #29, and thus"
+                    + " reflected in a transformation of the rules usually not visible here. " +
+                    		"Where it does show up, the variable CM* or FE* [for either Format or Extend] may appear.</li>"
+                    + "<li>Where a rule has multiple parts (lines), each one is numbered using hundredths, "
+                    + "such as 21.01) × BA, 21.02) × HY,... In some cases, the numbering and form of a rule is changed due to 'treat as' rules.</li>"
+                    + "</ol>" + "<p>For the original rules, see the UAX.</p>"
 
-    );
+            );
     out.println("<ul style='list-style-type: none'>");
     Matcher identifierMatcher = Pattern.compile("[$]\\p{Alpha}\\p{Alnum}*_").matcher("");
     for (int ii = 0; ii < ruleListCount; ++ii) {
@@ -623,7 +629,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
       out.println("<p>" +
               "The following samples illustrate the application of the rules. " +
               "The blue lines indicate possible break points. " +
-              "If your browser supports titles, then positioning the mouse over each character will show its name, " +
+              "If your browser supports titles (tool-tips), then positioning the mouse over each character will show its name, " +
               "white positioning between characters shows the rule number of the rule responsible for the break-status." +
       "</p>");
       out.println("<ol>");
@@ -914,10 +920,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
         "1\u0308b(a)-(b)",
       });
     }	
-    public int genTestItems(String before, String after, String[] results) {
-      results[0] = before + after;
-      results[1] = before + " " + after;
-      return 2;
+    public List<String> genTestItems(String before, String after, List<String> results) {
+      super.genTestItems(before,after,results);
+      results.add(before + " " + after);
+      return results;
     }
   }
 
@@ -944,8 +950,12 @@ abstract public class GenerateBreakTest implements UCD_Types {
               "U.S.A\u0300.", 
               "3.4", 
               "c.d",
+              "etc.)\u2019 the",
+              "etc.)\u2019 The",
               "etc.)\u2019 \u2018(the",
               "etc.)\u2019 \u2018(The",
+              "etc.)\u2019 \u0308the",
+              "etc.)\u2019 \u0308The",
               "the resp. leaders are",
               "\u5B57.\u5B57",
               "etc.\u5B83",
