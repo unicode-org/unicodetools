@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2008-03-11 23:06:48 $
- * $Revision: 1.22 $
+ * $Date: 2008-04-04 23:05:27 $
+ * $Revision: 1.23 $
  *
  *******************************************************************************
  */
@@ -365,6 +365,20 @@ abstract public class GenerateBreakTest implements UCD_Types {
       }
       out.println("</table>");
     }
+    
+    out.println("<hr width='50%'>\r\n" +
+  "<div align='center'>\r\n" +
+  "<center>\r\n" +
+  "<table cellspacing='0' cellpadding='0' border='0'>\r\n" +
+  "<tr>\r\n" +
+  "<td><a href='http://www.unicode.org/unicode/copyright.html'>\r\n" +
+  "<img src='http://www.unicode.org/img/hb_notice.gif' border='0' alt='Access to Copyright and terms of use' width='216' height='50'></a></td>\r\n" +
+  "</tr>\r\n" +
+  "</table>\r\n" +
+  "<script language='Javascript' type='text/javascript' src='http://www.unicode.org/webscripts/lastModified.js'>\r\n" +
+  "</script>\r\n" +
+  "</center>\r\n" +
+  "</div>");
 
     fc.close();
 
