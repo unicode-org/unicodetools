@@ -25,6 +25,8 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
+
+import org.unicode.text.UCA.WriteCharts;
 import org.unicode.text.utility.Utility;
 import org.unicode.text.utility.Utility.Encoding;
 
@@ -53,8 +55,9 @@ public class MakeNamesChart {
 		skipChars = new UnicodeSet(up.getSet("gc=cn")).removeAll(up.getSet("gc=cn"));
 		//"[[:gc=cn:]-[:noncharactercodepoint:]]");
 		rtl = new UnicodeSet(up.getSet("bidiclass=r")).addAll(up.getSet("bidiclass=al"));// "[[:bidiclass=r:][:bidiclass=al:]]");
-		usePicture = new UnicodeSet(up.getSet("whitespace=Yes")).addAll(up.getSet("defaultignorablecodepoint=Yes"));// new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
-
+		usePicture = new UnicodeSet().addAll(up.getSet("defaultignorablecodepoint=Yes"));// new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
+		isWhiteSpace = new UnicodeSet(up.getSet("whitespace=Yes"));
+		
     String folder = "charts/nameslist/";
 
     Utility.copyTextFile("org/unicode/text/UCA/nameslist_index.html", Utility.UTF8, folder + "index.html");
@@ -130,7 +133,7 @@ public class MakeNamesChart {
 					out.println("<td class='" + tdclass + "'"
 							+ title
 							+ ">\u00A0"
-							+ showChar(it.codepoint) + "\u00A0<br><tt><a href='" + namePrefix + fileName + "#"+ hexcp + "'>" + 
+							+ showChar(it.codepoint, true) + "\u00A0<br><tt><a href='" + namePrefix + fileName + "#"+ hexcp + "'>" + 
 							hexcp + "</a></tt></td>");
 					counter++;
 				}
@@ -148,32 +151,38 @@ public class MakeNamesChart {
 
 			// now do the characters
 			boolean inTable = false;
+			boolean firstInTable = true;
 			for (int i = 1; i < lines.size(); ++i) {
 				String line = (String)lines.get(i);
 				try {
 					if (line.startsWith("@")) {
 						finishItem(out);
-						if (inTable) {
-							out.println("</table>");
-							inTable = false;
-						}
-						if (line.startsWith("@+")) {
-							line = line.substring(2).trim();
-							out.println("<p class='comment'>"
+//						if (inTable) {
+//							//out.println("</table>");
+//							inTable = false;
+//						}
+						line = line.substring(1);
+            if (line.equals("@+")) {
+              // skip
+            } else if (line.startsWith("+")) {
+              line = line.substring(1).trim();
+              out.println("<tr><td class='comment' colspan='4'>"
+                  + line
+                  + "</tr></td>");
+            } else if (line.startsWith("@")) {
+              System.err.println("Can't handle line: " + i + "\t" + line);
+            } else {
+							line = line.trim();
+							out.println("<tr><td colspan='4'><h2>"
 									+ line
-									+ "</p>");
-						} else {
-							line = line.substring(1).trim();
-							out.println("<h2>"
-									+ line
-									+ "</h2>");
+									+ "</h2></tr></td>");
 						}
 					} else {
 						if (!inTable) {
 							out.println("<table>");
 							inTable = true;
+							firstInTable = true;
 						}
-						//String line2 = lineParts[1];
 						if (line.startsWith("\t")) {
 							String body = line.trim();
 							if (false && line.indexOf(body) != 1) {
@@ -188,10 +197,18 @@ public class MakeNamesChart {
 							case 'x': body = getOther(body); break;
 							case '=': break;
 							default: throw new IllegalArgumentException("Huh? " + body);
-							}  
-							out.println("<tr><td>\u00A0</td><td>\u00A0</td><td>"
-									+ maybeNameStyle(showTextConvertingHex(body, firstChar != '='), firstChar == '=')
-									+ "</td></tr>");
+							}
+							char firstDisplayChar = body.charAt(0);
+							body = body.substring(1).trim();
+							out.println("<tr><td" 
+							        + ">\u00A0</td>"
+							        + "<td class='char'" 
+							        + ">\u00A0</td>"
+							        + "<td class='c'>"
+							        + firstDisplayChar
+							        + "</td><td>"
+							        + maybeNameStyle(showTextConvertingHex(body, firstChar != '='), firstChar == '=')
+							        + "</td></tr>");
 						} else {
 							finishItem(out);
 							lineParts = line.split("\t");
@@ -200,13 +217,18 @@ public class MakeNamesChart {
 							boolean lastCodePointIsNew = isNew(lastCodePoint);
 							if (lastCodePointIsNew) nameListNew.set(nameList.size()-1, true);
 							out.println("<tr><td" 
-									+ (lastCodePointIsNew ? " class='new'" : "")
-									+ "><code><a name='" + x + "'>" + x + "</a></code></td><td>\u00A0"
-									+ showChar(lastCodePoint) + "\u00A0</td><td"
-									+ (lastCodePointIsNew ? " class='new'" : "") + ">"
-									+ nameStyle(showTextConvertingHex(lineParts[1], false)) + "</td></tr>");
+							        + (lastCodePointIsNew ? " class='new'" : "")
+							        + (firstInTable ? " width='1pt'" : "")
+							        + "><code><a name='" + x + "'>" + x + "</a></code></td>"
+							        + "<td class='c'" + (rtl.contains(lastCodePoint) ? " dir='rtl'" : "")
+							        + ">\u00A0"
+							        + showChar(lastCodePoint, true) + "\u00A0</td>"
+							        + "<td colSpan='2'"
+							        + (lastCodePointIsNew ? " class='new'" : "") + ">"
+							        + nameStyle(showTextConvertingHex(lineParts[1], false)) + "</td></tr>");
 							lastDecompType = Default.ucd().getDecompositionType(lastCodePoint);
 						}
+						firstInTable = false;
 					}
 				} catch (Exception e) {
 					throw (IllegalArgumentException) new IllegalArgumentException("Error on line: " + line)
@@ -233,8 +255,10 @@ public class MakeNamesChart {
 					+ "><a href='" + chartPrefix + fileName + "'>" + getHeading(lineParts[2]) + "</a></td><td><code>" +
 					lineParts[3] +"</code></td></tr>");
 		}
-		out.println("</table></body></html>");
-		out.close();
+    out.println("</table>");
+		WriteCharts.closeIndexFile(out, "", WriteCharts.NAMELIST, false);
+
+		//out.close();
 		BagFormatter bf = new BagFormatter();
 		//System.out.println(bf.showSetDifferences("Has name in decomps", hasName, "Has no name in decomps", hasNoName));
 		System.out.println("Name differences: Canonical");
@@ -319,7 +343,7 @@ public class MakeNamesChart {
 
 	private static String showForm(PrintWriter out, String str, String str2, String str3, String transformed, String symbol) {
 		if (!transformed.equals(str) && !transformed.equals(str2) && !transformed.equals(str3)) {
-			out.println("<tr><td>\u00A0</td><td>\u00A0</td><td class='c'>" + symbol + "\u00A0"
+			out.println("<tr><td>\u00A0</td><td>\u00A0</td><td class='c'>" + symbol + "</td><td>"
 				+ showTextConvertingHex(Utility.hex(transformed, 4, " + "), true)
 				+ (UTF16.countCodePoint(transformed) != 1 ? "" : 
 					" " + Default.ucd().getName(transformed, UCD.NORMAL, " + ").toLowerCase())
@@ -343,7 +367,7 @@ public class MakeNamesChart {
 
 	private static String nameStyle(String string) {
 		// TODO Auto-generated method stub
-		String result = "<i>" + Default.ucd().getCase(string, UCD.FULL, UCD.TITLE) + "</i>";
+		String result = "<span class='name'>" + Default.ucd().getCase(string, UCD.FULL, UCD.TITLE) + "</span>";
 		// if it has any &xxx;, then restore them.
 		int position = 0;
 		while (true) {
@@ -371,7 +395,7 @@ public class MakeNamesChart {
 				if (len < 4 || len > 6) continue;
 				int cp = Integer.parseInt(findHex.group(),16);
 				if (cp > 0x10FFFF) continue;
-				String insert = "\u00A0" + showChar(cp);
+				String insert = "\u00A0" + showChar(cp, true);
 				String beginning = body.substring(0,start)
 					+ "<code>" + body.substring(start, position) + "</code>"
 					+ insert;
@@ -410,15 +434,22 @@ public class MakeNamesChart {
 		return "\u2192 " + Utility.hex(cp,4) /*+ " " + showChar(cp)*/ + (name != null ? " " + name : "");
 	}
 	
-	static String showChar(int cp) {
-		if (usePicture.contains(cp)) {
-			int rep = '\u2588';
-			if (cp <= 0x20) rep = 0x2400 + cp;
-			else if (cp == 0x7F) rep = 0x2421;
-			return "<span class='inv'>" + (char)rep + "</span>";
-			//String hex = Utility.hex(cp);
-			//return "<img alt='" + hex + "' src='http://www.unicode.org/cgi-bin/refglyph?24-" + hex + "'>";
-		}
+	static String showChar(int cp, boolean addRlmIfNeeded) {
+    if (cp < 0x20 || cp == 0x7F) {
+      int rep = '?';
+      if (cp <= 0x20) rep = 0x2400 + cp;
+      else if (cp == 0x7F) rep = 0x2421;
+      return "<span class='inv'>" + (char)rep + "</span>";
+    }
+    
+    if (usePicture.contains(cp)) {
+      return "<span class='inv'>⬚</span>";
+      //String hex = Utility.hex(cp);
+      //return "<img alt='" + hex + "' src='http://www.unicode.org/cgi-bin/refglyph?24-" + hex + "'>";
+    }
+    if (isWhiteSpace.contains(cp)) {
+      return "<span class='inv'>␣</span>";
+    }
 		
 		int type = Default.ucd().getCategory(cp);
 		if (type == UCD.Cn || type == UCD.Co || type == UCD.Cs) {
@@ -427,7 +458,7 @@ public class MakeNamesChart {
 		String result = TransliteratorUtilities.toHTML.transliterate(UTF16.valueOf(cp));
 		if (type == UCD.Me || type == UCD.Mn) {
 			result = "\u25CC" + result;
-		} else if (rtl.contains(cp)) {
+		} else if (addRlmIfNeeded && rtl.contains(cp)) {
 			result = "\u200E" + result + "\u200E";
 		}
 		return result;
@@ -438,6 +469,7 @@ public class MakeNamesChart {
 	static final Map hasNameCan = new TreeMap();
 	static final Map hasNoNameComp = new TreeMap();
 	static final Map hasNameComp = new TreeMap();
+  private static UnicodeSet isWhiteSpace;
 
 	private static String checkCanonical(int codePoint, String body) {
 		body = body.substring(2);

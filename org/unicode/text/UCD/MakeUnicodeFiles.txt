@@ -1,5 +1,5 @@
-Generate: .*Break.*
-DeltaVersion: 32
+Generate: .*variant.*
+DeltaVersion: 34
 CopyrightYear: 2008
 
 File: auxiliary/GraphemeBreakProperty
