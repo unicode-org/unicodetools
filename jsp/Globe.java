@@ -99,7 +99,9 @@ public class Globe {
     "Wellington (WLG)", 
     "Honolulu",
     "Melbourne (MEL)",
-    "Caen (CFR)"
+    "Caen (CFR)",
+    "Cochin (COK)",
+    "Cochin (COK) - centering"
   };
   // Melbourne, Australia	37	47 S	144	58 E
   // Caen — 49° 10' 59" N 00° 22' 10" W
@@ -117,6 +119,14 @@ public class Globe {
     {Navigator.toRadians(21, 18, 0, false), Navigator.toRadians(157, 50, 0, false)},   
     {Navigator.toRadians(37, 39, 42, true), Navigator.toRadians(144, 50, 0, true)},   
     {Navigator.toRadians(49, 10, 24, false), Navigator.toRadians(0, 26, 53, false)},   
+    {Navigator.toRadians(10, 9, 7, false), Navigator.toRadians(76, 24, 7, true)},   // Cochin
+    {Navigator.toRadians(0, 0, 0, false), Navigator.toRadians(70, 0, 0, true)},   // Cochin
+    /*
+     *  Airport Code  : COK
+
+Longitude : 76° 24’ 7” E (?)
+Latitude : 10° 9’ 7” N (?)
+     */
   };
 
   static int [][] sizeValues = {
