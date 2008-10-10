@@ -47,14 +47,18 @@ public class XEquivalenceClass {
 		return add(a,b,null);
 	}
 	
+	 public XEquivalenceClass add(Object a, Object b, Object reason) {
+	   return add(a,b,reason,reason);
+	 }
 	/**
 	 * Add two equivalent items, plus a reason. The reason is only used for getReasons
 	 */
-	public XEquivalenceClass add(Object a, Object b, Object reason) {
+	public XEquivalenceClass add(Object a, Object b, Object reasonAB, Object reasonBA) {
 		if (a.equals(b)) return this;
-		if (reason == null) reason = defaultReason;
-		addReason(a,b,reason);
-		addReason(b,a,reason);
+    if (reasonAB == null) reasonAB = defaultReason;
+    if (reasonBA == null) reasonBA = defaultReason;
+		addReason(a,b,reasonAB);
+		addReason(b,a,reasonBA);
 		Set aPartitionSet = (Set) toPartitionSet.get(a);
 		Set bPartitionSet = (Set) toPartitionSet.get(b);
 		if (aPartitionSet == null) {
@@ -193,6 +197,11 @@ public class XEquivalenceClass {
 		return result;
 	}
 	
+	public Set getReason(Object a, Object b) {
+	  Map obj_reasons = (Map) obj_obj_reasons.get(a);
+	  if (obj_reasons == null) return null;
+	  return (Set) obj_reasons.get(b);
+	}
 
 	/**
 	 * Returns a list of lists. Each sublist is in the form [reasons, obj, reasons, obj,..., reasons]

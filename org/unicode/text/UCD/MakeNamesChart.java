@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -46,8 +47,11 @@ public class MakeNamesChart {
 	static UCD lastUCDVersion;
 
 	public static void main(String[] args) throws Exception {
+	  checkFile();
+	  if (true) return;
 		//ConvertUCD.main(new String[]{"5.0.0"});
 		BlockInfo blockInfo = new BlockInfo(Default.ucdVersion(), "NamesList");
+
 		// http://www.unicode.org/~book/incoming/kenfiles/U50M051010.lst
 		//Default.setUCD("5.0.0");
 		lastUCDVersion = UCD.make(UCD.lastVersion);
@@ -73,6 +77,7 @@ public class MakeNamesChart {
 		int limit = Integer.MAX_VALUE;
 		for (int count = 0; count < limit; ++count) {
 			if (!blockInfo.next(lines)) break;
+
 			String firstLine = (String)lines.get(0);
 			if (firstLine.startsWith("@@@")) continue;
 			String[] lineParts = firstLine.split("\t");
@@ -271,7 +276,33 @@ public class MakeNamesChart {
 		System.out.println("Done");
 	}
 
-	private static boolean isNew(int codepoint) {
+	private static void checkFile() throws IOException {
+    BufferedReader in = Utility.openUnicodeFile("NamesList", Default.ucdVersion(), true, Utility.LATIN1_WINDOWS);
+    Set<LineMatcher> missing = new TreeSet(EnumSet.allOf(LineMatcher.class));
+    Map<LineMatcher,String> examples = new TreeMap();
+    while (true) {
+      String line = in.readLine();
+      if (line == null) {
+        break;
+      }
+      System.out.println(line);
+      LineMatcher lineMatcher = LineMatcher.match(line);
+      if (lineMatcher == null) {
+        System.out.println("\t*** Failed match with: <" + line + ">");
+      } else {
+        System.out.println("\t" + lineMatcher);
+        missing.remove(lineMatcher);
+        examples.put(lineMatcher, lineMatcher + " <= " + line);
+      }
+    }
+    System.out.println("Missing: " + missing);
+    for (LineMatcher lineMatcher : examples.keySet()) {
+      System.out.println(examples.get(lineMatcher));
+    }
+    in.close();
+  }
+
+  private static boolean isNew(int codepoint) {
 		return Default.ucd().isAllocated(codepoint) && !lastUCDVersion.isAllocated(codepoint);
 	}
 
@@ -546,5 +577,220 @@ public class MakeNamesChart {
 			return inout.size() > 0;
 		}
 
+	}
+
+  public static final String[][] LINE_MATCHER_VARIABLES = {
+    {"$char", "[0-9A-F]{4,6}"},
+    {"$name", "[0-9A-Z](?:[0-9A-Z\\- ]*[0-9A-Z])?"}, // alphanumeric, separated by spaces and '-'
+    {"$lcname", "[0-9a-zA-Z](?:[0-9a-zA-Z \\-]*[0-9a-zA-Z])?"}, // lowercase alphanumeric, separated by spaces and '-'
+    // NOTE: lcname can contain uppercase characters
+    {"$comment", "\\([A-Za-z](?:[0-9A-Za-z, \\-]*[0-9A-Za-z])?\\)"}, // '(' alphanumeric (upper or lower) separated by spaces ')'
+    };
+  
+	enum LineMatcher {
+//NAME_LINE:  CHAR <tab> NAME LF
+	  // NOTE: sometimes <tab>, sometimes TAB
+//      // The CHAR and the corresponding image are echoed, 
+//      // followed by the name as given in NAME
+    NAME_LINE("($char)\t($name)?(?: (\\*))?"),
+	  // NOTE: missing *
+//
+//    CHAR TAB "<" LCNAME ">" LF
+//      // Control and non-characters use this form of                  
+//      // lower case, bracketed pseudo character name
+	   NAME_LINE2("($char)\t<($lcname)>(?: (\\*))?"),
+	    // NOTE: missing *
+//    CHAR TAB NAME SP COMMENT LF
+//      // Names may have a comment, which is stripped off
+//      // unless the file is parsed for an ISO style list
+     NAME_LINE3("($char)\t($name) ($comment)(?: (\\*))?"),
+     // NOTE: COMMENT should be "(" ... ")"
+//                    
+//RESERVED_LINE:  CHAR TAB <reserved>   
+//      // The CHAR is echoed followed by an icon for the
+//      // reserved character and a fixed string e.g. <reserved>
+//  
+     RESERVED_LINE("$char\t(<reserved>)"),
+//COMMENT_LINE: <tab> "*" SP EXPAND_LINE
+//      // * is replaced by BULLET, output line as comment
+//    <tab> EXPAND_LINE 
+//      // Output line as comment
+     COMMENT_LINE("\t\\* (.*)"),
+//
+//ALIAS_LINE: <tab> "=" SP LINE 
+//      // Replace = by itself, output line as alias
+     ALIAS_LINE("\t= (.*)"),
+//
+//FORMALALIAS_LINE: <tab> "%" SP LINE 
+//      // Replace % by U+203B, output line as formal alias
+     FORMALALIAS_LINE("\t% (.*)"),
+//
+//CROSS_REF:  <tab> "X" SP CHAR SP LCNAME 
+//      // X is replaced by a right arrow
+     CROSS_REF1("\tx ($char) ($name)"),
+     CROSS_REF_SPACE("\tx ($char)(?: ($name))?"),
+     //NOTE: "  x 5382" doesn't have name
+//    <tab> "X" SP "(" LCNAME SP "-" SP CHAR ")"  
+     CROSS_REF2("\tx \\(($lcname) - ($char)\\)"),
+     CROSS_REF3("\tx \\(<($lcname)> - ($char)\\)"),
+     // NOTE: may have < ... > Explicit in NAME_LINE but not here
+//      // X is replaced by a right arrow,
+//      // the "(", "-", ")" are removed, and the
+//      // order of CHAR and LCNAME is reversed;
+//      // i.e. both inputs result in the same output
+     CROSS_REF_XTRATAB1("\t\tx ($char) ($name)"),
+     CROSS_REF_XTRATAB2("\t\tx \\(($lcname) - ($char)\\)"),
+     //NOTE: is "x", not "X"
+//
+//FILE_COMMENT: ";"  LINE 
+     FILE_COMMENT(";(.*)"),
+//EMPTY_LINE: LF      
+//      // Empty and ignored lines as well as 
+//      // file comments are ignored
+     EMPTY_LINE(""),
+//
+//SIDEBAR_LINE:   ";;" LINE
+//      // Skip ';;' characters, output line
+//      // as marginal note
+     SIDEBAR_LINE(";;(.*)"),
+//
+//IGNORED_LINE: <tab> ";" EXPAND_LINE
+//      // Skip ':' character, ignore text
+     // NOTE: : is wrong
+     IGNORED_LINE("\t;(.*)"),
+//
+//DECOMPOSITION:  <tab> ":" SP EXPAND_LINE  
+//      // Replace ':' by EQUIV, expand line into 
+//      // decomposition 
+     DECOMPOSITION("\t: (.*)"),
+//
+//COMPAT_MAPPING: <tab> "#" SP EXPAND_LINE  
+//COMPAT_MAPPING: <tab> "#" SP "<" LCTAG ">" SP EXPAND_LINE 
+//      // Replace '#' by APPROX, output line as mapping;
+//      // check the <tag> for balanced < >
+     COMPAT_MAPPING2("\t# <($lctag)> (.*)"),
+     COMPAT_MAPPING1("\t# (.*)"),
+     //NOTE: out of order
+//
+//NOTICE_LINE:  "@+" <tab> LINE   
+//      // Skip '@+', output text as notice
+//    "@+" TAB * SP LINE  
+     NOTICE_LINE_XTRATAB2("@\\+\t\t\\* (.*)"),
+     NOTICE_LINE_XTRATAB1("@\\+\t ?\t(.*)"),
+     NOTICE_LINE2("@\\+\t\\* (.*)"),
+     NOTICE_LINE1("@\\+\t(.*)"),
+     // NOTE: @+    Italic symbols already encoded in the Letterlike Symbols block are omitted here to avoid duplicate encoding.
+     // has TAB SP TAB
+     // NOTE: out of order
+//      // Skip '@', output text as notice
+//      // "*" expands to a bullet character
+//      // Notices following a character code apply to the
+//      // character and are indented. Notices not following
+//      // a character code apply to the page/block/column 
+//      // and are italicized, but not indented
+//
+//SUBTITLE: "@@@+" <tab> LINE 
+//      // Skip "@@@+", output text as subtitle
+     SUBTITLE("@@@\\+\t(.*)"),
+//
+//SUBHEADER:  "@" <tab> LINE  
+//      // Skip '@', output line as text as column header
+     SUBHEADER_XTRATAB("@\t\t(.*)"),
+     SUBHEADER("@\t(.*)"),
+     // NOTE: has 2 tabs
+//
+//BLOCKHEADER:  "@@" <tab> BLOCKSTART <tab> BLOCKNAME <tab> BLOCKEND
+//      // Skip "@@", cause a page break and optional
+//      // blank page, then output one or more charts
+//      // followed by the list of character names. 
+//      // Use BLOCKSTART and BLOCKEND to define
+//      // what characters belong to a block.
+//      // Use blockname in page and table headers
+//    "@@" <tab> BLOCKSTART <tab> BLOCKNAME COMMENT <tab> BLOCKEND
+     BLOCKHEADER2("@@\t($char)\t([^\t\\(]*\\($name\\))\t($char)"),
+     BLOCKHEADER("@@\t($char)\t([^\t]*) ?\t($char)"),
+     // NOTE: out of order
+     // NOTE: comment is (....)? -- also, needs SP
+     // NOTE: @@  1380  Ethiopic Supplement   139F has SP TAB
+//      // If a comment is present it replaces the blockname
+//      // when an ISO-style namelist is laid out
+//
+//BLOCKNAME:    LABEL
+//    LABEL SP "(" LABEL ")"      
+     BLOCKNAME2("@@\t(.*)\\(.*\\)"),
+     BLOCKNAME("@@\t(.*)"),
+     // NOTE: missing @@ SP
+//      // If an alternate label is present it replaces 
+//      // the blockname when an ISO-style namelist is
+//      // laid out; it is ignored in the Unicode charts
+//
+//BLOCKSTART: CHAR  // First character position in block
+     BLOCKSTARTOREND("$char"),
+//BLOCKEND:   CHAR  // Last character position in block
+//PAGE_BREAK: "@@"  // Insert a (column) break
+	  PAGE_BREAK("$char"),
+//INDEX_TAB:    "@@+" // Start a new index tab at latest BLOCKSTART
+	  INDEX_TAB("@@\\+"),
+//
+//TITLE:    "@@@" <tab> LINE  
+	  TITLE("@@@\t(.*)"),
+//      // Skip "@@@", output line as text
+//      // Title is used in page headers
+//
+//EXPAND_LINE:  {CHAR | STRING}+ LF 
+//      // All instances of CHAR *) are replaced by 
+//      // CHAR NBSP x NBSP where x is the single Unicode
+//      // character corresponding to CHAR.
+//      // If character is combining, it is replaced with
+//      // CHAR NBSP <circ> x NBSP where <circ> is the 
+//      // dotted circle
+	   NO_DEFINITION("\t(.*)"),
+	   // NOTE: this is not defined. Example: "  Final Unicode 5.1 names list."   
+	   // "00AB  LEFT-POINTING DOUBLE ANGLE QUOTATION MARK *" is not defined
+
+	  ;
+	  Matcher matcher;
+	  
+	  private LineMatcher(String regexPattern) {
+      for (String[] pair : LINE_MATCHER_VARIABLES) {
+        regexPattern = regexPattern.replace(pair[0], pair[1]);
+      }
+	    matcher = Pattern.compile(regexPattern).matcher("");
+    }
+	  
+	  public static LineMatcher match(String input) {
+	    for (LineMatcher matcher : LineMatcher.values()) {
+	      if (matcher.matcher.reset(input).matches()) {
+	        return matcher;
+	      }
+	    }
+	    return null;
+	  }
+    public String group() {
+      return matcher.group();
+    }
+    public String group(int arg0) {
+      return matcher.group(arg0);
+    }
+    public int groupCount() {
+      return matcher.groupCount();
+    }
+    public String toString() {
+      StringBuilder result = new StringBuilder(name());
+      try {
+        for (int i = 1; i <= matcher.groupCount(); ++i) {
+          String group = matcher.group(i);
+          if (group == null) {
+            continue;
+          }
+          if (!group.equals(group.trim())) {
+            group += "~~~";
+          }
+          result.append(" {").append(group).append("}");
+        }
+      } catch (RuntimeException e) {
+      }
+      return result.toString();
+    }
 	}
 }

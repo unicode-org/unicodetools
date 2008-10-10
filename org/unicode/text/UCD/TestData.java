@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestData.java,v $
-* $Date: 2007-11-15 04:15:15 $
-* $Revision: 1.28 $
+* $Date: 2008-10-10 14:29:20 $
+* $Revision: 1.29 $
 *
 *******************************************************************************
 */
@@ -294,7 +294,7 @@ public class TestData implements UCD_Types {
 	}
 
 
-	private static void countChars() {
+	public static void countChars() {
 		int[][] count = new int[AGE_VERSIONS.length][50];
 		for (int j = 1; j < AGE_VERSIONS.length; ++j) {
 			UCD ucd = UCD.make(AGE_VERSIONS[j]);
@@ -317,7 +317,7 @@ public class TestData implements UCD_Types {
 			case LIMIT_CATEGORY+1: System.out.print("Alphabetic" + "\t" + "alpha"); break;
 			}
 			for (int j = 1; j < AGE_VERSIONS.length; ++j) {
-				if (i < 0) System.out.print("\t*" + AGE_VERSIONS[j] + "*");
+				if (i < 0) System.out.print("\t" + AGE_VERSIONS[j] + "");
 				else System.out.print("\t" + count[j][i]);
 			}
 			System.out.println();
