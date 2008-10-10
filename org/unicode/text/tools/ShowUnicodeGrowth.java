@@ -20,6 +20,7 @@ public class ShowUnicodeGrowth {
   public static void main(String[] args) {
     TestData.countChars();
   } 
+  
   void foo() {
     Map<Type,Counter<String>> map = new TreeMap();
     Set<String> ages = new TreeSet();
