@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateConfusables.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.17 $
+* $Date: 2008-10-10 14:29:20 $
+* $Revision: 1.18 $
 *
 *******************************************************************************
 */
@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -39,9 +40,12 @@ import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.dev.test.util.XEquivalenceClass;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Punycode;
+import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 import org.unicode.text.utility.Utility;
 
@@ -58,7 +62,9 @@ public class GenerateConfusables {
 			if (arg2.contains("-b")) generateIDN();
 			if (arg2.contains("-c")) generateConfusables();
 			if (arg2.contains("-d")) generateDecompFile();
-			if (arg2.contains("-s")) generateSource();
+      if (arg2.contains("-s")) generateSource();
+      if (arg2.contains("-l")) generateLatin();
+      if (arg2.contains("-a")) generateAsciify();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -66,8 +72,138 @@ public class GenerateConfusables {
 		}
 	}
 
-    private static void quickTest() {
-        int script = getSingleScript("\u0430\u0061");
+	private static void generateAsciify() throws IOException {
+    BufferedReader in = BagFormatter.openUTF8Reader(indir, "asciify.txt");
+    StringBuilder builder = new StringBuilder();
+    System.out.println("String rules = \"\"");
+    while (true) {
+      String line = in.readLine();
+      if (line == null) {
+        break;
+      }
+      line = line.trim();
+      if (line.length() == 0) {
+        continue;
+      }
+      builder.append(line).append('\n');
+      System.out.println(" + \"" + com.ibm.icu.impl.Utility.escape(line) + "\\n\"");
+    }
+    System.out.println(";");
+    in.close();
+    String rules = builder.toString();
+    Transliterator asciify = Transliterator.createFromRules("asciify", rules, Transliterator.FORWARD);
+    in = BagFormatter.openUTF8Reader(indir, "asciify_examples.txt");
+    System.out.println("String[][] translitTestCases = {");
+    System.out.println("//{\"" + "SAMPLE" + "\", \"" + "EXPECTED TRANSFORM" + "\"},");
+    while (true) {
+      String line = Utility.readDataLine(in);
+      if (line == null) {
+        break;
+      }
+      System.out.println("{\"" + com.ibm.icu.impl.Utility.escape(line) + "\", \"" + asciify.transform(line) + "\"},");
+    }
+    System.out.println("};");
+    in.close();
+  }
+
+  static final UnicodeSet LATIN = (UnicodeSet) new UnicodeSet("[:script=latin:]").freeze();
+	static final UnicodeSet LATIN_PLUS  = (UnicodeSet) new UnicodeSet("[[:script=latin:][:script=common:][:script=inherited:]]").freeze();
+  static final UnicodeSet ASCII = (UnicodeSet) new UnicodeSet("[:ASCII:]").freeze();
+  static final UnicodeSet MARKS_AND_ASCII = (UnicodeSet) new UnicodeSet("[[:mark:][:ASCII:]]").freeze();
+	
+	private static void generateLatin() throws IOException {
+	  // pick out only those items where the source and target both have some latin, and no non-latin
+	  Map<String,String> mapping = new TreeMap<String,String>(UCAComparator);
+    addLatin(mapping, "confusables-source.txt");
+    addLatin(mapping, "confusables-intentional.txt");
+    Set<String> sorted = new TreeSet(UCAComparator);
+    UnicodeSet sourceSet = new UnicodeSet();
+    for (ULocale locale : ULocale.getAvailableLocales()) {
+      sourceSet.addAll(LocaleData.getExemplarSet(locale, 0));
+    }
+    sourceSet.retainAll(LATIN).removeAll(ASCII);
+    sourceSet.closeOver(UnicodeSet.CASE);
+    sorted.addAll(sourceSet.toSet());
+	  for (String source : sorted) {
+	    if (source.length() > 1 || !Default.nfkc().isNormalized(source)) continue;
+	    String reason = "CON";
+	    String target = mapping.get(source);
+	    if (target == null) {
+	      reason = "NFC";
+	      target = Default.nfc().normalize(source);
+	      if (target.equals(source)) {
+	        reason = "!CH";
+	      }
+	    }
+	    if (new UnicodeSet().addAll(Default.nfd().normalize(target)).removeAll(MARKS_AND_ASCII).size() > 0) {
+	      reason += " XXX";
+	    }
+	    System.out.println(source + "\t→\t" + target + 
+	            " ; #" + reason + "\t" + Default.ucd().getCodeAndName(source) + "\t→\t" + Default.ucd().getCodeAndName(target));
+	    
+	  }    
+	}
+
+  private static void addLatin(Map<String, String> mapping, String fileName) throws IOException {
+
+    BufferedReader in = BagFormatter.openUTF8Reader(indir, fileName);
+	  while (true) {
+	    String line = Utility.readDataLine(in);
+	    if (line == null) {
+	      break;
+	    }
+	    String oldLine = line = line.trim();
+	    try {
+	      if (line.length() == 0) {
+	        continue;
+	      }
+	      String[] pieces = line.split(";");
+	      String source = fromHex(pieces[0]);
+	      String target = fromHex(pieces[1]);
+	      // must contain some latin
+	      if (!LATIN.containsSome(source) || !LATIN.containsSome(target)) {
+	        continue;
+	      }
+	      // mustn't contain anything else
+	      if (!LATIN_PLUS.containsAll(source) && !LATIN_PLUS.containsAll(target)) {
+	        continue;
+	      }
+
+	      String old = mapping.get(source);
+	      if (old!=null) {
+	        System.out.println("Overriding " + source + "=>" + old + " with " + target);
+	      }
+	        
+	      // skip NFKC forms
+	      if (Default.nfkd().normalize(source).equals(Default.nfkd().normalize(target))) {
+	        if (old != null) {
+	          mapping.remove(source);
+	        }
+	        continue;
+	      }
+
+
+	      mapping.put(source, target);
+	    } catch (Exception e) {
+	      throw (RuntimeException) new IllegalArgumentException("Can't process <" + oldLine + ">").initCause(e);
+	    }
+	  }
+	  in.close();
+  }
+	
+	static String fromHex(String hexOrChars) {
+	  hexOrChars = hexOrChars.trim();
+	  String result;
+    try {
+      result = Utility.fromHex(hexOrChars);
+    } catch (Exception e) {
+      result = hexOrChars;
+    }
+	  return result;
+	}
+
+	private static void quickTest() {
+	  int script = getSingleScript("\u0430\u0061");
         script = getSingleScript("\u0061\u0430"); //0323 ;  093C
         String a = "\u0323";
         String b = "\u093C";
@@ -155,8 +291,8 @@ public class GenerateConfusables {
     static UnicodeMap nfcMap;
     static UnicodeMap nfkcMap;
 	
-	static String indir = "C:\\cvsdata\\unicode\\draft\\reports\\tr36\\data\\source/";
-	static String outdir = "C:\\cvsdata\\unicode\\draft\\reports\\tr36\\data/";
+	static final String indir = "/Users/markdavis/Documents/workspace/draft/reports/tr36/data/source/";
+	static final String outdir = "/Users/markdavis/Documents/workspace/draft/reports/tr36/data/";
 	
 	static Comparator codepointComparator = new UTF16.StringComparator(true,false,0);
     static Comparator UCAComparator = new CollectionUtilities.MultiComparator(new Comparator[] {Collator.getInstance(ULocale.ROOT), codepointComparator});
@@ -457,8 +593,8 @@ public class GenerateConfusables {
 			//reviews.putAll(UNASSIGNED, "");
 //			out.print("\uFEFF");
 //			out.println("# Review List for IDN");
-//			out.println("# $Revision: 1.17 $");
-//			out.println("# $Date: 2008-02-26 00:20:30 $");
+//			out.println("# $Revision: 1.18 $");
+//			out.println("# $Date: 2008-10-10 14:29:20 $");
 //			out.println("");
 
 			UnicodeSet fullSet = reviews.getSet("").complement();
@@ -580,8 +716,8 @@ public class GenerateConfusables {
 			/* PrintWriter out = BagFormatter.openUTF8Writer(outdir, "xidmodifications.txt");
 
 			out.println("# Security Profile for General Identifiers");
-			out.println("# $Revision: 1.17 $");
-			out.println("# $Date: 2008-02-26 00:20:30 $");
+			out.println("# $Revision: 1.18 $");
+			out.println("# $Date: 2008-10-10 14:29:20 $");
             */
 
 
@@ -653,8 +789,8 @@ public class GenerateConfusables {
 			//someRemovals = removals;
 			out = BagFormatter.openUTF8Writer(outdir, "draft-restrictions.txt");
 			out.println("# Characters restricted in domain names");
-			out.println("# $Revision: 1.17 $");
-			out.println("# $Date: 2008-02-26 00:20:30 $");
+			out.println("# $Revision: 1.18 $");
+			out.println("# $Date: 2008-10-10 14:29:20 $");
 			out.println("#");
 			out.println("# This file contains a draft list of characters for use in");
 			out.println("#     UTR #36: Unicode Security Considerations");
@@ -1253,8 +1389,8 @@ public static int getSingleScript(String source) {
             PrintWriter out = openAndWriteHeader(filename, "Source File for IDN Confusables");
 //			PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
 //			out.println("# Source File for IDN Confusables");
-//			out.println("# $Revision: 1.17 $");
-//			out.println("# $Date: 2008-02-26 00:20:30 $");
+//			out.println("# $Revision: 1.18 $");
+//			out.println("# $Date: 2008-10-10 14:29:20 $");
 //			out.println("");
 			dataMixedAnycase.writeSource(out);
 			out.close();
@@ -1264,8 +1400,8 @@ public static int getSingleScript(String source) {
             PrintWriter out = openAndWriteHeader(filename, "Recommended confusable mapping for IDN");
 //            PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
 //			out.println("# Recommended confusable mapping for IDN");
-//			out.println("# $Revision: 1.17 $");
-//			out.println("# $Date: 2008-02-26 00:20:30 $");
+//			out.println("# $Revision: 1.18 $");
+//			out.println("# $Date: 2008-10-10 14:29:20 $");
 //			out.println("");
 
 			if (appendFile) {
@@ -1496,8 +1632,8 @@ public static int getSingleScript(String source) {
 //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
 //			out.print('\uFEFF');
 //			out.println("# Summary: Recommended confusable mapping for IDN");
-//			out.println("# $Revision: 1.17 $");
-//			out.println("# $Date: 2008-02-26 00:20:30 $");
+//			out.println("# $Revision: 1.18 $");
+//			out.println("# $Date: 2008-10-10 14:29:20 $");
 //			out.println("");
             UnicodeSet representable = new UnicodeSet();
 			MyEquivalenceClass data = dataMixedAnycase;
@@ -1623,8 +1759,8 @@ public static int getSingleScript(String source) {
 //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
 //			out.print('\uFEFF');
 //			out.println("# Summary: Whole-Script Confusables");
-//			out.println("# $Revision: 1.17 $");
-//			out.println("# $Date: 2008-02-26 00:20:30 $");
+//			out.println("# $Revision: 1.18 $");
+//			out.println("# $Date: 2008-10-10 14:29:20 $");
 			out.println("# This data is used for determining whether a strings is a");
 			out.println("# whole-script or mixed-script confusable.");
 			out.println("# The mappings here ignore common and inherited script characters,");
@@ -2133,7 +2269,7 @@ public static int getSingleScript(String source) {
          out.println("# File: " + filename);
          out.println("# Version: " + version);
          out.println("# Generated: " + Default.getDate());
-         out.println("# Checkin: $Revision: 1.17 $");
+         out.println("# Checkin: $Revision: 1.18 $");
          out.println("#");
          out.println("# For documentation and usage, see http://www.unicode.org/reports/tr39/");
          out.println("#");
