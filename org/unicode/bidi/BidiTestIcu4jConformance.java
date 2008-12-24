@@ -43,4 +43,5 @@ public class BidiTestIcu4jConformance {
     return UCharacterDirection.LEFT_TO_RIGHT;
   }
   
+  for 
 }
