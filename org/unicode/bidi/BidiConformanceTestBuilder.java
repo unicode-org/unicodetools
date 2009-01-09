@@ -3,20 +3,25 @@ package org.unicode.bidi;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.unicode.bidi.GenerateN1Tests.Sample;
+
 import com.ibm.icu.text.UnicodeSet;
 
 public class BidiConformanceTestBuilder {
+  
+  public static int MAX_SIZE = 4;
 
   private static BitSet SKIPS = new BitSet();
-  private static byte[] TYPELIST = new byte[5];
   static {
     // skip RLE, LRE, RLO, LRO, PDF, and BN
     SKIPS.set(BidiReference.RLE);
@@ -27,85 +32,112 @@ public class BidiConformanceTestBuilder {
     SKIPS.set(BidiReference.BN);   
   }
 
+  // have an iterator to get all possible variations less than a given size
+  static class Sample {
+    private byte[] byte_array = new byte[0];
+    private final List<Byte> items = new ArrayList<Byte>();
+    private int maxSize;
+    
+    public Sample(int maxSize) {
+      this.maxSize = maxSize;
+    }
+
+    boolean next() {
+      for (int i = items.size()-1; i >= 0; --i) {
+        Byte oldValue = items.get(i);
+        if (oldValue < BidiReference.TYPE_MAX) {
+          items.set(i, (byte) (oldValue + 1));
+          return true;
+        }
+        items.set(i, BidiReference.TYPE_MIN); // first value
+      }
+      if (items.size() < maxSize) {
+        items.add(0, BidiReference.TYPE_MIN);
+        return true;
+      }
+      return false;
+    }
+    
+    public String toString() {
+      StringBuilder result = new StringBuilder();
+      for (int i = 0; i < items.size(); ++i) {
+        if (i != 0) {
+          result.append(" ");
+        }
+        result.append(BidiReference.typenames[items.get(i)]);
+      }
+      return result.toString();
+    }
+    
+    public byte[] getArray() {
+      if (byte_array.length != items.size()) {
+        byte_array = new byte[items.size()];
+      }
+      for (int i = 0; i < items.size(); ++i) {
+        byte_array[i] = items.get(i);
+      }
+      return byte_array;
+    }
+  }
+
   public static void main(String[] args) throws FileNotFoundException {
     int[] linebreaks = new int[1];
-    linebreaks[0] = TYPELIST.length;
-
-    int maxCount = 10000;
 
     Map<String, Set<String>> resultToSource = new TreeMap<String, Set<String>>(SHORTEST_FIRST);
     Map<String, Integer> condensed = new HashMap<String, Integer>();
+    Sample sample = new Sample(MAX_SIZE);
 
     main:
-      for (byte i0 = BidiReference.TYPE_MIN; i0 <= BidiReference.TYPE_MAX; ++i0) {
-        if (i0 == BidiReference.B) {
-          continue;
+      while (sample.next()) {
+        // make sure B doesn't occur in any but the last
+        for (int i = 0; i < sample.items.size() - 1; ++i) {
+          if (sample.items.get(i) == BidiReference.B) {
+            continue main;
+          }
         }
-        System.out.println(BidiReference.typenames[i0]);
-        TYPELIST[0] = i0;
-        for (byte i1 = BidiReference.TYPE_MIN; i1 <= BidiReference.TYPE_MAX; ++i1) {
-          if (i1 == BidiReference.B) {
-            continue;
-          }
-          TYPELIST[1] = i1;
-          for (byte i2 = BidiReference.TYPE_MIN; i2 <= BidiReference.TYPE_MAX; ++i2) {
-            if (i2 == BidiReference.B) {
-              continue;
-            }
-            TYPELIST[2] = i2;
-            for (byte i3 = BidiReference.TYPE_MIN; i3 <= BidiReference.TYPE_MAX; ++i3) {
-              if (i3 == BidiReference.B) {
-                continue;
-              }
-              TYPELIST[3] = i3;
-              for (byte i4 = BidiReference.TYPE_MIN; i4 <= BidiReference.TYPE_MAX; ++i4) {
-                TYPELIST[4] = i4;
 
-                String typeString = typesToString(TYPELIST);
-                condensed.clear();
-                for (byte paragraphEmbeddingLevel = -1; paragraphEmbeddingLevel <= 1; ++paragraphEmbeddingLevel) {
+        String typeString = sample.toString();
+        byte[] TYPELIST = sample.getArray();
+        linebreaks[0] = TYPELIST.length;
+        condensed.clear();
+        for (byte paragraphEmbeddingLevel = -1; paragraphEmbeddingLevel <= 1; ++paragraphEmbeddingLevel) {
 
-                  final String reorderedIndexes = reorderedIndexes(TYPELIST, paragraphEmbeddingLevel, linebreaks);
-                  Integer bitmask = condensed.get(reorderedIndexes);
-                  if (bitmask == null) {
-                    bitmask = 0;
-                  }
-                  bitmask |= 1<<(paragraphEmbeddingLevel+1);
-                  condensed.put(reorderedIndexes, bitmask);
-                }
-                for (String reorderedIndexes : condensed.keySet()) {
-                  addResult(resultToSource, typeString + "; " + condensed.get(reorderedIndexes), reorderedIndexes);
-                }
-                maxCount--;
-                if (maxCount < 0) {
-                  break main;
-                }
-              }
-            }
+          final String reorderedIndexes = reorderedIndexes(TYPELIST, paragraphEmbeddingLevel, linebreaks);
+          Integer bitmask = condensed.get(reorderedIndexes);
+          if (bitmask == null) {
+            bitmask = 0;
           }
+          bitmask |= 1<<(paragraphEmbeddingLevel+1);
+          condensed.put(reorderedIndexes, bitmask);
+        }
+        for (String reorderedIndexes : condensed.keySet()) {
+          addResult(resultToSource, typeString + "; " + condensed.get(reorderedIndexes), reorderedIndexes);
         }
       }
+
     final String file = "/Users/markdavis/Desktop/BidiConformance.txt";
     PrintWriter out = new PrintWriter(new FileOutputStream(file));
-    System.out.println("Writing: " + file);
+    System.out.println("Writing:\t" + file);
     for (int i = BidiReference.TYPE_MIN; i < BidiReference.TYPE_MAX; ++i) {
       UnicodeSet data = new UnicodeSet("[:bidi_class=" + BidiReference.typenames[i] + ":]");
       data.complement().complement();
-      out.println("@Type: " + BidiReference.typenames[i] + data);
+      out.println("@Type:\t" + BidiReference.typenames[i] + ":\t" + data);
     }
     int totalCount = 0;
     for (String reorderedIndexes : resultToSource.keySet()) {
       out.println();
-      out.println("@Result: " + reorderedIndexes);
+      out.println("@Result:\t" + reorderedIndexes);
       int count = 0;
       for (String sources : resultToSource.get(reorderedIndexes)) {
         out.println(sources);
         ++totalCount;
         ++count;
       }
-      out.println("#Count: " + count);
+      out.println("#Count:\t" + count);
     }
-    out.println("#Total Count: " + totalCount);
+    out.println("#Total Count:\t" + totalCount);
+    System.out.println("#Total Count:\t" + totalCount);
+    System.out.println("#Max Length:\t" + MAX_SIZE);
     out.close();
     System.out.println("Done");
   }
@@ -140,17 +172,6 @@ public class BidiConformanceTestBuilder {
         result.append(" ");
       }
       result.append(item);
-    }
-    return result.toString();
-  }
-
-  private static String typesToString(byte[] types) {
-    StringBuilder result = new StringBuilder();
-    for (int i = 0; i < types.length; ++i) {
-      if (i != 0) {
-        result.append(" ");
-      }
-      result.append(BidiReference.typenames[types[i]]);
     }
     return result.toString();
   }
