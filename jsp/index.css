@@ -3,3 +3,4 @@ table		{ border-collapse: collapse }
 th           { background-color: #EEEEFF }
 textarea	{width: 100%; background-color: #EEFFEE; border:1px solid #CCFFCC; }
 li,p           { margin-top: 0.5em; margin-bottom: 0.5em }
+h2 { font-size:120%;  margin-top: 0.5em; margin-bottom: 0.5em }

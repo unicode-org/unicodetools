@@ -1,11 +1,5 @@
 package jsp;
 
-import org.unicode.cldr.icu.PrettyPrinter;
-
-import com.ibm.icu.text.*;
-import com.ibm.icu.lang.*;
-import com.ibm.icu.util.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,6 +17,22 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.unicode.cldr.icu.PrettyPrinter;
+
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.text.CanonicalIterator;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.IDNA;
+import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.StringPrepParseException;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ULocale;
 
 public class UnicodeUtilities {
   
@@ -92,22 +102,10 @@ public class UnicodeUtilities {
         "Expands_On_NFKD", "toNFC", "toNFD", "toNFKC", "toNFKD", })
    */
 
-  final static Subheader subheader;
-  static {
-    try {
-      final String unicodeDataDirectory = "./jsp/";
-      System.out.println(new File(unicodeDataDirectory).getCanonicalPath());
-      subheader = new Subheader(unicodeDataDirectory);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-      throw new IllegalArgumentException();
-    }
-  }
+  private static Subheader subheader = null;
   
   public static void main(String[] args) throws IOException {
     final PrintWriter printWriter = new PrintWriter(System.out);
-    
     
     //showIDNARemapDifferences(printWriter);
  
@@ -164,10 +162,10 @@ public class UnicodeUtilities {
     test("[:idna=remapped:]");
     test("[:idna=disallowed:]");
     test("[:iscased:]");
-    String archaic = "[[\u018D\u01AA\u01AB\u01B9-\u01BB\u01BE\u01BF\u021C\u021D\u025F\u0277\u027C\u029E\u0343\u03D0\u03D1\u03D5-\u03E1\u03F7-\u03FB\u0483-\u0486\u05A2\u05C5-\u05C7\u066E\u066F\u068E\u0CDE\u10F1-\u10F6\u1100-\u115E\u1161-\u11FF\u17A8\u17D1\u17DD\u1DC0-\u1DC3\u3165-\u318E\uA700-\uA707\\U00010140-\\U00010174]" +
-    "[\u02EF-\u02FF\u0363-\u0373\u0376\u0377\u07E8-\u07EA\u1DCE-\u1DE6\u1DFE\u1DFF\u1E9C\u1E9D\u1E9F\u1EFA-\u1EFF\u2056\u2058-\u205E\u2180-\u2183\u2185-\u2188\u2C77-\u2C7D\u2E00-\u2E17\u2E2A-\u2E30\uA720\uA721\uA730-\uA778\uA7FB-\uA7FF]" +
-    "[\u0269\u027F\u0285-\u0287\u0293\u0296\u0297\u029A\u02A0\u02A3\u02A5\u02A6\u02A8-\u02AF\u0313\u037B-\u037D\u03CF\u03FD-\u03FF]" +
-"";
+//    String archaic = "[[\u018D\u01AA\u01AB\u01B9-\u01BB\u01BE\u01BF\u021C\u021D\u025F\u0277\u027C\u029E\u0343\u03D0\u03D1\u03D5-\u03E1\u03F7-\u03FB\u0483-\u0486\u05A2\u05C5-\u05C7\u066E\u066F\u068E\u0CDE\u10F1-\u10F6\u1100-\u115E\u1161-\u11FF\u17A8\u17D1\u17DD\u1DC0-\u1DC3\u3165-\u318E\uA700-\uA707\\U00010140-\\U00010174]" +
+//    "[\u02EF-\u02FF\u0363-\u0373\u0376\u0377\u07E8-\u07EA\u1DCE-\u1DE6\u1DFE\u1DFF\u1E9C\u1E9D\u1E9F\u1EFA-\u1EFF\u2056\u2058-\u205E\u2180-\u2183\u2185-\u2188\u2C77-\u2C7D\u2E00-\u2E17\u2E2A-\u2E30\uA720\uA721\uA730-\uA778\uA7FB-\uA7FF]" +
+//    "[\u0269\u027F\u0285-\u0287\u0293\u0296\u0297\u029A\u02A0\u02A3\u02A5\u02A6\u02A8-\u02AF\u0313\u037B-\u037D\u03CF\u03FD-\u03FF]" +
+//"";
     showSet(parseUnicodeSet("[:archaic=/.+/:]"),false, false, printWriter);
     printWriter.flush();
     showPropsTable(printWriter);
@@ -184,54 +182,54 @@ public class UnicodeUtilities {
     }
   }
   
-  private static void showIDNARemapDifferences(Writer out) throws IOException {
-    UnicodeSet diffs = new UnicodeSet();
-    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-      if (cp >= 'A' && cp <= 'Z') {
-        continue;
-      }
-      int cat = UCharacter.getType(cp);
-      if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE  || cat == UCharacter.SURROGATE) {
-        continue;
-      }
-      String idna = getIDNAValue(cp);
-      if (idna == null) continue;
-      if (idna.length() == 0) continue;
-      String cased0 = UCharacter.foldCase(UTF16.valueOf(cp), true);
-      String folded = Normalizer.normalize(cased0, Normalizer.NFKC, 0);
-      String cased = UCharacter.foldCase(folded, true);
-      String folded2 = Normalizer.normalize(cased, Normalizer.NFKC, 0);
-      String cased2 = UCharacter.foldCase(folded2, true);
-      if (!cased2.equals(folded2) && !cased2.equals(cased)) {
-        out.write("ERROR:\r\n");
-        showCodePoint(cp, true, out);
-        out.write("folded:\r\n");
-        showString(folded, "\t", true, out);
-        out.write("cased:\r\n");
-        showString(cased, "\t", true, out);
-        out.write("folded2:\r\n");
-        showString(folded2, "\t", true, out);
-        out.write("cased2:\r\n");
-        showString(cased2, "\t", true, out);
-        out.flush();
-        //throw new IllegalArgumentException("Internal error!!!" + Integer.toString(cp,16) + " " + UCharacter.getName(cp));
-      }
-      String casedAndNFKC = folded2;
-      if (!idna.equals(casedAndNFKC)) {
-        out.write("Source: ");
-        showCodePoint(cp, true, out);
-        out.write("IDNA2003: ");
-        showString(idna, ", ", true, out);
-        out.write("Case-NFKC: ");
-        showString(casedAndNFKC, ", ", true, out);
-        out.write("<br>\r\n");
-        out.flush();
-        diffs.add(cp);
-      }
-    }
-    out.write(diffs.toString());
-    out.flush();
-  }
+//  private static void showIDNARemapDifferences(Writer out) throws IOException {
+//    UnicodeSet diffs = new UnicodeSet();
+//    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+//      if (cp >= 'A' && cp <= 'Z') {
+//        continue;
+//      }
+//      int cat = UCharacter.getType(cp);
+//      if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE  || cat == UCharacter.SURROGATE) {
+//        continue;
+//      }
+//      String idna = getIDNAValue(cp);
+//      if (idna == null) continue;
+//      if (idna.length() == 0) continue;
+//      String cased0 = UCharacter.foldCase(UTF16.valueOf(cp), true);
+//      String folded = Normalizer.normalize(cased0, Normalizer.NFKC, 0);
+//      String cased = UCharacter.foldCase(folded, true);
+//      String folded2 = Normalizer.normalize(cased, Normalizer.NFKC, 0);
+//      String cased2 = UCharacter.foldCase(folded2, true);
+//      if (!cased2.equals(folded2) && !cased2.equals(cased)) {
+//        out.write("ERROR:\r\n");
+//        showCodePoint(cp, true, out);
+//        out.write("folded:\r\n");
+//        showString(folded, "\t", true, out);
+//        out.write("cased:\r\n");
+//        showString(cased, "\t", true, out);
+//        out.write("folded2:\r\n");
+//        showString(folded2, "\t", true, out);
+//        out.write("cased2:\r\n");
+//        showString(cased2, "\t", true, out);
+//        out.flush();
+//        //throw new IllegalArgumentException("Internal error!!!" + Integer.toString(cp,16) + " " + UCharacter.getName(cp));
+//      }
+//      String casedAndNFKC = folded2;
+//      if (!idna.equals(casedAndNFKC)) {
+//        out.write("Source: ");
+//        showCodePoint(cp, true, out);
+//        out.write("IDNA2003: ");
+//        showString(idna, ", ", true, out);
+//        out.write("Case-NFKC: ");
+//        showString(casedAndNFKC, ", ", true, out);
+//        out.write("<br>\r\n");
+//        out.flush();
+//        diffs.add(cp);
+//      }
+//    }
+//    out.write(diffs.toString());
+//    out.flush();
+//  }
 
   private static void test(String testString) {
     UnicodeSet tc1 = parseUnicodeSet(testString);
@@ -393,7 +391,7 @@ public class UnicodeUtilities {
     public boolean applyPropertyAlias(String propertyName,
         String propertyValue, UnicodeSet result) {
       if (propertyName.equalsIgnoreCase("idna")) {
-        return getIdnaProperty(propertyName, propertyValue, result);
+        return getIdnaProperty(propertyValue, result);
       }
       for (int i = 0; i < specialProperties.length; ++i) {
         if (propertyName.equalsIgnoreCase((String) specialProperties[i][0])) {
@@ -469,7 +467,7 @@ public class UnicodeUtilities {
   TO_TITLECASE  = UProperty.STRING_LIMIT + 7,
   SUBHEAD = TO_TITLECASE + 1,
   ARCHAIC = SUBHEAD + 1,
-  XSTRING_LIMIT = ARCHAIC + 1;
+  XSTRING_LIMIT = ARCHAIC + 1; 
   
   static List<String> XPROPERTY_NAMES = Arrays.asList(new String[]{"tonfc", "tonfd", "tonfkc", "tonfkd", "tocasefold", "tolowercase", "touppercase", "totitlecase", "subhead", "archaic"});
   
@@ -483,7 +481,7 @@ public class UnicodeUtilities {
       case TO_LOWERCASE: return UCharacter.toLowerCase(ULocale.ROOT, UTF16.valueOf(codepoint));
       case TO_UPPERCASE: return UCharacter.toUpperCase(ULocale.ROOT, UTF16.valueOf(codepoint));
       case TO_TITLECASE: return UCharacter.toTitleCase(ULocale.ROOT, UTF16.valueOf(codepoint), null);
-      case SUBHEAD: return subheader.getSubheader(codepoint);
+      case SUBHEAD: return getSubheader().getSubheader(codepoint);
       case ARCHAIC: return ScriptCategories.ARCHAIC_31.contains(codepoint) ? "uax31" 
               : ScriptCategories.ARCHAIC_31.contains(codepoint) ? "utr29" 
                       : ScriptCategories.ARCHAIC_HEURISTIC.contains(codepoint) ? "heuristics" 
@@ -523,8 +521,8 @@ public class UnicodeUtilities {
     return result;
   }
 
-  protected static boolean getIdnaProperty(String propertyName,
-      String propertyValue, UnicodeSet result) {
+  protected static boolean getIdnaProperty(String propertyValue,
+      UnicodeSet result) {
     int i = 0;
     if (propertyValue.length() != 0) {
       for (; i < IdnaNames.length; ++i) {
@@ -580,12 +578,12 @@ public class UnicodeUtilities {
       for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.next();) {
         int s = it.codepoint;
         String newBlock = UCharacter.getStringPropertyValue(BLOCK_ENUM, s, UProperty.NameChoice.LONG).replace('_', ' ');
-        String newSubhead = subheader.getSubheader(s);
+        String newSubhead = getSubheader().getSubheader(s);
         if (newSubhead == null) {
           newSubhead = "<i>no subhead</i>";
         }
         if (!newBlock.equals(oldBlock) || !oldSubhead.equals(newSubhead)) {
-          out.write("<b>" + newBlock + " - " + newSubhead + "</b><br>\r\n");
+          out.write("<h2>" + newBlock + " - <i>" + newSubhead + "</i></b></h2>\r\n");
           oldBlock = newBlock;
           oldSubhead = newSubhead;
         }
@@ -645,15 +643,16 @@ public class UnicodeUtilities {
     return string;
   }
 
-  private static void showString(String s, String separator, boolean ucdFormat, Writer out) throws IOException {
-    int cp;
-    for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-      if (i != 0) {
-        out.write(separator);
-      }
-      showCodePoint(cp = UTF16.charAt(s, i), ucdFormat, out);
-    }
-  }
+//  private static void showString(String s, String separator, boolean ucdFormat, Writer out) throws IOException {
+//    int cp;
+//    for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+//      if (i != 0) {
+//        out.write(separator);
+//      }
+//      showCodePoint(cp = UTF16.charAt(s, i), ucdFormat, out);
+//    }
+//  }
+  
   public static String getSimpleSet(String setA, UnicodeSet a, boolean abbreviate) {
     String a_out;
     a.clear();
@@ -876,10 +875,10 @@ public class UnicodeUtilities {
      * alpha.put("toOther_Case_Equivalent#" + (++count), item); }
      */
 
-    Set unicodeProps = new TreeSet(UNICODE_PROPS);
+    Set<String> unicodeProps = new TreeSet<String>(UNICODE_PROPS);
 
-    Set regexProps = new TreeSet(REGEX_PROPS);
-    Set icuProps = new TreeSet(alpha.keySet());
+    Set<String> regexProps = new TreeSet<String>(REGEX_PROPS);
+    Set<String> icuProps = new TreeSet<String>(alpha.keySet());
     icuProps.removeAll(unicodeProps);
     icuProps.removeAll(regexProps);
 
@@ -900,9 +899,9 @@ public class UnicodeUtilities {
     out.write("</table>\r\n");
   }
 
-  private static void showPropertyValue(Map alpha, Set showLink, String flag, 
-      Set unicodeProps, Writer out) throws IOException {
-    for (Iterator it = alpha.keySet().iterator(); it.hasNext();) {
+  private static void showPropertyValue(Map<String,String> alpha, Set<String> showLink, String flag, 
+      Set<String> unicodeProps, Writer out) throws IOException {
+    for (Iterator<String> it = alpha.keySet().iterator(); it.hasNext();) {
       String propName = (String) it.next();
       if (!unicodeProps.contains(propName)) continue;
       String propValue = (String) alpha.get(propName);
@@ -917,7 +916,7 @@ public class UnicodeUtilities {
     }
   }
   
-  public static Set<String> showPropsTable(PrintWriter out) {
+  public static Set<String> showPropsTable(Writer out) throws IOException {
     int[][] ranges = {{UProperty.BINARY_START, UProperty.BINARY_LIMIT},
             {UProperty.INT_START, UProperty.INT_LIMIT},
             {UProperty.DOUBLE_START, UProperty.DOUBLE_LIMIT},
@@ -968,7 +967,7 @@ public class UnicodeUtilities {
         
         Set<String> regexProps = new TreeSet<String>(REGEX_PROPS);
 
-        out.println("<table>");
+        out.write("<table>\r\n");
         for (Iterator<String> it = alpha.keySet().iterator(); it.hasNext();) {
           String propName = (String) it.next();
           String sPropName = propName;
@@ -982,13 +981,13 @@ public class UnicodeUtilities {
             sPropName = "<i>\u00A9\u00A0" + sPropName + "</i>";
           }
 
-          out.println("<tr><th width='1%'><a name='" + propName + "'>" + sPropName + "</a></th>");
-          out.println("<td>");
+          out.write("<tr><th width='1%'><a name='" + propName + "'>" + sPropName + "</a></th>\r\n");
+          out.write("<td>\r\n");
           boolean first = true;
           for (Iterator<String> it2 = values.iterator(); it2.hasNext();) {
             String propValue = (String) it2.next();
             if (first) first = false;
-            else out.print(", ");
+            else out.write(", ");
 
             
               if (showLink.contains(propName)) {
@@ -996,13 +995,36 @@ public class UnicodeUtilities {
                   + "=" + propValue + ":]'>" + propValue + "</a>";
               }
               
-            out.print(propValue);
+            out.write(propValue);
           }
-          out.println("</td></tr>");
+          out.write("</td></tr>\r\n");
         }
-        out.println("</table>");
+        out.write("</table>\r\n");
         unicodeProps.addAll(regexProps);
         return unicodeProps;
+  }
+
+  static Subheader getSubheader() {
+    if (subheader == null) {
+      // /home/users/jakarta/apache-tomcat-6.0.14/bin
+      // /home/users/jakarta/apache-tomcat-6.0.14/webapps/cldr/utility
+      subheader = new Subheader(SubheaderSnapshot.data);
+//      try {
+//        final String unicodeDataDirectory = "../webapps/cldr/utility/";
+//        //System.out.println(canonicalPath);
+//        subheader = new Subheader(unicodeDataDirectory);
+//      } catch (IOException e) {
+//        try {
+//          final String unicodeDataDirectory = "./jsp/";
+//          subheader = new Subheader(unicodeDataDirectory);
+//        } catch (IOException e2) {
+//          final String[] list = new File("home").list();
+//          String currentDirectory = list == null ? null : new TreeSet<String>(Arrays.asList(list)).toString();
+//          throw (RuntimeException) new IllegalArgumentException("Can't find file starting from: <" + currentDirectory + ">").initCause(e);
+//        }
+//      }
+    }
+    return subheader;
   }
 }
 /*
