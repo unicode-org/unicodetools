@@ -64,9 +64,9 @@
   <hr>
   <% UnicodeUtilities.showSet(a, abbreviate, ucdFormat, out); %>
 </form>
-<p>Version 3, Built with ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
-<p></p>
-
+<p>Version 3<br>
+ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %><br>
+Unicode version: <%= com.ibm.icu.lang.UCharacter.getUnicodeVersion().toString() %><br>
 </body>
 
 </html>

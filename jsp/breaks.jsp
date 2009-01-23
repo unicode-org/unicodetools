@@ -103,8 +103,9 @@ out.println(result.toString());
     </tr>
   </table>
 </form>
-<p>Version 3, Built with ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
-
+<p>Version 3<br>
+ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %><br>
+Unicode version: <%= com.ibm.icu.lang.UCharacter.getUnicodeVersion().toString() %><br>
 </body>
 
 </html>

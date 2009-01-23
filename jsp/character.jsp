@@ -91,15 +91,16 @@ Transliterator toHTML = Transliterator.createFromRules(
   <input type="button" value="Next" name="B2" onClick="window.location.href='<%=nextHex%>'"></p>
 </form>
 <%
-	UnicodeUtilities.showProperties(text, out);
+	UnicodeUtilities.showProperties(text, out); 
 %>
 <p><i>(only includes properties with non-default values)<br>
 </i>® = Regex Property (<a href="http://www.unicode.org/reports/tr18/">UTS #18</a>): not formal 
 Unicode property<br>
 © = ICU-Only Property (not Unicode or Regex)<br>
 <i><br>
-</i>Version 4, Built using ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %></p>
-
+<p>Version 3<br>
+ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %><br>
+Unicode version: <%= com.ibm.icu.lang.UCharacter.getUnicodeVersion().toString() %><br>
 </body>
 
 </html>
