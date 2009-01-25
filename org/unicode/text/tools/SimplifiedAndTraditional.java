@@ -24,10 +24,10 @@ import com.ibm.icu.text.UnicodeSetIterator;
 
 public class SimplifiedAndTraditional {
   public static void main(String[] args) {
-    new SimplifiedAndTraditional().run(args);
+    new SimplifiedAndTraditional().showSimpVsTrad(args);
   }
 
-  private void run(String[] args) {
+  private void showSupplementalIntersection(String[] args) {
     UnicodeSet x = showKeyset("kHKSCS", new UnicodeSet("[\\U00010000-\\U0010FFFF]"));
     UnicodeSet y = showKeyset("kJIS0213", new UnicodeSet("[\\U00010000-\\U0010FFFF]"));
     System.out.println("intersection" + ":\t" + PRETTY.toPattern(x.retainAll(y)));
@@ -64,7 +64,8 @@ public class SimplifiedAndTraditional {
   }
 
   static     PrettyPrinter PRETTY = new PrettyPrinter();
-  private void run2(String[] args) {
+  
+  private void showSimpVsTrad(String[] args) {
     
     
     UnicodeMap simp2trad = Default.ucd().getHanValue("kTraditionalVariant");
@@ -77,26 +78,34 @@ public class SimplifiedAndTraditional {
 
     for (UnicodeSetIterator it = new UnicodeSetIterator(simp2trad.keySet()); it.next();) {
       final String source = it.getString();
-      final String target = getVariant(simp2trad, it.codepoint);
-      if (source.equals(target)) {
-        System.out.println("Source = Target: " + source + "\t→T\t" + target + "\t!DATA ERROR?!");
-        continue;
+      final String targetOptions = getVariant(simp2trad, it.codepoint);
+      int cp;
+      for (int i = 0; i < targetOptions.length(); i += UTF16.getCharCount(cp)) {
+        String target = new StringBuilder().appendCodePoint(cp = UTF16.charAt(targetOptions,i)).toString();
+        if (source.equals(target)) {
+          target = target + "*";
+        }
+        equivalences.add(source, target, "→T", "T←");
       }
-      equivalences.add(source, target, "→T", "T←");
     }
     for (UnicodeSetIterator it = new UnicodeSetIterator(trad2simp.keySet()); it.next();) {
       final String source = it.getString();
-      final String target = getVariant(trad2simp, it.codepoint);
-      if (source.equals(target)) {
-        System.out.println("Source = Target: " + source + "\t→S\t" + target + "\t!DATA ERROR?!");
-        continue;
+      final String targetOptions = getVariant(trad2simp, it.codepoint);
+      int cp;
+      for (int i = 0; i < targetOptions.length(); i += UTF16.getCharCount(cp)) {
+        String target = new StringBuilder().appendCodePoint(cp = UTF16.charAt(targetOptions,i)).toString();
+        String source2 = source;
+        if (source.equals(target)) {
+          source2 = source2 + "*";
+        }
+        equivalences.add(source2, target, "→S", "S←");
       }
-      equivalences.add(source, target, "→S", "S←");
       //equivalences.add(it.getString(), getVariant(trad2simp, it.codepoint), "→S", "S←");
     }
     
     System.out.println("*** Simple Pairs ***");
     System.out.println();
+    int count = 0;
     final Set<Set<String>> equivalenceSets = (Set<Set<String>>)equivalences.getEquivalenceSets();
     Set<Set<String>> seenEquivalences = new HashSet();
     for (Set<String> equivSet : equivalenceSets) {
@@ -107,55 +116,82 @@ public class SimplifiedAndTraditional {
       if (reasonString.equals("[[[S←, →T]]]")) {
         System.out.println(list.get(0) + "\tS↔T\t" + list.get(1));
         seenEquivalences.add(equivSet);
+        count++;
       } else if (reasonString.equals("[[[→S, T←]]]")) {
         System.out.println(list.get(1) + "\tS↔T\t" + list.get(0));
         seenEquivalences.add(equivSet);
+        count++;
       }
     }
+    System.out.println("Count:\t" + count);
+    count = 0;
     
     System.out.println();
     System.out.println("*** Complicated Relations ***");
     System.out.println();
-    
+ 
+    UnicodeSet simp = new UnicodeSet();
+    UnicodeSet trad = new UnicodeSet();
+    UnicodeSet dual = new UnicodeSet();
+
     for (Set<String> equivSet : equivalenceSets) {
       if (seenEquivalences.contains(equivSet)) continue;
-      System.out.println("Equivalence Class:\t" + equivSet);
+      System.out.println("Equivalence Class:\t" + subtractStar(equivSet));
       Set<String> lines = new TreeSet();
 
       for (String item : equivSet) {
+        if (item.endsWith("*")) {
+          continue;
+        }
         for (String item2 : equivSet) {
           if (item.equals(item2)) continue;
           Set reason = equivalences.getReason(item, item2);
           if (reason == null) continue;
           String reasonString = reason.toString();
           reasonString = reasonString.substring(1,reasonString.length()-1);
+          if (item2.endsWith("*")) {
+            item2 = item2.substring(0,item2.length()-1);
+          }
           String line;
           if (reasonString.equals("S←, →T")) {
-            line = (item + "\tS↔T\t" + item2);
+            line = showLine(item, "\tS↔T\t", item2, simp, trad);
           } else if (reasonString.equals("S←")) {
-            line = (item + "\tS←\t" + item2);
+            line = showLine(item, "\tS←\t", item2, simp, trad);
           } else if (reasonString.equals("→T")) {
-            line = (item + "\t→T\t" + item2);
-          // reverse the following
+            line = showLine(item, "\t→T\t", item2, simp, trad);
+         // reverse the following
           } else if (reasonString.equals("→S, T←")) {
-            line = (item2 + "\tS↔T\t" + item);
+            line = showLine(item2, "\tS↔T\t", item, simp, trad);
           } else if (reasonString.equals("T←")) {
-            line = (item2 + "\t→T\t" + item);
+            line = showLine(item2, "\t→T\t", item, simp, trad);
           } else if (reasonString.equals("→S")) {
-            line = (item2 + "\tS←\t" + item);
+            line = showLine(item2, "\tS←\t", item, simp, trad);
           } else {    
             line = (item + "\t" + reasonString + "\t" + item2 + "\t!DATA ERROR?!");
           }
-          if (item.contains(item2) || item2.contains(item)) line += "\t!CONTAINS?!";
+          if (item.contains(item2) || item2.contains(item)) {
+            line += "\tDUAL";
+            dual.add(item2);
+            dual.add(item);
+          }
+          
           lines.add(line);
         }
      }
       for (String line : lines) {
         System.out.println(line);
+        count++;
       }
       System.out.println();
     }
-    
+ 
+    System.out.println("Count:\t" + count);
+    System.out.println();
+    final UnicodeSet simpAndTrad = new UnicodeSet(simp).retainAll(trad);
+    System.out.println("Characters that are both Simp & Trad: " + PRETTY.toPattern(simpAndTrad));
+    System.out.println();
+    System.out.println("Characters that are both Simp & Trad - Dual: " + PRETTY.toPattern(simpAndTrad.removeAll(dual)));
+
     if (true) return;
     // ==============================
     
@@ -200,6 +236,25 @@ public class SimplifiedAndTraditional {
       System.out.println(line);
     }
     System.out.println();
+    System.out.println("Count:\t" + buffered.size());
+  }
+
+  private Set<String> subtractStar(Set<String> equivSet) {
+    Set<String> result = new TreeSet();
+    for (String item : equivSet) {
+      if (!item.endsWith("*")) {
+        result.add(item);
+      }
+    }
+    return result;
+  }
+
+  private String showLine(String item, String relation, String item2, UnicodeSet simp, UnicodeSet trad) {
+    String line;
+    line = (item + relation + item2);
+    simp.addAll(item);
+    trad.addAll(item2);
+    return line;
   }
 
   private void addItems(UnicodeMap simp2trad, UnicodeMap trad2simp, List<String> output,
@@ -274,6 +329,9 @@ public class SimplifiedAndTraditional {
   }
 
   private String hexToString(String trad) {
+//    if (trad.indexOf(' ') >= 0) {
+//      System.out.println("Multiples: " + trad);
+//    }
     trad = trad.replace("U+", "");
     return Utility.fromHex(trad);
   }
