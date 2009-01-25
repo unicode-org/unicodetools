@@ -1,6 +1,6 @@
-Generate: .*variant.*
-DeltaVersion: 34
-CopyrightYear: 2008
+Generate: Unihan
+DeltaVersion: 1
+CopyrightYear: 2009
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
@@ -390,6 +390,9 @@ File:	PropertyAliases
 Property: SPECIAL
 
 File:	PropertyValueAliases
+Property: SPECIAL
+
+File:   unihan
 Property: SPECIAL
 
 File:	Scripts

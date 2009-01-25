@@ -5,12 +5,14 @@ import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateWordBreakTest;
 import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
+import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.Tabber;
 import com.ibm.icu.dev.test.util.UnicodeLabel;
+import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UnicodeSet;
@@ -499,6 +501,8 @@ public class MakeUnicodeFiles {
     if (filename.endsWith("Aliases")) {
       if (filename.endsWith("ValueAliases")) generateValueAliasFile(filename);
       else generateAliasFile(filename);
+    } else if (filename.equals("unihan")) {
+      writeUnihan("UCD/unihan/");
     } else if (filename.equals("NormalizationTest")) {
       GenerateData.writeNormalizerTestSuite("UCD/", "NormalizationTest");
     } else if (filename.equals("CaseFolding")) {
@@ -522,6 +526,84 @@ public class MakeUnicodeFiles {
     }
   }
   
+  private static void writeUnihan(String directory) throws IOException {
+    Map<String, UnicodeMap> props = getUnihanProps();
+    UnicodeProperty.Factory toolFactory =
+      ToolUnicodePropertySource.make(Default.ucdVersion());
+    UnicodeSet unassigned =
+      toolFactory.getSet("gc=cn").addAll(toolFactory.getSet("gc=cs"));
+    
+    Format.PrintStyle ps = new Format.PrintStyle();
+    ps.noLabel = true;
+    
+    for (String propName : props.keySet()) {
+      UnicodeDataFile udf =
+        UnicodeDataFile.openAndWriteHeader(directory, propName).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+      PrintWriter pw = udf.out;
+
+      BagFormatter bf = new BagFormatter();
+      bf.setHexValue(false)
+      .setMergeRanges(true)
+      .setNameSource(null)
+      .setLabelSource(null)
+      .setShowCount(false);
+      
+      UnicodeProperty prop = new UnicodeProperty.UnicodeMapProperty().set(props.get(propName)).setMain(propName, propName, UnicodeProperty.STRING, Default.ucdVersion());
+      String name = prop.getName();
+      System.out.println("Property: " + name + "; " + prop.getTypeName(prop.getType()));
+      pw.println();
+      pw.println(SEPARATOR);   
+      pw.println();
+      pw.println("# Property:\t" + propName);
+      
+      UnicodeMap map = props.get(propName);
+
+      if (map.getAvailableValues().size() < 100) {
+        writeEnumeratedValues(pw, bf, unassigned, prop, ps);
+      } else {
+        bf.setValueSource(prop)
+        .showSetNames(pw,new UnicodeSet(0,0x10FFFF));     
+      }
+    }
+  }
+  
+  private static  Map<String, UnicodeMap> getUnihanProps() {
+    Map<String, UnicodeMap> unihanProps = new TreeMap<String, UnicodeMap>();
+    try {
+        BufferedReader in = Utility.openUnicodeFile("Unihan", Default.ucdVersion(), true, Utility.UTF8); 
+        int lineCounter = 0;
+        while (true) {
+            Utility.dot(++lineCounter);
+            
+            String line = in.readLine();
+            if (line == null) break;
+            if (line.length() < 6) continue;
+            if (line.charAt(0) == '#') continue;
+            line = line.trim();
+            
+            int tabPos = line.indexOf('\t');
+            int tabPos2 = line.indexOf('\t', tabPos+1);
+            
+            String property = line.substring(tabPos+1, tabPos2).trim();
+            UnicodeMap result = unihanProps.get(property);
+            if (result == null) {
+              unihanProps.put(property, result = new UnicodeMap());
+            }
+            
+            String scode = line.substring(2, tabPos).trim();
+            int code = Integer.parseInt(scode, 16);
+            String propertyValue = line.substring(tabPos2+1).trim();
+            result.put(code, propertyValue);
+        }
+        in.close();
+    } catch (Exception e) {
+        throw new ChainException("Han File Processing Exception", null, e);
+    } finally {
+        Utility.fixDot();
+    }
+    return unihanProps;
+  }
+
   static final String SEPARATOR = "# ================================================";
   
   public static void generateAliasFile(String filename) throws IOException {
