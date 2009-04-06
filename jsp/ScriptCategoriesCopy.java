@@ -2,7 +2,8 @@ package jsp;
 
 import com.ibm.icu.text.UnicodeSet;
 
-public class ScriptCategories {
+public class ScriptCategoriesCopy {
+
 
   // From: http://www.phon.ucl.ac.uk/home/wells/ipa-unicode.htm
   public static final UnicodeSet IPA = (UnicodeSet) new UnicodeSet(
@@ -24,7 +25,18 @@ public class ScriptCategories {
           //          "[:script=Lyci:][:script=Lydi:][:script=Ogam:][:script=Osma:][:script=Phag:][:script=Phnx:][:script=Rjng:][:script=Runr:]" +
           //          "[:script=Shaw:][:script=Sund:][:script=Sylo:][:script=Syrc:][:script=Tagb:][:script=Tglg:][:script=Ugar:][:script=Xpeo:][:script=Xsux:]" +
           //          "[:block=Ancient_Greek_Musical_Notation:][:block=Phaistos_Disc:]]"
-          "[ [:blk=Ancient_Greek_Musical_Notation:] [:blk=Buginese:] [:blk=Buhid:] [:blk=Carian:] [:blk=Coptic:] [:blk=Cuneiform:] [:blk=Cuneiform_Numbers_And_Punctuation:] [:blk=Cypriot_Syllabary:] [:blk=Deseret:] [:blk=Glagolitic:] [:blk=Gothic:] [:blk=Hanunoo:] [:blk=Kharoshthi:] [:blk=Linear_B_Ideograms:] [:blk=Linear_B_Syllabary:] [:blk=Lycian:] [:blk=Lydian:] [:blk=Ogham:] [:blk=Old_Italic:] [:blk=Old_Persian:] [:blk=Osmanya:] [:blk=Phags_Pa:] [:blk=Phaistos_Disc:] [:blk=Phoenician:] [:blk=Rejang:] [:blk=Runic:] [:blk=Shavian:] [:blk=Sundanese:] [:blk=Syloti_Nagri:] [:blk=Syriac:] [:blk=Tagalog:] [:blk=Tagbanwa:] [:blk=Ugaritic:] [:sc=Copt:]]"
+          "[ [:blk=Ancient_Greek_Musical_Notation:]" +
+          "[:blk=Buginese:] " +
+          "[:blk=Buhid:] [:blk=Carian:] " +
+          "[:blk=Coptic:] [:blk=Cuneiform:] " +
+          "[:blk=Cuneiform_Numbers_And_Punctuation:] " +
+          "[:blk=Cypriot_Syllabary:] [:blk=Deseret:] [:blk=Glagolitic:] " +
+          "[:blk=Gothic:] [:blk=Hanunoo:] [:blk=Kharoshthi:] [:blk=Linear_B_Ideograms:] " +
+          "[:blk=Linear_B_Syllabary:] [:blk=Lycian:] [:blk=Lydian:] [:blk=Ogham:]" +
+          " [:blk=Old_Italic:] [:blk=Old_Persian:] [:blk=Osmanya:] [:blk=Phags_Pa:] " +
+          "[:blk=Phaistos_Disc:] [:blk=Phoenician:] [:blk=Rejang:] [:blk=Runic:] " +
+          "[:blk=Shavian:] [:blk=Sundanese:] [:blk=Syloti_Nagri:] [:blk=Syriac:] " +
+          "[:blk=Tagalog:] [:blk=Tagbanwa:] [:blk=Ugaritic:] [:sc=Copt:]]"
   ).freeze();
   // from the old version of UTS39
   public static final UnicodeSet ARCHAIC_39 = (UnicodeSet) new UnicodeSet(
@@ -41,23 +53,47 @@ public class ScriptCategories {
           //      "\\U00010A38-\\U00010A3A\\U00010A3F-\\U00010A47\\U00010A50-\\U00010A58\\U00012000-\\U0001236E\\U00012400-\\U00012462\\U00012470-\\U00012473]"
           "[ " +
           //"[:blk=Balinese:] " +
-          "[\u018D\u01AA\u01AB\u01B9-\u01BB\u01BE\u01BF\u021C\u021D\u025F\u0277\u027C\u029E\u0343\u03D0\u03D1\u03D5-\u03E1\u03F7-\u03FB\u0483-\u0486\u05A2\u05C5-\u05C7\u066E\u066F\u068E\u0CDE\u10F1-\u10F6\u1100-\u115E\u1161-\u11FF\u17A8\u17D1\u17DD\u1DC0-\u1DC3\u3165-\u318E\uA700-\uA707\\U00010140-\\U00010174]" +
+          "[:blk=Ancient_Greek_Numbers:]" +
+          "[:Block=Hangul_Jamo:]" +
+          "[:Block=Hangul_Compatibility_Jamo:]" +
+          "[֢ ׅ ̓ ᷀-᷃ ҃-҆ ׇ ៑ ៝ ׆ ꜀-꜇ ɟ ʞ ɷ ɼ ƪ ƾ ƫ ƍ ƹ ƺ ȝȜ ƿ ƻ ϐ ϝϜ ϛϚ ϑ ϗ ϖ ϻϺ ϟϞ ϙϘ Ϲ ϕ ϡϠ ϸ Ϸ ჱ-ჶ ٮ ڎ ٯ ೞ ឨ]" +
           "]"
+          //"[\u018D\u01AA\u01AB\u01B9-\u01BB\u01BE\u01BF\u021C\u021D\u025F\u0277\u027C\u029E\u0343\u03D0\u03D1\u03D5-\u03E1\u03F7-\u03FB\u0483-\u0486\u05A2\u05C5-\u05C7\u066E\u066F\u068E\u0CDE\u10F1-\u10F6\u1100-\u115E\u1161-\u11FF\u17A8\u17D1\u17DD\u1DC0-\u1DC3\u3165-\u318E\uA700-\uA707\\U00010140-\\U00010174]]"
   ).freeze();
 
   public static final UnicodeSet ARCHAIC_HEURISTIC = (UnicodeSet) new UnicodeSet(
-          "[ [:blk=Ancient_Symbols:] [:blk=Ancient_Greek_Numbers:] " +
-          "[\u02EF-\u02FF\u0363-\u0373\u0376\u0377\u07E8-\u07EA\u1DCE-\u1DE6\u1DFE\u1DFF\u1E9C\u1E9D\u1E9F\u1EFA-\u1EFF\u2056\u2058-\u205E\u2180-\u2183\u2185-\u2188\u2C77-\u2C7D\u2E00-\u2E17\u2E2A-\u2E30\uA720\uA721\uA730-\uA778\uA7FB-\uA7FF]" +
+          "[ " +
+          "[:blk=Ancient_Symbols:]" +
+          "[:blk=Ancient_Greek_Musical_Notation:] " +
+          "[:blk=Cyrillic_Extended_A:] " +
+          "[:blk=Cyrillic_Extended_B:]" +
+          "[˯-˿ͣ-ͳͶͷߨ-ߪ᷎-᷿ᷦ᷾ẜẝẟ Ỻ-ỿ⁖⁘-⁞ↀ-Ↄↅ-ↈⱷ-ⱽ⸀-⸗⸪-⸰ ꜠꜡ꜰ-ꝸꟻ-ꟿ[ݾ ݿ ػ-ؿ]]" +
           "]"
+          //"[\u02EF-\u02FF\u0363-\u0373\u0376\u0377\u07E8-\u07EA\u1DCE-\u1DE6\u1DFE\u1DFF\u1E9C\u1E9D\u1E9F\u1EFA-\u1EFF\u2056\u2058-\u205E\u2180-\u2183\u2185-\u2188\u2C77-\u2C7D\u2E00-\u2E17\u2E2A-\u2E30\uA720\uA721\uA730-\uA778\uA7FB-\uA7FF]]"
   ).freeze();
   
   public static final UnicodeSet ARCHAIC_ADDITIONS = (UnicodeSet) new UnicodeSet(
-          "[ [:blk=Aegean_Numbers:] [:blk=Byzantine_Musical_Symbols:] " +
-          "[\u0269\u027F\u0285-\u0287\u0293\u0296\u0297\u029A\u02A0\u02A3\u02A5\u02A6\u02A8-\u02AF\u0313\u037B-\u037D\u03CF\u03FD-\u03FF]" +
-          "-[block:Ancient Greek Numbers]]"
+          "[ " +
+          "[:blk=Aegean_Numbers:] " +
+          "[:blk=Byzantine_Musical_Symbols:] " +
+          "[:block=Georgian Supplement:]" +
+          "[ͻ-ͽϏϽ-Ͽ[ƨ ƽ ƅ][ؕ-ؚ ۖ-ۤ ۧ ۨ ۪-ۭ ۩ ۥ ۦ][֑-֯][ׄ ׅ][ﬠ-ﬨ][ﭏ][Ⴀ-Ⴆ Ⴡ Ⴇ-Ⴌ Ⴢ Ⴍ-Ⴒ Ⴣ Ⴓ-Ⴞ Ⴤ Ⴟ Ⴠ Ⴥ][Ⴀ-Ⴥ][ƄƧƸƼǷϲϴↄ]჻]" +
+          "]"
+          // "[\u0269\u027F\u0285-\u0287\u0293\u0296\u0297\u029A\u02A0\u02A3\u02A5\u02A6\u02A8-\u02AF\u0313\u037B-\u037D\u03CF\u03FD-\u03FF]]"
   ).freeze();
 
-  public static final UnicodeSet ARCHAIC = (UnicodeSet) new UnicodeSet(ARCHAIC_31).addAll(ARCHAIC_39).addAll(ARCHAIC_HEURISTIC).addAll(ARCHAIC_ADDITIONS).freeze();
+  public static final UnicodeSet ARCHAIC = (UnicodeSet) new UnicodeSet(ARCHAIC_31)
+  .addAll(ARCHAIC_39)
+  .addAll(ARCHAIC_HEURISTIC)
+  .addAll(ARCHAIC_ADDITIONS).freeze();
+  static {
+    //System.out.println("Archaic: " + ARCHAIC);
+    UnicodeSet knownOk = new UnicodeSet("[\u0392\u0398\u03A0\u03A6\u03B2\u03B8\u03C0\u03C6]");
+    final UnicodeSet caseProblems = new UnicodeSet(ARCHAIC).closeOver(UnicodeSet.CASE).removeAll(ARCHAIC).removeAll(knownOk);
+    if (caseProblems.size() != 0) {
+      throw new IllegalArgumentException("Case: " + caseProblems);
+    }
+  }
 
   public static final UnicodeSet EUROPEAN = (UnicodeSet) new UnicodeSet(
           "[[:script=Latin:][:script=Greek:][:script=Coptic:][:script=Cyrillic:]" +
@@ -101,5 +137,6 @@ public class ScriptCategories {
   .removeAll(AMERICAN)
   .removeAll(new UnicodeSet("[[:script=han:][:script=hangul:]]"))
   .freeze();
+
 
 }
