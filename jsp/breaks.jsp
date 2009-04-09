@@ -1,14 +1,8 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Language" content="en-us">
-<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
-<meta name="ProgId" content="FrontPage.Editor.Document">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<%@ include file="header.jsp" %>
 <title>Unicode Break Demo</title>
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="com.ibm.icu.text.*" %> <%@ page import="java.util.regex.*" %>
-<%@ page import="jsp.*" %>
 <style>
 <!--
 td {vertical-align: top}
@@ -28,6 +22,7 @@ span.break   { border-right: 1px solid red;}
 		if (choice == null) choice = "Word";
 %>
 <h1>Unicode Break Demo</h1>
+<%@ include file="others.jsp" %>
 <form name="myform" action="<%= request.getContextPath() + request.getServletPath() %>" method="POST">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
@@ -103,9 +98,7 @@ out.println(result.toString());
     </tr>
   </table>
 </form>
-<p>Version 3<br>
-ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %><br>
-Unicode version: <%= com.ibm.icu.lang.UCharacter.getUnicodeVersion().toString() %><br>
+<%@ include file="footer.jsp" %>
 </body>
 
 </html>

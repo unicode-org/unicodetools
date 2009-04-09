@@ -9,6 +9,21 @@ public class TestJsp {
 
   public static void main(String[] args) throws IOException {
       final PrintWriter printWriter = new PrintWriter(System.out);
+      String IDNA2008 = "ÖBB\n"
+        + "O\u0308BB\n"
+        + "Schäffer\n"
+        + "ＡＢＣ・フ\n"
+        + "I♥NY\n"
+        + "faß\n"
+        + "βόλος";
+      String testLines = UnicodeUtilities.testIdnaLines(IDNA2008, "[]");
+      System.out.println(testLines);
+      
+      System.out.println(UnicodeUtilities.showMapping("[\\u0000-\\u00FF] casefold"));
+      
+      final String fix = UnicodeRegex.fix("ab[[:ascii:]&[:Ll:]]*c");
+      System.out.println(fix);
+      System.out.println(UnicodeUtilities.showRegexFind(fix, "abcc abxyzc ab$c"));
       
       //showIDNARemapDifferences(printWriter);
    
@@ -65,7 +80,7 @@ public class TestJsp {
       }
       
       final UnicodeSet unicodeSet = new UnicodeSet();
-      System.out.println("simple: " + UnicodeUtilities.getSimpleSet("[a-bm-p\uAc00]", unicodeSet, true));
+      System.out.println("simple: " + UnicodeUtilities.getSimpleSet("[a-bm-p\uAc00]", unicodeSet, true, false));
       UnicodeUtilities.showSet(unicodeSet, true, true, printWriter);
       printWriter.flush();
       UnicodeUtilities.test("[:idna:]");
