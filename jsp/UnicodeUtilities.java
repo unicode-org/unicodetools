@@ -19,6 +19,8 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jsp.IdnaLabelTester.TestStatus;
+
 import org.unicode.cldr.icu.PrettyPrinter;
 
 import com.ibm.icu.lang.UCharacter;
@@ -606,7 +608,20 @@ public class UnicodeUtilities {
 
   static private UnicodeSet RTL= new UnicodeSet("[[:bc=R:][:bc=AL:]]");
 
-  private static void showCodePoint(int s, boolean ucdFormat, Writer out) throws IOException {
+  private static String showCodePoint(String s) {
+    String literal = getLiteral(s);
+    return "<a target='c' href='list-unicodeset.jsp?a=" + literal.replace("&", "%26") + "'>\u00a0" + literal + "\u00a0</a>";
+  }
+
+  private static String getLiteral(String s) {
+    String literal = toHTML.transliterate(s);
+    if (RTL.containsSome(literal)) {
+      literal = '\u200E' + literal + '\u200E';
+    }
+    return literal;
+  }
+  
+  private static void showCodePoint(int s, boolean ucdFormat, Appendable out) throws IOException {
     String literal = toHTML.transliterate(UTF16.valueOf(s));
     if (RTL.containsSome(literal)) {
       literal = '\u200E' + literal + '\u200E';
@@ -621,15 +636,27 @@ public class UnicodeUtilities {
         name = "<i>" + name + "</i>";
       }
     }
-    out.write(getHex(s, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name + "<br>\r\n");
+    out.append(getHex(s, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name + "<br>\r\n");
   }
 
-  private static String getHex(int s, boolean ucdFormat) {
-    String hex = com.ibm.icu.impl.Utility.hex(s, 4);
+  private static String getHex(int codePoint, boolean ucdFormat) {
+    String hex = com.ibm.icu.impl.Utility.hex(codePoint, 4);
     final String string = "<code><a target='c' href='character.jsp?a=" + hex + "'>"
     + (ucdFormat ? "" : "U+")
     + hex + "</a></code>";
     return string;
+  }
+
+  private static String getHex(String string, String separator, boolean ucdFormat) {
+    StringBuilder result = new StringBuilder();
+    int cp;
+    for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
+      if (i != 0) {
+        result.append(separator);
+      }
+      result.append(getHex(cp = UTF16.charAt(string, i), ucdFormat));
+    }
+    return result.toString();
   }
 
   //  private static void showString(String s, String separator, boolean ucdFormat, Writer out) throws IOException {
@@ -642,27 +669,101 @@ public class UnicodeUtilities {
   //    }
   //  }
 
-  public static String getSimpleSet(String setA, UnicodeSet a, boolean abbreviate) {
+  public static String getSimpleSet(String setA, UnicodeSet a, boolean abbreviate, boolean escape) {
     String a_out;
     a.clear();
     try {
       setA = Normalizer.normalize(setA, Normalizer.NFC);
       a.addAll(parseUnicodeSet(setA));
-      a_out = getPrettySet(a, abbreviate);
+      a_out = getPrettySet(a, abbreviate, escape);
     } catch (Exception e) {
       a_out = e.getMessage();
     }
     return a_out;
   }
 
-  private static String getPrettySet(UnicodeSet a, boolean abbreviate) {
+  static final UnicodeSet MAPPING_SET = new UnicodeSet("[:^c:]");
+
+  public static boolean haveCaseFold = false;
+  
+  public static String showMapping(String transform) {
+    boolean ucdFormat = false;
+    if (!haveCaseFold) {
+      registerCaseFold();
+    }
+    Transliterator trans;
+    try {
+      trans = Transliterator.createFromRules("foo", transform, Transliterator.FORWARD);
+    } catch (Exception e) {
+      try {
+        trans = Transliterator.getInstance(transform);
+      } catch (Exception e2) {
+        return "Error: " + toHTML.transform(e.getMessage() + "; " + e2.getMessage());
+      }
+    }
+    PrettyPrinter pp = new PrettyPrinter().setSpaceComparator(new Comparator<String>() {
+      public int compare(String o1, String o2) {
+        return 1;
+      }
+    });
+
+    Map<String, UnicodeSet> mapping = new TreeMap<String,UnicodeSet>(pp.getOrdering());
+    for (UnicodeSetIterator it = new UnicodeSetIterator(MAPPING_SET); it.nextRange();) {
+      for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
+        String s = UTF16.valueOf(i);
+        String mapped = trans.transform(s);
+        if (!mapped.equals(s)) {
+          UnicodeSet x = mapping.get(mapped);
+          if (x == null) mapping.put(mapped, x= new UnicodeSet());
+          x.add(i);
+        }
+      }
+    }
+    StringBuilder result = new StringBuilder();
+    for (String mapped : mapping.keySet()) {
+      UnicodeSet source = mapping.get(mapped);
+      result.append(showCodePoint(mapped));
+      result.append("\t←\t");
+      if (source.size() == 1) {
+        UnicodeSetIterator it = new UnicodeSetIterator(source);
+        it.next();
+        result.append(showCodePoint(it.getString()));
+      } else {
+        result.append(showCodePoint(pp.toPattern(source)));
+      }
+      result.append("</br>\r\n");
+    }
+    return result.toString();
+  }
+
+  private static void registerCaseFold() {
+    StringBuilder rules = new StringBuilder();
+    for (UnicodeSetIterator it = new UnicodeSetIterator(MAPPING_SET); it.nextRange();) {
+      for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
+        String s = UTF16.valueOf(i);
+        String caseFold = UCharacter.foldCase(s, true);
+        String lower = UCharacter.toLowerCase(Locale.ENGLISH, s);
+        if (!caseFold.equals(lower)) {
+          rules.append(s + ">" + caseFold + " ;\r\n");
+        }
+      }
+    }
+    rules.append("::Lower;");
+    Transliterator.registerInstance(Transliterator.createFromRules("Any-CaseFold", rules.toString(), Transliterator.FORWARD));
+    haveCaseFold = true;
+  }
+
+  private static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
     String a_out;
     if (a.size() < 10000 && !abbreviate) {
       PrettyPrinter pp = new PrettyPrinter();
+      if (escape) {
+        pp.setToQuote(new UnicodeSet("[^\\u0021-\\u007E]"));
+      }
       a_out = toHTML(pp.toPattern(a));
     } else {
       a.complement().complement();
-      a_out = toHTML(a.toPattern(false));
+      a_out = toHTML(a.toPattern(escape));
     }
     // insert spaces occasionally
     int cp;
@@ -702,6 +803,7 @@ public class UnicodeUtilities {
 
   public static void getDifferences(String setA, String setB,
           boolean abbreviate, String[] abResults, int[] abSizes, String[] abLinks) {
+    boolean escape = false;
 
     String setAr = setA.replace("&", "%26");
     String setBr = setB.replace("&", "%26");
@@ -739,15 +841,15 @@ public class UnicodeUtilities {
     } else  {
       UnicodeSet temp = new UnicodeSet(a).removeAll(b);
       a_bSize = temp.size();
-      a_b = getPrettySet(temp, abbreviate);
+      a_b = getPrettySet(temp, abbreviate, escape);
 
       temp = new UnicodeSet(b).removeAll(a);
       b_aSize = temp.size();
-      b_a = getPrettySet(temp, abbreviate);
+      b_a = getPrettySet(temp, abbreviate, escape);
 
       temp = new UnicodeSet(a).retainAll(b);
       abSize = temp.size();
-      ab = getPrettySet(temp, abbreviate);
+      ab = getPrettySet(temp, abbreviate, escape);
     }
     abResults[0] = a_b;
     abSizes[0] = a_bSize;
@@ -1007,8 +1109,8 @@ public class UnicodeUtilities {
   private static String getPropLink(String propName, String propValue, String linkText) {
     final String propExp = 
       propValue == "T" ? propName
-    : propValue == "F" ? "^" + propName
-    : propName + "=" + propValue;
+              : propValue == "F" ? "^" + propName
+                      : propName + "=" + propValue;
     return "<a target='u' href='list-unicodeset.jsp?a=[:" + propExp + ":]'>" + linkText + "</a>";
   }
 
@@ -1033,6 +1135,77 @@ public class UnicodeUtilities {
       //      }
     }
     return subheader;
+  }
+  
+  public static String showRegexFind(String regex, String test) {
+    try {
+      Matcher matcher = Pattern.compile(regex).matcher(test);
+      String result = toHTML.transform(matcher.replaceAll("⇑⇑$0⇓⇓"));
+      result = result.replaceAll("⇑⇑", "<u>").replaceAll("⇓⇓", "</u>");
+      return result;
+    } catch (Exception e) {
+      return "Error: " + e.getMessage();
+    }
+  }
+  
+  static IdnaLabelTester tester = null;
+  static String removals = new UnicodeSet("[\u1806[:di:]-[:cn:]]").complement().complement().toPattern(false);
+  static Matcher rem = Pattern.compile(removals).matcher("");
+  
+  public static String testIdnaLines(String lines, String filter) {
+    try {
+      UnicodeSet filterSet = parseUnicodeSet(filter);
+      if (!haveCaseFold) {
+        registerCaseFold();
+      }
+      filterSet.complement();
+      Transliterator fold = Transliterator.getInstance("nfkc; casefold; [:di:] remove; nfkc;");
+      fold.setFilter(filterSet);
+      
+      lines = IdnaLabelTester.UNESCAPER.transform(lines);
+      StringBuilder resultLines = new StringBuilder();
+      if (tester == null) {
+        try {
+          tester = new IdnaLabelTester("../webapps/cldr/utility/idnaContextRules.txt");
+        } catch (Exception e2) {
+          tester = new IdnaLabelTester("jsp/idnaContextRules.txt");
+        }
+      }
+      resultLines.append("<table>\n");
+      resultLines.append("<th>M-Label*</th><th>Esc'ed</th><th>U-Label*</th><th>Esc'ed</th><th>Result</th><th>Error Pos.</th><th>Cause</th></tr>\n");
+      for (String line : lines.split("\\s+")) {
+        String original = line;
+        resultLines.append("<tr><td>").append(toHTML.transform(line)).append("</td>");
+        
+        String escaped = IdnaLabelTester.ESCAPER.transform(line);
+        resultLines.append("<td>").append(escaped.equals(original) ? "\u00a0" : toHTML.transform(escaped)).append("</td>");
+
+        String normalized = fold.transform(line);
+        
+        resultLines.append("<td>").append(normalized).append("</td>");
+
+        String escapedNormalized = IdnaLabelTester.ESCAPER.transform(normalized);
+        resultLines.append("<td>").append(escaped.equals(normalized) ? "\u00a0" : toHTML.transform(escapedNormalized)).append("</td>");
+
+        TestStatus result = tester.test(normalized);
+
+        if (result == null) {
+          resultLines.append("<td>ok</td><td>\u00A0</td><td>\u00A0</td>");
+        } else {
+          resultLines.append("<td>ERROR</td><td>")
+          .append(toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(0, result.position))) 
+                  + "\u2639" + toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(result.position))) 
+                  + "</td><td>" + result.title
+                  //+ "</td><td>" + result.ruleLine
+                  + "</td>");
+        }
+        resultLines.append("</tr>\n");
+      }
+      resultLines.append("</table>\n");
+      return resultLines.toString();
+    } catch (Exception e) {
+      return toHTML.transform(e.getMessage());
+    }
   }
 }
 /*

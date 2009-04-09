@@ -10,21 +10,25 @@
 <body>
 
 <h1>Unicode Utilities</h1>
-<p>
-	<a target="character" href="character.jsp">character</a> |
-	<a target="properties" href="properties.jsp">properties</a> |
-	<a target="list" href="list-unicodeset.jsp">unicode-set</a> |
-	<a target="compare" href="unicodeset.jsp">compare-sets</a> |
-	<a target="help" href="index.jsp">help</a>
-</p>
-<h2><a target="breaks" onclick="return top.js.OpenExtLink(window,event,this)" href="http://unicode.org/cldr/utility/breaks.jsp">
-Breaks</a></h2>
+<%@ include file="others.jsp" %>
+<h2>Boundaries</h2>
 <ul>
-	<li>Demonstrates different boundaries within text.<ul>
+	<li><b><a target="breaks" href="breaks.jsp">Breaks</a></b> Demonstrates different boundaries within text.
+	<ul>
 		<li>Enter the sample text.</li>
 		<li>Pick the kind of boundaries, or hit <b>Test</b>.</li>
 	</ul>
 	</li>
+	   <li><b><a target="regex" href="regex.jsp">Regex</a></b> Shows transformation of (Java) Regex pattern to support Unicode.
+    <ul>
+        <li>Enter the regex pattern</li>
+        <li>Change the sample text if desired.</li>
+        <li>Click <b>Show Modified Regex Pattern</b></li>
+        <li>You'll then see the modified pattern.
+        It will often be much larger, but any reasonable Regex engine will compile character classes reasonably.
+        Below that, you'll see a sample of how the expression works, using it to find substrings of the sample text and underline them.</li>
+    </ul>
+    </li>
 </ul>
 <h2><a target="properties" onclick="return top.js.OpenExtLink(window,event,this)" href="http://unicode.org/cldr/utility/properties.html">Properties</a></h2>
 <ul>
@@ -139,7 +143,7 @@ notation (<code>[:script=arabic:]</code>). For more information, see
 	</ul>
 	</li>
 	<li>The string functions are also provided, and require an argument. For example:<ul>
-		<li><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFC=Å:]">[:toNFC=Å:]</a><code> </code>
+		<li><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFC=a:]">[:toNFC=a:]</a><code> </code>
 		- the set of all characters X such that toNFC(X) = a</li>
 		<li><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFD=A\u0300:]">[:toNFD=A\u0300:]</a></li>
 		<li><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFKC=A:]">[:toNFKC=A:]</a></li>
@@ -155,19 +159,19 @@ notation (<code>[:script=arabic:]</code>). For more information, see
 		<li><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:idna=output:]"><code>[:idna=output:]</code></a> The set of all characters 
 		allowed in the output of IDNA. An example is<ul>
 			<li><code><a target="character" href="http://unicode.org/cldr/utility/character.jsp?a=00E0">
-			U+00E0</a></code> ( à ) LATIN SMALL LETTER A WITH GRAVE</li>
+			U+00E0</a></code> ( &#x00E0; ) LATIN SMALL LETTER A WITH GRAVE</li>
 		</ul>
 		</li>
 		<li><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:idna=ignored:]"><code>[:idna=ignored:]</code></a> The set of all characters 
 		ignored by IDNA on input. That is, these characters are mapped to nothing -- removed -- by NamePrep. An example is:<ul>
 			<li><code><a target="character" href="http://unicode.org/cldr/utility/character.jsp?a=00AD">U+00AD</a></code> 
-			( ­ ) SOFT HYPHEN.</li>
+			( &#x00AD; ) SOFT HYPHEN.</li>
 		</ul>
 		</li>
 		<li><a target="list" href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:idna=remapped:]"><code>[:idna=remapped:]</code></a> The set of characters 
 		remapped to other characters by IDNA (NamePrep). Examples are:<ul>
 			<li><code><a target="character" href="http://unicode.org/cldr/utility/character.jsp?a=00C0">U+00C0</a></code> 
-			( À ) LATIN CAPITAL LETTER A WITH GRAVE (remapped to the lowercase version).</li>
+			( &#x00C0; ) LATIN CAPITAL LETTER A WITH GRAVE (remapped to the lowercase version).</li>
 			<li><code><a target="c" href="http://unicode.org/cldr/utility/character.jsp?a=FF21">
 			U+FF21</a></code> ( &#65313; ) FULLWIDTH LATIN CAPITAL LETTER A</li>
 		</ul>
@@ -185,7 +189,6 @@ notation (<code>[:script=arabic:]</code>). For more information, see
 	</ol>
 	</li>
 </ol>
-
+<%@ include file="footer.jsp" %>
 </body>
-
 </html>
