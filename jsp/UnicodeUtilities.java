@@ -1,8 +1,6 @@
 package jsp;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.text.ParsePosition;
 import java.util.Arrays;
@@ -171,6 +169,7 @@ public class UnicodeUtilities {
   }
 
   static Transliterator toHTML;
+  static String HTML_RULES_CONTROLS;
   static {
 
     String BASE_RULES = "'<' > '&lt;' ;" + "'<' < '&'[lL][Tt]';' ;"
@@ -182,7 +181,7 @@ public class UnicodeUtilities {
 
     String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; ";
 
-    String HTML_RULES_CONTROLS = HTML_RULES
+    HTML_RULES_CONTROLS = HTML_RULES
     + "[[:di:]-[:cc:]-[:cs:]-[\\u200E\\u200F]] > ; " // remove, should ignore in rendering (but may not be in browser)
     + "[[:nchar:][:cn:][:cs:][:co:][:cc:]-[:whitespace:]-[\\u200E\\u200F]] > \\uFFFD ; "; // should be missing glyph (but may not be in browser)
     //     + "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]-[\\u0020]]) > &hex/xml($1) ; "; // [\\u0080-\\U0010FFFF]
@@ -684,6 +683,8 @@ public class UnicodeUtilities {
 
   static final UnicodeSet MAPPING_SET = new UnicodeSet("[:^c:]");
 
+  private static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]");
+
   public static boolean haveCaseFold = false;
   
   public static String showMapping(String transform) {
@@ -1172,31 +1173,62 @@ public class UnicodeUtilities {
         }
       }
       resultLines.append("<table>\n");
-      resultLines.append("<th>M-Label*</th><th>Esc'ed</th><th>U-Label*</th><th>Esc'ed</th><th>Result</th><th>Error Pos.</th><th>Cause</th></tr>\n");
+      resultLines.append("<th>M-Label*</th><th>U-Label*</th><th>IDNA()</th><th>IDNAbis()</th><th>Error Pos.</th><th>Cause</th></tr>\n");
       for (String line : lines.split("\\s+")) {
-        String original = line;
-        resultLines.append("<tr><td>").append(toHTML.transform(line)).append("</td>");
-        
-        String escaped = IdnaLabelTester.ESCAPER.transform(line);
-        resultLines.append("<td>").append(escaped.equals(original) ? "\u00a0" : toHTML.transform(escaped)).append("</td>");
+
+        resultLines.append("<tr><td class='cn'>").append(showEscaped(line)).append("</td>");
 
         String normalized = fold.transform(line);
         
-        resultLines.append("<td>").append(normalized).append("</td>");
-
-        String escapedNormalized = IdnaLabelTester.ESCAPER.transform(normalized);
-        resultLines.append("<td>").append(escaped.equals(normalized) ? "\u00a0" : toHTML.transform(escapedNormalized)).append("</td>");
+        resultLines.append("<td class='cn'>").append(showEscaped(normalized)).append("</td>");
+        
+        String idna2003 = "<i>Denied!</i>";
+        try {
+          inbuffer.setLength(0);
+          inbuffer.append(line);
+          intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+          if (intermediate.length() == 0) {
+            throw new IllegalArgumentException();
+          }
+          idna2003 = toHTML.transform(intermediate.toString());
+        } catch (Exception e) {
+        }
 
         TestStatus result = tester.test(normalized);
 
+        String idna2008 = "<i>Denied!</i>";
         if (result == null) {
-          resultLines.append("<td>ok</td><td>\u00A0</td><td>\u00A0</td>");
+          try {
+            inbuffer.setLength(0);
+            inbuffer.append(normalized);
+            if (!ASCII.containsAll(normalized)) {
+              intermediate = Punycode.encode(inbuffer, null);
+              if (intermediate.length() == 0) {
+                throw new IllegalArgumentException();
+              }
+              intermediate.insert(0, "xn--");            
+            }
+            idna2008 = toHTML.transform(intermediate.toString());
+          } catch (Exception e) {
+            result = new TestStatus(0, "Punycode Failed!", 0);
+          }
+      }
+
+      if (idna2003.equals(idna2008)) {
+        resultLines.append("<td class='c' colSpan='2'>").append(idna2003).append("</td>");
+      } else {
+        resultLines.append("<td class='c'>").append("<b>" + idna2003 + "</b>").append("</td>");
+        resultLines.append("<td class='c'>").append("<b>" + idna2008 + "</b>").append("</td>");
+      }
+
+        if (result == null) {
+          resultLines.append("<td class='c'>\u00A0</td><td class='c'>\u00A0</td>");
         } else {
-          resultLines.append("<td>ERROR</td><td>")
+          resultLines.append("<td class='c'>")
           .append(toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(0, result.position))) 
-                  + "\u2639" + toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(result.position))) 
+                  + "<span class='x'>\u2639</span>" + toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(result.position))) 
                   + "</td><td>" + result.title
-                  //+ "</td><td>" + result.ruleLine
+                  //+ "</td><td class='c'>" + result.ruleLine
                   + "</td>");
         }
         resultLines.append("</tr>\n");
@@ -1206,6 +1238,19 @@ public class UnicodeUtilities {
     } catch (Exception e) {
       return toHTML.transform(e.getMessage());
     }
+  }
+
+  static final Transliterator ESCAPER = Transliterator.createFromRules("escaper", 
+          "(" + IdnaLabelTester.TO_QUOTE + ") > '<span class=\"q\">'&any-hex($1)'</span>';"
+          + HTML_RULES_CONTROLS, Transliterator.FORWARD);
+
+  private static String showEscaped(String line) {
+    String toShow = toHTML.transform(line);
+    String escaped = ESCAPER.transform(line);
+    if (!escaped.equals(toShow)) {
+      toShow += "<br><span class='esc'>" + escaped + "</span>";
+    }
+    return toShow;
   }
 }
 /*
