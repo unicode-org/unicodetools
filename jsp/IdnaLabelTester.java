@@ -240,7 +240,7 @@ public class IdnaLabelTester {
     return line.toLowerCase(Locale.ENGLISH).startsWith(string.toLowerCase(Locale.ENGLISH));
   }
 
-  private static final UnicodeSet TO_QUOTE = new UnicodeSet("[[:z:][:me:][:mn:][:di:][:c:]-[\u0020]]");
+  public static final UnicodeSet TO_QUOTE = new UnicodeSet("[[:z:][:me:][:mn:][:di:][:c:]-[\u0020]]");
 
   static final Transliterator UNESCAPER = Transliterator.getInstance("hex-any");
   static final Transliterator ESCAPER = Transliterator.getInstance("any-hex");
