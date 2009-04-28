@@ -12,18 +12,25 @@
         
         UtfParameters utfParameters = new UtfParameters(queryString);
         
-        String regex = utfParameters.getParameter("a");
-
-        if (regex == null) {
-            regex = "\\p{Nd}+([[:WB=MB:][:WB=MN:]]\\p{Nd}+)?";
-        }
-        String fixedRegex = UnicodeRegex.fix(regex);
-                
         String test = utfParameters.getParameter("b");
         if (test == null) {
           test = "The 35 quick brown fox jumped over 1.234 lazy dogs: 1:234.";
         }
-        String testPattern = UnicodeUtilities.showRegexFind(fixedRegex, test);
+        String testPattern = test;
+            
+        String regex = utfParameters.getParameter("a");
+        if (regex == null) {
+            regex = "\\p{Nd}+([[:WB=MB:][:WB=MN:]]\\p{Nd}+)?";
+        }
+        
+        String fixedRegex;
+        try {       
+            fixedRegex = UnicodeRegex.fix(regex);
+            UnicodeRegex.compile(regex); // just to get the error message
+            testPattern = UnicodeUtilities.showRegexFind(fixedRegex, test);        
+        } catch (Exception e) {
+            fixedRegex = e.getMessage();
+        }
 %>
 <h1>Unicode Regex Utility Demo</h1>
 <%@ include file="others.jsp" %>
@@ -41,10 +48,8 @@
     <tr>
       <td><textarea name="b" rows="8" cols="10" style="width: 100%"><%=test%></textarea></td>
     </tr>
-    <tr>
-      <td><input id='main' type="submit" value="Show Modified Regex Pattern" onClick="window.location.href='regex.jsp?a='+document.getElementById('main').value"/>&nbsp;</td>
-    </tr>
 </table>
+<input id='main' type="submit" value="Show Modified Regex Pattern" onClick="window.location.href='regex.jsp?a='+document.getElementById('main').value"/>
 </form>
   <hr>
   <h2>Modified Regex Pattern</h2>

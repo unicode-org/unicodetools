@@ -2,25 +2,18 @@ package jsp;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.icu.CollectionUtilities.MultiComparator;
-import org.unicode.cldr.util.PrettyPrinter;
-
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.VariableReplacer;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.IDNA;
@@ -29,8 +22,6 @@ import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.Normalizer.Mode;
-import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.util.ULocale;
 
 public class IdnaLabelTester {
@@ -225,11 +216,12 @@ public class IdnaLabelTester {
   private static final Charset UTF8 = Charset.forName("utf-8");
 
   private static BufferedReader openFile(String file) throws IOException {
-    File file1 = new File(file);
     try {
       //System.out.println("Reading:\t" + file1.getCanonicalPath());
-      return new BufferedReader(new InputStreamReader(new FileInputStream(file1), UTF8),1024*64);
+      final InputStream resourceAsStream = IdnaLabelTester.class.getResourceAsStream(file);
+      return new BufferedReader(new InputStreamReader(resourceAsStream, UTF8),1024*64);
     } catch (Exception e) {
+      File file1 = new File(file);
       throw (RuntimeException) new IllegalArgumentException("Bad file name: " + file1.getCanonicalPath()
               + "\r\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())).initCause(e);
     }
