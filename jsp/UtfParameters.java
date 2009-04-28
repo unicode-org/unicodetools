@@ -3,11 +3,14 @@
  */
 package jsp;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import com.ibm.icu.text.UnicodeSet;
 
 public class UtfParameters implements Iterable<String> {
   
@@ -43,5 +46,30 @@ public class UtfParameters implements Iterable<String> {
   }
   public Iterator<String> iterator() {
     return map.keySet().iterator();
+  }
+  
+  private static UnicodeSet okByte = new UnicodeSet("[A-Za-z0-9]");
+  
+  public static String fixQuery(String input) {
+    try {
+      StringBuilder result = new StringBuilder();
+      byte[] bytes = input.getBytes("utf-8");
+      for (int i = 0; i < bytes.length; ++i) {
+        int ch = bytes[i] & 0xFF;
+        if (okByte.contains(ch)) {
+          result.append((char)ch);
+        } else {
+          result.append('%');
+          String hex = Integer.toHexString(ch);
+          if (hex.length() == 1) {
+            result.append('0');
+          }
+          result.append(hex);
+        }
+      }
+      return result.toString();
+    } catch (UnsupportedEncodingException e) {
+      return null;
+    }
   }
 }

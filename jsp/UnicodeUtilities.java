@@ -1,16 +1,20 @@
 package jsp;
 
 import java.io.IOException;
-import java.io.Writer;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.ParsePosition;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -21,6 +25,9 @@ import jsp.IdnaLabelTester.TestStatus;
 
 import org.unicode.cldr.icu.PrettyPrinter;
 
+import com.ibm.icu.dev.test.util.BNF;
+import com.ibm.icu.dev.test.util.Quoter;
+import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.CanonicalIterator;
@@ -104,69 +111,6 @@ public class UnicodeUtilities {
    */
 
   private static Subheader subheader = null;
-
-  public static void expectError(String input) {
-    try {
-      parseUnicodeSet(input);
-      System.out.println("Failure to detect syntax error.");
-    } catch (IllegalArgumentException e) {
-      System.out.println("Expected error: " + e.getMessage());
-    }
-  }
-
-  //  private static void showIDNARemapDifferences(Writer out) throws IOException {
-  //    UnicodeSet diffs = new UnicodeSet();
-  //    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-  //      if (cp >= 'A' && cp <= 'Z') {
-  //        continue;
-  //      }
-  //      int cat = UCharacter.getType(cp);
-  //      if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE  || cat == UCharacter.SURROGATE) {
-  //        continue;
-  //      }
-  //      String idna = getIDNAValue(cp);
-  //      if (idna == null) continue;
-  //      if (idna.length() == 0) continue;
-  //      String cased0 = UCharacter.foldCase(UTF16.valueOf(cp), true);
-  //      String folded = Normalizer.normalize(cased0, Normalizer.NFKC, 0);
-  //      String cased = UCharacter.foldCase(folded, true);
-  //      String folded2 = Normalizer.normalize(cased, Normalizer.NFKC, 0);
-  //      String cased2 = UCharacter.foldCase(folded2, true);
-  //      if (!cased2.equals(folded2) && !cased2.equals(cased)) {
-  //        out.write("ERROR:\r\n");
-  //        showCodePoint(cp, true, out);
-  //        out.write("folded:\r\n");
-  //        showString(folded, "\t", true, out);
-  //        out.write("cased:\r\n");
-  //        showString(cased, "\t", true, out);
-  //        out.write("folded2:\r\n");
-  //        showString(folded2, "\t", true, out);
-  //        out.write("cased2:\r\n");
-  //        showString(cased2, "\t", true, out);
-  //        out.flush();
-  //        //throw new IllegalArgumentException("Internal error!!!" + Integer.toString(cp,16) + " " + UCharacter.getName(cp));
-  //      }
-  //      String casedAndNFKC = folded2;
-  //      if (!idna.equals(casedAndNFKC)) {
-  //        out.write("Source: ");
-  //        showCodePoint(cp, true, out);
-  //        out.write("IDNA2003: ");
-  //        showString(idna, ", ", true, out);
-  //        out.write("Case-NFKC: ");
-  //        showString(casedAndNFKC, ", ", true, out);
-  //        out.write("<br>\r\n");
-  //        out.flush();
-  //        diffs.add(cp);
-  //      }
-  //    }
-  //    out.write(diffs.toString());
-  //    out.flush();
-  //  }
-
-  static void test(String testString) {
-    UnicodeSet tc1 = parseUnicodeSet(testString);
-    System.out.println(tc1 + "\t=\t" + tc1.complement().complement());
-  }
 
   static Transliterator toHTML;
   static String HTML_RULES_CONTROLS;
@@ -561,47 +505,60 @@ public class UnicodeUtilities {
 
   static final int BLOCK_ENUM = UCharacter.getPropertyEnum("block");
 
-  public static void showSet(UnicodeSet a, boolean abbreviate, boolean ucdFormat, Writer out) throws IOException {
+  public static void showSet(UnicodeSet a, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
     if (a.size() < 20000 && !abbreviate) {
       String oldBlock = "";
       String oldSubhead = "";
       for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.next();) {
         int s = it.codepoint;
-        String newBlock = UCharacter.getStringPropertyValue(BLOCK_ENUM, s, UProperty.NameChoice.LONG).replace('_', ' ');
-        String newSubhead = getSubheader().getSubheader(s);
-        if (newSubhead == null) {
-          newSubhead = "<i>no subhead</i>";
+        if (s == UnicodeSetIterator.IS_STRING) {
+          String newBlock = "Strings";
+          if (!newBlock.equals(oldBlock)) {
+            out.append("<h2>" + newBlock + "</b></h2>\r\n");
+            oldBlock = newBlock;
+          }
+          out.append(showCodePoint(it.string)).append("<br>\r\n");
+        } else {
+          String newBlock = UCharacter.getStringPropertyValue(BLOCK_ENUM, s, UProperty.NameChoice.LONG).replace('_', ' ');
+          String newSubhead = getSubheader().getSubheader(s);
+          if (newSubhead == null) {
+            newSubhead = "<i>no subhead</i>";
+          }
+          if (!newBlock.equals(oldBlock) || !oldSubhead.equals(newSubhead)) {
+            out.append("<h2>" + newBlock + " - <i>" + newSubhead + "</i></b></h2>\r\n");
+            oldBlock = newBlock;
+            oldSubhead = newSubhead;
+          }
+          showCodePoint(s, ucdFormat, out);
         }
-        if (!newBlock.equals(oldBlock) || !oldSubhead.equals(newSubhead)) {
-          out.write("<h2>" + newBlock + " - <i>" + newSubhead + "</i></b></h2>\r\n");
-          oldBlock = newBlock;
-          oldSubhead = newSubhead;
-        }
-        showCodePoint(s, ucdFormat, out);
       }
     } else if (a.getRangeCount() < 10000) {
       for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.nextRange();) {
         int s = it.codepoint;
-        int end = it.codepointEnd;
-        if (end == s) {
-          showCodePoint(s, ucdFormat, out);
-        } else if (end == s + 1) {
-          showCodePoint(s, ucdFormat, out);
-          showCodePoint(end, ucdFormat, out);
-        } else {
-          if (ucdFormat) {
-            out.write(getHex(s, ucdFormat));
-            out.write("..");
+        if (s == UnicodeSetIterator.IS_STRING) {
+          out.append(showCodePoint(it.string)).append("<br>\r\n");
+        } else {        
+          int end = it.codepointEnd;
+          if (end == s) {
+            showCodePoint(s, ucdFormat, out);
+          } else if (end == s + 1) {
+            showCodePoint(s, ucdFormat, out);
             showCodePoint(end, ucdFormat, out);
           } else {
-            showCodePoint(s, ucdFormat, out);
-            out.write("\u2026{" + (end-s-1) + "}\u2026");
-            showCodePoint(end, ucdFormat, out);
+            if (ucdFormat) {
+              out.append(getHex(s, ucdFormat));
+              out.append("..");
+              showCodePoint(end, ucdFormat, out);
+            } else {
+              showCodePoint(s, ucdFormat, out);
+              out.append("\u2026{" + (end-s-1) + "}\u2026");
+              showCodePoint(end, ucdFormat, out);
+            }
           }
         }
       }
     } else {
-      out.write("<i>Too many to list individually</i>\r\n");
+      out.append("<i>Too many to list individually</i>\r\n");
     }
   }
 
@@ -609,7 +566,7 @@ public class UnicodeUtilities {
 
   private static String showCodePoint(String s) {
     String literal = getLiteral(s);
-    return "<a target='c' href='list-unicodeset.jsp?a=" + literal.replace("&", "%26") + "'>\u00a0" + literal + "\u00a0</a>";
+    return "<a target='c' href='list-unicodeset.jsp?a=" + toHTML.transliterate(UtfParameters.fixQuery(s)) + "'>\u00a0" + literal + "\u00a0</a>";
   }
 
   private static String getLiteral(String s) {
@@ -619,13 +576,20 @@ public class UnicodeUtilities {
     }
     return literal;
   }
-  
-  private static void showCodePoint(int s, boolean ucdFormat, Appendable out) throws IOException {
-    String literal = toHTML.transliterate(UTF16.valueOf(s));
+
+  private static void showCodePoint(int codePoint, boolean ucdFormat, Appendable out) throws IOException {
+    final String string = UTF16.valueOf(codePoint);
+    String separator = ", ";
+    showString(string, ucdFormat, separator, out);
+  }
+
+  private static void showString(final String string, boolean ucdFormat, String separator,
+          Appendable out) throws IOException {
+    String literal = toHTML.transliterate(string);
     if (RTL.containsSome(literal)) {
       literal = '\u200E' + literal + '\u200E';
     }
-    String name = UCharacter.getExtendedName(s);
+    String name = getName(string, separator);
     if (name == null || name.length() == 0) {
       name = "<i>no name</i>";
     } else {
@@ -635,7 +599,19 @@ public class UnicodeUtilities {
         name = "<i>" + name + "</i>";
       }
     }
-    out.append(getHex(s, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name + "<br>\r\n");
+    out.append(getHex(string, separator, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name + "<br>\r\n");
+  }
+
+  private static String getName(String string, String separator) {
+    StringBuilder result = new StringBuilder();
+    int cp;
+    for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
+      if (i != 0) {
+        result.append(separator);
+      }
+      result.append(UCharacter.getExtendedName(cp = UTF16.charAt(string, i)));
+    }
+    return result.toString();
   }
 
   private static String getHex(int codePoint, boolean ucdFormat) {
@@ -686,9 +662,8 @@ public class UnicodeUtilities {
   private static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]");
 
   public static boolean haveCaseFold = false;
-  
-  public static String showMapping(String transform) {
-    boolean ucdFormat = false;
+
+  public static String showTransform(String transform, String sample) {
     if (!haveCaseFold) {
       registerCaseFold();
     }
@@ -702,6 +677,19 @@ public class UnicodeUtilities {
         return "Error: " + toHTML.transform(e.getMessage() + "; " + e2.getMessage());
       }
     }
+
+    UnicodeSet set = null;
+    // see if sample is a UnicodeSet
+    if (UnicodeSet.resemblesPattern(sample, 0)) {
+      try {
+        set = new UnicodeSet(sample);
+      } catch (Exception e) {}
+    }
+    if (set == null) {
+      sample = IdnaLabelTester.UNESCAPER.transform(sample);
+      return getLiteral(trans.transform(sample)).replace("\n", "<br>");
+    }
+
     PrettyPrinter pp = new PrettyPrinter().setSpaceComparator(new Comparator<String>() {
       public int compare(String o1, String o2) {
         return 1;
@@ -709,15 +697,14 @@ public class UnicodeUtilities {
     });
 
     Map<String, UnicodeSet> mapping = new TreeMap<String,UnicodeSet>(pp.getOrdering());
-    for (UnicodeSetIterator it = new UnicodeSetIterator(MAPPING_SET); it.nextRange();) {
-      for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
-        String s = UTF16.valueOf(i);
-        String mapped = trans.transform(s);
-        if (!mapped.equals(s)) {
-          UnicodeSet x = mapping.get(mapped);
-          if (x == null) mapping.put(mapped, x= new UnicodeSet());
-          x.add(i);
-        }
+
+    for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next();) {
+      String s = it.getString();
+      String mapped = trans.transform(s);
+      if (!mapped.equals(s)) {
+        UnicodeSet x = mapping.get(mapped);
+        if (x == null) mapping.put(mapped, x = new UnicodeSet());
+        x.add(s);
       }
     }
     StringBuilder result = new StringBuilder();
@@ -735,6 +722,66 @@ public class UnicodeUtilities {
       result.append("</br>\r\n");
     }
     return result.toString();
+  }
+
+  static class StringPair implements Comparable<StringPair> {
+    String first;
+    String second;
+    public StringPair(String first, String second) {
+      this.first = first;
+      this.second = second;
+    }
+    public int compareTo(StringPair o) {
+      int result = first.compareTo(o.first);
+      if (result != 0) return result;
+      return second.compareTo(o.second);
+    }
+  }
+
+  static String TRANSFORMLIST = null;
+
+  public static String listTransforms() {
+    if (TRANSFORMLIST == null) {
+      StringBuilder result = new StringBuilder();
+      Set<StringPair> pairs = new TreeSet<StringPair>();
+      Set<String> sources = append(new TreeSet<String>(col), (Enumeration<String>) Transliterator.getAvailableSources());
+      for (String source : sources) {
+        Set<String> targets = append(new TreeSet<String>(col), (Enumeration<String>) Transliterator.getAvailableTargets(source));
+        for (String target : targets) {
+          Set<String> variants = append(new TreeSet<String>(col), (Enumeration<String>) Transliterator.getAvailableVariants(source, target));
+          for (String variant : variants) {
+            final String id = toHTML.transform(source + "-" + target + (variant.length() == 0 ? "" : "/" + variant));
+            pairs.add(new StringPair(target, id));
+          }
+        }
+      }
+      result.append("<hr><table><tr><th>Result</th><th>IDs</th></tr>\n");
+      String last = "";
+      boolean first = true;
+      for (StringPair pair : pairs) {
+        if (!last.equals(pair.first)) {
+          if (first) {
+            first = false;
+          } else {
+            result.append("</td></tr>\n");
+          }
+          result.append("<tr><th>" + pair.first + "</th><td>");
+        }
+        result.append("<a href='transform.jsp?a=" + pair.second + "'>" + pair.second + "</a>\n");
+        last = pair.first;
+      }
+      result.append("\t\t</ul>\n\t</li>\n");
+      result.append("</table>");
+      TRANSFORMLIST = result.toString();
+    }
+    return TRANSFORMLIST;
+  }
+
+  private static <T, U extends Collection<T>> U append(U result, Enumeration<T> sources) {
+    while (sources.hasMoreElements()) {
+      result.add(sources.nextElement());
+    }
+    return result;
   }
 
   private static void registerCaseFold() {
@@ -806,8 +853,8 @@ public class UnicodeUtilities {
           boolean abbreviate, String[] abResults, int[] abSizes, String[] abLinks) {
     boolean escape = false;
 
-    String setAr = setA.replace("&", "%26");
-    String setBr = setB.replace("&", "%26");
+    String setAr = toHTML.transliterate(UtfParameters.fixQuery(setA));
+    String setBr = toHTML.transliterate(UtfParameters.fixQuery(setB));
     abLinks[0] = "http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[" + setAr + '-' + setBr + "]";
     abLinks[1] = "http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[" + setBr + '-' + setAr + "]";
     abLinks[2] = "http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[" + setAr + "%26" + setBr + "]";
@@ -870,7 +917,7 @@ public class UnicodeUtilities {
     ((RuleBasedCollator) col).setNumericCollation(true);
   }
 
-  public static void showProperties(String text, Writer out) throws IOException {
+  public static void showProperties(String text, Appendable out) throws IOException {
     text = UTF16.valueOf(text, 0);
     int cp = UTF16.charAt(text, 0);
     Set<String> showLink = new HashSet<String>();
@@ -974,25 +1021,25 @@ public class UnicodeUtilities {
     icuProps.removeAll(unicodeProps);
     icuProps.removeAll(regexProps);
 
-    out.write("<table>\r\n");
+    out.append("<table>\r\n");
     String name = (String) alpha.get("Name");
     if (name != null)
       name = toHTML.transliterate(name);
 
-    out.write("<tr><th>" + "Character" + "</th><td>"
+    out.append("<tr><th>" + "Character" + "</th><td>"
             + toHTML.transliterate(text) + "</td></tr>\r\n");
-    out.write("<tr><th>" + "Code_Point" + "</th><td>"
+    out.append("<tr><th>" + "Code_Point" + "</th><td>"
             + com.ibm.icu.impl.Utility.hex(cp, 4) + "</td></tr>\r\n");
-    out.write("<tr><th>" + "Name" + "</th><td>" + name + "</td></tr>\r\n");
+    out.append("<tr><th>" + "Name" + "</th><td>" + name + "</td></tr>\r\n");
     alpha.remove("Name");
     showPropertyValue(alpha, showLink, "", unicodeProps, out); 
     showPropertyValue(alpha, showLink, "® ", regexProps, out);
     showPropertyValue(alpha, showLink, "© ", icuProps, out);
-    out.write("</table>\r\n");
+    out.append("</table>\r\n");
   }
 
   private static void showPropertyValue(Map<String,String> alpha, Set<String> showLink, String flag, 
-          Set<String> unicodeProps, Writer out) throws IOException {
+          Set<String> unicodeProps, Appendable out) throws IOException {
     for (Iterator<String> it = alpha.keySet().iterator(); it.hasNext();) {
       String propName = (String) it.next();
       if (!unicodeProps.contains(propName)) continue;
@@ -1003,12 +1050,12 @@ public class UnicodeUtilities {
               + propName + "=" + propValue + ":]'>" + hValue + "</a>"
               : hValue;
 
-      out.write("<tr><th><a target='c' href='properties.jsp#" + propName + "'>"
+      out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>"
               + flag + propName + "</a></th><td>" + hValue + "</td></tr>\r\n");
     }
   }
 
-  public static Set<String> showPropsTable(Writer out) throws IOException {
+  public static Set<String> showPropsTable(Appendable out) throws IOException {
     int[][] ranges = {{UProperty.BINARY_START, UProperty.BINARY_LIMIT},
             {UProperty.INT_START, UProperty.INT_LIMIT},
             {UProperty.DOUBLE_START, UProperty.DOUBLE_LIMIT},
@@ -1068,7 +1115,7 @@ public class UnicodeUtilities {
 
     Set<String> regexProps = new TreeSet<String>(REGEX_PROPS);
 
-    out.write("<table>\r\n");
+    out.append("<table>\r\n");
     for (Iterator<String> it = alpha.keySet().iterator(); it.hasNext();) {
       String propName = (String) it.next();
       String shortPropName = longToShort.get(propName);
@@ -1083,14 +1130,14 @@ public class UnicodeUtilities {
         sPropName = "<i>\u00A9\u00A0" + sPropName + "</i>";
       }
 
-      out.write("<tr><th width='1%'><a name='" + propName + "'>" + sPropName + "</a></th>\r\n");
-      out.write("<td>\r\n");
+      out.append("<tr><th width='1%'><a name='" + propName + "'>" + sPropName + "</a></th>\r\n");
+      out.append("<td>\r\n");
       boolean first = true;
       for (Iterator<String> it2 = values.keySet().iterator(); it2.hasNext();) {
         String propValue = (String) it2.next();
         String alternates = values.get(propValue);
         if (first) first = false;
-        else out.write(", ");
+        else out.append(", ");
 
 
         if (showLink.contains(propName)) {
@@ -1098,11 +1145,11 @@ public class UnicodeUtilities {
           + getPropLink(shortPropName, alternates.length() == 0 ? propValue : alternates, "♻");
         }
 
-        out.write(propValue);
+        out.append(propValue);
       }
-      out.write("</td></tr>\r\n");
+      out.append("</td></tr>\r\n");
     }
-    out.write("</table>\r\n");
+    out.append("</table>\r\n");
     unicodeProps.addAll(regexProps);
     return unicodeProps;
   }
@@ -1137,10 +1184,10 @@ public class UnicodeUtilities {
     }
     return subheader;
   }
-  
+
   public static String showRegexFind(String regex, String test) {
     try {
-      Matcher matcher = Pattern.compile(regex).matcher(test);
+      Matcher matcher = Pattern.compile(regex, Pattern.COMMENTS).matcher(test);
       String result = toHTML.transform(matcher.replaceAll("⇑⇑$0⇓⇓"));
       result = result.replaceAll("⇑⇑", "<u>").replaceAll("⇓⇓", "</u>");
       return result;
@@ -1148,12 +1195,13 @@ public class UnicodeUtilities {
       return "Error: " + e.getMessage();
     }
   }
-  
+
   static IdnaLabelTester tester = null;
   static String removals = new UnicodeSet("[\u1806[:di:]-[:cn:]]").complement().complement().toPattern(false);
   static Matcher rem = Pattern.compile(removals).matcher("");
-  
+
   public static String testIdnaLines(String lines, String filter) {
+    Transliterator hex = Transliterator.getInstance("any-hex");
     try {
       UnicodeSet filterSet = parseUnicodeSet(filter);
       if (!haveCaseFold) {
@@ -1162,12 +1210,12 @@ public class UnicodeUtilities {
       filterSet.complement();
       Transliterator fold = Transliterator.getInstance("nfkc; casefold; [:di:] remove; nfkc;");
       fold.setFilter(filterSet);
-      
+
       lines = IdnaLabelTester.UNESCAPER.transform(lines);
       StringBuilder resultLines = new StringBuilder();
       if (tester == null) {
         try {
-          tester = new IdnaLabelTester("../webapps/cldr/utility/idnaContextRules.txt");
+          tester = new IdnaLabelTester("idnaContextRules.txt");
         } catch (Exception e2) {
           tester = new IdnaLabelTester("jsp/idnaContextRules.txt");
         }
@@ -1176,12 +1224,16 @@ public class UnicodeUtilities {
       resultLines.append("<th>M-Label*</th><th>U-Label*</th><th>IDNA()</th><th>IDNAbis()</th><th>Error Pos.</th><th>Cause</th></tr>\n");
       for (String line : lines.split("\\s+")) {
 
-        resultLines.append("<tr><td class='cn'>").append(showEscaped(line)).append("</td>");
+        resultLines.append("<tr><td class='cn'" +
+                (" title='" + hex.transform(line) + "'") +
+        ">").append(showEscaped(line)).append("</td>");
 
         String normalized = fold.transform(line);
-        
-        resultLines.append("<td class='cn'>").append(showEscaped(normalized)).append("</td>");
-        
+
+        resultLines.append("<td class='cn'" +
+                (" title='" + hex.transform(normalized) + "'") +
+        ">").append(showEscaped(normalized)).append("</td>");
+
         String idna2003 = "<i>Denied!</i>";
         try {
           inbuffer.setLength(0);
@@ -1212,14 +1264,14 @@ public class UnicodeUtilities {
           } catch (Exception e) {
             result = new TestStatus(0, "Punycode Failed!", 0);
           }
-      }
+        }
 
-      if (idna2003.equals(idna2008)) {
-        resultLines.append("<td class='c' colSpan='2'>").append(idna2003).append("</td>");
-      } else {
-        resultLines.append("<td class='c'>").append("<b>" + idna2003 + "</b>").append("</td>");
-        resultLines.append("<td class='c'>").append("<b>" + idna2008 + "</b>").append("</td>");
-      }
+        if (idna2003.equals(idna2008)) {
+          resultLines.append("<td class='c' colSpan='2'>").append(idna2003).append("</td>");
+        } else {
+          resultLines.append("<td class='c'>").append("<b>" + idna2003 + "</b>").append("</td>");
+          resultLines.append("<td class='c'>").append("<b>" + idna2008 + "</b>").append("</td>");
+        }
 
         if (result == null) {
           resultLines.append("<td class='c'>\u00A0</td><td class='c'>\u00A0</td>");
@@ -1251,6 +1303,116 @@ public class UnicodeUtilities {
       toShow += "<br><span class='esc'>" + escaped + "</span>";
     }
     return toShow;
+  }
+
+  /**
+   * The regex doesn't have to have the UnicodeSets resolved.
+   * @param regex
+   * @param count
+   * @param maxRepeat
+   * @return
+   */
+  public static String getBnf(String regexSource, int count, int maxRepeat) {
+    //String regex = new UnicodeRegex().compileBnf(rules);
+    String regex = regexSource.replace("(?:", "(").replace("(?i)", "");
+
+    BNF bnf = new BNF(new Random(), new Quoter.RuleQuoter());
+    if (maxRepeat > 20) {
+      maxRepeat = 20;
+    }
+    bnf.setMaxRepeat(maxRepeat)
+    .addRules("$root=" + regex + ";")
+    .complete();
+    StringBuffer output = new StringBuffer();
+    for (int i = 0; i < count; ++i) {
+      String line = bnf.next();
+      output.append("<p>").append(toHTML(line)).append("</p>");
+    }
+    return output.toString();
+  }
+  
+  public static String showBidi(String str, int baseDirection, boolean asciiHack) {
+    // warning, only BMP for now
+    final StringWriter stringWriter = new StringWriter();
+    PrintWriter writer = new PrintWriter(stringWriter);
+    
+    BidiCharMap bidiCharMap = new BidiCharMap(asciiHack);
+        
+    byte[] codes = new byte[str.length()];
+    for (int i = 0; i < str.length(); ++i) {
+      codes[i] = bidiCharMap.getBidiClass(str.charAt(i));
+    }
+    int[] linebreaks = new int[1];
+    linebreaks[0] = str.length();
+
+    BidiReference bidi = new BidiReference(codes, (byte)baseDirection);
+    int[] reorder = bidi.getReordering(new int[] { codes.length });
+    byte[] levels = bidi.getLevels(linebreaks);
+
+    writer.println(toHTML("base level: " + bidi.getBaseLevel() + (baseDirection != -1 ? " (forced)" : "")));
+
+    // output original text
+    writer.println("<h3>Source</h3>");
+    writer.println("<table><tr><th>Memory Position</th>");
+    for (int i = 0; i < str.length(); ++i) {
+      writer.println("<td class='bcell'>" + i + "</td>");
+    }
+    writer.println("</tr><tr><th>Character</th>");
+    for (int i = 0; i < str.length(); ++i) {
+      writer.println("<td class='bccell'> " + str.charAt(i) + " </td>");
+    }
+    writer.println("</tr><tr><th>Bidi Class</th>");
+    for (int i = 0; i < str.length(); ++i) {
+      writer.println("<td class='bcell'><tt>" + BidiReference.getHtmlTypename(codes[i]) + "</tt></td>");
+    }
+    writer.println("</tr><tr><th>Rules Applied</th>");
+    for (int i = 0; i < str.length(); ++i) {
+      writer.println("<td class='bcell'><tt>" + bidi.getChanges(i).replace("\n", "<br>") + "</tt></td>");
+    }
+    writer.println("</tr><tr><th>Resulting Level</th>");
+    for (int i = 0; i < str.length(); ++i) {
+      writer.println("<td class='bcell'><tt>" + showLevel(levels[i]) + "</tt></td>");
+    }
+    writer.println("</tr></table>");
+
+    // output visually ordered text
+    writer.println("<h3>Reordered</h3>");
+    writer.println("<table><th>Display Position</th>");
+    for (int k = 0; k < str.length(); ++k) {
+      writer.println("<td class='bcell'>" + k + "</td>");
+    }
+    writer.println("</tr><tr><th>Memory Position</th>");
+    for (int k = 0; k < str.length(); ++k) {
+      final int i = reorder[k];
+      writer.println("<td class='bcell'>" + i + "</td>");
+    }
+    writer.println("</tr><tr><th>Character</th>");
+    for (int k = 0; k < str.length(); ++k) {
+      final int i = reorder[k];
+      writer.println("<td class='bccell'> " + showCodePoint(str.substring(i,i+1))+"</td>");
+    }
+    writer.println("</tr></table>");
+    
+    if (asciiHack) {
+      writer.println("<h3>ASCII Hack</h3>");
+      writer.println("<table><tr>");
+      for (int i = 0; i < BidiReference.typenames.length; ++i) {
+        writer.println("<tr><th>" + BidiReference.getHtmlTypename(i) + "</th><td>" + showCodePoint(bidiCharMap.getAsciiHack(i).toPattern(false)) + "</td></tr>"); 
+      }
+      writer.println("</tr></table>");
+    }
+
+    writer.flush();
+    return stringWriter.toString();
+  }
+
+  private static String showLevel(int level) {
+    StringBuffer result = new StringBuffer();
+    for (int i = 0; i < level; ++i) {
+      result.append("<br>");
+    }
+    result.append("L").append(level);
+    return result.toString();
   }
 }
 /*
