@@ -1,10 +1,7 @@
 package jsp;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -99,7 +96,7 @@ public class IdnaLabelTester {
 
   public IdnaLabelTester(String file) throws IOException {
 
-    BufferedReader in = openFile(file);
+    BufferedReader in = UnicodeUtilities.openFile(IdnaLabelTester.class, file);
 
     String title = "???";
     for (int lineCount = 1; ; ++lineCount) {
@@ -213,19 +210,7 @@ public class IdnaLabelTester {
     }
   }
 
-  private static final Charset UTF8 = Charset.forName("utf-8");
-
-  private static BufferedReader openFile(String file) throws IOException {
-    try {
-      //System.out.println("Reading:\t" + file1.getCanonicalPath());
-      final InputStream resourceAsStream = IdnaLabelTester.class.getResourceAsStream(file);
-      return new BufferedReader(new InputStreamReader(resourceAsStream, UTF8),1024*64);
-    } catch (Exception e) {
-      File file1 = new File(file);
-      throw (RuntimeException) new IllegalArgumentException("Bad file name: " + file1.getCanonicalPath()
-              + "\r\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())).initCause(e);
-    }
-  }
+  static final Charset UTF8 = Charset.forName("utf-8");
 
   private static boolean startsWithIgnoreCase(String line, final String string) {
     // we don't care about performance, and the arguments are only ASCII

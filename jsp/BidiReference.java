@@ -1242,7 +1242,7 @@ public final class BidiReference {
 
   private void setRule(String rule) {
     String[] anchor = rule.split("-");
-    this.rule = "<a target='uba' href='http://unicode.org/reports/tr9/#" + anchor[0] + "'>" + rule + "</a>";
+    this.rule = "<a target='doc' href='http://unicode.org/reports/tr9/#" + anchor[0] + "'>" + rule + "</a>";
   }
   
   public static String getHtmlTypename(int value) {
