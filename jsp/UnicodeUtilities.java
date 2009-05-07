@@ -1,6 +1,10 @@
 package jsp;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.ParsePosition;
@@ -24,6 +28,8 @@ import java.util.regex.Pattern;
 import jsp.IdnaLabelTester.TestStatus;
 
 import org.unicode.cldr.icu.PrettyPrinter;
+import org.unicode.cldr.test.CheckCLDR;
+import org.unicode.cldr.util.Utility;
 
 import com.ibm.icu.dev.test.util.BNF;
 import com.ibm.icu.dev.test.util.Quoter;
@@ -564,11 +570,19 @@ public class UnicodeUtilities {
 
   static private UnicodeSet RTL= new UnicodeSet("[[:bc=R:][:bc=AL:]]");
 
+  private static String showCodePoint(int codepoint) {
+    return showCodePoint(UTF16.valueOf(codepoint));
+  }
+  
   private static String showCodePoint(String s) {
     String literal = getLiteral(s);
     return "<a target='c' href='list-unicodeset.jsp?a=" + toHTML.transliterate(UtfParameters.fixQuery(s)) + "'>\u00a0" + literal + "\u00a0</a>";
   }
 
+  private static String getLiteral(int codepoint) {
+    return getLiteral(UTF16.valueOf(codepoint));
+  }
+  
   private static String getLiteral(String s) {
     String literal = toHTML.transliterate(s);
     if (RTL.containsSome(literal)) {
@@ -589,7 +603,7 @@ public class UnicodeUtilities {
     if (RTL.containsSome(literal)) {
       literal = '\u200E' + literal + '\u200E';
     }
-    String name = getName(string, separator);
+    String name = getName(string, separator, false);
     if (name == null || name.length() == 0) {
       name = "<i>no name</i>";
     } else {
@@ -602,14 +616,18 @@ public class UnicodeUtilities {
     out.append(getHex(string, separator, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name + "<br>\r\n");
   }
 
-  private static String getName(String string, String separator) {
+  private static String getName(String string, String separator, boolean andCode) {
     StringBuilder result = new StringBuilder();
     int cp;
     for (int i = 0; i < string.length(); i += UTF16.getCharCount(cp)) {
+      cp = UTF16.charAt(string, i);
       if (i != 0) {
         result.append(separator);
       }
-      result.append(UCharacter.getExtendedName(cp = UTF16.charAt(string, i)));
+      if (andCode) {
+        result.append("U+").append(com.ibm.icu.impl.Utility.hex(cp, 4)).append(' ');
+      }
+      result.append(UCharacter.getExtendedName(cp));
     }
     return result.toString();
   }
@@ -662,6 +680,32 @@ public class UnicodeUtilities {
   private static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]");
 
   public static boolean haveCaseFold = false;
+
+  static {
+    Transliterator.registerInstance(getTransliteratorFromFile("en-IPA", "en-IPA.txt", Transliterator.FORWARD));
+    Transliterator.registerInstance(getTransliteratorFromFile("IPA-en", "en-IPA.txt", Transliterator.REVERSE));
+    
+    Transliterator.registerInstance(getTransliteratorFromFile("ipa-deva", "IPA-Deva.txt", Transliterator.FORWARD));
+    Transliterator.registerInstance(getTransliteratorFromFile("deva-ipa", "IPA-Deva.txt", Transliterator.REVERSE));
+  }
+  
+  public static Transliterator getTransliteratorFromFile(String ID, String file, int direction) {
+    try {
+      BufferedReader br = openFile(UnicodeUtilities.class, file);
+      StringBuffer input = new StringBuffer();
+      while (true) {
+        String line = br.readLine();
+        if (line == null) break;
+        if (line.startsWith("\uFEFF")) line = line.substring(1); // remove BOM
+        input.append(line);
+        input.append('\n');
+      }
+      return Transliterator.createFromRules(ID, input.toString(), direction);
+    } catch (IOException e) {
+      throw (IllegalArgumentException) new IllegalArgumentException("Can't open transliterator file " + file).initCause(e);
+    }
+  }
+
 
   public static String showTransform(String transform, String sample) {
     if (!haveCaseFold) {
@@ -1337,7 +1381,44 @@ public class UnicodeUtilities {
     PrintWriter writer = new PrintWriter(stringWriter);
     
     BidiCharMap bidiCharMap = new BidiCharMap(asciiHack);
-        
+    
+    String[] parts = str.split("\\r\\n?|\\n");
+    for (int i = 0; i < parts.length; ++i) {
+      writer.println("<h2>Paragraph " + (i+1) + "</h2>");
+      if (parts[i] == null || parts[i].length() == 0) {
+        continue;
+      }
+      showBidiLine(parts[i], baseDirection, writer, bidiCharMap);
+    }
+    
+    if (asciiHack) {
+      writer.println("<h3>ASCII Hack</h3>");
+      writer.println("<p>For testing the UBA with only ASCII characters, the following property values are used (<,> are RLM and LRM):</p>");
+      writer.println("<table>");
+      for (byte i = 0; i < BidiReference.typenames.length; ++i) {
+        final UnicodeSet modifiedClass = bidiCharMap.getAsciiHack(i);
+        writer.println("<tr><th>" + BidiReference.getHtmlTypename(i) + "</th><td>" + getList(modifiedClass) + "</td></tr>"); 
+      }
+      writer.println("</table>");
+    }
+
+    writer.flush();
+    return stringWriter.toString();
+  }
+
+  private static String getList(final UnicodeSet uset) {
+    StringBuffer codePointString = new StringBuffer();
+    for (UnicodeSetIterator it = new UnicodeSetIterator(uset); it.next();) {
+      if (codePointString.length() != 0) {
+        codePointString.append(" ");
+      }
+      final String literal = it.codepoint <= 0x20 ? "\u00AB" + getLiteral(UCharacter.getExtendedName(it.codepoint)) + "\u00BB" : getLiteral(it.codepoint);
+      codePointString.append(literal);
+    }
+    return codePointString.toString();
+  }
+
+  private static void showBidiLine(String str, int baseDirection, PrintWriter writer, BidiCharMap bidiCharMap) {
     byte[] codes = new byte[str.length()];
     for (int i = 0; i < str.length(); ++i) {
       codes[i] = bidiCharMap.getBidiClass(str.charAt(i));
@@ -1349,7 +1430,10 @@ public class UnicodeUtilities {
     int[] reorder = bidi.getReordering(new int[] { codes.length });
     byte[] levels = bidi.getLevels(linebreaks);
 
-    writer.println(toHTML("base level: " + bidi.getBaseLevel() + (baseDirection != -1 ? " (forced)" : "")));
+    writer.println("<table><tr><th>Base Level</th>");
+    final byte baseLevel = bidi.getBaseLevel();
+    writer.println("<td>" + baseLevel + " = " + (baseLevel == 0 ? "LTR" : "RTL") + "</td><td>" + (baseDirection >= 0 ? "explicit" : "heuristic") + "</td>");
+    writer.println("</tr></table>");
 
     // output original text
     writer.println("<h3>Source</h3>");
@@ -1359,7 +1443,9 @@ public class UnicodeUtilities {
     }
     writer.println("</tr><tr><th>Character</th>");
     for (int i = 0; i < str.length(); ++i) {
-      writer.println("<td class='bccell'> " + str.charAt(i) + " </td>");
+      final String s = str.substring(i,i+1);
+      String title = toHTML.transform(getName(s, "", true));
+      writer.println("<td class='bccell' title='" + title + "'> " + getLiteral(getBidiChar(str, i, codes[i])) + " </td>");
     }
     writer.println("</tr><tr><th>Bidi Class</th>");
     for (int i = 0; i < str.length(); ++i) {
@@ -1379,31 +1465,39 @@ public class UnicodeUtilities {
     writer.println("<h3>Reordered</h3>");
     writer.println("<table><th>Display Position</th>");
     for (int k = 0; k < str.length(); ++k) {
-      writer.println("<td class='bcell'>" + k + "</td>");
+      final int i = reorder[k];
+      final String bidiChar = getBidiChar(str, i, codes[i]);
+      String td = bidiChar.length() == 0 ? "<td class='bxcell'>" : "<td class='bcell'>";
+      writer.println(td + k + "</td>");
     }
     writer.println("</tr><tr><th>Memory Position</th>");
     for (int k = 0; k < str.length(); ++k) {
       final int i = reorder[k];
-      writer.println("<td class='bcell'>" + i + "</td>");
+      final String bidiChar = getBidiChar(str, i, codes[i]);
+      String td = bidiChar.length() == 0 ? "<td class='bxcell'>" : "<td class='bcell'>";
+      writer.println(td + i + "</td>");
     }
     writer.println("</tr><tr><th>Character</th>");
     for (int k = 0; k < str.length(); ++k) {
       final int i = reorder[k];
-      writer.println("<td class='bccell'> " + showCodePoint(str.substring(i,i+1))+"</td>");
+      final String bidiChar = getBidiChar(str, i, codes[i]);
+      String title = bidiChar.length() == 0 ? "deleted" : toHTML.transform(getName(bidiChar, "", true));
+      String td = bidiChar.length() == 0 ? "bxcell" : "bccell";
+      writer.println("<td class='" + td + "' title='" + title + "'>" + " " + getLiteral(bidiChar) +"</td>");
     }
     writer.println("</tr></table>");
     
-    if (asciiHack) {
-      writer.println("<h3>ASCII Hack</h3>");
-      writer.println("<table><tr>");
-      for (int i = 0; i < BidiReference.typenames.length; ++i) {
-        writer.println("<tr><th>" + BidiReference.getHtmlTypename(i) + "</th><td>" + showCodePoint(bidiCharMap.getAsciiHack(i).toPattern(false)) + "</td></tr>"); 
-      }
-      writer.println("</tr></table>");
-    }
+  }
 
-    writer.flush();
-    return stringWriter.toString();
+  private static String getBidiChar(String str, int i, byte b) {
+    if (b == BidiReference.PDF || b == BidiReference.RLE || b == BidiReference.LRE || b == BidiReference.LRO || b == BidiReference.RLO || b == BidiReference.BN) {
+      return "";
+    }
+    String substring = str.substring(i,i+1);
+    if ((substring.equals("<") || substring.equals(">")) && (b == BidiReference.L || b == BidiReference.R)) {
+      return "";
+    }
+    return substring;
   }
 
   private static String showLevel(int level) {
@@ -1414,6 +1508,19 @@ public class UnicodeUtilities {
     result.append("L").append(level);
     return result.toString();
   }
+
+  static BufferedReader openFile(Class class1, String file) throws IOException {
+    try {
+      //System.out.println("Reading:\t" + file1.getCanonicalPath());
+      final InputStream resourceAsStream = class1.getResourceAsStream(file);
+      return new BufferedReader(new InputStreamReader(resourceAsStream, IdnaLabelTester.UTF8),1024*64);
+    } catch (Exception e) {
+      File file1 = new File(file);
+      throw (RuntimeException) new IllegalArgumentException("Bad file name: " + file1.getCanonicalPath()
+              + "\r\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())).initCause(e);
+    }
+  }
+  
 }
 /*
  * <% http://www.devshed.com/c/a/Java/Developing-JavaServer-Pages/ Enumeration

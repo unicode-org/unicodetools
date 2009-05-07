@@ -18,9 +18,18 @@ public class TestJsp  extends TestFmwk {
     new TestJsp().run(args);
   }
   
+  public void TestATransform() {
+    String sample;
+    sample = UnicodeUtilities.showTransform("en-IPA; IPA-en", "The quick brown fox.");
+    logln(sample);
+    sample = UnicodeUtilities.showTransform("en-IPA; IPA-deva", "The quick brown fox.");
+    logln(sample);
+  }
+
+  
   public void TestBidi() {
     String sample;
-    sample = UnicodeUtilities.showBidi("mark \u05DE\u05B7\u05E8\u05DA", 0, true);
+    sample = UnicodeUtilities.showBidi("mark \u05DE\u05B7\u05E8\u05DA\nHelp", 0, true);
     logln(sample);
   }
 
