@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Normalizer.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.19 $
+* $Date: 2009-05-11 22:36:02 $
+* $Revision: 1.20 $
 *
 *******************************************************************************
 */
@@ -20,7 +20,6 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 import org.unicode.text.utility.*;
-import com.sun.java_cup.internal.internal_error;
 
 
 /**

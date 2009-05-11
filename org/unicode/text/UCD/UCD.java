@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
-* $Date: 2008-03-05 18:25:43 $
-* $Revision: 1.48 $
+* $Date: 2009-05-11 22:36:02 $
+* $Revision: 1.49 $
 *
 *******************************************************************************
 */
@@ -47,8 +47,8 @@ public final class UCD implements UCD_Types {
     /**
      * Used for the default version.
      */
-    public static final String latestVersion = "5.1.0" + (FIX_FOR_NEW_VERSION == 0 ? "" : "");
-    public static final String lastVersion = "5.0.0"; // last released version
+    public static final String latestVersion = "5.2.0" + (FIX_FOR_NEW_VERSION == 0 ? "" : "");
+    public static final String lastVersion = "5.1.0"; // last released version
 
     /**
      * Create singleton instance for default (latest) version

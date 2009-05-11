@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2008-03-05 18:25:43 $
-* $Revision: 1.58 $
+* $Date: 2009-05-11 22:36:02 $
+* $Revision: 1.59 $
 *
 *******************************************************************************
 */
@@ -702,6 +702,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static final String[] searchPath = {
         "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+        "5.2.0",
         "5.1.0",
         "5.0.0",
         "4.1.0",
@@ -771,7 +772,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     // But for UCD files use true, true
     // Or if they are UTF8, use true, false
     public static PrintWriter openPrintWriter(String directory, String filename, Encoding options) throws IOException {
-        File file = new File(directory + filename);
+        File file = new File(directory, filename);
         Utility.fixDot();
         System.out.println("Creating File: " + file.getCanonicalPath());
         File parent = new File(file.getParent());
@@ -1099,7 +1100,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         Iterator it = getDirectoryContentsLastFirst(directory).iterator();
         while (it.hasNext()) {
             String fn = (String) it.next();
-            File foo = new File(directory + File.separator + fn);
+            File foo = new File(directory, fn);
             // System.out.println("\tChecking: '" + foo.getCanonicalPath() + "'");
             if (foo.isDirectory()) {
                 String attempt = searchDirectory(foo, filename, show, fileType);

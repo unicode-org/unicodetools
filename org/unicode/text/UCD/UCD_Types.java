@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
-* $Date: 2008-03-07 21:54:51 $
-* $Revision: 1.42 $
+* $Date: 2009-05-11 22:36:02 $
+* $Revision: 1.43 $
 *
 *******************************************************************************
 */
@@ -18,13 +18,13 @@ import org.unicode.cldr.util.Utility;
 public interface UCD_Types {
   static final int FIX_FOR_NEW_VERSION = 0;
 
-    static final byte BINARY_FORMAT = 18; // bumped if binary format of UCD changes. Forces rebuild   
+    static final byte BINARY_FORMAT = 21; // bumped if binary format of UCD changes. Forces rebuild   
     
     public static final String BASE_DIR = Utility.getProperty("dir", "../DATA/");
     public static final String UCD_DIR = BASE_DIR + "UCD/";
     public static final String BIN_DIR = BASE_DIR + "BIN/";
     
-    public static final String GEN_DIR = "org/unicode/data/gen/";
+    public static final String GEN_DIR = BASE_DIR + "GEN/";
     public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
     
     public static final String SRC_DIR = "org/unicode/text/";
@@ -440,7 +440,8 @@ public interface UCD_Types {
     AGE41 = 8,
     AGE50 = 9,
     AGE51 = 10,
-    LIMIT_AGE = AGE51 + 1 + FIX_FOR_NEW_VERSION;
+    AGE52 = 11,
+    LIMIT_AGE = AGE52 + 1 + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
         "?",
@@ -453,7 +454,8 @@ public interface UCD_Types {
         "4.0.0",  
         "4.1.0",      
         "5.0.0",
-        "5.1.0"
+        "5.1.0",
+        "5.2.0",
     };
 
 public static byte

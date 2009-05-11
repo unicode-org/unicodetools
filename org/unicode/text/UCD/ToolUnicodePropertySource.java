@@ -933,7 +933,7 @@ FF1B ( ； ) FULLWIDTH SEMICOLON
     }
 
     public String getAge(int codePoint) {
-      if (codePoint == 0xF0000) {
+      if (codePoint == 0x0524) {
         System.out.println("debug point");
       }
       if (needAgeCache) {
@@ -1071,9 +1071,10 @@ FF1B ( ； ) FULLWIDTH SEMICOLON
     private StringUCharacterIterator uci = new StringUCharacterIterator("");
     
     IdnaInfo() throws IOException {
-      InputStream stream = ICUData.getRequiredStream(ICUResourceBundle.ICU_BUNDLE+"/uidna.spp");
-      namePrep = new StringPrep(stream);
-      stream.close();
+      namePrep = StringPrep.getInstance(StringPrep.RFC3491_NAMEPREP);
+//      InputStream stream = ICUData.getRequiredStream(ICUResourceBundle.ICU_BUNDLE+"/uidna.spp");
+//      namePrep = new StringPrep(stream);
+//      stream.close();
     }
     
     public IdnaType getIDNAType(int cp) {    
