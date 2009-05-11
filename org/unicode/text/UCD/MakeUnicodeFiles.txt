@@ -1,4 +1,4 @@
-Generate: Unihan
+Generate: .*
 DeltaVersion: 1
 CopyrightYear: 2009
 

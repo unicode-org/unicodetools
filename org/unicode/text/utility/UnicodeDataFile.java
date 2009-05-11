@@ -46,7 +46,7 @@ public class UnicodeDataFile {
 	        out.println("# Copyright (c) 1991-" + Default.getYear() + " Unicode, Inc.");
 	        out.println(
 	            "# For terms of use, see http://www.unicode.org/terms_of_use.html");
-	        out.println("# For documentation, see UCD.html");
+	        out.println("# For documentation, see http://www.unicode.org/reports/tr44/");
     	}
         try {
             Utility.appendFile("org/unicode/text/UCD/" + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
@@ -83,12 +83,10 @@ public class UnicodeDataFile {
     }
 
     public static String getFileSuffix(boolean withDVersion, String suffix) {
-        return "-"
-            + Default.ucd().getVersion()
-            + ((withDVersion && MakeUnicodeFiles.dVersion >= 0)
-                ? ("d" + MakeUnicodeFiles.dVersion)
-                : "")
-            + suffix;
+      return (!MakeUnicodeFiles.SHOW_VERSION_IN_FILE ? ""
+              : "-" + Default.ucd().getVersion()
+                + ((withDVersion && MakeUnicodeFiles.dVersion >= 0) ? ("d" + MakeUnicodeFiles.dVersion) : ""))
+              + suffix;
     }
 
     //Remove "d1" from DerivedJoiningGroup-3.1.0d1.txt type names

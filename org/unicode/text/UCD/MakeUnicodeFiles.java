@@ -37,6 +37,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MakeUnicodeFiles {
+  public static final boolean SHOW_VERSION_IN_FILE = org.unicode.cldr.util.Utility.getProperty("FILE_WITH_VERSION", "true").startsWith("t");
+
   public static int dVersion = -1; // change to fix the generated file D version. If less than zero, no "d"
   
   /*static String[] hackNameList = {
