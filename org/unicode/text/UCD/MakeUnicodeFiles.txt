@@ -1,6 +1,52 @@
-Generate: .*
-DeltaVersion: 1
+Generate: .*(PropList|DerivedAge|DerivedExtraProperties).*
+DeltaVersion: 2
 CopyrightYear: 2009
+
+File:   DerivedExtraProperties
+Property:   Cased
+# Derived Property:   Cased (Cased)
+#  As defined by Unicode Standard Definition D120
+#  C has the Lowercase or Uppercase property or has a General_Category value of Titlecase_Letter.
+
+Property:   Case_Ignoreable
+# Derived Property:   Case_Ignoreable (CI)
+#  As defined by Unicode Standard Definition D121
+#  C is defined to be case-ignorable if 
+#    Word_Break(C) = MidLetter or MidNumLet, or
+#    General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
+
+Property:   Operationally_Lowercased
+# Derived Property:   Operationally_Lowercased (OLC)
+#  As defined by Unicode Standard Definition D124
+#  isLowercase(X) is true when toLowercase(Y) = Y
+
+Property:   Operationally_Uppercased
+# Derived Property:   Operationally_Uppercased (OUC)
+#  As defined by Unicode Standard Definition D125
+#  isUppercase(X) is true when toUppercase(Y) = Y
+
+Property:   Operationally_Titlecased
+# Derived Property:   Operationally_Titlecased (OTC)
+#  As defined by Unicode Standard Definition D126
+#  isTitlecase(X) is true when toTitlecase(Y) = Y
+
+Property:   Operationally_Casefolded
+# Derived Property:   Operationally_Casefolded (OCF)
+#  As defined by Unicode Standard Definition D127
+#  isCasefolded(X) is true when toCasefold(Y) = Y
+
+Property:   Operationally_Cased
+# Derived Property:   Operationally_Cased (OC)
+#  As defined by Unicode Standard Definition D128
+#  isCased(X) when isLowercase(X) is false, or isUppercase(X) is false, or isTitlecase(X) is false
+
+Property:   CaseCompatIgnorableFold
+# Derived Property:   CaseCompatIgnorableFold (CCIF)
+#  As defined by CaseFolding, removing Default_Ignorable_Code_Points, then transforming by NFKC; then repeating
+
+Property:   CaseCompatIgnorableFolded
+# Derived Property:   CaseCompatIgnorableFolded (isCCIF)
+#  As defined by cp = CaseCompatIgnorableFold(cp)
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
@@ -72,6 +118,9 @@ Value:	5.0
 # Newly assigned in Unicode 5.0.0 (July, 2006)
 
 Value:	5.1
+# Newly assigned in Unicode 5.1.0 (March, 2008)
+
+Value:  5.1
 # Newly assigned in Unicode 5.1.0 (March, 2008)
 
 File:	extracted/DerivedBidiClass
