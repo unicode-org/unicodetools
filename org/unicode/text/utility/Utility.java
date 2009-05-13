@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2009-05-11 22:36:02 $
-* $Revision: 1.59 $
+* $Date: 2009-05-13 16:26:27 $
+* $Revision: 1.60 $
 *
 *******************************************************************************
 */
@@ -701,7 +701,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static final String[] searchPath = {
-        "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
+        // "EXTRAS" + (FIX_FOR_NEW_VERSION == 0 ? "" : ""),
         "5.2.0",
         "5.1.0",
         "5.0.0",
