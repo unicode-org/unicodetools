@@ -685,8 +685,8 @@ public class UnicodeUtilities {
     Transliterator.registerInstance(getTransliteratorFromFile("en-IPA", "en-IPA.txt", Transliterator.FORWARD));
     Transliterator.registerInstance(getTransliteratorFromFile("IPA-en", "en-IPA.txt", Transliterator.REVERSE));
     
-    Transliterator.registerInstance(getTransliteratorFromFile("ipa-deva", "IPA-Deva.txt", Transliterator.FORWARD));
-    Transliterator.registerInstance(getTransliteratorFromFile("deva-ipa", "IPA-Deva.txt", Transliterator.REVERSE));
+    Transliterator.registerInstance(getTransliteratorFromFile("deva-ipa", "Deva-IPA.txt", Transliterator.FORWARD));
+    Transliterator.registerInstance(getTransliteratorFromFile("ipa-deva", "Deva-IPA.txt", Transliterator.REVERSE));
   }
   
   public static Transliterator getTransliteratorFromFile(String ID, String file, int direction) {

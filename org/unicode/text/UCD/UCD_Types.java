@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
-* $Date: 2009-05-11 22:36:02 $
-* $Revision: 1.43 $
+* $Date: 2009-05-29 04:48:49 $
+* $Revision: 1.44 $
 *
 *******************************************************************************
 */
@@ -41,7 +41,9 @@ public interface UCD_Types {
     	CJK_A_BASE = 0x3400,
     	CJK_A_LIMIT = 0x4DBF+1,
     	CJK_B_BASE = 0x20000,
-    	CJK_B_LIMIT = 0x2A6DF+1;
+    	CJK_B_LIMIT = 0x2A6DF+1,
+      CJK_C_BASE = 0x2A700,
+      CJK_C_LIMIT = 0x2B73F+1;
     
     // Unicode Property Types
     static final byte 
@@ -522,8 +524,11 @@ public static byte
     ZHAIN = 51,
     KHAPH = 52,
     FE = 53,
+    BURUSHASKI_YEH_BARREE = 54,
+    FARSI_YEH = 55,
+    NYA = 56,
     
-    LIMIT_JOINING_GROUP = 54;
+    LIMIT_JOINING_GROUP = 57;
     
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;    
     public static final int

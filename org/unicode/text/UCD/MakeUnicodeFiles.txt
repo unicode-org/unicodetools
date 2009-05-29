@@ -1,52 +1,6 @@
-Generate: .*(PropList|DerivedAge|DerivedExtraProperties).*
-DeltaVersion: 2
+Generate: .*
+DeltaVersion: 7
 CopyrightYear: 2009
-
-File:   DerivedExtraProperties
-Property:   Cased
-# Derived Property:   Cased (Cased)
-#  As defined by Unicode Standard Definition D120
-#  C has the Lowercase or Uppercase property or has a General_Category value of Titlecase_Letter.
-
-Property:   Case_Ignoreable
-# Derived Property:   Case_Ignoreable (CI)
-#  As defined by Unicode Standard Definition D121
-#  C is defined to be case-ignorable if 
-#    Word_Break(C) = MidLetter or MidNumLet, or
-#    General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
-
-Property:   Operationally_Lowercased
-# Derived Property:   Operationally_Lowercased (OLC)
-#  As defined by Unicode Standard Definition D124
-#  isLowercase(X) is true when toLowercase(Y) = Y
-
-Property:   Operationally_Uppercased
-# Derived Property:   Operationally_Uppercased (OUC)
-#  As defined by Unicode Standard Definition D125
-#  isUppercase(X) is true when toUppercase(Y) = Y
-
-Property:   Operationally_Titlecased
-# Derived Property:   Operationally_Titlecased (OTC)
-#  As defined by Unicode Standard Definition D126
-#  isTitlecase(X) is true when toTitlecase(Y) = Y
-
-Property:   Operationally_Casefolded
-# Derived Property:   Operationally_Casefolded (OCF)
-#  As defined by Unicode Standard Definition D127
-#  isCasefolded(X) is true when toCasefold(Y) = Y
-
-Property:   Operationally_Cased
-# Derived Property:   Operationally_Cased (OC)
-#  As defined by Unicode Standard Definition D128
-#  isCased(X) when isLowercase(X) is false, or isUppercase(X) is false, or isTitlecase(X) is false
-
-Property:   CaseCompatIgnorableFold
-# Derived Property:   CaseCompatIgnorableFold (CCIF)
-#  As defined by CaseFolding, removing Default_Ignorable_Code_Points, then transforming by NFKC; then repeating
-
-Property:   CaseCompatIgnorableFolded
-# Derived Property:   CaseCompatIgnorableFolded (isCCIF)
-#  As defined by cp = CaseCompatIgnorableFold(cp)
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
@@ -78,9 +32,12 @@ Property: Block
 #         and underbars are ignored.
 #         For example, "Latin Extended-A" and "latin extended a" are equivalent.
 #         For more information on the comparison of property values, 
-#            see UCD.html.
-
+#            see UAX #44: http://www.unicode.org/reports/tr44/.
 Format:	valueList skipUnassigned=No_Block
+# Property: Block
+#
+# @missing: 0000..10FFFF; No_Block
+
 
 File:	CaseFolding
 Property: SPECIAL
@@ -125,7 +82,7 @@ Value:  5.1
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
-# Bidi Class (listing UnicodeData.txt, field 4: see UCD.html)
+# Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: http://www.unicode.org/reports/tr44/)
 # Unlike other properties, unassigned code points in blocks 
 # reserved for right-to-left scripts are given either types R or AL.
 #
@@ -155,11 +112,11 @@ Format:	valueStyle=short skipUnassigned=Left_To_Right
 
 File:	extracted/DerivedBinaryProperties
 Property:	Bidi_Mirrored
-# Bidi_Mirrored (listing UnicodeData.txt, field 9: see UCD.html)
+# Bidi_Mirrored (listing UnicodeData.txt, field 9: see UAX #44: http://www.unicode.org/reports/tr44/)
 
 File:	extracted/DerivedCombiningClass
 Property:	Canonical_Combining_Class
-# Combining Class (listing UnicodeData.txt, field 3: see UCD.html)
+# Combining Class (listing UnicodeData.txt, field 3: see UAX #44: http://www.unicode.org/reports/tr44/)
 Format: nameStyle=none valueStyle=short skipUnassigned=Not_Reordered
 
 File:	DerivedCoreProperties
@@ -171,16 +128,62 @@ Property:	Alphabetic
 # Derived Property: Alphabetic
 #  Generated from: Lu+Ll+Lt+Lm+Lo+Nl + Other_Alphabetic
 
-
 Property:	Lowercase
 # Derived Property: Lowercase
 #  Generated from: Ll + Other_Lowercase
-
 
 Property:	Uppercase
 # Derived Property: Uppercase
 #  Generated from: Lu + Other_Uppercase
 
+Property:   Cased
+# Derived Property:   Cased (Cased)
+#  As defined by Unicode Standard Definition D120
+#  C has the Lowercase or Uppercase property or has a General_Category value of Titlecase_Letter.
+
+Property:   Case_Ignorable
+# Derived Property:   Case_Ignorable (CI)
+#  As defined by Unicode Standard Definition D121
+#  C is defined to be case-ignorable if 
+#    Word_Break(C) = MidLetter or MidNumLet, or
+#    General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
+
+Property:   Is_Lowercase
+# Derived Property:   Is_Lowercase (ILC)
+#  As defined by Unicode Standard Definition D124
+#  isLowercase(X) is true when toLowercase(toNFD(X)) = toNFD(X)
+# Omitted code points have the value Yes
+# @missing: 0000..10FFFF; Yes
+Format: valueStyle=short skipValue=Yes
+
+Property:   Is_Uppercase
+# Derived Property:   Is_Uppercase (IUC)
+#  As defined by Unicode Standard Definition D125
+#  isUppercase(X) is true when toUppercase(toNFD(X)) = toNFD(X)
+# Omitted code points have the value Yes
+# @missing: 0000..10FFFF; Yes
+Format: valueStyle=short skipValue=Yes
+
+Property:   Is_Titlecase
+# Derived Property:   Is_Titlecase (ITC)
+#  As defined by Unicode Standard Definition D126
+#  isTitlecase(X) is true when toTitlecase(toNFD(X)) = toNFD(X)
+# Omitted code points have the value Yes
+# @missing: 0000..10FFFF; Yes
+Format: valueStyle=short skipValue=Yes
+
+Property:   Is_Casefolded
+# Derived Property:   Is_Casefolded (ICF)
+#  As defined by Unicode Standard Definition D127
+#  isCasefolded(X) is true when toCasefold(toNFD(X)) = toNFD(X)
+# Omitted code points have the value Yes
+# @missing: 0000..10FFFF; Yes
+Format: valueStyle=short skipValue=Yes
+
+Property:   Is_Cased
+# Derived Property:   Is_Cased (IC)
+#  As defined by Unicode Standard Definition D128
+#  isCased(X) when isLowercase(X) is false, or isUppercase(X) is false, or isTitlecase(X) is false
 
 Property:	ID_Start
 # Derived Property: ID_Start
@@ -251,7 +254,7 @@ Property:	Grapheme_Link
 File:	extracted/DerivedDecompositionType
 Property:	Decomposition_Type
 Format:	skipValue=None
-# Decomposition_Type (from UnicodeData.txt, field 5: see UCD.html)
+# Decomposition_Type (from UnicodeData.txt, field 5: see UAX #44: http://www.unicode.org/reports/tr44/)
 
 File:	extracted/DerivedEastAsianWidth
 Property:	East_Asian_Width
@@ -284,12 +287,11 @@ Property:	FC_NFKC_Closure
 #  Then if (c != b) add the mapping from a to c to the set of
 #  mappings that constitute the FC_NFKC_Closure list
 #  Uses the full case folding from CaseFolding.txt, without the T option.
-Format:	nameStyle=short
+Format:	nameStyle=short mergeRanges=false
 
 Property:	Full_Composition_Exclusion
 # Derived Property: Full_Composition_Exclusion
 #  Generated from: Composition Exclusions + Singletons + Non-Starter Decompositions
-
 
 Property:	NFD_QuickCheck
 # Derived Property: NFD_QuickCheck
@@ -342,10 +344,26 @@ Property:	Expands_On_NFKC
 #   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact.
 #            The length of a normalized string is not necessarily the sum of the lengths of the normalized characters!
 
+Property:   NFKC_Casefold
+# Derived Property:   NFKC_Casefold (NFKC_CF)
+#  This property removes certain variations from characters: case, compatibility, and default-ignorables
+#  It is used for loose matching and certain types of identifiers.
+#  It is constructed by applying NFKC, CaseFolding, and removal of Default_Ignorable_Code_Points.
+#  The process of applying these transformations is repeated until a stable result is produced.
+#  When this property is used to transform strings, NFC *must* be applied afterwards.
+# Omitted code points are unchanged by this mapping.
+# @missing: 0000..10FFFF; <codepoint>
+Format: nameStyle=short skipValue=<codepoint>
+
+Property:   Is_NFKC_Casefold
+# Derived Property:   Is_NFKC_Casefold (INFKC_CF)
+#  As defined by cp = NFKC_Casefold(cp)
+# Omitted code points have the value Yes
+Format: valueStyle=short skipValue=Yes
 
 File:	extracted/DerivedNumericType
 Property:	Numeric_Type
-# Numeric Type (from UnicodeData.txt, field 6/7/8 plus Unihan.txt: see UCD.html)
+# Numeric Type (from UnicodeData.txt, field 6/7/8 plus Unihan Database: see UAX #44: http://www.unicode.org/reports/tr44/)
 Format: skipValue=None
 
 File:	extracted/DerivedNumericValues
@@ -441,8 +459,8 @@ Property: SPECIAL
 File:	PropertyValueAliases
 Property: SPECIAL
 
-File:   unihan
-Property: SPECIAL
+#File:   unihan
+#Property: SPECIAL
 
 File:	Scripts
 Property:	Script
@@ -480,6 +498,18 @@ HackName:	Supplemental_Arrows-B
 HackName:	Supplementary_Private_Use_Area-A
 HackName:	Supplementary_Private_Use_Area-B
 HackName:	Canadian-Aboriginal
+HackName:   Latin Extended-C
+HackName:   Cyrillic Extended-A
+HackName:   Cyrillic Extended-B
+HackName:   Latin Extended-D
+HackName:   Phags-pa
+HackName:   Hangul Jamo Extended-A
+HackName:   Myanmar Extended-A
+HackName:   Hangul Jamo Extended-B
+HackName:   Cuneiform Numbers and Punctuation
+HackName:   
+HackName:   
+
 #HackName:	Old-Italic
 
 FinalComments

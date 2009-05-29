@@ -173,7 +173,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         return ucd.getCase(codepoint, UCD.SIMPLE, UCD.FOLD);
       }
     }.setValues("<string>").setMain("Simple_Case_Folding", "scf", UnicodeProperty.STRING, version)
-            .addName("sfc"));
+    .addName("sfc"));
 
     /*
      * cp=00FD, isc=<> != <MISSING> cp=00FD, lc=<> != <MISSING> cp=00FD, slc=<>
@@ -194,18 +194,19 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         return ucd.blockData;
       }
     }
-            .setValues(ucd.getBlockNames(null))
-            .setMain("Block", "blk", UnicodeProperty.CATALOG, version)
-            .addValueAliases(
-                    new String[][] {
-                        { "Basic_Latin", "ASCII" },
-                        { "Latin_1_Supplement", "Latin_1" },
-                        { "Unified_Canadian_Aboriginal_Syllabics", "Canadian_Syllabics" },
-                        { "Greek_And_Coptic", "Greek" },
-                        { "Private_Use_Area", "Private_Use" },
-                        { "Combining_Diacritical_Marks_For_Symbols", "Combining_Marks_For_Symbols" },
-                        { "Arabic_Presentation_Forms_A", "Arabic_Presentation_Forms-A" }, }, true)
-    // .swapFirst2ValueAliases()
+    .setValues(ucd.getBlockNames(null))
+    .setMain("Block", "blk", UnicodeProperty.CATALOG, version)
+    .addValueAliases(
+            new String[][] {
+                    { "Basic_Latin", "ASCII" },
+                    { "Latin_1_Supplement", "Latin_1" },
+                    { "Unified_Canadian_Aboriginal_Syllabics", "Canadian_Syllabics" },
+                    { "Greek_And_Coptic", "Greek" },
+                    { "Private_Use_Area", "Private_Use" },
+                    { "Combining_Diacritical_Marks_For_Symbols", "Combining_Marks_For_Symbols" },
+                    { "Arabic_Presentation_Forms_A", "Arabic_Presentation_Forms-A" },
+            }, true)
+            // .swapFirst2ValueAliases()
     );
 
     // add(new UnicodeProperty.SimpleProperty() {
@@ -317,7 +318,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }.setMain("FC_NFKC_Closure", "FC_NFKC", UnicodeProperty.STRING, version)
     // .addName("FNC")
     );
-    
+
     add(new UnicodeProperty.SimpleProperty() {
       UnicodeSet ignorable = null;
       public String _getValue(int cp) {
@@ -344,9 +345,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
       public int getMaxWidth(boolean isShort) {
         return 14;
       }
-    }.setMain("CaseCompatIgnorableFold", "CCIF", UnicodeProperty.STRING, version));
+    }.setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, version));
 
-    add(new SimpleIsProperty("CaseCompatIgnorableFolded", "isCCIF", version, getProperty("CaseCompatIgnorableFold")));
+    add(new SimpleIsProperty("Is_NFKC_Casefold", "INFKC_CF", version, getProperty("NFKC_Casefold")));
 
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
@@ -477,17 +478,17 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           unicodeMap.put(0xA, "LF");
           UnicodeProperty cat = getProperty("General_Category");
           UnicodeSet temp = cat.getSet("Line_Separator").addAll(cat.getSet("Paragraph_Separator"))
-                  .addAll(cat.getSet("Control")).addAll(cat.getSet("Format")).remove(0xD).remove(
-                          0xA).remove(0x200C).remove(0x200D);
+          .addAll(cat.getSet("Control")).addAll(cat.getSet("Format")).remove(0xD).remove(
+                  0xA).remove(0x200C).remove(0x200D);
           unicodeMap.putAll(temp, "Control");
           UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
           unicodeMap.putAll(graphemeExtend, "Extend");
           unicodeMap
-                  .putAll(new UnicodeSet("[[\u0e30-\u0e3a\u0e45\u0eb0-\u0ebb]-[:cn:]]"), "Extend");
+          .putAll(new UnicodeSet("[[\u0e30-\u0e3a\u0e45\u0eb0-\u0ebb]-[:cn:]]"), "Extend");
           UnicodeSet graphemePrepend = getProperty("Logical_Order_Exception").getSet(UCD_Names.YES);
           unicodeMap.putAll(graphemePrepend, "Prepend");
           unicodeMap.putAll(cat.getSet("Spacing_Mark").removeAll(unicodeMap.getSet("Extend")),
-                  "SpacingMark");
+          "SpacingMark");
           UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
           unicodeMap.putAll(hangul.getSet("L"), "L");
           unicodeMap.putAll(hangul.getSet("V"), "V");
@@ -497,10 +498,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           unicodeMap.setMissing("Other");
         }
       }.setMain("Grapheme_Cluster_Break", "GCB", UnicodeProperty.ENUMERATED, version)
-              .addValueAliases(
-                      new String[][] { { "Control", "CN" }, { "Extend", "EX" },
-                          { "Prepend", "PP" }, { "Other", "XX" }, { "SpacingMark", "SM" }, }, true)
-              .swapFirst2ValueAliases());
+      .addValueAliases(
+              new String[][] { { "Control", "CN" }, { "Extend", "EX" },
+                      { "Prepend", "PP" }, { "Other", "XX" }, { "SpacingMark", "SM" }, }, true)
+                      .swapFirst2ValueAliases());
 
     if (compositeVersion >= 0x040000)
       add(new UnicodeProperty.UnicodeMapProperty() {
@@ -511,19 +512,19 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
           unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
           unicodeMap.putAll(new UnicodeSet("[\\u0085\\u000B\\u000C\\u000C\\u2028\\u2029]"),
-                  "Newline");
+          "Newline");
           unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(
                   cat.getSet("Spacing_Mark")), "Extend");
           unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
           UnicodeProperty script = getProperty("Script");
           unicodeMap
-                  .putAll(
-                          script
-                                  .getSet("Katakana")
-                                  .addAll(
-                                          new UnicodeSet(
-                                                  "[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70]")),
-                          "Katakana"); // \uFF9E\uFF9F
+          .putAll(
+                  script
+                  .getSet("Katakana")
+                  .addAll(
+                          new UnicodeSet(
+                                  "[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70]")),
+          "Katakana"); // \uFF9E\uFF9F
           Object foo = unicodeMap.getSet("Katakana");
           // UnicodeSet graphemeExtend =
           // getProperty("Grapheme_Extend").getSet(UCD_Names.YES).remove(0xFF9E,0xFF9F);
@@ -536,9 +537,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                   .removeAll(lineBreak.getSet("SA")).removeAll(script.getSet("Hiragana"))
                   .removeAll(unicodeMap.getSet("Extend")), "ALetter");
           unicodeMap
-                  .putAll(new UnicodeSet(
-                          "[\\u00B7\\u05F4\\u2027\\u003A\\u0387\\u0387\\uFE13\\uFE55\\uFF1A]"),
-                          "MidLetter");
+          .putAll(new UnicodeSet(
+                  "[\\u00B7\\u05F4\\u2027\\u003A\\u0387\\u0387\\uFE13\\uFE55\\uFF1A]"),
+          "MidLetter");
           /*
            * 0387 ( · ) GREEK ANO TELEIA FE13 ( ︓ ) PRESENTATION FORM FOR
            * VERTICAL COLON FE55 ( ﹕ ) SMALL COLON FF1A ( ： ) FULLWIDTH COLON
@@ -552,11 +553,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
            * FULLWIDTH COMMA FF1B ( ； ) FULLWIDTH SEMICOLON
            */
           unicodeMap.putAll(new UnicodeSet(
-                  "[\\u0027\\u002E\\u2018\\u2019\\u2024\\uFE52\\uFF07\\uFF0E]"), "MidNumLet");
+          "[\\u0027\\u002E\\u2018\\u2019\\u2024\\uFE52\\uFF07\\uFF0E]"), "MidNumLet");
 
           unicodeMap.putAll(new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C), "Numeric"); // .remove(0x387)
           unicodeMap.putAll(cat.getSet("Connector_Punctuation").remove(0x30FB).remove(0xFF65),
-                  "ExtendNumLet");
+          "ExtendNumLet");
           // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
           // of the above touch it.
           unicodeMap.setMissing("Other");
@@ -564,9 +565,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         }
       }.setMain("Word_Break", "WB", UnicodeProperty.ENUMERATED, version).addValueAliases(
               new String[][] { { "Format", "FO" }, { "Katakana", "KA" }, { "ALetter", "LE" },
-                  { "MidLetter", "ML" }, { "MidNum", "MN" }, { "MidNumLet", "MB" },
-                  { "MidNumLet", "MB" }, { "Numeric", "NU" }, { "ExtendNumLet", "EX" },
-                  { "Other", "XX" }, { "Newline", "NL" } }, true).swapFirst2ValueAliases());
+                      { "MidLetter", "ML" }, { "MidNum", "MN" }, { "MidNumLet", "MB" },
+                      { "MidNumLet", "MB" }, { "Numeric", "NU" }, { "ExtendNumLet", "EX" },
+                      { "Other", "XX" }, { "Newline", "NL" } }, true).swapFirst2ValueAliases());
 
     if (compositeVersion >= 0x040000)
       add(new UnicodeProperty.UnicodeMapProperty() {
@@ -582,7 +583,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
           unicodeMap.putAll(getProperty("Whitespace").getSet(UCD_Names.YES).removeAll(
                   unicodeMap.getSet("Sep")).removeAll(unicodeMap.getSet("CR")).removeAll(
-                  unicodeMap.getSet("LF")), "Sp");
+                          unicodeMap.getSet("LF")), "Sp");
           UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
           unicodeMap.putAll(getProperty("Lowercase").getSet(UCD_Names.YES)
                   .removeAll(graphemeExtend), "Lower");
@@ -590,8 +591,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                   cat.getSet("Titlecase_Letter")), "Upper");
           UnicodeSet temp = getProperty("Alphabetic").getSet(UCD_Names.YES)
           // .add(0x00A0)
-                  .add(0x05F3).removeAll(unicodeMap.getSet("Lower")).removeAll(
-                          unicodeMap.getSet("Upper")).removeAll(unicodeMap.getSet("Extend"));
+          .add(0x05F3).removeAll(unicodeMap.getSet("Lower")).removeAll(
+                  unicodeMap.getSet("Upper")).removeAll(unicodeMap.getSet("Extend"));
           unicodeMap.putAll(temp, "OLetter");
           UnicodeProperty lineBreak = getProperty("Line_Break");
           unicodeMap.putAll(lineBreak.getSet("Numeric"), "Numeric");
@@ -601,27 +602,27 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           unicodeMap.putAll(cat.getSet("Open_Punctuation").addAll(cat.getSet("Close_Punctuation"))
                   .addAll(lineBreak.getSet("Quotation")).remove(0x05F3).removeAll(
                           unicodeMap.getSet("ATerm")).removeAll(unicodeMap.getSet("STerm")),
-                  "Close");
+          "Close");
           unicodeMap.putAll(new UnicodeSet("[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C"
                   + "\\uFE50\\uFF64\\uFE51\\uFE51\\u055D\\u060C\\u060D\\u07F8\\u1802\\u1808" + // new
-                                                                                               // from
-                                                                                               // L2/08-029
+                  // from
+                  // L2/08-029
                   "\\u003A\\uFE13\\uFF1A" + "\\uFE55" + // new from L2/08-029
                   // "\\u003B\\uFE14\\uFF1B" +
                   "\\u2014\\uFE31\\u002D\\uFF0D" + "\\u2013\\uFE32\\uFE58\\uFE63" + // new
-                                                                                    // from
-                                                                                    // L2/08-029
-                  "]"), "SContinue");
+                  // from
+                  // L2/08-029
+          "]"), "SContinue");
           // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
           // of the above touch it.
           unicodeMap.setMissing("Other");
         }
       }.setMain("Sentence_Break", "SB", UnicodeProperty.ENUMERATED, version).addValueAliases(
               new String[][] { { "Sep", "SE" }, { "Format", "FO" }, { "Sp", "SP" },
-                  { "Lower", "LO" }, { "Upper", "UP" }, { "OLetter", "LE" }, { "Numeric", "NU" },
-                  { "ATerm", "AT" }, { "STerm", "ST" }, { "Extend", "EX" }, { "SContinue", "SC" },
-                  { "Close", "CL" }, { "Other", "XX" }, }, false).swapFirst2ValueAliases());
- 
+                      { "Lower", "LO" }, { "Upper", "UP" }, { "OLetter", "LE" }, { "Numeric", "NU" },
+                      { "ATerm", "AT" }, { "STerm", "ST" }, { "Extend", "EX" }, { "SContinue", "SC" },
+                      { "Close", "CL" }, { "Other", "XX" }, }, false).swapFirst2ValueAliases());
+
     // ========================
 
     /*
@@ -630,8 +631,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
      */
     add(new SimpleBinaryProperty("Cased", "Cased", version, new UnicodeSet().addAll(
             getProperty("Lowercase").getSet(UCD_Names.YES)).addAll(
-            getProperty("Uppercase").getSet(UCD_Names.YES)).addAll(
-            getProperty("GeneralCategory").getSet("Lt"))));
+                    getProperty("Uppercase").getSet(UCD_Names.YES)).addAll(
+                            getProperty("GeneralCategory").getSet("Lt"))));
 
     /*
      * # As defined by Unicode Standard Definition
@@ -640,7 +641,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
      * is one of # Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf),
      * Modifier_Letter (Lm), or Modifier_Symbol (Sk).
      */
-    add(new SimpleBinaryProperty("Case_Ignoreable", "Case_Ignoreable", version, new UnicodeSet()
+    add(new SimpleBinaryProperty("Case_Ignorable", "CI", version, new UnicodeSet()
     .addAll(getProperty("WordBreak").getSet("MidNumLet"))
     .addAll(getProperty("WordBreak").getSet("MidLetter"))
     .addAll(getProperty("GeneralCategory").getSet("Mn"))
@@ -650,18 +651,17 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     .addAll(getProperty("GeneralCategory").getSet("Sk"))));
 
     /*
-     * Property: Operationally_Lowercased # As defined by Unicode Standard
+     * Property: Is_Lowercased # As defined by Unicode Standard
      * Definition D124
      */
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
-        return equals(codepoint, ucd.getCase(codepoint, UCD_Types.FULL, UCD_Types.LOWER)) ? UCD_Names.YES
-                : UCD_Names.NO;
+        return isCaseEqual(codepoint, UCD_Types.LOWER);
       }
-    }.setMain("Operationally_Lowercased", "OLC", UnicodeProperty.BINARY, version));
+    }.setMain("Is_Lowercase", "ILC", UnicodeProperty.BINARY, version));
 
 
-     /* Property: Operationally_Uppercased # As defined by Unicode Standard
+    /* Property: Is_Uppercased # As defined by Unicode Standard
      * Definition D125
      */
     add(new UnicodeProperty.SimpleProperty() {
@@ -669,10 +669,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         return equals(codepoint, ucd.getCase(codepoint, UCD_Types.FULL, UCD_Types.UPPER)) ? UCD_Names.YES
                 : UCD_Names.NO;
       }
-    }.setMain("Operationally_Uppercased", "OUC", UnicodeProperty.BINARY, version));
+    }.setMain("Is_Uppercase", "IUC", UnicodeProperty.BINARY, version));
 
 
-     /* Property: Operationally_Titlecased # As defined by Unicode Standard
+    /* Property: Is_Titlecased # As defined by Unicode Standard
      * Definition D126
      */
     add(new UnicodeProperty.SimpleProperty() {
@@ -680,10 +680,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         return equals(codepoint, ucd.getCase(codepoint, UCD_Types.FULL, UCD_Types.TITLE)) ? UCD_Names.YES
                 : UCD_Names.NO;
       }
-    }.setMain("Operationally_Titlecased", "OTC", UnicodeProperty.BINARY, version));
+    }.setMain("Is_Titlecase", "ITC", UnicodeProperty.BINARY, version));
 
 
-     /* Property: Operationally_Casefolded # As defined by Unicode Standard
+    /* Property: Is_Casefolded # As defined by Unicode Standard
      * Definition D127
      */
     add(new UnicodeProperty.SimpleProperty() {
@@ -691,21 +691,21 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         return equals(codepoint, ucd.getCase(codepoint, UCD_Types.FULL, UCD_Types.FOLD)) ? UCD_Names.YES
                 : UCD_Names.NO;
       }
-    }.setMain("Operationally_Casefolded", "OCF", UnicodeProperty.BINARY, version));
+    }.setMain("Is_Casefolded", "ICF", UnicodeProperty.BINARY, version));
 
 
-     /* Property: Operationally_Cased # As defined by Unicode Standard Definition
+    /* Property: Is_Cased # As defined by Unicode Standard Definition
      * D128
      * isCased(X) when isLowercase(X) is false, or isUppercase(X) is false, or
 isTitlecase(X) is false. 
      */
-    add(new SimpleBinaryProperty("Operationally_Cased", "OC", version, new UnicodeSet()
-    .addAll(getProperty("Operationally_Lowercased").getSet(UCD_Names.NO))
-    .addAll(getProperty("Operationally_Uppercased").getSet(UCD_Names.NO))
-    .addAll(getProperty("Operationally_Titlecased").getSet(UCD_Names.NO))));
+    add(new SimpleBinaryProperty("Is_Cased", "IC", version, new UnicodeSet()
+    .addAll(getProperty("Is_Lowercase").getSet(UCD_Names.NO))
+    .addAll(getProperty("Is_Uppercase").getSet(UCD_Names.NO))
+    .addAll(getProperty("Is_Titlecase").getSet(UCD_Names.NO))));
 
     // ========================
-  
+
   }
 
   static String[] YES_NO_MAYBE      = { "N", "M", "Y" };
@@ -813,9 +813,9 @@ isTitlecase(X) is false.
   }
 
   static final int ODD_BALLS = (1 << UCD_Types.Cn) | (1 << UCD_Types.Cs) | (1 << UCD_Types.Co); // |
-                                                                                                // (1
-                                                                                                // <<
-                                                                                                // UCD.Cc)
+  // (1
+  // <<
+  // UCD.Cc)
 
   /*
    * (non-Javadoc)
@@ -857,72 +857,72 @@ isTitlecase(X) is false.
       } else if (type == ENUMERATED || type == CATALOG) {
         byte style = UCD_Types.LONG;
         int prop = propMask >> 8;
-        String temp = null;
-        boolean titlecase = false;
-        for (int i = 0; i < 256; ++i) {
-          boolean check = false;
-          try {
-            switch (prop) {
-              case UCD_Types.CATEGORY >> 8:
-                temp = (ucd.getCategoryID_fromIndex((byte) i, style));
-                break;
-              case UCD_Types.COMBINING_CLASS >> 8:
-                temp = (ucd.getCombiningClassID_fromIndex((short) i, style));
-                break;
-              case UCD_Types.BIDI_CLASS >> 8:
-                temp = (ucd.getBidiClassID_fromIndex((byte) i, style));
-                break;
-              case UCD_Types.DECOMPOSITION_TYPE >> 8:
-                temp = (ucd.getDecompositionTypeID_fromIndex((byte) i, style));
-                // check = temp != null;
-                break;
-              case UCD_Types.NUMERIC_TYPE >> 8:
-                temp = (ucd.getNumericTypeID_fromIndex((byte) i, style));
-                titlecase = true;
-                break;
-              case UCD_Types.EAST_ASIAN_WIDTH >> 8:
-                temp = (ucd.getEastAsianWidthID_fromIndex((byte) i, style));
-                break;
-              case UCD_Types.LINE_BREAK >> 8:
-                temp = (ucd.getLineBreakID_fromIndex((byte) i, style));
-                break;
-              case UCD_Types.JOINING_TYPE >> 8:
-                temp = (ucd.getJoiningTypeID_fromIndex((byte) i, style));
-                break;
-              case UCD_Types.JOINING_GROUP >> 8:
-                temp = (ucd.getJoiningGroupID_fromIndex((byte) i, style));
-                break;
-              case UCD_Types.SCRIPT >> 8:
-                temp = (ucd.getScriptID_fromIndex((byte) i, style));
-                titlecase = true;
-                if (UnicodeProperty.UNUSED.equals(temp))
-                  continue;
-                if (temp != null)
-                  temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
-                break;
-              case UCD_Types.AGE >> 8:
-                temp = (ucd.getAgeID_fromIndex((byte) i, style));
-                break;
-              case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
-                temp = (ucd.getHangulSyllableTypeID_fromIndex((byte) i, style));
-                break;
-              default:
-                throw new IllegalArgumentException("Internal Error: " + prop);
-            }
-          } catch (ArrayIndexOutOfBoundsException e) {
-            continue;
-          }
-          if (check)
-            System.out.println("Value: " + temp);
-          if (temp != null && temp.length() != 0 && !temp.equals(UNUSED)) {
-            result.add(Utility.getUnskeleton(temp, titlecase));
-          }
-          if (check)
-            System.out.println("Value2: " + temp);
-        }
-        // if (prop == (UCD_Types.DECOMPOSITION_TYPE>>8)) result.add("none");
-        // if (prop == (UCD_Types.JOINING_TYPE>>8)) result.add("Non_Joining");
-        // if (prop == (UCD_Types.NUMERIC_TYPE>>8)) result.add("None");
+  String temp = null;
+  boolean titlecase = false;
+  for (int i = 0; i < 256; ++i) {
+    boolean check = false;
+    try {
+      switch (prop) {
+        case UCD_Types.CATEGORY >> 8:
+          temp = (ucd.getCategoryID_fromIndex((byte) i, style));
+  break;
+  case UCD_Types.COMBINING_CLASS >> 8:
+    temp = (ucd.getCombiningClassID_fromIndex((short) i, style));
+  break;
+  case UCD_Types.BIDI_CLASS >> 8:
+    temp = (ucd.getBidiClassID_fromIndex((byte) i, style));
+  break;
+  case UCD_Types.DECOMPOSITION_TYPE >> 8:
+    temp = (ucd.getDecompositionTypeID_fromIndex((byte) i, style));
+  // check = temp != null;
+  break;
+  case UCD_Types.NUMERIC_TYPE >> 8:
+    temp = (ucd.getNumericTypeID_fromIndex((byte) i, style));
+  titlecase = true;
+  break;
+  case UCD_Types.EAST_ASIAN_WIDTH >> 8:
+    temp = (ucd.getEastAsianWidthID_fromIndex((byte) i, style));
+  break;
+  case UCD_Types.LINE_BREAK >> 8:
+    temp = (ucd.getLineBreakID_fromIndex((byte) i, style));
+  break;
+  case UCD_Types.JOINING_TYPE >> 8:
+    temp = (ucd.getJoiningTypeID_fromIndex((byte) i, style));
+  break;
+  case UCD_Types.JOINING_GROUP >> 8:
+    temp = (ucd.getJoiningGroupID_fromIndex((byte) i, style));
+  break;
+  case UCD_Types.SCRIPT >> 8:
+    temp = (ucd.getScriptID_fromIndex((byte) i, style));
+  titlecase = true;
+  if (UnicodeProperty.UNUSED.equals(temp))
+    continue;
+  if (temp != null)
+    temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
+  break;
+  case UCD_Types.AGE >> 8:
+    temp = (ucd.getAgeID_fromIndex((byte) i, style));
+  break;
+  case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
+    temp = (ucd.getHangulSyllableTypeID_fromIndex((byte) i, style));
+  break;
+  default:
+    throw new IllegalArgumentException("Internal Error: " + prop);
+      }
+    } catch (ArrayIndexOutOfBoundsException e) {
+      continue;
+    }
+    if (check)
+      System.out.println("Value: " + temp);
+    if (temp != null && temp.length() != 0 && !temp.equals(UNUSED)) {
+      result.add(Utility.getUnskeleton(temp, titlecase));
+    }
+    if (check)
+      System.out.println("Value2: " + temp);
+  }
+  // if (prop == (UCD_Types.DECOMPOSITION_TYPE>>8)) result.add("none");
+  // if (prop == (UCD_Types.JOINING_TYPE>>8)) result.add("Non_Joining");
+  // if (prop == (UCD_Types.NUMERIC_TYPE>>8)) result.add("None");
       }
       return result;
     }
@@ -959,46 +959,46 @@ isTitlecase(X) is false.
               case UCD_Types.CATEGORY >> 8:
                 return lookup(valueAlias, UCD_Names.LONG_GENERAL_CATEGORY,
                         UCD_Names.GENERAL_CATEGORY, UCD_Names.EXTRA_GENERAL_CATEGORY, result);
-              case UCD_Types.COMBINING_CLASS >> 8:
-                addUnique(String.valueOf(0xFF & Utility.lookup(valueAlias,
-                        UCD_Names.LONG_COMBINING_CLASS, true)), result);
-                return lookup(valueAlias, UCD_Names.LONG_COMBINING_CLASS,
-                        UCD_Names.COMBINING_CLASS, null, result);
-              case UCD_Types.BIDI_CLASS >> 8:
-                return lookup(valueAlias, UCD_Names.LONG_BIDI_CLASS, UCD_Names.BIDI_CLASS, null,
-                        result);
-              case UCD_Types.DECOMPOSITION_TYPE >> 8:
-                lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE, FIXED_DECOMPOSITION_TYPE,
-                        null, result);
-                return lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE,
-                        UCD_Names.DECOMPOSITION_TYPE, null, result);
-              case UCD_Types.NUMERIC_TYPE >> 8:
-                return lookup(valueAlias, UCD_Names.LONG_NUMERIC_TYPE, UCD_Names.NUMERIC_TYPE,
-                        null, result);
-              case UCD_Types.EAST_ASIAN_WIDTH >> 8:
-                return lookup(valueAlias, UCD_Names.LONG_EAST_ASIAN_WIDTH,
-                        UCD_Names.EAST_ASIAN_WIDTH, null, result);
-              case UCD_Types.LINE_BREAK >> 8:
-                lookup(valueAlias, UCD_Names.LONG_LINE_BREAK, UCD_Names.LINE_BREAK, null, result);
-                if (valueAlias.equals("Inseparable"))
-                  addUnique("Inseperable", result);
-                // Inseparable; Inseperable
-                return result;
-              case UCD_Types.JOINING_TYPE >> 8:
-                return lookup(valueAlias, UCD_Names.LONG_JOINING_TYPE, UCD_Names.JOINING_TYPE,
-                        null, result);
-              case UCD_Types.JOINING_GROUP >> 8:
-                return lookup(valueAlias, UCD_Names.JOINING_GROUP, null, null, result);
-              case UCD_Types.SCRIPT >> 8:
-                return lookup(valueAlias, UCD_Names.LONG_SCRIPT, UCD_Names.SCRIPT,
-                        UCD_Names.EXTRA_SCRIPT, result);
-              case UCD_Types.AGE >> 8:
-                return lookup(valueAlias, UCD_Names.AGE, null, null, result);
-              case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
-                return lookup(valueAlias, UCD_Names.LONG_HANGUL_SYLLABLE_TYPE,
-                        UCD_Names.HANGUL_SYLLABLE_TYPE, null, result);
-              default:
-                throw new IllegalArgumentException("Internal Error: " + prop);
+        case UCD_Types.COMBINING_CLASS >> 8:
+          addUnique(String.valueOf(0xFF & Utility.lookup(valueAlias,
+                  UCD_Names.LONG_COMBINING_CLASS, true)), result);
+        return lookup(valueAlias, UCD_Names.LONG_COMBINING_CLASS,
+                UCD_Names.COMBINING_CLASS, null, result);
+        case UCD_Types.BIDI_CLASS >> 8:
+          return lookup(valueAlias, UCD_Names.LONG_BIDI_CLASS, UCD_Names.BIDI_CLASS, null,
+                  result);
+        case UCD_Types.DECOMPOSITION_TYPE >> 8:
+          lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE, FIXED_DECOMPOSITION_TYPE,
+                  null, result);
+        return lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE,
+                UCD_Names.DECOMPOSITION_TYPE, null, result);
+        case UCD_Types.NUMERIC_TYPE >> 8:
+          return lookup(valueAlias, UCD_Names.LONG_NUMERIC_TYPE, UCD_Names.NUMERIC_TYPE,
+                  null, result);
+        case UCD_Types.EAST_ASIAN_WIDTH >> 8:
+          return lookup(valueAlias, UCD_Names.LONG_EAST_ASIAN_WIDTH,
+                  UCD_Names.EAST_ASIAN_WIDTH, null, result);
+        case UCD_Types.LINE_BREAK >> 8:
+          lookup(valueAlias, UCD_Names.LONG_LINE_BREAK, UCD_Names.LINE_BREAK, null, result);
+        if (valueAlias.equals("Inseparable"))
+          addUnique("Inseperable", result);
+        // Inseparable; Inseperable
+        return result;
+        case UCD_Types.JOINING_TYPE >> 8:
+          return lookup(valueAlias, UCD_Names.LONG_JOINING_TYPE, UCD_Names.JOINING_TYPE,
+                  null, result);
+        case UCD_Types.JOINING_GROUP >> 8:
+          return lookup(valueAlias, UCD_Names.JOINING_GROUP, null, null, result);
+        case UCD_Types.SCRIPT >> 8:
+          return lookup(valueAlias, UCD_Names.LONG_SCRIPT, UCD_Names.SCRIPT,
+                  UCD_Names.EXTRA_SCRIPT, result);
+        case UCD_Types.AGE >> 8:
+          return lookup(valueAlias, UCD_Names.AGE, null, null, result);
+        case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
+          return lookup(valueAlias, UCD_Names.LONG_HANGUL_SYLLABLE_TYPE,
+                  UCD_Names.HANGUL_SYLLABLE_TYPE, null, result);
+        default:
+          throw new IllegalArgumentException("Internal Error: " + prop);
             }
           } catch (ArrayIndexOutOfBoundsException e) {
             continue;
@@ -1015,52 +1015,52 @@ isTitlecase(X) is false.
       switch (propMask >> 8) {
         case UCD_Types.CATEGORY >> 8:
           temp = (ucd.getCategoryID_fromIndex(ucd.getCategory(codepoint), style));
-          break;
+        break;
         case UCD_Types.COMBINING_CLASS >> 8:
           temp = (ucd.getCombiningClassID_fromIndex(ucd.getCombiningClass(codepoint), style));
-          // if (temp.startsWith("Fixed_")) temp = temp.substring(6);
-          break;
+        // if (temp.startsWith("Fixed_")) temp = temp.substring(6);
+        break;
         case UCD_Types.BIDI_CLASS >> 8:
           temp = (ucd.getBidiClassID_fromIndex(ucd.getBidiClass(codepoint), style));
-          break;
+        break;
         case UCD_Types.DECOMPOSITION_TYPE >> 8:
           temp = (ucd.getDecompositionTypeID_fromIndex(ucd.getDecompositionType(codepoint), style));
-          if (temp == null || temp.length() == 0)
-            temp = "none";
-          break;
+        if (temp == null || temp.length() == 0)
+          temp = "none";
+        break;
         case UCD_Types.NUMERIC_TYPE >> 8:
           temp = (ucd.getNumericTypeID_fromIndex(ucd.getNumericType(codepoint), style));
-          titlecase = true;
-          if (temp == null || temp.length() == 0)
-            temp = "None";
-          break;
+        titlecase = true;
+        if (temp == null || temp.length() == 0)
+          temp = "None";
+        break;
         case UCD_Types.EAST_ASIAN_WIDTH >> 8:
           temp = (ucd.getEastAsianWidthID_fromIndex(ucd.getEastAsianWidth(codepoint), style));
-          break;
+        break;
         case UCD_Types.LINE_BREAK >> 8:
           temp = (ucd.getLineBreakID_fromIndex(ucd.getLineBreak(codepoint), style));
-          break;
+        break;
         case UCD_Types.JOINING_TYPE >> 8:
           temp = (ucd.getJoiningTypeID_fromIndex(ucd.getJoiningType(codepoint), style));
-          if (temp == null || temp.length() == 0)
-            temp = "Non_Joining";
-          break;
+        if (temp == null || temp.length() == 0)
+          temp = "Non_Joining";
+        break;
         case UCD_Types.JOINING_GROUP >> 8:
           temp = (ucd.getJoiningGroupID_fromIndex(ucd.getJoiningGroup(codepoint), style));
-          break;
+        break;
         case UCD_Types.SCRIPT >> 8:
           temp = (ucd.getScriptID_fromIndex(ucd.getScript(codepoint), style));
-          if (temp != null)
-            temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
-          titlecase = true;
-          break;
+        if (temp != null)
+          temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
+        titlecase = true;
+        break;
         case UCD_Types.AGE >> 8:
           temp = getAge(codepoint);
-          break;
+        break;
         case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
           temp = (ucd
                   .getHangulSyllableTypeID_fromIndex(ucd.getHangulSyllableType(codepoint), style));
-          break;
+        break;
       }
       if (temp != null)
         return Utility.getUnskeleton(temp, titlecase);
@@ -1141,7 +1141,7 @@ isTitlecase(X) is false.
       case UCD_Types.UNKNOWN_PROP:
       default:
         result = UnicodeProperty.STRING;
-        // throw new IllegalArgumentException("Type: UNKNOWN_PROP");
+      // throw new IllegalArgumentException("Type: UNKNOWN_PROP");
     }
     return result;
   }
@@ -1234,20 +1234,20 @@ isTitlecase(X) is false.
   }
 
   static final Pattern WELL_FORMED_LANGUAGE_TAG = Pattern.compile("..."); // ...
-                                                                          // is
-                                                                          // ugly
-                                                                          // mess
-                                                                          // that
-                                                                          // someone
-                                                                          // supplies
+  // is
+  // ugly
+  // mess
+  // that
+  // someone
+  // supplies
 
   static boolean isWellFormedLanguageTag(String tag) {
     return WELL_FORMED_LANGUAGE_TAG.matcher(tag).matches();
   }
 
   public static final Relation<String, String> YNTF                     = new Relation(
-                                                                                new TreeMap(),
-                                                                                LinkedHashSet.class);
+          new TreeMap(),
+          LinkedHashSet.class);
   static {
     YNTF.putAll("Yes", Arrays.asList("Y", "Yes", "T", "True"));
     YNTF.putAll("No", Arrays.asList("N", "No", "F", "False"));
@@ -1273,7 +1273,7 @@ isTitlecase(X) is false.
       return items.contains(codepoint) ? UCD_Names.YES : UCD_Names.NO;
     }
   }
-  
+
   static class SimpleIsProperty extends UnicodeProperty.SimpleProperty {
     private UnicodeProperty property;
 
@@ -1284,7 +1284,7 @@ isTitlecase(X) is false.
 
     protected String _getValue(int codepoint) {
       final String value = property.getValue(codepoint);
-      return value == null ? UCD_Names.NO 
+      return value == null ? UCD_Names.YES // null means same value, by convention
               : equals(codepoint, value) ? UCD_Names.YES : UCD_Names.NO;
     }
   }
@@ -1301,5 +1301,12 @@ isTitlecase(X) is false.
       }
     }
     return result.toString();
+  }
+
+  private String isCaseEqual(int codepoint, byte caseType) {
+    String nfdCodepoint = nfd.normalize(codepoint);
+    return nfdCodepoint.equals(ucd.getCase(nfdCodepoint, UCD_Types.FULL, caseType)) 
+    ? UCD_Names.YES
+            : UCD_Names.NO;
   }
 }
