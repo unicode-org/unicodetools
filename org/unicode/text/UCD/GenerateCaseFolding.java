@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateCaseFolding.java,v $
-* $Date: 2008-03-05 18:25:43 $
-* $Revision: 1.22 $
+* $Date: 2009-05-29 04:48:49 $
+* $Revision: 1.23 $
 *
 *******************************************************************************
 */
@@ -316,6 +316,9 @@ public class GenerateCaseFolding implements UCD_Types {
             */
 
     static void getClosure(int ch, Map data, boolean full, boolean nfClose, String condition) {
+      if (ch == '\u023F') {
+        System.out.println("???");
+      }
         String charStr = UTF32.valueOf32(ch);
         String lowerStr = lower(charStr, full, condition);
         String titleStr = title(charStr, full, condition);
@@ -326,7 +329,6 @@ public class GenerateCaseFolding implements UCD_Types {
         // make new set
         Set set = new TreeSet();
         set.add(charStr);
-        data.put(charStr, set);
 
         // add cases to get started
         add(set, lowerStr, data);
@@ -352,6 +354,9 @@ public class GenerateCaseFolding implements UCD_Types {
                 if (add(set, upper(s, full, condition), data)) continue main;
             }
             break;
+        }
+        if (set.size() > 1) {
+          data.put(charStr, set);
         }
     }
 
@@ -470,6 +475,7 @@ public class GenerateCaseFolding implements UCD_Types {
             Utility.dot(ch);
             if (!Default.ucd().isRepresented(ch)) continue;
             if (!specialNormalizationDiffers(ch)) continue;
+            if (0x1F110 <= ch && ch <= 0x1F12A || ch == 0x1F12D || ch == 0x1F12E) continue;
 
             String lower = Default.nfc().normalize(Default.ucd().getCase(ch, SIMPLE, LOWER));
             String upper = Default.nfc().normalize(Default.ucd().getCase(ch, SIMPLE, UPPER));

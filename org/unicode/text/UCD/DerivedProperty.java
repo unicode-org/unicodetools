@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedProperty.java,v $
-* $Date: 2008-03-05 18:25:43 $
-* $Revision: 1.31 $
+* $Date: 2009-05-29 04:48:49 $
+* $Revision: 1.32 $
 *
 *******************************************************************************
 */
@@ -671,7 +671,7 @@ of characters, the first of which has a non-zero combining class.
                 + "\r\n#  Generated from (Other_Default_Ignorable_Code_Point + Cf + Cc + Cs) - White_Space";
             }
 
-            UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0603 \\u06DD \\u070F]");
+            UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0603 \\u06DD \\u070F\\U000110BD]");
             
             public boolean hasValue(int cp) {
               if (removals.contains(cp)) return false;

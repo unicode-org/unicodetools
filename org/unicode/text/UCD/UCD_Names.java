@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
-* $Date: 2009-05-11 22:36:01 $
-* $Revision: 1.39 $
+* $Date: 2009-05-29 04:48:49 $
+* $Revision: 1.40 $
 *
 *******************************************************************************
 */
@@ -420,7 +420,7 @@ public final class UCD_Names implements UCD_Types {
     "Ital",
     "Goth",
     "Dsrt",
-    "Qaai",
+    "Zinh", // "Qaai",
     "Tglg",
     "Hano",
     "Buhd",
@@ -883,6 +883,8 @@ public final class UCD_Names implements UCD_Types {
         "KHAPH",
         "FE",
         "BURUSHASKI_YEH_BARREE",
+        "FARSI YEH",
+        "NYA",
       // BURUSHASHKI YEH BARREE
     };
     static {

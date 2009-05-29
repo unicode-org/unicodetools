@@ -10,23 +10,58 @@ import java.util.regex.Pattern;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.util.BNF;
 import com.ibm.icu.dev.test.util.Quoter;
+import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestJsp  extends TestFmwk {
+
+  private static final String enSample = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z";
 
   public static void main(String[] args) throws Exception {
     new TestJsp().run(args);
   }
   
+  static UnicodeSet IPA = (UnicodeSet) new UnicodeSet("[a-zæçðøħŋœǀ-ǃɐ-ɨɪ-ɶ ɸ-ɻɽɾʀ-ʄʈ-ʒʔʕʘʙʛ-ʝʟʡʢ ʤʧʰ-ʲʴʷʼˈˌːˑ˞ˠˤ̀́̃̄̆̈ ̘̊̋̏-̜̚-̴̠̤̥̩̪̬̯̰̹-̽͜ ͡βθχ↑-↓↗↘]").freeze();
+  static String IPA_SAMPLE = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, æ, ç, ð, ø, ħ, ŋ, œ, ǀ, ǁ, ǂ, ǃ, ɐ, ɑ, ɒ, ɓ, ɔ, ɕ, ɖ, ɗ, ɘ, ə, ɚ, ɛ, ɜ, ɝ, ɞ, ɟ, ɠ, ɡ, ɢ, ɣ, ɤ, ɥ, ɦ, ɧ, ɨ, ɪ, ɫ, ɬ, ɭ, ɮ, ɯ, ɰ, ɱ, ɲ, ɳ, ɴ, ɵ, ɶ, ɸ, ɹ, ɺ, ɻ, ɽ, ɾ, ʀ, ʁ, ʂ, ʃ, ʄ, ʈ, ʉ, ʊ, ʋ, ʌ, ʍ, ʎ, ʏ, ʐ, ʑ, ʒ, ʔ, ʕ, ʘ, ʙ, ʛ, ʜ, ʝ, ʟ, ʡ, ʢ, ʤ, ʧ, ʰ, ʱ, ʲ, ʴ, ʷ, ʼ, ˈ, ˌ, ː, ˑ, ˞, ˠ, ˤ, ̀, ́, ̃, ̄, ̆, ̈, ̊, ̋, ̏, ̐, ̑, ̒, ̓, ̔, ̕, ̖, ̗, ̘, ̙, ̚, ̛, ̜, ̝, ̞, ̟, ̠, ̡, ̢, ̣, ̤, ̥, ̦, ̧, ̨, ̩, ̪, ̫, ̬, ̭, ̮, ̯, ̰, ̱, ̲, ̳, ̴, ̹, ̺, ̻, ̼, ̽, ͜, ͡, β, θ, χ, ↑, →, ↓, ↗, ↘";
+
   public void TestATransform() {
+    checkCompleteness(enSample, "en-ipa", new UnicodeSet("[a-z]"));
+    checkCompleteness(IPA_SAMPLE, "ipa-en", new UnicodeSet("[a-z]"));
     String sample;
-    sample = UnicodeUtilities.showTransform("en-IPA; IPA-en", "The quick brown fox.");
+    sample = UnicodeUtilities.showTransform("en-IPA; IPA-en", enSample);
     logln(sample);
     sample = UnicodeUtilities.showTransform("en-IPA; IPA-deva", "The quick brown fox.");
     logln(sample);
+    String deva = "कँ, कं, कः, ऄ, अ, आ, इ, ई, उ, ऊ, ऋ, ऌ, ऍ, ऎ, ए, ऐ, ऑ, ऒ, ओ, औ, क, ख, ग, घ, ङ, च, छ, ज, झ, ञ, ट, ठ, ड, ढ, ण, त, थ, द, ध, न, ऩ, प, फ, ब, भ, म, य, र, ऱ, ल, ळ, ऴ, व, श, ष, स, ह, ़, ऽ, क्, का, कि, की, कु, कू, कृ, कॄ, कॅ, कॆ, के, कै, कॉ, कॊ, को, कौ, क्, क़, ख़, ग़, ज़, ड़, ढ़, फ़, य़, ॠ, ॡ, कॢ, कॣ, ०, १, २, ३, ४, ५, ६, ७, ८, ९, ।";
+    checkCompleteness(IPA_SAMPLE, "ipa-deva", null);
+    checkCompleteness(deva, "deva-ipa", null);
   }
 
-  
+  private void checkCompleteness(String testString, String transId, UnicodeSet exceptionsAllowed) {
+    String pieces[] = testString.split(",\\s*");
+    UnicodeSet shouldNotBeLeftOver = new UnicodeSet().addAll(testString).remove(' ').remove(',');
+    if (exceptionsAllowed != null) {
+      shouldNotBeLeftOver.removeAll(exceptionsAllowed);
+    }
+    UnicodeSet allProblems = new UnicodeSet();
+    for (String piece : pieces) {
+      String sample = UnicodeUtilities.showTransform(transId, piece);
+      logln(piece + " => " + sample);
+      if (shouldNotBeLeftOver.containsSome(sample)) {
+        final UnicodeSet missing = new UnicodeSet().addAll(sample).retainAll(shouldNotBeLeftOver);
+        allProblems.addAll(missing);
+        errln("Leftover from " + transId + ": " + missing.toPattern(false));
+        Transliterator foo = Transliterator.getInstance(transId, Transliterator.FORWARD);
+        Transliterator.DEBUG = true;
+        sample = UnicodeUtilities.showTransform(transId, piece);
+        Transliterator.DEBUG = false;
+      }
+    }
+    if (allProblems.size() != 0) {
+      errln("ALL Leftover from " + transId + ": " + allProblems.toPattern(false));
+    }
+  }
+
   public void TestBidi() {
     String sample;
     sample = UnicodeUtilities.showBidi("mark \u05DE\u05B7\u05E8\u05DA\nHelp", 0, true);

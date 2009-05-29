@@ -1,5 +1,5 @@
 # Author: M Davis
-# Email: mark.davis@icu-project.org
+# Email: mark.davis@macchiato.com.org
 # Description: English to IPA
 :: lower(); 
 $x = [:^letter:] ;
@@ -25863,6 +25863,8 @@ $x{w}$x → dəbəlju ; # w
 $x{u}$x → u ; # ju
 $x{q}$x → kju ; # k
 $x{a}$x → e ; # ɑ
+$x{i}$x → ɑɪ ; # ɑ
+
 $letter = [:letter:] ;
 $nletter = [:^letter:] ;
 
@@ -26276,12 +26278,12 @@ $short_o = o; #ŏ
 $short_oo = oo; #ŏ
 $short_u = u; #ŭ
 
-$long_a = ae; #ā
-$long_e = ee; #ē
-$long_i = ie; #ī
-$long_o = oe; #ō
-$long_oo = ooe; #ōō
-$long_u = ue; #ū
+$long_a = ā; # ae; #
+$long_e = ē; # ee; #
+$long_i = ī; # ie; 
+$long_o = ō; # oe; 
+$long_oo = ōō; # ooe; #
+$long_u = ū; # ue; #
 
 ou ←	[aæɑ][ʊu];
 oi	←	o[iɪj] ;
@@ -26294,6 +26296,8 @@ $long_o	←	o;
 $long_u	←	ju ;
 j ← dʒ;
 
+$soft_th = tħ; # ð
+$soft_sh = ĵ; # ʒ
 
 $short_a	←	a 	;
 $short_a	←	æ 	 ; # 00E6 raised open front unrounded
@@ -26308,7 +26312,7 @@ ch	←	ɕ 	 ; # 0255 vl alveolopalatal fricative
 ch	←	c 	;
 
 # d	←	d 	;
-dh	←	ð 	 ; # ţ 00F0 vd dental fricative
+$soft_th	←	ð 	 ; # ţ 00F0 vd dental fricative
 j	←	ʤ 	 ; # 02A4 vd postalveolar affricate
 d	←	ɖ 	 ; # 0256 vd retroflex plosive
 d	←	ɗ 	 ; # 0257 vd alveolar implosive
@@ -26387,6 +26391,8 @@ sh	←	ʃ 	 ; # 0283 vl postalveolar fricative
 ch ←	tʃ ;
 # t	←	t 	
 ch	←	ʧ 	 ; # 02A7 vl postalveolar affricate
+ch  ←   ç;
+#h  ←    ħ;
 t	←	ʈ 	 ; # 0288 vl retroflex plosive
 $long_oo	←	u 	;
 $long_oo	←	ʉ 	 ; # 0289 close central rounded
@@ -26404,9 +26410,9 @@ kh	←	x 	;
 $short_oo	←	y 	;
 $short_oo	←	ʏ 	 ; # 028F lax close front rounded
 # z	←	z 	;
-z	←	ʐ 	 ; # 0290 vd retroflex fricative
-z	←	ʑ 	 ; # 0291 vd alveolopalatal fricative
-ž	←	ʒ 	 ; # 0292 vd postalveolar fricative
+$soft_sh	←	ʐ 	 ; # 0290 vd retroflex fricative
+$soft_sh	←	ʑ 	 ; # 0291 vd alveolopalatal fricative
+$soft_sh	←	ʒ 	 ; # 0292 vd postalveolar fricative
 ''	←	ʔ 	 ; # 0294 glottal plosive
 ''	←	ʼ 	 ; # 02BC ejective
 ''	←	ʕ 	 ; # 0295 vd pharyngeal fricative
@@ -26421,3 +26427,5 @@ z	←	ʑ 	 ; # 0291 vd alveolopalatal fricative
 v	←	β 	 ; # 03B2 vd bilabial fricative
 th	←	θ 	 ; # 03B8 vl dental fricative
 kh	←	χ 	 ; # 03C7 vl uvular fricative 
+← [̲ ̓ ̔ ̧ ̨ ̐-̒ ̕-̣ ̦ ̫ ̭ ̮ ̱ ̳ ͜ ͡ ];
+← '→' ;
