@@ -20,6 +20,7 @@ import com.ibm.icu.text.UnicodeSet;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -190,7 +191,7 @@ public class MakeUnicodeFiles {
         }
         return pieces[0];
       }
-      
+
       private boolean afterEqualsBoolean(String piece) {
         final String value = afterEquals(piece);
         if (value.equalsIgnoreCase("true")) {
@@ -200,7 +201,7 @@ public class MakeUnicodeFiles {
         }
         throw new IllegalArgumentException("Value in <" + piece + "> must be 'true' or 'false'");
       }
-      
+
       public String toString() {
         Class myClass = getClass();
         String result = myClass.getName() + "\n";
@@ -326,9 +327,14 @@ public class MakeUnicodeFiles {
             comments += line;
           } else {
             // end of comments, roll up
-            if (property != null)
-              addValueComments(property, value, comments);
-            comments = "";
+            if (comments.length() != 0) {
+              if (property != null) {
+                addValueComments(property, value, comments);
+              } else {
+                addFileComments(file, comments);
+              }
+              comments = "";
+            }
             if (line.startsWith("Generate:")) {
               filesToDo = Utility.split(lineValue.trim(), ' ');
               if (filesToDo.length == 0
@@ -474,7 +480,7 @@ public class MakeUnicodeFiles {
       }
     }
 
-    private void addCommentToFile(String filename, String comment) {
+    private void addFileComments(String filename, String comment) {
       fileToComments.put(filename, comment);
     }
 
@@ -523,6 +529,8 @@ public class MakeUnicodeFiles {
       writeUnihan("UCD/unihan/");
     } else if (filename.equals("NormalizationTest")) {
       GenerateData.writeNormalizerTestSuite("UCD/", "NormalizationTest");
+    } else if (filename.equals("BidiTest")) {
+      doBidiTest(filename);
     } else if (filename.equals("CaseFolding")) {
       GenerateCaseFolding.makeCaseFold(false);
     } else if (filename.equals("SpecialCasing")) {
@@ -542,6 +550,15 @@ public class MakeUnicodeFiles {
     } else {
       generatePropertyFile(filename);
     }
+  }
+
+  private static void doBidiTest(String filename) throws IOException {
+    UnicodeDataFile udf =
+      UnicodeDataFile.openAndWriteHeader("", filename);
+    PrintWriter pw = udf.out;
+    Format.theFormat.printFileComments(pw, filename);
+    org.unicode.bidi.BidiConformanceTestBuilder.write(pw);
+    udf.close();
   }
 
   private static void writeUnihan(String directory) throws IOException {
@@ -809,7 +826,7 @@ public class MakeUnicodeFiles {
       pw.println("# " + propName + " (" + shortProp + ")");
       pw.println();
       if (sortedSet.size() == 0 || isJamoShortName) {
-        printDefaultValueComment(pw, propName);
+        printDefaultValueComment(pw, propName, up, true, null);
       }
       for (Iterator it4 = sortedSet.iterator(); it4.hasNext();) {
         String line = (String) it4.next();
@@ -821,10 +838,12 @@ public class MakeUnicodeFiles {
     udf.close();
   }
 
-  private static void printDefaultValueComment(PrintWriter pw, String propName) {
-    String defaultValue = "<code point>";
-    if (propName.equals("Numeric_Value")) {
-      defaultValue = "NaN";
+  private static void printDefaultValueComment(PrintWriter pw, String propName, UnicodeProperty up, boolean showPropName, String defaultValue) {
+    if (Default.ucd().isAllocated(0xE0000)) {
+      throw new IllegalArgumentException("The paradigm 'default value' code point needs fixing!");
+    }
+    if (defaultValue != null) {
+      // ok
     } else if (propName.equals("Bidi_Mirroring_Glyph")
             || propName.equals("ISO_Comment")
             || propName.equals("Name")
@@ -833,8 +852,17 @@ public class MakeUnicodeFiles {
             || propName.equals("Jamo_Short_Name")
     ) {
       defaultValue = "<none>";
+    } else if (up.getType() == UnicodeProperty.NUMERIC) {
+      defaultValue = "NaN";
+    } else if (up.getType() == UnicodeProperty.STRING) {
+      defaultValue = "<code point>";
+    } else if (up.getType() == UnicodeProperty.MISC) {
+      defaultValue = "<none>";
+    } else {
+      defaultValue = up.getValue(0xE0000);
     }
-    pw.println("# @missing: 0000..10FFFF; " + propName + "; " + defaultValue);
+    
+    pw.println("# @missing: 0000..10FFFF; " + (showPropName ? propName + "; " : "") + defaultValue);
   }
 
   public static void generatePropertyFile(String filename) throws IOException {
@@ -842,9 +870,9 @@ public class MakeUnicodeFiles {
     if (dir == null) dir = "";
     UnicodeDataFile udf =
       UnicodeDataFile.openAndWriteHeader("UCD/" + dir, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
-    PrintWriter pw = udf.out;
+    final PrintWriter pwFile = udf.out;
     // bf2.openUTF8Writer(UCD_Types.GEN_DIR, "Test" + filename + ".txt");
-    Format.theFormat.printFileComments(pw, filename);
+    Format.theFormat.printFileComments(pwFile, filename);
     UnicodeProperty.Factory toolFactory =
       ToolUnicodePropertySource.make(Default.ucdVersion());
     UnicodeSet unassigned =
@@ -854,6 +882,9 @@ public class MakeUnicodeFiles {
 
     List propList = Format.theFormat.getPropertiesFromFile(filename);
     for (Iterator propIt = propList.iterator(); propIt.hasNext();) {
+      final StringWriter pwReal = new StringWriter();
+      final PrintWriter pwProp = new PrintWriter(pwReal);
+
       BagFormatter bf = new BagFormatter(toolFactory);
       String nextPropName = (String) propIt.next();
       UnicodeProperty prop;
@@ -865,15 +896,15 @@ public class MakeUnicodeFiles {
       } catch (Exception e) {
         throw new IllegalArgumentException("No property for name: " + nextPropName);
       }
-      pw.println();
-      pw.println(SEPARATOR);
+      pwProp.println();
+      pwProp.println(SEPARATOR);
       String propComment = Format.theFormat.getValueComments(name, "");
       if (propComment != null && propComment.length() != 0) {
-        pw.println();
-        pw.println(propComment);
+        pwProp.println();
+        pwProp.println(propComment);
       } else if (!prop.isType(UnicodeProperty.BINARY_MASK)) {
-        pw.println();
-        pw.println("# Property:\t" + name);
+        pwProp.println();
+        pwProp.println("# Property:\t" + name);
       }
 
       Format.PrintStyle ps = Format.theFormat.getPrintStyle(name);
@@ -889,9 +920,9 @@ public class MakeUnicodeFiles {
           String v2 = prop.getFirstValueAlias(v);
           if (UnicodeProperty.compareNames(v,v2) != 0) v = v + " (" + v2 + ")";
         }
-        pw.println();
-        pw.println("#  All code points not explicitly listed for " + prop.getName());
-        pw.println("#  have the value " + v + ".");
+        pwProp.println();
+        pwProp.println("#  All code points not explicitly listed for " + prop.getName());
+        pwProp.println("#  have the value " + v + ".");
       }
 
       if (!ps.interleaveValues && prop.isType(UnicodeProperty.BINARY_MASK)) {
@@ -917,17 +948,19 @@ public class MakeUnicodeFiles {
       }
 
       if (ps.interleaveValues) {
-        writeInterleavedValues(pw, bf, prop, ps);
+        writeInterleavedValues(pwProp, bf, prop, ps);
       } else if (prop.isType(UnicodeProperty.STRING_OR_MISC_MASK)) {
-        writeStringValues(pw, bf, prop, ps);
+        writeStringValues(pwProp, bf, prop, ps);
         //} else if (prop.isType(UnicodeProperty.BINARY_MASK)) {
         //   writeBinaryValues(pw, bf, prop);
       } else {
-        writeEnumeratedValues(pw, bf, unassigned, prop, ps);
+        writeEnumeratedValues(pwProp, bf, unassigned, prop, ps);
       }
+      pwFile.append(pwReal.getBuffer());
     }
-    pw.println();
-    pw.println("# EOF");
+    pwFile.println();
+    pwFile.println("# EOF");
+    pwFile.flush();
     udf.close();
   }
 
@@ -960,9 +993,10 @@ public class MakeUnicodeFiles {
     if (missing != null && !missing.equals(UCD_Names.NO)) {
       pw.println();
       String propName = bf.getPropName();
-      if (propName == null) propName = "";
-      else if (propName.length() != 0) propName = propName + "; ";
-      pw.println("# @missing: 0000..10FFFF; " + propName + missing);
+//      if (propName == null) propName = "";
+//      else if (propName.length() != 0) propName = propName + "; ";
+      //pw.println("# @missing: 0000..10FFFF; " + propName + missing);
+      printDefaultValueComment(pw, propName, prop, propName != null && propName.length() != 0, missing);
     }
     for (Iterator it = aliases.iterator(); it.hasNext();) {
       String value = (String)it.next();

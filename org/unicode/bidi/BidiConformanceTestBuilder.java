@@ -18,7 +18,7 @@ import org.unicode.bidi.GenerateN1Tests.Sample;
 import com.ibm.icu.text.UnicodeSet;
 
 public class BidiConformanceTestBuilder {
-  
+
   public static int MAX_SIZE = 4;
 
   private static BitSet SKIPS = new BitSet();
@@ -37,7 +37,7 @@ public class BidiConformanceTestBuilder {
     private byte[] byte_array = new byte[0];
     private final List<Byte> items = new ArrayList<Byte>();
     private int maxSize;
-    
+
     public Sample(int maxSize) {
       this.maxSize = maxSize;
     }
@@ -57,7 +57,7 @@ public class BidiConformanceTestBuilder {
       }
       return false;
     }
-    
+
     public String toString() {
       StringBuilder result = new StringBuilder();
       for (int i = 0; i < items.size(); ++i) {
@@ -68,7 +68,7 @@ public class BidiConformanceTestBuilder {
       }
       return result.toString();
     }
-    
+
     public byte[] getArray() {
       if (byte_array.length != items.size()) {
         byte_array = new byte[items.size()];
@@ -80,7 +80,7 @@ public class BidiConformanceTestBuilder {
     }
   }
 
-  public static void main(String[] args) throws FileNotFoundException {
+  public static void write(PrintWriter out) throws FileNotFoundException {
     int[] linebreaks = new int[1];
 
     Map<String, Set<String>> resultToSource = new TreeMap<String, Set<String>>(SHORTEST_FIRST);
@@ -115,9 +115,6 @@ public class BidiConformanceTestBuilder {
         }
       }
 
-    final String file = "/Users/markdavis/Desktop/BidiConformance.txt";
-    PrintWriter out = new PrintWriter(new FileOutputStream(file));
-    System.out.println("Writing:\t" + file);
     for (int i = BidiReference.TYPE_MIN; i < BidiReference.TYPE_MAX; ++i) {
       UnicodeSet data = new UnicodeSet("[:bidi_class=" + BidiReference.typenames[i] + ":]");
       data.complement().complement();

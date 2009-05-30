@@ -1,6 +1,7 @@
 Generate: .*
-DeltaVersion: 7
+DeltaVersion: 9
 CopyrightYear: 2009
+
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
@@ -86,26 +87,29 @@ Property:	Bidi_Class
 # Unlike other properties, unassigned code points in blocks 
 # reserved for right-to-left scripts are given either types R or AL.
 #
-# The unassigned characters that default to AL are:
-#     Arabic [U+0600 - U+06FF]
-#     Syriac [U+0700 - U+074F]
-#     Arabic_Supplement [U+0750 - U+077F]
-#     Thaana [U+0780 - U+07BF]
-#     Arabic_Presentation_Forms_A [U+FB50 - U+FDFF]
-#     Arabic_Presentation_Forms_B [U+FE70 - U+FEFF]
-#     minus noncharacter code points.
+# The unassigned code points that default to AL are:
+#     Arabic:            U+0600  -  U+06FF
+#     Syriac:            U+0700  -  U+074F
+#     Arabic_Supplement: U+0750  -  U+077F
+#     Thaana:            U+0780  -  U+07BF
+#     Arabic_Presentation_Forms_A:
+#                        U+FB50  -  U+FDFF
+#     Arabic_Presentation_Forms_B:
+#                        U+FE70  -  U+FEFF
+#           minus noncharacter code points.
 #
-# The unassigned characters that default to R are:
-#     Hebrew [U+0590 - U+05FF]
-#     NKo [U+07C0 - U+07FF]
-#     Cypriot_Syllabary [U+00010800 - U+0001083F]
-#     Phoenician [U+00010900 - U+0001091F]
-#     Lydian [U+00010920 - U+0001093F]
-#     Kharoshthi [U+00010A00 - U+00010A5F]
-#     and any otherwise in the ranges:
-#            U+0800 - U+08FF,
-#            U+FB1D - U+FB4F,
-#            U+00010840 - U+00010FFF
+# The unassigned code points that default to R are:
+#     Hebrew:            U+0590  -  U+05FF
+#     NKo:               U+07C0  -  U+07FF
+#     Cypriot_Syllabary: U+10800 - U+1083F
+#     Phoenician:        U+10900 - U+1091F
+#     Lydian:            U+10920 - U+1093F
+#     Kharoshthi:        U+10A00 - U+10A5F
+#     and any others in the ranges:
+#                        U+0800  -  U+08FF,
+#                        U+FB1D  -  U+FB4F,
+#                        U+10840 - U+10FFF,
+#                        U+1E800 - U+1EFFF
 #
 # For all other cases:
 Format:	valueStyle=short skipUnassigned=Left_To_Right
@@ -153,7 +157,6 @@ Property:   Is_Lowercase
 #  As defined by Unicode Standard Definition D124
 #  isLowercase(X) is true when toLowercase(toNFD(X)) = toNFD(X)
 # Omitted code points have the value Yes
-# @missing: 0000..10FFFF; Yes
 Format: valueStyle=short skipValue=Yes
 
 Property:   Is_Uppercase
@@ -161,7 +164,6 @@ Property:   Is_Uppercase
 #  As defined by Unicode Standard Definition D125
 #  isUppercase(X) is true when toUppercase(toNFD(X)) = toNFD(X)
 # Omitted code points have the value Yes
-# @missing: 0000..10FFFF; Yes
 Format: valueStyle=short skipValue=Yes
 
 Property:   Is_Titlecase
@@ -169,7 +171,6 @@ Property:   Is_Titlecase
 #  As defined by Unicode Standard Definition D126
 #  isTitlecase(X) is true when toTitlecase(toNFD(X)) = toNFD(X)
 # Omitted code points have the value Yes
-# @missing: 0000..10FFFF; Yes
 Format: valueStyle=short skipValue=Yes
 
 Property:   Is_Casefolded
@@ -177,7 +178,6 @@ Property:   Is_Casefolded
 #  As defined by Unicode Standard Definition D127
 #  isCasefolded(X) is true when toCasefold(toNFD(X)) = toNFD(X)
 # Omitted code points have the value Yes
-# @missing: 0000..10FFFF; Yes
 Format: valueStyle=short skipValue=Yes
 
 Property:   Is_Cased
@@ -385,7 +385,51 @@ File:	HangulSyllableType
 Property:	Hangul_Syllable_Type
 Format:	valueStyle=short skipValue=Not_Applicable
 
-File:	NormalizationTest
+File:   NormalizationTest
+Property: SPECIAL
+
+File:   BidiTest
+#
+# This file provides a conformance test for UBA (Unicode Bidi Algorithm) implementations.
+# It is designed to be reasonably compact, and yet provide a thorough test of all cases up to
+# a given limit (currently 4).
+#
+# Format:
+#
+# @Type:    <bidi_class>:  <set>
+# These lines define which characters have the bidi_class property value, and are used in the remainder of the test.
+#   <bidi_class> =  The bidi class property value
+#   <set> =         All and only the those codepoints with that property value in <set>.
+#                   <set> is a character range as defined in UTS #18 Unicode Regular Expressions.
+# Example:
+#   @Type:    AN:    [\u0600-\u0603\u0660-\u0669\u066B\u066C\u06DD]
+#
+# @Result: <ordering>
+# These lines indicate that all following* data lines have the same resulting ordering (*that is, lines up to the next @Result).
+#   <ordering> =    An ordered list of numbers indicating the resulting ordering from left to right, with zero-based indices.
+#                   Thus "1 0" indicates what would happen with input of "L R" and an RTL paragraph direction.
+# Example:
+#   @Result:    1 0
+#
+# <input> ; <bitset>
+#  <input>  =       An ordered list of BIDI property values
+#  <bitset> =       A bitset for paragraph levels (P): 1 = automatic, 2 = LTR, 4 = RTL
+# Example:
+#    L LRE R R; 7
+#    L LRE R AL; 7
+#
+# Usage:
+#
+# - If the implementation API allows a list of bidi property values as input, then reorder each input line according to the
+#   paragraph levels in the bitset. Compare that to the last @Result order. If they are different, the test fails.
+# - If the implementation allows for a character string as input, randomly pick characters from the @type values, and
+#   test the reordering as above.
+#
+# Note that the UBA doesn't specify the output order of certain characters, such as LRO. These are omitted from the reordered output.
+# Thus the following two input lines have the same result (0), since the LRE (item 1) is omitted on the second line.
+#   L; 7
+#   L LRE; 7
+#
 Property: SPECIAL
 
 File:	PropList

@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2009-05-29 04:48:49 $
- * $Revision: 1.50 $
+ * $Date: 2009-05-30 03:56:37 $
+ * $Revision: 1.51 $
  *
  *******************************************************************************
  */
@@ -436,6 +436,9 @@ public final class UCD implements UCD_Types {
       .add(0xFB1D, 0xFB4F)
       .add(0x10800, 0x10FFF)
       ;
+      if (compositeVersion >= 0x50200) {
+        BIDI_R_Delta.add(0x1E800, 0x1EFFF);
+      }
       BIDI_R_Delta.removeAll(BIDI_R_SET);
       if (SHOW_LOADING) {
         System.out.println("R: Adding " + BIDI_R_Delta);
@@ -1105,8 +1108,8 @@ public final class UCD implements UCD_Types {
   public static String getScriptID_fromIndex(byte prop, byte length) {
     return prop < 0 || prop >= UCD_Names.SCRIPT.length ? null
             : (length == EXTRA_ALIAS && prop == COPTIC) ? "Qaac"
-                    : (length == SHORT) ? UCD_Names.SCRIPT[prop]
-                                                           : UCD_Names.LONG_SCRIPT[prop];
+                    : (length == EXTRA_ALIAS && prop == INHERITED_SCRIPT) ? "Qaai"
+                            : (length == SHORT) ? UCD_Names.SCRIPT[prop] : UCD_Names.LONG_SCRIPT[prop];
   }
 
   public String getAgeID(int codePoint) {
@@ -1170,7 +1173,7 @@ public final class UCD implements UCD_Types {
       if (ch <= 0x2A6D6) return 0x20000;
       if (rCompositeVersion >= 0x50200) {
         if (ch <= 0x2A700) return ch;       // Extension C
-        if (ch <= 0x2B73F) return 0x2A700;
+        if (ch <= 0x2B734) return 0x2A700;
       }
       //if (ch <= 0x2F800) return ch;
       //if (ch <= 0x2FA1D) return 0x2F800;      // compat ideographs

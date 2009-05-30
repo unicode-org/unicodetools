@@ -19,6 +19,8 @@ import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.BaseProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.SimpleProperty;
 import com.ibm.icu.impl.ICUData;
 import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.impl.StringUCharacterIterator;
@@ -105,11 +107,21 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     // }.setValues("<string>").setMain("Jamo_Short_Name", "JSN",
     // UnicodeProperty.MISC, version));
 
-    add(new UnicodeProperty.SimpleProperty() {
-      public String _getValue(int codepoint) {
-        return "";
-      }
-    }.setValues("<string>").setMain("Unicode_Radical_Stroke", "URS", UnicodeProperty.MISC, version));
+    addFakeProperty(version, "Unicode_Radical_Stroke", "URS", "kRSUnicode", UnicodeProperty.MISC, "<none>");
+//    addFakeProperty(version, "CJK_AccountingNumeric", "CJK_AC", "kAccountingNumeric", UnicodeProperty.NUMERIC, "<none>");
+//    addFakeProperty(version, "CJK_OtherNumeric", "CJK_ON", "kOtherNumeric", UnicodeProperty.NUMERIC, "<none>");
+//    addFakeProperty(version, "CJK_PrimaryNumeric", "CJK_PN", "kPrimaryNumeric", UnicodeProperty.NUMERIC, "<none>");
+//    //addFakeProperty(version, "kRSUnicode", "URS", UnicodeProperty.MISC);
+//    addFakeProperty(version, "CJK_CompatibilityVariant", "CJK_CV", "kCompatibilityVariant", UnicodeProperty.STRING, "<none>");
+//    addFakeProperty(version, "IICore", "IIC", "kIICore", UnicodeProperty.MISC, "<none>");
+//    addFakeProperty(version, "IRG_GSource", "IRG_G", "kIRG_GSource", UnicodeProperty.MISC, "<none>");
+//    addFakeProperty(version, "IRG_HSource", "IRG_H", "kIRG_HSource", UnicodeProperty.MISC, "<none>");
+//    addFakeProperty(version, "IRG_JSource", "IRG_J", "kIRG_JSource", UnicodeProperty.MISC, "<none>");
+//    addFakeProperty(version, "IRG_KPSource", "IRG_KP", "kIRG_KPSource", UnicodeProperty.MISC, "<none>");
+//    addFakeProperty(version, "IRG_KSource", "IRG_K", "kIRG_KSource", UnicodeProperty.MISC, "<none>");
+//    addFakeProperty(version, "IRG_TSource", "IRG_T", "kIRG_TSource", UnicodeProperty.MISC, "<none>");
+//    addFakeProperty(version, "IRG_USource", "IRG_U", "kIRG_USource", UnicodeProperty.MISC, "<none>");
+//    addFakeProperty(version, "IRG_VSource", "IRG_V", "kIRG_VSource", UnicodeProperty.MISC, "<none>");
 
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
@@ -509,13 +521,14 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           unicodeMap = new UnicodeMap();
           unicodeMap.setErrorOnReset(true);
           UnicodeProperty cat = getProperty("General_Category");
+          //unicodeMap.put(0x200B, "Other");
           unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
           unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
           unicodeMap.putAll(new UnicodeSet("[\\u0085\\u000B\\u000C\\u000C\\u2028\\u2029]"),
           "Newline");
           unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(
                   cat.getSet("Spacing_Mark")), "Extend");
-          unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
+          unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D).remove(0x200B), "Format");
           UnicodeProperty script = getProperty("Script");
           unicodeMap
           .putAll(
@@ -523,7 +536,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                   .getSet("Katakana")
                   .addAll(
                           new UnicodeSet(
-                                  "[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70]")),
+                          "[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70]")),
           "Katakana"); // \uFF9E\uFF9F
           Object foo = unicodeMap.getSet("Katakana");
           // UnicodeSet graphemeExtend =
@@ -538,7 +551,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                   .removeAll(unicodeMap.getSet("Extend")), "ALetter");
           unicodeMap
           .putAll(new UnicodeSet(
-                  "[\\u00B7\\u05F4\\u2027\\u003A\\u0387\\u0387\\uFE13\\uFE55\\uFF1A]"),
+          "[\\u00B7\\u05F4\\u2027\\u003A\\u0387\\u0387\\uFE13\\uFE55\\uFF1A]"),
           "MidLetter");
           /*
            * 0387 ( · ) GREEK ANO TELEIA FE13 ( ︓ ) PRESENTATION FORM FOR
@@ -706,6 +719,20 @@ isTitlecase(X) is false.
 
     // ========================
 
+  }
+
+  private void addFakeProperty(String version, String name, String abbr, String alt, int unicodePropertyType, String defaultValue) {
+    final SimpleProperty item = new UnicodeProperty.SimpleProperty() {
+      public String _getValue(int codepoint) {
+        return "";
+      }
+    };
+    item.setValues(defaultValue);
+    item.setMain(name, abbr, unicodePropertyType, version);
+    if (alt != null) {
+      item.addName(alt);
+    }
+    add(item);
   }
 
   static String[] YES_NO_MAYBE      = { "N", "M", "Y" };
