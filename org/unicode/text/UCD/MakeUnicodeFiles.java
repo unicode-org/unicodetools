@@ -554,7 +554,7 @@ public class MakeUnicodeFiles {
 
   private static void doBidiTest(String filename) throws IOException {
     UnicodeDataFile udf =
-      UnicodeDataFile.openAndWriteHeader("", filename);
+      UnicodeDataFile.openAndWriteHeader("UCD/", filename);
     PrintWriter pw = udf.out;
     Format.theFormat.printFileComments(pw, filename);
     org.unicode.bidi.BidiConformanceTestBuilder.write(pw);

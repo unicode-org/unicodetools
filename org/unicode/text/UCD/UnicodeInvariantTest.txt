@@ -1,80 +1,103 @@
 ﻿# Invariance Tests
 #
-# A normal line indicates an invariant set relationship to be tested, and is of the form:
+# This file provides a set of machine-readable invariance tests for Unicode Properties.
 #
-# 	line := set relation set
+# Format
 #
-#   relation := '='             // has identical contents to
-#            := ('>' | '⊃')     // is proper superset of
-#            := ('≥' | '⊇')     // is superset of 
-#            := ('<' | '⊂')     // is proper subset of
-#            := ('≤' | '⊆')     // is subset of
-#            := '!'             // has no intersection
-#            := '?'             // none of the above (they overlap, and neither contains the other)
+##########################
+# Let <$variable> = <value>
+#  Assign a variable to a value. The variable must start with $.
 #
-# A set is a standard UnicodeSet, but where $pv can be used to express properties
+##########################
+# Show <unicodeSet>
+#  List any set on the console, for viewing and debugging. For <unicodeSet> see below.
 #
-# 	pv := '$' '×'? prop (('=' | ':') value)?
+##########################
+# <unicodeSet> is a boolean combinations of properties and character ranges, as defined in LDML, 
+#  with the following extensions.
 #
-# The × indicates that the property is the previous released version.
-#  That is, if the version is 4.0.1, then the × version is 4.0.0
+#  Example:
+#   [\p{General_Category=Unassigned}-[a-zA-Z]]
 #
-# If the value is missing, it is defaulted to true
-# If the value is of the form «...», then the ... is interpreted as a regular expression
-# The property can be the short or long form as in the PropertyAliases.txt
+# Property Name:
+#
+# <propertyName> can be the short or long form as in the PropertyAliases.txt
+#
+# <propertyName> can be prefixed with "U<version>:"
+#   Examples: U5.1:Whitespace
+#
+# A version of -1 indicates that the property is the previous released version.
+#  That is, if the version is 4.0.1, then the U-1 version is 4.0.0
+#
+# Property Value:
+#
+# If the propertyValue is missing, it is defaulted to true
+# If the value is of the form /.../, then the ... is interpreted as a regular expression
 # The value (if enumerated) can be the short or long form as in PropertyValueAliases.txt
 #
-# A UnicodeSet is a boolean combinations of properties and character ranges, as you would see in
-#  Perl or other regular-expression languages. Examples:
-#	[$General_Category:Unassigned-[a-zA-Z]]
-# For details, see LDML
+##########################
+# Test <unicodeSet> <relation> <unicodeSet>
 #
-# WARNING: do not use \p{...} or [:...:] syntax, since those will be
-# ICU's current version of properties, not the current snapshot's.
-# Use the $ notation for properties (listed above) instead.
+# Tests that the relation is true for the two sets. The "Test" keyword is optional.
 #
-# TODO: fix to use same syntax, and fail instead of falling back to ICU
+#   relation := '='             // has identical contents to
+#            := '⊃'             // is proper superset of
+#            := '⊇'             // is superset of 
+#            := '⊂'             // is proper subset of
+#            := '⊆'             // is subset of
+#            := '∥'             // has no intersection
+#            := '≉'             // none of the above (they overlap, and neither contains the other)
 #
 # When this file is parsed, a parse error message may contain <@>
 # to indicate the location of an error in the input line.
 #
 # If there is an error in the test, a comparison listing of the two sides of the relation is generated.
 #
-# The Show command can be used to list any set on the console, for comparison.
-# The Let command can be used to create variables
 
 ##########################
 # General Constants
 ##########################
 
-Let $gcAllPunctuation = [$gc:Open_Punctuation $gc:Close_Punctuation $gc:Dash_Punctuation $gc:Connector_Punctuation $gc:Other_Punctuation $gc:Initial_Punctuation $gc:Final_Punctuation]
-Let $gcAllSymbols = [$gc:Currency_Symbol $gc:Modifier_Symbol $gc:Math_Symbol $gc:Other_Symbol]
-Let $gcAllMarks = [$gc:Nonspacing_Mark $gc:Enclosing_Mark $gc:Spacing_Mark]
+Let $gcAllPunctuation = [\p{gc=Open_Punctuation} \p{gc=Close_Punctuation} \p{gc=Dash_Punctuation} \p{gc=Connector_Punctuation} \p{gc=Other_Punctuation} \p{gc=Initial_Punctuation} \p{gc=Final_Punctuation}]
+Let $gcAllSymbols = [\p{gc=Currency_Symbol} \p{gc=Modifier_Symbol} \p{gc=Math_Symbol} \p{gc=Other_Symbol}]
+Let $gcAllMarks = [\p{gc=Nonspacing_Mark} \p{gc=Enclosing_Mark} \p{gc=Spacing_Mark}]
+
+$gcAllPunctuation = \p{gc=/_Punctuation/}
+$gcAllSymbols = \p{gc=/_Symbols/}
+$gcAllMarks = \p{gc=/_Mark/}
 
 ##### EXAMPLES OF USAGE #####
 
-# Show [[^$gc:unassigned]-[^$×gc:unassigned]-[^$dt:none]]
-# $GC:Zs ! $GC:Zp
-# $East_Asian_Width:Neutral ? $GC:Uppercase_Letter
-# $Script:Common ! [$Alphabetic - $Math]
+# Show the current unassigned, minus last version's unassigned, minus the characters with no decomposition type
+# Show [[^\p{gc=unassigned}]-[^\p{U-1:gc=unassigned}]-[^\p{dt=none}]]
 
-# $Pattern_Whitespace = [$Whitespace \u200E \u200F]
-# $Pattern_Syntax = [$gcAllSymbols $gcAllPunctuation [\u2190-\u2BFF\u2e00-\u2e7F]]
-# $Pattern_Syntax ! $Alphabetic
-# $Pattern_Syntax ! $ID_Continue
+# Test that the Zs characters are disjoint with the Zp characters
+# \p{GC=Zs} ∥ \p{GC=Zp}
 
-# [$script:greek&$gc:«.*letter.*»] = [;\u00B5\u00B7\u00C4\u00CB\u00CF\u00D6\u00DC\u00E4\u00EB\u00EF\u00F6\u00FC\u00FF-\u0101\u0112-\u0113\u012A-\u012B\u014C-\u014D\u016A-\u016B\u0178\u01D5-\u01DC\u01DE-\u01E3\u01EC-\u01ED\u022A-\u022D\u0230-\u0233\u0304\u0308\u0313-\u0314\u0342-\u0345\u037A\u037E\u0386-\u038A\u038C\u038E-\u03A1\u03A3-\u03CE\u03D0-\u03D7\u03DB\u03DD\u03DF\u03E1\u03E3\u03E5\u03E7\u03E9\u03EB\u03ED\u03EF-\u03F5\u0401\u0407\u0451\u0457\u04D2-\u04D3\u04DA-\u04DF\u04E2-\u04E7\u04EA-\u04F1\u04F4-\u04F5\u04F8-\u04F9\u1E14-\u1E17\u1E20-\u1E21\u1E26-\u1E27\u1E2E-\u1E2F\u1E38-\u1E39\u1E4E-\u1E53\u1E5C-\u1E5D\u1E7A-\u1E7B\u1E84-\u1E85\u1E8C-\u1E8D\u1E97\u1F00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC1-\u1FC4\u1FC6-\u1FCC\u1FCF-\u1FD3\u1FD6-\u1FDB\u1FDF-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2126]
+# Test that the EA Neutral characters have no containment relation
+# \p{East_Asian_Width=Neutral} ≉ \p{GC=Uppercase_Letter}
 
-# $script:greek = $×script:greek
-# $gc:lm = $script:inherited
+# Test that the common characters are disjoint with alphabetic minus math
+# \p{Script=Common} ∥ [\p{Alphabetic} - \p{Math}]
+
+# \p{Pattern_Whitespace} = [\p{Whitespace} \u200E \u200F]
+# \p{Pattern_Syntax} = [\p{gcAllSymbols} \p{gcAllPunctuation} [\u2190-\u2BFF\u2e00-\u2e7F]]
+# \p{Pattern_Syntax} ∥ \p{Alphabetic}
+# \p{Pattern_Syntax} ∥ \p{ID_Continue}
+
+# [\p{script=greek}&\p{gc=/(?i)letter/}] = [;\u00B5\u00B7\u00C4\u00CB\u00CF\u00D6\u00DC\u00E4\u00EB\u00EF\u00F6\u00FC\u00FF-\u0101\u0112-\u0113\u012A-\u012B\u014C-\u014D\u016A-\u016B\u0178\u01D5-\u01DC\u01DE-\u01E3\u01EC-\u01ED\u022A-\u022D\u0230-\u0233\u0304\u0308\u0313-\u0314\u0342-\u0345\u037A\u037E\u0386-\u038A\u038C\u038E-\u03A1\u03A3-\u03CE\u03D0-\u03D7\u03DB\u03DD\u03DF\u03E1\u03E3\u03E5\u03E7\u03E9\u03EB\u03ED\u03EF-\u03F5\u0401\u0407\u0451\u0457\u04D2-\u04D3\u04DA-\u04DF\u04E2-\u04E7\u04EA-\u04F1\u04F4-\u04F5\u04F8-\u04F9\u1E14-\u1E17\u1E20-\u1E21\u1E26-\u1E27\u1E2E-\u1E2F\u1E38-\u1E39\u1E4E-\u1E53\u1E5C-\u1E5D\u1E7A-\u1E7B\u1E84-\u1E85\u1E8C-\u1E8D\u1E97\u1F00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC1-\u1FC4\u1FC6-\u1FCC\u1FCF-\u1FD3\u1FD6-\u1FDB\u1FDF-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2126]
+
+# \p{script=greek} = \p{U-1:script=greek}
+# \p{gc=lm} = \p{script=inherited}
 
 # Examples of parsing errors
 
-# $LBA:Neutral =  $GC:Zp # example of non-existant property
-# $LB:foo =  $GC:Zp # example of non-existant value
-# $GC:Zs @ $GC:Zp # example of unknown relation
+# \p{LBA=Neutral} =  \p{GC=Zp} # example of non-existant property
+# \p{LB=foo} =  \p{GC=Zp} # example of non-existant value
+# \p{GC=Zs} @ \p{GC=Zp} # example of unknown relation
 
 #### REAL INVARIANTS FOLLOW ####
+
 
 ##########################
 # Stability
@@ -82,57 +105,61 @@ Let $gcAllMarks = [$gc:Nonspacing_Mark $gc:Enclosing_Mark $gc:Spacing_Mark]
 
 # Once assigned, always assigned
 
-$GC:unassigned ⊆ $×GC:unassigned
+\p{GC=unassigned} ⊆ \p{U-1:GC=unassigned}
 
 # The General_Category property value Control (Cc) is immutable: the set of code points with that value will never change.
 
-$GC:Cc = $×GC:Cc
+\p{GC=Cc} = \p{U-1:GC=Cc}
     
 # All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
 
-$CCC:0 ⊇ [^ $GC:Mc $GC:Mn]
+\p{CCC=0} ⊇ [^ \p{GC=Mc} \p{GC=Mn}]
 
 # The General_Category property value Private_Use (Co) is immutable: the set of code points with that value will never change.
 
-$GC:Co = $×GC:Co
+\p{GC=Co} = \p{U-1:GC=Co}
 
 # The General_Category property value Surrogate (Cs) is immutable: the set of code points with that value will never change.
 
-$GC:Cs = $×GC:Cs
+\p{GC=Cs} = \p{U-1:GC=Cs}
 
 # The Noncharacter_Code_Point property is an immutable code point property, which means that its property values for all Unicode code points will never change.
 
-$NChar = $×NChar
+\p{NChar} = \p{U-1:NChar}
 
 # All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property .
 
-$Alphabetic ⊃ [$Uppercase $Lowercase]
+\p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
 
-$Alphabetic ⊇ [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl $GC:Mc]
+# Musical symbol combining marks, other oddities
+Let $AlphaExclusions = [\U0001D165-\U0001D166 \U0001D16D-\U0001D172 \u0F3E-\u0F3F \u1063-\u1064 \u1069-\u106D \u1087-\u108C \u108F \u1B44 \u1BAA \uA953]
+Show $AlphaExclusions
 
-Show [$GC:Mc - $alphabetic]
-Show [$GC:Mc & $alphabetic]
+\p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
+
+# Show [\p{GC=Mc} - \p{alphabetic}]
+# Show [\p{GC=Mc} & \p{alphabetic}]
 
 # The Pattern_Syntax and Pattern_Whitespace properties are immutable code point properties, which means that their property values for all Unicode code points will never change.
 
-$Pattern_Whitespace = $×Pattern_Whitespace
-$Pattern_Syntax = $×Pattern_Syntax
+\p{Pattern_Whitespace} = \p{U-1:Pattern_Whitespace}
+\p{Pattern_Syntax} = \p{U-1:Pattern_Syntax}
 
 ##########################
 # Misc Properties
 ##########################
 
-$Whitespace ⊃ [$GC:Zs $GC:Zp $GC:Zl]
-$GC:Zs ? $Name:«.*SPACE.*»
+\p{Whitespace} ⊃ [\p{GC=Zs} \p{GC=Zp} \p{GC=Zl}]
+\p{GC=Zs} ≉ \p{Name=/SPACE/}
 
-$Dash ⊃ [$GC:Pd]
+\p{Dash} ⊃ [\p{GC=Pd}]
 
-$Script:Common ! [$GC:Mn $GC:Me \u200c \u200d]
-$Script:Inherited ⊆ [$GC:Mn $GC:Me \u200c \u200d]
-$Script:Unknown = [$GC:Cn $GC:Co $GC:Cs]
+\p{Script=Common} ∥ [\p{GC=Mn} \p{GC=Me} \p{Join_Control}]
+\p{Script=Inherited} ⊆ [\p{GC=Mn} \p{GC=Me} \p{Join_Control}]
+\p{Script=Unknown} = [\p{GC=Cn} \p{GC=Co} \p{GC=Cs}]
 
-# [$Alphabetic] ! $Script:Common
-#  & [$Decomposition_Type:None $Decomposition_Type:Canonical]
+# [\p{Alphabetic}] ∥ \p{Script=Common}
+#  & [\p{Decomposition_Type=None} \p{Decomposition_Type=Canonical}]
 
 ##########################
 # Numbers
@@ -140,51 +167,51 @@ $Script:Unknown = [$GC:Cn $GC:Co $GC:Cs]
 
 # Numbers: the following must be equal
 
-$General_Category:Decimal_Number = $Numeric_Type:Decimal
+\p{General_Category=Decimal_Number} = \p{Numeric_Type=Decimal}
 
-# Decimals are 0..9
+# Decimals are 0-9
 
-Let $decimalValue = $Numeric_Value:«[0-9].0»
-$decimalValue ⊇ $General_Category:Decimal_Number
+Let $decimalValue = \p{Numeric_Value=/[0-9]+(.0)?/}
+$decimalValue ⊇ \p{General_Category=Decimal_Number}
 
 # All and only those items with numeric types have numeric values
 
-Let $anyNumericValue = $Numeric_Value:«-?[0-9]+.[0-9]+»
-[$Numeric_Type:Decimal $Numeric_Type:Digit $Numeric_Type:Numeric] = $anyNumericValue
+Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
+[\p{Numeric_Type=Decimal} \p{Numeric_Type=Digit} \p{Numeric_Type=Numeric}] = $anyNumericValue
 
 ##########################
 # Decompositions
 ##########################
 
 # Canonical decompositions (minus exclusions) must be identical across releases
-[$Decomposition_Type:Canonical - $Full_Composition_Exclusion] = [$×Decomposition_Type:Canonical - $×Full_Composition_Exclusion]
+[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion}] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]
 
 ##########################
 # Identifiers
 ##########################
 
 # Identifiers must be backwards compatible
-$ID_Start ⊇ $×ID_Start
-$ID_Continue ⊇ $×ID_Continue
-$XID_Start ⊇ $×XID_Start
-$XID_Continue ⊇ $×XID_Continue
+\p{ID_Start} ⊇ \p{U-1:ID_Start}
+\p{ID_Continue} ⊇ \p{U-1:ID_Continue}
+\p{XID_Start} ⊇ \p{U-1:XID_Start}
+\p{XID_Continue} ⊇ \p{U-1:XID_Continue}
 
 # Continue must contain start
-$ID_Continue ⊇ $ID_Start
-$XID_Continue ⊇ $XID_Start
+\p{ID_Continue} ⊇ \p{ID_Start}
+\p{XID_Continue} ⊇ \p{XID_Start}
 
 # The X versions are subsets of the the plain versions
-$ID_Continue ⊇ $XID_Continue
-$ID_Start ⊇ $XID_Start
+\p{ID_Continue} ⊇ \p{XID_Continue}
+\p{ID_Start} ⊇ \p{XID_Start}
 
 # Identifiers can't intersect pattern stuff
-$ID_Continue ! [$Pattern_Whitespace $Pattern_Syntax]
-$Pattern_Whitespace ! [$ID_Continue $Pattern_Syntax]
-$Pattern_Syntax ! [$ID_Continue $Pattern_Whitespace]
+\p{ID_Continue} ∥ [\p{Pattern_Whitespace} \p{Pattern_Syntax}]
+\p{Pattern_Whitespace} ∥ [\p{ID_Continue} \p{Pattern_Syntax}]
+\p{Pattern_Syntax} ∥ [\p{ID_Continue} \p{Pattern_Whitespace}]
 
-$XID_Continue ! [$Pattern_Whitespace $Pattern_Syntax]
-$Pattern_Whitespace ! [$XID_Continue $Pattern_Syntax]
-$Pattern_Syntax ! [$XID_Continue $Pattern_Whitespace]
+\p{XID_Continue} ∥ [\p{Pattern_Whitespace} \p{Pattern_Syntax}]
+\p{Pattern_Whitespace} ∥ [\p{XID_Continue} \p{Pattern_Syntax}]
+\p{Pattern_Syntax} ∥ [\p{XID_Continue} \p{Pattern_Whitespace}]
 
 
 
@@ -192,76 +219,81 @@ $Pattern_Syntax ! [$XID_Continue $Pattern_Whitespace]
 # LineBreak property
 ##########################
 
-$Line_Break:Unknown = [$General_Category:Unassigned $GeneralCategory:PrivateUse]
-$LB:OP = [$GC:Ps \u00A1 \u00BF \u2E18]
-$LB:CL ⊃ $GC:Pe
-$LB:CM = [$GC:Mn $GC:Me $GC:Mc $GC:Cc $GC:Cf -$LB:SA -$LB:WJ -$LB:ZW -$LB:BA -$LB:LF -$LB:BK -$LB:CR -$LB:NL -$LB:GL -$LB:AL]
-$LB:NU = [$GC:Nd - $EA:F \u066B\u066C]
-$LB:PR = [$GC:Sc - $LB:PO \u002b\u005c\u00b1\u2116\u2212\u2213]
-$LB:QU = [$GC:Pf $GC:Pi \u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
-$LB:SG = $GC:Cs
-$LB:SP = [\u0020]
-$LB:SY = [\u002F]
-$LB:WJ = [\u2060\uFEFF]
-$LB:ZW = [\u200B]
+\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse}]
+Let $OPInclusions = [\u00A1 \u00BF \u2E18]
+Let $NUInclusions = [\u066B\u066C]
+Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213]
+
+\p{LB=OP} = [\p{GC=Ps} $OPInclusions]
+\p{LB=CL} ⊃ \p{GC=Pe}
+\p{LB=CM} = [\p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL}]
+\p{LB=NU} = [\p{GC=Nd} $NUInclusions - \p{EA=F} ]
+\p{LB=PR} = [\p{GC=Sc} - \p{LB=PO} ]
+\p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} \u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
+\p{LB=SG} = \p{GC=Cs}
+\p{LB=SP} = [\u0020]
+\p{LB=SY} = [\u002F]
+\p{LB=WJ} = [\u2060\uFEFF]
+\p{LB=ZW} = [\u200B]
 
 # SA are limited to certain scripts:
-Let $SAScripts = [$script:thai $script:lao $script:myanmar $script:khmer $script:Tai_Le $script:New_Tai_Lue]
-$SAScripts ⊇ $LineBreak:SA
+Let $SAScripts = [\p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue}]
+$SAScripts ⊇ \p{LineBreak=SA}
 
 # And in those scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn
-[$SAScripts & [$Alphabetic $gc:cf $gc:Mn \u19DE \u19DF]] = [$SAScripts & [$LineBreak:SA $LineBreak:CM]]
+Let $SAScriptExceptions = [\u19DE \u19DF \u1063-\u1064 \u1069-\u106D \u1087-\u108C \u108F \u109E-\u109F]
+Show $SAScriptExceptions
 
-# 1063;MYANMAR TONE MARK SGAW KAREN HATHI;Mc;0;L;;;;;N;;;;;
-# 1063;SA # MYANMAR TONE MARK SGAW KAREN HATHI
+[$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
 
 ##########################
 # BIDI
 ##########################
 
+
 #BIDI invariant constants
-Let $R_blocks = [$block:Kharoshthi $block:Hebrew $block:Cypriot_Syllabary  \u07C0-\u08FF \uFB1D-\uFB4F \U00010840-\U00010FFF]
-Let $AL_blocks = [[$block:Arabic_Supplement $block:Arabic $block:Syriac $block:Arabic $block:Thaana $block:Arabic_Presentation_Forms_A $block:Arabic_Presentation_Forms_B [\u0750-\u077F]] -$Noncharacter_Code_Point]
+Let $R_blocks = [\u0590-\u05FF \u07C0-\u08FF \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EFFF]
+Let $AL_blocks = [\u0600-\u07BF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF]
 
 #Unassigned characters in these blocks have R or AL respectively
-$Bidi_Class:R ⊇ [$R_blocks & $gc:Cn]
-$Bidi_Class:AL ⊇ [$AL_blocks & $gc:Cn]
+\p{Bidi_Class=R} ⊇ [$R_blocks & \p{gc=Cn}]
+\p{Bidi_Class=AL} ⊇ [$AL_blocks & \p{gc=Cn}]
 
 # There are no strong characters of the other directionalities (out of L, AL, R) in these blocks, 
 # and anything R or L is in the block (or RLM)
-$R_blocks ! [$Bidi_Class:L $Bidi_Class:AL]
-$AL_blocks ! [$Bidi_Class:L $Bidi_Class:R]
-[$R_blocks $AL_blocks \u200F] ⊇ [$Bidi_Class:AL $Bidi_Class:R]
+$R_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=AL}]
+$AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
+[$R_blocks $AL_blocks \u200F] ⊇ [\p{Bidi_Class=AL} \p{Bidi_Class=R}]
 
 ##########################
 # Derivations
 ##########################
 
-$Math = [$Other_Math $GC:Sm]
-$Alphabetic = [$Other_Alphabetic $GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]
-$Lowercase = [$Other_Lowercase $GC:Ll]
-$Uppercase = [$Other_Uppercase $GC:Lu]
-$ID_Start = [$Other_ID_Start $GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl - $Pattern_Syntax - $Pattern_White_Space]
-$ID_Continue = [$Other_ID_Continue $ID_Start $GC:Mn $GC:Mc $GC:Nd $GC:Pc - $Pattern_Syntax - $Pattern_White_Space] 
-$Default_Ignorable_Code_Point = [$Other_Default_Ignorable_Code_Point $GC:Cf $Variation_Selector - [$White_Space\uFFF9-\uFFFB\u0600-\u0603\u06DD\u070F]]
+\p{Math} = [\p{Other_Math} \p{GC=Sm}]
+\p{Alphabetic} = [\p{Other_Alphabetic} \p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl}]
+\p{Lowercase} = [\p{Other_Lowercase} \p{GC=Ll}]
+\p{Uppercase} = [\p{Other_Uppercase} \p{GC=Lu}]
+\p{ID_Start} = [\p{Other_ID_Start} \p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]
+\p{ID_Continue} = [\p{Other_ID_Continue} \p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}] 
+\p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space}\uFFF9-\uFFFB\u0600-\u0603\u06DD\u070F]]
 
-$Grapheme_Extend = [$Other_Grapheme_Extend $GC:Me $GC:Mn]
+\p{Grapheme_Extend} = [\p{Other_Grapheme_Extend} \p{GC=Me} \p{GC=Mn}]
 
-$Grapheme_Base = [^$GC:Cc $GC:Cf $GC:Cs $GC:Co $GC:Cn $GC:Zl $GC:Zp $Grapheme_Extend]
-$Grapheme_Link = $CCC:Virama
+\p{Grapheme_Base} = [^\p{GC=Cc} \p{GC=Cf} \p{GC=Cs} \p{GC=Co} \p{GC=Cn} \p{GC=Zl} \p{GC=Zp} \p{Grapheme_Extend}]
+\p{Grapheme_Link} = \p{CCC=Virama}
 
 # "Minimal" Other_: NOT hard requirements; just if we want to be minimal
 # (Should add way to make these warnings, not errors)
 
-$Other_Math = [$Math - $GC:Sm]
-$Other_Alphabetic = [$Alphabetic - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]]
-$Other_Lowercase = [$Lowercase - $GC:Ll]
-$Other_Uppercase = [$Uppercase - $GC:Lu]
-$Other_ID_Start = [$ID_Start - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl - $Pattern_Syntax - $Pattern_White_Space]]
-$Other_ID_Continue = [$ID_Continue - [$ID_Start $GC:Mn $GC:Mc $GC:Nd $GC:Pc - $Pattern_Syntax - $Pattern_White_Space]]
+\p{Other_Math} = [\p{Math} - \p{GC=Sm}]
+\p{Other_Alphabetic} = [\p{Alphabetic} - [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl}]]
+\p{Other_Lowercase} = [\p{Lowercase} - \p{GC=Ll}]
+\p{Other_Uppercase} = [\p{Uppercase} - \p{GC=Lu}]
+\p{Other_ID_Start} = [\p{ID_Start} - [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]]
+\p{Other_ID_Continue} = [\p{ID_Continue} - [\p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]]
 
-$Other_Default_Ignorable_Code_Point = [$Default_Ignorable_Code_Point - [$GC:Cf $Variation_Selector - [$White_Space\uFFF9-\uFFFB]]]
-$Other_Grapheme_Extend = [$Grapheme_Extend - [$GC:Me $GC:Mn]]
+\p{Other_Default_Ignorable_Code_Point} = [\p{Default_Ignorable_Code_Point} - [\p{GC=Cf} \p{Variation_Selector} - [\p{White_Space}\uFFF9-\uFFFB]]]
+\p{Other_Grapheme_Extend} = [\p{Grapheme_Extend} - [\p{GC=Me} \p{GC=Mn}]]
 
 ##########################
 # POSIX Compatibility Properties (UTS#18)
@@ -292,59 +324,59 @@ Let $strange = [\u24B6-\u24E9]
 
 # UTS Rules
 
-Let $alpha = [$Alphabetic $strange] # $Uppercase $ZWNJ $ZWJ]
-Let $lower = $Lowercase 
-Let $upper = [$Uppercase]
+Let $alpha = [\p{Alphabetic} $strange] # \p{Uppercase} $ZWNJ $ZWJ]
+Let $lower = \p{Lowercase} 
+Let $upper = [\p{Uppercase}]
 Let $punct = [$gcAllPunctuation $gcAllSymbols - $alpha]
-Let $digit = $gc:Decimal_Number 
-Let $xdigit = [$gc:Decimal_Number $Hex_Digit] # in both!
+Let $digit = \p{gc=Decimal_Number} 
+Let $xdigit = [\p{gc=Decimal_Number} \p{Hex_Digit}] # in both!
 Let $alnum = [$alpha $digit]
-Let $space = $Whitespace 
-Let $blank = [$Whitespace - [$LF $VTAB $FF $CR $NEL $gc:Line_Separator $gc:Paragraph_Separator]]
-Let $cntrl = $gc:Control 
-Let $graph = [^$space $gc:Control $gc:Surrogate $gc:Unassigned] # $ZWNJ $ZWJ]
+Let $space = \p{Whitespace} 
+Let $blank = [\p{Whitespace} - [$LF $VTAB $FF $CR $NEL \p{gc=Line_Separator} \p{gc=Paragraph_Separator}]]
+Let $cntrl = \p{gc=Control} 
+Let $graph = [^$space \p{gc=Control} \p{gc=Surrogate} \p{gc=Unassigned}] # $ZWNJ $ZWJ]
 Let $print = [$graph $blank - $cntrl]
-Let $word = [$alpha $gcAllMarks $digit $gc:Connector_Punctuation] 
+Let $word = [$alpha $gcAllMarks $digit \p{gc=Connector_Punctuation}] 
 
 # ===========================
 
 # POSIX locale definition file constraints
 
-$upper ! [$cntrl $digit $punct $space]
-$upper ≥ [A-Z]
+$upper ∥ [$cntrl $digit $punct $space]
+$upper ⊇ [A-Z]
 
-$lower ! [$cntrl $digit $punct $space]
-$lower ≥ [a-z]
+$lower ∥ [$cntrl $digit $punct $space]
+$lower ⊇ [a-z]
 
-$alpha ! [$cntrl $digit $punct $space]
-$alpha ≥ [$lower $upper]
+$alpha ∥ [$cntrl $digit $punct $space]
+$alpha ⊇ [$lower $upper]
 
-$digit ≥ [0-9]
+$digit ⊇ [0-9]
 
 $alnum = [$alpha $digit]
 
-$space ! [$upper $lower $alpha $digit $graph $xdigit]
-$space ≥ [$SP $FF $LF $CR] # $TAB $VTAB $NEL]
-$space ≥ $blank
+$space ∥ [$upper $lower $alpha $digit $graph $xdigit]
+$space ⊇ [$SP $FF $LF $CR] # $TAB $VTAB $NEL]
+$space ⊇ $blank
 
-$cntrl ! [$upper $lower $alpha $digit $punct $graph $print $xdigit]
+$cntrl ∥ [$upper $lower $alpha $digit $punct $graph $print $xdigit]
 
-$punct ! [$upper $lower $alpha $digit $cntrl $xdigit $SP]
+$punct ∥ [$upper $lower $alpha $digit $cntrl $xdigit $SP]
 
-$graph ≥ [$upper $lower $alpha $digit $xdigit $punct]
-$graph ! [$SP $cntrl]
+$graph ⊇ [$upper $lower $alpha $digit $xdigit $punct]
+$graph ∥ [$SP $cntrl]
 
-$print ≥ [$upper $lower $alpha $digit $xdigit $punct $graph $SP]
-$print ! $cntrl
+$print ⊇ [$upper $lower $alpha $digit $xdigit $punct $graph $SP]
+$print ∥ $cntrl
 
-$xdigit ≥ [$digit [a-f A-F]]
+$xdigit ⊇ [$digit [a-f A-F]]
 
-$blank ≥ [$SP $TAB]
+$blank ⊇ [$SP $TAB]
 
 # Extra POSIX 'POSIX locale' constraints
 
-$cntrl ≥  [\u0000-\u001F]
+$cntrl ⊇  [\u0000-\u001F]
 
-$punct  ≥ [[\u0021-\u007E] - [0-9 A-Z a-z]]
+$punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 
-[$alpha $lower $upper $punct $digit $xdigit $alnum $space $blank $cntrl $graph $print $word] = [^$gc:unassigned $gc:surrogate]
+[$alpha $lower $upper $punct $digit $xdigit $alnum $space $blank $cntrl $graph $print $word] = [^\p{gc=unassigned} \p{gc=surrogate}]

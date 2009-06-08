@@ -123,15 +123,19 @@ public class BidiConformanceTestBuilder {
     int totalCount = 0;
     for (String reorderedIndexes : resultToSource.keySet()) {
       out.println();
-      out.println("@Result:\t" + reorderedIndexes);
+      String[] parts = reorderedIndexes.split(";");
+      out.println("@Levels:\t" + parts[0].trim());
+      out.println("@Reorder:\t" + (parts.length < 2 ? "" : parts[1].trim()));
       int count = 0;
       for (String sources : resultToSource.get(reorderedIndexes)) {
         out.println(sources);
         ++totalCount;
         ++count;
       }
+      out.println();
       out.println("#Count:\t" + count);
     }
+    out.println();
     out.println("#Total Count:\t" + totalCount);
     System.out.println("#Total Count:\t" + totalCount);
     System.out.println("#Max Length:\t" + MAX_SIZE);
@@ -149,10 +153,22 @@ public class BidiConformanceTestBuilder {
   }
 
   private static String reorderedIndexes(byte[] types, byte paragraphEmbeddingLevel, int[] linebreaks) {
+    
+    StringBuilder result = new StringBuilder();
     BidiReference bidi = new BidiReference(types, paragraphEmbeddingLevel);
+    
+    byte[] levels = bidi.getLevels(linebreaks);
+    for (int i = 0; i < levels.length; ++i) {
+      if (SKIPS.get(types[i])) {
+        result.append(" x");
+      } else {
+        result.append(' ').append(levels[i]);
+      }
+    }
+    result.append(";");
+    
     int[] reordering = bidi.getReordering(linebreaks);
 
-    StringBuilder result = new StringBuilder();
     int lastItem = -1;
     boolean LTR = true;
 
