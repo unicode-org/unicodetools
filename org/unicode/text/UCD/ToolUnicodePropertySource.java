@@ -1293,6 +1293,7 @@ isTitlecase(X) is false.
 
     SimpleBinaryProperty(String name, String shortName, String version, UnicodeSet items) {
       this.items = items;
+      setValues(LONG_YES_NO, YES_NO).swapFirst2ValueAliases();
       setMain(name, shortName, UnicodeProperty.BINARY, version);
     }
 
@@ -1306,6 +1307,7 @@ isTitlecase(X) is false.
 
     SimpleIsProperty(String name, String shortName, String version, UnicodeProperty property) {
       this.property = property;
+      setValues(LONG_YES_NO, YES_NO).swapFirst2ValueAliases();
       setMain(name, shortName, UnicodeProperty.BINARY, version);
     }
 
