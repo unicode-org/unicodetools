@@ -7,11 +7,9 @@
 ##########################
 # Let <$variable> = <value>
 #  Assign a variable to a value. The variable must start with $.
-#
 ##########################
 # Show <unicodeSet>
 #  List any set on the console, for viewing and debugging. For <unicodeSet> see below.
-#
 ##########################
 # <unicodeSet> is a boolean combinations of properties and character ranges, as defined in LDML, 
 #  with the following extensions.
@@ -34,7 +32,6 @@
 # If the propertyValue is missing, it is defaulted to true
 # If the value is of the form /.../, then the ... is interpreted as a regular expression
 # The value (if enumerated) can be the short or long form as in PropertyValueAliases.txt
-#
 ##########################
 # Test <unicodeSet> <relation> <unicodeSet>
 #
@@ -52,52 +49,13 @@
 # to indicate the location of an error in the input line.
 #
 # If there is an error in the test, a comparison listing of the two sides of the relation is generated.
-#
-
 ##########################
 # General Constants
 ##########################
 
-Let $gcAllPunctuation = [\p{gc=Open_Punctuation} \p{gc=Close_Punctuation} \p{gc=Dash_Punctuation} \p{gc=Connector_Punctuation} \p{gc=Other_Punctuation} \p{gc=Initial_Punctuation} \p{gc=Final_Punctuation}]
-Let $gcAllSymbols = [\p{gc=Currency_Symbol} \p{gc=Modifier_Symbol} \p{gc=Math_Symbol} \p{gc=Other_Symbol}]
-Let $gcAllMarks = [\p{gc=Nonspacing_Mark} \p{gc=Enclosing_Mark} \p{gc=Spacing_Mark}]
-
-$gcAllPunctuation = \p{gc=/_Punctuation/}
-$gcAllSymbols = \p{gc=/_Symbols/}
-$gcAllMarks = \p{gc=/_Mark/}
-
-##### EXAMPLES OF USAGE #####
-
-# Show the current unassigned, minus last version's unassigned, minus the characters with no decomposition type
-# Show [[^\p{gc=unassigned}]-[^\p{U-1:gc=unassigned}]-[^\p{dt=none}]]
-
-# Test that the Zs characters are disjoint with the Zp characters
-# \p{GC=Zs} ∥ \p{GC=Zp}
-
-# Test that the EA Neutral characters have no containment relation
-# \p{East_Asian_Width=Neutral} ≉ \p{GC=Uppercase_Letter}
-
-# Test that the common characters are disjoint with alphabetic minus math
-# \p{Script=Common} ∥ [\p{Alphabetic} - \p{Math}]
-
-# \p{Pattern_Whitespace} = [\p{Whitespace} \u200E \u200F]
-# \p{Pattern_Syntax} = [\p{gcAllSymbols} \p{gcAllPunctuation} [\u2190-\u2BFF\u2e00-\u2e7F]]
-# \p{Pattern_Syntax} ∥ \p{Alphabetic}
-# \p{Pattern_Syntax} ∥ \p{ID_Continue}
-
-# [\p{script=greek}&\p{gc=/(?i)letter/}] = [;\u00B5\u00B7\u00C4\u00CB\u00CF\u00D6\u00DC\u00E4\u00EB\u00EF\u00F6\u00FC\u00FF-\u0101\u0112-\u0113\u012A-\u012B\u014C-\u014D\u016A-\u016B\u0178\u01D5-\u01DC\u01DE-\u01E3\u01EC-\u01ED\u022A-\u022D\u0230-\u0233\u0304\u0308\u0313-\u0314\u0342-\u0345\u037A\u037E\u0386-\u038A\u038C\u038E-\u03A1\u03A3-\u03CE\u03D0-\u03D7\u03DB\u03DD\u03DF\u03E1\u03E3\u03E5\u03E7\u03E9\u03EB\u03ED\u03EF-\u03F5\u0401\u0407\u0451\u0457\u04D2-\u04D3\u04DA-\u04DF\u04E2-\u04E7\u04EA-\u04F1\u04F4-\u04F5\u04F8-\u04F9\u1E14-\u1E17\u1E20-\u1E21\u1E26-\u1E27\u1E2E-\u1E2F\u1E38-\u1E39\u1E4E-\u1E53\u1E5C-\u1E5D\u1E7A-\u1E7B\u1E84-\u1E85\u1E8C-\u1E8D\u1E97\u1F00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC1-\u1FC4\u1FC6-\u1FCC\u1FCF-\u1FD3\u1FD6-\u1FDB\u1FDF-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2126]
-
-# \p{script=greek} = \p{U-1:script=greek}
-# \p{gc=lm} = \p{script=inherited}
-
-# Examples of parsing errors
-
-# \p{LBA=Neutral} =  \p{GC=Zp} # example of non-existant property
-# \p{LB=foo} =  \p{GC=Zp} # example of non-existant value
-# \p{GC=Zs} @ \p{GC=Zp} # example of unknown relation
-
-#### REAL INVARIANTS FOLLOW ####
-
+Let $gcAllPunctuation = \p{gc=/_Punctuation/}
+Let $gcAllSymbols = \p{gc=/_Symbol/}
+Let $gcAllMarks = \p{gc=/_Mark/}
 
 ##########################
 # Stability
@@ -132,8 +90,8 @@ $gcAllMarks = \p{gc=/_Mark/}
 \p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
 
 # Musical symbol combining marks, other oddities
+
 Let $AlphaExclusions = [\U0001D165-\U0001D166 \U0001D16D-\U0001D172 \u0F3E-\u0F3F \u1063-\u1064 \u1069-\u106D \u1087-\u108C \u108F \u1B44 \u1BAA \uA953]
-Show $AlphaExclusions
 
 \p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
 
@@ -171,7 +129,8 @@ Show $AlphaExclusions
 
 # Decimals are 0-9
 
-Let $decimalValue = \p{Numeric_Value=/[0-9]+(.0)?/}
+Let $decimalValue = [\p{Numeric_Value=/[0-9]+(.0)?/}]
+
 $decimalValue ⊇ \p{General_Category=Decimal_Number}
 
 # All and only those items with numeric types have numeric values
@@ -191,20 +150,24 @@ Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
 ##########################
 
 # Identifiers must be backwards compatible
+
 \p{ID_Start} ⊇ \p{U-1:ID_Start}
 \p{ID_Continue} ⊇ \p{U-1:ID_Continue}
 \p{XID_Start} ⊇ \p{U-1:XID_Start}
 \p{XID_Continue} ⊇ \p{U-1:XID_Continue}
 
 # Continue must contain start
+
 \p{ID_Continue} ⊇ \p{ID_Start}
 \p{XID_Continue} ⊇ \p{XID_Start}
 
 # The X versions are subsets of the the plain versions
+
 \p{ID_Continue} ⊇ \p{XID_Continue}
 \p{ID_Start} ⊇ \p{XID_Start}
 
 # Identifiers can't intersect pattern stuff
+
 \p{ID_Continue} ∥ [\p{Pattern_Whitespace} \p{Pattern_Syntax}]
 \p{Pattern_Whitespace} ∥ [\p{ID_Continue} \p{Pattern_Syntax}]
 \p{Pattern_Syntax} ∥ [\p{ID_Continue} \p{Pattern_Whitespace}]
@@ -213,28 +176,27 @@ Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
 \p{Pattern_Whitespace} ∥ [\p{XID_Continue} \p{Pattern_Syntax}]
 \p{Pattern_Syntax} ∥ [\p{XID_Continue} \p{Pattern_Whitespace}]
 
-
-
 ##########################
 # LineBreak property
 ##########################
 
 \p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse}]
-Let $OPInclusions = [\u00A1 \u00BF \u2E18]
-Let $NUInclusions = [\u066B\u066C]
-Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213]
 
+Let $OPInclusions = [\u00A1 \u00BF \u2E18]
 \p{LB=OP} = [\p{GC=Ps} $OPInclusions]
 \p{LB=CL} ⊃ \p{GC=Pe}
 \p{LB=CM} = [\p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL}]
+Let $NUInclusions = [\u066B\u066C]
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions - \p{EA=F} ]
-\p{LB=PR} = [\p{GC=Sc} - \p{LB=PO} ]
-\p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} \u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
+Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213]
+\p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO} ]
+Let $QUInclusions = [\u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
+\p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} $QUInclusions]
 \p{LB=SG} = \p{GC=Cs}
-\p{LB=SP} = [\u0020]
-\p{LB=SY} = [\u002F]
-\p{LB=WJ} = [\u2060\uFEFF]
-\p{LB=ZW} = [\u200B]
+\p{LB=SP} = \N{SPACE} # [\u0020]
+\p{LB=SY} = \N{SOLIDUS} # [\u002F]
+\p{LB=WJ} = [\N{WORD JOINER} \N{ZERO WIDTH NO-BREAK SPACE}] # [\u2060\uFEFF]
+\p{LB=ZW} = \N{ZERO WIDTH SPACE} # [\u200B]
 
 # SA are limited to certain scripts:
 Let $SAScripts = [\p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue}]
@@ -242,7 +204,6 @@ $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in those scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn
 Let $SAScriptExceptions = [\u19DE \u19DF \u1063-\u1064 \u1069-\u106D \u1087-\u108C \u108F \u109E-\u109F]
-Show $SAScriptExceptions
 
 [$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
 
@@ -263,7 +224,7 @@ Let $AL_blocks = [\u0600-\u07BF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF]
 # and anything R or L is in the block (or RLM)
 $R_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=AL}]
 $AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
-[$R_blocks $AL_blocks \u200F] ⊇ [\p{Bidi_Class=AL} \p{Bidi_Class=R}]
+[$R_blocks $AL_blocks \N{RIGHT-TO-LEFT MARK}] ⊇ [\p{Bidi_Class=AL} \p{Bidi_Class=R}] #200f
 
 ##########################
 # Derivations
@@ -275,7 +236,10 @@ $AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
 \p{Uppercase} = [\p{Other_Uppercase} \p{GC=Lu}]
 \p{ID_Start} = [\p{Other_ID_Start} \p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]
 \p{ID_Continue} = [\p{Other_ID_Continue} \p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}] 
-\p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space}\uFFF9-\uFFFB\u0600-\u0603\u06DD\u070F]]
+
+Let $DIExclusions = [\uFFF9-\uFFFB\u0600-\u0603\u06DD\u070F]
+
+\p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $DIExclusions]]
 
 \p{Grapheme_Extend} = [\p{Other_Grapheme_Extend} \p{GC=Me} \p{GC=Mn}]
 
@@ -292,7 +256,9 @@ $AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
 \p{Other_ID_Start} = [\p{ID_Start} - [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]]
 \p{Other_ID_Continue} = [\p{ID_Continue} - [\p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]]
 
-\p{Other_Default_Ignorable_Code_Point} = [\p{Default_Ignorable_Code_Point} - [\p{GC=Cf} \p{Variation_Selector} - [\p{White_Space}\uFFF9-\uFFFB]]]
+Let $Annotations = [\uFFF9-\uFFFB]
+
+\p{Other_Default_Ignorable_Code_Point} = [\p{Default_Ignorable_Code_Point} - [\p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $Annotations]]]
 \p{Other_Grapheme_Extend} = [\p{Grapheme_Extend} - [\p{GC=Me} \p{GC=Mn}]]
 
 ##########################
@@ -309,10 +275,10 @@ Let $VTAB = [\u000B]	# [\N{LINE TABULATION}]
 Let $FF = [\u000C]	# [\N{formfeed}]
 Let $CR = [\u000D]	# \N{carriage return}
 Let $NEL = [\u0085]	# \N{next line}
-Let $ZWNJ = [\u200C]	# [\N{ZERO WIDTH NON-JOINER}]
-Let $ZWJ = [\u200D]	# [\N{ZERO WIDTH JOINER}]
+#Let $ZWNJ = [\u200C]	# [\N{ZERO WIDTH NON-JOINER}]
+#Let $ZWJ = [\u200D]	# [\N{ZERO WIDTH JOINER}]
 
-Let $strange = [\u24B6-\u24E9]
+Let $CircledAsciiLetters = [\u24B6-\u24E9]
 
 # Unassigned, Control, Format, Private_Use, Surrogate, 
 # Uppercase_Letter, Lowercase_Letter, Titlecase_Letter, Modifier_Letter, Other_Letter,
@@ -324,7 +290,7 @@ Let $strange = [\u24B6-\u24E9]
 
 # UTS Rules
 
-Let $alpha = [\p{Alphabetic} $strange] # \p{Uppercase} $ZWNJ $ZWJ]
+Let $alpha = [\p{Alphabetic} $CircledAsciiLetters] # \p{Uppercase} $ZWNJ $ZWJ]
 Let $lower = \p{Lowercase} 
 Let $upper = [\p{Uppercase}]
 Let $punct = [$gcAllPunctuation $gcAllSymbols - $alpha]
@@ -375,7 +341,9 @@ $blank ⊇ [$SP $TAB]
 
 # Extra POSIX 'POSIX locale' constraints
 
-$cntrl ⊇  [\u0000-\u001F]
+Let $C0Controls = [\u0000-\u001F]
+
+$cntrl ⊇  $C0Controls
 
 $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 
