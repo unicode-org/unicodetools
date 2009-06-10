@@ -73,6 +73,22 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     // first the special cases
     if (DEBUG)
       System.out.println("Adding Simple Cases");
+    
+//    add(new UnicodeProperty.SimpleProperty() {
+//      public String _getValue(int codepoint) {
+//        if (!nfc.isNormalized(codepoint))
+//          return "No";
+//        else if (nfc.isTrailing(codepoint))
+//          return "Maybe";
+//        else
+//          return "Yes";
+//      }
+//
+//      public int getMaxWidth(boolean isShort) {
+//        return 15;
+//      }
+//    }.setMain("NFC", null, UnicodeProperty.STRING, version));
+
 
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
