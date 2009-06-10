@@ -2,15 +2,12 @@
 #
 # This file provides a set of machine-readable invariance tests for Unicode Properties.
 #
+##########################
 # Format
-#
 ##########################
-# Let <$variable> = <value>
+# Let <$variable> = <unicodeSet>
 #  Assign a variable to a value. The variable must start with $.
-##########################
-# Show <unicodeSet>
-#  List any set on the console, for viewing and debugging. For <unicodeSet> see below.
-##########################
+#
 # <unicodeSet> is a boolean combinations of properties and character ranges, as defined in LDML, 
 #  with the following extensions.
 #
@@ -18,20 +15,20 @@
 #   [\p{General_Category=Unassigned}-[a-zA-Z]]
 #
 # Property Name:
+#   <propertyName> can be the short or long form as in the PropertyAliases.txt
+#   <propertyName> can be prefixed with "U<version>:"
+#   A version of -1 indicates that the property is the previous released version.
+#   That is, if the version is 4.0.1, then the U-1 version is 4.0.0
 #
-# <propertyName> can be the short or long form as in the PropertyAliases.txt
-#
-# <propertyName> can be prefixed with "U<version>:"
-#   Examples: U5.1:Whitespace
-#
-# A version of -1 indicates that the property is the previous released version.
-#  That is, if the version is 4.0.1, then the U-1 version is 4.0.0
+#   Example: U5.1:Whitespace
 #
 # Property Value:
-#
-# If the propertyValue is missing, it is defaulted to true
-# If the value is of the form /.../, then the ... is interpreted as a regular expression
-# The value (if enumerated) can be the short or long form as in PropertyValueAliases.txt
+#   If the propertyValue is missing, it is defaulted to true
+#   If the value is of the form /.../, then the ... is interpreted as a regular expression
+#   The value (if enumerated) can be the short or long form as in PropertyValueAliases.txt
+##########################
+# Show <unicodeSet>
+#  List any set on the console, for viewing and debugging.
 ##########################
 # Test <unicodeSet> <relation> <unicodeSet>
 #
@@ -50,6 +47,31 @@
 #
 # If there is an error in the test, a comparison listing of the two sides of the relation is generated.
 ##########################
+# In <unicodeSet> <props> (=|≠) <props>
+#
+# For each character in <unicodeSet>, verify that the result of applying the left <props>
+# is (=|≠) the result of applying the right <props>.
+#   <props> is of the form (<unicodeSet> | <prop>) ("*" (<unicodeSet> | <prop>))?
+#   It is the functional composition of the properties applied to strings, whereby
+#   <unicodeSet> is used to filter the result.
+#   <prop> for a string property is applied to each character, and the result concatenated
+#       That is, cf("A1") is cf("A")+cf("1") = "a1"
+#   <prop> for an enumerated property, is applied to each character, and the result is a concatenated set.
+#       That is, gc("A1") is gc("A")+gc("1") = "Uppercase_LetterDecimal_Number"
+#
+#   Example: for <props> of bc * \P{bc=NSM} * cf * dm, the result applied to Å (angstrom sign) are:
+#       bc * \P{bc=NSM} * cf * dm ("Å")
+#       bc * \P{bc=NSM} * cf ("A" + umlaut)
+#       bc * \P{bc=NSM} ("a" + umlaut)
+#       bc ("a")
+#       "Left"
+#
+#   Example: In \p{dt=canonical} bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
+#       This examines only those characters that have canonical compositions. For each such character X
+#       it gets the decomposition mapping of X, then filters out all NSM characters, then gets the Bidi_Class.
+#       It then tests that against the result of filtering out NSM characters from X, then getting the BIDI_Class.
+#
+##########################
 # General Constants
 ##########################
 
@@ -58,54 +80,227 @@ Let $gcAllSymbols = \p{gc=/_Symbol/}
 Let $gcAllMarks = \p{gc=/_Mark/}
 
 ##########################
-# Stability
+# Main Stability Policies 
+#   http://www.unicode.org/policies/property_value_stability_table.html
 ##########################
 
-# Once assigned, always assigned
+# TODO: Formal Name Alias Stability, Named Character Sequence Stability, Name Uniqueness, 
+# TODO: Identity Stability, Property Stability, Alias Stability, Property Alias Uniqueness
 
+# Encoding Stability: Once a character is encoded, it will not be moved or removed.
 \p{GC=unassigned} ⊆ \p{U-1:GC=unassigned}
 
-# The General_Category property value Control (Cc) is immutable: the set of code points with that value will never change.
+# Name Stability: The Unicode Name property value for any non-reserved code point will not be changed. In particular, once a character is encoded, its name will not be changed.
+In \P{U-1:GC=Cn} name=U-1:name
 
-\p{GC=Cc} = \p{U-1:GC=Cc}
+# Formal Name Alias Stability
+# TODO
+
+# Named Character Sequence Stability
+# TODO
+
+# Name Uniqueness
+# TODO
+
+# Strong Normalization Stability (decomposition mapping, Canonical Combining Class don't change)
+# In Property Section
+
+# Identity Stability
+# Can't be tested
+
+# Property Stability: Normative and informative properties, once defined in the Unicode Character Database, will never be removed.
+# TODO
     
-# All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
+# Alias Stability: Property aliases and property value aliases, once defined in the Unicode Character Database, will never be removed.
+# TODO
 
-\p{CCC=0} ⊇ [^ \p{GC=Mc} \p{GC=Mn}]
+# Property Alias Uniqueness: All property aliases constitute a single namespace. Property aliases are guaranteed to be unique within this namespace. For each property, all of its property value aliases constitute a separate namespace, one per property. Within each of these property value alias namespaces, property value aliases are guaranteed to be unique.
+# TODO
 
-# The General_Category property value Private_Use (Co) is immutable: the set of code points with that value will never change.
+# Identifier Stability: All strings that are valid default Unicode identifiers will continue to be valid default Unicode identifiers in all subsequent versions of Unicode. Furthermore, default identifiers never contain characters with the Pattern_Syntax or Pattern_White_Space properties.
+# Covered in Property Stability Section
 
+# Case Folding Stability: Caseless matching of Unicode strings used for identifiers is stable.
+# TODO
+
+# Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
+# TODO
+
+##########################
+# Property Stability Policies
+#   http://www.unicode.org/policies/property_value_stability_table.html
+##########################
+
+##########################
+# BIDI
+##########################
+
+# Stability: The Bidi_Class property values will not be further subdivided. 
+\p{bc=/^(AL|AN|B|BN|CS|EN|ES|ET|L|LRE|LRO|NSM|ON|PDF|R|RLE|RLO|S|WS)$/} = [\u0000-\U0010FFFF]
+
+# Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
+# This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
+In \p{dt=canonical} bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
+
+# Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
+# This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
+# There are 5 special cases:
+Let $BMExclusions =[≠ ∤ ∦ ≢ \u2ADC]
+In [\p{dt=canonical}-$BMExclusions] Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
+
+# Additional BIDI invariant constants
+Let $R_blocks = [\u0590-\u05FF \u07C0-\u08FF \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EFFF]
+Let $AL_blocks = [\u0600-\u07BF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF]
+
+# Unassigned characters in these blocks have R or AL respectively
+\p{Bidi_Class=R} ⊇ [$R_blocks & \p{gc=Cn}]
+\p{Bidi_Class=AL} ⊇ [$AL_blocks & \p{gc=Cn}]
+
+# There are no strong characters of the other directionalities (out of L, AL, R) in these blocks, 
+# and anything R or L is in the block (or RLM)
+$R_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=AL}]
+$AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
+[$R_blocks $AL_blocks \N{RIGHT-TO-LEFT MARK}] ⊇ [\p{Bidi_Class=AL} \p{Bidi_Class=R}] #200f
+
+##########################
+# Case
+##########################
+
+# Stability: The Case_Folding property value is limited so that no string when case folded expands to more than 3× in length (measured in code units). 
+# TODO
+
+# Stability: All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property. 
+\p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
+
+##########################
+# General
+##########################
+
+# Stability: The General_Category property values will not be further subdivided. 
+\p{gc=/^(Cc|Cf|Cn|Co|Cs|Ll|Lm|Lo|Lt|Lu|Mc|Me|Mn|Nd|Nl|No|Pc|Pd|Pe|Pf|Pi|Po|Ps|Sc|Sk|Sm|So|Zl|Zp|Zs)$/} = [\u0000-\U0010FFFF]
+
+# Stability: The General_Category property value Control (Cc) is immutable: the set of code points with that value will never change. 
+\p{GC=Cc} = \p{U-1:GC=Cc}
+
+# Stability: The General_Category property value Private_Use (Co) is immutable: the set of code points with that value will never change. 
 \p{GC=Co} = \p{U-1:GC=Co}
 
-# The General_Category property value Surrogate (Cs) is immutable: the set of code points with that value will never change.
-
+# Stability: The General_Category property value Surrogate (Cs) is immutable: the set of code points with that value will never change.  
 \p{GC=Cs} = \p{U-1:GC=Cs}
 
-# The Noncharacter_Code_Point property is an immutable code point property, which means that its property values for all Unicode code points will never change.
+# Stability: The set of characters having General_Category=Nd will always be the same as the set of characters having Numeric_Type=de.
+\p{General_Category=Decimal_Number} = \p{Numeric_Type=Decimal}
 
+# Stability: Once a character is assigned, both its Name and its Jamo_Short_Name will never change. 
+# Name is covered in Main policies
+# TODO: Short Name
+
+# Stability: The Noncharacter_Code_Point property is an immutable code point property, which means that its property values for all Unicode code points will never change.
 \p{NChar} = \p{U-1:NChar}
 
-# All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property .
+##########################
+# Identifier Stability
+##########################
 
-\p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
+# Stability: Once a character is ID_Continue, it must continue to be so in all future versions. 
+\p{ID_Continue} ⊇ \p{U-1:ID_Continue}
+
+# Stability: If a character is ID_Start then it must also be ID_Continue. 
+\p{ID_Continue} ⊇ \p{ID_Start}
+
+# Stability: Once a character is ID_Start, it must continue to be so in all future versions. 
+\p{ID_Start} ⊇ \p{U-1:ID_Start}
+
+# Stability: Once a character is XID_Continue, it must continue to be so in all future versions. 
+\p{XID_Continue} ⊇ \p{U-1:XID_Continue}
+
+# Stability: If a character is XID_Start then it must also be XID_Continue. 
+\p{XID_Continue} ⊇ \p{XID_Start}
+
+# Stability: If a character is XID_Start then it must also be XID_Continue. 
+\p{XID_Start} ⊇ \p{U-1:XID_Start}
+
+# Stability: The Pattern_Syntax and Pattern_Whitespace properties are immutable code point properties, which means that their property values for all Unicode code points will never change.
+\p{Pattern_Whitespace} = \p{U-1:Pattern_Whitespace}
+\p{Pattern_Syntax} = \p{U-1:Pattern_Syntax}
+
+# Stability: If a character has the Pattern_Syntax or Pattern_White_Space property, then it cannot have the ID_Continue or XID_Continue property.
+# (Also tests that Pattern_Syntax is disjoint from Pattern_White_Space)
+
+\p{ID_Continue} ∥ [\p{Pattern_Whitespace} \p{Pattern_Syntax}]
+\p{Pattern_Whitespace} ∥ [\p{ID_Continue} \p{Pattern_Syntax}]
+\p{Pattern_Syntax} ∥ [\p{ID_Continue} \p{Pattern_Whitespace}]
+
+\p{XID_Continue} ∥ [\p{Pattern_Whitespace} \p{Pattern_Syntax}]
+\p{Pattern_Whitespace} ∥ [\p{XID_Continue} \p{Pattern_Syntax}]
+\p{Pattern_Syntax} ∥ [\p{XID_Continue} \p{Pattern_Whitespace}]
+
+# The X versions are subsets of the the plain versions
+# Should add as stability provision
+\p{ID_Continue} ⊇ \p{XID_Continue}
+\p{ID_Start} ⊇ \p{XID_Start}
+
+##########################
+# Normalization
+##########################
+
+# Stability: The Canonical_Combining_Class property values are limited to the values 0 to 255. 
+\p{CCC=/^([0-9][0-9]?|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/} = [\u0000-\U0010FFFF]
+
+# Stability: Once a character is assigned, its Canonical_Combining_Class will never change. 
+In \P{U-1:GC=Cn} ccc=U-1:ccc
+
+# Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability)
+# Should be stability policy
+[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion}] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]
+
+# Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
+\p{CCC=0} ⊇ [^ \p{GC=Mc} \p{GC=Mn}]
+
+# Stability: Canonical and compatibility mappings (Decomposition_Mapping property values) are always in canonical order, and the resulting recursive decomposition will also be in canonical order. 
+# TODO
+
+# Stability: Canonical mappings (Decomposition_Mapping property values) are always limited either to a single value or to a pair. The second character in the pair cannot itself have a canonical mapping. 
+# TODO
+
+# Stability: Canonical mappings (Decomposition_Mapping property values) are always limited so that no string when normalized to NFC expands to more than 3× in length (measured in code units). 
+# TODO
+
+# Stability: Once a character is assigned, its Decomposition_Mapping will never change. 
+In \P{U-1:GC=Cn} dm=U-1:dm
+
+##########################
+# Other Invariant Tests, not in Stability Policies
+##########################
+
+##########################
+# Numbers
+##########################
+
+# Decimals are 0-9
+
+Let $decimalValue = [\p{Numeric_Value=/[0-9]+(.0)?/}]
+
+$decimalValue ⊇ \p{General_Category=Decimal_Number}
+
+# All and only those items with numeric types have numeric values
+
+Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
+[\p{Numeric_Type=Decimal} \p{Numeric_Type=Digit} \p{Numeric_Type=Numeric}] = $anyNumericValue
+
+##########################
+# Misc Properties
+##########################
 
 # Musical symbol combining marks, other oddities
 
-Let $AlphaExclusions = [\U0001D165-\U0001D166 \U0001D16D-\U0001D172 \u0F3E-\u0F3F \u1063-\u1064 \u1069-\u106D \u1087-\u108C \u108F \u1B44 \u1BAA \uA953]
+Let $AlphaExclusions = [\u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1B44\u1BAA\u1CE1\uA953\uA9C0\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172]
 
 \p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
 
 # Show [\p{GC=Mc} - \p{alphabetic}]
 # Show [\p{GC=Mc} & \p{alphabetic}]
 
-# The Pattern_Syntax and Pattern_Whitespace properties are immutable code point properties, which means that their property values for all Unicode code points will never change.
-
-\p{Pattern_Whitespace} = \p{U-1:Pattern_Whitespace}
-\p{Pattern_Syntax} = \p{U-1:Pattern_Syntax}
-
-##########################
-# Misc Properties
-##########################
 
 \p{Whitespace} ⊃ [\p{GC=Zs} \p{GC=Zp} \p{GC=Zl}]
 \p{GC=Zs} ≉ \p{Name=/SPACE/}
@@ -120,111 +315,40 @@ Let $AlphaExclusions = [\U0001D165-\U0001D166 \U0001D16D-\U0001D172 \u0F3E-\u0F3
 #  & [\p{Decomposition_Type=None} \p{Decomposition_Type=Canonical}]
 
 ##########################
-# Numbers
-##########################
-
-# Numbers: the following must be equal
-
-\p{General_Category=Decimal_Number} = \p{Numeric_Type=Decimal}
-
-# Decimals are 0-9
-
-Let $decimalValue = [\p{Numeric_Value=/[0-9]+(.0)?/}]
-
-$decimalValue ⊇ \p{General_Category=Decimal_Number}
-
-# All and only those items with numeric types have numeric values
-
-Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
-[\p{Numeric_Type=Decimal} \p{Numeric_Type=Digit} \p{Numeric_Type=Numeric}] = $anyNumericValue
-
-##########################
-# Decompositions
-##########################
-
-# Canonical decompositions (minus exclusions) must be identical across releases
-[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion}] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]
-
-##########################
-# Identifiers
-##########################
-
-# Identifiers must be backwards compatible
-
-\p{ID_Start} ⊇ \p{U-1:ID_Start}
-\p{ID_Continue} ⊇ \p{U-1:ID_Continue}
-\p{XID_Start} ⊇ \p{U-1:XID_Start}
-\p{XID_Continue} ⊇ \p{U-1:XID_Continue}
-
-# Continue must contain start
-
-\p{ID_Continue} ⊇ \p{ID_Start}
-\p{XID_Continue} ⊇ \p{XID_Start}
-
-# The X versions are subsets of the the plain versions
-
-\p{ID_Continue} ⊇ \p{XID_Continue}
-\p{ID_Start} ⊇ \p{XID_Start}
-
-# Identifiers can't intersect pattern stuff
-
-\p{ID_Continue} ∥ [\p{Pattern_Whitespace} \p{Pattern_Syntax}]
-\p{Pattern_Whitespace} ∥ [\p{ID_Continue} \p{Pattern_Syntax}]
-\p{Pattern_Syntax} ∥ [\p{ID_Continue} \p{Pattern_Whitespace}]
-
-\p{XID_Continue} ∥ [\p{Pattern_Whitespace} \p{Pattern_Syntax}]
-\p{Pattern_Whitespace} ∥ [\p{XID_Continue} \p{Pattern_Syntax}]
-\p{Pattern_Syntax} ∥ [\p{XID_Continue} \p{Pattern_Whitespace}]
-
-##########################
 # LineBreak property
 ##########################
 
-\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse}]
+Let $IDInclusions = [[:block=/Ideographs/:][\U00020000-\U0003FFFF] & [:gc=Cn:] - [:NChar:]]
+\p{LB=ID} ⊃ $IDInclusions
+\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions]
 
-Let $OPInclusions = [\u00A1 \u00BF \u2E18]
+Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379]
 \p{LB=OP} = [\p{GC=Ps} $OPInclusions]
 \p{LB=CL} ⊃ \p{GC=Pe}
 \p{LB=CM} = [\p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL}]
+
 Let $NUInclusions = [\u066B\u066C]
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions - \p{EA=F} ]
+
 Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213]
 \p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO} ]
+
 Let $QUInclusions = [\u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
 \p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} $QUInclusions]
 \p{LB=SG} = \p{GC=Cs}
-\p{LB=SP} = \N{SPACE} # [\u0020]
-\p{LB=SY} = \N{SOLIDUS} # [\u002F]
-\p{LB=WJ} = [\N{WORD JOINER} \N{ZERO WIDTH NO-BREAK SPACE}] # [\u2060\uFEFF]
-\p{LB=ZW} = \N{ZERO WIDTH SPACE} # [\u200B]
+\p{LB=SP} = \N{SPACE}
+\p{LB=SY} = \N{SOLIDUS}
+\p{LB=WJ} = [\N{WORD JOINER} \N{ZERO WIDTH NO-BREAK SPACE}]
+\p{LB=ZW} = \N{ZERO WIDTH SPACE}
 
 # SA are limited to certain scripts:
-Let $SAScripts = [\p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue}]
+Let $SAScripts = [\p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet}]
 $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in those scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn
-Let $SAScriptExceptions = [\u19DE \u19DF \u1063-\u1064 \u1069-\u106D \u1087-\u108C \u108F \u109E-\u109F]
+Let $SAScriptExceptions = [\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAA7B\uAADB-\uAADF]
 
 [$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
-
-##########################
-# BIDI
-##########################
-
-
-#BIDI invariant constants
-Let $R_blocks = [\u0590-\u05FF \u07C0-\u08FF \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EFFF]
-Let $AL_blocks = [\u0600-\u07BF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF]
-
-#Unassigned characters in these blocks have R or AL respectively
-\p{Bidi_Class=R} ⊇ [$R_blocks & \p{gc=Cn}]
-\p{Bidi_Class=AL} ⊇ [$AL_blocks & \p{gc=Cn}]
-
-# There are no strong characters of the other directionalities (out of L, AL, R) in these blocks, 
-# and anything R or L is in the block (or RLM)
-$R_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=AL}]
-$AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
-[$R_blocks $AL_blocks \N{RIGHT-TO-LEFT MARK}] ⊇ [\p{Bidi_Class=AL} \p{Bidi_Class=R}] #200f
 
 ##########################
 # Derivations
@@ -237,7 +361,7 @@ $AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
 \p{ID_Start} = [\p{Other_ID_Start} \p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]
 \p{ID_Continue} = [\p{Other_ID_Continue} \p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}] 
 
-Let $DIExclusions = [\uFFF9-\uFFFB\u0600-\u0603\u06DD\u070F]
+Let $DIExclusions = [\u0600-\u0603\u06DD\u070F\uFFF9-\uFFFB\U000110BD]
 
 \p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $DIExclusions]]
 
@@ -290,7 +414,7 @@ Let $CircledAsciiLetters = [\u24B6-\u24E9]
 
 # UTS Rules
 
-Let $alpha = [\p{Alphabetic} $CircledAsciiLetters] # \p{Uppercase} $ZWNJ $ZWJ]
+Let $alpha = [\p{Alphabetic} $CircledAsciiLetters]
 Let $lower = \p{Lowercase} 
 Let $upper = [\p{Uppercase}]
 Let $punct = [$gcAllPunctuation $gcAllSymbols - $alpha]
@@ -300,7 +424,7 @@ Let $alnum = [$alpha $digit]
 Let $space = \p{Whitespace} 
 Let $blank = [\p{Whitespace} - [$LF $VTAB $FF $CR $NEL \p{gc=Line_Separator} \p{gc=Paragraph_Separator}]]
 Let $cntrl = \p{gc=Control} 
-Let $graph = [^$space \p{gc=Control} \p{gc=Surrogate} \p{gc=Unassigned}] # $ZWNJ $ZWJ]
+Let $graph = [^$space \p{gc=Control} \p{gc=Surrogate} \p{gc=Unassigned}]
 Let $print = [$graph $blank - $cntrl]
 Let $word = [$alpha $gcAllMarks $digit \p{gc=Connector_Punctuation}] 
 

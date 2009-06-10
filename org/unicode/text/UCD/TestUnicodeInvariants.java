@@ -5,14 +5,25 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.ParseException;
 import java.text.ParsePosition;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.unicode.text.UCD.TestUnicodeInvariants.CompoundProperty.FilterOrProp;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.ICUPropertyFactory;
 import com.ibm.icu.dev.test.util.Tabber;
+import com.ibm.icu.dev.test.util.UnicodeLabel;
+import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.test.util.Tabber.HTMLTabber;
+import com.ibm.icu.dev.test.util.UnicodeProperty.Factory;
 import com.ibm.icu.dev.test.util.UnicodeProperty.PatternMatcher;
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.lang.UCharacter;
@@ -20,12 +31,15 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
 
 public class TestUnicodeInvariants {
 
+  private static final Pattern IN_PATTERN = Pattern.compile("(.*)([≠=])(.*)");
+  private static final boolean ICU_VERSION = false; // ignore the versions if this is true
   private static final String LATEST_VERSION = "5.2.0"; // UCD.latestVersion;
+  private static final Factory LATEST_PROPS = getProperties(LATEST_VERSION);
   private static final String LAST_VERSION = "5.1.0"; // UCD.lastVersion;
-  private static final boolean ICU_VERSION = false; // ignore the above if this is true
   private static int showRangeLimit = 20;
   static boolean doHtml = true;
 
@@ -84,6 +98,7 @@ public class TestUnicodeInvariants {
   enum Expected {empty, not_empty, irrelevant};
 
   static final UnicodeSet INVARIANT_RELATIONS = new UnicodeSet("[=\u2282\u2283\u2286\u2287∥≉]");
+  static final ParsePosition pp = new ParsePosition(0);
 
   public static void testInvariants(String outputFile, boolean doRange) throws IOException {
     boolean showScript = false;
@@ -99,33 +114,38 @@ public class TestUnicodeInvariants {
       out.write('\uFEFF'); // BOM
     }
     BufferedReader in = BagFormatter.openUTF8Reader("org/unicode/text/UCD/", outputFile);
+    final HTMLTabber tabber = new Tabber.HTMLTabber();
 
     errorLister = new BagFormatter()
     .setMergeRanges(doRange)
     .setLabelSource(null)
-    .setUnicodePropertyFactory(ToolUnicodePropertySource.make(LATEST_VERSION))
+    .setUnicodePropertyFactory(LATEST_PROPS)
     .setTableHtml("<table class='e'>")
-    .setShowLiteral(toHTML);
+    .setShowLiteral(toHTML)
+    .setFixName(toHTML);
     errorLister.setShowTotal(false);
-    if (doHtml) errorLister.setTabber(new Tabber.HTMLTabber());
+    if (doHtml) {
+      errorLister.setTabber(tabber);
+    }
 
     showLister = new BagFormatter()
     .setMergeRanges(doRange)
-    .setLabelSource(null)
-    .setUnicodePropertyFactory(ToolUnicodePropertySource.make(LATEST_VERSION))
+    //.setLabelSource(null)
+    .setUnicodePropertyFactory(LATEST_PROPS)
     .setTableHtml("<table class='s'>")
     .setShowLiteral(toHTML);
     showLister.setShowTotal(false);
     if (showScript) {
-      showLister.setValueSource(ToolUnicodePropertySource.make(LATEST_VERSION).getProperty("script"));
+      showLister.setValueSource(LATEST_PROPS.getProperty("script"));
     }
-    if (doHtml) showLister.setTabber(new Tabber.HTMLTabber());
+    if (doHtml) {
+      showLister.setTabber(tabber);
+    }
 
     symbolTable = new ChainedSymbolTable();
     //      new ChainedSymbolTable(new SymbolTable[] {
     //            ToolUnicodePropertySource.make(UCD.lastVersion).getSymbolTable("\u00D7"),
     //            ToolUnicodePropertySource.make(Default.ucdVersion()).getSymbolTable("")});
-    ParsePosition pp = new ParsePosition(0);
     parseErrorCount = 0;
     testFailureCount = 0;
     while (true) {
@@ -144,6 +164,8 @@ public class TestUnicodeInvariants {
           break;
         } else if (line.startsWith("Let")) {
           letLine(pp, line);
+        } else if (line.startsWith("In")) {
+          inLine(pp, line);
         } else if (line.startsWith("ShowScript")) {
           showScript = true;
         } else if (line.startsWith("HideScript")) {
@@ -153,7 +175,6 @@ public class TestUnicodeInvariants {
         } else {
           testLine(line, pp);
         }
-
       } catch (Exception e) {
         parseErrorCount = parseError(parseErrorCount, line, e);
         continue;
@@ -172,6 +193,194 @@ public class TestUnicodeInvariants {
     out2.append(writer.getBuffer());
     out2.close();
     out.close();
+  }
+
+  static class PropertyComparison {
+    UnicodeSet valueSet;
+    UnicodeProperty property1;
+    boolean shouldBeEqual;
+    UnicodeProperty property2;
+  }
+
+  private static void inLine(ParsePosition pp, String line) throws ParseException {
+    pp.setIndex(2);
+    PropertyComparison propertyComparison = getPropertyComparison(pp, line);
+    UnicodeMap failures = new UnicodeMap();
+
+    for (UnicodeSetIterator it = new UnicodeSetIterator(propertyComparison.valueSet); it.next();) {
+      String value1 = propertyComparison.property1.getValue(it.codepoint);
+      String value2 = propertyComparison.property2.getValue(it.codepoint);
+      final boolean areEqual = equals(value1, value2);
+      if (areEqual != propertyComparison.shouldBeEqual) {
+        failures.put(it.codepoint, value1 + (areEqual ? "=" : "≠") + value2);
+      }
+    }
+    final UnicodeSet failureSet = failures.keySet();
+    final int failureCount = failureSet.size();
+    if (failureCount != 0) {
+      testFailureCount++;      
+      printErrorLine("Test Failure", Side.START, testFailureCount);
+      println("## Got unexpected " + (propertyComparison.shouldBeEqual ? "differences" : "equalities") + ": " + failureCount);
+      UnicodeLabel failureProp = new UnicodeProperty.UnicodeMapProperty().set(failures);
+      errorLister.setValueSource(failureProp);
+      errorLister.showSetNames(out, failureSet);
+      errorLister.setValueSource((UnicodeLabel)null);
+      printErrorLine("Test Failure", Side.END, testFailureCount);
+      println();
+    }
+  }
+
+  private static PropertyComparison getPropertyComparison(ParsePosition pp, String line) throws ParseException {
+    PropertyComparison propertyComparison = new PropertyComparison();
+
+    propertyComparison.valueSet = new UnicodeSet(line, pp, symbolTable);
+    propertyComparison.property1 = CompoundProperty.of(LATEST_PROPS, line, pp);
+    int cp = line.codePointAt(pp.getIndex());
+    if (cp != '=' && cp != 'x') {
+      throw new ParseException(line, pp.getIndex());
+    }
+    propertyComparison.shouldBeEqual = cp == '=';
+    pp.setIndex(pp.getIndex()+1);
+    propertyComparison.property2 = CompoundProperty.of(LATEST_PROPS, line, pp);
+    scan(PATTERN_WHITE_SPACE, line, pp, true);
+    if (pp.getIndex() != line.length()) {
+      throw new ParseException(line, pp.getIndex());
+    }
+    return propertyComparison;
+  }
+
+  private static boolean equals(Object value1, Object value2) {
+    if (value1 == null) {
+      return value2 == null;
+    } else if (value2 == null) {
+      return false;
+    }
+    return value1.equals(value2);
+  }
+
+  static class CompoundProperty extends UnicodeProperty {
+    static class FilterOrProp {
+      enum Type {filter, prop, stringprop};
+      private Type type;
+      private UnicodeProperty prop;
+      private UnicodeSet filter;
+    }
+    private static final UnicodeSet PROPCHARS = new UnicodeSet("[a-zA-Z0-9\\:\\-\\_\\u0020\\p{pattern white space}]");
+    private List<FilterOrProp> propOrFilters = new ArrayList<FilterOrProp>();
+
+    static UnicodeProperty of(UnicodeProperty.Factory propSource, String line, ParsePosition pp) {
+      CompoundProperty result = new CompoundProperty();
+      while (true) {
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        if (UnicodeSet.resemblesPattern(line, pp.getIndex())) {
+          FilterOrProp propOrFilter = new FilterOrProp();
+          propOrFilter.filter = new UnicodeSet(line, pp, symbolTable);
+          propOrFilter.type = FilterOrProp.Type.filter;
+          result.propOrFilters.add(propOrFilter);
+        } else {
+          String propName = scan(PROPCHARS, line, pp, true);
+          if (propName.length() > 0) {
+            FilterOrProp propOrFilter = new FilterOrProp();
+            VersionedProperty xprop = new VersionedProperty().set(propName);
+            propOrFilter.prop = xprop.property;
+            if (propOrFilter.prop == null) {
+              throw new IllegalArgumentException("Can't create property for: " + propName);
+            }
+            propOrFilter.type = propOrFilter.prop.getType() != UnicodeProperty.STRING 
+            ? FilterOrProp.Type.prop : FilterOrProp.Type.stringprop;
+            result.propOrFilters.add(propOrFilter);
+          } else {
+            break;
+          }
+        }
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        int pos = pp.getIndex();
+        if (pos == line.length()) break;
+        int cp = line.charAt(pos);
+        if (cp != '*') break;
+        pp.setIndex(pos+1);
+        // keep looping
+      }
+      return result;
+    }
+
+    private CompoundProperty() {
+    }
+
+    @Override
+    protected List _getAvailableValues(List result) {
+      return propOrFilters.get(0).prop.getAvailableValues(result);
+    }
+
+    @Override
+    protected List _getNameAliases(List result) {
+      StringBuffer name = new StringBuffer();
+      for (int i = 0; i < propOrFilters.size(); ++i) {
+        if (i != 0) {
+          name.append("*");
+        }
+        name.append(propOrFilters.get(i).prop.getFirstNameAlias());
+      }
+      result.add(name.toString());
+      return result;
+    }
+
+    @Override
+    protected String _getValue(int codepoint) {
+      StringBuffer buffer = new StringBuffer();
+      String value = UTF16.valueOf(codepoint);
+      int cp;
+
+      for (int i = propOrFilters.size() - 1; i >= 0; --i) {
+        final FilterOrProp propOrFilter = propOrFilters.get(i);
+        switch (propOrFilter.type) {
+          case filter:
+            buffer.setLength(0);
+            for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
+              cp = UTF16.charAt(value,j);
+              if (!propOrFilter.filter.contains(cp)) continue;
+              buffer.appendCodePoint(cp);
+            }
+            value = buffer.toString();
+            break;
+          case stringprop:
+            buffer.setLength(0);
+            for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
+              cp = UTF16.charAt(value,j);
+              String value2 = propOrFilter.prop.getValue(cp);
+              buffer.append(value2);
+            }
+            value = buffer.toString();
+            break;
+          case prop:
+            LinkedHashSet<String> values = new LinkedHashSet<String>();
+            for (int j = 0; j < value.length(); j += UTF16.getCharCount(cp)) {
+              cp = UTF16.charAt(value,j);
+              String value2 = propOrFilter.prop.getValue(cp);
+              values.add(value2);
+            }
+            if (values.size() == 0) {
+              value = "";
+            } else if (values.size() == 1) {
+              value = values.iterator().next();
+            } else {
+              value = values.toString();
+            }
+        }
+      }
+      return value;
+    }
+
+    @Override
+    protected List _getValueAliases(String valueAlias, List result) {
+      return propOrFilters.get(0).prop.getAvailableValues(result);
+    }
+
+    @Override
+    protected String _getVersion() {
+      return propOrFilters.get(0).prop.getVersion();
+    }
+
   }
 
   private static void letLine(ParsePosition pp, String line) {
@@ -214,18 +423,18 @@ public class TestUnicodeInvariants {
     pp.setIndex(0);
     leftSet = new UnicodeSet(line, pp, symbolTable);
     leftSide = line.substring(0,pp.getIndex());
-    eatWhitespace(line, pp);
+    scan(PATTERN_WHITE_SPACE, line, pp, true);
     relation = line.charAt(pp.getIndex());
     if (!INVARIANT_RELATIONS.contains(relation)) {
       throw new ParseException("Invalid relation, must be one of " + INVARIANT_RELATIONS.toPattern(false),
               pp.getIndex());
     }
     pp.setIndex(pp.getIndex()+1); // skip char
-    eatWhitespace(line, pp);
+    scan(PATTERN_WHITE_SPACE, line, pp, true);
     int start = pp.getIndex();
     rightSet = new UnicodeSet(line, pp, symbolTable);
     rightSide = line.substring(start,pp.getIndex());
-    eatWhitespace(line, pp);
+    scan(PATTERN_WHITE_SPACE, line, pp, true);
     if (line.length() != pp.getIndex()) {
       throw new ParseException("Extra characters at end", pp.getIndex());
     }
@@ -277,7 +486,7 @@ public class TestUnicodeInvariants {
     }
     testFailureCount++;      
     printErrorLine("Test Failure", Side.START, testFailureCount);
-    println("## Expected " + expected + ", got: " + segment.size());
+    println("## Expected " + expected + ", got: " + segment.size() + "\t" + segment.toString());
     println("## " + rightStatus + "\t" + rightSide);
     println("## " + leftStatus + "\t" + leftSide);
     errorLister.showSetNames(out, segment);
@@ -305,14 +514,20 @@ public class TestUnicodeInvariants {
 
   private static int parseError(int parseErrorCount, String line, Exception e) {
     parseErrorCount++;
-    println("**** PARSE ERROR:\t" + line);
-    println();
+    if (e instanceof ParseException) {
+      int index = ((ParseException) e).getErrorOffset();
+      line = line.substring(0,index) + "☞" + line.substring(index);
+    }
 
     printErrorLine("Parse Error", Side.START, parseErrorCount);
-    
+    println("**** PARSE ERROR:\t" + line);
+    out.println("<pre>");
+    final String message = e.getMessage();
+    if (message != null) {
+      println("##" + message);
+    }
     e.printStackTrace(out);
-
-    println(e.getMessage());
+    out.println("</pre>");
     printErrorLine("Parse Error", Side.END, parseErrorCount);
     println();
     return parseErrorCount;
@@ -347,6 +562,7 @@ public class TestUnicodeInvariants {
 
   public static final Transliterator toHTMLControl = Transliterator.createFromRules(
           "any-html", HTML_RULES_CONTROLS, Transliterator.FORWARD);
+  private static final UnicodeSet PATTERN_WHITE_SPACE = (UnicodeSet) new UnicodeSet("\\p{pattern white space}").freeze();
   private static int testFailureCount;
   private static int parseErrorCount;
   private static PrintWriter out;
@@ -358,7 +574,7 @@ public class TestUnicodeInvariants {
   private static void println(String line) {
     println(line, null);
   }
-  
+
   private static void println(String line, String anchor) {
     if (doHtml) {
       if (line.trim().length() == 0) { 
@@ -389,23 +605,35 @@ public class TestUnicodeInvariants {
   private static void println() {
     println("");
   }
-
+  
   /**
-   * @param line
-   * @param pp
+   * Should add to UnicodeSet
    */
-  private static void eatWhitespace(String line, ParsePosition pp) {
+
+  public static String scan(UnicodeSet unicodeSet, String line, ParsePosition pp, boolean in) {
+    int start = pp.getIndex();
+    int i = scan(unicodeSet, line, start, in);
+    String result = line.substring(start, i);
+    pp.setIndex(i);
+    return result;
+  }
+
+  private static int scan(UnicodeSet allowed, CharSequence line, int start, boolean in) {
     int cp = 0;
     int i;
-    for (i = pp.getIndex(); i < line.length(); i += UTF16.getCharCount(cp)) {
+    for (i = start; i < line.length(); i += UTF16.getCharCount(cp)) {
       cp = UTF16.charAt(line, i);
-      if (!com.ibm.icu.lang.UCharacter.isUWhiteSpace(cp)) {
-        break;
-      }
+      if (allowed.contains(cp) != in) break;
     }
-    pp.setIndex(i);
+    return i;
   }
   
+  private static Factory getProperties(final String version) {
+    return ICU_VERSION 
+    ? ICUPropertyFactory.make() 
+            : ToolUnicodePropertySource.make(version);
+  }
+
   static class ChainedSymbolTable extends UnicodeSet.XSymbolTable {
 
     private static final Comparator<String> LONGEST_FIRST = new Comparator<String>() {
@@ -421,6 +649,9 @@ public class TestUnicodeInvariants {
     Map<String,char[]> variables = new TreeMap<String,char[]>(LONGEST_FIRST);
 
     public void add(String variable, String value) {
+      if (variables.containsKey(variable)) {
+        throw new IllegalArgumentException("Attempt to reset variable");
+      }
       variables.put(variable, value.toCharArray());
     }
 
@@ -458,42 +689,62 @@ public class TestUnicodeInvariants {
       return text.substring(start, i);
     }
 
-    final PatternMatcher matcher = new UnicodeProperty.RegexMatcher();
-
-    public boolean applyPropertyAlias(String propertyName,
+    final VersionedProperty propertyVersion = new VersionedProperty();
+    
+    public boolean applyPropertyAlias(String propertyName2,
             String propertyValue, UnicodeSet result) {
-      final String version;
-      if (propertyName.contains(":")) {
-        String[] names = propertyName.split(":");
+      result.clear();
+      result.addAll(propertyVersion.set(propertyName2).getSet(propertyValue));
+      return true;
+    }
+
+
+  }
+
+  static class VersionedProperty {
+    private String propertyName;
+    private String version;
+    private UnicodeProperty.Factory propSource;
+    private UnicodeProperty property;
+    final private transient PatternMatcher matcher = new UnicodeProperty.RegexMatcher();
+
+    public VersionedProperty set(String xPropertyName) {
+      xPropertyName = xPropertyName.trim();
+      if (xPropertyName.contains(":")) {
+        String[] names = xPropertyName.split(":");
         if (names.length != 2 || !names[0].startsWith("U")) {
-          throw new IllegalArgumentException("Too many ':' fields in " + propertyName);
+          throw new IllegalArgumentException("Too many ':' fields in " + xPropertyName);
         }
         if (names[0].equalsIgnoreCase("U-1")) {
           version = LAST_VERSION;
         } else {
           version = names[0].substring(1);
         }
-        propertyName = names[1];
+        xPropertyName = names[1];
       } else {
         version=LATEST_VERSION;
       };
-
-      UnicodeProperty.Factory propSource = ICU_VERSION 
-      ? ICUPropertyFactory.make() 
-              : ToolUnicodePropertySource.make(version);      
-
+      propertyName = xPropertyName;
+      propSource = getProperties(version);
+      property = propSource.getProperty(xPropertyName);
+      if (property == null) {
+        throw new IllegalArgumentException("Can't create property from name: " + propertyName + " and version: " + version);
+      }
+      return this;
+    }
+    
+    public UnicodeSet getSet(String propertyValue) {
       UnicodeSet set;
       if (propertyValue.length() == 0) {
-        set = propSource.getSet(propertyName + "=true");
+        set = property.getSet("true");
       } else if (propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
         final String body = propertyValue.substring(1,propertyValue.length()-1);
-        set = propSource.getSet(propertyName + "=" + body, matcher, null);
+        matcher.set(body);
+        set = property.getSet(matcher);
       } else {
-        set = propSource.getSet(propertyName + "=" + propertyValue);
+        set = property.getSet(propertyValue);
       }
-      result.clear();
-      result.addAll(set);
-      return true;
+      return set;
     }
   }
 }

@@ -1,5 +1,5 @@
-Generate: .*BidiTest.*
-DeltaVersion: 10
+Generate: .*Script.*
+DeltaVersion: 11
 CopyrightYear: 2009
 
 
