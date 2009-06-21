@@ -101,7 +101,8 @@ public class Globe {
     "Melbourne (MEL)",
     "Caen (CFR)",
     "Cochin (COK)",
-    "Cochin (COK) - centering"
+    "Cochin (COK) - centering",
+    "Moscow, ID"
   };
   // Melbourne, Australia	37	47 S	144	58 E
   // Caen — 49° 10' 59" N 00° 22' 10" W
@@ -121,6 +122,8 @@ public class Globe {
     {Navigator.toRadians(49, 10, 24, false), Navigator.toRadians(0, 26, 53, false)},   
     {Navigator.toRadians(10, 9, 7, false), Navigator.toRadians(76, 24, 7, true)},   // Cochin
     {Navigator.toRadians(0, 0, 0, false), Navigator.toRadians(70, 0, 0, true)},   // Cochin
+    {Navigator.toRadians(46.743978, 0, 0, false), Navigator.toRadians(116.904176, 0, 0, false)},   // Moscow
+    //,-116.904176
     /*
      *  Airport Code  : COK
 

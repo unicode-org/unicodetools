@@ -573,7 +573,7 @@ public class UnicodeUtilities {
   private static String showCodePoint(int codepoint) {
     return showCodePoint(UTF16.valueOf(codepoint));
   }
-  
+
   private static String showCodePoint(String s) {
     String literal = getLiteral(s);
     return "<a target='c' href='list-unicodeset.jsp?a=" + toHTML.transliterate(UtfParameters.fixQuery(s)) + "'>\u00a0" + literal + "\u00a0</a>";
@@ -582,7 +582,7 @@ public class UnicodeUtilities {
   private static String getLiteral(int codepoint) {
     return getLiteral(UTF16.valueOf(codepoint));
   }
-  
+
   private static String getLiteral(String s) {
     String literal = toHTML.transliterate(s);
     if (RTL.containsSome(literal)) {
@@ -684,11 +684,11 @@ public class UnicodeUtilities {
   static {
     Transliterator.registerInstance(getTransliteratorFromFile("en-IPA", "en-IPA.txt", Transliterator.FORWARD));
     Transliterator.registerInstance(getTransliteratorFromFile("IPA-en", "en-IPA.txt", Transliterator.REVERSE));
-    
+
     Transliterator.registerInstance(getTransliteratorFromFile("deva-ipa", "Deva-IPA.txt", Transliterator.FORWARD));
     Transliterator.registerInstance(getTransliteratorFromFile("ipa-deva", "Deva-IPA.txt", Transliterator.REVERSE));
   }
-  
+
   public static Transliterator getTransliteratorFromFile(String ID, String file, int direction) {
     try {
       BufferedReader br = openFile(UnicodeUtilities.class, file);
@@ -1374,14 +1374,14 @@ public class UnicodeUtilities {
     }
     return output.toString();
   }
-  
+
   public static String showBidi(String str, int baseDirection, boolean asciiHack) {
     // warning, only BMP for now
     final StringWriter stringWriter = new StringWriter();
     PrintWriter writer = new PrintWriter(stringWriter);
-    
+
     BidiCharMap bidiCharMap = new BidiCharMap(asciiHack);
-    
+
     String[] parts = str.split("\\r\\n?|\\n");
     for (int i = 0; i < parts.length; ++i) {
       writer.println("<h2>Paragraph " + (i+1) + "</h2>");
@@ -1390,7 +1390,7 @@ public class UnicodeUtilities {
       }
       showBidiLine(parts[i], baseDirection, writer, bidiCharMap);
     }
-    
+
     if (asciiHack) {
       writer.println("<h3>ASCII Hack</h3>");
       writer.println("<p>For testing the UBA with only ASCII characters, the following property values are used (<,> are RLM and LRM):</p>");
@@ -1486,7 +1486,7 @@ public class UnicodeUtilities {
       writer.println("<td class='" + td + "' title='" + title + "'>" + " " + getLiteral(bidiChar) +"</td>");
     }
     writer.println("</tr></table>");
-    
+
   }
 
   private static String getBidiChar(String str, int i, byte b) {
@@ -1520,8 +1520,16 @@ public class UnicodeUtilities {
               + "\r\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())).initCause(e);
     }
   }
-  
-}
+
+
+  public static String validateLanguageID(String input, String locale) {
+    String result = LanguageCode.validate(input, new ULocale(locale));
+    if (result == null) {
+      result = "<i>ill-formed language id</i>";
+    }
+    return result;
+  }
+ }
 /*
  * <% http://www.devshed.com/c/a/Java/Developing-JavaServer-Pages/ Enumeration
  * parameterNames = request.getParameterNames(); while
