@@ -9,5 +9,6 @@
    | <a target="transform" href="transform.jsp">transform</a>
    | <a target="bidi" href="bidi.jsp">bidi</a>
    | <a target="idna" href="idna.jsp">idna</a>
+   | <a target="languageid" href="languageid.jsp">languageid</a>
    | <span class="key"><a target="help" href="index.jsp">help</a></span>
 </p>

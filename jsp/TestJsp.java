@@ -12,6 +12,7 @@ import com.ibm.icu.dev.test.util.BNF;
 import com.ibm.icu.dev.test.util.Quoter;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 
 public class TestJsp  extends TestFmwk {
 
@@ -24,6 +25,17 @@ public class TestJsp  extends TestFmwk {
   static UnicodeSet IPA = (UnicodeSet) new UnicodeSet("[a-zæçðøħŋœǀ-ǃɐ-ɨɪ-ɶ ɸ-ɻɽɾʀ-ʄʈ-ʒʔʕʘʙʛ-ʝʟʡʢ ʤʧʰ-ʲʴʷʼˈˌːˑ˞ˠˤ̀́̃̄̆̈ ̘̊̋̏-̜̚-̴̠̤̥̩̪̬̯̰̹-̽͜ ͡βθχ↑-↓↗↘]").freeze();
   static String IPA_SAMPLE = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, æ, ç, ð, ø, ħ, ŋ, œ, ǀ, ǁ, ǂ, ǃ, ɐ, ɑ, ɒ, ɓ, ɔ, ɕ, ɖ, ɗ, ɘ, ə, ɚ, ɛ, ɜ, ɝ, ɞ, ɟ, ɠ, ɡ, ɢ, ɣ, ɤ, ɥ, ɦ, ɧ, ɨ, ɪ, ɫ, ɬ, ɭ, ɮ, ɯ, ɰ, ɱ, ɲ, ɳ, ɴ, ɵ, ɶ, ɸ, ɹ, ɺ, ɻ, ɽ, ɾ, ʀ, ʁ, ʂ, ʃ, ʄ, ʈ, ʉ, ʊ, ʋ, ʌ, ʍ, ʎ, ʏ, ʐ, ʑ, ʒ, ʔ, ʕ, ʘ, ʙ, ʛ, ʜ, ʝ, ʟ, ʡ, ʢ, ʤ, ʧ, ʰ, ʱ, ʲ, ʴ, ʷ, ʼ, ˈ, ˌ, ː, ˑ, ˞, ˠ, ˤ, ̀, ́, ̃, ̄, ̆, ̈, ̊, ̋, ̏, ̐, ̑, ̒, ̓, ̔, ̕, ̖, ̗, ̘, ̙, ̚, ̛, ̜, ̝, ̞, ̟, ̠, ̡, ̢, ̣, ̤, ̥, ̦, ̧, ̨, ̩, ̪, ̫, ̬, ̭, ̮, ̯, ̰, ̱, ̲, ̳, ̴, ̹, ̺, ̻, ̼, ̽, ͜, ͡, β, θ, χ, ↑, →, ↓, ↗, ↘";
 
+  public void TestLanguageTag() {
+    String ulocale = "de";
+    assertNotNull("valid tag", UnicodeUtilities.validateLanguageID("gsw-Hrkt-AQ-pinyin-AbCdE-1901-b-fo-fjdklkfj-23-a-foobar-x-1", ulocale));
+    assertNotNull("valid tag", UnicodeUtilities.validateLanguageID("fi-Latn-US", ulocale));
+    assertNotNull("valid tag", UnicodeUtilities.validateLanguageID("fil-Latn-US", ulocale));
+    assertNotNull("valid tag", UnicodeUtilities.validateLanguageID("aaa-Latn-003-FOOBAR-ALPHA-A-xyzw", ulocale));
+    assertNotNull("valid tag", UnicodeUtilities.validateLanguageID("aaa-A-xyzw", ulocale));
+    assertNotNull("valid tag", UnicodeUtilities.validateLanguageID("x-aaa-Latn-003-FOOBAR-ALPHA-A-xyzw", ulocale));
+    assertNotNull("valid tag", UnicodeUtilities.validateLanguageID("aaa-x-Latn-003-FOOBAR-ALPHA-A-xyzw", ulocale));
+    assertNull("invalid tag", UnicodeUtilities.validateLanguageID("aaa-bbb", ulocale));
+  }
   public void TestATransform() {
     checkCompleteness(enSample, "en-ipa", new UnicodeSet("[a-z]"));
     checkCompleteness(IPA_SAMPLE, "ipa-en", new UnicodeSet("[a-z]"));
