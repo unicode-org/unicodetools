@@ -1524,12 +1524,15 @@ public class UnicodeUtilities {
 
   public static String validateLanguageID(String input, String locale) {
     String result = LanguageCode.validate(input, new ULocale(locale));
-    if (result == null) {
-      result = "<i>ill-formed language id</i>";
-    }
     return result;
   }
- }
+  
+  public static String getLanguageOptions(String locale) {
+    return LanguageCode.getLanguageOptions(new ULocale(locale));
+  }
+  
+}
+
 /*
  * <% http://www.devshed.com/c/a/Java/Developing-JavaServer-Pages/ Enumeration
  * parameterNames = request.getParameterNames(); while
