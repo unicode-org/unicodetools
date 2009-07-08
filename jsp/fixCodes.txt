@@ -17,7 +17,7 @@
 052;BB
 056;BE
 060;BM
-062;034
+062;034 143
 064;BT
 068;BO
 070;BA
@@ -56,7 +56,7 @@
 191;HR
 192;CU
 196;CY
-200;CZ
+200;CZ SK
 203;CZ
 204;BJ
 208;DK
@@ -158,7 +158,7 @@
 530;AN
 532;AN
 533;AW
-536;IQ
+536;IQ SA
 540;NC
 548;VU
 554;NZ
@@ -170,7 +170,7 @@
 578;NO
 580;MP
 581;UM
-582;FM
+582;FM MH MP PW
 583;FM
 584;MH
 585;PW
@@ -236,10 +236,10 @@
 800;UG
 804;UA
 807;MK
-810;RU
+810;RU AM AZ BY EE GE KZ KG LV LT MD TJ TM UA UZ
 818;EG
 826;GB
-830;JE
+830;JE GG
 831;GG
 832;JE
 833;IM
@@ -254,8 +254,8 @@
 882;WS
 886;YE
 887;YE
-890;RS
-891;RS
+890;RS ME SI HR MK BA
+891;RS ME
 894;ZM
 958;AA
 959;QM
@@ -302,29 +302,30 @@
 AALAND;AX
 BQ;AQ
 BU;MM
-CS;RS
+CS;RS ME
 CT;KI
 DD;DE
 DY;BJ
-FQ;AQ
+FQ;AQ TF
 FX;FR
 HV;BF
 JT;UM
 MI;UM
 NH;VU
 NQ;AQ
-NT;IQ
-PC;FM
+NT;IQ SA
+PC;FM MH MP PW
 POLYTONI;POLYTON
 PU;UM
 PZ;PA
 RH;ZW
-SU;RU
+SU;RU AM AZ BY EE GE KZ KG LV LT MD TJ TM UA UZ
 TP;TL
+UK;GB
 VD;VN
 WK;UM
 YD;YE
-YU;RS
+YU;RS ME
 ZR;CD
 aar;aa
 abk;ab
@@ -386,7 +387,7 @@ grn;gn
 guj;gu
 hat;ht
 hau;ha
-hbs;sh
+hbs;hr
 heb;he
 her;hz
 hin;hi
@@ -441,7 +442,8 @@ mar;mr
 mkd;mk
 mlg;mg
 mlt;mt
-mol;mo
+mo;ro
+mol;ro
 mon;mn
 mri;mi
 msa;ms
@@ -477,6 +479,7 @@ run;rn
 rus;ru
 sag;sg
 san;sa
+sh;hr
 sin;si
 slk;sk
 slv;sl

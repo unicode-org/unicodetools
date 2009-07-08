@@ -520,7 +520,7 @@ public class UnicodeUtilities {
         if (s == UnicodeSetIterator.IS_STRING) {
           String newBlock = "Strings";
           if (!newBlock.equals(oldBlock)) {
-            out.append("<h2>" + newBlock + "</b></h2>\r\n");
+            out.append("<h3>" + newBlock + "</b></h3>\r\n");
             oldBlock = newBlock;
           }
           out.append(showCodePoint(it.string)).append("<br>\r\n");
@@ -531,7 +531,7 @@ public class UnicodeUtilities {
             newSubhead = "<i>no subhead</i>";
           }
           if (!newBlock.equals(oldBlock) || !oldSubhead.equals(newSubhead)) {
-            out.append("<h2>" + newBlock + " - <i>" + newSubhead + "</i></b></h2>\r\n");
+            out.append("<h3>" + newBlock + " - <i>" + newSubhead + "</i></b></h3>\r\n");
             oldBlock = newBlock;
             oldSubhead = newSubhead;
           }
@@ -1384,7 +1384,7 @@ public class UnicodeUtilities {
 
     String[] parts = str.split("\\r\\n?|\\n");
     for (int i = 0; i < parts.length; ++i) {
-      writer.println("<h2>Paragraph " + (i+1) + "</h2>");
+      writer.println("<h3>Paragraph " + (i+1) + "</h3>");
       if (parts[i] == null || parts[i].length() == 0) {
         continue;
       }

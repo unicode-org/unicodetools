@@ -450,7 +450,7 @@ aak;Ankave
 aal;Afade
 aam;Aramanik
 aan;Anambé
-aao;Algerian Saharan Arabic
+aao;@Algerian Saharan Arabic
 aap;Pará Arára
 aaq;Eastern Abnaki
 aas;Aasáx
@@ -468,7 +468,7 @@ abd;Camarines Norte Agta
 abe;Western Abnaki
 abf;Abai Sungai
 abg;Abaga
-abh;Tajiki Arabic
+abh;@Tajiki Arabic
 abi;Abidji
 abj;Aka-Bea
 abl;Lampung Nyo
@@ -481,7 +481,7 @@ abr;Abron
 abs;Ambonese Malay
 abt;Ambulas
 abu;Abure
-abv;Baharna Arabic
+abv;@Baharna Arabic
 abw;Pal
 abx;Inabaknon
 aby;Aneme Wake
@@ -495,24 +495,24 @@ ach;Acoli
 aci;Aka-Cari
 ack;Aka-Kora
 acl;Akar-Bale
-acm;Mesopotamian Arabic
+acm;@Mesopotamian Arabic
 acn;Achang
 acp;Eastern Acipa
-acq;Ta'izzi-Adeni Arabic
+acq;@Ta'izzi-Adeni Arabic
 acr;Achi
 acs;Acroá
 act;Achterhoeks
 acu;Achuar-Shiwiar
 acv;Achumawi
-acw;Hijazi Arabic
-acx;Omani Arabic
-acy;Cypriot Arabic
+acw;@Hijazi Arabic
+acx;@Omani Arabic
+acy;@Cypriot Arabic
 acz;Acheron
 ada;Adangme
 adb;Adabe
 add;Dzodinka
 ade;Adele
-adf;Dhofari Arabic
+adf;@Dhofari Arabic
 adg;Andegerebinha
 adh;Adhola
 adi;Adi
@@ -523,7 +523,7 @@ ado;Abu
 adp;Adap
 adq;Adangbe
 adr;Adonara
-ads;Adamorobe Sign Language
+ads;@Adamorobe Sign Language
 adt;Adnyamathanha
 adu;Aduge
 adw;Amundava
@@ -532,14 +532,14 @@ ady;Adyghe
 adz;Adzera
 ae;Avestan
 aea;Areba
-aeb;Tunisian Arabic
-aec;Saidi Arabic
-aed;Argentine Sign Language
+aeb;@Tunisian Arabic
+aec;@Saidi Arabic
+aed;@Argentine Sign Language
 aee;Northeast Pashayi
 aek;Haeke
 ael;Ambele
 aem;Arem
-aen;Armenian Sign Language
+aen;@Armenian Sign Language
 aeq;Aer
 aer;Eastern Arrernte
 aes;Alsea
@@ -549,10 +549,10 @@ aey;Amele
 aez;Aeka
 af;Afrikaans
 afa;Afro-Asiatic languages
-afb;Gulf Arabic
+afb;@Gulf Arabic
 afd;Andai
 afe;Putukwam
-afg;Afghan Sign Language
+afg;@Afghan Sign Language
 afh;Afrihili
 afi;Akrukay
 afk;Nanubae
@@ -629,7 +629,7 @@ aiy;Ali
 aja;Aja (Sudan)
 ajg;Aja 
 aji;Ajië
-ajp;South Levantine Arabic
+ajp;@South Levantine Arabic
 ajt;Judeo-Tunisian Arabic
 aju;Judeo-Moroccan Arabic
 ajw;Ajawa
@@ -757,8 +757,8 @@ aox;Atorada
 aoz;Uab Meto
 apa;Apache languages
 apb;Sa'a
-apc;North Levantine Arabic
-apd;Sudanese Arabic
+apc;@North Levantine Arabic
+apd;@Sudanese Arabic
 ape;Bukiyip
 apg;Ampanang
 aph;Athpariya
@@ -789,7 +789,7 @@ aqn;Northern Alta
 aqp;Atakapa
 aqr;Arhâ
 ar;Arabic
-arb;Standard Arabic
+arb;@Standard Arabic
 arc;Official Aramaic 
 ard;Arabana
 are;Western Arrarnta
@@ -803,23 +803,23 @@ arl;Arabela
 arn;Mapudungun
 aro;Araona
 arp;Arapaho
-arq;Algerian Arabic
+arq;@Algerian Arabic
 arr;Karo 
-ars;Najdi Arabic
+ars;@Najdi Arabic
 art;Artificial languages
 aru;Aruá 
 arv;Arbore
 arw;Arawak
 arx;Aruá (Rodonia State)
-ary;Moroccan Arabic
-arz;Egyptian Arabic
+ary;@Moroccan Arabic
+arz;@Egyptian Arabic
 as;Assamese
 asa;Asu (Tanzania)
 asb;Assiniboine
 asc;Casuarina Coast Asmat
 asd;Asas
-ase;American Sign Language
-asf;Australian Sign Language
+ase;@American Sign Language
+asf;@Australian Sign Language
 asg;Cishingini
 ash;Abishira
 asi;Buruwai
@@ -828,14 +828,14 @@ ask;Ashkun
 asl;Asilulu
 asn;Xingú Asuriní
 aso;Dano
-asp;Algerian Sign Language
-asq;Austrian Sign Language
+asp;@Algerian Sign Language
+asq;@Austrian Sign Language
 asr;Asuri
 ass;Ipulo
 ast;Asturian
 asu;Tocantins Asurini
 asv;Asoa
-asw;Australian Aborigines Sign Language
+asw;@Australian Aborigines Sign Language
 asx;Muratayak
 asy;Yaosakor Asmat
 asz;As
@@ -888,13 +888,13 @@ auu;Auye
 auw;Awyi
 aux;Aurá
 auy;Awiyaana
-auz;Uzbeki Arabic
+auz;@Uzbeki Arabic
 av;Avaric
 avb;Avau
 avd;Alviri-Vidari
 avi;Avikam
 avk;Kotava
-avl;Eastern Egyptian Bedawi Arabic
+avl;@Eastern Egyptian Bedawi Arabic
 avn;Avatime
 avo;Agavotaguerra
 avs;Aushiri
@@ -932,13 +932,13 @@ ayc;Southern Aymara
 ayd;Ayabadhu
 aye;Ayere
 ayg;Ginyanga
-ayh;Hadrami Arabic
+ayh;@Hadrami Arabic
 ayi;Leyigha
 ayk;Akuku
-ayl;Libyan Arabic
-ayn;Sanaani Arabic
+ayl;@Libyan Arabic
+ayn;@Sanaani Arabic
 ayo;Ayoreo
-ayp;North Mesopotamian Arabic
+ayp;@North Mesopotamian Arabic
 ayq;Ayi (Papua New Guinea)
 ayr;Central Aymara
 ays;Sorsogon Ayta
@@ -1007,7 +1007,7 @@ bbv;Karnai
 bbw;Baba
 bbx;Bubia
 bby;Befang
-bbz;Babalia Creole Arabic
+bbz;@Babalia Creole Arabic
 bca;Central Bai
 bcb;Bainouk-Samik
 bcc;Southern Balochi
@@ -1091,9 +1091,9 @@ bfe;Betaf
 bff;Bofi
 bfg;Busang Kayan
 bfh;Blafe
-bfi;British Sign Language
+bfi;@British Sign Language
 bfj;Bafanji
-bfk;Ban Khor Sign Language
+bfk;@Ban Khor Sign Language
 bfl;Banda-Ndélé
 bfm;Mmen
 bfn;Bunak
@@ -1198,7 +1198,7 @@ bjj;Kanauji
 bjk;Barok
 bjl;Bulu (Papua New Guinea)
 bjm;Bajelani
-bjn;Banjar
+bjn;@Banjar
 bjo;Mid-Southern Banda
 bjq;Southern Betsimisaraka Malagasy
 bjr;Binumarien
@@ -1318,7 +1318,7 @@ boa;Bora
 bob;Aweer
 boe;Mundabli
 bof;Bolon
-bog;Bamako Sign Language
+bog;@Bamako Sign Language
 boh;Boma
 boi;Barbareño
 boj;Anjam
@@ -1373,7 +1373,7 @@ bqj;Bandial
 bqk;Banda-Mbrès
 bql;Bilakura
 bqm;Wumboko
-bqn;Bulgarian Sign Language
+bqn;@Bulgarian Sign Language
 bqo;Balo
 bqp;Busa
 bqq;Biritai
@@ -1384,7 +1384,7 @@ bqu;Boguru
 bqv;Begbere-Ejar
 bqw;Buru (Nigeria)
 bqx;Baangi
-bqy;Bengkala Sign Language
+bqy;@Bengkala Sign Language
 bqz;Bakaka
 br;Breton
 bra;Braj
@@ -1446,7 +1446,7 @@ btf;Birgit
 btg;Gagnoa Bété
 bth;Biatah Bidayuh
 bti;Burate
-btj;Bacanese Malay
+btj;@Bacanese Malay
 btk;Batak languages
 btl;Bhatola
 btm;Batak Mandailing
@@ -1491,21 +1491,21 @@ bva;Barein
 bvb;Bube
 bvc;Baelelea
 bvd;Baeggu
-bve;Berau Malay
+bve;@Berau Malay
 bvf;Boor
 bvg;Bonkeng
 bvh;Bure
 bvi;Belanda Viri
 bvj;Baan
 bvk;Bukat
-bvl;Bolivian Sign Language
+bvl;@Bolivian Sign Language
 bvm;Bamunka
 bvn;Buna
 bvo;Bolgo
 bvq;Birri
 bvr;Burarra
 bvt;Bati (Indonesia)
-bvu;Bukit Malay
+bvu;@Bukit Malay
 bvv;Baniva
 bvw;Boga
 bvx;Dibole
@@ -1601,7 +1601,7 @@ bzo;Bozaba
 bzp;Kemberano
 bzq;Buli (Indonesia)
 bzr;Biri
-bzs;Brazilian Sign Language
+bzs;@Brazilian Sign Language
 bzt;Brithenig
 bzu;Burmeso
 bzv;Bebe
@@ -1680,9 +1680,9 @@ cdi;Chodri
 cdj;Churahi
 cdm;Chepang
 cdn;Chaudangsi
-cdo;Min Dong Chinese
+cdo;@Min Dong Chinese
 cdr;Cinda-Regi-Tiyal
-cds;Chadian Sign Language
+cds;@Chadian Sign Language
 cdy;Chadong
 cdz;Koda
 ce;Chechen
@@ -1746,7 +1746,7 @@ cjp;Cabécar
 cjr;Chorotega
 cjs;Shor
 cjv;Chuave
-cjy;Jinyu Chinese
+cjy;@Jinyu Chinese
 cka;Khumi Awa Chin
 ckb;Central Kurdish
 ckh;Chak
@@ -1782,7 +1782,7 @@ cmi;Emberá-Chamí
 cmk;Chimakum
 cml;Campalagian
 cmm;Michigamea
-cmn;Mandarin Chinese
+cmn;@Mandarin Chinese
 cmo;Central Mnong
 cmr;Mro Chin
 cms;Messapic
@@ -1802,7 +1802,7 @@ cnu;Chenoua
 cnw;Ngawn Chin
 cnx;Middle Cornish
 co;Corsican
-coa;Cocos Islands Malay
+coa;@Cocos Islands Malay
 cob;Chicomuceltec
 coc;Cocopa
 cod;Cocama-Cocamilla
@@ -1836,7 +1836,7 @@ cpn;Cherepon
 cpp;Portuguese-based creoles and pidgins
 cps;Capiznon
 cpu;Pichis Ashéninka
-cpx;Pu-Xian Chinese
+cpx;@Pu-Xian Chinese
 cpy;South Ucayali Ashéninka
 cqd;Chuanqiandian Cluster Miao
 cqu;Chilean Quechua
@@ -1868,20 +1868,20 @@ crz;Cruzeño
 cs;Czech
 csa;Chiltepec Chinantec
 csb;Kashubian
-csc;Catalan Sign Language
-csd;Chiangmai Sign Language
-cse;Czech Sign Language
-csf;Cuba Sign Language
-csg;Chilean Sign Language
+csc;@Catalan Sign Language
+csd;@Chiangmai Sign Language
+cse;@Czech Sign Language
+csf;@Cuba Sign Language
+csg;@Chilean Sign Language
 csh;Asho Chin
 csi;Coast Miwok
 csk;Jola-Kasa
-csl;Chinese Sign Language
+csl;@Chinese Sign Language
 csm;Central Sierra Miwok
-csn;Colombian Sign Language
+csn;@Colombian Sign Language
 cso;Sochiapam Chinantec
-csq;Croatia Sign Language
-csr;Costa Rican Sign Language
+csq;@Croatia Sign Language
+csr;@Costa Rican Sign Language
 css;Southern Ohlone
 cst;Northern Ohlone
 csu;Central Sudanic languages
@@ -1936,10 +1936,10 @@ cy;Welsh
 cya;Nopala Chatino
 cyb;Cayubaba
 cyo;Cuyonon
-czh;Huizhou Chinese
+czh;@Huizhou Chinese
 czk;Knaanic
 czn;Zenzontepec Chatino
-czo;Min Zhong Chinese
+czo;@Min Zhong Chinese
 czt;Zotung Chin
 da;Danish
 daa;Dangaléat
@@ -2128,7 +2128,7 @@ dol;Doso
 don;Toura (Papua New Guinea)
 doo;Dongo
 dop;Lukpa
-doq;Dominican Sign Language
+doq;@Dominican Sign Language
 dor;Dori'o
 dos;Dogosé
 dot;Dass
@@ -2156,10 +2156,10 @@ dru;Rukai
 drw;Darwazi
 dry;Darai
 dsb;Lower Sorbian
-dse;Dutch Sign Language
+dse;@Dutch Sign Language
 dsh;Daasanach
 dsi;Disa
-dsl;Danish Sign Language
+dsl;@Danish Sign Language
 dsn;Dusner
 dso;Desiya
 dsq;Tadaksahak
@@ -2188,7 +2188,7 @@ dul;Alabat Island Agta
 dum;Middle Dutch 
 dun;Dusun Deyah
 duo;Dupaninan Agta
-dup;Duano
+dup;@Duano
 duq;Dusun Malang
 dur;Dii
 dus;Dumi
@@ -2226,7 +2226,7 @@ ebo;Teke-Ebo
 ebr;Ebrié
 ebu;Embu
 ecr;Eteocretan
-ecs;Ecuadorian Sign Language
+ecs;@Ecuadorian Sign Language
 ecy;Eteocypriot
 ee;Ewe
 eee;E
@@ -2311,10 +2311,10 @@ ese;Ese Ejja
 esh;Eshtehardi
 esi;North Alaskan Inupiatun
 esk;Northwest Alaska Inupiatun
-esl;Egypt Sign Language
+esl;@Egypt Sign Language
 esm;Esuma
-esn;Salvadoran Sign Language
-eso;Estonian Sign Language
+esn;@Salvadoran Sign Language
+eso;@Estonian Sign Language
 esq;Esselen
 ess;Central Siberian Yupik
 esu;Central Yupik
@@ -2322,7 +2322,7 @@ esx;Eskimo-Aleut languages
 et;Estonian
 etb;Etebi
 etc;Etchemin
-eth;Ethiopian Sign Language
+eth;@Ethiopian Sign Language
 etn;Eton (Vanuatu)
 eto;Eton 
 etr;Edolo
@@ -2361,7 +2361,7 @@ fau;Fayu
 fax;Fala
 fay;Southwestern Fars
 faz;Northwestern Fars
-fcs;Quebec Sign Language
+fcs;@Quebec Sign Language
 fer;Feroge
 ff;Fulah
 ffi;Foia Foia
@@ -2412,9 +2412,9 @@ frq;Forak
 frr;Northern Frisian
 frs;Eastern Frisian
 frt;Fortsenal
-fse;Finnish Sign Language
-fsl;French Sign Language
-fss;Finland-Swedish Sign Language
+fse;@Finnish Sign Language
+fsl;@French Sign Language
+fss;@Finland-Swedish Sign Language
 fub;Adamawa Fulfulde
 fuc;Pulaar
 fud;East Futuna
@@ -2448,7 +2448,7 @@ gaj;Gadsup
 gak;Gamkonora
 gal;Galoli
 gam;Kandawo
-gan;Gan Chinese
+gan;@Gan Chinese
 gao;Gants
 gap;Gal
 gaq;Gata'
@@ -2640,7 +2640,7 @@ goi;Gobasi
 goj;Gowlan
 gok;Gowli
 gol;Gola
-gom;Goan Konkani
+gom;@Goan Konkani
 gon;Gondi
 goo;Gone Dau
 gop;Yeretuar
@@ -2680,14 +2680,14 @@ grw;Gweda
 grx;Guriaso
 gry;Barclayville Grebo
 grz;Guramalum
-gse;Ghanaian Sign Language
-gsg;German Sign Language
+gse;@Ghanaian Sign Language
+gsg;@German Sign Language
 gsl;Gusilay
-gsm;Guatemalan Sign Language
+gsm;@Guatemalan Sign Language
 gsn;Gusan
 gso;Southwest Gbaya
 gsp;Wasembo
-gss;Greek Sign Language
+gss;@Greek Sign Language
 gsw;Swiss German
 gta;Guató
 gti;Gbati-ri
@@ -2709,7 +2709,7 @@ guo;Guayabero
 gup;Gunwinggu
 guq;Aché
 gur;Farefare
-gus;Guinean Sign Language
+gus;@Guinean Sign Language
 gut;Maléku Jaíka
 guu;Yanomamö
 guv;Gey
@@ -2763,16 +2763,16 @@ gzi;Gazi
 gzn;Gane
 ha;Hausa
 haa;Han
-hab;Hanoi Sign Language
+hab;@Hanoi Sign Language
 hac;Gurani
 had;Hatam
 hae;Eastern Oromo
-haf;Haiphong Sign Language
+haf;@Haiphong Sign Language
 hag;Hanga
 hah;Hahon
 hai;Haida
 haj;Hajong
-hak;Hakka Chinese
+hak;@Hakka Chinese
 hal;Halang
 ham;Hewa
 han;Hangaza
@@ -2794,7 +2794,7 @@ hbu;Habu
 hca;Andaman Creole Hindi
 hch;Huichol
 hdn;Northern Haida
-hds;Honduras Sign Language
+hds;@Honduras Sign Language
 hdy;Hadiyya
 he;Hebrew
 hea;Northern Qiandong Miao
@@ -2825,11 +2825,11 @@ hir;Himarimã
 hit;Hittite
 hiw;Hiw
 hix;Hixkaryána
-hji;Haji
+hji;@Haji
 hka;Kahe
 hke;Hunde
 hkk;Hunjara-Kaina Ke
-hks;Hong Kong Sign Language
+hks;@Hong Kong Sign Language
 hla;Halia
 hlb;Halbi
 hld;Halang Doan
@@ -2886,14 +2886,14 @@ hom;Homa
 hoo;Holoholo
 hop;Hopi
 hor;Horo
-hos;Ho Chi Minh City Sign Language
+hos;@Ho Chi Minh City Sign Language
 hot;Hote
 hov;Hovongan
 how;Honi
 hoy;Holiya
 hoz;Hozo
 hpo;Hpon
-hps;Hawai'i Pidgin Sign Language
+hps;@Hawai'i Pidgin Sign Language
 hr;Croatian
 hra;Hrangkhol
 hre;Hre
@@ -2906,9 +2906,9 @@ hru;Hruso
 hrx;Hunsrik
 hrz;Harzani
 hsb;Upper Sorbian
-hsh;Hungarian Sign Language
-hsl;Hausa Sign Language
-hsn;Xiang Chinese
+hsh;@Hungarian Sign Language
+hsl;@Hausa Sign Language
+hsn;@Xiang Chinese
 hss;Harsusi
 ht;Haitian
 hti;Hoti
@@ -2972,7 +2972,7 @@ ibu;Ibu
 iby;Ibani
 ica;Ede Ica
 ich;Etkywan
-icl;Icelandic Sign Language
+icl;@Icelandic Sign Language
 icr;Islander Creole English
 id;Indonesian
 ida;Idakho-Isukha-Tiriki
@@ -3034,7 +3034,7 @@ ili;Ili Turki
 ilk;Ilongot
 ill;Iranun
 ilo;Iloko
-ils;International Sign
+ils;@International Sign
 ilu;Ili'uun
 ilv;Ilue
 ilw;Talur
@@ -3054,12 +3054,12 @@ ine;Indo-European languages
 ing;Degexit'an
 inh;Ingush
 inj;Jungle Inga
-inl;Indonesian Sign Language
+inl;@Indonesian Sign Language
 inm;Minaean
 inn;Isinai
 ino;Inoke-Yate
 inp;Iñapari
-ins;Indian Sign Language
+ins;@Indian Sign Language
 int;Intha
 inz;Ineseño
 io;Ido
@@ -3084,14 +3084,14 @@ is;Icelandic
 isa;Isabi
 isc;Isconahua
 isd;Isnag
-ise;Italian Sign Language
-isg;Irish Sign Language
+ise;@Italian Sign Language
+isg;@Irish Sign Language
 ish;Esan
 isi;Nkem-Nkum
 ism;Masimasi
 isn;Isanzu
 iso;Isoko
-isr;Israeli Sign Language
+isr;@Israeli Sign Language
 ist;Istriot
 isu;Isu (Menchum Division)
 it;Italian
@@ -3137,7 +3137,7 @@ jae;Yabem
 jaf;Jara
 jah;Jah Hut
 jaj;Zazao
-jak;Jakun
+jak;@Jakun
 jal;Yalahatan
 jam;Jamaican Creole English
 jao;Yanyuwa
@@ -3146,7 +3146,7 @@ jar;Jarawa (Nigeria)
 jas;New Caledonian Javanese
 jat;Jakati
 jau;Yaur
-jax;Jambi Malay
+jax;@Jambi Malay
 jay;Yan-nhangu
 jaz;Jawe
 jbe;Judeo-Berber
@@ -3156,7 +3156,7 @@ jbo;Lojban
 jbr;Jofotek-Bromnya
 jbt;Jabutí
 jbu;Jukun Takum
-jcs;Jamaican Country Sign Language
+jcs;@Jamaican Country Sign Language
 jct;Krymchak
 jda;Jad
 jdg;Jadgali
@@ -3176,7 +3176,7 @@ jgb;Ngbee
 jge;Judeo-Georgian
 jgo;Ngomba
 jhi;Jehai
-jhs;Jhankot Sign Language
+jhs;@Jhankot Sign Language
 ji;Yiddish
 jia;Jina
 jib;Jibu
@@ -3217,7 +3217,7 @@ jns;Jaunsari
 job;Joba
 jod;Wojenaka
 jor;Jorá
-jos;Jordanian Sign Language
+jos;@Jordanian Sign Language
 jow;Jowulu
 jpa;Jewish Palestinian Aramaic
 jpr;Judeo-Persian
@@ -3228,7 +3228,7 @@ jrb;Judeo-Arabic
 jrr;Jiru
 jrt;Jorto
 jru;Japrería
-jsl;Japanese Sign Language
+jsl;@Japanese Sign Language
 jua;Júma
 jub;Wannu
 juc;Jurchen
@@ -3241,7 +3241,7 @@ jun;Juang
 juo;Jiba
 jup;Hupdë
 jur;Jurúna
-jus;Jumla Sign Language
+jus;@Jumla Sign Language
 jut;Jutish
 juu;Ju
 juw;Wãpha
@@ -3412,7 +3412,7 @@ kge;Komering
 kgf;Kube
 kgg;Kusunda
 kgh;Upper Tanudan Kalinga
-kgi;Selangor Sign Language
+kgi;@Selangor Sign Language
 kgj;Gamale Kham
 kgk;Kaiwá
 kgl;Kunggari
@@ -3598,7 +3598,7 @@ knj;Western Kanjobal
 knk;Kuranko
 knl;Keninjal
 knm;Kanamarí
-knn;Konkani 
+knn;@Konkani 
 kno;Kono (Sierra Leone)
 knp;Kwanja
 knq;Kintaq
@@ -3621,7 +3621,7 @@ kog;Cogui
 koh;Koyo
 koi;Komi-Permyak
 koj;Sara Dunjo
-kok;Konkani (macrolanguage)
+kok;Konkani 
 kol;Kol (Papua New Guinea)
 koo;Konzo
 kop;Kwato
@@ -3791,7 +3791,7 @@ kuy;Kuuku-Ya'u
 kuz;Kunza
 kv;Komi
 kva;Bagvalal
-kvb;Kubu
+kvb;@Kubu
 kvc;Kove
 kvd;Kui (Indonesia)
 kve;Kalabakan
@@ -3800,14 +3800,14 @@ kvg;Kuni-Boazi
 kvh;Komodo
 kvi;Kwang
 kvj;Psikye
-kvk;Korean Sign Language
+kvk;@Korean Sign Language
 kvl;Brek Karen
 kvm;Kendem
 kvn;Border Kuna
 kvo;Dobel
 kvp;Kompane
 kvq;Geba Karen
-kvr;Kerinci
+kvr;@Kerinci
 kvs;Kunggara
 kvt;Lahta Karen
 kvu;Yinbaw Karen
@@ -3846,7 +3846,7 @@ kwz;Kwadi
 kxa;Kairiru
 kxb;Krobu
 kxc;Konso
-kxd;Brunei
+kxd;@Brunei
 kxe;Kakihum
 kxf;Manumanaw Karen
 kxh;Karo (Ethiopia)
@@ -3959,7 +3959,7 @@ lbn;Lamet
 lbo;Laven
 lbq;Wampar
 lbr;Northern Lorung
-lbs;Libyan Sign Language
+lbs;@Libyan Sign Language
 lbt;Lachi
 lbu;Labu
 lbv;Lavatbura-Lamusong
@@ -3969,8 +3969,8 @@ lby;Lamu-Lamu
 lbz;Lardil
 lcc;Legenyem
 lcd;Lola
-lce;Loncong
-lcf;Lubu
+lce;@Loncong
+lcf;@Lubu
 lch;Luchazi
 lcl;Lisela
 lcm;Tungag
@@ -4064,7 +4064,7 @@ lir;Liberian English
 lis;Lisu
 liu;Logorik
 liv;Liv
-liw;Col
+liw;@Col
 lix;Liabuku
 liy;Banda-Bambari
 liz;Libinza
@@ -4103,7 +4103,7 @@ lln;Lele
 llo;Khlor
 llp;North Efate
 llq;Lolak
-lls;Lithuanian Sign Language
+lls;@Lithuanian Sign Language
 llu;Lau
 llx;Lauan
 lma;East Limba
@@ -4193,16 +4193,16 @@ lrz;Lemerig
 lsa;Lasgerdi
 lsd;Lishana Deni
 lse;Lusengo
-lsg;Lyons Sign Language
+lsg;@Lyons Sign Language
 lsh;Lish
 lsi;Lashi
-lsl;Latvian Sign Language
+lsl;@Latvian Sign Language
 lsm;Saamia
-lso;Laos Sign Language
-lsp;Panamanian Sign Language
+lso;@Laos Sign Language
+lsp;@Panamanian Sign Language
 lsr;Aruop
 lss;Lasi
-lst;Trinidad and Tobago Sign Language
+lst;@Trinidad and Tobago Sign Language
 lt;Lithuanian
 ltc;Late Middle Chinese
 lti;Leti (Indonesia)
@@ -4249,7 +4249,7 @@ lww;Lewo
 lya;Layakha
 lyg;Lyngngam
 lyn;Luyana
-lzh;Literary Chinese
+lzh;@Literary Chinese
 lzl;Litzlitz
 lzn;Leinong Naga
 lzz;Laz
@@ -4271,7 +4271,7 @@ mat;San Francisco Matlatzinca
 mau;Huautla Mazatec
 mav;Sateré-Mawé
 maw;Mampruli
-max;North Moluccan Malay
+max;@North Moluccan Malay
 maz;Central Mazahua
 mba;Higaonon
 mbb;Western Bukidnon Manobo
@@ -4335,7 +4335,7 @@ mdh;Maguindanao
 mdi;Mamvu
 mdj;Mangbetu
 mdk;Mangbutu
-mdl;Maltese Sign Language
+mdl;@Maltese Sign Language
 mdm;Mayogo
 mdn;Mbati
 mdp;Mbala
@@ -4363,7 +4363,7 @@ mek;Mekeo
 mel;Central Melanau
 mem;Mangala
 men;Mende (Sierra Leone)
-meo;Kedah Malay
+meo;@Kedah Malay
 mep;Miriwung
 meq;Merey
 mer;Meru
@@ -4374,8 +4374,8 @@ mev;Mann
 mew;Maaka
 mey;Hassaniyya
 mez;Menominee
-mfa;Pattani Malay
-mfb;Bangka
+mfa;@Pattani Malay
+mfb;@Bangka
 mfc;Mba
 mfd;Mendankwe-Nkwen
 mfe;Morisyen
@@ -4392,7 +4392,7 @@ mfo;Mbe
 mfp;Makassar Malay
 mfq;Moba
 mfr;Marithiel
-mfs;Mexican Sign Language
+mfs;@Mexican Sign Language
 mft;Mokerang
 mfu;Mbwela
 mfv;Mandjak
@@ -4467,7 +4467,7 @@ mij;Abar
 mik;Mikasuki
 mil;Peñoles Mixtec
 mim;Alacatlatzala Mixtec
-min;Minangkabau
+min;@Minangkabau
 mio;Pinotepa Nacional Mixtec
 mip;Apasco-Apoala Mixtec
 miq;Mískito
@@ -4594,7 +4594,7 @@ mnl;Tiale
 mnm;Mapena
 mnn;Southern Mnong
 mno;Manobo languages
-mnp;Min Bei Chinese
+mnp;@Min Bei Chinese
 mnq;Minriq
 mnr;Mono (USA)
 mns;Mansi
@@ -4660,7 +4660,7 @@ mqb;Mbuko
 mqc;Mangole
 mqe;Matepi
 mqf;Momuna
-mqg;Kota Bangun Kutai Malay
+mqg;@Kota Bangun Kutai Malay
 mqh;Tlazoyaltepec Mixtec
 mqi;Mariri
 mqj;Mamasa
@@ -4685,7 +4685,7 @@ mra;Mlabri
 mrb;Marino
 mrc;Maricopa
 mrd;Western Magar
-mre;Martha's Vineyard Sign Language
+mre;@Martha's Vineyard Sign Language
 mrf;Elseng
 mrg;Miri
 mrh;Mara Chin
@@ -4706,15 +4706,15 @@ mrw;Maranao
 mrx;Maremgi
 mry;Karaga Mandaya
 mrz;Marind
-ms;Malay (macrolanguage)
+ms;Malay 
 msb;Masbatenyo
 msc;Sankaran Maninka
-msd;Yucatec Maya Sign Language
+msd;@Yucatec Maya Sign Language
 mse;Musey
 msf;Mekwei
 msg;Moraid
 msh;Masikoro Malagasy
-msi;Sabah Malay
+msi;@Sabah Malay
 msj;Ma 
 msk;Mansaka
 msl;Molof
@@ -4723,7 +4723,7 @@ msn;Vurës
 mso;Mombum
 msp;Maritsauá
 msq;Caac
-msr;Mongolian Sign Language
+msr;@Mongolian Sign Language
 mss;West Masela
 mst;Cataelano Mandaya
 msu;Musom
@@ -4765,7 +4765,7 @@ mud;Mednyj Aleut
 mue;Media Lengua
 mug;Musgu
 muh;Mündü
-mui;Musi
+mui;@Musi
 muj;Mabire
 muk;Mugom
 mul;Multiple languages
@@ -4886,10 +4886,10 @@ myy;Macuna
 myz;Classical Mandaic
 mza;Santa María Zacatepec Mixtec
 mzb;Tumzabt
-mzc;Madagascar Sign Language
+mzc;@Madagascar Sign Language
 mzd;Malimba
 mze;Morawa
-mzg;Monastic Sign Language
+mzg;@Monastic Sign Language
 mzh;Wichí Lhamtés Güisnay
 mzi;Ixcatlán Mazatec
 mzj;Manya
@@ -4907,7 +4907,7 @@ mzu;Inapang
 mzv;Manza
 mzw;Deg
 mzx;Mawayana
-mzy;Mozambican Sign Language
+mzy;@Mozambican Sign Language
 mzz;Maiadomu
 na;Nauru
 naa;Namla
@@ -4923,7 +4923,7 @@ naj;Nalu
 nak;Nakanai
 nal;Nalik
 nam;Nangikurrunggurr
-nan;Min Nan Chinese
+nan;@Min Nan Chinese
 nao;Naaba
 nap;Neapolitan
 naq;Nama 
@@ -4952,7 +4952,7 @@ nbo;Nkukoli
 nbp;Nnam
 nbq;Nggem
 nbr;Numana-Nunku-Gbantu-Numbu
-nbs;Namibian Sign Language
+nbs;@Namibian Sign Language
 nbt;Na
 nbu;Rongmei Naga
 nbv;Ngamambo
@@ -4976,7 +4976,7 @@ ncn;Nauna
 nco;Sibe
 ncp;Ndaktup
 ncr;Ncane
-ncs;Nicaraguan Sign Language
+ncs;@Nicaraguan Sign Language
 nct;Chothe Naga
 ncu;Chumburung
 ncx;Central Puebla Nahuatl
@@ -5277,15 +5277,15 @@ nsd;Southern Nisu
 nse;Nsenga
 nsg;Ngasa
 nsh;Ngoshie
-nsi;Nigerian Sign Language
+nsi;@Nigerian Sign Language
 nsk;Naskapi
-nsl;Norwegian Sign Language
+nsl;@Norwegian Sign Language
 nsm;Sumi Naga
 nsn;Nehan
 nso;Pedi
-nsp;Nepalese Sign Language
+nsp;@Nepalese Sign Language
 nsq;Northern Sierra Miwok
-nsr;Maritime Sign Language
+nsr;@Maritime Sign Language
 nss;Nali
 nst;Tase Naga
 nsu;Sierra Negra Nahuatl
@@ -5385,7 +5385,7 @@ nzb;Njebi
 nzi;Nzima
 nzk;Nzakara
 nzm;Zeme Naga
-nzs;New Zealand Sign Language
+nzs;@New Zealand Sign Language
 nzu;Teke-Nzikou
 nzy;Nzakambay
 oaa;Orok
@@ -5437,7 +5437,7 @@ okh;Koresh-e Rostam
 oki;Okiek
 okj;Oko-Juwoi
 okk;Kwamtim One
-okl;Old Kentish Sign Language
+okl;@Old Kentish Sign Language
 okm;Middle Korean 
 okn;Oki-No-Erabu
 oko;Old Korean 
@@ -5504,10 +5504,10 @@ orc;Orma
 ore;Orejón
 org;Oring
 orh;Oroqen
-orn;Orang Kanaq
+orn;@Orang Kanaq
 oro;Orokolo
 orr;Oruma
-ors;Orang Seletar
+ors;@Orang Seletar
 ort;Adivasi Oriya
 oru;Ormuri
 orv;Old Russian
@@ -5633,7 +5633,7 @@ peh;Bonan
 pei;Chichimeca-Jonaz
 pej;Northern Pomo
 pek;Penchal
-pel;Pekal
+pel;@Pekal
 pem;Phende
 peo;Old Persian 
 pep;Kunja
@@ -5646,7 +5646,7 @@ pez;Eastern Penan
 pfa;Pááfang
 pfe;Peere
 pfl;Pfaelzisch
-pga;Sudanese Creole Arabic
+pga;@Sudanese Creole Arabic
 pgg;Pangwali
 pgi;Pagi
 pgk;Rerep
@@ -5706,7 +5706,7 @@ pkn;Pakanha
 pko;Pökoot
 pkp;Pukapuka
 pkr;Attapady Kurumba
-pks;Pakistan Sign Language
+pks;@Pakistan Sign Language
 pkt;Maleng
 pku;Paku
 pl;Polish
@@ -5824,7 +5824,7 @@ prg;Prussian
 prh;Porohanon
 pri;Paicî
 prk;Parauk
-prl;Peruvian Sign Language
+prl;@Peruvian Sign Language
 prm;Kibiri
 prn;Prasuni
 pro;Old Provençal 
@@ -5837,22 +5837,22 @@ pru;Puragi
 prw;Parawen
 prx;Purik
 pry;Pray 3
-prz;Providencia Sign Language
+prz;@Providencia Sign Language
 ps;Pushto
 psa;Asue Awyu
-psc;Persian Sign Language
-psd;Plains Indian Sign Language
-pse;Central Malay
-psg;Penang Sign Language
+psc;@Persian Sign Language
+psd;@Plains Indian Sign Language
+pse;@Central Malay
+psg;@Penang Sign Language
 psh;Southwest Pashayi
 psi;Southeast Pashayi
-psl;Puerto Rican Sign Language
+psl;@Puerto Rican Sign Language
 psm;Pauserna
 psn;Panasuan
-pso;Polish Sign Language
-psp;Philippine Sign Language
+pso;@Polish Sign Language
+psp;@Philippine Sign Language
 psq;Pasi
-psr;Portuguese Sign Language
+psr;@Portuguese Sign Language
 pss;Kaulong
 pst;Central Pashto
 psu;Sauraseni Prākrit
@@ -6052,7 +6052,7 @@ rmn;Balkan Romani
 rmo;Sinte Romani
 rmp;Rempi
 rmr;Caló
-rms;Romanian Sign Language
+rms;@Romanian Sign Language
 rmt;Domari
 rmu;Tavringer Romani
 rmv;Romanova
@@ -6090,8 +6090,8 @@ rpt;Rapting
 rri;Ririo
 rro;Waima
 rsb;Romano-Serbian
-rsi;Rennellese Sign Language
-rsl;Russian Sign Language
+rsi;@Rennellese Sign Language
+rsl;@Russian Sign Language
 rth;Ratahan
 rtm;Rotuman
 rtw;Rathawi
@@ -6202,7 +6202,7 @@ sdg;Savi
 sdh;Southern Kurdish
 sdj;Suundi
 sdk;Sos Kundi
-sdl;Saudi Arabian Sign Language
+sdl;@Saudi Arabian Sign Language
 sdm;Semandang
 sdn;Gallurese Sardinian
 sdo;Bukar-Sadung Bidayuh
@@ -6240,16 +6240,16 @@ sev;Nyarafolo Senoufo
 sew;Sewa Bay
 sey;Secoya
 sez;Senthang Chin
-sfb;Langue des signes de Belgique Francophone
+sfb;@Langue des signes de Belgique Francophone
 sfm;Small Flowery Miao
-sfs;South African Sign Language
+sfs;@South African Sign Language
 sfw;Sehwi
 sg;Sango
 sga;Old Irish 
 sgb;Mag-Anchi Ayta
 sgc;Kipsigis
 sge;Segai
-sgg;Swiss-German Sign Language
+sgg;@Swiss-German Sign Language
 sgh;Shughni
 sgi;Suga
 sgk;Sangkong
@@ -6262,7 +6262,7 @@ sgr;Sangisari
 sgt;Brokpake
 sgu;Salas
 sgw;Sebat Bet Gurage
-sgx;Sierra Leone Sign Language
+sgx;@Sierra Leone Sign Language
 sgz;Sursurunga
 sh;Serbo-Croatian
 sha;Shall-Zwall
@@ -6283,7 +6283,7 @@ shq;Sala
 shr;Shi
 shs;Shuswap
 sht;Shasta
-shu;Chadian Arabic
+shu;@Chadian Arabic
 shv;Shehri
 shw;Shwai
 shx;She
@@ -6361,7 +6361,7 @@ sla;Slavic languages
 slc;Sáliba
 sld;Sissala
 sle;Sholaga
-slf;Swiss-Italian Sign Language
+slf;@Swiss-Italian Sign Language
 slg;Selungai Murut
 slh;Southern Puget Sound Salish
 sli;Lower Silesian
@@ -6372,7 +6372,7 @@ sln;Salinan
 slp;Lamaholot
 slq;Salchuq
 slr;Salar
-sls;Singapore Sign Language
+sls;@Singapore Sign Language
 slt;Sila
 slu;Selaru
 slw;Sialum
@@ -6480,7 +6480,7 @@ sqn;Susquehannock
 sqo;Sorkhei
 sqq;Sou
 sqr;Siculo Arabic
-sqs;Sri Lankan Sign Language
+sqs;@Sri Lankan Sign Language
 sqt;Soqotri
 squ;Squamish
 sr;Serbian
@@ -6515,7 +6515,7 @@ ssd;Siroi
 sse;Balangingi
 ssf;Thao
 ssg;Seimat
-ssh;Shihhi Arabic
+ssh;@Shihhi Arabic
 ssi;Sansi
 ssj;Sausi
 ssk;Sunam
@@ -6523,9 +6523,9 @@ ssl;Western Sisaala
 ssm;Semnam
 ssn;Waata
 sso;Sissano
-ssp;Spanish Sign Language
+ssp;@Spanish Sign Language
 ssq;So'a
-ssr;Swiss-French Sign Language
+ssr;@Swiss-French Sign Language
 sss;Sô
 sst;Sinasina
 ssu;Susuami
@@ -6581,20 +6581,20 @@ sva;Svan
 svb;Ulau-Suain
 svc;Vincentian Creole English
 sve;Serili
-svk;Slovakian Sign Language
+svk;@Slovakian Sign Language
 svr;Savara
 svs;Savosavo
 svx;Skalvian
-sw;Swahili (macrolanguage)
+sw;Swahili 
 swb;Maore Comorian
-swc;Congo Swahili
+swc;@Congo Swahili
 swf;Sere
 swg;Swabian
-swh;Swahili 
+swh;@Swahili 
 swi;Sui
 swj;Sira
 swk;Malawi Sena
-swl;Swedish Sign Language
+swl;@Swedish Sign Language
 swm;Samosa
 swn;Sawknah
 swo;Shanenawa
@@ -6634,7 +6634,7 @@ syo;Suoy
 syr;Syriac
 sys;Sinyar
 syw;Kagate
-syy;Al-Sayyid Bedouin Sign Language
+syy;@Al-Sayyid Bedouin Sign Language
 sza;Semelai
 szb;Ngalum
 szc;Semaq Beri
@@ -6912,7 +6912,7 @@ tms;Tima
 tmt;Tasmate
 tmu;Iau
 tmv;Tembo (Motembo)
-tmw;Temuan
+tmw;@Temuan
 tmy;Tami
 tmz;Tamanaku
 tn;Tswana
@@ -7029,7 +7029,7 @@ tsa;Tsaangi
 tsb;Tsamai
 tsc;Tswa
 tsd;Tsakonian
-tse;Tunisian Sign Language
+tse;@Tunisian Sign Language
 tsf;Southwestern Tamang
 tsg;Tausug
 tsh;Tsuvan
@@ -7037,16 +7037,16 @@ tsi;Tsimshian
 tsj;Tshangla
 tsk;Tseku
 tsl;Ts'ün-Lao
-tsm;Turkish Sign Language
+tsm;@Turkish Sign Language
 tsp;Northern Toussian
-tsq;Thai Sign Language
+tsq;@Thai Sign Language
 tsr;Akei
-tss;Taiwan Sign Language
+tss;@Taiwan Sign Language
 tsu;Tsou
 tsv;Tsogo
 tsw;Tsishingini
 tsx;Mubami
-tsy;Tebul Sign Language
+tsy;@Tebul Sign Language
 tsz;Purepecha
 tt;Tatar
 tta;Tutelo
@@ -7164,7 +7164,7 @@ tyu;Kua
 tyv;Tuvinian
 tyx;Teke-Tyee
 tyz;Tày
-tza;Tanzanian Sign Language
+tza;@Tanzanian Sign Language
 tzh;Tzeltal
 tzj;Tz'utujil
 tzm;Central Atlas Tamazight
@@ -7195,9 +7195,9 @@ ug;Uighur
 uga;Ugaritic
 ugb;Kuku-Ugbanh
 uge;Ughele
-ugn;Ugandan Sign Language
+ugn;@Ugandan Sign Language
 ugo;Ugong
-ugy;Uruguayan Sign Language
+ugy;@Uruguayan Sign Language
 uha;Uhami
 uhn;Damal
 uis;Uisai
@@ -7207,10 +7207,10 @@ uk;Ukrainian
 uka;Kaburi
 ukg;Ukuriguma
 ukh;Ukhwejo
-ukl;Ukrainian Sign Language
+ukl;@Ukrainian Sign Language
 ukp;Ukpe-Bayobiri
 ukq;Ukwa
-uks;Urubú-Kaapor Sign Language
+uks;@Urubú-Kaapor Sign Language
 uku;Ukue
 ukw;Ukwuani-Aboh-Ndoni
 ula;Fungwa
@@ -7259,7 +7259,7 @@ urg;Urigina
 urh;Urhobo
 uri;Urim
 urj;Uralic languages
-urk;Urak Lawoi'
+urk;@Urak Lawoi'
 url;Urali
 urm;Urapmin
 urn;Uruangnirin
@@ -7294,8 +7294,8 @@ uvl;Lote
 uwa;Kuku-Uwanh
 uya;Doko-Uyanga
 uz;Uzbek
-uzn;Northern Uzbek
-uzs;Southern Uzbek
+uzn;@Northern Uzbek
+uzs;@Southern Uzbek
 vaa;Vaagri Booli
 vae;Vale
 vaf;Vafsi
@@ -7324,7 +7324,7 @@ veo;Ventureño
 vep;Veps
 ver;Mom Jango
 vgr;Vaghri
-vgt;Vlaamse Gebarentaal
+vgt;@Vlaamse Gebarentaal
 vi;Vietnamese
 vic;Virgin Islands Creole English
 vid;Vidunda
@@ -7338,12 +7338,12 @@ viv;Iduna
 vka;Kariyarra
 vki;Ija-Zuba
 vkj;Kujarge
-vkk;Kaur
+vkk;@Kaur
 vkl;Kulisusu
 vkm;Kamakan
 vko;Kodeoha
 vkp;Korlai Creole Portuguese
-vkt;Tenggarong Kutai Malay
+vkt;@Tenggarong Kutai Malay
 vku;Kurrama
 vlp;Valpei
 vls;Vlaams
@@ -7380,9 +7380,9 @@ vra;Vera'a
 vro;Võro
 vrs;Varisi
 vrt;Burmbar
-vsi;Moldova Sign Language
-vsl;Venezuelan Sign Language
-vsv;Valencian Sign Language
+vsi;@Moldova Sign Language
+vsl;@Venezuelan Sign Language
+vsv;@Valencian Sign Language
 vto;Vitou
 vum;Vumbu
 vun;Vunjo
@@ -7587,7 +7587,7 @@ wum;Wumbvu
 wun;Bungu
 wur;Wurrugu
 wut;Wutung
-wuu;Wu Chinese
+wuu;@Wu Chinese
 wuv;Wuvulu-Aua
 wux;Wulna
 wuy;Wauyai
@@ -7689,7 +7689,7 @@ xke;Kereho
 xkf;Khengkha
 xkg;Kagoro
 xkh;Karahawyana
-xki;Kenyan Sign Language
+xki;@Kenyan Sign Language
 xkj;Kajali
 xkk;Kaco'
 xkl;Mainstream Kenyah
@@ -7729,14 +7729,14 @@ xmg;Mengaka
 xmh;Kuku-Muminh
 xmj;Majera
 xmk;Ancient Macedonian
-xml;Malaysian Sign Language
-xmm;Manado Malay
+xml;@Malaysian Sign Language
+xmm;@Manado Malay
 xmn;Manichaean Middle Persian
 xmo;Morerebi
 xmp;Kuku-Mu'inh
 xmq;Kuku-Mangk
 xmr;Meroitic
-xms;Moroccan Sign Language
+xms;@Moroccan Sign Language
 xmt;Matbat
 xmu;Kamu
 xmv;Antankarana Malagasy
@@ -7906,7 +7906,7 @@ ydd;Eastern Yiddish
 yde;Yangum Dey
 ydg;Yidgha
 ydk;Yoidik
-yds;Yiddish Sign Language
+yds;@Yiddish Sign Language
 yea;Ravula
 yec;Yeniche
 yee;Yimas
@@ -8033,7 +8033,7 @@ yrs;Yarsun
 yrw;Yarawata
 ysc;Yassic
 ysd;Samatao
-ysl;Yugoslavian Sign Language
+ysl;@Yugoslavian Sign Language
 ysn;Sani
 yso;Nisi 
 ysp;Southern Lolopo
@@ -8047,7 +8047,7 @@ yua;Yucateco
 yub;Yugambal
 yuc;Yuchi
 yud;Judeo-Tripolitanian Arabic
-yue;Yue Chinese
+yue;@Yue Chinese
 yuf;Havasupai-Walapai-Yavapai
 yug;Yug
 yui;Yurutí
@@ -8130,7 +8130,7 @@ zhn;Nong Zhuang
 zhw;Zhoa
 zhx;Chinese 
 zia;Zia
-zib;Zimbabwe Sign Language
+zib;@Zimbabwe Sign Language
 zik;Zimakani
 zim;Mesme
 zin;Zinza
@@ -8151,7 +8151,7 @@ zkv;Krevinian
 zkz;Khazar
 zle;East Slavic languages
 zlj;Liujiang Zhuang
-zlm;Malay 
+zlm;@Malay 
 zln;Lianshan Zhuang
 zlq;Liuqian Zhuang
 zls;South Slavic languages
@@ -8164,7 +8164,7 @@ zme;Mangerr
 zmf;Mfinu
 zmg;Marti Ke
 zmh;Makolkol
-zmi;Negeri Sembilan Malay
+zmi;@Negeri Sembilan Malay
 zmj;Maridjabin
 zmk;Mandandanyi
 zml;Madngele
@@ -8230,8 +8230,8 @@ zrp;Zarphatic
 zrs;Mairasi
 zsa;Sarasira
 zsk;Kaskean
-zsl;Zambian Sign Language
-zsm;Standard Malay
+zsl;@Zambian Sign Language
+zsm;@Standard Malay
 zsr;Southern Rincon Zapotec
 zsu;Sukurum
 zte;Elotepec Zapotec
