@@ -44,13 +44,26 @@
   
   <input id='main' type="submit" value="Show Status" onClick="window.location.href='languageid.jsp?a='+document.getElementById('main').value"/>
   
-  Localization:
+  &nbsp;&nbsp;Localization:
   <select size="1" name="l" onchange="document.myform.submit();">
       <%=options%>
   </select>
 </form>
-  <h2>Status</h2>
-  <p><%=table%></p>
+<h3>Status</h3>
+<%=table%>
+<h3>Samples</h3>
+<ul>
+<li><a href='languageid.jsp?a=en' target='languageid'>en</a></li>
+<li><a href='languageid.jsp?a=eng-840' target='languageid'>eng-840</a></li>
+<li><a href='languageid.jsp?a=pt_PT' target='languageid'>pt_PT</a></li>
+<li><a href='languageid.jsp?a=AZ-arab-Ir' target='languageid'>AZ-arab-Ir</a></li>
+<li><a href='languageid.jsp?a=zh-Hant-HK' target='languageid'>zh-Hant-HK</a></li>
+<li><a href='languageid.jsp?a=en-cmn-Hant-HK' target='languageid'>en-cmn-Hant-HK</a></li>
+<li><a href='languageid.jsp?a=sl-Cyrl-YU-rozaj-solba-1994-b-1234-a-Foobar-x-b-1234-a-Foobar' target='languageid'>
+sl-Cyrl-YU-rozaj-solba-1994-b-1234-a-Foobar-x-b-1234-a-Foobar</a></li>
+<li><a href='sample_subtags.html' target='samples'>Other Samples</a></li>
+</ul>
+
   <h3>Notes</h3>
      <ul><li>Unicode language ids are based on BCP 47,
        but <a href='http://www.unicode.org/reports/tr35/#Unicode_Language_and_Locale_Identifiers' target="uts35">differ in a few ways</a>.</li>
