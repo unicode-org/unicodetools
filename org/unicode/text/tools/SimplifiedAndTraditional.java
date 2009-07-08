@@ -71,6 +71,14 @@ public class SimplifiedAndTraditional {
     UnicodeMap simp2trad = Default.ucd().getHanValue("kTraditionalVariant");
     UnicodeMap trad2simp = Default.ucd().getHanValue("kSimplifiedVariant");
     
+    UnicodeSet simpOnly = simp2trad.keySet();
+    UnicodeSet tradOnly = trad2simp.keySet();
+    UnicodeSet overlap = new UnicodeSet(simpOnly).retainAll(tradOnly);
+    simpOnly.removeAll(overlap);
+    tradOnly.removeAll(overlap);
+    System.out.println("UnicodeSet simpOnly = new UnicodeSet(\"" + simpOnly.toPattern(false) + "\");");
+    System.out.println("UnicodeSet tradOnly = new UnicodeSet(\"" + tradOnly.toPattern(false) + "\");");
+    
     XEquivalenceClass equivalences = new XEquivalenceClass("?");
 
     System.out.println("*** Data Problems ***");
@@ -107,6 +115,7 @@ public class SimplifiedAndTraditional {
     System.out.println();
     int count = 0;
     final Set<Set<String>> equivalenceSets = (Set<Set<String>>)equivalences.getEquivalenceSets();
+    
     Set<Set<String>> seenEquivalences = new HashSet();
     for (Set<String> equivSet : equivalenceSets) {
       if (equivSet.size() != 2) continue;

@@ -70,9 +70,9 @@ public class TestJsp  extends TestFmwk {
         allProblems.addAll(missing);
         errln("Leftover from " + transId + ": " + missing.toPattern(false));
         Transliterator foo = Transliterator.getInstance(transId, Transliterator.FORWARD);
-        Transliterator.DEBUG = true;
+        //Transliterator.DEBUG = true;
         sample = UnicodeUtilities.showTransform(transId, piece);
-        Transliterator.DEBUG = false;
+        //Transliterator.DEBUG = false;
       }
     }
     if (allProblems.size() != 0) {

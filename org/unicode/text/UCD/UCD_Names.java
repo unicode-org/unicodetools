@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
- * $Date: 2009-05-30 03:56:37 $
- * $Revision: 1.41 $
+ * $Date: 2009-07-08 23:20:31 $
+ * $Revision: 1.42 $
  *
  *******************************************************************************
  */
@@ -490,11 +490,11 @@ public final class UCD_Names implements UCD_Types {
     "Egyp",
     "Samr",
     "Lisu",
-    "?Bamum",
+    "Bamu",
     "Java",
     "Mtei",
     "Armi",
-    "?Old South Arabian",
+    "Sarb",
     "Prti",
     "Phli",
     "Orkh",
