@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2009-05-30 03:56:37 $
- * $Revision: 1.51 $
+ * $Date: 2009-07-08 23:20:31 $
+ * $Revision: 1.52 $
  *
  *******************************************************************************
  */
@@ -527,6 +527,9 @@ public final class UCD implements UCD_Types {
   public UnicodeMap getHanValue(String propertyName) {
     UnicodeMap result = new UnicodeMap();
     try {
+      //      dir = Utility.getMostRecentUnicodeDataFile("Unihan", version, 
+      //              true, true, String fileType) throws IOException {
+      //
       BufferedReader in = Utility.openUnicodeFile("Unihan", version, true, Utility.UTF8); 
       int lineCounter = 0;
       while (true) {
@@ -1665,7 +1668,7 @@ to guarantee identifier closure.
           }
         }
         //if (cp == 0x200D) {
-          //  uData.joiningType = JT_C;
+        //  uData.joiningType = JT_C;
         //} else
         /*
                 if (cp != 0x200D && cp != 0x200C && (cat == Mn || cat == Cf)) {
