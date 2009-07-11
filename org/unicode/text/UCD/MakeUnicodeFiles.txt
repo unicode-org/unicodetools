@@ -1,5 +1,5 @@
-Generate: .*Script.*
-DeltaVersion: 11
+Generate: .*
+DeltaVersion: 12
 CopyrightYear: 2009
 
 

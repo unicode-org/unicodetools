@@ -39,9 +39,7 @@ public class BidiTestIcu4jConformance {
     System.out.println("Done");
   }
   
-  int getBidiType(String input) {
+  static int getBidiType(String input) {
     return UCharacterDirection.LEFT_TO_RIGHT;
   }
-  
-  for 
 }

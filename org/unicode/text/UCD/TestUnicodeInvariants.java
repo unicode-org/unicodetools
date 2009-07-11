@@ -120,7 +120,7 @@ public class TestUnicodeInvariants {
     .setMergeRanges(doRange)
     .setLabelSource(null)
     .setUnicodePropertyFactory(LATEST_PROPS)
-    .setTableHtml("<table class='e'>")
+    //.setTableHtml("<table class='e'>")
     .setShowLiteral(toHTML)
     .setFixName(toHTML);
     errorLister.setShowTotal(false);
@@ -132,7 +132,7 @@ public class TestUnicodeInvariants {
     .setMergeRanges(doRange)
     //.setLabelSource(null)
     .setUnicodePropertyFactory(LATEST_PROPS)
-    .setTableHtml("<table class='s'>")
+    //.setTableHtml("<table class='s'>")
     .setShowLiteral(toHTML);
     showLister.setShowTotal(false);
     if (showScript) {

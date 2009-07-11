@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/TestUtility.java,v $
- * $Date: 2008-02-26 00:20:37 $
- * $Revision: 1.6 $
+ * $Date: 2009-07-11 08:01:33 $
+ * $Revision: 1.7 $
  *
  *******************************************************************************
  */
@@ -29,6 +29,7 @@ import com.ibm.icu.dev.test.util.DataOutputCompressor;
 import com.ibm.icu.dev.test.util.ICUPropertyFactory;
 import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeMapIterator;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.dev.test.util.UnicodePropertySource;
 import com.ibm.icu.text.UTF16;
@@ -400,7 +401,7 @@ public class TestUtility {
 				System.out.println(count++ + "\t" + c + "\t" + running
 						+ "\t" + value);
 			}
-			for (UnicodeMap.MapIterator it2 = new UnicodeMap.MapIterator(
+			for (UnicodeMapIterator it2 = new UnicodeMapIterator(
 					temp); it2.nextRange();) {
 				System.out.println(Utility.hex(it2.codepoint) + "\t"
 						+ Utility.hex(it2.codepointEnd) + "\t"
