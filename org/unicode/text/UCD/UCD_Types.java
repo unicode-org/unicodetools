@@ -5,34 +5,38 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
- * $Date: 2009-05-30 03:56:37 $
- * $Revision: 1.45 $
+ * $Date: 2009-07-11 08:01:33 $
+ * $Revision: 1.46 $
  *
  *******************************************************************************
  */
 
 package org.unicode.text.UCD;
 
-import org.unicode.cldr.util.Utility;
+import java.io.File;
+
+import org.unicode.text.utility.Utility;
+
 
 public interface UCD_Types {
   static final int FIX_FOR_NEW_VERSION = 0;
 
   static final byte BINARY_FORMAT = 21; // bumped if binary format of UCD changes. Forces rebuild   
 
-  public static final String BASE_DIR = Utility.getProperty("dir", "../DATA/");
+  public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.Utility.getProperty("dir", "../DATA/")) + "/";
   public static final String UCD_DIR = BASE_DIR + "UCD/";
-  public static final String BIN_DIR = BASE_DIR + "BIN/";
 
-  public static final String GEN_DIR = BASE_DIR + "GEN/";
+  public static final String GEN_DIR = Utility.fixFileName(BASE_DIR + "../Generated/") + "/";
+  public static final String BIN_DIR = GEN_DIR + "BIN/";
+
   public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
 
   public static final String SRC_DIR = "org/unicode/text/";
 
-  public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(Utility.getProperty("copyright", "skip"));
+  public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(org.unicode.cldr.util.Utility.getProperty("copyright", "skip"));
 
   public static final char DOTTED_CIRCLE = '\u25CC';
-
+  
   public static final int 
   CJK_BASE = 0x4E00,
   CJK_LIMIT = 0x9FFF+1,

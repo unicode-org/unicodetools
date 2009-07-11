@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.ibm.icu.dev.test.util.ICUPropertyFactory;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.UnicodeMap.MapIterator;
+import com.ibm.icu.dev.test.util.UnicodeMapIterator;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
@@ -163,7 +163,7 @@ public class CreateInversions {
     target.append("var " + name + " = new Inversion([\n");
     StringBuilder valueArray = new StringBuilder();
     boolean first = true;
-    for (MapIterator it = new UnicodeMap.MapIterator(source); it.nextRange();) {
+    for (UnicodeMapIterator it = new UnicodeMapIterator(source); it.nextRange();) {
       // skip ignorable range
       if (ignorables.contains(it.codepoint, it.codepointEnd)) {
         continue;

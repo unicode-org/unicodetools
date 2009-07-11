@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
-* $Date: 2008-01-29 15:52:58 $
-* $Revision: 1.17 $
+* $Date: 2009-07-11 08:01:33 $
+* $Revision: 1.18 $
 *
 *******************************************************************************
 */
@@ -341,7 +341,7 @@ public class QuickTest implements UCD_Types {
 	}
 
 	static UnicodeMap.Composer MyComposer = new UnicodeMap.Composer(){
-		public Object compose(int codePoint, Object a, Object b) {
+		public Object compose(int codepoint, String string, Object a, Object b) {
 			if (a == null) return b;
 			if (b == null) return a;
 			return a + "; " + b;
@@ -980,9 +980,9 @@ public class QuickTest implements UCD_Types {
 		}
 	}
 	
-	static class MyComposer implements UnicodeMap.Composer {
+	static class MyComposer extends UnicodeMap.Composer {
 
-		public Object compose(int codePoint, Object a, Object b) {
+		public Object compose(int codepoint, String string, Object a, Object b) {
 			if (a == null) return b;
 			if (b == null) return a;
 			return a + " & " + b;

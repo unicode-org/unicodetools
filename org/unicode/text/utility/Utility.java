@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2009-05-13 16:26:27 $
-* $Revision: 1.60 $
+* $Date: 2009-07-11 08:01:33 $
+* $Revision: 1.61 $
 *
 *******************************************************************************
 */
@@ -768,6 +768,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     public static PrintWriter openPrintWriter(String filename, Encoding options) throws IOException {
         return openPrintWriter(UCD_Types.GEN_DIR, filename, options);
     }
+    
     // Normally use false, false.
     // But for UCD files use true, true
     // Or if they are UTF8, use true, false
@@ -1339,4 +1340,14 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
       return null;
     }
 
+    public static String fixFileName(String filename) {
+        File file = new File(filename);
+        String result;
+        try {
+            result = file.getCanonicalPath();
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
+        return result;
+    }
 }
