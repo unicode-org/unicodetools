@@ -27,11 +27,11 @@ import java.util.regex.Pattern;
 
 import jsp.IdnaLabelTester.TestStatus;
 
-import org.unicode.cldr.icu.PrettyPrinter;
 import org.unicode.cldr.test.CheckCLDR;
 import org.unicode.cldr.util.Utility;
 
 import com.ibm.icu.dev.test.util.BNF;
+import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Quoter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;

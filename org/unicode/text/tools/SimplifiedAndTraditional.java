@@ -3,7 +3,6 @@ package org.unicode.text.tools;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +10,11 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.unicode.cldr.util.PrettyPrinter;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.utility.EquivalenceClass;
 import org.unicode.text.utility.Utility;
 import org.unicode.text.utility.XEquivalenceClass;
 
+import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
