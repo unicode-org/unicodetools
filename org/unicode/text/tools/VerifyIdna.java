@@ -61,8 +61,8 @@ public class VerifyIdna {
 
       for (IdnaType idnaType : patrickValues) {
         System.out.println(idnaType);
-        UnicodeSet patItems = patrik.getSet(idnaType);
-        UnicodeSet altItems = alternate.getSet(idnaType);
+        UnicodeSet patItems = patrik.keySet(idnaType);
+        UnicodeSet altItems = alternate.keySet(idnaType);
         if (patItems.equals(altItems)) {
           System.out.println("\tequal");
         } else {

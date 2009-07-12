@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
-* $Date: 2009-07-11 08:01:33 $
-* $Revision: 1.18 $
+* $Date: 2009-07-12 04:47:02 $
+* $Revision: 1.19 $
 *
 *******************************************************************************
 */
@@ -15,8 +15,8 @@ package org.unicode.text.UCD;
 
 import org.unicode.cldr.util.Counter;
 
-import com.ibm.icu.dev.demo.translit.CaseIterator;
 import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.test.util.CaseIterator;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Tabber;
 import com.ibm.icu.dev.test.util.UnicodeMap;
@@ -444,7 +444,7 @@ public class QuickTest implements UCD_Types {
 		for (Iterator it = list.iterator(); it.hasNext(); ) {
 			String value = (String) it.next();
 			if (value == null) continue;
-			UnicodeSet set = status.getSet(value);
+			UnicodeSet set = status.keySet(value);
 			for (UnicodeSetIterator umi = new UnicodeSetIterator(set); umi.next();) {
 				pw.println(Utility.hex(umi.codepoint) 
 						//+ (value.startsWith("*") ? ";\tBidi_Mirrored" : "")
@@ -1074,10 +1074,9 @@ public class QuickTest implements UCD_Types {
 			}
 			bufferTypes.add(new BufferData().set(i),1);
 		}
-		Map m = bufferTypes.getMap();
 		TreeSet sorted = new TreeSet(new BufferDataComparator());
 		NumberFormat nf = NumberFormat.getInstance();
-		sorted.addAll(m.keySet());
+		sorted.addAll(bufferTypes.keySet());
     System.out.println(tabber.process("total\t" + BufferData.getHeader()));
 		for (Iterator it = sorted.iterator(); it.hasNext();) {
 			Object key = it.next();

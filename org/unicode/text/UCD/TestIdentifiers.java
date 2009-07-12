@@ -30,7 +30,7 @@ public class TestIdentifiers {
 		TestIdentifiers ti = new TestIdentifiers("L");
 		TestIdentifiers tiany = new TestIdentifiers("A");
 		ti.loadIdentifiers();
-		UnicodeSet idnCharSet = ti.idnChars.getSet("output", new UnicodeSet());
+		UnicodeSet idnCharSet = ti.idnChars.keySet("output", new UnicodeSet());
 		System.out.println("idnCharSet: " + idnCharSet.size());
 		UnicodeSet idnCharNonStarting = ti.nonstarting;
 		System.out.println("idnCharNonStarting: " + idnCharSet);

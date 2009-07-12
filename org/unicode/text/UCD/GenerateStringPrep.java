@@ -181,7 +181,7 @@ class GenerateStringPrep implements UCD_Types {
 			textOut.println();
 			String value = (String)it.next();
 			bf.setValueSource(value);
-			bf.showSetNames(textOut, suspect.getSet(value));
+			bf.showSetNames(textOut, suspect.keySet(value));
 		}
 		textOut.close();
 		textOut = BagFormatter.openUTF8Writer(GEN_DIR, "idn_vs_cfnfkcid.txt");
@@ -391,7 +391,7 @@ class GenerateStringPrep implements UCD_Types {
 		
 		for (Iterator it = m.getAvailableValues(new TreeSet(uca)).iterator(); it.hasNext(); ) {
 			String type = (String) it.next();
-			UnicodeSet current = m.getSet(type).retainAll(non_spacing);
+			UnicodeSet current = m.keySet(type).retainAll(non_spacing);
 			if (current.size() == 0) continue;
 			printlnSet(htmlOut, textOut, script, "Visible_Combining_Marks_" + type, current, INHERITED_SCRIPT, positionComparator);
 		}

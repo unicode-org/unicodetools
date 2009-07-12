@@ -62,7 +62,7 @@ public class CreateInversions {
     int numberForValue = 0;
     // iterate through the values, assigning each a number
     for (Object value : source.getAvailableValues()) {
-      target.putAll(source.getSet(value), numberForValue++);
+      target.putAll(source.keySet(value), numberForValue++);
     }
     showMap(createInversions, target);
   }
