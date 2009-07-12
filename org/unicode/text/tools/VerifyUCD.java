@@ -228,7 +228,7 @@ public class VerifyUCD {
     sorted.addAll(results.getAvailableValues());
     for (Object props : sorted) {
       Log.logln("<p><b>" + props + "</b></p>");
-      Log.logln(bf.showSetNames(results.getSet(props)));
+      Log.logln(bf.showSetNames(results.keySet(props)));
     }
 
     Log.logln("<hr>");

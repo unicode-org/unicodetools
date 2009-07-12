@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2009-07-08 23:20:31 $
- * $Revision: 1.52 $
+ * $Date: 2009-07-12 04:47:01 $
+ * $Revision: 1.53 $
  *
  *******************************************************************************
  */
@@ -386,16 +386,16 @@ public final class UCD implements UCD_Types {
 
       if (blockData == null) loadBlocks();
 
-      blockData.getSet("Hebrew",BIDI_R_SET);
-      blockData.getSet("Cypriot_Syllabary",BIDI_R_SET);
-      blockData.getSet("Kharoshthi",BIDI_R_SET);
+      blockData.keySet("Hebrew",BIDI_R_SET);
+      blockData.keySet("Cypriot_Syllabary",BIDI_R_SET);
+      blockData.keySet("Kharoshthi",BIDI_R_SET);
 
-      blockData.getSet("Arabic",BIDI_AL_SET);
-      blockData.getSet("Syriac",BIDI_AL_SET);
-      blockData.getSet("Arabic_Supplement",BIDI_AL_SET);
-      blockData.getSet("Thaana",BIDI_AL_SET);
-      blockData.getSet("Arabic_Presentation_Forms_A",BIDI_AL_SET);
-      blockData.getSet("Arabic_Presentation_Forms_B",BIDI_AL_SET);
+      blockData.keySet("Arabic",BIDI_AL_SET);
+      blockData.keySet("Syriac",BIDI_AL_SET);
+      blockData.keySet("Arabic_Supplement",BIDI_AL_SET);
+      blockData.keySet("Thaana",BIDI_AL_SET);
+      blockData.keySet("Arabic_Presentation_Forms_A",BIDI_AL_SET);
+      blockData.keySet("Arabic_Presentation_Forms_B",BIDI_AL_SET);
       /*
             int blockId = 0;
             BlockData blockData = new BlockData();
@@ -1733,7 +1733,7 @@ to guarantee identifier closure.
   public UnicodeSet getBlockSet(String value, UnicodeSet result) {
     String blockName = UnicodeProperty.regularize(value, true);
     if (blockData == null) loadBlocks();
-    return blockData.getSet(blockName, result);
+    return blockData.keySet(blockName, result);
   }
 
   static final Matcher blockPattern = Pattern.compile("([0-9A-F]+)\\s*(?:[.][.]|[;])\\s*([0-9A-F]+)\\s*[;](.*)").matcher("");

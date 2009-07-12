@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/TestUtility.java,v $
- * $Date: 2009-07-11 08:01:33 $
- * $Revision: 1.7 $
+ * $Date: 2009-07-12 04:47:02 $
+ * $Revision: 1.8 $
  *
  *******************************************************************************
  */
@@ -35,6 +35,8 @@ import com.ibm.icu.dev.test.util.UnicodePropertySource;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+
+import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD_Types;
 
@@ -368,7 +370,7 @@ public class TestUtility {
 	 */
 	private static UnicodeMap fixNameMap(BreakIterator bk, UnicodeMap umap) {
 		UnicodeMap temp = new UnicodeMap();
-		Counter counter = new Counter();
+		Counter<String> counter = new Counter<String>();
 		for (int i = 0; i < 0x10FFFF; ++i) {
 			String name = (String) umap.getValue(i);
 			if (name == null)
@@ -391,15 +393,14 @@ public class TestUtility {
 			temp.put(i, name);
 		}
 		if (false) {
-			Map m = counter.getSortedByCount();
+			Set m = counter.getKeysetSortedByCount(true);
 			int count = 0;
 			int running = 0;
-			for (Iterator it = m.keySet().iterator(); it.hasNext();) {
-				Counter.RWInteger c = (Counter.RWInteger) it.next();
-				String value = (String) m.get(c);
-				running += c.value;
+			for (String key : counter) {
+				long c = counter.getCount(key);
+				running += c;
 				System.out.println(count++ + "\t" + c + "\t" + running
-						+ "\t" + value);
+						+ "\t" + key);
 			}
 			for (UnicodeMapIterator it2 = new UnicodeMapIterator(
 					temp); it2.nextRange();) {

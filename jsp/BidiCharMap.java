@@ -71,7 +71,7 @@ class BidiCharMap {
   }
 
   public static UnicodeSet getAsciiHack(byte i) {
-    return asciiHackMap.getSet(i);
+    return asciiHackMap.keySet(i);
   }
 
   public static byte getBidiClass(int codepoint, boolean asciiHack2) {

@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2008-04-04 23:05:27 $
- * $Revision: 1.23 $
+ * $Date: 2009-07-12 04:47:02 $
+ * $Revision: 1.24 $
  *
  *******************************************************************************
  */
@@ -879,7 +879,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
       Collection x = segSamples.getAvailableValues();
       for (Iterator it = x.iterator(); it.hasNext();) {
         String label = (String)it.next();
-        map.add(label, segSamples.getSet(label), true, false);
+        map.add(label, segSamples.keySet(label), true, false);
       }
       this.fileName = filename;
       sampleMap = map;

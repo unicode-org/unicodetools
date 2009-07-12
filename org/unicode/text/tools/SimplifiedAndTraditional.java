@@ -44,7 +44,7 @@ public class SimplifiedAndTraditional {
     Map<String,UnicodeSet> mandarin = new TreeMap();
     UnicodeMap mand = Default.ucd().getHanValue("kMandarin");
     for (String value : (Collection<String>) mand.getAvailableValues()) {
-      final UnicodeSet sources = mand.getSet(value);
+      final UnicodeSet sources = mand.keySet(value);
       String[] pieces = value.split("\\s");
       for (String piece : pieces) {
         piece = piece.trim();
@@ -216,8 +216,8 @@ public class SimplifiedAndTraditional {
     Set<String> bothValues = new TreeSet<String>(simp2trad.getAvailableValues());
     bothValues.retainAll(trad2simp.getAvailableValues());
     for (String value : bothValues) {
-      UnicodeSet simpSource = simp2trad.getSet(value);
-      UnicodeSet tradSource = trad2simp.getSet(value);
+      UnicodeSet simpSource = simp2trad.keySet(value);
+      UnicodeSet tradSource = trad2simp.keySet(value);
       System.out.println(simpSource.toPattern(false) + "\t→T\t" + hexToString(value));
       System.out.println(tradSource.toPattern(false) + "\t→S\t" + hexToString(value));
       System.out.println();

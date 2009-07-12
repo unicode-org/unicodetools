@@ -515,7 +515,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           .putAll(new UnicodeSet("[[\u0e30-\u0e3a\u0e45\u0eb0-\u0ebb]-[:cn:]]"), "Extend");
           UnicodeSet graphemePrepend = getProperty("Logical_Order_Exception").getSet(UCD_Names.YES);
           unicodeMap.putAll(graphemePrepend, "Prepend");
-          unicodeMap.putAll(cat.getSet("Spacing_Mark").removeAll(unicodeMap.getSet("Extend")),
+          unicodeMap.putAll(cat.getSet("Spacing_Mark").removeAll(unicodeMap.keySet("Extend")),
           "SpacingMark");
           UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
           unicodeMap.putAll(hangul.getSet("L"), "L");
@@ -554,17 +554,17 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                           new UnicodeSet(
                           "[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70]")),
           "Katakana"); // \uFF9E\uFF9F
-          Object foo = unicodeMap.getSet("Katakana");
+          Object foo = unicodeMap.keySet("Katakana");
           // UnicodeSet graphemeExtend =
           // getProperty("Grapheme_Extend").getSet(UCD_Names.YES).remove(0xFF9E,0xFF9F);
           UnicodeProperty lineBreak = getProperty("Line_Break");
           unicodeMap.putAll(getProperty("Alphabetic").getSet(UCD_Names.YES).add(0x05F3).removeAll(
                   getProperty("Ideographic").getSet(UCD_Names.YES))
-                  .removeAll(unicodeMap.getSet("Katakana"))
+                  .removeAll(unicodeMap.keySet("Katakana"))
                   // .removeAll(script.getSet("Thai"))
                   // .removeAll(script.getSet("Lao"))
                   .removeAll(lineBreak.getSet("SA")).removeAll(script.getSet("Hiragana"))
-                  .removeAll(unicodeMap.getSet("Extend")), "ALetter");
+                  .removeAll(unicodeMap.keySet("Extend")), "ALetter");
           unicodeMap
           .putAll(new UnicodeSet(
           "[\\u00B7\\u05F4\\u2027\\u003A\\u0387\\u0387\\uFE13\\uFE55\\uFF1A]"),
@@ -611,8 +611,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           unicodeMap.putAll(new UnicodeSet("[\\u0085\\u2028\\u2029]"), "Sep");
           unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
           unicodeMap.putAll(getProperty("Whitespace").getSet(UCD_Names.YES).removeAll(
-                  unicodeMap.getSet("Sep")).removeAll(unicodeMap.getSet("CR")).removeAll(
-                          unicodeMap.getSet("LF")), "Sp");
+                  unicodeMap.keySet("Sep")).removeAll(unicodeMap.keySet("CR")).removeAll(
+                          unicodeMap.keySet("LF")), "Sp");
           UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
           unicodeMap.putAll(getProperty("Lowercase").getSet(UCD_Names.YES)
                   .removeAll(graphemeExtend), "Lower");
@@ -620,17 +620,17 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                   cat.getSet("Titlecase_Letter")), "Upper");
           UnicodeSet temp = getProperty("Alphabetic").getSet(UCD_Names.YES)
           // .add(0x00A0)
-          .add(0x05F3).removeAll(unicodeMap.getSet("Lower")).removeAll(
-                  unicodeMap.getSet("Upper")).removeAll(unicodeMap.getSet("Extend"));
+          .add(0x05F3).removeAll(unicodeMap.keySet("Lower")).removeAll(
+                  unicodeMap.keySet("Upper")).removeAll(unicodeMap.keySet("Extend"));
           unicodeMap.putAll(temp, "OLetter");
           UnicodeProperty lineBreak = getProperty("Line_Break");
           unicodeMap.putAll(lineBreak.getSet("Numeric"), "Numeric");
           unicodeMap.putAll(new UnicodeSet("[\\u002E\\u2024\\uFE52\\uFF0E]"), "ATerm");
           unicodeMap.putAll(getProperty("STerm").getSet(UCD_Names.YES).removeAll(
-                  unicodeMap.getSet("ATerm")), "STerm");
+                  unicodeMap.keySet("ATerm")), "STerm");
           unicodeMap.putAll(cat.getSet("Open_Punctuation").addAll(cat.getSet("Close_Punctuation"))
                   .addAll(lineBreak.getSet("Quotation")).remove(0x05F3).removeAll(
-                          unicodeMap.getSet("ATerm")).removeAll(unicodeMap.getSet("STerm")),
+                          unicodeMap.keySet("ATerm")).removeAll(unicodeMap.keySet("STerm")),
           "Close");
           unicodeMap.putAll(new UnicodeSet("[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C"
                   + "\\uFE50\\uFF64\\uFE51\\uFE51\\u055D\\u060C\\u060D\\u07F8\\u1802\\u1808" + // new

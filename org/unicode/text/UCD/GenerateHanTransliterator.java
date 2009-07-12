@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateHanTransliterator.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.18 $
+* $Date: 2009-07-12 04:47:02 $
+* $Revision: 1.19 $
 *
 *******************************************************************************
 */
@@ -262,8 +262,8 @@ public final class GenerateHanTransliterator implements UCD_Types {
     public static void fixedMandarin() throws IOException {
         UnicodeMap kMandarin = Default.ucd().getHanValue("kMandarin");
         UnicodeMap kHanyuPinlu = Default.ucd().getHanValue("kHanyuPinlu");
-        UnicodeSet gotMandarin = kMandarin.getSet(null).complement();
-        UnicodeSet gotHanyu = kHanyuPinlu.getSet(null).complement();
+        UnicodeSet gotMandarin = kMandarin.keySet(null).complement();
+        UnicodeSet gotHanyu = kHanyuPinlu.keySet(null).complement();
         UnicodeSet gotAtLeastOne = new UnicodeSet(gotMandarin).addAll(gotHanyu);
         Map outmap = new TreeMap(Collator.getInstance(new ULocale("zh")));
         for (UnicodeSetIterator it = new UnicodeSetIterator(gotAtLeastOne); it.next(); ) {
@@ -319,8 +319,8 @@ public final class GenerateHanTransliterator implements UCD_Types {
         Transliterator icuPinyin = Transliterator.getInstance("han-latin");
         UnicodeMap kMandarin = Default.ucd().getHanValue("kMandarin");
         UnicodeMap kHanyuPinlu = Default.ucd().getHanValue("kHanyuPinlu");
-        UnicodeSet gotMandarin = kMandarin.getSet(null).complement();
-        UnicodeSet gotHanyu = kHanyuPinlu.getSet(null).complement();
+        UnicodeSet gotMandarin = kMandarin.keySet(null).complement();
+        UnicodeSet gotHanyu = kHanyuPinlu.keySet(null).complement();
         UnicodeSet gotAtLeastOne = new UnicodeSet(gotMandarin).addAll(gotHanyu);
         int counter = 0;
         int hCount = 0;
