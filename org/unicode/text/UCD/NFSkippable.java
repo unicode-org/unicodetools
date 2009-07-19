@@ -2,6 +2,7 @@ package org.unicode.text.UCD;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.CollectionUtilities;
+import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -237,7 +238,15 @@ public final class NFSkippable extends UCDProperty {
         if (true) {
         	rSet = result.toPattern(false);
         } else {
-        	rSet = CollectionUtilities.prettyPrint(result, true, null, null, UCA, UCA);
+        	PrettyPrinter pp = new PrettyPrinter()
+            .setOrdering(Collator.getInstance(ULocale.ROOT))
+            .setSpaceComparator(Collator.getInstance(ULocale.ROOT)
+                    .setStrength2(Collator.PRIMARY))
+                    .setCompressRanges(true);
+            if (null != null) pp.setToQuote(null);
+            if (UCA != null) pp.setOrdering(UCA);
+            if (UCA != null) pp.setSpaceComparator(UCA);
+            rSet = pp.toPattern(result);
         }
         
         out.println("/*Unicode: ");

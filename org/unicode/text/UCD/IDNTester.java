@@ -5,10 +5,13 @@ import java.io.PrintWriter;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
+import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
+
 import org.unicode.text.utility.Utility;
 
 public class IDNTester {
@@ -22,7 +25,7 @@ public class IDNTester {
 	static UnicodeSet IDOutput32 = new UnicodeSet();
 	static UnicodeSet IDInputOnly50 = new UnicodeSet();
 	static UnicodeSet IDOutput50 = new UnicodeSet();
-	static PrettyPrinter pp = new PrettyPrinter();
+	static PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
 	static PrintWriter pw;
 	
 	public static void main(String[] args) throws IOException {
