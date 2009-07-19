@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
-* $Date: 2009-07-12 04:47:02 $
-* $Revision: 1.19 $
+* $Date: 2009-07-19 03:50:23 $
+* $Revision: 1.20 $
 *
 *******************************************************************************
 */
@@ -683,7 +683,7 @@ public class QuickTest implements UCD_Types {
 		//System.out.println("Test: " + fixTransRule("\\u0061"));
 		UnicodeSet s = new UnicodeSet("[^[:script=common:][:script=inherited:]]");
 		UnicodeSet quoting = new UnicodeSet("[[:Mn:][:Me:]]");
-		String ss = new PrettyPrinter().setToQuote(quoting).toPattern(s);
+		String ss = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY)).setToQuote(quoting).toPattern(s);
 		System.out.println("test: " + ss);
 	}
 	
@@ -893,7 +893,7 @@ public class QuickTest implements UCD_Types {
 			}
 		}
 		
-		PrettyPrinter pp = new PrettyPrinter();
+		PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY));
 		
 		showDifferences(pp, "hasFrom", hasFrom, "hasTo", hasTo, "xxx", new UnicodeSet());
 		

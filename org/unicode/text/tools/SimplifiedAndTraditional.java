@@ -16,9 +16,11 @@ import org.unicode.text.utility.XEquivalenceClass;
 
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ULocale;
 
 public class SimplifiedAndTraditional {
   public static void main(String[] args) {
@@ -61,7 +63,7 @@ public class SimplifiedAndTraditional {
     System.out.println(PRETTY.toPattern(biggest));
   }
 
-  static     PrettyPrinter PRETTY = new PrettyPrinter();
+  static     PrettyPrinter PRETTY = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
   
   private void showSimpVsTrad(String[] args) {
     
