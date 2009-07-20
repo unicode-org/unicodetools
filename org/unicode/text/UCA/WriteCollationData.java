@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
-* $Date: 2008-03-05 23:49:14 $ 
-* $Revision: 1.50 $
+* $Date: 2009-07-20 23:27:33 $ 
+* $Revision: 1.51 $
 *
 *******************************************************************************
 */
@@ -21,6 +21,7 @@ import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.TransliteratorUtilities;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.dev.test.util.UnicodePropertySource;
+import com.ibm.icu.impl.Differ;
 import com.ibm.icu.impl.UCharacterProperty;
 
 import java.io.*;
