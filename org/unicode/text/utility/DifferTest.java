@@ -5,13 +5,15 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/DifferTest.java,v $
-* $Date: 2007-02-11 08:15:10 $
-* $Revision: 1.3 $
+* $Date: 2009-07-20 23:27:33 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.utility;
+
+import com.ibm.icu.impl.Differ;
 
 
 public class DifferTest {

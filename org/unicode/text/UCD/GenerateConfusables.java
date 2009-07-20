@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateConfusables.java,v $
- * $Date: 2009-07-12 04:47:02 $
- * $Revision: 1.21 $
+ * $Date: 2009-07-20 23:27:33 $
+ * $Revision: 1.22 $
  *
  *******************************************************************************
  */
@@ -38,6 +38,7 @@ import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.dev.test.util.XEquivalenceClass;
+import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Punycode;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Collator;
@@ -295,7 +296,7 @@ public class GenerateConfusables {
     static final String outdir = "/Users/markdavis/Documents/workspace/draft/reports/tr36/data/";
 
     static Comparator codepointComparator = new UTF16.StringComparator(true,false,0);
-    static Comparator UCAComparator = new CollectionUtilities.MultiComparator(new Comparator[] {Collator.getInstance(ULocale.ROOT), codepointComparator});
+    static Comparator UCAComparator = new com.ibm.icu.impl.MultiComparator(new Comparator[] {Collator.getInstance(ULocale.ROOT), codepointComparator});
 
     static UnicodeSet setsToAbbreviate = new UnicodeSet("[" +
             "\\u3400-\\u4DB5" +
@@ -593,8 +594,8 @@ public class GenerateConfusables {
             //reviews.putAll(UNASSIGNED, "");
             //			out.print("\uFEFF");
             //			out.println("# Review List for IDN");
-            //			out.println("# $Revision: 1.21 $");
-            //			out.println("# $Date: 2009-07-12 04:47:02 $");
+            //			out.println("# $Revision: 1.22 $");
+            //			out.println("# $Date: 2009-07-20 23:27:33 $");
             //			out.println("");
 
             UnicodeSet fullSet = reviews.keySet("").complement();
@@ -716,8 +717,8 @@ public class GenerateConfusables {
             /* PrintWriter out = BagFormatter.openUTF8Writer(outdir, "xidmodifications.txt");
 
 			out.println("# Security Profile for General Identifiers");
-			out.println("# $Revision: 1.21 $");
-			out.println("# $Date: 2009-07-12 04:47:02 $");
+			out.println("# $Revision: 1.22 $");
+			out.println("# $Date: 2009-07-20 23:27:33 $");
              */
 
 
@@ -789,8 +790,8 @@ public class GenerateConfusables {
             //someRemovals = removals;
             out = BagFormatter.openUTF8Writer(outdir, "draft-restrictions.txt");
             out.println("# Characters restricted in domain names");
-            out.println("# $Revision: 1.21 $");
-            out.println("# $Date: 2009-07-12 04:47:02 $");
+            out.println("# $Revision: 1.22 $");
+            out.println("# $Date: 2009-07-20 23:27:33 $");
             out.println("#");
             out.println("# This file contains a draft list of characters for use in");
             out.println("#     UTR #36: Unicode Security Considerations");
@@ -1389,8 +1390,8 @@ public class GenerateConfusables {
             PrintWriter out = openAndWriteHeader(filename, "Source File for IDN Confusables");
             //			PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
             //			out.println("# Source File for IDN Confusables");
-            //			out.println("# $Revision: 1.21 $");
-            //			out.println("# $Date: 2009-07-12 04:47:02 $");
+            //			out.println("# $Revision: 1.22 $");
+            //			out.println("# $Date: 2009-07-20 23:27:33 $");
             //			out.println("");
             dataMixedAnycase.writeSource(out);
             out.close();
@@ -1400,8 +1401,8 @@ public class GenerateConfusables {
             PrintWriter out = openAndWriteHeader(filename, "Recommended confusable mapping for IDN");
             //            PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
             //			out.println("# Recommended confusable mapping for IDN");
-            //			out.println("# $Revision: 1.21 $");
-            //			out.println("# $Date: 2009-07-12 04:47:02 $");
+            //			out.println("# $Revision: 1.22 $");
+            //			out.println("# $Date: 2009-07-20 23:27:33 $");
             //			out.println("");
 
             if (appendFile) {
@@ -1632,8 +1633,8 @@ public class GenerateConfusables {
             //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
             //			out.print('\uFEFF');
             //			out.println("# Summary: Recommended confusable mapping for IDN");
-            //			out.println("# $Revision: 1.21 $");
-            //			out.println("# $Date: 2009-07-12 04:47:02 $");
+            //			out.println("# $Revision: 1.22 $");
+            //			out.println("# $Date: 2009-07-20 23:27:33 $");
             //			out.println("");
             UnicodeSet representable = new UnicodeSet();
             MyEquivalenceClass data = dataMixedAnycase;
@@ -1759,8 +1760,8 @@ public class GenerateConfusables {
             //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
             //			out.print('\uFEFF');
             //			out.println("# Summary: Whole-Script Confusables");
-            //			out.println("# $Revision: 1.21 $");
-            //			out.println("# $Date: 2009-07-12 04:47:02 $");
+            //			out.println("# $Revision: 1.22 $");
+            //			out.println("# $Date: 2009-07-20 23:27:33 $");
             out.println("# This data is used for determining whether a strings is a");
             out.println("# whole-script or mixed-script confusable.");
             out.println("# The mappings here ignore common and inherited script characters,");
@@ -2269,7 +2270,7 @@ public class GenerateConfusables {
         out.println("# File: " + filename);
         out.println("# Version: " + version);
         out.println("# Generated: " + Default.getDate());
-        out.println("# Checkin: $Revision: 1.21 $");
+        out.println("# Checkin: $Revision: 1.22 $");
         out.println("#");
         out.println("# For documentation and usage, see http://www.unicode.org/reports/tr39/");
         out.println("#");
