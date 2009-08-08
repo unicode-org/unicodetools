@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
- * $Date: 2009-07-11 08:01:33 $
- * $Revision: 1.46 $
+ * $Date: 2009-08-08 00:23:18 $
+ * $Revision: 1.47 $
  *
  *******************************************************************************
  */
@@ -23,7 +23,7 @@ public interface UCD_Types {
 
   static final byte BINARY_FORMAT = 21; // bumped if binary format of UCD changes. Forces rebuild   
 
-  public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.Utility.getProperty("dir", "../DATA/")) + "/";
+  public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("dir", "../DATA/")) + "/";
   public static final String UCD_DIR = BASE_DIR + "UCD/";
 
   public static final String GEN_DIR = Utility.fixFileName(BASE_DIR + "../Generated/") + "/";
@@ -33,7 +33,7 @@ public interface UCD_Types {
 
   public static final String SRC_DIR = "org/unicode/text/";
 
-  public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(org.unicode.cldr.util.Utility.getProperty("copyright", "skip"));
+  public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(org.unicode.cldr.util.CldrUtility.getProperty("copyright", "skip"));
 
   public static final char DOTTED_CIRCLE = '\u25CC';
   

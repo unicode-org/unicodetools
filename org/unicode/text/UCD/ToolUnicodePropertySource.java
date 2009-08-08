@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.Relation;
+import com.ibm.icu.dev.test.util.Relation;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
@@ -1194,7 +1194,7 @@ isTitlecase(X) is false.
   }
 
   static List<String> lookup(String valueAlias, String[] main, String[] aux,
-          org.unicode.cldr.util.Relation<String, String> aux2, List result) {
+          com.ibm.icu.dev.test.util.Relation<String, String> aux2, List result) {
     // System.out.println(valueAlias + "=>");
     // System.out.println("=>" + aux[pos]);
     if (aux != null) {

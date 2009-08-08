@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateConfusables.java,v $
- * $Date: 2009-07-20 23:27:33 $
- * $Revision: 1.22 $
+ * $Date: 2009-08-08 00:23:18 $
+ * $Revision: 1.23 $
  *
  *******************************************************************************
  */
@@ -18,17 +18,18 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+import org.unicode.cldr.ooo.CompareFlex;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.ArrayComparator;
 import com.ibm.icu.dev.test.util.BagFormatter;
@@ -38,34 +39,36 @@ import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.dev.test.util.XEquivalenceClass;
-import com.ibm.icu.impl.MultiComparator;
-import com.ibm.icu.impl.Punycode;
+import com.ibm.icu.dev.test.util.XEquivalenceClass.Linkage;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
-import org.unicode.text.utility.Utility;
 
 
 public class GenerateConfusables {
-    public static String version = "2.0";
+    public static String version = "2.1-draft";
     public static boolean EXCLUDE_CONFUSABLE_COMPAT = true;
 
     public static void main(String[] args) throws IOException {
-        quickTest();
+        //quickTest();
 
-        Set arg2 = new HashSet(Arrays.asList(args));
         try {
-            if (arg2.contains("-b")) generateIDN();
-            if (arg2.contains("-c")) generateConfusables();
-            if (arg2.contains("-d")) generateDecompFile();
-            if (arg2.contains("-s")) generateSource();
-            if (arg2.contains("-l")) generateLatin();
-            if (arg2.contains("-a")) generateAsciify();
+            for (String arg : args) {
+                // use -b -c for the normal data files
+                if (arg.equalsIgnoreCase("-b")) generateIDN();
+                else if (arg.equalsIgnoreCase("-c")) generateConfusables();
+                else if (arg.equalsIgnoreCase("-d")) generateDecompFile();
+                else if (arg.equalsIgnoreCase("-s")) generateSource();
+                else if (arg.equalsIgnoreCase("-l")) generateLatin();
+                else if (arg.equalsIgnoreCase("-a")) generateAsciify();
+                else throw new IllegalArgumentException("Unknown option: " + arg);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -276,24 +279,40 @@ public class GenerateConfusables {
     }
 
     static PrintWriter log;
-    static final String ARROW = "\u2192"; // \u2194
+    static final String ARROW = "→"; // \u2194
     static UnicodeProperty.Factory ups = ToolUnicodePropertySource.make(""); // ICUPropertyFactory.make();
-    static UnicodeSet UNASSIGNED = ups.getSet("gc=Cn")
-    .addAll(ups.getSet("gc=Co"))
-    .addAll(ups.getSet("gc=Cs"));
-    static UnicodeSet skipSet = ups.getSet("gc=Cc")
-    .addAll(ups.getSet("gc=Cf"))
-    .addAll(UNASSIGNED);
-    static UnicodeSet whiteSpace = ups.getSet("Whitespace=Yes");
-    static UnicodeSet lowercase = ups.getSet("gc=Ll");
+    
+    static UnicodeSet UNASSIGNED = 
+        ups.getSet("gc=Cn")
+        .addAll(ups.getSet("gc=Co"))
+        .addAll(ups.getSet("gc=Cs")).freeze();
+    static UnicodeSet SKIP_SET = 
+        ups.getSet("gc=Cc")
+        .addAll(ups.getSet("gc=Cf"))
+        .addAll(UNASSIGNED).freeze();
+    static UnicodeSet WHITESPACE = ups.getSet("Whitespace=Yes").freeze();
+    static UnicodeSet GC_LOWERCASE = ups.getSet("gc=Ll").freeze();
     static UnicodeSet _skipNFKD;
+    static UnicodeSet COMBINING = 
+        ups.getSet("gc=Mn")
+        .addAll(ups.getSet("gc=Me")).freeze();
+    static UnicodeSet INVISIBLES = 
+        ups.getSet("default-ignorable-codepoint=true").freeze();
+    static UnicodeSet XIDContinueSet = 
+        ups.getSet("XID_Continue=true").freeze();
+    static UnicodeSet XID = XIDContinueSet;
+    static UnicodeSet RTL = new UnicodeSet("[[:bc=R:][:bc=AL:][:bc=AN:]]").freeze();
+    static UnicodeSet CONTROLS = new UnicodeSet("[:cc:]").freeze();
+    static final char LRM = '\u200E';
+    private static UnicodeSet commonAndInherited = new UnicodeSet("[[:script=common:][:script=inherited:]]");
+
 
     static Map gatheredNFKD = new TreeMap();
     static UnicodeMap nfcMap;
     static UnicodeMap nfkcMap;
 
-    static final String indir = "/Users/markdavis/Documents/workspace/draft/reports/tr36/data/source/";
-    static final String outdir = "/Users/markdavis/Documents/workspace/draft/reports/tr36/data/";
+    static final String indir = "/Users/markdavis/Documents/workspace35/draft/reports/tr39/data/source/";
+    static final String outdir = "/Users/markdavis/Documents/workspace35/draft/reports/tr39/data/";
 
     static Comparator codepointComparator = new UTF16.StringComparator(true,false,0);
     static Comparator UCAComparator = new com.ibm.icu.impl.MultiComparator(new Comparator[] {Collator.getInstance(ULocale.ROOT), codepointComparator});
@@ -338,7 +357,7 @@ public class GenerateConfusables {
             "[:script=Kharoshthi:]" +
             "[:script=Osmanya:]" +
             "[:default ignorable code point:]" +
-    "]");
+    "]").freeze();
 
     /**
      * @throws IOException
@@ -589,13 +608,13 @@ public class GenerateConfusables {
             bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
             bf.setMergeRanges(true);
 
-            PrintWriter out = openAndWriteHeader("review.txt", "Review List for IDN");
+            PrintWriter out = openAndWriteHeader(outdir, "review.txt", "Review List for IDN");
             //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, "review.txt");
             //reviews.putAll(UNASSIGNED, "");
             //			out.print("\uFEFF");
             //			out.println("# Review List for IDN");
-            //			out.println("# $Revision: 1.22 $");
-            //			out.println("# $Date: 2009-07-20 23:27:33 $");
+            //			out.println("# $Revision: 1.23 $");
+            //			out.println("# $Date: 2009-08-08 00:23:18 $");
             //			out.println("");
 
             UnicodeSet fullSet = reviews.keySet("").complement();
@@ -647,7 +666,7 @@ public class GenerateConfusables {
 
             UnicodeSet letters = new UnicodeSet("[[:Alphabetic:][:Mark:][:Nd:]]");
 
-            PrintWriter out = openAndWriteHeader("idnchars.txt", "Recommended Identifier Profiles for IDN");
+            PrintWriter out = openAndWriteHeader(outdir, "idnchars.txt", "Recommended Identifier Profiles for IDN");
 
             out.println("# Allowed as output characters");
             out.println("");
@@ -713,12 +732,12 @@ public class GenerateConfusables {
             bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
             bf.setMergeRanges(true);
 
-            PrintWriter out = openAndWriteHeader("xidmodifications.txt", "Security Profile for General Identifiers");
+            PrintWriter out = openAndWriteHeader(outdir, "xidmodifications.txt", "Security Profile for General Identifiers");
             /* PrintWriter out = BagFormatter.openUTF8Writer(outdir, "xidmodifications.txt");
 
 			out.println("# Security Profile for General Identifiers");
-			out.println("# $Revision: 1.22 $");
-			out.println("# $Date: 2009-07-20 23:27:33 $");
+			out.println("# $Revision: 1.23 $");
+			out.println("# $Date: 2009-08-08 00:23:18 $");
              */
 
 
@@ -744,7 +763,7 @@ public class GenerateConfusables {
 
             out.close();
 
-            out = openAndWriteHeader("xidAllowed.txt", "Security Profile for General Identifiers");
+            out = openAndWriteHeader(outdir, "xidAllowed.txt", "Security Profile for General Identifiers");
             UnicodeSet allowed = new UnicodeSet(xidPlus).removeAll(removals.keySet());
             UnicodeSet cfAllowed = new UnicodeSet().addAll(allowed).retainAll(isCaseFolded).retainAll(propNFKCSet);
             allowed.removeAll(cfAllowed);
@@ -774,7 +793,7 @@ public class GenerateConfusables {
                     }
                     if (x.startsWith(PROHIBITED)) x = x.substring(PROHIBITED.length());
                     //if (!propNFKCSet.contains(codePoint)) x += "*";
-                    if (lowercase.contains(codePoint)) {
+                    if (GC_LOWERCASE.contains(codePoint)) {
                         String upper = Default.ucd().getCase(codePoint, UCD.FULL, UCD.UPPER);
                         if (upper.equals(UTF16.valueOf(codePoint)) 
                                 && x.equals("technical symbol (phonetic)")) x = "technical symbol (phonetic with no uppercase)";
@@ -790,8 +809,8 @@ public class GenerateConfusables {
             //someRemovals = removals;
             out = BagFormatter.openUTF8Writer(outdir, "draft-restrictions.txt");
             out.println("# Characters restricted in domain names");
-            out.println("# $Revision: 1.22 $");
-            out.println("# $Date: 2009-07-20 23:27:33 $");
+            out.println("# $Revision: 1.23 $");
+            out.println("# $Date: 2009-08-08 00:23:18 $");
             out.println("#");
             out.println("# This file contains a draft list of characters for use in");
             out.println("#     UTR #36: Unicode Security Considerations");
@@ -909,7 +928,6 @@ public class GenerateConfusables {
     /**
      * 
      */
-    static UnicodeSet XIDContinueSet = new UnicodeSet("[:XID_Continue:]");
     private static UnicodeSet IDNOutputSet, IDNInputSet, _preferredIDSet;
 
     static UnicodeSet getIdentifierSet() {
@@ -969,7 +987,7 @@ public class GenerateConfusables {
                 }
                 if (mapped.equals(source)) continue;
                 if (idSet.contains(cp) && !idSet.contains(mapped)) _skipNFKD.add(cp);
-                else if (!whiteSpace.contains(cp) && whiteSpace.containsSome(mapped)) _skipNFKD.add(cp);
+                else if (!WHITESPACE.contains(cp) && WHITESPACE.containsSome(mapped)) _skipNFKD.add(cp);
             }
         }
         nfcMap.setMissing("");
@@ -1065,7 +1083,7 @@ public class GenerateConfusables {
                 //+ " ;\t" + (preferredID.contains(source) ? "ID" : "")
                 + "\t#"
                 + (isXid(source) ? "" : "*")
-                + " ( " + source + " " + ARROW + " " + target + " ) " 
+                + arrowLiterals(source, target)
                 + Default.ucd().getName(source) + " " + ARROW + " "
                 + Default.ucd().getName(target)
         );
@@ -1073,9 +1091,22 @@ public class GenerateConfusables {
         out.println();
     }
 
-    static UnicodeSet controls = new UnicodeSet("[:Cc:]");
+    private static String arrowLiterals(String source, String target) {
+        return (" ( " + rtlProtect(source) + " " + ARROW + " " + rtlProtect(target) + " ) ");
+    }
 
-    static class MyEquivalenceClass extends XEquivalenceClass {
+    private static String rtlProtect(String source) {
+        if (CONTROLS.containsSome(source)) {
+            source = "";
+        } else if (INVISIBLES.containsSome(source)) {
+            source = "";
+        } else if (RTL.containsSome(source)) {
+            source = LRM + source + LRM;
+        }
+        return source;
+    }
+
+    static class MyEquivalenceClass extends XEquivalenceClass<String,String> {
         public MyEquivalenceClass() {
             super("NONE");
         }
@@ -1265,11 +1296,21 @@ public class GenerateConfusables {
         MyEquivalenceClass dataMixedAnycase = new MyEquivalenceClass();
         MyEquivalenceClass dataSingleLowercase = new MyEquivalenceClass();
         MyEquivalenceClass dataSingleAnycase = new MyEquivalenceClass();
+        
+        static String testChar = UTF16.valueOf(0x10A3A);
 
         public DataSet add(String source, String target, String type, int lineCount, String errorLine) {
-            if (skipSet.containsAll(source) || skipSet.containsAll(target)) return this;
+            if (SKIP_SET.containsAll(source) || SKIP_SET.containsAll(target)) return this;
             String nsource = Default.nfd().normalize(source);
             String ntarget = Default.nfd().normalize(target);
+
+            if (COMBINING.containsAll(nsource) != COMBINING.containsAll(ntarget)) {
+                if (nsource.contains(testChar)) {
+                    COMBINING.containsAll(nsource);
+                    COMBINING.containsAll(ntarget);
+                }
+                System.err.println("ERROR: Mixed combining classes: " + lineCount + "\t" + errorLine);
+            }
 
             // if it is just a compatibility match, return
             //if (nsource.equals(ntarget)) return this;
@@ -1289,7 +1330,7 @@ public class GenerateConfusables {
                 target = UTF16.valueOf(ntargetFirst);
                 type += "-base";
             }
-            type += ":" + lineCount;
+            //type += ":" + lineCount;
 
             String combined = source + target;
             if (combined.indexOf("\u0430") >= 0) {
@@ -1351,29 +1392,37 @@ public class GenerateConfusables {
                         continue;
                     }
                     String type = filename;
+                    String sourceString = INVISIBLES.stripFrom(pieces[0].trim(), true);
+                    String targetString = INVISIBLES.stripFrom(pieces[1].trim(), true);
+                    if (!targetString.equals(pieces[1].trim())) {
+                        System.out.println("**\t" + Utility.hex(pieces[0].trim()) + ";\t" + Utility.hex(targetString));
+                    }
                     if (kind==FOLDING) {
-                        String source = Utility.fromHex(pieces[0].trim(),true);
-                        String target = Utility.fromHex(pieces[1].trim(),true);
+                        String target = Utility.fromHex(targetString.trim(),true);
+                        String source = Utility.fromHex(sourceString.trim(),true);
                         String nsource = Default.nfkd().normalize(source);
                         String first = UTF16.valueOf(UTF16.charAt(nsource, 0));
                         if (!first.equals(target)) {
                             add(source, target, type, count, line);
                         }
                     } else if (kind == OLD) {
-                        String target = pieces[0].trim();
+                        String target = sourceString.trim();
                         for (int i = 1; i < pieces.length; ++i) {
                             add(pieces[i].trim(), target, type, count, line);
                         }
                     } else {
-                        String source = Utility.fromHex(pieces[0].trim(),true);
-                        String target = Utility.fromHex(pieces[1].trim(),true);
-                        //if (pieces.length > 2) type = pieces[2].trim();
-                        String nfkdSource = Default.nfkd().normalize(source);
-                        String nfkdTarget = Default.nfkd().normalize(target);
-                        if (suppress_NFKC && nfkdSource.equals(nfkdTarget)) {
-                            System.out.println("Suppressing nfkc for: " + Default.ucd().getCodeAndName(source));
+                        if (targetString.contains("(")) {
+                            System.err.println("ERROR: paren on " + count + "\t" + line);
+                        }
+                        String target = Utility.fromHex(targetString.trim(),true);
+                        if (UnicodeSet.resemblesPattern(sourceString, 0)) {
+                            UnicodeSet sourceSet = new UnicodeSet(sourceString);
+                            for (String s : sourceSet) {
+                                add2(s, target, type, count, line);
+                            }
                         } else {
-                            add(source, target, type, count, line);
+                            String source = Utility.fromHex(sourceString.trim(),true);
+                            add2(source, target, type, count, line);
                         }
                     }
                 }
@@ -1386,23 +1435,34 @@ public class GenerateConfusables {
             }			
         }
 
+        private void add2(String source, String target, String type, int count, String line) {
+            //if (pieces.length > 2) type = pieces[2].trim();
+            String nfkdSource = Default.nfkd().normalize(source);
+            String nfkdTarget = Default.nfkd().normalize(target);
+            if (suppress_NFKC && nfkdSource.equals(nfkdTarget)) {
+                System.out.println("Suppressing nfkc for: " + Default.ucd().getCodeAndName(source));
+            } else {
+                add(source, target, type, count, line);
+            }
+        }
+
         public void writeSource(String directory, String filename) throws IOException {
-            PrintWriter out = openAndWriteHeader(filename, "Source File for IDN Confusables");
+            PrintWriter out = openAndWriteHeader(directory, filename, "Source File for IDN Confusables");
             //			PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
             //			out.println("# Source File for IDN Confusables");
-            //			out.println("# $Revision: 1.22 $");
-            //			out.println("# $Date: 2009-07-20 23:27:33 $");
+            //			out.println("# $Revision: 1.23 $");
+            //			out.println("# $Date: 2009-08-08 00:23:18 $");
             //			out.println("");
             dataMixedAnycase.writeSource(out);
             out.close();
         }
 
         public void writeSourceOrder(String directory, String filename, boolean appendFile, boolean skipNFKEquivs) throws IOException {
-            PrintWriter out = openAndWriteHeader(filename, "Recommended confusable mapping for IDN");
+            PrintWriter out = openAndWriteHeader(directory, filename, "Recommended confusable mapping for IDN");
             //            PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
             //			out.println("# Recommended confusable mapping for IDN");
-            //			out.println("# $Revision: 1.22 $");
-            //			out.println("# $Date: 2009-07-20 23:27:33 $");
+            //			out.println("# $Revision: 1.23 $");
+            //			out.println("# $Date: 2009-08-08 00:23:18 $");
             //			out.println("");
 
             if (appendFile) {
@@ -1464,7 +1524,8 @@ public class GenerateConfusables {
                 String[] pair = (String[]) it.next();
                 String source = pair[1];
                 String target = pair[0];
-                String reason = fixReason(data.getReasons(source, target));
+                List<Linkage<String,String>> reasons = data.getReasons(source, target);
+                String reason = XEquivalenceClass.toString(reasons, myLinkageTransform); // fixReason(reasons);
                 if (lastTarget != null && !lastTarget.equals(target)) {
                     out.println();
                 }
@@ -1629,12 +1690,12 @@ public class GenerateConfusables {
          * 
          */
         public void writeSummary(String outdir, String filename, boolean outputOnly, UnicodeSet script) throws IOException {
-            PrintWriter out = openAndWriteHeader(filename, "Summary: Recommended confusable mapping for IDN");
+            PrintWriter out = openAndWriteHeader(outdir, filename, "Summary: Recommended confusable mapping for IDN");
             //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
             //			out.print('\uFEFF');
             //			out.println("# Summary: Recommended confusable mapping for IDN");
-            //			out.println("# $Revision: 1.22 $");
-            //			out.println("# $Date: 2009-07-20 23:27:33 $");
+            //			out.println("# $Revision: 1.23 $");
+            //			out.println("# $Date: 2009-08-08 00:23:18 $");
             //			out.println("");
             UnicodeSet representable = new UnicodeSet();
             MyEquivalenceClass data = dataMixedAnycase;
@@ -1683,22 +1744,26 @@ public class GenerateConfusables {
                         continue; // skip this one
                     }
                 out.println();
-                out.println(getStatus(target) + "\t" + "(\u200E " + target + " \u200E)\t" + Utility.hex(target) + "\t " + Default.ucd().getName(target));
+                String status = ""; // getStatus(target);
+                out.println(status + "\t" + "(\u200E " + target + " \u200E)\t" + Utility.hex(target) + "\t " + Default.ucd().getName(target));
                 //if (UTF16.hasMoreCodePointsThan(source,1)) continue;
                 for (Iterator it2 = equivalents.iterator(); it2.hasNext();) {					
                     String source = (String) it2.next();
                     if (source.equals(target)) continue;
                     //boolean compatEqual = Default.nfkd().normalize(source).equals(Default.nfkd().normalize(target));
                     //if (EXCLUDE_CONFUSABLE_COMPAT && compatEqual) continue;
-                    String reason = fixReason(data.getReasons(source, target));
+                    String reason = XEquivalenceClass.toString(data.getReasons(source, target), myLinkageTransform); // fixReason(data.getReasons(source, target));
                     //if (!outputAllowed.containsAll(source)) continue;
                     //					if (compatEqual) {
                     //						out.print("\u21D0");
                     //					} else {
                     //						out.print("\u2190");
                     //					}
-                    out.println("\u2190" + getStatus(source) + "\t" + "(\u200E " + source + " \u200E)\t" + Utility.hex(source) + "\t " + Default.ucd().getName(source)
-                            + "\t# " + reason);
+                    String reasonOrEmpty = reason.length() == 0 ? "" : "\t# " + reason;
+                    status = ""; // getStatus(source);
+
+                    out.println("\u2190" + status + "\t" + "(\u200E " + source + " \u200E)\t" + Utility.hex(source) + "\t " + Default.ucd().getName(source)
+                            + reasonOrEmpty);
                     count++;
                 }
             }
@@ -1756,12 +1821,12 @@ public class GenerateConfusables {
                 wsAny.addEquivalents(equivalents);
                 wsLower.addEquivalents(equivalents);
             }
-            PrintWriter out = openAndWriteHeader(filename, "Summary: Whole-Script Confusables");
+            PrintWriter out = openAndWriteHeader(outdir, filename, "Summary: Whole-Script Confusables");
             //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
             //			out.print('\uFEFF');
             //			out.println("# Summary: Whole-Script Confusables");
-            //			out.println("# $Revision: 1.22 $");
-            //			out.println("# $Date: 2009-07-20 23:27:33 $");
+            //			out.println("# $Revision: 1.23 $");
+            //			out.println("# $Date: 2009-08-08 00:23:18 $");
             out.println("# This data is used for determining whether a strings is a");
             out.println("# whole-script or mixed-script confusable.");
             out.println("# The mappings here ignore common and inherited script characters,");
@@ -1794,7 +1859,6 @@ public class GenerateConfusables {
     }
 
     static class WholeScript {
-        private static UnicodeSet commonAndInherited = new UnicodeSet("[[:script=common:][:script=inherited:]]");
         private UnicodeSet filterSet;
         private UnicodeSet[] script_representables = new UnicodeSet[UScript.CODE_LIMIT];
         private UnicodeSet[] script_set = new UnicodeSet[UScript.CODE_LIMIT];
@@ -2001,7 +2065,18 @@ public class GenerateConfusables {
             System.out.println(names[i]);
             DataSet ds = new DataSet();
             ds.addFile(indir, names[i]);
-            ds.writeSource(outdir, "new-" + names[i]);
+            String newName = null;
+            String newDir = null;
+            if (names[i].equals("confusables-intentional.txt")) {
+                newName = "intentional.txt";
+                newDir = outdir;
+            } else if (names[i].equals("confusables-source.txt")) {
+                newName = "formatted-source.txt";
+                newDir = outdir + "/source/";
+            } else {
+                throw new IllegalArgumentException("Unknown file name");
+            }
+            ds.writeSource(newDir, newName);
             ds.close("*");
             total.addAll(ds);
             total.close("t*" + names[i]);
@@ -2145,7 +2220,7 @@ public class GenerateConfusables {
         return Utility.hex(source) + " ; " + Utility.hex(target," ")
         + " ; " + count
         + " # "
-        + "(" + source + " " + ARROW + " " + target + ") "
+        + arrowLiterals(source, target)
         + Default.ucd().getName(source) 
         + " " + ARROW + " " + Default.ucd().getName(target);
     }
@@ -2183,8 +2258,6 @@ public class GenerateConfusables {
 
     static _BetterTargetIsLess betterTargetIsLess = new _BetterTargetIsLess();
 
-    static UnicodeSet XID = new UnicodeSet("[:xidcontinue:]");
-
     static boolean isXid(String x) {
         return  XID.containsAll(x);
     }
@@ -2195,11 +2268,19 @@ public class GenerateConfusables {
         public int compare(Object o1, Object o2) {
             String a = (String)o1;
             String b = (String)o2;
+            int diff;
+
             // longer is better (less)
             int ca = UTF16.countCodePoint(a);
             int cb = UTF16.countCodePoint(b);
             if (ca != cb)  {
                 return ca > cb ? -1 : 1;
+            }
+
+            boolean asciiA = ASCII.containsAll(a);
+            boolean asciiB = ASCII.containsAll(b);
+            if (asciiA != asciiB) {
+                return asciiA ? -1 : 1;
             }
 
             // is Identifier is better
@@ -2208,7 +2289,11 @@ public class GenerateConfusables {
             if (ba != bb) {
                 return ba ? -1 : 1;
             }
-
+            
+            if (0 != (diff = compareTrueLess(LATIN.containsSome(a), LATIN.containsSome(b)))) {
+                return diff;
+            }
+            
             int aok = getValue(a);
             int bok = getValue(b);
             if (aok != bok) return aok < bok ? -1 : 1;
@@ -2228,6 +2313,14 @@ public class GenerateConfusables {
             return lastValue;
         }	
     };
+    
+    static int compare(boolean a, boolean b) {
+        return a == b ? 0 : a ? 1 : -1;
+    }
+    
+    static int compareTrueLess(boolean a, boolean b) {
+        return a == b ? 0 : a ? -1 : 1;
+    }
 
     /*	static private boolean preferSecondAsSource(String a, String b) {
 		// if first is longer, prefer second
@@ -2263,18 +2356,27 @@ public class GenerateConfusables {
         return modNFKC.normalize(cf);
     }
 
-    private static PrintWriter openAndWriteHeader(String filename, String title) throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
+    private static PrintWriter openAndWriteHeader(String dir, String filename, String title) throws IOException {
+        PrintWriter out = BagFormatter.openUTF8Writer(dir, filename);
         out.print('\uFEFF');
         out.println("# " + title);
         out.println("# File: " + filename);
         out.println("# Version: " + version);
         out.println("# Generated: " + Default.getDate());
-        out.println("# Checkin: $Revision: 1.22 $");
+        out.println("# Checkin: $Revision: 1.23 $");
         out.println("#");
         out.println("# For documentation and usage, see http://www.unicode.org/reports/tr39/");
         out.println("#");
         return out;
     }
+    
+    static Transform<Linkage<String, String>, String> myLinkageTransform = new Transform<Linkage<String, String>, String>() {
+        public String transform(Linkage<String, String> source) {
+            String sourceString = source.reasons.toString();
+            sourceString = sourceString.substring(1,sourceString.length()-1);
+            return source.result == null ? "" : ARROW + rtlProtect(source.result) + ARROW;
+        }
+        
+    };
 
 }

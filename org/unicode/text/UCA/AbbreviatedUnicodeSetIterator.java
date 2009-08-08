@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/AbbreviatedUnicodeSetIterator.java,v $ 
-* $Date: 2007-02-11 08:15:10 $ 
-* $Revision: 1.3 $
+* $Date: 2009-08-08 00:23:19 $ 
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
@@ -40,8 +40,9 @@ public class AbbreviatedUnicodeSetIterator extends UnicodeSetIterator {
         abbreviated = false;
     }
 
-    public void reset(UnicodeSet newSet) {
+    public AbbreviatedUnicodeSetIterator reset(UnicodeSet newSet) {
         reset(newSet, false);
+        return this;
     }
 
     public void reset(UnicodeSet newSet, boolean abb) {

@@ -51,7 +51,7 @@ public class VerifyUCD {
     
     try {
       if (property != null) {
-        org.unicode.cldr.util.Utility.callMethod(property, VerifyUCD.class);
+        org.unicode.cldr.util.CldrUtility.callMethod(property, VerifyUCD.class);
       } else {
         checkBidiMirroredNonspacingMarks();
         checkSegmentation();

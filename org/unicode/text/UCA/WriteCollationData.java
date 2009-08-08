@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
-* $Date: 2009-07-20 23:27:33 $ 
-* $Revision: 1.51 $
+* $Date: 2009-08-08 00:23:19 $ 
+* $Revision: 1.52 $
 *
 *******************************************************************************
 */
@@ -2893,8 +2893,8 @@ F900..FAFF; CJK Compatibility Ideographs
         StringBuffer newTertiary = new StringBuffer();
         StringBuffer oldStr = new StringBuffer();
 
-        EquivalenceClass secEq = new EquivalenceClass("\r\n#", 2, true);
-        EquivalenceClass terEq = new EquivalenceClass("\r\n#", 2, true);
+        OldEquivalenceClass secEq = new OldEquivalenceClass("\r\n#", 2, true);
+        OldEquivalenceClass terEq = new OldEquivalenceClass("\r\n#", 2, true);
         String[] sampleEq = new String[500];
         int[] sampleLen = new int[500];
         
