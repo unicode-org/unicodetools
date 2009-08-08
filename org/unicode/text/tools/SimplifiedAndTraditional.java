@@ -12,7 +12,7 @@ import java.util.TreeSet;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
-import org.unicode.text.utility.XEquivalenceClass;
+import com.ibm.icu.dev.test.util.XEquivalenceClass;
 
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
@@ -154,7 +154,7 @@ public class SimplifiedAndTraditional {
         }
         for (String item2 : equivSet) {
           if (item.equals(item2)) continue;
-          Set reason = equivalences.getReason(item, item2);
+          List reason = equivalences.getReasons(item, item2);
           if (reason == null) continue;
           String reasonString = reason.toString();
           reasonString = reasonString.substring(1,reasonString.length()-1);

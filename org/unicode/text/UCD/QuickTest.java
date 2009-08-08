@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
-* $Date: 2009-07-19 03:50:23 $
-* $Revision: 1.20 $
+* $Date: 2009-08-08 00:23:18 $
+* $Revision: 1.21 $
 *
 *******************************************************************************
 */
@@ -58,7 +58,7 @@ public class QuickTest implements UCD_Types {
 	public static void main(String[] args) throws IOException {
 		try {
       String methodName = System.getProperty("method");
-      org.unicode.cldr.util.Utility.callMethod(methodName, QuickTest.class);
+      org.unicode.cldr.util.CldrUtility.callMethod(methodName, QuickTest.class);
 
 
             if (true) return;

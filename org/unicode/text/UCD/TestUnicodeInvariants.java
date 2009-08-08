@@ -622,7 +622,7 @@ public class TestUnicodeInvariants {
     int cp = 0;
     int i;
     for (i = start; i < line.length(); i += UTF16.getCharCount(cp)) {
-      cp = UTF16.charAt(line, i);
+      cp = Character.codePointAt(line, i);
       if (allowed.contains(cp) != in) break;
     }
     return i;

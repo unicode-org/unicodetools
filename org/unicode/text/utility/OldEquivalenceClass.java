@@ -4,9 +4,9 @@
 * others. All Rights Reserved.                                                *
 *******************************************************************************
 *
-* $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/EquivalenceClass.java,v $
-* $Date: 2007-02-11 08:15:10 $
-* $Revision: 1.4 $
+* $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/OldEquivalenceClass.java,v $
+* $Date: 2009-08-08 00:23:19 $
+* $Revision: 1.1 $
 *
 *******************************************************************************
 */
@@ -17,7 +17,7 @@ package org.unicode.text.utility;
 import java.io.*;
 import java.util.*;
 
-public class EquivalenceClass {
+public class OldEquivalenceClass {
     static final boolean DEBUG = false;
     /**
      * Takes a many:many relation between source and value.
@@ -39,11 +39,11 @@ public class EquivalenceClass {
     int places;
     boolean hex;
 
-    public EquivalenceClass() {
+    public OldEquivalenceClass() {
         this(",", 4, true);
     }
 
-    public EquivalenceClass(String itemSeparator, int places, boolean hex) {
+    public OldEquivalenceClass(String itemSeparator, int places, boolean hex) {
         this.itemSeparator = itemSeparator;
         this.places = places;
         this.hex = hex;

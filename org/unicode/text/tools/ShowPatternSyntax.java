@@ -1,6 +1,6 @@
 package org.unicode.text.tools;
 
-import org.unicode.cldr.util.Utility;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
 import com.ibm.icu.dev.test.util.BagFormatter;

@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
- * $Date: 2009-07-08 23:20:31 $
- * $Revision: 1.42 $
+ * $Date: 2009-08-08 00:23:19 $
+ * $Revision: 1.43 $
  *
  *******************************************************************************
  */
@@ -21,7 +21,7 @@ import java.util.TreeMap;
 
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 
-import org.unicode.cldr.util.Relation;
+import com.ibm.icu.dev.test.util.Relation;
 import org.unicode.text.utility.*;
 
 
