@@ -5,21 +5,24 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Normalizer.java,v $
-* $Date: 2009-05-11 22:36:02 $
-* $Revision: 1.20 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.21 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
+import java.util.BitSet;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-
-import org.unicode.text.utility.*;
 
 
 /**

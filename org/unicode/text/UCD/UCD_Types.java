@@ -5,15 +5,13 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
- * $Date: 2009-08-08 00:23:18 $
- * $Revision: 1.47 $
+ * $Date: 2009-08-18 23:38:45 $
+ * $Revision: 1.48 $
  *
  *******************************************************************************
  */
 
 package org.unicode.text.UCD;
-
-import java.io.File;
 
 import org.unicode.text.utility.Utility;
 

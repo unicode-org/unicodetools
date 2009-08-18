@@ -1,17 +1,17 @@
 package org.unicode.text;
+import java.text.NumberFormat;
+import java.util.BitSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
+
+import org.unicode.text.utility.FastIntBinarySearch;
+
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.lang.UCharacter;
-import java.util.BitSet;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.TreeSet;
-import java.util.Iterator;
-import java.text.NumberFormat;
-import org.unicode.text.utility.FastIntBinarySearch;
 
 public class TestICU4J {
   public static void main(String[] args) {

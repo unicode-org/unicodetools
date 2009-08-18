@@ -1,14 +1,13 @@
 package org.unicode.text.UCD;
+import java.io.PrintWriter;
+
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.CollectionUtilities;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
-
-import java.io.PrintWriter;
 
 
 public final class NFSkippable extends UCDProperty {
@@ -246,7 +245,7 @@ public final class NFSkippable extends UCDProperty {
             if (null != null) pp.setToQuote(null);
             if (UCA != null) pp.setOrdering(UCA);
             if (UCA != null) pp.setSpaceComparator(UCA);
-            rSet = pp.toPattern(result);
+            rSet = pp.format(result);
         }
         
         out.println("/*Unicode: ");

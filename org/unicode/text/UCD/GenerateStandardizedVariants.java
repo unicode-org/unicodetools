@@ -5,19 +5,19 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateStandardizedVariants.java,v $
-* $Date: 2008-03-05 18:25:43 $
-* $Revision: 1.12 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.13 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import org.unicode.text.utility.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import java.util.*;
-import java.io.*;
+import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.Utility;
 
 public final class GenerateStandardizedVariants implements UCD_Types {
     

@@ -5,32 +5,31 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2009-07-12 04:47:01 $
- * $Revision: 1.53 $
+ * $Date: 2009-08-18 23:38:45 $
+ * $Revision: 1.54 $
  *
  *******************************************************************************
  */
 
 package org.unicode.text.UCD;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.BitSet;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import java.io.IOException;
-import java.io.DataInputStream;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.BufferedReader;
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.Utility;
 
-import org.unicode.text.utility.*;
-import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.text.Transliterator;

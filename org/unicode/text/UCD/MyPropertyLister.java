@@ -5,16 +5,14 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/MyPropertyLister.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.13 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.14 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import java.io.*;
-
-import org.unicode.text.utility.*;
+import java.io.PrintWriter;
 
 final class MyPropertyLister extends PropertyLister {
 

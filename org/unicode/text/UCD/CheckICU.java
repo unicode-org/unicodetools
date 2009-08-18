@@ -5,25 +5,20 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.test.util.ICUPropertyFactory;
 import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.ICUPropertyFactory;
-import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
-import org.unicode.text.utility.Utility;
 
 public class CheckICU {
     static final BagFormatter bf = new BagFormatter();

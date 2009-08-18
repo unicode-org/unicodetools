@@ -3,6 +3,8 @@ package org.unicode.text.UCD;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.text.Collator;
@@ -11,8 +13,6 @@ import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
-
-import org.unicode.text.utility.Utility;
 
 public class IDNTester {
 	static StringBuffer inbuffer = new StringBuffer();
@@ -51,7 +51,7 @@ public class IDNTester {
 	}
 	
 	public static void showSet(String title, UnicodeSet set) {
-		pw.println("<h2>" + title + set.size() + "</h2>" + "<p>" + pp.toPattern(set) + "</p>");
+		pw.println("<h2>" + title + set.size() + "</h2>" + "<p>" + pp.format(set) + "</p>");
 		pw.println();
 	}
 	

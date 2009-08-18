@@ -5,18 +5,24 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedProperty.java,v $
-* $Date: 2009-05-29 04:48:49 $
-* $Revision: 1.32 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.33 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import org.unicode.text.utility.*;
+import java.io.PrintWriter;
+import java.util.BitSet;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import java.util.*;
-import java.io.PrintWriter;
 
 public final class DerivedProperty implements UCD_Types {
   

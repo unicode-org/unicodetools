@@ -758,7 +758,7 @@ public class UnicodeUtilities {
         it.next();
         result.append(showCodePoint(it.getString()));
       } else {
-        result.append(showCodePoint(pp.toPattern(source)));
+        result.append(showCodePoint(pp.format(source)));
       }
       result.append("</br>\r\n");
     }
@@ -849,7 +849,7 @@ public class UnicodeUtilities {
       if (escape) {
         pp.setToQuote(new UnicodeSet("[^\\u0021-\\u007E]"));
       }
-      a_out = toHTML(pp.toPattern(a));
+      a_out = toHTML(pp.format(a));
     } else {
       a.complement().complement();
       a_out = toHTML(a.toPattern(escape));

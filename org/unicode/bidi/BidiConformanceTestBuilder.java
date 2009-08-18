@@ -1,7 +1,6 @@
 package org.unicode.bidi;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -12,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-
-import org.unicode.bidi.GenerateN1Tests.Sample;
 
 import com.ibm.icu.text.UnicodeSet;
 

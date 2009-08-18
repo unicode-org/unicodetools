@@ -1,10 +1,12 @@
 package org.unicode.text.UCD;
 
-import java.util.*;
-import org.unicode.text.*;
-import com.ibm.icu.text.UTF16;
+import java.util.BitSet;
+import java.util.HashMap;
 
-import org.unicode.text.utility.*;
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Utility;
+
+import com.ibm.icu.text.UTF16;
 
 
 /**

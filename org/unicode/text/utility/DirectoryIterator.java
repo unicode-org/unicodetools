@@ -1,8 +1,14 @@
 package org.unicode.text.utility;
 
-import java.util.*;
-import java.io.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.unicode.text.UCD.UCD_Types;
 

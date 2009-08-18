@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/OldEquivalenceClass.java,v $
-* $Date: 2009-08-08 00:23:19 $
-* $Revision: 1.1 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.2 $
 *
 *******************************************************************************
 */
@@ -14,8 +14,14 @@
 package org.unicode.text.utility;
 
 
-import java.io.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class OldEquivalenceClass {
     static final boolean DEBUG = false;

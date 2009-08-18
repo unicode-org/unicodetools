@@ -5,14 +5,16 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF8StreamWriter.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.6 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.7 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.utility;
-import java.io.*;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
 
 /**
  * Utility class that writes UTF8.<br>

@@ -1,22 +1,5 @@
 package org.unicode.text.UCD;
 
-import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
-import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
-import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;
-import org.unicode.text.UCD.GenerateBreakTest.GenerateWordBreakTest;
-import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
-import org.unicode.text.utility.ChainException;
-import org.unicode.text.utility.UnicodeDataFile;
-import org.unicode.text.utility.Utility;
-
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.Tabber;
-import com.ibm.icu.dev.test.util.UnicodeLabel;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UnicodeSet;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,6 +19,23 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
+import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
+import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;
+import org.unicode.text.UCD.GenerateBreakTest.GenerateWordBreakTest;
+import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.Utility;
+
+import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.test.util.Tabber;
+import com.ibm.icu.dev.test.util.UnicodeLabel;
+import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.UnicodeSet;
 
 public class MakeUnicodeFiles {
   public static final boolean SHOW_VERSION_IN_FILE = org.unicode.cldr.util.CldrUtility.getProperty("FILE_WITH_VERSION", "true").startsWith("t");

@@ -5,23 +5,27 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/IANANames.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.4 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import org.unicode.text.utility.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.unicode.text.utility.Utility;
+
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.lang.UCharacter;
-
-
-import java.util.*;
-import java.text.NumberFormat;
-import java.io.*;
 
 public class IANANames implements UCD_Types {
     private Map aliasToBase = new TreeMap();

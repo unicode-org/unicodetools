@@ -5,20 +5,28 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateCaseFolding.java,v $
-* $Date: 2009-05-29 04:48:49 $
-* $Revision: 1.23 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.24 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.BitSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
-
-import org.unicode.text.utility.*;
 
 public class GenerateCaseFolding implements UCD_Types {
     public static boolean DEBUG = false;

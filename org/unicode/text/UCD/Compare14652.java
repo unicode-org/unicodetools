@@ -5,19 +5,20 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Compare14652.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.5 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-import org.unicode.text.utility.*;
-import com.ibm.icu.text.UTF16;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.UnicodeSet;
 
 // quick and dirty function for grabbing contents of ISO 14652 file

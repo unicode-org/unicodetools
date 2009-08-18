@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/BuildNames.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.10 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.11 $
 *
 *******************************************************************************
 */
@@ -14,14 +14,18 @@
 package org.unicode.text.UCD;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+import org.unicode.text.utility.LengthFirstComparator;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.UTF16;
-
-//import org.unicode.text.unicode.UInfo;
-import java.util.*;
-import java.io.*;
-//import java.text.*;
-
-import org.unicode.text.utility.*;
 
 
 public class BuildNames implements UCD_Types {

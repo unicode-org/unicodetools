@@ -1,7 +1,6 @@
 package org.unicode.bidi;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileReader;
 
 import com.ibm.icu.lang.UCharacterDirection;

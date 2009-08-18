@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CheckCollator.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.3 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
@@ -15,13 +15,16 @@
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
 
-import org.unicode.text.utility.*;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
+import org.unicode.text.utility.Utility;
 
 /**
  * This is a quick and dirty program to get some idea of collation performance, comparing old Java to new stuff.

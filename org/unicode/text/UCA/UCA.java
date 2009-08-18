@@ -5,30 +5,34 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
-* $Date: 2008-03-05 23:49:14 $ 
-* $Revision: 1.30 $
+* $Date: 2009-08-18 23:38:45 $ 
+* $Revision: 1.31 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCA;
 
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.text.MessageFormat;
+import java.util.BitSet;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.Reader;
-import java.io.PrintWriter;
-import java.io.FileReader;
-import java.text.MessageFormat;
-import java.io.IOException;
+
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
-import org.unicode.text.UCD.UCD_Types;
-import org.unicode.text.utility.*;
-import org.unicode.text.UCD.UnifiedBinaryProperty;
 import org.unicode.text.UCD.UCDProperty;
+import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.UCD.UnifiedBinaryProperty;
+import org.unicode.text.utility.IntStack;
+import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

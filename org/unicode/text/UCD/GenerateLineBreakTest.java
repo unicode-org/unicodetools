@@ -5,20 +5,21 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateLineBreakTest.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.6 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.7 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-import org.unicode.text.utility.*;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 public class GenerateLineBreakTest implements UCD_Types {
     

@@ -5,23 +5,24 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNameUniqueness.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.5 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.unicode.text.utility.*;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.text.UnicodeSet;
 
 public class TestNameUniqueness implements UCD_Types {
     

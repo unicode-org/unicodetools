@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/CompactShortArray.java,v $
-* $Date: 2007-02-11 08:15:10 $
-* $Revision: 1.3 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
@@ -44,8 +44,9 @@ package org.unicode.text.utility;
  *
  */
 
-import java.io.*;
-import java.lang.*;
+import java.io.Serializable;
+
+import sun.text.CompactIntArray;
 /**
  * class CompactATypeArray : use only on primitive data types
  * Provides a compact way to store information that is indexed by Unicode

@@ -5,17 +5,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
+
+import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
-import org.unicode.text.utility.Pair;
-import org.unicode.text.utility.Utility;
 
 public class ChineseFrequency {
     static final String DICT_DIR = UCD_Types.BASE_DIR + "dict/";

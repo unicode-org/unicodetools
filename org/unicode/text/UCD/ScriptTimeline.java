@@ -1,10 +1,7 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.UnicodeSet;
-
-import java.util.List;
 
 public class ScriptTimeline {
   public static void main(String[] args) {

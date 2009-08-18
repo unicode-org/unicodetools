@@ -5,20 +5,20 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateCaseTest.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.3 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-import org.unicode.text.utility.*;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 abstract public class GenerateCaseTest implements UCD_Types {
     

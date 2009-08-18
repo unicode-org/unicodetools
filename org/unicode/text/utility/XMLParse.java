@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/XMLParse.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.3 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
@@ -28,7 +28,10 @@ package org.unicode.text.utility;
  *
  * @author Mark Davis
  */
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
 
 public final class XMLParse implements XMLParseTypes {
 

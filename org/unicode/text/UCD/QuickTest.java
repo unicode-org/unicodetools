@@ -5,13 +5,33 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/QuickTest.java,v $
-* $Date: 2009-08-08 00:23:18 $
-* $Revision: 1.21 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.22 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
+import java.io.StringReader;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import org.unicode.cldr.util.Counter;
 
@@ -33,26 +53,6 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StreamTokenizer;
-import java.io.StringReader;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class QuickTest implements UCD_Types {
 	public static void main(String[] args) throws IOException {
@@ -683,7 +683,7 @@ public class QuickTest implements UCD_Types {
 		//System.out.println("Test: " + fixTransRule("\\u0061"));
 		UnicodeSet s = new UnicodeSet("[^[:script=common:][:script=inherited:]]");
 		UnicodeSet quoting = new UnicodeSet("[[:Mn:][:Me:]]");
-		String ss = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY)).setToQuote(quoting).toPattern(s);
+		String ss = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY)).setToQuote(quoting).format(s);
 		System.out.println("test: " + ss);
 	}
 	
@@ -907,15 +907,15 @@ public class QuickTest implements UCD_Types {
 		isTitle.removeAll(upperAndTitle);
 		
 		System.out.println("isLower: " + isLower.size());
-		System.out.println(com.ibm.icu.impl.Utility.escape(pp.toPattern(isLower)));
+		System.out.println(com.ibm.icu.impl.Utility.escape(pp.format(isLower)));
 		System.out.println("isUpper (alone): " + isUpper.size());
-		System.out.println(com.ibm.icu.impl.Utility.escape(pp.toPattern(isUpper)));
+		System.out.println(com.ibm.icu.impl.Utility.escape(pp.format(isUpper)));
 		System.out.println("isTitle (alone): " + isTitle.size());
-		System.out.println(com.ibm.icu.impl.Utility.escape(pp.toPattern(isTitle)));
+		System.out.println(com.ibm.icu.impl.Utility.escape(pp.format(isTitle)));
 		System.out.println("isUpperAndTitle: " + upperAndTitle.size());
-		System.out.println(com.ibm.icu.impl.Utility.escape(pp.toPattern(upperAndTitle)));
+		System.out.println(com.ibm.icu.impl.Utility.escape(pp.format(upperAndTitle)));
 		System.out.println("other: " + hasFrom.size());
-		System.out.println(com.ibm.icu.impl.Utility.escape(pp.toPattern(hasFrom)));
+		System.out.println(com.ibm.icu.impl.Utility.escape(pp.format(hasFrom)));
 		
 		UnicodeSet LowercaseProperty = new UnicodeSet("[:Lowercase:]");
 		UnicodeSet LowercaseCategory = new UnicodeSet("[:Lowercase_Letter:]");
@@ -976,7 +976,7 @@ public class QuickTest implements UCD_Types {
 			if ((i & 2) != 0) name += " & " + lowercaseCatTitle;
 			name = name.substring(3); // skip " & "
 			System.out.println(name + ", size: " + categories[i].size());
-			System.out.println(com.ibm.icu.impl.Utility.escape(pp.toPattern(categories[i])));
+			System.out.println(com.ibm.icu.impl.Utility.escape(pp.format(categories[i])));
 		}
 	}
 	

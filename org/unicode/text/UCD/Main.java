@@ -5,16 +5,18 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Main.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.38 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.39 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import java.util.Date;
-
-import org.unicode.text.utility.*;
+import org.unicode.text.utility.CallArgs;
+import org.unicode.text.utility.DirectoryIterator;
+import org.unicode.text.utility.FastBinarySearch;
+import org.unicode.text.utility.SampleEnum;
+import org.unicode.text.utility.Utility;
 
 public final class Main implements UCD_Types {
     

@@ -5,40 +5,47 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/TestUtility.java,v $
- * $Date: 2009-07-12 04:47:02 $
- * $Revision: 1.8 $
+ * $Date: 2009-08-18 23:38:46 $
+ * $Revision: 1.9 $
  *
  *******************************************************************************
  */
 
 package org.unicode.text.utility;
 
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.text.BreakIterator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
-import java.util.zip.ZipInputStream;
-import java.util.zip.ZipOutputStream;
-import java.text.*;
-import java.io.*;
-import java.nio.Buffer;
-
-import com.ibm.icu.dev.test.util.DataInputCompressor;
-import com.ibm.icu.dev.test.util.DataOutputCompressor;
-import com.ibm.icu.dev.test.util.ICUPropertyFactory;
-import com.ibm.icu.dev.test.util.UnicodeLabel;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodeMapIterator;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.UnicodePropertySource;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD_Types;
+
+import com.ibm.icu.dev.test.util.DataInputCompressor;
+import com.ibm.icu.dev.test.util.DataOutputCompressor;
+import com.ibm.icu.dev.test.util.ICUPropertyFactory;
+import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeMapIterator;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 
 public class TestUtility {
 	/*

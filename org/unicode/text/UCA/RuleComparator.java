@@ -5,16 +5,15 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/RuleComparator.java,v $ 
-* $Date: 2007-02-11 08:15:10 $ 
-* $Revision: 1.3 $
+* $Date: 2009-08-18 23:38:45 $ 
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCA;
 
-import org.unicode.text.UCD.*;
-import org.unicode.text.utility.*;
+import org.unicode.text.utility.Utility;
 
 public final class RuleComparator implements java.util.Comparator {
     

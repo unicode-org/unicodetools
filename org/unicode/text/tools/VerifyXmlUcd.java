@@ -1,20 +1,5 @@
 package org.unicode.text.tools;
 
-import org.unicode.cldr.util.XMLFileReader;
-import org.unicode.cldr.util.XPathParts;
-
-import com.ibm.icu.dev.test.util.ICUPropertyFactory;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.UnicodeProperty.Factory;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.DateFormat;
-import com.ibm.icu.text.SimpleDateFormat;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -29,6 +14,18 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.unicode.cldr.util.XMLFileReader;
+import org.unicode.cldr.util.XPathParts;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
+
+import com.ibm.icu.dev.test.util.ICUPropertyFactory;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.Factory;
+import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 
 public class VerifyXmlUcd {
   public static final boolean USE_ICU = false;
