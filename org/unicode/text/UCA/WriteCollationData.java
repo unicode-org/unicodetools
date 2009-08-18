@@ -5,38 +5,59 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
-* $Date: 2009-08-08 00:23:19 $ 
-* $Revision: 1.52 $
+* $Date: 2009-08-18 23:38:45 $ 
+* $Revision: 1.53 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCA;
 
-import java.util.*;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.CanonicalIterator;
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.TransliteratorUtilities;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.UnicodePropertySource;
-import com.ibm.icu.impl.Differ;
-import com.ibm.icu.impl.UCharacterProperty;
-
-import java.io.*;
-//import java.text.*;
-//import org.unicode.text.unicode.*;
-
-import java.text.RuleBasedCollator;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.CollationElementIterator;
 import java.text.Collator;
 import java.text.DateFormat;
+import java.text.RuleBasedCollator;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.Vector;
 
-import org.unicode.text.UCD.*;
-import org.unicode.text.utility.*;
-import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.CompactByteArray;
+import org.unicode.text.utility.CompactShortArray;
+import org.unicode.text.utility.DualWriter;
+import org.unicode.text.utility.OldEquivalenceClass;
+import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.Utility;
+
+import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.test.util.TransliteratorUtilities;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.impl.Differ;
+import com.ibm.icu.text.CanonicalIterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 
 public class WriteCollationData implements UCD_Types, UCA_Types {
 	

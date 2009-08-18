@@ -5,28 +5,14 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/AbbreviatedUnicodeSetIterator.java,v $ 
-* $Date: 2009-08-08 00:23:19 $ 
-* $Revision: 1.4 $
+* $Date: 2009-08-18 23:38:45 $ 
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCA;
 
-import java.util.*;
-import java.io.BufferedReader;
-import java.io.Reader;
-import java.io.PrintWriter;
-import java.io.FileReader;
-import java.text.MessageFormat;
-import java.io.IOException;
-import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.UCD.UCD;
-import org.unicode.text.utility.*;
-import org.unicode.text.UCD.UnifiedBinaryProperty;
-import org.unicode.text.UCD.UCDProperty;
-
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
@@ -40,9 +26,8 @@ public class AbbreviatedUnicodeSetIterator extends UnicodeSetIterator {
         abbreviated = false;
     }
 
-    public AbbreviatedUnicodeSetIterator reset(UnicodeSet newSet) {
+    public void reset(UnicodeSet newSet) {
         reset(newSet, false);
-        return this;
     }
 
     public void reset(UnicodeSet newSet, boolean abb) {

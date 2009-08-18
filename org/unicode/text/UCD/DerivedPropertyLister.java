@@ -5,17 +5,14 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedPropertyLister.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.14 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.15 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import java.io.*;
-import java.util.*;
-
-import org.unicode.text.utility.*;
+import java.io.PrintWriter;
 
 final class DerivedPropertyLister extends PropertyLister {
     static final boolean BRIDGE = false;

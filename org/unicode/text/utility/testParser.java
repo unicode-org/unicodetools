@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/testParser.java,v $
-* $Date: 2008-02-26 00:20:37 $
-* $Revision: 1.5 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
@@ -15,8 +15,12 @@ package org.unicode.text.utility;
 
 /** Simple Test program for XMLParse
  */
-import java.io.*;
-import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.unicode.text.UCD.UCD_Types;
 

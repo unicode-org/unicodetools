@@ -14,23 +14,21 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.text.UCD.TestData.RegexMatcher;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.CollectionUtilities;
 import com.ibm.icu.dev.test.util.TransliteratorUtilities;
 import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodeMap.Composer;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.util.ULocale;
-import org.unicode.text.UCD.GenerateHanTransliterator.MultiComparator;
-import org.unicode.text.UCD.TestData.RegexMatcher;
-import org.unicode.text.utility.Utility;
 
 
 class GenerateStringPrep implements UCD_Types {

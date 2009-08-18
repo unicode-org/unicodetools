@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/ChainException.java,v $
-* $Date: 2007-02-11 08:15:10 $
-* $Revision: 1.5 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
@@ -14,8 +14,7 @@
 package org.unicode.text.utility;
 
 
-import java.text.*;
-import java.io.*;
+import java.text.MessageFormat;
 
 public class ChainException extends RuntimeException {
     Object[] keyData;

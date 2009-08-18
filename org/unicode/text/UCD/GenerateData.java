@@ -5,21 +5,25 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateData.java,v $
-* $Date: 2008-03-05 18:25:43 $
-* $Revision: 1.42 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.43 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
 
-import org.unicode.text.utility.*;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 
 public class GenerateData implements UCD_Types {

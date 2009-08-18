@@ -5,16 +5,16 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/DualWriter.java,v $
-* $Date: 2007-02-11 08:15:10 $
-* $Revision: 1.3 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.utility;
 
-import java.awt.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.Writer;
 
 final public class DualWriter extends Writer {
     private static final String copyright = "(C) Copyright IBM Corp. 1998 - All Rights Reserved";

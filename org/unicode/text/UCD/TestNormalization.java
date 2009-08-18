@@ -5,21 +5,32 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestNormalization.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.10 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.11 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.util.BitSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import org.unicode.text.utility.*;
 
 public final class TestNormalization {
     static final String DIR = UCD_Types.UCD_DIR + "Update 3.0.1/";

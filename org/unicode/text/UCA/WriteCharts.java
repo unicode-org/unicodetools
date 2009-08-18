@@ -5,27 +5,40 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCharts.java,v $
-* $Date: 2008-04-04 23:05:27 $
-* $Revision: 1.29 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.30 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCA;
 
-import java.util.*;
-
-import java.io.*;
-import org.unicode.text.UCD.*;
-import org.unicode.text.utility.*;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UnicodeSet;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.NumberFormat;
-
-
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TimeZone;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.Utility;
+
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 
 public class WriteCharts implements UCD_Types {
 

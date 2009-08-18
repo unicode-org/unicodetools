@@ -5,24 +5,22 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
- * $Date: 2009-08-08 00:23:19 $
- * $Revision: 1.43 $
+ * $Date: 2009-08-18 23:38:45 $
+ * $Revision: 1.44 $
  *
  *******************************************************************************
  */
 
 package org.unicode.text.UCD;
 
-import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Locale;
-import java.util.Map;
 import java.util.TreeMap;
 
-import com.ibm.icu.dev.test.util.UnicodeProperty;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.Relation;
-import org.unicode.text.utility.*;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
 
 
 public final class UCD_Names implements UCD_Types {

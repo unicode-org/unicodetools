@@ -5,19 +5,14 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/OldUnicodeMap.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.2 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
-
-import org.unicode.text.utility.*;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 /**

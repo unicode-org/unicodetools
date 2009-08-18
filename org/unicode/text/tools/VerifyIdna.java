@@ -3,7 +3,6 @@ package org.unicode.text.tools;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.ParsePosition;
-import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
@@ -13,14 +12,11 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
 
-import sun.nio.cs.ext.ISCII91;
-
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.ICUPropertyFactory;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

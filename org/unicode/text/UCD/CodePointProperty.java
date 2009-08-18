@@ -1,7 +1,7 @@
 package org.unicode.text.UCD;
+import java.util.Iterator;
+
 import com.ibm.icu.text.UnicodeSet;
-import org.unicode.text.utility.*;
-import java.util.*;
 
 // Enumerated properties will be IntCodePointProperty.
 // The string values they return will be the property value names.

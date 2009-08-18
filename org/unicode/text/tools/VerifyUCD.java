@@ -1,8 +1,24 @@
 package org.unicode.text.tools;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
 import org.unicode.cldr.util.Log;
 import org.unicode.cldr.util.Segmenter;
 import org.unicode.cldr.util.Segmenter.Builder;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.UCD.UCD_Names;
+import org.unicode.text.UCD.UCD_Types;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.Tabber;
@@ -13,24 +29,6 @@ import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.UCD.UCD;
-import org.unicode.text.UCD.UCD_Names;
-import org.unicode.text.UCD.UCD_Types;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class VerifyUCD {
 

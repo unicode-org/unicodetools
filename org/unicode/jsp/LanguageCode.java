@@ -1,7 +1,6 @@
 package org.unicode.jsp;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,10 +9,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;

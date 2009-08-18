@@ -5,28 +5,34 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/VerifyUCD.java,v $
-* $Date: 2008-02-26 00:20:30 $
-* $Revision: 1.29 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.30 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
+import java.io.PrintWriter;
+import java.text.NumberFormat;
+import java.util.BitSet;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
-//import org.unicode.text.unicode.UInfo;
-import java.util.*;
-import java.io.*;
-//import java.text.Un;
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.CanonicalIterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-
-import com.ibm.icu.text.UTF16;
-import org.unicode.text.utility.*;
-import java.text.NumberFormat;
 
 public class VerifyUCD implements UCD_Types {
     static final boolean DEBUG = false;

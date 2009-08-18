@@ -5,23 +5,34 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2009-07-12 04:47:02 $
- * $Revision: 1.24 $
+ * $Date: 2009-08-18 23:38:46 $
+ * $Revision: 1.25 $
  *
  *******************************************************************************
  */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.io.*;
 
 import org.unicode.cldr.util.Segmenter;
 import org.unicode.cldr.util.Segmenter.Builder;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.UnicodeDataFile;
+import org.unicode.text.utility.Utility;
 
-import org.unicode.text.utility.*;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.text.UTF16;

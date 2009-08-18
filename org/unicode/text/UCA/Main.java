@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
-* $Date: 2008-03-07 21:54:26 $ 
-* $Revision: 1.23 $
+* $Date: 2009-08-18 23:38:45 $ 
+* $Revision: 1.24 $
 *
 *******************************************************************************
 */
@@ -14,11 +14,15 @@
 package org.unicode.text.UCA;
 import java.io.File;
 
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.MakeNamesChart;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.UTF16;
-import org.unicode.text.UCD.*;
-import org.unicode.text.utility.*;
 
 
 public class Main {

@@ -5,17 +5,22 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UnifiedProperty.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.8 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.9 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import java.io.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
-import org.unicode.text.utility.*;
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.UnicodeSet;
 
 public final class UnifiedProperty extends UCDProperty {

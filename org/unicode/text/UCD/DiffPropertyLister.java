@@ -5,15 +5,16 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DiffPropertyLister.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.10 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.11 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
+import java.io.PrintWriter;
+
 import com.ibm.icu.text.UnicodeSet;
-import java.io.*;
 
 class DiffPropertyLister extends PropertyLister {
     private UCD oldUCD;

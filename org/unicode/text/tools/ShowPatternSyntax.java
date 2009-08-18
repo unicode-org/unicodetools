@@ -1,10 +1,8 @@
 package org.unicode.text.tools;
 
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.text.UnicodeSet;
 
 public class ShowPatternSyntax {

@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.GenerateData;
 import org.unicode.text.UCD.MakeUnicodeFiles;
-import org.unicode.text.UCD.UCD_Types;
 
 public class UnicodeDataFile {
     public PrintWriter out;

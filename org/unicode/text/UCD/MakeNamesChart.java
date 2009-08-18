@@ -16,20 +16,16 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.text.UCA.WriteCharts;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.TransliteratorUtilities;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodePropertySource;
 import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.Replaceable;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
-
-import org.unicode.text.UCA.WriteCharts;
-import org.unicode.text.utility.Utility;
-import org.unicode.text.utility.Utility.Encoding;
 
 public class MakeNamesChart {
 	

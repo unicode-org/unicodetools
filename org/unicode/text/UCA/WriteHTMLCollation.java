@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteHTMLCollation.java,v $ 
-* $Date: 2008-02-26 00:20:30 $ 
-* $Revision: 1.12 $
+* $Date: 2009-08-18 23:38:45 $ 
+* $Revision: 1.13 $
 *
 *******************************************************************************
 */
@@ -15,12 +15,7 @@
 
 package org.unicode.text.UCA;
 
-import java.util.*;
-import java.io.*;
-//import java.text.*;
-//import org.unicode.text.unicode.*;
-import org.unicode.text.UCD.*;
-import org.unicode.text.utility.*;
+import org.unicode.text.UCD.UCD_Types;
 
 public class WriteHTMLCollation implements UCD_Types {
 

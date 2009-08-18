@@ -1,7 +1,6 @@
 package org.unicode.text.UCD;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,15 +13,12 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.dev.test.util.Relation;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.dev.test.util.Relation;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.UnicodeProperty.BaseProperty;
 import com.ibm.icu.dev.test.util.UnicodeProperty.SimpleProperty;
-import com.ibm.icu.impl.ICUData;
-import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.impl.StringUCharacterIterator;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.IDNA;

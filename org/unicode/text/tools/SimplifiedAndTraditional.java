@@ -12,10 +12,10 @@ import java.util.TreeSet;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
-import com.ibm.icu.dev.test.util.XEquivalenceClass;
 
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.XEquivalenceClass;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -30,13 +30,13 @@ public class SimplifiedAndTraditional {
   private void showSupplementalIntersection(String[] args) {
     UnicodeSet x = showKeyset("kHKSCS", new UnicodeSet("[\\U00010000-\\U0010FFFF]"));
     UnicodeSet y = showKeyset("kJIS0213", new UnicodeSet("[\\U00010000-\\U0010FFFF]"));
-    System.out.println("intersection" + ":\t" + PRETTY.toPattern(x.retainAll(y)));
+    System.out.println("intersection" + ":\t" + PRETTY.format(x.retainAll(y)));
   }
 
   private UnicodeSet showKeyset(String propertyName, UnicodeSet filter) {
     UnicodeMap mand = Default.ucd().getHanValue(propertyName);
     UnicodeSet supplementals = new UnicodeSet(filter).retainAll(mand.keySet());
-    System.out.println(propertyName + ":\t" + PRETTY.toPattern(supplementals));
+    System.out.println(propertyName + ":\t" + PRETTY.format(supplementals));
     return supplementals;
   }
 
@@ -60,7 +60,7 @@ public class SimplifiedAndTraditional {
         biggest = set;
       }
     }
-    System.out.println(PRETTY.toPattern(biggest));
+    System.out.println(PRETTY.format(biggest));
   }
 
   static     PrettyPrinter PRETTY = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
@@ -197,9 +197,9 @@ public class SimplifiedAndTraditional {
     System.out.println("Count:\t" + count);
     System.out.println();
     final UnicodeSet simpAndTrad = new UnicodeSet(simp).retainAll(trad);
-    System.out.println("Characters that are both Simp & Trad: " + PRETTY.toPattern(simpAndTrad));
+    System.out.println("Characters that are both Simp & Trad: " + PRETTY.format(simpAndTrad));
     System.out.println();
-    System.out.println("Characters that are both Simp & Trad - Dual: " + PRETTY.toPattern(simpAndTrad.removeAll(dual)));
+    System.out.println("Characters that are both Simp & Trad - Dual: " + PRETTY.format(simpAndTrad.removeAll(dual)));
 
     if (true) return;
     // ==============================

@@ -5,19 +5,35 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/ConvertUCD.java,v $
-* $Date: 2007-11-15 04:15:15 $
-* $Revision: 1.21 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.22 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import org.unicode.text.utility.*;
-
-import java.util.*;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.text.NumberFormat;
-import java.io.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.UTF32;
+import org.unicode.text.utility.Utility;
 
 
 /** Simple program to merge UCD files into XML. Not yet documented!!

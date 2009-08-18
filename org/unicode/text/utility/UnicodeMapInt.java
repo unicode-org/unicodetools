@@ -1,5 +1,4 @@
 package org.unicode.text.utility;
-import com.ibm.icu.text.UnicodeSet;
 
 final class UnicodeMapInt {
 /*    private int [] index = new int[1];

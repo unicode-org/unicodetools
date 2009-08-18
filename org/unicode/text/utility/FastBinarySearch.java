@@ -6,16 +6,17 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/FastBinarySearch.java,v $
-* $Date: 2007-02-11 08:15:10 $
-* $Revision: 1.4 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.utility;
 
-import java.util.Random;
 import java.util.Arrays;
+import java.util.Random;
+
 import com.ibm.icu.text.NumberFormat;
 
 /**

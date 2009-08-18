@@ -10,16 +10,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.XEquivalenceClass;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import org.unicode.text.utility.Utility;
-import com.ibm.icu.lang.UCharacter;
 
 public class TestIdentifiers {
 

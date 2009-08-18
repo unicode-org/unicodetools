@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/PoorMansEnum.java,v $
-* $Date: 2007-02-11 08:15:10 $
-* $Revision: 1.2 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.3 $
 *
 *******************************************************************************
 */
@@ -18,7 +18,12 @@
  */
 package org.unicode.text.utility;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class PoorMansEnum {
     protected int value;

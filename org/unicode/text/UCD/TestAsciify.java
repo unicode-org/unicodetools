@@ -1,9 +1,9 @@
 // Don't worry about the package, etc. This is just a snippet for your incorporation.
 package org.unicode.text.UCD;
 
-import com.ibm.icu.text.Transliterator;
-
 import junit.framework.TestCase;
+
+import com.ibm.icu.text.Transliterator;
 
 public class TestAsciify extends TestCase {
 

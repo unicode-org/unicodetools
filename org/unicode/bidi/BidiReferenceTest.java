@@ -6,7 +6,10 @@ package org.unicode.bidi;
  * version 1.0
  */
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 /**
  * A simple command-line interface to the BidiReference class.

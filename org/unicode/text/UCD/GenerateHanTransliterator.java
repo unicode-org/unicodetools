@@ -5,32 +5,45 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateHanTransliterator.java,v $
-* $Date: 2009-07-12 04:47:02 $
-* $Revision: 1.19 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.20 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
-import org.unicode.text.utility.*;
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.Replaceable;
 import com.ibm.icu.text.ReplaceableString;
+import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
+import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
-
-
-import java.util.*;
 
 
 public final class GenerateHanTransliterator implements UCD_Types {

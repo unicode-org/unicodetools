@@ -5,19 +5,23 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateThaiBreaks.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.6 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.7 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import java.io.*;
-import com.ibm.icu.text.UTF16;
-//import org.unicode.text.utility;
-import com.ibm.icu.text.UnicodeSet;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
 import org.unicode.text.utility.Utility;
-//import java.util.*;
+
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 
 public class GenerateThaiBreaks {
   public static void main(String [] args) throws IOException {

@@ -5,17 +5,17 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF8StreamReader.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.4 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.utility;
 
-import java.io.Reader;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
 
 /**
  * Utility class that writes UTF8.<br>

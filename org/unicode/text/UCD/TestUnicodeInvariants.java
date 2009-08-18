@@ -11,10 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.unicode.text.UCD.TestUnicodeInvariants.CompoundProperty.FilterOrProp;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.ICUPropertyFactory;
@@ -31,7 +28,6 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
 
 public class TestUnicodeInvariants {
 

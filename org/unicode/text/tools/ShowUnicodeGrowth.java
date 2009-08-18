@@ -7,11 +7,8 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCD.TestData;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
-
-import com.ibm.icu.dev.test.util.UnicodeProperty.Factory;
 
 public class ShowUnicodeGrowth {
   enum Type {noncharacter, space, number, symbol, otherLetter, surrogate, privateUse, unassigned, punctuation, format, whitespace, combiningMark, hangul};

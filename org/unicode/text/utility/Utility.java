@@ -5,28 +5,47 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2009-07-11 08:01:33 $
-* $Revision: 1.61 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.62 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.utility;
 
-import java.util.*;
-import java.text.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.Replaceable;
-import com.ibm.icu.text.ReplaceableString;
-import com.ibm.icu.text.UnicodeMatcher;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.DerivedProperty;
+import org.unicode.text.UCD.UCD;
+import org.unicode.text.UCD.UCDProperty;
+import org.unicode.text.UCD.UCD_Types;
+
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
-
-import org.unicode.text.UCD.*;
+import com.ibm.icu.text.Replaceable;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeMatcher;
+import com.ibm.icu.text.UnicodeSet;
 
 public final class Utility implements UCD_Types {    // COMMON UTILITIES
 

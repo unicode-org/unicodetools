@@ -5,17 +5,19 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UnifiedBinaryProperty.java,v $
-* $Date: 2007-04-27 00:44:28 $
-* $Revision: 1.19 $
+* $Date: 2009-08-18 23:38:46 $
+* $Revision: 1.20 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
-import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.unicode.text.utility.*;
+import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.UnicodeSet;
 
 public final class UnifiedBinaryProperty extends UCDProperty {

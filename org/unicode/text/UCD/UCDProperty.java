@@ -1,6 +1,7 @@
 package org.unicode.text.UCD;
+import org.unicode.text.utility.Utility;
+
 import com.ibm.icu.text.UnicodeSet;
-import org.unicode.text.utility.*;
 
 public abstract class UCDProperty implements UCD_Types {
   

@@ -5,15 +5,14 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Types.java,v $ 
-* $Date: 2009-05-11 22:36:02 $ 
-* $Revision: 1.12 $
+* $Date: 2009-08-18 23:38:45 $ 
+* $Revision: 1.13 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCA;
-import org.unicode.text.UCD.*;
-import org.unicode.text.utility.*;
+import org.unicode.text.UCD.UCD_Types;
 
 public interface UCA_Types {
     /**

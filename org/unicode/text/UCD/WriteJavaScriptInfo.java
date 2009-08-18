@@ -5,18 +5,18 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/WriteJavaScriptInfo.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.5 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
 
 package org.unicode.text.UCD;
 
-import java.util.*;
-import java.io.*;
-//import java.text.*;
-import org.unicode.text.utility.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import org.unicode.text.utility.Utility;
 
 public class WriteJavaScriptInfo implements UCD_Types {
     

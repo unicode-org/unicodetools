@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/CompactName.java,v $
-* $Date: 2007-02-11 08:15:09 $
-* $Revision: 1.3 $
+* $Date: 2009-08-18 23:38:45 $
+* $Revision: 1.4 $
 *
 *******************************************************************************
 */
@@ -14,9 +14,8 @@
 package org.unicode.text.UCD;
 
 import java.io.IOException;
-import java.util.*;
-import java.io.*;
-import java.text.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CompactName {
 
