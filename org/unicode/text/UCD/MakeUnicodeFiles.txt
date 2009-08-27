@@ -1,5 +1,5 @@
-Generate: .*
-DeltaVersion: 12
+Generate: .
+DeltaVersion: 15
 CopyrightYear: 2009
 
 
@@ -45,7 +45,14 @@ Property: SPECIAL
 
 File:	DerivedAge
 Property:	Age
-Format:	nameStyle=none noLabel skipValue=unassigned
+# Property: Age
+#
+# Note: When using the Age property in regular expressions, 
+# an expression such as "\p{age=3.0}" matches all of the code points
+# assigned in Version 3.0--that is, all the code points with a value
+# less than or equal to 3.0 for the Age property.
+# For more information, see [http://www.unicode.org/reports/tr18/].
+Format: nameStyle=none noLabel skipValue=unassigned
 
 Value:	1.1
 # Assigned as of Unicode 1.1.0 (June, 1993)
@@ -87,8 +94,8 @@ Property:	Bidi_Class
 # Unlike other properties, unassigned code points in blocks 
 # reserved for right-to-left scripts are given either types R or AL.
 #
-# The unassigned code points that default to AL are:
-#     U+0600..U+07BF, U+FB50..U+FDFF, U+FE70..U+FEFF
+# The unassigned code points that default to AL are in the ranges:
+#     [\u0600-\u07BF \uFB50-\uFDFF \uFE70-\uFEFF]
 #
 #     Arabic:            U+0600  -  U+06FF
 #     Syriac:            U+0700  -  U+074F
@@ -100,8 +107,8 @@ Property:	Bidi_Class
 #                        U+FE70  -  U+FEFF
 #           minus noncharacter code points.
 #
-# The unassigned code points that default to R are:
-#     U+0590..U+05FF, U+07C0..U+08FF, U+FB1D  -  U+FB4F, U+10800..U+10FFF, U+1E800 - U+1EFFF
+# The unassigned code points that default to R are in the ranges:
+#     [\u0590-\u05FF \u07C0-\u08FF \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EFFF]
 #
 #     Hebrew:            U+0590  -  U+05FF
 #     NKo:               U+07C0  -  U+07FF
@@ -156,38 +163,35 @@ Property:   Case_Ignorable
 #    Word_Break(C) = MidLetter or MidNumLet, or
 #    General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
 
-Property:   Is_Lowercase
-# Derived Property:   Is_Lowercase (ILC)
-#  As defined by Unicode Standard Definition D124
-#  isLowercase(X) is true when toLowercase(toNFD(X)) = toNFD(X)
-# Omitted code points have the value Yes
-Format: valueStyle=short skipValue=Yes
+Property:   Changes_When_Lowercased
+# Derived Property:   Changes_When_Lowercased (CWL)
+#  Characters whose normalized forms are not stable under a toLowercase mapping.
+#  For more information, see D124 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Lowercased(X) is true when toLowercase(toNFD(X)) != toNFD(X)
 
-Property:   Is_Uppercase
-# Derived Property:   Is_Uppercase (IUC)
-#  As defined by Unicode Standard Definition D125
-#  isUppercase(X) is true when toUppercase(toNFD(X)) = toNFD(X)
-# Omitted code points have the value Yes
-Format: valueStyle=short skipValue=Yes
+Property:   Changes_When_Uppercased
+# Derived Property:   Changes_When_Uppercased (CWU)
+#  Characters whose normalized forms are not stable under a toUppercase mapping.
+#  For more information, see D125 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Uppercased(X) is true when toUppercase(toNFD(X)) != toNFD(X)
 
-Property:   Is_Titlecase
-# Derived Property:   Is_Titlecase (ITC)
-#  As defined by Unicode Standard Definition D126
-#  isTitlecase(X) is true when toTitlecase(toNFD(X)) = toNFD(X)
-# Omitted code points have the value Yes
-Format: valueStyle=short skipValue=Yes
+Property:   Changes_When_Titlecased
+# Derived Property:   Changes_When_Titlecased (CWT)
+#  Characters whose normalized forms are not stable under a toTitlecase mapping.
+#  For more information, see D126 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Titlecased(X) is true when toTitlecase(toNFD(X)) != toNFD(X)
 
-Property:   Is_Casefolded
-# Derived Property:   Is_Casefolded (ICF)
-#  As defined by Unicode Standard Definition D127
-#  isCasefolded(X) is true when toCasefold(toNFD(X)) = toNFD(X)
-# Omitted code points have the value Yes
-Format: valueStyle=short skipValue=Yes
+Property:   Changes_When_Casefolded
+# Derived Property:   Changes_When_Casefolded (CWCF)
+#  Characters whose normalized forms are not stable under case folding.
+#  For more information, see D127 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Casefolded(X) is true when toCasefold(toNFD(X)) != toNFD(X)
 
-Property:   Is_Cased
-# Derived Property:   Is_Cased (IC)
-#  As defined by Unicode Standard Definition D128
-#  isCased(X) when isLowercase(X) is false, or isUppercase(X) is false, or isTitlecase(X) is false
+Property:   Changes_When_Casemapped
+# Derived Property:   Changes_When_Casemapped (CWCM)
+#  Characters whose normalized forms are not stable under case mapping.
+#  For more information, see D128 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Casemapped(X) is true when CWL(X), or CWT(X), or CWU(X)
 
 Property:	ID_Start
 # Derived Property: ID_Start
@@ -350,20 +354,20 @@ Property:	Expands_On_NFKC
 
 Property:   NFKC_Casefold
 # Derived Property:   NFKC_Casefold (NFKC_CF)
-#  This property removes certain variations from characters: case, compatibility, and default-ignorables
-#  It is used for loose matching and certain types of identifiers.
-#  It is constructed by applying NFKC, CaseFolding, and removal of Default_Ignorable_Code_Points.
-#  The process of applying these transformations is repeated until a stable result is produced.
-#  When this property is used to transform strings, NFC *must* be applied afterwards.
+#   This property removes certain variations from characters: case, compatibility, and default-ignorables.
+#   It is used for loose matching and certain types of identifiers.
+#   It is constructed by applying NFKC, CaseFolding, and removal of Default_Ignorable_Code_Points.
+#   The process of applying these transformations is repeated until a stable result is produced.
+#   WARNING: Application to STRINGS must apply NFC after mapping each character, because characters may interact.
+#            For more information, see [http://www.unicode.org/reports/tr44/]
 # Omitted code points are unchanged by this mapping.
-# @missing: 0000..10FFFF; <codepoint>
+# @missing: 0000..10FFFF; NFKC_CF; <codepoint>
 Format: nameStyle=short skipValue=<codepoint>
 
-Property:   Is_NFKC_Casefold
-# Derived Property:   Is_NFKC_Casefold (INFKC_CF)
-#  As defined by cp = NFKC_Casefold(cp)
-# Omitted code points have the value Yes
-Format: valueStyle=short skipValue=Yes
+Property:   Changes_When_NFKC_Casefolded
+# Derived Property:   Changes_When_NFKC_Casefolded (CWKCF)
+#  Characters that are not stable under an NFKC_Casefold mapping.
+#  As defined by cp != NFKC_Casefold(cp)
 
 File:	extracted/DerivedNumericType
 Property:	Numeric_Type

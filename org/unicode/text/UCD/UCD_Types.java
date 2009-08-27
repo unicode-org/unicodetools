@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
- * $Date: 2009-08-18 23:38:45 $
- * $Revision: 1.48 $
+ * $Date: 2009-08-27 11:46:36 $
+ * $Revision: 1.49 $
  *
  *******************************************************************************
  */
@@ -267,10 +267,11 @@ public interface UCD_Types {
   LB_JT = 33,
   LB_H2 = 34,
   LB_H3 = 35,
+  LB_CP = 36,
   //LB_JL = 29,
   //LB_JV = 30,
   //LB_JT = 31,
-  LIMIT_LINE_BREAK = 36,
+  LIMIT_LINE_BREAK = 37,
   LB_LIMIT = LIMIT_LINE_BREAK;
 
   // east asian width

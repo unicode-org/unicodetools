@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
- * $Date: 2009-08-18 23:38:45 $
- * $Revision: 1.44 $
+ * $Date: 2009-08-27 11:46:36 $
+ * $Revision: 1.45 $
  *
  *******************************************************************************
  */
@@ -266,7 +266,8 @@ public final class UCD_Names implements UCD_Types {
     "CM", "BB", "BA", "SP", "BK", "CR", "LF", "CB",
     "SA", "AI", "B2", "SG", "ZW",
     "NL",
-    "WJ", "JL", "JV", "JT", "H2", "H3"
+    "WJ", "JL", "JV", "JT", "H2", "H3",
+    "CP"
     //"JL",
     //"JV",
     //"JT",
@@ -282,7 +283,8 @@ public final class UCD_Names implements UCD_Types {
     "MandatoryBreak", "CarriageReturn", "LineFeed", "ContingentBreak",
     "ComplexContext", "Ambiguous", "BreakBoth", "Surrogate", "ZWSpace",
     "Next_Line",
-    "Word_Joiner", "JL", "JV", "JT", "H2", "H3"
+    "Word_Joiner", "JL", "JV", "JT", "H2", "H3",
+    "Close_Parenthesis"
     //"Leading_Jamo",
     //"Vowel_Jamo",
     //"Trailing_Jamo",
@@ -784,37 +786,37 @@ public final class UCD_Names implements UCD_Types {
 
   static {
     if (LIMIT_CATEGORY != GENERAL_CATEGORY.length || LIMIT_CATEGORY != LONG_GENERAL_CATEGORY.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: category");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: category");
     }
     if (LIMIT_BIDI_CLASS != BIDI_CLASS.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: bidi");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: bidi");
     }
     if (LIMIT_LINE_BREAK != LINE_BREAK.length || LIMIT_LINE_BREAK != LONG_LINE_BREAK.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: linebreak");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: linebreak");
     }
     if (LIMIT_DECOMPOSITION_TYPE != LONG_DECOMPOSITION_TYPE.length || LIMIT_DECOMPOSITION_TYPE != DECOMPOSITION_TYPE.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: decomp type");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: decomp type");
     }
     if (LIMIT_MIRRORED != MIRRORED_TABLE.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: compat type");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: compat type");
     }
     if (LIMIT_CASE != CASE_TABLE.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: case");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: case");
     }
     if (LIMIT_NUMERIC_TYPE != LONG_NUMERIC_TYPE.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: numeric type");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: numeric type");
     }
     if (LIMIT_EAST_ASIAN_WIDTH != LONG_EAST_ASIAN_WIDTH.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: east Asian Width");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: east Asian Width");
     }
     if (LIMIT_BINARY_PROPERTIES != BP.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: binary properties");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: binary properties");
     }
     if (LIMIT_SCRIPT != LONG_SCRIPT.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: script");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: script");
     }
     if (LIMIT_AGE != AGE.length) {
-      System.err.println("!! ERROR !! Enums and Names out of sync: age");
+      throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: age");
     }
   }
 

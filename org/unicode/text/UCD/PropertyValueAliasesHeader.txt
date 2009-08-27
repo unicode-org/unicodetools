@@ -33,7 +33,7 @@
 # NOTE: Property value names are NOT unique across properties. For example:
 #
 #   AL means Arabic Letter for the Bidi_Class property, and
-#   AL means Alpha_Left for the Combining_Class property, and
+#   AL means Above_Left for the Combining_Class property, and
 #   AL means Alphabetic for the Line_Break property.
 #
 # In addition, some property names may be the same as some property value names.
@@ -44,6 +44,6 @@
 #
 # The combination of property value and property name is, however, unique.
 #
-# For more information, see UTS #18: Regular Expression Guidelines
+# For more information, see UTS #18: Unicode Regular Expressions
 # ================================================
 
