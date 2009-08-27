@@ -36,7 +36,13 @@ import com.ibm.icu.text.UnicodeSet;
  * 
  */
 public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
-  static final boolean   DEBUG        = false;
+  private static final String[] MAYBE_VALUES = {"M", "Maybe", "U", "Undetermined"};
+
+private static final String[] NO_VALUES = {"N", "No", "F", "False"};
+
+private static final String[] YES_VALUES = {"Y", "Yes", "T", "True"};
+
+static final boolean   DEBUG        = false;
 
   private UCD            ucd;
 
@@ -119,21 +125,22 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     // }.setValues("<string>").setMain("Jamo_Short_Name", "JSN",
     // UnicodeProperty.MISC, version));
 
-    addFakeProperty(version, "Unicode_Radical_Stroke", "URS", "kRSUnicode", UnicodeProperty.MISC, "<none>");
-//    addFakeProperty(version, "CJK_AccountingNumeric", "CJK_AC", "kAccountingNumeric", UnicodeProperty.NUMERIC, "<none>");
-//    addFakeProperty(version, "CJK_OtherNumeric", "CJK_ON", "kOtherNumeric", UnicodeProperty.NUMERIC, "<none>");
-//    addFakeProperty(version, "CJK_PrimaryNumeric", "CJK_PN", "kPrimaryNumeric", UnicodeProperty.NUMERIC, "<none>");
-//    //addFakeProperty(version, "kRSUnicode", "URS", UnicodeProperty.MISC);
-//    addFakeProperty(version, "CJK_CompatibilityVariant", "CJK_CV", "kCompatibilityVariant", UnicodeProperty.STRING, "<none>");
-//    addFakeProperty(version, "IICore", "IIC", "kIICore", UnicodeProperty.MISC, "<none>");
-//    addFakeProperty(version, "IRG_GSource", "IRG_G", "kIRG_GSource", UnicodeProperty.MISC, "<none>");
-//    addFakeProperty(version, "IRG_HSource", "IRG_H", "kIRG_HSource", UnicodeProperty.MISC, "<none>");
-//    addFakeProperty(version, "IRG_JSource", "IRG_J", "kIRG_JSource", UnicodeProperty.MISC, "<none>");
-//    addFakeProperty(version, "IRG_KPSource", "IRG_KP", "kIRG_KPSource", UnicodeProperty.MISC, "<none>");
-//    addFakeProperty(version, "IRG_KSource", "IRG_K", "kIRG_KSource", UnicodeProperty.MISC, "<none>");
-//    addFakeProperty(version, "IRG_TSource", "IRG_T", "kIRG_TSource", UnicodeProperty.MISC, "<none>");
-//    addFakeProperty(version, "IRG_USource", "IRG_U", "kIRG_USource", UnicodeProperty.MISC, "<none>");
-//    addFakeProperty(version, "IRG_VSource", "IRG_V", "kIRG_VSource", UnicodeProperty.MISC, "<none>");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "Name_Alias", "Name_Alias");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkRSUnicode", "cjkRSUnicode", "kRSUnicode", "Unicode_Radical_Stroke", "URS");
+    addFakeProperty(version, UnicodeProperty.NUMERIC, "<none>", "cjkAccountingNumeric", "cjkAccountingNumeric", "kAccountingNumeric");
+    addFakeProperty(version, UnicodeProperty.NUMERIC, "<none>", "cjkOtherNumeric", "cjkOtherNumeric", "kOtherNumeric");
+    addFakeProperty(version, UnicodeProperty.NUMERIC, "<none>", "cjkPrimaryNumeric", "cjkPrimaryNumeric", "kPrimaryNumeric");
+    addFakeProperty(version, UnicodeProperty.STRING, "<none>", "cjkCompatibilityVariant", "cjkCompatibilityVariant", "kCompatibilityVariant");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIICore", "cjkIICore", "kIICore");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIRG_GSource", "cjkIRG_GSource", "kIRG_GSource");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIRG_HSource", "cjkIRG_HSource", "kIRG_HSource");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIRG_JSource", "cjkIRG_JSource", "kIRG_JSource");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIRG_KPSource", "cjkIRG_KPSource", "kIRG_KPSource");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIRG_KSource", "cjkIRG_KSource", "kIRG_KSource");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIRG_TSource", "cjkIRG_TSource", "kIRG_TSource");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIRG_USource", "cjkIRG_USource", "kIRG_USource");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIRG_VSource", "cjkIRG_VSource", "kIRG_VSource");
+    addFakeProperty(version, UnicodeProperty.MISC, "<none>", "cjkIRG_MSource", "cjkIRG_MSource", "kIRG_MSource");
 
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
@@ -371,7 +378,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
       }
     }.setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, version));
 
-    add(new SimpleIsProperty("Is_NFKC_Casefold", "INFKC_CF", version, getProperty("NFKC_Casefold")));
+    add(new SimpleIsProperty("Changes_When_NFKC_Casefolded", "CWKCF", version, getProperty("NFKC_Casefold"), false));
 
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
@@ -654,10 +661,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
      * # As defined by Unicode Standard Definition D120 # C has the Lowercase or
      * Uppercase property or has a General_Category value of Titlecase_Letter.
      */
-    add(new SimpleBinaryProperty("Cased", "Cased", version, new UnicodeSet().addAll(
-            getProperty("Lowercase").getSet(UCD_Names.YES)).addAll(
-                    getProperty("Uppercase").getSet(UCD_Names.YES)).addAll(
-                            getProperty("GeneralCategory").getSet("Lt"))));
+    add(new SimpleBinaryProperty("Cased", "Cased", version, new UnicodeSet()
+    .addAll(getProperty("Lowercase").getSet(UCD_Names.YES))
+            .addAll(getProperty("Uppercase").getSet(UCD_Names.YES))
+                    .addAll(getProperty("GeneralCategory").getSet("Lt"))));
 
     /*
      * # As defined by Unicode Standard Definition
@@ -681,9 +688,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
      */
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
-        return isCaseEqual(codepoint, UCD_Types.LOWER);
+        return changesWhenCased(codepoint, UCD_Types.LOWER);
       }
-    }.setMain("Is_Lowercase", "ILC", UnicodeProperty.BINARY, version));
+    }
+    .setMain("Changes_When_Lowercased", "CWL", UnicodeProperty.BINARY, version)
+    .swapFirst2ValueAliases());
 
 
     /* Property: Is_Uppercased # As defined by Unicode Standard
@@ -691,10 +700,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
      */
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
-        return equals(codepoint, ucd.getCase(codepoint, UCD_Types.FULL, UCD_Types.UPPER)) ? UCD_Names.YES
-                : UCD_Names.NO;
+          return changesWhenCased(codepoint, UCD_Types.UPPER);
       }
-    }.setMain("Is_Uppercase", "IUC", UnicodeProperty.BINARY, version));
+    }
+    .setMain("Changes_When_Uppercased", "CWU", UnicodeProperty.BINARY, version)
+    .swapFirst2ValueAliases());
 
 
     /* Property: Is_Titlecased # As defined by Unicode Standard
@@ -702,10 +712,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
      */
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
-        return equals(codepoint, ucd.getCase(codepoint, UCD_Types.FULL, UCD_Types.TITLE)) ? UCD_Names.YES
-                : UCD_Names.NO;
+          return changesWhenCased(codepoint, UCD_Types.TITLE);
       }
-    }.setMain("Is_Titlecase", "ITC", UnicodeProperty.BINARY, version));
+    }
+    .setMain("Changes_When_Titlecased", "CWT", UnicodeProperty.BINARY, version)
+    .swapFirst2ValueAliases());
 
 
     /* Property: Is_Casefolded # As defined by Unicode Standard
@@ -713,10 +724,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
      */
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
-        return equals(codepoint, ucd.getCase(codepoint, UCD_Types.FULL, UCD_Types.FOLD)) ? UCD_Names.YES
-                : UCD_Names.NO;
+          return changesWhenCased(codepoint, UCD_Types.FOLD);
       }
-    }.setMain("Is_Casefolded", "ICF", UnicodeProperty.BINARY, version));
+    }
+    .setMain("Changes_When_Casefolded", "CWCF", UnicodeProperty.BINARY, version)
+    .swapFirst2ValueAliases());
 
 
     /* Property: Is_Cased # As defined by Unicode Standard Definition
@@ -724,16 +736,16 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
      * isCased(X) when isLowercase(X) is false, or isUppercase(X) is false, or
 isTitlecase(X) is false. 
      */
-    add(new SimpleBinaryProperty("Is_Cased", "IC", version, new UnicodeSet()
-    .addAll(getProperty("Is_Lowercase").getSet(UCD_Names.NO))
-    .addAll(getProperty("Is_Uppercase").getSet(UCD_Names.NO))
-    .addAll(getProperty("Is_Titlecase").getSet(UCD_Names.NO))));
+    add(new SimpleBinaryProperty("Changes_When_Casemapped", "CWCM", version, new UnicodeSet()
+    .addAll(getProperty("Changes_When_Lowercased").getSet(UCD_Names.YES))
+    .addAll(getProperty("Changes_When_Uppercased").getSet(UCD_Names.YES))
+    .addAll(getProperty("Changes_When_Titlecased").getSet(UCD_Names.YES))));
 
     // ========================
 
   }
 
-  private void addFakeProperty(String version, String name, String abbr, String alt, int unicodePropertyType, String defaultValue) {
+  private void addFakeProperty(String version, int unicodePropertyType, String defaultValue, String name, String abbr, String... alts) {
     final SimpleProperty item = new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
         return "";
@@ -741,7 +753,7 @@ isTitlecase(X) is false.
     };
     item.setValues(defaultValue);
     item.setMain(name, abbr, unicodePropertyType, version);
-    if (alt != null) {
+    for (String alt : alts) {
       item.addName(alt);
     }
     add(item);
@@ -1288,9 +1300,9 @@ isTitlecase(X) is false.
           new TreeMap(),
           LinkedHashSet.class);
   static {
-    YNTF.putAll("Yes", Arrays.asList("Y", "Yes", "T", "True"));
-    YNTF.putAll("No", Arrays.asList("N", "No", "F", "False"));
-    YNTF.putAll("Maybe", Arrays.asList("M", "Maybe", "U", "Undetermined"));
+    YNTF.putAll("Yes", Arrays.asList(YES_VALUES));
+    YNTF.putAll("No", Arrays.asList(NO_VALUES));
+    YNTF.putAll("Maybe", Arrays.asList(MAYBE_VALUES));
   }
 
   private static final String[]                FIXED_DECOMPOSITION_TYPE = new String[UCD_Names.DECOMPOSITION_TYPE.length];
@@ -1316,17 +1328,19 @@ isTitlecase(X) is false.
 
   static class SimpleIsProperty extends UnicodeProperty.SimpleProperty {
     private UnicodeProperty property;
+    private boolean samePolarity;
 
-    SimpleIsProperty(String name, String shortName, String version, UnicodeProperty property) {
+    SimpleIsProperty(String name, String shortName, String version, UnicodeProperty property, boolean samePolarity) {
       this.property = property;
       setValues(LONG_YES_NO, YES_NO).swapFirst2ValueAliases();
       setMain(name, shortName, UnicodeProperty.BINARY, version);
+      this.samePolarity = samePolarity;
     }
 
     protected String _getValue(int codepoint) {
       final String value = property.getValue(codepoint);
-      return value == null ? UCD_Names.YES // null means same value, by convention
-              : equals(codepoint, value) ? UCD_Names.YES : UCD_Names.NO;
+      return value == null ? samePolarity ? UCD_Names.YES : UCD_Names.NO // null means same value, by convention
+              : equals(codepoint, value) == samePolarity ? UCD_Names.YES : UCD_Names.NO;
     }
   }
 
@@ -1344,9 +1358,9 @@ isTitlecase(X) is false.
     return result.toString();
   }
 
-  private String isCaseEqual(int codepoint, byte caseType) {
+  private String changesWhenCased(int codepoint, byte caseType) {
     String nfdCodepoint = nfd.normalize(codepoint);
-    return nfdCodepoint.equals(ucd.getCase(nfdCodepoint, UCD_Types.FULL, caseType)) 
+    return !nfdCodepoint.equals(ucd.getCase(nfdCodepoint, UCD_Types.FULL, caseType)) 
     ? UCD_Names.YES
             : UCD_Names.NO;
   }

@@ -76,8 +76,13 @@
 ##########################
 
 Let $gcAllPunctuation = \p{gc=/_Punctuation/}
+$gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=}\p{gc=Other_Punctuation}]
+
 Let $gcAllSymbols = \p{gc=/_Symbol/}
+$gcAllSymbols = [\p{gc=Math_Symbol}\p{gc=Currency_Symbol}\p{gc=Modifier_Symbol}\p{gc=Other_Symbol}]
+
 Let $gcAllMarks = \p{gc=/_Mark/}
+$gcAllMarks = [\p{gc=Nonspacing_Mark}\p{gc=Enclosing_Mark}\p{gc=Spacing_Mark}]
 
 ##########################
 # Main Stability Policies 
@@ -250,9 +255,10 @@ $AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
 # Stability: Once a character is assigned, its Canonical_Combining_Class will never change. 
 In \P{U-1:GC=Cn} ccc=U-1:ccc
 
-# Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability)
-# Should be stability policy
-[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion}] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion}]
+# Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
+# except where a character and at lease one character in its decomposition are both new in the release.
+Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB]
+[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion} - $NFC_Exceptions] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion} - $NFC_Exceptions]
 
 # Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
 \p{CCC=0} ⊇ [^ \p{GC=Mc} \p{GC=Mn}]
@@ -324,7 +330,7 @@ Let $IDInclusions = [[:block=/Ideographs/:][\U00020000-\U0003FFFF] & [:gc=Cn:] -
 
 Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379]
 \p{LB=OP} = [\p{GC=Ps} $OPInclusions]
-\p{LB=CL} ⊃ \p{GC=Pe}
+[\p{LB=CL}\p{LB=CP}] ⊃ \p{GC=Pe}
 \p{LB=CM} = [\p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL}]
 
 Let $NUInclusions = [\u066B\u066C]

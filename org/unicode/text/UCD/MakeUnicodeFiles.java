@@ -509,7 +509,7 @@ public class MakeUnicodeFiles {
       boolean gotOne = false;
       while (it.hasNext()) {
         String propname = (String) it.next();
-        if (!matcher.reset(propname).matches()) continue;
+        if (!matcher.reset(propname).find()) continue;
         //if (!propname.toLowerCase(Locale.ENGLISH).startsWith(fileName)) continue;
         generateFile(propname);
         gotOne = true;
