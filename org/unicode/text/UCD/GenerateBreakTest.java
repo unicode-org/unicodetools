@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2009-08-18 23:38:46 $
- * $Revision: 1.25 $
+ * $Date: 2009-09-03 22:27:32 $
+ * $Revision: 1.26 $
  *
  *******************************************************************************
  */
@@ -617,7 +617,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
       collectingRules = false;
     }
 
-    out.println("<h3>Rules</h3>");
+    out.println("<h3><a name='rules'>Rules</a></h3>");
     out
             .println("<p>The second section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and"
                     + " thus do not match the UAX rules precisely. "
@@ -650,7 +650,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
     out.println("</ul>");
 
     if (extraSingleSamples.length > 0) {
-      out.println("<h3>Sample Strings</h3>");
+      out.println("<h3><a name='samples'>Sample Strings</a></h3>");
       out.println("<p>" +
               "The following samples illustrate the application of the rules. " +
               "The blue lines indicate possible break points. " +
@@ -943,6 +943,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
         "a  \u200bb",
         "a \u0308b",
         "1\u0308b(a)-(b)",
+        "give book(s).",
+        "ま(す)",
+        "find .com",
+        "equals .35 cents",
       });
     }	
     public List<String> genTestItems(String before, String after, List<String> results) {
@@ -981,6 +985,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
               "etc.)\u2019 \u2018(The",
               "etc.)\u2019 \u0308the",
               "etc.)\u2019 \u0308The",
+              "etc.)\u2019\u0308The",
+              "etc.)\n\u0308The",
               "the resp. leaders are",
               "\u5B57.\u5B57",
               "etc.\u5B83",
