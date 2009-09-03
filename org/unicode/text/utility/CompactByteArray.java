@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/CompactByteArray.java,v $
-* $Date: 2009-08-18 23:38:46 $
-* $Revision: 1.4 $
+* $Date: 2009-09-03 22:27:32 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
@@ -45,8 +45,6 @@ package org.unicode.text.utility;
 
 import java.io.PrintWriter;
 import java.io.Serializable;
-
-import sun.text.CompactIntArray;
 
 /**
  *

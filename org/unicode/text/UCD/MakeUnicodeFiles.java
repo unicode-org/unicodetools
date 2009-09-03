@@ -812,6 +812,7 @@ public class MakeUnicodeFiles {
           for (Iterator it3 = l.iterator(); it3.hasNext();) {
             buffer.append("\t; \t" + it3.next());
           }
+          //Character.codePointAt(seq, index)
 
           sortedSet.add(mt.process(buffer.toString()));
         }
