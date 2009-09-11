@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/CompactShortArray.java,v $
-* $Date: 2009-09-03 22:27:32 $
-* $Revision: 1.5 $
+* $Date: 2009-09-11 23:09:27 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
@@ -45,6 +45,8 @@ package org.unicode.text.utility;
  */
 
 import java.io.Serializable;
+
+import com.ibm.icu.util.CompactCharArray;
 
 /**
  * class CompactATypeArray : use only on primitive data types
