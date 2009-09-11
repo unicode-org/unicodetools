@@ -1,16 +1,20 @@
 package org.unicode.text.tools;
 
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.TestData;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 
+import com.ibm.icu.text.UnicodeSet;
+
 public class ShowUnicodeGrowth {
+    private static final int LATEST = UCD_Types.AGE_VERSIONS.length - 1;
+
     enum Type {format, whitespace, number, punctuation, symbol, mark, hangul, han, other_letter, surrogate, private_use, noncharacter, unassigned};
     static UCD ucd = UCD.make("");
 
@@ -22,14 +26,17 @@ public class ShowUnicodeGrowth {
     static void foo() {
         int[][] data = new int[Type.values().length][UCD_Types.AGE_VERSIONS.length];
         Set<String> ages = new TreeSet();
-        for (int age = UCD_Types.AGE_VERSIONS.length - 1; age > 0; --age) {
+        for (int age = LATEST; age > 0; --age) {
             data[Type.unassigned.ordinal()][age] = 0x110000;
         }
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Type type = getType(cp);
-            for (int age = UCD_Types.AGE_VERSIONS.length - 1; age > 0; --age) {
+            for (int age = LATEST; age > 0; --age) {
                 UCD ucd = UCD.make(UCD_Types.AGE_VERSIONS[age]);
-                if (!ucd.isAllocated(cp)) break;
+                if (ucd.isAllocated(cp)) {
+                } else {
+                  break;
+                }
                 data[type.ordinal()][age]++;
                 data[Type.unassigned.ordinal()][age]--;
             }
@@ -44,6 +51,32 @@ public class ShowUnicodeGrowth {
                 System.out.print("\t" + data[type.ordinal()][age]);
             }
             System.out.println();
+        }
+        Counter<String> counter = new Counter();
+        ToolUnicodePropertySource toolSource52 = ToolUnicodePropertySource.make("5.2.0");
+        ToolUnicodePropertySource toolSource51 = ToolUnicodePropertySource.make("5.1.0");
+        UnicodeSet current = new UnicodeSet(toolSource51.getSet("gc=cn")).removeAll(toolSource52.getSet("gc=cn"));
+
+        for (String s : current) {
+          int cp = s.codePointAt(0);
+          String script = Default.ucd().getScriptID(cp);
+          if (script.equals("COMMON") || script.equals("INHERITED")) {
+            String category = Default.ucd().getCategoryID(cp);
+            counter.add(""+category.charAt(0) + "*", 1);
+            continue;
+          }
+          counter.add(script, 1);
+        }
+        System.out.println("***New Characters");
+        for (String key : counter) {
+          String status = "";
+          if (!key.contains("*")) {
+            UnicodeSet old = toolSource51.getSet("script=" + key);
+            if (old.size() == 0) {
+              status = "\tNEW";
+            }
+          }
+          System.out.println(key + "\t" + counter.get(key) + status);
         }
     }
 
