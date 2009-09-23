@@ -1,5 +1,5 @@
-Generate: breaktest
-DeltaVersion: 16
+Generate: .
+DeltaVersion: 18
 CopyrightYear: 2009
 
 
@@ -85,8 +85,8 @@ Value:	5.0
 Value:	5.1
 # Newly assigned in Unicode 5.1.0 (March, 2008)
 
-Value:  5.1
-# Newly assigned in Unicode 5.1.0 (March, 2008)
+Value:  5.2
+# Newly assigned in Unicode 5.2.0 (October, 2009)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
@@ -361,7 +361,7 @@ Property:   NFKC_Casefold
 #   WARNING: Application to STRINGS must apply NFC after mapping each character, because characters may interact.
 #            For more information, see [http://www.unicode.org/reports/tr44/]
 # Omitted code points are unchanged by this mapping.
-# @missing: 0000..10FFFF; NFKC_CF; <codepoint>
+# @missing: 0000..10FFFF; NFKC_CF; <code point>
 Format: nameStyle=short skipValue=<codepoint>
 
 Property:   Changes_When_NFKC_Casefolded
