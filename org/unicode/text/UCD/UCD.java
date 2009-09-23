@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2009-08-18 23:38:45 $
- * $Revision: 1.54 $
+ * $Date: 2009-09-23 04:11:33 $
+ * $Revision: 1.55 $
  *
  *******************************************************************************
  */
@@ -20,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -522,6 +523,25 @@ public final class UCD implements UCD_Types {
     double numericValue;
     byte numericType;
   }
+  
+  static final Map<String,String> unihanProp_file;
+  static {
+    String[][] file_prop = {{"Unihan_DictionaryIndices", "kCheungBauerIndex", "kCowles", "kDaeJaweon", "kFennIndex", "kGSR", "kHanYu", "kIRGDaeJaweon", "kIRGDaiKanwaZiten", "kIRGHanyuDaZidian", "kIRGKangXi", "kKangXi", "kKarlgren", "kLau", "kMatthews", "kMeyerWempe", "kMorohashi", "kNelson", "kSBGY"},
+            {"Unihan_DictionaryLikeData", "kCangjie", "kCheungBauer", "kCihaiT", "kFenn", "kFourCornerCode", "kFrequency", "kGradeLevel", "kHDZRadBreak", "kHKGlyph", "kPhonetic", "kTotalStrokes"},
+            {"Unihan_NormativeProperties", "kCompatibilityVariant", "kIICore", "kIRG_GSource", "kIRG_HSource", "kIRG_JSource", "kIRG_KPSource", "kIRG_KSource", "kIRG_TSource", "kIRG_USource", "kIRG_VSource"},
+            {"Unihan_NumericValues", "kAccountingNumeric", "kOtherNumeric", "kPrimaryNumeric"},
+            {"Unihan_OtherMappings", "kBigFive", "kCCCII", "kCNS1986", "kCNS1992", "kEACC", "kGB0", "kGB1", "kGB3", "kGB5", "kGB7", "kGB8", "kHKSCS", "kIBMJapan", "kJis0", "kJis1", "kJIS0213", "kKPS0", "kKPS1", "kKSC0", "kKSC1", "kMainlandTelegraph", "kPseudoGB1", "kTaiwanTelegraph", "kXerox"},
+            {"Unihan_RadicalStrokeCounts", "kRSAdobe_Japan1_6", "kRSJapanese", "kRSKangXi", "kRSKanWa", "kRSKorean", "kRSUnicode"},
+            {"Unihan_Readings", "kCantonese", "kDefinition", "kHangul", "kHanyuPinlu", "kHanyuPinyin", "kJapaneseKun", "kJapaneseOn", "kKorean", "kMandarin", "kTang", "kVietnamese", "kXHC1983"},
+            {"Unihan_Variants", "kSemanticVariant", "kSimplifiedVariant", "kSpecializedSemanticVariant", "kTraditionalVariant", "kZVariant"}};
+    HashMap<String, String> temp = new HashMap<String, String>();
+    for (String[] row : file_prop) {
+      for (int i = 1; i < row.length; ++i) {
+        temp.put(row[i], row[0]);
+      }
+    }
+    unihanProp_file = Collections.unmodifiableMap(temp);
+  }
 
   public UnicodeMap getHanValue(String propertyName) {
     UnicodeMap result = new UnicodeMap();
@@ -529,7 +549,7 @@ public final class UCD implements UCD_Types {
       //      dir = Utility.getMostRecentUnicodeDataFile("Unihan", version, 
       //              true, true, String fileType) throws IOException {
       //
-      BufferedReader in = Utility.openUnicodeFile("Unihan", version, true, Utility.UTF8); 
+      BufferedReader in = Utility.openUnicodeFile(unihanProp_file.get(propertyName), version, true, Utility.UTF8); 
       int lineCounter = 0;
       while (true) {
         Utility.dot(++lineCounter);

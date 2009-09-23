@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2009-09-03 22:27:32 $
- * $Revision: 1.26 $
+ * $Date: 2009-09-23 04:11:33 $
+ * $Revision: 1.27 $
  *
  *******************************************************************************
  */
@@ -39,6 +39,8 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 abstract public class GenerateBreakTest implements UCD_Types {
+
+  private static final String DOCTYPE = "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>";
 
   static boolean DEBUG = true;
   static final boolean SHOW_TYPE = false;
@@ -337,7 +339,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
             + ucd.getVersion()
             + ".html", Utility.UTF8_WINDOWS);
      */        
-    out.println("<!doctype HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN' 'http://www.w3.org/TR/REC-html40/loose.dtd'>");
+    out.println(DOCTYPE);
     out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
     out.println("<title>" + fileName + " Break Chart</title>");
     out.println("<style type='text/css'>");
@@ -363,6 +365,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
             + "For example, in GraphemeBreakTest, hovering over the cell at the intersection of LVT and T shows ×, with the rule 8.0. "
             + "Checking below, the rule 8.0 is '( LVT | T) × T', which is the one that applies to that case. "
             + "Note that a rule is invoked only when no lower-numbered rules have applied.</p>");
+    if (fileName.equals("Line")) {
+      out.println("<p>The Line Break tests use tailoring of numbers described in Example 7 of Section 8.2  Examples of Customization. " +
+      		"They also differ from the results produced by a pair table implementation in sequences like: ZW SP CL.</p>");
+    }
     generateTable(out);
 
 
@@ -393,11 +399,11 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
     fc.close();
 
-    generateTest(false);
+    generateTest(false, fileName);
 
   }
 
-  public void generateTest(boolean shortVersion) throws IOException {
+  public void generateTest(boolean shortVersion, String fileName) throws IOException {
     List<String> testCases = new ArrayList<String>();
     // do main test
 
@@ -421,8 +427,12 @@ abstract public class GenerateBreakTest implements UCD_Types {
     out.println("#\t" + NOBREAK + " wherever there is not.");
     out.println("#  <comment> the format can change, but currently it shows:");
     out.println("#\t- the sample character name");
-    out.println("#\t- (x) the line_break property* for the sample character");
+    out.println("#\t- (x) the " + fileName + "_Break property* for the sample character");
     out.println("#\t- [x] the rule that determines whether there is a break or not");
+    if (fileName.equals("Line")) {
+      out.println("# Note: The Line Break tests use tailoring of numbers described in Example 7 of Section 8.2 Examples of Customization.");
+      out.println("# They also differ from the results produced by a pair table implementation in sequences like: ZW SP CL.</p>");
+    }
     out.println("#");
     sampleDescription(out);
     out.println("# These samples may be extended or changed in the future.");
