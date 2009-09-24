@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
- * $Date: 2009-09-23 23:53:00 $ 
- * $Revision: 1.54 $
+ * $Date: 2009-09-24 00:00:29 $ 
+ * $Revision: 1.55 $
  *
  *******************************************************************************
  */
@@ -124,8 +124,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     String result = "[";
     for (int i = 0; ; ++i) {
       int ce = it.next();
-      if (ce == CollationElementIterator.NULLORDER) break;
-      if (i != 0) result += ", ";
+      if (ce == CollationElementIterator.NULLORDER) {
+        break;
+      }
+      if (i != 0) {
+        result += ", ";
+      }
       result += Utility.hex(ce,8);
     }
     return result + "]";
@@ -138,8 +142,10 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     System.err.println("Writing Case Exceptions");
     //Normalizer NFKC = new Normalizer(Normalizer.NFKC, UNICODE_VERSION);
     for (char a = 0; a < 0xFFFF; ++a) {
-      if (!ucd.isRepresented(a)) continue;
-      //if (0xA000 <= a && a <= 0xA48F) continue; // skip YI
+      if (!ucd.isRepresented(a)) {
+        continue;
+        //if (0xA000 <= a && a <= 0xA48F) continue; // skip YI
+      }
 
       String b = Case.fold(a);
       String c = Default.nfkc().normalize(b);
@@ -163,7 +169,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
       }
       String f = Case.fold(e);
       String g = Default.nfkc().normalize(f);
-      if (!f.equals(d) || !g.equals(e)) System.out.println("!!!!!!SKY IS FALLING!!!!!!");
+      if (!f.equals(d) || !g.equals(e)) {
+        System.out.println("!!!!!!SKY IS FALLING!!!!!!");
+      }
     }
   }
 
@@ -177,10 +185,16 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     int count = 0;
     while (true) {
       String line = in.readLine();
-      if (line == null) break;
+      if (line == null) {
+        break;
+      }
       int comment = line.indexOf('#');                    // strip comments
-      if (comment != -1) line = line.substring(0,comment);
-      if (line.length() == 0) continue;
+      if (comment != -1) {
+        line = line.substring(0,comment);
+      }
+      if (line.length() == 0) {
+        continue;
+      }
       int semi1 = line.indexOf(';');
       int semi2 = line.indexOf(';', semi1+1);
       int semi3 = line.indexOf(';', semi2+1);
@@ -229,14 +243,22 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     CompactShortArray csa = new CompactShortArray((short)0);
 
     for (char c = 0; c < 0xFFFF; ++c) {
-      if ((c & 0xFFF) == 0) System.err.println(Utility.hex(c));
-      if (0xAC00 <= c && c <= 0xD7A3) continue;
+      if ((c & 0xFFF) == 0) {
+        System.err.println(Utility.hex(c));
+      }
+      if (0xAC00 <= c && c <= 0xD7A3) {
+        continue;
+      }
       if (!Default.nfkd().isNormalized(c)) {
         ++count;
         String decomp = Default.nfkd().normalize(c);
         datasize += decomp.length();
-        if (max < decomp.length()) max = decomp.length();
-        if (decomp.length() > 7) ++over7;
+        if (max < decomp.length()) {
+          max = decomp.length();
+        }
+        if (decomp.length() > 7) {
+          ++over7;
+        }
         csa.setElementAt(c, (short)count);
         log.println("\t KD[0x" + Utility.hex(c) + "]='\\u" + Utility.hex(decomp,"\\u") + "';");
       }
@@ -257,13 +279,19 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     csa = new CompactShortArray((short)0);
 
     for (char c = 0; c < 0xFFFF; ++c) {
-      if ((c & 0xFFF) == 0) System.err.println(Utility.hex(c));
-      if (0xAC00 <= c && c <= 0xD7A3) continue;
+      if ((c & 0xFFF) == 0) {
+        System.err.println(Utility.hex(c));
+      }
+      if (0xAC00 <= c && c <= 0xD7A3) {
+        continue;
+      }
       if (!Default.nfd().isNormalized(c)) {
         ++count;
         String decomp = Default.nfd().normalize(c);
         datasize += decomp.length();
-        if (max < decomp.length()) max = decomp.length();
+        if (max < decomp.length()) {
+          max = decomp.length();
+        }
         csa.setElementAt(c, (short)count);
         log.println("\t D[0x" + Utility.hex(c) + "]='\\u" + Utility.hex(decomp,"\\u") + "';");
       }
@@ -282,7 +310,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     CompactByteArray cba = new CompactByteArray();
 
     for (char c = 0; c < 0xFFFF; ++c) {
-      if ((c & 0xFFF) == 0) System.err.println(Utility.hex(c));
+      if ((c & 0xFFF) == 0) {
+        System.err.println(Utility.hex(c));
+      }
       int canClass = Default.nfkd().getCanonicalClass(c);
       if (canClass != 0) {
         ++count;
@@ -359,7 +389,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
     while (true) {
       String s = cc.next();
-      if (s == null) break;
+      if (s == null) {
+        break;
+      }
 
       found2.addAll(s);
 
@@ -502,7 +534,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     addStringY(s + '?', option);
     addStringY(s + 'A', option);
     addStringY(s + '!', option);
-    if (option == SHIFTED && collator.isVariable(firstChar)) addStringY(s + LOW_ACCENT, option);
+    if (option == SHIFTED && collator.isVariable(firstChar)) {
+      addStringY(s + LOW_ACCENT, option);
+    }
 
     // NOW, if the character decomposes, or is a combining mark (non-zero), try combinations
 
@@ -511,12 +545,18 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
       // if it ends with a non-starter, try the decompositions.
       String decomp = Default.nfd().normalize(s);
       if (Default.ucd().getCombiningClass(UTF16.charAt(decomp, decomp.length()-1)) > 0) {
-        if (canIt == null) canIt = new CanonicalIterator(".");
+        if (canIt == null) {
+          canIt = new CanonicalIterator(".");
+        }
         canIt.setSource(s + LOW_ACCENT);
         int limit = 4;
         for (String can = canIt.next(); can != null; can = canIt.next()) {
-          if (s.equals(can)) continue;
-          if (--limit < 0) continue; // just include a sampling
+          if (s.equals(can)) {
+            continue;
+          }
+          if (--limit < 0) {
+            continue; // just include a sampling
+          }
           addStringY(can, option);
           // System.out.println(addCounter++ + " Adding " + Default.ucd.getCodeAndName(can));
         }
@@ -524,12 +564,16 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     }
     if (UTF16.countCodePoint(s) > 1) {
       for (int i = 1; i < s.length(); ++i) {
-        if (UTF16.isLeadSurrogate(s.charAt(i-1))) continue; // skip if in middle of supplementary
+        if (UTF16.isLeadSurrogate(s.charAt(i-1))) {
+          continue; // skip if in middle of supplementary
+        }
 
         for (int j = 0; j < CONTRACTION_TEST.length; ++j) {
           String extra = s.substring(0,i) + CONTRACTION_TEST[j] + s.substring(i);
           addStringY(extra + 'a', option);
-          if (DEBUG) System.out.println(addCounter++ + " Adding " + Default.ucd().getCodeAndName(extra));
+          if (DEBUG) {
+            System.out.println(addCounter++ + " Adding " + Default.ucd().getCodeAndName(extra));
+          }
         }
       }
     }
@@ -575,10 +619,18 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     UnicodeSet skipSet = new UnicodeSet();
 
     for (int ch = 0; ch < 0x10FFFF; ++ch) {
-      if (!ucd_uca_base.isAllocated(ch)) continue;
-      if (Default.nfkd().isNormalized(ch)) continue;
-      if (ch > 0xAC00 && ch < 0xD7A3) continue; // skip most of Hangul
-      if (alreadySeen.contains(ch)) continue;
+      if (!ucd_uca_base.isAllocated(ch)) {
+        continue;
+      }
+      if (Default.nfkd().isNormalized(ch)) {
+        continue;
+      }
+      if (ch > 0xAC00 && ch < 0xD7A3) {
+        continue; // skip most of Hangul
+      }
+      if (alreadySeen.contains(ch)) {
+        continue;
+      }
       Utility.dot(ch);
 
       String decomp = Default.nfkd().normalize(ch);
@@ -599,7 +651,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
         decompSortKey = remove(decompSortKey, '\u0020');
       }
 
-      if (sortKey.equals(decompSortKey)) continue; // no problem!
+      if (sortKey.equals(decompSortKey)) {
+        continue; // no problem!
+      }
 
       // fix key in the case of strength 3
 
@@ -614,7 +668,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
         decompSortKey = newSortKey;
       }
 
-      if (sortKey.equals(decompSortKey)) continue; // no problem!
+      if (sortKey.equals(decompSortKey)) {
+        continue; // no problem!
+      }
 
       log.println("<tr><td>" + Utility.hex(ch)
               + "</td><td>" + UCA.toString(sortKey)
@@ -634,7 +690,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
   }
 
   static String remapSortKey(int cp, boolean decomposition) {
-    if (Default.nfd().isNormalized(cp)) return remapCanSortKey(cp, decomposition);
+    if (Default.nfd().isNormalized(cp)) {
+      return remapCanSortKey(cp, decomposition);
+    }
 
     // we know that it is not NFKD.
     String canDecomp = Default.nfd().normalize(cp);
@@ -662,7 +720,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     for (int i = pos; i < decompSortKey.length(); ++i) {
       int weight = decompSortKey.charAt(i);
       int newWeight = CEList.remap(ch, type, weight);
-      if (i > pos + 1) newWeight = 0x1F;
+      if (i > pos + 1) {
+        newWeight = 0x1F;
+      }
       newSortKey += (char)newWeight;
     }
     return newSortKey;
@@ -694,7 +754,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     StringBuffer buf = new StringBuffer();
     for (int i = 0; i < s.length(); ++i) {
       char c = s.charAt(i);
-      if (c == ch) continue;
+      if (c == ch) {
+        continue;
+      }
       buf.append(c);
     }
     return buf.toString();
@@ -756,9 +818,13 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
     for (int i = 0; i < 0xFFFF; ++i) {
       int type = ucd.getDecompositionType(i);
-      if (type < typeLimit) continue;
+      if (type < typeLimit) {
+        continue;
+      }
       int ceType = collator.getCEType((char)i);
-      if (ceType >= collator.FIXED_CE) continue;
+      if (ceType >= collator.FIXED_CE) {
+        continue;
+      }
       // fix type
       type = getDecompType(i);
 
@@ -840,9 +906,14 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     log.println();
     log.println("Compressible Secondaries");
     for (int i = 0; i < compressSet.size(); ++i) {
-      if ((i & 0xF) == 0) log.println();
-      if (!compressSet.get(i)) log.print("-  ");
-      else log.print(Utility.hex(i, 3) + ", ");
+      if ((i & 0xF) == 0) {
+        log.println();
+      }
+      if (!compressSet.get(i)) {
+        log.print("-  ");
+      } else {
+        log.print(Utility.hex(i, 3) + ", ");
+      }
     }
     log.close();
   }
@@ -855,7 +926,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
       for (int i = 0; i < d.length(); i += UTF16.getCharCount(cp1)) {
         cp1 = UTF16.charAt(d, i);
         byte t = ucd.getDecompositionType(cp1);
-        if (t > ucd.CANONICAL) return t;
+        if (t > ucd.CANONICAL) {
+          return t;
+        }
       }
     }
     return result;
@@ -865,7 +938,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     int count = 0;
     for (int i = 0; i < aLen; ++i) {
       if (UCA.getPrimary(a[i]) == 0) {
-        if (count == 1) return true;
+        if (count == 1) {
+          return true;
+        }
         count++;
       } else {
         count = 0;
@@ -878,7 +953,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
   static final BitSet compressSet = new BitSet();
 
   static int kenCompress(int[] markCes, int markLen) {
-    if (markLen == 0) return 0;
+    if (markLen == 0) {
+      return 0;
+    }
     int out = 1;
     for (int i = 1; i < markLen; ++i) {
       int next = markCes[i];
@@ -900,9 +977,13 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
 
   static boolean arraysMatch(int[] a, int aLen, int[] b, int bLen) {
-    if (aLen != bLen) return false;
+    if (aLen != bLen) {
+      return false;
+    }
     for (int i = 0; i < aLen; ++i) {
-      if (a[i] != b[i]) return false;
+      if (a[i] != b[i]) {
+        return false;
+      }
     }
     return true;
   }
@@ -916,13 +997,15 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     String decomp = Default.nfkd().normalize(s);
     int len = 0;
     int markLen = collator.getCEs(decomp, true, markCes);
-    if (compress) markLen = kenCompress(markCes, markLen);
+    if (compress) {
+      markLen = kenCompress(markCes, markLen);
+    }
 
     //for (int j = 0; j < decomp.length(); ++j) {
-      for (int k = 0; k < markLen; ++k) {
-        int t = UCA.getTertiary(markCes[k]);
-        t = CEList.remap(k, type, t);
-        /*
+    for (int k = 0; k < markLen; ++k) {
+      int t = UCA.getTertiary(markCes[k]);
+      t = CEList.remap(k, type, t);
+      /*
                 if (type != CANONICAL) {
                     if (0x3041 <= ch && ch <= 0x3094) t = 0xE; // hiragana
                     else if (0x30A1 <= ch && ch <= 0x30FA) t = 0x11; // katakana
@@ -945,14 +1028,14 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
                     case COMPAT_SQUARE: t = (t == 8) ? 0x1D : 0x1C; break;
                     case COMPAT_FRACTION: t = 0x1E; break;
                 }
-         */
-        output[len++] = UCA.makeKey(
-                UCA.getPrimary(markCes[k]),
-                UCA.getSecondary(markCes[k]),
-                t);
-        //}
-      }
-      return len;
+       */
+      output[len++] = UCA.makeKey(
+              UCA.getPrimary(markCes[k]),
+              UCA.getSecondary(markCes[k]),
+              t);
+      //}
+    }
+    return len;
   }
 
   static int getStrengthDiff(CEList celist) {
@@ -989,17 +1072,24 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
     for (int i = 0; i < 0x10FFFF; ++i) {
       Utility.dot(i);
-      if (!ucd.isRepresented(i)) continue;
+      if (!ucd.isRepresented(i)) {
+        continue;
+      }
       CEList celist = collator.getCEList(UTF32.valueOf32(i), true);
       int real = getStrengthDiff(celist);
 
       int desired = PRIMARY_DIFF;
       byte cat = ucd.getCategory(i);
-      if (cat == Cc || cat == Cs || cat == Cf || ucd.isNoncharacter(i)) desired = QUARTERNARY_DIFF;
-      else if (cat == Mn || cat == Me) desired = SECONDARY_DIFF;
+      if (cat == Cc || cat == Cs || cat == Cf || ucd.isNoncharacter(i)) {
+        desired = QUARTERNARY_DIFF;
+      } else if (cat == Mn || cat == Me) {
+        desired = SECONDARY_DIFF;
+      }
 
       String listName = celist.toString();
-      if (listName.length() == 0) listName = "<i>ignore</i>";
+      if (listName.length() == 0) {
+        listName = "<i>ignore</i>";
+      }
       if (real != desired) {
         sorted.add("<tr><td>" + strengthName[real]
                                              + "</td><td>" + strengthName[desired]
@@ -1026,11 +1116,17 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
     while (true) {
       String s = cc.next();
-      if (s == null) break;
-      if (!Default.nfd().isNormalized(s)) continue; // only unnormalized stuff
+      if (s == null) {
+        break;
+      }
+      if (!Default.nfd().isNormalized(s)) {
+        continue; // only unnormalized stuff
+      }
       if (UTF16.countCodePoint(s) == 1) {
         int cat = ucd.getCategory(UTF16.charAt(s,0));
-        if (cat == Cn || cat == Cc || cat == Cs) continue;
+        if (cat == Cn || cat == Cc || cat == Cs) {
+          continue;
+        }
       }
 
       CEList celist = collator.getCEList(s, true);
@@ -1042,7 +1138,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
       CEList celist = (CEList) it.next();
       Set s = (Set) map.get(celist);
       String name = celist.toString();
-      if (name.length() == 0) name = "<i>ignore</i>";
+      if (name.length() == 0) {
+        name = "<i>ignore</i>";
+      }
       if (s.size() > 1) {
         log.println("<tr><td>" + name 
                 + "</td><td>" + getHTML_NameSet(s, null, true)
@@ -1069,9 +1167,13 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
     while (true) {
       String s = cc.next();
-      if (s == null) break;
+      if (s == null) {
+        break;
+      }
       Utility.dot(counter++);
-      if (!Default.nfd().isNormalized(s)) continue; // only normalized stuff
+      if (!Default.nfd().isNormalized(s)) {
+        continue; // only normalized stuff
+      }
       CEList celist = collator.getCEList(s, true);
       map.put(celist, s);
     }
@@ -1084,7 +1186,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
       CEList celist = (CEList) it.next();
       Utility.dot(counter++);
       int len = celist.length();
-      if (len < 2) continue;
+      if (len < 2) {
+        continue;
+      }
 
       for (int i = 1; i < len; ++i) {
         CEList tail = celist.sub(i, len);
@@ -1108,7 +1212,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     while (it.hasNext()) {
       CEList celist = (CEList) it.next();
       int len = celist.length();
-      if (len < 2) continue;
+      if (len < 2) {
+        continue;
+      }
       Utility.dot(counter++);
       first.clear();
       second.clear();
@@ -1142,7 +1248,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
   static final boolean DEBUG_SHOW_OVERLAP = false;
 
   static boolean overlaps(Map map, Map tails, CEList celist, int depth, List me, List other) {
-    if (depth == 5) return false;
+    if (depth == 5) {
+      return false;
+    }
     boolean gotOne = false;
     if (DEBUG_SHOW_OVERLAP && depth > 0) {
       Object foo = map.get(celist);
@@ -1165,7 +1273,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
           gotOne = true;
         }
 
-        if (DEBUG_SHOW_OVERLAP) System.out.println(Utility.repeat("**", depth) + "  Match tail at " + i + ": " + tail + ", " + ucd.getCodeAndName(map.get(tail).toString()));
+        if (DEBUG_SHOW_OVERLAP) {
+          System.out.println(Utility.repeat("**", depth) + "  Match tail at " + i + ": " + tail + ", " + ucd.getCodeAndName(map.get(tail).toString()));
+        }
         // temporarily add tail
         int oldListSize = me.size();
         me.add(tail);
@@ -1176,8 +1286,10 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
         // see if the head matches exactly!
 
         if (map.get(head) != null) {
-          if (DEBUG_SHOW_OVERLAP) System.out.println(Utility.repeat("**", depth) + "  Match head at "
-                  + i + ": " + head + ", " + ucd.getCodeAndName(map.get(head).toString()));
+          if (DEBUG_SHOW_OVERLAP) {
+            System.out.println(Utility.repeat("**", depth) + "  Match head at "
+                    + i + ": " + head + ", " + ucd.getCodeAndName(map.get(head).toString()));
+          }
           me.add(head);
           other.add(celist);
           return true;
@@ -1185,8 +1297,12 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
         // see if the end of the head matches something (recursively)
 
-        if (DEBUG_SHOW_OVERLAP) System.out.println(Utility.repeat("**", depth) + "  Checking rest");
-        if (overlaps(map, tails, head, depth+1, me, other)) return true;
+        if (DEBUG_SHOW_OVERLAP) {
+          System.out.println(Utility.repeat("**", depth) + "  Checking rest");
+        }
+        if (overlaps(map, tails, head, depth+1, me, other)) {
+          return true;
+        }
 
         // otherwise we see if the head is some tail
 
@@ -1196,10 +1312,14 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
           while(it.hasNext()) {
             CEList full = (CEList)it.next();
             CEList possibleHead = full.sub(0,full.length() - head.length());
-            if (DEBUG_SHOW_OVERLAP) System.out.println(Utility.repeat("**", depth) + "  Reversing " + full
-                    + ", " + ucd.getCodeAndName(map.get(full).toString()) 
-                    + ", " + possibleHead);
-            if (overlaps(map, tails, possibleHead, depth+1, other, me)) return true;
+            if (DEBUG_SHOW_OVERLAP) {
+              System.out.println(Utility.repeat("**", depth) + "  Reversing " + full
+                      + ", " + ucd.getCodeAndName(map.get(full).toString()) 
+                      + ", " + possibleHead);
+            }
+            if (overlaps(map, tails, possibleHead, depth+1, other, me)) {
+              return true;
+            }
           }
         }
 
@@ -1216,16 +1336,21 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     StringBuffer result = new StringBuffer();
     Iterator it = set.iterator();
     while (it.hasNext()) {
-      if (result.length() != 0) result.append(";<br>");
+      if (result.length() != 0) {
+        result.append(";<br>");
+      }
       Object item = it.next();
       if (m != null) {
         Object item2 = m.get(item);
-        if (item2 != null) item = item2;
-        else {
+        if (item2 != null) {
+          item = item2;
+        } else {
           System.out.println("Missing Item: " + item);
         }
       }
-      if (useName) item = ucd.getCodeAndName(item.toString());
+      if (useName) {
+        item = ucd.getCodeAndName(item.toString());
+      }
       result.append(item);
     }
     return result.toString();
@@ -1257,7 +1382,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     //diLog.println("# UCA Version: " + collator.getDataVersion() + "/" + collator.getUCDVersion());
     while (true) {
       String s = cc.next(ces, lenArray);
-      if (s == null) break;
+      if (s == null) {
+        break;
+      }
       int len = lenArray[0];
 
       if (s.length() > 1) {
@@ -1327,7 +1454,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
     while (true) {
       String s = cc.next(ces, lenArray);
-      if (s == null) break;
+      if (s == null) {
+        break;
+      }
 
       // process all CEs. Look for controls, and for mixed ignorable/non-ignorables
 
@@ -1355,9 +1484,14 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
           secondariesNZPsample[sec].add(secondariesNZP[sec], s);
           secondariesNZP[sec]++;
         }
-        if (haveMixture == 3) continue;
-        if (collator.isVariable(ce)) haveMixture |= 1;
-        else haveMixture |= 2;
+        if (haveMixture == 3) {
+          continue;
+        }
+        if (collator.isVariable(ce)) {
+          haveMixture |= 1;
+        } else {
+          haveMixture |= 2;
+        }
         if (haveMixture == 3) {
           mixedCEs.add(CEList.toString(ces, len) + "\t" + ucd.getCodeAndName(s));
         }
@@ -1498,7 +1632,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
     while (true) {
       String s = cc.next(ces, lenArray);
-      if (s == null) break;
+      if (s == null) {
+        break;
+      }
 
       // process all CEs. Look for controls, and for mixed ignorable/non-ignorables
 
@@ -1526,9 +1662,14 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
           secondariesNZPsample[sec].add(secondariesNZP[sec], s);
           secondariesNZP[sec]++;
         }
-        if (haveMixture == 3) continue;
-        if (collator.isVariable(ce)) haveMixture |= 1;
-        else haveMixture |= 2;
+        if (haveMixture == 3) {
+          continue;
+        }
+        if (collator.isVariable(ce)) {
+          haveMixture |= 1;
+        } else {
+          haveMixture |= 2;
+        }
         if (haveMixture == 3) {
           mixedCEs.add(CEList.toString(ces, len) + "\t" + ucd.getCodeAndName(s));
         }
@@ -1629,7 +1770,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     System.out.println("Loading");
     for (char ch = 0; i < tests.length; ++ch) {
       byte type = collator.getCEType(ch);
-      if (type >= UCA.FIXED_CE) continue;
+      if (type >= UCA.FIXED_CE) {
+        continue;
+      }
       Utility.dot(ch);
       tests[i] = ch;
       keys[i] = collator.getSortKey(String.valueOf(ch));
@@ -1665,13 +1808,17 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
   //static Normalizer nfkdNew = new Normalizer(Normalizer.NFKD, "");
 
   static int getFirstCELen(int[] ces, int len) {
-    if (len < 2) return len;
+    if (len < 2) {
+      return len;
+    }
     int expansionStart = 1;
     if (UCA.isImplicitLeadCE(ces[0])) {
       expansionStart = 2; // move up if first is double-ce
     } 
     if (len > expansionStart && collator.getHomelessSecondaries().contains(UCA.getSecondary(ces[expansionStart]))) {
-      if (log2 != null) log2.println("Homeless: " + CEList.toString(ces, len));
+      if (log2 != null) {
+        log2.println("Homeless: " + CEList.toString(ces, len));
+      }
       ++expansionStart; // move up if *second* is homeless ignoreable
     }
     return expansionStart;
@@ -1711,7 +1858,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
     while (true) {
       String s = cc.next(ces, lenArray);
-      if (s == null) break;
+      if (s == null) {
+        break;
+      }
       int len = lenArray[0];
 
       if (s.equals("\uD800")) {
@@ -1768,8 +1917,12 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
     // make set with canonical decomposibles
     UnicodeSet composites = new UnicodeSet();
     for (int i = 0; i < 0x10FFFF; ++i) {
-      if (!ucd.isAllocated(i)) continue;
-      if (Default.nfd().isNormalized(i)) continue;
+      if (!ucd.isAllocated(i)) {
+        continue;
+      }
+      if (Default.nfd().isNormalized(i)) {
+        continue;
+      }
       composites.add(i);
     }
     UnicodeSet CJKcomposites = new UnicodeSet(CJK).retainAll(composites);
@@ -1805,15 +1958,21 @@ F900..FAFF; CJK Compatibility Ideographs
 
     System.out.println("Adding Kanji");
     for (int i = 0; i < 0x10FFFF; ++i) {
-      if (!ucd.isAllocated(i)) continue;
-      if (Default.nfkd().isNormalized(i)) continue;
+      if (!ucd.isAllocated(i)) {
+        continue;
+      }
+      if (Default.nfkd().isNormalized(i)) {
+        continue;
+      }
       Utility.dot(i);
       String decomp = Default.nfkd().normalize(i);
       int cp;
       for (int j = 0; j < decomp.length(); j += UTF16.getCharCount(cp)) {
         cp = UTF16.charAt(decomp, j);
         String s = UTF16.valueOf(cp);
-        if (alreadyDone.contains(s)) continue;
+        if (alreadyDone.contains(s)) {
+          continue;
+        }
 
         alreadyDone.add(s);
         int len = collator.getCEs(s, true, ces);
@@ -1828,9 +1987,17 @@ F900..FAFF; CJK Compatibility Ideographs
     System.out.println("Writing");
 
     String filename = "UCA_Rules";
-    if (shortPrint) filename += "_SHORT";
-    if (noCE) filename += "_NoCE";
-    if (option == IN_XML) filename += ".xml"; else filename += ".txt";
+    if (shortPrint) {
+      filename += "_SHORT";
+    }
+    if (noCE) {
+      filename += "_NoCE";
+    }
+    if (option == IN_XML) {
+      filename += ".xml";
+    } else {
+      filename += ".txt";
+    }
 
     log = Utility.openPrintWriter(collator.getUCA_GEN_DIR(), filename, Utility.UTF8_WINDOWS);
 
@@ -1959,7 +2126,9 @@ F900..FAFF; CJK Compatibility Ideographs
 
       // skip first (fake) element
 
-      if (len == -1) continue;
+      if (len == -1) {
+        continue;
+      }
 
 
       // for debugging
@@ -1991,7 +2160,9 @@ F900..FAFF; CJK Compatibility Ideographs
 
       if (relation == QUARTERNARY_DIFF) {
         int relation2 = getStrengthDifference(ces, len, lastCes, lastLen);
-        if (relation2 != QUARTERNARY_DIFF) relation = TERTIARY_DIFF;
+        if (relation2 != QUARTERNARY_DIFF) {
+          relation = TERTIARY_DIFF;
+        }
       }
 
       // RESETs: do special case for relations to fixed items
@@ -2013,7 +2184,9 @@ F900..FAFF; CJK Compatibility Ideographs
           relation = getStrengthDifference(ces, len, ces2, len2);
 
           reset = quoteOperand(UTF16.valueOf(resetCp));
-          if (!shortPrint) resetComment = ucd.getCodeAndName(resetCp);
+          if (!shortPrint) {
+            resetComment = ucd.getCodeAndName(resetCp);
+          }
           // lastCE = UCA.makeKey(primary, UCA.NEUTRAL_SECONDARY, UCA.NEUTRAL_TERTIARY);
           xmlReset = 2;
         }
@@ -2065,7 +2238,9 @@ F900..FAFF; CJK Compatibility Ideographs
       // print results
 
       if (option == IN_XML) {
-        if (insertVariableTop) log.println(XML_RELATION_NAMES[0] + "<variableTop/>");
+        if (insertVariableTop) {
+          log.println(XML_RELATION_NAMES[0] + "<variableTop/>");
+        }
 
         /*log.print("  <!--" + ucd.getCodeAndName(chr));
                 if (len > 1) log.print(" / " + Utility.hex(expansion));
@@ -2089,32 +2264,48 @@ F900..FAFF; CJK Compatibility Ideographs
           log.print("\t<!--"); 
           log.print(CEList.toString(ces, len) + " "); 
           log.print(ucd.getCodeAndName(chr));
-          if (expansion.length() > 0) log.print(" / " + Utility.hex(expansion));
+          if (expansion.length() > 0) {
+            log.print(" / " + Utility.hex(expansion));
+          }
           log.print("-->");
         }
         log.println();
       } else {
-        if (insertVariableTop) log.println(RELATION_NAMES[0] + " [variable top]");
-        if (reset.length() != 0) log.println("& " 
-                + (resetToParameter ? "[" : "") + reset + (resetToParameter ? "]" : "")
-                + (resetComment.length() != 0 ? "\t\t# " + resetComment : ""));
-        if (!firstTime) log.print(RELATION_NAMES[relation] + " " + quoteOperand(chr));
-        if (expansion.length() > 0) log.print(" / " + quoteOperand(expansion));
+        if (insertVariableTop) {
+          log.println(RELATION_NAMES[0] + " [variable top]");
+        }
+        if (reset.length() != 0) {
+          log.println("& " 
+                  + (resetToParameter ? "[" : "") + reset + (resetToParameter ? "]" : "")
+                  + (resetComment.length() != 0 ? "\t\t# " + resetComment : ""));
+        }
+        if (!firstTime) {
+          log.print(RELATION_NAMES[relation] + " " + quoteOperand(chr));
+        }
+        if (expansion.length() > 0) {
+          log.print(" / " + quoteOperand(expansion));
+        }
         if (!shortPrint) {
           log.print("\t# ");
           if (containsNew(chr)) {
             log.print("\u2020 ");
           }
-          if (!noCE) log.print(CEList.toString(ces, len) + " ");
+          if (!noCE) {
+            log.print(CEList.toString(ces, len) + " ");
+          }
           log.print(ucd.getCodeAndName(chr));
-          if (expansion.length() > 0) log.print(" / " + Utility.hex(expansion));
+          if (expansion.length() > 0) {
+            log.print(" / " + Utility.hex(expansion));
+          }
         }
         log.println();
       }
       firstTime = false;
     }
     // log.println("& [top]"); // RESET
-    if (option == IN_XML) log.println("</rules></collation>");
+    if (option == IN_XML) {
+      log.println("</rules></collation>");
+    }
     log2.close();
     log.close();
     Utility.fixDot();
@@ -2134,21 +2325,31 @@ F900..FAFF; CJK Compatibility Ideographs
     int tertiary = collator.getSecondary(ce);
     if (primary == 0) {
       if (secondary == 0) {
-        if (tertiary == 0) return T_IGNORE;
+        if (tertiary == 0) {
+          return T_IGNORE;
+        }
         return S_IGNORE;
       }
       return P_IGNORE;
     }
-    if (collator.isVariable(ce)) return VARIABLE;
-    if (primary < UNSUPPORTED_BASE) return NON_IGNORE;
-    if (primary < UNSUPPORTED_LIMIT) return IMPLICIT;
+    if (collator.isVariable(ce)) {
+      return VARIABLE;
+    }
+    if (primary < UNSUPPORTED_BASE) {
+      return NON_IGNORE;
+    }
+    if (primary < UNSUPPORTED_LIMIT) {
+      return IMPLICIT;
+    }
     return TRAILING;
   }
 
   static long getPrimary(int[] ces, int len) {
     for (int i = 0; i < len; ++i) {
       int result = UCA.getPrimary(ces[i]);
-      if (result == 0) continue;
+      if (result == 0) {
+        continue;
+      }
       if (UCA.isImplicitLeadPrimary(result)) {
         return (result << 16) + UCA.getPrimary(ces[i+1]);
       } else {
@@ -2161,7 +2362,9 @@ F900..FAFF; CJK Compatibility Ideographs
   static long getSecondary(int[] ces, int len) {
     for (int i = 0; i < len; ++i) {
       int result = UCA.getSecondary(ces[i]);
-      if (result == 0) continue;
+      if (result == 0) {
+        continue;
+      }
       return result;
     }
     return 0;
@@ -2170,7 +2373,9 @@ F900..FAFF; CJK Compatibility Ideographs
   static long getTertiary(int[] ces, int len) {
     for (int i = 0; i < len; ++i) {
       int result = UCA.getTertiary(ces[i]);
-      if (result == 0) continue;
+      if (result == 0) {
+        continue;
+      }
       return result;
     }
     return 0;
@@ -2208,7 +2413,9 @@ F900..FAFF; CJK Compatibility Ideographs
         case SECONDARY_DIFF: val = UCA.getSecondary(ce); break;
         case TERTIARY_DIFF: val = UCA.getTertiary(ce); break;
         }
-        if (val != 0) return val;
+        if (val != 0) {
+          return val;
+        }
       }
       return DONE;
     }
@@ -2232,8 +2439,12 @@ F900..FAFF; CJK Compatibility Ideographs
       while (true) {
         int weight1 = ceit1.next();
         int weight2 = ceit2.next();
-        if (weight1 != weight2) return level;
-        if (weight1 == DONE) break;
+        if (weight1 != weight2) {
+          return level;
+        }
+        if (weight1 == DONE) {
+          break;
+        }
       }
     }
     return QUARTERNARY_DIFF;
@@ -2295,9 +2506,13 @@ F900..FAFF; CJK Compatibility Ideographs
 
     public boolean equals(Object other) {
       ArrayWrapper that = (ArrayWrapper) other;
-      if (that.limit - that.start != limit - start) return false;
+      if (that.limit - that.start != limit - start) {
+        return false;
+      }
       for (int i = start; i < limit; ++i) {
-        if (array[i] != that.array[i - start + that.start]) return false;
+        if (array[i] != that.array[i - start + that.start]) {
+          return false;
+        }
       }
       return true;
     }
@@ -2320,7 +2535,9 @@ F900..FAFF; CJK Compatibility Ideographs
 
   static boolean contains(int[] array, int start, int limit, int key) {
     for (int i = start; i < limit; ++i) {
-      if (array[i] == key) return true;
+      if (array[i] == key) {
+        return true;
+      }
     }
     return false;
   }
@@ -2333,8 +2550,12 @@ F900..FAFF; CJK Compatibility Ideographs
     Object key = new ArrayWrapper((int[])(ces.clone()),0, len);
     if (false) {
       String value = (String)backMap.get(key);
-      if (value == null) return;
-      if (s.compareTo(value) >= 0) return;
+      if (value == null) {
+        return;
+      }
+      if (s.compareTo(value) >= 0) {
+        return;
+      }
     }
     backMap.put(key, s);
     /*
@@ -2432,13 +2653,17 @@ F900..FAFF; CJK Compatibility Ideographs
       for (limit = len; limit > i; --limit) {
         ArrayWrapper wrapper = new ArrayWrapper(ces, i, limit);
         s = (String)backMap.get(wrapper);
-        if (s != null) break;
+        if (s != null) {
+          break;
+        }
       }
       if (s == null) {
         do {
           if (collator.getHomelessSecondaries().contains(UCA.getSecondary(ces[i]))) {
             s = "";
-            if (rel[0] > 1) rel[0] = 1; // HACK
+            if (rel[0] > 1) {
+              rel[0] = 1; // HACK
+            }
             break;
           }
 
@@ -2457,12 +2682,16 @@ F900..FAFF; CJK Compatibility Ideographs
           ces[i] = collator.makeKey(primary, secondary, 2);
           ArrayWrapper wrapper = new ArrayWrapper(ces, i, i+1);
           s = (String)backMap.get(wrapper);
-          if (s != null) break;
+          if (s != null) {
+            break;
+          }
 
           ces[i] = collator.makeKey(primary, secondary,0xE);
           wrapper = new ArrayWrapper(ces, i, i+1);
           s = (String)backMap.get(wrapper);
-          if (s != null) break;
+          if (s != null) {
+            break;
+          }
 
           /*
                 	int meHack = UCA.makeKey(0x1795,0x0020,0x0004);
@@ -2601,8 +2830,9 @@ F900..FAFF; CJK Compatibility Ideographs
             quoteOperandBuffer.append('\'');
             inQuote = true;
           }
-          if (!needsUnicodeForm.contains(cp)) quoteOperandBuffer.append(UTF16.valueOf(cp)); // cp != 0x2028
-          else if (cp > 0xFFFF) {
+          if (!needsUnicodeForm.contains(cp)) {
+            quoteOperandBuffer.append(UTF16.valueOf(cp)); // cp != 0x2028
+          } else if (cp > 0xFFFF) {
             quoteOperandBuffer.append("\\U").append(Utility.hex(cp,8));
           } else if (cp <= 0x20 || cp > 0x7E) {
             quoteOperandBuffer.append("\\u").append(Utility.hex(cp));
@@ -2632,7 +2862,9 @@ F900..FAFF; CJK Compatibility Ideographs
     if (inQuote) {
       quoteOperandBuffer.append('\'');
     }
-    if (noQuotes) return s; // faster
+    if (noQuotes) {
+      return s; // faster
+    }
     return quoteOperandBuffer.toString();
   }
 
@@ -2716,8 +2948,9 @@ F900..FAFF; CJK Compatibility Ideographs
 
     // start at 1 so zero stays zero.
     for (int primary = 1; primary < 0xFFFF; ++primary) {
-      if (primarySet.get(primary)) primaryDelta[primary] = 2;
-      else if (primary == 0x1299) {
+      if (primarySet.get(primary)) {
+        primaryDelta[primary] = 2;
+      } else if (primary == 0x1299) {
         System.out.println("WHOOPS! Missing weight");
       }
     }
@@ -2734,14 +2967,18 @@ F900..FAFF; CJK Compatibility Ideographs
         // special handling for Jamo 3-byte forms
 
         if (isOldJamo(primary)) {
-          if (DEBUG) System.out.print("JAMO: " + Utility.hex(lastValue));
+          if (DEBUG) {
+            System.out.print("JAMO: " + Utility.hex(lastValue));
+          }
           if ((lastValue & 0xFF0000) == 0) { // lastValue was 2-byte form
             subtotal += primaryDelta[primary];  // we convert from relative to absolute
             lastValue = primaryDelta[primary] = (subtotal << 8) + 0x10; // make 3 byte, leave gap
           } else { // lastValue was 3-byte form
             lastValue = primaryDelta[primary] = lastValue + 3;
           }
-          if (DEBUG) System.out.println(" => " + Utility.hex(lastValue));
+          if (DEBUG) {
+            System.out.println(" => " + Utility.hex(lastValue));
+          }
           continue;
         }
 
@@ -2749,8 +2986,12 @@ F900..FAFF; CJK Compatibility Ideographs
 
         if (singles.get(primary)) { 
           subtotal = (subtotal & 0xFF00) + 0x100;
-          if (primary == gapForA) subtotal += 0x200;
-          if (bumpNextToo == 0x40) subtotal += 0x100; // make sure of gap between singles!!!
+          if (primary == gapForA) {
+            subtotal += 0x200;
+          }
+          if (bumpNextToo == 0x40) {
+            subtotal += 0x100; // make sure of gap between singles!!!
+          }
           bumpNextToo = 0x40;
         } else if (primary > variableHigh) {
           variableHigh = 0xFFFF; // never do again!
@@ -2795,7 +3036,9 @@ F900..FAFF; CJK Compatibility Ideographs
     while (true) {
       Utility.dot(ccounter++);
       String s = ucac.next();
-      if (s == null) break;
+      if (s == null) {
+        break;
+      }
       if (s.equals("\uFA36") || s.equals("\uF900") || s.equals("\u2ADC") || s.equals(highCompat)) {
         System.out.println(" * " + ucd.getCodeAndName(s));
       }
@@ -2810,13 +3053,21 @@ F900..FAFF; CJK Compatibility Ideographs
     System.out.println("Add missing decomposibles and non-characters");
     for (int i = 0; i < 0x10FFFF; ++i) {
       if (!ucd.isNoncharacter(i)) {
-        if (!ucd.isAllocated(i)) continue;
-        if (Default.nfd().isNormalized(i)) continue;
-        if (ucd.isHangulSyllable(i)) continue;
-        //if (collator.getCEType(i) >= UCA.FIXED_CE) continue;
+        if (!ucd.isAllocated(i)) {
+          continue;
+        }
+        if (Default.nfd().isNormalized(i)) {
+          continue;
+        }
+        if (ucd.isHangulSyllable(i)) {
+          continue;
+          //if (collator.getCEType(i) >= UCA.FIXED_CE) continue;
+        }
       }
       String s = UTF16.valueOf(i);
-      if (contentsForCanonicalIteration.contains(s)) continue; // skip if already present
+      if (contentsForCanonicalIteration.contains(s)) {
+        continue; // skip if already present
+      }
       contentsForCanonicalIteration.add(s);
       ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
       System.out.println(" + " + ucd.getCodeAndName(s));
@@ -2825,7 +3076,9 @@ F900..FAFF; CJK Compatibility Ideographs
 
     Set additionalSet = new HashSet();
     System.out.println("Loading canonical iterator");
-    if (canIt == null) canIt = new CanonicalIterator(".");
+    if (canIt == null) {
+      canIt = new CanonicalIterator(".");
+    }
     Iterator it2 = contentsForCanonicalIteration.iterator();
     System.out.println("Adding any FCD equivalents that have different sort keys");
     while (it2.hasNext()) {
@@ -2839,20 +3092,32 @@ F900..FAFF; CJK Compatibility Ideographs
       boolean first = true;
       while (true) {
         String s = canIt.next();
-        if (s == null) break;
-        if (s.equals(key)) continue;
-        if (contentsForCanonicalIteration.contains(s)) continue;
-        if (additionalSet.contains(s)) continue;
+        if (s == null) {
+          break;
+        }
+        if (s.equals(key)) {
+          continue;
+        }
+        if (contentsForCanonicalIteration.contains(s)) {
+          continue;
+        }
+        if (additionalSet.contains(s)) {
+          continue;
+        }
 
 
         // Skip anything that is not FCD.
-        if (!Default.nfd().isFCD(s)) continue;
+        if (!Default.nfd().isFCD(s)) {
+          continue;
+        }
 
         // We ONLY add if the sort key would be different
         // Than what we would get if we didn't decompose!!
         String sortKey = collator.getSortKey(s, UCA.NON_IGNORABLE);
         String nonDecompSortKey = collator.getSortKey(s, UCA.NON_IGNORABLE, false);
-        if (sortKey.equals(nonDecompSortKey)) continue;
+        if (sortKey.equals(nonDecompSortKey)) {
+          continue;
+        }
 
         if (first) {
           System.out.println(" " + ucd.getCodeAndName(key));
@@ -3044,8 +3309,10 @@ F900..FAFF; CJK Compatibility Ideographs
         // special treatment for unsupported!
 
         if (UCA.isImplicitLeadPrimary(pri)) {
-          if (DEBUG) System.out.println("DEBUG: " + CEList.toString(ces, len) 
-                  + ", Current: " + q + ", " + ucd.getCodeAndName(chr));
+          if (DEBUG) {
+            System.out.println("DEBUG: " + CEList.toString(ces, len) 
+                    + ", Current: " + q + ", " + ucd.getCodeAndName(chr));
+          }
           ++q;
           oldStr.append(CEList.toString(ces[q]));// + "," + Integer.toString(ces[q],16);
 
@@ -3191,7 +3458,9 @@ F900..FAFF; CJK Compatibility Ideographs
     while (it3.hasNext()) {
       Integer key = (Integer) it3.next();
       Pair pair = (Pair) fractBackMap.get(key);
-      if (((Integer)pair.first).intValue() < 2) continue;
+      if (((Integer)pair.first).intValue() < 2) {
+        continue;
+      }
       String sample = (String)pair.second;
 
       int ce = key.intValue();
@@ -3209,7 +3478,7 @@ F900..FAFF; CJK Compatibility Ideographs
       hexBytes(nt, newTertiary);
 
       log.print(Utility.hex('\uFDD0' + "" + (char)(fakeTrail++)) + "; " 
-      + "[, " + newSecondary + ", " + newTertiary + "]");
+              + "[, " + newSecondary + ", " + newTertiary + "]");
       longLog.print("\t# " + collator.getCEList(sample, true) + "\t* " + ucd.getCodeAndName(sample));
       log.println();
     }
@@ -3348,7 +3617,9 @@ F900..FAFF; CJK Compatibility Ideographs
     summary.println();
 
     for (int i = 0; i < sampleEq.length; ++i) {
-      if (sampleEq[i] == null) continue;
+      if (sampleEq[i] == null) {
+        continue;
+      }
       if (i == 0x20) {
         summary.println();
         summary.println("# Example characters for each SECONDARY value");
@@ -3384,8 +3655,11 @@ F900..FAFF; CJK Compatibility Ideographs
     FCE (boolean max, String title) {
       this.max = max;
       this.title = title;
-      if (max) key = new long[] {UNDEFINED_MIN, UNDEFINED_MIN, UNDEFINED_MIN};    // make small!
-      else key = new long[] {UNDEFINED_MAX, UNDEFINED_MAX, UNDEFINED_MAX};
+      if (max) {
+        key = new long[] {UNDEFINED_MIN, UNDEFINED_MIN, UNDEFINED_MIN};    // make small!
+      } else {
+        key = new long[] {UNDEFINED_MAX, UNDEFINED_MAX, UNDEFINED_MAX};
+      }
     }
 
     /*
@@ -3408,8 +3682,12 @@ F900..FAFF; CJK Compatibility Ideographs
 
     long fixWeight(int weight) {
       long result = weight & INT_MASK;
-      if (result == 0) return result;
-      while ((result & 0xFF000000) == 0) result <<= 8; // shift to top
+      if (result == 0) {
+        return result;
+      }
+      while ((result & 0xFF000000) == 0) {
+        result <<= 8; // shift to top
+      }
       return result;
     }
 
@@ -3420,23 +3698,39 @@ F900..FAFF; CJK Compatibility Ideographs
     String formatFCE(boolean showEmpty) {
       String b0 = getBuffer(key[0], false);
       boolean key0Defined = key[0] != UNDEFINED_MIN && key[0] != UNDEFINED_MAX;
-      if (showEmpty && b0.length() == 0) b0 = "X";
+      if (showEmpty && b0.length() == 0) {
+        b0 = "X";
+      }
 
       String b1 = getBuffer(key[1], key0Defined);
       boolean key1Defined = key[1] != UNDEFINED_MIN && key[1] != UNDEFINED_MAX;
-      if (b1.length() != 0) b1 = " " + b1;
-      else if (showEmpty) b1 = " X";
+      if (b1.length() != 0) {
+        b1 = " " + b1;
+      } else if (showEmpty) {
+        b1 = " X";
+      }
 
       String b2 = getBuffer(key[2], key0Defined || key1Defined);
-      if (b2.length() != 0) b2 = " " + b2;
-      else if (showEmpty) b2 = " X";
+      if (b2.length() != 0) {
+        b2 = " " + b2;
+      } else if (showEmpty) {
+        b2 = " X";
+      }
 
       return "[" + b0 + "," + b1  + "," + b2 + "]";
     }
 
     String getBuffer(long val, boolean haveHigher) {
-      if (val == UNDEFINED_MIN) return "?"; 
-      if (val == UNDEFINED_MAX) if (haveHigher) val = COMMON << 24; else return "?";
+      if (val == UNDEFINED_MIN) {
+        return "?";
+      } 
+      if (val == UNDEFINED_MAX) {
+        if (haveHigher) {
+          val = COMMON << 24;
+        } else {
+          return "?";
+        }
+      }
       StringBuffer result = new StringBuffer();
       hexBytes(val, result);
       return result.toString();
@@ -3460,28 +3754,42 @@ F900..FAFF; CJK Compatibility Ideographs
     }
 
     void setValue(int npInt, int nsInt, int ntInt, String source) {
-      if (debugShow) System.out.println("Setting FCE: " 
-              + Utility.hex(npInt) + ", "  + Utility.hex(nsInt) + ", "  + Utility.hex(ntInt));
+      if (debugShow) {
+        System.out.println("Setting FCE: " 
+                + Utility.hex(npInt) + ", "  + Utility.hex(nsInt) + ", "  + Utility.hex(ntInt));
+      }
       // to get the sign right!
       long np = fixWeight(npInt);
       long ns = fixWeight(nsInt);
       long nt = fixWeight(ntInt);
       if (max) {
         // return if the key is LEQ
-        if (np < key[0]) return;
+        if (np < key[0]) {
+          return;
+        }
         if (np == key[0]) {
-          if (ns < key[1]) return;
+          if (ns < key[1]) {
+            return;
+          }
           if (ns == key[1]) {
-            if (nt <= key[2]) return;
+            if (nt <= key[2]) {
+              return;
+            }
           }
         }
       } else {
         // return if the key is GEQ
-        if (np > key[0]) return;
+        if (np > key[0]) {
+          return;
+        }
         if (np == key[0]) {
-          if (ns > key[1]) return;
+          if (ns > key[1]) {
+            return;
+          }
           if (ns == key[1]) {
-            if (nt >= key[2]) return;
+            if (nt >= key[2]) {
+              return;
+            }
           }
         }
       }
@@ -3573,11 +3881,15 @@ F900..FAFF; CJK Compatibility Ideographs
 
 
   static void showImplicit(String title, int cp) {
-    if (DEBUG) showImplicit2(title + "-1", cp-1);
+    if (DEBUG) {
+      showImplicit2(title + "-1", cp-1);
+    }
 
     showImplicit2(title + "00", cp);
 
-    if (DEBUG) showImplicit2(title + "+1", cp+1);
+    if (DEBUG) {
+      showImplicit2(title + "+1", cp+1);
+    }
   }
 
   static void showImplicit2(String title, int cp) {
@@ -3638,10 +3950,16 @@ F900..FAFF; CJK Compatibility Ideographs
         // separate the three groups
 
         if (ucd.isCJK_BASE(i) || CJK_COMPAT_USED_BASE <= i && i < CJK_COMPAT_USED_LIMIT) {
-          if (batch != 0) continue;
+          if (batch != 0) {
+            continue;
+          }
         } else if (ucd.isCJK_AB(i)) {
-          if (batch != 1) continue;
-        } else if (batch != 2) continue;
+          if (batch != 1) {
+            continue;
+          }
+        } else if (batch != 2) {
+          continue;
+        }
 
 
         // test swapping
@@ -3694,7 +4012,9 @@ F900..FAFF; CJK Compatibility Ideographs
   static boolean sameTopByte(int x, int y) {
     int x1 = x & 0xFF0000;
     int y1 = y & 0xFF0000;
-    if (x1 != 0 || y1 != 0) return x1 == y1;
+    if (x1 != 0 || y1 != 0) {
+      return x1 == y1;
+    }
     x1 = x & 0xFF00;
     y1 = y & 0xFF00;
     return x1 == y1;
@@ -3706,8 +4026,12 @@ F900..FAFF; CJK Compatibility Ideographs
 
   static final boolean needsCaseBit(String x) {
     String s = Default.nfkd().normalize(x);
-    if (!ucd.getCase(s, FULL, LOWER).equals(s)) return true;
-    if (!toSmallKana(s).equals(s)) return true;
+    if (!ucd.getCase(s, FULL, LOWER).equals(s)) {
+      return true;
+    }
+    if (!toSmallKana(s).equals(s)) {
+      return true;
+    }
     return false;
   }
 
@@ -3738,7 +4062,9 @@ F900..FAFF; CJK Compatibility Ideographs
       }
       toSmallKanaBuffer.append(c);
     }
-    if (gotOne) return toSmallKanaBuffer.toString();
+    if (gotOne) {
+      return toSmallKanaBuffer.toString();
+    }
     return s;
   }
 
@@ -3799,8 +4125,11 @@ F900..FAFF; CJK Compatibility Ideographs
 
   static int fixPrimary(int x) {
     int result = 0;
-    if ((x & MARK_CODE_POINT) != 0) result = getImplicitPrimary(x & ~MARK_CODE_POINT);
-    else result = primaryDelta[x];
+    if ((x & MARK_CODE_POINT) != 0) {
+      result = getImplicitPrimary(x & ~MARK_CODE_POINT);
+    } else {
+      result = primaryDelta[x];
+    }
     return result;
   }
 
@@ -3847,18 +4176,26 @@ F900..FAFF; CJK Compatibility Ideographs
    */
 
   static int fixTertiary(int x) {
-    if (x == 0) return x;
-    if (x == 1 || x == 7) throw new IllegalArgumentException("Tertiary illegal: " + x);
+    if (x == 0) {
+      return x;
+    }
+    if (x == 1 || x == 7) {
+      throw new IllegalArgumentException("Tertiary illegal: " + x);
+    }
     // 2 => COMMON, 1 is unused
     int y = x < 7 ? x : x - 1; // we now use 1F = MAX. Causes a problem so we shift everything to fill a gap at 7 (unused).
 
     int result = 2 * (y - 2) + COMMON;
 
-    if (result >= 0x3E) throw new IllegalArgumentException("Tertiary too large: "
-            + Utility.hex(x) + " => " + Utility.hex(result));
+    if (result >= 0x3E) {
+      throw new IllegalArgumentException("Tertiary too large: "
+              + Utility.hex(x) + " => " + Utility.hex(result));
+    }
 
     // get case bits. 00 is low, 01 is mixed (never happens), 10 is high
-    if (isUpperTertiary[x]) result |= 0x80; 
+    if (isUpperTertiary[x]) {
+      result |= 0x80;
+    } 
     return result;
   }
 
@@ -3883,8 +4220,10 @@ F900..FAFF; CJK Compatibility Ideographs
         System.out.println("debug");
       }
       int val = fixSecondary2(i, 999, 999); // HACK for UCA
-      if (val <= lastVal) throw new IllegalArgumentException(
-              "Unordered: " + Utility.hex(val) + " => " + Utility.hex(lastVal));
+      if (val <= lastVal) {
+        throw new IllegalArgumentException(
+                "Unordered: " + Utility.hex(val) + " => " + Utility.hex(lastVal));
+      }
       int top = val >>> 8;
     int bottom = val & 0xFF;
     if (top != 0 && (top < COMMON || top > 0xEF)
@@ -3898,11 +4237,15 @@ F900..FAFF; CJK Compatibility Ideographs
 
     lastVal = -1;
     for (int i = 0; i <= 0x1E; ++i) {
-      if (i == 1 || i == 7) continue; // never occurs
+      if (i == 1 || i == 7) {
+        continue; // never occurs
+      }
       int val = fixTertiary(i);
       val &= 0x7F; // mask off case bits
-      if (val <= lastVal) throw new IllegalArgumentException(
-              "Unordered: " + Utility.hex(val) + " => " + Utility.hex(lastVal));
+      if (val <= lastVal) {
+        throw new IllegalArgumentException(
+                "Unordered: " + Utility.hex(val) + " => " + Utility.hex(lastVal));
+      }
       if (val != 0 && (isEven(val) || val < COMMON || val > 0x3D)) {
         throw new IllegalArgumentException("Tertiary out of range: " + Utility.hex(i) + " => " 
                 + Utility.hex(val));
@@ -3933,7 +4276,9 @@ F900..FAFF; CJK Compatibility Ideographs
     for (int shift = 24; shift >= 0; shift -= 8) {
       byte b = (byte)(x >>> shift);
       if (b != 0) {
-        if (result.length() != 0) result.append(" ");
+        if (result.length() != 0) {
+          result.append(" ");
+        }
         result.append(Utility.hex(b));
         //if (lastb == 0) System.err.println(" bad zero byte: " + result);
       }
@@ -3942,11 +4287,17 @@ F900..FAFF; CJK Compatibility Ideographs
   }
 
   static int fixHan(char ch) { // BUMP HANGUL, HAN
-    if (ch < 0x3400 || ch > 0xD7A3) return -1;
+    if (ch < 0x3400 || ch > 0xD7A3) {
+      return -1;
+    }
 
     char ch2 = ch;
-    if (ch >= 0xAC00) ch2 -= (0xAC00 - 0x9FA5 - 1);
-    if (ch >= 0x4E00) ch2 -= (0x4E00 - 0x4DB5 - 1);
+    if (ch >= 0xAC00) {
+      ch2 -= (0xAC00 - 0x9FA5 - 1);
+    }
+    if (ch >= 0x4E00) {
+      ch2 -= (0x4E00 - 0x4DB5 - 1);
+    }
 
     return 0x6000 + (ch2-0x3400); // room to interleave
   }
@@ -3966,7 +4317,9 @@ F900..FAFF; CJK Compatibility Ideographs
       if (type < FIXED_CE) {
         int len = collator.getCEs(String.valueOf(ch), true, ces);
         int primary = UCA.getPrimary(ces[0]);
-        if (primary < variableHigh) continue;
+        if (primary < variableHigh) {
+          continue;
+        }
         /*
                 if (ch == 0x1160 || ch == 0x11A8) { // set bumps within Hangul L, V, T
                     bumps.set(primary);
@@ -3975,17 +4328,23 @@ F900..FAFF; CJK Compatibility Ideographs
          */
         byte script = ucd.getScript(ch);
         // HACK
-        if (ch == 0x0F7E || ch == 0x0F7F) script = TIBETAN_SCRIPT;
+        if (ch == 0x0F7E || ch == 0x0F7F) {
+          script = TIBETAN_SCRIPT;
+        }
         //if (script == ucd.GREEK_SCRIPT) System.out.println(ucd.getName(ch));
         // get least primary for script
         if (scripts[script] == 0 || scripts[script] > primary) {
           byte cat = ucd.getCategory(ch);
           // HACK
-          if (ch == 0x0F7E || ch == 0x0F7F) cat = ucd.OTHER_LETTER;
+          if (ch == 0x0F7E || ch == 0x0F7F) {
+            cat = ucd.OTHER_LETTER;
+          }
           if (cat <= ucd.OTHER_LETTER && cat != ucd.Lm) {
             scripts[script] = primary;
             scriptChar[script] = ch;
-            if (script == ucd.GREEK_SCRIPT) System.out.println("*" + Utility.hex(primary) + ucd.getName(ch));
+            if (script == ucd.GREEK_SCRIPT) {
+              System.out.println("*" + Utility.hex(primary) + ucd.getName(ch));
+            }
           }
         }
         // get representative char for primary
@@ -4033,7 +4392,9 @@ F900..FAFF; CJK Compatibility Ideographs
   static void setSingle(char ch, int[] ces) {
     collator.getCEs(String.valueOf(ch), true, ces);
     singles.set(UCA.getPrimary(ces[0]));
-    if (ch == 'a') gapForA = UCA.getPrimary(ces[0]);
+    if (ch == 'a') {
+      gapForA = UCA.getPrimary(ces[0]);
+    }
   }
 
 
@@ -4041,7 +4402,9 @@ F900..FAFF; CJK Compatibility Ideographs
     BufferedReader input = new BufferedReader(new FileReader(fileName));
     while (true) {
       String line = input.readLine();
-      if (line == null) break;
+      if (line == null) {
+        break;
+      }
       log.println(line);
     }
     input.close();
@@ -4083,7 +4446,9 @@ F900..FAFF; CJK Compatibility Ideographs
 
     while (true) {
       String s = cc.next();
-      if (s == null) break;
+      if (s == null) {
+        break;
+      }
       addString(s, option);
       coverage.add(s);
     }
@@ -4140,7 +4505,9 @@ F900..FAFF; CJK Compatibility Ideographs
     }
 
 
-    if (GENERATED_NFC_MISMATCHES) showMismatches();
+    if (GENERATED_NFC_MISMATCHES) {
+      showMismatches();
+    }
     removeAdjacentDuplicates2();
 
 
@@ -4200,14 +4567,18 @@ F900..FAFF; CJK Compatibility Ideographs
     while (true) {
       Utility.dot(ccounter++);
       String s = ucac.next();
-      if (s == null) break;
+      if (s == null) {
+        break;
+      }
       contentsForCanonicalIteration.add(s);
     }
 
     Set additionalSet = new HashSet();
 
     System.out.println("Loading canonical iterator");
-    if (canIt == null) canIt = new CanonicalIterator(".");
+    if (canIt == null) {
+      canIt = new CanonicalIterator(".");
+    }
     Iterator it2 = contentsForCanonicalIteration.iterator();
     System.out.println("Adding any FCD equivalents that have different sort keys");
     while (it2.hasNext()) {
@@ -4222,20 +4593,32 @@ F900..FAFF; CJK Compatibility Ideographs
       boolean first = true;
       while (true) {
         String s = canIt.next();
-        if (s == null) break;
-        if (s.equals(key)) continue;
-        if (contentsForCanonicalIteration.contains(s)) continue;
-        if (additionalSet.contains(s)) continue;
+        if (s == null) {
+          break;
+        }
+        if (s.equals(key)) {
+          continue;
+        }
+        if (contentsForCanonicalIteration.contains(s)) {
+          continue;
+        }
+        if (additionalSet.contains(s)) {
+          continue;
+        }
 
 
         // Skip anything that is not FCD.
-        if (!Default.nfd().isFCD(s)) continue;
+        if (!Default.nfd().isFCD(s)) {
+          continue;
+        }
 
         // We ONLY add if the sort key would be different
         // Than what we would get if we didn't decompose!!
         String sortKey = collator.getSortKey(s, UCA.NON_IGNORABLE);
         String nonDecompSortKey = collator.getSortKey(s, UCA.NON_IGNORABLE, false);
-        if (sortKey.equals(nonDecompSortKey)) continue;
+        if (sortKey.equals(nonDecompSortKey)) {
+          continue;
+        }
 
         if (DEBUG && first) {
           System.out.println(" " + ucd.getCodeAndName(key));
@@ -4290,7 +4673,9 @@ F900..FAFF; CJK Compatibility Ideographs
 
     while (true) {
       String str = cc.next(ces, lenArray);
-      if (str == null) break;
+      if (str == null) {
+        break;
+      }
       int len = lenArray[0];
 
       for (int i = 0; i < len; ++i) {
@@ -4323,7 +4708,9 @@ F900..FAFF; CJK Compatibility Ideographs
 
     while (true) {
       String str = cc.next(ces, lenArray);
-      if (str == null) break;
+      if (str == null) {
+        break;
+      }
       int len = lenArray[0];
 
       for (int i = 0; i < len; ++i) {
@@ -4336,7 +4723,9 @@ F900..FAFF; CJK Compatibility Ideographs
         // CHECK implicit
         if (collator.isImplicitLeadPrimary(lastPrimary)) {
           try {
-            if (s != 0 || t != 0) throw new Exception("Second implicit must be [X,0,0]");
+            if (s != 0 || t != 0) {
+              throw new Exception("Second implicit must be [X,0,0]");
+            }
             collator.ImplicitToCodePoint(lastPrimary, p);   // throws exception if bad
           } catch (Exception e) {
             log.println("<tr><td>" + (++errorCount) + ". BAD IMPLICIT: " + e.getMessage()
@@ -4553,7 +4942,9 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
       }
       //differ.flush();
 
-      if (!gotOne) break;
+      if (!gotOne) {
+        break;
+      }
     }
 
     log.println("</table>");
@@ -4638,7 +5029,11 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
 
   static void showLine(int count, String ch, String keyD, String keyN) {
     String decomp = Default.nfd().normalize(ch);
-    if (decomp.equals(ch)) decomp = ""; else decomp = "<br><" + Utility.hex(decomp, " ") + "> ";
+    if (decomp.equals(ch)) {
+      decomp = "";
+    } else {
+      decomp = "<br><" + Utility.hex(decomp, " ") + "> ";
+    }
     log.println("<tr><td>" + count + "</td><td>" 
             + Utility.hex(ch, " ")
             + " " + ucd.getName(ch)
@@ -4699,7 +5094,9 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
 
   static boolean containsCombining(String s) {
     for (int i = 0; i < s.length(); ++i) {
-      if ((ucd.getCategoryMask(s.charAt(i)) & ucd.MARK_MASK) != 0) return true;
+      if ((ucd.getCategoryMask(s.charAt(i)) & ucd.MARK_MASK) != 0) {
+        return true;
+      }
     }
     return false;
   }
@@ -4764,7 +5161,9 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
 
   static String pad (int number) {
     String num = Integer.toString(number);
-    if (num.length() < 2) num = "0" + number;
+    if (num.length() < 2) {
+      num = "0" + number;
+    }
     return num;
   }
 
@@ -4830,8 +5229,12 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
     boolean lastFar = false;
     for (int i = 0; i <= end; ++i) {
       boolean far = (i < counter-2 || i > counter+2);
-      if (far && ((i % 5) != 0) && (i != end)) continue;
-      if (i != 0 && lastFar != far) out.print(" - ");
+      if (far && ((i % 5) != 0) && (i != end)) {
+        continue;
+      }
+      if (i != 0 && lastFar != far) {
+        out.print(" - ");
+      }
       lastFar = far;
       if (i != counter) {
         out.print("<a href='" + title + pad(i) + ".html'>" + i + "</a>");
@@ -4857,15 +5260,23 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
   static int getStrengthDifference(String old, String newStr) {
     int result = 5;
     int min = old.length();
-    if (newStr.length() < min) min = newStr.length();
+    if (newStr.length() < min) {
+      min = newStr.length();
+    }
     for (int i = 0; i < min; ++i) {
       char ch1 = old.charAt(i);
       char ch2 = newStr.charAt(i);
-      if (ch1 != ch2) return result;
+      if (ch1 != ch2) {
+        return result;
+      }
       // see if we get difference before we get 0000.
-      if (ch1 == 0) --result;
+      if (ch1 == 0) {
+        --result;
+      }
     }
-    if (newStr.length() != old.length()) return 1;
+    if (newStr.length() != old.length()) {
+      return 1;
+    }
     return 0;
   }
 
@@ -4873,11 +5284,21 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
   static final boolean needsXMLQuote(String source, boolean quoteApos) {
     for (int i = 0; i < source.length(); ++i) {
       char ch = source.charAt(i);
-      if (ch < ' ' || ch == '<' || ch == '&' || ch == '>') return true;
-      if (quoteApos & ch == '\'') return true;
-      if (ch == '\"') return true;
-      if (ch >= '\uD800' && ch <= '\uDFFF') return true;
-      if (ch >= '\uFFFE') return true;
+      if (ch < ' ' || ch == '<' || ch == '&' || ch == '>') {
+        return true;
+      }
+      if (quoteApos & ch == '\'') {
+        return true;
+      }
+      if (ch == '\"') {
+        return true;
+      }
+      if (ch >= '\uD800' && ch <= '\uDFFF') {
+        return true;
+      }
+      if (ch >= '\uFFFE') {
+        return true;
+      }
     }
     return false;
   }
@@ -4915,14 +5336,16 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
   }
 
   public static final String XMLBaseString(String source, boolean quoteApos) {
-    if (!needsXMLQuote(source, quoteApos)) return source;
+    if (!needsXMLQuote(source, quoteApos)) {
+      return source;
+    }
     StringBuffer result = new StringBuffer();
     for (int i = 0; i < source.length(); ++i) {
       char ch = source.charAt(i);
       if (ch < ' '
               || ch >= '\u007F' && ch <= '\u009F'
-              || ch >= '\uD800' && ch <= '\uDFFF'
-                || ch >= '\uFFFE') {
+                || ch >= '\uD800' && ch <= '\uDFFF'
+                  || ch >= '\uFFFE') {
         result.append('\uFFFD');
         /*result.append("#x");
                 result.append(cpName(ch));
@@ -4946,23 +5369,57 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
   }
 
   static int mapToStartOfRange(int ch) {
-    if (ch <= 0x3400) return ch;         // CJK Ideograph Extension A
-    if (ch <= 0x4DB5) return 0x3400;
-    if (ch <= 0x4E00) return ch;         // CJK Ideograph
-    if (ch <= 0x9FA5) return 0x4E00;
-    if (ch <= 0xAC00) return ch;         // Hangul Syllable
-    if (ch <= 0xD7A3) return 0xAC00;
-    if (ch <= 0xD800) return ch;         // Non Private Use High Surrogate
-    if (ch <= 0xDB7F) return 0xD800;
-    if (ch <= 0xDB80) return ch;         // Private Use High Surrogate
-    if (ch <= 0xDBFF) return 0xDB80;
-    if (ch <= 0xDC00) return ch;         // Low Surrogate
-    if (ch <= 0xDFFF) return 0xDC00;
-    if (ch <= 0xE000) return ch;         // Private Use
-    if (ch <= 0xF8FF) return 0xE000;
-    if (ch <= 0xF0000) return ch;       // Plane 15 Private Use
-    if (ch <= 0xFFFFD) return 0xF0000;
-    if (ch <= 0x100000) return ch;       // Plane 16 Private Use
+    if (ch <= 0x3400) {
+      return ch;         // CJK Ideograph Extension A
+    }
+    if (ch <= 0x4DB5) {
+      return 0x3400;
+    }
+    if (ch <= 0x4E00) {
+      return ch;         // CJK Ideograph
+    }
+    if (ch <= 0x9FA5) {
+      return 0x4E00;
+    }
+    if (ch <= 0xAC00) {
+      return ch;         // Hangul Syllable
+    }
+    if (ch <= 0xD7A3) {
+      return 0xAC00;
+    }
+    if (ch <= 0xD800) {
+      return ch;         // Non Private Use High Surrogate
+    }
+    if (ch <= 0xDB7F) {
+      return 0xD800;
+    }
+    if (ch <= 0xDB80) {
+      return ch;         // Private Use High Surrogate
+    }
+    if (ch <= 0xDBFF) {
+      return 0xDB80;
+    }
+    if (ch <= 0xDC00) {
+      return ch;         // Low Surrogate
+    }
+    if (ch <= 0xDFFF) {
+      return 0xDC00;
+    }
+    if (ch <= 0xE000) {
+      return ch;         // Private Use
+    }
+    if (ch <= 0xF8FF) {
+      return 0xE000;
+    }
+    if (ch <= 0xF0000) {
+      return ch;       // Plane 15 Private Use
+    }
+    if (ch <= 0xFFFFD) {
+      return 0xF0000;
+    }
+    if (ch <= 0x100000) {
+      return ch;       // Plane 16 Private Use
+    }
     return 0x100000;
   }
 
