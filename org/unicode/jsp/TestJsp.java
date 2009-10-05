@@ -31,7 +31,7 @@ public class TestJsp  extends TestFmwk {
     new TestJsp().run(args);
   }
 
-  static UnicodeSet IPA = (UnicodeSet) new UnicodeSet("[a-zæçðøħŋœǀ-ǃɐ-ɨɪ-ɶ ɸ-ɻɽɾʀ-ʄʈ-ʒʔʕʘʙʛ-ʝʟʡʢ ʤʧʰ-ʲʴʷʼˈˌːˑ˞ˠˤ̀́̃̄̆̈ ̘̊̋̏-̜̚-̴̠̤̥̩̪̬̯̰̹-̽͜ ͡βθχ↑-↓↗↘]").freeze();
+  static UnicodeSet IPA = new UnicodeSet("[a-zæçðøħŋœǀ-ǃɐ-ɨɪ-ɶ ɸ-ɻɽɾʀ-ʄʈ-ʒʔʕʘʙʛ-ʝʟʡʢ ʤʧʰ-ʲʴʷʼˈˌːˑ˞ˠˤ̀́̃̄̆̈ ̘̊̋̏-̜̚-̴̠̤̥̩̪̬̯̰̹-̽͜ ͡βθχ↑-↓↗↘]").freeze();
   static String IPA_SAMPLE = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, æ, ç, ð, ø, ħ, ŋ, œ, ǀ, ǁ, ǂ, ǃ, ɐ, ɑ, ɒ, ɓ, ɔ, ɕ, ɖ, ɗ, ɘ, ə, ɚ, ɛ, ɜ, ɝ, ɞ, ɟ, ɠ, ɡ, ɢ, ɣ, ɤ, ɥ, ɦ, ɧ, ɨ, ɪ, ɫ, ɬ, ɭ, ɮ, ɯ, ɰ, ɱ, ɲ, ɳ, ɴ, ɵ, ɶ, ɸ, ɹ, ɺ, ɻ, ɽ, ɾ, ʀ, ʁ, ʂ, ʃ, ʄ, ʈ, ʉ, ʊ, ʋ, ʌ, ʍ, ʎ, ʏ, ʐ, ʑ, ʒ, ʔ, ʕ, ʘ, ʙ, ʛ, ʜ, ʝ, ʟ, ʡ, ʢ, ʤ, ʧ, ʰ, ʱ, ʲ, ʴ, ʷ, ʼ, ˈ, ˌ, ː, ˑ, ˞, ˠ, ˤ, ̀, ́, ̃, ̄, ̆, ̈, ̊, ̋, ̏, ̐, ̑, ̒, ̓, ̔, ̕, ̖, ̗, ̘, ̙, ̚, ̛, ̜, ̝, ̞, ̟, ̠, ̡, ̢, ̣, ̤, ̥, ̦, ̧, ̨, ̩, ̪, ̫, ̬, ̭, ̮, ̯, ̰, ̱, ̲, ̳, ̴, ̹, ̺, ̻, ̼, ̽, ͜, ͡, β, θ, χ, ↑, →, ↓, ↗, ↘";
 
   enum Subtag {language, script, region, mixed, fail}
@@ -115,15 +115,15 @@ public class TestJsp  extends TestFmwk {
 
   private void add(ULocale displayLanguage, Subtag subtag, String code, Counter<Subtag> counter, UnicodeSet okChars, Set<String> mixedSamples) {
     switch (canDisplay(displayLanguage, subtag, code, okChars, mixedSamples)) {
-      case code:
-        counter.add(Subtag.fail, 1);
-        break;
-      case localized:
-        counter.add(subtag, 1);
-        break;
-      case badLocalization:
-        counter.add(Subtag.mixed, 1);
-        break;
+    case code:
+      counter.add(Subtag.fail, 1);
+      break;
+    case localized:
+      counter.add(subtag, 1);
+      break;
+    case badLocalization:
+      counter.add(Subtag.mixed, 1);
+      break;
     }
   }
 
@@ -132,16 +132,16 @@ public class TestJsp  extends TestFmwk {
   private Display canDisplay(ULocale displayLanguage, Subtag subtag, String code, UnicodeSet okChars, Set<String> mixedSamples) {
     String display;
     switch (subtag) {
-      case language:
-        display = ULocale.getDisplayLanguage(code, displayLanguage);
-        break;
-      case script:
-        display = ULocale.getDisplayScript("und-" + code, displayLanguage);
-        break;
-      case region:
-        display = ULocale.getDisplayCountry("und-" + code, displayLanguage);
-        break;
-      default: throw new IllegalArgumentException();
+    case language:
+      display = ULocale.getDisplayLanguage(code, displayLanguage);
+      break;
+    case script:
+      display = ULocale.getDisplayScript("und-" + code, displayLanguage);
+      break;
+    case region:
+      display = ULocale.getDisplayCountry("und-" + code, displayLanguage);
+      break;
+    default: throw new IllegalArgumentException();
     }
     if (display.equals(code)) {
       return Display.code;
@@ -187,11 +187,11 @@ public class TestJsp  extends TestFmwk {
     assertMatch(null, "Ill-Formed", UnicodeUtilities.validateLanguageID("aaa-bbb-abcdefghihkl", ulocale));
     assertMatch(null, "Ill-Formed", UnicodeUtilities.validateLanguageID("1aaa-bbb-abcdefghihkl", ulocale));
   }
-  
+
   public void assertMatch(String message, String pattern, Object actual) {
     assertMatches(message, Pattern.compile(pattern, Pattern.COMMENTS | Pattern.DOTALL), true, actual);
   }
-  
+
   public void assertNoMatch(String message, String pattern, Object actual) {
     assertMatches(message, Pattern.compile(pattern, Pattern.COMMENTS | Pattern.DOTALL), false, actual);
   }
@@ -201,11 +201,11 @@ public class TestJsp  extends TestFmwk {
     final String actualString = actual == null ? "null" : actual.toString();
     final boolean result = pattern.matcher(actualString).find() == expected;
     handleAssert(result, 
-              message,
-              "/" + pattern.toString() + "/", 
-              actualString,
-              expected ? "matches" : "doesn't match",
-              true);
+            message,
+            "/" + pattern.toString() + "/", 
+            actualString,
+            expected ? "matches" : "doesn't match",
+                    true);
   }
 
   public void TestATransform() {

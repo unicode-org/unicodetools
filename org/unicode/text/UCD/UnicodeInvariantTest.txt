@@ -17,10 +17,11 @@
 # Property Name:
 #   <propertyName> can be the short or long form as in the PropertyAliases.txt
 #   <propertyName> can be prefixed with "U<version>:"
-#   A version of -1 indicates that the property is the previous released version.
-#   That is, if the version is 4.0.1, then the U-1 version is 4.0.0
+#   Example: \p{U5.1.0:Whitespace}
 #
-#   Example: U5.1:Whitespace
+#   A version of -1 indicates the previous released version.
+#   For example, if the version is 4.0.1, then the U-1 version is 4.0.0
+#   Example: \p{U-1:Whitespace}
 #
 # Property Value:
 #   If the propertyValue is missing, it is defaulted to true
@@ -130,6 +131,12 @@ In \P{U-1:GC=Cn} name=U-1:name
 
 # Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
 # TODO
+
+# Red Flag: cased and case_ignorable should be disjoint
+\p{cased} ∥ \p{caseignorable}
+\p{U5.1.0:cased} ∥ \p{U5.1.0:caseignorable}
+\p{cased} = \p{U-1:cased}
+\p{caseignorable} = \p{U-1:caseignorable}
 
 ##########################
 # Property Stability Policies

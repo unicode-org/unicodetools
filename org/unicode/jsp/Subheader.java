@@ -46,7 +46,7 @@ class Subheader implements Iterable<String> {
     for (String subhead : subblock2UnicodeSet.keySet()) {
       subblock2UnicodeSet.get(subhead).freeze();
     }
-    
+
     for (String subblock : subblock2UnicodeSet.keySet()) {
       final UnicodeSet uset = subblock2UnicodeSet.get(subblock);
       for (UnicodeSetIterator it = new UnicodeSetIterator(uset); it.next();) {
@@ -75,7 +75,9 @@ class Subheader implements Iterable<String> {
     BufferedReader in = new BufferedReader(new FileReader(filename));
     while (true) {
       String line = in.readLine();
-      if (line == null) break;
+      if (line == null) {
+        break;
+      }
       if (subheadMatcher.reset(line).matches()) {
         subblock = subheadMatcher.group(1).equals("@") ? subheadMatcher.group(2) : "?";
         continue;

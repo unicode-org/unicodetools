@@ -14,7 +14,6 @@ import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -160,23 +159,26 @@ public class UnicodeUtilities {
 
   static UnicodeSet idnaTypeSet[] = new UnicodeSet[IDNA_TYPE_LIMIT];
   static {
-    for (int i = 0; i < idnaTypeSet.length; ++i)
+    for (int i = 0; i < idnaTypeSet.length; ++i) {
       idnaTypeSet[i] = new UnicodeSet();
+    }
   }
 
   /**
    * 
    */
   static public int getIDNAType(int cp) {
-    if (cp == '-')
+    if (cp == '-') {
       return OUTPUT;
+    }
     inbuffer.setLength(0);
     UTF16.append(inbuffer, cp);
     try {
       intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
       // DEFAULT
-      if (intermediate.length() == 0)
+      if (intermediate.length() == 0) {
         return IGNORED;
+      }
       outbuffer = IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES);
     } catch (StringPrepParseException e) {
       if (e.getMessage().startsWith("Found zero length")) {
@@ -187,21 +189,24 @@ public class UnicodeUtilities {
       System.out.println("Failure at: " + Integer.toString(cp, 16));
       return DISALLOWED;
     }
-    if (!equals(inbuffer, outbuffer))
+    if (!equals(inbuffer, outbuffer)) {
       return REMAPPED;
+    }
     return OUTPUT;
   }
 
   static public String getIDNAValue(int cp) {
-    if (cp == '-')
+    if (cp == '-') {
       return "-";
+    }
     inbuffer.setLength(0);
     UTF16.append(inbuffer, cp);
     try {
       intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
       // DEFAULT
-      if (intermediate.length() == 0)
+      if (intermediate.length() == 0) {
         return "";
+      }
       outbuffer = IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES);
     } catch (StringPrepParseException e) {
       if (e.getMessage().startsWith("Found zero length")) {
@@ -275,7 +280,9 @@ public class UnicodeUtilities {
   static final int SAMPLE_PRIVATE_USE = 0xE000;
   static final int SAMPLE_SURROGATE = 0xD800;
   static {
-    if (!UNASSIGNED.contains(SAMPLE_UNASSIGNED)) throw new IllegalArgumentException("Internal error");
+    if (!UNASSIGNED.contains(SAMPLE_UNASSIGNED)) {
+      throw new IllegalArgumentException("Internal error");
+    }
   }
   static final UnicodeSet STUFF_TO_TEST = new UnicodeSet(UNASSIGNED)
   .addAll(PRIVATE_USE).addAll(SURROGATE).complement()
@@ -328,8 +335,9 @@ public class UnicodeUtilities {
             if (matcher.reset(value).find()) {
               result.add(cp);
             }
-            if (onlyOnce)
+            if (onlyOnce) {
               break;
+            }
           }
         }
       } else if (propertyEnum >= UProperty.STRING_LIMIT
@@ -410,20 +418,20 @@ public class UnicodeUtilities {
   static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
 
     switch (propertyEnum) {
-      case TO_NFC: return Normalizer.normalize(codepoint, Normalizer.NFC, 0);
-      case TO_NFD: return Normalizer.normalize(codepoint, Normalizer.NFD, 0);
-      case TO_NFKC: return Normalizer.normalize(codepoint, Normalizer.NFKC, 0);
-      case TO_NFKD: return Normalizer.normalize(codepoint, Normalizer.NFKD, 0);
-      case TO_CASEFOLD: return UCharacter.foldCase(UTF16.valueOf(codepoint), true);
-      case TO_LOWERCASE: return UCharacter.toLowerCase(ULocale.ROOT, UTF16.valueOf(codepoint));
-      case TO_UPPERCASE: return UCharacter.toUpperCase(ULocale.ROOT, UTF16.valueOf(codepoint));
-      case TO_TITLECASE: return UCharacter.toTitleCase(ULocale.ROOT, UTF16.valueOf(codepoint), null);
-      case SUBHEAD: return getSubheader().getSubheader(codepoint);
-      case ARCHAIC: return ScriptCategoriesCopy.ARCHAIC_31.contains(codepoint) ? "uax31" 
-              : ScriptCategoriesCopy.ARCHAIC_39.contains(codepoint) ? "utr39" 
-                      : ScriptCategoriesCopy.ARCHAIC_HEURISTIC.contains(codepoint) ? "heuristic" 
-                              : ScriptCategoriesCopy.ARCHAIC_ADDITIONS.contains(codepoint) ? "addition" 
-                                      : "no";
+    case TO_NFC: return Normalizer.normalize(codepoint, Normalizer.NFC, 0);
+    case TO_NFD: return Normalizer.normalize(codepoint, Normalizer.NFD, 0);
+    case TO_NFKC: return Normalizer.normalize(codepoint, Normalizer.NFKC, 0);
+    case TO_NFKD: return Normalizer.normalize(codepoint, Normalizer.NFKD, 0);
+    case TO_CASEFOLD: return UCharacter.foldCase(UTF16.valueOf(codepoint), true);
+    case TO_LOWERCASE: return UCharacter.toLowerCase(ULocale.ROOT, UTF16.valueOf(codepoint));
+    case TO_UPPERCASE: return UCharacter.toUpperCase(ULocale.ROOT, UTF16.valueOf(codepoint));
+    case TO_TITLECASE: return UCharacter.toTitleCase(ULocale.ROOT, UTF16.valueOf(codepoint), null);
+    case SUBHEAD: return getSubheader().getSubheader(codepoint);
+    case ARCHAIC: return ScriptCategoriesCopy.ARCHAIC_31.contains(codepoint) ? "uax31" 
+            : ScriptCategoriesCopy.ARCHAIC_39.contains(codepoint) ? "utr39" 
+                    : ScriptCategoriesCopy.ARCHAIC_HEURISTIC.contains(codepoint) ? "heuristic" 
+                            : ScriptCategoriesCopy.ARCHAIC_ADDITIONS.contains(codepoint) ? "addition" 
+                                    : "no";
     }
     return UCharacter.getStringPropertyValue(propertyEnum, codepoint, nameChoice);
   }
@@ -497,11 +505,13 @@ public class UnicodeUtilities {
   }
 
   public static boolean equals(CharSequence inbuffer, CharSequence outbuffer) {
-    if (inbuffer.length() != outbuffer.length())
+    if (inbuffer.length() != outbuffer.length()) {
       return false;
+    }
     for (int i = inbuffer.length() - 1; i >= 0; --i) {
-      if (inbuffer.charAt(i) != outbuffer.charAt(i))
+      if (inbuffer.charAt(i) != outbuffer.charAt(i)) {
         return false;
+      }
     }
     return true;
   }
@@ -692,8 +702,12 @@ public class UnicodeUtilities {
       StringBuffer input = new StringBuffer();
       while (true) {
         String line = br.readLine();
-        if (line == null) break;
-        if (line.startsWith("\uFEFF")) line = line.substring(1); // remove BOM
+        if (line == null) {
+          break;
+        }
+        if (line.startsWith("\uFEFF")) {
+          line = line.substring(1); // remove BOM
+        }
         input.append(line);
         input.append('\n');
       }
@@ -744,7 +758,9 @@ public class UnicodeUtilities {
       String mapped = trans.transform(s);
       if (!mapped.equals(s)) {
         UnicodeSet x = mapping.get(mapped);
-        if (x == null) mapping.put(mapped, x = new UnicodeSet());
+        if (x == null) {
+          mapping.put(mapped, x = new UnicodeSet());
+        }
         x.add(s);
       }
     }
@@ -774,7 +790,9 @@ public class UnicodeUtilities {
     }
     public int compareTo(StringPair o) {
       int result = first.compareTo(o.first);
-      if (result != 0) return result;
+      if (result != 0) {
+        return result;
+      }
       return second.compareTo(o.second);
     }
   }
@@ -971,38 +989,41 @@ public class UnicodeUtilities {
         String propValue = null;
         int ival;
         switch (range) {
-          default:
-            propValue = "???";
+        default:
+          propValue = "???";
           break;
-          case 0:
-            ival = UCharacter.getIntPropertyValue(cp, propIndex);
-            if (ival != 0)
-              propValue = "True";
+        case 0:
+          ival = UCharacter.getIntPropertyValue(cp, propIndex);
+          if (ival != 0) {
+            propValue = "True";
+          }
+          showLink.add(propName);
+          break;
+        case 2:
+          double nval = UCharacter.getNumericValue(cp);
+          if (nval != -1) {
+            propValue = String.valueOf(nval);
             showLink.add(propName);
-            break;
-          case 2:
-            double nval = UCharacter.getNumericValue(cp);
-            if (nval != -1) {
-              propValue = String.valueOf(nval);
-              showLink.add(propName);
-            }
-            break;
-          case 3:
-            propValue = UCharacter.getStringPropertyValue(propIndex, cp,
+          }
+          break;
+        case 3:
+          propValue = UCharacter.getStringPropertyValue(propIndex, cp,
+                  UProperty.NameChoice.LONG);
+          if (text.equals(propValue)) {
+            propValue = null;
+          }
+          break;
+        case 1:
+          ival = UCharacter.getIntPropertyValue(cp, propIndex);
+          if (ival != 0) {
+            propValue = UCharacter.getPropertyValueName(propIndex, ival,
                     UProperty.NameChoice.LONG);
-            if (text.equals(propValue))
-              propValue = null;
-            break;
-          case 1:
-            ival = UCharacter.getIntPropertyValue(cp, propIndex);
-            if (ival != 0) {
-              propValue = UCharacter.getPropertyValueName(propIndex, ival,
-                      UProperty.NameChoice.LONG);
-              if (propValue == null)
-                propValue = String.valueOf(ival);
+            if (propValue == null) {
+              propValue = String.valueOf(ival);
             }
-            showLink.add(propName);
-            break;
+          }
+          showLink.add(propName);
+          break;
         }
         if (propValue != null) {
           alpha.put(propName, propValue);
@@ -1013,37 +1034,47 @@ public class UnicodeUtilities {
 
     String x;
     String upper = x = UCharacter.toUpperCase(ULocale.ENGLISH, text);
-    if (!text.equals(x))
+    if (!text.equals(x)) {
       alpha.put("toUppercase", x);
+    }
     String lower = x = UCharacter.toLowerCase(ULocale.ENGLISH, text);
-    if (!text.equals(x))
+    if (!text.equals(x)) {
       alpha.put("toLowercase", x);
+    }
     String title = x = UCharacter.toTitleCase(ULocale.ENGLISH, text, null);
-    if (!text.equals(x))
+    if (!text.equals(x)) {
       alpha.put("toTitlecase", x);
+    }
 
     String nfc = x = Normalizer.normalize(text, Normalizer.NFC);
-    if (!text.equals(x))
+    if (!text.equals(x)) {
       alpha.put("toNFC", x);
+    }
     String nfd = x = Normalizer.normalize(text, Normalizer.NFD);
-    if (!text.equals(x))
+    if (!text.equals(x)) {
       alpha.put("toNFD", x);
+    }
     x = Normalizer.normalize(text, Normalizer.NFKD);
-    if (!text.equals(x))
+    if (!text.equals(x)) {
       alpha.put("toNFKD", x);
+    }
     x = Normalizer.normalize(text, Normalizer.NFKC);
-    if (!text.equals(x))
+    if (!text.equals(x)) {
       alpha.put("toNFKC", x);
+    }
 
     CanonicalIterator ci = new CanonicalIterator(text);
     int count = 0;
     for (String item = ci.next(); item != null; item = ci.next()) {
-      if (item.equals(text))
+      if (item.equals(text)) {
         continue;
-      if (item.equals(nfc))
+      }
+      if (item.equals(nfc)) {
         continue;
-      if (item.equals(nfd))
+      }
+      if (item.equals(nfd)) {
         continue;
+      }
       alpha.put("toOther_Canonical_Equivalent#" + (++count), item);
     }
 
@@ -1064,8 +1095,9 @@ public class UnicodeUtilities {
 
     out.append("<table>\r\n");
     String name = (String) alpha.get("Name");
-    if (name != null)
+    if (name != null) {
       name = toHTML.transliterate(name);
+    }
 
     out.append("<tr><th>" + "Character" + "</th><td>"
             + toHTML.transliterate(text) + "</td></tr>\r\n");
@@ -1081,9 +1113,11 @@ public class UnicodeUtilities {
 
   private static void showPropertyValue(Map<String,String> alpha, Set<String> showLink, String flag, 
           Set<String> unicodeProps, Appendable out) throws IOException {
-    for (Iterator<String> it = alpha.keySet().iterator(); it.hasNext();) {
-      String propName = (String) it.next();
-      if (!unicodeProps.contains(propName)) continue;
+    for (String string : alpha.keySet()) {
+      String propName = (String) string;
+      if (!unicodeProps.contains(propName)) {
+        continue;
+      }
       String propValue = (String) alpha.get(propName);
 
       String hValue = toHTML.transliterate(propValue);
@@ -1119,36 +1153,38 @@ public class UnicodeUtilities {
         alpha.put(propName, valueOrder);
         //out.println(propName + "<br>");
         switch (range) {
-          default: valueOrder.put("[?]", ""); break;
-          case 0: valueOrder.put("True", "T"); 
-          valueOrder.put("False", "F"); 
-          showLink.add(propName); 
-          break;
-          case 2: valueOrder.put("[double]", ""); 
-          break;
-          case 3: valueOrder.put("[string]", ""); 
-          break;
-          case 1:
-            for (int valueIndex = 0; valueIndex < 256; ++valueIndex) {
-              try {
-                String valueName = UCharacter.getPropertyValueName(propIndex, valueIndex, UProperty.NameChoice.LONG);
-                //out.println("----" + valueName + "<br>");
-                String shortValueName = UCharacter.getPropertyValueName(propIndex, valueIndex, UProperty.NameChoice.SHORT);
-                if (valueName == null) valueName = shortValueName;
-                //valueName = getName(valueIndex, valueName, shortValueName);
-                if (valueName != null) {
-                  valueOrder.put(valueName, shortValueName != null ? shortValueName : "");
-                } else if (propIndex == UProperty.CANONICAL_COMBINING_CLASS) {
-                  String posVal = String.valueOf(valueIndex);
-                  if (new UnicodeSet("[:ccc=" + posVal + ":]").size() != 0) {
-                    valueOrder.put(posVal, posVal);
-                  }
-                }
-                showLink.add(propName);
-              } catch (RuntimeException e) {
-                // just skip
+        default: valueOrder.put("[?]", ""); break;
+        case 0: valueOrder.put("True", "T"); 
+        valueOrder.put("False", "F"); 
+        showLink.add(propName); 
+        break;
+        case 2: valueOrder.put("[double]", ""); 
+        break;
+        case 3: valueOrder.put("[string]", ""); 
+        break;
+        case 1:
+          for (int valueIndex = 0; valueIndex < 256; ++valueIndex) {
+            try {
+              String valueName = UCharacter.getPropertyValueName(propIndex, valueIndex, UProperty.NameChoice.LONG);
+              //out.println("----" + valueName + "<br>");
+              String shortValueName = UCharacter.getPropertyValueName(propIndex, valueIndex, UProperty.NameChoice.SHORT);
+              if (valueName == null) {
+                valueName = shortValueName;
               }
+              //valueName = getName(valueIndex, valueName, shortValueName);
+              if (valueName != null) {
+                valueOrder.put(valueName, shortValueName != null ? shortValueName : "");
+              } else if (propIndex == UProperty.CANONICAL_COMBINING_CLASS) {
+                String posVal = String.valueOf(valueIndex);
+                if (new UnicodeSet("[:ccc=" + posVal + ":]").size() != 0) {
+                  valueOrder.put(posVal, posVal);
+                }
+              }
+              showLink.add(propName);
+            } catch (RuntimeException e) {
+              // just skip
             }
+          }
         }
       }
     }
@@ -1157,8 +1193,8 @@ public class UnicodeUtilities {
     Set<String> regexProps = new TreeSet<String>(REGEX_PROPS);
 
     out.append("<table>\r\n");
-    for (Iterator<String> it = alpha.keySet().iterator(); it.hasNext();) {
-      String propName = (String) it.next();
+    for (String string : alpha.keySet()) {
+      String propName = (String) string;
       String shortPropName = longToShort.get(propName);
       String sPropName = propName + (shortPropName == null ? "" : " (" + shortPropName + ")");
       Map<String, String> values = alpha.get(propName);
@@ -1174,11 +1210,14 @@ public class UnicodeUtilities {
       out.append("<tr><th width='1%'><a name='" + propName + "'>" + sPropName + "</a></th>\r\n");
       out.append("<td>\r\n");
       boolean first = true;
-      for (Iterator<String> it2 = values.keySet().iterator(); it2.hasNext();) {
-        String propValue = (String) it2.next();
+      for (String string2 : values.keySet()) {
+        String propValue = (String) string2;
         String alternates = values.get(propValue);
-        if (first) first = false;
-        else out.append(", ");
+        if (first) {
+          first = false;
+        } else {
+          out.append(", ");
+        }
 
 
         if (showLink.contains(propName)) {
@@ -1523,11 +1562,11 @@ public class UnicodeUtilities {
     String result = LanguageCode.validate(input, new ULocale(locale));
     return result;
   }
-  
+
   public static String getLanguageOptions(String locale) {
     return LanguageCode.getLanguageOptions(new ULocale(locale));
   }
-  
+
 }
 
 /*

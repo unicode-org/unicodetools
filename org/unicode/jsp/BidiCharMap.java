@@ -63,7 +63,7 @@ class BidiCharMap {
     asciiHackMap.put('"',NSM);
     asciiHackMap.put('_',BN);
   }
-  
+
   boolean asciiHack;
 
   public BidiCharMap (boolean asciiHack) {
@@ -78,12 +78,12 @@ class BidiCharMap {
     if (asciiHack2) {
       Byte result = (Byte) asciiHackMap.getValue(codepoint);
       if (result != null) {
-        return (byte) result;
+        return result;
       }
     }
     return mapIcuToRefNum[UCharacter.getIntPropertyValue(codepoint, UProperty.BIDI_CLASS)];
   }
-  
+
   public byte getBidiClass(int codepoint) {
     return getBidiClass(codepoint, asciiHack);
   }
