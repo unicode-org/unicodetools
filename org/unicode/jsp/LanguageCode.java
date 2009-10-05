@@ -16,10 +16,10 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.util.ULocale;
 
-public class LanguageCode {
+public class LanguageCode { 
 
   static final Pattern languageID = Pattern.compile(
-            "      (?: ( [a-z A-Z]{2,8} | [a-z A-Z]{2,3} [-_] [a-z A-Z]{3} )"
+          "      (?: ( [a-z A-Z]{2,8} | [a-z A-Z]{2,3} [-_] [a-z A-Z]{3} )"
           + "      (?: [-_] ( [a-z A-Z]{4} ) )? "
           + "      (?: [-_] ( [a-z A-Z]{2} | [0-9]{3} ) )?"
           + "      (?: [-_] ( (?: [0-9 a-z A-Z]{5,8} | [0-9] [0-9 a-z A-Z]{3} ) (?: [-_] (?: [0-9 a-z A-Z]{5,8} | [0-9] [0-9 a-z A-Z]{3} ) )* ) )?"
@@ -51,7 +51,9 @@ public class LanguageCode {
       in = UnicodeUtilities.openFile(classLocation, fileName);
       for (int lineCount = 1; ; ++lineCount) {
         line = in.readLine();
-        if (line == null) break;
+        if (line == null) {
+          break;
+        }
         String[] parts = line.split(";");
         map.put(parts[0], parts[1]);
       }
@@ -265,7 +267,9 @@ public class LanguageCode {
   }
 
   private static String getCodeAndLink(Subtag subtag, String codes, ULocale ulocale) {
-    if (codes == null) return codes;
+    if (codes == null) {
+      return codes;
+    }
     StringBuilder buffer = new StringBuilder();
     for (String code : codes.split("\\s+")) {
       String value = getCodeAndLink2(subtag, code, ulocale);
@@ -276,7 +280,7 @@ public class LanguageCode {
     }
     return buffer.toString();
   }
-  
+
   private static String getCodeAndLink2(Subtag subtag, String code, ULocale ulocale) {
     String name = getSubtagName(code, ulocale, false);
     if (name != null) {
@@ -285,30 +289,30 @@ public class LanguageCode {
       name = "";
     }
     switch (subtag) {
-      case region: {
-        if (code.compareTo("A") < 0) {
-          code = "<a href='http://unstats.un.org/unsd/methods/m49/m49regin.htm' target='iso'" + name + ">" + code + "</a>";
-        } else {
-          code = "<a href='http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm' target='iso'" + name + ">" + code + "</a>";
+    case region: {
+      if (code.compareTo("A") < 0) {
+        code = "<a href='http://unstats.un.org/unsd/methods/m49/m49regin.htm' target='iso'" + name + ">" + code + "</a>";
+      } else {
+        code = "<a href='http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm' target='iso'" + name + ">" + code + "</a>";
+      }
+      return code;
+    }
+    case script: {
+      code = "<a href='http://unicode.org/iso15924/iso15924-en.html' target='iso'" + name + ">" + code + "</a>";
+      return code;
+    }
+    case language: {
+      String alpha3 = code;
+      if (code.length() == 2) {
+        alpha3 = toAlpha3.get(code);
+        if (alpha3 == null) {
+          alpha3 = code;
         }
-        return code;
       }
-      case script: {
-        code = "<a href='http://unicode.org/iso15924/iso15924-en.html' target='iso'" + name + ">" + code + "</a>";
-        return code;
-      }
-      case language: {
-        String alpha3 = code;
-        if (code.length() == 2) {
-          alpha3 = toAlpha3.get(code);
-          if (alpha3 == null) {
-            alpha3 = code;
-          }
-        }
-        code = "<a href='http://www.sil.org/iso639-3/documentation.asp?id=" + alpha3 + "' target='iso'" + name + ">" + code + "</a>";
-        return code;
-      }
-      default: throw new IllegalArgumentException();
+      code = "<a href='http://www.sil.org/iso639-3/documentation.asp?id=" + alpha3 + "' target='iso'" + name + ">" + code + "</a>";
+      return code;
+    }
+    default: throw new IllegalArgumentException();
     }
   }
 
@@ -321,7 +325,9 @@ public class LanguageCode {
       name = getIcuName(code, ULocale.ENGLISH);
       if (!name.equals(code)) {
         name = name + "*";
-        if (html) name = "<i>" + name + "</i>";
+        if (html) {
+          name = "<i>" + name + "</i>";
+        }
         return name;
       }
     }
@@ -331,7 +337,9 @@ public class LanguageCode {
         name = name.substring(1);
       }
       name = name + "**";
-      if (html) name = "<i>" + name + "</i>";
+      if (html) {
+        name = "<i>" + name + "</i>";
+      }
       return name;
     }
     return null;
@@ -340,19 +348,19 @@ public class LanguageCode {
   private static String getIcuName(String code, ULocale ulocale) {
     String icuName = code;
     switch(code.length()) {
-      case 2:
-      case 3:
-        icuName = code.compareTo("a") < 0 
-        ? ULocale.getDisplayCountry("und-" + code, ulocale)
-                : ULocale.getDisplayLanguage(code, ulocale);
+    case 2:
+    case 3:
+      icuName = code.compareTo("a") < 0 
+      ? ULocale.getDisplayCountry("und-" + code, ulocale)
+              : ULocale.getDisplayLanguage(code, ulocale);
+      break;
+    case 4: 
+      if (code.compareTo("A") >= 0) {
+        icuName = ULocale.getDisplayScript("und-" + code, ulocale); 
         break;
-      case 4: 
-        if (code.compareTo("A") >= 0) {
-          icuName = ULocale.getDisplayScript("und-" + code, ulocale); 
-          break;
-        } // otherwise fall through!
-      default: 
-        icuName = ULocale.getDisplayVariant("und-Latn-AQ-" + code, ulocale).toLowerCase(); 
+      } // otherwise fall through!
+    default: 
+      icuName = ULocale.getDisplayVariant("und-Latn-AQ-" + code, ulocale).toLowerCase(); 
       break;
     }
     return icuName;
@@ -369,7 +377,7 @@ public class LanguageCode {
     }
     final String typeAndLink = specSection == null ? type : "<a href='http://tools.ietf.org/html/draft-ietf-ltru-4646bis#section-" + specSection + "' target='bcp47bis'>" + type + "</a>";
     return "<tr><" + element + ">" + typeAndLink + "</" + element + "><" + element + ">" + subtag + "</" + element
-            + "><" + element + ">" + name + "</" + element + ">" + replacement + "</tr>\n";
+    + "><" + element + ">" + name + "</" + element + ">" + replacement + "</tr>\n";
   }
 
   public static String getLanguageOptions(ULocale toLocalizeInto) {
@@ -381,7 +389,9 @@ public class LanguageCode {
     Map<String, String> sorted = new TreeMap<String, String>(Collator.getInstance(toLocalizeInto));
     for (ULocale ulocale : list) {
       String country = ulocale.getCountry();
-      if (country.length() != 0) continue;
+      if (country.length() != 0) {
+        continue;
+      }
       if (QUALITY_EXCLUSIONS.contains(ulocale.toString())) {
         continue;
       }

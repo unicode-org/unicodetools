@@ -43,8 +43,8 @@ public class MakeNamesChart {
 	static UCD lastUCDVersion;
 
 	public static void main(String[] args) throws Exception {
-	  checkFile();
-	  if (true) return;
+//	  checkFile();
+//	  if (true) return;
 		//ConvertUCD.main(new String[]{"5.0.0"});
 		BlockInfo blockInfo = new BlockInfo(Default.ucdVersion(), "NamesList");
 
@@ -58,7 +58,7 @@ public class MakeNamesChart {
 		usePicture = new UnicodeSet().addAll(up.getSet("defaultignorablecodepoint=Yes"));// new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
 		isWhiteSpace = new UnicodeSet(up.getSet("whitespace=Yes"));
 		
-    String folder = "charts/nameslist/";
+    String folder = "/charts/nameslist/";
 
     Utility.copyTextFile("org/unicode/text/UCA/nameslist_index.html", Utility.UTF8, folder + "index.html");
     Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");

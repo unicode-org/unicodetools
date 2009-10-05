@@ -61,7 +61,7 @@ public class Globe {
   public static final boolean DEBUG = false;
   static int style = 0;
   static int degreeInterval = 15;
-  
+
   static String myPictures0 = "bin/jsp/images/";
   static String SOURCE_DIR = myPictures0;
   static String TARGET_DIR = "Pictures/Earth/";
@@ -72,7 +72,7 @@ public class Globe {
     saveFileChooser.setCurrentDirectory(new File(TARGET_DIR));
     loadFileChooser.setCurrentDirectory(new File(SOURCE_DIR));
   }
-  
+
   static int QUALITY = 80;
 
   static double lightness = 0;
@@ -243,18 +243,20 @@ Latitude : 10° 9’ 7” N (?)
     JButton but2 = new JButton("Load");
     but2.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        
-//        File file = new File(SOURCE_DIR + "earth-living.jpg");
-//        try {
-//          System.out.println("Source Dir: " + file.getCanonicalPath());
-//        } catch (IOException e2) {
-//        }
-//        loadFileChooser.setSelectedFile(file);
+
+        //        File file = new File(SOURCE_DIR + "earth-living.jpg");
+        //        try {
+        //          System.out.println("Source Dir: " + file.getCanonicalPath());
+        //        } catch (IOException e2) {
+        //        }
+        //        loadFileChooser.setSelectedFile(file);
         int returnVal = loadFileChooser.showOpenDialog(frame);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
           try {
             String filename = loadFileChooser.getSelectedFile().getCanonicalPath();
-            if (!filename.toLowerCase().endsWith(".jpg")) filename += ".jpg";
+            if (!filename.toLowerCase().endsWith(".jpg")) {
+              filename += ".jpg";
+            }
             System.out.println("You chose to open this file: "
                     + filename);
             loadSourceMap(filename);
@@ -321,9 +323,12 @@ Latitude : 10° 9’ 7” N (?)
           originChoice = index;
           originLat = origins[index][0];
           originLong = origins[index][1];
-          if (projectionValues[projectionChoice].usesOrigin()) changeImage(frame);
-          else addGrid(transformedImage, projectionValues[projectionChoice]);
-          // 
+          if (projectionValues[projectionChoice].usesOrigin()) {
+            changeImage(frame);
+          } else {
+            addGrid(transformedImage, projectionValues[projectionChoice]);
+            // 
+          }
         }
       }
     });
@@ -393,16 +398,16 @@ Latitude : 10° 9’ 7” N (?)
   }
 
 
-//private static void setLocale(int newLocaleIndex) {
-//cldrFile = cldrFactory.make(localeList[newLocaleIndex], true);
-//tzf = new TimezoneFormatter(cldrFactory, localeList[newLocaleIndex], true);
-//currentLocaleIndex = newLocaleIndex;
-//MutableComboBoxModel model = (MutableComboBoxModel) box7.getModel();
-//for (int i = 0; i < localeList.length; ++i) {
-//model.removeElementAt(i);
-//model.insertElementAt(cldrFile.getName(localeList[i], true), i);
-//}
-//}
+  //private static void setLocale(int newLocaleIndex) {
+  //cldrFile = cldrFactory.make(localeList[newLocaleIndex], true);
+  //tzf = new TimezoneFormatter(cldrFactory, localeList[newLocaleIndex], true);
+  //currentLocaleIndex = newLocaleIndex;
+  //MutableComboBoxModel model = (MutableComboBoxModel) box7.getModel();
+  //for (int i = 0; i < localeList.length; ++i) {
+  //model.removeElementAt(i);
+  //model.insertElementAt(cldrFile.getName(localeList[i], true), i);
+  //}
+  //}
   static Font font = Font.decode("Arial Unicode MS-9");
   //static CLDRFile.Factory cldrFactory;
   //static CLDRFile cldrFile;
@@ -454,21 +459,31 @@ Latitude : 10° 9’ 7” N (?)
   private static final boolean DEBUG_ICON = false;
 
   private static void changeImage(JFrame frame) {
-    if (DEBUG_ICON) System.out.println("Changing Icon1");
+    if (DEBUG_ICON) {
+      System.out.println("Changing Icon1");
+    }
     // System.out.println("Width " + ii.getIconWidth() + ", Height: " + ii.getIconHeight());
     DeformFilter filter = new DeformFilter(sourceImage.getWidth(), 
             sourceImage.getHeight(), sizeValues[sizeChoice][0], sizeValues[sizeChoice][1], 
             projectionValues[projectionChoice]);
     //ImageFilter filter = new RotateFilter(Math.PI / 4);
 
-    if (DEBUG_ICON) System.out.println("Changing Icon2");
+    if (DEBUG_ICON) {
+      System.out.println("Changing Icon2");
+    }
     ImageProducer ip = new FilteredImageSource(sourceImage.getSource(), filter); // modifies filter
-    if (DEBUG_ICON) System.out.println("Changing Icon3");
+    if (DEBUG_ICON) {
+      System.out.println("Changing Icon3");
+    }
     transformedImage = frame.createImage(ip);
-    if (DEBUG_ICON) System.out.println("Changing Icon4");
-    //Icon junk = new ImageIcon(transformedImage); // load image (HACK)
+    if (DEBUG_ICON) {
+      System.out.println("Changing Icon4");
+      //Icon junk = new ImageIcon(transformedImage); // load image (HACK)
+    }
 
-    if (DEBUG_ICON) System.out.println("Changing Icon5");
+    if (DEBUG_ICON) {
+      System.out.println("Changing Icon5");
+    }
     addGrid(transformedImage, projectionValues[projectionChoice]);
   }
 
@@ -505,7 +520,9 @@ Latitude : 10° 9’ 7” N (?)
     String[] pieces = new String[3];
     while (true) {
       String line = br.readLine();
-      if (line == null) break;
+      if (line == null) {
+        break;
+      }
       if (!m.reset(line).matches()) {
         System.out.println("Error in data: " + line);
         continue;
@@ -530,8 +547,11 @@ Latitude : 10° 9’ 7” N (?)
   public static final NumberFormat nf = NumberFormat.getInstance();
 
   public static void getAntipode(DPoint in) {
-    if (in.x > 0) in.x -= Math.PI;
-    else in.x += Math.PI;
+    if (in.x > 0) {
+      in.x -= Math.PI;
+    } else {
+      in.x += Math.PI;
+    }
     in.y = -in.y;
   }
 
@@ -550,10 +570,18 @@ Latitude : 10° 9’ 7” N (?)
     }
     public int compareTo(Object o) {
       DPoint that = (DPoint)o;
-      if (y < that.y) return -1;
-      if (y > that.y) return 1;
-      if (x < that.x) return -1;
-      if (x > that.x) return 1;
+      if (y < that.y) {
+        return -1;
+      }
+      if (y > that.y) {
+        return 1;
+      }
+      if (x < that.x) {
+        return -1;
+      }
+      if (x > that.x) {
+        return 1;
+      }
       return 0;
     }
     public String toString() {
@@ -591,7 +619,9 @@ Latitude : 10° 9’ 7” N (?)
       // and the rectangle from x,y to x+1,y+1
       // simple implementation for now. return 1 if center is in containing, otherwise 0
       if (containing.x0 <= x && x < containing.x1
-              && containing.y0 <= y && y < containing.y1) return 1.0;
+              && containing.y0 <= y && y < containing.y1) {
+        return 1.0;
+      }
       return 0;           
     }
   }
@@ -608,7 +638,9 @@ Latitude : 10° 9’ 7” N (?)
      * @return Returns the clip.
      */
     public Shape getClip() {
-      if (clip == null) clip = _getClip();
+      if (clip == null) {
+        clip = _getClip();
+      }
       return clip;
     }
     /**
@@ -722,10 +754,18 @@ Latitude : 10° 9’ 7” N (?)
             trans.transform(x, y, retcoord);
             double x2 = retcoord.x;
             double y2 = retcoord.y;
-            if (x2 < minX.x) minX.set(x2,y2);
-            if (x2 > maxX.x) maxX.set(x2,y2);
-            if (y2 < minY.y) minY.set(x2,y2);
-            if (y2 > maxY.y) maxY.set(x2,y2);
+            if (x2 < minX.x) {
+              minX.set(x2,y2);
+            }
+            if (x2 > maxX.x) {
+              maxX.set(x2,y2);
+            }
+            if (y2 < minY.y) {
+              minY.set(x2,y2);
+            }
+            if (y2 > maxY.y) {
+              maxY.set(x2,y2);
+            }
             if (0 <= x2 && x2 < trans.dstW && 0 <= y2 && y2 < trans.dstH) {
               trans.itransform(x2, y2, retcoord);
               double x3 = retcoord.x;
@@ -807,7 +847,9 @@ Latitude : 10° 9’ 7” N (?)
       double cosy = Math.cos(retcoord.y);
       retcoord.y = Math.sin(retcoord.y) * (Math.PI/2);
       retcoord.x = Math.sin(retcoord.x) * cosy * Math.PI / 2 + offset;
-      if (shift) retcoord.x = Math.PI - retcoord.x;
+      if (shift) {
+        retcoord.x = Math.PI - retcoord.x;
+      }
     }
     public void _itransform(DPoint retcoord) {
       retcoord.x *= 2; 
@@ -820,7 +862,9 @@ Latitude : 10° 9’ 7” N (?)
         retcoord.y = Math.asin(retcoord.y / (Math.PI/2)) ;
         retcoord.x = Math.asin(retcoord.x / Math.cos(retcoord.y) / Math.PI);
         retcoord.x += Math.PI;
-        if (retcoord.x > Math.PI) retcoord.x -= 2*Math.PI;
+        if (retcoord.x > Math.PI) {
+          retcoord.x -= 2*Math.PI;
+        }
       }
       retcoord.x = Navigator.wrap(retcoord.x + SHIFT, -Math.PI, Math.PI);
     }
@@ -863,13 +907,21 @@ Latitude : 10° 9’ 7” N (?)
     }
     public void _itransform(DPoint retcoord) {
       double p = retcoord.y / (Math.PI/2);
-      if (debugTemp) System.out.println("\tp:\t" + p);
+      if (debugTemp) {
+        System.out.println("\tp:\t" + p);
+      }
       double temp = Math.sqrt(1-p*p);
-      if (debugTemp) System.out.println("\ttemp:\t" + temp);
+      if (debugTemp) {
+        System.out.println("\ttemp:\t" + temp);
+      }
       double temp2 = (Math.acos(p) - p * temp);
-      if (debugTemp) System.out.println("\ttemp2:\t" + temp2);
+      if (debugTemp) {
+        System.out.println("\ttemp2:\t" + temp2);
+      }
       double newy = Math.asin(1- (2/Math.PI) * temp2);
-      if (debugTemp) System.out.println("\tnewy:\t" + newy);
+      if (debugTemp) {
+        System.out.println("\tnewy:\t" + newy);
+      }
       double newx = retcoord.x / temp;
       retcoord.y = newy;
       retcoord.x = newx;
@@ -901,9 +953,13 @@ Latitude : 10° 9’ 7” N (?)
       double guess = -1 + (1 - -1) * (pp - lowValue) / (highValue - lowValue);
       while (true) {
         double p = oddFunction(guess);
-        if (pLow < p && p < pHigh) return guess;
+        if (pLow < p && p < pHigh) {
+          return guess;
+        }
         guess = guess - (p - pp) / oddFunctionDerivative(guess);
-        if (debugTemp) System.out.println("newGuess: " + guess);
+        if (debugTemp) {
+          System.out.println("newGuess: " + guess);
+        }
       }	
     }
   }
@@ -1052,8 +1108,10 @@ Latitude : 10° 9’ 7” N (?)
           double i2 = coord.x;
           double j2 = coord.y;
           trans.itransform(i2, j2, coord);
-          if (debug) System.out.println(i + ", " + j + "\t=> " + i2 + ", " + j2
-                  + "\t=> " + coord.x + ", " + coord.y);
+          if (debug) {
+            System.out.println(i + ", " + j + "\t=> " + i2 + ", " + j2
+                    + "\t=> " + coord.x + ", " + coord.y);
+          }
         }
       }
       debug = false;
@@ -1193,9 +1251,13 @@ Latitude : 10° 9’ 7” N (?)
               double weight;
               //weight = q.getWeight(x0, y0);
               weight = 1;
-              if (weight == 0.0) continue;
+              if (weight == 0.0) {
+                continue;
+              }
               w += weight;
-              if (x0 < 0 || y0 < 0 || x0 >= srcW || y0 >= srcH) continue;
+              if (x0 < 0 || y0 < 0 || x0 >= srcW || y0 >= srcH) {
+                continue;
+              }
               int color = raster[y0 * srcW + x0];
               a += ((color>>24)&0xFF)*weight;
               r += ((color>>16)&0xFF)*weight;
@@ -1223,7 +1285,9 @@ Latitude : 10° 9’ 7” N (?)
             ((int)Math.max(0, Math.min(0xFF, Math.round(b))));
         }
         consumer.setPixels(0, dy, dstW, 1, defaultRGB, pixels, 0, dstW);
-        if ((dy % 50) == 0) System.out.println(dy);
+        if ((dy % 50) == 0) {
+          System.out.println(dy);
+        }
       }
       consumer.imageComplete(status);
     }
@@ -1571,26 +1635,26 @@ Latitude : 10° 9’ 7” N (?)
         ld.draw(0,1);
       }
 
-//    if (doLabels) {
-//graphics2D.setClip(null);
-//StandardCodes sc = StandardCodes.make();
-//LabelPosition lp = new LabelPosition(graphics2D, trans.dstW, trans.dstH);
-//Map zones = sc.getZoneData();
-//Set zkeys = sc.getGoodAvailableCodes("tzid");
-//    Date now = new Date();
-//    for (Iterator it = zkeys.iterator(); it.hasNext();) {
-//    String fullkey = (String) it.next();
-//    List data = (List) zones.get(fullkey);
-//    //String key = tzf.getFormattedZone(fullkey,"vvvv", now.getTime(), false); // key.substring(key.lastIndexOf('/')+1);
-//    retCoord.y = ((Double)data.get(0)).doubleValue();
-//    retCoord.y = Navigator.toRadians(retCoord.y, 0, 0, false);
-//    retCoord.x = ((Double)data.get(1)).doubleValue();
-//    retCoord.x = Navigator.toRadians(retCoord.x, 0, 0, true);
-//    drawPoint(graphics2D, trans, Color.white, Color.red, retCoord.x, retCoord.y, null);
-//    lp.add(trans, retCoord.x, retCoord.y, key);
-//    }
-//    lp.draw();
-//    }
+      //    if (doLabels) {
+      //graphics2D.setClip(null);
+      //StandardCodes sc = StandardCodes.make();
+      //LabelPosition lp = new LabelPosition(graphics2D, trans.dstW, trans.dstH);
+      //Map zones = sc.getZoneData();
+      //Set zkeys = sc.getGoodAvailableCodes("tzid");
+      //    Date now = new Date();
+      //    for (Iterator it = zkeys.iterator(); it.hasNext();) {
+      //    String fullkey = (String) it.next();
+      //    List data = (List) zones.get(fullkey);
+      //    //String key = tzf.getFormattedZone(fullkey,"vvvv", now.getTime(), false); // key.substring(key.lastIndexOf('/')+1);
+      //    retCoord.y = ((Double)data.get(0)).doubleValue();
+      //    retCoord.y = Navigator.toRadians(retCoord.y, 0, 0, false);
+      //    retCoord.x = ((Double)data.get(1)).doubleValue();
+      //    retCoord.x = Navigator.toRadians(retCoord.x, 0, 0, true);
+      //    drawPoint(graphics2D, trans, Color.white, Color.red, retCoord.x, retCoord.y, null);
+      //    lp.add(trans, retCoord.x, retCoord.y, key);
+      //    }
+      //    lp.draw();
+      //    }
       /*
             graphics2D.setColor(Color.red);
             graphics2D.setStroke(new BasicStroke(2f));
@@ -1637,9 +1701,13 @@ Latitude : 10° 9’ 7” N (?)
     }
     // save thumbnail image to OUTFILE
     griddedImage = thumbImage;
-    if (DEBUG_ICON) System.out.println("Changing Icon6");
+    if (DEBUG_ICON) {
+      System.out.println("Changing Icon6");
+    }
     ImageIcon resultIcon = new ImageIcon(thumbImage); // recreate with buffered version
-    if (DEBUG_ICON) System.out.println("Changing Icon7");
+    if (DEBUG_ICON) {
+      System.out.println("Changing Icon7");
+    }
     mainPicture.setIcon(resultIcon);
 
   }
@@ -1656,7 +1724,9 @@ Latitude : 10° 9’ 7” N (?)
         width = 1;
         xStart = (int)(x2 / tileWidth);
         yStart = (int)(y2 / tileHeight);
-        if (s == null) return;
+        if (s == null) {
+          return;
+        }
         xStart += 2;
 
         Rectangle2D r = metrics.getStringBounds(s, graphics2D);
@@ -1668,20 +1738,36 @@ Latitude : 10° 9’ 7” N (?)
       }
       public int compareTo(Object o) {
         Chunk that = (Chunk)o;
-        if (x != that.x) return x < that.x ? -1 : 1;
-        if (width != that.width) return width > that.width ? -1 : 1; // largest first
-        if (y != that.y) return y < that.y ? -1 : 1;
+        if (x != that.x) {
+          return x < that.x ? -1 : 1;
+        }
+        if (width != that.width) {
+          return width > that.width ? -1 : 1; // largest first
+        }
+        if (y != that.y) {
+          return y < that.y ? -1 : 1;
+        }
         if (s == null) {
-          if (that.s == null) return 0;
+          if (that.s == null) {
+            return 0;
+          }
           return -1;
         }
-        if (that.s == null) return 1;
+        if (that.s == null) {
+          return 1;
+        }
         return s.compareTo(that.s);
       }
       public boolean overlaps(Chunk that) {
-        if (yStart != that.yStart) return false;
-        if (xStart > that.xStart + that.width) return false;
-        if (that.xStart > xStart + width) return false;
+        if (yStart != that.yStart) {
+          return false;
+        }
+        if (xStart > that.xStart + that.width) {
+          return false;
+        }
+        if (that.xStart > xStart + width) {
+          return false;
+        }
         return true;
       }
     }
@@ -1751,7 +1837,9 @@ Latitude : 10° 9’ 7” N (?)
           for (Iterator it = lineContents[pos].iterator(); it.hasNext();) {
             Chunk that = (Chunk)it.next();
             if (c.overlaps(that)) {
-              if (DEBUG) System.out.println(pos + " pushing " + c.s + " (collision with " + that.s + ")");
+              if (DEBUG) {
+                System.out.println(pos + " pushing " + c.s + " (collision with " + that.s + ")");
+              }
               continue main;
             }
           }
@@ -1765,7 +1853,9 @@ Latitude : 10° 9’ 7” N (?)
       for (int i = 0; i < lineContents.length; ++i) {
         for (Iterator it = lineContents[i].iterator(); it.hasNext();) {
           Chunk c = (Chunk) it.next();
-          if (c.s == null) continue; // point
+          if (c.s == null) {
+            continue; // point
+          }
           double x2 = tileWidth * c.xStart;
           double y2 = tileHeight * c.yStart;
           Line2D.Double line2 = new Line2D.Double(c.x, c.y, x2, y2 + tileHeight / 2);
@@ -1969,7 +2059,9 @@ Latitude : 10° 9’ 7” N (?)
         double dy = endY - startY;
         //System.out.println("dist: " + Math.sqrt(dx*dx + dy*dy));
         if ((dx*dx + dy*dy) > distanceSquaredLimit) {
-          if (maxDepth <= 0) return; // skip if too long
+          if (maxDepth <= 0) {
+            return; // skip if too long
+          }
           divide = true;  
         } 
       }

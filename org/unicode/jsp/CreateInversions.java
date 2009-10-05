@@ -12,26 +12,26 @@ import com.ibm.icu.text.UnicodeSetIterator;
 public class CreateInversions {
 
   // testing
-  
+
   public static void main(String[] args) {
-    UnicodeSet ignorables = (UnicodeSet) new UnicodeSet("[[:Cn:][:Cs:][:Co:]]").freeze(); // exclude unassigned, surrogates, and private use
+    UnicodeSet ignorables = new UnicodeSet("[[:Cn:][:Cs:][:Co:]]").freeze(); // exclude unassigned, surrogates, and private use
     CreateInversions createInversions = new CreateInversions().setIgnorables(ignorables).setDelta(true);
-    
+
     // check the code (by inspection) to make sure it works
     // later do unit test
     UnicodeSet[] tests = { 
             new UnicodeSet("[abcxyz]"), 
             new UnicodeSet("[:whitespace:]"),
             new UnicodeSet("[:deprecated:]"),
-            };
+    };
     for (UnicodeSet test : tests) {
       showSet(createInversions, test);
     }
-    
+
     UnicodeMap testMap = new UnicodeMap();
     testMap.putAll(new UnicodeSet("[abcxyz]"), "foo");
     showMap(createInversions, testMap);
-    
+
     // check with names
     for (UnicodeSet test : tests) {
       testMap.clear();
@@ -40,7 +40,7 @@ public class CreateInversions {
       }
       showMap(createInversions, testMap);
     }
-    
+
     // check with properties
     ICUPropertyFactory propFactory = ICUPropertyFactory.make();
     UnicodeMap[] testProperties = {
@@ -50,11 +50,11 @@ public class CreateInversions {
             propFactory.getProperty("grapheme_cluster_break").getUnicodeMap().putAll(new UnicodeSet(0xAC00,0xD7A3), "LVT"),
             // note: separating out the LV from LVT can be done more compactly with an algorithm.
             // it is periodic: AC00, AC1C, AC38...
-            };
+    };
     for (UnicodeMap test : testProperties) {
       showMap(createInversions, test);
     }
-    
+
     // further compaction can be done by assigning each property value to a number, and using that instead.
     UnicodeMap source = propFactory.getProperty("grapheme_cluster_break").getUnicodeMap().putAll(new UnicodeSet(0xAC00,0xD7A3), "LVT");
     UnicodeMap target = new UnicodeMap();
@@ -83,9 +83,9 @@ public class CreateInversions {
     System.out.println("Inversions: " + createInversions.getInversions());
     System.out.println();
   }
-  
+
   // guts
-  
+
   private UnicodeSet ignorables;
 
   private boolean delta;
@@ -133,7 +133,7 @@ public class CreateInversions {
   // }
 
   public Appendable create(String name, UnicodeSet source, Appendable target)
-          throws IOException {
+  throws IOException {
     initShortestForm();
     target.append("var " + name + " = new Inversion([\n");
     boolean first = true;
@@ -157,7 +157,7 @@ public class CreateInversions {
   }
 
   public Appendable create(String name, UnicodeMap source, Appendable target)
-          throws IOException {
+  throws IOException {
     initShortestForm();
     target.append("var " + name + " = new Inversion([\n");
     StringBuilder valueArray = new StringBuilder();
@@ -178,7 +178,7 @@ public class CreateInversions {
       } else {
         target.append(",\n"); // the linebreak is not needed, but easier to read
         valueArray.append(",\n"); // the linebreak is not needed, but easier to
-                                  // read
+        // read
       }
       target.append(shortestForm(it.codepoint, delta));
       valueArray.append(valueString);
@@ -193,7 +193,7 @@ public class CreateInversions {
 
   long lastNumber;
   String lastValue;
-  
+
   private void initShortestForm() {
     lastNumber = 0;
     inversions = 0;

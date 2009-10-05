@@ -6,20 +6,20 @@ public class ScriptCategoriesCopy {
 
 
   // From: http://www.phon.ucl.ac.uk/home/wells/ipa-unicode.htm
-  public static final UnicodeSet IPA = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet IPA = new UnicodeSet(
           "[a-zæçðøħŋœǀ-ǃɐ-ɨɪ-ɶ ɸ-ɻɽɾʀ-ʄʈ-ʒʔʕʘʙʛ-ʝʟʡʢ ʤʧʰ-ʲʴʷʼˈˌːˑ˞ˠˤ̀́̃̄̆̈ ̘̊̋̏-̜̚-̴̠̤̥̩̪̬̯̰̹-̽͜ ͡βθχ↑-↓↗↘]"
   ).freeze();
-  
-  public static final UnicodeSet IPA_EXTENSIONS = (UnicodeSet) new UnicodeSet(
+
+  public static final UnicodeSet IPA_EXTENSIONS = new UnicodeSet(
           "[ɩɷɼɿʅ-ʇʓʖʗʚʞʠʣʥʦʨ-ʯ]"
   ).freeze();
-  
 
-  public static final UnicodeSet DEPRECATED_NEW = (UnicodeSet) new UnicodeSet("[[:deprecated:][\\u0149\\u0F77\\u0F79\\u17A4\\u2329\\u232A]-[\\u0340\\u0341\\u17D3]]").freeze();
+
+  public static final UnicodeSet DEPRECATED_NEW = new UnicodeSet("[[:deprecated:][\\u0149\\u0F77\\u0F79\\u17A4\\u2329\\u232A]-[\\u0340\\u0341\\u17D3]]").freeze();
   //removing 0340, 0341, 17D3, and adding 0149, 0F77, 0F79, 17A4, 2329, 232A
 
   // TODO - change to Blocks
-  public static final UnicodeSet ARCHAIC_31  = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet ARCHAIC_31  = new UnicodeSet(
           //          "[[:script=Bugi:][:script=Buhd:][:script=Cari:][:script=Copt:]" +
           //          "[:script=Cprt:][:script=Dsrt:][:script=Glag:][:script=Goth:][:script=Hano:][:script=Ital:][:script=Khar:][:script=Linb:]" +
           //          "[:script=Lyci:][:script=Lydi:][:script=Ogam:][:script=Osma:][:script=Phag:][:script=Phnx:][:script=Rjng:][:script=Runr:]" +
@@ -39,7 +39,7 @@ public class ScriptCategoriesCopy {
           "[:blk=Tagalog:] [:blk=Tagbanwa:] [:blk=Ugaritic:] [:sc=Copt:]]"
   ).freeze();
   // from the old version of UTS39
-  public static final UnicodeSet ARCHAIC_39 = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet ARCHAIC_39 = new UnicodeSet(
           //      "[\\u018D\\u01AA-\\u01AB\\u01B9-\\u01BB\\u01BE\\u01BF\\u021C-\\u021D\\u025F\\u0277\\u027C\\u029E\\u0343" +
           //      "\\u03D0-\\u03D1\\u03D5-\\u03E1\\u03F7-\\u03F8\\u03F9-\\u03FB\\u0483-\\u0486\\u05A2\\u05C5-\\u05C7\\u066E-\\u066F\\u068E\\u0CDE\\u10F1-\\u10F6\\u1100-\\u1159" +
           //      "\\u115A-\\u115E\\u1161-\\u11A2\\u11A3-\\u11A7\\u11A8-\\u11F9\\u11FA-\\u11FF\\u1680-\\u169A\\u16A0-\\u16EA\\u16EE-\\u16F0\\u1700-\\u170C\\u170E-\\u1714" +
@@ -61,7 +61,7 @@ public class ScriptCategoriesCopy {
           //"[\u018D\u01AA\u01AB\u01B9-\u01BB\u01BE\u01BF\u021C\u021D\u025F\u0277\u027C\u029E\u0343\u03D0\u03D1\u03D5-\u03E1\u03F7-\u03FB\u0483-\u0486\u05A2\u05C5-\u05C7\u066E\u066F\u068E\u0CDE\u10F1-\u10F6\u1100-\u115E\u1161-\u11FF\u17A8\u17D1\u17DD\u1DC0-\u1DC3\u3165-\u318E\uA700-\uA707\\U00010140-\\U00010174]]"
   ).freeze();
 
-  public static final UnicodeSet ARCHAIC_HEURISTIC = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet ARCHAIC_HEURISTIC = new UnicodeSet(
           "[ " +
           "[:blk=Ancient_Symbols:]" +
           "[:blk=Ancient_Greek_Musical_Notation:] " +
@@ -71,8 +71,8 @@ public class ScriptCategoriesCopy {
           "]"
           //"[\u02EF-\u02FF\u0363-\u0373\u0376\u0377\u07E8-\u07EA\u1DCE-\u1DE6\u1DFE\u1DFF\u1E9C\u1E9D\u1E9F\u1EFA-\u1EFF\u2056\u2058-\u205E\u2180-\u2183\u2185-\u2188\u2C77-\u2C7D\u2E00-\u2E17\u2E2A-\u2E30\uA720\uA721\uA730-\uA778\uA7FB-\uA7FF]]"
   ).freeze();
-  
-  public static final UnicodeSet ARCHAIC_ADDITIONS = (UnicodeSet) new UnicodeSet(
+
+  public static final UnicodeSet ARCHAIC_ADDITIONS = new UnicodeSet(
           "[ " +
           "[:blk=Aegean_Numbers:] " +
           "[:blk=Byzantine_Musical_Symbols:] " +
@@ -82,7 +82,7 @@ public class ScriptCategoriesCopy {
           // "[\u0269\u027F\u0285-\u0287\u0293\u0296\u0297\u029A\u02A0\u02A3\u02A5\u02A6\u02A8-\u02AF\u0313\u037B-\u037D\u03CF\u03FD-\u03FF]]"
   ).freeze();
 
-  public static final UnicodeSet ARCHAIC = (UnicodeSet) new UnicodeSet(ARCHAIC_31)
+  public static final UnicodeSet ARCHAIC = new UnicodeSet(ARCHAIC_31)
   .addAll(ARCHAIC_39)
   .addAll(ARCHAIC_HEURISTIC)
   .addAll(ARCHAIC_ADDITIONS).freeze();
@@ -95,39 +95,39 @@ public class ScriptCategoriesCopy {
     }
   }
 
-  public static final UnicodeSet EUROPEAN = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet EUROPEAN = new UnicodeSet(
           "[[:script=Latin:][:script=Greek:][:script=Coptic:][:script=Cyrillic:]" +
           "[:script=Glag:][:script=Armenian:][:script=Georgian:][:script=Shavian:][:script=braille:]" +
           "[:script=ogham:][:script=runic:][:script=Gothic:][:script=Cypriot:][:script=Linear b:]" +
           "[:script=old italic:]]"
   ).freeze();
-  public static final UnicodeSet MIDDLE_EASTERN = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet MIDDLE_EASTERN = new UnicodeSet(
           "[[:script=Hebrew:][:script=Arabic:][:script=Syriac:][:script=Thaana:]" +
           "[:script=Carian:][:script=Lycian:][:script=Lydian:][:script=Phoenician:]" +
           "[:script=Cuneiform:][:script=old persian:][:ugaritic:]]"
   ).freeze();
-  public static final UnicodeSet SOUTH_ASIAN = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet SOUTH_ASIAN = new UnicodeSet(
           "[[:script=Devanagari:][:script=Bengali:][:script=Gurmukhi:][:script=Gujarati:]" +
           "[:script=Oriya:][:script=Tamil:][:script=Telugu:][:script=Kannada:][:script=Malayalam:]" +
           "[:script=Sinhala:][:script=Tibetan:][:script=Phags-Pa:][:script=Limbu:][:script=Sylo:][:script=Kharoshthi:][:script=lepcha:][:saurashtra:][:script=ol chiki:]]"
   ).freeze();
-  public static final UnicodeSet SOUTHEAST_ASIAN = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet SOUTHEAST_ASIAN = new UnicodeSet(
           "[[:script=Thai:][:script=Lao:][:script=Myanmar:][:script=Khmer:]" +
           "[:script=Tai_Le:][:script=New Tai Lue:][:script=Tagalog:][:script=Hanunoo:][:script=Buhid:]" +
           "[:script=Tagbanwa:][:script=Buginese:][:script=Balinese:][:script=Cham:][:script=kayah li:][:script=rejang:][:script=sundanese:]]"
   ).freeze();
-  public static final UnicodeSet EAST_ASIAN = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet EAST_ASIAN = new UnicodeSet(
           "[[:script=Bopomofo:][:script=Hiragana:][:script=Katakana:][:script=Mongolian:]" +
           "[:script=Yi:]]"
   ).freeze();
-  public static final UnicodeSet AFRICAN = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet AFRICAN = new UnicodeSet(
           "[[:script=Ethiopic:][:script=Osmanya:][:script=Tifinagh:]" +
           "[:script=Nko:][:script=vai:]]"
   ).freeze();
-  public static final UnicodeSet AMERICAN = (UnicodeSet) new UnicodeSet(
+  public static final UnicodeSet AMERICAN = new UnicodeSet(
           "[[:script=Cherokee:][:script=CANS:][:script=Deseret:]]"
   ).freeze();
-  public static final UnicodeSet OTHER_SCRIPTS = (UnicodeSet) new UnicodeSet("[^[:script=common:][:script=inherited:]]")
+  public static final UnicodeSet OTHER_SCRIPTS = new UnicodeSet("[^[:script=common:][:script=inherited:]]")
   .removeAll(EUROPEAN)
   .removeAll(MIDDLE_EASTERN)
   .removeAll(SOUTH_ASIAN)

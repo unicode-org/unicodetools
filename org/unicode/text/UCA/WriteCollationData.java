@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
- * $Date: 2009-09-24 00:00:29 $ 
- * $Revision: 1.55 $
+ * $Date: 2009-10-05 22:23:38 $ 
+ * $Revision: 1.56 $
  *
  *******************************************************************************
  */
@@ -2975,6 +2975,10 @@ F900..FAFF; CJK Compatibility Ideographs
             lastValue = primaryDelta[primary] = (subtotal << 8) + 0x10; // make 3 byte, leave gap
           } else { // lastValue was 3-byte form
             lastValue = primaryDelta[primary] = lastValue + 3;
+            int lastByte = lastValue&0xFF;
+            if (lastByte < 3) {
+              lastValue = primaryDelta[primary] = lastValue + 3;
+            }
           }
           if (DEBUG) {
             System.out.println(" => " + Utility.hex(lastValue));

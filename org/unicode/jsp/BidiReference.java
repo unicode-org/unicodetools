@@ -167,7 +167,7 @@ public final class BidiReference {
   public BidiReference(byte[] types) {
     validateTypes(types);
 
-    this.initialTypes = (byte[])types.clone(); // client type array remains unchanged
+    initialTypes = types.clone(); // client type array remains unchanged
 
     runAlgorithm();
   }
@@ -184,7 +184,7 @@ public final class BidiReference {
     validateTypes(types);
     validateParagraphEmbeddingLevel(paragraphEmbeddingLevel);
 
-    this.initialTypes = (byte[])types.clone(); // client type array remains unchanged
+    initialTypes = types.clone(); // client type array remains unchanged
     this.paragraphEmbeddingLevel = paragraphEmbeddingLevel;
 
     runAlgorithm();
@@ -203,7 +203,7 @@ public final class BidiReference {
 
       // Initialize output types.
       // Result types initialized to input types.
-      resultTypes = (byte[])initialTypes.clone();
+      resultTypes = initialTypes.clone();
       record = new StringBuffer[resultTypes.length];
       for (int i = 0; i < resultTypes.length; ++i) {
         record[i] = new StringBuffer();
@@ -338,7 +338,6 @@ public final class BidiReference {
 
   private void setType(int i, byte value) {
     if (value != resultTypes[i]) {
-      int j = mapToOriginal == null ? i : mapToOriginal[i];
       record[i].append(getRule() + "\u2192"+getHtmlTypename(value) + "\n");
     }
     resultTypes[i] = value;
@@ -382,7 +381,6 @@ public final class BidiReference {
    * types array supplied to constructor)
    */
   private int reinsertExplicitCodes(int textLength) {
-    int r = textLength;
     for (int i = initialTypes.length; --i >= 0;) {
       byte t = initialTypes[i];
       if (t == LRE || t == RLE || t == LRO || t == RLO || t == PDF || t == BN) {
@@ -399,7 +397,7 @@ public final class BidiReference {
     mapToOriginal = null;
 
     // now propagate forward the levels information (could have 
-            // propagated backward, the main thing is not to introduce a level
+    // propagated backward, the main thing is not to introduce a level
     // break where one doesn't already exist).
 
     if (resultLevels[0] == -1) {
@@ -463,85 +461,85 @@ public final class BidiReference {
 
       // Rules X2, X3, X4, X5
       switch (t) {
-        case RLE:
-        case LRE:
-        case RLO:
-        case LRO:
-          // Only need to compute new level if current level is valid
-          if (overflowCounter == 0) { 
-            byte newLevel;
-            if (t == RLE || t == RLO) {
-              newLevel = (byte)((currentEmbeddingLevel + 1) | 1); // least greater odd
-            } else { // t == LRE || t == LRO
-              newLevel = (byte)((currentEmbeddingLevel + 2) & ~1); // least greater even
-            }
-
-            // If the new level is valid, push old embedding level and override status
-            // No check for valid stack counter, since the level check suffices.
-            if (newLevel < EXPLICIT_LEVEL_LIMIT) {
-              embeddingValueStack[stackCounter] = currentEmbeddingValue;
-              stackCounter++;
-
-              currentEmbeddingLevel = newLevel;
-              if (t == LRO || t == RLO) { // override
-                currentEmbeddingValue = (byte)(newLevel | 0x80);
-              } else {
-                currentEmbeddingValue = newLevel;
-              }
-
-              // Adjust level of format mark (for expositional purposes only, this gets
-              // removed later).
-              embeddings[i] = currentEmbeddingValue;
-              break;
-            }
-
-            // Otherwise new level is invalid, but a valid level can still be achieved if this
-            // level is 60 and we encounter an RLE or RLO further on.  So record that we
-            // 'almost' overflowed.
-            if (currentEmbeddingLevel == 60) {
-              overflowAlmostCounter++;
-              break;
-            }
+      case RLE:
+      case LRE:
+      case RLO:
+      case LRO:
+        // Only need to compute new level if current level is valid
+        if (overflowCounter == 0) { 
+          byte newLevel;
+          if (t == RLE || t == RLO) {
+            newLevel = (byte)((currentEmbeddingLevel + 1) | 1); // least greater odd
+          } else { // t == LRE || t == LRO
+            newLevel = (byte)((currentEmbeddingLevel + 2) & ~1); // least greater even
           }
 
-          // Otherwise old or new level is invalid.
-          overflowCounter++;
-          break;
+          // If the new level is valid, push old embedding level and override status
+          // No check for valid stack counter, since the level check suffices.
+          if (newLevel < EXPLICIT_LEVEL_LIMIT) {
+            embeddingValueStack[stackCounter] = currentEmbeddingValue;
+            stackCounter++;
 
-        case PDF:
-          // The only case where this did not actually overflow but may have almost overflowed
-          // is when there was an RLE or RLO on level 60, which would result in level 61.  So we
-          // only test the almost overflow condition in that case.
-          //
-          // Also note that there may be a PDF without any pushes at all.
+            currentEmbeddingLevel = newLevel;
+            if (t == LRO || t == RLO) { // override
+              currentEmbeddingValue = (byte)(newLevel | 0x80);
+            } else {
+              currentEmbeddingValue = newLevel;
+            }
 
-          if (overflowCounter > 0) {
-            --overflowCounter;
-          } else if (overflowAlmostCounter > 0 && currentEmbeddingLevel != 61) {
-            --overflowAlmostCounter;
-          } else if (stackCounter > 0) {
-            --stackCounter;
-            currentEmbeddingValue = embeddingValueStack[stackCounter];
-            currentEmbeddingLevel = (byte)(currentEmbeddingValue & 0x7f);
+            // Adjust level of format mark (for expositional purposes only, this gets
+            // removed later).
+            embeddings[i] = currentEmbeddingValue;
+            break;
           }
-          break;
 
-        case B:
-          // Rule X8.
+          // Otherwise new level is invalid, but a valid level can still be achieved if this
+          // level is 60 and we encounter an RLE or RLO further on.  So record that we
+          // 'almost' overflowed.
+          if (currentEmbeddingLevel == 60) {
+            overflowAlmostCounter++;
+            break;
+          }
+        }
 
-          // These values are reset for clarity, in this implementation B can only
-          // occur as the last code in the array.
-          stackCounter = 0;
-          overflowCounter = 0;
-          overflowAlmostCounter = 0;
-          currentEmbeddingLevel = paragraphEmbeddingLevel;
-          currentEmbeddingValue = paragraphEmbeddingLevel;
+        // Otherwise old or new level is invalid.
+        overflowCounter++;
+        break;
 
-          embeddings[i] = paragraphEmbeddingLevel;
-          break;
+      case PDF:
+        // The only case where this did not actually overflow but may have almost overflowed
+        // is when there was an RLE or RLO on level 60, which would result in level 61.  So we
+        // only test the almost overflow condition in that case.
+        //
+        // Also note that there may be a PDF without any pushes at all.
 
-        default:
-          break;
+        if (overflowCounter > 0) {
+          --overflowCounter;
+        } else if (overflowAlmostCounter > 0 && currentEmbeddingLevel != 61) {
+          --overflowAlmostCounter;
+        } else if (stackCounter > 0) {
+          --stackCounter;
+          currentEmbeddingValue = embeddingValueStack[stackCounter];
+          currentEmbeddingLevel = (byte)(currentEmbeddingValue & 0x7f);
+        }
+        break;
+
+      case B:
+        // Rule X8.
+
+        // These values are reset for clarity, in this implementation B can only
+        // occur as the last code in the array.
+        stackCounter = 0;
+        overflowCounter = 0;
+        overflowAlmostCounter = 0;
+        currentEmbeddingLevel = paragraphEmbeddingLevel;
+        currentEmbeddingValue = paragraphEmbeddingLevel;
+
+        embeddings[i] = paragraphEmbeddingLevel;
+        break;
+
+      default:
+        break;
       }
     }
 
@@ -815,7 +813,7 @@ public final class BidiReference {
 
     validateLineBreaks(linebreaks, textLength);
 
-    byte[] result = (byte[])resultLevels.clone(); // will be returned to caller
+    byte[] result = resultLevels.clone(); // will be returned to caller
 
     // don't worry about linebreaks since if there is a break within
     // a series of WS values preceeding S, the linebreak itself
@@ -979,16 +977,16 @@ public final class BidiReference {
    */
   private static boolean isWhitespace(byte biditype) {
     switch (biditype) {
-      case LRE:
-      case RLE:
-      case LRO:
-      case RLO:
-      case PDF:
-      case BN:
-      case WS:
-        return true;
-      default:
-        return false;
+    case LRE:
+    case RLE:
+    case LRO:
+    case RLO:
+    case PDF:
+    case BN:
+    case WS:
+      return true;
+    default:
+      return false;
     }
   }
 
@@ -1244,7 +1242,7 @@ public final class BidiReference {
     String[] anchor = rule.split("-");
     this.rule = "<a target='doc' href='http://unicode.org/reports/tr9/#" + anchor[0] + "'>" + rule + "</a>";
   }
-  
+
   public static String getHtmlTypename(int value) {
     return "<a target='list' href='http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:bc=" + typenames[value] + ":]'>" + typenames[value] + "</a>";
   }

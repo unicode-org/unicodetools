@@ -13,9 +13,9 @@ import java.util.Map;
 import com.ibm.icu.text.UnicodeSet;
 
 public class UtfParameters implements Iterable<String> {
-  
+
   private Map<String,String> map = new LinkedHashMap<String,String>();
-  
+
   public UtfParameters(String query) {
     if (query != null) {
       String[] queries = query.split("&");
@@ -47,9 +47,9 @@ public class UtfParameters implements Iterable<String> {
   public Iterator<String> iterator() {
     return map.keySet().iterator();
   }
-  
+
   private static UnicodeSet okByte = new UnicodeSet("[A-Za-z0-9]");
-  
+
   public static String fixQuery(String input) {
     try {
       StringBuilder result = new StringBuilder();

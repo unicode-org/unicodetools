@@ -69,43 +69,43 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
       // look for UnicodeSets, allowing for quoting with \ and \Q
       char ch = regex.charAt(i);
       switch (state) {
-        case 0: // we only care about \, and '['.
-          if (ch == '\\') {
-            if (UnicodeSet.resemblesPattern(regex, i)) {
-              // should only happen with \p
-              i = processSet(regex, i, result, temp, pos);
-              continue;
-            }
-            state = 1;
-          } else if (ch == '[') {
-            // if we have what looks like a UnicodeSet
-            if (UnicodeSet.resemblesPattern(regex, i)) {
-              i = processSet(regex, i, result, temp, pos);
-              continue;
-            }
+      case 0: // we only care about \, and '['.
+        if (ch == '\\') {
+          if (UnicodeSet.resemblesPattern(regex, i)) {
+            // should only happen with \p
+            i = processSet(regex, i, result, temp, pos);
+            continue;
           }
-          break;
+          state = 1;
+        } else if (ch == '[') {
+          // if we have what looks like a UnicodeSet
+          if (UnicodeSet.resemblesPattern(regex, i)) {
+            i = processSet(regex, i, result, temp, pos);
+            continue;
+          }
+        }
+        break;
 
-        case 1: // we are after a \
-          if (ch == 'Q') {
-            state = 1;
-          } else {
-            state = 0;
-          }
-          break;
+      case 1: // we are after a \
+        if (ch == 'Q') {
+          state = 1;
+        } else {
+          state = 0;
+        }
+        break;
 
-        case 2: // we are in a \Q...
-          if (ch == '\\') {
-            state = 3;
-          }
-          break;
+      case 2: // we are in a \Q...
+        if (ch == '\\') {
+          state = 3;
+        }
+        break;
 
-        case 3: // we are in at \Q...\
-          if (ch == 'E') {
-            state = 0;
-          }
-          state = 2;
-          break;
+      case 3: // we are in at \Q...\
+        if (ch == 'E') {
+          state = 0;
+        }
+        state = 2;
+        break;
       }
       result.append(ch);
     }
@@ -178,7 +178,9 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
       for (String variable : variables.keySet()) {
         String definition = variables.get(variable);
         for (String variable2 : variables.keySet()) {
-          if (variable.equals(variable2)) continue;
+          if (variable.equals(variable2)) {
+            continue;
+          }
           String definition2 = variables.get(variable2);
           String altered2 = definition2.replace(variable, definition);
           if (!altered2.equals(definition2)) {
@@ -200,7 +202,7 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     }
     return variables.get(unused.iterator().next());
   }
-  
+
   /**
    * Compile a regex string, after processing by fix(...).
    * 
@@ -247,7 +249,9 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
     while (true) {
       String line = in.readLine();
-      if (line == null) break;
+      if (line == null) {
+        break;
+      }
       result.add(line);
     }
     return result;
@@ -260,7 +264,7 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
   public Object cloneAsThawed() {
     // TODO Auto-generated method stub
     try {
-      return this.clone();
+      return clone();
     } catch (CloneNotSupportedException e) {
       throw new IllegalArgumentException(); // should never happen
     }
@@ -314,12 +318,14 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
   private String bnfVariableInfix = "=";
   private String bnfLineSeparator = "\n";
   private Appendable log = null;
-  
+
   private Comparator<String> LongestFirst = new Comparator<String> () {
     public int compare(String arg0, String arg1) {
       int len0 = arg0.length();
       int len1 = arg1.length();
-      if (len0 != len1) return len1 - len0;
+      if (len0 != len1) {
+        return len1 - len0;
+      }
       return arg0.compareTo(arg1);
     }
   };
@@ -333,19 +339,29 @@ public class UnicodeRegex implements Cloneable, Freezable, StringTransform {
     for (String line : lines) {
       ++count;
       // remove initial bom, comments
-      if (line.length() == 0) continue;
-      if (line.charAt(0) == '\uFEFF') line = line.substring(1);
+      if (line.length() == 0) {
+        continue;
+      }
+      if (line.charAt(0) == '\uFEFF') {
+        line = line.substring(1);
+      }
 
       if (bnfCommentString != null) {
         int hashPos = line.indexOf(bnfCommentString);
-        if (hashPos >= 0) line = line.substring(0, hashPos);
+        if (hashPos >= 0) {
+          line = line.substring(0, hashPos);
+        }
       }
       String trimline = line.trim();
-      if (trimline.length() == 0) continue;
+      if (trimline.length() == 0) {
+        continue;
+      }
 
       // String[] lineParts = line.split(";");
       String linePart = line; // lineParts[i]; // .trim().replace("\\s+", " ");
-      if (linePart.trim().length() == 0) continue;
+      if (linePart.trim().length() == 0) {
+        continue;
+      }
       boolean terminated = trimline.endsWith(";");
       if (terminated) {
         linePart = linePart.substring(0,linePart.lastIndexOf(';'));
