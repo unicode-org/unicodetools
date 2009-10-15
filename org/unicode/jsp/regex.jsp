@@ -25,8 +25,8 @@
         
         String fixedRegex;
         try {       
-            fixedRegex = UnicodeRegex.fix(regex);
-            UnicodeRegex.compile(regex); // just to get the error message
+            fixedRegex = org.unicode.jsp.UnicodeRegex.fix(regex);
+            org.unicode.jsp.UnicodeRegex.compile(regex); // just to get the error message
             testPattern = UnicodeUtilities.showRegexFind(fixedRegex, test);        
         } catch (Exception e) {
             fixedRegex = e.getMessage();

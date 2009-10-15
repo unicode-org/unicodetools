@@ -20,5 +20,5 @@
 <%@ page import="com.ibm.icu.dev.demo.translit.*" %>
 
 <%@ page import="org.unicode.cldr.icu.*" %>
-<%@ page import="jsp.*" %>
+<%@ page import="org.unicode.jsp.*" %>
 
