@@ -15,41 +15,47 @@
         String IDNA2008 = utfParameters.getParameter("a");
 
         if (IDNA2008 == null) {
-IDNA2008 = "\u00D6BB\n"
-        + "O\u0308BB\n"
-        + "Sch\u00E4ffer\n"
-        + "\uFF21\uFF22\uFF23\u30FB\u65E5\u672C\n"
-        + "\u0221og\n"
-        + "x\u0301\u0327\n"
-        + "I\u2665NY\n"
-        + "fa\u00DF\n"
-        + "\u0392\u03CC\u03BB\u03BF\u03C2\n"
-        + "\uFECB\uFEAE\uFE91\uFEF2";
+            IDNA2008 = UnicodeUtilities.getDefaultIdnaInput();
         }
-        String filter = utfParameters.getParameter("f", "[\u00DF \u03C2 [:Join_C:]]");
-        String fixedRegex = UnicodeUtilities.testIdnaLines(IDNA2008, filter);
+        String fixedRegex = UnicodeUtilities.testIdnaLines(IDNA2008, "");
 %>
 <h1>Unicode IDNA Demo</h1>
 <%@ include file="others.jsp" %>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
-      <th style="width: 50%">Input Labels: (See also <a target="picker" href="http://macchiato.com/picker/MyApplication.html">Picker</a>)</th>
-      <th style="width: 50%">Exclude from NFKC-CF-RDI mapping:</th>
+      <th>Enter International Domains:</th>
+      <th class='r'>For special characters, you can use <a target="picker" href="http://macchiato.com/picker/MyApplication.html">Picker</a></th>
     </tr>
     <tr>
-      <td><textarea name="a" rows="12" cols="10" style="width: 100%"><%=IDNA2008%></textarea></td>
-      <td><textarea name="f" rows="12" cols="10" style="width: 100%"><%=filter%></textarea></td>
+      <td colSpan='2'><textarea name="a" rows="12" cols="10" style="width: 100%"><%=IDNA2008%></textarea></td>
     </tr>
 </table>
 <input id='main' type="submit" value="Show IDNA Status" onClick="window.location.href='idna.jsp?a='+document.getElementById('main').value"/>
 <a target="rules" href="idnaContextRules.txt">Context Rules</a>
 </form>
   <hr>
-  <h2>Modified IDNA2008 Pattern</h2>
+  <h2>Results (see <a href='#notes'>Notes</a>)</h2>
   <p><%=fixedRegex%></p>
-<p>* = Putative labels. If there are accents or invisible characters they are shown on a second line with \u escapes,
-to show the difference between cases like &#x00D6; and O +  &#x0308;</p>
+<hr>
+<h2 id='notes'>Notes</h2>
+<ol>
+<li>IDNA46 uses the mechanisms in <a href='http://unicode.org/reports/tr46'>(draft) Unicode UTS#46</a>,
+which is designed to allow implementations to support both IDNA2008 and IDNA2003,
+without the compatibility problems resulting from the conflicts between them.</li>
+<li>Errors in labels are shown with &#xFFFD;.</li>
+<li>The input can have hex Unicode, using the \u convention. For example, &#x2665; can be supplied as \u2665.</li>
+<li>The Punycode in the Input column is raw - without any mapping or transformation, 
+but breaking at dots (full stop and ideographic full stops, but not those in characters like &#x2488;)</li>
+<li>The IDNA2008 results need to be updated to the latest context rules.</li>
+<li>If there are accents or invisible characters they are shown on a second line with \u escapes,
+to show the difference between cases like &#x00D6; and O +  &#x0308;</li>
+<li>The behavior with of browsers with characters like &#x2488; varies: 
+<ol><li>IE and FF map to "1" + "." <i>before</i> separating labels;</li>
+<li>Safari and Chrome map it <i>afterwards</i>.</li>
+</ol>
+What is illustrated here is the predominant implemented behavior (that is, <i>before</i> separating labels).</li>
+</ol>
 <%@ include file="footer.jsp" %>
 </body>
 </html>

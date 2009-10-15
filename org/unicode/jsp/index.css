@@ -1,12 +1,13 @@
 td,th,table			{ padding:1px; border:1px solid #CCCCFF; vertical-align:top }
 table		{ border-collapse: collapse }
-th           { background-color: #EEEEFF; text-align:left }
+th           { background-color: #DDDDFF; text-align:left }
 textarea	{width: 100%; background-color: #EEFFEE; border:1px solid #CCFFCC; }
 li,p           { margin-top: 0.5em; margin-bottom: 0.5em }
 h2 { font-size:120%;  margin-top: 0.5em; margin-bottom: 0.5em }
 .key { background-color: #FFFF99; font-weight: bold; color: red }
 span.break   { border-right: 1px solid red;}
 .c { text-align:center; }
+.r { text-align:right; }
 .bcell { text-align:center; width: 3em }
 .bxcell { text-align:center; width: 3em; background-color: #CCCCCC; }
 .bccell { text-align:center; font-size: 150%}
@@ -14,3 +15,6 @@ span.break   { border-right: 1px solid red;}
 .x { color: red; font-weight: bold; font-size:120% }
 .q { color: blue;}
 .esc { color: gray;}
+.ltgreen {background-color: #DDFFDD}
+.mono {font-family:monospace} 
+.i46 {background-color: #FFFFDD} 

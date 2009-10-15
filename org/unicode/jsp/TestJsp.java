@@ -14,10 +14,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.util.BNF;
+import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Quoter;
+import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.StringPrep;
+import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
@@ -35,6 +41,30 @@ public class TestJsp  extends TestFmwk {
   static String IPA_SAMPLE = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, æ, ç, ð, ø, ħ, ŋ, œ, ǀ, ǁ, ǂ, ǃ, ɐ, ɑ, ɒ, ɓ, ɔ, ɕ, ɖ, ɗ, ɘ, ə, ɚ, ɛ, ɜ, ɝ, ɞ, ɟ, ɠ, ɡ, ɢ, ɣ, ɤ, ɥ, ɦ, ɧ, ɨ, ɪ, ɫ, ɬ, ɭ, ɮ, ɯ, ɰ, ɱ, ɲ, ɳ, ɴ, ɵ, ɶ, ɸ, ɹ, ɺ, ɻ, ɽ, ɾ, ʀ, ʁ, ʂ, ʃ, ʄ, ʈ, ʉ, ʊ, ʋ, ʌ, ʍ, ʎ, ʏ, ʐ, ʑ, ʒ, ʔ, ʕ, ʘ, ʙ, ʛ, ʜ, ʝ, ʟ, ʡ, ʢ, ʤ, ʧ, ʰ, ʱ, ʲ, ʴ, ʷ, ʼ, ˈ, ˌ, ː, ˑ, ˞, ˠ, ˤ, ̀, ́, ̃, ̄, ̆, ̈, ̊, ̋, ̏, ̐, ̑, ̒, ̓, ̔, ̕, ̖, ̗, ̘, ̙, ̚, ̛, ̜, ̝, ̞, ̟, ̠, ̡, ̢, ̣, ̤, ̥, ̦, ̧, ̨, ̩, ̪, ̫, ̬, ̭, ̮, ̯, ̰, ̱, ̲, ̳, ̴, ̹, ̺, ̻, ̼, ̽, ͜, ͡, β, θ, χ, ↑, →, ↓, ↗, ↘";
 
   enum Subtag {language, script, region, mixed, fail}
+  
+  public void TestIdnaDifferences() {
+    PrettyPrinter pretty = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ENGLISH));
+    UnicodeSet remapped = new UnicodeSet();
+    UnicodeMap<String> map = UnicodeUtilities.getIdnaDifferences(remapped);
+    for (String value : new TreeSet<String>(map.values())) {
+      UnicodeSet set = map.getSet(value);
+      System.out.println(set.size() + "\t" + value + "\t" + pretty.format(set));
+    }
+    Transliterator name = Transliterator.getInstance("name");
+    System.out.println("Code\tUts46\tidna2003\tCode\tUts46\tidna2003");
+
+    for (String s : remapped) {
+      String uts46 = Uts46.toUts46(s);
+      String idna2003 = UnicodeUtilities.toIdna2003(s);
+      if (!uts46.equals(idna2003)) {
+        System.out.println(Utility.hex(s) + "\t" + Utility.hex(uts46) + "\t" + Utility.hex(idna2003)
+                + "\t" + name.transform(s) + "\t" + name.transform(uts46) + "\t" + name.transform(idna2003)
+                );
+      }
+    }
+  }
+
+
 
   public void TestLanguageLocalizations() {
 
@@ -352,14 +382,9 @@ public class TestJsp  extends TestFmwk {
   }
 
   public void TestIdna() {
-    String IDNA2008 = "ÖBB\n"
-      + "O\u0308BB\n"
-      + "Schäffer\n"
-      + "ＡＢＣ・フ\n"
-      + "I♥NY\n"
-      + "faß\n"
-      + "βόλος";
-    String testLines = UnicodeUtilities.testIdnaLines(IDNA2008, "[]");
+    String testLines = UnicodeUtilities.testIdnaLines("ΣΌΛΟΣ", "[]");
+    logln(testLines);
+    testLines = UnicodeUtilities.testIdnaLines(UnicodeUtilities.getDefaultIdnaInput(), "[]");
     logln(testLines);
 
 

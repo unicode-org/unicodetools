@@ -2,11 +2,14 @@ package org.unicode.jsp;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.text.ParsePosition;
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,10 +29,18 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.IdnaLabelTester;
 import org.unicode.cldr.draft.IdnaLabelTester.TestStatus;
+import org.unicode.cldr.util.Predicate;
+import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.Utility;
+//import org.unicode.cldr.draft.IdnaLabelTester.TestStatus;
 
 import com.ibm.icu.dev.test.util.BNF;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Quoter;
+import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.VersionInfoTest;
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.CanonicalIterator;
@@ -37,14 +48,19 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
+import com.ibm.icu.text.StringTransform;
+import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 
 public class UnicodeUtilities {
+  public static final Charset UTF8 = Charset.forName("utf-8");
 
   private static final List<String> REGEX_PROPS = Arrays.asList(new String[] {"xdigit", "alnum", "blank", "graph", "print", "word"});
 
@@ -164,10 +180,71 @@ public class UnicodeUtilities {
     }
   }
 
+  static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped) {
+    UnicodeMap<String> result = new UnicodeMap<String>();
+    UnicodeSet unassigned = new UnicodeSet("[[:Cc:][:Cn:][:Co:][:Cs:]]");
+    IdnaLabelTester tester = getIdna2008Tester();
+    UnicodeSet valid2008 = new UnicodeSet(tester.getVariable("$Valid"));
+
+    for (int i = 0x80; i <= 0x10FFFF; ++i) {
+      if ((i & 0xFFF) == 0) System.out.println(Utility.hex(i));
+      if (i == 0x20000) {
+        System.out.println("debug");
+      }
+      if (unassigned.contains(i)) continue;
+      boolean isNew = UCharacter.getAge(i).compareTo(VersionInfo.UNICODE_3_2) > 0;
+      String age = isNew ? "v4.0-5.1" : "v3.2";
+      int idna2003 = getIDNA2003Type2(UTF16.valueOf(i));
+      int tr46 = Uts46.getUts46Type(i);
+      if (isNew) {// skip
+      } else if (tr46 == REMAPPED || idna2003 == REMAPPED) {
+        remapped.add(i);
+      }
+      //TestStatus testResult = valid2008.contains(i);
+      int idna2008 = valid2008.contains(i) ? OUTPUT : DISALLOWED;
+      String iClass = age
+      + "\t" + getShortName(idna2003) 
+      + "\t" + getShortName(tr46)
+      + "\t" + getShortName(idna2008)
+      ;
+      result.put(i, iClass);
+    }
+    return result.freeze();
+  }
+
+  private static int getIDNA2003Type2(String source) {
+    String idna2003String = toIdna2003(source);
+    if (idna2003String.equals("\uFFFF")) return DISALLOWED;
+    if (idna2003String.equals(source)) return OUTPUT;
+    if (idna2003String.length() == 0) return IGNORED;
+    return REMAPPED;
+  }
+
+  private static String getShortName(int tr46) {
+    // TODO Auto-generated method stub
+    return UCharacter.toTitleCase(tr46==OUTPUT ? "Valid" : IdnaNames[tr46], null);
+  }
   /**
    * 
    */
-  static public int getIDNAType(int cp) {
+  
+  static StringPrep nameprep = StringPrep.getInstance(StringPrep.RFC3491_NAMEPREP);
+  static UnicodeSet BADASCII = new UnicodeSet("[[\\u0000-\\u007F]-[\\-0-9A-Za-z]]").freeze();
+  static String toIdna2003(String s) {
+    String idna2003 = "\uFFFF";
+    try {
+      idna2003 = nameprep.prepare(s, StringPrep.DEFAULT);
+    } catch (StringPrepParseException e) {
+      try {
+        idna2003 = nameprep.prepare(s + "\u05D9", StringPrep.DEFAULT);
+        idna2003 = idna2003.substring(0, idna2003.length()-1);
+      } catch (StringPrepParseException e1) {
+      }
+    }
+    if (BADASCII.containsSome(idna2003)) return "\uFFFF";
+    return idna2003;
+  }
+  static public int getIDNA2003Type(int cp) {
     if (cp == '-') {
       return OUTPUT;
     }
@@ -237,7 +314,7 @@ public class UnicodeUtilities {
         continue;
       }
 
-      int idnaType = getIDNAType(cp);
+      int idnaType = getIDNA2003Type(cp);
       idnaTypeSet[idnaType].add(cp);
 
       String s = UTF16.valueOf(cp);
@@ -686,7 +763,7 @@ public class UnicodeUtilities {
 
   private static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]");
 
-  public static boolean haveCaseFold = false;
+  //public static boolean haveCaseFold = false;
 
   static {
     Transliterator.registerInstance(getTransliteratorFromFile("en-IPA", "en-IPA.txt", Transliterator.FORWARD));
@@ -717,11 +794,13 @@ public class UnicodeUtilities {
     }
   }
 
+  public static final Transliterator UNESCAPER = Transliterator.getInstance("hex-any");
+
 
   public static String showTransform(String transform, String sample) {
-    if (!haveCaseFold) {
-      registerCaseFold();
-    }
+//    if (!haveCaseFold) {
+//      registerCaseFold();
+//    }
     Transliterator trans;
     try {
       trans = Transliterator.createFromRules("foo", transform, Transliterator.FORWARD);
@@ -741,7 +820,7 @@ public class UnicodeUtilities {
       } catch (Exception e) {}
     }
     if (set == null) {
-      sample = IdnaLabelTester.UNESCAPER.transform(sample);
+      sample = UNESCAPER.transform(sample);
       return getLiteral(trans.transform(sample)).replace("\n", "<br>");
     }
 
@@ -843,21 +922,54 @@ public class UnicodeUtilities {
     return result;
   }
 
-  private static void registerCaseFold() {
-    StringBuilder rules = new StringBuilder();
-    for (UnicodeSetIterator it = new UnicodeSetIterator(MAPPING_SET); it.nextRange();) {
-      for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
-        String s = UTF16.valueOf(i);
-        String caseFold = UCharacter.foldCase(s, true);
-        String lower = UCharacter.toLowerCase(Locale.ENGLISH, s);
-        if (!caseFold.equals(lower)) {
-          rules.append(s + ">" + caseFold + " ;\r\n");
-        }
-      }
+//  private static void registerCaseFold() {
+//    StringBuilder rules = new StringBuilder();
+//    for (UnicodeSetIterator it = new UnicodeSetIterator(MAPPING_SET); it.nextRange();) {
+//      for (int i = it.codepoint; i <= it.codepointEnd; ++i) {
+//        String s = UTF16.valueOf(i);
+//        String caseFold = UCharacter.foldCase(s, true);
+//        String lower = UCharacter.toLowerCase(Locale.ENGLISH, s);
+//        if (!caseFold.equals(lower) || i == 'Σ') {
+//          rules.append(s + ">" + caseFold + " ;\r\n");
+//        }
+//      }
+//    }
+//    rules.append("::Lower;");
+//    Transliterator.registerInstance(Transliterator.createFromRules("Any-CaseFold", rules.toString(), Transliterator.FORWARD));
+//    haveCaseFold = true;
+//  }
+  
+  static class NFKC_CF implements StringTransform {
+    static Matcher DI = Pattern.compile(UnicodeRegex.fix("[:di:]")).matcher("");
+    public String transform(String source) {
+      String s0 = UCharacter.foldCase(source, true);
+      String s1 = Normalizer.normalize(s0, Normalizer.NFKC);
+      String s2 = UCharacter.foldCase(s1, true);
+      String s3 = DI.reset(s2).replaceAll("");
+      String s4 = Normalizer.normalize(s3,Normalizer.NFKC);
+      return s4;
     }
-    rules.append("::Lower;");
-    Transliterator.registerInstance(Transliterator.createFromRules("Any-CaseFold", rules.toString(), Transliterator.FORWARD));
-    haveCaseFold = true;
+  }
+  
+  static class FilteredStringTransform implements StringTransform {
+    final UnicodeSet toExclude;
+    final StringTransform trans;
+    public FilteredStringTransform(UnicodeSet toExclude, StringTransform trans) {
+      this.toExclude = toExclude;
+      this.trans = trans;
+    }
+    public String transform(String source) {
+      StringBuilder result = new StringBuilder();
+      int start = 0;
+      while (start < source.length()) {
+        int end = toExclude.findIn(source, start, false);
+        result.append(trans.transform(source.substring(start,end)));
+        if (end == source.length()) break;
+        start = toExclude.findIn(source, end, true);
+        result.append(source.substring(end,start));
+      }
+      return result.toString();
+    }
   }
 
   private static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
@@ -1279,98 +1391,194 @@ public class UnicodeUtilities {
   static IdnaLabelTester tester = null;
   static String removals = new UnicodeSet("[\u1806[:di:]-[:cn:]]").complement().complement().toPattern(false);
   static Matcher rem = Pattern.compile(removals).matcher("");
+  static String defaultIdnaInput = "\u0001.com"
+    +"\nöbb.at ÖBB.at ÖBB.at"
+    +"\nȡog.de ☕.de I♥NY.de"
+    +"\nfass.de faß.de fäß.de Schäffer.de"
+    +"\nＡＢＣ・日本.co.jp 日本｡co｡jp 日本｡co．jp 日本⒈co．jp"
+    +"\nx\\u0327\\u0301.de x\\u0301\\u0327.de"
+    +"\nσόλος.gr Σόλος.gr ΣΌΛΟΣ.gr"
+    +"\nﻋﺮﺑﻲ.de عربي.de نامهای.de نامه\\u200Cای.de";
+
+  public static String getDefaultIdnaInput() {
+    return defaultIdnaInput;
+  }
 
   public static String testIdnaLines(String lines, String filter) {
     Transliterator hex = Transliterator.getInstance("any-hex");
     try {
-      UnicodeSet filterSet = parseUnicodeSet(filter);
-      if (!haveCaseFold) {
-        registerCaseFold();
-      }
-      filterSet.complement();
-      Transliterator fold = Transliterator.getInstance("nfkc; casefold; [:di:] remove; nfkc;");
-      fold.setFilter(filterSet);
 
       lines = IdnaLabelTester.UNESCAPER.transform(lines);
       StringBuilder resultLines = new StringBuilder();
-      if (tester == null) {
-        try {
-          tester = new IdnaLabelTester("idnaContextRules.txt");
-        } catch (Exception e2) {
-          tester = new IdnaLabelTester("jsp/idnaContextRules.txt");
+      getIdna2008Tester();
+
+      Predicate<String> verifier2008 = new Predicate<String>() {
+        public boolean is(String item) {
+          return Normalizer.isNormalized(item, Normalizer.NFC, 0) && tester.test(item) == null;
         }
-      }
+      };
+
       resultLines.append("<table>\n");
-      resultLines.append("<th>M-Label*</th><th>U-Label*</th><th>IDNA()</th><th>IDNAbis()</th><th>Error Pos.</th><th>Cause</th></tr>\n");
+      resultLines.append("<th></th><th class='cn'>Input</th><th class='cn'>IDNA2003</th><th class='cn'>IDNA46</th><th class='cn'>IDNA2008</th>\n");
+
+      boolean first = true;
       for (String line : lines.split("\\s+")) {
-
-        resultLines.append("<tr><td class='cn'" +
-                (" title='" + hex.transform(line) + "'") +
-        ">").append(showEscaped(line)).append("</td>");
-
-        String normalized = fold.transform(line);
-
-        resultLines.append("<td class='cn'" +
-                (" title='" + hex.transform(normalized) + "'") +
-        ">").append(showEscaped(normalized)).append("</td>");
-
-        String idna2003 = "<i>Denied!</i>";
-        try {
-          inbuffer.setLength(0);
-          inbuffer.append(line);
-          intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
-          if (intermediate.length() == 0) {
-            throw new IllegalArgumentException();
-          }
-          idna2003 = toHTML.transform(intermediate.toString());
-        } catch (Exception e) {
-        }
-
-        TestStatus result = tester.test(normalized);
-
-        String idna2008 = "<i>Denied!</i>";
-        if (result == null) {
-          try {
-            inbuffer.setLength(0);
-            inbuffer.append(normalized);
-            if (!ASCII.containsAll(normalized)) {
-              intermediate = Punycode.encode(inbuffer, null);
-              if (intermediate.length() == 0) {
-                throw new IllegalArgumentException();
-              }
-              intermediate.insert(0, "xn--");            
-            }
-            idna2008 = toHTML.transform(intermediate.toString());
-          } catch (Exception e) {
-            result = new TestStatus(0, "Punycode Failed!", 0);
-          }
-        }
-
-        if (idna2003.equals(idna2008)) {
-          resultLines.append("<td class='c' colSpan='2'>").append(idna2003).append("</td>");
+        if (first) {
+          first = false;
         } else {
-          resultLines.append("<td class='c'>").append("<b>" + idna2003 + "</b>").append("</td>");
-          resultLines.append("<td class='c'>").append("<b>" + idna2008 + "</b>").append("</td>");
+          addBlank(resultLines);
         }
 
-        if (result == null) {
-          resultLines.append("<td class='c'>\u00A0</td><td class='c'>\u00A0</td>");
-        } else {
-          resultLines.append("<td class='c'>")
-          .append(toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(0, result.position))) 
-                  + "<span class='x'>\u2639</span>" + toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(result.position))) 
-                  + "</td><td>" + result.title
-                  //+ "</td><td class='c'>" + result.ruleLine
-                  + "</td>");
-        }
+        String rawPunycode = processLabels(line, DOTS, true, new Predicate() {
+          public boolean is(Object item) {
+            return true;
+          }});
+        R2<String, String> idna2003Pair = getIdna2033(line);
+        String idna2003 = idna2003Pair.get0();
+        String idna2003back = idna2003Pair.get1();
+
+
+        String tr46back = Uts46.toUts46(line);
+        String tr46 = processLabels(tr46back, DOTS, true, new Predicate<String>() {
+          public boolean is(String item) {
+            return Uts46.Uts46Chars.containsAll(item);
+          }
+        });
+        String tr46display = Uts46.foldDisplay.transform(line);
+        tr46display = processLabels(tr46display, DOTS, false, new Predicate<String>() {
+          public boolean is(String item) {
+            return Uts46.Uts46CharsDisplay.containsAll(item);
+          }
+        });
+
+        String idna2008 = processLabels(line, DOT, true, verifier2008);
+        String idna2008back = processLabels(line, DOT, false, verifier2008);
+
+        // first lines
+        resultLines.append("<tr>");
+        resultLines.append("<th>Display</th>");
+        addCell(resultLines, hex, line, "class='cn ltgreen'");
+        addCell(resultLines, hex, idna2003back, "class='cn i2003'");
+        addCell(resultLines, hex, tr46display, "class='cn i46'");
+        addCell(resultLines, hex, idna2008back, "class='cn i2008'");
+        resultLines.append("<tr></tr>");
+
+        resultLines.append("<th class='mono'>Punycode</th>");
+        addCell(resultLines, hex, rawPunycode, "class='cn ltgreen mono'");
+        addCell(resultLines, hex, idna2003, "class='cn mono i2003'");
+        addCell(resultLines, hex, tr46, "class='cn mono i46'");
+        addCell(resultLines, hex, idna2008, "class='cn mono i2008'");
+
+        //        if (result == null) {
+        //          resultLines.append("<td class='c'>\u00A0</td><td class='c'>\u00A0</td>");
+        //        } else {
+        //          resultLines.append("<td class='c'>")
+        //          .append(toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(0, result.position))) 
+        //                  + "<span class='x'>\u2639</span>" + toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(result.position))) 
+        //                  + "</td><td>" + result.title
+        //                  //+ "</td><td class='c'>" + result.ruleLine
+        //                  + "</td>");
+        //        }
         resultLines.append("</tr>\n");
       }
+
       resultLines.append("</table>\n");
       return resultLines.toString();
     } catch (Exception e) {
       return toHTML.transform(e.getMessage());
     }
   }
+
+
+  private static IdnaLabelTester getIdna2008Tester() {
+    if (tester == null) {
+      try {
+        URL path = UnicodeUtilities.class.getResource("idnaContextRules.txt");
+        String externalForm = path.toExternalForm();
+        if (externalForm.startsWith("file:")) {
+          externalForm = externalForm.substring(5);
+        }
+        tester = new IdnaLabelTester(externalForm);
+      } catch (IOException e) {
+        throw new IllegalArgumentException(e);
+      }
+    }
+    return tester;
+  }
+
+  static Pattern DOTS = Pattern.compile("[.。｡]");
+  static Pattern DOT = Pattern.compile("[.]");
+
+  static Row.R2<String, String> getIdna2033(String input) {
+    String normInput = Normalizer.normalize(input, Normalizer.NFKC);
+    StringBuffer idna2003 = new StringBuffer();
+    StringBuffer idna2003back = new StringBuffer();
+
+    for (String part : DOT.split(normInput)) {
+      if (idna2003.length() != 0) {
+        idna2003.append('.');
+        idna2003back.append('.');
+      }
+      try {
+        inbuffer.setLength(0);
+        inbuffer.append(part);
+        intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+        if (intermediate.length() == 0) {
+          throw new IllegalArgumentException();
+        }
+        idna2003.append(toHTML.transform(intermediate.toString()));
+        idna2003back.append(IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES).toString());
+      } catch (Exception e) {
+        idna2003.append('\uFFFD');
+        idna2003back.append('\uFFFD');
+      }
+    }
+    return Row.of(idna2003.toString(), idna2003back.toString());
+  }
+
+  private static void addBlank(StringBuilder resultLines) {
+    resultLines.append("<tr><td colSpan='5'>&nbsp;</td></tr>\n");
+  }
+
+  private static void addCell(StringBuilder resultLines, Transliterator hex, String tr46, String attributes) {
+    if (tr46 == null) {
+      resultLines.append("<td " +
+              attributes +
+      "><i>fails</i></td>\n");
+    } else {
+      resultLines.append("<td " +
+              attributes +
+              (" title='" + hex.transform(tr46) + "'") +
+      ">").append(showEscaped(tr46)).append("</td>\n");
+    }
+  }
+
+  static String processLabels(String inputLabels, Pattern dotPattern, boolean punycode, Predicate<String> verifier) {
+    StringBuilder result = new StringBuilder();
+    for (String label : dotPattern.split(inputLabels)) {
+      if (result.length() != 0) {
+        result.append('.');
+      }
+      try {
+        if (!verifier.is(label)) {
+          throw new IllegalArgumentException();
+        }
+        if (!punycode || ASCII.containsAll(label)) {
+          result.append(label);
+        } else {
+          StringBuffer puny = Punycode.encode(new StringBuffer(label), null);
+          if (puny.length() == 0) {
+            throw new IllegalArgumentException();
+          }
+          result.append("xn--").append(puny);
+        }
+      } catch (Exception e) {
+        result.append('\uFFFD');
+      }
+    }
+    return result.toString();
+  }
+
 
   static final Transliterator ESCAPER = Transliterator.createFromRules("escaper", 
           "(" + IdnaLabelTester.TO_QUOTE + ") > '<span class=\"q\">'&any-hex($1)'</span>';"
@@ -1545,14 +1753,30 @@ public class UnicodeUtilities {
     return result.toString();
   }
 
+
+
   public static BufferedReader openFile(Class class1, String file) throws IOException {
+    //URL path = null;
+    //String externalForm = null;
     try {
-      //System.out.println("Reading:\t" + file1.getCanonicalPath());
+      //      //System.out.println("Reading:\t" + file1.getCanonicalPath());
+      //      path = class1.getResource(file);
+      //      externalForm = path.toExternalForm();
+      //      if (externalForm.startsWith("file:")) {
+      //        externalForm = externalForm.substring(5);
+      //      }
+      //      File file1 = new File(externalForm);
+      //      boolean x = file1.canRead();
+      //      final InputStream resourceAsStream = new FileInputStream(file1);
       final InputStream resourceAsStream = class1.getResourceAsStream(file);
-      return new BufferedReader(new InputStreamReader(resourceAsStream, IdnaLabelTester.UTF8),1024*64);
+      InputStreamReader reader = new InputStreamReader(resourceAsStream, UTF8);
+      BufferedReader bufferedReader = new BufferedReader(reader,1024*64);
+      return bufferedReader;
     } catch (Exception e) {
       File file1 = new File(file);
-      throw (RuntimeException) new IllegalArgumentException("Bad file name: " + file1.getCanonicalPath()
+      throw (RuntimeException) new IllegalArgumentException("Bad file name: "
+              //              + path + "\t" + externalForm + "\t" + 
+              + file1.getCanonicalPath()
               + "\r\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())).initCause(e);
     }
   }
