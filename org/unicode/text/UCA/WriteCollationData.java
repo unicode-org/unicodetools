@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
- * $Date: 2009-10-05 22:23:38 $ 
- * $Revision: 1.56 $
+ * $Date: 2009-10-24 06:00:19 $ 
+ * $Revision: 1.57 $
  *
  *******************************************************************************
  */
@@ -4525,6 +4525,7 @@ F900..FAFF; CJK Compatibility Ideographs
     log.println("<p>Note: characters with decompositions to space + X, and tatweel + X are excluded,"
             + " as are a few special characters: " + compatibilityExceptions.toPattern(true) + "</p>");
 
+    checkDefaultIgnorables();
     checkWellformedTable();
     addClosure();
     writeDuplicates();
@@ -4554,6 +4555,42 @@ F900..FAFF; CJK Compatibility Ideographs
     System.out.println("Done");
   }
 
+
+  private static void checkDefaultIgnorables() {
+
+    int errorCount = 0;
+    System.out.println("Checking for defaultIgnorables");
+
+    log.println("<h2>5a. Checking for Default Ignorables</h2>");
+    ToolUnicodePropertySource ups = ToolUnicodePropertySource.make(Default.ucdVersion());
+    UnicodeSet di = ups.getSet("default_ignorable_code_point=true");
+    UnicodeSet bad = new UnicodeSet();
+    for (String diChar : di) {
+      CEList ceList = collator.getCEList(diChar, true);
+      for (int i = 0; i < ceList.count; ++i) {
+        int ce = ceList.at(i);
+        if (UCA.getPrimary(ce) != 0 || UCA.getSecondary(ce) != 0) {
+          bad.add(diChar);
+        }
+      }
+    }
+    errorCount = bad.size();
+    if (bad.size() == 0) {
+      log.println("<h3>No Bad Characters</h3>"); 
+    } else {
+      log.println(SERIOUS_ERROR);
+      UnicodeSet badUnassigned = ups.getSet("gc=cn").retainAll(bad);
+      UnicodeSet badAssigned = bad.removeAll(badUnassigned);
+      log.println("<h3>Bad Assigned Characters: " + badAssigned.size() + ": " + badAssigned +
+      		"</h3>"); 
+      for (String diChar : badAssigned) {
+        log.println("<p>" + ucd.getCodeAndName(diChar) + "</p>"); 
+      }
+      log.println("<h3>Bad Unassigned Characters: " + badUnassigned.size() + ": " + badUnassigned +
+      "</h3>"); 
+    }
+    log.flush(); 
+  }
 
   static void addClosure() {
     int canCount = 0;
