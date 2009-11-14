@@ -138,7 +138,7 @@ public class TestUnicodeInvariants {
       showLister.setTabber(tabber);
     }
 
-    symbolTable = new ChainedSymbolTable();
+    //symbolTable = new ChainedSymbolTable();
     //      new ChainedSymbolTable(new SymbolTable[] {
     //            ToolUnicodePropertySource.make(UCD.lastVersion).getSymbolTable("\u00D7"),
     //            ToolUnicodePropertySource.make(Default.ucdVersion()).getSymbolTable("")});
@@ -270,7 +270,7 @@ public class TestUnicodeInvariants {
         scan(PATTERN_WHITE_SPACE, line, pp, true);
         if (UnicodeSet.resemblesPattern(line, pp.getIndex())) {
           FilterOrProp propOrFilter = new FilterOrProp();
-          propOrFilter.filter = new UnicodeSet(line, pp, symbolTable);
+          propOrFilter.filter = parseUnicodeSet(line, pp);
           propOrFilter.type = FilterOrProp.Type.filter;
           result.propOrFilters.add(propOrFilter);
         } else {
@@ -564,7 +564,7 @@ public class TestUnicodeInvariants {
   private static PrintWriter out;
   private static BagFormatter errorLister;
   private static BagFormatter showLister;
-  private static ChainedSymbolTable symbolTable;
+  private static ChainedSymbolTable symbolTable = new ChainedSymbolTable();
   private static boolean doRange;
 
   private static void println(String line) {
@@ -742,5 +742,19 @@ public class TestUnicodeInvariants {
       }
       return set;
     }
+  }
+
+  public static UnicodeSet parseUnicodeSet(String line, ParsePosition pp) {
+    return new UnicodeSet(line, pp, symbolTable);
+  }
+  
+  public static UnicodeSet parseUnicodeSet(String line) {
+    ParsePosition pp = new ParsePosition(0);
+    UnicodeSet result = new UnicodeSet(line, pp, symbolTable);
+    int lengthUsed = pp.getIndex();
+    if (lengthUsed != line.length()) {
+      throw new IllegalArgumentException("Text after end of set: " + line.substring(0,lengthUsed) + "XXX" + line.substring(lengthUsed));
+    }
+    return result;
   }
 }
