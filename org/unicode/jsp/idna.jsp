@@ -40,7 +40,7 @@
 <hr>
 <h2 id='notes'>Notes</h2>
 <ol>
-<li>IDNA46 uses the mechanisms in <a href='http://unicode.org/reports/tr46'>(draft) Unicode UTS#46</a>,
+<li>UTS46 uses the mechanisms in <a href='http://unicode.org/reports/tr46'>(draft) Unicode UTS #46: Unicode IDNA Compatibility Processing</a>,
 which is designed to allow implementations to support both IDNA2008 and IDNA2003,
 without the compatibility problems resulting from the conflicts between them.</li>
 <li>Errors in labels are shown with &#xFFFD;.</li>

@@ -2,7 +2,6 @@ package org.unicode.jsp;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,7 +9,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.text.ParsePosition;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -28,17 +26,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.IdnaLabelTester;
-import org.unicode.cldr.draft.IdnaLabelTester.TestStatus;
 import org.unicode.cldr.util.Predicate;
-import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
-//import org.unicode.cldr.draft.IdnaLabelTester.TestStatus;
 
 import com.ibm.icu.dev.test.util.BNF;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Quoter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.VersionInfoTest;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
@@ -51,7 +45,6 @@ import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.StringTransform;
-import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -182,9 +175,9 @@ public class UnicodeUtilities {
 
   static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped) {
     UnicodeMap<String> result = new UnicodeMap<String>();
-    UnicodeSet unassigned = new UnicodeSet("[[:Cc:][:Cn:][:Co:][:Cs:]]");
+    UnicodeSet unassigned = UnicodeSetUtilities.parseUnicodeSet("[[:Cc:][:Cn:][:Co:][:Cs:]]");
     IdnaLabelTester tester = getIdna2008Tester();
-    UnicodeSet valid2008 = new UnicodeSet(tester.getVariable("$Valid"));
+    UnicodeSet valid2008 = UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"));
 
     for (int i = 0x80; i <= 0x10FFFF; ++i) {
       if ((i & 0xFFF) == 0) System.out.println(Utility.hex(i));
@@ -229,7 +222,7 @@ public class UnicodeUtilities {
    */
   
   static StringPrep nameprep = StringPrep.getInstance(StringPrep.RFC3491_NAMEPREP);
-  static UnicodeSet BADASCII = new UnicodeSet("[[\\u0000-\\u007F]-[\\-0-9A-Za-z]]").freeze();
+  static UnicodeSet BADASCII = UnicodeSetUtilities.parseUnicodeSet("[[\\u0000-\\u007F]-[\\-0-9A-Za-z]]").freeze();
   static String toIdna2003(String s) {
     String idna2003 = "\uFFFF";
     try {
@@ -337,123 +330,7 @@ public class UnicodeUtilities {
             isTitlecase).complement();
   }
 
-  static Object[][] specialProperties = {
-    {"isCaseFolded", isCaseFolded},
-    {"isUppercase", isUppercase},
-    {"isLowercase", isLowercase},
-    {"isTitlecase", isTitlecase},
-    {"isCased", isCased},
-    {"isNFC", new UnicodeSet("[:^nfcqc=n:]")},
-    {"isNFD", new UnicodeSet("[:^nfdqc=n:]")},
-    {"isNFKC", new UnicodeSet("[:^nfkcqc=n:]")},
-    {"isNFKD", new UnicodeSet("[:^nfkdqc=n:]")},
-  };
 
-  static final UnicodeSet UNASSIGNED = (UnicodeSet) new UnicodeSet("[:gc=unassigned:]").freeze();
-  static final UnicodeSet PRIVATE_USE = (UnicodeSet) new UnicodeSet("[:gc=privateuse:]").freeze();
-  static final UnicodeSet SURROGATE = (UnicodeSet) new UnicodeSet("[:gc=surrogate:]").freeze();
-
-  static final int SAMPLE_UNASSIGNED = 0xFFF0;
-  static final int SAMPLE_PRIVATE_USE = 0xE000;
-  static final int SAMPLE_SURROGATE = 0xD800;
-  static {
-    if (!UNASSIGNED.contains(SAMPLE_UNASSIGNED)) {
-      throw new IllegalArgumentException("Internal error");
-    }
-  }
-  static final UnicodeSet STUFF_TO_TEST = new UnicodeSet(UNASSIGNED)
-  .addAll(PRIVATE_USE).addAll(SURROGATE).complement()
-  .add(SAMPLE_UNASSIGNED).add(SAMPLE_PRIVATE_USE).add(SAMPLE_SURROGATE);
-
-  static UnicodeSet.XSymbolTable myXSymbolTable = new UnicodeSet.XSymbolTable() {
-    public boolean applyPropertyAlias(String propertyName,
-            String propertyValue, UnicodeSet result) {
-      if (propertyName.equalsIgnoreCase("idna")) {
-        return getIdnaProperty(propertyValue, result);
-      }
-      for (int i = 0; i < specialProperties.length; ++i) {
-        if (propertyName.equalsIgnoreCase((String) specialProperties[i][0])) {
-          result.clear().addAll((UnicodeSet) specialProperties[i][1]);
-          if (getBinaryValue(propertyValue)) {
-            result.complement();
-          }
-          return true;
-        }
-      }
-      int propertyEnum;
-      try {
-        propertyEnum = getXPropertyEnum(propertyName);
-      } catch (RuntimeException e) {
-        return false;
-      }
-      String trimmedPropertyValue = propertyValue.trim();
-      Normalizer.Mode compat = null;
-      if (trimmedPropertyValue.startsWith("*")) {
-        compat = Normalizer.NFC;
-        trimmedPropertyValue = trimmedPropertyValue.substring(1);
-        if (trimmedPropertyValue.startsWith("*")) {
-          compat = Normalizer.NFKC;
-          trimmedPropertyValue = trimmedPropertyValue.substring(1);
-        }
-      }
-      if (trimmedPropertyValue.startsWith("/") && trimmedPropertyValue.endsWith("/")) {
-        Matcher matcher = Pattern.compile(
-                trimmedPropertyValue.substring(1, trimmedPropertyValue.length() - 1)).matcher("");
-        result.clear();
-        boolean onlyOnce = propertyEnum >= UProperty.STRING_START
-        && propertyEnum < XSTRING_LIMIT;
-        for (UnicodeSetIterator it = new UnicodeSetIterator(STUFF_TO_TEST); it.next();) {
-          int cp = it.codepoint;
-          for (int nameChoice = UProperty.NameChoice.SHORT; nameChoice <= UProperty.NameChoice.LONG; ++nameChoice) {
-            String value = getXStringPropertyValue(propertyEnum, cp, nameChoice, compat);
-            if (value == null) {
-              continue;
-            }
-            if (matcher.reset(value).find()) {
-              result.add(cp);
-            }
-            if (onlyOnce) {
-              break;
-            }
-          }
-        }
-      } else if (propertyEnum >= UProperty.STRING_LIMIT
-              && propertyEnum < XSTRING_LIMIT) {
-        // support extra string routines
-        String fixedPropertyValue = UNICODE.transform(trimmedPropertyValue);
-        for (UnicodeSetIterator it = new UnicodeSetIterator(STUFF_TO_TEST); it.next();) {
-          int cp = it.codepoint;
-          String value = getXStringPropertyValue(propertyEnum, cp,
-                  UProperty.NameChoice.SHORT, compat);
-          if (fixedPropertyValue.equals(value)) {
-            result.add(cp);
-          }
-        }
-      } else if (compat != null) {
-        int valueEnum = UCharacter.getPropertyValueEnum(propertyEnum, trimmedPropertyValue);
-        String fixedValue = UCharacter.getPropertyValueName(propertyEnum, valueEnum, UProperty.NameChoice.LONG);
-        for (UnicodeSetIterator it = new UnicodeSetIterator(STUFF_TO_TEST); it.next();) {
-          int cp = it.codepoint;
-          String value = getXStringPropertyValue(propertyEnum, cp, UProperty.NameChoice.LONG, compat);
-          if (fixedValue.equals(value)) {
-            result.add(cp);
-          }
-        }
-      } else {
-        return false;
-      }
-      if (result.contains(SAMPLE_UNASSIGNED)) {
-        result.addAll(UNASSIGNED);
-      }
-      if (result.contains(SAMPLE_PRIVATE_USE)) {
-        result.addAll(PRIVATE_USE);
-      }
-      if (result.contains(SAMPLE_SURROGATE)) {
-        result.addAll(SURROGATE);
-      }
-      return true;
-    }
-  };
 
   static final int 
   TO_NFC = UProperty.STRING_LIMIT,
@@ -469,13 +346,13 @@ public class UnicodeUtilities {
   XSTRING_LIMIT = ARCHAIC + 1; 
 
   static List<String> XPROPERTY_NAMES = Arrays.asList(new String[]{"tonfc", "tonfd", "tonfkc", "tonfkd", "tocasefold", "tolowercase", "touppercase", "totitlecase", "subhead", "archaic"});
-  static final UnicodeSet MARK = (UnicodeSet) new UnicodeSet("[:M:]").freeze();
+  static final UnicodeSet MARK = (UnicodeSet) UnicodeSetUtilities.parseUnicodeSet("[:M:]").freeze();
 
   static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice, Normalizer.Mode compat) {
     if (compat == null || Normalizer.isNormalized(codepoint, compat, 0)) {
       return getXStringPropertyValue(propertyEnum, codepoint, nameChoice);
     }
-    String s = Normalizer.normalize(codepoint, compat);
+    String s = UnicodeSetUtilities.MyNormalize(codepoint, compat);
     int cp;
     String lastPart = null;
     for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
@@ -495,10 +372,10 @@ public class UnicodeUtilities {
   static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
 
     switch (propertyEnum) {
-    case TO_NFC: return Normalizer.normalize(codepoint, Normalizer.NFC, 0);
-    case TO_NFD: return Normalizer.normalize(codepoint, Normalizer.NFD, 0);
-    case TO_NFKC: return Normalizer.normalize(codepoint, Normalizer.NFKC, 0);
-    case TO_NFKD: return Normalizer.normalize(codepoint, Normalizer.NFKD, 0);
+    case TO_NFC: return UnicodeSetUtilities.MyNormalize(codepoint, Normalizer.NFC);
+    case TO_NFD: return UnicodeSetUtilities.MyNormalize(codepoint, Normalizer.NFD);
+    case TO_NFKC: return UnicodeSetUtilities.MyNormalize(codepoint, Normalizer.NFKC);
+    case TO_NFKD: return UnicodeSetUtilities.MyNormalize(codepoint, Normalizer.NFKD);
     case TO_CASEFOLD: return UCharacter.foldCase(UTF16.valueOf(codepoint), true);
     case TO_LOWERCASE: return UCharacter.toLowerCase(ULocale.ROOT, UTF16.valueOf(codepoint));
     case TO_UPPERCASE: return UCharacter.toUpperCase(ULocale.ROOT, UTF16.valueOf(codepoint));
@@ -522,27 +399,6 @@ public class UnicodeUtilities {
     return UCharacter.getPropertyEnum(propertyAlias);
   }
 
-  public static UnicodeSet OK_AT_END = (UnicodeSet) new UnicodeSet("[ \\]\t]").freeze();
-
-  public static UnicodeSet parseUnicodeSet(String input) {
-    input = input.trim() + "]]]]]";
-
-    String parseInput = (input.startsWith("[") ? "" : "[") + input + "]]]]]";
-    ParsePosition parsePosition = new ParsePosition(0);
-    UnicodeSet result = new UnicodeSet(parseInput, parsePosition, myXSymbolTable);
-    int parseEnd = parsePosition.getIndex();
-    if (parseEnd != parseInput.length() && !OK_AT_END.containsAll(parseInput.substring(parseEnd))) {
-      parseEnd--; // get input offset
-      throw new IllegalArgumentException("Additional characters past the end of the set, at " 
-              + parseEnd + ", ..." 
-              + input.substring(Math.max(0, parseEnd - 10), parseEnd)
-              + "|"
-              + input.substring(parseEnd, Math.min(input.length(), parseEnd + 10))
-      );
-    }
-    return result;
-  }
-
   protected static boolean getIdnaProperty(String propertyValue,
           UnicodeSet result) {
     int i = 0;
@@ -562,7 +418,7 @@ public class UnicodeUtilities {
     return true;
   }
 
-  private static boolean getBinaryValue(String propertyValue) {
+  static boolean getBinaryValue(String propertyValue) {
     boolean invert;
     if (propertyValue.length() == 0 || propertyValue.equalsIgnoreCase("true")
             || propertyValue.equalsIgnoreCase("t")
@@ -652,7 +508,7 @@ public class UnicodeUtilities {
     }
   }
 
-  static private UnicodeSet RTL= new UnicodeSet("[[:bc=R:][:bc=AL:]]");
+  static private UnicodeSet RTL= UnicodeSetUtilities.parseUnicodeSet("[[:bc=R:][:bc=AL:]]");
 
   private static String showCodePoint(int codepoint) {
     return showCodePoint(UTF16.valueOf(codepoint));
@@ -750,8 +606,8 @@ public class UnicodeUtilities {
     String a_out;
     a.clear();
     try {
-      setA = Normalizer.normalize(setA, Normalizer.NFC);
-      a.addAll(parseUnicodeSet(setA));
+      setA = UnicodeSetUtilities.MyNormalize(setA, Normalizer.NFC);
+      a.addAll(UnicodeSetUtilities.parseUnicodeSet(setA));
       a_out = getPrettySet(a, abbreviate, escape);
     } catch (Exception e) {
       a_out = e.getMessage();
@@ -759,9 +615,9 @@ public class UnicodeUtilities {
     return a_out;
   }
 
-  static final UnicodeSet MAPPING_SET = new UnicodeSet("[:^c:]");
+  static final UnicodeSet MAPPING_SET = UnicodeSetUtilities.parseUnicodeSet("[:^c:]");
 
-  private static final UnicodeSet ASCII = new UnicodeSet("[:ASCII:]");
+  private static final UnicodeSet ASCII = UnicodeSetUtilities.parseUnicodeSet("[:ASCII:]");
 
   //public static boolean haveCaseFold = false;
 
@@ -816,7 +672,7 @@ public class UnicodeUtilities {
     // see if sample is a UnicodeSet
     if (UnicodeSet.resemblesPattern(sample, 0)) {
       try {
-        set = new UnicodeSet(sample);
+        set = UnicodeSetUtilities.parseUnicodeSet(sample);
       } catch (Exception e) {}
     }
     if (set == null) {
@@ -939,18 +795,6 @@ public class UnicodeUtilities {
 //    haveCaseFold = true;
 //  }
   
-  static class NFKC_CF implements StringTransform {
-    static Matcher DI = Pattern.compile(UnicodeRegex.fix("[:di:]")).matcher("");
-    public String transform(String source) {
-      String s0 = UCharacter.foldCase(source, true);
-      String s1 = Normalizer.normalize(s0, Normalizer.NFKC);
-      String s2 = UCharacter.foldCase(s1, true);
-      String s3 = DI.reset(s2).replaceAll("");
-      String s4 = Normalizer.normalize(s3,Normalizer.NFKC);
-      return s4;
-    }
-  }
-  
   static class FilteredStringTransform implements StringTransform {
     final UnicodeSet toExclude;
     final StringTransform trans;
@@ -977,7 +821,7 @@ public class UnicodeUtilities {
     if (a.size() < 10000 && !abbreviate) {
       PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY));
       if (escape) {
-        pp.setToQuote(new UnicodeSet("[^\\u0021-\\u007E]"));
+        pp.setToQuote(UnicodeSetUtilities.parseUnicodeSet("[^\\u0021-\\u007E]"));
       }
       a_out = toHTML(pp.format(a));
     } else {
@@ -1012,8 +856,8 @@ public class UnicodeUtilities {
   public static UnicodeSet  parseSimpleSet(String setA, String[] exceptionMessage) {
     try {
       exceptionMessage[0] = null;
-      //setA = Normalizer.normalize(setA, Normalizer.NFC);
-      return parseUnicodeSet(setA);
+      //setA = MyNormalize(setA, Normalizer.NFC);
+      return UnicodeSetUtilities.parseUnicodeSet(setA);
     } catch (Exception e) {
       exceptionMessage[0] = e.getMessage();
     }
@@ -1040,14 +884,14 @@ public class UnicodeUtilities {
     String ab;
 
     // try {
-    // setA = Normalizer.normalize(setA, Normalizer.NFC);
+    // setA = MyNormalize(setA, Normalizer.NFC);
     // a = UnicodeUtilities.parseUnicodeSet(setA);
     // } catch (Exception e) {
     // a_b = e.getMessage();
     // }
     // UnicodeSet b = null;
     // try {
-    // setB = Normalizer.normalize(setB, Normalizer.NFC);
+    // setB = MyNormalize(setB, Normalizer.NFC);
     // b = UnicodeUtilities.parseUnicodeSet(setB);
     // } catch (Exception e) {
     // b_a = e.getMessage();
@@ -1158,19 +1002,19 @@ public class UnicodeUtilities {
       alpha.put("toTitlecase", x);
     }
 
-    String nfc = x = Normalizer.normalize(text, Normalizer.NFC);
+    String nfc = x = UnicodeSetUtilities.MyNormalize(text, Normalizer.NFC);
     if (!text.equals(x)) {
       alpha.put("toNFC", x);
     }
-    String nfd = x = Normalizer.normalize(text, Normalizer.NFD);
+    String nfd = x = UnicodeSetUtilities.MyNormalize(text, Normalizer.NFD);
     if (!text.equals(x)) {
       alpha.put("toNFD", x);
     }
-    x = Normalizer.normalize(text, Normalizer.NFKD);
+    x = UnicodeSetUtilities.MyNormalize(text, Normalizer.NFKD);
     if (!text.equals(x)) {
       alpha.put("toNFKD", x);
     }
-    x = Normalizer.normalize(text, Normalizer.NFKC);
+    x = UnicodeSetUtilities.MyNormalize(text, Normalizer.NFKC);
     if (!text.equals(x)) {
       alpha.put("toNFKC", x);
     }
@@ -1288,7 +1132,7 @@ public class UnicodeUtilities {
                 valueOrder.put(valueName, shortValueName != null ? shortValueName : "");
               } else if (propIndex == UProperty.CANONICAL_COMBINING_CLASS) {
                 String posVal = String.valueOf(valueIndex);
-                if (new UnicodeSet("[:ccc=" + posVal + ":]").size() != 0) {
+                if (UnicodeSetUtilities.parseUnicodeSet("[:ccc=" + posVal + ":]").size() != 0) {
                   valueOrder.put(posVal, posVal);
                 }
               }
@@ -1389,7 +1233,7 @@ public class UnicodeUtilities {
   }
 
   static IdnaLabelTester tester = null;
-  static String removals = new UnicodeSet("[\u1806[:di:]-[:cn:]]").complement().complement().toPattern(false);
+  static String removals = UnicodeSetUtilities.parseUnicodeSet("[\u1806[:di:]-[:cn:]]").complement().complement().toPattern(false);
   static Matcher rem = Pattern.compile(removals).matcher("");
   static String defaultIdnaInput = "\u0001.com"
     +"\nöbb.at ÖBB.at ÖBB.at"
@@ -1510,7 +1354,7 @@ public class UnicodeUtilities {
   static Pattern DOT = Pattern.compile("[.]");
 
   static Row.R2<String, String> getIdna2033(String input) {
-    String normInput = Normalizer.normalize(input, Normalizer.NFKC);
+    String normInput = UnicodeSetUtilities.MyNormalize(input, Normalizer.NFKC);
     StringBuffer idna2003 = new StringBuffer();
     StringBuffer idna2003back = new StringBuffer();
 

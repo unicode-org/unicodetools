@@ -1,9 +1,11 @@
 package org.unicode.jsp;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -14,17 +16,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.Log;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.util.BNF;
+import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Quoter;
+import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
@@ -41,14 +50,21 @@ public class TestJsp  extends TestFmwk {
   static String IPA_SAMPLE = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, æ, ç, ð, ø, ħ, ŋ, œ, ǀ, ǁ, ǂ, ǃ, ɐ, ɑ, ɒ, ɓ, ɔ, ɕ, ɖ, ɗ, ɘ, ə, ɚ, ɛ, ɜ, ɝ, ɞ, ɟ, ɠ, ɡ, ɢ, ɣ, ɤ, ɥ, ɦ, ɧ, ɨ, ɪ, ɫ, ɬ, ɭ, ɮ, ɯ, ɰ, ɱ, ɲ, ɳ, ɴ, ɵ, ɶ, ɸ, ɹ, ɺ, ɻ, ɽ, ɾ, ʀ, ʁ, ʂ, ʃ, ʄ, ʈ, ʉ, ʊ, ʋ, ʌ, ʍ, ʎ, ʏ, ʐ, ʑ, ʒ, ʔ, ʕ, ʘ, ʙ, ʛ, ʜ, ʝ, ʟ, ʡ, ʢ, ʤ, ʧ, ʰ, ʱ, ʲ, ʴ, ʷ, ʼ, ˈ, ˌ, ː, ˑ, ˞, ˠ, ˤ, ̀, ́, ̃, ̄, ̆, ̈, ̊, ̋, ̏, ̐, ̑, ̒, ̓, ̔, ̕, ̖, ̗, ̘, ̙, ̚, ̛, ̜, ̝, ̞, ̟, ̠, ̡, ̢, ̣, ̤, ̥, ̦, ̧, ̨, ̩, ̪, ̫, ̬, ̭, ̮, ̯, ̰, ̱, ̲, ̳, ̴, ̹, ̺, ̻, ̼, ̽, ͜, ͡, β, θ, χ, ↑, →, ↓, ↗, ↘";
 
   enum Subtag {language, script, region, mixed, fail}
-  
+
   public void TestIdnaDifferences() {
     PrettyPrinter pretty = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ENGLISH));
     UnicodeSet remapped = new UnicodeSet();
     UnicodeMap<String> map = UnicodeUtilities.getIdnaDifferences(remapped);
-    for (String value : new TreeSet<String>(map.values())) {
+    TreeSet<String> ordered = new TreeSet<String>(new InverseComparator());
+    ordered.addAll(map.values());
+    int max = 1000;
+    for (String value : ordered) {
       UnicodeSet set = map.getSet(value);
-      System.out.println(set.size() + "\t" + value + "\t" + pretty.format(set));
+      String prettySet = pretty.format(set);
+      if (prettySet.length() > max) {
+        prettySet = prettySet.substring(0,max) + "...";
+      }
+      System.out.println(set.size() + "\t" + value + "\t" + prettySet);
     }
     Transliterator name = Transliterator.getInstance("name");
     System.out.println("Code\tUts46\tidna2003\tCode\tUts46\tidna2003");
@@ -59,7 +75,7 @@ public class TestJsp  extends TestFmwk {
       if (!uts46.equals(idna2003)) {
         System.out.println(Utility.hex(s) + "\t" + Utility.hex(uts46) + "\t" + Utility.hex(idna2003)
                 + "\t" + name.transform(s) + "\t" + name.transform(uts46) + "\t" + name.transform(idna2003)
-                );
+        );
       }
     }
   }
@@ -328,7 +344,7 @@ public class TestJsp  extends TestFmwk {
     //    "[\u02EF-\u02FF\u0363-\u0373\u0376\u0377\u07E8-\u07EA\u1DCE-\u1DE6\u1DFE\u1DFF\u1E9C\u1E9D\u1E9F\u1EFA-\u1EFF\u2056\u2058-\u205E\u2180-\u2183\u2185-\u2188\u2C77-\u2C7D\u2E00-\u2E17\u2E2A-\u2E30\uA720\uA721\uA730-\uA778\uA7FB-\uA7FF]" +
     //    "[\u0269\u027F\u0285-\u0287\u0293\u0296\u0297\u029A\u02A0\u02A3\u02A5\u02A6\u02A8-\u02AF\u0313\u037B-\u037D\u03CF\u03FD-\u03FF]" +
     //"";
-    UnicodeUtilities.showSet(UnicodeUtilities.parseUnicodeSet("[:archaic=/.+/:]"),false, false, printWriter);
+    UnicodeUtilities.showSet(UnicodeSetUtilities.parseUnicodeSet("[:archaic=/.+/:]"),false, false, printWriter);
 
     UnicodeUtilities.showPropsTable(printWriter);
   }
@@ -366,7 +382,7 @@ public class TestJsp  extends TestFmwk {
   }
 
   void checkProperties(String testString) {
-    UnicodeSet tc1 = UnicodeUtilities.parseUnicodeSet(testString);
+    UnicodeSet tc1 = UnicodeSetUtilities.parseUnicodeSet(testString);
     logln(tc1 + "\t=\t" + tc1.complement().complement());
   }
 
@@ -392,12 +408,12 @@ public class TestJsp  extends TestFmwk {
 
     expectError("][:idna=output:][abc]");
 
-    assertTrue("contains hyphen", UnicodeUtilities.parseUnicodeSet("[:idna=output:]").contains('-'));
+    assertTrue("contains hyphen", UnicodeSetUtilities.parseUnicodeSet("[:idna=output:]").contains('-'));
   }
 
   public void expectError(String input) {
     try {
-      UnicodeUtilities.parseUnicodeSet(input);
+      UnicodeSetUtilities.parseUnicodeSet(input);
       errln("Failure to detect syntax error.");
     } catch (IllegalArgumentException e) {
       logln("Expected error: " + e.getMessage());
@@ -500,4 +516,107 @@ public class TestJsp  extends TestFmwk {
     String random = UnicodeUtilities.getBnf(fixedbnf2, 100, 10);
     logln(random);
   }
+
+  public void TestGenerateDataFile() throws IOException {
+    //final UnicodeMap<String> results = new UnicodeMap();
+    final UnicodeMap<String> hex_results = new UnicodeMap<String>();
+    final UnicodeMap<String> hex_results_requiring_nfkc = new UnicodeMap<String>();
+    //hex_results.putAll(0,0x10FFFF,"valid");
+    //hex_results.putAll(new UnicodeSet("[:cn:]"), "disallowed");
+    //hex_results.putAll(new UnicodeSet("[:noncharactercodepoint:]"), "disallowed");
+    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+      String s = UTF16.valueOf(cp);
+      String nfc = toNfc(s);
+      String nfkc = Normalizer.normalize(s, Normalizer.NFKC);
+      String uts46 = Uts46.toUts46(s);
+      int statusInt = Uts46.getUts46Type(cp);
+      String status = Uts46.IdnaNames[statusInt];
+      if (Uts46.DEVIATIONS.contains(cp)) {
+        status = "deviation";
+      }
+      if (statusInt == UnicodeUtilities.REMAPPED) {
+        status += Utility.repeat(" ", 10-status.length()) + " ; " + Utility.hex(uts46);
+      }
+      hex_results.put(cp, status);
+//      hex_results.put(cp, status==UnicodeUtilities.IGNORED ? "ignored"
+//              : UnicodeUtilities. ? "disallowed"
+//                      : s.equals(uts46) ? "valid"
+//                              //: nfc.equals(uts46) ? "needs_nfc"
+//                                      : Utility.hex(uts46, " "));
+//
+//      hex_results_requiring_nfkc.put(cp, uts46.length() == 0 ? "ignored"
+//              : !Uts46.Uts46Chars.containsAll(uts46) ? "disallowed"
+//                      : s.equals(uts46) ? "valid"
+//                              : nfkc.equals(uts46) ? "needs_nfkc"
+//                                      : Utility.hex(uts46, " "));
+    }
+    BagFormatter bf = new BagFormatter();
+    bf.setLabelSource(null);
+    bf.setRangeBreakSource(null);
+    bf.setShowCount(false);
+    bf.setNameSource(new UnicodeLabel() {
+
+      @Override
+      public String getValue(int codepoint, boolean isShort) {
+        //String target = results.get(codepoint);
+        return UCharacter.getExtendedName(codepoint);
+      }
+
+    });
+
+    //    String sourceName = UCharacter.getName(cp);
+    //    String targetName = UCharacter.getName(uts46, " + ");
+    //    String names = (sourceName != null && targetName != null) ? "#\t" + sourceName + " \u2192 " + targetName : "";
+    //    System.out.println(Utility.hex(s) + ";\t" + Utility.hex(uts46) 
+    //            + ";\t" + names
+    //                );
+    writeIdnaDataFile(hex_results, bf, "NFC", "uts46-data-5.1.txt");
+    //writeIdnaDataFile(hex_results_requiring_nfkc, bf, "NFKC", "uts46-data-pre-nfkc-5.1.txt");
+  }
+
+
+
+  private String toNfc(String s) {
+    return Normalizer.normalize(s, Normalizer.NFC);
+  }
+
+
+
+  private void writeIdnaDataFile(final UnicodeMap<String> hex_results, BagFormatter bf, String normalizationForm2, String filename) throws IOException {
+    PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace35/draft/reports/tr46/", filename);
+    String normalizationForm = normalizationForm2;
+    writer.println("# DRAFT " + filename + "\n" +
+            "# Date: " + new Date() + " [MD]\n" +
+            "#\n" +
+            "# Unicode IDNA Compatible Preprocessing (IDNA46)\n" +
+            "# Copyright (c) 1991-2009 Unicode, Inc.\n" +
+            "# For terms of use, see http://www.unicode.org/terms_of_use.html\n" +
+            "# For documentation, see http://www.unicode.org/reports/tr46/\n" +
+            "# Warning: requires application of " +
+            normalizationForm +
+            " after mapping\n" +
+    "\n");
+    bf.setValueSource(new UnicodeProperty.UnicodeMapProperty().set(hex_results));
+    writer.println(bf.showSetNames(hex_results.keySet()));
+    writer.close();
+  }
+  
+  public static class InverseComparator implements Comparator {
+    private Comparator other;
+
+    public InverseComparator() {
+      this.other = null;
+    }
+
+    public InverseComparator(Comparator other) {
+      this.other = other;
+    }
+
+    public int compare(Object a, Object b) {
+      return other == null 
+      ? ((Comparable)b).compareTo(a) 
+              : other.compare(b, a);
+    }
+  }
+
 }
