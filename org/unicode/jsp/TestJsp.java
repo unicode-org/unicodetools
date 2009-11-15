@@ -29,18 +29,23 @@ import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
+import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 
 public class TestJsp  extends TestFmwk {
 
+  private static final String AGE = System.getProperty("age");
   private static final String enSample = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z";
+  private static final UnicodeSet OVERALL_ALLOWED = new UnicodeSet().applyPropertyAlias("age", AGE).freeze();
 
   public static void main(String[] args) throws Exception {
     new TestJsp().run(args);
@@ -57,7 +62,7 @@ public class TestJsp  extends TestFmwk {
     UnicodeMap<String> map = UnicodeUtilities.getIdnaDifferences(remapped);
     TreeSet<String> ordered = new TreeSet<String>(new InverseComparator());
     ordered.addAll(map.values());
-    int max = 1000;
+    int max = 200;
     for (String value : ordered) {
       UnicodeSet set = map.getSet(value);
       String prettySet = pretty.format(set);
@@ -529,7 +534,7 @@ public class TestJsp  extends TestFmwk {
       String nfc = toNfc(s);
       String nfkc = Normalizer.normalize(s, Normalizer.NFKC);
       String uts46 = Uts46.toUts46(s);
-      int statusInt = Uts46.getUts46Type(cp);
+      int statusInt = Uts46.getUts46Type(cp, OVERALL_ALLOWED);
       String status = Uts46.IdnaNames[statusInt];
       if (Uts46.DEVIATIONS.contains(cp)) {
         status = "deviation";
@@ -570,7 +575,7 @@ public class TestJsp  extends TestFmwk {
     //    System.out.println(Utility.hex(s) + ";\t" + Utility.hex(uts46) 
     //            + ";\t" + names
     //                );
-    writeIdnaDataFile(hex_results, bf, "NFC", "uts46-data-5.1.txt");
+    writeIdnaDataFile(hex_results, bf, "NFC", "IdnaMappingTable");
     //writeIdnaDataFile(hex_results_requiring_nfkc, bf, "NFKC", "uts46-data-pre-nfkc-5.1.txt");
   }
 
@@ -580,23 +585,42 @@ public class TestJsp  extends TestFmwk {
     return Normalizer.normalize(s, Normalizer.NFC);
   }
 
+  static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
+  static {
+    dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+  }
 
 
-  private void writeIdnaDataFile(final UnicodeMap<String> hex_results, BagFormatter bf, String normalizationForm2, String filename) throws IOException {
+  private void writeIdnaDataFile(final UnicodeMap<String> hex_results, BagFormatter bf, String normalizationForm2, String filenameStem) throws IOException {
+    String filename = filenameStem + "-" + AGE + ".0.txt";
     PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace35/draft/reports/tr46/", filename);
     String normalizationForm = normalizationForm2;
-    writer.println("# DRAFT " + filename + "\n" +
-            "# Date: " + new Date() + " [MD]\n" +
+    writer.println("# " + filename + "- DRAFT\n" +
+            "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
             "#\n" +
-            "# Unicode IDNA Compatible Preprocessing (IDNA46)\n" +
+            "# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
             "# Copyright (c) 1991-2009 Unicode, Inc.\n" +
             "# For terms of use, see http://www.unicode.org/terms_of_use.html\n" +
-            "# For documentation, see http://www.unicode.org/reports/tr46/\n" +
-            "# Warning: requires application of " +
-            normalizationForm +
-            " after mapping\n" +
-    "\n");
+            "# For documentation, see http://www.unicode.org/reports/tr46/\n");
+    
+//    # IdnaMappingTable-5.1.0.txt - DRAFT
+//    # Date: 2009-11-14 08:10:42 GMT [MD]
+//    #
+//    # Unicode IDNA Compatible Preprocessing (UTS #46)
+//    # Copyright (c) 1991-2009 Unicode, Inc.
+//    # For terms of use, see http://www.unicode.org/terms_of_use.html
+//    # For documentation, see http://www.unicode.org/reports/tr46/
+
     bf.setValueSource(new UnicodeProperty.UnicodeMapProperty().set(hex_results));
+    final UnicodeLabel oldLabel = bf.getNameSource();
+    bf.setNameSource(new UnicodeLabel() {
+      public String getValue(int codepoint, boolean isShort) {
+        if (OVERALL_ALLOWED.contains(codepoint)) {
+          return oldLabel.getValue(codepoint, isShort);
+        }
+        return "<unassigned-" + Utility.hex(codepoint) + ">";
+      }   
+    });
     writer.println(bf.showSetNames(hex_results.keySet()));
     writer.close();
   }

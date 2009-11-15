@@ -186,9 +186,9 @@ public class UnicodeUtilities {
       }
       if (unassigned.contains(i)) continue;
       boolean isNew = UCharacter.getAge(i).compareTo(VersionInfo.UNICODE_3_2) > 0;
-      String age = isNew ? "v4.0-5.1" : "v3.2";
+      String age = isNew ? "v4.0-5.2" : "v3.2";
       int idna2003 = getIDNA2003Type2(UTF16.valueOf(i));
-      int tr46 = Uts46.getUts46Type(i);
+      int tr46 = Uts46.getUts46Type(i, null);
       if (isNew) {// skip
       } else if (tr46 == REMAPPED || idna2003 == REMAPPED) {
         remapped.add(i);
@@ -215,7 +215,11 @@ public class UnicodeUtilities {
 
   private static String getShortName(int tr46) {
     // TODO Auto-generated method stub
-    return UCharacter.toTitleCase(tr46==OUTPUT ? "Valid" : IdnaNames[tr46], null);
+    return UCharacter.toTitleCase(
+            tr46==OUTPUT ? "Valid" 
+                    : tr46==IGNORED || tr46==REMAPPED ? "Mapped/Ignored" 
+            : IdnaNames[tr46]
+                        , null);
   }
   /**
    * 
