@@ -8,7 +8,8 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class Uts46 {
 
-  static UnicodeSet LABEL_SEPARATORS = new UnicodeSet("[\u002E\uFF0E\u3002\uFF61]");
+  private static final String LABEL_SEPARATOR_STRING = "[\u002E\uFF0E\u3002\uFF61]";
+  static UnicodeSet LABEL_SEPARATORS = new UnicodeSet(LABEL_SEPARATOR_STRING);
   static UnicodeSet DEVIATIONS = new UnicodeSet("[\\u200C \\u200D \u00DF \u03C2]");
   static final String[] IdnaNames = { "valid", "ignored", "mapped", "disallowed" };
 
@@ -16,7 +17,7 @@ public class Uts46 {
           " - [:c:] - [:z:]" +
           " - [:Block=Ideographic_Description_Characters:]" +
           "- [:ascii:] - [\uFFFC \uFFFD]" +
-          " [\u002Da-zA-Z0-9]" +
+          " [\\u002D\\u002Ea-zA-Z0-9]" +
           "]")
           .freeze();
   static UnicodeSet UtsExclusions = UnicodeSetUtilities.parseUnicodeSet("[" +
@@ -37,9 +38,9 @@ public class Uts46 {
   static UnicodeSet Uts46CharsDisplay = UnicodeSetUtilities.parseUnicodeSet("[\u00DF\u03C2\u200D\u200C]").addAll(Uts46.Uts46Chars).freeze();
 
   static StringTransform nfkcCasefold = new UnicodeSetUtilities.NFKC_CF(); // Transliterator.getInstance("nfkc; casefold; [:di:] remove; nfkc;");
-  static StringTransform foldDisplay = new UnicodeUtilities.FilteredStringTransform(
-          UnicodeSetUtilities.parseUnicodeSet("[ßς\u200C\u200D]"), nfkcCasefold); // Transliterator.getInstance("nfkc; casefold; [:di:] remove; nfkc;");
+  static StringTransform foldDisplay = new UnicodeUtilities.FilteredStringTransform(DEVIATIONS, nfkcCasefold); 
   static StringTransform fixIgnorables = Transliterator.createFromRules("foo",
+          LABEL_SEPARATOR_STRING + "> \\u002E ;" +
           "[\\u200E\\u200F\\u202A-\\u202E\\u2061-\\u2063\\u206A-\\u206F\\U0001D173-\\U0001D17A\\U000E0001\\U000E0020-\\U000E007F] > \\uFFFF;" +
           "[᠆] > ;" +
           "[\\u17B4\\u17B5\\u115F\\u1160\\u3164\\uFFA0] > \\uFFFF",
@@ -50,13 +51,19 @@ public class Uts46 {
     return nfkcCasefold.transform(line2);
   }
   
-  static int getUts46Type(int i) {
+  static int getUts46Type(int i, UnicodeSet overallAllowed) {
     String strChar = UTF16.valueOf(i);
     String remapped = Uts46.toUts46(strChar);
     if (remapped.length() == 0) {
       return UnicodeUtilities.IGNORED;
     }
-    if (UtsExclusions.contains(i) || !Uts46.Uts46Chars.containsAll(remapped)) {
+    if (!overallAllowed.contains(i)) {
+      return UnicodeUtilities.DISALLOWED;
+    }
+    if (UtsExclusions.contains(i)) {
+      return UnicodeUtilities.DISALLOWED;
+    }
+    if (!Uts46.Uts46Chars.containsAll(remapped)) {
       return UnicodeUtilities.DISALLOWED;
     }
     if (remapped.equals(strChar)) {
