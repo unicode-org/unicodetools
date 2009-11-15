@@ -3,13 +3,13 @@
 <head>
 <meta http-equiv="Content-Language" content="en-us">
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-<title>Unicode Utilities</title>
+<title>Unicode Utilities: Description and Index</title>
 <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
 
-<h1>Unicode Utilities</h1>
+<h1>Unicode Utilities: Description and Index</h1>
 <%@ include file="others.jsp" %>
 <table><tr><td width='33%'>
 <h2>Boundaries</h2>

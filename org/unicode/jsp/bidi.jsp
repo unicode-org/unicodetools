@@ -1,7 +1,7 @@
 <html>
 <head>
 <%@ include file="header.jsp" %>
-<title>UBA Demo</title>
+<title>Unicode Utilities: BIDI (UBA)</title>
 <script type="text/javascript">
 
 function displaymessage() {
@@ -41,7 +41,7 @@ function insert(myField, myValue) {
         int p2 = p.equals("LTR") ? 0 : p.equals("RTL") ? 1 : -1;
         // 
 %>
-<h1>UBA Demo</h1>
+<h1>Unicode Utilities: BIDI (UBA)</h1>
 <%@ include file="others.jsp" %>
 <p>Shows processing by the UBA (<a target='doc' href='http://unicode.org/reports/tr9/'>Unicode Bidi Algorithm</a>), which is used to display all Unicode Arabic and Hebrew text.
 For more information, see <a target='doc' href='http://cldr.unicode.org/unicode-utilities/bidi'>bidi info</a>.</p>

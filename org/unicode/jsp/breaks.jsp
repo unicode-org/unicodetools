@@ -2,7 +2,7 @@
 
 <head>
 <%@ include file="header.jsp" %>
-<title>Unicode Break Demo</title>
+<title>Unicode Utilities: Breaks (Segmentation)</title>
 <style>
 <!--
 td {vertical-align: top}
@@ -21,7 +21,7 @@ span.break   { border-right: 1px solid red;}
 		String choice = request.getParameter("D1");
 		if (choice == null) choice = "Word";
 %>
-<h1>Unicode Break Demo</h1>
+<h1>Unicode Utilities: Breaks (Segmentation)</h1>
 <%@ include file="others.jsp" %>
 <form name="myform" action="<%= request.getContextPath() + request.getServletPath() %>" method="POST">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
