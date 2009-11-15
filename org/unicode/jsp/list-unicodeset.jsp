@@ -1,7 +1,7 @@
 <html>
 <head>
 <%@ include file="header.jsp" %>
-<title>UnicodeSet Demo</title>
+<title>Unicode Utilities: UnicodeSet</title>
 </head>
 <body>
 <%
@@ -27,7 +27,7 @@
 		String sizeStr = nf.format(a.size());
 		//   action="http://unicode.org/cldr/utility/list-unicodeset.jsp" method="POST"
 %>
-<h1>UnicodeSet Demo</h1>
+<h1>Unicode Utilities: UnicodeSet</h1>
 <%@ include file="others.jsp" %>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">

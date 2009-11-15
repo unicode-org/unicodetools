@@ -1,7 +1,7 @@
 <html>
 <head>
 <%@ include file="header.jsp" %>
-<title>UnicodeSet Comparison Demo</title>
+<title>Unicode Utilities: UnicodeSet Comparison</title>
 </head>
 <body>
 <%
@@ -24,7 +24,7 @@
 		
 		NumberFormat nf = NumberFormat.getIntegerInstance();
 %>
-<h1>UnicodeSet Demo</h1>
+<h1>Unicode Utilities: UnicodeSet Comparison</h1>
 <%@ include file="others.jsp" %>
 <form name="myform" action="http://unicode.org/cldr/utility/unicodeset.jsp" method="POST">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">

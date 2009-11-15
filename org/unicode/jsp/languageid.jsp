@@ -1,7 +1,7 @@
 <html>
 <head>
 <%@ include file="header.jsp" %>
-<title>Unicode Language ID Demo</title>
+<title>Unicode Utilities: Unicode Language Identifers and BCP47</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         
         String table = UnicodeUtilities.validateLanguageID(languageCode, choice); 
 %>
-<h1>Unicode Language Identifier Demo</h1>
+<h1>Unicode Utilities: Unicode Language Identifers and BCP47</h1>
 <%@ include file="others.jsp" %>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">

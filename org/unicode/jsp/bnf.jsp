@@ -1,7 +1,7 @@
 <html>
 <head>
 <%@ include file="header.jsp" %>
-<title>Unicode BNF-Regex Utility Demo</title>
+<title>Unicode Utilities: BNF-Regex</title>
 </head>
 
 <body>
@@ -41,7 +41,7 @@
             fixedbnf = e.getMessage();
         }
 %>
-<h1>Unicode BNF Utility Demo</h1>
+<h1>Unicode Utilities: BNF-Regex</h1>
 <%@ include file="others.jsp" %>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">

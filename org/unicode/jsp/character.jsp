@@ -1,7 +1,7 @@
 ﻿<html>
 <head>
 <%@ include file="header.jsp" %>
-<title>Unicode Property Demo</title>
+<title>Unicode Utilities: Character Properties</title>
 <link rel="stylesheet" type="text/css" href="index.css">
 <style>
 <!--
@@ -12,7 +12,7 @@ th           { text-align: left }
 
 <body>
 
-<h1>Unicode Property Demo</h1>
+<h1>Unicode Utilities: Character Properties</h1>
 <%@ include file="others.jsp" %>
 <form name="myform" action="http://unicode.org/cldr/utility/character.jsp" method="POST">
   <%

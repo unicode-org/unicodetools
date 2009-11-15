@@ -1,7 +1,7 @@
 <html>
 <head>
 <%@ include file="header.jsp" %>
-<title>Unicode Transform Demo</title>
+<title>Unicode Utilities: Transforms</title>
 </head>
 <body>
 <%
@@ -15,7 +15,7 @@
         String sample = utfParameters.getParameter("b", "The Quick Brown Fox?\n\u24B6\u24D1\u24D2\u24D3");
         boolean show = !"off".equals(utfParameters.getParameter("show", "off"));
 %>
-<h1>Unicode Transform Demo</h1>
+<h1>Unicode Utilities: Transforms</h1>
 <%@ include file="others.jsp" %>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">

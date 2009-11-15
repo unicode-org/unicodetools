@@ -1,7 +1,7 @@
 ﻿<html>
 <head>
 <%@ include file="header.jsp" %>
-<title>Unicode Property List</title>
+<title>Unicode Utilities: Character Property Index</title>
 <style>
 <!--
 th           { text-align: left }
@@ -11,7 +11,7 @@ th           { text-align: left }
 
 <body>
 
-<h1>Unicode Property List</h1>
+<h1>Unicode Utilities: Character Property Index</h1>
 <%@ include file="others.jsp" %>
 <%
 		request.setCharacterEncoding("UTF-8");

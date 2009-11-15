@@ -1,7 +1,7 @@
 <html>
 <head>
 <%@ include file="header.jsp" %>
-<title>IDNA Demo</title>
+<title>Unicode Utilities: Internationalized Domain Names (IDN)</title>
 </head>
 
 <body>
@@ -19,12 +19,12 @@
         }
         String fixedRegex = UnicodeUtilities.testIdnaLines(IDNA2008, "");
 %>
-<h1>Unicode IDNA Demo</h1>
+<h1>Unicode Utilities: Internationalized Domain Names (IDN)</h1>
 <%@ include file="others.jsp" %>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
-      <th>Enter International Domains:</th>
+      <th>Enter International Domain Names:</th>
       <th class='r'>For special characters, you can use <a target="picker" href="http://macchiato.com/picker/MyApplication.html">Picker</a></th>
     </tr>
     <tr>
@@ -40,21 +40,21 @@
 <hr>
 <h2 id='notes'>Notes</h2>
 <ol>
-<li>UTS46 uses the mechanisms in <a href='http://unicode.org/reports/tr46'>(draft) Unicode UTS #46: Unicode IDNA Compatibility Processing</a>,
-which is designed to allow implementations to support both IDNA2008 and IDNA2003,
+<li>The code needs updating: The IDNA46 column should be titled UTS#46, and Punycode input labels are not handled.
+The IDNA2008 results need to be updated to the latest context rules.</li>
+<li><a href='http://unicode.org/reports/tr46'>(draft) Unicode UTS #46: Unicode IDNA Compatibility Processing</a>
+is designed to allow implementations to support both IDNA2008 and IDNA2003,
 without the compatibility problems resulting from the conflicts between them.</li>
 <li>Errors in labels are shown with &#xFFFD;.</li>
 <li>The input can have hex Unicode, using the \u convention. For example, &#x2665; can be supplied as \u2665.</li>
-<li>The Punycode in the Input column is raw - without any mapping or transformation, 
-but breaking at dots (full stop and ideographic full stops, but not those in characters like &#x2488;)</li>
-<li>The IDNA2008 results need to be updated to the latest context rules.</li>
+<li>The Punycode shown in the Input column is raw - without any mapping or transformation, 
+but breaking at dots (full stops and ideographic full stops), but not those in characters like &#x2488;)</li>
 <li>If there are accents or invisible characters they are shown on a second line with \u escapes,
 to show the difference between cases like &#x00D6; and O +  &#x0308;</li>
 <li>The behavior with of browsers with characters like &#x2488; varies: 
 <ol><li>IE and FF map to "1" + "." <i>before</i> separating labels;</li>
 <li>Safari and Chrome map it <i>afterwards</i>.</li>
-</ol>
-What is illustrated here is the predominant implemented behavior (that is, <i>before</i> separating labels).</li>
+</ol></li>
 </ol>
 <%@ include file="footer.jsp" %>
 </body>
