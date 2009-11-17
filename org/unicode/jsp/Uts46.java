@@ -1,5 +1,7 @@
 package org.unicode.jsp;
 
+import org.unicode.jsp.UnicodeUtilities.IdnaType;
+
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transliterator;
@@ -11,7 +13,7 @@ public class Uts46 {
   private static final String LABEL_SEPARATOR_STRING = "[\u002E\uFF0E\u3002\uFF61]";
   static UnicodeSet LABEL_SEPARATORS = new UnicodeSet(LABEL_SEPARATOR_STRING);
   static UnicodeSet DEVIATIONS = new UnicodeSet("[\\u200C \\u200D \u00DF \u03C2]");
-  static final String[] IdnaNames = { "valid", "ignored", "mapped", "disallowed" };
+  //static final String[] IdnaNames = { "valid", "ignored", "mapped", "disallowed" };
 
   static UnicodeSet Uts46Chars = UnicodeSetUtilities.parseUnicodeSet("[[:any:]" +
           " - [:c:] - [:z:]" +
@@ -51,7 +53,7 @@ public class Uts46 {
     return nfkcCasefold.transform(line2);
   }
   
-  static int getUts46Type(int i, UnicodeSet overallAllowed) {
+  static IdnaType getUts46Type(int i, UnicodeSet overallAllowed) {
     String strChar = UTF16.valueOf(i);
     String remapped = Uts46.toUts46(strChar);
     if (remapped.length() == 0) {

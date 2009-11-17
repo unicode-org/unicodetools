@@ -2,9 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/cldr"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-main"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-charset"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-collate"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-test-framework"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-translit"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-core-tests"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-translit-tests"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/cldr-svn2"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-tools"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

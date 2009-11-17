@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -17,6 +18,8 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Log;
+import org.unicode.jsp.Idna2008.Idna2008Type;
+import org.unicode.jsp.UnicodeUtilities.IdnaType;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
@@ -40,12 +43,15 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 
 public class TestJsp  extends TestFmwk {
 
   private static final String AGE = System.getProperty("age");
   private static final String enSample = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z";
   private static final UnicodeSet OVERALL_ALLOWED = new UnicodeSet().applyPropertyAlias("age", AGE).freeze();
+  private static final UnicodeSet U5_2 = new UnicodeSet().applyPropertyAlias("age", "5.2").freeze();
+  private static final UnicodeSet U5_1 = new UnicodeSet().applyPropertyAlias("age", "5.1").freeze();
 
   public static void main(String[] args) throws Exception {
     new TestJsp().run(args);
@@ -57,32 +63,80 @@ public class TestJsp  extends TestFmwk {
   enum Subtag {language, script, region, mixed, fail}
 
   public void TestIdnaDifferences() {
-    PrettyPrinter pretty = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ENGLISH));
     UnicodeSet remapped = new UnicodeSet();
-    UnicodeMap<String> map = UnicodeUtilities.getIdnaDifferences(remapped);
+    UnicodeMap<String> map = UnicodeUtilities.getIdnaDifferences(remapped, OVERALL_ALLOWED);
     TreeSet<String> ordered = new TreeSet<String>(new InverseComparator());
     ordered.addAll(map.values());
     int max = 200;
     for (String value : ordered) {
       UnicodeSet set = map.getSet(value);
-      String prettySet = pretty.format(set);
-      if (prettySet.length() > max) {
-        prettySet = prettySet.substring(0,max) + "...";
-      }
-      System.out.println(set.size() + "\t" + value + "\t" + prettySet);
+      String prettySet = prettyTruncate(max, set);
+      System.out.println(set.size() + "\t" + value + "\t" + set); // prettySet
     }
     Transliterator name = Transliterator.getInstance("name");
     System.out.println("Code\tUts46\tidna2003\tCode\tUts46\tidna2003");
 
     for (String s : remapped) {
       String uts46 = Uts46.toUts46(s);
-      String idna2003 = UnicodeUtilities.toIdna2003(s);
+      String idna2003 = Idna2003.toIdna2003(s);
       if (!uts46.equals(idna2003)) {
         System.out.println(Utility.hex(s) + "\t" + Utility.hex(uts46) + "\t" + Utility.hex(idna2003)
                 + "\t" + name.transform(s) + "\t" + name.transform(uts46) + "\t" + name.transform(idna2003)
         );
       }
     }
+  }
+
+  public void TestIdnaFiles() {
+    UnicodeMap<Idna2008.Idna2008Type> idna2008Map = Idna2008.getTypeMapping();
+    UnicodeSet fileValid = new UnicodeSet()
+    .addAll(idna2008Map.getSet(Idna2008Type.PVALID))
+    .addAll(idna2008Map.getSet(Idna2008Type.CONTEXTJ))
+    .addAll(idna2008Map.getSet(Idna2008Type.CONTEXTO));
+    UnicodeSet valid2008_51 = new UnicodeSet(U5_1).retainAll(UnicodeUtilities.getIdna2008Valid());
+    if (!fileValid.equals(valid2008_51)) {
+      System.out.println("fileValid:\n" + new UnicodeSet(fileValid).removeAll(valid2008_51));
+      System.out.println("computeValid:\n" + new UnicodeSet(valid2008_51).removeAll(fileValid));
+    }
+
+    UnicodeMap<String> diff = new UnicodeMap();
+    for (int i = 0; i <= 0x10FFFF; ++i) {
+      if (UnicodeUtilities.ignoreInDiff.contains(i) || i < 0x80) {
+        continue;
+      }
+      IdnaType type = Uts46.getUts46Type(i, U5_2);
+      Idna2008Type idna2008 = idna2008Map.get(i);
+      if (type == IdnaType.ignored) {
+        type = IdnaType.mapped;
+      }
+
+      IdnaType idna2003 = Idna2003.getIDNA2003Type(i);
+      if (idna2003 == IdnaType.ignored) {
+        idna2003 = IdnaType.mapped;
+      }
+      
+      IdnaType idna2008Mapped = 
+        (idna2008 == Idna2008Type.UNASSIGNED || idna2008 == Idna2008Type.DISALLOWED) ? IdnaType.disallowed
+                : IdnaType.valid;
+      
+      VersionInfo age = UCharacter.getAge(i);
+      String ageString = age.getMajor() >= 4 ? "U4+" : "U3.2";
+      diff.put(i, ageString + "_" + idna2003 + "_" + type + "_" + idna2008Mapped);
+    }
+    for (String types : new TreeSet<String>(diff.values())) {
+      UnicodeSet set = diff.getSet(types);
+      System.out.println(types + " ;\t" + set.size() + " ;\t" + set);
+    }
+  }
+
+  PrettyPrinter pretty = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ENGLISH));
+
+  private String prettyTruncate(int max, UnicodeSet set) {
+    String prettySet = pretty.format(set);
+    if (prettySet.length() > max) {
+      prettySet = prettySet.substring(0,max) + "...";
+    }
+    return prettySet;
   }
 
 
@@ -416,6 +470,7 @@ public class TestJsp  extends TestFmwk {
     assertTrue("contains hyphen", UnicodeSetUtilities.parseUnicodeSet("[:idna=output:]").contains('-'));
   }
 
+
   public void expectError(String input) {
     try {
       UnicodeSetUtilities.parseUnicodeSet(input);
@@ -534,8 +589,8 @@ public class TestJsp  extends TestFmwk {
       String nfc = toNfc(s);
       String nfkc = Normalizer.normalize(s, Normalizer.NFKC);
       String uts46 = Uts46.toUts46(s);
-      int statusInt = Uts46.getUts46Type(cp, OVERALL_ALLOWED);
-      String status = Uts46.IdnaNames[statusInt];
+      org.unicode.jsp.UnicodeUtilities.IdnaType statusInt = Uts46.getUts46Type(cp, OVERALL_ALLOWED);
+      String status = statusInt.toString();
       if (Uts46.DEVIATIONS.contains(cp)) {
         status = "deviation";
       }
@@ -543,17 +598,17 @@ public class TestJsp  extends TestFmwk {
         status += Utility.repeat(" ", 10-status.length()) + " ; " + Utility.hex(uts46);
       }
       hex_results.put(cp, status);
-//      hex_results.put(cp, status==UnicodeUtilities.IGNORED ? "ignored"
-//              : UnicodeUtilities. ? "disallowed"
-//                      : s.equals(uts46) ? "valid"
-//                              //: nfc.equals(uts46) ? "needs_nfc"
-//                                      : Utility.hex(uts46, " "));
-//
-//      hex_results_requiring_nfkc.put(cp, uts46.length() == 0 ? "ignored"
-//              : !Uts46.Uts46Chars.containsAll(uts46) ? "disallowed"
-//                      : s.equals(uts46) ? "valid"
-//                              : nfkc.equals(uts46) ? "needs_nfkc"
-//                                      : Utility.hex(uts46, " "));
+      //      hex_results.put(cp, status==UnicodeUtilities.IGNORED ? "ignored"
+      //              : UnicodeUtilities. ? "disallowed"
+      //                      : s.equals(uts46) ? "valid"
+      //                              //: nfc.equals(uts46) ? "needs_nfc"
+      //                                      : Utility.hex(uts46, " "));
+      //
+      //      hex_results_requiring_nfkc.put(cp, uts46.length() == 0 ? "ignored"
+      //              : !Uts46.Uts46Chars.containsAll(uts46) ? "disallowed"
+      //                      : s.equals(uts46) ? "valid"
+      //                              : nfkc.equals(uts46) ? "needs_nfkc"
+      //                                      : Utility.hex(uts46, " "));
     }
     BagFormatter bf = new BagFormatter();
     bf.setLabelSource(null);
@@ -601,15 +656,15 @@ public class TestJsp  extends TestFmwk {
             "# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
             "# Copyright (c) 1991-2009 Unicode, Inc.\n" +
             "# For terms of use, see http://www.unicode.org/terms_of_use.html\n" +
-            "# For documentation, see http://www.unicode.org/reports/tr46/\n");
-    
-//    # IdnaMappingTable-5.1.0.txt - DRAFT
-//    # Date: 2009-11-14 08:10:42 GMT [MD]
-//    #
-//    # Unicode IDNA Compatible Preprocessing (UTS #46)
-//    # Copyright (c) 1991-2009 Unicode, Inc.
-//    # For terms of use, see http://www.unicode.org/terms_of_use.html
-//    # For documentation, see http://www.unicode.org/reports/tr46/
+    "# For documentation, see http://www.unicode.org/reports/tr46/\n");
+
+    //    # IdnaMappingTable-5.1.0.txt - DRAFT
+    //    # Date: 2009-11-14 08:10:42 GMT [MD]
+    //    #
+    //    # Unicode IDNA Compatible Preprocessing (UTS #46)
+    //    # Copyright (c) 1991-2009 Unicode, Inc.
+    //    # For terms of use, see http://www.unicode.org/terms_of_use.html
+    //    # For documentation, see http://www.unicode.org/reports/tr46/
 
     bf.setValueSource(new UnicodeProperty.UnicodeMapProperty().set(hex_results));
     final UnicodeLabel oldLabel = bf.getNameSource();
@@ -618,13 +673,13 @@ public class TestJsp  extends TestFmwk {
         if (OVERALL_ALLOWED.contains(codepoint)) {
           return oldLabel.getValue(codepoint, isShort);
         }
-        return "<unassigned-" + Utility.hex(codepoint) + ">";
+        return "<reserved-" + Utility.hex(codepoint) + ">";
       }   
     });
     writer.println(bf.showSetNames(hex_results.keySet()));
     writer.close();
   }
-  
+
   public static class InverseComparator implements Comparator {
     private Comparator other;
 
