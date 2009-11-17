@@ -33,17 +33,13 @@ import com.ibm.icu.dev.test.util.BNF;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Quoter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.StringPrep;
-import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
@@ -161,40 +157,42 @@ public class UnicodeUtilities {
 
   static UnicodeSet isCased = new UnicodeSet();
 
-  static final int OUTPUT = 0, IGNORED = 1, REMAPPED = 2, DISALLOWED = 3, 
-  IDNA_TYPE_LIMIT = 4;
+  public enum IdnaType { valid, ignored, mapped, disallowed};
 
-  static final String[] IdnaNames = { "OUTPUT", "IGNORED", "REMAPPED", "DISALLOWED" };
+  static final IdnaType OUTPUT = IdnaType.valid, IGNORED = IdnaType.ignored, 
+  REMAPPED = IdnaType.mapped, DISALLOWED = IdnaType.disallowed;
+  
+  static final int IDNA_TYPE_LIMIT = 4;
 
-  static UnicodeSet idnaTypeSet[] = new UnicodeSet[IDNA_TYPE_LIMIT];
+  static final Map<IdnaType,UnicodeSet> idnaTypeSet = new TreeMap<IdnaType,UnicodeSet>();
   static {
-    for (int i = 0; i < idnaTypeSet.length; ++i) {
-      idnaTypeSet[i] = new UnicodeSet();
+    for (IdnaType i : IdnaType.values()) {
+      idnaTypeSet.put(i, new UnicodeSet());
     }
   }
+  
+  static UnicodeSet ignoreInDiff = UnicodeSetUtilities.parseUnicodeSet("[[:Cc:][:Cn:][:Co:][:Cs:]]").freeze();
 
-  static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped) {
+  static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped, UnicodeSet overallAllowed) {
     UnicodeMap<String> result = new UnicodeMap<String>();
-    UnicodeSet unassigned = UnicodeSetUtilities.parseUnicodeSet("[[:Cc:][:Cn:][:Co:][:Cs:]]");
-    IdnaLabelTester tester = getIdna2008Tester();
-    UnicodeSet valid2008 = UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"));
+    UnicodeSet valid2008 = getIdna2008Valid();
 
     for (int i = 0x80; i <= 0x10FFFF; ++i) {
       if ((i & 0xFFF) == 0) System.out.println(Utility.hex(i));
       if (i == 0x20000) {
         System.out.println("debug");
       }
-      if (unassigned.contains(i)) continue;
+      if (ignoreInDiff.contains(i)) continue;
       boolean isNew = UCharacter.getAge(i).compareTo(VersionInfo.UNICODE_3_2) > 0;
       String age = isNew ? "v4.0-5.2" : "v3.2";
-      int idna2003 = getIDNA2003Type2(UTF16.valueOf(i));
-      int tr46 = Uts46.getUts46Type(i, null);
+      IdnaType idna2003 = Idna2003.getIDNA2003Type2(UTF16.valueOf(i));
+      IdnaType tr46 = Uts46.getUts46Type(i, overallAllowed);
       if (isNew) {// skip
       } else if (tr46 == REMAPPED || idna2003 == REMAPPED) {
         remapped.add(i);
       }
       //TestStatus testResult = valid2008.contains(i);
-      int idna2008 = valid2008.contains(i) ? OUTPUT : DISALLOWED;
+      IdnaType idna2008 = valid2008.contains(i) ? OUTPUT : DISALLOWED;
       String iClass = age
       + "\t" + getShortName(idna2003) 
       + "\t" + getShortName(tr46)
@@ -205,105 +203,26 @@ public class UnicodeUtilities {
     return result.freeze();
   }
 
-  private static int getIDNA2003Type2(String source) {
-    String idna2003String = toIdna2003(source);
-    if (idna2003String.equals("\uFFFF")) return DISALLOWED;
-    if (idna2003String.equals(source)) return OUTPUT;
-    if (idna2003String.length() == 0) return IGNORED;
-    return REMAPPED;
+  public static UnicodeSet getIdna2008Valid() {
+    IdnaLabelTester tester = getIdna2008Tester();
+    UnicodeSet valid2008 = UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"));
+    return valid2008;
   }
 
-  private static String getShortName(int tr46) {
+  static String getShortName(IdnaType tr46) {
     // TODO Auto-generated method stub
     return UCharacter.toTitleCase(
             tr46==OUTPUT ? "Valid" 
                     : tr46==IGNORED || tr46==REMAPPED ? "Mapped/Ignored" 
-            : IdnaNames[tr46]
+            : tr46.toString()
                         , null);
   }
-  /**
-   * 
-   */
-  
-  static StringPrep nameprep = StringPrep.getInstance(StringPrep.RFC3491_NAMEPREP);
-  static UnicodeSet BADASCII = UnicodeSetUtilities.parseUnicodeSet("[[\\u0000-\\u007F]-[\\-0-9A-Za-z]]").freeze();
-  static String toIdna2003(String s) {
-    String idna2003 = "\uFFFF";
-    try {
-      idna2003 = nameprep.prepare(s, StringPrep.DEFAULT);
-    } catch (StringPrepParseException e) {
-      try {
-        idna2003 = nameprep.prepare(s + "\u05D9", StringPrep.DEFAULT);
-        idna2003 = idna2003.substring(0, idna2003.length()-1);
-      } catch (StringPrepParseException e1) {
-      }
-    }
-    if (BADASCII.containsSome(idna2003)) return "\uFFFF";
-    return idna2003;
-  }
-  static public int getIDNA2003Type(int cp) {
-    if (cp == '-') {
-      return OUTPUT;
-    }
-    inbuffer.setLength(0);
-    UTF16.append(inbuffer, cp);
-    try {
-      intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
-      // DEFAULT
-      if (intermediate.length() == 0) {
-        return IGNORED;
-      }
-      outbuffer = IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES);
-    } catch (StringPrepParseException e) {
-      if (e.getMessage().startsWith("Found zero length")) {
-        return IGNORED;
-      }
-      return DISALLOWED;
-    } catch (Exception e) {
-      System.out.println("Failure at: " + Integer.toString(cp, 16));
-      return DISALLOWED;
-    }
-    if (!equals(inbuffer, outbuffer)) {
-      return REMAPPED;
-    }
-    return OUTPUT;
-  }
-
-  static public String getIDNAValue(int cp) {
-    if (cp == '-') {
-      return "-";
-    }
-    inbuffer.setLength(0);
-    UTF16.append(inbuffer, cp);
-    try {
-      intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
-      // DEFAULT
-      if (intermediate.length() == 0) {
-        return "";
-      }
-      outbuffer = IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES);
-    } catch (StringPrepParseException e) {
-      if (e.getMessage().startsWith("Found zero length")) {
-        return "";
-      }
-      return null;
-    } catch (Exception e) {
-      System.out.println("Failure at: " + Integer.toString(cp, 16));
-      return null;
-    }
-    return outbuffer.toString();
-  }
-
-  static StringBuffer inbuffer = new StringBuffer();
-
-  static StringBuffer intermediate, outbuffer;
-
   static {
     for (int cp = 0; cp <= 0x10FFFF; ++cp) {
 
       int cat = UCharacter.getType(cp);
       if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE  || cat == UCharacter.SURROGATE) {
-        idnaTypeSet[DISALLOWED].add(cp); // faster
+        idnaTypeSet.get(DISALLOWED).add(cp); // faster
         isCaseFolded.add(cp);
         isLowercase.add(cp);
         isTitlecase.add(cp);
@@ -311,8 +230,8 @@ public class UnicodeUtilities {
         continue;
       }
 
-      int idnaType = getIDNA2003Type(cp);
-      idnaTypeSet[idnaType].add(cp);
+      IdnaType idnaType = Idna2003.getIDNA2003Type(cp);
+      idnaTypeSet.get(idnaType).add(cp);
 
       String s = UTF16.valueOf(cp);
       if (UCharacter.foldCase(s, true).equals(s)) {
@@ -405,20 +324,8 @@ public class UnicodeUtilities {
 
   protected static boolean getIdnaProperty(String propertyValue,
           UnicodeSet result) {
-    int i = 0;
-    if (propertyValue.length() != 0) {
-      for (; i < IdnaNames.length; ++i) {
-        if (propertyValue.equalsIgnoreCase(IdnaNames[i])) {
-          break;
-        }
-      }
-    }
-    if (i >= IdnaNames.length) {
-      throw new IllegalArgumentException(
-              "PropertyValue must be empty (= OUTPUT) or one of: "
-              + Arrays.asList(IdnaNames));
-    }
-    result.clear().addAll(idnaTypeSet[i]);
+    IdnaType i = IdnaType.valueOf(propertyValue.toLowerCase(Locale.ENGLISH));
+    result.clear().addAll(idnaTypeSet.get(i));
     return true;
   }
 
@@ -1281,7 +1188,7 @@ public class UnicodeUtilities {
           public boolean is(Object item) {
             return true;
           }});
-        R2<String, String> idna2003Pair = getIdna2033(line);
+        R2<String, String> idna2003Pair = Idna2003.getIdna2033(line);
         String idna2003 = idna2003Pair.get0();
         String idna2003back = idna2003Pair.get1();
 
@@ -1356,33 +1263,6 @@ public class UnicodeUtilities {
 
   static Pattern DOTS = Pattern.compile("[.。｡]");
   static Pattern DOT = Pattern.compile("[.]");
-
-  static Row.R2<String, String> getIdna2033(String input) {
-    String normInput = UnicodeSetUtilities.MyNormalize(input, Normalizer.NFKC);
-    StringBuffer idna2003 = new StringBuffer();
-    StringBuffer idna2003back = new StringBuffer();
-
-    for (String part : DOT.split(normInput)) {
-      if (idna2003.length() != 0) {
-        idna2003.append('.');
-        idna2003back.append('.');
-      }
-      try {
-        inbuffer.setLength(0);
-        inbuffer.append(part);
-        intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
-        if (intermediate.length() == 0) {
-          throw new IllegalArgumentException();
-        }
-        idna2003.append(toHTML.transform(intermediate.toString()));
-        idna2003back.append(IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES).toString());
-      } catch (Exception e) {
-        idna2003.append('\uFFFD');
-        idna2003back.append('\uFFFD');
-      }
-    }
-    return Row.of(idna2003.toString(), idna2003back.toString());
-  }
 
   private static void addBlank(StringBuilder resultLines) {
     resultLines.append("<tr><td colSpan='5'>&nbsp;</td></tr>\n");
