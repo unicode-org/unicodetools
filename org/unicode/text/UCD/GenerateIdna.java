@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.EnumSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,8 +17,6 @@ import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;
-import com.ibm.icu.impl.Row.R4;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.UTF16;
@@ -272,8 +267,8 @@ public class GenerateIdna {
   static Normalizer normalizer32 = new Normalizer(UCD_Types.NFKC, "3.2.0");
 
   private static String normalizeAndCheckString(String inputString, UnicodeMap<R3<Idna2003Table, String, String>> rawIdna2003Data) {
-    int cp;
     String string = normalizer32.normalize(inputString);
+    int cp;
     for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
       cp = string.codePointAt(i);
       R3<Idna2003Table, String, String> data = rawIdna2003Data.get(cp);

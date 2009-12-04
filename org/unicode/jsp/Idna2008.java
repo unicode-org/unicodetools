@@ -23,8 +23,12 @@ public class Idna2008 {
     PVALID, DISALLOWED, UNASSIGNED, CONTEXTJ, CONTEXTO
   }
 
+  static UnicodeMap<Idna2008Type> mapping = null;
   public static UnicodeMap<Idna2008Type>  getTypeMapping() {
 
+    if (mapping != null) {
+      return mapping;
+    }
     try {
       BufferedReader in = new BufferedReader(
               new InputStreamReader(
@@ -32,7 +36,7 @@ public class Idna2008 {
 //    BagFormatter.openReader("/Users/markdavis/Documents/workspace/DATA/IDN/",
 //            "draft-faltstrom-idnabis-tables-05.txt", "ascii");
       boolean inTable = false;
-      UnicodeMap<Idna2008Type> patrik = new UnicodeMap();
+      mapping = new UnicodeMap();
       int count = 0;
       while (true) {
         String line = in.readLine();
@@ -63,13 +67,13 @@ public class Idna2008 {
         final int endChar = DATALINE.group(2) == null ? startChar : Integer.parseInt(DATALINE
                 .group(2), 16);
         final Idna2008Type idnaType = Idna2008Type.valueOf(DATALINE.group(3));
-        patrik.putAll(startChar, endChar, idnaType);
+        mapping.putAll(startChar, endChar, idnaType);
       }
       in.close();
-      patrik.freeze();
-      return patrik;
+      mapping.freeze();
+      return mapping;
     } catch (Exception e) {
-      return null;
+      throw new IllegalArgumentException(e);
     }
   }
 }

@@ -63,7 +63,7 @@ Transliterator toHTML = Transliterator.createFromRules(
   <input type="button" value="Next" name="B2" onClick="window.location.href='<%=nextHex%>'"></p>
 </form>
 <%
-	UnicodeUtilities.showProperties(text, out); 
+	UnicodeJsp.showProperties(text, out); 
 %>
 <p><i>(only includes properties with non-default values)<br>
 </i>® = Regex Property (<a href="http://www.unicode.org/reports/tr18/">UTS #18</a>): not formal 

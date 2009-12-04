@@ -1,5 +1,6 @@
 package org.unicode.jsp;
 
+import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
 import org.unicode.jsp.UnicodeUtilities.IdnaType;
 
 import com.ibm.icu.text.Normalizer;
@@ -20,13 +21,13 @@ public class Uts46 {
           " - [:Block=Ideographic_Description_Characters:]" +
           "- [:ascii:] - [\uFFFC \uFFFD]" +
           " [\\u002D\\u002Ea-zA-Z0-9]" +
-          "]")
+          "]", TableStyle.simple)
           .freeze();
   static UnicodeSet UtsExclusions = UnicodeSetUtilities.parseUnicodeSet("[" +
           "[\u04C0\u10A0-\u10C5\u2132\u2183]" +
           "[\\U0002F868 \\U0002F874 \\U0002F91F \\U0002F95F \\U0002F9BF]" +
           "[\\u1806 \\uFFFC \\uFFFD \\u17B4 \\u17B5 \\u115F \\u1160\\u3164\\uFFA0]" +
-  		"]");
+  		"]", TableStyle.simple);
   static {
     for (int i = 0; i <= 0x10FFFF; ++i) {
       if (LABEL_SEPARATORS.contains(i)) continue;
@@ -37,7 +38,7 @@ public class Uts46 {
     }
     UtsExclusions.freeze();
   }
-  static UnicodeSet Uts46CharsDisplay = UnicodeSetUtilities.parseUnicodeSet("[\u00DF\u03C2\u200D\u200C]").addAll(Uts46.Uts46Chars).freeze();
+  static UnicodeSet Uts46CharsDisplay = UnicodeSetUtilities.parseUnicodeSet("[\u00DF\u03C2\u200D\u200C]", TableStyle.simple).addAll(Uts46.Uts46Chars).freeze();
 
   static StringTransform nfkcCasefold = new UnicodeSetUtilities.NFKC_CF(); // Transliterator.getInstance("nfkc; casefold; [:di:] remove; nfkc;");
   static StringTransform foldDisplay = new UnicodeUtilities.FilteredStringTransform(DEVIATIONS, nfkcCasefold); 
@@ -59,7 +60,7 @@ public class Uts46 {
     if (remapped.length() == 0) {
       return UnicodeUtilities.IGNORED;
     }
-    if (!overallAllowed.contains(i)) {
+    if (overallAllowed != null && !overallAllowed.contains(i)) {
       return UnicodeUtilities.DISALLOWED;
     }
     if (UtsExclusions.contains(i)) {

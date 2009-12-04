@@ -20,7 +20,7 @@
 		String[] abResults = new String[3];
 		String[] abLinks = new String[3];
 		int[] abSizes = new int[3];
-		UnicodeUtilities.getDifferences(setA, setB, abbreviate, abResults, abSizes, abLinks);
+		UnicodeJsp.getDifferences(setA, setB, abbreviate, abResults, abSizes, abLinks);
 		
 		NumberFormat nf = NumberFormat.getIntegerInstance();
 %>

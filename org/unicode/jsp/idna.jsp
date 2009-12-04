@@ -15,9 +15,9 @@
         String IDNA2008 = utfParameters.getParameter("a");
 
         if (IDNA2008 == null) {
-            IDNA2008 = UnicodeUtilities.getDefaultIdnaInput();
+            IDNA2008 = UnicodeJsp.getDefaultIdnaInput();
         }
-        String fixedRegex = UnicodeUtilities.testIdnaLines(IDNA2008, "");
+        String fixedRegex = UnicodeJsp.testIdnaLines(IDNA2008, "");
 %>
 <h1>Unicode Utilities: Internationalized Domain Names (IDN)</h1>
 <%@ include file="others.jsp" %>
@@ -40,7 +40,7 @@
 <hr>
 <h2 id='notes'>Notes</h2>
 <ol>
-<li>The code needs updating: The IDNA46 column should be titled UTS#46, and Punycode input labels are not handled.
+<li>Punycode input labels are not yet handled.
 The IDNA2008 results need to be updated to the latest context rules.</li>
 <li><a href='http://unicode.org/reports/tr46'>(draft) Unicode UTS #46: Unicode IDNA Compatibility Processing</a>
 is designed to allow implementations to support both IDNA2008 and IDNA2003,

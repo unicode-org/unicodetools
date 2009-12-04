@@ -26,9 +26,9 @@
         String choice = request.getParameter("l");
         if (choice == null) choice = "en";
         
-        String options = UnicodeUtilities.getLanguageOptions(choice); 
+        String options = UnicodeJsp.getLanguageOptions(choice); 
         
-        String table = UnicodeUtilities.validateLanguageID(languageCode, choice); 
+        String table = UnicodeJsp.validateLanguageID(languageCode, choice); 
 %>
 <h1>Unicode Utilities: Unicode Language Identifers and BCP47</h1>
 <%@ include file="others.jsp" %>

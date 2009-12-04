@@ -2,9 +2,13 @@ package org.unicode.jsp;
 
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -28,15 +32,28 @@ class Subheader implements Iterable<String> {
   Map<String,Set<String>> block2subblock = new TreeMap<String, Set<String>>();
   Map<String,Set<String>> subblock2block = new TreeMap<String, Set<String>>();
 
-  Subheader(String unicodeDataDirectory) throws IOException {
-    subblock2UnicodeSet = getDataFromFile(unicodeDataDirectory + "NamesList.txt");
+  Subheader(String unicodeDataDirectory) {
+    try {
+      subblock2UnicodeSet = getDataFromFile(unicodeDataDirectory + "NamesList.txt");
+    } catch (IOException e) {
+      throw new IllegalArgumentException(e);
+    }
     fillTables();
   }
 
-  Subheader(String[][] data) {
-    subblock2UnicodeSet = new TreeMap<String, UnicodeSet>();
-    for (String[] pair : data) {
-      subblock2UnicodeSet.put(pair[0], new UnicodeSet(pair[1]));
+  //  Subheader(String[][] data) {
+  //    subblock2UnicodeSet = new TreeMap<String, UnicodeSet>();
+  //    for (String[] pair : data) {
+  //      subblock2UnicodeSet.put(pair[0], new UnicodeSet(pair[1]));
+  //    }
+  //    fillTables();
+  //  }
+
+  public Subheader(InputStream resourceAsStream) {
+    try {
+      subblock2UnicodeSet = getDataFromStream(resourceAsStream);
+    } catch (IOException e) {
+      throw new IllegalArgumentException(e);
     }
     fillTables();
   }
@@ -70,9 +87,15 @@ class Subheader implements Iterable<String> {
   }
 
   private Map<String, UnicodeSet> getDataFromFile(String filename) throws FileNotFoundException, IOException {
+    InputStream is = new FileInputStream(filename);
+    return getDataFromStream(is);
+  }
+
+  private Map<String, UnicodeSet> getDataFromStream(InputStream is) throws IOException {
+    Reader reader = new InputStreamReader(is);
+    BufferedReader in = new BufferedReader(reader);
     Map<String, UnicodeSet> subblock2UnicodeSet2 = new TreeMap<String, UnicodeSet>();
     String subblock = "?";
-    BufferedReader in = new BufferedReader(new FileReader(filename));
     while (true) {
       String line = in.readLine();
       if (line == null) {

@@ -4,6 +4,7 @@ th           { background-color: #DDDDFF; text-align:left }
 textarea	{width: 100%; background-color: #EEFFEE; border:1px solid #CCFFCC; }
 li,p           { margin-top: 0.5em; margin-bottom: 0.5em }
 h2 { font-size:120%;  margin-top: 0.5em; margin-bottom: 0.5em }
+h3 { font-size:100%;  margin-top: 0.5em; margin-bottom: 0.5em }
 .key { background-color: #FFFF99; font-weight: bold; color: red }
 span.break   { border-right: 1px solid red;}
 .c { text-align:center; }
@@ -18,3 +19,9 @@ span.break   { border-right: 1px solid red;}
 .ltgreen {background-color: #DDFFDD}
 .mono {font-family:monospace} 
 .i46 {background-color: #FFFFDD} 
+h3 {background-color: #EEEEEE} 
+.L4 {background-color: #DDDDDD}
+.L3 {background-color: #CCCCCC}
+.L2 {background-color: #BBBBBB}
+.L1 {background-color: #AAAAAA}
+.L0 {background-color: #999999} 

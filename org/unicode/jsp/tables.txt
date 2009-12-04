@@ -2,6 +2,14 @@ Appendix B.1.  Codepoints in Unicode Character Database (UCD) format
 
 0000..002C  ; DISALLOWED  # <control>..COMMA
 002D        ; PVALID      # HYPHEN-MINUS
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 17]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 002E..002F  ; DISALLOWED  # FULL STOP..SOLIDUS
 0030..0039  ; PVALID      # DIGIT ZERO..DIGIT NINE
 003A..0060  ; DISALLOWED  # COLON..GRAVE ACCENT
@@ -20,14 +28,6 @@ Appendix B.1.  Codepoints in Unicode Character Database (UCD) format
 0105        ; PVALID      # LATIN SMALL LETTER A WITH OGONEK
 0106        ; DISALLOWED  # LATIN CAPITAL LETTER C WITH ACUTE
 0107        ; PVALID      # LATIN SMALL LETTER C WITH ACUTE
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 16]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0108        ; DISALLOWED  # LATIN CAPITAL LETTER C WITH CIRCUMFLEX
 0109        ; PVALID      # LATIN SMALL LETTER C WITH CIRCUMFLEX
 010A        ; DISALLOWED  # LATIN CAPITAL LETTER C WITH DOT ABOVE
@@ -58,6 +58,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0123        ; PVALID      # LATIN SMALL LETTER G WITH CEDILLA
 0124        ; DISALLOWED  # LATIN CAPITAL LETTER H WITH CIRCUMFLEX
 0125        ; PVALID      # LATIN SMALL LETTER H WITH CIRCUMFLEX
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 18]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0126        ; DISALLOWED  # LATIN CAPITAL LETTER H WITH STROKE
 0127        ; PVALID      # LATIN SMALL LETTER H WITH STROKE
 0128        ; DISALLOWED  # LATIN CAPITAL LETTER I WITH TILDE
@@ -76,14 +84,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0137..0138  ; PVALID      # LATIN SMALL LETTER K WITH CEDILLA..LATIN SMA
 0139        ; DISALLOWED  # LATIN CAPITAL LETTER L WITH ACUTE
 013A        ; PVALID      # LATIN SMALL LETTER L WITH ACUTE
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 17]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 013B        ; DISALLOWED  # LATIN CAPITAL LETTER L WITH CEDILLA
 013C        ; PVALID      # LATIN SMALL LETTER L WITH CEDILLA
 013D        ; DISALLOWED  # LATIN CAPITAL LETTER L WITH CARON
@@ -114,6 +114,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0159        ; PVALID      # LATIN SMALL LETTER R WITH CARON
 015A        ; DISALLOWED  # LATIN CAPITAL LETTER S WITH ACUTE
 015B        ; PVALID      # LATIN SMALL LETTER S WITH ACUTE
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 19]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 015C        ; DISALLOWED  # LATIN CAPITAL LETTER S WITH CIRCUMFLEX
 015D        ; PVALID      # LATIN SMALL LETTER S WITH CIRCUMFLEX
 015E        ; DISALLOWED  # LATIN CAPITAL LETTER S WITH CEDILLA
@@ -132,14 +140,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 016B        ; PVALID      # LATIN SMALL LETTER U WITH MACRON
 016C        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH BREVE
 016D        ; PVALID      # LATIN SMALL LETTER U WITH BREVE
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 18]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 016E        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH RING ABOVE
 016F        ; PVALID      # LATIN SMALL LETTER U WITH RING ABOVE
 0170        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH DOUBLE ACUTE
@@ -170,6 +170,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0192        ; PVALID      # LATIN SMALL LETTER F WITH HOOK
 0193..0194  ; DISALLOWED  # LATIN CAPITAL LETTER G WITH HOOK..LATIN CAPI
 0195        ; PVALID      # LATIN SMALL LETTER HV
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 20]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0196..0198  ; DISALLOWED  # LATIN CAPITAL LETTER IOTA..LATIN CAPITAL LET
 0199..019B  ; PVALID      # LATIN SMALL LETTER K WITH HOOK..LATIN SMALL
 019C..019D  ; DISALLOWED  # LATIN CAPITAL LETTER TURNED M..LATIN CAPITAL
@@ -188,14 +196,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 01AD        ; PVALID      # LATIN SMALL LETTER T WITH HOOK
 01AE..01AF  ; DISALLOWED  # LATIN CAPITAL LETTER T WITH RETROFLEX HOOK..
 01B0        ; PVALID      # LATIN SMALL LETTER U WITH HORN
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 19]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 01B1..01B3  ; DISALLOWED  # LATIN CAPITAL LETTER UPSILON..LATIN CAPITAL
 01B4        ; PVALID      # LATIN SMALL LETTER Y WITH HOOK
 01B5        ; DISALLOWED  # LATIN CAPITAL LETTER Z WITH STROKE
@@ -226,6 +226,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 01E1        ; PVALID      # LATIN SMALL LETTER A WITH DOT ABOVE AND MACR
 01E2        ; DISALLOWED  # LATIN CAPITAL LETTER AE WITH MACRON
 01E3        ; PVALID      # LATIN SMALL LETTER AE WITH MACRON
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 21]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 01E4        ; DISALLOWED  # LATIN CAPITAL LETTER G WITH STROKE
 01E5        ; PVALID      # LATIN SMALL LETTER G WITH STROKE
 01E6        ; DISALLOWED  # LATIN CAPITAL LETTER G WITH CARON
@@ -244,14 +252,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 01F9        ; PVALID      # LATIN SMALL LETTER N WITH GRAVE
 01FA        ; DISALLOWED  # LATIN CAPITAL LETTER A WITH RING ABOVE AND A
 01FB        ; PVALID      # LATIN SMALL LETTER A WITH RING ABOVE AND ACU
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 20]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 01FC        ; DISALLOWED  # LATIN CAPITAL LETTER AE WITH ACUTE
 01FD        ; PVALID      # LATIN SMALL LETTER AE WITH ACUTE
 01FE        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH STROKE AND ACUTE
@@ -282,6 +282,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0217        ; PVALID      # LATIN SMALL LETTER U WITH INVERTED BREVE
 0218        ; DISALLOWED  # LATIN CAPITAL LETTER S WITH COMMA BELOW
 0219        ; PVALID      # LATIN SMALL LETTER S WITH COMMA BELOW
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 22]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 021A        ; DISALLOWED  # LATIN CAPITAL LETTER T WITH COMMA BELOW
 021B        ; PVALID      # LATIN SMALL LETTER T WITH COMMA BELOW
 021C        ; DISALLOWED  # LATIN CAPITAL LETTER YOGH
@@ -300,14 +308,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0229        ; PVALID      # LATIN SMALL LETTER E WITH CEDILLA
 022A        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH DIAERESIS AND MA
 022B        ; PVALID      # LATIN SMALL LETTER O WITH DIAERESIS AND MACR
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 21]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 022C        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH TILDE AND MACRON
 022D        ; PVALID      # LATIN SMALL LETTER O WITH TILDE AND MACRON
 022E        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH DOT ABOVE
@@ -338,6 +338,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 02C6..02D1  ; PVALID      # MODIFIER LETTER CIRCUMFLEX ACCENT..MODIFIER
 02D2..02EB  ; DISALLOWED  # MODIFIER LETTER CENTRED RIGHT HALF RING..MOD
 02EC        ; PVALID      # MODIFIER LETTER VOICING
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 23]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 02ED        ; DISALLOWED  # MODIFIER LETTER UNASPIRATED
 02EE        ; PVALID      # MODIFIER LETTER DOUBLE APOSTROPHE
 02EF..02FF  ; DISALLOWED  # MODIFIER LETTER LOW DOWN ARROWHEAD..MODIFIER
@@ -356,14 +364,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0375        ; CONTEXTO    # GREEK LOWER NUMERAL SIGN
 0376        ; DISALLOWED  # GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA
 0377        ; PVALID      # GREEK SMALL LETTER PAMPHYLIAN DIGAMMA
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 22]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0378..0379  ; UNASSIGNED  # <reserved>..<reserved>
 037A        ; DISALLOWED  # GREEK YPOGEGRAMMENI
 037B..037D  ; PVALID      # GREEK SMALL REVERSED LUNATE SIGMA SYMBOL..GR
@@ -394,6 +394,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 03E2        ; DISALLOWED  # COPTIC CAPITAL LETTER SHEI
 03E3        ; PVALID      # COPTIC SMALL LETTER SHEI
 03E4        ; DISALLOWED  # COPTIC CAPITAL LETTER FEI
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 24]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 03E5        ; PVALID      # COPTIC SMALL LETTER FEI
 03E6        ; DISALLOWED  # COPTIC CAPITAL LETTER KHEI
 03E7        ; PVALID      # COPTIC SMALL LETTER KHEI
@@ -412,14 +420,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 03F9..03FA  ; DISALLOWED  # GREEK CAPITAL LUNATE SIGMA SYMBOL..GREEK CAP
 03FB..03FC  ; PVALID      # GREEK SMALL LETTER SAN..GREEK RHO WITH STROK
 03FD..042F  ; DISALLOWED  # GREEK CAPITAL REVERSED LUNATE SIGMA SYMBOL..
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 23]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0430..045F  ; PVALID      # CYRILLIC SMALL LETTER A..CYRILLIC SMALL LETT
 0460        ; DISALLOWED  # CYRILLIC CAPITAL LETTER OMEGA
 0461        ; PVALID      # CYRILLIC SMALL LETTER OMEGA
@@ -450,6 +450,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 047A        ; DISALLOWED  # CYRILLIC CAPITAL LETTER ROUND OMEGA
 047B        ; PVALID      # CYRILLIC SMALL LETTER ROUND OMEGA
 047C        ; DISALLOWED  # CYRILLIC CAPITAL LETTER OMEGA WITH TITLO
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 25]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 047D        ; PVALID      # CYRILLIC SMALL LETTER OMEGA WITH TITLO
 047E        ; DISALLOWED  # CYRILLIC CAPITAL LETTER OT
 047F        ; PVALID      # CYRILLIC SMALL LETTER OT
@@ -468,14 +476,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0492        ; DISALLOWED  # CYRILLIC CAPITAL LETTER GHE WITH STROKE
 0493        ; PVALID      # CYRILLIC SMALL LETTER GHE WITH STROKE
 0494        ; DISALLOWED  # CYRILLIC CAPITAL LETTER GHE WITH MIDDLE HOOK
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 24]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0495        ; PVALID      # CYRILLIC SMALL LETTER GHE WITH MIDDLE HOOK
 0496        ; DISALLOWED  # CYRILLIC CAPITAL LETTER ZHE WITH DESCENDER
 0497        ; PVALID      # CYRILLIC SMALL LETTER ZHE WITH DESCENDER
@@ -506,6 +506,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 04B0        ; DISALLOWED  # CYRILLIC CAPITAL LETTER STRAIGHT U WITH STRO
 04B1        ; PVALID      # CYRILLIC SMALL LETTER STRAIGHT U WITH STROKE
 04B2        ; DISALLOWED  # CYRILLIC CAPITAL LETTER HA WITH DESCENDER
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 26]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 04B3        ; PVALID      # CYRILLIC SMALL LETTER HA WITH DESCENDER
 04B4        ; DISALLOWED  # CYRILLIC CAPITAL LIGATURE TE TSE
 04B5        ; PVALID      # CYRILLIC SMALL LIGATURE TE TSE
@@ -524,14 +532,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 04C3        ; DISALLOWED  # CYRILLIC CAPITAL LETTER KA WITH HOOK
 04C4        ; PVALID      # CYRILLIC SMALL LETTER KA WITH HOOK
 04C5        ; DISALLOWED  # CYRILLIC CAPITAL LETTER EL WITH TAIL
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 25]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 04C6        ; PVALID      # CYRILLIC SMALL LETTER EL WITH TAIL
 04C7        ; DISALLOWED  # CYRILLIC CAPITAL LETTER EN WITH HOOK
 04C8        ; PVALID      # CYRILLIC SMALL LETTER EN WITH HOOK
@@ -562,6 +562,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 04E2        ; DISALLOWED  # CYRILLIC CAPITAL LETTER I WITH MACRON
 04E3        ; PVALID      # CYRILLIC SMALL LETTER I WITH MACRON
 04E4        ; DISALLOWED  # CYRILLIC CAPITAL LETTER I WITH DIAERESIS
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 27]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 04E5        ; PVALID      # CYRILLIC SMALL LETTER I WITH DIAERESIS
 04E6        ; DISALLOWED  # CYRILLIC CAPITAL LETTER O WITH DIAERESIS
 04E7        ; PVALID      # CYRILLIC SMALL LETTER O WITH DIAERESIS
@@ -580,14 +588,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 04F4        ; DISALLOWED  # CYRILLIC CAPITAL LETTER CHE WITH DIAERESIS
 04F5        ; PVALID      # CYRILLIC SMALL LETTER CHE WITH DIAERESIS
 04F6        ; DISALLOWED  # CYRILLIC CAPITAL LETTER GHE WITH DESCENDER
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 26]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 04F7        ; PVALID      # CYRILLIC SMALL LETTER GHE WITH DESCENDER
 04F8        ; DISALLOWED  # CYRILLIC CAPITAL LETTER YERU WITH DIAERESIS
 04F9        ; PVALID      # CYRILLIC SMALL LETTER YERU WITH DIAERESIS
@@ -618,6 +618,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0512        ; DISALLOWED  # CYRILLIC CAPITAL LETTER EL WITH HOOK
 0513        ; PVALID      # CYRILLIC SMALL LETTER EL WITH HOOK
 0514        ; DISALLOWED  # CYRILLIC CAPITAL LETTER LHA
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 28]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0515        ; PVALID      # CYRILLIC SMALL LETTER LHA
 0516        ; DISALLOWED  # CYRILLIC CAPITAL LETTER RHA
 0517        ; PVALID      # CYRILLIC SMALL LETTER RHA
@@ -633,17 +641,11 @@ Internet-Draft               IDNA Codepoints              September 2009
 0521        ; PVALID      # CYRILLIC SMALL LETTER EL WITH MIDDLE HOOK
 0522        ; DISALLOWED  # CYRILLIC CAPITAL LETTER EN WITH MIDDLE HOOK
 0523        ; PVALID      # CYRILLIC SMALL LETTER EN WITH MIDDLE HOOK
-0524..0530  ; UNASSIGNED  # <reserved>..<reserved>
+0524        ; DISALLOWED  # CYRILLIC CAPITAL LETTER PE WITH DESCENDER
+0525        ; PVALID      # CYRILLIC SMALL LETTER PE WITH DESCENDER
+0526..0530  ; UNASSIGNED  # <reserved>..<reserved>
 0531..0556  ; DISALLOWED  # ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITA
 0557..0558  ; UNASSIGNED  # <reserved>..<reserved>
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 27]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0559        ; PVALID      # ARMENIAN MODIFIER LETTER LEFT HALF RING
 055A..055F  ; DISALLOWED  # ARMENIAN APOSTROPHE..ARMENIAN ABBREVIATION M
 0560        ; UNASSIGNED  # <reserved>
@@ -672,6 +674,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0606..060F  ; DISALLOWED  # ARABIC-INDIC CUBE ROOT..ARABIC SIGN MISRA
 0610..061A  ; PVALID      # ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..AR
 061B        ; DISALLOWED  # ARABIC SEMICOLON
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 29]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 061C..061D  ; UNASSIGNED  # <reserved>..<reserved>
 061E..061F  ; DISALLOWED  # ARABIC TRIPLE DOT PUNCTUATION MARK..ARABIC Q
 0620        ; UNASSIGNED  # <reserved>
@@ -692,14 +702,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 06EA..06EF  ; PVALID      # ARABIC EMPTY CENTRE LOW STOP..ARABIC LETTER
 06F0..06F9  ; CONTEXTO    # EXTENDED ARABIC-INDIC DIGIT ZERO..EXTENDED A
 06FA..06FF  ; PVALID      # ARABIC LETTER SHEEN WITH DOT BELOW..ARABIC L
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 28]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0700..070D  ; DISALLOWED  # SYRIAC END OF PARAGRAPH..SYRIAC HARKLEAN AST
 070E        ; UNASSIGNED  # <reserved>
 070F        ; DISALLOWED  # SYRIAC ABBREVIATION MARK
@@ -709,21 +711,33 @@ Internet-Draft               IDNA Codepoints              September 2009
 07B2..07BF  ; UNASSIGNED  # <reserved>..<reserved>
 07C0..07F5  ; PVALID      # NKO DIGIT ZERO..NKO LOW TONE APOSTROPHE
 07F6..07FA  ; DISALLOWED  # NKO SYMBOL OO DENNEN..NKO LAJANYALAN
-07FB..0900  ; UNASSIGNED  # <reserved>..<reserved>
-0901..0939  ; PVALID      # DEVANAGARI SIGN CANDRABINDU..DEVANAGARI LETT
+07FB..07FF  ; UNASSIGNED  # <reserved>..<reserved>
+0800..082D  ; PVALID      # SAMARITAN LETTER ALAF..SAMARITAN MARK NEQUDA
+082E..082F  ; UNASSIGNED  # <reserved>..<reserved>
+0830..083E  ; DISALLOWED  # SAMARITAN PUNCTUATION NEQUDAA..SAMARITAN PUN
+083F..08FF  ; UNASSIGNED  # <reserved>..<reserved>
+0900..0939  ; PVALID      # DEVANAGARI SIGN INVERTED CANDRABINDU..DEVANA
 093A..093B  ; UNASSIGNED  # <reserved>..<reserved>
-093C..094D  ; PVALID      # DEVANAGARI SIGN NUKTA..DEVANAGARI SIGN VIRAM
-094E..094F  ; UNASSIGNED  # <reserved>..<reserved>
-0950..0954  ; PVALID      # DEVANAGARI OM..DEVANAGARI ACUTE ACCENT
-0955..0957  ; UNASSIGNED  # <reserved>..<reserved>
+093C..094E  ; PVALID      # DEVANAGARI SIGN NUKTA..DEVANAGARI VOWEL SIGN
+094F        ; UNASSIGNED  # <reserved>
+0950..0955  ; PVALID      # DEVANAGARI OM..DEVANAGARI VOWEL SIGN CANDRA
+0956..0957  ; UNASSIGNED  # <reserved>..<reserved>
 0958..095F  ; DISALLOWED  # DEVANAGARI LETTER QA..DEVANAGARI LETTER YYA
 0960..0963  ; PVALID      # DEVANAGARI LETTER VOCALIC RR..DEVANAGARI VOW
 0964..0965  ; DISALLOWED  # DEVANAGARI DANDA..DEVANAGARI DOUBLE DANDA
 0966..096F  ; PVALID      # DEVANAGARI DIGIT ZERO..DEVANAGARI DIGIT NINE
 0970        ; DISALLOWED  # DEVANAGARI ABBREVIATION SIGN
 0971..0972  ; PVALID      # DEVANAGARI SIGN HIGH SPACING DOT..DEVANAGARI
-0973..097A  ; UNASSIGNED  # <reserved>..<reserved>
-097B..097F  ; PVALID      # DEVANAGARI LETTER GGA..DEVANAGARI LETTER BBA
+0973..0978  ; UNASSIGNED  # <reserved>..<reserved>
+0979..097F  ; PVALID      # DEVANAGARI LETTER ZHA..DEVANAGARI LETTER BBA
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 30]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0980        ; UNASSIGNED  # <reserved>
 0981..0983  ; PVALID      # BENGALI SIGN CANDRABINDU..BENGALI SIGN VISAR
 0984        ; UNASSIGNED  # <reserved>
@@ -748,21 +762,13 @@ Internet-Draft               IDNA Codepoints              September 2009
 09D7        ; PVALID      # BENGALI AU LENGTH MARK
 09D8..09DB  ; UNASSIGNED  # <reserved>..<reserved>
 09DC..09DD  ; DISALLOWED  # BENGALI LETTER RRA..BENGALI LETTER RHA
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 29]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 09DE        ; UNASSIGNED  # <reserved>
 09DF        ; DISALLOWED  # BENGALI LETTER YYA
 09E0..09E3  ; PVALID      # BENGALI LETTER VOCALIC RR..BENGALI VOWEL SIG
 09E4..09E5  ; UNASSIGNED  # <reserved>..<reserved>
 09E6..09F1  ; PVALID      # BENGALI DIGIT ZERO..BENGALI LETTER RA WITH L
-09F2..09FA  ; DISALLOWED  # BENGALI RUPEE MARK..BENGALI ISSHAR
-09FB..0A00  ; UNASSIGNED  # <reserved>..<reserved>
+09F2..09FB  ; DISALLOWED  # BENGALI RUPEE MARK..BENGALI GANDA MARK
+09FC..0A00  ; UNASSIGNED  # <reserved>..<reserved>
 0A01..0A03  ; PVALID      # GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN VISA
 0A04        ; UNASSIGNED  # <reserved>
 0A05..0A0A  ; PVALID      # GURMUKHI LETTER A..GURMUKHI LETTER UU
@@ -780,6 +786,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0A36        ; DISALLOWED  # GURMUKHI LETTER SHA
 0A37        ; UNASSIGNED  # <reserved>
 0A38..0A39  ; PVALID      # GURMUKHI LETTER SA..GURMUKHI LETTER HA
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 31]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0A3A..0A3B  ; UNASSIGNED  # <reserved>..<reserved>
 0A3C        ; PVALID      # GURMUKHI SIGN NUKTA
 0A3D        ; UNASSIGNED  # <reserved>
@@ -804,14 +818,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0A8E        ; UNASSIGNED  # <reserved>
 0A8F..0A91  ; PVALID      # GUJARATI LETTER E..GUJARATI VOWEL CANDRA O
 0A92        ; UNASSIGNED  # <reserved>
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 30]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0A93..0AA8  ; PVALID      # GUJARATI LETTER O..GUJARATI LETTER NA
 0AA9        ; UNASSIGNED  # <reserved>
 0AAA..0AB0  ; PVALID      # GUJARATI LETTER PA..GUJARATI LETTER RA
@@ -836,6 +842,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0AF2..0B00  ; UNASSIGNED  # <reserved>..<reserved>
 0B01..0B03  ; PVALID      # ORIYA SIGN CANDRABINDU..ORIYA SIGN VISARGA
 0B04        ; UNASSIGNED  # <reserved>
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 32]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0B05..0B0C  ; PVALID      # ORIYA LETTER A..ORIYA LETTER VOCALIC L
 0B0D..0B0E  ; UNASSIGNED  # <reserved>..<reserved>
 0B0F..0B10  ; PVALID      # ORIYA LETTER E..ORIYA LETTER AI
@@ -860,14 +874,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0B5E        ; UNASSIGNED  # <reserved>
 0B5F..0B63  ; PVALID      # ORIYA LETTER YYA..ORIYA VOWEL SIGN VOCALIC L
 0B64..0B65  ; UNASSIGNED  # <reserved>..<reserved>
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 31]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0B66..0B6F  ; PVALID      # ORIYA DIGIT ZERO..ORIYA DIGIT NINE
 0B70        ; DISALLOWED  # ORIYA ISSHAR
 0B71        ; PVALID      # ORIYA LETTER WA
@@ -892,6 +898,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0BAB..0BAD  ; UNASSIGNED  # <reserved>..<reserved>
 0BAE..0BB9  ; PVALID      # TAMIL LETTER MA..TAMIL LETTER HA
 0BBA..0BBD  ; UNASSIGNED  # <reserved>..<reserved>
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 33]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0BBE..0BC2  ; PVALID      # TAMIL VOWEL SIGN AA..TAMIL VOWEL SIGN UU
 0BC3..0BC5  ; UNASSIGNED  # <reserved>..<reserved>
 0BC6..0BC8  ; PVALID      # TAMIL VOWEL SIGN E..TAMIL VOWEL SIGN AI
@@ -916,14 +930,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0C2A..0C33  ; PVALID      # TELUGU LETTER PA..TELUGU LETTER LLA
 0C34        ; UNASSIGNED  # <reserved>
 0C35..0C39  ; PVALID      # TELUGU LETTER VA..TELUGU LETTER HA
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 32]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0C3A..0C3C  ; UNASSIGNED  # <reserved>..<reserved>
 0C3D..0C44  ; PVALID      # TELUGU SIGN AVAGRAHA..TELUGU VOWEL SIGN VOCA
 0C45        ; UNASSIGNED  # <reserved>
@@ -948,6 +954,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0C8E..0C90  ; PVALID      # KANNADA LETTER E..KANNADA LETTER AI
 0C91        ; UNASSIGNED  # <reserved>
 0C92..0CA8  ; PVALID      # KANNADA LETTER O..KANNADA LETTER NA
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 34]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0CA9        ; UNASSIGNED  # <reserved>
 0CAA..0CB3  ; PVALID      # KANNADA LETTER PA..KANNADA LETTER LLA
 0CB4        ; UNASSIGNED  # <reserved>
@@ -972,14 +986,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0D02..0D03  ; PVALID      # MALAYALAM SIGN ANUSVARA..MALAYALAM SIGN VISA
 0D04        ; UNASSIGNED  # <reserved>
 0D05..0D0C  ; PVALID      # MALAYALAM LETTER A..MALAYALAM LETTER VOCALIC
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 33]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0D0D        ; UNASSIGNED  # <reserved>
 0D0E..0D10  ; PVALID      # MALAYALAM LETTER E..MALAYALAM LETTER AI
 0D11        ; UNASSIGNED  # <reserved>
@@ -1004,6 +1010,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0D7A..0D7F  ; PVALID      # MALAYALAM LETTER CHILLU NN..MALAYALAM LETTER
 0D80..0D81  ; UNASSIGNED  # <reserved>..<reserved>
 0D82..0D83  ; PVALID      # SINHALA SIGN ANUSVARAYA..SINHALA SIGN VISARG
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 35]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0D84        ; UNASSIGNED  # <reserved>
 0D85..0D96  ; PVALID      # SINHALA LETTER AYANNA..SINHALA LETTER AUYANN
 0D97..0D99  ; UNASSIGNED  # <reserved>..<reserved>
@@ -1028,14 +1042,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0DF5..0E00  ; UNASSIGNED  # <reserved>..<reserved>
 0E01..0E32  ; PVALID      # THAI CHARACTER KO KAI..THAI CHARACTER SARA A
 0E33        ; DISALLOWED  # THAI CHARACTER SARA AM
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 34]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0E34..0E3A  ; PVALID      # THAI CHARACTER SARA I..THAI CHARACTER PHINTH
 0E3B..0E3E  ; UNASSIGNED  # <reserved>..<reserved>
 0E3F        ; DISALLOWED  # THAI CURRENCY SYMBOL BAHT
@@ -1060,6 +1066,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0EA0        ; UNASSIGNED  # <reserved>
 0EA1..0EA3  ; PVALID      # LAO LETTER MO..LAO LETTER LO LING
 0EA4        ; UNASSIGNED  # <reserved>
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 36]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0EA5        ; PVALID      # LAO LETTER LO LOOT
 0EA6        ; UNASSIGNED  # <reserved>
 0EA7        ; PVALID      # LAO LETTER WO
@@ -1084,14 +1098,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0EDE..0EFF  ; UNASSIGNED  # <reserved>..<reserved>
 0F00        ; PVALID      # TIBETAN SYLLABLE OM
 0F01..0F0A  ; DISALLOWED  # TIBETAN MARK GTER YIG MGO TRUNCATED A..TIBET
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 35]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0F0B        ; PVALID      # TIBETAN MARK INTERSYLLABIC TSHEG
 0F0C..0F17  ; DISALLOWED  # TIBETAN MARK DELIMITER TSHEG BSTAR..TIBETAN
 0F18..0F19  ; PVALID      # TIBETAN ASTROLOGICAL SIGN -KHYUD PA..TIBETAN
@@ -1116,6 +1122,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 0F57        ; DISALLOWED  # TIBETAN LETTER BHA
 0F58..0F5B  ; PVALID      # TIBETAN LETTER MA..TIBETAN LETTER DZA
 0F5C        ; DISALLOWED  # TIBETAN LETTER DZHA
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 37]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 0F5D..0F68  ; PVALID      # TIBETAN LETTER WA..TIBETAN LETTER A
 0F69        ; DISALLOWED  # TIBETAN LETTER KSSA
 0F6A..0F6C  ; PVALID      # TIBETAN LETTER FIXED-FORM RA..TIBETAN LETTER
@@ -1140,14 +1154,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 0FA2        ; DISALLOWED  # TIBETAN SUBJOINED LETTER DHA
 0FA3..0FA6  ; PVALID      # TIBETAN SUBJOINED LETTER NA..TIBETAN SUBJOIN
 0FA7        ; DISALLOWED  # TIBETAN SUBJOINED LETTER BHA
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 36]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 0FA8..0FAB  ; PVALID      # TIBETAN SUBJOINED LETTER MA..TIBETAN SUBJOIN
 0FAC        ; DISALLOWED  # TIBETAN SUBJOINED LETTER DZHA
 0FAD..0FB8  ; PVALID      # TIBETAN SUBJOINED LETTER WA..TIBETAN SUBJOIN
@@ -1158,26 +1164,28 @@ Internet-Draft               IDNA Codepoints              September 2009
 0FC6        ; PVALID      # TIBETAN SYMBOL PADMA GDAN
 0FC7..0FCC  ; DISALLOWED  # TIBETAN SYMBOL RDO RJE RGYA GRAM..TIBETAN SY
 0FCD        ; UNASSIGNED  # <reserved>
-0FCE..0FD4  ; DISALLOWED  # TIBETAN SIGN RDEL NAG RDEL DKAR..TIBETAN MAR
-0FD5..0FFF  ; UNASSIGNED  # <reserved>..<reserved>
+0FCE..0FD8  ; DISALLOWED  # TIBETAN SIGN RDEL NAG RDEL DKAR..LEFT-FACING
+0FD9..0FFF  ; UNASSIGNED  # <reserved>..<reserved>
 1000..1049  ; PVALID      # MYANMAR LETTER KA..MYANMAR DIGIT NINE
 104A..104F  ; DISALLOWED  # MYANMAR SIGN LITTLE SECTION..MYANMAR SYMBOL
-1050..1099  ; PVALID      # MYANMAR LETTER SHA..MYANMAR SHAN DIGIT NINE
-109A..109D  ; UNASSIGNED  # <reserved>..<reserved>
+1050..109D  ; PVALID      # MYANMAR LETTER SHA..MYANMAR VOWEL SIGN AITON
 109E..10C5  ; DISALLOWED  # MYANMAR SYMBOL SHAN ONE..GEORGIAN CAPITAL LE
 10C6..10CF  ; UNASSIGNED  # <reserved>..<reserved>
 10D0..10FA  ; PVALID      # GEORGIAN LETTER AN..GEORGIAN LETTER AIN
 10FB..10FC  ; DISALLOWED  # GEORGIAN PARAGRAPH SEPARATOR..MODIFIER LETTE
 10FD..10FF  ; UNASSIGNED  # <reserved>..<reserved>
-1100..1159  ; DISALLOWED  # HANGUL CHOSEONG KIYEOK..HANGUL CHOSEONG YEOR
-115A..115E  ; UNASSIGNED  # <reserved>..<reserved>
-115F..11A2  ; DISALLOWED  # HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG SSA
-11A3..11A7  ; UNASSIGNED  # <reserved>..<reserved>
-11A8..11F9  ; DISALLOWED  # HANGUL JONGSEONG KIYEOK..HANGUL JONGSEONG YE
-11FA..11FF  ; UNASSIGNED  # <reserved>..<reserved>
+1100..11FF  ; DISALLOWED  # HANGUL CHOSEONG KIYEOK..HANGUL JONGSEONG SSA
 1200..1248  ; PVALID      # ETHIOPIC SYLLABLE HA..ETHIOPIC SYLLABLE QWA
 1249        ; UNASSIGNED  # <reserved>
 124A..124D  ; PVALID      # ETHIOPIC SYLLABLE QWI..ETHIOPIC SYLLABLE QWE
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 38]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 124E..124F  ; UNASSIGNED  # <reserved>..<reserved>
 1250..1256  ; PVALID      # ETHIOPIC SYLLABLE QHA..ETHIOPIC SYLLABLE QHO
 1257        ; UNASSIGNED  # <reserved>
@@ -1196,14 +1204,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 12B8..12BE  ; PVALID      # ETHIOPIC SYLLABLE KXA..ETHIOPIC SYLLABLE KXO
 12BF        ; UNASSIGNED  # <reserved>
 12C0        ; PVALID      # ETHIOPIC SYLLABLE KXWA
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 37]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 12C1        ; UNASSIGNED  # <reserved>
 12C2..12C5  ; PVALID      # ETHIOPIC SYLLABLE KXWI..ETHIOPIC SYLLABLE KX
 12C6..12C7  ; UNASSIGNED  # <reserved>..<reserved>
@@ -1222,11 +1222,11 @@ Internet-Draft               IDNA Codepoints              September 2009
 1390..1399  ; DISALLOWED  # ETHIOPIC TONAL MARK YIZET..ETHIOPIC TONAL MA
 139A..139F  ; UNASSIGNED  # <reserved>..<reserved>
 13A0..13F4  ; PVALID      # CHEROKEE LETTER A..CHEROKEE LETTER YV
-13F5..1400  ; UNASSIGNED  # <reserved>..<reserved>
+13F5..13FF  ; UNASSIGNED  # <reserved>..<reserved>
+1400        ; DISALLOWED  # CANADIAN SYLLABICS HYPHEN
 1401..166C  ; PVALID      # CANADIAN SYLLABICS E..CANADIAN SYLLABICS CAR
 166D..166E  ; DISALLOWED  # CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLAB
-166F..1676  ; PVALID      # CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS N
-1677..167F  ; UNASSIGNED  # <reserved>..<reserved>
+166F..167F  ; PVALID      # CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS B
 1680        ; DISALLOWED  # OGHAM SPACE MARK
 1681..169A  ; PVALID      # OGHAM LETTER BEITH..OGHAM LETTER PEITH
 169B..169C  ; DISALLOWED  # OGHAM FEATHER MARK..OGHAM REVERSED FEATHER M
@@ -1234,6 +1234,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 16A0..16EA  ; PVALID      # RUNIC LETTER FEHU FEOH FE F..RUNIC LETTER X
 16EB..16F0  ; DISALLOWED  # RUNIC SINGLE PUNCTUATION..RUNIC BELGTHOR SYM
 16F1..16FF  ; UNASSIGNED  # <reserved>..<reserved>
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 39]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1700..170C  ; PVALID      # TAGALOG LETTER A..TAGALOG LETTER YA
 170D        ; UNASSIGNED  # <reserved>
 170E..1714  ; PVALID      # TAGALOG LETTER LA..TAGALOG SIGN VIRAMA
@@ -1252,14 +1260,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 1780..17B3  ; PVALID      # KHMER LETTER KA..KHMER INDEPENDENT VOWEL QAU
 17B4..17B5  ; DISALLOWED  # KHMER VOWEL INHERENT AQ..KHMER VOWEL INHEREN
 17B6..17D3  ; PVALID      # KHMER VOWEL SIGN AA..KHMER SIGN BATHAMASAT
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 38]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 17D4..17D6  ; DISALLOWED  # KHMER SIGN KHAN..KHMER SIGN CAMNUC PII KUUH
 17D7        ; PVALID      # KHMER SIGN LEK TOO
 17D8..17DB  ; DISALLOWED  # KHMER SIGN BEYYAL..KHMER CURRENCY SYMBOL RIE
@@ -1276,7 +1276,9 @@ Internet-Draft               IDNA Codepoints              September 2009
 1820..1877  ; PVALID      # MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU
 1878..187F  ; UNASSIGNED  # <reserved>..<reserved>
 1880..18AA  ; PVALID      # MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONG
-18AB..18FF  ; UNASSIGNED  # <reserved>..<reserved>
+18AB..18AF  ; UNASSIGNED  # <reserved>..<reserved>
+18B0..18F5  ; PVALID      # CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CA
+18F6..18FF  ; UNASSIGNED  # <reserved>..<reserved>
 1900..191C  ; PVALID      # LIMBU VOWEL-CARRIER LETTER..LIMBU LETTER HA
 191D..191F  ; UNASSIGNED  # <reserved>..<reserved>
 1920..192B  ; PVALID      # LIMBU VOWEL SIGN A..LIMBU SUBJOINED LETTER W
@@ -1288,19 +1290,38 @@ Internet-Draft               IDNA Codepoints              September 2009
 1944..1945  ; DISALLOWED  # LIMBU EXCLAMATION MARK..LIMBU QUESTION MARK
 1946..196D  ; PVALID      # LIMBU DIGIT ZERO..TAI LE LETTER AI
 196E..196F  ; UNASSIGNED  # <reserved>..<reserved>
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 40]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1970..1974  ; PVALID      # TAI LE LETTER TONE-2..TAI LE LETTER TONE-6
 1975..197F  ; UNASSIGNED  # <reserved>..<reserved>
-1980..19A9  ; PVALID      # NEW TAI LUE LETTER HIGH QA..NEW TAI LUE LETT
-19AA..19AF  ; UNASSIGNED  # <reserved>..<reserved>
+1980..19AB  ; PVALID      # NEW TAI LUE LETTER HIGH QA..NEW TAI LUE LETT
+19AC..19AF  ; UNASSIGNED  # <reserved>..<reserved>
 19B0..19C9  ; PVALID      # NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW
 19CA..19CF  ; UNASSIGNED  # <reserved>..<reserved>
-19D0..19D9  ; PVALID      # NEW TAI LUE DIGIT ZERO..NEW TAI LUE DIGIT NI
-19DA..19DD  ; UNASSIGNED  # <reserved>..<reserved>
+19D0..19DA  ; PVALID      # NEW TAI LUE DIGIT ZERO..NEW TAI LUE THAM DIG
+19DB..19DD  ; UNASSIGNED  # <reserved>..<reserved>
 19DE..19FF  ; DISALLOWED  # NEW TAI LUE SIGN LAE..KHMER SYMBOL DAP-PRAM
 1A00..1A1B  ; PVALID      # BUGINESE LETTER KA..BUGINESE VOWEL SIGN AE
 1A1C..1A1D  ; UNASSIGNED  # <reserved>..<reserved>
 1A1E..1A1F  ; DISALLOWED  # BUGINESE PALLAWA..BUGINESE END OF SECTION
-1A20..1AFF  ; UNASSIGNED  # <reserved>..<reserved>
+1A20..1A5E  ; PVALID      # TAI THAM LETTER HIGH KA..TAI THAM CONSONANT
+1A5F        ; UNASSIGNED  # <reserved>
+1A60..1A7C  ; PVALID      # TAI THAM SIGN SAKOT..TAI THAM SIGN KHUEN-LUE
+1A7D..1A7E  ; UNASSIGNED  # <reserved>..<reserved>
+1A7F..1A89  ; PVALID      # TAI THAM COMBINING CRYPTOGRAMMIC DOT..TAI TH
+1A8A..1A8F  ; UNASSIGNED  # <reserved>..<reserved>
+1A90..1A99  ; PVALID      # TAI THAM THAM DIGIT ZERO..TAI THAM THAM DIGI
+1A9A..1A9F  ; UNASSIGNED  # <reserved>..<reserved>
+1AA0..1AA6  ; DISALLOWED  # TAI THAM SIGN WIANG..TAI THAM SIGN REVERSED
+1AA7        ; PVALID      # TAI THAM SIGN MAI YAMOK
+1AA8..1AAD  ; DISALLOWED  # TAI THAM SIGN KAAN..TAI THAM SIGN CAANG
+1AAE..1AFF  ; UNASSIGNED  # <reserved>..<reserved>
 1B00..1B4B  ; PVALID      # BALINESE SIGN ULU RICEM..BALINESE LETTER ASY
 1B4C..1B4F  ; UNASSIGNED  # <reserved>..<reserved>
 1B50..1B59  ; PVALID      # BALINESE DIGIT ZERO..BALINESE DIGIT NINE
@@ -1308,14 +1329,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 1B6B..1B73  ; PVALID      # BALINESE MUSICAL SYMBOL COMBINING TEGEH..BAL
 1B74..1B7C  ; DISALLOWED  # BALINESE MUSICAL SYMBOL RIGHT-HAND OPEN DUG.
 1B7D..1B7F  ; UNASSIGNED  # <reserved>..<reserved>
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 39]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 1B80..1BAA  ; PVALID      # SUNDANESE SIGN PANYECEK..SUNDANESE SIGN PAMA
 1BAB..1BAD  ; UNASSIGNED  # <reserved>..<reserved>
 1BAE..1BB9  ; PVALID      # SUNDANESE LETTER KHA..SUNDANESE DIGIT NINE
@@ -1327,8 +1340,20 @@ Internet-Draft               IDNA Codepoints              September 2009
 1C4A..1C4C  ; UNASSIGNED  # <reserved>..<reserved>
 1C4D..1C7D  ; PVALID      # LEPCHA LETTER TTA..OL CHIKI AHAD
 1C7E..1C7F  ; DISALLOWED  # OL CHIKI PUNCTUATION MUCAAD..OL CHIKI PUNCTU
-1C80..1CFF  ; UNASSIGNED  # <reserved>..<reserved>
+1C80..1CCF  ; UNASSIGNED  # <reserved>..<reserved>
+1CD0..1CD2  ; PVALID      # VEDIC TONE KARSHANA..VEDIC TONE PRENKHA
+1CD3        ; DISALLOWED  # VEDIC SIGN NIHSHVASA
+1CD4..1CF2  ; PVALID      # VEDIC SIGN YAJURVEDIC MIDLINE SVARITA..VEDIC
+1CF3..1CFF  ; UNASSIGNED  # <reserved>..<reserved>
 1D00..1D2B  ; PVALID      # LATIN LETTER SMALL CAPITAL A..CYRILLIC LETTE
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 41]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1D2C..1D2E  ; DISALLOWED  # MODIFIER LETTER CAPITAL A..MODIFIER LETTER C
 1D2F        ; PVALID      # MODIFIER LETTER CAPITAL BARRED B
 1D30..1D3A  ; DISALLOWED  # MODIFIER LETTER CAPITAL D..MODIFIER LETTER C
@@ -1341,8 +1366,8 @@ Internet-Draft               IDNA Codepoints              September 2009
 1D79..1D9A  ; PVALID      # LATIN SMALL LETTER INSULAR G..LATIN SMALL LE
 1D9B..1DBF  ; DISALLOWED  # MODIFIER LETTER SMALL TURNED ALPHA..MODIFIER
 1DC0..1DE6  ; PVALID      # COMBINING DOTTED GRAVE ACCENT..COMBINING LAT
-1DE7..1DFD  ; UNASSIGNED  # <reserved>..<reserved>
-1DFE..1DFF  ; PVALID      # COMBINING LEFT ARROWHEAD ABOVE..COMBINING RI
+1DE7..1DFC  ; UNASSIGNED  # <reserved>..<reserved>
+1DFD..1DFF  ; PVALID      # COMBINING ALMOST EQUAL TO BELOW..COMBINING R
 1E00        ; DISALLOWED  # LATIN CAPITAL LETTER A WITH RING BELOW
 1E01        ; PVALID      # LATIN SMALL LETTER A WITH RING BELOW
 1E02        ; DISALLOWED  # LATIN CAPITAL LETTER B WITH DOT ABOVE
@@ -1364,14 +1389,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 1E12        ; DISALLOWED  # LATIN CAPITAL LETTER D WITH CIRCUMFLEX BELOW
 1E13        ; PVALID      # LATIN SMALL LETTER D WITH CIRCUMFLEX BELOW
 1E14        ; DISALLOWED  # LATIN CAPITAL LETTER E WITH MACRON AND GRAVE
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 40]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 1E15        ; PVALID      # LATIN SMALL LETTER E WITH MACRON AND GRAVE
 1E16        ; DISALLOWED  # LATIN CAPITAL LETTER E WITH MACRON AND ACUTE
 1E17        ; PVALID      # LATIN SMALL LETTER E WITH MACRON AND ACUTE
@@ -1385,6 +1402,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 1E1F        ; PVALID      # LATIN SMALL LETTER F WITH DOT ABOVE
 1E20        ; DISALLOWED  # LATIN CAPITAL LETTER G WITH MACRON
 1E21        ; PVALID      # LATIN SMALL LETTER G WITH MACRON
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 42]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1E22        ; DISALLOWED  # LATIN CAPITAL LETTER H WITH DOT ABOVE
 1E23        ; PVALID      # LATIN SMALL LETTER H WITH DOT ABOVE
 1E24        ; DISALLOWED  # LATIN CAPITAL LETTER H WITH DOT BELOW
@@ -1420,14 +1445,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 1E42        ; DISALLOWED  # LATIN CAPITAL LETTER M WITH DOT BELOW
 1E43        ; PVALID      # LATIN SMALL LETTER M WITH DOT BELOW
 1E44        ; DISALLOWED  # LATIN CAPITAL LETTER N WITH DOT ABOVE
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 41]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 1E45        ; PVALID      # LATIN SMALL LETTER N WITH DOT ABOVE
 1E46        ; DISALLOWED  # LATIN CAPITAL LETTER N WITH DOT BELOW
 1E47        ; PVALID      # LATIN SMALL LETTER N WITH DOT BELOW
@@ -1441,6 +1458,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 1E4F        ; PVALID      # LATIN SMALL LETTER O WITH TILDE AND DIAERESI
 1E50        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH MACRON AND GRAVE
 1E51        ; PVALID      # LATIN SMALL LETTER O WITH MACRON AND GRAVE
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 43]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1E52        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH MACRON AND ACUTE
 1E53        ; PVALID      # LATIN SMALL LETTER O WITH MACRON AND ACUTE
 1E54        ; DISALLOWED  # LATIN CAPITAL LETTER P WITH ACUTE
@@ -1476,14 +1501,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 1E72        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH DIAERESIS BELOW
 1E73        ; PVALID      # LATIN SMALL LETTER U WITH DIAERESIS BELOW
 1E74        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH TILDE BELOW
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 42]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 1E75        ; PVALID      # LATIN SMALL LETTER U WITH TILDE BELOW
 1E76        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH CIRCUMFLEX BELOW
 1E77        ; PVALID      # LATIN SMALL LETTER U WITH CIRCUMFLEX BELOW
@@ -1497,6 +1514,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 1E7F        ; PVALID      # LATIN SMALL LETTER V WITH DOT BELOW
 1E80        ; DISALLOWED  # LATIN CAPITAL LETTER W WITH GRAVE
 1E81        ; PVALID      # LATIN SMALL LETTER W WITH GRAVE
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 44]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1E82        ; DISALLOWED  # LATIN CAPITAL LETTER W WITH ACUTE
 1E83        ; PVALID      # LATIN SMALL LETTER W WITH ACUTE
 1E84        ; DISALLOWED  # LATIN CAPITAL LETTER W WITH DIAERESIS
@@ -1532,14 +1557,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 1EA8        ; DISALLOWED  # LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND H
 1EA9        ; PVALID      # LATIN SMALL LETTER A WITH CIRCUMFLEX AND HOO
 1EAA        ; DISALLOWED  # LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND T
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 43]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 1EAB        ; PVALID      # LATIN SMALL LETTER A WITH CIRCUMFLEX AND TIL
 1EAC        ; DISALLOWED  # LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND D
 1EAD        ; PVALID      # LATIN SMALL LETTER A WITH CIRCUMFLEX AND DOT
@@ -1553,6 +1570,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 1EB5        ; PVALID      # LATIN SMALL LETTER A WITH BREVE AND TILDE
 1EB6        ; DISALLOWED  # LATIN CAPITAL LETTER A WITH BREVE AND DOT BE
 1EB7        ; PVALID      # LATIN SMALL LETTER A WITH BREVE AND DOT BELO
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 45]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1EB8        ; DISALLOWED  # LATIN CAPITAL LETTER E WITH DOT BELOW
 1EB9        ; PVALID      # LATIN SMALL LETTER E WITH DOT BELOW
 1EBA        ; DISALLOWED  # LATIN CAPITAL LETTER E WITH HOOK ABOVE
@@ -1588,14 +1613,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 1ED8        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND D
 1ED9        ; PVALID      # LATIN SMALL LETTER O WITH CIRCUMFLEX AND DOT
 1EDA        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH HORN AND ACUTE
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 44]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 1EDB        ; PVALID      # LATIN SMALL LETTER O WITH HORN AND ACUTE
 1EDC        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH HORN AND GRAVE
 1EDD        ; PVALID      # LATIN SMALL LETTER O WITH HORN AND GRAVE
@@ -1609,6 +1626,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 1EE5        ; PVALID      # LATIN SMALL LETTER U WITH DOT BELOW
 1EE6        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH HOOK ABOVE
 1EE7        ; PVALID      # LATIN SMALL LETTER U WITH HOOK ABOVE
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 46]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1EE8        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH HORN AND ACUTE
 1EE9        ; PVALID      # LATIN SMALL LETTER U WITH HORN AND ACUTE
 1EEA        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH HORN AND GRAVE
@@ -1644,14 +1669,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 1F38..1F3F  ; DISALLOWED  # GREEK CAPITAL LETTER IOTA WITH PSILI..GREEK
 1F40..1F45  ; PVALID      # GREEK SMALL LETTER OMICRON WITH PSILI..GREEK
 1F46..1F47  ; UNASSIGNED  # <reserved>..<reserved>
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 45]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 1F48..1F4D  ; DISALLOWED  # GREEK CAPITAL LETTER OMICRON WITH PSILI..GRE
 1F4E..1F4F  ; UNASSIGNED  # <reserved>..<reserved>
 1F50..1F57  ; PVALID      # GREEK SMALL LETTER UPSILON WITH PSILI..GREEK
@@ -1665,6 +1682,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 1F5F        ; DISALLOWED  # GREEK CAPITAL LETTER UPSILON WITH DASIA AND
 1F60..1F67  ; PVALID      # GREEK SMALL LETTER OMEGA WITH PSILI..GREEK S
 1F68..1F6F  ; DISALLOWED  # GREEK CAPITAL LETTER OMEGA WITH PSILI..GREEK
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 47]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1F70        ; PVALID      # GREEK SMALL LETTER ALPHA WITH VARIA
 1F71        ; DISALLOWED  # GREEK SMALL LETTER ALPHA WITH OXIA
 1F72        ; PVALID      # GREEK SMALL LETTER EPSILON WITH VARIA
@@ -1700,14 +1725,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 1FE3        ; DISALLOWED  # GREEK SMALL LETTER UPSILON WITH DIALYTIKA AN
 1FE4..1FE7  ; PVALID      # GREEK SMALL LETTER RHO WITH PSILI..GREEK SMA
 1FE8..1FEF  ; DISALLOWED  # GREEK CAPITAL LETTER UPSILON WITH VRACHY..GR
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 46]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 1FF0..1FF1  ; UNASSIGNED  # <reserved>..<reserved>
 1FF2..1FF4  ; DISALLOWED  # GREEK SMALL LETTER OMEGA WITH VARIA AND YPOG
 1FF5        ; UNASSIGNED  # <reserved>
@@ -1721,33 +1738,41 @@ Internet-Draft               IDNA Codepoints              September 2009
 206A..2071  ; DISALLOWED  # INHIBIT SYMMETRIC SWAPPING..SUPERSCRIPT LATI
 2072..2073  ; UNASSIGNED  # <reserved>..<reserved>
 2074..208E  ; DISALLOWED  # SUPERSCRIPT FOUR..SUBSCRIPT RIGHT PARENTHESI
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 48]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 208F        ; UNASSIGNED  # <reserved>
 2090..2094  ; DISALLOWED  # LATIN SUBSCRIPT SMALL LETTER A..LATIN SUBSCR
 2095..209F  ; UNASSIGNED  # <reserved>..<reserved>
-20A0..20B5  ; DISALLOWED  # EURO-CURRENCY SIGN..CEDI SIGN
-20B6..20CF  ; UNASSIGNED  # <reserved>..<reserved>
+20A0..20B8  ; DISALLOWED  # EURO-CURRENCY SIGN..TENGE SIGN
+20B9..20CF  ; UNASSIGNED  # <reserved>..<reserved>
 20D0..20F0  ; DISALLOWED  # COMBINING LEFT HARPOON ABOVE..COMBINING ASTE
 20F1..20FF  ; UNASSIGNED  # <reserved>..<reserved>
 2100..214D  ; DISALLOWED  # ACCOUNT OF..AKTIESELSKAB
 214E        ; PVALID      # TURNED SMALL F
-214F        ; DISALLOWED  # SYMBOL FOR SAMARITAN SOURCE
-2150..2152  ; UNASSIGNED  # <reserved>..<reserved>
-2153..2183  ; DISALLOWED  # VULGAR FRACTION ONE THIRD..ROMAN NUMERAL REV
+214F..2183  ; DISALLOWED  # SYMBOL FOR SAMARITAN SOURCE..ROMAN NUMERAL R
 2184        ; PVALID      # LATIN SMALL LETTER REVERSED C
-2185..2188  ; DISALLOWED  # ROMAN NUMERAL SIX LATE FORM..ROMAN NUMERAL O
-2189..218F  ; UNASSIGNED  # <reserved>..<reserved>
-2190..23E7  ; DISALLOWED  # LEFTWARDS ARROW..ELECTRICAL INTERSECTION
-23E8..23FF  ; UNASSIGNED  # <reserved>..<reserved>
+2185..2189  ; DISALLOWED  # ROMAN NUMERAL SIX LATE FORM..VULGAR FRACTION
+218A..218F  ; UNASSIGNED  # <reserved>..<reserved>
+2190..23E8  ; DISALLOWED  # LEFTWARDS ARROW..DECIMAL EXPONENT SYMBOL
+23E9..23FF  ; UNASSIGNED  # <reserved>..<reserved>
 2400..2426  ; DISALLOWED  # SYMBOL FOR NULL..SYMBOL FOR SUBSTITUTE FORM
 2427..243F  ; UNASSIGNED  # <reserved>..<reserved>
 2440..244A  ; DISALLOWED  # OCR HOOK..OCR DOUBLE BACKSLASH
 244B..245F  ; UNASSIGNED  # <reserved>..<reserved>
-2460..269D  ; DISALLOWED  # CIRCLED DIGIT ONE..OUTLINED WHITE STAR
-269E..269F  ; UNASSIGNED  # <reserved>..<reserved>
-26A0..26BC  ; DISALLOWED  # WARNING SIGN..SESQUIQUADRATE
-26BD..26BF  ; UNASSIGNED  # <reserved>..<reserved>
-26C0..26C3  ; DISALLOWED  # WHITE DRAUGHTS MAN..BLACK DRAUGHTS KING
-26C4..2700  ; UNASSIGNED  # <reserved>..<reserved>
+2460..26CD  ; DISALLOWED  # CIRCLED DIGIT ONE..DISABLED CAR
+26CE        ; UNASSIGNED  # <reserved>
+26CF..26E1  ; DISALLOWED  # PICK..RESTRICTED LEFT ENTRY-2
+26E2        ; UNASSIGNED  # <reserved>
+26E3        ; DISALLOWED  # HEAVY CIRCLE WITH STROKE AND TWO DOTS ABOVE
+26E4..26E7  ; UNASSIGNED  # <reserved>..<reserved>
+26E8..26FF  ; DISALLOWED  # BLACK CROSS ON SHIELD..WHITE FLAG WITH HORIZ
+2700        ; UNASSIGNED  # <reserved>
 2701..2704  ; DISALLOWED  # UPPER BLADE SCISSORS..WHITE SCISSORS
 2705        ; UNASSIGNED  # <reserved>
 2706..2709  ; DISALLOWED  # TELEPHONE LOCATION SIGN..ENVELOPE
@@ -1756,21 +1781,11 @@ Internet-Draft               IDNA Codepoints              September 2009
 2728        ; UNASSIGNED  # <reserved>
 2729..274B  ; DISALLOWED  # STRESS OUTLINED WHITE STAR..HEAVY EIGHT TEAR
 274C        ; UNASSIGNED  # <reserved>
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 47]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 274D        ; DISALLOWED  # SHADOWED WHITE CIRCLE
 274E        ; UNASSIGNED  # <reserved>
 274F..2752  ; DISALLOWED  # LOWER RIGHT DROP-SHADOWED WHITE SQUARE..UPPE
 2753..2755  ; UNASSIGNED  # <reserved>..<reserved>
-2756        ; DISALLOWED  # BLACK DIAMOND MINUS WHITE X
-2757        ; UNASSIGNED  # <reserved>
-2758..275E  ; DISALLOWED  # LIGHT VERTICAL BAR..HEAVY DOUBLE COMMA QUOTA
+2756..275E  ; DISALLOWED  # BLACK DIAMOND MINUS WHITE X..HEAVY DOUBLE CO
 275F..2760  ; UNASSIGNED  # <reserved>..<reserved>
 2761..2794  ; DISALLOWED  # CURVED STEM PARAGRAPH SIGN ORNAMENT..HEAVY W
 2795..2797  ; UNASSIGNED  # <reserved>..<reserved>
@@ -1779,13 +1794,21 @@ Internet-Draft               IDNA Codepoints              September 2009
 27B1..27BE  ; DISALLOWED  # NOTCHED UPPER RIGHT-SHADOWED WHITE RIGHTWARD
 27BF        ; UNASSIGNED  # <reserved>
 27C0..27CA  ; DISALLOWED  # THREE DIMENSIONAL ANGLE..VERTICAL BAR WITH H
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 49]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 27CB        ; UNASSIGNED  # <reserved>
 27CC        ; DISALLOWED  # LONG DIVISION
 27CD..27CF  ; UNASSIGNED  # <reserved>..<reserved>
 27D0..2B4C  ; DISALLOWED  # WHITE DIAMOND WITH CENTRED DOT..RIGHTWARDS A
 2B4D..2B4F  ; UNASSIGNED  # <reserved>..<reserved>
-2B50..2B54  ; DISALLOWED  # WHITE MEDIUM STAR..WHITE RIGHT-POINTING PENT
-2B55..2BFF  ; UNASSIGNED  # <reserved>..<reserved>
+2B50..2B59  ; DISALLOWED  # WHITE MEDIUM STAR..HEAVY CIRCLED SALTIRE
+2B5A..2BFF  ; UNASSIGNED  # <reserved>..<reserved>
 2C00..2C2E  ; DISALLOWED  # GLAGOLITIC CAPITAL LETTER AZU..GLAGOLITIC CA
 2C2F        ; UNASSIGNED  # <reserved>
 2C30..2C5E  ; PVALID      # GLAGOLITIC SMALL LETTER AZU..GLAGOLITIC SMAL
@@ -1800,26 +1823,15 @@ Internet-Draft               IDNA Codepoints              September 2009
 2C6A        ; PVALID      # LATIN SMALL LETTER K WITH DESCENDER
 2C6B        ; DISALLOWED  # LATIN CAPITAL LETTER Z WITH DESCENDER
 2C6C        ; PVALID      # LATIN SMALL LETTER Z WITH DESCENDER
-2C6D..2C6F  ; DISALLOWED  # LATIN CAPITAL LETTER ALPHA..LATIN CAPITAL LE
-2C70        ; UNASSIGNED  # <reserved>
+2C6D..2C70  ; DISALLOWED  # LATIN CAPITAL LETTER ALPHA..LATIN CAPITAL LE
 2C71        ; PVALID      # LATIN SMALL LETTER V WITH RIGHT HOOK
 2C72        ; DISALLOWED  # LATIN CAPITAL LETTER W WITH HOOK
 2C73..2C74  ; PVALID      # LATIN SMALL LETTER W WITH HOOK..LATIN SMALL
 2C75        ; DISALLOWED  # LATIN CAPITAL LETTER HALF H
 2C76..2C7B  ; PVALID      # LATIN SMALL LETTER HALF H..LATIN LETTER SMAL
-2C7C..2C7D  ; DISALLOWED  # LATIN SUBSCRIPT SMALL LETTER J..MODIFIER LET
-2C7E..2C7F  ; UNASSIGNED  # <reserved>..<reserved>
-2C80        ; DISALLOWED  # COPTIC CAPITAL LETTER ALFA
+2C7C..2C80  ; DISALLOWED  # LATIN SUBSCRIPT SMALL LETTER J..COPTIC CAPIT
 2C81        ; PVALID      # COPTIC SMALL LETTER ALFA
 2C82        ; DISALLOWED  # COPTIC CAPITAL LETTER VIDA
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 48]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 2C83        ; PVALID      # COPTIC SMALL LETTER VIDA
 2C84        ; DISALLOWED  # COPTIC CAPITAL LETTER GAMMA
 2C85        ; PVALID      # COPTIC SMALL LETTER GAMMA
@@ -1838,6 +1850,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 2C92        ; DISALLOWED  # COPTIC CAPITAL LETTER IAUDA
 2C93        ; PVALID      # COPTIC SMALL LETTER IAUDA
 2C94        ; DISALLOWED  # COPTIC CAPITAL LETTER KAPA
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 50]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 2C95        ; PVALID      # COPTIC SMALL LETTER KAPA
 2C96        ; DISALLOWED  # COPTIC CAPITAL LETTER LAULA
 2C97        ; PVALID      # COPTIC SMALL LETTER LAULA
@@ -1868,14 +1888,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 2CB0        ; DISALLOWED  # COPTIC CAPITAL LETTER OOU
 2CB1        ; PVALID      # COPTIC SMALL LETTER OOU
 2CB2        ; DISALLOWED  # COPTIC CAPITAL LETTER DIALECT-P ALEF
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 49]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 2CB3        ; PVALID      # COPTIC SMALL LETTER DIALECT-P ALEF
 2CB4        ; DISALLOWED  # COPTIC CAPITAL LETTER OLD COPTIC AIN
 2CB5        ; PVALID      # COPTIC SMALL LETTER OLD COPTIC AIN
@@ -1894,6 +1906,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 2CC2        ; DISALLOWED  # COPTIC CAPITAL LETTER CROSSED SHEI
 2CC3        ; PVALID      # COPTIC SMALL LETTER CROSSED SHEI
 2CC4        ; DISALLOWED  # COPTIC CAPITAL LETTER OLD COPTIC SHEI
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 51]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 2CC5        ; PVALID      # COPTIC SMALL LETTER OLD COPTIC SHEI
 2CC6        ; DISALLOWED  # COPTIC CAPITAL LETTER OLD COPTIC ESH
 2CC7        ; PVALID      # COPTIC SMALL LETTER OLD COPTIC ESH
@@ -1924,17 +1944,12 @@ Internet-Draft               IDNA Codepoints              September 2009
 2CE0        ; DISALLOWED  # COPTIC CAPITAL LETTER OLD NUBIAN NYI
 2CE1        ; PVALID      # COPTIC SMALL LETTER OLD NUBIAN NYI
 2CE2        ; DISALLOWED  # COPTIC CAPITAL LETTER OLD NUBIAN WAU
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 50]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 2CE3..2CE4  ; PVALID      # COPTIC SMALL LETTER OLD NUBIAN WAU..COPTIC S
-2CE5..2CEA  ; DISALLOWED  # COPTIC SYMBOL MI RO..COPTIC SYMBOL SHIMA SIM
-2CEB..2CF8  ; UNASSIGNED  # <reserved>..<reserved>
+2CE5..2CEB  ; DISALLOWED  # COPTIC SYMBOL MI RO..COPTIC CAPITAL LETTER C
+2CEC        ; PVALID      # COPTIC SMALL LETTER CRYPTOGRAMMIC SHEI
+2CED        ; DISALLOWED  # COPTIC CAPITAL LETTER CRYPTOGRAMMIC GANGIA
+2CEE..2CF1  ; PVALID      # COPTIC SMALL LETTER CRYPTOGRAMMIC GANGIA..CO
+2CF2..2CF8  ; UNASSIGNED  # <reserved>..<reserved>
 2CF9..2CFF  ; DISALLOWED  # COPTIC OLD NUBIAN FULL STOP..COPTIC MORPHOLO
 2D00..2D25  ; PVALID      # GEORGIAN SMALL LETTER AN..GEORGIAN SMALL LET
 2D26..2D2F  ; UNASSIGNED  # <reserved>..<reserved>
@@ -1947,6 +1962,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 2DA0..2DA6  ; PVALID      # ETHIOPIC SYLLABLE SSA..ETHIOPIC SYLLABLE SSO
 2DA7        ; UNASSIGNED  # <reserved>
 2DA8..2DAE  ; PVALID      # ETHIOPIC SYLLABLE CCA..ETHIOPIC SYLLABLE CCO
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 52]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 2DAF        ; UNASSIGNED  # <reserved>
 2DB0..2DB6  ; PVALID      # ETHIOPIC SYLLABLE ZZA..ETHIOPIC SYLLABLE ZZO
 2DB7        ; UNASSIGNED  # <reserved>
@@ -1963,8 +1986,8 @@ Internet-Draft               IDNA Codepoints              September 2009
 2DE0..2DFF  ; PVALID      # COMBINING CYRILLIC LETTER BE..COMBINING CYRI
 2E00..2E2E  ; DISALLOWED  # RIGHT ANGLE SUBSTITUTION MARKER..REVERSED QU
 2E2F        ; PVALID      # VERTICAL TILDE
-2E30        ; DISALLOWED  # RING POINT
-2E31..2E7F  ; UNASSIGNED  # <reserved>..<reserved>
+2E30..2E31  ; DISALLOWED  # RING POINT..WORD SEPARATOR MIDDLE DOT
+2E32..2E7F  ; UNASSIGNED  # <reserved>..<reserved>
 2E80..2E99  ; DISALLOWED  # CJK RADICAL REPEAT..CJK RADICAL RAP
 2E9A        ; UNASSIGNED  # <reserved>
 2E9B..2EF3  ; DISALLOWED  # CJK RADICAL CHOKE..CJK RADICAL C-SIMPLIFIED
@@ -1980,14 +2003,6 @@ Internet-Draft               IDNA Codepoints              September 2009
 302E..303B  ; DISALLOWED  # HANGUL SINGLE DOT TONE MARK..VERTICAL IDEOGR
 303C        ; PVALID      # MASU MARK
 303D..303F  ; DISALLOWED  # PART ALTERNATION MARK..IDEOGRAPHIC HALF FILL
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 51]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 3040        ; UNASSIGNED  # <reserved>
 3041..3096  ; PVALID      # HIRAGANA LETTER SMALL A..HIRAGANA LETTER SMA
 3097..3098  ; UNASSIGNED  # <reserved>..<reserved>
@@ -2003,6 +2018,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 3105..312D  ; PVALID      # BOPOMOFO LETTER B..BOPOMOFO LETTER IH
 312E..3130  ; UNASSIGNED  # <reserved>..<reserved>
 3131..318E  ; DISALLOWED  # HANGUL LETTER KIYEOK..HANGUL LETTER ARAEAE
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 53]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 318F        ; UNASSIGNED  # <reserved>
 3190..319F  ; DISALLOWED  # IDEOGRAPHIC ANNOTATION LINKING MARK..IDEOGRA
 31A0..31B7  ; PVALID      # BOPOMOFO LETTER BU..BOPOMOFO FINAL LETTER H
@@ -2012,20 +2035,20 @@ Internet-Draft               IDNA Codepoints              September 2009
 31F0..31FF  ; PVALID      # KATAKANA LETTER SMALL KU..KATAKANA LETTER SM
 3200..321E  ; DISALLOWED  # PARENTHESIZED HANGUL KIYEOK..PARENTHESIZED K
 321F        ; UNASSIGNED  # <reserved>
-3220..3243  ; DISALLOWED  # PARENTHESIZED IDEOGRAPH ONE..PARENTHESIZED I
-3244..324F  ; UNASSIGNED  # <reserved>..<reserved>
-3250..32FE  ; DISALLOWED  # PARTNERSHIP SIGN..CIRCLED KATAKANA WO
+3220..32FE  ; DISALLOWED  # PARENTHESIZED IDEOGRAPH ONE..CIRCLED KATAKAN
 32FF        ; UNASSIGNED  # <reserved>
 3300..33FF  ; DISALLOWED  # SQUARE APAATO..SQUARE GAL
 3400..4DB5  ; PVALID      # <CJK Ideograph Extension A>..<CJK Ideograph
 4DB6..4DBF  ; UNASSIGNED  # <reserved>..<reserved>
 4DC0..4DFF  ; DISALLOWED  # HEXAGRAM FOR THE CREATIVE HEAVEN..HEXAGRAM F
-4E00..9FC3  ; PVALID      # <CJK Ideograph>..<CJK Ideograph>
-9FC4..9FFF  ; UNASSIGNED  # <reserved>..<reserved>
+4E00..9FCB  ; PVALID      # <CJK Ideograph>..<CJK Ideograph>
+9FCC..9FFF  ; UNASSIGNED  # <reserved>..<reserved>
 A000..A48C  ; PVALID      # YI SYLLABLE IT..YI SYLLABLE YYR
 A48D..A48F  ; UNASSIGNED  # <reserved>..<reserved>
 A490..A4C6  ; DISALLOWED  # YI RADICAL QOT..YI RADICAL KE
-A4C7..A4FF  ; UNASSIGNED  # <reserved>..<reserved>
+A4C7..A4CF  ; UNASSIGNED  # <reserved>..<reserved>
+A4D0..A4FD  ; PVALID      # LISU LETTER BA..LISU LETTER TONE MYA JEU
+A4FE..A4FF  ; DISALLOWED  # LISU PUNCTUATION COMMA..LISU PUNCTUATION FUL
 A500..A60C  ; PVALID      # VAI SYLLABLE EE..VAI SYLLABLE LENGTHENER
 A60D..A60F  ; DISALLOWED  # VAI COMMA..VAI QUESTION MARK
 A610..A62B  ; PVALID      # VAI SYLLABLE NDOLE FA..VAI SYLLABLE NDOLE DO
@@ -2036,14 +2059,6 @@ A642        ; DISALLOWED  # CYRILLIC CAPITAL LETTER DZELO
 A643        ; PVALID      # CYRILLIC SMALL LETTER DZELO
 A644        ; DISALLOWED  # CYRILLIC CAPITAL LETTER REVERSED DZE
 A645        ; PVALID      # CYRILLIC SMALL LETTER REVERSED DZE
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 52]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 A646        ; DISALLOWED  # CYRILLIC CAPITAL LETTER IOTA
 A647        ; PVALID      # CYRILLIC SMALL LETTER IOTA
 A648        ; DISALLOWED  # CYRILLIC CAPITAL LETTER DJERV
@@ -2059,6 +2074,14 @@ A651        ; PVALID      # CYRILLIC SMALL LETTER YERU WITH BACK YER
 A652        ; DISALLOWED  # CYRILLIC CAPITAL LETTER IOTIFIED YAT
 A653        ; PVALID      # CYRILLIC SMALL LETTER IOTIFIED YAT
 A654        ; DISALLOWED  # CYRILLIC CAPITAL LETTER REVERSED YU
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 54]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 A655        ; PVALID      # CYRILLIC SMALL LETTER REVERSED YU
 A656        ; DISALLOWED  # CYRILLIC CAPITAL LETTER IOTIFIED A
 A657        ; PVALID      # CYRILLIC SMALL LETTER IOTIFIED A
@@ -2092,14 +2115,6 @@ A680        ; DISALLOWED  # CYRILLIC CAPITAL LETTER DWE
 A681        ; PVALID      # CYRILLIC SMALL LETTER DWE
 A682        ; DISALLOWED  # CYRILLIC CAPITAL LETTER DZWE
 A683        ; PVALID      # CYRILLIC SMALL LETTER DZWE
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 53]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 A684        ; DISALLOWED  # CYRILLIC CAPITAL LETTER ZHWE
 A685        ; PVALID      # CYRILLIC SMALL LETTER ZHWE
 A686        ; DISALLOWED  # CYRILLIC CAPITAL LETTER CCHE
@@ -2115,12 +2130,25 @@ A68F        ; PVALID      # CYRILLIC SMALL LETTER TSWE
 A690        ; DISALLOWED  # CYRILLIC CAPITAL LETTER TSSE
 A691        ; PVALID      # CYRILLIC SMALL LETTER TSSE
 A692        ; DISALLOWED  # CYRILLIC CAPITAL LETTER TCHE
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 55]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 A693        ; PVALID      # CYRILLIC SMALL LETTER TCHE
 A694        ; DISALLOWED  # CYRILLIC CAPITAL LETTER HWE
 A695        ; PVALID      # CYRILLIC SMALL LETTER HWE
 A696        ; DISALLOWED  # CYRILLIC CAPITAL LETTER SHWE
 A697        ; PVALID      # CYRILLIC SMALL LETTER SHWE
-A698..A6FF  ; UNASSIGNED  # <reserved>..<reserved>
+A698..A69F  ; UNASSIGNED  # <reserved>..<reserved>
+A6A0..A6E5  ; PVALID      # BAMUM LETTER A..BAMUM LETTER KI
+A6E6..A6EF  ; DISALLOWED  # BAMUM LETTER MO..BAMUM LETTER KOGHOM
+A6F0..A6F1  ; PVALID      # BAMUM COMBINING MARK KOQNDON..BAMUM COMBININ
+A6F2..A6F7  ; DISALLOWED  # BAMUM NJAEMLI..BAMUM QUESTION MARK
+A6F8..A6FF  ; UNASSIGNED  # <reserved>..<reserved>
 A700..A716  ; DISALLOWED  # MODIFIER LETTER CHINESE TONE YIN PING..MODIF
 A717..A71F  ; PVALID      # MODIFIER LETTER DOT VERTICAL BAR..MODIFIER L
 A720..A722  ; DISALLOWED  # MODIFIER LETTER STRESS AND HIGH TONE..LATIN
@@ -2148,14 +2176,6 @@ A739        ; PVALID      # LATIN SMALL LETTER AV
 A73A        ; DISALLOWED  # LATIN CAPITAL LETTER AV WITH HORIZONTAL BAR
 A73B        ; PVALID      # LATIN SMALL LETTER AV WITH HORIZONTAL BAR
 A73C        ; DISALLOWED  # LATIN CAPITAL LETTER AY
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 54]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 A73D        ; PVALID      # LATIN SMALL LETTER AY
 A73E        ; DISALLOWED  # LATIN CAPITAL LETTER REVERSED C WITH DOT
 A73F        ; PVALID      # LATIN SMALL LETTER REVERSED C WITH DOT
@@ -2166,6 +2186,14 @@ A743        ; PVALID      # LATIN SMALL LETTER K WITH DIAGONAL STROKE
 A744        ; DISALLOWED  # LATIN CAPITAL LETTER K WITH STROKE AND DIAGO
 A745        ; PVALID      # LATIN SMALL LETTER K WITH STROKE AND DIAGONA
 A746        ; DISALLOWED  # LATIN CAPITAL LETTER BROKEN L
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 56]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 A747        ; PVALID      # LATIN SMALL LETTER BROKEN L
 A748        ; DISALLOWED  # LATIN CAPITAL LETTER L WITH HIGH STROKE
 A749        ; PVALID      # LATIN SMALL LETTER L WITH HIGH STROKE
@@ -2204,14 +2232,6 @@ A769        ; PVALID      # LATIN SMALL LETTER VEND
 A76A        ; DISALLOWED  # LATIN CAPITAL LETTER ET
 A76B        ; PVALID      # LATIN SMALL LETTER ET
 A76C        ; DISALLOWED  # LATIN CAPITAL LETTER IS
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 55]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 A76D        ; PVALID      # LATIN SMALL LETTER IS
 A76E        ; DISALLOWED  # LATIN CAPITAL LETTER CON
 A76F        ; PVALID      # LATIN SMALL LETTER CON
@@ -2222,6 +2242,14 @@ A77A        ; PVALID      # LATIN SMALL LETTER INSULAR D
 A77B        ; DISALLOWED  # LATIN CAPITAL LETTER INSULAR F
 A77C        ; PVALID      # LATIN SMALL LETTER INSULAR F
 A77D..A77E  ; DISALLOWED  # LATIN CAPITAL LETTER INSULAR G..LATIN CAPITA
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 57]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 A77F        ; PVALID      # LATIN SMALL LETTER TURNED INSULAR G
 A780        ; DISALLOWED  # LATIN CAPITAL LETTER TURNED L
 A781        ; PVALID      # LATIN SMALL LETTER TURNED L
@@ -2236,7 +2264,9 @@ A78C        ; PVALID      # LATIN SMALL LETTER SALTILLO
 A78D..A7FA  ; UNASSIGNED  # <reserved>..<reserved>
 A7FB..A827  ; PVALID      # LATIN EPIGRAPHIC LETTER REVERSED F..SYLOTI N
 A828..A82B  ; DISALLOWED  # SYLOTI NAGRI POETRY MARK-1..SYLOTI NAGRI POE
-A82C..A83F  ; UNASSIGNED  # <reserved>..<reserved>
+A82C..A82F  ; UNASSIGNED  # <reserved>..<reserved>
+A830..A839  ; DISALLOWED  # NORTH INDIC FRACTION ONE QUARTER..NORTH INDI
+A83A..A83F  ; UNASSIGNED  # <reserved>..<reserved>
 A840..A873  ; PVALID      # PHAGS-PA LETTER KA..PHAGS-PA LETTER CANDRABI
 A874..A877  ; DISALLOWED  # PHAGS-PA SINGLE HEAD MARK..PHAGS-PA MARK DOU
 A878..A87F  ; UNASSIGNED  # <reserved>..<reserved>
@@ -2244,31 +2274,60 @@ A880..A8C4  ; PVALID      # SAURASHTRA SIGN ANUSVARA..SAURASHTRA SIGN VI
 A8C5..A8CD  ; UNASSIGNED  # <reserved>..<reserved>
 A8CE..A8CF  ; DISALLOWED  # SAURASHTRA DANDA..SAURASHTRA DOUBLE DANDA
 A8D0..A8D9  ; PVALID      # SAURASHTRA DIGIT ZERO..SAURASHTRA DIGIT NINE
-A8DA..A8FF  ; UNASSIGNED  # <reserved>..<reserved>
+A8DA..A8DF  ; UNASSIGNED  # <reserved>..<reserved>
+A8E0..A8F7  ; PVALID      # COMBINING DEVANAGARI DIGIT ZERO..DEVANAGARI
+A8F8..A8FA  ; DISALLOWED  # DEVANAGARI SIGN PUSHPIKA..DEVANAGARI CARET
+A8FB        ; PVALID      # DEVANAGARI HEADSTROKE
+A8FC..A8FF  ; UNASSIGNED  # <reserved>..<reserved>
 A900..A92D  ; PVALID      # KAYAH LI DIGIT ZERO..KAYAH LI TONE CALYA PLO
 A92E..A92F  ; DISALLOWED  # KAYAH LI SIGN CWI..KAYAH LI SIGN SHYA
 A930..A953  ; PVALID      # REJANG LETTER KA..REJANG VIRAMA
 A954..A95E  ; UNASSIGNED  # <reserved>..<reserved>
-A95F        ; DISALLOWED  # REJANG SECTION MARK
-A960..A9FF  ; UNASSIGNED  # <reserved>..<reserved>
+A95F..A97C  ; DISALLOWED  # REJANG SECTION MARK..HANGUL CHOSEONG SSANGYE
+A97D..A97F  ; UNASSIGNED  # <reserved>..<reserved>
+A980..A9C0  ; PVALID      # JAVANESE SIGN PANYANGGA..JAVANESE PANGKON
+A9C1..A9CD  ; DISALLOWED  # JAVANESE LEFT RERENGGAN..JAVANESE TURNED PAD
+A9CE        ; UNASSIGNED  # <reserved>
+A9CF..A9D9  ; PVALID      # JAVANESE PANGRANGKEP..JAVANESE DIGIT NINE
+A9DA..A9DD  ; UNASSIGNED  # <reserved>..<reserved>
+A9DE..A9DF  ; DISALLOWED  # JAVANESE PADA TIRTA TUMETES..JAVANESE PADA I
+A9E0..A9FF  ; UNASSIGNED  # <reserved>..<reserved>
 AA00..AA36  ; PVALID      # CHAM LETTER A..CHAM CONSONANT SIGN WA
 AA37..AA3F  ; UNASSIGNED  # <reserved>..<reserved>
 AA40..AA4D  ; PVALID      # CHAM LETTER FINAL K..CHAM CONSONANT SIGN FIN
 AA4E..AA4F  ; UNASSIGNED  # <reserved>..<reserved>
 AA50..AA59  ; PVALID      # CHAM DIGIT ZERO..CHAM DIGIT NINE
 AA5A..AA5B  ; UNASSIGNED  # <reserved>..<reserved>
-AA5C..AA5F  ; DISALLOWED  # CHAM PUNCTUATION SPIRAL..CHAM PUNCTUATION TR
-AA60..ABFF  ; UNASSIGNED  # <reserved>..<reserved>
-AC00..D7A3  ; PVALID      # <Hangul Syllable>..<Hangul Syllable>
 
 
 
-Faltstrom                Expires March 14, 2010                [Page 56]
+Faltstrom                 Expires May 28, 2010                 [Page 58]
 
-Internet-Draft               IDNA Codepoints              September 2009
+Internet-Draft               IDNA Codepoints               November 2009
 
 
-D7A4..D7FF  ; UNASSIGNED  # <reserved>..<reserved>
+AA5C..AA5F  ; DISALLOWED  # CHAM PUNCTUATION SPIRAL..CHAM PUNCTUATION TR
+AA60..AA76  ; PVALID      # MYANMAR LETTER KHAMTI GA..MYANMAR LOGOGRAM K
+AA77..AA79  ; DISALLOWED  # MYANMAR SYMBOL AITON EXCLAMATION..MYANMAR SY
+AA7A..AA7B  ; PVALID      # MYANMAR LETTER AITON RA..MYANMAR SIGN PAO KA
+AA7C..AA7F  ; UNASSIGNED  # <reserved>..<reserved>
+AA80..AAC2  ; PVALID      # TAI VIET LETTER LOW KO..TAI VIET TONE MAI SO
+AAC3..AADA  ; UNASSIGNED  # <reserved>..<reserved>
+AADB..AADD  ; PVALID      # TAI VIET SYMBOL KON..TAI VIET SYMBOL SAM
+AADE..AADF  ; DISALLOWED  # TAI VIET SYMBOL HO HOI..TAI VIET SYMBOL KOI
+AAE0..ABBF  ; UNASSIGNED  # <reserved>..<reserved>
+ABC0..ABEA  ; PVALID      # MEETEI MAYEK LETTER KOK..MEETEI MAYEK VOWEL
+ABEB        ; DISALLOWED  # MEETEI MAYEK CHEIKHEI
+ABEC..ABED  ; PVALID      # MEETEI MAYEK LUM IYEK..MEETEI MAYEK APUN IYE
+ABEE..ABEF  ; UNASSIGNED  # <reserved>..<reserved>
+ABF0..ABF9  ; PVALID      # MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT
+ABFA..ABFF  ; UNASSIGNED  # <reserved>..<reserved>
+AC00..D7A3  ; PVALID      # <Hangul Syllable>..<Hangul Syllable>
+D7A4..D7AF  ; UNASSIGNED  # <reserved>..<reserved>
+D7B0..D7C6  ; DISALLOWED  # HANGUL JUNGSEONG O-YEO..HANGUL JUNGSEONG ARA
+D7C7..D7CA  ; UNASSIGNED  # <reserved>..<reserved>
+D7CB..D7FB  ; DISALLOWED  # HANGUL JONGSEONG NIEUN-RIEUL..HANGUL JONGSEO
+D7FC..D7FF  ; UNASSIGNED  # <reserved>..<reserved>
 D800..FA0D  ; DISALLOWED  # <Non Private Use High Surrogate>..CJK COMPAT
 FA0E..FA0F  ; PVALID      # CJK COMPATIBILITY IDEOGRAPH-FA0E..CJK COMPAT
 FA10        ; DISALLOWED  # CJK COMPATIBILITY IDEOGRAPH-FA10
@@ -2285,8 +2344,8 @@ FA25..FA26  ; DISALLOWED  # CJK COMPATIBILITY IDEOGRAPH-FA25..CJK COMPAT
 FA27..FA29  ; PVALID      # CJK COMPATIBILITY IDEOGRAPH-FA27..CJK COMPAT
 FA2A..FA2D  ; DISALLOWED  # CJK COMPATIBILITY IDEOGRAPH-FA2A..CJK COMPAT
 FA2E..FA2F  ; UNASSIGNED  # <reserved>..<reserved>
-FA30..FA6A  ; DISALLOWED  # CJK COMPATIBILITY IDEOGRAPH-FA30..CJK COMPAT
-FA6B..FA6F  ; UNASSIGNED  # <reserved>..<reserved>
+FA30..FA6D  ; DISALLOWED  # CJK COMPATIBILITY IDEOGRAPH-FA30..CJK COMPAT
+FA6E..FA6F  ; UNASSIGNED  # <reserved>..<reserved>
 FA70..FAD9  ; DISALLOWED  # CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPAT
 FADA..FAFF  ; UNASSIGNED  # <reserved>..<reserved>
 FB00..FB06  ; DISALLOWED  # LATIN SMALL LIGATURE FF..LATIN SMALL LIGATUR
@@ -2295,6 +2354,14 @@ FB13..FB17  ; DISALLOWED  # ARMENIAN SMALL LIGATURE MEN NOW..ARMENIAN SM
 FB18..FB1C  ; UNASSIGNED  # <reserved>..<reserved>
 FB1D        ; DISALLOWED  # HEBREW LETTER YOD WITH HIRIQ
 FB1E        ; PVALID      # HEBREW POINT JUDEO-SPANISH VARIKA
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 59]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 FB1F..FB36  ; DISALLOWED  # HEBREW LIGATURE YIDDISH YOD YOD PATAH..HEBRE
 FB37        ; UNASSIGNED  # <reserved>
 FB38..FB3C  ; DISALLOWED  # HEBREW LETTER TET WITH DAGESH..HEBREW LETTER
@@ -2316,14 +2383,6 @@ FDC8..FDCF  ; UNASSIGNED  # <reserved>..<reserved>
 FDD0..FDFD  ; DISALLOWED  # <noncharacter>..ARABIC LIGATURE BISMILLAH AR
 FDFE..FDFF  ; UNASSIGNED  # <reserved>..<reserved>
 FE00..FE19  ; DISALLOWED  # VARIATION SELECTOR-1..PRESENTATION FORM FOR
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 57]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 FE1A..FE1F  ; UNASSIGNED  # <reserved>..<reserved>
 FE20..FE26  ; PVALID      # COMBINING LIGATURE LEFT HALF..COMBINING CONJ
 FE27..FE2F  ; UNASSIGNED  # <reserved>..<reserved>
@@ -2351,6 +2410,14 @@ FFD2..FFD7  ; DISALLOWED  # HALFWIDTH HANGUL LETTER YO..HALFWIDTH HANGUL
 FFD8..FFD9  ; UNASSIGNED  # <reserved>..<reserved>
 FFDA..FFDC  ; DISALLOWED  # HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL
 FFDD..FFDF  ; UNASSIGNED  # <reserved>..<reserved>
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 60]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 FFE0..FFE6  ; DISALLOWED  # FULLWIDTH CENT SIGN..FULLWIDTH WON SIGN
 FFE7        ; UNASSIGNED  # <reserved>
 FFE8..FFEE  ; DISALLOWED  # HALFWIDTH FORMS LIGHT VERTICAL..HALFWIDTH WH
@@ -2372,14 +2439,6 @@ FFF9..FFFF  ; DISALLOWED  # INTERLINEAR ANNOTATION ANCHOR..<noncharacter
 100FB..100FF; UNASSIGNED  # <reserved>..<reserved>
 10100..10102; DISALLOWED  # AEGEAN WORD SEPARATOR LINE..AEGEAN CHECK MAR
 10103..10106; UNASSIGNED  # <reserved>..<reserved>
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 58]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 10107..10133; DISALLOWED  # AEGEAN NUMBER ONE..AEGEAN NUMBER NINETY THOU
 10134..10136; UNASSIGNED  # <reserved>..<reserved>
 10137..1018A; DISALLOWED  # AEGEAN WEIGHT BASE UNIT..GREEK ZERO SIGN
@@ -2407,6 +2466,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 1039F       ; DISALLOWED  # UGARITIC WORD DIVIDER
 103A0..103C3; PVALID      # OLD PERSIAN SIGN A..OLD PERSIAN SIGN HA
 103C4..103C7; UNASSIGNED  # <reserved>..<reserved>
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 61]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 103C8..103CF; PVALID      # OLD PERSIAN SIGN AURAMAZDAA..OLD PERSIAN SIG
 103D0..103D5; DISALLOWED  # OLD PERSIAN WORD DIVIDER..OLD PERSIAN NUMBER
 103D6..103FF; UNASSIGNED  # <reserved>..<reserved>
@@ -2425,19 +2492,13 @@ Internet-Draft               IDNA Codepoints              September 2009
 10839..1083B; UNASSIGNED  # <reserved>..<reserved>
 1083C       ; PVALID      # CYPRIOT SYLLABLE ZA
 1083D..1083E; UNASSIGNED  # <reserved>..<reserved>
-1083F       ; PVALID      # CYPRIOT SYLLABLE ZO
-10840..108FF; UNASSIGNED  # <reserved>..<reserved>
+1083F..10855; PVALID      # CYPRIOT SYLLABLE ZO..IMPERIAL ARAMAIC LETTER
+10856       ; UNASSIGNED  # <reserved>
+10857..1085F; DISALLOWED  # IMPERIAL ARAMAIC SECTION SIGN..IMPERIAL ARAM
+10860..108FF; UNASSIGNED  # <reserved>..<reserved>
 10900..10915; PVALID      # PHOENICIAN LETTER ALF..PHOENICIAN LETTER TAU
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 59]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
-10916..10919; DISALLOWED  # PHOENICIAN NUMBER ONE..PHOENICIAN NUMBER ONE
-1091A..1091E; UNASSIGNED  # <reserved>..<reserved>
+10916..1091B; DISALLOWED  # PHOENICIAN NUMBER ONE..PHOENICIAN NUMBER THR
+1091C..1091E; UNASSIGNED  # <reserved>..<reserved>
 1091F       ; DISALLOWED  # PHOENICIAN WORD SEPARATOR
 10920..10939; PVALID      # LYDIAN LETTER A..LYDIAN LETTER C
 1093A..1093E; UNASSIGNED  # <reserved>..<reserved>
@@ -2459,13 +2520,43 @@ Internet-Draft               IDNA Codepoints              September 2009
 10A40..10A47; DISALLOWED  # KHAROSHTHI DIGIT ONE..KHAROSHTHI NUMBER ONE
 10A48..10A4F; UNASSIGNED  # <reserved>..<reserved>
 10A50..10A58; DISALLOWED  # KHAROSHTHI PUNCTUATION DOT..KHAROSHTHI PUNCT
-10A59..11FFF; UNASSIGNED  # <reserved>..<reserved>
+10A59..10A5F; UNASSIGNED  # <reserved>..<reserved>
+10A60..10A7C; PVALID      # OLD SOUTH ARABIAN LETTER HE..OLD SOUTH ARABI
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 62]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
+10A7D..10A7F; DISALLOWED  # OLD SOUTH ARABIAN NUMBER ONE..OLD SOUTH ARAB
+10A80..10AFF; UNASSIGNED  # <reserved>..<reserved>
+10B00..10B35; PVALID      # AVESTAN LETTER A..AVESTAN LETTER HE
+10B36..10B38; UNASSIGNED  # <reserved>..<reserved>
+10B39..10B3F; DISALLOWED  # AVESTAN ABBREVIATION MARK..LARGE ONE RING OV
+10B40..10B55; PVALID      # INSCRIPTIONAL PARTHIAN LETTER ALEPH..INSCRIP
+10B56..10B57; UNASSIGNED  # <reserved>..<reserved>
+10B58..10B5F; DISALLOWED  # INSCRIPTIONAL PARTHIAN NUMBER ONE..INSCRIPTI
+10B60..10B72; PVALID      # INSCRIPTIONAL PAHLAVI LETTER ALEPH..INSCRIPT
+10B73..10B77; UNASSIGNED  # <reserved>..<reserved>
+10B78..10B7F; DISALLOWED  # INSCRIPTIONAL PAHLAVI NUMBER ONE..INSCRIPTIO
+10B80..10BFF; UNASSIGNED  # <reserved>..<reserved>
+10C00..10C48; PVALID      # OLD TURKIC LETTER ORKHON A..OLD TURKIC LETTE
+10C49..10E5F; UNASSIGNED  # <reserved>..<reserved>
+10E60..10E7E; DISALLOWED  # RUMI DIGIT ONE..RUMI FRACTION TWO THIRDS
+10E7F..1107F; UNASSIGNED  # <reserved>..<reserved>
+11080..110BA; PVALID      # KAITHI SIGN CANDRABINDU..KAITHI SIGN NUKTA
+110BB..110C1; DISALLOWED  # KAITHI ABBREVIATION SIGN..KAITHI DOUBLE DAND
+110C2..11FFF; UNASSIGNED  # <reserved>..<reserved>
 12000..1236E; PVALID      # CUNEIFORM SIGN A..CUNEIFORM SIGN ZUM
 1236F..123FF; UNASSIGNED  # <reserved>..<reserved>
 12400..12462; DISALLOWED  # CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NU
 12463..1246F; UNASSIGNED  # <reserved>..<reserved>
 12470..12473; DISALLOWED  # CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD
-12474..1CFFF; UNASSIGNED  # <reserved>..<reserved>
+12474..12FFF; UNASSIGNED  # <reserved>..<reserved>
+13000..1342E; PVALID      # EGYPTIAN HIEROGLYPH A001..EGYPTIAN HIEROGLYP
+1342F..1CFFF; UNASSIGNED  # <reserved>..<reserved>
 1D000..1D0F5; DISALLOWED  # BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MU
 1D0F6..1D0FF; UNASSIGNED  # <reserved>..<reserved>
 1D100..1D126; DISALLOWED  # MUSICAL SYMBOL SINGLE BARLINE..MUSICAL SYMBO
@@ -2484,17 +2575,17 @@ Internet-Draft               IDNA Codepoints              September 2009
 1D49D       ; UNASSIGNED  # <reserved>
 1D49E..1D49F; DISALLOWED  # MATHEMATICAL SCRIPT CAPITAL C..MATHEMATICAL
 1D4A0..1D4A1; UNASSIGNED  # <reserved>..<reserved>
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 60]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 1D4A2       ; DISALLOWED  # MATHEMATICAL SCRIPT CAPITAL G
 1D4A3..1D4A4; UNASSIGNED  # <reserved>..<reserved>
 1D4A5..1D4A6; DISALLOWED  # MATHEMATICAL SCRIPT CAPITAL J..MATHEMATICAL
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 63]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 1D4A7..1D4A8; UNASSIGNED  # <reserved>..<reserved>
 1D4A9..1D4AC; DISALLOWED  # MATHEMATICAL SCRIPT CAPITAL N..MATHEMATICAL
 1D4AD       ; UNASSIGNED  # <reserved>
@@ -2531,23 +2622,61 @@ Internet-Draft               IDNA Codepoints              September 2009
 1F000..1F02B; DISALLOWED  # MAHJONG TILE EAST WIND..MAHJONG TILE BACK
 1F02C..1F02F; UNASSIGNED  # <reserved>..<reserved>
 1F030..1F093; DISALLOWED  # DOMINO TILE HORIZONTAL BACK..DOMINO TILE VER
-1F094..1FFFD; UNASSIGNED  # <reserved>..<reserved>
+1F094..1F0FF; UNASSIGNED  # <reserved>..<reserved>
+1F100..1F10A; DISALLOWED  # DIGIT ZERO FULL STOP..DIGIT NINE COMMA
+1F10B..1F10F; UNASSIGNED  # <reserved>..<reserved>
+1F110..1F12E; DISALLOWED  # PARENTHESIZED LATIN CAPITAL LETTER A..CIRCLE
+1F12F..1F130; UNASSIGNED  # <reserved>..<reserved>
+1F131       ; DISALLOWED  # SQUARED LATIN CAPITAL LETTER B
+1F132..1F13C; UNASSIGNED  # <reserved>..<reserved>
+1F13D       ; DISALLOWED  # SQUARED LATIN CAPITAL LETTER N
+1F13E       ; UNASSIGNED  # <reserved>
+1F13F       ; DISALLOWED  # SQUARED LATIN CAPITAL LETTER P
+1F140..1F141; UNASSIGNED  # <reserved>..<reserved>
+1F142       ; DISALLOWED  # SQUARED LATIN CAPITAL LETTER S
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 64]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
+1F143..1F145; UNASSIGNED  # <reserved>..<reserved>
+1F146       ; DISALLOWED  # SQUARED LATIN CAPITAL LETTER W
+1F147..1F149; UNASSIGNED  # <reserved>..<reserved>
+1F14A..1F14E; DISALLOWED  # SQUARED HV..SQUARED PPV
+1F14F..1F156; UNASSIGNED  # <reserved>..<reserved>
+1F157       ; DISALLOWED  # NEGATIVE CIRCLED LATIN CAPITAL LETTER H
+1F158..1F15E; UNASSIGNED  # <reserved>..<reserved>
+1F15F       ; DISALLOWED  # NEGATIVE CIRCLED LATIN CAPITAL LETTER P
+1F160..1F178; UNASSIGNED  # <reserved>..<reserved>
+1F179       ; DISALLOWED  # NEGATIVE SQUARED LATIN CAPITAL LETTER J
+1F17A       ; UNASSIGNED  # <reserved>
+1F17B..1F17C; DISALLOWED  # NEGATIVE SQUARED LATIN CAPITAL LETTER L..NEG
+1F17D..1F17E; UNASSIGNED  # <reserved>..<reserved>
+1F17F       ; DISALLOWED  # NEGATIVE SQUARED LATIN CAPITAL LETTER P
+1F180..1F189; UNASSIGNED  # <reserved>..<reserved>
+1F18A..1F18D; DISALLOWED  # CROSSED NEGATIVE SQUARED LATIN CAPITAL LETTE
+1F18E..1F18F; UNASSIGNED  # <reserved>..<reserved>
+1F190       ; DISALLOWED  # SQUARE DJ
+1F191..1F1FF; UNASSIGNED  # <reserved>..<reserved>
+1F200       ; DISALLOWED  # SQUARE HIRAGANA HOKA
+1F201..1F20F; UNASSIGNED  # <reserved>..<reserved>
+1F210..1F231; DISALLOWED  # SQUARED CJK UNIFIED IDEOGRAPH-624B..SQUARED
+1F232..1F23F; UNASSIGNED  # <reserved>..<reserved>
+1F240..1F248; DISALLOWED  # TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRA
+1F249..1FFFD; UNASSIGNED  # <reserved>..<reserved>
 1FFFE..1FFFF; DISALLOWED  # <noncharacter>..<noncharacter>
 20000..2A6D6; PVALID      # <CJK Ideograph Extension B>..<CJK Ideograph
-2A6D7..2F7FF; UNASSIGNED  # <reserved>..<reserved>
+2A6D7..2A6FF; UNASSIGNED  # <reserved>..<reserved>
+2A700..2B734; PVALID      # <CJK Ideograph Extension C>..<CJK Ideograph
+2B735..2F7FF; UNASSIGNED  # <reserved>..<reserved>
 2F800..2FA1D; DISALLOWED  # CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPA
 2FA1E..2FFFD; UNASSIGNED  # <reserved>..<reserved>
 2FFFE..2FFFF; DISALLOWED  # <noncharacter>..<noncharacter>
 30000..3FFFD; UNASSIGNED  # <reserved>..<reserved>
 3FFFE..3FFFF; DISALLOWED  # <noncharacter>..<noncharacter>
-
-
-
-Faltstrom                Expires March 14, 2010                [Page 61]
-
-Internet-Draft               IDNA Codepoints              September 2009
-
-
 40000..4FFFD; UNASSIGNED  # <reserved>..<reserved>
 4FFFE..4FFFF; DISALLOWED  # <noncharacter>..<noncharacter>
 50000..5FFFD; UNASSIGNED  # <reserved>..<reserved>
@@ -2561,6 +2690,14 @@ Internet-Draft               IDNA Codepoints              September 2009
 90000..9FFFD; UNASSIGNED  # <reserved>..<reserved>
 9FFFE..9FFFF; DISALLOWED  # <noncharacter>..<noncharacter>
 A0000..AFFFD; UNASSIGNED  # <reserved>..<reserved>
+
+
+
+Faltstrom                 Expires May 28, 2010                 [Page 65]
+
+Internet-Draft               IDNA Codepoints               November 2009
+
+
 AFFFE..AFFFF; DISALLOWED  # <noncharacter>..<noncharacter>
 B0000..BFFFD; UNASSIGNED  # <reserved>..<reserved>
 BFFFE..BFFFF; DISALLOWED  # <noncharacter>..<noncharacter>
@@ -2575,4 +2712,4 @@ E0020..E007F; DISALLOWED  # TAG SPACE..CANCEL TAG
 E0080..E00FF; UNASSIGNED  # <reserved>..<reserved>
 E0100..E01EF; DISALLOWED  # VARIATION SELECTOR-17..VARIATION SELECTOR-25
 E01F0..EFFFD; UNASSIGNED  # <reserved>..<reserved>
-EFFFE..10FFFE; DISALLOWED # <noncharacter>..<noncharacter>
+EFFFE..10FFFF; DISALLOWED  # <noncharacter>..<noncharacter>

@@ -1,5 +1,8 @@
 package org.unicode.jsp;
 
+import org.unicode.jsp.UnicodeUtilities.IdnaType;
+
+import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.Normalizer;
@@ -9,11 +12,31 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class Idna2003 {
-
+  public static UnicodeSet VALID_ASCII = new UnicodeSet("[\\u002Da-zA-Z0-9]").freeze();
+  public static UnicodeSet U32 = new UnicodeSet("[:age=3.2:]").freeze();
+  
+  static UnicodeMap<UnicodeUtilities.IdnaType> cache = new UnicodeMap<IdnaType>();
+  static {
+    cache.putAll(UnicodeUtilities.OFF_LIMITS, IdnaType.disallowed);
+    cache.put('-', UnicodeUtilities.OUTPUT);
+  }
+  
   static public UnicodeUtilities.IdnaType getIDNA2003Type(int cp) {
-    if (cp == '-') {
-      return UnicodeUtilities.OUTPUT;
+    IdnaType result = cache.get(cp);
+    if (result == null) {
+      result = getIDNA2003Type2(cp);
+      cache.put(cp, result);
     }
+    return result;
+  }
+
+  static private UnicodeUtilities.IdnaType getIDNA2003Type2(int cp) {
+//    if (UnicodeUtilities.OFF_LIMITS.contains(cp)) {
+//      return IdnaType.disallowed;
+//    }
+//    if (cp == '-') {
+//      return UnicodeUtilities.OUTPUT;
+//    }
     inbuffer.setLength(0);
     UTF16.append(Idna2003.inbuffer, cp);
     try {
@@ -38,36 +61,36 @@ public class Idna2003 {
     return UnicodeUtilities.OUTPUT;
   }
 
-//  static public String getIDNAValue(int cp) {
-//    if (cp == '-') {
-//      return "-";
-//    }
-//    UnicodeUtilities.inbuffer.setLength(0);
-//    UTF16.append(UnicodeUtilities.inbuffer, cp);
-//    try {
-//      UnicodeUtilities.intermediate = IDNA.convertToASCII(UnicodeUtilities.inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
-//      // DEFAULT
-//      if (UnicodeUtilities.intermediate.length() == 0) {
-//        return "";
-//      }
-//      UnicodeUtilities.outbuffer = IDNA.convertToUnicode(UnicodeUtilities.intermediate, IDNA.USE_STD3_RULES);
-//    } catch (StringPrepParseException e) {
-//      if (e.getMessage().startsWith("Found zero length")) {
-//        return "";
-//      }
-//      return null;
-//    } catch (Exception e) {
-//      System.out.println("Failure at: " + Integer.toString(cp, 16));
-//      return null;
-//    }
-//    return UnicodeUtilities.outbuffer.toString();
-//  }
+  //  static public String getIDNAValue(int cp) {
+  //    if (cp == '-') {
+  //      return "-";
+  //    }
+  //    UnicodeUtilities.inbuffer.setLength(0);
+  //    UTF16.append(UnicodeUtilities.inbuffer, cp);
+  //    try {
+  //      UnicodeUtilities.intermediate = IDNA.convertToASCII(UnicodeUtilities.inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+  //      // DEFAULT
+  //      if (UnicodeUtilities.intermediate.length() == 0) {
+  //        return "";
+  //      }
+  //      UnicodeUtilities.outbuffer = IDNA.convertToUnicode(UnicodeUtilities.intermediate, IDNA.USE_STD3_RULES);
+  //    } catch (StringPrepParseException e) {
+  //      if (e.getMessage().startsWith("Found zero length")) {
+  //        return "";
+  //      }
+  //      return null;
+  //    } catch (Exception e) {
+  //      System.out.println("Failure at: " + Integer.toString(cp, 16));
+  //      return null;
+  //    }
+  //    return UnicodeUtilities.outbuffer.toString();
+  //  }
 
   static Row.R2<String, String> getIdna2033(String input) {
-    String normInput = UnicodeSetUtilities.MyNormalize(input, Normalizer.NFKC);
+    String normInput = Normalizer.normalize(input, Normalizer.NFKC);
     StringBuffer idna2003 = new StringBuffer();
     StringBuffer idna2003back = new StringBuffer();
-  
+
     for (String part : UnicodeUtilities.DOT.split(normInput)) {
       if (idna2003.length() != 0) {
         idna2003.append('.');
@@ -116,11 +139,12 @@ public class Idna2003 {
   /**
    * 
    */
-  
+
   static StringPrep nameprep = StringPrep.getInstance(StringPrep.RFC3491_NAMEPREP);
-  static UnicodeSet BADASCII = UnicodeSetUtilities.parseUnicodeSet("[[\\u0000-\\u007F]-[\\-0-9A-Za-z]]").freeze();
+  static UnicodeSet BADASCII = new UnicodeSet("[[\\u0000-\\u007F]-[\\-0-9A-Za-z]]").freeze();
   static StringBuffer inbuffer = new StringBuffer();
   static StringBuffer intermediate;
   static StringBuffer outbuffer;
+  
 
 }

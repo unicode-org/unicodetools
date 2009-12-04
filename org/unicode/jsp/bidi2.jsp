@@ -71,7 +71,7 @@ For more information, see <a target='doc' href='http://cldr.unicode.org/unicode-
 <input type="checkbox" <%=hack ? "checked" : ""%> name="hack"><label for="hack">ASCII Hack?</label>
 <input id='main' type="submit" value="Show Bidi" onClick="window.location.href='transform.jsp?a='+document.getElementById('main').value"/>
   <hr>
-  <%= UnicodeUtilities.showBidi(sample, p2, hack)%>
+  <%= UnicodeJsp.showBidi(sample, p2, hack)%>
 </form>
 <%@ include file="footer.jsp" %>
 </body>
