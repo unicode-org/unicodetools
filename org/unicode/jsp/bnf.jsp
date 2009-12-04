@@ -31,9 +31,9 @@
             fixedbnf = new org.unicode.jsp.UnicodeRegex().compileBnf(bnf);
             String fixedbnf2 = org.unicode.jsp.UnicodeRegex.fix(fixedbnf);
             String fixedbnfNoPercent = fixedbnf2.replaceAll("[0-9]+%", "");
-            testPattern = UnicodeUtilities.showRegexFind(fixedbnfNoPercent, test);
+            testPattern = UnicodeJsp.showRegexFind(fixedbnfNoPercent, test);
             try {
-                random = UnicodeUtilities.getBnf(fixedbnf, 100, 10);
+                random = UnicodeJsp.getBnf(fixedbnf, 100, 10);
             } catch (Exception e) {
                 random = e.getMessage();
             }

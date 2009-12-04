@@ -36,8 +36,8 @@
 <input type="checkbox" <%=show ? "checked" : ""%> name="show"><label for="show">Show Transforms</label></td>
   <hr>
   <h2>Result</h2>
-  <%= UnicodeUtilities.showTransform(transform, sample)%>
-  <%= show ? UnicodeUtilities.listTransforms() : "" %>
+  <%= UnicodeJsp.showTransform(transform, sample)%>
+  <%= show ? UnicodeJsp.listTransforms() : "" %>
 </form>
 <%@ include file="footer.jsp" %>
 </body>

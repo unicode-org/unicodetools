@@ -16,7 +16,7 @@ th           { text-align: left }
 <%
 		request.setCharacterEncoding("UTF-8");
 
-		Set<String> unicodeProps = UnicodeUtilities.showPropsTable(out);
+		Set<String> unicodeProps = UnicodeJsp.showPropsTable(out);
 %>
 <p>® = Regex Property (<a target="_blank" href="http://www.unicode.org/reports/tr18/">UTS #18</a>): 
 not formal Unicode property<br>
