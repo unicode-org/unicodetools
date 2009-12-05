@@ -18,7 +18,7 @@ th           { text-align: left }
   <%
 		request.setCharacterEncoding("UTF-8");
 		String text = request.getParameter("a");
-		if (text == null || text.length() == 0) text = "a";
+		if (text == null || text.length() == 0) text = "\u00C5";
 %> <%
 String BASE_RULES =
   	"'<' > '&lt;' ;" +
@@ -57,14 +57,17 @@ Transliterator toHTML = Transliterator.createFromRules(
 		String nextHex = "character.jsp?a=" + Utility.hex(cp < 0x110000 ? cp+1 : 0, 4);
 		String prevHex = "character.jsp?a=" + Utility.hex(cp > 0 ? cp-1 : 0x10FFFF, 4);
 %>
+<div style='text-align:center'>
   <p><input type="button" value="Previous" name="B3" onClick="window.location.href='<%=prevHex%>'">
   <input type="text" name="a" size="10" value="<%=text%>">
-  <input type="submit" value="Show" name="B1">
-  <input type="button" value="Next" name="B2" onClick="window.location.href='<%=nextHex%>'"></p>
+  <input type="button" value="Next" name="B2" onClick="window.location.href='<%=nextHex%>'">
+  &nbsp;<input type="submit" value="Show" name="B1">
+  </p>
 </form>
 <%
 	UnicodeJsp.showProperties(text, out); 
 %>
+</div>
 <p>The list includes both Unicode Character Properties and some additions (like idna2003 or subhead)</p>
 <%@ include file="footer.jsp" %>
 </body>
