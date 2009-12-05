@@ -85,37 +85,6 @@ public class UnicodeSetUtilities {
       skipFactory = style == TableStyle.simple;
     }
 
-    /** Should be on UnicodeProperty */
-    public boolean isValidValue(UnicodeProperty property, String propertyValue) {
-      if (property.isType(property.STRING_OR_MISC_MASK)) {
-        return true;
-      }
-      Collection<String> values = (Collection<String>) property.getAvailableValues();
-      for (String valueAlias : values) {
-        if (UnicodeProperty.compareNames(valueAlias, propertyValue) == 0) {
-          return true;
-        }
-        for (String valueAlias2 : (Collection<String>) property.getValueAliases(valueAlias)) {
-          if (UnicodeProperty.compareNames(valueAlias2, propertyValue) == 0) {
-            return true;
-          }
-        }
-      }
-      return false;
-    }
-
-    public List<String> getValueAliases(UnicodeProperty property) {
-      List<String> result = new ArrayList();
-      if (property.isType(property.STRING_OR_MISC_MASK)) {
-        return result;
-      }
-      Collection<String> values = (Collection<String>) property.getAvailableValues();
-      for (String valueAlias : values) {
-        UnicodeProperty.addAllUnique(property.getValueAliases(valueAlias), result);
-      }
-      result.removeAll(values);
-      return result;
-    }
 
     //    public boolean applyPropertyAlias0(String propertyName,
     //            String propertyValue, UnicodeSet result) {
@@ -190,10 +159,10 @@ public class UnicodeSetUtilities {
       if (prop != null) {
         UnicodeSet set;
         if (patternMatcher == null) {
-          if (!isValidValue(prop, propertyValue)) {
+          if (!prop.isValidValue(propertyValue)) {
             throw new IllegalArgumentException("The value '" + propertyValue + "' is illegal. Values for " + propertyName
                     + " must be in "
-                    + prop.getAvailableValues() + " or in " + getValueAliases(prop));
+                    + prop.getAvailableValues() + " or in " + prop.getValueAliases());
           }
           if (isAge) {
             set = prop.getSet(new ComparisonMatcher(propertyValue, Relation.geq));

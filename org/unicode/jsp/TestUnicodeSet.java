@@ -3,6 +3,7 @@ package org.unicode.jsp;
 import java.util.Collection;
 import java.util.List;
 
+import com.ibm.icu.dev.test.AbstractTestLog;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -41,7 +42,7 @@ public class TestUnicodeSet  extends TestFmwk {
         expected.addAll(new UnicodeSet("[:ccc=" + s + ":]"));
       }
     }
-    myAssertEquals(test, expected, actual);
+    assertEquals(this, test, expected, actual);
   }
 
   private void checkProperty(XPropertyFactory factory, String prop) {
@@ -67,21 +68,30 @@ public class TestUnicodeSet  extends TestFmwk {
       for (String alt : alts) {
         String test = "\\p{" + prop + "=" + alt + "}";
         UnicodeSet actual = UnicodeSetUtilities.parseUnicodeSet(test, UnicodeSetUtilities.TableStyle.extras);
-        myAssertEquals(test, expectedNormal, actual);
+        assertEquals(this, test, expectedNormal, actual);
         test = "\\p{" + prop + "=/^\\Q" + alt + "\\E$/}";
         actual = UnicodeSetUtilities.parseUnicodeSet(test, UnicodeSetUtilities.TableStyle.extras);
-        myAssertEquals(test, expectedRegex, actual);
+        assertEquals(this, test, expectedRegex, actual);
       }
     }
   }
 
-  private void myAssertEquals(String test, UnicodeSet expected, UnicodeSet actual) {
+  public static void assertEquals(AbstractTestLog testFmwk, String test, UnicodeSet expected, UnicodeSet actual) {
     if (!expected.equals(actual)) {
       UnicodeSet inExpected = new UnicodeSet(expected).removeAll(actual);
       UnicodeSet inActual = new UnicodeSet(actual).removeAll(expected);
-      errln(test + " - MISSING: " + inExpected + ", EXTRA: " + inActual);
+      testFmwk.errln(test + " - MISSING: " + inExpected + ", EXTRA: " + inActual);
     } else {
-      logln("OK\t\t" + test);
+      testFmwk.logln("OK\t\t" + test);
+    }
+  }
+  
+  public static void assertContains(AbstractTestLog testFmwk, String test, UnicodeSet expectedSubset, UnicodeSet actual) {
+    if (!actual.containsAll(expectedSubset)) {
+      UnicodeSet inExpected = new UnicodeSet(expectedSubset).removeAll(actual);
+      testFmwk.errln(test + " - MISSING: " + inExpected);
+    } else {
+      testFmwk.logln("OK\t\t" + test);
     }
   }
 }
