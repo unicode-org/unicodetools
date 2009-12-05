@@ -1013,23 +1013,44 @@ public class UnicodeUtilities {
   public static void showProperties(String text, Appendable out) throws IOException {
     text = UTF16.valueOf(text, 0);
     int cp = UTF16.charAt(text, 0);
-    out.append("<table>\r\n");
     String name = factory.getProperty("Name").getValue(cp);
     if (name != null) {
       name = toHTML.transliterate(name);
     }
-    out.append("<tr><th>" + "Character" + "</th><td>"
-            + toHTML.transliterate(text) + "</td></tr>\r\n");
-    out.append("<tr><th>" + "Code_Point" + "</th><td>"
-            + com.ibm.icu.impl.Utility.hex(cp, 4) + "</td></tr>\r\n");
-    out.append("<tr><th>" + "Name" + "</th><td>" + name + "</td></tr>\r\n");
+    
+    out.append("<div class='bigDiv'><table class='bigTable'>\n");
+    out.append("<tr><td class='bigChar'>" + toHTML.transliterate(text) + "</td></tr>\n");
+    out.append("<tr><td class='bigCode'>" + com.ibm.icu.impl.Utility.hex(cp, 4) + "</td></tr>\n");
+    out.append("<tr><td class='bigName'>" + name + "</td></tr>\n");
+    out.append("</table></div>\n");
 
-    for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).remove("Name").get()) {
+    TreeSet<String> sortedProps = Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).remove("Name").get();
+
+    out.append("<table><tr><td width='50%'>\n");
+    out.append("<table width='100%'>\r\n");
+
+    for (String propName : sortedProps) {
       UnicodeProperty prop = factory.getProperty(propName);
+      boolean isDefault = prop.isDefault(cp);
+      if (isDefault) continue;
       String propValue = prop.getValue(cp);
-      showPropertyValue(propName, propValue, prop.isDefault(cp), out); 
+      showPropertyValue(propName, propValue, isDefault, out); 
     }
     out.append("</table>\r\n");
+    
+    out.append("</td><td width='50%'>\n");
+
+    out.append("<table width='100%'>\r\n");
+    for (String propName : sortedProps) {
+      UnicodeProperty prop = factory.getProperty(propName);
+      boolean isDefault = prop.isDefault(cp);
+      if (!isDefault) continue;
+      String propValue = prop.getValue(cp);
+      showPropertyValue(propName, propValue, isDefault, out); 
+    }
+    out.append("</table>\r\n");
+
+    out.append("</td></tr></table>\r\n");
   }
 
   private static void showPropertyValue(String propName, String propValue, boolean isDefault, Appendable out) throws IOException {
