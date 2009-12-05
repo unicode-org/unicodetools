@@ -16,6 +16,7 @@ import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -54,7 +55,7 @@ public class UnicodeUtilities {
   static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
 
   public static final Charset UTF8 = Charset.forName("utf-8");
-  
+
   private static final List<String> REGEX_PROPS = Arrays.asList(new String[] {"xdigit", "alnum", "blank", "graph", "print", "word"});
 
   private static final List<String> UNICODE_PROPS = Arrays.asList(new String[] {
@@ -278,7 +279,7 @@ public class UnicodeUtilities {
   USAGE = SUBHEAD + 1,
   XSTRING_LIMIT = USAGE + 1; 
 
-  static List<String> XPROPERTY_NAMES = Arrays.asList(new String[]{"tonfc", "tonfd", "tonfkc", "tonfkd", "tocasefold", "tolowercase", "touppercase", "totitlecase",
+  static List<String> XPROPERTY_NAMES = Arrays.asList(new String[]{"toNfc", "toNfd", "toNfkc", "toNfkd", "toCasefold", "toLowercase", "toUppercase", "toTitlecase",
           "subhead", "usage"});
   static final UnicodeSet MARK = (UnicodeSet) UnicodeSetUtilities.parseUnicodeSet("[:M:]", TableStyle.simple).freeze();
 
@@ -312,7 +313,7 @@ public class UnicodeUtilities {
   "[:script=Taml:] [:script=Telu:] [:script=Tfng:] [:script=Thaa:] [:script=Thai:] [:script=Tibt:] [:script=Yiii:]]").freeze();
 
   static UnicodeSet LITURGICAL = new UnicodeSet("[\u0615\u0617-\u061A\u0671\u06D6-\u06ED\u08F0-\u08F3[:sc=coptic:]" +
-  		"\u1CD0-\u1CF2\u214F]");
+  "\u1CD0-\u1CF2\u214F]");
   static UnicodeSet DEPRECATED = new UnicodeSet("[:deprecated:]").freeze();
 
   static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
@@ -393,7 +394,7 @@ public class UnicodeUtilities {
   static final int BLOCK_ENUM = UCharacter.getPropertyEnum("block");
 
   static XPropertyFactory factory = XPropertyFactory.make();
-  
+
   static NumberFormat numberFormat = NumberFormat.getInstance(ULocale.ENGLISH, NumberFormat.NUMBERSTYLE);
   static {
     numberFormat.setGroupingUsed(true);
@@ -480,7 +481,7 @@ public class UnicodeUtilities {
       for (int i = lastLevel; i < length; ++i) {
         out.append("<h2 class='L" + (i + 5 - length) + "'>" + props2[i] + 
                 (i == length - 1 ? " : " + numberFormat.format(items.size()) : "") +
-                "</h2><blockquote>\r\n");
+        "</h2><blockquote>\r\n");
       }
       showSet(items, abbreviate, ucdFormat, out);
       for (int i = 0; i < propsOld.length; ++i) {
@@ -519,61 +520,80 @@ public class UnicodeUtilities {
   }
 
   /*jsp*/
-  public static void showSet(UnicodeSet a, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
-
-    if (a.size() < 20000 && !abbreviate) {
+  public static void showSet(UnicodeSet inputSet, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
+    if (inputSet.getRangeCount() > 10000) {
+      out.append("<i>Too many to list individually</i>\r\n");
+    } else if (abbreviate || UnicodeProperty.SPECIALS.containsAll(inputSet)) {
+      showAbbreviated(inputSet, ucdFormat, out);
+    } else {
+      LinkedHashMap<String,UnicodeSet> items = new LinkedHashMap();
       String oldBlock = "";
       String oldSubhead = "";
-      for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.next();) {
+      for (UnicodeSetIterator it = new UnicodeSetIterator(inputSet); it.next();) {
         int s = it.codepoint;
         if (s == UnicodeSetIterator.IS_STRING) {
           String newBlock = "Strings";
-          if (!newBlock.equals(oldBlock)) {
-            out.append("<h3>" + newBlock + "</b></h3>\r\n");
-            oldBlock = newBlock;
-          }
-          out.append(showCodePoint(it.string)).append("<br>\r\n");
+          UnicodeSet set = items.get(newBlock);
+          if (set == null) items.put(newBlock, set = new UnicodeSet());
+          set.add(it.string);
         } else {
           String newBlock = UCharacter.getStringPropertyValue(BLOCK_ENUM, s, UProperty.NameChoice.LONG).replace('_', ' ');
           String newSubhead = getSubheader().getSubheader(s);
           if (newSubhead == null) {
-            newSubhead = "<i>no subhead</i>";
+            newSubhead = "<u>no subhead</u>";
           }
-          if (!newBlock.equals(oldBlock) || !oldSubhead.equals(newSubhead)) {
-            out.append("<h3>" + newBlock + " - <i>" + newSubhead + "</i></b></h3>\r\n");
-            oldBlock = newBlock;
-            oldSubhead = newSubhead;
-          }
-          showCodePoint(s, ucdFormat, out);
+          newBlock = newBlock + " - <i>" + newSubhead + "</i>";
+          UnicodeSet set = items.get(newBlock);
+          if (set == null) items.put(newBlock, set = new UnicodeSet());
+          set.add(s);
         }
       }
-    } else if (a.getRangeCount() < 10000) {
-      for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.nextRange();) {
-        int s = it.codepoint;
-        if (s == UnicodeSetIterator.IS_STRING) {
-          out.append(showCodePoint(it.string)).append("<br>\r\n");
-        } else {        
-          int end = it.codepointEnd;
-          if (end == s) {
+
+      for (String newBlock : items.keySet()) {
+        UnicodeSet set = items.get(newBlock);
+        out.append("<h3>" + newBlock + "</b>: " + numberFormat.format(set.size()) + "</h3>\r\n");
+        if (UnicodeProperty.SPECIALS.containsAll(set)) {
+          out.append("<i>Unassigned, Private use, or Surrogates</i><br>\r\n");
+        } else if (set.size() > 500 || UnicodeProperty.SPECIALS.containsAll(set)) {
+          showAbbreviated(set, ucdFormat, out);
+        } else {
+        for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next();) {
+          int s = it.codepoint;
+          if (s == UnicodeSetIterator.IS_STRING) {
+            out.append(showCodePoint(it.string)).append("<br>\r\n");
+          } else {
             showCodePoint(s, ucdFormat, out);
-          } else if (end == s + 1) {
-            showCodePoint(s, ucdFormat, out);
+          }
+        }
+      }
+      }
+    }
+  }
+
+  private static void showAbbreviated(UnicodeSet a, boolean ucdFormat, Appendable out) throws IOException {
+    for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.nextRange();) {
+      int s = it.codepoint;
+      if (s == UnicodeSetIterator.IS_STRING) {
+        out.append(showCodePoint(it.string)).append("<br>\r\n");
+      } else {        
+        int end = it.codepointEnd;
+        if (end == s) {
+          showCodePoint(s, ucdFormat, out);
+        } else if (end == s + 1) {
+          showCodePoint(s, ucdFormat, out);
+          showCodePoint(end, ucdFormat, out);
+        } else {
+          if (ucdFormat) {
+            out.append(getHex(s, ucdFormat));
+            out.append("..");
             showCodePoint(end, ucdFormat, out);
           } else {
-            if (ucdFormat) {
-              out.append(getHex(s, ucdFormat));
-              out.append("..");
-              showCodePoint(end, ucdFormat, out);
-            } else {
-              showCodePoint(s, ucdFormat, out);
-              out.append("\u2026{" + (end-s-1) + "}\u2026");
-              showCodePoint(end, ucdFormat, out);
-            }
+            showCodePoint(s, ucdFormat, out);
+            out.append("\u2026{" + (end-s-1) + "}\u2026");
+            showCodePoint(end, ucdFormat, out);
           }
         }
       }
-    } else {
-      out.append("<i>Too many to list individually</i>\r\n");
     }
   }
 
@@ -913,8 +933,9 @@ public class UnicodeUtilities {
   public static UnicodeSet  parseSimpleSet(String setA, String[] exceptionMessage) {
     try {
       exceptionMessage[0] = null;
-      //setA = MyNormalize(setA, Normalizer.NFC);
-      return UnicodeSetUtilities.parseUnicodeSet(setA, TableStyle.simple);
+      setA = setA.replace("..U+", "-\\u");
+      setA = setA.replace("U+", "\\u");
+      return UnicodeSetUtilities.parseUnicodeSet(setA, TableStyle.extras);
     } catch (Exception e) {
       exceptionMessage[0] = e.getMessage();
     }
@@ -992,164 +1013,42 @@ public class UnicodeUtilities {
   public static void showProperties(String text, Appendable out) throws IOException {
     text = UTF16.valueOf(text, 0);
     int cp = UTF16.charAt(text, 0);
-    Set<String> showLink = new HashSet<String>();
-    Map<String,String> alpha = new TreeMap<String,String>(col);
-
-    for (int range = 0; range < ranges.length; ++range) {
-      for (int propIndex = ranges[range][0]; propIndex < ranges[range][1]; ++propIndex) {
-        String propName = UCharacter.getPropertyName(propIndex,
-                UProperty.NameChoice.LONG);
-        String propValue = null;
-        int ival;
-        switch (range) {
-        default:
-          propValue = "???";
-          break;
-        case 0:
-          ival = UCharacter.getIntPropertyValue(cp, propIndex);
-          if (ival != 0) {
-            propValue = "True";
-          }
-          showLink.add(propName);
-          break;
-        case 2:
-          double nval = UCharacter.getNumericValue(cp);
-          if (nval != -1) {
-            propValue = String.valueOf(nval);
-            showLink.add(propName);
-          }
-          break;
-        case 3:
-          propValue = UCharacter.getStringPropertyValue(propIndex, cp,
-                  UProperty.NameChoice.LONG);
-          if (text.equals(propValue)) {
-            propValue = null;
-          }
-          break;
-        case 1:
-          ival = UCharacter.getIntPropertyValue(cp, propIndex);
-          if (ival != 0) {
-            propValue = UCharacter.getPropertyValueName(propIndex, ival,
-                    UProperty.NameChoice.LONG);
-            if (propValue == null) {
-              propValue = String.valueOf(ival);
-            }
-          }
-          showLink.add(propName);
-          break;
-        }
-        if (propValue != null) {
-          alpha.put(propName, propValue);
-        }
-      }
-    }
-    showLink.add("Age");
-
-    String x;
-    String upper = x = UCharacter.toUpperCase(ULocale.ENGLISH, text);
-    if (!text.equals(x)) {
-      alpha.put("toUppercase", x);
-    }
-    String lower = x = UCharacter.toLowerCase(ULocale.ENGLISH, text);
-    if (!text.equals(x)) {
-      alpha.put("toLowercase", x);
-    }
-    String title = x = UCharacter.toTitleCase(ULocale.ENGLISH, text, null);
-    if (!text.equals(x)) {
-      alpha.put("toTitlecase", x);
-    }
-
-    String nfc = x = UnicodeSetUtilities.MyNormalize(text, Normalizer.NFC);
-    if (!text.equals(x)) {
-      alpha.put("toNFC", x);
-    }
-    String nfd = x = UnicodeSetUtilities.MyNormalize(text, Normalizer.NFD);
-    if (!text.equals(x)) {
-      alpha.put("toNFD", x);
-    }
-    x = UnicodeSetUtilities.MyNormalize(text, Normalizer.NFKD);
-    if (!text.equals(x)) {
-      alpha.put("toNFKD", x);
-    }
-    x = UnicodeSetUtilities.MyNormalize(text, Normalizer.NFKC);
-    if (!text.equals(x)) {
-      alpha.put("toNFKC", x);
-    }
-
-    CanonicalIterator ci = new CanonicalIterator(text);
-    int count = 0;
-    for (String item = ci.next(); item != null; item = ci.next()) {
-      if (item.equals(text)) {
-        continue;
-      }
-      if (item.equals(nfc)) {
-        continue;
-      }
-      if (item.equals(nfd)) {
-        continue;
-      }
-      alpha.put("toOther_Canonical_Equivalent#" + (++count), item);
-    }
-
-    /*
-     * CaseIterator cai = new CaseIterator(); cai.reset(text); count = 0; for
-     * (String item = cai.next(); item != null; item = cai.next()) { if
-     * (item.equals(text)) continue; if (item.equals(upper)) continue; if
-     * (item.equals(lower)) continue; if (item.equals(title)) continue;
-     * alpha.put("toOther_Case_Equivalent#" + (++count), item); }
-     */
-
-    Set<String> unicodeProps = new TreeSet<String>(UNICODE_PROPS);
-
-    Set<String> regexProps = new TreeSet<String>(REGEX_PROPS);
-    Set<String> icuProps = new TreeSet<String>(alpha.keySet());
-    icuProps.removeAll(unicodeProps);
-    icuProps.removeAll(regexProps);
-
     out.append("<table>\r\n");
-    String name = (String) alpha.get("Name");
+    String name = factory.getProperty("Name").getValue(cp);
     if (name != null) {
       name = toHTML.transliterate(name);
     }
-
     out.append("<tr><th>" + "Character" + "</th><td>"
             + toHTML.transliterate(text) + "</td></tr>\r\n");
     out.append("<tr><th>" + "Code_Point" + "</th><td>"
             + com.ibm.icu.impl.Utility.hex(cp, 4) + "</td></tr>\r\n");
     out.append("<tr><th>" + "Name" + "</th><td>" + name + "</td></tr>\r\n");
-    alpha.remove("Name");
-    showPropertyValue(alpha, showLink, "", unicodeProps, out); 
-    showPropertyValue(alpha, showLink, "® ", regexProps, out);
-    showPropertyValue(alpha, showLink, "© ", icuProps, out);
+
+    for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).remove("Name").get()) {
+      UnicodeProperty prop = factory.getProperty(propName);
+      String propValue = prop.getValue(cp);
+      showPropertyValue(propName, propValue, prop.isDefault(cp), out); 
+    }
     out.append("</table>\r\n");
   }
 
-  private static void showPropertyValue(Map<String,String> alpha, Set<String> showLink, String flag, 
-          Set<String> unicodeProps, Appendable out) throws IOException {
-    for (String string : alpha.keySet()) {
-      String propName = (String) string;
-      if (!unicodeProps.contains(propName)) {
-        continue;
-      }
-      String propValue = (String) alpha.get(propName);
-
-      String hValue = toHTML.transliterate(propValue);
-      hValue = showLink.contains(propName) ? "<a target='u' href='list-unicodeset.jsp?a=[:"
-              + propName + "=" + propValue + ":]'>" + hValue + "</a>"
-              : hValue;
-
-      out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>"
-              + flag + propName + "</a></th><td>" + hValue + "</td></tr>\r\n");
+  private static void showPropertyValue(String propName, String propValue, boolean isDefault, Appendable out) throws IOException {
+    String defaultClass = isDefault ? " class='default'" : "";
+    if (propValue == null) {
+      out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
+      				"><i>null</i></td></tr>\r\n");
+      return;
     }
+    String hValue = toHTML.transliterate(propValue);
+    hValue = "<a target='u' href='list-unicodeset.jsp?a=[:"
+      + propName + "=" + propValue + ":]'>" + hValue + "</a>";
+
+    out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
+    				">" + hValue + "</td></tr>\r\n");
   }
 
   /*jsp*/
-  public static Set<String> showPropsTable(Appendable out) throws IOException {
-    int[][] ranges = {{UProperty.BINARY_START, UProperty.BINARY_LIMIT},
-            {UProperty.INT_START, UProperty.INT_LIMIT},
-            {UProperty.DOUBLE_START, UProperty.DOUBLE_LIMIT},
-            {UProperty.STRING_START, UProperty.STRING_LIMIT},
-    };
+  public static void showPropsTable(Appendable out) throws IOException {
     Collator col = Collator.getInstance(ULocale.ROOT);
     ((RuleBasedCollator)col).setNumericCollation(true);
     Map<String, Map<String, String>> alpha = new TreeMap<String, Map<String, String>>(col);
@@ -1157,95 +1056,69 @@ public class UnicodeUtilities {
 
     Set<String> showLink = new HashSet<String>();
 
-    for (int range = 0; range < ranges.length; ++range) {
-      for (int propIndex = ranges[range][0]; propIndex < ranges[range][1]; ++propIndex) {
-        String propName = UCharacter.getPropertyName(propIndex, UProperty.NameChoice.LONG);
-        String shortPropName = UCharacter.getPropertyName(propIndex, UProperty.NameChoice.SHORT);
-        longToShort.put(propName, shortPropName == null ? propName : shortPropName);
-        //propName = getName(propIndex, propName, shortPropName);
-        Map<String, String> valueOrder = new TreeMap<String, String>(col);
-        alpha.put(propName, valueOrder);
-        //out.println(propName + "<br>");
-        switch (range) {
-        default: valueOrder.put("[?]", ""); break;
-        case 0: valueOrder.put("True", "T"); 
-        valueOrder.put("False", "F"); 
-        showLink.add(propName); 
-        break;
-        case 2: valueOrder.put("[double]", ""); 
-        break;
-        case 3: valueOrder.put("[string]", ""); 
-        break;
-        case 1:
-          for (int valueIndex = 0; valueIndex < 256; ++valueIndex) {
-            try {
-              String valueName = UCharacter.getPropertyValueName(propIndex, valueIndex, UProperty.NameChoice.LONG);
-              //out.println("----" + valueName + "<br>");
-              String shortValueName = UCharacter.getPropertyValueName(propIndex, valueIndex, UProperty.NameChoice.SHORT);
-              if (valueName == null) {
-                valueName = shortValueName;
-              }
-              //valueName = getName(valueIndex, valueName, shortValueName);
-              if (valueName != null) {
-                valueOrder.put(valueName, shortValueName != null ? shortValueName : "");
-              } else if (propIndex == UProperty.CANONICAL_COMBINING_CLASS) {
-                String posVal = String.valueOf(valueIndex);
-                if (UnicodeSetUtilities.parseUnicodeSet("[:ccc=" + posVal + ":]", TableStyle.simple).size() != 0) {
-                  valueOrder.put(posVal, posVal);
-                }
-              }
-              showLink.add(propName);
-            } catch (RuntimeException e) {
-              // just skip
-            }
-          }
-        }
-      }
-    }
-    Set<String> unicodeProps = new TreeSet<String>(UNICODE_PROPS);
-
-    Set<String> regexProps = new TreeSet<String>(REGEX_PROPS);
-
     out.append("<table>\r\n");
-    for (String string : alpha.keySet()) {
-      String propName = (String) string;
-      String shortPropName = longToShort.get(propName);
-      String sPropName = propName + (shortPropName == null ? "" : " (" + shortPropName + ")");
-      Map<String, String> values = alpha.get(propName);
-      if (unicodeProps.contains(propName)) {
-        unicodeProps.remove(propName);
-      } else if (regexProps.contains(propName)) {
-        regexProps.remove(propName);
-        sPropName = "<tt>\u00AE\u00A0" + sPropName + "</tt>";
-      } else {
-        sPropName = "<i>\u00A9\u00A0" + sPropName + "</i>";
-      }
-
-      out.append("<tr><th width='1%'><a name='" + propName + "'>" + sPropName + "</a></th>\r\n");
+    for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).get()) {
+      UnicodeProperty prop = factory.getProperty(propName);
+      String propHtml = toHTML.transform(propName);
+      out.append("<tr><th width='1%'><a name='" + propHtml + "'>" + propHtml + "</a></th>\r\n");
       out.append("<td>\r\n");
-      boolean first = true;
-      for (String string2 : values.keySet()) {
-        String propValue = (String) string2;
-        String alternates = values.get(propValue);
-        if (first) {
-          first = false;
+      for (String valueName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)prop.getAvailableValues()).get()) {
+        String valueHtml = toHTML.transform(valueName);
+        if (valueName.startsWith("<") && valueName.endsWith(">")) {
+          out.append(valueHtml);
         } else {
-          out.append(", ");
+          out.append(getPropLink(propHtml, valueHtml, valueHtml));
         }
-
-
-        if (showLink.contains(propName)) {
-          propValue = getPropLink(propName, propValue, propValue) 
-          + getPropLink(shortPropName, alternates.length() == 0 ? propValue : alternates, "♻");
-        }
-
-        out.append(propValue);
+        out.append("\r\n");
       }
       out.append("</td></tr>\r\n");
     }
     out.append("</table>\r\n");
-    unicodeProps.addAll(regexProps);
-    return unicodeProps;
+    //    
+    //
+    //    Set<String> unicodeProps = new TreeSet<String>(UNICODE_PROPS);
+    //
+    //    Set<String> regexProps = new TreeSet<String>(REGEX_PROPS);
+    //
+    //    out.append("<table>\r\n");
+    //    for (String string : alpha.keySet()) {
+    //      String propName = (String) string;
+    //      String shortPropName = longToShort.get(propName);
+    //      String sPropName = propName + (shortPropName == null ? "" : " (" + shortPropName + ")");
+    //      Map<String, String> values = alpha.get(propName);
+    //      if (unicodeProps.contains(propName)) {
+    //        unicodeProps.remove(propName);
+    //      } else if (regexProps.contains(propName)) {
+    //        regexProps.remove(propName);
+    //        sPropName = "<tt>\u00AE\u00A0" + sPropName + "</tt>";
+    //      } else {
+    //        sPropName = "<i>\u00A9\u00A0" + sPropName + "</i>";
+    //      }
+    //
+    //      out.append("<tr><th width='1%'><a name='" + propName + "'>" + sPropName + "</a></th>\r\n");
+    //      out.append("<td>\r\n");
+    //      boolean first = true;
+    //      for (String string2 : values.keySet()) {
+    //        String propValue = (String) string2;
+    //        String alternates = values.get(propValue);
+    //        if (first) {
+    //          first = false;
+    //        } else {
+    //          out.append(", ");
+    //        }
+    //
+    //
+    //        if (showLink.contains(propName)) {
+    //          propValue = getPropLink(propName, propValue, propValue) 
+    //          + getPropLink(shortPropName, alternates.length() == 0 ? propValue : alternates, "♻");
+    //        }
+    //
+    //        out.append(propValue);
+    //      }
+    //      out.append("</td></tr>\r\n");
+    //    }
+    //    out.append("</table>\r\n");
+    //    unicodeProps.addAll(regexProps);
   }
 
   private static String getPropLink(String propName, String propValue, String linkText) {

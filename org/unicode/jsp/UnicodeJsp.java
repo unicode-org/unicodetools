@@ -216,7 +216,9 @@ public class UnicodeJsp {
     String a_out;
     a.clear();
     try {
-      setA = UnicodeSetUtilities.MyNormalize(setA, Normalizer.NFC);
+      //setA = UnicodeSetUtilities.MyNormalize(setA, Normalizer.NFC);
+      setA = setA.replace("..U+", "-\\u");
+      setA = setA.replace("U+", "\\u");
       a.addAll(UnicodeSetUtilities.parseUnicodeSet(setA, TableStyle.extras));
       a_out = UnicodeUtilities.getPrettySet(a, abbreviate, escape);
     } catch (Exception e) {
@@ -228,8 +230,8 @@ public class UnicodeJsp {
   public static void showSet(String grouping, UnicodeSet a, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
     UnicodeUtilities.showSet(grouping, a, abbreviate, ucdFormat, out);
   }
-  public static Set<String> showPropsTable(Appendable out) throws IOException {
-    return UnicodeUtilities.showPropsTable(out);
+  public static void showPropsTable(Appendable out) throws IOException {
+    UnicodeUtilities.showPropsTable(out);
   }
   public static String showTransform(String transform, String sample) {
     return UnicodeUtilities.showTransform(transform, sample);

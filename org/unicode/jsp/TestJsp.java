@@ -1,6 +1,7 @@
 package org.unicode.jsp;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -415,7 +416,6 @@ public class TestJsp  extends TestFmwk {
     UnicodeJsp.showSet("", new UnicodeSet("[\\u0080-\\U0010FFFF{abc}]"), true, true, printWriter);
 
 
-    UnicodeJsp.showProperties("a", printWriter);
 
     String[] abResults = new String[3];
     String[] abLinks = new String[3];
@@ -436,9 +436,41 @@ public class TestJsp  extends TestFmwk {
     //"";
     UnicodeJsp.showSet("",UnicodeSetUtilities.parseUnicodeSet("[:usage=/.+/:]", TableStyle.extras), false, false, printWriter);
 
-    UnicodeJsp.showPropsTable(printWriter);
+  }
+  
+  public void TestShowProperties() throws IOException {
+    StringWriter out = new StringWriter();
+    UnicodeJsp.showProperties("a", out);
+    assertTrue("props for character", out.toString().contains("Line_Break"));
+    System.out.println(out);
+  }
+  
+  public void TestPropsTable() throws IOException {
+    StringWriter out = new StringWriter();
+    UnicodeJsp.showPropsTable(out);
+    assertTrue("props table", out.toString().contains("Line_Break"));
+    System.out.println(out);
   }
 
+  public void TestShowSet() throws IOException {
+    StringWriter out = new StringWriter();
+//    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:Hangul_Syllable_Type=LVT_Syllable:]", TableStyle.extras), false, true, out);
+//    assertTrue("props table", out.toString().contains("Hangul"));
+//    System.out.println(out);
+//    
+//    out.getBuffer().setLength(0);
+//    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:cn:]", TableStyle.extras), false, true, out);
+//    assertTrue("props table", out.toString().contains("unassigned"));
+//    System.out.println(out); 
+    
+    out.getBuffer().setLength(0);
+    UnicodeJsp.showSet("sc", UnicodeSetUtilities.parseUnicodeSet("[:script=/Han/:]", TableStyle.extras), false, true, out);
+    assertTrue("props table", out.toString().contains("unassigned"));
+    System.out.println(out);
+
+
+  }
+  
   public void TestProperties() {
     checkProperties("[:subhead=/Mayanist/:]");
 
@@ -608,4 +640,25 @@ public class TestJsp  extends TestFmwk {
     logln(random);
   }
 
+  public void TestSimpleSet() {
+    checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna2003=valid}");
+    checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna=valid}");
+    checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{uts46=valid}");
+    checkUnicodeSetParseContains("[a-z\u00e4\u03b1]", "\\p{idna2008=PVALID}");
+    checkUnicodeSetParse("[\\u1234\\uABCD-\\uAC00]", "U+1234 U+ABCD-U+AC00");
+    checkUnicodeSetParse("[\\u1234\\uABCD-\\uAC00]", "U+1234 U+ABCD..U+AC00");
+  }
+
+  private void checkUnicodeSetParse(String expected1, String test) {
+    UnicodeSet actual = new UnicodeSet();
+    UnicodeSet expected = new UnicodeSet(expected1);
+    UnicodeJsp.getSimpleSet(test, actual , true, false);
+    TestUnicodeSet.assertEquals(this, test, expected, actual);
+  }
+  private void checkUnicodeSetParseContains(String expected1, String test) {
+    UnicodeSet actual = new UnicodeSet();
+    UnicodeSet expectedSubset = new UnicodeSet(expected1);
+    UnicodeJsp.getSimpleSet(test, actual , true, false);
+    TestUnicodeSet.assertContains(this, test, expectedSubset, actual);
+  }
 }

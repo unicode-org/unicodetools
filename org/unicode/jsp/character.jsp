@@ -65,10 +65,7 @@ Transliterator toHTML = Transliterator.createFromRules(
 <%
 	UnicodeJsp.showProperties(text, out); 
 %>
-<p><i>(only includes properties with non-default values)<br>
-</i>® = Regex Property (<a href="http://www.unicode.org/reports/tr18/">UTS #18</a>): not formal 
-Unicode property<br>
-© = ICU-Only Property (not Unicode or Regex)<br>
+<p>The list includes both Unicode Character Properties and some additions (like idna2003 or subhead)</p>
 <%@ include file="footer.jsp" %>
 </body>
 

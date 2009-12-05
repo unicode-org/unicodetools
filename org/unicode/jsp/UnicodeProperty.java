@@ -37,11 +37,11 @@ public abstract class UnicodeProperty extends UnicodeLabel {
   public static final UnicodeSet UNASSIGNED = new UnicodeSet("[:gc=unassigned:]").freeze();
   public static final UnicodeSet PRIVATE_USE = new UnicodeSet("[:gc=privateuse:]").freeze();
   public static final UnicodeSet SURROGATE = new UnicodeSet("[:gc=surrogate:]").freeze();
+  public static final UnicodeSet SPECIALS = new UnicodeSet(UNASSIGNED).addAll(PRIVATE_USE).addAll(SURROGATE).freeze();
   public static final int SAMPLE_UNASSIGNED = UNASSIGNED.charAt(0);
   public static final int SAMPLE_PRIVATE_USE = 0xE000;
   public static final int SAMPLE_SURROGATE = 0xD800;
-  public static final UnicodeSet STUFF_TO_TEST = new UnicodeSet(UNASSIGNED)
-  .addAll(PRIVATE_USE).addAll(SURROGATE).complement()
+  public static final UnicodeSet STUFF_TO_TEST = new UnicodeSet(SPECIALS).complement()
   .add(SAMPLE_UNASSIGNED).add(SAMPLE_PRIVATE_USE).add(SAMPLE_SURROGATE).freeze();
 
 
@@ -579,6 +579,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
    * @return true if the codepoint equals the string
    */
   public static final boolean equals(int codepoint, String other) {
+    if (other == null) return false;
     if (other.length() == 1) {
       return codepoint == other.charAt(0);
     }
@@ -1276,6 +1277,38 @@ public abstract class UnicodeProperty extends UnicodeLabel {
        return (List) unicodeMap.getAvailableValues(result);
      }
   }
+  
+  public boolean isValidValue(String propertyValue) {
+    if (isType(STRING_OR_MISC_MASK)) {
+      return true;
+    }
+    Collection<String> values = (Collection<String>) getAvailableValues();
+    for (String valueAlias : values) {
+      if (UnicodeProperty.compareNames(valueAlias, propertyValue) == 0) {
+        return true;
+      }
+      for (String valueAlias2 : (Collection<String>) getValueAliases(valueAlias)) {
+        if (UnicodeProperty.compareNames(valueAlias2, propertyValue) == 0) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  public List<String> getValueAliases() {
+    List<String> result = new ArrayList();
+    if (isType(STRING_OR_MISC_MASK)) {
+      return result;
+    }
+    Collection<String> values = (Collection<String>) getAvailableValues();
+    for (String valueAlias : values) {
+      UnicodeProperty.addAllUnique(getValueAliases(valueAlias), result);
+    }
+    result.removeAll(values);
+    return result;
+  }
+
 
   public static UnicodeSet addUntested(UnicodeSet result) {
     if (result.contains(UnicodeProperty.SAMPLE_UNASSIGNED)) {
@@ -1302,6 +1335,15 @@ public abstract class UnicodeProperty extends UnicodeLabel {
       result.putAll(UnicodeProperty.SURROGATE, temp);
     }
     return result;
+  }
+
+  public boolean isDefault(int cp) {
+    String value = getValue(cp);
+    if (isType(STRING_OR_MISC_MASK)) {
+      return equals(cp, value);
+    }
+    String defaultValue = getValue(SAMPLE_UNASSIGNED);
+    return defaultValue == null ? value == null : defaultValue.equals(value);   
   }
 
 }
