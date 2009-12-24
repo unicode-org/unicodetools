@@ -14,58 +14,29 @@ th           { text-align: left }
 
 <h1>Unicode Utilities: Character Properties</h1>
 <%@ include file="others.jsp" %>
-<form name="myform" action="http://unicode.org/cldr/utility/character.jsp" method="POST">
+<div style='text-align:center'>
+<form name="myform" action="http://unicode.org/cldr/utility/character.jsp" method="get">
   <%
 		request.setCharacterEncoding("UTF-8");
-		String text = request.getParameter("a");
-		if (text == null || text.length() == 0) text = "\u00C5";
-%> <%
-String BASE_RULES =
-  	"'<' > '&lt;' ;" +
-    "'<' < '&'[lL][Tt]';' ;" +
-    "'&' > '&amp;' ;" +
-    "'&' < '&'[aA][mM][pP]';' ;" +
-    "'>' < '&'[gG][tT]';' ;" +
-    "'\"' < '&'[qQ][uU][oO][tT]';' ; " +
-    "'' < '&'[aA][pP][oO][sS]';' ; ";
-
-String CONTENT_RULES =
-    "'>' > '&gt;' ;";
-
-String HTML_RULES = BASE_RULES + CONTENT_RULES + 
-"'\"' > '&quot;' ; ";
-
-String HTML_RULES_CONTROLS = HTML_RULES + 
-		"([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:][\\u0080-\\U0010FFFF]-[\\u0020]]) > &hex/xml($1) ; ";
-
-
-Transliterator toHTML = Transliterator.createFromRules(
-        "any-xml", HTML_RULES_CONTROLS, Transliterator.FORWARD);
+        String queryString = request.getQueryString();
         
-		String HTML_INPUT = "::hex-any/xml10; ::hex-any/unicode; ::hex-any/java;";
-		Transliterator fromHTML = Transliterator.createFromRules(
-				"any-xml", HTML_INPUT, Transliterator.FORWARD);
-		
-		text = fromHTML.transliterate(text);
+        UtfParameters utfParameters = new UtfParameters(queryString);
+		String text = utfParameters.getParameter("a", "\u00C5", "\u00C5");
 
-		if (text.length() > 2) {
-		    try {
-			  text = UTF16.valueOf(Integer.parseInt(text,16));
-			} catch (Exception e) {}
-		}
-		int cp = UTF16.charAt(text, 0);
-		String nextHex = "character.jsp?a=" + Utility.hex(cp < 0x110000 ? cp+1 : 0, 4);
+		int cp = UnicodeJsp.parseCode(text,null,null);
+		//text = UTF16.valueOf(cp);
+	    String nextHex = "character.jsp?a=" + Utility.hex(cp < 0x110000 ? cp+1 : 0, 4);
 		String prevHex = "character.jsp?a=" + Utility.hex(cp > 0 ? cp-1 : 0x10FFFF, 4);
 %>
-<div style='text-align:center'>
-  <p><input type="button" value="Previous" name="B3" onClick="window.location.href='<%=prevHex%>'">
-  <input type="text" name="a" size="10" value="<%=text%>">
-  <input type="button" value="Next" name="B2" onClick="window.location.href='<%=nextHex%>'">
-  &nbsp;<input type="submit" value="Show" name="B1">
+  <p>
+  <input name="B3" type="button" value="-" onClick="window.location.href='<%=prevHex%>'">
+  <input name="a" type="text" style='text-align:center; font-size:150%' size="10" value="<%=text%>">
+  <input name="B2" type="button" value="+" onClick="window.location.href='<%=nextHex%>'"><br><br>
+  <input name="B1" type="submit" value="Show">
   </p>
 </form>
 <%
-	UnicodeJsp.showProperties(text, out); 
+	UnicodeJsp.showProperties(cp, out); 
 %>
 </div>
 <p>The list includes both Unicode Character Properties and some additions (like idna2003 or subhead)</p>

@@ -43,6 +43,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
   public static final int SAMPLE_SURROGATE = 0xD800;
   public static final UnicodeSet STUFF_TO_TEST = new UnicodeSet(SPECIALS).complement()
   .add(SAMPLE_UNASSIGNED).add(SAMPLE_PRIVATE_USE).add(SAMPLE_SURROGATE).freeze();
+  public static final UnicodeSet STUFF_TO_TEST_WITH_UNASSIGNED = new UnicodeSet(STUFF_TO_TEST).addAll(UNASSIGNED).freeze();
 
 
   public static boolean DEBUG = false;
@@ -58,6 +59,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
   private int type;
 
   private Map valueToFirstValueAlias = null;
+  
+  private boolean hasUniformUnassigned = true;
 
   /*
    * Name: Unicode_1_Name Name: ISO_Comment Name: Name Name: Unicode_1_Name
@@ -260,15 +263,16 @@ public abstract class UnicodeProperty extends UnicodeLabel {
   public final UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
     if (result == null)
       result = new UnicodeSet();
+    boolean uniformUnassigned = hasUniformUnassigned();
     if (isType(STRING_OR_MISC_MASK)) {
-      for (UnicodeSetIterator usi = new UnicodeSetIterator(STUFF_TO_TEST); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
+      for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
         int i = usi.codepoint;
         String value = getValue(i);
         if (value != null && matcher.matches(value)) {
           result.add(i);
         }
       }
-      return addUntested(result);
+      return addUntested(result, uniformUnassigned);
     }
     List temp = new ArrayList(1); // to avoid reallocating...
     UnicodeMap um = getUnicodeMap_internal();
@@ -360,15 +364,16 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     if (!getShortest)
       return (UnicodeMap) getUnicodeMap_internal().cloneAsThawed();
     UnicodeMap result = new UnicodeMap();
+    boolean uniformUnassigned = hasUniformUnassigned();
 
-    for (UnicodeSetIterator usi = new UnicodeSetIterator(STUFF_TO_TEST); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
+    for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
       int i = usi.codepoint;
       // if (DEBUG && i == 0x41) System.out.println(i + "\t" +
       // getValue(i));
       String value = getValue(i, true);
       result.put(i, value);
     }
-    return addUntested(result);
+    return addUntested(result, uniformUnassigned);
   }
 
   /**
@@ -383,8 +388,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
   protected UnicodeMap _getUnicodeMap() {
     UnicodeMap result = new UnicodeMap();
     HashMap myIntern = new HashMap();
+    boolean uniformUnassigned = hasUniformUnassigned();
 
-    for (UnicodeSetIterator usi = new UnicodeSetIterator(STUFF_TO_TEST); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
+    for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
       int i = usi.codepoint;
       // if (DEBUG && i == 0x41) System.out.println(i + "\t" +
       // getValue(i));
@@ -394,10 +400,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         myIntern.put(value, iValue = value);
       result.put(i, iValue);
     }
-    addUntested(result);
+    addUntested(result, uniformUnassigned);
 
     if (DEBUG) {
-      for (UnicodeSetIterator usi = new UnicodeSetIterator(STUFF_TO_TEST); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
+      for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
         int i = usi.codepoint;
         // if (DEBUG && i == 0x41) System.out.println(i + "\t" +
         // getValue(i));
@@ -416,6 +422,10 @@ public abstract class UnicodeProperty extends UnicodeLabel {
       System.out.println(result);
     }
     return result;
+  }
+
+  private static UnicodeSetIterator getStuffToTest(boolean uniformUnassigned) {
+    return new UnicodeSetIterator(uniformUnassigned ? STUFF_TO_TEST : STUFF_TO_TEST_WITH_UNASSIGNED);
   }
 
   /**
@@ -681,7 +691,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                   + property.getType());
         if (!property.isType(propertyTypeMask)) {
           // System.out.println("Masking: " + property.getType() + ","
-                  // + propertyTypeMask);
+          // + propertyTypeMask);
           continue;
         }
         addUnique(property.getName(), result);
@@ -1154,7 +1164,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
      * @param string
      * @return
      */
-     public UnicodeProperty addName(String string) {
+    public UnicodeProperty addName(String string) {
       throw new UnsupportedOperationException();
     }
 
@@ -1277,7 +1287,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
        return (List) unicodeMap.getAvailableValues(result);
      }
   }
-  
+
   public boolean isValidValue(String propertyValue) {
     if (isType(STRING_OR_MISC_MASK)) {
       return true;
@@ -1310,8 +1320,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
   }
 
 
-  public static UnicodeSet addUntested(UnicodeSet result) {
-    if (result.contains(UnicodeProperty.SAMPLE_UNASSIGNED)) {
+  public static UnicodeSet addUntested(UnicodeSet result, boolean uniformUnassigned) {
+    if (uniformUnassigned && result.contains(UnicodeProperty.SAMPLE_UNASSIGNED)) {
       result.addAll(UnicodeProperty.UNASSIGNED);
     }
     if (result.contains(UnicodeProperty.SAMPLE_PRIVATE_USE)) {
@@ -1323,9 +1333,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     return result;
   }
 
-  public static UnicodeMap addUntested(UnicodeMap result) {
+  public static UnicodeMap addUntested(UnicodeMap result, boolean uniformUnassigned) {
     Object temp;
-    if (null != (temp = result.get(UnicodeProperty.SAMPLE_UNASSIGNED))) {
+    if (uniformUnassigned && null != (temp = result.get(UnicodeProperty.SAMPLE_UNASSIGNED))) {
       result.putAll(UnicodeProperty.UNASSIGNED, temp);
     }
     if (null != (temp = result.get(UnicodeProperty.SAMPLE_PRIVATE_USE))) {
@@ -1346,5 +1356,12 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     return defaultValue == null ? value == null : defaultValue.equals(value);   
   }
 
+  public boolean hasUniformUnassigned() {
+    return hasUniformUnassigned;
+  }
+  protected UnicodeProperty setUniformUnassigned(boolean hasUniformUnassigned) {
+    this.hasUniformUnassigned = hasUniformUnassigned;
+    return this;
+  }
 }
 

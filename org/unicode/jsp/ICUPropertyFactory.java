@@ -41,6 +41,9 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
       setName(propName);
       this.propEnum = propEnum;
       setType(internalGetPropertyType(propEnum));
+      if (propEnum == UProperty.DEFAULT_IGNORABLE_CODE_POINT || propEnum == UProperty.BIDI_CLASS) {
+        setUniformUnassigned(false);
+      }
     }
 
     boolean shownException = false;
@@ -60,10 +63,10 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
       case UProperty.TITLECASE_MAPPING: return UCharacter.toTitleCase(Locale.ENGLISH,UTF16.valueOf(codePoint),null);
       case UProperty.UNICODE_1_NAME: return UCharacter.getName1_0(codePoint);
       case UProperty.UPPERCASE_MAPPING: return UCharacter.toUpperCase(Locale.ENGLISH,UTF16.valueOf(codePoint));
-      case NFC: return Normalizer.normalize(codePoint, Normalizer.NFC);
-      case NFD: return Normalizer.normalize(codePoint, Normalizer.NFD);
-      case NFKC: return Normalizer.normalize(codePoint, Normalizer.NFKC);
-      case NFKD: return Normalizer.normalize(codePoint, Normalizer.NFKD);
+//      case NFC: return Normalizer.normalize(codePoint, Normalizer.NFC);
+//      case NFD: return Normalizer.normalize(codePoint, Normalizer.NFD);
+//      case NFKC: return Normalizer.normalize(codePoint, Normalizer.NFKC);
+//      case NFKD: return Normalizer.normalize(codePoint, Normalizer.NFKD);
       case isNFC: return String.valueOf(Normalizer.normalize(codePoint, Normalizer.NFC).equals(UTF16.valueOf(codePoint)));
       case isNFD: return String.valueOf(Normalizer.normalize(codePoint, Normalizer.NFD).equals(UTF16.valueOf(codePoint)));
       case isNFKC: return String.valueOf(Normalizer.normalize(codePoint, Normalizer.NFKC).equals(UTF16.valueOf(codePoint)));
@@ -172,8 +175,9 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
 
     public List _getNameAliases(List result) {
       if (result == null) result = new ArrayList();
-      String alias = String_Extras.get(propEnum);
-      if (alias == null) alias = Binary_Extras.get(propEnum);
+//      String alias = String_Extras.get(propEnum);
+//      if (alias == null) 
+      String alias = Binary_Extras.get(propEnum);
       if (alias != null) {
         addUnique(alias, result);
       } else {
@@ -358,10 +362,10 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
           "isLowercase", "isUppercase", "isTitlecase", "isCasefolded", "isCased",
   });
 
-  static final Names String_Extras = new Names(UProperty.STRING_LIMIT,
-          new String[] {
-          "toNFC", "toNFD", "toNFKC", "toNKFD",
-  });
+//  static final Names String_Extras = new Names(UProperty.STRING_LIMIT,
+//          new String[] {
+//          "toNFC", "toNFD", "toNFKC", "toNKFD",
+//  });
 
   static final int
   isNFC = UProperty.BINARY_LIMIT,
@@ -373,12 +377,12 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
   isTitlecase = UProperty.BINARY_LIMIT+6,
   isCasefolded = UProperty.BINARY_LIMIT+7,
   isCased = UProperty.BINARY_LIMIT+8,
-  BINARY_LIMIT = UProperty.BINARY_LIMIT+9,
+  BINARY_LIMIT = UProperty.BINARY_LIMIT+9
 
-  NFC  = UProperty.STRING_LIMIT,
-  NFD  = UProperty.STRING_LIMIT+1,
-  NFKC = UProperty.STRING_LIMIT+2,
-  NFKD = UProperty.STRING_LIMIT+3
+//  NFC  = UProperty.STRING_LIMIT,
+//  NFD  = UProperty.STRING_LIMIT+1,
+//  NFKC = UProperty.STRING_LIMIT+2,
+//  NFKD = UProperty.STRING_LIMIT+3
   ;
 
   private ICUPropertyFactory() {
@@ -411,7 +415,7 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
         if (!result.contains(alias)) result.add(alias);
       }
     }
-    result.addAll(String_Extras.getNames());
+    //result.addAll(String_Extras.getNames());
     result.addAll(Binary_Extras.getNames());
     return result;
   }
@@ -425,11 +429,11 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
         propEnum = possibleItem;
         break main;
       }
-      possibleItem = String_Extras.get(propertyAlias);
-      if (possibleItem >= 0) {
-        propEnum = possibleItem;
-        break main;
-      }
+//      possibleItem = String_Extras.get(propertyAlias);
+//      if (possibleItem >= 0) {
+//        propEnum = possibleItem;
+//        break main;
+//      }
       propEnum = UCharacter.getPropertyEnum(propertyAlias);
     }
     return new ICUProperty(propertyAlias, propEnum);

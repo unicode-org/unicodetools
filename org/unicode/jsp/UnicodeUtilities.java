@@ -276,11 +276,10 @@ public class UnicodeUtilities {
   TO_UPPERCASE  = UProperty.STRING_LIMIT + 6,
   TO_TITLECASE  = UProperty.STRING_LIMIT + 7,
   SUBHEAD = TO_TITLECASE + 1,
-  USAGE = SUBHEAD + 1,
-  XSTRING_LIMIT = USAGE + 1; 
+  XSTRING_LIMIT = SUBHEAD + 1; 
 
   static List<String> XPROPERTY_NAMES = Arrays.asList(new String[]{"toNfc", "toNfd", "toNfkc", "toNfkd", "toCasefold", "toLowercase", "toUppercase", "toTitlecase",
-          "subhead", "usage"});
+          "subhead"});
   static final UnicodeSet MARK = (UnicodeSet) UnicodeSetUtilities.parseUnicodeSet("[:M:]", TableStyle.simple).freeze();
 
   static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice, Normalizer.Mode compat) {
@@ -328,11 +327,6 @@ public class UnicodeUtilities {
     case TO_UPPERCASE: return UCharacter.toUpperCase(ULocale.ROOT, UTF16.valueOf(codepoint));
     case TO_TITLECASE: return UCharacter.toTitleCase(ULocale.ROOT, UTF16.valueOf(codepoint), null);
     case SUBHEAD: return getSubheader().getSubheader(codepoint);
-    case USAGE: return DEPRECATED.contains(codepoint) ? "deprecated"
-            : LITURGICAL.contains(codepoint) ? "liturgical"
-                    : ScriptCategoriesCopy.ARCHAIC.contains(codepoint) ? "historic" 
-                            : COMMON_USE_SCRIPTS.contains(codepoint) ? "common"
-                                    : "limited";
     }
     return UCharacter.getStringPropertyValue(propertyEnum, codepoint, nameChoice);
   }
@@ -520,13 +514,21 @@ public class UnicodeUtilities {
   }
 
   /*jsp*/
-  public static void showSet(UnicodeSet inputSet, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
-    if (inputSet.getRangeCount() > 10000) {
+  public static void showSet(UnicodeSet inputSetRaw, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
+    if (inputSetRaw.getRangeCount() > 10000) {
       out.append("<i>Too many to list individually</i>\r\n");
-    } else if (abbreviate || UnicodeProperty.SPECIALS.containsAll(inputSet)) {
-      showAbbreviated(inputSet, ucdFormat, out);
+    } else if (abbreviate) {
+      showAbbreviated(inputSetRaw, ucdFormat, out);
     } else {
       LinkedHashMap<String,UnicodeSet> items = new LinkedHashMap();
+      String specials = "Unassigned, Private use, or Surrogates";
+
+      UnicodeSet specialSet = new UnicodeSet(inputSetRaw).retainAll(UnicodeProperty.SPECIALS);
+      UnicodeSet inputSet = specialSet.size() == 0 ? inputSetRaw : new UnicodeSet(inputSetRaw).removeAll(UnicodeProperty.SPECIALS);
+      if (specialSet.size() != 0) {
+        items.put(specials, specialSet);
+      }
+      
       String oldBlock = "";
       String oldSubhead = "";
       for (UnicodeSetIterator it = new UnicodeSetIterator(inputSet); it.next();) {
@@ -552,20 +554,18 @@ public class UnicodeUtilities {
       for (String newBlock : items.keySet()) {
         UnicodeSet set = items.get(newBlock);
         out.append("<h3>" + newBlock + "</b>: " + numberFormat.format(set.size()) + "</h3>\r\n");
-        if (UnicodeProperty.SPECIALS.containsAll(set)) {
-          out.append("<i>Unassigned, Private use, or Surrogates</i><br>\r\n");
-        } else if (set.size() > 500 || UnicodeProperty.SPECIALS.containsAll(set)) {
+        if (set.size() > 500 || newBlock == specials) {
           showAbbreviated(set, ucdFormat, out);
         } else {
-        for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next();) {
-          int s = it.codepoint;
-          if (s == UnicodeSetIterator.IS_STRING) {
-            out.append(showCodePoint(it.string)).append("<br>\r\n");
-          } else {
-            showCodePoint(s, ucdFormat, out);
+          for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next();) {
+            int s = it.codepoint;
+            if (s == UnicodeSetIterator.IS_STRING) {
+              out.append(showCodePoint(it.string)).append("<br>\r\n");
+            } else {
+              showCodePoint(s, ucdFormat, out);
+            }
           }
         }
-      }
       }
     }
   }
@@ -1010,23 +1010,29 @@ public class UnicodeUtilities {
     ((RuleBasedCollator) col).setNumericCollation(true);
   }
 
-  public static void showProperties(String text, Appendable out) throws IOException {
-    text = UTF16.valueOf(text, 0);
-    int cp = UTF16.charAt(text, 0);
+  public static void showProperties(int cp, Appendable out) throws IOException {
+    String text = UTF16.valueOf(cp);
     String name = factory.getProperty("Name").getValue(cp);
     if (name != null) {
       name = toHTML.transliterate(name);
     }
-    
+    String scriptCat = factory.getProperty("script").getValue(cp).replace("_", " ");
+    if (scriptCat.equals("Common") || scriptCat.equals("Inherited")) {
+      scriptCat = factory.getProperty("gc").getValue(cp).replace("_", " ");
+    } else {
+      scriptCat += " Script";
+    }
+
     out.append("<div class='bigDiv'><table class='bigTable'>\n");
-    out.append("<tr><td class='bigChar'>" + toHTML.transliterate(text) + "</td></tr>\n");
+    out.append("<tr><td class='bigChar'>\u00A0" + toHTML.transliterate(text) + "\u00A0</td></tr>\n");
     out.append("<tr><td class='bigCode'>" + com.ibm.icu.impl.Utility.hex(cp, 4) + "</td></tr>\n");
     out.append("<tr><td class='bigName'>" + name + "</td></tr>\n");
+    out.append("<tr><td class='bigName'>" + scriptCat + "</td></tr>\n");
     out.append("</table></div>\n");
 
     TreeSet<String> sortedProps = Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).remove("Name").get();
 
-    out.append("<table><tr><td width='50%'>\n");
+    out.append("<table class='propTable'><tr><td width='50%'>\n");
     out.append("<table width='100%'>\r\n");
 
     for (String propName : sortedProps) {
@@ -1037,7 +1043,7 @@ public class UnicodeUtilities {
       showPropertyValue(propName, propValue, isDefault, out); 
     }
     out.append("</table>\r\n");
-    
+
     out.append("</td><td width='50%'>\n");
 
     out.append("<table width='100%'>\r\n");
@@ -1057,7 +1063,7 @@ public class UnicodeUtilities {
     String defaultClass = isDefault ? " class='default'" : "";
     if (propValue == null) {
       out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
-      				"><i>null</i></td></tr>\r\n");
+      "><i>null</i></td></tr>\r\n");
       return;
     }
     String hValue = toHTML.transliterate(propValue);
@@ -1065,7 +1071,7 @@ public class UnicodeUtilities {
       + propName + "=" + propValue + ":]'>" + hValue + "</a>";
 
     out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
-    				">" + hValue + "</td></tr>\r\n");
+            ">" + hValue + "</td></tr>\r\n");
   }
 
   /*jsp*/
@@ -1244,6 +1250,9 @@ public class UnicodeUtilities {
   static final Transliterator ESCAPER = Transliterator.createFromRules("escaper", 
           "(" + IdnaLabelTester.TO_QUOTE + ") > '<span class=\"q\">'&any-hex($1)'</span>';"
           + HTML_RULES_CONTROLS, Transliterator.FORWARD);
+
+  public static final UnicodeSet SYMBOL = new UnicodeSet("[:s:]").freeze();
+  public static final UnicodeSet PUNCTUATION = new UnicodeSet("[:p:]").freeze();
 
   private static String showEscaped(String line) {
     String toShow = toHTML.transform(line);

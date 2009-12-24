@@ -26,12 +26,14 @@ h3 {background-color: #EEEEEE}
 .L1 {background-color: #AAAAAA}
 .L0 {background-color: #999999} 
 .default           { background-color: #999999}
+.propTable, .bigTable {
+  margin-left: auto;
+  margin-right: auto;
+}
 .bigChar,.bigCode,.bigName {text-align:center; border-width:0}
 .bigChar {font-size:108pt;}
 .bigTable {
-  width:144pt;
-  margin-left: auto;
-  margin-right: auto;
-    margin-bottom: 12pt;
+  width:180pt;
+  margin-bottom: 12pt;
 }
 .bigDiv {text-align:center};

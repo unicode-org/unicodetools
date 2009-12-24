@@ -44,6 +44,16 @@ public class UtfParameters implements Iterable<String> {
     }
     return result;
   }
+  public String getParameter(String key, String nullReplacement, String emptyReplacement) {
+    String result = map.get(key);
+    if (result == null) {
+      return nullReplacement;
+    }
+    if (result.length() == 0) {
+      return emptyReplacement;
+    }
+    return result;
+  }
   public Iterator<String> iterator() {
     return map.keySet().iterator();
   }
