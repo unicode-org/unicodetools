@@ -35,7 +35,8 @@
       <td><textarea name="a" rows="8" cols="10" style="width: 100%"><%=setA%></textarea></td>
     </tr>
     <tr>
-      <td><input id='main' type="submit" value="Show Set" onClick="window.location.href='list-unicodeset.jsp?a='+document.getElementById('main').value"/>&nbsp;&nbsp;
+      <td>
+      <input id='main' type="submit" value="Show Set" onClick="window.location.href='list-unicodeset.jsp?a='+document.getElementById('main').value"/>&nbsp;&nbsp;
       <input type="checkbox" <%=abbreviate ? "checked" : ""%> name="abb"><label for="abb">Abbreviate</label>&nbsp;&nbsp;
       <input type="checkbox" <%=ucdFormat ? "checked" : ""%> name="ucd"><label for="ucd">UCD format</label>&nbsp;&nbsp;
       <input type="checkbox" <%=escape ? "checked" : ""%> name="esc"><label for="esc">Escape</label>&nbsp;&nbsp;

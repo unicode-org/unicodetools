@@ -39,7 +39,7 @@ span.break   { border-right: 1px solid red;}
     <tr>
       <td><textarea name="a" rows="30" cols="30" style="width:100%; height:100%"><%=text%></textarea></td>
       <td>
-      <%=UnicodeJsp.toBreaks(text, choice))%>&nbsp;</td>
+      <%=UnicodeJsp.showBreaks(text, choice)%>&nbsp;</td>
     </tr>
   </table>
 </form>

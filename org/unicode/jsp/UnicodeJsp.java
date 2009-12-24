@@ -106,8 +106,8 @@ public class UnicodeJsp {
 
     return result.toString();  }
 
-  public static void showProperties(String text, Appendable out) throws IOException {
-    UnicodeUtilities.showProperties(text, out);
+  public static void showProperties(int cp, Appendable out) throws IOException {
+    UnicodeUtilities.showProperties(cp, out);
   }
 
   static String defaultIdnaInput = "\u0001.com"
@@ -244,5 +244,27 @@ public class UnicodeJsp {
   public static void getDifferences(String setA, String setB,
           boolean abbreviate, String[] abResults, int[] abSizes, String[] abLinks) {
     UnicodeUtilities.getDifferences(setA, setB, abbreviate, abResults, abSizes, abLinks);
+  }
+  
+  public static int parseCode(String text, String nextButton, String previousButton) {
+        //text = fromHTML.transliterate(text);
+        if (text.length() > 2) {
+            try {
+            text = UTF16.valueOf(Integer.parseInt(text,16));
+          } catch (Exception e) {}
+        }
+        int cp = UTF16.charAt(text, 0);
+        if (nextButton != null) {
+          cp += 1;
+          if (cp > 0x10FFFF) {
+            cp = 0;
+          }
+        } else if (previousButton != null) {
+          cp -= 1;
+          if (cp < 0) {
+            cp = 0x10FFFF;
+          }
+        }
+        return cp;
   }
 }

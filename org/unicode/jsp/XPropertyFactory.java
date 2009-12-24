@@ -12,6 +12,7 @@ import java.util.Set;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
 
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.util.VersionInfo;
@@ -37,6 +38,8 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     add(new IDNA2003());
     add(new UTS46());
     add(new IDNA2008());
+    add(new Usage());
+    add(new HanType());
   }
 
 //  public UnicodeProperty getInternalProperty(String propertyAlias) {
@@ -166,5 +169,51 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
       return Idna2008.getTypeMapping().get(codepoint).toString();
     }
   }
+  
+  private static class Usage extends XEnumUnicodeProperty {
+    enum UsageValues {common, historic, deprecated, liturgical, limited, symbol, punctuation, na;
+    public static UsageValues getValue(int codepoint) {
+      if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
+      if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
+      if (UnicodeUtilities.LITURGICAL.contains(codepoint)) return liturgical;
+      if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
+      //if (UnicodeUtilities.LIM.contains(codepoint)) return archaic;
+      if (UnicodeUtilities.COMMON_USE_SCRIPTS.contains(codepoint)) {
+        if (UnicodeUtilities.SYMBOL.contains(codepoint)) return symbol;
+        if (UnicodeUtilities.PUNCTUATION.contains(codepoint)) return punctuation;
+        return common;
+      }
+      return limited;
+    }
+    }
+    public Usage() {
+      super("Usage", UsageValues.values());
+      setType(UnicodeProperty.EXTENDED_ENUMERATED);
+    }
 
+    @Override
+    protected String _getValue(int codepoint) {
+      return UsageValues.getValue(codepoint).toString();
+    }
+  }
+
+  private static class HanType extends XEnumUnicodeProperty {
+    enum HanTypeValues {na, simplified_only, traditional_only, both;
+    public static HanTypeValues getValue(int codepoint) {
+      if (UnicodeSetUtilities.simpOnly.contains(codepoint)) return simplified_only;
+      if (UnicodeSetUtilities.tradOnly.contains(codepoint)) return traditional_only;
+      if (UnicodeSetUtilities.bothSimpTrad.contains(codepoint)) return both;
+      return na;
+    }
+    }
+    public HanType() {
+      super("HanType", HanTypeValues.values());
+      setType(UnicodeProperty.EXTENDED_ENUMERATED);
+    }
+
+    @Override
+    protected String _getValue(int codepoint) {
+      return HanTypeValues.getValue(codepoint).toString();
+    }
+  }
 }
