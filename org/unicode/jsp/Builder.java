@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -176,6 +177,10 @@ public final class Builder {
       collection = null;
       return temp;
     }
+    
+    public String toString() {
+      return collection.toString();
+    }
 
     // ===== PRIVATES ======
 
@@ -224,16 +229,43 @@ public final class Builder {
       return this;
     }
     
-    public MBuilder<K, V, M> putValue(V value, K... keys) {
-      for (K key : keys) {
-        put(key, value);
-      }
+    public MBuilder<K, V, M> on(K... keys) {
+      this.keys = Arrays.asList(keys);
       return this;
     }
     
-    public MBuilder<K, V, M> putValue(V value, Collection<? extends K> keys) {
+    public MBuilder<K, V, M> on(Collection<? extends K> keys) {
+      this.keys = keys;
+      return this;
+    }
+    
+    public MBuilder<K, V, M> put(V value) {
       for (K key : keys) {
         put(key, value);
+      }
+      keys = null;
+      return this;
+    }
+    
+    public MBuilder<K, V, M> put(V... values) {
+      int v = 0;
+      for (K key : keys) {
+        put(key, values[v++]);
+        if (v >= values.length) {
+          v = 0;
+        }
+      }
+      keys = null;
+      return this;
+    }
+    
+    public MBuilder<K, V, M> put(Collection<? extends V> values) {
+      Iterator<? extends V> vi = null;
+      for (K key : keys) {
+        if (vi == null || !vi.hasNext()) {
+          vi = values.iterator();
+        }
+        put(key, vi.next());
       }
       return this;
     }
@@ -246,8 +278,10 @@ public final class Builder {
           put(key, m.get(key));
         }
       }
+      keys = null;
       return this;
     }
+    
     public MBuilder<K, V, M> remove(K key) {
       map.remove(key);
       return this;
@@ -269,7 +303,7 @@ public final class Builder {
       return retainAll(Arrays.asList(keys));
     }
 
-    public MBuilder<K, V, M> xor(M c) {
+    public <N extends Map<K,V>> MBuilder<K, V, M> xor(N c) {
       for (K item : c.keySet()) {
         if (map.containsKey(item)) {
           map.remove(item);
@@ -280,7 +314,7 @@ public final class Builder {
       return this;
     }
     
-    public MBuilder<K, V, M> keepNew(M c) {
+    public <N extends Map<K,V>> MBuilder<K, V, M> keepNew(N c) {
       HashSet<K> extras = new HashSet<K>(c.keySet());
       extras.removeAll(map.keySet());
       map.clear();
@@ -308,8 +342,13 @@ public final class Builder {
       return temp;
     }
     
+    public String toString() {
+      return map.toString();
+    }
+    
     // ===== PRIVATES ======
     
+    private Collection<? extends K> keys;
     private M map;
     private EqualAction equalAction;
 

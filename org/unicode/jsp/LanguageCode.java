@@ -1,6 +1,5 @@
 package org.unicode.jsp;
 
-import java.io.BufferedReader;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -40,29 +39,19 @@ public class LanguageCode {
   }
   }
 
-  static final Map<String,String> names = fillMapFromSemi(LanguageCode.class, "subtagNames.txt", new TreeMap<String,String>());
-  static final Map<String,String> toAlpha3 = fillMapFromSemi(LanguageCode.class, "alpha2_3.txt", new TreeMap<String,String>());
-  static final Map<String,String> fixCodes = fillMapFromSemi(LanguageCode.class, "fixCodes.txt", new TreeMap<String,String>());
-
-  private static Map<String, String> fillMapFromSemi(Class<LanguageCode> classLocation, String fileName, Map<String, String> map) {
-    BufferedReader in;
-    String line = null;
-    try {
-      in = UnicodeUtilities.openFile(classLocation, fileName);
-      for (int lineCount = 1; ; ++lineCount) {
-        line = in.readLine();
-        if (line == null) {
-          break;
-        }
-        String[] parts = line.split(";");
-        map.put(parts[0], parts[1]);
-      }
-      in.close();
-      return map;
-    } catch (Exception e) {
-      throw (RuntimeException) new IllegalArgumentException(line).initCause(e);
+  static class MyHandler extends FileUtilities.SemiFileReader {
+    TreeMap<String,String> map = new TreeMap<String,String>();
+    protected boolean isCodePoint() {
+      return false;
+    }
+    public void handleLine(int start, int end, String[] items) {
+      map.put(items[0], items[1]);
     }
   }
+
+  static final Map<String,String> names = ((MyHandler) new MyHandler().process(LanguageCode.class, "subtagNames.txt")).map;
+  static final Map<String,String> toAlpha3 = ((MyHandler) new MyHandler().process(LanguageCode.class, "alpha2_3.txt")).map;
+  static final Map<String,String> fixCodes = ((MyHandler)new MyHandler().process(LanguageCode.class, "fixCodes.txt")).map;
 
   public static String validate(String input, ULocale ulocale) {
     String oldInput = input;

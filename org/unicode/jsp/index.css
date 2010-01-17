@@ -3,8 +3,8 @@ table		{ border-collapse: collapse }
 th           { background-color: #DDDDFF; text-align:left }
 textarea	{width: 100%; background-color: #EEFFEE; border:1px solid #CCFFCC; }
 li,p           { margin-top: 0.5em; margin-bottom: 0.5em }
-h2 { font-size:120%;  margin-top: 0.5em; margin-bottom: 0.5em }
-h3 { font-size:100%;  margin-top: 0.5em; margin-bottom: 0.5em }
+h2 { font-size:120%;  margin-top: 1em; margin-bottom: 0.5em }
+h3 { font-size:100%;  margin-top: 1em; margin-bottom: 0.5em }
 .key { background-color: #FFFF99; font-weight: bold; color: red }
 span.break   { border-right: 1px solid red;}
 .c { text-align:center; }
@@ -37,3 +37,9 @@ h3 {background-color: #EEEEEE}
   margin-bottom: 12pt;
 }
 .bigDiv {text-align:center};
+.smc,.smh,.smn,.smb {text-align:center; border-width:0}
+.smc {font-size:150%; font-family:sans-serif; border:1px solid #CCCCFF; border-bottom-width:0;}
+.smh {font-size:70%; font-family:monospace; border:1px solid #CCCCFF; border-bottom-width:0;border-top-width:0;}
+.smn {font-size:50%; border:1px solid #CCCCFF;border-top-width:0;}
+.smb {background-color: #F8F8F8}
+.chb {background-color: #DDFFDD}
