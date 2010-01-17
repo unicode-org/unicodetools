@@ -74,32 +74,37 @@ public class TestBuilder extends TestFmwk {
   }
   
   public void TestMapCombos() {
-    Set<Dummy> dummyNone = Collections.emptySet();
-    Set<Dummy> dummy1 = Builder.with(new TreeSet<Dummy>()).addAll(one).freeze();
-    Set<Dummy> dummy2 = Builder.with(new TreeSet<Dummy>()).addAll(two).freeze();
-    Set<Dummy> dummy3 = Builder.with(new TreeSet<Dummy>()).addAll(three).freeze();
-    Set<Dummy> dummy12 = Builder.with(new TreeSet<Dummy>()).addAll(one, two).freeze();
-    Set<Dummy> dummy23 = Builder.with(new TreeSet<Dummy>()).addAll(two, three).freeze();
-    Set<Dummy> dummy13 = Builder.with(new TreeSet<Dummy>()).addAll(one, three).freeze();
-    Set<Dummy> dummy123 = Builder.with(new TreeSet<Dummy>()).addAll(one, two, three).freeze();
+    Map<Dummy, Integer> dummyNone = Collections.emptyMap();
+    Map<Dummy, Integer> dummy1 = Builder.with(new TreeMap<Dummy, Integer>()).put(one,2).freeze();
+    Map<Dummy, Integer> dummy2 = Builder.with(new TreeMap<Dummy, Integer>()).put(two,2).freeze();
+    Map<Dummy, Integer> dummy3 = Builder.with(new TreeMap<Dummy, Integer>()).put(three,2).freeze();
+    Map<Dummy, Integer> dummy12 = Builder.with(new TreeMap<Dummy, Integer>()).on(one, two).put(2).freeze();
+    Map<Dummy, Integer> dummy23 = Builder.with(new TreeMap<Dummy, Integer>()).on(two, three).put(2).freeze();
+    Map<Dummy, Integer> dummy13 = Builder.with(new TreeMap<Dummy, Integer>()).on(one, three).put(2).freeze();
+    Map<Dummy, Integer> dummy123 = Builder.with(new TreeMap<Dummy, Integer>()).on(one, two, three).put(2).freeze();
     
-    assertEquals("none", dummyNone, Builder.with(new TreeMap<Dummy,Integer>()).putValue(3, dummy12).clear().get());
-    assertEquals("removeAll", dummy1, Builder.with(new TreeMap<Dummy,Integer>()).putValue(3, dummy12).removeAll(dummy23).get());
-    assertEquals("retainAll", dummy2, Builder.with(new TreeMap<Dummy,Integer>()).putValue(3, dummy12).retainAll(dummy23).get());
-    //assertEquals("keepNew", dummy3, Builder.with(new TreeMap<Dummy,Integer>()).putValue(3, dummy12).keepNew(dummy23).get());
-    //assertEquals("xor", dummy13, Builder.with(new TreeMap<Dummy,Integer>()).putValue(3, dummy12).xor(dummy23).get());
-    //assertEquals("addAll", dummy123, Builder.with(new TreeMap<Dummy,Integer>()).putValue(3, dummy12).putAll(dummy23).get());
+    assertEquals("none", dummyNone, Builder.with(new TreeMap<Dummy,Integer>()).putAll(dummy12).clear().get());
+    assertEquals("removeAll", dummy1, Builder.with(new TreeMap<Dummy,Integer>()).putAll(dummy12).removeAll(dummy23.keySet()).get());
+    assertEquals("retainAll", dummy2, Builder.with(new TreeMap<Dummy,Integer>()).putAll(dummy12).retainAll(dummy23.keySet()).get());
+    assertEquals("keepNew", dummy3, Builder.with(new TreeMap<Dummy,Integer>()).putAll(dummy12).keepNew(dummy23).get());
+    assertEquals("xor", dummy13, Builder.with(new TreeMap<Dummy,Integer>()).putAll(dummy12).xor(dummy23).get());
+    assertEquals("addAll", dummy123, Builder.with(new TreeMap<Dummy,Integer>()).putAll(dummy12).putAll(dummy23).get());
   } 
 
   public void TestMap() {
     Map<Integer,String> x = Builder.with(new TreeMap<Integer,String>()).put(1, "a").put(2,"b").put(3,"c").freeze();
     assertTrue("1,2,3", x.size()==3);
+    Map<Integer,String> x2 = Builder.with(new TreeMap<Integer,String>()).on(1,2,3).put("a","b","c").freeze();
+    assertEquals("1,2,3 either way", x, x2);
+    Map<Integer,String> x3 = Builder.with(new TreeMap<Integer,String>()).on(1,2,3).put("a,b,c".split(",")).freeze();
+    assertEquals("1,2,3 either way", x, x3);
+
     Map<Integer,String> x12 = Builder.with(new TreeMap<Integer,String>()).put(1, "a").put(2,"b").get();
     Map<Integer,String> y = Builder.with(new TreeMap<Integer,String>()).putAll(x).removeAll(3,4).freeze();
     assertTrue("1,2", y.equals(x12));
     Map<Integer,String> z = Builder.with(new TreeMap<Integer,String>()).putAll(x).retainAll(3,4).freeze();
     assertTrue("3", z.size()==1 && z.keySet().contains(3));
-    Map<Integer,String> z2 = Builder.with(new TreeMap<Integer,String>()).putValue("a", 1, 2, 3).freeze();
+    Map<Integer,String> z2 = Builder.with(new TreeMap<Integer,String>()).on(1,2,3).put("a").freeze();
     assertTrue("3", z2.size()==3 && z2.containsKey(2));
   }
 

@@ -2,7 +2,6 @@ package org.unicode.jsp;
 
 import java.io.IOException;
 
-import org.unicode.jsp.FileUtilities.Handler;
 import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.text.utility.Utility;
 
@@ -19,7 +18,7 @@ public class TestIdna extends TestFmwk {
     new TestIdna().run(args);
   }
 
-  static class MyHandler implements Handler {
+  static class MyHandler extends FileUtilities.SemiFileReader {
     UnicodeSet wideNarrow = new UnicodeSet("[[:dt=wide:][:dt=narrow:]]").freeze();
 
     UnicodeMap<Idna2008Type> types = Idna2008.getTypeMapping();
@@ -29,7 +28,7 @@ public class TestIdna extends TestFmwk {
     UnicodeSet equalsIdnabis = new UnicodeSet();
     UnicodeMap<String> diffIdnaBis = new UnicodeMap<String>();
 
-    public void handle(int start, int end, String[] items) {
+    public void handleLine(int start, int end, String[] items) {
       String type = items[1];
       String value;
       if (type.equals("mapped")) {
@@ -92,7 +91,7 @@ public class TestIdna extends TestFmwk {
   public void TestExtract() throws IOException {
 
     MyHandler handler = new MyHandler();
-    FileUtilities.fillMapFromSemi(this.getClass(), "IdnaMappingTable-5.2.0.txt", handler);
+    handler.process(this.getClass(), "IdnaMappingTable-5.2.0.txt");
 
     System.out.println("sourceNotAllowed: " + handler.sourceNotAllowed.size() + "\t" + handler.sourceNotAllowed);
     System.out.println("targetNotAllowed: " + handler.targetNotAllowed.size() + "\t" + handler.targetNotAllowed);
