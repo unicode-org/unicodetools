@@ -40,6 +40,8 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     add(new IDNA2008());
     add(new Usage());
     add(new HanType());
+    add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getReasons()).setMain("identifier-restriction", "idr", UnicodeProperty.ENUMERATED, "1.1"));
+    add(new UnicodeProperty.UnicodeMapProperty().set(Confusables.getMap()).setMain("confusable", "confusable", UnicodeProperty.ENUMERATED, "1.1"));
   }
 
 //  public UnicodeProperty getInternalProperty(String propertyAlias) {

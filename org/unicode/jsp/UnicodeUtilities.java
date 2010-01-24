@@ -474,7 +474,7 @@ public class UnicodeUtilities {
 
       for (int i = lastLevel; i < length; ++i) {
         out.append("<h2 class='L" + (i + 5 - length) + "'>" + props2[i] + 
-                (i == length - 1 ? " : " + numberFormat.format(items.size()) : "") +
+                (i == length - 1 ? " <div class='ri'>items: " + numberFormat.format(items.size()) : "</div>") +
         "</h2><blockquote>\r\n");
       }
       showSet(items, abbreviate, ucdFormat, out);
@@ -1030,7 +1030,12 @@ public class UnicodeUtilities {
     out.append("<tr><td class='bigName'>" + scriptCat + "</td></tr>\n");
     out.append("</table></div>\n");
 
-    TreeSet<String> sortedProps = Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).remove("Name").get();
+    List<String> availableNames = (List<String>)factory.getAvailableNames();
+    TreeSet<String> sortedProps = Builder
+    .with(new TreeSet<String>(col))
+    .addAll(availableNames)
+    .remove("Name")
+    .get();
 
     out.append("<table class='propTable'><tr><td width='50%'>\n");
     out.append("<table width='100%'>\r\n");

@@ -284,6 +284,7 @@ public class UnicodeJsp {
     try {
       StringBuilder result = new StringBuilder();
 
+      test = test.replaceAll("[\r\n\t]", " ").trim();
       Confusables confusables = new Confusables(test);
       if (nfkcCheck) confusables.setNormalizationCheck(Normalizer.NFKC);
       if (scriptCheck) confusables.setScriptCheck(Confusables.ScriptCheck.same);
