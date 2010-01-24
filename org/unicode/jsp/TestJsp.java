@@ -61,6 +61,13 @@ public class TestJsp  extends TestFmwk {
     return prettySet;
   }
 
+  public void TestConfusables() {
+    String trial = UnicodeJsp.getConfusables("sox", true, true, true, true);
+    logln(trial);
+    showPropValues(XPropertyFactory.make().getProperty("confusable"));
+    showPropValues(XPropertyFactory.make().getProperty("idr"));
+  }
+  
   public void TestPropertyFactory() {
     //showIcuEnums();
     checkProperties("[:ccc=/3/:]", "[\u0308]");
@@ -144,11 +151,11 @@ public class TestJsp  extends TestFmwk {
     }
   }
 
-  private void showPropValues(UnicodeProperty idna2003) {
-    System.out.println(idna2003.getName());
-    for (Object value : idna2003.getAvailableValues()) {
+  private void showPropValues(UnicodeProperty prop) {
+    System.out.println(prop.getName());
+    for (Object value : prop.getAvailableValues()) {
       System.out.println(value);
-      System.out.println("\t" + idna2003.getSet(value.toString()));
+      System.out.println("\t" + prop.getSet(value.toString()).toPattern(false));
     }
   }
 

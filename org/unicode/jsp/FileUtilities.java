@@ -4,15 +4,20 @@ import java.io.BufferedReader;
 import java.util.regex.Pattern;
 
 public final class FileUtilities {
-  public final static Pattern SEMI = Pattern.compile("\\s*;\\s*");
 
   public static abstract class SemiFileReader {
+    public final static Pattern SPLIT = Pattern.compile("\\s*;\\s*");
 
     protected abstract void handleLine(int start, int end, String[] items);
+    
     protected boolean isCodePoint() {
       return true;
     }
 
+    protected String[] splitLine(String line) {
+      return SPLIT.split(line);
+    }
+    
     public SemiFileReader process(Class classLocation, String fileName) {
       BufferedReader in;
       String line = null;
@@ -34,7 +39,7 @@ public final class FileUtilities {
           if (line.length() == 0) {
             continue;
           }
-          String[] parts = SEMI.split(line);
+          String[] parts = splitLine(line);
           int start, end;
           if (isCodePoint()) {
             String source = parts[0];
@@ -56,6 +61,7 @@ public final class FileUtilities {
       }
       return this;
     }
+
   }
   //
   //  public static SemiFileReader fillMapFromSemi(Class classLocation, String fileName, SemiFileReader handler) {

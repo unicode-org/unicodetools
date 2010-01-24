@@ -14,6 +14,7 @@ public class XIDModifications {
       String type = items[1];
       if (type.equals("addition")) {
         allowed.add(start, end);
+        reasons.putAll(start, end, "UAX29 WB addition");
       } else if (type.equals("restricted")) {
         allowed.remove(start, end);
         reasons.putAll(start, end, items[2]);
@@ -23,6 +24,8 @@ public class XIDModifications {
     }
   }
   static {
+    reasons.putAll(0,0x10FFFF,"ok");
+    reasons.putAll(new UnicodeSet("[[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]]"),"not-char");
     new MyReader().process(XIDModifications.class, "xidmodifications.txt");
     allowed.freeze();
     reasons.freeze();

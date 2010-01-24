@@ -27,6 +27,7 @@ import com.ibm.icu.dev.test.util.CollectionUtilities.InverseMatcher;
 import com.ibm.icu.dev.test.util.CollectionUtilities.ObjectMatcher;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.SymbolTable;
+import com.ibm.icu.text.UFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
@@ -1056,7 +1057,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
       matcher = Pattern.compile(pattern).matcher("");
       return this;
     }
-
+    UFormat foo;
     public boolean matches(Object value) {
       matcher.reset(value.toString());
       return matcher.find();
