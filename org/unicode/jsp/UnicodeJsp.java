@@ -9,8 +9,6 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.draft.IdnaLabelTester;
-import org.unicode.cldr.util.Predicate;
 import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
 
 import com.ibm.icu.dev.test.util.BNF;
@@ -134,92 +132,8 @@ public class UnicodeJsp {
   public static String getDefaultIdnaInput() {
     return defaultIdnaInput;
   }
-
-  public static String testIdnaLines(String lines, String filter) {
-    Transliterator hex = Transliterator.getInstance("any-hex");
-    try {
-
-      lines = IdnaLabelTester.UNESCAPER.transform(lines);
-      StringBuilder resultLines = new StringBuilder();
-      UnicodeUtilities.getIdna2008Tester();
-
-      Predicate<String> verifier2008 = new Predicate<String>() {
-        public boolean is(String item) {
-          return Normalizer.isNormalized(item, Normalizer.NFC, 0) && UnicodeUtilities.tester.test(item) == null;
-        }
-      };
-
-      resultLines.append("<table>\n");
-      resultLines.append("<th></th><th class='cn'>Input</th><th class='cn'>IDNA2003</th><th class='cn'>UTS46</th><th class='cn'>IDNA2008</th>\n");
-
-      boolean first = true;
-      for (String line : lines.split("\\s+")) {
-        if (first) {
-          first = false;
-        } else {
-          UnicodeUtilities.addBlank(resultLines);
-        }
-
-        String rawPunycode = UnicodeUtilities.processLabels(line, UnicodeUtilities.DOTS, true, new Predicate() {
-          public boolean is(Object item) {
-            return true;
-          }});
-        R2<String, String> idna2003Pair = Idna2003.getIdna2033(line);
-        String idna2003 = idna2003Pair.get0();
-        String idna2003back = idna2003Pair.get1();
-
-
-        String tr46back = Uts46.toUts46(line);
-        String tr46 = UnicodeUtilities.processLabels(tr46back, UnicodeUtilities.DOTS, true, new Predicate<String>() {
-          public boolean is(String item) {
-            return Uts46.Uts46Chars.containsAll(item);
-          }
-        });
-        String tr46display = Uts46.foldDisplay.transform(line);
-        tr46display = UnicodeUtilities.processLabels(tr46display, UnicodeUtilities.DOTS, false, new Predicate<String>() {
-          public boolean is(String item) {
-            return Uts46.Uts46CharsDisplay.containsAll(item);
-          }
-        });
-
-        String idna2008 = UnicodeUtilities.processLabels(line, UnicodeUtilities.DOT, true, verifier2008);
-        String idna2008back = UnicodeUtilities.processLabels(line, UnicodeUtilities.DOT, false, verifier2008);
-
-        // first lines
-        resultLines.append("<tr>");
-        resultLines.append("<th>Display</th>");
-        UnicodeUtilities.addCell(resultLines, hex, line, "class='cn ltgreen'");
-        UnicodeUtilities.addCell(resultLines, hex, idna2003back, "class='cn i2003'");
-        UnicodeUtilities.addCell(resultLines, hex, tr46display, "class='cn i46'");
-        UnicodeUtilities.addCell(resultLines, hex, idna2008back, "class='cn i2008'");
-        resultLines.append("<tr></tr>");
-
-        resultLines.append("<th class='mono'>Punycode</th>");
-        UnicodeUtilities.addCell(resultLines, hex, rawPunycode, "class='cn ltgreen mono'");
-        UnicodeUtilities.addCell(resultLines, hex, idna2003, "class='cn mono i2003'");
-        UnicodeUtilities.addCell(resultLines, hex, tr46, "class='cn mono i46'");
-        UnicodeUtilities.addCell(resultLines, hex, idna2008, "class='cn mono i2008'");
-
-        //        if (result == null) {
-        //          resultLines.append("<td class='c'>\u00A0</td><td class='c'>\u00A0</td>");
-        //        } else {
-        //          resultLines.append("<td class='c'>")
-        //          .append(toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(0, result.position))) 
-        //                  + "<span class='x'>\u2639</span>" + toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(result.position))) 
-        //                  + "</td><td>" + result.title
-        //                  //+ "</td><td class='c'>" + result.ruleLine
-        //                  + "</td>");
-        //        }
-        resultLines.append("</tr>\n");
-      }
-
-      resultLines.append("</table>\n");
-      return resultLines.toString();
-    } catch (Exception e) {
-      return UnicodeUtilities.toHTML.transform(e.getMessage());
-    }
-  }
-
+  public static final Transliterator UNESCAPER = Transliterator.getInstance("hex-any");
+  
   public static String getLanguageOptions(String locale) {
     return LanguageCode.getLanguageOptions(new ULocale(locale));
   }

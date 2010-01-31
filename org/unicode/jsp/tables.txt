@@ -5,9 +5,9 @@ Appendix B.1.  Codepoints in Unicode Character Database (UCD) format
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 17]
+Faltstrom                 Expires July 13, 2010                [Page 17]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 002E..002F  ; DISALLOWED  # FULL STOP..SOLIDUS
@@ -61,9 +61,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 18]
+Faltstrom                 Expires July 13, 2010                [Page 18]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0126        ; DISALLOWED  # LATIN CAPITAL LETTER H WITH STROKE
@@ -117,9 +117,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 19]
+Faltstrom                 Expires July 13, 2010                [Page 19]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 015C        ; DISALLOWED  # LATIN CAPITAL LETTER S WITH CIRCUMFLEX
@@ -173,9 +173,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 20]
+Faltstrom                 Expires July 13, 2010                [Page 20]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0196..0198  ; DISALLOWED  # LATIN CAPITAL LETTER IOTA..LATIN CAPITAL LET
@@ -229,9 +229,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 21]
+Faltstrom                 Expires July 13, 2010                [Page 21]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 01E4        ; DISALLOWED  # LATIN CAPITAL LETTER G WITH STROKE
@@ -285,9 +285,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 22]
+Faltstrom                 Expires July 13, 2010                [Page 22]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 021A        ; DISALLOWED  # LATIN CAPITAL LETTER T WITH COMMA BELOW
@@ -341,9 +341,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 23]
+Faltstrom                 Expires July 13, 2010                [Page 23]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 02ED        ; DISALLOWED  # MODIFIER LETTER UNASPIRATED
@@ -397,9 +397,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 24]
+Faltstrom                 Expires July 13, 2010                [Page 24]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 03E5        ; PVALID      # COPTIC SMALL LETTER FEI
@@ -453,9 +453,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 25]
+Faltstrom                 Expires July 13, 2010                [Page 25]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 047D        ; PVALID      # CYRILLIC SMALL LETTER OMEGA WITH TITLO
@@ -509,9 +509,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 26]
+Faltstrom                 Expires July 13, 2010                [Page 26]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 04B3        ; PVALID      # CYRILLIC SMALL LETTER HA WITH DESCENDER
@@ -565,9 +565,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 27]
+Faltstrom                 Expires July 13, 2010                [Page 27]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 04E5        ; PVALID      # CYRILLIC SMALL LETTER I WITH DIAERESIS
@@ -621,9 +621,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 28]
+Faltstrom                 Expires July 13, 2010                [Page 28]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0515        ; PVALID      # CYRILLIC SMALL LETTER LHA
@@ -677,9 +677,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 29]
+Faltstrom                 Expires July 13, 2010                [Page 29]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 061C..061D  ; UNASSIGNED  # <reserved>..<reserved>
@@ -733,9 +733,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 30]
+Faltstrom                 Expires July 13, 2010                [Page 30]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0980        ; UNASSIGNED  # <reserved>
@@ -789,9 +789,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 31]
+Faltstrom                 Expires July 13, 2010                [Page 31]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0A3A..0A3B  ; UNASSIGNED  # <reserved>..<reserved>
@@ -845,9 +845,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 32]
+Faltstrom                 Expires July 13, 2010                [Page 32]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0B05..0B0C  ; PVALID      # ORIYA LETTER A..ORIYA LETTER VOCALIC L
@@ -901,9 +901,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 33]
+Faltstrom                 Expires July 13, 2010                [Page 33]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0BBE..0BC2  ; PVALID      # TAMIL VOWEL SIGN AA..TAMIL VOWEL SIGN UU
@@ -957,9 +957,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 34]
+Faltstrom                 Expires July 13, 2010                [Page 34]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0CA9        ; UNASSIGNED  # <reserved>
@@ -1013,9 +1013,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 35]
+Faltstrom                 Expires July 13, 2010                [Page 35]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0D84        ; UNASSIGNED  # <reserved>
@@ -1069,9 +1069,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 36]
+Faltstrom                 Expires July 13, 2010                [Page 36]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0EA5        ; PVALID      # LAO LETTER LO LOOT
@@ -1125,9 +1125,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 37]
+Faltstrom                 Expires July 13, 2010                [Page 37]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 0F5D..0F68  ; PVALID      # TIBETAN LETTER WA..TIBETAN LETTER A
@@ -1181,9 +1181,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 38]
+Faltstrom                 Expires July 13, 2010                [Page 38]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 124E..124F  ; UNASSIGNED  # <reserved>..<reserved>
@@ -1237,9 +1237,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 39]
+Faltstrom                 Expires July 13, 2010                [Page 39]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1700..170C  ; PVALID      # TAGALOG LETTER A..TAGALOG LETTER YA
@@ -1293,9 +1293,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 40]
+Faltstrom                 Expires July 13, 2010                [Page 40]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1970..1974  ; PVALID      # TAI LE LETTER TONE-2..TAI LE LETTER TONE-6
@@ -1349,9 +1349,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 41]
+Faltstrom                 Expires July 13, 2010                [Page 41]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1D2C..1D2E  ; DISALLOWED  # MODIFIER LETTER CAPITAL A..MODIFIER LETTER C
@@ -1405,9 +1405,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 42]
+Faltstrom                 Expires July 13, 2010                [Page 42]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1E22        ; DISALLOWED  # LATIN CAPITAL LETTER H WITH DOT ABOVE
@@ -1461,9 +1461,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 43]
+Faltstrom                 Expires July 13, 2010                [Page 43]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1E52        ; DISALLOWED  # LATIN CAPITAL LETTER O WITH MACRON AND ACUTE
@@ -1517,9 +1517,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 44]
+Faltstrom                 Expires July 13, 2010                [Page 44]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1E82        ; DISALLOWED  # LATIN CAPITAL LETTER W WITH ACUTE
@@ -1573,9 +1573,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 45]
+Faltstrom                 Expires July 13, 2010                [Page 45]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1EB8        ; DISALLOWED  # LATIN CAPITAL LETTER E WITH DOT BELOW
@@ -1629,9 +1629,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 46]
+Faltstrom                 Expires July 13, 2010                [Page 46]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1EE8        ; DISALLOWED  # LATIN CAPITAL LETTER U WITH HORN AND ACUTE
@@ -1685,9 +1685,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 47]
+Faltstrom                 Expires July 13, 2010                [Page 47]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1F70        ; PVALID      # GREEK SMALL LETTER ALPHA WITH VARIA
@@ -1741,9 +1741,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 48]
+Faltstrom                 Expires July 13, 2010                [Page 48]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 208F        ; UNASSIGNED  # <reserved>
@@ -1797,9 +1797,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 49]
+Faltstrom                 Expires July 13, 2010                [Page 49]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 27CB        ; UNASSIGNED  # <reserved>
@@ -1853,9 +1853,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 50]
+Faltstrom                 Expires July 13, 2010                [Page 50]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 2C95        ; PVALID      # COPTIC SMALL LETTER KAPA
@@ -1909,9 +1909,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 51]
+Faltstrom                 Expires July 13, 2010                [Page 51]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 2CC5        ; PVALID      # COPTIC SMALL LETTER OLD COPTIC SHEI
@@ -1965,9 +1965,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 52]
+Faltstrom                 Expires July 13, 2010                [Page 52]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 2DAF        ; UNASSIGNED  # <reserved>
@@ -2021,9 +2021,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 53]
+Faltstrom                 Expires July 13, 2010                [Page 53]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 318F        ; UNASSIGNED  # <reserved>
@@ -2077,9 +2077,9 @@ A654        ; DISALLOWED  # CYRILLIC CAPITAL LETTER REVERSED YU
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 54]
+Faltstrom                 Expires July 13, 2010                [Page 54]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 A655        ; PVALID      # CYRILLIC SMALL LETTER REVERSED YU
@@ -2133,9 +2133,9 @@ A692        ; DISALLOWED  # CYRILLIC CAPITAL LETTER TCHE
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 55]
+Faltstrom                 Expires July 13, 2010                [Page 55]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 A693        ; PVALID      # CYRILLIC SMALL LETTER TCHE
@@ -2189,9 +2189,9 @@ A746        ; DISALLOWED  # LATIN CAPITAL LETTER BROKEN L
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 56]
+Faltstrom                 Expires July 13, 2010                [Page 56]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 A747        ; PVALID      # LATIN SMALL LETTER BROKEN L
@@ -2245,9 +2245,9 @@ A77D..A77E  ; DISALLOWED  # LATIN CAPITAL LETTER INSULAR G..LATIN CAPITA
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 57]
+Faltstrom                 Expires July 13, 2010                [Page 57]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 A77F        ; PVALID      # LATIN SMALL LETTER TURNED INSULAR G
@@ -2301,9 +2301,9 @@ AA5A..AA5B  ; UNASSIGNED  # <reserved>..<reserved>
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 58]
+Faltstrom                 Expires July 13, 2010                [Page 58]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 AA5C..AA5F  ; DISALLOWED  # CHAM PUNCTUATION SPIRAL..CHAM PUNCTUATION TR
@@ -2357,9 +2357,9 @@ FB1E        ; PVALID      # HEBREW POINT JUDEO-SPANISH VARIKA
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 59]
+Faltstrom                 Expires July 13, 2010                [Page 59]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 FB1F..FB36  ; DISALLOWED  # HEBREW LIGATURE YIDDISH YOD YOD PATAH..HEBRE
@@ -2413,9 +2413,9 @@ FFDD..FFDF  ; UNASSIGNED  # <reserved>..<reserved>
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 60]
+Faltstrom                 Expires July 13, 2010                [Page 60]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 FFE0..FFE6  ; DISALLOWED  # FULLWIDTH CENT SIGN..FULLWIDTH WON SIGN
@@ -2469,9 +2469,9 @@ FFF9..FFFF  ; DISALLOWED  # INTERLINEAR ANNOTATION ANCHOR..<noncharacter
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 61]
+Faltstrom                 Expires July 13, 2010                [Page 61]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 103C8..103CF; PVALID      # OLD PERSIAN SIGN AURAMAZDAA..OLD PERSIAN SIG
@@ -2525,9 +2525,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 62]
+Faltstrom                 Expires July 13, 2010                [Page 62]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 10A7D..10A7F; DISALLOWED  # OLD SOUTH ARABIAN NUMBER ONE..OLD SOUTH ARAB
@@ -2581,9 +2581,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 63]
+Faltstrom                 Expires July 13, 2010                [Page 63]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1D4A7..1D4A8; UNASSIGNED  # <reserved>..<reserved>
@@ -2637,9 +2637,9 @@ Internet-Draft               IDNA Codepoints               November 2009
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 64]
+Faltstrom                 Expires July 13, 2010                [Page 64]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 1F143..1F145; UNASSIGNED  # <reserved>..<reserved>
@@ -2693,9 +2693,9 @@ A0000..AFFFD; UNASSIGNED  # <reserved>..<reserved>
 
 
 
-Faltstrom                 Expires May 28, 2010                 [Page 65]
+Faltstrom                 Expires July 13, 2010                [Page 65]
 
-Internet-Draft               IDNA Codepoints               November 2009
+Internet-Draft               IDNA Codepoints                January 2010
 
 
 AFFFE..AFFFF; DISALLOWED  # <noncharacter>..<noncharacter>
@@ -2713,3 +2713,98 @@ E0080..E00FF; UNASSIGNED  # <reserved>..<reserved>
 E0100..E01EF; DISALLOWED  # VARIATION SELECTOR-17..VARIATION SELECTOR-25
 E01F0..EFFFD; UNASSIGNED  # <reserved>..<reserved>
 EFFFE..10FFFF; DISALLOWED  # <noncharacter>..<noncharacter>
+
+
+8.  References
+
+8.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119, March 1997.
+
+   [TR15]     Davis, M. and M. Duerst, "Unicode Standard Annex #15,
+              Unicode Normalization Forms, an integral part of the
+              Unicode Standard",
+              <http://unicode.org/unicode/reports/tr15/>.
+
+   [Unicode5]
+              The Unicode Consortium, "The Unicode Standard, Version
+              5.0.0", Boston, MA, Addison-Wesley ISBN 0-321-48091-0,
+              2007.
+
+   [Unicode52]
+              The Unicode Consortium, "The Unicode Standard, Version
+              5.1.0", Unicode 5.0.0, Boston, MA, Addison-Wesley ISBN
+              0-321-48091-0, as amended by Unicode 5.1.0
+              http://www.unicode.org/versions/Unicode5.1.0/, 2008,
+              <http://www.unicode.org/versions/Unicode5.2.0/>.
+
+8.2.  Informative References
+
+   [IDNA2008-bidi]
+              Alvestrand, H. and C. Karp, "Right-to-left scripts for
+              IDNA", draft-ietf-idnabis-bidi-06 (work in progress),
+              September 2009.
+
+
+
+
+Faltstrom                 Expires July 13, 2010                [Page 66]
+
+Internet-Draft               IDNA Codepoints                January 2010
+
+
+   [IDNA2008-defs]
+              Klensin, J., "Internationalized Domain Names for
+              Applications (IDNA): Definitions and Document Framework",
+              draft-ietf-idnabis-defs-12 (work in progress),
+              October 2009.
+
+   [IDNA2008-protocol]
+              Klensin, J., "Internationalizing Domain Names in
+              Applications (IDNA): Protocol", October 2009, <http://
+              www.ietf.org/internet-drafts/
+              draft-ietf-idnabis-protocol-17.txt>.
+
+   [IDNA2008-rationale]
+              Klensin, J., Ed., "Internationalized Domain Names for
+              Applications (IDNA): Background, Explanation, and
+              Rationale", June 2009, <http://www.ietf.org/
+              internet-drafts/draft-ietf-idnabis-rationale-10.txt>.
+
+   [RFC3454]  Hoffman, P. and M. Blanchet, "Preparation of
+              Internationalized Strings ("stringprep")", RFC 3454,
+              December 2002.
+
+   [RFC3491]  Hoffman, P. and M. Blanchet, "Nameprep: A Stringprep
+              Profile for Internationalized Domain Names (IDN)",
+              RFC 3491, March 2003.
+
+   [RFC4690]  Klensin, J., Faltstrom, P., Karp, C., and IAB, "Review and
+              Recommendations for Internationalized Domain Names
+              (IDNs)", RFC 4690, September 2006.
+
+   [RFC5226]  Narten, T. and H. Alvestrand, "Guidelines for Writing an
+              IANA Considerations Section in RFCs", BCP 26, RFC 5226,
+              May 2008.
+
+URIs
+
+   [1]  <http://unicode.org/Public/UNIDATA/DerivedCoreProperties.txt>
+
+   [2]  <http://unicode.org/Public/UNIDATA/Blocks.txt>
+
+
+Author's Address
+
+   Patrik Faltstrom (editor)
+   Cisco
+
+   Email: paf@cisco.com
+
+
+
+
+Faltstrom                 Expires July 13, 2010                [Page 67]
+
+
