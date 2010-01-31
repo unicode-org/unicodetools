@@ -1,50 +1,77 @@
 package org.unicode.jsp;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 
-public class Idna2008 {
-  
-  static final Matcher DATALINE = Pattern.compile(
-          "([0-9a-fA-F]{4,6})" +
-          "(?:\\.\\.([0-9a-fA-F]{4,6}))?" +
-          "\\s*;\\s*" +
-          "(PVALID|DISALLOWED|UNASSIGNED|CONTEXTJ|CONTEXTO)" +
-          "\\s*#\\s*" +
-          "(.*)").matcher("");
+public class Idna2008 extends Idna {
+
+  public static Idna2008 SINGLETON = new Idna2008();
 
   public enum Idna2008Type {
-    PVALID, DISALLOWED, UNASSIGNED, CONTEXTJ, CONTEXTO
+    UNASSIGNED, DISALLOWED, PVALID, CONTEXTJ, CONTEXTO
   }
 
-  static UnicodeMap<Idna2008Type> mapping = null;
-  public static UnicodeMap<Idna2008Type>  getTypeMapping() {
+  private static UnicodeMap<Idna2008Type> oldTypes;
 
-    if (mapping != null) {
-      return mapping;
+  private Idna2008() {
+    oldTypes = new UnicodeMap<Idna2008Type>();
+    
+    initData();
+
+    for (Idna2008Type oldType : oldTypes.values()) {
+      UnicodeSet uset = oldTypes.getSet(oldType);
+      switch (oldType) {
+      case UNASSIGNED: case DISALLOWED:
+        types.putAll(uset, Idna.IdnaType.disallowed);
+        break;
+      case PVALID: case CONTEXTJ: case CONTEXTO:
+        types.putAll(uset, Idna.IdnaType.valid);
+        break;
+      }
     }
+    types.freeze();
+    mappings.freeze();
+    mappings_display.freeze();
+    validSet = types.getSet(IdnaType.valid).freeze();
+  }
+
+  public static UnicodeMap<Idna2008Type>  getTypeMapping() {
+    return oldTypes;
+  }
+
+  // **** privates ****
+
+  private static void initData() {
+    
+    final Matcher DATALINE = Pattern.compile(
+            "([0-9a-fA-F]{4,6})" +
+            "(?:\\.\\.([0-9a-fA-F]{4,6}))?" +
+            "\\s*;\\s*" +
+            "(PVALID|DISALLOWED|UNASSIGNED|CONTEXTJ|CONTEXTO)" +
+            "\\s*#\\s*" +
+    "(.*)").matcher("");
+
     try {
       BufferedReader in = new BufferedReader(
               new InputStreamReader(
-              Idna2008.class.getResourceAsStream("tables.txt")));
-//    BagFormatter.openReader("/Users/markdavis/Documents/workspace/DATA/IDN/",
-//            "draft-faltstrom-idnabis-tables-05.txt", "ascii");
+                      Idna2008.class.getResourceAsStream("tables.txt")));
+      //    BagFormatter.openReader("/Users/markdavis/Documents/workspace/DATA/IDN/",
+      //            "draft-faltstrom-idnabis-tables-05.txt", "ascii");
       boolean inTable = false;
-      mapping = new UnicodeMap();
+
       int count = 0;
       while (true) {
         String line = in.readLine();
         if (line == null)
           break;
-//        if ((count++ % 100) == 0) {
-//          System.out.println(count + " " + line);
-//        }
+        //        if ((count++ % 100) == 0) {
+        //          System.out.println(count + " " + line);
+        //        }
         line = line.trim();
 
         if (line.startsWith("Appendix B.1.")) {
@@ -67,11 +94,10 @@ public class Idna2008 {
         final int endChar = DATALINE.group(2) == null ? startChar : Integer.parseInt(DATALINE
                 .group(2), 16);
         final Idna2008Type idnaType = Idna2008Type.valueOf(DATALINE.group(3));
-        mapping.putAll(startChar, endChar, idnaType);
+        oldTypes.putAll(startChar, endChar, idnaType);
       }
       in.close();
-      mapping.freeze();
-      return mapping;
+      oldTypes.freeze();
     } catch (Exception e) {
       throw new IllegalArgumentException(e);
     }

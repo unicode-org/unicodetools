@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.TreeSet;
 
 import org.unicode.jsp.Idna2008.Idna2008Type;
-import org.unicode.jsp.UnicodeUtilities.IdnaType;
+import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
@@ -47,13 +47,13 @@ public class TestGenerate   extends TestFmwk{
     for (String value : ordered) {
       UnicodeSet set = map.getSet(value);
       String prettySet = TestJsp.prettyTruncate(max, set);
-      System.out.println(set.size() + "\t" + value + "\t" + set); // prettySet
+      System.out.println(value + "\t" + set.size() + "\t" + set); // prettySet
     }
     Transliterator name = Transliterator.getInstance("name");
     System.out.println("Code\tUts46\tidna2003\tCode\tUts46\tidna2003");
 
     for (String s : remapped) {
-      String uts46 = Uts46.toUts46(s);
+      String uts46 = Uts46.SINGLETON.transform(s);
       String idna2003 = Idna2003.toIdna2003(s);
       if (!uts46.equals(idna2003)) {
         System.out.println(Utility.hex(s) + "\t" + Utility.hex(uts46) + "\t" + Utility.hex(idna2003)
@@ -77,10 +77,10 @@ public class TestGenerate   extends TestFmwk{
 
     UnicodeMap<String> diff = new UnicodeMap();
     for (int i = 0; i <= 0x10FFFF; ++i) {
-      if (UnicodeUtilities.ignoreInDiff.contains(i) || i < 0x80) {
+      if (UnicodeUtilities.IGNORE_IN_IDNA_DIFF.contains(i)) {
         continue;
       }
-      IdnaType type = Uts46.getUts46Type(i, TestJsp.U5_2);
+      IdnaType type = Uts46.SINGLETON.getType(i);
       Idna2008Type idna2008 = idna2008Map.get(i);
       if (type == IdnaType.ignored) {
         type = IdnaType.mapped;
@@ -116,13 +116,13 @@ public class TestGenerate   extends TestFmwk{
       String s = UTF16.valueOf(cp);
       String nfc = toNfc(s);
       String nfkc = Normalizer.normalize(s, Normalizer.NFKC);
-      String uts46 = Uts46.toUts46(s);
-      org.unicode.jsp.UnicodeUtilities.IdnaType statusInt = Uts46.getUts46Type(cp, OVERALL_ALLOWED);
+      String uts46 = Uts46.SINGLETON.transform(s);
+      IdnaType statusInt = Uts46.SINGLETON.getType(cp);
       String status = statusInt.toString();
-      if (Uts46.DEVIATIONS.contains(cp)) {
+      if (Uts46.SINGLETON.getType(cp) == IdnaType.deviation) { //  Uts46.SINGLETON.DEVIATIONS.contains(cp)
         status = "deviation";
       }
-      if (statusInt == UnicodeUtilities.REMAPPED) {
+      if (statusInt == Idna.IdnaType.mapped) {
         status += Utility.repeat(" ", 10-status.length()) + " ; " + Utility.hex(uts46);
       }
       hex_results.put(cp, status);
@@ -132,8 +132,8 @@ public class TestGenerate   extends TestFmwk{
       //                              //: nfc.equals(uts46) ? "needs_nfc"
       //                                      : Utility.hex(uts46, " "));
       //
-      //      hex_results_requiring_nfkc.put(cp, uts46.length() == 0 ? "ignored"
-      //              : !Uts46.Uts46Chars.containsAll(uts46) ? "disallowed"
+      //      hex_results_requiring_nfkc.put(cp, Uts46.SINGLETON.length() == 0 ? "ignored"
+      //              : !Uts46.SINGLETON.Uts46Chars.containsAll(uts46) ? "disallowed"
       //                      : s.equals(uts46) ? "valid"
       //                              : nfkc.equals(uts46) ? "needs_nfkc"
       //                                      : Utility.hex(uts46, " "));

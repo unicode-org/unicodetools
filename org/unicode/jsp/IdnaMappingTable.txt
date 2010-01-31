@@ -1,12 +1,12 @@
 # IdnaMappingTable-5.2.0.txt- DRAFT
-# Date: 2009-11-23 20:01:05 GMT [MD]
+# Date: 2010-01-29 17:45:50 GMT [MD]
 #
 # Unicode IDNA Compatible Preprocessing (UTS #46)
 # Copyright (c) 1991-2009 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr46/
 
-0000..002C    ; disallowed                                 #  NULL..COMMA
+0000..002C    ; disallowed                                 #  <control-0000>..COMMA
 002D..002E    ; valid                                      #  HYPHEN-MINUS..FULL STOP
 002F          ; disallowed                                 #  SOLIDUS
 0030..0039    ; valid                                      #  DIGIT ZERO..DIGIT NINE
@@ -1287,7 +1287,7 @@
 17F0..17F9    ; valid                                      #  KHMER SYMBOL LEK ATTAK SON..KHMER SYMBOL LEK ATTAK PRAM-BUON
 17FA..17FF    ; disallowed                                 #  <reserved-17FA>..<reserved-17FF>
 1800..1805    ; valid                                      #  MONGOLIAN BIRGA..MONGOLIAN FOUR DOTS
-1806          ; ignored                                    #  MONGOLIAN TODO SOFT HYPHEN
+1806          ; disallowed                                 #  MONGOLIAN TODO SOFT HYPHEN
 1807..180A    ; valid                                      #  MONGOLIAN SIBE SYLLABLE BOUNDARY MARKER..MONGOLIAN NIRUGU
 180B..180D    ; ignored                                    #  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
 180E..180F    ; disallowed                                 #  MONGOLIAN VOWEL SEPARATOR..<reserved-180F>
@@ -1886,8 +1886,8 @@
 1FFC          ; mapped     ; 03C9 03B9                     #  GREEK CAPITAL LETTER OMEGA WITH PROSGEGRAMMENI
 1FFD..200A    ; disallowed                                 #  GREEK OXIA..HAIR SPACE
 200B          ; ignored                                    #  ZERO WIDTH SPACE
-200C..200D    ; deviation                                  #  ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
-200E..200F    ; disallowed                                 #  LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
+200C..200D    ; deviation  ;                               #  ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
+200E..200F    ; ignored                                    #  LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
 2010          ; valid                                      #  HYPHEN
 2011          ; mapped     ; 2010                          #  NON-BREAKING HYPHEN
 2012..2016    ; valid                                      #  FIGURE DASH..DOUBLE VERTICAL LINE
@@ -1895,7 +1895,9 @@
 2018..2023    ; valid                                      #  LEFT SINGLE QUOTATION MARK..TRIANGULAR BULLET
 2024..2026    ; disallowed                                 #  ONE DOT LEADER..HORIZONTAL ELLIPSIS
 2027          ; valid                                      #  HYPHENATION POINT
-2028..202F    ; disallowed                                 #  LINE SEPARATOR..NARROW NO-BREAK SPACE
+2028..2029    ; disallowed                                 #  LINE SEPARATOR..PARAGRAPH SEPARATOR
+202A..202E    ; ignored                                    #  LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
+202F          ; disallowed                                 #  NARROW NO-BREAK SPACE
 2030..2032    ; valid                                      #  PER MILLE SIGN..PRIME
 2033          ; mapped     ; 2032 2032                     #  DOUBLE PRIME
 2034          ; mapped     ; 2032 2032 2032                #  TRIPLE PRIME
@@ -1912,10 +1914,7 @@
 2057          ; mapped     ; 2032 2032 2032 2032           #  QUADRUPLE PRIME
 2058..205E    ; valid                                      #  FOUR DOT PUNCTUATION..VERTICAL FOUR DOTS
 205F          ; disallowed                                 #  MEDIUM MATHEMATICAL SPACE
-2060          ; ignored                                    #  WORD JOINER
-2061..2063    ; disallowed                                 #  FUNCTION APPLICATION..INVISIBLE SEPARATOR
-2064..2069    ; ignored                                    #  INVISIBLE PLUS..<reserved-2069>
-206A..206F    ; disallowed                                 #  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
+2060..206F    ; ignored                                    #  WORD JOINER..NOMINAL DIGIT SHAPES
 2070          ; mapped     ; 0030                          #  SUPERSCRIPT ZERO
 2071          ; mapped     ; 0069                          #  SUPERSCRIPT LATIN SMALL LETTER I
 2072..2073    ; disallowed                                 #  <reserved-2072>..<reserved-2073>
@@ -2070,7 +2069,11 @@
 222E          ; valid                                      #  CONTOUR INTEGRAL
 222F          ; mapped     ; 222E 222E                     #  SURFACE INTEGRAL
 2230          ; mapped     ; 222E 222E 222E                #  VOLUME INTEGRAL
-2231..2328    ; valid                                      #  CLOCKWISE INTEGRAL..KEYBOARD
+2231..225F    ; valid                                      #  CLOCKWISE INTEGRAL..QUESTIONED EQUAL TO
+2260          ; disallowed                                 #  NOT EQUAL TO
+2261..226D    ; valid                                      #  IDENTICAL TO..NOT EQUIVALENT TO
+226E..226F    ; disallowed                                 #  NOT LESS-THAN..NOT GREATER-THAN
+2270..2328    ; valid                                      #  NEITHER LESS-THAN NOR EQUAL TO..KEYBOARD
 2329          ; mapped     ; 3008                          #  LEFT-POINTING ANGLE BRACKET
 232A          ; mapped     ; 3009                          #  RIGHT-POINTING ANGLE BRACKET
 232B..23E8    ; valid                                      #  ERASE TO THE LEFT..DECIMAL EXPONENT SYMBOL
@@ -3421,7 +3424,7 @@ D7A4..D7AF    ; disallowed                                 #  <reserved-D7A4>..<
 D7B0..D7C6    ; valid                                      #  HANGUL JUNGSEONG O-YEO..HANGUL JUNGSEONG ARAEA-E
 D7C7..D7CA    ; disallowed                                 #  <reserved-D7C7>..<reserved-D7CA>
 D7CB..D7FB    ; valid                                      #  HANGUL JONGSEONG NIEUN-RIEUL..HANGUL JONGSEONG PHIEUPH-THIEUTH
-D7FC..F8FF    ; disallowed                                 #  <reserved-D7FC>..<private use area-F8FF>
+D7FC..F8FF    ; disallowed                                 #  <reserved-D7FC>..<private-use-F8FF>
 F900          ; mapped     ; 8C48                          #  CJK COMPATIBILITY IDEOGRAPH-F900
 F901          ; mapped     ; 66F4                          #  CJK COMPATIBILITY IDEOGRAPH-F901
 F902          ; mapped     ; 8ECA                          #  CJK COMPATIBILITY IDEOGRAPH-F902
@@ -4436,7 +4439,8 @@ FDFE..FDFF    ; disallowed                                 #  <reserved-FDFE>..<
 FE00..FE0F    ; ignored                                    #  VARIATION SELECTOR-1..VARIATION SELECTOR-16
 FE10          ; disallowed                                 #  PRESENTATION FORM FOR VERTICAL COMMA
 FE11          ; mapped     ; 3001                          #  PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA
-FE12..FE16    ; disallowed                                 #  PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP..PRESENTATION FORM FOR VERTICAL QUESTION MARK
+FE12          ; mapped     ; 3002                          #  PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP
+FE13..FE16    ; disallowed                                 #  PRESENTATION FORM FOR VERTICAL COLON..PRESENTATION FORM FOR VERTICAL QUESTION MARK
 FE17          ; mapped     ; 3016                          #  PRESENTATION FORM FOR VERTICAL LEFT WHITE LENTICULAR BRACKET
 FE18          ; mapped     ; 3017                          #  PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET
 FE19..FE1F    ; disallowed                                 #  PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS..<reserved-FE1F>
@@ -4891,7 +4895,7 @@ FFF9..FFFF    ; disallowed                                 #  INTERLINEAR ANNOTA
 1D163         ; mapped     ; 1D158 1D165 1D171             #  MUSICAL SYMBOL SIXTY-FOURTH NOTE
 1D164         ; mapped     ; 1D158 1D165 1D172             #  MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
 1D165..1D172  ; valid                                      #  MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING FLAG-5
-1D173..1D17A  ; disallowed                                 #  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
+1D173..1D17A  ; ignored                                    #  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 1D17B..1D1BA  ; valid                                      #  MUSICAL SYMBOL COMBINING ACCENT..MUSICAL SYMBOL SEMIBREVIS BLACK
 1D1BB         ; mapped     ; 1D1B9 1D165                   #  MUSICAL SYMBOL MINIMA
 1D1BC         ; mapped     ; 1D1BA 1D165                   #  MUSICAL SYMBOL MINIMA BLACK
@@ -6542,11 +6546,7 @@ FFF9..FFFF    ; disallowed                                 #  INTERLINEAR ANNOTA
 2FA1C         ; mapped     ; 9F3B                          #  CJK COMPATIBILITY IDEOGRAPH-2FA1C
 2FA1D         ; mapped     ; 2A600                         #  CJK COMPATIBILITY IDEOGRAPH-2FA1D
 2FA1E..DFFFF  ; disallowed                                 #  <reserved-2FA1E>..<noncharacter-DFFFF>
-E0000         ; ignored                                    #  <reserved-E0000>
-E0001         ; disallowed                                 #  LANGUAGE TAG
-E0002..E001F  ; ignored                                    #  <reserved-E0002>..<reserved-E001F>
-E0020..E007F  ; disallowed                                 #  TAG SPACE..CANCEL TAG
-E0080..E0FFF  ; ignored                                    #  <reserved-E0080>..<reserved-E0FFF>
+E0000..E0FFF  ; ignored                                    #  <reserved-E0000>..<reserved-E0FFF>
 E1000..10FFFF ; disallowed                                 #  <reserved-E1000>..<noncharacter-10FFFF>
 
 # Total code points: 1114112

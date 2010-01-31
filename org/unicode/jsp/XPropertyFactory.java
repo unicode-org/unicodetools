@@ -1,19 +1,10 @@
 package org.unicode.jsp;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import org.unicode.jsp.Idna.IdnaType;
 
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.util.VersionInfo;
 
@@ -137,7 +128,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
   
   private static class IDNA2003 extends XEnumUnicodeProperty {
     public IDNA2003() {
-      super("idna", UnicodeUtilities.IdnaType.values());
+      super("idna", IdnaType.values());
     }
 
     @Override
@@ -153,14 +144,15 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
   }
   private static class UTS46 extends XEnumUnicodeProperty {
     public UTS46() {
-      super("uts46", UnicodeUtilities.IdnaType.values());
+      super("uts46", IdnaType.values());
     }
 
     @Override
     protected String _getValue(int codepoint) {
-      return Uts46.getUts46Type(codepoint,null).toString();
+      return Uts46.SINGLETON.getType(codepoint).toString();
     }
   }
+  
   private static class IDNA2008 extends XEnumUnicodeProperty {
     public IDNA2008() {
       super("idna2008", Idna2008.Idna2008Type.values());

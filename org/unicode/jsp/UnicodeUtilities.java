@@ -1,15 +1,9 @@
 package org.unicode.jsp;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -26,17 +20,15 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.draft.IdnaLabelTester;
-import org.unicode.cldr.util.Predicate;
+import org.unicode.jsp.Idna.IdnaType;
+import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
-
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.NumberFormat;
@@ -53,8 +45,6 @@ public class UnicodeUtilities {
 
 
   static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
-
-  public static final Charset UTF8 = Charset.forName("utf-8");
 
   private static final List<String> REGEX_PROPS = Arrays.asList(new String[] {"xdigit", "alnum", "blank", "graph", "print", "word"});
 
@@ -165,44 +155,37 @@ public class UnicodeUtilities {
 
   static UnicodeSet isCased = new UnicodeSet();
 
-  public enum IdnaType {
-    valid, ignored, mapped, disallowed;
-  };
-
-  static final IdnaType OUTPUT = IdnaType.valid, IGNORED = IdnaType.ignored, 
-  REMAPPED = IdnaType.mapped, DISALLOWED = IdnaType.disallowed;
-
   static final int IDNA_TYPE_LIMIT = 4;
 
-  static final Map<IdnaType,UnicodeSet> idnaTypeSet = new TreeMap<IdnaType,UnicodeSet>();
-  static {
-    for (IdnaType i : IdnaType.values()) {
-      idnaTypeSet.put(i, new UnicodeSet());
-    }
-  }
+//  static final Map<IdnaType,UnicodeSet> idnaTypeSet = new TreeMap<IdnaType,UnicodeSet>();
+//  static {
+//    for (IdnaType i : IdnaType.values()) {
+//      idnaTypeSet.put(i, new UnicodeSet());
+//    }
+//  }
 
-  static UnicodeSet ignoreInDiff = UnicodeSetUtilities.parseUnicodeSet("[[:Cc:][:Cn:][:Co:][:Cs:]]", TableStyle.simple).freeze();
+  static UnicodeSet IGNORE_IN_IDNA_DIFF = UnicodeSetUtilities.parseUnicodeSet("[[\\u0000-\\u007F][:Cc:][:Cn:][:Co:][:Cs:]]", TableStyle.simple).freeze();
 
   static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped, UnicodeSet overallAllowed) {
     UnicodeMap<String> result = new UnicodeMap<String>();
     UnicodeSet valid2008 = getIdna2008Valid();
 
-    for (int i = 0x80; i <= 0x10FFFF; ++i) {
+    for (int i = 0; i <= 0x10FFFF; ++i) {
       if ((i & 0xFFF) == 0) System.out.println(Utility.hex(i));
       if (i == 0x20000) {
         System.out.println("debug");
       }
-      if (ignoreInDiff.contains(i)) continue;
+      if (IGNORE_IN_IDNA_DIFF.contains(i)) continue;
       boolean isNew = UCharacter.getAge(i).compareTo(VersionInfo.UNICODE_3_2) > 0;
       String age = isNew ? "v4.0-5.2" : "v3.2";
-      IdnaType idna2003 = Idna2003.getIDNA2003Type2(UTF16.valueOf(i));
-      IdnaType tr46 = Uts46.getUts46Type(i, overallAllowed);
+      IdnaType idna2003 = Idna2003.getIDNA2003Type(i);
+      IdnaType tr46 = Uts46.SINGLETON.getType(i);
       if (isNew) {// skip
-      } else if (tr46 == REMAPPED || idna2003 == REMAPPED) {
+      } else if ((tr46 == IdnaType.mapped || idna2003 == IdnaType.mapped) && tr46 != IdnaType.disallowed && idna2003 != IdnaType.disallowed) {
         remapped.add(i);
       }
       //TestStatus testResult = valid2008.contains(i);
-      IdnaType idna2008 = valid2008.contains(i) ? OUTPUT : DISALLOWED;
+      IdnaType idna2008 = valid2008.contains(i) ? IdnaType.valid : IdnaType.disallowed;
       String iClass = age
       + "\t" + getShortName(idna2003) 
       + "\t" + getShortName(tr46)
@@ -214,16 +197,21 @@ public class UnicodeUtilities {
   }
 
   public static UnicodeSet getIdna2008Valid() {
-    IdnaLabelTester tester = getIdna2008Tester();
-    UnicodeSet valid2008 = UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"), TableStyle.simple);
-    return valid2008;
+    //    IdnaLabelTester tester = getIdna2008Tester();
+    //    UnicodeSet valid2008 = UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"), TableStyle.simple);
+    //    return valid2008;
+    UnicodeMap<Idna2008Type> typeMapping = Idna2008.getTypeMapping();
+    return new UnicodeSet(typeMapping.getSet(Idna2008Type.PVALID))
+    .addAll(typeMapping.getSet(Idna2008Type.CONTEXTJ))
+    .addAll(typeMapping.getSet(Idna2008Type.CONTEXTO))
+    ;
   }
 
   static String getShortName(IdnaType tr46) {
     // TODO Auto-generated method stub
     return UCharacter.toTitleCase(
-            tr46==OUTPUT ? "Valid" 
-                    : tr46==IGNORED || tr46==REMAPPED ? "Mapped/Ignored" 
+            tr46==IdnaType.valid ? "Valid" 
+                    : tr46==IdnaType.ignored || tr46==IdnaType.mapped ? "Mapped/Ignored" 
                             : tr46.toString()
                             , null);
   }
@@ -232,7 +220,7 @@ public class UnicodeUtilities {
 
       int cat = UCharacter.getType(cp);
       if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE  || cat == UCharacter.SURROGATE) {
-        idnaTypeSet.get(DISALLOWED).add(cp); // faster
+//        idnaTypeSet.get(IdnaType.disallowed).add(cp); // faster
         isCaseFolded.add(cp);
         isLowercase.add(cp);
         isTitlecase.add(cp);
@@ -240,8 +228,8 @@ public class UnicodeUtilities {
         continue;
       }
 
-      IdnaType idnaType = Idna2003.getIDNA2003Type(cp);
-      idnaTypeSet.get(idnaType).add(cp);
+//      IdnaType idnaType = Idna2003.getIDNA2003Type(cp);
+//      idnaTypeSet.get(idnaType).add(cp);
 
       String s = UTF16.valueOf(cp);
       if (UCharacter.foldCase(s, true).equals(s)) {
@@ -340,19 +328,19 @@ public class UnicodeUtilities {
     return UCharacter.getPropertyEnum(propertyAlias);
   }
 
-  protected static boolean getIdnaProperty(String propertyValue,
-          UnicodeSet result) {
-    try {
-      String lowercase = propertyValue.toLowerCase(Locale.ENGLISH);
-      IdnaType i = lowercase.equals("output") ? IdnaType.valid 
-              : lowercase.equals("remapped") ? IdnaType.mapped
-                      : IdnaType.valueOf(lowercase);
-      result.clear().addAll(idnaTypeSet.get(i));
-      return true;
-    } catch (Exception e) {
-      throw new IllegalArgumentException("Error with <" + propertyValue + ">", e);
-    }
-  }
+//  protected static boolean getIdnaProperty(String propertyValue,
+//          UnicodeSet result) {
+//    try {
+//      String lowercase = propertyValue.toLowerCase(Locale.ENGLISH);
+//      IdnaType i = lowercase.equals("output") ? IdnaType.valid 
+//              : lowercase.equals("remapped") ? IdnaType.mapped
+//                      : IdnaType.valueOf(lowercase);
+//      result.clear().addAll(idnaTypeSet.get(i));
+//      return true;
+//    } catch (Exception e) {
+//      throw new IllegalArgumentException("Error with <" + propertyValue + ">", e);
+//    }
+//  }
 
   static boolean getBinaryValue(String propertyValue) {
     boolean invert;
@@ -693,10 +681,6 @@ public class UnicodeUtilities {
 
   static final UnicodeSet MAPPING_SET = UnicodeSetUtilities.parseUnicodeSet("[:^c:]", TableStyle.simple);
 
-  private static final UnicodeSet ASCII = UnicodeSetUtilities.parseUnicodeSet("[:ASCII:]", TableStyle.simple);
-
-  //public static boolean haveCaseFold = false;
-
   static {
     Transliterator.registerInstance(getTransliteratorFromFile("en-IPA", "en-IPA.txt", Transliterator.FORWARD));
     Transliterator.registerInstance(getTransliteratorFromFile("IPA-en", "en-IPA.txt", Transliterator.REVERSE));
@@ -707,7 +691,7 @@ public class UnicodeUtilities {
 
   public static Transliterator getTransliteratorFromFile(String ID, String file, int direction) {
     try {
-      BufferedReader br = openFile(UnicodeUtilities.class, file);
+      BufferedReader br = FileUtilities.openFile(UnicodeUtilities.class, file);
       StringBuffer input = new StringBuffer();
       while (true) {
         String line = br.readLine();
@@ -1184,29 +1168,26 @@ public class UnicodeUtilities {
     return subheader;
   }
 
-  static IdnaLabelTester tester = null;
+  //static IdnaLabelTester tester = null;
   static String removals = UnicodeSetUtilities.parseUnicodeSet("[\u1806[:di:]-[:cn:]]", TableStyle.simple).complement().complement().toPattern(false);
   static Matcher rem = Pattern.compile(removals).matcher("");
 
 
-  static IdnaLabelTester getIdna2008Tester() {
-    if (tester == null) {
-      try {
-        URL path = UnicodeUtilities.class.getResource("idnaContextRules.txt");
-        String externalForm = path.toExternalForm();
-        if (externalForm.startsWith("file:")) {
-          externalForm = externalForm.substring(5);
-        }
-        tester = new IdnaLabelTester(externalForm);
-      } catch (IOException e) {
-        throw new IllegalArgumentException(e);
-      }
-    }
-    return tester;
-  }
-
-  static Pattern DOTS = Pattern.compile("[.。｡]");
-  static Pattern DOT = Pattern.compile("[.]");
+//  static IdnaLabelTester getIdna2008Tester() {
+//    if (tester == null) {
+//      try {
+//        URL path = UnicodeUtilities.class.getResource("idnaContextRules.txt");
+//        String externalForm = path.toExternalForm();
+//        if (externalForm.startsWith("file:")) {
+//          externalForm = externalForm.substring(5);
+//        }
+//        tester = new IdnaLabelTester(externalForm);
+//      } catch (IOException e) {
+//        throw new IllegalArgumentException(e);
+//      }
+//    }
+//    return tester;
+//  }
 
   static void addBlank(StringBuilder resultLines) {
     resultLines.append("<tr><td colSpan='5'>&nbsp;</td></tr>\n");
@@ -1225,35 +1206,10 @@ public class UnicodeUtilities {
     }
   }
 
-  static String processLabels(String inputLabels, Pattern dotPattern, boolean punycode, Predicate<String> verifier) {
-    StringBuilder result = new StringBuilder();
-    for (String label : dotPattern.split(inputLabels)) {
-      if (result.length() != 0) {
-        result.append('.');
-      }
-      try {
-        if (!verifier.is(label)) {
-          throw new IllegalArgumentException();
-        }
-        if (!punycode || ASCII.containsAll(label)) {
-          result.append(label);
-        } else {
-          StringBuffer puny = Punycode.encode(new StringBuffer(label), null);
-          if (puny.length() == 0) {
-            throw new IllegalArgumentException();
-          }
-          result.append("xn--").append(puny);
-        }
-      } catch (Exception e) {
-        result.append('\uFFFD');
-      }
-    }
-    return result.toString();
-  }
-
+  public static final UnicodeSet TO_QUOTE = new UnicodeSet("[[:z:][:me:][:mn:][:di:][:c:]-[\u0020]]");
 
   static final Transliterator ESCAPER = Transliterator.createFromRules("escaper", 
-          "(" + IdnaLabelTester.TO_QUOTE + ") > '<span class=\"q\">'&any-hex($1)'</span>';"
+          "(" + TO_QUOTE + ") > '<span class=\"q\">'&any-hex($1)'</span>';"
           + HTML_RULES_CONTROLS, Transliterator.FORWARD);
 
   public static final UnicodeSet SYMBOL = new UnicodeSet("[:s:]").freeze();
@@ -1400,34 +1356,6 @@ public class UnicodeUtilities {
     }
     result.append("L").append(level);
     return result.toString();
-  }
-
-
-
-  public static BufferedReader openFile(Class class1, String file) throws IOException {
-    //URL path = null;
-    //String externalForm = null;
-    try {
-      //      //System.out.println("Reading:\t" + file1.getCanonicalPath());
-      //      path = class1.getResource(file);
-      //      externalForm = path.toExternalForm();
-      //      if (externalForm.startsWith("file:")) {
-      //        externalForm = externalForm.substring(5);
-      //      }
-      //      File file1 = new File(externalForm);
-      //      boolean x = file1.canRead();
-      //      final InputStream resourceAsStream = new FileInputStream(file1);
-      final InputStream resourceAsStream = class1.getResourceAsStream(file);
-      InputStreamReader reader = new InputStreamReader(resourceAsStream, UTF8);
-      BufferedReader bufferedReader = new BufferedReader(reader,1024*64);
-      return bufferedReader;
-    } catch (Exception e) {
-      File file1 = new File(file);
-      throw (RuntimeException) new IllegalArgumentException("Bad file name: "
-              //              + path + "\t" + externalForm + "\t" + 
-              + file1.getCanonicalPath()
-              + "\r\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())).initCause(e);
-    }
   }
 
 

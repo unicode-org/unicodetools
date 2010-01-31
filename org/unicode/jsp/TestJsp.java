@@ -43,6 +43,7 @@ public class TestJsp  extends TestFmwk {
       System.out.println("found");
     }
     System.out.println(BREAKING_WHITESPACE);
+    UnicodeUtilities.StringPair foo = null;
     new TestJsp().run(args);
   }
 
@@ -64,8 +65,9 @@ public class TestJsp  extends TestFmwk {
   public void TestConfusables() {
     String trial = UnicodeJsp.getConfusables("sox", true, true, true, true);
     logln(trial);
-    showPropValues(XPropertyFactory.make().getProperty("confusable"));
-    showPropValues(XPropertyFactory.make().getProperty("idr"));
+    //showPropValues(
+    XPropertyFactory.make().getProperty("confusable");
+    XPropertyFactory.make().getProperty("idr");
   }
   
   public void TestPropertyFactory() {
@@ -472,7 +474,7 @@ public class TestJsp  extends TestFmwk {
     
     out.getBuffer().setLength(0);
     UnicodeJsp.showSet("sc", UnicodeSetUtilities.parseUnicodeSet("[:script=/Han/:]", TableStyle.extras), false, true, out);
-    assertTrue("props table", out.toString().contains("unassigned"));
+    assertFalse("props table", out.toString().contains("unassigned"));
     //System.out.println(out);
 
 
@@ -529,9 +531,28 @@ public class TestJsp  extends TestFmwk {
   }
 
   public void TestIdna() {
-    String testLines = UnicodeJsp.testIdnaLines("ΣΌΛΟΣ", "[]");
+    boolean[] error = new boolean[1];
+    checkValues(error, Uts46.SINGLETON);
+    checkValidIdna(Uts46.SINGLETON, "À÷");
+    checkInvalidIdna(Uts46.SINGLETON, "≠");
+
+    checkValues(error, Idna2003.SINGLETON);
+    checkValidIdna(Idna2003.SINGLETON, "À÷");
+    checkValidIdna(Idna2003.SINGLETON, "≠");
+
+    checkValues(error, Idna2008.SINGLETON);
+    checkInvalidIdna(Idna2008.SINGLETON, "À");
+    checkInvalidIdna(Idna2008.SINGLETON, "÷");
+    checkInvalidIdna(Idna2008.SINGLETON, "≠");
+
+
+    Uts46.SINGLETON.isValid("≠");
+    assertTrue("uts46 a", Uts46.SINGLETON.isValid("a"));
+    assertFalse("uts46 not equals", Uts46.SINGLETON.isValid("≠"));
+
+    String testLines = Idna.testIdnaLines("ΣΌΛΟΣ", "[]");
     assertContains(testLines, "xn--wxaikc6b");
-    testLines = UnicodeJsp.testIdnaLines(UnicodeJsp.getDefaultIdnaInput(), "[]");
+    testLines = Idna.testIdnaLines(UnicodeJsp.getDefaultIdnaInput(), "[]");
     assertContains(testLines, "xn--bb-eka.at");
 
 
@@ -540,6 +561,21 @@ public class TestJsp  extends TestFmwk {
     expectError("][:idna=valid:][abc]");
 
     assertTrue("contains hyphen", UnicodeSetUtilities.parseUnicodeSet("[:idna=valid:]", TableStyle.extras).contains('-'));
+  }
+
+  private void checkValues(boolean[] error, Idna idna) {
+    assertEquals(idna.getName() + ".toPunyCode, " + "α.xn--mxa", "xn--mxa.xn--mxa", idna.toPunyCode("α.xn--mxa", error));
+    assertEquals(idna.getName() + ".toUnicode, " + "α.xn--mxa", "α.α", idna.toUnicode("α.xn--mxa", error, true));
+    checkValidIdna(idna, "a");
+    checkInvalidIdna(idna, "=");
+  }
+
+  private void checkInvalidIdna(Idna idna, String value) {
+    assertFalse(idna.getName() + ".isValid: " + value, idna.isValid(value));
+  }
+
+  private void checkValidIdna(Idna idna, String value) {
+    assertTrue(idna.getName() + ".isValid: " + value, idna.isValid(value));
   }
 
 

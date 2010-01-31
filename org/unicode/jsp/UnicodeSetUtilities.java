@@ -194,9 +194,9 @@ public class UnicodeSetUtilities {
         result.addAll(set);
         return true;
       }
-      if (propertyName.equalsIgnoreCase("idna")) {
-        return UnicodeUtilities.getIdnaProperty(propertyValue, result);
-      }
+//      if (propertyName.equalsIgnoreCase("idna")) {
+//        return UnicodeUtilities.getIdnaProperty(propertyValue, result);
+//      }
       for (int i = 0; i < UnicodeSetUtilities.specialProperties.length; ++i) {
         if (propertyName.equalsIgnoreCase((String) UnicodeSetUtilities.specialProperties[i][0])) {
           result.clear().addAll((UnicodeSet) UnicodeSetUtilities.specialProperties[i][1]);

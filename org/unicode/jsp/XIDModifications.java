@@ -12,9 +12,9 @@ public class XIDModifications {
     @Override
     protected void handleLine(int start, int end, String[] items) {
       String type = items[1];
-      if (type.equals("addition")) {
+      if (type.equals("allowed")) {
         allowed.add(start, end);
-        reasons.putAll(start, end, "UAX29 WB addition");
+        reasons.putAll(start, end, items[2]);
       } else if (type.equals("restricted")) {
         allowed.remove(start, end);
         reasons.putAll(start, end, items[2]);

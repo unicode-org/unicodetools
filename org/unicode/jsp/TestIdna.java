@@ -91,7 +91,7 @@ public class TestIdna extends TestFmwk {
   public void TestExtract() throws IOException {
 
     MyHandler handler = new MyHandler();
-    handler.process(this.getClass(), "IdnaMappingTable-5.2.0.txt");
+    handler.process(this.getClass(), "IdnaMappingTable.txt");
 
     System.out.println("sourceNotAllowed: " + handler.sourceNotAllowed.size() + "\t" + handler.sourceNotAllowed);
     System.out.println("targetNotAllowed: " + handler.targetNotAllowed.size() + "\t" + handler.targetNotAllowed);
