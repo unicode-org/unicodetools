@@ -1,5 +1,5 @@
 # IdnaMappingTable-5.2.0.txt- DRAFT
-# Date: 2010-01-29 17:45:50 GMT [MD]
+# Date: 2010-02-04 00:46:56 GMT [MD]
 #
 # Unicode IDNA Compatible Preprocessing (UTS #46)
 # Copyright (c) 1991-2009 Unicode, Inc.
@@ -417,8 +417,7 @@
 02E3          ; mapped     ; 0078                          #  MODIFIER LETTER SMALL X
 02E4          ; mapped     ; 0295                          #  MODIFIER LETTER SMALL REVERSED GLOTTAL STOP
 02E5..033F    ; valid                                      #  MODIFIER LETTER EXTRA-HIGH TONE BAR..COMBINING DOUBLE OVERLINE
-0340          ; mapped     ; 0300                          #  COMBINING GRAVE TONE MARK
-0341          ; mapped     ; 0301                          #  COMBINING ACUTE TONE MARK
+0340..0341    ; disallowed                                 #  COMBINING GRAVE TONE MARK..COMBINING ACUTE TONE MARK
 0342          ; valid                                      #  COMBINING GREEK PERISPOMENI
 0343          ; mapped     ; 0313                          #  COMBINING GREEK KORONIS
 0344          ; mapped     ; 0308 0301                     #  COMBINING GREEK DIALYTIKA TONOS
@@ -1887,7 +1886,7 @@
 1FFD..200A    ; disallowed                                 #  GREEK OXIA..HAIR SPACE
 200B          ; ignored                                    #  ZERO WIDTH SPACE
 200C..200D    ; deviation  ;                               #  ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
-200E..200F    ; ignored                                    #  LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
+200E..200F    ; disallowed                                 #  LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
 2010          ; valid                                      #  HYPHEN
 2011          ; mapped     ; 2010                          #  NON-BREAKING HYPHEN
 2012..2016    ; valid                                      #  FIGURE DASH..DOUBLE VERTICAL LINE
@@ -1895,9 +1894,7 @@
 2018..2023    ; valid                                      #  LEFT SINGLE QUOTATION MARK..TRIANGULAR BULLET
 2024..2026    ; disallowed                                 #  ONE DOT LEADER..HORIZONTAL ELLIPSIS
 2027          ; valid                                      #  HYPHENATION POINT
-2028..2029    ; disallowed                                 #  LINE SEPARATOR..PARAGRAPH SEPARATOR
-202A..202E    ; ignored                                    #  LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
-202F          ; disallowed                                 #  NARROW NO-BREAK SPACE
+2028..202F    ; disallowed                                 #  LINE SEPARATOR..NARROW NO-BREAK SPACE
 2030..2032    ; valid                                      #  PER MILLE SIGN..PRIME
 2033          ; mapped     ; 2032 2032                     #  DOUBLE PRIME
 2034          ; mapped     ; 2032 2032 2032                #  TRIPLE PRIME
@@ -1914,7 +1911,10 @@
 2057          ; mapped     ; 2032 2032 2032 2032           #  QUADRUPLE PRIME
 2058..205E    ; valid                                      #  FOUR DOT PUNCTUATION..VERTICAL FOUR DOTS
 205F          ; disallowed                                 #  MEDIUM MATHEMATICAL SPACE
-2060..206F    ; ignored                                    #  WORD JOINER..NOMINAL DIGIT SHAPES
+2060          ; ignored                                    #  WORD JOINER
+2061..2063    ; disallowed                                 #  FUNCTION APPLICATION..INVISIBLE SEPARATOR
+2064..2069    ; ignored                                    #  INVISIBLE PLUS..<reserved-2069>
+206A..206F    ; disallowed                                 #  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
 2070          ; mapped     ; 0030                          #  SUPERSCRIPT ZERO
 2071          ; mapped     ; 0069                          #  SUPERSCRIPT LATIN SMALL LETTER I
 2072..2073    ; disallowed                                 #  <reserved-2072>..<reserved-2073>
@@ -4895,7 +4895,7 @@ FFF9..FFFF    ; disallowed                                 #  INTERLINEAR ANNOTA
 1D163         ; mapped     ; 1D158 1D165 1D171             #  MUSICAL SYMBOL SIXTY-FOURTH NOTE
 1D164         ; mapped     ; 1D158 1D165 1D172             #  MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
 1D165..1D172  ; valid                                      #  MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING FLAG-5
-1D173..1D17A  ; ignored                                    #  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
+1D173..1D17A  ; disallowed                                 #  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 1D17B..1D1BA  ; valid                                      #  MUSICAL SYMBOL COMBINING ACCENT..MUSICAL SYMBOL SEMIBREVIS BLACK
 1D1BB         ; mapped     ; 1D1B9 1D165                   #  MUSICAL SYMBOL MINIMA
 1D1BC         ; mapped     ; 1D1BA 1D165                   #  MUSICAL SYMBOL MINIMA BLACK
@@ -6546,7 +6546,11 @@ FFF9..FFFF    ; disallowed                                 #  INTERLINEAR ANNOTA
 2FA1C         ; mapped     ; 9F3B                          #  CJK COMPATIBILITY IDEOGRAPH-2FA1C
 2FA1D         ; mapped     ; 2A600                         #  CJK COMPATIBILITY IDEOGRAPH-2FA1D
 2FA1E..DFFFF  ; disallowed                                 #  <reserved-2FA1E>..<noncharacter-DFFFF>
-E0000..E0FFF  ; ignored                                    #  <reserved-E0000>..<reserved-E0FFF>
+E0000         ; ignored                                    #  <reserved-E0000>
+E0001         ; disallowed                                 #  LANGUAGE TAG
+E0002..E001F  ; ignored                                    #  <reserved-E0002>..<reserved-E001F>
+E0020..E007F  ; disallowed                                 #  TAG SPACE..CANCEL TAG
+E0080..E0FFF  ; ignored                                    #  <reserved-E0080>..<reserved-E0FFF>
 E1000..10FFFF ; disallowed                                 #  <reserved-E1000>..<noncharacter-10FFFF>
 
 # Total code points: 1114112

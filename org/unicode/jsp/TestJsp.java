@@ -61,6 +61,11 @@ public class TestJsp  extends TestFmwk {
     }
     return prettySet;
   }
+  
+  public void TestLanguage() {
+    String foo = UnicodeJsp.getLanguageOptions("de");
+    String fii = UnicodeJsp.validateLanguageID("en", "fr");
+  }
 
   public void TestConfusables() {
     String trial = UnicodeJsp.getConfusables("sox", true, true, true, true);
@@ -532,27 +537,44 @@ public class TestJsp  extends TestFmwk {
 
   public void TestIdna() {
     boolean[] error = new boolean[1];
+    
+    String uts46unic = Uts46.SINGLETON.toUnicode("faß.de", error, true);
+    System.out.println(uts46unic + ", " + error[0]);
     checkValues(error, Uts46.SINGLETON);
-    checkValidIdna(Uts46.SINGLETON, "À÷");
+    checkValidIdna(Uts46.SINGLETON, "À｡÷");
     checkInvalidIdna(Uts46.SINGLETON, "≠");
+    checkInvalidIdna(Uts46.SINGLETON, "\u0001");
+    checkToUnicode(Uts46.SINGLETON, "ß｡ab", "ß.ab");
+    //checkToPunyCode(Uts46.SINGLETON, "\u0002", "xn---");
+    checkToPunyCode(Uts46.SINGLETON, "ß｡ab", "ss.ab");
+    checkToUnicodeAndPunyCode(Uts46.SINGLETON, "faß.de", "faß.de", "fass.de");
 
     checkValues(error, Idna2003.SINGLETON);
+    checkToUnicode(Idna2003.SINGLETON, "ß｡ab", "ss.ab");
+    checkToPunyCode(Idna2003.SINGLETON, "ß｡ab", "ss.ab");
     checkValidIdna(Idna2003.SINGLETON, "À÷");
     checkValidIdna(Idna2003.SINGLETON, "≠");
+    
+    checkToUnicodeAndPunyCode(Idna2003.SINGLETON, "نامه\u200Cای.de", "نامهای.de", "xn--mgba3gch31f.de");
+
+
 
     checkValues(error, Idna2008.SINGLETON);
+    checkToUnicode(Idna2008.SINGLETON, "ß", "ß");
+    checkToPunyCode(Idna2008.SINGLETON, "ß", "xn--zca");
     checkInvalidIdna(Idna2008.SINGLETON, "À");
     checkInvalidIdna(Idna2008.SINGLETON, "÷");
     checkInvalidIdna(Idna2008.SINGLETON, "≠");
+    checkInvalidIdna(Idna2008.SINGLETON, "ß｡");
 
 
     Uts46.SINGLETON.isValid("≠");
     assertTrue("uts46 a", Uts46.SINGLETON.isValid("a"));
     assertFalse("uts46 not equals", Uts46.SINGLETON.isValid("≠"));
 
-    String testLines = Idna.testIdnaLines("ΣΌΛΟΣ", "[]");
+    String testLines = UnicodeJsp.testIdnaLines("ΣΌΛΟΣ", "[]");
     assertContains(testLines, "xn--wxaikc6b");
-    testLines = Idna.testIdnaLines(UnicodeJsp.getDefaultIdnaInput(), "[]");
+    testLines = UnicodeJsp.testIdnaLines(UnicodeJsp.getDefaultIdnaInput(), "[]");
     assertContains(testLines, "xn--bb-eka.at");
 
 
@@ -564,10 +586,30 @@ public class TestJsp  extends TestFmwk {
   }
 
   private void checkValues(boolean[] error, Idna idna) {
-    assertEquals(idna.getName() + ".toPunyCode, " + "α.xn--mxa", "xn--mxa.xn--mxa", idna.toPunyCode("α.xn--mxa", error));
-    assertEquals(idna.getName() + ".toUnicode, " + "α.xn--mxa", "α.α", idna.toUnicode("α.xn--mxa", error, true));
+    checkToUnicodeAndPunyCode(idna, "α.xn--mxa", "α.α", "xn--mxa.xn--mxa");
     checkValidIdna(idna, "a");
     checkInvalidIdna(idna, "=");
+  }
+
+  private void checkToUnicodeAndPunyCode(Idna idna, String source, String toUnicode, String toPunycode) {
+    checkToUnicode(idna, source, toUnicode);
+    checkToPunyCode(idna, source, toPunycode);
+  }
+
+  private void checkToUnicode(Idna idna, String source, String expected) {
+    boolean[] error = new boolean[1];
+    String head = idna.getName() + ".toUnicode, " + source;
+    assertEquals(head, expected, idna.toUnicode(source, error, true));
+    String head2 = idna.getName() + ".toUnicode error?, " + source + " = " + expected;
+    assertFalse(head2, error[0]);
+  }
+
+  private void checkToPunyCode(Idna idna, String source, String expected) {
+    boolean[] error = new boolean[1];
+    String head = idna.getName() + ".toPunyCode, " + source;
+    assertEquals(head, expected, idna.toPunyCode(source, error));
+    String head2 = idna.getName() + ".toPunyCode error?, " + source + " = " + expected;
+    assertFalse(head2, error[0]);
   }
 
   private void checkInvalidIdna(Idna idna, String value) {

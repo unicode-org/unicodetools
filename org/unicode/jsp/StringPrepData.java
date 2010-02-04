@@ -10,20 +10,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.text.UCD.GenerateIdna;
-import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.UCD.UCD_Types;
-import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Utility;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;
+import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 
 public class StringPrepData {
   private static final boolean DEBUG = false;
+  public static UnicodeSet U32 = new UnicodeSet("[:age=3.2:]").freeze();
+  public static UnicodeSet VALID_ASCII = new UnicodeSet("[\\u002Da-zA-Z0-9]").freeze();
+
 
   /**
 3. Mapping
@@ -74,7 +76,7 @@ public class StringPrepData {
         // fall through
       default:
         String original = UTF16.valueOf(i);
-        if (GenerateIdna.U32.contains(i)) {
+        if (U32.contains(i)) {
           mapping = normalizeAndCheckString(mapping != null ? mapping : original, rawIdna2003Data);
         }
         status = mapping == null ? IdnaType.disallowed :
@@ -91,15 +93,16 @@ public class StringPrepData {
     // special handling for separators
     mappings.putAll(Idna.OTHER_DOT_SET,".");
     types.putAll(Idna.OTHER_DOT_SET,IdnaType.mapped);
+    types.put('.',IdnaType.valid);
 
     mappings.freeze();
     types.freeze();
   }
 
-  static Normalizer normalizer32 = new Normalizer(UCD_Types.NFKC, "3.2.0");
+  //static Normalizer normalizer32 = new Normalizer(UCD_Types.NFKC, "3.2.0");
 
   private static String normalizeAndCheckString(String inputString, UnicodeMap<R3<StringPrepData.Idna2003Table, String, String>> rawIdna2003Data) {
-    String string = normalizer32.normalize(inputString);
+    String string = Normalizer.normalize(inputString, Normalizer.NFKC);
     int cp;
     for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
       cp = string.codePointAt(i);
@@ -230,15 +233,19 @@ public class StringPrepData {
         if (!lineMatcher.reset(line).matches()) {
           throw new IllegalArgumentException("Illegal range-value syntax: " + line);
         }
-        int startCode = Utility.fromHex(lineMatcher.group(1)).codePointAt(0);
+        int startCode = Utility.fromHex(lineMatcher.group(1),4," ").codePointAt(0);
         String endCodeString = lineMatcher.groupCount() < 2 ? null : lineMatcher.group(2);
         String group3 = lineMatcher.groupCount() < 3 ? null : lineMatcher.group(3);
         String group4 = lineMatcher.groupCount() < 4 ? null : lineMatcher.group(4);
-        int endCode = endCodeString == null ? startCode : Utility.fromHex(endCodeString).codePointAt(0);
+        int endCode = endCodeString == null ? startCode : Utility.fromHex(endCodeString,4," ").codePointAt(0);
         String comment, mapValueString;
         if (isMapping) {
           comment = group4;
-          mapValueString = Utility.fromHex(group3);
+          try {
+            mapValueString = group3.length() == 0 ? "" : Utility.fromHex(group3,4," ");
+          } catch (RuntimeException e) {
+            throw e;
+          }
         } else {
           comment = group3;
           mapValueString = null;
@@ -260,7 +267,7 @@ public class StringPrepData {
 
       // fix ASCII
       rawMapping.putAll(0, 0x7F, badValue);
-      rawMapping.putAll(GenerateIdna.VALID_ASCII, null);
+      rawMapping.putAll(VALID_ASCII, null);
 
       for (int i = 'A'; i <= 'Z'; ++i) {
         R3<StringPrepData.Idna2003Table, String, String> alphaMap = Row.of(Idna2003Table.B_1, UTF16.valueOf(i-'A'+'a'), (String)null);

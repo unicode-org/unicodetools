@@ -2,6 +2,7 @@ package org.unicode.jsp;
 
 
 import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.UnicodeSet;
 
 
 public class Uts46 extends Idna {
@@ -13,7 +14,7 @@ public class Uts46 extends Idna {
     types.freeze();
     mappings.freeze();
     mappings_display.freeze();
-    validSet = types.getSet(IdnaType.valid).freeze();
+    validSet = new UnicodeSet(types.getSet(IdnaType.valid)).addAll(types.getSet(IdnaType.deviation)).freeze();
   } // private
     
   class MyHandler extends FileUtilities.SemiFileReader {

@@ -20,6 +20,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.Predicate;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
@@ -1076,16 +1077,24 @@ public class UnicodeUtilities {
     for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).get()) {
       UnicodeProperty prop = factory.getProperty(propName);
       String propHtml = toHTML.transform(propName);
-      out.append("<tr><th width='1%'><a name='" + propHtml + "'>" + propHtml + "</a></th>\r\n");
+      String shortName = prop.getFirstNameAlias();
+      String title = shortName == null ? "" : " title='" + toHTML(shortName) + "'";
+      out.append("<tr><th width='1%'" + title + "><a name='" + propHtml + "'>" + propHtml + "</a></th>\r\n");
       out.append("<td>\r\n");
-      for (String valueName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)prop.getAvailableValues()).get()) {
-        String valueHtml = toHTML.transform(valueName);
-        if (valueName.startsWith("<") && valueName.endsWith(">")) {
-          out.append(valueHtml);
-        } else {
-          out.append(getPropLink(propHtml, valueHtml, valueHtml));
+      List<String> availableValues = (List<String>)prop.getAvailableValues();
+      if (availableValues.size() > 1000) {
+        out.append("<i>too many values to show</i>");
+      } else {
+        for (String valueName : Builder.with(new TreeSet<String>(col)).addAll(availableValues).get()) {
+          String valueHtml = toHTML.transform(valueName);
+          String shortValue = prop.getFirstValueAlias(valueName);
+          if (valueName.startsWith("<") && valueName.endsWith(">")) {
+            out.append(valueHtml);
+          } else {
+            out.append(getPropLink(propHtml, valueHtml, valueHtml, shortValue));
+          }
+          out.append("\r\n");
         }
-        out.append("\r\n");
       }
       out.append("</td></tr>\r\n");
     }
@@ -1137,12 +1146,14 @@ public class UnicodeUtilities {
     //    unicodeProps.addAll(regexProps);
   }
 
-  private static String getPropLink(String propName, String propValue, String linkText) {
+  private static String getPropLink(String propName, String propValue, String linkText, String shortName) {
     final String propExp = 
       propValue == "T" ? propName
               : propValue == "F" ? "^" + propName
                       : propName + "=" + propValue;
-    return "<a target='u' href='list-unicodeset.jsp?a=[:" + propExp + ":]'>" + linkText + "</a>";
+    String title = shortName == null ? "" : " title='" + toHTML(shortName) + "'";
+    return "<a target='u' href='list-unicodeset.jsp?a=[:" + propExp + ":]'" + title + 
+    		">" + linkText + "</a>";
   }
 
   static Subheader getSubheader() {
@@ -1355,6 +1366,129 @@ public class UnicodeUtilities {
       result.append("<br>");
     }
     result.append("L").append(level);
+    return result.toString();
+  }
+
+  public static String testIdnaLines(String lines, String filter) {
+    Transliterator hex = Transliterator.getInstance("any-hex");
+    try {
+  
+      lines = UnicodeJsp.UNESCAPER.transform(lines);
+      StringBuilder resultLines = new StringBuilder();
+      //UnicodeUtilities.getIdna2008Tester();
+  
+      Predicate<String> verifier2008 = new Predicate<String>() {
+        public boolean is(String item) {
+          return Idna2008.SINGLETON.isValid(item);
+        }
+      };
+  
+      resultLines.append("<table>\n");
+      resultLines.append("<th></th><th class='cn'>Input</th><th class='cn'>IDNA2003</th><th class='cn'>UTS46</th><th class='cn'>IDNA2008</th>\n");
+  
+      boolean first = true;
+      boolean[] errorOut = new boolean[1];
+  
+      for (String line : lines.split("\\s+")) {
+        if (first) {
+          first = false;
+        } else {
+          addBlank(resultLines);
+        }
+  
+        String rawPunycode = UnicodeUtilities.processLabels(line, Idna.DOTS, true, new Predicate() {
+          public boolean is(Object item) {
+            return true;
+          }});
+  
+  
+        //        String tr46 = UnicodeUtilities.processLabels(tr46back, UnicodeUtilities.DOTS, true, new Predicate<String>() {
+        //          public boolean is(String item) {
+        //            return Uts46.SINGLETON.transform(item).indexOf('\uFFFD') < 0; // Uts46.SINGLETON.Uts46Chars.containsAll(item);
+        //          }
+        //        });
+        //        String tr46display = Uts46.SINGLETON.toUnicode(line, errorOut);
+        //        tr46display = UnicodeUtilities.processLabels(tr46display, UnicodeUtilities.DOTS, false, new Predicate<String>() {
+        //          public boolean is(String item) {
+        //            return Uts46.SINGLETON.toUnicode(item).indexOf('\uFFFD') < 0; // Uts46.SINGLETON.Uts46Chars.containsAll(item);
+        //            //return Uts46.SINGLETON.Uts46CharsDisplay.containsAll(item);
+        //          }
+        //        });
+  
+  
+        // first lines
+        resultLines.append("<tr>");
+        resultLines.append("<th>Display</th>");
+        addCell(resultLines, hex, line, "class='cn ltgreen'");
+        String idna2003unic = Idna2003.SINGLETON.toUnicode(line, errorOut, true);
+        addCell(resultLines, hex, idna2003unic, getIdnaClass("cn i2003", errorOut[0]));
+        
+        String uts46unic = Uts46.SINGLETON.toUnicode(line, errorOut, true);
+        addCell(resultLines, hex, uts46unic, getIdnaClass("cn i46", errorOut[0]));
+        
+        String idna2008unic = UnicodeUtilities.processLabels(line, Idna.DOT, false, verifier2008);
+        addCell(resultLines, hex, idna2008unic, getIdnaClass("cn i2008", idna2008unic.contains("\uFFFD")));
+        resultLines.append("<tr></tr>");
+  
+        resultLines.append("<th class='mono'>Punycode</th>");
+        addCell(resultLines, hex, rawPunycode, "class='cn ltgreen mono'");
+        String idna2003puny = Idna2003.SINGLETON.toPunyCode(line, errorOut);
+        addCell(resultLines, hex, idna2003puny, getIdnaClass("cn mono i2003", errorOut[0]));
+        
+        String uts46puny = Uts46.SINGLETON.toPunyCode(line, errorOut);
+        addCell(resultLines, hex, uts46puny, getIdnaClass("cn mono i46", errorOut[0]));
+        
+        String idna2008puny = UnicodeUtilities.processLabels(line, Idna.DOT, true, verifier2008);
+        addCell(resultLines, hex, idna2008puny, getIdnaClass("cn mono i2008", idna2008puny.contains("\uFFFD")));
+  
+        //        if (result == null) {
+        //          resultLines.append("<td class='c'>\u00A0</td><td class='c'>\u00A0</td>");
+        //        } else {
+        //          resultLines.append("<td class='c'>")
+        //          .append(toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(0, result.position))) 
+        //                  + "<span class='x'>\u2639</span>" + toHTML.transform(IdnaLabelTester.ESCAPER.transform(normalized.substring(result.position))) 
+        //                  + "</td><td>" + result.title
+        //                  //+ "</td><td class='c'>" + result.ruleLine
+        //                  + "</td>");
+        //        }
+        resultLines.append("</tr>\n");
+      }
+  
+      resultLines.append("</table>\n");
+      return resultLines.toString();
+    } catch (Exception e) {
+      return toHTML.transform(e.getMessage());
+    }
+  }
+
+  private static String getIdnaClass(String classItems, boolean error) {
+    return "class='" +
+    		classItems + (error ? " error" : "") + "'";
+  }
+
+  static String processLabels(String inputLabels, Pattern dotPattern, boolean punycode, Predicate<String> verifier) {
+    StringBuilder result = new StringBuilder();
+    for (String label : dotPattern.split(inputLabels)) {
+      if (result.length() != 0) {
+        result.append('.');
+      }
+      try {
+        if (!verifier.is(label)) {
+          throw new IllegalArgumentException();
+        }
+        if (!punycode || Idna.ASCII.containsAll(label)) {
+          result.append(label);
+        } else {
+          StringBuffer puny = Punycode.encode(new StringBuffer(label), null);
+          if (puny.length() == 0) {
+            throw new IllegalArgumentException();
+          }
+          result.append("xn--").append(puny);
+        }
+      } catch (Exception e) {
+        result.append('\uFFFD');
+      }
+    }
     return result.toString();
   }
 
