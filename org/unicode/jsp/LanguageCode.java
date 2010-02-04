@@ -17,7 +17,7 @@ import com.ibm.icu.util.ULocale;
 
 public class LanguageCode { 
 
-  static final Pattern languageID = Pattern.compile(
+  static public final Pattern languageID = Pattern.compile(
           "      (?: ( [a-z A-Z]{2,8} | [a-z A-Z]{2,3} [-_] [a-z A-Z]{3} )"
           + "      (?: [-_] ( [a-z A-Z]{4} ) )? "
           + "      (?: [-_] ( [a-z A-Z]{2} | [0-9]{3} ) )?"

@@ -6,6 +6,7 @@ public class Idna2003 extends Idna {
   
   private Idna2003() {
     StringPrepData.getIdna2003Tables(mappings, types);
+    mappings_display = mappings;
     validSet = types.getSet(IdnaType.valid).freeze();
   }
   

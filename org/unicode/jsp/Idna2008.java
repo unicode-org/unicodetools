@@ -34,6 +34,7 @@ public class Idna2008 extends Idna {
         break;
       }
     }
+    types.put('.', IdnaType.valid);
     types.freeze();
     mappings.freeze();
     mappings_display.freeze();

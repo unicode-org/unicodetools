@@ -3,6 +3,7 @@ package org.unicode.jsp;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -138,6 +139,10 @@ public class UnicodeJsp {
     return LanguageCode.getLanguageOptions(new ULocale(locale));
   }
 
+  public static String getTrace(Exception e) {
+     return Arrays.asList(e.getStackTrace()).toString().replace("\n", "<\br>");
+  }
+  
   public static String getSimpleSet(String setA, UnicodeSet a, boolean abbreviate, boolean escape) {
     String a_out;
     a.clear();
@@ -293,5 +298,8 @@ public class UnicodeJsp {
       str = str.replace("\n", "<br>");
       return str;
     }
+  }
+  public static String testIdnaLines(String lines, String filter) {
+    return UnicodeUtilities.testIdnaLines(lines, filter);
   }
 }
