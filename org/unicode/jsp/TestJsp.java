@@ -69,7 +69,9 @@ public class TestJsp  extends TestFmwk {
 
   public void TestConfusables() {
     String trial = UnicodeJsp.getConfusables("sox", true, true, true, true);
-    logln(trial);
+    logln("***TRIAL1 : " + trial);
+    trial = UnicodeJsp.getConfusables("sox", 1);
+    logln("***TRIAL2 : " + trial);
     //showPropValues(
     XPropertyFactory.make().getProperty("confusable");
     XPropertyFactory.make().getProperty("idr");
