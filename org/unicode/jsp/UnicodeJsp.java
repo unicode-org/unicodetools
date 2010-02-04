@@ -198,106 +198,143 @@ public class UnicodeJsp {
     }
     return cp;
   }
+  
+  public static String getConfusables(String test, int choice) {
+    try {
+
+      Confusables confusables = new Confusables(test);
+      switch (choice) {
+      case 0: // none
+        break;
+      case 1: // IDNA2008
+        confusables.setAllowedCharacters(Idna2003.SINGLETON.validSet);
+        confusables.setNormalizationCheck(Normalizer.NFC);
+        break;
+      case 2: // IDNA2008
+        confusables.setAllowedCharacters(Idna2008.SINGLETON.validSet);
+        confusables.setNormalizationCheck(Normalizer.NFC);
+        break;
+      case 3: // UTS46/39
+        confusables.setAllowedCharacters(new UnicodeSet(Uts46.SINGLETON.validSet).retainAll(XIDModifications.getAllowed()));
+        confusables.setNormalizationCheck(Normalizer.NFC);
+        confusables.setScriptCheck(Confusables.ScriptCheck.same);
+        break;
+      }      
+      return getConfusablesCore(test, confusables);
+    } catch (Exception e) {
+      return returnStackTrace(e);
+    }
+  }
+
+  private static String returnStackTrace(Exception e) {
+    StringWriter s = new StringWriter();
+    PrintWriter p = new PrintWriter(s);
+    e.printStackTrace(p);
+    String str = UnicodeUtilities.toHTML(s.toString());
+    str = str.replace("\n", "<br>");
+    return str;
+  }
+
 
   public static String getConfusables(String test, boolean nfkcCheck, boolean scriptCheck, boolean idCheck, boolean xidCheck) {
     try {
-      StringBuilder result = new StringBuilder();
 
-      test = test.replaceAll("[\r\n\t]", " ").trim();
       Confusables confusables = new Confusables(test);
       if (nfkcCheck) confusables.setNormalizationCheck(Normalizer.NFKC);
       if (scriptCheck) confusables.setScriptCheck(Confusables.ScriptCheck.same);
       if (idCheck) confusables.setAllowedCharacters(new UnicodeSet("[\\-[:L:][:M:][:N:]]"));
       if (xidCheck) confusables.setAllowedCharacters(XIDModifications.getAllowed());
-      double maxSize = confusables.getMaxSize();
-      List<Collection<String>> alternates = confusables.getAlternates();
-      if (alternates.size() > 0) {
-        int max = 0;
-        for (Collection<String> items : alternates) {
-          int size = items.size();
-          if (size > max) {
-            max = size;
-          }
-        }
-        String topCell = "<td class='smc' align='center' width='" + (100/max) +
-        "%'>";
-        String underStart = " <span class='chb'>";
-        String underEnd = "</span> ";
-        UnicodeSet nsm = new UnicodeSet("[[:Mn:][:Me:]]");
-
-        result.append("<table><caption style='text-align:left'><h3>Confusable Characters</h3></caption>\n");
-        for (Collection<String> items : alternates) {
-          result.append("<tr>");
-          for (String item : items) {
-            result.append(topCell);
-            String htmlItem = UnicodeUtilities.toHTML(item);
-            if (nsm.containsAll(item)) {
-              htmlItem = "&nbsp;" + htmlItem + "&nbsp;";
-            }
-            result.append(underStart).append(htmlItem).append(underEnd);
-            result.append("</td>");
-          }
-          for (int i = max - items.size(); i > 0; --i) {
-            result.append("<td class='smb' rowSpan='3'>&nbsp;</td>");
-          }
-          result.append("</tr>\n");
-          
-          result.append("<tr>");
-          for (String item : items) {
-            result.append("<td class='smh' align='center'>");
-            result.append(com.ibm.icu.impl.Utility.hex(item));
-            result.append("</td>");
-          }
-          result.append("</tr>\n");
-
-          result.append("<tr>");
-          for (String item : items) {
-            result.append("<td class='smn' align='center'>");
-            result.append(UCharacter.getName(item, " + "));
-            result.append("</td>");
-          }
-          result.append("</tr>\n");
-        }
-        result.append("</table>\n");
-      }
-
-      result.append("<p>Total raw values: " + nf.format(maxSize) + "</p>\n");
-      if (maxSize > 1000000) {
-        result.append( "<p><i>Too many raw items to process.<i></p>\n");
-        return result.toString();
-      }
       
-      result.append("<h3>Confusable Results</h3>");   
-      int count = 0;
-      result.append("<div style='border: 1px solid blue'>");
-      for (String item : confusables) {
-        ++count;
-        if (count > 1000) {
-          continue;
-        }
-        if (count != 1) {
-          result.append("\n");
-        }
-        result.append(UnicodeUtilities.toHTML(item));
-      }
-      if (count > 1000) {
-        result.append(" ...\n");
-      }
-      result.append("</div>\n");
-      result.append("<p>Total filtered values: " + nf.format(count) + "</p>\n");
-
-      if (count > 1000) {
-        result.append("<p><i>Too many filtered items to display; truncating to 1,000.<i></p>\n");
-      }
-      return result.toString();
+      return getConfusablesCore(test, confusables);
     } catch (Exception e) {
-      StringWriter s = new StringWriter();
-      PrintWriter p = new PrintWriter(s);
-      e.printStackTrace(p);
-      String str = UnicodeUtilities.toHTML(s.toString());
-      str = str.replace("\n", "<br>");
-      return str;
+      return returnStackTrace(e);
     }
+  }
+
+  private static String getConfusablesCore(String test, Confusables confusables) {
+    test = test.replaceAll("[\r\n\t]", " ").trim();
+    StringBuilder result = new StringBuilder();
+    double maxSize = confusables.getMaxSize();
+    List<Collection<String>> alternates = confusables.getAlternates();
+    if (alternates.size() > 0) {
+      int max = 0;
+      for (Collection<String> items : alternates) {
+        int size = items.size();
+        if (size > max) {
+          max = size;
+        }
+      }
+      String topCell = "<td class='smc' align='center' width='" + (100/max) +
+      "%'>";
+      String underStart = " <span class='chb'>";
+      String underEnd = "</span> ";
+      UnicodeSet nsm = new UnicodeSet("[[:Mn:][:Me:]]");
+
+      result.append("<table><caption style='text-align:left'><h3>Confusable Characters</h3></caption>\n");
+      for (Collection<String> items : alternates) {
+        result.append("<tr>");
+        for (String item : items) {
+          result.append(topCell);
+          String htmlItem = UnicodeUtilities.toHTML(item);
+          if (nsm.containsAll(item)) {
+            htmlItem = "&nbsp;" + htmlItem + "&nbsp;";
+          }
+          result.append(underStart).append(htmlItem).append(underEnd);
+          result.append("</td>");
+        }
+        for (int i = max - items.size(); i > 0; --i) {
+          result.append("<td class='smb' rowSpan='3'>&nbsp;</td>");
+        }
+        result.append("</tr>\n");
+        
+        result.append("<tr>");
+        for (String item : items) {
+          result.append("<td class='smh' align='center'>");
+          result.append(com.ibm.icu.impl.Utility.hex(item));
+          result.append("</td>");
+        }
+        result.append("</tr>\n");
+
+        result.append("<tr>");
+        for (String item : items) {
+          result.append("<td class='smn' align='center'>");
+          result.append(UCharacter.getName(item, " + "));
+          result.append("</td>");
+        }
+        result.append("</tr>\n");
+      }
+      result.append("</table>\n");
+    }
+
+    result.append("<p>Total raw values: " + nf.format(maxSize) + "</p>\n");
+    if (maxSize > 1000000) {
+      result.append( "<p><i>Too many raw items to process.<i></p>\n");
+      return result.toString();
+    }
+    
+    result.append("<h3>Confusable Results</h3>");   
+    int count = 0;
+    result.append("<div style='border: 1px solid blue'>");
+    for (String item : confusables) {
+      ++count;
+      if (count > 1000) {
+        continue;
+      }
+      if (count != 1) {
+        result.append("\n");
+      }
+      result.append(UnicodeUtilities.toHTML(item));
+    }
+    if (count > 1000) {
+      result.append(" ...\n");
+    }
+    result.append("</div>\n");
+    result.append("<p>Total filtered values: " + nf.format(count) + "</p>\n");
+
+    if (count > 1000) {
+      result.append("<p><i>Too many filtered items to display; truncating to 1,000.<i></p>\n");
+    }
+    return result.toString();
   }
   public static String testIdnaLines(String lines, String filter) {
     return UnicodeUtilities.testIdnaLines(lines, filter);

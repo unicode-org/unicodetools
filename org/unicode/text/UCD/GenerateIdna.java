@@ -201,7 +201,7 @@ public class GenerateIdna {
   private static void writeDataFile(UnicodeMap<String> mappingTable) throws IOException {
     String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
     String unversionedFileName = "IdnaMappingTable.txt";
-    PrintWriter writer = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR + "/idna/" + Default.ucdVersion(), unversionedFileName);
+    PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace35/draft/reports/tr46", unversionedFileName);
     writer.println("# " + filename + "- DRAFT\n" +
             "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
             "#\n" +
