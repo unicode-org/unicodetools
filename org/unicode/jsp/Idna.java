@@ -1,15 +1,10 @@
 package org.unicode.jsp;
 
-import java.util.Arrays;
-import java.util.regex.Pattern;
-
-import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
-
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.StringPrepParseException;
-import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.StringTransform;
+import com.ibm.icu.text.UnicodeSet;
 
 public class Idna implements StringTransform {
 
@@ -22,12 +17,7 @@ public class Idna implements StringTransform {
   protected UnicodeMap<String> mappings_display = new UnicodeMap<String>();
   protected UnicodeSet validSet = new UnicodeSet();
   private final String name;
-  static final UnicodeSet ASCII = UnicodeSetUtilities.parseUnicodeSet("[:ASCII:]", TableStyle.simple);
-  static final UnicodeSet LABEL_ASCII = new UnicodeSet("[\\-0-9a-zA-Z]").freeze();
-  static Pattern DOT = Pattern.compile("[.]");
-  static UnicodeSet OTHER_DOT_SET = new UnicodeSet("[． 。｡]");
-  static Pattern DOTS = Pattern.compile("[.． 。｡]");
-
+  
   protected Idna() {
     String[] names = this.getClass().getName().split("[.]");
     name = names[names.length-1];
@@ -96,7 +86,7 @@ public class Idna implements StringTransform {
       if (result.length() != 0) {
         result.append('.');
       }
-      if (LABEL_ASCII.containsAll(label)) {
+      if (IdnaTypes.LABEL_ASCII.containsAll(label)) {
         result.append(label);
       } else {
         try {

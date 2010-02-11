@@ -9,6 +9,7 @@ import java.util.EnumSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.jsp.BranchStringPrepData.Idna2003Table;
 import org.unicode.jsp.Idna.IdnaType;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
@@ -20,13 +21,10 @@ import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 
 public class StringPrepData {
   private static final boolean DEBUG = false;
-  public static UnicodeSet U32 = new UnicodeSet("[:age=3.2:]").freeze();
-  public static UnicodeSet VALID_ASCII = new UnicodeSet("[\\u002Da-zA-Z0-9]").freeze();
-
-
   /**
 3. Mapping
    This profile specifies mapping using the following tables from
@@ -49,7 +47,8 @@ public class StringPrepData {
    */
 
   public static void getIdna2003Tables(UnicodeMap<String> mappings, UnicodeMap<IdnaType> types) {
-    UnicodeMap<R3<StringPrepData.Idna2003Table, String, String>> rawIdna2003Data = getNamePrepData32(EnumSet.of(
+    UnicodeSet prohibited = new UnicodeSet();
+    getNamePrepData32(EnumSet.of(
             Idna2003Table.B_1, 
             Idna2003Table.B_2, 
             Idna2003Table.C_1_2
@@ -61,60 +60,44 @@ public class StringPrepData {
             , Idna2003Table.C_7
             , Idna2003Table.C_8
             , Idna2003Table.C_9
-    ));
-    IdnaType status;
-    for (int i = 0; i <= 0x10FFFF; ++i) {
-      R3<StringPrepData.Idna2003Table, String, String> data = rawIdna2003Data.get(i);
-      StringPrepData.Idna2003Table type = data == null ? Idna2003Table.none : data.get0();
-      String mapping = null;
-      switch (type) {
-      case A_1: case C_1_2: case C_2_1: case C_2_2: case C_3: case C_4: case C_5: case C_6: case C_7: case C_8: case C_9:
-        status = IdnaType.disallowed;
-        break;
-      case B_1: case B_2:
-        mapping = data.get1();
-        // fall through
-      default:
-        String original = UTF16.valueOf(i);
-        if (U32.contains(i)) {
-          mapping = normalizeAndCheckString(mapping != null ? mapping : original, rawIdna2003Data);
-        }
-        status = mapping == null ? IdnaType.disallowed :
-          mapping.length() == 0 ? IdnaType.ignored :
-            mapping.equals(original) ? IdnaType.valid :
-              IdnaType.mapped;
-        if (status == IdnaType.valid || status == IdnaType.ignored) {
-          mapping = null;
-        }
-      }
-      mappings.put(i, mapping);
-      types.put(i, status);
-    }
+    ), mappings, prohibited);
+
+    types.putAll(0,0x10FFFF, IdnaType.disallowed);
+    types.putAll(IdnaTypes.U32, IdnaType.valid);
+    types.putAll(prohibited, IdnaType.disallowed);
+    UnicodeSet ignored = mappings.getSet("");
+    UnicodeSet hasMapping = mappings.keySet();
+    types.putAll(ignored, IdnaType.ignored);
+    types.putAll(new UnicodeSet(hasMapping).removeAll(ignored), IdnaType.mapped);
+    mappings.putAll(ignored, null);
+
     // special handling for separators
-    mappings.putAll(Idna.OTHER_DOT_SET,".");
-    types.putAll(Idna.OTHER_DOT_SET,IdnaType.mapped);
+    mappings.putAll(IdnaTypes.OTHER_DOT_SET,".");
+    types.putAll(IdnaTypes.OTHER_DOT_SET,IdnaType.mapped);
     types.put('.',IdnaType.valid);
 
     mappings.freeze();
     types.freeze();
   }
 
+
+
   //static Normalizer normalizer32 = new Normalizer(UCD_Types.NFKC, "3.2.0");
 
-  private static String normalizeAndCheckString(String inputString, UnicodeMap<R3<StringPrepData.Idna2003Table, String, String>> rawIdna2003Data) {
-    String string = Normalizer.normalize(inputString, Normalizer.NFKC);
-    int cp;
-    for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
-      cp = string.codePointAt(i);
-      R3<StringPrepData.Idna2003Table, String, String> data = rawIdna2003Data.get(cp);
-      StringPrepData.Idna2003Table type = data == null ? Idna2003Table.none : data.get0();
-      switch (type) {
-      case A_1: case C_1_2: case C_2_1: case C_2_2: case C_3: case C_4: case C_5: case C_6: case C_7: case C_8: case C_9:
-        return null;
-      }
-    }
-    return string;
-  }
+//  private static String normalizeAndCheckString(String inputString, UnicodeMap<R3<StringPrepData.Idna2003Table, String, String>> rawIdna2003Data) {
+//    String string = Normalizer.normalize(inputString, Normalizer.NFKC);
+//    int cp;
+//    for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
+//      cp = string.codePointAt(i);
+//      R3<StringPrepData.Idna2003Table, String, String> data = rawIdna2003Data.get(cp);
+//      StringPrepData.Idna2003Table type = data == null ? Idna2003Table.none : data.get0();
+//      switch (type) {
+//      case A_1: case C_1_2: case C_2_1: case C_2_2: case C_3: case C_4: case C_5: case C_6: case C_7: case C_8: case C_9:
+//        return null;
+//      }
+//    }
+//    return string;
+//  }
 
   enum Idna2003Table {none, A_1, B_1, B_2, B_3, C_1_1, C_1_2, C_2_1, C_2_2, C_3, C_4, C_5, C_6, C_7, C_8, C_9, D_1, D_2}
 
@@ -184,9 +167,8 @@ public class StringPrepData {
           "(?:-([A-Z0-9]{4,6}))?" +
   "(?:\\s*;\\s*.*)?");
 
-  private static UnicodeMap<Row.R3<StringPrepData.Idna2003Table, String, String>> getNamePrepData32(EnumSet<StringPrepData.Idna2003Table> allowed) {
+  private static void getNamePrepData32(EnumSet<StringPrepData.Idna2003Table> allowed, UnicodeMap<String> mappings, UnicodeSet prohibited) {
     try {
-      UnicodeMap<Row.R3<StringPrepData.Idna2003Table, String, String>> rawMapping = new UnicodeMap<Row.R3<StringPrepData.Idna2003Table, String, String>>();
 
       Matcher tableDelimiter = TABLE_DELIMITER.matcher("");
       Matcher mapLine = MAP_LINE.matcher("");
@@ -251,29 +233,87 @@ public class StringPrepData {
           mapValueString = null;
         }
         // check for duplicates
-        R3<StringPrepData.Idna2003Table, String, String> newValue = Row.of(table, (String)mapValueString, (String)comment);
 
         for (int i = startCode; i <= endCode; ++i) {
-          R3<StringPrepData.Idna2003Table, String, String> oldValue = rawMapping.get(i);
-          if (oldValue != null) {
-            if (DEBUG) System.out.println("Duplicates: " + Utility.hex(i) + "\told: " + oldValue + "\t skipping new: " + newValue);
+          if (mapValueString != null) {
+            String oldValue = mappings.get(i);
+            if (oldValue != null && !UnicodeProperty.equals(mapValueString, oldValue)) {
+              throw new IllegalArgumentException("Duplicates: " + Utility.hex(i) + "\told: " + oldValue + "\t skipping new: " + mapValueString);
+            }
+            mappings.put(i, mapValueString);
           } else {
-            rawMapping.put(i, newValue);
+            prohibited.add(i);
           }
         }
       }
       in.close();
-      R3<StringPrepData.Idna2003Table, String, String> badValue = Row.of(Idna2003Table.C_9, (String)null, (String)null);
 
       // fix ASCII
-      rawMapping.putAll(0, 0x7F, badValue);
-      rawMapping.putAll(VALID_ASCII, null);
+      prohibited.addAll(0, 0x7F);
+      prohibited.removeAll(IdnaTypes.VALID_ASCII);
 
       for (int i = 'A'; i <= 'Z'; ++i) {
-        R3<StringPrepData.Idna2003Table, String, String> alphaMap = Row.of(Idna2003Table.B_1, UTF16.valueOf(i-'A'+'a'), (String)null);
-        rawMapping.put(i, alphaMap);
+        mappings.put(i, UTF16.valueOf(i-'A'+'a'));
       }
-      return rawMapping.freeze();
+      // fix up mappings
+
+      // add normalization maps for all unmapped characters
+      UnicodeSet addedMappings = new UnicodeSet();
+      for (UnicodeSetIterator it = new UnicodeSetIterator(IdnaTypes.U32); it.next();) {
+        int i = it.codepoint;
+        String mapValue = mappings.get(i);
+        if (mapValue == null) {
+          if (Normalizer.isNormalized(i, Normalizer.NFKC, Normalizer.UNICODE_3_2)) {
+            continue;
+          }
+          addedMappings.add(i);
+          mappings.put(i, Normalizer.normalize(i, Normalizer.NFKC, Normalizer.UNICODE_3_2));
+        } else if (!Normalizer.isNormalized(mapValue, Normalizer.NFKC, Normalizer.UNICODE_3_2)) {
+          String newValue = Normalizer.normalize(mapValue, Normalizer.NFKC, Normalizer.UNICODE_3_2);
+          if (DEBUG) System.out.println("Change for NFKC mapping of " + Utility.hex(i) + ", \t" + Utility.hex(mapValue) + " \t => \t" + Utility.hex(newValue));
+          addedMappings.add(i);
+          mappings.put(i, newValue);
+        }
+      }
+      if (DEBUG) System.out.println("Adding NFKC mapping for " + addedMappings.toPattern(false) + ",\t" + addedMappings);
+
+      // remove identical mapping
+      UnicodeSet identicals = new UnicodeSet();
+      for (String source : mappings) {
+        String mapping = mappings.get(source);
+        if (UnicodeProperty.equals(source, mapping)) {
+          identicals.add(source);
+        }
+      }
+      if (DEBUG) System.out.println("Removing Identical mapping for " + identicals.toPattern(false) + ",\t" + identicals);
+      mappings.putAll(identicals, null);
+
+      // fix the prohibition according to the resulting characters
+      for (String source : mappings) {
+        int cp;
+        boolean shouldBeProhibited = false;
+        String mapping = mappings.get(source);
+        for (int i = 0; i < mapping.length(); i += Character.charCount(cp)) {
+          cp = mapping.codePointAt(i);
+          String otherMap = mappings.get(cp);
+          if (otherMap != null) {
+            throw new IllegalArgumentException("Recursive mapping\t" + Utility.hex(source) + ",\t" + Utility.hex(mapping) + ",\t" + Utility.hex(cp)  + ",\t" + Utility.hex(otherMap));
+          }
+          shouldBeProhibited |= prohibited.contains(cp);
+        }
+        cp = source.codePointAt(0);
+        boolean wasProhibited = prohibited.contains(cp);
+        if (wasProhibited != shouldBeProhibited) {
+          if (DEBUG) System.out.println("Changing prohibited for " + Utility.hex(cp) + ",\t" + shouldBeProhibited);
+          if (shouldBeProhibited) {
+            prohibited.add(cp);
+          } else {
+            prohibited.remove(cp);
+          }
+        }
+      }
+      // now remove all prohibited from the set
+      mappings.putAll(prohibited, null);
     } catch (IOException e) {
       throw new IllegalArgumentException(e);
     }

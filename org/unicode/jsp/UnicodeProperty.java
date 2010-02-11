@@ -601,6 +601,16 @@ public abstract class UnicodeProperty extends UnicodeLabel {
   }
 
   /**
+   * Utility function for comparing objects that may be null
+   * string.
+   */
+  public static final <T extends Object> boolean equals(T a, T b) {
+    return a == null ? b == null
+            : b == null ? false
+            : a.equals(b);
+  }
+
+  /**
    * Utility that should be on UnicodeSet
    * 
    * @param source

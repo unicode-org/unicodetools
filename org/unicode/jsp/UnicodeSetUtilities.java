@@ -155,17 +155,43 @@ public class UnicodeSetUtilities {
       }
       result.clear();
       PatternMatcher patternMatcher = null;
-      if (propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
+      if (propertyValue.length() > 1 && propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
         patternMatcher = new UnicodeProperty.RegexMatcher().set(propertyValue.substring(1, propertyValue.length() - 1));
       }
       if (factory == null) {
         factory = XPropertyFactory.make();
       }
+      UnicodeProperty otherProperty = null;
+      boolean testCp = false;
+      if (propertyValue.length() > 1 && propertyValue.startsWith("@") && propertyValue.endsWith("@")) {
+        String otherPropName = propertyValue.substring(1, propertyValue.length() - 1).trim();
+        if ("cp".equalsIgnoreCase(otherPropName)) {
+          testCp = true;
+        } else {
+          otherProperty = factory.getProperty(otherPropName);
+        }
+      }
       boolean isAge = UnicodeProperty.equalNames("age", propertyName);
       UnicodeProperty prop = factory.getProperty(propertyName);
       if (prop != null) {
         UnicodeSet set;
-        if (patternMatcher == null) {
+        if (testCp) {
+          set = new UnicodeSet();
+          for (int i = 0; i <= 0x10FFFF; ++i) {
+            if (UnicodeProperty.equals(i, prop.getValue(i))) {
+              set.add(i);
+            }
+          }
+        } else if (otherProperty != null) {
+          set = new UnicodeSet();
+          for (int i = 0; i <= 0x10FFFF; ++i) {
+            String v1 = prop.getValue(i);
+            String v2 = otherProperty.getValue(i);
+            if (UnicodeProperty.equals(v1, v2)) {
+              set.add(i);
+            }
+          }
+        } else if (patternMatcher == null) {
           if (!isValid(prop, propertyValue)) {
             throw new IllegalArgumentException("The value '" + propertyValue + "' is illegal. Values for " + propertyName
                     + " must be in "

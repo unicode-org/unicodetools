@@ -1396,7 +1396,7 @@ public class UnicodeUtilities {
           addBlank(resultLines);
         }
   
-        String rawPunycode = UnicodeUtilities.processLabels(line, Idna.DOTS, true, new Predicate() {
+        String rawPunycode = UnicodeUtilities.processLabels(line, IdnaTypes.DOTS, true, new Predicate() {
           public boolean is(Object item) {
             return true;
           }});
@@ -1426,7 +1426,7 @@ public class UnicodeUtilities {
         String uts46unic = Uts46.SINGLETON.toUnicode(line, errorOut, true);
         addCell(resultLines, hex, uts46unic, getIdnaClass("cn i46", errorOut[0]));
         
-        String idna2008unic = UnicodeUtilities.processLabels(line, Idna.DOT, false, verifier2008);
+        String idna2008unic = UnicodeUtilities.processLabels(line, IdnaTypes.DOT, false, verifier2008);
         addCell(resultLines, hex, idna2008unic, getIdnaClass("cn i2008", idna2008unic.contains("\uFFFD")));
         resultLines.append("<tr></tr>");
   
@@ -1438,7 +1438,7 @@ public class UnicodeUtilities {
         String uts46puny = Uts46.SINGLETON.toPunyCode(line, errorOut);
         addCell(resultLines, hex, uts46puny, getIdnaClass("cn mono i46", errorOut[0]));
         
-        String idna2008puny = UnicodeUtilities.processLabels(line, Idna.DOT, true, verifier2008);
+        String idna2008puny = UnicodeUtilities.processLabels(line, IdnaTypes.DOT, true, verifier2008);
         addCell(resultLines, hex, idna2008puny, getIdnaClass("cn mono i2008", idna2008puny.contains("\uFFFD")));
   
         //        if (result == null) {
@@ -1476,7 +1476,7 @@ public class UnicodeUtilities {
         if (!verifier.is(label)) {
           throw new IllegalArgumentException();
         }
-        if (!punycode || Idna.ASCII.containsAll(label)) {
+        if (!punycode || IdnaTypes.ASCII.containsAll(label)) {
           result.append(label);
         } else {
           StringBuffer puny = Punycode.encode(new StringBuffer(label), null);
