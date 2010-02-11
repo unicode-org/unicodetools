@@ -15,18 +15,28 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
+
+import sun.text.normalizer.UTF16;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.util.BNF;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Quoter;
+import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.IDNA;
+import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 
@@ -61,10 +71,152 @@ public class TestJsp  extends TestFmwk {
     }
     return prettySet;
   }
-  
+
   public void TestLanguage() {
     String foo = UnicodeJsp.getLanguageOptions("de");
     String fii = UnicodeJsp.validateLanguageID("en", "fr");
+  }
+  
+  public void Test2003vsUts46() {
+    ToolUnicodePropertySource properties = ToolUnicodePropertySource.make(Default.ucdVersion());
+    UnicodeMap<String> nfkc_cfMap = properties.getProperty("NFKC_CF").getUnicodeMap();
+
+    for (UnicodeSetIterator it = new UnicodeSetIterator(IdnaTypes.U32); it.next();) {
+      int i = it.codepoint;
+      String map2003 = Idna2003.SINGLETON.mappings.get(i);
+      String map46 = Uts46.SINGLETON.mappings.get(i);
+      IdnaType type2003 = Idna2003.SINGLETON.types.get(i);
+      IdnaType type46 = Uts46.SINGLETON.types.get(i);
+      if (type46 != type2003 || !UnicodeProperty.equals(map46, map2003)) {
+        String map2 = map2003 == null ? UTF16.valueOf(i) : map2003;
+        String nfcf = nfkc_cfMap.get(i);
+        if (!map2.equals(nfcf)) continue;
+        String typeDiff = type46 + "\tvs 2003\t" + type2003;
+        String mapDiff = "[" + codeAndName(map46) + "]\tvs 2003\t[" + codeAndName(map2003);
+        errln((codeAndName(i)) + "\tdifference:" 
+                + (type46 != type2003 ? "\ttype:\t" + typeDiff : "")
+                + (!UnicodeProperty.equals(map46, map2003) ? "\tmap:\t" + mapDiff : "")
+                +  "\tNFKCCF:\t" + codeAndName(nfcf));
+      }
+    }
+  }
+
+  private String codeAndName(int i) {
+    return Utility.hex(i) + " ( " + UTF16.valueOf(i) + " ) " + UCharacter.getName(i);
+  }
+  
+  private String codeAndName(String i) {
+    return i == null ? null : (Utility.hex(i, 4, ",", true, new StringBuilder()) + " ( " + i + " ) " + UCharacter.getName(i, "+"));
+  }
+
+
+  static class TypeAndMap {
+    IdnaType type;
+    String mapping;
+  }
+  public void TestIdna2003() {
+    StringBuffer inbuffer = new StringBuffer();
+    TypeAndMap typeAndMapIcu = new TypeAndMap();
+    
+    for (int cp = 0x80; cp < 0x10FFFF; ++cp) {
+      inbuffer.setLength(0);
+      inbuffer.appendCodePoint(cp);
+      getIcuIdna(inbuffer, typeAndMapIcu);
+      
+      IdnaType type = Idna2003.SINGLETON.getType(cp);
+      String mapping = Idna2003.SINGLETON.mappings.get(cp);
+      if (type != typeAndMapIcu.type || !UnicodeProperty.equals(mapping, typeAndMapIcu.mapping)) {
+        inbuffer.setLength(0);
+        inbuffer.appendCodePoint(cp);
+        getIcuIdna(inbuffer, typeAndMapIcu);
+        String typeDiff = type + "\tvs ICU\t" + typeAndMapIcu.type;
+        String mapDiff = "[" + mapping + "]\tvs ICU\t[" + typeAndMapIcu.mapping + "]";
+        errln(Utility.hex(cp) + "\t( " + UTF16.valueOf(cp) + " )\tdifference:" 
+                + (type != typeAndMapIcu.type ? "\ttype:\t" + typeDiff : "")
+                + (!UnicodeProperty.equals(mapping, typeAndMapIcu.mapping) ? "\tmap:\t" + mapDiff : ""));
+      }
+    }
+  }
+
+  private void getIcuIdna(StringBuffer inbuffer, TypeAndMap typeAndMapIcu) {
+    typeAndMapIcu.type = null;
+    typeAndMapIcu.mapping = null;
+    try {
+      StringBuffer intermediate = convertWithHack(inbuffer);
+      // DEFAULT
+      if (intermediate.length() == 0) {
+        typeAndMapIcu.type = IdnaType.ignored;
+        typeAndMapIcu.mapping = "";
+      } else {
+        StringBuffer outbuffer = IDNA.convertToUnicode(intermediate, IDNA.USE_STD3_RULES);
+        if (!UnicodeUtilities.equals(inbuffer, outbuffer)) {
+          typeAndMapIcu.type = IdnaType.mapped;
+          typeAndMapIcu.mapping = outbuffer.toString();
+        } else {
+          typeAndMapIcu.type = IdnaType.valid;
+          typeAndMapIcu.mapping = null;
+        }
+      }
+    } catch (StringPrepParseException e) {
+      if (e.getMessage().startsWith("Found zero length")) {
+        typeAndMapIcu.type = IdnaType.ignored;
+        typeAndMapIcu.mapping = null;
+      } else {
+        typeAndMapIcu.type = IdnaType.disallowed;
+        typeAndMapIcu.mapping = null;
+      }
+    } catch (Exception e) {
+      System.out.println("Failure at: " + Utility.hex(inbuffer));
+      typeAndMapIcu.type = IdnaType.disallowed;
+      typeAndMapIcu.mapping = null;
+    }
+  }
+
+  private static StringBuffer convertWithHack(StringBuffer inbuffer) throws StringPrepParseException {
+    StringBuffer intermediate;
+    try {
+      intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+    } catch (StringPrepParseException e) {
+      if (!e.getMessage().contains("BIDI")) {
+        throw e;
+      }
+      inbuffer.append("\\u05D9");
+      intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+    }
+    return intermediate;
+  }
+
+
+  public void TestIdnaProps() {
+    String map = Idna2003.SINGLETON.mappings.get(0x200c);
+    IdnaType type = Idna2003.SINGLETON.getType(0x200c);
+    System.out.println("Idna2003\t" + (map == null ? "null" : Utility.hex(map)) + ", " + type);
+    map = Uts46.SINGLETON.mappings.get(0x200c);
+    type = Uts46.SINGLETON.getType(0x200c);
+    System.out.println("Uts46\t" + (map == null ? "null" : Utility.hex(map)) + ", " + type);
+
+    for (int i = 0; i <= 0x10FFFF; ++i) {
+      // invariants are:
+      // if mapped, then mapped the same
+      String map2003 = Idna2003.SINGLETON.mappings.get(i);
+      String map46 = Uts46.SINGLETON.mappings.get(i);
+      String map2008 = Idna2008.SINGLETON.mappings.get(i);
+      IdnaType type2003 = Idna2003.SINGLETON.types.get(i);
+      IdnaType type46 = Uts46.SINGLETON.types.get(i);
+      IdnaType type2008 = Idna2008.SINGLETON.types.get(i);
+      checkNullOrEqual("2003/46", i, type2003, map2003, type46, map46);
+      checkNullOrEqual("2003/2008", i, type2003, map2003, type2008, map2008);
+      checkNullOrEqual("46/2008", i, type46, map46, type2008, map2008);
+    }
+  }
+
+  private void checkNullOrEqual(String title, int cp, IdnaType t1, String m1, IdnaType t2, String m2) {
+    if (t1 == IdnaType.disallowed || t2 == IdnaType.disallowed) return;
+    if (t1 == IdnaType.valid && t2 == IdnaType.valid) return;
+    m1 = m1 == null ? UTF16.valueOf(cp) : m1;
+    m2 = m2 == null ? UTF16.valueOf(cp) : m2;
+    if (m1.equals(m2)) return;
+    assertEquals(title + "\t" + Utility.hex(cp), Utility.hex(m1), Utility.hex(m2));
   }
 
   public void TestConfusables() {
@@ -76,9 +228,11 @@ public class TestJsp  extends TestFmwk {
     XPropertyFactory.make().getProperty("confusable");
     XPropertyFactory.make().getProperty("idr");
   }
-  
+
   public void TestPropertyFactory() {
     //showIcuEnums();
+    checkProperties("[:toLowercase!=@cp@:]", "[A-Z\u00C0]", "[abc]");
+    checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");
     checkProperties("[:ccc=/3/:]", "[\u0308]");
     checkProperties("[:age=3.2:]", "[\u0308]");
     checkProperties("[:alphabetic:]", "[a]");
@@ -105,7 +259,7 @@ public class TestJsp  extends TestFmwk {
         throw new IllegalArgumentException("Exception expected with 'illegal'", e);
       }
     }
-    
+
     checkProperties("[:alphabetic=no:]", "[\u0308]");
     checkProperties("[:alphabetic=false:]", "[\u0308]");
     checkProperties("[:alphabetic=f:]", "[\u0308]");
@@ -399,7 +553,7 @@ public class TestJsp  extends TestFmwk {
     assertContains(sample, "\u00A0\u00E1\u00A0");
 
   }
-  
+
   public void TestGrouping() throws IOException {
     StringWriter printWriter = new StringWriter();
     UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:subhead=/Syllables/:]", TableStyle.extras), true, true, printWriter);
@@ -453,14 +607,14 @@ public class TestJsp  extends TestFmwk {
     UnicodeJsp.showSet("",UnicodeSetUtilities.parseUnicodeSet("[:usage=/.+/:]", TableStyle.extras), false, false, printWriter);
     UnicodeJsp.showSet("",UnicodeSetUtilities.parseUnicodeSet("[:hantype=/simp/:]", TableStyle.extras), false, false, printWriter);
   }
-  
+
   public void TestShowProperties() throws IOException {
     StringWriter out = new StringWriter();
     UnicodeJsp.showProperties(0x0061, out);
     assertTrue("props for character", out.toString().contains("Line_Break"));
     //System.out.println(out);
   }
-  
+
   public void TestPropsTable() throws IOException {
     StringWriter out = new StringWriter();
     UnicodeJsp.showPropsTable(out);
@@ -470,15 +624,15 @@ public class TestJsp  extends TestFmwk {
 
   public void TestShowSet() throws IOException {
     StringWriter out = new StringWriter();
-//    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:Hangul_Syllable_Type=LVT_Syllable:]", TableStyle.extras), false, true, out);
-//    assertTrue("props table", out.toString().contains("Hangul"));
-//    System.out.println(out);
-//    
-//    out.getBuffer().setLength(0);
-//    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:cn:]", TableStyle.extras), false, true, out);
-//    assertTrue("props table", out.toString().contains("unassigned"));
-//    System.out.println(out); 
-    
+    //    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:Hangul_Syllable_Type=LVT_Syllable:]", TableStyle.extras), false, true, out);
+    //    assertTrue("props table", out.toString().contains("Hangul"));
+    //    System.out.println(out);
+    //    
+    //    out.getBuffer().setLength(0);
+    //    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:cn:]", TableStyle.extras), false, true, out);
+    //    assertTrue("props table", out.toString().contains("unassigned"));
+    //    System.out.println(out); 
+
     out.getBuffer().setLength(0);
     UnicodeJsp.showSet("sc", UnicodeSetUtilities.parseUnicodeSet("[:script=/Han/:]", TableStyle.extras), false, true, out);
     assertFalse("props table", out.toString().contains("unassigned"));
@@ -486,7 +640,7 @@ public class TestJsp  extends TestFmwk {
 
 
   }
-  
+
   public void TestProperties() {
     checkProperties("[:subhead=/Mayanist/:]", "[\uA726]");
 
@@ -519,11 +673,23 @@ public class TestJsp  extends TestFmwk {
   }
 
   void checkProperties(String testString, String containsSet) {
-      UnicodeSet tc1 = UnicodeSetUtilities.parseUnicodeSet(testString, TableStyle.extras);
+    checkProperties(testString, containsSet, null);
+  }
+
+  void checkProperties(String testString, String containsSet, String doesntContainSet) {
+    UnicodeSet tc1 = UnicodeSetUtilities.parseUnicodeSet(testString, TableStyle.extras);
+    if (containsSet != null) {
       UnicodeSet contains = new UnicodeSet(containsSet);
       if (!tc1.containsAll(contains)) {
         errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nDoesn't contain " + contains);  
       }
+    }
+    if (doesntContainSet != null) {
+      UnicodeSet doesntContain = new UnicodeSet(doesntContainSet);
+      if (!tc1.containsNone(doesntContain)) {
+        errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nContains some of" + doesntContain);  
+      }
+    }
   }
 
   public void TestParameters() {
@@ -539,7 +705,7 @@ public class TestJsp  extends TestFmwk {
 
   public void TestIdna() {
     boolean[] error = new boolean[1];
-    
+
     String uts46unic = Uts46.SINGLETON.toUnicode("faß.de", error, true);
     System.out.println(uts46unic + ", " + error[0]);
     checkValues(error, Uts46.SINGLETON);
@@ -556,7 +722,7 @@ public class TestJsp  extends TestFmwk {
     checkToPunyCode(Idna2003.SINGLETON, "ß｡ab", "ss.ab");
     checkValidIdna(Idna2003.SINGLETON, "À÷");
     checkValidIdna(Idna2003.SINGLETON, "≠");
-    
+
     checkToUnicodeAndPunyCode(Idna2003.SINGLETON, "نامه\u200Cای.de", "نامهای.de", "xn--mgba3gch31f.de");
 
 
@@ -700,7 +866,7 @@ public class TestJsp  extends TestFmwk {
       }
     }
   }
-  
+
   public void TestBnfMax() {
     BNF bnf = new BNF(new Random(), new Quoter.RuleQuoter());
     bnf.setMaxRepeat(10)

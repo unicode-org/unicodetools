@@ -29,10 +29,14 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     add(new IDNA2003());
     add(new UTS46());
     add(new IDNA2008());
+    add(new IDNA2008c());
     add(new Usage());
     add(new HanType());
     add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getReasons()).setMain("identifier-restriction", "idr", UnicodeProperty.ENUMERATED, "1.1"));
     add(new UnicodeProperty.UnicodeMapProperty().set(Confusables.getMap()).setMain("confusable", "confusable", UnicodeProperty.ENUMERATED, "1.1"));
+    add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
+    add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
+    add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
   }
 
 //  public UnicodeProperty getInternalProperty(String propertyAlias) {
@@ -128,20 +132,21 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
   
   private static class IDNA2003 extends XEnumUnicodeProperty {
     public IDNA2003() {
-      super("idna", IdnaType.values());
+      super("idna2003", IdnaType.values());
     }
 
     @Override
     protected String _getValue(int codepoint) {
-      return Idna2003.getIDNA2003Type(codepoint).toString();
+      return Idna2003.SINGLETON.getType(codepoint).toString();
     }
     @Override
     protected List _getNameAliases(List result) {
       super._getNameAliases(result);
-      result.add("idna2003");
+      result.add("idna");
       return result;
     }
   }
+  
   private static class UTS46 extends XEnumUnicodeProperty {
     public UTS46() {
       super("uts46", IdnaType.values());
@@ -161,6 +166,17 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     @Override
     protected String _getValue(int codepoint) {
       return Idna2008.getTypeMapping().get(codepoint).toString();
+    }
+  }
+  
+  private static class IDNA2008c extends XEnumUnicodeProperty {
+    public IDNA2008c() {
+      super("idna2008c", IdnaType.values());
+    }
+
+    @Override
+    protected String _getValue(int codepoint) {
+      return Idna2008.SINGLETON.getType(codepoint).toString();
     }
   }
   
@@ -210,4 +226,5 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
       return HanTypeValues.getValue(codepoint).toString();
     }
   }
+  
 }

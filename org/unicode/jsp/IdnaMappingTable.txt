@@ -1,5 +1,5 @@
 # IdnaMappingTable-5.2.0.txt- DRAFT
-# Date: 2010-02-04 00:46:56 GMT [MD]
+# Date: 2010-02-11 16:12:37 GMT [MD]
 #
 # Unicode IDNA Compatible Preprocessing (UTS #46)
 # Copyright (c) 1991-2009 Unicode, Inc.
@@ -417,7 +417,8 @@
 02E3          ; mapped     ; 0078                          #  MODIFIER LETTER SMALL X
 02E4          ; mapped     ; 0295                          #  MODIFIER LETTER SMALL REVERSED GLOTTAL STOP
 02E5..033F    ; valid                                      #  MODIFIER LETTER EXTRA-HIGH TONE BAR..COMBINING DOUBLE OVERLINE
-0340..0341    ; disallowed                                 #  COMBINING GRAVE TONE MARK..COMBINING ACUTE TONE MARK
+0340          ; mapped     ; 0300                          #  COMBINING GRAVE TONE MARK
+0341          ; mapped     ; 0301                          #  COMBINING ACUTE TONE MARK
 0342          ; valid                                      #  COMBINING GREEK PERISPOMENI
 0343          ; mapped     ; 0313                          #  COMBINING GREEK KORONIS
 0344          ; mapped     ; 0308 0301                     #  COMBINING GREEK DIALYTIKA TONOS
@@ -1883,8 +1884,7 @@
 1FFA          ; mapped     ; 1F7C                          #  GREEK CAPITAL LETTER OMEGA WITH VARIA
 1FFB          ; mapped     ; 03CE                          #  GREEK CAPITAL LETTER OMEGA WITH OXIA
 1FFC          ; mapped     ; 03C9 03B9                     #  GREEK CAPITAL LETTER OMEGA WITH PROSGEGRAMMENI
-1FFD..200A    ; disallowed                                 #  GREEK OXIA..HAIR SPACE
-200B          ; ignored                                    #  ZERO WIDTH SPACE
+1FFD..200B    ; disallowed                                 #  GREEK OXIA..ZERO WIDTH SPACE
 200C..200D    ; deviation  ;                               #  ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
 200E..200F    ; disallowed                                 #  LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
 2010          ; valid                                      #  HYPHEN
@@ -1910,9 +1910,7 @@
 204A..2056    ; valid                                      #  TIRONIAN SIGN ET..THREE DOT PUNCTUATION
 2057          ; mapped     ; 2032 2032 2032 2032           #  QUADRUPLE PRIME
 2058..205E    ; valid                                      #  FOUR DOT PUNCTUATION..VERTICAL FOUR DOTS
-205F          ; disallowed                                 #  MEDIUM MATHEMATICAL SPACE
-2060          ; ignored                                    #  WORD JOINER
-2061..2063    ; disallowed                                 #  FUNCTION APPLICATION..INVISIBLE SEPARATOR
+205F..2063    ; disallowed                                 #  MEDIUM MATHEMATICAL SPACE..INVISIBLE SEPARATOR
 2064..2069    ; ignored                                    #  INVISIBLE PLUS..<reserved-2069>
 206A..206F    ; disallowed                                 #  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
 2070          ; mapped     ; 0030                          #  SUPERSCRIPT ZERO
@@ -4525,9 +4523,7 @@ FEF5..FEF6    ; mapped     ; 0644 0622                     #  ARABIC LIGATURE LA
 FEF7..FEF8    ; mapped     ; 0644 0623                     #  ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE ISOLATED FORM..ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE FINAL FORM
 FEF9..FEFA    ; mapped     ; 0644 0625                     #  ARABIC LIGATURE LAM WITH ALEF WITH HAMZA BELOW ISOLATED FORM..ARABIC LIGATURE LAM WITH ALEF WITH HAMZA BELOW FINAL FORM
 FEFB..FEFC    ; mapped     ; 0644 0627                     #  ARABIC LIGATURE LAM WITH ALEF ISOLATED FORM..ARABIC LIGATURE LAM WITH ALEF FINAL FORM
-FEFD..FEFE    ; disallowed                                 #  <reserved-FEFD>..<reserved-FEFE>
-FEFF          ; ignored                                    #  ZERO WIDTH NO-BREAK SPACE
-FF00..FF0C    ; disallowed                                 #  <reserved-FF00>..FULLWIDTH COMMA
+FEFD..FF0C    ; disallowed                                 #  <reserved-FEFD>..FULLWIDTH COMMA
 FF0D          ; mapped     ; 002D                          #  FULLWIDTH HYPHEN-MINUS
 FF0E          ; mapped     ; 002E                          #  FULLWIDTH FULL STOP
 FF0F          ; disallowed                                 #  FULLWIDTH SOLIDUS

@@ -100,6 +100,7 @@ public class GenerateIdna {
     baseMapping.put(0x3002, "\u002E");
     baseMapping.put(0xFF61, "\u002E");
 
+
     UnicodeSet labelSeparator = new UnicodeSet("[\\u002E \\uFF0E \\u3002 \\uFF61]");
 
     UnicodeSet baseValidSet = new UnicodeSet(0,0x10FFFF)
@@ -114,6 +115,7 @@ public class GenerateIdna {
     .removeAll(properties.getSet("gc=Zs"))
     .removeAll(properties.getSet("Block=Ideographic_Description_Characters"))
     .removeAll(new UnicodeSet("[\\u0000-\\u007F]"))
+    //.addAll(0x200c, 0x200d)
     .addAll(VALID_ASCII)
     ;
 
@@ -123,11 +125,12 @@ public class GenerateIdna {
             "\\u04C0 \\u10A0-\\u10C5 \\u2132 \\u2183" +
             "\\U0002F868  \\U0002F874 \\U0002F91F \\U0002F95F \\U0002F9BF" +
             "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806 \uFFFC \uFFFD" +
-            "[\\u200E\\u200F\\u202A-\\u202E\\u2061-\\u2063\\u206A-\\u206F\\U0001D173-\\U0001D17A\\U000E0001\\U000E0020-\\U000E007F ́ ̀]" +
+            "[\\u200E\\u200F\\u202A-\\u202E\\u2061-\\u2063\\u206A-\\u206F\\U0001D173-\\U0001D17A\\U000E0001\\U000E0020-\\U000E007F]" +
+            "[\u200B\u2060\uFEFF]" +
     "]");
 
 
-    UnicodeSet deviationSet = new UnicodeSet("[\u200C \u200D \u00DF \u03C2]");
+    UnicodeSet deviationSet = new UnicodeSet("[\u200C \u200D \u00DF \u03C2]"); // \u200C \u200D 
 
     /**
      * 1. If the code point is in the deviation set the status is deviation and
