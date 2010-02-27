@@ -43,7 +43,7 @@
 <li><a href='http://unicode.org/reports/tr46'>(draft) Unicode UTS #46: Unicode IDNA Compatibility Processing</a>
 is designed to allow implementations to support both IDNA2008 and IDNA2003,
 without the compatibility problems resulting from the conflicts between them.</li>
-<li>The IDNA2008 results need to be updated to the latest context rules.</li>
+<li>The context rules are not fully implemented.</li>
 <li>Errors in labels are shown with red; the results may show &#xFFFD; if they are not determinant.</li>
 <li>The input can have hex Unicode, using the \u convention. For example, &#x2665; can be supplied as \u2665.</li>
 <li>The Punycode shown in the Input column is raw - without any mapping or transformation, 

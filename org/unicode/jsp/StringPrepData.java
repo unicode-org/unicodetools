@@ -69,7 +69,7 @@ public class StringPrepData {
     UnicodeSet hasMapping = mappings.keySet();
     types.putAll(ignored, IdnaType.ignored);
     types.putAll(new UnicodeSet(hasMapping).removeAll(ignored), IdnaType.mapped);
-    mappings.putAll(ignored, null);
+    //mappings.putAll(ignored, null);
 
     // special handling for separators
     mappings.putAll(IdnaTypes.OTHER_DOT_SET,".");

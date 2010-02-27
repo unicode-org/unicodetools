@@ -14,7 +14,9 @@ public class Uts46 extends Idna {
     types.freeze();
     mappings.freeze();
     mappings_display.freeze();
-    validSet = new UnicodeSet(types.getSet(IdnaType.valid)).addAll(types.getSet(IdnaType.deviation)).freeze();
+    validSet = new UnicodeSet(types.getSet(IdnaType.valid)).freeze();
+    validSet_transitional =  new UnicodeSet(validSet).addAll(types.getSet(IdnaType.deviation)).freeze();
+    checkPunycodeValidity = true;
   } // private
     
   class MyHandler extends FileUtilities.SemiFileReader {
@@ -37,11 +39,12 @@ public class Uts46 extends Idna {
         break;
       case ignored:
         value = "";
+        break;
       case disallowed:
-        value = "\uFFFD";
       case valid:
       default:
         value = null;
+        break;
       }
       if (mappings != null) {
         mappings.putAll(start, end, value);
