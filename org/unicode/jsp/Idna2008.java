@@ -38,7 +38,7 @@ public class Idna2008 extends Idna {
     types.freeze();
     mappings.freeze();
     mappings_display.freeze();
-    validSet = types.getSet(IdnaType.valid).freeze();
+    validSet = validSet_transitional = types.getSet(IdnaType.valid).freeze();
   }
 
   public static UnicodeMap<Idna2008Type>  getTypeMapping() {

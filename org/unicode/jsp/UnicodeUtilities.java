@@ -1204,16 +1204,28 @@ public class UnicodeUtilities {
     resultLines.append("<tr><td colSpan='5'>&nbsp;</td></tr>\n");
   }
 
-  static void addCell(StringBuilder resultLines, Transliterator hex, String tr46, String attributes) {
+  static void addCell(StringBuilder resultLines, Transliterator hex, String tr46, String attributes, String confusableChoice) {
     if (tr46 == null) {
       resultLines.append("<td " +
               attributes +
       "><i>fails</i></td>\n");
     } else {
+      String escaped = showEscaped(tr46);
+      String linkStart = "", linkEnd = "";
+      if (confusableChoice != null) {
+        linkStart = "<a target='confusables' href='confusables.jsp?&r=" +
+        		confusableChoice +
+        		"&a=" + toHTML.transform(tr46) + "'>";
+        linkEnd = "</a>";
+      }
       resultLines.append("<td " +
               attributes +
               (" title='" + hex.transform(tr46) + "'") +
-      ">").append(showEscaped(tr46)).append("</td>\n");
+      ">")
+      .append(linkStart)
+      .append(escaped)
+      .append(linkEnd)
+      .append("</td>\n");
     }
   }
 
@@ -1373,7 +1385,7 @@ public class UnicodeUtilities {
     Transliterator hex = Transliterator.getInstance("any-hex");
     try {
   
-      lines = UnicodeJsp.UNESCAPER.transform(lines);
+      lines = UnicodeJsp.UNESCAPER.transform(lines.trim());
       StringBuilder resultLines = new StringBuilder();
       //UnicodeUtilities.getIdna2008Tester();
   
@@ -1419,27 +1431,27 @@ public class UnicodeUtilities {
         // first lines
         resultLines.append("<tr>");
         resultLines.append("<th>Display</th>");
-        addCell(resultLines, hex, line, "class='cn ltgreen'");
+        addCell(resultLines, hex, line, "class='cn ltgreen'", "None");
         String idna2003unic = Idna2003.SINGLETON.toUnicode(line, errorOut, true);
-        addCell(resultLines, hex, idna2003unic, getIdnaClass("cn i2003", errorOut[0]));
+        addCell(resultLines, hex, idna2003unic, getIdnaClass("cn i2003", errorOut[0]), "IDNA2003");
         
         String uts46unic = Uts46.SINGLETON.toUnicode(line, errorOut, true);
-        addCell(resultLines, hex, uts46unic, getIdnaClass("cn i46", errorOut[0]));
+        addCell(resultLines, hex, uts46unic, getIdnaClass("cn i46", errorOut[0]), "UTS46%2BUTS39");
         
         String idna2008unic = UnicodeUtilities.processLabels(line, IdnaTypes.DOT, false, verifier2008);
-        addCell(resultLines, hex, idna2008unic, getIdnaClass("cn i2008", idna2008unic.contains("\uFFFD")));
+        addCell(resultLines, hex, idna2008unic, getIdnaClass("cn i2008", idna2008unic.contains("\uFFFD")), "IDNA2003");
         resultLines.append("<tr></tr>");
   
         resultLines.append("<th class='mono'>Punycode</th>");
-        addCell(resultLines, hex, rawPunycode, "class='cn ltgreen mono'");
+        addCell(resultLines, hex, rawPunycode, "class='cn ltgreen mono'", null);
         String idna2003puny = Idna2003.SINGLETON.toPunyCode(line, errorOut);
-        addCell(resultLines, hex, idna2003puny, getIdnaClass("cn mono i2003", errorOut[0]));
+        addCell(resultLines, hex, idna2003puny, getIdnaClass("cn mono i2003", errorOut[0]), null);
         
         String uts46puny = Uts46.SINGLETON.toPunyCode(line, errorOut);
-        addCell(resultLines, hex, uts46puny, getIdnaClass("cn mono i46", errorOut[0]));
+        addCell(resultLines, hex, uts46puny, getIdnaClass("cn mono i46", errorOut[0]), null);
         
         String idna2008puny = UnicodeUtilities.processLabels(line, IdnaTypes.DOT, true, verifier2008);
-        addCell(resultLines, hex, idna2008puny, getIdnaClass("cn mono i2008", idna2008puny.contains("\uFFFD")));
+        addCell(resultLines, hex, idna2008puny, getIdnaClass("cn mono i2008", idna2008puny.contains("\uFFFD")), null);
   
         //        if (result == null) {
         //          resultLines.append("<td class='c'>\u00A0</td><td class='c'>\u00A0</td>");

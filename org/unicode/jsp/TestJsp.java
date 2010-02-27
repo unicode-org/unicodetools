@@ -77,7 +77,53 @@ public class TestJsp  extends TestFmwk {
     String fii = UnicodeJsp.validateLanguageID("en", "fr");
   }
   
+  public void TestJoiner() {
+    
+    checkValidity(Idna2003.SINGLETON, "a", true, true);
+    checkValidity(Idna2003.SINGLETON, "ÖBB.at", true, true);
+    checkValidity(Idna2003.SINGLETON, "xn--BB-nha.at", true, true);
+    checkValidity(Idna2003.SINGLETON, "xn--bb-eka.at", true, true);
+    checkValidity(Idna2003.SINGLETON, "a\u200cb", true, true);
+    checkValidity(Idna2003.SINGLETON, "xn--ab-j1t", true, true);
+    checkValidity(Idna2003.SINGLETON, "faß.de", true, true);
+    checkValidity(Idna2003.SINGLETON, "xn--fa-hia.de", true, true);
+    checkValidity(Idna2003.SINGLETON, "\u0080.de", false, true);
+    checkValidity(Idna2003.SINGLETON, "xn--a.de", true, true);
+
+    checkValidity(Uts46.SINGLETON, "a", true, true);
+    checkValidity(Uts46.SINGLETON, "ÖBB.at", true, true);
+    checkValidity(Uts46.SINGLETON, "xn--BB-nha.at", false, true);
+    checkValidity(Uts46.SINGLETON, "xn--bb-eka.at", true, true);
+    checkValidity(Uts46.SINGLETON, "a\u200cb", true, true);
+    checkValidity(Uts46.SINGLETON, "xn--ab-j1t", true, true);
+    checkValidity(Uts46.SINGLETON, "faß.de", true, true);
+    checkValidity(Uts46.SINGLETON, "xn--fa-hia.de", true, true);
+    checkValidity(Uts46.SINGLETON, "\u0080.de", false, true);
+    checkValidity(Uts46.SINGLETON, "xn--a.de", false, true);
+    
+    checkValidity(Idna2008.SINGLETON, "a", true, true);
+    checkValidity(Idna2008.SINGLETON, "ÖBB.at", false, false);
+    checkValidity(Idna2008.SINGLETON, "xn--BB-nha.at", true, true);
+    checkValidity(Idna2008.SINGLETON, "xn--bb-eka.at", true, true);
+    checkValidity(Idna2008.SINGLETON, "a\u200cb", true, true);
+    checkValidity(Idna2008.SINGLETON, "xn--ab-j1t", true, true);
+    checkValidity(Idna2008.SINGLETON, "faß.de", true, true);
+    checkValidity(Idna2008.SINGLETON, "xn--fa-hia.de", true, true);
+    checkValidity(Idna2008.SINGLETON, "\u0080.de", false, false);
+    checkValidity(Idna2008.SINGLETON, "xn--a.de", true, true);
+
+  }
+
+  private void checkValidity(Idna uts46, String url, boolean expectedPuny, boolean expectedUni) {
+    boolean[] error = new boolean[1];
+    String fii = uts46.toPunyCode(url, error);
+    assertEquals(uts46.getName() + "\ttoPunyCode(" + url + ")", !expectedPuny, error[0]);
+    fii = uts46.toUnicode(url, error, true);
+    assertEquals(uts46.getName() + "\ttoUnicode(" + url + ")", !expectedUni, error[0]);
+  }
+  
   public void Test2003vsUts46() {
+    
     ToolUnicodePropertySource properties = ToolUnicodePropertySource.make(Default.ucdVersion());
     UnicodeMap<String> nfkc_cfMap = properties.getProperty("NFKC_CF").getUnicodeMap();
 
@@ -87,12 +133,18 @@ public class TestJsp  extends TestFmwk {
       String map46 = Uts46.SINGLETON.mappings.get(i);
       IdnaType type2003 = Idna2003.SINGLETON.types.get(i);
       IdnaType type46 = Uts46.SINGLETON.types.get(i);
+      if (type46 == IdnaType.ignored) {
+        assertNotNull("tr46ignored U+" + codeAndName(i), map46);
+      }
+      if (type2003 == IdnaType.ignored) {
+        assertNotNull("2003ignored", map2003);
+      }
       if (type46 != type2003 || !UnicodeProperty.equals(map46, map2003)) {
         String map2 = map2003 == null ? UTF16.valueOf(i) : map2003;
         String nfcf = nfkc_cfMap.get(i);
         if (!map2.equals(nfcf)) continue;
         String typeDiff = type46 + "\tvs 2003\t" + type2003;
-        String mapDiff = "[" + codeAndName(map46) + "]\tvs 2003\t[" + codeAndName(map2003);
+        String mapDiff = "[" + codeAndName(map46) + "\tvs 2003\t" + codeAndName(map2003);
         errln((codeAndName(i)) + "\tdifference:" 
                 + (type46 != type2003 ? "\ttype:\t" + typeDiff : "")
                 + (!UnicodeProperty.equals(map46, map2003) ? "\tmap:\t" + mapDiff : "")

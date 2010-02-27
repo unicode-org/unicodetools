@@ -121,14 +121,15 @@ public class UnicodeJsp {
     UnicodeUtilities.showProperties(cp, out);
   }
 
-  static String defaultIdnaInput = "\u0001.com"
+  static String defaultIdnaInput = ""
+    +"fass.de faß.de fäß.de xn--fa-hia.de"
+    + "\n\u0080.com xn--a.com a\u200cb xn--ab-j1t"
     +"\nöbb.at ÖBB.at ÖBB.at"
     +"\nȡog.de ☕.de I♥NY.de"
-    +"\nfass.de faß.de fäß.de Schäffer.de"
     +"\nＡＢＣ・日本.co.jp 日本｡co｡jp 日本｡co．jp 日本⒈co．jp"
     +"\nx\\u0327\\u0301.de x\\u0301\\u0327.de"
     +"\nσόλος.gr Σόλος.gr ΣΌΛΟΣ.gr"
-    +"\nﻋﺮﺑﻲ.de عربي.de نامهای.de نامه\\u200Cای.de";
+    +"\nﻋﺮﺑﻲ.de عربي.de نامهای.de نامه\\u200Cای.de".trim();
 
   public static String getDefaultIdnaInput() {
     return defaultIdnaInput;
@@ -207,15 +208,15 @@ public class UnicodeJsp {
       case 0: // none
         break;
       case 1: // IDNA2008
-        confusables.setAllowedCharacters(Idna2003.SINGLETON.validSet);
+        confusables.setAllowedCharacters(Idna2003.SINGLETON.validSet_transitional);
         confusables.setNormalizationCheck(Normalizer.NFC);
         break;
       case 2: // IDNA2008
-        confusables.setAllowedCharacters(Idna2008.SINGLETON.validSet);
+        confusables.setAllowedCharacters(Idna2008.SINGLETON.validSet_transitional);
         confusables.setNormalizationCheck(Normalizer.NFC);
         break;
       case 3: // UTS46/39
-        confusables.setAllowedCharacters(new UnicodeSet(Uts46.SINGLETON.validSet).retainAll(XIDModifications.getAllowed()));
+        confusables.setAllowedCharacters(new UnicodeSet(Uts46.SINGLETON.validSet_transitional).retainAll(XIDModifications.getAllowed()));
         confusables.setNormalizationCheck(Normalizer.NFC);
         confusables.setScriptCheck(Confusables.ScriptCheck.same);
         break;
