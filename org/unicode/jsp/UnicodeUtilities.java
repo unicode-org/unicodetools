@@ -165,9 +165,9 @@ public class UnicodeUtilities {
 //    }
 //  }
 
-  static UnicodeSet IGNORE_IN_IDNA_DIFF = UnicodeSetUtilities.parseUnicodeSet("[[\\u0000-\\u007F][:Cc:][:Cn:][:Co:][:Cs:]]", TableStyle.simple).freeze();
+  public static UnicodeSet IGNORE_IN_IDNA_DIFF = UnicodeSetUtilities.parseUnicodeSet("[[\\u0000-\\u007F][:Cc:][:Cn:][:Co:][:Cs:]]", TableStyle.simple).freeze();
 
-  static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped, UnicodeSet overallAllowed) {
+  public static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped, UnicodeSet overallAllowed) {
     UnicodeMap<String> result = new UnicodeMap<String>();
     UnicodeSet valid2008 = getIdna2008Valid();
 
@@ -263,9 +263,11 @@ public class UnicodeUtilities {
   TO_CASEFOLD  = UProperty.STRING_LIMIT + 4,
   TO_LOWERCASE  = UProperty.STRING_LIMIT + 5,
   TO_UPPERCASE  = UProperty.STRING_LIMIT + 6,
-  TO_TITLECASE  = UProperty.STRING_LIMIT + 7,
-  SUBHEAD = TO_TITLECASE + 1,
-  XSTRING_LIMIT = SUBHEAD + 1; 
+  TO_TITLECASE  = UProperty.STRING_LIMIT + 7;
+
+  public static final int SUBHEAD = TO_TITLECASE + 1;
+
+  static final int XSTRING_LIMIT = SUBHEAD + 1; 
 
   static List<String> XPROPERTY_NAMES = Arrays.asList(new String[]{"toNfc", "toNfd", "toNfkc", "toNfkd", "toCasefold", "toLowercase", "toUppercase", "toTitlecase",
           "subhead"});
@@ -304,7 +306,7 @@ public class UnicodeUtilities {
   "\u1CD0-\u1CF2\u214F]");
   static UnicodeSet DEPRECATED = new UnicodeSet("[:deprecated:]").freeze();
 
-  static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
+  public static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
 
     switch (propertyEnum) {
     case TO_NFC: return UnicodeSetUtilities.MyNormalize(codepoint, Normalizer.NFC);
@@ -778,7 +780,7 @@ public class UnicodeUtilities {
     return result.toString();
   }
 
-  static class StringPair implements Comparable<StringPair> {
+  public static class StringPair implements Comparable<StringPair> {
     String first;
     String second;
     public StringPair(String first, String second) {

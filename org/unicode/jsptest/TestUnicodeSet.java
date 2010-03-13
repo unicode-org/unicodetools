@@ -1,7 +1,12 @@
-package org.unicode.jsp;
+package org.unicode.jsptest;
 
 import java.util.Collection;
 import java.util.List;
+
+import org.unicode.jsp.UnicodeProperty;
+import org.unicode.jsp.UnicodeSetUtilities;
+import org.unicode.jsp.XPropertyFactory;
+import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
 
 import com.ibm.icu.dev.test.AbstractTestLog;
 import com.ibm.icu.dev.test.TestFmwk;

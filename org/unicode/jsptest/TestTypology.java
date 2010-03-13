@@ -1,8 +1,10 @@
-package org.unicode.jsp;
+package org.unicode.jsptest;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.unicode.jsp.Typology;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.util.PrettyPrinter;

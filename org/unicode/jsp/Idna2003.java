@@ -8,13 +8,13 @@ public class Idna2003 extends Idna {
     validSet = validSet_transitional = types.getSet(IdnaType.valid).freeze();
   }
   
-  static Idna2003 SINGLETON = new Idna2003();
+  public static Idna2003 SINGLETON = new Idna2003();
   
   static public IdnaType getIDNA2003Type(int cp) {
     return SINGLETON.getType(cp);
   }
   
-  static String toIdna2003(String s) {
+  public static String toIdna2003(String s) {
     return SINGLETON.transform(s);
   }
   

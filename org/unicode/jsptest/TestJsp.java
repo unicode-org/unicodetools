@@ -1,4 +1,4 @@
-package org.unicode.jsp;
+package org.unicode.jsptest;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -15,9 +15,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.jsp.Idna;
+import org.unicode.jsp.Idna2003;
+import org.unicode.jsp.Idna2008;
+import org.unicode.jsp.IdnaTypes;
+import org.unicode.jsp.UnicodeJsp;
+import org.unicode.jsp.UnicodeProperty;
+import org.unicode.jsp.UnicodeRegex;
+import org.unicode.jsp.UnicodeSetUtilities;
+import org.unicode.jsp.UnicodeUtilities;
+import org.unicode.jsp.UtfParameters;
+import org.unicode.jsp.Uts46;
+import org.unicode.jsp.XPropertyFactory;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.UnicodeSetUtilities.NFKC_CF;
 import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
+import org.unicode.jsp.UnicodeUtilities.StringPair;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
