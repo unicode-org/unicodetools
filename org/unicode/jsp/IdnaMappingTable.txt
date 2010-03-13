@@ -1,5 +1,5 @@
 # IdnaMappingTable-5.2.0.txt- DRAFT
-# Date: 2010-02-11 16:12:37 GMT [MD]
+# Date: 2010-03-02 22:28:33 GMT [MD]
 #
 # Unicode IDNA Compatible Preprocessing (UTS #46)
 # Copyright (c) 1991-2009 Unicode, Inc.
@@ -1911,8 +1911,8 @@
 2057          ; mapped     ; 2032 2032 2032 2032           #  QUADRUPLE PRIME
 2058..205E    ; valid                                      #  FOUR DOT PUNCTUATION..VERTICAL FOUR DOTS
 205F..2063    ; disallowed                                 #  MEDIUM MATHEMATICAL SPACE..INVISIBLE SEPARATOR
-2064..2069    ; ignored                                    #  INVISIBLE PLUS..<reserved-2069>
-206A..206F    ; disallowed                                 #  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
+2064          ; ignored                                    #  INVISIBLE PLUS
+2065..206F    ; disallowed                                 #  <reserved-2065>..NOMINAL DIGIT SHAPES
 2070          ; mapped     ; 0030                          #  SUPERSCRIPT ZERO
 2071          ; mapped     ; 0069                          #  SUPERSCRIPT LATIN SMALL LETTER I
 2072..2073    ; disallowed                                 #  <reserved-2072>..<reserved-2073>
@@ -4419,7 +4419,7 @@ FDC4          ; mapped     ; 0639 062C 0645                #  ARABIC LIGATURE AI
 FDC5          ; mapped     ; 0635 0645 0645                #  ARABIC LIGATURE SAD WITH MEEM WITH MEEM INITIAL FORM
 FDC6          ; mapped     ; 0633 062E 064A                #  ARABIC LIGATURE SEEN WITH KHAH WITH YEH FINAL FORM
 FDC7          ; mapped     ; 0646 062C 064A                #  ARABIC LIGATURE NOON WITH JEEM WITH YEH FINAL FORM
-FDC8..FDEF    ; disallowed                                 #  <reserved-FDC8>..<noncharacter-FDEF>
+FDC8..FDEF    ; disallowed                                 #  <reserved-FDC8>..<reserved-FDEF>
 FDF0          ; mapped     ; 0635 0644 06D2                #  ARABIC LIGATURE SALLA USED AS KORANIC STOP SIGN ISOLATED FORM
 FDF1          ; mapped     ; 0642 0644 06D2                #  ARABIC LIGATURE QALA USED AS KORANIC STOP SIGN ISOLATED FORM
 FDF2          ; mapped     ; 0627 0644 0644 0647           #  ARABIC LIGATURE ALLAH ISOLATED FORM
@@ -4437,8 +4437,7 @@ FDFE..FDFF    ; disallowed                                 #  <reserved-FDFE>..<
 FE00..FE0F    ; ignored                                    #  VARIATION SELECTOR-1..VARIATION SELECTOR-16
 FE10          ; disallowed                                 #  PRESENTATION FORM FOR VERTICAL COMMA
 FE11          ; mapped     ; 3001                          #  PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA
-FE12          ; mapped     ; 3002                          #  PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP
-FE13..FE16    ; disallowed                                 #  PRESENTATION FORM FOR VERTICAL COLON..PRESENTATION FORM FOR VERTICAL QUESTION MARK
+FE12..FE16    ; disallowed                                 #  PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP..PRESENTATION FORM FOR VERTICAL QUESTION MARK
 FE17          ; mapped     ; 3016                          #  PRESENTATION FORM FOR VERTICAL LEFT WHITE LENTICULAR BRACKET
 FE18          ; mapped     ; 3017                          #  PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRAKCET
 FE19..FE1F    ; disallowed                                 #  PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS..<reserved-FE1F>
@@ -4729,9 +4728,7 @@ FFEB          ; mapped     ; 2192                          #  HALFWIDTH RIGHTWAR
 FFEC          ; mapped     ; 2193                          #  HALFWIDTH DOWNWARDS ARROW
 FFED          ; mapped     ; 25A0                          #  HALFWIDTH BLACK SQUARE
 FFEE          ; mapped     ; 25CB                          #  HALFWIDTH WHITE CIRCLE
-FFEF          ; disallowed                                 #  <reserved-FFEF>
-FFF0..FFF8    ; ignored                                    #  <reserved-FFF0>..<reserved-FFF8>
-FFF9..FFFF    ; disallowed                                 #  INTERLINEAR ANNOTATION ANCHOR..<noncharacter-FFFF>
+FFEF..FFFF    ; disallowed                                 #  <reserved-FFEF>..<reserved-FFFF>
 10000..1000B  ; valid                                      #  LINEAR B SYLLABLE B008 A..LINEAR B SYLLABLE B046 JE
 1000C         ; disallowed                                 #  <reserved-1000C>
 1000D..10026  ; valid                                      #  LINEAR B SYLLABLE B036 JO..LINEAR B SYLLABLE B032 QO
@@ -6004,7 +6001,7 @@ FFF9..FFFF    ; disallowed                                 #  INTERLINEAR ANNOTA
 1F246         ; mapped     ; 3014 76D7 3015                #  TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-76D7
 1F247         ; mapped     ; 3014 52DD 3015                #  TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-52DD
 1F248         ; mapped     ; 3014 6557 3015                #  TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
-1F249..1FFFF  ; disallowed                                 #  <reserved-1F249>..<noncharacter-1FFFF>
+1F249..1FFFF  ; disallowed                                 #  <reserved-1F249>..<reserved-1FFFF>
 20000..2A6D6  ; valid                                      #  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A6D7..2A6FF  ; disallowed                                 #  <reserved-2A6D7>..<reserved-2A6FF>
 2A700..2B734  ; valid                                      #  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
@@ -6541,13 +6538,9 @@ FFF9..FFFF    ; disallowed                                 #  INTERLINEAR ANNOTA
 2FA1B         ; mapped     ; 9F16                          #  CJK COMPATIBILITY IDEOGRAPH-2FA1B
 2FA1C         ; mapped     ; 9F3B                          #  CJK COMPATIBILITY IDEOGRAPH-2FA1C
 2FA1D         ; mapped     ; 2A600                         #  CJK COMPATIBILITY IDEOGRAPH-2FA1D
-2FA1E..DFFFF  ; disallowed                                 #  <reserved-2FA1E>..<noncharacter-DFFFF>
-E0000         ; ignored                                    #  <reserved-E0000>
-E0001         ; disallowed                                 #  LANGUAGE TAG
-E0002..E001F  ; ignored                                    #  <reserved-E0002>..<reserved-E001F>
-E0020..E007F  ; disallowed                                 #  TAG SPACE..CANCEL TAG
-E0080..E0FFF  ; ignored                                    #  <reserved-E0080>..<reserved-E0FFF>
-E1000..10FFFF ; disallowed                                 #  <reserved-E1000>..<noncharacter-10FFFF>
+2FA1E..E00FF  ; disallowed                                 #  <reserved-2FA1E>..<reserved-E00FF>
+E0100..E01EF  ; ignored                                    #  VARIATION SELECTOR-17..VARIATION SELECTOR-256
+E01F0..10FFFF ; disallowed                                 #  <reserved-E01F0>..<reserved-10FFFF>
 
 # Total code points: 1114112
 

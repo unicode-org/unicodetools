@@ -4,8 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.unicode.jsp.Idna.IdnaType;
+import org.unicode.jsp.UnicodeProperty.BaseProperty;
+import org.unicode.jsp.UnicodeProperty.SimpleProperty;
 
+import sun.text.normalizer.UTF16;
+
+import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.util.VersionInfo;
 
 public class XPropertyFactory extends UnicodeProperty.Factory {
@@ -37,6 +43,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
     add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
     add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
+    add(new StringTransformProperty(new UnicodeSetUtilities.NFKC_CF(), false).setMain("toNFKC_CF", "toNFKC_CF", UnicodeProperty.STRING, "1.1"));
   }
 
 //  public UnicodeProperty getInternalProperty(String propertyAlias) {
@@ -227,4 +234,15 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
   }
   
+  private static class StringTransformProperty extends SimpleProperty {
+    StringTransform transform;
+
+    public StringTransformProperty(StringTransform transform, boolean hasUniformUnassigned) {
+      this.transform = transform;
+      setUniformUnassigned(hasUniformUnassigned);
+    }
+    protected String _getValue(int codepoint) {
+      return transform.transform(UTF16.valueOf(codepoint));
+    }
+  }
 }

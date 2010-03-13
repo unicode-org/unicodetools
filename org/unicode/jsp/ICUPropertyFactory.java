@@ -410,7 +410,12 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
     };
     for (int i = 0; i < ranges.length; ++i) {
       for (int j = ranges[i][0]; j < ranges[i][1]; ++j) {
-        String alias = UCharacter.getPropertyName(j, UProperty.NameChoice.LONG);
+        String alias;
+        try {
+          alias = UCharacter.getPropertyName(j, UProperty.NameChoice.LONG);
+        } catch (Exception e) {
+          continue; // probably mismatch in ICU version
+        }
         UnicodeProperty.addUnique(alias, result);
         if (!result.contains(alias)) result.add(alias);
       }

@@ -116,7 +116,7 @@ public class GenerateIdna {
     .removeAll(properties.getSet("Block=Ideographic_Description_Characters"))
     .removeAll(new UnicodeSet("[\\u0000-\\u007F]"))
     //.addAll(0x200c, 0x200d)
-    .addAll(VALID_ASCII)
+    .addAll(VALID_ASCII).freeze()
     ;
 
     System.out.println("Base Valid Set & nfkcqc=n" + new UnicodeSet("[:nfkcqc=n:]").retainAll(baseValidSet));
@@ -127,8 +127,10 @@ public class GenerateIdna {
             "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806 \uFFFC \uFFFD" +
             "[\\u200E\\u200F\\u202A-\\u202E\\u2061-\\u2063\\u206A-\\u206F\\U0001D173-\\U0001D17A\\U000E0001\\U000E0020-\\U000E007F]" +
             "[\u200B\u2060\uFEFF]" +
-    "]");
+    "]").addAll(properties.getSet("gc=Cn")).freeze();
 
+    System.out.println("***Overlap with baseValidSet and baseExclusionSet:\t" + new UnicodeSet(
+            baseValidSet).retainAll(baseExclusionSet));
 
     UnicodeSet deviationSet = new UnicodeSet("[\u200C \u200D \u00DF \u03C2]"); // \u200C \u200D 
 
@@ -177,10 +179,22 @@ public class GenerateIdna {
     do {
       excluded.clear();
       UnicodeSet validSet = mappingTable.getSet(validResult);
+      UnicodeSet disallowedSet = mappingTable.getSet(disallowedResult);
+      UnicodeSet ignoredSet = mappingTable.getSet(ignoredResult);
       for (String valid : validSet) {
         String nfd = Default.nfd().normalize(valid);
         if (!validSet.containsAll(nfd)) {
           excluded.add(valid);
+        }
+      }
+      UnicodeSet mappedSet = new UnicodeSet(0,0x10FFFF).removeAll(validSet)
+      .removeAll(disallowedSet).removeAll(ignoredSet);
+      for (String mapped : mappedSet) {
+        R2<IdnaType, String> mappedValue = mappingTable.get(mapped);
+        String mapResult = mappedValue.get1();
+        String nfd = Default.nfd().normalize(mapResult);
+        if (!validSet.containsAll(nfd)) {
+          excluded.add(mapped);
         }
       }
       mappingTable.putAll(excluded, disallowedResult);

@@ -45,13 +45,13 @@ public class UnicodeSetUtilities {
     //static Matcher DI = Pattern.compile(UnicodeRegex.fix("[:di:]")).matcher("");
     UnicodeMap<String> DI2 = new UnicodeMap<String>().putAll(parseUnicodeSet("[:di:]", TableStyle.simple), "");
     public String transform(String source) {
-      String s0 = myFoldCase(source);
-      String s1 = MyNormalize(s0, Normalizer.NFKC);
-      String s2 = myFoldCase(s1);
+      String di = DI2.transform(source);
+      String cf = myFoldCase(di);
+      String nfcf = MyNormalize(cf, Normalizer.NFKC);
+      String nfcfnf = myFoldCase(nfcf);
       //String s3 = DI.reset(s2).replaceAll("");
-      String s3 = DI2.transform(s2);
-      String s4 = MyNormalize(s3,Normalizer.NFKC);
-      return s4;
+      String result = MyNormalize(nfcfnf,Normalizer.NFKC);
+      return result;
     }
   }  
 

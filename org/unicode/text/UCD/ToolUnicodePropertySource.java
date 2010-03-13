@@ -368,6 +368,18 @@ static final boolean   DEBUG        = false;
         if (equals(cp,b)) {
           return null;
         }
+        String c = trans(b);
+        if (c.equals(b)) {
+          return c;
+        }
+        //System.out.println("NFKC_CF requires multiple passes:\tU+" + Utility.hex(cp) + "\t" + Default.ucd().getName(cp));
+        String d = trans(c);
+        if (d.equals(c)) {
+          return d;
+        }
+        throw new IllegalArgumentException("NFKC_CF requires THREE passes:\tU+" + Utility.hex(cp) + "\t" + Default.ucd().getName(cp));
+      }
+      private String trans(String b) {
         String bb = removeFrom(b, ignorable);
         final String case2 = ucd.getCase(bb, UCD_Types.FULL, UCD_Types.FOLD);
         String c = nfkc.normalize(case2);
