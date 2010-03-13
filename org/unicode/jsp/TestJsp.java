@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.jsp.Idna.IdnaType;
+import org.unicode.jsp.UnicodeSetUtilities.NFKC_CF;
 import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
@@ -283,6 +284,14 @@ public class TestJsp  extends TestFmwk {
 
   public void TestPropertyFactory() {
     //showIcuEnums();
+    String trans1 = new NFKC_CF().transform("\u2065");
+    XPropertyFactory factory = XPropertyFactory.make();
+    UnicodeProperty prop = factory.getProperty("tonfkccf");
+    String trans2 = prop.getValue('\u2065');
+    if (!trans1.equals(trans2)) {
+      errln("mapping of \u2065 " + UCharacter.getName('\u2065') + "," + trans1 + "," + trans2);
+    }
+    checkProperties("[:tonfkccf=/^$/:]", "[:di:]", "[abc]");
     checkProperties("[:toLowercase!=@cp@:]", "[A-Z\u00C0]", "[abc]");
     checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");
     checkProperties("[:ccc=/3/:]", "[\u0308]");
@@ -733,13 +742,15 @@ public class TestJsp  extends TestFmwk {
     if (containsSet != null) {
       UnicodeSet contains = new UnicodeSet(containsSet);
       if (!tc1.containsAll(contains)) {
-        errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nDoesn't contain " + contains);  
+        UnicodeSet missing = new UnicodeSet(contains).removeAll(tc1);
+        errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nDoesn't contain " + missing);  
       }
     }
     if (doesntContainSet != null) {
       UnicodeSet doesntContain = new UnicodeSet(doesntContainSet);
       if (!tc1.containsNone(doesntContain)) {
-        errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nContains some of" + doesntContain);  
+        UnicodeSet extra = new UnicodeSet(doesntContain).retainAll(tc1);
+        errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nContains some of" + extra);  
       }
     }
   }

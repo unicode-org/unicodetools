@@ -1,6 +1,7 @@
 package org.unicode.jsp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.Collections;
@@ -8,14 +9,19 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 import org.unicode.jsp.AlternateIterator.Builder;
+import org.unicode.jsp.FileUtilities.SemiFileReader;
 
 import com.ibm.icu.dev.test.util.CollectionUtilities;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.XEquivalenceClass;
 import com.ibm.icu.impl.Utility;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;
@@ -167,6 +173,13 @@ public class Confusables implements Iterable<String>{
     int cp;
     for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
       cp = string.codePointAt(i);
+      BitSet specials = ScriptTester.getScriptSpecials(cp);
+      if (specials != null) {
+        if (!contains(scripts,specials)) {
+          return false;
+        }
+        continue;
+      }
       int script = UScript.getScript(cp);
       if (!scripts.get(script)) {
         return false;
@@ -174,6 +187,8 @@ public class Confusables implements Iterable<String>{
     }
     return true;
   }
+  
+  
 
   // Ugly hack, because BitSet doesn't have the method.
   private boolean contains(BitSet set1, BitSet set2) {
@@ -192,12 +207,17 @@ public class Confusables implements Iterable<String>{
     int cp;
     for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
       cp = source.codePointAt(i);
+      BitSet specials = ScriptTester.getScriptSpecials(cp);
+      if (specials != null) {
+        result.or(specials);
+        continue;
+      }
       int script = UScript.getScript(cp);
       result.set(script);
     }
     return result;
   }
-
+  
   public List<Collection<String>> getAlternates() {
     AlternateIterator build = buildIterator();
     if (build == null) {
@@ -218,11 +238,25 @@ public class Confusables implements Iterable<String>{
     if (scriptCheck == ScriptCheck.none) {
       return true;
     }
+
     int lastScript = UScript.UNKNOWN;
     int cp;
     for (int i = 0; i < confusable.length(); i += Character.charCount(cp)) {
       cp = confusable.codePointAt(i);
       int script = UScript.getScript(cp);
+/*
+ * Keep optional trails, close off as items fail.
+      check for allowed:
+        inherited and common don't count
+        single script ok
+        Hant + Hani => Hant
+        Hans + Hani => Hans
+        Hang + Hant => Hang
+        Hang + Hani => Hang
+        ...
+        Kata + Hira + Hant + Hans ok => Kata
+        Asomtavruli, Nuskhuri, and Mkhedruli ok => Mkhedruli (georgian)
+        */
       if (i == 0) {
         lastScript = script;
         continue;
