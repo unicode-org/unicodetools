@@ -12,8 +12,8 @@ public class Idna implements StringTransform {
     valid, ignored, mapped, deviation, disallowed;
   }
 
-  protected UnicodeMap<IdnaType> types = new UnicodeMap<IdnaType>();
-  protected UnicodeMap<String> mappings = new UnicodeMap<String>();
+  public UnicodeMap<IdnaType> types = new UnicodeMap<IdnaType>();
+  public UnicodeMap<String> mappings = new UnicodeMap<String>();
   protected UnicodeMap<String> mappings_display = new UnicodeMap<String>();
   protected UnicodeSet validSet = new UnicodeSet();
   protected UnicodeSet validSet_transitional = new UnicodeSet();

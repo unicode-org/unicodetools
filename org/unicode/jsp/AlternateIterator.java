@@ -27,11 +27,11 @@ public class AlternateIterator implements Iterator<String>, Iterable<String> {
       return this;
     }
     
-    Builder add(String... items) {
+    public Builder add(String... items) {
       return add(Arrays.asList(items));
     }
     
-    AlternateIterator build() {
+    public AlternateIterator build() {
       return new AlternateIterator(sources);
     }
   }

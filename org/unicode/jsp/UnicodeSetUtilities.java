@@ -41,7 +41,7 @@ public class UnicodeSetUtilities {
   };
 
 
-  static class NFKC_CF implements StringTransform {
+  public static class NFKC_CF implements StringTransform {
     //static Matcher DI = Pattern.compile(UnicodeRegex.fix("[:di:]")).matcher("");
     UnicodeMap<String> DI2 = new UnicodeMap<String>().putAll(parseUnicodeSet("[:di:]", TableStyle.simple), "");
     public String transform(String source) {
@@ -59,7 +59,7 @@ public class UnicodeSetUtilities {
     return UCharacter.foldCase(source, true);
   }
 
-  enum TableStyle {simple, extras}
+  public enum TableStyle {simple, extras}
 
   public static UnicodeSet parseUnicodeSet(String input, TableStyle style) {
     input = input.trim() + "]]]]]";

@@ -7,7 +7,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class Uts46 extends Idna {
 
-  static Uts46 SINGLETON = new Uts46();
+  public static Uts46 SINGLETON = new Uts46();
   
   private Uts46() {
     new MyHandler().process(Uts46.class, "IdnaMappingTable.txt");

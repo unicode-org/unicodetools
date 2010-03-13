@@ -1,5 +1,10 @@
-package org.unicode.jsp;
+package org.unicode.jsptest;
 
+import org.unicode.jsp.AlternateIterator;
+import org.unicode.jsp.Confusables;
+import org.unicode.jsp.UnicodeJsp;
+import org.unicode.jsp.XIDModifications;
+import org.unicode.jsp.Confusables.ScriptCheck;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.Normalizer;

@@ -1,4 +1,4 @@
-package org.unicode.jsp;
+package org.unicode.jsptest;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.jsp.Builder;
 import org.unicode.jsp.Builder.EqualAction;
 
 import com.ibm.icu.dev.test.TestFmwk;

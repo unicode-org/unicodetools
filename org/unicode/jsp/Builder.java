@@ -30,21 +30,21 @@ import java.util.SortedSet;
  * @author markdavis
  */
 public final class Builder {
-  enum EqualAction {NATIVE, REPLACE, RETAIN, THROW}
+  public enum EqualAction {NATIVE, REPLACE, RETAIN, THROW}
 
-  static <E, C extends Collection<E>> CBuilder<E,C> with(C collection, EqualAction ea) {
+  public static <E, C extends Collection<E>> CBuilder<E,C> with(C collection, EqualAction ea) {
     return new CBuilder<E,C>(collection, ea);
   }
 
-  static <E, C extends Collection<E>> CBuilder<E,C> with(C collection) {
+  public static <E, C extends Collection<E>> CBuilder<E,C> with(C collection) {
     return new CBuilder<E,C>(collection, EqualAction.NATIVE);
   }
 
-  static <K, V, M extends Map<K,V>> MBuilder<K,V,M> with(M map, EqualAction ea) {
+  public static <K, V, M extends Map<K,V>> MBuilder<K,V,M> with(M map, EqualAction ea) {
     return new MBuilder<K,V,M>(map, ea);
   }
 
-  static <K, V, M extends Map<K,V>> MBuilder<K,V,M> with(M map) {
+  public static <K, V, M extends Map<K,V>> MBuilder<K,V,M> with(M map) {
     return new MBuilder<K,V,M>(map, EqualAction.NATIVE);
   }
 
