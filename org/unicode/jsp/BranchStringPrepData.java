@@ -7,22 +7,14 @@ package org.unicode.jsp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.jsp.Idna.IdnaType;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;

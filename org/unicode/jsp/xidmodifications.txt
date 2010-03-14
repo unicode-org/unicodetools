@@ -1,8 +1,8 @@
 ﻿# Security Profile for General Identifiers
 # File: xidmodifications.txt
 # Version: 2.1-draft
-# Generated: 2010-01-29, 01:28:37 GMT
-# Checkin: $Revision: 1.3 $
+# Generated: 2010-03-13, 04:47:01 GMT
+# Checkin: $Revision: 1.4 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
 #
@@ -395,23 +395,17 @@ FA27..FA29    ; allowed ; recommended          #  [3] (﨧..﨩)  CJK COMPATIBIL
 200E..200F    ; restricted ; default-ignorable #  [2] (U+200E..U+200F)  LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
 202A..202E    ; restricted ; default-ignorable #  [5] (U+202A..U+202E)  LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
 2060..2064    ; restricted ; default-ignorable #  [5] (U+2060..U+2064)  WORD JOINER..INVISIBLE PLUS
-2065..2069    ; restricted ; default-ignorable #  [5] (U+2065..U+2069)  <reserved-2065>..<reserved-2069>
 206A..206F    ; restricted ; default-ignorable #  [6] (U+206A..U+206F)  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
 3164          ; restricted ; default-ignorable #      (U+3164)  HANGUL FILLER
 FE00..FE0F    ; restricted ; default-ignorable # [16] (U+FE00..U+FE0F)  VARIATION SELECTOR-1..VARIATION SELECTOR-16
 FEFF          ; restricted ; default-ignorable #      (U+FEFF)  ZERO WIDTH NO-BREAK SPACE
 FFA0          ; restricted ; default-ignorable #      (U+FFA0)  HALFWIDTH HANGUL FILLER
-FFF0..FFF8    ; restricted ; default-ignorable #  [9] (U+FFF0..U+FFF8)  <reserved-FFF0>..<reserved-FFF8>
 1D173..1D17A  ; restricted ; default-ignorable #  [8] (U+1D173..U+1D17A)  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
-E0000         ; restricted ; default-ignorable #      (U+E0000)  <reserved-E0000>
 E0001         ; restricted ; default-ignorable #      (U+E0001)  LANGUAGE TAG
-E0002..E001F  ; restricted ; default-ignorable # [30] (U+E0002..U+E001F)  <reserved-E0002>..<reserved-E001F>
 E0020..E007F  ; restricted ; default-ignorable # [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
-E0080..E00FF  ; restricted ; default-ignorable # [128] (U+E0080..U+E00FF)  <reserved-E0080>..<reserved-E00FF>
 E0100..E01EF  ; restricted ; default-ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
-E01F0..E0FFF  ; restricted ; default-ignorable # [3600] (U+E01F0..U+E0FFF)  <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 4165
+# Total code points: 392
 
 #	Values:	restricted ; historic
 

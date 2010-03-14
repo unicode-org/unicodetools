@@ -1,7 +1,10 @@
 package org.unicode.jsp;
 
 import java.util.BitSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
@@ -43,16 +46,28 @@ public class ScriptTester {
     return new Builder(level, specials);
   }
 
+  public static Builder start() {
+    return new Builder(CompatibilityLevel.Highly_Restrictive, ScriptSpecials.on);
+  }
+
+  public static Builder start(CompatibilityLevel level) {
+    return new Builder(level, ScriptSpecials.on);
+  }
+  
+
   /**
    * If the scripts in the string are compatible, then returns a list of them. Otherwise returns an empty bitset.
    * @param input
    * @return bitset of scripts found
    */
   public BitSet test(CharSequence input) {
-    int cp;
-    BitSet compatible = new BitSet(LIMIT);
-    BitSet found = new BitSet(LIMIT);
+    return getFoundAndCompatible(input, new BitSet(LIMIT), new BitSet(LIMIT));
+  }
+
+  private BitSet getFoundAndCompatible(CharSequence input, BitSet found, BitSet compatible) {
+    found.clear();
     compatible.or(ALL);
+    int cp;
     for (int i = 0; i < input.length(); i += Character.charCount(cp)) {
       cp = Character.codePointAt(input, i);
       BitSet scripts = character_scripts.get(cp); // will never fail
@@ -75,28 +90,85 @@ public class ScriptTester {
     return found;
   }
 
-  public static BitSet getScriptSpecials(int codepoint) {
-    BitSet output = new BitSet(LIMIT);
-    BitSet actualScripts = scriptSpecials.get(codepoint);
-    output.or(actualScripts);
-    return output;
-  }
+  public boolean filterTable(List<Set<String>> table) {
+    // this gets tricky. We go through each string, in each set. 
+    // For the characters in each string, we gather the compatible (ANDing)
+    // We then OR those in for the set.
+    // Across the sets in the list, we AND them.
+    BitSet itemFound = new BitSet();
+    BitSet itemCompatible = new BitSet();
 
-  private ScriptTester(UnicodeMap<BitSet> character_scripts) {
-    this.character_scripts = character_scripts;
+    BitSet overallCompatible = new BitSet();
+    overallCompatible.or(ALL);
+    for (Set<String> items : table) {
+      BitSet setCompatible = new BitSet();
+      for (String item : items) {
+        getFoundAndCompatible(item, itemFound, itemCompatible);
+        setCompatible.or(itemCompatible);
+      }
+      overallCompatible.and(setCompatible);
+    }
+    // at this point, compatible contains all the scripts that occur in every row.
+    // we'll now remove items that aren't in those scripts
+    
+    for (Set<String> items : table) {
+      for (Iterator<String> it = items.iterator(); it.hasNext();) {
+        String item = it.next();
+        if (!isCompatible(item, overallCompatible)) {
+        //getFoundAndCompatible(item, itemFound, itemCompatible);
+        //if (!contains(overallCompatible, itemFound)) {
+          it.remove();
+        }
+      }
+      if (items.size() == 0) {
+        return false;
+      }
+    }
+    return true;
   }
   
+  /**
+   * Each character in item has a compatible set that intersects overall.
+   * @param item
+   * @param overallCompatible
+   * @return
+   */
+  private boolean isCompatible(String input, BitSet overallCompatible) {
+    int cp;
+    for (int i = 0; i < input.length(); i += Character.charCount(cp)) {
+      cp = Character.codePointAt(input, i);
+      BitSet scripts = character_scripts.get(cp); // will never fail
+      if (!scripts.intersects(overallCompatible)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Ugly hack, because BitSet doesn't have the method.
+  private boolean contains(BitSet set1, BitSet set2) {
+    // quick check to verify intersecting
+    if (!set1.intersects(set2)) {
+      return false;
+    }
+    BitSet temp = new BitSet();
+    temp.or(set2);
+    temp.and(set1);
+    // we now have the intersection. It must be equal to set2
+    return temp.equals(set2);
+  }
+
   private static class MyHandler extends FileUtilities.SemiFileReader {
     public final static Pattern SPACES = Pattern.compile("\\s+");
 
     UnicodeMap<BitSet> map = new UnicodeMap<BitSet>();
-    
+
     public void handleLine(int start, int end, String[] items) {
       BitSet bitSet = new BitSet(LIMIT);
       for (String script : SPACES.split(items[1])) {
         int scriptCode = script.equalsIgnoreCase("hant") ? HANT
                 : script.equalsIgnoreCase("hans") ? HANS
-                : UCharacter.getPropertyValueEnum(UProperty.SCRIPT, script);
+                        : UCharacter.getPropertyValueEnum(UProperty.SCRIPT, script);
         bitSet.set(scriptCode);
       }
       map.putAll(start, end, bitSet);
@@ -105,12 +177,33 @@ public class ScriptTester {
 
   private static UnicodeMap<BitSet> scriptSpecials = ((MyHandler) new MyHandler().process(Confusables.class, "scriptSpecials.txt")).map;
 
+  public static BitSet getScriptSpecials(int codepoint) {
+    BitSet actualScripts = scriptSpecials.get(codepoint);
+    if (actualScripts == null) {
+      int script = UCharacter.getIntPropertyValue(codepoint, UProperty.SCRIPT);
+      if (script != UScript.HAN) {
+        return null;
+      }
+      BitSet output = new BitSet(LIMIT);
+      output.set(HANT);
+      output.set(HANS);
+      return output;
+    }
+    BitSet output = new BitSet(LIMIT);
+    output.or(actualScripts);
+    return output;
+  }
+
+  private ScriptTester(UnicodeMap<BitSet> character_scripts) {
+    this.character_scripts = character_scripts;
+  }
+
   public static class Builder {
 
     private final Map<Integer, BitSet> compatible = new TreeMap<Integer, BitSet>();
     private final UnicodeMap<BitSet> char2scripts = new UnicodeMap<BitSet>();
 
-    public Builder(CompatibilityLevel level, ScriptSpecials specials) {
+    private Builder(CompatibilityLevel level, ScriptSpecials specials) {
       // make everything compatible with itself
       for (int i = 0; i < LIMIT; ++i) {
         BitSet itself = new BitSet(LIMIT);
@@ -128,9 +221,15 @@ public class ScriptTester {
         }
         // FALL THRU!
       case Highly_Restrictive: 
+        addCompatible(UScript.LATIN, UScript.HAN, UScript.HIRAGANA, UScript.KATAKANA);
         addCompatible(UScript.LATIN, HANT, UScript.HIRAGANA, UScript.KATAKANA);
-        addCompatible(UScript.LATIN, HANT, UScript.BOPOMOFO);
+        addCompatible(UScript.LATIN, HANS, UScript.HIRAGANA, UScript.KATAKANA);
+        
+        addCompatible(UScript.LATIN, UScript.HAN, UScript.HANGUL);
         addCompatible(UScript.LATIN, HANT, UScript.HANGUL);
+        addCompatible(UScript.LATIN, HANS, UScript.HANGUL);
+        
+        addCompatible(UScript.LATIN, HANT, UScript.BOPOMOFO);
         addCompatible(UScript.LATIN, HANS);
         // ?? Asomtavruli, Nuskhuri, and Mkhedruli (georgian)
         // FALL THRU!
@@ -145,7 +244,7 @@ public class ScriptTester {
       }
       // then specials
       // fix the char2scripts mapping
-      
+
       if (specials == ScriptSpecials.on){
         char2scripts.putAll(scriptSpecials);
       }

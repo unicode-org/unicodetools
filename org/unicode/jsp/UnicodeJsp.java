@@ -14,7 +14,6 @@ import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
 
 import com.ibm.icu.dev.test.util.BNF;
 import com.ibm.icu.dev.test.util.Quoter;
-import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Normalizer;
