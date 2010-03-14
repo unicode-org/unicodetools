@@ -15,10 +15,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.jsp.Builder;
 import org.unicode.jsp.Idna;
 import org.unicode.jsp.Idna2003;
 import org.unicode.jsp.Idna2008;
 import org.unicode.jsp.IdnaTypes;
+import org.unicode.jsp.ScriptTester;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeRegex;
@@ -30,7 +32,6 @@ import org.unicode.jsp.XPropertyFactory;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.UnicodeSetUtilities.NFKC_CF;
 import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
-import org.unicode.jsp.UnicodeUtilities.StringPair;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
@@ -286,7 +287,9 @@ public class TestJsp  extends TestFmwk {
   }
 
   public void TestConfusables() {
-    String trial = UnicodeJsp.getConfusables("sox", true, true, true, true);
+    String trial = UnicodeJsp.getConfusables("一万", true, true, true, true);
+    logln("***TRIAL0 : " + trial);
+    trial = UnicodeJsp.getConfusables("sox", true, true, true, true);
     logln("***TRIAL1 : " + trial);
     trial = UnicodeJsp.getConfusables("sox", 1);
     logln("***TRIAL2 : " + trial);

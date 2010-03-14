@@ -1,28 +1,22 @@
 package org.unicode.jsp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.regex.Pattern;
 
 import org.unicode.jsp.AlternateIterator.Builder;
-import org.unicode.jsp.FileUtilities.SemiFileReader;
+import org.unicode.jsp.ScriptTester.CompatibilityLevel;
+import org.unicode.jsp.ScriptTester.ScriptSpecials;
 
 import com.ibm.icu.dev.test.util.CollectionUtilities;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.XEquivalenceClass;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -44,7 +38,7 @@ public class Confusables implements Iterable<String>{
   public static UnicodeMap<String> getMap() {
     UnicodeMap<String> result = new UnicodeMap<String>();
     for (String s : equivalents) {
-      Set<String> others = new TreeSet(equivalents.getEquivalences(s));
+      Set<String> others = new TreeSet<String>(equivalents.getEquivalences(s));
       String list = "\u2051" + CollectionUtilities.join(others, "\u2051") + "\u2051";
       for (String other : others) {
         result.put(other, list);
@@ -99,7 +93,8 @@ public class Confusables implements Iterable<String>{
   public Iterator<String> iterator() {
     AlternateIterator build = buildIterator();
     if (build == null) {
-      return ((Set<String>)Collections.EMPTY_SET).iterator();
+      Set<String> empty = Collections.emptySet();
+      return empty.iterator();
     }
     return new MyFilteredIterator(build);
   }
@@ -130,36 +125,8 @@ public class Confusables implements Iterable<String>{
     
     // now filter for multiple scripts, if set
     if (scriptCheck != ScriptCheck.none) {
-      BitSet scripts = new BitSet();
-      scripts.set(0, UScript.CODE_LIMIT);
-      for (Set<String> items : table) {
-        BitSet itemScripts = new BitSet();
-        for (String item : items) {
-          addStringScripts(item, itemScripts);
-        }
-        if (itemScripts.get(UScript.COMMON) || itemScripts.get(UScript.INHERITED) || itemScripts.get(UScript.UNKNOWN)) {
-          continue; // item works with everything
-        }
-        scripts.and(itemScripts);
-      }
-      // at this point, scripts contains all the scripts that occur in every row.
-      scripts.set(UScript.COMMON);
-      scripts.set(UScript.INHERITED);
-      scripts.set(UScript.UNKNOWN);
-      // we'll now remove items that aren't in those scripts
-      
-      for (Set<String> items : table) {
-        BitSet itemScripts = new BitSet();
-        for (Iterator<String> it = items.iterator(); it.hasNext();) {
-          String item = it.next();
-          itemScripts.clear();
-          if (!containsScripts(scripts, item)) {
-            it.remove();
-          }
-        }
-        if (items.size() == 0) {
-          return null;
-        }
+      if (!scriptTester.filterTable(table)) {
+        return null;
       }
     }
     for (Set<String> items : table) {
@@ -169,59 +136,11 @@ public class Confusables implements Iterable<String>{
     return build;
   }
   
-  private boolean containsScripts(BitSet scripts, String string) {
-    int cp;
-    for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
-      cp = string.codePointAt(i);
-      BitSet specials = ScriptTester.getScriptSpecials(cp);
-      if (specials != null) {
-        if (!contains(scripts,specials)) {
-          return false;
-        }
-        continue;
-      }
-      int script = UScript.getScript(cp);
-      if (!scripts.get(script)) {
-        return false;
-      }
-    }
-    return true;
-  }
-  
-  
-
-  // Ugly hack, because BitSet doesn't have the method.
-  private boolean contains(BitSet set1, BitSet set2) {
-    // quick check to verify intersecting
-    if (!set1.intersects(set2)) {
-      return false;
-    }
-    BitSet temp = new BitSet();
-    temp.or(set2);
-    temp.and(set1);
-    // we now have the intersection. It must be equal to set2
-    return temp.equals(set2);
-  }
-
-  private BitSet addStringScripts(String source, BitSet result) {
-    int cp;
-    for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
-      cp = source.codePointAt(i);
-      BitSet specials = ScriptTester.getScriptSpecials(cp);
-      if (specials != null) {
-        result.or(specials);
-        continue;
-      }
-      int script = UScript.getScript(cp);
-      result.set(script);
-    }
-    return result;
-  }
   
   public List<Collection<String>> getAlternates() {
     AlternateIterator build = buildIterator();
     if (build == null) {
-      return ((List<Collection<String>>)Collections.EMPTY_LIST);
+      return Collections.emptyList();
     }
     return build.getAlternates();
   }
@@ -238,43 +157,10 @@ public class Confusables implements Iterable<String>{
     if (scriptCheck == ScriptCheck.none) {
       return true;
     }
-
-    int lastScript = UScript.UNKNOWN;
-    int cp;
-    for (int i = 0; i < confusable.length(); i += Character.charCount(cp)) {
-      cp = confusable.codePointAt(i);
-      int script = UScript.getScript(cp);
-/*
- * Keep optional trails, close off as items fail.
-      check for allowed:
-        inherited and common don't count
-        single script ok
-        Hant + Hani => Hant
-        Hans + Hani => Hans
-        Hang + Hant => Hang
-        Hang + Hani => Hang
-        ...
-        Kata + Hira + Hant + Hans ok => Kata
-        Asomtavruli, Nuskhuri, and Mkhedruli ok => Mkhedruli (georgian)
-        */
-      if (i == 0) {
-        lastScript = script;
-        continue;
-      }
-      if (script == lastScript || script == UScript.INHERITED) {
-        continue;
-      }
-      if (script == UScript.COMMON) {
-        continue;
-      }
-      if (lastScript == UScript.COMMON) {
-        lastScript = script;
-        continue;
-      }
-      return false;
-    }
-    return true;
+    return !scriptTester.test(confusable).isEmpty();
   }
+  
+  static ScriptTester scriptTester = ScriptTester.start(CompatibilityLevel.Highly_Restrictive, ScriptSpecials.on).get();
 
   class MyFilteredIterator extends FilteredIterator<String>{
     Set<String> alreadySeen;;

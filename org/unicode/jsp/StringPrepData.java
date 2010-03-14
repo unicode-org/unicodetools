@@ -9,15 +9,10 @@ import java.util.EnumSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.BranchStringPrepData.Idna2003Table;
 import org.unicode.jsp.Idna.IdnaType;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

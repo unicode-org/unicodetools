@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.UnicodeProperty.BaseProperty;
 import org.unicode.jsp.UnicodeProperty.SimpleProperty;
 
 import sun.text.normalizer.UTF16;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.util.VersionInfo;

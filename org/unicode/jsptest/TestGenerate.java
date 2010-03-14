@@ -12,16 +12,14 @@ import org.unicode.jsp.Idna2008;
 import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.Uts46;
-import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.UnicodeProperty.UnicodeMapProperty;
+import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
-
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.Normalizer;

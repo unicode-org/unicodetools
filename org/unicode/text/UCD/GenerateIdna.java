@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.TreeSet;
 
 import org.unicode.jsp.StringPrepData;
+import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
@@ -20,7 +21,6 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
-import org.unicode.jsp.Idna.IdnaType;
 
 public class GenerateIdna {
 

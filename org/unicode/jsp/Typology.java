@@ -6,9 +6,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.XIDModifications.MyReader;
-
-import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 
 public class Typology {
