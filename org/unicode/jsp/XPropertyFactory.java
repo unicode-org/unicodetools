@@ -1,13 +1,24 @@
 package org.unicode.jsp;
 
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.SortedMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.UnicodeProperty.SimpleProperty;
+import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
 
+import com.ibm.icu.dev.test.util.Relation;
+import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.util.VersionInfo;
@@ -19,7 +30,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     singleton = new XPropertyFactory();
     return singleton;
   }
-  
+
 
   {
     ICUPropertyFactory base = ICUPropertyFactory.make();
@@ -42,21 +53,48 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
     add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
     add(new StringTransformProperty(new UnicodeSetUtilities.NFKC_CF(), false).setMain("toNFKC_CF", "toNFKC_CF", UnicodeProperty.STRING, "1.1"));
+
+    // set up the special script property
+    UnicodeProperty scriptProp = base.getProperty("sc");
+    UnicodeMap<String> specialMap = new UnicodeMap<String>();
+    specialMap.putAll(scriptProp.getUnicodeMap());
+    specialMap.putAll(ScriptTester.getScriptSpecialsNames());
+    add(new UnicodeProperty.UnicodeMapProperty()
+    .set(specialMap)
+    .setMain("Script_Specials", "scs", UnicodeProperty.ENUMERATED, "1.1")
+    .addValueAliases(ScriptTester.getScriptSpecialsAlternates(), false)
+    );
+
+    SortedMap<String, Charset> charsets = Charset.availableCharsets();
+    Matcher charsetMatcher = Pattern.compile("ISO-8859-\\d*|GB2312|SJIS").matcher("");
+    for (String name : charsets.keySet()) {
+      if (!charsetMatcher.reset(name).matches()) {
+        continue;
+      }
+      Charset charset = charsets.get(name);
+      EncodingProperty prop = new EncodingProperty(charset);
+      prop.setType(UnicodeProperty.STRING);
+      prop.setName("enc_" + name);
+      for (String alias : charset.aliases()) {
+        prop.addName("enc_" + alias);
+      }
+      add(prop);
+    }
   }
 
-//  public UnicodeProperty getInternalProperty(String propertyAlias) {
-//    UnicodeProperty result = props.get(propertyAlias.toLowerCase(Locale.ENGLISH));
-//    if (result != null) {
-//      return result;
-//    }
-//    return base.getInternalProperty(propertyAlias);
-//  }
-//
-//  public List getInternalAvailablePropertyAliases(List result) {
-//    base.getInternalAvailablePropertyAliases(result);
-//    result.addAll(UnicodeUtilities.XPROPERTY_NAMES);
-//    return result;
-//  }
+  //  public UnicodeProperty getInternalProperty(String propertyAlias) {
+  //    UnicodeProperty result = props.get(propertyAlias.toLowerCase(Locale.ENGLISH));
+  //    if (result != null) {
+  //      return result;
+  //    }
+  //    return base.getInternalProperty(propertyAlias);
+  //  }
+  //
+  //  public List getInternalAvailablePropertyAliases(List result) {
+  //    base.getInternalAvailablePropertyAliases(result);
+  //    result.addAll(UnicodeUtilities.XPROPERTY_NAMES);
+  //    return result;
+  //  }
 
   private static class XUnicodeProperty extends UnicodeProperty {
     int fakeEnumValue;
@@ -96,7 +134,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
   }
-  
+
   private static abstract class XEnumUnicodeProperty extends UnicodeProperty {
     List<String> values = new ArrayList();
 
@@ -134,7 +172,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
   }
-  
+
   private static class IDNA2003 extends XEnumUnicodeProperty {
     public IDNA2003() {
       super("idna2003", IdnaType.values());
@@ -151,7 +189,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
       return result;
     }
   }
-  
+
   private static class UTS46 extends XEnumUnicodeProperty {
     public UTS46() {
       super("uts46", IdnaType.values());
@@ -162,7 +200,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
       return Uts46.SINGLETON.getType(codepoint).toString();
     }
   }
-  
+
   private static class IDNA2008 extends XEnumUnicodeProperty {
     public IDNA2008() {
       super("idna2008", Idna2008.Idna2008Type.values());
@@ -173,7 +211,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
       return Idna2008.getTypeMapping().get(codepoint).toString();
     }
   }
-  
+
   private static class IDNA2008c extends XEnumUnicodeProperty {
     public IDNA2008c() {
       super("idna2008c", IdnaType.values());
@@ -184,7 +222,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
       return Idna2008.SINGLETON.getType(codepoint).toString();
     }
   }
-  
+
   private static class Usage extends XEnumUnicodeProperty {
     enum UsageValues {common, historic, deprecated, liturgical, limited, symbol, punctuation, na;
     public static UsageValues getValue(int codepoint) {
@@ -231,7 +269,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
       return HanTypeValues.getValue(codepoint).toString();
     }
   }
-  
+
   private static class StringTransformProperty extends SimpleProperty {
     StringTransform transform;
 
@@ -241,6 +279,38 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
     protected String _getValue(int codepoint) {
       return transform.transform(UTF16.valueOf(codepoint));
+    }
+  }
+
+  public static class EncodingProperty extends SimpleProperty {
+
+    public static final String ERROR = "\uFFFD";
+
+    CharEncoder encoder;
+    byte[] temp = new byte[32]; // any more than this and we don't care
+
+    EncodingProperty(Charset charset) {
+      encoder = new CharEncoder(charset, false, false);
+    }
+
+    protected String _getValue(int codepoint) {
+      int len = encoder.getValue(codepoint, temp, 0);
+      if (temp == null) {
+        return ERROR;
+      }
+      StringBuffer result = new StringBuffer();
+      for (int i = 0; i < len; ++i) {
+        if (result.length() > 0) {
+          result.append(' ');
+        }
+        result.append(hex(temp[i]));
+      }
+      return result.toString();
+    }
+
+    private Object hex(byte b) {
+      String result = Integer.toHexString(0xFF&b).toUpperCase(Locale.ENGLISH);
+      return result.length() == 2 ? result : "0" + result;
     }
   }
 }

@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -261,7 +262,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
   public static final String UNUSED = "??";
 
-  public final UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
+  public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
     if (result == null)
       result = new UnicodeSet();
     boolean uniformUnassigned = hasUniformUnassigned();
@@ -1182,7 +1183,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
   }
 
   public static abstract class SimpleProperty extends BaseProperty {
-    List values;
+    LinkedHashSet values;
 
     public UnicodeProperty addName(String alias) {
       propertyAliases.add(alias);
@@ -1213,7 +1214,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     }
 
     public SimpleProperty setValues(List valueAliases) {
-      this.values = new ArrayList(valueAliases);
+      this.values = new LinkedHashSet(valueAliases);
       for (Iterator it = this.values.iterator(); it.hasNext();) {
         _addToValues((String) it.next(), null);
       }
@@ -1237,7 +1238,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
 
     private void _addToValues(String item, String alias) {
       if (values == null)
-        values = new ArrayList(1);
+        values = new LinkedHashSet();
       if (toValueAliases == null)
         _fixValueAliases();
       addUnique(item, values);
