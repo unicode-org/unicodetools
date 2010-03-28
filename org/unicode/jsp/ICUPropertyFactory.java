@@ -19,8 +19,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.jsp.UnicodeProperty.PatternMatcher;
-
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;

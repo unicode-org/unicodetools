@@ -1,7 +1,6 @@
 package org.unicode.jsptest;
 
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,8 +11,6 @@ import org.unicode.jsp.Confusables;
 import org.unicode.jsp.ScriptTester;
 import org.unicode.jsp.XIDModifications;
 import org.unicode.jsp.Confusables.ScriptCheck;
-import org.unicode.jsp.ScriptTester.CompatibilityLevel;
-import org.unicode.jsp.ScriptTester.ScriptSpecials;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.Normalizer;

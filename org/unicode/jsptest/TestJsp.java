@@ -15,12 +15,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
-import org.unicode.jsp.Builder;
 import org.unicode.jsp.Idna;
 import org.unicode.jsp.Idna2003;
 import org.unicode.jsp.Idna2008;
 import org.unicode.jsp.IdnaTypes;
-import org.unicode.jsp.ScriptTester;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeRegex;

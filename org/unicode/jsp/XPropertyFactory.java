@@ -1,10 +1,7 @@
 package org.unicode.jsp;
 
-import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.SortedMap;
@@ -13,11 +10,9 @@ import java.util.regex.Pattern;
 
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.UnicodeProperty.SimpleProperty;
-import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
 
-import com.ibm.icu.dev.test.util.Relation;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.StringTransform;
