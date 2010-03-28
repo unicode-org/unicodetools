@@ -2,6 +2,7 @@ package org.unicode.jsp;
 
 import java.util.BitSet;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -89,7 +90,7 @@ public class ScriptTester {
     for (int i = 0; i < maxSize; i += Character.charCount(cp)) {
       cp = Character.codePointAt(input, i);
       compat[codePointCount] = character_compatibleScripts.get(cp);
-      actual[codePointCount] = getActualScripts(cp, actual, codePointCount);
+      actual[codePointCount] = getActualScripts(cp);
       if (!actual[codePointCount].intersects(compatBefore)) {
         return false;
       }
@@ -105,13 +106,13 @@ public class ScriptTester {
     }
     return true;
   }
+  
+  
 
   // TODO, cache results
-  private BitSet getActualScripts(int cp, BitSet[] actual, int cpNumber) {
+  private BitSet getActualScripts(int cp) {
     BitSet actualScripts = scriptSpecials.get(cp);
-    if (actualScripts != null) {
-      actual[cpNumber] = actualScripts;
-    } else {
+    if (actualScripts == null) {
       actualScripts = new BitSet(LIMIT);
       int script = UCharacter.getIntPropertyValue(cp, UProperty.SCRIPT);
       if (script == UScript.HAN) {
@@ -125,40 +126,77 @@ public class ScriptTester {
   }
 
   public boolean filterTable(List<Set<String>> table) {
-    // this gets tricky. We go through each string, in each set. 
-    // For the characters in each string, we gather the compatible (ANDing)
-    // We then OR those in for the set.
-    // Across the sets in the list, we AND them.
-    BitSet itemFound = new BitSet();
-    BitSet itemCompatible = new BitSet();
+    
+    // We make one pass forward and one backward, finding if each characters scripts
+    // are compatible with the ones before.
+    // We then make a second pass for the ones after.
+    // Could be optimized if needed
+    int maxSize = table.size();
+    BitSet compatBefore = new BitSet(LIMIT);
+    compatBefore.or(ALL);
+    BitSet anyCompatAt = new BitSet(LIMIT);
 
-    BitSet overallCompatible = new BitSet();
-    overallCompatible.or(ALL);
-    for (Set<String> items : table) {
-      BitSet setCompatible = new BitSet();
-      for (String item : items) {
-        getFoundAndCompatible(item, itemFound, itemCompatible);
-        setCompatible.or(itemCompatible);
-      }
-      overallCompatible.and(setCompatible);
-    }
-    // at this point, compatible contains all the scripts that occur in every row.
-    // we'll now remove items that aren't in those scripts
-
-    for (Set<String> items : table) {
-      for (Iterator<String> it = items.iterator(); it.hasNext();) {
-        String item = it.next();
-        if (!isCompatible(item, overallCompatible)) {
-          //getFoundAndCompatible(item, itemFound, itemCompatible);
-          //if (!contains(overallCompatible, itemFound)) {
-          it.remove();
+    HashSet<String> toRemove = new HashSet<String>();
+    for (int i = 0; i < maxSize; ++i) {
+      toRemove.clear();
+      anyCompatAt.clear();
+      Set<String> column = table.get(i);
+      for (String item : column) {
+        BitSet compatibleScripts = getCompatibleScripts(item); // ANDed
+        anyCompatAt.or(compatibleScripts);
+        BitSet actualScripts = getActualScripts(item); // ORed
+        if (!actualScripts.intersects(compatBefore)) {
+          toRemove.add(item);
         }
       }
-      if (items.size() == 0) {
+      column.removeAll(toRemove);
+      if (column.size() == 0) {
         return false;
       }
+      compatBefore.and(anyCompatAt);
+    }
+    // now reverse order
+    compatBefore.or(ALL);
+    for (int i = maxSize - 1; i >= 0; --i) {
+      toRemove.clear();
+      anyCompatAt.clear();
+      Set<String> column = table.get(i);
+      for (String item : column) {
+        BitSet compatibleScripts = getCompatibleScripts(item); // ANDed
+        anyCompatAt.or(compatibleScripts);
+        BitSet actualScripts = getActualScripts(item); // ORed
+        if (!actualScripts.intersects(compatBefore)) {
+          toRemove.add(item);
+        }
+      }
+      column.removeAll(toRemove);
+      if (column.size() == 0) {
+        return false;
+      }
+      compatBefore.and(anyCompatAt);
     }
     return true;
+  }
+
+  private BitSet getActualScripts(String item) {
+    BitSet toOrWith = new BitSet(LIMIT);
+    int cp;
+    for (int i = 0; i < item.length(); i += Character.charCount(cp)) {
+      cp = Character.codePointAt(item, i);
+      toOrWith.or(getActualScripts(cp));
+    }
+    return toOrWith;
+  }
+
+  private BitSet getCompatibleScripts(String item) {
+    BitSet toAndWith = new BitSet(LIMIT);
+    toAndWith.or(ALL);
+    int cp;
+    for (int i = 0; i < item.length(); i += Character.charCount(cp)) {
+      cp = Character.codePointAt(item, i);
+      toAndWith.and(character_compatibleScripts.get(cp));
+    }
+    return toAndWith;
   }
 
   /**
