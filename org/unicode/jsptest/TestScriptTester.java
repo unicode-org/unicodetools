@@ -1,6 +1,7 @@
 package org.unicode.jsptest;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,17 +63,38 @@ public class TestScriptTester extends TestFmwk {
   }
   
   public void TestConfusables() {
-    Confusables confusables = new Confusables("google")
+    TreeSet<String> expected = Builder.with(new TreeSet<String>()).addAll("google", "goog1e", "googIe").get();
+    checkScriptCheck("google", expected);
+    checkScriptCheck("mark", null);
+    checkScriptCheck("scope", null);
+    checkScriptCheck("pop", null);
+
+    //g໐໐g1e
+  }
+
+  private void checkScriptCheck(String string, TreeSet<String> expected) {
+    Confusables confusables = new Confusables(string)
     .setNormalizationCheck(Normalizer.NFKC)
     .setScriptCheck(ScriptCheck.same)
     .setAllowedCharacters(XIDModifications.getAllowed());
-    
-    TreeSet<String> expected = Builder.with(new TreeSet<String>()).addAll("google", "goog1e", "googIe").get();
-    for (String s : confusables) {
-      logln(s);
-    }
+
     TreeSet<String> items = Builder.with(new TreeSet<String>()).addAll(confusables).get();
-    assertEquals("Confusables for 'google'", expected, items);
-    //g໐໐g1e
+    if (expected != null) {
+      assertEquals("Confusables for '" + string +
+      		"'", expected, items);
+    }
+    
+    Confusables confusables2 = new Confusables(string)
+    .setNormalizationCheck(Normalizer.NFKC)
+    .setAllowedCharacters(XIDModifications.getAllowed());
+    
+    HashSet<String> filteredDifferently = new HashSet<String>();
+    for (String s : confusables2) {
+      if (Confusables.scriptTester.isOk(s)) {
+        filteredDifferently.add(s);
+      }
+    }
+    assertEquals("Confusables for '" + string +
+    		"'", items, filteredDifferently);
   }
 }

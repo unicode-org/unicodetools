@@ -11,8 +11,8 @@
         
         UtfParameters utfParameters = new UtfParameters(queryString);
         
-        String transform = utfParameters.getParameter("a", "nfkc; Greek");
-        String sample = utfParameters.getParameter("b", "The Quick Brown Fox?\n\u24B6\u24D1\u24D2\u24D3");
+        String transform = utfParameters.getParameter("a", "Latin");
+        String sample = utfParameters.getParameter("b", "\u03B4\u03B9\u03B1\u03C6\u03BF\u03C1\u03B5\u03C4\u03B9\u03BA\u03BF\u03CD\u03C2");
         boolean show = !"off".equals(utfParameters.getParameter("show", "off"));
 %>
 <h1>Unicode Utilities: Transforms</h1>

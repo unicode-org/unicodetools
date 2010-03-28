@@ -159,7 +159,7 @@ public class Confusables implements Iterable<String>{
     || scriptTester.isOk(confusable);
   }
 
-  static ScriptTester scriptTester = ScriptTester.start(CompatibilityLevel.Highly_Restrictive, ScriptSpecials.on).get();
+  public static ScriptTester scriptTester = ScriptTester.start(CompatibilityLevel.Highly_Restrictive, ScriptSpecials.on).get();
 
   class MyFilteredIterator extends FilteredIterator<String>{
     Set<String> alreadySeen;;
