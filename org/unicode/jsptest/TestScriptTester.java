@@ -70,7 +70,7 @@ public class TestScriptTester extends TestFmwk {
     .setScriptCheck(ScriptCheck.same)
     .setAllowedCharacters(XIDModifications.getAllowed());
     
-    TreeSet<String> expected = Builder.with(new TreeSet<String>()).add("google").get();
+    TreeSet<String> expected = Builder.with(new TreeSet<String>()).addAll("google", "goog1e", "googIe").get();
     for (String s : confusables) {
       logln(s);
     }
