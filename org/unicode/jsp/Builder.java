@@ -29,6 +29,8 @@ import java.util.SortedSet;
  * </pre>
  * @author markdavis
  */
+// TODO add other Iterable<? extends E>
+
 public final class Builder {
   public enum EqualAction {NATIVE, REPLACE, RETAIN, THROW}
 
@@ -103,6 +105,13 @@ public final class Builder {
       return this;
     }
     
+    public CBuilder<E, U> addAll(Iterable<? extends E> items) {
+      for (E item : items) {
+        collection.add(item);
+      }
+      return this;
+    }
+    
     public CBuilder<E, U> remove(E o) {
       collection.remove(o);
       return this;
@@ -120,6 +129,13 @@ public final class Builder {
       return this;
     }
     
+    public CBuilder<E,U> removeAll(Iterable<? extends E> items) {
+      for (E item : items) {
+        collection.remove(item);
+      }
+      return this;
+    }
+    
     public CBuilder<E,U> retainAll(Collection<? extends E> c) {
       collection.retainAll(c);
       return this;
@@ -129,7 +145,7 @@ public final class Builder {
       collection.retainAll(Arrays.asList(items));
       return this;
     }
-    
+        
     public CBuilder<E,U> xor(Collection<? extends E> c) {
       for (E item : c) {
         boolean changed = collection.remove(item);

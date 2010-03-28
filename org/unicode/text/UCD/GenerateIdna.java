@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.TreeSet;
 
+import org.unicode.jsp.Idna2003;
 import org.unicode.jsp.StringPrepData;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.text.utility.Utility;
@@ -19,6 +20,7 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 
@@ -58,6 +60,7 @@ public class GenerateIdna {
     }
 
     writeDataFile(stringMappingTable);
+    System.out.println("After running, copy the data file to the jsp directory, and run org.unicode.jsptest.TestGenerate to generate the differences table.");
   }
 
   private static void verifyDifferences(UnicodeMap<String> mappings, UnicodeMap<IdnaType> types, UnicodeMap<Row.R2<IdnaType, String>> mappingTable) {
@@ -103,11 +106,12 @@ public class GenerateIdna {
 
     UnicodeSet labelSeparator = new UnicodeSet("[\\u002E \\uFF0E \\u3002 \\uFF61]");
 
+    UnicodeSet cn = properties.getSet("gc=Cn");
     UnicodeSet baseValidSet = new UnicodeSet(0,0x10FFFF)
     .removeAll(properties.getSet("Changes_When_NFKC_Casefolded=true"))
     .removeAll(properties.getSet("gc=Cc"))
     .removeAll(properties.getSet("gc=Cf"))
-    .removeAll(properties.getSet("gc=Cn"))
+    .removeAll(cn)
     .removeAll(properties.getSet("gc=Co"))
     .removeAll(properties.getSet("gc=Cs"))
     .removeAll(properties.getSet("gc=Zl"))
@@ -121,13 +125,26 @@ public class GenerateIdna {
 
     System.out.println("Base Valid Set & nfkcqc=n" + new UnicodeSet("[:nfkcqc=n:]").retainAll(baseValidSet));
 
-    UnicodeSet baseExclusionSet = new UnicodeSet("[" +
+    R2<UnicodeSet, UnicodeSet> baseExclusionSetInfo = computeBaseExclusionSet(baseMapping, baseValidSet); 
+    UnicodeSet disallowedExclusionSet = baseExclusionSetInfo.get0();
+    UnicodeSet mappingChanged = baseExclusionSetInfo.get1();
+    UnicodeSet baseExclusionSet = new UnicodeSet(disallowedExclusionSet).addAll(mappingChanged);
+    UnicodeSet baseExclusionSet2 = new UnicodeSet("[" +
             "\\u04C0 \\u10A0-\\u10C5 \\u2132 \\u2183" +
             "\\U0002F868  \\U0002F874 \\U0002F91F \\U0002F95F \\U0002F9BF" +
             "\u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806 \uFFFC \uFFFD" +
             "[\\u200E\\u200F\\u202A-\\u202E\\u2061-\\u2063\\u206A-\\u206F\\U0001D173-\\U0001D17A\\U000E0001\\U000E0020-\\U000E007F]" +
             "[\u200B\u2060\uFEFF]" +
-    "]").addAll(properties.getSet("gc=Cn")).freeze();
+    "]").freeze(); //.addAll(cn)
+
+    System.out.println("computed base exclusion disallowed:\t" + disallowedExclusionSet);
+    System.out.println("computed base exclusion mapping changed:\t" + mappingChanged);
+    
+    if (false && !baseExclusionSet.equals(baseExclusionSet2)) {
+      System.out.println("computed-static:\t" + new UnicodeSet(baseExclusionSet).removeAll(baseExclusionSet2));
+      System.out.println("static-computed:\t" + new UnicodeSet(baseExclusionSet2).removeAll(baseExclusionSet));
+      throw new IllegalArgumentException();
+    }
 
     System.out.println("***Overlap with baseValidSet and baseExclusionSet:\t" + new UnicodeSet(
             baseValidSet).retainAll(baseExclusionSet));
@@ -214,6 +231,38 @@ public class GenerateIdna {
     return mappingTable;
   }
 
+
+  private static R2<UnicodeSet,UnicodeSet> computeBaseExclusionSet(UnicodeMap<String> baseMapping, UnicodeSet baseValidSet) {
+    UnicodeSet disallowed = new UnicodeSet(); 
+    UnicodeSet mappingChanged = new UnicodeSet(); 
+    for (UnicodeSetIterator it = new UnicodeSetIterator(U32); it.next();) {
+      int i = it.codepoint;
+      IdnaType type = Idna2003.SINGLETON.types.get(i);
+      switch (type) {
+      case disallowed:
+        if (baseValidSet.contains(i)) {
+          disallowed.add(i);
+          break;
+        }
+        String base2 = baseMapping.get(i);
+        if (base2 != null && baseValidSet.containsAll(base2)) {
+          disallowed.add(i);
+        }
+        break;
+      default:
+        String idna2003 = Idna2003.SINGLETON.mappings.get(i);
+        String base = baseMapping.get(i);
+        if (base == idna2003) continue;
+        if (base == null) base = UTF16.valueOf(i);
+        if (idna2003 == null) idna2003 = UTF16.valueOf(i);
+        if (!base.equals(idna2003)) {
+          mappingChanged.add(i);
+        }
+        break;
+      }
+    }
+    return Row.of(disallowed.freeze(), mappingChanged.freeze());
+  }
 
   private static void writeDataFile(UnicodeMap<String> mappingTable) throws IOException {
     String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";

@@ -8,11 +8,15 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.unicode.jsp.Builder;
+import org.unicode.jsp.Confusables;
 import org.unicode.jsp.ScriptTester;
+import org.unicode.jsp.XIDModifications;
+import org.unicode.jsp.Confusables.ScriptCheck;
 import org.unicode.jsp.ScriptTester.CompatibilityLevel;
 import org.unicode.jsp.ScriptTester.ScriptSpecials;
 
 import com.ibm.icu.dev.test.TestFmwk;
+import com.ibm.icu.text.Normalizer;
 
 public class TestScriptTester extends TestFmwk {
   public static void main(String[] args) {
@@ -22,22 +26,24 @@ public class TestScriptTester extends TestFmwk {
   public void TestBasic() {
     ScriptTester scriptTester = ScriptTester.start().get();
     
-    scriptTester.test("一\u4E07");
-
-    String[] cases = {"abc", "ab가", "一가", "一万", "一丟"};
-    for (String testCase : cases) {
-      BitSet result = scriptTester.test(testCase);
-      assertTrue(testCase + " should be ok: " + result, !result.isEmpty());
-    }
-    
-    String[] bad = {"aᎠ", // Cherokee
+    String[] bad = {
+            "1aᎠ",
+            "aᎠ1",
+            "aᎠ", // Cherokee
             "aα", // simplified and traditional
             "万丟", // simplified and traditional
             };
     for (String testCase : bad) {
-      BitSet result = scriptTester.test(testCase);
-      assertFalse(testCase + " should be bad: " + result, !result.isEmpty());
+      boolean result = scriptTester.isOk(testCase);
+      assertFalse(testCase, result);
     }
+
+    String[] cases = {"abc", "1abc", "abc1", "ab가", "一가", "一万", "一丟", "一\u4E07"};
+    for (String testCase : cases) {
+      boolean result = scriptTester.isOk(testCase);
+      assertTrue(testCase + " should be ok: ", result);
+    }
+    
   }
   
   public void TestFilter() {
@@ -56,5 +62,20 @@ public class TestScriptTester extends TestFmwk {
     scriptTester.filterTable(listTrial);
     String after = listTrial.toString();
     assertEquals("filterTable", before, after);
+  }
+  
+  public void TestConfusables() {
+    Confusables confusables = new Confusables("google")
+    .setNormalizationCheck(Normalizer.NFKC)
+    .setScriptCheck(ScriptCheck.same)
+    .setAllowedCharacters(XIDModifications.getAllowed());
+    
+    TreeSet<String> expected = Builder.with(new TreeSet<String>()).add("google").get();
+    for (String s : confusables) {
+      logln(s);
+    }
+    TreeSet<String> items = Builder.with(new TreeSet<String>()).addAll(confusables).get();
+    assertEquals("Confusables for 'google'", expected, items);
+    //g໐໐g1e
   }
 }

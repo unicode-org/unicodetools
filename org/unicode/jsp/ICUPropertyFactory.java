@@ -12,17 +12,23 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.jsp.UnicodeProperty.PatternMatcher;
+
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 
 
@@ -107,31 +113,32 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
     }
 
     /**
+     * @param propId TODO
      * @param valueAlias null if unused.
      * @param valueEnum -1 if unused
      * @param nameChoice
      * @return
      */
-    private String getFixedValueAlias(String valueAlias, int valueEnum, int nameChoice) {
-      if (propEnum >= UProperty.STRING_START) {
+    private String getFixedValueAlias(int propId, String valueAlias, int valueEnum, int nameChoice) {
+      if (propId >= UProperty.STRING_START) {
         if (nameChoice > UProperty.NameChoice.LONG) throw new IllegalArgumentException();
         if (nameChoice != UProperty.NameChoice.LONG) return null;
         return "<string>";
-      } else if (propEnum >= UProperty.DOUBLE_START) {
+      } else if (propId >= UProperty.DOUBLE_START) {
         if (nameChoice > UProperty.NameChoice.LONG) throw new IllegalArgumentException();
         if (nameChoice != UProperty.NameChoice.LONG) return null;
         return "<number>";
       }
       if (valueAlias != null && !valueAlias.equals("<integer>")) {
-        valueEnum = fixedGetPropertyValueEnum(propEnum,valueAlias);
+        valueEnum = fixedGetPropertyValueEnum(propId,valueAlias);
       }
       // because these are defined badly, there may be no normal (long) name.
       // if there is 
-      String result = fixedGetPropertyValueName(propEnum, valueEnum, nameChoice);
+      String result = fixedGetPropertyValueName(propId, valueEnum, nameChoice);
       if (result != null) return result;
       // HACK try other namechoice
       if (nameChoice == UProperty.NameChoice.LONG) {
-        result = fixedGetPropertyValueName(propEnum,valueEnum, UProperty.NameChoice.SHORT);
+        result = fixedGetPropertyValueName(propId,valueEnum, UProperty.NameChoice.SHORT);
         if (result != null) return result;
         if (isCombiningClassProperty()) return null;
         return "<integer>";
@@ -211,7 +218,38 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
         }
       }
     }
+    
+    public UnicodeSet getSet(PatternMatcher matcher, UnicodeSet result) {
+      result = super.getSet(matcher, result);
+      if (propEnum == UProperty.GENERAL_CATEGORY) {
+        for (String multiprop : SPECIAL_GC.keySet()) {
+          R2<String, UnicodeSet> value = SPECIAL_GC.get(multiprop);
+          if (matcher.matches(multiprop) || matcher.matches(value.get0())) {
+            result.addAll(value.get1());
+          }
+        }
+      }
+      return result;
+    }
 
+    
+    static Map<String,R2<String,UnicodeSet>> SPECIAL_GC = new LinkedHashMap<String,R2<String,UnicodeSet>>();
+    static {
+      String[][] extras = {
+              {"Other", "C", "[[:Cc:][:Cf:][:Cn:][:Co:][:Cs:]]"},
+              {"Letter", "L", "[[:Ll:][:Lm:][:Lo:][:Lt:][:Lu:]]"},
+              {"Cased_Letter", "LC", "[[:Ll:][:Lt:][:Lu:]]"},
+              {"Mark", "M", "[[:Mc:][:Me:][:Mn:]]"},
+              {"Number", "N", "[[:Nd:][:Nl:][:No:]]"},
+              {"Punctuation", "P", "[[:Pc:][:Pd:][:Pe:][:Pf:][:Pi:][:Po:][:Ps:]]"},
+              {"Symbol", "S", "[[:Sc:][:Sk:][:Sm:][:So:]]"},
+              {"Separator", "Z", "[[:Zl:][:Zp:][:Zs:]]"},
+      };
+      for (String[] extra : extras) {
+        SPECIAL_GC.put(extra[0], (R2<String, UnicodeSet>) Row.of(extra[1], new UnicodeSet(extra[2]).freeze()).freeze());
+      }
+    }
+    
     public List _getAvailableValues(List result) {
       if (result == null) result = new ArrayList();
       if (propEnum == UProperty.AGE) {
@@ -223,29 +261,38 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
         if (Binary_Extras.isInRange(propEnum)) {
           propEnum = UProperty.BINARY_START; // HACK
         }
-        int start = UCharacter.getIntPropertyMinValue(propEnum);
-        int end = UCharacter.getIntPropertyMaxValue(propEnum);
-        for (int i = start; i <= end; ++i) {
-          String alias = getFixedValueAlias(null, i, UProperty.NameChoice.LONG);
-          String alias2 = getFixedValueAlias(null, i, UProperty.NameChoice.SHORT);
-          if (alias == null) {
-            alias = alias2;
-            if (alias == null && isCombiningClassProperty()) {
-              alias = String.valueOf(i);
-            }
+        addValues(propEnum, result);
+        if (propEnum == UProperty.GENERAL_CATEGORY) {
+          for (String item : SPECIAL_GC.keySet()) {
+            addUnique(item, result);
           }
-          //System.out.println(propertyAlias + "\t" + i + ":\t" + alias);
-          addUnique(alias, result);
         }
       } else if (propEnum >= UProperty.DOUBLE_START && propEnum < UProperty.DOUBLE_LIMIT) {
         UnicodeMap map = getUnicodeMap();
         Collection values = map.values();
         addAllUnique(values, result);
       } else {
-        String alias = getFixedValueAlias(null, -1,UProperty.NameChoice.LONG);
+        String alias = getFixedValueAlias(propEnum, null,-1, UProperty.NameChoice.LONG);
         addUnique(alias, result);
       }
       return result;
+    }
+
+    private void addValues(int propertyId, List result) {
+      int start = UCharacter.getIntPropertyMinValue(propertyId);
+      int end = UCharacter.getIntPropertyMaxValue(propertyId);
+      for (int i = start; i <= end; ++i) {
+        String alias = getFixedValueAlias(propEnum, null, i, UProperty.NameChoice.LONG);
+        String alias2 = getFixedValueAlias(propEnum, null, i, UProperty.NameChoice.SHORT);
+        if (alias == null) {
+          alias = alias2;
+          if (alias == null && isCombiningClassProperty()) {
+            alias = String.valueOf(i);
+          }
+        }
+        //System.out.println(propertyAlias + "\t" + i + ":\t" + alias);
+        addUnique(alias, result);
+      }
     }
 
     static String[] AGES = null;
@@ -276,15 +323,25 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
           addUnique(valueAlias.substring(0, valueAlias.length() - 2), result);
         }
       } else {
-        for (int nameChoice = UProperty.NameChoice.SHORT; ; ++nameChoice) {
-          try {
-            addUnique(getFixedValueAlias(valueAlias, -1, nameChoice), result);
-          } catch (Exception e) {
-            break;
-          }
+        R2<String, UnicodeSet> temp;
+        if (propEnum == UProperty.GENERAL_CATEGORY && (temp = SPECIAL_GC.get(valueAlias)) != null) {
+          addUnique(valueAlias, result);
+          addUnique(temp.get0(), result);
+        } else {
+          addAliases(propEnum, valueAlias, result);
         }
       }
       return result;
+    }
+
+    private void addAliases(int propId, String valueAlias, List result) {
+      for (int nameChoice = UProperty.NameChoice.SHORT; ; ++nameChoice) {
+        try {
+          addUnique(getFixedValueAlias(propId, valueAlias, -1, nameChoice), result);
+        } catch (Exception e) {
+          break;
+        }
+      }
     }
 
 

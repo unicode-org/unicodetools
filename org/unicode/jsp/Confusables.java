@@ -34,7 +34,7 @@ public class Confusables implements Iterable<String>{
   public UnicodeSet getAllowedCharacters() {
     return allowedCharacters;
   }
-  
+
   public static UnicodeMap<String> getMap() {
     UnicodeMap<String> result = new UnicodeMap<String>();
     for (String s : equivalents) {
@@ -81,7 +81,7 @@ public class Confusables implements Iterable<String>{
   public Confusables(String source) {
     this.source = Normalizer.normalize(source,Normalizer.NFD);
   }
-  
+
   public double getMaxSize() {
     AlternateIterator build = buildIterator();
     if (build == null) {
@@ -122,7 +122,7 @@ public class Confusables implements Iterable<String>{
       }
       table.add(items);
     }
-    
+
     // now filter for multiple scripts, if set
     if (scriptCheck != ScriptCheck.none) {
       if (!scriptTester.filterTable(table)) {
@@ -135,8 +135,8 @@ public class Confusables implements Iterable<String>{
     AlternateIterator build = builder.build();
     return build;
   }
-  
-  
+
+
   public List<Collection<String>> getAlternates() {
     AlternateIterator build = buildIterator();
     if (build == null) {
@@ -149,17 +149,16 @@ public class Confusables implements Iterable<String>{
     return scriptCheck;
   }
 
-  public void setScriptCheck(ScriptCheck scriptCheck) {
+  public Confusables setScriptCheck(ScriptCheck scriptCheck) {
     this.scriptCheck = scriptCheck;
+    return this;
   }
 
   public static boolean scriptOk(String confusable, ScriptCheck scriptCheck) {
-    if (scriptCheck == ScriptCheck.none) {
-      return true;
-    }
-    return !scriptTester.test(confusable).isEmpty();
+    return scriptCheck == ScriptCheck.none
+    || scriptTester.isOk(confusable);
   }
-  
+
   static ScriptTester scriptTester = ScriptTester.start(CompatibilityLevel.Highly_Restrictive, ScriptSpecials.on).get();
 
   class MyFilteredIterator extends FilteredIterator<String>{
