@@ -163,7 +163,7 @@ public class TestGenerate   extends TestFmwk{
     //    System.out.println(Utility.hex(s) + ";\t" + Utility.hex(uts46) 
     //            + ";\t" + names
     //                );
-    writeIdnaDataFile(hex_results, bf, "NFC", "IdnaMappingTable");
+    //writeIdnaDataFile(hex_results, bf, "NFC", "IdnaMappingTable");
     //writeIdnaDataFile(hex_results_requiring_nfkc, bf, "NFKC", "uts46-data-pre-nfkc-5.1.txt");
   }
 
@@ -179,39 +179,39 @@ public class TestGenerate   extends TestFmwk{
   }
 
 
-  private void writeIdnaDataFile(final UnicodeMap<String> hex_results, BagFormatter bf, String normalizationForm2, String filenameStem) throws IOException {
-    String filename = filenameStem + "-" + AGE + ".0.txt";
-    PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace35/draft/reports/tr46/", filename);
-    String normalizationForm = normalizationForm2;
-    writer.println("# " + filename + "- DRAFT\n" +
-            "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
-            "#\n" +
-            "# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
-            "# Copyright (c) 1991-2009 Unicode, Inc.\n" +
-            "# For terms of use, see http://www.unicode.org/terms_of_use.html\n" +
-    "# For documentation, see http://www.unicode.org/reports/tr46/\n");
-
-    //    # IdnaMappingTable-5.1.0.txt - DRAFT
-    //    # Date: 2009-11-14 08:10:42 GMT [MD]
-    //    #
-    //    # Unicode IDNA Compatible Preprocessing (UTS #46)
-    //    # Copyright (c) 1991-2009 Unicode, Inc.
-    //    # For terms of use, see http://www.unicode.org/terms_of_use.html
-    //    # For documentation, see http://www.unicode.org/reports/tr46/
-
-    bf.setValueSource(new UnicodeProperty.UnicodeMapProperty().set(hex_results));
-    final UnicodeLabel oldLabel = bf.getNameSource();
-    bf.setNameSource(new UnicodeLabel() {
-      public String getValue(int codepoint, boolean isShort) {
-        if (OVERALL_ALLOWED.contains(codepoint)) {
-          return oldLabel.getValue(codepoint, isShort);
-        }
-        return "<reserved-" + Utility.hex(codepoint) + ">";
-      }   
-    });
-    writer.println(bf.showSetNames(hex_results.keySet()));
-    writer.close();
-  }
+//  private void writeIdnaDataFile(final UnicodeMap<String> hex_results, BagFormatter bf, String normalizationForm2, String filenameStem) throws IOException {
+//    String filename = filenameStem + "-" + AGE + ".0.txt";
+//    PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace35/draft/reports/tr46/", filename);
+//    String normalizationForm = normalizationForm2;
+//    writer.println("# " + filename + "- DRAFT\n" +
+//            "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
+//            "#\n" +
+//            "# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
+//            "# Copyright (c) 1991-2009 Unicode, Inc.\n" +
+//            "# For terms of use, see http://www.unicode.org/terms_of_use.html\n" +
+//    "# For documentation, see http://www.unicode.org/reports/tr46/\n");
+//
+//    //    # IdnaMappingTable-5.1.0.txt - DRAFT
+//    //    # Date: 2009-11-14 08:10:42 GMT [MD]
+//    //    #
+//    //    # Unicode IDNA Compatible Preprocessing (UTS #46)
+//    //    # Copyright (c) 1991-2009 Unicode, Inc.
+//    //    # For terms of use, see http://www.unicode.org/terms_of_use.html
+//    //    # For documentation, see http://www.unicode.org/reports/tr46/
+//
+//    bf.setValueSource(new UnicodeProperty.UnicodeMapProperty().set(hex_results));
+//    final UnicodeLabel oldLabel = bf.getNameSource();
+//    bf.setNameSource(new UnicodeLabel() {
+//      public String getValue(int codepoint, boolean isShort) {
+//        if (OVERALL_ALLOWED.contains(codepoint)) {
+//          return oldLabel.getValue(codepoint, isShort);
+//        }
+//        return "<reserved-" + Utility.hex(codepoint) + ">";
+//      }   
+//    });
+//    writer.println(bf.showSetNames(hex_results.keySet()));
+//    writer.close();
+//  }
 
   public static class InverseComparator implements Comparator {
     private Comparator other;

@@ -659,7 +659,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     Map propertyCache = new HashMap(1);
 
     public final Factory add(UnicodeProperty sp) {
-      canonicalNames.put(sp.getName(), sp);
+      String name2 = sp.getName();
+      canonicalNames.put(name2, sp);
+      skeletonNames.put(toSkeleton(name2), sp);
       List c = sp.getNameAliases(new ArrayList(1));
       Iterator it = c.iterator();
       while (it.hasNext()) {

@@ -61,7 +61,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     );
 
     SortedMap<String, Charset> charsets = Charset.availableCharsets();
-    Matcher charsetMatcher = Pattern.compile("ISO-8859-\\d*|GB2312|SJIS").matcher("");
+    Matcher charsetMatcher = Pattern.compile("ISO-8859-\\d*|GB2312|Shift_JIS|GBK|Big5").matcher("");
     for (String name : charsets.keySet()) {
       if (!charsetMatcher.reset(name).matches()) {
         continue;
@@ -290,7 +290,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
     protected String _getValue(int codepoint) {
       int len = encoder.getValue(codepoint, temp, 0);
-      if (temp == null) {
+      if (len < 0) {
         return ERROR;
       }
       StringBuffer result = new StringBuffer();
@@ -301,6 +301,11 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         result.append(hex(temp[i]));
       }
       return result.toString();
+    }
+    
+    public boolean isDefault(int codepoint) {
+      int len = encoder.getValue(codepoint, temp, 0);
+      return len < 0;
     }
 
     private Object hex(byte b) {

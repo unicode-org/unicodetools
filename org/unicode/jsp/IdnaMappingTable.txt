@@ -1,5 +1,5 @@
 # IdnaMappingTable-5.2.0.txt- DRAFT
-# Date: 2010-03-23 21:28:12 GMT [MD]
+# Date: 2010-03-30 23:10:40 GMT [MD]
 #
 # Unicode IDNA Compatible Preprocessing (UTS #46)
 # Copyright (c) 1991-2009 Unicode, Inc.

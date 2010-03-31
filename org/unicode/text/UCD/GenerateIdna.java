@@ -102,11 +102,12 @@ public class GenerateIdna {
     baseMapping.put(0xFF0E, "\u002E");
     baseMapping.put(0x3002, "\u002E");
     baseMapping.put(0xFF61, "\u002E");
+    baseMapping.freeze();
 
 
-    UnicodeSet labelSeparator = new UnicodeSet("[\\u002E \\uFF0E \\u3002 \\uFF61]");
+    UnicodeSet labelSeparator = new UnicodeSet("[\\u002E \\uFF0E \\u3002 \\uFF61]").freeze();
 
-    UnicodeSet cn = properties.getSet("gc=Cn");
+    UnicodeSet cn = properties.getSet("gc=Cn").freeze();
     UnicodeSet baseValidSet = new UnicodeSet(0,0x10FFFF)
     .removeAll(properties.getSet("Changes_When_NFKC_Casefolded=true"))
     .removeAll(properties.getSet("gc=Cc"))
@@ -149,7 +150,7 @@ public class GenerateIdna {
     System.out.println("***Overlap with baseValidSet and baseExclusionSet:\t" + new UnicodeSet(
             baseValidSet).retainAll(baseExclusionSet));
 
-    UnicodeSet deviationSet = new UnicodeSet("[\u200C \u200D \u00DF \u03C2]"); // \u200C \u200D 
+    UnicodeSet deviationSet = new UnicodeSet("[\u200C \u200D \u00DF \u03C2]").freeze(); // \u200C \u200D 
 
     /**
      * 1. If the code point is in the deviation set the status is deviation and
@@ -181,6 +182,8 @@ public class GenerateIdna {
       } else if (baseExclusionSet.contains(cp)) {
         result = disallowedResult;
       } else if (!labelSeparator.contains(cp) && !baseValidSet.containsAll(baseMappingValue)) {
+        result = disallowedResult;
+      } else if (cn.contains(cp)) { // do this in a different order just for debuggin
         result = disallowedResult;
       } else if (baseMappingValue.length() == 0) {
         result = ignoredResult;
@@ -219,7 +222,7 @@ public class GenerateIdna {
     } while (excluded.size() != 0);
 
     // detect errors, where invalid character doesn't have at least one invalid in decomposition
-    UnicodeSet invalidSet = mappingTable.getSet(disallowedResult);
+    UnicodeSet invalidSet = mappingTable.getSet(disallowedResult).freeze();
     for (String valid : invalidSet) {
       String nfd = Default.nfd().normalize(valid);
       if (invalidSet.containsNone(nfd)) {
@@ -228,7 +231,7 @@ public class GenerateIdna {
     }
 
 
-    return mappingTable;
+    return mappingTable.freeze();
   }
 
 

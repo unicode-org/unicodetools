@@ -15,6 +15,7 @@ import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
+import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UnicodeSet;
 
 /**
@@ -70,22 +71,43 @@ public class ScriptTester {
 
   /**
    * If the scripts in the string are compatible, then returns a list of them. Otherwise returns an empty bitset.
+   * The input must be in NFD.
    * @param input
    * @return bitset of scripts found
    */
   public boolean isOk(CharSequence input) {
+    input = Normalizer.normalize(input.toString(), Normalizer.NFD);
     // We make one pass forward and one backward, finding if each characters scripts
     // are compatible with the ones before and after
     // We save the value that we collect on the first pass.
     int cp;
     int maxSize = input.length();
+    int base = -1;
     BitSet[] actual = new BitSet[maxSize];
     BitSet[] compat = new BitSet[maxSize];
     int codePointCount = 0;
     BitSet compatBefore = new BitSet(LIMIT);
     compatBefore.or(ALL);
+    int lastCp = -1;
     for (int i = 0; i < maxSize; i += Character.charCount(cp)) {
       cp = Character.codePointAt(input, i);
+      // check for mixed numbers
+      int type = UCharacter.getType(cp);
+      if (type == UCharacter.DECIMAL_DIGIT_NUMBER) {
+        int newBase = cp & 0xFFFFF0;
+        if (base < 0) {
+          base = newBase;
+        } else if (base != newBase){
+          return false;
+        }
+      }
+      // check for multiple combining marks
+      if (type == UCharacter.NON_SPACING_MARK || type == UCharacter.ENCLOSING_MARK) {
+        if (lastCp == cp) {
+          return false;
+        }
+      }
+      // check scripts
       compat[codePointCount] = character_compatibleScripts.get(cp);
       actual[codePointCount] = getActualScripts(cp);
       if (!actual[codePointCount].intersects(compatBefore)) {
@@ -93,6 +115,7 @@ public class ScriptTester {
       }
       compatBefore.and(compat[codePointCount]);
       codePointCount++;
+      lastCp = cp;
     }
     compatBefore.or(ALL);
     for (int i = codePointCount - 1; i >= 0; --i) {
@@ -101,6 +124,7 @@ public class ScriptTester {
       }
       compatBefore.and(compat[i]);
     }
+    // check numbers
     return true;
   }
   

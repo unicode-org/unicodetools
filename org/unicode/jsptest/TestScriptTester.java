@@ -25,6 +25,9 @@ public class TestScriptTester extends TestFmwk {
     ScriptTester scriptTester = ScriptTester.start().get();
     
     String[] bad = {
+            "ä\u0308",
+            "1٦",
+            "٦۶",
             "1aᎠ",
             "aᎠ1",
             "aᎠ", // Cherokee

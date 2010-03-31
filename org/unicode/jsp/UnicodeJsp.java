@@ -161,8 +161,8 @@ public class UnicodeJsp {
   public static void showSet(String grouping, UnicodeSet a, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
     UnicodeUtilities.showSet(grouping, a, abbreviate, ucdFormat, out);
   }
-  public static void showPropsTable(Appendable out) throws IOException {
-    UnicodeUtilities.showPropsTable(out);
+  public static void showPropsTable(Appendable out, String propForValues, String myLink) throws IOException {
+    UnicodeUtilities.showPropsTable(out, propForValues, myLink);
   }
   public static String showTransform(String transform, String sample) {
     return UnicodeUtilities.showTransform(transform, sample);

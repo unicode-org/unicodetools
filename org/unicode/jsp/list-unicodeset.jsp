@@ -25,7 +25,7 @@
 		//   action="http://unicode.org/cldr/utility/list-unicodeset.jsp" method="POST"
 %>
 <h1>Unicode Utilities: UnicodeSet </h1>
-<%@ include file="others.jsp" %>
+<p><a target="help" href="http://cldr.unicode.org/unicode-utilities/list-unicodeset"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <form name="myform">
   <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width:100%">
     <tr>
