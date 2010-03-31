@@ -38,10 +38,12 @@ public class UnicodeSetUtilities {
 
 
   public static class NFKC_CF implements StringTransform {
+    private static final UnicodeSet DEFAULT_IGNORABLES = new UnicodeSet("[:di:]").freeze();
     //static Matcher DI = Pattern.compile(UnicodeRegex.fix("[:di:]")).matcher("");
-    UnicodeMap<String> DI2 = new UnicodeMap<String>().putAll(parseUnicodeSet("[:di:]", TableStyle.simple), "");
+    //UnicodeMap<String> DI2 = new UnicodeMap<String>().putAll(DEFAULT_IGNORABLES, "");
     public String transform(String source) {
-      String di = DI2.transform(source);
+      //String di = DI2.transform(source);
+      String di = DEFAULT_IGNORABLES.stripFrom(source, true);
       String cf = myFoldCase(di);
       String nfcf = MyNormalize(cf, Normalizer.NFKC);
       String nfcfnf = myFoldCase(nfcf);

@@ -692,8 +692,8 @@ public class TestJsp  extends TestFmwk {
 
   public void TestPropsTable() throws IOException {
     StringWriter out = new StringWriter();
-    UnicodeJsp.showPropsTable(out);
-    assertTrue("props table", out.toString().contains("Line_Break"));
+    UnicodeJsp.showPropsTable(out, "Block", "properties.jsp");
+    assertTrue("props table", out.toString().contains("Cherokee"));
     //System.out.println(out);
   }
 

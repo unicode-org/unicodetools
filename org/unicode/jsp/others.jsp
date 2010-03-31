@@ -1,4 +1,3 @@
-<p>
      <a target="character" href="character.jsp">character</a>
    | <a target="properties" href="properties.jsp">properties</a>
    | <a target="confusables" href="confusables.jsp">confusables</a>
@@ -11,5 +10,3 @@
    | <a target="bidi" href="bidi.jsp">bidi</a>
    | <a target="idna" href="idna.jsp">idna</a>
    | <a target="languageid" href="languageid.jsp">languageid</a>
-   | <a target="help" href="index.jsp">help</a>
-</p>

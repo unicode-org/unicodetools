@@ -158,12 +158,12 @@ public class UnicodeUtilities {
 
   static final int IDNA_TYPE_LIMIT = 4;
 
-//  static final Map<IdnaType,UnicodeSet> idnaTypeSet = new TreeMap<IdnaType,UnicodeSet>();
-//  static {
-//    for (IdnaType i : IdnaType.values()) {
-//      idnaTypeSet.put(i, new UnicodeSet());
-//    }
-//  }
+  //  static final Map<IdnaType,UnicodeSet> idnaTypeSet = new TreeMap<IdnaType,UnicodeSet>();
+  //  static {
+  //    for (IdnaType i : IdnaType.values()) {
+  //      idnaTypeSet.put(i, new UnicodeSet());
+  //    }
+  //  }
 
   public static UnicodeSet IGNORE_IN_IDNA_DIFF = UnicodeSetUtilities.parseUnicodeSet("[[\\u0000-\\u007F][:Cc:][:Cn:][:Co:][:Cs:]]", TableStyle.simple).freeze();
 
@@ -221,7 +221,7 @@ public class UnicodeUtilities {
 
       int cat = UCharacter.getType(cp);
       if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE  || cat == UCharacter.SURROGATE) {
-//        idnaTypeSet.get(IdnaType.disallowed).add(cp); // faster
+        //        idnaTypeSet.get(IdnaType.disallowed).add(cp); // faster
         isCaseFolded.add(cp);
         isLowercase.add(cp);
         isTitlecase.add(cp);
@@ -229,8 +229,8 @@ public class UnicodeUtilities {
         continue;
       }
 
-//      IdnaType idnaType = Idna2003.getIDNA2003Type(cp);
-//      idnaTypeSet.get(idnaType).add(cp);
+      //      IdnaType idnaType = Idna2003.getIDNA2003Type(cp);
+      //      idnaTypeSet.get(idnaType).add(cp);
 
       String s = UTF16.valueOf(cp);
       if (UCharacter.foldCase(s, true).equals(s)) {
@@ -270,7 +270,7 @@ public class UnicodeUtilities {
   static final int XSTRING_LIMIT = SUBHEAD + 1; 
 
   static List<String> XPROPERTY_NAMES = Arrays.asList(new String[]{"toNfc", "toNfd", "toNfkc", "toNfkd", "toCasefold", "toLowercase", "toUppercase", "toTitlecase",
-          "subhead"});
+  "subhead"});
   static final UnicodeSet MARK = (UnicodeSet) UnicodeSetUtilities.parseUnicodeSet("[:M:]", TableStyle.simple).freeze();
 
   static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice, Normalizer.Mode compat) {
@@ -331,19 +331,19 @@ public class UnicodeUtilities {
     return UCharacter.getPropertyEnum(propertyAlias);
   }
 
-//  protected static boolean getIdnaProperty(String propertyValue,
-//          UnicodeSet result) {
-//    try {
-//      String lowercase = propertyValue.toLowerCase(Locale.ENGLISH);
-//      IdnaType i = lowercase.equals("output") ? IdnaType.valid 
-//              : lowercase.equals("remapped") ? IdnaType.mapped
-//                      : IdnaType.valueOf(lowercase);
-//      result.clear().addAll(idnaTypeSet.get(i));
-//      return true;
-//    } catch (Exception e) {
-//      throw new IllegalArgumentException("Error with <" + propertyValue + ">", e);
-//    }
-//  }
+  //  protected static boolean getIdnaProperty(String propertyValue,
+  //          UnicodeSet result) {
+  //    try {
+  //      String lowercase = propertyValue.toLowerCase(Locale.ENGLISH);
+  //      IdnaType i = lowercase.equals("output") ? IdnaType.valid 
+  //              : lowercase.equals("remapped") ? IdnaType.mapped
+  //                      : IdnaType.valueOf(lowercase);
+  //      result.clear().addAll(idnaTypeSet.get(i));
+  //      return true;
+  //    } catch (Exception e) {
+  //      throw new IllegalArgumentException("Error with <" + propertyValue + ">", e);
+  //    }
+  //  }
 
   static boolean getBinaryValue(String propertyValue) {
     boolean invert;
@@ -453,11 +453,11 @@ public class UnicodeUtilities {
     for (String s : sorted) {
       String[] props2 = s.split("; ");
       int level = getFirstDiff(propsOld, props2);
-      //out.append("// level: " + level + ", lastLevel: " + lastLevel + "\r\n");
+      //out.append("// level: " + level + ", lastLevel: " + lastLevel + "\n");
       // if higher, back off
       if (lastLevel >= 0) {
         for (int i = level; i < length; ++i) {
-          out.append("</blockquote>\r\n");
+          out.append("</blockquote>\n");
         }
       }
       lastLevel = level;
@@ -466,7 +466,7 @@ public class UnicodeUtilities {
       for (int i = lastLevel; i < length; ++i) {
         out.append("<h2 class='L" + (i + 5 - length) + "'>" + props2[i] + 
                 (i == length - 1 ? " <div class='ri'>items: " + numberFormat.format(items.size()) : "</div>") +
-        "</h2><blockquote>\r\n");
+        "</h2><blockquote>\n");
       }
       showSet(items, abbreviate, ucdFormat, out);
       for (int i = 0; i < propsOld.length; ++i) {
@@ -474,7 +474,7 @@ public class UnicodeUtilities {
       }
     }
     for (int i = 0; i <= lastLevel; ++i) {
-      out.append("</blockquote>\r\n");
+      out.append("</blockquote>\n");
     }
   }
 
@@ -507,7 +507,7 @@ public class UnicodeUtilities {
   /*jsp*/
   public static void showSet(UnicodeSet inputSetRaw, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
     if (inputSetRaw.getRangeCount() > 10000) {
-      out.append("<i>Too many to list individually</i>\r\n");
+      out.append("<i>Too many to list individually</i>\n");
     } else if (abbreviate) {
       showAbbreviated(inputSetRaw, ucdFormat, out);
     } else {
@@ -519,7 +519,7 @@ public class UnicodeUtilities {
       if (specialSet.size() != 0) {
         items.put(specials, specialSet);
       }
-      
+
       String oldBlock = "";
       String oldSubhead = "";
       for (UnicodeSetIterator it = new UnicodeSetIterator(inputSet); it.next();) {
@@ -544,14 +544,14 @@ public class UnicodeUtilities {
 
       for (String newBlock : items.keySet()) {
         UnicodeSet set = items.get(newBlock);
-        out.append("<h3>" + newBlock + "</b>: " + numberFormat.format(set.size()) + "</h3>\r\n");
+        out.append("<h3>" + newBlock + "</b>: " + numberFormat.format(set.size()) + "</h3>\n");
         if (set.size() > 500 || newBlock == specials) {
           showAbbreviated(set, ucdFormat, out);
         } else {
           for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next();) {
             int s = it.codepoint;
             if (s == UnicodeSetIterator.IS_STRING) {
-              out.append(showCodePoint(it.string)).append("<br>\r\n");
+              out.append(showCodePoint(it.string)).append("<br>\n");
             } else {
               showCodePoint(s, ucdFormat, out);
             }
@@ -565,7 +565,7 @@ public class UnicodeUtilities {
     for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.nextRange();) {
       int s = it.codepoint;
       if (s == UnicodeSetIterator.IS_STRING) {
-        out.append(showCodePoint(it.string)).append("<br>\r\n");
+        out.append(showCodePoint(it.string)).append("<br>\n");
       } else {        
         int end = it.codepointEnd;
         if (end == s) {
@@ -633,7 +633,7 @@ public class UnicodeUtilities {
         name = "<i>" + name + "</i>";
       }
     }
-    out.append(getHex(string, separator, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name + "<br>\r\n");
+    out.append(getHex(string, separator, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name + "<br>\n");
   }
 
   private static String getName(String string, String separator, boolean andCode) {
@@ -775,7 +775,7 @@ public class UnicodeUtilities {
       } else {
         result.append(showCodePoint(pp.format(source)));
       }
-      result.append("</br>\r\n");
+      result.append("</br>\n");
     }
     return result.toString();
   }
@@ -850,7 +850,7 @@ public class UnicodeUtilities {
   //        String caseFold = UCharacter.foldCase(s, true);
   //        String lower = UCharacter.toLowerCase(Locale.ENGLISH, s);
   //        if (!caseFold.equals(lower) || i == 'Σ') {
-  //          rules.append(s + ">" + caseFold + " ;\r\n");
+  //          rules.append(s + ">" + caseFold + " ;\n");
   //        }
   //      }
   //    }
@@ -1025,7 +1025,7 @@ public class UnicodeUtilities {
     .get();
 
     out.append("<table class='propTable'><tr><td width='50%'>\n");
-    out.append("<table width='100%'>\r\n");
+    out.append("<table width='100%'>\n");
 
     for (String propName : sortedProps) {
       UnicodeProperty prop = factory.getProperty(propName);
@@ -1034,11 +1034,11 @@ public class UnicodeUtilities {
       String propValue = prop.getValue(cp);
       showPropertyValue(propName, propValue, isDefault, out); 
     }
-    out.append("</table>\r\n");
+    out.append("</table>\n");
 
     out.append("</td><td width='50%'>\n");
 
-    out.append("<table width='100%'>\r\n");
+    out.append("<table width='100%'>\n");
     for (String propName : sortedProps) {
       UnicodeProperty prop = factory.getProperty(propName);
       boolean isDefault = prop.isDefault(cp);
@@ -1046,16 +1046,16 @@ public class UnicodeUtilities {
       String propValue = prop.getValue(cp);
       showPropertyValue(propName, propValue, isDefault, out); 
     }
-    out.append("</table>\r\n");
+    out.append("</table>\n");
 
-    out.append("</td></tr></table>\r\n");
+    out.append("</td></tr></table>\n");
   }
 
   private static void showPropertyValue(String propName, String propValue, boolean isDefault, Appendable out) throws IOException {
     String defaultClass = isDefault ? " class='default'" : "";
     if (propValue == null) {
       out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
-      "><i>null</i></td></tr>\r\n");
+      "><i>null</i></td></tr>\n");
       return;
     }
     String hValue = toHTML.transliterate(propValue);
@@ -1063,11 +1063,11 @@ public class UnicodeUtilities {
       + propName + "=" + propValue + ":]'>" + hValue + "</a>";
 
     out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
-            ">" + hValue + "</td></tr>\r\n");
+            ">" + hValue + "</td></tr>\n");
   }
 
   /*jsp*/
-  public static void showPropsTable(Appendable out) throws IOException {
+  public static void showPropsTable(Appendable out, String propForValues, String myLink) throws IOException {
     Collator col = Collator.getInstance(ULocale.ROOT);
     ((RuleBasedCollator)col).setNumericCollation(true);
     Map<String, Map<String, String>> alpha = new TreeMap<String, Map<String, String>>(col);
@@ -1075,19 +1075,23 @@ public class UnicodeUtilities {
 
     Set<String> showLink = new HashSet<String>();
 
-    out.append("<table>\r\n");
+    out.append("<table>\n");
     for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).get()) {
       UnicodeProperty prop = factory.getProperty(propName);
       String propHtml = toHTML.transform(propName);
       String shortName = prop.getFirstNameAlias();
       String title = shortName == null ? "" : " title='" + toHTML(shortName) + "'";
-      out.append("<tr><th width='1%'" + title + "><a name='" + propHtml + "'>" + propHtml + "</a></th>\r\n");
-      out.append("<td>\r\n");
-      List<String> availableValues = (List<String>)prop.getAvailableValues();
-      if (availableValues.size() > 1000) {
-        out.append("<i>too many values to show</i>");
-      } else {
-        for (String valueName : Builder.with(new TreeSet<String>(col)).addAll(availableValues).get()) {
+      out.append("<tr><th width='1%'" + title + "><a name='" + propHtml + "'>" + propHtml + "</a></th>\n");
+      out.append("<td>\n");
+      if (propName.equals(propForValues)) {
+        List<String> availableValues = (List<String>)prop.getAvailableValues();
+        TreeSet<String> sortedList = Builder.with(new TreeSet<String>(col)).addAll(availableValues).get();
+        int count = 500;
+        for (String valueName : sortedList) {
+          if (--count < 0) {
+            out.append("\n<i>too many values to show</i>");
+            break;
+          }
           String valueHtml = toHTML.transform(valueName);
           String shortValue = prop.getFirstValueAlias(valueName);
           if (valueName.startsWith("<") && valueName.endsWith(">")) {
@@ -1095,57 +1099,14 @@ public class UnicodeUtilities {
           } else {
             out.append(getPropLink(propHtml, valueHtml, valueHtml, shortValue));
           }
-          out.append("\r\n");
+          out.append("\n");
         }
+      } else {
+        out.append("<a href='" + myLink + "?a=" + propName + "#" + propName + "'>Show Values</a>");
       }
-      out.append("</td></tr>\r\n");
+      out.append("</td></tr>\n");
     }
-    out.append("</table>\r\n");
-    //    
-    //
-    //    Set<String> unicodeProps = new TreeSet<String>(UNICODE_PROPS);
-    //
-    //    Set<String> regexProps = new TreeSet<String>(REGEX_PROPS);
-    //
-    //    out.append("<table>\r\n");
-    //    for (String string : alpha.keySet()) {
-    //      String propName = (String) string;
-    //      String shortPropName = longToShort.get(propName);
-    //      String sPropName = propName + (shortPropName == null ? "" : " (" + shortPropName + ")");
-    //      Map<String, String> values = alpha.get(propName);
-    //      if (unicodeProps.contains(propName)) {
-    //        unicodeProps.remove(propName);
-    //      } else if (regexProps.contains(propName)) {
-    //        regexProps.remove(propName);
-    //        sPropName = "<tt>\u00AE\u00A0" + sPropName + "</tt>";
-    //      } else {
-    //        sPropName = "<i>\u00A9\u00A0" + sPropName + "</i>";
-    //      }
-    //
-    //      out.append("<tr><th width='1%'><a name='" + propName + "'>" + sPropName + "</a></th>\r\n");
-    //      out.append("<td>\r\n");
-    //      boolean first = true;
-    //      for (String string2 : values.keySet()) {
-    //        String propValue = (String) string2;
-    //        String alternates = values.get(propValue);
-    //        if (first) {
-    //          first = false;
-    //        } else {
-    //          out.append(", ");
-    //        }
-    //
-    //
-    //        if (showLink.contains(propName)) {
-    //          propValue = getPropLink(propName, propValue, propValue) 
-    //          + getPropLink(shortPropName, alternates.length() == 0 ? propValue : alternates, "♻");
-    //        }
-    //
-    //        out.append(propValue);
-    //      }
-    //      out.append("</td></tr>\r\n");
-    //    }
-    //    out.append("</table>\r\n");
-    //    unicodeProps.addAll(regexProps);
+    out.append("</table>\n");
   }
 
   private static String getPropLink(String propName, String propValue, String linkText, String shortName) {
@@ -1155,7 +1116,7 @@ public class UnicodeUtilities {
                       : propName + "=" + propValue;
     String title = shortName == null ? "" : " title='" + toHTML(shortName) + "'";
     return "<a target='u' href='list-unicodeset.jsp?a=[:" + propExp + ":]'" + title + 
-    		">" + linkText + "</a>";
+    ">" + linkText + "</a>";
   }
 
   static Subheader getSubheader() {
@@ -1186,21 +1147,21 @@ public class UnicodeUtilities {
   static Matcher rem = Pattern.compile(removals).matcher("");
 
 
-//  static IdnaLabelTester getIdna2008Tester() {
-//    if (tester == null) {
-//      try {
-//        URL path = UnicodeUtilities.class.getResource("idnaContextRules.txt");
-//        String externalForm = path.toExternalForm();
-//        if (externalForm.startsWith("file:")) {
-//          externalForm = externalForm.substring(5);
-//        }
-//        tester = new IdnaLabelTester(externalForm);
-//      } catch (IOException e) {
-//        throw new IllegalArgumentException(e);
-//      }
-//    }
-//    return tester;
-//  }
+  //  static IdnaLabelTester getIdna2008Tester() {
+  //    if (tester == null) {
+  //      try {
+  //        URL path = UnicodeUtilities.class.getResource("idnaContextRules.txt");
+  //        String externalForm = path.toExternalForm();
+  //        if (externalForm.startsWith("file:")) {
+  //          externalForm = externalForm.substring(5);
+  //        }
+  //        tester = new IdnaLabelTester(externalForm);
+  //      } catch (IOException e) {
+  //        throw new IllegalArgumentException(e);
+  //      }
+  //    }
+  //    return tester;
+  //  }
 
   static void addBlank(StringBuilder resultLines) {
     resultLines.append("<tr><td colSpan='5'>&nbsp;</td></tr>\n");
@@ -1216,8 +1177,8 @@ public class UnicodeUtilities {
       String linkStart = "", linkEnd = "";
       if (confusableChoice != null) {
         linkStart = "<a target='confusables' href='confusables.jsp?&r=" +
-        		confusableChoice +
-        		"&a=" + toHTML.transform(tr46) + "'>";
+        confusableChoice +
+        "&a=" + toHTML.transform(tr46) + "'>";
         linkEnd = "</a>";
       }
       resultLines.append("<td " +
@@ -1386,36 +1347,36 @@ public class UnicodeUtilities {
   public static String testIdnaLines(String lines, String filter) {
     Transliterator hex = Transliterator.getInstance("any-hex");
     try {
-  
+
       lines = UnicodeJsp.UNESCAPER.transform(lines.trim());
       StringBuilder resultLines = new StringBuilder();
       //UnicodeUtilities.getIdna2008Tester();
-  
+
       Predicate<String> verifier2008 = new Predicate<String>() {
         public boolean is(String item) {
           return Idna2008.SINGLETON.isValid(item);
         }
       };
-  
+
       resultLines.append("<table>\n");
       resultLines.append("<th></th><th class='cn'>Input</th><th class='cn'>IDNA2003</th><th class='cn'>UTS46</th><th class='cn'>IDNA2008</th>\n");
-  
+
       boolean first = true;
       boolean[] errorOut = new boolean[1];
-  
+
       for (String line : lines.split("\\s+")) {
         if (first) {
           first = false;
         } else {
           addBlank(resultLines);
         }
-  
+
         String rawPunycode = UnicodeUtilities.processLabels(line, IdnaTypes.DOTS, true, new Predicate() {
           public boolean is(Object item) {
             return true;
           }});
-  
-  
+
+
         //        String tr46 = UnicodeUtilities.processLabels(tr46back, UnicodeUtilities.DOTS, true, new Predicate<String>() {
         //          public boolean is(String item) {
         //            return Uts46.SINGLETON.transform(item).indexOf('\uFFFD') < 0; // Uts46.SINGLETON.Uts46Chars.containsAll(item);
@@ -1428,33 +1389,33 @@ public class UnicodeUtilities {
         //            //return Uts46.SINGLETON.Uts46CharsDisplay.containsAll(item);
         //          }
         //        });
-  
-  
+
+
         // first lines
         resultLines.append("<tr>");
         resultLines.append("<th>Display</th>");
         addCell(resultLines, hex, line, "class='cn ltgreen'", "None");
         String idna2003unic = Idna2003.SINGLETON.toUnicode(line, errorOut, true);
         addCell(resultLines, hex, idna2003unic, getIdnaClass("cn i2003", errorOut[0]), "IDNA2003");
-        
+
         String uts46unic = Uts46.SINGLETON.toUnicode(line, errorOut, true);
         addCell(resultLines, hex, uts46unic, getIdnaClass("cn i46", errorOut[0]), "UTS46%2BUTS39");
-        
+
         String idna2008unic = UnicodeUtilities.processLabels(line, IdnaTypes.DOT, false, verifier2008);
         addCell(resultLines, hex, idna2008unic, getIdnaClass("cn i2008", idna2008unic.contains("\uFFFD")), "IDNA2003");
         resultLines.append("<tr></tr>");
-  
+
         resultLines.append("<th class='mono'>Punycode</th>");
         addCell(resultLines, hex, rawPunycode, "class='cn ltgreen mono'", null);
         String idna2003puny = Idna2003.SINGLETON.toPunyCode(line, errorOut);
         addCell(resultLines, hex, idna2003puny, getIdnaClass("cn mono i2003", errorOut[0]), null);
-        
+
         String uts46puny = Uts46.SINGLETON.toPunyCode(line, errorOut);
         addCell(resultLines, hex, uts46puny, getIdnaClass("cn mono i46", errorOut[0]), null);
-        
+
         String idna2008puny = UnicodeUtilities.processLabels(line, IdnaTypes.DOT, true, verifier2008);
         addCell(resultLines, hex, idna2008puny, getIdnaClass("cn mono i2008", idna2008puny.contains("\uFFFD")), null);
-  
+
         //        if (result == null) {
         //          resultLines.append("<td class='c'>\u00A0</td><td class='c'>\u00A0</td>");
         //        } else {
@@ -1467,7 +1428,7 @@ public class UnicodeUtilities {
         //        }
         resultLines.append("</tr>\n");
       }
-  
+
       resultLines.append("</table>\n");
       return resultLines.toString();
     } catch (Exception e) {
@@ -1477,7 +1438,7 @@ public class UnicodeUtilities {
 
   private static String getIdnaClass(String classItems, boolean error) {
     return "class='" +
-    		classItems + (error ? " error" : "") + "'";
+    classItems + (error ? " error" : "") + "'";
   }
 
   static String processLabels(String inputLabels, Pattern dotPattern, boolean punycode, Predicate<String> verifier) {
