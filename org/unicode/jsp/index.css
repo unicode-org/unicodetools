@@ -32,6 +32,7 @@ h3 {background-color: #EEEEEE}
 }
 .bigChar,.bigCode,.bigName {text-align:center; border-width:0}
 .bigChar {font-size:108pt;}
+.bigCode {font-size:150%; font-weight: bold; font-family:monospace}
 .bigTable {
   width:180pt;
   margin-bottom: 12pt;
@@ -45,3 +46,4 @@ h3 {background-color: #EEEEEE}
 .chb {background-color: #DDFFDD}
 .ri {float:right; display: inline-block;}
 .error {background-color:#FF6666}
+caption {font-size:150%; font-weight: bold; }

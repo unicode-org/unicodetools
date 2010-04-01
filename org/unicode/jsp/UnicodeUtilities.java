@@ -1002,6 +1002,8 @@ public class UnicodeUtilities {
     String name = factory.getProperty("Name").getValue(cp);
     if (name != null) {
       name = toHTML.transliterate(name);
+    } else {
+      name = "<i>Unknown</i>";
     }
     String scriptCat = factory.getProperty("script").getValue(cp).replace("_", " ");
     if (scriptCat.equals("Common") || scriptCat.equals("Inherited")) {
@@ -1009,10 +1011,12 @@ public class UnicodeUtilities {
     } else {
       scriptCat += " Script";
     }
+    
+    String hex = com.ibm.icu.impl.Utility.hex(cp, 4);
 
     out.append("<div class='bigDiv'><table class='bigTable'>\n");
     out.append("<tr><td class='bigChar'>\u00A0" + toHTML.transliterate(text) + "\u00A0</td></tr>\n");
-    out.append("<tr><td class='bigCode'>" + com.ibm.icu.impl.Utility.hex(cp, 4) + "</td></tr>\n");
+    out.append("<tr><td class='bigCode'>" + hex + "</td></tr>\n");
     out.append("<tr><td class='bigName'>" + name + "</td></tr>\n");
     out.append("<tr><td class='bigName'>" + scriptCat + "</td></tr>\n");
     out.append("</table></div>\n");
@@ -1024,7 +1028,10 @@ public class UnicodeUtilities {
     .remove("Name")
     .get();
 
-    out.append("<table class='propTable'><tr><td width='50%'>\n");
+    out.append("<table class='propTable'>" 
+            + "<caption>Properties for U+" + hex + "</caption>"
+            + "<tr><th>With Non-Default Values</th><th>With Default Values</th></tr>" + 
+    		"<tr><td width='50%'>\n");
     out.append("<table width='100%'>\n");
 
     for (String propName : sortedProps) {

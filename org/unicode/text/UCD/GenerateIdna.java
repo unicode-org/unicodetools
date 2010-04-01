@@ -28,8 +28,11 @@ public class GenerateIdna {
 
   public static UnicodeSet U32 = new UnicodeSet("[:age=3.2:]").freeze();
   public static UnicodeSet VALID_ASCII = new UnicodeSet("[\\u002Da-zA-Z0-9]").freeze();
+  static final ToolUnicodePropertySource properties = ToolUnicodePropertySource.make(Default.ucdVersion());
+  static final UnicodeSet cn = properties.getSet("gc=Cn").freeze();
 
   public static void main(String[] args) throws IOException {
+
     UnicodeMap<String> mappings = new UnicodeMap<String>(); 
     UnicodeMap<IdnaType> types = new UnicodeMap<IdnaType>();
     StringPrepData.getIdna2003Tables(mappings, types);
@@ -94,8 +97,6 @@ public class GenerateIdna {
   }
 
   private static UnicodeMap<Row.R2<IdnaType, String>> createMappingTable(UnicodeMap<String> mappings, UnicodeMap<IdnaType> types) {
-    ToolUnicodePropertySource properties = ToolUnicodePropertySource.make(Default.ucdVersion());
-    ToolUnicodePropertySource propertiesU32 = ToolUnicodePropertySource.make(Default.ucdVersion());
 
     UnicodeMap<String> nfkc_cfMap = properties.getProperty("NFKC_CF").getUnicodeMap();
     UnicodeMap<String> baseMapping = new UnicodeMap<String>().putAll(nfkc_cfMap);
@@ -107,7 +108,6 @@ public class GenerateIdna {
 
     UnicodeSet labelSeparator = new UnicodeSet("[\\u002E \\uFF0E \\u3002 \\uFF61]").freeze();
 
-    UnicodeSet cn = properties.getSet("gc=Cn").freeze();
     UnicodeSet baseValidSet = new UnicodeSet(0,0x10FFFF)
     .removeAll(properties.getSet("Changes_When_NFKC_Casefolded=true"))
     .removeAll(properties.getSet("gc=Cc"))
@@ -287,9 +287,15 @@ public class GenerateIdna {
     //    # For terms of use, see http://www.unicode.org/terms_of_use.html
     //    # For documentation, see http://www.unicode.org/reports/tr46/
 
+    UnicodeProperty ASSIGNED = new UnicodeProperty.SimpleProperty() {
+      @Override
+      protected String _getValue(int codepoint) {
+        return cn.contains(codepoint) ? "Cn" : "As";
+      }
+    };
     BagFormatter bf = new BagFormatter();
     bf.setLabelSource(null);
-    bf.setRangeBreakSource(null);
+    bf.setRangeBreakSource(ASSIGNED);
     bf.setShowCount(false);
 
     bf.setValueSource(new UnicodeProperty.UnicodeMapProperty().set(mappingTable));
