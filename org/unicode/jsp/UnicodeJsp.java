@@ -179,9 +179,10 @@ public class UnicodeJsp {
 
   public static int parseCode(String text, String nextButton, String previousButton) {
     //text = fromHTML.transliterate(text);
-    if (text.length() > 2) {
+    String trimmed = text.trim();
+    if (trimmed.length() > 1) {
       try {
-        text = UTF16.valueOf(Integer.parseInt(text,16));
+        text = UTF16.valueOf(Integer.parseInt(trimmed,16));
       } catch (Exception e) {}
     }
     int cp = UTF16.charAt(text, 0);

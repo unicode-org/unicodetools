@@ -31,7 +31,7 @@ th           { text-align: left }
   <p>
   <input name="B3" type="button" value="-" onClick="window.location.href='<%=prevHex%>'">
   <input name="a" type="text" style='text-align:center; font-size:150%' size="10" value="<%=text%>">
-  <input name="B2" type="button" value="+" onClick="window.location.href='<%=nextHex%>'"><br><br>
+  <input name="B2" type="button" value="+" onClick="window.location.href='<%=nextHex%>'"><br>
   <input name="B1" type="submit" value="Show">
   </p>
 </form>
