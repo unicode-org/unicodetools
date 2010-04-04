@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
-* $Date: 2009-08-18 23:38:46 $
-* $Revision: 1.62 $
+* $Date: 2010-04-04 16:01:16 $
+* $Revision: 1.63 $
 *
 *******************************************************************************
 */
@@ -383,14 +383,13 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                     	if (acceptChars) {
                             if (count >= 4 && count <= 6) {
                                 UTF32.append32(output, value);
-                                count = 0;
-                                value = 0;
                             } else if (count != 0) {
                             	output.append(p.substring(i-count, i)); // TODO fix supplementary characters
                             }
+                            count = 0;
+                            value = 0;
                             UTF32.append32(output, ch);
                             continue main;
-                   		
                     	}
                         throw new ChainException("bad hex value: '{0}' at position {1} in \"{2}\"",
                             new Object[] {String.valueOf(ch), new Integer(i), p});
