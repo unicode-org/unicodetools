@@ -47,7 +47,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
     add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
     add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
-    add(new StringTransformProperty(new UnicodeSetUtilities.NFKC_CF(), false).setMain("toNFKC_CF", "toNFKC_CF", UnicodeProperty.STRING, "1.1"));
+    add(new StringTransformProperty(new UnicodeSetUtilities.NFKC_CF(), false).setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1").addName("toNFKC_CF"));
 
     // set up the special script property
     UnicodeProperty scriptProp = base.getProperty("sc");

@@ -28,6 +28,7 @@ import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Collator;
@@ -47,43 +48,43 @@ public class UnicodeUtilities {
 
   static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
 
-  private static final List<String> REGEX_PROPS = Arrays.asList(new String[] {"xdigit", "alnum", "blank", "graph", "print", "word"});
+//  private static final List<String> REGEX_PROPS = Arrays.asList(new String[] {"xdigit", "alnum", "blank", "graph", "print", "word"});
 
-  private static final List<String> UNICODE_PROPS = Arrays.asList(new String[] {
-          "Numeric_Value", "Bidi_Mirroring_Glyph", "Case_Folding",
-          "Decomposition_Mapping", "FC_NFKC_Closure",
-          "Lowercase_Mapping", "Special_Case_Condition",
-          "Simple_Case_Folding", "Simple_Lowercase_Mapping",
-          "Simple_Titlecase_Mapping", "Simple_Uppercase_Mapping",
-          "Titlecase_Mapping", "Uppercase_Mapping", "ISO_Comment",
-          "Name", "Unicode_1_Name", "Unicode_Radical_Stroke", "Age",
-          "Block", "Script", "Bidi_Class", "Canonical_Combining_Class",
-          "Decomposition_Type", "East_Asian_Width", "General_Category",
-          "Grapheme_Cluster_Break", "Hangul_Syllable_Type",
-          "Joining_Group", "Joining_Type", "Line_Break",
-          "NFC_Quick_Check", "NFD_Quick_Check", "NFKC_Quick_Check",
-          "NFKD_Quick_Check", "Numeric_Type", "Sentence_Break",
-          "Word_Break", "ASCII_Hex_Digit", "Alphabetic", "Bidi_Control",
-          "Bidi_Mirrored", "Composition_Exclusion",
-          "Full_Composition_Exclusion", "Dash", "Deprecated",
-          "Default_Ignorable_Code_Point", "Diacritic", "Extender",
-          "Grapheme_Base", "Grapheme_Extend", "Grapheme_Link",
-          "Hex_Digit", "Hyphen", "ID_Continue", "Ideographic",
-          "ID_Start", "IDS_Binary_Operator", "IDS_Trinary_Operator",
-          "Join_Control", "Logical_Order_Exception", "Lowercase", "Math",
-          "Noncharacter_Code_Point", "Other_Alphabetic",
-          "Other_Default_Ignorable_Code_Point", "Other_Grapheme_Extend",
-          "Other_ID_Continue", "Other_ID_Start", "Other_Lowercase",
-          "Other_Math", "Other_Uppercase", "Pattern_Syntax",
-          "Pattern_White_Space", "Quotation_Mark", "Radical",
-          "Soft_Dotted", "STerm", "Terminal_Punctuation",
-          "Unified_Ideograph", "Uppercase", "Variation_Selector",
-          "White_Space", "XID_Continue", "XID_Start", "Expands_On_NFC",
-          "Expands_On_NFD", "Expands_On_NFKC", "Expands_On_NFKD",
-          "toNFC", "toNFD", "toNFKC", "toNFKD",
-          "NFKC_Casefold", "Case_Ignorable", "Cased", 
-          "Changes_When_Lowercased", "Changes_When_Uppercased", "Changes_When_Titlecased", "Changes_When_Casemapped", "Changes_When_Casefolded",
-  "Changes_When_NFKC_Casefolded"});
+//  private static final List<String> UNICODE_PROPS = Arrays.asList(new String[] {
+//          "Numeric_Value", "Bidi_Mirroring_Glyph", "Case_Folding",
+//          "Decomposition_Mapping", "FC_NFKC_Closure",
+//          "Lowercase_Mapping", "Special_Case_Condition",
+//          "Simple_Case_Folding", "Simple_Lowercase_Mapping",
+//          "Simple_Titlecase_Mapping", "Simple_Uppercase_Mapping",
+//          "Titlecase_Mapping", "Uppercase_Mapping", "ISO_Comment",
+//          "Name", "Unicode_1_Name", "Unicode_Radical_Stroke", "Age",
+//          "Block", "Script", "Bidi_Class", "Canonical_Combining_Class",
+//          "Decomposition_Type", "East_Asian_Width", "General_Category",
+//          "Grapheme_Cluster_Break", "Hangul_Syllable_Type",
+//          "Joining_Group", "Joining_Type", "Line_Break",
+//          "NFC_Quick_Check", "NFD_Quick_Check", "NFKC_Quick_Check",
+//          "NFKD_Quick_Check", "Numeric_Type", "Sentence_Break",
+//          "Word_Break", "ASCII_Hex_Digit", "Alphabetic", "Bidi_Control",
+//          "Bidi_Mirrored", "Composition_Exclusion",
+//          "Full_Composition_Exclusion", "Dash", "Deprecated",
+//          "Default_Ignorable_Code_Point", "Diacritic", "Extender",
+//          "Grapheme_Base", "Grapheme_Extend", "Grapheme_Link",
+//          "Hex_Digit", "Hyphen", "ID_Continue", "Ideographic",
+//          "ID_Start", "IDS_Binary_Operator", "IDS_Trinary_Operator",
+//          "Join_Control", "Logical_Order_Exception", "Lowercase", "Math",
+//          "Noncharacter_Code_Point", "Other_Alphabetic",
+//          "Other_Default_Ignorable_Code_Point", "Other_Grapheme_Extend",
+//          "Other_ID_Continue", "Other_ID_Start", "Other_Lowercase",
+//          "Other_Math", "Other_Uppercase", "Pattern_Syntax",
+//          "Pattern_White_Space", "Quotation_Mark", "Radical",
+//          "Soft_Dotted", "STerm", "Terminal_Punctuation",
+//          "Unified_Ideograph", "Uppercase", "Variation_Selector",
+//          "White_Space", "XID_Continue", "XID_Start", "Expands_On_NFC",
+//          "Expands_On_NFD", "Expands_On_NFKC", "Expands_On_NFKD",
+//          "toNFC", "toNFD", "toNFKC", "toNFKD",
+//          "NFKC_Casefold", "Case_Ignorable", "Cased", 
+//          "Changes_When_Lowercased", "Changes_When_Uppercased", "Changes_When_Titlecased", "Changes_When_Casemapped", "Changes_When_Casefolded",
+//  "Changes_When_NFKC_Casefolded"});
   /*
    * Arrays.asList(new String[] {
         "Numeric_Value", "Bidi_Mirroring_Glyph", "Case_Folding",
@@ -1061,7 +1062,7 @@ public class UnicodeUtilities {
   private static void showPropertyValue(String propName, String propValue, boolean isDefault, Appendable out) throws IOException {
     String defaultClass = isDefault ? " class='default'" : "";
     if (propValue == null) {
-      out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
+      out.append("<tr><th><a target='c' href='properties.jsp?a=" + propName + "#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
       "><i>null</i></td></tr>\n");
       return;
     }
@@ -1069,7 +1070,7 @@ public class UnicodeUtilities {
     hValue = "<a target='u' href='list-unicodeset.jsp?a=[:"
       + propName + "=" + propValue + ":]'>" + hValue + "</a>";
 
-    out.append("<tr><th><a target='c' href='properties.jsp#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
+    out.append("<tr><th><a target='c' href='properties.jsp?a=" + propName + "#" + propName + "'>" + propName + "</a></th><td"  +defaultClass+
             ">" + hValue + "</td></tr>\n");
   }
 
@@ -1083,13 +1084,33 @@ public class UnicodeUtilities {
     Set<String> showLink = new HashSet<String>();
 
     out.append("<table>\n");
-    for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).get()) {
+    out.append("<tr><th>Source</th>\n")
+    .append("<th>Category</th>\n")
+    .append("<th>Datatype</th>\n")
+    .append("<th>Property</th>\n")
+    .append("<th>Values</th></tr>\n");
+    
+    //for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).get()) {
+    for (R4<String, String, String, String> propData : PropertyMetadata.SourceCategoryDatatypeProperty) {
+      String propName = propData.get3();
       UnicodeProperty prop = factory.getProperty(propName);
+      if (prop == null) continue;
       String propHtml = toHTML.transform(propName);
-      String shortName = prop.getFirstNameAlias();
-      String title = shortName == null ? "" : " title='" + toHTML(shortName) + "'";
-      out.append("<tr><th width='1%'" + title + "><a name='" + propHtml + "'>" + propHtml + "</a></th>\n");
-      out.append("<td>\n");
+      String shortName;
+      try {
+        shortName = prop.getFirstNameAlias();
+      } catch (Exception e) {
+        throw new IllegalArgumentException(propData.toString(), e);
+      }
+      String title = shortName == null || shortName.equals(propName) ? "" : " title='" + toHTML(shortName) + "'";
+      out.append("<tr>")
+      .append("<td>").append(propData.get0()).append("</td>\n")
+      .append("<td>").append(propData.get1()).append("</td>\n")
+      .append("<td>").append(propData.get2()).append("</td>\n")
+      .append("<th") .append(title) .append("><a name='") .append(propHtml) .append("'>")
+      .append(propHtml)
+      .append("</a></th>\n");
+      out.append("<td>");
       if (propName.equals(propForValues)) {
         List<String> availableValues = (List<String>)prop.getAvailableValues();
         TreeSet<String> sortedList = Builder.with(new TreeSet<String>(col)).addAll(availableValues).get();
