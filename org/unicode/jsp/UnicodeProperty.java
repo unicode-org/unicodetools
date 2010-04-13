@@ -40,7 +40,12 @@ public abstract class UnicodeProperty extends UnicodeLabel {
   public static final UnicodeSet PRIVATE_USE = new UnicodeSet("[:gc=privateuse:]").freeze();
   public static final UnicodeSet SURROGATE = new UnicodeSet("[:gc=surrogate:]").freeze();
   public static final UnicodeSet SPECIALS = new UnicodeSet(UNASSIGNED).addAll(PRIVATE_USE).addAll(SURROGATE).freeze();
-  public static final int SAMPLE_UNASSIGNED = UNASSIGNED.charAt(0);
+  public static final int SAMPLE_UNASSIGNED = 0xD0000;
+  static {
+    if (!UNASSIGNED.contains(SAMPLE_UNASSIGNED)) {
+      throw new IllegalArgumentException("Problem with sample unassigned");
+    }
+  }
   public static final int SAMPLE_PRIVATE_USE = 0xE000;
   public static final int SAMPLE_SURROGATE = 0xD800;
   public static final UnicodeSet STUFF_TO_TEST = new UnicodeSet(SPECIALS).complement()

@@ -685,10 +685,19 @@ public class TestJsp  extends TestFmwk {
 
   public void TestShowProperties() throws IOException {
     StringWriter out = new StringWriter();
-    UnicodeJsp.showProperties(0x0061, out);
+    UnicodeJsp.showProperties(0x00C5, out);
     assertTrue("props for character", out.toString().contains("Line_Break"));
+    logln(out.toString());
     //System.out.println(out);
   }
+  
+  public void TestIdentifiers() throws IOException {
+    String out = UnicodeUtilities.getIdentifier("Latin");
+    assertTrue("identifier info", out.toString().contains("Line_Break"));
+    logln(out.toString());
+    //System.out.println(out);
+  }
+
 
 
   public void TestShowSet() throws IOException {
@@ -705,7 +714,7 @@ public class TestJsp  extends TestFmwk {
     out.getBuffer().setLength(0);
     UnicodeJsp.showSet("sc", UnicodeSetUtilities.parseUnicodeSet("[:script=/Han/:]", TableStyle.extras), false, true, out);
     assertFalse("props table", out.toString().contains("unassigned"));
-    //System.out.println(out);
+    logln(out.toString());
 
 
   }

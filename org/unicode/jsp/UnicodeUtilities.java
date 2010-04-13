@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -20,14 +21,15 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
-import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.impl.Utility;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -47,44 +49,45 @@ public class UnicodeUtilities {
 
 
   static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
+  static final UnicodeSet NONCHAR = new UnicodeSet(OFF_LIMITS).addAll(new UnicodeSet("[:Cc:]")).removeAll(new UnicodeSet("[:whitespace:]")).freeze();
 
-//  private static final List<String> REGEX_PROPS = Arrays.asList(new String[] {"xdigit", "alnum", "blank", "graph", "print", "word"});
+  //  private static final List<String> REGEX_PROPS = Arrays.asList(new String[] {"xdigit", "alnum", "blank", "graph", "print", "word"});
 
-//  private static final List<String> UNICODE_PROPS = Arrays.asList(new String[] {
-//          "Numeric_Value", "Bidi_Mirroring_Glyph", "Case_Folding",
-//          "Decomposition_Mapping", "FC_NFKC_Closure",
-//          "Lowercase_Mapping", "Special_Case_Condition",
-//          "Simple_Case_Folding", "Simple_Lowercase_Mapping",
-//          "Simple_Titlecase_Mapping", "Simple_Uppercase_Mapping",
-//          "Titlecase_Mapping", "Uppercase_Mapping", "ISO_Comment",
-//          "Name", "Unicode_1_Name", "Unicode_Radical_Stroke", "Age",
-//          "Block", "Script", "Bidi_Class", "Canonical_Combining_Class",
-//          "Decomposition_Type", "East_Asian_Width", "General_Category",
-//          "Grapheme_Cluster_Break", "Hangul_Syllable_Type",
-//          "Joining_Group", "Joining_Type", "Line_Break",
-//          "NFC_Quick_Check", "NFD_Quick_Check", "NFKC_Quick_Check",
-//          "NFKD_Quick_Check", "Numeric_Type", "Sentence_Break",
-//          "Word_Break", "ASCII_Hex_Digit", "Alphabetic", "Bidi_Control",
-//          "Bidi_Mirrored", "Composition_Exclusion",
-//          "Full_Composition_Exclusion", "Dash", "Deprecated",
-//          "Default_Ignorable_Code_Point", "Diacritic", "Extender",
-//          "Grapheme_Base", "Grapheme_Extend", "Grapheme_Link",
-//          "Hex_Digit", "Hyphen", "ID_Continue", "Ideographic",
-//          "ID_Start", "IDS_Binary_Operator", "IDS_Trinary_Operator",
-//          "Join_Control", "Logical_Order_Exception", "Lowercase", "Math",
-//          "Noncharacter_Code_Point", "Other_Alphabetic",
-//          "Other_Default_Ignorable_Code_Point", "Other_Grapheme_Extend",
-//          "Other_ID_Continue", "Other_ID_Start", "Other_Lowercase",
-//          "Other_Math", "Other_Uppercase", "Pattern_Syntax",
-//          "Pattern_White_Space", "Quotation_Mark", "Radical",
-//          "Soft_Dotted", "STerm", "Terminal_Punctuation",
-//          "Unified_Ideograph", "Uppercase", "Variation_Selector",
-//          "White_Space", "XID_Continue", "XID_Start", "Expands_On_NFC",
-//          "Expands_On_NFD", "Expands_On_NFKC", "Expands_On_NFKD",
-//          "toNFC", "toNFD", "toNFKC", "toNFKD",
-//          "NFKC_Casefold", "Case_Ignorable", "Cased", 
-//          "Changes_When_Lowercased", "Changes_When_Uppercased", "Changes_When_Titlecased", "Changes_When_Casemapped", "Changes_When_Casefolded",
-//  "Changes_When_NFKC_Casefolded"});
+  //  private static final List<String> UNICODE_PROPS = Arrays.asList(new String[] {
+  //          "Numeric_Value", "Bidi_Mirroring_Glyph", "Case_Folding",
+  //          "Decomposition_Mapping", "FC_NFKC_Closure",
+  //          "Lowercase_Mapping", "Special_Case_Condition",
+  //          "Simple_Case_Folding", "Simple_Lowercase_Mapping",
+  //          "Simple_Titlecase_Mapping", "Simple_Uppercase_Mapping",
+  //          "Titlecase_Mapping", "Uppercase_Mapping", "ISO_Comment",
+  //          "Name", "Unicode_1_Name", "Unicode_Radical_Stroke", "Age",
+  //          "Block", "Script", "Bidi_Class", "Canonical_Combining_Class",
+  //          "Decomposition_Type", "East_Asian_Width", "General_Category",
+  //          "Grapheme_Cluster_Break", "Hangul_Syllable_Type",
+  //          "Joining_Group", "Joining_Type", "Line_Break",
+  //          "NFC_Quick_Check", "NFD_Quick_Check", "NFKC_Quick_Check",
+  //          "NFKD_Quick_Check", "Numeric_Type", "Sentence_Break",
+  //          "Word_Break", "ASCII_Hex_Digit", "Alphabetic", "Bidi_Control",
+  //          "Bidi_Mirrored", "Composition_Exclusion",
+  //          "Full_Composition_Exclusion", "Dash", "Deprecated",
+  //          "Default_Ignorable_Code_Point", "Diacritic", "Extender",
+  //          "Grapheme_Base", "Grapheme_Extend", "Grapheme_Link",
+  //          "Hex_Digit", "Hyphen", "ID_Continue", "Ideographic",
+  //          "ID_Start", "IDS_Binary_Operator", "IDS_Trinary_Operator",
+  //          "Join_Control", "Logical_Order_Exception", "Lowercase", "Math",
+  //          "Noncharacter_Code_Point", "Other_Alphabetic",
+  //          "Other_Default_Ignorable_Code_Point", "Other_Grapheme_Extend",
+  //          "Other_ID_Continue", "Other_ID_Start", "Other_Lowercase",
+  //          "Other_Math", "Other_Uppercase", "Pattern_Syntax",
+  //          "Pattern_White_Space", "Quotation_Mark", "Radical",
+  //          "Soft_Dotted", "STerm", "Terminal_Punctuation",
+  //          "Unified_Ideograph", "Uppercase", "Variation_Selector",
+  //          "White_Space", "XID_Continue", "XID_Start", "Expands_On_NFC",
+  //          "Expands_On_NFD", "Expands_On_NFKC", "Expands_On_NFKD",
+  //          "toNFC", "toNFD", "toNFKC", "toNFKD",
+  //          "NFKC_Casefold", "Case_Ignorable", "Cased", 
+  //          "Changes_When_Lowercased", "Changes_When_Uppercased", "Changes_When_Titlecased", "Changes_When_Casemapped", "Changes_When_Casefolded",
+  //  "Changes_When_NFKC_Casefolded"});
   /*
    * Arrays.asList(new String[] {
         "Numeric_Value", "Bidi_Mirroring_Glyph", "Case_Folding",
@@ -386,10 +389,10 @@ public class UnicodeUtilities {
     numberFormat.setGroupingUsed(true);
   }
 
-  public static void showSet(String grouping, UnicodeSet a, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
+  public static void showSet(String grouping, UnicodeSet a, CodePointShower codePointShower, Appendable out) throws IOException {
     grouping = grouping.trim();
     if (grouping.length() == 0) {
-      showSet(a, abbreviate, ucdFormat, out);
+      showSet(a, codePointShower, out);
       return;
     }
     String[] props = grouping.split("[;,\\s]\\s*");
@@ -469,7 +472,7 @@ public class UnicodeUtilities {
                 (i == length - 1 ? " <div class='ri'>items: " + numberFormat.format(items.size()) : "</div>") +
         "</h2><blockquote>\n");
       }
-      showSet(items, abbreviate, ucdFormat, out);
+      showSet(items, codePointShower, out);
       for (int i = 0; i < propsOld.length; ++i) {
         propsOld[i] = props2[i];
       }
@@ -506,11 +509,26 @@ public class UnicodeUtilities {
   }
 
   /*jsp*/
-  public static void showSet(UnicodeSet inputSetRaw, boolean abbreviate, boolean ucdFormat, Appendable out) throws IOException {
+  public static void showSet(UnicodeSet inputSetRaw, CodePointShower codePointShower, Appendable out) throws IOException {
+    if (codePointShower.doTable) {
+      out.append("<table>");
+    }
     if (inputSetRaw.getRangeCount() > 10000) {
+      if (codePointShower.doTable) {
+        out.append("<tr><td colSpan='4'>");
+      }
       out.append("<i>Too many to list individually</i>\n");
-    } else if (abbreviate) {
-      showAbbreviated(inputSetRaw, ucdFormat, out);
+      if (codePointShower.doTable) {
+        out.append("</td></tr>");
+      }
+    } else if (codePointShower.abbreviate) {
+      if (codePointShower.doTable) {
+        out.append("<tr><td colSpan='4'>");
+      }
+      codePointShower.showAbbreviated(inputSetRaw, out);
+      if (codePointShower.doTable) {
+        out.append("</td></tr>");
+      }
     } else {
       LinkedHashMap<String,UnicodeSet> items = new LinkedHashMap();
       String specials = "Unassigned, Private use, or Surrogates";
@@ -521,8 +539,6 @@ public class UnicodeUtilities {
         items.put(specials, specialSet);
       }
 
-      String oldBlock = "";
-      String oldSubhead = "";
       for (UnicodeSetIterator it = new UnicodeSetIterator(inputSet); it.next();) {
         int s = it.codepoint;
         if (s == UnicodeSetIterator.IS_STRING) {
@@ -531,12 +547,15 @@ public class UnicodeUtilities {
           if (set == null) items.put(newBlock, set = new UnicodeSet());
           set.add(it.string);
         } else {
-          String newBlock = UCharacter.getStringPropertyValue(BLOCK_ENUM, s, UProperty.NameChoice.LONG).replace('_', ' ');
+          String block = UCharacter.getStringPropertyValue(BLOCK_ENUM, s, UProperty.NameChoice.LONG).replace('_', ' ');
+          String newBlock = "<a href='list-unicodeset.jsp?a=\\p{Block=" + block + "}'>" + block + "</a>";
           String newSubhead = getSubheader().getSubheader(s);
           if (newSubhead == null) {
             newSubhead = "<u>no subhead</u>";
+          } else {
+            newSubhead = "<a href='list-unicodeset.jsp?a=\\p{subhead=" + newSubhead + "}'>" + newSubhead + "</a>";
           }
-          newBlock = newBlock + " - <i>" + newSubhead + "</i>";
+          newBlock = newBlock + " \u2014 <i>" + newSubhead + "</i>";
           UnicodeSet set = items.get(newBlock);
           if (set == null) items.put(newBlock, set = new UnicodeSet());
           set.add(s);
@@ -545,47 +564,90 @@ public class UnicodeUtilities {
 
       for (String newBlock : items.keySet()) {
         UnicodeSet set = items.get(newBlock);
-        out.append("<h3>" + newBlock + "</b>: " + numberFormat.format(set.size()) + "</h3>\n");
+        if (codePointShower.doTable) {
+          out.append("<tr><td colSpan='4'>");
+        }
+        out.append("<h3>" + newBlock + "</b> <div class='ri'>items: " + numberFormat.format(set.size()) + "</div></h3>\n");
+        if (codePointShower.doTable) {
+          out.append("</td></tr>");
+        }
+
         if (set.size() > 500 || newBlock == specials) {
-          showAbbreviated(set, ucdFormat, out);
+          codePointShower.showAbbreviated(set, out);
         } else {
           for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next();) {
             int s = it.codepoint;
             if (s == UnicodeSetIterator.IS_STRING) {
-              out.append(showCodePoint(it.string)).append("<br>\n");
+              codePointShower.showString(it.string, ", ", out);
             } else {
-              showCodePoint(s, ucdFormat, out);
+              codePointShower.showCodePoint(s, out);
             }
           }
         }
       }
     }
+    if (codePointShower.doTable) {
+      out.append("</table>");
+    }
   }
 
-  private static void showAbbreviated(UnicodeSet a, boolean ucdFormat, Appendable out) throws IOException {
-    for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.nextRange();) {
-      int s = it.codepoint;
-      if (s == UnicodeSetIterator.IS_STRING) {
-        out.append(showCodePoint(it.string)).append("<br>\n");
-      } else {        
-        int end = it.codepointEnd;
-        if (end == s) {
-          showCodePoint(s, ucdFormat, out);
-        } else if (end == s + 1) {
-          showCodePoint(s, ucdFormat, out);
-          showCodePoint(end, ucdFormat, out);
+  public static String getIdentifier(String script) {
+    StringBuilder result = new StringBuilder();
+    UnicodeProperty scriptProp = factory.getProperty("sc");
+    UnicodeSet scriptSet;
+    scriptSet = scriptProp.getSet(script);
+    scriptSet.removeAll(NONCHAR);
+    if (scriptSet.size() == 0) {
+      result.append("<p><i>Illegal script:</i> " + toHTML(script) + ". Please pick one of the following:</p>\n<p>");
+      String last = null;
+      TreeSet<String> sorted = new TreeSet<String>(col);
+      sorted.addAll(scriptProp.getAvailableValues());
+      for (String s : sorted) {
+        scriptSet = scriptProp.getSet(s);
+        scriptSet.removeAll(NONCHAR);
+        if (scriptSet.size() == 0) {
+          continue;
+        }
+        String name = toHTML(s);
+        if (last == null) {
+          // nothing
+        } else if (last.charAt(0) == s.charAt(0)) {
+          result.append(' ');
         } else {
-          if (ucdFormat) {
-            out.append(getHex(s, ucdFormat));
-            out.append("..");
-            showCodePoint(end, ucdFormat, out);
-          } else {
-            showCodePoint(s, ucdFormat, out);
-            out.append("\u2026{" + (end-s-1) + "}\u2026");
-            showCodePoint(end, ucdFormat, out);
+          result.append("</p><p>");
+        }
+        result.append("<a target='id' href='identifier.jsp?a=" + name + "'>" + name + "</a>");
+        last = s;
+      }
+      result.append("</p>\n");
+      return result.toString();
+    }
+    try {
+      UnicodeSet allowed = new UnicodeSet(scriptSet).retainAll(XIDModifications.allowed);
+      UnicodeSet restricted = new UnicodeSet(scriptSet).removeAll(XIDModifications.allowed);
+      result.append("<h2>Allowed</h2>");
+      if (allowed.size() == 0) {
+        result.append("<i>none</i>");
+      } else {
+        showSet(allowed, new CodePointShower(false, false, true), result);
+      }
+
+      if (restricted.size() == 0) {
+        result.append("<h2>Restricted</h2>");
+        result.append("<i class='redName'>none</i>");
+      } else {
+        for (String reason : XIDModifications.reasons.values()) {
+          UnicodeSet shard = XIDModifications.reasons.getSet(reason);
+          UnicodeSet items = new UnicodeSet(restricted).retainAll(shard);
+          if (items.size() != 0) {
+            result.append("<h2>Restricted - <span class='redName'>" + reason + "</span></h2>");
+            showSet(items, new CodePointShower(false, false, true).setRestricted(true), result);
           }
         }
       }
+      return result.toString();
+    } catch (IOException e) {
+      return "<i>Internal Error</i>";
     }
   }
 
@@ -612,29 +674,109 @@ public class UnicodeUtilities {
     return literal;
   }
 
-  private static void showCodePoint(int codePoint, boolean ucdFormat, Appendable out) throws IOException {
-    final String string = UTF16.valueOf(codePoint);
-    String separator = ", ";
-    showString(string, ucdFormat, separator, out);
-  }
+  static class CodePointShower {
 
-  private static void showString(final String string, boolean ucdFormat, String separator,
-          Appendable out) throws IOException {
-    String literal = toHTML.transliterate(string);
-    if (RTL.containsSome(literal)) {
-      literal = '\u200E' + literal + '\u200E';
+    public boolean doTable;
+    public boolean abbreviate;
+    public boolean ucdFormat;
+    public boolean identifierInfo;
+    public boolean restricted;
+
+    public CodePointShower setRestricted(boolean restricted) {
+      this.restricted = restricted;
+      return this;
     }
-    String name = getName(string, separator, false);
-    if (name == null || name.length() == 0) {
-      name = "<i>no name</i>";
-    } else {
-      boolean special = name.indexOf('<') >= 0;
-      name = toHTML.transliterate(name);
-      if (special) {
-        name = "<i>" + name + "</i>";
+
+    public CodePointShower(boolean abbreviate, boolean ucdFormat, boolean identifierInfo) {
+      this.abbreviate = abbreviate;
+      this.ucdFormat = ucdFormat;
+      this.identifierInfo = this.doTable = identifierInfo;
+    }
+
+    void showCodePoint(int codePoint, Appendable out) throws IOException {
+      final String string = UTF16.valueOf(codePoint);
+      String separator = ", ";
+      showString(string, separator, out);
+    }
+
+    private void showString(final String string, String separator, Appendable out) throws IOException {
+      if (doTable) {
+        out.append("<tr><td>");
+      }
+      String literal = UnicodeUtilities.toHTML.transliterate(string);
+      if (UnicodeUtilities.RTL.containsSome(literal)) {
+        literal = '\u200E' + literal + '\u200E';
+      }
+      String name = UnicodeUtilities.getName(string, separator, false);
+      if (name == null || name.length() == 0) {
+        name = "<i>no name</i>";
+      } else {
+        boolean special = name.indexOf('<') >= 0;
+        name = UnicodeUtilities.toHTML.transliterate(name);
+        if (special) {
+          name = "<i>" + name + "</i>";
+        }
+      }
+      if (doTable) {
+        out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + "</td><td class='charCell'>\u00A0" + literal + "\u00A0</td><td" + (restricted ? " class='redName'" : "") +
+                ">" + name);
+      } else {
+        out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name);
+      }
+      if (identifierInfo) {
+        int cp = string.codePointAt(0);
+        StringBuilder confusableString = displayConfusables(cp);
+        if (doTable) {
+          out.append("</td><td title='Confusable Characters'>");
+        } else {
+          out.append("; ");
+        }
+        if (confusableString.length() == 0) {
+          out.append("<span class='noConfusables'>none</span>");
+        } else {
+          out.append(confusableString.toString());
+        }
+      }
+      if (doTable) {
+        out.append("</td></tr>\n");
+      } else {
+        out.append("<br>\n");
       }
     }
-    out.append(getHex(string, separator, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name + "<br>\n");
+
+    private void showAbbreviated(UnicodeSet a, Appendable out) throws IOException {
+      UnicodeUtilities.CodePointShower codePointShower = this;
+
+      for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.nextRange();) {
+        int s = it.codepoint;
+        if (s == UnicodeSetIterator.IS_STRING) {
+          out.append(UnicodeUtilities.showCodePoint(it.string)).append("<br>\n");
+        } else {        
+          int end = it.codepointEnd;
+          if (end == s) {
+            codePointShower.showCodePoint(s, out);
+          } else if (end == s + 1) {
+            codePointShower.showCodePoint(s, out);
+            codePointShower.showCodePoint(end, out);
+          } else {
+            if (codePointShower.ucdFormat) {
+              out.append(UnicodeUtilities.getHex(s, codePointShower.ucdFormat));
+              out.append("..");
+              codePointShower.showCodePoint(end, out);
+            } else {
+              codePointShower.showCodePoint(s, out);
+              if (doTable) {
+                out.append("<tr><td colSpan='4'>" + "\u2026{" + (end-s-1) + "}\u2026</td</tr>");
+              } else {
+                out.append("\u2026{" + (end-s-1) + "}\u2026");
+              }
+              codePointShower.showCodePoint(end, out);
+            }
+          }
+        }
+      }
+    }
+
   }
 
   private static String getName(String string, String separator, boolean andCode) {
@@ -655,7 +797,8 @@ public class UnicodeUtilities {
 
   private static String getHex(int codePoint, boolean ucdFormat) {
     String hex = com.ibm.icu.impl.Utility.hex(codePoint, 4);
-    final String string = "<code><a target='c' href='character.jsp?a=" + hex + "'>"
+    final String string = "<code>" +
+    ("<a target='c' href='character.jsp?a=" + hex + "'>")
     + (ucdFormat ? "" : "U+")
     + hex + "</a></code>";
     return string;
@@ -1000,19 +1143,22 @@ public class UnicodeUtilities {
 
   public static void showProperties(int cp, Appendable out) throws IOException {
     String text = UTF16.valueOf(cp);
+
     String name = factory.getProperty("Name").getValue(cp);
     if (name != null) {
       name = toHTML.transliterate(name);
     } else {
       name = "<i>Unknown</i>";
     }
+    boolean allowed = XIDModifications.allowed.contains(cp);
+
     String scriptCat = factory.getProperty("script").getValue(cp).replace("_", " ");
     if (scriptCat.equals("Common") || scriptCat.equals("Inherited")) {
       scriptCat = factory.getProperty("gc").getValue(cp).replace("_", " ");
     } else {
       scriptCat += " Script";
     }
-    
+
     String hex = com.ibm.icu.impl.Utility.hex(cp, 4);
 
     out.append("<div class='bigDiv'><table class='bigTable'>\n");
@@ -1020,6 +1166,21 @@ public class UnicodeUtilities {
     out.append("<tr><td class='bigCode'>" + hex + "</td></tr>\n");
     out.append("<tr><td class='bigName'>" + name + "</td></tr>\n");
     out.append("<tr><td class='bigName'>" + scriptCat + "</td></tr>\n");
+    out.append("<tr><td class='bigName'><i>id:</i> ");
+    if (allowed) {
+      out.append("<span class='allowed'>allowed</span>");
+    } else {
+      out.append("<span class='restricted' title='Restricted in identifiers: " + XIDModifications.reasons.get(cp) + "'>restricted</span>");
+    }
+    out.append("</td></tr>\n");
+    StringBuilder confusableString = displayConfusables(cp);
+    out.append("<tr><td class='bigName'><span title='Confusable Characters'><i>confuse:</i> </span>");
+    if (confusableString.length() == 0) {
+      out.append("<span class='noConfusables'>none</span>");
+    } else {
+      out.append(confusableString.toString());
+    }
+    out.append("</td></tr>\n");
     out.append("</table></div>\n");
 
     List<String> availableNames = (List<String>)factory.getAvailableNames();
@@ -1032,11 +1193,13 @@ public class UnicodeUtilities {
     out.append("<table class='propTable'>" 
             + "<caption>Properties for U+" + hex + "</caption>"
             + "<tr><th>With Non-Default Values</th><th>With Default Values</th></tr>" + 
-    		"<tr><td width='50%'>\n");
+    "<tr><td width='50%'>\n");
     out.append("<table width='100%'>\n");
 
     for (String propName : sortedProps) {
       UnicodeProperty prop = factory.getProperty(propName);
+      if (prop.getName().equals("confusable")) continue;
+
       boolean isDefault = prop.isDefault(cp);
       if (isDefault) continue;
       String propValue = prop.getValue(cp);
@@ -1049,6 +1212,8 @@ public class UnicodeUtilities {
     out.append("<table width='100%'>\n");
     for (String propName : sortedProps) {
       UnicodeProperty prop = factory.getProperty(propName);
+      if (prop.getName().equals("confusable")) continue;
+
       boolean isDefault = prop.isDefault(cp);
       if (!isDefault) continue;
       String propValue = prop.getValue(cp);
@@ -1057,6 +1222,121 @@ public class UnicodeUtilities {
     out.append("</table>\n");
 
     out.append("</td></tr></table>\n");
+  }
+
+  private static StringBuilder displayConfusables(int codepoint) {
+    StringBuilder confusableString = new StringBuilder();
+    Set<String> skip = new HashSet<String>();
+    String same = UTF16.valueOf(codepoint);
+    String nfd = Normalizer.normalize(same, Normalizer.NFD);
+
+    skip.add(same);
+    skip.add(nfd);
+
+    // get basic confusables
+    Set<String> list = Confusables.getEquivalents(same);
+    if (list != null) {
+      for (String s: list) {
+        if (same.equals(s)) {
+          continue;
+        }
+        if (confusableString.length() != 0) {
+          confusableString.append(", ");
+        }
+        getBoxedCharacters(s, confusableString);
+        skip.add(s);
+        String nfd2 = Normalizer.normalize(same, Normalizer.NFD);
+        skip.add(nfd2);
+      }
+    }
+
+
+    // Now, get the combinations
+    if (nfd.codePointCount(0, nfd.length()) > 1) {
+      if (confusableString.length() != 0) {
+        confusableString.append(", ");
+      }
+
+      List<Confusables> combos = new ArrayList<Confusables>();
+      // get all the combinations
+      int cp;
+      for (int i = 0; i < nfd.length(); i += Character.charCount(cp)) {
+        if (i != 0) {
+          confusableString.append("+");
+        }
+        cp = nfd.codePointAt(i);
+        Confusables currentCombos = new Confusables(UTF16.valueOf(cp)).setNormalizationCheck(Normalizer.NFKC);
+        combos.add(currentCombos);
+        confusableString.append("<div class='char'>");
+        for (String s : currentCombos) {
+          getBoxedCharacters(s, confusableString);
+        }
+        confusableString.append("</div>");
+      }
+      // now add them to the skip list
+      addToSkip("", 0, combos, skip);
+    }
+
+    Confusables confusables = new Confusables(same).setNormalizationCheck(Normalizer.NFKC);
+    for (String s: confusables) {
+      if (skip.contains(s)) {
+        continue;
+      }
+      String nfd2 = Normalizer.normalize(same, Normalizer.NFD);
+      if (skip.contains(nfd2)) {
+        continue;
+      }
+      if (confusableString.length() != 0) {
+        confusableString.append(", ");
+      }
+      getBoxedCharacters(s, confusableString);
+    }
+
+    //
+    //    // first, try the nfd
+    //    skip.add(same);
+    //    String nfd = Normalizer.normalize(same, Normalizer.NFD);
+    //    // get all the confusables that are simple products
+    //    int cp;
+    //    for (int i = 0; i < nfd.length(); i += Character.charCount(cp)) {
+    //      cp = nfd.codePointAt(i);
+    //    }
+    //    
+    //    for (String s: confusables) {
+    //      if (same.equals(s)) {
+    //        continue;
+    //      }
+    //      getBoxedCharacters(s, confusableString);
+    //    }
+    return confusableString;
+  }
+
+  // add recursively, for simplicity
+  private static void addToSkip(String prefix, int i, List<Confusables> combos, Set<String> skip) {
+    if (i >= combos.size()) {
+      skip.add(prefix);
+    } else {
+      for (String s : combos.get(i)) {
+        addToSkip(prefix + s, i+1, combos, skip);
+      }
+    }
+  }
+
+  private static void getBoxedCharacters(String s, StringBuilder confusableString) {
+    confusableString
+    .append("<div class='char' title='" + toHTML(UCharacter.getName(s, " + ")) + "'>");
+    int cp;
+    for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+      cp = s.codePointAt(i);
+      if (i != 0) {
+        confusableString.append("+");
+      }
+      confusableString
+      .append("<a target='c' href='character.jsp?a=" + Utility.hex(cp) + "'>" + "&nbsp;")
+      .append(toHTML(UTF16.valueOf(cp)))
+      .append("&nbsp;</a>");
+    }
+    confusableString.append("</div>");
   }
 
   private static void showPropertyValue(String propName, String propValue, boolean isDefault, Appendable out) throws IOException {
@@ -1083,15 +1363,26 @@ public class UnicodeUtilities {
 
     Set<String> showLink = new HashSet<String>();
 
-    out.append("<table>\n");
-    out.append("<tr><th>Source</th>\n")
-    .append("<th>Category</th>\n")
-    .append("<th>Datatype</th>\n")
-    .append("<th>Property</th>\n")
-    .append("<th>Values</th></tr>\n");
-    
+    TablePrinter tablePrinter = new TablePrinter()
+    .setTableAttributes("style='border-collapse: collapse' border='1'")
+    .addColumn("Category").setSpanRows(true).setBreakSpans(true).setCellAttributes("class='propCategory'").setSortPriority(0)
+    .addColumn("Datatype").setSpanRows(true).setCellAttributes("class='propDatatype'").setSortPriority(1)
+    .addColumn("Source").setSpanRows(true).setCellAttributes("class='propSource'").setSortPriority(2)
+    .addColumn("Property").setSpanRows(false).setCellAttributes("class='propTitle'")
+    .addColumn("Values").setSpanRows(false).setCellAttributes("class='propValues'")
+    ;
+    //tablePrinter.addRows(data);
+    //tablePrinter.addRow().addCell("Foo").addCell(1.5d).addCell(99).finishRow();
+
+    //out.append("<table>\n");
+    //    out.append("<tr><th>Source</th>\n")
+    //    .append("<th>Category</th>\n")
+    //    .append("<th>Datatype</th>\n")
+    //    .append("<th>Property</th>\n")
+    //    .append("<th>Values</th></tr>\n");
+
     //for (String propName : Builder.with(new TreeSet<String>(col)).addAll((List<String>)factory.getAvailableNames()).get()) {
-    for (R4<String, String, String, String> propData : PropertyMetadata.SourceCategoryDatatypeProperty) {
+    for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
       String propName = propData.get3();
       UnicodeProperty prop = factory.getProperty(propName);
       if (prop == null) continue;
@@ -1103,38 +1394,51 @@ public class UnicodeUtilities {
         throw new IllegalArgumentException(propData.toString(), e);
       }
       String title = shortName == null || shortName.equals(propName) ? "" : " title='" + toHTML(shortName) + "'";
-      out.append("<tr>")
-      .append("<td>").append(propData.get0()).append("</td>\n")
-      .append("<td>").append(propData.get1()).append("</td>\n")
-      .append("<td>").append(propData.get2()).append("</td>\n")
-      .append("<th") .append(title) .append("><a name='") .append(propHtml) .append("'>")
-      .append(propHtml)
-      .append("</a></th>\n");
-      out.append("<td>");
+      String propInfo = "<a name='" + propHtml + "'>" + propHtml + "</a>";
+      if (shortName == null || shortName.equals(propName)) {
+        propInfo = "<span title='" + toHTML(shortName) + "'>" + propInfo + "</span>";
+      }
+      //      out.append("<tr>")
+      //      .append("<td>").append(propData.get0()).append("</td>\n")
+      //      .append("<td>").append(propData.get1()).append("</td>\n")
+      //      .append("<td>").append(propData.get2()).append("</td>\n")
+      //      .append("<th") .append(title) .append("><a name='") .append(propHtml) .append("'>")
+      //      .append(propHtml)
+      //      .append("</a></th>\n");
+      //      out.append("<td>");
+      StringBuilder propValues = new StringBuilder();
       if (propName.equals(propForValues)) {
         List<String> availableValues = (List<String>)prop.getAvailableValues();
         TreeSet<String> sortedList = Builder.with(new TreeSet<String>(col)).addAll(availableValues).get();
         int count = 500;
         for (String valueName : sortedList) {
           if (--count < 0) {
-            out.append("\n<i>too many values to show</i>");
+            propValues.append("\n<i>too many values to show</i>");
             break;
           }
           String valueHtml = toHTML.transform(valueName);
           String shortValue = prop.getFirstValueAlias(valueName);
           if (valueName.startsWith("<") && valueName.endsWith(">")) {
-            out.append(valueHtml);
+            propValues.append(valueHtml);
           } else {
-            out.append(getPropLink(propHtml, valueHtml, valueHtml, shortValue));
+            propValues.append(getPropLink(propHtml, valueHtml, valueHtml, shortValue));
           }
-          out.append("\n");
+          propValues.append("\n");
         }
       } else {
-        out.append("<a href='" + myLink + "?a=" + propName + "#" + propName + "'>Show Values</a>");
+        propValues.append("<a href='" + myLink + "?a=" + propName + "#" + propName + "'>Show Values</a>");
       }
-      out.append("</td></tr>\n");
+      tablePrinter.addRow()
+      .addCell(propData.get0())
+      .addCell(propData.get1())
+      .addCell(propData.get2())
+      .addCell(propInfo)
+      .addCell(propValues.toString())
+      .finishRow();
+      //out.append("</td></tr>\n");
     }
-    out.append("</table>\n");
+    //out.append("</table>\n");
+    out.append(tablePrinter.toTable());
   }
 
   private static String getPropLink(String propName, String propValue, String linkText, String shortName) {

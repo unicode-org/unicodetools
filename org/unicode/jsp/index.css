@@ -30,7 +30,7 @@ h3 {background-color: #EEEEEE}
   margin-left: auto;
   margin-right: auto;
 }
-.bigChar,.bigCode,.bigName {text-align:center; border-width:0}
+.bigChar,.bigCode,.bigName, .allowed, .restricted, .noConfusables {text-align:center; border-width:0}
 .bigChar {font-size:108pt;}
 .bigCode {font-size:150%; font-weight: bold; font-family:monospace}
 .bigTable {
@@ -47,3 +47,11 @@ h3 {background-color: #EEEEEE}
 .ri {float:right; display: inline-block;}
 .error {background-color:#FF6666}
 caption {font-size:150%; font-weight: bold; }
+.propTitle {background-color: #DDFFDD; font-weight: bold; }
+.allowed {color:green}
+.restricted {color:red}
+.noConfusables {color:orange}
+
+.char {display:inline; border:1px solid #CCCCFF;}
+.redName {color:#C00}
+.charCell {text-align:center;}

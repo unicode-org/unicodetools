@@ -20,7 +20,7 @@ public class PropertyMetadata {
       if (items.length != 4) {
         throw new IllegalArgumentException("Must have exactly 4 items: " + Arrays.asList(items));
       }
-      set.add((R4<String, String, String, String>) Row.of(items[1], items[3], items[2], items[0]).freeze());
+      set.add((R4<String, String, String, String>) Row.of(items[3], items[2], items[1], items[0]).freeze());
     }
     protected void handleEnd() {
       super.handleEnd();
@@ -33,6 +33,6 @@ public class PropertyMetadata {
       return set;
     }
   }
-  public static SortedSet<Row.R4<String, String, String,String>> SourceCategoryDatatypeProperty = ((MyHandler) new MyHandler()
+  public static SortedSet<Row.R4<String, String, String,String>> CategoryDatatypeSourceProperty = ((MyHandler) new MyHandler()
   .process(PropertyMetadata.class, "propertyMetadata.txt")).getSet();
 }

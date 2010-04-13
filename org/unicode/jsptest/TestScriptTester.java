@@ -25,6 +25,7 @@ public class TestScriptTester extends TestFmwk {
     ScriptTester scriptTester = ScriptTester.start().get();
     
     String[] bad = {
+            "gー",
             "ä\u0308",
             "1٦",
             "٦۶",
