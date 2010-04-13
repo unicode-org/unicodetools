@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -46,6 +47,11 @@ public class Confusables implements Iterable<String>{
     }
     result.freeze();
     return result;
+  }
+  
+  public static Set<String> getEquivalents(String string) {
+    Set<String> result = equivalents.getEquivalences(string);
+    return Collections.unmodifiableSet(result);
   }
 
   public Confusables setAllowedCharacters(UnicodeSet allowedCharacters) {

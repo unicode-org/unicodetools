@@ -77,7 +77,7 @@ public class TestProperties extends TestFmwk {
 //    }
 
     Set<String> notCovered = new HashSet<String>(availableNames);
-    for (R4<String, String, String, String> propData : PropertyMetadata.SourceCategoryDatatypeProperty) {
+    for (R4<String, String, String, String> propData : PropertyMetadata.CategoryDatatypeSourceProperty) {
       logln(propData.toString());
       notCovered.remove(propData.get3());
     }

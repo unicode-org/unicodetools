@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateConfusables.java,v $
- * $Date: 2010-04-04 16:01:16 $
- * $Revision: 1.30 $
+ * $Date: 2010-04-13 00:28:04 $
+ * $Revision: 1.31 $
  *
  *******************************************************************************
  */
@@ -287,6 +287,7 @@ public class GenerateConfusables {
 
   static PrintWriter log;
   static final String ARROW = "→"; // \u2194
+  static final String BACKARROW = "\u2190";
   static UnicodeProperty.Factory ups = ToolUnicodePropertySource.make(""); // ICUPropertyFactory.make();
 
   static UnicodeSet UNASSIGNED = 
@@ -538,18 +539,19 @@ public class GenerateConfusables {
 
       UnicodeSet sources = new UnicodeSet();
       line = null;
+      int counter = 0;
       try {
         while (true) {
           line = Utility.readDataLine(br);
           if (line == null)
             break;
+          ++counter;
           if (line.length() == 0)
             continue;
           sources.clear();
           String[] pieces = Utility.split(line, ';');
           if (pieces.length < 2) {
-            System.out.println("Missing line " + line);
-            continue;
+            throw new IllegalArgumentException(counter + " Missing line " + line);
           }
           String codelist = pieces[0].trim();
           String reasons = pieces[1].trim();
@@ -640,8 +642,8 @@ public class GenerateConfusables {
       //reviews.putAll(UNASSIGNED, "");
       //			out.print("\uFEFF");
       //			out.println("# Review List for IDN");
-      //			out.println("# $Revision: 1.30 $");
-      //			out.println("# $Date: 2010-04-04 16:01:16 $");
+      //			out.println("# $Revision: 1.31 $");
+      //			out.println("# $Date: 2010-04-13 00:28:04 $");
       //			out.println("");
 
       UnicodeSet fullSet = reviews.keySet("").complement();
@@ -763,8 +765,8 @@ public class GenerateConfusables {
       /* PrintWriter out = BagFormatter.openUTF8Writer(outdir, "xidmodifications.txt");
 
 			out.println("# Security Profile for General Identifiers");
-			out.println("# $Revision: 1.30 $");
-			out.println("# $Date: 2010-04-04 16:01:16 $");
+			out.println("# $Revision: 1.31 $");
+			out.println("# $Date: 2010-04-13 00:28:04 $");
        */
 
       //String skipping = "[^[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]]";
@@ -773,8 +775,6 @@ public class GenerateConfusables {
       out.println("#  All code points not explicitly listed ");
       out.println("#  have the values: restricted; not-chars");
       out.println("# @missing: 0000..10FFFF; restricted ; not-chars");
-      out.println("");
-      out.println("# Characters restricted");
       out.println("");
       /*
        * for (Iterator it = values.iterator(); it.hasNext();) { String
@@ -793,7 +793,7 @@ public class GenerateConfusables {
         if (value.contains("not-chars")) continue;
         UnicodeSet uset = removals.getSet(value);
         out.println("");
-        out.println("#\tValues:\t" + value);
+        out.println("#\tStatus/Type:\t" + value);
         out.println("");
         bf.setMergeRanges(Collections.disjoint(fullListing, Arrays.asList(value.split("[\\s;]+"))));
         bf.showSetNames(out, uset);
@@ -856,8 +856,8 @@ public class GenerateConfusables {
       //someRemovals = removals;
       out = BagFormatter.openUTF8Writer(outdir, "draft-restrictions.txt");
       out.println("# Characters restricted in domain names");
-      out.println("# $Revision: 1.30 $");
-      out.println("# $Date: 2010-04-04 16:01:16 $");
+      out.println("# $Revision: 1.31 $");
+      out.println("# $Date: 2010-04-13 00:28:04 $");
       out.println("#");
       out.println("# This file contains a draft list of characters for use in");
       out.println("#     UTR #36: Unicode Security Considerations");
@@ -929,7 +929,7 @@ public class GenerateConfusables {
       for (UnicodeSetIterator usi = new UnicodeSetIterator(s); usi.next();) {
         String source = usi.getString();
         String target = getModifiedNKFC(source);
-        writeSourceTargetLine(out, source, null, target, value, ARROW);
+        writeSourceTargetLine(out, source, "N", target, value, ARROW);
       }
       //bf.showSetNames(out, s);
       out.flush();
@@ -1010,7 +1010,7 @@ public class GenerateConfusables {
     return _preferredIDSet;
   }
 
-  static private UnicodeSet SKIP_EXCEPTIONS = new UnicodeSet().add(0x1E9A).add('ſ').add('ﬅ').add('ẛ').freeze();
+  static private UnicodeSet SKIP_EXCEPTIONS = new UnicodeSet().add(0x1E9A).add('ſ').add('ﬅ').add('ẛ').add("Ϲ").add("ϲ").freeze();
 
   private static UnicodeSet getSkipNFKD() {
     nfcMap = new UnicodeMap();
@@ -1568,8 +1568,8 @@ public class GenerateConfusables {
       PrintWriter out = openAndWriteHeader(directory, filename, "Source File for IDN Confusables");
       //			PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
       //			out.println("# Source File for IDN Confusables");
-      //			out.println("# $Revision: 1.30 $");
-      //			out.println("# $Date: 2010-04-04 16:01:16 $");
+      //			out.println("# $Revision: 1.31 $");
+      //			out.println("# $Date: 2010-04-13 00:28:04 $");
       //			out.println("");
       raw.writeSource(out);
       out.close();
@@ -1579,8 +1579,8 @@ public class GenerateConfusables {
       PrintWriter out = openAndWriteHeader(directory, filename, "Recommended confusable mapping for IDN");
       //            PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
       //			out.println("# Recommended confusable mapping for IDN");
-      //			out.println("# $Revision: 1.30 $");
-      //			out.println("# $Date: 2010-04-04 16:01:16 $");
+      //			out.println("# $Revision: 1.31 $");
+      //			out.println("# $Date: 2010-04-13 00:28:04 $");
       //			out.println("");
 
       if (appendFile) {
@@ -1822,8 +1822,8 @@ public class GenerateConfusables {
       //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
       //			out.print('\uFEFF');
       //			out.println("# Summary: Recommended confusable mapping for IDN");
-      //			out.println("# $Revision: 1.30 $");
-      //			out.println("# $Date: 2010-04-04 16:01:16 $");
+      //			out.println("# $Revision: 1.31 $");
+      //			out.println("# $Date: 2010-04-13 00:28:04 $");
       //			out.println("");
       UnicodeSet representable = new UnicodeSet();
       MyEquivalenceClass data = dataMixedAnycase;
@@ -1891,7 +1891,7 @@ public class GenerateConfusables {
           String reasonOrEmpty = reason.length() == 0 ? "" : "\t# " + reason;
           status = ""; // getStatus(source);
 
-          out.println("\u2190" + status + "\t" + "(\u200E " + source + " \u200E)\t" + Utility.hex(source) + "\t " + Default.ucd().getName(source)
+          out.println(BACKARROW + status + "\t" + "(\u200E " + source + " \u200E)\t" + Utility.hex(source) + "\t " + Default.ucd().getName(source)
                   + reasonOrEmpty);
           count++;
         }
@@ -1954,8 +1954,8 @@ public class GenerateConfusables {
       //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
       //			out.print('\uFEFF');
       //			out.println("# Summary: Whole-Script Confusables");
-      //			out.println("# $Revision: 1.30 $");
-      //			out.println("# $Date: 2010-04-04 16:01:16 $");
+      //			out.println("# $Revision: 1.31 $");
+      //			out.println("# $Date: 2010-04-13 00:28:04 $");
       out.println("# This data is used for determining whether a strings is a");
       out.println("# whole-script or mixed-script confusable.");
       out.println("# The mappings here ignore common and inherited script characters,");
@@ -2510,7 +2510,7 @@ public class GenerateConfusables {
     out.println("# File: " + filename);
     out.println("# Version: " + version);
     out.println("# Generated: " + Default.getDate());
-    out.println("# Checkin: $Revision: 1.30 $");
+    out.println("# Checkin: $Revision: 1.31 $");
     out.println("#");
     out.println("# For documentation and usage, see http://www.unicode.org/reports/tr39/");
     out.println("#");
@@ -2521,7 +2521,9 @@ public class GenerateConfusables {
     public String transform(Linkage<String, String> source) {
       String sourceString = source.reasons.toString();
       sourceString = sourceString.substring(1,sourceString.length()-1);
-      return source.result == null ? "" : ARROW + rtlProtect(source.result) + ARROW;
+      return source.result == null ? "" : 
+        source.result.length() == 0 ? "\u21d2" : 
+        ARROW + rtlProtect(source.result) + ARROW;
     }
 
   };
