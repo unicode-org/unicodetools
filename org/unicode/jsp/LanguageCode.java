@@ -44,8 +44,9 @@ public class LanguageCode {
     protected boolean isCodePoint() {
       return false;
     }
-    public void handleLine(int start, int end, String[] items) {
+    public boolean handleLine(int start, int end, String[] items) {
       map.put(items[0], items[1]);
+      return true;
     }
   }
 

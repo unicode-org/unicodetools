@@ -10,7 +10,7 @@ public class XIDModifications {
   static class MyReader extends FileUtilities.SemiFileReader {
     
     @Override
-    protected void handleLine(int start, int end, String[] items) {
+    protected boolean handleLine(int start, int end, String[] items) {
       String type = items[1];
       if (type.equals("allowed")) {
         allowed.add(start, end);
@@ -21,6 +21,7 @@ public class XIDModifications {
       } else {
         throw new IllegalArgumentException(type);
       }
+      return true;
     }
   }
   static {

@@ -16,11 +16,12 @@ public class PropertyMetadata {
     protected boolean isCodePoint() {
       return false;
     }
-    public void handleLine(int start, int end, String[] items) {
+    public boolean handleLine(int start, int end, String[] items) {
       if (items.length != 4) {
         throw new IllegalArgumentException("Must have exactly 4 items: " + Arrays.asList(items));
       }
       set.add((R4<String, String, String, String>) Row.of(items[3], items[2], items[1], items[0]).freeze());
+      return true;
     }
     protected void handleEnd() {
       super.handleEnd();

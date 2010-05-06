@@ -256,7 +256,7 @@ public class ScriptTester {
 
     UnicodeMap<BitSet> map = new UnicodeMap<BitSet>();
 
-    public void handleLine(int start, int end, String[] items) {
+    public boolean handleLine(int start, int end, String[] items) {
       BitSet bitSet = new BitSet(LIMIT);
       for (String script : SPACES.split(items[1])) {
         int scriptCode = script.equalsIgnoreCase("hant") ? HANT
@@ -265,6 +265,7 @@ public class ScriptTester {
         bitSet.set(scriptCode);
       }
       map.putAll(start, end, bitSet);
+      return true;
     }
   }
 
