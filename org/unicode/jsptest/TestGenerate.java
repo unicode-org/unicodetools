@@ -34,7 +34,7 @@ import com.ibm.icu.util.VersionInfo;
 public class TestGenerate   extends TestFmwk{
   
   static final String AGE = System.getProperty("age");
-  static final UnicodeSet OVERALL_ALLOWED = new UnicodeSet().applyPropertyAlias("age", AGE).freeze();
+  static final UnicodeSet OVERALL_ALLOWED = new UnicodeSet().applyPropertyAlias("age", AGE == null ? "5.2" : AGE).freeze();
 
   public static void main(String[] args) throws Exception {
     new TestGenerate().run(args);

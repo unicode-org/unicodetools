@@ -1,8 +1,8 @@
 ﻿# Security Profile for General Identifiers
 # File: xidmodifications.txt
 # Version: 2.1-draft
-# Generated: 2010-04-12, 23:39:07 GMT
-# Checkin: $Revision: 1.5 $
+# Generated: 2010-04-13, 01:33:09 GMT
+# Checkin: $Revision: 1.6 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
 #
@@ -62,7 +62,7 @@
 0388..038A    ; allowed ; recommended          #  [3] (Έ..Ί)  GREEK CAPITAL LETTER EPSILON WITH TONOS..GREEK CAPITAL LETTER IOTA WITH TONOS
 038C          ; allowed ; recommended          #      (Ό)  GREEK CAPITAL LETTER OMICRON WITH TONOS
 038E..03A1    ; allowed ; recommended          # [20] (Ύ..Ρ)  GREEK CAPITAL LETTER UPSILON WITH TONOS..GREEK CAPITAL LETTER RHO
-03A3..03CF    ; allowed ; recommended          # [45] (Σ..Ϗ)  GREEK CAPITAL LETTER SIGMA..GREEK CAPITAL KAI SYMBOL
+03A3..03CE    ; allowed ; recommended          # [44] (Σ..ώ)  GREEK CAPITAL LETTER SIGMA..GREEK SMALL LETTER OMEGA WITH TONOS
 03FC..045F    ; allowed ; recommended          # [100] (ϼ..џ)  GREEK RHO WITH STROKE SYMBOL..CYRILLIC SMALL LETTER DZHE
 048A..0525    ; allowed ; recommended          # [156] (Ҋ..ԥ)  CYRILLIC CAPITAL LETTER SHORT I WITH TAIL..CYRILLIC SMALL LETTER PE WITH DESCENDER
 0531..0556    ; allowed ; recommended          # [38] (Ա..Ֆ)  ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITAL LETTER FEH
@@ -195,16 +195,18 @@
 0D66..0D6F    ; allowed ; recommended          # [10] (൦..൯)  MALAYALAM DIGIT ZERO..MALAYALAM DIGIT NINE
 0D7A..0D7F    ; allowed ; recommended          #  [6] (ൺ..ൿ)  MALAYALAM LETTER CHILLU NN..MALAYALAM LETTER CHILLU K
 0D82..0D83    ; allowed ; recommended          #  [2] (ං..ඃ)  SINHALA SIGN ANUSVARAYA..SINHALA SIGN VISARGAYA
-0D85..0D96    ; allowed ; recommended          # [18] (අ..ඖ)  SINHALA LETTER AYANNA..SINHALA LETTER AUYANNA
-0D9A..0DB1    ; allowed ; recommended          # [24] (ක..න)  SINHALA LETTER ALPAPRAANA KAYANNA..SINHALA LETTER DANTAJA NAYANNA
+0D85..0D8E    ; allowed ; recommended          # [10] (අ..ඎ)  SINHALA LETTER AYANNA..SINHALA LETTER IRUUYANNA
+0D91..0D96    ; allowed ; recommended          #  [6] (එ..ඖ)  SINHALA LETTER EYANNA..SINHALA LETTER AUYANNA
+0D9A..0DA5    ; allowed ; recommended          # [12] (ක..ඥ)  SINHALA LETTER ALPAPRAANA KAYANNA..SINHALA LETTER TAALUJA SANYOOGA NAAKSIKYAYA
+0DA7..0DB1    ; allowed ; recommended          # [11] (ට..න)  SINHALA LETTER ALPAPRAANA TTAYANNA..SINHALA LETTER DANTAJA NAYANNA
 0DB3..0DBB    ; allowed ; recommended          #  [9] (ඳ..ර)  SINHALA LETTER SANYAKA DAYANNA..SINHALA LETTER RAYANNA
 0DBD          ; allowed ; recommended          #      (ල)  SINHALA LETTER DANTAJA LAYANNA
 0DC0..0DC6    ; allowed ; recommended          #  [7] (ව..ෆ)  SINHALA LETTER VAYANNA..SINHALA LETTER FAYANNA
 0DCA          ; allowed ; recommended          #      (්)  SINHALA SIGN AL-LAKUNA
 0DCF..0DD4    ; allowed ; recommended          #  [6] (ා..ු)  SINHALA VOWEL SIGN AELA-PILLA..SINHALA VOWEL SIGN KETTI PAA-PILLA
 0DD6          ; allowed ; recommended          #      (ූ)  SINHALA VOWEL SIGN DIGA PAA-PILLA
-0DD8..0DDF    ; allowed ; recommended          #  [8] (ෘ..ෟ)  SINHALA VOWEL SIGN GAETTA-PILLA..SINHALA VOWEL SIGN GAYANUKITTA
-0DF2..0DF3    ; allowed ; recommended          #  [2] (ෲ..ෳ)  SINHALA VOWEL SIGN DIGA GAETTA-PILLA..SINHALA VOWEL SIGN DIGA GAYANUKITTA
+0DD8..0DDE    ; allowed ; recommended          #  [7] (ෘ..ෞ)  SINHALA VOWEL SIGN GAETTA-PILLA..SINHALA VOWEL SIGN KOMBUVA HAA GAYANUKITTA
+0DF2          ; allowed ; recommended          #      (ෲ)  SINHALA VOWEL SIGN DIGA GAETTA-PILLA
 0E01..0E32    ; allowed ; recommended          # [50] (ก..า)  THAI CHARACTER KO KAI..THAI CHARACTER SARA AA
 0E34..0E3A    ; allowed ; recommended          #  [7] (ิ..ฺ)  THAI CHARACTER SARA I..THAI CHARACTER PHINTHU
 0E40..0E4E    ; allowed ; recommended          # [15] (เ..๎)  THAI CHARACTER SARA E..THAI CHARACTER YAMAKKAN
@@ -360,7 +362,7 @@ FA27..FA29    ; allowed ; recommended          #  [3] (﨧..﨩)  CJK COMPATIBIL
 20000..2A6D6  ; allowed ; recommended          # [42711] (𠀀..𪛖)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A700..2B734  ; allowed ; recommended          # [4149] (𪜀..𫜴)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 
-# Total code points: 91106
+# Total code points: 91100
 
 #	Status/Type:	restricted ; default-ignorable
 
@@ -411,7 +413,6 @@ E0100..E01EF  ; restricted ; default-ignorable # [240] (U+E0100..U+E01EF)  VARIA
 0373  ; restricted ; historic          # (ͳ)  GREEK SMALL LETTER ARCHAIC SAMPI
 0376  ; restricted ; historic          # (Ͷ)  GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA
 0377  ; restricted ; historic          # (ͷ)  GREEK SMALL LETTER PAMPHYLIAN DIGAMMA
-03D7  ; restricted ; historic          # (ϗ)  GREEK KAI SYMBOL
 03D8  ; restricted ; historic          # (Ϙ)  GREEK LETTER ARCHAIC KOPPA
 03D9  ; restricted ; historic          # (ϙ)  GREEK SMALL LETTER ARCHAIC KOPPA
 03DA  ; restricted ; historic          # (Ϛ)  GREEK LETTER STIGMA
@@ -5019,7 +5020,7 @@ D7FB  ; restricted ; historic          # (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1D243 ; restricted ; historic          # (𝉃)  COMBINING GREEK MUSICAL TETRASEME
 1D244 ; restricted ; historic          # (𝉄)  COMBINING GREEK MUSICAL PENTASEME
 
-# Total code points: 4631
+# Total code points: 4630
 
 #	Status/Type:	restricted ; limited-use
 
@@ -7482,9 +7483,16 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 0360  ; restricted ; technical         # (͠)  COMBINING DOUBLE TILDE
 0361  ; restricted ; technical         # (͡)  COMBINING DOUBLE INVERTED BREVE
 0362  ; restricted ; technical         # (͢)  COMBINING DOUBLE RIGHTWARDS ARROW BELOW
+03CF  ; restricted ; technical         # (Ϗ)  GREEK CAPITAL KAI SYMBOL
+03D7  ; restricted ; technical         # (ϗ)  GREEK KAI SYMBOL
 03F3  ; restricted ; technical         # (ϳ)  GREEK LETTER YOT
 0953  ; restricted ; technical         # (॓)  DEVANAGARI GRAVE ACCENT
 0954  ; restricted ; technical         # (॔)  DEVANAGARI ACUTE ACCENT
+0D8F  ; restricted ; technical         # (ඏ)  SINHALA LETTER ILUYANNA
+0D90  ; restricted ; technical         # (ඐ)  SINHALA LETTER ILUUYANNA
+0DA6  ; restricted ; technical         # (ඦ)  SINHALA LETTER SANYAKA JAYANNA
+0DDF  ; restricted ; technical         # (ෟ)  SINHALA VOWEL SIGN GAYANUKITTA
+0DF3  ; restricted ; technical         # (ෳ)  SINHALA VOWEL SIGN DIGA GAYANUKITTA
 0F18  ; restricted ; technical         # (༘)  TIBETAN ASTROLOGICAL SIGN -KHYUD PA
 0F19  ; restricted ; technical         # (༙)  TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
 17CB  ; restricted ; technical         # (់)  KHMER SIGN BANTOC
@@ -7792,4 +7800,4 @@ FE25  ; restricted ; technical         # (︥)  COMBINING MACRON RIGHT HALF
 FE26  ; restricted ; technical         # (︦)  COMBINING CONJOINING MACRON
 FE73  ; restricted ; technical         # (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 460
+# Total code points: 467

@@ -1356,7 +1356,6 @@ public class UnicodeUtilities {
 
   /*jsp*/
   public static void showPropsTable(Appendable out, String propForValues, String myLink) throws IOException {
-    Collator col = Collator.getInstance(ULocale.ROOT);
     ((RuleBasedCollator)col).setNumericCollation(true);
     Map<String, Map<String, String>> alpha = new TreeMap<String, Map<String, String>>(col);
     Map<String, String> longToShort = new HashMap<String, String>();
@@ -1408,23 +1407,7 @@ public class UnicodeUtilities {
       //      out.append("<td>");
       StringBuilder propValues = new StringBuilder();
       if (propName.equals(propForValues)) {
-        List<String> availableValues = (List<String>)prop.getAvailableValues();
-        TreeSet<String> sortedList = Builder.with(new TreeSet<String>(col)).addAll(availableValues).get();
-        int count = 500;
-        for (String valueName : sortedList) {
-          if (--count < 0) {
-            propValues.append("\n<i>too many values to show</i>");
-            break;
-          }
-          String valueHtml = toHTML.transform(valueName);
-          String shortValue = prop.getFirstValueAlias(valueName);
-          if (valueName.startsWith("<") && valueName.endsWith(">")) {
-            propValues.append(valueHtml);
-          } else {
-            propValues.append(getPropLink(propHtml, valueHtml, valueHtml, shortValue));
-          }
-          propValues.append("\n");
-        }
+        getHtmlPropValues(prop, propHtml, propValues);
       } else {
         propValues.append("<a href='" + myLink + "?a=" + propName + "#" + propName + "'>Show Values</a>");
       }
@@ -1439,6 +1422,35 @@ public class UnicodeUtilities {
     }
     //out.append("</table>\n");
     out.append(tablePrinter.toTable());
+  }
+
+  private static void getHtmlPropValues(UnicodeProperty prop, String propHtml, StringBuilder propValues) {
+    List<String> availableValues = (List<String>)prop.getAvailableValues();
+    TreeSet<String> sortedList = Builder.with(new TreeSet<String>(col)).addAll(availableValues).get();
+    int count = 500;
+    int lastFirstChar = 0;
+    for (String valueName : sortedList) {
+      if (--count < 0) {
+        propValues.append("\n<i>too many values to show</i>");
+        break;
+      }
+      int firstChar = valueName.codePointAt(0);
+      if (lastFirstChar != 0) {
+        if (lastFirstChar != firstChar) {
+          propValues.append(",<br>\n");
+        } else {
+          propValues.append(", ");
+        }
+      }
+      lastFirstChar = firstChar;
+      String valueHtml = toHTML.transform(valueName);
+      String shortValue = prop.getFirstValueAlias(valueName);
+      if (valueName.startsWith("<") && valueName.endsWith(">")) {
+        propValues.append(valueHtml);
+      } else {
+        propValues.append(getPropLink(propHtml, valueHtml, valueHtml, shortValue));
+      }
+    }
   }
 
   private static String getPropLink(String propName, String propValue, String linkText, String shortName) {

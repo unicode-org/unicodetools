@@ -13,11 +13,16 @@ public final class FileUtilities {
 
   public static abstract class SemiFileReader {
     public final static Pattern SPLIT = Pattern.compile("\\s*;\\s*");
+    private int lineCount;
 
     protected void handleStart() {}
-    protected abstract void handleLine(int start, int end, String[] items);
+    protected abstract boolean handleLine(int start, int end, String[] items);
     protected void handleEnd() {}
     
+    public int getLineCount() {
+      return lineCount;
+    }
+
     protected boolean isCodePoint() {
       return true;
     }
@@ -30,7 +35,7 @@ public final class FileUtilities {
       handleStart();
       BufferedReader in;
       String line = null;
-      int lineCount = 1;
+      lineCount = 1;
       try {
         in = FileUtilities.openFile(classLocation, fileName);
         for (; ; ++lineCount) {
@@ -63,7 +68,9 @@ public final class FileUtilities {
           } else {
             start = end = -1;
           }
-          handleLine(start, end, parts);
+          if (!handleLine(start, end, parts)) {
+            break;
+          }
         }
         in.close();
         handleEnd();
@@ -93,6 +100,7 @@ public final class FileUtilities {
       //      boolean x = file1.canRead();
       //      final InputStream resourceAsStream = new FileInputStream(file1);
       final InputStream resourceAsStream = class1.getResourceAsStream(file);
+      String foo = class1.getResource(".").toString();
       InputStreamReader reader = new InputStreamReader(resourceAsStream, FileUtilities.UTF8);
       BufferedReader bufferedReader = new BufferedReader(reader,1024*64);
       return bufferedReader;

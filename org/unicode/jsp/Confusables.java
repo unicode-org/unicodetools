@@ -70,13 +70,14 @@ public class Confusables implements Iterable<String>{
 
   static class MyReader extends FileUtilities.SemiFileReader {
     @Override
-    protected void handleLine(int start, int end, String[] items) {
+    protected boolean handleLine(int start, int end, String[] items) {
       String type = items[2];
-      if (!type.equals("MA")) return;
+      if (!type.equals("MA")) return true;
       String result = Utility.fromHex(items[1], 4, " ");
       for (int i = start; i <= end; ++i) {
         equivalents.add(UTF16.valueOf(i), result);
       }
+      return true;
     }
   }
 

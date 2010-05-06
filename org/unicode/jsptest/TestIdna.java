@@ -30,7 +30,7 @@ public class TestIdna extends TestFmwk {
     UnicodeSet equalsIdnabis = new UnicodeSet();
     UnicodeMap<String> diffIdnaBis = new UnicodeMap<String>();
 
-    public void handleLine(int start, int end, String[] items) {
+    public boolean handleLine(int start, int end, String[] items) {
       String type = items[1];
       String value;
       if (type.equals("mapped")) {
@@ -38,11 +38,12 @@ public class TestIdna extends TestFmwk {
       } else if (type.equals("ignored")) {
         value = "";
       } else {
-        return;
+        return true;
       }
       for (int i = start; i <= end; ++i) {
         addMapping(i, value);
       }
+      return true;
     }
     
     private void addMapping(int source, String targetChars) {

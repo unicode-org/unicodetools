@@ -22,7 +22,7 @@ public class Typology {
     }
 
     @Override
-    protected void handleLine(int start, int end, String[] items) {
+    protected boolean handleLine(int start, int end, String[] items) {
       for (int i = 2; i < 6; ++i) {
         String item = items[i];
         if (item.equals("[X]")) continue;
@@ -38,6 +38,7 @@ public class Typology {
         }
         uset.add(start, end);
       }
+      return true;
     }
   }
   static {

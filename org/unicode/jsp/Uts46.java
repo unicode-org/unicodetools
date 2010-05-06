@@ -21,7 +21,7 @@ public class Uts46 extends Idna {
     
   class MyHandler extends FileUtilities.SemiFileReader {
     
-    public void handleLine(int start, int end, String[] items) {
+    public boolean handleLine(int start, int end, String[] items) {
       IdnaType type = IdnaType.valueOf(items[1]);
       types.putAll(start, end, type);
 
@@ -52,6 +52,7 @@ public class Uts46 extends Idna {
           mappings_display.putAll(start, end, value);
         }
       }
+      return true;
     }
   }
 
