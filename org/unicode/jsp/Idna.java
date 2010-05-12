@@ -62,7 +62,7 @@ public class Idna implements StringTransform {
     return resultString;
   }
 
-  private String fromPunycodeOrUnicode(String label, boolean[] error) {
+  protected String fromPunycodeOrUnicode(String label, boolean[] error) {
     if (!label.startsWith("xn--")) {
       return label;
     }

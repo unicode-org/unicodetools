@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
- * $Date: 2009-08-27 11:46:36 $
- * $Revision: 1.49 $
+ * $Date: 2010-05-12 23:51:26 $
+ * $Revision: 1.50 $
  *
  *******************************************************************************
  */
@@ -462,7 +462,8 @@ public interface UCD_Types {
   AGE50 = 9,
   AGE51 = 10,
   AGE52 = 11,
-  LIMIT_AGE = AGE52 + 1 + FIX_FOR_NEW_VERSION;
+  AGE60 = 12,
+  LIMIT_AGE = AGE60 + 1; // + FIX_FOR_NEW_VERSION;
 
   static final String[] AGE_VERSIONS = {
     "?",
@@ -477,6 +478,7 @@ public interface UCD_Types {
             "5.0.0",
             "5.1.0",
             "5.2.0",
+            "6.0.0",
   };
 
   public static byte
@@ -546,8 +548,8 @@ public interface UCD_Types {
   BURUSHASKI_YEH_BARREE = 54,
   FARSI_YEH = 55,
   NYA = 56,
-
-  LIMIT_JOINING_GROUP = 57;
+  TEH_MARBUTA_GOAL = 57,
+  LIMIT_JOINING_GROUP = 58;
 
   static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;    
   public static final int
