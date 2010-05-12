@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
- * $Date: 2009-08-27 11:46:36 $
- * $Revision: 1.45 $
+ * $Date: 2010-05-12 23:51:26 $
+ * $Revision: 1.46 $
  *
  *******************************************************************************
  */
@@ -514,6 +514,7 @@ public final class UCD_Names implements UCD_Types {
     "5.0",
     "5.1",
     "5.2",
+    "6.0",
   };
 
   static final String[] GENERAL_CATEGORY = {
@@ -914,8 +915,9 @@ public final class UCD_Names implements UCD_Types {
     "KHAPH",
     "FE",
     "BURUSHASKI_YEH_BARREE",
-    "FARSI YEH",
+    "FARSI_YEH",
     "NYA",
+    "TEH_MARBUTA_GOAL",
     // BURUSHASHKI YEH BARREE
   };
   static {

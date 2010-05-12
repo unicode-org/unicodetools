@@ -2,6 +2,7 @@ package org.unicode.jsp;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -18,7 +19,7 @@ public final class FileUtilities {
     protected void handleStart() {}
     protected abstract boolean handleLine(int start, int end, String[] items);
     protected void handleEnd() {}
-    
+
     public int getLineCount() {
       return lineCount;
     }
@@ -30,14 +31,33 @@ public final class FileUtilities {
     protected String[] splitLine(String line) {
       return SPLIT.split(line);
     }
-    
+
     public SemiFileReader process(Class classLocation, String fileName) {
+      try {
+        BufferedReader in = FileUtilities.openFile(classLocation, fileName);
+        return process(in, fileName);
+      } catch (Exception e) {
+        throw (RuntimeException) new IllegalArgumentException(lineCount + ":\t" + 0).initCause(e);
+      }
+
+    }
+
+    public SemiFileReader process(String directory, String fileName) {
+      try {
+        FileInputStream fileStream = new FileInputStream(directory + "/" + fileName);
+        InputStreamReader reader = new InputStreamReader(fileStream, FileUtilities.UTF8);
+        BufferedReader bufferedReader = new BufferedReader(reader,1024*64);
+        return process(bufferedReader, fileName);
+      } catch (Exception e) {
+        throw (RuntimeException) new IllegalArgumentException(lineCount + ":\t" + 0).initCause(e);
+      }
+    }
+
+    public SemiFileReader process(BufferedReader in, String fileName) {
       handleStart();
-      BufferedReader in;
       String line = null;
       lineCount = 1;
       try {
-        in = FileUtilities.openFile(classLocation, fileName);
         for (; ; ++lineCount) {
           line = in.readLine();
           if (line == null) {

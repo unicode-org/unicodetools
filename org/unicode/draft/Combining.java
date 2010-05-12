@@ -141,7 +141,9 @@ public class Combining {
         .addCell(level == null ? "-" : "·" + level + "·")
         .addCell(sequence).addCell(hex).addCell(name).finishRow();
         soFar += count;
-        if (soFar >= enough) break;
+        if (soFar >= enough) {
+          break;
+        }
       }
 
       indexTable.addRow()

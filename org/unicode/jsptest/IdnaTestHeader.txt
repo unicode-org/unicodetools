@@ -1,0 +1,44 @@
+# IdnaTest.txt
+# Date: XXX
+#
+# Copyright (c) 1991-2010 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+#
+# Idna Test Suite [WORKING DRAFT]
+#
+# Contains test cases for verifying UTS46 conformance. For more information,
+# see http://www.unicode.org/reports/tr46/
+#
+# FORMAT:
+#
+# This file is UTF8, with certain characters escaped using the \uXXXX convention for readability
+# Columns (c1, c2,...) are separated by semicolons.
+# Leading and trailing spaces and tabs in each column are ignored.
+# Comments are indicated with hash marks.
+#
+#  Column 1: type - T for transitional, N for nontransitional, B for both
+#  Column 2: source - the source string to be tested
+#  Column 3: toUnicode - the result of applying toUnicode to the source, using the specified type
+#  Column 4: toASCII - the result of applying toASCII to the source, using nontransitional
+#
+# If the value of toUnicode or toASCII is the same as source, the column will be blank.
+#
+# An error in toUnicode or toASCII is indicated by a value of the form [...].
+# In such a case, the contents is a list of error codes based on the step numbers in UTS46 and IDNA2008:
+#   Pn for Section 4 Processing step n
+#   Vn for 4.1 Validity Criteria step n
+#   An for 4.2 ToASCII step n
+#   Bn for Bidi (in IDNA2008)
+#   Cn for ContextJ (in IDNA2008)
+#
+# However, these particular error codes are only informative;
+# the important feature is whether or not there is an error.
+#
+# CONFORMANCE:
+#
+# To test for conformance to UTS46, on each line, perform the toASCII and to Unicode operations
+# on the source string, with the indicated type.
+# The results must match what is given in the toUnicode and toASCII columns, except that for errors,
+# an implementation only needs to record that there is an error;
+# it need not reproduce the results in [...].
+# ====================================================================================================

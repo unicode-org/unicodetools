@@ -26,7 +26,7 @@ import com.ibm.icu.util.ULocale;
 public class CharacterFrequency {
   static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 10000;
   static final int MAX_SEQUENCE_CHARS = 15;
-  static final int MIN_COUNT = 10;
+  static final int MIN_COUNT = 100;
   static final boolean CHARS_ONLY = false;
   private static Map<String,Double> languageToPopulation = new HashMap<String,Double>();
   private static Map<String,String> languagesFound = new TreeMap<String,String>();
@@ -64,22 +64,23 @@ public class CharacterFrequency {
       languageNameToTag.put("UNKNOWN", "und");
 
       Map<String, Counter<String>> rawLanguageToSequencesCounter = new TreeMap<String, Counter<String>>();
-      Map<String, Counter<String>> rawLanguageToCharsCounter = new TreeMap<String, Counter<String>>();
+      //Map<String, Counter<String>> rawLanguageToCharsCounter = new TreeMap<String, Counter<String>>();
 
-      System.out.println("loading stats.characters.txt");
-      SemiFileReader handler = new SequenceHandler(rawLanguageToCharsCounter).process(CharacterFrequency.class, "stats.characters.txt");
-      System.out.println("read lines:\t" + handler.getLineCount());
+//      System.out.println("loading stats.characters.txt");
+//      SemiFileReader handler = new SequenceHandler(rawLanguageToCharsCounter).process("/Users/markdavis/Documents/workspace35/DATA/frequency/", "stats.short_sequences.txt");
+//      System.out.println("read lines:\t" + handler.getLineCount());
+
       Counter<String> mulValue = new Counter<String>();
 
       System.out.println("loading stats.lang_sequences.txt");
-      handler = new SequenceHandler(rawLanguageToSequencesCounter).process(CharacterFrequency.class, "stats.lang_sequences.txt");
+      SemiFileReader handler = new SequenceHandler(rawLanguageToSequencesCounter).process("/Users/markdavis/Documents/workspace35/DATA/frequency/", "stats.short_sequences.txt");
       System.out.println("read lines:\t" + handler.getLineCount());
 
       System.out.println("fixing counts");
 
       // make sure we have the same set of languages for both
       Set<String> languages = new TreeSet<String>();
-      languages.addAll(rawLanguageToCharsCounter.keySet());
+      //languages.addAll(rawLanguageToCharsCounter.keySet());
       languages.addAll(rawLanguageToSequencesCounter.keySet());
 
       // first add subtract the sequence counts from the character counts
@@ -93,22 +94,29 @@ public class CharacterFrequency {
         if (!rawLanguageToSequencesCounter.containsKey(language)) {
           rawLanguageToSequencesCounter.put(language, combinedCounter);
         }
-        if (!rawLanguageToCharsCounter.containsKey(language)) {
-          rawLanguageToCharsCounter.put(language, combinedCounter);
-        }
+//        if (!rawLanguageToCharsCounter.containsKey(language)) {
+//          rawLanguageToCharsCounter.put(language, combinedCounter);
+//        }
 
         // get the counters
         Counter<String> sequenceCounter = rawLanguageToSequencesCounter.get(language);
-        Counter<String> charCounter = rawLanguageToCharsCounter.get(language);
+        //Counter<String> charCounter = rawLanguageToCharsCounter.get(language);
+
 
         // Subtract all of the characters from the char counter
-        for (String sequence : sequenceCounter.keySet()) {
-          int cp;
-          for (int i = 0; i < sequence.length(); i+=Character.charCount(cp)) {
-            cp = sequence.codePointAt(i);
-            charCounter.add(UTF16.valueOf(cp), -1);
-          }
-        }
+//        for (String sequence : sequenceCounter.keySet()) {
+//          long sequenceCount = sequenceCounter.get(sequence);
+//          int cp;
+//          for (int i = 0; i < sequence.length(); i+=Character.charCount(cp)) {
+//            cp = sequence.codePointAt(i);
+//            String cpStr = UTF16.valueOf(cp);
+//            long charCount = charCounter.get(cpStr);
+//            if (sequenceCount > charCount) { // debug
+//              System.out.println(language + "\tsequence:\t" + sequenceCount + "\tchar:\t" + charCount);
+//            }
+//            charCounter.add(cpStr, -sequenceCount);
+//          }
+//        }
 
         // the sets are now orthogonal.
         // put all of the normalized marks into a combined list
@@ -116,9 +124,9 @@ public class CharacterFrequency {
         for (String sequence : sequenceCounter.keySet()) {
           addNormalizedCount(sequence, sequenceCounter.get(sequence), locale, combinedCounter);
         }
-        for (String sequence : charCounter.keySet()) {
-          addNormalizedCount(sequence, charCounter.get(sequence), locale, combinedCounter);
-        }
+//        for (String sequence : charCounter.keySet()) {
+//          addNormalizedCount(sequence, charCounter.get(sequence), locale, combinedCounter);
+//        }
 
         
         // at this point, the chars contain all the NFC'd characters, and the sequences contain all the sequences
@@ -142,16 +150,6 @@ public class CharacterFrequency {
     }
   }
 
-  /*
-  For 0061 0308, 
-
-  I added 1 to 0061 0308 for French in stats.lang_sequences.txt
-  I added 1 to 0061 0308 in stats.all_languages.txt
-  I added 1 to 0061 for French in stats.characters.txt
-  I added 1 to 0308 for French in stats.characters.txt
-
-  For 0061 not followed by a combining mark, I add 1 to 0061 for French in stats.characters.txt.
-   */
 
   static class SequenceHandler extends FileUtilities.SemiFileReader {
     public final static Pattern TABS = Pattern.compile("\\t+");
@@ -185,21 +183,23 @@ public class CharacterFrequency {
         return false;
       }
 
-      if (items.length < 4) {
+      if (items.length < 3) {
         throw new IllegalArgumentException();
       }
 
-      String language = CharacterFrequency.getLanguageCode(items[2]);
+      String language = CharacterFrequency.getLanguageCode(items[1]);
       CharacterFrequency.checkPopulation(language);
+      
+      // U+xxxx U+xxxx<TAB>lang<TAB>count
 
       // ignore first field
 
-      String[] codes = SPACES.split(items[1]);
+      String[] codes = SPACES.split(items[0]);
       if (codes.length > CharacterFrequency.MAX_SEQUENCE_CHARS) {
         return true;
       }
 
-      long count = Long.parseLong(items[3]);
+      long count = Long.parseLong(items[2]);
       if (count < CharacterFrequency.MIN_COUNT) {
         return true;
       }
@@ -215,7 +215,7 @@ public class CharacterFrequency {
       }
       String marks = builder.toString();
 
-      if (!ExemplarInfo.nfd.isNormalized(marks)) {
+      if (!ExemplarInfo.nfc.isNormalized(marks)) {
         System.out.println("Non-normalized result <" + marks + 
                 "> at " + Arrays.asList(items));
       }
