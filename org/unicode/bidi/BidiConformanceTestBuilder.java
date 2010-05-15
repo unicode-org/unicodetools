@@ -112,11 +112,11 @@ public class BidiConformanceTestBuilder {
         }
       }
 
-    for (int i = BidiReference.TYPE_MIN; i < BidiReference.TYPE_MAX; ++i) {
-      UnicodeSet data = new UnicodeSet("[:bidi_class=" + BidiReference.typenames[i] + ":]");
-      data.complement().complement();
-      out.println("@Type:\t" + BidiReference.typenames[i] + ":\t" + data);
-    }
+//    for (int i = BidiReference.TYPE_MIN; i < BidiReference.TYPE_MAX; ++i) {
+//      UnicodeSet data = new UnicodeSet("[:bidi_class=" + BidiReference.typenames[i] + ":]");
+//      data.complement().complement();
+//      out.println("@Type:\t" + BidiReference.typenames[i] + ":\t" + data);
+//    }
     int totalCount = 0;
     for (String reorderedIndexes : resultToSource.keySet()) {
       out.println();

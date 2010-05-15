@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
- * $Date: 2010-05-12 23:51:26 $
- * $Revision: 1.50 $
+ * $Date: 2010-05-15 00:29:21 $
+ * $Revision: 1.51 $
  *
  *******************************************************************************
  */
@@ -444,9 +444,10 @@ public interface UCD_Types {
   Inscriptional_Pahlavi = 92,
   Old_Turkic = 93,
   Kaithi = 94,
-
-
-  LIMIT_SCRIPT = Kaithi + 1;
+  Batak = 95,
+  Brahmi = 96,
+  Mandaic = 97,
+  LIMIT_SCRIPT = Mandaic + 1;
 
 
   static final int

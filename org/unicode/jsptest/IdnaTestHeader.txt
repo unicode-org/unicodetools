@@ -11,7 +11,9 @@
 #
 # FORMAT:
 #
-# This file is UTF8, with certain characters escaped using the \uXXXX convention for readability
+# This file is in UTF8, with certain characters escaped using the \uXXXX convention where they
+# could otherwise have a confusing display. For example, this includes characters of 
+# Default ignorable characters; General Categories C and Z; and Bidi categories R, AL, AN.
 # Columns (c1, c2,...) are separated by semicolons.
 # Leading and trailing spaces and tabs in each column are ignored.
 # Comments are indicated with hash marks.
@@ -23,8 +25,10 @@
 #
 # If the value of toUnicode or toASCII is the same as source, the column will be blank.
 #
-# An error in toUnicode or toASCII is indicated by a value of the form [...].
-# In such a case, the contents is a list of error codes based on the step numbers in UTS46 and IDNA2008:
+# An error in toUnicode or toASCII is indicated by a value in square brackets, such as "[B5 B6]".
+# In such a case, the contents is a list of error codes based on the step numbers in UTS46 and IDNA2008,
+# with the following formats:
+#
 #   Pn for Section 4 Processing step n
 #   Vn for 4.1 Validity Criteria step n
 #   An for 4.2 ToASCII step n
@@ -36,9 +40,14 @@
 #
 # CONFORMANCE:
 #
-# To test for conformance to UTS46, on each line, perform the toASCII and to Unicode operations
-# on the source string, with the indicated type.
-# The results must match what is given in the toUnicode and toASCII columns, except that for errors,
-# an implementation only needs to record that there is an error;
-# it need not reproduce the results in [...].
+# To test for conformance to UTS46, an implementation must first perform the toASCII and to Unicode operations
+# on the source string, with the indicated type. Implementations may be more strict than UTS46;
+# thus they may have errors where the file indicates results. Moreover, the error codes in the file
+# are informative; implementations need only record that there is an error: they need not reproduce
+# those codes. Thus to then verify conformance for the toASCII and toUnicode columns:
+#
+# - If the file indicates an error, the implementation must also have an error.
+# - If the file does not indicate an error, then the implementation must either have an error, 
+#   or must have a matching result.
+#
 # ====================================================================================================

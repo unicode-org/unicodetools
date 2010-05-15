@@ -168,7 +168,7 @@ public class Uts46 extends Idna {
 
     String[] labels = nonbrokenSplit(LABEL_SEPARATOR, domainName);
     for (String label : labels) {
-      if (label.length() < 1) continue; // broken, but for a non-bidi reason
+      if (label.length() <= 0) continue; // broken, but for a non-bidi reason
       // #1
       int firstChar = label.codePointAt(0);
 
@@ -549,18 +549,19 @@ public class Uts46 extends Idna {
       String label = labels[i];
       //        Convert each label with non-ASCII characters into Punycode [RFC3492]. This may record an error.
       if (!ASCII.containsAll(label)) {
-        StringBuffer temp = new StringBuffer();
         try {
+          StringBuffer temp = new StringBuffer();
           temp.append(label);
-          StringBuffer depuny = Punycode.encode(temp, null);
-          temp.insert(0, "xn--");
+          StringBuffer punycoded = Punycode.encode(temp, null);
+          punycoded.insert(0, "xn--");
+          label = punycoded.toString();
         } catch (Exception e) {
           errors.add(Errors.A3);
-          buffer.append(label);
         }
       }
       //        The length of each label is from 1 to 63.
-      if (label.length() > 63 || label.length() < 1 && i != labels.length - 1) {
+      int labelLength = label.codePointCount(0, label.length());
+      if (labelLength > 63 || labelLength < 1 && i != labels.length - 1) { // last one can be zero length
         errors.add(Errors.A4_2);
       }
       if (buffer.length() != 0) {
@@ -571,7 +572,8 @@ public class Uts46 extends Idna {
     domainName = buffer.toString();
     //        Verify DNS length restrictions. This may record an error. For more information, see [STD13] and [STD3].
     //        The length of the domain name, excluding the root label and its dot, is from 1 to 253.
-    if (domainName.length() < 0 || domainName.length() > 354 || domainName.length() == 353 && domainName.endsWith(".")) {
+    int labelDomainNameLength = domainName.codePointCount(0, domainName.length());
+    if (labelDomainNameLength < 0 || labelDomainNameLength > 254 || labelDomainNameLength == 254 && !domainName.endsWith(".")) {
       errors.add(Errors.A4_1);
     }
     //        If an error was recorded, then the operation failed, and no DNS lookup should be done.

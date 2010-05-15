@@ -21,6 +21,7 @@ import com.ibm.icu.dev.test.util.FileUtilities;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestUts46 extends TestFmwk{
@@ -374,7 +375,8 @@ public class TestUts46 extends TestFmwk{
   }
 
   static final Object[][] testCases = {
-    { "a.-b.", "B", "a.-b.", Uts46.UIDNA_ERROR_LEADING_HYPHEN },
+    { "1234567890\u00E41234567890123456789012345678901234567890123456", "B",
+      "1234567890\u00E41234567890123456789012345678901234567890123456", Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
 
     { "www.eXample.cOm", "B",  // all ASCII
       "www.example.com", 0 },
@@ -469,8 +471,13 @@ public class TestUts46 extends TestFmwk{
       // E01EF VARIATION SELECTOR-256 (ignored)
       // FB04 LATIN SMALL LIGATURE FFL
       { "\u02E3\u034F\u2115\u200B\uFE63\u00AD\uFF0D\u180C"
-      + "\u212C\uFE00\u017F\u2064\\U0001D530\\U000E01EF\uFB04", "B",
-      "\u5921\u591E\u591C\u5919", 0 },
+        + "\u212C\uFE00\u017F\u2064"
+        //+ "\\U0001D530" 
+        + UTF16.valueOf(0x1D530)
+        //+ "\\U000E01EF"
+        + UTF16.valueOf(0xE01EF)
+        + "\uFB04", "B",
+        "\u5921\u591E\u591C\u5919", 0 },
       { "123456789012345678901234567890123456789012345678901234567890123."
       + "123456789012345678901234567890123456789012345678901234567890123."
       + "123456789012345678901234567890123456789012345678901234567890123."

@@ -1013,7 +1013,9 @@ public class MakeUnicodeFiles {
 
       int totalSize = s.size();
       if (s.size() == 0) {
-        System.out.println("\tSkipping Empty: " + prop.getName() + "=" + value);
+        if (!"Canonical_Combining_Class".equals(prop.getName())) {
+          System.out.println("\tSkipping Empty: " + prop.getName() + "=" + value);
+        }
         continue;
       } 
 

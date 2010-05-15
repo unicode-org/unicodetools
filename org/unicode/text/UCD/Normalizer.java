@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Normalizer.java,v $
-* $Date: 2009-08-18 23:38:46 $
-* $Revision: 1.21 $
+* $Date: 2010-05-15 00:29:21 $
+* $Revision: 1.22 $
 *
 *******************************************************************************
 */
@@ -39,6 +39,8 @@ import com.ibm.icu.text.UnicodeSet;
 public final class Normalizer implements UCD_Types {
     public static final String copyright =
       "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
+
+    static final boolean SHOW_ADJUSTING = false;
 
     public static boolean SHOW_PROGRESS = false;
 
@@ -398,7 +400,7 @@ public final class Normalizer implements UCD_Types {
                 lastClass = chClass;
                 UTF16.setCharAt(target, compPos, ch);
                 if (target.length() != oldLen) { // MAY HAVE TO ADJUST!
-                    System.out.println("ADJUSTING: " + Utility.hex(target));
+                    if (SHOW_ADJUSTING) System.out.println("ADJUSTING: " + Utility.hex(target));
                     decompPos += target.length() - oldLen;
                     oldLen = target.length();
                 }

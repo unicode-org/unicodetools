@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
- * $Date: 2010-05-12 23:51:26 $
- * $Revision: 1.46 $
+ * $Date: 2010-05-15 00:29:21 $
+ * $Revision: 1.47 $
  *
  *******************************************************************************
  */
@@ -386,6 +386,10 @@ public final class UCD_Names implements UCD_Types {
     "Inscriptional Pahlavi",
     "Old Turkic",
     "Kaithi",
+    "Batak",
+    "Brahmi",
+    "Mandaic",
+
   };
 
   public static final Relation<String,String> EXTRA_SCRIPT = new Relation(new TreeMap(), LinkedHashSet.class);
@@ -499,6 +503,9 @@ public final class UCD_Names implements UCD_Types {
     "Phli",
     "Orkh",
     "Kthi",
+    "Batk",
+    "Brah",
+    "Mand",
   };
 
   static final String[] AGE = {

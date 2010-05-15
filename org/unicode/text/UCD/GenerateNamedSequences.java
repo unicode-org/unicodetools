@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateNamedSequences.java,v $
-* $Date: 2008-03-05 18:25:43 $
-* $Revision: 1.7 $
+* $Date: 2010-05-15 00:29:21 $
+* $Revision: 1.8 $
 *
 *******************************************************************************
 */
@@ -92,7 +92,7 @@ public final class GenerateNamedSequences implements UCD_Types {
 					+ "</td><td>" + name + "</td>" 
               		+ "<td class='copy'>" + codeString + "</td>"
 					+ "</tr>\n";
-            System.out.println(splits[1] + "\t" + codeString);
+            if (DEBUG) System.out.println(splits[1] + "\t" + codeString);
         }
         in.close();            
         table += "</table>";

@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2010-05-12 23:51:26 $
- * $Revision: 1.57 $
+ * $Date: 2010-05-15 00:29:21 $
+ * $Revision: 1.58 $
  *
  *******************************************************************************
  */
@@ -1206,12 +1206,20 @@ public final class UCD implements UCD_Types {
     } else {
       if ((ch & 0xFFFE) == 0xFFFE) return 0xFFFF;         // Noncharacter
 
+      // 20000..2A6DF; CJK Unified Ideographs Extension B
       if (ch <= 0x20000) return ch;         // Extension B
       if (ch <= 0x2A6D6) return 0x20000;
+      // 2A700..2B73F; CJK Unified Ideographs Extension C
       if (rCompositeVersion >= 0x50200) {
         if (ch <= 0x2A700) return ch;       // Extension C
         if (ch <= 0x2B734) return 0x2A700;
       }
+      // 2B740..2B81F; CJK Unified Ideographs Extension D
+      if (rCompositeVersion >= 0x60000) {
+        if (ch <= 0x2B740) return ch;       // Extension C
+        if (ch <= 0x2B81F) return 0x2B740;
+      }
+
       //if (ch <= 0x2F800) return ch;
       //if (ch <= 0x2FA1D) return 0x2F800;      // compat ideographs
       if (ch < 0xF0000) return ch;       // Plane 15 Private Use
