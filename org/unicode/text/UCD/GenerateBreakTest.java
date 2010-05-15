@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2009-09-23 04:11:33 $
- * $Revision: 1.27 $
+ * $Date: 2010-05-15 00:29:21 $
+ * $Revision: 1.28 $
  *
  *******************************************************************************
  */
@@ -42,7 +42,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
   private static final String DOCTYPE = "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>";
 
-  static boolean DEBUG = true;
+  static boolean DEBUG = false;
   static final boolean SHOW_TYPE = false;
   UCD ucd;
   Normalizer nfd;

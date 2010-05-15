@@ -223,7 +223,7 @@ public class NormalizerSample implements UCD_Types {
                 lastClass = chClass;
                 UTF16.setCharAt(target, compPos, ch);
                 if (target.length() != oldLen) { // MAY HAVE TO ADJUST!
-                    System.out.println("ADJUSTING: " + Utility.hex(target));
+                    if (Normalizer.SHOW_ADJUSTING) System.out.println("ADJUSTING: " + Utility.hex(target));
                     decompPos += target.length() - oldLen;
                     oldLen = target.length();
                 }
