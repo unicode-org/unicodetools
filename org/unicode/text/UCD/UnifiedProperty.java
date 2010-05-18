@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UnifiedProperty.java,v $
-* $Date: 2009-08-18 23:38:46 $
-* $Revision: 1.9 $
+* $Date: 2010-05-18 04:13:56 $
+* $Revision: 1.10 $
 *
 *******************************************************************************
 */
@@ -152,7 +152,6 @@ public final class UnifiedProperty extends UCDProperty {
             || majorProp==(HANGUL_SYLLABLE_TYPE>>8)) setValueType(FLATTENED_BINARY_PROP);
         //System.out.println("B: " + getValueType());
         
-        header = UCD_Names.UNIFIED_PROPERTY_HEADERS[majorProp];
         name = UCD_Names.UNIFIED_PROPERTIES[majorProp];
         shortName = UCD_Names.SHORT_UNIFIED_PROPERTIES[majorProp];
     }

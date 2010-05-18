@@ -989,7 +989,9 @@ public class MakeUnicodeFiles {
       temp2.addAll(aliases);
       aliases = temp2;
     }
-    System.out.println("Check: " + prop.getValue(0xE000));
+    if (DEBUG) {
+      System.out.println("SPOT-CHECK: " + prop.getValue(0xE000));
+    }
     String missing = ps.skipUnassigned != null ? ps.skipUnassigned : ps.skipValue;
     if (missing != null && !missing.equals(UCD_Names.NO)) {
       pw.println();

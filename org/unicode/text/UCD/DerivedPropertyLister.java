@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/DerivedPropertyLister.java,v $
-* $Date: 2009-08-18 23:38:46 $
-* $Revision: 1.15 $
+* $Date: 2010-05-18 04:13:56 $
+* $Revision: 1.16 $
 *
 *******************************************************************************
 */
@@ -48,10 +48,6 @@ final class DerivedPropertyLister extends PropertyLister {
         }
     }
     
-    public String headerString() {
-        return uprop.getHeader();
-    }
-
     public String valueName(int cp) {
     	return uprop.getListingValue(cp);
     }

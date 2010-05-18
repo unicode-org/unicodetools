@@ -38,11 +38,11 @@ import com.ibm.icu.text.UnicodeSet;
 public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
   private static final String[] MAYBE_VALUES = {"M", "Maybe", "U", "Undetermined"};
 
-private static final String[] NO_VALUES = {"N", "No", "F", "False"};
+  private static final String[] NO_VALUES = {"N", "No", "F", "False"};
 
-private static final String[] YES_VALUES = {"Y", "Yes", "T", "True"};
+  private static final String[] YES_VALUES = {"Y", "Yes", "T", "True"};
 
-static final boolean   DEBUG        = false;
+  static final boolean   DEBUG        = false;
 
   private UCD            ucd;
 
@@ -53,6 +53,8 @@ static final boolean   DEBUG        = false;
   private static UCD[]   ucdCache     = new UCD[UCD_Types.LIMIT_AGE];
 
   private static HashMap factoryCache = new HashMap();
+
+  private boolean special = false;
 
   public static synchronized ToolUnicodePropertySource make(String version) {
     ToolUnicodePropertySource result = (ToolUnicodePropertySource) factoryCache.get(version);
@@ -75,21 +77,21 @@ static final boolean   DEBUG        = false;
     // first the special cases
     if (DEBUG)
       System.out.println("Adding Simple Cases");
-    
-//    add(new UnicodeProperty.SimpleProperty() {
-//      public String _getValue(int codepoint) {
-//        if (!nfc.isNormalized(codepoint))
-//          return "No";
-//        else if (nfc.isTrailing(codepoint))
-//          return "Maybe";
-//        else
-//          return "Yes";
-//      }
-//
-//      public int getMaxWidth(boolean isShort) {
-//        return 15;
-//      }
-//    }.setMain("NFC", null, UnicodeProperty.STRING, version));
+
+    //    add(new UnicodeProperty.SimpleProperty() {
+    //      public String _getValue(int codepoint) {
+    //        if (!nfc.isNormalized(codepoint))
+    //          return "No";
+    //        else if (nfc.isTrailing(codepoint))
+    //          return "Maybe";
+    //        else
+    //          return "Yes";
+    //      }
+    //
+    //      public int getMaxWidth(boolean isShort) {
+    //        return 15;
+    //      }
+    //    }.setMain("NFC", null, UnicodeProperty.STRING, version));
 
 
     add(new UnicodeProperty.SimpleProperty() {
@@ -390,7 +392,7 @@ static final boolean   DEBUG        = false;
       }
     }.setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, version));
 
-    add(new SimpleIsProperty("Changes_When_NFKC_Casefolded", "CWKCF", version, getProperty("NFKC_Casefold"), false));
+    add(new SimpleIsProperty("Changes_When_NFKC_Casefolded", "CWKCF", version, getProperty("NFKC_Casefold"), false).setCheckUnassigned());
 
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
@@ -675,8 +677,8 @@ static final boolean   DEBUG        = false;
      */
     add(new SimpleBinaryProperty("Cased", "Cased", version, new UnicodeSet()
     .addAll(getProperty("Lowercase").getSet(UCD_Names.YES))
-            .addAll(getProperty("Uppercase").getSet(UCD_Names.YES))
-                    .addAll(getProperty("GeneralCategory").getSet("Lt"))));
+    .addAll(getProperty("Uppercase").getSet(UCD_Names.YES))
+    .addAll(getProperty("GeneralCategory").getSet("Lt"))));
 
     /*
      * # As defined by Unicode Standard Definition
@@ -712,7 +714,7 @@ static final boolean   DEBUG        = false;
      */
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
-          return changesWhenCased(codepoint, UCD_Types.UPPER);
+        return changesWhenCased(codepoint, UCD_Types.UPPER);
       }
     }
     .setMain("Changes_When_Uppercased", "CWU", UnicodeProperty.BINARY, version)
@@ -724,7 +726,7 @@ static final boolean   DEBUG        = false;
      */
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
-          return changesWhenCased(codepoint, UCD_Types.TITLE);
+        return changesWhenCased(codepoint, UCD_Types.TITLE);
       }
     }
     .setMain("Changes_When_Titlecased", "CWT", UnicodeProperty.BINARY, version)
@@ -736,7 +738,7 @@ static final boolean   DEBUG        = false;
      */
     add(new UnicodeProperty.SimpleProperty() {
       public String _getValue(int codepoint) {
-          return changesWhenCased(codepoint, UCD_Types.FOLD);
+        return changesWhenCased(codepoint, UCD_Types.FOLD);
       }
     }
     .setMain("Changes_When_Casefolded", "CWCF", UnicodeProperty.BINARY, version)
@@ -810,6 +812,7 @@ isTitlecase(X) is false.
         ucdProperty.getName(UCDProperty.SHORT);
       setName(name);
       this.yes_no_maybe = yes_no_maybe;
+      setUniformUnassigned(false);
     }
 
     protected String _getVersion() {
@@ -904,6 +907,10 @@ isTitlecase(X) is false.
       }
       setType(getPropertyTypeInternal());
       setName(propertyAlias);
+      //if (up.hasUnassigned || (propMask >> 8) == (UCD_Types.AGE >> 8) ) {
+      // always skip
+      setUniformUnassigned(false);
+      //}
     }
 
     public List _getAvailableValues(List result) {
@@ -926,8 +933,8 @@ isTitlecase(X) is false.
     boolean check = false;
     try {
       switch (prop) {
-        case UCD_Types.CATEGORY >> 8:
-          temp = (ucd.getCategoryID_fromIndex((byte) i, style));
+      case UCD_Types.CATEGORY >> 8:
+        temp = (ucd.getCategoryID_fromIndex((byte) i, style));
   break;
   case UCD_Types.COMBINING_CLASS >> 8:
     temp = (ucd.getCombiningClassID_fromIndex((short) i, style));
@@ -1019,9 +1026,9 @@ isTitlecase(X) is false.
         for (int i = 0; i < 256; ++i) {
           try {
             switch (prop) {
-              case UCD_Types.CATEGORY >> 8:
-                return lookup(valueAlias, UCD_Names.LONG_GENERAL_CATEGORY,
-                        UCD_Names.GENERAL_CATEGORY, UCD_Names.EXTRA_GENERAL_CATEGORY, result);
+            case UCD_Types.CATEGORY >> 8:
+              return lookup(valueAlias, UCD_Names.LONG_GENERAL_CATEGORY,
+                      UCD_Names.GENERAL_CATEGORY, UCD_Names.EXTRA_GENERAL_CATEGORY, result);
         case UCD_Types.COMBINING_CLASS >> 8:
           addUnique(String.valueOf(0xFF & Utility.lookup(valueAlias,
                   UCD_Names.LONG_COMBINING_CLASS, true)), result);
@@ -1076,54 +1083,54 @@ isTitlecase(X) is false.
       String temp = null;
       boolean titlecase = false;
       switch (propMask >> 8) {
-        case UCD_Types.CATEGORY >> 8:
-          temp = (ucd.getCategoryID_fromIndex(ucd.getCategory(codepoint), style));
-        break;
-        case UCD_Types.COMBINING_CLASS >> 8:
-          temp = (ucd.getCombiningClassID_fromIndex(ucd.getCombiningClass(codepoint), style));
-        // if (temp.startsWith("Fixed_")) temp = temp.substring(6);
-        break;
-        case UCD_Types.BIDI_CLASS >> 8:
-          temp = (ucd.getBidiClassID_fromIndex(ucd.getBidiClass(codepoint), style));
-        break;
-        case UCD_Types.DECOMPOSITION_TYPE >> 8:
-          temp = (ucd.getDecompositionTypeID_fromIndex(ucd.getDecompositionType(codepoint), style));
-        if (temp == null || temp.length() == 0)
-          temp = "none";
-        break;
-        case UCD_Types.NUMERIC_TYPE >> 8:
-          temp = (ucd.getNumericTypeID_fromIndex(ucd.getNumericType(codepoint), style));
-        titlecase = true;
-        if (temp == null || temp.length() == 0)
-          temp = "None";
-        break;
-        case UCD_Types.EAST_ASIAN_WIDTH >> 8:
-          temp = (ucd.getEastAsianWidthID_fromIndex(ucd.getEastAsianWidth(codepoint), style));
-        break;
-        case UCD_Types.LINE_BREAK >> 8:
-          temp = (ucd.getLineBreakID_fromIndex(ucd.getLineBreak(codepoint), style));
-        break;
-        case UCD_Types.JOINING_TYPE >> 8:
-          temp = (ucd.getJoiningTypeID_fromIndex(ucd.getJoiningType(codepoint), style));
-        if (temp == null || temp.length() == 0)
-          temp = "Non_Joining";
-        break;
-        case UCD_Types.JOINING_GROUP >> 8:
-          temp = (ucd.getJoiningGroupID_fromIndex(ucd.getJoiningGroup(codepoint), style));
-        break;
-        case UCD_Types.SCRIPT >> 8:
-          temp = (ucd.getScriptID_fromIndex(ucd.getScript(codepoint), style));
-        if (temp != null)
-          temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
-        titlecase = true;
-        break;
-        case UCD_Types.AGE >> 8:
-          temp = getAge(codepoint);
-        break;
-        case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
-          temp = (ucd
-                  .getHangulSyllableTypeID_fromIndex(ucd.getHangulSyllableType(codepoint), style));
-        break;
+      case UCD_Types.CATEGORY >> 8:
+        temp = (ucd.getCategoryID_fromIndex(ucd.getCategory(codepoint), style));
+      break;
+      case UCD_Types.COMBINING_CLASS >> 8:
+        temp = (ucd.getCombiningClassID_fromIndex(ucd.getCombiningClass(codepoint), style));
+      // if (temp.startsWith("Fixed_")) temp = temp.substring(6);
+      break;
+      case UCD_Types.BIDI_CLASS >> 8:
+        temp = (ucd.getBidiClassID_fromIndex(ucd.getBidiClass(codepoint), style));
+      break;
+      case UCD_Types.DECOMPOSITION_TYPE >> 8:
+        temp = (ucd.getDecompositionTypeID_fromIndex(ucd.getDecompositionType(codepoint), style));
+      if (temp == null || temp.length() == 0)
+        temp = "none";
+      break;
+      case UCD_Types.NUMERIC_TYPE >> 8:
+        temp = (ucd.getNumericTypeID_fromIndex(ucd.getNumericType(codepoint), style));
+      titlecase = true;
+      if (temp == null || temp.length() == 0)
+        temp = "None";
+      break;
+      case UCD_Types.EAST_ASIAN_WIDTH >> 8:
+        temp = (ucd.getEastAsianWidthID_fromIndex(ucd.getEastAsianWidth(codepoint), style));
+      break;
+      case UCD_Types.LINE_BREAK >> 8:
+        temp = (ucd.getLineBreakID_fromIndex(ucd.getLineBreak(codepoint), style));
+      break;
+      case UCD_Types.JOINING_TYPE >> 8:
+        temp = (ucd.getJoiningTypeID_fromIndex(ucd.getJoiningType(codepoint), style));
+      if (temp == null || temp.length() == 0)
+        temp = "Non_Joining";
+      break;
+      case UCD_Types.JOINING_GROUP >> 8:
+        temp = (ucd.getJoiningGroupID_fromIndex(ucd.getJoiningGroup(codepoint), style));
+      break;
+      case UCD_Types.SCRIPT >> 8:
+        temp = (ucd.getScriptID_fromIndex(ucd.getScript(codepoint), style));
+      if (temp != null)
+        temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
+      titlecase = true;
+      break;
+      case UCD_Types.AGE >> 8:
+        temp = getAge(codepoint);
+      break;
+      case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
+        temp = (ucd
+                .getHangulSyllableTypeID_fromIndex(ucd.getHangulSyllableType(codepoint), style));
+      break;
       }
       if (temp != null)
         return Utility.getUnskeleton(temp, titlecase);
@@ -1134,7 +1141,7 @@ isTitlecase(X) is false.
     }
 
     public String getAge(int codePoint) {
-      if (codePoint == 0x0524) {
+      if (codePoint == 0x1FFFE) {
         System.out.println("debug point");
       }
       if (needAgeCache) {
@@ -1158,15 +1165,15 @@ isTitlecase(X) is false.
     private int getPropertyTypeInternal() {
 
       switch (propMask) {
-        case UCD_Types.BINARY_PROPERTIES | UCD_Types.CaseFoldTurkishI:
-        case UCD_Types.BINARY_PROPERTIES | UCD_Types.Non_break:
-          return EXTENDED_BINARY;
+      case UCD_Types.BINARY_PROPERTIES | UCD_Types.CaseFoldTurkishI:
+      case UCD_Types.BINARY_PROPERTIES | UCD_Types.Non_break:
+        return EXTENDED_BINARY;
       }
 
       switch (propMask >> 8) {
-        case UCD_Types.SCRIPT >> 8:
-        case UCD_Types.AGE >> 8:
-          return CATALOG;
+      case UCD_Types.SCRIPT >> 8:
+      case UCD_Types.AGE >> 8:
+        return CATALOG;
       }
       int mask = 0;
       if (!up.isStandard())
@@ -1182,28 +1189,28 @@ isTitlecase(X) is false.
 
   private int remapUCDType(int result) {
     switch (result) {
-      case UCD_Types.NUMERIC_PROP:
-        result = UnicodeProperty.NUMERIC;
-        break;
-      case UCD_Types.STRING_PROP:
-        result = UnicodeProperty.STRING;
-        break;
-      case UCD_Types.MISC_PROP:
-        result = UnicodeProperty.STRING;
-        break;
-      case UCD_Types.CATALOG_PROP:
-        result = UnicodeProperty.ENUMERATED;
-        break;
-      case UCD_Types.FLATTENED_BINARY_PROP:
-      case UCD_Types.ENUMERATED_PROP:
-        result = UnicodeProperty.ENUMERATED;
-        break;
-      case UCD_Types.BINARY_PROP:
-        result = UnicodeProperty.BINARY;
-        break;
-      case UCD_Types.UNKNOWN_PROP:
-      default:
-        result = UnicodeProperty.STRING;
+    case UCD_Types.NUMERIC_PROP:
+      result = UnicodeProperty.NUMERIC;
+      break;
+    case UCD_Types.STRING_PROP:
+      result = UnicodeProperty.STRING;
+      break;
+    case UCD_Types.MISC_PROP:
+      result = UnicodeProperty.STRING;
+      break;
+    case UCD_Types.CATALOG_PROP:
+      result = UnicodeProperty.ENUMERATED;
+      break;
+    case UCD_Types.FLATTENED_BINARY_PROP:
+    case UCD_Types.ENUMERATED_PROP:
+      result = UnicodeProperty.ENUMERATED;
+      break;
+    case UCD_Types.BINARY_PROP:
+      result = UnicodeProperty.BINARY;
+      break;
+    case UCD_Types.UNKNOWN_PROP:
+    default:
+      result = UnicodeProperty.STRING;
       // throw new IllegalArgumentException("Type: UNKNOWN_PROP");
     }
     return result;
@@ -1353,6 +1360,11 @@ isTitlecase(X) is false.
       final String value = property.getValue(codepoint);
       return value == null ? samePolarity ? UCD_Names.YES : UCD_Names.NO // null means same value, by convention
               : equals(codepoint, value) == samePolarity ? UCD_Names.YES : UCD_Names.NO;
+    }
+    
+    SimpleIsProperty setCheckUnassigned() {
+      setUniformUnassigned(false);
+      return this;
     }
   }
 

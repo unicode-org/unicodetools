@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
- * $Date: 2010-05-15 00:29:21 $
- * $Revision: 1.47 $
+ * $Date: 2010-05-18 04:13:56 $
+ * $Revision: 1.48 $
  *
  *******************************************************************************
  */
@@ -43,48 +43,6 @@ public final class UCD_Names implements UCD_Types {
     {"na1", "Unicode_1_Name"},
     {"isc", "ISO_Comment"},
     {"age", "Age"},
-  };
-
-  static final String[] UNIFIED_PROPERTY_HEADERS = {
-    "General Category (listing UnicodeData.txt, field 2: see UCD.html)\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   Cn.",
-    "Combining Class (listing UnicodeData.txt, field 3: see UCD.html)\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   0.",
-    "Bidi Class (listing UnicodeData.txt, field 4: see UCD.html)\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   L.",
-    "Decomposition Type (from UnicodeData.txt, field 5: see UCD.html)\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   None.",
-    "Numeric Type (from UnicodeData.txt, field 6/7/8 plus Unihan.txt: see UCD.html)\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   None.",
-    "East Asian Width (listing EastAsianWidth.txt, field 1)\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   N.",
-    "Line Break (listing LineBreak.txt, field 1)\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   XX.",
-    "Joining Type (listing ArabicShaping.txt, field 2).\r\n"
-    + "#\tType T is derived, as described in ArabicShaping.txt\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   U.",
-    "Joining Group (listing ArabicShaping.txt, field 3)\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   NO_JOINING_GROUP.",
-    "BidiMirrored (listing UnicodeData.txt, field 9: see UCD.html)\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   N.",
-    "Script\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   COMMON.",
-    "Age (from a comparison of UCD versions 1.1 [minus Hangul], 2.0, 2.1, 3.0, 3.1)",
-    "Hangul Syllable Type\r\n"
-    + "#\tAll code points not explicitly listed in this file have the property\r\n"
-    + "#\tvalue:   NA.",
-    "Derived"
   };
 
   static final String[] UNIFIED_PROPERTIES = {

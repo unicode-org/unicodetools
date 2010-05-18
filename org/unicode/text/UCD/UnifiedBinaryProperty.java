@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UnifiedBinaryProperty.java,v $
-* $Date: 2009-08-18 23:38:46 $
-* $Revision: 1.20 $
+* $Date: 2010-05-18 04:13:56 $
+* $Revision: 1.21 $
 *
 *******************************************************************************
 */
@@ -131,7 +131,6 @@ public final class UnifiedBinaryProperty extends UCDProperty {
         }
         //System.out.println("B: " + getValueType());
         
-        header = UCD_Names.UNIFIED_PROPERTY_HEADERS[majorProp];
         name = UCD_Names.UNIFIED_PROPERTIES[majorProp];
         shortName = UCD_Names.SHORT_UNIFIED_PROPERTIES[majorProp];
         
@@ -146,6 +145,9 @@ public final class UnifiedBinaryProperty extends UCDProperty {
             defaultPropertyStyle = defaultValueStyle;
             valueName = UCD_Names.YES;
             shortValueName = UCD_Names.Y;
+            if (propValue == Noncharacter_Code_Point || propValue == Pattern_Syntax || propValue == Other_Default_Ignorable_Code_Point) {
+              hasUnassigned = true;
+            }
         }
         
         // System.out.println("Value = " + getValue(defaultValueStyle));

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/PropertyLister.java,v $
-* $Date: 2009-08-18 23:38:45 $
-* $Revision: 1.13 $
+* $Date: 2010-05-18 04:13:56 $
+* $Revision: 1.14 $
 *
 *******************************************************************************
 */
@@ -185,12 +185,6 @@ abstract public class PropertyLister implements UCD_Types {
         lastRealCp = -1;
         int realRangeCount = 0;
 
-        String header = headerString();
-        if (header.length() != 0) {
-            // System.out.println(header);
-            output.println(header);
-            output.println();
-        }
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             byte s = status(cp);
             if (alwaysBreaks && s == INCLUDE) s = BREAK;

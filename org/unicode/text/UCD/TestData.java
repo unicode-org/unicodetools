@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestData.java,v $
-* $Date: 2009-08-18 23:38:45 $
-* $Revision: 1.30 $
+* $Date: 2010-05-18 04:13:56 $
+* $Revision: 1.31 $
 *
 *******************************************************************************
 */
@@ -54,6 +54,17 @@ public class TestData implements UCD_Types {
     static UnicodeProperty.Factory upf;
     
 	public static void main (String[] args) throws IOException {
+	  ToolUnicodePropertySource testSource = ToolUnicodePropertySource.make("6.0.0");
+	  UnicodeProperty dicp = testSource.getProperty("Default_Ignorable_Code_Point");
+	  System.out.println("2065: " + dicp.getValue(0x2065));
+	  List<String> values = dicp.getAvailableValues();
+	  for (String value : values) {
+	    UnicodeSet set = dicp.getSet(value);
+	    System.out.println(value + ", " + set);
+	  }
+	  
+	  if (true) return;
+	  
     UCD ucd = Default.ucd();
     System.out.println(ucd.getVersion());
     Set<String> alBlocks = new LinkedHashSet<String>();
