@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 2
+DeltaVersion: 4
 CopyrightYear: 2010
 
 
@@ -89,7 +89,7 @@ Value:  5.2
 # Newly assigned in Unicode 5.2.0 (October, 2009)
 
 Value:  6.0
-# Newly assigned in Unicode 6.0.0 (Scheduled September, 2009)
+# Newly assigned in Unicode 6.0.0 (Scheduled September, 2010)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
@@ -293,7 +293,7 @@ Format:	valueStyle=short skipUnassigned=Unknown
 File:	DerivedNormalizationProps
 
 Property:	FC_NFKC_Closure
-# Derived Property: FC_NFKC_Closure
+# Derived Property: FC_NFKC_Closure  (DEPRECATED as of Unicode 6.0.0)
 #  Generated from computing: b = NFKC(Fold(a)); c = NFKC(Fold(b));
 #  Then if (c != b) add the mapping from a to c to the set of
 #  mappings that constitute the FC_NFKC_Closure list
@@ -325,15 +325,14 @@ Property:	NFKC_QuickCheck
 Format: nameStyle=short valueStyle=short skipValue=Yes
 
 Property:	Expands_On_NFD
-# Derived Property: Expands_On_NFD
+# Derived Property: Expands_On_NFD (DEPRECATED as of Unicode 6.0.0)
 #   Generated according to UAX #15.
 #   Characters whose normalized length is not one.
 #   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact.
 #            The length of a normalized string is not necessarily the sum of the lengths of the normalized characters!
 
-
 Property:	Expands_On_NFC
-# Derived Property: Expands_On_NFC
+# Derived Property: Expands_On_NFC (DEPRECATED as of Unicode 6.0.0)
 #   Generated according to UAX #15.
 #   Characters whose normalized length is not one.
 #   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact.
@@ -341,7 +340,7 @@ Property:	Expands_On_NFC
 
 
 Property:	Expands_On_NFKD
-# Derived Property: Expands_On_NFKD
+# Derived Property: Expands_On_NFKD (DEPRECATED as of Unicode 6.0.0)
 #   Generated according to UAX #15.
 #   Characters whose normalized length is not one.
 #   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact.
@@ -349,7 +348,7 @@ Property:	Expands_On_NFKD
 
 
 Property:	Expands_On_NFKC
-# Derived Property: Expands_On_NFKC
+# Derived Property: Expands_On_NFKC (DEPRECATED as of Unicode 6.0.0)
 #   Generated according to UAX #15.
 #   Characters whose normalized length is not one.
 #   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact.
@@ -406,15 +405,6 @@ File:   BidiTest
 # a given limit (currently 4).
 #
 # Format:
-#
-# @Type:    <bidi_class>:  <set>
-# These lines define which characters have the bidi_class property value,
-# and are used in the remainder of the test.
-#   <bidi_class> =  The bidi class property value
-#   <set> =         All and only the those codepoints with that property value in <set>.
-#                   <set> is a character range as defined in UTS #18 Unicode Regular Expressions.
-# Example:
-#   @Type:    AN:    [\u0600-\u0603\u0660-\u0669\u066B\u066C\u06DD]
 #
 # @Levels: <levels>
 # These lines indicate that all following* data lines have the same resulting ordering levels

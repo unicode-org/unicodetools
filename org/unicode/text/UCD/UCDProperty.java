@@ -18,8 +18,8 @@ public abstract class UCDProperty implements UCD_Types {
     protected String    valueName;
     protected String    numberValueName;
     protected String    shortValueName;
-    protected String    header;
-    protected String    subheader;
+//    protected String    header;
+//    protected String    subheader;
     protected String    name;
     protected String    shortName;
     protected String    numberName;
@@ -59,13 +59,13 @@ public abstract class UCDProperty implements UCD_Types {
       
       /** Header used in DerivedXXX files
        */
-      public String getHeader() { return header; }
-      public void setHeader(String in) { header = in; }
+      public int getHeader() { return 0; }
+      public void setHeader(int in) {  }
 
       /** Header used in DerivedXXX files
        */
-      public String getSubHeader() { return subheader; }
-      public void setSubHeader(String in) { subheader = in; }
+      public int getSubHeader() { return 0; }
+      public void setSubHeader(int in) { }
 
       /**
        * Get the full name. Style is SHORT, NORMAL, LONG

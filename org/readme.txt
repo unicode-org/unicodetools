@@ -25,6 +25,10 @@ Update in utility/Utility:
 Update in UCD_Types
   LIMIT_AGE
   AGE_VERSIONS
+If there are new CJK characters, search for "Extension C" in UCD.java and make the changes.
+  mapToRepresentative(...) to add the range.
+  hasComputableName(...), and get(...) to add the representative (first) character
+  
   
 Run MakeUnicodeFiles
 

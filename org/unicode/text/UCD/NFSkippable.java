@@ -27,11 +27,6 @@ public final class NFSkippable extends UCDProperty {
         nf = new Normalizer(normalizerMode, ucd.getVersion());
         name = nf.getName() + "_Skippable";
         shortName = nf.getName() + "_Skip";
-        header = "# Derived Property: " + name
-            + "\r\n#   Generated according to UAX #15."
-            + "\r\n#   Characters that don't interact with any others in this normalization form."
-            + "\r\n#   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact."
-            + "\r\n#            The length of a normalized string is not necessarily the sum of the lengths of the normalized characters!";
 
         nfd = new Normalizer(Normalizer.NFD, ucd.getVersion());
         composes = normalizerMode == Normalizer.NFC || normalizerMode == Normalizer.NFKC;
