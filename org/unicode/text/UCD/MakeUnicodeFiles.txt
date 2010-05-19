@@ -1,7 +1,16 @@
-Generate: .*
-DeltaVersion: 4
+Generate: ScriptExtensions
+DeltaVersion: 5
 CopyrightYear: 2010
 
+File: ScriptExtensions
+#
+# The Script Extensions contain data about characters that belong to multiple scripts.
+# This data is provisional, and expected to change over time, as more information becomes available.
+# The script values are space-delimited short values, such as Hang for Hangul.
+# For more information, see UAX #24: http://www.unicode.org/reports/tr24/.
+
+Property: Script_Extensions
+Format: valueStyle=short
 
 File: auxiliary/GraphemeBreakProperty
 Property: Grapheme_Cluster_Break
