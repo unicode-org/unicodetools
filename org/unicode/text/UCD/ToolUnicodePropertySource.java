@@ -1,9 +1,12 @@
 package org.unicode.text.UCD;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -11,16 +14,20 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
+import org.unicode.jsp.ScriptTester.ScriptExtensions;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.Relation;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.dev.test.util.UnicodeProperty.SimpleProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.StringUCharacterIterator;
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
@@ -757,6 +764,31 @@ isTitlecase(X) is false.
 
     // ========================
 
+    try {
+      String x = Utility.getMostRecentUnicodeDataFile("ScriptExtensions", Default.ucdVersion(), true, true);
+      File f = new File(x);
+      ScriptExtensions extensions = ScriptExtensions.make(f.getParent(), f.getName());
+      Collection<BitSet> values = extensions.getAvailableValues();
+      TreeSet<BitSet> sortedValues = new TreeSet<BitSet>(ScriptExtensions.COMPARATOR);
+      sortedValues.addAll(values);
+      UnicodeMap<String> umap = new UnicodeMap<String>();
+      for (BitSet set : sortedValues) {
+        UnicodeSet uset = extensions.getSet(set);
+        umap.putAll(uset, ScriptExtensions.getNames(set, UProperty.NameChoice.SHORT, " "));
+      }
+      UnicodeMapProperty prop2 = new UnicodeMapProperty()
+      .set(umap);
+      prop2.setMain("Script_Extensions", "SE", UnicodeProperty.ENUMERATED, version);
+      prop2.addValueAliases(new String[][] {}, false); // hack
+//      for (BitSet set : sortedValues) {
+//        prop2.addValueAlias(ScriptExtensions.getNames(set, UProperty.NameChoice.SHORT, " "), 
+//                ScriptExtensions.getNames(set, UProperty.NameChoice.LONG, " "),
+//                false);
+//      }
+      add(prop2);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    } 
   }
 
   private void addFakeProperty(String version, int unicodePropertyType, String defaultValue, String name, String abbr, String... alts) {
@@ -1361,7 +1393,7 @@ isTitlecase(X) is false.
       return value == null ? samePolarity ? UCD_Names.YES : UCD_Names.NO // null means same value, by convention
               : equals(codepoint, value) == samePolarity ? UCD_Names.YES : UCD_Names.NO;
     }
-    
+
     SimpleIsProperty setCheckUnassigned() {
       setUniformUnassigned(false);
       return this;

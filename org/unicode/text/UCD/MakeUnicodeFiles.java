@@ -1,11 +1,13 @@
 package org.unicode.text.UCD;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -20,6 +22,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.jsp.ScriptTester.ScriptExtensions;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;
@@ -34,6 +37,8 @@ import com.ibm.icu.dev.test.util.Tabber;
 import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
+import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UnicodeSet;
 
