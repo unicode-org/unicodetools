@@ -290,14 +290,14 @@ public class ScriptTester {
     public static ScriptExtensions make(String directory, String filename) {
       ScriptExtensions result = new ScriptExtensions();
       result.scriptSpecials = ((MyHandler) new MyHandler()
-      .process(Confusables.class, "scriptSpecials.txt")).map.freeze();
+      .process(directory, filename)).map.freeze();
       return result;
     }
     
     public static ScriptExtensions make(Class aClass, String filename) {
       ScriptExtensions result = new ScriptExtensions();
       result.scriptSpecials = ((MyHandler) new MyHandler()
-      .process(aClass, "scriptSpecials.txt")).map.freeze();
+      .process(aClass, filename)).map.freeze();
       return result;
     }
 

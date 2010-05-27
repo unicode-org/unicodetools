@@ -1,11 +1,6 @@
 package org.unicode.draft;
-import java.io.EOFException;
 import java.io.FileOutputStream;
-import java.io.FilterInputStream;
-import java.io.FilterOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -90,7 +85,7 @@ public class Combining {
 
       ExemplarInfo exemplarInfo = ExemplarInfo.make(cldrLanguage, missingExemplars);
       // open files for writing, create table
-      CompressedDataOutputStream out = new CompressedDataOutputStream(new FileOutputStream(Utility.GEN_DIR + "/frequency/" + language + ".txt"));
+      CompressedDataOutput out = new CompressedDataOutput(new FileOutputStream(Utility.GEN_DIR + "/frequency/" + language + ".txt"));
       PrintWriter html = BagFormatter.openUTF8Writer(Utility.GEN_DIR + "/frequency-html", htmlFilename);
       html.println("<html><head><meta charset='UTF-8'>\n" +
               "<link rel='stylesheet' type='text/css' href='index.css' media='screen'/>\n" +
@@ -118,7 +113,7 @@ public class Combining {
         //if (count < COUNT_LIMIT) break; // skip for now
         String hex = Utility.hex(sequence);
 
-        out.writeLong(count);
+        out.writeUnsignedLong(count);
         out.writeUTF(sequence);
 
         String type = getType(sequence, typeList);
@@ -266,119 +261,5 @@ public class Combining {
       items.remove("Zyyy");
     }
     return CollectionUtilities.join(items, "/");
-  }
-
-
-
-  //    for (Integer mark : duplicateCounter.getKeysetSortedByCount(false)) {
-  //      long count = duplicateCounter.get(mark);
-  //      String sequence = UTF16.valueOf(mark);
-  //
-  //      System.out.println(count
-  //              + "\t\t" + sequence
-  //              + "\t\t" + Utility.hex(mark)
-  //              + "\t" + UCharacter.getName(mark));
-  //    }
-  //
-  //    for (Integer base : baseCounter.getKeysetSortedByCount(false)) {
-  //      long baseCount = baseCounter.getCount(base);
-  //      //if (baseCount < 10000) continue;
-  //
-  //      Counter<String> counter = baseToMarks.get(base);
-  //      //if (baseCounter.getItemCount() < 100000) continue;
-  //      System.out.println("Base:\t\t" + Utility.hex(base) + "\t\t" + UCharacter.getName(base));
-  //      for (String marks : counter.getKeysetSortedByCount(false)) {
-  //        System.out.println("\t" + counter.get(marks)
-  //                + "\t\t" + marks
-  //                + "\t\t" + Utility.hex(marks, "+")
-  //                + "\t" + UCharacter.getName(marks, "+"));
-  //      }
-  //    }
-  //
-  //    for (String marks : marksCounter.getKeysetSortedByCount(false)) {
-  //      long marksCount = marksCounter.getCount(marks);
-  //      //if (marksCount < 10000) continue;
-  //
-  //      Counter<Integer> counter = marksToBase.get(marks);
-  //      //if (baseCounter.getItemCount() < 100000) continue;
-  //      System.out.println("Marks:\t\t" + Utility.hex(marks) + "\t\t" + UCharacter.getName(marks, "+"));
-  //      for (Integer base : counter.getKeysetSortedByCount(false)) {
-  //        System.out.println("\t" + counter.get(base)
-  //                + "\t\t" + UTF16.valueOf(base)
-  //                + "\t\t" + Utility.hex(base, "+")
-  //                + "\t" + UCharacter.getName(base));
-  //      }
-  //    }
-
-
-
-  static class CompressedDataOutputStream extends FilterOutputStream {
-
-    public CompressedDataOutputStream(OutputStream out) {
-      super(out);
-    }
-    /**
-     * Write a long as a series of 7-bits, with the last one having the top bit on.
-     * @param longValue
-     * @throws IOException
-     */
-    public void writeLong(long longValue) throws IOException {
-      while (true) {
-        int bottom = 0x7F & (int) longValue;
-        longValue >>>= 7;
-        if (longValue == 0) {
-          write(bottom | 0x80); // write byte
-          return;
-        } else {
-          write(bottom); // write byte
-        }
-      }
-    }
-
-    public void writeUTF(CharSequence string) throws IOException {
-      writeLong(string.length());
-      int cp;
-      for (int i = 0; i < string.length(); i += Character.charCount(cp)) {
-        cp = Character.codePointAt(string, 0);
-        writeLong(cp);
-      }
-    }
-  }
-  
-  static class CompressedDataInputStream extends FilterInputStream {
-    public CompressedDataInputStream(InputStream in) {
-      super(in);
-    }
-   
-    /**
-     * Read a long as a series of 7-bits, with the last one having the top bit on.
-     * @param longValue
-     * @throws IOException
-     */
-    public long readLong() throws IOException {
-      long result = 0;
-      while (true) {
-        int byteValue = read();
-        if (byteValue < 0) {
-          throw new EOFException();
-        }
-        result <<= 7;
-        if (byteValue < 0x80) {
-          result |= byteValue;
-        } else {
-          byteValue &= 0x7F;
-          result |= byteValue;
-          return byteValue;
-        }
-      }
-    }
-
-    public StringBuilder readUTF(StringBuilder toAppendTo) throws IOException {
-      for (long length = readLong(); length > 0; ++length) {
-        long cp = readLong();
-        toAppendTo.appendCodePoint((int)cp);
-      }
-      return toAppendTo;
-    }
   }
 }

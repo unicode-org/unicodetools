@@ -1,6 +1,11 @@
-Generate: ScriptExtensions
-DeltaVersion: 5
+Generate: Named.*
+DeltaVersion: 9
 CopyrightYear: 2010
+
+File: extra/ScriptNfkc
+Property: SPECIAL
+# Shows where the script values of a character doesn't agree with the script values of the NFKD form (skipping Common and Inherited)
+#
 
 File: ScriptExtensions
 #

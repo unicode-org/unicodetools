@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateCaseFolding.java,v $
-* $Date: 2009-08-18 23:38:45 $
-* $Revision: 1.24 $
+* $Date: 2010-05-27 16:39:47 $
+* $Revision: 1.25 $
 *
 *******************************************************************************
 */
@@ -73,7 +73,7 @@ public class GenerateCaseFolding implements UCD_Types {
         System.out.println("Writing");
         String filename = "CaseFolding";
         if (normalized) filename += "-Normalized";
-        String directory = "UCD/";
+        String directory = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY;
         UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
         PrintWriter out = fc.out;
         
@@ -591,7 +591,7 @@ public class GenerateCaseFolding implements UCD_Types {
         //String newFile = "DerivedData/SpecialCasing" + suffix2 + UnicodeDataFile.getFileSuffix(true);
         //PrintWriter out = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
         
-        UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("UCD/", "SpecialCasing" + suffix2).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY, "SpecialCasing" + suffix2).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
         PrintWriter out = udf.out;
         
  /*       String[] batName = {""};

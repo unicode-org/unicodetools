@@ -778,7 +778,7 @@ isTitlecase(X) is false.
       }
       UnicodeMapProperty prop2 = new UnicodeMapProperty()
       .set(umap);
-      prop2.setMain("Script_Extensions", "SE", UnicodeProperty.ENUMERATED, version);
+      prop2.setMain("Script_Extensions", "SE", UnicodeProperty.EXTENDED_ENUMERATED, version);
       prop2.addValueAliases(new String[][] {}, false); // hack
 //      for (BitSet set : sortedValues) {
 //        prop2.addValueAlias(ScriptExtensions.getNames(set, UProperty.NameChoice.SHORT, " "), 

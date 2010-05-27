@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2010-05-18 04:13:56 $
- * $Revision: 1.59 $
+ * $Date: 2010-05-27 16:39:47 $
+ * $Revision: 1.60 $
  *
  *******************************************************************************
  */
@@ -270,55 +270,55 @@ public final class UCD implements UCD_Types {
       cat = FAKENC;
     } else if (((1<<cat) & collapseBits) != 0) {
       switch (cat) {
-        case UNASSIGNED: cat = FAKE_OTHER; break;
-        case FAKENC: cat = FAKE_OTHER; break;
+      case UNASSIGNED: cat = FAKE_OTHER; break;
+      case FAKENC: cat = FAKE_OTHER; break;
 
-        case UPPERCASE_LETTER: cat = FAKE_LETTER; break;
-        case LOWERCASE_LETTER: cat = FAKE_LETTER; break;
-        case TITLECASE_LETTER: cat = FAKE_LETTER; break;
-        case MODIFIER_LETTER: cat = FAKE_LETTER; break;
-        case OTHER_LETTER: cat = FAKE_LETTER; break;
+      case UPPERCASE_LETTER: cat = FAKE_LETTER; break;
+      case LOWERCASE_LETTER: cat = FAKE_LETTER; break;
+      case TITLECASE_LETTER: cat = FAKE_LETTER; break;
+      case MODIFIER_LETTER: cat = FAKE_LETTER; break;
+      case OTHER_LETTER: cat = FAKE_LETTER; break;
 
-        case NON_SPACING_MARK: cat = FAKE_MARK; break;
-        case ENCLOSING_MARK: cat = FAKE_MARK; break;
-        case COMBINING_SPACING_MARK: cat = FAKE_MARK; break;
+      case NON_SPACING_MARK: cat = FAKE_MARK; break;
+      case ENCLOSING_MARK: cat = FAKE_MARK; break;
+      case COMBINING_SPACING_MARK: cat = FAKE_MARK; break;
 
-        case DECIMAL_DIGIT_NUMBER: cat = FAKE_NUMBER; break;
-        case LETTER_NUMBER: cat = FAKE_NUMBER; break;
-        case OTHER_NUMBER: cat = FAKE_NUMBER; break;
+      case DECIMAL_DIGIT_NUMBER: cat = FAKE_NUMBER; break;
+      case LETTER_NUMBER: cat = FAKE_NUMBER; break;
+      case OTHER_NUMBER: cat = FAKE_NUMBER; break;
 
-        case SPACE_SEPARATOR: cat = FAKE_SEPERATOR; break;
-        case LINE_SEPARATOR: cat = FAKE_SEPERATOR; break;
-        case PARAGRAPH_SEPARATOR: cat = FAKE_SEPERATOR; break;
+      case SPACE_SEPARATOR: cat = FAKE_SEPERATOR; break;
+      case LINE_SEPARATOR: cat = FAKE_SEPERATOR; break;
+      case PARAGRAPH_SEPARATOR: cat = FAKE_SEPERATOR; break;
 
-        case CONTROL: cat = FAKE_OTHER; break;
-        case FORMAT: cat = FAKE_OTHER; break;
-        case UNUSED_CATEGORY: cat = FAKE_OTHER; break;
-        case PRIVATE_USE: cat = FAKE_OTHER; break;
-        case SURROGATE: cat = FAKE_OTHER; break;
+      case CONTROL: cat = FAKE_OTHER; break;
+      case FORMAT: cat = FAKE_OTHER; break;
+      case UNUSED_CATEGORY: cat = FAKE_OTHER; break;
+      case PRIVATE_USE: cat = FAKE_OTHER; break;
+      case SURROGATE: cat = FAKE_OTHER; break;
 
-        case DASH_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-        case START_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-        case END_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-        case CONNECTOR_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-        case OTHER_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-        case INITIAL_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
-        case FINAL_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
+      case DASH_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
+      case START_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
+      case END_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
+      case CONNECTOR_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
+      case OTHER_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
+      case INITIAL_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
+      case FINAL_PUNCTUATION: cat = FAKE_PUNCTUATION; break;
 
-        case MATH_SYMBOL: cat = FAKE_SYMBOL; break;
-        case CURRENCY_SYMBOL: cat = FAKE_SYMBOL; break;
-        case MODIFIER_SYMBOL: cat = FAKE_SYMBOL; break;
-        case OTHER_SYMBOL: cat = FAKE_SYMBOL; break;
+      case MATH_SYMBOL: cat = FAKE_SYMBOL; break;
+      case CURRENCY_SYMBOL: cat = FAKE_SYMBOL; break;
+      case MODIFIER_SYMBOL: cat = FAKE_SYMBOL; break;
+      case OTHER_SYMBOL: cat = FAKE_SYMBOL; break;
       }
       if (collapseBits == -1) {
         switch (cat) {
-          case FAKE_MARK: 
-          case FAKE_NUMBER:
-          case FAKE_SEPERATOR:
-          case FAKE_PUNCTUATION:
-          case FAKE_SYMBOL:
-            cat = FAKE_LETTER;
-            break;
+        case FAKE_MARK: 
+        case FAKE_NUMBER:
+        case FAKE_SEPERATOR:
+        case FAKE_PUNCTUATION:
+        case FAKE_SYMBOL:
+          cat = FAKE_LETTER;
+          break;
         }
       }
     }
@@ -327,14 +327,14 @@ public final class UCD implements UCD_Types {
 
   public String getModCatID_fromIndex(byte cat) {
     switch (cat) {
-      case FAKE_SYMBOL: return "S&";
-      case FAKE_PUNCTUATION: return "P&";
-      case FAKE_SEPERATOR: return "Z&";
-      case FAKE_NUMBER: return "N&";
-      case FAKE_MARK: return "M&";
-      case FAKE_LETTER: return "L&";
-      case FAKE_OTHER: return "C&";
-      case FAKENC: return "NC";
+    case FAKE_SYMBOL: return "S&";
+    case FAKE_PUNCTUATION: return "P&";
+    case FAKE_SEPERATOR: return "Z&";
+    case FAKE_NUMBER: return "N&";
+    case FAKE_MARK: return "M&";
+    case FAKE_LETTER: return "L&";
+    case FAKE_OTHER: return "C&";
+    case FAKENC: return "NC";
     }
     return getCategoryID_fromIndex(cat);
   }
@@ -344,14 +344,14 @@ public final class UCD implements UCD_Types {
    */
   public static int mainCategoryMask(byte cat) {
     switch (cat) {
-      case Lu: case Ll: case Lt: case Lm: case Lo: return LETTER_MASK;
-      case Mn: case Me: case Mc: return MARK_MASK;
-      case Nd: case Nl: case No: return NUMBER_MASK;
-      case Zs: case Zl: case Zp: return SEPARATOR_MASK;
-      case Cc: case Cf: case Cs: case Co: return CONTROL_MASK;
-      case Pc: case Pd: case Ps: case Pe: case Po: case Pi: case Pf: return PUNCTUATION_MASK;
-      case Sm: case Sc: case Sk: case So: return SYMBOL_MASK;
-      case Cn: return UNASSIGNED_MASK;
+    case Lu: case Ll: case Lt: case Lm: case Lo: return LETTER_MASK;
+    case Mn: case Me: case Mc: return MARK_MASK;
+    case Nd: case Nl: case No: return NUMBER_MASK;
+    case Zs: case Zl: case Zp: return SEPARATOR_MASK;
+    case Cc: case Cf: case Cs: case Co: return CONTROL_MASK;
+    case Pc: case Pd: case Ps: case Pe: case Po: case Pi: case Pf: return PUNCTUATION_MASK;
+    case Sm: case Sc: case Sk: case So: return SYMBOL_MASK;
+    case Cn: return UNASSIGNED_MASK;
     }
     throw new IllegalArgumentException ("Illegal General Category " + cat);
   }
@@ -523,27 +523,27 @@ public final class UCD implements UCD_Types {
     double numericValue;
     byte numericType;
   }
-  
+
   static final Map<String,String> unihanProp_file;
   static {
     String[][] file_prop = {
             {"Unihan_DictionaryIndices", 
               "kCheungBauerIndex", "kCowles", "kDaeJaweon", "kFennIndex", "kGSR", "kHanYu", "kIRGDaeJaweon", "kIRGDaiKanwaZiten", "kIRGHanyuDaZidian", "kIRGKangXi", "kKangXi", "kKarlgren", "kLau", "kMatthews", "kMeyerWempe", "kMorohashi", "kNelson", "kSBGY"},
-            {"Unihan_DictionaryLikeData", 
-              "kCangjie", "kCheungBauer", "kCihaiT", "kFenn", "kFourCornerCode", "kFrequency", "kGradeLevel", "kHDZRadBreak", "kHKGlyph", "kPhonetic", "kTotalStrokes"},
-            {"Unihan_IRGSources", 
-              "kIICore", "kIRG_GSource", "kIRG_HSource", "kIRG_JSource", "kIRG_KPSource", "kIRG_KSource", "kIRG_TSource", "kIRG_USource", "kIRG_VSource", "kIRG_MSource"},
-            {"Unihan_NumericValues", 
-              "kAccountingNumeric", "kOtherNumeric", "kPrimaryNumeric"},
-            {"Unihan_OtherMappings", 
-                "kBigFive", "kCCCII", "kCNS1986", "kCNS1992", "kEACC", "kGB0", "kGB1", "kGB3", "kGB5", "kGB7", "kGB8", "kHKSCS", "kIBMJapan", "kJis0", "kJis1", "kJIS0213", "kKPS0", "kKPS1", "kKSC0", "kKSC1", "kMainlandTelegraph", "kPseudoGB1", "kTaiwanTelegraph", "kXerox"},
-            {"Unihan_RadicalStrokeCounts", 
-                  "kRSAdobe_Japan1_6", "kRSJapanese", "kRSKangXi", "kRSKanWa", "kRSKorean", "kRSUnicode"},
-            {"Unihan_Readings", 
-                    "kCantonese", "kDefinition", "kHangul", "kHanyuPinlu", "kHanyuPinyin", "kJapaneseKun", "kJapaneseOn", "kKorean", "kMandarin", "kTang", "kVietnamese", "kXHC1983"},
-            {"Unihan_Variants", 
-                      "kCompatibilityVariant", "kSemanticVariant", "kSimplifiedVariant", "kSpecializedSemanticVariant", "kTraditionalVariant", "kZVariant"}};
-    
+              {"Unihan_DictionaryLikeData", 
+                "kCangjie", "kCheungBauer", "kCihaiT", "kFenn", "kFourCornerCode", "kFrequency", "kGradeLevel", "kHDZRadBreak", "kHKGlyph", "kPhonetic", "kTotalStrokes"},
+                {"Unihan_IRGSources", 
+                  "kIICore", "kIRG_GSource", "kIRG_HSource", "kIRG_JSource", "kIRG_KPSource", "kIRG_KSource", "kIRG_TSource", "kIRG_USource", "kIRG_VSource", "kIRG_MSource"},
+                  {"Unihan_NumericValues", 
+                    "kAccountingNumeric", "kOtherNumeric", "kPrimaryNumeric"},
+                    {"Unihan_OtherMappings", 
+                      "kBigFive", "kCCCII", "kCNS1986", "kCNS1992", "kEACC", "kGB0", "kGB1", "kGB3", "kGB5", "kGB7", "kGB8", "kHKSCS", "kIBMJapan", "kJis0", "kJis1", "kJIS0213", "kKPS0", "kKPS1", "kKSC0", "kKSC1", "kMainlandTelegraph", "kPseudoGB1", "kTaiwanTelegraph", "kXerox"},
+                      {"Unihan_RadicalStrokeCounts", 
+                        "kRSAdobe_Japan1_6", "kRSJapanese", "kRSKangXi", "kRSKanWa", "kRSKorean", "kRSUnicode"},
+                        {"Unihan_Readings", 
+                          "kCantonese", "kDefinition", "kHangul", "kHanyuPinlu", "kHanyuPinyin", "kJapaneseKun", "kJapaneseOn", "kKorean", "kMandarin", "kTang", "kVietnamese", "kXHC1983"},
+                          {"Unihan_Variants", 
+                            "kCompatibilityVariant", "kSemanticVariant", "kSimplifiedVariant", "kSpecializedSemanticVariant", "kTraditionalVariant", "kZVariant"}};
+
     //  
     HashMap<String, String> temp = new HashMap<String, String>();
     for (String[] row : file_prop) {
@@ -713,14 +713,14 @@ public final class UCD implements UCD_Types {
     }
 
     switch (caseType + simpleVsFull) {
-      case SIMPLE + UPPER: return udata.simpleUppercase;
-      case SIMPLE + LOWER: return udata.simpleLowercase;
-      case SIMPLE + TITLE: return udata.simpleTitlecase;
-      case SIMPLE + FOLD: return udata.simpleCaseFolding;
-      case FULL + UPPER: return udata.fullUppercase;
-      case FULL + LOWER: return udata.fullLowercase;
-      case FULL + TITLE: return udata.fullTitlecase;
-      case FULL + FOLD: return udata.fullCaseFolding;
+    case SIMPLE + UPPER: return udata.simpleUppercase;
+    case SIMPLE + LOWER: return udata.simpleLowercase;
+    case SIMPLE + TITLE: return udata.simpleTitlecase;
+    case SIMPLE + FOLD: return udata.simpleCaseFolding;
+    case FULL + UPPER: return udata.fullUppercase;
+    case FULL + LOWER: return udata.fullLowercase;
+    case FULL + TITLE: return udata.fullTitlecase;
+    case FULL + FOLD: return udata.fullCaseFolding;
     }
     throw new IllegalArgumentException("getCase: " + caseType + ", " + simpleVsFull);
   }
@@ -1348,25 +1348,25 @@ to guarantee identifier closure.
 
     int rangeStart = mapToRepresentative(codePoint, compositeVersion);
     switch (rangeStart) {
-      default:
-        return getRaw(codePoint) == null;
-      case 0x2800: // braille
-      case 0xF900: // compat ideos
-      case 0x2F800: // compat ideos
-      case 0x3400: // CJK Ideograph Extension A
-      case 0x4E00: // CJK Ideograph
-      case 0x20000: // Extension B
-      case 0x2A700: // Extension C
-      case 0x2B740: // Extension D
-      case 0xAC00: // Hangul Syllable
-      case 0xE000: // Private Use
-      case 0xF0000: // Private Use
-      case 0x100000: // Private Use
-      case 0xD800: // Surrogate
-      case 0xDB80: // Private Use
-      case 0xDC00: // Private Use
-      case 0xFFFF: // Noncharacter
-        return true;
+    default:
+      return getRaw(codePoint) == null;
+    case 0x2800: // braille
+    case 0xF900: // compat ideos
+    case 0x2F800: // compat ideos
+    case 0x3400: // CJK Ideograph Extension A
+    case 0x4E00: // CJK Ideograph
+    case 0x20000: // Extension B
+    case 0x2A700: // Extension C
+    case 0x2B740: // Extension D
+    case 0xAC00: // Hangul Syllable
+    case 0xE000: // Private Use
+    case 0xF0000: // Private Use
+    case 0x100000: // Private Use
+    case 0xD800: // Surrogate
+    case 0xDB80: // Private Use
+    case 0xDC00: // Private Use
+    case 0xFFFF: // Noncharacter
+      return true;
     }
   }
 
@@ -1410,16 +1410,16 @@ to guarantee identifier closure.
     boolean isHangul = false;
     boolean isRemapped = false;
     switch (rangeStart) {
-      case 0xF900:
-        if (compositeVersion < 0x020105) {
-          if (fixStrings) constructedName = "CJK COMPATIBILITY IDEOGRAPH-" + Utility.hex(codePoint, 4);
-          break;
-        }
-        //isRemapped = true;
+    case 0xF900:
+      if (compositeVersion < 0x020105) {
+        if (fixStrings) constructedName = "CJK COMPATIBILITY IDEOGRAPH-" + Utility.hex(codePoint, 4);
         break;
-        // FALL THROUGH!!!!
-        //default:
-        /*
+      }
+      //isRemapped = true;
+      break;
+      // FALL THROUGH!!!!
+      //default:
+      /*
             result = getRaw(codePoint);
             if (result == null) {
                 result = UData.UNASSIGNED;
@@ -1438,39 +1438,39 @@ to guarantee identifier closure.
                     result.shortName = Utility.replace(result.name, UCD_Names.NAME_ABBREVIATIONS);
                 }
             }
-         */
-        //break;
-      case 0x3400: // CJK Ideograph Extension A
-      case 0x4E00: // CJK Ideograph
-      case 0x20000: // Extension B
-      case 0x2A700: // Extension C
-      case 0x2B740: // Extension D
-        if (fixStrings) constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
-        isRemapped = true;
-        break;
-      case 0xAC00: // Hangul Syllable
-        isHangul = true;
-        if (fixStrings) {
-          constructedName = "HANGUL SYLLABLE " + getHangulName(codePoint);
-        }
-        isRemapped = true;
-        break;
-      case   0xE000: // Private Use
-      case  0xF0000: // Private Use
-      case 0x100000: // Private Use
-        if (fixStrings) constructedName = "<private-use-" + Utility.hex(codePoint, 4) + ">";
-        isRemapped = true;
-        break;
-      case 0xD800: // Surrogate
-      case 0xDB80: // Private Use
-      case 0xDC00: // Private Use
-        if (fixStrings) constructedName = "<surrogate-" + Utility.hex(codePoint, 4) + ">";
-        isRemapped = true;
-        break;
-      case 0xFFFF: // Noncharacter
-        if (fixStrings) constructedName = "<noncharacter-" + Utility.hex(codePoint, 4) + ">";
-        isRemapped = true;
-        break;
+       */
+      //break;
+    case 0x3400: // CJK Ideograph Extension A
+    case 0x4E00: // CJK Ideograph
+    case 0x20000: // Extension B
+    case 0x2A700: // Extension C
+    case 0x2B740: // Extension D
+      if (fixStrings) constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
+      isRemapped = true;
+      break;
+    case 0xAC00: // Hangul Syllable
+      isHangul = true;
+      if (fixStrings) {
+        constructedName = "HANGUL SYLLABLE " + getHangulName(codePoint);
+      }
+      isRemapped = true;
+      break;
+    case   0xE000: // Private Use
+    case  0xF0000: // Private Use
+    case 0x100000: // Private Use
+      if (fixStrings) constructedName = "<private-use-" + Utility.hex(codePoint, 4) + ">";
+      isRemapped = true;
+      break;
+    case 0xD800: // Surrogate
+    case 0xDB80: // Private Use
+    case 0xDC00: // Private Use
+      if (fixStrings) constructedName = "<surrogate-" + Utility.hex(codePoint, 4) + ">";
+      isRemapped = true;
+      break;
+    case 0xFFFF: // Noncharacter
+      if (fixStrings) constructedName = "<noncharacter-" + Utility.hex(codePoint, 4) + ">";
+      isRemapped = true;
+      break;
     }
     result = getRaw(rangeStart);
     if (result == null) {
@@ -1910,4 +1910,32 @@ to guarantee identifier closure.
     compositeVersion = i;
   }
 
+  public BitSet getScripts(CharSequence norm, BitSet result) {
+    if (result == null) {
+      result = new BitSet();
+    }
+    result.clear();
+    int cp;
+    for (int i = 0; i < norm.length(); i += Character.charCount(cp)) {
+      cp = Character.codePointAt(norm, i);
+      byte script = getScript(cp);
+      result.set(script & 0xFF);
+    }
+    return result;
+  }
+
+  public String getScriptIDs(String norm, String separator, byte choice) {
+    StringBuilder result = new StringBuilder();
+    int cp;
+    for (int i = 0; i < norm.length(); i += Character.charCount(cp)) {
+      cp = Character.codePointAt(norm, i);
+      byte script = getScript(cp);
+      String scriptId = getScriptID_fromIndex(script, choice);
+      if (result.length() != 0) {
+        result.append(separator);
+      }
+      result.append(scriptId);
+    }
+    return result.toString();
+  }
 }
