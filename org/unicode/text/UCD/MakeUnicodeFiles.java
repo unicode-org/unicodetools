@@ -22,6 +22,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.Pair;
 import org.unicode.jsp.ScriptTester.ScriptExtensions;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
@@ -38,12 +39,16 @@ import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UnicodeSet;
 
 public class MakeUnicodeFiles {
   public static final boolean SHOW_VERSION_IN_FILE = org.unicode.cldr.util.CldrUtility.getProperty("FILE_WITH_VERSION", "true").startsWith("t");
+
+  public static String MAIN_OUTPUT_DIRECTORY = "UCD/";
 
   public static int dVersion = -1; // change to fix the generated file D version. If less than zero, no "d"
 
@@ -348,6 +353,7 @@ public class MakeUnicodeFiles {
               }
             } else if (line.startsWith("DeltaVersion:")) {
               dVersion = Integer.parseInt(lineValue);
+              MAIN_OUTPUT_DIRECTORY = "UCD/d" + dVersion + "/";
             } else if (line.startsWith("CopyrightYear:")) {
               Default.setYear(lineValue);
             } else if (line.startsWith("File:")) {
@@ -530,36 +536,77 @@ public class MakeUnicodeFiles {
     if (filename.endsWith("Aliases")) {
       if (filename.endsWith("ValueAliases")) generateValueAliasFile(filename);
       else generateAliasFile(filename);
-    } else if (filename.equals("unihan")) {
-      writeUnihan("UCD/unihan/");
-    } else if (filename.equals("NormalizationTest")) {
-      GenerateData.writeNormalizerTestSuite("UCD/", "NormalizationTest");
-    } else if (filename.equals("BidiTest")) {
-      doBidiTest(filename);
-    } else if (filename.equals("CaseFolding")) {
-      GenerateCaseFolding.makeCaseFold(false);
-    } else if (filename.equals("SpecialCasing")) {
-      GenerateCaseFolding.generateSpecialCasing(false);
-    } else if (filename.equals("StandardizedVariants")) {
-      GenerateStandardizedVariants.generate();
-    } else if (filename.startsWith("NamedSequences")) {
-      GenerateNamedSequences.generate(filename);
-    } else if (filename.equals("GraphemeBreakTest")) {
-      new GenerateGraphemeBreakTest(Default.ucd()).run();
-    } else if (filename.equals("WordBreakTest")) {
-      new GenerateWordBreakTest(Default.ucd()).run();
-    } else if (filename.equals("LineBreakTest")) {
-      new GenerateLineBreakTest(Default.ucd()).run();
-    } else if (filename.equals("SentenceBreakTest")) {
-      new GenerateSentenceBreakTest(Default.ucd()).run();
     } else {
-      generatePropertyFile(filename);
+      if (filename.equals("unihan")) {
+        writeUnihan(MAIN_OUTPUT_DIRECTORY + "unihan/");
+      } else if (filename.equals("NormalizationTest")) {
+        GenerateData.writeNormalizerTestSuite(MAIN_OUTPUT_DIRECTORY, "NormalizationTest");
+      } else if (filename.equals("BidiTest")) {
+        doBidiTest(filename);
+      } else if (filename.equals("CaseFolding")) {
+        GenerateCaseFolding.makeCaseFold(false);
+      } else if (filename.equals("SpecialCasing")) {
+        GenerateCaseFolding.generateSpecialCasing(false);
+      } else if (filename.equals("StandardizedVariants")) {
+        GenerateStandardizedVariants.generate();
+      } else if (filename.startsWith("NamedSequences")) {
+        GenerateNamedSequences.generate(filename);
+      } else if (filename.equals("GraphemeBreakTest")) {
+        new GenerateGraphemeBreakTest(Default.ucd()).run();
+      } else if (filename.equals("WordBreakTest")) {
+        new GenerateWordBreakTest(Default.ucd()).run();
+      } else if (filename.equals("LineBreakTest")) {
+        new GenerateLineBreakTest(Default.ucd()).run();
+      } else if (filename.equals("SentenceBreakTest")) {
+        new GenerateSentenceBreakTest(Default.ucd()).run();
+      } else if (filename.contains("ScriptNfkc")) {
+        generateScriptNfkc(filename);
+      } else {
+        generatePropertyFile(filename);
+      }
     }
+  }
+
+  private static void generateScriptNfkc(String filename) throws IOException {
+    String dir = (String) Format.theFormat.fileToDirectory.get(filename);
+    UnicodeDataFile udf =
+      UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename);
+    PrintWriter pw = udf.out;
+    Format.theFormat.printFileComments(pw, filename);
+    UCD ucd = Default.ucd();
+
+    BitSet normScripts = new BitSet();
+    UnicodeMap<R3<Integer,String,String>> results = new UnicodeMap();
+    for (int i = 0; i <= 0x10FFFF; ++i) {
+      byte dt = ucd.getDecompositionType(i);
+      if (dt == UCD_Types.NONE) continue;
+      String norm = Default.nfkc().normalize(i);
+      byte script = ucd.getScript(i);
+      BitSet scripts = ucd.getScripts(norm, normScripts);
+      scripts.clear(UCD_Types.COMMON_SCRIPT);
+      scripts.clear(UCD_Types.INHERITED_SCRIPT);
+      int expectedCount = script == UCD_Types.COMMON_SCRIPT || script == UCD_Types.INHERITED_SCRIPT ? 0 : 1;
+      if (scripts.cardinality() != expectedCount) {
+        results.put(i, Row.of(Character.codePointCount(norm, 0, norm.length()),UCD.getScriptID_fromIndex(script, UCD_Types.LONG), ucd.getScriptIDs(norm, " ", UCD_Types.LONG)));
+      }
+    }
+    results.freeze();
+    BagFormatter bf = new BagFormatter(ToolUnicodePropertySource.make(Default.ucdVersion()));
+    pw.println("");
+
+    for (R3<Integer,String,String> value : results.values(new TreeSet<R3<Integer,String,String>>())) {
+      UnicodeSet uset = results.getSet(value);
+      pw.println("#\t" + value.get1() + "\t=>\t" + value.get2() + "\t" + uset.toPattern(false));
+      pw.println("");
+      pw.println(bf.showSetNames(uset));
+    }
+
+    udf.close();
   }
 
   private static void doBidiTest(String filename) throws IOException {
     UnicodeDataFile udf =
-      UnicodeDataFile.openAndWriteHeader("UCD/", filename);
+      UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename);
     PrintWriter pw = udf.out;
     Format.theFormat.printFileComments(pw, filename);
     org.unicode.bidi.BidiConformanceTestBuilder.write(pw);
@@ -647,7 +694,7 @@ public class MakeUnicodeFiles {
   static final String SEPARATOR = "# ================================================";
 
   public static void generateAliasFile(String filename) throws IOException {
-    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("UCD/", filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
     PrintWriter pw = udf.out;
     UnicodeProperty.Factory ups 
     = ToolUnicodePropertySource.make(Default.ucdVersion());
@@ -740,14 +787,19 @@ public class MakeUnicodeFiles {
   "gc\t;\tZ\t;\tSeparator\t# Zl | Zp | Zs"};
 
   public static void generateValueAliasFile(String filename) throws IOException {
-    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader("UCD/", filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+    UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+    UnicodeDataFile diff = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + "extra/", "diff");
     PrintWriter pw = udf.out;
+    PrintWriter diffOut = diff.out;
     Format.theFormat.printFileComments(pw, filename);
-    UnicodeProperty.Factory toolFactory 
-    = ToolUnicodePropertySource.make(Default.ucdVersion());
+    UnicodeProperty.Factory toolFactory = ToolUnicodePropertySource.make(Default.ucdVersion());
+    UnicodeProperty.Factory lastFactory = ToolUnicodePropertySource.make(Utility.getPreviousUcdVersion(Default.ucdVersion()));
+    UnicodeSet lastDefined = new UnicodeSet(lastFactory.getSet("gc=cn")).complement().freeze();
+
     BagFormatter bf = new BagFormatter(toolFactory);
+    BagFormatter bfdiff = new BagFormatter(toolFactory);
     StringBuffer buffer = new StringBuffer();
-    Set sortedSet = new TreeSet(CASELESS_COMPARATOR);
+    Set<String> sortedSet = new TreeSet(CASELESS_COMPARATOR);
 
     //gc ; C         ; Other                            # Cc | Cf | Cn | Co | Cs
     // 123456789012345678901234567890123
@@ -838,10 +890,52 @@ public class MakeUnicodeFiles {
         String line = (String) it4.next();
         pw.println(line);
       }
+
+      // now add to differences
+      if (up.isType(up.STRING_OR_MISC_MASK)) { 
+        continue;
+      }
+      sortedSet.clear();
+      sortedSet.addAll(up.getAvailableValues());
+      UnicodeProperty lastProp = lastFactory.getProperty(propName);
+      for (String value : sortedSet) {
+        UnicodeSet set;
+        try {
+          set = up.getSet(value);
+          if (set == null) continue;
+        } catch (Exception e) {
+          System.err.println(e);
+          continue;
+        }
+        UnicodeSet lastSet = lastProp.getSet(value);
+        if (lastSet != null) set = new UnicodeSet(set).removeAll(lastSet);
+
+        UnicodeSet changedValues = new UnicodeSet(set).retainAll(lastDefined);
+        if (changedValues.size() != 0) {
+          bfdiff.setValueSource(value);
+          bfdiff.setMergeRanges(false);
+          bfdiff.setLabelSource(lastProp);
+          String line = "# " + up.getName() + "=" + value;
+          
+          diffOut.println("");
+          diffOut.println(line);
+          diffOut.println("");
+          System.out.println(line);
+          bfdiff.showSetNames(diffOut, changedValues);
+          diffOut.flush();
+        }
+        //        UnicodeSet newValues = new UnicodeSet(set).retainAll(newCharacters);
+        //        if (changedValues.size() != 0) {
+        //        pw.println("# NEW " + up.getName() + "=" + value);
+        //        bfdiff.showSetNames(diffOut, newValues);
+        //        }
+      }
+
     }
     pw.println();
     pw.println("# EOF");
     udf.close();
+    diff.close();
   }
 
   private static void printDefaultValueComment(PrintWriter pw, String propName, UnicodeProperty up, boolean showPropName, String defaultValue) {
@@ -867,7 +961,7 @@ public class MakeUnicodeFiles {
     } else {
       defaultValue = up.getValue(0xE0000);
     }
-    
+
     pw.println("# @missing: 0000..10FFFF; " + (showPropName ? propName + "; " : "") + defaultValue);
   }
 
@@ -875,7 +969,7 @@ public class MakeUnicodeFiles {
     String dir = (String) Format.theFormat.fileToDirectory.get(filename);
     if (dir == null) dir = "";
     UnicodeDataFile udf =
-      UnicodeDataFile.openAndWriteHeader("UCD/" + dir, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+      UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
     final PrintWriter pwFile = udf.out;
     // bf2.openUTF8Writer(UCD_Types.GEN_DIR, "Test" + filename + ".txt");
     Format.theFormat.printFileComments(pwFile, filename);
@@ -1001,8 +1095,8 @@ public class MakeUnicodeFiles {
     if (missing != null && !missing.equals(UCD_Names.NO)) {
       pw.println();
       String propName = bf.getPropName();
-//      if (propName == null) propName = "";
-//      else if (propName.length() != 0) propName = propName + "; ";
+      //      if (propName == null) propName = "";
+      //      else if (propName.length() != 0) propName = propName + "; ";
       //pw.println("# @missing: 0000..10FFFF; " + propName + missing);
       printDefaultValueComment(pw, propName, prop, propName != null && propName.length() != 0, missing);
     }
@@ -1238,7 +1332,6 @@ public class MakeUnicodeFiles {
   }
 
   static NumberFormat nf = NumberFormat.getIntegerInstance(Locale.ENGLISH);
-
 
   static void showDifferences(PrintWriter out, String version, String prop1, String prop2) throws IOException {
     UnicodeProperty p1 = ToolUnicodePropertySource.make(version).getProperty(prop1);

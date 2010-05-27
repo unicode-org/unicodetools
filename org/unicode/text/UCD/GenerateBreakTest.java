@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2010-05-15 00:29:21 $
- * $Revision: 1.28 $
+ * $Date: 2010-05-27 16:39:47 $
+ * $Revision: 1.29 $
  *
  *******************************************************************************
  */
@@ -40,7 +40,8 @@ import com.ibm.icu.text.UnicodeSet;
 
 abstract public class GenerateBreakTest implements UCD_Types {
 
-  private static final String DOCTYPE = "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>";
+  private static final String DOCTYPE = 
+    "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>";
 
   static boolean DEBUG = false;
   static final boolean SHOW_TYPE = false;
@@ -331,7 +332,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
     //printLine(out, samples[LB_ZW], "", samples[LB_CL]);
     //printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
 
-    UnicodeDataFile fc = UnicodeDataFile.openHTMLAndWriteHeader("UCD/auxiliary/", fileName + "BreakTest").setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+    UnicodeDataFile fc = UnicodeDataFile.openHTMLAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY + "auxiliary/", fileName + "BreakTest").setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
     PrintWriter out = fc.out;
 
     /*        PrintWriter out = Utility.openPrintWriter("auxiliary/" 
@@ -407,7 +408,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
     List<String> testCases = new ArrayList<String>();
     // do main test
 
-    UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader("UCD/auxiliary/", fileName + "BreakTest" 
+    UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY + "auxiliary/", fileName + "BreakTest" 
             + (shortVersion ? "_SHORT" : "")).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
     PrintWriter out = fc.out;
     /*        PrintWriter out = Utility.openPrintWriter("TR29/" + fileName + "BreakTest" 

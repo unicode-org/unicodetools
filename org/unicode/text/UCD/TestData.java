@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestData.java,v $
-* $Date: 2010-05-18 04:13:56 $
-* $Revision: 1.31 $
+* $Date: 2010-05-27 16:39:47 $
+* $Revision: 1.32 $
 *
 *******************************************************************************
 */
@@ -27,15 +27,19 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.Pair;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.ICUPropertyFactory;
+import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.DecimalFormat;
@@ -54,18 +58,43 @@ public class TestData implements UCD_Types {
     static UnicodeProperty.Factory upf;
     
 	public static void main (String[] args) throws IOException {
-	  ToolUnicodePropertySource testSource = ToolUnicodePropertySource.make("6.0.0");
-	  UnicodeProperty dicp = testSource.getProperty("Default_Ignorable_Code_Point");
-	  System.out.println("2065: " + dicp.getValue(0x2065));
-	  List<String> values = dicp.getAvailableValues();
-	  for (String value : values) {
-	    UnicodeSet set = dicp.getSet(value);
-	    System.out.println(value + ", " + set);
-	  }
+    UCD ucd = Default.ucd();
+
+    BitSet normScripts = new BitSet();
+    UnicodeMap<Pair<String,String>> results = new UnicodeMap();
+    for (int i = 0; i <= 0x10FFFF; ++i) {
+      byte dt = ucd.getDecompositionType(i);
+      if (dt == UCD_Types.NONE) continue;
+      String norm = Default.nfkc().normalize(i);
+      byte script = ucd.getScript(i);
+      BitSet scripts = ucd.getScripts(norm, normScripts);
+      scripts.clear(UCD_Types.COMMON_SCRIPT);
+      scripts.clear(UCD_Types.INHERITED_SCRIPT);
+      int expectedCount = script == UCD_Types.COMMON_SCRIPT || script == UCD_Types.INHERITED_SCRIPT ? 0 : 1;
+      if (scripts.cardinality() != expectedCount) {
+        results.put(i, new Pair(UCD.getScriptID_fromIndex(script, UCD_Types.LONG), ucd.getScriptIDs(norm, " ", UCD_Types.LONG)));
+      }
+    }
+    results.freeze();
+    BagFormatter bf = new BagFormatter(ToolUnicodePropertySource.make(Default.ucdVersion()));
+    
+    for (Pair<String,String> value : results.values(new TreeSet<Pair<String,String>>())) {
+      System.out.println("#\t" + value.getFirst() + "\t=>\t" + value.getSecond());
+      System.out.println(bf.showSetNames(results.getSet(value)));
+    }
 	  
 	  if (true) return;
+    ToolUnicodePropertySource testSource = ToolUnicodePropertySource.make("6.0.0");
+
+	    UnicodeProperty dicp = testSource.getProperty("Default_Ignorable_Code_Point");
+	    System.out.println("2065: " + dicp.getValue(0x2065));
+	    List<String> values = dicp.getAvailableValues();
+	    for (String value : values) {
+	      UnicodeSet set = dicp.getSet(value);
+	      System.out.println(value + ", " + set);
+	    }
+
 	  
-    UCD ucd = Default.ucd();
     System.out.println(ucd.getVersion());
     Set<String> alBlocks = new LinkedHashSet<String>();
     Set<String> rBlocks = new LinkedHashSet<String>();
@@ -237,6 +266,7 @@ public class TestData implements UCD_Types {
 			log.close();
 				}
 	}
+
 
   private static String fixUnicodeSet(final UnicodeSet blockSet) {
     return blockSet.toString().replace("\\u", " U+").replace("\\U", " U+").replace("-"," -").replace("[ ","[");
