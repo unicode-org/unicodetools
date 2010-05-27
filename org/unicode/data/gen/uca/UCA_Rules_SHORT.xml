@@ -2,12 +2,12 @@
 <!--
 UCA Rules
 This file contains the UCA tables for the given version, but transformed into rule syntax.
-Generated:   2010-05-27, 22:33:20 GMT [MD]
+Generated:   2010-05-27, 22:35:14 GMT [MD]
 NOTE: Since UCA handles canonical equivalents, no composites are necessary
 (except in extensions).
 For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_Intro.html
 -->
-<base uca='5.2.0/5.2.0'/>
+<base uca='6.0.0/6.0.0'/>
 <rules>
 <reset/><position at="last tertiary ignorable"/>
 
@@ -69,6 +69,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <eq/>&#x9D;
   <eq/>&#x9E;
   <eq/>&#x9F;
+  <eq/>&#xAD;
   <eq/>&#x34F;
   <eq/>&#x488;
   <eq/>&#x489;
@@ -221,6 +222,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <eq/>&#x206D;
   <eq/>&#x206E;
   <eq/>&#x206F;
+  <eq/>&#x2D7F;
   <eq/>&#xA670;
   <eq/>&#xA671;
   <eq/>&#xA672;
@@ -310,6 +312,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <eq/>&#x1D242;
   <eq/>&#x1D243;
   <eq/>&#x1D244;
+  <eq/>&#x1F393;
   <eq/>&#xE0001;
   <eq/>&#xE0020;
   <eq/>&#xE0021;
@@ -703,6 +706,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <eq/>&#x17D0;
   <eq/>&#x17D1;
   <eq/>&#x17DD;
+  <eq/>&#x1BE6;
   <eq/>&#x1DC0;
   <eq/>&#x1DC1;
   <eq/>&#x1DC3;
@@ -756,9 +760,13 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <eq/>&#x362;
   <eq/>&#x742;
   <eq/>&#x746;
+  <eq/>&#x859;
+  <eq/>&#x85A;
+  <eq/>&#x85B;
   <eq/>&#x1DC2;
   <eq/>&#x1DCF;
   <eq/>&#x1DD0;
+  <eq/>&#x1DFC;
   <eq/>&#x1DFD;
   <eq/>&#x1DFF;
   <eq/>&#x20EC;
@@ -880,6 +888,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <s/>&#x653;
   <s/>&#x654;
   <s/>&#x655;
+  <s/>&#x65F;
   <s/>&#x656;
   <s/>&#x657;
   <s/>&#x658;
@@ -917,6 +926,8 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <s/>&#x7F2;
   <s/>&#x7F3;
   <s/>&#x135F;
+  <s/>&#x135E;
+  <s/>&#x135D;
   <s/>&#xA6F0;
   <s/>&#xA6F1;
   <s/>&#x93C;
@@ -973,6 +984,9 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <s/>&#xA80B;
   <s/>&#xA880;
   <s/>&#xA881;
+  <s/>&#x11000;
+  <s/>&#x11001;
+  <s/>&#x11002;
   <s/>&#x10A0E;
   <s/>&#x10A0F;
   <s/>&#x10A38;
@@ -1112,9 +1126,24 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <eq/>&#xFE34;
   <p/>&#x2017;
   <p/>&#x1FC0;
+  <p/>&#xFBB2;
+  <p/>&#xFBB3;
+  <p/>&#xFBB4;
+  <p/>&#xFBB5;
+  <p/>&#xFBB6;
+  <p/>&#xFBB7;
+  <p/>&#xFBB8;
+  <p/>&#xFBB9;
+  <p/>&#xFBBA;
+  <p/>&#xFBBB;
+  <p/>&#xFBBC;
+  <p/>&#xFBBD;
+  <p/>&#xFBBE;
+  <p/>&#xFBBF;
+  <p/>&#xFBC0;
+  <p/>&#xFBC1;
   <p/>&#x309B;
   <p/>&#x309C;
-  <p/>&#xAD;
   <p/>-
   <t/>&#xFF0D;
   <t/>&#xFE63;
@@ -1296,6 +1325,8 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#xABEB;
   <p/>&#x10A56;
   <p/>&#x10A57;
+  <p/>&#x11047;
+  <p/>&#x11048;
   <p/>&#x110C0;
   <p/>&#x110C1;
   <p/>&#x1C7E;
@@ -1743,6 +1774,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x70B;
   <p/>&#x70C;
   <p/>&#x70D;
+  <p/>&#x85E;
   <p/>&#x1800;
   <p/>&#x180A;
   <p/>&#x970;
@@ -1775,6 +1807,8 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#xFD2;
   <p/>&#xFD3;
   <p/>&#xFD4;
+  <p/>&#xFD9;
+  <p/>&#xFDA;
   <p/>&#x1C3D;
   <p/>&#x1C3E;
   <p/>&#x1C3F;
@@ -1802,12 +1836,22 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x1AAC;
   <p/>&#x1AAD;
   <p/>&#x166D;
+  <p/>&#x2D70;
   <p/>&#xA874;
   <p/>&#xA875;
+  <p/>&#x1BFC;
+  <p/>&#x1BFD;
+  <p/>&#x1BFE;
+  <p/>&#x1BFF;
   <p/>&#xA92E;
   <p/>&#xA9DE;
   <p/>&#xA9DF;
   <p/>&#xAA5C;
+  <p/>&#x11049;
+  <p/>&#x1104A;
+  <p/>&#x1104B;
+  <p/>&#x1104C;
+  <p/>&#x1104D;
   <p/>&#x10A50;
   <p/>&#x10A51;
   <p/>&#x10A52;
@@ -1936,8 +1980,6 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#xBF8;
   <p/>&#xBFA;
   <p/>&#xC7F;
-  <p/>&#xCF1;
-  <p/>&#xCF2;
   <p/>&#xD79;
   <p/>&#xA828;
   <p/>&#xA829;
@@ -2664,6 +2706,17 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x23E6;
   <p/>&#x23E7;
   <p/>&#x23E8;
+  <p/>&#x23E9;
+  <p/>&#x23EA;
+  <p/>&#x23EB;
+  <p/>&#x23EC;
+  <p/>&#x23ED;
+  <p/>&#x23EE;
+  <p/>&#x23EF;
+  <p/>&#x23F0;
+  <p/>&#x23F1;
+  <p/>&#x23F2;
+  <p/>&#x23F3;
   <p/>&#x2400;
   <p/>&#x2401;
   <p/>&#x2402;
@@ -3162,6 +3215,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x26CB;
   <p/>&#x26CC;
   <p/>&#x26CD;
+  <p/>&#x26CE;
   <p/>&#x26CF;
   <p/>&#x26D0;
   <p/>&#x26D1;
@@ -3181,7 +3235,12 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x26DF;
   <p/>&#x26E0;
   <p/>&#x26E1;
+  <p/>&#x26E2;
   <p/>&#x26E3;
+  <p/>&#x26E4;
+  <p/>&#x26E5;
+  <p/>&#x26E6;
+  <p/>&#x26E7;
   <p/>&#x26E8;
   <p/>&#x26E9;
   <p/>&#x26EA;
@@ -3210,10 +3269,13 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x2702;
   <p/>&#x2703;
   <p/>&#x2704;
+  <p/>&#x2705;
   <p/>&#x2706;
   <p/>&#x2707;
   <p/>&#x2708;
   <p/>&#x2709;
+  <p/>&#x270A;
+  <p/>&#x270B;
   <p/>&#x270C;
   <p/>&#x270D;
   <p/>&#x270E;
@@ -3242,6 +3304,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x2725;
   <p/>&#x2726;
   <p/>&#x2727;
+  <p/>&#x2728;
   <p/>&#x2729;
   <p/>&#x272A;
   <p/>&#x272B;
@@ -3277,11 +3340,16 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x2749;
   <p/>&#x274A;
   <p/>&#x274B;
+  <p/>&#x274C;
   <p/>&#x274D;
+  <p/>&#x274E;
   <p/>&#x274F;
   <p/>&#x2750;
   <p/>&#x2751;
   <p/>&#x2752;
+  <p/>&#x2753;
+  <p/>&#x2754;
+  <p/>&#x2755;
   <p/>&#x2756;
   <p/>&#x2757;
   <p/>&#x2758;
@@ -3291,6 +3359,8 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x275C;
   <p/>&#x275D;
   <p/>&#x275E;
+  <p/>&#x275F;
+  <p/>&#x2760;
   <p/>&#x2761;
   <p/>&#x2762;
   <p/>&#x2763;
@@ -3313,6 +3383,9 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x2774;
   <p/>&#x2775;
   <p/>&#x2794;
+  <p/>&#x2795;
+  <p/>&#x2796;
+  <p/>&#x2797;
   <p/>&#x2798;
   <p/>&#x2799;
   <p/>&#x279A;
@@ -3337,6 +3410,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x27AD;
   <p/>&#x27AE;
   <p/>&#x27AF;
+  <p/>&#x27B0;
   <p/>&#x27B1;
   <p/>&#x27B2;
   <p/>&#x27B3;
@@ -3351,6 +3425,7 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x27BC;
   <p/>&#x27BD;
   <p/>&#x27BE;
+  <p/>&#x27BF;
   <p/>&#x27C0;
   <p/>&#x27C1;
   <p/>&#x27C2;
@@ -3363,6 +3438,8 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x27C9;
   <p/>&#x27CA;
   <p/>&#x27CC;
+  <p/>&#x27CE;
+  <p/>&#x27CF;
   <p/>&#x27D0;
   <p/>&#x27D1;
   <p/>&#x27D2;
@@ -5184,6 +5261,842 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x1F091;
   <p/>&#x1F092;
   <p/>&#x1F093;
+  <p/>&#x1F0A0;
+  <p/>&#x1F0A1;
+  <p/>&#x1F0A2;
+  <p/>&#x1F0A3;
+  <p/>&#x1F0A4;
+  <p/>&#x1F0A5;
+  <p/>&#x1F0A6;
+  <p/>&#x1F0A7;
+  <p/>&#x1F0A8;
+  <p/>&#x1F0A9;
+  <p/>&#x1F0AA;
+  <p/>&#x1F0AB;
+  <p/>&#x1F0AC;
+  <p/>&#x1F0AD;
+  <p/>&#x1F0AE;
+  <p/>&#x1F0B1;
+  <p/>&#x1F0B2;
+  <p/>&#x1F0B3;
+  <p/>&#x1F0B4;
+  <p/>&#x1F0B5;
+  <p/>&#x1F0B6;
+  <p/>&#x1F0B7;
+  <p/>&#x1F0B8;
+  <p/>&#x1F0B9;
+  <p/>&#x1F0BA;
+  <p/>&#x1F0BB;
+  <p/>&#x1F0BC;
+  <p/>&#x1F0BD;
+  <p/>&#x1F0BE;
+  <p/>&#x1F0C1;
+  <p/>&#x1F0C2;
+  <p/>&#x1F0C3;
+  <p/>&#x1F0C4;
+  <p/>&#x1F0C5;
+  <p/>&#x1F0C6;
+  <p/>&#x1F0C7;
+  <p/>&#x1F0C8;
+  <p/>&#x1F0C9;
+  <p/>&#x1F0CA;
+  <p/>&#x1F0CB;
+  <p/>&#x1F0CC;
+  <p/>&#x1F0CD;
+  <p/>&#x1F0CE;
+  <p/>&#x1F0CF;
+  <p/>&#x1F0D1;
+  <p/>&#x1F0D2;
+  <p/>&#x1F0D3;
+  <p/>&#x1F0D4;
+  <p/>&#x1F0D5;
+  <p/>&#x1F0D6;
+  <p/>&#x1F0D7;
+  <p/>&#x1F0D8;
+  <p/>&#x1F0D9;
+  <p/>&#x1F0DA;
+  <p/>&#x1F0DB;
+  <p/>&#x1F0DC;
+  <p/>&#x1F0DD;
+  <p/>&#x1F0DE;
+  <p/>&#x1F0DF;
+  <p/>&#x1F300;
+  <p/>&#x1F301;
+  <p/>&#x1F302;
+  <p/>&#x1F303;
+  <p/>&#x1F304;
+  <p/>&#x1F305;
+  <p/>&#x1F306;
+  <p/>&#x1F307;
+  <p/>&#x1F308;
+  <p/>&#x1F309;
+  <p/>&#x1F30A;
+  <p/>&#x1F30B;
+  <p/>&#x1F30C;
+  <p/>&#x1F30D;
+  <p/>&#x1F30E;
+  <p/>&#x1F30F;
+  <p/>&#x1F310;
+  <p/>&#x1F311;
+  <p/>&#x1F312;
+  <p/>&#x1F313;
+  <p/>&#x1F314;
+  <p/>&#x1F315;
+  <p/>&#x1F316;
+  <p/>&#x1F317;
+  <p/>&#x1F318;
+  <p/>&#x1F319;
+  <p/>&#x1F31A;
+  <p/>&#x1F31B;
+  <p/>&#x1F31C;
+  <p/>&#x1F31D;
+  <p/>&#x1F31E;
+  <p/>&#x1F31F;
+  <p/>&#x1F320;
+  <p/>&#x1F330;
+  <p/>&#x1F331;
+  <p/>&#x1F332;
+  <p/>&#x1F333;
+  <p/>&#x1F334;
+  <p/>&#x1F335;
+  <p/>&#x1F337;
+  <p/>&#x1F338;
+  <p/>&#x1F339;
+  <p/>&#x1F33A;
+  <p/>&#x1F33B;
+  <p/>&#x1F33C;
+  <p/>&#x1F33D;
+  <p/>&#x1F33E;
+  <p/>&#x1F33F;
+  <p/>&#x1F340;
+  <p/>&#x1F341;
+  <p/>&#x1F342;
+  <p/>&#x1F343;
+  <p/>&#x1F344;
+  <p/>&#x1F345;
+  <p/>&#x1F346;
+  <p/>&#x1F347;
+  <p/>&#x1F348;
+  <p/>&#x1F349;
+  <p/>&#x1F34A;
+  <p/>&#x1F34B;
+  <p/>&#x1F34C;
+  <p/>&#x1F34D;
+  <p/>&#x1F34E;
+  <p/>&#x1F34F;
+  <p/>&#x1F350;
+  <p/>&#x1F351;
+  <p/>&#x1F352;
+  <p/>&#x1F353;
+  <p/>&#x1F354;
+  <p/>&#x1F355;
+  <p/>&#x1F356;
+  <p/>&#x1F357;
+  <p/>&#x1F358;
+  <p/>&#x1F359;
+  <p/>&#x1F35A;
+  <p/>&#x1F35B;
+  <p/>&#x1F35C;
+  <p/>&#x1F35D;
+  <p/>&#x1F35E;
+  <p/>&#x1F35F;
+  <p/>&#x1F360;
+  <p/>&#x1F361;
+  <p/>&#x1F362;
+  <p/>&#x1F363;
+  <p/>&#x1F364;
+  <p/>&#x1F365;
+  <p/>&#x1F366;
+  <p/>&#x1F367;
+  <p/>&#x1F368;
+  <p/>&#x1F369;
+  <p/>&#x1F36A;
+  <p/>&#x1F36B;
+  <p/>&#x1F36C;
+  <p/>&#x1F36D;
+  <p/>&#x1F36E;
+  <p/>&#x1F36F;
+  <p/>&#x1F370;
+  <p/>&#x1F371;
+  <p/>&#x1F372;
+  <p/>&#x1F373;
+  <p/>&#x1F374;
+  <p/>&#x1F375;
+  <p/>&#x1F376;
+  <p/>&#x1F377;
+  <p/>&#x1F378;
+  <p/>&#x1F379;
+  <p/>&#x1F37A;
+  <p/>&#x1F37B;
+  <p/>&#x1F37C;
+  <p/>&#x1F380;
+  <p/>&#x1F381;
+  <p/>&#x1F382;
+  <p/>&#x1F383;
+  <p/>&#x1F384;
+  <p/>&#x1F385;
+  <p/>&#x1F386;
+  <p/>&#x1F387;
+  <p/>&#x1F388;
+  <p/>&#x1F389;
+  <p/>&#x1F38A;
+  <p/>&#x1F38B;
+  <p/>&#x1F38C;
+  <p/>&#x1F38D;
+  <p/>&#x1F38E;
+  <p/>&#x1F38F;
+  <p/>&#x1F390;
+  <p/>&#x1F391;
+  <p/>&#x1F392;
+  <p/>&#x1F3A0;
+  <p/>&#x1F3A1;
+  <p/>&#x1F3A2;
+  <p/>&#x1F3A3;
+  <p/>&#x1F3A4;
+  <p/>&#x1F3A5;
+  <p/>&#x1F3A6;
+  <p/>&#x1F3A7;
+  <p/>&#x1F3A8;
+  <p/>&#x1F3A9;
+  <p/>&#x1F3AA;
+  <p/>&#x1F3AB;
+  <p/>&#x1F3AC;
+  <p/>&#x1F3AD;
+  <p/>&#x1F3AE;
+  <p/>&#x1F3AF;
+  <p/>&#x1F3B0;
+  <p/>&#x1F3B1;
+  <p/>&#x1F3B2;
+  <p/>&#x1F3B3;
+  <p/>&#x1F3B4;
+  <p/>&#x1F3B5;
+  <p/>&#x1F3B6;
+  <p/>&#x1F3B7;
+  <p/>&#x1F3B8;
+  <p/>&#x1F3B9;
+  <p/>&#x1F3BA;
+  <p/>&#x1F3BB;
+  <p/>&#x1F3BC;
+  <p/>&#x1F3BD;
+  <p/>&#x1F3BE;
+  <p/>&#x1F3BF;
+  <p/>&#x1F3C0;
+  <p/>&#x1F3C1;
+  <p/>&#x1F3C2;
+  <p/>&#x1F3C3;
+  <p/>&#x1F3C4;
+  <p/>&#x1F3C6;
+  <p/>&#x1F3C7;
+  <p/>&#x1F3C8;
+  <p/>&#x1F3C9;
+  <p/>&#x1F3CA;
+  <p/>&#x1F3E0;
+  <p/>&#x1F3E1;
+  <p/>&#x1F3E2;
+  <p/>&#x1F3E3;
+  <p/>&#x1F3E4;
+  <p/>&#x1F3E5;
+  <p/>&#x1F3E6;
+  <p/>&#x1F3E7;
+  <p/>&#x1F3E8;
+  <p/>&#x1F3E9;
+  <p/>&#x1F3EA;
+  <p/>&#x1F3EB;
+  <p/>&#x1F3EC;
+  <p/>&#x1F3ED;
+  <p/>&#x1F3EE;
+  <p/>&#x1F3EF;
+  <p/>&#x1F3F0;
+  <p/>&#x1F400;
+  <p/>&#x1F401;
+  <p/>&#x1F402;
+  <p/>&#x1F403;
+  <p/>&#x1F404;
+  <p/>&#x1F405;
+  <p/>&#x1F406;
+  <p/>&#x1F407;
+  <p/>&#x1F408;
+  <p/>&#x1F409;
+  <p/>&#x1F40A;
+  <p/>&#x1F40B;
+  <p/>&#x1F40C;
+  <p/>&#x1F40D;
+  <p/>&#x1F40E;
+  <p/>&#x1F40F;
+  <p/>&#x1F410;
+  <p/>&#x1F411;
+  <p/>&#x1F412;
+  <p/>&#x1F413;
+  <p/>&#x1F414;
+  <p/>&#x1F415;
+  <p/>&#x1F416;
+  <p/>&#x1F417;
+  <p/>&#x1F418;
+  <p/>&#x1F419;
+  <p/>&#x1F41A;
+  <p/>&#x1F41B;
+  <p/>&#x1F41C;
+  <p/>&#x1F41D;
+  <p/>&#x1F41E;
+  <p/>&#x1F41F;
+  <p/>&#x1F420;
+  <p/>&#x1F421;
+  <p/>&#x1F422;
+  <p/>&#x1F423;
+  <p/>&#x1F424;
+  <p/>&#x1F425;
+  <p/>&#x1F426;
+  <p/>&#x1F427;
+  <p/>&#x1F428;
+  <p/>&#x1F429;
+  <p/>&#x1F42A;
+  <p/>&#x1F42B;
+  <p/>&#x1F42C;
+  <p/>&#x1F42D;
+  <p/>&#x1F42E;
+  <p/>&#x1F42F;
+  <p/>&#x1F430;
+  <p/>&#x1F431;
+  <p/>&#x1F432;
+  <p/>&#x1F433;
+  <p/>&#x1F434;
+  <p/>&#x1F435;
+  <p/>&#x1F436;
+  <p/>&#x1F437;
+  <p/>&#x1F438;
+  <p/>&#x1F439;
+  <p/>&#x1F43A;
+  <p/>&#x1F43B;
+  <p/>&#x1F43C;
+  <p/>&#x1F43D;
+  <p/>&#x1F43E;
+  <p/>&#x1F440;
+  <p/>&#x1F442;
+  <p/>&#x1F443;
+  <p/>&#x1F444;
+  <p/>&#x1F445;
+  <p/>&#x1F446;
+  <p/>&#x1F447;
+  <p/>&#x1F448;
+  <p/>&#x1F449;
+  <p/>&#x1F44A;
+  <p/>&#x1F44B;
+  <p/>&#x1F44C;
+  <p/>&#x1F44D;
+  <p/>&#x1F44E;
+  <p/>&#x1F44F;
+  <p/>&#x1F450;
+  <p/>&#x1F451;
+  <p/>&#x1F452;
+  <p/>&#x1F453;
+  <p/>&#x1F454;
+  <p/>&#x1F455;
+  <p/>&#x1F456;
+  <p/>&#x1F457;
+  <p/>&#x1F458;
+  <p/>&#x1F459;
+  <p/>&#x1F45A;
+  <p/>&#x1F45B;
+  <p/>&#x1F45C;
+  <p/>&#x1F45D;
+  <p/>&#x1F45E;
+  <p/>&#x1F45F;
+  <p/>&#x1F460;
+  <p/>&#x1F461;
+  <p/>&#x1F462;
+  <p/>&#x1F463;
+  <p/>&#x1F464;
+  <p/>&#x1F465;
+  <p/>&#x1F466;
+  <p/>&#x1F467;
+  <p/>&#x1F468;
+  <p/>&#x1F469;
+  <p/>&#x1F46A;
+  <p/>&#x1F46B;
+  <p/>&#x1F46C;
+  <p/>&#x1F46D;
+  <p/>&#x1F46E;
+  <p/>&#x1F46F;
+  <p/>&#x1F470;
+  <p/>&#x1F471;
+  <p/>&#x1F472;
+  <p/>&#x1F473;
+  <p/>&#x1F474;
+  <p/>&#x1F475;
+  <p/>&#x1F476;
+  <p/>&#x1F477;
+  <p/>&#x1F478;
+  <p/>&#x1F479;
+  <p/>&#x1F47A;
+  <p/>&#x1F47B;
+  <p/>&#x1F47C;
+  <p/>&#x1F47D;
+  <p/>&#x1F47E;
+  <p/>&#x1F47F;
+  <p/>&#x1F480;
+  <p/>&#x1F481;
+  <p/>&#x1F482;
+  <p/>&#x1F483;
+  <p/>&#x1F484;
+  <p/>&#x1F485;
+  <p/>&#x1F486;
+  <p/>&#x1F487;
+  <p/>&#x1F488;
+  <p/>&#x1F489;
+  <p/>&#x1F48A;
+  <p/>&#x1F48B;
+  <p/>&#x1F48C;
+  <p/>&#x1F48D;
+  <p/>&#x1F48E;
+  <p/>&#x1F48F;
+  <p/>&#x1F490;
+  <p/>&#x1F491;
+  <p/>&#x1F492;
+  <p/>&#x1F493;
+  <p/>&#x1F494;
+  <p/>&#x1F495;
+  <p/>&#x1F496;
+  <p/>&#x1F497;
+  <p/>&#x1F498;
+  <p/>&#x1F499;
+  <p/>&#x1F49A;
+  <p/>&#x1F49B;
+  <p/>&#x1F49C;
+  <p/>&#x1F49D;
+  <p/>&#x1F49E;
+  <p/>&#x1F49F;
+  <p/>&#x1F4A0;
+  <p/>&#x1F4A1;
+  <p/>&#x1F4A2;
+  <p/>&#x1F4A3;
+  <p/>&#x1F4A4;
+  <p/>&#x1F4A5;
+  <p/>&#x1F4A6;
+  <p/>&#x1F4A7;
+  <p/>&#x1F4A8;
+  <p/>&#x1F4A9;
+  <p/>&#x1F4AA;
+  <p/>&#x1F4AB;
+  <p/>&#x1F4AC;
+  <p/>&#x1F4AD;
+  <p/>&#x1F4AE;
+  <p/>&#x1F4AF;
+  <p/>&#x1F4B0;
+  <p/>&#x1F4B1;
+  <p/>&#x1F4B2;
+  <p/>&#x1F4B3;
+  <p/>&#x1F4B4;
+  <p/>&#x1F4B5;
+  <p/>&#x1F4B6;
+  <p/>&#x1F4B7;
+  <p/>&#x1F4B8;
+  <p/>&#x1F4B9;
+  <p/>&#x1F4BA;
+  <p/>&#x1F4BB;
+  <p/>&#x1F4BC;
+  <p/>&#x1F4BD;
+  <p/>&#x1F4BE;
+  <p/>&#x1F4BF;
+  <p/>&#x1F4C0;
+  <p/>&#x1F4C1;
+  <p/>&#x1F4C2;
+  <p/>&#x1F4C3;
+  <p/>&#x1F4C4;
+  <p/>&#x1F4C5;
+  <p/>&#x1F4C6;
+  <p/>&#x1F4C7;
+  <p/>&#x1F4C8;
+  <p/>&#x1F4C9;
+  <p/>&#x1F4CA;
+  <p/>&#x1F4CB;
+  <p/>&#x1F4CC;
+  <p/>&#x1F4CD;
+  <p/>&#x1F4CE;
+  <p/>&#x1F4CF;
+  <p/>&#x1F4D0;
+  <p/>&#x1F4D1;
+  <p/>&#x1F4D2;
+  <p/>&#x1F4D3;
+  <p/>&#x1F4D4;
+  <p/>&#x1F4D5;
+  <p/>&#x1F4D6;
+  <p/>&#x1F4D7;
+  <p/>&#x1F4D8;
+  <p/>&#x1F4D9;
+  <p/>&#x1F4DA;
+  <p/>&#x1F4DB;
+  <p/>&#x1F4DC;
+  <p/>&#x1F4DD;
+  <p/>&#x1F4DE;
+  <p/>&#x1F4DF;
+  <p/>&#x1F4E0;
+  <p/>&#x1F4E1;
+  <p/>&#x1F4E2;
+  <p/>&#x1F4E3;
+  <p/>&#x1F4E4;
+  <p/>&#x1F4E5;
+  <p/>&#x1F4E6;
+  <p/>&#x1F4E7;
+  <p/>&#x1F4E8;
+  <p/>&#x1F4E9;
+  <p/>&#x1F4EA;
+  <p/>&#x1F4EB;
+  <p/>&#x1F4EC;
+  <p/>&#x1F4ED;
+  <p/>&#x1F4EE;
+  <p/>&#x1F4EF;
+  <p/>&#x1F4F0;
+  <p/>&#x1F4F1;
+  <p/>&#x1F4F2;
+  <p/>&#x1F4F3;
+  <p/>&#x1F4F4;
+  <p/>&#x1F4F5;
+  <p/>&#x1F4F6;
+  <p/>&#x1F4F7;
+  <p/>&#x1F4F9;
+  <p/>&#x1F4FA;
+  <p/>&#x1F4FB;
+  <p/>&#x1F4FC;
+  <p/>&#x1F500;
+  <p/>&#x1F501;
+  <p/>&#x1F502;
+  <p/>&#x1F503;
+  <p/>&#x1F504;
+  <p/>&#x1F505;
+  <p/>&#x1F506;
+  <p/>&#x1F507;
+  <p/>&#x1F508;
+  <p/>&#x1F509;
+  <p/>&#x1F50A;
+  <p/>&#x1F50B;
+  <p/>&#x1F50C;
+  <p/>&#x1F50D;
+  <p/>&#x1F50E;
+  <p/>&#x1F50F;
+  <p/>&#x1F510;
+  <p/>&#x1F511;
+  <p/>&#x1F512;
+  <p/>&#x1F513;
+  <p/>&#x1F514;
+  <p/>&#x1F515;
+  <p/>&#x1F516;
+  <p/>&#x1F517;
+  <p/>&#x1F518;
+  <p/>&#x1F519;
+  <p/>&#x1F51A;
+  <p/>&#x1F51B;
+  <p/>&#x1F51C;
+  <p/>&#x1F51D;
+  <p/>&#x1F51E;
+  <p/>&#x1F51F;
+  <p/>&#x1F520;
+  <p/>&#x1F521;
+  <p/>&#x1F522;
+  <p/>&#x1F523;
+  <p/>&#x1F524;
+  <p/>&#x1F525;
+  <p/>&#x1F526;
+  <p/>&#x1F527;
+  <p/>&#x1F528;
+  <p/>&#x1F529;
+  <p/>&#x1F52A;
+  <p/>&#x1F52B;
+  <p/>&#x1F52C;
+  <p/>&#x1F52D;
+  <p/>&#x1F52E;
+  <p/>&#x1F52F;
+  <p/>&#x1F530;
+  <p/>&#x1F531;
+  <p/>&#x1F532;
+  <p/>&#x1F533;
+  <p/>&#x1F534;
+  <p/>&#x1F535;
+  <p/>&#x1F536;
+  <p/>&#x1F537;
+  <p/>&#x1F538;
+  <p/>&#x1F539;
+  <p/>&#x1F53A;
+  <p/>&#x1F53B;
+  <p/>&#x1F53C;
+  <p/>&#x1F53D;
+  <p/>&#x1F550;
+  <p/>&#x1F551;
+  <p/>&#x1F552;
+  <p/>&#x1F553;
+  <p/>&#x1F554;
+  <p/>&#x1F555;
+  <p/>&#x1F556;
+  <p/>&#x1F557;
+  <p/>&#x1F558;
+  <p/>&#x1F559;
+  <p/>&#x1F55A;
+  <p/>&#x1F55B;
+  <p/>&#x1F55C;
+  <p/>&#x1F55D;
+  <p/>&#x1F55E;
+  <p/>&#x1F55F;
+  <p/>&#x1F560;
+  <p/>&#x1F561;
+  <p/>&#x1F562;
+  <p/>&#x1F563;
+  <p/>&#x1F564;
+  <p/>&#x1F565;
+  <p/>&#x1F566;
+  <p/>&#x1F567;
+  <p/>&#x1F5FB;
+  <p/>&#x1F5FC;
+  <p/>&#x1F5FD;
+  <p/>&#x1F5FE;
+  <p/>&#x1F5FF;
+  <p/>&#x1F601;
+  <p/>&#x1F602;
+  <p/>&#x1F603;
+  <p/>&#x1F604;
+  <p/>&#x1F605;
+  <p/>&#x1F606;
+  <p/>&#x1F607;
+  <p/>&#x1F608;
+  <p/>&#x1F609;
+  <p/>&#x1F60A;
+  <p/>&#x1F60B;
+  <p/>&#x1F60C;
+  <p/>&#x1F60D;
+  <p/>&#x1F60E;
+  <p/>&#x1F60F;
+  <p/>&#x1F610;
+  <p/>&#x1F612;
+  <p/>&#x1F613;
+  <p/>&#x1F614;
+  <p/>&#x1F616;
+  <p/>&#x1F618;
+  <p/>&#x1F61A;
+  <p/>&#x1F61C;
+  <p/>&#x1F61D;
+  <p/>&#x1F61E;
+  <p/>&#x1F620;
+  <p/>&#x1F621;
+  <p/>&#x1F622;
+  <p/>&#x1F623;
+  <p/>&#x1F624;
+  <p/>&#x1F625;
+  <p/>&#x1F628;
+  <p/>&#x1F629;
+  <p/>&#x1F62A;
+  <p/>&#x1F62B;
+  <p/>&#x1F62D;
+  <p/>&#x1F630;
+  <p/>&#x1F631;
+  <p/>&#x1F632;
+  <p/>&#x1F633;
+  <p/>&#x1F635;
+  <p/>&#x1F636;
+  <p/>&#x1F637;
+  <p/>&#x1F638;
+  <p/>&#x1F639;
+  <p/>&#x1F63A;
+  <p/>&#x1F63B;
+  <p/>&#x1F63C;
+  <p/>&#x1F63D;
+  <p/>&#x1F63E;
+  <p/>&#x1F63F;
+  <p/>&#x1F640;
+  <p/>&#x1F645;
+  <p/>&#x1F646;
+  <p/>&#x1F647;
+  <p/>&#x1F648;
+  <p/>&#x1F649;
+  <p/>&#x1F64A;
+  <p/>&#x1F64B;
+  <p/>&#x1F64C;
+  <p/>&#x1F64D;
+  <p/>&#x1F64E;
+  <p/>&#x1F64F;
+  <p/>&#x1F680;
+  <p/>&#x1F681;
+  <p/>&#x1F682;
+  <p/>&#x1F683;
+  <p/>&#x1F684;
+  <p/>&#x1F685;
+  <p/>&#x1F686;
+  <p/>&#x1F687;
+  <p/>&#x1F688;
+  <p/>&#x1F689;
+  <p/>&#x1F68A;
+  <p/>&#x1F68B;
+  <p/>&#x1F68C;
+  <p/>&#x1F68D;
+  <p/>&#x1F68E;
+  <p/>&#x1F68F;
+  <p/>&#x1F690;
+  <p/>&#x1F691;
+  <p/>&#x1F692;
+  <p/>&#x1F693;
+  <p/>&#x1F694;
+  <p/>&#x1F695;
+  <p/>&#x1F696;
+  <p/>&#x1F697;
+  <p/>&#x1F698;
+  <p/>&#x1F699;
+  <p/>&#x1F69A;
+  <p/>&#x1F69B;
+  <p/>&#x1F69C;
+  <p/>&#x1F69D;
+  <p/>&#x1F69E;
+  <p/>&#x1F69F;
+  <p/>&#x1F6A0;
+  <p/>&#x1F6A1;
+  <p/>&#x1F6A2;
+  <p/>&#x1F6A3;
+  <p/>&#x1F6A4;
+  <p/>&#x1F6A5;
+  <p/>&#x1F6A6;
+  <p/>&#x1F6A7;
+  <p/>&#x1F6A8;
+  <p/>&#x1F6A9;
+  <p/>&#x1F6AA;
+  <p/>&#x1F6AB;
+  <p/>&#x1F6AC;
+  <p/>&#x1F6AD;
+  <p/>&#x1F6AE;
+  <p/>&#x1F6AF;
+  <p/>&#x1F6B0;
+  <p/>&#x1F6B1;
+  <p/>&#x1F6B2;
+  <p/>&#x1F6B3;
+  <p/>&#x1F6B4;
+  <p/>&#x1F6B5;
+  <p/>&#x1F6B6;
+  <p/>&#x1F6B7;
+  <p/>&#x1F6B8;
+  <p/>&#x1F6B9;
+  <p/>&#x1F6BA;
+  <p/>&#x1F6BB;
+  <p/>&#x1F6BC;
+  <p/>&#x1F6BD;
+  <p/>&#x1F6BE;
+  <p/>&#x1F6BF;
+  <p/>&#x1F6C0;
+  <p/>&#x1F6C1;
+  <p/>&#x1F6C2;
+  <p/>&#x1F6C3;
+  <p/>&#x1F6C4;
+  <p/>&#x1F6C5;
+  <p/>&#x1F700;
+  <p/>&#x1F701;
+  <p/>&#x1F702;
+  <p/>&#x1F703;
+  <p/>&#x1F704;
+  <p/>&#x1F705;
+  <p/>&#x1F706;
+  <p/>&#x1F707;
+  <p/>&#x1F708;
+  <p/>&#x1F709;
+  <p/>&#x1F70A;
+  <p/>&#x1F70B;
+  <p/>&#x1F70C;
+  <p/>&#x1F70D;
+  <p/>&#x1F70E;
+  <p/>&#x1F70F;
+  <p/>&#x1F710;
+  <p/>&#x1F711;
+  <p/>&#x1F712;
+  <p/>&#x1F713;
+  <p/>&#x1F714;
+  <p/>&#x1F715;
+  <p/>&#x1F716;
+  <p/>&#x1F717;
+  <p/>&#x1F718;
+  <p/>&#x1F719;
+  <p/>&#x1F71A;
+  <p/>&#x1F71B;
+  <p/>&#x1F71C;
+  <p/>&#x1F71D;
+  <p/>&#x1F71E;
+  <p/>&#x1F71F;
+  <p/>&#x1F720;
+  <p/>&#x1F721;
+  <p/>&#x1F722;
+  <p/>&#x1F723;
+  <p/>&#x1F724;
+  <p/>&#x1F725;
+  <p/>&#x1F726;
+  <p/>&#x1F727;
+  <p/>&#x1F728;
+  <p/>&#x1F729;
+  <p/>&#x1F72A;
+  <p/>&#x1F72B;
+  <p/>&#x1F72C;
+  <p/>&#x1F72D;
+  <p/>&#x1F72E;
+  <p/>&#x1F72F;
+  <p/>&#x1F730;
+  <p/>&#x1F731;
+  <p/>&#x1F732;
+  <p/>&#x1F733;
+  <p/>&#x1F734;
+  <p/>&#x1F735;
+  <p/>&#x1F736;
+  <p/>&#x1F737;
+  <p/>&#x1F738;
+  <p/>&#x1F739;
+  <p/>&#x1F73A;
+  <p/>&#x1F73B;
+  <p/>&#x1F73C;
+  <p/>&#x1F73D;
+  <p/>&#x1F73E;
+  <p/>&#x1F73F;
+  <p/>&#x1F740;
+  <p/>&#x1F741;
+  <p/>&#x1F742;
+  <p/>&#x1F743;
+  <p/>&#x1F744;
+  <p/>&#x1F745;
+  <p/>&#x1F746;
+  <p/>&#x1F747;
+  <p/>&#x1F748;
+  <p/>&#x1F749;
+  <p/>&#x1F74A;
+  <p/>&#x1F74B;
+  <p/>&#x1F74C;
+  <p/>&#x1F74D;
+  <p/>&#x1F74E;
+  <p/>&#x1F74F;
+  <p/>&#x1F750;
+  <p/>&#x1F751;
+  <p/>&#x1F752;
+  <p/>&#x1F753;
+  <p/>&#x1F754;
+  <p/>&#x1F755;
+  <p/>&#x1F756;
+  <p/>&#x1F757;
+  <p/>&#x1F758;
+  <p/>&#x1F759;
+  <p/>&#x1F75A;
+  <p/>&#x1F75B;
+  <p/>&#x1F75C;
+  <p/>&#x1F75D;
+  <p/>&#x1F75E;
+  <p/>&#x1F75F;
+  <p/>&#x1F760;
+  <p/>&#x1F761;
+  <p/>&#x1F762;
+  <p/>&#x1F763;
+  <p/>&#x1F764;
+  <p/>&#x1F765;
+  <p/>&#x1F766;
+  <p/>&#x1F767;
+  <p/>&#x1F768;
+  <p/>&#x1F769;
+  <p/>&#x1F76A;
+  <p/>&#x1F76B;
+  <p/>&#x1F76C;
+  <p/>&#x1F76D;
+  <p/>&#x1F76E;
+  <p/>&#x1F76F;
+  <p/>&#x1F770;
+  <p/>&#x1F771;
+  <p/>&#x1F772;
+  <p/>&#x1F773;
   <p/>&#x2FF0;
   <p/>&#x2FF1;
   <p/>&#x2FF2;
@@ -5251,6 +6164,12 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x9F7;
   <p/>&#x9F8;
   <p/>&#x9F9;
+  <p/>&#xB72;
+  <p/>&#xB73;
+  <p/>&#xB74;
+  <p/>&#xB75;
+  <p/>&#xB76;
+  <p/>&#xB77;
   <p/>&#xA830;
   <p/>&#xA831;
   <p/>&#xA832;
@@ -5409,6 +6328,17 @@ For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_I
   <p/>&#x10B7D;
   <p/>&#x10B7E;
   <p/>&#x10B7F;
+  <p/>&#x1105B;
+  <p/>&#x1105C;
+  <p/>&#x1105D;
+  <p/>&#x1105E;
+  <p/>&#x1105F;
+  <p/>&#x11060;
+  <p/>&#x11061;
+  <p/>&#x11062;
+  <p/>&#x11063;
+  <p/>&#x11064;
+  <p/>&#x11065;
   <p/>&#x10A44;
   <p/>&#x10A45;
   <p/>&#x10A46;
@@ -5554,6 +6484,7 @@ p<variableTop/>
   <s/>&#xA620;
   <s/>&#x3007;
   <s/>&#x1018A;
+  <s/>&#x11066;
   <p/>1
   <t/>&#xFF11;
   <t/>&#x1F102;<x/>,
@@ -5700,6 +6631,8 @@ p<variableTop/>
   <s/>&#x10858;
   <s/>&#x10B58;
   <s/>&#x10B78;
+  <s/>&#x11067;
+  <s/>&#x11052;
   <s/>&#x10A40;
   <s/>&#x1D360;
   <p/>2
@@ -5811,6 +6744,8 @@ p<variableTop/>
   <s/>&#x10859;
   <s/>&#x10B59;
   <s/>&#x10B79;
+  <s/>&#x11068;
+  <s/>&#x11053;
   <s/>&#x10A41;
   <s/>&#x1D361;
   <p/>3
@@ -5908,6 +6843,8 @@ p<variableTop/>
   <s/>&#x1085A;
   <s/>&#x10B5A;
   <s/>&#x10B7A;
+  <s/>&#x11069;
+  <s/>&#x11054;
   <s/>&#x10A42;
   <s/>&#x1D362;
   <p/>4
@@ -5998,6 +6935,8 @@ p<variableTop/>
   <eq/>&#x12453;
   <s/>&#x10B5B;
   <s/>&#x10B7B;
+  <s/>&#x1106A;
+  <s/>&#x11055;
   <s/>&#x10A43;
   <s/>&#x1D363;
   <p/>5
@@ -6080,6 +7019,8 @@ p<variableTop/>
   <eq/>&#x1244D;
   <eq/>&#x12454;
   <eq/>&#x12455;
+  <s/>&#x1106B;
+  <s/>&#x11056;
   <s/>&#x1D364;
   <p/>6
   <t/>&#xFF16;
@@ -6149,6 +7090,8 @@ p<variableTop/>
   <eq/>&#x12428;
   <eq/>&#x12440;
   <eq/>&#x1244E;
+  <s/>&#x1106C;
+  <s/>&#x11057;
   <s/>&#x1D365;
   <p/>7
   <t/>&#xFF17;
@@ -6219,6 +7162,8 @@ p<variableTop/>
   <eq/>&#x12441;
   <eq/>&#x12442;
   <eq/>&#x12443;
+  <s/>&#x1106D;
+  <s/>&#x11058;
   <s/>&#x1D366;
   <p/>8
   <t/>&#xFF18;
@@ -6287,6 +7232,8 @@ p<variableTop/>
   <eq/>&#x1242A;
   <eq/>&#x12444;
   <eq/>&#x12445;
+  <s/>&#x1106E;
+  <s/>&#x11059;
   <s/>&#x1D367;
   <p/>9
   <t/>&#xFF19;
@@ -6356,6 +7303,8 @@ p<variableTop/>
   <eq/>&#x12447;
   <eq/>&#x12448;
   <eq/>&#x12449;
+  <s/>&#x1106F;
+  <s/>&#x1105A;
   <s/>&#x1D368;
   <p/>a
   <t/>&#xFF41;
@@ -6386,6 +7335,7 @@ p<variableTop/>
   <t/>&#x24D0;
   <t/>A
   <t/>&#xFF21;
+  <t/>&#x1F1E6;
   <t/>&#xA732;<x/>A
   <t/>&#xA734;<x/>O
   <t/>&#xA736;<x/>U
@@ -6405,12 +7355,16 @@ p<variableTop/>
   <eq/>&#x1D63C;
   <eq/>&#x1D670;
   <t/>&#x24B6;
+  <eq/>&#x1F150;
   <t/>&#xAA;
   <eq/>&#x1D43;
   <t/>&#x2090;
   <t/>&#x33C2;<x/>.m.
   <t/>&#x1D2C;
+  <eq/>&#x1F130;
+  <eq/>&#x1F170;
   <t/>&#x33DF;<x/>&#x2215;m
+  <t/>&#x1F18E;<x/>B
   <t/>&#x3373;<x/>U
   <s/>&#x1DD3;
   <t/>&#xE6;<x/>e
@@ -6454,6 +7408,7 @@ p<variableTop/>
   <t/>&#x24D1;
   <t/>B
   <t/>&#xFF22;
+  <t/>&#x1F1E7;
   <t/>&#x212C;
   <eq/>&#x1D401;
   <eq/>&#x1D435;
@@ -6468,10 +7423,12 @@ p<variableTop/>
   <eq/>&#x1D63D;
   <eq/>&#x1D671;
   <t/>&#x24B7;
+  <eq/>&#x1F151;
   <t/>&#x1D47;
   <t/>&#x3374;<x/>ar
   <t/>&#x1D2E;
   <eq/>&#x1F131;
+  <eq/>&#x1F171;
   <t/>&#x33C3;<x/>q
   <p/>&#x299;
   <p/>&#x180;
@@ -6508,6 +7465,7 @@ p<variableTop/>
   <t/>C
   <t/>&#xFF23;
   <t/>&#x216D;
+  <eq/>&#x1F1E8;
   <t/>&#x2102;
   <eq/>&#x212D;
   <eq/>&#x1D402;
@@ -6523,6 +7481,7 @@ p<variableTop/>
   <eq/>&#x1D672;
   <t/>&#x24B8;
   <eq/>&#x1F12B;
+  <eq/>&#x1F152;
   <t/>&#x1F12D;<x/>D
   <t/>&#x1D9C;
   <t/>&#x3388;<x/>al
@@ -6531,8 +7490,12 @@ p<variableTop/>
   <t/>&#x339D;<x/>m
   <t/>&#x33A0;<x/>m2
   <t/>&#x33A4;<x/>m3
+  <t/>&#x1F132;
+  <eq/>&#x1F172;
   <t/>&#x33C6;<x/>&#x2215;kg
+  <t/>&#x1F191;<x/>L
   <t/>&#x33C7;<x/>o.
+  <t/>&#x1F192;<x/>Ool
   <p/>&#x1D04;
   <p/>&#x23C;
   <t/>&#x23B;
@@ -6574,6 +7537,7 @@ p<variableTop/>
   <t/>&#x110;<x/>&#x335;
   <t/>&#xFF24;
   <t/>&#x216E;
+  <eq/>&#x1F1E9;
   <t/>&#x1F2;<x/>z
   <t/>&#x1F1;<x/>Z
   <t/>&#x1C5;<x/>z&#x30C;
@@ -6593,6 +7557,7 @@ p<variableTop/>
   <eq/>&#x1D63F;
   <eq/>&#x1D673;
   <t/>&#x24B9;
+  <eq/>&#x1F153;
   <t/>&#x1D48;
   <t/>&#x3372;<x/>a
   <t/>&#x33C8;<x/>B
@@ -6601,6 +7566,8 @@ p<variableTop/>
   <t/>&#x3378;<x/>m2
   <t/>&#x3379;<x/>m3
   <t/>&#x1D30;
+  <eq/>&#x1F133;
+  <eq/>&#x1F173;
   <t/>&#x1F190;<x/>J
   <s/>&#xF0;
   <eq/>&#x1DD9;
@@ -6643,6 +7610,7 @@ p<variableTop/>
   <t/>&#x24D4;
   <t/>E
   <t/>&#xFF25;
+  <t/>&#x1F1EA;
   <t/>&#x2130;
   <eq/>&#x1D404;
   <eq/>&#x1D438;
@@ -6657,11 +7625,14 @@ p<variableTop/>
   <eq/>&#x1D640;
   <eq/>&#x1D674;
   <t/>&#x24BA;
+  <eq/>&#x1F154;
   <t/>&#x1D49;
   <t/>&#x2091;
   <t/>&#x32CD;<x/>rg
   <t/>&#x32CE;<x/>V
   <t/>&#x1D31;
+  <eq/>&#x1F134;
+  <eq/>&#x1F174;
   <p/>&#x1D07;
   <p/>&#x247;
   <t/>&#x246;
@@ -6716,6 +7687,7 @@ p<variableTop/>
   <t/>&#x24D5;
   <t/>F
   <t/>&#xFF26;
+  <t/>&#x1F1EB;
   <t/>&#x213B;<x/>Ax
   <t/>&#x2131;
   <eq/>&#x1D405;
@@ -6731,8 +7703,12 @@ p<variableTop/>
   <eq/>&#x1D641;
   <eq/>&#x1D675;
   <t/>&#x24BB;
+  <eq/>&#x1F155;
   <t/>&#x1DA0;
   <t/>&#x3399;<x/>m
+  <t/>&#x1F135;
+  <eq/>&#x1F175;
+  <t/>&#x1F193;<x/>Ree
   <s/>&#xA77C;
   <t/>&#xA77B;
   <p/>&#xA730;
@@ -6746,6 +7722,7 @@ p<variableTop/>
   <p/>g
   <t/>&#xFF47;
   <t/>&#x1DDA;
+  <t/>&#xA7A1;<x/>&#x20EB;
   <t/>&#x210A;
   <eq/>&#x1D420;
   <eq/>&#x1D454;
@@ -6762,6 +7739,8 @@ p<variableTop/>
   <t/>&#x24D6;
   <t/>G
   <t/>&#xFF27;
+  <t/>&#x1F1EC;
+  <t/>&#xA7A0;<x/>&#x20EB;
   <t/>&#x1D406;
   <eq/>&#x1D43A;
   <eq/>&#x1D46E;
@@ -6776,9 +7755,12 @@ p<variableTop/>
   <eq/>&#x1D642;
   <eq/>&#x1D676;
   <t/>&#x24BC;
+  <eq/>&#x1F156;
   <t/>&#x1D4D;
   <t/>&#x33FF;<x/>al
   <t/>&#x1D33;
+  <eq/>&#x1F136;
+  <eq/>&#x1F176;
   <t/>&#x3387;<x/>B
   <t/>&#x3393;<x/>Hz
   <t/>&#x33AC;<x/>Pa
@@ -6825,6 +7807,7 @@ p<variableTop/>
   <t/>H
   <t/>&#x126;<x/>&#x335;
   <t/>&#xFF28;
+  <t/>&#x1F1ED;
   <t/>&#x210B;
   <eq/>&#x210C;
   <eq/>&#x210D;
@@ -6841,9 +7824,12 @@ p<variableTop/>
   <t/>&#x24BD;
   <eq/>&#x1F157;
   <t/>&#x2B0;
+  <t/>&#x2095;
   <t/>&#x33CA;<x/>a
   <t/>&#x3371;<x/>Pa
   <t/>&#x1D34;
+  <eq/>&#x1F137;
+  <eq/>&#x1F177;
   <t/>&#x32CC;<x/>g
   <t/>&#x33CB;<x/>P
   <t/>&#x1F14A;<x/>V
@@ -6890,6 +7876,7 @@ p<variableTop/>
   <t/>I
   <t/>&#xFF29;
   <t/>&#x2160;
+  <eq/>&#x1F1EE;
   <t/>&#x2161;<x/>I
   <t/>&#x2162;<x/>Ii
   <t/>&#x132;<x/>J
@@ -6909,11 +7896,15 @@ p<variableTop/>
   <eq/>&#x1D644;
   <eq/>&#x1D678;
   <t/>&#x24BE;
+  <eq/>&#x1F158;
   <t/>&#x2071;
   <t/>&#x1D62;
   <t/>&#x33CC;<x/>n
   <t/>&#x1D35;
+  <eq/>&#x1F138;
+  <eq/>&#x1F178;
   <t/>&#x1F18B;<x/>C
+  <t/>&#x1F194;<x/>D
   <t/>&#x337A;<x/>U
   <p/>&#x131;
   <t/>&#x1D6A4;
@@ -6951,6 +7942,7 @@ p<variableTop/>
   <t/>&#x24D9;
   <t/>J
   <t/>&#xFF2A;
+  <t/>&#x1F1EF;
   <t/>&#x1D409;
   <eq/>&#x1D43D;
   <eq/>&#x1D471;
@@ -6965,9 +7957,11 @@ p<variableTop/>
   <eq/>&#x1D645;
   <eq/>&#x1D679;
   <t/>&#x24BF;
+  <eq/>&#x1F159;
   <t/>&#x2B2;
   <t/>&#x2C7C;
   <t/>&#x1D36;
+  <eq/>&#x1F139;
   <eq/>&#x1F179;
   <p/>&#x237;
   <t/>&#x1D6A5;
@@ -6982,6 +7976,7 @@ p<variableTop/>
   <p/>k
   <t/>&#xFF4B;
   <t/>&#x1DDC;
+  <t/>&#xA7A3;<x/>&#x20EB;
   <t/>&#x1D424;
   <eq/>&#x1D458;
   <eq/>&#x1D48C;
@@ -6998,6 +7993,8 @@ p<variableTop/>
   <t/>&#x24DA;
   <t/>K
   <t/>&#xFF2B;
+  <t/>&#x1F1F0;
+  <t/>&#xA7A2;<x/>&#x20EB;
   <t/>&#x1D40A;
   <eq/>&#x1D43E;
   <eq/>&#x1D472;
@@ -7012,7 +8009,9 @@ p<variableTop/>
   <eq/>&#x1D646;
   <eq/>&#x1D67A;
   <t/>&#x24C0;
+  <eq/>&#x1F15A;
   <t/>&#x1D4F;
+  <t/>&#x2096;
   <t/>&#x3384;<x/>A
   <t/>&#x3389;<x/>cal
   <t/>&#x338F;<x/>g
@@ -7027,6 +8026,8 @@ p<variableTop/>
   <t/>&#x33BE;<x/>W
   <t/>&#x33C0;<x/>&#x3A9;
   <t/>&#x1D37;
+  <eq/>&#x1F13A;
+  <eq/>&#x1F17A;
   <t/>&#x3385;<x/>B
   <t/>&#x33CD;<x/>K
   <t/>&#x33CE;<x/>M
@@ -7071,6 +8072,7 @@ p<variableTop/>
   <t/>&#x141;<x/>&#x335;
   <t/>&#xFF2C;
   <t/>&#x216C;
+  <eq/>&#x1F1F1;
   <t/>&#x1C8;<x/>j
   <t/>&#x1C7;<x/>J
   <t/>&#x1EFA;<x/>L
@@ -7088,12 +8090,15 @@ p<variableTop/>
   <eq/>&#x1D647;
   <eq/>&#x1D67B;
   <t/>&#x24C1;
+  <eq/>&#x1F15B;
   <t/>&#x2E1;
+  <t/>&#x2097;
   <t/>&#x33D0;<x/>m
   <t/>&#x33D1;<x/>n
   <t/>&#x33D2;<x/>og
   <t/>&#x33D3;<x/>x
   <t/>&#x1D38;
+  <eq/>&#x1F13B;
   <eq/>&#x1F17B;
   <t/>&#x32CF;<x/>Td
   <s/>l&#xB7;
@@ -7121,6 +8126,7 @@ p<variableTop/>
   <t/>&#x1DAA;
   <p/>&#x26D;
   <t/>&#x1DA9;
+  <p/>&#xA78E;
   <p/>&#x234;
   <p/>&#xA772;
   <p/>&#x26E;
@@ -7149,6 +8155,7 @@ p<variableTop/>
   <t/>M
   <t/>&#xFF2D;
   <t/>&#x216F;
+  <eq/>&#x1F1F2;
   <t/>&#x2133;
   <eq/>&#x1D40C;
   <eq/>&#x1D440;
@@ -7163,7 +8170,9 @@ p<variableTop/>
   <eq/>&#x1D648;
   <eq/>&#x1D67C;
   <t/>&#x24C2;
+  <eq/>&#x1F15C;
   <t/>&#x1D50;
+  <t/>&#x2098;
   <t/>&#x33A7;<x/>&#x2215;s
   <t/>&#x33A8;<x/>&#x2215;s2
   <t/>&#x33A1;<x/>2
@@ -7181,6 +8190,7 @@ p<variableTop/>
   <t/>&#x33B7;<x/>V
   <t/>&#x33BD;<x/>W
   <t/>&#x1D39;
+  <eq/>&#x1F13C;
   <eq/>&#x1F17C;
   <t/>&#x3386;<x/>B
   <t/>&#x3392;<x/>Hz
@@ -7202,6 +8212,7 @@ p<variableTop/>
   <p/>n
   <t/>&#xFF4E;
   <t/>&#x1DE0;
+  <t/>&#xA7A5;<x/>&#x20EB;
   <t/>&#x1CC;<x/>j
   <t/>&#x1D427;
   <eq/>&#x1D45B;
@@ -7219,6 +8230,8 @@ p<variableTop/>
   <t/>&#x24DD;
   <t/>N
   <t/>&#xFF2E;
+  <t/>&#x1F1F3;
+  <t/>&#xA7A4;<x/>&#x20EB;
   <t/>&#x1CB;<x/>j
   <t/>&#x1CA;<x/>J
   <t/>&#x2116;<x/>o
@@ -7236,7 +8249,9 @@ p<variableTop/>
   <eq/>&#x1D649;
   <eq/>&#x1D67D;
   <t/>&#x24C3;
+  <eq/>&#x1F15D;
   <t/>&#x207F;
+  <t/>&#x2099;
   <t/>&#x3381;<x/>A
   <t/>&#x338B;<x/>F
   <t/>&#x339A;<x/>m
@@ -7245,6 +8260,9 @@ p<variableTop/>
   <t/>&#x33BB;<x/>W
   <t/>&#x1D3A;
   <eq/>&#x1F13D;
+  <eq/>&#x1F17D;
+  <t/>&#x1F195;<x/>Ew
+  <t/>&#x1F196;<x/>G
   <p/>&#x274;
   <t/>&#x1DE1;
   <t/>&#x1DB0;
@@ -7256,6 +8274,8 @@ p<variableTop/>
   <t/>&#x1DAE;
   <p/>&#x19E;
   <t/>&#x220;
+  <p/>&#xA791;
+  <t/>&#xA790;
   <p/>&#x1D87;
   <p/>&#x273;
   <t/>&#x1DAF;
@@ -7286,6 +8306,7 @@ p<variableTop/>
   <t/>O
   <t/>&#xD8;<x/>&#x338;
   <t/>&#xFF2F;
+  <t/>&#x1F1F4;
   <t/>&#xA74E;<x/>O
   <t/>&#x1D40E;
   <eq/>&#x1D442;
@@ -7301,11 +8322,15 @@ p<variableTop/>
   <eq/>&#x1D64A;
   <eq/>&#x1D67E;
   <t/>&#x24C4;
+  <eq/>&#x1F15E;
   <t/>&#xBA;
   <eq/>&#x1D52;
   <t/>&#x2092;
   <t/>&#x3375;<x/>V
   <t/>&#x1D3C;
+  <eq/>&#x1F13E;
+  <eq/>&#x1F17E;
+  <t/>&#x1F197;<x/>K
   <s/>&#x153;<x/>e
   <t/>&#x152;<x/>e
   <p/>&#x1D0F;
@@ -7354,6 +8379,7 @@ p<variableTop/>
   <t/>&#x24DF;
   <t/>P
   <t/>&#xFF30;
+  <t/>&#x1F1F5;
   <t/>&#x2119;
   <eq/>&#x1D40F;
   <eq/>&#x1D443;
@@ -7370,6 +8396,7 @@ p<variableTop/>
   <t/>&#x24C5;
   <eq/>&#x1F15F;
   <t/>&#x1D56;
+  <t/>&#x209A;
   <t/>&#x33D8;<x/>.m.
   <t/>&#x3380;<x/>A
   <t/>&#x3376;<x/>c
@@ -7424,6 +8451,7 @@ p<variableTop/>
   <t/>&#x24E0;
   <t/>Q
   <t/>&#xFF31;
+  <t/>&#x1F1F6;
   <t/>&#x211A;
   <eq/>&#x1D410;
   <eq/>&#x1D444;
@@ -7438,6 +8466,9 @@ p<variableTop/>
   <eq/>&#x1D64C;
   <eq/>&#x1D680;
   <t/>&#x24C6;
+  <eq/>&#x1F160;
+  <t/>&#x1F140;
+  <eq/>&#x1F180;
   <p/>&#xA757;
   <t/>&#xA756;
   <p/>&#xA759;
@@ -7450,6 +8481,7 @@ p<variableTop/>
   <t/>&#xFF52;
   <t/>&#x36C;
   <eq/>&#x1DCA;
+  <t/>&#xA7A7;<x/>&#x20EB;
   <t/>&#x1D42B;
   <eq/>&#x1D45F;
   <eq/>&#x1D493;
@@ -7466,6 +8498,8 @@ p<variableTop/>
   <t/>&#x24E1;
   <t/>R
   <t/>&#xFF32;
+  <t/>&#x1F1F7;
+  <t/>&#xA7A6;<x/>&#x20EB;
   <t/>&#x20A8;<x/>s
   <t/>&#x211B;
   <eq/>&#x211C;
@@ -7482,12 +8516,15 @@ p<variableTop/>
   <eq/>&#x1D681;
   <t/>&#x24C7;
   <eq/>&#x1F12C;
+  <eq/>&#x1F161;
   <t/>&#x2B3;
   <t/>&#x1D63;
   <t/>&#x33AD;<x/>ad
   <t/>&#x33AE;<x/>ad&#x2215;s
   <t/>&#x33AF;<x/>ad&#x2215;s2
   <t/>&#x1D3F;
+  <eq/>&#x1F141;
+  <eq/>&#x1F181;
   <s/>&#xA783;
   <t/>&#xA782;
   <p/>&#x280;
@@ -7523,6 +8560,7 @@ p<variableTop/>
   <p/>s
   <t/>&#xFF53;
   <t/>&#x1DE4;
+  <t/>&#xA7A9;<x/>&#x20EB;
   <t/>&#xFB06;<x/>t
   <t/>&#x1D42C;
   <eq/>&#x1D460;
@@ -7540,6 +8578,8 @@ p<variableTop/>
   <t/>&#x24E2;
   <t/>S
   <t/>&#xFF33;
+  <t/>&#x1F1F8;
+  <t/>&#xA7A8;<x/>&#x20EB;
   <t/>&#x1D412;
   <eq/>&#x1D446;
   <eq/>&#x1D47A;
@@ -7554,12 +8594,16 @@ p<variableTop/>
   <eq/>&#x1D64E;
   <eq/>&#x1D682;
   <t/>&#x24C8;
+  <eq/>&#x1F162;
   <t/>&#x2E2;
   <t/>&#x2120;<x/>m
+  <t/>&#x209B;
   <t/>&#x33DB;<x/>r
   <t/>&#x1F142;
+  <eq/>&#x1F182;
   <t/>&#x1F18D;<x/>A
   <t/>&#x1F14C;<x/>D
+  <t/>&#x1F198;<x/>Os
   <t/>&#x1F14D;<x/>S
   <t/>&#x33DC;<x/>v
   <s/>&#xDF;<x/>s
@@ -7610,6 +8654,7 @@ p<variableTop/>
   <t/>&#x24E3;
   <t/>T
   <t/>&#xFF34;
+  <t/>&#x1F1F9;
   <t/>&#x2121;<x/>El
   <t/>&#xA728;<x/>z
   <t/>&#x1D413;
@@ -7626,9 +8671,13 @@ p<variableTop/>
   <eq/>&#x1D64F;
   <eq/>&#x1D683;
   <t/>&#x24C9;
+  <eq/>&#x1F163;
   <t/>&#x1D57;
   <t/>&#x2122;<x/>m
+  <t/>&#x209C;
   <t/>&#x1D40;
+  <eq/>&#x1F143;
+  <eq/>&#x1F183;
   <t/>&#x3394;<x/>Hz
   <s/>&#x1D7A;<x/>h
   <s/>&#xA787;
@@ -7667,6 +8716,7 @@ p<variableTop/>
   <t/>&#x24E4;
   <t/>U
   <t/>&#xFF35;
+  <t/>&#x1F1FA;
   <t/>&#x1D414;
   <eq/>&#x1D448;
   <eq/>&#x1D47C;
@@ -7681,9 +8731,13 @@ p<variableTop/>
   <eq/>&#x1D650;
   <eq/>&#x1D684;
   <t/>&#x24CA;
+  <eq/>&#x1F164;
   <t/>&#x1D58;
   <t/>&#x1D64;
   <t/>&#x1D41;
+  <eq/>&#x1F144;
+  <eq/>&#x1F184;
+  <t/>&#x1F199;<x/>P!
   <p/>&#x1D1C;
   <t/>&#x1DB8;
   <p/>&#x1D1D;
@@ -7696,12 +8750,14 @@ p<variableTop/>
   <p/>&#x1D7E;
   <p/>&#x1D99;
   <p/>&#x265;
+  <t/>&#xA78D;
   <t/>&#x1DA3;
   <p/>&#x2AE;
   <p/>&#x2AF;
   <p/>&#x26F;
   <t/>&#x19C;
   <t/>&#x1D5A;
+  <p/>&#xA7FA;
   <p/>&#x1D1F;
   <p/>&#x270;
   <t/>&#x1DAD;
@@ -7734,6 +8790,7 @@ p<variableTop/>
   <t/>V
   <t/>&#xFF36;
   <t/>&#x2164;
+  <eq/>&#x1F1FB;
   <t/>&#x2165;<x/>I
   <t/>&#x2166;<x/>Ii
   <t/>&#x2167;<x/>Iii
@@ -7752,10 +8809,14 @@ p<variableTop/>
   <eq/>&#x1D651;
   <eq/>&#x1D685;
   <t/>&#x24CB;
+  <eq/>&#x1F165;
   <t/>&#x1D5B;
   <t/>&#x1D65;
   <t/>&#x2C7D;
+  <eq/>&#x1F145;
+  <eq/>&#x1F185;
   <t/>&#x33DE;<x/>&#x2215;m
+  <t/>&#x1F19A;<x/>S
   <p/>&#x1D20;
   <p/>&#xA75F;
   <t/>&#xA75E;
@@ -7788,6 +8849,7 @@ p<variableTop/>
   <t/>&#x24E6;
   <t/>W
   <t/>&#xFF37;
+  <t/>&#x1F1FC;
   <t/>&#x1D416;
   <eq/>&#x1D44A;
   <eq/>&#x1D47E;
@@ -7802,11 +8864,15 @@ p<variableTop/>
   <eq/>&#x1D652;
   <eq/>&#x1D686;
   <t/>&#x24CC;
+  <eq/>&#x1F166;
   <t/>&#x1F12E;<x/>Z
   <t/>&#x2B7;
   <t/>&#x1D42;
   <eq/>&#x1F146;
+  <eq/>&#x1F186;
   <t/>&#x33DD;<x/>b
+  <t/>&#x1F14F;<x/>C
+  <eq/>&#x1F18F;<x/>C
   <p/>&#x1D21;
   <p/>&#x2C73;
   <t/>&#x2C72;
@@ -7834,6 +8900,7 @@ p<variableTop/>
   <t/>X
   <t/>&#xFF38;
   <t/>&#x2169;
+  <eq/>&#x1F1FD;
   <t/>&#x216A;<x/>I
   <t/>&#x216B;<x/>Ii
   <t/>&#x1D417;
@@ -7850,8 +8917,11 @@ p<variableTop/>
   <eq/>&#x1D653;
   <eq/>&#x1D687;
   <t/>&#x24CD;
+  <eq/>&#x1F167;
   <t/>&#x2E3;
   <t/>&#x2093;
+  <t/>&#x1F147;
+  <eq/>&#x1F187;
   <p/>&#x1D8D;
   <p/>y
   <t/>&#xFF59;
@@ -7871,6 +8941,7 @@ p<variableTop/>
   <t/>&#x24E8;
   <t/>Y
   <t/>&#xFF39;
+  <t/>&#x1F1FE;
   <t/>&#x1D418;
   <eq/>&#x1D44C;
   <eq/>&#x1D480;
@@ -7885,7 +8956,10 @@ p<variableTop/>
   <eq/>&#x1D654;
   <eq/>&#x1D688;
   <t/>&#x24CE;
+  <eq/>&#x1F168;
   <t/>&#x2B8;
+  <t/>&#x1F148;
+  <eq/>&#x1F188;
   <p/>&#x28F;
   <p/>&#x24F;
   <t/>&#x24E;
@@ -7913,6 +8987,7 @@ p<variableTop/>
   <t/>&#x24E9;
   <t/>Z
   <t/>&#xFF3A;
+  <t/>&#x1F1FF;
   <t/>&#x2124;
   <eq/>&#x2128;
   <eq/>&#x1D419;
@@ -7927,7 +9002,10 @@ p<variableTop/>
   <eq/>&#x1D655;
   <eq/>&#x1D689;
   <t/>&#x24CF;
+  <eq/>&#x1F169;
   <t/>&#x1DBB;
+  <t/>&#x1F149;
+  <eq/>&#x1F189;
   <p/>&#x1D22;
   <p/>&#x1B6;
   <t/>&#x1B5;
@@ -8799,6 +9877,8 @@ p<variableTop/>
   <t/>&#x4B2;
   <p/>&#x4BB;
   <t/>&#x4BA;
+  <p/>&#x527;
+  <t/>&#x526;
   <p/>&#xA695;
   <t/>&#xA694;
   <p/>&#x461;
@@ -8814,6 +9894,8 @@ p<variableTop/>
   <p/>&#x446;
   <t/>&#x2DF0;
   <t/>&#x426;
+  <p/>&#xA661;
+  <t/>&#xA660;
   <p/>&#xA68F;
   <t/>&#xA68E;
   <p/>&#x4B5;
@@ -10209,6 +11291,7 @@ p<variableTop/>
   <p/>&#x63D;
   <p/>&#x63E;
   <p/>&#x63F;
+  <p/>&#x620;
   <p/>&#x775;
   <p/>&#x776;
   <p/>&#x777;
@@ -10253,6 +11336,31 @@ p<variableTop/>
   <p/>&#x72A;
   <p/>&#x72B;
   <p/>&#x72C;
+  <p/>&#x840;
+  <p/>&#x841;
+  <p/>&#x842;
+  <p/>&#x843;
+  <p/>&#x844;
+  <p/>&#x845;
+  <p/>&#x846;
+  <p/>&#x847;
+  <p/>&#x848;
+  <p/>&#x849;
+  <p/>&#x84A;
+  <p/>&#x84B;
+  <p/>&#x84C;
+  <p/>&#x84D;
+  <p/>&#x84E;
+  <p/>&#x84F;
+  <p/>&#x850;
+  <p/>&#x851;
+  <p/>&#x852;
+  <p/>&#x853;
+  <p/>&#x854;
+  <p/>&#x855;
+  <p/>&#x856;
+  <p/>&#x857;
+  <p/>&#x858;
   <p/>&#x780;
   <p/>&#x799;
   <p/>&#x79A;
@@ -10457,6 +11565,12 @@ p<variableTop/>
   <p/>&#x1236;
   <p/>&#x1237;
   <p/>&#x2D83;
+  <p/>&#xAB01;
+  <p/>&#xAB02;
+  <p/>&#xAB03;
+  <p/>&#xAB04;
+  <p/>&#xAB05;
+  <p/>&#xAB06;
   <p/>&#x1238;
   <p/>&#x1239;
   <p/>&#x123A;
@@ -10619,6 +11733,12 @@ p<variableTop/>
   <p/>&#x12DE;
   <p/>&#x12DF;
   <p/>&#x2D8B;
+  <p/>&#xAB11;
+  <p/>&#xAB12;
+  <p/>&#xAB13;
+  <p/>&#xAB14;
+  <p/>&#xAB15;
+  <p/>&#xAB16;
   <p/>&#x12E0;
   <p/>&#x12E1;
   <p/>&#x12E2;
@@ -10644,6 +11764,12 @@ p<variableTop/>
   <p/>&#x12F6;
   <p/>&#x12F7;
   <p/>&#x2D8C;
+  <p/>&#xAB09;
+  <p/>&#xAB0A;
+  <p/>&#xAB0B;
+  <p/>&#xAB0C;
+  <p/>&#xAB0D;
+  <p/>&#xAB0E;
   <p/>&#x12F8;
   <p/>&#x12F9;
   <p/>&#x12FA;
@@ -10705,6 +11831,13 @@ p<variableTop/>
   <p/>&#x132E;
   <p/>&#x132F;
   <p/>&#x2D90;
+  <p/>&#xAB20;
+  <p/>&#xAB21;
+  <p/>&#xAB22;
+  <p/>&#xAB23;
+  <p/>&#xAB24;
+  <p/>&#xAB25;
+  <p/>&#xAB26;
   <p/>&#x1330;
   <p/>&#x1331;
   <p/>&#x1332;
@@ -10722,6 +11855,13 @@ p<variableTop/>
   <p/>&#x133D;
   <p/>&#x133E;
   <p/>&#x133F;
+  <p/>&#xAB28;
+  <p/>&#xAB29;
+  <p/>&#xAB2A;
+  <p/>&#xAB2B;
+  <p/>&#xAB2C;
+  <p/>&#xAB2D;
+  <p/>&#xAB2E;
   <p/>&#x1340;
   <p/>&#x1341;
   <p/>&#x1342;
@@ -10819,6 +11959,11 @@ p<variableTop/>
   <p/>&#x904;
   <p/>&#x905;
   <p/>&#x906;
+  <p/>&#x973;
+  <p/>&#x974;
+  <p/>&#x975;
+  <p/>&#x976;
+  <p/>&#x977;
   <p/>&#x907;
   <p/>&#x908;
   <p/>&#x909;
@@ -10893,6 +12038,11 @@ p<variableTop/>
   <eq/>&#xA8F7;
   <p/>&#xA8FB;
   <p/>&#x93E;
+  <p/>&#x93A;
+  <p/>&#x93B;
+  <p/>&#x94F;
+  <p/>&#x956;
+  <p/>&#x957;
   <p/>&#x93F;
   <p/>&#x940;
   <p/>&#x941;
@@ -11344,6 +12494,8 @@ p<variableTop/>
   <p/>&#xCB3;
   <p/>&#xCDE;
   <p/>&#xCBD;
+  <p/>&#xCF1;
+  <p/>&#xCF2;
   <p/>&#xCBE;
   <p/>&#xCBF;
   <p/>&#xCBF;&#xCD5;
@@ -11403,6 +12555,7 @@ p<variableTop/>
   <p/>&#xD27;
   <p/>&#xD28;
   <t/>&#xD7B;<x/>&#xD4D;
+  <p/>&#xD29;
   <p/>&#xD2A;
   <p/>&#xD2B;
   <p/>&#xD2C;
@@ -11410,7 +12563,8 @@ p<variableTop/>
   <p/>&#xD2E;
   <p/>&#xD2F;
   <p/>&#xD30;
-  <t/>&#xD7C;<x/>&#xD4D;
+  <t/>&#xD4E;<x/>&#xD4D;
+  <eq/>&#xD7C;<x/>&#xD4D;
   <p/>&#xD32;
   <t/>&#xD7D;<x/>&#xD4D;
   <p/>&#xD35;
@@ -11422,6 +12576,7 @@ p<variableTop/>
   <t/>&#xD7E;<x/>&#xD4D;
   <p/>&#xD34;
   <p/>&#xD31;
+  <p/>&#xD3A;
   <p/>&#xD3D;
   <p/>&#xD3E;
   <p/>&#xD3F;
@@ -11766,6 +12921,74 @@ p<variableTop/>
   <p/>&#x1BA8;
   <p/>&#x1BA9;
   <p/>&#x1BAA;
+  <p/>&#x11005;
+  <p/>&#x11006;
+  <p/>&#x11007;
+  <p/>&#x11008;
+  <p/>&#x11009;
+  <p/>&#x1100A;
+  <p/>&#x1100B;
+  <p/>&#x1100C;
+  <p/>&#x1100D;
+  <p/>&#x1100E;
+  <p/>&#x1100F;
+  <p/>&#x11010;
+  <p/>&#x11011;
+  <p/>&#x11012;
+  <p/>&#x11013;
+  <p/>&#x11014;
+  <p/>&#x11015;
+  <p/>&#x11016;
+  <p/>&#x11017;
+  <p/>&#x11018;
+  <p/>&#x11019;
+  <p/>&#x1101A;
+  <p/>&#x1101B;
+  <p/>&#x1101C;
+  <p/>&#x1101D;
+  <p/>&#x1101E;
+  <p/>&#x1101F;
+  <p/>&#x11020;
+  <p/>&#x11021;
+  <p/>&#x11022;
+  <p/>&#x11023;
+  <p/>&#x11024;
+  <p/>&#x11025;
+  <p/>&#x11026;
+  <p/>&#x11027;
+  <p/>&#x11028;
+  <p/>&#x11029;
+  <p/>&#x1102A;
+  <p/>&#x1102B;
+  <p/>&#x1102C;
+  <p/>&#x1102D;
+  <p/>&#x1102E;
+  <p/>&#x1102F;
+  <p/>&#x11030;
+  <p/>&#x11031;
+  <p/>&#x11032;
+  <p/>&#x11033;
+  <p/>&#x11003;
+  <p/>&#x11004;
+  <p/>&#x11034;
+  <p/>&#x11035;
+  <p/>&#x11036;
+  <p/>&#x11037;
+  <p/>&#x11038;
+  <p/>&#x11039;
+  <p/>&#x1103A;
+  <p/>&#x1103B;
+  <p/>&#x1103C;
+  <p/>&#x1103D;
+  <p/>&#x1103E;
+  <p/>&#x1103F;
+  <p/>&#x11040;
+  <p/>&#x11041;
+  <p/>&#x11042;
+  <p/>&#x11043;
+  <p/>&#x11044;
+  <p/>&#x11045;
+  <p/>&#x11046;
   <p/>&#x10A00;
   <p/>&#x10A01;
   <p/>&#x10A02;
@@ -12684,7 +13907,11 @@ p<variableTop/>
   <t/>&#xF00;<x/>&#xF7C;&#xF7E;
   <p/>&#xFB8;
   <p/>&#xF88;
+  <p/>&#xF8D;
   <p/>&#xF89;
+  <p/>&#xF8E;
+  <p/>&#xF8C;
+  <p/>&#xF8F;
   <p/>&#xF8A;
   <p/>&#xF8B;
   <p/>&#xF71;
@@ -12974,6 +14201,57 @@ p<variableTop/>
   <p/>&#x1A19;
   <p/>&#x1A1A;
   <p/>&#x1A1B;
+  <p/>&#x1BC0;
+  <t/>&#x1BC1;
+  <p/>&#x1BC2;
+  <t/>&#x1BC3;
+  <eq/>&#x1BC4;
+  <p/>&#x1BC5;
+  <t/>&#x1BC6;
+  <p/>&#x1BC7;
+  <t/>&#x1BC8;
+  <p/>&#x1BC9;
+  <t/>&#x1BCA;
+  <p/>&#x1BCB;
+  <t/>&#x1BCC;
+  <eq/>&#x1BCD;
+  <p/>&#x1BCE;
+  <t/>&#x1BCF;
+  <p/>&#x1BD0;
+  <p/>&#x1BD1;
+  <p/>&#x1BD2;
+  <t/>&#x1BD3;
+  <p/>&#x1BD4;
+  <t/>&#x1BD5;
+  <p/>&#x1BD6;
+  <t/>&#x1BD7;
+  <p/>&#x1BD8;
+  <t/>&#x1BD9;
+  <eq/>&#x1BDA;
+  <p/>&#x1BDB;
+  <t/>&#x1BDC;
+  <p/>&#x1BDD;
+  <p/>&#x1BDE;
+  <t/>&#x1BDF;
+  <p/>&#x1BE0;
+  <p/>&#x1BE1;
+  <p/>&#x1BE2;
+  <p/>&#x1BE3;
+  <p/>&#x1BE4;
+  <p/>&#x1BE5;
+  <p/>&#x1BE7;
+  <t/>&#x1BE8;
+  <p/>&#x1BE9;
+  <p/>&#x1BEA;
+  <t/>&#x1BEB;
+  <p/>&#x1BEC;
+  <t/>&#x1BED;
+  <p/>&#x1BEE;
+  <t/>&#x1BEF;
+  <p/>&#x1BF0;
+  <p/>&#x1BF1;
+  <p/>&#x1BF2;
+  <p/>&#x1BF3;
   <p/>&#xA930;
   <p/>&#xA931;
   <p/>&#xA932;
@@ -15159,6 +16437,575 @@ p<variableTop/>
   <p/>&#xA6ED;
   <p/>&#xA6EE;
   <p/>&#xA6EF;
+  <p/>&#x16800;
+  <p/>&#x16801;
+  <p/>&#x16802;
+  <p/>&#x16803;
+  <p/>&#x16804;
+  <p/>&#x16805;
+  <p/>&#x16806;
+  <p/>&#x16807;
+  <p/>&#x16808;
+  <p/>&#x16809;
+  <p/>&#x1680A;
+  <p/>&#x1680B;
+  <p/>&#x1680C;
+  <p/>&#x1680D;
+  <p/>&#x1680E;
+  <p/>&#x1680F;
+  <p/>&#x16810;
+  <p/>&#x16811;
+  <p/>&#x16812;
+  <p/>&#x16813;
+  <p/>&#x16814;
+  <p/>&#x16815;
+  <p/>&#x16816;
+  <p/>&#x16817;
+  <p/>&#x16818;
+  <p/>&#x16819;
+  <p/>&#x1681A;
+  <p/>&#x1681B;
+  <p/>&#x1681C;
+  <p/>&#x1681D;
+  <p/>&#x1681E;
+  <p/>&#x1681F;
+  <p/>&#x16820;
+  <p/>&#x16821;
+  <p/>&#x16822;
+  <p/>&#x16823;
+  <p/>&#x16824;
+  <p/>&#x16825;
+  <p/>&#x16826;
+  <p/>&#x16827;
+  <p/>&#x16828;
+  <p/>&#x16829;
+  <p/>&#x1682A;
+  <p/>&#x1682B;
+  <p/>&#x1682C;
+  <p/>&#x1682D;
+  <p/>&#x1682E;
+  <p/>&#x1682F;
+  <p/>&#x16830;
+  <p/>&#x16831;
+  <p/>&#x16832;
+  <p/>&#x16833;
+  <p/>&#x16834;
+  <p/>&#x16835;
+  <p/>&#x16836;
+  <p/>&#x16837;
+  <p/>&#x16838;
+  <p/>&#x16839;
+  <p/>&#x1683A;
+  <p/>&#x1683B;
+  <p/>&#x1683C;
+  <p/>&#x1683D;
+  <p/>&#x1683E;
+  <p/>&#x1683F;
+  <p/>&#x16840;
+  <p/>&#x16841;
+  <p/>&#x16842;
+  <p/>&#x16843;
+  <p/>&#x16844;
+  <p/>&#x16845;
+  <p/>&#x16846;
+  <p/>&#x16847;
+  <p/>&#x16848;
+  <p/>&#x16849;
+  <p/>&#x1684A;
+  <p/>&#x1684B;
+  <p/>&#x1684C;
+  <p/>&#x1684D;
+  <p/>&#x1684E;
+  <p/>&#x1684F;
+  <p/>&#x16850;
+  <p/>&#x16851;
+  <p/>&#x16852;
+  <p/>&#x16853;
+  <p/>&#x16854;
+  <p/>&#x16855;
+  <p/>&#x16856;
+  <p/>&#x16857;
+  <p/>&#x16858;
+  <p/>&#x16859;
+  <p/>&#x1685A;
+  <p/>&#x1685B;
+  <p/>&#x1685C;
+  <p/>&#x1685D;
+  <p/>&#x1685E;
+  <p/>&#x1685F;
+  <p/>&#x16860;
+  <p/>&#x16861;
+  <p/>&#x16862;
+  <p/>&#x16863;
+  <p/>&#x16864;
+  <p/>&#x16865;
+  <p/>&#x16866;
+  <p/>&#x16867;
+  <p/>&#x16868;
+  <p/>&#x16869;
+  <p/>&#x1686A;
+  <p/>&#x1686B;
+  <p/>&#x1686C;
+  <p/>&#x1686D;
+  <p/>&#x1686E;
+  <p/>&#x1686F;
+  <p/>&#x16870;
+  <p/>&#x16871;
+  <p/>&#x16872;
+  <p/>&#x16873;
+  <p/>&#x16874;
+  <p/>&#x16875;
+  <p/>&#x16876;
+  <p/>&#x16877;
+  <p/>&#x16878;
+  <p/>&#x16879;
+  <p/>&#x1687A;
+  <p/>&#x1687B;
+  <p/>&#x1687C;
+  <p/>&#x1687D;
+  <p/>&#x1687E;
+  <p/>&#x1687F;
+  <p/>&#x16880;
+  <p/>&#x16881;
+  <p/>&#x16882;
+  <p/>&#x16883;
+  <p/>&#x16884;
+  <p/>&#x16885;
+  <p/>&#x16886;
+  <p/>&#x16887;
+  <p/>&#x16888;
+  <p/>&#x16889;
+  <p/>&#x1688A;
+  <p/>&#x1688B;
+  <p/>&#x1688C;
+  <p/>&#x1688D;
+  <p/>&#x1688E;
+  <p/>&#x1688F;
+  <p/>&#x16890;
+  <p/>&#x16891;
+  <p/>&#x16892;
+  <p/>&#x16893;
+  <p/>&#x16894;
+  <p/>&#x16895;
+  <p/>&#x16896;
+  <p/>&#x16897;
+  <p/>&#x16898;
+  <p/>&#x16899;
+  <p/>&#x1689A;
+  <p/>&#x1689B;
+  <p/>&#x1689C;
+  <p/>&#x1689D;
+  <p/>&#x1689E;
+  <p/>&#x1689F;
+  <p/>&#x168A0;
+  <p/>&#x168A1;
+  <p/>&#x168A2;
+  <p/>&#x168A3;
+  <p/>&#x168A4;
+  <p/>&#x168A5;
+  <p/>&#x168A6;
+  <p/>&#x168A7;
+  <p/>&#x168A8;
+  <p/>&#x168A9;
+  <p/>&#x168AA;
+  <p/>&#x168AB;
+  <p/>&#x168AC;
+  <p/>&#x168AD;
+  <p/>&#x168AE;
+  <p/>&#x168AF;
+  <p/>&#x168B0;
+  <p/>&#x168B1;
+  <p/>&#x168B2;
+  <p/>&#x168B3;
+  <p/>&#x168B4;
+  <p/>&#x168B5;
+  <p/>&#x168B6;
+  <p/>&#x168B7;
+  <p/>&#x168B8;
+  <p/>&#x168B9;
+  <p/>&#x168BA;
+  <p/>&#x168BB;
+  <p/>&#x168BC;
+  <p/>&#x168BD;
+  <p/>&#x168BE;
+  <p/>&#x168BF;
+  <p/>&#x168C0;
+  <p/>&#x168C1;
+  <p/>&#x168C2;
+  <p/>&#x168C3;
+  <p/>&#x168C4;
+  <p/>&#x168C5;
+  <p/>&#x168C6;
+  <p/>&#x168C7;
+  <p/>&#x168C8;
+  <p/>&#x168C9;
+  <p/>&#x168CA;
+  <p/>&#x168CB;
+  <p/>&#x168CC;
+  <p/>&#x168CD;
+  <p/>&#x168CE;
+  <p/>&#x168CF;
+  <p/>&#x168D0;
+  <p/>&#x168D1;
+  <p/>&#x168D2;
+  <p/>&#x168D3;
+  <p/>&#x168D4;
+  <p/>&#x168D5;
+  <p/>&#x168D6;
+  <p/>&#x168D7;
+  <p/>&#x168D8;
+  <p/>&#x168D9;
+  <p/>&#x168DA;
+  <p/>&#x168DB;
+  <p/>&#x168DC;
+  <p/>&#x168DD;
+  <p/>&#x168DE;
+  <p/>&#x168DF;
+  <p/>&#x168E0;
+  <p/>&#x168E1;
+  <p/>&#x168E2;
+  <p/>&#x168E3;
+  <p/>&#x168E4;
+  <p/>&#x168E5;
+  <p/>&#x168E6;
+  <p/>&#x168E7;
+  <p/>&#x168E8;
+  <p/>&#x168E9;
+  <p/>&#x168EA;
+  <p/>&#x168EB;
+  <p/>&#x168EC;
+  <p/>&#x168ED;
+  <p/>&#x168EE;
+  <p/>&#x168EF;
+  <p/>&#x168F0;
+  <p/>&#x168F1;
+  <p/>&#x168F2;
+  <p/>&#x168F3;
+  <p/>&#x168F4;
+  <p/>&#x168F5;
+  <p/>&#x168F6;
+  <p/>&#x168F7;
+  <p/>&#x168F8;
+  <p/>&#x168F9;
+  <p/>&#x168FA;
+  <p/>&#x168FB;
+  <p/>&#x168FC;
+  <p/>&#x168FD;
+  <p/>&#x168FE;
+  <p/>&#x168FF;
+  <p/>&#x16900;
+  <p/>&#x16901;
+  <p/>&#x16902;
+  <p/>&#x16903;
+  <p/>&#x16904;
+  <p/>&#x16905;
+  <p/>&#x16906;
+  <p/>&#x16907;
+  <p/>&#x16908;
+  <p/>&#x16909;
+  <p/>&#x1690A;
+  <p/>&#x1690B;
+  <p/>&#x1690C;
+  <p/>&#x1690D;
+  <p/>&#x1690E;
+  <p/>&#x1690F;
+  <p/>&#x16910;
+  <p/>&#x16911;
+  <p/>&#x16912;
+  <p/>&#x16913;
+  <p/>&#x16914;
+  <p/>&#x16915;
+  <p/>&#x16916;
+  <p/>&#x16917;
+  <p/>&#x16918;
+  <p/>&#x16919;
+  <p/>&#x1691A;
+  <p/>&#x1691B;
+  <p/>&#x1691C;
+  <p/>&#x1691D;
+  <p/>&#x1691E;
+  <p/>&#x1691F;
+  <p/>&#x16920;
+  <p/>&#x16921;
+  <p/>&#x16922;
+  <p/>&#x16923;
+  <p/>&#x16924;
+  <p/>&#x16925;
+  <p/>&#x16926;
+  <p/>&#x16927;
+  <p/>&#x16928;
+  <p/>&#x16929;
+  <p/>&#x1692A;
+  <p/>&#x1692B;
+  <p/>&#x1692C;
+  <p/>&#x1692D;
+  <p/>&#x1692E;
+  <p/>&#x1692F;
+  <p/>&#x16930;
+  <p/>&#x16931;
+  <p/>&#x16932;
+  <p/>&#x16933;
+  <p/>&#x16934;
+  <p/>&#x16935;
+  <p/>&#x16936;
+  <p/>&#x16937;
+  <p/>&#x16938;
+  <p/>&#x16939;
+  <p/>&#x1693A;
+  <p/>&#x1693B;
+  <p/>&#x1693C;
+  <p/>&#x1693D;
+  <p/>&#x1693E;
+  <p/>&#x1693F;
+  <p/>&#x16940;
+  <p/>&#x16941;
+  <p/>&#x16942;
+  <p/>&#x16943;
+  <p/>&#x16944;
+  <p/>&#x16945;
+  <p/>&#x16946;
+  <p/>&#x16947;
+  <p/>&#x16948;
+  <p/>&#x16949;
+  <p/>&#x1694A;
+  <p/>&#x1694B;
+  <p/>&#x1694C;
+  <p/>&#x1694D;
+  <p/>&#x1694E;
+  <p/>&#x1694F;
+  <p/>&#x16950;
+  <p/>&#x16951;
+  <p/>&#x16952;
+  <p/>&#x16953;
+  <p/>&#x16954;
+  <p/>&#x16955;
+  <p/>&#x16956;
+  <p/>&#x16957;
+  <p/>&#x16958;
+  <p/>&#x16959;
+  <p/>&#x1695A;
+  <p/>&#x1695B;
+  <p/>&#x1695C;
+  <p/>&#x1695D;
+  <p/>&#x1695E;
+  <p/>&#x1695F;
+  <p/>&#x16960;
+  <p/>&#x16961;
+  <p/>&#x16962;
+  <p/>&#x16963;
+  <p/>&#x16964;
+  <p/>&#x16965;
+  <p/>&#x16966;
+  <p/>&#x16967;
+  <p/>&#x16968;
+  <p/>&#x16969;
+  <p/>&#x1696A;
+  <p/>&#x1696B;
+  <p/>&#x1696C;
+  <p/>&#x1696D;
+  <p/>&#x1696E;
+  <p/>&#x1696F;
+  <p/>&#x16970;
+  <p/>&#x16971;
+  <p/>&#x16972;
+  <p/>&#x16973;
+  <p/>&#x16974;
+  <p/>&#x16975;
+  <p/>&#x16976;
+  <p/>&#x16977;
+  <p/>&#x16978;
+  <p/>&#x16979;
+  <p/>&#x1697A;
+  <p/>&#x1697B;
+  <p/>&#x1697C;
+  <p/>&#x1697D;
+  <p/>&#x1697E;
+  <p/>&#x1697F;
+  <p/>&#x16980;
+  <p/>&#x16981;
+  <p/>&#x16982;
+  <p/>&#x16983;
+  <p/>&#x16984;
+  <p/>&#x16985;
+  <p/>&#x16986;
+  <p/>&#x16987;
+  <p/>&#x16988;
+  <p/>&#x16989;
+  <p/>&#x1698A;
+  <p/>&#x1698B;
+  <p/>&#x1698C;
+  <p/>&#x1698D;
+  <p/>&#x1698E;
+  <p/>&#x1698F;
+  <p/>&#x16990;
+  <p/>&#x16991;
+  <p/>&#x16992;
+  <p/>&#x16993;
+  <p/>&#x16994;
+  <p/>&#x16995;
+  <p/>&#x16996;
+  <p/>&#x16997;
+  <p/>&#x16998;
+  <p/>&#x16999;
+  <p/>&#x1699A;
+  <p/>&#x1699B;
+  <p/>&#x1699C;
+  <p/>&#x1699D;
+  <p/>&#x1699E;
+  <p/>&#x1699F;
+  <p/>&#x169A0;
+  <p/>&#x169A1;
+  <p/>&#x169A2;
+  <p/>&#x169A3;
+  <p/>&#x169A4;
+  <p/>&#x169A5;
+  <p/>&#x169A6;
+  <p/>&#x169A7;
+  <p/>&#x169A8;
+  <p/>&#x169A9;
+  <p/>&#x169AA;
+  <p/>&#x169AB;
+  <p/>&#x169AC;
+  <p/>&#x169AD;
+  <p/>&#x169AE;
+  <p/>&#x169AF;
+  <p/>&#x169B0;
+  <p/>&#x169B1;
+  <p/>&#x169B2;
+  <p/>&#x169B3;
+  <p/>&#x169B4;
+  <p/>&#x169B5;
+  <p/>&#x169B6;
+  <p/>&#x169B7;
+  <p/>&#x169B8;
+  <p/>&#x169B9;
+  <p/>&#x169BA;
+  <p/>&#x169BB;
+  <p/>&#x169BC;
+  <p/>&#x169BD;
+  <p/>&#x169BE;
+  <p/>&#x169BF;
+  <p/>&#x169C0;
+  <p/>&#x169C1;
+  <p/>&#x169C2;
+  <p/>&#x169C3;
+  <p/>&#x169C4;
+  <p/>&#x169C5;
+  <p/>&#x169C6;
+  <p/>&#x169C7;
+  <p/>&#x169C8;
+  <p/>&#x169C9;
+  <p/>&#x169CA;
+  <p/>&#x169CB;
+  <p/>&#x169CC;
+  <p/>&#x169CD;
+  <p/>&#x169CE;
+  <p/>&#x169CF;
+  <p/>&#x169D0;
+  <p/>&#x169D1;
+  <p/>&#x169D2;
+  <p/>&#x169D3;
+  <p/>&#x169D4;
+  <p/>&#x169D5;
+  <p/>&#x169D6;
+  <p/>&#x169D7;
+  <p/>&#x169D8;
+  <p/>&#x169D9;
+  <p/>&#x169DA;
+  <p/>&#x169DB;
+  <p/>&#x169DC;
+  <p/>&#x169DD;
+  <p/>&#x169DE;
+  <p/>&#x169DF;
+  <p/>&#x169E0;
+  <p/>&#x169E1;
+  <p/>&#x169E2;
+  <p/>&#x169E3;
+  <p/>&#x169E4;
+  <p/>&#x169E5;
+  <p/>&#x169E6;
+  <p/>&#x169E7;
+  <p/>&#x169E8;
+  <p/>&#x169E9;
+  <p/>&#x169EA;
+  <p/>&#x169EB;
+  <p/>&#x169EC;
+  <p/>&#x169ED;
+  <p/>&#x169EE;
+  <p/>&#x169EF;
+  <p/>&#x169F0;
+  <p/>&#x169F1;
+  <p/>&#x169F2;
+  <p/>&#x169F3;
+  <p/>&#x169F4;
+  <p/>&#x169F5;
+  <p/>&#x169F6;
+  <p/>&#x169F7;
+  <p/>&#x169F8;
+  <p/>&#x169F9;
+  <p/>&#x169FA;
+  <p/>&#x169FB;
+  <p/>&#x169FC;
+  <p/>&#x169FD;
+  <p/>&#x169FE;
+  <p/>&#x169FF;
+  <p/>&#x16A00;
+  <p/>&#x16A01;
+  <p/>&#x16A02;
+  <p/>&#x16A03;
+  <p/>&#x16A04;
+  <p/>&#x16A05;
+  <p/>&#x16A06;
+  <p/>&#x16A07;
+  <p/>&#x16A08;
+  <p/>&#x16A09;
+  <p/>&#x16A0A;
+  <p/>&#x16A0B;
+  <p/>&#x16A0C;
+  <p/>&#x16A0D;
+  <p/>&#x16A0E;
+  <p/>&#x16A0F;
+  <p/>&#x16A10;
+  <p/>&#x16A11;
+  <p/>&#x16A12;
+  <p/>&#x16A13;
+  <p/>&#x16A14;
+  <p/>&#x16A15;
+  <p/>&#x16A16;
+  <p/>&#x16A17;
+  <p/>&#x16A18;
+  <p/>&#x16A19;
+  <p/>&#x16A1A;
+  <p/>&#x16A1B;
+  <p/>&#x16A1C;
+  <p/>&#x16A1D;
+  <p/>&#x16A1E;
+  <p/>&#x16A1F;
+  <p/>&#x16A20;
+  <p/>&#x16A21;
+  <p/>&#x16A22;
+  <p/>&#x16A23;
+  <p/>&#x16A24;
+  <p/>&#x16A25;
+  <p/>&#x16A26;
+  <p/>&#x16A27;
+  <p/>&#x16A28;
+  <p/>&#x16A29;
+  <p/>&#x16A2A;
+  <p/>&#x16A2B;
+  <p/>&#x16A2C;
+  <p/>&#x16A2D;
+  <p/>&#x16A2E;
+  <p/>&#x16A2F;
+  <p/>&#x16A30;
+  <p/>&#x16A31;
+  <p/>&#x16A32;
+  <p/>&#x16A33;
+  <p/>&#x16A34;
+  <p/>&#x16A35;
+  <p/>&#x16A36;
+  <p/>&#x16A37;
+  <p/>&#x16A38;
   <p/>&#x1100;
   <t/>&#x3131;
   <t/>&#x3260;
@@ -15721,6 +17568,7 @@ p<variableTop/>
   <t/>&#xFF73;
   <t/>&#x32D2;
   <t/>&#x3306;<x/>&#x304A;&#x3093;
+  <p/>&#x1B000;
   <p/>&#x3047;
   <t/>&#x3048;
   <t/>&#x30A7;
@@ -15784,11 +17632,13 @@ p<variableTop/>
   <t/>&#x32D9;
   <t/>&#x30FF;<x/>&#x3068;
   <t/>&#x331E;<x/>&#x30FC;&#x307B;&#x309A;
+  <t/>&#x1F201;<x/>&#x3053;
   <t/>&#x331D;<x/>&#x308B;&#x306A;
   <p/>&#x3055;
   <t/>&#x30B5;
   <t/>&#xFF7B;
   <t/>&#x32DA;
+  <t/>&#x1F202;
   <t/>&#x331F;<x/>&#x3044;&#x304F;&#x308B;
   <t/>&#x3320;<x/>&#x3093;&#x3061;&#x30FC;&#x3080;
   <p/>&#x3006;<x/>&#x3081;
@@ -15966,6 +17816,7 @@ p<variableTop/>
   <t/>&#xFF95;
   <t/>&#x32F4;
   <t/>&#x3350;<x/>&#x3042;&#x3093;
+  <p/>&#x1B001;
   <p/>&#x3087;
   <t/>&#x3088;
   <t/>&#x30E7;
@@ -16058,6 +17909,9 @@ p<variableTop/>
   <s/>&#x31A1;
   <p/>&#x3118;
   <p/>&#x3119;
+  <p/>&#x31B8;
+  <p/>&#x31B9;
+  <p/>&#x31BA;
   <p/>&#x311A;
   <s/>&#x31A9;
   <p/>&#x311B;
@@ -20217,6 +22071,7 @@ p<variableTop/>
   <t/>&#x1F21C;
 <reset/>&#x5272;
   <eq/>&#x2F822;
+  <t/>&#x1F239;
 <reset/>&#x5277;
   <eq/>&#x2F823;
 <reset/>&#x529B;
@@ -20298,6 +22153,8 @@ p<variableTop/>
   <t/>&#x2F1D;
 <reset/>&#x53EB;
   <eq/>&#x2F839;
+<reset/>&#x53EF;
+  <t/>&#x1F251;
 <reset/>&#x53F1;
   <eq/>&#x2F83A;
 <reset/>&#x53F3;
@@ -20305,6 +22162,8 @@ p<variableTop/>
   <t/>&#x1F22E;
 <reset/>&#x5406;
   <eq/>&#x2F83B;
+<reset/>&#x5408;
+  <t/>&#x1F234;
 <reset/>&#x540D;
   <t/>&#x3294;
 <reset/>&#x5438;
@@ -20338,6 +22197,8 @@ p<variableTop/>
   <eq/>&#x2F848;
 <reset/>&#x55B3;
   <eq/>&#x2F849;
+<reset/>&#x55B6;
+  <t/>&#x1F23A;
 <reset/>&#x55C2;
   <eq/>&#x2F84A;
 <reset/>&#x5606;
@@ -20559,6 +22420,8 @@ p<variableTop/>
   <t/>&#x2F3B;
 <reset/>&#x5F8C;
   <t/>&#x1F21D;
+<reset/>&#x5F97;
+  <t/>&#x1F250;
 <reset/>&#x5F9A;
   <eq/>&#x2F89C;
 <reset/>&#x5FC3;
@@ -20708,9 +22571,11 @@ p<variableTop/>
 <reset/>&#x6708;
   <t/>&#x2F49;
   <t/>&#x328A;
+  <t/>&#x1F237;
   <s/>&#x2E9D;
 <reset/>&#x6709;
   <t/>&#x3292;
+  <t/>&#x1F236;
 <reset/>&#x6717;
   <eq/>&#x2F8D8;
 <reset/>&#x671B;
@@ -20828,6 +22693,8 @@ p<variableTop/>
   <eq/>&#x2F908;
 <reset/>&#x6E6E;
   <eq/>&#x2F909;
+<reset/>&#x6E80;
+  <t/>&#x1F235;
 <reset/>&#x6EC7;
   <eq/>&#x2F90C;
 <reset/>&#x6ECB;
@@ -20937,6 +22804,8 @@ p<variableTop/>
   <t/>&#x2F65;
 <reset/>&#x7532;
   <t/>&#x3199;
+<reset/>&#x7533;
+  <t/>&#x1F238;
 <reset/>&#x7537;
   <t/>&#x329A;
 <reset/>&#x753E;
@@ -20997,6 +22866,8 @@ p<variableTop/>
   <eq/>&#x2F953;
 <reset/>&#x795D;
   <t/>&#x3297;
+<reset/>&#x7981;
+  <t/>&#x1F232;
 <reset/>&#x798F;
   <eq/>&#x2F956;
 <reset/>&#x79B8;
@@ -21015,6 +22886,8 @@ p<variableTop/>
   <eq/>&#x2F95B;
 <reset/>&#x7A74;
   <t/>&#x2F73;
+<reset/>&#x7A7A;
+  <t/>&#x1F233;
 <reset/>&#x7ACB;
   <t/>&#x2F74;
 <reset/>&#x7AEE;
