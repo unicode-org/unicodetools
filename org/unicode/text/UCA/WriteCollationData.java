@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
- * $Date: 2009-10-24 06:00:19 $ 
- * $Revision: 1.57 $
+ * $Date: 2010-05-27 23:30:49 $ 
+ * $Revision: 1.58 $
  *
  *******************************************************************************
  */
@@ -55,6 +55,7 @@ import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.TransliteratorUtilities;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.impl.Differ;
+import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -64,7 +65,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
   // may require fixing 
 
   static final boolean DEBUG = false;
-  static final boolean DEBUG_SHOW_ITERATION = false;
+  static final boolean DEBUG_SHOW_ITERATION = true;
 
 
 
@@ -397,7 +398,7 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
 
       if (DEBUG_SHOW_ITERATION) {
         int cp = UTF16.charAt(s, 0);
-        if (cp == 0x220 || !ucd.isAssigned(cp) || ucd.isCJK_BASE(cp)) {
+        if (cp == 0x1CD0 || !ucd.isAssigned(cp) || ucd.isCJK_BASE(cp)) {
           System.out.println(ucd.getCodeAndName(s));
         }
       }
@@ -584,6 +585,9 @@ U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON
   static char counter;
 
   static void addStringY(String s, byte option) {
+    if (s.contains("\uA6F0")) {
+      System.out.println("Test BAMUM COMBINING MARK");
+    }
     String cpo = UCA.codePointOrder(s);
     String colDbase = collator.getSortKey(s, option, true) + "\u0000" + cpo + (char)cpo.length();
     sortedD.put(colDbase, s);
@@ -2287,9 +2291,13 @@ F900..FAFF; CJK Compatibility Ideographs
         }
         if (!shortPrint) {
           log.print("\t# ");
-          if (containsNew(chr)) {
-            log.print("\u2020 ");
+          if (false) {
+            if (latestAge(chr).startsWith("5.2")) {
+              log.print("† ");
+            }
           }
+
+          if (true) log.print(latestAge(chr) + " ");
           if (!noCE) {
             log.print(CEList.toString(ces, len) + " ");
           }
@@ -2309,6 +2317,27 @@ F900..FAFF; CJK Compatibility Ideographs
     log2.close();
     log.close();
     Utility.fixDot();
+  }
+
+  private static String latestAge(String chr) {
+    int cp;
+    String latestAge = "";
+    for (int i = 0; i < chr.length(); i += Character.charCount(cp)) {
+      String age = getAge(cp = chr.codePointAt(i));
+      if (latestAge.compareTo(age) < 0) {
+        latestAge = age;
+      }
+    }
+    while (latestAge.endsWith(".0")) {
+      latestAge = latestAge.substring(0, latestAge.length() - 2);
+    }
+    return latestAge;
+  }
+
+  static UnicodeProperty ageProp;
+  private static String getAge(int cp) {
+    if (ageProp == null) ageProp = getToolUnicodeSource().getProperty("age");
+    return ageProp.getValue(cp);
   }
 
   static UnicodeSet oldCharacters = new UnicodeSet("[:assigned:]");
@@ -2791,7 +2820,7 @@ F900..FAFF; CJK Compatibility Ideographs
 
   static final String quoteOperand(String s) {
     if (needsQuoting == null) {
-      ToolUnicodePropertySource ups = ToolUnicodePropertySource.make(Default.ucdVersion());
+      ToolUnicodePropertySource ups = getToolUnicodeSource();
       UnicodeProperty cat = ups.getProperty("gc");
       UnicodeSet cn = cat.getSet("Cn");
       /*
@@ -2912,7 +2941,8 @@ F900..FAFF; CJK Compatibility Ideographs
   static int[] primaryDelta;
 
   static void writeFractionalUCA(String filename) throws IOException {
-
+    HighByteToScripts highByteToScripts = new HighByteToScripts();
+    
     checkImplicit();
     checkFixes();
 
@@ -3382,6 +3412,7 @@ F900..FAFF; CJK Compatibility Ideographs
 
         try {
           hexBytes(np, newPrimary);
+          highByteToScripts.addScriptsIn(np, chr);
           hexBytes(ns, newSecondary);
           hexBytes(nt, newTertiary);
         } catch (Exception e) {
@@ -3472,12 +3503,13 @@ F900..FAFF; CJK Compatibility Ideographs
       int np = fixPrimary(UCA.getPrimary(ce));
       int ns = fixSecondary(UCA.getSecondary(ce));
       int nt = fixTertiary(UCA.getTertiary(ce));
-
+      
       newPrimary.setLength(0);
       newSecondary.setLength(0);
       newTertiary.setLength(0);
 
       hexBytes(np, newPrimary);
+      highByteToScripts.addScriptsIn(np, sample);
       hexBytes(ns, newSecondary);
       hexBytes(nt, newTertiary);
 
@@ -3562,6 +3594,10 @@ F900..FAFF; CJK Compatibility Ideographs
     log.println(firstTrailing);
     log.println(lastTrailing);
 
+    log.println("# SCRIPT VALUES FOR HIGH BYTES");
+    log.println(highByteToScripts.toString());
+    log.println();
+
     log.println();
     log.println("# FIXED VALUES");
 
@@ -3643,6 +3679,75 @@ F900..FAFF; CJK Compatibility Ideographs
     }
     log.close();
     summary.close();
+  }
+  
+  static class HighByteToScripts {
+    ScriptSet[] highByteToScripts = new ScriptSet[256];
+    {
+      for (int i = 0; i < highByteToScripts.length; ++i) {
+        highByteToScripts[i] = new ScriptSet();
+      }
+    }
+
+    void addScriptsIn(long primary, String value) {
+      for (int shift = 24; shift >= 0; shift -= 8) {
+        int b = 0xFF & (int)(primary >>> shift);
+        if (b != 0) {
+          highByteToScripts[b].addScriptsIn(value);
+          return;
+        }
+      }
+      highByteToScripts[0].addScriptsIn(value);
+    }
+    
+    public String toString() {
+      StringBuilder result = new StringBuilder();
+      for (int k = 0; k < highByteToScripts.length; ++k) {
+        ScriptSet bitSet = highByteToScripts[k];
+        if (bitSet.cardinality() > 0) {
+          result.append("[top_byte " + Utility.hex(k,2) + " ");
+          bitSet.toString(result);
+          result.append("]\n");
+        }
+      }
+      return result.toString();
+    }
+  }
+  
+  static class ScriptSet {
+    BitSet bitSet = new BitSet();
+    
+    public int cardinality() {
+      return bitSet.cardinality();
+    }
+
+    void addScriptsIn(String source) {
+      int cp;
+      for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+        cp = source.codePointAt(i);
+        int script = UScript.getScript(cp);
+        bitSet.set(script);
+      }
+    }
+    
+    public String toString() {
+      return toString(new StringBuilder()).toString();
+    }
+    
+    StringBuilder toString(StringBuilder result) {
+      boolean first = false;
+      for (int i = bitSet.nextSetBit(0); i >= 0; i = bitSet.nextSetBit(i+1)) {
+        if (first) {
+          first = false;
+        } else {
+          result.append(' ');
+        }
+        if (bitSet.get(i)) {
+          result.append(UScript.getShortName(i));
+        }
+      }
+      return result;
+    }
   }
 
   static final long INT_MASK = 0xFFFFFFFFL;
@@ -4534,7 +4639,7 @@ F900..FAFF; CJK Compatibility Ideographs
     log.println("<h2>11. Coverage</h2>");
     BagFormatter bf = new BagFormatter();
     bf.setLineSeparator("<br>\r\n");
-    ToolUnicodePropertySource ups = ToolUnicodePropertySource.make(Default.ucdVersion());
+    ToolUnicodePropertySource ups = getToolUnicodeSource();
     bf.setUnicodePropertyFactory(ups);
     bf.setShowLiteral(TransliteratorUtilities.toHTML);
     bf.setFixName(TransliteratorUtilities.toHTML);
@@ -4562,7 +4667,7 @@ F900..FAFF; CJK Compatibility Ideographs
     System.out.println("Checking for defaultIgnorables");
 
     log.println("<h2>5a. Checking for Default Ignorables</h2>");
-    ToolUnicodePropertySource ups = ToolUnicodePropertySource.make(Default.ucdVersion());
+    ToolUnicodePropertySource ups = getToolUnicodeSource();
     UnicodeSet di = ups.getSet("default_ignorable_code_point=true");
     UnicodeSet bad = new UnicodeSet();
     for (String diChar : di) {
@@ -4590,6 +4695,13 @@ F900..FAFF; CJK Compatibility Ideographs
       "</h3>"); 
     }
     log.flush(); 
+  }
+
+  static ToolUnicodePropertySource ups;
+  
+  private static ToolUnicodePropertySource getToolUnicodeSource() {
+    if (ups == null) ups = ToolUnicodePropertySource.make(Default.ucdVersion());
+    return ups;
   }
 
   static void addClosure() {

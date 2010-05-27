@@ -1,4 +1,4 @@
-Generate: Named.*
+Generate: .*
 DeltaVersion: 9
 CopyrightYear: 2010
 
