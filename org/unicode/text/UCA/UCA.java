@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
-* $Date: 2009-08-18 23:38:45 $ 
-* $Revision: 1.31 $
+* $Date: 2010-05-27 23:30:49 $ 
+* $Revision: 1.32 $
 *
 *******************************************************************************
 */
@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCDProperty;
@@ -1417,6 +1418,9 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
             if (RECORDING_CHARS) {
                 found.addAll(multiChars.toString());
+                if (found.contains(0x1CD0)) {
+                  System.out.println("found char");
+                }
             }
             if (!fullData && RECORDING_DATA) {
                 if (value == 0 || value == '\t' || value == '\n' || value == '\r'
@@ -1829,7 +1833,7 @@ public String getUCA_GEN_DIR() {
 //  } catch (IOException e) {
 //    throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
 //  }
-	return BASE_UCA_GEN_DIR; //  + getDataVersion() + "/";
+	return BASE_UCA_GEN_DIR + Default.ucdVersion() + "/"; //  + getDataVersion() + "/";
 }
 
 

@@ -766,26 +766,30 @@ isTitlecase(X) is false.
 
     try {
       String x = Utility.getMostRecentUnicodeDataFile("ScriptExtensions", Default.ucdVersion(), true, true);
-      File f = new File(x);
-      ScriptExtensions extensions = ScriptExtensions.make(f.getParent(), f.getName());
-      Collection<BitSet> values = extensions.getAvailableValues();
-      TreeSet<BitSet> sortedValues = new TreeSet<BitSet>(ScriptExtensions.COMPARATOR);
-      sortedValues.addAll(values);
-      UnicodeMap<String> umap = new UnicodeMap<String>();
-      for (BitSet set : sortedValues) {
-        UnicodeSet uset = extensions.getSet(set);
-        umap.putAll(uset, ScriptExtensions.getNames(set, UProperty.NameChoice.SHORT, " "));
+      if (x == null) {
+        System.out.println("ScriptExtensions not available for version");
+      } else {
+        File f = new File(x);
+        ScriptExtensions extensions = ScriptExtensions.make(f.getParent(), f.getName());
+        Collection<BitSet> values = extensions.getAvailableValues();
+        TreeSet<BitSet> sortedValues = new TreeSet<BitSet>(ScriptExtensions.COMPARATOR);
+        sortedValues.addAll(values);
+        UnicodeMap<String> umap = new UnicodeMap<String>();
+        for (BitSet set : sortedValues) {
+          UnicodeSet uset = extensions.getSet(set);
+          umap.putAll(uset, ScriptExtensions.getNames(set, UProperty.NameChoice.SHORT, " "));
+        }
+        UnicodeMapProperty prop2 = new UnicodeMapProperty()
+        .set(umap);
+        prop2.setMain("Script_Extensions", "SE", UnicodeProperty.EXTENDED_ENUMERATED, version);
+        prop2.addValueAliases(new String[][] {}, false); // hack
+        //      for (BitSet set : sortedValues) {
+        //        prop2.addValueAlias(ScriptExtensions.getNames(set, UProperty.NameChoice.SHORT, " "), 
+        //                ScriptExtensions.getNames(set, UProperty.NameChoice.LONG, " "),
+        //                false);
+        //      }
+        add(prop2);
       }
-      UnicodeMapProperty prop2 = new UnicodeMapProperty()
-      .set(umap);
-      prop2.setMain("Script_Extensions", "SE", UnicodeProperty.EXTENDED_ENUMERATED, version);
-      prop2.addValueAliases(new String[][] {}, false); // hack
-//      for (BitSet set : sortedValues) {
-//        prop2.addValueAlias(ScriptExtensions.getNames(set, UProperty.NameChoice.SHORT, " "), 
-//                ScriptExtensions.getNames(set, UProperty.NameChoice.LONG, " "),
-//                false);
-//      }
-      add(prop2);
     } catch (IOException e) {
       throw new RuntimeException(e);
     } 
