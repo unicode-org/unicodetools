@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
-* $Date: 2010-05-27 23:30:49 $ 
-* $Revision: 1.32 $
+* $Date: 2010-05-31 03:42:26 $ 
+* $Revision: 1.33 $
 *
 *******************************************************************************
 */
@@ -1418,9 +1418,9 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
             if (RECORDING_CHARS) {
                 found.addAll(multiChars.toString());
-                if (found.contains(0x1CD0)) {
-                  System.out.println("found char");
-                }
+//                if (found.contains(0x1CD0)) {
+//                  System.out.println("found char");
+//                }
             }
             if (!fullData && RECORDING_DATA) {
                 if (value == 0 || value == '\t' || value == '\n' || value == '\r'
