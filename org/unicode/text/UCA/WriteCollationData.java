@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
- * $Date: 2010-05-27 23:30:49 $ 
- * $Revision: 1.58 $
+ * $Date: 2010-05-31 03:42:26 $ 
+ * $Revision: 1.59 $
  *
  *******************************************************************************
  */
@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -38,6 +39,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Vector;
 
+import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
@@ -52,6 +54,7 @@ import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.test.util.CollectionUtilities;
 import com.ibm.icu.dev.test.util.TransliteratorUtilities;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.impl.Differ;
@@ -2297,7 +2300,10 @@ F900..FAFF; CJK Compatibility Ideographs
             }
           }
 
-          if (true) log.print(latestAge(chr) + " ");
+          log.print(latestAge(chr) + "[");
+          String typeKD = ScriptSet.getTypesCombined(chr);
+          log.print(typeKD + "] ");
+
           if (!noCE) {
             log.print(CEList.toString(ces, len) + " ");
           }
@@ -2922,8 +2928,8 @@ F900..FAFF; CJK Compatibility Ideographs
         oldJamo4 = temp[0] >> 16;
     collator.getCEs("\u11C2", true, temp);
     oldJamo5 = temp[0] >> 16;
-    collator.getCEs("\u11F9", true, temp);
-    oldJamo6 = temp[0] >> 16;
+      collator.getCEs("\u11F9", true, temp);
+      oldJamo6 = temp[0] >> 16;
     gotInfo = true;
     }
     return primary > oldJamo1 && primary < oldJamo2
@@ -2942,7 +2948,7 @@ F900..FAFF; CJK Compatibility Ideographs
 
   static void writeFractionalUCA(String filename) throws IOException {
     HighByteToScripts highByteToScripts = new HighByteToScripts();
-    
+
     checkImplicit();
     checkFixes();
 
@@ -3412,7 +3418,9 @@ F900..FAFF; CJK Compatibility Ideographs
 
         try {
           hexBytes(np, newPrimary);
-          highByteToScripts.addScriptsIn(np, chr);
+          if (q == firstCE) { // only look at first one
+            highByteToScripts.addScriptsIn(np, chr);
+          }
           hexBytes(ns, newSecondary);
           hexBytes(nt, newTertiary);
         } catch (Exception e) {
@@ -3503,7 +3511,7 @@ F900..FAFF; CJK Compatibility Ideographs
       int np = fixPrimary(UCA.getPrimary(ce));
       int ns = fixSecondary(UCA.getSecondary(ce));
       int nt = fixTertiary(UCA.getTertiary(ce));
-      
+
       newPrimary.setLength(0);
       newSecondary.setLength(0);
       newTertiary.setLength(0);
@@ -3593,10 +3601,20 @@ F900..FAFF; CJK Compatibility Ideographs
 
     log.println(firstTrailing);
     log.println(lastTrailing);
-
-    log.println("# SCRIPT VALUES FOR HIGH BYTES");
+    log.println();
+    
+    log.println("# SCRIPT VALUES for HIGH BYTES (letters only)");
     log.println(highByteToScripts.toString());
     log.println();
+    
+    log.println("# HIGH BYTES for SCRIPTS (letters only)");
+    log.println(highByteToScripts.toHighBytesToScripts(true));
+    log.println();
+
+    log.println("# HIGH BYTES for GENERAL CATEGORIES (non-letters only)");
+    log.println(highByteToScripts.toHighBytesToScripts(false));
+    log.println();
+
 
     log.println();
     log.println("# FIXED VALUES");
@@ -3680,12 +3698,27 @@ F900..FAFF; CJK Compatibility Ideographs
     log.close();
     summary.close();
   }
-  
+
   static class HighByteToScripts {
     ScriptSet[] highByteToScripts = new ScriptSet[256];
     {
       for (int i = 0; i < highByteToScripts.length; ++i) {
         highByteToScripts[i] = new ScriptSet();
+      }
+      // set special values
+      highByteToScripts[0].scripts.add("TERMINATOR",1);
+      highByteToScripts[1].scripts.add("LEVEL-SEPARATOR",1);
+      highByteToScripts[2].scripts.add("FIELD-SEPARATOR",1);
+      highByteToScripts[3].scripts.add("COMPRESSION",1);
+      //highByteToScripts[4].scripts.add("TAILORING_GAP",1);
+      for (int i = IMPLICIT_BASE_BYTE; i <= IMPLICIT_MAX_BYTE; ++i) {
+        highByteToScripts[i].scripts.add("IMPLICIT",1);
+      }
+      for (int i = IMPLICIT_MAX_BYTE+1; i < SPECIAL_BASE; ++i) {
+        highByteToScripts[i].scripts.add("IMPLICIT",1);
+      }
+      for (int i = SPECIAL_BASE; i <= 0xFF; ++i) {
+        highByteToScripts[i].scripts.add("SPECIAL",1);
       }
     }
 
@@ -3693,60 +3726,223 @@ F900..FAFF; CJK Compatibility Ideographs
       for (int shift = 24; shift >= 0; shift -= 8) {
         int b = 0xFF & (int)(primary >>> shift);
         if (b != 0) {
-          highByteToScripts[b].addScriptsIn(value);
+          highByteToScripts[b].addScriptsIn(primary, value);
           return;
         }
       }
-      highByteToScripts[0].addScriptsIn(value);
+      // don't add to 0
     }
-    
-    public String toString() {
-      StringBuilder result = new StringBuilder();
-      for (int k = 0; k < highByteToScripts.length; ++k) {
-        ScriptSet bitSet = highByteToScripts[k];
-        if (bitSet.cardinality() > 0) {
-          result.append("[top_byte " + Utility.hex(k,2) + " ");
-          bitSet.toString(result);
-          result.append("]\n");
+
+    public String toHighBytesToScripts(boolean doScripts) {
+      StringBuilder builder = new StringBuilder();
+      Map<String,Counter<Integer>> map = new TreeMap();
+      for (int i = 0; i < highByteToScripts.length; ++i) {
+        addScriptCats(map, i, doScripts ? highByteToScripts[i].scripts : highByteToScripts[i].types);
+      }
+      appendScriptCatLine(builder, map, doScripts);
+      return builder.toString();
+    }
+
+    private void addScriptCats(Map<String, Counter<Integer>> map, int i, Counter<String> scripts) {
+      for (String script : scripts) {
+        long count = scripts.get(script);
+        Counter<Integer> bitSet = map.get(script);
+        if (bitSet == null) map.put(script, bitSet = new Counter<Integer>());
+        bitSet.add(i, count);
+      }
+    }
+
+    private void appendScriptCatLine(StringBuilder builder, Map<String, Counter<Integer>> map, boolean doScripts) {
+      for (String item : map.keySet()) {
+        builder.append("[script\t").append(item).append('\t');
+        Counter<Integer> counter2 = map.get(item);
+        boolean first = true;
+        for (Integer i : counter2) {
+          if (first) first = false; else builder.append(' ');
+          
+          builder.append(Utility.hex(i, 2));
+          if (!doScripts) {
+            String stringScripts = CollectionUtilities.join(highByteToScripts[i].scripts.keySet(), " ");
+            if (stringScripts.length() != 0) {
+              builder.append('{').append(stringScripts).append("}");
+            }
+          }
+          builder.append('=').append(counter2.get(i));
         }
+        builder.append("\t]\n");
+      }
+    }
+
+    public String toString() {
+      ScriptSet[] merged = cleanup();
+      StringBuilder result = new StringBuilder();
+      for (int k = 0; k < merged.length; ++k) {
+        ScriptSet bitSet = merged[k];
+        result.append("[top_byte\t" + Utility.hex(k,2) + "\t");
+        bitSet.toString(result, false);
+        result.append("\t]");
+        result.append("\t#\t");
+        highByteToScripts[k].toString(result, true);
+        result.append("\n");
       }
       return result.toString();
     }
+
+    private ScriptSet[] cleanup() {
+      ScriptSet[] merged = new ScriptSet[256];
+
+      for (int k = 0; k < highByteToScripts.length; ++k) {
+        merged[k] = new ScriptSet(highByteToScripts[k]);
+      }
+      // Any bytes that share scripts need to be combined
+      // brute force, because we don't care about speed
+      boolean fixedOne = true;
+      while(fixedOne) {
+        fixedOne = false;
+        for (int k = 1; k < merged.length; ++k) {
+          if (merged[k-1].intersects(merged[k]) 
+                  && !merged[k-1].equals(merged[k])) {
+            merged[k-1].or(merged[k]);
+            merged[k] = merged[k-1];
+            fixedOne = true;
+          }
+        }
+      }
+      return merged;
+    }
   }
-  
+
   static class ScriptSet {
-    BitSet bitSet = new BitSet();
-    
-    public int cardinality() {
-      return bitSet.cardinality();
+
+    private Counter<String> scripts = new Counter<String>();
+    private Counter<String> types = new Counter<String>();
+    private Set<Long> primaryCount = new TreeSet<Long>();
+    private UnicodeSet chars = new UnicodeSet();
+
+    public ScriptSet() {
     }
 
-    void addScriptsIn(String source) {
-      int cp;
-      for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
-        cp = source.codePointAt(i);
-        int script = UScript.getScript(cp);
-        bitSet.set(script);
-      }
+    public ScriptSet(ScriptSet scriptSet) {
+      scripts.addAll(scriptSet.scripts);
+      types.addAll(scriptSet.types);
     }
-    
-    public String toString() {
-      return toString(new StringBuilder()).toString();
+
+    public boolean intersects(ScriptSet set) {
+      return !Collections.disjoint(scripts.keySet(), set.scripts.keySet());
     }
-    
-    StringBuilder toString(StringBuilder result) {
-      boolean first = false;
-      for (int i = bitSet.nextSetBit(0); i >= 0; i = bitSet.nextSetBit(i+1)) {
-        if (first) {
-          first = false;
+
+    public void or(ScriptSet set) {
+      scripts.addAll(set.scripts);
+      types.addAll(set.types);
+    }
+
+    public int cardinality() {
+      return scripts.size()
+      + types.size();
+    }
+
+    void addScriptsIn(long primary, String source) {
+      primaryCount.add(primary);
+      chars.add(source);
+      int cp = Default.nfkd().normalize(source).codePointAt(0);
+      //for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+        //cp = source.codePointAt(i);
+        byte cat = getFixedCategory(cp);
+        int script = getFixedScript(cp);
+
+        if (!(script == ucd.Unknown_Script || script == ucd.COMMON_SCRIPT)
+                && (cat == ucd.OTHER_LETTER || cat == ucd.UPPERCASE_LETTER || cat == ucd.LOWERCASE_LETTER || cat == ucd.TITLECASE_LETTER)) {
+          scripts.add(ucd.getScriptID_fromIndex((byte)script, UCD_Types.SHORT), 1);
         } else {
-          result.append(' ');
+          types.add(ucd.getCategoryID_fromIndex(cat, UCD_Types.SHORT), 1);
         }
-        if (bitSet.get(i)) {
-          result.append(UScript.getShortName(i));
-        }
+      //}
+    }
+    
+    private static String getTypesCombined(String chr) {
+      String typeKD = ScriptSet.getTypes(Default.nfkd().normalize(chr));
+       
+      String type = ScriptSet.getTypes(chr);
+      if (!type.equals(typeKD)) {
+        typeKD = typeKD + "/" + type;
       }
+      return typeKD;
+    }
+
+
+    public static String getTypes(String source) {
+      //StringBuilder result = new StringBuilder();
+      String result;
+      int cp = source.codePointAt(0);
+      //for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
+        //cp = source.codePointAt(i);
+        byte cat = getFixedCategory(cp);
+        int script = getFixedScript(cp);
+//        if (result.length() != 0) {
+//          result.append(' ');
+//        }
+        if (!(script == ucd.Unknown_Script || script == ucd.COMMON_SCRIPT)
+                && (cat == ucd.OTHER_LETTER || cat == ucd.UPPERCASE_LETTER || cat == ucd.LOWERCASE_LETTER || cat == ucd.TITLECASE_LETTER)) {
+          result = (ucd.getScriptID_fromIndex((byte)script, UCD_Types.SHORT));
+        } else {
+          result = (ucd.getCategoryID_fromIndex(cat, UCD_Types.SHORT));
+        }
+     // }
       return result;
+    }
+
+    public String toString() {
+      throw new UnsupportedOperationException();
+    }
+
+    static Set<String> common = new TreeSet();
+    static {
+      common.add(ucd.getScriptID_fromIndex(UCD_Types.COMMON_SCRIPT, UCD_Types.SHORT));
+      common.add(ucd.getScriptID_fromIndex(UCD_Types.Unknown_Script, UCD_Types.SHORT));
+      common.add(ucd.getScriptID_fromIndex(UCD_Types.INHERITED_SCRIPT, UCD_Types.SHORT));
+    }
+
+    <T extends Appendable> T  toString(T result, boolean categoriesAlso) {
+      try {
+        if (scripts.size() == 0 && types.size() == 0) {
+          return result;
+        }
+        if (categoriesAlso) {
+          result.append("[").append(primaryCount.size() + "").append("]\t");
+        }
+        boolean first = true;
+        if (!categoriesAlso) {
+          String scriptNames = scripts.size() != 0 ? CollectionUtilities.join(scripts.keySet(), " ") : "Zyyy";
+          result.append(scriptNames);
+        } else {
+          String scriptNames = scripts.size() != 0 ? joinCounter(scripts) : "";
+          result.append(scriptNames);
+          if (types.size() != 0) {
+            String catNames = joinCounter(types);
+            if (scripts.size() != 0) {
+              result.append(' ');
+            }
+            result.append(catNames);
+          }
+          //result.append("\t").append(chars.toPattern(false));
+        }
+        return result;
+      } catch (IOException e) {
+        throw new IllegalArgumentException(e);
+      }
+    }
+
+    private String joinCounter(Counter<String> counter2) {
+      StringBuilder b = new StringBuilder();
+      boolean first = true;
+      for (String item : counter2.getKeysetSortedByKey()) {
+        if (first)
+          first = false;
+        else
+          b.append(" ");
+        b.append(item).append("=").append(counter2.get(item));
+      }
+      return b.toString();
     }
   }
 
@@ -4435,19 +4631,11 @@ F900..FAFF; CJK Compatibility Ideographs
                     continue;
                 }
          */
-        byte script = ucd.getScript(ch);
-        // HACK
-        if (ch == 0x0F7E || ch == 0x0F7F) {
-          script = TIBETAN_SCRIPT;
-        }
+        byte script = getFixedScript(ch);
         //if (script == ucd.GREEK_SCRIPT) System.out.println(ucd.getName(ch));
         // get least primary for script
         if (scripts[script] == 0 || scripts[script] > primary) {
-          byte cat = ucd.getCategory(ch);
-          // HACK
-          if (ch == 0x0F7E || ch == 0x0F7F) {
-            cat = ucd.OTHER_LETTER;
-          }
+          byte cat = getFixedCategory(ch);
           if (cat <= ucd.OTHER_LETTER && cat != ucd.Lm) {
             scripts[script] = primary;
             scriptChar[script] = ch;
@@ -4486,9 +4674,27 @@ F900..FAFF; CJK Compatibility Ideographs
         setSingle('\u030C', ces);
      */
 
-    bumps.set(0x089A); // lowest non-variable
+    bumps.set(0x089A); // lowest non-variable FRAGILE
     bumps.set(0x4E00); // lowest Kangxi
 
+  }
+
+  private static byte getFixedScript(int ch) {
+    byte script = ucd.getScript(ch);
+    // HACK
+    if (ch == 0x0F7E || ch == 0x0F7F) {
+      script = TIBETAN_SCRIPT;
+    }
+    return script;
+  }
+
+  private static byte getFixedCategory(int ch) {
+    byte cat = ucd.getCategory(ch);
+    // HACK
+    if (ch == 0x0F7E || ch == 0x0F7F) {
+      cat = ucd.OTHER_LETTER;
+    }
+    return cat;
   }
 
   static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd','HH:mm:ss' GMT'");
@@ -4687,7 +4893,7 @@ F900..FAFF; CJK Compatibility Ideographs
       UnicodeSet badUnassigned = ups.getSet("gc=cn").retainAll(bad);
       UnicodeSet badAssigned = bad.removeAll(badUnassigned);
       log.println("<h3>Bad Assigned Characters: " + badAssigned.size() + ": " + badAssigned +
-      		"</h3>"); 
+      "</h3>"); 
       for (String diChar : badAssigned) {
         log.println("<p>" + ucd.getCodeAndName(diChar) + "</p>"); 
       }
@@ -4698,7 +4904,7 @@ F900..FAFF; CJK Compatibility Ideographs
   }
 
   static ToolUnicodePropertySource ups;
-  
+
   private static ToolUnicodePropertySource getToolUnicodeSource() {
     if (ups == null) ups = ToolUnicodePropertySource.make(Default.ucdVersion());
     return ups;
