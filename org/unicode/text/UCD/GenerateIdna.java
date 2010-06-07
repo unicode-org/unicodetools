@@ -2,6 +2,7 @@ package org.unicode.text.UCD;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.TreeSet;
 
@@ -13,6 +14,7 @@ import org.unicode.text.utility.Utility;
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.test.util.BagFormatter.NameLabel;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;
@@ -26,12 +28,31 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateIdna {
 
-  public static UnicodeSet U32 = new UnicodeSet("[:age=3.2:]").freeze();
-  public static UnicodeSet VALID_ASCII = new UnicodeSet("[\\u002Da-zA-Z0-9]").freeze();
-  static final ToolUnicodePropertySource properties = ToolUnicodePropertySource.make(Default.ucdVersion());
-  static final UnicodeSet cn = properties.getSet("gc=Cn").freeze();
+  public static UnicodeSet U32;
+  public static UnicodeSet VALID_ASCII;
+  static ToolUnicodePropertySource properties;
+  static UnicodeSet cn;
+  static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
+  static {
+    dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+  }
 
   public static void main(String[] args) throws IOException {
+
+    switch (args.length){
+    case 0: 
+      break;
+    case 1: 
+      Default.setUCD(args[0]);
+      break;
+    default: throw new IllegalArgumentException("Only single argument allowed:\t" + Arrays.asList(args));
+    }
+    
+    U32 = new UnicodeSet("[:age=3.2:]").freeze();
+    VALID_ASCII = new UnicodeSet("[\\u002Da-zA-Z0-9]").freeze();
+    properties = ToolUnicodePropertySource.make(Default.ucdVersion());
+    cn = properties.getSet("gc=Cn").freeze();
+
 
     UnicodeMap<String> mappings = new UnicodeMap<String>(); 
     UnicodeMap<IdnaType> types = new UnicodeMap<IdnaType>();
@@ -140,7 +161,7 @@ public class GenerateIdna {
 
     System.out.println("computed base exclusion disallowed:\t" + disallowedExclusionSet);
     System.out.println("computed base exclusion mapping changed:\t" + mappingChanged);
-    
+
     if (false && !baseExclusionSet.equals(baseExclusionSet2)) {
       System.out.println("computed-static:\t" + new UnicodeSet(baseExclusionSet).removeAll(baseExclusionSet2));
       System.out.println("static-computed:\t" + new UnicodeSet(baseExclusionSet2).removeAll(baseExclusionSet));
@@ -270,7 +291,7 @@ public class GenerateIdna {
   private static void writeDataFile(UnicodeMap<String> mappingTable) throws IOException {
     String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
     String unversionedFileName = "IdnaMappingTable.txt";
-    PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace35/draft/reports/tr46", unversionedFileName);
+    PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace35/draft/reports/tr46/" + Default.ucdVersion(), unversionedFileName);
     writer.println("# " + filename + "- DRAFT\n" +
             "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
             "#\n" +
@@ -293,18 +314,17 @@ public class GenerateIdna {
         return cn.contains(codepoint) ? "Cn" : "As";
       }
     };
+    UnicodeProperty age = properties.getProperty("age");
+    NameLabel name = new BagFormatter.NameLabel(properties);
     BagFormatter bf = new BagFormatter();
-    bf.setLabelSource(null);
+    bf.setLabelSource(age);
     bf.setRangeBreakSource(ASSIGNED);
     bf.setShowCount(false);
+    bf.setNameSource(name);
 
     bf.setValueSource(new UnicodeProperty.UnicodeMapProperty().set(mappingTable));
     writer.println(bf.showSetNames(mappingTable.keySet()));
     writer.close();
   }
 
-  static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
-  static {
-    dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-  }
 }
