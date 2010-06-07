@@ -1,5 +1,5 @@
-Generate: .*
-DeltaVersion: 9
+Generate: DerivedCoreProperties
+DeltaVersion: 10
 CopyrightYear: 2010
 
 File: extra/ScriptNfkc
@@ -256,7 +256,7 @@ Property:	Default_Ignorable_Code_Point
 #  + Variation_Selector
 #  - White_Space
 #  - FFF9..FFFB (Annotation Characters)
-#  - 0600..0603, 06DD, 070F (exceptional Cf characters that should be visible)
+#  - 0600..0603, 06DD, 070F, 110BD (exceptional Cf characters that should be visible)
 
 Property:	Grapheme_Extend
 # Derived Property: Grapheme_Extend

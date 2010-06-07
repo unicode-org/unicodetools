@@ -1182,13 +1182,21 @@ isTitlecase(X) is false.
       }
       if (needAgeCache) {
         for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
-          ucdCache[i] = UCD.make(UCD_Names.AGE_VERSIONS[i]);
+          String version = UCD_Names.AGE_VERSIONS[i];
+          if (version.compareTo(ucd.getVersion()) > 0) {
+            break;
+          }
+          ucdCache[i] = UCD.make(version);
         }
         needAgeCache = false;
       }
       for (int i = UCD_Types.AGE11; i < UCD_Types.LIMIT_AGE; ++i) {
-        if (ucdCache[i].isAllocated(codePoint))
+        if (ucdCache[i] == null) {
+          break;
+        }
+        if (ucdCache[i].isAllocated(codePoint)) {
           return UCD_Names.AGE[i];
+        }
       }
       return UCD_Names.AGE[UCD_Types.UNKNOWN];
     }
