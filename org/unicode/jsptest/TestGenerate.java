@@ -181,7 +181,7 @@ public class TestGenerate   extends TestFmwk{
 
 //  private void writeIdnaDataFile(final UnicodeMap<String> hex_results, BagFormatter bf, String normalizationForm2, String filenameStem) throws IOException {
 //    String filename = filenameStem + "-" + AGE + ".0.txt";
-//    PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace35/draft/reports/tr46/", filename);
+//    PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace/draft/reports/tr46/", filename);
 //    String normalizationForm = normalizationForm2;
 //    writer.println("# " + filename + "- DRAFT\n" +
 //            "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +

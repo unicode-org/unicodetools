@@ -67,13 +67,13 @@ public class CharacterFrequency {
       //Map<String, Counter<String>> rawLanguageToCharsCounter = new TreeMap<String, Counter<String>>();
 
 //      System.out.println("loading stats.characters.txt");
-//      SemiFileReader handler = new SequenceHandler(rawLanguageToCharsCounter).process("/Users/markdavis/Documents/workspace35/DATA/frequency/", "stats.short_sequences.txt");
+//      SemiFileReader handler = new SequenceHandler(rawLanguageToCharsCounter).process("/Users/markdavis/Documents/workspace/DATA/frequency/", "stats.short_sequences.txt");
 //      System.out.println("read lines:\t" + handler.getLineCount());
 
       Counter<String> mulValue = new Counter<String>();
 
       System.out.println("loading stats.lang_sequences.txt");
-      SemiFileReader handler = new SequenceHandler(rawLanguageToSequencesCounter).process("/Users/markdavis/Documents/workspace35/DATA/frequency/", "stats.short_sequences.txt");
+      SemiFileReader handler = new SequenceHandler(rawLanguageToSequencesCounter).process("/Users/markdavis/Documents/workspace/DATA/frequency/", "stats.short_sequences.txt");
       System.out.println("read lines:\t" + handler.getLineCount());
 
       System.out.println("fixing counts");
@@ -138,7 +138,16 @@ public class CharacterFrequency {
       }
 
       languageToCharsCounter.put("mul", mulValue);
+      Counter<String> supValue = new Counter<String>();
+      for (String x : mulValue.keySet()) {
+          int cp = x.codePointAt(0);
+          if (cp > 0xFFFF) {
+              supValue.add(x, mulValue.get(x));
+          }
+      }
+      languageToCharsCounter.put("qsu", supValue);
       languageToPopulation.put("mul", 7000000000d * 0.82d);
+      languageToPopulation.put("qsu", 7000000000d * 0.82d);
   }
 
   private static void addNormalizedCount(String sequence, long countValue, ULocale locale, Counter<String> combinedCounter) {

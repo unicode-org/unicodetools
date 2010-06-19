@@ -3,11 +3,8 @@
  */
 package org.unicode.draft;
 
-import java.io.DataInput;
 import java.io.DataOutput;
-import java.io.FilterOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 final class CompressedDataOutput implements DataOutput {
 

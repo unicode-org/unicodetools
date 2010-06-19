@@ -133,10 +133,9 @@ In \P{U-1:GC=Cn} name=U-1:name
 # TODO
 
 # Red Flag: cased and case_ignorable should be disjoint
-\p{cased} ∥ \p{caseignorable}
-\p{U5.1.0:cased} ∥ \p{U5.1.0:caseignorable}
-\p{cased} = \p{U-1:cased}
-\p{caseignorable} = \p{U-1:caseignorable}
+
+Let caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770]
+\p{cased} ∥ [\p{caseignorable} - caseOverlap]
 
 ##########################
 # Property Stability Policies

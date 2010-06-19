@@ -10,7 +10,13 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-translit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-core-tests"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-translit-tests"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/cldr-svn2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-currdata"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-langdata"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-regiondata"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/cldr"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-charset-tests"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-collate-tests"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-packaging-tests"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/icu4j-tools"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
