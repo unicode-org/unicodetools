@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public final class FileUtilities {
@@ -134,5 +136,42 @@ public final class FileUtilities {
   }
 
   public static final Charset UTF8 = Charset.forName("utf-8");
+  
+  static String[] splitCommaSeparated(String line) {
+      // items are separated by ','
+      // each item is of the form abc...
+      // or "..." (required if a comma or quote is contained)
+      // " in a field is represented by ""
+      List<String> result = new ArrayList<String>();
+      StringBuilder item = new StringBuilder();
+      boolean inQuote = false;
+      for (int i = 0; i < line.length(); ++i) {
+        char ch = line.charAt(i); // don't worry about supplementaries
+        switch(ch) {
+        case '"': 
+          inQuote = !inQuote;
+          // at start or end, that's enough
+          // if get a quote when we are not in a quote, and not at start, then add it and return to inQuote
+          if (inQuote && item.length() != 0) {
+            item.append('"');
+            inQuote = true;
+          }
+          break;
+        case ',':
+          if (!inQuote) {
+            result.add(item.toString());
+            item.setLength(0);
+          } else {
+            item.append(ch);
+          }
+          break;
+        default:
+          item.append(ch);
+          break;
+        }
+      }
+      result.add(item.toString());
+      return result.toArray(new String[result.size()]);
+    }
 
 }

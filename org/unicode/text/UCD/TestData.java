@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/TestData.java,v $
-* $Date: 2010-05-27 16:39:47 $
-* $Revision: 1.32 $
+* $Date: 2010-06-19 00:29:21 $
+* $Revision: 1.33 $
 *
 *******************************************************************************
 */
@@ -31,6 +31,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
@@ -60,11 +61,17 @@ public class TestData implements UCD_Types {
 	public static void main (String[] args) throws IOException {
     UCD ucd = Default.ucd();
 
+    Counter<Integer> scriptCount = new Counter<Integer>();
+    
     BitSet normScripts = new BitSet();
     UnicodeMap<Pair<String,String>> results = new UnicodeMap();
     for (int i = 0; i <= 0x10FFFF; ++i) {
       byte dt = ucd.getDecompositionType(i);
-      if (dt == UCD_Types.NONE) continue;
+      if (dt == UCD_Types.NONE) {
+          int script = ucd.getScript(i) & 0xFF;
+          scriptCount.add(script, 1);
+    	  continue;
+      }
       String norm = Default.nfkc().normalize(i);
       byte script = ucd.getScript(i);
       BitSet scripts = ucd.getScripts(norm, normScripts);
@@ -74,6 +81,9 @@ public class TestData implements UCD_Types {
       if (scripts.cardinality() != expectedCount) {
         results.put(i, new Pair(UCD.getScriptID_fromIndex(script, UCD_Types.LONG), ucd.getScriptIDs(norm, " ", UCD_Types.LONG)));
       }
+    }
+    for (Integer scriptCode : scriptCount.keySet()) {
+    	System.out.println(ucd.getScriptID_fromIndex((byte)(int)scriptCode,UCD_Types.SHORT) + "\t" + scriptCount.get(scriptCode));
     }
     results.freeze();
     BagFormatter bf = new BagFormatter(ToolUnicodePropertySource.make(Default.ucdVersion()));

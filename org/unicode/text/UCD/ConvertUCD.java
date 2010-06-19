@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/ConvertUCD.java,v $
-* $Date: 2009-08-18 23:38:46 $
-* $Revision: 1.22 $
+* $Date: 2010-06-19 00:29:21 $
+* $Revision: 1.23 $
 *
 *******************************************************************************
 */
@@ -865,6 +865,13 @@ public final class ConvertUCD implements UCD_Types {
 //                	uData.script = COMMON_SCRIPT;
 //                	System.out.println("Resetting to Common Script: " + Utility.hex(uData.codePoint));
 //                }
+                if (uData.script == UCD_Types.Unknown_Script
+                        && uData.generalCategory != UCD_Types.Co
+                        && uData.generalCategory != UCD_Types.Cn
+                        && uData.generalCategory != UCD_Types.Cs
+                        ) {
+                    uData.script = UCD_Types.COMMON_SCRIPT;
+                }
             } else if (fieldName.equals("bc")) {
                 uData.bidiClass = Utility.lookup(fieldValue, UCD_Names.BIDI_CLASS, true);
             } else if (fieldName.equals("dt")) {

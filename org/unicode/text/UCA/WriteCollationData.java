@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
- * $Date: 2010-05-31 03:42:26 $ 
- * $Revision: 1.59 $
+ * $Date: 2010-06-19 00:29:21 $ 
+ * $Revision: 1.60 $
  *
  *******************************************************************************
  */
@@ -2278,6 +2278,9 @@ F900..FAFF; CJK Compatibility Ideographs
         }
         log.println();
       } else {
+          if (BIDI.containsSome(chr) || BIDI.containsSome(expansion)) {
+              log.print(LRM);
+          }
         if (insertVariableTop) {
           log.println(RELATION_NAMES[0] + " [variable top]");
         }
@@ -2300,7 +2303,7 @@ F900..FAFF; CJK Compatibility Ideographs
             }
           }
 
-          log.print(latestAge(chr) + "[");
+          log.print(latestAge(chr) + " [");
           String typeKD = ScriptSet.getTypesCombined(chr);
           log.print(typeKD + "] ");
 
@@ -2324,6 +2327,11 @@ F900..FAFF; CJK Compatibility Ideographs
     log.close();
     Utility.fixDot();
   }
+  
+  static final UnicodeProperty bidiProp = getToolUnicodeSource().getProperty("bc");
+  static final UnicodeSet BIDI = new UnicodeSet(bidiProp.getSet("AL")).addAll(bidiProp.getSet("R")).freeze();
+  static final String LRM = "\u200E";
+
 
   private static String latestAge(String chr) {
     int cp;
@@ -2334,13 +2342,14 @@ F900..FAFF; CJK Compatibility Ideographs
         latestAge = age;
       }
     }
-    while (latestAge.endsWith(".0")) {
-      latestAge = latestAge.substring(0, latestAge.length() - 2);
-    }
+//    if (latestAge.endsWith(".0")) {
+//      latestAge = latestAge.substring(0, latestAge.length() - 2);
+//    }
     return latestAge;
   }
 
   static UnicodeProperty ageProp;
+  
   private static String getAge(int cp) {
     if (ageProp == null) ageProp = getToolUnicodeSource().getProperty("age");
     return ageProp.getValue(cp);
@@ -3324,11 +3333,13 @@ F900..FAFF; CJK Compatibility Ideographs
       && (codeUnits[0] == 'l' || codeUnits[0] == 'L')
       && (codeUnits[1] == '\u00B7' || codeUnits[1] == '\u0387');
 
-      if (middleDotHack) {
-        log.print(Utility.hex(codeUnits, 0, chr.length(), " | ") + "; ");            
-      } else {
-        log.print(Utility.hex(codeUnits, 0, chr.length(), " ") + "; ");
-      }
+      log.print(com.ibm.icu.impl.Utility.hex(chr, 4, middleDotHack ? " | " : " ") + "; ");            
+
+//      if (middleDotHack) {
+//        log.print(Utility.hex(codeUnits, 0, chr.length(), middleDotHack ? " | " : " ") + "; ");            
+//      } else {
+//        log.print(Utility.hex(codeUnits, 0, chr.length(), " ") + "; ");
+//      }
       boolean nonePrinted = true;
       boolean isFirst = true;
 

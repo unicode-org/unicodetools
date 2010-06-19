@@ -1,4 +1,6 @@
 package org.unicode.draft;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,6 +63,17 @@ public class Combining {
     .addColumn("Chars")
     ;
     Counter<String> mulCounter = CharacterFrequency.getCharCounter("mul");
+    // hack: print top 1000 supplemental characters
+    int topSupp = 1000;
+    for (String s : mulCounter.getKeysetSortedByCount(false)) {
+        int cp = s.codePointAt(0);
+        if (cp > 0xFFFF) {
+            System.out.println(mulCounter.get(s) + "\t" + UCharacter.getName(s, " + "));
+        }
+        if (--topSupp < 0) {
+            break;
+        }
+    }
     long totalTotal = mulCounter.getTotal();
     double worldPop = CharacterFrequency.getLanguageToPopulation("mul");
 
@@ -85,7 +98,8 @@ public class Combining {
 
       ExemplarInfo exemplarInfo = ExemplarInfo.make(cldrLanguage, missingExemplars);
       // open files for writing, create table
-      CompressedDataOutput out = new CompressedDataOutput(new FileOutputStream(Utility.GEN_DIR + "/frequency/" + language + ".txt"));
+      DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(Utility.GEN_DIR + "/frequency/" + language + ".txt"));
+    CompressedDataOutput out = new CompressedDataOutput().set(dataOutputStream);
       PrintWriter html = BagFormatter.openUTF8Writer(Utility.GEN_DIR + "/frequency-html", htmlFilename);
       html.println("<html><head><meta charset='UTF-8'>\n" +
               "<link rel='stylesheet' type='text/css' href='index.css' media='screen'/>\n" +
@@ -159,7 +173,7 @@ public class Combining {
       .addCell(indexChars.toString())
       .finishRow();      
 
-      out.close();
+      //out.close();
       html.println(table);
       html.println("</body></html>");
       html.close();

@@ -208,7 +208,7 @@ public final class BidiReference {
             // Rule P1 is the requirement for entering this algorithm.
             // Rules P2, P3. 
             // If no externally supplied paragraph embedding level, use default.
-            if (paragraphEmbeddingLevel == -1) {
+            if (paragraphEmbeddingLevel < 0) {
                 determineParagraphEmbeddingLevel();
             }
 
@@ -292,7 +292,8 @@ public final class BidiReference {
         // Rule P3.
         if (strongType == -1) { // none found
             // default embedding level when no strong types found is 0.
-            paragraphEmbeddingLevel = 0;
+        	// but we allow the other option now!
+        	paragraphEmbeddingLevel &= 1; // just leave the last bit
         } else if (strongType == L) {
             paragraphEmbeddingLevel = 0;
         } else { // AL, R
@@ -1060,7 +1061,8 @@ public final class BidiReference {
      * default processing can still be performed when using this API.
      */
     private static void validateParagraphEmbeddingLevel(byte paragraphEmbeddingLevel) {
-        if (paragraphEmbeddingLevel != -1 && 
+        if (paragraphEmbeddingLevel != -2 &&
+        	paragraphEmbeddingLevel != -1 && 
             paragraphEmbeddingLevel != 0 && 
             paragraphEmbeddingLevel != 1) {
             throw new IllegalArgumentException("illegal paragraph embedding level: " + paragraphEmbeddingLevel);

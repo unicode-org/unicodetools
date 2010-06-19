@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2010-05-27 16:39:47 $
- * $Revision: 1.29 $
+ * $Date: 2010-06-19 00:29:21 $
+ * $Revision: 1.30 $
  *
  *******************************************************************************
  */
@@ -353,7 +353,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
     out.println("<p><b>Unicode Version:</b> " + ucd.getVersion() + "</p>");
     out.println("<p><b>Date:</b> " + Default.getDate() + "</p>");
     out
-    .println("<p>This page illustrates the application of a particular boundary specifications. The material here is informative, not normative.</p> "
+    .println("<p>This page illustrates the application of a particular boundary specification. The material here is informative, not normative.</p> "
             + "<p>The first chart shows where breaks would appear between different sample characters or strings. "
             + "The sample characters are chosen mechanically to represent the different properties used by the specification.</p>"
             + "<p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. "
@@ -666,7 +666,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
               "The following samples illustrate the application of the rules. " +
               "The blue lines indicate possible break points. " +
               "If your browser supports titles (tool-tips), then positioning the mouse over each character will show its name, " +
-              "white positioning between characters shows the rule number of the rule responsible for the break-status." +
+              "while positioning between characters shows the rule number of the rule responsible for the break-status." +
       "</p>");
       out.println("<ol>");
       for (int ii = 0; ii < extraSingleSamples.length; ++ii) {
@@ -944,7 +944,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
         "can't", "can\u2019t", 
         "'can' not",
         "can 'not'",
-        "bug(s)",
+        "bug(s)     ",
+        "bug(s)\u00a0     ",
         "..ます。XMLの..",
         "ab\u00ADby",
         "-3",
@@ -958,6 +959,76 @@ abstract public class GenerateBreakTest implements UCD_Types {
         "ま(す)",
         "find .com",
         "equals .35 cents",
+        "(s)he",
+        "{s}he",
+        "ˈsIləb(ə)l",
+        "ˈsIləb{ə}l",
+        "code(s).",
+        "code(s.)",
+        "code(s)!",
+        "code(s!)",
+        "code\\(s\\)",
+        "code( s )",
+        "code{s}",
+        "code{s}.",
+        "code{s}!",
+        "code\\{s\\}",
+        "code{ s }",
+        "cod(e)…(s)",
+        "(cod(e)…)s",
+        "cod{e}…{s}",
+        "{cod{e}…}s",
+        "(con-)lang",
+        "(con\u00AD)lang",
+        "(con‑)lang",
+        "(con)-lang",
+        "(con)\u00ADlang",
+        "(con)‑lang",
+        "{con-}lang",
+        "{con\u00AD}lang",
+        "{con‑}lang",
+        "{con}-lang",
+        "{con}\u00ADlang",
+        "{con}‑lang",
+        "cre\u0301(e\u0301)(e)",
+        "cre\u0301[er|e\u0301(e)(s)]",
+        "cre\u0301{er|e\u0301(e)(s)}",
+        "ambigu(̈)(e\u0308)",
+        "ambigu(«̈»)(e\u0308)",
+        "ambigu(« ̈ »)(e\u0308)",
+        "ambigu« ( ̈ ) »(e\u0308)",
+        "ambigu«\u202F( ̈ )\u202F»(e\u0308)",
+        "ambigu{̈}(e\u0308)",
+        "ambigu{«̈»}(e\u0308)",
+        "ambigu{« ̈ »}(e\u0308)",
+        "ambigu« { ̈ } »(e\u0308)",
+        "ambigu«\u202F{ ̈ }\u202F»(e\u0308)",
+        "(czerwono\u00AD‑)niebieska",
+        "(czerwono\u00AD)‑niebieska",
+        "(czerwono)\u00AD‑niebieska",
+        "{czerwono\u00AD‑}niebieska",
+        "{czerwono\u00AD}‑niebieska",
+        "{czerwono}\u00AD‑niebieska",
+        "operator[](0);",
+        "operator[](){}",
+        "本(を)読む",
+        "本(「を」)読む",
+        "本「(を)」読む",
+        "本{を}読む",
+        "本{「を」}読む",
+        "本[(を)]読む",
+        "(ニュー・)ヨーク",
+        "(ニュー)・ヨーク",
+        "{ニュー・}ヨーク",
+        "{ニュー}・ヨーク",
+        "(ᡐᡆᡑᡆ᠆)ᠪᠢᠴᠢᠭ\u180C",
+        "(ᡐᡆᡑᡆ)᠆ᠪᠢᠴᠢᠭ\u180C",
+        "{ᡐᡆᡑᡆ᠆}ᠪᠢᠴᠢᠭ\u180C",
+        "{ᡐᡆᡑᡆ}᠆ᠪᠢᠴᠢᠭ\u180C",
+        "(http://)xn--a",
+        "{http://}xn--a",
+        "(0,1)+(2,3)⊕(−4,5)⊖(6,7)",
+        "{0,1}+{2,3}⊕{−4,5}⊖{6,7}"
       });
     }	
     public List<String> genTestItems(String before, String after, List<String> results) {
@@ -1462,7 +1533,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
 ///*
 //String[][] oldLineBreak = {
 //{"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"^",	"%"},
-//{"_",	"^",	"%",	"%",	"^",	"^",	"^",	"^",	" ",	"%",	"_",	"_",	"_",	"_",	"%",	"%",	"_",	"_",	"^",	"%"},
+//{"_",	"^",	"%",	"%",	"^",	"^",	"^",	"^",	"",	"%",	"_",	"_",	"_",	"_",	"%",	"%",	"_",	"_",	"^",	"%"},
 //{"^",	"^",	"%",	"%",	"%",	"^",	"^",	"^",	"%",	"%",	"%",	"%",	"%",	"%",	"%",	"%",	"%",	"%",	"^",	"%"},
 //{"%",	"^",	"%",	"%",	"%",	"^",	"^",	"^",	"%",	"%",	"%",	"%",	"%",	"%",	"%",	"%",	"%",	"%",	"^",	"%"},
 //{"_",	"^",	"%",	"%",	"%",	"^",	"^",	"^",	"_",	"_",	"_",	"_",	"_",	"_",	"%",	"%",	"_",	"_",	"^",	"%"},

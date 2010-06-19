@@ -1,5 +1,5 @@
-Generate: DerivedCoreProperties
-DeltaVersion: 10
+Generate: .*
+DeltaVersion: 11
 CopyrightYear: 2010
 
 File: extra/ScriptNfkc
@@ -420,9 +420,14 @@ File:   BidiTest
 #
 # Format:
 #
+# All tokens may be separated by whitespaces (space or tab). There are three kinds of lines:
+# Levels, Reorder, and data.
+#
+# A Levels line indicates that all following data lines, up to the next Levels line,
+# have the same resulting ordering levels. It has the following format:
+#
 # @Levels: <levels>
-# These lines indicate that all following* data lines have the same resulting ordering levels
-# (*that is, data lines up to the next @Levels).
+#
 #    <levels> =     An ordered space-delimited list of numbers indicating the resulting levels
 #                   for each input property value. The UBA does not assign levels to certain values;
 #                   those are indicated with an x. See the note below.
@@ -430,23 +435,33 @@ File:   BidiTest
 #   @Levels:    1 0
 #   @Levels:    x 1 x 2
 #
+# A Reorder line indicates that all following data lines, up to the next Reorder line,
+# have the same resulting reordering. It has the following format:
+#
 # @Reorder: <ordering>
-# These lines indicate that all following* data lines have the same resulting reordering
-# (*that is, data lines up to the next @Reorder).
+#
 #    <ordering> =   An ordered space-delimited list of numbers indicating the resulting
-#                   ordering from left to right. The numbers are zero-based. Items with
-#                   a level of x are skipped. Thus "1 0" indicates what would happen
-#                   with input of "L R" and an RTL paragraph direction.
+#                   visual ordering from left to right. The numbers are zero-based, and
+#                   are indexes into the input string. Items with a level of x are skipped.
+#                   Thus "1 0" indicates what would happen with input of "L R" and an RTL
+#                   paragraph direction.
 # Example:
 #   @Reorder:    1 0
 #   @Reorder:    3 1
 #
+# A data line has the following format:
+
 # <input> ; <bitset>
+
 #   <input>  =      An ordered list of BIDI property values
-#   <bitset> =      A bitset for paragraph levels (P): 1 = automatic, 2 = LTR, 4 = RTL
+#   <bitset> =      A hex bitset for paragraph levels (P): 1 = auto-LTR, 2 = LTR, 4 = RTL, 8 = auto-RTL
+#                   Auto-LTR (standard BIDI) uses the first L/R/AL character, and is LTR if none is found.
+#                   Auto-RTL (an HL1 protocol) uses the first L/R/AL character, and is RTL if none is found.
 # Example:
 #    L LRE R R; 7
 #    L LRE R AL; 7
+#
+# Any other line starting with @ is to be ignored (this allows some degree of forward compatibility).
 #
 # Usage:
 #
@@ -459,7 +474,8 @@ File:   BidiTest
 #       If they are different, the test fails.
 #
 # - If the implementation allows for a character string as input,
-#   randomly pick characters from the @type values, and test the reordering as above.
+#   randomly pick characters from those with the same Bidi_Class values,
+#   and test the reordering as above.
 #
 # Note that the UBA doesn't specify the output level or order of certain characters,
 # such as LRO. These are omitted from the reordered output. Thus the following two
