@@ -36,6 +36,7 @@ public class TestUnicodeInvariants {
   private static final String LATEST_VERSION = UCD.latestVersion; // "5.2.0"; // 
   private static final Factory LATEST_PROPS = getProperties(LATEST_VERSION);
   private static final String LAST_VERSION = UCD.lastVersion; // "5.1.0"; // 
+  private static final boolean SHOW_LOOKUP = false;
   private static int showRangeLimit = 20;
   static boolean doHtml = true;
 
@@ -105,6 +106,13 @@ public class TestUnicodeInvariants {
       out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
       out.println("<link rel='stylesheet' type='text/css' href='UnicodeTestResults.css'>");
       out.println("<title>Unicode Property Results</title>");
+      out.println("<style>\n" +
+              "p {margin:0}\n" +
+              ".b {font-weight:bold; color:green}\n" +
+              ".bb {font-weight:bold; color:blue}\n" +
+              ".e, .f {color:red}\n" +
+              ".s {color:gray}\n" +
+      		"</style>");
       out.println("</head><body><h1>#Unicode Invariant Results</h1>");
     } else {
       out.write('\uFEFF'); // BOM
@@ -219,7 +227,9 @@ public class TestUnicodeInvariants {
       println("## Got unexpected " + (propertyComparison.shouldBeEqual ? "differences" : "equalities") + ": " + failureCount);
       UnicodeLabel failureProp = new UnicodeProperty.UnicodeMapProperty().set(failures);
       errorLister.setValueSource(failureProp);
+      if (doHtml) { out.println("<table class='f'>"); }
       errorLister.showSetNames(out, failureSet);
+      if (doHtml) { out.println("</table>"); }
       errorLister.setValueSource((UnicodeLabel)null);
       printErrorLine("Test Failure", Side.END, testFailureCount);
       println();
@@ -485,7 +495,9 @@ public class TestUnicodeInvariants {
     println("## Expected " + expected + ", got: " + segment.size() + "\t" + segment.toString());
     println("## " + rightStatus + "\t" + rightSide);
     println("## " + leftStatus + "\t" + leftSide);
+    if (doHtml) { out.println("<table class='e'>"); }
     errorLister.showSetNames(out, segment);
+    if (doHtml) { out.println("</table>"); }
     printErrorLine("Test Failure", Side.END, testFailureCount);
     println();
   }
@@ -503,7 +515,9 @@ public class TestUnicodeInvariants {
       abbreviated = valueSet.size() - shorter.size();
       valueSet = shorter;
     }
+    if (doHtml) { out.println("<table class='s'>"); }
     showLister.showSetNames(out, valueSet);
+    if (doHtml) { out.println("</table>"); }
     println("## Total:\t" + valueSet.size() + (abbreviated == 0 ? "" : "\t...(omitting " + abbreviated + " from listing)..."));
     println();
   }
@@ -515,7 +529,7 @@ public class TestUnicodeInvariants {
       line = line.substring(0,index) + "☞" + line.substring(index);
     }
 
-    printErrorLine("Parse Error", Side.START, parseErrorCount);
+    printErrorLine("Parse Failure", Side.START, parseErrorCount);
     println("**** PARSE ERROR:\t" + line);
     out.println("<pre>");
     final String message = e.getMessage();
@@ -642,6 +656,7 @@ public class TestUnicodeInvariants {
       }
     };
 
+
     Map<String,char[]> variables = new TreeMap<String,char[]>(LONGEST_FIRST);
 
     public void add(String variable, String value) {
@@ -652,7 +667,9 @@ public class TestUnicodeInvariants {
     }
 
     public char[] lookup(String s) {
-      System.out.println("\tlookup: " + s + "\treturns\t" + String.valueOf(variables.get(s)));
+      if (SHOW_LOOKUP) {
+          System.out.println("\tlookup: " + s + "\treturns\t" + String.valueOf(variables.get(s)));
+      }
       return variables.get(s);
     }
 

@@ -1,4 +1,4 @@
-Generate: .*
+Generate: Script
 DeltaVersion: 11
 CopyrightYear: 2010
 
@@ -562,7 +562,8 @@ Property: SPECIAL
 
 File:	Scripts
 Property:	Script
-Format:	nameStyle=none skipValue=Unknown
+Format:	nameStyle=none
+# skipValue=Unknown
 
 File:	SpecialCasing
 Property: SPECIAL

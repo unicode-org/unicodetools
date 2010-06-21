@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UData.java,v $
-* $Date: 2009-08-18 23:38:46 $
-* $Revision: 1.14 $
+* $Date: 2010-06-21 18:23:39 $
+* $Revision: 1.15 $
 *
 *******************************************************************************
 */
@@ -346,4 +346,14 @@ class UData implements UCD_Types {
         */
     }
     static boolean HACK = false;
+
+    public void cleanup() {
+//        if (script == UCD_Types.Unknown_Script
+//                && generalCategory != UCD_Types.Co
+//                && generalCategory != UCD_Types.Cn
+//                && generalCategory != UCD_Types.Cs
+//                ) {
+//            script = UCD_Types.COMMON_SCRIPT;
+//        }
+    }
 }

@@ -85,6 +85,9 @@ $gcAllSymbols = [\p{gc=Math_Symbol}\p{gc=Currency_Symbol}\p{gc=Modifier_Symbol}\
 Let $gcAllMarks = \p{gc=/_Mark/}
 $gcAllMarks = [\p{gc=Nonspacing_Mark}\p{gc=Enclosing_Mark}\p{gc=Spacing_Mark}]
 
+Let $gcAllLetters = \p{gc=/_Letter/}
+$gcAllLetters = [\p{gc=Ll}\p{gc=Lu}\p{gc=Lo}\p{gc=Lt}\p{gc=Lm}]
+
 ##########################
 # Main Stability Policies 
 #   http://www.unicode.org/policies/property_value_stability_table.html
@@ -134,8 +137,8 @@ In \P{U-1:GC=Cn} name=U-1:name
 
 # Red Flag: cased and case_ignorable should be disjoint
 
-Let caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770]
-\p{cased} ∥ [\p{caseignorable} - caseOverlap]
+Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770]
+\p{cased} ∥ [\p{caseignorable} - $caseOverlap]
 
 ##########################
 # Property Stability Policies
@@ -172,6 +175,13 @@ Let $AL_blocks = [\u0600-\u07BF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF]
 $R_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=AL}]
 $AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
 [$R_blocks $AL_blocks \N{RIGHT-TO-LEFT MARK}] ⊇ [\p{Bidi_Class=AL} \p{Bidi_Class=R}] #200f
+
+
+#BN characters are default ignorable, noncharacters, controls, minus marks, bidi-controls, alphabetic, whitespace, and a few exceptions
+
+Let $BN_Exceptions = [\u001C-\u001F\u17B4\u17B5]
+
+[\p{Bidi_Class=BN}] = [\p{di}\p{nchar}\p{gc=Cc}-\p{gc=Mc}-\p{gc=Mn}-\p{gc=Me}-\p{Bidi_C}-\p{alpha}-\p{wspace} - $BN_Exceptions]
 
 ##########################
 # Case
@@ -281,6 +291,13 @@ Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB]
 # Stability: Once a character is assigned, its Decomposition_Mapping will never change. 
 In \P{U-1:GC=Cn} dm=U-1:dm
 
+# Construction of Full_Composition_Exclusion
+# Primary Composites don't include singletons, ccc!=0, or sequences starting with ccc!=0
+# TODO
+# Let $singletons = [\p{dt=canonical} - \p{dm=/../}]
+# [\p{nfcqc=N}&\p{dt=canonical}] ⊇ $singletons
+# [\p{nfcqc=N}&\p{dt=canonical}] ⊇ [\p{dt=canonical} - \p{ccc=0}]
+
 ##########################
 # Other Invariant Tests, not in Stability Policies
 ##########################
@@ -306,7 +323,7 @@ Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
 
 # Musical symbol combining marks, other oddities
 
-Let $AlphaExclusions = [\u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1B44\u1BAA\u1CE1\uA953\uA9C0\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172]
+Let $AlphaExclusions = [\u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:]]
 
 \p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
 
@@ -321,7 +338,8 @@ Let $AlphaExclusions = [\u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F
 
 \p{Script=Common} ∥ [\p{GC=Mn} \p{GC=Me} \p{Join_Control}]
 \p{Script=Inherited} ⊆ [\p{GC=Mn} \p{GC=Me} \p{Join_Control}]
-\p{Script=Unknown} = [\p{GC=Cn} \p{GC=Co} \p{GC=Cs}]
+# TODO
+# \p{Script=Unknown} = [\p{GC=Cn} \p{GC=Co} \p{GC=Cs}]
 
 # [\p{Alphabetic}] ∥ \p{Script=Common}
 #  & [\p{Decomposition_Type=None} \p{Decomposition_Type=Canonical}]
@@ -361,6 +379,22 @@ $SAScripts ⊇ \p{LineBreak=SA}
 Let $SAScriptExceptions = [\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAA7B\uAADB-\uAADF]
 
 [$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
+
+##########################
+# Word Break
+##########################
+
+# Compare word characters with similar identifier characters
+
+# UAX 31 Table 3: Candidate Characters for Inclusion in Identifiers
+Let $uax31table3 = [\u0027\u002D\u002E\u003A\u00B7\u058A\u05F3\u05F4\u0F0B\u200C\u200D\u2010\u2019\u2027\u30A0\u30FB]
+# Warning: the uax31 tables don't have machine-readable tables, so must be updated each release.
+
+Let $WBRemovals = [\u0387\u2018\u2024\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d\p{Cf}\p{Block=Enclosed Alphanumerics}]
+Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F]
+
+# TODO
+# [\p{Alpha}\p{WB=Extend}\p{WB=FO}\p{WB=LE}\p{WB=ML}\p{WB=MB}\p{WB=EX}-$WBRemovals] = [$gcAllLetters $gcAllMarks [:gc=Nl:][:gc=Pc:]-$Uax31Removals]
 
 ##########################
 # Derivations
