@@ -24,6 +24,7 @@ import com.ibm.icu.dev.test.util.UnicodeProperty.Factory;
 import com.ibm.icu.dev.test.util.UnicodeProperty.PatternMatcher;
 import com.ibm.icu.dev.tool.UOption;
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -502,9 +503,14 @@ public class TestUnicodeInvariants {
     println();
   }
 
+  static NumberFormat nf = NumberFormat.getIntegerInstance();
+  static {
+      nf.setGroupingUsed(true);
+  }
   private static void showSet(ParsePosition pp, final String value) {
     pp.setIndex(0);
     UnicodeSet valueSet = new UnicodeSet(value, pp, symbolTable);
+    int totalSize = valueSet.size();
     int abbreviated = 0;
     if (showRangeLimit >= 0) {
       UnicodeSet shorter = new UnicodeSet();
@@ -512,13 +518,13 @@ public class TestUnicodeInvariants {
       for (UnicodeSetIterator it = new UnicodeSetIterator(valueSet); it.nextRange() && rangeLimit > 0; --rangeLimit) {
         shorter.add(it.codepoint, it.codepointEnd);
       }
-      abbreviated = valueSet.size() - shorter.size();
+      abbreviated = totalSize - shorter.size();
       valueSet = shorter;
     }
     if (doHtml) { out.println("<table class='s'>"); }
     showLister.showSetNames(out, valueSet);
     if (doHtml) { out.println("</table>"); }
-    println("## Total:\t" + valueSet.size() + (abbreviated == 0 ? "" : "\t...(omitting " + abbreviated + " from listing)..."));
+    println("## Total:\t" + nf.format(totalSize) + (abbreviated == 0 ? "" : "\t(omitting " + nf.format(abbreviated) + " from listing)"));
     println();
   }
 
@@ -751,7 +757,16 @@ public class TestUnicodeInvariants {
       if (propertyValue.length() == 0) {
         set = property.getSet("true");
       } else if (propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
-        final String body = propertyValue.substring(1,propertyValue.length()-1);
+        String body = propertyValue.substring(1,propertyValue.length()-1);
+        for (String variableMinus : symbolTable.variables.keySet()) {
+            String variable = "$" + variableMinus;
+            if (body.contains(variable)) {
+                String replacement = String.copyValueOf(symbolTable.variables.get(variableMinus));
+                UnicodeSet value = parseUnicodeSet(replacement);
+                String valueString = value.complement(0).complement(0).toPattern(false);
+                body = body.replace(variable, valueString);
+            }
+        }
         matcher.set(body);
         set = property.getSet(matcher);
       } else {
