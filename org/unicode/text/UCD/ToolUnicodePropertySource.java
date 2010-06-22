@@ -358,6 +358,47 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }.setMain("FC_NFKC_Closure", "FC_NFKC", UnicodeProperty.STRING, version)
     // .addName("FNC")
     );
+    
+    add(new UnicodeProperty.SimpleProperty() {
+        public String _getValue(int cp) {
+          if (!ucd.isRepresented(cp)) {
+            return null;
+          }
+          String b = nfd.normalize(cp);
+          if (b.codePointAt(0) == cp && b.length() == Character.charCount(cp)) {
+            return null;
+          }
+          return b;
+        }
+
+        public int getMaxWidth(boolean isShort) {
+          return 5;
+        }
+      }.setMain("toNFD", "toNFD", UnicodeProperty.EXTENDED_STRING, version)
+      );
+
+    add(new UnicodeProperty.SimpleProperty() {
+        public String _getValue(int cp) {
+          if (!ucd.isRepresented(cp)) {
+            return null;
+          }
+          String b = nfc.normalize(cp);
+          if (b.codePointAt(0) == cp && b.length() == Character.charCount(cp)) {
+            return null;
+          }
+          return b;
+        }
+
+        public int getMaxWidth(boolean isShort) {
+          return 5;
+        }
+      }.setMain("toNFC", "toNFC", UnicodeProperty.EXTENDED_STRING, version)
+      );
+
+    add(new SimpleIsProperty("isNFD", "isNFD", version, getProperty("toNFD"), false).setExtended());
+    add(new SimpleIsProperty("isNFC", "isNFC", version, getProperty("toNFC"), false).setExtended());
+
+
 
     add(new UnicodeProperty.SimpleProperty() {
       UnicodeSet ignorable = null;
@@ -1406,6 +1447,11 @@ isTitlecase(X) is false.
               : equals(codepoint, value) == samePolarity ? UCD_Names.YES : UCD_Names.NO;
     }
 
+    SimpleIsProperty setExtended() {
+        setType(UnicodeProperty.EXTENDED_BINARY);
+        return this;
+    }
+    
     SimpleIsProperty setCheckUnassigned() {
       setUniformUnassigned(false);
       return this;
