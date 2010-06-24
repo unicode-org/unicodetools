@@ -108,16 +108,22 @@ public class UnicodeSetUtilities {
             String propertyValue, UnicodeSet result) {
       boolean status = false;
       boolean invert = false;
-      int opPos = propertyName.indexOf('\u2260');
-      if (opPos != -1) {
-        propertyValue = propertyValue.length() == 0 
-        ? propertyName.substring(opPos+1) 
-                : propertyName.substring(opPos+1) + "=" + propertyValue;
-        propertyName = propertyName.substring(0,opPos);
-        invert = true;
-      } else if (propertyName.endsWith("!")) {
+      int posNotEqual = propertyName.indexOf('\u2260');
+      int posColon = propertyName.indexOf(':');
+      if (posNotEqual >= 0 || posColon >= 0) {
+          if (posNotEqual < 0) posNotEqual = propertyName.length();
+          if (posColon < 0) posColon = propertyName.length();
+          int opPos = posNotEqual < posColon ? posNotEqual : posColon;
+          propertyValue = propertyValue.length() == 0 ? propertyName.substring(opPos+1) 
+                  : propertyName.substring(opPos+1) + "=" + propertyValue;
+          propertyName = propertyName.substring(0,opPos);
+          if (posNotEqual < posColon) {
+              invert = true;
+          }
+      }
+      if (propertyName.endsWith("!")) {
         propertyName = propertyName.substring(0, propertyName.length() - 1);
-        invert = true;
+        invert = !invert;
       }
       propertyValue = propertyValue.trim();
       if (propertyValue.length() != 0) {

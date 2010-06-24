@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeSet;
 
@@ -34,7 +35,7 @@ public class TestUnicodeSet  extends TestFmwk {
     UnicodeMap<String> map = prop.getUnicodeMap();
     UnicodeMap<String> map2 = prop2.getUnicodeMap();
     for (String value : Builder.with(new TreeSet<String>()).addAll(map.values()).addAll(map2.values()).get()) {
-      System.out.println(value + "\t" + map.getSet(value) + "\t" + map2.getSet(value));
+      logln(value + "\t" + map.getSet(value) + "\t" + map2.getSet(value));
     }
     UnicodeSet set = UnicodeSetUtilities.parseUnicodeSet("[:enc_Latin1=/61/:]", TableStyle.extras);
     assertNotEquals("Latin1", 0, set.size());
@@ -44,8 +45,10 @@ public class TestUnicodeSet  extends TestFmwk {
     SortedMap<String, Charset> charsets = Charset.availableCharsets();
     byte[] dest = new byte[50];
     UnicodeSet values = new UnicodeSet();
-
-    for (String s : charsets.keySet()) {
+    Set<String> charsetSet = charsets.keySet();
+    int count = (int)(5 + charsetSet.size()*getInclusion()/10.0);
+    for (String s : charsetSet) {
+        if (--count < 0) break;
       Charset charset = charsets.get(s);
       CharEncoder encoder;
       try {
@@ -76,7 +79,7 @@ public class TestUnicodeSet  extends TestFmwk {
       }
       values.remove(0x2030);
       if (values.size() != 0) {
-        System.out.println(s + "\tvalues:\t" + values + "\taliases:\t" + charset.aliases());
+        logln(s + "\tvalues:\t" + values + "\taliases:\t" + charset.aliases());
       }
     }
   }
