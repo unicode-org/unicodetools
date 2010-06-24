@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.unicode.jsp.FileUtilities;
 import org.unicode.jsp.Idna2008;
+import org.unicode.jsp.IdnaTypes;
 import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.text.utility.Utility;
 
@@ -94,15 +95,16 @@ public class TestIdna extends TestFmwk {
   public void TestExtract() throws IOException {
 
     MyHandler handler = new MyHandler();
-    handler.process(this.getClass(), "IdnaMappingTable.txt");
+    handler.process(IdnaTypes.class, "IdnaMappingTable.txt");
 
-    System.out.println("sourceNotAllowed: " + handler.sourceNotAllowed.size() + "\t" + handler.sourceNotAllowed);
-    System.out.println("targetNotAllowed: " + handler.targetNotAllowed.size() + "\t" + handler.targetNotAllowed);
-    System.out.println("equalsIdnabis: " + handler.equalsIdnabis.size() + "\t" + handler.equalsIdnabis);
-    System.out.println("diffIdnabis: " + handler.diffIdnaBis.size());
+    logln("sourceNotAllowed: " + handler.sourceNotAllowed.size() + "\t" + handler.sourceNotAllowed);
+    logln("targetNotAllowed: " + handler.targetNotAllowed.size() + "\t" + handler.targetNotAllowed);
+    logln("equalsIdnabis: " + handler.equalsIdnabis.size() + "\t" + handler.equalsIdnabis);
+    logln("diffIdnabis: " + handler.diffIdnaBis.size());
+    assertNotEquals("diffIdnaBis", 0, handler.diffIdnaBis.keySet().size());
     for (String source : handler.diffIdnaBis.keySet()) {
       Object targetChars = handler.diffIdnaBis.get(source);
-      System.out.println("\t" + Utility.hex(source) + " ( " + source + " ) => "
+      logln("\t" + Utility.hex(source) + " ( " + source + " ) => "
               + Utility.hex(targetChars) + " ( " + targetChars + " ) # " + UCharacter.getName(source.codePointAt(0)));
     }
   }

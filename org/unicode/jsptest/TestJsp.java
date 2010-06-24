@@ -314,7 +314,11 @@ public class TestJsp  extends TestFmwk {
     checkProperties("[:greek:]", "[\u0370]");
     checkProperties("[:mn:]", "[\u0308]");
     checkProperties("[:sc!=Latn:]", "[\u0308]");
+    checkProperties("[:^sc:Latn:]", "[\u0308]");
     checkProperties("[:sc≠Latn:]", "[\u0308]");
+    checkSetsEqual("[:sc≠Latn:]", "[:^sc:Latn:]", "[:^sc=Latn:]", "[:sc!=Latn:]");
+    checkSetsEqual("[:sc=Latn:]", "[:sc:Latn:]", "[:^sc≠Latn:]", "[:^sc!=Latn:]", "[:^sc!:Latn:]");
+    
     try {
       checkProperties("[:linebreak:]", "[\u0308]");
       throw new IllegalArgumentException("Exception expected.");
@@ -350,7 +354,19 @@ public class TestJsp  extends TestFmwk {
     checkProperties("\\p{idna2008=disallowed}", "[A]");
   }
 
-  private void showIcuEnums() {
+  private void checkSetsEqual(String... unicodeSetPatterns) {
+      UnicodeSet base = null;
+      for (String pattern : unicodeSetPatterns) {
+          UnicodeSet current = UnicodeSetUtilities.parseUnicodeSet(pattern, TableStyle.extras);
+          if (base == null) {
+              base = current;
+          } else {
+              assertEquals(unicodeSetPatterns[0] + " == " + pattern, base, current);
+          }
+      }
+}
+
+private void showIcuEnums() {
     for (int prop = UProperty.BINARY_START; prop < UProperty.BINARY_LIMIT; ++prop) {
       showEnumPropValues(prop);
     }

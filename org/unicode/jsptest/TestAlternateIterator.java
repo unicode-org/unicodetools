@@ -46,13 +46,17 @@ public class TestAlternateIterator extends TestFmwk {
   }
 
   private void check(Confusables confusables) {
-    System.out.println("Confusables for: " + confusables.getOriginal());
-    System.out.println("\tNormalizationCheck:\t" + confusables.getNormalizationCheck());
-    System.out.println("\tScriptCheck:\t" + confusables.getScriptCheck());
-    System.out.println("\tAllowedCharacters:\t" + confusables.getAllowedCharacters());
-    int count = 0;
-    for (String item : confusables) {
-      System.out.println(++count + "\t" + item + "\t" + Utility.hex(item));
-    }
+      if (isVerbose()) {
+          logln("Confusables for: " + confusables.getOriginal());
+          logln("\tNormalizationCheck:\t" + confusables.getNormalizationCheck());
+          logln("\tScriptCheck:\t" + confusables.getScriptCheck());
+          logln("\tAllowedCharacters:\t" + confusables.getAllowedCharacters());
+          int count = 0;
+          for (String item : confusables) {
+              logln(++count + "\t" + item + "\t" + Utility.hex(item));
+          }
+      } else {
+          assertNotEquals("Confusable count", 0, confusables.iterator().hasNext());
+      }
   }
 }
