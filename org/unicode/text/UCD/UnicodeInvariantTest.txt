@@ -80,7 +80,7 @@ Let $foo = \p{ccc=9}
 Let $fii = \p{toNFD=/$foo/}
 
 Let $gcAllPunctuation = \p{gc=/_Punctuation/}
-$gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=}\p{gc=Other_Punctuation}]
+$gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=Other_Punctuation}]
 
 Let $gcAllSymbols = \p{gc=/_Symbol/}
 $gcAllSymbols = [\p{gc=Math_Symbol}\p{gc=Currency_Symbol}\p{gc=Modifier_Symbol}\p{gc=Other_Symbol}]
