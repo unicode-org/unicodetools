@@ -25,7 +25,6 @@ import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.Idna2008.Idna2008Type;
-import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
 
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
@@ -169,7 +168,7 @@ public class UnicodeUtilities {
   //    }
   //  }
 
-  public static UnicodeSet IGNORE_IN_IDNA_DIFF = UnicodeSetUtilities.parseUnicodeSet("[[\\u0000-\\u007F][:Cc:][:Cn:][:Co:][:Cs:]]", TableStyle.simple).freeze();
+  public static UnicodeSet IGNORE_IN_IDNA_DIFF = new UnicodeSet("[[\\u0000-\\u007F][:Cc:][:Cn:][:Co:][:Cs:]]").freeze();
 
   public static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped, UnicodeSet overallAllowed) {
     UnicodeMap<String> result = new UnicodeMap<String>();
@@ -275,7 +274,7 @@ public class UnicodeUtilities {
 
   static List<String> XPROPERTY_NAMES = Arrays.asList(new String[]{"toNfc", "toNfd", "toNfkc", "toNfkd", "toCasefold", "toLowercase", "toUppercase", "toTitlecase",
   "subhead"});
-  static final UnicodeSet MARK = (UnicodeSet) UnicodeSetUtilities.parseUnicodeSet("[:M:]", TableStyle.simple).freeze();
+  static final UnicodeSet MARK = new UnicodeSet("[:M:]").freeze();
 
   static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice, Normalizer.Mode compat) {
     if (compat == null || Normalizer.isNormalized(codepoint, compat, 0)) {
@@ -651,7 +650,7 @@ public class UnicodeUtilities {
     }
   }
 
-  static private UnicodeSet RTL= UnicodeSetUtilities.parseUnicodeSet("[[:bc=R:][:bc=AL:]]", TableStyle.simple);
+  static private UnicodeSet RTL= new UnicodeSet("[[:bc=R:][:bc=AL:]]");
 
   private static String showCodePoint(int codepoint) {
     return showCodePoint(UTF16.valueOf(codepoint));
@@ -826,7 +825,7 @@ public class UnicodeUtilities {
   //    }
   //  }
 
-  static final UnicodeSet MAPPING_SET = UnicodeSetUtilities.parseUnicodeSet("[:^c:]", TableStyle.simple);
+  static final UnicodeSet MAPPING_SET = new UnicodeSet("[:^c:]");
 
   static {
     Transliterator.registerInstance(getTransliteratorFromFile("en-IPA", "en-IPA.txt", Transliterator.FORWARD));
@@ -880,7 +879,7 @@ public class UnicodeUtilities {
     // see if sample is a UnicodeSet
     if (UnicodeSet.resemblesPattern(sample, 0)) {
       try {
-        set = UnicodeSetUtilities.parseUnicodeSet(sample, TableStyle.extras);
+        set = UnicodeSetUtilities.parseUnicodeSet(sample);
       } catch (Exception e) {}
     }
     if (set == null) {
@@ -1066,7 +1065,7 @@ public class UnicodeUtilities {
       exceptionMessage[0] = null;
       setA = setA.replace("..U+", "-\\u");
       setA = setA.replace("U+", "\\u");
-      return UnicodeSetUtilities.parseUnicodeSet(setA, TableStyle.extras);
+      return UnicodeSetUtilities.parseUnicodeSet(setA);
     } catch (Exception e) {
       exceptionMessage[0] = e.getMessage();
     }
@@ -1487,8 +1486,9 @@ public class UnicodeUtilities {
   }
 
   //static IdnaLabelTester tester = null;
-  static String removals = UnicodeSetUtilities.parseUnicodeSet("[\u1806[:di:]-[:cn:]]", TableStyle.simple).complement().complement().toPattern(false);
+  static String removals = new UnicodeSet("[\u1806[:di:]-[:cn:]]").complement().complement().toPattern(false);
   static Matcher rem = Pattern.compile(removals).matcher("");
+  // TODO use UnicodeRegex
 
 
   //  static IdnaLabelTester getIdna2008Tester() {

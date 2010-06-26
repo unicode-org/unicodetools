@@ -122,16 +122,20 @@ public final class FileUtilities {
       //      boolean x = file1.canRead();
       //      final InputStream resourceAsStream = new FileInputStream(file1);
       final InputStream resourceAsStream = class1.getResourceAsStream(file);
-      String foo = class1.getResource(".").toString();
       InputStreamReader reader = new InputStreamReader(resourceAsStream, FileUtilities.UTF8);
       BufferedReader bufferedReader = new BufferedReader(reader,1024*64);
       return bufferedReader;
     } catch (Exception e) {
       File file1 = new File(file);
+      String foo = class1.getResource(".").toString();
+
       throw (RuntimeException) new IllegalArgumentException("Bad file name: "
               //              + path + "\t" + externalForm + "\t" + 
               + file1.getCanonicalPath()
-              + "\r\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())).initCause(e);
+              + "\r\n" + foo
+              + "\r\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())
+              )
+      .initCause(e);
     }
   }
 

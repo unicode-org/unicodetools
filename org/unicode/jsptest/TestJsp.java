@@ -28,8 +28,6 @@ import org.unicode.jsp.UtfParameters;
 import org.unicode.jsp.Uts46;
 import org.unicode.jsp.XPropertyFactory;
 import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.UnicodeSetUtilities.NFKC_CF;
-import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
@@ -273,6 +271,9 @@ public class TestJsp  extends TestFmwk {
       checkNullOrEqual("2003/2008", i, type2003, map2003, type2008, map2008);
       checkNullOrEqual("46/2008", i, type46, map46, type2008, map2008);
     }
+    
+    showPropValues(XPropertyFactory.make().getProperty("idna"));
+    showPropValues(XPropertyFactory.make().getProperty("uts46"));
   }
 
   private void checkNullOrEqual(String title, int cp, IdnaType t1, String m1, IdnaType t2, String m2) {
@@ -296,75 +297,6 @@ public class TestJsp  extends TestFmwk {
     XPropertyFactory.make().getProperty("idr");
   }
 
-  public void TestPropertyFactory() {
-    //showIcuEnums();
-    String trans1 = new NFKC_CF().transform("\u2065");
-    XPropertyFactory factory = XPropertyFactory.make();
-    UnicodeProperty prop = factory.getProperty("tonfkccf");
-    String trans2 = prop.getValue('\u2065');
-    if (!trans1.equals(trans2)) {
-      errln("mapping of \u2065 " + UCharacter.getName('\u2065') + "," + trans1 + "," + trans2);
-    }
-    checkProperties("[:tonfkccf=/^$/:]", "[:di:]", "[abc]");
-    checkProperties("[:toLowercase!=@cp@:]", "[A-Z\u00C0]", "[abc]");
-    checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");
-    checkProperties("[:ccc=/3/:]", "[\u0308]");
-    checkProperties("[:age=3.2:]", "[\u0308]");
-    checkProperties("[:alphabetic:]", "[a]");
-    checkProperties("[:greek:]", "[\u0370]");
-    checkProperties("[:mn:]", "[\u0308]");
-    checkProperties("[:sc!=Latn:]", "[\u0308]");
-    checkProperties("[:^sc:Latn:]", "[\u0308]");
-    checkProperties("[:sc≠Latn:]", "[\u0308]");
-    checkSetsEqual("[:sc≠Latn:]", "[:^sc:Latn:]", "[:^sc=Latn:]", "[:sc!=Latn:]");
-    checkSetsEqual("[:sc=Latn:]", "[:sc:Latn:]", "[:^sc≠Latn:]", "[:^sc!=Latn:]", "[:^sc!:Latn:]");
-    
-    try {
-      checkProperties("[:linebreak:]", "[\u0308]");
-      throw new IllegalArgumentException("Exception expected.");
-    } catch (Exception e) {
-      if (!e.getMessage().contains("must be in")) {
-        throw new IllegalArgumentException("Exception expected with 'illegal'", e);
-      } else {
-        logln(e.getMessage());
-      }
-    }
-
-    try {
-      checkProperties("[:alphabetic=foobar:]", "[\u0308]");
-      throw new IllegalArgumentException("Exception expected.");
-    } catch (Exception e) {
-      if (!e.getMessage().contains("must be in")) {
-        throw new IllegalArgumentException("Exception expected with 'illegal'", e);
-      }
-    }
-
-    checkProperties("[:alphabetic=no:]", "[\u0308]");
-    checkProperties("[:alphabetic=false:]", "[\u0308]");
-    checkProperties("[:alphabetic=f:]", "[\u0308]");
-    checkProperties("[:alphabetic=n:]", "[\u0308]");
-
-    checkProperties("[:isNFC=no:]", "[\u0308]");
-
-    checkProperties("\\p{idna2003=disallowed}", "[\\u0001]");
-    showPropValues(XPropertyFactory.make().getProperty("idna"));
-    showPropValues(XPropertyFactory.make().getProperty("uts46"));
-    checkProperties("\\p{idna=valid}", "[\u0308]");
-    checkProperties("\\p{uts46=valid}", "[\u0308]");
-    checkProperties("\\p{idna2008=disallowed}", "[A]");
-  }
-
-  private void checkSetsEqual(String... unicodeSetPatterns) {
-      UnicodeSet base = null;
-      for (String pattern : unicodeSetPatterns) {
-          UnicodeSet current = UnicodeSetUtilities.parseUnicodeSet(pattern, TableStyle.extras);
-          if (base == null) {
-              base = current;
-          } else {
-              assertEquals(unicodeSetPatterns[0] + " == " + pattern, base, current);
-          }
-      }
-}
 
 private void showIcuEnums() {
     for (int prop = UProperty.BINARY_START; prop < UProperty.BINARY_LIMIT; ++prop) {
@@ -647,10 +579,10 @@ private void showIcuEnums() {
 
   public void TestGrouping() throws IOException {
     StringWriter printWriter = new StringWriter();
-    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:subhead=/Syllables/:]", TableStyle.extras), true, true, printWriter);
+    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:subhead=/Syllables/:]"), true, true, printWriter);
     assertContains(printWriter.toString(), "General_Category=Letter_Number");
     printWriter.getBuffer().setLength(0);
-    UnicodeJsp.showSet("subhead", UnicodeSetUtilities.parseUnicodeSet("[:subhead=/Syllables/:]", TableStyle.extras), true, true, printWriter);
+    UnicodeJsp.showSet("subhead", UnicodeSetUtilities.parseUnicodeSet("[:subhead=/Syllables/:]"), true, true, printWriter);
     assertContains(printWriter.toString(), "a=A595");
   }
 
@@ -660,8 +592,6 @@ private void showIcuEnums() {
     String propValue = UnicodeUtilities.getXStringPropertyValue(UnicodeUtilities.SUBHEAD, 0xA6E6, NameChoice.LONG);
     //System.out.println(propValue);
 
-    //System.out.println("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " + script2);
-    checkProperties("[:subhead=/Syllables/:]", "[\u1200]");
 
     //System.out.println("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " + script2);
 
@@ -695,8 +625,8 @@ private void showIcuEnums() {
     //    "[\u02EF-\u02FF\u0363-\u0373\u0376\u0377\u07E8-\u07EA\u1DCE-\u1DE6\u1DFE\u1DFF\u1E9C\u1E9D\u1E9F\u1EFA-\u1EFF\u2056\u2058-\u205E\u2180-\u2183\u2185-\u2188\u2C77-\u2C7D\u2E00-\u2E17\u2E2A-\u2E30\uA720\uA721\uA730-\uA778\uA7FB-\uA7FF]" +
     //    "[\u0269\u027F\u0285-\u0287\u0293\u0296\u0297\u029A\u02A0\u02A3\u02A5\u02A6\u02A8-\u02AF\u0313\u037B-\u037D\u03CF\u03FD-\u03FF]" +
     //"";
-    UnicodeJsp.showSet("",UnicodeSetUtilities.parseUnicodeSet("[:usage=/.+/:]", TableStyle.extras), false, false, printWriter);
-    UnicodeJsp.showSet("",UnicodeSetUtilities.parseUnicodeSet("[:hantype=/simp/:]", TableStyle.extras), false, false, printWriter);
+    UnicodeJsp.showSet("",UnicodeSetUtilities.parseUnicodeSet("[:usage=/.+/:]"), false, false, printWriter);
+    UnicodeJsp.showSet("",UnicodeSetUtilities.parseUnicodeSet("[:hantype=/simp/:]"), false, false, printWriter);
   }
 
   public void TestShowProperties() throws IOException {
@@ -728,64 +658,11 @@ private void showIcuEnums() {
     //    System.out.println(out); 
 
     out.getBuffer().setLength(0);
-    UnicodeJsp.showSet("sc", UnicodeSetUtilities.parseUnicodeSet("[:script=/Han/:]", TableStyle.extras), false, true, out);
+    UnicodeJsp.showSet("sc", UnicodeSetUtilities.parseUnicodeSet("[:script=/Han/:]"), false, true, out);
     assertFalse("props table", out.toString().contains("unassigned"));
     logln(out.toString());
 
 
-  }
-
-  public void TestProperties() {
-    checkProperties("[:subhead=/Mayanist/:]", "[\uA726]");
-
-    //checkProperties("[[:script=*latin:]-[:script=latin:]]");
-    //checkProperties("[[:script=**latin:]-[:script=latin:]]");
-    checkProperties("abc-m", "[d]");
-
-    checkProperties("[:usage=common:]", "[9]");
-
-    checkProperties("[:toNFKC=a:]", "[\u00AA]");
-    checkProperties("[:isNFC=false:]", "[\u0308]");
-    checkProperties("[:toNFD=A\u0300:]", "[\u00C0]");
-    checkProperties("[:toLowercase= /a/ :]", "[aA]");
-    checkProperties("[:ASCII:]", "[z]");
-    checkProperties("[:lowercase:]", "[a]");
-    checkProperties("[:toNFC=/\\./:]", "[.]");
-    checkProperties("[:toNFKC=/\\./:]", "[\u2024]");
-    checkProperties("[:toNFD=/\\./:]", "[.]");
-    checkProperties("[:toNFKD=/\\./:]", "[\u2024]");
-    checkProperties("[:toLowercase=/a/:]", "[aA]");
-    checkProperties("[:toUppercase=/A/:]", "[Aa\u1E9A]");
-    checkProperties("[:toCaseFold=/a/:]", "[Aa\u1E9A]");
-    checkProperties("[:toTitlecase=/A/:]", "[Aa\u1E9A]");
-    checkProperties("[:idna=valid:]", "[\u0308]");
-    checkProperties("[:idna=ignored:]", "[\u00AD]");
-    checkProperties("[:idna=mapped:]", "[\u00AA]");
-    checkProperties("[:idna=disallowed:]", "[\\u0001]");
-    checkProperties("[:iscased:]", "[a-zA-Z]");
-    checkProperties("[:name=/WITH/:]", "[\u00C0]");
-  }
-
-  void checkProperties(String testString, String containsSet) {
-    checkProperties(testString, containsSet, null);
-  }
-
-  void checkProperties(String testString, String containsSet, String doesntContainSet) {
-    UnicodeSet tc1 = UnicodeSetUtilities.parseUnicodeSet(testString, TableStyle.extras);
-    if (containsSet != null) {
-      UnicodeSet contains = new UnicodeSet(containsSet);
-      if (!tc1.containsAll(contains)) {
-        UnicodeSet missing = new UnicodeSet(contains).removeAll(tc1);
-        errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nDoesn't contain " + missing);  
-      }
-    }
-    if (doesntContainSet != null) {
-      UnicodeSet doesntContain = new UnicodeSet(doesntContainSet);
-      if (!tc1.containsNone(doesntContain)) {
-        UnicodeSet extra = new UnicodeSet(doesntContain).retainAll(tc1);
-        errln(tc1 + "\t=\t" + tc1.complement().complement() + "\t\nContains some of" + extra);  
-      }
-    }
   }
 
   public void TestParameters() {
@@ -846,7 +723,7 @@ private void showIcuEnums() {
 
     expectError("][:idna=valid:][abc]");
 
-    assertTrue("contains hyphen", UnicodeSetUtilities.parseUnicodeSet("[:idna=valid:]", TableStyle.extras).contains('-'));
+    assertTrue("contains hyphen", UnicodeSetUtilities.parseUnicodeSet("[:idna=valid:]").contains('-'));
   }
 
   private void checkValues(boolean[] error, Idna idna) {
@@ -887,7 +764,7 @@ private void showIcuEnums() {
 
   public void expectError(String input) {
     try {
-      UnicodeSetUtilities.parseUnicodeSet(input, TableStyle.extras);
+      UnicodeSetUtilities.parseUnicodeSet(input);
       errln("Failure to detect syntax error.");
     } catch (IllegalArgumentException e) {
       logln("Expected error: " + e.getMessage());
