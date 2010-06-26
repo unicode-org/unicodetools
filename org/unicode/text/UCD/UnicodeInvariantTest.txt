@@ -19,8 +19,9 @@
 #   <propertyName> can be prefixed with "U<version>:"
 #   Example: \p{U5.1.0:Whitespace}
 #
-#   A version of -1 indicates the previous released version.
-#   For example, if the version is 4.0.1, then the U-1 version is 4.0.0
+#   A version of -1 indicates the previous released major version.
+#   For example, if the version is 4.1, then the U-1 version is 4.0.
+#   The property values are as supplied in the release, without any subsequent corrigenda being applied. 
 #   Example: \p{U-1:Whitespace}
 #
 # Property Value:

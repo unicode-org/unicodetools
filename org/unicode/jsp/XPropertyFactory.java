@@ -2,6 +2,7 @@ package org.unicode.jsp;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.SortedMap;
@@ -9,13 +10,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.jsp.Idna.IdnaType;
+import org.unicode.jsp.UnicodeProperty.BaseProperty;
 import org.unicode.jsp.UnicodeProperty.SimpleProperty;
 
 import sun.text.normalizer.UTF16;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.StringTransform;
+import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class XPropertyFactory extends UnicodeProperty.Factory {
@@ -36,6 +43,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
       XUnicodeProperty property = new XUnicodeProperty(i);
       add(property);
     }
+    
     add(new IDNA2003());
     add(new UTS46());
     add(new IDNA2008());
@@ -48,6 +56,57 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
     add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
     add(new StringTransformProperty(new UnicodeSetUtilities.NFKC_CF(), false).setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1").addName("toNFKC_CF"));
+    
+    add(new UnicodeSetProperty().set(UnicodeUtilities.isCaseFolded).setMain("isCaseFolded", "caseFolded", UnicodeProperty.BINARY, "1.1"));
+    add(new UnicodeSetProperty().set(UnicodeUtilities.isUppercase).setMain("isUppercase", "uppercase", UnicodeProperty.BINARY, "1.1"));
+    add(new UnicodeSetProperty().set(UnicodeUtilities.isLowercase).setMain("isLowercase", "lowercase", UnicodeProperty.BINARY, "1.1"));
+    add(new UnicodeSetProperty().set(UnicodeUtilities.isTitlecase).setMain("isTitlecase", "titlecase", UnicodeProperty.BINARY, "1.1"));
+    add(new UnicodeSetProperty().set(UnicodeUtilities.isCased).setMain("isCased", "cased", UnicodeProperty.BINARY, "1.1"));
+    
+    add(new CodepointTransformProperty(new Transform<Integer,String>() {
+        public String transform(Integer source) {
+            return Normalizer.normalize(source, Normalizer.NFC);
+        }}, false).setMain("toNFC", "toNFC", UnicodeProperty.STRING, "1.1"));
+    add(new CodepointTransformProperty(new Transform<Integer,String>() {
+        public String transform(Integer source) {
+            return Normalizer.normalize(source, Normalizer.NFD);
+        }}, false).setMain("toNFD", "toNFD", UnicodeProperty.STRING, "1.1"));
+    add(new CodepointTransformProperty(new Transform<Integer,String>() {
+        public String transform(Integer source) {
+            return Normalizer.normalize(source, Normalizer.NFKC);
+        }}, false).setMain("toNFKC", "toNFKC", UnicodeProperty.STRING, "1.1"));
+    add(new CodepointTransformProperty(new Transform<Integer,String>() {
+        public String transform(Integer source) {
+            return Normalizer.normalize(source, Normalizer.NFKD);
+        }}, false).setMain("toNFKD", "toNFKD", UnicodeProperty.STRING, "1.1"));
+
+    add(new StringTransformProperty(new StringTransform() {
+        public String transform(String source) {
+            return UCharacter.foldCase(source, true);
+        }}, false).setMain("toCasefold", "toCasefold", UnicodeProperty.STRING, "1.1"));
+    add(new StringTransformProperty(new StringTransform() {
+        public String transform(String source) {
+            return UCharacter.toLowerCase(ULocale.ROOT, source);
+        }}, false).setMain("toLowerCase", "toLowerCase", UnicodeProperty.STRING, "1.1"));
+    add(new StringTransformProperty(new StringTransform() {
+        public String transform(String source) {
+            return UCharacter.toUpperCase(ULocale.ROOT, source);
+        }}, false).setMain("toUpperCase", "toUpperCase", UnicodeProperty.STRING, "1.1"));
+    add(new StringTransformProperty(new StringTransform() {
+        public String transform(String source) {
+            return UCharacter.toTitleCase(ULocale.ROOT, source, null);
+        }}, false).setMain("toTitleCase", "toTitleCase", UnicodeProperty.STRING, "1.1"));
+    add(new CodepointTransformProperty(new Transform<Integer,String>() {
+        public String transform(Integer source) {
+            return UnicodeUtilities.getSubheader().getSubheader(source);
+        }}, false).setMain("Subheader", "subhead", UnicodeProperty.STRING, "1.1"));
+
+    add(new UnicodeSetProperty().set("[:^nfcqc=n:]").setMain("isNFC", "isNFC", UnicodeProperty.BINARY, "1.1"));
+    add(new UnicodeSetProperty().set("[:^nfdqc=n:]").setMain("isNFD", "isNFD", UnicodeProperty.BINARY, "1.1"));
+    add(new UnicodeSetProperty().set("[:^nfkcqc=n:]").setMain("isNFKC", "isNFKC", UnicodeProperty.BINARY, "1.1"));
+    add(new UnicodeSetProperty().set("[:^nfkdqc=n:]").setMain("isNFKD", "isNFKD", UnicodeProperty.BINARY, "1.1"));
+    add(new UnicodeSetProperty().set("[\\u0000-\\u007F]").setMain("ASCII", "ASCII", UnicodeProperty.BINARY, "1.1"));
+    add(new UnicodeSetProperty().set("[\\u0000-\\U0010FFFF]").setMain("ANY", "ANY", UnicodeProperty.BINARY, "1.1"));
 
     // set up the special script property
     UnicodeProperty scriptProp = base.getProperty("sc");
@@ -266,16 +325,28 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
   }
 
   private static class StringTransformProperty extends SimpleProperty {
-    StringTransform transform;
+      StringTransform transform;
 
-    public StringTransformProperty(StringTransform transform, boolean hasUniformUnassigned) {
-      this.transform = transform;
-      setUniformUnassigned(hasUniformUnassigned);
+      public StringTransformProperty(StringTransform transform, boolean hasUniformUnassigned) {
+        this.transform = transform;
+        setUniformUnassigned(hasUniformUnassigned);
+      }
+      protected String _getValue(int codepoint) {
+        return transform.transform(UTF16.valueOf(codepoint));
+      }
     }
-    protected String _getValue(int codepoint) {
-      return transform.transform(UTF16.valueOf(codepoint));
+
+  private static class CodepointTransformProperty extends SimpleProperty {
+      Transform<Integer,String> transform;
+
+      public CodepointTransformProperty(Transform<Integer,String> transform, boolean hasUniformUnassigned) {
+        this.transform = transform;
+        setUniformUnassigned(hasUniformUnassigned);
+      }
+      protected String _getValue(int codepoint) {
+        return transform.transform(codepoint);
+      }
     }
-  }
 
   public static class EncodingProperty extends SimpleProperty {
 
@@ -313,4 +384,29 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
       return result.length() == 2 ? result : "0" + result;
     }
   }
+  
+  public static class UnicodeSetProperty extends BaseProperty {
+      protected UnicodeSet unicodeSet;
+      private static final String[] YESNO_ARRAY = new String[]{"Yes", "No"};
+      private static final List YESNO = Arrays.asList(YESNO_ARRAY);
+
+      public UnicodeSetProperty set(UnicodeSet set) {
+          unicodeSet = set;
+        return this;
+      }
+
+      public UnicodeSetProperty set(String string) {
+        // TODO Auto-generated method stub
+        return set(new UnicodeSet(string).freeze());
+    }
+
+    protected String _getValue(int codepoint) {
+        return YESNO_ARRAY[unicodeSet.contains(codepoint) ? 0 : 1];
+      }
+
+      protected List _getAvailableValues(List result) {
+         return YESNO;
+       }
+    }
+
 }

@@ -6,11 +6,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.Idna.IdnaType;
-
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 

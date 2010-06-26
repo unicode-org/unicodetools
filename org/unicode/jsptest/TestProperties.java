@@ -3,27 +3,26 @@ package org.unicode.jsptest;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.jsp.Builder;
 import org.unicode.jsp.PropertyMetadata;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeProperty;
+import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.XPropertyFactory;
 
 import sun.text.normalizer.UTF16;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.test.util.Relation;
-import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class TestProperties extends TestFmwk {
@@ -93,4 +92,71 @@ public class TestProperties extends TestFmwk {
     logln(out.toString());
     //System.out.println(out);
   }
+  
+  public void TestCCC() {
+      XPropertyFactory factory = XPropertyFactory.make();
+      checkProperty(factory, "ccc");
+
+      String test = "[:ccc=/3/:]";
+      UnicodeSet actual = UnicodeSetUtilities.parseUnicodeSet(test);
+      UnicodeSet expected = new UnicodeSet();
+      for (int i = 0; i < 256; ++i) {
+          String s = String.valueOf(i);
+          if (s.contains("3")) {
+              expected.addAll(new UnicodeSet("[:ccc=" + s + ":]"));
+          }
+      }
+      TestUnicodeSet.assertEquals(this, test, expected, actual);
+  }
+
+  private void checkProperty(XPropertyFactory factory, String prop) {
+      UnicodeProperty property = factory.getProperty(prop);
+      logln("Testing " + prop + "\t\t" + property.getTypeName());
+      List<String> values = property.getAvailableValues();
+      for (String value : values) {
+          UnicodeSet expectedRegex = property.getSet(value);
+          UnicodeSet expectedNormal = expectedRegex;
+          if (UnicodeProperty.equalNames("age", prop)) {
+              expectedNormal = new UnicodeSet(expectedNormal);
+              for (String other : values) {
+                  if (other.compareTo(value) < 0) {
+                      expectedNormal.addAll(property.getSet(other));
+                  }
+              }
+              expectedRegex = expectedNormal;
+          }
+          List<String> alts = property.getValueAliases(value);
+          if (!alts.contains(value)) {
+              errln(value + " not in " + alts + " for " + prop);
+          }
+          for (String alt : alts) {
+              String test = "\\p{" + prop + "=" + alt + "}";
+              UnicodeSet actual = UnicodeSetUtilities.parseUnicodeSet(test);
+              TestUnicodeSet.assertEquals(this, test, expectedNormal, actual);
+              test = "\\p{" + prop + "=/^\\Q" + alt + "\\E$/}";
+              actual = UnicodeSetUtilities.parseUnicodeSet(test);
+              TestUnicodeSet.assertEquals(this, test, expectedRegex, actual);
+          }
+      }
+  }
+  
+  public void TestProperties() {
+      UnicodeProperty foo;
+      XPropertyFactory factory = XPropertyFactory.make();
+      checkProperty(factory, "Age");
+      //////    checkProperty(factory, "Lead_Canonical_Combining_Class");
+      //////    checkProperty(factory, "Joining_Group");
+      //    if (true) return;
+
+      long start = System.currentTimeMillis();
+      for (String prop : (Collection<String>)factory.getAvailableNames()) {
+          checkProperty(factory, prop);
+          long current = System.currentTimeMillis();
+          logln("Time: " + prop + "\t\t" + (current-start) + "ms");
+          start = current;
+      }
+  }
+
+
+
 }

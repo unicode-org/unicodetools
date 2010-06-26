@@ -10,7 +10,6 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.UnicodeSetUtilities.TableStyle;
 import org.unicode.jsp.UnicodeUtilities.CodePointShower;
 
 import com.ibm.icu.dev.test.util.BNF;
@@ -151,7 +150,7 @@ public class UnicodeJsp {
       //setA = UnicodeSetUtilities.MyNormalize(setA, Normalizer.NFC);
       setA = setA.replace("..U+", "-\\u");
       setA = setA.replace("U+", "\\u");
-      a.addAll(UnicodeSetUtilities.parseUnicodeSet(setA, TableStyle.extras));
+      a.addAll(UnicodeSetUtilities.parseUnicodeSet(setA));
       a_out = UnicodeUtilities.getPrettySet(a, abbreviate, escape);
     } catch (Exception e) {
       a_out = e.getMessage();

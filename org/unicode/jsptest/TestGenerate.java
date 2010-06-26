@@ -1,15 +1,12 @@
 package org.unicode.jsptest;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.TreeSet;
 
 import org.unicode.jsp.Idna;
 import org.unicode.jsp.Idna2003;
 import org.unicode.jsp.Idna2008;
-import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.Uts46;
 import org.unicode.jsp.Idna.IdnaType;

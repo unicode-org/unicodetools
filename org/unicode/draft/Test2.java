@@ -12,11 +12,21 @@ import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.ULocale;
 
 
 public class Test2 {
     public static void main(String[] args) {
+        
+        ULocale myLocale = ULocale.FRANCE;
+        Currency theCurrency = Currency.getInstance("USD");
+        double number = 1234.56;
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(myLocale);
+        formatter.setCurrency(theCurrency);
+        System.out.println(formatter.format(number) + "\t" + number);
+
         Character.isLowSurrogate('a');
         testEnsurePlus();
         Font f;
