@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Names.java,v $
- * $Date: 2010-05-18 04:13:56 $
- * $Revision: 1.48 $
+ * $Date: 2010-08-04 18:53:07 $
+ * $Revision: 1.49 $
  *
  *******************************************************************************
  */
@@ -839,7 +839,7 @@ public final class UCD_Names implements UCD_Types {
     "GAF",
     "GAMAL",
     "HAH",
-    "HAMZA_ON_HEH_GOAL",
+    "TEH_MARBUTA_GOAL",
     "HE",
     "HEH",
     "HEH_GOAL",
@@ -882,7 +882,6 @@ public final class UCD_Names implements UCD_Types {
     "BURUSHASKI_YEH_BARREE",
     "FARSI_YEH",
     "NYA",
-    "TEH_MARBUTA_GOAL",
     // BURUSHASHKI YEH BARREE
   };
   static {
@@ -918,7 +917,7 @@ public final class UCD_Names implements UCD_Types {
     "GAF",
     "GAMAL",
     "HAA",
-    "HAMZAH_ON_HA_GOAL",
+    "HAMZA_ON_HEH_GOAL",
     "HE",
     "HA",
     "HA_GOAL",

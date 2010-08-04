@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
- * $Date: 2010-06-19 00:29:21 $ 
- * $Revision: 1.60 $
+ * $Date: 2010-08-04 18:53:06 $ 
+ * $Revision: 1.61 $
  *
  *******************************************************************************
  */
@@ -58,7 +58,6 @@ import com.ibm.icu.dev.test.util.CollectionUtilities;
 import com.ibm.icu.dev.test.util.TransliteratorUtilities;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.impl.Differ;
-import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

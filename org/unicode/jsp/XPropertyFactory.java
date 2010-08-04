@@ -22,6 +22,7 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
@@ -133,6 +134,20 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         prop.addName("enc_" + alias);
       }
       add(prop);
+    }
+    
+    // exemplars
+    String[] typeName = {"", "aux_"};
+    for (ULocale locale : ULocale.getAvailableLocales()) {
+        if (locale.getCountry().length() != 0 || locale.getVariant().length() != 0) {
+            continue;
+        }
+        LocaleData localeData = LocaleData.getInstance(locale);
+        for (int type = 0; type < LocaleData.ES_COUNT; ++type) {
+            String name = "exemplars_" + typeName[type] + locale;
+            UnicodeSet us = localeData.getExemplarSet(UnicodeSet.CASE, type).freeze();
+            add(new UnicodeSetProperty().set(us).setMain(name, name, UnicodeProperty.BINARY, "1.1"));
+        }
     }
   }
 

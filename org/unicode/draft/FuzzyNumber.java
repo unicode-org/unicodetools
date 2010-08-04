@@ -2,7 +2,6 @@ package org.unicode.draft;
 
 
 import java.text.NumberFormat;
-import java.util.Random;
 
 public class FuzzyNumber {
   final double value;

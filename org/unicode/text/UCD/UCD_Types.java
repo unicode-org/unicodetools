@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
- * $Date: 2010-05-15 00:29:21 $
- * $Revision: 1.51 $
+ * $Date: 2010-08-04 18:53:07 $
+ * $Revision: 1.52 $
  *
  *******************************************************************************
  */
@@ -506,7 +506,7 @@ public interface UCD_Types {
   GAF = 11,
   GAMAL = 12,
   HAH = 13,
-  HAMZA_ON_HEH_GOAL = 14,
+  TEH_MARBUTA_GOAL = 14,
   HE = 15,
   HEH = 16,
   HEH_GOAL = 17,
@@ -549,8 +549,7 @@ public interface UCD_Types {
   BURUSHASKI_YEH_BARREE = 54,
   FARSI_YEH = 55,
   NYA = 56,
-  TEH_MARBUTA_GOAL = 57,
-  LIMIT_JOINING_GROUP = 58;
+  LIMIT_JOINING_GROUP = 57;
 
   static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;    
   public static final int
