@@ -42,7 +42,7 @@ public class Typology {
     }
   }
   static {
-    new MyReader().process(XIDModifications.class, "09421-u52m09xxxx.txt");
+    new MyReader().process(XIDModifications.class, "Categories.txt"); // "09421-u52m09xxxx.txt"
     for (String key : label_to_uset.keySet()) {
       UnicodeSet uset = label_to_uset.get(key);
       uset.freeze();

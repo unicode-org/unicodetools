@@ -3,7 +3,6 @@ package org.unicode.draft;
 import org.unicode.cldr.util.Counter;
 
 import com.ibm.icu.lang.UCharacter;
-
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer2;

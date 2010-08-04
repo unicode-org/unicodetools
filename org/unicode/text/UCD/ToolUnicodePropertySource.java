@@ -967,12 +967,21 @@ isTitlecase(X) is false.
    * com.ibm.icu.dev.test.util.UnicodePropertySource#getPropertyAliases(java
    * .util.Collection)
    */
+  
+  private static final Relation<String, String> ALIAS_JOINING_GROUP 
+      = new Relation(new HashMap(), LinkedHashSet.class);
+  static {
+      ALIAS_JOINING_GROUP.put("Teh_Marbuta_Goal", "Hamza_On_Heh_Goal");
+      ALIAS_JOINING_GROUP.freeze();
+  }
+  
   private class ToolUnicodeProperty extends UnicodeProperty {
     org.unicode.text.UCD.UCDProperty up;
 
     int                              propMask;
 
     static final int                 EXTRA_START = 0x10000;
+
 
     private ToolUnicodeProperty(String propertyAlias) {
       propMask = UnifiedProperty.getPropmask(propertyAlias, ucd);
@@ -1135,7 +1144,7 @@ isTitlecase(X) is false.
           return lookup(valueAlias, UCD_Names.LONG_JOINING_TYPE, UCD_Names.JOINING_TYPE,
                   null, result);
         case UCD_Types.JOINING_GROUP >> 8:
-          return lookup(valueAlias, UCD_Names.JOINING_GROUP, null, null, result);
+          return lookup(valueAlias, UCD_Names.JOINING_GROUP, null, ALIAS_JOINING_GROUP, result);
         case UCD_Types.SCRIPT >> 8:
           return lookup(valueAlias, UCD_Names.LONG_SCRIPT, UCD_Names.SCRIPT,
                   UCD_Names.EXTRA_SCRIPT, result);

@@ -1,7 +1,6 @@
 package org.unicode.text.UCD;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -22,8 +21,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.Pair;
-import org.unicode.jsp.ScriptTester.ScriptExtensions;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;
@@ -38,10 +35,8 @@ import com.ibm.icu.dev.test.util.Tabber;
 import com.ibm.icu.dev.test.util.UnicodeLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
-import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -845,7 +840,7 @@ public class MakeUnicodeFiles {
 
           // HACK
           Tabber mt = mt2;
-          if (propName.equals("Block")) {
+          if (propName.equals("Block") || propName.equals("Joining_Group")) {
             l.add(0, "n/a");
           } else if (l.size() == 1) {
             if (propName.equals("Canonical_Combining_Class")) continue;

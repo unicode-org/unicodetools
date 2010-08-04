@@ -13,8 +13,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import com.ibm.icu.text.UnicodeSet;
-
 public class BidiConformanceTestBuilder {
 
 	public static int MAX_SIZE = 4;

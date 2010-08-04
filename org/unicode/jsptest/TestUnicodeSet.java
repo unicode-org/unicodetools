@@ -1,9 +1,7 @@
 package org.unicode.jsptest;
 
 import java.nio.charset.Charset;
-import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
@@ -26,6 +24,10 @@ import com.ibm.icu.text.UnicodeSet;
 public class TestUnicodeSet  extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new TestUnicodeSet().run(args);
+    }
+    
+    public void TestAExemplars() {
+        checkProperties("[:exemplars_en:]", "[a]", "[\u0350]");
     }
 
     public void TestEncodingProp() {

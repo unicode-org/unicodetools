@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
- * $Date: 2010-05-27 23:30:49 $ 
- * $Revision: 1.25 $
+ * $Date: 2010-08-04 18:53:06 $ 
+ * $Revision: 1.26 $
  *
  *******************************************************************************
  */
@@ -16,6 +16,7 @@ import java.io.File;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.MakeNamesChart;
+import org.unicode.text.UCD.NFSkippable;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
@@ -27,7 +28,7 @@ import com.ibm.icu.text.UTF16;
 
 public class Main {
   //static final String UCDVersion = "4.0.0";
-  static final String[] ICU_FILES = {"writeCollationValidityLog", "writeFractionalUCA",
+  static final String[] ICU_FILES = {"NFSkippable", "writeCollationValidityLog", "writeFractionalUCA",
     "WriteRules", "WriteRulesXML", "writeconformance", "writeconformanceshifted", 
     "short", 
     "WriteRules", "WriteRulesXML", "writeconformance", "writeconformanceshifted",
@@ -83,6 +84,7 @@ public class Main {
 
         }
         if (arg.equalsIgnoreCase("GenOverlap")) GenOverlap.test(WriteCollationData.collator);
+        else if (arg.equalsIgnoreCase("NFSkippable")) NFSkippable.main(null);
         else if (arg.equalsIgnoreCase("validateUCA")) GenOverlap.validateUCA(WriteCollationData.collator);
         //else if (arg.equalsIgnoreCase("writeNonspacingDifference")) WriteCollationData.writeNonspacingDifference();
 

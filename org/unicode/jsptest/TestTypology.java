@@ -21,13 +21,25 @@ public class TestTypology extends TestFmwk {
     Set<String> archaicLabels = new HashSet<String>(Arrays.asList("Archaic Ancient Biblical Historic".split("\\s")));
     UnicodeSet archaic = new UnicodeSet();
     PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance());
+    System.out.println();
+    System.out.println("Label\tSet");
+
     for (String label : Typology.getLabels()) {
       UnicodeSet uset = Typology.getSet(label);
-      System.out.println(label + "\t" + pp.format(uset));
+      String labelName = label.length() == 0 ? "<no_label>" : label;
+      showLabel(pp, uset, labelName);
       if (archaicLabels.contains(label)) {
         archaic.addAll(uset);
       }
     }
-    System.out.println("*all-archaic\t" + pp.format(archaic));
+    showLabel(pp, archaic, "(Archaic Ancient Biblical Historic)");
   }
+
+private void showLabel(PrettyPrinter pp, UnicodeSet uset, String labelName) {
+    String setString = pp.format(uset);
+      if (setString.length() > 100) {
+          setString = setString.substring(0,100) + "...";
+      }
+      System.out.println(labelName + "\t" + uset.size() + "\t" + setString);
+}
 }

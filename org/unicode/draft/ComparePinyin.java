@@ -15,9 +15,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.unicode.cldr.util.Log;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.Relation;
