@@ -2,43 +2,47 @@ package org.unicode.draft;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.concurrent.ConcurrentHashMap;
 
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UScript;
+import org.unicode.cldr.util.StandardCodes;
+
 import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.IndexCharacters;
-import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.AlphabeticIndex;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.Normalizer2.Mode;
+import com.ibm.icu.text.AlphabeticIndex.SimpleBucket;
 import com.ibm.icu.util.ULocale;
 
 public class ShowIndexCharacters {
 
     public static void main(String[] args) {
+
         // get sample data
-        String[] test = { "$", "£", "12", "2", "Edgar", "edgar", "Abbot", "Effron", "Zach", "Ƶ", "Þor", "Åberg", "Östlund",
-                "Ἥρα", "Ἀθηνᾶ", "Ζεύς", "Ποσειδὣν", "Ἅιδης", "Δημήτηρ", "Ἑστιά", "Ἀπόλλων", "Ἄρτεμις", "Ἑρμἣς", "Ἄρης", "Ἀφροδίτη",
-                "Ἥφαιστος", "Διόνυσος",
+        String[] test = { "$", "£", "12", "2", 
+                "Edgar", "edgar", "Abbot", "Effron", "Zach", "Ƶ", 
+                "Þor", "Åberg", "Östlund",
+                "Ἥρα", "Ἀθηνᾶ", "Ζεύς", "Ποσειδὣν", "Ἅιδης", "Δημήτηρ", "Ἑστιά", 
+                "Ἀπόλλων", "Ἄρτεμις", "Ἑρμἣς", "Ἄρης", "Ἀφροδίτη", "Ἥφαιστος", "Διόνυσος",
                 "斉藤", "佐藤", "鈴木", "高橋", "田中", "渡辺", "伊藤", "山本", "中村", "小林", "斎藤", "加藤",
                 "吉田", "山田", "佐々木", "山口", "松本", "井上", "木村", "林", "清水"
-                };
-        ULocale[] testLocales = { new ULocale("ru"), ULocale.ENGLISH, new ULocale("sv"), ULocale.JAPAN };
+        };
+        ULocale[] testLocales = { new ULocale("ru"), ULocale.ENGLISH, new ULocale.Builder().setLanguageTag("sv-u-kn-true").build(), 
+                ULocale.JAPANESE, ULocale.CHINESE, ULocale.TRADITIONAL_CHINESE };
+        //UnicodeSet additions = new UnicodeSet("[A-Z]");
         for (ULocale testLocale : testLocales) {
-            IndexCharacters indexCharacters = new IndexCharacters(testLocale);
-            List<Bucket> buckets = getIndexBuckets(indexCharacters, Arrays.asList(test), new UnicodeSet('A', 'Z'));
+            AlphabeticIndex indexCharacters = new AlphabeticIndex(testLocale, ULocale.ENGLISH);
+            Collator.getInstance(testLocale);
+            List<SimpleBucket> buckets = indexCharacters.getIndexBuckets(Arrays.asList(test));
 
             // show index at top. We can skip or gray out empty buckets
             System.out.println();
-            System.out.println("Locale: " + testLocale.getDisplayName(testLocale));
+            System.out.print("Locale: " + testLocale + " = " + testLocale.getDisplayName(testLocale) + "\t");
             boolean showAll = true;
-            for (Bucket entry : buckets) {
+            for (SimpleBucket entry : buckets) {
                 String label = entry.getLabel();
                 if (showAll || entry.getValues().size() != 0) {
                     System.out.print(label + " ");
@@ -48,307 +52,191 @@ public class ShowIndexCharacters {
             System.out.println("========================");
 
             // show buckets with contents
-            for (Bucket entry : buckets) {
+            for (SimpleBucket entry : buckets) {
                 if (entry.getValues().size() != 0) {
-                    System.out.println(entry.getLabel());
+                    System.out.print(entry.getLabel() + (entry.isSpecial() ? "*" : "") + "\t:");
                     for (String item : entry.getValues()) {
-                        System.out.println("\t" + item);
+                        System.out.print("\t" + item);
                     }
+                    System.out.println();
                 }
             }
         }
     }
 
-    /**
-     * Associates an label with a set of values V in the bucket for that label.
-     * Used for the return value from getIndexBucketCharacters. Used in a list
-     * because labels may not be unique, so a Map wouldn't work.
-     */
-    public static class Bucket {
-        private String       label;
-        private List<String> values = new ArrayList<String>();
+    static String[][] langList =  {
+        {"Chinese (Traditional)", "Chinese (Traditional Han)"},
+        {"Bhojpuri", "Bihari"},
+        {"Divehi", "Dhivehi"},
+        {"Haitian", "Haitian Creole"},
+        {"Khmer", "Cambodian"},
+        {"Kirghiz", "Kyrgyz"},
+        {"Lao", "Laothian"},
+        {"Scottish Gaelic", "Scots Gaelic"},
+        {"Sinhala", "Sinhalese"},
+        {"Western Frisian", "Frisian"},
 
-        /**
-         * Set up the bucket.
-         * 
-         * @param label
-         */
-        public Bucket(String label) {
-            this.label = label;
-        }
+        {"English", "English"},
+        {"Chinese", "Chinese (Simplified)"},
+        {"Spanish", "Spanish"},
+        {"Japanese", "Japanese"},
+        {"Portuguese", "Portuguese"},
+        {"Russian", "Russian"},
+        {"Arabic", "Arabic"},
+        {"German", "German"},
+        {"French", "French"},
+        {"Korean", "Korean"},
+        {"Turkish", "Turkish"},
+        {"Traditional Chinese", "Chinese (Traditional)"},
+        {"Italian", "Italian"},
+        {"Polish", "Polish"},
+        {"Dutch", "Dutch"},
+        {"Thai", "Thai"},
+        {"Vietnamese", "Vietnamese"},
+        {"Persian", "Persian"},
+        {"Hindi", "Hindi"},
+        {"Indonesian", "Indonesian"},
+        {"Ukrainian", "Ukrainian"},
+        {"Romanian", "Romanian"},
+        {"Swedish", "Swedish"},
+        {"Tagalog", "Filipino"},
+        {"Hungarian", "Hungarian"},
+        {"Czech", "Czech"},
+        {"Greek", "Greek"},
+        {"Danish", "Danish"},
+        {"Filipino", "Filipino"},
+        {"Finnish", "Finnish"},
+        {"Hebrew", "Hebrew"},
+        {"Slovak", "Slovak"},
+        {"Bulgarian", "Bulgarian"},
+        {"Norwegian Bokmål", "Norwegian"},
+        {"Catalan", "Catalan"},
+        {"Croatian", "Croatian"},
+        {"Lithuanian", "Lithuanian"},
+        {"Slovenian", "Slovenian"},
+        {"Latvian", "Latvian"},
+        {"Serbian", "Serbian"},
+        {"Malay", "Malay"},
+        {"Urdu", "Urdu"},
+        {"Bengali", "Bengali"},
+        {"Tamil", "Tamil"},
+        {"Telugu", "Telugu"},
+        {"Marathi", "Marathi"},
+        {"Gujarati", "Gujarati"},
+        {"Malayalam", "Malayalam"},
+        {"Swahili", "Swahili"},
+        {"Kannada", "Kannada"},
+        {"Oriya", "Oriya"},
+        {"Estonian", "Estonian"},
+        {"Basque", "Basque"},
+        {"Icelandic", "Icelandic"},
+        {"Amharic", "Amharic"},
+        {"Azerbaijani", "Azerbaijani"},
+        {"Javanese", "Javanese"},
+        {"Punjabi", "Punjabi"},
+        {"Kurdish", "Kurdish"},
+        {"Belarusian", "Belarusian"},
+        {"Sundanese", "Sundanese"},
+        {"Yoruba", "Yoruba"},
+        {"Uighur", "Uighur"},
+        {"Uzbek", "Uzbek"},
+        {"Bhojpuri", "Bihari"},
+        {"Quechua", "Quechua"},
+        {"Albanian", "Albanian"},
+        {"Mongolian", "Mongolian"},
+        {"Galician", "Galician"},
+        {"Pashto", "Pashto"},
+        {"Kazakh", "Kazakh"},
+        {"Occitan", "Occitan"},
+        {"Sindhi", "Sindhi"},
+        {"Sinhala", "Sinhalese"},
+        {"Haitian", "Haitian Creole"},
+        {"Georgian", "Georgian"},
+        {"Guarani", "Guarani"},
+        {"Tibetan", "Tibetan"},
+        {"Macedonian", "Macedonian"},
+        {"Nepali", "Nepali"},
+        {"Kirghiz", "Kyrgyz"},
+        {"Tajik", "Tajik"},
+        {"Afrikaans", "Afrikaans"},
+        {"Lao", "Laothian"},
+        {"Welsh", "Welsh"},
+        {"Armenian", "Armenian"},
+        {"Western Frisian", "Frisian"},
+        {"Breton", "Breton"},
+        {"Tatar", "Tatar"},
+        {"Corsican", "Corsican"},
+        {"Luxembourgish", "Luxembourgish"},
+        {"Maltese", "Maltese"},
+        {"Maori", "Maori"},
+        {"Burmese", "Burmese"},
+        {"Irish", "Irish"},
+        {"Khmer", "Cambodian"},
+        {"Divehi", "Dhivehi"},
+        {"Scottish Gaelic", "Scots Gaelic"},
+        {"Esperanto", "Esperanto"},
+        {"Faroese", "Faroese"},
+        {"Inuktitut", "Inuktitut"},
+        {"Cherokee", "Cherokee"},
+        {"Tonga", "Tonga"},
+        {"Syriac", "Syriac"},
+        {"Sanskrit", "Sanskrit"},
+        {"Latin", "Latin"},
+    };
 
-        /**
-         * Get the label
-         * 
-         * @return
-         */
-        public String getLabel() {
-            return label;
-        }
-
-        /**
-         * Add a value to a bucket.
-         * 
-         * @param value
-         */
-        public void add(String value) {
-            getValues().add(value);
-        }
-
-        /**
-         * Get the values.
-         * 
-         * @return
-         */
-        public List<String> getValues() {
-            return values;
-        }
-    }
-
-    private static final UnicodeSet IGNORE_SCRIPTS = new UnicodeSet("[[:sc=Common:][:sc=inherited:]]").freeze();
-
-    /**
-     * Convenience routine to bucket a list of input strings according to the
-     * index.
-     * 
-     * @param additions
-     *            Characters to be added to the index. An example might be A-Z
-     *            added for non-Latin alphabets.
-     * @param inputList
-     *            List of strings to be sorted and bucketed according to the
-     *            index characters.
-     * @return List of buckets, where each bucket has a label (typically an
-     *         index character) and the strings in order in that bucket.
-     */
-    public static <T extends CharSequence> List<Bucket> getIndexBuckets(IndexCharacters indexCharacters, Collection<T> inputList, UnicodeSet additions) {
-        RuleBasedCollator collator = getCollator(indexCharacters);
-        // Note: A key issue is that deciding what goes into a bucket is
-        // different
-        // than sorting within that bucket.
-
-        // fix up the list, adding underflow, additions, overflow
-        List<String> characters = getIndexCharacters(indexCharacters);
-        if (additions != null && additions.size() != 0) {
-            collator.setStrength(Collator.TERTIARY);
-            TreeSet<String> sortedIndex = new TreeSet<String>(collator);
-            sortedIndex.addAll(characters);
-            additions.addAllTo(sortedIndex);
-            characters = new ArrayList<String>(sortedIndex);
-            collator.setStrength(Collator.PRIMARY); // used for bucketing
-            // insert infix labels as needed, using \uFFFF.
-            String last = characters.get(0);
-            UnicodeSet lastSet = getScriptSet(last).removeAll(IGNORE_SCRIPTS);
-            for (int i = 1; i < characters.size(); ++i) {
-                String current = characters.get(i);
-                UnicodeSet set = getScriptSet(current).removeAll(IGNORE_SCRIPTS);
-                if (lastSet.containsNone(set)) {
-                    // check for adjacent
-                    String overflowComparisonString = getOverflowComparisonString(indexCharacters, last);
-                    if (collator.compare(overflowComparisonString, current) < 0) {
-                        characters.add(i, "\uFFFD" + overflowComparisonString);
-                        i++;
-                        lastSet = set;
-                    }
-                }
-                last = current;
-                lastSet = set;
-            }
-        } else {
-            characters = new ArrayList<String>(characters);
-        }
-        String beforeMarker = getUnderflowLabel(indexCharacters);
-        String afterMarker = getOverflowLabel(indexCharacters);
-        String inMarker = getInflowLabel(indexCharacters);
-        String limitString = getOverflowComparisonString(indexCharacters, characters.get(characters.size() - 1));
-        characters.add("\uFFFF" + limitString); // final, overflow bucket
-
-        // Set up an array of sorted elements
-        String[] sortedInput = inputList.toArray(new String[inputList.size()]);
-        collator.setStrength(Collator.TERTIARY);
-        Arrays.sort(sortedInput, 0, sortedInput.length, collator);
-        collator.setStrength(Collator.PRIMARY); // used for bucketing
-        List<Bucket> buckets = new ArrayList<Bucket>(); // Can't use Map,
-        // because keys might
-        // not be unique
-
-        Bucket currentBucket;
-        buckets.add(currentBucket = new Bucket(beforeMarker));
-        Iterator<String> characterIterator = characters.iterator();
-        String nextChar = characterIterator.next(); // there is always at least
-        String nextLabel = nextChar;
-        // one
-        boolean atEnd = false;
-        for (String s : sortedInput) {
-            while (!atEnd && collator.compare(s, nextChar) >= 0) {
-                buckets.add(currentBucket = new Bucket(nextLabel));
-                // now reset nextChar
-                if (characterIterator.hasNext()) {
-                    nextLabel = nextChar = characterIterator.next();
-                    switch (nextChar.charAt(0)) {
-                    case 0xFFFD:
-                        nextChar = nextChar.substring(0);
-                        nextLabel = inMarker;
-                        break;
-                    case 0xFFFF:
-                        nextChar = nextChar.substring(0);
-                        nextLabel = afterMarker;
-                        break;
-                    }
-                } else {
-                    atEnd = true;
-                }
-            }
-            currentBucket.add(s);
-        }
-        return buckets;
-    }
-
-    /**
-     * Just change current API to return a list
-     */
-    public static List<String> getIndexCharacters(IndexCharacters indexCharacters) {
-        return new ArrayList<String>(indexCharacters.getIndexCharacters());
-    }
-
-    private static ConcurrentHashMap<ULocale, List<String>> LIMIT_STRING_CACHE = new ConcurrentHashMap<ULocale, List<String>>();
-
-    /**
-     * Get the Unicode character (or tailored string) that defines the overflow
-     * bucket; that is anything greater than or equal to that string should go
-     * there, instead of with the last character. Normally that is the first
-     * character of the script after lowerLimit. Thus in X Y Z ...
-     * <i>Devanagari-ka</i>, the overflow character for Z would be the
-     * <i>Greek-alpha</i>.
-     * 
-     * @param indexCharacters
-     * @param lowerLimit
-     *            The character below the overflow (or inflow) bucket
-     * @return string that defines top of the overflow buck for lowerLimit
-     */
-    public static String getOverflowComparisonString(IndexCharacters indexCharacters, String lowerLimit) {
-        RuleBasedCollator collator = getCollator(indexCharacters);
-        List<String> list = LIMIT_STRING_CACHE.get(indexCharacters.getLocale());
-        if (list == null) {
-            list = firstStringsInScript(collator);
-            LIMIT_STRING_CACHE.put(indexCharacters.getLocale(), list);
-        }
-        for (String s : list) {
-            if (collator.compare(s, lowerLimit) > 0) {
-                return s;
+    static String[][] corrections = {
+        {"Occitan", "oc"},
+        {"Laothian", "Lao"},
+        {"Luxembourgish", "lb"},
+    };
+    static void getNames() {
+        Map<String,String> nameToLocale = new TreeMap();
+        Map<String,String> localeToName = new TreeMap();
+        StandardCodes sc = StandardCodes.make();
+        for (String lang : sc.getAvailableCodes("language")) {
+            String[] names = sc.getData("language", lang).split("▪");
+            for (String name : names) {
+                nameToLocale.put(name, lang);
+                localeToName.put(lang, name);
             }
         }
-        return null;
-    }
-
-    private static UnicodeSet getScriptSet(String codePoint) {
-        return new UnicodeSet().applyIntPropertyValue(UProperty.SCRIPT, UScript.getScript(codePoint.codePointAt(0)));
-    }
-
-    /**
-     * Get a clone of the collator used for the index characters.
-     * 
-     * @param indexCharacters
-     * @return clone of collator
-     */
-    public static RuleBasedCollator getCollator(IndexCharacters indexCharacters) {
-        RuleBasedCollator comparator = (RuleBasedCollator) Collator.getInstance(indexCharacters.getLocale());
-        comparator.setStrength(Collator.PRIMARY);
-        comparator.setNumericCollation(true);
-        return comparator;
-    }
-
-    /**
-     * Get the default label used in the IndexCharacters' locale for overflow,
-     * eg the first item in: … A B C
-     * 
-     * @param indexCharacters
-     * @return overflow label
-     */
-    public static String getOverflowLabel(IndexCharacters indexCharacters) {
-        return "\u2026";
-    }
-
-    /**
-     * Get the default label used in the IndexCharacters' locale for underflow,
-     * eg the last item in: X Y Z …
-     * 
-     * @param indexCharacters
-     * @return underflow label
-     */
-    public static String getUnderflowLabel(IndexCharacters indexCharacters) {
-        return "\u2026";
-    }
-
-    /**
-     * Get the default label used for abbreviated buckets <i>between</i> other
-     * index characters. For example, consider the index characters for Latin
-     * and Greek are used: X Y Z … &#x0391; &#x0392; &#x0393;.
-     * 
-     * @param indexCharacters
-     * @return inflow label
-     */
-    public static String getInflowLabel(IndexCharacters indexCharacters) {
-        return "\u2026";
-    }
-
-    public static final UnicodeSet TO_TRY = new UnicodeSet("[^[:cn:][:co:][:cs:]]").addAll(IGNORE_SCRIPTS).freeze();
-
-    /**
-     * Returns a list of all the "First" characters of scripts, according to the
-     * collation, and sorted according to the collation.
-     * 
-     * @param comparator
-     * @param lowerLimit
-     * @param testScript
-     * @return
-     */
-
-    private static List<String> firstStringsInScript(RuleBasedCollator comparator) {
-        comparator.setStrength(Collator.TERTIARY);
-        String[] results = new String[UScript.CODE_LIMIT];
-        Normalizer2 normalizer = Normalizer2.getInstance(null, "nfkc", Mode.COMPOSE);
-        for (String current : TO_TRY) {
-            if (!normalizer.isNormalized(current) || comparator.compare(current, "a") < 0) {
+        for (String[] pair : corrections) {
+            if ("XXXX".equals(pair[1])) continue;
+            nameToLocale.put(pair[0], pair[1]);
+            localeToName.put(pair[1], pair[0]);
+        }
+        for (ULocale locale : ULocale.getAvailableLocales()) {
+            String lang = locale.toLanguageTag();
+            nameToLocale.put(locale.getDisplayName(ULocale.ENGLISH), lang);
+            String name = locale.getDisplayNameWithDialect(ULocale.ENGLISH);
+            nameToLocale.put(name, lang);
+            localeToName.put(lang, name);
+        }
+        Set<String> locales = new TreeSet<String>(Arrays.asList("ak", "ba", "bh", "bs", "ha", "haw", "ia", "ig", "iw", "lg", "ln", "mfe", "mg", "mo", "nn", "no", "om", "pt-BR", "pt-PT", "rm", "rn", "rw", "sh", "sn", "so", "sr-ME", "st", "ti", "tk", "tl", "tn", "tw", "xh", "yi", "zh-CN", "zh-TW", "zu"));
+        Set<String> missing = new TreeSet<String>();
+        for (String[] pair : langList) {
+            String locale = nameToLocale.get(pair[0]);
+            if (locale != null) {
+                locales.add(locale);
+                nameToLocale.put(pair[1], locale);
                 continue;
             }
-            int script = UScript.getScript(current.codePointAt(0));
-            if (script == UScript.COMMON || script == UScript.INHERITED) {
+            locale = nameToLocale.get(pair[1]);
+            if (locale != null) {
+                locales.add(locale);
+                nameToLocale.put(pair[0], locale);
                 continue;
             }
-            String bestSoFar = results[script];
-            if (bestSoFar == null || comparator.compare(current, bestSoFar) < 0) {
-                results[script] = current;
-            }
+            missing.add(pair[1]);            
+        }
+        for (String miss : missing) {
+            System.out.println("{\"" + miss + "\", \"XXXX\"},");
         }
 
-        UnicodeSet extras = new UnicodeSet();
-        UnicodeSet expansions = new UnicodeSet();
-        try {
-            comparator.getContractionsAndExpansions(extras, expansions, true);
-        } catch (Exception e) {
-        } // why have a checked exception???
-
-        extras.addAll(expansions).removeAll(TO_TRY);
-        for (String current : extras) {
-            if (!normalizer.isNormalized(current) || comparator.compare(current, "a") < 0) {
-                continue;
-            }
-            int script = UScript.getScript(current.codePointAt(0));
-            if (script == UScript.COMMON || script == UScript.INHERITED) {
-                continue;
-            }
-            String bestSoFar = results[script];
-            if (bestSoFar == null || comparator.compare(current, bestSoFar) < 0) {
-                results[script] = current;
-            }
+        for (String name : nameToLocale.keySet()) {
+            String locale = nameToLocale.get(name);
+            if (!locales.contains(locale)) continue;
+            System.out.println(name + "\t" + locale + "\t" + localeToName.get(locale));
         }
-
-        TreeSet<String> sorted = new TreeSet<String>(comparator);
-        for (int i = 0; i < results.length; ++i) {
-            if (results[i] != null) {
-                sorted.add(results[i]);
-            }
-        }
-        return Collections.unmodifiableList(new ArrayList<String>(sorted));
     }
 }

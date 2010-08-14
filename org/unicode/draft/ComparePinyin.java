@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -14,6 +15,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
@@ -26,6 +29,7 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
@@ -36,8 +40,12 @@ public class ComparePinyin {
   static Collator pinyinSort = Collator.getInstance(new ULocale("zh@collator=pinyin"));
   static Collator radicalStrokeSort = Collator.getInstance(new ULocale("zh@collator=unihan"));
   static Transliterator toPinyin = Transliterator.getInstance("Han-Latin;nfc"); 
+  static final Comparator<String> codepointComparator = new UTF16.StringComparator(true, false,0);
+  
 
   public static void main(String[] args) throws IOException {
+      
+
     showElements("", toPinyin);
     UnihanPinyin unihanPinyin = new UnihanPinyin();
 
@@ -153,7 +161,7 @@ public class ComparePinyin {
 
     printItems(buckets, unihanPinyin);
     
-    Relation<String,String> sorted = new Relation(new TreeMap(pinyinSort), TreeSet.class);
+    Relation<String,String> sorted = new Relation(new TreeMap(pinyinSort), TreeSet.class, radicalStrokeSort);
     for (String han : unihanPinyin.keySet()) {
       sorted.put(unihanPinyin.getPinyin(han), han);
     }
@@ -162,6 +170,14 @@ public class ComparePinyin {
     Tabber tabber = new Tabber.HTMLTabber();
 
     PrintWriter out = Utility.openPrintWriter("pinyinTable.html", null);
+    PrintWriter pinyinCollation = Utility.openPrintWriter("pinyinCollation.txt", null);
+    pinyinCollation.println("\uFEFF# Unihan Pinyin Collation\n" +
+            "&[last regular]");
+
+    PrintWriter pinyinCollationInterleaved = Utility.openPrintWriter("pinyinCollationInterleaved.txt", null);
+    pinyinCollationInterleaved.println("\uFEFF# Unihan Pinyin Interleaved Collation\n" +
+    		"&[last regular]");
+    
     out.println("<html>\n" +
     		"<head>\n" +
     		"<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n" +
@@ -170,11 +186,16 @@ public class ComparePinyin {
     		"<table border='1' style='border-collapse:collapse'>");
     for (String pinyin : sorted.keySet()) {
       Set<String> hanSet = sorted.getAll(pinyin);
+      pinyinCollationInterleaved.print("<" + pinyin + "\t");
       sorted2.clear();
       for (String han : hanSet) {
         Map<String, EnumSet<PinyinSource>> pinyinToSource = unihanPinyin.getPinyinMap(han);
         sorted2.put("" + showPinyinToSource(pinyinToSource), han);
+        pinyinCollation.print("<" + han);
+        pinyinCollationInterleaved.print("<" + han);
       }
+      pinyinCollation.println();
+      pinyinCollationInterleaved.println();
       for (String line : sorted2.keySet()) {
         Set<String> set = sorted2.getAll(line);
         String setStr = set.toString().replace(",", "");
@@ -183,6 +204,8 @@ public class ComparePinyin {
       }
     }
     out.println("</table></body></html>");
+    pinyinCollation.close();
+    pinyinCollationInterleaved.close();
     out.close();
 
     System.out.println("\nbad " + bad);
@@ -496,7 +519,7 @@ public class ComparePinyin {
         return false;
       }
       String finalSegment = base.substring(initialEnd);
-      boolean result = FINALS.contains(finalSegment);
+      boolean result = finalSegment.length() == 0 ? true : FINALS.contains(finalSegment);
       return result;
     }
     
