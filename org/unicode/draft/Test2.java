@@ -42,6 +42,7 @@ import sun.text.normalizer.UTF16;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UCharacterCategory;
 import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.Normalizer2;
@@ -114,6 +115,23 @@ public class Test2 {
         int oldType = -1;
         UnicodeSet chars = new UnicodeSet();
         int count = 0;
+        StringBuffer rules = new StringBuffer("& [last tertiary ignorable]\n");
+        addChars(rules, "=", "ߺ");
+        addChars(rules, "=", "ـ");
+        addChars(rules, "&", "‖");
+        addChars(rules, "<", "᧞");
+        addChars(rules, "<", "᧟");
+        addChars(rules, "&", "₸");
+        addChars(rules, "<", "₨");
+        addChars(rules, "<", "﷼");
+        addChars(rules, "&", " ");
+        rules.append("\t# gc=P, ordered by DUCET\n");
+        final String punctStart = "<*\t\u200e'";
+        final String punctEnd = "'\u200e";
+        
+        
+        StringBuffer punctuation = new StringBuffer();
+        int oldPunctuation = -1;
         for (String s : sorted) {
             int type = UCharacter.getType(s.codePointAt(0));
             switch (type) {
@@ -126,6 +144,23 @@ public class Test2 {
             case UCharacterCategory.INITIAL_PUNCTUATION:
             case UCharacterCategory.FINAL_PUNCTUATION:
                 type = UCharacterCategory.START_PUNCTUATION;
+            case UCharacterCategory.OTHER_PUNCTUATION:
+            case UCharacterCategory.CONNECTOR_PUNCTUATION:
+            case UCharacterCategory.DASH_PUNCTUATION:
+                if (punctuation.length() >= 50 || oldPunctuation != type && oldPunctuation != -1) {
+                    rules.append(punctStart);
+                    rules.append(punctuation);
+                    rules.append(punctEnd);
+                    if (oldPunctuation != -1) {
+                        String punctLabel = type == UCharacterCategory.START_PUNCTUATION ? "Poc" 
+                                : UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, oldPunctuation, NameChoice.SHORT);
+                        rules.append(" \t# " + punctLabel);
+                    }
+                    rules.append("\n");
+                    punctuation.setLength(0);
+                }
+                oldPunctuation = type;
+                punctuation.append(s);
                 break;
             }
 
@@ -147,6 +182,22 @@ public class Test2 {
                 + UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, oldType, UProperty.NameChoice.SHORT)
                 + "\t" + chars.size()
                 + "\t" + chars.toPattern(false));
+        if (punctuation.length() > 0) {
+            rules.append(punctStart);
+            rules.append(punctuation);
+            rules.append(punctEnd);
+        }
+        System.out.println(rules);
+    }
+
+    private static void addChars(StringBuffer punctuationChars, String relation, String s) {
+        punctuationChars.append(relation +
+        		"\t\u200E'" 
+            + s 
+            + "'\u200E" 
+            + "\t# " 
+            + UCharacter.getName(s, " + ")
+            + "\n");
     }
 
     static final UnicodeSet INITIAL_PUNCTUATION = new UnicodeSet("[[:Ps:][:Pi:]-[༺༼᚛‘‚‛“„‟〝]]").freeze();
