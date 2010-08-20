@@ -349,6 +349,8 @@ Let $AlphaExclusions = [\u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F
 \p{Script=Inherited} ⊆ [\p{GC=Mn} \p{GC=Me} \p{Join_Control}]
 \p{Script=Unknown} = [\p{GC=Cn} \p{GC=Co} \p{GC=Cs}]
 
+Show [\u20b9]
+
 # [\p{Alphabetic}] ∥ \p{Script=Common}
 #  & [\p{Decomposition_Type=None} \p{Decomposition_Type=Canonical}]
 
