@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/DifferTest.java,v $
-* $Date: 2009-07-20 23:27:33 $
-* $Revision: 1.4 $
+* $Date: 2010-08-20 17:24:46 $
+* $Revision: 1.5 $
 *
 *******************************************************************************
 */
@@ -24,7 +24,7 @@ public class DifferTest {
 
         String[] as = {"a", "b", "20D4", "0344", "20D5", "20D6", "20D7", "20D8", "20D9"};
         String[] bs = {"a", "b", "20D4", "20D5", "0344", "20D6", "20D7", "20D8", "20D9"};
-        Differ differ = new Differ(50,2);
+        Differ differ = new Differ(100,30);
         int max = as.length;
         if (max < bs.length) max = bs.length;
         for (int j = 0; j <= max; ++j) {
@@ -32,18 +32,23 @@ public class DifferTest {
             if (j < bs.length) differ.addB(bs[j]);
             differ.checkMatch(j == max);
 
-            if (differ.getACount() != 0 || differ.getBCount() != 0) {
-                if (differ.getACount() != 0) {
-                    for (int i = -1; i < differ.getACount()+1; ++i) {
+            int aCount = differ.getACount();
+            int bCount = differ.getBCount();
+            if (aCount != 0 || bCount != 0) {
+                System.out.println("a: " + differ.getALine(-1) + " " + differ.getA(-1) + "\t" + "b: " + differ.getBLine(-1) + " " + differ.getB(-1));
+
+                if (aCount != 0) {
+                    for (int i = 0; i < aCount; ++i) {
                         System.out.println("a: " + differ.getALine(i) + " " + differ.getA(i));
                     }
                 }
-                if (differ.getBCount() != 0) {
-                    if (differ.getACount() != 0) System.out.println();
-                    for (int i = -1; i < differ.getBCount()+1; ++i) {
+                if (bCount != 0) {
+                    if (aCount != 0) System.out.println();
+                    for (int i = 0; i < bCount; ++i) {
                         System.out.println("b: " + differ.getBLine(i) + " " + differ.getB(i));
                     }
                 }
+                System.out.println("a: " + differ.getALine(aCount) + " " + differ.getA(aCount) + "\t" + "b: " + differ.getBLine(bCount) + " " + differ.getB(bCount));
             }
             System.out.println("----");
             //differ.flush();
