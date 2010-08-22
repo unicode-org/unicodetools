@@ -12,56 +12,13 @@ import java.util.TreeSet;
 import org.unicode.cldr.util.StandardCodes;
 
 import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.AlphabeticIndex;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.AlphabeticIndex.SimpleBucket;
 import com.ibm.icu.util.ULocale;
 
-public class ShowIndexCharacters {
+public class GenerateLanguageNames {
 
     public static void main(String[] args) {
-
-        // get sample data
-        String[] test = { "$", "£", "12", "2", 
-                "Edgar", "edgar", "Abbot", "Effron", "Zach", "Ƶ", 
-                "Þor", "Åberg", "Östlund",
-                "Ἥρα", "Ἀθηνᾶ", "Ζεύς", "Ποσειδὣν", "Ἅιδης", "Δημήτηρ", "Ἑστιά", 
-                "Ἀπόλλων", "Ἄρτεμις", "Ἑρμἣς", "Ἄρης", "Ἀφροδίτη", "Ἥφαιστος", "Διόνυσος",
-                "斉藤", "佐藤", "鈴木", "高橋", "田中", "渡辺", "伊藤", "山本", "中村", "小林", "斎藤", "加藤",
-                "吉田", "山田", "佐々木", "山口", "松本", "井上", "木村", "林", "清水"
-        };
-        ULocale[] testLocales = { new ULocale("ru"), ULocale.ENGLISH, new ULocale.Builder().setLanguageTag("sv-u-kn-true").build(), 
-                ULocale.JAPANESE, ULocale.CHINESE, ULocale.TRADITIONAL_CHINESE };
-        //UnicodeSet additions = new UnicodeSet("[A-Z]");
-        for (ULocale testLocale : testLocales) {
-            AlphabeticIndex indexCharacters = new AlphabeticIndex(testLocale, ULocale.ENGLISH);
-            Collator.getInstance(testLocale);
-            List<SimpleBucket> buckets = indexCharacters.getIndexBuckets(Arrays.asList(test));
-
-            // show index at top. We can skip or gray out empty buckets
-            System.out.println();
-            System.out.print("Locale: " + testLocale + " = " + testLocale.getDisplayName(testLocale) + "\t");
-            boolean showAll = true;
-            for (SimpleBucket entry : buckets) {
-                String label = entry.getLabel();
-                if (showAll || entry.getValues().size() != 0) {
-                    System.out.print(label + " ");
-                }
-            }
-            System.out.println();
-            System.out.println("========================");
-
-            // show buckets with contents
-            for (SimpleBucket entry : buckets) {
-                if (entry.getValues().size() != 0) {
-                    System.out.print(entry.getLabel() + (entry.isSpecial() ? "*" : "") + "\t:");
-                    for (String item : entry.getValues()) {
-                        System.out.print("\t" + item);
-                    }
-                    System.out.println();
-                }
-            }
-        }
+        getNames();
     }
 
     static String[][] langList =  {

@@ -92,10 +92,7 @@ public class Misc {
     }
 
     public static void main(String[] args) throws ParseException {
-        new Misc().compareCalendars();
 
-        if (true) return;
-        new Misc().testDateParsing();
 
         Map<String,Integer> am;
         Map<String,Integer> cm;
