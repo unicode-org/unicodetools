@@ -26,10 +26,11 @@ public class Test3 {
       super(Currency.getInstance(theISOCode).getCurrencyCode());
     }
     public String getName(ULocale locale, int nameStyle, boolean[] isChoiceFormat) {
-      if (locale "USD".equals(getCurrencyCode())) {
+      String currencyCode = getCurrencyCode();
+    if ("USD".equals(currencyCode)) {
         return "US$";
       }
-      return super.getSymbol(loc);
+      return super.getSymbol();
     }
   }
   

@@ -73,7 +73,7 @@ public static final class CurrencyFilter {
   public static CurrencyFilter onFromDate(Date date) { return new CurrencyFilter(); }
   public static CurrencyFilter onToDate(Date date) { return new CurrencyFilter(); }
 
-  public CurrencyFilter onRegion(String region) { return this; }
+  public CurrencyFilter withRegion(String region) { return this; }
   public CurrencyFilter withCurrency(String currency) { return this; }
   public CurrencyFilter withFromDate(Date date) { return this; }
   public CurrencyFilter withToDate(Date date) { return this; }
