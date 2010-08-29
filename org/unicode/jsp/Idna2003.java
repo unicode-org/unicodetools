@@ -2,13 +2,14 @@ package org.unicode.jsp;
 
 public class Idna2003 extends Idna {
   
-  private Idna2003() {
-    StringPrepData.getIdna2003Tables(mappings, types);
+  private Idna2003(boolean STD3) {
+    StringPrepData.getIdna2003Tables(mappings, types, STD3);
     mappings_display = mappings;
     validSet = validSet_transitional = types.getSet(IdnaType.valid).freeze();
   }
   
-  public static Idna2003 SINGLETON = new Idna2003();
+  public static Idna2003 SINGLETON = new Idna2003(true);
+  public static Idna2003 SINGLETON_NSTD3 = new Idna2003(false);
   
   static public IdnaType getIDNA2003Type(int cp) {
     return SINGLETON.getType(cp);
