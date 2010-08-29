@@ -1,15 +1,14 @@
 package org.unicode.draft;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.charset.Charset;
 import java.text.Collator;
 import java.text.ParseException;
-import java.text.ParsePosition;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
@@ -17,12 +16,7 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import javax.management.RuntimeErrorException;
-
-import com.ibm.icu.text.SimpleDateFormat;
-import com.ibm.icu.util.Calendar;
-import com.ibm.icu.util.TimeZone;
-import com.ibm.icu.util.ULocale;
+import com.ibm.icu.text.UnicodeCompressor;
 
 
 public class Misc {
@@ -93,6 +87,18 @@ public class Misc {
 
     public static void main(String[] args) throws ParseException {
 
+        checkSize("Barak Obama");
+        checkSize("Дми́трий Медве́дев​");
+        checkSize("Dmitry Medvedev");
+        checkSize("Владимир Путин");
+        checkSize("Vladimir Putin");
+        checkSize("菅直人");
+        checkSize("Naoto Kan");
+        checkSize("鳩山由紀夫");
+        checkSize("Yukio Hatoyama");
+        checkSize("François Fillon");
+
+        if (true) return;
 
         Map<String,Integer> am;
         Map<String,Integer> cm;
@@ -117,6 +123,42 @@ public class Misc {
         cm = MapBuilder.of(new TreeMap<String,Integer>(col)).put("b", 3).put("c", 4).unmodifiable();
         addAll(am, cm, true);
         System.out.println(am);
+    }
+
+    private static void checkSize(String string) {
+        byte[] utf8 = string.getBytes(Charset.forName("utf-8"));
+        byte[] scsu = UnicodeCompressor.compress(string);
+        //        ByteArrayOutputStream outBytes = new ByteArrayOutputStream();
+        //
+        //        try {
+        //            DataOutputStream out = new DataOutputStream(outBytes);
+        //            CompressedDataOutput out2 = new CompressedDataOutput().set(out);
+        //            out2.writeUTF(string);
+        //            out.close();
+        //        } catch (IOException e) {
+        //        }
+        //        byte[] bytes = outBytes.toByteArray();
+
+        ByteArrayOutputStream outBytes = new ByteArrayOutputStream();
+        int len = 0;
+        try {
+            java.util.zip.GZIPOutputStream foo = new java.util.zip.GZIPOutputStream(outBytes);
+            //foo.setLevel(9);
+            foo.write(utf8);
+            foo.flush();
+            len = outBytes.toByteArray().length;
+            foo.close();
+        } catch (IOException e) {
+        }
+
+
+        System.out.println("'" + string + "'"
+                + "\tchars:\t" + string.codePointCount(0, string.length())
+                + "\tutf8:\t" + utf8.length
+                + "\tscsu:\t" + scsu.length
+                + "\tscsu:\t" + scsu.length
+                + "\tgzip:\t" + len
+        );
     }
 
     @SuppressWarnings("unchecked")
