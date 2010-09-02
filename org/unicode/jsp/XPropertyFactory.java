@@ -137,18 +137,18 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
     
     // exemplars
-    String[] typeName = {"", "aux_"};
-    for (ULocale locale : ULocale.getAvailableLocales()) {
-        if (locale.getCountry().length() != 0 || locale.getVariant().length() != 0) {
-            continue;
-        }
-        LocaleData localeData = LocaleData.getInstance(locale);
-        for (int type = 0; type < LocaleData.ES_COUNT; ++type) {
-            String name = "exemplars_" + typeName[type] + locale;
-            UnicodeSet us = localeData.getExemplarSet(UnicodeSet.CASE, type).freeze();
-            add(new UnicodeSetProperty().set(us).setMain(name, name, UnicodeProperty.BINARY, "1.1"));
-        }
-    }
+//    String[] typeName = {"", "aux_"};
+//    for (ULocale locale : ULocale.getAvailableLocales()) {
+//        if (locale.getCountry().length() != 0 || locale.getVariant().length() != 0) {
+//            continue;
+//        }
+//        LocaleData localeData = LocaleData.getInstance(locale);
+//        for (int type = 0; type < LocaleData.ES_COUNT; ++type) {
+//            String name = "exemplars_" + typeName[type] + locale;
+//            UnicodeSet us = localeData.getExemplarSet(UnicodeSet.CASE, type).freeze();
+//            add(new UnicodeSetProperty().set(us).setMain(name, name, UnicodeProperty.BINARY, "1.1"));
+//        }
+//    }
   }
 
   //  public UnicodeProperty getInternalProperty(String propertyAlias) {

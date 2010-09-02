@@ -436,7 +436,6 @@ public class ComparePinyin {
     }
 
     private void collectPinyin() {
-      try {
         PrintWriter out = Utility.openPrintWriter("pinyin/pinyins.txt", null);
         String[] line = {"", "", "", "", "", "", "", ""};
         Map<String,Integer> groupToIndex = new HashMap();
@@ -488,9 +487,6 @@ public class ComparePinyin {
         System.out.println(initials);
         System.out.println(finals);
         System.out.println(accentedFinals);
-      } catch (IOException e) {
-        throw new IllegalArgumentException(e);
-      }
     }
 
     private String showPinyinLine(String[] line, BitSet collectedAccents) {

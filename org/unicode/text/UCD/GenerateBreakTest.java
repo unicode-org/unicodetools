@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/GenerateBreakTest.java,v $
- * $Date: 2010-08-20 17:24:45 $
- * $Revision: 1.31 $
+ * $Date: 2010-09-02 22:16:27 $
+ * $Revision: 1.32 $
  *
  *******************************************************************************
  */
@@ -353,7 +353,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println("<p><b>Unicode Version:</b> " + ucd.getVersion() + "</p>");
         out.println("<p><b>Date:</b> " + Default.getDate() + "</p>");
         out
-        .println("<p>This page illustrates the application of the boundary specification for" + fileName +
+        .println("<p>This page illustrates the application of the boundary specification for " + fileName +
         		"s. The material here is informative, not normative.</p> "
                 + "<p>The first chart shows where breaks would appear between different sample characters or strings. "
                 + "The sample characters are chosen mechanically to represent the different properties used by the specification.</p>"

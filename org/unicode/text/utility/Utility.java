@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/Utility.java,v $
- * $Date: 2010-05-15 00:29:21 $
- * $Revision: 1.65 $
+ * $Date: 2010-09-02 22:16:28 $
+ * $Revision: 1.66 $
  *
  *******************************************************************************
  */
@@ -785,26 +785,31 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         UTF8_WINDOWS = Encoding.UTF8_WINDOWS;
    */
 
-  public static PrintWriter openPrintWriter(String filename, Encoding options) throws IOException {
+  public static PrintWriter openPrintWriter(String filename, Encoding options) {
     return openPrintWriter(UCD_Types.GEN_DIR, filename, options);
   }
 
   // Normally use false, false.
   // But for UCD files use true, true
   // Or if they are UTF8, use true, false
-  public static PrintWriter openPrintWriter(String directory, String filename, Encoding options) throws IOException {
-    File file = new File(directory, filename);
-    Utility.fixDot();
-    System.out.println("\nCreating File: " + file.getCanonicalPath());
-    File parent = new File(file.getParent());
-    //System.out.println("Creating File: "+ parent);
-    parent.mkdirs();
-    return new PrintWriter(
-            new UTF8StreamWriter(
-                    new FileOutputStream(file),
-                    32*1024,
-                    options == LATIN1_UNIX || options == UTF8_UNIX,
-                    options == LATIN1_UNIX || options == LATIN1_WINDOWS));
+  public static PrintWriter openPrintWriter(String directory, String filename, Encoding options)  {
+      
+    try {
+        File file = new File(directory, filename);
+        Utility.fixDot();
+        System.out.println("\nCreating File: " + file.getCanonicalPath());
+        File parent = new File(file.getParent());
+        //System.out.println("Creating File: "+ parent);
+        parent.mkdirs();
+        return new PrintWriter(
+                new UTF8StreamWriter(
+                        new FileOutputStream(file),
+                        32*1024,
+                        options == LATIN1_UNIX || options == UTF8_UNIX,
+                        options == LATIN1_UNIX || options == LATIN1_WINDOWS));
+    } catch (IOException e) {
+        throw new IllegalArgumentException(e);
+    }
   }
 
   public static String getOutputName(String filename) {

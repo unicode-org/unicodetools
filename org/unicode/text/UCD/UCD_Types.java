@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD_Types.java,v $
- * $Date: 2010-08-04 18:53:07 $
- * $Revision: 1.52 $
+ * $Date: 2010-09-02 22:16:27 $
+ * $Revision: 1.53 $
  *
  *******************************************************************************
  */
@@ -37,15 +37,19 @@ public interface UCD_Types {
   
   public static final int 
   CJK_BASE = 0x4E00,
-  CJK_LIMIT = 0x9FFF+1,
+  CJK_LIMIT = 0x9FA5+1,
   CJK_COMPAT_USED_BASE = 0xFA0E,
   CJK_COMPAT_USED_LIMIT = 0xFA2F+1,
   CJK_A_BASE = 0x3400,
-  CJK_A_LIMIT = 0x4DBF+1,
+  CJK_A_LIMIT = 0x4DB5+1,
   CJK_B_BASE = 0x20000,
-  CJK_B_LIMIT = 0x2A6DF+1,
+  CJK_B_LIMIT = 0x2A6D6+1,
   CJK_C_BASE = 0x2A700,
-  CJK_C_LIMIT = 0x2B73F+1;
+  CJK_C_LIMIT = 0x2B734+1,
+  CJK_D_BASE = 0x2B740,
+  CJK_D_LIMIT = 0x2B81D+1
+  // when adding to this list, look for all occurrences (in project) of CJK_C_BASE and CJK_C_LIMIT to check for code that needs changing.
+  ;
 
   // Unicode Property Types
   static final byte 

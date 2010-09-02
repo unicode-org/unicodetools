@@ -29,7 +29,12 @@ public class Uts46 extends Idna {
   class MyHandler extends FileUtilities.SemiFileReader {
 
     public boolean handleLine(int start, int end, String[] items) {
-      IdnaType type = IdnaType.valueOf(items[1]);
+      String status = items[1];
+      int dash = status.indexOf("_STD3");
+      if (dash >= 0) {
+          status = status.substring(0, dash);
+      }
+    IdnaType type = IdnaType.valueOf(status);
       types.putAll(start, end, type);
 
       String value;
