@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2010-05-27 16:39:47 $
- * $Revision: 1.60 $
+ * $Date: 2010-09-02 22:16:27 $
+ * $Revision: 1.61 $
  *
  *******************************************************************************
  */
@@ -1180,10 +1180,10 @@ public final class UCD implements UCD_Types {
     if (ch <= 0xFFFD) {
       //if (ch <= 0x2800) return ch;
       //if (ch <= 0x28FF) return 0x2800;    // braille
-      if (ch <= 0x3400) return ch;         // CJK Ideograph Extension A
-      if (ch <= 0x4DB5) return 0x3400;
-      if (ch <= 0x4E00) return ch;         // CJK Ideograph
-      if (ch <= 0x9FA5) return 0x4E00;
+      if (ch <= CJK_A_BASE) return ch;         // CJK Ideograph Extension A
+      if (ch <  CJK_A_LIMIT) return CJK_A_BASE;
+      if (ch <= CJK_BASE) return ch;         // CJK Ideograph
+      if (ch <  CJK_LIMIT) return CJK_BASE;
       if (ch <= 0x9FBB && rCompositeVersion >= 0x40100) return 0x4E00;
       if (ch <= 0x9FC3 && rCompositeVersion >= 0x50100) return 0x4E00;
       if (ch <= 0x9FCB && rCompositeVersion >= 0x50200) return 0x4E00;
@@ -1207,17 +1207,17 @@ public final class UCD implements UCD_Types {
       if ((ch & 0xFFFE) == 0xFFFE) return 0xFFFF;         // Noncharacter
 
       // 20000..2A6DF; CJK Unified Ideographs Extension B
-      if (ch <= 0x20000) return ch;         // Extension B first char
-      if (ch <= 0x2A6D6) return 0x20000;
+      if (ch <= CJK_B_BASE) return ch;         // Extension B first char
+      if (ch <  CJK_B_LIMIT) return CJK_B_BASE;
       // 2A700..2B73F; CJK Unified Ideographs Extension C
       if (rCompositeVersion >= 0x50200) {
-        if (ch <= 0x2A700) return ch;       // Extension C first char
-        if (ch <= 0x2B734) return 0x2A700;
+        if (ch <= CJK_C_BASE) return ch;       // Extension C first char
+        if (ch <  CJK_C_LIMIT) return CJK_C_BASE;
       }
       // 2B740..2B81F; CJK Unified Ideographs Extension D
       if (rCompositeVersion >= 0x60000) {
-        if (ch <= 0x2B740) return ch;       // Extension D first char
-        if (ch <= 0x2B81D) return 0x2B740;
+        if (ch <= CJK_D_BASE) return ch;       // Extension D first char
+        if (ch <= CJK_D_LIMIT) return CJK_D_BASE;
       }
 
       //if (ch <= 0x2F800) return ch;
@@ -1514,7 +1514,10 @@ to guarantee identifier closure.
 
   public static final boolean isCJK_AB(int bigChar) {
     return (CJK_A_BASE <= bigChar && bigChar < CJK_A_LIMIT
-            || CJK_B_BASE <= bigChar && bigChar < CJK_B_LIMIT);
+            || CJK_B_BASE <= bigChar && bigChar < CJK_B_LIMIT
+            || CJK_C_BASE <= bigChar && bigChar < CJK_C_LIMIT
+            || CJK_D_BASE <= bigChar && bigChar < CJK_D_LIMIT
+            );
   }
 
   public static boolean isCJK_BASE(int cp) {
@@ -1531,8 +1534,8 @@ to guarantee identifier closure.
             || cp == 0xFA27
             || cp == 0xFA28
             || cp == 0xFA29
-            || cp == 0xFA2E
-            || cp == 0xFA2F
+//            || cp == 0xFA2E
+//            || cp == 0xFA2F
     );
   }
 

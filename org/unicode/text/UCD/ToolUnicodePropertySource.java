@@ -577,11 +577,16 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
           unicodeMap.putAll(graphemeExtend, "Extend");
           unicodeMap
-          .putAll(new UnicodeSet("[[\u0e30-\u0e3a\u0e45\u0eb0-\u0ebb]-[:cn:]]"), "Extend");
+          .putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
+          
           UnicodeSet graphemePrepend = getProperty("Logical_Order_Exception").getSet(UCD_Names.YES);
           unicodeMap.putAll(graphemePrepend, "Prepend");
-          unicodeMap.putAll(cat.getSet("Spacing_Mark").removeAll(unicodeMap.keySet("Extend")),
+          
+          unicodeMap.putAll(cat.getSet("Spacing_Mark")
+                  .addAll(new UnicodeSet("[\u0E30 \u0E32 \u0E33 \u0E45 \u0EB0 \u0EB2 \u0EB3]"))
+                  .removeAll(unicodeMap.keySet("Extend")),
           "SpacingMark");
+          
           UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
           unicodeMap.putAll(hangul.getSet("L"), "L");
           unicodeMap.putAll(hangul.getSet("V"), "V");

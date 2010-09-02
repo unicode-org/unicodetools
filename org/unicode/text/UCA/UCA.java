@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
-* $Date: 2010-05-31 03:42:26 $ 
-* $Revision: 1.33 $
+* $Date: 2010-09-02 22:16:28 $ 
+* $Revision: 1.34 $
 *
 *******************************************************************************
 */
@@ -686,10 +686,16 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      * Returns implicit value
      */
     
-    void CodepointToImplicit(int cp, int[] output) {
+    public static void CodepointToImplicit(int cp, int[] output) {
 		int base = UNSUPPORTED_OTHER_BASE;
-        if (ucd.isCJK_BASE(cp)) base = UNSUPPORTED_CJK_BASE;
-        else if (ucd.isCJK_AB(cp)) base = UNSUPPORTED_CJK_AB_BASE;
+        if (UCD.isCJK_BASE(cp)) base = UNSUPPORTED_CJK_BASE;
+        else if (UCD.isCJK_AB(cp)) base = UNSUPPORTED_CJK_AB_BASE;
+        output[0] = base + (cp >>> 15);
+        output[1] = (cp & 0x7FFF) | 0x8000;
+    }
+    
+    public static void UnassignedToImplicit(int cp, int[] output) {
+        int base = UNSUPPORTED_OTHER_BASE;
         output[0] = base + (cp >>> 15);
         output[1] = (cp & 0x7FFF) | 0x8000;
     }
@@ -1007,9 +1013,9 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
 
                         
-        if (ucd.isNoncharacter(bigChar)) { // illegal code value, ignore!!
-            return 0;
-        }
+//        if (ucd.isNoncharacter(bigChar)) { // illegal code value, ignore!!
+//            return 0;
+//        }
             
 		// find the implicit values; returned in 0 and 1
 		int[] implicit = new int[2];
@@ -1335,12 +1341,14 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 {0x10FFFF},
                 {0x10FFFE},
                 {0x10FFFF},
-                {0x3400, 0x4DB5},
-                {0x4E00, 0x9FA5},
+                {UCD_Types.CJK_A_BASE, UCD_Types.CJK_A_LIMIT},
+                {UCD_Types.CJK_BASE, UCD_Types.CJK_LIMIT},
                 {0xAC00, 0xD7A3},
                 {0xA000, 0xA48C},
                 {0xE000, 0xF8FF},
-                {0x20000, 0x2A6D6},
+                {UCD_Types.CJK_B_BASE, UCD_Types.CJK_B_LIMIT},
+                {UCD_Types.CJK_C_BASE, UCD_Types.CJK_C_LIMIT},
+                {UCD_Types.CJK_D_BASE, UCD_Types.CJK_D_LIMIT},
                 {0xE0000, 0xE007E},
                 {0xF0000, 0xF00FD},
                 {0xFFF00, 0xFFFFD},

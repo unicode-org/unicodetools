@@ -30,10 +30,10 @@ import com.ibm.icu.util.ULocale;
 public class GenerateIdna {
 
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
-    private static final boolean TESTING = true;
+    private static final boolean TESTING = false;
     public static UnicodeSet U32;
     public static UnicodeSet VALID_ASCII;
-    public static UnicodeSet NSDT3_ASCII;
+    public static UnicodeSet NSTD3_ASCII;
     static ToolUnicodePropertySource properties;
     static UnicodeSet cn;
     static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
@@ -54,7 +54,7 @@ public class GenerateIdna {
 
         U32 = new UnicodeSet("[:age=3.2:]").freeze();
         VALID_ASCII = new UnicodeSet("[\\u002Da-zA-Z0-9]").freeze();
-        NSDT3_ASCII = new UnicodeSet("[[\\u0000-\\u007F]-[.]]").freeze();
+        NSTD3_ASCII = new UnicodeSet("[[\\u0000-\\u007F]-[.]]").freeze();
         properties = ToolUnicodePropertySource.make(Default.ucdVersion());
         cn = properties.getSet("gc=Cn").freeze();
 
@@ -155,7 +155,7 @@ public class GenerateIdna {
         .removeAll(properties.getSet("Block=Ideographic_Description_Characters"))
         .removeAll(new UnicodeSet("[\\u0000-\\u007F]"))
         //.addAll(0x200c, 0x200d)
-        .addAll(STD3 ? VALID_ASCII : NSDT3_ASCII).freeze()
+        .addAll(STD3 ? VALID_ASCII : NSTD3_ASCII).freeze()
         ;
 
         System.out.println(STD3 + " Base Valid Set & nfkcqc=n" + new UnicodeSet("[:nfkcqc=n:]").retainAll(baseValidSet));
