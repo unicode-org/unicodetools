@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
- * $Date: 2010-08-04 18:53:06 $ 
- * $Revision: 1.26 $
+ * $Date: 2010-09-17 08:26:58 $ 
+ * $Revision: 1.27 $
  *
  *******************************************************************************
  */
@@ -107,10 +107,10 @@ public class Main {
         else if (arg.equalsIgnoreCase("WriteRulesXML")) WriteCollationData.writeRules(WriteCollationData.IN_XML, shortPrint, noCE);
         else if (arg.equalsIgnoreCase("checkDisjointIgnorables")) WriteCollationData.checkDisjointIgnorables();
         else if (arg.equalsIgnoreCase("writeContractions")) WriteCollationData.writeContractions();
-        else if (arg.equalsIgnoreCase("writeFractionalUCA")) WriteCollationData.writeFractionalUCA("FractionalUCA");
+        else if (arg.equalsIgnoreCase("writeFractionalUCA")) FractionalUCA.writeFractionalUCA("FractionalUCA");
         else if (arg.equalsIgnoreCase("writeConformance")) WriteCollationData.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint);
         else if (arg.equalsIgnoreCase("writeConformanceSHIFTED")) WriteCollationData.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint);
-        else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) WriteCollationData.testCompatibilityCharacters();
+        else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) FractionalUCA.testCompatibilityCharacters();
         else if (arg.equalsIgnoreCase("writeCollationValidityLog")) WriteCollationData.writeCollationValidityLog();
         else if (arg.equalsIgnoreCase("writeCaseExceptions")) WriteCollationData.writeCaseExceptions();
         else if (arg.equalsIgnoreCase("writeJavascriptInfo")) WriteCollationData.writeJavascriptInfo();
@@ -164,7 +164,7 @@ public class Main {
    */
   private static void checkCanonicalIterator() {
 
-    int firstImplicit = WriteCollationData.getImplicitPrimary(UCD_Types.CJK_BASE);
+    int firstImplicit = FractionalUCA.getImplicitPrimary(UCD_Types.CJK_BASE);
     System.out.println("UCD_Types.CJK_BASE: " + Utility.hex(UCD_Types.CJK_BASE));
     System.out.println("first implicit: " + Utility.hex((long)(firstImplicit & 0xFFFFFFFFL)));
 
