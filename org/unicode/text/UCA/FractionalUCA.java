@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.Map.Entry;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCD.Default;
@@ -23,8 +24,13 @@ import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.CollectionUtilities;
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
+
 import org.unicode.text.UCA.FractionalUCA.Variables;
 
 public class FractionalUCA implements UCD_Types, UCA_Types {
@@ -358,7 +364,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         //TO DO: find secondaries that don't overlap, and reassign
 
         System.out.println("Finding Bumps");        
-        char[] representatives = new char[65536];
+        int[] representatives = new int[65536];
         FractionalUCA.findBumps(representatives);
 
         System.out.println("Fixing Primaries");
@@ -386,8 +392,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
                 // special handling for Jamo 3-byte forms
 
-                if (isOldJamo(primary)) {
-                    if (DEBUG) {
+                if (shouldBe3Byte(primary)) {
+                    if (false && DEBUG) {
                         System.out.print("JAMO: " + Utility.hex(lastValue));
                     }
                     if ((lastValue & 0xFF0000) == 0) { // lastValue was 2-byte form
@@ -400,7 +406,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                             lastValue = FractionalUCA.primaryDelta[primary] = lastValue + 3;
                         }
                     }
-                    if (DEBUG) {
+                    if (false && DEBUG) {
                         System.out.println(" => " + Utility.hex(lastValue));
                     }
                     continue;
@@ -814,14 +820,15 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 }
                 if (isFirst) {
                     if (!FractionalUCA.sameTopByte(np, lastNp)) {
-                        summary.println("Last:  " + Utility.hex(lastNp & FractionalUCA.Variables.INT_MASK) + " " + WriteCollationData.ucd.getCodeAndName(UTF16.charAt(lastChr,0)));
+                        showRange("Last", summary, lastChr, lastNp);
                         summary.println();
                         if (doVariable) {
                             doVariable = false;
                             summary.println("[variable top = " + Utility.hex(FractionalUCA.primaryDelta[firstPrimary]) + "] # END OF VARIABLE SECTION!!!");
                             summary.println();
                         }
-                        summary.println("First: " + Utility.hex(np & FractionalUCA.Variables.INT_MASK) + ", " + WriteCollationData.ucd.getCodeAndName(UTF16.charAt(chr,0)));
+                        showRange("First", summary, chr, np);
+                        // summary.println("First:\t" + Utility.hex(np & FractionalUCA.Variables.INT_MASK) + ":\t" + WriteCollationData.ucd.getCodeAndName(UTF16.charAt(chr,0)));
                     }
                     lastNp = np;
                     isFirst = false;
@@ -908,7 +915,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             FractionalUCA.hexBytes(nt, newTertiary);
 
             fractionalLog.print(Utility.hex('\uFDD0' + "" + (char)(fakeTrail++)) + "; " 
-            + "[, " + newSecondary + ", " + newTertiary + "]");
+                    + "[, " + newSecondary + ", " + newTertiary + "]");
             longLog.print("\t# " + WriteCollationData.collator.getCEList(sample, true) + "\t* " + WriteCollationData.ucd.getCodeAndName(sample));
             fractionalLog.println();
         }
@@ -1013,8 +1020,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         fractionalLog.println("[fixed first special byte " + Utility.hex(FractionalUCA.Variables.SPECIAL_BASE,2) + "]");
         fractionalLog.println("[fixed last special byte " + Utility.hex(0xFF,2) + "]");
 
-
-        summary.println("Last:  " + Utility.hex(lastNp) + ", " + WriteCollationData.ucd.getCodeAndName(UTF16.charAt(lastChr, 0)));
+        showRange("Last", summary, lastChr, lastNp);
+        //summary.println("Last:  " + Utility.hex(lastNp) + ", " + WriteCollationData.ucd.getCodeAndName(UTF16.charAt(lastChr, 0)));
 
         /*
             String sample = "\u3400\u3401\u4DB4\u4DB5\u4E00\u4E01\u9FA4\u9FA5\uAC00\uAC01\uD7A2\uD7A3";
@@ -1083,6 +1090,25 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         }
         fractionalLog.close();
         summary.close();
+    }
+
+    private static String propValue(int ch, int propEnum, int nameChoice) {
+        return UCharacter.getPropertyValueName(propEnum, UCharacter.getIntPropertyValue(ch, propEnum), nameChoice);
+    }
+
+    private static void showRange(String title, PrintWriter summary, String lastChr, int lastNp) {
+        int ch = lastChr.codePointAt(0);
+        summary.println(title + ":\t" 
+                + padHexBytes(lastNp) 
+                + "\t" + propValue(ch, UProperty.GENERAL_CATEGORY, UProperty.NameChoice.SHORT)
+                + "\t" + propValue(ch, UProperty.SCRIPT, UProperty.NameChoice.SHORT)
+                + "\t" + WriteCollationData.ucd.getCodeAndName(UTF16.charAt(lastChr,0)));
+    }
+
+    private static String padHexBytes(int lastNp) {
+        String result = hexBytes(lastNp & FractionalUCA.Variables.INT_MASK);
+        return result + Utility.repeat(" ", 11-result.length());
+        // E3 9B 5F C8
     }
 
     static void checkImplicit() {
@@ -1529,59 +1555,106 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     static final StringBuffer toSmallKanaBuffer = new StringBuffer();
 
-    static void findBumps(char[] representatives) {
+    static final UnicodeSet MAJOR_PRIMARIES = new UnicodeSet();
+
+    static void findBumps(int[] representatives) {
         int[] ces = new int[100];
-        int[] scripts = new int[100];
-        char[] scriptChar = new char[100];
+        int[] scriptsLeastPrimary = new int[100];
+        int[] scriptChar = new int[100];
+
+        UnicodeSet threeByteSymbolPrimaries = new UnicodeSet();
+        int threeByteCats = bitmask(OTHER_SYMBOL, MATH_SYMBOL, MODIFIER_SYMBOL);
 
         // find representatives
 
-        for (char ch = 0; ch < 0xFFFF; ++ch) {
+        for (int ch = 0; ch <= 0x10FFFF; ++ch) {
             byte type = WriteCollationData.collator.getCEType(ch);
-            if (type < FIXED_CE) {
-                int len = WriteCollationData.collator.getCEs(String.valueOf(ch), true, ces);
-                int primary = UCA.getPrimary(ces[0]);
-                if (primary < FractionalUCA.Variables.variableHigh) {
-                    continue;
+            if (type >= FIXED_CE) {
+                continue;
+            }
+            int len = WriteCollationData.collator.getCEs(UTF16.valueOf(ch), true, ces);
+            int primary = UCA.getPrimary(ces[0]);
+            if (primary < FractionalUCA.Variables.variableHigh) {
+                byte cat = FractionalUCA.getFixedCategory(ch);
+                if ((threeByteCats & (1 << cat)) != 0) {
+                    threeByteSymbolPrimaries.add(primary);
+                } else {
+                    byte script = FractionalUCA.getFixedScript(ch);
+                    if (script != COMMON_SCRIPT && script != INHERITED_SCRIPT && !MAJOR_SCRIPTS.get(script)) {
+                        threeByteSymbolPrimaries.add(primary);
+                    }
                 }
-                /*
+                continue;
+            }
+            /*
                 if (ch == 0x1160 || ch == 0x11A8) { // set bumps within Hangul L, V, T
                     bumps.set(primary);
                     continue;
                 }
-                 */
-                byte script = FractionalUCA.getFixedScript(ch);
-                //if (script == ucd.GREEK_SCRIPT) System.out.println(ucd.getName(ch));
-                // get least primary for script
-                if (scripts[script] == 0 || scripts[script] > primary) {
-                    byte cat = FractionalUCA.getFixedCategory(ch);
-                    if (cat <= WriteCollationData.ucd.OTHER_LETTER && cat != WriteCollationData.ucd.Lm) {
-                        scripts[script] = primary;
-                        scriptChar[script] = ch;
-                        if (script == WriteCollationData.ucd.GREEK_SCRIPT) {
-                            System.out.println("*" + Utility.hex(primary) + WriteCollationData.ucd.getName(ch));
-                        }
+             */
+            byte script = FractionalUCA.getFixedScript(ch);
+            if (script == COMMON_SCRIPT || script == INHERITED_SCRIPT || script == Unknown_Script) {
+                continue;
+            }
+            if (script == WriteCollationData.ucd.SYRIAC_SCRIPT) {
+                System.out.println(WriteCollationData.ucd.getName(ch));
+            }
+
+            // get least primary for script
+            if (scriptsLeastPrimary[script] == 0 || scriptsLeastPrimary[script] > primary) {
+                byte cat = FractionalUCA.getFixedCategory(ch);
+                if (cat <= WriteCollationData.ucd.OTHER_LETTER && cat != WriteCollationData.ucd.Lm) {
+                    scriptsLeastPrimary[script] = primary;
+                    scriptChar[script] = ch;
+                    if (script == WriteCollationData.ucd.GREEK_SCRIPT) {
+                        System.out.println("*" + Utility.hex(primary) + WriteCollationData.ucd.getName(ch));
                     }
                 }
-                // get representative char for primary
-                if (representatives[primary] == 0 || representatives[primary] > ch) {
-                    representatives[primary] = ch;
+            }
+            // get representative char for primary
+            if (representatives[primary] == 0 || representatives[primary] > ch) {
+                representatives[primary] = ch;
+            }
+        }
+        // capture in order the ranges that are major vs minor
+        TreeMap<Integer,Row.R2<Boolean, Integer>> majorPrimary = new TreeMap();
+
+        // set bumps
+        for (int script = 0; script < scriptsLeastPrimary.length; ++script) {
+            if (scriptsLeastPrimary[script] > 0) {
+                boolean isMajor = MAJOR_SCRIPTS.get(script);
+                majorPrimary.put(scriptsLeastPrimary[script], Row.of(isMajor,script));
+                if (isMajor) {
+                    FractionalUCA.bumps.set(scriptsLeastPrimary[script]);
+                    System.out.println("Bumps:\t" + Utility.hex(scriptsLeastPrimary[script]) + " " + UCD.getScriptID_fromIndex((byte) script)
+                            + " " + Utility.hex(scriptChar[script]) + " " + WriteCollationData.ucd.getName(scriptChar[script]));
                 }
             }
         }
 
-        // set bumps
-        for (int i = 0; i < scripts.length; ++i) {
-            if (scripts[i] > 0) {
-                FractionalUCA.bumps.set(scripts[i]);
-                System.out.println(Utility.hex(scripts[i]) + " " + UCD.getScriptID_fromIndex((byte)i)
-                        + " " + Utility.hex(scriptChar[i]) + " " + WriteCollationData.ucd.getName(scriptChar[i]));
-            }
+        // now add ranges of primaries that are major, for selecting 2 byte vs 3 byte forms.
+        int lastPrimary = 1;
+        boolean lastMajor = true;
+        int lastScript = COMMON_SCRIPT;
+        for (Entry<Integer, Row.R2<Boolean, Integer>> majorPrimaryEntry : majorPrimary.entrySet()) {
+            int primary = majorPrimaryEntry.getKey();
+            boolean major = majorPrimaryEntry.getValue().get0();
+            int script = majorPrimaryEntry.getValue().get1();
+            addMajorPrimaries(lastPrimary, primary-1, lastMajor, lastScript);
+            lastPrimary = primary;
+            lastMajor = major;
+            lastScript = script;
         }
+        addMajorPrimaries(lastPrimary, 0xFFFF, lastMajor, lastScript);
+        MAJOR_PRIMARIES.removeAll(threeByteSymbolPrimaries);
+        MAJOR_PRIMARIES.freeze();
 
-        char[][] singlePairs = {{'a','z'}, {' ', ' '}}; // , {'\u3041', '\u30F3'}
+
+        char[][] singlePairs = {{'a','z'}, {' '}, {'0', '9'}, {'.'},  {','},}; // , {'\u3041', '\u30F3'}
         for (int j = 0; j < singlePairs.length; ++j) {
-            for (char k = singlePairs[j][0]; k <= singlePairs[j][1]; ++k) {
+            char start = singlePairs[j][0];
+            char end = singlePairs[j][singlePairs[j].length == 1 ? 0 : 1];
+            for (char k = start; k <= end; ++k) {
                 FractionalUCA.setSingle(k, ces);
             }
         }
@@ -1594,8 +1667,25 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
          */
 
         FractionalUCA.bumps.set(0x089A); // lowest non-variable FRAGILE
+        System.out.println("FIX LOWEST NON_VARIABLE!!!");
         FractionalUCA.bumps.set(0x4E00); // lowest Kangxi
 
+    }
+
+    private static int bitmask(int... decimalDigitNumber) {
+        int result = 0;
+        for (int i : decimalDigitNumber) {
+            result |= (1 << i);
+        }
+        return result;
+    }
+
+    private static void addMajorPrimaries(int startPrimary, int endPrimary, boolean isMajor, int script) {
+        if (isMajor) {
+            MAJOR_PRIMARIES.addAll(startPrimary, endPrimary);
+        }
+        System.out.println("Major:\t" + isMajor + "\t" + UCD.getScriptID_fromIndex((byte)script)
+                + "\t" + hexBytes(startPrimary) + ".." + hexBytes(endPrimary));
     }
 
     static void hexBytes(long x, StringBuffer result) {
@@ -1635,6 +1725,42 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         return 0x6000 + (ch2-0x3400); // room to interleave
     }
 
+    static final BitSet MAJOR_SCRIPTS = new BitSet();
+    static {
+        for (byte i : new Byte[]{
+                UCD_Types.ARABIC_SCRIPT,
+                UCD_Types.ARMENIAN_SCRIPT,
+                UCD_Types.BENGALI_SCRIPT,
+                UCD_Types.BOPOMOFO_SCRIPT,
+                UCD_Types.CYRILLIC_SCRIPT,
+                UCD_Types.DEVANAGARI_SCRIPT,
+                UCD_Types.ETHIOPIC_SCRIPT,
+                UCD_Types.GEORGIAN_SCRIPT,
+                UCD_Types.GREEK_SCRIPT,
+                UCD_Types.GUJARATI_SCRIPT,
+                UCD_Types.GURMUKHI_SCRIPT,
+                UCD_Types.HAN_SCRIPT,
+                UCD_Types.HANGUL_SCRIPT,
+                UCD_Types.HEBREW_SCRIPT,
+                UCD_Types.HIRAGANA_SCRIPT,
+                UCD_Types.KANNADA_SCRIPT,
+                UCD_Types.KATAKANA_SCRIPT,
+                UCD_Types.KHMER_SCRIPT,
+                UCD_Types.LAO_SCRIPT,
+                UCD_Types.LATIN_SCRIPT,
+                UCD_Types.MALAYALAM_SCRIPT,
+                UCD_Types.MYANMAR_SCRIPT,
+                UCD_Types.ORIYA_SCRIPT,
+                UCD_Types.SINHALA_SCRIPT,
+                UCD_Types.TAMIL_SCRIPT,
+                UCD_Types.TELUGU_SCRIPT,
+                UCD_Types.THAANA_SCRIPT,
+                UCD_Types.THAI_SCRIPT,
+                UCD_Types.TIBETAN_SCRIPT
+        }) {
+            MAJOR_SCRIPTS.set(i&0xFF);
+        }
+    }
     static byte getFixedScript(int ch) {
         byte script = WriteCollationData.ucd.getScript(ch);
         // HACK
@@ -1728,26 +1854,28 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
     static boolean gotInfo = false;
     static int oldJamo1, oldJamo2, oldJamo3, oldJamo4, oldJamo5, oldJamo6;
 
-    static boolean isOldJamo(int primary) {
+    static boolean shouldBe3Byte(int primary) {
+        if (!MAJOR_PRIMARIES.contains(primary)) {
+            return true;
+        }
         if (!gotInfo) {
             int[] temp = new int[20];
             WriteCollationData.collator.getCEs("\u1112", true, temp);
             oldJamo1 = temp[0] >> 16;
         WriteCollationData.collator.getCEs("\u1161", true, temp);
         oldJamo2 = temp[0] >> 16;
-        WriteCollationData.collator.getCEs("\u1175", true, temp);
-        oldJamo3 = temp[0] >> 16;
+            WriteCollationData.collator.getCEs("\u1175", true, temp);
+            oldJamo3 = temp[0] >> 16;
         WriteCollationData.collator.getCEs("\u11A8", true, temp);
         oldJamo4 = temp[0] >> 16;
-            WriteCollationData.collator.getCEs("\u11C2", true, temp);
-            oldJamo5 = temp[0] >> 16;
+        WriteCollationData.collator.getCEs("\u11C2", true, temp);
+        oldJamo5 = temp[0] >> 16;
             WriteCollationData.collator.getCEs("\u11F9", true, temp);
             oldJamo6 = temp[0] >> 16;
-        gotInfo = true;
+            gotInfo = true;
         }
         return primary > oldJamo1 && primary < oldJamo2
         || primary > oldJamo3 && primary < oldJamo4
         || primary > oldJamo5 && primary <= oldJamo6;
     }
-
 }

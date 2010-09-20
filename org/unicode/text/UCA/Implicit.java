@@ -22,7 +22,7 @@ public class Implicit implements UCD_Types {
     /**
      * constants
      */
-    static final boolean DEBUG = false;
+    static final boolean DEBUG = true;
     
     static final long topByte = 0xFF000000L;
     static final long bottomByte = 0xFFL;
@@ -356,14 +356,14 @@ public class Implicit implements UCD_Types {
      * @return
      */
     public int getSwappedImplicit(int cp) {
-        if (DEBUG) System.out.println("Incoming: " + Utility.hex(cp));
+        if (false && DEBUG) System.out.println("Incoming: " + Utility.hex(cp));
         
         // Produce Raw value
         // note, we add 1 so that the first value is always empty!!
         cp = Implicit.swapCJK(cp) + 1;
         // we now have a range of numbers from 0 to 220000.
             
-        if (DEBUG) System.out.println("CJK swapped: " + Utility.hex(cp));
+        if (false && DEBUG) System.out.println("CJK swapped: " + Utility.hex(cp));
             
         return getImplicitFromRaw(cp);
     }
