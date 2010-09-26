@@ -5,19 +5,17 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
- * $Date: 2010-09-17 08:26:58 $ 
- * $Revision: 1.27 $
+ * $Date: 2010-09-26 21:29:05 $ 
+ * $Revision: 1.28 $
  *
  *******************************************************************************
  */
 
 package org.unicode.text.UCA;
-import java.io.File;
-
+import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.MakeNamesChart;
 import org.unicode.text.UCD.NFSkippable;
-import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
@@ -72,23 +70,12 @@ public class Main {
           Default.setUCD(args[++i]); // get next arg
           continue;
         }
-        if (WriteCollationData.collator == null) {
-          System.out.println("Building UCA");
-          String file = Utility.searchDirectory(new File(UCD_Types.BASE_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
-          WriteCollationData.collator = new UCA(file, Default.ucdVersion());
-          System.out.println("Built version " + WriteCollationData.collator.getDataVersion()
-                  + "/ucd: " + WriteCollationData.collator.getUCDVersion());
-
-          System.out.println("Building UCD data");
-          WriteCollationData.ucd = UCD.make(WriteCollationData.collator.getUCDVersion());
-
-        }
-        if (arg.equalsIgnoreCase("GenOverlap")) GenOverlap.test(WriteCollationData.collator);
+        if (arg.equalsIgnoreCase("GenOverlap")) GenOverlap.test(WriteCollationData.getCollator(CollatorType.ducet));
         else if (arg.equalsIgnoreCase("NFSkippable")) NFSkippable.main(null);
-        else if (arg.equalsIgnoreCase("validateUCA")) GenOverlap.validateUCA(WriteCollationData.collator);
+        else if (arg.equalsIgnoreCase("validateUCA")) GenOverlap.validateUCA(WriteCollationData.getCollator(CollatorType.ducet));
         //else if (arg.equalsIgnoreCase("writeNonspacingDifference")) WriteCollationData.writeNonspacingDifference();
 
-        else if (arg.equalsIgnoreCase("collationChart")) WriteCharts.collationChart(WriteCollationData.collator);
+        else if (arg.equalsIgnoreCase("collationChart")) WriteCharts.collationChart(WriteCollationData.getCollator(CollatorType.ducet));
         else if (arg.equalsIgnoreCase("scriptChart")) WriteCharts.scriptChart();
         else if (arg.equalsIgnoreCase("normalizationChart")) WriteCharts.normalizationChart();
         else if (arg.equalsIgnoreCase("caseChart")) WriteCharts.caseChart();
@@ -98,9 +85,9 @@ public class Main {
 
         else if (arg.equalsIgnoreCase("writeCompositionChart")) WriteCharts.writeCompositionChart();
 
-        else if (arg.equalsIgnoreCase("CheckHash")) GenOverlap.checkHash(WriteCollationData.collator);
-        else if (arg.equalsIgnoreCase("generateRevision")) GenOverlap.generateRevision(WriteCollationData.collator);
-        else if (arg.equalsIgnoreCase("listCyrillic")) GenOverlap.listCyrillic(WriteCollationData.collator);
+        else if (arg.equalsIgnoreCase("CheckHash")) GenOverlap.checkHash(WriteCollationData.getCollator(CollatorType.ducet));
+        else if (arg.equalsIgnoreCase("generateRevision")) GenOverlap.generateRevision(WriteCollationData.getCollator(CollatorType.ducet));
+        else if (arg.equalsIgnoreCase("listCyrillic")) GenOverlap.listCyrillic(WriteCollationData.getCollator(CollatorType.ducet));
 
         else if (arg.equalsIgnoreCase("WriteRules")) WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, shortPrint, noCE);
         // else if (arg.equalsIgnoreCase("WriteRulesWithNames")) WriteCollationData.writeRules(WriteCollationData.WITH_NAMES);

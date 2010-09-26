@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/IntStack.java,v $
-* $Date: 2007-02-11 08:15:10 $
-* $Revision: 1.5 $
+* $Date: 2010-09-26 21:29:06 $
+* $Revision: 1.6 $
 *
 *******************************************************************************
 */
@@ -124,5 +124,24 @@ public final class IntStack implements Comparable, Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new IllegalArgumentException("Will never happen");
         }
+    }
+
+    public void put(int index, int value) {
+        if (first <= index && index < top) {
+            values[index] = value;
+            return;
+        }
+        throw new IllegalArgumentException("Stack index out of bounds");
+    }
+    
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (int i = first; i < top; ++i) {
+            if (result.length() != 0) {
+                result.append(",");
+            }
+            result.append(Utility.hex(0xFFFFFFFFL & values[i]));
+        }
+        return result.toString();
     }
 }

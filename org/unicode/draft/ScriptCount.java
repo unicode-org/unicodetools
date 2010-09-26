@@ -1,6 +1,10 @@
 package org.unicode.draft;
 
+import java.io.PrintWriter;
+
 import org.unicode.cldr.util.Counter;
+import org.unicode.text.UCA.WriteCollationData;
+import org.unicode.text.UCD.UCD_Types;
 
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
@@ -36,17 +40,20 @@ public class ScriptCount {
         pf.setMaximumFractionDigits(3);
         int counter = 0;
         double max = mulCounter.getTotal();
+        PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(UCD_Types.GEN_DIR + "/frequency-text", 
+                "mul.txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
         for (String s : mulCounter.getKeysetSortedByCount(false)) {
             long count = mulCounter.get(s);
             int ch = s.codePointAt(0);
-            System.out.println(pf.format(count/max) 
+            out.println(pf.format(count/max) 
                     + "\t" + show(s) 
                     + "\tU+" + Utility.hex(s, 4, "&U+")
                     + "\t" + propValue(ch, UProperty.GENERAL_CATEGORY, UProperty.NameChoice.SHORT)
                     + "\t" + propValue(ch, UProperty.SCRIPT, UProperty.NameChoice.SHORT)
                     + "\t" + UCharacter.getName(s, "&"));
-            if (counter++ > 1000) break;
+            if (counter++ > 10000) break;
         }
+        out.close();
     }
 
     private static String propValue(int ch, int propEnum, int nameChoice) {
