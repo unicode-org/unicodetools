@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2010-09-02 22:16:27 $
- * $Revision: 1.61 $
+ * $Date: 2010-09-26 21:29:06 $
+ * $Revision: 1.62 $
  *
  *******************************************************************************
  */
@@ -968,8 +968,12 @@ public final class UCD implements UCD_Types {
   // VERSIONS WITH NAMES
 
   public String getCategoryID(int codePoint) {
-    return getCategoryID_fromIndex(getCategory(codePoint));
-  }
+      return getCategoryID_fromIndex(getCategory(codePoint));
+    }
+
+  public String getCategoryID(int codePoint, byte length) {
+      return getCategoryID_fromIndex(getCategory(codePoint), length);
+    }
 
   public static String getCategoryID_fromIndex(byte prop) {
     return getCategoryID_fromIndex(prop, NORMAL);
@@ -1135,8 +1139,12 @@ public final class UCD implements UCD_Types {
   }
 
   public String getScriptID(int codePoint) {
-    return getScriptID_fromIndex(getScript(codePoint));
-  }
+      return getScriptID_fromIndex(getScript(codePoint));
+    }
+
+  public String getScriptID(int codePoint, byte length) {
+      return getScriptID_fromIndex(getScript(codePoint), length);
+    }
 
   public static String getScriptID_fromIndex(byte prop) {
     return getScriptID_fromIndex(prop, NORMAL);

@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCharts.java,v $
-* $Date: 2009-08-18 23:38:45 $
-* $Revision: 1.30 $
+* $Date: 2010-09-26 21:29:05 $
+* $Revision: 1.31 $
 *
 *******************************************************************************
 */
@@ -872,7 +872,7 @@ public class WriteCharts implements UCD_Types {
         "any-addCircle", "([[:Mn:][:Me:]]) > \u25CC $1", Transliterator.FORWARD);
 
     public static void writeCompositionChart() throws IOException {
-        UCA uca = new UCA(null,"");
+        UCA uca = new UCA(null,"",null);
 
         Set letters = new TreeSet();
         Set marks = new TreeSet(uca);

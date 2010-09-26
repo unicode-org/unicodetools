@@ -1,27 +1,31 @@
 /**
-*******************************************************************************
-* Copyright (C) 1996-2001, International Business Machines Corporation and    *
-* others. All Rights Reserved.                                                *
-*******************************************************************************
-*
-* $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
-* $Date: 2010-09-02 22:16:28 $ 
-* $Revision: 1.34 $
-*
-*******************************************************************************
-*/
+ *******************************************************************************
+ * Copyright (C) 1996-2001, International Business Machines Corporation and    *
+ * others. All Rights Reserved.                                                *
+ *******************************************************************************
+ *
+ * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
+ * $Date: 2010-09-26 21:29:05 $ 
+ * $Revision: 1.35 $
+ *
+ *******************************************************************************
+ */
 
 package org.unicode.text.UCA;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.MessageFormat;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,9 +46,9 @@ import com.ibm.icu.text.UnicodeSetIterator;
 //import org.unicode.text.CollationData.*;
 
 /**
-* Collator is a working version of UTR#10 Unicode Collation Algorithm,
-* as described on http://www.unicode.org/unicode/reports/tr10/
-* @author Mark Davis
+ * Collator is a working version of UTR#10 Unicode Collation Algorithm,
+ * as described on http://www.unicode.org/unicode/reports/tr10/
+ * @author Mark Davis
 
 It is not optimized, although it does use some techniques that are required for
 a real optimization, such as squeezing all the weights into 32 bits.<p>
@@ -74,17 +78,22 @@ Remarks:
 Neither the old 14651 nor the old UCA algorithms for backwards really worked.
 This is because of shared
 characters between scripts with different directions, like French with Arabic or Greek.
-*/
+ */
 
 final public class UCA implements Comparator, UCA_Types {
+
+    public static final int TEST_PRIMARY = 0xFDFC;
+
+    public enum CollatorType {ducet, cldr}
+
     public static final String copyright = 
-      "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
-      
+        "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
+
     public int compare(Object a, Object b) {
         return getSortKey((String) a).compareTo(getSortKey((String) b));
     }
 
-    
+
     /**
      * Records the codeversion
      */
@@ -92,16 +101,16 @@ final public class UCA implements Comparator, UCA_Types {
 
     // base directory will change depending on the installation
     public static final String BASE_DIR = UCD_Types.BASE_DIR;
-    
-    
-// =============================================================
-// Test Settings
-// =============================================================
+
+
+    // =============================================================
+    // Test Settings
+    // =============================================================
     static final boolean DEBUG = false;
     static final boolean DEBUG_SHOW_LINE = false;
-    
+
     static final boolean SHOW_STATS = true;
-    
+
     static final boolean SHOW_CE = false;
     static final boolean CHECK_UNIQUE = false;
     static final boolean CHECK_UNIQUE_EXPANSIONS = false; // only effective if CHECK_UNIQUE
@@ -109,37 +118,41 @@ final public class UCA implements Comparator, UCA_Types {
     static final boolean TEST_BACKWARDS = false;
     static final boolean RECORDING_DATA = false;
     static final boolean RECORDING_CHARS = true;
-    
+
     private UCD ucd;
     private UCA_Data ucaData;
-    
-// =============================================================
-// Main Methods
-// =============================================================
+
+    // =============================================================
+    // Main Methods
+    // =============================================================
 
     private String fileVersion = "??";
-    
+
     /**
      * Initializes the collation from a stream of rules in the normal formal.
      * If the source is null, uses the normal Unicode data files, which
      * need to be in BASE_DIR.
+     * @param type 
      */
-    public UCA(String sourceFile, String unicodeVersion) throws java.io.IOException {
+    public UCA(String sourceFile, String unicodeVersion, Remap primaryRemap) throws java.io.IOException {
         fullData = sourceFile == null;
         fileVersion = sourceFile;
-        
+
         // load the normalizer
         if (toD == null) {
             toD = new Normalizer(Normalizer.NFD, unicodeVersion);
         }
-        
+
         ucd = UCD.make(unicodeVersion);
         ucdVersion = ucd.getVersion();
-        
-        ucaData = new UCA_Data(toD, ucd);
-        
+
+        ucaData = new UCA_Data(toD, ucd, primaryRemap);
+        if (primaryRemap != null) {
+            ucaData.variableHigh = primaryRemap.getVariableHigh();
+        }
+
         // either get the full sources, or just a demo set
-/*        if (fullData) {      
+        /*        if (fullData) {      
             for (int i = 0; i < KEYS.length; ++i) {
                 BufferedReader in = new BufferedReader(
                     new FileReader(KEYS[i]), BUFFER_SIZE);
@@ -148,14 +161,14 @@ final public class UCA implements Comparator, UCA_Types {
             }
         } else */
         {
-        	BufferedReader in = new BufferedReader(
+            BufferedReader in = new BufferedReader(
                     new FileReader(sourceFile), BUFFER_SIZE);
             addCollationElements(in);
             in.close();
         }
         cleanup();
     }
-    
+
     /**
      * Constructs a sort key for a string of input Unicode characters. Uses
      * default values for alternate and decomposition.
@@ -180,7 +193,7 @@ final public class UCA implements Comparator, UCA_Types {
     public String getSortKey(String sourceString, byte alternate) {
         return getSortKey(sourceString, alternate, defaultDecomposition);
     }
-    
+
     /**
      * Constructs a sort key for a string of input Unicode characters.
      * @param sourceString string to make a sort key for.
@@ -207,11 +220,11 @@ final public class UCA implements Comparator, UCA_Types {
         tertiaries.setLength(0);            // clear out
         quaternaries.setLength(0);          // clear out
         if (SHOW_CE) debugList.setLength(0); // clear out
-        
+
         rearrangeBuffer = EMPTY;            // clear the rearrange buffer (thai)
         hangulBufferPosition = 0;           // clear hangul buffer
         hangulBuffer.setLength(0);           // clear hangul buffer
-        
+
         char weight4 = '\u0000'; // DEFAULT FOR NON_IGNORABLE
         boolean lastWasVariable = false;
 
@@ -221,15 +234,15 @@ final public class UCA implements Comparator, UCA_Types {
             int ce = getCE();
             if (ce == TERMINATOR) break;
             if (ce == 0) continue;
-            
+
             switch (alternate) {
-              case ZEROED:
+            case ZEROED:
                 if (isVariable(ce)) {
                     ce = 0;
                 }
                 break;
-              case SHIFTED_TRIMMED:
-              case SHIFTED:
+            case SHIFTED_TRIMMED:
+            case SHIFTED:
                 if (ce == 0) {
                     weight4 = 0;
                 } else if (isVariable(ce)) { // variables
@@ -244,20 +257,20 @@ final public class UCA implements Comparator, UCA_Types {
                     weight4 = '\uFFFF';
                 }
                 break;
-              // case NON_IGNORABLE: // doesn't ever change!
+                // case NON_IGNORABLE: // doesn't ever change!
             }
             if (SHOW_CE) {
                 if (debugList.length() != 0) debugList.append("/");
                 debugList.append(CEList.toString(ce));
             }
-            
+
             // add weights
             char w = getPrimary(ce);
             if (DEBUG) System.out.println("\tCE: " + Utility.hex(ce));
             if (w != 0) {
                 primaries.append(w);
             }
-            
+
             w = getSecondary(ce);
             if (w != 0) {
                 if (!useBackwards) {
@@ -266,21 +279,21 @@ final public class UCA implements Comparator, UCA_Types {
                     secondaries.insert(0, w);
                 }
             }
-            
+
             w = getTertiary(ce);
             if (w != 0) {
                 tertiaries.append(w);
             }
-   
+
             if (weight4 != 0) {
                 quaternaries.append(weight4);
             }
         }
-        
+
         // Produce weight strings
         // For simplicity, we use the strength setting here.
         // To optimize, we wouldn't actually generate the weights in the first place.
-        
+
         StringBuffer result = primaries;
         if (strength >= 2) {
             result.append(LEVEL_SEPARATOR);    // separator
@@ -306,13 +319,13 @@ final public class UCA implements Comparator, UCA_Types {
         }
         return result.toString();
     }
-    
+
     // 0 ==
     // 2, -2 quarternary
     // 3, -3 tertiary
     // 4, -4 secondary
     // 5, -5 primary
-    
+
     public static int strengthDifference(String sortKey1, String sortKey2) {
         int len1 = sortKey1.length();
         int len2 = sortKey2.length();
@@ -329,7 +342,7 @@ final public class UCA implements Comparator, UCA_Types {
         if (len1 > len2) return strength;
         return 0;
     }
-    
+
     /**
      * Turns backwards (e.g. for French) on globally for all secondaries
      */
@@ -386,7 +399,7 @@ final public class UCA implements Comparator, UCA_Types {
     public int getStrength() {
         return strength;
     }
-    
+
     /**
      * Retrieves version
      */
@@ -400,14 +413,14 @@ final public class UCA implements Comparator, UCA_Types {
     public String getDataVersion() {
         return dataVersion;
     }
-    
+
     /**
      * Retrieves versions
      */
     public String getUCDVersion() {
         return ucdVersion;
     }
-    
+
     public static String codePointOrder(String s) {
         return appendInCodePointOrder(s, new StringBuffer()).toString();
     }
@@ -433,11 +446,11 @@ final public class UCA implements Comparator, UCA_Types {
                 target.append((char)(ch+1));
             }
             target.append((char)(ch + utf16CodePointOrder[ch>>11]));
-            */
+             */
         }
         return target;
     }
-    
+
     /**
      * Returns a list of CEs for a unicode character at a position.
      * @param sourceString string to make a sort key for.
@@ -465,8 +478,8 @@ final public class UCA implements Comparator, UCA_Types {
             output.push(ce);
         }
     }
-    
-    
+
+
     /**
      * Returns a list of CEs for a unicode character at a position.
      * @param sourceString string to make a sort key for.
@@ -498,7 +511,7 @@ final public class UCA implements Comparator, UCA_Types {
         }
         return outpos;
     }
-    
+
     /**
      * Returns a CEList for a unicode character at a position.
      * @param sourceString string to make a sort key for.
@@ -508,7 +521,7 @@ final public class UCA implements Comparator, UCA_Types {
      * @param output array for output. Must be large enough on entry. When done, is terminated with TERMINATOR.
      * @return count of CEs
      */
-    
+
     public CEList getCEList(String sourceString, boolean decomposition) {
         int len;
         while (true) {
@@ -521,25 +534,25 @@ final public class UCA implements Comparator, UCA_Types {
         }
         return new CEList(ceListBuffer, 0, len);
     }
-    
+
     int[] ceListBuffer = new int[30]; // temporary storage, to avoid multiple creation
-    
-    
+
+
     /**
      * Get Usage
      */
     public BitSet getWeightUsage(int strength) {
-        return strength == 1 ? primarySet : strength == 2 ? secondarySet : tertiarySet;
+        return strength == 1 ? getStatistics().primarySet : strength == 2 ? getStatistics().secondarySet : getStatistics().tertiarySet;
     }
-     
+
     /**
      * Returns the char associated with a FIXED value
      */
     /*public char charFromFixed(int ce) {
         return getPrimary(ce);
     }
-    */
-    
+     */
+
     /**
      * Return the type of the CE
      */
@@ -555,12 +568,15 @@ final public class UCA implements Comparator, UCA_Types {
         return (char)(ce >>> 16);
     }
 
+    static final int SECONDARY_MAX = 0x1FF;
+    static final int TERTIARY_MAX = 0x7F;
+
     /**
      * Utility, used to get the secondary weight from a 32-bit CE
      * The secondary is 8 bits, stored in b15..b8
      */
     public static char getSecondary(int ce) {
-        return (char)((ce >>> 7) & 0x1FF);
+        return (char)((ce >>> 7) & SECONDARY_MAX);
     }
 
     /**
@@ -568,33 +584,33 @@ final public class UCA implements Comparator, UCA_Types {
      * The tertiary is 6 bits, stored in b6..b0
      */
     public static char getTertiary(int ce) {
-        return (char)(ce & 0x7F);
+        return (char)(ce & TERTIARY_MAX);
     }
 
     /**
      * Utility, used to determine whether a CE is variable or not.
      */
-     
+
     public boolean isVariable(int ce) {
         return (variableLowCE <= ce && ce <= variableHighCE);
     }
-    
+
     /**
      * Utility, used to determine whether a CE is variable or not.
      */
-     
+
     public int getVariableLow() {
         return variableLowCE;
     }
-    
+
     /**
      * Utility, used to determine whether a CE is variable or not.
      */
-     
+
     public int getVariableHigh() {
         return variableHighCE;
     }
-    
+
     /**
      * Utility, used to make a CE from the pieces. They must already
      * be in the right range of values.
@@ -602,10 +618,10 @@ final public class UCA implements Comparator, UCA_Types {
     public static int makeKey(int primary, int secondary, int tertiary) {
         return (primary << 16) | (secondary << 7) | tertiary;
     }
-    
-// =============================================================
-// Utility methods
-// =============================================================
+
+    // =============================================================
+    // Utility methods
+    // =============================================================
 
     /**
      * Produces a human-readable string for a sort key.
@@ -629,12 +645,12 @@ final public class UCA implements Comparator, UCA_Types {
         result.append("]");
         return result.toString();
     }
-    
+
     /**
      * Produces a human-readable string for a collation element.
      * value is terminated by -1!
      */
-     /*
+    /*
     static public String ceToString(int[] ces, int len) {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < len; ++i) {
@@ -643,12 +659,12 @@ final public class UCA implements Comparator, UCA_Types {
         return result.toString();
     }
     &/
-    
+
     /**
      * Produces a human-readable string for a collation element.
      * value is terminated by -1!
      */
-     /*
+    /*
     static public String ceToString(int[] ces) {
         StringBuffer result = new StringBuffer();
         for (int i = 0; ; ++i) {
@@ -657,17 +673,22 @@ final public class UCA implements Comparator, UCA_Types {
         }
         return result.toString();
     }
-    */
-    
+     */
+
     static boolean isImplicitLeadCE(int ce) {
-    	return isImplicitLeadPrimary(getPrimary(ce));
+        return isImplicitLeadPrimary(getPrimary(ce));
     }
-    
+
     static boolean isImplicitLeadPrimary(int primary) {
-    	return primary >= UNSUPPORTED_BASE && primary < UNSUPPORTED_LIMIT;
+        return primary >= UNSUPPORTED_BASE && primary < UNSUPPORTED_LIMIT;
     }
     
-/*
+    static boolean isImplicitPrimary(int primary) {
+        return primary > 0x7FFF || isImplicitLeadPrimary(primary);
+    }
+
+
+    /*
 The formula from the UCA:
 
 BASE:
@@ -680,53 +701,53 @@ AAAA = BASE + (CP >> 15);
 BBBB = (CP & 0x7FFF) | 0x8000;The mapping given to CP is then given by:
 
 CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
-*/		
-    
+     */		
+
     /**
      * Returns implicit value
      */
-    
+
     public static void CodepointToImplicit(int cp, int[] output) {
-		int base = UNSUPPORTED_OTHER_BASE;
+        int base = UNSUPPORTED_OTHER_BASE;
         if (UCD.isCJK_BASE(cp)) base = UNSUPPORTED_CJK_BASE;
         else if (UCD.isCJK_AB(cp)) base = UNSUPPORTED_CJK_AB_BASE;
         output[0] = base + (cp >>> 15);
         output[1] = (cp & 0x7FFF) | 0x8000;
     }
-    
+
     public static void UnassignedToImplicit(int cp, int[] output) {
         int base = UNSUPPORTED_OTHER_BASE;
         output[0] = base + (cp >>> 15);
         output[1] = (cp & 0x7FFF) | 0x8000;
     }
-    
+
     /**
      * Takes implicit value
      */
-    
+
     static int ImplicitToCodePoint(int leadImplicit, int trailImplicit) {
-    	// could probably optimize all this, but it is not worth it.
-    	if (leadImplicit < UNSUPPORTED_BASE || leadImplicit >= UNSUPPORTED_LIMIT) {
-    		throw new IllegalArgumentException("Lead implicit out of bounds: " + Utility.hex(leadImplicit));
-    	}
-    	if ((trailImplicit & 0x8000) == 0) {
-    		throw new IllegalArgumentException("Trail implicit out of bounds: " + Utility.hex(trailImplicit));
-    	}
-    	int base;
-    	if (leadImplicit >= UNSUPPORTED_OTHER_BASE) base = UNSUPPORTED_OTHER_BASE;
-    	else if (leadImplicit >= UNSUPPORTED_CJK_AB_BASE) base = UNSUPPORTED_CJK_AB_BASE;
-    	else base = UNSUPPORTED_CJK_BASE;
-    	
-    	int result = ((leadImplicit - base) << 15) | (trailImplicit & 0x7FFF);
-    	
-    	if (result > 0x10FFFF) {
-    		throw new IllegalArgumentException("Resulting character out of  bounds: "
-    			+ Utility.hex(leadImplicit) + ", " + Utility.hex(trailImplicit) 
-    			+ " => " + result);
-    	}
-    	return result;
+        // could probably optimize all this, but it is not worth it.
+        if (leadImplicit < UNSUPPORTED_BASE || leadImplicit >= UNSUPPORTED_LIMIT) {
+            throw new IllegalArgumentException("Lead implicit out of bounds: " + Utility.hex(leadImplicit));
+        }
+        if ((trailImplicit & 0x8000) == 0) {
+            throw new IllegalArgumentException("Trail implicit out of bounds: " + Utility.hex(trailImplicit));
+        }
+        int base;
+        if (leadImplicit >= UNSUPPORTED_OTHER_BASE) base = UNSUPPORTED_OTHER_BASE;
+        else if (leadImplicit >= UNSUPPORTED_CJK_AB_BASE) base = UNSUPPORTED_CJK_AB_BASE;
+        else base = UNSUPPORTED_CJK_BASE;
+
+        int result = ((leadImplicit - base) << 15) | (trailImplicit & 0x7FFF);
+
+        if (result > 0x10FFFF) {
+            throw new IllegalArgumentException("Resulting character out of  bounds: "
+                    + Utility.hex(leadImplicit) + ", " + Utility.hex(trailImplicit) 
+                    + " => " + result);
+        }
+        return result;
     }
-    
+
     /**
      * Supplies a zero-padded hex representation of an integer (without 0x)
      */
@@ -735,7 +756,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         String result = Long.toString(i & 0xFFFFFFFFL, 16).toUpperCase();
         return "00000000".substring(result.length(),8) + result;
     }
-    */
+     */
     /**
      * Supplies a zero-padded hex representation of a Unicode character (without 0x, \\u)
      */
@@ -744,22 +765,22 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         String result = Integer.toString(i, 16).toUpperCase();
         return "0000".substring(result.length(),4) + result;
     }
-    */
+     */
     /**
      * Supplies a zero-padded hex representation of a Unicode character (without 0x, \\u)
      */
-     /*
+    /*
     static public String hex(byte b) {
         int i = b & 0xFF;
         String result = Integer.toString(i, 16).toUpperCase();
         return "00".substring(result.length(),2) + result;
     }
-    */
+     */
     /**
      * Supplies a zero-padded hex representation of a Unicode String (without 0x, \\u)
      *@param sep can be used to give a sequence, e.g. hex("ab", ",") gives "0061,0062"
      */
-     /*
+    /*
     static public String hex(String s, String sep) {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < s.length(); ++i) {
@@ -768,12 +789,12 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
         return result.toString();
     }
-    */
+     */
     /**
      * Supplies a zero-padded hex representation of a Unicode String (without 0x, \\u)
      *@param sep can be used to give a sequence, e.g. hex("ab", ",") gives "0061,0062"
      */
-     /*
+    /*
     static public String hex(StringBuffer s, String sep) {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < s.length(); ++i) {
@@ -782,15 +803,15 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
         return result.toString();
     }
-    */
-    
-// =============================================================
-// Privates
-// =============================================================
-    
-    
+     */
+
+    // =============================================================
+    // Privates
+    // =============================================================
+
+
     IntStack expandingStack = new IntStack(10);
-    
+
     /**
      * Array used to reorder surrogates to top of 16-bit range, and others down.
      * Adds 2000 to D800..DFFF, making them F800..FFFF
@@ -827,23 +848,23 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      * Turns backwards (e.g. for French) on globally for all secondaries
      */
     private boolean useBackwards = false;
-    
+
     /**
      * Choice of how to handle variables (those with *)
      */
     private byte defaultAlternate = SHIFTED;
-    
+
     /**
      * For testing
      */
     private boolean defaultDecomposition = true;
-    
+
     /**
      * Sets the maximum strength level to be included in the string. 
      * E.g. with 3, only weights of 1, 2, and 3 are included: level 4 weights are discarded.
      */
     private int strength = 4;
-    
+
     /**
      * Position in decompositionBuffer used when constructing sort key
      */
@@ -853,47 +874,43 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      * List of files to use for constructing the CE data, used by build()
      */
 
-/*    private static final String[] KEYS = {
+    /*    private static final String[] KEYS = {
         //"D:\\UnicodeData\\testkeys.txt",
         BASE_DIR + "UCA\\allkeys" + VERSION + ".txt",
-        
+
         BASE_DIR + "UnicodeData\\Collation\\basekeys" + VERSION + ".txt",
         BASE_DIR + "UnicodeData\\Collation\\compkeys" + VERSION + ".txt",
         BASE_DIR + "UnicodeData\\Collation\\ctrckeys" + VERSION + ".txt",
-        
+
     };
-*/ 
+     */ 
     /**
      * File buffer size, used to make reads faster.
      */
     private static final int BUFFER_SIZE = 64*1024;
-    
-// =============================================================
-// Collation Element Memory Data Table Formats
-// =============================================================
+
+    // =============================================================
+    // Collation Element Memory Data Table Formats
+    // =============================================================
 
     /**
      * Temporary buffer used in getSortKey for the decomposed string
      */
     private StringBuffer decompositionBuffer = new StringBuffer();
-    
+
     // was 0xFFC20101;
-    
+
     /**
      * We take advantage of the variables being in a closed range to save a bit per CE.
      * The low and high values are initially set to be at the opposite ends of the range,
      * as the table is built from the UCA data, they are narrowed in.
      * The first three values are used in building; the last two in testing.
-    */
-    private int variableLow = '\uFFFF';
-    private int nonVariableLow = '\uFFFF'; // HACK '\u089A';
-    private int variableHigh = '\u0000';
-    
+     */
     private int variableLowCE;  // used for testing against
     private int variableHighCE; // used for testing against
-    
+
     /*
-    
+
     private void fixSurrogateContraction(char ch) {
         //if (DEBUGCHAR) System.out.println(Utility.hex(ch) + ": " + line.substring(0, position[0]) + "|" + line.substring(position[0]));            
         if (ch == NOT_A_CHAR || !UTF16.isLeadSurrogate(ch)) return;
@@ -902,20 +919,20 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         if (probe != null) return;
         contractingTable.put(chs, new Integer(UNSUPPORTED));
     }
-    
-    */
-    
+
+     */
+
     /**
      * Marks whether we are using the full data set, or an abbreviated version for
      * an applet.
      */
-     
+
     private boolean fullData;
-    
-// =============================================================
-// Temporaries used in getCE. 
-// Made part of the object to avoid reallocating each time.
-// =============================================================
+
+    // =============================================================
+    // Temporaries used in getCE. 
+    // Made part of the object to avoid reallocating each time.
+    // =============================================================
 
     /**
      * Temporary buffers used in getSortKey to store weights
@@ -927,17 +944,17 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     private StringBuffer secondaries = new StringBuffer(100);
     private StringBuffer tertiaries = new StringBuffer(100);
     private StringBuffer quaternaries = new StringBuffer(100);
-    
+
     /**
      * Temporary buffer used to collect progress data for debugging
      */
     StringBuffer debugList = new StringBuffer(100);
-    
+
     /**
      * Temporary with requested decomposition
      */
     boolean storedDecomposition;
-    
+
     /**
      * Used for supporting Thai rearrangement
      */
@@ -947,10 +964,10 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     int hangulBufferPosition = 0;
     StringBuffer hangulBuffer = new StringBuffer();
 
-// =============================================================
-// getCE: Get the next Collation Element
-// Main Routine
-// =============================================================
+    // =============================================================
+    // getCE: Get the next Collation Element
+    // Main Routine
+    // =============================================================
 
     /**
      * Gets the next Collation Element from the decomposition buffer.
@@ -962,7 +979,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     private int getCE() {
         if (!expandingStack.isEmpty()) return expandingStack.popFront();
         char ch;
-        
+
         // Fetch next character. Handle rearrangement for Thai, etc.
         if (rearrangeBuffer != EMPTY) {
             ch = rearrangeBuffer;
@@ -981,7 +998,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 ch = decompositionBuffer.charAt(index++);   // never rearrange twice!!
             }
         }
-        
+
         index = ucaData.get(ch, decompositionBuffer, index, expandingStack);
         int ce = expandingStack.popFront(); // pop first (guaranteed to exist!)
         if (ce == UNSUPPORTED_FLAG) {
@@ -989,10 +1006,10 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
         return ce;
     }
-    
+
     private int handleUnsupported(char ch) {
         int bigChar = ch;
-            
+
         // Special check for Hangul
         if (ucd.isHangulSyllable(bigChar)) {
             // MUST DECOMPOSE!!
@@ -1001,7 +1018,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             return getCE();
             // RECURSIVE!!!
         }
-        
+
         // special check and fix for unsupported surrogate pair, 20 1/8 bits
         if (0xD800 <= bigChar && bigChar <= 0xDFFF) {
             // ignore unmatched surrogates (e.g. return zero)
@@ -1012,39 +1029,39 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             bigChar = 0x10000 + ((ch - 0xD800) << 10) + (ch2 - 0xDC00); // extract value
         }
 
-                        
-//        if (ucd.isNoncharacter(bigChar)) { // illegal code value, ignore!!
-//            return 0;
-//        }
-            
-		// find the implicit values; returned in 0 and 1
-		int[] implicit = new int[2];
-		CodepointToImplicit(bigChar, implicit);
-			
+
+        //        if (ucd.isNoncharacter(bigChar)) { // illegal code value, ignore!!
+        //            return 0;
+        //        }
+
+        // find the implicit values; returned in 0 and 1
+        int[] implicit = new int[2];
+        CodepointToImplicit(bigChar, implicit);
+
         // Now compose the two keys
-            
+
         // push BBBB
-                        
+
         expandingStack.push(makeKey(implicit[1], 0, 0));
-        
+
         // return AAAA
-            
+
         return makeKey(implicit[0], NEUTRAL_SECONDARY, NEUTRAL_TERTIARY);
-        
+
 
     }
-    
+
     /**
      * Constants for Hangul
      */
     static final int // constants
-        SBase = 0xAC00, LBase = 0x1100, VBase = 0x1161, TBase = 0x11A7,
-        LCount = 19, VCount = 21, TCount = 28,
-        NCount = VCount * TCount,   // 588
-        SCount = LCount * NCount,   // 11172
-        LastInitial = LBase + LCount-1, // last initial jamo
-        LastPrimary = SBase + (LCount-1) * VCount * TCount; // last corresponding primary
-   
+    SBase = 0xAC00, LBase = 0x1100, VBase = 0x1161, TBase = 0x11A7,
+    LCount = 19, VCount = 21, TCount = 28,
+    NCount = VCount * TCount,   // 588
+    SCount = LCount * NCount,   // 11172
+    LastInitial = LBase + LCount-1, // last initial jamo
+    LastPrimary = SBase + (LCount-1) * VCount * TCount; // last corresponding primary
+
     public static StringBuffer decomposeHangul(int s, StringBuffer result) {
         int SIndex = s - SBase;
         if (0 > SIndex || SIndex >= SCount) {
@@ -1058,7 +1075,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         if (T != TBase) result.append((char)T);
         return result;
     }
-   
+
     /**
      * Fix for Hangul, since the tables are not set up right.
      * The fix for Hangul is to give different values to the combining initial 
@@ -1066,7 +1083,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      * after the first syllable it begins.
      *
     private int fixJamo(char ch, int jamoCe) {
-        
+
         int result = jamoCe - hangulHackBottom + 0xAC000000; // put into right range
         if (DEBUG) System.out.println("\tChanging " + hex(ch) + " " + hex(jamoCe) + " => " + hex(result));
         return result;
@@ -1079,63 +1096,53 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             newPrimary = LastPrimary + (jamo - LastInitial); // just shift up
         }
         return makeKey(newPrimary, 0x21, 0x2);  // make secondary difference!
-        * /
+     * /
     }
-    */
-    
-// =============================================================
-// Building Collation Element Tables
-// =============================================================
+     */
+
+    // =============================================================
+    // Building Collation Element Tables
+    // =============================================================
 
     /**
      * Value for returning int as well as function return,
      * since Java doesn't have output parameters
      */
     private int[] position = new int[1]; 
-    
-    /**
-     * For recording statistics
-     */
-    private int count1 = 0, count2 = 0, count3 = 0, max2 = 0, max3 = 0;
-    private int oldKey1 = -1, oldKey2 = -1, oldKey3 = -1;
-    UnicodeSet found = new UnicodeSet();
-    
+
+
     /*public Hashtable getContracting() {
         return new Hashtable(multiTable);
     }
-    */
-    
-            
+     */
+
+
     public UCAContents getContents(byte ceLimit, Normalizer skipDecomps) {
         return new UCAContents(ceLimit, skipDecomps, ucdVersion);
     }
-    
-    static boolean haveUnspecified = false;
-    static UnicodeSet unspecified = new UnicodeSet();
-    UnicodeSet variantSecondaries = new UnicodeSet(0x0153,0x0154);
-    UnicodeSet digitSecondaries = new UnicodeSet(0x155,0x017F);
-    UnicodeSet homelessSecondaries;
+
+
     static final UnicodeSet moreSamples = new UnicodeSet();
     static {
-    	moreSamples.add("\u09C7\u09BE");
-    	moreSamples.add("\u09C7\u09D7");
-    	moreSamples.add("\u1025\u102E");
-    	moreSamples.add("\u0DD9\u0DCF");
-    	moreSamples.add("\u0DD9\u0DDF");
-    	moreSamples.add("\u1100\u1161");
-    	moreSamples.add("\u1100\u1175");
-    	moreSamples.add("\u1112\u1161");
-    	moreSamples.add("\u1112\u1175");
-    	moreSamples.add("\uAC00\u1161");
-    	moreSamples.add("\uAC00\u1175");
-    	moreSamples.add("\uD788\u1161");
-    	moreSamples.add("\uD788\u1175");
+        moreSamples.add("\u09C7\u09BE");
+        moreSamples.add("\u09C7\u09D7");
+        moreSamples.add("\u1025\u102E");
+        moreSamples.add("\u0DD9\u0DCF");
+        moreSamples.add("\u0DD9\u0DDF");
+        moreSamples.add("\u1100\u1161");
+        moreSamples.add("\u1100\u1175");
+        moreSamples.add("\u1112\u1161");
+        moreSamples.add("\u1112\u1175");
+        moreSamples.add("\uAC00\u1161");
+        moreSamples.add("\uAC00\u1175");
+        moreSamples.add("\uD788\u1161");
+        moreSamples.add("\uD788\u1175");
     }
 
     // static UnicodeSet homelessSecondaries = new UnicodeSet(0x0176, 0x0198);
     //  0x0153..0x017F
 
-        
+
     public class UCAContents {
         int current = -1;
         Normalizer skipDecomps;
@@ -1151,8 +1158,8 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         boolean doSamples = false;
         AbbreviatedUnicodeSetIterator usi = new AbbreviatedUnicodeSetIterator();
         UnicodeSetIterator moreSampleIterator = new UnicodeSetIterator(moreSamples);
-     
-        
+
+
         /**
          * use FIXED_CE as the limit
          */
@@ -1162,9 +1169,9 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             this.nfkd = new Normalizer(Normalizer.NFKD, unicodeVersion);
             this.skipDecomps = skipDecomps;
             currentRange = 0;
-            usi.reset(unspecified, true);
+            usi.reset(getStatistics().unspecified, true);
             //usi.setAbbreviated(true);
-            
+
             // FIX SAMPLES
             if (SAMPLE_RANGES[0][0] == 0) {
                 for (int i = 0; ; ++i) { // add first unallocated character
@@ -1175,7 +1182,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 }
             }
         }
-        
+
         /**
          * use FIXED_CE as the limit
          * @param newValue TODO
@@ -1183,13 +1190,13 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         public void setDoEnableSamples(boolean newValue) {
             doSamples = newValue;
         }
-        
+
         /**
          * returns a string
          */
         public String next() {
             String result = null; // null if done
-            
+
             // normal case
             while (current++ < 0x10FFFF) {
                 if (DEBUG && current == 0xdbff) {
@@ -1198,17 +1205,17 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 //char ch = (char)current;
                 byte type = getCEType(current);
                 if (type >= ceLimit || type == CONTRACTING_CE) continue;
-                
+
                 //if (nfd.isNormalized(current) || type == HANGUL_CE) {
                 //}
-                
+
                 if (skipDecomps != null && !skipDecomps.isNormalized(current)) continue; // CHECK THIS
-                
+
                 result = UTF16.valueOf(current);
-                if (!haveUnspecified) unspecified.add(current);
+                if (!getStatistics().haveUnspecified) getStatistics().unspecified.add(current);
                 return result;
             }
-            
+
             // contractions
             if (enum1 == null) enum1 = ucaData.getContractions();
             while (enum1.hasNext()) {
@@ -1217,57 +1224,57 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     //System.out.println("Skipping " + ucd.getCodeAndName(result));
                     continue; // try again
                 }
-                if (!haveUnspecified) {
+                if (!getStatistics().haveUnspecified) {
                     if (UTF16.countCodePoint(result) == 1) {
-                        unspecified.add(result);
+                        getStatistics().unspecified.add(result);
                     }
                 }
                 return result;
             }
-            
-            if (!haveUnspecified) {
-                if (DEBUG) System.out.println("Specified = " + unspecified.toPattern(true));
+
+            if (!getStatistics().haveUnspecified) {
+                if (DEBUG) System.out.println("Specified = " + getStatistics().unspecified.toPattern(true));
                 UnicodeSet temp = new UnicodeSet();
                 for (int i = 0; i <= 0x10ffff; ++i) {
                     if (!ucd.isAllocated(i)) continue;
-                    if (!unspecified.contains(i)) {
+                    if (!getStatistics().unspecified.contains(i)) {
                         temp.add(i);
                     }
-                    
+
                     // add the following so that if a CJK is in a decomposition, we add it
                     if (!nfkd.isNormalized(i)) {
                         String decomp = nfkd.normalize(i);
                         int cp2;
                         for (int j = 0; j < decomp.length(); j += UTF16.getCharCount(cp2)) {
                             cp2 = UTF16.charAt(decomp, j);
-                            if (!unspecified.contains(cp2)) {
+                            if (!getStatistics().unspecified.contains(cp2)) {
                                 temp.add(cp2);
                             }
                         }
                     }
                 }
-                unspecified = temp;
-                usi.reset(unspecified, true);
+                getStatistics().unspecified = temp;
+                usi.reset(getStatistics().unspecified, true);
                 //usi.setAbbreviated(true);
-                if (DEBUG) System.out.println("Unspecified = " + unspecified.toPattern(true));
-                haveUnspecified = true;
-             }
-            
+                if (DEBUG) System.out.println("Unspecified = " + getStatistics().unspecified.toPattern(true));
+                getStatistics().haveUnspecified = true;
+            }
+
             if (!doSamples) return null;
-            
+
             if (usi.next()) {
                 if (usi.codepoint == usi.IS_STRING) result = usi.string;
                 else result = UTF16.valueOf(usi.codepoint);
                 if (DEBUG) System.out.println("Unspecified: " + ucd.getCodeAndName(result));
                 return result;
             }
-            
+
             if (moreSampleIterator.next()) {
-            	result = moreSampleIterator.getString();
+                result = moreSampleIterator.getString();
                 if (DEBUG) System.out.println("More Samples: " + ucd.getCodeAndName(result));
                 return result;
-           }
-            
+            }
+
             // extra samples
             if (currentRange < SAMPLE_RANGES.length) {
                 try {
@@ -1282,8 +1289,8 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     if (currentRange < SAMPLE_RANGES.length) {
                         startOfRange = itemInRange = SAMPLE_RANGES[currentRange][0];
                         endOfRange = SAMPLE_RANGES[currentRange].length > 1
-                            ? SAMPLE_RANGES[currentRange][1]
-                            : startOfRange;
+                        ? SAMPLE_RANGES[currentRange][1]
+                                                      : startOfRange;
                         //skip = ((endOfRange - startOfRange) / 3);
                     }
                 } else if (itemInRange > startOfRange + 5 && itemInRange < endOfRange - 5 /* - skip*/) {
@@ -1291,10 +1298,10 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     itemInRange = endOfRange - 5;
                 }
             }
-            
+
             return result;
         }
-        
+
         /**
          * returns a string and its ces
          */
@@ -1306,9 +1313,9 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             }
             return result;
         }
-        
+
         int[] lengthBuffer = new int[1];
-        
+
         /**
          * returns a string and its ces
          */
@@ -1319,43 +1326,43 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             result.second = s;
             return true;
         }
-        
-		/**
-		 * @return Returns the doSamples.
-		 */
-		public boolean isDoSamples() {
-			return doSamples;
-		}
+
+        /**
+         * @return Returns the doSamples.
+         */
+        public boolean isDoSamples() {
+            return doSamples;
+        }
     }
-    
+
     static final int[][] SAMPLE_RANGES = {
-                {0}, // LEAVE EMPTY--Turns into first unassigned character
-                {0xFFF0}, 
-                {0xD800},
-                {0xDFFF},
-                {0xFFFE},
-                {0xFFFF},
-                {0x10000},
-                {0xC0000},
-                {0xD0000},
-                {0x10FFFF},
-                {0x10FFFE},
-                {0x10FFFF},
-                {UCD_Types.CJK_A_BASE, UCD_Types.CJK_A_LIMIT},
-                {UCD_Types.CJK_BASE, UCD_Types.CJK_LIMIT},
-                {0xAC00, 0xD7A3},
-                {0xA000, 0xA48C},
-                {0xE000, 0xF8FF},
-                {UCD_Types.CJK_B_BASE, UCD_Types.CJK_B_LIMIT},
-                {UCD_Types.CJK_C_BASE, UCD_Types.CJK_C_LIMIT},
-                {UCD_Types.CJK_D_BASE, UCD_Types.CJK_D_LIMIT},
-                {0xE0000, 0xE007E},
-                {0xF0000, 0xF00FD},
-                {0xFFF00, 0xFFFFD},
-                {0x100000, 0x1000FD},
-                {0x10FF00, 0x10FFFD},
+        {0}, // LEAVE EMPTY--Turns into first unassigned character
+        {0xFFF0}, 
+        {0xD800},
+        {0xDFFF},
+        {0xFFFE},
+        {0xFFFF},
+        {0x10000},
+        {0xC0000},
+        {0xD0000},
+        {0x10FFFF},
+        {0x10FFFE},
+        {0x10FFFF},
+        {UCD_Types.CJK_A_BASE, UCD_Types.CJK_A_LIMIT},
+        {UCD_Types.CJK_BASE, UCD_Types.CJK_LIMIT},
+        {0xAC00, 0xD7A3},
+        {0xA000, 0xA48C},
+        {0xE000, 0xF8FF},
+        {UCD_Types.CJK_B_BASE, UCD_Types.CJK_B_LIMIT},
+        {UCD_Types.CJK_C_BASE, UCD_Types.CJK_C_LIMIT},
+        {UCD_Types.CJK_D_BASE, UCD_Types.CJK_D_LIMIT},
+        {0xE0000, 0xE007E},
+        {0xF0000, 0xF00FD},
+        {0xFFF00, 0xFFFFD},
+        {0x100000, 0x1000FD},
+        {0x10FF00, 0x10FFFD},
     };
-	                
+
     /**
      * Adds the collation elements from a file (or other stream) in the UCA format.
      * Values will override any previous mappings.
@@ -1365,28 +1372,28 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         StringBuffer multiChars = new StringBuffer(); // used for contracting chars
         String inputLine = "";
         boolean[] wasImplicitLeadPrimary = new boolean[1];
-        
+
         // In UAX 3.1, the rearrange list is moved to UCD.
-        
+
         if (ucaData.lessThan410) {        	
-        	rearrangeList = UnifiedBinaryProperty.make(UCD.BINARY_PROPERTIES + UCD.Logical_Order_Exception, ucd)
+            rearrangeList = UnifiedBinaryProperty.make(UCD.BINARY_PROPERTIES + UCD.Logical_Order_Exception, ucd)
             .getSet();
         }
-            
+
         while (true) try {
             inputLine = in.readLine();
             if (inputLine == null) break;       // means file is done
-            
+
             // HACK
             if (inputLine.startsWith("# Variant secondaries:")) {
-            	variantSecondaries = extractSet(inputLine);
+                getStatistics().variantSecondaries = extractSet(inputLine);
             } else if (inputLine.startsWith("# Digit secondaries:")) {
-            	digitSecondaries = extractSet(inputLine);
+                getStatistics().digitSecondaries = extractSet(inputLine);
             }
 
             String line = cleanLine(inputLine); // remove comments, extra whitespace
             if (line.length() == 0) continue;   // skip empty lines
-            
+
             if (DEBUG_SHOW_LINE) {
                 System.out.println("Processing: " + inputLine);
             } 
@@ -1397,7 +1404,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     dataVersion = line.substring("@version".length()+1).trim();
                     continue;
                 }
-                
+
                 if (line.startsWith("@rearrange")) {
                     line = line.substring("@rearrange".length()+1).trim();
                     String[] list = Utility.split(line, ',');
@@ -1406,16 +1413,16 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     }
                     continue;
                 }
-                
+
                 throw new IllegalArgumentException("Illegal @ command: " + line);
             }
-            
+
             // collect characters
             multiChars.setLength(0);            // clear buffer
-            
+
             char value = getChar(line, position);
             multiChars.append(value);
-            
+
             //fixSurrogateContraction(value);
             char value2 = getChar(line, position);
             // append until we get terminator
@@ -1424,18 +1431,20 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 value2 = getChar(line, position);
             }
 
+            int firstCodePoint = multiChars.codePointAt(0);
+
             if (RECORDING_CHARS) {
-                found.addAll(multiChars.toString());
-//                if (found.contains(0x1CD0)) {
-//                  System.out.println("found char");
-//                }
+                getStatistics().found.addAll(multiChars.toString());
+                //                if (found.contains(0x1CD0)) {
+                //                  System.out.println("found char");
+                //                }
             }
             if (!fullData && RECORDING_DATA) {
                 if (value == 0 || value == '\t' || value == '\n' || value == '\r'
-                  || (0x20 <= value && value <= 0x7F)
-                  || (0x80 <= value && value <= 0xFF)
-                  || (0x300 <= value && value <= 0x3FF)
-                  ) {
+                    || (0x20 <= value && value <= 0x7F)
+                    || (0x80 <= value && value <= 0xFF)
+                    || (0x300 <= value && value <= 0x3FF)
+                ) {
                     System.out.println("    + \"" + inputLine + "\\n\"");
                 }
             }
@@ -1444,16 +1453,16 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             /* if (multiChars.length() > 0) record = false;
             else */
             if (!toD.isNormalized(value)) record = false;
-            
+
             // collect CEs
             if (false && value == 0x2F00) {
-            	System.out.println("debug");
+                System.out.println("debug");
             }
-            
+
             wasImplicitLeadPrimary[0] = false;
-            
-            int ce = getCEFromLine(value, line, position, record, wasImplicitLeadPrimary);
-            int ce2 = getCEFromLine(value, line, position, record, wasImplicitLeadPrimary);
+
+            int ce = getCEFromLine(firstCodePoint, line, position, record, wasImplicitLeadPrimary, true);
+            int ce2 = getCEFromLine(firstCodePoint, line, position, record, wasImplicitLeadPrimary, false);
             if (CHECK_UNIQUE && (ce2 == TERMINATOR || CHECK_UNIQUE_EXPANSIONS)) {
                 if (!CHECK_UNIQUE_VARIABLES) {
                     checkUnique(value, ce, 0, inputLine); // only need to check first value
@@ -1464,60 +1473,60 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     }
                 }
             }
-            
+
             tempStack.clear();
             tempStack.push(ce);
-            
+
             while (ce2 != TERMINATOR) {
                 tempStack.push(ce2);
-                ce2 = getCEFromLine(value, line, position, record, wasImplicitLeadPrimary);
+                ce2 = getCEFromLine(firstCodePoint, line, position, record, wasImplicitLeadPrimary, false);
                 if (ce2 == TERMINATOR) break;
             } 
-            
+
             ucaData.add(multiChars, tempStack);
-            
+
         } catch (RuntimeException e) {
             System.out.println("Error on line: " + inputLine);
             throw e;
         }
     }
-    
-    /**
-	 * 
-	 */
-	private UnicodeSet extractSet(String inputLine) {
-        //# Variant secondaries:    0177..017B (5)
-		//# Digit secondaries:      017C..0198 (29)
-		Matcher m = Pattern.compile(".*:\\s*([0-9A-Fa-f]+)\\.\\.([0-9A-Fa-f]+).*").matcher("");
-		if (!m.reset(inputLine).matches()) throw new IllegalArgumentException("Failed to recognized special Ken lines: " + inputLine);
-		return new UnicodeSet(Integer.parseInt(m.group(1),16), Integer.parseInt(m.group(2),16));
-	}
 
-	/*
-    private void concat(int[] ces1, int[] ces2) {
-        
+    /**
+     * 
+     */
+    private UnicodeSet extractSet(String inputLine) {
+        //# Variant secondaries:    0177..017B (5)
+        //# Digit secondaries:      017C..0198 (29)
+        Matcher m = Pattern.compile(".*:\\s*([0-9A-Fa-f]+)\\.\\.([0-9A-Fa-f]+).*").matcher("");
+        if (!m.reset(inputLine).matches()) throw new IllegalArgumentException("Failed to recognized special Ken lines: " + inputLine);
+        return new UnicodeSet(Integer.parseInt(m.group(1),16), Integer.parseInt(m.group(2),16));
     }
-    */
-    
+
+    /*
+    private void concat(int[] ces1, int[] ces2) {
+
+    }
+     */
+
     /**
      * Checks the internal tables corresponding to the UCA data.
      */
     private void cleanup() {
-        
+
         UCDProperty ubp = UnifiedBinaryProperty.make(
-            UCD.BINARY_PROPERTIES + UCD.Logical_Order_Exception, ucd);
+                UCD.BINARY_PROPERTIES + UCD.Logical_Order_Exception, ucd);
         UnicodeSet desiredSet = ubp.getSet();
-        
+
         if (ucaData.lessThan410 && !rearrangeList.equals(desiredSet)) {
             throw new IllegalArgumentException("Rearrangement should be " + desiredSet.toPattern(true)
-                + ", but is " + rearrangeList.toPattern(true));
+                    + ", but is " + rearrangeList.toPattern(true));
         }
-        
+
         ucaData.checkConsistency();
 
         Map missingStrings = new HashMap();
         Map tempMap = new HashMap();
-        
+
         Iterator enum1 = ucaData.getContractions();
         while (enum1.hasNext()) {
             String sequence = (String)enum1.next();
@@ -1528,24 +1537,24 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     IntStack tempStack = new IntStack(1);
                     getCEs(shorter, true, tempStack);
                     if (false) System.out.println("WARNING: CLOSING: " + ucd.getCodeAndName(shorter)
-                        + " => " + CEList.toString(tempStack));
+                            + " => " + CEList.toString(tempStack));
                     tempMap.put(shorter, tempStack);
                     // missingStrings.put(shorter,"");
                     // collationElements[sequence.charAt(0)] = UNSUPPORTED; // nuke all bad values
                 }
             }
         }
-        
+
         // now add them. We couldn't before because we were iterating over it.
-        
+
         enum1 = tempMap.keySet().iterator();
         while (enum1.hasNext()) {
             String shorter = (String) enum1.next();
             IntStack tempStack = (IntStack) tempMap.get(shorter);
             ucaData.add(shorter, tempStack);
         }
-        
-        
+
+
         enum1 = missingStrings.keySet().iterator();
         if (missingStrings.size() != 0) {
             /**
@@ -1554,7 +1563,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 getCE(sequence);
                 FIX LATER;
             }
-            */
+             */
             String errorMessage = "";
             while (enum1.hasNext()) {
                 String missing = (String)enum1.next();
@@ -1565,32 +1574,32 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
 
         //fixlater;
-        variableLowCE = variableLow << 16;
-        variableHighCE = (variableHigh << 16) | 0xFFFF; // turn on bottom bits
-        
+        variableLowCE = makeKey(ucaData.variableLow,0,0);
+        variableHighCE = makeKey(ucaData.variableHigh, SECONDARY_MAX, TERTIARY_MAX); // turn on bottom bits
+
         //int hangulHackBottom;
         //int hangulHackTop;
-        
+
         //hangulHackBottom = collationElements[0x1100] & 0xFFFF0000; // remove secondaries & tertiaries
         //hangulHackTop = collationElements[0x11F9] | 0xFFFF; // bump up secondaries and tertiaries
         //if (SHOW_STATS) System.out.println("\tHangul Hack: " + Utility.hex(hangulHackBottom) + ", " + Utility.hex(hangulHackTop));
-        
+
         // show some statistics
-        if (SHOW_STATS) System.out.println("\tcount1: " + count1);
-        if (SHOW_STATS) System.out.println("\tcount2: " + max2);
-        if (SHOW_STATS) System.out.println("\tcount3: " + max3);
+        if (SHOW_STATS) System.out.println("\tcount1: " + getStatistics().count1);
+        if (SHOW_STATS) System.out.println("\tcount2: " + getStatistics().max2);
+        if (SHOW_STATS) System.out.println("\tcount3: " + getStatistics().max3);
         if (SHOW_STATS) System.out.println("\tcontractions: " + ucaData.getContractionCount());
-        
-        if (SHOW_STATS) System.out.println("\tMIN1/MAX1: " + Utility.hex(MIN1) + "/" + Utility.hex(MAX1));
-        if (SHOW_STATS) System.out.println("\tMIN2/MAX2: " + Utility.hex(MIN2) + "/" + Utility.hex(MAX2));
-        if (SHOW_STATS) System.out.println("\tMIN3/MAX3: " + Utility.hex(MIN3) + "/" + Utility.hex(MAX3));
-        
-        if (SHOW_STATS) System.out.println("\tVar Min/Max: " + Utility.hex(variableLow) + "/" + Utility.hex(variableHigh));
-        if (SHOW_STATS) System.out.println("\tNon-Var Min: " + Utility.hex(nonVariableLow));
-        
-        if (SHOW_STATS) System.out.println("\trenumberedVariable: " + renumberedVariable);
+
+        if (SHOW_STATS) System.out.println("\tMIN1/MAX1: " + Utility.hex(getStatistics().MIN1) + "/" + Utility.hex(getStatistics().MAX1));
+        if (SHOW_STATS) System.out.println("\tMIN2/MAX2: " + Utility.hex(getStatistics().MIN2) + "/" + Utility.hex(getStatistics().MAX2));
+        if (SHOW_STATS) System.out.println("\tMIN3/MAX3: " + Utility.hex(getStatistics().MIN3) + "/" + Utility.hex(getStatistics().MAX3));
+
+        if (SHOW_STATS) System.out.println("\tVar Min/Max: " + Utility.hex(ucaData.variableLow) + "/" + Utility.hex(ucaData.variableHigh));
+        if (SHOW_STATS) System.out.println("\tNon-Var Min: " + Utility.hex(ucaData.nonVariableLow));
+
+        if (SHOW_STATS) System.out.println("\trenumberedVariable: " + getStatistics().renumberedVariable);
     }
-    
+
     /**
      * Remove comments, extra whitespace
      */
@@ -1601,17 +1610,17 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         if (commentPosition >= 0) line = line.substring(0,commentPosition);
         return line.trim();
     }
-    
+
     /**
      * Get a char from a line, of form: (<space> | <comma>)* <hex>*
      *@param position on input, the place to start at. 
      * On output, updated to point to the next place to search.
      *@return the character, or NOT_A_CHAR when done
      */
-    
+
     // NOTE in case of surrogates, we buffer up the second character!!
     char charBuffer = 0;
-    
+
     private char getChar(String line, int[] position) {
         char ch;
         if (charBuffer != 0) {
@@ -1640,25 +1649,31 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             charBuffer = UTF16.getTrailSurrogate(cp);
             return UTF16.getLeadSurrogate(cp);
         }
-        
+
         return NOT_A_CHAR; 
     }
-    
+
     boolean DEBUGCHAR = false;    
-    
-    BitSet primarySet = new BitSet();
-    BitSet secondarySet = new BitSet();
-    BitSet tertiarySet = new BitSet();
-    
+
+
+    public CharSequence getRepresentativePrimary(int primary) {
+        StringBuilder result = getStatistics().representativePrimary.get(primary);
+        if (result == null) {
+            result = getStatistics().representativePrimarySeconds.get(primary);
+            throw new IllegalArgumentException();
+        }
+        return result;
+    }
+
     public int writeUsedWeights(PrintWriter p, int strength, MessageFormat mf) {
-        BitSet weights = strength == 1 ? primarySet : strength == 2 ? secondarySet : tertiarySet;
+        BitSet weights = strength == 1 ? getStatistics().primarySet : strength == 2 ? getStatistics().secondarySet : getStatistics().tertiarySet;
         int first = -1;
         int count = 0;
         for (int i = 0; i <= weights.length(); ++i) {
             if (strength > 1) {
                 if (weights.get(i)) {
                     count++;
-                    p.println(mf.format(new Object[] {Utility.hex((char)i), new Integer(stCounts[strength][i])}));
+                    p.println(mf.format(new Object[] {Utility.hex((char)i), new Integer(getStatistics().stCounts[strength][i])}));
                 }
                 continue;
             }
@@ -1675,11 +1690,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
         return count;  
     }
-    
-    int[] secondaryCount = new int[0x200];
-    int[] tertiaryCount = new int[0x80];
-    int[][] stCounts = {null, null, secondaryCount, tertiaryCount};
-    
+
     /**
      * Gets a CE from a UCA format line
      *@param value the first character for the line. Just used for statistics.
@@ -1687,33 +1698,20 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      *@param position on input, the place to start at. 
      * On output, updated to point to the next place to search.
      */
-    
+
     boolean haveVariableWarning = false;
     boolean haveZeroVariableWarning = false;
-    
-    private int getCEFromLine(char value, String line, int[] position, boolean record, boolean[] lastWasImplicitLead) {
+
+    private int getCEFromLine(int value, String line, int[] position, boolean record, boolean[] lastWasImplicitLead, boolean first) {
         int start = line.indexOf('[', position[0]);
         if (start == -1) return TERMINATOR;
         boolean variable = line.charAt(start+1) == '*';
         int key1 = Integer.parseInt(line.substring(start+2,start+6),16);
-        if (key1 == 0x1299) {
-            System.out.println("\t1299");
+        if (key1 == TEST_PRIMARY) {
+            key1 = key1; // for debugging
         }
         int key2 = Integer.parseInt(line.substring(start+7,start+11),16);
         int key3 = Integer.parseInt(line.substring(start+12,start+16),16);
-        if (record) {
-        	if (lastWasImplicitLead[0]) {
-        		lastWasImplicitLead[0] = false;
-            } else if (isImplicitLeadPrimary(key1)) {
-            	lastWasImplicitLead[0] = true;
-            } else {
-            	primarySet.set(key1);
-            }
-            secondarySet.set(key2);
-            secondaryCount[key2]++;
-            tertiarySet.set(key3);
-            tertiaryCount[key3]++;
-        }
         if (key1 == 0 && variable) {
             if (!haveZeroVariableWarning) {
                 System.out.println("\tBAD DATA: Zero L1s cannot be variable!!: " + line);
@@ -1721,53 +1719,40 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             }
             variable = false; // FIX DATA FILE
         }
-        if (key2 > 0x1FF) {
+        if (key2 > SECONDARY_MAX) {
             throw new IllegalArgumentException("Weight2 doesn't fit: " + Utility.hex(key2) + "," + line);
         }
-        if (key3 > 0x7F) {
+        if (key3 > TERTIARY_MAX) {
             throw new IllegalArgumentException("Weight3 doesn't fit: " + Utility.hex(key3) + "," + line);
         }
         // adjust variable bounds, if needed
         if (variable) {
-            if (key1 > nonVariableLow) {
+            if (key1 > ucaData.nonVariableLow) {
                 if (!haveVariableWarning) {
                     System.out.println("\tBAD DATA: Variable overlap, nonvariable low: "
-                    + Utility.hex(nonVariableLow) + ", line: \"" + line + "\"");
+                            + Utility.hex(ucaData.nonVariableLow) + ", line: \"" + line + "\"");
                     haveVariableWarning = true;
                 }
             } else {
-                if (key1 < variableLow) variableLow = key1;
-                if (key1 > variableHigh) variableHigh = key1;
+                if (key1 < ucaData.variableLow) {
+                    ucaData.variableLow = key1;
+                }
+                if (ucaData.getPrimaryRemap() == null && key1 > ucaData.variableHigh) {
+                    ucaData.variableHigh = key1;
+                }
             }
         } else if (key1 != 0) { // not variable, not zero
-            if (key1 < variableHigh) {
+            if (key1 < ucaData.variableHigh) {
                 if (!haveVariableWarning) {
                     System.out.println("\tBAD DATA: Variable overlap, variable high: "
-                    + Utility.hex(variableHigh) + ", line: \"" + line + "\"");
+                            + Utility.hex(ucaData.variableHigh) + ", line: \"" + line + "\"");
                     haveVariableWarning = true;
                 }
             } else {
-                if (key1 < nonVariableLow) nonVariableLow = key1;
+                if (key1 < ucaData.nonVariableLow) ucaData.nonVariableLow = key1;
             }
         }
-            
-        // statistics
-        count1++;
-        if (key1 != oldKey1) {
-            oldKey1 = key1;
-            if (count2 > max2) max2 = count2;
-            if (count3 > max3) max3 = count3;
-            count2 = count3 = 1;
-        } else {
-            count2++;
-            if (key2 != oldKey2) {
-                oldKey2 = key2;
-                if (count3 > max3) max3 = count3;
-                count3 = 1;
-            } else {
-                count3++;
-            }
-        }
+
         position[0] = start + 17;
         /*
         if (VARIABLE && variable) {
@@ -1780,34 +1765,16 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 key1 = key2 = 0;
             }
         }
-        */
-        // gather some statistics
-        if (key1 != 0 && key1 < MIN1) MIN1 = (char)key1;
-        if (key2 != 0 && key2 < MIN2) MIN2 = (char)key2;
-        if (key3 != 0 && key3 < MIN3) MIN3 = (char)key3;
-        if (key1 > MAX1) MAX1 = (char)key1;
-        if (key2 > MAX2) MAX2 = (char)key2;
-        if (key3 > MAX3) MAX3 = (char)key3;
+         */
         return makeKey(key1, key2, key3);
     }
-    
-    /**
-     * Just for statistics
-     */
-    int lastUniqueVariable = 0;
-    int renumberedVariable = 50;
-    char MIN1 = '\uFFFF'; // start large; will be reset as table is built
-    char MIN2 = '\uFFFF'; // start large; will be reset as table is built
-    char MIN3 = '\uFFFF'; // start large; will be reset as table is built
-    char MAX1 = '\u0000'; // start small; will be reset as table is built
-    char MAX2 = '\u0000'; // start small; will be reset as table is built
-    char MAX3 = '\u0000'; // start small; will be reset as table is built
-    
+
+
     /**
      * Used for checking data file integrity
      */
     private Map uniqueTable = new HashMap();
-    
+
     /**
      * Used for checking data file integrity
      */
@@ -1817,39 +1784,101 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         Object probe = uniqueTable.get(ceObj);
         if (probe != null) {
             System.out.println("\tCE(" + Utility.hex(value) 
-              + ")=CE(" + Utility.hex(((Character)probe).charValue()) + "); " + line);
-              
+                    + ")=CE(" + Utility.hex(((Character)probe).charValue()) + "); " + line);
+
         } else {
             uniqueTable.put(ceObj, new Character(value));
         }
     }
-/**
- * @return Returns the fileVersion.
- */
-public String getFileVersion() {
-	return fileVersion;
-}
-/**
- * @return Returns the uCA_GEN_DIR.
- */
-public String getUCA_GEN_DIR() {
-//  try {
-//    final File file = new File("org/unicode/data/gen/uca");
-//	System.out.println(file.getCanonicalPath());
-//	System.out.println(file.isDirectory());
-//    if (true) throw new IllegalArgumentException();
-//  } catch (IOException e) {
-//    throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
-//  }
-	return BASE_UCA_GEN_DIR + Default.ucdVersion() + "/"; //  + getDataVersion() + "/";
-}
+    /**
+     * @return Returns the fileVersion.
+     */
+    public String getFileVersion() {
+        return fileVersion;
+    }
+    /**
+     * @return Returns the uCA_GEN_DIR.
+     */
+    public static String getUCA_GEN_DIR() {
+        //  try {
+        //    final File file = new File("org/unicode/data/gen/uca");
+        //	System.out.println(file.getCanonicalPath());
+        //	System.out.println(file.isDirectory());
+        //    if (true) throw new IllegalArgumentException();
+        //  } catch (IOException e) {
+        //    throw (IllegalArgumentException) new IllegalArgumentException().initCause(e);
+        //  }
+        return BASE_UCA_GEN_DIR + Default.ucdVersion() + "/"; //  + getDataVersion() + "/";
+    }
 
 
-	/**
-	 * @return Returns the homelessSecondaries.
-	 */
-	public UnicodeSet getHomelessSecondaries() {
-		if (homelessSecondaries == null) homelessSecondaries = new UnicodeSet(variantSecondaries).addAll(digitSecondaries);
-		return homelessSecondaries;
-	}
+    /**
+     * @return Returns the homelessSecondaries.
+     */
+    public UnicodeSet getHomelessSecondaries() {
+        if (getStatistics().homelessSecondaries == null) {
+            getStatistics().homelessSecondaries = new UnicodeSet(getStatistics().variantSecondaries).addAll(getStatistics().digitSecondaries);
+        }
+        return getStatistics().homelessSecondaries;
+    }
+
+    static UCA buildCollator(Remap primaryRemap) {
+        try {
+            System.out.println("Building UCA");
+            String file = Utility.searchDirectory(new File(UCD_Types.BASE_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
+            UCA collator = new UCA(file, Default.ucdVersion(), primaryRemap);
+            System.out.println("Built version " + collator.getDataVersion() + "/ucd: " + collator.getUCDVersion());
+            System.out.println("Building UCD data");
+            return collator;
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    UCA_Statistics getStatistics() {
+        return ucaData.statistics;
+    }
+
+    public static final class Remap {
+        private int counter = 0x100;
+        private Map<Integer,Integer> primaryRemap = new TreeMap<Integer,Integer>();
+        private Map<Integer,IntStack> characterRemap = new TreeMap<Integer,IntStack>();
+        private int variableHigh;
+
+        public Integer getRemappedPrimary(int ducetPrimary) {
+            return primaryRemap.get(ducetPrimary);
+        }
+        public int getVariableHigh() {
+            return variableHigh;
+        }
+        public Remap setVariableHigh() {
+            variableHigh = counter;
+            return this;
+        }
+        public IntStack getRemappedCharacter(int source) {
+            return characterRemap.get(source);
+        }
+        /**
+         * The UnicodeSet is not characters but primaries....
+         * @param items
+         * @return
+         */
+        public Remap addItems(UnicodeSet items) {
+            for (String s : items) {
+                primaryRemap.put(s.codePointAt(0), counter++);
+            }
+            return this;
+        }
+        public Remap putRemappedCharacters(int codePoint) {
+            IntStack stack = new IntStack(1);
+            stack.append(makeKey(counter++, NEUTRAL_SECONDARY, NEUTRAL_TERTIARY));
+            characterRemap.put(codePoint, stack);
+            //*130D.0020.0002       
+            return this;
+        }
+        public Map<Integer, IntStack> getCharacterRemap() {
+            return Collections.unmodifiableMap(characterRemap);
+        }
+    }
 }
+

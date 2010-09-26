@@ -53,11 +53,11 @@ class ScriptSet {
         byte cat = FractionalUCA.getFixedCategory(cp);
         int script = FractionalUCA.getFixedScript(cp);
 
-        if (!(script == WriteCollationData.ucd.Unknown_Script || script == WriteCollationData.ucd.COMMON_SCRIPT)
-                && (cat == WriteCollationData.ucd.OTHER_LETTER || cat == WriteCollationData.ucd.UPPERCASE_LETTER || cat == WriteCollationData.ucd.LOWERCASE_LETTER || cat == WriteCollationData.ucd.TITLECASE_LETTER)) {
-            scripts.add(WriteCollationData.ucd.getScriptID_fromIndex((byte)script, UCD_Types.SHORT), 1);
+        if (!(script == Default.ucd().Unknown_Script || script == Default.ucd().COMMON_SCRIPT)
+                && (cat == Default.ucd().OTHER_LETTER || cat == Default.ucd().UPPERCASE_LETTER || cat == Default.ucd().LOWERCASE_LETTER || cat == Default.ucd().TITLECASE_LETTER)) {
+            scripts.add(Default.ucd().getScriptID_fromIndex((byte)script, UCD_Types.SHORT), 1);
         } else {
-            types.add(WriteCollationData.ucd.getCategoryID_fromIndex(cat, UCD_Types.SHORT), 1);
+            types.add(Default.ucd().getCategoryID_fromIndex(cat, UCD_Types.SHORT), 1);
         }
         //}
     }
@@ -84,11 +84,11 @@ class ScriptSet {
         //        if (result.length() != 0) {
         //          result.append(' ');
         //        }
-        if (!(script == WriteCollationData.ucd.Unknown_Script || script == WriteCollationData.ucd.COMMON_SCRIPT)
-                && (cat == WriteCollationData.ucd.OTHER_LETTER || cat == WriteCollationData.ucd.UPPERCASE_LETTER || cat == WriteCollationData.ucd.LOWERCASE_LETTER || cat == WriteCollationData.ucd.TITLECASE_LETTER)) {
-            result = (WriteCollationData.ucd.getScriptID_fromIndex((byte)script, UCD_Types.SHORT));
+        if (!(script == Default.ucd().Unknown_Script || script == Default.ucd().COMMON_SCRIPT)
+                && (cat == Default.ucd().OTHER_LETTER || cat == Default.ucd().UPPERCASE_LETTER || cat == Default.ucd().LOWERCASE_LETTER || cat == Default.ucd().TITLECASE_LETTER)) {
+            result = (Default.ucd().getScriptID_fromIndex((byte)script, UCD_Types.SHORT));
         } else {
-            result = (WriteCollationData.ucd.getCategoryID_fromIndex(cat, UCD_Types.SHORT));
+            result = (Default.ucd().getCategoryID_fromIndex(cat, UCD_Types.SHORT));
         }
         // }
         return result;
@@ -100,9 +100,9 @@ class ScriptSet {
 
     static Set<String> common = new TreeSet();
     static {
-        common.add(WriteCollationData.ucd.getScriptID_fromIndex(UCD_Types.COMMON_SCRIPT, UCD_Types.SHORT));
-        common.add(WriteCollationData.ucd.getScriptID_fromIndex(UCD_Types.Unknown_Script, UCD_Types.SHORT));
-        common.add(WriteCollationData.ucd.getScriptID_fromIndex(UCD_Types.INHERITED_SCRIPT, UCD_Types.SHORT));
+        common.add(Default.ucd().getScriptID_fromIndex(UCD_Types.COMMON_SCRIPT, UCD_Types.SHORT));
+        common.add(Default.ucd().getScriptID_fromIndex(UCD_Types.Unknown_Script, UCD_Types.SHORT));
+        common.add(Default.ucd().getScriptID_fromIndex(UCD_Types.INHERITED_SCRIPT, UCD_Types.SHORT));
     }
 
     <T extends Appendable> T  toString(T result, boolean categoriesAlso) {

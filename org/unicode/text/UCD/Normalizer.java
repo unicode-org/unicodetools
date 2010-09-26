@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/Normalizer.java,v $
-* $Date: 2010-05-15 00:29:21 $
-* $Revision: 1.22 $
+* $Date: 2010-09-26 21:29:06 $
+* $Revision: 1.23 $
 *
 *******************************************************************************
 */
@@ -241,7 +241,7 @@ public final class Normalizer implements UCD_Types {
     * @param   ch      the source character
     */
     public boolean isNormalized(String s) {
-        if (UTF16.countCodePoint(s) > 1) {
+        if (UTF16.countCodePoint(s) == 1) {
             return !data.normalizationDiffers(UTF16.charAt(s,0), composition, compatibility);
         }
         return s.equals(normalize(s)); // TODO: OPTIMIZE LATER

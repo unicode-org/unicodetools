@@ -1,15 +1,15 @@
 /**
-*******************************************************************************
-* Copyright (C) 1996-2001, International Business Machines Corporation and    *
-* others. All Rights Reserved.                                                *
-*******************************************************************************
-*
-* $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Data.java,v $ 
-* $Date: 2009-08-18 23:38:45 $ 
-* $Revision: 1.6 $
-*
-*******************************************************************************
-*/
+ *******************************************************************************
+ * Copyright (C) 1996-2001, International Business Machines Corporation and    *
+ * others. All Rights Reserved.                                                *
+ *******************************************************************************
+ *
+ * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Data.java,v $ 
+ * $Date: 2010-09-26 21:29:05 $ 
+ * $Revision: 1.7 $
+ *
+ *******************************************************************************
+ */
 
 package org.unicode.text.UCA;
 
@@ -17,6 +17,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.unicode.text.UCA.UCA.CollatorType;
+import org.unicode.text.UCA.UCA.Remap;
+import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.IntStack;
@@ -29,15 +32,23 @@ public class UCA_Data implements UCA_Types {
     static final boolean DEBUG = false;
     static final boolean DEBUG_SHOW_ADD = false;
     static final boolean lessThan410 = false;
-    
+
     private Normalizer toD;
     private UCD ucd;
-    
-    public UCA_Data(Normalizer toD, UCD ucd) {
+    private Remap primaryRemap;
+
+    public int variableLow = '\uFFFF';
+    public int nonVariableLow = '\uFFFF'; // HACK '\u089A';
+    public int variableHigh = '\u0000';
+
+    UCA_Statistics statistics = new UCA_Statistics();
+
+    public UCA_Data(Normalizer toD, UCD ucd, Remap primaryRemap) {
         this.toD = toD;
         this.ucd = ucd;
+        this.primaryRemap = primaryRemap;
     }
-    
+
     /**
      * The collation element data is stored a couple of different structures.
      * First is collationElements, which generally contains the 32-bit CE corresponding
@@ -48,7 +59,7 @@ public class UCA_Data implements UCA_Types {
      * Exceptional cases: expanding, contracting, unsupported are handled as described below.
      */
     private int[] collationElements = new int[65536];
-    
+
     /**
      * Although a single character can expand into multiple CEs, we don't want to burden
      * the normal case with the storage. So, they get a special value in the collationElements
@@ -58,14 +69,14 @@ public class UCA_Data implements UCA_Types {
      * easy to generate.
      */
     private IntStack expandingTable = new IntStack(3600); // initial number is from compKeys
-        
+
     /**
      * For now, this is just a simple mapping of strings to collation elements.
      * The implementation depends on the contracting characters being "completed",
      * so that it can be efficiently determined when to stop looking.
      */
     private Map contractingTable = new TreeMap();
-    
+
     {
         // clear some tables
         for (int i = 0; i < collationElements.length; ++i) {
@@ -78,22 +89,22 @@ public class UCA_Data implements UCA_Types {
         }
         checkConsistency();
     }
-    
+
     /**
      * Return the type of the CE
      */
     public byte getCEType(int ch) {
         if (ch > 0xFFFF) ch = UTF16.getLeadSurrogate(ch); // first if expands
-        
+
         int ce = collationElements[ch];
         if (ce == UNSUPPORTED_FLAG) {
-            
+
             // Special check for Han, Hangul
             if (ucd.isHangulSyllable(ch)) return HANGUL_CE;
-            
+
             if (ucd.isCJK_BASE(ch)) return CJK_CE;
             if (ucd.isCJK_AB(ch)) return CJK_AB_CE;
-                        
+
             // special check for unsupported surrogate pair, 20 1/8 bits
             //if (0xD800 <= ch && ch <= 0xDFFF) {
             //    return SURROGATE_CE;
@@ -104,20 +115,96 @@ public class UCA_Data implements UCA_Types {
         if ((ce & EXPANDING_MASK) == EXPANDING_MASK) return EXPANDING_CE;
         return NORMAL_CE;
     }
-    
+
+    public Remap getPrimaryRemap() {
+        return primaryRemap;
+    }
+
     public void add(String source, IntStack ces) {
         add(new StringBuffer(source), ces);
     }
-        
+
     public void add(StringBuffer source, IntStack ces) {
-        
+        if (primaryRemap != null) {
+            IntStack charRemap = primaryRemap.getRemappedCharacter(source.codePointAt(0));
+            if (charRemap != null) {
+                ces = charRemap;
+            }
+            for (int i = 0; i < ces.length(); ++i) {
+                int value = ces.get(i);
+                char primary = UCA.getPrimary(value);
+                Integer remap = primaryRemap.getRemappedPrimary((int)primary);
+                if (remap != null) {
+                    value = (remap << 16) | (value & 0xFFFF);
+                    ces.put(i, value);
+                }
+            }
+        }
+
+        // gather statistics
+
+
+        for (int i = 0; i < ces.length(); ++i) {
+            int ce = ces.get(i);
+            int key1 = UCA.getPrimary(ce);
+            int key2 = UCA.getSecondary(ce);
+            int key3 = UCA.getTertiary(ce);
+            if (!UCA.isImplicitPrimary(key1)) {
+                statistics.primarySet.set(key1);
+                if (i == 0) {
+                    StringBuilder reps = statistics.representativePrimary.get(key1);
+                    if (reps == null) {
+                        statistics.representativePrimary.put(key1, reps = new StringBuilder());
+                    }
+                    reps.appendCodePoint(source.codePointAt(0));
+                } else {
+                    StringBuilder reps = statistics.representativePrimarySeconds.get(key1);
+                    if (reps == null) {
+                        statistics.representativePrimarySeconds.put(key1, reps = new StringBuilder());
+                    }
+                    reps.appendCodePoint(source.codePointAt(0));
+                }
+            }
+            statistics.secondarySet.set(key2);
+            statistics.secondaryCount[key2]++;
+            statistics.tertiarySet.set(key3);
+            statistics.tertiaryCount[key3]++;
+
+            // statistics
+            statistics.count1++;
+            if (key1 != statistics.oldKey1) {
+                statistics.oldKey1 = key1;
+                if (statistics.count2 > statistics.max2) statistics.max2 = statistics.count2;
+                if (statistics.count3 > statistics.max3) statistics.max3 = statistics.count3;
+                statistics.count2 = statistics.count3 = 1;
+            } else {
+                statistics.count2++;
+                if (key2 != statistics.oldKey2) {
+                    statistics.oldKey2 = key2;
+                    if (statistics.count3 > statistics.max3) statistics.max3 = statistics.count3;
+                    statistics.count3 = 1;
+                } else {
+                    statistics.count3++;
+                }
+            }
+            // gather some statistics
+            if (key1 != 0 && key1 < statistics.MIN1) statistics.MIN1 = (char)key1;
+            if (key2 != 0 && key2 < statistics.MIN2) statistics.MIN2 = (char)key2;
+            if (key3 != 0 && key3 < statistics.MIN3) statistics.MIN3 = (char)key3;
+            if (key1 > statistics.MAX1) statistics.MAX1 = (char)key1;
+            if (key2 > statistics.MAX2) statistics.MAX2 = (char)key2;
+            if (key3 > statistics.MAX3) statistics.MAX3 = (char)key3;
+        }
+
+
+
         if (DEBUG_SHOW_ADD) {
             System.out.println("Adding: " + ucd.getCodeAndName(source.toString()) + CEList.toString(ces));
         }
         if (source.length() < 1 || ces.length() < 1) {
             throw new IllegalArgumentException("String or CEs too short");
         }
-        
+
         int ce;
         if (ces.length() == 1) {
             ce = ces.get(0);
@@ -126,11 +213,11 @@ public class UCA_Data implements UCA_Types {
             expandingTable.append(ces);
             expandingTable.append(TERMINATOR);
         }
-        
+
         // assign CE(s) to char(s)
         char value = source.charAt(0);
         //if (value == 0x10000) System.out.print("DEBUG2: " + source);
-            	        
+
         if (source.length() > 1) {
             addToContractingTable(source, ce);
             if (collationElements[value] == UNSUPPORTED_FLAG) {
@@ -150,7 +237,7 @@ public class UCA_Data implements UCA_Types {
         }
         //if (DEBUG) checkConsistency();
     }
-    
+
     boolean isCompletelyIgnoreable(int cp) {
         int ce = collationElements[cp < UTF16.SUPPLEMENTARY_MIN_VALUE ? cp : UTF16.getLeadSurrogate(cp)];
         if (ce == 0) return true;
@@ -159,11 +246,11 @@ public class UCA_Data implements UCA_Types {
         if (newValue == null) return false;
         return ((Integer)newValue).intValue() == 0;
     }
-    
+
     // returns new pos, fills in result.
     public int get(char ch, StringBuffer decompositionBuffer, int index, IntStack result) {
         int ce = collationElements[ch];
-        
+
         if (ce == CONTRACTING) {
             // Contracting is probably the most interesting (read "tricky") part
             // of the algorithm.
@@ -176,7 +263,7 @@ public class UCA_Data implements UCA_Types {
             String probe = String.valueOf(ch);
             Object value = contractingTable.get(probe);
             if (value == null) throw new IllegalArgumentException("Missing value for " + Utility.hex(ch));
-            
+
             // complete the first character, if part of supplementary
             if (UTF16.isLeadSurrogate(ch) && index < decompositionBuffer.length()) {
                 char ch2 = decompositionBuffer.charAt(index);
@@ -188,33 +275,33 @@ public class UCA_Data implements UCA_Types {
                     index++;
                 }
             }           
-            
+
             // We loop, trying to add successive CODE UNITS to the longest substring.
             int cp2;
             while (index < decompositionBuffer.length()) {
                 //char ch2 = decompositionBuffer.charAt(index);
                 cp2 = UTF16.charAt(decompositionBuffer, index);
                 int increment = UTF16.getCharCount(cp2);
-                
+
                 // CHECK if last char was completely ignorable
                 if (lessThan410 && isCompletelyIgnoreable(cp2)) {
                     index += increment; // just skip char don't set probe, value
                     continue;
                 }
-                
+
                 // see whether the current string plus the next char are in
                 // the contracting table.
                 String newProbe = probe + UTF16.valueOf(cp2);
                 Object newValue = contractingTable.get(newProbe);
                 if (newValue == null) break;    // stop if not in table.
-                
+
                 // We succeeded--so update our new values, and set index
                 // and quaternary to indicate that we swallowed another character.
                 probe = newProbe;
                 value = newValue;
                 index += increment;
             }
-            
+
             // Now, see if we can add any combining marks
             short lastCan = 0;
             int increment;
@@ -229,12 +316,12 @@ public class UCA_Data implements UCA_Types {
                 if (can == 0) break;            // stop with any zero (non-accent)
                 if (can == lastCan) continue;   // blocked if same class as last
                 lastCan = can;                  // remember for next time
-                
+
                 // CHECK if last char was completely ignorable. If so, skip it.
                 if (lessThan410 && isCompletelyIgnoreable(cp2)) {
                     continue;
                 }
-                
+
                 // Now see if we can successfully add it onto our string
                 // and find it in the contracting table.
                 String newProbe = probe + UTF16.valueOf(cp2);
@@ -251,12 +338,12 @@ public class UCA_Data implements UCA_Types {
                     decompositionBuffer.setCharAt(i+1,'\u0000');  // zero char
                 }
             }
-            
+
             // we are all done, and can extract the CE from the last value set.
             ce = ((Integer)value).intValue();
-            
+
         }
-        
+
         // if the CE is not expanding) we are done.
         if ((ce & EXPANDING_MASK) != EXPANDING_MASK) {
             result.push(ce);
@@ -272,22 +359,22 @@ public class UCA_Data implements UCA_Types {
         }
         return index;
     }
-    
+
     private void addToContractingTable(Object s, int ce) {
         if (s == null) {
             throw new IllegalArgumentException("String can't be null");
         }
         contractingTable.put(s.toString(), new Integer(ce));
     }
-        
+
     void checkConsistency() {
-                // at this point, we have to guarantee that the contractingTable is CLOSED
+        // at this point, we have to guarantee that the contractingTable is CLOSED
         // e.g. if a substring of length n is in the table, then the first n-1 characters
         // are also!!
-        
+
         // First check consistency. the CE for a value is CONTRACTING if and only if there is a contraction starting
         // with that value.
-        
+
         UnicodeSet ceSet = new UnicodeSet();
         for (int i = 0; i < collationElements.length; ++i) {
             if (collationElements[i] == CONTRACTING) ceSet.add(i);
@@ -298,15 +385,15 @@ public class UCA_Data implements UCA_Types {
             String sequence = (String)enum1.next();
             ceSet2.add(sequence.charAt(0));
         }
-        
+
         if (!ceSet.equals(ceSet2)) {
             System.out.println("In both: " + new UnicodeSet(ceSet).retainAll(ceSet2).toPattern(true));
             System.out.println("CONTRACTING but not in table: " + new UnicodeSet(ceSet).removeAll(ceSet2).toPattern(true));
             System.out.println("In table but not CONTRACTING: " + new UnicodeSet(ceSet2).removeAll(ceSet).toPattern(true));
             throw new IllegalArgumentException("Inconsistent data");
         }
-        
-/*
+
+        /*
 0FB2 0F71 ; [.124E.0020.0002.0FB2][.125F.0020.0002.0F71] # TIBETAN SUBJOINED LETTER RA + TIBETAN VOWEL SIGN AA
 0FB3 0F71 ; [.1250.0020.0002.0FB3][.125F.0020.0002.0F71] # TIBETAN SUBJOINED LETTER LA + TIBETAN VOWEL SIGN AA
         int[] temp1 = int[20];
@@ -316,20 +403,20 @@ public class UCA_Data implements UCA_Types {
         getCEs("\u0fb3", true, temp2);
         getCEs("\u0f71", true, temp3);
         add("\u0FB2\u0F71", concat(temp1, temp3));
-*/
-        
+         */
+
     }
-    
+
     Iterator getContractions() {
         return contractingTable.keySet().iterator();
     }
-    
+
     int getContractionCount() {
         return contractingTable.size();
     }
-    
+
     boolean contractionTableContains(String s) {
         return contractingTable.get(s) != null;
     }
-    
+
 }
