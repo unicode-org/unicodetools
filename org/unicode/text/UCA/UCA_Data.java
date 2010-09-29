@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Data.java,v $ 
- * $Date: 2010-09-26 21:29:05 $ 
- * $Revision: 1.7 $
+ * $Date: 2010-09-29 01:34:44 $ 
+ * $Revision: 1.8 $
  *
  *******************************************************************************
  */
@@ -47,6 +47,10 @@ public class UCA_Data implements UCA_Types {
         this.toD = toD;
         this.ucd = ucd;
         this.primaryRemap = primaryRemap;
+        if (primaryRemap != null) {
+            variableHigh = primaryRemap.getVariableHigh();
+            statistics.firstDucetNonVariable = primaryRemap.getFirstDucetNonVariable();
+        }
     }
 
     /**
@@ -129,20 +133,23 @@ public class UCA_Data implements UCA_Types {
             IntStack charRemap = primaryRemap.getRemappedCharacter(source.codePointAt(0));
             if (charRemap != null) {
                 ces = charRemap;
-            }
-            for (int i = 0; i < ces.length(); ++i) {
-                int value = ces.get(i);
-                char primary = UCA.getPrimary(value);
-                Integer remap = primaryRemap.getRemappedPrimary((int)primary);
-                if (remap != null) {
-                    value = (remap << 16) | (value & 0xFFFF);
-                    ces.put(i, value);
+            } else {
+                for (int i = 0; i < ces.length(); ++i) {
+                    int value = ces.get(i);
+                    char primary = UCA.getPrimary(value);
+                    Integer remap = primaryRemap.getRemappedPrimary((int)primary);
+                    if (remap != null) {
+                        value = (remap << 16) | (value & 0xFFFF);
+                        ces.put(i, value);
+                    }
                 }
             }
         }
 
         // gather statistics
-
+        if (source.charAt(0) == 'a' && source.length() == 1) {
+            statistics.firstScript = UCA.getPrimary(ces.get(0));
+        }
 
         for (int i = 0; i < ces.length(); ++i) {
             int ce = ces.get(i);

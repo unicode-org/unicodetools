@@ -5,8 +5,8 @@
 *******************************************************************************
 *
 * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCharts.java,v $
-* $Date: 2010-09-26 21:29:05 $
-* $Revision: 1.31 $
+* $Date: 2010-09-29 01:34:43 $
+* $Revision: 1.32 $
 *
 *******************************************************************************
 */
@@ -91,7 +91,7 @@ public class WriteCharts implements UCD_Types {
         String lastSortKey = "\u0000";
 
         int high = uca.getSortKey("a").charAt(0);
-        int variable = UCA.getPrimary(uca.getVariableHigh());
+        int variable = UCA.getPrimary(uca.getVariableHighCE());
 
         int columnCount = 0;
 

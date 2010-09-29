@@ -15,36 +15,37 @@ import org.unicode.text.UCD.UCD_Types;
 import com.ibm.icu.dev.test.util.CollectionUtilities;
 import com.ibm.icu.text.UnicodeSet;
 
-class ScriptSet {
+class ReorderingTokens {
 
-    Counter<String> scripts = new Counter<String>();
+    Counter<String> reorderingToken = new Counter<String>();
     Counter<String> types = new Counter<String>();
     private Set<Long> primaryCount = new TreeSet<Long>();
     private UnicodeSet chars = new UnicodeSet();
 
-    public ScriptSet() {
+    public ReorderingTokens() {
     }
 
-    public ScriptSet(ScriptSet scriptSet) {
-        scripts.addAll(scriptSet.scripts);
-        types.addAll(scriptSet.types);
+    public ReorderingTokens(ReorderingTokens scriptSet) {
+        this.or(scriptSet);
     }
 
-    public boolean intersects(ScriptSet set) {
-        return !Collections.disjoint(scripts.keySet(), set.scripts.keySet());
+    public boolean intersects(ReorderingTokens set) {
+        return !Collections.disjoint(reorderingToken.keySet(), set.reorderingToken.keySet());
     }
 
-    public void or(ScriptSet set) {
-        scripts.addAll(set.scripts);
+    public void or(ReorderingTokens set) {
+        reorderingToken.addAll(set.reorderingToken);
         types.addAll(set.types);
+        primaryCount.addAll(set.primaryCount);
+        chars.addAll(set.chars);
     }
 
     public int cardinality() {
-        return scripts.size()
+        return reorderingToken.size()
         + types.size();
     }
 
-    void addScriptsIn(long primary, String source) {
+    void addInfoFrom(long primary, String source) {
         primaryCount.add(primary);
         chars.add(source);
         int cp = Default.nfkd().normalize(source).codePointAt(0);
@@ -55,7 +56,7 @@ class ScriptSet {
 
         if (!(script == Default.ucd().Unknown_Script || script == Default.ucd().COMMON_SCRIPT)
                 && (cat == Default.ucd().OTHER_LETTER || cat == Default.ucd().UPPERCASE_LETTER || cat == Default.ucd().LOWERCASE_LETTER || cat == Default.ucd().TITLECASE_LETTER)) {
-            scripts.add(Default.ucd().getScriptID_fromIndex((byte)script, UCD_Types.SHORT), 1);
+            reorderingToken.add(Default.ucd().getScriptID_fromIndex((byte)script, UCD_Types.SHORT), 1);
         } else {
             types.add(Default.ucd().getCategoryID_fromIndex(cat, UCD_Types.SHORT), 1);
         }
@@ -63,9 +64,9 @@ class ScriptSet {
     }
 
     static String getTypesCombined(String chr) {
-        String typeKD = ScriptSet.getTypes(Default.nfkd().normalize(chr));
+        String typeKD = ReorderingTokens.getTypes(Default.nfkd().normalize(chr));
 
-        String type = ScriptSet.getTypes(chr);
+        String type = ReorderingTokens.getTypes(chr);
         if (!type.equals(typeKD)) {
             typeKD = typeKD + "/" + type;
         }
@@ -105,9 +106,9 @@ class ScriptSet {
         common.add(Default.ucd().getScriptID_fromIndex(UCD_Types.INHERITED_SCRIPT, UCD_Types.SHORT));
     }
 
-    <T extends Appendable> T  toString(T result, boolean categoriesAlso) {
+    <T extends Appendable> T  appendTo(T result, boolean categoriesAlso) {
         try {
-            if (scripts.size() == 0 && types.size() == 0) {
+            if (reorderingToken.size() == 0 && types.size() == 0) {
                 return result;
             }
             if (categoriesAlso) {
@@ -115,14 +116,14 @@ class ScriptSet {
             }
             boolean first = true;
             if (!categoriesAlso) {
-                String scriptNames = scripts.size() != 0 ? CollectionUtilities.join(scripts.keySet(), " ") : "Zyyy";
+                String scriptNames = reorderingToken.size() != 0 ? CollectionUtilities.join(reorderingToken.keySet(), " ") : "Zyyy";
                 result.append(scriptNames);
             } else {
-                String scriptNames = scripts.size() != 0 ? joinCounter(scripts) : "";
+                String scriptNames = reorderingToken.size() != 0 ? joinCounter(reorderingToken) : "";
                 result.append(scriptNames);
                 if (types.size() != 0) {
                     String catNames = joinCounter(types);
-                    if (scripts.size() != 0) {
+                    if (reorderingToken.size() != 0) {
                         result.append(' ');
                     }
                     result.append(catNames);
@@ -146,5 +147,10 @@ class ScriptSet {
             b.append(item).append("=").append(counter2.get(item));
         }
         return b.toString();
+    }
+
+    public void setScripts(String tag) {
+        reorderingToken.clear();
+        reorderingToken.add(tag, 1);
     }
 }

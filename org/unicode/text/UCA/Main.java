@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
- * $Date: 2010-09-26 21:29:05 $ 
- * $Revision: 1.28 $
+ * $Date: 2010-09-29 01:34:43 $ 
+ * $Revision: 1.29 $
  *
  *******************************************************************************
  */
@@ -27,10 +27,10 @@ import com.ibm.icu.text.UTF16;
 public class Main {
   //static final String UCDVersion = "4.0.0";
   static final String[] ICU_FILES = {"NFSkippable", "writeCollationValidityLog", "writeFractionalUCA",
-    "WriteRules", "WriteRulesXML", "writeconformance", "writeconformanceshifted", 
+    "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "writeconformance", "writeconformanceshifted", 
     "short", 
-    "WriteRules", "WriteRulesXML", "writeconformance", "writeconformanceshifted",
-    "noCE", "short",    "WriteRules" 
+    "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "writeconformance", "writeconformanceshifted",
+    "noCE", "short",    "WriteRules", "WriteRulesCLDR"
   };
 
   static final String[] CHART_FILES = {
@@ -89,9 +89,10 @@ public class Main {
         else if (arg.equalsIgnoreCase("generateRevision")) GenOverlap.generateRevision(WriteCollationData.getCollator(CollatorType.ducet));
         else if (arg.equalsIgnoreCase("listCyrillic")) GenOverlap.listCyrillic(WriteCollationData.getCollator(CollatorType.ducet));
 
-        else if (arg.equalsIgnoreCase("WriteRules")) WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, shortPrint, noCE);
+        else if (arg.equalsIgnoreCase("WriteRules")) WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.ducet);
+        else if (arg.equalsIgnoreCase("WriteRulesCLDR")) WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.cldr);
         // else if (arg.equalsIgnoreCase("WriteRulesWithNames")) WriteCollationData.writeRules(WriteCollationData.WITH_NAMES);
-        else if (arg.equalsIgnoreCase("WriteRulesXML")) WriteCollationData.writeRules(WriteCollationData.IN_XML, shortPrint, noCE);
+        else if (arg.equalsIgnoreCase("WriteRulesXML")) WriteCollationData.writeRules(WriteCollationData.IN_XML, shortPrint, noCE, CollatorType.ducet);
         else if (arg.equalsIgnoreCase("checkDisjointIgnorables")) WriteCollationData.checkDisjointIgnorables();
         else if (arg.equalsIgnoreCase("writeContractions")) WriteCollationData.writeContractions();
         else if (arg.equalsIgnoreCase("writeFractionalUCA")) FractionalUCA.writeFractionalUCA("FractionalUCA");
@@ -116,7 +117,7 @@ public class Main {
         else {
           System.out.println();
           System.out.println("UNKNOWN OPTION (" + arg + "): must be one of the following (case-insensitive)");
-          System.out.println("\tWriteRulesXML, WriteRulesWithNames, WriteRules,");
+          System.out.println("\tWriteRulesXML, WriteRulesWithNames, WriteRules, WriteRulesCLDR,");
           System.out.println("\tcheckDisjointIgnorables, writeContractions,");
           System.out.println("\twriteFractionalUCA, writeConformance, writeConformanceSHIFTED, testCompatibilityCharacters,");
           System.out.println("\twriteCollationValidityLog, writeCaseExceptions, writeJavascriptInfo, writeCaseFolding");
