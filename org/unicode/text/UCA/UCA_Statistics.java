@@ -10,6 +10,7 @@ import java.util.Map;
 import com.ibm.icu.text.UnicodeSet;
 
 public class UCA_Statistics {
+
     int[] secondaryCount = new int[0x200];
     int[] tertiaryCount = new int[0x80];
     int[][] stCounts = {null, null, secondaryCount, tertiaryCount};
@@ -18,6 +19,7 @@ public class UCA_Statistics {
     BitSet tertiarySet = new BitSet();
     Map<Integer,StringBuilder> representativePrimary = new HashMap<Integer,StringBuilder>();
     Map<Integer,StringBuilder> representativePrimarySeconds = new HashMap<Integer,StringBuilder>();
+
     /**
      * For recording statistics
      */
@@ -41,4 +43,7 @@ public class UCA_Statistics {
     char MAX1 = '\u0000'; // start small; will be reset as table is built
     char MAX2 = '\u0000'; // start small; will be reset as table is built
     char MAX3 = '\u0000'; // start small; will be reset as table is built
+
+    public int firstDucetNonVariable = -1;
+    public int firstScript = -1;
 }

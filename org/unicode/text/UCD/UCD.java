@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2010-09-26 21:29:06 $
- * $Revision: 1.62 $
+ * $Date: 2010-09-29 01:34:44 $
+ * $Revision: 1.63 $
  *
  *******************************************************************************
  */
@@ -1598,6 +1598,12 @@ to guarantee identifier closure.
     return String.valueOf(pair);
   }
 
+  public static boolean isModernJamo(int cp) {
+      return LBase <= cp && cp < LLimit
+      || VBase <= cp && cp < VLimit
+      || TBase2 <= cp && cp < TLimit;
+  }
+  
   static int composeHangul(int char1, int char2) {
     if (LBase <= char1 && char1 < LLimit && VBase <= char2 && char2 < VLimit) {
       return (SBase + ((char1 - LBase) * VCount + (char2 - VBase)) * TCount);

@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
- * $Date: 2010-09-26 21:29:05 $ 
- * $Revision: 1.35 $
+ * $Date: 2010-09-29 01:34:44 $ 
+ * $Revision: 1.36 $
  *
  *******************************************************************************
  */
@@ -147,9 +147,6 @@ final public class UCA implements Comparator, UCA_Types {
         ucdVersion = ucd.getVersion();
 
         ucaData = new UCA_Data(toD, ucd, primaryRemap);
-        if (primaryRemap != null) {
-            ucaData.variableHigh = primaryRemap.getVariableHigh();
-        }
 
         // either get the full sources, or just a demo set
         /*        if (fullData) {      
@@ -592,14 +589,14 @@ final public class UCA implements Comparator, UCA_Types {
      */
 
     public boolean isVariable(int ce) {
-        return (variableLowCE <= ce && ce <= variableHighCE);
+        return (0 < ce && ce <= variableHighCE);
     }
 
     /**
      * Utility, used to determine whether a CE is variable or not.
      */
 
-    public int getVariableLow() {
+    public int getVariableLowCE() {
         return variableLowCE;
     }
 
@@ -607,7 +604,7 @@ final public class UCA implements Comparator, UCA_Types {
      * Utility, used to determine whether a CE is variable or not.
      */
 
-    public int getVariableHigh() {
+    public int getVariableHighCE() {
         return variableHighCE;
     }
 
@@ -1844,16 +1841,10 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         private Map<Integer,Integer> primaryRemap = new TreeMap<Integer,Integer>();
         private Map<Integer,IntStack> characterRemap = new TreeMap<Integer,IntStack>();
         private int variableHigh;
-
+        private int firstDucetNonVariable;
+        
         public Integer getRemappedPrimary(int ducetPrimary) {
             return primaryRemap.get(ducetPrimary);
-        }
-        public int getVariableHigh() {
-            return variableHigh;
-        }
-        public Remap setVariableHigh() {
-            variableHigh = counter;
-            return this;
         }
         public IntStack getRemappedCharacter(int source) {
             return characterRemap.get(source);
@@ -1878,6 +1869,19 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
         public Map<Integer, IntStack> getCharacterRemap() {
             return Collections.unmodifiableMap(characterRemap);
+        }
+        public void setFirstDucetNonVariable(int firstDucetNonVariable) {
+            this.firstDucetNonVariable = primaryRemap.get(firstDucetNonVariable);
+        }
+        public int getFirstDucetNonVariable() {
+            return firstDucetNonVariable;
+        }
+        public int getVariableHigh() {
+            return variableHigh;
+        }
+        public Remap setVariableHigh() {
+            variableHigh = counter-1;
+            return this;
         }
     }
 }
