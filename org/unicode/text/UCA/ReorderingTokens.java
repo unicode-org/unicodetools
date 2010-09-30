@@ -135,6 +135,10 @@ class ReorderingTokens {
             throw new IllegalArgumentException(e);
         }
     }
+    
+    public String getRawReorderingTokens() {
+        return reorderingToken.toString();
+    }
 
     private String joinCounter(Counter<String> counter2) {
         StringBuilder b = new StringBuilder();
