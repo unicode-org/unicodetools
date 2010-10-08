@@ -20,6 +20,9 @@ import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.LocaleData;
+import com.ibm.icu.util.TimeZone;
+import com.ibm.icu.util.VersionInfo;
 
 public class TestUnicodeSet  extends TestFmwk {
     public static void main(String[] args) throws Exception {
@@ -30,6 +33,19 @@ public class TestUnicodeSet  extends TestFmwk {
         checkProperties("[:exemplars_en:]", "[a]", "[\u0350]");
     }
 
+    public void TestU60 () {
+        System.out.println("ICU Version: " + VersionInfo.ICU_VERSION.toString());
+        System.out.println("Unicode Data Version:   " + UCharacter.getUnicodeVersion().toString());
+        System.out.println("Java Version:   " + VersionInfo.javaVersion().toString());
+        System.out.println("CLDR Data Version:      " + LocaleData.getCLDRVersion().toString());
+        System.out.println("Time Zone Data Version: " + TimeZone.getTZDataVersion());
+
+        UnicodeSet age60 = UnicodeSetUtilities.parseUnicodeSet("[:age=6.0:]");
+        UnicodeSet age52 = UnicodeSetUtilities.parseUnicodeSet("[:age=5.2:]");
+        assertTrue("6.0 characters", age60.contains(0x20B9));
+        logln("New Characters: " + new UnicodeSet(age60).removeAll(age52).toPattern(false));
+        assertTrue("6.0 characters", age60.contains(0x20B9));
+    }
     public void TestEncodingProp() {
 
         XPropertyFactory factory = XPropertyFactory.make();

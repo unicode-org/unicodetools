@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Data.java,v $ 
- * $Date: 2010-09-29 01:34:44 $ 
- * $Revision: 1.8 $
+ * $Date: 2010-10-08 19:47:55 $ 
+ * $Revision: 1.9 $
  *
  *******************************************************************************
  */
@@ -17,9 +17,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA.Remap;
-import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.IntStack;

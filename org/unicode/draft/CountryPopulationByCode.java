@@ -11,25 +11,35 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.unittest.TestAll.TestInfo;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.SupplementalDataInfo.OfficialStatus;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
 
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.impl.Row.R5;
 import com.ibm.icu.util.ULocale;
 
 public class CountryPopulationByCode {
-    private static final boolean SHOW_INTERNET = true;
-    private static final boolean SHOW_WEIGHTS = false;
+    private static final boolean SHOW_INTERNET = false;
+    private static final boolean SHOW_WEIGHTS = true;
     private static final boolean SHOW_SOURCE = false;
+    private static final boolean FILTER = true;
     static TestInfo testInfo = TestInfo.getInstance();
 
     public static void main(String[] args) {
-
+        Set<String> territories = testInfo.getStandardCodes().getAvailableCodes("territory");
+        for (String territory : territories) {
+            String name = testInfo.getEnglish().getName("territory", territory);
+            if (name == null) continue;
+            System.out.println(name + "\t" + territory + "\t" + name);
+            String alt = testInfo.getStandardCodes().getData("territory", territory);
+            if (!alt.equals(name)) {
+                System.out.println(alt + "\t" + territory + "\t" + name);
+            }
+        }
         //countryPopulation();
         countryLanguagePopulation();
     }
@@ -85,14 +95,14 @@ public class CountryPopulationByCode {
                             + "\t" + data.getLiteratePopulation() // getWeightedLiteratePopulation(data)
                             + "\t" + data.getOfficialStatus());
                 }
-                totalWeighted += getWeightedLiteratePopulation(data);
+                totalWeighted += getWeightedLiteratePopulation(data, languageCode);
                 double literatePopulation = data.getLiteratePopulation();
                 if (maxLiteratePopulation < literatePopulation) maxLiteratePopulation = literatePopulation;
                 total += literatePopulation;
             }
             double literatePopulationInTerritory = territoryData.getLiteratePopulation();
-            addRow(rowSet, territoryCode, "und", 1-total/literatePopulationInTerritory, 1-total/literatePopulationInTerritory);
-            addRow(rowSet, territoryCode, "mul", 1-maxLiteratePopulation/literatePopulationInTerritory, 1-maxLiteratePopulation/literatePopulationInTerritory);
+            addRow(rowSet, territoryCode, "und", 1-total/literatePopulationInTerritory, 1-total/literatePopulationInTerritory, OfficialStatus.unknown);
+            addRow(rowSet, territoryCode, "mul", 1-maxLiteratePopulation/literatePopulationInTerritory, 1-maxLiteratePopulation/literatePopulationInTerritory, OfficialStatus.unknown);
 
             for (String languageCode : languages) {
                 PopulationData data = testInfo.getSupplementalDataInfo().getLanguageAndTerritoryPopulationData(languageCode, territoryCode);
@@ -101,10 +111,10 @@ public class CountryPopulationByCode {
                 if (territoryCode.equals("IL")) {
                     System.out.println("$$\t" + data.getLiteratePopulation() + "\t" + testInfo.getEnglish().getName(languageCode));
                 }
-                double ratioWeighted = getWeightedLiteratePopulation(data)/totalWeighted;
+                double ratioWeighted = getWeightedLiteratePopulation(data, languageCode)/totalWeighted;
                 double ratio = data.getLiteratePopulation()/literatePopulationInTerritory;
 
-                addRow(rowSet, territoryCode, languageCode, ratioWeighted, ratio);
+                addRow(rowSet, territoryCode, languageCode, ratioWeighted, ratio, data.getOfficialStatus());
 
                 gdp.add(languageName, (int)(ratioWeighted * territoryGdp));
                 language2InternetLatest.add(languageName, (int)(ratioWeighted * internetData.get1()));
@@ -112,13 +122,39 @@ public class CountryPopulationByCode {
         }
         if (SHOW_WEIGHTS) {
             System.out.println("*** Factors");
+            System.out.println("und = 1-total/literatePopulationInTerritory, 1-total/literatePopulationInTerritory");
+            System.out.println("mul = 1-maxLiteratePopulation/literatePopulationInTerritory, 1-maxLiteratePopulation/literatePopulationInTerritory");
+            System.out.println("region" + "\t" + "code" 
+                    //+ "\t" + "rank" 
+                    + "\t" + "ratio" 
+                    + "\t" + "weighted-ratio" 
+                    + "\t" + "language" 
+                    + "\t" + "code" 
+                    + "\t" + "status" 
+                    //+ "\t" + "K-if-Key"
+                    );
 
             Object oldRegion = "";
             int counter = 1;
             for (R5<String, Double, Double, String, Boolean> row : rowSet) {
                 Object region = row.get0();
+                double ratio = -row.get1();
+                double weightedRatio = -row.get2();
+                String languageCodeStatus = row.get3();
+                if (FILTER && (
+                        weightedRatio < 0.01 
+                        || languageCodeStatus.contains("\tund\t") 
+                        || languageCodeStatus.contains("\tmul\t"))) {
+                    continue;
+                }
                 counter = region.equals(oldRegion) ? counter + 1 : 1;
-                System.out.println(region + "\t" + counter + "\t" + -row.get1() + "\t" + -row.get2() + "\t" + row.get3() + "\t" + (row.get4() ? "K" : ""));
+                System.out.println(region 
+                        //+ "\t" + counter 
+                        + "\t" + ratio 
+                        + "\t" + weightedRatio 
+                        + "\t" + languageCodeStatus 
+                        //+ "\t" + (row.get4() ? "K" : "")
+                        );
                 oldRegion = region;
             }
         }
@@ -134,17 +170,17 @@ public class CountryPopulationByCode {
         }
     }
 
-    private static void addRow(TreeSet<R5<String, Double, Double, String, Boolean>> rowSet, String territoryCode, String languageCode, double ratioWeighted, double ratio) {
+    private static void addRow(TreeSet<R5<String, Double, Double, String, Boolean>> rowSet, String territoryCode, String languageCode, double ratioWeighted, double ratio, OfficialStatus officialStatus) {
         R5<String, Double, Double, String, Boolean> row = Row.of(
                 testInfo.getEnglish().getName("territory", territoryCode) + "\t" + territoryCode, 
                 -ratio, 
                 -ratioWeighted, 
-                testInfo.getEnglish().getName(languageCode) + "\t" + languageCode,
-                KEY_LOCALES.contains(languageCode));
+                testInfo.getEnglish().getName(languageCode) + "\t" + languageCode + "\t" + (officialStatus == OfficialStatus.unknown ? "" : officialStatus.toString()),
+                KEY_LANGUAGES.contains(languageCode));
         rowSet.add(row);
     }
 
-    static final         Set<String> KEY_LOCALES = new LinkedHashSet(Arrays.asList(
+    static final         Set<String> KEY_LANGUAGES = new LinkedHashSet(Arrays.asList(
             "en", "es", "de", "fr", "ja", "it", "tr", "pt", "zh", "nl", 
             "pl", "ar", "ru", "zh_Hant", "ko", "th", "sv", "fi", "da", 
             "he", "nb", "el", "hr", "bg", "sk", "lt", "vi", "lv", "sr", 
@@ -152,8 +188,8 @@ public class CountryPopulationByCode {
             "ca", "hi", "et", "eu", "is", "sw", "ms", "bn", "am", "ta", 
             "te", "mr", "ur", "ml", "kn", "gu", "or"));
 
-    private static double getWeightedLiteratePopulation(PopulationData data) {
-        return data.getLiteratePopulation() * data.getOfficialStatus().getWeight();
+    private static double getWeightedLiteratePopulation(PopulationData data, String languageCode) {
+        return data.getLiteratePopulation() * (languageCode.equals("nn") ? OfficialStatus.official_minority : data.getOfficialStatus()).getWeight();
     }
 
     private static String getBaseName(String languageCode) {

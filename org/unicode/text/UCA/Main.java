@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/Main.java,v $ 
- * $Date: 2010-09-29 01:34:43 $ 
- * $Revision: 1.29 $
+ * $Date: 2010-10-08 19:47:55 $ 
+ * $Revision: 1.30 $
  *
  *******************************************************************************
  */
@@ -27,9 +27,9 @@ import com.ibm.icu.text.UTF16;
 public class Main {
   //static final String UCDVersion = "4.0.0";
   static final String[] ICU_FILES = {"NFSkippable", "writeCollationValidityLog", "writeFractionalUCA",
-    "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "writeconformance", "writeconformanceshifted", 
+    "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "writeconformance", "writeconformanceshifted", "writeconformanceCLDR", "writeconformanceshiftedCLDR", 
     "short", 
-    "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "writeconformance", "writeconformanceshifted",
+    "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "writeconformance", "writeconformanceshifted", "writeconformanceCLDR", "writeconformanceshiftedCLDR", 
     "noCE", "short",    "WriteRules", "WriteRulesCLDR"
   };
 
@@ -92,12 +92,14 @@ public class Main {
         else if (arg.equalsIgnoreCase("WriteRules")) WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.ducet);
         else if (arg.equalsIgnoreCase("WriteRulesCLDR")) WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.cldr);
         // else if (arg.equalsIgnoreCase("WriteRulesWithNames")) WriteCollationData.writeRules(WriteCollationData.WITH_NAMES);
-        else if (arg.equalsIgnoreCase("WriteRulesXML")) WriteCollationData.writeRules(WriteCollationData.IN_XML, shortPrint, noCE, CollatorType.ducet);
+        else if (arg.equalsIgnoreCase("WriteRulesXML")) WriteCollationData.writeRules(WriteCollationData.IN_XML, shortPrint, noCE, CollatorType.cldr);
         else if (arg.equalsIgnoreCase("checkDisjointIgnorables")) WriteCollationData.checkDisjointIgnorables();
         else if (arg.equalsIgnoreCase("writeContractions")) WriteCollationData.writeContractions();
         else if (arg.equalsIgnoreCase("writeFractionalUCA")) FractionalUCA.writeFractionalUCA("FractionalUCA");
-        else if (arg.equalsIgnoreCase("writeConformance")) WriteCollationData.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint);
-        else if (arg.equalsIgnoreCase("writeConformanceSHIFTED")) WriteCollationData.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint);
+        else if (arg.equalsIgnoreCase("writeConformance")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.ducet);
+        else if (arg.equalsIgnoreCase("writeConformanceSHIFTED")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.ducet);
+        else if (arg.equalsIgnoreCase("writeConformanceCLDR")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.cldr);
+        else if (arg.equalsIgnoreCase("writeConformanceSHIFTEDCLDR")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.cldr);
         else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) FractionalUCA.testCompatibilityCharacters();
         else if (arg.equalsIgnoreCase("writeCollationValidityLog")) WriteCollationData.writeCollationValidityLog();
         else if (arg.equalsIgnoreCase("writeCaseExceptions")) WriteCollationData.writeCaseExceptions();

@@ -22,7 +22,6 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 

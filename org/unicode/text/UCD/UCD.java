@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/UCD.java,v $
- * $Date: 2010-09-29 01:34:44 $
- * $Revision: 1.63 $
+ * $Date: 2010-10-08 19:47:56 $
+ * $Revision: 1.64 $
  *
  *******************************************************************************
  */
@@ -155,7 +155,9 @@ public final class UCD implements UCD_Types {
    * Get the character name.
    */
   public String getName(int codePoint, byte style) {
-    if (style == SHORT) return get(codePoint, true).shortName;
+    if (style == SHORT) {
+        return get(codePoint, true).shortName;
+    }
     return get(codePoint, true).name;
   }
 
@@ -167,7 +169,9 @@ public final class UCD implements UCD_Types {
   }
 
   public String getName(String s, byte style, String separator) {
-    if (s.length() == 1) return getName(s.charAt(0), style); // optimize BMP
+    if (s.length() == 1) {
+        return getName(s.charAt(0), style); // optimize BMP
+    }
     StringBuffer result = new StringBuffer();
     int cp;
     for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
@@ -1191,10 +1195,10 @@ public final class UCD implements UCD_Types {
       if (ch <= CJK_A_BASE) return ch;         // CJK Ideograph Extension A
       if (ch <  CJK_A_LIMIT) return CJK_A_BASE;
       if (ch <= CJK_BASE) return ch;         // CJK Ideograph
-      if (ch <  CJK_LIMIT) return CJK_BASE;
-      if (ch <= 0x9FBB && rCompositeVersion >= 0x40100) return 0x4E00;
-      if (ch <= 0x9FC3 && rCompositeVersion >= 0x50100) return 0x4E00;
-      if (ch <= 0x9FCB && rCompositeVersion >= 0x50200) return 0x4E00;
+      if (ch <= 0x9FA5) return CJK_BASE;
+      if (ch <= 0x9FBB && rCompositeVersion >= 0x40100) return CJK_BASE;
+      if (ch <= 0x9FC3 && rCompositeVersion >= 0x50100) return CJK_BASE;
+      if (ch <  CJK_LIMIT && rCompositeVersion >= 0x50200) return CJK_BASE;
       if (ch <= 0xAC00) return ch;         // Hangul Syllable
       if (ch <= 0xD7A3) return 0xAC00;
       if (ch <= 0xD800) return ch;         // Non Private Use High Surrogate
@@ -1225,7 +1229,7 @@ public final class UCD implements UCD_Types {
       // 2B740..2B81F; CJK Unified Ideographs Extension D
       if (rCompositeVersion >= 0x60000) {
         if (ch <= CJK_D_BASE) return ch;       // Extension D first char
-        if (ch <= CJK_D_LIMIT) return CJK_D_BASE;
+        if (ch < CJK_D_LIMIT) return CJK_D_BASE;
       }
 
       //if (ch <= 0x2F800) return ch;

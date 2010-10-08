@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -28,6 +27,7 @@ import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.CollectionUtilities;
+import com.ibm.icu.impl.ImplicitCEGenerator;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.Transform;
@@ -41,7 +41,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     public static int SPECIAL_LOWEST_DUCET = 1;
     public static int SPECIAL_HIGHEST_DUCET = 0x7FFF;
-
+    
 
     static Map<Integer,String> reorderingTokenOverridesNonFractional = new TreeMap<Integer,String>();
 
@@ -364,9 +364,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         IMPLICIT_3BYTE_COUNT = 1;
         static final int  IMPLICIT_BASE_BYTE = 0xE0;
         static final int  IMPLICIT_MAX_BYTE  = IMPLICIT_BASE_BYTE + 4;
-        static final int  IMPLICIT_4BYTE_BOUNDARY = IMPLICIT_3BYTE_COUNT * OTHER_COUNT * LAST_COUNT, LAST_MULTIPLIER = OTHER_COUNT / LAST_COUNT,
-        LAST2_MULTIPLIER = OTHER_COUNT / LAST_COUNT2, IMPLICIT_BASE_3BYTE = (IMPLICIT_BASE_BYTE << 24) + 0x030300,
-        IMPLICIT_BASE_4BYTE = ((IMPLICIT_BASE_BYTE + IMPLICIT_3BYTE_COUNT) << 24) + 0x030303;
+        static final int  IMPLICIT_4BYTE_BOUNDARY = IMPLICIT_3BYTE_COUNT * OTHER_COUNT * LAST_COUNT
+        //LAST_MULTIPLIER = OTHER_COUNT / LAST_COUNT,
+        //LAST2_MULTIPLIER = OTHER_COUNT / LAST_COUNT2, IMPLICIT_BASE_3BYTE = (IMPLICIT_BASE_BYTE << 24) + 0x030300,
+        //IMPLICIT_BASE_4BYTE = ((IMPLICIT_BASE_BYTE + IMPLICIT_3BYTE_COUNT) << 24) + 0x030303
+        ;
 
         // GET IMPLICIT PRIMARY WEIGHTS
         // Return value is left justified primary key
@@ -1101,7 +1103,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                         summary.println();
                         if (doVariable) {
                             doVariable = false;
-                            summary.println(message);
+                            summary.println("#" + message);
                             summary.println();
                         }
                         //                        int topByte = np >>> 16;
@@ -1500,8 +1502,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     private static void showRange(String title, PrintWriter summary, String lastChr, int lastNp) {
         int ch = lastChr.codePointAt(0);
-        summary.println(title + ":\t" 
-                + padHexBytes(lastNp) 
+        summary.println("#\t" + title
+                + "\t" + padHexBytes(lastNp) 
                 + "\t" + ScriptTransform.transform(ch)
                 + "\t" + GeneralCategoryTransform.transform(ch)
                 + "\t" + Default.ucd().getCodeAndName(UTF16.charAt(lastChr,0)));
@@ -1531,6 +1533,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             }
             oldPrimary = newPrimary;
         }
+        
+        FractionalUCA.showImplicit("# 3B9D", 0x3B9D);
 
         FractionalUCA.showImplicit("# First CJK", CJK_BASE);
         FractionalUCA.showImplicit("# Last CJK", CJK_LIMIT-1);
@@ -1578,7 +1582,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
                 // test swapping
 
-                int currSwap = Implicit.swapCJK(i);
+                int currSwap = ImplicitCEGenerator.swapCJK(i);
                 if (currSwap < oldSwap) {
                     throw new IllegalArgumentException(Utility.hex(i) + ": overlap: "
                             + Utility.hex(oldChar) + " (" + Utility.hex(oldSwap) + ")"
@@ -1686,7 +1690,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     static void showImplicit2(String title, int cp) {
         System.out.println(title + ":\t" + Utility.hex(cp)
-                + " => " + Utility.hex(Implicit.swapCJK(cp))
+                + " => " + Utility.hex(ImplicitCEGenerator.swapCJK(cp))
                 + " => " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(cp)));
     }
 
@@ -1897,7 +1901,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
     }
 
     static int getImplicitPrimary(int cp) {
-        return FractionalUCA.implicit.getSwappedImplicit(cp);
+        return FractionalUCA.implicit.getImplicitFromCodePoint(cp);
     }
 
     static boolean sameTopByte(int x, int y) {
@@ -1911,7 +1915,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         return x1 == y1;
     }
 
-    static Implicit implicit = new Implicit(FractionalUCA.Variables.IMPLICIT_BASE_BYTE, FractionalUCA.Variables.IMPLICIT_MAX_BYTE);
+    static ImplicitCEGenerator implicit = new ImplicitCEGenerator(FractionalUCA.Variables.IMPLICIT_BASE_BYTE, FractionalUCA.Variables.IMPLICIT_MAX_BYTE);
 
     static final boolean needsCaseBit(String x) {
         String s = Default.nfkd().normalize(x);

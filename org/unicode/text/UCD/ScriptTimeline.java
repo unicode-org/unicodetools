@@ -5,7 +5,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class ScriptTimeline {
   public static void main(String[] args) {
-    String[] versions = { "2.0.0", "2.1.2", "3.0.0", "3.1.0", "3.2.0", "4.0.0", "4.1.0", "5.0.0" };
+    String[] versions = { "2.0.0", "2.1.2", "3.0.0", "3.1.0", "3.2.0", "4.0.0", "4.1.0", "5.0.0", "5.2.0", "6.0.0" };
     for (int s = 0; s < UScript.CODE_LIMIT; ++s) {
       String scriptName = UScript.getName(s);
       UnicodeSet chars = new UnicodeSet().applyPropertyAlias("script", scriptName);
@@ -18,5 +18,7 @@ public class ScriptTimeline {
       }
       System.out.println();
     }
+    
+    
   }
 }

@@ -22,7 +22,7 @@ import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
-class Subheader implements Iterable<String> {
+class Subheader implements Iterable<String> { 
   static final boolean DEBUG = true;
   Matcher subheadMatcher = Pattern.compile("(@+)\\s+(.*)").matcher("");
   Matcher hexMatcher = Pattern.compile("([A-Z0-9]+).*").matcher("");
