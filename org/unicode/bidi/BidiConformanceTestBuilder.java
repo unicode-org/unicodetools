@@ -15,7 +15,11 @@ import java.util.TreeMap;
 
 public class BidiConformanceTestBuilder {
 
-	public static int MAX_SIZE = 4;
+	private static final int R_DEFAULT = -2;
+
+    private static final int BIDI_START_LEVEL = -1;
+
+    public static int MAX_SIZE = 4;
 
 	private static BitSet SKIPS = new BitSet();
 	static {
@@ -96,14 +100,14 @@ public class BidiConformanceTestBuilder {
 				byte[] TYPELIST = sample.getArray();
 				linebreaks[0] = TYPELIST.length;
 				condensed.clear();
-				for (byte paragraphEmbeddingLevel = -2; paragraphEmbeddingLevel <= 1; ++paragraphEmbeddingLevel) {
+				for (byte paragraphEmbeddingLevel = BIDI_START_LEVEL; paragraphEmbeddingLevel <= 1; ++paragraphEmbeddingLevel) {
 
 					final String reorderedIndexes = reorderedIndexes(TYPELIST, paragraphEmbeddingLevel, linebreaks);
 					Integer bitmask = condensed.get(reorderedIndexes);
 					if (bitmask == null) {
 						bitmask = 0;
 					}
-					int reordered = paragraphEmbeddingLevel == -2 ? 3 : paragraphEmbeddingLevel+1;
+					int reordered = paragraphEmbeddingLevel == R_DEFAULT ? 3 : paragraphEmbeddingLevel+1;
 					bitmask |= 1<<(reordered);
 					condensed.put(reorderedIndexes, bitmask);
 				}

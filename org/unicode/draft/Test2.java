@@ -14,7 +14,6 @@ import java.text.FieldPosition;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -30,12 +29,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.tool.GetDescriptions;
 import org.unicode.cldr.util.Counter;
-import org.unicode.jsp.CharEncoder;
-import org.unicode.jsp.UnicodeProperty;
-import org.unicode.jsp.UnicodeProperty.SimpleProperty;
-import org.unicode.jsp.XPropertyFactory.EncodingProperty;
 
 import sun.text.normalizer.UTF16;
 
@@ -45,15 +39,13 @@ import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.DecimalFormat;
+import com.ibm.icu.text.MessageFormat;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.PluralFormat;
-import com.ibm.icu.text.MessageFormat;
 import com.ibm.icu.text.PluralRules;
-import com.ibm.icu.text.UnicodeSet;
-
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.Normalizer2.Mode;
 import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.ULocale;

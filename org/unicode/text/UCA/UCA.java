@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
- * $Date: 2010-09-29 01:34:44 $ 
- * $Revision: 1.36 $
+ * $Date: 2010-10-08 19:47:55 $ 
+ * $Revision: 1.37 $
  *
  *******************************************************************************
  */
@@ -539,7 +539,9 @@ final public class UCA implements Comparator, UCA_Types {
      * Get Usage
      */
     public BitSet getWeightUsage(int strength) {
-        return strength == 1 ? getStatistics().primarySet : strength == 2 ? getStatistics().secondarySet : getStatistics().tertiarySet;
+        return strength == 1 ? getStatistics().primarySet 
+                : strength == 2 ? getStatistics().secondarySet 
+                        : getStatistics().tertiarySet;
     }
 
     /**
@@ -1017,11 +1019,18 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
 
         // special check and fix for unsupported surrogate pair, 20 1/8 bits
+        special:
         if (0xD800 <= bigChar && bigChar <= 0xDFFF) {
             // ignore unmatched surrogates (e.g. return zero)
-            if (bigChar >= 0xDC00 || index >= decompositionBuffer.length()) return 0; // unmatched
+            if (bigChar >= 0xDC00 || index >= decompositionBuffer.length()) {
+                //return 0; // unmatched
+                break special;
+            }
             int ch2 = decompositionBuffer.charAt(index);
-            if (ch2 < 0xDC00 || 0xDFFF < ch2) return 0;  // unmatched
+            if (ch2 < 0xDC00 || 0xDFFF < ch2) {
+                break special;
+                //return 0;  // unmatched
+            }
             index++; // skip next char
             bigChar = 0x10000 + ((ch - 0xD800) << 10) + (ch2 - 0xDC00); // extract value
         }
@@ -1336,6 +1345,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         {0}, // LEAVE EMPTY--Turns into first unassigned character
         {0xFFF0}, 
         {0xD800},
+        {0xDC00},
         {0xDFFF},
         {0xFFFE},
         {0xFFFF},

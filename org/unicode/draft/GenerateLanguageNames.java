@@ -1,9 +1,6 @@
 package org.unicode.draft;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -11,8 +8,6 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.StandardCodes;
 
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateLanguageNames {

@@ -2,11 +2,9 @@ package org.unicode.draft;
 
 import java.text.ParseException;
 import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.util.ULocale;

@@ -1,8 +1,7 @@
 // Don't worry about the package, etc. This is just a snippet for your incorporation.
 package org.unicode.text.UCD;
 
-import junit.framework.TestCase;
-
+import com.ibm.icu.dev.test.calendar.TestCase;
 import com.ibm.icu.text.Transliterator;
 
 public class TestAsciify extends TestCase {
@@ -126,7 +125,8 @@ public class TestAsciify extends TestCase {
     for (String[] pair : translitTestCases) {
       String actual = asciify.transform(pair[0]);
       String expected = pair[1];
-      assertEquals(actual, expected);
+      //assertEquals(actual, expected);
+      throw new IllegalArgumentException("fix this");
     }
   }
 }

@@ -3,7 +3,6 @@ package org.unicode.draft;
 import java.io.PrintWriter;
 
 import org.unicode.cldr.util.Counter;
-import org.unicode.text.UCA.WriteCollationData;
 import org.unicode.text.UCD.UCD_Types;
 
 import com.ibm.icu.impl.Utility;
