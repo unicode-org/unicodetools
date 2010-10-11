@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
- * $Date: 2010-10-08 19:47:54 $ 
- * $Revision: 1.66 $
+ * $Date: 2010-10-11 23:15:34 $ 
+ * $Revision: 1.67 $
  *
  *******************************************************************************
  */
@@ -14,6 +14,7 @@
 package org.unicode.text.UCA;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -341,16 +342,19 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         System.err.println("Done writing Javascript data");
     }
 
-    static void writeVersionAndDate(PrintWriter log, String filename) {
+    static void writeVersionAndDate(PrintWriter log, String filename, boolean auxiliary) {
         log.println("# File:        " + filename);
         log.println("# UCA Version: " + getCollator(CollatorType.ducet).getDataVersion());
         log.println("# UCD Version: " + getCollator(CollatorType.ducet).getDataVersion());
         log.println("# Generated:   " + getNormalDate());
+        log.println("# For a description of the format and usage, see Collation" +
+        		(auxiliary ? "Auxiliary" : "Test") +
+        		".html");
         log.println();
     }
 
-    static void addStringX(int x, byte option) {
-        addStringX(UTF32.valueOf32(x), option);
+    static void addStringX(int x, byte option, CollatorType collatorType) {
+        addStringX(UTF32.valueOf32(x), option, collatorType);
     }
 
     static final char     LOW_ACCENT                   = '\u0334';
@@ -361,16 +365,15 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     static int            addCounter                   = 0;
 
-    static void addStringX(String s, byte option) {
+    static void addStringX(String s, byte option, CollatorType collatorType) {
         int firstChar = UTF16.charAt(s, 0);
-        // add characters with different strengths, to verify the order
-        addStringY(s + 'a', option);
-        addStringY(s + 'b', option);
-        addStringY(s + '?', option);
-        addStringY(s + 'A', option);
-        addStringY(s + '!', option);
-        if (option == SHIFTED && getCollator(CollatorType.ducet).isVariable(firstChar)) {
-            addStringY(s + LOW_ACCENT, option);
+        addStringY(s + 'a', option, collatorType);
+        addStringY(s + 'b', option, collatorType);
+        addStringY(s + '?', option, collatorType);
+        addStringY(s + 'A', option, collatorType);
+        addStringY(s + '!', option, collatorType);
+        if (option == SHIFTED && getCollator(collatorType).isVariable(firstChar)) {
+            addStringY(s + LOW_ACCENT, option, collatorType);
         }
 
         // NOW, if the character decomposes, or is a combining mark (non-zero),
@@ -393,7 +396,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     if (--limit < 0) {
                         continue; // just include a sampling
                     }
-                    addStringY(can, option);
+                    addStringY(can, option, collatorType);
                     // System.out.println(addCounter++ + " Adding " +
                     // Default.ucd.getCodeAndName(can));
                 }
@@ -407,7 +410,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
                 for (int j = 0; j < CONTRACTION_TEST.length; ++j) {
                     String extra = s.substring(0, i) + CONTRACTION_TEST[j] + s.substring(i);
-                    addStringY(extra + 'a', option);
+                    addStringY(extra + 'a', option, collatorType);
                     if (DEBUG) {
                         System.out.println(addCounter++ + " Adding " + Default.ucd().getCodeAndName(extra));
                     }
@@ -420,12 +423,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     static char              counter;
 
-    static void addStringY(String s, byte option) {
-        if (s.contains("\uA6F0")) {
+    static void addStringY(String s, byte option, CollatorType collatorType) {
+        if (DEBUG && s.contains("\uA6F0")) {
             System.out.println("Test BAMUM COMBINING MARK");
         }
-        String cpo = UCA.codePointOrder(s);
-        String colDbase = getCollator(CollatorType.ducet).getSortKey(s, option, true) + "\u0000" + cpo + (char) cpo.length();
+        //String cpo = UCA.codePointOrder(s);
+        String colDbase = getCollator(collatorType).getSortKey(s, option, true, true);
         sortedD.put(colDbase, s);
     }
 
@@ -489,8 +492,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 continue; // skip wierd decomps
             }
 
-            String sortKey = getCollator(CollatorType.ducet).getSortKey(UTF16.valueOf(ch), UCA.NON_IGNORABLE, decomposition);
-            String decompSortKey = getCollator(CollatorType.ducet).getSortKey(decomp, UCA.NON_IGNORABLE, decomposition);
+            String sortKey = getCollator(CollatorType.ducet).getSortKey(UTF16.valueOf(ch), UCA.NON_IGNORABLE, decomposition, false);
+            String decompSortKey = getCollator(CollatorType.ducet).getSortKey(decomp, UCA.NON_IGNORABLE, decomposition, false);
             if (false && strength == 2) {
                 sortKey = remove(sortKey, '\u0020');
                 decompSortKey = remove(decompSortKey, '\u0020');
@@ -556,7 +559,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     static String remapCanSortKey(int ch, boolean decomposition) {
         String compatDecomp = Default.nfkd().normalize(ch);
-        String decompSortKey = getCollator(CollatorType.ducet).getSortKey(compatDecomp, UCA.NON_IGNORABLE, decomposition);
+        String decompSortKey = getCollator(CollatorType.ducet).getSortKey(compatDecomp, UCA.NON_IGNORABLE, decomposition, false);
 
         byte type = Default.ucd().getDecompositionType(ch);
         int pos = decompSortKey.indexOf(UCA.LEVEL_SEPARATOR) + 1; // after first
@@ -1043,7 +1046,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         int[] lenArray = new int[1];
 
         diLog.println("# Contractions");
-        writeVersionAndDate(diLog, fullFileName);
+        writeVersionAndDate(diLog, fullFileName, true);
         // diLog.println("# Generated " + getNormalDate());
         // diLog.println("# UCA Version: " + collator.getDataVersion() + "/" +
         // collator.getUCDVersion());
@@ -1528,7 +1531,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         int[] lenArray = new int[1];
 
         Set alreadyDone = new HashSet();
-        log2 = Utility.openPrintWriter(getCollator(collatorType2).getUCA_GEN_DIR(), "UCARules-log.txt", Utility.UTF8_WINDOWS);
+
+        log2 = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + File.separator + "log", "UCARules-log.txt", Utility.UTF8_WINDOWS);
 
         while (true) {
             String s = cc.next(ces, lenArray);
@@ -1673,32 +1677,30 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             filename += ".txt";
         }
 
-        log = Utility.openPrintWriter(getCollator(collatorType2).getUCA_GEN_DIR(), filename, Utility.UTF8_WINDOWS);
+        String directory = WriteCollationData.getCollator(collatorType2).getUCA_GEN_DIR() + File.separator
+        + (collatorType2==CollatorType.cldr ? "CollationAuxiliary" : "Ducet");
 
-        String[] commentText = {
-                filename,
-                "This file contains the UCA tables for the given version, but transformed into rule syntax.",
-                "Generated:   " + getNormalDate(),
-                "NOTE: Since UCA handles canonical equivalents, no composites are necessary",
-                "(except in extensions).",
-                "For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_Intro.html"
-        };
+        log = Utility.openPrintWriter(directory, filename, Utility.UTF8_WINDOWS);
+
+//        String[] commentText = {
+//                filename,
+//                "This file contains the UCA tables for the given version, but transformed into rule syntax.",
+//                "Generated:   " + getNormalDate(),
+//                "NOTE: Since UCA handles canonical equivalents, no composites are necessary",
+//                "(except in extensions).",
+//                "For syntax description, see: http://oss.software.ibm.com/icu/userguide/Collate_Intro.html"
+//        };
 
         if (option == IN_XML) {
             log.println("<collation>");
             log.println("<!--");
-            for (int i = 0; i < commentText.length; ++i) {
-                log.println(commentText[i]);
-            }
+            WriteCollationData.writeVersionAndDate(log, filename, collatorType2==CollatorType.cldr);
             log.println("-->");
             log.println("<base uca='" + getCollator(collatorType2).getDataVersion() + "/" + getCollator(collatorType2).getUCDVersion() + "'/>");
             log.println("<rules>");
         } else {
             log.write('\uFEFF'); // BOM
-            for (int i = 0; i < commentText.length; ++i) {
-                log.println("#\t" + commentText[i]);
-            }
-            log.println("# VERSION: UCA=" + getCollator(collatorType2).getDataVersion() + ", UCD=" + getCollator(collatorType2).getUCDVersion());
+            WriteCollationData.writeVersionAndDate(log, filename, collatorType2==CollatorType.cldr);
         }
 
         it = ordered.keySet().iterator();
@@ -1937,17 +1939,25 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                             + (resetToParameter ? "<position at=\"" + reset + "\"/>" : Utility.quoteXML(reset))
                             + (resetComment.length() != 0 ? "<!-- " + resetComment + "-->" : ""));
                 }
-                if (!firstTime) {
-                    log.print("  <" + XML_RELATION_NAMES[relation] + "/>");
-                    log.print(Utility.quoteXML(chr));
-                    // log.print("</" + XML_RELATION_NAMES[relation] + ">");
-                }
                 if (expansion.length() > 0) {
-                    log.print("<x/>" + Utility.quoteXML(expansion));
+                    log.print("<x>");
+                }
+                if (!firstTime) {
+                    log.print("  <" + XML_RELATION_NAMES[relation] + ">");
+                    log.print(Utility.quoteXML(chr));
+                    log.print("</" + XML_RELATION_NAMES[relation] + ">");
+                }
+                
+                // <x><t>&#x20A8;</t><extend>s</extend></x> <!--U+20A8 RUPEE SIGN / 0073-->
+
+                if (expansion.length() > 0) {
+                    log.print("<extend>" + Utility.quoteXML(expansion) + "</extend></x>");
                 }
                 if (!shortPrint) {
                     log.print("\t<!--");
-                    log.print(CEList.toString(ces, len) + " ");
+                    if (!noCE) {
+                        log.print(CEList.toString(ces, len) + " ");
+                    }
                     log.print(Default.ucd().getCodeAndName(chr));
                     if (expansion.length() > 0) {
                         log.print(" / " + Utility.hex(expansion));
@@ -2206,7 +2216,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     // static final String[] RELATION_NAMES = {" <", "   <<", "     <<<",
     // "         ="};
     static final String[] RELATION_NAMES     = { " <\t", "  <<\t", "   <<<\t", "    =\t" };
-    static final String[] XML_RELATION_NAMES = { "p", "s", "t", "eq" };
+    static final String[] XML_RELATION_NAMES = { "p", "s", "t", "i" };
 
     static class ArrayWrapper {
         int[] array;
@@ -2585,7 +2595,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
         // collator = new UCA(null);
         if (false) {
-            String key = getCollator(CollatorType.ducet).getSortKey("\u0308\u0301", UCA.SHIFTED, false);
+            String key = getCollator(CollatorType.ducet).getSortKey("\u0308\u0301", UCA.SHIFTED, false, false);
             String look = printableKey(key);
             System.out.println(look);
 
@@ -2608,7 +2618,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             if (s == null) {
                 break;
             }
-            addString(s, option);
+            addString(s, option, CollatorType.ducet);
             coverage.add(s);
         }
 
@@ -2857,7 +2867,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 // We ONLY add if the sort key would be different
                 // Than what we would get if we didn't decompose!!
                 String sortKey = getCollator(CollatorType.ducet).getSortKey(s, UCA.NON_IGNORABLE);
-                String nonDecompSortKey = getCollator(CollatorType.ducet).getSortKey(s, UCA.NON_IGNORABLE, false);
+                String nonDecompSortKey = getCollator(CollatorType.ducet).getSortKey(s, UCA.NON_IGNORABLE, false, false);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }
@@ -3092,13 +3102,13 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     static final byte    option                 = UCA.NON_IGNORABLE;                                            // SHIFTED
 
     static void addString(int ch, byte option) {
-        addString(UTF32.valueOf32(ch), option);
+        addString(UTF32.valueOf32(ch), option, CollatorType.ducet);
     }
 
-    static void addString(String ch, byte option) {
-        String colDbase = getCollator(CollatorType.ducet).getSortKey(ch, option, true);
-        String colNbase = getCollator(CollatorType.ducet).getSortKey(ch, option, false);
-        String colCbase = getCollator(CollatorType.ducet).getSortKey(Default.nfc().normalize(ch), option, false);
+    static void addString(String ch, byte option, CollatorType collatorType) {
+        String colDbase = getCollator(collatorType).getSortKey(ch, option, true, false);
+        String colNbase = getCollator(collatorType).getSortKey(ch, option, false, false);
+        String colCbase = getCollator(collatorType).getSortKey(Default.nfc().normalize(ch), option, false, false);
         if (!colNbase.equals(colCbase) || !colNbase.equals(colDbase)) {
             /*
              * System.out.println(Utility.hex(ch));
@@ -3666,7 +3676,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             return ducetCollator;
         } else {
             if (cldrCollator == null) {
-                PrintWriter fractionalLog = Utility.openPrintWriter(UCA.getUCA_GEN_DIR(), "FractionalRemap.txt", Utility.UTF8_WINDOWS);
+                PrintWriter fractionalLog = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + File.separator + "log", "FractionalRemap.txt", Utility.UTF8_WINDOWS);
                 // hack to reorder elements
                 UCA oldCollator = getCollator(CollatorType.ducet);
                 CEList ceListForA = oldCollator.getCEList("a", true);
@@ -3681,7 +3691,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 UnicodeSet generalSymbols = new UnicodeSet();
                 UnicodeSet currencySymbols = new UnicodeSet();
                 UnicodeSet numbers = new UnicodeSet();
-                
+
                 int oldVariableHigh = UCA.getPrimary(oldCollator.getVariableHighCE());
                 int firstDucetNonVariable = -1;
 
@@ -3747,9 +3757,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 .putRemappedCharacters(0x20A8) // U+20A8 RUPEE SIGN
                 .putRemappedCharacters(0xFDFC) // U+FDFC RIAL SIGN
                 .addItems(numbers);
-                
+
                 primaryRemap.setFirstDucetNonVariable(firstDucetNonVariable);
-                
+
                 LinkedHashSet<String> s = new LinkedHashSet<String>();
 
                 fractionalLog.println("# Remapped primaries");
@@ -3786,7 +3796,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 }
                 Map<Integer, IntStack> characterRemap = primaryRemap.getCharacterRemap();
                 fractionalLog.println("# Remapped characters");
-                
+
                 for (Entry<Integer, IntStack> x : characterRemap.entrySet()) {
                     Integer character = x.getKey();
                     fractionalLog.println("#" + Utility.hex(character) 
@@ -3808,7 +3818,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     int ceCount = cldrCollator.getCEs(UTF16.valueOf(i), true, output);
                     int primary = ceCount < 1 ? 0 : UCA.getPrimary(output[0]);
                     int cat = Default.ucd().getCategory(i);
-                    
+
                     switch (cat) {
                     case SPACE_SEPARATOR: case LINE_SEPARATOR: case PARAGRAPH_SEPARATOR: case CONTROL:
                     case DASH_PUNCTUATION: case START_PUNCTUATION: case END_PUNCTUATION: case CONNECTOR_PUNCTUATION: 
@@ -3816,13 +3826,13 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     case DECIMAL_DIGIT_NUMBER: // case LETTER_NUMBER: case OTHER_NUMBER:
                     case CURRENCY_SYMBOL:
                     case MATH_SYMBOL: case MODIFIER_SYMBOL: 
-                    //case OTHER_SYMBOL:
+                        //case OTHER_SYMBOL:
                         if (primary > firstScriptPrimary) {
                             failures.append("\t" + Utility.hex(primary)
                                     + "\t" + Default.ucd().getCategoryID(i)
                                     + "\t" + Default.ucd().getCodeAndName(i)
                                     + "\n"
-                                    );
+                            );
                         }
                         break;
                     default:

@@ -1,5 +1,6 @@
 package org.unicode.text.UCA;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -14,6 +15,8 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class WriteConformanceTest {
     
+    static final boolean DEBUG = true;
+    
     static final UnicodeSet RTL = new UnicodeSet("[[:bc=r:][:bc=al:][:bc=an:]]").freeze();
 
     static void writeConformance(String filename, byte option, boolean shortPrint, CollatorType collatorType) throws IOException {
@@ -23,19 +26,23 @@ public class WriteConformanceTest {
          * U+01D5 LATIN CAPITAL LETTER U WITH DIAERESIS AND MACRON => U+00DC
          * LATIN CAPITAL LETTER U WITH DIAERESIS, U+0304 COMBINING MACRON
          */
-        if (WriteCollationData.DEBUG) {
-            String[] testList = { "\u3192", "\u3220", "\u0344", "\u0385", "\uF934", "U", "U\u0308", "\u00DC", "\u00DC\u0304", "U\u0308\u0304" };
+        if (DEBUG) {
+            String[] testList = { "\u0000", "\u0000\u0300", "\u0300", "\u0301", "\u0020", "\u0020\u0300", "A", "\u3192", "\u3220", "\u0344", "\u0385", "\uF934", "U", "U\u0308", "\u00DC", "\u00DC\u0304", "U\u0308\u0304" };
+            // load the library first
+            WriteCollationData.getCollator(collatorType).getCEList("a", true);
+            
             for (int jj = 0; jj < testList.length; ++jj) {
                 String t = testList[jj];
+                System.out.println();
                 System.out.println(Default.ucd().getCodeAndName(t));
     
                 CEList ces = WriteCollationData.getCollator(collatorType).getCEList(t, true);
                 System.out.println("CEs:    " + ces);
     
-                String test = WriteCollationData.getCollator(collatorType).getSortKey(t, option);
+                String test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, true, true);
                 System.out.println("Decomp: " + WriteCollationData.getCollator(collatorType).toString(test));
     
-                test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, false);
+                test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, false, true);
                 System.out.println("No Dec: " + WriteCollationData.getCollator(collatorType).toString(test));
             }
         }
@@ -45,9 +52,12 @@ public class WriteConformanceTest {
         + (option == UCA.NON_IGNORABLE ? "_NON_IGNORABLE" : "_SHIFTED")
         + (shortPrint ? "_SHORT" : "") + ".txt";
         
-        PrintWriter log = Utility.openPrintWriter(WriteCollationData.getCollator(collatorType).getUCA_GEN_DIR(), fullFileName, Utility.UTF8_WINDOWS);
+        String directory = UCA.getUCA_GEN_DIR() + File.separator
+        + (collatorType==CollatorType.cldr ? "CollationAuxiliary" : "CollationTest");
+        
+        PrintWriter log = Utility.openPrintWriter(directory, fullFileName, Utility.UTF8_WINDOWS);
         // if (!shortPrint) log.write('\uFEFF');
-        WriteCollationData.writeVersionAndDate(log, fullFileName);
+        WriteCollationData.writeVersionAndDate(log, fullFileName, collatorType==CollatorType.cldr);
     
         System.out.println("Sorting");
         int counter = 0;
@@ -71,7 +81,7 @@ public class WriteConformanceTest {
                 }
             }
             Utility.dot(counter++);
-            WriteCollationData.addStringX(s, option);
+            WriteCollationData.addStringX(s, option, collatorType);
         }
     
         // Add special examples

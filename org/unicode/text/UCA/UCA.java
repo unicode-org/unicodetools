@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
- * $Date: 2010-10-08 19:47:55 $ 
- * $Revision: 1.37 $
+ * $Date: 2010-10-11 23:15:35 $ 
+ * $Revision: 1.38 $
  *
  *******************************************************************************
  */
@@ -175,7 +175,7 @@ final public class UCA implements Comparator, UCA_Types {
      * unsigned shorts.
      */
     public String getSortKey(String sourceString) {
-        return getSortKey(sourceString, defaultAlternate, defaultDecomposition);
+        return getSortKey(sourceString, defaultAlternate, defaultDecomposition, false);
     }
     /**
      * Constructs a sort key for a string of input Unicode characters. Uses
@@ -188,7 +188,7 @@ final public class UCA implements Comparator, UCA_Types {
      */
 
     public String getSortKey(String sourceString, byte alternate) {
-        return getSortKey(sourceString, alternate, defaultDecomposition);
+        return getSortKey(sourceString, alternate, defaultDecomposition, false);
     }
 
     /**
@@ -197,11 +197,12 @@ final public class UCA implements Comparator, UCA_Types {
      * @param alternate choice of different 4th level weight construction
      * @param decomposition true for UCA, false where the text is guaranteed to be
      * normalization form C with no combining marks of class 0.
+     * @param appendIdentical TODO
      * @return Result is a String not of really of Unicodes, but of weights.
      * String is just a handy way of returning them in Java, since there are no
      * unsigned shorts.
      */
-    public String getSortKey(String sourceString, byte alternate, boolean decomposition) {
+    public String getSortKey(String sourceString, byte alternate, boolean decomposition, boolean appendIdentical) {
         decompositionBuffer.setLength(0);
         if (decomposition) {
             toD.normalize(sourceString, decompositionBuffer);
@@ -314,6 +315,10 @@ final public class UCA implements Comparator, UCA_Types {
                 }
             }
         }
+        if (appendIdentical) {
+            String cpo = UCA.codePointOrder(decompositionBuffer) + "\u0000" + UCA.codePointOrder(sourceString);
+            result.append('\u0000').append(cpo).append((char) cpo.length());
+        }
         return result.toString();
     }
 
@@ -418,7 +423,7 @@ final public class UCA implements Comparator, UCA_Types {
         return ucdVersion;
     }
 
-    public static String codePointOrder(String s) {
+    public static String codePointOrder(CharSequence s) {
         return appendInCodePointOrder(s, new StringBuffer()).toString();
     }
 
@@ -431,7 +436,7 @@ final public class UCA implements Comparator, UCA_Types {
      * @author Markus Scherer (cast into Java by MD)
      * NOTE: changed to be longer, but handle isolated surrogates
      */
-    public static StringBuffer appendInCodePointOrder(String source, StringBuffer target) {
+    public static StringBuffer appendInCodePointOrder(CharSequence source, StringBuffer target) {
         int cp;
         for (int i = 0; i < source.length(); i += UTF16.getCharCount(cp)) {
             cp = UTF16.charAt(source, i);
@@ -591,7 +596,7 @@ final public class UCA implements Comparator, UCA_Types {
      */
 
     public boolean isVariable(int ce) {
-        return (0 < ce && ce <= variableHighCE);
+        return (variableLowCE <= ce && ce <= variableHighCE);
     }
 
     /**
@@ -642,6 +647,46 @@ final public class UCA implements Comparator, UCA_Types {
             }
         }
         result.append("]");
+        return result.toString();
+    }
+
+    /**
+     * Produces a human-readable string for a sort key.
+     * @param variableTop TODO
+     */
+    static public String toStringUCA(String sortKey, String original, int variableTop) {
+        int primaryEnd = sortKey.indexOf(0);
+        int secondaryEnd = sortKey.indexOf(0, primaryEnd+1);
+        int tertiaryEnd = sortKey.indexOf(0, secondaryEnd+1);
+        if (tertiaryEnd < 0) {
+            tertiaryEnd = sortKey.length();
+        }
+        String primary = sortKey.substring(0, primaryEnd);
+        String secondary = sortKey.substring(primaryEnd+1, secondaryEnd);
+        String tertiary = sortKey.substring(secondaryEnd+1, tertiaryEnd);
+        String quad = toD.normalize(original);
+        
+        int max = Math.max(primary.length(), Math.max(secondary.length(), Math.max(tertiary.length(), quad.codePointCount(0, quad.length()))));
+        
+        StringBuffer result = new StringBuffer();
+        int qPos = 0;
+        int lastQ = 0;
+        for (int i = 0; i < max; ++i) {
+            char p = i < primary.length() ? primary.charAt(i) : 0;
+            char s = i < secondary.length() ? secondary.charAt(i) : p != 0 ? '\u0020' : 0;
+            char t = i < tertiary.length() ? tertiary.charAt(i) : s != 0 ? '\u0002' : 0;
+            int q = lastQ = t == 0 ? 0 : qPos < quad.length() ? quad.codePointAt(qPos) : lastQ;
+            qPos += Character.charCount(q);
+            String variable = p < variableTop ? "*" : ".";
+            
+            result
+            .append("[").append(variable).append(Utility.hex(p))
+            .append(".").append(Utility.hex(t))
+            .append(".").append(Utility.hex(s))
+            .append(".").append(Utility.hex(q))
+            .append(".]");
+
+        }
         return result.toString();
     }
 
@@ -1581,7 +1626,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
 
         //fixlater;
-        variableLowCE = makeKey(ucaData.variableLow,0,0);
+        variableLowCE = makeKey(1,0,0);
         variableHighCE = makeKey(ucaData.variableHigh, SECONDARY_MAX, TERTIARY_MAX); // turn on bottom bits
 
         //int hangulHackBottom;

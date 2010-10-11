@@ -1,6 +1,7 @@
 package org.unicode.text.UCA;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -421,11 +422,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                     break;
                 case 2:
                     addTo1(1);
-                    byte2 = newFirstByte ? minByte2plus : minByte2;
+                    byte2 = 0x40; // newFirstByte ? minByte2plus : minByte2;
                     break;
                 case 3:
                     addTo1(1);
-                    byte2 = newFirstByte ? minByte2plus : minByte2;
+                    byte2 = 0x40; // newFirstByte ? minByte2plus : minByte2;
                     byte3 = minByte3;
                     break;
                 }
@@ -554,6 +555,39 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             return REORDERING_BOUNDARY_CHARACTER_MIN + bumpedFirstBytes.cardinality();
         }
     }
+    
+    public static class FractionalStatistics {
+        private Map<Integer,UnicodeSet> secondaries = new TreeMap<Integer,UnicodeSet>();
+        
+        void addSecondary(Integer secondary, String codepoints) {
+            UnicodeSet secondarySet = secondaries.get(secondary);
+            if (secondarySet == null) {
+                secondaries.put(secondary, secondarySet = new UnicodeSet());
+            }
+            secondarySet.add(codepoints);
+        }
+        public void show(Appendable summary) {
+            try {
+                summary.append("# Secondary statistics\n");
+                for (Entry<Integer, UnicodeSet> entry : secondaries.entrySet()) {
+                    int secondary = entry.getKey();
+                    UnicodeSet uset = entry.getValue();
+                    String pattern = uset.toPattern(false);
+                    if (pattern.length() > 100) pattern = pattern.substring(0,100)+"...";
+                    summary.append(hexBytes(secondary))
+                    .append('\t')
+                    .append(String.valueOf(uset.size()))
+                    .append('\t')
+                    .append(pattern)
+                    .append('\n')
+                    ;
+                }
+                summary.append("# Secondary statistics");
+            } catch (IOException e) {
+                throw new IllegalArgumentException(e);
+            }
+        }
+    }
 
     static void writeFractionalUCA(String filename) throws IOException {
         FractionalUCA.HighByteToReorderingToken highByteToScripts = new FractionalUCA.HighByteToReorderingToken();
@@ -567,6 +601,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         // HACK for CJK
         secondarySet.set(0x0040);
+        
+        FractionalStatistics fractionalStatistics = new FractionalStatistics();
 
         int subtotal = 0;
         System.out.println("Fixing Secondaries");
@@ -800,7 +836,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 // We ONLY add if the sort key would be different
                 // Than what we would get if we didn't decompose!!
                 String sortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE);
-                String nonDecompSortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE, false);
+                String nonDecompSortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE, false, false);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }
@@ -865,15 +901,22 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         Utility.fixDot();
         System.out.println("Writing");
-        PrintWriter shortLog = new PrintWriter(new BufferedWriter(new FileWriter(getCollator().getUCA_GEN_DIR() + filename + "_SHORT.txt"), 32*1024));
-        PrintWriter longLog = new PrintWriter(new BufferedWriter(new FileWriter(getCollator().getUCA_GEN_DIR() + filename + ".txt"), 32*1024));
+        
+        String directory = UCA.getUCA_GEN_DIR() + "CollationAuxiliary" + File.separator;
+
+        PrintWriter shortLog = Utility.openPrintWriter(directory, filename + "_SHORT.txt", Utility.UTF8_WINDOWS);
+        PrintWriter longLog = Utility.openPrintWriter(directory, filename + ".txt", Utility.UTF8_WINDOWS);
+
+        //PrintWriter shortLog = new PrintWriter(new BufferedWriter(new FileWriter(directory + filename + "_SHORT.txt"), 32*1024));
+        //PrintWriter longLog = new PrintWriter(new BufferedWriter(new FileWriter(directory + filename + ".txt"), 32*1024));
         fractionalLog = new PrintWriter(new DualWriter(shortLog, longLog));
 
-        PrintWriter summary = new PrintWriter(new BufferedWriter(new FileWriter(getCollator().getUCA_GEN_DIR() + filename + "_summary.txt"), 32*1024));
+        String summaryFileName = filename + "_summary.txt";
+        PrintWriter summary = Utility.openPrintWriter(directory, summaryFileName, Utility.UTF8_WINDOWS);
+        //PrintWriter summary = new PrintWriter(new BufferedWriter(new FileWriter(directory + filename + "_summary.txt"), 32*1024));
+        
         summary.println("# Summary of Fractional UCA Table, generated from standard UCA");
-        summary.println("# " + WriteCollationData.getNormalDate());
-        summary.println("# VERSION: UCA=" + getCollator().getDataVersion() + ", UCD=" + getCollator().getUCDVersion());
-        summary.println();
+        WriteCollationData.writeVersionAndDate(summary, summaryFileName, true);
         summary.println("# Primary Ranges");
         //log.println("[Variable Low = " + UCA.toString(collator.getVariableLow()) + "]");
         //log.println("[Variable High = " + UCA.toString(collator.getVariableHigh()) + "]");
@@ -897,21 +940,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         fractionalLog.println("# Fractional UCA Table, generated from standard UCA");
         fractionalLog.println("# " + WriteCollationData.getNormalDate());
         fractionalLog.println("# VERSION: UCA=" + getCollator().getDataVersion() + ", UCD=" + getCollator().getUCDVersion());
-        fractionalLog.println();
-        fractionalLog.println("# Generated processed version, as described in ICU design document.");
-        fractionalLog.println("# NOTES");
-        fractionalLog.println("#  - Bugs in UCA data are NOT FIXED, except for the following problems:");
-        fractionalLog.println("#    - canonical equivalents are decomposed directly (some beta UCA are wrong).");
-        fractionalLog.println("#    - overlapping variable ranges are fixed.");
-        fractionalLog.println("#  - Format is as follows:");
-        fractionalLog.println("#      <codepoint> (' ' <codepoint>)* ';' ('L' | 'S') ';' <fractionalCE>+ ' # ' <UCA_CE> '# ' <name> ");
-        fractionalLog.println("#    - zero weights are not printed");
-        fractionalLog.println("#    - S: contains at least one lowercase or SMALL kana");
-        fractionalLog.println("#    - L: otherwise");
-        fractionalLog.println("#    - Different primaries are separated by a blank line.");
-        fractionalLog.println("# WARNING");
-        fractionalLog.println("#  - Differs from previous version in that MAX value was introduced at 1F.");
-        fractionalLog.println("#    All tertiary values are shifted down by 1, filling the gap at 7!");
+        fractionalLog.println("# For a description of the format and usage, see CollationAuxiliary.html");
         fractionalLog.println();
         fractionalLog.println("[UCA version = " + getCollator().getDataVersion() + "]");
 
@@ -1126,6 +1155,9 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 // but ONLY if we are not part of an implicit
 
                 if ((pri & FractionalUCA.Variables.MARK_CODE_POINT) == 0) {
+                    if (ns != 5) {
+                        fractionalStatistics.addSecondary(ns, chr);
+                    }
                     if (np != 0) {
                         firstSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
                         lastSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
@@ -1427,6 +1459,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             summary.println(" " + Default.ucd().getName(sampleEq[i]));
 
         }
+        fractionalStatistics.show(summary);
         fractionalLog.close();
         summary.close();
     }
@@ -1782,7 +1815,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     static void testCompatibilityCharacters() throws IOException {
         String fullFileName = "UCA_CompatComparison.txt";
-        fractionalLog = Utility.openPrintWriter(UCA.getUCA_GEN_DIR(), fullFileName, Utility.UTF8_WINDOWS);
+        fractionalLog = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + File.separator + "log", fullFileName, Utility.UTF8_WINDOWS);
 
         int[] kenCes = new int[50];
         int[] markCes = new int[50];
@@ -1833,7 +1866,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         Iterator it = forLater.keySet().iterator();
         byte oldType = (byte)0xFF; // anything unique
         int caseCount = 0;
-        WriteCollationData.writeVersionAndDate(fractionalLog, fullFileName);
+        WriteCollationData.writeVersionAndDate(fractionalLog, fullFileName, true);
         //log.println("# UCA Version: " + collator.getDataVersion() + "/" + collator.getUCDVersion());
         //log.println("Generated: " + getNormalDate());
         while (it.hasNext()) {
