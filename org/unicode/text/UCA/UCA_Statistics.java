@@ -14,9 +14,14 @@ public class UCA_Statistics {
     int[] secondaryCount = new int[0x200];
     int[] tertiaryCount = new int[0x80];
     int[][] stCounts = {null, null, secondaryCount, tertiaryCount};
-    BitSet primarySet = new BitSet();
-    BitSet secondarySet = new BitSet();
-    BitSet tertiarySet = new BitSet();
+    
+    private BitSet primarySet = new BitSet();
+    private BitSet secondarySet = new BitSet();
+    private BitSet tertiarySet = new BitSet();
+    private RoBitSet primarySetRo = new RoBitSet(primarySet);
+    private RoBitSet secondarySetRo = new RoBitSet(secondarySet);
+    private RoBitSet tertiarySetRo = new RoBitSet(tertiarySet);
+    
     Map<Integer,StringBuilder> representativePrimary = new HashMap<Integer,StringBuilder>();
     Map<Integer,StringBuilder> representativePrimarySeconds = new HashMap<Integer,StringBuilder>();
 
@@ -46,4 +51,46 @@ public class UCA_Statistics {
 
     public int firstDucetNonVariable = -1;
     public int firstScript = -1;
+
+    public RoBitSet getPrimarySet() {
+        return primarySetRo;
+    }
+    public RoBitSet getSecondarySet() {
+        return secondarySetRo;
+    }
+    public RoBitSet getTertiarySet() {
+        return tertiarySetRo;
+    }
+    
+    // HACK for CJK
+    //secondarySet.set(0x0040);
+
+    public static class RoBitSet {
+        private BitSet guts;
+        public RoBitSet(BitSet bitSetToProtect) {
+            guts = bitSetToProtect;
+        }
+        public int length() {
+            return guts.length();
+        }
+        public boolean get(int i) {
+            return guts.get(i);
+        }
+        public int nextSetBit(int i) {
+            return guts.nextSetBit(i);
+        }
+        public int size() {
+            return guts.size();
+        }
+    }
+
+    public void setPrimary(int key1) {
+        primarySet.set(key1);
+    }
+    public void setSecondary(int key2) {
+        secondarySet.set(key2);
+    }
+    public void setTertiary(int key3) {
+        tertiarySet.set(key3);
+    }
 }

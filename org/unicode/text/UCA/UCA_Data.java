@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA_Data.java,v $ 
- * $Date: 2010-10-08 19:47:55 $ 
- * $Revision: 1.9 $
+ * $Date: 2010-10-13 00:14:15 $ 
+ * $Revision: 1.10 $
  *
  *******************************************************************************
  */
@@ -144,6 +144,10 @@ public class UCA_Data implements UCA_Types {
             }
         }
 
+        if (source.equals("\uFFFF") || source.equals("\uFFFE")) {
+            // bail, these are special!
+        }
+
         // gather statistics
         if (source.charAt(0) == 'a' && source.length() == 1) {
             statistics.firstScript = UCA.getPrimary(ces.get(0));
@@ -155,7 +159,7 @@ public class UCA_Data implements UCA_Types {
             int key2 = UCA.getSecondary(ce);
             int key3 = UCA.getTertiary(ce);
             if (!UCA.isImplicitPrimary(key1)) {
-                statistics.primarySet.set(key1);
+                statistics.setPrimary(key1);
                 if (i == 0) {
                     StringBuilder reps = statistics.representativePrimary.get(key1);
                     if (reps == null) {
@@ -170,9 +174,9 @@ public class UCA_Data implements UCA_Types {
                     reps.appendCodePoint(source.codePointAt(0));
                 }
             }
-            statistics.secondarySet.set(key2);
+            statistics.setSecondary(key2);
             statistics.secondaryCount[key2]++;
-            statistics.tertiarySet.set(key3);
+            statistics.setTertiary(key3);
             statistics.tertiaryCount[key3]++;
 
             // statistics

@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/UCA.java,v $ 
- * $Date: 2010-10-11 23:15:35 $ 
- * $Revision: 1.38 $
+ * $Date: 2010-10-13 00:14:15 $ 
+ * $Revision: 1.39 $
  *
  *******************************************************************************
  */
@@ -29,6 +29,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
@@ -84,7 +85,7 @@ final public class UCA implements Comparator, UCA_Types {
 
     public static final int TEST_PRIMARY = 0xFDFC;
 
-    public enum CollatorType {ducet, cldr}
+    public enum CollatorType {ducet, cldr, cldrWithoutFFFx}
 
     public static final String copyright = 
         "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
@@ -316,7 +317,7 @@ final public class UCA implements Comparator, UCA_Types {
             }
         }
         if (appendIdentical) {
-            String cpo = UCA.codePointOrder(decompositionBuffer) + "\u0000" + UCA.codePointOrder(sourceString);
+            String cpo = /*UCA.codePointOrder(decompositionBuffer) + "\u0000" + */ UCA.codePointOrder(sourceString);
             result.append('\u0000').append(cpo).append((char) cpo.length());
         }
         return result.toString();
@@ -539,23 +540,6 @@ final public class UCA implements Comparator, UCA_Types {
 
     int[] ceListBuffer = new int[30]; // temporary storage, to avoid multiple creation
 
-
-    /**
-     * Get Usage
-     */
-    public BitSet getWeightUsage(int strength) {
-        return strength == 1 ? getStatistics().primarySet 
-                : strength == 2 ? getStatistics().secondarySet 
-                        : getStatistics().tertiarySet;
-    }
-
-    /**
-     * Returns the char associated with a FIXED value
-     */
-    /*public char charFromFixed(int ce) {
-        return getPrimary(ce);
-    }
-     */
 
     /**
      * Return the type of the CE
@@ -1542,7 +1526,24 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             throw e;
         }
     }
+    
+    public void overrideCE(String multiChars, IntStack tempStack) {
+        ucaData.add(multiChars, tempStack);
+    }
+    
+    public void overrideCE(String multiChars, int ce) {
+        IntStack tempStack = new IntStack(1);
+        tempStack.push(ce);
+        ucaData.add(multiChars, tempStack);
+    }
 
+    public void overrideCE(String multiChars, int primary, int secondary, int tertiary) {
+        IntStack tempStack = new IntStack(1);
+        int ce = UCA.makeKey(primary, secondary, tertiary);
+        tempStack.push(ce);
+        ucaData.add(multiChars, tempStack);
+    }
+    
     /**
      * 
      */
@@ -1718,7 +1719,9 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     }
 
     public int writeUsedWeights(PrintWriter p, int strength, MessageFormat mf) {
-        BitSet weights = strength == 1 ? getStatistics().primarySet : strength == 2 ? getStatistics().secondarySet : getStatistics().tertiarySet;
+        RoBitSet weights = (strength == 1 ? getStatistics().getPrimarySet() 
+        : strength == 2 ? getStatistics().getSecondarySet() 
+                : getStatistics().getTertiarySet()); // strength == 1 ? getStatistics().primarySet : strength == 2 ? getStatistics().secondarySet : getStatistics().tertiarySet;
         int first = -1;
         int count = 0;
         for (int i = 0; i <= weights.length(); ++i) {

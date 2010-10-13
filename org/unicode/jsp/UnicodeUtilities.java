@@ -149,16 +149,6 @@ public class UnicodeUtilities {
 
   static Transliterator UNICODE = Transliterator.getInstance("hex-any");
 
-  static UnicodeSet isCaseFolded = new UnicodeSet();
-
-  static UnicodeSet isLowercase = new UnicodeSet();
-
-  static UnicodeSet isUppercase = new UnicodeSet();
-
-  static UnicodeSet isTitlecase = new UnicodeSet();
-
-  static UnicodeSet isCased = new UnicodeSet();
-
   static final int IDNA_TYPE_LIMIT = 4;
 
   //  static final Map<IdnaType,UnicodeSet> idnaTypeSet = new TreeMap<IdnaType,UnicodeSet>();
@@ -219,73 +209,21 @@ public class UnicodeUtilities {
                             : tr46.toString()
                             , null);
   }
-  static {
-    for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-
-      int cat = UCharacter.getType(cp);
-      if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE  || cat == UCharacter.SURROGATE) {
-        //        idnaTypeSet.get(IdnaType.disallowed).add(cp); // faster
-        isCaseFolded.add(cp);
-        isLowercase.add(cp);
-        isTitlecase.add(cp);
-        isUppercase.add(cp);
-        continue;
-      }
-
-      //      IdnaType idnaType = Idna2003.getIDNA2003Type(cp);
-      //      idnaTypeSet.get(idnaType).add(cp);
-
-      String s = UTF16.valueOf(cp);
-      if (UCharacter.foldCase(s, true).equals(s)) {
-        isCaseFolded.add(cp);
-      }
-      if (UCharacter.toLowerCase(ULocale.ROOT, s).equals(s)) {
-        isLowercase.add(cp);
-      }
-      if (UCharacter.toUpperCase(ULocale.ROOT, s).equals(s)) {
-        isUppercase.add(cp);
-      }
-      if (UCharacter.toTitleCase(ULocale.ROOT, s, null).equals(s)) {
-        isTitlecase.add(cp);
-      }
-    }
-    // isCased if isLowercase=false OR isUppercase=false OR isTitlecase=false
-    // or := ! (isLowercase && isUppercase && isTitlecase)
-    isCased = new UnicodeSet(isLowercase).retainAll(isUppercase).retainAll(
-            isTitlecase).complement();
-  }
 
 
 
-  static final int 
-  XSTRING_START = UProperty.STRING_LIMIT,
-  TO_NFC = UProperty.STRING_LIMIT,
-  TO_NFD = UProperty.STRING_LIMIT + 1,
-  TO_NFKC = UProperty.STRING_LIMIT + 2,
-  TO_NFKD = UProperty.STRING_LIMIT + 3,
-  TO_CASEFOLD  = UProperty.STRING_LIMIT + 4,
-  TO_LOWERCASE  = UProperty.STRING_LIMIT + 5,
-  TO_UPPERCASE  = UProperty.STRING_LIMIT + 6,
-  TO_TITLECASE  = UProperty.STRING_LIMIT + 7;
-
-  public static final int SUBHEAD = TO_TITLECASE + 1;
-
-  static final int XSTRING_LIMIT = SUBHEAD + 1; 
-
-  static List<String> XPROPERTY_NAMES = Arrays.asList(new String[]{"toNfc", "toNfd", "toNfkc", "toNfkd", "toCasefold", "toLowercase", "toUppercase", "toTitlecase",
-  "subhead"});
-  static final UnicodeSet MARK = new UnicodeSet("[:M:]").freeze();
+    static final UnicodeSet MARK = new UnicodeSet("[:M:]").freeze();
 
   static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice, Normalizer.Mode compat) {
     if (compat == null || Normalizer.isNormalized(codepoint, compat, 0)) {
-      return getXStringPropertyValue(propertyEnum, codepoint, nameChoice);
+      return Common.getXStringPropertyValue(propertyEnum, codepoint, nameChoice);
     }
-    String s = UnicodeSetUtilities.MyNormalize(codepoint, compat);
+    String s = Common.MyNormalize(codepoint, compat);
     int cp;
     String lastPart = null;
     for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
       cp = UTF16.charAt(s, i);
-      String part = getXStringPropertyValue(propertyEnum, cp, nameChoice);
+      String part = Common.getXStringPropertyValue(propertyEnum, cp, nameChoice);
       if (lastPart == null) {
         lastPart = part;
       } else if (!lastPart.equals(part)) {
@@ -309,24 +247,8 @@ public class UnicodeUtilities {
   "\u1CD0-\u1CF2\u214F]");
   static UnicodeSet DEPRECATED = new UnicodeSet("[:deprecated:]").freeze();
 
-  public static String getXStringPropertyValue(int propertyEnum, int codepoint, int nameChoice) {
-
-    switch (propertyEnum) {
-    case TO_NFC: return UnicodeSetUtilities.MyNormalize(codepoint, Normalizer.NFC);
-    case TO_NFD: return UnicodeSetUtilities.MyNormalize(codepoint, Normalizer.NFD);
-    case TO_NFKC: return UnicodeSetUtilities.MyNormalize(codepoint, Normalizer.NFKC);
-    case TO_NFKD: return UnicodeSetUtilities.MyNormalize(codepoint, Normalizer.NFKD);
-    case TO_CASEFOLD: return UCharacter.foldCase(UTF16.valueOf(codepoint), true);
-    case TO_LOWERCASE: return UCharacter.toLowerCase(ULocale.ROOT, UTF16.valueOf(codepoint));
-    case TO_UPPERCASE: return UCharacter.toUpperCase(ULocale.ROOT, UTF16.valueOf(codepoint));
-    case TO_TITLECASE: return UCharacter.toTitleCase(ULocale.ROOT, UTF16.valueOf(codepoint), null);
-    case SUBHEAD: return getSubheader().getSubheader(codepoint);
-    }
-    return UCharacter.getStringPropertyValue(propertyEnum, codepoint, nameChoice);
-  }
-
   static int getXPropertyEnum(String propertyAlias) {
-    int extra = XPROPERTY_NAMES.indexOf(propertyAlias
+    int extra = Common.XPROPERTY_NAMES.indexOf(propertyAlias
             .toLowerCase(Locale.ENGLISH));
     if (extra != -1) {
       return UProperty.STRING_LIMIT + extra;
@@ -1405,7 +1327,8 @@ public class UnicodeUtilities {
       //      .append("</a></th>\n");
       //      out.append("<td>");
       StringBuilder propValues = new StringBuilder();
-      if (propName.equals(propForValues)) {
+      // List<String> availableValues = (List<String>)prop.getAvailableValues();
+      if (propName.equals(propForValues) ) { // || availableValues.size() < 10
         getHtmlPropValues(prop, propHtml, propValues);
       } else {
         propValues.append("<a href='" + myLink + "?a=" + propName + "#" + propName + "'>Show Values</a>");

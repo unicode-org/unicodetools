@@ -15,6 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.jsp.Common;
 import org.unicode.jsp.Idna;
 import org.unicode.jsp.Idna2003;
 import org.unicode.jsp.Idna2008;
@@ -59,12 +60,12 @@ public class TestJsp  extends TestFmwk {
   static UnicodeSet BREAKING_WHITESPACE = new UnicodeSet("[\\p{whitespace=true}-\\p{linebreak=glue}]").freeze();
 
   public static void main(String[] args) throws Exception {
-    int cp = ' ';
-    if (BREAKING_WHITESPACE.contains(cp)) {
-      System.out.println("found");
-    }
-    System.out.println(BREAKING_WHITESPACE);
-    UnicodeUtilities.StringPair foo = null;
+//    int cp = ' ';
+//    if (BREAKING_WHITESPACE.contains(cp)) {
+//      System.out.println("found");
+//    }
+//    System.out.println(BREAKING_WHITESPACE);
+//    UnicodeUtilities.StringPair foo = null;
     new TestJsp().run(args);
   }
 
@@ -229,7 +230,7 @@ public class TestJsp  extends TestFmwk {
         typeAndMapIcu.mapping = null;
       }
     } catch (Exception e) {
-      System.out.println("Failure at: " + Utility.hex(inbuffer));
+      logln("Failure at: " + Utility.hex(inbuffer));
       typeAndMapIcu.type = IdnaType.disallowed;
       typeAndMapIcu.mapping = null;
     }
@@ -253,10 +254,10 @@ public class TestJsp  extends TestFmwk {
   public void TestIdnaProps() {
     String map = Idna2003.SINGLETON.mappings.get(0x200c);
     IdnaType type = Idna2003.SINGLETON.getType(0x200c);
-    System.out.println("Idna2003\t" + (map == null ? "null" : Utility.hex(map)) + ", " + type);
+    logln("Idna2003\t" + (map == null ? "null" : Utility.hex(map)) + ", " + type);
     map = Uts46.SINGLETON.mappings.get(0x200c);
     type = Uts46.SINGLETON.getType(0x200c);
-    System.out.println("Uts46\t" + (map == null ? "null" : Utility.hex(map)) + ", " + type);
+    logln("Uts46\t" + (map == null ? "null" : Utility.hex(map)) + ", " + type);
 
     for (int i = 0; i <= 0x10FFFF; ++i) {
       // invariants are:
@@ -308,20 +309,20 @@ private void showIcuEnums() {
   }
 
   private void showEnumPropValues(int prop) {
-    System.out.println("Property number:\t" + prop);
+    logln("Property number:\t" + prop);
     for (int nameChoice = 0; ; ++nameChoice) {
       try {
         String propertyName = UCharacter.getPropertyName(prop, nameChoice);
         if (propertyName == null && nameChoice > NameChoice.LONG) {
           break;
         }
-        System.out.println("\t" + nameChoice + "\t" + propertyName);
+        logln("\t" + nameChoice + "\t" + propertyName);
       } catch (Exception e) {
         break;
       }
     }
     for (int i = UCharacter.getIntPropertyMinValue(prop); i <= UCharacter.getIntPropertyMaxValue(prop); ++i) {
-      System.out.println("\tProperty value number:\t" + i);
+      logln("\tProperty value number:\t" + i);
       for (int nameChoice = 0; ; ++nameChoice) {
         String propertyValueName;
         try {
@@ -329,7 +330,7 @@ private void showIcuEnums() {
           if (propertyValueName == null && nameChoice > NameChoice.LONG) {
             break;
           }
-          System.out.println("\t\t"+ nameChoice + "\t" + propertyValueName);
+          logln("\t\t"+ nameChoice + "\t" + propertyValueName);
         } catch (Exception e) {
           break;
         }
@@ -338,10 +339,10 @@ private void showIcuEnums() {
   }
 
   private void showPropValues(UnicodeProperty prop) {
-    System.out.println(prop.getName());
+    logln(prop.getName());
     for (Object value : prop.getAvailableValues()) {
-      System.out.println(value);
-      System.out.println("\t" + prop.getSet(value.toString()).toPattern(false));
+      logln(value.toString());
+      logln("\t" + prop.getSet(value.toString()).toPattern(false));
     }
   }
 
@@ -375,9 +376,9 @@ private void showIcuEnums() {
       final String script = displayLanguage.getScript();
       if (language.equals("zh")) {
         if (script.equals("Hant")) {
-          exemplarSet.removeAll(UnicodeSetUtilities.simpOnly);
+          exemplarSet.removeAll(Common.simpOnly);
         } else {
-          exemplarSet.removeAll(UnicodeSetUtilities.tradOnly);
+          exemplarSet.removeAll(Common.tradOnly);
         }
       } else {
         exemplarSet.addAll(localeData.getExemplarSet(UnicodeSet.CASE, LocaleData.ES_AUXILIARY));
@@ -406,7 +407,7 @@ private void showIcuEnums() {
 
       final long total = counter.getTotal() - counter.getCount(Subtag.mixed) - counter.getCount(Subtag.fail);
       final String missingDisplay = mixedSamples.size() == 0 ? "" : "\t" + missing.toPattern(false) + "\t" + mixedSamples;
-      System.out.println(displayLanguage + "\t" + displayLanguage.getDisplayName(ULocale.ENGLISH)
+      logln(displayLanguage + "\t" + displayLanguage.getDisplayName(ULocale.ENGLISH)
               + "\t" + (total/(double)counter.getTotal())
               + "\t" + total
               + "\t" + counter.getCount(Subtag.language)
@@ -589,11 +590,11 @@ private void showIcuEnums() {
   public void TestStuff() throws IOException {
     //int script = UScript.getScript(0xA6E6);
     //int script2 = UCharacter.getIntPropertyValue(0xA6E6, UProperty.SCRIPT);
-    String propValue = UnicodeUtilities.getXStringPropertyValue(UnicodeUtilities.SUBHEAD, 0xA6E6, NameChoice.LONG);
-    //System.out.println(propValue);
+    String propValue = Common.getXStringPropertyValue(Common.SUBHEAD, 0xA6E6, NameChoice.LONG);
+    //logln(propValue);
 
 
-    //System.out.println("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " + script2);
+    //logln("Script for A6E6: " + script + ", " + UScript.getName(script) + ", " + script2);
 
 
     Appendable printWriter = getLogPrintWriter();
@@ -634,14 +635,14 @@ private void showIcuEnums() {
     UnicodeJsp.showProperties(0x00C5, out);
     assertTrue("props for character", out.toString().contains("Line_Break"));
     logln(out.toString());
-    //System.out.println(out);
+    //logln(out);
   }
   
   public void TestIdentifiers() throws IOException {
     String out = UnicodeUtilities.getIdentifier("Latin");
     assertTrue("identifier info", out.toString().contains("Line_Break"));
     logln(out.toString());
-    //System.out.println(out);
+    //logln(out);
   }
 
 
@@ -650,12 +651,12 @@ private void showIcuEnums() {
     StringWriter out = new StringWriter();
     //    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:Hangul_Syllable_Type=LVT_Syllable:]", TableStyle.extras), false, true, out);
     //    assertTrue("props table", out.toString().contains("Hangul"));
-    //    System.out.println(out);
+    //    logln(out);
     //    
     //    out.getBuffer().setLength(0);
     //    UnicodeJsp.showSet("sc gc", UnicodeSetUtilities.parseUnicodeSet("[:cn:]", TableStyle.extras), false, true, out);
     //    assertTrue("props table", out.toString().contains("unassigned"));
-    //    System.out.println(out); 
+    //    logln(out); 
 
     out.getBuffer().setLength(0);
     UnicodeJsp.showSet("sc", UnicodeSetUtilities.parseUnicodeSet("[:script=/Han/:]"), false, true, out);
@@ -680,7 +681,7 @@ private void showIcuEnums() {
     boolean[] error = new boolean[1];
 
     String uts46unic = Uts46.SINGLETON.toUnicode("faß.de", error, true);
-    System.out.println(uts46unic + ", " + error[0]);
+    logln(uts46unic + ", " + error[0]);
     checkValues(error, Uts46.SINGLETON);
     checkValidIdna(Uts46.SINGLETON, "À｡÷");
     checkInvalidIdna(Uts46.SINGLETON, "≠");
