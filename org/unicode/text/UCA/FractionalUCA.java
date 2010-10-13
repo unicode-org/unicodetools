@@ -18,6 +18,7 @@ import java.util.Map.Entry;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCA.UCA.CollatorType;
+import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
@@ -597,10 +598,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         FractionalUCA.checkFixes();
 
         FractionalUCA.Variables.variableHigh = UCA.getPrimary(getCollator().getVariableHighCE());
-        BitSet secondarySet = getCollator().getWeightUsage(2);
+        UCA r = getCollator();
+        RoBitSet secondarySet = r.getStatistics().getSecondarySet();
 
         // HACK for CJK
-        secondarySet.set(0x0040);
+        //secondarySet.set(0x0040);
         
         FractionalStatistics fractionalStatistics = new FractionalStatistics();
 
@@ -624,7 +626,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         FractionalUCA.findBumps(null);
 
         System.out.println("Fixing Primaries");
-        BitSet primarySet = getCollator().getWeightUsage(1);        
+        UCA r1 = getCollator();
+        RoBitSet primarySet = r1.getStatistics().getPrimarySet();        
 
         FractionalUCA.primaryDelta = new int[65536];
 
@@ -756,6 +759,9 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             String s = ucac.next();
             if (s == null) {
                 break;
+            }
+            if (s.equals("\uFFFF") || s.equals("\uFFFE")) {
+                continue; // suppress the FFFF and FFFE, since we are adding them artifically later.
             }
             if (s.equals("\uFA36") || s.equals("\uF900") || s.equals("\u2ADC") || s.equals(highCompat)) {
                 System.out.println(" * " + Default.ucd().getCodeAndName(s));
@@ -1473,7 +1479,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
     }
 
     private static UCA getCollator() {
-        return WriteCollationData.getCollator(CollatorType.cldr);
+        return WriteCollationData.getCollator(CollatorType.cldrWithoutFFFx);
     }
 
     static Transform<Integer, String> ScriptTransform = new Transform<Integer, String>() {
@@ -1756,6 +1762,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         } else {
             top *= 2; // create gap between elements. top is now 4 or more
             top += 0x80 + FractionalUCA.Variables.COMMON - 2; // insert gap to make top at least 87
+            
+            if (top >= 149) top += 2; // HACK for backwards compatibility.
 
             // lowest values are singletons. Others are 2 bytes
             if (top > FractionalUCA.Variables.secondaryDoubleStart) {
@@ -2033,9 +2041,10 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
                 OTHER_PUNCTUATION, INITIAL_PUNCTUATION, FINAL_PUNCTUATION);
         int numbers = bitmask(DECIMAL_DIGIT_NUMBER, LETTER_NUMBER, OTHER_NUMBER);
         ducetFirstNonVariable = getCollator().getStatistics().firstDucetNonVariable;
+        UCA r = getCollator();
 
 
-        BitSet primarySet = getCollator().getWeightUsage(1);
+        RoBitSet primarySet = r.getStatistics().getPrimarySet();
         int firstScriptPrimary = getCollator().getStatistics().firstScript;
 
         for (int primary = primarySet.nextSetBit(0); primary >= 0; primary = primarySet.nextSetBit(primary+1)) {

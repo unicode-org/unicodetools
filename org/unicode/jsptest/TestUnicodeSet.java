@@ -9,10 +9,11 @@ import java.util.TreeSet;
 
 import org.unicode.jsp.Builder;
 import org.unicode.jsp.CharEncoder;
+import org.unicode.jsp.Common;
 import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.XPropertyFactory;
-import org.unicode.jsp.UnicodeSetUtilities.NFKC_CF;
+import org.unicode.jsp.Common.NFKC_CF;
 
 import com.ibm.icu.dev.test.AbstractTestLog;
 import com.ibm.icu.dev.test.TestFmwk;
@@ -34,17 +35,30 @@ public class TestUnicodeSet  extends TestFmwk {
     }
 
     public void TestU60 () {
-        System.out.println("ICU Version: " + VersionInfo.ICU_VERSION.toString());
-        System.out.println("Unicode Data Version:   " + UCharacter.getUnicodeVersion().toString());
-        System.out.println("Java Version:   " + VersionInfo.javaVersion().toString());
-        System.out.println("CLDR Data Version:      " + LocaleData.getCLDRVersion().toString());
-        System.out.println("Time Zone Data Version: " + TimeZone.getTZDataVersion());
+        logln("ICU Version: " + VersionInfo.ICU_VERSION.toString());
+        logln("Unicode Data Version:   " + UCharacter.getUnicodeVersion().toString());
+        logln("Java Version:   " + VersionInfo.javaVersion().toString());
+        logln("CLDR Data Version:      " + LocaleData.getCLDRVersion().toString());
+        logln("Time Zone Data Version: " + TimeZone.getTZDataVersion());
 
         UnicodeSet age60 = UnicodeSetUtilities.parseUnicodeSet("[:age=6.0:]");
         UnicodeSet age52 = UnicodeSetUtilities.parseUnicodeSet("[:age=5.2:]");
         assertTrue("6.0 characters", age60.contains(0x20B9));
         logln("New Characters: " + new UnicodeSet(age60).removeAll(age52).toPattern(false));
         assertTrue("6.0 characters", age60.contains(0x20B9));
+        
+        UnicodeSet emoji = UnicodeSetUtilities.parseUnicodeSet("[:emoji:]");
+        assertEquals("6.0 emoji", 729, emoji.size()); // really 749, but we flatten the set
+        
+        emoji.add(0);
+        emoji.remove(0);
+        logln(emoji.toString());
+        
+        UnicodeSet uca = UnicodeSetUtilities.parseUnicodeSet("[:uca=2D:]");
+        logln(uca.toString());
+
+        assertEquals("6.0 uca", 5, uca.size()); // really 749, but we flatten the set
+
     }
     public void TestEncodingProp() {
 
@@ -238,7 +252,7 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         checkProperties("[:toLowercase!=@cp@:]", "[A-Z\u00C0]", "[abc]");
         checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");
 
-        String trans1 = new NFKC_CF().transform("\u2065");
+        String trans1 = new Common.NFKC_CF().transform("\u2065");
         XPropertyFactory factory = XPropertyFactory.make();
         UnicodeProperty prop = factory.getProperty("tonfkccf");
         String trans2 = prop.getValue('\u2065');

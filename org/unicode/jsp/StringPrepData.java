@@ -6,6 +6,7 @@ package org.unicode.jsp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.EnumSet;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +20,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public class StringPrepData {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = getDebugFlag(StringPrepData.class);
     /**
 3. Mapping
    This profile specifies mapping using the following tables from
@@ -82,6 +83,19 @@ public class StringPrepData {
 
         mappings.freeze();
         types.freeze();
+    }
+
+    private static boolean getDebugFlag(Class<?> class1) {
+        return getDebugFlag(class1, "debug");
+    }
+
+    private static boolean getDebugFlag(Class<?> class1, String flagName) {
+        String className = class1.getName().toLowerCase(Locale.ROOT);
+        int lastPart = className.lastIndexOf('.');
+        if (lastPart >= 0) {
+            className = className.substring(lastPart+1);
+        }
+        return System.getProperty(className+"_" + flagName) != null;
     }
 
 

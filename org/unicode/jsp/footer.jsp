@@ -6,7 +6,7 @@ Some suggested fonts that you can add for coverage are:
 <a href="http://www.code2000.net/" target="_blank">Code2000 site</a>,
 <a href="http://www.alanwood.net/unicode/fonts.html" target="_blank">Large, multi-script Unicode fonts</a>.
 See also: <a href="http://www.unicode.org/help/display_problems.html" target="_blank">Unicode Display Problems</a>.</p>
-<p style="font-size:80%">Version 3.4;
+<p style="font-size:80%">Version 3.5;
 ICU version: <%= com.ibm.icu.util.VersionInfo.ICU_VERSION.toString() %>;
 Unicode version: <%= com.ibm.icu.lang.UCharacter.getUnicodeVersion().toString() %>
 </p>

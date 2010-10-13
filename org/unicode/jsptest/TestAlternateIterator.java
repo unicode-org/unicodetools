@@ -29,7 +29,7 @@ public class TestAlternateIterator extends TestFmwk {
     AlternateIterator foo = AlternateIterator.start().add("a", "b", "c").add("d", "e").build();
     int count = 0;
     for (String items : foo) {
-      System.out.println(++count + "\t" + items);
+      logln(++count + "\t" + items);
     }
   }
   
