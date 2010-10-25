@@ -1,8 +1,6 @@
 package org.unicode.text.UCA;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -43,7 +41,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     public static int SPECIAL_LOWEST_DUCET = 1;
     public static int SPECIAL_HIGHEST_DUCET = 0x7FFF;
-    
+
 
     static Map<Integer,String> reorderingTokenOverridesNonFractional = new TreeMap<Integer,String>();
 
@@ -556,36 +554,188 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             return REORDERING_BOUNDARY_CHARACTER_MIN + bumpedFirstBytes.cardinality();
         }
     }
-    
+
     public static class FractionalStatistics {
-        private Map<Integer,UnicodeSet> secondaries = new TreeMap<Integer,UnicodeSet>();
-        
-        void addSecondary(Integer secondary, String codepoints) {
-            UnicodeSet secondarySet = secondaries.get(secondary);
+        private Map<Long,UnicodeSet> primaries = new TreeMap<Long,UnicodeSet>();
+        private Map<Long,UnicodeSet> secondaries = new TreeMap<Long,UnicodeSet>();
+        private Map<Long,UnicodeSet> tertiaries = new TreeMap<Long,UnicodeSet>();
+
+        private void addToSet(Map<Long, UnicodeSet> map, int key0, String codepoints) {
+            // shift up
+            key0 = leftJustify(key0);
+            Long key = (long)key0;
+            UnicodeSet secondarySet = map.get(key);
             if (secondarySet == null) {
-                secondaries.put(secondary, secondarySet = new UnicodeSet());
+                map.put(key, secondarySet = new UnicodeSet());
             }
             secondarySet.add(codepoints);
         }
-        public void show(Appendable summary) {
-            try {
-                summary.append("# Secondary statistics\n");
-                for (Entry<Integer, UnicodeSet> entry : secondaries.entrySet()) {
-                    int secondary = entry.getKey();
-                    UnicodeSet uset = entry.getValue();
-                    String pattern = uset.toPattern(false);
-                    if (pattern.length() > 100) pattern = pattern.substring(0,100)+"...";
-                    summary.append(hexBytes(secondary))
-                    .append('\t')
-                    .append(String.valueOf(uset.size()))
-                    .append('\t')
-                    .append(pattern)
-                    .append('\n')
-                    ;
+        private int leftJustify(int key0) {
+            if (key0 != 0) {
+                while ((key0 & 0xFF000000) == 0) {
+                    key0 <<= 8;
                 }
-                summary.append("# Secondary statistics");
+            }
+            return key0;
+        }
+        public void show(Appendable summary) {
+            checkImplicits();
+            try {
+                show(Type.primary, primaries, summary);
+                show(Type.secondary, secondaries, summary);
+                show(Type.tertiary, tertiaries, summary);
             } catch (IOException e) {
                 throw new IllegalArgumentException(e);
+            }
+        }
+        private void checkImplicits() {
+            TreeMap<Integer, Integer> implicitToCodepoint = new TreeMap<Integer, Integer>();
+            for (int codepoint = 0; codepoint <= 0x10FFFF; ++codepoint) {
+                int implicitWeight = leftJustify(implicit.getImplicitFromCodePoint(codepoint));
+                implicitToCodepoint.put(implicitWeight, codepoint);
+            }
+            int lastImplicit = 0;
+            int lastCodepoint = 0;
+            for (Entry<Integer, Integer> entry : implicitToCodepoint.entrySet()) {
+                int implicitWeight = entry.getKey();
+                int codepoint = entry.getValue();
+                if (lastImplicit != 0) {
+                    try {
+                        checkGap(Type.primary, lastImplicit, implicitWeight);
+                    } catch (Exception e) {
+                        throw new IllegalArgumentException("Strings:\t" 
+                                + Default.ucd().getCodeAndName(lastCodepoint) 
+                                + ", " + Default.ucd().getCodeAndName(codepoint), e);
+                    }
+                }
+                lastImplicit = implicitWeight;
+                lastCodepoint = codepoint;
+            }
+        }
+
+        private void show(Type type, Map<Long, UnicodeSet> map, Appendable summary) throws IOException {
+            summary.append("\n# Start " + type + "  statistics \n");
+            long lastWeight = -1;
+            for (Entry<Long, UnicodeSet> entry : map.entrySet()) {
+                long weight = entry.getKey();
+                if (lastWeight >= 0) {
+                    checkGap(type, (int)lastWeight, (int)weight);
+                }
+                lastWeight = weight;
+
+                UnicodeSet uset = entry.getValue();
+                String pattern = uset.toPattern(false);
+                if (pattern.length() > 100) pattern = pattern.substring(0,100)+"...";
+                summary.append(hexBytes(weight))
+                .append('\t')
+                .append(String.valueOf(uset.size()))
+                .append('\t')
+                .append(pattern)
+                .append('\n')
+                ;
+            }
+            summary.append("# End " + type + "  statistics \n");
+        }
+
+        enum Type {
+            primary(5), secondary(5), tertiary(5); // TODO figure out the right values, use constants
+            final int gap;
+            Type(int gap) {
+                this.gap = gap;
+            }
+            public int gap() {
+                return gap;
+            }
+        }
+
+        /**
+         * Check that there is enough room between weight1 and the weight2. Both
+         * are left-justified: that is, of the form XXYYZZWW where XX is only
+         * zero if the whole value is zero.
+         * 
+         * @param type
+         * @param weight1
+         * @param weight2
+         */
+        private static void checkGap(Type type, int weight1, int weight2) {
+            if (weight1 >= weight2) {
+                throw new IllegalArgumentException("Weights out of order: " + hexBytes(weight1) + ",\t" + hexBytes(weight2));
+            }
+            // find the first difference between bytes
+            for (int i = 24; i >= 0; i -= 8) {
+                int b1 = (int) ((weight1 >>> i) & 0xFF);
+                int b2 = (int) ((weight2 >>> i) & 0xFF);
+                // keep going until we find a byte difference
+                if (b2 == b1) {
+                    continue;
+                }
+                if (b2 > b1 + 27) {
+                    // OK, there is a gap of 27 or greater. Example:
+                    // AA BB CC 38
+                    // AA BB CC 5C
+                    return;
+                }
+                if (i != 0) { // if we are at not at the end
+
+                    if (b2 > b1 + 1) {
+                        // OK, there is a gap of 1 or greater, and we are not in the final byte. Example:
+                        // AA 85
+                        // AA 87
+                        return;
+                    }
+                    // We now know that b2 == b1 +1
+
+                    // get next bytes
+                    i -= 8;
+                    b1 = (int) ((weight1 >> i) & 0xFF);
+                    b2 = 0x100 + (int) ((weight2 >> i) & 0xFF); // add 100 to express the true difference
+                    if (b1 + type.gap() < b2) {
+                        // OK, the gap is enough.
+                        // AA 85
+                        // AA 86 05
+                        // or
+                        // AA 85 FD
+                        // AA 86 03
+                        return;
+                    }
+                }
+                throw new IllegalArgumentException("Weights too close: " + hexBytes(weight1) + ",\t" + hexBytes(weight2));
+            }
+            throw new IllegalArgumentException("Internal Error: " + hexBytes(weight1) + ",\t" + hexBytes(weight2));
+        }
+
+        StringBuffer newPrimary = new StringBuffer();
+        StringBuffer newSecondary = new StringBuffer();
+        StringBuffer newTertiary = new StringBuffer();
+
+        void printAndRecord(boolean show, String chr, int np, int ns, int nt, String comment) {
+            try {
+                addToSet(primaries, np, chr);
+                addToSet(secondaries, ns, chr);
+                addToSet(tertiaries, nt, chr);
+
+                newPrimary.setLength(0);
+                newSecondary.setLength(0);
+                newTertiary.setLength(0);
+
+                FractionalUCA.hexBytes(np, newPrimary);
+                FractionalUCA.hexBytes(ns, newSecondary);
+                FractionalUCA.hexBytes(nt, newTertiary);
+
+                String weightString = "[" + newPrimary 
+                + ", " + newSecondary 
+                + ", " + newTertiary 
+                + "]";
+
+                if (show) {
+                    fractionalLog.print(Utility.hex(chr) + ";\t");
+                }
+                fractionalLog.print(weightString);
+                if (comment != null) {
+                    fractionalLog.println("\t" + comment);
+                }
+            } catch (Exception e) {
+                throw new ChainException("Character is {0}", new String[] {Utility.hex(chr)}, e);
             }
         }
     }
@@ -603,7 +753,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         // HACK for CJK
         //secondarySet.set(0x0040);
-        
+
         FractionalStatistics fractionalStatistics = new FractionalStatistics();
 
         int subtotal = 0;
@@ -907,7 +1057,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         Utility.fixDot();
         System.out.println("Writing");
-        
+
         String directory = UCA.getUCA_GEN_DIR() + "CollationAuxiliary" + File.separator;
 
         PrintWriter shortLog = Utility.openPrintWriter(directory, filename + "_SHORT.txt", Utility.UTF8_WINDOWS);
@@ -919,8 +1069,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         String summaryFileName = filename + "_summary.txt";
         PrintWriter summary = Utility.openPrintWriter(directory, summaryFileName, Utility.UTF8_WINDOWS);
+
+        String logFileName = filename + "_log.txt";
+        PrintWriter log = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + "log" + File.separator, logFileName, Utility.UTF8_WINDOWS);
         //PrintWriter summary = new PrintWriter(new BufferedWriter(new FileWriter(directory + filename + "_summary.txt"), 32*1024));
-        
+
         summary.println("# Summary of Fractional UCA Table, generated from standard UCA");
         WriteCollationData.writeVersionAndDate(summary, summaryFileName, true);
         summary.println("# Primary Ranges");
@@ -929,9 +1082,6 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         int[] ces = new int[100];
 
-        StringBuffer newPrimary = new StringBuffer();
-        StringBuffer newSecondary = new StringBuffer();
-        StringBuffer newTertiary = new StringBuffer();
         StringBuffer oldStr = new StringBuffer();
 
         OldEquivalenceClass secEq = new OldEquivalenceClass("\r\n#", 2, true);
@@ -953,7 +1103,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         String lastChr = "";
         int lastNp = 0;
-        boolean doVariable = false;
+        //boolean doVariable = false;
         char[] codeUnits = new char[100];
 
         FractionalUCA.FCE firstTertiaryIgnorable = new FractionalUCA.FCE(false, "tertiary ignorable");
@@ -985,6 +1135,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         Map fractBackMap = new TreeMap();
 
+        //int topVariable = -1;
+
         while (it.hasNext()) {
             Object sortKey = it.next();
             String chr = (String)ordered.get(sortKey);            
@@ -996,16 +1148,16 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             if (firstPrimary != oldFirstPrimary) {
                 fractionalLog.println();
                 boolean isVariable = getCollator().isVariable(ces[0]);
-                if (isVariable != wasVariable) {
-                    if (isVariable) {
-                        message = "# START OF VARIABLE SECTION!!!";
-                    } else {
-                        message = "[variable top = " + hexBytes(FractionalUCA.primaryDelta[oldFirstPrimary]) + "] # END OF VARIABLE SECTION!!!";
-                        doVariable = true;
-                    }
-                    fractionalLog.println(message);
-                    fractionalLog.println();
-                }
+                //                if (isVariable != wasVariable) {
+                //                    if (isVariable) {
+                //                        message = "# START OF VARIABLE SECTION!!!";
+                //                    } else {
+                //                        //topVariable = FractionalUCA.primaryDelta[oldFirstPrimary];
+                //                        doVariable = true;
+                //                    }
+                //                    //fractionalLog.println(message);
+                //                    //fractionalLog.println();
+                //                }
                 wasVariable = isVariable;
                 oldFirstPrimary = firstPrimary;
             }
@@ -1040,9 +1192,6 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
             for (int q = firstCE; q < len; ++q) {
                 nonePrinted = false;
-                newPrimary.setLength(0);
-                newSecondary.setLength(0);
-                newTertiary.setLength(0);
 
                 int pri = UCA.getPrimary(ces[q]);
                 int sec = UCA.getSecondary(ces[q]); 
@@ -1120,27 +1269,23 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 int ns = FractionalUCA.fixSecondary(sec);
                 int nt = FractionalUCA.fixTertiary(ter);
 
-                try {
-                    FractionalUCA.hexBytes(np, newPrimary);
-                    if (q == firstCE) { // only look at first one
-                        highByteToScripts.addScriptsIn(np, chr);
-                    }
-                    FractionalUCA.hexBytes(ns, newSecondary);
-                    FractionalUCA.hexBytes(nt, newTertiary);
-                } catch (Exception e) {
-                    throw new ChainException("Character is {0}", new String[] {Utility.hex(chr)}, e);
+                if (q == firstCE) { // only look at first one
+                    highByteToScripts.addScriptsIn(np, chr);
                 }
+
+                fractionalStatistics.printAndRecord(false, chr, np, ns, nt, null);
+
                 if (isFirst) {
                     if (!FractionalUCA.sameTopByte(np, lastNp)) {
                         if (lastNp != 0) {
                             showRange("Last", summary, lastChr, lastNp);
                         }
                         summary.println();
-                        if (doVariable) {
-                            doVariable = false;
-                            summary.println("#" + message);
-                            summary.println();
-                        }
+                        //                        if (doVariable) {
+                        //                            doVariable = false;
+                        //                            summary.println("#" + message);
+                        //                            summary.println();
+                        //                        }
                         //                        int topByte = np >>> 16;
                         //                        if (bumpedFirstBytes.get(topByte)) {
                         //                            int specialLast = ((topByte-1) << 16) + 0xFE00;
@@ -1152,18 +1297,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                     lastNp = np;
                     isFirst = false;
                 }
-                fractionalLog.print("[" + newPrimary 
-                        + ", " + newSecondary 
-                        + ", " + newTertiary 
-                        + "]");
 
                 // RECORD STATS
                 // but ONLY if we are not part of an implicit
 
                 if ((pri & FractionalUCA.Variables.MARK_CODE_POINT) == 0) {
-                    if (ns != 5) {
-                        fractionalStatistics.addSecondary(ns, chr);
-                    }
                     if (np != 0) {
                         firstSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
                         lastSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
@@ -1218,8 +1356,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         fractionalLog.println("# SPECIAL MAX/MIN COLLATION ELEMENTS");
         fractionalLog.println();
 
-        fractionalLog.println("FFFE; [02, 02, 02]     # Special LOWEST primary, for merge/interleaving");
-        fractionalLog.println("FFFF; [EF FE, 05, 05]  # Special HIGHEST primary, for ranges");
+        fractionalStatistics.printAndRecord(true, "\uFFFE", 0x020000, 2, 2, "# Special LOWEST primary, for merge/interleaving");
+        fractionalStatistics.printAndRecord(true, "\uFFFF", 0xEFFE00, 5, 5, "# Special HIGHEST primary, for ranges");
+
+        //        fractionalLog.println("FFFE; [02, 02, 02]     # Special LOWEST primary, for merge/interleaving");
+        //        fractionalLog.println("FFFF; [EF FE, 05, 05]  # Special HIGHEST primary, for ranges");
 
         fractionalLog.println();
         fractionalLog.println("# SPECIAL FINAL VALUES for Script Reordering");
@@ -1232,9 +1373,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 throw new IllegalArgumentException("Special too large: " + Utility.hex(currentSpecial));
             }
             int previousByte = i-1;
-            fractionalLog.println(Utility.hex(fakeString.next()) +
-                    "; [" + hexBytes((previousByte << 16) | 0xFE00) +
-            ", 05, 05]     # Special final value for reordering token");
+            fractionalStatistics.printAndRecord(true, fakeString.next(), (previousByte << 16) | 0xFE00, 5, 5, "# Special final value for reordering token");
+
+            //            fractionalLog.println(Utility.hex(fakeString.next()) +
+            //                    "; [" + hexBytes((previousByte << 16) | 0xFE00) +
+            //            ", 05, 05]     # Special final value for reordering token");
 
         }
 
@@ -1258,17 +1401,20 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             int ns = FractionalUCA.fixSecondary(UCA.getSecondary(ce));
             int nt = FractionalUCA.fixTertiary(UCA.getTertiary(ce));
 
-            newPrimary.setLength(0);
-            newSecondary.setLength(0);
-            newTertiary.setLength(0);
-
-            FractionalUCA.hexBytes(np, newPrimary);
             highByteToScripts.addScriptsIn(np, sample);
-            FractionalUCA.hexBytes(ns, newSecondary);
-            FractionalUCA.hexBytes(nt, newTertiary);
+            fractionalStatistics.printAndRecord(true, fakeString.next(), np, ns, nt, null);
 
-            fractionalLog.print(Utility.hex(fakeString.next()) + "; " 
-                    + "[, " + newSecondary + ", " + newTertiary + "]");
+            //            newPrimary.setLength(0);
+            //            newSecondary.setLength(0);
+            //            newTertiary.setLength(0);
+            //
+            //            FractionalUCA.hexBytes(np, newPrimary);
+            //            FractionalUCA.hexBytes(ns, newSecondary);
+            //            FractionalUCA.hexBytes(nt, newTertiary);
+            //
+            //            fractionalLog.print(Utility.hex(fakeString.next()) + "; " 
+            //                    + "[, " + newSecondary + ", " + newTertiary + "]");
+
             longLog.print("\t# " + getCollator().getCEList(sample, true) + "\t* " + Default.ucd().getCodeAndName(sample));
             fractionalLog.println();
         }
@@ -1282,11 +1428,15 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             lastSecondaryIgnorable.setValue(0,0,fakeTertiary,"");
             System.out.println(firstSecondaryIgnorable.formatFCE());
             // also add homeless
-            newTertiary.setLength(0);
-            FractionalUCA.hexBytes(fakeTertiary, newTertiary);
-            fractionalLog.println(Utility.hex(fakeString.next()) + "; " 
-                    + "[,, " + newTertiary 
-                    + "]\t# CONSTRUCTED FAKE SECONDARY-IGNORABLE");
+            fractionalStatistics.printAndRecord(true, fakeString.next(), 0, 0, fakeTertiary, null);
+
+            //            newTertiary.setLength(0);
+            //            FractionalUCA.hexBytes(fakeTertiary, newTertiary);
+            //
+            //            fractionalLog.print(Utility.hex(fakeString.next()) + "; " 
+            //                    + "[,, " + newTertiary 
+            //                    + "]");
+            fractionalLog.println("\t# CONSTRUCTED FAKE SECONDARY-IGNORABLE");
         }
 
         int firstImplicit = FractionalUCA.getImplicitPrimary(UCD_Types.CJK_BASE);
@@ -1325,13 +1475,14 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         if (lastSecondaryInPrimaryNonIgnorable.getValue(1) >= firstPrimaryIgnorable.getValue(1)) {
             fractionalLog.println("# FAILURE: Overlap of secondaries");
         }
-        
+
         // fix last variable, lastNonIgnorable
         lastVariable.bumpToFinalReorderingValue();
         lastNonIgnorable.bumpToFinalReorderingValue();
 
         fractionalLog.println(firstVariable);
         fractionalLog.println(lastVariable);
+        fractionalLog.println("[variable top = " + hexBytes(lastVariable.key[0]) + "]");
 
         fractionalLog.println(firstNonIgnorable);
         fractionalLog.println(lastNonIgnorable);
@@ -1465,9 +1616,10 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             summary.println(" " + Default.ucd().getName(sampleEq[i]));
 
         }
-        fractionalStatistics.show(summary);
+        fractionalStatistics.show(log);
         fractionalLog.close();
         summary.close();
+        log.close();
     }
 
     private static class FakeString {
@@ -1572,7 +1724,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             }
             oldPrimary = newPrimary;
         }
-        
+
         FractionalUCA.showImplicit("# 3B9D", 0x3B9D);
 
         FractionalUCA.showImplicit("# First CJK", CJK_BASE);
@@ -1762,7 +1914,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         } else {
             top *= 2; // create gap between elements. top is now 4 or more
             top += 0x80 + FractionalUCA.Variables.COMMON - 2; // insert gap to make top at least 87
-            
+
             if (top >= 149) top += 2; // HACK for backwards compatibility.
 
             // lowest values are singletons. Others are 2 bytes

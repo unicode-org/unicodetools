@@ -50,15 +50,36 @@ public class GenerateUnihanCollators {
     static final Transform<String, String>    fromNumericPinyin   = Transliterator.getInstance("NumericPinyin-Latin;nfc");
     static final Transliterator               toNumericPinyin     = Transliterator.getInstance("Latin-NumericPinyin;nfc");
 
+    static final Normalizer2                  nfkd                = Normalizer2.getInstance(null, "nfkc", Mode.DECOMPOSE);
+    static final Normalizer2                  nfd                 = Normalizer2.getInstance(null, "nfc", Mode.DECOMPOSE);
+    static final Normalizer2                  nfc                 = Normalizer2.getInstance(null, "nfc", Mode.COMPOSE);
+
+    static final UnicodeSet                   PINYIN_LETTERS      = new UnicodeSet("['a-uw-zàáèéìíòóùúüāēěīōūǎǐǒǔǖǘǚǜ]").freeze();
+    static final UnicodeSet                   NOT_NFC             = new UnicodeSet("[:nfc_qc=no:]").freeze();
+    static final UnicodeSet                   NOT_NFD             = new UnicodeSet("[:nfd_qc=no:]").freeze();
+    static final UnicodeSet                   NOT_NFKD             = new UnicodeSet("[:nfkd_qc=no:]").freeze();
+    static final UnicodeSet                   UNIHAN              = new UnicodeSet("[[:ideographic:][:script=han:]]").removeAll(NOT_NFC).freeze();
+
     static Matcher                            unicodeCp           = Pattern.compile("^U\\+(2?[0-9A-F]{4})$").matcher("");
     static final HashMap<String, Boolean>     validPinyin         = new HashMap<String, Boolean>();
-    static final UnicodeSet                   NOT_NFC             = new UnicodeSet("[:nfc_qc=no:]").freeze();
-    static final UnicodeSet                   UNIHAN              = new UnicodeSet("[:script=han:]").removeAll(NOT_NFC).freeze();
     static final Collator                     pinyinSort          = Collator.getInstance(new ULocale("zh@collator=pinyin"));
     static final Collator                     strokeSort          = Collator.getInstance(new ULocale("zh@collator=stroke"));
     static final Collator                     radicalStrokeSort   = Collator.getInstance(new ULocale("zh@collator=unihan"));
     static final Transliterator               toPinyin            = Transliterator.getInstance("Han-Latin;nfc");
     static final Comparator<String>           codepointComparator = new UTF16.StringComparator(true, false, 0);
+    static final Comparator<String>           nfkdComparator = new Comparator<String>() {
+        public int compare(String o1, String o2) {
+            if (!nfkd.isNormalized(o1) || !nfkd.isNormalized(o2)) {
+                String s1 = nfkd.normalize(o1);
+                String s2 = nfkd.normalize(o2);
+                int result = codepointComparator.compare(s1, s2);
+                if (result != 0) {
+                    return result; // otherwise fall through to codepoint comparator
+                }
+            }
+            return codepointComparator.compare(o1, o2);
+        }
+    };
 
     static final UnicodeMap<String>           kTotalStrokes       = Default.ucd().getHanValue("kTotalStrokes");
     static final UnicodeMap<Integer>          bestStrokes         = Default.ucd().getHanValue("kTotalStrokes");
@@ -79,17 +100,12 @@ public class GenerateUnihanCollators {
 
     static {
         System.out.println("kRSUnicode " + kRSUnicode.size());
-        kRSUnicode.putAll(NOT_NFC, null);
-        System.out.println("kRSUnicode " + kRSUnicode.size());
 
         new BihuaReader().process(GenerateUnihanCollators.class, "bihua-chinese-sorting.txt");
         getBestStrokes();
 
         RsInfo.initStrokeInfo();
     }
-    static final Normalizer2                  nfkd                = Normalizer2.getInstance(null, "nfkc", Mode.DECOMPOSE);
-    static final Normalizer2                  nfd                 = Normalizer2.getInstance(null, "nfc", Mode.DECOMPOSE);
-    static final Normalizer2                  nfc                 = Normalizer2.getInstance(null, "nfc", Mode.COMPOSE);
 
     static UnicodeMap<String>                 radicalMap          = new UnicodeMap<String>();
 
@@ -101,28 +117,51 @@ public class GenerateUnihanCollators {
             }
         UnicodeMap added = new UnicodeMap();
         addRadicals(kRSUnicode);
+        closeUnderNFKD("Unihan", kRSUnicode);
     }
 
     public static void main(String[] args) throws Exception {
         showOldData(pinyinSort, "pinyin1.8.txt", false);
         showOldData(strokeSort, "stroke1.8.txt", false);
         showOldData(Collator.getInstance(new ULocale("ja")), "japanese1.8.txt", true);
-        showSorting(RSComparator, kRSUnicode, "radicalStrokeCollation.txt", false);
-        testSorting(RSComparator, kRSUnicode, "radicalStrokeCollation.txt");
 
-        showSorting(PinyinComparator, bestPinyin, "pinyinCollation.txt", false);
-        testSorting(PinyinComparator, bestPinyin, "pinyinCollation.txt");
+        UnicodeSet zh = FindHanSizes.getMostFrequent("zh", 0.999);
+        UnicodeSet zh_Hant = FindHanSizes.getMostFrequent("zh_Hant", 0.999);
 
-        int foo = StrokeComparator.compare("㐀", "㐁");
-        showSorting(StrokeComparator, bestStrokes, "strokeCollation.txt", false);
-        testSorting(StrokeComparator, bestStrokes, "strokeCollation.txt");
+        //Matcher charsetMatcher = Pattern.compile("GB2312|GBK|Big5|Big5-HKSCS").matcher("");
+        UnicodeSet GB2312 = FindHanSizes.getCharsetRepertoire("GB2312");
+        UnicodeSet GBK = FindHanSizes.getCharsetRepertoire("GBK");
+        UnicodeSet Big5 = FindHanSizes.getCharsetRepertoire("Big5");
+        UnicodeSet Big5_HKSCS = FindHanSizes.getCharsetRepertoire("Big5-HKSCS");
+        
+        UnicodeSet shortPinyin = new UnicodeSet(zh).addAll(GB2312).addAll(GBK);
+        UnicodeSet shortStroke = new UnicodeSet(shortPinyin).addAll(zh_Hant).addAll(Big5).addAll(Big5_HKSCS);
 
-        showSorting(PinyinComparator, bestPinyin, "pinyinCollationInterleaved.txt", true);
-        showTranslit("pinyinTranslit.txt");
+        showSorting(RSComparator, kRSUnicode, "unihan");
+
+        showSorting(PinyinComparator, bestPinyin, "pinyin");
+        UnicodeMap<String> shortPinyinMap = new UnicodeMap<String>().putAllFiltered(bestPinyin, shortPinyin);
+        System.out.println("stroke_pinyin base size:\t" + shortPinyinMap.size());
+        showSorting(PinyinComparator, shortPinyinMap, "pinyin_short");
+
+        showSorting(StrokeComparator, bestStrokes, "stroke");
+        UnicodeMap<Integer> shortStrokeMap = new UnicodeMap<Integer>().putAllFiltered(bestStrokes, shortStroke);
+        System.out.println("stroke_stroke base size:\t" + shortStrokeMap.size());
+        showSorting(StrokeComparator, shortStrokeMap, "stroke_short");
+
+        //showSorting(PinyinComparator, bestPinyin, "pinyinCollationInterleaved", true, FileType.TXT);
+
+        showTranslit("Han-Latin");
 
         showBackgroundData();
+        
+        testSorting(RSComparator, kRSUnicode, "unihan.txt");
+        testSorting(PinyinComparator, bestPinyin, "pinyin.txt");
+        testSorting(PinyinComparator, shortPinyinMap, "pinyin_short.txt");
+        testSorting(StrokeComparator, bestStrokes, "stroke.txt");
+        testSorting(StrokeComparator, shortStrokeMap, "stroke_short.txt");
 
-        System.out.println("TODO: test the conversions");
+        System.out.println("TODO: test the translit");
 
         getIndexChars();
     }
@@ -136,7 +175,7 @@ public class GenerateUnihanCollators {
         }
         final UnicodeMap<String>          kJapaneseKun         = Default.ucd().getHanValue("kJapaneseKun");
         final UnicodeMap<String>          kJapaneseOn         = Default.ucd().getHanValue("kJapaneseOn");
-        
+
         StringBuilder buffer = new StringBuilder();
         out.println("#char; strokes; radical; rem-strokes; reading");
         for (String item : sorted) {
@@ -253,6 +292,34 @@ public class GenerateUnihanCollators {
             }
         }
         out.close();
+        
+        new PatchStrokeReader().process(GenerateUnihanCollators.class, "patchStroke.txt");
+    }
+
+    private static <T> void closeUnderNFKD(String title, UnicodeMap<T> mapping) {
+//        UnicodeSet possibles = new UnicodeSet(NOT_NFKD).removeAll(NOT_NFD).removeAll(mapping.keySet());
+//        if (!possibles.contains("㊀")) {
+//            System.out.println("??");
+//        }
+//
+//        for (String s : possibles) {
+//            if (s.equals("㊀")) {
+//                System.out.println("??");
+//            }
+//            String kd = nfkd.normalize(s);
+//            T value = mapping.get(kd);
+//            if (value == null) {
+//                continue;
+//            }
+//            mapping.put(s, value);
+//            System.out.println("*** " + title + " Closing " + s + " => " + kd + "; " + value);
+//        }
+        UnicodeSet extras = new UnicodeSet(NOT_NFKD).retainAll(mapping.keySet());
+        if (extras.size() != 0) {
+            System.out.println("*** " + title + " Removing " + extras.toPattern(false));
+            mapping.putAll(extras, null);
+        }
+        mapping.freeze();
     }
 
     private static void showBackgroundData() throws IOException {
@@ -318,6 +385,9 @@ public class GenerateUnihanCollators {
         for (int k = 0; k < min; ++k) {
             String ruleItem = ruleSorted.get(k);
             String originalItem = originalSorted.get(k);
+            if (ruleItem == null || originalItem == null) {
+                throw new IllegalArgumentException();
+            }
             differ.add(originalItem, ruleItem);
 
             differ.checkMatch(k == min - 1);
@@ -354,7 +424,11 @@ public class GenerateUnihanCollators {
 
     private static <S> String aline(UnicodeMap<S> krsunicode2, Differ<String> differ, int i) {
         String item = differ.getA(i);
-        return "unihan: " + differ.getALine(i) + " " + item + " [" + Utility.hex(item) + "/" + krsunicode2.get(item) + "]";
+        try {
+            return "unihan: " + differ.getALine(i) + " " + item + " [" + Utility.hex(item) + "/" + krsunicode2.get(item) + "]";
+        } catch (RuntimeException e) {
+            throw e;
+        }
     }
 
     private static <S> String bline(UnicodeMap<S> krsunicode2, Differ<String> differ, int i) {
@@ -396,14 +470,62 @@ public class GenerateUnihanCollators {
     }
 
     private static void showTranslit(String filename) {
-        PrintWriter out = Utility.openPrintWriter("han/" + filename, null);
+        PrintWriter out = Utility.openPrintWriter("han/" + filename + ".txt", null);
+        PrintWriter out2 = Utility.openPrintWriter("han/" + filename + ".XML", null);
         TreeSet<String> s = new TreeSet(pinyinSort);
         s.addAll(bestPinyin.getAvailableValues());
+        
+        out2.println("<?xml version='1.0' encoding='UTF-8' ?>\n"
+                +"<!DOCTYPE supplementalData SYSTEM '../../common/dtd/ldmlSupplemental.dtd'>\n"
+                +"<supplementalData>\n"
+                +"  <version number='$Revision: 1.6 $'/>\n"
+                +"  <generation date='$Date: 2010-10-25 18:27:03 $'/>\n"
+                +"  <transforms>\n"
+                +"      <transform source='Han' target='Latin' direction='both'>\n"
+                +"          <comment># Warning: does not do round-trip mapping!!</comment>\n"
+                +"          <comment># Convert CJK characters</comment>\n"
+                +"          <tRule>::Han-Spacedhan();</tRule>\n"
+                +"          <comment># Start RAW data for converting CJK characters</comment>");
+        
         for (String value : s) {
             UnicodeSet uset = bestPinyin.getSet(value);
+            // <tRule>[专叀塼嫥専專瑼甎砖磚篿耑膞蟤跧鄟顓颛鱄鷒]→zhuān;</tRule>
             out.println(uset.toPattern(false) + "→" + value + ";");
+            out2.println("           <tRule>" + uset.toPattern(false) + "→" + value + ";</tRule>");
         }
+
+        out2.println("          <comment># End RAW data for converting CJK characters</comment>\n"
++"          <comment># fallbacks</comment>\n"
++"          <comment>## | yi ← i;</comment>\n"
++"          <comment>## | wu ← u;</comment>\n"
++"          <comment>## | bi ← b;</comment>\n"
++"          <comment>## | ci ← c;</comment>\n"
++"          <comment>## | di ← d;</comment>\n"
++"          <comment>## | fu ← f;</comment>\n"
++"          <comment>## | gu ← g;</comment>\n"
++"          <comment>## | he ← h;</comment>\n"
++"          <comment>## | ji ← j;</comment>\n"
++"          <comment>## | ku ← k;</comment>\n"
++"          <comment>## | li ← l;</comment>\n"
++"          <comment>## | mi ← m;</comment>\n"
++"          <comment>## | pi ← p;</comment>\n"
++"          <comment>## | qi ← q;</comment>\n"
++"          <comment>## | l ← r;</comment>\n"
++"          <comment>## | si ← s;</comment>\n"
++"          <comment>## | ti ← t;</comment>\n"
++"          <comment>## | f ← v;</comment>\n"
++"          <comment>## | wa ← w;</comment>\n"
++"          <comment>## | xi ← x;</comment>\n"
++"          <comment>## | yi ← y;</comment>\n"
++"          <comment>## | zi ← z;</comment>\n"
++"          <comment># filter out the half-width hangul</comment>\n"
++"          <comment># :: [^ﾾ-￮] fullwidth-halfwidth ();</comment>\n"
++"          <comment>## :: (lower) ;</comment>\n"
++"      </transform>\n"
++"  </transforms>\n"
++"</supplementalData>");
         out.close();
+        out2.close();
     }
 
     public static int getSortOrder(int codepoint) {
@@ -489,6 +611,7 @@ public class GenerateUnihanCollators {
                 bestStrokes.put(s, computedStrokes);
                 out.println("U+" + Utility.hex(s) + "\tkImputedStrokes\t" + computedStrokes + "\t#\t" + s);
             }
+            closeUnderNFKD("Strokes", bestStrokes);
             out.close();
         }
     }
@@ -553,20 +676,43 @@ public class GenerateUnihanCollators {
         }
     };
 
-    private static <S> void showSorting(Comparator<String> comparator, UnicodeMap<S> unicodeMap, String filename, boolean interleave) {
-        PrintWriter out = Utility.openPrintWriter("han/" + filename, null);
+    static enum FileType {TXT, XML}
+
+    private static <S> void showSorting(Comparator<String> comparator, UnicodeMap<S> unicodeMap, String filename) {
+        showSorting(comparator, unicodeMap, filename, FileType.TXT);
+        showSorting(comparator, unicodeMap, filename, FileType.XML);
+    }
+
+    private static <S> void showSorting(Comparator<String> comparator, UnicodeMap<S> unicodeMap, String filename, FileType fileType) {
+        UnicodeSet accumulated = new UnicodeSet();
+        PrintWriter out = Utility.openPrintWriter("han/" + filename + "." + fileType, null);
         TreeSet<String> rsSorted = new TreeSet<String>(comparator);
         StringBuilder buffer = new StringBuilder();
-        for (String s : UNIHAN) {
+        for (String s : unicodeMap) {
+//            S newValue = unicodeMap.get(s);
+//            if (newValue == null) continue;
+            if (s.codePointCount(0, s.length()) != 1) {
+                throw new IllegalArgumentException("Wrong length!!");
+            }
             rsSorted.add(s);
         }
-        if (interleave) {
-            out.println("#[import XXX]");
-            out.println("# 1. need to decide whether Latin pinyin comes before or after Han characters with that pinyin.");
-            out.println("#\tEg, with <* 叭吧巴𣬶𣬷笆罢罷 <* 㓦𢛞挀掰擘𨃅䪹 #bāi, do we have 罷 < bāi or have 䪹 < bāi");
-            out.println("# 2. need to also do single latin characters, and case variants");
-        } else {
+        if (fileType == FileType.TXT) {
             out.println("&[last regular]");
+        } else {
+            out.println(
+                    "<?xml version='1.0' encoding='UTF-8' ?>\n"
+                    +"<!DOCTYPE ldml SYSTEM '/Users/markdavis/Documents/workspace/cldr/common/dtd/ldml.dtd'>\n"
+                    +"<ldml>\n"
+                    +"    <identity>\n"
+                    +"        <version number='$Revision: 1.6 $' />\n"
+                    +"        <generation date='$Date: 2010-10-25 18:27:03 $' />\n"
+                    +"        <language type='zh' />\n"
+                    +"    </identity>\n"
+                    +"    <collations>\n"
+                    +"        <collation type='" + filename + "'>\n"
+                    +"            <rules>\n"
+                    +"               <reset><last_non_ignorable /></reset>"
+            );
         }
         S oldValue = null;
         String lastS = null;
@@ -575,10 +721,24 @@ public class GenerateUnihanCollators {
             if (!equals(newValue, oldValue)) {
                 if (oldValue == null) {
                     // do nothing
-                } else if (interleave) {
-                    out.println("&" + sortingQuote(lastS) + "<" + sortingQuote(oldValue));
                 } else {
-                    out.println("<*" + sortingQuote(buffer.toString()) + "\t#" + sortingQuote(oldValue));
+                    if (buffer.codePointCount(0, buffer.length()) < 128) {
+                        if (fileType == FileType.TXT) {
+                            out.println("<*" + sortingQuote(buffer.toString(), accumulated) + "\t#" + sortingQuote(oldValue, accumulated));
+                        } else {
+                            out.println("               <pc>" + buffer + "</pc><!-- " + oldValue + " -->");
+                        }
+                    } else {
+                        int count = 1;
+                        while (buffer.length() > 0) {
+                            String temp = extractFirst(buffer, 128);
+                            if (fileType == FileType.TXT) {
+                                out.println("<*" + sortingQuote(temp.toString(), accumulated) + "\t#" + sortingQuote(oldValue, accumulated) + " (p" + count++ + ")");
+                            } else {
+                                out.println("               <pc>" + temp + "</pc><!-- " + oldValue + " (p" + count++ + ") -->");
+                            }
+                        }
+                    }
                 }
                 buffer.setLength(0);
                 oldValue = newValue;
@@ -588,37 +748,69 @@ public class GenerateUnihanCollators {
         }
 
         if (oldValue != null) {
-            if (interleave) {
-                out.println("&" + sortingQuote(lastS) + "<" + sortingQuote(oldValue));
+            if (fileType == FileType.TXT) {
+                out.println("<*" + sortingQuote(buffer.toString(), accumulated) + "\t#" + sortingQuote(oldValue, accumulated));
             } else {
-                out.println("<*" + sortingQuote(buffer.toString()) + "\t#" + oldValue);
+                out.println("               <pc>" + buffer + "</pc><!-- " + oldValue + " -->");
             }
-        } else if (!interleave) {
-            UnicodeSet missing = new UnicodeSet().addAll(buffer.toString());
-            System.out.println("MISSING" + "\t" + missing.toPattern(false));
-            UnicodeSet tailored = new UnicodeSet(UNIHAN).removeAll(missing);
+            buffer.setLength(0);
+        }
+        
+        UnicodeSet missing = new UnicodeSet().addAll(buffer.toString());
+        System.out.println("MISSING" + "\t" + missing.toPattern(false));
+        UnicodeSet tailored = new UnicodeSet(unicodeMap.keySet()).removeAll(missing);
 
-            for (String s : new UnicodeSet("[:nfkd_qc=n:]").removeAll(tailored)) { // decomposable,
-                // but
-                // not
-                // tailored
-                String kd = nfkd.getDecomposition(s.codePointAt(0));
-                if (!tailored.containsSome(kd))
-                    continue; // the decomp has to contain at least one tailored
-                // character
-                String d = nfd.getDecomposition(s.codePointAt(0));
-                if (kd.equals(d))
-                    continue; // the NFD characters are already handled by UCA
-                out.println("&" + sortingQuote(kd) + "<<<" + sortingQuote(s));
+        TreeSet<String> sorted = new TreeSet<String>(nfkdComparator);
+        new UnicodeSet(NOT_NFKD).removeAll(NOT_NFD).removeAll(tailored).addAllTo(sorted);
+        
+        for (String s : sorted) {
+            // decomposable, but not tailored
+            String kd = nfkd.getDecomposition(s.codePointAt(0));
+            if (!tailored.containsSome(kd))
+                continue; // the decomp has to contain at least one tailored
+//            if (tailored.containsAll(kd))
+//                continue; //already have it
+            // character
+            if (fileType == FileType.TXT) {
+                out.println("&" + sortingQuote(kd, accumulated) + "<<<" + sortingQuote(s, accumulated));
+            } else {
+                out.println("               <reset>" + kd + "</reset>");
+                out.println("               <t>" + s + "</t>");
             }
         }
+        if (fileType == FileType.XML) {
+            out.println(
+                    "           </rules>\n" +
+                    "        </collation>\n" +
+                    "    </collations>\n" +
+                    "</ldml>"
+            );
+        }
+
         out.close();
+        out = Utility.openPrintWriter("han/" + filename + "_repertoire.txt", null);
+        out.println(accumulated.toPattern(false));
+        out.close();
+    }
+
+    private static String extractFirst(StringBuilder buffer, int i) {
+        String result;
+        try {
+            int charEnd = buffer.offsetByCodePoints(0, i);
+            result = buffer.substring(0, charEnd);
+            buffer.delete(0, charEnd);
+        } catch (Exception e) {
+            result = buffer.toString();
+            buffer.setLength(0);
+        }
+        return result;
     }
 
     private static UnicodeSet NEEDSQUOTE = new UnicodeSet("[[:pattern_syntax:][:pattern_whitespace:]]");
 
-    private static <T> String sortingQuote(T input) {
+    private static <T> String sortingQuote(T input, UnicodeSet accumulated) {
         String s = input.toString();
+        accumulated.addAll(s);
         s = s.replace("'", "''");
         if (NEEDSQUOTE.containsSome(s)) {
             s = '\'' + s + '\'';
@@ -704,10 +896,10 @@ public class GenerateUnihanCollators {
 
         addVariants("kSimplifiedVariant", kSimplifiedVariant);
         count += showAdded("kSimplifiedVariant", count);
+        
+        new PatchPinyinReader().process(GenerateUnihanCollators.class, "patchPinyin.txt");
 
-        UnicodeSet canonicalDuplicates = new UnicodeSet(bestPinyin.keySet()).retainAll(NOT_NFC);
-        bestPinyin.putAll(NOT_NFC, null);
-        System.out.println("removed duplicates " + canonicalDuplicates.size() + ": " + canonicalDuplicates);
+        closeUnderNFKD("Pinyin", bestPinyin);
 
         printExtraPinyinForUnihan();
     }
@@ -913,5 +1105,42 @@ public class GenerateUnihanCollators {
             return true;
         }
     };
+    
+    static final class PatchPinyinReader extends SemiFileReader {
 
+        protected boolean isCodePoint() {
+            return false;
+        };
+
+        protected boolean handleLine(int start, int end, String[] items) {
+            if (items.length > 1) {
+                if (!UNIHAN.contains(items[0])) {
+                    throw new IllegalArgumentException("Non-Unihan character: " + items[0]);
+                }
+                if (!PINYIN_LETTERS.containsAll(items[1])) {
+                    throw new IllegalArgumentException("Non-Pinyin character: " + items[1] 
+                    + "; " + new UnicodeSet().addAll(items[1]).removeAll(PINYIN_LETTERS));
+                }
+                addPinyin("patchPinyin", items[0], items[1]);
+            }
+            return true;
+        }
+    }
+
+    static final class PatchStrokeReader extends SemiFileReader {
+
+        protected boolean isCodePoint() {
+            return false;
+        };
+
+        protected boolean handleLine(int start, int end, String[] items) {
+            if (!UNIHAN.contains(items[0])) {
+                throw new IllegalArgumentException("Non-Unihan character: " + items[0]);
+            }
+            if (items.length > 1) {
+                bestStrokes.put(items[0], Integer.parseInt(items[1]));
+            }
+            return true;
+        }
+    }
 }

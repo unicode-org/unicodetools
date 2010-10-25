@@ -27,6 +27,12 @@ public class CharEncoder {
   private ByteBuffer byteBuffer = ByteBuffer.allocate(5);
   private CharBuffer returnCharBuffer = CharBuffer.wrap(returnChars);
 
+  /**
+   * 
+   * @param charset
+   * @param verifyRoundtrip
+   * @param justCheck
+   */
   public CharEncoder(Charset charset, boolean verifyRoundtrip, boolean justCheck) {
     this.verifyRoundtrip = verifyRoundtrip;
     this.justCheck = justCheck;

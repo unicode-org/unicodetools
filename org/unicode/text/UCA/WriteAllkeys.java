@@ -40,7 +40,8 @@ public class WriteAllkeys {
         		"# Unlike the DUCET, the ordering is by non-ignorable sort order.\n"
                 );
         
-        UCA.UCAContents cc = WriteCollationData.getCollator(collatorType).getContents(UCA.FIXED_CE, null);
+        UCA collator = WriteCollationData.getCollator(collatorType);
+        UCA.UCAContents cc = collator.getContents(UCA.FIXED_CE, null);
         
         Map<String,String> sorted = new TreeMap();
     
@@ -51,23 +52,40 @@ public class WriteAllkeys {
             }
         
             Utility.dot(counter++);
-            String colDbase = WriteCollationData.getCollator(collatorType).getSortKey(s, UCA.NON_IGNORABLE, true, true);
+            String colDbase = collator.getSortKey(s, UCA.SHIFTED, true, true);
             sorted.put(colDbase, s);
         }
-        int variableTop = UCA.getPrimary(WriteCollationData.getCollator(collatorType).getVariableHighCE());
+        int variableTop = UCA.getPrimary(collator.getVariableHighCE());
+        StringBuilder extraComment = new StringBuilder();
         for (Entry<String, String> entry : sorted.entrySet()) {
             //String key = entry.getKey();
             String value = entry.getValue();
-            String sortkey = WriteCollationData.getCollator(collatorType).getSortKey(value, UCA.NON_IGNORABLE, true, false);
-            // 0000  ; [.0000.0000.0000.0000] # [0000] NULL (in 6429)
-            // 0430 0306 ; [.1947.0020.0002.04D1] # CYRILLIC SMALL LETTER A WITH BREVE
-            // 1F60  ; [.1904.0020.0002.03C9][.0000.0022.0002.0313] # GREEK SMALL LETTER OMEGA WITH PSILI; QQCM
+            String hex = Utility.hex(value, " ");
+            if (hex.length() < 5) {
+                hex += " ";
+            }
+            CEList ceList = collator.getCEList(value, true);
+            if (ceList == null) {
+                String sortkey = collator.getSortKey(value, UCA.NON_IGNORABLE, true, false);
+                // 0000  ; [.0000.0000.0000.0000] # [0000] NULL (in 6429)
+                // 0430 0306 ; [.1947.0020.0002.04D1] # CYRILLIC SMALL LETTER A WITH BREVE
+                // 1F60  ; [.1904.0020.0002.03C9][.0000.0022.0002.0313] # GREEK SMALL LETTER OMEGA WITH PSILI; QQCM
+    
+                log.println(hex 
+                        + " ; " + UCA.toStringUCA(sortkey, value, variableTop, extraComment)
+                        + " # " + Default.ucd().getName(value)
+                        + extraComment
+                        );
+            } else {
+                    log.println(hex 
+                            + " ; " + UCA.toStringUCA(ceList, value, variableTop, extraComment)
+                            + " # " + Default.ucd().getName(value)
+                            + extraComment
+                            );
 
-            log.println(Utility.hex(value, " ") 
-                    + "\t;\t" + UCA.toStringUCA(sortkey, value, variableTop)
-                    + "\t#\t" + Default.ucd().getName(value)
-                    );
+            }
         }
+        log.close();
     }
     
     static String dropIdentical(String sortKeyWithIdentical) {
