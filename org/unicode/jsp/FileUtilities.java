@@ -101,7 +101,6 @@ public final class FileUtilities {
       }
       return this;
     }
-
   }
   //
   //  public static SemiFileReader fillMapFromSemi(Class classLocation, String fileName, SemiFileReader handler) {
@@ -178,4 +177,22 @@ public final class FileUtilities {
       return result.toArray(new String[result.size()]);
     }
 
+  public static String getFileAsString(BufferedReader in) {
+      try {
+        StringBuilder result = new StringBuilder();
+          while (true) {
+              String line = in.readLine();
+              if (line == null) {
+                  break;
+              }
+              if (result.length() != 0) {
+                  result.append('\n');
+              }
+              result.append(line);
+          }
+          return result.toString();
+    } catch (IOException e) {
+        throw new IllegalArgumentException(e);
+    }
+  }
 }

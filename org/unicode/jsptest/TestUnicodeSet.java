@@ -1,7 +1,10 @@
 package org.unicode.jsptest;
 
 import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
@@ -13,13 +16,14 @@ import org.unicode.jsp.Common;
 import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.XPropertyFactory;
-import org.unicode.jsp.Common.NFKC_CF;
 
 import com.ibm.icu.dev.test.AbstractTestLog;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
+import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.TimeZone;
@@ -32,6 +36,11 @@ public class TestUnicodeSet  extends TestFmwk {
     
     public void TestAExemplars() {
         checkProperties("[:exemplars_en:]", "[a]", "[\u0350]");
+    }
+
+    public void TestAEncodings() {
+        checkProperties("[:isEncSJIS:]", "[\\u00B0]", "[\u0350]");
+        checkProperties("[:isEncEUCKR:]", "[\\u00B0]", "[\u0350]");
     }
 
     public void TestU60 () {
@@ -60,6 +69,59 @@ public class TestUnicodeSet  extends TestFmwk {
         assertEquals("6.0 uca", 5, uca.size()); // really 749, but we flatten the set
 
     }
+    
+    public void TestICUEnums() {
+        UnicodeSet nonchars = UnicodeSetUtilities.parseUnicodeSet("\\p{noncharactercodepoint}");
+        assertEquals("Nonchars",new UnicodeSet("[:noncharactercodepoint:]").complement().complement(), nonchars.complement().complement());
+
+        XPropertyFactory factory = XPropertyFactory.make();
+        for (int propEnum = UProperty.INT_START; propEnum < UProperty.INT_LIMIT; ++propEnum) {
+            checkProperty(factory, propEnum);
+        }
+        for (int propEnum = UProperty.BINARY_START; propEnum < UProperty.BINARY_LIMIT; ++propEnum) {
+            checkProperty(factory, propEnum);
+        }
+    }
+
+    private void checkProperty(XPropertyFactory factory, int propEnum) {
+        try {
+            int min = UCharacter.getIntPropertyMinValue(propEnum);
+            int max = UCharacter.getIntPropertyMaxValue(propEnum);
+            String propName = UCharacter.getPropertyName(propEnum, NameChoice.SHORT);
+            if (propName == null) {
+                logln("Skipping name=null for prop number: " + propEnum);
+                return;
+            }
+            UnicodeProperty prop3 = factory.getProperty(propName);
+            Set<String> toolValues = new TreeSet<String>(prop3.getAvailableValues());
+            logln(propName);
+            for (int value = min; value <= max; ++value) {
+                UnicodeSet icuSet = new UnicodeSet().applyIntPropertyValue(propEnum, value);
+                String valueName = UCharacter.getPropertyValueName(propEnum, value, NameChoice.SHORT);
+                if (valueName == null) {
+                    valueName = UCharacter.getPropertyValueName(propEnum, value, NameChoice.LONG);
+                }
+                if (valueName == null) {
+                    valueName = String.valueOf(value); // for ccc
+                }
+                UnicodeSet toolSet = prop3.getSet(valueName);
+                try {
+                    List<String> namesFound = prop3.getValueAliases(valueName);
+                    toolValues.removeAll(namesFound);
+                } catch (Exception e) {
+                    errln(propName + "=" + valueName + " problem: " + e);
+                }
+                assertEquals(propName + "=" + valueName, icuSet, toolSet);
+            }
+            if (propName.equals("gc")) {
+                toolValues.removeAll(Arrays.asList("Cased_Letter, Letter, Mark, Number, Other, Punctuation, Separator, Symbol".split(", ")));
+            }
+            assertEquals(propName + " missing values", Collections.EMPTY_SET, toolValues);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("PropEnum: " + propEnum, e);
+        }
+    }
+    
     public void TestEncodingProp() {
 
         XPropertyFactory factory = XPropertyFactory.make();

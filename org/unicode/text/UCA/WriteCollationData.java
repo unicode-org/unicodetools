@@ -5,8 +5,8 @@
  *******************************************************************************
  *
  * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCA/WriteCollationData.java,v $ 
- * $Date: 2010-10-13 00:14:14 $ 
- * $Revision: 1.68 $
+ * $Date: 2010-10-25 18:27:03 $ 
+ * $Revision: 1.69 $
  *
  *******************************************************************************
  */
@@ -24,7 +24,6 @@ import java.text.DateFormat;
 import java.text.RuleBasedCollator;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;

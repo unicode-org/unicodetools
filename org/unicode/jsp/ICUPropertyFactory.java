@@ -45,7 +45,16 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
       setName(propName);
       this.propEnum = propEnum;
       setType(internalGetPropertyType(propEnum));
-      if (propEnum == UProperty.DEFAULT_IGNORABLE_CODE_POINT || propEnum == UProperty.BIDI_CLASS) {
+      if (propEnum == UProperty.DEFAULT_IGNORABLE_CODE_POINT
+              || propEnum == UProperty.BIDI_CLASS
+              || propEnum == UProperty.BLOCK
+              || propEnum == UProperty.EAST_ASIAN_WIDTH
+              || propEnum == UProperty.LINE_BREAK
+              || propEnum == UProperty.NONCHARACTER_CODE_POINT
+              || propEnum == UProperty.PATTERN_SYNTAX
+              || propEnum == UProperty.PATTERN_WHITE_SPACE
+              || propEnum == UProperty.CHANGES_WHEN_CASEFOLDED
+              ) {
         setUniformUnassigned(false);
       }
     }

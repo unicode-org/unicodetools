@@ -3,7 +3,10 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
+import com.ibm.icu.lang.UScript;
+import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Calendar;
 import com.ibm.icu.util.ULocale;
@@ -15,6 +18,11 @@ public class Hello {
      * @param args
      */
     public static void main(String[] args) {
+        int foo = UScript.getCodeFromName("Grek");
+        int foo2 = UScript.getCodeFromName("Greek");
+        checkCollator(ULocale.ENGLISH);
+        checkCollator(ULocale.CHINA);
+        if (true) return;
         // TODO Auto-generated method stub
         UnicodeSet junk = new UnicodeSet("[\\U0001F1FF {\\U0001F1E8 \\U0001F1F3} {\\U0001F1E9 \\U0001F1EA} {\\U0001F1EA \\U0001F1F8} {\\U0001F1EB \\U0001F1F7} {\\U0001F1EC \\U0001F1E7} {\\U0001F1EE \\U0001F1F9} {\\U0001F1EF \\U0001F1F5} {\\U0001F1F0 \\U0001F1F7} {\\U0001F1F7 \\U0001F1FA} {\\U0001F1FA \\U0001F1F8} ]");
         junk.toString();
@@ -26,6 +34,51 @@ public class Hello {
         System.out.println("hi " + Arrays.asList(args) + ", " + s);
         DateFormat df = DateFormat.getPatternInstance(DateFormat.HOUR_MINUTE_GENERIC_TZ, ULocale.FRANCE);
         System.out.println(df.format(new Date()));
+
+    }
+
+    private static void checkCollator(ULocale locale) {
+        System.out.println("Locale:\t" + locale);
+        NumberFormat nf = NumberFormat.getInstance(ULocale.ENGLISH);
+        nf.setGroupingUsed(true);
+        Collator c = Collator.getInstance(locale);
+        int iterations = 10000000;
+        
+        long start = System.nanoTime();
+        for (int i = 0; i < iterations; ++i) {
+            c = Collator.getInstance(locale);
+        }
+        long end = System.nanoTime();
+        System.out.println(".getInstance nanos: " + nf.format((end-start)/(double)iterations) + " ns");
+
+        Collator d;
+        try {
+            d = (Collator) c.clone();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        start = System.nanoTime();
+        for (int i = 0; i < iterations; ++i) {
+            try {
+                d = (Collator) c.clone();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        end = System.nanoTime();
+        System.out.println(".clone nanos: " + nf.format((end-start)/(double)iterations) + " ns");
+
+        try {
+        start = System.nanoTime();
+        for (int i = 0; i < iterations; ++i) {
+                d = (Collator) c.clone();
+        }
+        end = System.nanoTime();
+        } catch (RException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(".clone (no try) nanos: " + nf.format((end-start)/(double)iterations) + " ns");
 
     }
 

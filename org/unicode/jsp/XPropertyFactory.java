@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.UnicodeProperty.BaseProperty;
 import org.unicode.jsp.UnicodeProperty.SimpleProperty;
-import org.unicode.jsp.XPropertyFactory.HanType.HanTypeValues;
 
 import sun.text.normalizer.UTF16;
 
@@ -32,6 +31,8 @@ import com.ibm.icu.util.VersionInfo;
 public class XPropertyFactory extends UnicodeProperty.Factory {
 
     static final UnicodeSet ALL = new UnicodeSet("[[:^C:][:Cc:][:Cf:][:noncharactercodepoint:]]").freeze();
+
+    private static final boolean DEBUG_CHARSET_NAMES = false;
 
     private static XPropertyFactory singleton = null;
 
@@ -124,6 +125,8 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         add(new UnicodeSetProperty().set(emojiSource).setMain("emoji", "emoji", UnicodeProperty.BINARY, "6.0"));
 
+        add(new UnicodeSetProperty().set(new UnicodeSet("[\\u0000-\\uFFFF]")).setMain("bmp", "bmp", UnicodeProperty.BINARY, "6.0"));
+
         addCollationProperty();
 
         // set up the special script property
@@ -138,7 +141,8 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         );
 
         SortedMap<String, Charset> charsets = Charset.availableCharsets();
-        Matcher charsetMatcher = Pattern.compile("ISO-8859-\\d*|GB2312|Shift_JIS|GBK|Big5").matcher("");
+        if (DEBUG_CHARSET_NAMES) System.out.println(charsets.keySet());
+        Matcher charsetMatcher = Pattern.compile("ISO-8859-\\d*|GB2312|Shift_JIS|GBK|Big5|EUC-KR").matcher("");
         for (String name : charsets.keySet()) {
             if (!charsetMatcher.reset(name).matches()) {
                 continue;
@@ -147,10 +151,19 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             EncodingProperty prop = new EncodingProperty(charset);
             prop.setType(UnicodeProperty.STRING);
             prop.setName("enc_" + name);
+
+            EncodingPropertyBoolean isProp = new EncodingPropertyBoolean(charset);
+            isProp.setType(UnicodeProperty.BINARY);
+            isProp.setName("is_enc_" + name);
+
             for (String alias : charset.aliases()) {
+                if (DEBUG_CHARSET_NAMES) System.out.println(name + " => " + alias);
                 prop.addName("enc_" + alias);
+                isProp.addName("isEnc_" + alias);
             }
+            
             add(prop);
+            add(isProp);
         }
 
         // exemplars
@@ -440,6 +453,20 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             return result.length() == 2 ? result : "0" + result;
         }
     }
+
+    public static class EncodingPropertyBoolean extends SimpleProperty {
+
+        CharEncoder encoder;
+        
+        EncodingPropertyBoolean(Charset charset) {
+            encoder = new CharEncoder(charset, true, true);
+        }
+
+        protected String _getValue(int codepoint) {
+            return (encoder.getValue(codepoint, null, 0) > 0) ? "Yes" : "No";
+        }
+    }
+
 
     public static class UnicodeSetProperty extends BaseProperty {
         protected UnicodeSet unicodeSet;
