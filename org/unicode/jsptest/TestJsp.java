@@ -56,7 +56,7 @@ public class TestJsp  extends TestFmwk {
 
   private static final String enSample = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z";
   static final UnicodeSet U5_2 = new UnicodeSet().applyPropertyAlias("age", "5.2").freeze();
-  static final UnicodeSet U5_1 = new UnicodeSet().applyPropertyAlias("age", "5.1").freeze();
+  public static final UnicodeSet U5_1 = new UnicodeSet().applyPropertyAlias("age", "5.1").freeze();
   static UnicodeSet BREAKING_WHITESPACE = new UnicodeSet("[\\p{whitespace=true}-\\p{linebreak=glue}]").freeze();
 
   public static void main(String[] args) throws Exception {
@@ -147,6 +147,10 @@ public class TestJsp  extends TestFmwk {
       IdnaType type46 = Uts46.SINGLETON.types.get(i);
       if (type46 == IdnaType.ignored) {
         assertNotNull("tr46ignored U+" + codeAndName(i), map46);
+      } else if (type46 == IdnaType.deviation) {
+          type46 = map46 == null || map46.length() == 0
+          ? IdnaType.ignored 
+                  : IdnaType.mapped;
       }
       if (type2003 == IdnaType.ignored) {
         assertNotNull("2003ignored", map2003);
@@ -178,7 +182,8 @@ public class TestJsp  extends TestFmwk {
     IdnaType type;
     String mapping;
   }
-  public void TestIdna2003() {
+  
+  public void TestIdnaAndIcu() {
     StringBuffer inbuffer = new StringBuffer();
     TypeAndMap typeAndMapIcu = new TypeAndMap();
     
@@ -187,8 +192,8 @@ public class TestJsp  extends TestFmwk {
       inbuffer.appendCodePoint(cp);
       getIcuIdna(inbuffer, typeAndMapIcu);
       
-      IdnaType type = Idna2003.SINGLETON.getType(cp);
-      String mapping = Idna2003.SINGLETON.mappings.get(cp);
+      IdnaType type = Uts46.SINGLETON.getType(cp); // used to be Idna2003.
+      String mapping = Uts46.SINGLETON.mappings.get(cp); // used to be Idna2003.
       if (type != typeAndMapIcu.type || !UnicodeProperty.equals(mapping, typeAndMapIcu.mapping)) {
         inbuffer.setLength(0);
         inbuffer.appendCodePoint(cp);
@@ -203,6 +208,7 @@ public class TestJsp  extends TestFmwk {
   }
 
   private void getIcuIdna(StringBuffer inbuffer, TypeAndMap typeAndMapIcu) {
+      
     typeAndMapIcu.type = null;
     typeAndMapIcu.mapping = null;
     try {
@@ -235,20 +241,74 @@ public class TestJsp  extends TestFmwk {
       typeAndMapIcu.mapping = null;
     }
   }
-
+  
   private static StringBuffer convertWithHack(StringBuffer inbuffer) throws StringPrepParseException {
-    StringBuffer intermediate;
-    try {
-      intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
-    } catch (StringPrepParseException e) {
-      if (!e.getMessage().contains("BIDI")) {
-        throw e;
+      StringBuffer intermediate;
+      try {
+        intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+      } catch (StringPrepParseException e) {
+        if (!e.getMessage().contains("BIDI")) {
+          throw e;
+        }
+        inbuffer.append("\\u05D9");
+        intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
       }
-      inbuffer.append("\\u05D9");
-      intermediate = IDNA.convertToASCII(inbuffer, IDNA.USE_STD3_RULES); // USE_STD3_RULES,
+      return intermediate;
     }
-    return intermediate;
+
+
+  private void getIcuIdnaUts(StringBuilder inbuffer, TypeAndMap typeAndMapIcu) {
+      IDNA icuIdna = IDNA.getUTS46Instance(0);
+      IDNA.Info info = new IDNA.Info();
+      
+    typeAndMapIcu.type = null;
+    typeAndMapIcu.mapping = null;
+    try {
+      StringBuilder intermediate = convertWithHackUts(inbuffer, icuIdna);
+      // DEFAULT
+      if (intermediate.length() == 0) {
+        typeAndMapIcu.type = IdnaType.ignored;
+        typeAndMapIcu.mapping = "";
+      } else {
+        StringBuilder outbuffer = icuIdna.nameToUnicode(intermediate.toString(), intermediate, info);
+        if (!UnicodeUtilities.equals(inbuffer, outbuffer)) {
+          typeAndMapIcu.type = IdnaType.mapped;
+          typeAndMapIcu.mapping = outbuffer.toString();
+        } else {
+          typeAndMapIcu.type = IdnaType.valid;
+          typeAndMapIcu.mapping = null;
+        }
+      }
+    } catch (StringPrepParseException e) {
+      if (e.getMessage().startsWith("Found zero length")) {
+        typeAndMapIcu.type = IdnaType.ignored;
+        typeAndMapIcu.mapping = null;
+      } else {
+        typeAndMapIcu.type = IdnaType.disallowed;
+        typeAndMapIcu.mapping = null;
+      }
+    } catch (Exception e) {
+      logln("Failure at: " + Utility.hex(inbuffer));
+      typeAndMapIcu.type = IdnaType.disallowed;
+      typeAndMapIcu.mapping = null;
+    }
   }
+
+  private static StringBuilder convertWithHackUts(StringBuilder inbuffer, IDNA icuIdna) throws StringPrepParseException {
+      StringBuilder intermediate;
+      try {
+        intermediate = icuIdna.nameToASCII(inbuffer.toString(), inbuffer, null); // USE_STD3_RULES,
+      } catch (RuntimeException e) {
+        if (!e.getMessage().contains("BIDI")) {
+          throw e;
+        }
+        inbuffer.append("\\u05D9");
+        intermediate = icuIdna.nameToASCII(inbuffer.toString(), inbuffer, null); // USE_STD3_RULES,
+      }
+      return intermediate;
+    }
+
+
 
 
   public void TestIdnaProps() {
@@ -795,7 +855,7 @@ private void showIcuEnums() {
               "reserved = [[:ascii:][:sc=grek:]&[:alphabetic:]];\n",
             "http://αβγ?huh=hi#there"},
             {
-              "/Users/markdavis/Documents/workspace/cldr-code/java/org/unicode/cldr/util/data/langtagRegex.txt"
+              "/Users/markdavis/Documents/workspace/cldr/tools/java/org/unicode/cldr/util/data/langtagRegex.txt"
             }
     };
     for (int i = 0; i < tests.length; ++i) {

@@ -75,7 +75,7 @@ public class Hello {
                 d = (Collator) c.clone();
         }
         end = System.nanoTime();
-        } catch (RException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         System.out.println(".clone (no try) nanos: " + nf.format((end-start)/(double)iterations) + " ns");

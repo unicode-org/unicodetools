@@ -122,6 +122,7 @@ public class UnicodeJsp {
 
   static String defaultIdnaInput = ""
     +"fass.de faß.de fäß.de xn--fa-hia.de"
+    + "\n₹.com 𑀓.com"
     + "\n\u0080.com xn--a.com a\u200cb xn--ab-j1t"
     +"\nöbb.at ÖBB.at ÖBB.at"
     +"\nȡog.de ☕.de I♥NY.de"
