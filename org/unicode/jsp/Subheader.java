@@ -22,7 +22,7 @@ import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
-class Subheader implements Iterable<String> { 
+public class Subheader implements Iterable<String> { 
   static final boolean DEBUG = true;
   Matcher subheadMatcher = Pattern.compile("(@+)\\s+(.*)").matcher("");
   Matcher hexMatcher = Pattern.compile("([A-Z0-9]+).*").matcher("");
@@ -31,7 +31,7 @@ class Subheader implements Iterable<String> {
   Map<String,Set<String>> block2subblock = new TreeMap<String, Set<String>>();
   Map<String,Set<String>> subblock2block = new TreeMap<String, Set<String>>();
 
-  Subheader(String unicodeDataDirectory) {
+  public Subheader(String unicodeDataDirectory) {
     try {
       subblock2UnicodeSet = getDataFromFile(unicodeDataDirectory + "NamesList.txt");
     } catch (IOException e) {
@@ -117,7 +117,7 @@ class Subheader implements Iterable<String> {
     return subblock2UnicodeSet2;
   }
 
-  String getSubheader(int codepoint) {
+  public String getSubheader(int codepoint) {
     return codePoint2Subblock.get(codepoint);
   }
 

@@ -65,48 +65,6 @@ public class TestGenerate   extends TestFmwk{
     }
   }
 
-  public void TestIdnaFiles() {
-    UnicodeMap<Idna2008.Idna2008Type> idna2008Map = Idna2008.getTypeMapping();
-    UnicodeSet fileValid = new UnicodeSet()
-    .addAll(idna2008Map.getSet(Idna2008Type.PVALID))
-    .addAll(idna2008Map.getSet(Idna2008Type.CONTEXTJ))
-    .addAll(idna2008Map.getSet(Idna2008Type.CONTEXTO));
-    UnicodeSet valid2008_51 = new UnicodeSet(TestJsp.U5_1).retainAll(UnicodeUtilities.getIdna2008Valid());
-    if (!fileValid.equals(valid2008_51)) {
-      System.out.println("fileValid:\n" + new UnicodeSet(fileValid).removeAll(valid2008_51));
-      System.out.println("computeValid:\n" + new UnicodeSet(valid2008_51).removeAll(fileValid));
-    }
-
-    UnicodeMap<String> diff = new UnicodeMap();
-    for (int i = 0; i <= 0x10FFFF; ++i) {
-      if (UnicodeUtilities.IGNORE_IN_IDNA_DIFF.contains(i)) {
-        continue;
-      }
-      IdnaType type = Uts46.SINGLETON.getType(i);
-      Idna2008Type idna2008 = idna2008Map.get(i);
-      if (type == IdnaType.ignored) {
-        type = IdnaType.mapped;
-      }
-
-      IdnaType idna2003 = Idna2003.getIDNA2003Type(i);
-      if (idna2003 == IdnaType.ignored) {
-        idna2003 = IdnaType.mapped;
-      }
-      
-      IdnaType idna2008Mapped = 
-        (idna2008 == Idna2008Type.UNASSIGNED || idna2008 == Idna2008Type.DISALLOWED) ? IdnaType.disallowed
-                : IdnaType.valid;
-      
-      VersionInfo age = UCharacter.getAge(i);
-      String ageString = age.getMajor() >= 4 ? "U4+" : "U3.2";
-      diff.put(i, ageString + "_" + idna2003 + "_" + type + "_" + idna2008Mapped);
-    }
-    for (String types : new TreeSet<String>(diff.values())) {
-      UnicodeSet set = diff.getSet(types);
-      System.out.println(types + " ;\t" + set.size() + " ;\t" + set);
-    }
-  }
-
   public void TestGenerateDataFile() throws IOException {
     //final UnicodeMap<String> results = new UnicodeMap();
     final UnicodeMap<String> hex_results = new UnicodeMap<String>();

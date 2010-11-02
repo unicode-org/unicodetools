@@ -78,7 +78,7 @@ public class Idna implements StringTransform {
   }
 
   public String toPunyCode(String source, boolean[] error) {
-    String clean = toUnicode(source, error, true);
+    String clean = toUnicode(source, error, false);
     StringBuilder result = new StringBuilder();
     for (String label : clean.split("[.]")) {
       if (result.length() != 0) {

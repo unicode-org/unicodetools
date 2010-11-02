@@ -18,6 +18,15 @@ import com.ibm.icu.text.UnicodeSet;
 public class Typology {
     //static UnicodeMap<String> reasons = new UnicodeMap<String>();
     public static Map<String,UnicodeSet> label_to_uset = new TreeMap<String,UnicodeSet>();
+    static {
+        label_to_uset.put("S", new UnicodeSet("[:S:]").freeze());
+        label_to_uset.put("L", new UnicodeSet("[:L:]").freeze());
+        label_to_uset.put("M", new UnicodeSet("[:M:]").freeze());
+        label_to_uset.put("N", new UnicodeSet("[:N:]").freeze());
+        label_to_uset.put("C", new UnicodeSet("[:C:]").freeze());
+        label_to_uset.put("Z", new UnicodeSet("[:Z:]").freeze());
+        label_to_uset.put("P", new UnicodeSet("[:P:]").freeze());
+    }
     public static Map<String,UnicodeSet> path_to_uset = new TreeMap<String,UnicodeSet>();
     //static Map<List<String>,UnicodeSet> path_to_uset = new TreeMap<List<String>,UnicodeSet>();
     public static Relation<String, String> labelToPath = new Relation(new TreeMap(), TreeSet.class);
@@ -54,11 +63,12 @@ public class Typology {
 
                 //labelToPath.put(item, path);
 
+                path = (path + "/" + item).intern();
+
                 uset = path_to_uset.get(path);
                 if (uset == null) {
                     path_to_uset.put(path, uset = new UnicodeSet());
                 }
-                path = (path + "/" + item).intern();
                 uset.addAll(startRaw, endRaw);
             }
             return true;
@@ -76,28 +86,43 @@ public class Typology {
     }
 
     static {
-        new MyReader().process(XIDModifications.class, "Categories.txt"); // "09421-u52m09xxxx.txt"
+        new MyReader().process(Typology.class, "Categories.txt"); // "09421-u52m09xxxx.txt"
 
         // fix the paths
         Map<String, UnicodeSet> temp= new TreeMap<String, UnicodeSet>();
         for (int i = 0; i < UCharacter.CHAR_CATEGORY_COUNT; ++i) {
             UnicodeSet same = new UnicodeSet()
             .applyIntPropertyValue(UProperty.GENERAL_CATEGORY, i);
-            String prefix = UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, i, NameChoice.SHORT).substring(0,1);
+            String gcName = UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, i, NameChoice.SHORT);
+            //System.out.println("\n" + gcName);
+            String prefix = gcName.substring(0,1);
 
             for (String path : path_to_uset.keySet()) {
                 UnicodeSet uset = path_to_uset.get(path);
-                if (!same.containsSome(uset)) continue;
+                if (!same.containsSome(uset)) {
+                    continue;
+                }
                 String path2 = prefix + path;
                 temp.put(path2, new UnicodeSet(uset).retainAll(same));
                 String[] labels = path2.split("/");
-                labelToPath.put(labels[labels.length -1], path2);
+                for (int j = 0; j < labels.length; ++j) {
+                    labelToPath.put(labels[j], path2);
+                }
             }
         }
-
+//        Set<String> labelUsetKeys = label_to_uset.keySet();
+//        Set<String> labelToPathKeys = labelToPath.keySet();
+//        if (!labelUsetKeys.equals(labelToPathKeys)) {
+//            TreeSet<String> uset_path = new TreeSet<String>(labelUsetKeys);
+//            uset_path.removeAll(labelToPathKeys);
+//            System.out.println("\nuset - path labels\t" + uset_path);
+//            TreeSet<String> path_uset = new TreeSet<String>(labelToPathKeys);
+//            path_uset.removeAll(labelUsetKeys);
+//            System.out.println("\npath -uset labels\t" + path_uset);
+//        }
         label_to_uset = freezeMapping(label_to_uset);
         path_to_uset = freezeMapping(temp);
-
+        labelToPath.freeze();
         // invert
     }
 
