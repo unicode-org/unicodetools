@@ -27,9 +27,11 @@ public class Typology {
         label_to_uset.put("Z", new UnicodeSet("[:Z:]").freeze());
         label_to_uset.put("P", new UnicodeSet("[:P:]").freeze());
     }
+    public static Map<String,UnicodeSet> full_path_to_uset = new TreeMap<String,UnicodeSet>();
     public static Map<String,UnicodeSet> path_to_uset = new TreeMap<String,UnicodeSet>();
     //static Map<List<String>,UnicodeSet> path_to_uset = new TreeMap<List<String>,UnicodeSet>();
-    public static Relation<String, String> labelToPath = new Relation(new TreeMap(), TreeSet.class);
+    public static Relation<String, String> labelToPaths = new Relation(new TreeMap(), TreeSet.class);
+    public static Map<String, Map<String,UnicodeSet>> label_parent_uset = new TreeMap();
     //public static Relation<String, String> pathToList = new Relation(new TreeMap(), TreeSet.class);
 
     static class MyReader extends FileUtilities.SemiFileReader {
@@ -41,9 +43,12 @@ public class Typology {
             return SPLIT.split(line);
         }
 
+        StringBuilder temp_path = new StringBuilder();
+
         @Override
         protected boolean handleLine(int startRaw, int endRaw, String[] items) {
-            String path = "";
+            temp_path.setLength(0);
+            temp_path.append('/');
             for (int i = 2; i < 6; ++i) {
                 String item = items[i];
                 if (item.equals("[X]")) continue;
@@ -54,7 +59,23 @@ public class Typology {
                 item = item.substring(1, item.length()-1);
                 if (item.length() == 0) continue;
                 item = NON_ALPHANUM.matcher(item).replaceAll("_");
+                temp_path.append('/').append(item);
+            }
+            String fullPath = temp_path.toString();
+            
+            // store
+            {
+                fullPath = fullPath.intern();
+                UnicodeSet uset = full_path_to_uset.get(fullPath);
+                if (uset == null) {
+                    full_path_to_uset.put(fullPath, uset = new UnicodeSet());
+                }
+                uset.addAll(startRaw, endRaw);
+            }
 
+            String[] labels = fullPath.split("/");
+            String path = "";
+            for (String item : labels) {
                 UnicodeSet uset = label_to_uset.get(item);
                 if (uset == null) {
                     label_to_uset.put(item, uset = new UnicodeSet());
@@ -105,24 +126,38 @@ public class Typology {
                 String path2 = prefix + path;
                 temp.put(path2, new UnicodeSet(uset).retainAll(same));
                 String[] labels = path2.split("/");
+                String parent = "";
                 for (int j = 0; j < labels.length; ++j) {
-                    labelToPath.put(labels[j], path2);
+                    labelToPaths.put(labels[j], path2);
+                    if (j == 0) {
+                        continue;
+                    }
+                    Map<String, UnicodeSet> map = label_parent_uset.get(labels[j]);
+                    if (map == null) {
+                        label_parent_uset.put(labels[j], map = new TreeMap<String, UnicodeSet>());
+                    }
+                    UnicodeSet uset2 = map.get(parent);
+                    if (uset2 == null) {
+                        map.put(parent, uset2 = new UnicodeSet());
+                    }
+                    uset2.addAll(uset);
+                    parent += labels[j] + "/";
                 }
             }
         }
-//        Set<String> labelUsetKeys = label_to_uset.keySet();
-//        Set<String> labelToPathKeys = labelToPath.keySet();
-//        if (!labelUsetKeys.equals(labelToPathKeys)) {
-//            TreeSet<String> uset_path = new TreeSet<String>(labelUsetKeys);
-//            uset_path.removeAll(labelToPathKeys);
-//            System.out.println("\nuset - path labels\t" + uset_path);
-//            TreeSet<String> path_uset = new TreeSet<String>(labelToPathKeys);
-//            path_uset.removeAll(labelUsetKeys);
-//            System.out.println("\npath -uset labels\t" + path_uset);
-//        }
+        //        Set<String> labelUsetKeys = label_to_uset.keySet();
+        //        Set<String> labelToPathKeys = labelToPath.keySet();
+        //        if (!labelUsetKeys.equals(labelToPathKeys)) {
+        //            TreeSet<String> uset_path = new TreeSet<String>(labelUsetKeys);
+        //            uset_path.removeAll(labelToPathKeys);
+        //            System.out.println("\nuset - path labels\t" + uset_path);
+        //            TreeSet<String> path_uset = new TreeSet<String>(labelToPathKeys);
+        //            path_uset.removeAll(labelUsetKeys);
+        //            System.out.println("\npath -uset labels\t" + path_uset);
+        //        }
         label_to_uset = freezeMapping(label_to_uset);
         path_to_uset = freezeMapping(temp);
-        labelToPath.freeze();
+        labelToPaths.freeze();
         // invert
     }
 
