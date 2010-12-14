@@ -322,7 +322,7 @@ public class ScriptTester {
     }
   }
   
-  static ScriptExtensions scriptSpecials = ScriptExtensions.make(Confusables.class, "scriptSpecials.txt");
+  static ScriptExtensions scriptSpecials = ScriptExtensions.make(ScriptExtensions.class, "ScriptExtensions.txt");
 
   public static BitSet getScriptSpecials(int codepoint) {
     BitSet output = new BitSet(LIMIT);

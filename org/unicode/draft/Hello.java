@@ -2,13 +2,23 @@ package org.unicode.draft;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TreeSet;
 
+import com.ibm.icu.impl.CurrencyData.CurrencyFormatInfo;
+import com.ibm.icu.util.TimeUnit;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.TimeUnitFormat;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UnicodeFilter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Calendar;
+import com.ibm.icu.util.Currency;
+import com.ibm.icu.util.CurrencyAmount;
+import com.ibm.icu.util.TimeUnitAmount;
 import com.ibm.icu.util.ULocale;
 
 
@@ -18,7 +28,37 @@ public class Hello {
      * @param args
      */
     public static void main(String[] args) {
-        int foo = UScript.getCodeFromName("Grek");
+        checkTranslit();
+        if (true) return;
+
+        UnicodeSet foo;
+        ULocale locale = new ULocale("fr");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        String pattern = ((DecimalFormat)nf).toPattern();
+        pattern = pattern.replace("¤", "¤¤¤");
+        ((DecimalFormat)nf).applyPattern(pattern);
+        CurrencyAmount ca = new CurrencyAmount(1.99, Currency.getInstance("USD"));
+        String formatted = nf.format(ca);
+        System.out.println(formatted);
+
+
+        // create a time unit instance.
+        // only SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, and YEAR are supported
+        TimeUnit timeUnit = TimeUnit.SECOND;
+        // create time unit amount instance - a combination of Number and time unit
+        TimeUnitAmount source = new TimeUnitAmount(2.0d, timeUnit);
+        // create time unit format instance
+        TimeUnitFormat format = new TimeUnitFormat();
+        // set the locale of time unit format
+        format.setLocale(locale);
+        // format a time unit amount
+        formatted = format.format(source);
+        System.out.println(formatted);
+
+
+
+
+        int foo1 = UScript.getCodeFromName("Grek");
         int foo2 = UScript.getCodeFromName("Greek");
         checkCollator(ULocale.ENGLISH);
         checkCollator(ULocale.CHINA);
@@ -37,13 +77,52 @@ public class Hello {
 
     }
 
+    private static void checkTranslit() {
+        String[] rules = {
+                ":: NFKD;",
+                ":: [:Latin:] NFKD;",
+                ":: [[:Mn:][:Me:]] remove;",
+                ":: Latin-Greek;",
+                ":: NFKD;\n" +
+                ":: [[:Mn:][:Me:]] remove;\n" +
+                ":: NFC;"
+        };
+        for (String rule : rules) {
+            System.out.println("Rules:\n" + rule);
+            Transliterator trans = Transliterator.createFromRules("temp", rule, Transliterator.FORWARD);
+            UnicodeSet source = getSourceSet(trans);
+            UnicodeSet target = trans.getTargetSet();
+            System.out.println("Source:\t" + source.toPattern(false));
+            System.out.println("Target:\t" + target.toPattern(false));
+        }
+    }
+    
+    static UnicodeSet getSourceSet(Transliterator t) {
+        Transliterator[] subTransliterators = t.getElements();
+        if (subTransliterators.length == 1 && subTransliterators[0] == t) {
+            return t.getSourceSet();
+        } else {
+            UnicodeSet sources = new UnicodeSet();
+            for (Transliterator s : subTransliterators) {
+                UnicodeSet source = getSourceSet(s);
+                sources.addAll(source);
+            }
+            // TODO: if s1 produces ABC, what about chaining?
+            UnicodeFilter filter = t.getFilter();
+            if (filter != null) {
+                sources.retainAll((UnicodeSet)filter); // TODO fix for arbitrary filters
+            }
+            return sources;
+        }
+    }
+
     private static void checkCollator(ULocale locale) {
         System.out.println("Locale:\t" + locale);
         NumberFormat nf = NumberFormat.getInstance(ULocale.ENGLISH);
         nf.setGroupingUsed(true);
         Collator c = Collator.getInstance(locale);
         int iterations = 10000000;
-        
+
         long start = System.nanoTime();
         for (int i = 0; i < iterations; ++i) {
             c = Collator.getInstance(locale);
@@ -70,11 +149,11 @@ public class Hello {
         System.out.println(".clone nanos: " + nf.format((end-start)/(double)iterations) + " ns");
 
         try {
-        start = System.nanoTime();
-        for (int i = 0; i < iterations; ++i) {
+            start = System.nanoTime();
+            for (int i = 0; i < iterations; ++i) {
                 d = (Collator) c.clone();
-        }
-        end = System.nanoTime();
+            }
+            end = System.nanoTime();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

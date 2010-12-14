@@ -66,7 +66,9 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
-        add(new StringTransformProperty(new Common.NFKC_CF(), false).setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1").addName("toNFKC_CF"));
+
+        add(new StringTransformProperty(Common.NFKC_CF, false).setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1").addName("toNFKC_CF"));
+        add(new UnicodeSetProperty().set(Common.isNFKC_CF).setMain("isNFKC_Casefolded", "isNFKC_CF", UnicodeProperty.BINARY, "1.1"));
 
         add(new UnicodeSetProperty().set(Common.isCaseFolded).setMain("isCaseFolded", "caseFolded", UnicodeProperty.BINARY, "1.1"));
         add(new UnicodeSetProperty().set(Common.isUppercase).setMain("isUppercase", "uppercase", UnicodeProperty.BINARY, "1.1"));
@@ -107,6 +109,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             public String transform(String source) {
                 return UCharacter.toTitleCase(ULocale.ROOT, source, null);
             }}, false).setMain("toTitleCase", "toTitleCase", UnicodeProperty.STRING, "1.1"));
+        
         add(new CodepointTransformProperty(new Transform<Integer,String>() {
             public String transform(Integer source) {
                 return UnicodeUtilities.getSubheader().getSubheader(source);
@@ -161,7 +164,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                 prop.addName("enc_" + alias);
                 isProp.addName("isEnc_" + alias);
             }
-            
+
             add(prop);
             add(isProp);
         }
@@ -185,8 +188,10 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         RuleBasedCollator c = (RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
 
         UnicodeMap<String> collationMap = new UnicodeMap<String>();
+        UnicodeMap<String> collationMap2 = new UnicodeMap<String>();
         RawCollationKey key = new RawCollationKey();
         StringBuilder builder = new StringBuilder();
+        StringBuilder builder2 = new StringBuilder();
         UnicodeSet contractions = new UnicodeSet();
         UnicodeSet expansions = new UnicodeSet();
         try {
@@ -198,17 +203,38 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         for (String s : stuff) {
             c.getRawCollationKey(s, key);
             builder.setLength(0);
+            builder2.setLength(0);
+            int oneCount = 0;
             for (int i = 0; i < key.size; ++i) {
                 byte b = key.bytes[i];
-                if (b == 1) break; // only look at primary values
+                if (b == 1) oneCount++;
+                if (oneCount > 1) {
+                    break;
+                }
+                String hex = com.ibm.icu.impl.Utility.hex(0xFF&b, 2);
+                // look at both
+                if (builder2.length() != 0) {
+                    builder2.append(' ');
+                }
+                builder2.append(hex);
+                // only look at primary values
+                if (oneCount != 0) {
+                    continue;
+                }
                 if (builder.length() != 0) {
                     builder.append(' ');
                 }
-                builder.append(com.ibm.icu.impl.Utility.hex(0xFF&b, 2));
+                builder.append(hex);
             }
             collationMap.put(s, builder.toString());
+            String builderString2 = builder2.toString();
+            if (builderString2.endsWith("01")) {
+                builderString2 = builderString2.substring(0,builderString2.length() - 2).trim();
+            }
+            collationMap2.put(s, builderString2);
         }
-        add(new UnicodeProperty.UnicodeMapProperty().set(collationMap).setMain("uca", "uca", UnicodeProperty.ENUMERATED, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty().set(collationMap).setMain("uca", "uca1", UnicodeProperty.ENUMERATED, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty().set(collationMap2).setMain("uca2", "uca2", UnicodeProperty.ENUMERATED, "1.1"));
     }
 
     //  public UnicodeProperty getInternalProperty(String propertyAlias) {
@@ -380,8 +406,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
     static class HanType extends XEnumUnicodeProperty {
-        enum HanTypeValues {na, simplified_only, traditional_only, both
-        }
+        enum HanTypeValues {na, Hans, Hant, Han}
         public HanType() {
             super("HanType", HanTypeValues.values());
             setType(UnicodeProperty.EXTENDED_ENUMERATED);
@@ -394,9 +419,9 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
     private static class StringTransformProperty extends SimpleProperty {
-        StringTransform transform;
+        Transform<String,String> transform;
 
-        public StringTransformProperty(StringTransform transform, boolean hasUniformUnassigned) {
+        public StringTransformProperty(Transform<String,String> transform, boolean hasUniformUnassigned) {
             this.transform = transform;
             setUniformUnassigned(hasUniformUnassigned);
         }
@@ -457,7 +482,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     public static class EncodingPropertyBoolean extends SimpleProperty {
 
         CharEncoder encoder;
-        
+
         EncodingPropertyBoolean(Charset charset) {
             encoder = new CharEncoder(charset, true, true);
         }

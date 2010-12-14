@@ -314,7 +314,7 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         checkProperties("[:toLowercase!=@cp@:]", "[A-Z\u00C0]", "[abc]");
         checkProperties("[:toNfkc!=@toNfc@:]", "[\\u00A0]", "[abc]");
 
-        String trans1 = new Common.NFKC_CF().transform("\u2065");
+        String trans1 = Common.NFKC_CF.transform("\u2065");
         XPropertyFactory factory = XPropertyFactory.make();
         UnicodeProperty prop = factory.getProperty("tonfkccf");
         String trans2 = prop.getValue('\u2065');

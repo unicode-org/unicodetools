@@ -28,7 +28,6 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.impl.Differ;
 import com.ibm.icu.impl.MultiComparator;
@@ -479,8 +478,8 @@ public class GenerateUnihanCollators {
         out2.println("<?xml version='1.0' encoding='UTF-8' ?>\n"
                 +"<!DOCTYPE supplementalData SYSTEM '../../common/dtd/ldmlSupplemental.dtd'>\n"
                 +"<supplementalData>\n"
-                +"  <version number='$Revision: 1.7 $'/>\n"
-                +"  <generation date='$Date: 2010-11-02 16:58:22 $'/>\n"
+                +"  <version number='$Revision: 1.8 $'/>\n"
+                +"  <generation date='$Date: 2010-12-14 07:57:17 $'/>\n"
                 +"  <transforms>\n"
                 +"      <transform source='Han' target='Latin' direction='both'>\n"
                 +"          <comment># Warning: does not do round-trip mapping!!</comment>\n"
@@ -711,8 +710,8 @@ public class GenerateUnihanCollators {
                     +"<!DOCTYPE ldml SYSTEM '/Users/markdavis/Documents/workspace/cldr/common/dtd/ldml.dtd'>\n"
                     +"<ldml>\n"
                     +"    <identity>\n"
-                    +"        <version number='$Revision: 1.7 $' />\n"
-                    +"        <generation date='$Date: 2010-11-02 16:58:22 $' />\n"
+                    +"        <version number='$Revision: 1.8 $' />\n"
+                    +"        <generation date='$Date: 2010-12-14 07:57:17 $' />\n"
                     +"        <language type='zh' />\n"
                     +"    </identity>\n"
                     +"    <collations>\n"
