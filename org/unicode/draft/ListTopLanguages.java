@@ -13,12 +13,13 @@ import org.unicode.cldr.util.SupplementalDataInfo.OfficialStatus;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 
 import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.text.NumberFormat;
 
 public class ListTopLanguages {
   static SupplementalDataInfo sdata = SupplementalDataInfo.getInstance(CldrUtility.SUPPLEMENTAL_DIRECTORY);
-  static Map<String, Map<String, List<String>>> localeAliasInfo = sdata.getLocaleAliasInfo();
+  static Map<String, Map<String, R2<List<String>, String>>> localeAliasInfo = sdata.getLocaleAliasInfo();
   static Map<String, String> likelySubtags = sdata.getLikelySubtags();
   static Factory cldrFactory = Factory.make(CldrUtility.MAIN_DIRECTORY, ".*");
   static CLDRFile english = cldrFactory.make("en", true);
@@ -65,7 +66,7 @@ public class ListTopLanguages {
     Set<String> languages = new TreeSet<String>();
     Set<String> territories = new TreeSet<String>();
     for (String tag : localeAliasInfo.keySet()) {
-      Map<String, List<String>> replacements = localeAliasInfo.get(tag);
+      Map<String, R2<List<String>, String>> replacements = localeAliasInfo.get(tag);
       if (tag.equals("language")) {
         addAlternates(language, replacements, languages);
       } else if (tag.equals("territory")) {
@@ -94,10 +95,10 @@ public class ListTopLanguages {
     return result;
   }
 
-  private static void addAlternates(String language, Map<String, List<String>> map, Set<String> languages) {
+  private static void addAlternates(String language, Map<String, R2<List<String>, String>> replacements, Set<String> languages) {
     languages.add(language);
-    for (String source : map.keySet()) {
-      List<String> set = map.get(source);
+    for (String source : replacements.keySet()) {
+      List<String> set = replacements.get(source).get0();
       if (set.contains(language)) {
         languages.add(source);
       }

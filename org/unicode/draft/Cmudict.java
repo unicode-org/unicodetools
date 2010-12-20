@@ -121,7 +121,7 @@ public class Cmudict {
         Set<String> removals = new HashSet<String>();
         Relation<String,String> specials = new Relation(new TreeMap(col), LinkedHashSet.class);
 
-        for (Entry<String, Set<String>> entry : toIPA.entrySet()) {
+        for (Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
             String word = entry.getKey();
             boolean startsWith = word.startsWith("’");
             boolean endsWith = word.endsWith("’");
@@ -147,12 +147,12 @@ public class Cmudict {
             }
         }
         toIPA.removeAll(removals);
-        for (Entry<String, Set<String>> entry : specials.entrySet()) {
+        for (Entry<String, Set<String>> entry : specials.keyValuesSet()) {
             System.out.println("Missing?\t" + entry);
         }
 
         PrintWriter out = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace/Generated/translit/", "cmudict.txt") ;
-        for (Entry<String, Set<String>> entry : toIPA.entrySet()) {
+        for (Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
             String word = entry.getKey();
             Set<String> values = entry.getValue();
             out.println(word + "\t→\t" + showIpa(values));
@@ -161,7 +161,7 @@ public class Cmudict {
 
         out = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace/Generated/translit/", "homonyms.txt") ;
         Set<String> temp = new TreeSet(col);
-        for (Entry<String, Set<String>> entry : fromIpa.entrySet()) {
+        for (Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
             Set<String> values = entry.getValue();
             if (values.size() == 1) {
                 continue;
@@ -180,7 +180,7 @@ public class Cmudict {
         Map<String, String> reverseIpa = new TreeMap<String, String>(col);
         Map<String, String> checkRespellRoundtrip = new TreeMap<String, String>(col);
 
-        for (Entry<String, Set<String>> entry : fromIpa.entrySet()) {
+        for (Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
             String ipa = entry.getKey();
             String respelled = respell.transform(ipa);
             String old = checkRespellRoundtrip.get(respelled);
