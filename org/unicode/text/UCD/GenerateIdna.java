@@ -10,12 +10,14 @@ import org.unicode.jsp.Idna;
 import org.unicode.jsp.Idna2003;
 import org.unicode.jsp.StringPrepData;
 import org.unicode.jsp.Idna.IdnaType;
+import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.dev.test.util.BagFormatter.NameLabel;
+import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;
@@ -29,6 +31,7 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateIdna {
 
+    public static final String DIR = "/Users/markdavis/Documents/workspace/draft/reports/tr46/data";
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
     private static final boolean TESTING = false;
     public static UnicodeSet U32;
@@ -36,10 +39,11 @@ public class GenerateIdna {
     public static UnicodeSet NSTD3_ASCII;
     static ToolUnicodePropertySource properties;
     static UnicodeSet cn;
-    static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
+    public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
     static {
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
     }
+    static UnicodeSet IDNA2008Valid = UnicodeUtilities.getIdna2008Valid();
 
     public static void main(String[] args) throws IOException {
 
@@ -81,6 +85,7 @@ public class GenerateIdna {
             String endStatus = statusNstd3 == status ? status.toString() : status + "_STD3_" + statusNstd3;
             String mapping = value.get1();
             String mappingNstd3 = valueNstd3.get1();
+            // if mapped, add info
             if (status == IdnaType.mapped || status == IdnaType.deviation || statusNstd3 == IdnaType.mapped || statusNstd3 == IdnaType.deviation) {
                 endStatus += Utility.repeat(" ", MAX_STATUS_LENGTH-endStatus.length()) + " ; ";
                 if (mapping != null && mapping.length() != 0) {
@@ -93,11 +98,16 @@ public class GenerateIdna {
                     throw new IllegalArgumentException("bad mapping:\t" + value);
                 }
             }
+            
+            if (status == IdnaType.valid && !IDNA2008Valid.contains(cp) && cp != '.') {
+                endStatus += Utility.repeat(" ", MAX_STATUS_LENGTH-endStatus.length()) + " ;      ; NV8";
+            }
             stringMappingTable.put(cp, endStatus);
         }
 
         writeDataFile(stringMappingTable);
-        System.out.println("After running, copy the data file to the jsp directory, and run org.unicode.jsptest.TestGenerate to generate the differences table.");
+        System.out.println("After running, copy the data file to the jsp directory, and run org.unicode.jsptest.TestGenerate to generate the differences table.\n" +
+        		"Then run org.unicode.jsptest.TestUt6s46 with the argument 'generate' to generate the tests.");
     }
 
     private static void verifyDifferences(UnicodeMap<String> mappings, UnicodeMap<IdnaType> types, UnicodeMap<Row.R2<IdnaType, String>> mappingTable) {
@@ -312,12 +322,12 @@ public class GenerateIdna {
     private static void writeDataFile(UnicodeMap<String> mappingTable) throws IOException {
         String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
         String unversionedFileName = "IdnaMappingTable.txt";
-        PrintWriter writer = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace/draft/reports/tr46/" + Default.ucdVersion(), unversionedFileName);
-        writer.println("# " + filename + "- DRAFT\n" +
+        PrintWriter writer = BagFormatter.openUTF8Writer(DIR, unversionedFileName);
+        writer.println("# " + filename + "\n" +
                 "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
                 "#\n" +
                 "# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
-                "# Copyright (c) 1991-2009 Unicode, Inc.\n" +
+                "# Copyright (c) 1991-2010 Unicode, Inc.\n" +
                 "# For terms of use, see http://www.unicode.org/terms_of_use.html\n" +
         "# For documentation, see http://www.unicode.org/reports/tr46/\n");
 
@@ -336,6 +346,11 @@ public class GenerateIdna {
             }
         };
         UnicodeProperty age = properties.getProperty("age");
+//        UnicodeMap ageValue = age0.getUnicodeMap();
+//        UnicodeSet unassigned = ageValue.getSet("unassigned");
+//        ageValue.putAll(unassigned, "n/a");
+//        UnicodeMapProperty age = new UnicodeProperty.UnicodeMapProperty().set(ageValue);
+
         NameLabel name = new BagFormatter.NameLabel(properties);
         BagFormatter bf = new BagFormatter();
         bf.setLabelSource(age);
@@ -343,7 +358,10 @@ public class GenerateIdna {
         bf.setShowCount(false);
         bf.setNameSource(name);
 
-        bf.setValueSource(new UnicodeProperty.UnicodeMapProperty().set(mappingTable));
+        UnicodeMapProperty prop = new UnicodeProperty.UnicodeMapProperty().set(mappingTable);
+        bf.setValueSource(prop);
+        bf.setValueWidthOverride(MAX_STATUS_LENGTH + 16);
+        bf.setLabelWidthOverride(3);
         writer.println(bf.showSetNames(mappingTable.keySet()));
         writer.close();
     }

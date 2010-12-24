@@ -4,14 +4,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
+import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.Uts46;
 import org.unicode.jsp.Uts46.Errors;
 import org.unicode.jsp.Uts46.IdnaChoice;
+import org.unicode.text.UCD.GenerateIdna;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
@@ -34,7 +37,7 @@ public class TestUts46 extends TestFmwk{
     
     TestUts46 testUts46 = new TestUts46();
     if (Arrays.asList(args).contains("generate")) {
-      int count = testUts46.generateTests(100);
+      int count = testUts46.generateTests(1000);
       System.out.println("DONE " + count);
       return;
     }
@@ -174,7 +177,12 @@ public class TestUts46 extends TestFmwk{
   }
 
   private int generateTests(int lines) throws IOException {
-    PrintWriter out = BagFormatter.openUTF8Writer(Utility.GEN_DIR + "/idna", "IdnaTest.txt");
+    String filename = "IdnaTest.txt";
+    PrintWriter out = BagFormatter.openUTF8Writer(GenerateIdna.DIR, filename);
+    out.println("# " + filename + "\n" +
+            "# Date: " + GenerateIdna.dateFormat.format(new Date()) + " [MD]\n" +
+            "#");
+
     FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
 //    out.println(
 //            "# Format\n" +
@@ -194,19 +202,28 @@ public class TestUts46 extends TestFmwk{
     count += generateLine("fass.de", out);
     count += generateLine("faß.de", out);
     
+    out.println("\n# BIDI TESTS\n");
+    
     for (String[] testCase : bidiTests) {
       count += generateLine(testCase[0], out);
     }
+
+    out.println("\n# CONTEXT TESTS\n");
 
     for (String[] testCase : contextTests) {
       count += generateLine(testCase[0], out);
     }
 
-    Set<Errors> toUnicodeErrors = new LinkedHashSet<Errors>();
+    out.println("\n# SELECTED TESTS\n");
+
+    count += generateLine("\u00a1", out);
+
     for (Object[] testCaseLine : testCases) {
       String source = testCaseLine[0].toString();
       count += generateLine(source, out);
     }
+    
+    out.println("\n# RANDOMIZED TESTS\n");
 
     RandomString randomString = new RandomString();
     char[] LABELSEPARATORS = {'\u002E', '\uFF0E', '\u3002', '\uFF61'};
@@ -215,7 +232,7 @@ public class TestUts46 extends TestFmwk{
     for (; lines > 0; --lines) {
       sb.setLength(0);
       // random number of labels
-      int labels = RandomString.random.nextInt(3);
+      int labels = RandomString.random.nextInt(2);
       for (; labels >= 0; --labels) {
         randomString.appendNext(sb);
         if (labels != 0) {
@@ -249,7 +266,16 @@ public class TestUts46 extends TestFmwk{
               "[[:jt=R:][:jt=D:]]",
               // syntax
               "[-]",
-              "[\\u200C\\u200D\\u00DF\\u03C2]", // deviations
+              // changed mapping from 2003
+              "[\u04C0 \u10A0-\u10C5 \u2132 \u2183 \u2F868 \u2F874 \u2F91F \u2F95F \u2F9BF \u3164 \uFFA0 \u115F \u1160 \u17B4 \u17B5 \u1806]",
+              // disallowed in 2003
+              "[\u200E-\u200F \u202A-\u202E \u2061-\u2063 \uFFFC \uFFFD \u1D173-\u1D17A \u206A-\u206F \uE0001 \uE0020-\uE007F]",
+              // Step 7
+              "[\u2260 \u226E \u226F \uFE12 \u2488]",
+              // disallowed
+              "[:cn:]",
+              // deviations
+              "[\\u200C\\u200D\\u00DF\\u03C2]",
       };
       sampleSets = new UnicodeSet[samples.length];
       for (int i = 0; i < samples.length; ++i) {
@@ -257,7 +283,7 @@ public class TestUts46 extends TestFmwk{
       }
     }
     void appendNext(StringBuilder sb) {
-      int len = 1 + random.nextInt(7);
+      int len = 1 + random.nextInt(4);
       // random contents, picking from random set
       for (; len > 0; --len) {
         int setNum = random.nextInt(sampleSets.length);
@@ -291,7 +317,9 @@ public class TestUts46 extends TestFmwk{
     Set<Errors> toUnicodeErrors = new LinkedHashSet<Errors>();
     String unicode = Uts46.SINGLETON.toUnicode(source, IdnaChoice.nontransitional, toUnicodeErrors);
 
-    if (!transitional.equals(nontransitional) || !transitionalErrors.equals(nonTransitionalErrors)) {
+    if (!transitionalErrors.equals(nonTransitionalErrors) 
+            || !transitional.equals(nontransitional)
+            && transitionalErrors.size() == 0) {
       showLine(source, "T", transitional, transitionalErrors, unicode, toUnicodeErrors, out);
       showLine(source, "N", nontransitional, nonTransitionalErrors, unicode, toUnicodeErrors, out);
       result += 2;
@@ -320,19 +348,27 @@ public class TestUts46 extends TestFmwk{
   }
 
   Transliterator hexForTest = Transliterator.getInstance("[[:c:][:z:][:m:][:di:][:bc=R:][:bc=AL:][:bc=AN:]] any-hex");
+  static UnicodeSet IDNA2008Valid = new UnicodeSet(UnicodeUtilities.getIdna2008Valid()).add('.').freeze();
 
   /**
    * Draws line
    */
   private void showLine(String source, String type, String ascii, Set<Errors> asciiErrors, String unicode, Set<Errors> toUnicodeErrors, PrintWriter out) {
-    out.println(type
-            + ";\t" 
-            + hexForTest.transform(source)
-            + ";\t"
-            + (toUnicodeErrors.size() != 0 ? showErrors(toUnicodeErrors) : unicode.equals(source) ? "" : hexForTest.transform(unicode))
-            + ";\t"
-            + (asciiErrors.size() != 0 ? showErrors(asciiErrors) : unicode.equals(ascii) ? "" :  hexForTest.transform(ascii))
-    );
+      String unicodeReveal = hexForTest.transform(unicode);
+      boolean hasUnicodeErrors = toUnicodeErrors.size() != 0;
+      boolean hasAsciiErrors = asciiErrors.size() != 0;
+      boolean allCharsIdna2008 = IDNA2008Valid.containsAll(unicode);
+      out.println(type
+              + ";\t" 
+              + hexForTest.transform(source)
+              + ";\t"
+              + (hasUnicodeErrors ? showErrors(toUnicodeErrors) : unicode.equals(source) ? "" : unicodeReveal)
+              + ";\t"
+              + (hasAsciiErrors ? showErrors(asciiErrors) : unicode.equals(ascii) ? "" :  hexForTest.transform(ascii))
+              + ";\t"
+              + (hasUnicodeErrors || allCharsIdna2008 ? "" : "NV8")
+              + (unicodeReveal.equals(unicode) ? "" : "\t#\t" + unicode)
+      );
   }
 
   private String showErrors(Set<Errors> errors) {
@@ -655,7 +691,7 @@ public class TestUts46 extends TestFmwk{
       { "\u06EF\u200C\u06EF", "N",  // R ZWNJ R
       "\u06EF\u200C\u06EF", Uts46.UIDNA_ERROR_CONTEXTJ },
       { "\u0644\u200C", "N",  // D ZWNJ
-      "\u0644\u200C", Uts46.UIDNA_ERROR_BIDI|Uts46.UIDNA_ERROR_CONTEXTJ },
+          "\u0644\u200C", Uts46.UIDNA_ERROR_BIDI|Uts46.UIDNA_ERROR_CONTEXTJ },
       // { "", "B",
 //         "", 0 },
 };
