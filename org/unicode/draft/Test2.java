@@ -53,6 +53,8 @@ import com.ibm.icu.util.ULocale;
 
 public class Test2 {
     public static void main(String[] args) throws Exception {
+        trySortedList();
+        if (true) return;
         getCollationClasses();
         if (true) return;
         LinkedHashMap<Integer, Integer> s = getMatchingBraces(new LinkedHashMap<Integer, Integer>());
@@ -94,7 +96,7 @@ public class Test2 {
         Normalizer2 nfd = Normalizer2.getInstance(null, "nfc", Mode.DECOMPOSE);
         for (int i = 1; i <= 0x10FFFF; ++i) {
             int type = UCharacter.getType(i);
-            
+
             if (type == UCharacterCategory.UNASSIGNED || type == UCharacterCategory.PRIVATE_USE || type == UCharacterCategory.SURROGATE) {
                 continue;
             }
@@ -120,8 +122,8 @@ public class Test2 {
         rules.append("\t# gc=P, ordered by DUCET\n");
         final String punctStart = "<*\t\u200e'";
         final String punctEnd = "'\u200e";
-        
-        
+
+
         StringBuffer punctuation = new StringBuffer();
         int oldPunctuation = -1;
         for (String s : sorted) {
@@ -161,7 +163,7 @@ public class Test2 {
                     count += chars.size();
                     System.out.println(count + "\t"
                             + UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, oldType, UProperty.NameChoice.SHORT)
-                + "\t" + chars.size()
+                            + "\t" + chars.size()
                             + "\t" + chars.toPattern(false));
                     chars.clear();
                 }
@@ -184,12 +186,12 @@ public class Test2 {
 
     private static void addChars(StringBuffer punctuationChars, String relation, String s) {
         punctuationChars.append(relation +
-        		"\t\u200E'" 
-            + s 
-            + "'\u200E" 
-            + "\t# " 
-            + UCharacter.getName(s, " + ")
-            + "\n");
+                "\t\u200E'" 
+                + s 
+                + "'\u200E" 
+                + "\t# " 
+                + UCharacter.getName(s, " + ")
+                + "\n");
     }
 
     static final UnicodeSet INITIAL_PUNCTUATION = new UnicodeSet("[[:Ps:][:Pi:]-[༺༼᚛‘‚‛“„‟〝]]").freeze();
@@ -244,7 +246,7 @@ public class Test2 {
 
     static class ByteString {
         byte[] bytes;
-        
+
         public ByteString(byte[] bytes2) {
             bytes = bytes2;
         }
@@ -268,7 +270,7 @@ public class Test2 {
             }
             return true;
         }
-        
+
         public int hashCode() {
             int value = bytes.length;
             for (int i = 0; i < bytes.length; ++i) {
@@ -473,7 +475,7 @@ public class Test2 {
 
 
 
-    private static void trySortedList() {
+    private static void trySortedListCountries() {
         ULocale[] list = {ULocale.ENGLISH, ULocale.FRENCH, ULocale.GERMAN};
         for (ULocale usersLocale : list) {
 
@@ -499,6 +501,32 @@ public class Test2 {
             }
         }
     }
+
+    private static void trySortedList() {
+        ULocale[] list = {ULocale.ENGLISH, ULocale.FRENCH, ULocale.GERMAN, ULocale.JAPANESE};
+        for (ULocale pageLocale : list) {
+
+            TreeMap<String, String> mapNameToCode = new TreeMap<String, String>(com.ibm.icu.text.Collator.getInstance(pageLocale));
+            for (ULocale menuItem : list) {
+                if (menuItem.equals(pageLocale)) {
+                    continue;
+                }
+                String inPageLocale = menuItem.getDisplayName(pageLocale);
+                String inSelf = menuItem.getDisplayName(menuItem);
+                String name = inPageLocale.equals(inSelf) ? inPageLocale : inPageLocale + " - " + inSelf;
+                mapNameToCode.put(name, menuItem.toLanguageTag());
+            }
+
+            System.out.println("<select> <!-- User's Locale = " + pageLocale.getDisplayName(ULocale.ENGLISH) + "-->");
+            System.out.println(" <option value='" + pageLocale.toLanguageTag() + "'>" + makeHtmlSafe(pageLocale.getDisplayName(pageLocale)) + "</option>");
+            for (String name : mapNameToCode.keySet()) {
+                System.out.println(" <option value='" + mapNameToCode.get(name) + "'>" + makeHtmlSafe(name) + "</option>");
+            }
+            System.out.println(" <option value='more'>" + makeHtmlSafe("[translated 'More…']") + "</option>");
+            System.out.println("</select>\n");
+        }
+    }
+
 
     private static String makeHtmlSafe(String name) {
         return name;

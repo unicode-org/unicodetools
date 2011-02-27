@@ -68,13 +68,13 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
 
         add(new StringTransformProperty(Common.NFKC_CF, false).setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1").addName("toNFKC_CF"));
-        add(new UnicodeSetProperty().set(Common.isNFKC_CF).setMain("isNFKC_Casefolded", "isNFKC_CF", UnicodeProperty.BINARY, "1.1"));
-
-        add(new UnicodeSetProperty().set(Common.isCaseFolded).setMain("isCaseFolded", "caseFolded", UnicodeProperty.BINARY, "1.1"));
-        add(new UnicodeSetProperty().set(Common.isUppercase).setMain("isUppercase", "uppercase", UnicodeProperty.BINARY, "1.1"));
-        add(new UnicodeSetProperty().set(Common.isLowercase).setMain("isLowercase", "lowercase", UnicodeProperty.BINARY, "1.1"));
-        add(new UnicodeSetProperty().set(Common.isTitlecase).setMain("isTitlecase", "titlecase", UnicodeProperty.BINARY, "1.1"));
-        add(new UnicodeSetProperty().set(Common.isCased).setMain("isCased", "cased", UnicodeProperty.BINARY, "1.1"));
+//        add(new UnicodeSetProperty().set(Common.isNFKC_CF).setMain("isNFKC_Casefolded", "isNFKC_CF", UnicodeProperty.BINARY, "1.1"));
+//
+//        add(new UnicodeSetProperty().set(Common.isCaseFolded).setMain("isCaseFolded", "caseFolded", UnicodeProperty.BINARY, "1.1"));
+//        add(new UnicodeSetProperty().set(Common.isUppercase).setMain("isUppercase", "uppercase", UnicodeProperty.BINARY, "1.1"));
+//        add(new UnicodeSetProperty().set(Common.isLowercase).setMain("isLowercase", "lowercase", UnicodeProperty.BINARY, "1.1"));
+//        add(new UnicodeSetProperty().set(Common.isTitlecase).setMain("isTitlecase", "titlecase", UnicodeProperty.BINARY, "1.1"));
+//        add(new UnicodeSetProperty().set(Common.isCased).setMain("isCased", "cased", UnicodeProperty.BINARY, "1.1"));
 
         add(new CodepointTransformProperty(new Transform<Integer,String>() {
             public String transform(Integer source) {

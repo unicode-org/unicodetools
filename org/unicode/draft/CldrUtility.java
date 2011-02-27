@@ -210,8 +210,8 @@ public class CldrUtility {
     private Matcher[] CVS_TAGS = {Pattern.compile("[$](Revision)[^$]*[$]").matcher(""), Pattern.compile("[$](Date)[^$]*[$]").matcher("")};
 
     private String stripTags(String line) {
-      //$Revision: 1.1 $
-      //$Date: 2010-05-08 01:06:12 $
+      //$ Revision: 1.1 $
+      //$ Date: 2010-05-08 01:06:12 $
       for (int i = 0; i < CVS_TAGS.length; ++i) {
         CVS_TAGS[i].reset(line);
         boolean foo = CVS_TAGS[i].find();

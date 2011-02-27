@@ -58,8 +58,8 @@ Show [[:NFKCQuickCheck=No:] & [$gc:Lm]]
 
 Stop
 
-[$Name: not supported by cvs2svn $gc:Sk]
-[$Name: not supported by cvs2svn $gc:Lm]
+[$Name:  $gc:Sk]
+[$Name:  $gc:Lm]
 
 Show [[$whitespace] - [$gc:zs]]
 Show [[$gc:zs] - [$whitespace]]
