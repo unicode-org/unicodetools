@@ -1568,8 +1568,8 @@ public class GenerateConfusables {
       PrintWriter out = openAndWriteHeader(directory, filename, "Source File for IDN Confusables");
       //			PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
       //			out.println("# Source File for IDN Confusables");
-      //			out.println("# $Revision: 1.32 $");
-      //			out.println("# $Date: 2010-06-19 00:29:21 $");
+      //			out.println("# $ Revision: 1.32 $");
+      //			out.println("# $ Date: 2010-06-19 00:29:21 $");
       //			out.println("");
       raw.writeSource(out);
       out.close();
@@ -1579,8 +1579,8 @@ public class GenerateConfusables {
       PrintWriter out = openAndWriteHeader(directory, filename, "Recommended confusable mapping for IDN");
       //            PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
       //			out.println("# Recommended confusable mapping for IDN");
-      //			out.println("# $Revision: 1.32 $");
-      //			out.println("# $Date: 2010-06-19 00:29:21 $");
+      //			out.println("# $ Revision: 1.32 $");
+      //			out.println("# $ Date: 2010-06-19 00:29:21 $");
       //			out.println("");
 
       if (appendFile) {
@@ -1822,8 +1822,8 @@ public class GenerateConfusables {
       //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
       //			out.print('\uFEFF');
       //			out.println("# Summary: Recommended confusable mapping for IDN");
-      //			out.println("# $Revision: 1.32 $");
-      //			out.println("# $Date: 2010-06-19 00:29:21 $");
+      //			out.println("# $ Revision: 1.32 $");
+      //			out.println("# $ Date: 2010-06-19 00:29:21 $");
       //			out.println("");
       UnicodeSet representable = new UnicodeSet();
       MyEquivalenceClass data = dataMixedAnycase;
@@ -1954,8 +1954,8 @@ public class GenerateConfusables {
       //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
       //			out.print('\uFEFF');
       //			out.println("# Summary: Whole-Script Confusables");
-      //			out.println("# $Revision: 1.32 $");
-      //			out.println("# $Date: 2010-06-19 00:29:21 $");
+      //			out.println("# $ Revision: 1.32 $");
+      //			out.println("# $ Date: 2010-06-19 00:29:21 $");
       out.println("# This data is used for determining whether a strings is a");
       out.println("# whole-script or mixed-script confusable.");
       out.println("# The mappings here ignore common and inherited script characters,");

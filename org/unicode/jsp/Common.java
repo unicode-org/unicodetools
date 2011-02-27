@@ -115,56 +115,56 @@ public class Common {
     static final int        TO_TITLECASE  = UProperty.STRING_LIMIT + 7;
     public static final int SUBHEAD       = TO_TITLECASE + 1;
     static final int        XSTRING_LIMIT = SUBHEAD + 1;
-    static UnicodeSet       isCaseFolded  = new UnicodeSet();
-    static UnicodeSet       isLowercase   = new UnicodeSet();
-    static UnicodeSet       isUppercase   = new UnicodeSet();
-    static UnicodeSet       isTitlecase   = new UnicodeSet();
-    static UnicodeSet       isCased       = new UnicodeSet();
-    static UnicodeSet       isNFKC_CF       = new UnicodeSet();
+//    static UnicodeSet       isCaseFolded  = new UnicodeSet();
+//    static UnicodeSet       isLowercase   = new UnicodeSet();
+//    static UnicodeSet       isUppercase   = new UnicodeSet();
+//    static UnicodeSet       isTitlecase   = new UnicodeSet();
+//    static UnicodeSet       isCased       = new UnicodeSet();
+//    static UnicodeSet       isNFKC_CF       = new UnicodeSet();
 
-    static {
-        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-
-            int cat = UCharacter.getType(cp);
-            if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE || cat == UCharacter.SURROGATE) {
-                // idnaTypeSet.get(IdnaType.disallowed).add(cp); // faster
-                Common.isNFKC_CF.add(cp);
-                Common.isCaseFolded.add(cp);
-                Common.isLowercase.add(cp);
-                Common.isTitlecase.add(cp);
-                Common.isUppercase.add(cp);
-                continue;
-            }
-
-            // IdnaType idnaType = Idna2003.getIDNA2003Type(cp);
-            // idnaTypeSet.get(idnaType).add(cp);
-
-            String s = UTF16.valueOf(cp);
-            if (UCharacter.foldCase(s, true).equals(s)) {
-                Common.isCaseFolded.add(cp);
-            }
-            if (NFKC_CF_.normalize(s).equals(s)) {
-                Common.isNFKC_CF.add(cp);
-            }
-            if (UCharacter.toLowerCase(ULocale.ROOT, s).equals(s)) {
-                Common.isLowercase.add(cp);
-            }
-            if (UCharacter.toUpperCase(ULocale.ROOT, s).equals(s)) {
-                Common.isUppercase.add(cp);
-            }
-            if (UCharacter.toTitleCase(ULocale.ROOT, s, null).equals(s)) {
-                Common.isTitlecase.add(cp);
-            }
-        }
-        isCaseFolded.freeze();
-        isNFKC_CF.freeze();
-        isLowercase.freeze();
-        isUppercase.freeze();
-        isTitlecase.freeze();
-        // isCased if isLowercase=false OR isUppercase=false OR
-        // isTitlecase=false
-        // or := ! (isLowercase && isUppercase && isTitlecase)
-        Common.isCased = new UnicodeSet(Common.isLowercase).retainAll(Common.isUppercase).retainAll(
-                Common.isTitlecase).complement();
-    }
+//    static {
+//        for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+//
+//            int cat = UCharacter.getType(cp);
+//            if (cat == UCharacter.UNASSIGNED || cat == UCharacter.PRIVATE_USE || cat == UCharacter.SURROGATE) {
+//                // idnaTypeSet.get(IdnaType.disallowed).add(cp); // faster
+//                Common.isNFKC_CF.add(cp);
+//                Common.isCaseFolded.add(cp);
+//                Common.isLowercase.add(cp);
+//                Common.isTitlecase.add(cp);
+//                Common.isUppercase.add(cp);
+//                continue;
+//            }
+//
+//            // IdnaType idnaType = Idna2003.getIDNA2003Type(cp);
+//            // idnaTypeSet.get(idnaType).add(cp);
+//
+//            String s = UTF16.valueOf(cp);
+//            if (UCharacter.foldCase(s, true).equals(s)) {
+//                Common.isCaseFolded.add(cp);
+//            }
+//            if (NFKC_CF_.normalize(s).equals(s)) {
+//                Common.isNFKC_CF.add(cp);
+//            }
+//            if (UCharacter.toLowerCase(ULocale.ROOT, s).equals(s)) {
+//                Common.isLowercase.add(cp);
+//            }
+//            if (UCharacter.toUpperCase(ULocale.ROOT, s).equals(s)) {
+//                Common.isUppercase.add(cp);
+//            }
+//            if (UCharacter.toTitleCase(ULocale.ROOT, s, null).equals(s)) {
+//                Common.isTitlecase.add(cp);
+//            }
+//        }
+//        isCaseFolded.freeze();
+//        isNFKC_CF.freeze();
+//        isLowercase.freeze();
+//        isUppercase.freeze();
+//        isTitlecase.freeze();
+//        // isCased if isLowercase=false OR isUppercase=false OR
+//        // isTitlecase=false
+//        // or := ! (isLowercase && isUppercase && isTitlecase)
+//        Common.isCased = new UnicodeSet(Common.isLowercase).retainAll(Common.isUppercase).retainAll(
+//                Common.isTitlecase).complement();
+//    }
 }
