@@ -110,6 +110,14 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                 return UCharacter.toTitleCase(ULocale.ROOT, source, null);
             }}, false).setMain("toTitleCase", "toTitleCase", UnicodeProperty.STRING, "1.1"));
         
+        add(new StringTransformProperty(new StringTransform() {
+            public String transform(String source) {
+                String result = NFM.nfm.get(source);
+                return result == null ? source : result;
+            }}, false).setMain("toNFM", "toNFM", UnicodeProperty.STRING, "1.1"));
+        //add(new UnicodeProperty.UnicodeMapProperty().set(NFM.nfm).setMain("toNFM", "toNFM", UnicodeProperty.STRING, "1.1"));
+        add(new UnicodeSetProperty().set(NFM.nfm.getSet(null)).setMain("isNFM", "isNFM", UnicodeProperty.BINARY, "1.1"));
+
         add(new CodepointTransformProperty(new Transform<Integer,String>() {
             public String transform(Integer source) {
                 return UnicodeUtilities.getSubheader().getSubheader(source);
