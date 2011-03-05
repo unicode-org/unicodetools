@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.unicode.jsp.Builder;
+import org.unicode.jsp.NFM;
 import org.unicode.jsp.PropertyMetadata;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeProperty;
@@ -19,6 +20,7 @@ import org.unicode.jsp.XPropertyFactory;
 import sun.text.normalizer.UTF16;
 
 import com.ibm.icu.dev.test.TestFmwk;
+import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
@@ -36,6 +38,18 @@ public class TestProperties extends TestFmwk {
     new TestProperties().run(args);
   }
 
+  public void TestNFM() {
+      UnicodeMap<String> map = NFM.nfm;
+      assertEquals("A", "a", map.transform("A"));
+      assertEquals("0640", "", map.transform("\u0640"));
+      UnicodeSet actual = UnicodeSetUtilities.parseUnicodeSet("[:isNFM:]");
+      assertTrue("isNFM", actual.contains("a"));
+      assertTrue("isNFM", !actual.contains("A"));
+      assertTrue("isNFM", !actual.contains("\u0640"));
+      UnicodeSet actual2 = UnicodeSetUtilities.parseUnicodeSet("[:toNFM=a:]");
+      assertTrue("toNFM=a", actual2.contains("A"));
+      assertTrue("toNFM=a", !actual2.contains("B"));
+  }
   public void TestDefaultEncodingValue() {
     UnicodeProperty prop = factory.getProperty("enc_ISO-8859-2");
     assertTrue("Default for Å, enc_ISO-8859-2", prop.isDefault('Å'));
