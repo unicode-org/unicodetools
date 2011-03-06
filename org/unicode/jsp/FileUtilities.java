@@ -71,6 +71,7 @@ public final class FileUtilities {
                     }
                     int comment = line.indexOf("#");
                     if (comment >= 0) {
+                        processComment(line, comment);
                         line = line.substring(0,comment);
                     }
                     if (line.startsWith("\uFEFF")) {
@@ -104,6 +105,8 @@ public final class FileUtilities {
                 throw (RuntimeException) new IllegalArgumentException(lineCount + ":\t" + line).initCause(e);
             }
             return this;
+        }
+        protected void processComment(String line, int comment) {
         }
     }
     //
