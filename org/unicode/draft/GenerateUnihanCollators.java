@@ -29,6 +29,7 @@ import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.XEquivalenceClass;
 import com.ibm.icu.impl.Differ;
 import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Row;
@@ -71,7 +72,7 @@ public class GenerateUnihanCollators {
     static final Collator                     strokeSort          = Collator.getInstance(new ULocale("zh@collator=stroke"));
     static final Collator                     radicalStrokeSort   = Collator.getInstance(new ULocale("zh@collator=unihan"));
     static final Transliterator               toPinyin            = Transliterator.getInstance("Han-Latin;nfc");
-    
+
     static final Comparator<String>           codepointComparator = new UTF16.StringComparator(true, false, 0);
     static final Comparator<String>           nfkdComparator = new Comparator<String>() {
         public int compare(String o1, String o2) {
@@ -107,7 +108,7 @@ public class GenerateUnihanCollators {
 
     private static final boolean only19 = System.getProperty("only19") != null;
     static UnicodeMap<String>                 radicalMap          = new UnicodeMap<String>();
-    
+
     // kHanyuPinyin, space, 10297.260: qīn,qìn,qǐn,
     // [a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]+(,[a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]
     // kMandarin, space, [A-Z\x{308}]+[1-5] // 3475=HAN4 JI2 JIE2 ZHA3 ZI2
@@ -124,13 +125,15 @@ public class GenerateUnihanCollators {
     static final int NO_STROKE_INFO = Integer.MAX_VALUE;
     private static UnicodeSet NEEDSQUOTE = new UnicodeSet("[[:pattern_syntax:][:pattern_whitespace:]]").freeze();
 
+    static final XEquivalenceClass<Integer, Integer> variantEquivalents = new XEquivalenceClass<Integer, Integer>();
+
     static {
         System.out.println("kRSUnicode " + kRSUnicode.size());
 
         new BihuaReader().process(GenerateUnihanCollators.class, "bihua-chinese-sorting.txt");
         getBestStrokes();
         RsInfo.addToStrokeInfo(bestStrokesS, true);
-        
+
         bestStrokesT.putAll(bestStrokesS);
         // patch the values for the T strokes
         new PatchStrokeReader(bestStrokesT).process(GenerateUnihanCollators.class, "patchStrokeT.txt");
@@ -196,11 +199,14 @@ public class GenerateUnihanCollators {
         addRadicals();
         count += showAdded("radicals", count);
 
-        addVariants("kTraditionalVariant", kTraditionalVariant);
-        count += showAdded("kTraditionalVariant", count);
+        addEquivalents(kTraditionalVariant);
+        addEquivalents(kSimplifiedVariant);
+        
+        count += addPinyinFromVariants("STVariants", count);
+        //count += showAdded("kTraditionalVariant", count);
 
-        addVariants("kSimplifiedVariant", kSimplifiedVariant);
-        count += showAdded("kSimplifiedVariant", count);
+        //addVariants("kSimplifiedVariant", kSimplifiedVariant);
+        //count += showAdded("kSimplifiedVariant", count);
 
         new PatchPinyinReader().process(GenerateUnihanCollators.class, "patchPinyin.txt");
 
@@ -710,7 +716,7 @@ public class GenerateUnihanCollators {
                 System.out.println("radical' " + key + "\t" + alternateStrokes[key]);
             }
             PrintWriter out = Utility.openPrintWriter(OUTPUT_DIRECTORY, "imputedStrokes" + (simplified ? "" : "T") +
-            		".txt", null);
+                    ".txt", null);
             for (String s : new UnicodeSet(kRSUnicode.keySet()).removeAll(bestStrokesIn.keySet())) {
                 int computedStrokes = RsInfo.from(s.codePointAt(0)).getComputedStrokes(mainStrokes, alternateStrokes);
                 bestStrokesIn.put(s, computedStrokes);
@@ -957,26 +963,47 @@ public class GenerateUnihanCollators {
 
     }
 
-    private static void addVariants(String title, UnicodeMap<String> variantMap) {
+    private static int addPinyinFromVariants(String title, int count) {
+        for (Set<Integer> s : variantEquivalents.getEquivalenceSets()) {
+            String hasPinyin = null;
+            int countHasPinyin = 0;
+            for (Integer cp : s) {
+                String existing = bestPinyin.get(cp);
+                if (existing != null) {
+                    hasPinyin = existing; // take last one. Might be better algorithm, but for now...
+                    countHasPinyin++;
+                }
+            }
+            // see if at least one has a pinyin, and at least one doesn't.
+            if (countHasPinyin != s.size() && hasPinyin != null) {
+                for (Integer cp : s) {
+                    if (!bestPinyin.containsKey(cp)) {
+                        addPinyin(title, UTF16.valueOf(cp), hasPinyin, Override.keepOld);
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+    
+    private static void addEquivalents(UnicodeMap<String> variantMap) {
         for (String s : variantMap) {
             String value = variantMap.get(s);
             if (value == null)
                 continue;
+            int baseCp = s.codePointAt(0);
             for (String part : value.split(" ")) {
                 if (!unicodeCp.reset(part).matches()) {
                     throw new IllegalArgumentException();
                 } else {
                     int cp = Integer.parseInt(unicodeCp.group(1), 16);
-                    Set<String> others = mergedPinyin.get(cp);
-                    if (others != null) {
-                        for (String other : others) {
-                            addPinyin(title, UTF16.valueOf(cp), other, Override.keepOld);
-                        }
-                    }
+                    variantEquivalents.add(baseCp, cp);
                 }
             }
         }
     }
+
 
     private static void addRadicals() {
         for (String s : radicalMap.keySet()) {
@@ -1162,7 +1189,7 @@ public class GenerateUnihanCollators {
         protected boolean isCodePoint() {
             return false;
         };
-        
+
         protected void processComment(String line, int comment) {
             if (only19 && line.substring(comment).contains("1.9.1")) {
                 skip = true;
@@ -1182,7 +1209,7 @@ public class GenerateUnihanCollators {
             return true;
         }
     }
-    
+
     static Comparator<String> RSComparator     = new Comparator<String>() {
 
         public int compare(String o1, String o2) {
