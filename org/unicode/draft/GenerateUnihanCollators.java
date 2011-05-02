@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,6 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CldrUtility.Output;
 import org.unicode.cldr.util.Counter;
 import org.unicode.draft.ComparePinyin.PinyinSource;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
@@ -28,6 +30,7 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.dev.test.util.CollectionUtilities;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.XEquivalenceClass;
 import com.ibm.icu.impl.Differ;
@@ -47,8 +50,19 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateUnihanCollators {
+    private static final char INDEX_ITEM_BASE = '\u2800';
+
     enum FileType {txt, xml}
-    enum InfoType {radicalStroke, stroke, pinyin}
+    enum InfoType {
+        radicalStroke("\uFDD2", 255), stroke("\uFDD1", 64), pinyin("\uFDD0", 26);
+        final int indexMax;
+        final String base;
+        InfoType(String base, int indexMax) {
+            this.base = base;
+            this.indexMax = indexMax;
+        }
+    }
+
     enum Override {keepOld, keepNew}
 
     static final String OUTPUT_DIRECTORY = "/Users/markdavis/Documents/workspace/cldr-tmp/dropbox/han";
@@ -201,7 +215,7 @@ public class GenerateUnihanCollators {
 
         addEquivalents(kTraditionalVariant);
         addEquivalents(kSimplifiedVariant);
-        
+
         count += addPinyinFromVariants("STVariants", count);
         //count += showAdded("kTraditionalVariant", count);
 
@@ -241,6 +255,9 @@ public class GenerateUnihanCollators {
         writeAndTest(shortStroke, SStrokeComparator, bestStrokesS, "stroke", InfoType.stroke);
         writeAndTest(shortStroke, TStrokeComparator, bestStrokesT, "strokeT", InfoType.stroke);
 
+        writeUnihanFields(bestPinyin, bestPinyin, mergedPinyin, PinyinComparator, "kMandarin");
+        writeUnihanFields(bestStrokesS, bestStrokesT, kTotalStrokes, SStrokeComparator, "kTotalStrokes");
+
         //            showSorting(PinyinComparator, bestPinyin, "pinyin");
         //            UnicodeMap<String> shortPinyinMap = new UnicodeMap<String>().putAllFiltered(bestPinyin, shortPinyin);
         //            System.out.println("stroke_pinyin base size:\t" + shortPinyinMap.size());
@@ -267,6 +284,43 @@ public class GenerateUnihanCollators {
         System.out.println("TODO: test the translit");
 
         getIndexChars();
+    }
+
+    private static <U, T> void writeUnihanFields(UnicodeMap<U> simplified, UnicodeMap<U> traditional, UnicodeMap<T> other, Comparator<String> comp, String filename) {
+        PrintWriter out = Utility.openPrintWriter(OUTPUT_DIRECTORY, filename + ".txt", null);
+        UnicodeSet keys = new UnicodeSet(simplified.keySet()).addAll(traditional.keySet());
+        Set<String> sorted = new TreeSet<String>(comp);
+        UnicodeSet.addAllTo(keys, sorted);
+        for (String s : sorted) {
+            U simp = simplified.get(s);
+            U trad = traditional.get(s);
+            String item;
+            if (simp == null) {
+                item = trad.toString();
+            } else if (trad != null && !simp.equals(trad)) {
+                item = simp + " " + trad;
+            } else {
+                item = simp.toString();
+            }
+            T commentSource = other.get(s);
+            String comments = "";
+            if (commentSource == null) {
+                // do nothing
+            } else if (commentSource instanceof Set) {
+                @SuppressWarnings("unchecked")
+                LinkedHashSet<String> temp = new LinkedHashSet<String>((Set<String>)commentSource);
+                temp.remove(simp);
+                temp.remove(trad);
+                comments = CollectionUtilities.join(temp, " ");
+            } else {
+                comments = commentSource.toString();
+                if (comments.equals(item)) {
+                    comments = "";
+                }
+            }
+            out.println("U+" + Utility.hex(s) + "\t" + filename + "\t" + item + "\t# " + s + (comments.isEmpty() ? "" : "\t" + comments));
+        }
+        out.close();
     }
 
     private static <T> void writeAndTest(UnicodeSet shortStroke, Comparator<String> comparator2, UnicodeMap<T> unicodeMap2, String title2, InfoType infoType) throws Exception {
@@ -638,14 +692,6 @@ public class GenerateUnihanCollators {
         out2.close();
     }
 
-    public static int getSortOrder(int codepoint) {
-        RsInfo rsInfo = RsInfo.from(codepoint);
-        if (rsInfo == null) {
-            return Integer.MAX_VALUE / 2;
-        }
-        return rsInfo.getRsOrder();
-    }
-
     public static class RsInfo {
         private int radical;
         private int alternate;
@@ -654,7 +700,7 @@ public class GenerateUnihanCollators {
         private RsInfo() {
         }
 
-        private static RsInfo from(int codepoint) {
+        static RsInfo from(int codepoint) {
             String radicalStrokeStrings = kRSUnicode.get(codepoint);
             if (radicalStrokeStrings == null) {
                 return null;
@@ -679,7 +725,18 @@ public class GenerateUnihanCollators {
         }
 
         public int getRsOrder() {
-            return radical * 1000 + alternate * 100 + remainingStrokes;
+            return radical * 1000 
+            + alternate * 100 
+            + remainingStrokes + 1;
+        }
+
+        public static int getSortOrder(String source) {
+            int codepoint = source.codePointAt(0);
+            RsInfo rsInfo = from(codepoint);
+            if (rsInfo == null) {
+                return Integer.MAX_VALUE / 2;
+            }
+            return rsInfo.getRsOrder();
         }
 
         public static void addToStrokeInfo(UnicodeMap<Integer> bestStrokesIn, boolean simplified) {
@@ -734,7 +791,8 @@ public class GenerateUnihanCollators {
         showSorting(comparator, unicodeMap, filename, FileType.xml, infoType);
     }
 
-    private static <S> void showSorting(Comparator<String> comparator, UnicodeMap<S> unicodeMap, String filename, FileType fileType, InfoType infoType) {
+    private static <S> void showSorting(Comparator<String> comparator, UnicodeMap<S> unicodeMap, String filename, 
+            FileType fileType, InfoType infoType) {
         // special capture for Pinyin buckets
         boolean isPinyin = filename.startsWith("pinyin") && fileType == FileType.xml;
         int alpha = 'a';
@@ -772,13 +830,18 @@ public class GenerateUnihanCollators {
             FileUtilities.appendFile(GenerateUnihanCollators.class, "pinyinHeader.txt", out);
         }
         S oldValue = null;
+        String oldIndexValue = null;
         String lastS = null;
+        Output<String> comment = new Output<String>();
         for (String s : rsSorted) {
             S newValue = unicodeMap.get(s);
             if (!equals(newValue, oldValue)) {
                 if (oldValue == null) {
-                    // do nothing
+                    String indexValue = getIndexValue(infoType, s, comment);
+                    showIndexValue(fileType, out, comment, indexValue);
+                    oldIndexValue = indexValue;
                 } else {
+                    // show other characters
                     if (buffer.codePointCount(0, buffer.length()) < 128) {
                         if (fileType == FileType.txt) {
                             out.println("<*" + sortingQuote(buffer.toString(), accumulated) + "\t#" + sortingQuote(oldValue, accumulated));
@@ -795,6 +858,13 @@ public class GenerateUnihanCollators {
                                 out.println("               <pc>" + temp + "</pc><!-- " + oldValue + " (p" + count++ + ") -->");
                             }
                         }
+                    }
+
+                    // insert index character
+                    String indexValue = getIndexValue(infoType, s, comment);
+                    if (!equals(indexValue, oldIndexValue)) {
+                        showIndexValue(fileType, out, comment, indexValue);
+                        oldIndexValue = indexValue;
                     }
                 }
                 buffer.setLength(0);
@@ -870,6 +940,14 @@ public class GenerateUnihanCollators {
             out.println(pinyinIndexBuffer);
             out.println(pinyinBuffer);
             out.close();
+        }
+    }
+
+    private static void showIndexValue(FileType fileType, PrintWriter out, Output<String> comment, String indexValue) {
+        if (fileType == FileType.txt) {
+            out.println("<" + indexValue + "\t# INDEX " + comment);
+        } else {
+            out.println("               <p>" + indexValue + "</p><!-- INDEX " + comment + " -->");
         }
     }
 
@@ -986,7 +1064,7 @@ public class GenerateUnihanCollators {
         }
         return count;
     }
-    
+
     private static void addEquivalents(UnicodeMap<String> variantMap) {
         for (String s : variantMap) {
             String value = variantMap.get(s);
@@ -1213,14 +1291,12 @@ public class GenerateUnihanCollators {
     static Comparator<String> RSComparator     = new Comparator<String>() {
 
         public int compare(String o1, String o2) {
-            int cp1 = o1.codePointAt(0);
-            int cp2 = o2.codePointAt(0);
-            int s1 = getSortOrder(cp1);
-            int s2 = getSortOrder(cp2);
+            int s1 = RsInfo.getSortOrder(o1);
+            int s2 = RsInfo.getSortOrder(o2);
             int result = s1 - s2;
             if (result != 0)
                 return result;
-            return cp1 - cp2;
+            return codepointComparator.compare(o1, o2);
         }
     };
 
@@ -1230,10 +1306,8 @@ public class GenerateUnihanCollators {
             this.baseMap = baseMap;
         }
         public int compare(String o1, String o2) {
-            int cp1 = o1.codePointAt(0);
-            int cp2 = o2.codePointAt(0);
-            Integer n1 = baseMap.get(cp1);
-            Integer n2 = baseMap.get(cp2);
+            Integer n1 = getStrokeValue(o1, baseMap);
+            Integer n2 = getStrokeValue(o2, baseMap);
             if (n1 == null) {
                 if (n2 != null) {
                     return 1;
@@ -1251,16 +1325,19 @@ public class GenerateUnihanCollators {
         }
     }
 
+    private static Integer getStrokeValue(String o1, UnicodeMap<Integer> baseMap) {
+        int cp1 = o1.codePointAt(0);
+        return baseMap.get(cp1);
+    }
+
     static Comparator<String> SStrokeComparator = new StrokeComparator(bestStrokesS);
     static Comparator<String> TStrokeComparator = new StrokeComparator(bestStrokesT);
 
     static Comparator<String> PinyinComparator = new Comparator<String>() {
 
         public int compare(String o1, String o2) {
-            int cp1 = o1.codePointAt(0);
-            int cp2 = o2.codePointAt(0);
-            String s1 = bestPinyin.get(cp1);
-            String s2 = bestPinyin.get(cp2);
+            String s1 = getPinyin(o1);
+            String s2 = getPinyin(o2);
             if (s1 == null) {
                 if (s2 != null) {
                     return 1;
@@ -1275,4 +1352,44 @@ public class GenerateUnihanCollators {
             return SStrokeComparator.compare(o1, o2);
         }
     };
+
+    public static String getPinyin(String o1) {
+        int cp1 = o1.codePointAt(0);
+        return bestPinyin.get(cp1);
+    }
+
+    private static String getIndexValue(InfoType infoType, String s, Output<String> comment) {
+        String rest;
+        switch (infoType) {
+        case pinyin: 
+            String str = getPinyin(s); // TODO drop accents
+            int first = str.charAt(0);
+            if (first < 0x7F) {
+                rest = str.substring(0,1);
+            } else {
+                rest = nfd.getDecomposition(first).substring(0,1);
+            }
+            comment.value = rest;
+            break;
+        case radicalStroke:
+            rest = getPinyin(s);
+            int codepoint = s.codePointAt(0);
+            RsInfo rsInfo = RsInfo.from(codepoint);
+            rest = String.valueOf((char)(INDEX_ITEM_BASE + rsInfo.radical));
+            comment.value = String.valueOf(rsInfo.radical);
+            if (rsInfo.alternate != 0) {
+                rest += String.valueOf((char)(INDEX_ITEM_BASE + rsInfo.alternate));
+                comment.value += ":" + String.valueOf(rsInfo.alternate);
+            }
+            break;
+        case stroke:
+            Integer strokeCount = getStrokeValue(s, bestStrokesT);
+            rest = String.valueOf((char)(INDEX_ITEM_BASE + strokeCount));
+            comment.value = String.valueOf(strokeCount);
+            break;
+        default:
+            throw new IllegalArgumentException();
+        }
+        return infoType.base + rest;
+    }
 }
