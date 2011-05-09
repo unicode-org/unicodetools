@@ -10,52 +10,53 @@
 〧
 〨
 〩
-丆 ; myeon ; ?
-乊 ; ho ; ?
+
+
 乤 ; xià
-乥 ; hol ; ?
+
 乬 ; jù
 乮 ; mǎo
 乯 ; hū
-乲 ; cal ; ?
+
 乺 ; suǒ
 乻 ; yú
 乽 ; zhě
 仒 ; bīng
 兙 ; shíkě ; *
 兡 ; bǎikè ; *
-兺 ; būn
-匁 ; mangmi ; ?
+
+
 厑 ; yá
-厼 ; ěr ; ?
-叾 ; liǎo ; ?
+
+
 哛 ; fēn ; ?
-唜 ; mò ; ?
-唟 ; qù ; ?
+
+
+
 啹 ; jú
-喸 ; phos ; ?
+
 嗧 ; jiālún ; *
-嗭 ; zi
-囕 ; ramo ; ?
+
+
 垈 ; dài
-夞 ; oes ; ?
+
 夻 ; huà
-屗 ; uu ; ?
+
 岃 ; rèn
 巪 ; jù
-巼 ; phas ; ?
+
 廤 ; kù
 徚 ; dōng
-怾 ; gi
+
 斏 ; láng
 旀 ; mèi
-旕 ; eos ; ?
-曢 ; uu ; ?
+
+
 朑 ; tì
-朰 ; teul ; ?
-栍 ; saeng ; ?
-桛 ; kasei ; ?
-椧 ; myeong ; ?
+
+
+
+
 櫷 ; guī
 歚 ; shàn
 毜 ; háo
@@ -67,9 +68,9 @@
 焑 ; yān
 焽 ; xiǒng
 焾 ; niǎn
-燞 ; uu ; ?
+
 燶 ; nóng
-猠 ; ceon ; ?
+
 獤 ; dūn
 瓧 ; shíwǎ ; *
 瓰 ; fēnwǎ ; *
@@ -79,29 +80,29 @@
 甅 ; líwǎ ; *
 畓 ; duō
 癷 ; bō
-硛 ; ceok ; ?
-硳 ; ceok ; ?
+
+
 磗 ; zhuān
 祍 ; rèn
 稥 ; xiāng
-穒 ; kweok ; ?
-縇 ; seon ; ?
-罖 ; ra
+
+
+
 耂 ; lǎo
-聁 ; uu ; ?
+
 聣 ; ní
-艈 ; uu ; ?
+
 茒 ; yuán
-莻 ; neus ; ?
+
 蒊 ; huā
 蓞 ; dàn
 藔 ; liáo
-虄 ; sal ; ?
-虲 ; uu ; ?
-蝊 ; uu ; ?
+
+
+
 袰 ; bō
 裇 ; xū
-襨 ; tae ; ?
+
 贘 ; shǎng
 踎 ; móu
 躼 ; lào
@@ -112,7 +113,7 @@
 鐢 ; fán
 閪 ; sē
 闏 ; fēng ; ?
-闧 ; uu ; ?
+
 霻 ; fēng
 鞰 ; wēn
 鶑 ; yīng
@@ -213,3 +214,45 @@
 趰   ;   ěr
 兒   ;   ér
 儿   ;   ér
+
+# From Lee
+
+厼 ; ěr ; ?
+叾 ; liǎo ; ?
+唜 ; mò ; ?
+唟 ; qù ; ?
+
+丆 ; hǎn
+乊 ; yī
+乥 ; hù
+乲 ; zī
+匁 ; wén
+喸 ; bǔ
+囕 ; lǎn
+夞 ; wài
+屗 ; wěi
+巼 ; bā
+怾 ; zhǐ
+旕 ; yú
+曢 ; liǎo
+朰 ; mù
+栍 ; shēng
+桛 ; shàngxìa
+椧 ; mìng
+燞 ; jiǎo
+猠 ; diǎn
+硛 ; yì
+硳 ; chì
+穒 ; hè
+縇 ; xuān
+聁 ; pàn
+艈 ; yù
+莻 ; gòng
+虄 ; sà
+虲 ; xiā
+蝊 ; dìng
+闧 ; tā
+兺 ; fēn
+嗭 ; zhí
+罖 ; luó
+襨 ; dùi

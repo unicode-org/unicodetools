@@ -45,6 +45,7 @@ import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
+import com.ibm.icu.text.IdnaBase;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
@@ -258,7 +259,7 @@ public class TestJsp  extends TestFmwk {
 
 
   private void getIcuIdnaUts(StringBuilder inbuffer, TypeAndMap typeAndMapIcu) {
-      IDNA icuIdna = IDNA.getUTS46Instance(0);
+      IdnaBase icuIdna = IDNA.getUTS46Instance(0);
       IDNA.Info info = new IDNA.Info();
       
     typeAndMapIcu.type = null;
@@ -294,7 +295,7 @@ public class TestJsp  extends TestFmwk {
     }
   }
 
-  private static StringBuilder convertWithHackUts(StringBuilder inbuffer, IDNA icuIdna) throws StringPrepParseException {
+  private static StringBuilder convertWithHackUts(StringBuilder inbuffer, IdnaBase icuIdna) throws StringPrepParseException {
       StringBuilder intermediate;
       try {
         intermediate = icuIdna.nameToASCII(inbuffer.toString(), inbuffer, null); // USE_STD3_RULES,
