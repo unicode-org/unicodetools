@@ -10,11 +10,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -26,12 +28,14 @@ import org.unicode.cldr.tool.Option;
 import org.unicode.cldr.util.CldrUtility.Output;
 import org.unicode.cldr.util.Counter;
 import org.unicode.draft.ComparePinyin.PinyinSource;
+import org.unicode.draft.GenerateUnihanCollators.InfoType;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.CollectionUtilities;
+import com.ibm.icu.dev.test.util.Relation;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.XEquivalenceClass;
 import com.ibm.icu.impl.Differ;
@@ -250,6 +254,13 @@ public class GenerateUnihanCollators {
         writeAndTest(shortPinyin, PinyinComparator, bestPinyin, "pinyin", InfoType.pinyin);
         //writeAndTest(shortStroke, SStrokeComparator, bestStrokesS, "stroke", InfoType.stroke);
         writeAndTest(shortStroke, TStrokeComparator, bestStrokesT, "strokeT", InfoType.stroke);
+        
+        for (Entry<InfoType, Set<String>> entry : indexValues.keyValuesSet()) {
+            InfoType infoType = entry.getKey();
+            UnicodeSet sorted = new UnicodeSet();
+            sorted.addAll(entry.getValue());
+            System.out.println(infoType + "\t" + sorted);
+        }
 
         writeUnihanFields(bestPinyin, bestPinyin, mergedPinyin, PinyinComparator, "kMandarin");
         writeUnihanFields(bestStrokesS, bestStrokesT, kTotalStrokes, SStrokeComparator, "kTotalStrokes");
@@ -1371,6 +1382,8 @@ public class GenerateUnihanCollators {
         int cp1 = o1.codePointAt(0);
         return bestPinyin.get(cp1);
     }
+    
+    static final Relation<InfoType,String> indexValues = Relation.of(new EnumMap<InfoType,Set<String>>(InfoType.class), HashSet.class);
 
     private static String getIndexValue(InfoType infoType, String s, Output<String> comment) {
         String rest;
@@ -1406,6 +1419,8 @@ public class GenerateUnihanCollators {
         default:
             throw new IllegalArgumentException();
         }
-        return infoType.base + rest;
+        final String result = infoType.base + rest;
+        indexValues.put(infoType, result);
+        return result;
     }
 }

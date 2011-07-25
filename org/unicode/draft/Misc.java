@@ -197,7 +197,7 @@ public class Misc {
             return false;
         }
         // now check for mixed scripts
-        if (spoofChecker.check(possibleName)) {
+        if (spoofChecker.failsChecks(possibleName)) {
             reasons.add("Mixed script"); // later, find the sequences that are
             return false;
         }

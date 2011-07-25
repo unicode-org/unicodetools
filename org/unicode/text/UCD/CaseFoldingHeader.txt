@@ -45,4 +45,12 @@
 #    behavior. (The default option is to exclude them.)
 #
 # =================================================================
-# @missing 0000..10FFFF; <codepoint>
+
+# Property: Case_Folding
+
+#  All code points not explicitly listed for Case_Folding
+#  have the value C for the status field, and the code point itself for the mapping field.
+
+# @missing: 0000..10FFFF; C; <code point>
+
+# =================================================================

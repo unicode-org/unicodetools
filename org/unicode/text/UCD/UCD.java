@@ -45,8 +45,8 @@ public final class UCD implements UCD_Types {
   /**
    * Used for the default version.
    */
-  public static final String latestVersion = "6.0.0"; //  + (FIX_FOR_NEW_VERSION == 0 ? "" : "");
-  public static final String lastVersion = "5.2.0"; // last released version
+  public static final String latestVersion = "6.1.0"; //  + (FIX_FOR_NEW_VERSION == 0 ? "" : "");
+  public static final String lastVersion = "6.0.0"; // last released version
 
   /**
    * Create singleton instance for default (latest) version

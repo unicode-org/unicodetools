@@ -345,7 +345,13 @@ public final class UCD_Names implements UCD_Types {
     "Batak",
     "Brahmi",
     "Mandaic",
-
+    "Chakma",
+    "Meroitic_Cursive",
+    "Meroitic_Hieroglyphs",
+    "Miao",
+    "Sharada",
+    "Sora_Sompeng",
+    "Takri",
   };
 
   public static final Relation<String,String> EXTRA_SCRIPT = new Relation(new TreeMap(), LinkedHashSet.class);
@@ -462,6 +468,13 @@ public final class UCD_Names implements UCD_Types {
     "Batk",
     "Brah",
     "Mand",
+    "Cakm",
+    "Merc",
+    "Mero",
+    "Plrd",
+    "Shrd",
+    "Sora",
+    "Takr",
   };
 
   static final String[] AGE = {
@@ -478,6 +491,7 @@ public final class UCD_Names implements UCD_Types {
     "5.1",
     "5.2",
     "6.0",
+    "6.1",
   };
 
   static final String[] GENERAL_CATEGORY = {
@@ -568,7 +582,7 @@ public final class UCD_Names implements UCD_Types {
 
   static final String[][] SUPER_CATEGORIES = {
     {"L", "Letter", null, "Ll | Lm | Lo | Lt | Lu"},
-    {"M", "Mark", null, "Mc | Me | Mn"},
+    {"M", "Mark", "Combining_Mark", "Mc | Me | Mn"},
     {"N", "Number", null, "Nd | Nl | No"},
     {"Z", "Separator", null, "Zl | Zp | Zs"},
     {"C", "Other", "cntrl", "Cc | Cf | Cn | Co | Cs"},
@@ -880,6 +894,7 @@ public final class UCD_Names implements UCD_Types {
     "BURUSHASKI_YEH_BARREE",
     "FARSI_YEH",
     "NYA",
+    "ROHINGYA_YEH"
     // BURUSHASHKI YEH BARREE
   };
   static {
