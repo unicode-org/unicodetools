@@ -49,17 +49,17 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
   private static final String[] YES_VALUES = {"Y", "Yes", "T", "True"};
 
-  static final boolean   DEBUG        = false;
-
-  private UCD            ucd;
-
-  private Normalizer     nfc, nfd, nfkd, nfkc;
+  static final boolean   DEBUG        = true;
 
   private static boolean needAgeCache = true;
-
+  
   private static UCD[]   ucdCache     = new UCD[UCD_Types.LIMIT_AGE];
 
   private static HashMap factoryCache = new HashMap();
+  
+  private UCD            ucd;
+
+  private Normalizer     nfc, nfd, nfkd, nfkc;
 
   private boolean special = false;
 
@@ -518,7 +518,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     if (DEBUG)
       System.out.println("Derived Properties");
     for (int i = 0; i < DerivedProperty.DERIVED_PROPERTY_LIMIT; ++i) {
-      UCDProperty prop = DerivedProperty.make(i);
+      UCDProperty prop = DerivedProperty.make(i, ucd);
       if (prop == null)
         continue;
       if (!prop.isStandard())
@@ -570,14 +570,28 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           unicodeMap.put(0xD, "CR");
           unicodeMap.put(0xA, "LF");
           UnicodeProperty cat = getProperty("General_Category");
-          UnicodeSet temp = cat.getSet("Line_Separator").addAll(cat.getSet("Paragraph_Separator"))
-          .addAll(cat.getSet("Control")).addAll(cat.getSet("Format")).remove(0xD).remove(
-                  0xA).remove(0x200C).remove(0x200D);
-          unicodeMap.putAll(temp, "Control");
+          
           UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
+
+          String x = cat.getValue(0x17B4);
+          UnicodeSet temp = cat.getSet("Line_Separator")
+          .addAll(cat.getSet("Paragraph_Separator"))
+          .addAll(cat.getSet("Control"))
+          .addAll(cat.getSet("Format"))
+          .remove(0xD)
+          .remove(0xA)
+          .remove(0x200C)
+          .remove(0x200D);
+          UnicodeSet diff = new UnicodeSet(temp).retainAll(graphemeExtend);
+          if (diff.size() != 0) {
+              temp.removeAll(diff);
+              System.err.println("ERROR: Problem in generating Grapheme_Cluster_Break for "
+                      + ucd.getVersion() + ",\t" + diff);
+          }
+          unicodeMap.putAll(temp, "Control");
+          
           unicodeMap.putAll(graphemeExtend, "Extend");
-          unicodeMap
-          .putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
+          unicodeMap.putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
           
           UnicodeSet graphemePrepend = getProperty("Logical_Order_Exception").getSet(UCD_Names.YES);
           unicodeMap.putAll(graphemePrepend, "Prepend");

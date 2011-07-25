@@ -11,8 +11,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.unicode.cldr.tool.GenerateLikelySubtagTests;
 import org.unicode.cldr.tool.ConvertLanguageData.InverseComparator;
+import org.unicode.cldr.tool.LikelySubtags;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.LanguageTagParser;
@@ -169,7 +169,7 @@ public class LanguageDetectionVsTags {
     try {
       langTagParser.set(string);
       string = langTagParser.toString();
-      String minimized = GenerateLikelySubtagTests.minimize(string, likelySubtags, false);
+      String minimized = LikelySubtags.minimize(string, likelySubtags, false);
       if (minimized != null) {
         if (minimized.equals(string)) {
           x = 1;

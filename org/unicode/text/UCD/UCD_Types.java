@@ -35,9 +35,9 @@ public interface UCD_Types {
   
   public static final int 
   // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
-  // 9FCB;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+  // 9FCC;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
   CJK_BASE = 0x4E00,
-  CJK_LIMIT = 0x9FCB+1,
+  CJK_LIMIT = 0x9FCC+1,
 
   CJK_COMPAT_USED_BASE = 0xFA0E,
   CJK_COMPAT_USED_LIMIT = 0xFA2F+1,
@@ -469,7 +469,14 @@ public interface UCD_Types {
   Batak = 95,
   Brahmi = 96,
   Mandaic = 97,
-  LIMIT_SCRIPT = Mandaic + 1;
+  Chakma = 98,
+  Meroitic_Cursive = 99,
+  Meroitic_Hieroglyphs = 100,
+  Miao = 101,
+  Sharada = 102,
+  Sora_Sompeng = 103,
+  Takri = 104,
+  LIMIT_SCRIPT = Takri + 1;
 
 
   static final int
@@ -486,7 +493,8 @@ public interface UCD_Types {
   AGE51 = 10,
   AGE52 = 11,
   AGE60 = 12,
-  LIMIT_AGE = AGE60 + 1; // + FIX_FOR_NEW_VERSION;
+  AGE61 = 13,
+  LIMIT_AGE = AGE61 + 1; // + FIX_FOR_NEW_VERSION;
 
   static final String[] AGE_VERSIONS = {
     "?",
@@ -502,6 +510,7 @@ public interface UCD_Types {
             "5.1.0",
             "5.2.0",
             "6.0.0",
+            "6.1.0",
   };
 
   public static byte
@@ -571,7 +580,8 @@ public interface UCD_Types {
   BURUSHASKI_YEH_BARREE = 54,
   FARSI_YEH = 55,
   NYA = 56,
-  LIMIT_JOINING_GROUP = 57;
+  ROHINGYA_YEH = 57,
+  LIMIT_JOINING_GROUP = 58;
 
   static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;    
   public static final int
