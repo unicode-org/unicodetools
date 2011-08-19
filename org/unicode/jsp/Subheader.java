@@ -29,7 +29,7 @@ import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
 
 public class Subheader implements Iterable<String> { 
-    static final boolean DEBUG = true;
+    static final boolean DEBUG = false;
     Matcher subheadMatcher = Pattern.compile("(@+)\\s+(.*)").matcher("");
     Matcher hexMatcher = Pattern.compile("([A-Z0-9]+).*").matcher("");
     Map<Integer, String> codePoint2Subblock = new HashMap<Integer, String>();

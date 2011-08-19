@@ -593,7 +593,7 @@ of characters, the first of which has a non-zero combining class.
         shortName = "DI";
       }
 
-      UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0603 \\u06DD \\u070F\\U000110BD]");
+      UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0604 \\u06DD \\u070F\\U000110BD]");
 
       public boolean hasValue(int cp) {
         if (removals.contains(cp)) return false;

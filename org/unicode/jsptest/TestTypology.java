@@ -34,6 +34,10 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class TestTypology extends TestFmwk {
 
+    private static final boolean DEBUG = false;
+    private static final String VERSION = "5";
+    private static final boolean SHOW_RELATED = false;
+
     public static void main(String[] args) {
         new TestTypology().run(args);
     }
@@ -63,7 +67,7 @@ public class TestTypology extends TestFmwk {
         list.addAll(Typology.getLabels());
         list.removeAll(Arrays.asList("S L M N C Z P".split(" ")));
 
-        System.out.println(list);
+        if (DEBUG) System.out.println(list);
 
         PrintWriter out = BagFormatter.openUTF8Writer(Utility.GEN_DIR + "/categories", "CategoryLabels.txt");
         PrintWriter html = BagFormatter.openUTF8Writer(Utility.GEN_DIR + "/categories", "CategoryLabels.html");
@@ -87,7 +91,9 @@ public class TestTypology extends TestFmwk {
                 ".p0 {color:Maroon}\n" + 
                 ".sub {color: gray}\n" + 
                 "</style></head><body>\n" +
-                "<p><b>L2/10-450R4</b></p>\n" +
+                "<p><b>L2/10-450R" + VERSION
+                 +
+                "</b></p>\n" +
                 "<p>Subject: Labels and UTR#49</p>\n" +
                 "<p>From: Mark Davis</p>\n" +
                 "<p>Date: " + new Date() + "</p>\n" +
@@ -341,7 +347,7 @@ public class TestTypology extends TestFmwk {
         if (foo.size() != 0) {
             PropData r = new PropData(foo, alias, subhead);
             props.add(r);
-            System.out.println(alias + "=" + subhead);
+            if (DEBUG) System.out.println(alias + "=" + subhead);
         }
     }
 
@@ -370,30 +376,44 @@ public class TestTypology extends TestFmwk {
         String cell;
         String setString;
         String sizeString;
+        String printLabel = labelName;
+        if (printLabel.isEmpty()) {
+            printLabel = "\"\"";
+        }
         if (subhead == LabelStyle.title) {
             cell = "th";
         } else if (subhead == LabelStyle.subhead) {
             cell = "td";
             Map<String,Double> subheads = getSubheadInfo(usets[0]);
             setString = formatUnicodeSet(usets) 
-            + "<p>" + Typology.label_parent_uset.get(labelName).keySet()
-            + "<p>" + join(subheads, labelName);
+            + "<p>" + Typology.label_parent_uset.get(labelName).keySet() +
+            (SHOW_RELATED ? "<p>" + join(subheads, labelName) : "");
 
             sizeString = usets.length == 0 ? "" : usets[0].size()+"";
             labelName = BREAK_AFTER.matcher(labelName).replaceAll("$1\u200B");
             labelName += "\t" + sizeString + "\t" + setString;
+            printLabel += "\t" + sizeString + "\t" + show(usets); 
         } else {
             cell = "td";
             setString = formatUnicodeSet(usets);
             sizeString = usets.length == 0 ? "" : usets[0].size()+"";
             labelName = BREAK_AFTER.matcher(labelName).replaceAll("$1\u200B");
             labelName += "\t" + sizeString + "\t" + setString;
+            printLabel += "\t" + sizeString + "\t" + show(usets); 
         }
-        printStream.println(labelName);
+        printStream.println(printLabel);
         html.println("<tr" + (labelRowStyle == LabelRowStyle.normal ? "" : " class='sub'") +
                 "><" + cell + ">" 
                 + labelName.replace("\t", "</" + cell + "><" + cell + ">") 
                 + "</" + cell + "></tr>");
+    }
+
+    private String show(UnicodeSet[] usets) {
+        String results = "";
+        for (UnicodeSet u : usets) {
+            results += u.toPattern(false);
+        }
+        return results;
     }
 
     private String formatUnicodeSet(UnicodeSet... usets) {

@@ -49,7 +49,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
   private static final String[] YES_VALUES = {"Y", "Yes", "T", "True"};
 
-  static final boolean   DEBUG        = true;
+  static final boolean   DEBUG        = false;
 
   private static boolean needAgeCache = true;
   
@@ -578,6 +578,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
           .addAll(cat.getSet("Paragraph_Separator"))
           .addAll(cat.getSet("Control"))
           .addAll(cat.getSet("Format"))
+          .addAll(cat.getSet("Cs"))
+          .addAll(cat.getSet("Cn"))
           .remove(0xD)
           .remove(0xA)
           .remove(0x200C)
