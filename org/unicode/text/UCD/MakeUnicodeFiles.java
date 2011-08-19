@@ -775,7 +775,7 @@ public class MakeUnicodeFiles {
     "gc\t;\tC\t;\tOther\t# Cc | Cf | Cn | Co | Cs",
     "gc\t;\tL\t;\tLetter\t# Ll | Lm | Lo | Lt | Lu",
     "gc\t;\tLC\t;\tCased_Letter\t# Ll | Lt | Lu",
-    "gc\t;\tM\t;\tMark\t;\tCombining Mark\t# Mc | Me | Mn",
+    "gc\t;\tM\t;\tMark\t;\tCombining_Mark\t# Mc | Me | Mn",
     "gc\t;\tN\t;\tNumber\t# Nd | Nl | No",
     "gc\t;\tP\t;\tPunctuation\t;\tpunct\t# Pc | Pd | Pe | Pf | Pi | Po | Ps",
     "gc\t;\tS\t;\tSymbol\t# Sc | Sk | Sm | So",

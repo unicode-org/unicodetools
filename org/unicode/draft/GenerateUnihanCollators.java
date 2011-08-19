@@ -294,6 +294,17 @@ public class GenerateUnihanCollators {
         getIndexChars();
     }
 
+    /**
+     * U+3400   kMandarin   QIU1
+     * U+3400   kTotalStrokes   5
+     * @param <U>
+     * @param <T>
+     * @param simplified
+     * @param traditional
+     * @param other
+     * @param comp
+     * @param filename
+     */
     private static <U, T> void writeUnihanFields(UnicodeMap<U> simplified, UnicodeMap<U> traditional, UnicodeMap<T> other, Comparator<String> comp, String filename) {
         PrintWriter out = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, filename + ".txt", null);
         UnicodeSet keys = new UnicodeSet(simplified.keySet()).addAll(traditional.keySet());

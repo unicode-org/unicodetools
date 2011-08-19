@@ -160,7 +160,7 @@
 009F	Cc	[Control]	[X]	[X]	[X]	<control>
 00A0	Zs	[Punctuation]	[Space]	[X]	[X]	NO-BREAK SPACE
 00A1	Po	[Punctuation]	[X]	[X]	[X]	INVERTED EXCLAMATION MARK
-00A2	Sc	[Punctuation]	[X]	[X]	[X]	CENT SIGN
+00A2	Sc	[Symbol]	[Currency]	[X]	[X]	CENT SIGN
 00A3	Sc	[Symbol]	[Currency]	[X]	[X]	POUND SIGN
 00A4	Sc	[Symbol]	[Currency]	[X]	[X]	CURRENCY SIGN
 00A5	Sc	[Symbol]	[Currency]	[X]	[X]	YEN SIGN
@@ -886,7 +886,7 @@
 0375	Sk	[Diacritic]	[Spacing]	[Numeral]	[X]	GREEK LOWER NUMERAL SIGN
 0376	Lu	[Letter]	[Historic]	[X]	[X]	GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA
 0377	Ll	[Letter]	[Historic]	[X]	[X]	GREEK SMALL LETTER PAMPHYLIAN DIGAMMA
-037A	Lm	[Diacritic]	[X]	[X]	[X]	GREEK YPOGEGRAMMENI
+037A	Lm	[Diacritic]	[Spacing]	[X]	[X]	GREEK YPOGEGRAMMENI
 037B	Ll	[Symbol]	[Editorial]	[X]	[X]	GREEK SMALL REVERSED LUNATE SIGMA SYMBOL
 037C	Ll	[Symbol]	[Editorial]	[X]	[X]	GREEK SMALL DOTTED LUNATE SIGMA SYMBOL
 037D	Ll	[Symbol]	[Editorial]	[X]	[X]	GREEK SMALL REVERSED DOTTED LUNATE SIGMA SYMBOL
@@ -1485,8 +1485,8 @@
 0601	Cf	[Format]	[Subtending]	[X]	[X]	ARABIC SIGN SANAH
 0602	Cf	[Format]	[Subtending]	[X]	[X]	ARABIC FOOTNOTE MARKER
 0603	Cf	[Format]	[Subtending]	[X]	[X]	ARABIC SIGN SAFHA
-0606	Sm	[Symbol]	[Math]	[X]	[X]	ARABIC-INDIC CUBE ROOT
-0607	Sm	[Symbol]	[Math]	[X]	[X]	ARABIC-INDIC FOURTH ROOT
+0606	Sm	[Symbol]	[Math]	[Operator]	[Large]	ARABIC-INDIC CUBE ROOT
+0607	Sm	[Symbol]	[Math]	[Operator]	[Large]	ARABIC-INDIC FOURTH ROOT
 0608	Sm	[Symbol]	[Math]	[X]	[X]	ARABIC RAY
 0609	Po	[Punctuation]	[X]	[X]	[X]	ARABIC-INDIC PER MILLE SIGN
 060A	Po	[Punctuation]	[X]	[X]	[X]	ARABIC-INDIC PER TEN THOUSAND SIGN
@@ -7217,7 +7217,7 @@
 213D	Ll	[Symbol]	[Letterlike]	[X]	[X]	DOUBLE-STRUCK SMALL GAMMA
 213E	Lu	[Symbol]	[Letterlike]	[X]	[X]	DOUBLE-STRUCK CAPITAL GAMMA
 213F	Lu	[Symbol]	[Letterlike]	[X]	[X]	DOUBLE-STRUCK CAPITAL PI
-2140	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	DOUBLE-STRUCK N-ARY SUMMATION
+2140	Sm	[Symbol]	[Math]	[Operator]	[Large]	DOUBLE-STRUCK N-ARY SUMMATION
 2141	Sm	[Symbol]	[Letterlike]	[X]	[X]	TURNED SANS-SERIF CAPITAL G
 2142	Sm	[Symbol]	[Letterlike]	[X]	[X]	TURNED SANS-SERIF CAPITAL L
 2143	Sm	[Symbol]	[Letterlike]	[X]	[X]	REVERSED SANS-SERIF CAPITAL L
@@ -7418,9 +7418,9 @@
 220C	Sm	[Symbol]	[Math]	[Relation]	[X]	DOES NOT CONTAIN AS MEMBER
 220D	Sm	[Symbol]	[Math]	[Relation]	[X]	SMALL CONTAINS AS MEMBER
 220E	Sm	[Symbol]	[Math]	[X]	[X]	END OF PROOF
-220F	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY PRODUCT
-2210	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY COPRODUCT
-2211	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY SUMMATION
+220F	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY PRODUCT
+2210	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY COPRODUCT
+2211	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY SUMMATION
 2212	Sm	[Symbol]	[Math]	[Operator]	[X]	MINUS SIGN
 2213	Sm	[Symbol]	[Math]	[Operator]	[X]	MINUS-OR-PLUS SIGN
 2214	Sm	[Symbol]	[Math]	[Operator]	[X]	DOT PLUS
@@ -7429,32 +7429,32 @@
 2217	Sm	[Symbol]	[Math]	[Operator]	[X]	ASTERISK OPERATOR
 2218	Sm	[Symbol]	[Math]	[Operator]	[X]	RING OPERATOR
 2219	Sm	[Symbol]	[Math]	[Operator]	[X]	BULLET OPERATOR
-221A	Sm	[Symbol]	[Math]	[Operator]	[X]	SQUARE ROOT
-221B	Sm	[Symbol]	[Math]	[Operator]	[X]	CUBE ROOT
-221C	Sm	[Symbol]	[Math]	[Operator]	[X]	FOURTH ROOT
+221A	Sm	[Symbol]	[Math]	[Operator]	[Large]	SQUARE ROOT
+221B	Sm	[Symbol]	[Math]	[Operator]	[Large]	CUBE ROOT
+221C	Sm	[Symbol]	[Math]	[Operator]	[Large]	FOURTH ROOT
 221D	Sm	[Symbol]	[Math]	[Operator]	[X]	PROPORTIONAL TO
 221E	Sm	[Symbol]	[Math]	[X]	[X]	INFINITY
 221F	Sm	[Symbol]	[Math]	[X]	[X]	RIGHT ANGLE
 2220	Sm	[Symbol]	[Math]	[X]	[X]	ANGLE
 2221	Sm	[Symbol]	[Math]	[X]	[X]	MEASURED ANGLE
 2222	Sm	[Symbol]	[Math]	[X]	[X]	SPHERICAL ANGLE
-2223	Sm	[Symbol]	[Math]	[Operator]	[X]	DIVIDES
-2224	Sm	[Symbol]	[Math]	[Operator]	[X]	DOES NOT DIVIDE
-2225	Sm	[Symbol]	[Math]	[Operator]	[X]	PARALLEL TO
-2226	Sm	[Symbol]	[Math]	[Operator]	[X]	NOT PARALLEL TO
+2223	Sm	[Symbol]	[Math]	[Relation]	[X]	DIVIDES
+2224	Sm	[Symbol]	[Math]	[Relation]	[X]	DOES NOT DIVIDE
+2225	Sm	[Symbol]	[Math]	[Relation]	[X]	PARALLEL TO
+2226	Sm	[Symbol]	[Math]	[Relation]	[X]	NOT PARALLEL TO
 2227	Sm	[Symbol]	[Math]	[Operator]	[X]	LOGICAL AND
 2228	Sm	[Symbol]	[Math]	[Operator]	[X]	LOGICAL OR
 2229	Sm	[Symbol]	[Math]	[Operator]	[X]	INTERSECTION
 222A	Sm	[Symbol]	[Math]	[Operator]	[X]	UNION
-222B	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL
-222C	Sm	[Symbol]	[Math]	[Integral]	[X]	DOUBLE INTEGRAL
-222D	Sm	[Symbol]	[Math]	[Integral]	[X]	TRIPLE INTEGRAL
-222E	Sm	[Symbol]	[Math]	[Integral]	[X]	CONTOUR INTEGRAL
-222F	Sm	[Symbol]	[Math]	[Integral]	[X]	SURFACE INTEGRAL
-2230	Sm	[Symbol]	[Math]	[Integral]	[X]	VOLUME INTEGRAL
-2231	Sm	[Symbol]	[Math]	[Integral]	[X]	CLOCKWISE INTEGRAL
-2232	Sm	[Symbol]	[Math]	[Integral]	[X]	CLOCKWISE CONTOUR INTEGRAL
-2233	Sm	[Symbol]	[Math]	[Integral]	[X]	ANTICLOCKWISE CONTOUR INTEGRAL
+222B	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL
+222C	Sm	[Symbol]	[Math]	[Operator]	[Large]	DOUBLE INTEGRAL
+222D	Sm	[Symbol]	[Math]	[Operator]	[Large]	TRIPLE INTEGRAL
+222E	Sm	[Symbol]	[Math]	[Operator]	[Large]	CONTOUR INTEGRAL
+222F	Sm	[Symbol]	[Math]	[Operator]	[Large]	SURFACE INTEGRAL
+2230	Sm	[Symbol]	[Math]	[Operator]	[Large]	VOLUME INTEGRAL
+2231	Sm	[Symbol]	[Math]	[Operator]	[Large]	CLOCKWISE INTEGRAL
+2232	Sm	[Symbol]	[Math]	[Operator]	[Large]	CLOCKWISE CONTOUR INTEGRAL
+2233	Sm	[Symbol]	[Math]	[Operator]	[Large]	ANTICLOCKWISE CONTOUR INTEGRAL
 2234	Sm	[Symbol]	[Math]	[X]	[X]	THEREFORE
 2235	Sm	[Symbol]	[Math]	[X]	[X]	BECAUSE
 2236	Sm	[Symbol]	[Math]	[Relation]	[X]	RATIO
@@ -7595,10 +7595,10 @@
 22BD	Sm	[Symbol]	[Math]	[Operator]	[X]	NOR
 22BE	Sm	[Symbol]	[Math]	[X]	[X]	RIGHT ANGLE WITH ARC
 22BF	Sm	[Symbol]	[Math]	[X]	[X]	RIGHT TRIANGLE
-22C0	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY LOGICAL AND
-22C1	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY LOGICAL OR
-22C2	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY INTERSECTION
-22C3	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY UNION
+22C0	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY LOGICAL AND
+22C1	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY LOGICAL OR
+22C2	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY INTERSECTION
+22C3	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY UNION
 22C4	Sm	[Symbol]	[Math]	[Operator]	[X]	DIAMOND OPERATOR
 22C5	Sm	[Symbol]	[Math]	[Operator]	[X]	DOT OPERATOR
 22C6	Sm	[Symbol]	[Math]	[Operator]	[X]	STAR OPERATOR
@@ -8395,12 +8395,12 @@
 2617	So	[Symbol]	[Game]	[Japanese chess]	[X]	BLACK SHOGI PIECE
 2618	So	[Symbol]	[X]	[X]	[X]	SHAMROCK
 2619	So	[Symbol]	[X]	[X]	[X]	REVERSED ROTATED FLORAL HEART BULLET
-261A	So	[Symbol]	[Dingbat]	[Pointing hand]	[X]	BLACK LEFT POINTING INDEX
-261B	So	[Symbol]	[Dingbat]	[Pointing hand]	[X]	BLACK RIGHT POINTING INDEX
-261C	So	[Symbol]	[Dingbat]	[Pointing hand]	[X]	WHITE LEFT POINTING INDEX
-261D	So	[Symbol]	[Dingbat]	[Pointing hand]	[X]	WHITE UP POINTING INDEX
-261E	So	[Symbol]	[Dingbat]	[Pointing hand]	[X]	WHITE RIGHT POINTING INDEX
-261F	So	[Symbol]	[Dingbat]	[Pointing hand]	[X]	WHITE DOWN POINTING INDEX
+261A	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	BLACK LEFT POINTING INDEX
+261B	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	BLACK RIGHT POINTING INDEX
+261C	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	WHITE LEFT POINTING INDEX
+261D	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	WHITE UP POINTING INDEX
+261E	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	WHITE RIGHT POINTING INDEX
+261F	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	WHITE DOWN POINTING INDEX
 2620	So	[Symbol]	[Warning sign]	[X]	[X]	SKULL AND CROSSBONES
 2621	So	[Symbol]	[Warning sign]	[X]	[X]	CAUTION SIGN
 2622	So	[Symbol]	[Warning sign]	[X]	[X]	RADIOACTIVE SIGN
@@ -8465,22 +8465,22 @@
 265D	So	[Symbol]	[Game]	[Chess]	[X]	BLACK CHESS BISHOP
 265E	So	[Symbol]	[Game]	[Chess]	[X]	BLACK CHESS KNIGHT
 265F	So	[Symbol]	[Game]	[Chess]	[X]	BLACK CHESS PAWN
-2660	So	[Symbol]	[Game]	[Playing card]	[Suit]	BLACK SPADE SUIT
-2661	So	[Symbol]	[Game]	[Playing card]	[Suit]	WHITE HEART SUIT
-2662	So	[Symbol]	[Game]	[Playing card]	[Suit]	WHITE DIAMOND SUIT
-2663	So	[Symbol]	[Game]	[Playing card]	[Suit]	BLACK CLUB SUIT
-2664	So	[Symbol]	[Game]	[Playing card]	[Suit]	WHITE SPADE SUIT
-2665	So	[Symbol]	[Game]	[Playing card]	[Suit]	BLACK HEART SUIT
-2666	So	[Symbol]	[Game]	[Playing card]	[Suit]	BLACK DIAMOND SUIT
-2667	So	[Symbol]	[Game]	[Playing card]	[Suit]	WHITE CLUB SUIT
+2660	So	[Symbol]	[Game]	[Playing card]	[X]	BLACK SPADE SUIT
+2661	So	[Symbol]	[Game]	[Playing card]	[X]	WHITE HEART SUIT
+2662	So	[Symbol]	[Game]	[Playing card]	[X]	WHITE DIAMOND SUIT
+2663	So	[Symbol]	[Game]	[Playing card]	[X]	BLACK CLUB SUIT
+2664	So	[Symbol]	[Game]	[Playing card]	[X]	WHITE SPADE SUIT
+2665	So	[Symbol]	[Game]	[Playing card]	[X]	BLACK HEART SUIT
+2666	So	[Symbol]	[Game]	[Playing card]	[X]	BLACK DIAMOND SUIT
+2667	So	[Symbol]	[Game]	[Playing card]	[X]	WHITE CLUB SUIT
 2668	So	[Symbol]	[Map]	[X]	[X]	HOT SPRINGS
 2669	So	[Symbol]	[Music]	[X]	[X]	QUARTER NOTE
 266A	So	[Symbol]	[Music]	[X]	[X]	EIGHTH NOTE
 266B	So	[Symbol]	[Music]	[X]	[X]	BEAMED EIGHTH NOTES
 266C	So	[Symbol]	[Music]	[X]	[X]	BEAMED SIXTEENTH NOTES
-266D	So	[Symbol]	[Music]	[X]	[X]	MUSIC FLAT SIGN
-266E	So	[Symbol]	[Music]	[X]	[X]	MUSIC NATURAL SIGN
-266F	Sm	[Symbol]	[Music]	[X]	[X]	MUSIC SHARP SIGN
+266D	So	[Symbol]	[Music]	[Western]	[Accidental]	MUSIC FLAT SIGN
+266E	So	[Symbol]	[Music]	[Western]	[Accidental]	MUSIC NATURAL SIGN
+266F	Sm	[Symbol]	[Music]	[Western]	[Accidental]	MUSIC SHARP SIGN
 2670	So	[Symbol]	[Religious]	[X]	[X]	WEST SYRIAC CROSS
 2671	So	[Symbol]	[Religious]	[X]	[X]	EAST SYRIAC CROSS
 2672	So	[Symbol]	[Recycling]	[X]	[X]	UNIVERSAL RECYCLING SYMBOL
@@ -8657,49 +8657,49 @@
 271E	So	[Symbol]	[Dingbat]	[Cross]	[X]	SHADOWED WHITE LATIN CROSS
 271F	So	[Symbol]	[Dingbat]	[Cross]	[X]	OUTLINED LATIN CROSS
 2720	So	[Symbol]	[Dingbat]	[Cross]	[X]	MALTESE CROSS
-2721	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	STAR OF DAVID
-2722	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	FOUR TEARDROP-SPOKED ASTERISK
-2723	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	FOUR BALLOON-SPOKED ASTERISK
-2724	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	HEAVY FOUR BALLOON-SPOKED ASTERISK
-2725	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	FOUR CLUB-SPOKED ASTERISK
-2726	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	BLACK FOUR POINTED STAR
-2727	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	WHITE FOUR POINTED STAR
-2728	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	SPARKLES
-2729	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	STRESS OUTLINED WHITE STAR
-272A	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	CIRCLED WHITE STAR
-272B	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	OPEN CENTRE BLACK STAR
-272C	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	BLACK CENTRE WHITE STAR
-272D	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	OUTLINED BLACK STAR
-272E	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	HEAVY OUTLINED BLACK STAR
-272F	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	PINWHEEL STAR
-2730	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	SHADOWED WHITE STAR
-2731	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	HEAVY ASTERISK
-2732	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	OPEN CENTRE ASTERISK
-2733	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	EIGHT SPOKED ASTERISK
-2734	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	EIGHT POINTED BLACK STAR
-2735	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	EIGHT POINTED PINWHEEL STAR
-2736	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	SIX POINTED BLACK STAR
-2737	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	EIGHT POINTED RECTILINEAR BLACK STAR
-2738	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	HEAVY EIGHT POINTED RECTILINEAR BLACK STAR
-2739	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	TWELVE POINTED BLACK STAR
-273A	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	SIXTEEN POINTED ASTERISK
-273B	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	TEARDROP-SPOKED ASTERISK
-273C	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	OPEN CENTRE TEARDROP-SPOKED ASTERISK
-273D	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	HEAVY TEARDROP-SPOKED ASTERISK
-273E	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	SIX PETALLED BLACK AND WHITE FLORETTE
-273F	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	BLACK FLORETTE
-2740	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	WHITE FLORETTE
-2741	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	EIGHT PETALLED OUTLINED BLACK FLORETTE
-2742	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	CIRCLED OPEN CENTRE EIGHT POINTED STAR
-2743	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	HEAVY TEARDROP-SPOKED PINWHEEL ASTERISK
-2744	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	SNOWFLAKE
-2745	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	TIGHT TRIFOLIATE SNOWFLAKE
-2746	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	HEAVY CHEVRON SNOWFLAKE
-2747	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	SPARKLE
-2748	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	HEAVY SPARKLE
-2749	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	BALLOON-SPOKED ASTERISK
-274A	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	EIGHT TEARDROP-SPOKED PROPELLER ASTERISK
-274B	So	[Symbol]	[Dingbat]	[Star; asterisk; snowflake]	[X]	HEAVY EIGHT TEARDROP-SPOKED PROPELLER ASTERISK
+2721	So	[Symbol]	[Dingbat]	[Starlike]	[X]	STAR OF DAVID
+2722	So	[Symbol]	[Dingbat]	[Starlike]	[X]	FOUR TEARDROP-SPOKED ASTERISK
+2723	So	[Symbol]	[Dingbat]	[Starlike]	[X]	FOUR BALLOON-SPOKED ASTERISK
+2724	So	[Symbol]	[Dingbat]	[Starlike]	[X]	HEAVY FOUR BALLOON-SPOKED ASTERISK
+2725	So	[Symbol]	[Dingbat]	[Starlike]	[X]	FOUR CLUB-SPOKED ASTERISK
+2726	So	[Symbol]	[Dingbat]	[Starlike]	[X]	BLACK FOUR POINTED STAR
+2727	So	[Symbol]	[Dingbat]	[Starlike]	[X]	WHITE FOUR POINTED STAR
+2728	So	[Symbol]	[Dingbat]	[Starlike]	[X]	SPARKLES
+2729	So	[Symbol]	[Dingbat]	[Starlike]	[X]	STRESS OUTLINED WHITE STAR
+272A	So	[Symbol]	[Dingbat]	[Starlike]	[X]	CIRCLED WHITE STAR
+272B	So	[Symbol]	[Dingbat]	[Starlike]	[X]	OPEN CENTRE BLACK STAR
+272C	So	[Symbol]	[Dingbat]	[Starlike]	[X]	BLACK CENTRE WHITE STAR
+272D	So	[Symbol]	[Dingbat]	[Starlike]	[X]	OUTLINED BLACK STAR
+272E	So	[Symbol]	[Dingbat]	[Starlike]	[X]	HEAVY OUTLINED BLACK STAR
+272F	So	[Symbol]	[Dingbat]	[Starlike]	[X]	PINWHEEL STAR
+2730	So	[Symbol]	[Dingbat]	[Starlike]	[X]	SHADOWED WHITE STAR
+2731	So	[Symbol]	[Dingbat]	[Starlike]	[X]	HEAVY ASTERISK
+2732	So	[Symbol]	[Dingbat]	[Starlike]	[X]	OPEN CENTRE ASTERISK
+2733	So	[Symbol]	[Dingbat]	[Starlike]	[X]	EIGHT SPOKED ASTERISK
+2734	So	[Symbol]	[Dingbat]	[Starlike]	[X]	EIGHT POINTED BLACK STAR
+2735	So	[Symbol]	[Dingbat]	[Starlike]	[X]	EIGHT POINTED PINWHEEL STAR
+2736	So	[Symbol]	[Dingbat]	[Starlike]	[X]	SIX POINTED BLACK STAR
+2737	So	[Symbol]	[Dingbat]	[Starlike]	[X]	EIGHT POINTED RECTILINEAR BLACK STAR
+2738	So	[Symbol]	[Dingbat]	[Starlike]	[X]	HEAVY EIGHT POINTED RECTILINEAR BLACK STAR
+2739	So	[Symbol]	[Dingbat]	[Starlike]	[X]	TWELVE POINTED BLACK STAR
+273A	So	[Symbol]	[Dingbat]	[Starlike]	[X]	SIXTEEN POINTED ASTERISK
+273B	So	[Symbol]	[Dingbat]	[Starlike]	[X]	TEARDROP-SPOKED ASTERISK
+273C	So	[Symbol]	[Dingbat]	[Starlike]	[X]	OPEN CENTRE TEARDROP-SPOKED ASTERISK
+273D	So	[Symbol]	[Dingbat]	[Starlike]	[X]	HEAVY TEARDROP-SPOKED ASTERISK
+273E	So	[Symbol]	[Dingbat]	[Starlike]	[X]	SIX PETALLED BLACK AND WHITE FLORETTE
+273F	So	[Symbol]	[Dingbat]	[Starlike]	[X]	BLACK FLORETTE
+2740	So	[Symbol]	[Dingbat]	[Starlike]	[X]	WHITE FLORETTE
+2741	So	[Symbol]	[Dingbat]	[Starlike]	[X]	EIGHT PETALLED OUTLINED BLACK FLORETTE
+2742	So	[Symbol]	[Dingbat]	[Starlike]	[X]	CIRCLED OPEN CENTRE EIGHT POINTED STAR
+2743	So	[Symbol]	[Dingbat]	[Starlike]	[X]	HEAVY TEARDROP-SPOKED PINWHEEL ASTERISK
+2744	So	[Symbol]	[Dingbat]	[Starlike]	[X]	SNOWFLAKE
+2745	So	[Symbol]	[Dingbat]	[Starlike]	[X]	TIGHT TRIFOLIATE SNOWFLAKE
+2746	So	[Symbol]	[Dingbat]	[Starlike]	[X]	HEAVY CHEVRON SNOWFLAKE
+2747	So	[Symbol]	[Dingbat]	[Starlike]	[X]	SPARKLE
+2748	So	[Symbol]	[Dingbat]	[Starlike]	[X]	HEAVY SPARKLE
+2749	So	[Symbol]	[Dingbat]	[Starlike]	[X]	BALLOON-SPOKED ASTERISK
+274A	So	[Symbol]	[Dingbat]	[Starlike]	[X]	EIGHT TEARDROP-SPOKED PROPELLER ASTERISK
+274B	So	[Symbol]	[Dingbat]	[Starlike]	[X]	HEAVY EIGHT TEARDROP-SPOKED PROPELLER ASTERISK
 274C	So	[Symbol]	[Dingbat]	[X]	[X]	CROSS MARK
 274D	So	[Symbol]	[Dingbat]	[X]	[X]	SHADOWED WHITE CIRCLE
 274E	So	[Symbol]	[Dingbat]	[X]	[X]	NEGATIVE SQUARED CROSS MARK
@@ -8827,7 +8827,7 @@
 27C8	Sm	[Symbol]	[Math]	[X]	[X]	REVERSE SOLIDUS PRECEDING SUBSET
 27C9	Sm	[Symbol]	[Math]	[X]	[X]	SUPERSET PRECEDING SOLIDUS
 27CA	Sm	[Symbol]	[Math]	[Operator]	[X]	VERTICAL BAR WITH HORIZONTAL STROKE
-27CC	Sm	[Symbol]	[Math]	[Operator]	[X]	LONG DIVISION
+27CC	Sm	[Symbol]	[Math]	[Operator]	[Large]	LONG DIVISION
 27CE	Sm	[Symbol]	[Math]	[Operator]	[X]	SQUARED LOGICAL AND
 27CF	Sm	[Symbol]	[Math]	[Operator]	[X]	SQUARED LOGICAL OR
 27D0	Sm	[Symbol]	[Math]	[X]	[X]	WHITE DIAMOND WITH CENTRED DOT
@@ -8835,17 +8835,17 @@
 27D2	Sm	[Symbol]	[Math]	[Operator]	[X]	ELEMENT OF OPENING UPWARDS
 27D3	Sm	[Symbol]	[Math]	[Operator]	[X]	LOWER RIGHT CORNER WITH DOT
 27D4	Sm	[Symbol]	[Math]	[Operator]	[X]	UPPER LEFT CORNER WITH DOT
-27D5	Sm	[Symbol]	[Math]	[Operator]	[Database theory]	LEFT OUTER JOIN
-27D6	Sm	[Symbol]	[Math]	[Operator]	[Database theory]	RIGHT OUTER JOIN
-27D7	Sm	[Symbol]	[Math]	[Operator]	[Database theory]	FULL OUTER JOIN
-27D8	Sm	[Symbol]	[Math]	[Operator]	[Tack or turnstile]	LARGE UP TACK
-27D9	Sm	[Symbol]	[Math]	[Operator]	[Tack or turnstile]	LARGE DOWN TACK
-27DA	Sm	[Symbol]	[Math]	[Operator]	[Tack or turnstile]	LEFT AND RIGHT DOUBLE TURNSTILE
-27DB	Sm	[Symbol]	[Math]	[Operator]	[Tack or turnstile]	LEFT AND RIGHT TACK
-27DC	Sm	[Symbol]	[Math]	[Operator]	[Tack or turnstile]	LEFT MULTIMAP
-27DD	Sm	[Symbol]	[Math]	[Operator]	[Tack or turnstile]	LONG RIGHT TACK
-27DE	Sm	[Symbol]	[Math]	[Operator]	[Tack or turnstile]	LONG LEFT TACK
-27DF	Sm	[Symbol]	[Math]	[Operator]	[Tack or turnstile]	UP TACK WITH CIRCLE ABOVE
+27D5	Sm	[Symbol]	[Math]	[Operator]	[Large]	LEFT OUTER JOIN
+27D6	Sm	[Symbol]	[Math]	[Operator]	[Large]	RIGHT OUTER JOIN
+27D7	Sm	[Symbol]	[Math]	[Operator]	[Large]	FULL OUTER JOIN
+27D8	Sm	[Symbol]	[Math]	[Operator]	[Large]	LARGE UP TACK
+27D9	Sm	[Symbol]	[Math]	[Operator]	[Large]	LARGE DOWN TACK
+27DA	Sm	[Symbol]	[Math]	[Operator]	[X]	LEFT AND RIGHT DOUBLE TURNSTILE
+27DB	Sm	[Symbol]	[Math]	[Operator]	[X]	LEFT AND RIGHT TACK
+27DC	Sm	[Symbol]	[Math]	[Operator]	[X]	LEFT MULTIMAP
+27DD	Sm	[Symbol]	[Math]	[Operator]	[X]	LONG RIGHT TACK
+27DE	Sm	[Symbol]	[Math]	[Operator]	[X]	LONG LEFT TACK
+27DF	Sm	[Symbol]	[Math]	[Operator]	[X]	UP TACK WITH CIRCLE ABOVE
 27E0	Sm	[Symbol]	[Math]	[Operator]	[Modal logic]	LOZENGE DIVIDED BY HORIZONTAL RULE
 27E1	Sm	[Symbol]	[Math]	[Operator]	[Modal logic]	WHITE CONCAVE-SIDED DIAMOND
 27E2	Sm	[Symbol]	[Math]	[Operator]	[Modal logic]	WHITE CONCAVE-SIDED DIAMOND WITH LEFTWARDS TICK
@@ -9382,43 +9382,43 @@
 29F5	Sm	[Symbol]	[Math]	[Operator]	[X]	REVERSE SOLIDUS OPERATOR
 29F6	Sm	[Symbol]	[Math]	[Operator]	[X]	SOLIDUS WITH OVERBAR
 29F7	Sm	[Symbol]	[Math]	[Operator]	[X]	REVERSE SOLIDUS WITH HORIZONTAL STROKE
-29F8	Sm	[Symbol]	[Math]	[Operator]	[X]	BIG SOLIDUS
-29F9	Sm	[Symbol]	[Math]	[Operator]	[X]	BIG REVERSE SOLIDUS
+29F8	Sm	[Symbol]	[Math]	[Operator]	[Large]	BIG SOLIDUS
+29F9	Sm	[Symbol]	[Math]	[Operator]	[Large]	BIG REVERSE SOLIDUS
 29FA	Sm	[Symbol]	[Math]	[Operator]	[X]	DOUBLE PLUS
 29FB	Sm	[Symbol]	[Math]	[Operator]	[X]	TRIPLE PLUS
 29FC	Ps	[Punctuation]	[Bracket]	[Math]	[X]	LEFT-POINTING CURVED ANGLE BRACKET
 29FD	Pe	[Punctuation]	[Bracket]	[Math]	[X]	RIGHT-POINTING CURVED ANGLE BRACKET
 29FE	Sm	[Symbol]	[Math]	[Operator]	[X]	TINY
 29FF	Sm	[Symbol]	[Math]	[Operator]	[X]	MINY
-2A00	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY CIRCLED DOT OPERATOR
-2A01	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY CIRCLED PLUS OPERATOR
-2A02	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY CIRCLED TIMES OPERATOR
-2A03	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY UNION OPERATOR WITH DOT
-2A04	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY UNION OPERATOR WITH PLUS
-2A05	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY SQUARE INTERSECTION OPERATOR
-2A06	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY SQUARE UNION OPERATOR
-2A07	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	TWO LOGICAL AND OPERATOR
-2A08	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	TWO LOGICAL OR OPERATOR
-2A09	Sm	[Symbol]	[Math]	[Operator]	[N-ary]	N-ARY TIMES OPERATOR
-2A0A	Sm	[Symbol]	[Math]	[X]	[X]	MODULO TWO SUM
-2A0B	Sm	[Symbol]	[Math]	[Integral]	[X]	SUMMATION WITH INTEGRAL
-2A0C	Sm	[Symbol]	[Math]	[Integral]	[X]	QUADRUPLE INTEGRAL OPERATOR
-2A0D	Sm	[Symbol]	[Math]	[Integral]	[X]	FINITE PART INTEGRAL
-2A0E	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL WITH DOUBLE STROKE
-2A0F	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL AVERAGE WITH SLASH
-2A10	Sm	[Symbol]	[Math]	[Integral]	[X]	CIRCULATION FUNCTION
-2A11	Sm	[Symbol]	[Math]	[Integral]	[X]	ANTICLOCKWISE INTEGRATION
-2A12	Sm	[Symbol]	[Math]	[Integral]	[X]	LINE INTEGRATION WITH RECTANGULAR PATH AROUND POLE
-2A13	Sm	[Symbol]	[Math]	[Integral]	[X]	LINE INTEGRATION WITH SEMICIRCULAR PATH AROUND POLE
-2A14	Sm	[Symbol]	[Math]	[Integral]	[X]	LINE INTEGRATION NOT INCLUDING THE POLE
-2A15	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL AROUND A POINT OPERATOR
-2A16	Sm	[Symbol]	[Math]	[Integral]	[X]	QUATERNION INTEGRAL OPERATOR
-2A17	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL WITH LEFTWARDS ARROW WITH HOOK
-2A18	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL WITH TIMES SIGN
-2A19	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL WITH INTERSECTION
-2A1A	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL WITH UNION
-2A1B	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL WITH OVERBAR
-2A1C	Sm	[Symbol]	[Math]	[Integral]	[X]	INTEGRAL WITH UNDERBAR
+2A00	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY CIRCLED DOT OPERATOR
+2A01	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY CIRCLED PLUS OPERATOR
+2A02	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY CIRCLED TIMES OPERATOR
+2A03	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY UNION OPERATOR WITH DOT
+2A04	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY UNION OPERATOR WITH PLUS
+2A05	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY SQUARE INTERSECTION OPERATOR
+2A06	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY SQUARE UNION OPERATOR
+2A07	Sm	[Symbol]	[Math]	[Operator]	[Large]	TWO LOGICAL AND OPERATOR
+2A08	Sm	[Symbol]	[Math]	[Operator]	[Large]	TWO LOGICAL OR OPERATOR
+2A09	Sm	[Symbol]	[Math]	[Operator]	[Large]	N-ARY TIMES OPERATOR
+2A0A	Sm	[Symbol]	[Math]	[Operator]	[Large]	MODULO TWO SUM
+2A0B	Sm	[Symbol]	[Math]	[Operator]	[Large]	SUMMATION WITH INTEGRAL
+2A0C	Sm	[Symbol]	[Math]	[Operator]	[Large]	QUADRUPLE INTEGRAL OPERATOR
+2A0D	Sm	[Symbol]	[Math]	[Operator]	[Large]	FINITE PART INTEGRAL
+2A0E	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL WITH DOUBLE STROKE
+2A0F	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL AVERAGE WITH SLASH
+2A10	Sm	[Symbol]	[Math]	[Operator]	[Large]	CIRCULATION FUNCTION
+2A11	Sm	[Symbol]	[Math]	[Operator]	[Large]	ANTICLOCKWISE INTEGRATION
+2A12	Sm	[Symbol]	[Math]	[Operator]	[Large]	LINE INTEGRATION WITH RECTANGULAR PATH AROUND POLE
+2A13	Sm	[Symbol]	[Math]	[Operator]	[Large]	LINE INTEGRATION WITH SEMICIRCULAR PATH AROUND POLE
+2A14	Sm	[Symbol]	[Math]	[Operator]	[Large]	LINE INTEGRATION NOT INCLUDING THE POLE
+2A15	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL AROUND A POINT OPERATOR
+2A16	Sm	[Symbol]	[Math]	[Operator]	[Large]	QUATERNION INTEGRAL OPERATOR
+2A17	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL WITH LEFTWARDS ARROW WITH HOOK
+2A18	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL WITH TIMES SIGN
+2A19	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL WITH INTERSECTION
+2A1A	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL WITH UNION
+2A1B	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL WITH OVERBAR
+2A1C	Sm	[Symbol]	[Math]	[Operator]	[Large]	INTEGRAL WITH UNDERBAR
 2A1D	Sm	[Symbol]	[Math]	[Operator]	[Large]	JOIN
 2A1E	Sm	[Symbol]	[Math]	[Operator]	[Large]	LARGE LEFT TRIANGLE OPERATOR
 2A1F	Sm	[Symbol]	[Math]	[Operator]	[Large]	Z NOTATION SCHEMA COMPOSITION
@@ -14054,7 +14054,7 @@ AA6C	Lo	[Letter]	[Consonant]	[X]	[X]	MYANMAR LETTER KHAMTI SA
 AA6D	Lo	[Letter]	[Consonant]	[X]	[X]	MYANMAR LETTER KHAMTI HA
 AA6E	Lo	[Letter]	[Consonant]	[X]	[X]	MYANMAR LETTER KHAMTI HHA
 AA6F	Lo	[Letter]	[Consonant]	[X]	[X]	MYANMAR LETTER KHAMTI FA
-AA70	Lm	[Letter]	[Consonant]	[X]	[X]	MYANMAR MODIFIER LETTER KHAMTI REDUPLICATION
+AA70	Lm	[Letter]	[Modifier]	[X]	[X]	MYANMAR MODIFIER LETTER KHAMTI REDUPLICATION
 AA71	Lo	[Letter]	[Consonant]	[X]	[X]	MYANMAR LETTER KHAMTI XA
 AA72	Lo	[Letter]	[Consonant]	[X]	[X]	MYANMAR LETTER KHAMTI ZA
 AA73	Lo	[Letter]	[Consonant]	[X]	[X]	MYANMAR LETTER KHAMTI RA
@@ -14127,8 +14127,8 @@ AAB9	Lo	[Letter]	[Vowel]	[X]	[X]	TAI VIET VOWEL UEA
 AABA	Lo	[Letter]	[Vowel]	[X]	[X]	TAI VIET VOWEL UA
 AABB	Lo	[Letter]	[Vowel]	[X]	[X]	TAI VIET VOWEL AUE
 AABC	Lo	[Letter]	[Vowel]	[X]	[X]	TAI VIET VOWEL AY
-AABD	Lo	[Letter]	[Consonant]	[Final]	[X]	TAI VIET VOWEL AN
-AABE	Mn	[Letter]	[Consonant]	[Final]	[X]	TAI VIET VOWEL AM
+AABD	Lo	[Letter]	[Vowel]	[X]	[X]	TAI VIET VOWEL AN
+AABE	Mn	[Letter]	[Vowel]	[X]	[X]	TAI VIET VOWEL AM
 AABF	Mn	[Diacritic]	[Tone]	[X]	[X]	TAI VIET TONE MAI EK
 AAC0	Lo	[Letter]	[Tone]	[X]	[X]	TAI VIET TONE MAI NUENG
 AAC1	Mn	[Diacritic]	[Tone]	[X]	[X]	TAI VIET TONE MAI THO
@@ -22270,17 +22270,17 @@ FFFD	So	[Symbol]	[Replacement]	[X]	[X]	REPLACEMENT CHARACTER
 1F443	So	[Symbol]	[Body part]	[Face]	[X]	NOSE
 1F444	So	[Symbol]	[Body part]	[Face]	[X]	MOUTH
 1F445	So	[Symbol]	[Body part]	[Face]	[X]	TONGUE
-1F446	So	[Symbol]	[Hand]	[Pointing]	[X]	WHITE UP POINTING BACKHAND INDEX
-1F447	So	[Symbol]	[Hand]	[Pointing]	[X]	WHITE DOWN POINTING BACKHAND INDEX
-1F448	So	[Symbol]	[Hand]	[Pointing]	[X]	WHITE LEFT POINTING BACKHAND INDEX
-1F449	So	[Symbol]	[Hand]	[Pointing]	[X]	WHITE RIGHT POINTING BACKHAND INDEX
-1F44A	So	[Symbol]	[Hand]	[X]	[X]	FISTED HAND SIGN
-1F44B	So	[Symbol]	[Hand]	[X]	[X]	WAVING HAND SIGN
-1F44C	So	[Symbol]	[Hand]	[X]	[X]	OK HAND SIGN
-1F44D	So	[Symbol]	[Hand]	[X]	[X]	THUMBS UP SIGN
-1F44E	So	[Symbol]	[Hand]	[X]	[X]	THUMBS DOWN SIGN
-1F44F	So	[Symbol]	[Hand]	[X]	[X]	CLAPPING HANDS SIGN
-1F450	So	[Symbol]	[Hand]	[X]	[X]	OPEN HANDS SIGN
+1F446	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	WHITE UP POINTING BACKHAND INDEX
+1F447	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	WHITE DOWN POINTING BACKHAND INDEX
+1F448	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	WHITE LEFT POINTING BACKHAND INDEX
+1F449	So	[Symbol]	[Dingbat]	[Hand]	[Pointing]	WHITE RIGHT POINTING BACKHAND INDEX
+1F44A	So	[Symbol]	[Dingbat]	[Hand]	[X]	FISTED HAND SIGN
+1F44B	So	[Symbol]	[Dingbat]	[Hand]	[X]	WAVING HAND SIGN
+1F44C	So	[Symbol]	[Dingbat]	[Hand]	[X]	OK HAND SIGN
+1F44D	So	[Symbol]	[Dingbat]	[Hand]	[X]	THUMBS UP SIGN
+1F44E	So	[Symbol]	[Dingbat]	[Hand]	[X]	THUMBS DOWN SIGN
+1F44F	So	[Symbol]	[Dingbat]	[Hand]	[X]	CLAPPING HANDS SIGN
+1F450	So	[Symbol]	[Dingbat]	[Hand]	[X]	OPEN HANDS SIGN
 1F451	So	[Symbol]	[Clothing]	[X]	[X]	CROWN
 1F452	So	[Symbol]	[Clothing]	[X]	[X]	WOMANS HAT
 1F453	So	[Symbol]	[Clothing]	[X]	[X]	EYEGLASSES

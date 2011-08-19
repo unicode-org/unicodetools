@@ -21,7 +21,7 @@ public class ChainException extends RuntimeException {
 
     public ChainException (String messageFormat, Object[] objects) {
         this.messageFormat = messageFormat;
-        keyData = (Object[]) objects.clone();
+        keyData = objects == null ? null : (Object[]) objects.clone();
     }
 
     public ChainException (String messageFormat, Object[] objects, Exception chainedException) {

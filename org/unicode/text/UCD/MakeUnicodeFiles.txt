@@ -1,5 +1,5 @@
-Generate: DerivedAge
-DeltaVersion: 4
+Generate: numeric
+DeltaVersion: 9
 CopyrightYear: 2011
 
 File: extra/ScriptNfkc
@@ -121,10 +121,13 @@ Property:	Bidi_Class
 #     Syriac:            U+0700  -  U+074F
 #     Arabic_Supplement: U+0750  -  U+077F
 #     Thaana:            U+0780  -  U+07BF
+#     Arabic Extended-A: U+08A0  -  U+08FF 
 #     Arabic_Presentation_Forms_A:
 #                        U+FB50  -  U+FDFF
 #     Arabic_Presentation_Forms_B:
 #                        U+FE70  -  U+FEFF
+#     Arabic Mathematical Alphabetic Symbols:
+#                       U+1EE00  - U+1EEFF
 #           minus noncharacter code points.
 #
 # The unassigned code points that default to R are in the ranges:
@@ -390,17 +393,34 @@ Property:   Changes_When_NFKC_Casefolded
 
 File:	extracted/DerivedNumericType
 Property:	Numeric_Type
-# Numeric Type (from UnicodeData.txt, field 6/7/8 plus Unihan Database: see UAX #44: http://www.unicode.org/reports/tr44/)
+# Derived Property:   Numeric_Type
+#  The values are based on fields 6-8 of UnicodeData.txt, plus the fields 
+#  kAccountingNumeric, kOtherNumeric, kPrimaryNumeric in the Unicode Han Database (Unihan).
+#  The derivations for these values are as follows.
+#   Numeric_Type = Decimal: When there is a value in field 6; otherwise
+#   Numeric_Type = Digit:   When there is a value in field 7, but not in field 6; otherwise
+#   Numeric_Type = Numeric: When there are values for kAccountingNumeric, kOtherNumeric, kPrimaryNumeric,
+#                         or there is a value in field 8, but not in field 7; otherwise
+#   Numeric_Type=None
 Format: skipValue=None
 
 File:	extracted/DerivedNumericValues
 Property:	Numeric_Value
-# Numeric Values (from UnicodeData.txt, field 6/7/8)
+# Derived Property:   Numeric_Value
+#  The values are based on field 8 of UnicodeData.txt, plus the fields 
+#  kAccountingNumeric, kOtherNumeric, kPrimaryNumeric in the Unicode Han Database (Unihan).
+#  The derivations for these values are as follows.
+#     Numeric_Value = the value of kAccountingNumeric, kOtherNumeric, or kPrimaryNumeric, if they exist; otherwise
+#     Numeric_Value = the value of field 8, if it exists; otherwise
+#     Numeric_Value = NaN
+#
 # WARNING: Certain values, such as 0.16666667, are repeating fractions
 # Although they are only printed with a limited number of decimal places
 # in this file, they should be expressed to the limits of the precision
 # available when used.
+#
 # The third field is empty; it used to be a copy of the numeric type.
+#
 # A fourth field was added to this extracted data as of
 # Unicode 5.1.0, expressing the same numeric value either as
 # a whole integer where possible or as a rational fraction, e.g. "1/6".
