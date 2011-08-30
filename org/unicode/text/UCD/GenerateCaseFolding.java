@@ -458,6 +458,7 @@ public class GenerateCaseFolding implements UCD_Types {
     static boolean isExcluded(int ch) {
         // if (ch == 0x130) return true;                  // skip LATIN CAPITAL LETTER I WITH DOT ABOVE
         if (ch == 0x0132 || ch == 0x0133) return true; // skip IJ, ij
+        if (ch == 0x1F16A || ch == 0x1F16B) return true; // skip raised MC/MD signs
         if (ch == 0x037A) return true;                 // skip GREEK YPOGEGRAMMENI
         if (0x249C <= ch && ch <= 0x24B5) return true; // skip PARENTHESIZED LATIN SMALL LETTER A..
         if (0x20A8 <= ch && ch <= 0x217B) return true; // skip Rupee..

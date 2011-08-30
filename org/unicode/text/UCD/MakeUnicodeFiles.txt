@@ -1,5 +1,5 @@
-Generate: numeric
-DeltaVersion: 9
+Generate: .
+DeltaVersion: 11
 CopyrightYear: 2011
 
 File: extra/ScriptNfkc
@@ -115,7 +115,7 @@ Property:	Bidi_Class
 # reserved for right-to-left scripts are given either types R or AL.
 #
 # The unassigned code points that default to AL are in the ranges:
-#     [\u0600-\u07BF \uFB50-\uFDFF \uFE70-\uFEFF]
+#     [\u0600-\u07BF \u08A0-\u08FF \uFB50-\uFDFF \uFE70-\uFEFF \u0001EE00-\U0001EEFF]
 #
 #     Arabic:            U+0600  -  U+06FF
 #     Syriac:            U+0700  -  U+074F
@@ -131,19 +131,23 @@ Property:	Bidi_Class
 #           minus noncharacter code points.
 #
 # The unassigned code points that default to R are in the ranges:
-#     [\u0590-\u05FF \u07C0-\u08FF \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EFFF]
+#     [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\u0001EDFF \U0001EEFF-\U0001EFFF]
 #
 #     Hebrew:            U+0590  -  U+05FF
 #     NKo:               U+07C0  -  U+07FF
 #     Cypriot_Syllabary: U+10800 - U+1083F
 #     Phoenician:        U+10900 - U+1091F
 #     Lydian:            U+10920 - U+1093F
+#     Meroitic Hieroglyphs:  
+#                        U+10980 - U+1099F
+#     Meroitic Cursive:  U+109A0 - U+109FF
 #     Kharoshthi:        U+10A00 - U+10A5F
 #     and any others in the ranges:
-#                        U+0800  -  U+08FF,
+#                        U+0800  -  U+089F,
 #                        U+FB1D  -  U+FB4F,
 #                        U+10840 - U+10FFF,
-#                        U+1E800 - U+1EFFF
+#                        U+1E800 - U+1EDFF,
+#                        U+1EEFF - U+1EFFF
 #
 # For all other cases:
 Format:	valueStyle=short skipUnassigned=Left_To_Right
@@ -397,11 +401,11 @@ Property:	Numeric_Type
 #  The values are based on fields 6-8 of UnicodeData.txt, plus the fields 
 #  kAccountingNumeric, kOtherNumeric, kPrimaryNumeric in the Unicode Han Database (Unihan).
 #  The derivations for these values are as follows.
-#   Numeric_Type = Decimal: When there is a value in field 6; otherwise
-#   Numeric_Type = Digit:   When there is a value in field 7, but not in field 6; otherwise
-#   Numeric_Type = Numeric: When there are values for kAccountingNumeric, kOtherNumeric, kPrimaryNumeric,
-#                         or there is a value in field 8, but not in field 7; otherwise
-#   Numeric_Type=None
+#   Numeric_Type=Decimal: When there is a value in field 6.
+#   Numeric_Type=Digit:   When there is a value in field 7, but not in field 6.
+#   Numeric_Type=Numeric: When there are values for kAccountingNumeric, kOtherNumeric, kPrimaryNumeric,
+#                         or there is a value in field 8, but not in field 7.
+#   Numeric_Type=None:    Otherwise
 Format: skipValue=None
 
 File:	extracted/DerivedNumericValues

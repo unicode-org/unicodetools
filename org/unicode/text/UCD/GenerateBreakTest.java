@@ -77,7 +77,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
          */
     }
 
-    ToolUnicodePropertySource unicodePropertySource = ToolUnicodePropertySource.make("");
+    static final ToolUnicodePropertySource unicodePropertySource = ToolUnicodePropertySource.make("");
 
     Set labels = new HashSet();
 
@@ -887,7 +887,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
             needsFullBreakSample = false;
         }
 
-        public XGenerateBreakTest(UCD ucd, Segmenter.Builder segBuilder, String sample, String filename, String[] extraSamples, String[] extraSingleSamples) {
+        public XGenerateBreakTest(UCD ucd, Segmenter.Builder segBuilder, String sample, String filename, 
+                String[] extraSamples, String[] extraSingleSamples) {
             super(ucd);
             this.seg = segBuilder.make();
             this.sample = sample;
@@ -936,7 +937,11 @@ abstract public class GenerateBreakTest implements UCD_Types {
     static class GenerateGraphemeBreakTest extends XGenerateBreakTest {
         public GenerateGraphemeBreakTest(UCD ucd) {
             super(ucd, Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()),"GraphemeClusterBreak"), "aa", "Grapheme",
-                    new String[]{}, new String[]{});
+                    new String[]{
+                unicodePropertySource.getSet("GC=Cn").iterator().next(),
+                "\uD800"
+                }, 
+                new String[]{});
         }	
     }
 
