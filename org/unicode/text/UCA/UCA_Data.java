@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.unicode.text.UCA.UCA.Remap;
+import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.IntStack;
@@ -367,11 +368,29 @@ public class UCA_Data implements UCA_Types {
         return index;
     }
 
+    static final UnicodeSet ILLEGAL_CODE_POINTS = new UnicodeSet("[:cs:]").freeze(); // doesn't depend on version
+
     private void addToContractingTable(Object s, int ce) {
         if (s == null) {
             throw new IllegalArgumentException("String can't be null");
         }
-        contractingTable.put(s.toString(), new Integer(ce));
+        String string = s.toString();
+        if (ce != UNSUPPORTED_FLAG) { 
+            checkForIllegal(string);
+        }
+        contractingTable.put(string, new Integer(ce));
+    }
+
+    private void checkForIllegal(String string) {
+        if(ILLEGAL_CODE_POINTS.containsSome(string)) {
+            char finalChar = string.charAt(string.length()-1);
+            if (Character.isHighSurrogate(finalChar) 
+                    && ILLEGAL_CODE_POINTS.containsNone(string.substring(0, string.length()-1))) {
+                return; // final low is ok
+            }
+            throw new IllegalArgumentException("String contains illegal characters: <"
+                    + string + "> " + new UnicodeSet().addAll(string).retainAll(ILLEGAL_CODE_POINTS));
+        }
     }
 
     void checkConsistency() {

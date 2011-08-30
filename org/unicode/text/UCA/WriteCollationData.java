@@ -38,12 +38,13 @@ import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Builder;
+import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.With;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA.Remap;
 import org.unicode.text.UCA.UCA.UCAContents;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
-import org.unicode.text.UCA.WriteCollationData.ExpectedOrder;
+import org.unicode.text.UCA.WriteCollationData.UcaBucket;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
@@ -2603,7 +2604,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         log.println("table { border-collapse: collapse; }");
         log.println(".bottom { border-bottom-style: solid; border-bottom-color: #0000FF; }\n");
         log.println(".bad { color:red; font-weight:bold; }");
-        log.println(".warn { orange; font-weight:bold; }");
+        log.println(".warn { color:orange; font-weight:bold; }");
         log.println("</style>");
         log.println("</head><body bgcolor='#FFFFFF'>");
 
@@ -3319,34 +3320,141 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     static final String[] alternateName = { "SHIFTED", "ZEROED", "NON_IGNORABLE", "SHIFTED_TRIMMED" };
 
-    enum ExpectedOrder {
-        ignorable('\u0000'),
-        whitespace('\u0009'), 
-        punctuation('\u203E'), 
-        general_symbols('\u0060'),
-        currency_symbols('\u00A4'),
-        numbers('\u0030'), 
-        others('a'),
-        fail(-1);
-        int least;
-        ExpectedOrder(int least) {
+    static final ToolUnicodePropertySource propertySource = ToolUnicodePropertySource.make(null);
+    static final UnicodeProperty gc = propertySource.getProperty("gc");
+    static final UnicodeProperty sc = propertySource.getProperty("sc");
+
+    static final UnicodeSet WHITESPACE = propertySource.getSet("whitespace=true")
+    .freeze();
+
+    static final UnicodeSet IGNORABLE = new UnicodeSet()
+    .addAll(gc.getSet("Cf"))
+    .addAll(gc.getSet("Cc"))
+    .addAll(gc.getSet("Mn"))
+    .addAll(gc.getSet("Me"))
+    .addAll(propertySource.getSet("Default_Ignorable_Code_Point=Yes"))
+    .freeze();
+
+    static final UnicodeSet PUNCTUATION = new UnicodeSet()
+    .addAll(gc.getSet("pc"))
+    .addAll(gc.getSet("pd"))
+    .addAll(gc.getSet("ps"))
+    .addAll(gc.getSet("pe"))
+    .addAll(gc.getSet("pi"))
+    .addAll(gc.getSet("pf"))
+    .addAll(gc.getSet("po"))
+    .freeze();
+
+    static final UnicodeSet GENERAL_SYMBOLS = new UnicodeSet()
+    .addAll(gc.getSet("Sm"))
+    .addAll(gc.getSet("Sk"))
+    .addAll(gc.getSet("So"))
+    .freeze();
+
+    static final UnicodeSet CURRENCY_SYMBOLS = new UnicodeSet()
+    .addAll(gc.getSet("Sc"))
+    .freeze();
+
+    static final UnicodeSet NUMBERS = new UnicodeSet()
+    .addAll(gc.getSet("Nd"))
+    .addAll(gc.getSet("No"))
+    .addAll(gc.getSet("Nl"))
+    .freeze();
+
+    static final UnicodeSet OTHERS = new UnicodeSet(0,0x10FFFF)
+    .removeAll(IGNORABLE)
+    .removeAll(WHITESPACE)
+    .removeAll(PUNCTUATION)
+    .removeAll(GENERAL_SYMBOLS)
+    .removeAll(CURRENCY_SYMBOLS)
+    .removeAll(NUMBERS)
+    .removeAll(gc.getSet("Cn"))
+    .removeAll(gc.getSet("Cs"))
+    .removeAll(gc.getSet("Co"))
+    .freeze();
+
+    static final UnicodeMap<String> EMPTY = new UnicodeMap<String>().freeze();
+    static final UnicodeMap<String> IGNORABLE_REASONS = new UnicodeMap<String>()
+    .putAll(new UnicodeSet("[ࠤࠨःংঃਃઃଂଃఁ-ఃಂಃംഃංඃཿ းះៈᬄᮂ᳡ᳲ�ꢀꢁꦃ꯬�𑀀𑀂𑂂��𝅥𝅦𝅭-𝅲]"), "Unknown why these are ignored")
+    .putAll(new UnicodeSet("[ـߺﱞ-ﱣﳲ-ﳴﹰ-ﹴﹶ-ﹿ]"), 
+    "Tatweel and related characters are ignorable; isolated vowels have screwy NFKD values")
+    .freeze();
+    static final UnicodeMap<String> GENERAL_SYMBOL_REASONS = new UnicodeMap<String>()
+    .putAll(new UnicodeSet("[ៗ ː ˑ ॱ ๆ ໆ ᪧ ꧏ ꩰ ꫝ 々 〻 〱-〵 ゝ ゞ ーｰ ヽ ヾ \uAAF3 \uAAF4]"), "regular (not ignorable) symbols - significant modifiers")
+    .putAll(new UnicodeSet("[৴-৹ ୲-୷ ꠰-꠵ ௰-௲ ൰-൵ ፲-፼ ↀ-ↂ ↆ-ↈ 𐹩-𐹾 ⳽ 𐌢 𐌣 𐄐-𐄳 𐅀 𐅁 𐅄-𐅇 𐅉-𐅎 𐅐-𐅗 𐅠-𐅲 𐅴-𐅸 𐏓-𐏕 𐩾 𐤗-𐤙 𐡛-𐡟 𐭜-𐭟 𐭼-𐭿 𑁛-𑁥 𐩄-𐩇 𒐲 𒐳 𒑖 𒑗 𒑚-𒑢 𝍩-𝍱]"), 
+    "Unknown why these are treated differently than numbers with scripts")
+    .freeze();
+    static final UnicodeMap<String> SCRIPT_REASONS = new UnicodeMap<String>()
+    .putAll(new UnicodeSet("[⺀-⺙⺛-⺞⺠-⻲]"), "CJK radicals sort like they had toNFKD values")
+    .putAll(new UnicodeSet("[ ᅟᅠㅤﾠ]"), "Hangul fillers are Default Ignorables, but sort as primaries")
+    .putAll(gc.getSet("Mn"), "Indic (or Indic-like) non-spacing marks sort as primaries")
+    .putAll(new UnicodeSet("[🅐-🅩🅰-🆏🆑-🆚🇦-🇿]"), "Characters that should have toNFKD values")
+    .putAll(new UnicodeSet("[ᛮ-ᛰꛦ-ꛯ𐍁𐍊]"), "Unknown why these numbers are treated differently than numbers with symbols.")
+    .freeze();
+
+    enum UcaBucket {
+        ignorable('\u0000', IGNORABLE, IGNORABLE_REASONS),
+        whitespace('\u0009', WHITESPACE, EMPTY), 
+        punctuation('\u203E', PUNCTUATION, EMPTY), 
+        general_symbols('\u0060', GENERAL_SYMBOLS, GENERAL_SYMBOL_REASONS),
+        currency_symbols('\u00A4', CURRENCY_SYMBOLS, EMPTY),
+        numbers('\u0030', NUMBERS, EMPTY), 
+        scripts('a', OTHERS, SCRIPT_REASONS),
+        fail(-1, UnicodeSet.EMPTY, EMPTY);
+        final int least;
+        final UnicodeSet expected;
+        final UnicodeSet exceptionsAllowed;
+        final UnicodeMap<String> exceptionReasons;
+        final UnicodeSet charOk = new UnicodeSet();
+        final UnicodeSet bothOk = new UnicodeSet();
+        final UnicodeSet nfkdOk = new UnicodeSet();
+        final UnicodeSet warn = new UnicodeSet();
+        final UnicodeSet failure = new UnicodeSet();
+
+        UcaBucket(int least, UnicodeSet expected, UnicodeMap toWarn) {
             this.least = least;
+            this.expected = expected.freeze();
+            this.exceptionsAllowed = toWarn.keySet().freeze();
+            this.exceptionReasons = toWarn;
         }
-        public ExpectedOrder next() {
+        public UcaBucket next() {
             // TODO Auto-generated method stub
             return values()[ordinal()+1];
+        }
+
+        public void add(int codepoint) {
+            String nfkd = Default.nfkd().normalize(codepoint);
+            int nfkdCh = nfkd.codePointAt(0);
+
+            if (expected.contains(codepoint)) {
+                if (expected.contains(nfkdCh)) {
+                    bothOk.add(codepoint);
+                } else {
+                    charOk.add(codepoint);
+                }
+                return;
+            }
+
+            if (expected.contains(nfkdCh)) {
+                nfkdOk.add(codepoint);
+                return;
+            }
+
+            if (exceptionsAllowed.contains(codepoint)) {
+                warn.add(codepoint);
+                return;
+            }
+
+            failure.add(codepoint);
         }
     }
 
     static void checkScripts() {
-        log.println("<h2>0. CheckScripts</h2>");
+        log.println("<h2>0. Check UCA ‘Bucket’ Assignment</h2>");
         log.println("<p>Alternate Handling = " + alternateName[option] + "</p>");
-        log.println("<table border='1'>");
-        log.println("<tr><th>Status</th><th>Type</th><th>GC</th><th>Script</th><th>Ch</th><th>Code</th><th>CE</th><th>Name</th></tr>");
+        //        log.println("<table border='1'>");
+        //log.println("<tr><th>Status</th><th>Type</th><th>GC</th><th>Script</th><th>Ch</th><th>Code</th><th>CE</th><th>Name</th></tr>");
         UCA collator = getCollator(CollatorType.ducet);
-        ToolUnicodePropertySource propertySource = ToolUnicodePropertySource.make(null);
-        UnicodeProperty gc = propertySource.getProperty("gc");
-        UnicodeProperty sc = propertySource.getProperty("sc");
 
         //        UnicodeSet ignore = new UnicodeSet()
         //        .addAll(propertySource.getSet("dt=none"))
@@ -3373,24 +3481,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         .removeAll(propertySource.getSet("Hangul_Syllable_Type=LV"))
         .freeze();
 
-        UnicodeSet whitespace = propertySource.getSet("whitespace=true")
-        .freeze();
-        UnicodeSet okInIgnorable = new UnicodeSet()
-        .addAll(gc.getSet("cf"))
-        .addAll(gc.getSet("cc"))
-        .freeze();
 
-        UnicodeMap<ExpectedOrder> expectedOrder = new UnicodeMap();
-
-        UnicodeSet punct = new UnicodeSet()
-        .addAll(gc.getSet("pc"))
-        .addAll(gc.getSet("pd"))
-        .addAll(gc.getSet("ps"))
-        .addAll(gc.getSet("pe"))
-        .addAll(gc.getSet("pi"))
-        .addAll(gc.getSet("pf"))
-        .addAll(gc.getSet("po"))
-        .freeze();
+        //UnicodeMap<UcaBucket> expectedOrder = new UnicodeMap();
 
         UnicodeSet lm = gc.getSet("Lm");
 
@@ -3411,17 +3503,17 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         .addAll(gc.getSet("Nl"))
         .freeze();
 
-        expectedOrder.putAll(whitespace, ExpectedOrder.whitespace);
-        expectedOrder.putAll(punct, ExpectedOrder.punctuation);
-        expectedOrder.putAll(generalSymbols, ExpectedOrder.general_symbols);
-        expectedOrder.putAll(currencySymbols, ExpectedOrder.currency_symbols);
-        expectedOrder.putAll(decimalNumber, ExpectedOrder.numbers);
+        //        expectedOrder.putAll(WHITESPACE, UcaBucket.whitespace);
+        //        expectedOrder.putAll(PUNCTUATION, UcaBucket.punctuation);
+        //        expectedOrder.putAll(generalSymbols, UcaBucket.general_symbols);
+        //        expectedOrder.putAll(currencySymbols, UcaBucket.currency_symbols);
+        //        expectedOrder.putAll(decimalNumber, UcaBucket.numbers);
 
         UCAContents contents = collator.getContents(UCA.FIXED_CE, null);
         UnicodeSet covered = new UnicodeSet();
         UnicodeSet illegalCharacters = new UnicodeSet();
         int errorCount = 0;
-        ExpectedOrder lastOrder = ExpectedOrder.whitespace;
+        UcaBucket lastOrder = UcaBucket.whitespace;
         CEList lastCe = null;
         String lastString = "";
         String lastShown = "";
@@ -3440,29 +3532,28 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         boolean aboveA = false;
         int count = 0;
 
-        ExpectedOrder currentOrder = ExpectedOrder.whitespace;
-        ExpectedOrder nextOrder = currentOrder.next();
+        UcaBucket currentOrder = UcaBucket.ignorable;
+        UcaBucket nextOrder = currentOrder.next();
         int currentOkCount = 0;
-                
+
         for (Pair ceAndString : sorted) {
             final CEList ce = (CEList) ceAndString.first;
             final String string = (String)ceAndString.second;
+
             if (mustSkip.containsSome(string)) {
                 illegalCharacters.addAll(string);
             }
-            covered.addAll(string);
-            if (ce.isPrimaryIgnorable()) {
-                ignorable.add(string);
-                continue;
-            }
+            //            covered.addAll(string);
+            //            if (ce.isPrimaryIgnorable()) {
+            //                ignorable.add(string);
+            //                continue;
+            //            }
 
-            boolean okOverride = false;
+            //            boolean okOverride = false;
             // only look at isNFKD
-            String nfkd = Default.nfkd().normalize(string);
-            int nfkdCh = nfkd.codePointAt(0);
-            if (nfkdCh == '(' || nfkdCh == '〔' || nfkdCh == ':') {
-                okOverride = true;
-            }
+            //            if (nfkdCh == '(' || nfkdCh == '〔' || nfkdCh == ':') {
+            //                okOverride = true;
+            //            }
 
             // skip multi-codepoint cases for now
             //            if (nfkd.codePointCount(0, nfkd.length()) > 1) {
@@ -3474,6 +3565,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 currentOrder = nextOrder;
                 nextOrder = currentOrder.next();
             }
+            currentOrder.add(ch);
+
+
             //            if (ignore.contains(ch)) {
             //                continue;
             //            }
@@ -3481,57 +3575,77 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             //                continue;
             //            }
 
-            ExpectedOrder actualOrder = expectedOrder.get(ch);
-            ExpectedOrder nfkdOrder = expectedOrder.get(nfkdCh);
-            if (nfkdOrder == ExpectedOrder.numbers) {
-                actualOrder = nfkdOrder;
-            }
-            if (actualOrder == null) {
-                actualOrder = ExpectedOrder.others;
-            }
-            if (okOverride || actualOrder.equals(currentOrder)) {
-                currentOkCount++;
-                if (actualOrder == ExpectedOrder.general_symbols && lm.containsAll(string)) {
-                    lmInSymbols.add(string);
-                }
-            } else if (currentOrder == ExpectedOrder.general_symbols && actualOrder==ExpectedOrder.numbers) {
-                currentOkCount++;
-                nInSymbols.add(string);
-            } else {
-                // above 'a' are just warnings.
-                if (currentOrder == ExpectedOrder.others) {
-                    funnyAboveA.add(string);
-                    continue;
-                }
-
-                errorCount++;
-                String messageAttr = " class='bad'";
-                String message = "(" + errorCount + ") expected " + currentOrder;
-
-                boolean newError = !lastShown.equals(lastString);
-                // out of order, message
-                if (newError) {
-                    showTypeLine("", "OK Count: " + currentOkCount, lastOrder, lastString, lastCe);
-                }
-                showTypeLine(messageAttr, message, actualOrder, string, ce);
-                lastShown = string;
-                currentOkCount = 0;
-            }
-            lastOrder = actualOrder;
-            lastString = string;
-            lastCe = ce;
+            //            UcaBucket actualOrder = expectedOrder.get(ch);
+            //            UcaBucket nfkdOrder = expectedOrder.get(nfkdCh);
+            //            if (nfkdOrder == UcaBucket.numbers) {
+            //                actualOrder = nfkdOrder;
+            //            }
+            //            if (actualOrder == null) {
+            //                actualOrder = UcaBucket.scripts;
+            //            }
+            //            
+            //            // add the actual value
+            //            
+            //            if (actualOrder.equals(currentOrder)) {
+            //                actualOrder.add(ch);
+            //                continue;
+            //            }
+            //            
+            //            if (okOverride || actualOrder.equals(currentOrder)) {
+            //                currentOkCount++;
+            //                if (actualOrder == UcaBucket.general_symbols && lm.containsAll(string)) {
+            //                    lmInSymbols.add(string);
+            //                }
+            //            } else if (currentOrder == UcaBucket.general_symbols && actualOrder==UcaBucket.numbers) {
+            //                currentOkCount++;
+            //                nInSymbols.add(string);
+            //            } else {
+            //                // above 'a' are just warnings.
+            //                if (currentOrder == UcaBucket.scripts) {
+            //                    funnyAboveA.add(string);
+            //                    continue;
+            //                }
+            //
+            //                errorCount++;
+            //                String messageAttr = " class='bad'";
+            //                String message = "(" + errorCount + ") expected " + currentOrder;
+            //
+            //                boolean newError = !lastShown.equals(lastString);
+            //                // out of order, message
+            //                if (newError) {
+            //                    showTypeLine("", "OK Count: " + currentOkCount, lastOrder, lastString, lastCe);
+            //                }
+            //                showTypeLine(messageAttr, message, actualOrder, string, ce);
+            //                lastShown = string;
+            //                currentOkCount = 0;
+            //            }
+            //            lastOrder = actualOrder;
+            //            lastString = string;
+            //            lastCe = ce;
         }
-        log.println("</table>");
+        //        log.println("</table>");
         UnicodeSet missing = new UnicodeSet(shouldHave).removeAll(covered);
         illegalCharacters.retainAll(mustSkip);
-        ignorable.removeAll(okInIgnorable);
+        ignorable.removeAll(IGNORABLE);
 
-        showBadChars("N in general_symbols: not error, but check", nInSymbols);
-        showBadChars("Lm in general_symbols: not error, but check", lmInSymbols);
-        showBadChars("Unusual GC in ignorable: not error, but check", ignorable);
-        showBadChars("Unusual GC above 'a': not error, but check", funnyAboveA);
-        errorCount += showBadChars("Illegal character", illegalCharacters);
-        errorCount += showBadChars("Missing CEs", missing);
+        for (UcaBucket eo : UcaBucket.values()) {
+            showCharSummary(eo + ": Ok char & 1st NFKD", eo.bothOk);
+            showCharSummary(eo + ": Ok char, not 1st NFKD", eo.charOk);
+            showCharSummary(eo + ": Ok 1st NFKD, not char", eo.nfkdOk);
+            for (String value : eo.exceptionReasons.getAvailableValues()) {
+                UnicodeSet filter = new UnicodeSet(eo.warn).retainAll(eo.exceptionReasons.getSet(value));
+                showCharDetails(eo + ": WARNING - exceptions allowed «" + value + "»", filter, true);
+            }
+            errorCount += showCharDetails(eo + ": ERROR - unexpected characters", eo.failure, false);
+        }
+        log.println("<p>TODO: show missing</p>");
+
+        //        showBadChars("N in general_symbols: not error, but check", nInSymbols);
+        //        showBadChars("Lm in general_symbols: not error, but check", lmInSymbols);
+        //        showBadChars("Unusual GC in ignorable: not error, but check", ignorable);
+        //        showBadChars("Unusual GC above 'a': not error, but check", funnyAboveA);
+        //        errorCount += showBadChars("Illegal character", illegalCharacters);
+        //        errorCount += showBadChars("Missing CEs", missing);
 
         log.println("<p>Errors: " + errorCount + "</p>");
         if (errorCount != 0) {
@@ -3541,7 +3655,39 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         log.flush();
     }
 
-    private static void showTypeLine(String messageAttr, String message, ExpectedOrder actualOrder, final String string, final CEList ce) {
+    private static void showCharSummary(String title, UnicodeSet chars) {
+        if (chars.size() == 0) return;
+        log.println("<h3>" + title + ", Count: " + chars.size() + "</h3>");
+        showCharSummaryTable(chars);
+    }
+
+    private static void showCharSummaryTable(UnicodeSet chars) {
+        log.println("<table border='1'>");
+        UnicodeMap<String> counter = new UnicodeMap<String>();
+        for (String value : (List<String>) gc.getAvailableValues()) {
+            List<String> aliases = (List<String>) gc.getValueAliases(value);
+            String shortValue = aliases.get(0);
+            UnicodeSet current = new UnicodeSet(chars).retainAll(gc.getSet(value));
+            counter.putAll(current, shortValue);
+        }
+        TreeSet<String> sorted = new TreeSet<String>();
+        sorted.addAll(counter.getAvailableValues());
+        for (String value : sorted) {
+            UnicodeSet set = counter.getSet(value);
+            String pattern = set.toPattern(false);
+            if (pattern.length() > 120) {
+                pattern = pattern.substring(0,120) + "…";
+            }
+            log.println("<tr>"
+                    + "<td>" + value + "</td>"
+                    + "<td>" + set.size() +  "</td>"
+                    + "<td>" + pattern +  "</td>"
+                    + "</tr>");
+        }
+        log.println("</table>");
+    }
+
+    private static void showTypeLine(String messageAttr, String message, UcaBucket actualOrder, final String string, final CEList ce) {
         log.println("<tr>"
                 + "<td" + messageAttr + ">" + message + "</td>"
                 + "<td>" + actualOrder + "</td>"
@@ -3554,60 +3700,73 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 + "</tr>");
     }
 
-    private static int showBadChars(String title, UnicodeSet illegalCharacters) {
-        int errorCount = 0;
-        if (illegalCharacters.size() != 0) {
-            log.println("<br><table border='1'>");
-            Map<String, UnicodeSet> sorted = new TreeMap();
-
-            for (String s: illegalCharacters) {
-                final String type = getType(s);
-                UnicodeSet us = sorted.get(type);
-                if (us == null) {
-                    sorted.put(type, us = new UnicodeSet());
-                }
-                us.add(s);
-            }
-            log.println("<h3>" + title + "</h3>");
-            for (Entry<String, UnicodeSet> typeAndString : sorted.entrySet()) {
-                UnicodeSet us = typeAndString.getValue();
-                for (UnicodeSetIterator it = new UnicodeSetIterator(us); it.nextRange();) {
-                    if (it.codepointEnd != it.codepoint) {
-                        log.println("<tr>"
-                                + "<td>" + typeAndString.getKey() + "</td>"
-                                + "<td>" + UTF16.valueOf(it.codepoint) 
-                                + "…" + UTF16.valueOf(it.codepointEnd) +  "</td>"
-                                + "<td>" + Utility.hex(it.codepoint) 
-                                + "…" + Utility.hex(it.codepointEnd) +  "</td>" 
-                                + "<td>" + Default.ucd().getName(it.codepoint) 
-                                + "…" + Default.ucd().getName(it.codepointEnd) + "</td>"
-                                + "</tr>");
-                        errorCount += it.codepointEnd - it.codepoint + 1;
-                    } else {
-                        log.println("<tr>"
-                                + "<td>" + typeAndString.getKey() + "</td>"
-                                + "<td>" + UTF16.valueOf(it.codepoint) + "</td>"
-                                + "<td>" + Utility.hex(it.codepoint) + "</td>" 
-                                + "<td>" + Default.ucd().getName(it.codepoint) + "</td>"
-                                + "</tr>");
-                    }
-                }
-            }
-            log.println("</table>");
+    private static int showCharDetails(String title, UnicodeSet illegalCharacters, boolean notError) {
+        if (illegalCharacters.size() == 0) {
+            return 0;
         }
-        return errorCount;
+        Map<String, UnicodeSet> sorted = new TreeMap();
+
+        for (String s: illegalCharacters) {
+            final String type = getType(s);
+            UnicodeSet us = sorted.get(type);
+            if (us == null) {
+                sorted.put(type, us = new UnicodeSet());
+            }
+            us.add(s);
+        }
+        String rtitle = "<span class='" + (notError ? "warn" : "bad") + "'>" + title + "<span>";
+        System.out.println("***" + rtitle);
+        log.println("<h3>" + rtitle + "; Count: " + illegalCharacters.size() + "</h3>");
+        showCharSummaryTable(illegalCharacters);
+        log.println("<p>Details:</p>");
+        log.println("<table border='1'>");
+        for (Entry<String, UnicodeSet> typeAndString : sorted.entrySet()) {
+            UnicodeSet us = typeAndString.getValue();
+            for (UnicodeSetIterator it = new UnicodeSetIterator(us); it.nextRange();) {
+                if (it.codepointEnd != it.codepoint) {
+                    log.println("<tr>"
+                            + "<td>" + typeAndString.getKey() + "</td>"
+                            + "<td>" + UTF16.valueOf(it.codepoint) 
+                            + "…" + UTF16.valueOf(it.codepointEnd) +  "</td>"
+                            + "<td>" + Utility.hex(it.codepoint) 
+                            + "…" + Utility.hex(it.codepointEnd) +  "</td>" 
+                            + "<td>" + Default.ucd().getName(it.codepoint) 
+                            + "…" + Default.ucd().getName(it.codepointEnd) + "</td>"
+                            + "</tr>");
+                } else {
+                    log.println("<tr>"
+                            + "<td>" + typeAndString.getKey() + "</td>"
+                            + "<td>" + UTF16.valueOf(it.codepoint) + "</td>"
+                            + "<td>" + Utility.hex(it.codepoint) + "</td>" 
+                            + "<td>" + Default.ucd().getName(it.codepoint) + "</td>"
+                            + "</tr>");
+                }
+            }
+        }
+        log.println("</table>");
+        return illegalCharacters.size();
     }
 
 
     private static String getType(String s) {
-        Set<String> set = new LinkedHashSet();
+        Set<String> set = getTypes(s, new LinkedHashSet());
+
+        String nfkd = Default.nfkd().normalize(s);
+        Set<String> set2 = getTypes(nfkd, new LinkedHashSet());
+        set2.removeAll(set);
+
+        String result = CollectionUtilities.join(set, "/");
+        return set2.size() == 0 ? result : result + "(" + CollectionUtilities.join(set2, "/") + ")";
+    }
+
+    private static Set<String> getTypes(String s, Set<String> set) {
         for (int cp : With.codePointArray(s)) {
             set.add(Default.ucd().getCategoryID(cp));
         }
         for (int cp : With.codePointArray(s)) {
             set.add(Default.ucd().getScriptID(cp, SHORT));
         }
-        return CollectionUtilities.join(set, ",");
+        return set;
     }
 
     static void showMismatches() {
@@ -3977,16 +4136,22 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     static UCA getCollator(CollatorType type) {
         switch(type) {
+        case cldr:
+            if (cldrCollator == null) {
+                if (Default.ucdVersion().compareTo("6.1") < 0) { // only reorder if less than v6.1
+                    cldrCollator = buildCldrCollator(true);
+                } else {
+                    cldrCollator = buildCldrCollator(false);
+                    cldrCollator.overrideCE("\uFFFE", 0x1, 0x20, 0x5);
+                    cldrCollator.overrideCE("\uFFFF", 0xFFFE, 0x20, 0x5);
+                }
+            }
+            return cldrCollator;                
         case ducet:
             if (ducetCollator == null) {
                 ducetCollator = UCA.buildCollator(null);
             }
             return ducetCollator;
-        case cldr:
-            if (cldrCollator == null) {
-                cldrCollator = buildCldrCollator(true);
-            }
-            return cldrCollator;
         case cldrWithoutFFFx:
             if (cldrWithoutFFFxCollator == null) {
                 cldrWithoutFFFxCollator = buildCldrCollator(false);

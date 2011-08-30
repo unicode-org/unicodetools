@@ -2173,9 +2173,9 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
     static int ducetFirstNonVariable, ducetLastVariable;
 
     static void findBumps(int[] representatives) {
-        int[] ces = new int[100];
-        int[] scriptsLeastPrimary = new int[100];
-        int[] scriptChar = new int[100];
+        int[] ces = new int[LIMIT_SCRIPT];
+        int[] scriptsLeastPrimary = new int[UCD_Types.LIMIT_SCRIPT];
+        int[] scriptChar = new int[LIMIT_SCRIPT];
 
         Range[] categoryLeastPrimary = new Range[32];
         {
@@ -2455,7 +2455,10 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         byte script = Default.ucd().getScript(ch);
         // HACK
         if (ch == 0x0F7E || ch == 0x0F7F) {
-            script = TIBETAN_SCRIPT;
+            if (script != TIBETAN_SCRIPT) {
+                throw new IllegalArgumentException("Illegal script values");
+            }
+            //script = TIBETAN_SCRIPT;
         }
         if (script == HIRAGANA_SCRIPT) {
             script = KATAKANA_SCRIPT;

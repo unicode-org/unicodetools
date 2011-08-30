@@ -3,30 +3,33 @@
 # Format:
 #
 #   Columns (c1, c2,...) are separated by semicolons
+#   They have the following meaning:
+#      source; NFC; NFD; NFKC; NFKD
 #   Comments are indicated with hash marks
+#   Each of the columns may have one or more code points.
 #
 # CONFORMANCE:
 # 1. The following invariants must be true for all conformant implementations
 #
 #    NFC
-#      c2 ==  NFC(c1) ==  NFC(c2) ==  NFC(c3)
-#      c4 ==  NFC(c4) ==  NFC(c5)
+#      c2 ==  toNFC(c1) ==  toNFC(c2) ==  toNFC(c3)
+#      c4 ==  toNFC(c4) ==  toNFC(c5)
 #
 #    NFD
-#      c3 ==  NFD(c1) ==  NFD(c2) ==  NFD(c3)
-#      c5 ==  NFD(c4) ==  NFD(c5)
+#      c3 ==  toNFD(c1) ==  toNFD(c2) ==  toNFD(c3)
+#      c5 ==  toNFD(c4) ==  toNFD(c5)
 #
 #    NFKC
-#      c4 == NFKC(c1) == NFKC(c2) == NFKC(c3) == NFKC(c4) == NFKC(c5)
+#      c4 == toNFKC(c1) == toNFKC(c2) == toNFKC(c3) == toNFKC(c4) == toNFKC(c5)
 #
 #    NFKD
-#      c5 == NFKD(c1) == NFKD(c2) == NFKD(c3) == NFKD(c4) == NFKD(c5)
+#      c5 == toNFKD(c1) == toNFKD(c2) == toNFKD(c3) == toNFKD(c4) == toNFKD(c5)
 #
 # 2. For every code point X assigned in this version of Unicode that is not specifically
 #    listed in Part 1, the following invariants must be true for all conformant
 #    implementations:
 #
-#      X == NFC(X) == NFD(X) == NFKC(X) == NFKD(X)
+#      X == toNFC(X) == toNFD(X) == toNFKC(X) == toNFKD(X)
 #
 @Part0 # Specific cases
 #
