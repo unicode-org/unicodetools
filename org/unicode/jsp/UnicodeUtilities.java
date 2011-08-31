@@ -90,20 +90,21 @@ public class UnicodeUtilities {
   //    }
   //  }
 
-  public static UnicodeSet IGNORE_IN_IDNA_DIFF = new UnicodeSet("[[\\u0000-\\u007F][:Cc:][:Cn:][:Co:][:Cs:]]").freeze();
-
-  public static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped, UnicodeSet overallAllowed) {
+  public static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped, UnicodeSet skip) {
     UnicodeMap<String> result = new UnicodeMap<String>();
     UnicodeSet valid2008 = getIdna2008Valid();
+    
+    VersionInfo empty = VersionInfo.getInstance(0);
 
     for (int i = 0; i <= 0x10FFFF; ++i) {
       if ((i & 0xFFF) == 0) System.out.println(Utility.hex(i));
-      if (i == 0x20000) {
+      if (i == 0x058F) {
         System.out.println("debug");
       }
-      if (IGNORE_IN_IDNA_DIFF.contains(i)) continue;
-      boolean isNew = UCharacter.getAge(i).compareTo(VersionInfo.UNICODE_3_2) > 0;
-      String age = isNew ? "v4.0-5.2" : "v3.2";
+      if (skip.contains(i)) continue;
+      final VersionInfo birth = UCharacter.getAge(i);
+      boolean isNew = birth.compareTo(VersionInfo.UNICODE_3_2) > 0 || birth.equals(empty);
+      String age = isNew ? ">3.2!!!" : "v3.2";
       IdnaType idna2003 = Idna2003.getIDNA2003Type(i);
       IdnaType tr46 = Uts46.SINGLETON.getType(i);
       if (isNew) {// skip
