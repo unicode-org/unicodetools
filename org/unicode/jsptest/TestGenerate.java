@@ -11,6 +11,8 @@ import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.Uts46;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.Idna2008.Idna2008Type;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
@@ -31,18 +33,26 @@ import com.ibm.icu.util.VersionInfo;
 public class TestGenerate   extends TestFmwk{
   
   static final String AGE = System.getProperty("age");
-  static final UnicodeSet OVERALL_ALLOWED = new UnicodeSet().applyPropertyAlias("age", AGE == null ? "5.2" : AGE).freeze();
+  //static final UnicodeSet OVERALL_ALLOWED = new UnicodeSet().applyPropertyAlias("age", AGE == null ? "6.1" : AGE).freeze();
+  
 
   public static void main(String[] args) throws Exception {
     new TestGenerate().run(args);
-    
-    
   }
 
+  public static UnicodeSet SKIP = new UnicodeSet("[[\\u0000-\\u007F][:Cc:][:Co:][:Cs:]]");
+  static {
+      for (int i = 0; i <= 0x10FFFF; ++i) {
+          if (!Default.ucd().isAssigned(i)) {
+              SKIP.add(i);
+          }
+      }
+      SKIP.freeze();
+  }
   
   public void TestIdnaDifferences() {
     UnicodeSet remapped = new UnicodeSet();
-    UnicodeMap<String> map = UnicodeUtilities.getIdnaDifferences(remapped, OVERALL_ALLOWED);
+    UnicodeMap<String> map = UnicodeUtilities.getIdnaDifferences(remapped, SKIP);
     TreeSet<String> ordered = new TreeSet<String>(new InverseComparator());
     ordered.addAll(map.values());
     int max = 200;

@@ -11,6 +11,7 @@ import org.unicode.jsp.Idna2003;
 import org.unicode.jsp.StringPrepData;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.UnicodeUtilities;
+import org.unicode.text.UCD.ToolIdna2008.Idna2008Type;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
@@ -31,10 +32,11 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateIdna {
 
-    public static final String DIR = "/Users/markdavis/Documents/workspace/draft/reports/tr46/data";
+    public static final String DIR = Utility.GEN_DIR + "idna/"; // "/Users/markdavis/Documents/workspace/draft/reports/tr46/data";
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
     private static final boolean TESTING = false;
     public static UnicodeSet U32;
+    public static UnicodeSet U40;
     public static UnicodeSet VALID_ASCII;
     public static UnicodeSet NSTD3_ASCII;
     static ToolUnicodePropertySource properties;
@@ -43,7 +45,7 @@ public class GenerateIdna {
     static {
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
     }
-    static UnicodeSet IDNA2008Valid = UnicodeUtilities.getIdna2008Valid();
+    static UnicodeSet IDNA2008Valid = ToolIdna2008.getValid();
 
     public static void main(String[] args) throws IOException {
 
@@ -67,12 +69,17 @@ public class GenerateIdna {
         UnicodeMap<Row.R2<IdnaType, String>> mappingTable = createMappingTable(true);
         UnicodeMap<Row.R2<IdnaType, String>> mappingTableNSTD3 = createMappingTable(false);
         {
-        UnicodeMap<String> mappings = new UnicodeMap<String>(); 
-        UnicodeMap<IdnaType> types = new UnicodeMap<IdnaType>();
-        StringPrepData.getIdna2003Tables(mappings, types, true);
+            UnicodeMap<String> mappings = new UnicodeMap<String>(); 
+            UnicodeMap<IdnaType> types = new UnicodeMap<IdnaType>();
+            StringPrepData.getIdna2003Tables(mappings, types, true);
 
-        verifyDifferences(mappings, types, mappingTable);
+            verifyDifferences(mappings, types, mappingTable);
         }
+
+        UnicodeSet validSet = new UnicodeSet();
+        UnicodeSet disallowedSet = new UnicodeSet();
+        UnicodeSet mappedSet = new UnicodeSet();
+
         UnicodeMap<String> stringMappingTable = new UnicodeMap<String>();
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Row.R2<IdnaType, String> value = mappingTable.get(cp);
@@ -98,16 +105,44 @@ public class GenerateIdna {
                     throw new IllegalArgumentException("bad mapping:\t" + value);
                 }
             }
-            
+
             if (status == IdnaType.valid && !IDNA2008Valid.contains(cp) && cp != '.') {
                 endStatus += Utility.repeat(" ", MAX_STATUS_LENGTH-endStatus.length()) + " ;      ; NV8";
             }
             stringMappingTable.put(cp, endStatus);
+            
+            if (!U32.contains(cp) && !cn.contains(cp)) {
+                switch(status) {
+                case mapped:
+                case ignored:
+                case deviation:
+                    mappedSet.add(cp);
+                    break;
+                case disallowed:
+                    disallowedSet.add(cp);
+                    break;
+                case valid:
+                    validSet.add(cp);
+                    break;
+                }
+            }
         }
 
         writeDataFile(stringMappingTable);
-        System.out.println("After running, copy the data file to the jsp directory, and run org.unicode.jsptest.TestGenerate to generate the differences table.\n" +
-        		"Then run org.unicode.jsptest.TestUt6s46 with the argument 'generate' to generate the tests.");
+        
+//        System.out.println("After running, copy the data file to the jsp directory, and run org.unicode.jsptest.TestGenerate to generate the differences table.\n" +
+//        "Then run org.unicode.jsptest.TestUt6s46 with the argument 'generate' to generate the tests.");
+        
+        showSet("Valid\tValid", validSet, IDNA2008Valid);
+        final UnicodeSet IDNA2008Disallowed = new UnicodeSet(IDNA2008Valid).complement();
+        showSet("Disallowed\tDisallowed", disallowedSet, IDNA2008Disallowed);
+        showSet("Valid\tDisallowed", validSet, IDNA2008Disallowed);
+        showSet("Mapped/Ignored\tDisallowed", mappedSet, IDNA2008Disallowed);
+    }
+
+    private static void showSet(String title, UnicodeSet validSet, UnicodeSet iDNA2008Valid2) {
+        UnicodeSet intersect = new UnicodeSet(validSet).retainAll(iDNA2008Valid2);
+        System.out.println(intersect.size() + "\t" + title + intersect.toPattern(false));
     }
 
     private static void verifyDifferences(UnicodeMap<String> mappings, UnicodeMap<IdnaType> types, UnicodeMap<Row.R2<IdnaType, String>> mappingTable) {
@@ -346,10 +381,10 @@ public class GenerateIdna {
             }
         };
         UnicodeProperty age = properties.getProperty("age");
-//        UnicodeMap ageValue = age0.getUnicodeMap();
-//        UnicodeSet unassigned = ageValue.getSet("unassigned");
-//        ageValue.putAll(unassigned, "n/a");
-//        UnicodeMapProperty age = new UnicodeProperty.UnicodeMapProperty().set(ageValue);
+        //        UnicodeMap ageValue = age0.getUnicodeMap();
+        //        UnicodeSet unassigned = ageValue.getSet("unassigned");
+        //        ageValue.putAll(unassigned, "n/a");
+        //        UnicodeMapProperty age = new UnicodeProperty.UnicodeMapProperty().set(ageValue);
 
         NameLabel name = new BagFormatter.NameLabel(properties);
         BagFormatter bf = new BagFormatter();
