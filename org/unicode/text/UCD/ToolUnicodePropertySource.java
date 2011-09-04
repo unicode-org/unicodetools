@@ -826,6 +826,8 @@ isTitlecase(X) is false.
 
     // ========================
 
+    add(new UnicodeProperty.UnicodeSetProperty().set("[\\u0000-\\u007F]").setMain("ASCII", "ASCII", UnicodeProperty.BINARY, ""));
+    
     try {
       String x = Utility.getMostRecentUnicodeDataFile("ScriptExtensions", Default.ucdVersion(), true, true);
       if (x == null) {

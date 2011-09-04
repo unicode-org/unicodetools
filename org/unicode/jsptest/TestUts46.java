@@ -176,7 +176,7 @@ public class TestUts46 extends TestFmwk{
     return true;
   }
 
-  private int generateTests(int lines) throws IOException {
+  int generateTests(int lines) throws IOException {
     String filename = "IdnaTest.txt";
     PrintWriter out = BagFormatter.openUTF8Writer(GenerateIdna.DIR, filename);
     out.println("# " + filename + "\n" +
