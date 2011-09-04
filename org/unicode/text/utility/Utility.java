@@ -888,11 +888,20 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
   }
 
-  public static BufferedReader openReadFile(String filename, Encoding encoding) throws FileNotFoundException, UnsupportedEncodingException {
-    FileInputStream fis = new FileInputStream(filename);
+  public static BufferedReader openReadFile(String filename, Encoding encoding) {
+    FileInputStream fis;
+    try {
+        fis = new FileInputStream(filename);
+    } catch (FileNotFoundException e) {
+        throw new IllegalArgumentException(e);
+    }
     InputStreamReader isr;
     if (encoding == UTF8_UNIX || encoding == UTF8_WINDOWS) {
-      isr = new InputStreamReader(fis, "UTF8");
+      try {
+        isr = new InputStreamReader(fis, "UTF8");
+    } catch (UnsupportedEncodingException e) {
+        throw new IllegalArgumentException(e);
+    }
     } else {
       isr = new InputStreamReader(fis);
     }
@@ -1078,19 +1087,19 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     copyTextFile(filename, encoding, newName, null);
   }
 
-  public static BufferedReader openUnicodeFile(String filename, String version, boolean show, Encoding encoding) throws IOException {
+  public static BufferedReader openUnicodeFile(String filename, String version, boolean show, Encoding encoding) {
     String name = getMostRecentUnicodeDataFile(filename, version, true, show);
     if (name == null) return null;
     return openReadFile(name, encoding); // new BufferedReader(new FileReader(name),32*1024);
   }
 
   public static String getMostRecentUnicodeDataFile(String filename, String version, 
-          boolean acceptLatest, boolean show) throws IOException {
+          boolean acceptLatest, boolean show) {
     return getMostRecentUnicodeDataFile(filename, version, acceptLatest, show, ".txt");
   }
 
   public static String getMostRecentUnicodeDataFile(String filename, String version, 
-          boolean acceptLatest, boolean show, String fileType) throws IOException {
+          boolean acceptLatest, boolean show, String fileType) {
     // get all the files in the directory
 
     int compValue = acceptLatest ? 0 : 1;
@@ -1106,8 +1115,14 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     return null;
   }
 
-  public static Set getDirectoryContentsLastFirst(File directory) throws IOException {
-    if (SHOW_SEARCH_PATH) System.out.println(directory.getCanonicalPath());
+  public static Set getDirectoryContentsLastFirst(File directory) {
+    if (SHOW_SEARCH_PATH) {
+        try {
+            System.out.println(directory.getCanonicalPath());
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
     Set result = new TreeSet(new Comparator() {
       public int compare(Object a, Object b) {
         return ((Comparable) b).compareTo(a);
@@ -1121,7 +1136,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     return searchDirectory(directory, filename, show, ".txt");
   }
 
-  public static String searchDirectory(File directory, String filename, boolean show, String fileType) throws IOException {
+  public static String searchDirectory(File directory, String filename, boolean show, String fileType) {
     Iterator it = getDirectoryContentsLastFirst(directory).iterator();
     while (it.hasNext()) {
       String fn = (String) it.next();
@@ -1138,7 +1153,12 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         } else if (fn.charAt(filename.length()) != '-') {
           continue;
         }
-        String canonicalPath = foo.getCanonicalPath();
+        String canonicalPath;
+        try {
+            canonicalPath = foo.getCanonicalPath();
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
         if (show) System.out.println("\tFound: '" + canonicalPath + "'");
         return canonicalPath;
       }
