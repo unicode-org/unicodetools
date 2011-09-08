@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.unicode.jsp;
+package org.unicode.idna;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,11 +10,12 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.Idna.IdnaType;
+import org.unicode.idna.Idna.IdnaType;
+import org.unicode.jsp.FileUtilities;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
@@ -286,13 +287,13 @@ public class StringPrepData {
                 int i = it.codepoint;
                 String mapValue = mappings.get(i);
                 if (mapValue == null) {
-                    if (Normalizer.isNormalized(i, Normalizer.NFKC, Normalizer.UNICODE_3_2)) {
+                    if (Idna.NFKC_3_2.isTransformed(i)) {
                         continue;
                     }
                     addedMappings.add(i);
-                    mappings.put(i, Normalizer.normalize(i, Normalizer.NFKC, Normalizer.UNICODE_3_2));
-                } else if (!Normalizer.isNormalized(mapValue, Normalizer.NFKC, Normalizer.UNICODE_3_2)) {
-                    String newValue = Normalizer.normalize(mapValue, Normalizer.NFKC, Normalizer.UNICODE_3_2);
+                    mappings.put(i, Idna.NFKC_3_2.transform(i)); // Normalizer.normalize(i, Normalizer.NFKC, Normalizer.UNICODE_3_2));
+                } else if (!Idna.NFKC_3_2.isTransformed(mapValue)) { // (!Normalizer.isNormalized(mapValue, Normalizer.NFKC, Normalizer.UNICODE_3_2)) {
+                    String newValue = Idna.NFKC_3_2.transform(mapValue); // Normalizer.normalize(mapValue, Normalizer.NFKC, Normalizer.UNICODE_3_2);
                     if (DEBUG) System.out.println("Change for NFKC mapping of " + Utility.hex(i) + ", \t" + Utility.hex(mapValue) + " \t => \t" + Utility.hex(newValue));
                     addedMappings.add(i);
                     mappings.put(i, newValue);

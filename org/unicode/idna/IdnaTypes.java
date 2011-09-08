@@ -1,4 +1,4 @@
-package org.unicode.jsp;
+package org.unicode.idna;
 
 import java.util.regex.Pattern;
 

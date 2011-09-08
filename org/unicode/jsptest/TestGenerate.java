@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.TreeSet;
 
-import org.unicode.jsp.Idna;
-import org.unicode.jsp.Idna2003;
-import org.unicode.jsp.Idna2008;
+import org.unicode.idna.Idna;
+import org.unicode.idna.Idna2003;
+import org.unicode.idna.Idna2008;
+import org.unicode.idna.Uts46;
+import org.unicode.idna.Idna.IdnaType;
+import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.jsp.UnicodeUtilities;
-import org.unicode.jsp.Uts46;
-import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.Idna2008.Idna2008Type;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
@@ -49,7 +49,7 @@ public class TestGenerate{
 
 
     public static void main(String[] args) throws Exception {
-        int count = new TestUts46().generateTests(1000);
+        //int count = new TestUts46().generateTests(1000);
     }
 
     public static UnicodeSet SKIP = new UnicodeSet("[[\\u0000-\\u007F][:Cc:][:Co:][:Cs:]]");

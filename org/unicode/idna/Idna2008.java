@@ -1,16 +1,8 @@
-package org.unicode.jsp;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+package org.unicode.idna;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.Normalizer2.Mode;
 
 public class Idna2008 extends Idna {
 
@@ -26,12 +18,11 @@ public class Idna2008 extends Idna {
 
         // B: toNFKC(toCaseFold(toNFKC(cp))) != cp
         UnicodeSet Unstable = new UnicodeSet();
-        Normalizer2 toNfkc = Normalizer2.getInstance(null, "nfkc", Mode.COMPOSE);
         for (int i = 0; i <= 0x10FFFF; ++i) {
             String s = UTF16.valueOf(i);
-            String nfkc = toNfkc.normalize(s);
-            String cased = UCharacter.foldCase(nfkc, true);
-            String full = toNfkc.normalize(cased);
+            String nfkc = NFKC.transform(s);
+            String cased = CASEFOLD.transform(nfkc);
+            String full = NFKC.transform(cased);
             if (!s.equals(full)) {
                 Unstable.add(i);
             }

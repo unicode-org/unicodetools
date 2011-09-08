@@ -30,8 +30,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.unicode.jsp.Uts46;
-import org.unicode.jsp.Idna.IdnaType;
+import org.unicode.idna.Uts46;
+import org.unicode.idna.Idna.IdnaType;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.ArrayComparator;

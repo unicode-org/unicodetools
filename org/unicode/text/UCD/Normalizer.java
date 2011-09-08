@@ -21,7 +21,7 @@ import org.unicode.text.utility.Utility;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-
+import com.ibm.icu.text.Transform;
 
 /**
  * Implements Unicode Normalization Forms C, D, KC, KD.<br>
@@ -34,7 +34,7 @@ import com.ibm.icu.text.UnicodeSet;
  * @author Mark Davis
  */
 
-public final class Normalizer implements UCD_Types {
+public final class Normalizer implements Transform<String,String>, UCD_Types {
     public static final String copyright =
       "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
 
@@ -100,7 +100,7 @@ public final class Normalizer implements UCD_Types {
     * @param   source      the original text, unnormalized
     * @param   target      the resulting normalized text
     */
-    public StringBuffer normalize(String source, StringBuffer target) {
+    public StringBuffer normalize(CharSequence source, StringBuffer target) {
 
         // First decompose the source into target,
         // then compose if the form requires.
@@ -136,7 +136,7 @@ public final class Normalizer implements UCD_Types {
     * @param   source      the original text, unnormalized
     * @return  target      the resulting normalized text
     */
-    public String normalize(String source) {
+    public String normalize(CharSequence source) {
         return normalize(source, new StringBuffer()).toString();
     }
 
@@ -238,8 +238,8 @@ public final class Normalizer implements UCD_Types {
     * normalizer.
     * @param   ch      the source character
     */
-    public boolean isNormalized(String s) {
-        if (UTF16.countCodePoint(s) == 1) {
+    public boolean isNormalized(CharSequence s) {
+        if (Character.codePointCount(s, 0, s.length()) == 1) {
             return !data.normalizationDiffers(UTF16.charAt(s,0), composition, compatibility);
         }
         return s.equals(normalize(s)); // TODO: OPTIMIZE LATER
@@ -320,7 +320,7 @@ public final class Normalizer implements UCD_Types {
     * @param   source      the original text, unnormalized
     * @param   target      the resulting normalized text
     */
-    private void internalDecompose(String source, StringBuffer target, boolean reorder, boolean compat) {
+    private void internalDecompose(CharSequence source, StringBuffer target, boolean reorder, boolean compat) {
         StringBuffer buffer = new StringBuffer();
         int ch32;
         for (int i = 0; i < source.length(); i += UTF16.getCharCount(ch32)) {
@@ -646,6 +646,11 @@ Problem: differs: true, call: false U+1FED GREEK DIALYTIKA AND VARIA
                 count += source.size();
             }
             spacingMap.freeze();
+    }
+
+    @Override
+    public String transform(String source) {
+        return normalize(source);
     }
 
     /**

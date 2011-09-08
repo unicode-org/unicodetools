@@ -1,4 +1,4 @@
-package org.unicode.text.UCD;
+package org.unicode.idna;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,18 +6,15 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.TreeSet;
 
-import org.unicode.jsp.Idna;
-import org.unicode.jsp.Idna2003;
-import org.unicode.jsp.StringPrepData;
-import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.UnicodeUtilities;
-import org.unicode.text.UCD.ToolIdna2008.Idna2008Type;
+import org.unicode.idna.Idna.IdnaType;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.test.util.BagFormatter.NameLabel;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.BagFormatter.NameLabel;
 import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
@@ -45,7 +42,7 @@ public class GenerateIdna {
     static {
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
     }
-    static UnicodeSet IDNA2008Valid = ToolIdna2008.getValid();
+    static UnicodeSet IDNA2008Valid = GenerateIdnaTest.getIdna2008Valid();
 
     public static void main(String[] args) throws IOException {
 
@@ -147,7 +144,7 @@ public class GenerateIdna {
 
     private static void verifyDifferences(UnicodeMap<String> mappings, UnicodeMap<IdnaType> types, UnicodeMap<Row.R2<IdnaType, String>> mappingTable) {
         System.out.println("Verifying Differences");
-        UnicodeMap<Row.R3<String, R2<IdnaType, String>, R2<IdnaType, String>>> diff = new UnicodeMap();
+        UnicodeMap<Row.R3<String, R2<IdnaType, String>, R2<IdnaType, String>>> diff = new UnicodeMap<Row.R3<String, R2<IdnaType, String>, R2<IdnaType, String>>>();
         for (int i = 0; i <= 0x10FFFF; ++i) {
             if (!U32.contains(i)) continue;
             R2<IdnaType, String> data46 = mappingTable.get(i);

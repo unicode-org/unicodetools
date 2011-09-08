@@ -1,4 +1,5 @@
-package org.unicode.jsp;
+package org.unicode.idna;
+
 
 public class Idna2003 extends Idna {
   

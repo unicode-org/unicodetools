@@ -2,6 +2,7 @@ package org.unicode.jsp;
 
 import java.io.IOException;
 
+import com.ibm.icu.dev.test.util.ICUPropertyFactory;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeMapIterator;
 import com.ibm.icu.lang.UCharacter;

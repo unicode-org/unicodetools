@@ -9,13 +9,17 @@ import java.util.SortedMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.UnicodeProperty.BaseProperty;
-import org.unicode.jsp.UnicodeProperty.SimpleProperty;
+import org.unicode.idna.Idna2003;
+import org.unicode.idna.Idna2008;
+import org.unicode.idna.Uts46;
+import org.unicode.idna.Idna.IdnaType;
 
-import sun.text.normalizer.UTF16;
-
+import com.ibm.icu.dev.test.util.ICUPropertyFactory;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.BaseProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.SimpleProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeSetProperty;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Collator;
@@ -24,6 +28,7 @@ import com.ibm.icu.text.RawCollationKey;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
@@ -389,7 +394,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     private static class Usage extends XEnumUnicodeProperty {
         enum UsageValues {common, historic, deprecated, liturgical, limited, symbol, punctuation, na;
         public static UsageValues getValue(int codepoint) {
-            if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
+            if (UnicodeProperty.getSPECIALS().contains(codepoint)) return na;
             if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
             if (UnicodeUtilities.LITURGICAL.contains(codepoint)) return liturgical;
             if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
@@ -501,28 +506,28 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
 
-    public static class UnicodeSetProperty extends BaseProperty {
-        protected UnicodeSet unicodeSet;
-        private static final String[] YESNO_ARRAY = new String[]{"Yes", "No"};
-        private static final List YESNO = Arrays.asList(YESNO_ARRAY);
-
-        public UnicodeSetProperty set(UnicodeSet set) {
-            unicodeSet = set;
-            return this;
-        }
-
-        public UnicodeSetProperty set(String string) {
-            // TODO Auto-generated method stub
-            return set(new UnicodeSet(string).freeze());
-        }
-
-        protected String _getValue(int codepoint) {
-            return YESNO_ARRAY[unicodeSet.contains(codepoint) ? 0 : 1];
-        }
-
-        protected List _getAvailableValues(List result) {
-            return YESNO;
-        }
-    }
+//    public static class UnicodeSetProperty extends BaseProperty {
+//        protected UnicodeSet unicodeSet;
+//        private static final String[] YESNO_ARRAY = new String[]{"Yes", "No"};
+//        private static final List YESNO = Arrays.asList(YESNO_ARRAY);
+//
+//        public UnicodeSetProperty set(UnicodeSet set) {
+//            unicodeSet = set;
+//            return this;
+//        }
+//
+//        public UnicodeSetProperty set(String string) {
+//            // TODO Auto-generated method stub
+//            return set(new UnicodeSet(string).freeze());
+//        }
+//
+//        protected String _getValue(int codepoint) {
+//            return YESNO_ARRAY[unicodeSet.contains(codepoint) ? 0 : 1];
+//        }
+//
+//        protected List _getAvailableValues(List result) {
+//            return YESNO;
+//        }
+//    }
 
 }

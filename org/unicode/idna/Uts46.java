@@ -1,12 +1,11 @@
-package org.unicode.jsp;
+package org.unicode.idna;
 
-import java.util.ArrayList;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.jsp.FileUtilities;
+
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 
@@ -165,10 +164,8 @@ public class Uts46 extends Idna {
     static final UnicodeSet EN                            = new UnicodeSet("[[:bc=EN:]]").freeze();
     static final UnicodeSet AN                            = new UnicodeSet("[[:bc=AN:]]").freeze();
     static final UnicodeSet NSM                           = new UnicodeSet("[[:bc=NSM:]]").freeze();
-    static final Pattern    LABEL_SEPARATOR               = Pattern.compile("\\.");
-
     /**
-     * Checks a string for IDNA2008 bidi errors
+     * Checks a string for IDNA2008 bidi errors. label must not be empty
      * 
      * @param domainName
      *            the string to be tested
@@ -177,92 +174,73 @@ public class Uts46 extends Idna {
      *            set.
      * @return true if errors are found, otherwise false.
      */
-    public static boolean hasBidiError(String domainName, Set<Errors> errors) {
-        if (!R_AL_AN.containsSome(domainName)) {
+    public static boolean hasBidiError(String label, Set<Errors> errors) {
+        if (!R_AL_AN.containsSome(label)) {
             return false;
         }
         int oldErrorLength = errors.size();
 
-        String[] labels = nonbrokenSplit(LABEL_SEPARATOR, domainName);
-        for (String label : labels) {
-            if (label.length() <= 0)
-                continue; // broken, but for a non-bidi reason
-            // #1
-            int firstChar = label.codePointAt(0);
+        // #1
+        int firstChar = label.codePointAt(0);
 
-            // 1. The first character must be a character with BIDI property L,
-            // R
-            // or AL. If it has the R or AL property, it is an RTL label; if it
-            // has the L property, it is an LTR label.
+        // 1. The first character must be a character with BIDI property L,
+        // R
+        // or AL. If it has the R or AL property, it is an RTL label; if it
+        // has the L property, it is an LTR label.
 
-            boolean RTL = R_AL.contains(firstChar);
-            boolean LTR = L.contains(firstChar);
-            if (!RTL && !LTR) {
-                errors.add(Errors.B1);
-            }
-
-            // 2. In an RTL label, only characters with the BIDI properties R,
-            // AL,
-            // AN, EN, ES, CS, ET, ON, BN and NSM are allowed.
-
-            if (RTL && !R_AL_AN_EN_ES_CS_ET_ON_BN_NSM.containsAll(label)) {
-                errors.add(Errors.B2);
-            }
-
-            int endExcludingNSM = NSM.spanBack(label, SpanCondition.CONTAINED);
-            if (endExcludingNSM == 0) {
-                // degenerate case, fails Bs 3 and 6
-                errors.add(Errors.B3);
-                errors.add(Errors.B6);
-                return true;
-            }
-            int lastChar = Character.codePointBefore(label, endExcludingNSM);
-
-            // 3. In an RTL label, the end of the label must be a character with
-            // BIDI property R, AL, EN or AN, followed by zero or more
-            // characters with BIDI property NSM.
-
-            if (RTL && !R_AL_AN_EN.contains(lastChar)) {
-                errors.add(Errors.B3);
-            }
-
-            // 4. In an RTL label, if an EN is present, no AN may be present,
-            // and
-            // vice versa.
-            if (RTL && EN.containsSome(label) && AN.containsSome(label)) {
-                errors.add(Errors.B4);
-            }
-            // 5. In an LTR label, only characters with the BIDI properties L,
-            // EN,
-            // ES, CS. ET, ON, BN and NSM are allowed.
-            if (LTR && !L_EN_ES_CS_ET_ON_BN_NSM.containsAll(label)) {
-                errors.add(Errors.B5);
-            }
-
-            // 6. In an LTR label, the end of the label must be a character with
-            // BIDI property L or EN, followed by zero or more characters with
-            // BIDI property NSM.
-
-            if (LTR && !L_EN.contains(lastChar)) {
-                errors.add(Errors.B6);
-            }
+        boolean RTL = R_AL.contains(firstChar);
+        boolean LTR = L.contains(firstChar);
+        if (!RTL && !LTR) {
+            errors.add(Errors.B1);
         }
+
+        // 2. In an RTL label, only characters with the BIDI properties R,
+        // AL,
+        // AN, EN, ES, CS, ET, ON, BN and NSM are allowed.
+
+        if (RTL && !R_AL_AN_EN_ES_CS_ET_ON_BN_NSM.containsAll(label)) {
+            errors.add(Errors.B2);
+        }
+
+        int endExcludingNSM = NSM.spanBack(label, SpanCondition.CONTAINED);
+        if (endExcludingNSM == 0) {
+            // degenerate case, fails Bs 3 and 6
+            errors.add(Errors.B3);
+            errors.add(Errors.B6);
+            return true;
+        }
+        int lastChar = Character.codePointBefore(label, endExcludingNSM);
+
+        // 3. In an RTL label, the end of the label must be a character with
+        // BIDI property R, AL, EN or AN, followed by zero or more
+        // characters with BIDI property NSM.
+
+        if (RTL && !R_AL_AN_EN.contains(lastChar)) {
+            errors.add(Errors.B3);
+        }
+
+        // 4. In an RTL label, if an EN is present, no AN may be present,
+        // and
+        // vice versa.
+        if (RTL && EN.containsSome(label) && AN.containsSome(label)) {
+            errors.add(Errors.B4);
+        }
+        // 5. In an LTR label, only characters with the BIDI properties L,
+        // EN,
+        // ES, CS. ET, ON, BN and NSM are allowed.
+        if (LTR && !L_EN_ES_CS_ET_ON_BN_NSM.containsAll(label)) {
+            errors.add(Errors.B5);
+        }
+
+        // 6. In an LTR label, the end of the label must be a character with
+        // BIDI property L or EN, followed by zero or more characters with
+        // BIDI property NSM.
+
+        if (LTR && !L_EN.contains(lastChar)) {
+            errors.add(Errors.B6);
+        }
+
         return errors.size() > oldErrorLength;
-    }
-
-    public static String[] nonbrokenSplit(Pattern pattern, String input) {
-        ArrayList<String> matchList = new ArrayList<String>();
-        Matcher m = pattern.matcher(input);
-        int lastPos = 0;
-        while (true) {
-            boolean found = m.find();
-            int start = found ? m.start() : input.length();
-            matchList.add(input.substring(lastPos, start));
-            if (!found)
-                break;
-            lastPos = m.end();
-        }
-        return matchList.toArray(new String[matchList.size()]);
     }
 
     static final UnicodeSet JOINER_SET = new UnicodeSet("[\u200C\u200D]");
@@ -384,8 +362,6 @@ public class Uts46 extends Idna {
         }
     }
 
-    static final Normalizer2    nfc       = Normalizer2.getInstance(null, "nfc", Normalizer2.Mode.COMPOSE);
-    public static final Pattern FULL_STOP = Pattern.compile("\\.");
     static final UnicodeSet     ASCII     = new UnicodeSet("[\\u0000-\\u007F]").freeze();
 
     public enum IdnaChoice {
@@ -424,7 +400,9 @@ public class Uts46 extends Idna {
         V6(UIDNA_ERROR_INVALID_ACE_LABEL),
         A3(UIDNA_ERROR_INVALID_ACE_LABEL | UIDNA_ERROR_PUNYCODE),
         A4_1(UIDNA_ERROR_DOMAIN_NAME_TOO_LONG),
-        A4_2(UIDNA_ERROR_EMPTY_LABEL | UIDNA_ERROR_LABEL_TOO_LONG), ;
+        A4_2(UIDNA_ERROR_EMPTY_LABEL | UIDNA_ERROR_LABEL_TOO_LONG), 
+        ;
+        
         int errorNum;
 
         Errors(int errorNum) {
@@ -438,16 +416,38 @@ public class Uts46 extends Idna {
 
         // Normalize. Normalize the domain_name string to Unicode Normalization
         // Form C.
-        domainName = nfc.normalize(domainName);
+        domainName = NFC.transform(domainName);
         // Break. Break the string into labels at U+002E ( . ) FULL STOP.
-        String[] labels = nonbrokenSplit(FULL_STOP, domainName);
+        String[] labels = Regexes.split(Idna.FULL_STOP, domainName);
         // Convert/Validate. For each label in the domain_name string:
         domainName = processConvertValidateLabels(idnaChoice, errors, labels);
-        // Check BIDI
-        hasBidiError(domainName, errors);
-        // Check ContextJ
-        hasContextJError(domainName, errors);
+        hasBidiOrContextError(domainName, errors);
         return domainName;
+    }
+
+    /**
+     * Returns number of new errors. Must already be in canonical form, unicode with period separators.
+     * @param domainName
+     * @param errors
+     * @return 
+     */
+    public static int hasBidiOrContextError(String domainName, Set<Errors> errors) {
+        if (domainName.endsWith(".")) {
+            domainName = domainName.substring(0,domainName.length() - 1);
+        }
+        String[] labels = Regexes.split(FULL_STOP, domainName);
+        int oldErrorLength = errors.size();
+        for (String label : labels) {
+            if (label.isEmpty()) {
+                errors.add(Errors.A4_2);
+                continue;
+            }
+            // Check BIDI
+            hasBidiError(label, errors);
+            // Check ContextJ
+            hasContextJError(label, errors);
+        }
+        return errors.size() - oldErrorLength;
     }
 
     private String processMap(String domainName, IdnaChoice idnaChoice, Set<Errors> errors) {
@@ -466,21 +466,21 @@ public class Uts46 extends Idna {
                 errors.add(Errors.P1);
                 buffer.appendCodePoint(cp);
                 break;
-            // ignored: Remove the code point from the string. This is
-            // equivalent to mapping the code point to an empty string.
+                // ignored: Remove the code point from the string. This is
+                // equivalent to mapping the code point to an empty string.
             case ignored:
                 break;
-            // mapped: Replace the code point in the string by the value for the
-            // mapping in Section 5, IDNA Mapping Table.
+                // mapped: Replace the code point in the string by the value for the
+                // mapping in Section 5, IDNA Mapping Table.
             case mapped:
                 String mapped = mappings.get(cp);
                 buffer.append(mapped);
                 break;
-            // deviation:
-            // For Transitional Processing, replace the code point in the string
-            // by the value for the mapping in Section 5, IDNA Mapping Table.
-            // For Nontransitional Processing, leave the code point unchanged in
-            // the string.
+                // deviation:
+                // For Transitional Processing, replace the code point in the string
+                // by the value for the mapping in Section 5, IDNA Mapping Table.
+                // For Nontransitional Processing, leave the code point unchanged in
+                // the string.
             case deviation:
                 if (idnaChoice == IdnaChoice.transitional) {
                     mapped = mappings.get(cp);
@@ -489,7 +489,7 @@ public class Uts46 extends Idna {
                     buffer.appendCodePoint(cp);
                 }
                 break;
-            // valid: Leave the code point unchanged in the string.
+                // valid: Leave the code point unchanged in the string.
             case valid:
                 buffer.appendCodePoint(cp);
                 break;
@@ -546,7 +546,7 @@ public class Uts46 extends Idna {
         // Each of the following criteria must be satisfied for a label:
         //
         // The label must be in Unicode Normalization Form NFC.
-        if (!nfc.isNormalized(label)) {
+        if (!NFC.isTransformed(label)) {
             errors.add(Errors.V1);
         }
         // The label must not contain a U+002D HYPHEN-MINUS character in both
@@ -560,7 +560,7 @@ public class Uts46 extends Idna {
             errors.add(Errors.V3);
         }
         // The label must not contain a U+002E ( . ) FULL STOP.
-        if (FULL_STOP.matcher(label).find()) {
+        if (Idna.FULL_STOP.matcher(label).find()) {
             errors.add(Errors.V4);
         }
         // The label must not begin with a combining mark, that is:
@@ -603,7 +603,7 @@ public class Uts46 extends Idna {
         domainName = process(domainName, idnaChoice, errors);
         // Break the result into labels at U+002E FULL STOP.
         StringBuilder buffer = new StringBuilder();
-        String[] labels = nonbrokenSplit(FULL_STOP, domainName);
+        String[] labels = Regexes.split(Idna.FULL_STOP, domainName);
         for (int i = 0; i < labels.length; ++i) {
             String label = labels[i];
             // Convert each label with non-ASCII characters into Punycode
@@ -622,11 +622,11 @@ public class Uts46 extends Idna {
             // The length of each label is from 1 to 63.
             int labelLength = label.codePointCount(0, label.length());
             if (labelLength > 63 || labelLength < 1 && i != labels.length - 1) { // last
-                                                                                 // one
-                                                                                 // can
-                                                                                 // be
-                                                                                 // zero
-                                                                                 // length
+                // one
+                // can
+                // be
+                // zero
+                // length
                 errors.add(Errors.A4_2);
             }
             if (buffer.length() != 0) {

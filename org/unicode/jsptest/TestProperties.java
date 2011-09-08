@@ -13,7 +13,6 @@ import org.unicode.jsp.Builder;
 import org.unicode.jsp.NFM;
 import org.unicode.jsp.PropertyMetadata;
 import org.unicode.jsp.UnicodeJsp;
-import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.XPropertyFactory;
 
@@ -21,6 +20,7 @@ import sun.text.normalizer.UTF16;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
