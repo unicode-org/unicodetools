@@ -4,7 +4,7 @@
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
-package org.unicode.jsp;
+package org.unicode.idna;
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.StringPrepParseException;
@@ -17,7 +17,7 @@ import com.ibm.icu.text.UTF16;
  */
 
 /* Package Private class */
-final class Punycode {
+public final class Punycode {
 
   /* Punycode parameters for Bootstring */
   private static final int BASE           = 36;

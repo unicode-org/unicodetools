@@ -1,11 +1,11 @@
-package org.unicode.jsp;
+package org.unicode.idna;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.Idna2008.Idna2008Type;
+import org.unicode.idna.Idna2008.Idna2008Type;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;

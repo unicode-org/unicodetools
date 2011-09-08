@@ -15,20 +15,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.idna.Idna;
+import org.unicode.idna.Idna2003;
+import org.unicode.idna.Idna2008;
+import org.unicode.idna.IdnaTypes;
+import org.unicode.idna.Uts46;
+import org.unicode.idna.Idna.IdnaType;
 import org.unicode.jsp.Common;
-import org.unicode.jsp.Idna;
-import org.unicode.jsp.Idna2003;
-import org.unicode.jsp.Idna2008;
-import org.unicode.jsp.IdnaTypes;
 import org.unicode.jsp.UnicodeJsp;
-import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeRegex;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.UtfParameters;
-import org.unicode.jsp.Uts46;
 import org.unicode.jsp.XPropertyFactory;
-import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
@@ -39,6 +38,7 @@ import com.ibm.icu.dev.test.util.BNF;
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.Quoter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -155,7 +155,7 @@ public class TestJsp  extends TestFmwk {
       if (type2003 == IdnaType.ignored) {
         assertNotNull("2003ignored", map2003);
       }
-      if (type46 != type2003 || !UnicodeProperty.equals(map46, map2003)) {
+      if (type46 != type2003 || !com.ibm.icu.dev.test.util.UnicodeProperty.equals(map46, map2003)) {
         String map2 = map2003 == null ? UTF16.valueOf(i) : map2003;
         String nfcf = nfkc_cfMap.get(i);
         if (!map2.equals(nfcf)) continue;
@@ -163,7 +163,7 @@ public class TestJsp  extends TestFmwk {
         String mapDiff = "[" + codeAndName(map46) + "\tvs 2003\t" + codeAndName(map2003);
         errln((codeAndName(i)) + "\tdifference:" 
                 + (type46 != type2003 ? "\ttype:\t" + typeDiff : "")
-                + (!UnicodeProperty.equals(map46, map2003) ? "\tmap:\t" + mapDiff : "")
+                + (!com.ibm.icu.dev.test.util.UnicodeProperty.equals(map46, map2003) ? "\tmap:\t" + mapDiff : "")
                 +  "\tNFKCCF:\t" + codeAndName(nfcf));
       }
     }

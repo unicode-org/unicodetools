@@ -3,13 +3,13 @@ package org.unicode.text.tools;
 import java.io.IOException;
 import java.util.TreeSet;
 
-import org.unicode.jsp.Idna2003;
-import org.unicode.jsp.Idna2008;
-import org.unicode.jsp.Idna2008t;
+import org.unicode.idna.Idna2003;
+import org.unicode.idna.Idna2008;
+import org.unicode.idna.Idna2008t;
+import org.unicode.idna.Uts46;
+import org.unicode.idna.Idna.IdnaType;
+import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.jsp.UnicodeUtilities;
-import org.unicode.jsp.Uts46;
-import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.Idna2008.Idna2008Type;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -40,9 +40,9 @@ public class CompareIDNA {
 
         UnicodeMap<String> diff = new UnicodeMap<String>();
         for (int i = 0; i <= 0x10FFFF; ++i) {
-            if (UnicodeUtilities.IGNORE_IN_IDNA_DIFF.contains(i)) {
-                continue;
-            }
+//            if (UnicodeUtilities.IGNORE_IN_IDNA_DIFF.contains(i)) {
+//                continue;
+//            }
 
             IdnaType type = Uts46.SINGLETON.getType(i);
 

@@ -23,11 +23,17 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
-import org.unicode.jsp.Idna.IdnaType;
-import org.unicode.jsp.Idna2008.Idna2008Type;
+import org.unicode.idna.Idna2003;
+import org.unicode.idna.Idna2008;
+import org.unicode.idna.IdnaTypes;
+import org.unicode.idna.Punycode;
+import org.unicode.idna.Uts46;
+import org.unicode.idna.Idna.IdnaType;
+import org.unicode.idna.Idna2008.Idna2008Type;
 
 import com.ibm.icu.dev.test.util.PrettyPrinter;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.lang.UCharacter;
@@ -47,7 +53,7 @@ import com.ibm.icu.util.VersionInfo;
 public class UnicodeUtilities {
 
 
-  static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.UNASSIGNED).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
+  static final UnicodeSet OFF_LIMITS = new UnicodeSet(UnicodeProperty.getUNASSIGNED()).addAll(UnicodeProperty.PRIVATE_USE).addAll(UnicodeProperty.SURROGATE).freeze();
   static final UnicodeSet NONCHAR = new UnicodeSet(OFF_LIMITS).addAll(new UnicodeSet("[:Cc:]")).removeAll(new UnicodeSet("[:whitespace:]")).freeze();
 
 
@@ -123,16 +129,6 @@ public class UnicodeUtilities {
     return result.freeze();
   }
 
-  public static UnicodeSet getIdna2008Valid() {
-    //    IdnaLabelTester tester = getIdna2008Tester();
-    //    UnicodeSet valid2008 = UnicodeSetUtilities.parseUnicodeSet(tester.getVariable("$Valid"), TableStyle.simple);
-    //    return valid2008;
-    UnicodeMap<Idna2008Type> typeMapping = Idna2008.getTypeMapping();
-    return new UnicodeSet(typeMapping.getSet(Idna2008Type.PVALID))
-    .addAll(typeMapping.getSet(Idna2008Type.CONTEXTJ))
-    .addAll(typeMapping.getSet(Idna2008Type.CONTEXTO))
-    ;
-  }
 
   static String getShortName(IdnaType tr46) {
     // TODO Auto-generated method stub
@@ -387,8 +383,8 @@ public class UnicodeUtilities {
       LinkedHashMap<String,UnicodeSet> items = new LinkedHashMap();
       String specials = "Unassigned, Private use, or Surrogates";
 
-      UnicodeSet specialSet = new UnicodeSet(inputSetRaw).retainAll(UnicodeProperty.SPECIALS);
-      UnicodeSet inputSet = specialSet.size() == 0 ? inputSetRaw : new UnicodeSet(inputSetRaw).removeAll(UnicodeProperty.SPECIALS);
+      UnicodeSet specialSet = new UnicodeSet(inputSetRaw).retainAll(UnicodeProperty.getSPECIALS());
+      UnicodeSet inputSet = specialSet.size() == 0 ? inputSetRaw : new UnicodeSet(inputSetRaw).removeAll(UnicodeProperty.getSPECIALS());
       if (specialSet.size() != 0) {
         items.put(specials, specialSet);
       }
