@@ -223,7 +223,7 @@ public final class UCD_Names implements UCD_Types {
     "SA", "AI", "B2", "SG", "ZW",
     "NL",
     "WJ", "JL", "JV", "JT", "H2", "H3",
-    "CP"
+    "CP", "HL",
     //"JL",
     //"JV",
     //"JT",
@@ -240,7 +240,8 @@ public final class UCD_Names implements UCD_Types {
     "ComplexContext", "Ambiguous", "BreakBoth", "Surrogate", "ZWSpace",
     "Next_Line",
     "Word_Joiner", "JL", "JV", "JT", "H2", "H3",
-    "Close_Parenthesis"
+    "Close_Parenthesis",
+    "Hebrew_Letter"
     //"Leading_Jamo",
     //"Vowel_Jamo",
     //"Trailing_Jamo",
