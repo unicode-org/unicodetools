@@ -28,10 +28,13 @@ import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateIdna {
-
+    static {
+        // MUST BE FIRST
+        GenerateIdnaTest.setUnicodeVersion();
+    }
     public static final String DIR = Utility.GEN_DIR + "idna/"; // "/Users/markdavis/Documents/workspace/draft/reports/tr46/data";
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
-    private static final boolean TESTING = false;
+    private static final boolean TESTING = true;
     public static UnicodeSet U32;
     public static UnicodeSet U40;
     public static UnicodeSet VALID_ASCII;
@@ -248,7 +251,7 @@ public class GenerateIdna {
         R2<IdnaType, String> validResult = Row.of(IdnaType.valid, (String)null);
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-            if (TESTING && cp == 0xFf01) {
+            if (TESTING && cp == 0x10C7) {
                 System.out.println("??TEST");
             }
             String cpString = UTF16.valueOf(cp);
@@ -359,7 +362,7 @@ public class GenerateIdna {
                 "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
                 "#\n" +
                 "# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
-                "# Copyright (c) 1991-2010 Unicode, Inc.\n" +
+                "# Copyright (c) 1991-2011 Unicode, Inc.\n" +
                 "# For terms of use, see http://www.unicode.org/terms_of_use.html\n" +
         "# For documentation, see http://www.unicode.org/reports/tr46/\n");
 

@@ -290,10 +290,11 @@ public interface UCD_Types {
   LB_H2 = 34,
   LB_H3 = 35,
   LB_CP = 36,
+  LB_HL = 37,
   //LB_JL = 29,
   //LB_JV = 30,
   //LB_JT = 31,
-  LIMIT_LINE_BREAK = 37,
+  LIMIT_LINE_BREAK = 38,
   LB_LIMIT = LIMIT_LINE_BREAK;
 
   // east asian width

@@ -23,6 +23,7 @@ import com.ibm.icu.dev.test.util.BagFormatter;
 import com.ibm.icu.dev.test.util.CollectionUtilities;
 import com.ibm.icu.dev.test.util.FileUtilities;
 import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.dev.test.util.UnicodePropertySymbolTable;
 import com.ibm.icu.dev.test.util.UnicodeTransform;
 import com.ibm.icu.lang.UCharacter;
@@ -35,18 +36,26 @@ import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateIdnaTest {
+    static {
+        // MUST BE FIRST
+        GenerateIdnaTest.setUnicodeVersion();
+    }
 
     private static final Pattern IDNA2003_LABEL_SEPARATOR = Pattern.compile("[.\uFF0E \u3002\uFF61]");
     private static final boolean NEW_FORMAT = true;
 
     public static void main(String[] args) throws IOException {
-        Default.setUCD("6.0.0");
+        int count = new GenerateIdnaTest().generateTests(1000);
+        System.out.println("DONE " + count);
+    }
+
+    public static void setUnicodeVersion() {
+        Default.setUCD("6.1.0");
         UnicodeTransform.setFactory(new ToolUnicodeTransformFactory());
         ToolUnicodePropertySource toolUPS1 = ToolUnicodePropertySource.make(Default.ucdVersion());
         final XSymbolTable toolUPS = new UnicodePropertySymbolTable(toolUPS1);
         UnicodeSet.setDefaultXSymbolTable(toolUPS);
-        int count = new GenerateIdnaTest().generateTests(1000);
-        System.out.println("DONE " + count);
+        UnicodeProperty.ResetCacheProperties();
     }
 
     public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
@@ -376,11 +385,13 @@ public class GenerateIdnaTest {
     };
 
     public static final Object[][] testCases = {
+        { "。", "B",  // special case
+            "。", 0 },
         { "1234567890\u00E41234567890123456789012345678901234567890123456", "B",
             "1234567890\u00E41234567890123456789012345678901234567890123456", Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
 
-            { "www.eXample.cOm", "B",  // all ASCII
-                "www.example.com", 0 },
+                { "www.eXample.cOm", "B",  // all ASCII
+                    "www.example.com", 0 },
                 { "B\u00FCcher.de", "B",  // u-umlaut
                     "b\u00FCcher.de", 0 },
                     { "\u00D6BB", "B",  // O-umlaut
