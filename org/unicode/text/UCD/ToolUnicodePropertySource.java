@@ -43,6 +43,7 @@ import com.ibm.icu.text.UnicodeSet;
  * 
  */
 public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
+    
     private static final String[] MAYBE_VALUES = {"M", "Maybe", "U", "Undetermined"};
 
     private static final String[] NO_VALUES = {"N", "No", "F", "False"};
@@ -73,7 +74,16 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
     }
 
     private ToolUnicodePropertySource(String version) {
+        // make sure we have enough unassigned characters
         ucd = UCD.make(version);
+        UnicodeSet unassigned = new UnicodeSet();
+        for (int i = 0; i < 0x110000; ++i) {
+            if (ucd.getCategory(i) == ucd.UNASSIGNED) {
+                unassigned.add(i);
+            }
+        }
+        UnicodeProperty.contractUNASSIGNED(unassigned);
+
         nfc = new Normalizer(Normalizer.NFC, ucd.getVersion());
         nfd = new Normalizer(Normalizer.NFD, ucd.getVersion());
         nfkc = new Normalizer(Normalizer.NFKC, ucd.getVersion());
@@ -577,13 +587,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     UnicodeSet temp = cat.getSet("Line_Separator")
                     .addAll(cat.getSet("Paragraph_Separator"))
                     .addAll(cat.getSet("Control"))
-                    .addAll(cat.getSet("Format"));
-                    if (compositeVersion >= 0x060000) {
-                        temp
-                        .addAll(cat.getSet("Cs"))
-                        .addAll(cat.getSet("Cn"));
-                    }
-                    temp
+                    .addAll(cat.getSet("Format"))
+                    .addAll(cat.getSet("Cs"))
+                    .addAll(cat.getSet("Cn"))
                     .remove(0xD)
                     .remove(0xA)
                     .remove(0x200C)
@@ -599,13 +605,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     unicodeMap.putAll(graphemeExtend, "Extend");
                     unicodeMap.putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
 
-                    if (compositeVersion >= 0x050100 && compositeVersion <= 0x060000) {
                         UnicodeSet graphemePrepend = getProperty("Logical_Order_Exception").getSet(UCD_Names.YES);
                         unicodeMap.putAll(graphemePrepend, "Prepend");
-                        unicodeMap.putAll(new UnicodeSet("[[\u0e30-\u0e3a\u0e45\u0eb0-\u0ebb]-[:cn:]]"), "Extend");
-                    } else {
-                        unicodeMap.putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
-                    }
+
                     unicodeMap.putAll(cat.getSet("Spacing_Mark")
                             .addAll(new UnicodeSet("[\u0E30 \u0E32 \u0E33 \u0E45 \u0EB0 \u0EB2 \u0EB3]"))
                             .removeAll(unicodeMap.keySet("Extend")),
@@ -834,7 +836,7 @@ isTitlecase(X) is false.
 
         // ========================
 
-        add(new UnicodeProperty.UnicodeSetProperty().set("[\\u0000-\\u007F]").setMain("ASCII", "ASCII", UnicodeProperty.BINARY, ""));
+        add(new UnicodeProperty.UnicodeSetProperty().set("[\\u0000-\\u007F]").setMain("ASCII", "ASCII", UnicodeProperty.EXTENDED_BINARY, ""));
 
         String x = Utility.getMostRecentUnicodeDataFile("ScriptExtensions", Default.ucdVersion(), true, true);
         if (x == null) {

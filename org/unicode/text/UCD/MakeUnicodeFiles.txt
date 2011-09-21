@@ -1,4 +1,4 @@
-Generate: .
+Generate: LineBreakTest
 DeltaVersion: 12
 CopyrightYear: 2011
 
