@@ -6,7 +6,7 @@ package org.unicode.draft;
 import java.io.DataOutput;
 import java.io.IOException;
 
-final class CompressedDataOutput implements DataOutput {
+public final class CompressedDataOutput implements DataOutput {
 
   private DataOutput out;
 
