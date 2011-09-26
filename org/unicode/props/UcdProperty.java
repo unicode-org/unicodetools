@@ -214,7 +214,13 @@ public enum UcdProperty {
     Variation_Selector(PropertyValues.Binary.class, "VS"),
     White_Space(PropertyValues.Binary.class, "WSpace"),
     XID_Continue(PropertyValues.Binary.class, "XIDC"),
-    XID_Start(PropertyValues.Binary.class, "XIDS")
+    XID_Start(PropertyValues.Binary.class, "XIDS"),
+    // EXTRAS
+    Script_Extensions(PropertyNames.PropertyType.Enumerated, "SCX"),
+    CJK_Radical(PropertyNames.PropertyType.Enumerated, "CJKR"),
+    Emoji_DoCoMo(PropertyNames.PropertyType.Enumerated, null),
+    Emoji_KDDI(PropertyNames.PropertyType.Enumerated, null),
+    Emoji_SoftBank(PropertyNames.PropertyType.Enumerated, null),
     ;
     private final PropertyNames.PropertyType type;
     private final PropertyNames<UcdProperty> names;

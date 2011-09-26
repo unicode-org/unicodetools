@@ -13,8 +13,12 @@ FileType ; Unihan_RadicalStrokeCounts ; PropertyValue
 FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
 
+FileType ; CJKRadicals ; CJKRadicals
+
 # default is FileType ; X ; Field
 # below, the third field is the field number for use with Field FileType. The default is 1.
+
+# Standard
 
 UnicodeData; Name ; 1
 UnicodeData; General_Category ; 2
@@ -209,3 +213,11 @@ Unihan_Variants ; kSimplifiedVariant
 Unihan_Variants ; kSpecializedSemanticVariant
 Unihan_Variants ; kTraditionalVariant
 Unihan_Variants ; kZVariant
+
+# Extras
+
+ScriptExtensions ; Script_Extensions
+CJKRadicals ; CJK_Radical
+EmojiSources ; Emoji_DoCoMo ; 1
+EmojiSources ; Emoji_KDDI ; 2
+EmojiSources ; Emoji_SoftBank ; 3
