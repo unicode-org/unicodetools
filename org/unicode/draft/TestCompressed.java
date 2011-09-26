@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.zip.GZIPOutputStream;
+import java.util.zip.ZipOutputStream;
 
 import org.unicode.draft.UnicodeDataInput.StringReader;
 import org.unicode.draft.UnicodeDataOutput.StringWriter;
@@ -61,9 +63,11 @@ public class TestCompressed extends TestFmwk {
         bytes = outBytes2.toByteArray();
         logln("UTF8 Byte length: " + showBytes(bytes, 20));
     }
-
+    
+    enum Compressed {compressed, uncompressed}
+    
     public void TestSetStreamer () throws IOException {
-        String[] tests = {"[a-c]", "[]", "[a-ce-fq-z]", "[{abc}]", "[a-cmq-z{abc}]"};
+        String[] tests = {"[:Ll:]", "[a-c]", "[]", "[a-ce-fq-z]", "[{abc}]", "[a-cmq-z{abc}]"};
         UnicodeDataOutput unicodeDataOutput = new UnicodeDataOutput();
         UnicodeDataInput unicodeDataInput = new UnicodeDataInput();
         for (String test : tests) {
@@ -82,7 +86,10 @@ public class TestCompressed extends TestFmwk {
                 UnicodeSet newItem = unicodeDataInput.set(in, compressed).readUnicodeSet();
                 checkAtEnd("Stream not read completely: " + test, in);
                 in.close();
-                assertEquals("Original: " + test + " => " + showBytes(bytes, 20), item, newItem);
+                assertEquals((compressed ? "Compressed" : "Uncompressed") +
+                        " Original: " + test + " => " + showBytes(bytes, 20), item, newItem);
+                byte[] zipped = zip(bytes);
+                logln("\tGZipped:\t" + showBytes(zipped, 20));
                 
 //                ByteArrayOutputStream outBytes2 = new ByteArrayOutputStream();
 //                DataOutputStream out2 = new DataOutputStream(outBytes2);
@@ -94,6 +101,19 @@ public class TestCompressed extends TestFmwk {
         }
     }
 
+    byte[] zip(byte[] source) throws IOException {
+        ByteArrayOutputStream outBytes = new ByteArrayOutputStream();
+        GZIPOutputStream foo = new GZIPOutputStream(outBytes);
+        try {
+            foo.write(source);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        foo.close();
+        byte[] bytes = outBytes.toByteArray();
+        return bytes;
+    }
+    
     void writeSimpleUnicodeSetOutput(UnicodeSet set, DataOutputStream out) throws IOException {
         out.write(set.getRangeCount());
         for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.nextRange();) {

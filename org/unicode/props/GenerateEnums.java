@@ -19,8 +19,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.props.Properties.PropertyType;
-import org.unicode.props.Properties.UcdProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
