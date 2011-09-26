@@ -2,11 +2,13 @@ package org.unicode.props;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -29,12 +31,18 @@ import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
+/**
+ * TODO StandardizedVariants and NameSequences*
+ * @author markdavis
+ *
+ */
 public class IndexUnicodeProperties {
     public final static Pattern SEMICOLON = Pattern.compile("\\s*;\\s*");
     public final static Pattern TAB = Pattern.compile("[ ]*\t[ ]*");
     private static final boolean SHOW_PROP_INFO = false;
+    private static final boolean SHOW_LOADED = false;
 
-    enum FileType {Field, HackField, PropertyValue, List}
+    enum FileType {Field, HackField, PropertyValue, List, CJKRadicals}
     enum SpecialProperty {None, Skip1FT, Skip1ST, SkipAny4}
 
     static class PropertyInfo implements Comparable<PropertyInfo>{
@@ -71,7 +79,7 @@ public class IndexUnicodeProperties {
             return fieldNumber - arg0.fieldNumber;
         }
 
-        public void put(UnicodeMap<String> data, int start, int end, String string) {
+        public void put(UnicodeMap<String> data, IntRange intRange, String string) {
             //            switch (property.getType()) {
             //            case Enumerated:
             //            case Binary:
@@ -81,11 +89,15 @@ public class IndexUnicodeProperties {
             //                }
             //                break;
             //            }
-            for (int codepoint = start; codepoint <= end; ++codepoint) {
-                try {
-                    putNew(data, codepoint, string);
-                } catch (Exception e) {
-                    System.err.println(property + ":\t" + e.getMessage());
+            if (intRange.string != null) {
+                putNew(data, intRange.string, string);
+            } else {
+                for (int codepoint = intRange.start; codepoint <= intRange.end; ++codepoint) {
+                    try {
+                        putNew(data, codepoint, string);
+                    } catch (Exception e) {
+                        System.err.println(property + ":\t" + e.getMessage());
+                    }
                 }
             }
         }
@@ -125,10 +137,10 @@ public class IndexUnicodeProperties {
                 if (SHOW_PROP_INFO) System.out.println(prop);
             }
         }
-//        for (UcdProperty x : UcdProperty.values()) {
-//            if (property2PropertyInfo.containsKey(x.toString())) continue;
-//            if (SHOW_PROP_INFO) System.out.println("Missing: " + x);
-//        }
+        //        for (UcdProperty x : UcdProperty.values()) {
+        //            if (property2PropertyInfo.containsKey(x.toString())) continue;
+        //            if (SHOW_PROP_INFO) System.out.println("Missing: " + x);
+        //        }
     }
 
     private IndexUnicodeProperties(String ucdVersion2) {
@@ -162,6 +174,15 @@ public class IndexUnicodeProperties {
         return map;
     }
 
+    static final <V> UnicodeMap<V> putNew(UnicodeMap<V> map, String key, V value) {
+        V oldValue = map.get(key);
+        if (oldValue != null) {
+            throw new IllegalArgumentException("Key already present in UnicodeMap: " + Utility.hex(key) + ",\told: " + oldValue + ",\tnew: " + value);
+        }
+        map.put(key, value);
+        return map;
+    }
+
     static final <V, C extends Collection<V>> C addNew(C collection, V value) {
         if (collection.contains(value)) {
             throw new IllegalArgumentException("Value already present in Collection: " + value);
@@ -174,9 +195,9 @@ public class IndexUnicodeProperties {
     final boolean oldVersion;
     final EnumMap<UcdProperty, UnicodeMap<String>> property2UnicodeMap = new EnumMap<UcdProperty, UnicodeMap<String>>(UcdProperty.class);
     final Set<String> fileNames = new TreeSet<String>();
-    
+
     static final Transform<String, String>    fromNumericPinyin   = Transliterator.getInstance("NumericPinyin-Latin;nfc");
-    
+
     public UnicodeMap<String> load(UcdProperty prop2) {
         UnicodeMap<String> data0 = property2UnicodeMap.get(prop2);
         if (data0 != null) {
@@ -200,12 +221,18 @@ public class IndexUnicodeProperties {
         IntRange intRange = new IntRange();
         int lastCodepoint = 0;
 
+        int lineCount = 0;
+        boolean containsEOF = false;
         for (String line : FileUtilities.in("", fullFilename)) {
+            ++lineCount;
             if (line.contains("9FCB")) {
                 int y = 3;
             }
             int hashPos = line.indexOf('#');
             if (hashPos >= 0) {
+                if (line.contains("# EOF")) {
+                    containsEOF = true;
+                }
                 line = line.substring(0,hashPos);
             }
             line = line.trim();
@@ -217,8 +244,24 @@ public class IndexUnicodeProperties {
             // 3400;<CJK Ideograph Extension A, First>;Lo;0;L;;;;;N;;;;;
             // 4DB5;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;;
             // U+4F70   kAccountingNumeric  100
-            intRange.set(parts[0]);
+            /*
+             * CJKRadicals The first field is the # radical number. The second
+             * field is the CJK Radical character. The third # field is the CJK
+             * Unified Ideograph. 1; 2F00; 4E00
+             */
+            if (fileType != FileType.CJKRadicals) {
+                intRange.set(parts[0]);
+            }
             switch(fileType) {
+            case CJKRadicals: {
+                PropertyInfo propInfo = property2PropertyInfo.get(UcdProperty.CJK_Radical);
+                UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
+                intRange.set(parts[1]);
+                propInfo.put(data, intRange, parts[0]); 
+                intRange.set(parts[2]);
+                propInfo.put(data, intRange, parts[0]); 
+                break;
+            }
             case PropertyValue: {
                 PropertyInfo propInfo = property2PropertyInfo.get(UcdProperty.forString(parts[1]));
                 UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
@@ -227,7 +270,7 @@ public class IndexUnicodeProperties {
                 }
                 switch(propInfo.property.getType()) {
                 case Binary:
-                    propInfo.put(data, intRange.start, intRange.end, "Yes"); break;
+                    propInfo.put(data, intRange, "Yes"); break;
                 default:
                     String value = parts[2];
                     if (propInfo.property == UcdProperty.kMandarin) {
@@ -235,19 +278,19 @@ public class IndexUnicodeProperties {
                             value = fromNumericPinyin.transform(value.toLowerCase(Locale.ENGLISH));
                         }
                     }
-                    propInfo.put(data, intRange.start, intRange.end, value); break;
+                    propInfo.put(data, intRange, value); break;
                 }
                 break;
             }
             case HackField: 
-                if (parts[2].endsWith("Last>")) {
+                if (parts[1].endsWith("Last>")) {
                     intRange.start = lastCodepoint + 1;
                 }
-                if (parts[2].startsWith("<")) {
-                    parts[2] = null;
+                if (parts[1].startsWith("<")) {
+                    parts[1] = null;
                 }
                 lastCodepoint = intRange.end;
-                // drop through
+                //$FALL-THROUGH$
             case Field:
             {
                 for (PropertyInfo propInfo : propInfoSet) {
@@ -271,7 +314,7 @@ public class IndexUnicodeProperties {
                         break;
                     default: throw new IllegalArgumentException();
                     }
-                    propInfo.put(data, intRange.start, intRange.end, parts[propInfo.fieldNumber]);
+                    propInfo.put(data, intRange, parts[propInfo.fieldNumber]);
                 }
                 break;
             }
@@ -282,11 +325,14 @@ public class IndexUnicodeProperties {
                 PropertyInfo propInfo = propInfoSet.iterator().next();
                 UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
                 //prop.data.putAll(UnicodeSet.ALL_CODE_POINTS, "No");
-                propInfo.put(data, intRange.start, intRange.end, "Yes");
+                propInfo.put(data, intRange, "Yes");
                 break;
             }
             default: throw new IllegalArgumentException();
             }
+        }
+        if (SHOW_LOADED) {
+            System.out.println("Loaded: " + fileInfo.file + "\tlines: " + lineCount + (containsEOF ? "" : "\t*NO '# EOF'"));
         }
         for (PropertyInfo propInfo : propInfoSet) {
             UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
@@ -298,6 +344,7 @@ public class IndexUnicodeProperties {
     private static class IntRange {
         int start;
         int end;
+        String string;
         public IntRange set(String source) {
             if (source.startsWith("U+")) {
                 source = source.substring(2);
@@ -306,8 +353,12 @@ public class IndexUnicodeProperties {
             if (range >= 0) {
                 start = Integer.parseInt(source.substring(0,range),16);
                 end = Integer.parseInt(source.substring(range+2),16);
+                string = null;
+            } else if (source.contains(" ")) {
+                string = Utility.fromHex(source);
             } else {
                 start = end = Integer.parseInt(source, 16);
+                string = null;
             }
             return this;
         }
@@ -315,33 +366,45 @@ public class IndexUnicodeProperties {
 
     public static void main(String[] args) throws Exception {
         boolean SHOW = false;
+        boolean ALL = true;
         Timer total = new Timer();
         for (Entry<String, PropertyInfo> entry : file2PropertyInfoSet.keyValueSet()) {
             if (SHOW_PROP_INFO) System.out.println(entry.getKey() + " ; " + entry.getValue());
         }
         IndexUnicodeProperties last = IndexUnicodeProperties.make("6.0.0");
-        UnicodeMap<String> gcLast = last.load(UcdProperty.General_Category);
-        System.out.println(gcLast.get('\u00A7'));
+        UnicodeMap<String> gcLast = showValue(last, UcdProperty.General_Category, '\u00A7');
+        showValue(last, UcdProperty.kMandarin, '\u5427');
+        showValue(last, UcdProperty.General_Category, '\u5427');
 
         IndexUnicodeProperties latest = IndexUnicodeProperties.make(Default.ucdVersion());
-        UnicodeMap<String> gcLatest = latest.load(UcdProperty.General_Category);
-        System.out.println(gcLatest.get('\u00A7'));
+        showValue(latest, UcdProperty.General_Category, '\u00A7');
+        showValue(latest, UcdProperty.kMandarin, '\u5427');
 
-        UnicodeSet ignore = new UnicodeSet()
-        .addAll(gcLast.getSet(null))
-        .addAll(gcLast.getSet("Cn"))
-        .addAll(gcLast.getSet("Co"))
-        .addAll(gcLast.getSet("Cc"))
-        .addAll(gcLast.getSet("Cs"))
-        ;
+        UnicodeSet ignore = new UnicodeSet();
+        addAll(ignore, gcLast.getSet(null)); // separate for debugging
+        addAll(ignore, gcLast.getSet("Cn"));
+        addAll(ignore, gcLast.getSet("Co"));
+        addAll(ignore, gcLast.getSet("Cc"));
+        addAll(ignore, gcLast.getSet("Cs"));
+        
         UnicodeSet retain = new UnicodeSet(ignore).complement().freeze();
 
-        compare(UcdProperty.General_Category, last, latest, retain);
+        //        compare(UcdProperty.General_Category, last, latest, retain);
+        //
+        //        latest.show(UcdProperty.General_Category);
 
-        latest.show(UcdProperty.General_Category);
+        List<UcdProperty> values = ALL ? Arrays.asList(UcdProperty.values()) : 
+            Arrays.asList(
+                    UcdProperty.kMandarin
+//                    ,UcdProperty.CJK_Radical, 
+//                    UcdProperty.Script_Extensions,
+//                    UcdProperty.Emoji_DoCoMo,
+//                    UcdProperty.Emoji_KDDI,
+//                    UcdProperty.Emoji_SoftBank
+            );
 
-        if (SHOW) {
-            for (UcdProperty prop : UcdProperty.values()) {
+        if (SHOW || !ALL) {
+            for (UcdProperty prop : values) {
                 latest.show(prop);
             }
             //        show("Joining_Type", timer);
@@ -351,8 +414,9 @@ public class IndexUnicodeProperties {
             //        //show("Name", timer);        
             //        show("Bidi_Class", timer);        
             //        show("kMandarin", timer);  
-        } else {
-            for (UcdProperty prop : UcdProperty.values()) {
+        } 
+        if (!SHOW) {
+            for (UcdProperty prop : values) {
                 compare(prop, last, latest, retain);
             }
         }
@@ -363,14 +427,34 @@ public class IndexUnicodeProperties {
         System.out.println(total.toString());
     }
 
+    private static void addAll(UnicodeSet toSet, UnicodeSet set) {
+        if (set.contains('\u5427')) {
+            int y = 3;
+        }
+        toSet.addAll(set);
+    }
+
+    public static UnicodeMap<String> showValue(IndexUnicodeProperties last, UcdProperty ucdProperty, int codePoint) {
+        UnicodeMap<String> gcLast = last.load(ucdProperty);
+        System.out.println(last.ucdVersion + ", " + ucdProperty + "(" + Utility.hex(codePoint) + ")=" + gcLast.get(codePoint));
+        return gcLast;
+    }
+
     public static void checkFiles(Set<String> latestFiles, File dir) throws IOException {
         for (File file : dir.listFiles()) {
             String canonical = file.getCanonicalPath();
-            if (latestFiles.contains(canonical)) continue;
             if (file.isDirectory()) {
                 checkFiles(latestFiles, file);
                 continue;
-            } else if (!canonical.endsWith(".txt")) {
+            } else if (latestFiles.contains(canonical) 
+                    || !canonical.endsWith(".txt") 
+                    || file.toString().contains("Test")
+                    || file.toString().contains("NamesList")
+                    || file.toString().contains("NormalizationCorrections")
+                    || file.toString().contains("PropertyValueAliases")
+                    || file.toString().contains("PropertyAliases")
+                    || file.toString().contains("ReadMe")
+            ) {
                 continue;
             }
             System.out.println("Not read for properties: " + file);
@@ -382,20 +466,33 @@ public class IndexUnicodeProperties {
         UnicodeMap<String> lastMap = last.load(prop);
         UnicodeMap<String> latestMap = latest.load(prop);
         for (UnicodeSetIterator it = new UnicodeSetIterator(retain); it.next();) {
-            String lastValue = lastMap.get(it.codepoint);
+            String lastValue = it.codepoint == UnicodeSetIterator.IS_STRING
+            ? lastMap.get(it.string)
+                    : lastMap.get(it.codepoint);
             if (lastValue == null) lastValue = "∅";
             String latestValue = latestMap.get(it.codepoint);
             if (latestValue == null) latestValue = "∅";
             if (UnicodeProperty.equals(lastValue, latestValue)) {
                 continue;
             }
-            changes.put(it.codepoint, lastValue + "\t→\t" + latestValue);
+            changes.put(it.codepoint, abbreviate(lastValue, 50) + "\t→\t" + abbreviate(latestValue, 50));
         }
-        if (changes.size() == 0) return;
+        if (changes.size() == 0) {
+            System.out.println(prop + "\tNO_CHANGES");
+            return;
+        }
         for (String value : new TreeSet<String>(changes.values())) {
             final UnicodeSet chars = changes.getSet(value);
-            System.out.println(prop + "\t" + value + "\t" + chars.toPattern(false) + "\t" + chars);
+            String charString = abbreviate(chars.toString(), 50);
+            System.out.println(prop + "\t" + value + "\t" + chars.toPattern(false) + "\t" + charString);
         }
+    }
+
+    public static String abbreviate(String charString, int maxLength) {
+        if (charString.length() > maxLength) {
+            charString = charString.substring(0,50) + "…";
+        }
+        return charString;
     }
 
     public void show(UcdProperty prop) {
@@ -405,10 +502,7 @@ public class IndexUnicodeProperties {
         UnicodeMap<String> map = load(prop);
         timer.stop();
         final Collection<String> values = map.values();
-        String sample = values.toString();
-        if (sample.length() > 20) {
-            sample = sample.substring(0,20) + "…";
-        }
+        String sample = abbreviate(values.toString(), 20);
         System.out.println("\ttime: " + timer + "\tcodepoints: " + map.size() + "\tvalues: " + values.size() + "\tsample: " + sample);
         //        for (String value : map.getAvailableValues()) {
         //            System.out.println("\t" + value + " " + map.getSet(value));
