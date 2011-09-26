@@ -1,20 +1,28 @@
 package org.unicode.props;
 
-import java.io.DataOutputStream;
-
-import com.ibm.icu.text.UnicodeSet;
-
-//import org.unicode.props.Properties.UcdProperty;
-
 public class TestProperties {
     public static void main(String[] args) {
-        //General_Category_Values q = Properties.General_Category_Values.Unassigned;
-//        Enum x = UcdProperty.General_Category.forValueName("Cc");
+        
+        for (UcdProperty prop : UcdProperty.values()) {
+            System.out.println(prop + "\t" + prop.getNames() + "\t" + prop.getEnums());
+//            Collection<Enum> values = PropertyValues.valuesOf(prop);
+//            System.out.println("values: " + values);
+        }
+        for (PropertyValues.General_Category_Values prop : PropertyValues.General_Category_Values.values()) {
+            System.out.println(prop + "\t" + prop.getNames());
+//            Collection<Enum> values = PropertyValues.valuesOf(prop);
+//            System.out.println("values: " + values);
+        }
+
+        PropertyValues.General_Category_Values q = PropertyValues.General_Category_Values.Unassigned;
+        System.out.println(q.getNames());
+
+//        Enum x = PropertyValues.forValueName(UcdProperty.General_Category, "Cc");
 //        //Bidi_Mirrored_Values y = Properties.Bidi_Mirrored_Values.No;
-//        Enum z = UcdProperty.Bidi_Mirrored.forValueName("N");
-//        Enum w = UcdProperty.General_Category.forValueName("Cc");
+//        Enum z = PropertyValues.forValueName(UcdProperty.Bidi_Mirrored, "N");
+//        Enum w = PropertyValues.forValueName(UcdProperty.General_Category, "Cc");
 //        System.out.println(x + " " + z + " " + w);
-        UnicodeSet test = new UnicodeSet("[:ll:]");
     }
+
     
 }

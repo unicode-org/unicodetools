@@ -1,4 +1,4 @@
-FileType ; UnicodeData ; Field
+FileType ; UnicodeData ; HackField
 FileType ; CompositionExclusions ; List
 FileType ; DerivedCoreProperties ; PropertyValue
 FileType ; DerivedNormalizationProps ; PropertyValue
@@ -22,7 +22,7 @@ UnicodeData; Canonical_Combining_Class ; 3
 UnicodeData; Bidi_Class ; 4
 DerivedDecompositionType; Decomposition_Type ; 1
 UnicodeData; Decomposition_Mapping ; 5 
-UnicodeData; Bidi_Mirrored; 6
+UnicodeData; Bidi_Mirrored; 9
 UnicodeData; Simple_Uppercase_Mapping ; 12
 UnicodeData; Simple_Lowercase_Mapping ; 13
 UnicodeData; Simple_Titlecase_Mapping ; 14
