@@ -14,6 +14,10 @@ FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
 
 FileType ; CJKRadicals ; CJKRadicals
+FileType ; NamedSequences ; NamedSequences
+FileType ; NamedSequencesProv ; NamedSequences
+FileType ; NameAliases ; NameAliases
+FileType ; NameAliasesProv ; NameAliases
 
 # default is FileType ; X ; Field
 # below, the third field is the field number for use with Field FileType. The default is 1.
@@ -221,3 +225,6 @@ CJKRadicals ; CJK_Radical
 EmojiSources ; Emoji_DoCoMo ; 1
 EmojiSources ; Emoji_KDDI ; 2
 EmojiSources ; Emoji_SoftBank ; 3
+NamedSequences ; Named_Sequences
+NamedSequencesProv ; Named_Sequences_Prov
+NameAliasesProv ; Name_Alias_Prov
