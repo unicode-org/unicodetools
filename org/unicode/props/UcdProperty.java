@@ -218,9 +218,12 @@ public enum UcdProperty {
     // EXTRAS
     Script_Extensions(PropertyNames.PropertyType.Enumerated, "SCX"),
     CJK_Radical(PropertyNames.PropertyType.Enumerated, "CJKR"),
-    Emoji_DoCoMo(PropertyNames.PropertyType.Enumerated, null),
-    Emoji_KDDI(PropertyNames.PropertyType.Enumerated, null),
-    Emoji_SoftBank(PropertyNames.PropertyType.Enumerated, null),
+    Emoji_DoCoMo(PropertyNames.PropertyType.Miscellaneous, null),
+    Emoji_KDDI(PropertyNames.PropertyType.Miscellaneous, null),
+    Emoji_SoftBank(PropertyNames.PropertyType.Miscellaneous, null),
+    Name_Alias_Prov(PropertyNames.PropertyType.Miscellaneous, null),
+    Named_Sequences(PropertyNames.PropertyType.Miscellaneous, null),
+    Named_Sequences_Prov(PropertyNames.PropertyType.Miscellaneous, null),
     ;
     private final PropertyNames.PropertyType type;
     private final PropertyNames<UcdProperty> names;
