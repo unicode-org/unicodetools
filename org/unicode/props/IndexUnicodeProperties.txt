@@ -38,7 +38,7 @@ UnicodeData; Unicode_1_Name ; 10
 UnicodeData; ISO_Comment ; 11
 ArabicShaping; Joining_Type ; 2
 ArabicShaping; Joining_Group ; 3
-BidiMirroring; Bidi_Mirroring_Glyph
+BidiMirroring; Bidi_Mirroring_Glyph; ; ; CODEPOINT
 Blocks ; Block
 CompositionExclusions ; Composition_Exclusion
 DerivedAge ; Age
@@ -57,9 +57,9 @@ NameAliases ; Name_Alias
 Scripts ; Script
 CaseFolding ; Simple_Case_Folding ; 2 ; Skip1FT
 CaseFolding ; Case_Folding ; 2 ; Skip1ST
-SpecialCasing ; Lowercase_Mapping ; 1 ; SkipAny4
-SpecialCasing ; Titlecase_Mapping ; 2 ; SkipAny4
-SpecialCasing ; Uppercase_Mapping ; 3 ; SkipAny4
+SpecialCasing ; Lowercase_Mapping ; 1 ; SkipAny4 ; Simple_Lowercase_Mapping
+SpecialCasing ; Titlecase_Mapping ; 2 ; SkipAny4 ; Simple_Titlecase_Mapping
+SpecialCasing ; Uppercase_Mapping ; 3 ; SkipAny4 ; Simple_Uppercase_Mapping
 DerivedCoreProperties ; Lowercase
 DerivedCoreProperties ; Uppercase
 DerivedCoreProperties ; Cased
