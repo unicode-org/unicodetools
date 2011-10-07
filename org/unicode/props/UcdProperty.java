@@ -1,27 +1,17 @@
 //Machine generated: GenerateEnums.java
 package org.unicode.props;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.EnumSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
-
-import org.unicode.props.PropertyValues.General_Category_Values;
-
-
+import org.unicode.props.PropertyNames.NameMatcher;
 public enum UcdProperty {
 
-    // Numeric
+		// Numeric
     Numeric_Value(PropertyNames.PropertyType.Numeric, "nv"),
     kAccountingNumeric(PropertyNames.PropertyType.Numeric, "cjkAccountingNumeric"),
     kOtherNumeric(PropertyNames.PropertyType.Numeric, "cjkOtherNumeric"),
     kPrimaryNumeric(PropertyNames.PropertyType.Numeric, "cjkPrimaryNumeric"),
 
-    // String
+		// String
     Bidi_Mirroring_Glyph(PropertyNames.PropertyType.String, "bmg"),
     Case_Folding(PropertyNames.PropertyType.String, "cf"),
     Decomposition_Mapping(PropertyNames.PropertyType.String, "dm"),
@@ -36,13 +26,21 @@ public enum UcdProperty {
     Uppercase_Mapping(PropertyNames.PropertyType.String, "uc"),
     kCompatibilityVariant(PropertyNames.PropertyType.String, "cjkCompatibilityVariant"),
 
-    // Miscellaneous
+		// Miscellaneous
+    CJK_Radical(PropertyNames.PropertyType.Miscellaneous, "CJKR"),
+    Emoji_DoCoMo(PropertyNames.PropertyType.Miscellaneous, "EDCM"),
+    Emoji_KDDI(PropertyNames.PropertyType.Miscellaneous, "EKDDI"),
+    Emoji_SoftBank(PropertyNames.PropertyType.Miscellaneous, "ESB"),
     ISO_Comment(PropertyNames.PropertyType.Miscellaneous, "isc"),
     Indic_Matra_Category(PropertyNames.PropertyType.Miscellaneous, "IMC"),
     Indic_Syllabic_Category(PropertyNames.PropertyType.Miscellaneous, "ISC"),
     Jamo_Short_Name(PropertyNames.PropertyType.Miscellaneous, "JSN"),
     Name(PropertyNames.PropertyType.Miscellaneous, "na"),
-    Name_Alias(PropertyNames.PropertyType.Miscellaneous, null),
+    Name_Alias(PropertyNames.PropertyType.Miscellaneous, "Name_Alias"),
+    Name_Alias_Prov(PropertyNames.PropertyType.Miscellaneous, "NAP"),
+    Named_Sequences(PropertyNames.PropertyType.Miscellaneous, "NS"),
+    Named_Sequences_Prov(PropertyNames.PropertyType.Miscellaneous, "NSP"),
+    Script_Extensions(PropertyNames.PropertyType.Miscellaneous, "SCX"),
     Unicode_1_Name(PropertyNames.PropertyType.Miscellaneous, "na1"),
     kBigFive(PropertyNames.PropertyType.Miscellaneous, "cjkBigFive"),
     kCCCII(PropertyNames.PropertyType.Miscellaneous, "cjkCCCII"),
@@ -131,134 +129,127 @@ public enum UcdProperty {
     kXerox(PropertyNames.PropertyType.Miscellaneous, "cjkXerox"),
     kZVariant(PropertyNames.PropertyType.Miscellaneous, "cjkZVariant"),
 
-    // Catalog
-    Age(PropertyNames.PropertyType.Catalog, "age"),
-    Block(PropertyNames.PropertyType.Catalog, "blk"),
-    Script(PropertyNames.PropertyType.Catalog, "sc"),
+		// Catalog
+    Age(PropertyNames.PropertyType.Catalog, PropertyValues.Age_Values.class, "age"),
+    Block(PropertyNames.PropertyType.Catalog, PropertyValues.Block_Values.class, "blk"),
+    Script(PropertyNames.PropertyType.Catalog, PropertyValues.Script_Values.class, "sc"),
 
-    // Enumerated
-    Bidi_Class(PropertyNames.PropertyType.Enumerated, "bc"),
-    Canonical_Combining_Class(PropertyNames.PropertyType.Enumerated, "ccc"),
-    Decomposition_Type(PropertyNames.PropertyType.Enumerated, "dt"),
-    East_Asian_Width(PropertyNames.PropertyType.Enumerated, "ea"),
-    General_Category(PropertyValues.General_Category_Values.class, "gc"),
-    Grapheme_Cluster_Break(PropertyNames.PropertyType.Enumerated, "GCB"),
-    Hangul_Syllable_Type(PropertyNames.PropertyType.Enumerated, "hst"),
-    Joining_Group(PropertyNames.PropertyType.Enumerated, "jg"),
-    Joining_Type(PropertyNames.PropertyType.Enumerated, "jt"),
-    Line_Break(PropertyNames.PropertyType.Enumerated, "lb"),
-    NFC_Quick_Check(PropertyNames.PropertyType.Enumerated, "NFC_QC"),
-    NFD_Quick_Check(PropertyNames.PropertyType.Enumerated, "NFD_QC"),
-    NFKC_Quick_Check(PropertyNames.PropertyType.Enumerated, "NFKC_QC"),
-    NFKD_Quick_Check(PropertyNames.PropertyType.Enumerated, "NFKD_QC"),
-    Numeric_Type(PropertyNames.PropertyType.Enumerated, "nt"),
-    Sentence_Break(PropertyNames.PropertyType.Enumerated, "SB"),
-    Word_Break(PropertyNames.PropertyType.Enumerated, "WB"),
+		// Enumerated
+    Bidi_Class(PropertyNames.PropertyType.Enumerated, PropertyValues.Bidi_Class_Values.class, "bc"),
+    Canonical_Combining_Class(PropertyNames.PropertyType.Enumerated, PropertyValues.Canonical_Combining_Class_Values.class, "ccc"),
+    Decomposition_Type(PropertyNames.PropertyType.Enumerated, PropertyValues.Decomposition_Type_Values.class, "dt"),
+    East_Asian_Width(PropertyNames.PropertyType.Enumerated, PropertyValues.East_Asian_Width_Values.class, "ea"),
+    General_Category(PropertyNames.PropertyType.Enumerated, PropertyValues.General_Category_Values.class, "gc"),
+    Grapheme_Cluster_Break(PropertyNames.PropertyType.Enumerated, PropertyValues.Grapheme_Cluster_Break_Values.class, "GCB"),
+    Hangul_Syllable_Type(PropertyNames.PropertyType.Enumerated, PropertyValues.Hangul_Syllable_Type_Values.class, "hst"),
+    Joining_Group(PropertyNames.PropertyType.Enumerated, PropertyValues.Joining_Group_Values.class, "jg"),
+    Joining_Type(PropertyNames.PropertyType.Enumerated, PropertyValues.Joining_Type_Values.class, "jt"),
+    Line_Break(PropertyNames.PropertyType.Enumerated, PropertyValues.Line_Break_Values.class, "lb"),
+    NFC_Quick_Check(PropertyNames.PropertyType.Enumerated, PropertyValues.NFC_Quick_Check_Values.class, "NFC_QC"),
+    NFD_Quick_Check(PropertyNames.PropertyType.Enumerated, PropertyValues.NFD_Quick_Check_Values.class, "NFD_QC"),
+    NFKC_Quick_Check(PropertyNames.PropertyType.Enumerated, PropertyValues.NFKC_Quick_Check_Values.class, "NFKC_QC"),
+    NFKD_Quick_Check(PropertyNames.PropertyType.Enumerated, PropertyValues.NFKD_Quick_Check_Values.class, "NFKD_QC"),
+    Numeric_Type(PropertyNames.PropertyType.Enumerated, PropertyValues.Numeric_Type_Values.class, "nt"),
+    Sentence_Break(PropertyNames.PropertyType.Enumerated, PropertyValues.Sentence_Break_Values.class, "SB"),
+    Word_Break(PropertyNames.PropertyType.Enumerated, PropertyValues.Word_Break_Values.class, "WB"),
 
-    // Binary
-    ASCII_Hex_Digit(PropertyValues.Binary.class, "AHex"),
-    Alphabetic(PropertyValues.Binary.class, "Alpha"),
-    Bidi_Control(PropertyValues.Binary.class, "Bidi_C"),
-    Bidi_Mirrored(PropertyValues.Binary.class, "Bidi_M"),
-    Case_Ignorable(PropertyValues.Binary.class, "CI"),
-    Cased(PropertyValues.Binary.class, null),
-    Changes_When_Casefolded(PropertyValues.Binary.class, "CWCF"),
-    Changes_When_Casemapped(PropertyValues.Binary.class, "CWCM"),
-    Changes_When_Lowercased(PropertyValues.Binary.class, "CWL"),
-    Changes_When_NFKC_Casefolded(PropertyValues.Binary.class, "CWKCF"),
-    Changes_When_Titlecased(PropertyValues.Binary.class, "CWT"),
-    Changes_When_Uppercased(PropertyValues.Binary.class, "CWU"),
-    Composition_Exclusion(PropertyValues.Binary.class, "CE"),
-    Dash(PropertyValues.Binary.class, null),
-    Default_Ignorable_Code_Point(PropertyValues.Binary.class, "DI"),
-    Deprecated(PropertyValues.Binary.class, "Dep"),
-    Diacritic(PropertyValues.Binary.class, "Dia"),
-    Expands_On_NFC(PropertyValues.Binary.class, "XO_NFC"),
-    Expands_On_NFD(PropertyValues.Binary.class, "XO_NFD"),
-    Expands_On_NFKC(PropertyValues.Binary.class, "XO_NFKC"),
-    Expands_On_NFKD(PropertyValues.Binary.class, "XO_NFKD"),
-    Extender(PropertyValues.Binary.class, "Ext"),
-    Full_Composition_Exclusion(PropertyValues.Binary.class, "Comp_Ex"),
-    Grapheme_Base(PropertyValues.Binary.class, "Gr_Base"),
-    Grapheme_Extend(PropertyValues.Binary.class, "Gr_Ext"),
-    Grapheme_Link(PropertyValues.Binary.class, "Gr_Link"),
-    Hex_Digit(PropertyValues.Binary.class, "Hex"),
-    Hyphen(PropertyValues.Binary.class, null),
-    IDS_Binary_Operator(PropertyValues.Binary.class, "IDSB"),
-    IDS_Trinary_Operator(PropertyValues.Binary.class, "IDST"),
-    ID_Continue(PropertyValues.Binary.class, "IDC"),
-    ID_Start(PropertyValues.Binary.class, "IDS"),
-    Ideographic(PropertyValues.Binary.class, "Ideo"),
-    Join_Control(PropertyValues.Binary.class, "Join_C"),
-    Logical_Order_Exception(PropertyValues.Binary.class, "LOE"),
-    Lowercase(PropertyValues.Binary.class, "Lower"),
-    Math(PropertyValues.Binary.class, null),
-    Noncharacter_Code_Point(PropertyValues.Binary.class, "NChar"),
-    Other_Alphabetic(PropertyValues.Binary.class, "OAlpha"),
-    Other_Default_Ignorable_Code_Point(PropertyValues.Binary.class, "ODI"),
-    Other_Grapheme_Extend(PropertyValues.Binary.class, "OGr_Ext"),
-    Other_ID_Continue(PropertyValues.Binary.class, "OIDC"),
-    Other_ID_Start(PropertyValues.Binary.class, "OIDS"),
-    Other_Lowercase(PropertyValues.Binary.class, "OLower"),
-    Other_Math(PropertyValues.Binary.class, "OMath"),
-    Other_Uppercase(PropertyValues.Binary.class, "OUpper"),
-    Pattern_Syntax(PropertyValues.Binary.class, "Pat_Syn"),
-    Pattern_White_Space(PropertyValues.Binary.class, "Pat_WS"),
-    Quotation_Mark(PropertyValues.Binary.class, "QMark"),
-    Radical(PropertyValues.Binary.class, null),
-    STerm(PropertyValues.Binary.class, null),
-    Soft_Dotted(PropertyValues.Binary.class, "SD"),
-    Terminal_Punctuation(PropertyValues.Binary.class, "Term"),
-    Unified_Ideograph(PropertyValues.Binary.class, "UIdeo"),
-    Uppercase(PropertyValues.Binary.class, "Upper"),
-    Variation_Selector(PropertyValues.Binary.class, "VS"),
-    White_Space(PropertyValues.Binary.class, "WSpace"),
-    XID_Continue(PropertyValues.Binary.class, "XIDC"),
-    XID_Start(PropertyValues.Binary.class, "XIDS"),
-    // EXTRAS
-    Script_Extensions(PropertyNames.PropertyType.Enumerated, "SCX"),
-    CJK_Radical(PropertyNames.PropertyType.Enumerated, "CJKR"),
-    Emoji_DoCoMo(PropertyNames.PropertyType.Miscellaneous, null),
-    Emoji_KDDI(PropertyNames.PropertyType.Miscellaneous, null),
-    Emoji_SoftBank(PropertyNames.PropertyType.Miscellaneous, null),
-    Name_Alias_Prov(PropertyNames.PropertyType.Miscellaneous, null),
-    Named_Sequences(PropertyNames.PropertyType.Miscellaneous, null),
-    Named_Sequences_Prov(PropertyNames.PropertyType.Miscellaneous, null),
-    ;
-    private final PropertyNames.PropertyType type;
-    private final PropertyNames<UcdProperty> names;
-    // for enums
-    private final Map<String, Enum> name2enum;
-    private final EnumSet enums;
+		// Binary
+    ASCII_Hex_Digit(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "AHex"),
+    Alphabetic(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Alpha"),
+    Bidi_Control(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Bidi_C"),
+    Bidi_Mirrored(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Bidi_M"),
+    Case_Ignorable(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "CI"),
+    Cased(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Cased"),
+    Changes_When_Casefolded(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "CWCF"),
+    Changes_When_Casemapped(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "CWCM"),
+    Changes_When_Lowercased(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "CWL"),
+    Changes_When_NFKC_Casefolded(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "CWKCF"),
+    Changes_When_Titlecased(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "CWT"),
+    Changes_When_Uppercased(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "CWU"),
+    Composition_Exclusion(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "CE"),
+    Dash(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Dash"),
+    Default_Ignorable_Code_Point(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "DI"),
+    Deprecated(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Dep"),
+    Diacritic(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Dia"),
+    Expands_On_NFC(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "XO_NFC"),
+    Expands_On_NFD(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "XO_NFD"),
+    Expands_On_NFKC(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "XO_NFKC"),
+    Expands_On_NFKD(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "XO_NFKD"),
+    Extender(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Ext"),
+    Full_Composition_Exclusion(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Comp_Ex"),
+    Grapheme_Base(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Gr_Base"),
+    Grapheme_Extend(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Gr_Ext"),
+    Grapheme_Link(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Gr_Link"),
+    Hex_Digit(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Hex"),
+    Hyphen(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Hyphen"),
+    IDS_Binary_Operator(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "IDSB"),
+    IDS_Trinary_Operator(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "IDST"),
+    ID_Continue(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "IDC"),
+    ID_Start(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "IDS"),
+    Ideographic(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Ideo"),
+    Join_Control(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Join_C"),
+    Logical_Order_Exception(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "LOE"),
+    Lowercase(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Lower"),
+    Math(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Math"),
+    Noncharacter_Code_Point(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "NChar"),
+    Other_Alphabetic(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "OAlpha"),
+    Other_Default_Ignorable_Code_Point(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "ODI"),
+    Other_Grapheme_Extend(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "OGr_Ext"),
+    Other_ID_Continue(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "OIDC"),
+    Other_ID_Start(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "OIDS"),
+    Other_Lowercase(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "OLower"),
+    Other_Math(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "OMath"),
+    Other_Uppercase(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "OUpper"),
+    Pattern_Syntax(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Pat_Syn"),
+    Pattern_White_Space(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Pat_WS"),
+    Quotation_Mark(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "QMark"),
+    Radical(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Radical"),
+    STerm(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "STerm"),
+    Soft_Dotted(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "SD"),
+    Terminal_Punctuation(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Term"),
+    Unified_Ideograph(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "UIdeo"),
+    Uppercase(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "Upper"),
+    Variation_Selector(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "VS"),
+    White_Space(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "WSpace"),
+    XID_Continue(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "XIDC"),
+    XID_Start(PropertyNames.PropertyType.Binary, PropertyValues.Binary.class, "XIDS"),
+		;
+;
+private final PropertyNames.PropertyType type;
+	private final PropertyNames<UcdProperty> names;
+	// for enums
+	private final NameMatcher name2enum;
+	private final EnumSet enums;
+	
+	private UcdProperty(PropertyNames.PropertyType type, String shortName, String...otherNames) {
+		this.type = type;
+		names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
+		name2enum = null;
+		enums = null;
+	}
+	private UcdProperty(PropertyNames.PropertyType type, Class classItem, String shortName, String...otherNames) {
+		this.type = type;
+		Object[] x = classItem.getEnumConstants();
+		names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
+		enums = EnumSet.allOf(classItem);
+		name2enum = PropertyNames.getNameToEnums(classItem);
+	}
+	
+	public PropertyNames.PropertyType getType() {
+		return type;
+	}
+	public PropertyNames<UcdProperty> getNames() {
+		return names;
+	}
+	public static UcdProperty forString(String name) {
+		return Numeric_Value.names.forString(name);
+	}
+	public Enum getEnum(String name) {
+		return name2enum == null ? null : name2enum.get(name);
+	}
+	public Set<Enum> getEnums() {
+		return enums;
+	}
 
-    private UcdProperty(PropertyNames.PropertyType type, String shortName, String...otherNames) {
-        this.type = type;
-        names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
-        name2enum = null;
-        enums = null;
-    }
-    private UcdProperty(Class classItem, String shortName, String...otherNames) {
-        Object[] x = classItem.getEnumConstants();
-        type = classItem == PropertyValues.Binary.class ? PropertyNames.PropertyType.Binary : PropertyNames.PropertyType.Enumerated;
-        names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
-        enums = EnumSet.allOf(classItem);
-        name2enum = PropertyNames.getNameToEnums(classItem);
-    }
 
-    public PropertyNames.PropertyType getType() {
-        return type;
-    }
-    public PropertyNames<UcdProperty> getNames() {
-        return names;
-    }
-    public static UcdProperty forString(String name) {
-        return Numeric_Value.names.forString(name);
-    }
-    public Enum getEnum(String name) {
-        return name2enum == null ? null : name2enum.get(name);
-    }
-    public Set<Enum> getEnums() {
-        return enums;
-    }
 }
-

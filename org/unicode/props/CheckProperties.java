@@ -73,7 +73,8 @@ public class CheckProperties {
 
         List<UcdProperty> values = extent == Extent.ALL ? Arrays.asList(UcdProperty.values()) : 
             Arrays.asList(
-                    UcdProperty.Lowercase_Mapping
+                    UcdProperty.General_Category,
+                    UcdProperty.White_Space
                     // Bidi_Mirroring_Glyph
                     //                    UcdProperty.CJK_Radical, 
                     //                    UcdProperty.Script_Extensions,
@@ -106,6 +107,9 @@ public class CheckProperties {
         }
         for (String s : SKIPPING) {
             System.out.println(s);
+        }
+        for (String s : IndexUnicodeProperties.ERRORS) {
+            System.out.println(s);   
         }
         Set<String> latestFiles = latest.fileNames;
         File dir = new File("/Users/markdavis/Documents/workspace/DATA/UCD/6.1.0-Update");

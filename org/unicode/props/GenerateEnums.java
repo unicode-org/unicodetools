@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -19,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
@@ -26,6 +25,9 @@ import com.ibm.icu.dev.test.util.BagFormatter;
 
 public class GenerateEnums {
     public static final String SOURCE_DIR = "/Users/markdavis/Documents/workspace/DATA/UCD/6.1.0-Update";
+    public static final String PROPERTY_FILE_OUTPUT = "/Users/markdavis/Documents/workspace/unicodetools2/org/unicode/props/UcdProperty.java";
+    public static final String PROPERTY_VALUE_OUTPUT = "/Users/markdavis/Documents/workspace/unicodetools2/org/unicode/props/PropertyValues.java";
+
     private static class Locations {
         private static Set<String> files = addAll(new HashSet<String>(), new File(SOURCE_DIR));
         public static boolean contains(String file) {
@@ -52,12 +54,7 @@ public class GenerateEnums {
         }
     }
 
-    public static final String PROPERTY_FILE = "/Users/markdavis/Documents/workspace/unicodetools2/org/unicode/props/Properties.java";
 
-    enum PropertyType {
-        Numeric, String, Miscellaneous, Catalog, Enumerated, Binary;
-        //Set<String> props = new TreeSet<String>();
-    }
     static Map<String,PropName> lookup = new HashMap<String,PropName>();
     static Map<String,PropName> lookupMain = new TreeMap<String,PropName>();
 
@@ -102,33 +99,134 @@ public class GenerateEnums {
         addPropertyAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyAliases", Default.ucdVersion(), true, true)));
         addPropertyAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"));
 
-        PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_FILE);
+        writeMainUcdFile();
 
-        output.print("//Machine generated: GenerateEnums.java\n" +
-                "package org.unicode.props;\n" +
-                "import java.util.EnumMap;\n" +
-                "import java.util.LinkedHashMap;\n" +
-                "import java.util.Map;\n" +
-                "public class Properties {\n" +
-        "\tpublic enum PropertyType {");
-        for (PropertyType pt : PropertyType.values()) {
-            output.print(pt + ", ");
-        }
-        output.println("}\n");
+        writeValueEnumFile(values);
+    }
+
+
+    public static void writeValueEnumFile(Map<PropName, List<String[]>> values) throws IOException {
+        PrintWriter output;
+        output = BagFormatter.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
+        output.println("package org.unicode.props;\npublic class PropertyValues {");
+
+        //[Alpha, N, No, F, False]
+        addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", Default.ucdVersion(), true, true)));
 
         output.println(
-                "\tprivate static <T> void addNames(LinkedHashMap<String, T> map, String[] otherNames, T item) {\n" +
-                "\t\tmap.put(item.toString(), item);\n" +
-                "\t\tfor (String other : otherNames) {\n" +
-                "\t\t\tmap.put(other, item);\n" +
-                "\t\t}\n" +
-                "\t}\n"
+                "    public enum Binary {\n"+
+                "        No(\"N\", \"F\", \"False\"),\n"+
+                "        Yes(\"Y\", \"T\", \"True\");\n"+
+                "        private final PropertyNames<Binary> names;\n"+
+                "        private Binary (String shortName, String...otherNames) {\n"+
+                "            names = new PropertyNames(Binary.class, this, shortName, otherNames);\n"+
+                "        }\n"+
+                "        public PropertyNames<Binary> getNames() {\n"+
+                "            return names;\n"+
+                "        }\n"+
+                "    }\n"
         );
 
+        for (Entry<PropName, List<String[]>> value : values.entrySet()) {
+            final PropName propName = value.getKey();
+            if (propName.propertyType == PropertyType.Binary) {
+                continue;
+            }
+            final List<String[]> partList = value.getValue();
+            if (partList.size() == 0) {
+                output.println("\t\t// " + propName.longName);
+                continue;
+            }
+            output.println("\tpublic enum " + (propName.longName + "_Values") + " {");
+            StringBuilder constants = new StringBuilder();
+            boolean first = true;
+            for (String[] parts : partList) {
+                final String longName = parts[2];
+                if (first) {
+                    first = false;
+                    output.print("        ");
+                } else {
+                    output.print(",\n        ");
+                }
+                output.print(fix(longName));
+                writeOtherNames2(output, parts);
 
-        output.println("\tprivate static final LinkedHashMap<String," + "UcdProperty" + "> " + "UcdProperty" + "_Names = new LinkedHashMap<String," + "UcdProperty" + ">();\n");
+                for (int i = 1; i < parts.length; ++i) {
+                    final String otherName = parts[i];
+                    if (i == 2 || otherName.equals("n/a") || otherName.equals(longName) || otherName.contains("-") || otherName.charAt(0) < 'A') {
+                        continue;
+                    }
+                    if (constants.length() != 0) {
+                        constants.append(",");
+                    }
+                    constants.append("\n        " + otherName + "=" + longName);
+                }
+            }
+            String enumName = propName.longName;
+            output.println(
+                    ";\n"  +
+                    "        private final PropertyNames<" + enumName + "_Values> names;\n"+
+                    "        private " + enumName + "_Values (String shortName, String...otherNames) {\n"+
+                    "            names = new PropertyNames(" + enumName + "_Values.class, this, shortName, otherNames);\n"+
+                    "        }\n"+
+                    "        public PropertyNames<" + enumName + "_Values> getNames() {\n"+
+                    "            return names;\n"+
+                    "        }\n" +
+                    "    }\n"
+            );
+        }
+        output.println("\n}");
+        output.close();
+    }
 
-        output.println("\tpublic enum " + "UcdProperty" + " {");
+    // otherNames are x, short, long, others
+    // we don't need to do x or long
+    public static void writeOtherNames2(PrintWriter output, String... otherNames) {
+        output.print("(");
+        for (int i = 1; i < otherNames.length; ++i) {
+            if (i == 2) continue;
+            String name = otherNames[i];
+            if (name.equals("n/a")) {
+                name = "null";
+            }
+            if (i != 1) {
+                output.print(", ");
+            }
+            output.print("\"" + name + "\"");
+        }
+        output.print(")");
+    }
+
+
+    public static void writeMainUcdFile() throws IOException {
+        PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_FILE_OUTPUT);
+
+        output.print(
+                "//Machine generated: GenerateEnums.java\n" +
+                "package org.unicode.props;\n" +
+                "import java.util.EnumSet;\n" +
+                "import java.util.Set;\n"+
+                "import org.unicode.props.PropertyNames.NameMatcher;\n"
+        );
+        //        "\tpublic enum PropertyType {");
+        //        for (PropertyType pt : PropertyType.values()) {
+        //            output.print(pt + ", ");
+        //        }
+        //        output.println("}\n");
+        //
+        //        output.println(
+        //                "\tprivate static <T> void addNames(LinkedHashMap<String, T> map, String[] otherNames, T item) {\n" +
+        //                "\t\tmap.put(item.toString(), item);\n" +
+        //                "\t\tfor (String other : otherNames) {\n" +
+        //                "\t\t\tmap.put(other, item);\n" +
+        //                "\t\t}\n" +
+        //                "\t}\n"
+        //        );
+        //
+        //
+        //        output.println("\tprivate static final LinkedHashMap<String," + "UcdProperty" + "> " + "UcdProperty" + "_Names = new LinkedHashMap<String," + "UcdProperty" + ">();\n");
+
+        output.println("public enum " + "UcdProperty" + " {");
         for (PropertyType pt : PropertyType.values()) {
             int count = 0;
             output.println("\n\t\t// " + pt);
@@ -140,97 +238,82 @@ public class GenerateEnums {
                 //                    output.println();
                 //                    count = 0;
                 //                }
-                output.print("\t\t" + i.getKey());
+                output.print("    " + i.getKey());
                 PropName pname = i.getValue();
-                LinkedHashSet names = new LinkedHashSet();
-                writeOtherNames(output, "PropertyType." + pt, pname.longName, pname.shortName);
+                String type = "PropertyNames.PropertyType." + pt;
+                String classItem = null;
+                switch (pt) {
+                case Binary:
+                    classItem = "PropertyValues.Binary.class";
+                    break;
+                case Enumerated:
+                case Catalog:
+                    classItem = "PropertyValues." + pname.longName + "_Values.class";
+                    break;
+                }
+                writeOtherNames(output, type, classItem, pname.longName, pname.shortName);
                 output.print(",\n");
             }
         }
         output.println("\t\t;");
         boolean first = true;
         output.println(";\n" +
-                "\t\tfinal PropertyType type;\n\t\tfinal LinkedHashMap<String, Enum> enumNames = new LinkedHashMap<String, Enum>();\n"  +
-                "\t\tprivate UcdProperty(PropertyType type, String...otherNames) {\n" +
-                "\t\t\tthis.type = type;\n" +
-                "\t\t\taddNames(UcdProperty_Names, otherNames, this);\n" +
-                "\t\t}\n" +
-                "\t\tstatic UcdProperty forName(String name) {\n" +
-                "\t\t\treturn UcdProperty_Names.get(name);\n" +
-                "\t\t}\n" +
-                "\t\tpublic Enum forValueName(String name) {\n" +
-                "\t\t\treturn enumNames.get(name);\n" +
-                "\t\t}\n" +
-                "\t}"
+                "private final PropertyNames.PropertyType type;\n"+
+                "\tprivate final PropertyNames<UcdProperty> names;\n"+
+                "\t// for enums\n"+
+                "\tprivate final NameMatcher name2enum;\n"+
+                "\tprivate final EnumSet enums;\n"+
+                "\t\n"+
+                "\tprivate UcdProperty(PropertyNames.PropertyType type, String shortName, String...otherNames) {\n"+
+                "\t\tthis.type = type;\n"+
+                "\t\tnames = new PropertyNames(UcdProperty.class, this, shortName, otherNames);\n"+
+                "\t\tname2enum = null;\n"+
+                "\t\tenums = null;\n"+
+                "\t}\n"+
+                "\tprivate UcdProperty(PropertyNames.PropertyType type, Class classItem, String shortName, String...otherNames) {\n"+
+                "\t\tthis.type = type;\n"+
+                "\t\tObject[] x = classItem.getEnumConstants();\n"+
+                "\t\tnames = new PropertyNames(UcdProperty.class, this, shortName, otherNames);\n"+
+                "\t\tenums = EnumSet.allOf(classItem);\n"+
+                "\t\tname2enum = PropertyNames.getNameToEnums(classItem);\n"+
+                "\t}\n"+
+                "\t\n"+
+                "\tpublic PropertyNames.PropertyType getType() {\n"+
+                "\t\treturn type;\n"+
+                "\t}\n"+
+                "\tpublic PropertyNames<UcdProperty> getNames() {\n"+
+                "\t\treturn names;\n"+
+                "\t}\n"+
+                "\tpublic static UcdProperty forString(String name) {\n"+
+                "\t\treturn Numeric_Value.names.forString(name);\n"+
+                "\t}\n"+
+                "\tpublic Enum getEnum(String name) {\n"+
+                "\t\treturn name2enum == null ? null : name2enum.get(name);\n"+
+                "\t}\n"+
+                "\tpublic Set<Enum> getEnums() {\n"+
+                "\t\treturn enums;\n"+
+                "\t}\n"        
         );
 
-        //[Alpha, N, No, F, False]
-        addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", Default.ucdVersion(), true, true)));
-
-        for (Entry<PropName, List<String[]>> value : values.entrySet()) {
-            final List<String[]> partList = value.getValue();
-            final PropName propName = value.getKey();
-            if (partList.size() == 0) {
-                output.println("\t\t// " + propName.longName);
-                continue;
-            }
-            output.println("\tpublic enum " + (propName.longName + "_Values") + " {");
-            StringBuilder constants = new StringBuilder();
-            first = true;
-            for (String[] parts : partList) {
-                final String longName = parts[2];
-                if (first) {
-                    first = false;
-                    output.print("\t\t");
-                } else {
-                    output.print(",\n\t\t");
-                }
-                output.print(fix(longName));
-                writeOtherNames(output, null, parts);
-
-                for (int i = 1; i < parts.length; ++i) {
-                    final String otherName = parts[i];
-                    if (i == 2 || otherName.equals("n/a") || otherName.equals(longName) || otherName.contains("-") || otherName.charAt(0) < 'A') {
-                        continue;
-                    }
-                    if (constants.length() != 0) {
-                        constants.append(",");
-                    }
-                    constants.append("\n\t\t" + otherName + "=" + longName);
-                }
-            }
-            String enumName = propName.longName;
-            output.println(";\n"  +
-                    "\t\tprivate " + enumName + "_Values (" +
-                    "String...otherNames) {\n" +
-                    "\t\t\taddNames(UcdProperty." + enumName +".enumNames, otherNames, this);\n" +
-                    "\t\t}\n" +
-            "\t}");
-        }
-        output.println("\n}");
+        output.println("\n}");     
         output.close();
     }
 
 
-    public static void writeOtherNames(PrintWriter output, String string, String... otherNames) {
-        boolean haveFirst = false;
+    public static void writeOtherNames(PrintWriter output, String type, String classItem, String... otherNames) {
         output.print("(");
-        if (string != null) {
-            output.print(string);
-            haveFirst = true;
+        //if (shortName != null) {
+        output.print(type);
+        if (classItem != null) {
+            output.print(", " + classItem);
         }
-        boolean skip = true;
+        boolean first = true;
         for (String otherName : otherNames) {
-            if (skip) {
-                skip = false;
+            if (first) {
+                first = false;
                 continue;
             }
-            if (otherName.equals("n/a") || otherName.equals(otherNames[0])) {
-                continue;
-            }
-            if (haveFirst) output.print(", ");
-            output.print("\"" + otherName + "\"");
-            haveFirst = true;
+            output.print(", \"" + otherName + "\"");
         }
         output.print(")");
     }
