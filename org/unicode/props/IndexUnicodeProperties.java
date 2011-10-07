@@ -3,6 +3,7 @@ package org.unicode.props;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -39,6 +40,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public final static Pattern TAB = Pattern.compile("[ ]*\t[ ]*");
     static final boolean SHOW_PROP_INFO = false;
     private static final boolean SHOW_LOADED = false;
+    static final Set<String> ERRORS = new LinkedHashSet<String>();
 
     enum SpecialValue {CODEPOINT, Simple_Lowercase_Mapping, Simple_Titlecase_Mapping, Simple_Uppercase_Mapping}
 
@@ -70,7 +72,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             if (propertyInfo.length < 5 || propertyInfo[4].isEmpty()) {
                 this.defaultValue = 
                     property.getType() == PropertyType.String ? SpecialValue.CODEPOINT.toString() 
-                            : property.getType() == PropertyType.Binary ? "No".intern() 
+                            : property.getType() == PropertyType.Binary ? PropertyValues.Binary.No.toString()
                                     : null;
             } else {
                 String tempString = null;
@@ -99,15 +101,24 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         public void put(UnicodeMap<String> data, IntRange intRange, String string, Merge<String> merger) {
-            //            switch (property.getType()) {
-            //            case Enumerated:
-            //            case Binary:
-            //                Enum item = property.getEnum(string);
-            //                if (item == null) {
-            //                    System.out.println(property + "\tBad enum value: " + string);
-            //                }
-            //                break;
-            //            }
+            switch (property.getType()) {
+            case Enumerated:
+            case Catalog:
+//                if (property != UcdProperty.General_Category) {
+//                    break;
+//                }
+            case Binary:
+                Enum item = property.getEnum(string);
+                if (item == null) {
+                    final String errorMessage = property + "\tBad enum value:\t" + string;
+                    if (ERRORS.add(errorMessage)) {
+                        property.getEnum(string);
+                    }
+                } else {
+                    string = item.toString();
+                }
+                break;
+            }
             if (property.getType().equals(PropertyType.String) && !string.isEmpty()) {
                 string = Utility.fromHex(string);
             }
@@ -423,7 +434,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public String getResolvedValue(UcdProperty prop, int codepoint) {
         return getResolvedValue(this, prop, codepoint, this.getRawValue(prop, codepoint));
     }
-    
+
     public String getRawValue(UcdProperty ucdProperty, int codepoint) {
         return load(ucdProperty).get(codepoint);
     }

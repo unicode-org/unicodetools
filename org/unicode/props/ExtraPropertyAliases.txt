@@ -78,3 +78,16 @@ cjkSimplifiedVariant ; kSimplifiedVariant
 cjkSpecializedSemanticVariant ; kSpecializedSemanticVariant
 cjkTraditionalVariant ; kTraditionalVariant
 cjkZVariant ; kZVariant
+
+# ================================================
+# Miscellaneous Properties
+# ================================================
+SCX ; Script_Extensions
+CJKR ; CJK_Radical
+    
+EDCM ; Emoji_DoCoMo
+EKDDI ; Emoji_KDDI
+ESB ; Emoji_SoftBank
+NAP ; Name_Alias_Prov
+NS ; Named_Sequences
+NSP ; Named_Sequences_Prov
