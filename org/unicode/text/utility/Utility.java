@@ -395,6 +395,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                     new Object[] {String.valueOf(ch), new Integer(i), p});
           }
           // fall through!!
+        case 'U': case 'u': case '+': // for the U+ case
+            
         case ' ': case ',': case ';': // do SPACE here, just for speed
           if (count != 0) {
             if (count < 4 || count > 6) {

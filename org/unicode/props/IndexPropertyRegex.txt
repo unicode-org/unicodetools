@@ -1,0 +1,146 @@
+# Regex, only needed for String, Misc, Numeric Properties
+
+# Variables
+$positiveDecimal = [0-9]+\.[0-9]+
+$decimal = -?$positiveDecimal
+$rational = $decimal(/$positiveDecimal)?
+$optionalDecimal = -?[0-9]+(\.[0-9]+)?
+$name = [a-zA-Z0-9]+([-_ ][a-zA-Z0-9]+)*
+$nameHack = [a-zA-Z0-9]+(( -|- |[-_ ])[a-zA-Z0-9]+)*
+$name1 = $name( \([A-Z]{2,3}\))?
+$codePoint = (10|[A-F0-9])?[A-F0-9]{4}
+$codePoints = $codePoint(\s$codePoint)*
+$codePoint0 = ($codePoints)?
+
+# Regex patterns from UAX #38
+
+kAccountingNumeric; N/A;    ^[0-9]+$
+kBigFive;   N/A;    ^[0-9A-F]{4}$
+kCangjie;   N/A;    ^[A-Z]+$
+kCantonese; space;  ^[a-z]{1,6}[1-6]$
+kCCCII; space;  ^[0-9A-F]{6}$
+kCheungBauer;   space;  ^[0-9]{3}\/[0-9]{2};[A-Z]*;[a-z1-6\[\]\/,]+$
+kCheungBauerIndex;  space;  ^[0-9]{3}\.[01][0-9]$
+kCihaiT;    space;  ^[1-9][0-9]{0,3}\.[0-9]{3}$
+kCNS1986;   N/A;    ^[12E]-[0-9A-F]{4}$
+kCNS1992;   N/A;    ^[1-9]-[0-9A-F]{4}$
+kCompatibilityVariant;  N/A;    ^U\+2?[0-9A-F]{4}$
+kCowles;    space;  ^[0-9]{1,4}(\.[0-9]{1,2})?$
+kDaeJaweon; N/A;    ^[0-9]{4}\.[0-9]{2}[01]$
+kDefinition;    N/A;    ^[^\t"]+$
+kEACC;  N/A;    ^[0-9A-F]{6}$
+kFenn;  space;  ^[0-9]+a?[A-KP*]$
+kFennIndex; space;  ^[1-9][0-9]{0,2}\.[01][0-9]$
+kFourCornerCode;    space;  ^[0-9]{4}(\.[0-9])?
+kFrequency; N/A;    ^[1-5]$
+kGB0;   N/A;    ^[0-9]{4}$
+kGB1;   N/A;    ^[0-9]{4}$
+kGB3;   N/A;    ^[0-9]{4}$
+kGB5;   N/A;    ^[0-9]{4}$
+kGB7;   N/A;    ^[0-9]{4}$
+kGB8;   N/A;    ^[0-9]{4}$
+kGradeLevel;    N/A;    ^[1-6]$
+kGSR;   space;  ^[0-9]{4}[a-vx-z]\'?$
+kHangul;    space;  ^[\x{1100}-\x{11FF}]+$
+kHanYu; space;  ^[1-8][0-9]{4}\.[0-3][0-9][0-3]$
+kHanyuPinlu;    space;  ^[a-z\x{308}]+[1-5]\([0-9]+\)$
+kHanyuPinyin;   space;  ^(\d{5}\.\d{2}0,)*\d{5}\.\d{2}0:([a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+,)*[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+$
+kHDZRadBreak;   N/A;    ^[\x{2F00}-\x{2FD5}]\[U\+2F[0-9A-D][0-9A-F]\]:[1-8][0-9]{4}\.[0-3][0-9]0$
+kHKGlyph;   space;  ^[0-9]{4}$
+kHKSCS; N/A;    ^[0-9A-F]{4}$
+kIBMJapan;  N/A;    ^F[ABC][0-9A-F]{2}$
+kIICore;    N/A;    ^2\.1$
+kIRGDaeJaweon;  N/A;    ^[0-9]{4}\.[0-9]{2}[01]$
+kIRGDaiKanwaZiten;  N/A;    ^[0-9]{5}\'?$
+kIRGHanyuDaZidian;  N/A;    ^[1-8][0-9]{4}\.[0-3][0-9][01]$
+kIRGKangXi; N/A;    ^[01][0-9]{3}\.[0-7][0-9][01]$
+kIRG_GSource;   N/A;    ^G(4K|BK|CH|CY|FZ|HC|HZ|((BK|CH|GH|HC|XC|ZH)-[0-9]{4}\.[0-9]{2})|HZ-[0-9]{5}\.[0-9]{2}|(KX-[01][0-9]{3}\.[0-9]{2})|((CYY|FZ|JZ|ZFY|ZJW)-[0-9]{5})|([0135789ES]-[0-9A-F]{4})|IDC-[0-9]{3})$
+kIRG_HSource;   N/A;    ^H-[0-9A-F]{4}$
+kIRG_JSource;   N/A;    ^J((([0134AK]|3A|ARIB)-[0-9A-F]{4,5})|(H-(((IB|JT|[0-9]{2})[0-9A-F]{4}S?))))$
+kIRG_KPSource;  N/A;    ^KP[01]-[0-9A-F]{4}$
+kIRG_KSource;   N/A;    ^K[0-57]-[0-9A-F]{4}$
+kIRG_MSource;   N/A;    ^MAC-[0-9]{5}$
+kIRG_TSource;   N/A;    ^T[1-7B-F]-[0-9A-F]{4}$
+kIRG_USource;   N/A;    ^U(TC|CI)-[0-9]{5}$
+kIRG_VSource;   N/A;    ^V[0-4]-[0-9A-F]{4}$
+kJapaneseKun;   space;  ^[A-Z]+$
+kJapaneseOn;    space;  ^[A-Z]+$
+kJis0;  N/A;    ^[0-9]{4}$
+kJIS0213;   N/A;    ^[12],[0-9]{2},[0-9]{1,2}$
+kJis1;  N/A;    ^[0-9]{4}$
+kKangXi;    N/A;    ^[0-9]{4}\.[0-9]{2}[01]$
+kKarlgren;  N/A;    ^[1-9][0-9]{0,3}[A*]?$
+kKorean;    space;  ^[A-Z]+$
+kKPS0;  N/A;    ^[0-9A-F]{4}$
+kKPS1;  N/A;    ^[0-9A-F]{4}$
+kKSC0;  N/A;    ^[0-9]{4}$
+kKSC1;  N/A;    ^[0-9]{4}$
+kLau;   space;  ^[1-9][0-9]{0,3}$
+kMainlandTelegraph; N/A;    ^[0-9]{4}$
+kMandarin;  space;  ^[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+$
+kMatthews;  N/A;    ^[1-9][0-9]{0,3}(a|\.5)?$
+kMeyerWempe;    space;  ^[1-9][0-9]{0,3}[a-t*]?$
+kMorohashi; space;  ^[0-9]{5}\'?$
+kNelson;    space;  ^[0-9]{4}$
+kOtherNumeric;  N/A;    ^[0-9]+$
+kPhonetic;  space;  ^[1-9][0-9]{0,3}[A-D]?\*?$
+kPrimaryNumeric;    N/A;    ^[0-9]+$
+kPseudoGB1; N/A;    ^[0-9]{4}$
+kRSAdobe_Japan1_6;  space;  ^[CV]\+[0-9]{1,5}\+[1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2}$
+kRSJapanese;    space;  ^[1-9][0-9]{0,2}\.[0-9]{1,2}$
+kRSKangXi;  space;  ^[1-9][0-9]{0,2}\.[0-9]{1,2}$
+kRSKanWa;   space;  ^[1-9][0-9]{0,2}\.[0-9]{1,2}$
+kRSKorean;  space;  ^[1-9][0-9]{0,2}\.[0-9]{1,2}$
+kRSUnicode; space;  ^[1-9][0-9]{0,2}\'?\.[0-9]{1,2}$
+kSBGY;  space;  ^[0-9]{3}\.[0-7][0-9]$
+kSemanticVariant;   space;  ^U\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?$
+kSimplifiedVariant; space;  ^U\+2?[0-9A-F]{4}$
+kSpecializedSemanticVariant;    space;  ^U\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?$
+kTaiwanTelegraph;   N/A;    ^[0-9]{4}$
+kTang;  space;  ^\*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+$
+kTotalStrokes;  space;  ^[1-9][0-9]{0,2}$
+kTraditionalVariant;    space;  ^U\+2?[0-9A-F]{4}$
+kVietnamese;    space;  ^[A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+$
+kXerox; N/A;    ^[0-9]{3}:[0-9]{3}
+kXHC1983;   space;  ^[0-9]{4}\.[0-9]{3}\*?(,[0-9]{4}\.[0-9]{3}\*?)*:[a-z\x{300}\x{301}\x{304}\x{308}\x{30C}]+$
+kZVariant;  space;  ^U\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?$
+
+# Regex Patterns from UAX #44 (supplemented & fixed)
+
+Script_Extensions ; MULTI_VALUED ;  null
+
+Numeric_Value ; SINGLE_VALUED ; $rational
+
+Case_Folding ;  SINGLE_VALUED ; $codePoints
+Decomposition_Mapping ; SINGLE_VALUED ; $codePoints
+FC_NFKC_Closure ;   SINGLE_VALUED ; $codePoints
+Lowercase_Mapping ; SINGLE_VALUED ; $codePoints
+Simple_Case_Folding ;   SINGLE_VALUED ; $codePoints
+Titlecase_Mapping ; SINGLE_VALUED ; $codePoints
+Uppercase_Mapping ; SINGLE_VALUED ; $codePoints
+
+NFKC_Casefold ; SINGLE_VALUED ; $codePoint0
+
+Bidi_Mirroring_Glyph ;  SINGLE_VALUED ; $codePoint
+Simple_Lowercase_Mapping ;  SINGLE_VALUED ; $codePoint
+Simple_Titlecase_Mapping ;  SINGLE_VALUED ; $codePoint
+Simple_Uppercase_Mapping ;  SINGLE_VALUED ; $codePoint
+
+Emoji_DCM ; SINGLE_VALUED ; [0-9A-F]{4}
+Emoji_KDDI ;    SINGLE_VALUED ; [0-9A-F]{4}
+Emoji_SB ;  SINGLE_VALUED ; [0-9A-F]{4}
+
+Name ;  SINGLE_VALUED ; $nameHack
+Name_Alias ;    SINGLE_VALUED ; $nameHack
+Name_Alias_Prov ;   SINGLE_VALUED ; $nameHack
+Named_Sequences ;   SINGLE_VALUED ; $nameHack
+
+ISO_Comment ;   SINGLE_VALUED ; $name
+Named_Sequences_Prov ;  SINGLE_VALUED ; $name
+
+Unicode_1_Name ;    SINGLE_VALUED ; $name1
+
+CJK_Radical ;   SINGLE_VALUED ; [1-9][0-9]?|1[0-9][0-9]|2(0[0-9]|1[0-4])|(90|120|147|149|154|159|162|16[7-9]|178|18[1-4]|187|19[5-7]|199|201|205|21[0-3])'
+
+# Should be catalog
+Jamo_Short_Name ;   SINGLE_VALUED ; GG?|N|DD?|R|M|BB?|SS?||JJ?|C|K|T|P|H|AE?|YAE?|EO?|YEO?|O|WAE?|OE|YO|U|WEO?|WI|YU|EU|YI|I|GS|NJ|NH|L|LG|LM|LB|LS|LT|LP|LH|BS|NG

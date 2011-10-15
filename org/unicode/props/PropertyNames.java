@@ -82,10 +82,20 @@ public class PropertyNames<T extends Enum> {
             return string2Enum.get(minimalize(string));
         }
         void put(String s, T value) {
-            string2Enum.put(minimalize(s), value);
+            if (s != null) {
+                string2Enum.put(minimalize(s), value);
+            }
         }
         public static String minimalize(String source) {
             return FLUFF.matcher(source.toLowerCase(Locale.ENGLISH)).replaceAll("");
+        }
+        public static boolean matches(String lastValue, String latestValue) {
+            if (lastValue == null) {
+                return latestValue == null;
+            } else if (latestValue == null) {
+                return false;
+            }
+            return minimalize(lastValue).equals(minimalize(latestValue));
         }
     }
 }
