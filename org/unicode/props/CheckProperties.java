@@ -2,22 +2,20 @@ package org.unicode.props;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 
 import org.unicode.cldr.util.Timer;
-import org.unicode.props.CheckProperties.Action;
-import org.unicode.props.IndexUnicodeProperties.PropertyInfo;
+import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
+import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
-
-import sun.text.normalizer.UTF16;
 
 import com.ibm.icu.dev.test.util.ICUPropertyFactory;
 import com.ibm.icu.dev.test.util.UnicodeMap;
@@ -27,7 +25,11 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public class CheckProperties {
-    enum Action {SHOW, COMPARE, CHECK}
+    static LinkedHashSet<String> PROPNAMEDIFFERENCES = new LinkedHashSet<String>();
+    static LinkedHashSet<String> SKIPPING = new LinkedHashSet<String>();
+    static LinkedHashSet<String> NOT_IN_ICU = new LinkedHashSet<String>();
+
+    enum Action {SHOW, COMPARE, CHECK, EMPTY, INFO}
     enum Extent {SOME, ALL}
 
     public static void main(String[] args) throws Exception {
@@ -46,7 +48,7 @@ public class CheckProperties {
         if (actions.size() == 0) actions = EnumSet.of(Action.CHECK);
 
         Timer total = new Timer();
-        for (Entry<String, PropertyInfo> entry : IndexUnicodeProperties.getFile2PropertyInfoSet().keyValueSet()) {
+        for (Entry<String, PropertyParsingInfo> entry : IndexUnicodeProperties.getFile2PropertyInfoSet().keyValueSet()) {
             if (IndexUnicodeProperties.SHOW_PROP_INFO) System.out.println(entry.getKey() + " ; " + entry.getValue());
         }
         IndexUnicodeProperties last = IndexUnicodeProperties.make("6.0.0");
@@ -73,8 +75,11 @@ public class CheckProperties {
 
         List<UcdProperty> values = extent == Extent.ALL ? Arrays.asList(UcdProperty.values()) : 
             Arrays.asList(
-                    UcdProperty.General_Category,
-                    UcdProperty.White_Space
+                    //UcdProperty.General_Category,
+                    UcdProperty.CJK_Radical,
+                    UcdProperty.Indic_Matra_Category,
+                    UcdProperty.Indic_Syllabic_Category,
+                    UcdProperty.Jamo_Short_Name
                     // Bidi_Mirroring_Glyph
                     //                    UcdProperty.CJK_Radical, 
                     //                    UcdProperty.Script_Extensions,
@@ -103,13 +108,59 @@ public class CheckProperties {
                     compareICU(prop, last);
                 }
                 break;
+            case EMPTY:
+                for (UcdProperty prop : values) {
+                    checkEmpty(latest, prop);
+                }
+                break;
+            case INFO:
+                Set<UcdProperty> missingRegex = EnumSet.noneOf(UcdProperty.class);
+                for (UcdProperty prop : UcdProperty.values()) {
+                    PropertyParsingInfo propInfo = IndexUnicodeProperties.getPropertyInfo(prop);
+                    System.out.println(propInfo);
+                    if (propInfo.regex == null || !propInfo.emptyValue.isEmpty())
+                    switch (prop.getType()) {
+                    case Binary: case Catalog: case Enumerated: break;
+                    default: missingRegex.add(prop);
+                    }
+                }
+                System.out.println("\nMissing Regex");
+                for (UcdProperty prop : missingRegex) {
+                    PropertyParsingInfo propInfo = IndexUnicodeProperties.getPropertyInfo(prop);
+                    System.out.println(
+                    prop + " ;\t"
+                    + propInfo.multivalued + " ;\t"
+                    + propInfo.regex
+                    );
+                }
+                break;
             }
         }
-        for (String s : SKIPPING) {
-            System.out.println(s);
+        System.out.println("Property Enum Canonical Form wrong");
+        for (String s : PROPNAMEDIFFERENCES) {
+            System.out.println("\t" + s);
         }
-        for (String s : IndexUnicodeProperties.ERRORS) {
-            System.out.println(s);   
+
+        System.out.println("No Differences");
+        for (String s : SKIPPING) {
+            System.out.println("\t" + s);
+        }
+
+        System.out.println("Not In ICU");
+        for (String s : NOT_IN_ICU) {
+            System.out.println("\t" + s);
+        }
+
+        for (Entry<UcdProperty, Set<String>> s : IndexUnicodeProperties.DATA_LOADING_ERRORS.keyValuesSet()) {
+            System.out.println("\t" + s.getKey());   
+            int max = 100;
+            for (String value : s.getValue()) {
+                System.out.println("\t\t" + value);   
+                if (--max < 0) {
+                    System.out.println("…");
+                    break;
+                }
+            }
         }
         Set<String> latestFiles = latest.fileNames;
         File dir = new File("/Users/markdavis/Documents/workspace/DATA/UCD/6.1.0-Update");
@@ -118,13 +169,37 @@ public class CheckProperties {
         System.out.println(total.toString());
     }
 
-    static ArrayList<String> SKIPPING = new ArrayList<String>();
-    
+    public static void checkEmpty(IndexUnicodeProperties latest, UcdProperty prop) {
+        UnicodeMap<String> map = latest.load(prop);
+        String defaultValue = IndexUnicodeProperties.getDefaultValue(prop);
+        UnicodeSet nullElements = map.getSet(null);
+
+        UnicodeSet empty = map.getSet("");
+        if (defaultValue.isEmpty()) {
+            empty.addAll(nullElements);
+        }
+        if (empty.size() != 0) {
+            System.out.println("Empty: " + prop + "\t" + abbreviate(empty, 100, false));
+        }
+
+        final String no_value_constant = IndexUnicodeProperties.SpecialValue.NO_VALUE.toString();
+        UnicodeSet no_value = map.getSet(no_value_constant);
+        if (defaultValue == no_value_constant) {
+            no_value.addAll(nullElements);
+        }
+        if (no_value.size() != 0) {
+            System.out.println("No_Value: " + prop + "\t" + abbreviate(no_value, 100, false));
+        }
+        //        if (nullElements.size() != 0 && (defaultValue == null || defaultValue.equals(no_value_constant) || defaultValue.isEmpty())) {
+        //            System.out.println("Null: " + prop + "\t" + defaultValue + "\t" + abbreviate(nullElements, 100, false));
+        //        }
+    }
+
     private static void compareICU(UcdProperty prop, IndexUnicodeProperties direct) {
         ICUPropertyFactory propFactory = ICUPropertyFactory.make();
         UnicodeProperty icuProp = propFactory.getProperty(prop.toString());
         if (icuProp == null) {
-            SKIPPING.add("Property not in ICU: " + prop);
+            NOT_IN_ICU.add(prop.toString());
             return;
         }
         final UnicodeMap<String> icuMap = icuProp.getUnicodeMap();
@@ -188,14 +263,15 @@ public class CheckProperties {
             captureChanges(prop, it.codepoint, last, lastValue, latest, latestValue, changes);
         }
         if (changes.size() == 0) {
-            SKIPPING.add(prop + "\tNO_CHANGES");
+            SKIPPING.add(prop.toString());
             return;
         }
         int limit = 30;
         for (String value : new TreeSet<String>(changes.values())) {
             final UnicodeSet chars = changes.getSet(value);
-            String charString = abbreviate(chars.toString(), 50, false);
-            System.out.println(prop + "\t" + value + "\t" + FIX_INVISIBLES.transform(chars.toPattern(false)) + "\t" + charString);
+            System.out.println(prop + "\t" + value 
+                    //+ "\t" + FIX_INVISIBLES.transform(chars.toPattern(false))
+                    + "\t" + abbreviate(chars, 50, false));
             if (--limit < 0) {
                 System.out.println("\t\tand more");
                 break;
@@ -210,6 +286,12 @@ public class CheckProperties {
         if (UnicodeProperty.equals(lastValue, latestValue)) {
             return;
         }
+        if (prop.getType() == PropertyType.Catalog || prop.getType() == PropertyType.Enumerated) {
+            if (PropertyNames.NameMatcher.matches(lastValue, latestValue)) {
+                PROPNAMEDIFFERENCES.add(prop + "\t" + abbreviate(lastValue, 50, true) + "\t≠\t" + abbreviate(latestValue, 50, true));
+                return;
+            }
+        }
         changes.put(codepoint, abbreviate(lastValue, 50, true) + "\t≠\t" + abbreviate(latestValue, 50, true));
     }
 
@@ -217,13 +299,20 @@ public class CheckProperties {
         return (value == null || value.isEmpty()) ? "∅" : value;
     }
 
-    static final Transliterator FIX_INVISIBLES = Transliterator.createFromRules("ID", "([[:c:][:di:]]) > &hex($1);", Transliterator.FORWARD);
-    static final Transliterator FIX_NON_ASCII8 = Transliterator.createFromRules("ID", "([[^\\u0000-\\u00FF][:c:][:di:]]) > &hex($1);", Transliterator.FORWARD);
+    static final Transliterator FIX_INVISIBLES = Transliterator.createFromRules("ID", "([[:c:][:di:]]) > ❮&hex/plain($1)❯ ;", Transliterator.FORWARD);
+    static final Transliterator FIX_NON_ASCII8 = Transliterator.createFromRules("ID", 
+            "([[:c:][:di:]]) > ❮&hex/plain($1)❯ ;" +
+            "([^\\u0000-\\u00FF]) > $1❮&hex/plain($1)❯ ;",
+            Transliterator.FORWARD);
+
+    public static String abbreviate(UnicodeSet chars, int maxLength, boolean showNonAscii) {
+        return abbreviate(chars.toPattern(false), maxLength, showNonAscii);
+    }
 
     public static String abbreviate(String charString, int maxLength, boolean showNonAscii) {
         charString = getDisplayValue(charString);
         if (charString.length() > maxLength) {
-            charString = charString.substring(0,50) + "…";
+            charString = charString.substring(0,maxLength) + "…";
         }
         if (showNonAscii) {
             String alt = FIX_NON_ASCII8.transform(charString);
@@ -241,7 +330,7 @@ public class CheckProperties {
         UnicodeMap<String> map = iup.load(prop);
         timer.stop();
         final Collection<String> values = map.values();
-        String sample = abbreviate(values.toString(), 20, false);
+        String sample = abbreviate(values.toString(), 150, false);
         System.out.println("\ttime: " + timer + "\tcodepoints: " + map.size() + "\tvalues: " + values.size() + "\tsample: " + sample);
         //        for (String value : map.getAvailableValues()) {
         //            System.out.println("\t" + value + " " + map.getSet(value));

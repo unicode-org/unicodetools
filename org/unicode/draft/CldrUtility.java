@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
@@ -65,28 +66,33 @@ public class CldrUtility {
     public static class VariableReplacer {
         // simple implementation for now
         private Map<String, String> m = new TreeMap<String, String>(Collections.reverseOrder());
+        /**
+         * Add a new variable
+         * @param variable
+         * @param value
+         * @return
+         */
         public VariableReplacer add(String variable, String value) {
             m.put(variable, value);
             return this;
         }
+        /**
+         * Replace all of the variables in the source, recursively.
+         * @param source
+         * @return
+         */
         public String replace(String source) {
             String oldSource;
             do {
                 oldSource = source;
-                for (Iterator<String> it = m.keySet().iterator(); it.hasNext();) {
-                    String variable = it.next();
-                    String value = m.get(variable);
-                    source = replaceAll(source, variable, value);
+                for (Entry<String, String> keyValue : m.entrySet()) {
+                    source = source.replace(keyValue.getKey(), keyValue.getValue());
                 }
             } while (!source.equals(oldSource));
             return source;
         }
-        public String replaceAll(String source, String key, String value) {
-            while (true) {
-                int pos = source.indexOf(key);
-                if (pos < 0) return source;
-                source = source.substring(0,pos) + value + source.substring(pos+key.length());
-            }
+        public static String replaceAll(String source, String key, String value) {
+            return source.replace(key, value);
         }
     }
 

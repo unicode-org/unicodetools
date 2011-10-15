@@ -1,8 +1,10 @@
 package org.unicode.props;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -13,10 +15,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.RegexUtilities;
+import org.unicode.draft.CldrUtility.VariableReplacer;
 import org.unicode.idna.Regexes;
+import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
+import org.unicode.props.IndexUnicodeProperties.SpecialValue;
 import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.props.PropertyUtilities.Joiner;
 import org.unicode.props.PropertyUtilities.Merge;
+import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
@@ -24,9 +31,13 @@ import sun.text.normalizer.UTF16;
 import com.ibm.icu.dev.test.util.Relation;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.Normalizer2.Mode;
+import com.ibm.icu.util.Output;
 import com.sun.jdi.InternalException;
 
 /**
@@ -36,60 +47,102 @@ import com.sun.jdi.InternalException;
  */
 public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public final static Pattern SEMICOLON = Pattern.compile("\\s*;\\s*");
+    public final static Pattern EQUALS = Pattern.compile("\\s*=\\s*");
+    public final static Pattern SPACE = Pattern.compile("\\s+");
+    static Pattern SLASHX = Pattern.compile("\\\\x\\{([0-9A-Fa-f]{1,6})\\}");
+    static Normalizer2 NFD = Normalizer2.getInstance(null, "NFC", Mode.DECOMPOSE);
+
+    static final Pattern MISSING_PATTERN = Pattern.compile("\\s*#\\s*@(missing|empty):?\\s*([A-Fa-f0-9]+)..([A-Fa-f0-9]+)\\s*" +
+    ";\\s*([^;]*)(?:\\s*;\\s*([^;]*)(?:\\s*;\\s*([^; ]*))?)?\\s*");
+
     public final static String FIELD_SEPARATOR = "␣";
     public final static Pattern TAB = Pattern.compile("[ ]*\t[ ]*");
-    static final boolean SHOW_PROP_INFO = false;
+    static final boolean SHOW_PROP_INFO = true;
     private static final boolean SHOW_LOADED = false;
-    static final Set<String> ERRORS = new LinkedHashSet<String>();
+    static final Relation<UcdProperty,String> DATA_LOADING_ERRORS 
+    = Relation.of(new EnumMap<UcdProperty,Set<String>>(UcdProperty.class), LinkedHashSet.class);
 
-    enum SpecialValue {CODEPOINT, Simple_Lowercase_Mapping, Simple_Titlecase_Mapping, Simple_Uppercase_Mapping}
+    enum SpecialValue {
+        NO_VALUE, NaN, CODE_POINT, CJK_UNIFIED_IDEOGRAPH, HANGUL_SYLLABLE, 
+        Script, Simple_Lowercase_Mapping, Simple_Titlecase_Mapping, Simple_Uppercase_Mapping;
+        static final HashMap<String, SpecialValue> mapping = new HashMap<String, SpecialValue>();
+        static {
+            mapping.put("<none>", NO_VALUE);
+            mapping.put("<slc>", Simple_Lowercase_Mapping);
+            mapping.put("<stc>", Simple_Titlecase_Mapping);
+            mapping.put("<suc>", Simple_Uppercase_Mapping);
+            mapping.put("<codepoint>", CODE_POINT);
+            mapping.put("<code point>", CODE_POINT);
+            mapping.put("<script>", Script);
+            mapping.put("NaN", NaN);
+            for (SpecialValue x :SpecialValue.values()) {
+                mapping.put(x.toString(), x);
+            }
+        }
+        static SpecialValue forString(String string) {
+            return mapping.get(string);
+        }
+    }
+    static VariableReplacer vr = new VariableReplacer();
 
     enum FileType {Field, HackField, PropertyValue, List, CJKRadicals, NamedSequences, NameAliases}
-    enum SpecialProperty {None, Skip1FT, Skip1ST, SkipAny4}
+    enum SpecialProperty {None, Skip1FT, Skip1ST, SkipAny4, Rational}
+    enum Multivalued {SINGLE_VALUED, CURRENTLY_SINGLE_VALUED, MULTI_VALUED}
+    static Map<String,Multivalued> toMultiValued = new HashMap();
+    static {
+        toMultiValued.put("N/A", Multivalued.SINGLE_VALUED);
+        toMultiValued.put("space", Multivalued.CURRENTLY_SINGLE_VALUED);
+        for (Multivalued multi : Multivalued.values()) {
+            toMultiValued.put(multi.toString(),multi);
+        }
+    }
 
     static final Joiner JOIN = new Joiner(FIELD_SEPARATOR);
 
-    static class PropertyInfo implements Comparable<PropertyInfo>{
+    static class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
         final String file;
         final UcdProperty property;
         final int fieldNumber;
         final SpecialProperty special;
-        final String defaultValue;
+        String defaultValue = SpecialValue.NO_VALUE.toString();
         //UnicodeMap<String> data;
         //final Set<String> errors = new LinkedHashSet<String>();
+        public String emptyValue = "";
+        Pattern regex = null;
+        Multivalued multivalued = Multivalued.SINGLE_VALUED;
 
-        public PropertyInfo(String... propertyInfo) {
+        public PropertyParsingInfo(String... propertyInfo) {
+            if (propertyInfo.length < 2 || propertyInfo.length > 4) {
+                throw new IllegalArgumentException("Must have 2 to 4 args: " + Arrays.asList(propertyInfo));
+            }
             this.file = propertyInfo[0];
             this.property = UcdProperty.forString(propertyInfo[1]);
             int temp = 1;
-            try {
+            if (propertyInfo.length > 2 && !propertyInfo[2].isEmpty()) {
+                //try {
                 temp = Integer.parseInt(propertyInfo[2]);
-            } catch (Exception e) {}
+                //                } catch (Exception e) {
+                //                    temp = temp;
+                //                }
+            }
             this.fieldNumber = temp;
             this.special = propertyInfo.length < 4 || propertyInfo[3].isEmpty()
             ? SpecialProperty.None 
                     : SpecialProperty.valueOf(propertyInfo[3]);
-            if (propertyInfo.length < 5 || propertyInfo[4].isEmpty()) {
-                this.defaultValue = 
-                    property.getType() == PropertyType.String ? SpecialValue.CODEPOINT.toString() 
-                            : property.getType() == PropertyType.Binary ? PropertyValues.Binary.No.toString()
-                                    : null;
-            } else {
-                String tempString = null;
-                try {
-                    SpecialValue tempValue = SpecialValue.valueOf(propertyInfo[4]);
-                    tempString = tempValue.toString();
-                } catch (Exception e) {
-                    tempString = propertyInfo[4].intern();
-                }
-                this.defaultValue = tempString;
-            }
         }
         public String toString() {
-            return file + " ; " + property + " ; " + fieldNumber;
+            return file + " ;\t"
+            + property + " ;\t"
+            + fieldNumber + " ;\t"
+            + special + " ;\t"
+            + defaultValue + " ;\t"
+            + emptyValue + " ;\t"
+            + multivalued + " ;\t"
+            + regex + " ;\t"
+            ;
         }
         @Override
-        public int compareTo(PropertyInfo arg0) {
+        public int compareTo(PropertyParsingInfo arg0) {
             int result;
             if (0 != (result = file.compareTo(arg0.file))) {
                 return result;
@@ -101,26 +154,37 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         public void put(UnicodeMap<String> data, IntRange intRange, String string, Merge<String> merger) {
+            if (string.isEmpty() && !emptyValue.isEmpty()) {
+                string = emptyValue;
+            }
             switch (property.getType()) {
             case Enumerated:
             case Catalog:
-//                if (property != UcdProperty.General_Category) {
-//                    break;
-//                }
             case Binary:
-                Enum item = property.getEnum(string);
-                if (item == null) {
-                    final String errorMessage = property + "\tBad enum value:\t" + string;
-                    if (ERRORS.add(errorMessage)) {
-                        property.getEnum(string);
+                if (multivalued == Multivalued.MULTI_VALUED && string.contains(" ")) {
+                    StringBuilder newString = new StringBuilder();
+                    for (String part : SPACE.split(string)) {
+                        if (newString.length() != 0) {
+                            newString.append(' ');
+                        }
+                        newString.append(checkEnum(part));
                     }
+                    string = newString.toString();
                 } else {
-                    string = item.toString();
+                    string = checkEnum(string);
                 }
                 break;
-            }
-            if (property.getType().equals(PropertyType.String) && !string.isEmpty()) {
-                string = Utility.fromHex(string);
+            case Numeric:
+            case Miscellaneous:
+                checkRegex2(string);
+                break;
+            case String:
+                // check regex
+                checkRegex2(string);
+                if (!string.isEmpty() && string != emptyValue) {
+                    string = Utility.fromHex(string);
+                }
+                break;
             }
             if (intRange.string != null) {
                 PropertyUtilities.putNew(data, intRange.string, string, JOIN);
@@ -134,6 +198,41 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
         }
+        public void checkRegex2(String string) {
+            if (regex == null) {
+                DATA_LOADING_ERRORS.put(property, "Regex missing");
+                return;
+            }
+            if (SpecialValue.forString(string) != null) {
+                return;
+            }
+            if (multivalued == Multivalued.MULTI_VALUED && string.contains(" ")) {
+                for (String part : SPACE.split(string)) {
+                    checkRegex(part);
+                }
+            } else {
+                checkRegex(string);
+            }
+        }
+        public String checkEnum(String string) {
+            Enum item = property.getEnum(string);
+            if (item == null) {
+                final String errorMessage = property + "\tBad enum value:\t" + string;
+                DATA_LOADING_ERRORS.put(property, errorMessage);
+            } else {
+                string = item.toString();
+            }
+            return string;
+        }
+        
+        public void checkRegex(String part) {
+            if (!regex.matcher(part).matches()) {
+                String part2 = NFD.normalize(part);
+                if (!regex.matcher(part2).matches()) {
+                    DATA_LOADING_ERRORS.put(property, "Regex failure: " + RegexUtilities.showMismatch(regex, part));
+                }
+            }
+        }
         public void put(UnicodeMap<String> data, IntRange intRange, String string) {
             put(data, intRange, string, null);
         }
@@ -141,9 +240,13 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     static Map<String, IndexUnicodeProperties> version2IndexUnicodeProperties = new HashMap();
 
-    static EnumMap<UcdProperty, PropertyInfo> property2PropertyInfo = new EnumMap<UcdProperty,PropertyInfo>(UcdProperty.class);
+    private static EnumMap<UcdProperty, PropertyParsingInfo> property2PropertyInfo = new EnumMap<UcdProperty,PropertyParsingInfo>(UcdProperty.class);
 
-    private static Relation<String,PropertyInfo> file2PropertyInfoSet = Relation.of(new HashMap<String,Set<PropertyInfo>>(), HashSet.class);
+    public static PropertyParsingInfo getPropertyInfo(UcdProperty property) {
+        return property2PropertyInfo.get(property);
+    }
+
+    private static Relation<String,PropertyParsingInfo> file2PropertyInfoSet = Relation.of(new HashMap<String,Set<PropertyParsingInfo>>(), HashSet.class);
 
     static Map<String,FileType> file2Type = new HashMap<String,FileType>();
 
@@ -159,7 +262,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 PropertyUtilities.putNew(file2Type, parts[1], FileType.valueOf(parts[2]));
             } else {
                 final UcdProperty prop = UcdProperty.forString(parts[1]);
-                final PropertyInfo propertyInfo = new PropertyInfo(parts);
+                final PropertyParsingInfo propertyInfo = new PropertyParsingInfo(parts);
                 try {
                     PropertyUtilities.putNew(property2PropertyInfo, prop, propertyInfo);
                     getFile2PropertyInfoSet().put(parts[0], propertyInfo);
@@ -168,16 +271,86 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
         }
-        for (String file : new TreeSet<String>(getFile2PropertyInfoSet().keySet())) {
-            Set<PropertyInfo> props = getFile2PropertyInfoSet().getAll(file);
-            for (PropertyInfo prop : new TreeSet<PropertyInfo>(props)) {
-                if (SHOW_PROP_INFO) System.out.println(prop);
+        for (String line : FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", Default.ucdVersion(), true, true))) {
+            handleMissing(FileType.PropertyValue, null, line);
+        }
+        for (String file : Arrays.asList("ExtraPropertyAliases.txt","ExtraPropertyValueAliases.txt")) {
+            for (String line : FileUtilities.in(IndexUnicodeProperties.class, file)) {
+                handleMissing(FileType.PropertyValue, null, line);
             }
         }
+        for (String line : FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {
+            getRegexInfo(line);
+        }
+
+        for (String line : FileUtilities.in(IndexUnicodeProperties.class, "Multivalued.txt")) {
+            UcdProperty prop = UcdProperty.forString(line);
+            PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
+            propInfo.multivalued = Multivalued.MULTI_VALUED;
+        }
+
         //        for (UcdProperty x : UcdProperty.values()) {
         //            if (property2PropertyInfo.containsKey(x.toString())) continue;
         //            if (SHOW_PROP_INFO) System.out.println("Missing: " + x);
         //        }
+    }
+
+    public static void getRegexInfo(String line) {
+        if (line.startsWith("$")) {
+            String[] parts = EQUALS.split(line);
+            vr.add(parts[0], vr.replace(parts[1]));
+            return;
+        }
+        if (line.isEmpty() || line.startsWith("#")) {
+            return;
+        }
+        // have to do this painfully, since the regex may contain semicolons
+        String original = line;
+        line = vr.replace(line);
+        if (!line.equals(original)) {
+            line = vr.replace(original);
+            System.out.println(original + "=>" + line);
+        }
+        Matcher m = SEMICOLON.matcher(line);
+        if (!m.find()) {
+            throw new IllegalArgumentException("Bad semicolons in: " + line);
+        }
+        String propName = line.substring(0, m.start());
+        int propNameEnd = m.end();
+        if (!m.find()) {
+            throw new IllegalArgumentException("Bad semicolons in: " + line);
+        }
+        String multivalued = line.substring(propNameEnd, m.start());
+        String regex = line.substring(m.end());
+        UcdProperty prop = UcdProperty.forString(propName);
+        PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
+        if (regex.equals("null")) {
+            propInfo.regex = null;
+        } else {
+            propInfo.regex = hackCompile(regex);
+        }
+        propInfo.multivalued = toMultiValued.get(multivalued);
+        if (propInfo.multivalued == null) {
+            throw new IllegalArgumentException("Bad multivalued in: " + line);
+        }
+    }
+
+    public static Pattern hackCompile(String regex) {
+        if (regex.contains("\\x")) {
+            StringBuilder builder = new StringBuilder();
+            Matcher m = SLASHX.matcher(regex);
+            int start = 0;
+            while (m.find()) {
+                builder.append(regex.substring(start, m.start()));
+                final int codePoint = Integer.parseInt(m.group(1),16);
+                //System.out.println("\\x char:\t" + new StringBuilder().appendCodePoint(codePoint));
+                builder.appendCodePoint(codePoint);
+                start = m.end();
+            }
+            builder.append(regex.substring(start));
+            regex = builder.toString();
+        }
+        return Pattern.compile(regex);
     }
 
     private IndexUnicodeProperties(String ucdVersion2) {
@@ -205,15 +378,15 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         if (data0 != null) {
             return data0;
         }
-        PropertyInfo fileInfo = property2PropertyInfo.get(prop2);
-        Set<PropertyInfo> propInfoSet = getFile2PropertyInfoSet().get(fileInfo.file);
+        PropertyParsingInfo fileInfo = property2PropertyInfo.get(prop2);
+        Set<PropertyParsingInfo> propInfoSet = getFile2PropertyInfoSet().get(fileInfo.file);
 
         FileType fileType = file2Type.get(fileInfo.file);
         if (fileType == null) {
             fileType = FileType.Field;
         }
 
-        for (PropertyInfo propInfo : propInfoSet) {
+        for (PropertyParsingInfo propInfo : propInfoSet) {
             PropertyUtilities.putNew(property2UnicodeMap, propInfo.property, new UnicodeMap<String>());
         }
 
@@ -243,6 +416,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 if (hashPos >= 0) {
                     if (line.contains("# EOF")) {
                         containsEOF = true;
+                    } else {
+                        handleMissing(fileType, propInfoSet, line);
                     }
                     line = line.substring(0,hashPos);
                 }
@@ -265,7 +440,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
                 switch(fileType) {
                 case CJKRadicals: {
-                    PropertyInfo propInfo = property2PropertyInfo.get(UcdProperty.CJK_Radical);
+                    PropertyParsingInfo propInfo = property2PropertyInfo.get(UcdProperty.CJK_Radical);
                     UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
                     intRange.set(parts[1]);
                     propInfo.put(data, intRange, parts[0]); 
@@ -274,7 +449,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     break;
                 }
                 case NamedSequences: {
-                    for (PropertyInfo propInfo : propInfoSet) {
+                    for (PropertyParsingInfo propInfo : propInfoSet) {
                         UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
                         intRange.set(parts[1]);
                         propInfo.put(data, intRange, parts[0]); 
@@ -282,7 +457,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     break;
                 }
                 case PropertyValue: {
-                    PropertyInfo propInfo = property2PropertyInfo.get(UcdProperty.forString(parts[1]));
+                    PropertyParsingInfo propInfo = property2PropertyInfo.get(UcdProperty.forString(parts[1]));
                     UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
                     if (!propInfoSet.contains(propInfo)) {
                         throw new IllegalArgumentException("Property not listed for file: " + propInfo);
@@ -309,16 +484,34 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                         intRange.start = lastCodepoint + 1;
                     }
                     if (parts[1].startsWith("<")) {
-                        parts[1] = null;
+                        if (parts[1].contains("Ideograph")) {
+                            parts[1] = SpecialValue.CJK_UNIFIED_IDEOGRAPH.toString();
+                        } else if (parts[1].contains("Hangul Syllable")) {
+                            parts[1] = SpecialValue.HANGUL_SYLLABLE.toString();
+                        } else {
+                            parts[1] = SpecialValue.NO_VALUE.toString();
+                        }
                     }
                     lastCodepoint = intRange.end;
                     //$FALL-THROUGH$
                 case Field:
                 {
-                    for (PropertyInfo propInfo : propInfoSet) {
+                    for (PropertyParsingInfo propInfo : propInfoSet) {
                         UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
+                        String string = parts[propInfo.fieldNumber];
                         switch(propInfo.special) {
-                        case None: break;
+                        case None: 
+                            break;
+                        case Rational: 
+                            int slashPos = string.indexOf('/');
+                            double rational;
+                            if (slashPos < 0) {
+                                rational = Double.parseDouble(string);
+                            } else {
+                                rational = Double.parseDouble(string.substring(0,slashPos)) / Double.parseDouble(string.substring(slashPos+1));
+                            }
+                            string = Double.toString(rational);
+                            break;
                         case Skip1ST: 
                             if ("ST".contains(parts[1])) {
                                 continue;
@@ -336,8 +529,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             break;
                         default: throw new IllegalArgumentException();
                         }
-                        String string = parts[propInfo.fieldNumber];
-                        if (fileType == fileType.HackField && propInfo.fieldNumber == 5) {
+                        if (fileType == FileType.HackField && propInfo.fieldNumber == 5) {
                             int dtEnd = string.indexOf('>');
                             if (dtEnd >= 0) {
                                 string = string.substring(dtEnd + 1).trim();
@@ -352,7 +544,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     if (propInfoSet.size() != 1) {
                         throw new IllegalArgumentException("List files must have only one property, and must be Boolean");
                     }
-                    PropertyInfo propInfo = propInfoSet.iterator().next();
+                    PropertyParsingInfo propInfo = propInfoSet.iterator().next();
                     UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
                     //prop.data.putAll(UnicodeSet.ALL_CODE_POINTS, "No");
                     propInfo.put(data, intRange, "Yes");
@@ -365,9 +557,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 System.out.println("Version\t" + ucdVersion + "\tLoaded: " + fileInfo.file + "\tlines: " + lineCount + (containsEOF ? "" : "\t*NO '# EOF'"));
             }
         }
-        for (PropertyInfo propInfo : propInfoSet) {
+        for (PropertyParsingInfo propInfo : propInfoSet) {
             UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
-            if (propInfo.defaultValue != null) {
+            if (propInfo.defaultValue != SpecialValue.NO_VALUE.toString()) {
                 UnicodeSet nullValues = data.getSet(null);
                 data.putAll(nullValues, propInfo.defaultValue);
             }
@@ -376,11 +568,94 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return property2UnicodeMap.get(prop2);
     }
 
-    static void setFile2PropertyInfoSet(Relation<String,PropertyInfo> file2PropertyInfoSet) {
+    public static void handleMissing(FileType fileType, Set<PropertyParsingInfo> propInfoSet, String missing) {
+        if (!missing.contains("@missing") && !missing.contains("@empty")) {
+            return;
+        }
+        final Matcher missingMatcher = MISSING_PATTERN.matcher(missing);
+        if (!missingMatcher.matches()) {
+            System.out.println(RegexUtilities.showMismatch(MISSING_PATTERN, missing));
+            throw new IllegalArgumentException("Bad @missing statement");
+        }
+        boolean isEmpty = missingMatcher.group(1).equals("empty");
+        int start = Integer.parseInt(missingMatcher.group(2),16);
+        int end = Integer.parseInt(missingMatcher.group(3),16);
+        if (start != 0 || end != 0x10FFFF) {
+            System.out.println("Unexpected range: " + missing);
+        }
+        // # @missing: 0000..10FFFF; cjkIRG_KPSource; <none>
+
+        String value1 = missingMatcher.group(4);
+        String value2 = missingMatcher.group(5);
+        String value3 = missingMatcher.group(6);
+        switch (fileType) {
+        case Field: {
+            for (PropertyParsingInfo propInfo : propInfoSet) {
+                String value = propInfo.fieldNumber == 1 ? value1 
+                        : propInfo.fieldNumber == 2 ? value2 
+                                : value3;
+                setPropDefault(propInfo.property, value, missing, isEmpty);
+            }
+            break;
+        }
+        case PropertyValue: {
+            UcdProperty ucdProp = UcdProperty.forString(value1);
+            PropertyParsingInfo propInfo = property2PropertyInfo.get(ucdProp);
+            setPropDefault(propInfo.property, value2, missing, isEmpty);
+            break;
+        }
+        default:
+            System.out.println("Unhandled missing line: " + missing);
+        }
+    }
+
+    public static void setPropDefault(UcdProperty prop, String value, String line, boolean isEmpty) {
+        String comment = "";
+        PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
+
+        // regularize value
+        SpecialValue temp = SpecialValue.forString(value);
+        if (temp != null) {
+            value = temp.toString();
+        }
+        Enum v2 = prop.getEnum(value);
+        value = v2 == null ? value : v2.toString();
+
+        if (isEmpty) {
+            propInfo.emptyValue  = value;
+        }
+
+        //        if ("<none>".equals(value)) {
+        //            value = null;
+        //        } else if ("<code point>".equals(value) || "<codepoint>".equals(value)) {
+        //            value = SpecialValue.CODEPOINT.toString();
+        //        }
+        if (propInfo.defaultValue == value) {
+            if (true) return;
+            comment = "** Default Value ok already";
+        } else if (propInfo.defaultValue == SpecialValue.NO_VALUE.toString()) {
+            propInfo.defaultValue = value;
+            if (true) return;
+            comment = "\t ** Setting Default";
+        } else {
+            comment = "\t ** Can't set default, was " + propInfo.defaultValue;
+        }
+        System.out.println(comment
+                + ":\tprop:\t" + prop
+                //+ Utility.hex(start) + ".." + Utility.hex(end)
+                + "\tvalue:\t" + value
+                + "\tline:\t" + line
+        );
+    }
+
+    // # @missing: 0000..10FFFF; cjkIRG_KPSource; <none>
+    // # @missing: 0000..10FFFF; Other
+
+    static void setFile2PropertyInfoSet(Relation<String,PropertyParsingInfo> file2PropertyInfoSet) {
         IndexUnicodeProperties.file2PropertyInfoSet = file2PropertyInfoSet;
     }
 
-    static Relation<String,PropertyInfo> getFile2PropertyInfoSet() {
+    static Relation<String,PropertyParsingInfo> getFile2PropertyInfoSet() {
         return file2PropertyInfoSet;
     }
 
@@ -408,15 +683,21 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public static String getResolvedValue(IndexUnicodeProperties props, UcdProperty prop, int codepoint, String value) {
-        if (value == null || value.isEmpty()) {
-            value = property2PropertyInfo.get(prop).defaultValue;
+        if (value == null) {
+            value = getDefaultValue(prop);
         }
         if (props != null && (value == null || value.length() > 8)) {
             try {
                 SpecialValue specialValue = SpecialValue.valueOf(value);
                 switch (specialValue) {
-                case CODEPOINT: 
+                case CODE_POINT: 
                     return UTF16.valueOf(codepoint);
+                case CJK_UNIFIED_IDEOGRAPH: 
+                    return "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codepoint,4);
+                case HANGUL_SYLLABLE: 
+                    return UCharacter.getName(codepoint); // these are fixed, so we'll just use ICU
+                case Script: 
+                    return props.getResolvedValue(UcdProperty.Script, codepoint);
                 case Simple_Lowercase_Mapping: 
                     return props.getResolvedValue(UcdProperty.Simple_Lowercase_Mapping, codepoint);
                 case Simple_Titlecase_Mapping: 
@@ -429,6 +710,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             } catch (Exception e) {}
         }
         return value;
+    }
+
+    public static String getDefaultValue(UcdProperty prop) {
+        return property2PropertyInfo.get(prop).defaultValue;
     }
 
     public String getResolvedValue(UcdProperty prop, int codepoint) {

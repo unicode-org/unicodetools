@@ -17,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
@@ -58,6 +59,9 @@ public class GenerateEnums {
     static Map<String,PropName> lookup = new HashMap<String,PropName>();
     static Map<String,PropName> lookupMain = new TreeMap<String,PropName>();
 
+    private static final Pattern PROPER_LONG_NAME = Pattern.compile("[A-Z]+[0-9]?[a-z]*(_[A-Z0-9]+[a-z]*)*");
+    private static final Pattern PROPER_CJK_LONG_NAME = Pattern.compile("(cj)?k[A-Z][a-z]*(_?[A-Z0-9][a-z]*)*");
+
     static class PropName implements Comparable<PropName>{
         final PropertyType propertyType;
         final String shortName;
@@ -68,6 +72,9 @@ public class GenerateEnums {
             propertyType = type;
             shortName = strings[0];
             longName = strings[1];
+            if (!isProperLongName(longName, true)) {
+                System.out.println("Improper long name: " + longName);
+            }
             if (strings.length == 2) {
                 others = Collections.emptyList();
             } else {
@@ -83,6 +90,16 @@ public class GenerateEnums {
                 lookup.put(name, this);
             }
             lookupMain.put(longName, this);
+        }
+        private static boolean isProperLongName(String longName2, boolean allowCjk) {
+            boolean result = PROPER_LONG_NAME.matcher(longName2).matches();
+            if (result == false && allowCjk) {
+                result = PROPER_CJK_LONG_NAME.matcher(longName2).matches();
+            }
+            if (result == false) {
+                System.out.println(RegexUtilities.showMismatch(PROPER_LONG_NAME, longName2));
+            }
+            return result;
         }
         public String toString() {
             return "{" + propertyType + ",\t" + longName + ",\t" + shortName + ",\t" + others + "}";
@@ -106,12 +123,12 @@ public class GenerateEnums {
 
 
     public static void writeValueEnumFile(Map<PropName, List<String[]>> values) throws IOException {
-        PrintWriter output;
-        output = BagFormatter.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
+        PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
         output.println("package org.unicode.props;\npublic class PropertyValues {");
 
         //[Alpha, N, No, F, False]
         addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", Default.ucdVersion(), true, true)));
+        addPropertyValueAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyValueAliases.txt"));
 
         output.println(
                 "    public enum Binary {\n"+
@@ -129,6 +146,7 @@ public class GenerateEnums {
 
         for (Entry<PropName, List<String[]>> value : values.entrySet()) {
             final PropName propName = value.getKey();
+            System.out.println("Writing:\t" + propName.longName);
             if (propName.propertyType == PropertyType.Binary) {
                 continue;
             }
@@ -141,7 +159,16 @@ public class GenerateEnums {
             StringBuilder constants = new StringBuilder();
             boolean first = true;
             for (String[] parts : partList) {
-                final String longName = parts[2];
+                String longName = parts[2];
+                
+                // HACK
+                if (propName.shortName.equals("ccc")) {
+                    longName = parts[3];
+                }
+                if (!PropName.isProperLongName(longName, false)) {
+                    System.out.println("Improper long value name for " + parts[0] + 
+                    		": " + longName);
+                }
                 if (first) {
                     first = false;
                     output.print("        ");
@@ -149,7 +176,7 @@ public class GenerateEnums {
                     output.print(",\n        ");
                 }
                 output.print(fix(longName));
-                writeOtherNames2(output, parts);
+                writeOtherNames2(output, longName, parts);
 
                 for (int i = 1; i < parts.length; ++i) {
                     final String otherName = parts[i];
@@ -163,11 +190,13 @@ public class GenerateEnums {
                 }
             }
             String enumName = propName.longName;
+            String valuesName = enumName + "_Values.class"; // HACK
+            
             output.println(
                     ";\n"  +
                     "        private final PropertyNames<" + enumName + "_Values> names;\n"+
                     "        private " + enumName + "_Values (String shortName, String...otherNames) {\n"+
-                    "            names = new PropertyNames(" + enumName + "_Values.class, this, shortName, otherNames);\n"+
+                    "            names = new PropertyNames(" + valuesName + ", this, shortName, otherNames);\n"+
                     "        }\n"+
                     "        public PropertyNames<" + enumName + "_Values> getNames() {\n"+
                     "            return names;\n"+
@@ -181,18 +210,26 @@ public class GenerateEnums {
 
     // otherNames are x, short, long, others
     // we don't need to do x or long
-    public static void writeOtherNames2(PrintWriter output, String... otherNames) {
+    public static void writeOtherNames2(PrintWriter output, String longName, String... otherNames) {
         output.print("(");
+        boolean haveOne = false;
         for (int i = 1; i < otherNames.length; ++i) {
-            if (i == 2) continue;
             String name = otherNames[i];
-            if (name.equals("n/a")) {
-                name = "null";
-            }
             if (i != 1) {
+                if (longName.equals(name)) {
+                    continue;
+                }
                 output.print(", ");
             }
-            output.print("\"" + name + "\"");
+            if (name.equals("n/a")) {
+                output.print("null");
+            } else {
+                output.print("\"" + name + "\"");
+            }
+            haveOne = true;
+        }
+        if (!haveOne) {
+            output.print("null");
         }
         output.print(")");
     }
@@ -248,7 +285,7 @@ public class GenerateEnums {
                     break;
                 case Enumerated:
                 case Catalog:
-                    classItem = "PropertyValues." + pname.longName + "_Values.class";
+                    classItem = "PropertyValues." + ("Script_Extensions".equals(pname.longName) ? "Script" : pname.longName) + "_Values.class"; // HACK!
                     break;
                 }
                 writeOtherNames(output, type, classItem, pname.longName, pname.shortName);
@@ -349,7 +386,7 @@ public class GenerateEnums {
             }
             PropName propName = new PropName(type, parts);
             values.put(propName, new ArrayList<String[]>());
-            //System.out.println(propNames);
+            System.out.println(propName);
             //            if (!Locations.contains(propName.longName)) {
             //                System.out.println("Missing file: " + propName.longName);
             //            }

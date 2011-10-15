@@ -1,8 +1,24 @@
 # ================================================
-# Miscellaneous Properties
+# Enumerated Properties
 # ================================================
+
 IMC ; Indic_Matra_Category
 ISC ; Indic_Syllabic_Category
+SCX ; Script_Extensions
+
+# ================================================
+# Miscellaneous Properties
+# ================================================
+
+CJKR ; CJK_Radical
+    
+EDCM ; Emoji_DCM
+EKDDI ; Emoji_KDDI
+ESB ; Emoji_SB
+NAP ; Name_Alias_Prov
+NS ; Named_Sequences
+NSP ; Named_Sequences_Prov
+
 cjkCheungBauerIndex ; kCheungBauerIndex
 cjkCowles ; kCowles
 cjkDaeJaweon ; kDaeJaweon
@@ -78,16 +94,3 @@ cjkSimplifiedVariant ; kSimplifiedVariant
 cjkSpecializedSemanticVariant ; kSpecializedSemanticVariant
 cjkTraditionalVariant ; kTraditionalVariant
 cjkZVariant ; kZVariant
-
-# ================================================
-# Miscellaneous Properties
-# ================================================
-SCX ; Script_Extensions
-CJKR ; CJK_Radical
-    
-EDCM ; Emoji_DoCoMo
-EKDDI ; Emoji_KDDI
-ESB ; Emoji_SoftBank
-NAP ; Name_Alias_Prov
-NS ; Named_Sequences
-NSP ; Named_Sequences_Prov
