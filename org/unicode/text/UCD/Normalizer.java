@@ -14,8 +14,8 @@ package org.unicode.text.UCD;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
 
-import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
@@ -266,24 +266,7 @@ public final class Normalizer implements Transform<String,String>, UCD_Types {
     */
 
     public void getCompositionStatus(BitSet leading, BitSet trailing, BitSet resulting) {
-        Iterator it = data.compTable.keySet().iterator();
-        while (it.hasNext()) {
-            Long key = (Long)it.next();
-            Integer result = (Integer)data.compTable.get(key);
-            long keyLong = key.longValue();
-            if (leading != null) leading.set((int)(keyLong >>> 32));
-            if (trailing != null) trailing.set((int)keyLong);
-            if (resulting != null) resulting.set(result.intValue());
-        }
-        for (int i = UCD.LBase; i < UCD.TLimit; ++i) {
-            if (leading != null && UCD.isLeadingJamo(i)) leading.set(i); // set all initial Jamo (that form syllables)
-            if (trailing != null && UCD.isNonLeadJamo(i)) trailing.set(i); // set all final Jamo (that form syllables)
-        }
-        if (leading != null) {
-            for (int i = UCD.SBase; i < UCD.SLimit; ++i) {
-                if (UCD.isDoubleHangul(i)) leading.set(i); // set all two-Jamo syllables
-            }
-        }
+        data.getCompositionStatus(leading, trailing, resulting);
     }
 
     public boolean isTrailing(int cp) {
@@ -408,166 +391,19 @@ public final class Normalizer implements Transform<String,String>, UCD_Types {
         target.setLength(compPos);
     }
 
-    static class Stub {
-        private UCD ucd;
-        private HashMap compTable = new HashMap();
-        private BitSet isSecond = new BitSet();
-        private BitSet isFirst = new BitSet();
-        private BitSet canonicalRecompose = new BitSet();
-        private BitSet compatibilityRecompose = new BitSet();
-        static final int NOT_COMPOSITE = 0xFFFF;
-
-        Stub(String version) {
-            ucd = UCD.make(version);
-            for (int i = 0; i < 0x10FFFF; ++i) {
-                if (!ucd.isAssigned(i)) continue;
-                if (ucd.isPUA(i)) continue;
-                if (ucd.isNonLeadJamo(i)) isSecond.set(i);
-                if (ucd.isLeadingJamoComposition(i)) isFirst.set(i);
-                byte dt = ucd.getDecompositionType(i);
-                if (dt != CANONICAL) continue;
-                if (!ucd.getBinaryProperty(i, CompositionExclusion)) {
-                    try {
-                        String s = ucd.getDecompositionMapping(i);
-                        int len = UTF16.countCodePoint(s);
-                        if (len != 2) {
-                            if (len > 2) {
-                                if (ucd.getVersion().compareTo("3.0.0") >= 0) {
-                                    throw new IllegalArgumentException("BAD LENGTH: " + len + ucd.toString(i));
-                                }
-                            }
-                            continue;
-                        }
-                        int a = UTF16.charAt(s, 0);
-                        if (ucd.getCombiningClass(a) != 0) continue;
-                        isFirst.set(a);
-
-                        int b = UTF16.charAt(s, UTF16.getCharCount(a));
-                        isSecond.set(b);
-
-                        // have a recomposition, so set the bit
-                        canonicalRecompose.set(i);
-
-                        // set the compatibility recomposition bit
-                        // ONLY if the component characters
-                        // don't compatibility decompose
-                        if (ucd.getDecompositionType(a) <= CANONICAL
-                         && ucd.getDecompositionType(b) <= CANONICAL) {
-                            compatibilityRecompose.set(i);
-                         }
-
-                        long key = (((long)a)<<32) | b;
-
-                        /*if (i == '\u1E0A' || key == 0x004400000307) {
-                            System.out.println(Utility.hex(s));
-                            System.out.println(Utility.hex(i));
-                            System.out.println(Utility.hex(key));
-                        }*/
-                        compTable.put(new Long(key), new Integer(i));
-                    } catch (Exception e) {
-                        throw new ChainException("Error: {0}", new Object[]{ucd.toString(i)}, e);
-                    }
-                }
-            }
-            // process compatibilityRecompose
-            // have to do this afterwards, since we don't know whether the pieces
-            // are allowable until we have processed all the characters
-            /*
-            Iterator it = compTable.keySet().iterator();
-            while (it.hasNext()) {
-                Long key = (Long)it.next();
-                int cp = compTable.get(key);
-                long keyLong = key.longValue();
-                int first = (int)(keyLong >>> 32);
-                int second = (int)keyLong;
-                if (ucd.
-            */
-        }
-        
-        String getUCDVersion() {
-        	return ucd.getVersion();
-        }
-        
-        /*
-Problem: differs: true, call: false U+0385 GREEK DIALYTIKA TONOS
-Problem: differs: true, call: false U+03D3 GREEK UPSILON WITH ACUTE AND HOOK SYMBOL
-Problem: differs: true, call: false U+03D4 GREEK UPSILON WITH DIAERESIS AND HOOK SYMBOL
-Problem: differs: true, call: false U+1E9B LATIN SMALL LETTER LONG S WITH DOT ABOVE
-Problem: differs: true, call: false U+1FC1 GREEK DIALYTIKA AND PERISPOMENI
-Problem: differs: true, call: false U+1FCD GREEK PSILI AND VARIA
-Problem: differs: true, call: false U+1FCE GREEK PSILI AND OXIA
-Problem: differs: true, call: false U+1FCF GREEK PSILI AND PERISPOMENI
-Problem: differs: true, call: false U+1FDD GREEK DASIA AND VARIA
-Problem: differs: true, call: false U+1FDE GREEK DASIA AND OXIA
-Problem: differs: true, call: false U+1FDF GREEK DASIA AND PERISPOMENI
-Problem: differs: true, call: false U+1FED GREEK DIALYTIKA AND VARIA
-*/
-
-        short getCanonicalClass(int cp) {
-            return ucd.getCombiningClass(cp);
-        }
-
-        boolean isTrailing(int cp) {
-            return isSecond.get(cp);
-        }
-
-        boolean isLeading(int cp) {
-            return isFirst.get(cp);
-        }
-
-        boolean normalizationDiffers(int cp, boolean composition, boolean compat) {
-            byte dt = ucd.getDecompositionType(cp);
-            if (!composition) {
-                if (compat) return dt >= CANONICAL;
-                else return dt == CANONICAL;
-            } else {
-                // almost the same, except that we add back in the characters
-                // that RECOMPOSE
-                if (compat) return dt >= CANONICAL && !compatibilityRecompose.get(cp);
-                else return dt == CANONICAL && !canonicalRecompose.get(cp);
-            }
-        }
-
-        public void getRecursiveDecomposition(int cp, StringBuffer buffer, boolean compat) {
-            byte dt = ucd.getDecompositionType(cp);
-            // we know we decompose all CANONICAL, plus > CANONICAL if compat is TRUE.
-            if (dt == CANONICAL || dt > CANONICAL && compat) {
-                String s = ucd.getDecompositionMapping(cp);
-                if (s.equals(UTF16.valueOf(cp))) {
-                    System.out.println("fix");
-                }
-                for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-                    cp = UTF16.charAt(s, i);
-                    getRecursiveDecomposition(cp, buffer, compat);
-                }
-            } else {
-                UTF16.append(buffer, cp);
-            }
-        }
-
-        int getPairwiseComposition(int starterCh, int ch) {
-            int hangulPoss = UCD.composeHangul(starterCh, ch);
-            if (hangulPoss != 0xFFFF) return hangulPoss;
-            Object obj = compTable.get(new Long((((long)starterCh)<<32) | ch));
-            if (obj == null) return 0xFFFF;
-            return ((Integer)obj).intValue();
-        }
-
-    }
-
     /**
     * Contains normalization data from the Unicode Character Database.
     * use false for the minimal set, true for the real set.
     */
-    private Stub data;
+    private NormalizationDataStandard data;
 
     private static HashMap versionCache = new HashMap();
 
-    private static Stub getData (String version) {
+    private static NormalizationDataStandard getData (String version) {
         if (version.length() == 0) version = UCD.latestVersion;
-        Stub result = (Stub)versionCache.get(version);
+        NormalizationDataStandard result = (NormalizationDataStandard)versionCache.get(version);
         if (result == null) {
-            result = new Stub(version);
+            result = new NormalizationDataStandard(version);
             versionCache.put(version, result);
         }
         return result;
@@ -595,7 +431,7 @@ Problem: differs: true, call: false U+1FED GREEK DIALYTIKA AND VARIA
        StringBuffer b = new StringBuffer();
        main:
        for (int i = 0; i <= 0x10FFFF; ++i) {
-           boolean compat = data.ucd.getDecompositionType(i) >= data.ucd.CANONICAL; 
+           boolean compat = data.hasCompatDecomposition(i); 
            if (!compat) continue;
            b.setLength(0);
            data.getRecursiveDecomposition(i, b, true);
@@ -606,8 +442,9 @@ Problem: differs: true, call: false U+1FED GREEK DIALYTIKA AND VARIA
            int cp;
            for (int j = 1; j < b.length(); j += UTF16.getCharCount(cp)) {
                cp = UTF16.charAt(b,j);
-               int cat = data.ucd.getCategory(cp);
-               if (cat != data.ucd.Mn && cat != data.ucd.Me) continue main;
+               if (data.isNonSpacing(cp)) {
+                   continue main;
+               }
            }
            spacingMap.put(i, UTF16.valueOf(i));
         }

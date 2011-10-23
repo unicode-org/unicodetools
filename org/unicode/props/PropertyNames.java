@@ -9,6 +9,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * PropertyNames is a list of long, short, and other names.
+ * @author markdavis
+ *
+ * @param <T>
+ */
 public class PropertyNames<T extends Enum> {
     public enum PropertyType {
         Numeric, String, Miscellaneous, Catalog, Enumerated, Binary,
@@ -16,7 +22,7 @@ public class PropertyNames<T extends Enum> {
 
     final static Map<Class, NameMatcher> CLASS2NAME2ENUM = new HashMap<Class, NameMatcher>();
 
-    private final NameMatcher            name2enum;
+    private final NameMatcher                  name2enum;
     private final String                       shortName;
     private final List<String>                 otherNames;
     private final T                            enumItem;
@@ -27,7 +33,7 @@ public class PropertyNames<T extends Enum> {
         this.otherNames = Arrays.asList(otherNames);
         NameMatcher name2enumExisting = CLASS2NAME2ENUM.get(classItem);
         if (name2enumExisting == null) {
-            CLASS2NAME2ENUM.put(classItem, name2enumExisting = new NameMatcher());
+            CLASS2NAME2ENUM.put(classItem, name2enumExisting = new NameMatcher(this));
         }
         this.name2enum = name2enumExisting;
         //name2enumExisting.put(this.shortName, enumItem);
@@ -77,7 +83,12 @@ public class PropertyNames<T extends Enum> {
     static Pattern FLUFF = Pattern.compile("[-_ ]");
     
     public static class NameMatcher<T extends Enum> {
-        Map<String, T> string2Enum = new HashMap<String, T>();
+        private Map<String, T> string2Enum = new HashMap<String, T>();
+        private PropertyNames<T> propertyNames;
+        
+        public NameMatcher(PropertyNames<T> propertyNames) {
+            this.propertyNames = propertyNames;
+        }
         T get(String string) {
             return string2Enum.get(minimalize(string));
         }
@@ -85,6 +96,9 @@ public class PropertyNames<T extends Enum> {
             if (s != null) {
                 string2Enum.put(minimalize(s), value);
             }
+        }
+        PropertyNames<T> getNames() {
+            return propertyNames;
         }
         public static String minimalize(String source) {
             return FLUFF.matcher(source.toLowerCase(Locale.ENGLISH)).replaceAll("");
