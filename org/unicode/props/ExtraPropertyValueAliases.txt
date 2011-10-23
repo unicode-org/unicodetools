@@ -1,4 +1,9 @@
+# Missing PropertyValueAliases lines
+
+# Missing @-missing values
+
 # @missing: 0000..10FFFF; Script_Extensions; <script>
+
 # @missing: 0000..10FFFF; ASCII_Hex_Digit; No
 # @missing: 0000..10FFFF; Alphabetic; No
 # @missing: 0000..10FFFF; Bidi_Control; No
@@ -60,6 +65,10 @@
 # @missing: 0000..10FFFF; Other_Math   ; No
 # @missing: 0000..10FFFF; Other_Uppercase  ; No
 
+# @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <code point>
+
+# Establish the meaning of empty fields
+
 # @empty: 0000..10FFFF; Decomposition_Mapping ; <code point>
 # @empty: 0000..10FFFF; Simple_Lowercase_Mapping ; <code point>
 # @empty: 0000..10FFFF; Simple_Titlecase_Mapping ; <code point>
@@ -69,6 +78,8 @@
 # @empty: 0000..10FFFF; Emoji_SB ; <none>
 # @empty: 0000..10FFFF; ISO_Comment ; <none>
 # @empty: 0000..10FFFF; Unicode_1_Name ; <none>
+
+# Missing enum values
 
 # Indic_Matra_Category (IMC)
 
@@ -112,61 +123,7 @@ ISC ; n/a ; Tone_Mark
 ISC ; n/a ; Register_Shifter
 ISC ; n/a ; Other
 
-# Jamo_Short_Name (JSN)
-# (If this were Enumerated instead of Misc.)
-# JSN ; n/a ; G
-# JSN ; n/a ; GG
-# JSN ; n/a ; N
-# JSN ; n/a ; D
-# JSN ; n/a ; DD
-# JSN ; n/a ; R
-# JSN ; n/a ; M
-# JSN ; n/a ; B
-# JSN ; n/a ; BB
-# JSN ; n/a ; S
-# JSN ; n/a ; SS
-# JSN ; n/a ; _ # The problem case…
-# JSN ; n/a ; J
-# JSN ; n/a ; JJ
-# JSN ; n/a ; C
-# JSN ; n/a ; K
-# JSN ; n/a ; T
-# JSN ; n/a ; P
-# JSN ; n/a ; H
-# JSN ; n/a ; A
-# JSN ; n/a ; AE
-# JSN ; n/a ; YA
-# JSN ; n/a ; YAE
-# JSN ; n/a ; EO
-# JSN ; n/a ; E
-# JSN ; n/a ; YEO
-# JSN ; n/a ; YE
-# JSN ; n/a ; O
-# JSN ; n/a ; WA
-# JSN ; n/a ; WAE
-# JSN ; n/a ; OE
-# JSN ; n/a ; YO
-# JSN ; n/a ; U
-# JSN ; n/a ; WEO
-# JSN ; n/a ; WE
-# JSN ; n/a ; WI
-# JSN ; n/a ; YU
-# JSN ; n/a ; EU
-# JSN ; n/a ; YI
-# JSN ; n/a ; I
-# JSN ; n/a ; GS
-# JSN ; n/a ; NJ
-# JSN ; n/a ; NH
-# JSN ; n/a ; L
-# JSN ; n/a ; LG
-# JSN ; n/a ; LM
-# JSN ; n/a ; LB
-# JSN ; n/a ; LS
-# JSN ; n/a ; LT
-# JSN ; n/a ; LP
-# JSN ; n/a ; LH
-# JSN ; n/a ; BS
-# JSN ; n/a ; NG
+# Missing CCC values
 
 ccc; 10; F10; Fixed10
 ccc; 11; F11; Fixed11

@@ -1,9 +1,31 @@
+# =======================================
+# SPECIAL FILE TYPES
+# =======================================
+
+# Special file types that need particular processing.
+# In addition to the following, if the first field starts with U+, the file is tab delimited, NOT semicolon delimited.
+
+# HackField File Type
+# Field 1 is special
+#     Convert two successive lines with field 1 values of /.*First>/ and /.*Last>/ into one line with field0..field0
+#     If field 1 contains "Ideograph", the name is "CJK UNIFIED IDEOGRAPH-" + hex(codepoint,4)
+#     If field 1 contains "Hangul Syllable", the name is computed as in Chapter 3
+#     OW if field 1 contains "<", it has no value.
+# Field 5 is special: remove any prefixed <...>
+
 FileType ; UnicodeData ; HackField
+
+# List File Type
+# Contains exactly one boolean property, with value "Yes"
+
 FileType ; CompositionExclusions ; List
+
+# PropertyValue File Type
+# The value is in field 2, except for binary properties, where the value is "Yes"
+
 FileType ; DerivedCoreProperties ; PropertyValue
 FileType ; DerivedNormalizationProps ; PropertyValue
 FileType ; PropList ; PropertyValue
-
 FileType ; Unihan_DictionaryIndices ; PropertyValue
 FileType ; Unihan_DictionaryLikeData ; PropertyValue
 FileType ; Unihan_IRGSources ; PropertyValue
@@ -13,16 +35,42 @@ FileType ; Unihan_RadicalStrokeCounts ; PropertyValue
 FileType ; Unihan_Readings ; PropertyValue
 FileType ; Unihan_Variants ; PropertyValue
 
-FileType ; CJKRadicals ; CJKRadicals
-FileType ; NamedSequences ; NamedSequences
-FileType ; NamedSequencesProv ; NamedSequences
+# NameAliases File Type
+# Contains a multivalued property, where successive values are not in the same line, but are divided out on successive lines with the same code point
+
 FileType ; NameAliases ; NameAliases
 FileType ; NameAliasesProv ; NameAliases
 
-# default is FileType ; X ; Field
-# below, the third field is the field number for use with Field FileType. The default is 1.
+# CJKRadicals File Type
 
-# Standard
+# The code point is not in field 0, but instead in field 1 and in field 2.
+# The value is in field 1
+
+FileType ; CJKRadicals ; CJKRadicals
+
+# NamedSequences File Type
+# The code point is not in field 0, but instead in field 1.
+# The value is in field 0
+
+FileType ; NamedSequences ; NamedSequences
+FileType ; NamedSequencesProv ; NamedSequences
+
+# =======================================
+# FILES FOR PROPERTIES
+# Note that in some cases a missing value in a field means an empty string; in others it means "no value"
+# That is handled with @empty in the ExtraPropertyValueAliases.txt file
+# =======================================
+
+# Files where particular properties can be found, and in which field
+# The format is:
+# Field0 : file name
+# Field1 : property name
+# Field2 : field number in file (default is 1
+# Field3 : special handling
+#   Rational : Value is a rational number
+#   Skip1FT  : Skip line if field 1 is F or T
+#   Skip1ST  : Skip line if field 1 is S or T
+#   SkipAny4 : Skip line if field 4 is not empty
 
 UnicodeData; Name ; 1
 DerivedGeneralCategory; General_Category

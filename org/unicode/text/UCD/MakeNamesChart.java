@@ -76,6 +76,9 @@ public class MakeNamesChart {
 
 			String firstLine = (String)lines.get(0);
 			if (firstLine.startsWith("@@@")) continue;
+			if (firstLine.contains("dame, Dame")) {
+			    firstLine = firstLine;
+			}
 			String[] lineParts = firstLine.split("\t");
 			String fileName = lineParts[1] + ".html";
 			nameList.add(firstLine);

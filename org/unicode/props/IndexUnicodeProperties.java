@@ -57,7 +57,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public final static String FIELD_SEPARATOR = "␣";
     public final static Pattern TAB = Pattern.compile("[ ]*\t[ ]*");
-    static final boolean SHOW_PROP_INFO = true;
+    static final boolean SHOW_PROP_INFO = false;
     private static final boolean SHOW_LOADED = false;
     static final Relation<UcdProperty,String> DATA_LOADING_ERRORS 
     = Relation.of(new EnumMap<UcdProperty,Set<String>>(UcdProperty.class), LinkedHashSet.class);
@@ -87,11 +87,17 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     enum FileType {Field, HackField, PropertyValue, List, CJKRadicals, NamedSequences, NameAliases}
     enum SpecialProperty {None, Skip1FT, Skip1ST, SkipAny4, Rational}
-    enum Multivalued {SINGLE_VALUED, CURRENTLY_SINGLE_VALUED, MULTI_VALUED}
+    enum Multivalued {
+        SINGLE_VALUED, EXTENSIBLE, MULTI_VALUED, ORDERED;
+        public boolean isBreakable(String string) {
+            return (this == Multivalued.MULTI_VALUED || this == Multivalued.ORDERED)
+                    && string.contains(" ");
+        }
+    }
     static Map<String,Multivalued> toMultiValued = new HashMap();
     static {
         toMultiValued.put("N/A", Multivalued.SINGLE_VALUED);
-        toMultiValued.put("space", Multivalued.CURRENTLY_SINGLE_VALUED);
+        toMultiValued.put("space", Multivalued.EXTENSIBLE);
         for (Multivalued multi : Multivalued.values()) {
             toMultiValued.put(multi.toString(),multi);
         }
@@ -110,6 +116,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         public String emptyValue = "";
         Pattern regex = null;
         Multivalued multivalued = Multivalued.SINGLE_VALUED;
+        public String originalRegex;
 
         public PropertyParsingInfo(String... propertyInfo) {
             if (propertyInfo.length < 2 || propertyInfo.length > 4) {
@@ -161,7 +168,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             case Enumerated:
             case Catalog:
             case Binary:
-                if (multivalued == Multivalued.MULTI_VALUED && string.contains(" ")) {
+                if (multivalued.isBreakable(string)) {
                     StringBuilder newString = new StringBuilder();
                     for (String part : SPACE.split(string)) {
                         if (newString.length() != 0) {
@@ -206,7 +213,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             if (SpecialValue.forString(string) != null) {
                 return;
             }
-            if (multivalued == Multivalued.MULTI_VALUED && string.contains(" ")) {
+            if (multivalued.isBreakable(string)) {
                 for (String part : SPACE.split(string)) {
                     checkRegex(part);
                 }
@@ -283,11 +290,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             getRegexInfo(line);
         }
 
-        for (String line : FileUtilities.in(IndexUnicodeProperties.class, "Multivalued.txt")) {
-            UcdProperty prop = UcdProperty.forString(line);
-            PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
-            propInfo.multivalued = Multivalued.MULTI_VALUED;
-        }
+//        for (String line : FileUtilities.in(IndexUnicodeProperties.class, "Multivalued.txt")) {
+//            UcdProperty prop = UcdProperty.forString(line);
+//            PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
+//            propInfo.multivalued = Multivalued.MULTI_VALUED;
+//        }
 
         //        for (UcdProperty x : UcdProperty.values()) {
         //            if (property2PropertyInfo.containsKey(x.toString())) continue;
@@ -305,12 +312,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             return;
         }
         // have to do this painfully, since the regex may contain semicolons
-        String original = line;
-        line = vr.replace(line);
-        if (!line.equals(original)) {
-            line = vr.replace(original);
-            System.out.println(original + "=>" + line);
-        }
         Matcher m = SEMICOLON.matcher(line);
         if (!m.find()) {
             throw new IllegalArgumentException("Bad semicolons in: " + line);
@@ -320,18 +321,24 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         if (!m.find()) {
             throw new IllegalArgumentException("Bad semicolons in: " + line);
         }
-        String multivalued = line.substring(propNameEnd, m.start());
-        String regex = line.substring(m.end());
         UcdProperty prop = UcdProperty.forString(propName);
         PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
+        String multivalued = line.substring(propNameEnd, m.start());
+        propInfo.multivalued = toMultiValued.get(multivalued);
+        if (propInfo.multivalued == null) {
+            throw new IllegalArgumentException("Bad multivalued in: " + line);
+        }
+        String regex = line.substring(m.end());
+        propInfo.originalRegex = regex;
+        regex = vr.replace(regex);
+//        if (!regex.equals(propInfo.originalRegex)) {
+//            regex = vr.replace(propInfo.originalRegex);
+//            System.out.println(propInfo.originalRegex + "=>" + regex);
+//        }
         if (regex.equals("null")) {
             propInfo.regex = null;
         } else {
             propInfo.regex = hackCompile(regex);
-        }
-        propInfo.multivalued = toMultiValued.get(multivalued);
-        if (propInfo.multivalued == null) {
-            throw new IllegalArgumentException("Bad multivalued in: " + line);
         }
     }
 
@@ -575,7 +582,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         final Matcher missingMatcher = MISSING_PATTERN.matcher(missing);
         if (!missingMatcher.matches()) {
             System.out.println(RegexUtilities.showMismatch(MISSING_PATTERN, missing));
-            throw new IllegalArgumentException("Bad @missing statement");
+            throw new IllegalArgumentException("Bad @missing statement: " + missing);
         }
         boolean isEmpty = missingMatcher.group(1).equals("empty");
         int start = Integer.parseInt(missingMatcher.group(2),16);
@@ -640,12 +647,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         } else {
             comment = "\t ** Can't set default, was " + propInfo.defaultValue;
         }
-        System.out.println(comment
-                + ":\tprop:\t" + prop
-                //+ Utility.hex(start) + ".." + Utility.hex(end)
-                + "\tvalue:\t" + value
-                + "\tline:\t" + line
-        );
+//        System.out.println(comment
+//                + ":\tprop:\t" + prop
+//                //+ Utility.hex(start) + ".." + Utility.hex(end)
+//                + "\tvalue:\t" + value
+//                + "\tline:\t" + line
+//        );
     }
 
     // # @missing: 0000..10FFFF; cjkIRG_KPSource; <none>

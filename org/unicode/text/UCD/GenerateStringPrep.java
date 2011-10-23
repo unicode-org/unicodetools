@@ -319,7 +319,6 @@ class GenerateStringPrep implements UCD_Types {
 	 * @param textOut TODO
 	 * @param scriptCode
 	 * @param htmlOut2 TODO
-	 * @param ucd
 	 * @param coreChars
 	 * @param decompChars
 	 */
