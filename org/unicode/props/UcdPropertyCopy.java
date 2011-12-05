@@ -216,7 +216,7 @@ public enum UcdPropertyCopy {
     XID_Continue(PropertyValues.Binary.class, "XIDC"),
     XID_Start(PropertyValues.Binary.class, "XIDS"),
     // EXTRAS
-    Script_Extensions(PropertyNames.PropertyType.Enumerated, "SCX"),
+    Script_Extensions(PropertyNames.PropertyType.Enumerated, "scx"),
     CJK_Radical(PropertyNames.PropertyType.Enumerated, "CJKR"),
     Emoji_DoCoMo(PropertyNames.PropertyType.Miscellaneous, null),
     Emoji_KDDI(PropertyNames.PropertyType.Miscellaneous, null),
@@ -242,7 +242,7 @@ public enum UcdPropertyCopy {
         type = classItem == PropertyValues.Binary.class ? PropertyNames.PropertyType.Binary : PropertyNames.PropertyType.Enumerated;
         names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
         enums = EnumSet.allOf(classItem);
-        name2enum = PropertyNames.getNameToEnums(classItem);
+        name2enum = null; // PropertyNames.getNameToEnums(classItem);
     }
 
     public PropertyNames.PropertyType getType() {

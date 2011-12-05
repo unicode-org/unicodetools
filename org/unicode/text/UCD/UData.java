@@ -217,7 +217,7 @@ class UData implements UCD_Types {
         if (full || lineBreak != LB_AL) result.append(" lb='").append(UCD_Names.LINE_BREAK[lineBreak]).append('\'');
         if (joiningType != -1 && (full || joiningType != JT_U)) result.append(" jt='").append(UCD_Names.JOINING_TYPE[joiningType]).append('\'');
         if (full || joiningGroup != NO_SHAPING) result.append(" jg='").append(UCD_Names.JOINING_GROUP[joiningGroup]).append('\'');
-        if (full || age != 0) result.append(" ag='").append(UCD_Names.AGE[age]).append('\'');
+        if (full || age != 0) result.append(" ag='").append(UCD_Names.SHORT_AGE[age]).append('\'');
 
         if (full || bidiClass != BIDI_L) result.append(" bc='").append(UCD_Names.BIDI_CLASS[bidiClass]).append('\'');
         if (full || !bidiMirror.equals(s)) result.append(" bmg='").append(Utility.quoteXML(bidiMirror)).append('\'');

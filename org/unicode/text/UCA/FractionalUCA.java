@@ -405,7 +405,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             return (byte1 << 16) + (byte2 << 8) + byte3;
         }
 
-        void setToNext(int newbyteLength, boolean newFirstByte) {
+        void setToNext(int newbyteLength, boolean newFirstByte, boolean scriptChange) {
 
             int oByte1 = byte1;
             int oByte2 = byte2;
@@ -420,7 +420,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                     addTo1(2 + (newFirstByte ? 1 : 0));
                     break;
                 case 2:
-                    addTo1(1);
+                    addTo1(1 + (scriptChange ? 1 : 0));
                     byte2 = 0x40; // newFirstByte ? minByte2plus : minByte2;
                     break;
                 case 3:
@@ -808,7 +808,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             int currentByteLength = FractionalUCA.singles.get(primary) ? 1 : shouldBe3Byte(primary) ? 3 : 2;
 
             String old = currentWeight.toString();
-            currentWeight.setToNext(currentByteLength, FractionalUCA.bumps.get(primary));
+            currentWeight.setToNext(currentByteLength, FractionalUCA.bumps.get(primary), punctuationRange.getMinimum() == primary);
 
             String newWeight = currentWeight.toString();
             if (DEBUG_FW) {
@@ -2281,10 +2281,10 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         setLowToken(digitRange.getMinimum(), "CURRENCY");
         setLowToken(firstScriptPrimary, "DIGIT");
 
-        System.out.println("Bump at leastPunctuation: " + Utility.hex(punctuationRange));
-        System.out.println("Bump at leastNonCurrencySymbol: " + Utility.hex(symbolRange));
-        System.out.println("Bump at leastCurrencySymbol: " + Utility.hex(currencyRange));
-        System.out.println("Bump at leastNumber: " + Utility.hex(digitRange));
+        System.out.println("Bump at leastPunctuation: " + punctuationRange);
+        System.out.println("Bump at leastNonCurrencySymbol: " + symbolRange);
+        System.out.println("Bump at leastCurrencySymbol: " + currencyRange);
+        System.out.println("Bump at leastNumber: " + digitRange);
         System.out.println("Bump at ducet: " + Utility.hex(ducetFirstNonVariable));
         System.out.println("3-byte primaries" + threeByteChars.toPattern(false));
 

@@ -50,6 +50,10 @@ public class Idna implements StringTransform {
         return transform(source, false);
     }
 
+    public UnicodeMap<String> getMappingsDisplay() {
+        return new UnicodeMap<String>().putAll(mappings_display);
+    }
+
     public String transform(String source, boolean display) {
         String remapped = (display ? mappings_display : mappings).transform(source);
         return NFC.transform(remapped); // Normalizer.normalize(remapped, Normalizer.NFC);

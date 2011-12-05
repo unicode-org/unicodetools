@@ -1,5 +1,5 @@
-Generate: LineBreakTest
-DeltaVersion: 12
+Generate: valueali
+DeltaVersion: 17
 CopyrightYear: 2011
 
 File: extra/ScriptNfkc
@@ -8,11 +8,18 @@ Property: SPECIAL
 #
 
 File: ScriptExtensions
+# The Script_Extensions property indicates which characters are commonly used
+# with a limited number of scripts, but with more than one.
+# The property is provisional: values are expected to change over time as more information becomes available.
+# For each code point, there is one or more property values.  Each such value is a Script property value.
+# For more information, see:
+#   UAX #24: http://www.unicode.org/reports/tr24/ and
+#   UAX #44: http://www.unicode.org/reports/tr44/
 #
-# The Script Extensions contain data about characters that belong to multiple scripts.
-# This data is provisional, and expected to change over time, as more information becomes available.
-# The script values are space-delimited short values, such as Hang for Hangul.
-# For more information, see UAX #24: http://www.unicode.org/reports/tr24/.
+#  All code points not explicitly listed for Script_Extensions
+#  have as their value the corresponding Script property value
+#
+# @missing: 0000..10FFFF; <script>
 
 Property: Script_Extensions
 Format: valueStyle=short
@@ -66,46 +73,46 @@ Property:	Age
 # assigned in Version 3.0--that is, all the code points with a value
 # less than or equal to 3.0 for the Age property.
 # For more information, see [http://www.unicode.org/reports/tr18/].
-Format: nameStyle=none noLabel skipValue=unassigned
+Format: nameStyle=none noLabel skipValue=Unassigned valueStyle=short
 
-Value:	1.1
+Value:	V1_1
 # Assigned as of Unicode 1.1.0 (June, 1993)
 # [excluding removed Hangul Syllables]
 
-Value:	2.0
+Value:	V2_0
 # Newly assigned in Unicode 2.0.0 (July, 1996)
 
-Value:	2.1
+Value:	V2_1
 # Newly assigned in Unicode 2.1.2 (May, 1998)
 
-Value:	3.0
+Value:	V3_0
 # Newly assigned in Unicode 3.0.0 (September, 1999)
 
-Value:	3.1
+Value:	V3_1
 # Newly assigned in Unicode 3.1.0 (March, 2001)
 
-Value:	3.2
+Value:	V3_2
 # Newly assigned in Unicode 3.2.0 (March, 2002)
 
-Value:	4.0
+Value:	V4_0
 # Newly assigned in Unicode 4.0.0 (April, 2003)
 
-Value:	4.1
+Value:	V4_1
 # Newly assigned in Unicode 4.1.0 (March, 2005)
 
-Value:	5.0
+Value:	V5_0
 # Newly assigned in Unicode 5.0.0 (July, 2006)
 
-Value:	5.1
+Value:	V5_1
 # Newly assigned in Unicode 5.1.0 (March, 2008)
 
-Value:  5.2
+Value:	V5_2
 # Newly assigned in Unicode 5.2.0 (October, 2009)
 
-Value:  6.0
+Value:	V6_0
 # Newly assigned in Unicode 6.0.0 (October, 2010)
 
-Value:  6.1
+Value:	V6_1
 # Newly assigned in Unicode 6.1.0 (Planned for February, 2012)
 
 File:	extracted/DerivedBidiClass
@@ -131,7 +138,7 @@ Property:	Bidi_Class
 #           minus noncharacter code points.
 #
 # The unassigned code points that default to R are in the ranges:
-#     [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\u0001EDFF \U0001EEFF-\U0001EFFF]
+#     [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\u0001EDFF \U0001EF00-\U0001EFFF]
 #
 #     Hebrew:            U+0590  -  U+05FF
 #     NKo:               U+07C0  -  U+07FF
@@ -147,7 +154,7 @@ Property:	Bidi_Class
 #                        U+FB1D  -  U+FB4F,
 #                        U+10840 - U+10FFF,
 #                        U+1E800 - U+1EDFF,
-#                        U+1EEFF - U+1EFFF
+#                        U+1EF00 - U+1EFFF
 #
 # For all other cases:
 Format:	valueStyle=short skipUnassigned=Left_To_Right
@@ -253,7 +260,6 @@ Property:	XID_Continue
 # Derived Property: XID_Continue
 #  Mod_ID_Continue modified for closure under NFKx
 #  Modified as described in UAX #15
-#  NOTE: Cf characters should be filtered out.
 #  NOTE: Does NOT remove the non-NFKx characters.
 #        Merely ensures that if isIdentifer(string) then isIdentifier(NFKx(string))
 #  NOTE: See UAX #31 for more information

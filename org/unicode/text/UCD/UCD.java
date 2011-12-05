@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.jsp.FileUtilities;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
@@ -1145,7 +1146,7 @@ public final class UCD implements UCD_Types {
     }
 
     public static String getJoiningGroupID_fromIndex(byte prop, byte style) {
-        // no short version
+        // short version = long version
         return prop < 0 || prop >= UCD_Names.JOINING_GROUP.length ? null
                 : UCD_Names.JOINING_GROUP[prop];
     }
@@ -1179,8 +1180,8 @@ public final class UCD implements UCD_Types {
 
     public static String getAgeID_fromIndex(byte prop, byte style) {
         // no short for
-        return prop < 0 || prop >= UCD_Names.AGE.length ? null
-                : UCD_Names.AGE[prop];
+        return prop < 0 || prop >= UCD_Names.SHORT_AGE.length ? null
+                : style == SHORT ? UCD_Names.SHORT_AGE[prop] : UCD_Names.LONG_AGE[prop];
     }
 
     public String getBinaryPropertiesID(int codePoint, byte bit) {
@@ -1792,6 +1793,8 @@ to guarantee identifier closure.
     }
 
     UnicodeMap blockData;
+    Map<String, String> longToShortBlockNames = new HashMap<String, String>();
+    
     public String getBlock(int codePoint) {
         if (blockData == null) loadBlocks();
         return (String)blockData.getValue(codePoint);
@@ -1804,6 +1807,31 @@ to guarantee identifier closure.
         if (blockData == null) loadBlocks();
         return (List)blockData.getAvailableValues(result);
     }
+    
+    public String[][] getBlockNameList() {
+        List<String> blockNames = getBlockNames();
+        String[][] result = new String[blockNames.size()][2];
+        for (int i = 0; i < blockNames.size(); ++i) {
+            result[i][0] = blockNames.get(i);
+        }
+        return result;
+    }
+    
+    public String[][] getBlockNameLists() {
+        List<String> blockNames = getBlockNames();
+        String[][] result = new String[2][blockNames.size()];
+        for (int i = 0; i < blockNames.size(); ++i) {
+            final String longName = blockNames.get(i);
+            final String shortName = longToShortBlockNames.get(longName);
+            if (shortName == null) {
+                throw new IllegalArgumentException("Missing short name: update ShortBlockNames.txt");
+            }
+            result[0][i] = longName;
+            result[1][i] = shortName;
+        }
+        return result;
+    }
+
     public UnicodeSet getBlockSet(String value, UnicodeSet result) {
         String blockName = UnicodeProperty.regularize(value, true);
         if (blockData == null) loadBlocks();
@@ -1842,6 +1870,13 @@ to guarantee identifier closure.
                 blockData.setMissing("No_Block");
             } finally {
                 in.close();
+            }
+            for (String line : org.unicode.cldr.draft.FileUtilities.in(UCD.class, "ShortBlockNames.txt")) {
+                String[] parts = line.trim().split("\\s*;\\s*");
+                if (parts.length != 2) {
+                    throw new IOException("ShortBlockNames.txt must have pairs: " + line);
+                }
+                longToShortBlockNames.put(parts[1], parts[0]);
             }
         } catch (IOException e) {
             throw new IllegalArgumentException("Can't read block file");
@@ -1968,4 +2003,5 @@ to guarantee identifier closure.
         }
         return result.toString();
     }
+
 }

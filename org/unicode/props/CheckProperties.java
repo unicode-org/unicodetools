@@ -80,10 +80,10 @@ public class CheckProperties {
 
         UnicodeSet ignore = new UnicodeSet();
         addAll(ignore, gcLast.getSet(null)); // separate for debugging
-        addAll(ignore, gcLast.getSet("Cn"));
-        addAll(ignore, gcLast.getSet("Co"));
+        addAll(ignore, gcLast.getSet(PropertyValues.General_Category_Values.Unassigned.toString()));
+        addAll(ignore, gcLast.getSet(PropertyValues.General_Category_Values.Private_Use.toString()));
+        addAll(ignore, gcLast.getSet(PropertyValues.General_Category_Values.Surrogate.toString()));
         //addAll(ignore, gcLast.getSet("Cc"));
-        addAll(ignore, gcLast.getSet("Cs"));
 
         UnicodeSet retain = new UnicodeSet(ignore).complement().freeze();
 
@@ -228,7 +228,7 @@ public class CheckProperties {
 
         final String no_value_constant = IndexUnicodeProperties.SpecialValue.NO_VALUE.toString();
         UnicodeSet no_value = map.getSet(no_value_constant);
-        if (defaultValue == no_value_constant) {
+        if (no_value_constant.equals(defaultValue)) {
             no_value.addAll(nullElements);
         }
         if (no_value.size() != 0) {
@@ -330,13 +330,34 @@ public class CheckProperties {
         if (UnicodeProperty.equals(lastValue, latestValue)) {
             return;
         }
-        if (prop.getType() == PropertyType.Catalog || prop.getType() == PropertyType.Enumerated) {
+        switch (prop.getType()) {
+        case Numeric:
+            if (approximatelyEqual(numericValue(lastValue), numericValue(latestValue), 0.0000001d)) {
+                return;
+            }
+            break;
+        case Catalog: case Enumerated: 
             if (PropertyNames.NameMatcher.matches(lastValue, latestValue)) {
                 PROPNAMEDIFFERENCES.add(prop + "\t" + abbreviate(lastValue, 50, true) + "\t≠\t" + abbreviate(latestValue, 50, true));
                 return;
             }
+            break;
+
         }
         changes.put(codepoint, abbreviate(lastValue, 50, true) + "\t≠\t" + abbreviate(latestValue, 50, true));
+    }
+
+    private static Double numericValue(String a) {
+        int slashPos = a.indexOf('/');
+        if (slashPos >= 0) {
+            return Double.parseDouble(a.substring(0,slashPos)) / Double.parseDouble(a.substring(slashPos+1));
+        }
+        return Double.parseDouble(a);
+    }
+
+    private static boolean approximatelyEqual(Double a, Double b, Double epsilon) {
+        if (a == b) return true;
+        return (a >= b - epsilon || a <= b + epsilon);
     }
 
     public static String getDisplayValue(String value) {
@@ -387,7 +408,7 @@ public class CheckProperties {
             values = spaceValues;
         }
         String sample = abbreviate(values.toString(), 150, false);
-        System.out.println("\ttime: " + timer + "\tcodepoints: " + map.size() + "\tvalues: " + values.size() + "\tsample: " + sample);
+        System.out.println(prop + "\ttime:\t" + timer.getDuration() + "\tcodepoints:\t" + map.size() + "\tvalues:\t" + values.size() + "\tsample:\t" + sample);
         if (details) {
             //            UnicodeMapProperty ump = new UnicodeMapProperty().set(map);
             //            ump.addName(prop.toString());

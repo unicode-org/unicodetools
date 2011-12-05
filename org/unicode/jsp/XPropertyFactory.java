@@ -17,6 +17,7 @@ import org.unicode.idna.Idna.IdnaType;
 import com.ibm.icu.dev.test.util.ICUPropertyFactory;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.AliasAddAction;
 import com.ibm.icu.dev.test.util.UnicodeProperty.BaseProperty;
 import com.ibm.icu.dev.test.util.UnicodeProperty.SimpleProperty;
 import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeSetProperty;
@@ -70,7 +71,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new UnicodeProperty.UnicodeMapProperty().set(Confusables.getMap()).setMain("confusable", "confusable", UnicodeProperty.ENUMERATED, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings_display).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.getMappingsDisplay()).setMain("toUts46n", "toUts46n", UnicodeProperty.STRING, "1.1"));
 
         add(new StringTransformProperty(Common.NFKC_CF, false).setMain("NFKC_Casefold", "NFKC_CF", UnicodeProperty.STRING, "1.1").addName("toNFKC_CF"));
 //        add(new UnicodeSetProperty().set(Common.isNFKC_CF).setMain("isNFKC_Casefolded", "isNFKC_CF", UnicodeProperty.BINARY, "1.1"));
@@ -153,7 +154,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new UnicodeProperty.UnicodeMapProperty()
         .set(specialMap)
         .setMain("Script_Specials", "scs", UnicodeProperty.ENUMERATED, "1.1")
-        .addValueAliases(ScriptTester.getScriptSpecialsAlternates(), false)
+        .addValueAliases(ScriptTester.getScriptSpecialsAlternates(), AliasAddAction.IGNORE_IF_MISSING)
         );
 
         SortedMap<String, Charset> charsets = Charset.availableCharsets();
@@ -165,12 +166,12 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             }
             Charset charset = charsets.get(name);
             EncodingProperty prop = new EncodingProperty(charset);
-            prop.setType(UnicodeProperty.STRING);
-            prop.setName("enc_" + name);
+            prop._setType(UnicodeProperty.STRING);
+            prop._setName("enc_" + name);
 
             EncodingPropertyBoolean isProp = new EncodingPropertyBoolean(charset);
-            isProp.setType(UnicodeProperty.BINARY);
-            isProp.setName("is_enc_" + name);
+            isProp._setType(UnicodeProperty.BINARY);
+            isProp._setName("is_enc_" + name);
 
             for (String alias : charset.aliases()) {
                 if (DEBUG_CHARSET_NAMES) System.out.println(name + " => " + alias);
@@ -490,6 +491,14 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             String result = Integer.toHexString(0xFF&b).toUpperCase(Locale.ENGLISH);
             return result.length() == 2 ? result : "0" + result;
         }
+        
+        public void _setName(String string) {
+            super.setName(string);
+        }
+
+        protected final void _setType(int i) {
+            super.setType(i);
+        }
     }
 
     public static class EncodingPropertyBoolean extends SimpleProperty {
@@ -502,6 +511,13 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         protected String _getValue(int codepoint) {
             return (encoder.getValue(codepoint, null, 0) > 0) ? "Yes" : "No";
+        }
+        public void _setName(String string) {
+            super.setName(string);
+        }
+
+        protected final void _setType(int i) {
+            super.setType(i);
         }
     }
 
