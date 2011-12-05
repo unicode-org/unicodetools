@@ -18,11 +18,15 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.unicode.jsp.ScriptTester.ScriptExtensions;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.util.Relation;
 import com.ibm.icu.dev.test.util.UnicodeMap;
 import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.test.util.UnicodeProperty.AliasAddAction;
+import com.ibm.icu.dev.test.util.UnicodeProperty.BaseProperty;
 import com.ibm.icu.dev.test.util.UnicodeProperty.SimpleProperty;
 import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.StringUCharacterIterator;
@@ -43,7 +47,7 @@ import com.ibm.icu.text.UnicodeSet;
  * 
  */
 public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
-    
+
     private static final String[] MAYBE_VALUES = {"M", "Maybe", "U", "Undetermined"};
 
     private static final String[] NO_VALUES = {"N", "No", "F", "False"};
@@ -231,6 +235,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
          * <MISSING> cp=00FD, tc=<> != <MISSING> cp=00FD, uc=<> != <MISSING>
          */
 
+        String[][] blockNames = ucd.getBlockNameLists();
+
         add(new UnicodeProperty.SimpleProperty() {
             public String _getValue(int codepoint) {
                 if (DEBUG && codepoint == 0x1D100) {
@@ -244,7 +250,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 return ucd.blockData;
             }
         }
-        .setValues(ucd.getBlockNames(null))
+        .setValues(blockNames[0], blockNames[1])
+        .swapFirst2ValueAliases()
         .setMain("Block", "blk", UnicodeProperty.CATALOG, version)
         .addValueAliases(
                 new String[][] {
@@ -255,8 +262,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                         { "Private_Use_Area", "Private_Use" },
                         { "Combining_Diacritical_Marks_For_Symbols", "Combining_Marks_For_Symbols" },
                         { "Arabic_Presentation_Forms_A", "Arabic_Presentation_Forms-A" },
-                }, true)
-                // .swapFirst2ValueAliases()
+                }, AliasAddAction.REQUIRE_MAIN_ALIAS)
         );
 
         // add(new UnicodeProperty.SimpleProperty() {
@@ -572,60 +578,78 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         }
 
         final int compositeVersion = ucd.getCompositeVersion();
-        if (compositeVersion >= 0x040000)
-            add(new UnicodeProperty.UnicodeMapProperty() {
-                {
-                    unicodeMap = new UnicodeMap();
-                    unicodeMap.setErrorOnReset(true);
-                    unicodeMap.put(0xD, "CR");
-                    unicodeMap.put(0xA, "LF");
-                    UnicodeProperty cat = getProperty("General_Category");
+        if (compositeVersion >= 0x040000) {
+            UnicodeMap<String> unicodeMap = new UnicodeMap();
+            unicodeMap.setErrorOnReset(true);
+            unicodeMap.put(0xD, "CR");
+            unicodeMap.put(0xA, "LF");
+            UnicodeProperty cat = getProperty("General_Category");
+            UnicodeProperty di = getProperty("di");
 
-                    UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
+            UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
 
-                    String x = cat.getValue(0x17B4);
-                    UnicodeSet temp = cat.getSet("Line_Separator")
-                    .addAll(cat.getSet("Paragraph_Separator"))
-                    .addAll(cat.getSet("Control"))
-                    .addAll(cat.getSet("Format"))
-                    .addAll(cat.getSet("Cs"))
-                    .addAll(cat.getSet("Cn"))
-                    .remove(0xD)
-                    .remove(0xA)
-                    .remove(0x200C)
-                    .remove(0x200D);
-                    UnicodeSet diff = new UnicodeSet(temp).retainAll(graphemeExtend);
-                    if (diff.size() != 0) {
-                        temp.removeAll(diff);
-                        System.err.println("ERROR: Problem in generating Grapheme_Cluster_Break for "
-                                + ucd.getVersion() + ",\t" + diff);
-                    }
-                    unicodeMap.putAll(temp, "Control");
+            //String x = cat.getValue(0x17B4);
+            UnicodeSet catCn = cat.getSet("Cn");
+            final UnicodeSet di2 = di.getSet("Yes");
+            UnicodeSet unassignedDi = new UnicodeSet(catCn).retainAll(di2);
 
-                    unicodeMap.putAll(graphemeExtend, "Extend");
-                    unicodeMap.putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
+            UnicodeSet temp = cat.getSet("Line_Separator")
+            .addAll(cat.getSet("Paragraph_Separator"))
+            .addAll(cat.getSet("Control"))
+            .addAll(cat.getSet("Format"))
+            .addAll(cat.getSet("Cs"))
+            .addAll(unassignedDi)
+            .remove(0xD)
+            .remove(0xA)
+            .remove(0x200C)
+            .remove(0x200D);
+            UnicodeSet diff = new UnicodeSet(temp).retainAll(graphemeExtend);
+            if (diff.size() != 0) {
+                temp.removeAll(diff);
+                System.err.println("ERROR: Problem in generating Grapheme_Cluster_Break for "
+                        + ucd.getVersion() + ",\t" + diff);
+            }
+            unicodeMap.putAll(temp, "Control");
 
-                        UnicodeSet graphemePrepend = getProperty("Logical_Order_Exception").getSet(UCD_Names.YES);
-                        unicodeMap.putAll(graphemePrepend, "Prepend");
+            unicodeMap.putAll(graphemeExtend, "Extend");
+            unicodeMap.putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
 
-                    unicodeMap.putAll(cat.getSet("Spacing_Mark")
-                            .addAll(new UnicodeSet("[\u0E30 \u0E32 \u0E33 \u0E45 \u0EB0 \u0EB2 \u0EB3]"))
-                            .removeAll(unicodeMap.keySet("Extend")),
-                    "SpacingMark");
+            // (Currently there are no characters with this value)
+            String oldValue = unicodeMap.get(0);
+            //UnicodeSet graphemePrepend = getProperty("Logical_Order_Exception").getSet(UCD_Names.YES);
+//            unicodeMap.setErrorOnReset(false);
+//            unicodeMap.put(0, "Prepend");
+//            unicodeMap.setErrorOnReset(true);
 
-                    UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
-                    unicodeMap.putAll(hangul.getSet("L"), "L");
-                    unicodeMap.putAll(hangul.getSet("V"), "V");
-                    unicodeMap.putAll(hangul.getSet("T"), "T");
-                    unicodeMap.putAll(hangul.getSet("LV"), "LV");
-                    unicodeMap.putAll(hangul.getSet("LVT"), "LVT");
-                    unicodeMap.setMissing("Other");
-                }
-            }.setMain("Grapheme_Cluster_Break", "GCB", UnicodeProperty.ENUMERATED, version)
+            unicodeMap.putAll(
+                    cat.getSet("Spacing_Mark")
+                    //.addAll(new UnicodeSet("[\u0E30 \u0E32 \u0E33 \u0E45 \u0EB0 \u0EB2 \u0EB3]"))
+                    .addAll(new UnicodeSet("[\u0E33 \u0EB3]"))
+                    .removeAll(new UnicodeSet("[\u102B\u102C\u1038\u1062-\u1064\u1067-\u106D\u1083\u1087-\u108C\u108F\u109A-\u109C\u19B0-\u19B4\u19B8\u19B9\u19BB-\u19C0\u19C8\u19C9\u1A61\u1A63\u1A64\uAA7B]"))
+                    .removeAll(unicodeMap.keySet("Extend"))
+                    , "SpacingMark");
+
+            UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
+            unicodeMap.putAll(hangul.getSet("L"), "L");
+            unicodeMap.putAll(hangul.getSet("V"), "V");
+            unicodeMap.putAll(hangul.getSet("T"), "T");
+            unicodeMap.putAll(hangul.getSet("LV"), "LV");
+            unicodeMap.putAll(hangul.getSet("LVT"), "LVT");
+            unicodeMap.setMissing("Other");
+            add(new UnicodeProperty.UnicodeMapProperty()
+            .set(unicodeMap)
+            .setMain("Grapheme_Cluster_Break", "GCB", UnicodeProperty.ENUMERATED, version)
             .addValueAliases(
-                    new String[][] { { "Control", "CN" }, { "Extend", "EX" },
-                            { "Prepend", "PP" }, { "Other", "XX" }, { "SpacingMark", "SM" }, }, true)
-                            .swapFirst2ValueAliases());
+                    new String[][] {
+                            { "Prepend", "PP" }, { "Control", "CN" }, { "Extend", "EX" },
+                            { "Other", "XX" }, { "SpacingMark", "SM" }, }, AliasAddAction.ADD_MAIN_ALIAS)
+                            .swapFirst2ValueAliases())
+            ;
+            // HACK. Property value aliases can only be added if there is a property value on some character. So we added null above.
+//            unicodeMap.setErrorOnReset(false);
+//            unicodeMap.put(0,oldValue);
+//            unicodeMap.setErrorOnReset(true);
+        }
 
         if (compositeVersion >= 0x040000)
             add(new UnicodeProperty.UnicodeMapProperty() {
@@ -692,7 +716,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     new String[][] { { "Format", "FO" }, { "Katakana", "KA" }, { "ALetter", "LE" },
                             { "MidLetter", "ML" }, { "MidNum", "MN" }, { "MidNumLet", "MB" },
                             { "MidNumLet", "MB" }, { "Numeric", "NU" }, { "ExtendNumLet", "EX" },
-                            { "Other", "XX" }, { "Newline", "NL" } }, true).swapFirst2ValueAliases());
+                            { "Other", "XX" }, { "Newline", "NL" } }, AliasAddAction.REQUIRE_MAIN_ALIAS).swapFirst2ValueAliases());
 
         if (compositeVersion >= 0x040000)
             add(new UnicodeProperty.UnicodeMapProperty() {
@@ -746,7 +770,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     new String[][] { { "Sep", "SE" }, { "Format", "FO" }, { "Sp", "SP" },
                             { "Lower", "LO" }, { "Upper", "UP" }, { "OLetter", "LE" }, { "Numeric", "NU" },
                             { "ATerm", "AT" }, { "STerm", "ST" }, { "Extend", "EX" }, { "SContinue", "SC" },
-                            { "Close", "CL" }, { "Other", "XX" }, }, false).swapFirst2ValueAliases());
+                            { "Close", "CL" }, { "Other", "XX" }, }, AliasAddAction.IGNORE_IF_MISSING).swapFirst2ValueAliases());
 
         // ========================
 
@@ -854,8 +878,8 @@ isTitlecase(X) is false.
             }
             UnicodeMapProperty prop2 = new UnicodeMapProperty()
             .set(umap);
-            prop2.setMain("Script_Extensions", "SE", UnicodeProperty.EXTENDED_ENUMERATED, version);
-            prop2.addValueAliases(new String[][] {}, false); // hack
+            prop2.setMain("Script_Extensions", "scx", UnicodeProperty.MISC, version);
+            prop2.addValueAliases(new String[][] {}, AliasAddAction.IGNORE_IF_MISSING); // hack
             //      for (BitSet set : sortedValues) {
             //        prop2.addValueAlias(ScriptExtensions.getNames(set, UProperty.NameChoice.SHORT, " "), 
             //                ScriptExtensions.getNames(set, UProperty.NameChoice.LONG, " "),
@@ -863,6 +887,19 @@ isTitlecase(X) is false.
             //      }
             add(prop2);
         }
+
+        // Indic gorp
+
+        IndexUnicodeProperties latest = IndexUnicodeProperties.make(Default.ucdVersion());
+
+        UnicodeMap<String> map = latest.load(UcdProperty.Indic_Matra_Category);
+        //String defaultValue = IndexUnicodeProperties.getDefaultValue(UcdProperty.Indic_Matra_Category);
+        add(new UnicodeProperty.UnicodeMapProperty().set(map).setMain("Indic_Matra_Category", "InMC", UnicodeProperty.ENUMERATED, ""));
+
+        map = latest.load(UcdProperty.Indic_Syllabic_Category);
+        //defaultValue = IndexUnicodeProperties.getDefaultValue(UcdProperty.Indic_Matra_Category);
+        add(new UnicodeProperty.UnicodeMapProperty().set(map).setMain("Indic_Syllabic_Category", "InSC", UnicodeProperty.ENUMERATED, ""));
+
     }
 
     private void addFakeProperty(String version, int unicodePropertyType, String defaultValue, String name, String abbr, String... alts) {
@@ -1173,12 +1210,12 @@ isTitlecase(X) is false.
                     return lookup(valueAlias, UCD_Names.LONG_JOINING_TYPE, UCD_Names.JOINING_TYPE,
                             null, result);
                 case UCD_Types.JOINING_GROUP >> 8:
-                    return lookup(valueAlias, UCD_Names.JOINING_GROUP, null, ALIAS_JOINING_GROUP, result);
+                    return lookup(valueAlias, UCD_Names.JOINING_GROUP, UCD_Names.JOINING_GROUP, ALIAS_JOINING_GROUP, result);
                 case UCD_Types.SCRIPT >> 8:
                     return lookup(valueAlias, UCD_Names.LONG_SCRIPT, UCD_Names.SCRIPT,
                             UCD_Names.EXTRA_SCRIPT, result);
                 case UCD_Types.AGE >> 8:
-                    return lookup(valueAlias, UCD_Names.AGE, null, null, result);
+                    return lookup(valueAlias, UCD_Names.LONG_AGE, UCD_Names.SHORT_AGE, null, result);
                 case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
                     return lookup(valueAlias, UCD_Names.LONG_HANGUL_SYLLABLE_TYPE,
                             UCD_Names.HANGUL_SYLLABLE_TYPE, null, result);
@@ -1274,10 +1311,10 @@ isTitlecase(X) is false.
                     break;
                 }
                 if (ucdCache[i].isAllocated(codePoint)) {
-                    return UCD_Names.AGE[i];
+                    return UCD_Names.LONG_AGE[i];
                 }
             }
-            return UCD_Names.AGE[UCD_Types.UNKNOWN];
+            return UCD_Names.LONG_AGE[UCD_Types.UNKNOWN];
         }
 
         /*

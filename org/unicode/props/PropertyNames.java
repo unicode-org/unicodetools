@@ -101,7 +101,11 @@ public class PropertyNames<T extends Enum> {
             return propertyNames;
         }
         public static String minimalize(String source) {
-            return FLUFF.matcher(source.toLowerCase(Locale.ENGLISH)).replaceAll("");
+            if (source.startsWith("Fixed")) {
+                source = source.substring(5);
+            }
+            String result = FLUFF.matcher(source.toLowerCase(Locale.ENGLISH)).replaceAll("");
+            return result;
         }
         public static boolean matches(String lastValue, String latestValue) {
             if (lastValue == null) {

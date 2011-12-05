@@ -16,7 +16,6 @@
 # property value name is used.
 #
 # Second Field: The second field is an abbreviated name.
-# If there is no abbreviated name available, the field is marked with "n/a".
 #
 # Third Field: The third field is a long name.
 #

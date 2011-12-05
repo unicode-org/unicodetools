@@ -2,16 +2,16 @@
 # Enumerated Properties
 # ================================================
 
-IMC ; Indic_Matra_Category
-ISC ; Indic_Syllabic_Category
-SCX ; Script_Extensions
+InMC ; Indic_Matra_Category
+InSC ; Indic_Syllabic_Category
+scx ; Script_Extensions
 
 # ================================================
 # Miscellaneous Properties
 # ================================================
 
 CJKR ; CJK_Radical
-    
+
 EDCM ; Emoji_DCM
 EKDDI ; Emoji_KDDI
 ESB ; Emoji_SB

@@ -3,6 +3,8 @@
  */
 package org.unicode.text.UCA;
 
+import org.unicode.text.utility.Utility;
+
 public class Range {
     private int minimum = Integer.MAX_VALUE;
     private int maximum = Integer.MIN_VALUE;
@@ -33,5 +35,9 @@ public class Range {
 
     public boolean hasItems() {
         return minimum <= maximum;
+    }
+    
+    public String toString() {
+        return "[" + minimum + "(" + Integer.toHexString(minimum) + ").." + maximum + "(" + Integer.toHexString(maximum) + ")]";
     }
 }

@@ -223,7 +223,7 @@ public final class UCD_Names implements UCD_Types {
     "SA", "AI", "B2", "SG", "ZW",
     "NL",
     "WJ", "JL", "JV", "JT", "H2", "H3",
-    "CP", "HL",
+    "CP", "HL", "CJ"
     //"JL",
     //"JV",
     //"JT",
@@ -241,7 +241,8 @@ public final class UCD_Names implements UCD_Types {
     "Next_Line",
     "Word_Joiner", "JL", "JV", "JT", "H2", "H3",
     "Close_Parenthesis",
-    "Hebrew_Letter"
+    "Hebrew_Letter",
+    "Conditional_Japanese_Starter"
     //"Leading_Jamo",
     //"Vowel_Jamo",
     //"Trailing_Jamo",
@@ -478,8 +479,8 @@ public final class UCD_Names implements UCD_Types {
     "Takr",
   };
 
-  static final String[] AGE = {
-    "unassigned",
+  static final String[] SHORT_AGE = {
+    "NA",
     "1.1",
     "2.0",
     "2.1",
@@ -494,6 +495,23 @@ public final class UCD_Names implements UCD_Types {
     "6.0",
     "6.1",
   };
+  
+  static final String[] LONG_AGE = {
+      "Unassigned",
+      "V1_1",
+      "V2_0",
+      "V2_1",
+      "V3_0",
+      "V3_1",
+      "V3_2",
+      "V4_0",
+      "V4_1",
+      "V5_0",
+      "V5_1",
+      "V5_2",
+      "V6_0",
+      "V6_1",
+    };
 
   static final String[] GENERAL_CATEGORY = {
     "Cn", // = Other, Not Assigned 0
@@ -751,6 +769,42 @@ public final class UCD_Names implements UCD_Types {
           case 233: s = style < LONG ? "DB" :   "DoubleBelow"; break;
           case 234: s = style < LONG ? "DA" :   "DoubleAbove"; break;
           case 240: s = style < LONG ? "IS" :   "IotaSubscript"; break;
+          case 10: s = "CCC10"; break;
+          case 11: s = "CCC11"; break;
+          case 12: s = "CCC12"; break;
+          case 13: s = "CCC13"; break;
+          case 14: s = "CCC14"; break;
+          case 15: s = "CCC15"; break;
+          case 16: s = "CCC16"; break;
+          case 17: s = "CCC17"; break;
+          case 18: s = "CCC18"; break;
+          case 19: s = "CCC19"; break;
+          case 20: s = "CCC20"; break;
+          case 21: s = "CCC21"; break;
+          case 22: s = "CCC22"; break;
+          case 23: s = "CCC23"; break;
+          case 24: s = "CCC24"; break;
+          case 25: s = "CCC25"; break;
+          case 26: s = "CCC26"; break;
+          case 27: s = "CCC27"; break;
+          case 28: s = "CCC28"; break;
+          case 29: s = "CCC29"; break;
+          case 30: s = "CCC30"; break;
+          case 31: s = "CCC31"; break;
+          case 32: s = "CCC32"; break;
+          case 33: s = "CCC33"; break;
+          case 34: s = "CCC34"; break;
+          case 35: s = "CCC35"; break;
+          case 36: s = "CCC36"; break;
+          case 84: s = "CCC84"; break;
+          case 91: s = "CCC91"; break;
+          case 103: s = "CCC103"; break;
+          case 107: s = "CCC107"; break;
+          case 118: s = "CCC118"; break;
+          case 122: s = "CCC122"; break;
+          case 129: s = "CCC129"; break;
+          case 130: s = "CCC130"; break;
+          case 132: s = "CCC133"; break;
           default: s = "" + index;
         }
         if (style < LONG) COMBINING_CLASS[index] = s;
@@ -794,7 +848,7 @@ public final class UCD_Names implements UCD_Types {
     if (LIMIT_SCRIPT != LONG_SCRIPT.length) {
       throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: script");
     }
-    if (LIMIT_AGE != AGE.length) {
+    if (LIMIT_AGE != SHORT_AGE.length || LIMIT_AGE != LONG_AGE.length) {
       throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: age");
     }
   }
