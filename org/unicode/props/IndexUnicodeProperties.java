@@ -60,8 +60,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static Pattern SLASHX = Pattern.compile("\\\\x\\{([0-9A-Fa-f]{1,6})\\}");
     static Normalizer2 NFD = Normalizer2.getInstance(null, "NFC", Mode.DECOMPOSE);
 
-    static final Pattern MISSING_PATTERN = Pattern.compile("\\s*#\\s*@(missing|empty):?\\s*([A-Fa-f0-9]+)..([A-Fa-f0-9]+)\\s*" +
-    ";\\s*([^;]*)(?:\\s*;\\s*([^;]*)(?:\\s*;\\s*([^; ]*))?)?\\s*");
+    static final Pattern MISSING_PATTERN = Pattern.compile(
+            "\\s*#\\s*@(missing|empty):?" +
+            "\\s*([A-Fa-f0-9]+)..([A-Fa-f0-9]+)\\s*;" +
+            "\\s*([^;]*)" +
+            "(?:\\s*;\\s*([^;]*)" +
+            "(?:\\s*;\\s*([^;]*))?)?\\s*" +
+            ";?"
+    );
 
     public final static String FIELD_SEPARATOR = "␣";
     public final static Pattern TAB = Pattern.compile("[ ]*\t[ ]*");
@@ -402,7 +408,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         if (data0 != null) {
             return data0;
         }
-        
+
         PropertyParsingInfo fileInfo = property2PropertyInfo.get(prop2);
         String fullFilename = Utility.getMostRecentUnicodeDataFile(fileInfo.file, ucdVersion, true, false);
 
@@ -537,14 +543,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                         case None: 
                             break;
                         case Rational: 
-//                            int slashPos = string.indexOf('/');
-//                            double rational;
-//                            if (slashPos < 0) {
-//                                rational = Double.parseDouble(string);
-//                            } else {
-//                                rational = Double.parseDouble(string.substring(0,slashPos)) / Double.parseDouble(string.substring(slashPos+1));
-//                            }
-//                            string = Double.toString(rational);
+                            //                            int slashPos = string.indexOf('/');
+                            //                            double rational;
+                            //                            if (slashPos < 0) {
+                            //                                rational = Double.parseDouble(string);
+                            //                            } else {
+                            //                                rational = Double.parseDouble(string.substring(0,slashPos)) / Double.parseDouble(string.substring(slashPos+1));
+                            //                            }
+                            //                            string = Double.toString(rational);
                             break;
                         case Skip1ST: 
                             if ("ST".contains(parts[1])) {

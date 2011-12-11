@@ -358,7 +358,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 + "<p>Each cell shows the break-status for the position between the character(s) in its row header and the character(s) in its column header. "
                 + "The × symbol indicates no break, while the ÷ symbol indicated a break. "
                 + "The cells with × are also shaded to make it easier to scan the table. "
-                + "For example, in the cell at the intersection of the row headed by 'CR' and the column headed by 'LF', there is a × symbol, indicating that there is no break between CR and LF.</p>");
+                + "For example, in the cell at the intersection of the row headed by 'CR' and the column headed by 'LF', there is a × symbol, " +
+                		"indicating that there is no break between CR and LF.</p>");
+        out.println("<p>After the heavy blue line in the table are additional rows, either with different sample characters or for sequences, such as \"ALetter MidLetter\" in WordBreak. " +
+        		"Some column headers may be composed, reflecting 'treat as' or 'ignore' rules.</p>");
         out.println("<p>If your browser handles titles (tool tips), then hovering the mouse over the row header will show a sample character of that type. "
                 + "Hovering over a column header will show the sample character, plus its abbreviated general category and script. "
                 + "Hovering over the intersected cells shows the rule number that produces the break-status. "
@@ -630,16 +633,17 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
         out.println("<h3><a name='rules'>Rules</a></h3>");
         out
-        .println("<p>The second section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and"
+        .println("<p>This section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and"
                 + " thus do not match the UAX rules precisely. "
                 + "In particular:</p>"
                 + "<ol>"
                 + "<li>The rules are cast into a form that is more like regular expressions.</li>"
                 + "<li>The rules \"sot ÷ <i>or</i> ×\", \"÷ eot\", and \"÷ Any\" are added mechanically, and have artificial numbers.</li>"
                 + "<li>The rules are given decimal numbers, so rules such as 11a are given a number using tenths, such as 11.1.</li>"
-                + "<li>Any 'treat as' or 'ignore' rules are handled as discussed in Unicode Standard Annex #29, and thus"
+                + "<li>Any 'treat as' or 'ignore' rules are handled as discussed in the UAX, and thus"
                 + " reflected in a transformation of the rules usually not visible here. " +
-                "Where it does show up, an extra variable like CM* or FE* may appear.</li>"
+                "Where it does show up, an extra variable like CM* or FE* may appear, and the rule may be recast. " +
+                "In addition, final rules like \"Any ÷ Any\" may be recast as the equivalent expression \"÷ Any\".</li>"
                 + "<li>Where a rule has multiple parts (lines), each one is numbered using hundredths, "
                 + "such as 21.01) × BA, 21.02) × HY,... In some cases, the numbering and form of a rule is changed due to 'treat as' rules.</li>"
                 + "</ol>" + "<p>For the original rules, see the UAX.</p>"

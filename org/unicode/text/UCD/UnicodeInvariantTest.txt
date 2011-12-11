@@ -141,7 +141,8 @@ In \P{U-1:GC=Cn} name=U-1:name
 
 # Red Flag: cased and case_ignorable should be disjoint
 
-Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770]
+Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770[\u1D62-\u1D6A\u2071\u207F\u2095-\u209C\u2C7C\uA7F8\uA7F9]]
+# 6.1.0, added 22 overlap characters
 \p{cased} ∥ [\p{caseignorable} - $caseOverlap]
 
 ##########################
@@ -167,8 +168,9 @@ Let $BMExclusions =[≠ ∤ ∦ ≢ \u2ADC]
 In [\p{dt=canonical}-$BMExclusions] Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
 
 # Additional BIDI invariant constants
-Let $R_blocks = [\u0590-\u05FF \u07C0-\u08FF \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EFFF]
-Let $AL_blocks = [\u0600-\u07BF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF]
+Let $AL_blocks = [\u0600-\u07BF \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U0001EE00-\U0001EEFF]
+Let $R_blocks = [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EDFF \U0001EF00-\U0001EFFF]
+# 6.1.0 updated blocks
 
 # Unassigned characters in these blocks have R or AL respectively
 \p{Bidi_Class=R} ⊇ [$R_blocks & \p{gc=Cn}]
@@ -277,7 +279,9 @@ In \P{U-1:GC=Cn} ccc=U-1:ccc
 
 # Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
 # except where a character and at lease one character in its decomposition are both new in the release.
-Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB]
+Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB[\U0001112E\U0001112F]]
+# 6.1.0 Added CHAKMA VOWEL SIGN O..CHAKMA VOWEL SIGN AU
+
 [\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion} - $NFC_Exceptions] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion} - $NFC_Exceptions]
 
 # Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
@@ -332,7 +336,8 @@ Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
 
 # Musical symbol combining marks, other oddities
 
-Let $AlphaExclusions = [\u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:]]
+Let $AlphaExclusions = [\u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:][\u302E\u302F]]
+# 6.1.0 Added HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
 
 \p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
 
@@ -400,8 +405,9 @@ Let $SAScriptExceptions = [\u19DA\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u1
 # Warning: the uax31 tables don't have machine-readable tables, so must be updated each release.
 Let $uax31table3 = [\u0027\u002D\u002E\u003A\u00B7\u058A\u05F3\u05F4\u0F0B\u200C\u200D\u2010\u2019\u2027\u30A0\u30FB]
 
-Let $WBRemovals = [\u0387\u2018\u2024\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{Cf}\p{Block=Enclosed Alphanumerics}]
-Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F]
+Let $WBRemovals = [\u0387\u0604\u2018\u2024\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{Cf}\p{Block=Enclosed Alphanumerics}]
+Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
+# 6.1.0 adjust SAMVAT, KHMER VOWEL INHERENT*
 
 [\p{Alpha}\p{WB=Extend}\p{WB=FO}\p{WB=LE}\p{WB=ML}\p{WB=MB}\p{WB=EX}-$WBRemovals] = [$gcAllLetters $gcAllMarks \p{gc=Nl}\p{gc=Pc}-$Uax31Removals]
 
@@ -416,7 +422,8 @@ Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F]
 \p{ID_Start} = [\p{Other_ID_Start} \p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]
 \p{ID_Continue} = [\p{Other_ID_Continue} \p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}] 
 
-Let $DIExclusions = [\u0600-\u0603\u06DD\u070F\uFFF9-\uFFFB\U000110BD]
+Let $DIExclusions = [\u0600-\u0604\u06DD\u070F\uFFF9-\uFFFB\U000110BD]
+# 6.1.0 adjust SAMVAT
 
 \p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $DIExclusions]]
 

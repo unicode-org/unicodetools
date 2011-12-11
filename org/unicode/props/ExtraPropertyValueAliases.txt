@@ -2,8 +2,6 @@
 
 # Missing @-missing values
 
-# @missing: 0000..10FFFF; Script_Extensions; <script>
-
 # @missing: 0000..10FFFF; ASCII_Hex_Digit; No
 # @missing: 0000..10FFFF; Alphabetic; No
 # @missing: 0000..10FFFF; Bidi_Control; No
@@ -79,85 +77,3 @@
 # @empty: 0000..10FFFF; ISO_Comment ; <none>
 # @empty: 0000..10FFFF; Unicode_1_Name ; <none>
 
-# Missing enum values
-
-# Indic_Matra_Category (IMC)
-
-IMC ; n/a ; Right
-IMC ; n/a ; Left
-IMC ; n/a ; Visual_Order_Left
-IMC ; n/a ; Left_And_Right
-IMC ; n/a ; Top
-IMC ; n/a ; Bottom
-IMC ; n/a ; Top_And_Bottom
-IMC ; n/a ; Top_And_Right
-IMC ; n/a ; Top_And_Left
-IMC ; n/a ; Top_And_Left_And_Right
-IMC ; n/a ; Bottom_And_Right
-IMC ; n/a ; Top_And_Bottom_And_Right
-IMC ; n/a ; Overstruck
-IMC ; n/a ; Invisible
-IMC ; n/a ; NA
-
-# Indic_Syllabic_Category (ISC)
-
-ISC ; n/a ; Bindu
-ISC ; n/a ; Visarga
-ISC ; n/a ; Avagraha
-ISC ; n/a ; Nukta
-ISC ; n/a ; Virama
-ISC ; n/a ; Vowel_Independent
-ISC ; n/a ; Vowel_Dependent
-ISC ; n/a ; Vowel
-ISC ; n/a ; Consonant_Placeholder
-ISC ; n/a ; Consonant
-ISC ; n/a ; Consonant_Dead
-ISC ; n/a ; Consonant_Repha
-ISC ; n/a ; Consonant_Subjoined
-ISC ; n/a ; Consonant_Medial
-ISC ; n/a ; Consonant_Final
-ISC ; n/a ; Consonant_Head_Letter
-ISC ; n/a ; Modifying_Letter
-ISC ; n/a ; Tone_Letter
-ISC ; n/a ; Tone_Mark
-ISC ; n/a ; Register_Shifter
-ISC ; n/a ; Other
-
-# Missing CCC values
-
-ccc; 10; F10; Fixed10
-ccc; 11; F11; Fixed11
-ccc; 12; F12; Fixed12
-ccc; 13; F13; Fixed13
-ccc; 14; F14; Fixed14
-ccc; 15; F15; Fixed15
-ccc; 16; F16; Fixed16
-ccc; 17; F17; Fixed17
-ccc; 18; F18; Fixed18
-ccc; 19; F19; Fixed19
-ccc; 20; F20; Fixed20
-ccc; 21; F21; Fixed21
-ccc; 22; F22; Fixed22
-ccc; 23; F23; Fixed23
-ccc; 24; F24; Fixed24
-ccc; 25; F25; Fixed25
-ccc; 26; F26; Fixed26
-ccc; 27; F27; Fixed27
-ccc; 28; F28; Fixed28
-ccc; 29; F29; Fixed29
-ccc; 30; F30; Fixed30
-ccc; 31; F31; Fixed31
-ccc; 32; F32; Fixed32
-ccc; 33; F33; Fixed33
-ccc; 34; F34; Fixed34
-ccc; 35; F35; Fixed35
-ccc; 36; F36; Fixed36
-ccc; 84; F84; Fixed84
-ccc; 91; F91; Fixed91
-ccc; 103; F103; Fixed103
-ccc; 107; F107; Fixed107
-ccc; 118; F118; Fixed118
-ccc; 122; F122; Fixed122
-ccc; 129; F129; Fixed129
-ccc; 130; F130; Fixed130
-ccc; 132; F132; Fixed132
