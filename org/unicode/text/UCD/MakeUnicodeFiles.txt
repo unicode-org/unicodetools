@@ -1,5 +1,5 @@
-Generate: valueali
-DeltaVersion: 17
+Generate: .
+DeltaVersion: 20
 CopyrightYear: 2011
 
 File: extra/ScriptNfkc
@@ -122,7 +122,7 @@ Property:	Bidi_Class
 # reserved for right-to-left scripts are given either types R or AL.
 #
 # The unassigned code points that default to AL are in the ranges:
-#     [\u0600-\u07BF \u08A0-\u08FF \uFB50-\uFDFF \uFE70-\uFEFF \u0001EE00-\U0001EEFF]
+#     [\u0600-\u07BF \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U0001EE00-\U0001EEFF]
 #
 #     Arabic:            U+0600  -  U+06FF
 #     Syriac:            U+0700  -  U+074F
@@ -130,15 +130,15 @@ Property:	Bidi_Class
 #     Thaana:            U+0780  -  U+07BF
 #     Arabic Extended-A: U+08A0  -  U+08FF 
 #     Arabic_Presentation_Forms_A:
-#                        U+FB50  -  U+FDFF
+#                        U+FB50  -  U+FDCF
+#                        U+FDF0  -  U+FDFF
 #     Arabic_Presentation_Forms_B:
 #                        U+FE70  -  U+FEFF
 #     Arabic Mathematical Alphabetic Symbols:
 #                       U+1EE00  - U+1EEFF
-#           minus noncharacter code points.
 #
 # The unassigned code points that default to R are in the ranges:
-#     [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\u0001EDFF \U0001EF00-\U0001EFFF]
+#     [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EDFF \U0001EF00-\U0001EFFF]
 #
 #     Hebrew:            U+0590  -  U+05FF
 #     NKo:               U+07C0  -  U+07FF
@@ -272,7 +272,7 @@ Property:	Default_Ignorable_Code_Point
 #  + Variation_Selector
 #  - White_Space
 #  - FFF9..FFFB (Annotation Characters)
-#  - 0600..0603, 06DD, 070F, 110BD (exceptional Cf characters that should be visible)
+#  - 0600..0604, 06DD, 070F, 110BD (exceptional Cf characters that should be visible)
 
 Property:	Grapheme_Extend
 # Derived Property: Grapheme_Extend

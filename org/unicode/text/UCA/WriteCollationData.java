@@ -1932,85 +1932,90 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             }
 
             // print results
-
-            if (option == IN_XML) {
-                if (insertVariableTop) {
-                    log.println(XML_RELATION_NAMES[0] + "<variableTop/>");
-                }
-
-                /*
-                 * log.print("  <!--" + ucd.getCodeAndName(chr)); if (len > 1)
-                 * log.print(" / " + Utility.hex(expansion));
-                 * log.println("-->");
-                 */
-
-                if (reset.length() != 0) {
-                    log.println("<reset/>"
-                            + (resetToParameter ? "<position at=\"" + reset + "\"/>" : Utility.quoteXML(reset))
-                            + (resetComment.length() != 0 ? "<!-- " + resetComment + "-->" : ""));
-                }
-                if (expansion.length() > 0) {
-                    log.print("<x>");
-                }
-                if (!firstTime) {
-                    log.print("  <" + XML_RELATION_NAMES[relation] + ">");
-                    log.print(Utility.quoteXML(chr));
-                    log.print("</" + XML_RELATION_NAMES[relation] + ">");
-                }
-
-                // <x><t>&#x20A8;</t><extend>s</extend></x> <!--U+20A8 RUPEE SIGN / 0073-->
-
-                if (expansion.length() > 0) {
-                    log.print("<extend>" + Utility.quoteXML(expansion) + "</extend></x>");
-                }
-                if (!shortPrint) {
-                    log.print("\t<!--");
-                    if (!noCE) {
-                        log.print(CEList.toString(ces, len) + " ");
-                    }
-                    log.print(Default.ucd().getCodeAndName(chr));
-                    if (expansion.length() > 0) {
-                        log.print(" / " + Utility.hex(expansion));
-                    }
-                    log.print("-->");
-                }
-                log.println();
+            // skip printing if it ends with a half-surrogate
+            char lastChar = chr.charAt(chr.length() - 1);
+            if (Character.isHighSurrogate(lastChar)) {
+                System.out.println("Skipping trailing surrogate: " + chr + "\t" + Utility.hex(chr));
             } else {
-                if (insertVariableTop) {
-                    log.println(RELATION_NAMES[0] + " [variable top]");
-                }
-                if (reset.length() != 0) {
-                    log.println("& "
-                            + (resetToParameter ? "[" : "") + reset + (resetToParameter ? "]" : "")
-                            + (resetComment.length() != 0 ? "\t\t# " + resetComment : ""));
-                }
-                if (!firstTime) {
-                    log.print(RELATION_NAMES[relation] + " " + quoteOperand(chr));
-                }
-                if (expansion.length() > 0) {
-                    log.print(" / " + quoteOperand(expansion));
-                }
-                if (!shortPrint) {
-                    log.print("\t# ");
-                    if (false) {
-                        if (latestAge(chr).startsWith("5.2")) {
-                            log.print("† ");
+                if (option == IN_XML) {
+                    if (insertVariableTop) {
+                        log.println(XML_RELATION_NAMES[0] + "<variableTop/>");
+                    }
+
+                    /*
+                     * log.print("  <!--" + ucd.getCodeAndName(chr)); if (len > 1)
+                     * log.print(" / " + Utility.hex(expansion));
+                     * log.println("-->");
+                     */
+
+                    if (reset.length() != 0) {
+                        log.println("<reset/>"
+                                + (resetToParameter ? "<position at=\"" + reset + "\"/>" : Utility.quoteXML(reset))
+                                + (resetComment.length() != 0 ? "<!-- " + resetComment + "-->" : ""));
+                    }
+                    if (expansion.length() > 0) {
+                        log.print("<x>");
+                    }
+                    if (!firstTime) {
+                        log.print("  <" + XML_RELATION_NAMES[relation] + ">");
+                        log.print(Utility.quoteXML(chr));
+                        log.print("</" + XML_RELATION_NAMES[relation] + ">");
+                    }
+
+                    // <x><t>&#x20A8;</t><extend>s</extend></x> <!--U+20A8 RUPEE SIGN / 0073-->
+
+                    if (expansion.length() > 0) {
+                        log.print("<extend>" + Utility.quoteXML(expansion) + "</extend></x>");
+                    }
+                    if (!shortPrint) {
+                        log.print("\t<!--");
+                        if (!noCE) {
+                            log.print(CEList.toString(ces, len) + " ");
+                        }
+                        log.print(Default.ucd().getCodeAndName(chr));
+                        if (expansion.length() > 0) {
+                            log.print(" / " + Utility.hex(expansion));
+                        }
+                        log.print("-->");
+                    }
+                    log.println();
+                } else {
+                    if (insertVariableTop) {
+                        log.println(RELATION_NAMES[0] + " [variable top]");
+                    }
+                    if (reset.length() != 0) {
+                        log.println("& "
+                                + (resetToParameter ? "[" : "") + reset + (resetToParameter ? "]" : "")
+                                + (resetComment.length() != 0 ? "\t\t# " + resetComment : ""));
+                    }
+                    if (!firstTime) {
+                        log.print(RELATION_NAMES[relation] + " " + quoteOperand(chr));
+                    }
+                    if (expansion.length() > 0) {
+                        log.print(" / " + quoteOperand(expansion));
+                    }
+                    if (!shortPrint) {
+                        log.print("\t# ");
+                        if (false) {
+                            if (latestAge(chr).startsWith("5.2")) {
+                                log.print("† ");
+                            }
+                        }
+
+                        log.print(latestAge(chr) + " [");
+                        String typeKD = ReorderingTokens.getTypesCombined(chr);
+                        log.print(typeKD + "] ");
+
+                        if (!noCE) {
+                            log.print(CEList.toString(ces, len) + " ");
+                        }
+                        log.print(Default.ucd().getCodeAndName(chr));
+                        if (expansion.length() > 0) {
+                            log.print(" / " + Utility.hex(expansion));
                         }
                     }
-
-                    log.print(latestAge(chr) + " [");
-                    String typeKD = ReorderingTokens.getTypesCombined(chr);
-                    log.print(typeKD + "] ");
-
-                    if (!noCE) {
-                        log.print(CEList.toString(ces, len) + " ");
-                    }
-                    log.print(Default.ucd().getCodeAndName(chr));
-                    if (expansion.length() > 0) {
-                        log.print(" / " + Utility.hex(expansion));
-                    }
+                    log.println();
                 }
-                log.println();
             }
             firstTime = false;
         }
@@ -2054,7 +2059,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     static String getAge(int cp) {
         if (ageProp == null)
             ageProp = getToolUnicodeSource().getProperty("age");
-        return ageProp.getValue(cp);
+        return ageProp.getValue(cp, true);
     }
 
     static UnicodeSet oldCharacters = new UnicodeSet("[:assigned:]");

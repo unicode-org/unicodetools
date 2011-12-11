@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -59,7 +60,8 @@ public class GenerateEnums {
     static Map<String,PropName> lookup = new HashMap<String,PropName>();
     static Map<String,PropName> lookupMain = new TreeMap<String,PropName>();
 
-    private static final Pattern PROPER_LONG_NAME = Pattern.compile("[A-Z]+[0-9]?[a-z]*(_[A-Z0-9]+[a-z]*)*");
+    private static final Pattern PROPERTY_LONG_NAME = Pattern.compile("[A-Z]+[0-9]?[a-z]*(_[A-Z0-9]+[a-z]*)*");
+    private static final Pattern PROPERTY_VALUE_LONG_NAME = Pattern.compile("[A-Z]+[0-9]?[a-z]*(_[A-Z0-9]+[a-z]*)*(\\d*)");
     private static final Pattern PROPER_CJK_LONG_NAME = Pattern.compile("(cj)?k[A-Z][a-z]*(_?[A-Z0-9][a-z]*)*");
 
     static class PropName implements Comparable<PropName>{
@@ -72,8 +74,9 @@ public class GenerateEnums {
             propertyType = type;
             shortName = strings[0];
             longName = strings[1];
-            if (!isProperLongName(longName, true)) {
-                System.out.println("Improper long name: " + longName);
+            String badName = isProperLongName(longName, PROPERTY_LONG_NAME, true);
+            if (badName != null) {
+                addWarning("Improper Property long name: " + badName);
             }
             if (strings.length == 2) {
                 others = Collections.emptyList();
@@ -91,15 +94,15 @@ public class GenerateEnums {
             }
             lookupMain.put(longName, this);
         }
-        private static boolean isProperLongName(String longName2, boolean allowCjk) {
-            boolean result = PROPER_LONG_NAME.matcher(longName2).matches();
+        private static String isProperLongName(String longName2, Pattern pattern, boolean allowCjk) {
+            boolean result = pattern.matcher(longName2).matches();
             if (result == false && allowCjk) {
                 result = PROPER_CJK_LONG_NAME.matcher(longName2).matches();
             }
             if (result == false) {
-                System.out.println(RegexUtilities.showMismatch(PROPER_LONG_NAME, longName2));
+                return RegexUtilities.showMismatch(pattern, longName2);
             }
-            return result;
+            return null;
         }
         public String toString() {
             return "{" + propertyType + ",\t" + longName + ",\t" + shortName + ",\t" + others + "}";
@@ -119,6 +122,9 @@ public class GenerateEnums {
         writeMainUcdFile();
 
         writeValueEnumFile(values);
+        for (String s : WARNINGS) {
+            System.out.println(s);
+        }
     }
 
 
@@ -165,9 +171,9 @@ public class GenerateEnums {
                 if (propName.shortName.equals("ccc")) {
                     longName = parts[3];
                 }
-                if (!PropName.isProperLongName(longName, false)) {
-                    System.out.println("Improper long value name for " + parts[0] + 
-                    		": " + longName);
+                String badName = PropName.isProperLongName(longName, PROPERTY_VALUE_LONG_NAME, false);
+                if (badName != null) {
+                    addWarning("Improper long value name for " + parts[0] + ": " + badName);
                 }
                 if (first) {
                     first = false;
@@ -206,6 +212,11 @@ public class GenerateEnums {
         }
         output.println("\n}");
         output.close();
+    }
+
+    static Set<String> WARNINGS = new LinkedHashSet<String>();
+    private static void addWarning(String string) {
+        WARNINGS.add(string);
     }
 
     // otherNames are x, short, long, others
@@ -294,7 +305,7 @@ public class GenerateEnums {
         }
         output.println("\t\t;");
         boolean first = true;
-        output.println(";\n" +
+        output.println("\n" +
                 "private final PropertyNames.PropertyType type;\n"+
                 "\tprivate final PropertyNames<UcdProperty> names;\n"+
                 "\t// for enums\n"+
@@ -309,7 +320,7 @@ public class GenerateEnums {
                 "\t}\n"+
                 "\tprivate UcdProperty(PropertyNames.PropertyType type, Class classItem, String shortName, String...otherNames) {\n"+
                 "\t\tthis.type = type;\n"+
-                "\t\tObject[] x = classItem.getEnumConstants();\n"+
+                //"\t\tObject[] x = classItem.getEnumConstants();\n"+
                 "\t\tnames = new PropertyNames(UcdProperty.class, this, shortName, otherNames);\n"+
                 "\t\tenums = EnumSet.allOf(classItem);\n"+
                 "\t\tname2enum = PropertyNames.getNameToEnums(classItem);\n"+
@@ -327,9 +338,12 @@ public class GenerateEnums {
                 "\tpublic Enum getEnum(String name) {\n"+
                 "\t\treturn name2enum == null ? null : name2enum.get(name);\n"+
                 "\t}\n"+
+                "\tpublic PropertyNames getEnumNames() {\n"+
+                "\t\treturn name2enum == null ? null : name2enum.getNames();\n"+
+                "\t}\n"    +
                 "\tpublic Set<Enum> getEnums() {\n"+
                 "\t\treturn enums;\n"+
-                "\t}\n"        
+                "\t}\n"                
         );
 
         output.println("\n}");     

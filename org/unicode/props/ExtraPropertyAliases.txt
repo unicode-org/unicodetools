@@ -2,9 +2,6 @@
 # Enumerated Properties
 # ================================================
 
-InMC ; Indic_Matra_Category
-InSC ; Indic_Syllabic_Category
-scx ; Script_Extensions
 
 # ================================================
 # Miscellaneous Properties

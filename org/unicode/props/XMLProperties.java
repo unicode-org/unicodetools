@@ -31,7 +31,9 @@ public class XMLProperties {
     private static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 4000; // Integer.MAX_VALUE;
 
     enum XmlLeaf {
-        GROUP, CHAR, RESERVED, SURROGATE, NONCHARACTER, DESCRIPTION, BLOCK, NAMED_SEQUENCE, CJK_RADICAL, EMOJI_SOURCE, NORMALIZATION_CORRECTION, STANDARDIZED_VARIANT;
+        GROUP, CHAR, RESERVED, SURROGATE, NONCHARACTER, DESCRIPTION, BLOCK, NAMED_SEQUENCE, 
+        CJK_RADICAL, EMOJI_SOURCE, NORMALIZATION_CORRECTION, STANDARDIZED_VARIANT, NAME_ALIAS
+        ;
         static XmlLeaf forString(String source) {
             try {
                 return XmlLeaf.valueOf(source.toUpperCase().replace('-', '_'));
@@ -54,6 +56,7 @@ public class XMLProperties {
         }
     }
     Set<String> leavesNotHandled = new LinkedHashSet<String>();
+    Set<String> leavesNotRecognized = new LinkedHashSet<String>();
 
 
     private XMLProperties(String folder) {
@@ -66,7 +69,8 @@ public class XMLProperties {
             UnicodeMap<String> map = property2data.get(prop);
             map.freeze();
         }
-        System.out.println(leavesNotHandled);
+        System.out.println("Element names not recognized:\t" + leavesNotRecognized);
+        System.out.println("Element names not handled:\t" + leavesNotHandled);
     }
 
     public void readFile(String systemID) {
@@ -121,7 +125,7 @@ public class XMLProperties {
             try {
                 XmlLeaf xmlLeaf = XmlLeaf.forString(qName);
                 if (xmlLeaf == null) {
-                    leavesNotHandled.add(qName);
+                    leavesNotRecognized.add(qName);
                     return;
                 }
                 if (--max < 0) {
@@ -264,7 +268,7 @@ public class XMLProperties {
         System.out.println(timer);
 
         UnicodeSet empty = new UnicodeSet();
-        System.out.println("Property\tcp\txml\tindexed");
+        System.out.println("\nFormat:\nProperty\tcp\txml\tindexed");
         for (UcdProperty prop : UcdProperty.values()) {
             System.out.println("\nTESTING\t" + prop);
             UnicodeMap<String> xmap = props.getMap(prop);

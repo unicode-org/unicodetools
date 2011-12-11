@@ -1139,7 +1139,13 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         while (it.hasNext()) {
             Object sortKey = it.next();
-            String chr = (String)ordered.get(sortKey);            
+            String chr = (String)ordered.get(sortKey);  
+            
+            char lastChar = chr.charAt(chr.length() - 1);
+            if (Character.isHighSurrogate(lastChar)) {
+                System.out.println("Skipping trailing surrogate: " + chr + "\t" + Utility.hex(chr));
+                continue;
+            }
 
             // get CEs and fix
             int len = getCollator().getCEs(chr, true, ces);
