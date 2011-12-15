@@ -15,6 +15,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.util.Timer;
+import org.unicode.cldr.util.With;
 import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
 import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.PropertyNames.PropertyType;
@@ -41,9 +42,11 @@ public class CheckProperties {
     static LinkedHashSet<String> SKIPPING = new LinkedHashSet<String>();
     static LinkedHashSet<String> NOT_IN_ICU = new LinkedHashSet<String>();
 
-    enum Action {SHOW, COMPARE, CHECK, EMPTY, INFO, SPACES, DETAILS}
+    enum Action {SHOW, COMPARE, ICU, EMPTY, INFO, SPACES, DETAILS}
     enum Extent {SOME, ALL}
 
+    static IndexUnicodeProperties latest;
+    
     public static void main(String[] args) throws Exception {
         EnumSet<Action> actions = EnumSet.noneOf(Action.class);
         EnumSet<UcdProperty> properties = EnumSet.noneOf(UcdProperty.class);
@@ -63,7 +66,7 @@ public class CheckProperties {
             } catch (Exception e) {}
             throw new IllegalArgumentException(arg);
         }
-        if (actions.size() == 0) actions = EnumSet.of(Action.CHECK);
+        if (actions.size() == 0) actions = EnumSet.of(Action.ICU);
 
         Timer total = new Timer();
         for (Entry<String, PropertyParsingInfo> entry : IndexUnicodeProperties.getFile2PropertyInfoSet().keyValueSet()) {
@@ -74,15 +77,15 @@ public class CheckProperties {
         //        showValue(last, UcdProperty.kMandarin, '\u5427');
         //        showValue(last, UcdProperty.General_Category, '\u5427');
 
-        IndexUnicodeProperties latest = IndexUnicodeProperties.make(Default.ucdVersion());
+        latest = IndexUnicodeProperties.make(Default.ucdVersion());
         //        showValue(latest, UcdProperty.General_Category, '\u00A7');
         //        showValue(latest, UcdProperty.kMandarin, '\u5427');
 
         UnicodeSet ignore = new UnicodeSet();
         addAll(ignore, gcLast.getSet(null)); // separate for debugging
-        addAll(ignore, gcLast.getSet(PropertyValues.General_Category_Values.Unassigned.toString()));
-        addAll(ignore, gcLast.getSet(PropertyValues.General_Category_Values.Private_Use.toString()));
-        addAll(ignore, gcLast.getSet(PropertyValues.General_Category_Values.Surrogate.toString()));
+        addAll(ignore, gcLast.getSet(UcdPropertyValues.General_Category_Values.Unassigned.toString()));
+        addAll(ignore, gcLast.getSet(UcdPropertyValues.General_Category_Values.Private_Use.toString()));
+        addAll(ignore, gcLast.getSet(UcdPropertyValues.General_Category_Values.Surrogate.toString()));
         //addAll(ignore, gcLast.getSet("Cc"));
 
         UnicodeSet retain = new UnicodeSet(ignore).complement().freeze();
@@ -129,7 +132,7 @@ public class CheckProperties {
                     compare(prop, last, latest, retain);
                 }
                 break;
-            case CHECK:
+            case ICU:
                 System.out.println("Property\tICU-Value\tDirect-Value\tChars-Affected");
                 for (UcdProperty prop : values) {
                     compareICU(prop, last);
@@ -162,7 +165,7 @@ public class CheckProperties {
                 for (UcdProperty prop : UcdProperty.values()) {
                     PropertyParsingInfo propInfo = IndexUnicodeProperties.getPropertyInfo(prop);
                     System.out.println(propInfo);
-                    if (propInfo.regex == null || !propInfo.emptyValue.isEmpty())
+                    if (propInfo.regex == null)
                         switch (prop.getType()) {
                         case Binary: case Catalog: case Enumerated: break;
                         default: missingRegex.add(prop);
@@ -226,7 +229,7 @@ public class CheckProperties {
             System.out.println("Empty: " + prop + "\t" + abbreviate(empty, 100, false));
         }
 
-        final String no_value_constant = IndexUnicodeProperties.SpecialValue.NO_VALUE.toString();
+        final String no_value_constant = IndexUnicodeProperties.DefaultValueType.LITERAL.toString();
         UnicodeSet no_value = map.getSet(no_value_constant);
         if (no_value_constant.equals(defaultValue)) {
             no_value.addAll(nullElements);
@@ -310,17 +313,52 @@ public class CheckProperties {
             SKIPPING.add(prop.toString());
             return;
         }
-        int limit = 30;
+        int limit = 10;
         for (String value : new TreeSet<String>(changes.values())) {
-            final UnicodeSet chars = changes.getSet(value);
-            System.out.println(prop + "\t" + value 
-                    //+ "\t" + FIX_INVISIBLES.transform(chars.toPattern(false))
-                    + "\t" + abbreviate(chars, 50, false));
             if (--limit < 0) {
-                System.out.println("\t\tand more");
+                System.out.println("\t\t\t\tand more");
                 break;
             }
+            final UnicodeSet chars = changes.getSet(value);
+            System.out.print(prop + "\t" + value 
+                    //+ "\t" + FIX_INVISIBLES.transform(chars.toPattern(false))
+                    + "\t" + abbreviate(chars, 50, false));
+            if (chars.size() == 1) {
+                System.out.println("\t" + getHexAndName(chars.iterator().next()));
+                continue;
+            }
+            System.out.println();
+            int nameLimit = 5;
+            for (String s : chars) {
+                if (--nameLimit < 0) {
+                    System.out.println("\t\t\t\t\tand more");
+                    break;                    
+                }
+                System.out.println("\t\t\t\t\t" + getHexAndName(s));
+            }
         }
+    }
+
+    private static String getHexAndName(String s) {
+        return "U+" + Utility.hex(s, " U+") + "\t( " + fixInvisibles(s) + " )\t" + getName(s, " ");
+    }
+
+    private static String getName(CharSequence s, String separator) {
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+        for (int cp : With.codePointArray(s)) {
+            if (first) {
+                first = false;
+            } else {
+                result.append(" ");
+            }
+            String name = latest.getResolvedValue(UcdProperty.Name, cp);
+            if (name.equals("NO_VALUE")) {
+                latest.getResolvedValue(UcdProperty.Name_Alias, cp);
+            }
+            result.append(name);
+        }
+        return result.toString();
     }
 
     public static void captureChanges(UcdProperty prop, int codepoint, 
@@ -361,14 +399,46 @@ public class CheckProperties {
     }
 
     public static String getDisplayValue(String value) {
-        return (value == null || value.isEmpty()) ? "∅" : value;
+        return value == null ? "null" : value.isEmpty() ? "empty" : value;
     }
 
-    static final Transliterator FIX_INVISIBLES = Transliterator.createFromRules("ID", "([[:c:][:di:]]) > ❮&hex/plain($1)❯ ;", Transliterator.FORWARD);
-    static final Transliterator FIX_NON_ASCII8 = Transliterator.createFromRules("ID", 
-            "([[:c:][:di:]]) > ❮&hex/plain($1)❯ ;" +
-            "([^\\u0000-\\u00FF]) > $1❮&hex/plain($1)❯ ;",
-            Transliterator.FORWARD);
+    static Transliterator FIX_INVISIBLES;
+    static Transliterator FIX_NON_ASCII8;
+    static UnicodeSet INVISIBLES;
+
+    static String fixInvisibles(String source) {
+        if (FIX_INVISIBLES == null) {
+            FIX_INVISIBLES = Transliterator.createFromRules("ID", "(" +
+                   getInvisibles() +
+           		") > ❮&hex/plain($1)❯ ;", Transliterator.FORWARD);
+        }
+        return FIX_INVISIBLES.transform(source);
+    }
+
+    public static UnicodeSet getInvisibles() {
+        if (INVISIBLES == null) {
+        UnicodeMap<String> gc = latest.load(UcdProperty.General_Category);
+        UnicodeMap<String> di = latest.load(UcdProperty.Default_Ignorable_Code_Point);
+        INVISIBLES = new UnicodeSet(gc.getSet(UcdPropertyValues.General_Category_Values.Control.toString()))
+        .addAll(gc.getSet(UcdPropertyValues.General_Category_Values.Format.toString()))
+        .addAll(gc.getSet(UcdPropertyValues.General_Category_Values.Surrogate.toString()))
+        .addAll(gc.getSet(UcdPropertyValues.General_Category_Values.Private_Use.toString()))
+        .addAll(di.getSet(UcdPropertyValues.Binary.Yes.toString()))
+        .freeze();
+        }
+        return INVISIBLES;
+    }
+    public static String fixNonAscii(String charString) {
+        if (FIX_NON_ASCII8 == null) {
+            FIX_NON_ASCII8 = Transliterator.createFromRules("ID", 
+                    "(" +
+                    getInvisibles() +
+                    ") > ❮&hex/plain($1)❯ ;" +
+                    "([^\\u0000-\\u00FF\\u2026]) > $1❮&hex/plain($1)❯ ;",
+                    Transliterator.FORWARD);
+        }
+        return FIX_NON_ASCII8.transform(charString);
+    }
 
     public static String abbreviate(UnicodeSet chars, int maxLength, boolean showNonAscii) {
         return abbreviate(chars.toPattern(false), maxLength, showNonAscii);
@@ -380,10 +450,15 @@ public class CheckProperties {
             charString = charString.substring(0,maxLength) + "…";
         }
         if (showNonAscii) {
-            String alt = FIX_NON_ASCII8.transform(charString);
+            String alt = fixNonAscii(charString);
             if (!alt.equals(charString)) {
                 charString = alt;
             }
+        } else {
+            String alt = fixInvisibles(charString);
+            if (!alt.equals(charString)) {
+                charString = alt;
+            }            
         }
         return charString;
     }

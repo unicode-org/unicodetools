@@ -1,16 +1,18 @@
 package org.unicode.props;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.XMLFileReader;
-import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
+import org.unicode.props.XMLProperties.XmlLeaf;
 import org.unicode.text.utility.Utility;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
@@ -27,13 +29,22 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class XMLProperties {
 
-    private static final boolean INCLUDE_UNIHAN = true; // false;
+    private static final boolean LONG_TEST = false;
+    private static final boolean INCLUDE_UNIHAN = false;
     private static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 4000; // Integer.MAX_VALUE;
 
     enum XmlLeaf {
-        GROUP, CHAR, RESERVED, SURROGATE, NONCHARACTER, DESCRIPTION, BLOCK, NAMED_SEQUENCE, 
-        CJK_RADICAL, EMOJI_SOURCE, NORMALIZATION_CORRECTION, STANDARDIZED_VARIANT, NAME_ALIAS
+        // Leaf
+        RESERVED, SURROGATE, NONCHARACTER, DESCRIPTION, BLOCK, NAMED_SEQUENCE, 
+        CJK_RADICAL, EMOJI_SOURCE, NORMALIZATION_CORRECTION, STANDARDIZED_VARIANT, NAME_ALIAS,
+        // Both
+        CHAR, 
+        // Nonleaf
+        GROUP, UCD, REPERTOIRE, BLOCKS, NAMED_SEQUENCES, NORMALIZATION_CORRECTIONS, STANDARDIZED_VARIANTS, CJK_RADICALS, EMOJI_SOURCES
         ;
+        static final XmlLeaf GREATEST_LEAF = NAME_ALIAS;
+        static final XmlLeaf GREATEST_BOTH = CHAR;
+        
         static XmlLeaf forString(String source) {
             try {
                 return XmlLeaf.valueOf(source.toUpperCase().replace('-', '_'));
@@ -104,10 +115,19 @@ public class XMLProperties {
         HashMap<String,String> attributes = new HashMap<String,String>();
         HashMap<String,String> groupAttributes = new HashMap<String,String>();
         int max = MAX_LINE_COUNT;
+        private List<XmlLeaf> lastElements = new ArrayList<XmlLeaf>();
 
-        public void characters(char[] arg0, int arg1, int arg2) throws SAXException {}
+        public void characters(char[] arg0, int arg1, int arg2) throws SAXException {
+            String chars = String.valueOf(arg0, arg1, arg2).trim();
+            if (chars.trim().length() > 0 && lastElements.get(lastElements.size() - 1) != XmlLeaf.DESCRIPTION) {
+                throw new IllegalArgumentException("Should have no element content");
+            }
+        }
+        public void endElement(String arg0, String arg1, String arg2) throws SAXException {
+            XmlLeaf removed = lastElements.remove(lastElements.size() - 1);
+            //System.out.println("Removed:\t" + removed);
+        }
         public void endDocument() throws SAXException {}
-        public void endElement(String arg0, String arg1, String arg2) throws SAXException {}
         public void endPrefixMapping(String arg0) throws SAXException {}
         public void ignorableWhitespace(char[] arg0, int arg1, int arg2) throws SAXException {}
         public void processingInstruction(String arg0, String arg1) throws SAXException {}
@@ -128,6 +148,9 @@ public class XMLProperties {
                     leavesNotRecognized.add(qName);
                     return;
                 }
+                lastElements.add(xmlLeaf);
+                //System.out.println("Added:\t" + lastElements);
+
                 if (--max < 0) {
                     throw new SkipException();
                 }
@@ -173,6 +196,30 @@ public class XMLProperties {
                     setProp(cps, UcdProperty.Emoji_KDDI, attributes.get("kddi"));
                     setProp(cps, UcdProperty.Emoji_SB, attributes.get("softbank"));
                     break;
+                case REPERTOIRE:
+                case BLOCKS:
+                case CJK_RADICALS:
+                case EMOJI_SOURCES:
+                case NAMED_SEQUENCES:
+                case NORMALIZATION_CORRECTIONS:
+                case STANDARDIZED_VARIANTS:
+                case DESCRIPTION:
+                    // non-informational nodes, skip
+                    if (atts.getLength() != 0) {
+                        throw new IllegalArgumentException("Has attributes");
+                    }
+                    break;
+                case UCD:
+                    if (atts.getLength() != 1) {
+                        throw new IllegalArgumentException("Has wrong number of attributes");
+                    }
+                    break;
+                case NAME_ALIAS:
+                    // <char cp="0000" na1="NULL">
+                    // <name-alias alias="NUL" type="abbreviation"/>
+                    appendProp(cp.start, UcdProperty.Name_Alias, attributes.get("alias"));
+                    leavesNotHandled.add("name-alias type=");
+                    break;
                 case NORMALIZATION_CORRECTION:
                     //ucd/normalization-corrections/normalization-correction[@cp="F951"][@old="96FB"][@new="964B"][@version="3.2.0"
                 case STANDARDIZED_VARIANT:
@@ -180,6 +227,8 @@ public class XMLProperties {
                 default: 
                     leavesNotHandled.add(qName);
                     break;
+                case GROUP:
+                    break; // handled above
                 }
             } catch (SkipException e) {
                 throw e;
@@ -198,6 +247,18 @@ public class XMLProperties {
             if (docomo != null) {
                 property2data.get(ucdProperty).put(cps, docomo);
             }
+        }
+        
+        public void setProp(int cps, UcdProperty ucdProperty, String docomo) {
+            if (docomo != null) {
+                property2data.get(ucdProperty).put(cps, docomo);
+            }
+        }
+
+        public void appendProp(int cps, UcdProperty ucdProperty, String docomo) {
+            final UnicodeMap<String> unicodeMap = property2data.get(ucdProperty);
+            String former = unicodeMap.get(cps);
+            unicodeMap.put(cps, former == null ? docomo : former + "; " + docomo);
         }
 
         public void parseCp(HashMap<String, String> attributes2) {
@@ -267,9 +328,15 @@ public class XMLProperties {
         timer.stop();
         System.out.println(timer);
 
-        UnicodeSet empty = new UnicodeSet();
+        UnicodeMap<String> empty = new UnicodeMap<String>();
         System.out.println("\nFormat:\nProperty\tcp\txml\tindexed");
-        for (UcdProperty prop : UcdProperty.values()) {
+        final UcdProperty[] testValues = LONG_TEST ? UcdProperty.values() : new UcdProperty[] {
+                //                UcdProperty.Lowercase_Mapping, 
+                UcdProperty.Name_Alias, 
+                //                UcdProperty.Titlecase_Mapping,
+                //                UcdProperty.Uppercase_Mapping
+        };
+        for (UcdProperty prop : testValues) {
             System.out.println("\nTESTING\t" + prop);
             UnicodeMap<String> xmap = props.getMap(prop);
             if (xmap.size() == 0) {
@@ -279,11 +346,15 @@ public class XMLProperties {
             int errors = 0;
             empty.clear();
             for (int i = 0; i <= 0x10ffff; ++i) {
-                String xval = getResolved(prop, i, xmap.get(i));
+                String xval = getXmlResolved(prop, i, xmap.get(i));
                 String ival = iup.getResolvedValue(prop, i);
                 if (!UnicodeProperty.equals(xval, ival)) {
-                    if (xval == NO_VALUE) {
-                        empty.add(i);
+                    // for debugging
+                    String xx = getXmlResolved(prop, i, xmap.get(i));
+                    String ii = iup.getResolvedValue(prop, i);
+
+                    if (xval == null || xval.isEmpty()) {
+                        empty.put(i, ival);
                     } else {
                         System.out.println(prop + "\t" + Utility.hex(i) + "\t" + show(xval) + "\t" + show(ival));
                         if (++errors > 10) {
@@ -294,8 +365,16 @@ public class XMLProperties {
             }
             if (errors == 0 && empty.size() == 0) {
                 System.out.println("*OK*\t" + prop);
-            } else if (empty.size() != 0) {
-                System.out.println("*Missing Values:\t" + empty);
+            } else {
+                System.out.println("*FAIL*\t" + prop + " with " + (errors + empty.size()) + " errors.");
+                if (empty.size() != 0) {
+                    System.out.println("*Empty/null XML Values:\t" + empty.size());
+                    int maxCount = 0;
+                    for (String ival : empty.values()) {
+                        if (++maxCount > 10) break;
+                        System.out.println(ival + "\t" + empty.getSet(ival));
+                    }
+                }
             }
         }
     }
@@ -306,53 +385,55 @@ public class XMLProperties {
         return "[" + ival + "]";
     }
 
-    private static final String NO_VALUE = IndexUnicodeProperties.SpecialValue.NO_VALUE.toString();
-    private static final String NAN = IndexUnicodeProperties.SpecialValue.NaN.toString();
+    //    private static final String NO_VALUE = IndexUnicodeProperties.DefaultValueType.NO_VALUE.toString();
+    //    private static final String NAN = IndexUnicodeProperties.DefaultValueType.NaN.toString();
 
-    public static String getResolved(UcdProperty property, int codePoint, String propertyValue) {
-        boolean dehex = false;
+    static final boolean HACK_XML_DEFAULTS = false;
+
+    public static String getXmlResolved(UcdProperty property, int codePoint, String propertyValue) {
         switch (property.getType()) {
         case Binary: 
-            if (propertyValue == null) {
-                propertyValue = "No";
-            } else {
-                propertyValue = normalizeValue(property, propertyValue);
+            if (HACK_XML_DEFAULTS) {
+                if (propertyValue == null) {
+                    propertyValue = "No";
+                } else {
+                    propertyValue = IndexUnicodeProperties.normalizeValue(property, propertyValue);
+                }
+                break;
             }
-            break;
+            //$FALL-THROUGH$
         case Enumerated: case Catalog:
-            if (propertyValue == null) { // error
-                propertyValue = NO_VALUE;
-            } else {
-                propertyValue = normalizeValue(property, propertyValue);
+            if (propertyValue != null) {
+                propertyValue = IndexUnicodeProperties.normalizeValue(property, propertyValue);
             }
             break;
         case Numeric:
-            if (propertyValue == null || propertyValue.isEmpty()) {
-                propertyValue = NAN;
+            if (HACK_XML_DEFAULTS) {
+                if (propertyValue == null || propertyValue.isEmpty()) {
+                    propertyValue = "NaN";
+                }
             }
             break;
         case Miscellaneous:
-            if (propertyValue == null) {
-                propertyValue = NO_VALUE;
-            } else {
-                propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
+            if (propertyValue != null) {
+                switch (property) {
+                case Script_Extensions:
+                    propertyValue = IndexUnicodeProperties.normalizeValue(property, propertyValue);
+                    break;
+                case Name:
+                    break;
+                default:
+                    propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
+                }
             }
             break;
         case String:
-            if (propertyValue == null) {
-                propertyValue = NO_VALUE;
-            } else {
+            if (propertyValue != null) {
                 propertyValue = propertyValue.replace("#", Utility.hex(codePoint));
                 propertyValue = Utility.fromHex(propertyValue);
             }
             break;
         }
-        return propertyValue;
-    }
-
-    public static String normalizeValue(UcdProperty property, String propertyValue) {
-        PropertyParsingInfo info = IndexUnicodeProperties.getPropertyInfo(property);
-        propertyValue = info.normalizeEnum(propertyValue);
         return propertyValue;
     }
 }

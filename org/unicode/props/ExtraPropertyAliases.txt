@@ -12,7 +12,6 @@ CJKR ; CJK_Radical
 EDCM ; Emoji_DCM
 EKDDI ; Emoji_KDDI
 ESB ; Emoji_SB
-NAP ; Name_Alias_Prov
 NS ; Named_Sequences
 NSP ; Named_Sequences_Prov
 

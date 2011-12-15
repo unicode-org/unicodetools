@@ -54,7 +54,6 @@ Name ;                        SINGLE_VALUED ;               $nameHack
 Named_Sequences ;             SINGLE_VALUED ;               $nameHack
 Named_Sequences_Prov ;        SINGLE_VALUED ;               $name
 Name_Alias ;                  MULTI_VALUED ;                $nameHack
-Name_Alias_Prov ;             MULTI_VALUED ;                $nameHack
 Numeric_Value ;               SINGLE_VALUED ;               $rational
 
 Jamo_Short_Name ;             SINGLE_VALUED ;               GG?|N|DD?|R|M|BB?|SS?||JJ?|C|K|T|P|H|AE?|YAE?|EO?|YEO?|O|WAE?|OE|YO|U|WEO?|WI|YU|EU|YI|I|GS|NJ|NH|L|LG|LM|LB|LS|LT|LP|LH|BS|NG
