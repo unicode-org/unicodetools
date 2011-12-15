@@ -2,7 +2,7 @@ package org.unicode.idna;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.PropertyValues;
+import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
 

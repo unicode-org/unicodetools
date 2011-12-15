@@ -274,4 +274,3 @@ EmojiSources ; Emoji_KDDI ; 2
 EmojiSources ; Emoji_SB ; 3
 NamedSequences ; Named_Sequences
 NamedSequencesProv ; Named_Sequences_Prov
-NameAliasesProv ; Name_Alias_Prov

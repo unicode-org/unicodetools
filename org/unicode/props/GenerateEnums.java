@@ -28,7 +28,7 @@ import com.ibm.icu.dev.test.util.BagFormatter;
 public class GenerateEnums {
     public static final String SOURCE_DIR = "/Users/markdavis/Documents/workspace/DATA/UCD/6.1.0-Update";
     public static final String PROPERTY_FILE_OUTPUT = "/Users/markdavis/Documents/workspace/unicodetools2/org/unicode/props/UcdProperty.java";
-    public static final String PROPERTY_VALUE_OUTPUT = "/Users/markdavis/Documents/workspace/unicodetools2/org/unicode/props/PropertyValues.java";
+    public static final String PROPERTY_VALUE_OUTPUT = "/Users/markdavis/Documents/workspace/unicodetools2/org/unicode/props/UcdPropertyValues.java";
 
     private static class Locations {
         private static Set<String> files = addAll(new HashSet<String>(), new File(SOURCE_DIR));
@@ -130,7 +130,7 @@ public class GenerateEnums {
 
     public static void writeValueEnumFile(Map<PropName, List<String[]>> values) throws IOException {
         PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
-        output.println("package org.unicode.props;\npublic class PropertyValues {");
+        output.println("package org.unicode.props;\npublic class UcdPropertyValues {");
 
         //[Alpha, N, No, F, False]
         addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", Default.ucdVersion(), true, true)));
@@ -292,11 +292,11 @@ public class GenerateEnums {
                 String classItem = null;
                 switch (pt) {
                 case Binary:
-                    classItem = "PropertyValues.Binary.class";
+                    classItem = "UcdPropertyValues.Binary.class";
                     break;
                 case Enumerated:
                 case Catalog:
-                    classItem = "PropertyValues." + ("Script_Extensions".equals(pname.longName) ? "Script" : pname.longName) + "_Values.class"; // HACK!
+                    classItem = "UcdPropertyValues." + ("Script_Extensions".equals(pname.longName) ? "Script" : pname.longName) + "_Values.class"; // HACK!
                     break;
                 }
                 writeOtherNames(output, type, classItem, pname.longName, pname.shortName);

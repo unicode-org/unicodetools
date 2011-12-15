@@ -8,13 +8,13 @@ public class TestProperties {
 //            Collection<Enum> values = PropertyValues.valuesOf(prop);
 //            System.out.println("values: " + values);
         }
-        for (PropertyValues.General_Category_Values prop : PropertyValues.General_Category_Values.values()) {
+        for (UcdPropertyValues.General_Category_Values prop : UcdPropertyValues.General_Category_Values.values()) {
             System.out.println(prop + "\t" + prop.getNames());
 //            Collection<Enum> values = PropertyValues.valuesOf(prop);
 //            System.out.println("values: " + values);
         }
 
-        PropertyValues.General_Category_Values q = PropertyValues.General_Category_Values.Unassigned;
+        UcdPropertyValues.General_Category_Values q = UcdPropertyValues.General_Category_Values.Unassigned;
         System.out.println(q.getNames());
 
 //        Enum x = PropertyValues.forValueName(UcdProperty.General_Category, "Cc");

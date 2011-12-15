@@ -1,5 +1,5 @@
 package org.unicode.props;
-public class PropertyValues {
+public class UcdPropertyValues {
     public enum Binary {
         No("N", "F", "False"),
         Yes("Y", "T", "True");
