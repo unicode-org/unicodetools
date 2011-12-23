@@ -38,6 +38,7 @@ public enum UcdProperty {
     Named_Sequences(PropertyNames.PropertyType.Miscellaneous, "NS"),
     Named_Sequences_Prov(PropertyNames.PropertyType.Miscellaneous, "NSP"),
     Script_Extensions(PropertyNames.PropertyType.Miscellaneous, "scx"),
+    Standardized_Variant(PropertyNames.PropertyType.Miscellaneous, "SV"),
     Unicode_1_Name(PropertyNames.PropertyType.Miscellaneous, "na1"),
     kBigFive(PropertyNames.PropertyType.Miscellaneous, "cjkBigFive"),
     kCCCII(PropertyNames.PropertyType.Miscellaneous, "cjkCCCII"),

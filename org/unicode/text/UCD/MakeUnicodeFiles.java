@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.Comparator;
@@ -821,12 +822,15 @@ public class MakeUnicodeFiles {
         .add(33,Tabber.LEFT)
         .add(2,Tabber.LEFT) // ;
         .add(33,Tabber.LEFT);
+        
+        Set<String> skipNames = new HashSet(Arrays.asList("Lowercase_Mapping", "Uppercase_Mapping", "Titlecase_Mapping"));
 
         for (Iterator it = toolFactory.getAvailableNames().iterator(); it.hasNext();) {
             String propName = (String) it.next();
             UnicodeProperty up = toolFactory.getProperty(propName);
             int type = up.getType();
             if ((type & UnicodeProperty.EXTENDED_MASK) != 0) continue;
+            if (skipNames.contains(propName)) continue;
 
             String shortProp = up.getFirstNameAlias();
             sortedSet.clear();

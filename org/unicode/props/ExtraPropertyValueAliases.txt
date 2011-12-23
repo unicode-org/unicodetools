@@ -63,17 +63,11 @@
 # @missing: 0000..10FFFF; Other_Math   ; No
 # @missing: 0000..10FFFF; Other_Uppercase  ; No
 
+# Overrides for bugs
+
+# @missing: 0000..10FFFF; Numeric_Value; NaN
 # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <code point>
 
-# Establish the meaning of empty fields
-
-# @empty: 0000..10FFFF; Decomposition_Mapping ; <code point>
-# @empty: 0000..10FFFF; Simple_Lowercase_Mapping ; <code point>
-# @empty: 0000..10FFFF; Simple_Titlecase_Mapping ; <code point>
-# @empty: 0000..10FFFF; Simple_Uppercase_Mapping ; <code point>
-# @empty: 0000..10FFFF; Emoji_DCM ; <none>
-# @empty: 0000..10FFFF; Emoji_KDDI ; <none>
-# @empty: 0000..10FFFF; Emoji_SB ; <none>
-# @empty: 0000..10FFFF; ISO_Comment ; <none>
-# @empty: 0000..10FFFF; Unicode_1_Name ; <none>
-
+# @missing: 0000..10FFFF; Lowercase_Mapping; <slc> 
+# @missing: 0000..10FFFF; Titlecase_Mapping; <stc> 
+# @missing: 0000..10FFFF; Uppercase_Mapping; <suc> 

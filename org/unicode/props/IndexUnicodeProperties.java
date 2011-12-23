@@ -9,9 +9,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -48,7 +51,6 @@ import com.ibm.icu.text.Normalizer2.Mode;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
-import com.sun.jdi.InternalException;
 
 /**
  * TODO StandardizedVariants and NameSequences*
@@ -56,6 +58,23 @@ import com.sun.jdi.InternalException;
  *
  */
 public class IndexUnicodeProperties extends UnicodeProperty.Factory {
+    /**
+     * Control file caching
+     */
+    static final boolean GZIP = true;
+    static final boolean SIMPLE_COMPRESSION = true;
+    static final boolean FILE_CACHE = true;
+
+    /**
+     * Debugging
+     */
+    private static final boolean SHOW_DEFAULTS = false;
+    private static final boolean CHECK_PROPERTY_STATUS = false;
+    private static final UcdProperty CHECK_MISSING = null; // UcdProperty.Numeric_Value; // 
+
+    /**
+     * General constants
+     */
     public final static Pattern SEMICOLON = Pattern.compile("\\s*;\\s*");
     public final static Pattern EQUALS = Pattern.compile("\\s*=\\s*");
     public final static Pattern SPACE = Pattern.compile("\\s+");
@@ -80,11 +99,212 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     static final Relation<UcdProperty,String> DATA_LOADING_ERRORS 
     = Relation.of(new EnumMap<UcdProperty,Set<String>>(UcdProperty.class), LinkedHashSet.class);
 
+    public static final EnumSet<UcdProperty> DEPRECATED_PROPERTY = EnumSet.of(
+            UcdProperty.Grapheme_Link,
+            UcdProperty.Hyphen,
+            UcdProperty.ISO_Comment,
+            UcdProperty.Expands_On_NFC,
+            UcdProperty.Expands_On_NFD,
+            UcdProperty.Expands_On_NFKC,
+            UcdProperty.Expands_On_NFKD,
+            UcdProperty.FC_NFKC_Closure);
+
+    public static final EnumSet<UcdProperty> STABLIZED_PROPERTY = EnumSet.of(
+            UcdProperty.Hyphen,
+
+            UcdProperty.ISO_Comment);
+
+    public static final EnumSet<UcdProperty> OBSOLETE_PROPERTY = EnumSet.of(
+            UcdProperty.ISO_Comment);
+
+    public static final EnumSet<UcdProperty> CONTRIBUTORY_PROPERTY = EnumSet.of(
+            UcdProperty.Jamo_Short_Name,
+            UcdProperty.Other_Alphabetic,
+            UcdProperty.Other_Default_Ignorable_Code_Point,
+            UcdProperty.Other_Grapheme_Extend,
+            UcdProperty.Other_ID_Continue,
+            UcdProperty.Other_ID_Start,
+            UcdProperty.Other_Lowercase,
+            UcdProperty.Other_Math,
+            UcdProperty.Other_Uppercase
+    );
+
+    public static final EnumSet<UcdProperty> INFORMATIVE_PROPERTY = EnumSet.of(
+            UcdProperty.Alphabetic,
+            UcdProperty.Bidi_Mirroring_Glyph,
+            UcdProperty.Case_Ignorable,
+            UcdProperty.Cased,
+            UcdProperty.Changes_When_Casefolded,
+            UcdProperty.Changes_When_Casemapped,
+            UcdProperty.Changes_When_Lowercased,
+            UcdProperty.Changes_When_NFKC_Casefolded,
+            UcdProperty.Changes_When_Titlecased,
+            UcdProperty.Changes_When_Uppercased,
+            UcdProperty.Dash,
+            UcdProperty.Diacritic,
+            UcdProperty.East_Asian_Width,
+            UcdProperty.Extender,
+            UcdProperty.Grapheme_Cluster_Break,
+            UcdProperty.Grapheme_Link,
+            UcdProperty.Hex_Digit,
+            UcdProperty.Hyphen,
+            UcdProperty.ID_Continue,
+            UcdProperty.ID_Start,
+            UcdProperty.Ideographic,
+            UcdProperty.ISO_Comment,
+            UcdProperty.Lowercase,
+            UcdProperty.Lowercase_Mapping,
+            UcdProperty.Math,
+            UcdProperty.NFKC_Casefold,
+            UcdProperty.Quotation_Mark,
+            UcdProperty.Script,
+            UcdProperty.Sentence_Break,
+            UcdProperty.STerm,
+            UcdProperty.Terminal_Punctuation,
+            UcdProperty.Titlecase_Mapping,
+            UcdProperty.Unicode_1_Name,
+            UcdProperty.kRSUnicode,
+            UcdProperty.Uppercase,
+            UcdProperty.Uppercase_Mapping,
+            UcdProperty.Word_Break,
+            UcdProperty.XID_Continue,
+            UcdProperty.XID_Start,
+            // moved
+            UcdProperty.Expands_On_NFC,
+            UcdProperty.Expands_On_NFD,
+            UcdProperty.Expands_On_NFKC,
+            UcdProperty.Expands_On_NFKD,
+            UcdProperty.FC_NFKC_Closure
+    );
+
+    public static final EnumSet<UcdProperty> NORMATIVE_PROPERTY = EnumSet.of(
+            UcdProperty.Age,
+            UcdProperty.ASCII_Hex_Digit,
+            UcdProperty.Bidi_Class,
+            UcdProperty.Bidi_Control,
+            UcdProperty.Bidi_Mirrored,
+            UcdProperty.Block,
+            UcdProperty.Canonical_Combining_Class,
+            UcdProperty.Case_Folding,
+            UcdProperty.Composition_Exclusion,
+            UcdProperty.Decomposition_Mapping,
+            UcdProperty.Decomposition_Type,
+            UcdProperty.Default_Ignorable_Code_Point,
+            UcdProperty.Deprecated,
+            UcdProperty.Full_Composition_Exclusion,
+            UcdProperty.General_Category,
+            UcdProperty.Grapheme_Base,
+            UcdProperty.Grapheme_Extend,
+            UcdProperty.Hangul_Syllable_Type,
+            UcdProperty.IDS_Binary_Operator,
+            UcdProperty.IDS_Trinary_Operator,
+            UcdProperty.Join_Control,
+            UcdProperty.Joining_Group,
+            UcdProperty.Joining_Type,
+            UcdProperty.Line_Break,
+            UcdProperty.Logical_Order_Exception,
+            UcdProperty.Name,
+            UcdProperty.Name_Alias,
+            UcdProperty.NFC_Quick_Check,
+            UcdProperty.NFD_Quick_Check,
+            UcdProperty.NFKC_Quick_Check,
+            UcdProperty.NFKD_Quick_Check,
+            UcdProperty.Noncharacter_Code_Point,
+            UcdProperty.Numeric_Type,
+            UcdProperty.Numeric_Value,
+            UcdProperty.Pattern_Syntax,
+            UcdProperty.Pattern_White_Space,
+            UcdProperty.Radical,
+            UcdProperty.Simple_Case_Folding,
+            UcdProperty.Simple_Lowercase_Mapping,
+            UcdProperty.Simple_Titlecase_Mapping,
+            UcdProperty.Simple_Uppercase_Mapping,
+            UcdProperty.Soft_Dotted,
+            UcdProperty.Unified_Ideograph,
+            UcdProperty.Variation_Selector,
+            UcdProperty.White_Space
+    );
+
+    public static final EnumSet<UcdProperty> IMMUTABLE_PROPERTY = EnumSet.of( 
+            UcdProperty.Name,
+            UcdProperty.Jamo_Short_Name,
+            UcdProperty.Canonical_Combining_Class,
+            UcdProperty.Decomposition_Mapping,
+            UcdProperty.Pattern_Syntax,
+            UcdProperty.Pattern_White_Space
+    );
+
+    public static final EnumSet<UcdProperty> PROVISIONAL_PROPERTY;
+
+    static {
+        EnumSet<UcdProperty> temp2 = EnumSet.allOf(UcdProperty.class);
+        temp2.removeAll(NORMATIVE_PROPERTY);
+        temp2.removeAll(INFORMATIVE_PROPERTY);
+        temp2.removeAll(CONTRIBUTORY_PROPERTY);
+        PROVISIONAL_PROPERTY = temp2;
+
+        if (CHECK_PROPERTY_STATUS) {
+            EnumSet<UcdProperty>[] sets = new EnumSet[] {
+                    IMMUTABLE_PROPERTY, 
+                    NORMATIVE_PROPERTY, INFORMATIVE_PROPERTY, PROVISIONAL_PROPERTY, CONTRIBUTORY_PROPERTY, 
+                    DEPRECATED_PROPERTY, STABLIZED_PROPERTY, OBSOLETE_PROPERTY};
+            String[] names = {
+                    "IMMUTABLE_PROPERTY", 
+                    "NORMATIVE_PROPERTY", "INFORMATIVE_PROPERTY", "PROVISIONAL_PROPERTY", "CONTRIBUTORY_PROPERTY", 
+                    "DEPRECATED_PROPERTY", "STABLIZED_PROPERTY", "OBSOLETE_PROPERTY"};
+
+            EnumSet<UcdProperty> temp = EnumSet.noneOf(UcdProperty.class);
+            for (int i = 0; i < sets.length; ++i) {
+                EnumSet<UcdProperty> item = sets[i];
+                String name = names[i];
+                for (int j = i+1; j < sets.length; ++j) {
+                    EnumSet<UcdProperty> item2 = sets[j];
+                    String name2 = names[j];
+                    if (item.containsAll(item2)) {
+                        System.out.println(name + "\tcontains\t" + name2);
+                    } else if (item2.containsAll(item)) {
+                        System.out.println(name2 + "\tcontains\t" + name);
+                    } else {
+                        temp.clear();
+                        temp.addAll(item);
+                        temp.retainAll(item2);
+                        if (temp.size() != 0) {
+                            System.out.println(name + "\tintersects\t" + name2 + "\t" + temp);
+                        }
+                    }
+                }
+            }
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public enum PropertyStatus {Immutable, Normative, Informative, Provisional, Contributory, Deprecated, Stabilized, Obsolete}
+
+    public static PropertyStatus getPropertyStatus(UcdProperty prop) {
+        if (OBSOLETE_PROPERTY.contains(prop)) {
+            return PropertyStatus.Obsolete;
+        } else if (STABLIZED_PROPERTY.contains(prop)) {
+            return PropertyStatus.Stabilized;
+        } else if (DEPRECATED_PROPERTY.contains(prop)) {
+            return PropertyStatus.Deprecated;
+        } else if (CONTRIBUTORY_PROPERTY.contains(prop)) {
+            return PropertyStatus.Contributory;
+        } else if (INFORMATIVE_PROPERTY.contains(prop)) {
+            return PropertyStatus.Informative;
+        } else if (IMMUTABLE_PROPERTY.contains(prop)) {
+            return PropertyStatus.Immutable;
+        } else if (NORMATIVE_PROPERTY.contains(prop)) {
+            return PropertyStatus.Normative;
+        }
+        return PropertyStatus.Provisional;
+    }
+
     enum DefaultValueType {
         LITERAL(null),
         NONE(null),
         CODE_POINT(null), 
         Script(UcdProperty.Script), 
+        Script_Extensions(UcdProperty.Script_Extensions), 
         Simple_Lowercase_Mapping(UcdProperty.Simple_Lowercase_Mapping),
         Simple_Titlecase_Mapping(UcdProperty.Simple_Titlecase_Mapping),
         Simple_Uppercase_Mapping(UcdProperty.Simple_Uppercase_Mapping);
@@ -110,20 +330,24 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
     static VariableReplacer vr = new VariableReplacer();
 
-    enum FileType {Field, HackField, PropertyValue, List, CJKRadicals, NamedSequences, NameAliases}
+    enum FileType {Field, HackField, PropertyValue, List, CJKRadicals, NamedSequences, NameAliases, StandardizedVariants}
     enum SpecialProperty {None, Skip1FT, Skip1ST, SkipAny4, Rational}
-    enum Multivalued {
-        SINGLE_VALUED, EXTENSIBLE, MULTI_VALUED, ORDERED;
+    enum ValueElements {
+        Singleton, Unordered, Ordered;
         public boolean isBreakable(String string) {
-            return (this == Multivalued.MULTI_VALUED || this == Multivalued.ORDERED);
+            return (this == ValueElements.Unordered || this == ValueElements.Ordered);
         }
     }
-    static Map<String,Multivalued> toMultiValued = new HashMap();
+    static Map<String,ValueElements> toMultiValued = new HashMap();
     static {
-        toMultiValued.put("N/A", Multivalued.SINGLE_VALUED);
-        toMultiValued.put("space", Multivalued.EXTENSIBLE);
-        for (Multivalued multi : Multivalued.values()) {
-            toMultiValued.put(multi.toString(),multi);
+        toMultiValued.put("N/A", ValueElements.Singleton);
+        toMultiValued.put("space", ValueElements.Singleton);
+        toMultiValued.put("SINGLE_VALUED", ValueElements.Singleton);
+        toMultiValued.put("EXTENSIBLE", ValueElements.Singleton);
+        toMultiValued.put("MULTI_VALUED", ValueElements.Unordered);
+        for (ValueElements multi : ValueElements.values()) {
+            toMultiValued.put(multi.toString(), multi);
+            toMultiValued.put(UCharacter.toUpperCase(multi.toString()), multi);
         }
     }
 
@@ -139,7 +363,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         //UnicodeMap<String> data;
         //final Set<String> errors = new LinkedHashSet<String>();
         Pattern regex = null;
-        Multivalued multivalued = Multivalued.SINGLE_VALUED;
+        ValueElements multivalued = ValueElements.Singleton;
         public String originalRegex;
 
         public PropertyParsingInfo(String... propertyInfo) {
@@ -188,10 +412,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         public void put(UnicodeMap<String> data, IntRange intRange, String string, Merge<String> merger) {
             put(data, intRange, string, merger, false);
         }
-        
+
         public static final Normalizer2 NFD = Normalizer2.getNFDInstance();
         public static final Normalizer2 NFC = Normalizer2.getNFCInstance();
-        
+
         public void put(UnicodeMap<String> data, IntRange intRange, String string, Merge<String> merger, boolean hackHangul) {
             if (string != null && string.isEmpty() && property != UcdProperty.NFKC_Casefold) {
                 string = null;
@@ -219,6 +443,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
         }
+
         public String normalizeAndVerify(String string) {
             switch (property.getType()) {
             case Enumerated:
@@ -249,21 +474,19 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         public String normalizeEnum(String string) {
             if (multivalued.isBreakable(string)) {
-                PropertyParsingInfo propInfo = this.property == UcdProperty.Script_Extensions ?
-                        getPropertyInfo(UcdProperty.Script) :
-                            this;
-                        if (string.contains(" ")) {
-                            StringBuilder newString = new StringBuilder();
-                            for (String part : SPACE.split(string)) {
-                                if (newString.length() != 0) {
-                                    newString.append(' ');
-                                }
-                                newString.append(propInfo.checkEnum(part));
-                            }
-                            string = newString.toString();
-                        } else {
-                            string = propInfo.checkEnum(string);
+                PropertyParsingInfo propInfo = this.property == UcdProperty.Script_Extensions ? getPropertyInfo(UcdProperty.Script) : this;
+                if (string.contains(" ")) {
+                    StringBuilder newString = new StringBuilder();
+                    for (String part : SPACE.split(string)) {
+                        if (newString.length() != 0) {
+                            newString.append(' ');
                         }
+                        newString.append(propInfo.checkEnum(part));
+                    }
+                    string = newString.toString();
+                } else {
+                    string = propInfo.checkEnum(string);
+                }
             } else {
                 string = checkEnum(string);
             }
@@ -343,13 +566,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
         }
-        for (String line : FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", Default.ucdVersion(), true, true))) {
-            handleMissing(FileType.PropertyValue, null, line);
-        }
+        // DO THESE FIRST (overrides values in files!)
         for (String file : Arrays.asList("ExtraPropertyAliases.txt","ExtraPropertyValueAliases.txt")) {
             for (String line : FileUtilities.in(IndexUnicodeProperties.class, file)) {
                 handleMissing(FileType.PropertyValue, null, line);
             }
+        }
+        for (String line : FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", Default.ucdVersion(), true, true))) {
+            handleMissing(FileType.PropertyValue, null, line);
         }
         for (String line : FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {
             getRegexInfo(line);
@@ -368,42 +592,46 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public static void getRegexInfo(String line) {
-        if (line.startsWith("$")) {
-            String[] parts = EQUALS.split(line);
-            vr.add(parts[0], vr.replace(parts[1]));
-            return;
-        }
-        if (line.isEmpty() || line.startsWith("#")) {
-            return;
-        }
-        // have to do this painfully, since the regex may contain semicolons
-        Matcher m = SEMICOLON.matcher(line);
-        if (!m.find()) {
-            throw new IllegalArgumentException("Bad semicolons in: " + line);
-        }
-        String propName = line.substring(0, m.start());
-        int propNameEnd = m.end();
-        if (!m.find()) {
-            throw new IllegalArgumentException("Bad semicolons in: " + line);
-        }
-        UcdProperty prop = UcdProperty.forString(propName);
-        PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
-        String multivalued = line.substring(propNameEnd, m.start());
-        propInfo.multivalued = toMultiValued.get(multivalued);
-        if (propInfo.multivalued == null) {
-            throw new IllegalArgumentException("Bad multivalued in: " + line);
-        }
-        String regex = line.substring(m.end());
-        propInfo.originalRegex = regex;
-        regex = vr.replace(regex);
-        //        if (!regex.equals(propInfo.originalRegex)) {
-        //            regex = vr.replace(propInfo.originalRegex);
-        //            System.out.println(propInfo.originalRegex + "=>" + regex);
-        //        }
-        if (regex.equals("null")) {
-            propInfo.regex = null;
-        } else {
-            propInfo.regex = hackCompile(regex);
+        try {
+            if (line.startsWith("$")) {
+                String[] parts = EQUALS.split(line);
+                vr.add(parts[0], vr.replace(parts[1]));
+                return;
+            }
+            if (line.isEmpty() || line.startsWith("#")) {
+                return;
+            }
+            // have to do this painfully, since the regex may contain semicolons
+            Matcher m = SEMICOLON.matcher(line);
+            if (!m.find()) {
+                throw new IllegalArgumentException("Bad semicolons in: " + line);
+            }
+            String propName = line.substring(0, m.start());
+            int propNameEnd = m.end();
+            if (!m.find()) {
+                throw new IllegalArgumentException("Bad semicolons in: " + line);
+            }
+            UcdProperty prop = UcdProperty.forString(propName);
+            PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
+            String multivalued = line.substring(propNameEnd, m.start());
+            propInfo.multivalued = toMultiValued.get(multivalued);
+            if (propInfo.multivalued == null) {
+                throw new IllegalArgumentException("Bad multivalued in: " + line);
+            }
+            String regex = line.substring(m.end());
+            propInfo.originalRegex = regex;
+            regex = vr.replace(regex);
+            //        if (!regex.equals(propInfo.originalRegex)) {
+            //            regex = vr.replace(propInfo.originalRegex);
+            //            System.out.println(propInfo.originalRegex + "=>" + regex);
+            //        }
+            if (regex.equals("null")) {
+                propInfo.regex = null;
+            } else {
+                propInfo.regex = hackCompile(regex);
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException(line, e);
         }
     }
 
@@ -442,11 +670,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     final boolean oldVersion;
     final EnumMap<UcdProperty, UnicodeMap<String>> property2UnicodeMap = new EnumMap<UcdProperty, UnicodeMap<String>>(UcdProperty.class);
     final Set<String> fileNames = new TreeSet<String>();
+    private Map<UcdProperty, Long> cacheFileSize = new EnumMap<UcdProperty, Long>(UcdProperty.class);
+
+    public Map<UcdProperty, Long> getCacheFileSize() {
+        return Collections.unmodifiableMap(cacheFileSize);
+    }
 
     static final Transform<String, String>    fromNumericPinyin   = Transliterator.getInstance("NumericPinyin-Latin;nfc");
-    static final boolean GZIP = true;
-    static final boolean SIMPLE_COMPRESSION = true;
-    static final boolean FILE_CACHE = false;
+
     private static final Merge<String> ALPHABETIC_JOINER = new Merge<String>() {
         TreeSet<String> sorted = new TreeSet<String>();
         public String merge(String first, String second) {
@@ -455,7 +686,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             sorted.addAll(Arrays.asList(second.split(FIELD_SEPARATOR)));
             return CollectionUtilities.join(sorted, FIELD_SEPARATOR);
         }
-        
+
     };
 
     public UnicodeMap<String> load(UcdProperty prop2) {
@@ -574,6 +805,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     }
                     break;
                 }
+                case StandardizedVariants:
+                    if (!parts[2].isEmpty()) {
+                        parts[1] = parts[1] + "(" + parts[2] + ")";
+                    }
+                    //$FALL-THROUGH$
                 case NameAliases:
                     merger = ALPHABETIC_JOINER;
                     //$FALL-THROUGH$
@@ -661,6 +897,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         for (PropertyParsingInfo propInfo : propInfoSet) {
             UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
             UnicodeSet nullValues = data.getSet(null);
+            if (propInfo.defaultValue == null) {
+                if (CHECK_MISSING != null) {
+                    System.out.println("** Clearing null dv in " + propInfo.property);
+                }
+                propInfo.defaultValue = "<none>";
+            }
             switch (propInfo.defaultValueType) {
             case Script: case Simple_Lowercase_Mapping: case Simple_Titlecase_Mapping: case Simple_Uppercase_Mapping:
                 UcdProperty sourceProp = propInfo.defaultValueType.property;
@@ -668,12 +910,13 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 for (String cp : nullValues) {
                     data.put(cp, otherMap.get(cp));
                 }
-                propInfo.defaultValueType = property2PropertyInfo.get(sourceProp).defaultValueType; // reset to the type
+                // propInfo.defaultValueType = property2PropertyInfo.get(sourceProp).defaultValueType; // reset to the type
                 break;
             case LITERAL:
                 data.putAll(nullValues, propInfo.defaultValue);
                 break;
             case NONE:
+                data.putAll(nullValues, propInfo.defaultValue);
                 // do nothing, already none;
                 break;
             case CODE_POINT:
@@ -691,9 +934,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     static final String CACHE_DIR = "/Users/markdavis/Documents/workspace/Generated/BIN/";
+    
     private void storeCachedMap(UcdProperty prop2, UnicodeMap<String> data) {
         try {
-            FileOutputStream fos = new FileOutputStream(CACHE_DIR + ucdVersion + "/" + prop2 + ".bin");
+            final String cacheFileDirName = CACHE_DIR + ucdVersion;
+            final File cacheFileDir = new File(cacheFileDirName);
+            if (!cacheFileDir.exists()) {
+                cacheFileDir.mkdir();
+            }
+            final String cacheFileName = cacheFileDirName + "/" + prop2 + ".bin";
+            FileOutputStream fos = new FileOutputStream(cacheFileName);
             OutputStream gz = GZIP ? new GZIPOutputStream(fos) : fos;
             DataOutputStream out = new DataOutputStream(gz);
             ItemWriter<String> stringWriter = new UnicodeDataOutput.StringWriter();
@@ -707,6 +957,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             out.close();            
             gz.close();            
             fos.close();            
+            cacheFileSize.put(prop2, new File(cacheFileName).length());
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
@@ -725,9 +976,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
      */
     private UnicodeMap<String> getCachedMap(UcdProperty prop2, String sourceFileName) {
         FileInputStream fis;
+        File cacheFile;
         try {
             String cacheFileName = CACHE_DIR + ucdVersion + "/" + prop2 + ".bin";
-            File cacheFile = new File(cacheFileName);
+            cacheFile = new File(cacheFileName);
             // if the source file is older than the cached, skip
             if (sourceFileName != null) {
                 File sourceFile = new File(sourceFileName);
@@ -753,6 +1005,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             in.close();
             gs.close();
             fis.close();
+            cacheFileSize.put(prop2, cacheFile.length());
             return newItem;
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
@@ -801,22 +1054,28 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public static void setPropDefault(UcdProperty prop, String value, String line, boolean isEmpty) {
-        String comment = "";
+        if (prop == CHECK_MISSING) {
+            System.out.format("** %s %s %s %s\n", prop, value, line, isEmpty);
+        }
         PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
 
+        if (value != null && !value.startsWith("<")) {
+            value = propInfo.normalizeAndVerify(value);
+        }
+
         if (propInfo.defaultValue == null) {
-            if (!value.startsWith("<")) {
-                value = propInfo.normalizeAndVerify(value);
-            }
-            propInfo.defaultValue = value;
             propInfo.defaultValueType = DefaultValueType.forString(value);
-            if (true) return;
-            comment = "\t ** Setting Default";
+            propInfo.defaultValue = value;
+            if (SHOW_DEFAULTS) {
+                DATA_LOADING_ERRORS.put(prop, "**\t" + prop + "\t" + propInfo.defaultValueType + "\t" + propInfo.defaultValue);
+            }
         } else if (propInfo.defaultValue.equals(value)) {
-            if (true) return;
-            comment = "** Default Value ok already";
         } else {
-            comment = "\t ** Can't set default, was " + propInfo.defaultValue;
+            String comment = "\t ** ERROR Will not change default for " + prop +
+            " to «" + value + "», retaining " + propInfo.defaultValue;
+            //            propInfo.defaultValueType = DefaultValueType.forString(value);
+            //            propInfo.defaultValue = value;
+            DATA_LOADING_ERRORS.put(prop, comment);
         }
     }
 
@@ -854,47 +1113,52 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
     }
 
+    public static String getResolvedValue(IndexUnicodeProperties props, UcdProperty prop, String codepoint, String value) {
+        if (value == null && props != null) {
+            if (getResolvedDefaultValueType(prop) == DefaultValueType.CODE_POINT) {
+                return codepoint;
+            }
+        }
+        if (prop == UcdProperty.Name && value.endsWith("-#")) {
+            return value.substring(0,value.length()-1) + Utility.hex(codepoint);
+        }
+        return value;
+    }
+
     public static String getResolvedValue(IndexUnicodeProperties props, UcdProperty prop, int codepoint, String value) {
-        if (value == null) {
-            if (property2PropertyInfo.get(prop).defaultValueType == DefaultValueType.CODE_POINT) {
+        if (value == null && props != null) {
+            if (getResolvedDefaultValueType(prop) == DefaultValueType.CODE_POINT) {
                 return UTF16.valueOf(codepoint);
             }
         }
-        //        if (value == null) {
-        //            value = getDefaultValue(prop);
-        //        }
-        //        if (props != null && (value == null || value.length() > 8)) {
-        //            try {
-        //                DefaultValueType specialValue = DefaultValueType.valueOf(value);
-        //                switch (specialValue) {
-        //                case CODE_POINT: 
-        //                    return UTF16.valueOf(codepoint);
-        //                case CJK_UNIFIED_IDEOGRAPH: 
-        //                    return "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codepoint,4);
-        //                case HANGUL_SYLLABLE: 
-        //                    return UCharacter.getName(codepoint); // these are fixed, so we'll just use ICU
-        //                case Script: 
-        //                    return props.getResolvedValue(UcdProperty.Script, codepoint);
-        //                case Simple_Lowercase_Mapping: 
-        //                    return props.getResolvedValue(UcdProperty.Simple_Lowercase_Mapping, codepoint);
-        //                case Simple_Titlecase_Mapping: 
-        //                    return props.getResolvedValue(UcdProperty.Simple_Titlecase_Mapping, codepoint);
-        //                case Simple_Uppercase_Mapping: 
-        //                    return props.getResolvedValue(UcdProperty.Simple_Uppercase_Mapping, codepoint);
-        //                default:
-        //                    throw new InternalException();
-        //                }
-        //            } catch (Exception e) {}
-        //        }
+        if (prop == UcdProperty.Name && value.endsWith("-#")) {
+            return value.substring(0,value.length()-1) + Utility.hex(codepoint);
+        }
         return value;
+    }
+
+    public static DefaultValueType getResolvedDefaultValueType(UcdProperty prop) {
+        DefaultValueType result;
+        do {
+            result = property2PropertyInfo.get(prop).defaultValueType;
+        } while (result.property != null);
+        return result;
     }
 
     public static String getDefaultValue(UcdProperty prop) {
         return property2PropertyInfo.get(prop).defaultValue;
     }
 
+    public String getResolvedValue(UcdProperty prop, String codepoint) {
+        return getResolvedValue(this, prop, codepoint, this.getRawValue(prop, codepoint));
+    }
+
     public String getResolvedValue(UcdProperty prop, int codepoint) {
         return getResolvedValue(this, prop, codepoint, this.getRawValue(prop, codepoint));
+    }
+
+    public String getRawValue(UcdProperty ucdProperty, String codepoint) {
+        return load(ucdProperty).get(codepoint);
     }
 
     public String getRawValue(UcdProperty ucdProperty, int codepoint) {
