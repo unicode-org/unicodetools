@@ -289,8 +289,11 @@ public class GenerateIdnaTest {
             // NEW B;   \u063D\uFBB0\u0BCD⁰．\uDB40\uDDD6\uD803\uDE71;   [B1];   [B1]
 
             sampleSets = new UnicodeSet[samples.length];
+            //UnicodeSet age = new UnicodeSet("[:age=6.0:]");
             for (int i = 0; i < samples.length; ++i) {
-                sampleSets[i] = new UnicodeSet(samples[i]).freeze();
+                sampleSets[i] = new UnicodeSet(samples[i])
+//                .retainAll(age)
+                .freeze();
             }
         }
         void appendNext(StringBuilder sb) {

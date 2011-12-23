@@ -29,8 +29,14 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class XMLProperties {
 
-    private static final boolean LONG_TEST = false;
-    private static final boolean INCLUDE_UNIHAN = false;
+    private static final boolean LONG_TEST = true;
+    private static final boolean INCLUDE_UNIHAN = true;
+    private static final UcdProperty[] SHORT_LIST = new UcdProperty[] {
+        //                UcdProperty.Lowercase_Mapping, 
+        UcdProperty.Standardized_Variant, 
+        //                UcdProperty.Titlecase_Mapping,
+        //                UcdProperty.Uppercase_Mapping
+    };
     private static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 4000; // Integer.MAX_VALUE;
 
     enum XmlLeaf {
@@ -44,7 +50,7 @@ public class XMLProperties {
         ;
         static final XmlLeaf GREATEST_LEAF = NAME_ALIAS;
         static final XmlLeaf GREATEST_BOTH = CHAR;
-        
+
         static XmlLeaf forString(String source) {
             try {
                 return XmlLeaf.valueOf(source.toUpperCase().replace('-', '_'));
@@ -220,10 +226,20 @@ public class XMLProperties {
                     appendProp(cp.start, UcdProperty.Name_Alias, attributes.get("alias"));
                     leavesNotHandled.add("name-alias type=");
                     break;
+                case STANDARDIZED_VARIANT: {
+                    //<standardized-variant cps="0023 FE0E" desc="text style" when=""/>
+                    //ucd/standardized-variants/standardized-variant[@cps="1820 180B"][@desc="second form"][@when="isolate medial final"]   
+                    String desc = attributes.get("desc");
+                    String when = attributes.get("when");
+                    if (!when.isEmpty()) {
+                        desc = desc + "(" + when + ")";
+                    }
+                    cps = Utility.fromHex(attributes.get("cps"));
+                    appendProp(cps, UcdProperty.Standardized_Variant, desc);
+                    break;
+                }
                 case NORMALIZATION_CORRECTION:
                     //ucd/normalization-corrections/normalization-correction[@cp="F951"][@old="96FB"][@new="964B"][@version="3.2.0"
-                case STANDARDIZED_VARIANT:
-                    //ucd/standardized-variants/standardized-variant[@cps="1820 180B"][@desc="second form"][@when="isolate medial final"]   
                 default: 
                     leavesNotHandled.add(qName);
                     break;
@@ -233,7 +249,7 @@ public class XMLProperties {
             } catch (SkipException e) {
                 throw e;
             } catch (Exception e) {
-                System.out.println("Error path/value " + qName);
+                System.out.println(": " + qName);
             }
         }
 
@@ -248,7 +264,7 @@ public class XMLProperties {
                 property2data.get(ucdProperty).put(cps, docomo);
             }
         }
-        
+
         public void setProp(int cps, UcdProperty ucdProperty, String docomo) {
             if (docomo != null) {
                 property2data.get(ucdProperty).put(cps, docomo);
@@ -256,6 +272,12 @@ public class XMLProperties {
         }
 
         public void appendProp(int cps, UcdProperty ucdProperty, String docomo) {
+            final UnicodeMap<String> unicodeMap = property2data.get(ucdProperty);
+            String former = unicodeMap.get(cps);
+            unicodeMap.put(cps, former == null ? docomo : former + "; " + docomo);
+        }
+
+        public void appendProp(String cps, UcdProperty ucdProperty, String docomo) {
             final UnicodeMap<String> unicodeMap = property2data.get(ucdProperty);
             String former = unicodeMap.get(cps);
             unicodeMap.put(cps, former == null ? docomo : former + "; " + docomo);
@@ -330,12 +352,7 @@ public class XMLProperties {
 
         UnicodeMap<String> empty = new UnicodeMap<String>();
         System.out.println("\nFormat:\nProperty\tcp\txml\tindexed");
-        final UcdProperty[] testValues = LONG_TEST ? UcdProperty.values() : new UcdProperty[] {
-                //                UcdProperty.Lowercase_Mapping, 
-                UcdProperty.Name_Alias, 
-                //                UcdProperty.Titlecase_Mapping,
-                //                UcdProperty.Uppercase_Mapping
-        };
+        final UcdProperty[] testValues = LONG_TEST ? UcdProperty.values() : SHORT_LIST;
         for (UcdProperty prop : testValues) {
             System.out.println("\nTESTING\t" + prop);
             UnicodeMap<String> xmap = props.getMap(prop);
@@ -434,6 +451,6 @@ public class XMLProperties {
             }
             break;
         }
-        return propertyValue;
+        return propertyValue == null ? "<none>" : propertyValue;
     }
 }

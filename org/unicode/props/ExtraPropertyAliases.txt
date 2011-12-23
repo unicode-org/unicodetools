@@ -14,6 +14,7 @@ EKDDI ; Emoji_KDDI
 ESB ; Emoji_SB
 NS ; Named_Sequences
 NSP ; Named_Sequences_Prov
+SV ; Standardized_Variant
 
 cjkCheungBauerIndex ; kCheungBauerIndex
 cjkCowles ; kCowles

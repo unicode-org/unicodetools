@@ -967,6 +967,7 @@ public class UcdPropertyValues {
 		// Simple_Lowercase_Mapping
 		// Simple_Titlecase_Mapping
 		// Simple_Uppercase_Mapping
+		// Standardized_Variant
 		// Titlecase_Mapping
 		// Unicode_1_Name
 		// Uppercase_Mapping
