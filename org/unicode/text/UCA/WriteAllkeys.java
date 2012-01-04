@@ -60,6 +60,10 @@ public class WriteAllkeys {
         for (Entry<String, String> entry : sorted.entrySet()) {
             //String key = entry.getKey();
             String value = entry.getValue();
+            char lastChar = value.charAt(value.length()-1);
+            if (Character.isHighSurrogate(lastChar)) {
+                continue;
+            }
             String hex = Utility.hex(value, " ");
             if (hex.length() < 5) {
                 hex += " ";

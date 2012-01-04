@@ -4143,9 +4143,10 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         switch(type) {
         case cldr:
             if (cldrCollator == null) {
-                if (Default.ucdVersion().compareTo("6.1") < 0) { // only reorder if less than v6.1
-                    cldrCollator = buildCldrCollator(true);
-                } else {
+//                if (Default.ucdVersion().compareTo("6.1") < 0) { // only reorder if less than v6.1
+//                    cldrCollator = buildCldrCollator(true);
+//                } else 
+                {
                     cldrCollator = buildCldrCollator(false);
                     cldrCollator.overrideCE("\uFFFE", 0x1, 0x20, 0x5);
                     cldrCollator.overrideCE("\uFFFF", 0xFFFE, 0x20, 0x5);
