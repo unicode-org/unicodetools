@@ -1,5 +1,6 @@
 package org.unicode.props;
 
+import java.io.DataOutput;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,8 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.With;
+import org.unicode.draft.UnicodeDataOutput;
+import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
 import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.PropertyNames.PropertyType;
@@ -48,7 +51,7 @@ public class CheckProperties {
     static LinkedHashSet<String> SKIPPING = new LinkedHashSet<String>();
     static LinkedHashSet<String> NOT_IN_ICU = new LinkedHashSet<String>();
 
-    enum Action {SHOW, COMPARE, ICU, EMPTY, INFO, SPACES, DETAILS, DEFAULTS}
+    enum Action {SHOW, COMPARE, ICU, EMPTY, INFO, SPACES, DETAILS, DEFAULTS, JSON}
     enum Extent {SOME, ALL}
 
     static IndexUnicodeProperties latest;
@@ -154,6 +157,13 @@ public class CheckProperties {
                     checkEmpty(latest, prop);
                 }
                 break;
+            case JSON: {
+                for (UcdProperty prop : values) {
+                    System.out.println(prop);
+                    writeJson(latest, prop);
+                }
+                break;
+            }
             case INFO:
                 Tabber tabber = new Tabber.MonoTabber()
                 .add(30, MonoTabber.LEFT)
@@ -215,7 +225,7 @@ public class CheckProperties {
                 }
             }
         }
-        
+
         Set<String> latestFiles = latest.fileNames;
         File dir = new File("/Users/markdavis/Documents/workspace/DATA/UCD/6.1.0-Update");
         List<File> result = new ArrayList<File>();
@@ -226,6 +236,133 @@ public class CheckProperties {
         System.out.println(total.toString());
     }
 
+    private static void writeJson(IndexUnicodeProperties latest, UcdProperty prop) {
+        try {
+            UnicodeMap<String> map = latest.load(prop);
+            final PrintWriter writer = new PrintWriter(System.out);
+            writer.write('[');
+            JsonDataOutput jsonDataOutput = new JsonDataOutput(writer);
+            UnicodeDataOutput.writeUnicodeMap(map, JSON_STRING_WRITER, jsonDataOutput);
+            writer.write("]\n");
+            writer.flush();
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    static String jsonQuote(String source) {
+        StringBuilder result = new StringBuilder("\"");
+        for (int i = 0; i < source.length(); ++i) { // safe, only care about ASCII
+            char ch = source.charAt(i);
+            switch (ch) {
+            case '\b': result.append('\b'); break;
+            case '\f': result.append('\f'); break;
+            case '\n': result.append('\n'); break;
+            case '\r': result.append('\r'); break;
+            case '\t': result.append('\t'); break;
+            case '"': case '\\': result.append('\\').append(ch); break;
+            default: result.append(ch); break;
+            }
+        }
+        return result.append('"').toString();
+    }
+    public static class JsonStringWriter extends ItemWriter<String> {
+        public void write(DataOutput out, String item) throws IOException {
+            out.writeChars(jsonQuote(item));
+        }
+    }
+    static JsonStringWriter JSON_STRING_WRITER = new JsonStringWriter();
+    public static class JsonDataOutput implements DataOutput {
+        PrintWriter writer;
+        
+        JsonDataOutput(PrintWriter writer) {
+            this.writer = writer;
+        }
+
+        @Override
+        public void write(int arg0) throws IOException {
+            writer.write(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void write(byte[] arg0) throws IOException {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void write(byte[] arg0, int arg1, int arg2) throws IOException {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void writeBoolean(boolean arg0) throws IOException {
+            writer.print(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeByte(int arg0) throws IOException {
+            writer.write(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeBytes(String arg0) throws IOException {
+            writer.write(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeChar(int arg0) throws IOException {
+            writer.write(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeChars(String arg0) throws IOException {
+            writer.write(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeDouble(double arg0) throws IOException {
+            writer.print(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeFloat(float arg0) throws IOException {
+            writer.print(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeInt(int arg0) throws IOException {
+            writer.print(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeLong(long arg0) throws IOException {
+            writer.print(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeShort(int arg0) throws IOException {
+            writer.print(arg0);
+            writer.write(",\n");
+        }
+
+        @Override
+        public void writeUTF(String arg0) throws IOException {
+            writer.write(arg0);
+            writer.write(",\n");
+        }
+    }
+
+
     public static <T> void showInfo(String title, Collection<T> collection) {
         if (collection.size() != 0) {
             System.out.println(title + ": " + collection.size());
@@ -235,7 +372,7 @@ public class CheckProperties {
                     Entry e = (Entry) s;
                     display = e.getKey().toString() + "\t" + e.getValue().toString();
                 } else {
-                   display = s.toString();
+                    display = s.toString();
                 }
                 System.out.println("\t" + display);
             }

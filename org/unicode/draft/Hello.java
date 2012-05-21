@@ -28,8 +28,23 @@ public class Hello {
      * @param args
      */
     public static void main(String[] args) {
-        checkTranslit();
+
+        for (String test : new String [] {"en", "ja", "de", "da", "ru"}) {
+            for (TimeUnit timeUnit : new TimeUnit [] {TimeUnit.YEAR, TimeUnit.MONTH, TimeUnit.WEEK, TimeUnit.DAY, TimeUnit.HOUR, TimeUnit.MINUTE, TimeUnit.SECOND}) {
+                for (int style : new int[] {TimeUnitFormat.ABBREVIATED_NAME, TimeUnitFormat.FULL_NAME}) {
+                    TimeUnitFormat format = new TimeUnitFormat(new ULocale(test), style);
+                    for (double amount : new double[]{1d, 2d}) {
+                        // create time unit amount instance - a combination of Number and time unit
+                        TimeUnitAmount source = new TimeUnitAmount(amount, timeUnit);
+                        System.out.print(format.format(source) + "\t\t");
+                    }
+                }
+                System.out.println();
+            }
+        }
         if (true) return;
+
+        checkTranslit();
 
         UnicodeSet foo;
         ULocale locale = new ULocale("fr");
@@ -40,21 +55,6 @@ public class Hello {
         CurrencyAmount ca = new CurrencyAmount(1.99, Currency.getInstance("USD"));
         String formatted = nf.format(ca);
         System.out.println(formatted);
-
-
-        // create a time unit instance.
-        // only SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, and YEAR are supported
-        TimeUnit timeUnit = TimeUnit.SECOND;
-        // create time unit amount instance - a combination of Number and time unit
-        TimeUnitAmount source = new TimeUnitAmount(2.0d, timeUnit);
-        // create time unit format instance
-        TimeUnitFormat format = new TimeUnitFormat();
-        // set the locale of time unit format
-        format.setLocale(locale);
-        // format a time unit amount
-        formatted = format.format(source);
-        System.out.println(formatted);
-
 
 
 
@@ -96,7 +96,7 @@ public class Hello {
             System.out.println("Target:\t" + target.toPattern(false));
         }
     }
-    
+
     static UnicodeSet getSourceSet(Transliterator t) {
         Transliterator[] subTransliterators = t.getElements();
         if (subTransliterators.length == 1 && subTransliterators[0] == t) {
