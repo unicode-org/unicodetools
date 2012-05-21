@@ -1,6 +1,6 @@
-Generate: NumericValue
-DeltaVersion: 22
-CopyrightYear: 2011
+Generate: Script
+DeltaVersion: 2
+CopyrightYear: 2012
 
 File: extra/ScriptNfkc
 Property: SPECIAL
@@ -9,8 +9,7 @@ Property: SPECIAL
 
 File: ScriptExtensions
 # The Script_Extensions property indicates which characters are commonly used
-# with a limited number of scripts, but with more than one.
-# The property is provisional: values are expected to change over time as more information becomes available.
+# with more than one script, but with a limited number of scripts.
 # For each code point, there is one or more property values.  Each such value is a Script property value.
 # For more information, see:
 #   UAX #24: http://www.unicode.org/reports/tr24/ and
@@ -112,8 +111,11 @@ Value:	V5_2
 Value:	V6_0
 # Newly assigned in Unicode 6.0.0 (October, 2010)
 
-Value:	V6_1
-# Newly assigned in Unicode 6.1.0 (Planned for February, 2012)
+Value:  V6_1
+# Newly assigned in Unicode 6.1.0 (January, 2012)
+
+Value:  V6_2
+# Newly assigned in Unicode 6.2.0 (Planned for September, 2012)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
@@ -437,7 +439,7 @@ Property:	Numeric_Value
 # in this file, they should be expressed to the limits of the precision
 # available when used.
 #
-# @missing: 0000..10FFFF; ; NaN
+# @missing: 0000..10FFFF; NaN; ; NaN
 Format: sortNumeric
 
 File:	HangulSyllableType

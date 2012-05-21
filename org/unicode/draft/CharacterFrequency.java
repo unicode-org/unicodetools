@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.ExemplarInfo;
 import org.unicode.cldr.draft.Iterables;
+import org.unicode.cldr.tool.LanguageCodeConverter;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.SupplementalDataInfo;
@@ -239,8 +240,9 @@ public class CharacterFrequency {
 
 
   public static String getLanguageCode(String string) {
-    string = string.toUpperCase(Locale.ENGLISH);
-    String result = CharacterFrequency.languageNameToTag.get(string);
+      String result = LanguageCodeConverter.getCodeForName(string);
+//    string = string.toUpperCase(Locale.ENGLISH);
+//    String result = CharacterFrequency.languageNameToTag.get(string);
     if (result == null) {
       throw new IllegalArgumentException();
       //      result = "?"+string;

@@ -9,6 +9,7 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
+import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UnicodeSet;
@@ -35,8 +36,10 @@ public class ScriptCount {
         for (Integer script : scriptCounter) {
             System.out.println(UScript.getShortName(script) + "\t" + UScript.getName(script) + "\t" + scriptCounter.get(script));
         }
-        NumberFormat pf = NumberFormat.getPercentInstance();
-        pf.setMaximumFractionDigits(3);
+        DecimalFormat pf = (DecimalFormat) NumberFormat.getPercentInstance();
+        pf.setMaximumFractionDigits(6);
+//        pf.setMinimumSignificantDigits(3);
+//        pf.setMaximumSignificantDigits(3);
         int counter = 0;
         double max = mulCounter.getTotal();
         PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(UCD_Types.GEN_DIR + "/frequency-text", 
@@ -44,6 +47,7 @@ public class ScriptCount {
         for (String s : mulCounter.getKeysetSortedByCount(false)) {
             long count = mulCounter.get(s);
             int ch = s.codePointAt(0);
+            // 0%   忌   U+5FCC  Lo  Hani    CJK UNIFIED IDEOGRAPH-5FCC
             out.println(pf.format(count/max) 
                     + "\t" + show(s) 
                     + "\tU+" + Utility.hex(s, 4, "&U+")

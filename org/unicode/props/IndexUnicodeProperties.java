@@ -83,6 +83,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     static final String CONSTRUCTED_NAME = "$HANGUL_SYLLABLE$";
 
+    static final Pattern SIMPLE_MISSING_PATTERN = Pattern.compile("\\s*#\\s*@(missing|empty)");
+
     static final Pattern MISSING_PATTERN = Pattern.compile(
             "\\s*#\\s*@(missing|empty):?" +
             "\\s*([A-Fa-f0-9]+)..([A-Fa-f0-9]+)\\s*;" +
@@ -897,12 +899,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         for (PropertyParsingInfo propInfo : propInfoSet) {
             UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
             UnicodeSet nullValues = data.getSet(null);
-            if (propInfo.defaultValue == null) {
-                if (CHECK_MISSING != null) {
-                    System.out.println("** Clearing null dv in " + propInfo.property);
-                }
-                propInfo.defaultValue = "<none>";
-            }
+//            if (propInfo.defaultValue == null) {
+//                if (CHECK_MISSING != null) {
+//                    System.out.println("** Clearing null dv in " + propInfo.property);
+//                }
+//                propInfo.defaultValue = "<none>";
+//            }
             switch (propInfo.defaultValueType) {
             case Script: case Simple_Lowercase_Mapping: case Simple_Titlecase_Mapping: case Simple_Uppercase_Mapping:
                 UcdProperty sourceProp = propInfo.defaultValueType.property;
@@ -916,7 +918,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 data.putAll(nullValues, propInfo.defaultValue);
                 break;
             case NONE:
-                data.putAll(nullValues, propInfo.defaultValue);
+                //data.putAll(nullValues, propInfo.defaultValue);
                 // do nothing, already none;
                 break;
             case CODE_POINT:
@@ -988,6 +990,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
             }
             fis = new FileInputStream(cacheFile);
+            cacheFileSize.put(prop2, cacheFile.length());
         } catch (Exception e) {
             return null;
         }
@@ -1013,7 +1016,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public static void handleMissing(FileType fileType, Set<PropertyParsingInfo> propInfoSet, String missing) {
-        if (!missing.contains("@missing") && !missing.contains("@empty")) {
+        if (!missing.contains("@missing")) { // quick test
+            return;
+        }
+        final Matcher simpleMissingMatcher = SIMPLE_MISSING_PATTERN.matcher(missing);
+        if (!simpleMissingMatcher.lookingAt()) {
+//            if (missing.contains("@missing")) {
+//                System.out.println("Skipping " + missing + "\t" + RegexUtilities.showMismatch(simpleMissingMatcher, missing));
+//            }
             return;
         }
         final Matcher missingMatcher = MISSING_PATTERN.matcher(missing);
@@ -1032,6 +1042,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         String value1 = missingMatcher.group(4);
         String value2 = missingMatcher.group(5);
         String value3 = missingMatcher.group(6);
+        if (value1 != null) value1 = value1.trim();
+        if (value2 != null) value2 = value2.trim();
+        if (value3 != null) value3 = value3.trim();
+        
         switch (fileType) {
         case Field: {
             for (PropertyParsingInfo propInfo : propInfoSet) {
@@ -1131,18 +1145,20 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 return UTF16.valueOf(codepoint);
             }
         }
-        if (prop == UcdProperty.Name && value.endsWith("-#")) {
+        if (prop == UcdProperty.Name && value != null && value.endsWith("-#")) {
             return value.substring(0,value.length()-1) + Utility.hex(codepoint);
         }
         return value;
     }
 
     public static DefaultValueType getResolvedDefaultValueType(UcdProperty prop) {
-        DefaultValueType result;
-        do {
-            result = property2PropertyInfo.get(prop).defaultValueType;
-        } while (result.property != null);
-        return result;
+        while (true) {
+            DefaultValueType result = property2PropertyInfo.get(prop).defaultValueType;
+            if (result.property == null) {
+                return result;
+            }
+            prop = result.property;
+        }
     }
 
     public static String getDefaultValue(UcdProperty prop) {
@@ -1170,7 +1186,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         propertyValue = info.normalizeEnum(propertyValue);
         return propertyValue;
     }
-
+    
     //    static final class IndexUnicodeProperty extends UnicodeProperty.UnicodeMapProperty {
     //        
     //        private PropertyNames names;

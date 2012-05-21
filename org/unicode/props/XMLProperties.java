@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.XMLFileReader;
 import org.unicode.props.XMLProperties.XmlLeaf;
 import org.unicode.text.utility.Utility;
@@ -24,20 +23,9 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 
 import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
 import com.ibm.icu.text.UnicodeSet;
 
 public class XMLProperties {
-
-    private static final boolean LONG_TEST = true;
-    private static final boolean INCLUDE_UNIHAN = true;
-    private static final UcdProperty[] SHORT_LIST = new UcdProperty[] {
-        //                UcdProperty.Lowercase_Mapping, 
-        UcdProperty.Standardized_Variant, 
-        //                UcdProperty.Titlecase_Mapping,
-        //                UcdProperty.Uppercase_Mapping
-    };
-    private static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 4000; // Integer.MAX_VALUE;
 
     enum XmlLeaf {
         // Leaf
@@ -76,10 +64,10 @@ public class XMLProperties {
     Set<String> leavesNotRecognized = new LinkedHashSet<String>();
 
 
-    private XMLProperties(String folder) {
-        readFile(folder + "ucd.nounihan.grouped.xml");
-        if (INCLUDE_UNIHAN) {
-            readFile(folder + "ucd.unihan.grouped.xml");
+    public XMLProperties(String folder, boolean includeUnihan, int maxLines) {
+        readFile(folder + "ucd.nounihan.grouped.xml", maxLines);
+        if (includeUnihan) {
+            readFile(folder + "ucd.unihan.grouped.xml", maxLines);
         }
 
         for (UcdProperty prop : property2data.keySet()) {
@@ -90,12 +78,12 @@ public class XMLProperties {
         System.out.println("Element names not handled:\t" + leavesNotHandled);
     }
 
-    public void readFile(String systemID) {
+    public void readFile(String systemID, int maxLines) {
         try {
             FileInputStream fis = new FileInputStream(systemID);
             XMLReader xmlReader = XMLFileReader.createXMLReader(false);
             xmlReader.setErrorHandler(new MyErrorHandler());
-            xmlReader.setContentHandler(new MyContentHandler());
+            xmlReader.setContentHandler(new MyContentHandler(maxLines));
             InputSource is = new InputSource(fis);
             is.setSystemId(systemID.toString());
             xmlReader.parse(is);
@@ -120,9 +108,12 @@ public class XMLProperties {
         IntRange cp = new IntRange();
         HashMap<String,String> attributes = new HashMap<String,String>();
         HashMap<String,String> groupAttributes = new HashMap<String,String>();
-        int max = MAX_LINE_COUNT;
+        int max;
         private List<XmlLeaf> lastElements = new ArrayList<XmlLeaf>();
 
+        public MyContentHandler(int max) {
+            this.max = max;
+        }
         public void characters(char[] arg0, int arg1, int arg2) throws SAXException {
             String chars = String.valueOf(arg0, arg1, arg2).trim();
             if (chars.trim().length() > 0 && lastElements.get(lastElements.size() - 1) != XmlLeaf.DESCRIPTION) {
@@ -216,8 +207,8 @@ public class XMLProperties {
                     }
                     break;
                 case UCD:
-                    if (atts.getLength() != 1) {
-                        throw new IllegalArgumentException("Has wrong number of attributes");
+                    if (atts.getLength() != 0) {
+                        throw new IllegalArgumentException("Has wrong number of attributes: " + attributes.entrySet());
                     }
                     break;
                 case NAME_ALIAS:
@@ -249,7 +240,7 @@ public class XMLProperties {
             } catch (SkipException e) {
                 throw e;
             } catch (Exception e) {
-                System.out.println(": " + qName);
+                System.out.println("Exception: " + qName + "\t" + e.getClass().getName() + "\t" + e.getMessage());
             }
         }
 
@@ -335,68 +326,7 @@ public class XMLProperties {
         return property2data.get(prop);
     }
 
-    public static void main(String[] args) {
-        Timer timer = new Timer();
-
-        System.out.println("Loading Index Props");
-        timer.start();
-        IndexUnicodeProperties iup = IndexUnicodeProperties.make("6.1.0");
-        timer.stop();
-        System.out.println(timer);
-
-        System.out.println("Loading XML Props");
-        timer.start();
-        XMLProperties props = new XMLProperties("/Users/markdavis/Documents/workspace/DATA/UCD/6.1.0-Update/");
-        timer.stop();
-        System.out.println(timer);
-
-        UnicodeMap<String> empty = new UnicodeMap<String>();
-        System.out.println("\nFormat:\nProperty\tcp\txml\tindexed");
-        final UcdProperty[] testValues = LONG_TEST ? UcdProperty.values() : SHORT_LIST;
-        for (UcdProperty prop : testValues) {
-            System.out.println("\nTESTING\t" + prop);
-            UnicodeMap<String> xmap = props.getMap(prop);
-            if (xmap.size() == 0) {
-                System.out.println("*No XML Values");
-                continue;
-            }
-            int errors = 0;
-            empty.clear();
-            for (int i = 0; i <= 0x10ffff; ++i) {
-                String xval = getXmlResolved(prop, i, xmap.get(i));
-                String ival = iup.getResolvedValue(prop, i);
-                if (!UnicodeProperty.equals(xval, ival)) {
-                    // for debugging
-                    String xx = getXmlResolved(prop, i, xmap.get(i));
-                    String ii = iup.getResolvedValue(prop, i);
-
-                    if (xval == null || xval.isEmpty()) {
-                        empty.put(i, ival);
-                    } else {
-                        System.out.println(prop + "\t" + Utility.hex(i) + "\t" + show(xval) + "\t" + show(ival));
-                        if (++errors > 10) {
-                            break;
-                        }
-                    }
-                }
-            }
-            if (errors == 0 && empty.size() == 0) {
-                System.out.println("*OK*\t" + prop);
-            } else {
-                System.out.println("*FAIL*\t" + prop + " with " + (errors + empty.size()) + " errors.");
-                if (empty.size() != 0) {
-                    System.out.println("*Empty/null XML Values:\t" + empty.size());
-                    int maxCount = 0;
-                    for (String ival : empty.values()) {
-                        if (++maxCount > 10) break;
-                        System.out.println(ival + "\t" + empty.getSet(ival));
-                    }
-                }
-            }
-        }
-    }
-
-    private static String show(String ival) {
+    static String show(String ival) {
         if (ival == null) return "null";
         if (ival.isEmpty()) return "<empty>";
         return "[" + ival + "]";
@@ -425,11 +355,11 @@ public class XMLProperties {
             }
             break;
         case Numeric:
-            if (HACK_XML_DEFAULTS) {
-                if (propertyValue == null || propertyValue.isEmpty()) {
-                    propertyValue = "NaN";
-                }
-            }
+//            if (HACK_XML_DEFAULTS) {
+//                if (propertyValue == null || propertyValue.isEmpty()) {
+//                    propertyValue = "NaN";
+//                }
+//            }
             break;
         case Miscellaneous:
             if (propertyValue != null) {
@@ -451,6 +381,7 @@ public class XMLProperties {
             }
             break;
         }
-        return propertyValue == null ? "<none>" : propertyValue;
+        return propertyValue;
+        //return propertyValue == null ? "<none>" : propertyValue;
     }
 }

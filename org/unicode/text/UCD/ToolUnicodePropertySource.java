@@ -306,7 +306,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 // if ((ODD_BALLS & ucd.getCategoryMask(codepoint)) != 0) return null;
                 return ucd.getBidiMirror(codepoint);
             }
-        }.setValues("<string>").setMain("Bidi_Mirroring_Glyph", "bmg", UnicodeProperty.STRING, version));
+        }.setValues("<string>").setMain("Bidi_Mirroring_Glyph", "bmg", UnicodeProperty.MISC, version));
 
         add(new UnicodeProperty.SimpleProperty() {
             public String _getValue(int codepoint) {
