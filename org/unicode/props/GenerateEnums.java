@@ -26,7 +26,7 @@ import org.unicode.text.utility.Utility;
 import com.ibm.icu.dev.test.util.BagFormatter;
 
 public class GenerateEnums {
-    public static final String SOURCE_DIR = "/Users/markdavis/Documents/workspace/DATA/UCD/6.1.0-Update";
+    public static final String SOURCE_DIR = "/Users/markdavis/Documents/workspace/DATA/UCD/6.2.0-Update";
     public static final String PROPERTY_FILE_OUTPUT = "/Users/markdavis/Documents/workspace/unicodetools2/org/unicode/props/UcdProperty.java";
     public static final String PROPERTY_VALUE_OUTPUT = "/Users/markdavis/Documents/workspace/unicodetools2/org/unicode/props/UcdPropertyValues.java";
 

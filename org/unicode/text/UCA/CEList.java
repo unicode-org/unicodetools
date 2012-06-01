@@ -90,8 +90,11 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
             return false;
         }
     }
-
     public int compareTo(Object other) {
+        return compareTo(other, 0xFFFFFFFFL);
+    }
+    
+    public int compareTo(Object other, long mask) {
         CEList that = (CEList)other;
         try {
             int delta = that.startOffset - startOffset;
@@ -100,10 +103,10 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
             if (min > min2) min = min2;
 
             for (int i = startOffset; i < min; ++i) {
-                if (contents[i] != that.contents[i + delta]) {
-                    if ((contents[i] & 0xFFFFFFFFL) 
-                            < (that.contents[i + delta] & 0xFFFFFFFFL)) return -1;
-                    return 1;
+                long first = contents[i] & mask;
+                long second = that.contents[i + delta] & mask;
+                if (first != second) {
+                    return first < second ? -1 : 1;
                 }
             }
             if (count < that.count) return -1;

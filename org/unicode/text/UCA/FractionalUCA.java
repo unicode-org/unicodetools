@@ -1959,24 +1959,12 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         }
 
         // get case bits. 00 is low, 01 is mixed (never happens), 10 is high
-        if (isUpperTertiary[x]) {
+        if (CaseBit.getCaseFromTertiary(x) != CaseBit.Casing.UPPER) {
             result |= 0x80;
         } 
         return result;
     }
 
-    static final boolean[] isUpperTertiary = new boolean[32];
-    static {
-        isUpperTertiary[0x8] = true;
-        isUpperTertiary[0x9] = true;
-        isUpperTertiary[0xa] = true;
-        isUpperTertiary[0xb] = true;
-        isUpperTertiary[0xc] = true;
-        isUpperTertiary[0xe] = true;
-        isUpperTertiary[0x11] = true;
-        isUpperTertiary[0x12] = true;
-        isUpperTertiary[0x1D] = true;
-    }
     static int[] compactSecondary;
 
     static void testCompatibilityCharacters() throws IOException {
@@ -2121,44 +2109,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         if (!Default.ucd().getCase(s, FULL, LOWER).equals(s)) {
             return true;
         }
-        if (!FractionalUCA.toSmallKana(s).equals(s)) {
+        if (!CaseBit.toSmallKana(s).equals(s)) {
             return true;
         }
         return false;
     }
-
-    static final String toSmallKana(String s) {
-        // note: don't need to do surrogates; none exist
-        boolean gotOne = false;
-        FractionalUCA.toSmallKanaBuffer.setLength(0);
-        for (int i = 0; i < s.length(); ++i) {
-            char c = s.charAt(i);
-            if ('\u3042' <= c && c <= '\u30EF') {
-                switch(c - 0x3000) {
-                case 0x42: case 0x44: case 0x46: case 0x48: case 0x4A: case 0x64: case 0x84: case 0x86: case 0x8F:
-                case 0xA2: case 0xA4: case 0xA6: case 0xA8: case 0xAA: case 0xC4: case 0xE4: case 0xE6: case 0xEF:
-                    --c; // maps to previous char
-                    gotOne = true;
-                    break;
-                case 0xAB:
-                    c = '\u30F5'; 
-                    gotOne = true;
-                    break;
-                case 0xB1:
-                    c = '\u30F6'; 
-                    gotOne = true;
-                    break;
-                }
-            }
-            FractionalUCA.toSmallKanaBuffer.append(c);
-        }
-        if (gotOne) {
-            return FractionalUCA.toSmallKanaBuffer.toString();
-        }
-        return s;
-    }
-
-    static final StringBuffer toSmallKanaBuffer = new StringBuffer();
 
     static final UnicodeSet MAJOR_PRIMARIES = new UnicodeSet();
 
