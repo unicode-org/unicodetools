@@ -43,6 +43,8 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public class CheckProperties {
+    private static final String LAST_RELEASE = "6.1.0";
+
     private static final int DEBUG_CODE_POINT = 0x0600;
 
     private static final boolean LATEST_ICU = true;
@@ -81,7 +83,7 @@ public class CheckProperties {
         for (Entry<String, PropertyParsingInfo> entry : IndexUnicodeProperties.getFile2PropertyInfoSet().keyValueSet()) {
             if (IndexUnicodeProperties.SHOW_PROP_INFO) System.out.println(entry.getKey() + " ; " + entry.getValue());
         }
-        IndexUnicodeProperties last = IndexUnicodeProperties.make("6.0.0");
+        IndexUnicodeProperties last = IndexUnicodeProperties.make(LAST_RELEASE);
         UnicodeMap<String> gcLast = showValue(last, UcdProperty.General_Category, '\u00A7');
         //        showValue(last, UcdProperty.kMandarin, '\u5427');
         //        showValue(last, UcdProperty.General_Category, '\u5427');
@@ -365,7 +367,7 @@ public class CheckProperties {
 
     public static <T> void showInfo(String title, Collection<T> collection) {
         if (collection.size() != 0) {
-            System.out.println(title + ": " + collection.size());
+            System.out.println(title + ":\t" + collection.size());
             for (T s : collection) {
                 String display;
                 if (s instanceof Entry) {
@@ -483,8 +485,8 @@ public class CheckProperties {
         UnicodeMap<String> changes = new UnicodeMap<String>();
         UnicodeSet newChars = new UnicodeSet(retain);
         Set<String> strings = new TreeSet<String>();
-        strings.addAll(lastMap.keySet().getMulticharacterStrings());
-        strings.addAll(latestMap.keySet().getMulticharacterStrings());
+        strings.addAll(UnicodeSetUtilities.getMulticharacterStrings(lastMap.keySet()));
+        strings.addAll(UnicodeSetUtilities.getMulticharacterStrings(latestMap.keySet()));
         for (String s : strings) {
             if (retain.containsAll(s)) {
                 newChars.add(s);
@@ -502,7 +504,8 @@ public class CheckProperties {
             SKIPPING.add(prop.toString());
             return;
         }
-        System.out.println("\n" + prop + "\t\t\t\ttotal:\t" + changes.size()); 
+        System.out.println("\n" + prop + "\t" + IndexUnicodeProperties.getPropertyStatusSet(prop) +
+        		"\t\t\ttotal:\t" + changes.size()); 
         int limit = 10;
 
         for (String value : new TreeSet<String>(changes.values())) {

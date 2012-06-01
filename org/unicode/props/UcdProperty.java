@@ -12,7 +12,6 @@ public enum UcdProperty {
     kPrimaryNumeric(PropertyNames.PropertyType.Numeric, "cjkPrimaryNumeric"),
 
 		// String
-    Bidi_Mirroring_Glyph(PropertyNames.PropertyType.String, "bmg"),
     Case_Folding(PropertyNames.PropertyType.String, "cf"),
     Decomposition_Mapping(PropertyNames.PropertyType.String, "dm"),
     FC_NFKC_Closure(PropertyNames.PropertyType.String, "FC_NFKC"),
@@ -27,6 +26,7 @@ public enum UcdProperty {
     kCompatibilityVariant(PropertyNames.PropertyType.String, "cjkCompatibilityVariant"),
 
 		// Miscellaneous
+    Bidi_Mirroring_Glyph(PropertyNames.PropertyType.Miscellaneous, "bmg"),
     CJK_Radical(PropertyNames.PropertyType.Miscellaneous, "CJKR"),
     Emoji_DCM(PropertyNames.PropertyType.Miscellaneous, "EDCM"),
     Emoji_KDDI(PropertyNames.PropertyType.Miscellaneous, "EKDDI"),

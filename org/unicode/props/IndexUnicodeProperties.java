@@ -96,7 +96,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public final static String FIELD_SEPARATOR = "; ";
     public final static Pattern TAB = Pattern.compile("[ ]*\t[ ]*");
-    static final boolean SHOW_PROP_INFO = false;
+    static final boolean SHOW_PROP_INFO = true;
     private static final boolean SHOW_LOADED = false;
     static final Relation<UcdProperty,String> DATA_LOADING_ERRORS 
     = Relation.of(new EnumMap<UcdProperty,Set<String>>(UcdProperty.class), LinkedHashSet.class);
@@ -160,12 +160,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             UcdProperty.NFKC_Casefold,
             UcdProperty.Quotation_Mark,
             UcdProperty.Script,
+            UcdProperty.Script_Extensions,
             UcdProperty.Sentence_Break,
             UcdProperty.STerm,
             UcdProperty.Terminal_Punctuation,
             UcdProperty.Titlecase_Mapping,
             UcdProperty.Unicode_1_Name,
-            UcdProperty.kRSUnicode,
             UcdProperty.Uppercase,
             UcdProperty.Uppercase_Mapping,
             UcdProperty.Word_Break,
@@ -176,7 +176,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             UcdProperty.Expands_On_NFD,
             UcdProperty.Expands_On_NFKC,
             UcdProperty.Expands_On_NFKD,
-            UcdProperty.FC_NFKC_Closure
+            UcdProperty.FC_NFKC_Closure,
+            
+            UcdProperty.kAccountingNumeric,
+            UcdProperty.kMandarin,
+            UcdProperty.kOtherNumeric,
+            UcdProperty.kPrimaryNumeric,
+            UcdProperty.kRSUnicode,
+            UcdProperty.kTotalStrokes
     );
 
     public static final EnumSet<UcdProperty> NORMATIVE_PROPERTY = EnumSet.of(
@@ -224,7 +231,19 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             UcdProperty.Soft_Dotted,
             UcdProperty.Unified_Ideograph,
             UcdProperty.Variation_Selector,
-            UcdProperty.White_Space
+            UcdProperty.White_Space,
+            // Unihan
+            UcdProperty.kCompatibilityVariant,
+            UcdProperty.kIICore,
+            UcdProperty.kIRG_GSource,
+            UcdProperty.kIRG_HSource,
+            UcdProperty.kIRG_JSource,
+            UcdProperty.kIRG_KPSource,
+            UcdProperty.kIRG_KSource,
+            UcdProperty.kIRG_MSource,
+            UcdProperty.kIRG_TSource,
+            UcdProperty.kIRG_USource,
+            UcdProperty.kIRG_VSource
     );
 
     public static final EnumSet<UcdProperty> IMMUTABLE_PROPERTY = EnumSet.of( 
@@ -299,6 +318,38 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             return PropertyStatus.Normative;
         }
         return PropertyStatus.Provisional;
+    }
+    
+    public static EnumSet<PropertyStatus> getPropertyStatusSet(UcdProperty prop) {
+        EnumSet<PropertyStatus> result = EnumSet.noneOf(PropertyStatus.class);
+        if (OBSOLETE_PROPERTY.contains(prop)) {
+            result.add(PropertyStatus.Obsolete);
+        }
+        if (STABLIZED_PROPERTY.contains(prop)) {
+            result.add(PropertyStatus.Stabilized);
+        }
+        if (DEPRECATED_PROPERTY.contains(prop)) {
+            result.add(PropertyStatus.Deprecated);
+        }
+        if (CONTRIBUTORY_PROPERTY.contains(prop)) {
+            result.add(PropertyStatus.Contributory);
+        }
+        if (INFORMATIVE_PROPERTY.contains(prop)) {
+            result.add(PropertyStatus.Informative);
+        }
+        if (IMMUTABLE_PROPERTY.contains(prop)) {
+            result.add(PropertyStatus.Immutable);
+        }
+        if (NORMATIVE_PROPERTY.contains(prop)) {
+            result.add(PropertyStatus.Normative);
+        }
+        // Normative or Informative or Contributory or Provisional.
+        if (!(result.contains(PropertyStatus.Normative) 
+                || result.contains(PropertyStatus.Informative) 
+                || result.contains(PropertyStatus.Contributory))) {
+            result.add(PropertyStatus.Provisional);
+        }
+        return result;
     }
 
     enum DefaultValueType {
@@ -1133,7 +1184,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 return codepoint;
             }
         }
-        if (prop == UcdProperty.Name && value.endsWith("-#")) {
+        if (prop == UcdProperty.Name && value != null && value.endsWith("-#")) {
             return value.substring(0,value.length()-1) + Utility.hex(codepoint);
         }
         return value;

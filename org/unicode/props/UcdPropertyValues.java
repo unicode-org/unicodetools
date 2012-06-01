@@ -26,6 +26,7 @@ public class UcdPropertyValues {
         V5_2("5.2"),
         V6_0("6.0"),
         V6_1("6.1"),
+        V6_2("6.2"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
         private Age_Values (String shortName, String...otherNames) {

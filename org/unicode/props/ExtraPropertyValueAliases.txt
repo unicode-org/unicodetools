@@ -64,10 +64,3 @@
 # @missing: 0000..10FFFF; Other_Uppercase  ; No
 
 # Overrides for bugs
-
-# @missing: 0000..10FFFF; Numeric_Value; NaN
-# @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <code point>
-
-# @missing: 0000..10FFFF; Lowercase_Mapping; <slc> 
-# @missing: 0000..10FFFF; Titlecase_Mapping; <stc> 
-# @missing: 0000..10FFFF; Uppercase_Mapping; <suc> 

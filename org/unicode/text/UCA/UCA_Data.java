@@ -101,10 +101,16 @@ public class UCA_Data implements UCA_Types {
         if (ce == UNSUPPORTED_FLAG) {
 
             // Special check for Han, Hangul
-            if (ucd.isHangulSyllable(ch)) return HANGUL_CE;
+            if (ucd.isHangulSyllable(ch)) {
+                return HANGUL_CE;
+            }
 
-            if (ucd.isCJK_BASE(ch)) return CJK_CE;
-            if (ucd.isCJK_AB(ch)) return CJK_AB_CE;
+            if (ucd.isCJK_BASE(ch)) {
+                return CJK_CE;
+            }
+            if (ucd.isCJK_AB(ch)) {
+                return CJK_AB_CE;
+            }
 
             // special check for unsupported surrogate pair, 20 1/8 bits
             //if (0xD800 <= ch && ch <= 0xDFFF) {

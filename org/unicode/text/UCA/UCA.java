@@ -1617,6 +1617,10 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
     }
      */
+    
+    public Iterator<String> getContractions() {
+        return ucaData.getContractions();
+    }
 
     /**
      * Checks the internal tables corresponding to the UCA data.
