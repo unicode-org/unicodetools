@@ -14,6 +14,7 @@ package org.unicode.text.UCD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.HashSet;
@@ -297,10 +298,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
     protected String currentRule;
     protected String fileName;
-    protected String[] samples = new String[100];
-    protected String[] extraSamples = new String[0];
-    protected String[] extraSingleSamples = new String[0];
-    protected int sampleLimit = 0;
+    protected List<String> samples = new ArrayList();
+    protected List<String> extraSamples = new ArrayList();
+    protected List<String> extraSingleSamples = new ArrayList();
     protected int tableLimit = -1;
 
     protected int[] skippedSamples = new int[100];
@@ -399,7 +399,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 "</script>\r\n" +
                 "</center>\r\n" +
         "</div>");
-
+        for (int i = 0; i < 50; ++i) {
+            out.println("<br>"); // leave blank lines so scroll-to-top works.
+        }
         fc.close();
 
         generateTest(false, fileName);
@@ -441,12 +443,12 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println("# These samples may be extended or changed in the future.");
         out.println("#");
 
-        for (int ii = 0; ii < sampleLimit; ++ii) {
-            String before = samples[ii];
+        for (int ii = 0; ii < samples.size(); ++ii) {
+            String before = samples.get(ii);
 
-            for (int jj = 0; jj < sampleLimit; ++jj) {
+            for (int jj = 0; jj < samples.size(); ++jj) {
                 Utility.dot(counter);
-                String after = samples[jj];
+                String after = samples.get(jj);
 
                 // do line straight
                 testCases.clear();
@@ -461,8 +463,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
             }
         }
 
-        for (int ii = 0; ii < extraSingleSamples.length; ++ii) {
-            printLine(out, extraSingleSamples[ii], true, false);
+        for (int ii = 0; ii < extraSingleSamples.size(); ++ii) {
+            printLine(out, extraSingleSamples.get(ii), true, false);
             ++counter;
         }
         out.println("# Lines: " + counter);
@@ -557,12 +559,13 @@ abstract public class GenerateBreakTest implements UCD_Types {
     }
 
     public void generateTable(PrintWriter out) {
+        out.println("<h3>" + linkAndAnchor("table", "Table") + "</h3>");
         String width = "width='" + (100 / (tableLimit + 1)) + "%'";
         out.print("<table border='1' cellspacing='0' width='100%'>");
         String types = "";
         String codes = "";
         for (int type = 0; type < tableLimit; ++type) {
-            String after = samples[type];
+            String after = samples.get(type);
             if (after == null) continue;
 
             String h = getTypeID(after);
@@ -577,11 +580,11 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
         String[] rule = new String[1];
         String[] rule2 = new String[1];
-        for (int type = 0; type < sampleLimit; ++type) {
+        for (int type = 0; type < samples.size(); ++type) {
             if (type == tableLimit) {
                 out.println("<tr><td bgcolor='#0000FF' colSpan='" + (tableLimit + 1) + "' style='font-size: 1px'>&nbsp;</td></tr>");
             }
-            String before = samples[type];
+            String before = samples.get(type);
             if (before == null) continue;
 
             String h = getTypeID(before);
@@ -589,7 +592,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
             for (int type2 = 0; type2 < tableLimit; ++type2) {
 
-                String after = samples[type2];
+                String after = samples.get(type2);
                 if (after == null) continue;
 
                 String t = getTableEntry(before, after, rule);
@@ -631,7 +634,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
             collectingRules = false;
         }
 
-        out.println("<h3><a name='rules'>Rules</a></h3>");
+        out.println("<h3>" + linkAndAnchor("rules", "Rules") + "</h3>");
         out
         .println("<p>This section shows the rules. They are mechanically modified for programmatic generation of the tables and test code, and"
                 + " thus do not match the UAX rules precisely. "
@@ -649,7 +652,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 + "</ol>" + "<p>For the original rules, see the UAX.</p>"
 
         );
-        out.println("<ul style='list-style-type: none'>");
+        //out.println("<ul style='list-style-type: none'>");
+        out.println("<table>");
         Matcher identifierMatcher = Pattern.compile("[$]\\p{Alpha}\\p{Alnum}*_").matcher("");
         for (int ii = 0; ii < ruleListCount; ++ii) {
             String ruleString = ruleList[ii];
@@ -663,26 +667,44 @@ abstract public class GenerateBreakTest implements UCD_Types {
             if (!isBreak("a",0)) {
                 cleanRule = cleanRule.replace("sot ÷", "sot ×");
             }
-            out.println("<li>" + cleanRule + "</li>");
+            int parenPos = cleanRule.indexOf(')');
+            String ruleNumber = cleanRule.substring(0,parenPos);
+            String ruleBody = cleanRule.substring(parenPos+1).trim();
+            int breakPoint = ruleBody.indexOf('×');
+            if (breakPoint < 0) {
+                breakPoint = ruleBody.indexOf('÷');
+            }
+            out.println("<tr><th style='text-align:right'>" + linkAndAnchor("r" + ruleNumber, ruleNumber) + "</th>" +
+            		"<td style='text-align:right'>" + ruleBody.substring(0,breakPoint)
+                    + "</td><td>" + ruleBody.substring(breakPoint, breakPoint+1)
+                    + "</td><td>" + ruleBody.substring(breakPoint+1)
+            		+ "</td></tr>");
+            //out.println("<li>" + cleanRule + "</li>");
         }
-        out.println("</ul>");
+        out.println("</table>");
+        //out.println("</ul>");
 
-        if (extraSingleSamples.length > 0) {
-            out.println("<h3><a name='samples'>Sample Strings</a></h3>");
+        if (extraSingleSamples.size() > 0) {
+            out.println("<h3>" + linkAndAnchor("samples", "Sample Strings") + "</h3>");
             out.println("<p>" +
                     "The following samples illustrate the application of the rules. " +
                     "The blue lines indicate possible break points. " +
                     "If your browser supports titles (tool-tips), then positioning the mouse over each character will show its name, " +
                     "while positioning between characters shows the rule number of the rule responsible for the break-status." +
             "</p>");
-            out.println("<ol>");
-            for (int ii = 0; ii < extraSingleSamples.length; ++ii) {
-                out.println("<li><font size='5'>");
-                printLine(out, extraSingleSamples[ii], true, true);
-                out.println("</font></li>");
+            out.println("<table>");
+            for (int ii = 0; ii < extraSingleSamples.size(); ++ii) {
+                String ruleNumber = String.valueOf(ii+1);
+                out.println("<tr><th style='text-align:right'>" + linkAndAnchor("s" + ruleNumber, ruleNumber) + "</th><td><font size='5'>");
+                printLine(out, extraSingleSamples.get(ii), true, true);
+                out.println("</font></td></tr>");
             }
-            out.println("</ol>");
+            out.println("</table>");
         }
+    }
+
+    public String linkAndAnchor(String anchor, String text) {
+        return ("<a href='#" + anchor + "' name='" + anchor + "'>" + text + "</a>");
     }
 
     static final String BREAK = "\u00F7";
@@ -745,7 +767,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         BitSet bitset = new BitSet();
         Map list = new TreeMap();
 
-        for (int i = 1; i <= 0xFFFF; ++i) {
+        for (int i = 1; i <= 0x10FFFF; ++i) {
             if (!ucd.isAllocated(i)) continue;
             if (0xD800 <= i && i <= 0xDFFF) continue;
             if (DEBUG && i == 0x1100) {
@@ -781,11 +803,11 @@ abstract public class GenerateBreakTest implements UCD_Types {
         Iterator it = list.keySet().iterator();
         while (it.hasNext()) {
             String sample = (String)list.get(it.next());
-            samples[sampleLimit++] = sample;
+            samples.add(sample);
             if (DEBUG) System.out.println(getTypeID(sample) + ":\t" + ucd.getCodeAndName(sample));
         }
 
-        tableLimit = sampleLimit;
+        tableLimit = samples.size();
 
         // now add values that are different
         /*
@@ -808,9 +830,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
          */
 
-        if (extraSamples.length > 0) {
-            System.arraycopy(extraSamples, 0, samples, sampleLimit, extraSamples.length);
-            sampleLimit += extraSamples.length;
+        if (extraSamples.size() > 0) {
+            samples.addAll(extraSamples);
         }
     }
 
@@ -913,8 +934,23 @@ abstract public class GenerateBreakTest implements UCD_Types {
             }
             this.fileName = filename;
             sampleMap = map;
-            this.extraSamples = extraSamples;
-            this.extraSingleSamples = extraSingleSamples;
+            this.extraSamples.addAll(Arrays.asList(extraSamples));
+            
+            this.extraSingleSamples.addAll(Arrays.asList(extraSingleSamples));
+            this.extraSingleSamples.addAll(Arrays.asList(
+                    "\uD83C\uDDE6\uD83C\uDDE7\uD83C\uDDE8",
+                    "\uD83C\uDDE6\u200D\uD83C\uDDE7\uD83C\uDDE8",
+                    "\uD83C\uDDE6\uD83C\uDDE7\u200D\uD83C\uDDE8",
+                    " \u200D\u0646",
+                    "\u0646\u200D "
+            ));
+        }
+
+        private String[] combine(String[] extraSamples, String... strings) {
+            String[] result = new String[extraSamples.length + strings.length];
+            System.arraycopy(extraSamples, 0, result, 0, extraSamples.length);
+            System.arraycopy(strings, 0, result, extraSamples.length, strings.length);
+            return result;
         }
 
         public boolean isBreak(String source, int offset) {
@@ -945,7 +981,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 unicodePropertySource.getSet("GC=Cn").iterator().next(),
                 "\uD800"
                 }, 
-                new String[]{});
+                new String[]{
+            });
         }	
     }
 
@@ -1168,7 +1205,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 "、タ",
                 "、か",
                 "、これでは ",
-                "し、abと"
+                "し、abと",
             });
         }	
         @Override
@@ -1233,7 +1270,15 @@ abstract public class GenerateBreakTest implements UCD_Types {
         public GenerateWordBreakTest(UCD ucd) {
             super(ucd, Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()),"WordBreak"), "aa", "Word",
                     new String[] {
-                /*"\uFF70", "\uFF65", "\u30FD", */ "a\u2060", "a:", "a'", "a'\u2060", "a,", "1:", "1'", "1,",  "1.\u2060"
+                /*"\uFF70", "\uFF65", "\u30FD", */ "a\u2060", 
+                "a:", 
+                "a'", 
+                "a'\u2060", 
+                "a,", 
+                "1:", 
+                "1'", 
+                "1,",  
+                "1.\u2060",
             },
 
 
