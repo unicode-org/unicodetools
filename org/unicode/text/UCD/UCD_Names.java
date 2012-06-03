@@ -223,7 +223,7 @@ public final class UCD_Names implements UCD_Types {
     "SA", "AI", "B2", "SG", "ZW",
     "NL",
     "WJ", "JL", "JV", "JT", "H2", "H3",
-    "CP", "HL", "CJ"
+    "CP", "HL", "CJ", "ZJ"
     //"JL",
     //"JV",
     //"JT",
@@ -242,7 +242,8 @@ public final class UCD_Names implements UCD_Types {
     "Word_Joiner", "JL", "JV", "JT", "H2", "H3",
     "Close_Parenthesis",
     "Hebrew_Letter",
-    "Conditional_Japanese_Starter"
+    "Conditional_Japanese_Starter",
+    "Zero_Width_Joiner"
     //"Leading_Jamo",
     //"Vowel_Jamo",
     //"Trailing_Jamo",
