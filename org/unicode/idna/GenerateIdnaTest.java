@@ -50,7 +50,7 @@ public class GenerateIdnaTest {
     }
 
     public static void setUnicodeVersion() {
-        Default.setUCD("6.1.0");
+        Default.setUCD("6.2.0");
         UnicodeTransform.setFactory(new ToolUnicodeTransformFactory());
         ToolUnicodePropertySource toolUPS1 = ToolUnicodePropertySource.make(Default.ucdVersion());
         final XSymbolTable toolUPS = new UnicodePropertySymbolTable(toolUPS1);
@@ -63,9 +63,11 @@ public class GenerateIdnaTest {
     int generateTests(int lines) throws IOException {
         String filename = "IdnaTest.txt";
         PrintWriter out = BagFormatter.openUTF8Writer(Utility.GEN_DIR + "idna/", filename);
-        out.println("# " + filename + "\n" +
+        out.println("# " + "IdnaTest"  + Default.ucdVersion() +  ".txt" + "\n" +
                 "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
-        "#");
+        "#\n" +
+        "# Copyright (c) 1991-" + (new Date().getYear()+1900) +
+        " Unicode, Inc.");
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
         //        out.println(

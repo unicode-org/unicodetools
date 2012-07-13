@@ -79,7 +79,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public final static Pattern EQUALS = Pattern.compile("\\s*=\\s*");
     public final static Pattern SPACE = Pattern.compile("\\s+");
     static Pattern SLASHX = Pattern.compile("\\\\x\\{([0-9A-Fa-f]{1,6})\\}");
-    static Normalizer2 NFD = Normalizer2.getInstance(null, "NFC", Mode.DECOMPOSE);
+    static Normalizer2 NFD = Normalizer2.getNFDInstance(); // 
+    //static Normalizer2 NFD2 = Normalizer2.getInstance(null, "NFC", Mode.DECOMPOSE);
 
     static final String CONSTRUCTED_NAME = "$HANGUL_SYLLABLE$";
 

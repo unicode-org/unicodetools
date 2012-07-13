@@ -1,4 +1,3 @@
-# Copyright (c) 1991-2011 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Contains test cases for verifying UTS46 conformance. For more information,
