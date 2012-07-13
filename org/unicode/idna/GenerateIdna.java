@@ -358,11 +358,14 @@ public class GenerateIdna {
         String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
         String unversionedFileName = "IdnaMappingTable.txt";
         PrintWriter writer = BagFormatter.openUTF8Writer(DIR, unversionedFileName);
+        
         writer.println("# " + filename + "\n" +
                 "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
                 "#\n" +
                 "# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
-                "# Copyright (c) 1991-2011 Unicode, Inc.\n" +
+                "# Copyright (c) 1991-" +
+                (new Date().getYear()+1900) +
+                " Unicode, Inc.\n" +
                 "# For terms of use, see http://www.unicode.org/terms_of_use.html\n" +
         "# For documentation, see http://www.unicode.org/reports/tr46/\n");
 

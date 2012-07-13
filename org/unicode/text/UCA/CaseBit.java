@@ -211,7 +211,7 @@ public class CaseBit {
         }
     }
 
-    private static String toSmallKana(String s) {
+    static String toSmallKana(String s) {
         boolean gotOne = false;
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < s.length(); ++i) {

@@ -28,7 +28,7 @@ public class Idna implements StringTransform {
     public UnicodeMap<String> mappings = new UnicodeMap<String>();
     protected UnicodeMap<String> mappings_display = new UnicodeMap<String>();
     protected UnicodeSet validSet = new UnicodeSet();
-    protected UnicodeSet validSet_transitional = new UnicodeSet();
+    public UnicodeSet validSet_transitional = new UnicodeSet();
     protected boolean checkPunycodeValidity = false;
     private final String name;
     //static final Normalizer2    nfc       = Normalizer2.getInstance(null, "nfc", Normalizer2.Mode.COMPOSE);

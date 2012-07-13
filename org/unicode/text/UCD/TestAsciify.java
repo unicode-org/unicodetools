@@ -1,10 +1,9 @@
 // Don't worry about the package, etc. This is just a snippet for your incorporation.
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.test.calendar.TestCase;
 import com.ibm.icu.text.Transliterator;
 
-public class TestAsciify extends TestCase {
+public class TestAsciify {
 
   /**
    * The following isn't really part of the test; it is a just a snippet with the rules

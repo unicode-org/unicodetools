@@ -4139,6 +4139,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         WriteCollationData.ducetCollator = collator;
     }
 
+
     static UCA getCollator(CollatorType type) {
         switch(type) {
         case cldr:
@@ -4148,6 +4149,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 //                } else 
                 {
                     cldrCollator = buildCldrCollator(false);
+
                     cldrCollator.overrideCE("\uFFFE", 0x1, 0x20, 0x5);
                     cldrCollator.overrideCE("\uFFFF", 0xFFFE, 0x20, 0x5);
                 }

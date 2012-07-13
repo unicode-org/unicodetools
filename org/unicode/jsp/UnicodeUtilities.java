@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
+import org.unicode.idna.GenerateIdnaTest;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
 import org.unicode.idna.IdnaTypes;
@@ -98,7 +99,7 @@ public class UnicodeUtilities {
 
   public static UnicodeMap<String> getIdnaDifferences(UnicodeSet remapped, UnicodeSet skip) {
     UnicodeMap<String> result = new UnicodeMap<String>();
-    UnicodeSet valid2008 = getIdna2008Valid();
+    UnicodeSet valid2008 = GenerateIdnaTest.getIdna2008Valid();
     
     VersionInfo empty = VersionInfo.getInstance(0);
 

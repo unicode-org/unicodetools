@@ -177,7 +177,7 @@ public class Misc {
 
     static final UnicodeSet WHITESPACE = new UnicodeSet("[:whitespace:]").freeze();
 
-    static final Normalizer2 NFKC = Normalizer2.getInstance(null, "NFKC", Mode.COMPOSE);
+    static final Normalizer2 NFKC = Normalizer2.getNFKCInstance(); // Normalizer2.getInstance(null, "NFKC", Mode.COMPOSE);
 
     static final SpoofChecker spoofChecker = new SpoofChecker.Builder().setChecks(SpoofChecker.SINGLE_SCRIPT | SpoofChecker.INVISIBLE).build();
 

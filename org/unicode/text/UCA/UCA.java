@@ -190,6 +190,8 @@ final public class UCA implements Comparator, UCA_Types {
         return getSortKey(sourceString, alternate, defaultDecomposition, false);
     }
 
+    static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 0x5);
+
     /**
      * Constructs a sort key for a string of input Unicode characters.
      * @param sourceString string to make a sort key for.
@@ -242,6 +244,9 @@ final public class UCA implements Comparator, UCA_Types {
             case SHIFTED:
                 if (ce == 0) {
                     weight4 = 0;
+                } else if (ce == CE_FFFE) { // variables
+                    weight4 = getPrimary(ce);
+                    lastWasVariable = false;
                 } else if (isVariable(ce)) { // variables
                     weight4 = getPrimary(ce);
                     lastWasVariable = true;
