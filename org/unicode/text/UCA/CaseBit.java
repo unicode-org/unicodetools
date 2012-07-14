@@ -15,7 +15,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class CaseBit {
     public enum Casing {
-        UNCASED, LOWER, MIXED, UPPER;
+        UNCASED (0), LOWER(0), MIXED(0x40), UPPER(0x80);
         public Casing composeCasing(Casing other) {
             if (this == other) {
                 return this;
@@ -26,6 +26,14 @@ public class CaseBit {
             } else {
                 return Casing.MIXED;
             }
+        }
+        final int bits;
+        Casing(int bits) {
+            this.bits = bits;
+        }
+
+        public int getBits() {
+            return bits;
         }
     }
 
@@ -91,6 +99,20 @@ public class CaseBit {
 
     public static Casing getPropertyCasing(int codePoint) {
         String nfkd = Default.nfkd().normalize(codePoint);
+        Casing propertyCasing = Casing.UNCASED;
+        int cp;
+        for (int i = 0; i < nfkd.length(); i += Character.charCount(cp)) {
+            cp = nfkd.codePointAt(i);
+            propertyCasing = propertyCasing.composeCasing(getPropertyCasingNfd(cp));
+        }
+        return propertyCasing;
+    }
+    
+    public static Casing getPropertyCasing(String source) {
+        if (source.equals("A")) {
+            int debug = 0;
+        }
+        String nfkd = Default.nfkd().normalize(source);
         Casing propertyCasing = Casing.UNCASED;
         int cp;
         for (int i = 0; i < nfkd.length(); i += Character.charCount(cp)) {

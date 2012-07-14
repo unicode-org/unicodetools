@@ -15,6 +15,8 @@ import java.util.TreeSet;
 import java.util.Map.Entry;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.text.UCA.CaseBit.Casing;
+import org.unicode.text.UCA.CaseBit.CasingList;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
@@ -925,8 +927,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         int canCount = 0;
 
         System.out.println("Add missing decomposibles and non-characters");
-        for (int i = 0; i < 0x10FFFF; ++i) {
-            if (i == 0xFFFE || i == 0xFFFF) continue;
+        for (int i = 0; i <= 0x10FFFF; ++i) {
+            int bottomBits = i & 0xFFFF;
+            if (bottomBits == 0xFFFE || bottomBits == 0xFFFF) {
+                continue;
+            }
 
             if (!Default.ucd().isNoncharacter(i)) {
                 if (!Default.ucd().isAllocated(i)) {
@@ -1273,7 +1278,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 // int oldPrimaryValue = UCA.getPrimary(ces[q]);
                 int np = FractionalUCA.fixPrimary(pri);
                 int ns = FractionalUCA.fixSecondary(sec);
-                int nt = FractionalUCA.fixTertiary(ter);
+                int nt = FractionalUCA.fixTertiary(ter, chr);
 
                 if (q == firstCE) { // only look at first one
                     highByteToScripts.addScriptsIn(np, chr);
@@ -1405,7 +1410,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
             int np = FractionalUCA.fixPrimary(UCA.getPrimary(ce));
             int ns = FractionalUCA.fixSecondary(UCA.getSecondary(ce));
-            int nt = FractionalUCA.fixTertiary(UCA.getTertiary(ce));
+            int nt = FractionalUCA.fixTertiary(UCA.getTertiary(ce), sample);
 
             highByteToScripts.addScriptsIn(np, sample);
             fractionalStatistics.printAndRecord(true, fakeString.next(), np, ns, nt, null);
@@ -1613,7 +1618,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 summary.println();
             }
             int len = getCollator().getCEs(sampleEq[i], true, ces);
-            int newval = i < 0x20 ? FractionalUCA.fixTertiary(i) : FractionalUCA.fixSecondary(i);
+            int newval = i < 0x20 ? FractionalUCA.fixTertiary(i,sampleEq[i]) : FractionalUCA.fixSecondary(i);
             summary.print("# " + Utility.hex(i) + ": (" + Utility.hex(newval) + ") "
                     + Utility.hex(sampleEq[i]) + " ");
             for (int q = 0; q < len; ++q) {
@@ -1852,7 +1857,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             if (i == 1 || i == 7) {
                 continue; // never occurs
             }
-            int val = FractionalUCA.fixTertiary(i);
+            int val = FractionalUCA.fixTertiary(i, ""); // not interested in case bits, so ok to pass in ""
             val &= 0x7F; // mask off case bits
             if (val <= lastVal) {
                 throw new IllegalArgumentException(
@@ -1941,7 +1946,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         return (top << 8) | bottom;
     }
 
-    static int fixTertiary(int x) {
+    static int fixTertiary(int x, String originalString) {
         if (x == 0) {
             return x;
         }
@@ -1959,9 +1964,14 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         }
 
         // get case bits. 00 is low, 01 is mixed (never happens), 10 is high
-        if (CaseBit.getCaseFromTertiary(x) != CaseBit.Casing.UPPER) {
-            result |= 0x80;
-        } 
+        Casing casing = CaseBit.getPropertyCasing(originalString);
+        int caseBits = casing.getBits();
+        if (caseBits != 0) {
+            result |= caseBits;
+        }
+//        if (CaseBit.getCaseFromTertiary(x) != CaseBit.Casing.UPPER) {
+//            result |= 0x80;
+//        } 
         return result;
     }
 
@@ -2104,16 +2114,16 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     static ImplicitCEGenerator implicit = new ImplicitCEGenerator(FractionalUCA.Variables.IMPLICIT_BASE_BYTE, FractionalUCA.Variables.IMPLICIT_MAX_BYTE);
 
-    static final boolean needsCaseBit(String x) {
-        String s = Default.nfkd().normalize(x);
-        if (!Default.ucd().getCase(s, FULL, LOWER).equals(s)) {
-            return true;
-        }
-        if (!CaseBit.toSmallKana(s).equals(s)) {
-            return true;
-        }
-        return false;
-    }
+//    static final boolean needsCaseBit(String x) {
+//        String s = Default.nfkd().normalize(x);
+//        if (!Default.ucd().getCase(s, FULL, LOWER).equals(s)) {
+//            return true;
+//        }
+//        if (!CaseBit.toSmallKana(s).equals(s)) {
+//            return true;
+//        }
+//        return false;
+//    }
 
     static final UnicodeSet MAJOR_PRIMARIES = new UnicodeSet();
 
