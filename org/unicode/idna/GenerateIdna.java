@@ -32,7 +32,7 @@ public class GenerateIdna {
         // MUST BE FIRST
         GenerateIdnaTest.setUnicodeVersion();
     }
-    public static final String DIR = Utility.GEN_DIR + "idna/"; // "/Users/markdavis/Documents/workspace/draft/reports/tr46/data";
+    public static final String DIR = Utility.GEN_DIR + "idna/"; // Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
     private static final boolean TESTING = true;
     public static UnicodeSet U32;

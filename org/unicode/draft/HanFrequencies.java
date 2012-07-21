@@ -22,6 +22,7 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.draft.HanFrequencies.ReadingAlt;
 import org.unicode.draft.HanFrequencies.ReadingRows;
 import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
 
@@ -59,7 +60,7 @@ public class HanFrequencies {
             rank.put(parts[0], ++count);
         }
         freq.close();
-        BufferedReader readings = BagFormatter.openUTF8Reader("/Users/markdavis/Documents/workspace/DATA/frequency", "han-reading-diff.txt");
+        BufferedReader readings = BagFormatter.openUTF8Reader(Utility.WORKSPACE_DIRECTORY + "DATA/frequency", "han-reading-diff.txt");
         Set<R2<Integer, Map<ReadingRows,String>>> ordered = new TreeSet<R2<Integer,Map<ReadingRows,String>>>();
         while (true) {
             String line = readings.readLine();

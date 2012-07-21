@@ -1943,7 +1943,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         return getStatistics().homelessSecondaries;
     }
 
-    static UCA buildCollator(Remap primaryRemap) {
+    public static UCA buildCollator(Remap primaryRemap) {
         try {
             System.out.println("Building UCA");
             String file = Utility.searchDirectory(new File(UCD_Types.BASE_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");

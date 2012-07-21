@@ -354,8 +354,8 @@ public class GenerateConfusables {
     static UnicodeMap nfcMap;
     static UnicodeMap nfkcMap;
 
-    static final String indir = "/Users/markdavis/Documents/workspace/draft/reports/tr39/data/source/";
-    static final String outdir = "/Users/markdavis/Documents/workspace/draft/reports/tr39/data/";
+    static final String indir = Utility.UNICODE_DRAFT_DIRECTORY + "reports/tr39/data/source/";
+    static final String outdir = Utility.UNICODE_DRAFT_DIRECTORY + "reports/tr39/data/";
 
     static Comparator codepointComparator = new UTF16.StringComparator(true,false,0);
     static Comparator UCAComparator = new com.ibm.icu.impl.MultiComparator(new Comparator[] {Collator.getInstance(ULocale.ROOT), codepointComparator});

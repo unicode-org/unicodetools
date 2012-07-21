@@ -111,7 +111,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             for (String item : map.keySet()) {
                 builder.append("[" +
                         (doScripts ? "reorderingTokens" : "categories") +
-                "\t").append(item).append('\t');
+                        "\t").append(item).append('\t');
                 Counter<Integer> counter2 = map.get(item);
                 boolean first = true;
                 for (Integer i : counter2) {
@@ -363,14 +363,14 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         static final int  TOP                = 0xA0;
         static final int  SPECIAL_BASE       = 0xF0;
         static final int  BYTES_TO_AVOID     = 3, OTHER_COUNT = 256 - BYTES_TO_AVOID, LAST_COUNT = OTHER_COUNT / 2, LAST_COUNT2 = OTHER_COUNT / 21,
-        IMPLICIT_3BYTE_COUNT = 1;
+                IMPLICIT_3BYTE_COUNT = 1;
         static final int  IMPLICIT_BASE_BYTE = 0xE0;
         static final int  IMPLICIT_MAX_BYTE  = IMPLICIT_BASE_BYTE + 4;
         static final int  IMPLICIT_4BYTE_BOUNDARY = IMPLICIT_3BYTE_COUNT * OTHER_COUNT * LAST_COUNT
-        //LAST_MULTIPLIER = OTHER_COUNT / LAST_COUNT,
-        //LAST2_MULTIPLIER = OTHER_COUNT / LAST_COUNT2, IMPLICIT_BASE_3BYTE = (IMPLICIT_BASE_BYTE << 24) + 0x030300,
-        //IMPLICIT_BASE_4BYTE = ((IMPLICIT_BASE_BYTE + IMPLICIT_3BYTE_COUNT) << 24) + 0x030303
-        ;
+                //LAST_MULTIPLIER = OTHER_COUNT / LAST_COUNT,
+                //LAST2_MULTIPLIER = OTHER_COUNT / LAST_COUNT2, IMPLICIT_BASE_3BYTE = (IMPLICIT_BASE_BYTE << 24) + 0x030300,
+                //IMPLICIT_BASE_4BYTE = ((IMPLICIT_BASE_BYTE + IMPLICIT_3BYTE_COUNT) << 24) + 0x030303
+                ;
 
         // GET IMPLICIT PRIMARY WEIGHTS
         // Return value is left justified primary key
@@ -725,9 +725,9 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 FractionalUCA.hexBytes(nt, newTertiary);
 
                 String weightString = "[" + newPrimary 
-                + ", " + newSecondary 
-                + ", " + newTertiary 
-                + "]";
+                        + ", " + newSecondary 
+                        + ", " + newTertiary 
+                        + "]";
 
                 if (show) {
                     fractionalLog.print(Utility.hex(chr) + ";\t");
@@ -1145,7 +1145,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         while (it.hasNext()) {
             Object sortKey = it.next();
             String chr = (String)ordered.get(sortKey);  
-            
+
             char lastChar = chr.charAt(chr.length() - 1);
             if (Character.isHighSurrogate(lastChar)) {
                 System.out.println("Skipping trailing surrogate: " + chr + "\t" + Utility.hex(chr));
@@ -1186,8 +1186,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
     013F; [42, 05, 8F][, E5 B1, 05]	# [1262.0020.0008][0000.01AF.0002]	* LATIN CAPITAL LETTER L WITH MIDDLE DOT
              */
             boolean middleDotHack = chr.length() == 2
-            && (codeUnits[0] == 'l' || codeUnits[0] == 'L')
-            && (codeUnits[1] == '\u00B7' || codeUnits[1] == '\u0387');
+                    && (codeUnits[0] == 'l' || codeUnits[0] == 'L')
+                    && (codeUnits[1] == '\u00B7' || codeUnits[1] == '\u0387');
 
             fractionalLog.print(com.ibm.icu.impl.Utility.hex(chr, 4, middleDotHack ? " | " : " ") + "; ");            
 
@@ -1241,7 +1241,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                                 + " => " + Utility.hex(testImplicit[0])
                                 + ", " + Utility.hex(testImplicit[1])
                                 // + ", " + Utility.hex(fixPrimary(pri) & INT_MASK)
-                        );
+                                );
                     }
 
                     pri = cp | FractionalUCA.Variables.MARK_CODE_POINT;
@@ -1349,8 +1349,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 oldStr.append(CEList.toString(0));
             }
             String name = UTF16.hasMoreCodePointsThan(chr, 1) 
-            ? Default.ucd().getName(UTF16.charAt(chr, 0)) + " ..."
-                    : Default.ucd().getName(chr);
+                    ? Default.ucd().getName(UTF16.charAt(chr, 0)) + " ..."
+                            : Default.ucd().getName(chr);
 
             String gcInfo = getStringTransform(chr, "/", ScriptTransform);
             String scriptInfo = getStringTransform(chr, "/", GeneralCategoryTransform);
@@ -1964,16 +1964,19 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         }
 
         // get case bits. 00 is low, 01 is mixed (never happens), 10 is high
-        Casing casing = CaseBit.getPropertyCasing(originalString);
-        int caseBits = casing.getBits();
+        int caseBits;
+        if (GET_CASE_FROM_STRING) {
+            caseBits = CaseBit.getPropertyCasing(originalString).getBits();
+        } else {
+            caseBits = CaseBit.getCaseFromTertiary(x).getBits();
+        }
         if (caseBits != 0) {
             result |= caseBits;
         }
-//        if (CaseBit.getCaseFromTertiary(x) != CaseBit.Casing.UPPER) {
-//            result |= 0x80;
-//        } 
         return result;
     }
+
+    static final boolean GET_CASE_FROM_STRING = false;
 
     static int[] compactSecondary;
 
@@ -2114,16 +2117,16 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     static ImplicitCEGenerator implicit = new ImplicitCEGenerator(FractionalUCA.Variables.IMPLICIT_BASE_BYTE, FractionalUCA.Variables.IMPLICIT_MAX_BYTE);
 
-//    static final boolean needsCaseBit(String x) {
-//        String s = Default.nfkd().normalize(x);
-//        if (!Default.ucd().getCase(s, FULL, LOWER).equals(s)) {
-//            return true;
-//        }
-//        if (!CaseBit.toSmallKana(s).equals(s)) {
-//            return true;
-//        }
-//        return false;
-//    }
+    //    static final boolean needsCaseBit(String x) {
+    //        String s = Default.nfkd().normalize(x);
+    //        if (!Default.ucd().getCase(s, FULL, LOWER).equals(s)) {
+    //            return true;
+    //        }
+    //        if (!CaseBit.toSmallKana(s).equals(s)) {
+    //            return true;
+    //        }
+    //        return false;
+    //    }
 
     static final UnicodeSet MAJOR_PRIMARIES = new UnicodeSet();
 
