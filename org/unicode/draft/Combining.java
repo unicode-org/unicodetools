@@ -61,13 +61,13 @@ public class Combining {
     .addColumn("Lit. Pop").setCellAttributes("class='count'").setCellPattern("{0,number,#,##0}").setSortAscending(false).setSortPriority(0)
     .addColumn("Chars")
     ;
-    Counter<String> mulCounter = CharacterFrequency.getCharCounter("mul");
+    Counter<Integer> mulCounter = CharacterFrequency.getCodePointCounter("mul", false);
     // hack: print top 1000 supplemental characters
     int topSupp = 1000;
-    for (String s : mulCounter.getKeysetSortedByCount(false)) {
-        int cp = s.codePointAt(0);
+    for (Integer s : mulCounter.getKeysetSortedByCount(false)) {
+        int cp = s;
         if (cp > 0xFFFF) {
-            System.out.println(mulCounter.get(s) + "\t" + UCharacter.getName(s, " + "));
+            System.out.println(mulCounter.get(s) + "\t" + UCharacter.getName(s));
         }
         if (--topSupp < 0) {
             break;

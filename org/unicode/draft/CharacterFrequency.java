@@ -62,7 +62,7 @@ public class CharacterFrequency {
 //		//Map<String, Counter<String>> rawLanguageToCharsCounter = new TreeMap<String, Counter<String>>();
 //
 //		//      System.out.println("loading stats.characters.txt");
-//		//      SemiFileReader handler = new SequenceHandler(rawLanguageToCharsCounter).process("/Users/markdavis/Documents/workspace/DATA/frequency/", "stats.short_sequences.txt");
+//		//      SemiFileReader handler = new SequenceHandler(rawLanguageToCharsCounter).process(Utility.WORKSPACE_DIRECTORY + "DATA/frequency/", "stats.short_sequences.txt");
 //		//      System.out.println("read lines:\t" + handler.getLineCount());
 //
 //		Counter<String> mulValue = new Counter<String>();

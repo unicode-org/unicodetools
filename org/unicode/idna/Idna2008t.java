@@ -62,7 +62,7 @@ public class Idna2008t extends Idna {
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(
                             Idna2008.class.getResourceAsStream("tables.txt")));
-            // BagFormatter.openReader("/Users/markdavis/Documents/workspace/DATA/IDN/",
+            // BagFormatter.openReader(Utility.WORKSPACE_DIRECTORY + "DATA/IDN/",
             // "draft-faltstrom-idnabis-tables-05.txt", "ascii");
             boolean inTable = false;
 

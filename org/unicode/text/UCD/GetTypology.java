@@ -28,7 +28,7 @@ public class GetTypology {
     Map<String,Set<String>> toOriginals = new TreeMap();
 
     String filename = "U52M09XXXX.lst";
-    BufferedReader br = BagFormatter.openUTF8Reader("/Users/markdavis/Documents/workspace/DATA/UCD/", filename);
+    BufferedReader br = BagFormatter.openUTF8Reader(Utility.WORKSPACE_DIRECTORY + "DATA/UCD/", filename);
     StringBuilder name = new StringBuilder();
     String nameString = null;
 
@@ -97,7 +97,7 @@ public class GetTypology {
     }
     br.close();
 
-    PrintWriter out = BagFormatter.openUTF8Writer("/Users/markdavis/Documents/workspace/Generated/classification", "classification_analysis.txt");
+    PrintWriter out = BagFormatter.openUTF8Writer(Utility.WORKSPACE_DIRECTORY + "Generated/classification", "classification_analysis.txt");
     out.println("# Source:\t" + filename);
     int count;
     out.println();
