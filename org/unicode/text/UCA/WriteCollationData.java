@@ -40,6 +40,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.util.Builder;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.With;
+import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA.Remap;
 import org.unicode.text.UCA.UCA.UCAContents;
@@ -363,8 +364,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         log.println();
     }
 
-    static void addStringX(int x, byte option, CollatorType collatorType) {
-        addStringX(UTF32.valueOf32(x), option, collatorType);
+    static void addStringX(int x, byte option, CollatorType collatorType, AppendToCe appendToCe) {
+        addStringX(UTF32.valueOf32(x), option, collatorType, appendToCe);
     }
 
     static final char     LOW_ACCENT                   = '\u0334';
@@ -375,15 +376,15 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     static int            addCounter                   = 0;
 
-    static void addStringX(String s, byte option, CollatorType collatorType) {
+    static void addStringX(String s, byte option, CollatorType collatorType, AppendToCe appendToCe) {
         int firstChar = UTF16.charAt(s, 0);
-        addStringY(s + 'a', option, collatorType);
-        addStringY(s + 'b', option, collatorType);
-        addStringY(s + '?', option, collatorType);
-        addStringY(s + 'A', option, collatorType);
-        addStringY(s + '!', option, collatorType);
+        addStringY(s + 'a', option, collatorType, appendToCe);
+        addStringY(s + 'b', option, collatorType, appendToCe);
+        addStringY(s + '?', option, collatorType, appendToCe);
+        addStringY(s + 'A', option, collatorType, appendToCe);
+        addStringY(s + '!', option, collatorType, appendToCe);
         if (option == SHIFTED && getCollator(collatorType).isVariable(firstChar)) {
-            addStringY(s + LOW_ACCENT, option, collatorType);
+            addStringY(s + LOW_ACCENT, option, collatorType, appendToCe);
         }
 
         // NOW, if the character decomposes, or is a combining mark (non-zero),
@@ -406,7 +407,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     if (--limit < 0) {
                         continue; // just include a sampling
                     }
-                    addStringY(can, option, collatorType);
+                    addStringY(can, option, collatorType, appendToCe);
                     // System.out.println(addCounter++ + " Adding " +
                     // Default.ucd.getCodeAndName(can));
                 }
@@ -420,7 +421,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
                 for (int j = 0; j < CONTRACTION_TEST.length; ++j) {
                     String extra = s.substring(0, i) + CONTRACTION_TEST[j] + s.substring(i);
-                    addStringY(extra + 'a', option, collatorType);
+                    addStringY(extra + 'a', option, collatorType, appendToCe);
                     if (DEBUG) {
                         System.out.println(addCounter++ + " Adding " + Default.ucd().getCodeAndName(extra));
                     }
@@ -433,12 +434,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     static char              counter;
 
-    static void addStringY(String s, byte option, CollatorType collatorType) {
+    static void addStringY(String s, byte option, CollatorType collatorType, AppendToCe appendToCe) {
         if (DEBUG && s.contains("\uA6F0")) {
             System.out.println("Test BAMUM COMBINING MARK");
         }
         //String cpo = UCA.codePointOrder(s);
-        String colDbase = getCollator(collatorType).getSortKey(s, option, true, true);
+        String colDbase = getCollator(collatorType).getSortKey(s, option, true, appendToCe);
         sortedD.put(colDbase, s);
     }
 

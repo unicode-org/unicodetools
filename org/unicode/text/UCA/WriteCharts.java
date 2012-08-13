@@ -82,7 +82,7 @@ public class WriteCharts implements UCD_Types {
 
         byte oldScript = -127;
 
-        int[] scriptCount = new int[128];
+        int[] scriptCount = new int[255];
 
         int counter = 0;
 
@@ -111,6 +111,11 @@ public class WriteCharts implements UCD_Types {
         indexFile.println("</head><body><h2 align='center'>UCA Default Collation Table</h2>");
         indexFile.println("<p align='center'><a href = 'help.html'>Help</a>");
          */
+        
+        int LEAST_PUNCT_PRIMARY = UCA.getPrimary(uca.getCEList("\u203E", true).at(0));
+        int LEAST_SYMBOL_PRIMARY = UCA.getPrimary(uca.getCEList("`", true).at(0));
+        int LEAST_CURRENCY_PRIMARY = UCA.getPrimary(uca.getCEList("¤", true).at(0));
+        int LEAST_DIGIT_PRIMARY = UCA.getPrimary(uca.getCEList("0", true).at(0));
 
         int lastCp = -1;
         while (it.hasNext()) {
@@ -131,8 +136,12 @@ public class WriteCharts implements UCD_Types {
 
             if (sortKey.length() < 4) script = NULL_ORDER;
             else if (primary == 0) script = IGNORABLE_ORDER;
-            else if (primary <= variable) script = VARIABLE_ORDER;
-            else if (primary < high) script = COMMON_SCRIPT;
+            else if (primary < LEAST_PUNCT_PRIMARY) script = SPACE;
+            else if (primary < LEAST_SYMBOL_PRIMARY) script = PUNCT;
+            else if (primary < LEAST_CURRENCY_PRIMARY) script = SYMBOL;
+            else if (primary < LEAST_DIGIT_PRIMARY) script = CURRENCY;
+            //else if (primary <= variable) script = DIGIT;
+            else if (primary < high) script = DIGIT;
             else if (UCA.isImplicitLeadPrimary(primary)) {
                 if (primary < UCA_Types.UNSUPPORTED_CJK_AB_BASE) script = CJK;
                 else if (primary < UCA_Types.UNSUPPORTED_OTHER_BASE) script = CJK_AB;
@@ -157,14 +166,14 @@ public class WriteCharts implements UCD_Types {
             }
 
             if (output == null) {
-                ++scriptCount[script+3];
-                if (scriptCount[script+3] > 1) {
-                    System.out.println("\t\tFAIL: " + scriptCount[script+3] + ", " +
+                ++scriptCount[script-NULL_ORDER];
+                if (scriptCount[script-NULL_ORDER] > 1) {
+                    System.out.println("\t\tFAIL: " + scriptCount[script-NULL_ORDER] + ", " +
                             getChunkName(script, LONG) + ", " + Default.ucd().getCodeAndName(s)
                             + " - last char: " 
                             + getChunkName(veryOldScript, LONG) + ", " + Default.ucd().getCodeAndName(lastCp));
                 }
-                output = openFile(scriptCount[script+3], folder, script);
+                output = openFile(scriptCount[script-NULL_ORDER], folder, script);
             }
 
             boolean firstPrimaryEquals = currentPrimary == getFirstPrimary(lastSortKey);
@@ -780,9 +789,13 @@ public class WriteCharts implements UCD_Types {
     }
 
     static final int
-    NULL_ORDER = -3,
-    IGNORABLE_ORDER = -2,
-    VARIABLE_ORDER = -1,
+    NULL_ORDER = -7,
+    IGNORABLE_ORDER = -6,
+    SPACE = -5,
+    PUNCT = -4,
+    SYMBOL = -3,
+    CURRENCY = -2,
+    DIGIT = -1,
     // scripts in here
     CJK = 120,
     CJK_AB = 121,
@@ -794,9 +807,13 @@ public class WriteCharts implements UCD_Types {
     static String getChunkName(int script, byte length) {
         switch(script) {
         case NO_CASE_MAPPING: return "NoCaseMapping";
-        case NULL_ORDER: return "Null";
-        case IGNORABLE_ORDER: return "Ignorable";
-        case VARIABLE_ORDER: return "Variable";
+        case NULL_ORDER: return "Ignored";
+        case IGNORABLE_ORDER: return "Secondary";
+        case SPACE: return "Whitespace";
+        case PUNCT: return "Punctuation";
+        case SYMBOL: return "General-Symbol";
+        case CURRENCY: return "Currency-Symbol";
+        case DIGIT: return "Digits";
         case CJK: return "CJK";
         case CJK_AB: return "CJK-Extensions";
         case UNSUPPORTED: return "Unsupported";

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
 
+import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
@@ -19,7 +20,7 @@ public class WriteConformanceTest {
     
     static final UnicodeSet RTL = new UnicodeSet("[[:bc=r:][:bc=al:][:bc=an:]]").freeze();
 
-    static void writeConformance(String filename, byte option, boolean shortPrint, CollatorType collatorType) throws IOException {
+    static void writeConformance(String filename, byte option, boolean shortPrint, CollatorType collatorType, boolean appendNfd) throws IOException {
         // UCD ucd30 = UCD.make("3.0.0");
     
         /*
@@ -50,6 +51,7 @@ public class WriteConformanceTest {
         String fullFileName = "CollationTest" 
         + (collatorType==CollatorType.cldr ? "_CLDR" : "") 
         + (option == UCA.NON_IGNORABLE ? "_NON_IGNORABLE" : "_SHIFTED")
+        + (appendNfd ? "_NFD" : "")
         + (shortPrint ? "_SHORT" : "") + ".txt";
         
         String directory = UCA.getUCA_GEN_DIR() + File.separator
@@ -81,7 +83,7 @@ public class WriteConformanceTest {
                 }
             }
             Utility.dot(counter++);
-            WriteCollationData.addStringX(s, option, collatorType);
+            WriteCollationData.addStringX(s, option, collatorType, appendNfd ? AppendToCe.nfd : AppendToCe.identical);
         }
     
         // Add special examples
@@ -169,7 +171,7 @@ public class WriteConformanceTest {
                         ";\t# (" + quoteOperand + ") "
                         + name
                         + "\t" 
-                        + UCA.toString(key));
+                        + UCA.toString(key, 3));
             } else {
                 log.print(Utility.hex(source));
             }

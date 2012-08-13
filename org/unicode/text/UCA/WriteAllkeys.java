@@ -52,9 +52,11 @@ public class WriteAllkeys {
             }
         
             Utility.dot(counter++);
-            String colDbase = collator.getSortKey(s, UCA.SHIFTED, true, true);
-            sorted.put(colDbase, s);
+            addString(collator, s, sorted);
         }
+        addString(collator, "\uFFFE", sorted);
+        addString(collator, "\uFFFF", sorted);
+
         int variableTop = UCA.getPrimary(collator.getVariableHighCE());
         StringBuilder extraComment = new StringBuilder();
         for (Entry<String, String> entry : sorted.entrySet()) {
@@ -90,6 +92,13 @@ public class WriteAllkeys {
             }
         }
         log.close();
+    }
+
+    public static String addString(UCA collator, String s,
+            Map<String, String> sorted) {
+        String colDbase = collator.getSortKey(s, UCA.SHIFTED, true, true);
+        sorted.put(colDbase, s);
+        return colDbase;
     }
     
     static String dropIdentical(String sortKeyWithIdentical) {

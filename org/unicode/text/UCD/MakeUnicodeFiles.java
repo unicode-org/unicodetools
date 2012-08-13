@@ -889,6 +889,7 @@ public class MakeUnicodeFiles {
                     sortedSet.add(mt2.process(specialGC[i]));
                 }
             }
+            boolean isCcc = propName.equals("Canonical_Combining_Class");
             pw.println();
             pw.println("# " + propName + " (" + shortProp + ")");
             pw.println();
@@ -898,6 +899,9 @@ public class MakeUnicodeFiles {
             for (Iterator it4 = sortedSet.iterator(); it4.hasNext();) {
                 String line = (String) it4.next();
                 pw.println(line);
+                if (isCcc && line.contains("132")) {
+                    pw.println("#ccc; 133; CCC133                     ; CCC133 — RESERVED");
+                }
             }
 
             // now add to differences
