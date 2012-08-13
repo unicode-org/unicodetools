@@ -190,8 +190,13 @@ final public class UCA implements Comparator, UCA_Types {
         return getSortKey(sourceString, alternate, defaultDecomposition, false);
     }
 
-    static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 0x5);
+    public static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 0x5);
 
+    public enum AppendToCe {none, identical, nfd}
+    
+    public String getSortKey(String sourceString, byte alternate, boolean decomposition, boolean appendIdentical) {
+        return getSortKey(sourceString, alternate, decomposition, appendIdentical ? AppendToCe.identical : AppendToCe.none);
+    }
     /**
      * Constructs a sort key for a string of input Unicode characters.
      * @param sourceString string to make a sort key for.
@@ -203,7 +208,7 @@ final public class UCA implements Comparator, UCA_Types {
      * String is just a handy way of returning them in Java, since there are no
      * unsigned shorts.
      */
-    public String getSortKey(String sourceString, byte alternate, boolean decomposition, boolean appendIdentical) {
+    public String getSortKey(String sourceString, byte alternate, boolean decomposition, AppendToCe appendIdentical) {
         decompositionBuffer.setLength(0);
         if (decomposition) {
             toD.normalize(sourceString, decompositionBuffer);
@@ -319,8 +324,12 @@ final public class UCA implements Comparator, UCA_Types {
                 }
             }
         }
-        if (appendIdentical) {
-            String cpo = /*UCA.codePointOrder(decompositionBuffer) + "\u0000" + */ UCA.codePointOrder(sourceString);
+        if (appendIdentical != AppendToCe.none) {
+            if (appendIdentical == AppendToCe.nfd) {
+                String cpo = UCA.codePointOrder(toD.normalize(sourceString));
+                result.append('\u0000').append(cpo);
+            }
+            String cpo = UCA.codePointOrder(sourceString);
             result.append('\u0000').append(cpo).append((char) cpo.length());
         }
         return result.toString();
@@ -614,21 +623,28 @@ final public class UCA implements Comparator, UCA_Types {
     // Utility methods
     // =============================================================
 
+    static public String toString(String sortKey) {
+        return toString(sortKey, Integer.MAX_VALUE);
+    }
     /**
      * Produces a human-readable string for a sort key.
      * The 0000 separator is replaced by a '|'
      */
-    static public String toString(String sortKey) {
+    static public String toString(String sortKey, int level) {
         StringBuffer result = new StringBuffer();
         boolean needSep = false;
         result.append("[");
         for (int i = 0; i < sortKey.length(); ++i) {
             char ch = sortKey.charAt(i);
-            if (needSep) result.append(" ");
             if (ch == 0) {
+                if (needSep) result.append(" ");
                 result.append("|");
+                if (--level <= 0) {
+                    break;
+                }
                 needSep = true;
             } else {
+                if (needSep) result.append(" ");
                 result.append(Utility.hex(ch));
                 needSep = true;
             }
@@ -637,6 +653,8 @@ final public class UCA implements Comparator, UCA_Types {
         return result.toString();
     }
 
+    static final int variableBottom = UCA.getPrimary(CE_FFFE)+1;
+    
     /**
      * Produces a human-readable string for a sort key.
      * @param variableTop TODO
@@ -662,13 +680,14 @@ final public class UCA implements Comparator, UCA_Types {
         int qPos = 0;
         int lastQ = 0;
         boolean lastWasVariable = false;
+        
         for (int i = 0; i < max; ++i) {
             char p = i < primary.length() ? primary.charAt(i) : 0;
             char s = i < secondary.length() ? secondary.charAt(i) : p != 0 ? '\u0020' : 0;
             char t = i < tertiary.length() ? tertiary.charAt(i) : s != 0 ? '\u0002' : 0;
             int q = lastQ = t == 0 ? 0 : qPos < quad.length() ? quad.codePointAt(qPos) : lastQ;
             qPos += Character.charCount(q);
-            boolean isVariable = p == 0 ? lastWasVariable : p <= variableTop;
+            boolean isVariable = isVariablePrimary(p, variableTop, lastWasVariable);
             lastWasVariable = isVariable;
 
             result
@@ -699,6 +718,13 @@ final public class UCA implements Comparator, UCA_Types {
         return result.toString();
     }
 
+    public static boolean isVariablePrimary(char primary, int variableTop,
+            boolean lastWasVariable) {
+        return primary == 0 ? lastWasVariable :
+            primary <= variableTop
+            && variableBottom <= primary;
+    }
+
     public static String toStringUCA(CEList ceList, String value, int variableTop, StringBuilder extraComment) {
         if (ceList.count == 0) {
             return "[.0000.0000.0000.0000]";
@@ -720,7 +746,8 @@ final public class UCA implements Comparator, UCA_Types {
                 qIndex += delta;
             }
 
-            boolean isVariable = p == 0 ? lastWasVariable : p <= variableTop;
+            boolean isVariable = isVariablePrimary(p, variableTop, lastWasVariable);
+            
             lastWasVariable = isVariable;
 
             result

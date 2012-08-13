@@ -75,7 +75,8 @@ public class MakeNamesChart {
 			if (!blockInfo.next(lines)) break;
 
 			String firstLine = (String)lines.get(0);
-			if (firstLine.startsWith("@@@")) continue;
+			if (firstLine.startsWith("@@@") || firstLine.startsWith("; charset=UTF-8")) continue;
+
 			if (firstLine.contains("dame, Dame")) {
 			    firstLine = firstLine;
 			}
@@ -108,6 +109,9 @@ public class MakeNamesChart {
 			for (int i = 1; i < lines.size(); ++i) {
 				String line = (String)lines.get(i);
 				int cp1 = line.charAt(0);
+				if (cp1 == ';') {
+				    continue;
+				}
 				if (cp1 != '@' && cp1 != '\t') {
 					int cp = Integer.parseInt(line.split("\t")[0],16);
 					collectedCodePoints.add(cp);
@@ -199,7 +203,9 @@ public class MakeNamesChart {
 							case ':': body = checkCanonical(lastCodePoint, body); break;
 							case '#': body = checkCompatibility(lastCodePoint, body); break;
 							case 'x': body = getOther(body); break;
-							case '=': break;
+                            case '=': break;
+                            case ';': continue;
+                            case '~': continue;
 							default: throw new IllegalArgumentException("Huh? " + body);
 							}
 							char firstDisplayChar = body.charAt(0);

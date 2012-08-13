@@ -611,11 +611,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             }
             unicodeMap.putAll(temp, "Control");
 
-            unicodeMap.putAll(new UnicodeSet(graphemeExtend).remove(0x200D), "Extend");
+            unicodeMap.putAll(new UnicodeSet(graphemeExtend), "Extend");
             unicodeMap.putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
             
-            unicodeMap.put('\u200D', "Joiner");
-            unicodeMap.putAll(0x1F1E6, 0x1F1FF, "After_Joiner");
+            unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
 
             // (Currently there are no characters with this value)
             String oldValue = unicodeMap.get(0);
@@ -646,7 +645,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     new String[][] {
                             { "Prepend", "PP" }, { "Control", "CN" }, { "Extend", "EX" },
                             { "Other", "XX" }, { "SpacingMark", "SM" },
-                            { "Joiner", "J" }, { "After_Joiner", "AJ" }, 
+                            { "Regional_Indicator", "RI" }, 
                             }, AliasAddAction.ADD_MAIN_ALIAS)
                             .swapFirst2ValueAliases())
             ;
@@ -668,10 +667,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     unicodeMap.putAll(new UnicodeSet("[\\u0085\\u000B\\u000C\\u000C\\u2028\\u2029]"),
                     "Newline");
                     unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(
-                            cat.getSet("Spacing_Mark")).remove(0x200D), "Extend");
+                            cat.getSet("Spacing_Mark")), "Extend");
                     
-                    unicodeMap.put('\u200D', "Joiner");
-                    unicodeMap.putAll(0x1F1E6, 0x1F1FF, "After_Joiner");
+                    unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
 
                     unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D).remove(0x200B), "Format");
                     UnicodeProperty script = getProperty("Script");
@@ -726,7 +724,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             { "MidLetter", "ML" }, { "MidNum", "MN" }, { "MidNumLet", "MB" },
                             { "MidNumLet", "MB" }, { "Numeric", "NU" }, { "ExtendNumLet", "EX" },
                             { "Other", "XX" }, { "Newline", "NL" },
-                            { "Joiner", "J" }, { "After_Joiner", "AJ" }, 
+                            { "Regional_Indicator", "RI" }, 
                             }, AliasAddAction.REQUIRE_MAIN_ALIAS).swapFirst2ValueAliases());
 
         if (compositeVersion >= 0x040000)

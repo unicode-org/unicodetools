@@ -928,23 +928,26 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         System.out.println("Add missing decomposibles and non-characters");
         for (int i = 0; i <= 0x10FFFF; ++i) {
-            int bottomBits = i & 0xFFFF;
-            if (bottomBits == 0xFFFE || bottomBits == 0xFFFF) {
+            if (Default.ucd().isNoncharacter(i)) {
                 continue;
             }
-
-            if (!Default.ucd().isNoncharacter(i)) {
-                if (!Default.ucd().isAllocated(i)) {
-                    continue;
-                }
-                if (Default.nfd().isNormalized(i)) {
-                    continue;
-                }
-                if (Default.ucd().isHangulSyllable(i)) {
-                    continue;
-                    //if (collator.getCEType(i) >= UCA.FIXED_CE) continue;
-                }
+            //            int bottomBits = i & 0xFFFF;
+            //            if (bottomBits == 0xFFFE || bottomBits == 0xFFFF) {
+            //                continue;
+            //            }
+            //
+            //            if (!Default.ucd().isNoncharacter(i)) {
+            if (!Default.ucd().isAllocated(i)) {
+                continue;
             }
+            if (Default.nfd().isNormalized(i)) {
+                continue;
+            }
+            if (Default.ucd().isHangulSyllable(i)) {
+                continue;
+                //if (collator.getCEType(i) >= UCA.FIXED_CE) continue;
+            }
+            //}
             String s = UTF16.valueOf(i);
             if (!contentsForCanonicalIteration.contains(s)) {
                 contentsForCanonicalIteration.add(s);

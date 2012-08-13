@@ -982,6 +982,12 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 "\uD800"
                 }, 
                 new String[]{
+                // U+1F1E6 = base RI
+                "a\uD83C\uDDE6b",
+                "\uD83C\uDDF7\uD83C\uDDFA",
+                "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8",
+                "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8\uD83C\uDDEA",
+                "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
             });
         }	
     }
@@ -1206,6 +1212,12 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 "、か",
                 "、これでは ",
                 "し、abと",
+                // U+1F1E6 = base RI
+                "a\uD83C\uDDE6b",
+                "\uD83C\uDDF7\uD83C\uDDFA",
+                "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8",
+                "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8\uD83C\uDDEA",
+                "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
             });
         }	
         @Override
@@ -1281,8 +1293,14 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 "1.\u2060",
             },
 
-
-            getExtraSamples());
+            add(getExtraSamples(),
+                    // U+1F1E6 = base RI
+                    "a\uD83C\uDDE6b",
+                    "\uD83C\uDDF7\uD83C\uDDFA",
+                    "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8",
+                    "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8\uD83C\uDDEA",
+                    "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA")
+                    );
         }	
         static String[] getExtraSamples() {
             GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(Default.ucd());
@@ -2450,5 +2468,11 @@ abstract public class GenerateBreakTest implements UCD_Types {
     }
 
      */
+
+    public static String[] add(String[] strings1, String... strings2) {
+        ArrayList result = new ArrayList(Arrays.asList(strings1));
+        result.addAll(Arrays.asList(strings2));
+        return (String[]) result.toArray(new String[strings1.length + strings2.length]);
+    }
 }
 
