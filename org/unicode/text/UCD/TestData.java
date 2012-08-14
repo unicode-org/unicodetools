@@ -236,7 +236,7 @@ public class TestData implements UCD_Types {
    // + "- [:id_continue:]"
         + "-[:sk:]"
         + "]]";
-        PrintWriter pw = Utility.openPrintWriter("Syntax.txt", Utility.UTF8_WINDOWS);
+        PrintWriter pw = Utility.openPrintWriter("log/Syntax.txt", Utility.UTF8_WINDOWS);
         showSet(pw, x, false);
         showSet(pw, "[[\\u2000-\\u205F]-" + x + "]", true);
         showSet(pw, "[[:whitespace:]&[:decompositiontype=none:]]", false);
@@ -258,7 +258,7 @@ public class TestData implements UCD_Types {
 		if (true) return;
 		
 		String script = args[0];
-		PrintWriter log = Utility.openPrintWriter("TranslitSkeleton_" + script + ".txt", Utility.UTF8_WINDOWS);
+		PrintWriter log = Utility.openPrintWriter("log/TranslitSkeleton_" + script + ".txt", Utility.UTF8_WINDOWS);
 		try {
 			UnicodeSet base = new UnicodeSet("[:" + script + ":]");
 			UnicodeSetIterator it = new UnicodeSetIterator(base);

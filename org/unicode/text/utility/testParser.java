@@ -70,7 +70,7 @@ public class testParser implements XMLParseTypes {
 
     static void test2() throws Exception {
 
-        PrintWriter log = Utility.openPrintWriter("UCD-Extract.html", Utility.UTF8_WINDOWS);
+        PrintWriter log = Utility.openPrintWriter("log/UCD-Extract.html", Utility.UTF8_WINDOWS);
 
         //int fieldCount = 4;
         //int width = 100/fieldCount;
