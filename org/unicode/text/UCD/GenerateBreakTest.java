@@ -467,7 +467,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
             printLine(out, extraSingleSamples.get(ii), true, false);
             ++counter;
         }
+        out.println("#");
         out.println("# Lines: " + counter);
+        out.println("#");
+        out.println("# EOF");
         fc.close();
     }
 

@@ -1,5 +1,5 @@
-Generate: combining
-DeltaVersion: 5
+Generate: casefolding|test
+DeltaVersion: 6
 CopyrightYear: 2012
 
 File: extra/ScriptNfkc

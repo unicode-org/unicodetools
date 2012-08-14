@@ -60,7 +60,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
     
     public static void readUnihan() throws java.io.IOException {
 
-        log = Utility.openPrintWriter("Unihan_log.html", Utility.UTF8_WINDOWS);
+        log = Utility.openPrintWriter("log/Unihan_log.html", Utility.UTF8_WINDOWS);
         log.println("<body>");
         log.println("<head>");
         log.println("<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -335,7 +335,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         UnicodeSet gotAtLeastOne = new UnicodeSet(gotMandarin).addAll(gotHanyu);
         int counter = 0;
         int hCount = 0;
-        log = Utility.openPrintWriter("Mandarin_First.txt", Utility.UTF8_WINDOWS);
+        log = Utility.openPrintWriter("log/Mandarin_First.txt", Utility.UTF8_WINDOWS);
         log.println("N\tCode\tChar\tUnihan\tICU\tGCL\tkHanyuPinlu / kMandarin");
         UnicodeMap reformed = new UnicodeMap();
         for (UnicodeSetIterator it = new UnicodeSetIterator(gotAtLeastOne); it.next(); ) {
@@ -443,7 +443,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
          UnicodeMap map, UnicodeMap hanyu, UnicodeMap mand, Comparator p2)
         throws IOException {
         Set set = new TreeSet(col);
-        PrintWriter pw = Utility.openPrintWriter(file, Utility.UTF8_WINDOWS);
+        PrintWriter pw = Utility.openPrintWriter("log/" + file, Utility.UTF8_WINDOWS);
         for (UnicodeSetIterator it = new UnicodeSetIterator(tailored); it.next(); ) {
             set.add(UTF16.valueOf(it.codepoint));
         }
@@ -532,8 +532,8 @@ public final class GenerateHanTransliterator implements UCD_Types {
             }
             filename += Default.ucd().getVersion() + ".txt";
                 
-            err = Utility.openPrintWriter("Transliterate_err.txt", Utility.UTF8_WINDOWS);
-            log = Utility.openPrintWriter("Transliterate_log.txt", Utility.UTF8_WINDOWS);
+            err = Utility.openPrintWriter("log/Transliterate_err.txt", Utility.UTF8_WINDOWS);
+            log = Utility.openPrintWriter("log/Transliterate_log.txt", Utility.UTF8_WINDOWS);
             log.print('\uFEFF');
             
             if (false /*!SKIP_OVERRIDES*/) {
@@ -575,7 +575,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             
             it = unihanMap.keySet().iterator();
             Map badPinyin = new TreeMap();
-            PrintWriter out2 = Utility.openPrintWriter("Raw_mapping.txt", Utility.UTF8_WINDOWS);
+            PrintWriter out2 = Utility.openPrintWriter("log/Raw_mapping.txt", Utility.UTF8_WINDOWS);
             try {
                 while (it.hasNext()) {
                     String keyChar = (String) it.next();
@@ -605,7 +605,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
                 out2.close();
             }
             
-            out = Utility.openPrintWriter(filename, Utility.UTF8_WINDOWS);
+            out = Utility.openPrintWriter("log/" + filename, Utility.UTF8_WINDOWS);
             out.println("# Start RAW data for converting CJK characters");
             /*
             out.println("# Note: adds space between them and letters.");
@@ -1683,8 +1683,8 @@ Bad pinyin data: \u4E7F	?	LE
 
     static void fixChineseOverrides() throws IOException {
         
-        log = Utility.openPrintWriter("Transliterate_log.txt", Utility.UTF8_WINDOWS);
-        out = Utility.openPrintWriter("new_Chinese_override.txt", Utility.UTF8_WINDOWS);
+        log = Utility.openPrintWriter("log/Transliterate_log.txt", Utility.UTF8_WINDOWS);
+        out = Utility.openPrintWriter("log/new_Chinese_override.txt", Utility.UTF8_WINDOWS);
         try {
             
             String fname = "fixed_Chinese_transliterate_log.txt";

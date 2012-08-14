@@ -28,7 +28,7 @@ public final class TernaryStore {
     static void test() throws java.io.IOException {
         
         
-        PrintWriter pw = Utility.openPrintWriter("TestTernary.txt", Utility.LATIN1_WINDOWS);
+        PrintWriter pw = Utility.openPrintWriter("log/TestTernary.txt", Utility.LATIN1_WINDOWS);
         try {
             dp = new DepthPrinter(pw);
             

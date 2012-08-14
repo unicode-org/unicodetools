@@ -900,7 +900,7 @@ public class MakeUnicodeFiles {
                 String line = (String) it4.next();
                 pw.println(line);
                 if (isCcc && line.contains("132")) {
-                    pw.println("#ccc; 133; CCC133                     ; CCC133 — RESERVED");
+                    pw.println("ccc; 133; CCC133                     ; CCC133 # RESERVED");
                 }
             }
 

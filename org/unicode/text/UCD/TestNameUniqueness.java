@@ -110,7 +110,7 @@ public class TestNameUniqueness implements UCD_Types {
     }
     
     void checkNames() throws IOException {
-        PrintWriter out = Utility.openPrintWriter("name_uniqueness.txt", Utility.LATIN1_WINDOWS);
+        PrintWriter out = Utility.openPrintWriter("log/name_uniqueness.txt", Utility.LATIN1_WINDOWS);
         try {
             out.println("Collisions");
             out.println();

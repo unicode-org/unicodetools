@@ -897,7 +897,7 @@ public class GenerateData implements UCD_Types {
 
         Utility.fixDot();
         log.println("#");
-        log.println("# END OF FILE");
+        log.println("# EOF");
         fc.close();
         //Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
     }

@@ -909,7 +909,7 @@ public class WriteCharts implements UCD_Types {
 
         // UnicodeSet latin = new UnicodeSet("[:latin:]");
 
-        PrintWriter out = Utility.openPrintWriter("composition_chart.html", Utility.UTF8_WINDOWS);
+        PrintWriter out = Utility.openPrintWriter("log/composition_chart.html", Utility.UTF8_WINDOWS);
         try {
             out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
             out.println("<style>");
@@ -1136,7 +1136,7 @@ public class WriteCharts implements UCD_Types {
             Reserved (other)
          */
 
-        PrintWriter out = Utility.openPrintWriter("allocation.html", Utility.UTF8_WINDOWS);
+        PrintWriter out = Utility.openPrintWriter("log/allocation.html", Utility.UTF8_WINDOWS);
         try {
             out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
             out.println("<title>Unicode Allocation</title></head>");
