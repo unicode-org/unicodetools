@@ -924,10 +924,10 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     m.put(key, new Integer(oldCount.intValue() + count));
   }
 
-  public static void addToSet(Map m, Object key, Object value) {
-    Collection set = (Collection) m.get(key);
+  public static <K,V> void addToSet(Map<K,Set<V>> m, K key, V value) {
+    Set<V> set = m.get(key);
     if (set == null) {
-      set = new TreeSet();
+      set = new TreeSet<V>();
       m.put(key, set);
     }
     set.add(value);

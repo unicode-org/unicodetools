@@ -27,11 +27,9 @@ public class Main {
         "writeCollationValidityLog", "writeFractionalUCA", "WriteAllKeys",
         "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "WriteRulesCLDRXML", 
         "writeconformance", "writeConformanceShifted", "writeConformanceCldr", "writeConformanceShiftedCldr", 
-        "writeconformanceNfd", "writeConformanceShiftedNfd", "writeConformanceCldrNfd", "writeConformanceShiftedCldrNfd", 
         "short", 
         "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "WriteRulesCLDRXML", 
         "writeconformance", "writeConformanceShifted", "writeConformanceCldr", "writeConformanceShiftedCldr", 
-        "writeconformanceNfd", "writeConformanceShiftedNfd", "writeConformanceCldrNfd", "writeConformanceShiftedCldrNfd", 
         "noCE", "short",        "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "WriteRulesCLDRXML"
     };
 
@@ -101,14 +99,10 @@ public class Main {
                 else if (arg.equalsIgnoreCase("writeFractionalUCA")) FractionalUCA.writeFractionalUCA("FractionalUCA");
                 else if (arg.equalsIgnoreCase("WriteAllKeys")) WriteAllkeys.writeAllkeys("allkeys", CollatorType.cldr);
                 
-                else if (arg.equalsIgnoreCase("writeConformance")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.ducet, false);
-                else if (arg.equalsIgnoreCase("writeConformanceNfd")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.ducet, true);
-                else if (arg.equalsIgnoreCase("writeConformanceShifted")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.ducet, false);
-                else if (arg.equalsIgnoreCase("writeConformanceShiftedNfd")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.ducet, true);
-                else if (arg.equalsIgnoreCase("writeConformanceCldr")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.cldr, false);
-                else if (arg.equalsIgnoreCase("writeConformanceCldrNfd")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.cldr, true);
-                else if (arg.equalsIgnoreCase("writeConformanceShiftedCldr")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.cldr, false);
-                else if (arg.equalsIgnoreCase("writeConformanceShiftedCldrNfd")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.cldr, true);
+                else if (arg.equalsIgnoreCase("writeConformance")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.ducet);
+                else if (arg.equalsIgnoreCase("writeConformanceShifted")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.ducet);
+                else if (arg.equalsIgnoreCase("writeConformanceCldr")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.cldr);
+                else if (arg.equalsIgnoreCase("writeConformanceShiftedCldr")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.cldr);
                 
                 else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) FractionalUCA.testCompatibilityCharacters();
                 else if (arg.equalsIgnoreCase("writeCollationValidityLog")) WriteCollationData.writeCollationValidityLog();
