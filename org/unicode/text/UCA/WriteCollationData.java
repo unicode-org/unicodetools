@@ -79,7 +79,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     static final boolean       DEBUG_SHOW_ITERATION     = true;
 
     public static final String copyright                =
-        "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
+            "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
 
     static final boolean       EXCLUDE_UNSUPPORTED      = true;
     static final boolean       GENERATED_NFC_MISMATCHES = true;
@@ -360,7 +360,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         log.println("# Generated:   " + getNormalDate());
         log.println("# For a description of the format and usage, see Collation" +
                 (auxiliary ? "Auxiliary" : "Test") +
-        ".html");
+                ".html");
         log.println();
     }
 
@@ -503,8 +503,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 continue; // skip wierd decomps
             }
 
-            String sortKey = getCollator(CollatorType.ducet).getSortKey(UTF16.valueOf(ch), UCA.NON_IGNORABLE, decomposition, false);
-            String decompSortKey = getCollator(CollatorType.ducet).getSortKey(decomp, UCA.NON_IGNORABLE, decomposition, false);
+            String sortKey = getCollator(CollatorType.ducet).getSortKey(UTF16.valueOf(ch), UCA.NON_IGNORABLE, decomposition, AppendToCe.none);
+            String decompSortKey = getCollator(CollatorType.ducet).getSortKey(decomp, UCA.NON_IGNORABLE, decomposition, AppendToCe.none);
             if (false && strength == 2) {
                 sortKey = remove(sortKey, '\u0020');
                 decompSortKey = remove(decompSortKey, '\u0020');
@@ -536,7 +536,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     + "</td><td>" + UCA.toString(decompSortKey)
                     + "</td><td>" + Default.ucd().getName(ch)
                     + "</td></tr>"
-            );
+                    );
             alreadySeen.add(ch);
             errorCount++;
         }
@@ -570,7 +570,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     static String remapCanSortKey(int ch, boolean decomposition) {
         String compatDecomp = Default.nfkd().normalize(ch);
-        String decompSortKey = getCollator(CollatorType.ducet).getSortKey(compatDecomp, UCA.NON_IGNORABLE, decomposition, false);
+        String decompSortKey = getCollator(CollatorType.ducet).getSortKey(compatDecomp, UCA.NON_IGNORABLE, decomposition, AppendToCe.none);
 
         byte type = Default.ucd().getDecompositionType(ch);
         int pos = decompSortKey.indexOf(UCA.LEVEL_SEPARATOR) + 1; // after first
@@ -773,11 +773,11 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             }
             if (real != desired) {
                 sorted.add("<tr><td>" + strengthName[real]
-                                                     + "</td><td>" + strengthName[desired]
-                                                                                  + "</td><td>" + Default.ucd().getCategoryID(i)
-                                                                                  + "</td><td>" + listName
-                                                                                  + "</td><td>" + Default.ucd().getCodeAndName(i)
-                                                                                  + "</td></tr>");
+                        + "</td><td>" + strengthName[desired]
+                                + "</td><td>" + Default.ucd().getCategoryID(i)
+                                + "</td><td>" + listName
+                                + "</td><td>" + Default.ucd().getCodeAndName(i)
+                                + "</td></tr>");
             }
         }
 
@@ -793,7 +793,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
         UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, Default.nfd());
 
-        Map map = new TreeMap();
+        Map<CEList,Set<String>> map = new TreeMap<CEList,Set<String>>();
 
         while (true) {
             String s = cc.next();
@@ -817,7 +817,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         Iterator it = map.keySet().iterator();
         while (it.hasNext()) {
             CEList celist = (CEList) it.next();
-            Set s = (Set) map.get(celist);
+            Set<String> s = map.get(celist);
             String name = celist.toString();
             if (name.length() == 0) {
                 name = "<i>ignore</i>";
@@ -839,8 +839,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
         UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, Default.nfd());
 
-        Map map = new TreeMap();
-        Map tails = new TreeMap();
+        Map<CEList,String> map = new TreeMap<CEList,String>();
+        Map<CEList,Set<CEList>> tails = new TreeMap<CEList,Set<CEList>>();
 
         int counter = 0;
         System.out.println("Collecting items");
@@ -855,15 +855,20 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 continue; // only normalized stuff
             }
             CEList celist = getCollator(CollatorType.ducet).getCEList(s, true);
-            map.put(celist, s);
+            if (!map.containsKey(celist)) {
+                map.put(celist, s);
+            }
         }
 
         Utility.fixDot();
         System.out.println("Collecting tails");
 
-        Iterator it = map.keySet().iterator();
-        while (it.hasNext()) {
-            CEList celist = (CEList) it.next();
+        Map<CEList,String> mapNames = new TreeMap<CEList,String>();
+        mapNames.putAll(map);
+
+        for (Entry<CEList, String> entry : map.entrySet()) {
+            CEList celist = entry.getKey();
+            String s = entry.getValue();
             Utility.dot(counter++);
             int len = celist.length();
             if (len < 2) {
@@ -873,8 +878,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             for (int i = 1; i < len; ++i) {
                 CEList tail = celist.sub(i, len);
                 Utility.dot(counter++);
-                if (map.get(tail) == null) { // skip anything in main
+                if (map.get(tail) == null && mapNames.get(tail) == null) { // skip anything in main
                     Utility.addToSet(tails, tail, celist);
+                    mapNames.put(tail, s+"//"+i);
                 }
             }
         }
@@ -885,9 +891,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         // we now have a set of main maps, and a set of tails
         // the main maps to string, the tails map to set of CELists
 
-        it = map.keySet().iterator();
-        List first = new ArrayList();
-        List second = new ArrayList();
+        Iterator<CEList> it = map.keySet().iterator();
+        List<CEList> first = new ArrayList<CEList>();
+        List<CEList> second = new ArrayList<CEList>();
 
         while (it.hasNext()) {
             CEList celist = (CEList) it.next();
@@ -903,9 +909,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 reverse(second);
 
                 log.println("<tr><td>" + getHTML_NameSet(first, null, false)
-                        + "</td><td>" + getHTML_NameSet(first, map, true)
+                        + "</td><td>" + getHTML_NameSet(first, mapNames, true)
                         + "</td><td>" + getHTML_NameSet(second, null, false)
-                        + "</td><td>" + getHTML_NameSet(second, map, true)
+                        + "</td><td>" + getHTML_NameSet(second, mapNames, true)
                         + "</td></tr>");
             }
         }
@@ -1014,26 +1020,29 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     // if m exists, then it is a mapping to strings. Use it.
     // otherwise just print what is in set
-    static String getHTML_NameSet(Collection set, Map m, boolean useName) {
+    static <K, V> String getHTML_NameSet(Collection<K> set, Map<K,V> m, boolean useName) {
         StringBuffer result = new StringBuffer();
-        Iterator it = set.iterator();
+        Iterator<K> it = set.iterator();
         while (it.hasNext()) {
             if (result.length() != 0) {
                 result.append(";<br>");
             }
-            Object item = it.next();
+            K item = it.next();
+            String name = null;
             if (m != null) {
-                Object item2 = m.get(item);
-                if (item2 != null) {
-                    item = item2;
-                } else {
+                V name0 = m.get(item);
+                if (name0 == null) {
                     System.out.println("Missing Item: " + item);
+                    name = item.toString();
+                } else if (useName) {
+                    name = Default.ucd().getCodeAndName(name0.toString());
+                } else {
+                    name = name0.toString();
                 }
+            } else {
+                name = item.toString();
             }
-            if (useName) {
-                item = Default.ucd().getCodeAndName(item.toString());
-            }
-            result.append(item);
+            result.append(name);
         }
         return result.toString();
     }
@@ -1440,7 +1449,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 + (doNew ? " => " + CEList.toString(newCes, newLen) : "")
                 + "\t( " + src + " )"
                 + "\t" + Default.ucd().getName(src)
-        );
+                );
     }
 
     static final byte    WITHOUT_NAMES                = 0, WITH_NAMES = 1, IN_XML = 2;
@@ -1571,9 +1580,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             }
 
             String key = String.valueOf(UCA.getPrimary(ces[0])) + String.valueOf(UCA.getPrimary(ce2)) + String.valueOf(UCA.getPrimary(ce3))
-            + String.valueOf(UCA.getSecondary(ces[0])) + String.valueOf(UCA.getSecondary(ce2)) + String.valueOf(UCA.getSecondary(ce3))
-            + String.valueOf(UCA.getTertiary(ces[0])) + String.valueOf(UCA.getTertiary(ce2)) + String.valueOf(UCA.getTertiary(ce3))
-            + getCollator(collatorType2).getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + UCA.codePointOrder(s);
+                    + String.valueOf(UCA.getSecondary(ces[0])) + String.valueOf(UCA.getSecondary(ce2)) + String.valueOf(UCA.getSecondary(ce3))
+                    + String.valueOf(UCA.getTertiary(ces[0])) + String.valueOf(UCA.getTertiary(ce2)) + String.valueOf(UCA.getTertiary(ce3))
+                    + getCollator(collatorType2).getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + UCA.codePointOrder(s);
 
             // String.valueOf((char)(ces[0]>>>16)) +
             // String.valueOf((char)(ces[0] & 0xFFFF))
@@ -1689,7 +1698,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         }
 
         String directory = WriteCollationData.getCollator(collatorType2).getUCA_GEN_DIR() + File.separator
-        + (collatorType2==CollatorType.cldr ? "CollationAuxiliary" : "Ducet");
+                + (collatorType2==CollatorType.cldr ? "CollationAuxiliary" : "Ducet");
 
         log = Utility.openPrintWriter(directory, filename, Utility.UTF8_WINDOWS);
 
@@ -2440,7 +2449,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                             + " from " + CEList.toString(ces, len));
                     System.out.println("\t" + Default.ucd().getCodeAndName(chr)
                             + " => " + Default.ucd().getCodeAndName(Default.nfkd().normalize(chr))
-                    );
+                            );
                     s = "[" + Utility.hex(ces[i]) + "]";
                 } while (false); // exactly one time, just for breaking
                 limit = i + 1;
@@ -2616,7 +2625,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
         // collator = new UCA(null);
         if (false) {
-            String key = getCollator(CollatorType.ducet).getSortKey("\u0308\u0301", UCA.SHIFTED, false, false);
+            String key = getCollator(CollatorType.ducet).getSortKey("\u0308\u0301", UCA.SHIFTED, false, AppendToCe.none);
             String look = printableKey(key);
             System.out.println(look);
 
@@ -2732,12 +2741,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         UCD ucd = Default.ucd();
         UnicodeProperty cat = ups.getProperty("gc");
         UnicodeSet ucdCharacters = cat.getSet("Cn")
-        .addAll(cat.getSet("Co"))
-        .addAll(cat.getSet("Cs"))
-        .complement()
-        // .addAll(ups.getSet("Noncharactercodepoint=true"))
-        // .addAll(ups.getSet("Default_Ignorable_Code_Point=true"))
-        ;
+                .addAll(cat.getSet("Co"))
+                .addAll(cat.getSet("Cs"))
+                .complement()
+                // .addAll(ups.getSet("Noncharactercodepoint=true"))
+                // .addAll(ups.getSet("Default_Ignorable_Code_Point=true"))
+                ;
         bf.showSetDifferences(log, "UCD" + Default.ucdVersion(), ucdCharacters, getCollator(CollatorType.ducet).getFileVersion(), coverage, 3);
 
         log.println("</body></html>");
@@ -2810,12 +2819,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             UnicodeSet badUnassigned = ups.getSet("gc=cn").retainAll(bad);
             UnicodeSet badAssigned = bad.removeAll(badUnassigned);
             log.println("<h3>Bad Assigned Characters: " + badAssigned.size() + ": " + badAssigned +
-            "</h3>");
+                    "</h3>");
             for (String diChar : badAssigned) {
                 log.println("<p>" + Default.ucd().getCodeAndName(diChar) + "</p>");
             }
             log.println("<h3>Bad Unassigned Characters: " + badUnassigned.size() + ": " + badUnassigned +
-            "</h3>");
+                    "</h3>");
         }
         log.flush();
     }
@@ -2890,7 +2899,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 // We ONLY add if the sort key would be different
                 // Than what we would get if we didn't decompose!!
                 String sortKey = getCollator(CollatorType.ducet).getSortKey(s, UCA.NON_IGNORABLE);
-                String nonDecompSortKey = getCollator(CollatorType.ducet).getSortKey(s, UCA.NON_IGNORABLE, false, false);
+                String nonDecompSortKey = getCollator(CollatorType.ducet).getSortKey(s, UCA.NON_IGNORABLE, false, AppendToCe.none);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }
@@ -3129,9 +3138,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     }
 
     static void addString(String ch, byte option, CollatorType collatorType) {
-        String colDbase = getCollator(collatorType).getSortKey(ch, option, true, false);
-        String colNbase = getCollator(collatorType).getSortKey(ch, option, false, false);
-        String colCbase = getCollator(collatorType).getSortKey(Default.nfc().normalize(ch), option, false, false);
+        String colDbase = getCollator(collatorType).getSortKey(ch, option, true, AppendToCe.none);
+        String colNbase = getCollator(collatorType).getSortKey(ch, option, false, AppendToCe.none);
+        String colCbase = getCollator(collatorType).getSortKey(Default.nfc().normalize(ch), option, false, AppendToCe.none);
         if (!colNbase.equals(colCbase) || !colNbase.equals(colDbase)) {
             /*
              * System.out.println(Utility.hex(ch));
@@ -3317,7 +3326,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         } else {
             log.println("<font color='#009900'>" + printableKey(keyN)
                     + "</font><br><font color='#000099'>" + printableKey(keyD) + "</font>"
-            );
+                    );
         }
         log.println("</td></tr>");
     }
@@ -3331,7 +3340,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     static final UnicodeProperty sc = propertySource.getProperty("sc");
 
     static final UnicodeSet WHITESPACE = propertySource.getSet("whitespace=true")
-    .freeze();
+            .freeze();
 
     static final UnicodeSet IGNORABLE = new UnicodeSet()
     .addAll(gc.getSet("Cf"))
@@ -3381,22 +3390,22 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     static final UnicodeMap<String> EMPTY = new UnicodeMap<String>().freeze();
     static final UnicodeMap<String> IGNORABLE_REASONS = new UnicodeMap<String>()
-    .putAll(new UnicodeSet("[ࠤࠨःংঃਃઃଂଃఁ-ఃಂಃംഃංඃཿ းះៈᬄᮂ᳡ᳲ�ꢀꢁꦃ꯬�𑀀𑀂𑂂��𝅥𝅦𝅭-𝅲]"), "Unknown why these are ignored")
-    .putAll(new UnicodeSet("[ـߺﱞ-ﱣﳲ-ﳴﹰ-ﹴﹶ-ﹿ]"), 
-    "Tatweel and related characters are ignorable; isolated vowels have screwy NFKD values")
-    .freeze();
+            .putAll(new UnicodeSet("[ࠤࠨःংঃਃઃଂଃఁ-ఃಂಃംഃංඃཿ းះៈᬄᮂ᳡ᳲ�ꢀꢁꦃ꯬�𑀀𑀂𑂂��𝅥𝅦𝅭-𝅲]"), "Unknown why these are ignored")
+            .putAll(new UnicodeSet("[ـߺﱞ-ﱣﳲ-ﳴﹰ-ﹴﹶ-ﹿ]"), 
+                    "Tatweel and related characters are ignorable; isolated vowels have screwy NFKD values")
+                    .freeze();
     static final UnicodeMap<String> GENERAL_SYMBOL_REASONS = new UnicodeMap<String>()
-    .putAll(new UnicodeSet("[ៗ ː ˑ ॱ ๆ ໆ ᪧ ꧏ ꩰ ꫝ 々 〻 〱-〵 ゝ ゞ ーｰ ヽ ヾ \uAAF3 \uAAF4]"), "regular (not ignorable) symbols - significant modifiers")
-    .putAll(new UnicodeSet("[৴-৹ ୲-୷ ꠰-꠵ ௰-௲ ൰-൵ ፲-፼ ↀ-ↂ ↆ-ↈ 𐹩-𐹾 ⳽ 𐌢 𐌣 𐄐-𐄳 𐅀 𐅁 𐅄-𐅇 𐅉-𐅎 𐅐-𐅗 𐅠-𐅲 𐅴-𐅸 𐏓-𐏕 𐩾 𐤗-𐤙 𐡛-𐡟 𐭜-𐭟 𐭼-𐭿 𑁛-𑁥 𐩄-𐩇 𒐲 𒐳 𒑖 𒑗 𒑚-𒑢 𝍩-𝍱]"), 
-    "Unknown why these are treated differently than numbers with scripts")
-    .freeze();
+            .putAll(new UnicodeSet("[ៗ ː ˑ ॱ ๆ ໆ ᪧ ꧏ ꩰ ꫝ 々 〻 〱-〵 ゝ ゞ ーｰ ヽ ヾ \uAAF3 \uAAF4]"), "regular (not ignorable) symbols - significant modifiers")
+            .putAll(new UnicodeSet("[৴-৹ ୲-୷ ꠰-꠵ ௰-௲ ൰-൵ ፲-፼ ↀ-ↂ ↆ-ↈ 𐹩-𐹾 ⳽ 𐌢 𐌣 𐄐-𐄳 𐅀 𐅁 𐅄-𐅇 𐅉-𐅎 𐅐-𐅗 𐅠-𐅲 𐅴-𐅸 𐏓-𐏕 𐩾 𐤗-𐤙 𐡛-𐡟 𐭜-𐭟 𐭼-𐭿 𑁛-𑁥 𐩄-𐩇 𒐲 𒐳 𒑖 𒑗 𒑚-𒑢 𝍩-𝍱]"), 
+                    "Unknown why these are treated differently than numbers with scripts")
+                    .freeze();
     static final UnicodeMap<String> SCRIPT_REASONS = new UnicodeMap<String>()
-    .putAll(new UnicodeSet("[⺀-⺙⺛-⺞⺠-⻲]"), "CJK radicals sort like they had toNFKD values")
-    .putAll(new UnicodeSet("[ ᅟᅠㅤﾠ]"), "Hangul fillers are Default Ignorables, but sort as primaries")
-    .putAll(gc.getSet("Mn"), "Indic (or Indic-like) non-spacing marks sort as primaries")
-    .putAll(new UnicodeSet("[🅐-🅩🅰-🆏🆑-🆚🇦-🇿]"), "Characters that should have toNFKD values")
-    .putAll(new UnicodeSet("[ᛮ-ᛰꛦ-ꛯ𐍁𐍊]"), "Unknown why these numbers are treated differently than numbers with symbols.")
-    .freeze();
+            .putAll(new UnicodeSet("[⺀-⺙⺛-⺞⺠-⻲]"), "CJK radicals sort like they had toNFKD values")
+            .putAll(new UnicodeSet("[ ᅟᅠㅤﾠ]"), "Hangul fillers are Default Ignorables, but sort as primaries")
+            .putAll(gc.getSet("Mn"), "Indic (or Indic-like) non-spacing marks sort as primaries")
+            .putAll(new UnicodeSet("[🅐-🅩🅰-🆏🆑-🆚🇦-🇿]"), "Characters that should have toNFKD values")
+            .putAll(new UnicodeSet("[ᛮ-ᛰꛦ-ꛯ𐍁𐍊]"), "Unknown why these numbers are treated differently than numbers with symbols.")
+            .freeze();
 
     enum UcaBucket {
         ignorable('\u0000', IGNORABLE, IGNORABLE_REASONS),
@@ -3830,12 +3839,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 log.println(// title + counter + " "
                         Utility.hex(ch, " ")
                         + " " + Default.ucd().getName(ch)
-                );
+                        );
             } else {
                 log.println(// title + counter + " "
                         "<b>" + Utility.hex(ch, " ")
                         + " " + Default.ucd().getName(ch) + "</b>"
-                );
+                        );
             }
         } else {
             String keyD = printableKey(backD.get(chobj));
@@ -3847,7 +3856,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 log.println(// title + counter + " "
                         "<font color='#009900'>" + Utility.hex(ch, " ") + " " + keyN
                         + "</font><br><font color='#000099'>" + Utility.hex(decomp, " ") + " " + keyD + "</font>"
-                );
+                        );
             }
         }
     }
@@ -4057,8 +4066,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             char ch = source.charAt(i);
             if (ch < ' '
                     || ch >= '\u007F' && ch <= '\u009F'
-                        || ch >= '\uD800' && ch <= '\uDFFF'
-                            || ch >= '\uFFFE') {
+                    || ch >= '\uD800' && ch <= '\uDFFF'
+                    || ch >= '\uFFFE') {
                 result.append('\uFFFD');
                 /*
                  * result.append("#x"); result.append(cpName(ch));
@@ -4145,9 +4154,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         switch(type) {
         case cldr:
             if (cldrCollator == null) {
-//                if (Default.ucdVersion().compareTo("6.1") < 0) { // only reorder if less than v6.1
-//                    cldrCollator = buildCldrCollator(true);
-//                } else 
+                //                if (Default.ucdVersion().compareTo("6.1") < 0) { // only reorder if less than v6.1
+                //                    cldrCollator = buildCldrCollator(true);
+                //                } else 
                 {
                     cldrCollator = buildCldrCollator(false);
 
@@ -4288,7 +4297,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     + "\t" + gcInfo
                     + "\t" + excelQuote(rep2)
                     + "\t" + Default.ucd().getCodeAndName(Character.codePointAt(rep2, 0))
-            );
+                    );
         }
         Map<Integer, IntStack> characterRemap = primaryRemap.getCharacterRemap();
         fractionalLog.println("# Remapped characters");
@@ -4334,7 +4343,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                             + "\t" + Default.ucd().getCategoryID(i)
                             + "\t" + Default.ucd().getCodeAndName(i)
                             + "\n"
-                    );
+                            );
                 }
                 break;
             default:

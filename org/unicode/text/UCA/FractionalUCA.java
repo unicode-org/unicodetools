@@ -17,6 +17,7 @@ import java.util.Map.Entry;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCA.CaseBit.Casing;
 import org.unicode.text.UCA.CaseBit.CasingList;
+import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
@@ -1000,7 +1001,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 // We ONLY add if the sort key would be different
                 // Than what we would get if we didn't decompose!!
                 String sortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE);
-                String nonDecompSortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE, false, false);
+                String nonDecompSortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE, false, AppendToCe.none);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }

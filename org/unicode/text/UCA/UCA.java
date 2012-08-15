@@ -26,6 +26,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
@@ -174,7 +175,7 @@ final public class UCA implements Comparator, UCA_Types {
      * unsigned shorts.
      */
     public String getSortKey(String sourceString) {
-        return getSortKey(sourceString, defaultAlternate, defaultDecomposition, false);
+        return getSortKey(sourceString, defaultAlternate, defaultDecomposition, AppendToCe.none);
     }
     /**
      * Constructs a sort key for a string of input Unicode characters. Uses
@@ -187,16 +188,13 @@ final public class UCA implements Comparator, UCA_Types {
      */
 
     public String getSortKey(String sourceString, byte alternate) {
-        return getSortKey(sourceString, alternate, defaultDecomposition, false);
+        return getSortKey(sourceString, alternate, defaultDecomposition, AppendToCe.none);
     }
 
     public static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 0x5);
 
-    public enum AppendToCe {none, identical, nfd}
+    public enum AppendToCe {none, nfd}
     
-    public String getSortKey(String sourceString, byte alternate, boolean decomposition, boolean appendIdentical) {
-        return getSortKey(sourceString, alternate, decomposition, appendIdentical ? AppendToCe.identical : AppendToCe.none);
-    }
     /**
      * Constructs a sort key for a string of input Unicode characters.
      * @param sourceString string to make a sort key for.

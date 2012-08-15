@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
+import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
@@ -42,7 +43,8 @@ public class WriteAllkeys {
         
         UCA collator = WriteCollationData.getCollator(collatorType);
         UCA.UCAContents cc = collator.getContents(UCA.FIXED_CE, null);
-        
+        log.println("@version " + collator.getDataVersion() + "\n");
+
         Map<String,String> sorted = new TreeMap();
     
         while (true) {
@@ -72,7 +74,7 @@ public class WriteAllkeys {
             }
             CEList ceList = collator.getCEList(value, true);
             if (ceList == null) {
-                String sortkey = collator.getSortKey(value, UCA.NON_IGNORABLE, true, false);
+                String sortkey = collator.getSortKey(value, UCA.NON_IGNORABLE, true, AppendToCe.none);
                 // 0000  ; [.0000.0000.0000.0000] # [0000] NULL (in 6429)
                 // 0430 0306 ; [.1947.0020.0002.04D1] # CYRILLIC SMALL LETTER A WITH BREVE
                 // 1F60  ; [.1904.0020.0002.03C9][.0000.0022.0002.0313] # GREEK SMALL LETTER OMEGA WITH PSILI; QQCM
@@ -96,7 +98,7 @@ public class WriteAllkeys {
 
     public static String addString(UCA collator, String s,
             Map<String, String> sorted) {
-        String colDbase = collator.getSortKey(s, UCA.SHIFTED, true, true);
+        String colDbase = collator.getSortKey(s, UCA.SHIFTED, true, AppendToCe.nfd);
         sorted.put(colDbase, s);
         return colDbase;
     }
