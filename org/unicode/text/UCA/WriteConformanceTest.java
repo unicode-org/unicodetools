@@ -21,6 +21,8 @@ public class WriteConformanceTest {
 
     static final UnicodeSet RTL = new UnicodeSet("[[:bc=r:][:bc=al:][:bc=an:]]").freeze();
 
+    private static final boolean SKIP_SPECIAL_TIBETAN = true;
+
     static void writeConformance(String filename, byte option, boolean shortPrint, CollatorType collatorType) throws IOException {
         // UCD ucd30 = UCD.make("3.0.0");
 
@@ -73,6 +75,11 @@ public class WriteConformanceTest {
             String s = cc.next();
             if (s == null) {
                 break;
+            }
+
+            if (SKIP_SPECIAL_TIBETAN && collatorType==CollatorType.ducet && s.length() > 1 
+                    && (s.startsWith("\u0FB2") || s.startsWith("\u0FB3"))) {
+                continue;
             }
 
             found2.addAll(s);
@@ -141,6 +148,8 @@ public class WriteConformanceTest {
         it = WriteCollationData.sortedD.keySet().iterator();
 
         String lastKey = "";
+        
+        int level = (option == UCA.NON_IGNORABLE ? 3 : 4);
 
         while (it.hasNext()) {
             Utility.dot(counter);
@@ -179,7 +188,7 @@ public class WriteConformanceTest {
                         ";\t# (" + quoteOperand + ") "
                                 + name
                                 + "\t" 
-                                + UCA.toString(key, 3));
+                                + UCA.toString(key, level));
             } else {
                 log.print(Utility.hex(source));
             }

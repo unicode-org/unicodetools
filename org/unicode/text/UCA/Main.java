@@ -24,7 +24,7 @@ import com.ibm.icu.text.UTF16;
 
 public class Main {
     static final String[] ICU_FILES = {
-        "writeCollationValidityLog", "writeFractionalUCA", "WriteAllKeys",
+        "writeCollationValidityLog", "writeFractionalUCA", "WriteAllKeys", "WriteAllKeysDucet",
         "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "WriteRulesCLDRXML", 
         "writeconformance", "writeConformanceShifted", "writeConformanceCldr", "writeConformanceShiftedCldr", 
         "short", 
@@ -98,6 +98,7 @@ public class Main {
                 else if (arg.equalsIgnoreCase("writeContractions")) WriteCollationData.writeContractions();
                 else if (arg.equalsIgnoreCase("writeFractionalUCA")) FractionalUCA.writeFractionalUCA("FractionalUCA");
                 else if (arg.equalsIgnoreCase("WriteAllKeys")) WriteAllkeys.writeAllkeys("allkeys", CollatorType.cldr);
+                else if (arg.equalsIgnoreCase("WriteAllKeysDucet")) WriteAllkeys.writeAllkeys("allkeys_DUCET", CollatorType.ducet);
                 
                 else if (arg.equalsIgnoreCase("writeConformance")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.ducet);
                 else if (arg.equalsIgnoreCase("writeConformanceShifted")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.ducet);

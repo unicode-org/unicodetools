@@ -81,6 +81,8 @@ characters between scripts with different directions, like French with Arabic or
 
 final public class UCA implements Comparator, UCA_Types {
 
+    private static final boolean DEBUG_TEST = false;
+
     public static final int TEST_PRIMARY = 0xFDFC;
 
     public enum CollatorType {ducet, cldr, cldrWithoutFFFx}
@@ -1342,8 +1344,16 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             if (enum1 == null) enum1 = ucaData.getContractions();
             while (enum1.hasNext()) {
                 result = (String)enum1.next();
-                if (result.length() == 1 && UTF16.isLeadSurrogate(result.charAt(0))) {
-                    //System.out.println("Skipping " + ucd.getCodeAndName(result));
+//                if (result.length() == 1 && UTF16.isLeadSurrogate(result.charAt(0))) {
+//                    if (DEBUG_TEST) {
+//                        System.out.println("Skipping Lead" + ucd.getCodeAndName(result));
+//                    }
+//                    continue; // try again
+//                }
+                if (result.length() > 0 && UTF16.isLeadSurrogate(result.charAt(result.length()-1))) {
+                    if (DEBUG_TEST) {
+                        System.out.println("Skipping final lead: " + ucd.getCodeAndName(result));
+                    }
                     continue; // try again
                 }
                 if (!getStatistics().haveUnspecified) {

@@ -72,6 +72,8 @@ import com.ibm.icu.text.UnicodeSetIterator;
 public class WriteCollationData implements UCD_Types, UCA_Types {
 
     private static final boolean SHOW_NON_MAPPED = false;
+    
+    private static final boolean ADD_TIBETAN = true;
 
     // may require fixing
 
@@ -3407,6 +3409,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             .putAll(new UnicodeSet("[ᛮ-ᛰꛦ-ꛯ𐍁𐍊]"), "Unknown why these numbers are treated differently than numbers with symbols.")
             .freeze();
 
+
     enum UcaBucket {
         ignorable('\u0000', IGNORABLE, IGNORABLE_REASONS),
         whitespace('\u0009', WHITESPACE, EMPTY), 
@@ -4316,6 +4319,29 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             result.overrideCE("\uFFFE", 0x1, 0x20, 0x5);
             result.overrideCE("\uFFFF", 0xFFFE, 0x20, 0x5);
         }
+        
+        if (ADD_TIBETAN) {
+            CEList fb2 = result.getCEList("\u0FB2", true);
+            CEList fb3 = result.getCEList("\u0FB3", true);
+            CEList f71_f72 = result.getCEList("\u0F71\u0F72", true);
+            CEList f71_f74 = result.getCEList("\u0F71\u0F74", true);
+            CEList fb2_f71 = result.getCEList("\u0FB2\u0F71", true);
+            CEList fb3_f71 = result.getCEList("\u0FB3\u0F71", true);
+
+            addOverride(result, "\u0FB2\u0F71", fb2_f71);               //0FB2 0F71      ;     [.255A.0020.0002.0FB2][.2570.0020.0002.0F71] - concat 0FB2 + 0F71
+            addOverride(result, "\u0FB2\u0F71\u0F72", fb2, f71_f72);    //0FB2 0F71 0F72 ;    [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] - concat 0FB2 + (0F71/0F72)
+            addOverride(result, "\u0FB2\u0F73", fb2, f71_f72);          //0FB2 0F73      ;        [.255A.0020.0002.0FB2][.2572.0020.0002.0F73] = prev
+            addOverride(result, "\u0FB2\u0F71\u0F74", fb2, f71_f74);    //0FB2 0F71 0F74 ;    [.255A.0020.0002.0FB2][.2576.0020.0002.0F75] - concat 0FB2 + (0F71/0F74)
+            addOverride(result, "\u0FB2\u0F75", fb2, f71_f74);          //0FB2 0F75      ;        [.255A.0020.0002.0FB2][.2576.0020.0002.0F75]  = prev
+
+            // same as above, but 0FB2 => 0FB3 and fb2 => fb3
+            
+            addOverride(result, "\u0FB3\u0F71", fb3_f71);               //0FB3 0F71      ;     [.255A.0020.0002.0FB3][.2570.0020.0002.0F71] - concat 0FB3 + 0F71
+            addOverride(result, "\u0FB3\u0F71\u0F72", fb3, f71_f72);    //0FB3 0F71 0F72 ;    [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] - concat 0FB3 + (0F71/0F72)
+            addOverride(result, "\u0FB3\u0F73", fb3, f71_f72);          //0FB3 0F73      ;        [.255A.0020.0002.0FB3][.2572.0020.0002.0F73] = prev
+            addOverride(result, "\u0FB3\u0F71\u0F74", fb3, f71_f74);    //0FB3 0F71 0F74 ;    [.255A.0020.0002.0FB3][.2576.0020.0002.0F75] - concat 0FB3 + (0F71/0F74)
+            addOverride(result, "\u0FB3\u0F75", fb3, f71_f74);          //0FB3 0F75      ;        [.255A.0020.0002.0FB3][.2576.0020.0002.0F75]  = prev
+        }
 
         // verify results
         int[] output = new int[30];
@@ -4354,6 +4380,17 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             throw new IllegalArgumentException("Failures:\n" + failures);
         }
         return result;
+    }
+
+    private static void addOverride(UCA result, String string, CEList... ceLists) {
+        IntStack tempStack = new IntStack(10);
+        for (CEList ceList : ceLists) {
+            for (int i = 0; i < ceList.length(); ++i) {
+                int ce = ceList.at(i);
+                tempStack.append(ce);
+            }
+        }
+        result.overrideCE(string, tempStack);
     }
 
     private static CharSequence filter(CharSequence repChar) {
