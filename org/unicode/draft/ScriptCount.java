@@ -112,8 +112,8 @@ public class ScriptCount {
         boolean nfd = MyOptions.nfd.option.doesOccur();
         boolean secondary = MyOptions.secondary.option.doesOccur();
 
-        Counter<Integer> mulCounter = CharacterFrequency.getCodePointCounter(language, ranked);
-        //System.out.println(mulCounter.getItemCount());
+        Counter<Integer> langCounter = CharacterFrequency.getCodePointCounter(language, ranked);
+        //System.out.println(langCounter.getItemCount());
         Normalizer2 nfkc = Normalizer2.getNFKCInstance();
         Normalizer2 toNfd = Normalizer2.getNFDInstance();
         Map<String, Counter<Integer>> keyCounter = new TreeMap<String,Counter<Integer>>();
@@ -124,22 +124,22 @@ public class ScriptCount {
         }
         
         if (nfd) {
-            Counter<Integer> mulCounter2 = new Counter<Integer>();
-            for (Integer cp : mulCounter) {
-                long count = mulCounter.getCount(cp);
+            Counter<Integer> langCounter2 = new Counter<Integer>();
+            for (Integer cp : langCounter) {
+                long count = langCounter.getCount(cp);
                 String nfdString = toNfd.getDecomposition(cp);
                 if (nfdString != null) {
                     for (int cp2 : With.codePointArray(nfdString)) {
-                        mulCounter2.add(cp2, count);
+                        langCounter2.add(cp2, count);
                     }
                     continue;
                 }
-                mulCounter2.add(cp, count);
+                langCounter2.add(cp, count);
             }
-            mulCounter = mulCounter2;
+            langCounter = langCounter2;
         }
-        for (Integer cp : mulCounter) {
-            long count = mulCounter.getCount(cp);
+        for (Integer cp : langCounter) {
+            long count = langCounter.getCount(cp);
             addCharacter(nfkc, keyCounter, bitset, cp, count);
             if (secondary) {
                 secondaryCounts.add(cp, count);
@@ -148,14 +148,14 @@ public class ScriptCount {
         for (Entry<String, Counter<Integer>> entry : keyCounter.entrySet()) {
             String key = entry.getKey();
             Counter<Integer> counter = entry.getValue();
-            System.out.println(key + "\t" + Math.log(counter.getTotal()) + "\t" + counter.getItemCount() + "\t" + getTop(32, counter, mulCounter));
+            System.out.println(key + "\t" + Math.log(counter.getTotal()) + "\t" + counter.getItemCount() + "\t" + getTop(32, counter, langCounter));
         }
         // Only supplementary characters
         for (Entry<String, Counter<Integer>> entry : keyCounter.entrySet()) {
             String key = entry.getKey();
             Counter<Integer> counter0 = entry.getValue();
             Counter<Integer> counter = filterCounter(counter0);
-            System.out.println(key + "\t" + Math.log(counter.getTotal()) + "\t" + counter.getItemCount() + "\t" + getTop(32, counter, mulCounter));
+            System.out.println(key + "\t" + Math.log(counter.getTotal()) + "\t" + counter.getItemCount() + "\t" + getTop(32, counter, langCounter));
         }
 
         DecimalFormat pf = (DecimalFormat) NumberFormat.getInstance();
@@ -164,15 +164,15 @@ public class ScriptCount {
         //        pf.setMinimumSignificantDigits(3);
         //        pf.setMaximumSignificantDigits(3);
         int counter = 0;
-        double max = mulCounter.getTotal();
+        double max = langCounter.getTotal();
         PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(UCD_Types.GEN_DIR + "/frequency-text", 
-                "mul" 
+                language 
                         + (nfd ? "-nfd" : "")
                         + (filter != null ? "-" + filter : "") +
                         ".txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
         Matcher m = filter == null ? null : Pattern.compile(filter).matcher("");
-        for (int ch : mulCounter.getKeysetSortedByCount(false)) {
-            long count = mulCounter.get(ch);
+        for (int ch : langCounter.getKeysetSortedByCount(false)) {
+            long count = langCounter.get(ch);
             // 0%   忌   U+5FCC  Lo  Hani    CJK UNIFIED IDEOGRAPH-5FCC
             String catString = propValue(ch, UProperty.GENERAL_CATEGORY, UProperty.NameChoice.SHORT);
             String scriptString = propValue(ch, UProperty.SCRIPT, UProperty.NameChoice.SHORT);
@@ -190,7 +190,7 @@ public class ScriptCount {
         out.close();
         if (secondary) {
             out = org.unicode.text.utility.Utility.openPrintWriter(UCD_Types.GEN_DIR + "/frequency-text", 
-                    "mul-sec" 
+                    language + "-sec" 
                             + (nfd ? "-nfd" : "")
                             + (filter != null ? "-" + filter : "") +
                             ".txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
@@ -286,7 +286,7 @@ public class ScriptCount {
         return counter;
     }
 
-    private static String getTop(int max, Counter<Integer> counter, Counter<Integer> mulCounter) {
+    private static String getTop(int max, Counter<Integer> counter, Counter<Integer> languageCounter) {
         StringBuilder b = new StringBuilder();
         for (int cp : counter.getKeysetSortedByCount(false)) {
             if (--max < 0) {
@@ -297,7 +297,7 @@ public class ScriptCount {
             }
             //b.append('“');
             b.append(show(cp));
-            //b.append('”').append("(").append((int)Math.round(100*Math.log(mulCounter.get(0x20)/mulCounter.get(cp)))).append(")");
+            //b.append('”').append("(").append((int)Math.round(100*Math.log(langCounter.get(0x20)/langCounter.get(cp)))).append(")");
         }
         return b.toString();
     }

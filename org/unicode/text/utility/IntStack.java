@@ -142,4 +142,18 @@ public final class IntStack implements Comparable, Cloneable {
         }
         return result.toString();
     }
+
+    /**
+     * Copy items from the stack into a buffer, and return number of items copied.
+     * @param limit 
+     * @param start 
+     * @param buffer
+     * @param start
+     * @return
+     */
+    public int extractInto(int start, int limit, int[] buffer, int bufferStart) {
+        int len = limit-start;
+        System.arraycopy(values, first + start, buffer, bufferStart, len);
+        return len;
+    }
 }

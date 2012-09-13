@@ -39,6 +39,9 @@ import com.ibm.icu.text.UnicodeSet;
 
 abstract public class GenerateBreakTest implements UCD_Types {
 
+    private static final String DEBUG_STRING = "\u0001\u0061\u2060";
+    private static final boolean DEBUG_RULE_REPLACEMENT = true;
+
     private static final String DOCTYPE = 
         "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>";
 
@@ -298,6 +301,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
     protected String currentRule;
     protected String fileName;
+    protected String propertyName;
     protected List<String> samples = new ArrayList();
     protected List<String> extraSamples = new ArrayList();
     protected List<String> extraSingleSamples = new ArrayList();
@@ -404,11 +408,11 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
         fc.close();
 
-        generateTest(false, fileName);
+        generateTest(false, fileName, propertyName);
 
     }
 
-    public void generateTest(boolean shortVersion, String fileName) throws IOException {
+    private void generateTest(boolean shortVersion, String fileName, String propertyName) throws IOException {
         List<String> testCases = new ArrayList<String>();
         // do main test
 
@@ -432,7 +436,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println("#\t" + NOBREAK + " wherever there is not.");
         out.println("#  <comment> the format can change, but currently it shows:");
         out.println("#\t- the sample character name");
-        out.println("#\t- (x) the " + fileName + "_Break property* for the sample character");
+        out.println("#\t- (x) the " + propertyName + " property value for the sample character");
         out.println("#\t- [x] the rule that determines whether there is a break or not");
         if (fileName.equals("Line")) {
             out.println("# Note: The Line Break tests use tailoring of numbers described in Example 7 of Section 8.2 Examples of Customization.");
@@ -657,14 +661,31 @@ abstract public class GenerateBreakTest implements UCD_Types {
         );
         //out.println("<ul style='list-style-type: none'>");
         out.println("<table>");
-        Matcher identifierMatcher = Pattern.compile("[$]\\p{Alpha}\\p{Alnum}*_").matcher("");
+        // same pattern, but require _ at the end.
+        Matcher identifierMatcher = Segmenter.IDENTIFIER_PATTERN.matcher("");
         for (int ii = 0; ii < ruleListCount; ++ii) {
             String ruleString = ruleList[ii];
+            int pos = 0;
             while (true) {
-                if (!identifierMatcher.reset(ruleString).find()) break;
+                if (!identifierMatcher.reset(ruleString).find(pos)) {
+                    break;
+                }
                 String variable = identifierMatcher.group();
+                if (!variable.endsWith("_")) {
+                    pos = identifierMatcher.end();
+                    continue;
+                }
                 String replacement = variables.get(variable);
-                ruleString = ruleString.substring(0,identifierMatcher.start()) + replacement + ruleString.substring(identifierMatcher.end());
+                if (replacement == null) {
+                    throw new IllegalArgumentException("Can't find variable: " + variable);
+                }
+                String prefix = ruleString.substring(0,identifierMatcher.start());
+                String suffix = ruleString.substring(identifierMatcher.end());
+                if (DEBUG_RULE_REPLACEMENT) {
+                    System.out.println("Replacing " + prefix + "$$" + variable + "$$" + suffix + "\t by \t" + replacement);
+                }
+                ruleString = prefix + replacement + suffix;
+                pos = identifierMatcher.start() + replacement.length();
             }
             String cleanRule = ruleString.replaceAll("[$]","");
             if (!isBreak("a",0)) {
@@ -936,6 +957,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 map.add(label, segSamples.keySet(label), true, false);
             }
             this.fileName = filename;
+            this.propertyName = (filename.equals("Grapheme") ? "Grapheme_Cluster" : fileName)
+                    + "_Break";
             sampleMap = map;
             this.extraSamples.addAll(Arrays.asList(extraSamples));
             
@@ -957,6 +980,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
 
         public boolean isBreak(String source, int offset) {
+            if (source.equals(DEBUG_STRING)) {
+                int x = 0;
+            }
             boolean result = seg.breaksAt(source, offset);
             setRule(String.valueOf(seg.getBreakRule()));
             return result;
@@ -1108,7 +1134,6 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 "のパン",
                 "う　え　お」",
                 "る 은영 に",
-                "しょう",
                 "しょう。",
                 "ムの一",
                 "フリ",
