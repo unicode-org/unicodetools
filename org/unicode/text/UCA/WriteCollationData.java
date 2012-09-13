@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -45,6 +46,7 @@ import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA.Remap;
 import org.unicode.text.UCA.UCA.UCAContents;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
+import org.unicode.text.UCA.WriteCollationData.ArrayWrapper;
 import org.unicode.text.UCA.WriteCollationData.UcaBucket;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
@@ -1544,15 +1546,15 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         }
 
         System.out.println("Sorting");
-        Map backMap = new HashMap();
+        Map<ArrayWrapper, String> backMap = new HashMap<ArrayWrapper, String>();
         java.util.Comparator cm = new RuleComparator();
-        Map ordered = new TreeMap(cm);
+        Map<String, String> ordered = new TreeMap<String, String>(cm);
 
         UCA.UCAContents cc = getCollator(collatorType2).getContents(UCA.FIXED_CE,
                 SKIP_CANONICAL_DECOMPOSIBLES ? Default.nfd() : null);
         int[] lenArray = new int[1];
 
-        Set alreadyDone = new HashSet();
+        Set<String> alreadyDone = new HashSet();
 
         log2 = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + File.separator + "log", "UCARules-log.txt", Utility.UTF8_WINDOWS);
 
@@ -1598,7 +1600,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             ordered.put(key, s);
             alreadyDone.add(s);
 
-            Object result = ordered.get(key);
+            String result = ordered.get(key);
             if (result == null) {
                 System.out.println("BAD SORT: " + Utility.hex(key) + ", " + Utility.hex(s));
             }
@@ -1632,7 +1634,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         System.out.println("CJK NONcomposites " + new UnicodeSet(CJK).removeAll(composites).toPattern(true));
 
         UnicodeSet mapped = new UnicodeSet();
-        Iterator it = alreadyDone.iterator();
+        Iterator<String> it = alreadyDone.iterator();
         while (it.hasNext()) {
             String member = (String) it.next();
             mapped.add(member);
@@ -1680,7 +1682,15 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 addToBackMap(backMap, ces, len, s, false);
             }
         }
-
+        
+        System.out.println("Find Exact Equivalents");
+        
+        Set<String> removals = new HashSet<String>();
+        Map<String,String> equivalentsMap = findExactEquivalents(backMap, ordered, collatorType2, removals);
+        for (String s : removals) {
+            ordered.remove(s);
+        }
+        
         System.out.println("Writing");
 
         String filename = "UCA_Rules";
@@ -2031,6 +2041,41 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             }
             firstTime = false;
         }
+        for (Entry<String, String> sourceReplacement : equivalentsMap.entrySet()) {
+            // note: we set the reset to the value we want, then have 
+            // = X for the item whose value is to be changed
+            String valueToSetTo = sourceReplacement.getValue();
+            String stringToSet = sourceReplacement.getKey();
+            if (option == IN_XML) {
+                log.print("<reset/>" 
+                        + Utility.quoteXML(valueToSetTo)
+                        + "<i>" 
+                        + Utility.quoteXML(stringToSet) 
+                        + "</i>");
+                if (!shortPrint) {
+                    log.print("\t<!--");
+                    log.print(Default.ucd().getCodeAndName(stringToSet)
+                            + "\t→\t" 
+                            + Default.ucd().getCodeAndName(valueToSetTo));
+                    log.print("-->");
+                }
+            } else {
+                log.print("& " 
+                        + quoteOperand(valueToSetTo)
+                        + " = " 
+                        + quoteOperand(stringToSet));
+                if (!shortPrint) {
+                    log.print("\t# ");
+                    log.print(latestAge(stringToSet) + " [");
+                    String typeKD = ReorderingTokens.getTypesCombined(stringToSet);
+                    log.print(typeKD + "] ");
+                    log.print(Default.ucd().getCodeAndName(stringToSet) 
+                            + "\t→\t" 
+                            + Default.ucd().getCodeAndName(valueToSetTo));
+                }
+            }
+            log.println();
+        }
         // log.println("& [top]"); // RESET
         if (option == IN_XML) {
             log.println("</rules></collation>");
@@ -2038,6 +2083,54 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         log2.close();
         log.close();
         Utility.fixDot();
+    }
+
+    static final UnicodeSet SKIP_TIBETAN_EQUIVALENTS = new UnicodeSet("[ྲཱི  ྲཱི ྲཱུ  ྲཱུ ླཱི  ླཱི ླཱུ  ླཱུ]").freeze();
+    private static Map<String, String> findExactEquivalents(
+            Map<ArrayWrapper, String> backMap, Map<String, String> ordered, 
+            CollatorType collatorType2,
+            Set<String> removals) {
+        Map<String,String> equivalentsStrings = new LinkedHashMap();
+        IntStack nextCes = new IntStack(10);
+        int[] startBuffer = new int[100];
+        int[] endBuffer = new int[100];
+        ArrayWrapper start = new ArrayWrapper(startBuffer, 0, 0);
+        ArrayWrapper end = new ArrayWrapper(endBuffer, 0, 0);
+        for (Entry<String, String> entry : ordered.entrySet()) {
+            String sortKey = entry.getKey();
+            String string = entry.getValue();
+            if (Character.codePointCount(string, 0, string.length()) < 2) {
+                continue;
+            } else if (SKIP_TIBETAN_EQUIVALENTS.containsSome(string)) {
+                continue;
+            }
+            nextCes.clear();
+            getCollator(collatorType2).getCEs(string, true, nextCes);
+            int len = nextCes.length();
+            if (len < 2) {
+                continue;
+            }
+            // just look for pairs
+            for (int i = 1; i < len; ++i) {
+                start.limit = nextCes.extractInto(0, i, startBuffer, 0);
+                String string1 = backMap.get(start);
+                if (string1 == null) {
+                    continue;
+                }
+                end.limit = nextCes.extractInto(i, len, endBuffer, 0);
+                String string2 = backMap.get(end);
+                if (string2 == null) {
+                    continue;
+                }
+                String replacement = string1 + string2;
+                if (string.equals(replacement)) {
+                    continue;
+                }
+                equivalentsStrings.put(string, replacement);
+                removals.add(sortKey);
+            }
+        }
+        return equivalentsStrings;
     }
 
     static String bidiBracket(String string) {
@@ -2259,6 +2352,10 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             set(contents, start, limit);
         }
 
+        public ArrayWrapper() {
+            // TODO Auto-generated constructor stub
+        }
+
         private void set(int[] contents, int start, int limit) {
             array = contents;
             this.start = start;
@@ -2285,6 +2382,17 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             }
             return result;
         }
+        
+        public String toString() {
+            StringBuilder result = new StringBuilder();
+            for (int i = start; i < limit; ++i) {
+                if (result.length() != 0) {
+                    result.append(",");
+                }
+                result.append(Utility.hex(0xFFFFFFFFL & array[i]));
+            }
+            return result.toString();
+        }
     }
 
     static int    testCase[] = {
@@ -2304,13 +2412,13 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         return false;
     }
 
-    static final void addToBackMap(Map backMap, int[] ces, int len, String s, boolean show) {
+    static final void addToBackMap(Map<ArrayWrapper,String> backMap, int[] ces, int len, String s, boolean show) {
         if (show || contains(testCase, 0, testCase.length, ces[0]) || testString.indexOf(s) > 0) {
             System.out.println("Test case: " + Utility.hex(s) + ", " + CEList.toString(ces, len));
         }
         // NOTE: we add the back map based on the string value; the smallest
         // (UTF-16 order) string wins
-        Object key = new ArrayWrapper((int[]) (ces.clone()), 0, len);
+        ArrayWrapper key = new ArrayWrapper((int[]) (ces.clone()), 0, len);
         if (false) {
             String value = (String) backMap.get(key);
             if (value == null) {
