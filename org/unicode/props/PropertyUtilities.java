@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap;
 
 public class PropertyUtilities {
 

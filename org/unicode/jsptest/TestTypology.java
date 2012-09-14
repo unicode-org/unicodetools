@@ -8,10 +8,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 import org.unicode.jsp.Subheader;
@@ -19,8 +19,8 @@ import org.unicode.jsp.Typology;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.PrettyPrinter;
+import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;

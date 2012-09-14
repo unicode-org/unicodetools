@@ -59,12 +59,12 @@ import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.CollectionUtilities;
-import com.ibm.icu.dev.test.util.Relation;
-import com.ibm.icu.dev.test.util.TransliteratorUtilities;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.dev.util.TransliteratorUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Differ;
 import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.UTF16;

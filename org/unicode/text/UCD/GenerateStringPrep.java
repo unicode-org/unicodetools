@@ -17,11 +17,11 @@ import java.util.TreeSet;
 import org.unicode.text.UCD.TestData.RegexMatcher;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.CollectionUtilities;
-import com.ibm.icu.dev.test.util.TransliteratorUtilities;
-import com.ibm.icu.dev.test.util.UnicodeLabel;
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.TransliteratorUtilities;
+import com.ibm.icu.dev.util.UnicodeLabel;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;

@@ -20,9 +20,9 @@ import org.unicode.cldr.util.With;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.CollectionUtilities;
-import com.ibm.icu.dev.test.util.Relation;
+import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;

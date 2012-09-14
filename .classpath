@@ -2,10 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/cldr-tools/libs/icu4j.jar"/>
-	<classpathentry kind="lib" path="/cldr-tools/libs/utilities.jar"/>
+	<classpathentry kind="lib" path="/cldr-tools/libs/icu4j.jar" sourcepath="/cldr-tools/libs/icu4j-src.jar"/>
+	<classpathentry kind="lib" path="/cldr-tools/libs/utilities.jar" sourcepath="/cldr-tools/libs/utilities-src.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/cldr-tools"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/UnicodeJsps"/>
-	<classpathentry kind="lib" path="/Applications/eclipse-indigo/plugins/org.apache.ant_1.8.2.v20120109-1030/lib/ant-junit4.jar"/>
+	<classpathentry kind="lib" path="C:/ant/1.8.3/lib/ant-junit4.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

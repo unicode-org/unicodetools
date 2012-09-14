@@ -3,8 +3,8 @@ package org.unicode.props;
 import org.unicode.cldr.util.Timer;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeProperty;
 
 public class CheckXmlProperties {
     static final boolean LONG_TEST = true;

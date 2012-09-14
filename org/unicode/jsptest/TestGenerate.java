@@ -16,10 +16,10 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.UnicodeLabel;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodePropertySymbolTable;
+import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.UnicodeLabel;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodePropertySymbolTable;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.Normalizer;

@@ -8,7 +8,7 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 
-import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.util.UnicodeProperty;
 
 public class CharsByAgeAndCategory {
     public static void main(String[] args) {

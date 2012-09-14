@@ -19,8 +19,8 @@ import java.util.Map;
 
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.UnicodeProperty;
 
 public class TestNameUniqueness implements UCD_Types {
     

@@ -19,9 +19,9 @@ import java.util.TreeSet;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.Relation;
-import com.ibm.icu.dev.test.util.Tabber;
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.dev.util.Tabber;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.IterableComparator;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer;
@@ -218,7 +218,7 @@ public class ComparePinyin {
       EnumSet<PinyinSource> set = pinyinToSource.get(pinyin);
       buffer.append(pinyin).append("\t");
       for (PinyinSource x : PinyinSource.values()) {
-        buffer.append(set.contains(x) ? x : "‑");
+        buffer.append(set.contains(x) ? x : "â€‘");
       }
       buffer.append("");
     }
@@ -258,7 +258,7 @@ public class ComparePinyin {
 
   private static void printItems(List<HanInfo> buckets, UnihanPinyin unihanPinyin) {
     int bad = 0;
-    String bestPinyin = "ā";
+    String bestPinyin = "Ä�";
     for (int i = 0; i < buckets.size(); ++i) {
       HanInfo row = buckets.get(i);
       int localDistance = getLocalDistance(buckets, i);
@@ -357,7 +357,7 @@ public class ComparePinyin {
   enum PinyinSource {l, x, p, m, t, s};
 
   static class UnihanPinyin {
-    // kHanyuPinyin, space, 10297.260: qīn,qìn,qǐn, [a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]+(,[a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]
+    // kHanyuPinyin, space, 10297.260: qÄ«n,qÃ¬n,qÇ�n, [a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]+(,[a-z\x{FC}\x{300}-\x{302}\x{304}\x{308}\x{30C}]
     // kMandarin, space,  [A-Z\x{308}]+[1-5] // 3475=HAN4 JI2 JIE2 ZHA3 ZI2
     // kHanyuPinlu, space, [a-z\x{308}]+[1-5]\([0-9]+\) 4E0A=shang4(12308) shang5(392)
 
@@ -438,7 +438,7 @@ public class ComparePinyin {
         String[] line = {"", "", "", "", "", "", "", ""};
         Map<String,Integer> groupToIndex = new HashMap();
         int k = 3;
-        for (String item : "zuō zuó zuǒ zuò zuo".split("\\s+")) {
+        for (String item : "zuÅ� zuÃ³ zuÇ’ zuÃ² zuo".split("\\s+")) {
           groupToIndex.put(accents.transform(item), k++);
         }
                 
@@ -504,7 +504,7 @@ public class ComparePinyin {
     static Transform<String,String> accents = Transliterator.getInstance("nfkd; [^[:m:]-[\u0308]] remove; nfc");
 
     static UnicodeSet INITIALS = new UnicodeSet("[b c {ch} d f g h j k l m n p q r s {sh} t w x y z {zh}]").freeze();
-    static UnicodeSet FINALS = new UnicodeSet("[a {ai} {an} {ang} {ao} e {ei} {en} {eng} {er} i {ia} {ian} {iang} {iao} {ie} {in} {ing} {iong} {iu} o {ong} {ou} u {ua} {uai} {uan} {uang} {ue} {ui} {un} {uo} ü {üe}]").freeze();
+    static UnicodeSet FINALS = new UnicodeSet("[a {ai} {an} {ang} {ao} e {ei} {en} {eng} {er} i {ia} {ian} {iang} {iao} {ie} {in} {ing} {iong} {iu} o {ong} {ou} u {ua} {uai} {uan} {uang} {ue} {ui} {un} {uo} Ã¼ {Ã¼e}]").freeze();
 
     boolean validPinyin(String pinyin) {
       String base = noaccents.transform(pinyin);
@@ -518,7 +518,7 @@ public class ComparePinyin {
     }
     
     void addAll(String han, String original, PinyinSource pinyin, String... pinyinList) {
-      // 𠮽
+      // ð ®½
       if (pinyinList.length == 0) {
         throw new IllegalArgumentException();
       }

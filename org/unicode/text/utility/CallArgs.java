@@ -3,7 +3,7 @@ package org.unicode.text.utility;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.util.BagFormatter;
 
 public class CallArgs {
     static BagFormatter bf = new BagFormatter();

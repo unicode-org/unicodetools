@@ -1,8 +1,8 @@
 package org.unicode.idna;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.test.util.UnicodeTransform;
-import com.ibm.icu.dev.test.util.UnicodeTransform.Type;
+import com.ibm.icu.dev.util.UnicodeTransform;
+import com.ibm.icu.dev.util.UnicodeTransform.Type;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestTransform extends TestFmwk{

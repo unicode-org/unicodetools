@@ -10,8 +10,8 @@ import java.util.TreeSet;
 
 import org.unicode.props.IndexUnicodeProperties.PropertyStatus;
 
-import com.ibm.icu.dev.test.util.CollectionUtilities;
-import com.ibm.icu.dev.test.util.Relation;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.Relation;
 
 public class ShowMetaproperties {
     public static void main(String[] args) {

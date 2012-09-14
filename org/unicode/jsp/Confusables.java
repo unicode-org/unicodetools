@@ -13,9 +13,9 @@ import org.unicode.jsp.AlternateIterator.Builder;
 import org.unicode.jsp.ScriptTester.CompatibilityLevel;
 import org.unicode.jsp.ScriptTester.ScriptSpecials;
 
-import com.ibm.icu.dev.test.util.CollectionUtilities;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.XEquivalenceClass;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UTF16;

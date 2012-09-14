@@ -12,7 +12,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.With;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.Relation;
+import com.ibm.icu.dev.util.Relation;
 
 public class CheckUnihan {
     

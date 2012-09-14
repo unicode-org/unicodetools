@@ -3,7 +3,7 @@ import java.io.PrintWriter;
 
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.PrettyPrinter;
+import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

@@ -23,8 +23,8 @@ import org.unicode.text.utility.Utility;
 
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.test.util.Relation;
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.UTF16;

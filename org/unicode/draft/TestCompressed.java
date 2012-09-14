@@ -18,9 +18,9 @@ import org.unicode.draft.UnicodeDataInput.StringReader;
 import org.unicode.draft.UnicodeDataOutput.StringWriter;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.test.util.ICUPropertyFactory;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.util.ICUPropertyFactory;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;

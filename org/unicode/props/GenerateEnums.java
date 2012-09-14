@@ -23,7 +23,7 @@ import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.util.BagFormatter;
 
 public class GenerateEnums {
     public static final String SOURCE_DIR = Utility.WORKSPACE_DIRECTORY + "DATA/UCD/6.2.0-Update";

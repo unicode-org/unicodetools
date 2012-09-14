@@ -35,12 +35,12 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD_Types;
 
-import com.ibm.icu.dev.test.util.DataInputCompressor;
-import com.ibm.icu.dev.test.util.DataOutputCompressor;
-import com.ibm.icu.dev.test.util.ICUPropertyFactory;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodeMapIterator;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.util.DataInputCompressor;
+import com.ibm.icu.dev.util.DataOutputCompressor;
+import com.ibm.icu.dev.util.ICUPropertyFactory;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMapIterator;
+import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;

@@ -11,7 +11,7 @@ import org.unicode.text.utility.Utility;
 import sun.text.normalizer.UTF16;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UnicodeSet;

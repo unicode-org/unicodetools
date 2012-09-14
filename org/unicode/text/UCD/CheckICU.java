@@ -12,10 +12,10 @@ import java.util.TreeSet;
 
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.ICUPropertyFactory;
-import com.ibm.icu.dev.test.util.UnicodeLabel;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
+import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.ICUPropertyFactory;
+import com.ibm.icu.dev.util.UnicodeLabel;
+import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;

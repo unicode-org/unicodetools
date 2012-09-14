@@ -34,10 +34,10 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.CollectionUtilities;
-import com.ibm.icu.dev.test.util.Relation;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.XEquivalenceClass;
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.impl.Differ;
 import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Row;

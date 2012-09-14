@@ -1,6 +1,6 @@
 package org.unicode.idna;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 

@@ -2,7 +2,7 @@ package org.unicode.props;
 
 import org.unicode.text.UCD.Default;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap;
 
 public class PropertyDemo {
 public static void main(String[] args) {

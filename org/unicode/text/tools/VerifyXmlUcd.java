@@ -20,9 +20,9 @@ import org.unicode.cldr.util.XPathParts;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
-import com.ibm.icu.dev.test.util.ICUPropertyFactory;
-import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.UnicodeProperty.Factory;
+import com.ibm.icu.dev.util.ICUPropertyFactory;
+import com.ibm.icu.dev.util.UnicodeProperty;
+import com.ibm.icu.dev.util.UnicodeProperty.Factory;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
