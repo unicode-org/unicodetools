@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.text.UCD.Default;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.text.StringTransform;
 
 public class AddCharacterNames {

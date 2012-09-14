@@ -3,7 +3,7 @@ package org.unicode.draft;
 import java.io.DataInput;
 import java.io.IOException;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 
 public class UnicodeDataInput {

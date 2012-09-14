@@ -17,8 +17,8 @@ import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
 
-import com.ibm.icu.dev.test.util.UnicodeProperty;
-import com.ibm.icu.dev.test.util.UnicodeProperty.RegexMatcher;
+import com.ibm.icu.dev.util.UnicodeProperty;
+import com.ibm.icu.dev.util.UnicodeProperty.RegexMatcher;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.impl.Row.R4;

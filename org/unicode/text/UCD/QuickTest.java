@@ -33,12 +33,12 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.Counter;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
-import com.ibm.icu.dev.test.util.CaseIterator;
-import com.ibm.icu.dev.test.util.PrettyPrinter;
-import com.ibm.icu.dev.test.util.Tabber;
-import com.ibm.icu.dev.test.util.UnicodeMap;
-import com.ibm.icu.dev.test.util.UnicodeProperty.UnicodeMapProperty;
+import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.CaseIterator;
+import com.ibm.icu.dev.util.PrettyPrinter;
+import com.ibm.icu.dev.util.Tabber;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;

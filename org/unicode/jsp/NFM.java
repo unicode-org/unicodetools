@@ -2,7 +2,7 @@ package org.unicode.jsp;
 
 import java.util.regex.Pattern;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 
 public class NFM {

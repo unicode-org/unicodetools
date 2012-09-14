@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.idna.Idna2008.Idna2008Type;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 
 public class Idna2008t extends Idna {

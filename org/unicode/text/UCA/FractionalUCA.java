@@ -29,7 +29,7 @@ import org.unicode.text.utility.OldEquivalenceClass;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.CollectionUtilities;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.ImplicitCEGenerator;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.text.CanonicalIterator;

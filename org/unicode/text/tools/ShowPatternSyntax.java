@@ -2,7 +2,7 @@ package org.unicode.text.tools;
 
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.text.UnicodeSet;
 
 public class ShowPatternSyntax {

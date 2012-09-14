@@ -15,8 +15,8 @@ import org.unicode.idna.Idna2008;
 import org.unicode.idna.Uts46;
 import org.unicode.jsp.UnicodeUtilities.CodePointShower;
 
-import com.ibm.icu.dev.test.util.BNF;
-import com.ibm.icu.dev.test.util.Quoter;
+import com.ibm.icu.dev.util.BNF;
+import com.ibm.icu.dev.util.Quoter;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Normalizer;

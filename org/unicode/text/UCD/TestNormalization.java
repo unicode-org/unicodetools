@@ -26,7 +26,7 @@ import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 

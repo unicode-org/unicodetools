@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.util.BagFormatter;
+import com.ibm.icu.dev.util.BagFormatter;
 
 public class GenerateUnihanCollatorFiles {
 

@@ -21,7 +21,7 @@ import org.unicode.jsp.FileUtilities.SemiFileReader;
 
 import sun.text.normalizer.UTF16;
 
-import com.ibm.icu.dev.test.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UnicodeSet;
