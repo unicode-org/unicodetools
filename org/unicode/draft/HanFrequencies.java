@@ -60,7 +60,7 @@ public class HanFrequencies {
             rank.put(parts[0], ++count);
         }
         freq.close();
-        BufferedReader readings = BagFormatter.openUTF8Reader(Utility.WORKSPACE_DIRECTORY + "DATA/frequency", "han-reading-diff.txt");
+        BufferedReader readings = BagFormatter.openUTF8Reader(Utility.DATA_DIRECTORY + "/frequency", "han-reading-diff.txt");
         Set<R2<Integer, Map<ReadingRows,String>>> ordered = new TreeSet<R2<Integer,Map<ReadingRows,String>>>();
         while (true) {
             String line = readings.readLine();

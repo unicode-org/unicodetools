@@ -854,9 +854,9 @@ private void showIcuEnums() {
               "fragment = reserved+;\n" +
               "reserved = [[:ascii:][:sc=grek:]&[:alphabetic:]];\n",
             "http://αβγ?huh=hi#there"},
-            {
-                org.unicode.text.utility.Utility.WORKSPACE_DIRECTORY + "cldr/tools/java/org/unicode/cldr/util/data/langtagRegex.txt"
-            }
+//            {
+//                org.unicode.text.utility.Utility.WORKSPACE_DIRECTORY + "cldr/tools/java/org/unicode/cldr/util/data/langtagRegex.txt"
+//            }
     };
     for (int i = 0; i < tests.length; ++i) {
       String test = tests[i][0];

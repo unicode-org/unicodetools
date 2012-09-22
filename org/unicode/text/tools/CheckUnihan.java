@@ -20,7 +20,7 @@ public class CheckUnihan {
         SortedSet<String> props = new TreeSet<String>();
         Relation<String,String> values = Relation.of(new HashMap<String,Set<String>>(), HashSet.class);
         Pattern tabSplitter = Pattern.compile("\t");
-        for (File file : new File(Utility.WORKSPACE_DIRECTORY + "DATA/UCD/6.0.0-Update/Unihan").listFiles()) {
+        for (File file : new File(Utility.UCD_DIRECTORY + "/Unihan").listFiles()) {
             System.out.println(file.getName());
             for (String line : FileUtilities.in(file.getParent(), file.getName())) {
                 if (line.length() == 0 || line.startsWith("#")) {

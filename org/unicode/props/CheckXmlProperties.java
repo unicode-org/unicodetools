@@ -29,7 +29,7 @@ public class CheckXmlProperties {
 
         System.out.println("Loading XML Props");
         timer.start();
-        XMLProperties props = new XMLProperties(Utility.WORKSPACE_DIRECTORY + "DATA/UCD/6.1.0-Update/", INCLUDE_UNIHAN, MAX_LINE_COUNT);
+        XMLProperties props = new XMLProperties(Utility.UCD_DIRECTORY, INCLUDE_UNIHAN, MAX_LINE_COUNT);
         timer.stop();
         System.out.println(timer);
 

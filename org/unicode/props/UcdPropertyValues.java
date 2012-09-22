@@ -340,7 +340,8 @@ public class UcdPropertyValues {
         CCC122("122"),
         CCC129("129"),
         CCC130("130"),
-        CCC133("132"),
+        CCC132("132"),
+        CCC133("133"),
         Attached_Below_Left("200", "ATBL"),
         Attached_Below("202", "ATB"),
         Attached_Above("214", "ATA"),
@@ -472,6 +473,7 @@ public class UcdPropertyValues {
         LV("LV"),
         LVT("LVT"),
         Prepend("PP"),
+        Regional_Indicator("RI"),
         SpacingMark("SM"),
         T("T"),
         V("V"),
@@ -737,6 +739,7 @@ public class UcdPropertyValues {
         Postfix_Numeric("PO"),
         Prefix_Numeric("PR"),
         Quotation("QU"),
+        Regional_Indicator("RI"),
         Complex_Context("SA"),
         Surrogate("SG"),
         Space("SP"),
@@ -985,6 +988,7 @@ public class UcdPropertyValues {
         MidNum("MN"),
         Newline("NL"),
         Numeric("NU"),
+        Regional_Indicator("RI"),
         Other("XX");
         private final PropertyNames<Word_Break_Values> names;
         private Word_Break_Values (String shortName, String...otherNames) {

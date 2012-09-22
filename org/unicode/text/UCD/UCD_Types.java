@@ -19,7 +19,7 @@ public interface UCD_Types {
 
   static final byte BINARY_FORMAT = 21; // bumped if binary format of UCD changes. Forces rebuild   
 
-  public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("dir", "../DATA/")) + "/";
+  public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("UCD_DIR", "../DATA/")) + "/";
   public static final String UCD_DIR = BASE_DIR + "UCD/";
 
   public static final String GEN_DIR = Utility.fixFileName(BASE_DIR + "../Generated/") + "/";
