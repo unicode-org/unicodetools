@@ -82,7 +82,7 @@ public class Combining {
       CharacterSamples indexChars = new CharacterSamples(language);
 
       String cldrLanguage = ExemplarInfo.getCldrLanguage(language);
-      Counter<String> counter = CharacterFrequency.getCharCounter(language);
+      Counter<Integer> counter = CharacterFrequency.getCodePointCounter(language, true);
       long total = counter.getTotal();
 
       String htmlFilename = language + ".html";

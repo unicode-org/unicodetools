@@ -229,7 +229,7 @@ public class CheckProperties {
         }
 
         Set<String> latestFiles = latest.fileNames;
-        File dir = new File(Utility.WORKSPACE_DIRECTORY + "DATA/UCD/6.1.0-Update");
+        File dir = new File(Utility.UCD_DIRECTORY);
         List<File> result = new ArrayList<File>();
         checkFiles(latestFiles, dir, result);
         showInfo("Files Not Read", result);

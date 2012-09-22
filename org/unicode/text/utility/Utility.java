@@ -47,8 +47,15 @@ import com.ibm.icu.text.UnicodeSet;
 
 public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
-    public static final String WORKSPACE_DIRECTORY = "/Users/markdavis/Documents/indigo/";
-    public static final String UNICODE_DRAFT_DIRECTORY = Utility.WORKSPACE_DIRECTORY + "unicode-draft/";
+    public static final String UCD_DIRECTORY = UCD_DIR;
+    //public static final String WORKSPACE_DIRECTORY = "/Users/markdavis/Documents/indigo/";
+    public static final String DATA_DIRECTORY = UCD_DIR + "/../";
+    public static final String GENERATED_DIRECTORY = DATA_DIRECTORY + "/Generated/";
+    
+    // TODO make this automatic
+    public static final String UNICODETOOLS_DIRECTORY = "/Users/markdavis/workspace/unicodetools/";
+    
+    public static final String UNICODE_DRAFT_DIRECTORY = "/Users/markdavis/workspace/unicode-draft/";
     
   private static final boolean SHOW_SEARCH_PATH = false;
 

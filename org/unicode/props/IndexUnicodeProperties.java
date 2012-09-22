@@ -987,7 +987,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return property2UnicodeMap.get(prop2);
     }
 
-    static final String CACHE_DIR = Utility.WORKSPACE_DIRECTORY + "Generated/BIN/";
+    static final String CACHE_DIR = Utility.GEN_DIR + "BIN/";
     
     private void storeCachedMap(UcdProperty prop2, UnicodeMap<String> data) {
         try {

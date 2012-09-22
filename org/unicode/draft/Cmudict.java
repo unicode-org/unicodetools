@@ -28,7 +28,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class Cmudict {
-    static final String BASE_DIR = org.unicode.text.utility.Utility.WORKSPACE_DIRECTORY + "DATA/translit/";
+    static final String BASE_DIR = org.unicode.text.utility.Utility.DATA_DIRECTORY + "/translit/";
     static final Collator col = Collator.getInstance(ULocale.ROOT);
     //static final StressFixer stressFixer = new StressFixer();
     static final Transliterator arpabet = getTransliteratorFromFile("arpabet-ipa", BASE_DIR, "arpabet-ipa.txt");
@@ -152,7 +152,7 @@ public class Cmudict {
             System.out.println("Missing?\t" + entry);
         }
 
-        PrintWriter out = BagFormatter.openUTF8Writer(Utility.WORKSPACE_DIRECTORY + "Generated/translit/", "cmudict.txt") ;
+        PrintWriter out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "cmudict.txt") ;
         for (Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
             String word = entry.getKey();
             Set<String> values = entry.getValue();
@@ -160,7 +160,7 @@ public class Cmudict {
         }
         out.close();
 
-        out = BagFormatter.openUTF8Writer(Utility.WORKSPACE_DIRECTORY + "Generated/translit/", "homonyms.txt") ;
+        out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "homonyms.txt") ;
         Set<String> temp = new TreeSet(col);
         for (Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
             Set<String> values = entry.getValue();
@@ -208,7 +208,7 @@ public class Cmudict {
             reverseIpa.put(reversedRespelledKey, ipa);
         }
 
-        out = BagFormatter.openUTF8Writer(Utility.WORKSPACE_DIRECTORY + "Generated/translit/", "reversed.txt");
+        out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "reversed.txt");
         for (Entry<String, String> reversed_normal : reverseIpa.entrySet()) {
             String original = reversed_normal.getValue();
             out.println(CollectionUtilities.join(fromIpa.get(original), ", ") + "\t{" 
