@@ -178,7 +178,7 @@ public class MakeNamesChart {
                   + line
                   + "</tr></td>");
             } else if (line.startsWith("@")) {
-              System.err.println("Can't handle line: " + i + "\t" + line);
+              System.err.println("*** Can't handle line: " + i + "\t" + line);
             } else {
 							line = line.trim();
 							out.println("<tr><td colspan='4'><h2>"
@@ -219,6 +219,9 @@ public class MakeNamesChart {
 							        + "</td><td>"
 							        + maybeNameStyle(showTextConvertingHex(body, firstChar != '='), firstChar == '=')
 							        + "</td></tr>");
+						} else if (line.startsWith(";")) {
+							System.err.println("*** Ignoring:" + line);
+							continue; 
 						} else {
 							finishItem(out);
 							lineParts = line.split("\t");

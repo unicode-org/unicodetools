@@ -23,7 +23,7 @@ public class CheckXmlProperties {
 
         System.out.println("Loading Index Props");
         timer.start();
-        IndexUnicodeProperties iup = IndexUnicodeProperties.make("6.1.0");
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make("6.2.0");
         timer.stop();
         System.out.println(timer);
 

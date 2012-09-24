@@ -709,7 +709,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     private IndexUnicodeProperties(String ucdVersion2) {
         ucdVersion = ucdVersion2;
-        oldVersion = ucdVersion2.compareTo("6.1.0") < 0;
+        oldVersion = ucdVersion2.compareTo("6.2.0") < 0;
     }
 
     public static final IndexUnicodeProperties make(String ucdVersion) {
