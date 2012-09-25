@@ -16,6 +16,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.UCA.WriteCharts;
 import org.unicode.text.utility.Utility;
 
@@ -28,23 +29,23 @@ import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
 
 public class MakeNamesChart {
-	
+
 	static int lastCodePoint = -1;
 	static boolean lastCodePointIsOld = false;
 	static int lastDecompType = UCD.NONE;
-	
+
 	static final String chartPrefix = "c_";
 	static final String namePrefix = "n_";
-	
+
 	static UnicodeSet skipChars;// = new UnicodeSet("[[:gc=cn:]-[:noncharactercodepoint:]]");
 	static UnicodeSet rtl;// = new UnicodeSet("[[:bidiclass=r:][:bidiclass=al:]]");
 	static UnicodeSet usePicture;// = new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
-	
+
 	static UCD lastUCDVersion;
 
 	public static void main(String[] args) throws Exception {
-//	  checkFile();
-//	  if (true) return;
+		//	  checkFile();
+		//	  if (true) return;
 		//ConvertUCD.main(new String[]{"5.0.0"});
 		BlockInfo blockInfo = new BlockInfo(Default.ucdVersion(), "NamesList");
 
@@ -57,13 +58,13 @@ public class MakeNamesChart {
 		rtl = new UnicodeSet(up.getSet("bidiclass=r")).addAll(up.getSet("bidiclass=al"));// "[[:bidiclass=r:][:bidiclass=al:]]");
 		usePicture = new UnicodeSet().addAll(up.getSet("defaultignorablecodepoint=Yes"));// new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
 		isWhiteSpace = new UnicodeSet(up.getSet("whitespace=Yes"));
-		
-    String folder = "/charts/nameslist/";
 
-    Utility.copyTextFile("org/unicode/text/UCA/nameslist_index.html", Utility.UTF8, folder + "index.html");
-    Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");
-    Utility.copyTextFile("org/unicode/text/UCA/nameslist_help.html", Utility.UTF8, folder + "help.html");
-    Utility.copyTextFile("org/unicode/text/UCA/nameslist.css", Utility.LATIN1, folder + "nameslist.css");
+		String folder = "/charts/nameslist/";
+
+		Utility.copyTextFile("org/unicode/text/UCA/nameslist_index.html", Utility.UTF8, folder + "index.html");
+		Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");
+		Utility.copyTextFile("org/unicode/text/UCA/nameslist_help.html", Utility.UTF8, folder + "help.html");
+		Utility.copyTextFile("org/unicode/text/UCA/nameslist.css", Utility.LATIN1, folder + "nameslist.css");
 
 		List nameList = new ArrayList();
 		ArrayList lines = new ArrayList();
@@ -78,7 +79,7 @@ public class MakeNamesChart {
 			if (firstLine.startsWith("@@@") || firstLine.startsWith("; charset=UTF-8")) continue;
 
 			if (firstLine.contains("dame, Dame")) {
-			    firstLine = firstLine;
+				firstLine = firstLine;
 			}
 			String[] lineParts = firstLine.split("\t");
 			String fileName = lineParts[1] + ".html";
@@ -87,18 +88,16 @@ public class MakeNamesChart {
 			System.out.println("file: " + chartPrefix + fileName);
 			//PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", chartPrefix + fileName);
 			PrintWriter out = Utility.openPrintWriter("charts/nameslist/" + chartPrefix + fileName, Utility.UTF8_WINDOWS);
-			out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>" +
-					TransliteratorUtilities.toHTML.transliterate(getHeading(lineParts[2])) +
-					"</title><link rel='stylesheet' type='text/css' href='charts.css'>" +
-					"<base target='names'></head><body>");
+			String heading = TransliteratorUtilities.toHTML.transliterate(getHeading(lineParts[2]));
+			out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>" + heading +
+					"</title>\n<link rel='stylesheet' type='text/css' href='charts.css'>\n" +
+					"<base target='names'></head>\n<body>");
 
 			// header
-			out.println("<table class='headerTable'><tr><td class='headerLeft'>" +
-					lineParts[1] + 
-					" <a href='help.html'>help</a></td><td class='headerCenter'>" +				
-					getHeading(lineParts[2]) +
-					"</td><td class='headerRight'><a href='mainList.html'>index</a> " +
-					lineParts[3] +
+			out.println("<table class='headerTable'>" +
+					"<tr><td class='headerLeft'>" + lineParts[1] + 
+					"</td><td class='headerCenter'>" + heading +
+					"</td><td class='headerRight'>" + lineParts[3] +
 					"</td></tr></table>");
 
 			if ("Unassigned".equals(lineParts[2])) {
@@ -110,7 +109,7 @@ public class MakeNamesChart {
 				String line = (String)lines.get(i);
 				int cp1 = line.charAt(0);
 				if (cp1 == ';') {
-				    continue;
+					continue;
 				}
 				if (cp1 != '@' && cp1 != '\t') {
 					int cp = Integer.parseInt(line.split("\t")[0],16);
@@ -153,10 +152,10 @@ public class MakeNamesChart {
 			}
 			out.close();
 			//out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", namePrefix + fileName);
-	    out = Utility.openPrintWriter("charts/nameslist/" + namePrefix + fileName, Utility.UTF8_WINDOWS);
+			out = Utility.openPrintWriter("charts/nameslist/" + namePrefix + fileName, Utility.UTF8_WINDOWS);
 			out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
 					"<link rel='stylesheet' type='text/css' href='nameslist.css'></head><body>");
-
+			out.println("<h1>" + heading + "</h1>");
 			// now do the characters
 			boolean inTable = false;
 			boolean firstInTable = true;
@@ -165,21 +164,21 @@ public class MakeNamesChart {
 				try {
 					if (line.startsWith("@")) {
 						finishItem(out);
-//						if (inTable) {
-//							//out.println("</table>");
-//							inTable = false;
-//						}
+						//						if (inTable) {
+						//							//out.println("</table>");
+						//							inTable = false;
+						//						}
 						line = line.substring(1);
-            if (line.equals("@+")) {
-              // skip
-            } else if (line.startsWith("+")) {
-              line = line.substring(1).trim();
-              out.println("<tr><td class='comment' colspan='4'>"
-                  + line
-                  + "</tr></td>");
-            } else if (line.startsWith("@")) {
-              System.err.println("*** Can't handle line: " + i + "\t" + line);
-            } else {
+						if (line.equals("@+")) {
+							// skip
+						} else if (line.startsWith("+")) {
+							line = line.substring(1).trim();
+							out.println("<tr><td class='comment' colspan='4'>"
+									+ line
+									+ "</tr></td>");
+						} else if (line.startsWith("@")) {
+							System.err.println("*** Can't handle line: " + i + "\t" + line);
+						} else {
 							line = line.trim();
 							out.println("<tr><td colspan='4'><h2>"
 									+ line
@@ -203,22 +202,22 @@ public class MakeNamesChart {
 							case ':': body = checkCanonical(lastCodePoint, body); break;
 							case '#': body = checkCompatibility(lastCodePoint, body); break;
 							case 'x': body = getOther(body); break;
-                            case '=': break;
-                            case ';': continue;
-                            case '~': continue;
+							case '=': break;
+							case ';': continue;
+							case '~': continue;
 							default: throw new IllegalArgumentException("Huh? " + body);
 							}
 							char firstDisplayChar = body.charAt(0);
 							body = body.substring(1).trim();
 							out.println("<tr><td" 
-							        + ">\u00A0</td>"
-							        + "<td class='char'" 
-							        + ">\u00A0</td>"
-							        + "<td class='c'>"
-							        + firstDisplayChar
-							        + "</td><td>"
-							        + maybeNameStyle(showTextConvertingHex(body, firstChar != '='), firstChar == '=')
-							        + "</td></tr>");
+									+ ">\u00A0</td>"
+									+ "<td class='char'" 
+									+ ">\u00A0</td>"
+									+ "<td class='c'>"
+									+ firstDisplayChar
+									+ "</td><td>"
+									+ maybeNameStyle(showTextConvertingHex(body, firstChar != '='), firstChar == '=')
+									+ "</td></tr>");
 						} else if (line.startsWith(";")) {
 							System.err.println("*** Ignoring:" + line);
 							continue; 
@@ -230,15 +229,15 @@ public class MakeNamesChart {
 							boolean lastCodePointIsNew = isNew(lastCodePoint);
 							if (lastCodePointIsNew) nameListNew.set(nameList.size()-1, true);
 							out.println("<tr><td" 
-							        + (lastCodePointIsNew ? " class='new'" : "")
-							        + (firstInTable ? " width='1pt'" : "")
-							        + "><code><a name='" + x + "'>" + x + "</a></code></td>"
-							        + "<td class='c'" + (rtl.contains(lastCodePoint) ? " dir='rtl'" : "")
-							        + ">\u00A0"
-							        + showChar(lastCodePoint, true) + "\u00A0</td>"
-							        + "<td colSpan='2'"
-							        + (lastCodePointIsNew ? " class='new'" : "") + ">"
-							        + nameStyle(showTextConvertingHex(lineParts[1], false)) + "</td></tr>");
+									+ (lastCodePointIsNew ? " class='new'" : "")
+									+ (firstInTable ? " width='1pt'" : "")
+									+ "><code><a name='" + x + "'>" + x + "</a></code></td>"
+									+ "<td class='c'" + (rtl.contains(lastCodePoint) ? " dir='rtl'" : "")
+									+ ">\u00A0"
+									+ showChar(lastCodePoint, true) + "\u00A0</td>"
+									+ "<td colSpan='2'"
+									+ (lastCodePointIsNew ? " class='new'" : "") + ">"
+									+ nameStyle(showTextConvertingHex(lineParts[1], false)) + "</td></tr>");
 							lastDecompType = Default.ucd().getDecompositionType(lastCodePoint);
 						}
 						firstInTable = false;
@@ -249,15 +248,16 @@ public class MakeNamesChart {
 				}
 			}
 			finishItem(out);
+			out.println("</table></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></body>");
 			out.close();
 		}
 		blockInfo.in.close();
 		// PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", "mainList.html");
 		PrintWriter out = Utility.openPrintWriter("charts/nameslist/" + "mainList.html", Utility.UTF8_WINDOWS);
-
-		out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
-				"<title>Main List</title><link rel='stylesheet' type='text/css' href='nameslist.css'>" +
-				"<base target='chart'></head><body><table>");
+		FileUtilities.appendFile(WriteCharts.class, "nameslist_chart_header.html", out);
+		//		out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
+		//				"<title>Main List</title><link rel='stylesheet' type='text/css' href='nameslist.css'>" +
+		//				"<base target='chart'></head><body><table>");
 		for (int i = 0; i < nameList.size(); ++i) {
 			String line = (String) nameList.get(i);
 			String[] lineParts = line.split("\t");
@@ -268,8 +268,8 @@ public class MakeNamesChart {
 					+ "><a href='" + chartPrefix + fileName + "'>" + getHeading(lineParts[2]) + "</a></td><td><code>" +
 					lineParts[3] +"</code></td></tr>");
 		}
-    out.println("</table>");
-		WriteCharts.closeIndexFile(out, "", WriteCharts.NAMELIST, false);
+		out.println("</table>");
+		WriteCharts.closeIndexFile(out, "", WriteCharts.NAMELIST, true);
 
 		//out.close();
 		BagFormatter bf = new BagFormatter();
@@ -278,39 +278,39 @@ public class MakeNamesChart {
 		showNameDifferences(hasNameCan, hasNoNameCan);
 		System.out.println("Name differences: Compatibility");
 		showNameDifferences(hasNameComp, hasNoNameComp);
-//		System.out.println("Characters with names in decomps: " + hasName.toPattern(true));
-//		System.out.println("Characters without names in decomps: " + hasNoName.toPattern(true));
-//		System.out.println("Characters sometimes with, sometimes without names in decomps: " + both.toPattern(true));
+		//		System.out.println("Characters with names in decomps: " + hasName.toPattern(true));
+		//		System.out.println("Characters without names in decomps: " + hasNoName.toPattern(true));
+		//		System.out.println("Characters sometimes with, sometimes without names in decomps: " + both.toPattern(true));
 		System.out.println("Done");
 	}
 
 	private static void checkFile() throws IOException {
-    BufferedReader in = Utility.openUnicodeFile("NamesList", Default.ucdVersion(), true, Utility.LATIN1_WINDOWS);
-    Set<LineMatcher> missing = new TreeSet(EnumSet.allOf(LineMatcher.class));
-    Map<LineMatcher,String> examples = new TreeMap();
-    while (true) {
-      String line = in.readLine();
-      if (line == null) {
-        break;
-      }
-      System.out.println(line);
-      LineMatcher lineMatcher = LineMatcher.match(line);
-      if (lineMatcher == null) {
-        System.out.println("\t*** Failed match with: <" + line + ">");
-      } else {
-        System.out.println("\t" + lineMatcher);
-        missing.remove(lineMatcher);
-        examples.put(lineMatcher, lineMatcher + " <= " + line);
-      }
-    }
-    System.out.println("Missing: " + missing);
-    for (LineMatcher lineMatcher : examples.keySet()) {
-      System.out.println(examples.get(lineMatcher));
-    }
-    in.close();
-  }
+		BufferedReader in = Utility.openUnicodeFile("NamesList", Default.ucdVersion(), true, Utility.LATIN1_WINDOWS);
+		Set<LineMatcher> missing = new TreeSet(EnumSet.allOf(LineMatcher.class));
+		Map<LineMatcher,String> examples = new TreeMap();
+		while (true) {
+			String line = in.readLine();
+			if (line == null) {
+				break;
+			}
+			System.out.println(line);
+			LineMatcher lineMatcher = LineMatcher.match(line);
+			if (lineMatcher == null) {
+				System.out.println("\t*** Failed match with: <" + line + ">");
+			} else {
+				System.out.println("\t" + lineMatcher);
+				missing.remove(lineMatcher);
+				examples.put(lineMatcher, lineMatcher + " <= " + line);
+			}
+		}
+		System.out.println("Missing: " + missing);
+		for (LineMatcher lineMatcher : examples.keySet()) {
+			System.out.println(examples.get(lineMatcher));
+		}
+		in.close();
+	}
 
-  private static boolean isNew(int codepoint) {
+	private static boolean isNew(int codepoint) {
 		return Default.ucd().isAllocated(codepoint) && !lastUCDVersion.isAllocated(codepoint);
 	}
 
@@ -328,16 +328,16 @@ public class MakeNamesChart {
 		}
 		System.out.println("Count: " + both.size());
 	}
-	
-//	static TestIdentifiers ti;
-//	static {
-//		try {
-//			ti = new TestIdentifiers("L");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+
+	//	static TestIdentifiers ti;
+	//	static {
+	//		try {
+	//			ti = new TestIdentifiers("L");
+	//		} catch (IOException e) {
+	//			// TODO Auto-generated catch block
+	//			e.printStackTrace();
+	//		}
+	//	}
 
 	private static void finishItem(PrintWriter out) {
 		if (lastCodePoint < 0) return;
@@ -349,55 +349,55 @@ public class MakeNamesChart {
 		showForm(out, str, upper, null, Default.ucd().getCase(str,UCD.FULL,UCD.TITLE), "\u2195");
 		String lower = showForm(out, str, null, null, Default.ucd().getCase(str,UCD.FULL,UCD.LOWER), "\u2193");
 		showForm(out, lower, null, null, Default.ucd().getCase(str,UCD.FULL,UCD.FOLD), "\u2194");
-		
+
 		String dc = Default.ucd().getDecompositionMapping(lastCodePoint);
 		String nfd = showForm(out, dc, str, null, Default.nfd().normalize(lastCodePoint), "\u21DB");
 		//String nfc = showForm(out, dc, null, Default.nfc().normalize(lastCodePoint), "\u21DB");
 		String nfkd = showForm(out, dc, str, nfd, Default.nfkd().normalize(lastCodePoint), "\u21DD");
-		
-//		if (nfkd.equals(str)) {
-//			Set s = ti.getConfusables(lastCodePoint, "MA");
-//			if (s.size() > 1) {
-//				sortedSet.clear();
-//				for (Iterator it = s.iterator(); it.hasNext();) {
-//					sortedSet.add(Default.nfkd().normalize((String)it.next()));
-//				}
-//				sortedSet.remove(nfkd); // remove me
-//				for (Iterator it = sortedSet.iterator(); it.hasNext();) {
-//					String other = (String)it.next();
-//					if (nfkd.equals(Default.nfkd().normalize(other))) continue;
-//					out.println("<tr><td>\u00A0</td><td>\u00A0</td><td class='conf'>\u279F\u00A0"
-//							+ showTextConvertingHex(Utility.hex(other, 4, " + "), true)
-//							+ " "
-//							+ Default.ucd().getName(other, UCD.NORMAL, " + ").toLowerCase()
-//							// maybeNameStyle(showTextConvertingHex(upper, firstChar != '='), firstChar == '=')
-//							+ "</td></tr>");
-//				}
-//			}
-//		}
+
+		//		if (nfkd.equals(str)) {
+		//			Set s = ti.getConfusables(lastCodePoint, "MA");
+		//			if (s.size() > 1) {
+		//				sortedSet.clear();
+		//				for (Iterator it = s.iterator(); it.hasNext();) {
+		//					sortedSet.add(Default.nfkd().normalize((String)it.next()));
+		//				}
+		//				sortedSet.remove(nfkd); // remove me
+		//				for (Iterator it = sortedSet.iterator(); it.hasNext();) {
+		//					String other = (String)it.next();
+		//					if (nfkd.equals(Default.nfkd().normalize(other))) continue;
+		//					out.println("<tr><td>\u00A0</td><td>\u00A0</td><td class='conf'>\u279F\u00A0"
+		//							+ showTextConvertingHex(Utility.hex(other, 4, " + "), true)
+		//							+ " "
+		//							+ Default.ucd().getName(other, UCD.NORMAL, " + ").toLowerCase()
+		//							// maybeNameStyle(showTextConvertingHex(upper, firstChar != '='), firstChar == '=')
+		//							+ "</td></tr>");
+		//				}
+		//			}
+		//		}
 		lastCodePoint = -1;
 	}
-	
+
 	static Set sortedSet = new TreeSet(Collator.getInstance(ULocale.ENGLISH));
 
 	private static String showForm(PrintWriter out, String str, String str2, String str3, String transformed, String symbol) {
 		if (!transformed.equals(str) && !transformed.equals(str2) && !transformed.equals(str3)) {
 			out.println("<tr><td>\u00A0</td><td>\u00A0</td><td class='c'>" + symbol + "</td><td>"
-				+ showTextConvertingHex(Utility.hex(transformed, 4, " + "), true)
-				+ (UTF16.countCodePoint(transformed) != 1 ? "" : 
-					" " + Default.ucd().getName(transformed, UCD.NORMAL, " + ").toLowerCase())
-				// maybeNameStyle(showTextConvertingHex(upper, firstChar != '='), firstChar == '=')
-				+ "</td></tr>");
+					+ showTextConvertingHex(Utility.hex(transformed, 4, " + "), true)
+					+ (UTF16.countCodePoint(transformed) != 1 ? "" : 
+						" " + Default.ucd().getName(transformed, UCD.NORMAL, " + ").toLowerCase())
+						// maybeNameStyle(showTextConvertingHex(upper, firstChar != '='), firstChar == '=')
+						+ "</td></tr>");
 		}
 		return transformed;
 	}
-	
+
 	static public String getHeading(String name) {
 		int pos = name.lastIndexOf(" (");
 		if (pos < 0) return name;
 		return name.substring(0, pos);
 	}
-	
+
 	private static String maybeNameStyle(String string, boolean b) {
 		if (b && string.equals(string.toUpperCase(Locale.ENGLISH))) return nameStyle(string);
 		return string;
@@ -414,14 +414,14 @@ public class MakeNamesChart {
 			int start = escapeMatch.start();
 			position = escapeMatch.end();
 			result = result.substring(0,start) 
-			+ result.substring(start, position).toLowerCase() 
-			+ result.substring(position);
+					+ result.substring(start, position).toLowerCase() 
+					+ result.substring(position);
 		}
 		return result;
 	}
 
 	static Matcher escapeMatch = Pattern.compile("\\&[A-Z][a-z]*\\;").matcher("");
-	
+
 	private static String showTextConvertingHex(String body, boolean addCharToHex) {
 		body = TransliteratorUtilities.toHTML.transliterate(body);
 		if (addCharToHex) {
@@ -436,19 +436,19 @@ public class MakeNamesChart {
 				if (cp > 0x10FFFF) continue;
 				String insert = "\u00A0" + showChar(cp, true);
 				String beginning = body.substring(0,start)
-					+ "<code>" + body.substring(start, position) + "</code>"
-					+ insert;
+						+ "<code>" + body.substring(start, position) + "</code>"
+						+ insert;
 				body = beginning + body.substring(position);
 				position = beginning.length();
 			}
 		}
 		return body;
 	}
-	
+
 	static Matcher pointer = Pattern.compile("x \\((.*) - ([0-9A-F]+)\\)").matcher("");
 	static Matcher pointer2 = Pattern.compile("x ([0-9A-F]{4,6})").matcher("");
 	static Matcher findHex = Pattern.compile("[0-9A-F]+").matcher("");
-	
+
 	private static String getOther(String body) {
 		// of form: 	x (hyphenation point - 2027)
 		// => arrow 2027 X hyphenation point
@@ -472,24 +472,24 @@ public class MakeNamesChart {
 		}
 		return "\u2192 " + Utility.hex(cp,4) /*+ " " + showChar(cp)*/ + (name != null ? " " + name : "");
 	}
-	
+
 	static String showChar(int cp, boolean addRlmIfNeeded) {
-    if (cp < 0x20 || cp == 0x7F) {
-      int rep = '?';
-      if (cp <= 0x20) rep = 0x2400 + cp;
-      else if (cp == 0x7F) rep = 0x2421;
-      return "<span class='inv'>" + (char)rep + "</span>";
-    }
-    
-    if (usePicture.contains(cp)) {
-      return "<span class='inv'>⬚</span>";
-      //String hex = Utility.hex(cp);
-      //return "<img alt='" + hex + "' src='http://www.unicode.org/cgi-bin/refglyph?24-" + hex + "'>";
-    }
-    if (isWhiteSpace.contains(cp)) {
-      return "<span class='inv'>␣</span>";
-    }
-		
+		if (cp < 0x20 || cp == 0x7F) {
+			int rep = '?';
+			if (cp <= 0x20) rep = 0x2400 + cp;
+			else if (cp == 0x7F) rep = 0x2421;
+			return "<span class='inv'>" + (char)rep + "</span>";
+		}
+
+		if (usePicture.contains(cp)) {
+			return "<span class='inv'>⬚</span>";
+			//String hex = Utility.hex(cp);
+			//return "<img alt='" + hex + "' src='http://www.unicode.org/cgi-bin/refglyph?24-" + hex + "'>";
+		}
+		if (isWhiteSpace.contains(cp)) {
+			return "<span class='inv'>␣</span>";
+		}
+
 		int type = Default.ucd().getCategory(cp);
 		if (type == UCD.Cn || type == UCD.Co || type == UCD.Cs) {
 			return "\u2588";
@@ -502,13 +502,13 @@ public class MakeNamesChart {
 		}
 		return result;
 	}
-	
+
 	//static final UnicodeSet noname = new UnicodeSet("[[:ascii:][:ideographic:]]");
 	static final Map hasNoNameCan = new TreeMap();
 	static final Map hasNameCan = new TreeMap();
 	static final Map hasNoNameComp = new TreeMap();
 	static final Map hasNameComp = new TreeMap();
-  private static UnicodeSet isWhiteSpace;
+	private static UnicodeSet isWhiteSpace;
 
 	private static String checkCanonical(int codePoint, String body) {
 		body = body.substring(2);
@@ -587,218 +587,218 @@ public class MakeNamesChart {
 
 	}
 
-  public static final String[][] LINE_MATCHER_VARIABLES = {
-    {"$char", "[0-9A-F]{4,6}"},
-    {"$name", "[0-9A-Z](?:[0-9A-Z\\- ]*[0-9A-Z])?"}, // alphanumeric, separated by spaces and '-'
-    {"$lcname", "[0-9a-zA-Z](?:[0-9a-zA-Z \\-]*[0-9a-zA-Z])?"}, // lowercase alphanumeric, separated by spaces and '-'
-    // NOTE: lcname can contain uppercase characters
-    {"$comment", "\\([A-Za-z](?:[0-9A-Za-z, \\-]*[0-9A-Za-z])?\\)"}, // '(' alphanumeric (upper or lower) separated by spaces ')'
-    };
-  
-	enum LineMatcher {
-//NAME_LINE:  CHAR <tab> NAME LF
-	  // NOTE: sometimes <tab>, sometimes TAB
-//      // The CHAR and the corresponding image are echoed, 
-//      // followed by the name as given in NAME
-    NAME_LINE("($char)\t($name)?(?: (\\*))?"),
-	  // NOTE: missing *
-//
-//    CHAR TAB "<" LCNAME ">" LF
-//      // Control and non-characters use this form of                  
-//      // lower case, bracketed pseudo character name
-	   NAME_LINE2("($char)\t<($lcname)>(?: (\\*))?"),
-	    // NOTE: missing *
-//    CHAR TAB NAME SP COMMENT LF
-//      // Names may have a comment, which is stripped off
-//      // unless the file is parsed for an ISO style list
-     NAME_LINE3("($char)\t($name) ($comment)(?: (\\*))?"),
-     // NOTE: COMMENT should be "(" ... ")"
-//                    
-//RESERVED_LINE:  CHAR TAB <reserved>   
-//      // The CHAR is echoed followed by an icon for the
-//      // reserved character and a fixed string e.g. <reserved>
-//  
-     RESERVED_LINE("$char\t(<reserved>)"),
-//COMMENT_LINE: <tab> "*" SP EXPAND_LINE
-//      // * is replaced by BULLET, output line as comment
-//    <tab> EXPAND_LINE 
-//      // Output line as comment
-     COMMENT_LINE("\t\\* (.*)"),
-//
-//ALIAS_LINE: <tab> "=" SP LINE 
-//      // Replace = by itself, output line as alias
-     ALIAS_LINE("\t= (.*)"),
-//
-//FORMALALIAS_LINE: <tab> "%" SP LINE 
-//      // Replace % by U+203B, output line as formal alias
-     FORMALALIAS_LINE("\t% (.*)"),
-//
-//CROSS_REF:  <tab> "X" SP CHAR SP LCNAME 
-//      // X is replaced by a right arrow
-     CROSS_REF1("\tx ($char) ($name)"),
-     CROSS_REF_SPACE("\tx ($char)(?: ($name))?"),
-     //NOTE: "  x 5382" doesn't have name
-//    <tab> "X" SP "(" LCNAME SP "-" SP CHAR ")"  
-     CROSS_REF2("\tx \\(($lcname) - ($char)\\)"),
-     CROSS_REF3("\tx \\(<($lcname)> - ($char)\\)"),
-     // NOTE: may have < ... > Explicit in NAME_LINE but not here
-//      // X is replaced by a right arrow,
-//      // the "(", "-", ")" are removed, and the
-//      // order of CHAR and LCNAME is reversed;
-//      // i.e. both inputs result in the same output
-     CROSS_REF_XTRATAB1("\t\tx ($char) ($name)"),
-     CROSS_REF_XTRATAB2("\t\tx \\(($lcname) - ($char)\\)"),
-     //NOTE: is "x", not "X"
-//
-//FILE_COMMENT: ";"  LINE 
-     FILE_COMMENT(";(.*)"),
-//EMPTY_LINE: LF      
-//      // Empty and ignored lines as well as 
-//      // file comments are ignored
-     EMPTY_LINE(""),
-//
-//SIDEBAR_LINE:   ";;" LINE
-//      // Skip ';;' characters, output line
-//      // as marginal note
-     SIDEBAR_LINE(";;(.*)"),
-//
-//IGNORED_LINE: <tab> ";" EXPAND_LINE
-//      // Skip ':' character, ignore text
-     // NOTE: : is wrong
-     IGNORED_LINE("\t;(.*)"),
-//
-//DECOMPOSITION:  <tab> ":" SP EXPAND_LINE  
-//      // Replace ':' by EQUIV, expand line into 
-//      // decomposition 
-     DECOMPOSITION("\t: (.*)"),
-//
-//COMPAT_MAPPING: <tab> "#" SP EXPAND_LINE  
-//COMPAT_MAPPING: <tab> "#" SP "<" LCTAG ">" SP EXPAND_LINE 
-//      // Replace '#' by APPROX, output line as mapping;
-//      // check the <tag> for balanced < >
-     COMPAT_MAPPING2("\t# <($lctag)> (.*)"),
-     COMPAT_MAPPING1("\t# (.*)"),
-     //NOTE: out of order
-//
-//NOTICE_LINE:  "@+" <tab> LINE   
-//      // Skip '@+', output text as notice
-//    "@+" TAB * SP LINE  
-     NOTICE_LINE_XTRATAB2("@\\+\t\t\\* (.*)"),
-     NOTICE_LINE_XTRATAB1("@\\+\t ?\t(.*)"),
-     NOTICE_LINE2("@\\+\t\\* (.*)"),
-     NOTICE_LINE1("@\\+\t(.*)"),
-     // NOTE: @+    Italic symbols already encoded in the Letterlike Symbols block are omitted here to avoid duplicate encoding.
-     // has TAB SP TAB
-     // NOTE: out of order
-//      // Skip '@', output text as notice
-//      // "*" expands to a bullet character
-//      // Notices following a character code apply to the
-//      // character and are indented. Notices not following
-//      // a character code apply to the page/block/column 
-//      // and are italicized, but not indented
-//
-//SUBTITLE: "@@@+" <tab> LINE 
-//      // Skip "@@@+", output text as subtitle
-     SUBTITLE("@@@\\+\t(.*)"),
-//
-//SUBHEADER:  "@" <tab> LINE  
-//      // Skip '@', output line as text as column header
-     SUBHEADER_XTRATAB("@\t\t(.*)"),
-     SUBHEADER("@\t(.*)"),
-     // NOTE: has 2 tabs
-//
-//BLOCKHEADER:  "@@" <tab> BLOCKSTART <tab> BLOCKNAME <tab> BLOCKEND
-//      // Skip "@@", cause a page break and optional
-//      // blank page, then output one or more charts
-//      // followed by the list of character names. 
-//      // Use BLOCKSTART and BLOCKEND to define
-//      // what characters belong to a block.
-//      // Use blockname in page and table headers
-//    "@@" <tab> BLOCKSTART <tab> BLOCKNAME COMMENT <tab> BLOCKEND
-     BLOCKHEADER2("@@\t($char)\t([^\t\\(]*\\($name\\))\t($char)"),
-     BLOCKHEADER("@@\t($char)\t([^\t]*) ?\t($char)"),
-     // NOTE: out of order
-     // NOTE: comment is (....)? -- also, needs SP
-     // NOTE: @@  1380  Ethiopic Supplement   139F has SP TAB
-//      // If a comment is present it replaces the blockname
-//      // when an ISO-style namelist is laid out
-//
-//BLOCKNAME:    LABEL
-//    LABEL SP "(" LABEL ")"      
-     BLOCKNAME2("@@\t(.*)\\(.*\\)"),
-     BLOCKNAME("@@\t(.*)"),
-     // NOTE: missing @@ SP
-//      // If an alternate label is present it replaces 
-//      // the blockname when an ISO-style namelist is
-//      // laid out; it is ignored in the Unicode charts
-//
-//BLOCKSTART: CHAR  // First character position in block
-     BLOCKSTARTOREND("$char"),
-//BLOCKEND:   CHAR  // Last character position in block
-//PAGE_BREAK: "@@"  // Insert a (column) break
-	  PAGE_BREAK("$char"),
-//INDEX_TAB:    "@@+" // Start a new index tab at latest BLOCKSTART
-	  INDEX_TAB("@@\\+"),
-//
-//TITLE:    "@@@" <tab> LINE  
-	  TITLE("@@@\t(.*)"),
-//      // Skip "@@@", output line as text
-//      // Title is used in page headers
-//
-//EXPAND_LINE:  {CHAR | STRING}+ LF 
-//      // All instances of CHAR *) are replaced by 
-//      // CHAR NBSP x NBSP where x is the single Unicode
-//      // character corresponding to CHAR.
-//      // If character is combining, it is replaced with
-//      // CHAR NBSP <circ> x NBSP where <circ> is the 
-//      // dotted circle
-	   NO_DEFINITION("\t(.*)"),
-	   // NOTE: this is not defined. Example: "  Final Unicode 5.1 names list."   
-	   // "00AB  LEFT-POINTING DOUBLE ANGLE QUOTATION MARK *" is not defined
+	public static final String[][] LINE_MATCHER_VARIABLES = {
+		{"$char", "[0-9A-F]{4,6}"},
+		{"$name", "[0-9A-Z](?:[0-9A-Z\\- ]*[0-9A-Z])?"}, // alphanumeric, separated by spaces and '-'
+		{"$lcname", "[0-9a-zA-Z](?:[0-9a-zA-Z \\-]*[0-9a-zA-Z])?"}, // lowercase alphanumeric, separated by spaces and '-'
+		// NOTE: lcname can contain uppercase characters
+		{"$comment", "\\([A-Za-z](?:[0-9A-Za-z, \\-]*[0-9A-Za-z])?\\)"}, // '(' alphanumeric (upper or lower) separated by spaces ')'
+	};
 
-	  ;
-	  Matcher matcher;
-	  
-	  private LineMatcher(String regexPattern) {
-      for (String[] pair : LINE_MATCHER_VARIABLES) {
-        regexPattern = regexPattern.replace(pair[0], pair[1]);
-      }
-	    matcher = Pattern.compile(regexPattern).matcher("");
-    }
-	  
-	  public static LineMatcher match(String input) {
-	    for (LineMatcher matcher : LineMatcher.values()) {
-	      if (matcher.matcher.reset(input).matches()) {
-	        return matcher;
-	      }
-	    }
-	    return null;
-	  }
-    public String group() {
-      return matcher.group();
-    }
-    public String group(int arg0) {
-      return matcher.group(arg0);
-    }
-    public int groupCount() {
-      return matcher.groupCount();
-    }
-    public String toString() {
-      StringBuilder result = new StringBuilder(name());
-      try {
-        for (int i = 1; i <= matcher.groupCount(); ++i) {
-          String group = matcher.group(i);
-          if (group == null) {
-            continue;
-          }
-          if (!group.equals(group.trim())) {
-            group += "~~~";
-          }
-          result.append(" {").append(group).append("}");
-        }
-      } catch (RuntimeException e) {
-      }
-      return result.toString();
-    }
+	enum LineMatcher {
+		//NAME_LINE:  CHAR <tab> NAME LF
+		// NOTE: sometimes <tab>, sometimes TAB
+		//      // The CHAR and the corresponding image are echoed, 
+		//      // followed by the name as given in NAME
+		NAME_LINE("($char)\t($name)?(?: (\\*))?"),
+		// NOTE: missing *
+		//
+		//    CHAR TAB "<" LCNAME ">" LF
+		//      // Control and non-characters use this form of                  
+		//      // lower case, bracketed pseudo character name
+		NAME_LINE2("($char)\t<($lcname)>(?: (\\*))?"),
+		// NOTE: missing *
+		//    CHAR TAB NAME SP COMMENT LF
+		//      // Names may have a comment, which is stripped off
+		//      // unless the file is parsed for an ISO style list
+		NAME_LINE3("($char)\t($name) ($comment)(?: (\\*))?"),
+		// NOTE: COMMENT should be "(" ... ")"
+		//                    
+		//RESERVED_LINE:  CHAR TAB <reserved>   
+		//      // The CHAR is echoed followed by an icon for the
+		//      // reserved character and a fixed string e.g. <reserved>
+		//  
+		RESERVED_LINE("$char\t(<reserved>)"),
+		//COMMENT_LINE: <tab> "*" SP EXPAND_LINE
+		//      // * is replaced by BULLET, output line as comment
+		//    <tab> EXPAND_LINE 
+		//      // Output line as comment
+		COMMENT_LINE("\t\\* (.*)"),
+		//
+		//ALIAS_LINE: <tab> "=" SP LINE 
+		//      // Replace = by itself, output line as alias
+		ALIAS_LINE("\t= (.*)"),
+		//
+		//FORMALALIAS_LINE: <tab> "%" SP LINE 
+		//      // Replace % by U+203B, output line as formal alias
+		FORMALALIAS_LINE("\t% (.*)"),
+		//
+		//CROSS_REF:  <tab> "X" SP CHAR SP LCNAME 
+		//      // X is replaced by a right arrow
+		CROSS_REF1("\tx ($char) ($name)"),
+		CROSS_REF_SPACE("\tx ($char)(?: ($name))?"),
+		//NOTE: "  x 5382" doesn't have name
+		//    <tab> "X" SP "(" LCNAME SP "-" SP CHAR ")"  
+		CROSS_REF2("\tx \\(($lcname) - ($char)\\)"),
+		CROSS_REF3("\tx \\(<($lcname)> - ($char)\\)"),
+		// NOTE: may have < ... > Explicit in NAME_LINE but not here
+		//      // X is replaced by a right arrow,
+		//      // the "(", "-", ")" are removed, and the
+		//      // order of CHAR and LCNAME is reversed;
+		//      // i.e. both inputs result in the same output
+		CROSS_REF_XTRATAB1("\t\tx ($char) ($name)"),
+		CROSS_REF_XTRATAB2("\t\tx \\(($lcname) - ($char)\\)"),
+		//NOTE: is "x", not "X"
+		//
+		//FILE_COMMENT: ";"  LINE 
+		FILE_COMMENT(";(.*)"),
+		//EMPTY_LINE: LF      
+		//      // Empty and ignored lines as well as 
+		//      // file comments are ignored
+		EMPTY_LINE(""),
+		//
+		//SIDEBAR_LINE:   ";;" LINE
+		//      // Skip ';;' characters, output line
+		//      // as marginal note
+		SIDEBAR_LINE(";;(.*)"),
+		//
+		//IGNORED_LINE: <tab> ";" EXPAND_LINE
+		//      // Skip ':' character, ignore text
+		// NOTE: : is wrong
+		IGNORED_LINE("\t;(.*)"),
+		//
+		//DECOMPOSITION:  <tab> ":" SP EXPAND_LINE  
+		//      // Replace ':' by EQUIV, expand line into 
+		//      // decomposition 
+		DECOMPOSITION("\t: (.*)"),
+		//
+		//COMPAT_MAPPING: <tab> "#" SP EXPAND_LINE  
+		//COMPAT_MAPPING: <tab> "#" SP "<" LCTAG ">" SP EXPAND_LINE 
+		//      // Replace '#' by APPROX, output line as mapping;
+		//      // check the <tag> for balanced < >
+		COMPAT_MAPPING2("\t# <($lctag)> (.*)"),
+		COMPAT_MAPPING1("\t# (.*)"),
+		//NOTE: out of order
+		//
+		//NOTICE_LINE:  "@+" <tab> LINE   
+		//      // Skip '@+', output text as notice
+		//    "@+" TAB * SP LINE  
+		NOTICE_LINE_XTRATAB2("@\\+\t\t\\* (.*)"),
+		NOTICE_LINE_XTRATAB1("@\\+\t ?\t(.*)"),
+		NOTICE_LINE2("@\\+\t\\* (.*)"),
+		NOTICE_LINE1("@\\+\t(.*)"),
+		// NOTE: @+    Italic symbols already encoded in the Letterlike Symbols block are omitted here to avoid duplicate encoding.
+		// has TAB SP TAB
+		// NOTE: out of order
+		//      // Skip '@', output text as notice
+		//      // "*" expands to a bullet character
+		//      // Notices following a character code apply to the
+		//      // character and are indented. Notices not following
+		//      // a character code apply to the page/block/column 
+		//      // and are italicized, but not indented
+		//
+		//SUBTITLE: "@@@+" <tab> LINE 
+		//      // Skip "@@@+", output text as subtitle
+		SUBTITLE("@@@\\+\t(.*)"),
+		//
+		//SUBHEADER:  "@" <tab> LINE  
+		//      // Skip '@', output line as text as column header
+		SUBHEADER_XTRATAB("@\t\t(.*)"),
+		SUBHEADER("@\t(.*)"),
+		// NOTE: has 2 tabs
+		//
+		//BLOCKHEADER:  "@@" <tab> BLOCKSTART <tab> BLOCKNAME <tab> BLOCKEND
+		//      // Skip "@@", cause a page break and optional
+		//      // blank page, then output one or more charts
+		//      // followed by the list of character names. 
+		//      // Use BLOCKSTART and BLOCKEND to define
+		//      // what characters belong to a block.
+		//      // Use blockname in page and table headers
+		//    "@@" <tab> BLOCKSTART <tab> BLOCKNAME COMMENT <tab> BLOCKEND
+		BLOCKHEADER2("@@\t($char)\t([^\t\\(]*\\($name\\))\t($char)"),
+		BLOCKHEADER("@@\t($char)\t([^\t]*) ?\t($char)"),
+		// NOTE: out of order
+		// NOTE: comment is (....)? -- also, needs SP
+		// NOTE: @@  1380  Ethiopic Supplement   139F has SP TAB
+		//      // If a comment is present it replaces the blockname
+		//      // when an ISO-style namelist is laid out
+		//
+		//BLOCKNAME:    LABEL
+		//    LABEL SP "(" LABEL ")"      
+		BLOCKNAME2("@@\t(.*)\\(.*\\)"),
+		BLOCKNAME("@@\t(.*)"),
+		// NOTE: missing @@ SP
+		//      // If an alternate label is present it replaces 
+		//      // the blockname when an ISO-style namelist is
+		//      // laid out; it is ignored in the Unicode charts
+		//
+		//BLOCKSTART: CHAR  // First character position in block
+		BLOCKSTARTOREND("$char"),
+		//BLOCKEND:   CHAR  // Last character position in block
+		//PAGE_BREAK: "@@"  // Insert a (column) break
+		PAGE_BREAK("$char"),
+		//INDEX_TAB:    "@@+" // Start a new index tab at latest BLOCKSTART
+		INDEX_TAB("@@\\+"),
+		//
+		//TITLE:    "@@@" <tab> LINE  
+		TITLE("@@@\t(.*)"),
+		//      // Skip "@@@", output line as text
+		//      // Title is used in page headers
+		//
+		//EXPAND_LINE:  {CHAR | STRING}+ LF 
+		//      // All instances of CHAR *) are replaced by 
+		//      // CHAR NBSP x NBSP where x is the single Unicode
+		//      // character corresponding to CHAR.
+		//      // If character is combining, it is replaced with
+		//      // CHAR NBSP <circ> x NBSP where <circ> is the 
+		//      // dotted circle
+		NO_DEFINITION("\t(.*)"),
+		// NOTE: this is not defined. Example: "  Final Unicode 5.1 names list."   
+		// "00AB  LEFT-POINTING DOUBLE ANGLE QUOTATION MARK *" is not defined
+
+		;
+		Matcher matcher;
+
+		private LineMatcher(String regexPattern) {
+			for (String[] pair : LINE_MATCHER_VARIABLES) {
+				regexPattern = regexPattern.replace(pair[0], pair[1]);
+			}
+			matcher = Pattern.compile(regexPattern).matcher("");
+		}
+
+		public static LineMatcher match(String input) {
+			for (LineMatcher matcher : LineMatcher.values()) {
+				if (matcher.matcher.reset(input).matches()) {
+					return matcher;
+				}
+			}
+			return null;
+		}
+		public String group() {
+			return matcher.group();
+		}
+		public String group(int arg0) {
+			return matcher.group(arg0);
+		}
+		public int groupCount() {
+			return matcher.groupCount();
+		}
+		public String toString() {
+			StringBuilder result = new StringBuilder(name());
+			try {
+				for (int i = 1; i <= matcher.groupCount(); ++i) {
+					String group = matcher.group(i);
+					if (group == null) {
+						continue;
+					}
+					if (!group.equals(group.trim())) {
+						group += "~~~";
+					}
+					result.append(" {").append(group).append("}");
+				}
+			} catch (RuntimeException e) {
+			}
+			return result.toString();
+		}
 	}
 }
