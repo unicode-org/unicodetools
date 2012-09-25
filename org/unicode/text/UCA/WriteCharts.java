@@ -26,6 +26,8 @@ import java.util.Set;
 import java.util.TimeZone;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
@@ -93,7 +95,7 @@ public class WriteCharts implements UCD_Types {
 
         int columnCount = 0;
 
-        String[] replacement = new String[] {"%%%", "Collation Charts"};
+        String[] replacement = new String[] {"%%%", "Collation Charts", "$initialPage$", "chart_Latin.html"};
         String folder = "charts/collation/";
 
         Utility.copyTextFile(WORKING_DIR + "index.html", Utility.UTF8, folder + "index.html", replacement);
@@ -289,7 +291,7 @@ public class WriteCharts implements UCD_Types {
 
         int counter = 0;
 
-        String[] replacement = new String[] {"%%%", "Normalization Charts"};
+        String[] replacement = new String[] {"%%%", "Normalization Charts", "$initialPage$", "chart_Latin.html"};
         String folder = "charts/normalization/";
 
         //System.out.println("File: " + new File(".").getCanonicalPath());
@@ -399,7 +401,7 @@ public class WriteCharts implements UCD_Types {
         int oldScript = -127;
 
         int counter = 0;
-        String[] replacement = new String[] {"%%%", "Case Charts"};
+        String[] replacement = new String[] {"%%%", "Case Charts", "$initialPage$", "chart_Latin.html"};
         String folder = "charts/case/";
 
         Utility.copyTextFile("org/unicode/text/UCA/index.html", Utility.UTF8, folder + "index.html", replacement);
@@ -511,7 +513,7 @@ public class WriteCharts implements UCD_Types {
         int oldScript = -127;
 
         int counter = 0;
-        String[] replacement = new String[] {"%%%", "Script Charts"};
+        String[] replacement = new String[] {"%%%", "Script Charts", "$initialPage$", "chart_Latin.html"};
         String folder = "charts//script/";
 
         Utility.copyTextFile("org/unicode/text/UCA/index.html", Utility.UTF8, folder + "index.html", replacement);
@@ -633,7 +635,7 @@ public class WriteCharts implements UCD_Types {
         int oldScript = -127;
 
         int counter = 0;
-        String[] replacement = new String[] {"%%%", "Name Index Charts"};
+        String[] replacement = new String[] {"%%%", "Name Index Charts", "$initialPage$", "chart_X.html"};
         String folder = "charts//name/";
 
         Utility.copyTextFile("org/unicode/text/UCA/index.html", Utility.UTF8, folder + "index.html", replacement);
@@ -763,7 +765,7 @@ public class WriteCharts implements UCD_Types {
         PrintWriter output = Utility.openPrintWriter(directory + fileName, Utility.UTF8_WINDOWS);
         Utility.fixDot();
         System.out.println("Writing: " + scriptName);
-        indexFile.println(" <a href = '" + fileName + hover + "'>" + scriptName + "</a>");
+        indexFile.println("<a href = '" + fileName + hover + "'>" + scriptName + "</a><br>\n");
         String title = "UCA: " + scriptName;
         output.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
         output.println("<title>" + title + "</title>");
@@ -778,7 +780,7 @@ public class WriteCharts implements UCD_Types {
         PrintWriter output = Utility.openPrintWriter(directory + fileName, Utility.UTF8_WINDOWS);
         Utility.fixDot();
         System.out.println("Writing: " + name);
-        indexFile.println(" <a href = '" + fileName + "'>" + name + "</a>");
+        indexFile.println("<a href = '" + fileName + "'>" + name + "</a><br>\n");
         String title = name;
         output.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
         output.println("<title>" + title + "</title>");
@@ -804,6 +806,8 @@ public class WriteCharts implements UCD_Types {
     // categories in here
     NO_CASE_MAPPING = 200;
 
+    static final Matcher CAT_REMAP = Pattern.compile("([A-Z][a-z]*)([A-Z].+)").matcher("");
+    
     static String getChunkName(int script, byte length) {
         switch(script) {
         case NO_CASE_MAPPING: return "NoCaseMapping";
@@ -819,7 +823,12 @@ public class WriteCharts implements UCD_Types {
         case UNSUPPORTED: return "Unsupported";
         default:
             if (script >= CAT_OFFSET) {
-                return Default.ucd().getCategoryID_fromIndex((byte)(script - CAT_OFFSET), length);
+                String cat = Default.ucd().getCategoryID_fromIndex((byte)(script - CAT_OFFSET), length);
+                if (!CAT_REMAP.reset(cat).matches()) {
+                	return cat;
+                } else {
+                	return CAT_REMAP.group(2) + ":" + CAT_REMAP.group(1);
+                }
             } else if (script == HIRAGANA_SCRIPT && HACK_KANA) {
                 return length == SHORT ? "Kata-Hira" : "Katakana/Hiragana";
             } else if (script == Meroitic_Hieroglyphs ) {
@@ -845,41 +854,58 @@ public class WriteCharts implements UCD_Types {
 
         indexFile.println("</p><hr width='50%'><p style='text-align: center;'>");
         boolean gotOne = false;
-        if (choice != COLLATION) {
-            indexFile.println("<a href='../collation/index.html' target='_top'>Collation&nbsp;Charts</a>");
-            gotOne = true;
-        }
-        if (choice != NORMALIZATION) {
-            if (gotOne && doBreak) indexFile.println("<br>");
-            indexFile.println("<a href='../normalization/index.html' target='_top'>Normalization&nbsp;Charts</a>");
-            gotOne = true;
-        }
-        if (choice != CASE) {
-            if (gotOne && doBreak) indexFile.println("<br>");
-            indexFile.println("<a href='../case/index.html' target='_top'>Case&nbsp;Charts</a>");
-            gotOne = true;
-        }
-        if (choice != SCRIPT) {
-            if (gotOne && doBreak) indexFile.println("<br>");
-            indexFile.println("<a href='../script/index.html' target='_top'>Script&nbsp;Charts</a>");
-            gotOne = true;
-        }
-        if (choice != NAME) {
-            if (gotOne && doBreak) indexFile.println("<br>");
-            indexFile.println("<a href='../name/index.html' target='_top'>Name&nbsp;Index&nbsp;Charts</a>");
-            gotOne = true;
-        }
-        if (choice != NAMELIST) {
-            if (gotOne && doBreak) indexFile.println("<br>");
-            indexFile.println("<a href='../nameslist/index.html' target='_top'>Names&nbsp;List&nbsp;Charts</a>");
-            gotOne = true;
-        }
+        gotOne = doIndexItem("Collation&nbsp;Charts", "collation", choice, COLLATION, gotOne, indexFile);
+        gotOne = doIndexItem("Normalization&nbsp;Charts", "normalization", choice, NORMALIZATION, gotOne, indexFile);
+        gotOne = doIndexItem("Case&nbsp;Charts", "case", choice, CASE, gotOne, indexFile);
+        gotOne = doIndexItem("Script&nbsp;Charts", "script", choice, SCRIPT, gotOne, indexFile);
+        gotOne = doIndexItem("Name&nbsp;Index&nbsp;Charts", "name", choice, NAME, gotOne, indexFile);
+        gotOne = doIndexItem("Names&nbsp;List&nbsp;Charts", "nameslist", choice, NAMELIST, gotOne, indexFile);
+//        if (choice != NORMALIZATION) {
+//            if (gotOne && doBreak) indexFile.println("<br>");
+//            indexFile.println("<a href='../normalization/index.html' target='_top'>Normalization&nbsp;Charts</a><br>");
+//            gotOne = true;
+//        }
+//        if (choice != CASE) {
+//            if (gotOne && doBreak) indexFile.println("<br>");
+//            indexFile.println("<a href='../case/index.html' target='_top'>Case&nbsp;Charts</a><br>");
+//            gotOne = true;
+//        }
+//        if (choice != SCRIPT) {
+//            if (gotOne && doBreak) indexFile.println("<br>");
+//            indexFile.println("<a href='../script/index.html' target='_top'>Script&nbsp;Charts</a><br>");
+//            gotOne = true;
+//        }
+//        if (choice != NAME) {
+//            if (gotOne && doBreak) indexFile.println("<br>");
+//            indexFile.println("<a href='../name/index.html' target='_top'>Name&nbsp;Index&nbsp;Charts</a><br>");
+//            gotOne = true;
+//        }
+//        if (choice != NAMELIST) {
+//            if (gotOne && doBreak) indexFile.println("<br>");
+//            indexFile.println("<a href='../nameslist/index.html' target='_top'>Names&nbsp;List&nbsp;Charts</a><br>");
+//            gotOne = true;
+//        }
         indexFile.println("</p><hr width='50%'><p style='font-size: 70%; text-align: center;'>");
         indexFile.println("UCD: " + Default.ucd().getVersion() + extra);
         indexFile.println("<br>" + Default.getDate() + " <a href='http://www.macchiato.com/' target='_top'>MED</a>");
         indexFile.println("</p></body></html>");
         indexFile.close();
     }
+
+	private static boolean doIndexItem(String htmlTitle, String folderName,
+			byte choice, byte thisChoice, boolean gotOne, PrintWriter indexFile) {
+		if (choice != thisChoice) {
+            indexFile.println("<a href='../" +
+            		folderName +
+            		"/index.html' target='_top'>" +
+            		htmlTitle +
+            		"</a><br>");
+            gotOne = true;
+        } else {
+            indexFile.println(htmlTitle + "<br>");
+        }
+		return gotOne;
+	}
 
     static boolean containsCase(String s) {
         int cp;
