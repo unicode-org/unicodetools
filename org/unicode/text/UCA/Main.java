@@ -12,7 +12,6 @@
 package org.unicode.text.UCA;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.MakeNamesChart;
 import org.unicode.text.UCD.NFSkippable;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
