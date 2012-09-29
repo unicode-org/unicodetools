@@ -1937,7 +1937,7 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
         out.println("<html><head>");
         out.println("<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
         out.println("<title>" + HTMLString(title) + "</title>");
-        out.println("<style>");
+        out.println("<style type='text/css'>");
         out.println("<!--");
         //out.println("td           { font-size: 18pt; font-family: Bitstream Cyberbit, Arial Unicode MS; text-align: Center}");
         out.println("td           { font-size: 18pt; text-align: Center}");

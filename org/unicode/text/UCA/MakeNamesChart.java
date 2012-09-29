@@ -1,4 +1,4 @@
-package org.unicode.text.UCD;
+package org.unicode.text.UCA;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +17,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.text.UCA.WriteCharts;
+import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -89,16 +91,23 @@ public class MakeNamesChart {
 			//PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", chartPrefix + fileName);
 			PrintWriter out = Utility.openPrintWriter("charts/nameslist/" + chartPrefix + fileName, Utility.UTF8_WINDOWS);
 			String heading = TransliteratorUtilities.toHTML.transliterate(getHeading(lineParts[2]));
-			out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>" + heading +
-					"</title>\n<link rel='stylesheet' type='text/css' href='charts.css'>\n" +
-					"<base target='names'></head>\n<body>");
+			out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
+					"<head>\n" +
+					"<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n" +
+					"<title>" + heading + "</title>\n" +
+					"<link rel='stylesheet' type='text/css' href='charts.css'>\n" +
+					"<base target='names'>\n" +
+					"</head>\n" +
+					"<body>");
 
 			// header
-			out.println("<table class='headerTable'>" +
-					"<tr><td class='headerLeft'>" + lineParts[1] + 
-					"</td><td class='headerCenter'>" + heading +
-					"</td><td class='headerRight'>" + lineParts[3] +
-					"</td></tr></table>");
+			out.println("<table class='headerTable'>\n" +
+					"<tr>\n" +
+					"<td class='headerLeft'>" + lineParts[1] +  "</td>\n" +
+					"<td class='headerCenter'>" + heading + "</td>\n" +
+					"<td class='headerRight'>" + lineParts[3] + "</td>\n" +
+					"</tr>\n" +
+					"</table>");
 
 			if ("Unassigned".equals(lineParts[2])) {
 				System.out.println("debug");
@@ -153,11 +162,17 @@ public class MakeNamesChart {
 			out.close();
 			//out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", namePrefix + fileName);
 			out = Utility.openPrintWriter("charts/nameslist/" + namePrefix + fileName, Utility.UTF8_WINDOWS);
-			out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
-					"<link rel='stylesheet' type='text/css' href='nameslist.css'></head><body>");
-			out.println("<h1>" + heading + "</h1>");
+			out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
+					"<html>\n" +
+					"<head>\n" +
+					"<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n" +
+					"<title>none</title>\n" +
+					"<link rel='stylesheet' type='text/css' href='nameslist.css'>\n" +
+					"</head>\n" +
+					"<body>");
+			out.println("<h1>" + heading + "</h1>\n<p><table>");
 			// now do the characters
-			boolean inTable = false;
+			boolean inTable = true;
 			boolean firstInTable = true;
 			for (int i = 1; i < lines.size(); ++i) {
 				String line = (String)lines.get(i);
@@ -175,14 +190,14 @@ public class MakeNamesChart {
 							line = line.substring(1).trim();
 							out.println("<tr><td class='comment' colspan='4'>"
 									+ line
-									+ "</tr></td>");
+									+ "</td></tr>");
 						} else if (line.startsWith("@")) {
 							System.err.println("*** Can't handle line: " + i + "\t" + line);
 						} else {
 							line = line.trim();
 							out.println("<tr><td colspan='4'><h2>"
 									+ line
-									+ "</h2></tr></td>");
+									+ "</h2></td></tr>");
 						}
 					} else {
 						if (!inTable) {
@@ -248,7 +263,9 @@ public class MakeNamesChart {
 				}
 			}
 			finishItem(out);
-			out.println("</table></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></body>");
+			out.println("</table>\n" +
+					"<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>\n" +
+					"</body>");
 			out.close();
 		}
 		blockInfo.in.close();

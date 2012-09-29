@@ -2723,9 +2723,10 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         // FileOutputStream("CheckCollationValidity.html"));
         log = Utility.openPrintWriter(getCollator(CollatorType.ducet).getUCA_GEN_DIR(), "CheckCollationValidity.html", Utility.UTF8_WINDOWS);
 
-        log.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
+        log.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
+        		"<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
         log.println("<title>UCA Validity Log</title>");
-        log.println("<style>");
+        log.println("<style type='text/css'>");
         log.println("table { border-collapse: collapse; }");
         log.println(".bottom { border-bottom-style: solid; border-bottom-color: #0000FF; }\n");
         log.println(".bad { color:red; font-weight:bold; }");
@@ -4014,7 +4015,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
          * out.println("<html><head>");out.println(
          * "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>"
          * ); out.println("<title>" + HTMLString(title) + "</title>");
-         * out.println("<style>"); out.println("<!--");//out.println(
+         * out.println("<style type='text/css'>"); out.println("<!--");//out.println(
          * "td           { font-size: 18pt; font-family: Bitstream Cyberbit, Arial Unicode MS; text-align: Center}"
          * );
          * out.println("td           { font-size: 18pt; text-align: Center}");
