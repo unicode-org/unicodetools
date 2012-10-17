@@ -491,9 +491,8 @@ File:   BidiTest
 # <input> ; <bitset>
 
 #   <input>  =      An ordered list of BIDI property values
-#   <bitset> =      A hex bitset for paragraph levels (P): 1 = auto-LTR, 2 = LTR, 4 = RTL, 8 = auto-RTL
+#   <bitset> =      A hex bitset for paragraph levels (P): 1 = auto-LTR, 2 = LTR, 4 = RTL
 #                   Auto-LTR (standard BIDI) uses the first L/R/AL character, and is LTR if none is found.
-#                   Auto-RTL (an HL1 protocol) uses the first L/R/AL character, and is RTL if none is found.
 # Example:
 #    L LRE R R; 7
 #    L LRE R AL; 7

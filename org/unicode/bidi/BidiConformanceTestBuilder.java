@@ -139,6 +139,8 @@ public class BidiConformanceTestBuilder {
 		}
 		out.println();
 		out.println("#Total Count:\t" + totalCount);
+		out.println();
+		out.print("# EOF");
 		System.out.println("#Total Count:\t" + totalCount);
 		System.out.println("#Max Length:\t" + MAX_SIZE);
 		out.close();

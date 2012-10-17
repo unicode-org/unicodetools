@@ -293,7 +293,7 @@ public final class BidiReference {
         if (strongType == -1) { // none found
             // default embedding level when no strong types found is 0.
         	// but we allow the other option now!
-        	paragraphEmbeddingLevel &= 1; // just leave the last bit
+        	paragraphEmbeddingLevel = (byte) ~paragraphEmbeddingLevel;
         } else if (strongType == L) {
             paragraphEmbeddingLevel = 0;
         } else { // AL, R
