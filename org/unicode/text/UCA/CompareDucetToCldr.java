@@ -31,7 +31,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class CompareDucetToCldr {
     private static final Date DATE = new Date();
-    private static final String BASE_DIR = Utility.DATA_DIRECTORY + "/UCA/6.1.0/";
+    private static final String BASE_DIR = Utility.DATA_DIRECTORY + "/UCA/6.1.0/";  // TODO: parameterize
     static class Birelation<K,V> {
         private Relation<K,V> keyValues;
         private Relation<V,K> valueKeys;

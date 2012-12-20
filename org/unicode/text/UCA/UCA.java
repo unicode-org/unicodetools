@@ -1981,7 +1981,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     public static UCA buildCollator(Remap primaryRemap) {
         try {
             System.out.println("Building UCA");
-            String file = Utility.searchDirectory(new File(UCD_Types.BASE_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
+            String file = Utility.searchDirectory(new File(UCD_Types.BASE_DIR + "uca/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
             UCA collator = new UCA(file, Default.ucdVersion(), primaryRemap);
             System.out.println("Built version " + collator.getDataVersion() + "/ucd: " + collator.getUCDVersion());
             System.out.println("Building UCD data");

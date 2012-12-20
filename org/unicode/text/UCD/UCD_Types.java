@@ -19,10 +19,10 @@ public interface UCD_Types {
 
   static final byte BINARY_FORMAT = 21; // bumped if binary format of UCD changes. Forces rebuild   
 
-  public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("UCD_DIR", "../DATA/")) + "/";
-  public static final String UCD_DIR = BASE_DIR + "UCD/";
+  public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("UCD_DIR", "data/")) + "/";
+  public static final String UCD_DIR = BASE_DIR + "ucd/";
 
-  public static final String GEN_DIR = Utility.fixFileName(BASE_DIR + "../Generated/") + "/";
+  public static final String GEN_DIR = Utility.fixFileName(BASE_DIR + "../../Generated/") + "/";
   public static final String BIN_DIR = GEN_DIR + "BIN/";
 
   public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
@@ -324,7 +324,11 @@ public interface UCD_Types {
   BIDI_LRE = 17,
   BIDI_RLE = 18,
   BIDI_PDF = 19,
-  LIMIT_BIDI_CLASS = 20;
+  BIDI_LRI = 20,
+  BIDI_RLI = 21,
+  BIDI_FSI = 22,
+  BIDI_PDI = 23,
+  LIMIT_BIDI_CLASS = 24;
 
   // decompositionType
   static final byte NONE = 0,
@@ -479,7 +483,7 @@ public interface UCD_Types {
   LIMIT_SCRIPT = Takri + 1;
 
 
-  static final int
+  static final int  // TODO: change to using an enum
   UNKNOWN = 0,
   AGE11 = 1,
   AGE20 = 2,
@@ -495,7 +499,8 @@ public interface UCD_Types {
   AGE60 = 12,
   AGE61 = 13,
   AGE62 = 14,
-  LIMIT_AGE = AGE62 + 1; // + FIX_FOR_NEW_VERSION;
+  AGE63 = 15,
+  LIMIT_AGE = AGE63 + 1; // + FIX_FOR_NEW_VERSION;
 
   static final String[] AGE_VERSIONS = {
     "?",
@@ -513,6 +518,7 @@ public interface UCD_Types {
             "6.0.0",
             "6.1.0",
             "6.2.0",
+            "6.3.0",
   };
 
   public static byte
@@ -583,7 +589,8 @@ public interface UCD_Types {
   FARSI_YEH = 55,
   NYA = 56,
   ROHINGYA_YEH = 57,
-  LIMIT_JOINING_GROUP = 58;
+  HAMZAH_ON_HA_GOAL = 58,
+  LIMIT_JOINING_GROUP = 59;
 
   static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;    
   public static final int

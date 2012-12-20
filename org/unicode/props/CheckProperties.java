@@ -21,13 +21,11 @@ import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
 import org.unicode.props.PropertyNames.NameMatcher;
-import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.ICUPropertyFactory;
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.Tabber;
@@ -35,13 +33,10 @@ import com.ibm.icu.dev.util.Tabber.MonoTabber;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
-import com.sun.tools.jdi.LinkedHashMap;
 
 public class CheckProperties {
 	private static final String LAST_RELEASE = Utility.searchPath[1];;

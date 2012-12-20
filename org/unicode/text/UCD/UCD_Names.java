@@ -497,6 +497,7 @@ public final class UCD_Names implements UCD_Types {
     "6.0",
     "6.1",
     "6.2",
+    "6.3",
   };
   
   static final String[] LONG_AGE = {
@@ -515,6 +516,7 @@ public final class UCD_Names implements UCD_Types {
       "V6_0",
       "V6_1",
       "V6_2",
+      "V6_3",
     };
 
   static final String[] GENERAL_CATEGORY = {
@@ -634,7 +636,8 @@ public final class UCD_Names implements UCD_Types {
     "S", //	Segment Separator
     "WS", //	Whitespace
     "ON", //	Other Neutrals ; All other characters: punctuation, symbols
-    UnicodeProperty.UNUSED, "BN", "NSM", "AL", "LRO", "RLO", "LRE", "RLE", "PDF"
+    UnicodeProperty.UNUSED, "BN", "NSM", "AL", "LRO", "RLO", "LRE", "RLE", "PDF",
+    "LRI", "RLI", "FSI", "PDI",
   };
 
   static String[] LONG_BIDI_CLASS = {
@@ -653,7 +656,8 @@ public final class UCD_Names implements UCD_Types {
     "BoundaryNeutral", "NonspacingMark", "ArabicLetter",
     "LeftToRightOverride",
     "RightToLeftOverride", "LeftToRightEmbedding",
-    "RightToLeftEmbedding", "PopDirectionalFormat"
+    "RightToLeftEmbedding", "PopDirectionalFormat",
+    "LeftToRightIsolate", "RightToLeftIsolate", "FirstStrongIsolate", "PopDirectionalIsolate",
   };
 
   private static String[] CASE_TABLE = {
@@ -953,7 +957,8 @@ public final class UCD_Names implements UCD_Types {
     "BURUSHASKI_YEH_BARREE",
     "FARSI_YEH",
     "NYA",
-    "ROHINGYA_YEH"
+    "ROHINGYA_YEH",
+    "HAMZAH_ON_HA_GOAL",
     // BURUSHASHKI YEH BARREE
   };
   static {
