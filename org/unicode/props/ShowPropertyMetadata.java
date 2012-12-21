@@ -11,7 +11,7 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.text.UnicodeSet;
 
-public class ShowPropertyMetadava {
+public class ShowPropertyMetadata {
 
 	static final EnumSet<UcdProperty> PROVISIONAL_PROPERTY;
 	private static final Comparator<Set<PropertyType>> COMPARABLE = new Comparator<Set<PropertyType>>() {
