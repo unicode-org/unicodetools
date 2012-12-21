@@ -1,0 +1,83 @@
+# DerivedBinaryProperties-3.1.0.txt
+#
+# Unicode Character Database: Derived Property Data
+# Generated algorithmically from the Unicode Character Database
+# For documentation, see DerivedProperties.html
+# Date: 2001-03-02 00:05:15.4 GMT [MD]
+# Note: Unassigned and Noncharacter codepoints are omitted,
+#       except when listing Noncharacter or Cn.
+# ================================================
+
+
+# ================================================
+# BidiMirrored (listing UnicodeData.txt, field 9: see UnicodeData.html)
+# ================================================
+
+0028          ; BidiMirrored # Ps       LEFT PARENTHESIS
+0029          ; BidiMirrored # Pe       RIGHT PARENTHESIS
+003C          ; BidiMirrored # Sm       LESS-THAN SIGN
+003E          ; BidiMirrored # Sm       GREATER-THAN SIGN
+005B          ; BidiMirrored # Ps       LEFT SQUARE BRACKET
+005D          ; BidiMirrored # Pe       RIGHT SQUARE BRACKET
+007B          ; BidiMirrored # Ps       LEFT CURLY BRACKET
+007D          ; BidiMirrored # Pe       RIGHT CURLY BRACKET
+00AB          ; BidiMirrored # Pi       LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+00BB          ; BidiMirrored # Pf       RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+2039          ; BidiMirrored # Pi       SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+203A          ; BidiMirrored # Pf       SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+2045          ; BidiMirrored # Ps       LEFT SQUARE BRACKET WITH QUILL
+2046          ; BidiMirrored # Pe       RIGHT SQUARE BRACKET WITH QUILL
+207D          ; BidiMirrored # Ps       SUPERSCRIPT LEFT PARENTHESIS
+207E          ; BidiMirrored # Pe       SUPERSCRIPT RIGHT PARENTHESIS
+208D          ; BidiMirrored # Ps       SUBSCRIPT LEFT PARENTHESIS
+208E          ; BidiMirrored # Pe       SUBSCRIPT RIGHT PARENTHESIS
+2201..2204    ; BidiMirrored # Sm   [4] COMPLEMENT..THERE DOES NOT EXIST
+2208..220D    ; BidiMirrored # Sm   [6] ELEMENT OF..SMALL CONTAINS AS MEMBER
+2211          ; BidiMirrored # Sm       N-ARY SUMMATION
+2215..2216    ; BidiMirrored # Sm   [2] DIVISION SLASH..SET MINUS
+221A..221D    ; BidiMirrored # Sm   [4] SQUARE ROOT..PROPORTIONAL TO
+221F..2222    ; BidiMirrored # Sm   [4] RIGHT ANGLE..SPHERICAL ANGLE
+2224          ; BidiMirrored # Sm       DOES NOT DIVIDE
+2226          ; BidiMirrored # Sm       NOT PARALLEL TO
+222B..2233    ; BidiMirrored # Sm   [9] INTEGRAL..ANTICLOCKWISE CONTOUR INTEGRAL
+2239          ; BidiMirrored # Sm       EXCESS
+223B..224C    ; BidiMirrored # Sm  [18] HOMOTHETIC..ALL EQUAL TO
+2252..2255    ; BidiMirrored # Sm   [4] APPROXIMATELY EQUAL TO OR THE IMAGE OF..EQUALS COLON
+225F..2260    ; BidiMirrored # Sm   [2] QUESTIONED EQUAL TO..NOT EQUAL TO
+2262          ; BidiMirrored # Sm       NOT IDENTICAL TO
+2264..226B    ; BidiMirrored # Sm   [8] LESS-THAN OR EQUAL TO..MUCH GREATER-THAN
+226E..228C    ; BidiMirrored # Sm  [31] NOT LESS-THAN..MULTISET
+228F..2292    ; BidiMirrored # Sm   [4] SQUARE IMAGE OF..SQUARE ORIGINAL OF OR EQUAL TO
+2298          ; BidiMirrored # Sm       CIRCLED DIVISION SLASH
+22A2..22A3    ; BidiMirrored # Sm   [2] RIGHT TACK..LEFT TACK
+22A6..22B8    ; BidiMirrored # Sm  [19] ASSERTION..MULTIMAP
+22BE..22BF    ; BidiMirrored # Sm   [2] RIGHT ANGLE WITH ARC..RIGHT TRIANGLE
+22C9..22CD    ; BidiMirrored # Sm   [5] LEFT NORMAL FACTOR SEMIDIRECT PRODUCT..REVERSED TILDE EQUALS
+22D0..22D1    ; BidiMirrored # Sm   [2] DOUBLE SUBSET..DOUBLE SUPERSET
+22D6..22ED    ; BidiMirrored # Sm  [24] LESS-THAN WITH DOT..DOES NOT CONTAIN AS NORMAL SUBGROUP OR EQUAL
+22F0..22F1    ; BidiMirrored # Sm   [2] UP RIGHT DIAGONAL ELLIPSIS..DOWN RIGHT DIAGONAL ELLIPSIS
+2308..230B    ; BidiMirrored # Sm   [4] LEFT CEILING..RIGHT FLOOR
+2320..2321    ; BidiMirrored # Sm   [2] TOP HALF INTEGRAL..BOTTOM HALF INTEGRAL
+2329          ; BidiMirrored # Ps       LEFT-POINTING ANGLE BRACKET
+232A          ; BidiMirrored # Pe       RIGHT-POINTING ANGLE BRACKET
+3008          ; BidiMirrored # Ps       LEFT ANGLE BRACKET
+3009          ; BidiMirrored # Pe       RIGHT ANGLE BRACKET
+300A          ; BidiMirrored # Ps       LEFT DOUBLE ANGLE BRACKET
+300B          ; BidiMirrored # Pe       RIGHT DOUBLE ANGLE BRACKET
+300C          ; BidiMirrored # Ps       LEFT CORNER BRACKET
+300D          ; BidiMirrored # Pe       RIGHT CORNER BRACKET
+300E          ; BidiMirrored # Ps       LEFT WHITE CORNER BRACKET
+300F          ; BidiMirrored # Pe       RIGHT WHITE CORNER BRACKET
+3010          ; BidiMirrored # Ps       LEFT BLACK LENTICULAR BRACKET
+3011          ; BidiMirrored # Pe       RIGHT BLACK LENTICULAR BRACKET
+3014          ; BidiMirrored # Ps       LEFT TORTOISE SHELL BRACKET
+3015          ; BidiMirrored # Pe       RIGHT TORTOISE SHELL BRACKET
+3016          ; BidiMirrored # Ps       LEFT WHITE LENTICULAR BRACKET
+3017          ; BidiMirrored # Pe       RIGHT WHITE LENTICULAR BRACKET
+3018          ; BidiMirrored # Ps       LEFT WHITE TORTOISE SHELL BRACKET
+3019          ; BidiMirrored # Pe       RIGHT WHITE TORTOISE SHELL BRACKET
+301A          ; BidiMirrored # Ps       LEFT WHITE SQUARE BRACKET
+301B          ; BidiMirrored # Pe       RIGHT WHITE SQUARE BRACKET
+
+# Total code points: 202
+
