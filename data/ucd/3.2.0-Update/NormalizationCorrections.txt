@@ -1,0 +1,37 @@
+# NormalizationCorrections-3.2.0.txt
+#
+# This file is a normative contributory data file in the
+# Unicode Character Database.
+#
+# The normalization stabilization policy of the Unicode
+# Consortium ordinarily precludes any change to the decomposition
+# for any character, once established in a relevant version
+# of the UnicodeData.txt data file. However, under certain
+# exceptional (and rare) conditions, an error in a decomposition
+# mapping may be discovered that is truly just an unintended
+# typo in the data, and not a matter of dubious interpretation.
+#
+# Whenever such an error may be found, and if it meets the
+# requirements for possible exceptions to normalization
+# stability, the correction is entered in this data file,
+# so that any implementation depending on absolute stability
+# of normalization, *including* any errors in the data, can
+# safely reconstruct the exact state of the data tables at
+# any given version of Unicode.
+#
+# Currently this list has exactly one entry in it, for the
+# typo found and corrected in Corrigendum #3. All efforts
+# will be made to keep the listing to exactly one entry in
+# the future.
+#
+# Interpretation of the fields:
+#   Field 1: Unicode code point
+#   Field 2: Original (erroneous) decomposition
+#   Field 3: Corrected decomposition
+#   Field 4: Version of Unicode for which the correction was
+#            entered into UnicodeData.txt, in n.n.n format.
+#   Comment: Indicates the Unicode Corrigendum which documents 
+#            the correction
+#
+#
+F951;96FB;964B;3.2.0 # Corrigendum 3
