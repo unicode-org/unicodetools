@@ -1,0 +1,900 @@
+# WordBreakTest-4.1.0.txt
+# Date: 2005-03-27, 16:59:16 GMT [MD]
+#
+# Unicode Character Database
+# Copyright (c) 1991-2005 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see UCD.html
+#
+# Default Word Break Test
+#
+# Format:
+# <string> (# <comment>)? 
+#  <string> contains hex Unicode code points, with 
+#	÷ wherever there is a break opportunity, and 
+#	× wherever there is not.
+#  <comment> the format can change, but currently it shows:
+#	- the sample character name
+#	- (x) the line_break property* for the sample character
+#	- [x] the rule that determines whether there is a break or not
+#
+# These samples may be extended or changed in the future.
+#
+÷ 00AD × 00AD ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 3031 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 0041 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 00AD ÷ 0027 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 002C ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 0030 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 00AD ÷ 005F ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 00AD ÷ 0001 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 00AD ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 00AD ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 00AD ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] SOFT HYPHEN (Format) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 00AD ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 3031 × 00AD ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 3031 × 3031 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) × [13: Katakana × Katakana] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 × 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 0041 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 3031 ÷ 0027 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 002C ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 0030 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 3031 × 005F ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) × [13a: (ALetter | Numeric | Katakana | ExtendNumLet)  	×  	ExtendNumLet] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 × 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 3031 ÷ 0001 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 3031 ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 3031 ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 3031 ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] VERTICAL KANA REPEAT MARK (Katakana) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 3031 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 00AD ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0041 ÷ 3031 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 0041 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [5: ALetter × ALetter] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 × 0027 × 0041 × 0301 × 0308 × 0061 ÷
+÷ 0041 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0041 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 0030 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [9: ALetter × Numeric] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0041 × 005F ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [13a: (ALetter | Numeric | Katakana | ExtendNumLet)  	×  	ExtendNumLet] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0041 ÷ 0001 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 0061 × 2060 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 × 0027 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 × 0027 × 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0041 × 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 × 0027 × 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0041 × 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 × 0027 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 × 0027 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [9: ALetter × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [9: ALetter × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [9: ALetter × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0041 × 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] LATIN CAPITAL LETTER A (ALetter) × [9: ALetter × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0041 × 0301 × 0308 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0041 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0027 × 00AD ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 3031 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 0041 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0027 × 0301 × 0308 × 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0027 ÷ 0027 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 002C ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 0030 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0027 ÷ 005F ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0027 ÷ 0001 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0027 × 0301 × 0308 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0027 × 0301 × 0308 × 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0027 ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0027 × 0301 × 0308 × 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 002C × 00AD ÷	#  ÷ [1: sot ÷] COMMA (MidNum) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 3031 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 0041 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 002C ÷ 0027 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 002C ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 0030 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 002C ÷ 005F ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 002C ÷ 0001 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 002C ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 002C ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 002C ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 00AD ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0030 ÷ 3031 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 0041 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [10: Numeric × ALetter] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0030 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0030 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 0030 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [8: Numeric × Numeric] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0030 × 005F ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [13a: (ALetter | Numeric | Katakana | ExtendNumLet)  	×  	ExtendNumLet] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0030 ÷ 0001 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 0061 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [10: Numeric × ALetter] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [10: Numeric × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0030 × 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [10: Numeric × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0030 × 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [10: Numeric × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [10: Numeric × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [8: Numeric × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [8: Numeric × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [8: Numeric × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0030 × 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ZERO (Numeric) × [8: Numeric × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0030 × 0301 × 0308 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0030 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 00AD ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 3031 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 0041 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 005F ÷ 0027 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 005F ÷ 002C ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 0030 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 005F × 005F ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13a: (ALetter | Numeric | Katakana | ExtendNumLet)  	×  	ExtendNumLet] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 005F ÷ 0001 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 0061 × 2060 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 005F × 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 005F × 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 005F × 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] LOW LINE (ExtendNumLet) × [13b: ExtendNumLet 	× 	(ALetter | Numeric | Katakana)] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 005F × 0301 × 0308 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 005F × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0001 × 00AD ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 3031 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 0041 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0001 ÷ 0027 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 002C ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 0030 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0001 ÷ 005F ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0001 ÷ 0001 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0001 ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0001 ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0001 ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] <START OF HEADING> (Other) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0001 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 00AD ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 ÷ 3031 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 0041 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 2060 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 0030 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [9: ALetter × Numeric] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 2060 × 005F ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [13a: (ALetter | Numeric | Katakana | ExtendNumLet)  	×  	ExtendNumLet] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 2060 ÷ 0001 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 0061 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 2060 × 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 2060 × 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [9: ALetter × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [9: ALetter × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [9: ALetter × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 2060 × 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [9: ALetter × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 003A × 00AD ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 003A ÷ 3031 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 003A × 0041 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] COLON (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 003A × 0301 × 0308 × 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 003A ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 003A ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 003A ÷ 0030 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 003A ÷ 005F ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 003A ÷ 0001 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 003A × 0061 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] COLON (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 003A × 0301 × 0308 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 003A × 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] COLON (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 003A × 0301 × 0308 × 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 003A × 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] COLON (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 003A × 0301 × 0308 × 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 003A × 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] COLON (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 003A × 0301 × 0308 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 003A × 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] COLON (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 003A × 0301 × 0308 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 003A ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 003A ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 003A ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 003A ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 00AD ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 ÷ 3031 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0027 × 0041 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 0027 × 0301 × 0308 × 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 ÷ 0030 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 ÷ 005F ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 ÷ 0001 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0027 × 0061 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 0027 × 0301 × 0308 × 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0027 × 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 0027 × 0301 × 0308 × 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0027 × 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 0027 × 0301 × 0308 × 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0027 × 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 0027 × 0301 × 0308 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0027 × 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 × 0027 × 0301 × 0308 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 2060 × 00AD ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 3031 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0027 × 2060 × 0041 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 0030 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 005F ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 0001 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0027 × 2060 × 0061 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0027 × 2060 × 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0027 × 2060 × 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0027 × 2060 × 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0027 × 2060 × 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 0027 × 2060 ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C × 00AD ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 3031 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 0041 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 0030 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C ÷ 005F ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C ÷ 0001 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 ÷ 002C ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 ÷ 002C ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0061 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A × 00AD ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 3031 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 0041 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 003A ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 0030 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 003A ÷ 005F ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 003A ÷ 0001 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 003A ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 003A ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 003A ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 003A × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 × 00AD ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 3031 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0041 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0030 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 0027 ÷ 005F ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0001 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [14: Any ÷ Any] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002C × 00AD ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002C ÷ 3031 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002C ÷ 0041 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002C ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002C ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002C × 0030 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] COMMA (MidNum) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0031 × 002C × 0301 × 0308 × 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002C ÷ 005F ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002C ÷ 0001 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002C ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002C ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002C ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002C ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002C ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002C × 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] COMMA (MidNum) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 × 002C × 0301 × 0308 × 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002C × 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] COMMA (MidNum) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 × 002C × 0301 × 0308 × 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002C × 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] COMMA (MidNum) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 × 002C × 0301 × 0308 × 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002C × 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] COMMA (MidNum) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 × 002C × 0301 × 0308 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002C × 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002E × 2060 × 00AD ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) × [4: X Format* -> X] SOFT HYPHEN (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 × 00AD ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 3031 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] VERTICAL KANA REPEAT MARK (Katakana) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 3031 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 0041 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN CAPITAL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0041 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002E × 2060 × 0030 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ZERO (Numeric) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0030 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 005F ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] LOW LINE (ExtendNumLet) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 005F × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 0001 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] <START OF HEADING> (Other) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0001 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 0061 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 0061 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 003A × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 0061 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 × 0027 × 0301 × 0308 × 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 0061 ÷ 0027 × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 0027 × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0031 ÷ 002E × 2060 ÷ 0061 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0061 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002E × 2060 × 0031 ÷ 003A ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COLON (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 003A × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002E × 2060 × 0031 ÷ 0027 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] APOSTROPHE (MidLetter) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 0027 × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002E × 2060 × 0031 ÷ 002C ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] COMMA (MidNum) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002C × 0301 × 0308 ÷ 0061 ÷
+÷ 0031 × 002E × 2060 × 0031 ÷ 002E × 2060 ÷	#  ÷ [1: sot ÷] DIGIT ONE (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) ÷ [14: Any ÷ Any] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0061 × 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0027 ÷ 0031 ÷ 002E × 2060 ÷ 0301 × 0308 ÷ 0061 ÷
+÷ 0063 × 0061 × 006E × 0027 × 0074 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER C (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER N (ALetter) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER T (ALetter) ÷ [2: ÷ eot]
+÷ 0063 × 0061 × 006E × 2019 × 0074 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER C (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER N (ALetter) × [6: ALetter × MidLetter ALetter] RIGHT SINGLE QUOTATION MARK (MidLetter) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER T (ALetter) ÷ [2: ÷ eot]
+÷ 0061 × 0062 × 00AD × 0062 × 0079 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER B (ALetter) × [4: X Format* -> X] SOFT HYPHEN (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER B (ALetter) × [5: ALetter × ALetter] LATIN SMALL LETTER Y (ALetter) ÷ [2: ÷ eot]
+÷ 0061 ÷ 0024 ÷ 002D ÷ 0033 × 0034 × 002C × 0035 × 0036 × 0037 × 002E × 0031 × 0034 ÷ 0025 ÷ 0062 ÷	#  ÷ [1: sot ÷] LATIN SMALL LETTER A (ALetter) ÷ [14: Any ÷ Any] DOLLAR SIGN (Other) ÷ [14: Any ÷ Any] HYPHEN-MINUS (Other) ÷ [14: Any ÷ Any] DIGIT THREE (Numeric) × [8: Numeric × Numeric] DIGIT FOUR (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] COMMA (MidNum) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT FIVE (Numeric) × [8: Numeric × Numeric] DIGIT SIX (Numeric) × [8: Numeric × Numeric] DIGIT SEVEN (Numeric) × [12: Numeric × (MidNum | MidNumLet) Numeric] FULL STOP (MidNum) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) × [8: Numeric × Numeric] DIGIT FOUR (Numeric) ÷ [14: Any ÷ Any] PERCENT SIGN (Other) ÷ [14: Any ÷ Any] LATIN SMALL LETTER B (ALetter) ÷ [2: ÷ eot]
+÷ 0033 × 0061 ÷	#  ÷ [1: sot ÷] DIGIT THREE (Numeric) × [10: Numeric × ALetter] LATIN SMALL LETTER A (ALetter) ÷ [2: ÷ eot]
+÷ 2060 ÷ 0063 × 2060 × 0061 × 2060 × 006E × 2060 × 0027 × 2060 × 0074 × 2060 × 2060 ÷	#  ÷ [1: sot ÷] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER C (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER N (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [6: ALetter × MidLetter ALetter] APOSTROPHE (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER T (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 2060 ÷ 0063 × 2060 × 0061 × 2060 × 006E × 2060 × 2019 × 2060 × 0074 × 2060 × 2060 ÷	#  ÷ [1: sot ÷] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER C (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER N (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [6: ALetter × MidLetter ALetter] RIGHT SINGLE QUOTATION MARK (MidLetter) × [4: X Format* -> X] WORD JOINER (Format) × [7: ALetter (MidLetter | MidNumLet) × ALetter] LATIN SMALL LETTER T (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 2060 ÷ 0061 × 2060 × 0062 × 2060 × 00AD × 2060 × 0062 × 2060 × 0079 × 2060 × 2060 ÷	#  ÷ [1: sot ÷] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER B (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [4: X Format* -> X] SOFT HYPHEN (Format) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER B (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [5: ALetter × ALetter] LATIN SMALL LETTER Y (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 2060 ÷ 0061 × 2060 ÷ 0024 × 2060 ÷ 002D × 2060 ÷ 0033 × 2060 × 0034 × 2060 × 002C × 2060 × 0035 × 2060 × 0036 × 2060 × 0037 × 2060 × 002E × 2060 × 0031 × 2060 × 0034 × 2060 ÷ 0025 × 2060 ÷ 0062 × 2060 × 2060 ÷	#  ÷ [1: sot ÷] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] DOLLAR SIGN (Other) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] HYPHEN-MINUS (Other) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] DIGIT THREE (Numeric) × [4: X Format* -> X] WORD JOINER (Format) × [8: Numeric × Numeric] DIGIT FOUR (Numeric) × [4: X Format* -> X] WORD JOINER (Format) × [12: Numeric × (MidNum | MidNumLet) Numeric] COMMA (MidNum) × [4: X Format* -> X] WORD JOINER (Format) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT FIVE (Numeric) × [4: X Format* -> X] WORD JOINER (Format) × [8: Numeric × Numeric] DIGIT SIX (Numeric) × [4: X Format* -> X] WORD JOINER (Format) × [8: Numeric × Numeric] DIGIT SEVEN (Numeric) × [4: X Format* -> X] WORD JOINER (Format) × [12: Numeric × (MidNum | MidNumLet) Numeric] FULL STOP (MidNum) × [4: X Format* -> X] WORD JOINER (Format) × [11: Numeric (MidNum | MidNumLet) × Numeric] DIGIT ONE (Numeric) × [4: X Format* -> X] WORD JOINER (Format) × [8: Numeric × Numeric] DIGIT FOUR (Numeric) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] PERCENT SIGN (Other) × [4: X Format* -> X] WORD JOINER (Format) ÷ [14: Any ÷ Any] LATIN SMALL LETTER B (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+÷ 2060 ÷ 0033 × 2060 × 0061 × 2060 × 2060 ÷	#  ÷ [1: sot ÷] WORD JOINER (Format) ÷ [14: Any ÷ Any] DIGIT THREE (Numeric) × [4: X Format* -> X] WORD JOINER (Format) × [10: Numeric × ALetter] LATIN SMALL LETTER A (ALetter) × [4: X Format* -> X] WORD JOINER (Format) × [4: X Format* -> X] WORD JOINER (Format) ÷ [2: ÷ eot]
+# Lines: 867
