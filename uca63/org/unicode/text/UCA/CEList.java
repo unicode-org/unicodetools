@@ -14,13 +14,19 @@ import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.IntStack;
 import org.unicode.text.utility.Utility;
 
-public final class CEList implements java.lang.Comparable, UCD_Types {
-    int[] contents;
-    int startOffset;
-    int endOffset;
-    int count;
+/**
+ * Immutable list of collation element integers.
+ */
+public final class CEList implements java.lang.Comparable<CEList>, UCD_Types {
+    private int[] contents;
+    private int startOffset;
+    private int endOffset;
+    private int count;
 
-    public CEList (int[] source, int start, int end) {
+    /**
+     * Constructs a new list by copying source[start:end].
+     */
+    public CEList(int[] source, int start, int end) {
         count = end-start;
         contents = new int[count];
         System.arraycopy(source, start, contents, 0, count);
@@ -28,10 +34,17 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
         endOffset = count;
     }
 
+    /**
+     * Constructs a new list by copying source.
+     */
     public CEList(int[] source) {
         this(source, 0, source.length);
     }
 
+    /**
+     * Constructs a new list by <i>aliasing</i> source[start:end].
+     * @param spare ignored
+     */
     private CEList(int[] source, int start, int end, boolean spare) {
         contents = source;
         startOffset = start;
@@ -39,6 +52,9 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
         count = end - start;
     }
 
+    /**
+     * Returns a new list with the concatenation of this &amp; that.
+     */
     public CEList append(CEList that) {
         int[] newContents = new int[count + that.count];
         System.arraycopy(contents, startOffset, newContents, 0, count);
@@ -46,26 +62,41 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
         return new CEList(newContents, 0, count + that.count, true);
     }
 
+    /**
+     * Returns a new list with the slice [start:end].
+     */
     public CEList sub(int start, int end) {
-        return new CEList(contents, start, end, true);
+        return new CEList(contents, startOffset + start, startOffset + end, true);
     }
 
+    /**
+     * Returns a new list with the slice [0:end].
+     */
     public CEList start(int end) {
-        return new CEList(contents, 0, end, true);
+        return new CEList(contents, startOffset, startOffset + end, true);
     }
 
+    /**
+     * Returns a new list with the slice [start:length()].
+     */
     public CEList end(int start) {
-        return new CEList(contents, start, contents.length, true);
+        return new CEList(contents, startOffset + start, contents.length, true);
+    }
+
+    public boolean isEmpty() {
+        return count == 0;
     }
 
     public int length() {
         return count;
     }
 
+    /**
+     * Returns the i-th collation element.
+     */
     public int at(int i) {
-        i -= startOffset;
         if (i < 0 || i >= count) throw new ArrayIndexOutOfBoundsException(i);
-        return contents[i];
+        return contents[startOffset + i];
     }
 
     public int hashCode() {
@@ -90,12 +121,12 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
             return false;
         }
     }
-    public int compareTo(Object other) {
+    public int compareTo(CEList other) {
         return compareTo(other, 0xFFFFFFFFL);
     }
     
-    public int compareTo(Object other, long mask) {
-        CEList that = (CEList)other;
+    public int compareTo(CEList other, long mask) {
+        CEList that = other;
         try {
             int delta = that.startOffset - startOffset;
             int min = endOffset;
@@ -148,11 +179,10 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
         return (byte)t;
     }
 
-
     public String toString() {
-        if (startOffset >= endOffset) return toString(0);
+        if (isEmpty()) return toString(0);
 
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         for (int i = startOffset; i < endOffset; ++i) {
             if (i != startOffset) result.append(' ');
             result.append(toString(contents[i]));
@@ -163,7 +193,7 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
     public static String toString(int[] ces, int len) {
         if (len <= 0) return toString(0);
 
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < len; ++i) {
             if (i != 0) result.append(' ');
             result.append(toString(ces[i]));
@@ -174,7 +204,7 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
     public static String toString(IntStack ces) {
         if (ces.length() <= 0) return toString(0);
 
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < ces.length(); ++i) {
             if (i != 0) result.append(' ');
             result.append(toString(ces.get(i)));
@@ -183,10 +213,10 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
     }
 
     public static String toString(int ce) {
-        return "[" + Utility.hex(UCA.getPrimary(ce)) + "." 
-        + Utility.hex(UCA.getSecondary(ce)) + "."
-        + Utility.hex(UCA.getTertiary(ce)) + "]"
-        // + "(" + NAME3[UCA.getTertiary(ce)] + ")"
+        return "[" + Utility.hex(getPrimary(ce)) + "." 
+        + Utility.hex(getSecondary(ce)) + "."
+        + Utility.hex(getTertiary(ce)) + "]"
+        // + "(" + NAME3[getTertiary(ce)] + ")"
         ;
     }
 
@@ -225,6 +255,41 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
         "MAX"
     };
 
+    public boolean isPrimaryIgnorable() {
+        for (int i = startOffset; i < endOffset; ++i) {
+            int ce = contents[i];
+            if (getPrimary(ce) != 0) return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns the primary weight from a 32-bit CE.
+     * The primary is 16 bits, stored in b31..b16.
+     */
+    public static char getPrimary(int ce) {
+        return (char)(ce >>> 16);
+    }
+
+    public static final int SECONDARY_MAX = 0x1FF;
+    public static final int TERTIARY_MAX = 0x7F;
+
+    /**
+     * Returns the secondary weight from a 32-bit CE.
+     * The secondary is 9 bits, stored in b15..b7.
+     */
+    public static char getSecondary(int ce) {
+        return (char)((ce >>> 7) & SECONDARY_MAX);
+    }
+
+    /**
+     * Returns the tertiary weight from a 32-bit CE.
+     * The tertiary is 7 bits, stored in b6..b0.
+     */
+    public static char getTertiary(int ce) {
+        return (char)(ce & TERTIARY_MAX);
+    }
+
     // testing
 
     public static void main(String args[]) throws Exception {
@@ -236,7 +301,8 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
         t1 = t1.sub(1,2);
         CEList t2 = new CEList(new int[] {0x0F6B2002});
         System.out.println(t1.compareTo(t2));
-
+        System.out.println("t1[0]=" + Integer.toHexString(t1.at(0)) +
+                " t2[0]=" + Integer.toHexString(t2.at(0)));
 
         CEList foo = new CEList(new int[] {0, 1, 2, 3, 4});
         CEList fuu = new CEList(new int[] {});
@@ -253,13 +319,5 @@ public final class CEList implements java.lang.Comparable, UCD_Types {
         System.out.println(fii.compareTo(foo));
         System.out.println(fii.hashCode() == foo2.hashCode());
 
-    }
-
-    public boolean isPrimaryIgnorable() {
-        for (int i = startOffset; i < endOffset; ++i) {
-            int ce = contents[i];
-            if (UCA.getPrimary(ce) != 0) return false;
-        }
-        return true;
     }
 }

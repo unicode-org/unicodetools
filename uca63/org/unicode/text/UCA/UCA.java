@@ -561,30 +561,33 @@ final public class UCA implements Comparator, UCA_Types {
     }
 
     /**
-     * Utility, used to get the primary weight from a 32-bit CE
-     * The primary is 16 bits, stored in b31..b16
+     * Returns the primary weight from a 32-bit CE.
+     * The primary is 16 bits, stored in b31..b16.
+     *
+     * @deprecated use {@link CEList#getPrimary(int)}
      */
     public static char getPrimary(int ce) {
-        return (char)(ce >>> 16);
+        return CEList.getPrimary(ce);
     }
 
-    static final int SECONDARY_MAX = 0x1FF;
-    static final int TERTIARY_MAX = 0x7F;
-
     /**
-     * Utility, used to get the secondary weight from a 32-bit CE
-     * The secondary is 8 bits, stored in b15..b8
+     * Returns the secondary weight from a 32-bit CE.
+     * The secondary is 9 bits, stored in b15..b7.
+     *
+     * @deprecated use {@link CEList#getPrimary(int)}
      */
     public static char getSecondary(int ce) {
-        return (char)((ce >>> 7) & SECONDARY_MAX);
+        return CEList.getSecondary(ce);
     }
 
     /**
-     * Utility, used to get the tertiary weight from a 32-bit CE
-     * The tertiary is 6 bits, stored in b6..b0
+     * Returns the tertiary weight from a 32-bit CE.
+     * The tertiary is 7 bits, stored in b6..b0.
+     *
+     * @deprecated use {@link CEList#getPrimary(int)}
      */
     public static char getTertiary(int ce) {
-        return (char)(ce & TERTIARY_MAX);
+        return CEList.getTertiary(ce);
     }
 
     /**
@@ -726,16 +729,16 @@ final public class UCA implements Comparator, UCA_Types {
     }
 
     public static String toStringUCA(CEList ceList, String value, int variableTop, StringBuilder extraComment) {
-        if (ceList.count == 0) {
+        if (ceList.isEmpty()) {
             return "[.0000.0000.0000.0000]";
         }
         extraComment.setLength(0);
         boolean lastWasVariable = false;
         StringBuffer result = new StringBuffer();
-        String quad = ceList.count == 1 ? value : toD.normalize(value);
+        String quad = ceList.length() == 1 ? value : toD.normalize(value);
         int qIndex = 0;
 
-        for (int i = 0; i < ceList.count; ++i) {
+        for (int i = 0; i < ceList.length(); ++i) {
             int ce = ceList.at(i);
             char p = UCA.getPrimary(ce);
             char s = UCA.getSecondary(ce);
@@ -1729,7 +1732,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
         //fixlater;
         variableLowCE = makeKey(1,0,0);
-        variableHighCE = makeKey(ucaData.variableHigh, SECONDARY_MAX, TERTIARY_MAX); // turn on bottom bits
+        variableHighCE = makeKey(ucaData.variableHigh, CEList.SECONDARY_MAX, CEList.TERTIARY_MAX); // turn on bottom bits
 
         //int hangulHackBottom;
         //int hangulHackTop;
@@ -1875,10 +1878,10 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             }
             variable = false; // FIX DATA FILE
         }
-        if (key2 > SECONDARY_MAX) {
+        if (key2 > CEList.SECONDARY_MAX) {
             throw new IllegalArgumentException("Weight2 doesn't fit: " + Utility.hex(key2) + "," + line);
         }
-        if (key3 > TERTIARY_MAX) {
+        if (key3 > CEList.TERTIARY_MAX) {
             throw new IllegalArgumentException("Weight3 doesn't fit: " + Utility.hex(key3) + "," + line);
         }
         // adjust variable bounds, if needed

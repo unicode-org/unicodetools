@@ -2884,7 +2884,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         // match codepointToImplicit
         for (String diChar : di) {
             CEList ceList = getCollator(CollatorType.ducet).getCEList(diChar, true);
-            if (ceList.count != 2) {
+            if (ceList.length() != 2) {
                 bad.add(diChar);
             } else {
                 UCA.UnassignedToImplicit(diChar.codePointAt(0), output);
@@ -2918,7 +2918,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         UnicodeSet bad = new UnicodeSet();
         for (String diChar : di) {
             CEList ceList = getCollator(CollatorType.ducet).getCEList(diChar, true);
-            for (int i = 0; i < ceList.count; ++i) {
+            for (int i = 0; i < ceList.length(); ++i) {
                 int ce = ceList.at(i);
                 if (UCA.getPrimary(ce) != 0 || UCA.getSecondary(ce) != 0) {
                     bad.add(diChar);
