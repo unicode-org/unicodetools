@@ -74,7 +74,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         CEList.main(null);
             
         System.out.println("# Overlap");
-        System.out.println("# Generated " + Default.getDate());
+        System.out.println("# Generated: " + WriteCollationData.getNormalDate());
             
         ucd = UCD.make();
 
@@ -346,7 +346,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         CEList.main(null);
             
         System.out.println("# Generate");
-        System.out.println("# Generated " + Default.getDate());
+        System.out.println("# Generated: " + WriteCollationData.getNormalDate());
             
         ucd = UCD.make();
 
@@ -544,7 +544,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         collator = collatorIn;
             
         System.out.println("# Check Hash");
-        System.out.println("# Generated " + Default.getDate());
+        System.out.println("# Generated: " + WriteCollationData.getNormalDate());
             
         ucd = UCD.make();
 

@@ -23,6 +23,7 @@ import java.text.RuleBasedCollator;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -2697,10 +2698,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     // UNICODE_VERSION);
     // static Normalizer NFD = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
 
-    static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd','HH:mm:ss' GMT'");
+    // Print only year and month, to reduce gratuitous file changes.
+    private static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MMM");  // was "yyyy-MM-dd','HH:mm:ss' GMT'"
 
     static String getNormalDate() {
-        return Default.getDate() + " [MD]";
+        // return Default.getDate() + " [MD]";
+    	return myDateFormat.format(new Date()) + " [MS]";
     }
 
     static void copyFile(PrintWriter log, String fileName) throws IOException {

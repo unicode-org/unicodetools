@@ -1069,12 +1069,15 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         String directory = UCA.getUCA_GEN_DIR() + "CollationAuxiliary" + File.separator;
 
-        PrintWriter shortLog = Utility.openPrintWriter(directory, filename + "_SHORT.txt", Utility.UTF8_WINDOWS);
+        boolean shortPrint = false;
         PrintWriter longLog = Utility.openPrintWriter(directory, filename + ".txt", Utility.UTF8_WINDOWS);
-
-        //PrintWriter shortLog = new PrintWriter(new BufferedWriter(new FileWriter(directory + filename + "_SHORT.txt"), 32*1024));
-        //PrintWriter longLog = new PrintWriter(new BufferedWriter(new FileWriter(directory + filename + ".txt"), 32*1024));
-        fractionalLog = new PrintWriter(new DualWriter(shortLog, longLog));
+        if (shortPrint) { 
+            PrintWriter shortLog = Utility.openPrintWriter(directory, filename + "_SHORT.txt", Utility.UTF8_WINDOWS);
+    
+            fractionalLog = new PrintWriter(new DualWriter(shortLog, longLog));
+        } else {
+            fractionalLog = longLog;
+        }
 
         String summaryFileName = filename + "_summary.txt";
         PrintWriter summary = Utility.openPrintWriter(directory, summaryFileName, Utility.UTF8_WINDOWS);

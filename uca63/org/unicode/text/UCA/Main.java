@@ -24,12 +24,12 @@ import com.ibm.icu.text.UTF16;
 public class Main {
     static final String[] ICU_FILES = {
         "writeCollationValidityLog", "writeFractionalUCA", "WriteAllKeys", "WriteAllKeysDucet",
-        "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "WriteRulesCLDRXML", 
+        "WriteRules", "WriteRulesCLDR",  // "WriteRulesXML", "WriteRulesCLDRXML", 
         "writeconformance", "writeConformanceShifted", "writeConformanceCldr", "writeConformanceShiftedCldr", 
-        "short", 
-        "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "WriteRulesCLDRXML", 
-        "writeconformance", "writeConformanceShifted", "writeConformanceCldr", "writeConformanceShiftedCldr", 
-        "noCE", "short",        "WriteRules", "WriteRulesCLDR", "WriteRulesXML", "WriteRulesCLDRXML"
+        // "short", 
+        // "WriteRules", "WriteRulesCLDR",  // "WriteRulesXML", "WriteRulesCLDRXML", 
+        // "writeconformance", "writeConformanceShifted", "writeConformanceCldr", "writeConformanceShiftedCldr", 
+        "noCE",  // "short",        "WriteRules", "WriteRulesCLDR",  // "WriteRulesXML", "WriteRulesCLDRXML"
     };
 
     static final String[] CHART_FILES = {
