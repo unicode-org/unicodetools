@@ -1,0 +1,663 @@
+Generate: .*
+DeltaVersion: 1
+CopyrightYear: 2013
+
+File: extra/ScriptNfkc
+Property: SPECIAL
+# Shows where the script values of a character doesn't agree with the script values of the NFKD form (skipping Common and Inherited)
+#
+
+File: ScriptExtensions
+# The Script_Extensions property indicates which characters are commonly used
+# with more than one script, but with a limited number of scripts.
+# For each code point, there is one or more property values.  Each such value is a Script property value.
+# For more information, see:
+#   UAX #24: http://www.unicode.org/reports/tr24/ and
+#   UAX #44: http://www.unicode.org/reports/tr44/
+#
+#  All code points not explicitly listed for Script_Extensions
+#  have as their value the corresponding Script property value
+#
+# @missing: 0000..10FFFF; <script>
+
+Property: Script_Extensions
+Format: valueStyle=short
+
+File: auxiliary/GraphemeBreakProperty
+Property: Grapheme_Cluster_Break
+Format:	skipValue=Other
+
+File: auxiliary/WordBreakProperty
+Property: Word_Break
+Format:	skipValue=Other
+
+File: auxiliary/SentenceBreakProperty
+Property: Sentence_Break
+Format:	skipValue=Other
+
+File: auxiliary/GraphemeBreakTest
+Property: SPECIAL
+
+File: auxiliary/WordBreakTest
+Property: SPECIAL
+
+File: auxiliary/LineBreakTest
+Property: SPECIAL
+
+File: auxiliary/SentenceBreakTest
+Property: SPECIAL
+
+File:	extra/Blocks
+Property: Block
+# Note:   When comparing block names, casing, whitespace, hyphens,
+#         and underbars are ignored.
+#         For example, "Latin Extended-A" and "latin extended a" are equivalent.
+#         For more information on the comparison of property values, 
+#            see UAX #44: http://www.unicode.org/reports/tr44/.
+Format:	valueList skipUnassigned=No_Block
+# Property: Block
+#
+# @missing: 0000..10FFFF; No_Block
+
+
+File:	CaseFolding
+Property: SPECIAL
+
+File:	DerivedAge
+Property:	Age
+# Property: Age
+#
+# Note: When using the Age property in regular expressions, 
+# an expression such as "\p{age=3.0}" matches all of the code points
+# assigned in Version 3.0--that is, all the code points with a value
+# less than or equal to 3.0 for the Age property.
+# For more information, see [http://www.unicode.org/reports/tr18/].
+Format: nameStyle=none noLabel skipValue=Unassigned valueStyle=short
+
+Value:	V1_1
+# Assigned as of Unicode 1.1.0 (June, 1993)
+# [excluding removed Hangul Syllables]
+
+Value:	V2_0
+# Newly assigned in Unicode 2.0.0 (July, 1996)
+
+Value:	V2_1
+# Newly assigned in Unicode 2.1.2 (May, 1998)
+
+Value:	V3_0
+# Newly assigned in Unicode 3.0.0 (September, 1999)
+
+Value:	V3_1
+# Newly assigned in Unicode 3.1.0 (March, 2001)
+
+Value:	V3_2
+# Newly assigned in Unicode 3.2.0 (March, 2002)
+
+Value:	V4_0
+# Newly assigned in Unicode 4.0.0 (April, 2003)
+
+Value:	V4_1
+# Newly assigned in Unicode 4.1.0 (March, 2005)
+
+Value:	V5_0
+# Newly assigned in Unicode 5.0.0 (July, 2006)
+
+Value:	V5_1
+# Newly assigned in Unicode 5.1.0 (March, 2008)
+
+Value:	V5_2
+# Newly assigned in Unicode 5.2.0 (October, 2009)
+
+Value:	V6_0
+# Newly assigned in Unicode 6.0.0 (October, 2010)
+
+Value:  V6_1
+# Newly assigned in Unicode 6.1.0 (January, 2012)
+
+Value:  V6_2
+# Newly assigned in Unicode 6.2.0 (September, 2012)
+
+Value:  V6_3
+# Newly assigned in Unicode 6.3.0 (Planned for June, 2013)
+
+File:	extracted/DerivedBidiClass
+Property:	Bidi_Class
+# Bidi Class (listing UnicodeData.txt, field 4: see UAX #44: http://www.unicode.org/reports/tr44/)
+# Unlike other properties, unassigned code points in blocks 
+# reserved for right-to-left scripts are given either types R or AL.
+#
+# The unassigned code points that default to AL are in the ranges:
+#     [\u0600-\u07BF \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U0001EE00-\U0001EEFF]
+#
+#     Arabic:            U+0600  -  U+06FF
+#     Syriac:            U+0700  -  U+074F
+#     Arabic_Supplement: U+0750  -  U+077F
+#     Thaana:            U+0780  -  U+07BF
+#     Arabic Extended-A: U+08A0  -  U+08FF 
+#     Arabic_Presentation_Forms_A:
+#                        U+FB50  -  U+FDCF
+#                        U+FDF0  -  U+FDFF
+#     Arabic_Presentation_Forms_B:
+#                        U+FE70  -  U+FEFF
+#     Arabic Mathematical Alphabetic Symbols:
+#                       U+1EE00  - U+1EEFF
+#
+# The unassigned code points that default to R are in the ranges:
+#     [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EDFF \U0001EF00-\U0001EFFF]
+#
+#     Hebrew:            U+0590  -  U+05FF
+#     NKo:               U+07C0  -  U+07FF
+#     Cypriot_Syllabary: U+10800 - U+1083F
+#     Phoenician:        U+10900 - U+1091F
+#     Lydian:            U+10920 - U+1093F
+#     Meroitic Hieroglyphs:  
+#                        U+10980 - U+1099F
+#     Meroitic Cursive:  U+109A0 - U+109FF
+#     Kharoshthi:        U+10A00 - U+10A5F
+#     and any others in the ranges:
+#                        U+0800  -  U+089F,
+#                        U+FB1D  -  U+FB4F,
+#                        U+10840 - U+10FFF,
+#                        U+1E800 - U+1EDFF,
+#                        U+1EF00 - U+1EFFF
+#
+# For all other cases:
+Format:	valueStyle=short skipUnassigned=Left_To_Right
+
+File:	extracted/DerivedBinaryProperties
+Property:	Bidi_Mirrored
+# Bidi_Mirrored (listing UnicodeData.txt, field 9: see UAX #44: http://www.unicode.org/reports/tr44/)
+
+File:	extracted/DerivedCombiningClass
+Property:	Canonical_Combining_Class
+# Combining Class (listing UnicodeData.txt, field 3: see UAX #44: http://www.unicode.org/reports/tr44/)
+Format: nameStyle=none valueStyle=short skipUnassigned=Not_Reordered
+
+File:	DerivedCoreProperties
+Property:	Math
+# Derived Property: Math
+#  Generated from: Sm + Other_Math
+
+Property:	Alphabetic
+# Derived Property: Alphabetic
+#  Generated from: Lu+Ll+Lt+Lm+Lo+Nl + Other_Alphabetic
+
+Property:	Lowercase
+# Derived Property: Lowercase
+#  Generated from: Ll + Other_Lowercase
+
+Property:	Uppercase
+# Derived Property: Uppercase
+#  Generated from: Lu + Other_Uppercase
+
+Property:   Cased
+# Derived Property:   Cased (Cased)
+#  As defined by Unicode Standard Definition D120
+#  C has the Lowercase or Uppercase property or has a General_Category value of Titlecase_Letter.
+
+Property:   Case_Ignorable
+# Derived Property:   Case_Ignorable (CI)
+#  As defined by Unicode Standard Definition D121
+#  C is defined to be case-ignorable if 
+#    Word_Break(C) = MidLetter or MidNumLet, or
+#    General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
+
+Property:   Changes_When_Lowercased
+# Derived Property:   Changes_When_Lowercased (CWL)
+#  Characters whose normalized forms are not stable under a toLowercase mapping.
+#  For more information, see D124 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Lowercased(X) is true when toLowercase(toNFD(X)) != toNFD(X)
+
+Property:   Changes_When_Uppercased
+# Derived Property:   Changes_When_Uppercased (CWU)
+#  Characters whose normalized forms are not stable under a toUppercase mapping.
+#  For more information, see D125 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Uppercased(X) is true when toUppercase(toNFD(X)) != toNFD(X)
+
+Property:   Changes_When_Titlecased
+# Derived Property:   Changes_When_Titlecased (CWT)
+#  Characters whose normalized forms are not stable under a toTitlecase mapping.
+#  For more information, see D126 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Titlecased(X) is true when toTitlecase(toNFD(X)) != toNFD(X)
+
+Property:   Changes_When_Casefolded
+# Derived Property:   Changes_When_Casefolded (CWCF)
+#  Characters whose normalized forms are not stable under case folding.
+#  For more information, see D127 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Casefolded(X) is true when toCasefold(toNFD(X)) != toNFD(X)
+
+Property:   Changes_When_Casemapped
+# Derived Property:   Changes_When_Casemapped (CWCM)
+#  Characters whose normalized forms are not stable under case mapping.
+#  For more information, see D128 in Section 3.13, "Default Case Algorithms". 
+#  Changes_When_Casemapped(X) is true when CWL(X), or CWT(X), or CWU(X)
+
+Property:	ID_Start
+# Derived Property: ID_Start
+#  Characters that can start an identifier.
+#  Generated from:
+#      Lu + Ll + Lt + Lm + Lo + Nl
+#    + Other_ID_Start
+#    - Pattern_Syntax
+#    - Pattern_White_Space
+#  NOTE: See UAX #31 for more information
+
+Property:	ID_Continue
+# Derived Property: ID_Continue
+#  Characters that can continue an identifier.
+#  Generated from:
+#      ID_Start
+#    + Mn + Mc + Nd + Pc
+#    + Other_ID_Continue
+#    - Pattern_Syntax
+#    - Pattern_White_Space
+#  NOTE: See UAX #31 for more information
+
+Property:	XID_Start
+# Derived Property: XID_Start
+#  ID_Start modified for closure under NFKx
+#  Modified as described in UAX #15
+#  NOTE: Does NOT remove the non-NFKx characters.
+#        Merely ensures that if isIdentifer(string) then isIdentifier(NFKx(string))
+#  NOTE: See UAX #31 for more information
+
+Property:	XID_Continue
+# Derived Property: XID_Continue
+#  Mod_ID_Continue modified for closure under NFKx
+#  Modified as described in UAX #15
+#  NOTE: Does NOT remove the non-NFKx characters.
+#        Merely ensures that if isIdentifer(string) then isIdentifier(NFKx(string))
+#  NOTE: See UAX #31 for more information
+
+Property:	Default_Ignorable_Code_Point
+# Derived Property: Default_Ignorable_Code_Point
+#  Generated from 
+#    Other_Default_Ignorable_Code_Point
+#  + Cf (Format characters)
+#  + Variation_Selector
+#  - White_Space
+#  - FFF9..FFFB (Annotation Characters)
+#  - 0600..0604, 06DD, 070F, 110BD (exceptional Cf characters that should be visible)
+
+Property:	Grapheme_Extend
+# Derived Property: Grapheme_Extend
+#  Generated from: Me + Mn + Other_Grapheme_Extend
+#  Note: depending on an application's interpretation of Co (private use),
+#  they may be either in Grapheme_Base, or in Grapheme_Extend, or in neither.
+
+
+Property:	Grapheme_Base
+# Derived Property: Grapheme_Base
+#  Generated from: [0..10FFFF] - Cc - Cf - Cs - Co - Cn - Zl - Zp - Grapheme_Extend
+#  Note: depending on an application's interpretation of Co (private use),
+#  they may be either in Grapheme_Base, or in Grapheme_Extend, or in neither.
+
+Property:	Grapheme_Link
+# Derived Property: Grapheme_Link (deprecated)
+#  Generated from: Canonical_Combining_Class=Virama
+#  Use Canonical_Combining_Class=Virama directly instead
+
+File:	extracted/DerivedDecompositionType
+Property:	Decomposition_Type
+Format:	skipValue=None
+# Decomposition_Type (from UnicodeData.txt, field 5: see UAX #44: http://www.unicode.org/reports/tr44/)
+
+File:	extracted/DerivedEastAsianWidth
+Property:	East_Asian_Width
+Format:	valueStyle=short skipUnassigned=Neutral
+# East_Asian_Width (listing EastAsianWidth.txt, field 1)
+
+File:	extracted/DerivedGeneralCategory
+Property:	General_Category
+Format:	valueStyle=short noLabel
+
+File:	extracted/DerivedJoiningGroup
+Property:	Joining_Group
+# Joining Group (listing ArabicShaping.txt, field 3)
+Format: skipValue=No_Joining_Group
+
+File:	extracted/DerivedJoiningType
+Property:	Joining_Type
+#	Type T is derived, as described in ArabicShaping.txt
+Format:	valueStyle=short skipValue=Non_Joining
+
+File:	extracted/DerivedLineBreak
+Property:	Line_Break
+Format:	valueStyle=short skipUnassigned=Unknown
+
+File:	DerivedNormalizationProps
+
+Property:	FC_NFKC_Closure
+# Derived Property: FC_NFKC_Closure  (DEPRECATED as of Unicode 6.0.0)
+#  Generated from computing: b = NFKC(Fold(a)); c = NFKC(Fold(b));
+#  Then if (c != b) add the mapping from a to c to the set of
+#  mappings that constitute the FC_NFKC_Closure list
+#  Uses the full case folding from CaseFolding.txt, without the T option.
+Format:	nameStyle=short mergeRanges=false
+
+Property:	Full_Composition_Exclusion
+# Derived Property: Full_Composition_Exclusion
+#  Generated from: Composition Exclusions + Singletons + Non-Starter Decompositions
+
+Property:	NFD_QuickCheck
+# Derived Property: NFD_QuickCheck
+#  Generated from computing decomposibles
+Format: nameStyle=short valueStyle=short skipValue=Yes
+
+Property:	NFC_QuickCheck
+# Derived Property: NFC_QuickCheck
+#  Generated from computing decomposibles (and characters that may compose with previous ones)
+Format: nameStyle=short valueStyle=short skipValue=Yes
+
+Property:	NFKD_QuickCheck
+# Derived Property: NFKD_QuickCheck
+#  Generated from computing decomposibles
+Format: nameStyle=short valueStyle=short skipValue=Yes
+
+Property:	NFKC_QuickCheck
+# Derived Property: NFKC_QuickCheck
+#  Generated from computing decomposibles (and characters that may compose with previous ones)
+Format: nameStyle=short valueStyle=short skipValue=Yes
+
+Property:	Expands_On_NFD
+# Derived Property: Expands_On_NFD (DEPRECATED as of Unicode 6.0.0)
+#   Generated according to UAX #15.
+#   Characters whose normalized length is not one.
+#   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact.
+#            The length of a normalized string is not necessarily the sum of the lengths of the normalized characters!
+
+Property:	Expands_On_NFC
+# Derived Property: Expands_On_NFC (DEPRECATED as of Unicode 6.0.0)
+#   Generated according to UAX #15.
+#   Characters whose normalized length is not one.
+#   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact.
+#            The length of a normalized string is not necessarily the sum of the lengths of the normalized characters!
+
+
+Property:	Expands_On_NFKD
+# Derived Property: Expands_On_NFKD (DEPRECATED as of Unicode 6.0.0)
+#   Generated according to UAX #15.
+#   Characters whose normalized length is not one.
+#   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact.
+#            The length of a normalized string is not necessarily the sum of the lengths of the normalized characters!
+
+
+Property:	Expands_On_NFKC
+# Derived Property: Expands_On_NFKC (DEPRECATED as of Unicode 6.0.0)
+#   Generated according to UAX #15.
+#   Characters whose normalized length is not one.
+#   WARNING: Normalization of STRINGS must use the algorithm in UAX #15 because characters may interact.
+#            The length of a normalized string is not necessarily the sum of the lengths of the normalized characters!
+
+Property:   NFKC_Casefold
+# Derived Property:   NFKC_Casefold (NFKC_CF)
+#   This property removes certain variations from characters: case, compatibility, and default-ignorables.
+#   It is used for loose matching and certain types of identifiers.
+#   It is constructed by applying NFKC, CaseFolding, and removal of Default_Ignorable_Code_Points.
+#   The process of applying these transformations is repeated until a stable result is produced.
+#   WARNING: Application to STRINGS must apply NFC after mapping each character, because characters may interact.
+#            For more information, see [http://www.unicode.org/reports/tr44/]
+# Omitted code points are unchanged by this mapping.
+# @missing: 0000..10FFFF; NFKC_CF; <code point>
+Format: nameStyle=short skipValue=<codepoint>
+
+Property:   Changes_When_NFKC_Casefolded
+# Derived Property:   Changes_When_NFKC_Casefolded (CWKCF)
+#  Characters that are not stable under an NFKC_Casefold mapping.
+#  As defined by cp != NFKC_Casefold(cp)
+
+File:	extracted/DerivedNumericType
+Property:	Numeric_Type
+# Derived Property:   Numeric_Type
+#  The values are based on fields 6-8 of UnicodeData.txt, plus the fields 
+#  kAccountingNumeric, kOtherNumeric, kPrimaryNumeric in the Unicode Han Database (Unihan).
+#  The derivations for these values are as follows.
+#   Numeric_Type=Decimal: When there is a value in field 6.
+#   Numeric_Type=Digit:   When there is a value in field 7, but not in field 6.
+#   Numeric_Type=Numeric: When there are values for kAccountingNumeric, kOtherNumeric, kPrimaryNumeric,
+#                         or there is a value in field 8, but not in field 7.
+#   Numeric_Type=None:    Otherwise
+Format: skipValue=None
+
+File:	extracted/DerivedNumericValues
+Property:	Numeric_Value
+# Derived Property:   Numeric_Value
+#  Field 1:
+#    The values are based on field 8 of UnicodeData.txt, plus the fields 
+#    kAccountingNumeric, kOtherNumeric, kPrimaryNumeric in the Unicode Han Database (Unihan).
+#    The derivations for these values are as follows.
+#      Numeric_Value = the value of kAccountingNumeric, kOtherNumeric, or kPrimaryNumeric, if they exist; otherwise
+#      Numeric_Value = the value of field 8, if it exists; otherwise
+#      Numeric_Value = NaN
+#  Field 2:
+#    This field is empty; it used to be a copy of the numeric type.
+#
+#  Field 3:
+#    This field was added to this extracted data as of Unicode 5.1.0,
+#    expressing the same numeric value either as a whole integer
+#    where possible, or as a rational fraction such as "1/6".
+#
+# WARNING: Certain values, such as 0.16666667, are repeating fractions.
+# Although they are only printed with a limited number of decimal places
+# in this file, they should be expressed to the limits of the precision
+# available when used.
+#
+# @missing: 0000..10FFFF; NaN; ; NaN
+Format: sortNumeric
+
+File:	HangulSyllableType
+Property:	Hangul_Syllable_Type
+Format:	valueStyle=short skipValue=Not_Applicable
+
+File:   NormalizationTest
+Property: SPECIAL
+
+File:   BidiTest
+#
+# This file provides a conformance test for UBA (Unicode Bidi Algorithm) implementations.
+# It is designed to be reasonably compact, and yet provide a thorough test of all cases up to
+# a given limit (currently 4).
+#
+# Format:
+#
+# All tokens may be separated by whitespaces (space or tab). There are three kinds of lines:
+# Levels, Reorder, and data.
+#
+# A Levels line indicates that all following data lines, up to the next Levels line,
+# have the same resulting ordering levels. It has the following format:
+#
+# @Levels: <levels>
+#
+#    <levels> =     An ordered space-delimited list of numbers indicating the resulting levels
+#                   for each input property value. The UBA does not assign levels to certain values;
+#                   those are indicated with an x. See the note below.
+# Examples:
+#   @Levels:    1 0
+#   @Levels:    x 1 x 2
+#
+# A Reorder line indicates that all following data lines, up to the next Reorder line,
+# have the same resulting reordering. It has the following format:
+#
+# @Reorder: <ordering>
+#
+#    <ordering> =   An ordered space-delimited list of numbers indicating the resulting
+#                   visual ordering from left to right. The numbers are zero-based, and
+#                   are indexes into the input string. Items with a level of x are skipped.
+#                   Thus "1 0" indicates what would happen with input of "L R" and an RTL
+#                   paragraph direction.
+# Example:
+#   @Reorder:    1 0
+#   @Reorder:    3 1
+#
+# A data line has the following format:
+
+# <input> ; <bitset>
+
+#   <input>  =      An ordered list of BIDI property values
+#   <bitset> =      A hex bitset for paragraph levels (P): 1 = auto-LTR, 2 = LTR, 4 = RTL
+#                   Auto-LTR (standard BIDI) uses the first L/R/AL character, and is LTR if none is found.
+# Example:
+#    L LRE R R; 7
+#    L LRE R AL; 7
+#
+# Any other line starting with @ is to be ignored (this allows some degree of forward compatibility).
+#
+# Usage:
+#
+# - If the implementation API allows a list of bidi property values as input:
+#
+#   For each of the paragraph levels in the bitset:
+#     Find the levels in each line, and compare that to the last @Levels values.
+#       If they are different, the test fails.
+#     Reorder the elements, and compare to the @Reorder values.
+#       If they are different, the test fails.
+#
+# - If the implementation allows for a character string as input,
+#   randomly pick characters from those with the same Bidi_Class values,
+#   and test the reordering as above.
+#
+# Note that the UBA doesn't specify the output level or order of certain characters,
+# such as LRO. These are omitted from the reordered output. Thus the following two
+# input lines have the same result (0), since the LRE (item 1) is omitted on the second line.
+#
+#   L; 7
+#   L LRE; 7
+#
+Property: SPECIAL
+
+File:	PropList
+
+Property:	White_Space
+
+Property:	Bidi_Control
+
+Property:	Join_Control
+
+Property:	Dash
+
+Property:	Hyphen
+
+Property:	Quotation_Mark
+
+Property:	Terminal_Punctuation
+
+Property:	Other_Math
+
+Property:	Hex_Digit
+
+Property:	ASCII_Hex_Digit
+
+Property:	Other_Alphabetic
+
+Property:	Ideographic
+
+Property:	Diacritic
+
+Property:	Extender
+
+Property:	Other_Lowercase
+
+Property:	Other_Uppercase
+
+Property:	Noncharacter_Code_Point
+
+Property:	Other_Grapheme_Extend
+
+Property:	IDS_Binary_Operator
+
+Property:	IDS_Trinary_Operator
+
+Property:	Radical
+
+Property:	Unified_Ideograph
+
+Property:	Other_Default_Ignorable_Code_Point
+
+Property:	Deprecated
+
+Property:	Soft_Dotted
+
+Property:	Logical_Order_Exception
+
+Property:	Other_ID_Start
+
+Property:	Other_ID_Continue
+
+Property:	STerm
+
+Property:	Variation_Selector
+Property:	Pattern_White_Space
+Property:	Pattern_Syntax
+
+
+File:	PropertyAliases
+Property: SPECIAL
+
+File:	PropertyValueAliases
+Property: SPECIAL
+
+#File:   unihan
+#Property: SPECIAL
+
+File:	Scripts
+Property:	Script
+Format:	nameStyle=none skipValue=Unknown
+
+File:	SpecialCasing
+Property: SPECIAL
+
+File:	extra/StandardizedVariants
+Property: SPECIAL
+
+File:	extra/NamedSequences
+Property: SPECIAL
+
+File:	extra/NamedSequencesProv
+Property: SPECIAL
+
+HackName:	noBreak
+HackName:	Arabic_Presentation_Forms-A
+HackName:	Arabic_Presentation_Forms-B
+HackName:	CJK_Symbols_and_Punctuation
+HackName:	Combining_Diacritical_Marks_for_Symbols
+HackName:	Enclosed_CJK_Letters_and_Months
+HackName:	Greek_and_Coptic
+HackName:	Halfwidth_and_Fullwidth_Forms
+HackName:	Latin-1_Supplement
+HackName:	Latin_Extended-A
+HackName:	Latin_Extended-B
+HackName:	Miscellaneous_Mathematical_Symbols-A
+HackName:	Miscellaneous_Mathematical_Symbols-B
+HackName:	Miscellaneous_Symbols_and_Arrows
+HackName:	Superscripts_and_Subscripts
+HackName:	Supplemental_Arrows-A
+HackName:	Supplemental_Arrows-B
+HackName:	Supplementary_Private_Use_Area-A
+HackName:	Supplementary_Private_Use_Area-B
+HackName:	Canadian-Aboriginal
+HackName:   Latin Extended-C
+HackName:   Cyrillic Extended-A
+HackName:   Cyrillic Extended-B
+HackName:   Latin Extended-D
+HackName:   Phags-pa
+HackName:   Hangul Jamo Extended-A
+HackName:   Myanmar Extended-A
+HackName:   Hangul Jamo Extended-B
+HackName:   Cuneiform Numbers and Punctuation
+HackName:   
+HackName:   
+
+#HackName:	Old-Italic
+
+FinalComments
+Note that PropertyAliases sorts by the long name, while PropertyValueAliases
+sorts by the short name
+ArabicShaping
+BidiMirroring
+CompositionExclusions
+EastAsianWidth
+LineBreak
+StandardizedVariants
+UnicodeData
+
+

@@ -1,0 +1,536 @@
+﻿# Invariance Tests
+#
+# This file provides a set of machine-readable invariance tests for Unicode Properties.
+#
+##########################
+# Format
+##########################
+# Let <$variable> = <unicodeSet>
+#  Assign a variable to a value. The variable must start with $.
+#
+# <unicodeSet> is a boolean combinations of properties and character ranges, as defined in LDML, 
+#  with the following extensions.
+#
+#  Example:
+#   [\p{General_Category=Unassigned}-[a-zA-Z]]
+#
+# Property Name:
+#   <propertyName> can be the short or long form as in the PropertyAliases.txt
+#   <propertyName> can be prefixed with "U<version>:"
+#   Example: \p{U5.1.0:Whitespace}
+#
+#   A version of -1 indicates the previous released major version.
+#   For example, if the version is 4.1, then the U-1 version is 4.0.
+#   The property values are as supplied in the release, without any subsequent corrigenda being applied. 
+#   Example: \p{U-1:Whitespace}
+#
+# Property Value:
+#   If the propertyValue is missing, it is defaulted to true
+#   If the value is of the form /.../, then the ... is interpreted as a regular expression
+#   The value (if enumerated) can be the short or long form as in PropertyValueAliases.txt
+##########################
+# Show <unicodeSet>
+#  List any set on the console, for viewing and debugging.
+##########################
+# Test <unicodeSet> <relation> <unicodeSet>
+#
+# Tests that the relation is true for the two sets. The "Test" keyword is optional.
+#
+#   relation := '='             // has identical contents to
+#            := '⊃'             // is proper superset of
+#            := '⊇'             // is superset of 
+#            := '⊂'             // is proper subset of
+#            := '⊆'             // is subset of
+#            := '∥'             // has no intersection
+#            := '≉'             // none of the above (they overlap, and neither contains the other)
+#
+# When this file is parsed, a parse error message may contain <@>
+# to indicate the location of an error in the input line.
+#
+# If there is an error in the test, a comparison listing of the two sides of the relation is generated.
+##########################
+# In <unicodeSet> <props> (=|≠) <props>
+#
+# For each character in <unicodeSet>, verify that the result of applying the left <props>
+# is (=|≠) the result of applying the right <props>.
+#   <props> is of the form (<unicodeSet> | <prop>) ("*" (<unicodeSet> | <prop>))?
+#   It is the functional composition of the properties applied to strings, whereby
+#   <unicodeSet> is used to filter the result.
+#   <prop> for a string property is applied to each character, and the result concatenated
+#       That is, cf("A1") is cf("A")+cf("1") = "a1"
+#   <prop> for an enumerated property, is applied to each character, and the result is a concatenated set.
+#       That is, gc("A1") is gc("A")+gc("1") = "Uppercase_LetterDecimal_Number"
+#
+#   Example: for <props> of bc * \P{bc=NSM} * cf * dm, the result applied to Å (angstrom sign) are:
+#       bc * \P{bc=NSM} * cf * dm ("Å")
+#       bc * \P{bc=NSM} * cf ("A" + umlaut)
+#       bc * \P{bc=NSM} ("a" + umlaut)
+#       bc ("a")
+#       "Left"
+#
+#   Example: In \p{dt=canonical} bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
+#       This examines only those characters that have canonical compositions. For each such character X
+#       it gets the decomposition mapping of X, then filters out all NSM characters, then gets the Bidi_Class.
+#       It then tests that against the result of filtering out NSM characters from X, then getting the BIDI_Class.
+#
+##########################
+# General Constants
+##########################
+
+Let $foo = \p{ccc=9}
+Let $fii = \p{toNFD=/$foo/}
+
+Let $gcAllPunctuation = \p{gc=/_Punctuation/}
+$gcAllPunctuation = [\p{gc=Close_Punctuation}\p{gc=Connector_Punctuation}}\p{gc=Dash_Punctuation}\p{gc=Final_Punctuation}\p{gc=Initial_Punctuation}\p{gc=Open_Punctuation}\p{gc=Other_Punctuation}]
+
+Let $gcAllSymbols = \p{gc=/_Symbol/}
+$gcAllSymbols = [\p{gc=Math_Symbol}\p{gc=Currency_Symbol}\p{gc=Modifier_Symbol}\p{gc=Other_Symbol}]
+
+Let $gcAllMarks = \p{gc=/_Mark/}
+$gcAllMarks = [\p{gc=Nonspacing_Mark}\p{gc=Enclosing_Mark}\p{gc=Spacing_Mark}]
+
+Let $gcAllLetters = \p{gc=/_Letter/}
+$gcAllLetters = [\p{gc=Ll}\p{gc=Lu}\p{gc=Lo}\p{gc=Lt}\p{gc=Lm}]
+
+##########################
+# Main Stability Policies 
+#   http://www.unicode.org/policies/property_value_stability_table.html
+##########################
+
+# TODO: Formal Name Alias Stability, Named Character Sequence Stability, Name Uniqueness, 
+# TODO: Identity Stability, Property Stability, Alias Stability, Property Alias Uniqueness
+
+# Encoding Stability: Once a character is encoded, it will not be moved or removed.
+\p{GC=unassigned} ⊆ \p{U-1:GC=unassigned}
+
+# Name Stability: The Unicode Name property value for any non-reserved code point will not be changed. In particular, once a character is encoded, its name will not be changed.
+In \P{U-1:GC=Cn} name=U-1:name
+
+# Formal Name Alias Stability
+# TODO
+
+# Named Character Sequence Stability
+# TODO
+
+# Name Uniqueness
+# TODO
+
+# Strong Normalization Stability (decomposition mapping, Canonical Combining Class don't change)
+# In Property Section
+
+# Identity Stability
+# Can't be tested
+
+# Property Stability: Normative and informative properties, once defined in the Unicode Character Database, will never be removed.
+# TODO
+    
+# Alias Stability: Property aliases and property value aliases, once defined in the Unicode Character Database, will never be removed.
+# TODO
+
+# Property Alias Uniqueness: All property aliases constitute a single namespace. Property aliases are guaranteed to be unique within this namespace. For each property, all of its property value aliases constitute a separate namespace, one per property. Within each of these property value alias namespaces, property value aliases are guaranteed to be unique.
+# TODO
+
+# Identifier Stability: All strings that are valid default Unicode identifiers will continue to be valid default Unicode identifiers in all subsequent versions of Unicode. Furthermore, default identifiers never contain characters with the Pattern_Syntax or Pattern_White_Space properties.
+# Covered in Property Stability Section
+
+# Case Folding Stability: Caseless matching of Unicode strings used for identifiers is stable.
+# TODO
+
+# Case Pair Stability: If two characters form a case pair in a version of Unicode, they will remain a case pair in each subsequent version of Unicode. If two characters do not form a case pair in a version of Unicode, they will never become a case pair in any subsequent version of Unicode.
+# TODO
+
+# Red Flag: cased and case_ignorable should be disjoint
+
+Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770[\u1D62-\u1D6A\u2071\u207F\u2095-\u209C\u2C7C\uA7F8\uA7F9]]
+# 6.1.0, added 22 overlap characters
+\p{cased} ∥ [\p{caseignorable} - $caseOverlap]
+
+##########################
+# Property Stability Policies
+#   http://www.unicode.org/policies/property_value_stability_table.html
+##########################
+
+##########################
+# BIDI
+##########################
+
+# Stability: The Bidi_Class property values will not be further subdivided. 
+\p{bc=/^(AL|AN|B|BN|CS|EN|ES|ET|L|LRE|LRO|NSM|ON|PDF|R|RLE|RLO|S|WS)$/} = [\u0000-\U0010FFFF]
+
+# Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
+# This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
+In \p{dt=canonical} bc * \P{bc=NSM} * dm = bc * \P{bc=NSM}
+
+# Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
+# This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
+# There are 5 special cases:
+Let $BMExclusions =[≠ ∤ ∦ ≢ \u2ADC]
+In [\p{dt=canonical}-$BMExclusions] Bidi_M * \P{bc=NSM} * dm = Bidi_M * \P{bc=NSM}
+
+# Additional BIDI invariant constants
+Let $AL_blocks = [\u0600-\u07BF \u08A0-\u08FF \uFB50-\uFDCF \uFDF0-\uFDFF \uFE70-\uFEFF \U0001EE00-\U0001EEFF]
+Let $R_blocks = [\u0590-\u05FF \u07C0-\u089F \uFB1D-\uFB4F \U00010800-\U00010FFF \U0001E800-\U0001EDFF \U0001EF00-\U0001EFFF]
+# 6.1.0 updated blocks
+
+# Unassigned characters in these blocks have R or AL respectively
+\p{Bidi_Class=R} ⊇ [$R_blocks & \p{gc=Cn}]
+\p{Bidi_Class=AL} ⊇ [$AL_blocks & \p{gc=Cn}]
+
+# There are no strong characters of the other directionalities (out of L, AL, R) in these blocks, 
+# and anything R or L is in the block (or RLM)
+$R_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=AL}]
+$AL_blocks ∥ [\p{Bidi_Class=L} \p{Bidi_Class=R}]
+[$R_blocks $AL_blocks \N{RIGHT-TO-LEFT MARK}] ⊇ [\p{Bidi_Class=AL} \p{Bidi_Class=R}] #200f
+
+
+# U6.0: BN characters are default ignorable, noncharacters, controls, minus marks, bidi-controls, alphabetic, whitespace, with a few exceptions
+
+Let $BN_Exceptions = [\u001C-\u001F\u17B4\u17B5]
+
+[\p{Bidi_Class=BN}] = [\p{di}\p{nchar}\p{gc=Cc}-\p{gc=Mc}-\p{gc=Mn}-\p{gc=Me}-\p{Bidi_C}-\p{alpha}-\p{wspace} - $BN_Exceptions]
+
+##########################
+# Case
+##########################
+
+# Stability: The Case_Folding property value is limited so that no string when case folded expands to more than 3× in length (measured in code units). 
+# TODO
+
+# Stability: All characters with the Lowercase property and all characters with the Uppercase property have the Alphabetic property. 
+\p{Alphabetic} ⊃ [\p{Uppercase} \p{Lowercase}]
+
+##########################
+# General
+##########################
+
+# Stability: The General_Category property values will not be further subdivided. 
+\p{gc=/^(Cc|Cf|Cn|Co|Cs|Ll|Lm|Lo|Lt|Lu|Mc|Me|Mn|Nd|Nl|No|Pc|Pd|Pe|Pf|Pi|Po|Ps|Sc|Sk|Sm|So|Zl|Zp|Zs)$/} = [\u0000-\U0010FFFF]
+
+# Stability: The General_Category property value Control (Cc) is immutable: the set of code points with that value will never change. 
+\p{GC=Cc} = \p{U-1:GC=Cc}
+
+# Stability: The General_Category property value Private_Use (Co) is immutable: the set of code points with that value will never change. 
+\p{GC=Co} = \p{U-1:GC=Co}
+
+# Stability: The General_Category property value Surrogate (Cs) is immutable: the set of code points with that value will never change.  
+\p{GC=Cs} = \p{U-1:GC=Cs}
+
+# Stability: The set of characters having General_Category=Nd will always be the same as the set of characters having Numeric_Type=de.
+\p{General_Category=Decimal_Number} = \p{Numeric_Type=Decimal}
+
+# Stability: Once a character is assigned, both its Name and its Jamo_Short_Name will never change. 
+# Name is covered in Main policies
+# TODO: Short Name
+
+# Stability: The Noncharacter_Code_Point property is an immutable code point property, which means that its property values for all Unicode code points will never change.
+\p{NChar} = \p{U-1:NChar}
+
+##########################
+# Identifier Stability
+##########################
+
+# Stability: Once a character is ID_Continue, it must continue to be so in all future versions. 
+\p{ID_Continue} ⊇ \p{U-1:ID_Continue}
+
+# Stability: If a character is ID_Start then it must also be ID_Continue. 
+\p{ID_Continue} ⊇ \p{ID_Start}
+
+# Stability: Once a character is ID_Start, it must continue to be so in all future versions. 
+\p{ID_Start} ⊇ \p{U-1:ID_Start}
+
+# Stability: Once a character is XID_Continue, it must continue to be so in all future versions. 
+\p{XID_Continue} ⊇ \p{U-1:XID_Continue}
+
+# Stability: If a character is XID_Start then it must also be XID_Continue. 
+\p{XID_Continue} ⊇ \p{XID_Start}
+
+# Stability: If a character is XID_Start then it must also be XID_Continue. 
+\p{XID_Start} ⊇ \p{U-1:XID_Start}
+
+# Stability: The Pattern_Syntax and Pattern_Whitespace properties are immutable code point properties, which means that their property values for all Unicode code points will never change.
+\p{Pattern_Whitespace} = \p{U-1:Pattern_Whitespace}
+\p{Pattern_Syntax} = \p{U-1:Pattern_Syntax}
+
+# Stability: If a character has the Pattern_Syntax or Pattern_White_Space property, then it cannot have the ID_Continue or XID_Continue property.
+# (Also tests that Pattern_Syntax is disjoint from Pattern_White_Space)
+
+\p{ID_Continue} ∥ [\p{Pattern_Whitespace} \p{Pattern_Syntax}]
+\p{Pattern_Whitespace} ∥ [\p{ID_Continue} \p{Pattern_Syntax}]
+\p{Pattern_Syntax} ∥ [\p{ID_Continue} \p{Pattern_Whitespace}]
+
+\p{XID_Continue} ∥ [\p{Pattern_Whitespace} \p{Pattern_Syntax}]
+\p{Pattern_Whitespace} ∥ [\p{XID_Continue} \p{Pattern_Syntax}]
+\p{Pattern_Syntax} ∥ [\p{XID_Continue} \p{Pattern_Whitespace}]
+
+# The X versions are subsets of the the plain versions
+# Should add as stability provision
+\p{ID_Continue} ⊇ \p{XID_Continue}
+\p{ID_Start} ⊇ \p{XID_Start}
+
+##########################
+# Normalization
+##########################
+
+# Stability: The Canonical_Combining_Class property values are limited to the values 0 to 255. 
+\p{CCC=/^([0-9][0-9]?|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/} = [\u0000-\U0010FFFF]
+
+# Stability: Once a character is assigned, its Canonical_Combining_Class will never change. 
+In \P{U-1:GC=Cn} ccc=U-1:ccc
+
+# Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
+# except where a character and at lease one character in its decomposition are both new in the release.
+Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB[\U0001112E\U0001112F]]
+# 6.1.0 Added CHAKMA VOWEL SIGN O..CHAKMA VOWEL SIGN AU
+
+[\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion} - $NFC_Exceptions] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion} - $NFC_Exceptions]
+
+# Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
+\p{CCC=0} ⊇ [^ \p{GC=Mc} \p{GC=Mn}]
+
+# Stability: Canonical and compatibility mappings (Decomposition_Mapping property values) are always in canonical order, and the resulting recursive decomposition will also be in canonical order. 
+# TODO
+
+# Stability: Canonical mappings (Decomposition_Mapping property values) are always limited either to a single value or to a pair. The second character in the pair cannot itself have a canonical mapping. 
+# TODO
+
+# Stability: Canonical mappings (Decomposition_Mapping property values) are always limited so that no string when normalized to NFC expands to more than 3× in length (measured in code units). 
+# TODO
+
+# Stability: Once a character is assigned, its Decomposition_Mapping will never change. 
+In \P{U-1:GC=Cn} dm=U-1:dm
+
+# U6.0: Construction of Full_Composition_Exclusion
+# Primary Composites don't include singletons, ccc!=0, or sequences starting with ccc!=0
+Let $combiningExclusions = [\p{dt=canonical}-\P{nfcqc=N}-\P{nfdqc=N}]
+
+Let $singletons = \p{toNFD=/^.$/}
+Let $nonstarter = \P{ccc=0}
+Let $firstNonStarter = \p{toNFD=/^$nonstarter/}
+
+$combiningExclusions ⊇ [$singletons & \p{dt=canonical}]
+$combiningExclusions ⊇ [$nonstarter & \p{dt=canonical}]
+$combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
+
+##########################
+# Other Invariant Tests, not in Stability Policies
+##########################
+
+##########################
+# Numbers
+##########################
+
+# Decimals are 0-9
+
+Let $decimalValue = [\p{Numeric_Value=/^[0-9]+(.0)?$/}]
+
+$decimalValue ⊇ \p{General_Category=Decimal_Number}
+
+# All and only those items with numeric types have numeric values
+
+Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
+[\p{Numeric_Type=Decimal} \p{Numeric_Type=Digit} \p{Numeric_Type=Numeric}] = $anyNumericValue
+
+##########################
+# Misc Properties
+##########################
+
+# Musical symbol combining marks, other oddities
+
+Let $AlphaExclusions = [\u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:][\u302E\u302F]]
+# 6.1.0 Added HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
+
+\p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
+
+# Show [\p{GC=Mc} - \p{alphabetic}]
+# Show [\p{GC=Mc} & \p{alphabetic}]
+
+
+\p{Whitespace} ⊃ [\p{GC=Zs} \p{GC=Zp} \p{GC=Zl}]
+\p{GC=Zs} ≉ \p{Name=/SPACE/}
+
+\p{Dash} ⊃ [\p{GC=Pd}]
+
+\p{Script=Common} ∥ [\p{GC=Mn} \p{GC=Me} \p{Join_Control}]
+\p{Script=Inherited} ⊆ [\p{GC=Mn} \p{GC=Me} \p{Join_Control}]
+\p{Script=Unknown} = [\p{GC=Cn} \p{GC=Co} \p{GC=Cs}]
+
+Show [\u20b9]
+
+# [\p{Alphabetic}] ∥ \p{Script=Common}
+#  & [\p{Decomposition_Type=None} \p{Decomposition_Type=Canonical}]
+
+##########################
+# LineBreak property
+##########################
+
+Let $IDInclusions = [[:block=/Ideographs/:][\U00020000-\U0003FFFF] & [:gc=Cn:] - [:NChar:]]
+\p{LB=ID} ⊃ $IDInclusions
+\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions]
+
+Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379]
+\p{LB=OP} = [\p{GC=Ps} $OPInclusions]
+[\p{LB=CL}\p{LB=CP}] ⊃ \p{GC=Pe}
+\p{LB=CM} = [\p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL}]
+
+Let $NUInclusions = [\u066B\u066C]
+\p{LB=NU} = [\p{GC=Nd} $NUInclusions - \p{EA=F} ]
+
+Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213]
+\p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO} ]
+
+Let $QUInclusions = [\u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
+\p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} $QUInclusions]
+\p{LB=SG} = \p{GC=Cs}
+\p{LB=SP} = \N{SPACE}
+\p{LB=SY} = \N{SOLIDUS}
+\p{LB=WJ} = [\N{WORD JOINER} \N{ZERO WIDTH NO-BREAK SPACE}]
+\p{LB=ZW} = \N{ZERO WIDTH SPACE}
+
+# SA are limited to certain scripts:
+Let $SAScripts = [\p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet}]
+$SAScripts ⊇ \p{LineBreak=SA}
+
+# And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
+Let $SAScriptExceptions = [\u19DA\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAA7B\uAADB-\uAADF]
+
+[$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
+
+##########################
+# Word Break
+##########################
+
+# 6.0: Compare word characters with similar identifier characters
+
+# UAX 31 Table 3: Candidate Characters for Inclusion in Identifiers
+# Warning: the uax31 tables don't have machine-readable tables, so must be updated each release.
+Let $uax31table3 = [\u0027\u002D\u002E\u003A\u00B7\u058A\u05F3\u05F4\u0F0B\u200C\u200D\u2010\u2019\u2027\u30A0\u30FB]
+
+Let $WBRemovals = [\u0387\u0604\u2018\u2024\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{Cf}\p{Block=Enclosed Alphanumerics}]
+Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
+# 6.1.0 adjust SAMVAT, KHMER VOWEL INHERENT*
+
+[\p{Alpha}\p{WB=Extend}\p{WB=FO}\p{WB=LE}\p{WB=ML}\p{WB=MB}\p{WB=EX}-$WBRemovals] = [$gcAllLetters $gcAllMarks \p{gc=Nl}\p{gc=Pc}-$Uax31Removals]
+
+##########################
+# Derivations
+##########################
+
+\p{Math} = [\p{Other_Math} \p{GC=Sm}]
+\p{Alphabetic} = [\p{Other_Alphabetic} \p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl}]
+\p{Lowercase} = [\p{Other_Lowercase} \p{GC=Ll}]
+\p{Uppercase} = [\p{Other_Uppercase} \p{GC=Lu}]
+\p{ID_Start} = [\p{Other_ID_Start} \p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]
+\p{ID_Continue} = [\p{Other_ID_Continue} \p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}] 
+
+Let $DIExclusions = [\u0600-\u0604\u06DD\u070F\uFFF9-\uFFFB\U000110BD]
+# 6.1.0 adjust SAMVAT
+
+\p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $DIExclusions]]
+
+\p{Grapheme_Extend} = [\p{Other_Grapheme_Extend} \p{GC=Me} \p{GC=Mn}]
+
+\p{Grapheme_Base} = [^\p{GC=Cc} \p{GC=Cf} \p{GC=Cs} \p{GC=Co} \p{GC=Cn} \p{GC=Zl} \p{GC=Zp} \p{Grapheme_Extend}]
+\p{Grapheme_Link} = \p{CCC=Virama}
+
+# "Minimal" Other_: NOT hard requirements; just if we want to be minimal
+# (Should add way to make these warnings, not errors)
+
+\p{Other_Math} = [\p{Math} - \p{GC=Sm}]
+\p{Other_Alphabetic} = [\p{Alphabetic} - [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl}]]
+\p{Other_Lowercase} = [\p{Lowercase} - \p{GC=Ll}]
+\p{Other_Uppercase} = [\p{Uppercase} - \p{GC=Lu}]
+\p{Other_ID_Start} = [\p{ID_Start} - [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]]
+\p{Other_ID_Continue} = [\p{ID_Continue} - [\p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]]
+
+Let $Annotations = [\uFFF9-\uFFFB]
+
+\p{Other_Default_Ignorable_Code_Point} = [\p{Default_Ignorable_Code_Point} - [\p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $Annotations]]]
+\p{Other_Grapheme_Extend} = [\p{Grapheme_Extend} - [\p{GC=Me} \p{GC=Mn}]]
+
+##########################
+# POSIX Compatibility Properties (UTS#18)
+# http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html
+##########################
+
+# constants
+
+Let $SP = [\u0020]	# [\N{space}]
+Let $TAB = [\u0009] # [\N{CHARACTER TABULATION}]
+Let $LF = [\u000A]	# \N{linefeed}
+Let $VTAB = [\u000B]	# [\N{LINE TABULATION}]
+Let $FF = [\u000C]	# [\N{formfeed}]
+Let $CR = [\u000D]	# \N{carriage return}
+Let $NEL = [\u0085]	# \N{next line}
+#Let $ZWNJ = [\u200C]	# [\N{ZERO WIDTH NON-JOINER}]
+#Let $ZWJ = [\u200D]	# [\N{ZERO WIDTH JOINER}]
+
+Let $CircledAsciiLetters = [\u24B6-\u24E9]
+
+# Unassigned, Control, Format, Private_Use, Surrogate, 
+# Uppercase_Letter, Lowercase_Letter, Titlecase_Letter, Modifier_Letter, Other_Letter,
+# Nonspacing_Mark, Enclosing_Mark, Spacing_Mark,
+# Decimal_Number, Letter_Number, Other_Number, 
+# Space_Separator, Line_Separator, Paragraph_Separator, 
+# Dash_Punctuation, Open_Punctuation, Close_Punctuation, Connector_Punctuation, Other_Punctuation, Initial_Punctuation, Final_Punctuation
+# Math_Symbol, Currency_Symbol, Modifier_Symbol, Other_Symbol
+
+# UTS Rules
+
+Let $alpha = [\p{Alphabetic} $CircledAsciiLetters]
+Let $lower = \p{Lowercase} 
+Let $upper = [\p{Uppercase}]
+Let $punct = [$gcAllPunctuation $gcAllSymbols - $alpha]
+Let $digit = \p{gc=Decimal_Number} 
+Let $xdigit = [\p{gc=Decimal_Number} \p{Hex_Digit}] # in both!
+Let $alnum = [$alpha $digit]
+Let $space = \p{Whitespace} 
+Let $blank = [\p{Whitespace} - [$LF $VTAB $FF $CR $NEL \p{gc=Line_Separator} \p{gc=Paragraph_Separator}]]
+Let $cntrl = \p{gc=Control} 
+Let $graph = [^$space \p{gc=Control} \p{gc=Surrogate} \p{gc=Unassigned}]
+Let $print = [$graph $blank - $cntrl]
+Let $word = [$alpha $gcAllMarks $digit \p{gc=Connector_Punctuation}] 
+
+# ===========================
+
+# POSIX locale definition file constraints
+
+$upper ∥ [$cntrl $digit $punct $space]
+$upper ⊇ [A-Z]
+
+$lower ∥ [$cntrl $digit $punct $space]
+$lower ⊇ [a-z]
+
+$alpha ∥ [$cntrl $digit $punct $space]
+$alpha ⊇ [$lower $upper]
+
+$digit ⊇ [0-9]
+
+$alnum = [$alpha $digit]
+
+$space ∥ [$upper $lower $alpha $digit $graph $xdigit]
+$space ⊇ [$SP $FF $LF $CR] # $TAB $VTAB $NEL]
+$space ⊇ $blank
+
+$cntrl ∥ [$upper $lower $alpha $digit $punct $graph $print $xdigit]
+
+$punct ∥ [$upper $lower $alpha $digit $cntrl $xdigit $SP]
+
+$graph ⊇ [$upper $lower $alpha $digit $xdigit $punct]
+$graph ∥ [$SP $cntrl]
+
+$print ⊇ [$upper $lower $alpha $digit $xdigit $punct $graph $SP]
+$print ∥ $cntrl
+
+$xdigit ⊇ [$digit [a-f A-F]]
+
+$blank ⊇ [$SP $TAB]
+
+# Extra POSIX 'POSIX locale' constraints
+
+Let $C0Controls = [\u0000-\u001F]
+
+$cntrl ⊇  $C0Controls
+
+$punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
+
+[$alpha $lower $upper $punct $digit $xdigit $alnum $space $blank $cntrl $graph $print $word] = [^\p{gc=unassigned} \p{gc=surrogate}]
