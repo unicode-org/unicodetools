@@ -17,7 +17,9 @@ import org.unicode.text.utility.Utility;
 /**
  * Immutable list of collation element integers.
  */
-public final class CEList implements java.lang.Comparable<CEList>, UCD_Types {
+public final class CEList implements java.lang.Comparable<CEList> {
+    public static final CEList EMPTY = new CEList(new int[] {});
+
     private int[] contents;
     private int startOffset;
     private int endOffset;
@@ -39,6 +41,19 @@ public final class CEList implements java.lang.Comparable<CEList>, UCD_Types {
      */
     public CEList(int[] source) {
         this(source, 0, source.length);
+    }
+
+    /**
+     * Constructs a new list by copying the stack's items.
+     */
+    public CEList(IntStack stack) {
+        count = stack.length();
+        contents = new int[count];
+        for (int i = 0; i < count; ++i) {
+            contents[i] = stack.get(i);
+        }
+        startOffset = 0;
+        endOffset = count;
     }
 
     /**
@@ -99,6 +114,30 @@ public final class CEList implements java.lang.Comparable<CEList>, UCD_Types {
         return contents[startOffset + i];
     }
 
+    /**
+     * Appends all of the non-zero collation elements to the stack.
+     */
+    public void appendNonZeroTo(IntStack stack) {
+        for (int i = startOffset; i < endOffset; ++i) {
+            if (contents[i] != 0) {
+                stack.push(contents[i]);
+            }
+        }
+    }
+
+    /**
+     * Appends all of the non-zero collation elements to the destination array.
+     * Advances and then returns the index.
+     */
+    public int appendNonZeroTo(int[] dest, int destIndex) {
+        for (int i = startOffset; i < endOffset; ++i) {
+            if (contents[i] != 0) {
+                dest[destIndex++] = contents[i];
+            }
+        }
+        return destIndex;
+    }
+
     public int hashCode() {
         int result = count;
         for (int i = startOffset; i < endOffset; ++i) {
@@ -154,27 +193,27 @@ public final class CEList implements java.lang.Comparable<CEList>, UCD_Types {
     }
 
     public static byte remap(int ch, byte type, int t) {
-        if (type != CANONICAL) {
+        if (type != UCD_Types.CANONICAL) {
             if (0x3041 <= ch && ch <= 0x3094) t = 0xE; // hiragana
             else if (0x30A1 <= ch && ch <= 0x30FA) t = 0x11; // katakana
         }
         switch (type) {
-        case COMPATIBILITY: t = (t == 8) ? 0xA : 4; break;
-        case COMPAT_FONT:  t = (t == 8) ? 0xB : 5; break;
-        case COMPAT_NOBREAK: t = 0x1B; break;
-        case COMPAT_INITIAL: t = 0x17; break;
-        case COMPAT_MEDIAL: t = 0x18; break;
-        case COMPAT_FINAL: t = 0x19; break;
-        case COMPAT_ISOLATED: t = 0x1A; break;
-        case COMPAT_CIRCLE: t = (t == 0x11) ? 0x13 : (t == 8) ? 0xC : 6; break;
-        case COMPAT_SUPER: t = 0x14; break;
-        case COMPAT_SUB: t = 0x15; break;
-        case COMPAT_VERTICAL: t = 0x16; break;
-        case COMPAT_WIDE: t= (t == 8) ? 9 : 3; break;
-        case COMPAT_NARROW: t = (0xFF67 <= ch && ch <= 0xFF6F) ? 0x10 : 0x12; break;
-        case COMPAT_SMALL: t = (t == 0xE) ? 0xE : 0xF; break;
-        case COMPAT_SQUARE: t = (t == 8) ? 0x1D : 0x1C; break;
-        case COMPAT_FRACTION: t = 0x1E; break;
+        case UCD_Types.COMPATIBILITY: t = (t == 8) ? 0xA : 4; break;
+        case UCD_Types.COMPAT_FONT:  t = (t == 8) ? 0xB : 5; break;
+        case UCD_Types.COMPAT_NOBREAK: t = 0x1B; break;
+        case UCD_Types.COMPAT_INITIAL: t = 0x17; break;
+        case UCD_Types.COMPAT_MEDIAL: t = 0x18; break;
+        case UCD_Types.COMPAT_FINAL: t = 0x19; break;
+        case UCD_Types.COMPAT_ISOLATED: t = 0x1A; break;
+        case UCD_Types.COMPAT_CIRCLE: t = (t == 0x11) ? 0x13 : (t == 8) ? 0xC : 6; break;
+        case UCD_Types.COMPAT_SUPER: t = 0x14; break;
+        case UCD_Types.COMPAT_SUB: t = 0x15; break;
+        case UCD_Types.COMPAT_VERTICAL: t = 0x16; break;
+        case UCD_Types.COMPAT_WIDE: t= (t == 8) ? 9 : 3; break;
+        case UCD_Types.COMPAT_NARROW: t = (0xFF67 <= ch && ch <= 0xFF6F) ? 0x10 : 0x12; break;
+        case UCD_Types.COMPAT_SMALL: t = (t == 0xE) ? 0xE : 0xF; break;
+        case UCD_Types.COMPAT_SQUARE: t = (t == 8) ? 0x1D : 0x1C; break;
+        case UCD_Types.COMPAT_FRACTION: t = 0x1E; break;
         }
         return (byte)t;
     }
@@ -254,6 +293,24 @@ public final class CEList implements java.lang.Comparable<CEList>, UCD_Types {
         "FRACTION",
         "MAX"
     };
+
+    public boolean containsZero() {
+        for (int i = startOffset; i < endOffset; ++i) {
+            if (contents[i] == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCompletelyIgnorable() {
+        for (int i = startOffset; i < endOffset; ++i) {
+            if (contents[i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public boolean isPrimaryIgnorable() {
         for (int i = startOffset; i < endOffset; ++i) {

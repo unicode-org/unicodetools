@@ -11,24 +11,23 @@
 
 package org.unicode.text.UCA;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.unicode.text.UCA.UCA.Remap;
-import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.IntStack;
-import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
-public class UCA_Data implements UCA_Types {
+public class UCA_Data {
     static final boolean DEBUG = false;
     static final boolean DEBUG_SHOW_ADD = false;
-    static final boolean lessThan410 = false;
 
     private Normalizer toD;
     private UCD ucd;
@@ -51,42 +50,37 @@ public class UCA_Data implements UCA_Types {
     }
 
     /**
-     * The collation element data is stored a couple of different structures.
-     * First is collationElements, which generally contains the 32-bit CE corresponding
-     * to the data. It is directly indexed by character code.<br>
-     * For brevity in the implementation, we just use a flat array.
-     * A real implementation would use a multi-stage table, as described in TUS Section 5.
-     * table of simple collation elements, indexed by char.<br>
-     * Exceptional cases: expanding, contracting, unsupported are handled as described below.
+     * Maps characters and strings to collation element sequences.<br>
+     * Contractions: multi-code point strings<br>
+     * Expansions: CEList.length() > 1
      */
-    private int[] collationElements = new int[65536];
+    private Map<String, CEList> cesMap = new HashMap<String, CEList>();
 
     /**
-     * Although a single character can expand into multiple CEs, we don't want to burden
-     * the normal case with the storage. So, they get a special value in the collationElements
-     * array. This value has a distinct primary weight, followed by an index into a separate
-     * table called expandingTable. All of the CEs in that table, up to a TERMINATOR value
-     * will be used for the expansion. The implementation is as a stack; this just makes it
-     * easy to generate.
+     * Maps single-character strings to one of the longest mappings
+     * (single-character or contractions) starting with those characters.
+     * (null for no mappings)
      */
-    private IntStack expandingTable = new IntStack(3600); // initial number is from compKeys
+    private Map<String, String> longestMap = new HashMap<String, String>();
 
     /**
-     * For now, this is just a simple mapping of strings to collation elements.
-     * The implementation depends on the contracting characters being "completed",
-     * so that it can be efficiently determined when to stop looking.
+     * Set of single-character strings that start contractions
+     * which end with a non-zero combining class.
      */
-    private Map contractingTable = new TreeMap();
+    private Set<String> hasDiscontiguousContractions = new HashSet<String>();
+
+    /**
+     * Set of all contraction strings.
+     * Same as all multi-character strings in cesMap, plus all of their first-character prefixes.
+     * Used only for API that accesses this set.
+     * TODO: Remove this, and change iteration code to work with getMappedStrings() instead.
+     */
+    private Set<String> contractions = new TreeSet<String>();  // TODO: Try to use a HashSet; make callers not require a sorted set.
 
     {
-        // clear some tables
-        for (int i = 0; i < collationElements.length; ++i) {
-            collationElements[i] = UNSUPPORTED_FLAG;
-        }
         // preload with parts
         for (char i = 0xD800; i < 0xDC00; ++i) {
-            collationElements[i] = CONTRACTING;
-            addToContractingTable(String.valueOf(i), UNSUPPORTED_FLAG);
+            contractions.add(String.valueOf(i));
         }
         checkConsistency();
     }
@@ -95,74 +89,79 @@ public class UCA_Data implements UCA_Types {
      * Return the type of the CE
      */
     public byte getCEType(int ch) {
-        if (ch > 0xFFFF) ch = UTF16.getLeadSurrogate(ch); // first if expands
-
-        int ce = collationElements[ch];
-        if (ce == UNSUPPORTED_FLAG) {
-
-            // Special check for Han, Hangul
-            if (ucd.isHangulSyllable(ch)) {
-                return HANGUL_CE;
-            }
-
-            if (ucd.isCJK_BASE(ch)) {
-                return CJK_CE;
-            }
-            if (ucd.isCJK_AB(ch)) {
-                return CJK_AB_CE;
-            }
-
-            // special check for unsupported surrogate pair, 20 1/8 bits
-            //if (0xD800 <= ch && ch <= 0xDFFF) {
-            //    return SURROGATE_CE;
-            //}
-            return UNSUPPORTED_CE;
+        if (ch > 0xFFFF || (0xD800 <= ch && ch < 0xDC00)) {
+            // TODO: stop treating all lead surrogates as starting contractions
+            return UCA_Types.CONTRACTING_CE;
         }
-        if (ce == CONTRACTING) return CONTRACTING_CE;
-        if ((ce & EXPANDING_MASK) == EXPANDING_MASK) return EXPANDING_CE;
-        return NORMAL_CE;
+        String s = Character.toString((char)ch);
+        String longest = longestMap.get(s);
+        if (longest == null) {
+            // Special check for Han, Hangul
+            if (UCD.isHangulSyllable(ch)) {
+                return UCA_Types.HANGUL_CE;
+            }
+
+            if (UCD.isCJK_BASE(ch)) {
+                return UCA_Types.CJK_CE;
+            }
+            if (UCD.isCJK_AB(ch)) {
+                return UCA_Types.CJK_AB_CE;
+            }
+
+            return UCA_Types.UNSUPPORTED_CE;
+        }
+        if (longest.length() > 1) {
+            return UCA_Types.CONTRACTING_CE;
+        }
+        if (cesMap.get(s).length() > 1) {
+            return UCA_Types.EXPANDING_CE;
+        }
+        return UCA_Types.NORMAL_CE;
     }
 
     public Remap getPrimaryRemap() {
         return primaryRemap;
     }
 
-    public void add(String source, IntStack ces) {
-        add(new StringBuffer(source), ces);
+    private boolean endsWithZeroCC(String s) {
+        return toD.getCanonicalClass(s.codePointBefore(s.length())) == 0;
     }
 
-    public void add(StringBuffer source, IntStack ces) {
+    public void add(CharSequence source, IntStack ces) {
+        if (source.length() < 1 || ces.isEmpty()) {
+            throw new IllegalArgumentException("String or CEs too short");
+        }
+        String sourceString = source.toString();
+        checkForIllegal(sourceString);
+        int firstCodePoint = sourceString.codePointAt(0);
+
         if (primaryRemap != null) {
-            IntStack charRemap = primaryRemap.getRemappedCharacter(source.codePointAt(0));
+            IntStack charRemap = primaryRemap.getRemappedCharacter(firstCodePoint);
             if (charRemap != null) {
                 ces = charRemap;
             } else {
                 for (int i = 0; i < ces.length(); ++i) {
                     int value = ces.get(i);
-                    char primary = UCA.getPrimary(value);
+                    char primary = CEList.getPrimary(value);
                     Integer remap = primaryRemap.getRemappedPrimary((int)primary);
                     if (remap != null) {
                         value = (remap << 16) | (value & 0xFFFF);
-                        ces.put(i, value);
+                        ces.set(i, value);
                     }
                 }
             }
         }
 
-        if (source.equals("\uFFFF") || source.equals("\uFFFE")) {
-            // bail, these are special!
-        }
-
         // gather statistics
-        if (source.charAt(0) == 'a' && source.length() == 1) {
-            statistics.firstScript = UCA.getPrimary(ces.get(0));
+        if ("a".contentEquals(source)) {
+            statistics.firstScript = CEList.getPrimary(ces.get(0));
         }
 
         for (int i = 0; i < ces.length(); ++i) {
             int ce = ces.get(i);
-            int key1 = UCA.getPrimary(ce);
-            int key2 = UCA.getSecondary(ce);
-            int key3 = UCA.getTertiary(ce);
+            int key1 = CEList.getPrimary(ce);
+            int key2 = CEList.getSecondary(ce);
+            int key3 = CEList.getTertiary(ce);
             if (!UCA.isImplicitPrimary(key1)) {
                 statistics.setPrimary(key1);
                 if (i == 0) {
@@ -170,13 +169,13 @@ public class UCA_Data implements UCA_Types {
                     if (reps == null) {
                         statistics.representativePrimary.put(key1, reps = new StringBuilder());
                     }
-                    reps.appendCodePoint(source.codePointAt(0));
+                    reps.appendCodePoint(firstCodePoint);
                 } else {
                     StringBuilder reps = statistics.representativePrimarySeconds.get(key1);
                     if (reps == null) {
                         statistics.representativePrimarySeconds.put(key1, reps = new StringBuilder());
                     }
-                    reps.appendCodePoint(source.codePointAt(0));
+                    reps.appendCodePoint(firstCodePoint);
                 }
             }
             statistics.setSecondary(key2);
@@ -211,244 +210,154 @@ public class UCA_Data implements UCA_Types {
         }
 
 
-
         if (DEBUG_SHOW_ADD) {
-            System.out.println("Adding: " + ucd.getCodeAndName(source.toString()) + CEList.toString(ces));
-        }
-        if (source.length() < 1 || ces.length() < 1) {
-            throw new IllegalArgumentException("String or CEs too short");
+            System.out.println("Adding: " + ucd.getCodeAndName(sourceString) + CEList.toString(ces));
         }
 
-        int ce;
-        if (ces.length() == 1) {
-            ce = ces.get(0);
-        } else {
-            ce = EXPANDING_MASK | expandingTable.getTop();
-            expandingTable.append(ces);
-            expandingTable.append(TERMINATOR);
+        cesMap.put(sourceString, new CEList(ces));
+
+        int firstLimit = Character.charCount(firstCodePoint);
+        String firstChar = sourceString.substring(0, firstLimit);
+        String longest = longestMap.get(firstChar);
+        if (longest == null || longest.length() < sourceString.length()) {
+            // The sourceString is longer than previous mappings that start with firstChar.
+            longestMap.put(firstChar, sourceString);
         }
 
-        // assign CE(s) to char(s)
-        char value = source.charAt(0);
-        //if (value == 0x10000) System.out.print("DEBUG2: " + source);
-
-        if (source.length() > 1) {
-            addToContractingTable(source, ce);
-            if (collationElements[value] == UNSUPPORTED_FLAG) {
-                collationElements[value] = CONTRACTING; // mark special
-            } else if (collationElements[value] != CONTRACTING) {
-                // move old value to contracting table!
-                //contractingTable.put(String.valueOf(value), new Integer(collationElements[value]));
-                addToContractingTable(String.valueOf(value), collationElements[value]);
-                collationElements[value] = CONTRACTING; // signal we must look up in table
+        if (sourceString.length() > firstLimit) {
+            contractions.add(sourceString);
+            if (!endsWithZeroCC(sourceString)) {
+                // The sourceString contraction ends with a non-zero combining class:
+                // Discontiguous contractions are possible.
+                hasDiscontiguousContractions.add(firstChar);
             }
-        } else if (collationElements[value] == CONTRACTING) {
-            // must add old value to contracting table!
-            addToContractingTable(source, ce);
-            //contractingTable.put(source, new Integer(ce));
+        }
+
+        // TODO(Markus): stop adding single-character strings to the contractions set
+        if (source.length() > 1) {
+            contractions.add(sourceString);
+            if (firstLimit == 1) {
+                if (cesMap.containsKey(firstChar)) {
+                    contractions.add(firstChar);
+                }
+            }
         } else {
-            collationElements[source.charAt(0)] = ce; // normal
+            // sourceString consists of exactly one BMP character.
+            // sourceString.equals(firstChar).
+            if (longestMap.get(sourceString).length() > 1) {
+                contractions.add(sourceString);
+            }
         }
         //if (DEBUG) checkConsistency();
     }
 
-    boolean isCompletelyIgnoreable(int cp) {
-        int ce = collationElements[cp < UTF16.SUPPLEMENTARY_MIN_VALUE ? cp : UTF16.getLeadSurrogate(cp)];
-        if (ce == 0) return true;
-        if (ce != CONTRACTING) return false;
-        Object newValue = contractingTable.get(UTF16.valueOf(cp));       
-        if (newValue == null) return false;
-        return ((Integer)newValue).intValue() == 0;
-    }
+    /**
+     * Returns the CEs for the longest matching buffer substring starting at i
+     * and moves the index to just after that substring.
+     * Discontiguously matched combining marks are removed from the buffer.
+     *
+     * <p>If there is no mapping for any character or substring at i,
+     * then the index is unchanged and null is returned.
+     */
+    public CEList fetchCEs(StringBuffer buffer, int[] index) {
+        int i = index[0];
+        // Lookup for the first character at i.
+        int j = buffer.offsetByCodePoints(i, 1);
+        String s = buffer.substring(i, j);
+        String longest = longestMap.get(s);
+        if (longest == null) {
+            // No mapping starts with the character at i.
+            return null;
+        }
+        boolean maybeDiscontiguous = hasDiscontiguousContractions.contains(s);
 
-    // returns new pos, fills in result.
-    public int get(char ch, StringBuffer decompositionBuffer, int index, IntStack result) {
-        int ce = collationElements[ch];
-
-        if (ce == CONTRACTING) {
-            // Contracting is probably the most interesting (read "tricky") part
-            // of the algorithm.
-            // First get longest substring that is in the contracting table.
-            // For simplicity, we use a hash table for contracting.
-            // There are much better optimizations, 
-            // but they take a more complicated build algorithm than we want to show here.
-            // NOTE: We are guaranteed that the first code unit is in the contracting table because
-            // of the build process.
-            String probe = String.valueOf(ch);
-            Object value = contractingTable.get(probe);
-            if (value == null) throw new IllegalArgumentException("Missing value for " + Utility.hex(ch));
-
-            // complete the first character, if part of supplementary
-            if (UTF16.isLeadSurrogate(ch) && index < decompositionBuffer.length()) {
-                char ch2 = decompositionBuffer.charAt(index);
-                String newProbe = probe + ch2;
-                Object newValue = contractingTable.get(newProbe);
-                if (newValue != null) {
-                    probe = newProbe;
-                    value = newValue;
-                    index++;
-                }
-            }           
-
-            // We loop, trying to add successive CODE UNITS to the longest substring.
-            int cp2;
-            while (index < decompositionBuffer.length()) {
-                //char ch2 = decompositionBuffer.charAt(index);
-                cp2 = UTF16.charAt(decompositionBuffer, index);
-                int increment = UTF16.getCharCount(cp2);
-
-                // CHECK if last char was completely ignorable
-                if (lessThan410 && isCompletelyIgnoreable(cp2)) {
-                    index += increment; // just skip char don't set probe, value
-                    continue;
-                }
-
-                // see whether the current string plus the next char are in
-                // the contracting table.
-                String newProbe = probe + UTF16.valueOf(cp2);
-                Object newValue = contractingTable.get(newProbe);
-                if (newValue == null) break;    // stop if not in table.
-
-                // We succeeded--so update our new values, and set index
-                // and quaternary to indicate that we swallowed another character.
-                probe = newProbe;
-                value = newValue;
-                index += increment;
+        // Contiguous-contraction matching:
+        // Find the longest matching substring starting at i.
+        CEList ces = cesMap.get(s);
+        while ((j - i) < longest.length() && j < buffer.length()) {
+            int next = buffer.offsetByCodePoints(j, 1);
+            String nextString = buffer.substring(i, next);
+            CEList nextCEs = cesMap.get(nextString);
+            if (nextCEs != null) {
+                s = nextString;
+                ces = nextCEs;
             }
+            j = next;
+        }
+        j = i + s.length();  // Limit of the longest contiguous match.
 
-            // Now, see if we can add any combining marks
-            short lastCan = 0;
-            int increment;
-            for (int i = index; i < decompositionBuffer.length(); i += increment) {
-                // We only take certain characters. They have to be accents,
-                // and they have to not be blocked.
-                // Unlike above, if we don't find a match (and it was an accent!)
-                // then we don't stop, we continue looping.
-                cp2 = UTF16.charAt(decompositionBuffer, i);
-                increment = UTF16.getCharCount(cp2);
-                short can = toD.getCanonicalClass(cp2);
-                if (can == 0) break;            // stop with any zero (non-accent)
-                if (can == lastCan) continue;   // blocked if same class as last
-                lastCan = can;                  // remember for next time
-
-                // CHECK if last char was completely ignorable. If so, skip it.
-                if (lessThan410 && isCompletelyIgnoreable(cp2)) {
-                    continue;
-                }
-
-                // Now see if we can successfully add it onto our string
-                // and find it in the contracting table.
-                String newProbe = probe + UTF16.valueOf(cp2);
-                Object newValue = contractingTable.get(newProbe);
-                if (newValue == null) continue;
-
-                // We succeeded--so update our new values, remove the char, and update
-                // quaternary to indicate that we swallowed another character.
-                probe = newProbe;
-                value = newValue;
-                decompositionBuffer.setCharAt(i,'\u0000');  // zero char
-                if (increment == 2) {
-                    // WARNING: we had a supplementary character. zero BOTH parts
-                    decompositionBuffer.setCharAt(i+1,'\u0000');  // zero char
+        // Discontiguous-contraction matching.
+        if (maybeDiscontiguous && s.length() < longest.length() && j < buffer.length()) {
+            // j does not move any more:
+            // Discontiguously matching combining marks will be removed from the buffer,
+            // and then the caller continues with the skipped combining marks starting at j.
+            int nextCodePoint = buffer.codePointAt(j);
+            short cc = toD.getCanonicalClass(nextCodePoint);
+            if (cc != 0) {
+                int k = j + Character.charCount(nextCodePoint);
+                short prevCC = cc;
+                while (k < buffer.length()) {
+                    nextCodePoint = buffer.codePointAt(k);
+                    cc = toD.getCanonicalClass(nextCodePoint);
+                    if (cc == 0) {  // stop with any zero (non-accent)
+                        break;
+                    }
+                    int next = k + Character.charCount(nextCodePoint);
+                    if (cc == prevCC) {  // blocked if same class as last
+                        k = next;
+                        continue;     
+                    }
+                    prevCC = cc;  // remember for next time
+                    // nextString = s + nextCodePoint
+                    String nextString = new StringBuilder(s).appendCodePoint(nextCodePoint).toString();
+                    CEList nextCEs = cesMap.get(nextString);
+                    if (nextCEs == null) {
+                        k = next;
+                        continue;     
+                    }
+                    // Remove the nextCodePoint from the buffer.
+                    buffer.delete(k, next);
+                    s = nextString;
+                    ces = nextCEs;
+                    if (s.length() >= longest.length()) {
+                        break;
+                    }
                 }
             }
-
-            // we are all done, and can extract the CE from the last value set.
-            ce = ((Integer)value).intValue();
-
         }
 
-        // if the CE is not expanding) we are done.
-        if ((ce & EXPANDING_MASK) != EXPANDING_MASK) {
-            result.push(ce);
-        } else {
-            // expanding, so copy list of items onto stack
-            int ii = ce & EXCEPTION_INDEX_MASK; // get index
-            // copy onto stack from index until reach TERMINATOR
-            while (true) {
-                ce = expandingTable.get(ii++);
-                if (ce == TERMINATOR) break;
-                result.push(ce);
-            }
+        if (ces != null) {
+            index[0] = j;
         }
-        return index;
+        return ces;
     }
 
-    static final UnicodeSet ILLEGAL_CODE_POINTS = new UnicodeSet("[:cs:]").freeze(); // doesn't depend on version
-
-    private void addToContractingTable(Object s, int ce) {
-        if (s == null) {
-            throw new IllegalArgumentException("String can't be null");
-        }
-        String string = s.toString();
-        if (ce != UNSUPPORTED_FLAG) { 
-            checkForIllegal(string);
-        }
-        contractingTable.put(string, new Integer(ce));
-    }
+    private static final UnicodeSet ILLEGAL_CODE_POINTS = new UnicodeSet("[:cs:]").freeze(); // doesn't depend on version
 
     private void checkForIllegal(String string) {
         if(ILLEGAL_CODE_POINTS.containsSome(string)) {
-            char finalChar = string.charAt(string.length()-1);
-            if (Character.isHighSurrogate(finalChar) 
-                    && ILLEGAL_CODE_POINTS.containsNone(string.substring(0, string.length()-1))) {
-                return; // final low is ok
-            }
             throw new IllegalArgumentException("String contains illegal characters: <"
                     + string + "> " + new UnicodeSet().addAll(string).retainAll(ILLEGAL_CODE_POINTS));
         }
     }
 
     void checkConsistency() {
-        // at this point, we have to guarantee that the contractingTable is CLOSED
-        // e.g. if a substring of length n is in the table, then the first n-1 characters
-        // are also!!
-
-        // First check consistency. the CE for a value is CONTRACTING if and only if there is a contraction starting
-        // with that value.
-
-        UnicodeSet ceSet = new UnicodeSet();
-        for (int i = 0; i < collationElements.length; ++i) {
-            if (collationElements[i] == CONTRACTING) ceSet.add(i);
-        }
-        UnicodeSet ceSet2 = new UnicodeSet();
-        Iterator enum1 = contractingTable.keySet().iterator();
-        while (enum1.hasNext()) {
-            String sequence = (String)enum1.next();
-            ceSet2.add(sequence.charAt(0));
-        }
-
-        if (!ceSet.equals(ceSet2)) {
-            System.out.println("In both: " + new UnicodeSet(ceSet).retainAll(ceSet2).toPattern(true));
-            System.out.println("CONTRACTING but not in table: " + new UnicodeSet(ceSet).removeAll(ceSet2).toPattern(true));
-            System.out.println("In table but not CONTRACTING: " + new UnicodeSet(ceSet2).removeAll(ceSet).toPattern(true));
-            throw new IllegalArgumentException("Inconsistent data");
-        }
-
-        /*
-0FB2 0F71 ; [.124E.0020.0002.0FB2][.125F.0020.0002.0F71] # TIBETAN SUBJOINED LETTER RA + TIBETAN VOWEL SIGN AA
-0FB3 0F71 ; [.1250.0020.0002.0FB3][.125F.0020.0002.0F71] # TIBETAN SUBJOINED LETTER LA + TIBETAN VOWEL SIGN AA
-        int[] temp1 = int[20];
-        int[] temp2 = int[20];
-        int[] temp3 = int[20];
-        getCEs("\u0fb2", true, temp1);
-        getCEs("\u0fb3", true, temp2);
-        getCEs("\u0f71", true, temp3);
-        add("\u0FB2\u0F71", concat(temp1, temp3));
-         */
-
+        // pass
     }
 
-    Iterator getContractions() {
-        return contractingTable.keySet().iterator();
+    Iterator<String> getMappedStrings() {
+        return cesMap.keySet().iterator();
+    }
+
+    Iterator<String> getContractions() {
+        return contractions.iterator();
     }
 
     int getContractionCount() {
-        return contractingTable.size();
+        return contractions.size();
     }
 
     boolean contractionTableContains(String s) {
-        return contractingTable.get(s) != null;
+        return contractions.contains(s);
     }
-
 }

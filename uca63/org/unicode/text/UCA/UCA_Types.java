@@ -16,43 +16,11 @@ public interface UCA_Types {
     /**
      * Version of the UCA tables to use
      */
-    //private static final String VERSION = "-3.0.1d3"; // ""; // "-2.1.9d7"; 
-    //public static final String UCA_BASE = "4.1.0";  // "3.1.1"; //      ; // ""; // "-2.1.9d7"; 
-    //public static final String VERSION = "-" + UCA_BASE; //  + "d6" ""; // "-2.1.9d7"; 
     public static final String ALLFILES = "allkeys"; // null if not there
 
     public static final String BASE_UCA_GEN_DIR = UCD_Types.GEN_DIR + "uca/"; // UCD_Types.GEN_DIR + "collation" + "/";
     public static final char LEVEL_SEPARATOR = '\u0000'; 
-    /**
-     * Expanding characters are marked with a exception bit combination
-     * in the collationElement table.
-     * This means that they map to more than one CE, which is looked up in
-     * the expansionTable by index.
-     */
-    static final int EXPANDING_MASK = 0xFFFF0000; // marks expanding range start
-    
-    /**
-     * This mask is used to get the index from an EXPANDING exception.
-     * The contracting characters can also make use of this in a future optimization.
-     */
-    static final int EXCEPTION_INDEX_MASK = 0x0000FFFF;
 
-    /**
-     * Contracting characters are marked with a exception bit combination 
-     * in the collationElement table.
-     * This means that they are the first character of a contraction, and need
-     * to be looked up (with following characters) in the contractingTable.<br>
-     * This isn't a MASK since there is exactly one value.
-     */
-    static final int CONTRACTING = 0xFFFE0000;
-
-    static final int UNSUPPORTED_FLAG = 0xFFFD0000;
-
-    
-    /**
-     * Used to composed Hangul and Han characters
-     */
-     
     static final int NEUTRAL_SECONDARY = 0x20;
     static final int NEUTRAL_TERTIARY = 0x02;
     
@@ -90,6 +58,4 @@ public interface UCA_Types {
     static final byte NORMAL_CE = 0, CONTRACTING_CE = 1, EXPANDING_CE = 2, 
         CJK_CE = 3, CJK_AB_CE = 4, HANGUL_CE = 5, UNSUPPORTED_CE = 7,
         FIXED_CE = 3;
-        // SURROGATE_CE = 6, 
-
 }
