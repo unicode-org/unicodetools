@@ -3804,9 +3804,14 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         sorted.addAll(counter.getAvailableValues());
         for (String value : sorted) {
             UnicodeSet set = counter.getSet(value);
-            String pattern = set.toPattern(false);
-            if (pattern.length() > 120) {
-                pattern = pattern.substring(0,120) + "…";
+            String pattern = set.toPattern(false).replace("\u0000", "\\u0000");
+            int maxLength = 120;
+            if (pattern.length() > maxLength) {
+                // Do not truncate in the middle of a surrogate pair.
+                if (Character.isHighSurrogate(pattern.charAt(maxLength - 1))) {
+                    --maxLength;
+                }
+                pattern = pattern.substring(0, maxLength) + "…";
             }
             log.println("<tr>"
                     + "<td>" + value + "</td>"
