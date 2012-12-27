@@ -1737,17 +1737,16 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         int nextCE = 0;
         int lastCJKPrimary = 0;
 
+        final CEList bogusCes = new CEList(new int[] {});
         boolean firstTime = true;
 
         boolean done = false;
 
         String chr = "";
-        int len = -1;
-        CEList ces = CEList.EMPTY;
+        CEList ces = bogusCes;
 
         String nextChr = "";
-        int nextLen = -1; // -1 signals that we need to skip!!
-        CEList nextCes = CEList.EMPTY;
+        CEList nextCes = bogusCes;  // bogusCes signals that we need to skip!!
 
         String lastChr = "";
         CEList lastCes = CEList.EMPTY;
@@ -1771,15 +1770,14 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             // copy the current from Next
 
             ce = nextCE;
-            len = nextLen;
             chr = nextChr;
             ces = nextCes;
 
             // We need to look ahead one, to be able to reset properly
 
             if (it.hasNext()) {
-                String nextSortKey = (String) it.next();
-                nextChr = (String) ordered.get(nextSortKey);
+                String nextSortKey = it.next();
+                nextChr = ordered.get(nextSortKey);
                 int result = cm.compare(nextSortKey, lastSortKey);
                 if (result < 0) {
                     System.out.println();
@@ -1816,12 +1814,11 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             }
 
             nextCes = getCollator(collatorType2).getCEList(nextChr, true);
-            nextLen = nextCes.length();
             nextCE = nextCes.isEmpty() ? 0 : nextCes.at(0);
 
             // skip first (fake) element
 
-            if (len == -1) {
+            if (ces == bogusCes) {
                 continue;
             }
 
@@ -1849,7 +1846,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             int relation = getStrengthDifference(ces, expansionStart, lastCes, lastExpansionStart);
 
             if (relation == QUARTERNARY_DIFF) {
-                int relation2 = getStrengthDifference(ces, len, lastCes, lastCes.length());
+                int relation2 = getStrengthDifference(ces, ces.length(), lastCes, lastCes.length());
                 if (relation2 != QUARTERNARY_DIFF) {
                     relation = TERTIARY_DIFF;
                 }
@@ -1870,7 +1867,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     int resetCp = UCA.ImplicitToCodePoint(primary, CEList.getPrimary(ces.at(1)));
 
                     CEList ces2 = getCollator(collatorType2).getCEList(UTF16.valueOf(resetCp), true);
-                    relation = getStrengthDifference(ces, len, ces2, ces2.length());
+                    relation = getStrengthDifference(ces, ces.length(), ces2, ces2.length());
 
                     reset = quoteOperand(UTF16.valueOf(resetCp));
                     if (!shortPrint) {
@@ -1911,12 +1908,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             // check expansions
 
             String expansion = "";
-            if (len > expansionStart) {
+            if (ces.length() > expansionStart) {
                 // int tert0 = ces.at(0] & 0xFF;
                 // boolean isCompat = tert0 != 2 && tert0 != 8;
                 log2.println("Exp: " + Default.ucd().getCodeAndName(chr) + ", " + ces + ", start: " + expansionStart);
                 int[] rel = { relation };
-                expansion = getFromBackMap(backMap, ces, expansionStart, len, chr, rel);
+                expansion = getFromBackMap(backMap, ces, expansionStart, ces.length(), chr, rel);
                 // relation = rel[0];
 
                 // The relation needs to be fixed differently. Since it is an
