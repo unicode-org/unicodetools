@@ -71,7 +71,7 @@ public class WriteCharts implements UCD_Types {
 		//Normalizer nfd = new Normalizer(Normalizer.NFD);
 		//Normalizer nfc = new Normalizer(Normalizer.NFC);
 
-		UCA.UCAContents cc = uca.getContents(UCA.FIXED_CE, null); // nfd instead of null if skipping decomps
+		UCA.UCAContents cc = uca.getContents(null); // nfd instead of null if skipping decomps
 		cc.setDoEnableSamples(true);
 
 		Set set = new TreeSet();

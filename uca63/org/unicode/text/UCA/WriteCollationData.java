@@ -39,16 +39,12 @@ import java.util.Vector;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.Builder;
-import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.With;
 import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA.Remap;
 import org.unicode.text.UCA.UCA.UCAContents;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
-import org.unicode.text.UCA.WriteCollationData.ArrayWrapper;
-import org.unicode.text.UCA.WriteCollationData.UcaBucket;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
@@ -62,7 +58,6 @@ import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
@@ -677,7 +672,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     static final boolean multipleZeroPrimaries(int[] a, int aLen) {
         int count = 0;
         for (int i = 0; i < aLen; ++i) {
-            if (UCA.getPrimary(a[i]) == 0) {
+            if (CEList.getPrimary(a[i]) == 0) {
                 if (count == 1) {
                     return true;
                 }
@@ -697,14 +692,14 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         for (int i = 1; i < markLen; ++i) {
             int next = markCes[i];
             int prev = markCes[out - 1];
-            if (UCA.getPrimary(next) == 0
-                    && UCA.getSecondary(prev) == 0x20
-                    && UCA.getTertiary(next) == 0x2) {
+            if (CEList.getPrimary(next) == 0
+                    && CEList.getSecondary(prev) == 0x20
+                    && CEList.getTertiary(next) == 0x2) {
                 markCes[out - 1] = UCA.makeKey(
-                        UCA.getPrimary(prev),
-                        UCA.getSecondary(next),
-                        UCA.getTertiary(prev));
-                FractionalUCA.Variables.compressSet.set(UCA.getSecondary(next));
+                        CEList.getPrimary(prev),
+                        CEList.getSecondary(next),
+                        CEList.getTertiary(prev));
+                FractionalUCA.Variables.compressSet.set(CEList.getSecondary(next));
             } else {
                 markCes[out++] = next;
             }
@@ -796,7 +791,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         log.println("<p>These are not necessarily errors, but should be examined for <i>possible</i> errors</p>");
         log.println("<table border='1' cellspacing='0' cellpadding='2'>");
 
-        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, Default.nfd());
+        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(Default.nfd());
 
         Map<CEList,Set<String>> map = new TreeMap<CEList,Set<String>>();
 
@@ -842,7 +837,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         log.println("<p>These are not necessarily errors, but should be examined for <i>possible</i> errors</p>");
         log.println("<table border='1' cellspacing='0' cellpadding='2'>");
 
-        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, Default.nfd());
+        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(Default.nfd());
 
         Map<CEList,String> map = new TreeMap<CEList,String>();
         Map<CEList,Set<CEList>> tails = new TreeMap<CEList,Set<CEList>>();
@@ -1065,10 +1060,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
         // Normalizer nfd = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
 
-        int[] ces = new int[50];
-
-        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, Default.nfd());
-        int[] lenArray = new int[1];
+        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(Default.nfd());
 
         diLog.println("# Contractions");
         writeVersionAndDate(diLog, fullFileName, true);
@@ -1076,15 +1068,16 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         // diLog.println("# UCA Version: " + collator.getDataVersion() + "/" +
         // collator.getUCDVersion());
         while (true) {
-            String s = cc.next(ces, lenArray);
+            String s = cc.next();
             if (s == null) {
                 break;
             }
-            int len = lenArray[0];
+            CEList ces = cc.getCEs();
+            int len = ces.length();
 
             if (s.length() > 1) {
                 diLog.println(Utility.hex(s, " ")
-                        + ";\t #" + CEList.toString(ces, len)
+                        + ";\t #" + ces
                         + " ( " + s + " )"
                         + " " + Default.ucd().getName(s));
             }
@@ -1113,7 +1106,6 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
         // Normalizer nfd = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
 
-        int[] ces = new int[50];
         int[] secondariesZP = new int[400];
         Vector[] secondariesZPsample = new Vector[400];
         int[] remapZP = new int[400];
@@ -1137,36 +1129,36 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
          * String s = String.valueOf(ch); int len = collator.getCEs(s, true,
          * ces);
          */
-        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, Default.nfd());
-        int[] lenArray = new int[1];
+        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(Default.nfd());
 
         Set sortedCodes = new TreeSet();
         Set mixedCEs = new TreeSet();
 
         while (true) {
-            String s = cc.next(ces, lenArray);
+            String s = cc.next();
             if (s == null) {
                 break;
             }
 
             // process all CEs. Look for controls, and for mixed
             // ignorable/non-ignorables
+            CEList ces = cc.getCEs();
 
             int ccc;
             for (int kk = 0; kk < s.length(); kk += UTF32.count16(ccc)) {
                 ccc = UTF32.char32At(s, kk);
                 byte cat = Default.ucd().getCategory(ccc);
                 if (cat == Cf || cat == Cc || cat == Zs || cat == Zl || cat == Zp) {
-                    sortedCodes.add(CEList.toString(ces, lenArray[0]) + "\t" + Default.ucd().getCodeAndName(s));
+                    sortedCodes.add(ces + "\t" + Default.ucd().getCodeAndName(s));
                     break;
                 }
             }
 
-            int len = lenArray[0];
+            int len = ces.length();
 
             int haveMixture = 0;
             for (int j = 0; j < len; ++j) {
-                int ce = ces[j];
+                int ce = ces.at(j);
                 int pri = getCollator(CollatorType.ducet).getPrimary(ce);
                 int sec = getCollator(CollatorType.ducet).getSecondary(ce);
                 if (pri == 0) {
@@ -1185,7 +1177,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     haveMixture |= 2;
                 }
                 if (haveMixture == 3) {
-                    mixedCEs.add(CEList.toString(ces, len) + "\t" + Default.ucd().getCodeAndName(s));
+                    mixedCEs.add(ces + "\t" + Default.ucd().getCodeAndName(s));
                 }
             }
         }
@@ -1254,8 +1246,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         diLog.println();
         diLog.println("# All characters with 'mixed' CEs: variable and non-variable");
         diLog.println("# Note: variables are in " 
-                + Utility.hex(UCA.getPrimary(getCollator(CollatorType.ducet).getVariableLowCE())) + " to "
-                + Utility.hex(UCA.getPrimary(getCollator(CollatorType.ducet).getVariableHighCE())));
+                + Utility.hex(CEList.getPrimary(getCollator(CollatorType.ducet).getVariableLowCE())) + " to "
+                + Utility.hex(CEList.getPrimary(getCollator(CollatorType.ducet).getVariableHighCE())));
         diLog.println();
 
         Iterator it;
@@ -1293,7 +1285,6 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
         // Normalizer nfd = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
 
-        int[] ces = new int[50];
         int[] secondariesZP = new int[400];
         Vector[] secondariesZPsample = new Vector[400];
         int[] remapZP = new int[400];
@@ -1317,36 +1308,36 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
          * String s = String.valueOf(ch); int len = collator.getCEs(s, true,
          * ces);
          */
-        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, Default.nfd());
-        int[] lenArray = new int[1];
+        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(Default.nfd());
 
         Set sortedCodes = new TreeSet();
         Set mixedCEs = new TreeSet();
 
         while (true) {
-            String s = cc.next(ces, lenArray);
+            String s = cc.next();
             if (s == null) {
                 break;
             }
 
             // process all CEs. Look for controls, and for mixed
             // ignorable/non-ignorables
+            CEList ces = cc.getCEs();
 
             int ccc;
             for (int kk = 0; kk < s.length(); kk += UTF32.count16(ccc)) {
                 ccc = UTF32.char32At(s, kk);
                 byte cat = Default.ucd().getCategory(ccc);
                 if (cat == Cf || cat == Cc || cat == Zs || cat == Zl || cat == Zp) {
-                    sortedCodes.add(CEList.toString(ces, lenArray[0]) + "\t" + Default.ucd().getCodeAndName(s));
+                    sortedCodes.add(ces + "\t" + Default.ucd().getCodeAndName(s));
                     break;
                 }
             }
 
-            int len = lenArray[0];
+            int len = ces.length();
 
             int haveMixture = 0;
             for (int j = 0; j < len; ++j) {
-                int ce = ces[j];
+                int ce = ces.at(j);
                 int pri = getCollator(CollatorType.ducet).getPrimary(ce);
                 int sec = getCollator(CollatorType.ducet).getSecondary(ce);
                 if (pri == 0) {
@@ -1365,7 +1356,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     haveMixture |= 2;
                 }
                 if (haveMixture == 3) {
-                    mixedCEs.add(CEList.toString(ces, len) + "\t" + Default.ucd().getCodeAndName(s));
+                    mixedCEs.add(ces + "\t" + Default.ucd().getCodeAndName(s));
                 }
             }
         }
@@ -1434,9 +1425,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             newCes = new int[30];
             for (int i = 0; i < len; ++i) {
                 int ce = ces[i];
-                int p = UCA.getPrimary(ce);
-                int s = UCA.getSecondary(ce);
-                int t = UCA.getTertiary(ce);
+                int p = CEList.getPrimary(ce);
+                int s = CEList.getSecondary(ce);
+                int t = CEList.getTertiary(ce);
                 if (p != 0 && s != 0x20) {
                     newCes[newLen++] = UCA.makeKey(p, 0x20, t);
                     newCes[newLen++] = UCA.makeKey(0, s, 0x1F);
@@ -1471,8 +1462,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         int i = 0;
         System.out.println("Loading");
         for (char ch = 0; i < tests.length; ++ch) {
-            byte type = getCollator(CollatorType.ducet).getCEType(ch);
-            if (type >= UCA.FIXED_CE) {
+            if (!getCollator(CollatorType.ducet).codePointHasExplicitMappings(ch)) {
                 continue;
             }
             Utility.dot(ch);
@@ -1509,17 +1499,18 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     // static Normalizer NFC = new Normalizer(Normalizer.NFC, "");
     // static Normalizer nfkdNew = new Normalizer(Normalizer.NFKD, "");
 
-    static int getFirstCELen(int[] ces, int len) {
+    static int getFirstCELen(CEList ces) {
+        int len = ces.length();
         if (len < 2) {
             return len;
         }
         int expansionStart = 1;
-        if (UCA.isImplicitLeadCE(ces[0])) {
+        if (UCA.isImplicitLeadCE(ces.at(0))) {
             expansionStart = 2; // move up if first is double-ce
         }
-        if (len > expansionStart && getCollator(CollatorType.ducet).getHomelessSecondaries().contains(UCA.getSecondary(ces[expansionStart]))) {
+        if (len > expansionStart && getCollator(CollatorType.ducet).getHomelessSecondaries().contains(CEList.getSecondary(ces.at(expansionStart)))) {
             if (log2 != null) {
-                log2.println("Homeless: " + CEList.toString(ces, len));
+                log2.println("Homeless: " + ces);
             }
             ++expansionStart; // move up if *second* is homeless ignoreable
         }
@@ -1533,13 +1524,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         // testTransitivity();
         // if (true) return;
 
-        int[] ces = new int[50];
         // Normalizer nfd = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
         // Normalizer nfkd = new Normalizer(Normalizer.NFKD, UNICODE_VERSION);
 
         if (false) {
-            int len2 = getCollator(collatorType2).getCEs("\u2474", true, ces);
-            System.out.println(CEList.toString(ces, len2));
+            CEList ces = getCollator(collatorType2).getCEList("\u2474", true);
+            System.out.println(ces);
 
             String a = getCollator(collatorType2).getSortKey("a");
             String b = getCollator(collatorType2).getSortKey("A");
@@ -1551,46 +1541,46 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         java.util.Comparator cm = new RuleComparator();
         Map<String, String> ordered = new TreeMap<String, String>(cm);
 
-        UCA.UCAContents cc = getCollator(collatorType2).getContents(UCA.FIXED_CE,
-                SKIP_CANONICAL_DECOMPOSIBLES ? Default.nfd() : null);
-        int[] lenArray = new int[1];
+        UCA.UCAContents cc = getCollator(collatorType2).getContents(SKIP_CANONICAL_DECOMPOSIBLES ? Default.nfd() : null);
 
         Set<String> alreadyDone = new HashSet();
 
         log2 = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + File.separator + "log", "UCARules-log.txt", Utility.UTF8_WINDOWS);
 
         while (true) {
-            String s = cc.next(ces, lenArray);
+            String s = cc.next();
             if (s == null) {
                 break;
             }
-            int len = lenArray[0];
+            CEList ces = cc.getCEs();
+            int len = ces.length();
 
             if (s.equals("\uD800")) {
-                System.out.println("Check: " + CEList.toString(ces, len));
+                System.out.println("Check: " + ces);
             }
 
-            log2.println(s + "\t" + bidiBracket(CEList.toString(ces, len)) + "\t" + Default.ucd().getCodeAndName(s));
+            String safeString = s.replace("\u0000", "\\u0000");
+            log2.println(safeString + "\t" + bidiBracket(ces.toString()) + "\t" + Default.ucd().getCodeAndName(s));
 
-            addToBackMap(backMap, ces, len, s, false);
+            addToBackMap(backMap, ces, s, false);
 
             int ce2 = 0;
             int ce3 = 0;
-            int logicalFirstLen = getFirstCELen(ces, len);
+            int logicalFirstLen = getFirstCELen(ces);
             if (logicalFirstLen > 1) {
-                ce2 = ces[1];
+                ce2 = ces.at(1);
                 if (logicalFirstLen > 2) {
-                    ce3 = ces[2];
+                    ce3 = ces.at(2);
                 }
             }
 
-            String key = String.valueOf(UCA.getPrimary(ces[0])) + String.valueOf(UCA.getPrimary(ce2)) + String.valueOf(UCA.getPrimary(ce3))
-                    + String.valueOf(UCA.getSecondary(ces[0])) + String.valueOf(UCA.getSecondary(ce2)) + String.valueOf(UCA.getSecondary(ce3))
-                    + String.valueOf(UCA.getTertiary(ces[0])) + String.valueOf(UCA.getTertiary(ce2)) + String.valueOf(UCA.getTertiary(ce3))
+            String key = String.valueOf(CEList.getPrimary(ces.at(0))) + String.valueOf(CEList.getPrimary(ce2)) + String.valueOf(CEList.getPrimary(ce3))
+                    + String.valueOf(CEList.getSecondary(ces.at(0))) + String.valueOf(CEList.getSecondary(ce2)) + String.valueOf(CEList.getSecondary(ce3))
+                    + String.valueOf(CEList.getTertiary(ces.at(0))) + String.valueOf(CEList.getTertiary(ce2)) + String.valueOf(CEList.getTertiary(ce3))
                     + getCollator(collatorType2).getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + UCA.codePointOrder(s);
 
-            // String.valueOf((char)(ces[0]>>>16)) +
-            // String.valueOf((char)(ces[0] & 0xFFFF))
+            // String.valueOf((char)(ces.at(0]>>>16)) +
+            // String.valueOf((char)(ces.at(0] & 0xFFFF))
             // + String.valueOf((char)(ce2>>>16)) + String.valueOf((char)(ce2 &
             // 0xFFFF))
 
@@ -1675,12 +1665,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 }
 
                 alreadyDone.add(s);
-                int len = getCollator(collatorType2).getCEs(s, true, ces);
+                CEList ces = getCollator(collatorType2).getCEList(s, true);
 
-                log2.println(s + "\t" + CEList.toString(ces, len)
+                log2.println(s + "\t" + ces
                         + "\t" + Default.ucd().getCodeAndName(s) + " from " + Default.ucd().getCodeAndName(i));
 
-                addToBackMap(backMap, ces, len, s, false);
+                addToBackMap(backMap, ces, s, false);
             }
         }
         
@@ -1737,7 +1727,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         }
 
         it = ordered.keySet().iterator();
-        int oldFirstPrimary = UCA.getPrimary(UCA.TERMINATOR);
+        int oldFirstPrimary = CEList.getPrimary(UCA.TERMINATOR);
         boolean wasVariable = false;
 
         // String lastSortKey = collator.getSortKey("\u0000");;
@@ -1753,14 +1743,14 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
         String chr = "";
         int len = -1;
+        CEList ces = CEList.EMPTY;
 
         String nextChr = "";
         int nextLen = -1; // -1 signals that we need to skip!!
-        int[] nextCes = new int[50];
+        CEList nextCes = CEList.EMPTY;
 
         String lastChr = "";
-        int lastLen = -1;
-        int[] lastCes = new int[50];
+        CEList lastCes = CEList.EMPTY;
         int lastExpansionStart = 0;
         int expansionStart = 0;
 
@@ -1774,21 +1764,16 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             Utility.dot(loopCounter);
 
             lastCE = ce;
-            lastLen = len;
             lastChr = chr;
             lastExpansionStart = expansionStart;
-            if (len > 0) {
-                System.arraycopy(ces, 0, lastCes, 0, lastLen);
-            }
+            lastCes = ces;
 
             // copy the current from Next
 
             ce = nextCE;
             len = nextLen;
             chr = nextChr;
-            if (nextLen > 0) {
-                System.arraycopy(nextCes, 0, ces, 0, nextLen);
-            }
+            ces = nextCes;
 
             // We need to look ahead one, to be able to reset properly
 
@@ -1830,8 +1815,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 done = true; // make one more pass!!!
             }
 
-            nextLen = getCollator(collatorType2).getCEs(nextChr, true, nextCes);
-            nextCE = nextCes[0];
+            nextCes = getCollator(collatorType2).getCEList(nextChr, true);
+            nextLen = nextCes.length();
+            nextCE = nextCes.isEmpty() ? 0 : nextCes.at(0);
 
             // skip first (fake) element
 
@@ -1843,9 +1829,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
             if (loopCounter < 5) {
                 System.out.println(loopCounter);
-                System.out.println(CEList.toString(lastCes, lastLen) + ", " + Default.ucd().getCodeAndName(lastChr));
-                System.out.println(CEList.toString(ces, len) + ", " + Default.ucd().getCodeAndName(chr));
-                System.out.println(CEList.toString(nextCes, nextLen) + ", " + Default.ucd().getCodeAndName(nextChr));
+                System.out.println(lastCes.toString() + ", " + Default.ucd().getCodeAndName(lastChr));
+                System.out.println(ces.toString() + ", " + Default.ucd().getCodeAndName(chr));
+                System.out.println(nextCes.toString() + ", " + Default.ucd().getCodeAndName(nextChr));
             }
 
             // get relation
@@ -1855,16 +1841,15 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
              */
 
             if (chr.equals("\u0966")) {
-                System.out.println(CEList.toString(ces, len));
+                System.out.println(ces.toString());
             }
 
-            expansionStart = getFirstCELen(ces, len);
+            expansionStart = getFirstCELen(ces);
 
-            // int relation = getStrengthDifference(ces, len, lastCes, lastLen);
             int relation = getStrengthDifference(ces, expansionStart, lastCes, lastExpansionStart);
 
             if (relation == QUARTERNARY_DIFF) {
-                int relation2 = getStrengthDifference(ces, len, lastCes, lastLen);
+                int relation2 = getStrengthDifference(ces, len, lastCes, lastCes.length());
                 if (relation2 != QUARTERNARY_DIFF) {
                     relation = TERTIARY_DIFF;
                 }
@@ -1881,12 +1866,11 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             int ceLayout = getCELayout(ce, getCollator(collatorType2));
             if (ceLayout == IMPLICIT) {
                 if (relation == PRIMARY_DIFF) {
-                    int primary = UCA.getPrimary(ce);
-                    int resetCp = UCA.ImplicitToCodePoint(primary, UCA.getPrimary(ces[1]));
+                    int primary = CEList.getPrimary(ce);
+                    int resetCp = UCA.ImplicitToCodePoint(primary, CEList.getPrimary(ces.at(1)));
 
-                    int[] ces2 = new int[50];
-                    int len2 = getCollator(collatorType2).getCEs(UTF16.valueOf(resetCp), true, ces2);
-                    relation = getStrengthDifference(ces, len, ces2, len2);
+                    CEList ces2 = getCollator(collatorType2).getCEList(UTF16.valueOf(resetCp), true);
+                    relation = getStrengthDifference(ces, len, ces2, ces2.length());
 
                     reset = quoteOperand(UTF16.valueOf(resetCp));
                     if (!shortPrint) {
@@ -1928,9 +1912,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
             String expansion = "";
             if (len > expansionStart) {
-                // int tert0 = ces[0] & 0xFF;
+                // int tert0 = ces.at(0] & 0xFF;
                 // boolean isCompat = tert0 != 2 && tert0 != 8;
-                log2.println("Exp: " + Default.ucd().getCodeAndName(chr) + ", " + CEList.toString(ces, len) + ", start: " + expansionStart);
+                log2.println("Exp: " + Default.ucd().getCodeAndName(chr) + ", " + ces + ", start: " + expansionStart);
                 int[] rel = { relation };
                 expansion = getFromBackMap(backMap, ces, expansionStart, len, chr, rel);
                 // relation = rel[0];
@@ -1944,9 +1928,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     if (relation2 != relation) {
                         System.out.println();
                         System.out.println("Resetting: " + RELATION_NAMES[relation] + " to " + RELATION_NAMES[relation2]);
-                        System.out.println("LCes: " + CEList.toString(lastCes, lastLen) + ", " + lastExpansionStart
+                        System.out.println("LCes: " + lastCes + ", " + lastExpansionStart
                                 + ", " + Default.ucd().getCodeAndName(lastChr));
-                        System.out.println("Ces:  " + CEList.toString(ces, len) + ", " + expansionStart
+                        System.out.println("Ces:  " + ces + ", " + expansionStart
                                 + ", " + Default.ucd().getCodeAndName(chr));
                         relation = relation2;
                     }
@@ -1993,7 +1977,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                     if (!shortPrint) {
                         log.print("\t<!--");
                         if (!noCE) {
-                            log.print(CEList.toString(ces, len) + " ");
+                            log.print(ces.toString() + " ");
                         }
                         log.print(Default.ucd().getCodeAndName(chr));
                         if (expansion.length() > 0) {
@@ -2030,7 +2014,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                         log.print(typeKD + "] ");
 
                         if (!noCE) {
-                            log.print(CEList.toString(ces, len) + " ");
+                            log.print(ces.toString() + " ");
                         }
                         log.print(Default.ucd().getCodeAndName(chr));
                         if (expansion.length() > 0) {
@@ -2201,14 +2185,15 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         return TRAILING;
     }
 
-    static long getPrimary(int[] ces, int len) {
+    static long getPrimary(CEList ces) {
+        int len = ces.length();
         for (int i = 0; i < len; ++i) {
-            int result = UCA.getPrimary(ces[i]);
+            int result = CEList.getPrimary(ces.at(i));
             if (result == 0) {
                 continue;
             }
             if (UCA.isImplicitLeadPrimary(result)) {
-                return (result << 16) + UCA.getPrimary(ces[i + 1]);
+                return (result << 16) + CEList.getPrimary(ces.at(i + 1));
             } else {
                 return result;
             }
@@ -2216,9 +2201,10 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         return 0;
     }
 
-    static long getSecondary(int[] ces, int len) {
+    static long getSecondary(CEList ces) {
+        int len = ces.length();
         for (int i = 0; i < len; ++i) {
-            int result = UCA.getSecondary(ces[i]);
+            int result = CEList.getSecondary(ces.at(i));
             if (result == 0) {
                 continue;
             }
@@ -2227,9 +2213,10 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         return 0;
     }
 
-    static long getTertiary(int[] ces, int len) {
+    static long getTertiary(CEList ces) {
+        int len = ces.length();
         for (int i = 0; i < len; ++i) {
-            int result = UCA.getTertiary(ces[i]);
+            int result = CEList.getTertiary(ces.at(i));
             if (result == 0) {
                 continue;
             }
@@ -2246,12 +2233,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     DONE = -1;
 
     static class CE_Iterator {
-        int[] ces;
+        CEList ces;
         int   len;
         int   current;
         int   level;
 
-        void reset(int[] ces, int len) {
+        void reset(CEList ces, int len) {
             this.ces = ces;
             this.len = len;
             current = 0;
@@ -2266,16 +2253,16 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         int next() {
             int val = DONE;
             while (current < len) {
-                int ce = ces[current++];
+                int ce = ces.at(current++);
                 switch (level) {
                 case PRIMARY_DIFF:
-                    val = UCA.getPrimary(ce);
+                    val = CEList.getPrimary(ce);
                     break;
                 case SECONDARY_DIFF:
-                    val = UCA.getSecondary(ce);
+                    val = CEList.getSecondary(ce);
                     break;
                 case TERTIARY_DIFF:
-                    val = UCA.getTertiary(ce);
+                    val = CEList.getTertiary(ce);
                     break;
                 }
                 if (val != 0) {
@@ -2291,8 +2278,8 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
     // WARNING, Never Recursive!
 
-    static int getStrengthDifference(int[] ces, int len, int[] lastCes, int lastLen) {
-        if (false && lastLen > 0 && lastCes[0] > 0) {
+    static int getStrengthDifference(CEList ces, int len, CEList lastCes, int lastLen) {
+        if (false && lastLen > 0 && lastCes.at(0) > 0) {
             System.out.println("DeBug");
         }
         ceit1.reset(ces, len);
@@ -2413,13 +2400,14 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         return false;
     }
 
-    static final void addToBackMap(Map<ArrayWrapper,String> backMap, int[] ces, int len, String s, boolean show) {
-        if (show || contains(testCase, 0, testCase.length, ces[0]) || testString.indexOf(s) > 0) {
-            System.out.println("Test case: " + Utility.hex(s) + ", " + CEList.toString(ces, len));
+    static final void addToBackMap(Map<ArrayWrapper,String> backMap, CEList ces, String s, boolean show) {
+        if (show || contains(testCase, 0, testCase.length, ces.at(0)) || testString.indexOf(s) > 0) {
+            System.out.println("Test case: " + Utility.hex(s) + ", " + ces);
         }
         // NOTE: we add the back map based on the string value; the smallest
         // (UTF-16 order) string wins
-        ArrayWrapper key = new ArrayWrapper((int[]) (ces.clone()), 0, len);
+        int[] cesArray = new int[ces.length()];
+        ArrayWrapper key = new ArrayWrapper(cesArray, 0, ces.appendTo(cesArray, 0));
         if (false) {
             String value = (String) backMap.get(key);
             if (value == null) {
@@ -2433,11 +2421,11 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         /*
          * // HACK until Ken fixes for (int i = 0; i < len; ++i) { int ce =
          * ces[i]; if (collator.isImplicitLeadCE(ce)) { ++i; ce = ces[i]; if
-         * (DEBUG && (UCA.getPrimary(ce) == 0 || UCA.getSecondary(ce) != 0 ||
-         * UCA.getTertiary(ce) != 0)) {
+         * (DEBUG && (CEList.getPrimary(ce) == 0 || CEList.getSecondary(ce) != 0 ||
+         * CEList.getTertiary(ce) != 0)) {
          * System.out.println("WEIRD 2nd IMPLICIT: " + CEList.toString(ces, len)
          * + ", " + ucd.getCodeAndName(s)); } ces[i] =
-         * UCA.makeKey(UCA.getPrimary(ce), NEUTRAL_SECONDARY, NEUTRAL_TERTIARY);
+         * UCA.makeKey(CEList.getPrimary(ce), NEUTRAL_SECONDARY, NEUTRAL_TERTIARY);
          * } } backMap.put(new ArrayWrapper((int[])(ces.clone()), 0, len), s);
          */
     }
@@ -2465,8 +2453,9 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
      * UCA.makeKey(0x0000, 0x0170, 0x0002), };
      */
 
-    static final String getFromBackMap(Map backMap, int[] originalces, int expansionStart, int len, String chr, int[] rel) {
-        int[] ces = (int[]) (originalces.clone());
+    static final String getFromBackMap(Map backMap, CEList originalces, int expansionStart, int len, String chr, int[] rel) {
+        int[] ces = new int[originalces.length()];
+        originalces.appendTo(ces, 0);
 
         String expansion = "";
 
@@ -2515,7 +2504,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             }
             if (s == null) {
                 do {
-                    if (getCollator(CollatorType.ducet).getHomelessSecondaries().contains(UCA.getSecondary(ces[i]))) {
+                    if (getCollator(CollatorType.ducet).getHomelessSecondaries().contains(CEList.getSecondary(ces[i]))) {
                         s = "";
                         if (rel[0] > 1) {
                             rel[0] = 1; // HACK
@@ -2527,7 +2516,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
                     int probe = ces[i];
                     if (UCA.isImplicitLeadCE(probe)) {
-                        s = UTF16.valueOf(UCA.ImplicitToCodePoint(UCA.getPrimary(probe), UCA.getPrimary(ces[i + 1])));
+                        s = UTF16.valueOf(UCA.ImplicitToCodePoint(CEList.getPrimary(probe), CEList.getPrimary(ces[i + 1])));
                         ++i; // skip over next item!!
                         break;
                     }
@@ -2753,7 +2742,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
          * option); }
          */
 
-        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, null);
+        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(null);
         // cc.setDoEnableSamples(true);
         UnicodeSet coverage = new UnicodeSet();
 
@@ -2890,7 +2879,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 UCA.UnassignedToImplicit(diChar.codePointAt(0), output);
                 int ce0 = ceList.at(0);
                 int ce1 = ceList.at(1);
-                if (UCA.getPrimary(ce0) != output[0] || UCA.getPrimary(ce1) != output[1]) {
+                if (CEList.getPrimary(ce0) != output[0] || CEList.getPrimary(ce1) != output[1]) {
                     bad.add(diChar);
                 }
             }
@@ -2920,7 +2909,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             CEList ceList = getCollator(CollatorType.ducet).getCEList(diChar, true);
             for (int i = 0; i < ceList.length(); ++i) {
                 int ce = ceList.at(i);
-                if (UCA.getPrimary(ce) != 0 || UCA.getSecondary(ce) != 0) {
+                if (CEList.getPrimary(ce) != 0 || CEList.getSecondary(ce) != 0) {
                     bad.add(diChar);
                 }
             }
@@ -2961,7 +2950,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         log.println("<tr><th>Count</th><th>Type</th><th>Name</th><th>Code</th><th>Sort Keys</th></tr>");
 
         Set contentsForCanonicalIteration = new TreeSet();
-        UCA.UCAContents ucac = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, null); // NFD
+        UCA.UCAContents ucac = getCollator(CollatorType.ducet).getContents(null); // NFD
         int ccounter = 0;
         while (true) {
             Utility.dot(ccounter++);
@@ -3060,27 +3049,25 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
         // Normalizer nfd = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
 
-        int[] ces = new int[50];
-
-        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, Default.nfd());
-        int[] lenArray = new int[1];
+        UCA.UCAContents cc = getCollator(CollatorType.ducet).getContents(Default.nfd());
 
         int minps = Integer.MAX_VALUE;
         int minpst = Integer.MAX_VALUE;
         String minpsSample = "", minpstSample = "";
 
         while (true) {
-            String str = cc.next(ces, lenArray);
+            String str = cc.next();
             if (str == null) {
                 break;
             }
-            int len = lenArray[0];
+            CEList ces = cc.getCEs();
+            int len = ces.length();
 
             for (int i = 0; i < len; ++i) {
-                int ce = ces[i];
-                int p = UCA.getPrimary(ce);
-                int s = UCA.getSecondary(ce);
-                int t = UCA.getTertiary(ce);
+                int ce = ces.at(i);
+                int p = CEList.getPrimary(ce);
+                int s = CEList.getSecondary(ce);
+                int t = CEList.getTertiary(ce);
 
                 // Gather data for WF#2 check
 
@@ -3100,22 +3087,23 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
             }
         }
 
-        cc = getCollator(CollatorType.ducet).getContents(UCA.FIXED_CE, Default.nfd());
+        cc = getCollator(CollatorType.ducet).getContents(Default.nfd());
         log.println("<table border='1' cellspacing='0' cellpadding='2'>");
         int lastPrimary = 0;
 
         while (true) {
-            String str = cc.next(ces, lenArray);
+            String str = cc.next();
             if (str == null) {
                 break;
             }
-            int len = lenArray[0];
+            CEList ces = cc.getCEs();
+            int len = ces.length();
 
             for (int i = 0; i < len; ++i) {
-                int ce = ces[i];
-                int p = UCA.getPrimary(ce);
-                int s = UCA.getSecondary(ce);
-                int t = UCA.getTertiary(ce);
+                int ce = ces.at(i);
+                int p = CEList.getPrimary(ce);
+                int s = CEList.getSecondary(ce);
+                int t = CEList.getTertiary(ce);
 
                 // IF we are at the start of an implicit, then just check that
                 // the implicit is in range
@@ -3130,7 +3118,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                         // if bad
                     } catch (Exception e) {
                         log.println("<tr><td>" + (++errorCount) + ". BAD IMPLICIT: " + e.getMessage()
-                                + "</td><td>" + CEList.toString(ces, len)
+                                + "</td><td>" + ces
                                 + "</td><td>" + Default.ucd().getCodeAndName(str) + "</td></tr>");
                     }
                     // zap the primary, since we worry about the last REAL
@@ -3142,7 +3130,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 // IF we are in the trailing range, something is wrong.
                 if (p >= UCA_Types.UNSUPPORTED_LIMIT) {
                     log.println("<tr><td>" + (++errorCount) + ". > " + Utility.hex(UCA_Types.UNSUPPORTED_LIMIT, 4)
-                            + "</td><td>" + CEList.toString(ces, len)
+                            + "</td><td>" + ces
                             + "</td><td>" + Default.ucd().getCodeAndName(str) + "</td></tr>");
                     lastPrimary = p;
                     continue;
@@ -3152,12 +3140,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
 
                 if (p != 0 && s == 0) {
                     log.println("<tr><td>" + (++errorCount) + ". WF1.1"
-                            + "</td><td>" + CEList.toString(ces, len)
+                            + "</td><td>" + ces
                             + "</td><td>" + Default.ucd().getCodeAndName(str) + "</td></tr>");
                 }
                 if (s != 0 && t == 0) {
                     log.println("<tr><td>" + (++errorCount) + ". WF1.2"
-                            + "</td><td>" + CEList.toString(ces, len)
+                            + "</td><td>" + ces
                             + "</td><td>" + Default.ucd().getCodeAndName(str) + "</td></tr>");
                 }
 
@@ -3166,14 +3154,14 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
                 if (p != 0) {
                     if (s > minps) {
                         log.println("<tr><td>" + (++errorCount) + ". WF2.2"
-                                + "</td><td>" + CEList.toString(ces, len)
+                                + "</td><td>" + ces
                                 + "</td><td>" + Default.ucd().getCodeAndName(str) + "</td></tr>");
                     }
                 }
                 if (s != 0) {
                     if (t > minpst) {
                         log.println("<tr><td>" + (++errorCount) + ". WF2.3"
-                                + "</td><td>" + CEList.toString(ces, len)
+                                + "</td><td>" + ces
                                 + "</td><td>" + Default.ucd().getCodeAndName(str) + "</td></tr>");
                     }
                 } else {
@@ -3639,7 +3627,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         //        expectedOrder.putAll(currencySymbols, UcaBucket.currency_symbols);
         //        expectedOrder.putAll(decimalNumber, UcaBucket.numbers);
 
-        UCAContents contents = collator.getContents(UCA.FIXED_CE, null);
+        UCAContents contents = collator.getContents(null);
         UnicodeSet covered = new UnicodeSet();
         UnicodeSet illegalCharacters = new UnicodeSet();
         int errorCount = 0;
@@ -3648,11 +3636,10 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         String lastString = "";
         String lastShown = "";
 
-        Pair ceAndString1 = new Pair(null, null);
         TreeSet<Pair> sorted = new TreeSet<Pair>();
-        while (contents.next(ceAndString1)) {
-            sorted.add(ceAndString1);
-            ceAndString1 = new Pair(null, null);
+        String s;
+        while ((s = contents.next()) != null) {
+            sorted.add(new Pair(contents.getCEs(), s));
         }
 
         UnicodeSet funnyAboveA = new UnicodeSet();
@@ -4306,7 +4293,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         UCA oldCollator = getCollator(CollatorType.ducet);
         CEList ceListForA = oldCollator.getCEList("a", true);
         int firstForA = ceListForA.at(0);
-        int firstScriptPrimary = UCA.getPrimary(firstForA);
+        int firstScriptPrimary = CEList.getPrimary(firstForA);
         Remap primaryRemap = new Remap();
         int counter = 1;
         RoBitSet primarySet = oldCollator.getStatistics().getPrimarySet();
@@ -4317,7 +4304,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         UnicodeSet currencySymbols = new UnicodeSet();
         UnicodeSet numbers = new UnicodeSet();
 
-        int oldVariableHigh = UCA.getPrimary(oldCollator.getVariableHighCE());
+        int oldVariableHigh = CEList.getPrimary(oldCollator.getVariableHighCE());
         int firstDucetNonVariable = -1;
 
         for (int i = primarySet.nextSetBit(0); i >= 0; i = primarySet.nextSetBit(i+1)) {
@@ -4464,13 +4451,12 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         int[] output = new int[30];
         StringBuilder failures = new StringBuilder();
         for (int i = 0; i <= 0x10FFFF; ++i) {            
-            byte type2 = result.getCEType(i);
-            if (type2 >= FIXED_CE) {
+            if (!result.codePointHasExplicitMappings(i)) {
                 continue;
             }
             if (!Default.ucd().isAllocated(i)) continue;
             int ceCount = result.getCEs(UTF16.valueOf(i), true, output);
-            int primary = ceCount < 1 ? 0 : UCA.getPrimary(output[0]);
+            int primary = ceCount < 1 ? 0 : CEList.getPrimary(output[0]);
             int cat = Default.ucd().getCategory(i);
 
             switch (cat) {

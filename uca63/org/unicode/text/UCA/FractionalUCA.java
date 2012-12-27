@@ -905,7 +905,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         System.out.println("Sorting");
         Map ordered = new TreeMap();
         Set contentsForCanonicalIteration = new TreeSet();
-        UCA.UCAContents ucac = getCollator().getContents(UCA.FIXED_CE, null);
+        UCA.UCAContents ucac = getCollator().getContents(null);
         int ccounter = 0;
         while (true) {
             Utility.dot(ccounter++);
@@ -2010,8 +2010,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             if (type < typeLimit) {
                 continue;
             }
-            int ceType = getCollator().getCEType((char)i);
-            if (ceType >= getCollator().FIXED_CE) {
+            if (!getCollator().codePointHasExplicitMappings(i)) {
                 continue;
             }
             // fix type

@@ -42,7 +42,7 @@ public class WriteAllkeys {
                 );
         
         UCA collator = WriteCollationData.getCollator(collatorType);
-        UCA.UCAContents cc = collator.getContents(UCA.FIXED_CE, null);
+        UCA.UCAContents cc = collator.getContents(null);
         log.println("@version " + collator.getDataVersion() + "\n");
 
         Map<String,String> sorted = new TreeMap();

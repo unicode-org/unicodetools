@@ -81,24 +81,18 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         nfd = new Normalizer(Normalizer.NFD, collatorIn.getUCDVersion());
         nfkd = new Normalizer(Normalizer.NFKD, collatorIn.getUCDVersion());
             
-        UCA.UCAContents cc = collator.getContents(UCA.FIXED_CE, nfd);
+        UCA.UCAContents cc = collator.getContents(nfd);
             
         // store data for faster lookup
             
         System.out.println("# Gathering Data");
         int counter = 0;
             
-        int[] lenArray = new int[1];
-            
         while (true) {
-                
             Utility.dot(counter++);
-            String s = cc.next(ces, lenArray);
+            String s = cc.next();
             if (s == null) break;
-            int len = lenArray[0];
-                  
-            CEList currCEList = new CEList(ces, 0, len);
-            addString(s, currCEList);
+            addString(s, cc.getCEs());
         }
         
         /*
@@ -353,32 +347,27 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         nfd = new Normalizer(Normalizer.NFD, collatorIn.getUCDVersion());
         nfkd = new Normalizer(Normalizer.NFKD, collatorIn.getUCDVersion());
             
-        UCA.UCAContents cc = collator.getContents(UCA.FIXED_CE, nfd);
+        UCA.UCAContents cc = collator.getContents(nfd);
             
         // store data for faster lookup
             
         System.out.println("# Gathering Data");
         int counter = 0;
             
-        int[] lenArray = new int[1];
-        
         Set list = new TreeSet();
         Map newCollisions = new HashMap();
         Map oldCollisions = new HashMap();
         Map newProblems = new TreeMap();
         Map oldProblems = new TreeMap();
         
-        CEList nullCEList = new CEList(new int[1]);
-            
         while (true) {
             Utility.dot(counter++);
-            String str = cc.next(ces, lenArray);
+            String str = cc.next();
             if (str == null) break;
-            int len = lenArray[0];
                   
-            CEList oldList = new CEList(ces, 0, len);
+            CEList oldList = cc.getCEs();
             
-            CEList newList = new CEList(ces,0,0);
+            CEList newList = CEList.EMPTY;
             int cp;
             for (int i = 0; i < str.length(); i += UTF16.getCharCount(cp)) {
                 cp = UTF16.charAt(str, i);
@@ -386,6 +375,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
                     System.out.println("debug");
                 }
                 boolean mashLast = false;
+                int len;
                 if (!nfkd.isNormalized(cp)) {
                     String decomp = nfkd.normalize(cp);
                     String canon = nfd.normalize(cp);
@@ -420,8 +410,8 @@ public class GenOverlap implements UCD_Types, UCA_Types {
                 newList = newList.append(inc);
                 
             }
-            if (newList.length() == 0) newList = nullCEList;
-            if (oldList.length() == 0) oldList = nullCEList;
+            if (newList.length() == 0) newList = CEList.EMPTY;
+            if (oldList.length() == 0) oldList = CEList.EMPTY;
             
             if (!newList.equals(oldList)) {
                 /*
@@ -551,7 +541,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         //nfd = new Normalizer(Normalizer.NFD);
         //nfkd = new Normalizer(Normalizer.NFKD);
             
-        UCA.UCAContents cc = collator.getContents(UCA.FIXED_CE, nfd);
+        UCA.UCAContents cc = collator.getContents(nfd);
         nfd = new Normalizer(Normalizer.NFD, collatorIn.getUCDVersion());
         nfkd = new Normalizer(Normalizer.NFKD, collatorIn.getUCDVersion());
             
@@ -579,12 +569,10 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         
         int counter = 0;
             
-        int[] lenArray = new int[1];
-        
         if (false) while (true) {
                 
             Utility.dot(counter++);
-            String s = cc.next(ces, lenArray);
+            String s = cc.next();
             if (s == null) break;
             
             if (UTF16.countCodePoint(s) != 1) continue; // skip ligatures
@@ -592,9 +580,10 @@ public class GenOverlap implements UCD_Types, UCA_Types {
             if (!nfkd.isNormalized(cp)) continue;
             
             int script = ucd.getScript(cp);
-            int len = lenArray[0];
+            CEList ces = cc.getCEs();
+            int len = ces.length();
             for (int i = 0; i < len; ++i) {
-                int prim = UCA.getPrimary(ces[i]);
+                int prim = CEList.getPrimary(ces.at(i));
                 int hash = prim % tableLength;
                 if (!repeats[script].get(prim)) {
                     ++collisions[script][hash];

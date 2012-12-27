@@ -115,6 +115,17 @@ public final class CEList implements java.lang.Comparable<CEList> {
     }
 
     /**
+     * Appends all of the collation elements to the destination array.
+     * Advances and then returns the index.
+     */
+    public int appendTo(int[] dest, int destIndex) {
+        for (int i = startOffset; i < endOffset; ++i) {
+            dest[destIndex++] = contents[i];
+        }
+        return destIndex;
+    }
+
+    /**
      * Appends all of the non-zero collation elements to the stack.
      */
     public void appendNonZeroTo(IntStack stack) {

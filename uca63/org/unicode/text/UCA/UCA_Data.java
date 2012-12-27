@@ -11,18 +11,24 @@
 
 package org.unicode.text.UCA;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.text.UCA.UCA.Remap;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.IntStack;
+import org.unicode.text.utility.UTF16Plus;
 
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class UCA_Data {
@@ -71,52 +77,23 @@ public class UCA_Data {
 
     /**
      * Set of all contraction strings.
-     * Same as all multi-character strings in cesMap, plus all of their first-character prefixes.
+     * Same as all multi-character strings in cesMap, except in code point order.
      * Used only for API that accesses this set.
-     * TODO: Remove this, and change iteration code to work with getMappedStrings() instead.
      */
-    private Set<String> contractions = new TreeSet<String>();  // TODO: Try to use a HashSet; make callers not require a sorted set.
+    private Set<String> contractions = new TreeSet<String>(
+            new UTF16.StringComparator(true, false, UTF16.StringComparator.FOLD_CASE_DEFAULT));
 
     {
-        // preload with parts
-        for (char i = 0xD800; i < 0xDC00; ++i) {
-            contractions.add(String.valueOf(i));
-        }
         checkConsistency();
     }
 
     /**
-     * Return the type of the CE
+     * Returns true if there is an explicit mapping for ch, or one that starts with ch.
      */
-    public byte getCEType(int ch) {
-        if (ch > 0xFFFF || (0xD800 <= ch && ch < 0xDC00)) {
-            // TODO: stop treating all lead surrogates as starting contractions
-            return UCA_Types.CONTRACTING_CE;
-        }
+    public boolean codePointHasExplicitMappings(int ch) {
         String s = Character.toString((char)ch);
         String longest = longestMap.get(s);
-        if (longest == null) {
-            // Special check for Han, Hangul
-            if (UCD.isHangulSyllable(ch)) {
-                return UCA_Types.HANGUL_CE;
-            }
-
-            if (UCD.isCJK_BASE(ch)) {
-                return UCA_Types.CJK_CE;
-            }
-            if (UCD.isCJK_AB(ch)) {
-                return UCA_Types.CJK_AB_CE;
-            }
-
-            return UCA_Types.UNSUPPORTED_CE;
-        }
-        if (longest.length() > 1) {
-            return UCA_Types.CONTRACTING_CE;
-        }
-        if (cesMap.get(s).length() > 1) {
-            return UCA_Types.EXPANDING_CE;
-        }
-        return UCA_Types.NORMAL_CE;
+        return longest != null;
     }
 
     public Remap getPrimaryRemap() {
@@ -232,22 +209,6 @@ public class UCA_Data {
                 hasDiscontiguousContractions.add(firstChar);
             }
         }
-
-        // TODO(Markus): stop adding single-character strings to the contractions set
-        if (source.length() > 1) {
-            contractions.add(sourceString);
-            if (firstLimit == 1) {
-                if (cesMap.containsKey(firstChar)) {
-                    contractions.add(firstChar);
-                }
-            }
-        } else {
-            // sourceString consists of exactly one BMP character.
-            // sourceString.equals(firstChar).
-            if (longestMap.get(sourceString).length() > 1) {
-                contractions.add(sourceString);
-            }
-        }
         //if (DEBUG) checkConsistency();
     }
 
@@ -345,8 +306,30 @@ public class UCA_Data {
         // pass
     }
 
-    Iterator<String> getMappedStrings() {
-        return cesMap.keySet().iterator();
+    private class MappingComparator implements Comparator<String> {
+        private UTF16.StringComparator cmp =
+                new UTF16.StringComparator(true, false, UTF16.StringComparator.FOLD_CASE_DEFAULT);
+        @Override
+        public int compare(String left, String right) {
+            // Note: add() enforces that mapping strings are not empty strings.
+            // Sort single-character strings before contractions.
+            boolean leftIsSingle = UTF16Plus.isSingleCodePoint(left);
+            boolean rightIsSingle = UTF16Plus.isSingleCodePoint(right);
+            if (leftIsSingle != rightIsSingle) {
+                return leftIsSingle ? -1 : 1;
+            }
+            // Otherwise sort in code point order.
+            return cmp.compare(left, right);
+        }
+    }
+
+    /**
+     * Returns an immutable Map of sorted strings (characters &amp; contractions) to CEs.
+     */
+    SortedMap<String, CEList> getSortedMappings() {
+        SortedMap<String, CEList> sorted = new TreeMap<String, CEList>(new MappingComparator());
+        sorted.putAll(cesMap);
+        return Collections.unmodifiableSortedMap(sorted);
     }
 
     Iterator<String> getContractions() {
@@ -355,9 +338,5 @@ public class UCA_Data {
 
     int getContractionCount() {
         return contractions.size();
-    }
-
-    boolean contractionTableContains(String s) {
-        return contractions.contains(s);
     }
 }

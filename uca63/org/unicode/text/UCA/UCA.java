@@ -22,7 +22,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,6 +35,7 @@ import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.IntStack;
 import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
@@ -554,10 +557,10 @@ final public class UCA implements Comparator, UCA_Types {
     }
 
     /**
-     * Return the type of the CE
+     * Returns true if there is an explicit mapping for ch, or one that starts with ch.
      */
-    public byte getCEType(int ch) {
-        return ucaData.getCEType(ch);
+    public boolean codePointHasExplicitMappings(int ch) {
+        return ucaData.codePointHasExplicitMappings(ch);
     }
 
     /**
@@ -1158,12 +1161,12 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      */
 
 
-    public UCAContents getContents(byte ceLimit, Normalizer skipDecomps) {
-        return new UCAContents(ceLimit, skipDecomps, ucdVersion);
+    public UCAContents getContents(Normalizer skipDecomps) {
+        return new UCAContents(skipDecomps, ucdVersion);
     }
 
 
-    static final UnicodeSet moreSamples = new UnicodeSet();
+    private static final UnicodeSet moreSamples = new UnicodeSet();
     static {
         moreSamples.add("\u09C7\u09BE");
         moreSamples.add("\u09C7\u09D7");
@@ -1185,28 +1188,19 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
 
     public class UCAContents {
-        int current = -1;
-        Normalizer skipDecomps;
-        Normalizer nfd;
-        Normalizer nfkd;
-        Iterator<String> enum1 = null;
-        byte ceLimit;
-        int currentRange = SAMPLE_RANGES.length; // set to ZERO to enable
-        int startOfRange = SAMPLE_RANGES[0][0];
-        int endOfRange = startOfRange;
-        int itemInRange = startOfRange;
-        int skip = 1;
-        boolean doSamples = false;
-        AbbreviatedUnicodeSetIterator usi = new AbbreviatedUnicodeSetIterator();
-        UnicodeSetIterator moreSampleIterator = new UnicodeSetIterator(moreSamples);
+        private Iterator<Map.Entry<String, CEList>> iter = ucaData.getSortedMappings().entrySet().iterator();
+        private CEList ces;
+        private Normalizer skipDecomps;
+        private Normalizer nfkd;
+        private int currentRange = SAMPLE_RANGES.length; // set to ZERO to enable
+        private int startOfRange = SAMPLE_RANGES[0][0];
+        private int endOfRange = startOfRange;
+        private int itemInRange = startOfRange;
+        private boolean doSamples = false;
+        private AbbreviatedUnicodeSetIterator usi = new AbbreviatedUnicodeSetIterator();
+        private UnicodeSetIterator moreSampleIterator = new UnicodeSetIterator(moreSamples);
 
-
-        /**
-         * use FIXED_CE as the limit
-         */
-        UCAContents(byte ceLimit, Normalizer skipDecomps, String unicodeVersion) {
-            this.ceLimit = ceLimit;
-            this.nfd = new Normalizer(Normalizer.NFD, unicodeVersion);
+        UCAContents(Normalizer skipDecomps, String unicodeVersion) {
             this.nfkd = new Normalizer(Normalizer.NFKD, unicodeVersion);
             this.skipDecomps = skipDecomps;
             currentRange = 0;
@@ -1224,10 +1218,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             }
         }
 
-        /**
-         * use FIXED_CE as the limit
-         * @param newValue TODO
-         */
         public void setDoEnableSamples(boolean newValue) {
             doSamples = newValue;
         }
@@ -1237,52 +1227,27 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
          */
         public String next() {
             String result = null; // null if done
-
-            // TODO(Markus): use ucaData.getMappedStrings() rather than iterating over lead code units + contractions
+            ces = null;
 
             // normal case
-            while (current++ < 0x10FFFF) {
-                if (DEBUG && current == 0xdbff) {
-                    System.out.println("DEBUG");
+            while (iter.hasNext()) {
+                Map.Entry<String, CEList> entry = iter.next();
+                result = entry.getKey();
+                if (UTF16Plus.isSingleCodePoint(result)) {
+                    int c = result.codePointAt(0);
+                    if (skipDecomps != null && !skipDecomps.isNormalized(c)) {  // CHECK THIS
+                        result = null;
+                        continue;
+                    }
+                    if (!getStatistics().haveUnspecified) {
+                        getStatistics().unspecified.add(c);
+                    }
                 }
-                //char ch = (char)current;
-                byte type = getCEType(current);
-                if (type >= ceLimit || type == CONTRACTING_CE) continue;
-
-                //if (nfd.isNormalized(current) || type == HANGUL_CE) {
-                //}
-
-                if (skipDecomps != null && !skipDecomps.isNormalized(current)) continue; // CHECK THIS
-
-                result = UTF16.valueOf(current);
-                if (!getStatistics().haveUnspecified) getStatistics().unspecified.add(current);
+                ces = entry.getValue();
                 return result;
             }
 
-            // contractions
-            if (enum1 == null) enum1 = ucaData.getContractions();
-            while (enum1.hasNext()) {
-                result = enum1.next();
-//                if (result.length() == 1 && UTF16.isLeadSurrogate(result.charAt(0))) {
-//                    if (DEBUG_TEST) {
-//                        System.out.println("Skipping Lead" + ucd.getCodeAndName(result));
-//                    }
-//                    continue; // try again
-//                }
-                if (result.length() > 0 && UTF16.isLeadSurrogate(result.charAt(result.length()-1))) {
-                    if (DEBUG_TEST) {
-                        System.out.println("Skipping final lead: " + ucd.getCodeAndName(result));
-                    }
-                    continue; // try again
-                }
-                if (!getStatistics().haveUnspecified) {
-                    if (UTF16.countCodePoint(result) == 1) {
-                        getStatistics().unspecified.add(result);
-                    }
-                }
-                return result;
-            }
-
+            // Update statistics once after all mappings have been enumerated.
             if (!getStatistics().haveUnspecified) {
                 if (DEBUG) System.out.println("Specified = " + getStatistics().unspecified.toPattern(true));
                 UnicodeSet temp = new UnicodeSet();
@@ -1317,12 +1282,14 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 if (usi.codepoint == usi.IS_STRING) result = usi.string;
                 else result = UTF16.valueOf(usi.codepoint);
                 if (DEBUG) System.out.println("Unspecified: " + ucd.getCodeAndName(result));
+                ces = getCEList(result, true);
                 return result;
             }
 
             if (moreSampleIterator.next()) {
                 result = moreSampleIterator.getString();
                 if (DEBUG) System.out.println("More Samples: " + ucd.getCodeAndName(result));
+                ces = getCEList(result, true);
                 return result;
             }
 
@@ -1348,37 +1315,18 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     //itemInRange += skip;
                     itemInRange = endOfRange - 5;
                 }
+                ces = getCEList(result, true);
+                return result;
             }
 
-            return result;
+            return null;
         }
 
         /**
-         * returns a string and its ces
+         * Returns the CEs for the string that was returned by the last call to next().
          */
-        public String next(int[] ces, int[] len) {
-            // TODO: should be able to just get the string's CEList from UCA_Data
-            String result = next(); // null if done
-            if (result != null) {
-                len[0] = getCEs(result, true, ces);
-            }
-            return result;
-        }
-
-        private int[] ceListBuffer = new int[30]; // temporary storage, to avoid multiple creation
-        private int[] lengthBuffer = new int[1];
-
-        /**
-         * returns a string and its ces
-         */
-        public boolean next(Pair result) {
-            // TODO: should be able to just get the string's CEList from UCA_Data
-            // TODO: just use a read-only Map from UCA_Data??
-            String s = next(ceListBuffer, lengthBuffer);
-            if (s == null) return false;
-            result.first = new CEList(ceListBuffer, 0, lengthBuffer[0]);
-            result.second = s;
-            return true;
+        public CEList getCEs() {
+            return ces;
         }
 
         /**

@@ -51,11 +51,4 @@ public interface UCA_Types {
      *  Special char value that means failed or terminated
      */
     static final char NOT_A_CHAR = '\uFFFF';
-    
-    /**
-     * CEType
-     */
-    static final byte NORMAL_CE = 0, CONTRACTING_CE = 1, EXPANDING_CE = 2, 
-        CJK_CE = 3, CJK_AB_CE = 4, HANGUL_CE = 5, UNSUPPORTED_CE = 7,
-        FIXED_CE = 3;
 }

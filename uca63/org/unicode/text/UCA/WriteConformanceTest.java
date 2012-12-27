@@ -67,7 +67,7 @@ public class WriteConformanceTest {
         System.out.println("Sorting");
         int counter = 0;
 
-        UCA.UCAContents cc = WriteCollationData.getCollator(collatorType).getContents(UCA.FIXED_CE, null);
+        UCA.UCAContents cc = WriteCollationData.getCollator(collatorType).getContents(null);
         cc.setDoEnableSamples(true);
         UnicodeSet found2 = new UnicodeSet();
 

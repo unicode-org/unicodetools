@@ -116,23 +116,17 @@ public class CaseBitTest extends TestFmwk {
                 new UTF16.StringComparator(true,false,0));
         int regular = 0;
         int contractions = 0;
-        int[] types = new int[10];
         for (int cp = 0; cp < 0x10FFFF; ++cp) {
             int cat = Default.ucd().getCategory(cp);
             if (cat == UCD_Types.Cn || cat == UCD_Types.Co || cat == UCD_Types.Cs) {
                 continue;
             }
-            byte type = uca.getCEType(cp);
-            if (type > UCA_Types.EXPANDING_CE) {
+            if (!uca.codePointHasExplicitMappings(cp)) {
                 continue;
             }
-            types[type]++;
             String s = Default.nfd().normalize(cp);
             sorted.put(uca.getCEList(s, true), s);
             regular++;
-        }
-        for (int i = 0; i < types.length; ++i) {
-            logln(i + "\ttype: " + types[i]);
         }
         for (Iterator<String> it = uca.getContractions(); it.hasNext();) {
             String s = it.next();
