@@ -370,14 +370,10 @@ public class FractionalUCA {
                 //IMPLICIT_BASE_4BYTE = ((IMPLICIT_BASE_BYTE + IMPLICIT_3BYTE_COUNT) << 24) + 0x030303
                 ;
 
-        // GET IMPLICIT PRIMARY WEIGHTS
-        // Return value is left justified primary key
-
         static final int secondaryDoubleStart = 0xD0;
 
         static final byte MULTIPLES = 0x20, COMPRESSED = 0x40, OTHER_MASK = 0x1F;
         static final BitSet compressSet = new BitSet();
-
     }
 
     static class FractionalWeight {
@@ -844,17 +840,6 @@ public class FractionalUCA {
 
         FractionalUCA.primaryDelta = new int[65536];
 
-        //        // start at 1 so zero stays zero.
-        //        for (int primary = 1; primary < 0xFFFF; ++primary) {
-        //            if (primarySet.get(primary)) {
-        //                FractionalUCA.primaryDelta[primary] = 2;
-        //            } else if (primary == 0x1299) {
-        //                System.out.println("WHOOPS! Missing weight");
-        //            }
-        //        }
-
-        subtotal = (FractionalUCA.Variables.COMMON << 8) + FractionalUCA.Variables.COMMON; // skip forbidden bytes, leave gap
-
         FractionalWeight currentWeight = new FractionalWeight();
 
         // start at 1 so zero stays zero.
@@ -866,7 +851,7 @@ public class FractionalUCA {
             // if 'bumps' are set, then we change the first byte
 
 
-            int currentByteLength = FractionalUCA.singles.get(primary) ? 1 : shouldBe3Byte(primary) ? 3 : 2;
+            int currentByteLength = getFractionalLengthForUCAPrimary(primary);
 
             String old = currentWeight.toString();
             currentWeight.setToNext(currentByteLength, FractionalUCA.bumps.get(primary), punctuationRange.getMinimum() == primary);
@@ -883,75 +868,6 @@ public class FractionalUCA {
             }
 
             FractionalUCA.primaryDelta[primary] = currentWeight.getIntValue();
-
-
-            //            int result;
-            //            
-            //
-            //            if (shouldBe3Byte(primary)) {
-            //                if (false && DEBUG) {
-            //                    System.out.print("JAMO: " + Utility.hex(lastValue));
-            //                }
-            //                if ((lastValue & 0xFF) == 0) { // lastValue was 1-byte form
-            //                    subtotal += FractionalUCA.primaryDelta[primary];  // we convert from relative to absolute
-            //                    lastValue = FractionalUCA.primaryDelta[primary] = (subtotal << 8) + 0x010010; // make 3 byte, leave gap
-            //                } else if ((lastValue & 0xFF0000) == 0) { // lastValue was 2-byte form
-            //                    subtotal += FractionalUCA.primaryDelta[primary];  // we convert from relative to absolute
-            //                    lastValue = FractionalUCA.primaryDelta[primary] = (subtotal << 8) + 0x0010; // make 3 byte, leave gap
-            //                } else { // lastValue was 3-byte form
-            //                    lastValue = FractionalUCA.primaryDelta[primary] = lastValue + 3;
-            //                    int lastByte = lastValue&0xFF;
-            //                    if (lastByte < 3) {
-            //                        lastValue = FractionalUCA.primaryDelta[primary] = lastValue + 3;
-            //                    }
-            //                }
-            //                if (false && DEBUG) {
-            //                    System.out.println(" => " + Utility.hex(lastValue));
-            //                }
-            //                continue;
-            //            }
-            //
-            //            subtotal += FractionalUCA.primaryDelta[primary];  // we convert from relative to absolute
-            //
-            //            if (FractionalUCA.singles.get(primary)) { 
-            //                subtotal = (subtotal & 0xFF00) + 0x100;
-            //                if (primary == FractionalUCA.Variables.gapForA) {
-            //                    subtotal += 0x200;
-            //                }
-            //                if (bumpNextToo == 0x40) {
-            //                    subtotal += 0x100; // make sure of gap between singles!!!
-            //                }
-            //                bumpNextToo = 0x40;
-            //            } else if (primary > FractionalUCA.Variables.variableHigh) {
-            //                FractionalUCA.Variables.variableHigh = 0xFFFF; // never do again!
-            //                subtotal = (subtotal & 0xFF00) + 0x320 + bumpNextToo;
-            //                bumpNextToo = 0;
-            //            } else if (bumpNextToo > 0 || FractionalUCA.bumps.get(primary)) {
-            //                subtotal = ((subtotal + 0x20) & 0xFF00) + 0x120 + bumpNextToo;
-            //                bumpNextToo = 0;
-            //            } else {
-            //                int lastByte = subtotal & 0xFF;
-            //                // skip all values of FF, 00, 01, 02,
-            //                if (0 <= lastByte && lastByte < FractionalUCA.Variables.COMMON || lastByte == 0xFF) {
-            //                    subtotal = ((subtotal + 1) & 0xFFFFFF00) + FractionalUCA.Variables.COMMON; // skip
-            //                }
-            //            }
-            //            
-            //            lastValue = FractionalUCA.primaryDelta[primary] = subtotal;
-
-            // fixup for Kanji
-            /*
-
-                // WE DROP THIS: we are skipping all CJK values above, and will fix them separately
-
-                int fixedCompat = remapUCA_CompatibilityIdeographToCp(primary);
-                if (isFixedIdeograph(fixedCompat)) {
-                    int CE = getImplicitPrimary(fixedCompat);
-
-                    lastValue = primaryDelta[primary] = CE >>> 8; 
-                }
-             */
-            //if ((primary & 0xFF) == 0) System.out.println(Utility.hex(primary) + " => " + hexBytes(primaryDelta[primary]));
         }
 
         BitSet bumpedFirstBytes = currentWeight.getBumpedFirstBytes();
@@ -961,6 +877,11 @@ public class FractionalUCA {
         String highCompat = UTF16.valueOf(0x2F805);
 
         System.out.println("Sorting");
+        /**
+         * ordered is a sorted map from UCA-type sort key string to its character string.
+         * The sort key has U+0000 plus the character string appended.
+         * This serves as a simple tie-breaker, although it is different from UCA's identical level.
+         */
         Map<String, String> ordered = new TreeMap<String, String>();
         Set<String> contentsForCanonicalIteration = new TreeSet<String>();
         UCA.UCAContents ucac = getCollator().getContents(null);
@@ -972,7 +893,7 @@ public class FractionalUCA {
                 break;
             }
             if (s.equals("\uFFFF") || s.equals("\uFFFE")) {
-                continue; // suppress the FFFF and FFFE, since we are adding them artifically later.
+                continue; // Suppress the FFFF and FFFE, since we are adding them artificially later.
             }
             if (s.equals("\uFA36") || s.equals("\uF900") || s.equals("\u2ADC") || s.equals(highCompat)) {
                 System.out.println(" * " + Default.ucd().getCodeAndName(s));
@@ -2201,26 +2122,22 @@ public class FractionalUCA {
     //        return false;
     //    }
 
-    static final UnicodeSet MAJOR_PRIMARIES = new UnicodeSet();
+    private static Range spaceRange = new Range();
+    private static Range punctuationRange = new Range();
+    private static Range symbolRange = new Range();
+    private static Range currencyRange = new Range();
+    private static Range digitRange = new Range();
+    private static int ducetFirstNonVariable, ducetLastVariable;
 
     /**
-de-u-vt-spaces: Shifts only spaces. (CEvt=first punctuation CE)
-de-u-vt-punct: Shifts spaces and punctuation. (CEvt=first symbol CE)
-de-u-vt-symbols: Shifts spaces, punctuation and most symbols. (CEvt=first currency symbol CE)
-de-u-vt-currency: Shifts up to and including currency symbols. (CEvt=first digit CE)
-de-u-vt-digits: Shifts up to and including digits. (CEvt=first letter CE)
-de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
+     * Analyzes the UCA primary weights.
+     * <ul>
+     * <li>Determines the lengths of the corresponding fractional weights.
+     * <li>Also, TBD
+     * <li>TBD
+     * </ul>
      */
-
-    static Range spaceRange = new Range();
-    static Range punctuationRange = new Range();
-    static Range symbolRange = new Range();
-    static Range currencyRange = new Range();
-    static Range digitRange = new Range();
-    static int ducetFirstNonVariable, ducetLastVariable;
-
-    static void findBumps(int[] representatives) {
-        int[] ces = new int[UCD_Types.LIMIT_SCRIPT];
+    private static void findBumps(int[] representatives) {
         int[] scriptsLeastPrimary = new int[UCD_Types.LIMIT_SCRIPT];
         int[] scriptChar = new int[UCD_Types.LIMIT_SCRIPT];
 
@@ -2231,8 +2148,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
             }
         }
 
-
-        UnicodeSet threeByteSymbolPrimaries = new UnicodeSet();
+        BitSet threeByteSymbolPrimaries = new BitSet();
         UnicodeSet threeByteChars = new UnicodeSet();
         int nonCurrencySymbols = bitmask(UCD_Types.OTHER_SYMBOL, UCD_Types.MATH_SYMBOL, UCD_Types.MODIFIER_SYMBOL);
         int spaces = bitmask(UCD_Types.SPACE_SEPARATOR, UCD_Types.LINE_SEPARATOR, UCD_Types.PARAGRAPH_SEPARATOR, UCD_Types.CONTROL);
@@ -2254,7 +2170,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
             CharSequence ch2 = getCollator().getRepresentativePrimary(primary);
             int ch = Character.codePointAt(ch2,0);
             byte cat = FractionalUCA.getFixedCategory(ch);
-
+            byte script = FractionalUCA.getFixedScript(ch);
 
             // see if we have an "infrequent" character: make it a 3 byte if so.
             // also collect data on primaries
@@ -2266,24 +2182,17 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
                 if (ch < 0xFF || maskContains(spaces, cat)) {
                     // do nothing, assume Latin 1 is "frequent"
                 } else if (maskContains(nonCurrencySymbols, cat)) {
-                    threeByteSymbolPrimaries.add(primary);
+                    threeByteSymbolPrimaries.set(primary);
                     threeByteChars.addAll(ch2.toString());
                 } else {
-                    byte script = FractionalUCA.getFixedScript(ch);
                     if (script != UCD_Types.COMMON_SCRIPT && script != UCD_Types.INHERITED_SCRIPT && !MAJOR_SCRIPTS.get(script)) {
-                        threeByteSymbolPrimaries.add(primary);
+                        threeByteSymbolPrimaries.set(primary);
                         threeByteChars.addAll(ch2.toString());
                     }
                 }
                 continue;
             }
-            /*
-                if (ch == 0x1160 || ch == 0x11A8) { // set bumps within Hangul L, V, T
-                    bumps.set(primary);
-                    continue;
-                }
-             */
-            byte script = FractionalUCA.getFixedScript(ch);
+
             if (script == UCD_Types.COMMON_SCRIPT || script == UCD_Types.INHERITED_SCRIPT || script == UCD_Types.Unknown_Script) {
                 continue;
             }
@@ -2334,7 +2243,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         System.out.println("3-byte primaries" + threeByteChars.toPattern(false));
 
         // capture in order the ranges that are major vs minor
-        TreeMap<Integer,Row.R2<Boolean, Integer>> majorPrimary = new TreeMap<Integer,Row.R2<Boolean, Integer>>();
+        TreeMap<Integer, Row.R2<Boolean, Integer>> majorPrimary = new TreeMap<Integer, Row.R2<Boolean, Integer>>();
 
         // set bumps
         for (int script = 0; script < scriptsLeastPrimary.length; ++script) {
@@ -2363,7 +2272,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
                 for (int i = lastPrimary; i < primary; ++i) {
                     CharSequence ch2 = getCollator().getRepresentativePrimary(i);
                     if (!UCD.isModernJamo(Character.codePointAt(ch2, 0))) {
-                        MAJOR_PRIMARIES.remove(i);
+                        twoBytePrimaryForUCAPrimary.clear(i);
                     }
                 }
             }
@@ -2371,31 +2280,18 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
             lastMajor = major;
             lastScript = script;
         }
-        addMajorPrimaries(lastPrimary, 0xFFFF, lastMajor, lastScript);
-        MAJOR_PRIMARIES.removeAll(threeByteSymbolPrimaries);
-        MAJOR_PRIMARIES.freeze();
-
+        int lastUCAPrimary = primarySet.size() - 1;
+        addMajorPrimaries(lastPrimary, lastUCAPrimary, lastMajor, lastScript);
+        twoBytePrimaryForUCAPrimary.andNot(threeByteSymbolPrimaries);
 
         char[][] singlePairs = {{'a','z'}, {' '}, {'0', '9'}, {'.'},  {','},}; // , {'\u3041', '\u30F3'}
         for (int j = 0; j < singlePairs.length; ++j) {
             char start = singlePairs[j][0];
             char end = singlePairs[j][singlePairs[j].length == 1 ? 0 : 1];
             for (char k = start; k <= end; ++k) {
-                FractionalUCA.setSingle(k, ces);
+                FractionalUCA.setSingleBytePrimaryFor(k);
             }
         }
-        /*setSingle('\u0300', ces);
-        setSingle('\u0301', ces);
-        setSingle('\u0302', ces);
-        setSingle('\u0303', ces);
-        setSingle('\u0308', ces);
-        setSingle('\u030C', ces);
-         */
-
-        //FractionalUCA.bumps.set(0x089A); // lowest non-variable FRAGILE
-        //System.out.println("FIX LOWEST NON_VARIABLE!!!");
-        //FractionalUCA.bumps.set(0x4E00); // lowest Kangxi
-
     }
 
     private static void setLowToken(int nextHigher, String token) {
@@ -2415,15 +2311,48 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         return result;
     }
 
+    private static boolean isThreeByteMajorScript(int script) {
+        // Some scripts are "major" (and start reordering groups)
+        // but have too many primaries for two bytes with a single lead byte.
+        // If they are uncased, that is, they have mostly common secondary/tertiary weights,
+        // then they lend themselves to using 3-byte primaries because
+        // their CEs can be stored compactly as long-primary CEs,
+        // and the then-possible primary sort key compression makes sort keys hardly longer.
+        return
+                script == UCD_Types.ETHIOPIC_SCRIPT ||
+                script == UCD_Types.MYANMAR_SCRIPT;
+    }
+
+    private static boolean isTwoByteMinorScript(int script) {
+        // Coptic is not a "major" script,
+        // but it fits into the Greek lead byte even with 2-byte primaries.
+        // This is desirable because Coptic is a cased script,
+        // and the CEs for the uppercase characters cannot be stored as "long primary" CEs.
+        // (They would have to use less efficient storage.)
+        //
+        // Similar for Glagolitic: Cased, fits into the second Cyrillic lead byte.
+        //
+        // Note: We could also do this for Deseret:
+        // It is also cased and has relatively few primaries,
+        // but making them two-byte primaries would take up too much space in its reordering group
+        // and would push the group to two lead bytes and to not being compressible any more.
+        // Not worth it.
+        // At least *lowercase* Deseret sorts in code point order
+        // and can therefore be stored as a compact range.
+        return
+                script == UCD_Types.COPTIC ||
+                script == UCD_Types.GLAGOLITIC;
+    }
+
     private static void addMajorPrimaries(int startPrimary, int endPrimary, boolean isMajor, int script) {
-        if (isMajor) {
-            MAJOR_PRIMARIES.addAll(startPrimary, endPrimary);
+        if (isMajor ? !isThreeByteMajorScript(script) : isTwoByteMinorScript(script)) {
+            twoBytePrimaryForUCAPrimary.set(startPrimary, endPrimary + 1);
         }
         System.out.println("Major:\t" + isMajor + "\t" + UCD.getScriptID_fromIndex((byte)script)
                 + "\t" + hexBytes(startPrimary) + ".." + hexBytes(endPrimary));
     }
 
-    static void hexBytes(long x, StringBuffer result) {
+    private static void hexBytes(long x, StringBuffer result) {
         int oldLength = result.length();
         //byte lastb = 1;
         for (int shift = 24; shift >= 0; shift -= 8) {
@@ -2439,29 +2368,13 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         }
     }
 
-    static String hexBytes(long x) {
+    private static String hexBytes(long x) {
         StringBuffer temp = new StringBuffer();
         hexBytes(x, temp);
         return temp.toString();
     }
 
-    static int fixHan(char ch) { // BUMP HANGUL, HAN
-        if (ch < 0x3400 || ch > 0xD7A3) {
-            return -1;
-        }
-
-        char ch2 = ch;
-        if (ch >= 0xAC00) {
-            ch2 -= (0xAC00 - 0x9FA5 - 1);
-        }
-        if (ch >= 0x4E00) {
-            ch2 -= (0x4E00 - 0x4DB5 - 1);
-        }
-
-        return 0x6000 + (ch2-0x3400); // room to interleave
-    }
-
-    static final BitSet MAJOR_SCRIPTS = new BitSet();
+    private static final BitSet MAJOR_SCRIPTS = new BitSet();
     static {
         for (byte i : new Byte[]{
                 UCD_Types.ARABIC_SCRIPT,
@@ -2497,7 +2410,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
             MAJOR_SCRIPTS.set(i&0xFF);
         }
     }
-    static byte getFixedScript(int ch) {
+    /* package */ static byte getFixedScript(int ch) {
         byte script = Default.ucd().getScript(ch);
         // HACK
         if (ch == 0x0F7E || ch == 0x0F7F) {
@@ -2512,7 +2425,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         return script;
     }
 
-    static byte getFixedCategory(int ch) {
+    /* package */ static byte getFixedCategory(int ch) {
         byte cat = Default.ucd().getCategory(ch);
         // HACK
         if (ch == 0x0F7E || ch == 0x0F7F) {
@@ -2521,22 +2434,24 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         return cat;
     }
 
-    static void setSingle(char ch, int[] ces) {
-        getCollator().getCEs(String.valueOf(ch), true, ces);
-        FractionalUCA.singles.set(CEList.getPrimary(ces[0]));
+    private static void setSingleBytePrimaryFor(char ch) {
+        CEList ces = getCollator().getCEList(String.valueOf(ch), true);
+        int firstPrimary = CEList.getPrimary(ces.at(0));
+        FractionalUCA.singleBytePrimaryForUCAPrimary.set(firstPrimary);
         if (ch == 'a') {
-            FractionalUCA.Variables.gapForA = CEList.getPrimary(ces[0]);
+            FractionalUCA.Variables.gapForA = firstPrimary;
         }
     }
 
-    static BitSet singles = new BitSet();
-    static BitSet bumps = new BitSet();
+    private static BitSet singleBytePrimaryForUCAPrimary = new BitSet();
+    private static BitSet twoBytePrimaryForUCAPrimary = new BitSet();
+    private static BitSet bumps = new BitSet();
 
-    static boolean isEven(int x) {
+    private static boolean isEven(int x) {
         return (x & 1) == 0;
     }
 
-    static int fixCompatibilityCE(String s, boolean decompose, int[] output, boolean compress) {
+    private static int fixCompatibilityCE(String s, boolean decompose, int[] output, boolean compress) {
         byte type = WriteCollationData.getDecompType(UTF16.charAt(s, 0));
         //char ch = s.charAt(0);
 
@@ -2584,59 +2499,13 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         return len;
     }
 
-
-    /*
-1112; H   # HANGUL CHOSEONG HIEUH
-1161; A   # HANGUL JUNGSEONG A
-1175; I   # HANGUL JUNGSEONG I
-11A8; G   # HANGUL JONGSEONG KIYEOK
-11C2; H   # HANGUL JONGSEONG HIEUH
-11F9;HANGUL JONGSEONG YEORINHIEUH;Lo;0;L;;;;;N;;;;;
-     */
-    static boolean gotInfo = false;
-    static int oldJamo1, oldJamo2, oldJamo3, oldJamo4, oldJamo5, oldJamo6;
-
-    static boolean shouldBe3Byte(int primary) {
-        return !MAJOR_PRIMARIES.contains(primary);
-
-        //        if (!MAJOR_PRIMARIES.contains(primary)) {
-        //            return true;
-        //        }
-        //        if (!gotInfo) {
-        //            /*
-        //             *   static boolean isModernJamo(int cp) {
-        //      return LBase <= cp && cp < LLimit
-        //      || VBase <= cp && cp < VLimit
-        //      || TBase2 <= cp && cp < TLimit;
-        //  }
-        //  SBase = 0xAC00, LBase = 0x1100, VBase = 0x1161, TBase = 0x11A7, TBase2 = 0x11A8,
-        //  LCount = 19, VCount = 21, TCount = 28,
-        //  NCount = VCount * TCount,   // 588
-        //  SCount = LCount * NCount,   // 11172
-        //  LLimit = LBase + LCount,    // 1113
-        //  VLimit = VBase + VCount,    // 1176
-        //  TLimit = TBase + TCount,    // 11C3
-        //  TLimitFull = 0x1200,
-        //  SLimit = SBase + SCount;    // D7A4
-        //
-        //             */
-        //            int[] temp = new int[20];
-        //            getCollator().getCEs("\u1112", true, temp);
-        //            oldJamo1 = temp[0] >> 16;
-        //        getCollator().getCEs("\u1161", true, temp);
-        //        oldJamo2 = temp[0] >> 16;
-        //        getCollator().getCEs("\u1175", true, temp);
-        //        oldJamo3 = temp[0] >> 16;
-        //        getCollator().getCEs("\u11A8", true, temp);
-        //        oldJamo4 = temp[0] >> 16;
-        //        getCollator().getCEs("\u11C2", true, temp);
-        //        oldJamo5 = temp[0] >> 16;
-        //                getCollator().getCEs("\u11F9", true, temp);
-        //                oldJamo6 = temp[0] >> 16;
-        //            gotInfo = true;
-        //        }
-        //        return primary > oldJamo1 && primary < oldJamo2
-        //        || primary > oldJamo3 && primary < oldJamo4
-        //        || primary > oldJamo5 && primary <= oldJamo6;
+    private static int getFractionalLengthForUCAPrimary(int ucaPrimary) {
+        if (singleBytePrimaryForUCAPrimary.get(ucaPrimary)) {
+            return 1;
+        }
+        if (twoBytePrimaryForUCAPrimary.get(ucaPrimary)) {
+            return 2;
+        }
+        return 3;
     }
 }

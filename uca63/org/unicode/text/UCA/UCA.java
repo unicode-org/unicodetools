@@ -22,9 +22,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,7 +32,6 @@ import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.IntStack;
-import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
@@ -73,8 +70,6 @@ characters between scripts with different directions, like French with Arabic or
  */
 
 final public class UCA implements Comparator, UCA_Types {
-
-    private static final boolean DEBUG_TEST = false;
 
     public static final int TEST_PRIMARY = 0xFDFC;
 
