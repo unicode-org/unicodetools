@@ -45,36 +45,29 @@ import com.ibm.icu.text.UnicodeSetIterator;
 //import org.unicode.text.CollationData.*;
 
 /**
- * Collator is a working version of UTR#10 Unicode Collation Algorithm,
+ * UCA is a working version of the UTS #10 Unicode Collation Algorithm,
  * as described on http://www.unicode.org/unicode/reports/tr10/
  * @author Mark Davis
 
-It is not optimized, although it does use some techniques that are required for
-a real optimization, such as squeezing all the weights into 32 bits.<p>
+<p>It is not optimized, although it does use some techniques that are required for
+a real optimization, such as squeezing all the weights into 32 bits.
 
-Invariants relied upon by the algorithm:
+<p>Invariants relied upon by the algorithm:
 
-UCA Data:
-1. While it contains secondaries greater than 0xFF, 
-these can be folded down by subtracting 0xC0--without collision--to be less than 0xFF
-2. Tertiary values are less than 0x80
-3. Contracting characters must be "completed": if "abcd" is a contracting character, 
-then "abc" is also.
-4. Variables (marked with *), have a distinct, closed range of primaries. 
-That is, there are no variable CEs X, Z and non-ignorable CE Y such that X[1] <= Y[1] <= Z[1]
-5. It needs to be fixed when reading: only non-zero weights (levels 1-3) are really variable!
+<p>UCA Data:
+<ol>
+  <li>Tertiary values are less than 0x80
+  <li>Variables (marked with *), have a distinct, closed range of primaries. 
+    That is, there are no variable CEs X, Z and non-ignorable CE Y such that X[1] <= Y[1] <= Z[1]<br>
+    This saves a bit in each CE.
+  <li>It needs to be fixed when reading: only non-zero weights (levels 1-3) are really variable!
+</ol>
 
-#4 saves a bit in each CE.
-
-Limits
-1. There is a limit on the number of expanding characters. If N is the number of expanding
-characters, then their total lengths must be less than 65536-N. This should never pose a
-problem in practice.
-2. If any of the weight limits are reached (FFFF for primary, FF for secondary, tertiary),
+<p>Limits: If any of the weight limits are reached (FFFF for primary, 1FF for secondary, 7F for tertiary),
 expanding characters can be used to achieve the right results, as discussed in UTR#10.
 
-Remarks:
-Neither the old 14651 nor the old UCA algorithms for backwards really worked.
+<p>Remarks:
+<p>Neither the old 14651 nor the old UCA algorithms for backwards really worked.
 This is because of shared
 characters between scripts with different directions, like French with Arabic or Greek.
  */

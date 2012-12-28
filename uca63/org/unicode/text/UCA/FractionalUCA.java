@@ -15,12 +15,11 @@ import java.util.TreeSet;
 import java.util.Map.Entry;
 
 import org.unicode.cldr.util.Counter;
-import org.unicode.text.UCA.CaseBit.Casing;
-import org.unicode.text.UCA.CaseBit.CasingList;
 import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.ChainException;
@@ -30,14 +29,14 @@ import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.ImplicitCEGenerator;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 
-public class FractionalUCA implements UCD_Types, UCA_Types {
+public class FractionalUCA {
     static PrintWriter fractionalLog;
     static boolean DEBUG = false;
     static final boolean DEBUG_FW = false;
@@ -91,7 +90,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 throw new IllegalArgumentException();
             }
             StringBuilder builder = new StringBuilder();
-            Map<String,Counter<Integer>> map = new TreeMap();
+            Map<String, Counter<Integer>> map = new TreeMap<String, Counter<Integer>>();
             for (int i = 0; i < highByteToReorderingToken.length; ++i) {
                 addScriptCats(map, i, doScripts ? highByteToReorderingToken[i].reorderingToken : highByteToReorderingToken[i].types);
             }
@@ -280,9 +279,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                     return "?";
                 }
             }
-            StringBuffer result = new StringBuffer();
-            FractionalUCA.hexBytes(val, result);
-            return result.toString();
+            return FractionalUCA.hexBytes(val);
         }
 
         long getValue(int zeroBasedLevel) {
@@ -377,7 +374,6 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         // Return value is left justified primary key
 
         static final int secondaryDoubleStart = 0xD0;
-        static final int MARK_CODE_POINT = 0x40000000;
 
         static final byte MULTIPLES = 0x20, COMPRESSED = 0x40, OTHER_MASK = 0x1F;
         static final BitSet compressSet = new BitSet();
@@ -412,7 +408,6 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
             int oByte1 = byte1;
             int oByte2 = byte2;
-            int oByte3 = byte3;
             boolean specialBump = false;
 
             switch (lastByteLength) {
@@ -582,7 +577,9 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             return key0;
         }
         public void show(Appendable summary) {
+            /* We do not compute fractional implicit weights any more.
             checkImplicits();
+            */
             try {
                 show(Type.primary, primaries, summary);
                 show(Type.secondary, secondaries, summary);
@@ -591,6 +588,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 throw new IllegalArgumentException(e);
             }
         }
+        /* We do not compute fractional implicit weights any more.
         private void checkImplicits() {
             TreeMap<Integer, Integer> implicitToCodepoint = new TreeMap<Integer, Integer>();
             for (int codepoint = 0; codepoint <= 0x10FFFF; ++codepoint) {
@@ -615,9 +613,42 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 lastCodepoint = codepoint;
             }
         }
+        */
 
+        private static final UnicodeSet AVOID_CODE_POINTS =  // doesn't depend on version
+                new UnicodeSet("[[:C:][:Noncharacter_Code_Point:]]").freeze();
+
+        private static String safeString(String s, int maxLength) {
+            if (AVOID_CODE_POINTS.containsSome(s)) {
+                StringBuilder sb = new StringBuilder(s);
+                for (int i = 0; i < sb.length();) {
+                    int c = sb.codePointAt(i);
+                    int next = i + Character.charCount(c);
+                    if (AVOID_CODE_POINTS.contains(c)) {
+                        String replacement;
+                        if (c <= 0xffff) {
+                            replacement = String.format("\\u%04X", c);
+                        } else {
+                            replacement = String.format("\\U%08X", c);
+                        }
+                        sb.replace(i, next, replacement);
+                        next = i + replacement.length();
+                    }
+                    i = next;
+                }
+                s = sb.toString();
+            }
+
+            if (s.length() > maxLength) {
+                if (Character.isHighSurrogate(s.charAt(maxLength - 1))) {
+                    --maxLength;
+                }
+                s = s.substring(0, maxLength) + "...";
+            }
+            return s;
+        }
         private void show(Type type, Map<Long, UnicodeSet> map, Appendable summary) throws IOException {
-            summary.append("\n# Start " + type + "  statistics \n");
+            summary.append("\n# Start " + type + " statistics \n");
             long lastWeight = -1;
             for (Entry<Long, UnicodeSet> entry : map.entrySet()) {
                 long weight = entry.getKey();
@@ -628,12 +659,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
                 UnicodeSet uset = entry.getValue();
                 String pattern = uset.toPattern(false);
-                if (pattern.length() > 100) pattern = pattern.substring(0,100)+"...";
                 summary.append(hexBytes(weight))
                 .append('\t')
                 .append(String.valueOf(uset.size()))
                 .append('\t')
-                .append(pattern)
+                .append(safeString(pattern, 100))
                 .append('\n')
                 ;
             }
@@ -707,36 +737,64 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             throw new IllegalArgumentException("Internal Error: " + hexBytes(weight1) + ",\t" + hexBytes(weight2));
         }
 
-        StringBuffer newPrimary = new StringBuffer();
-        StringBuffer newSecondary = new StringBuffer();
-        StringBuffer newTertiary = new StringBuffer();
+        private StringBuffer sb = new StringBuffer();
 
-        void printAndRecord(boolean show, String chr, int np, int ns, int nt, String comment) {
+        private void printAndRecord(boolean show, String chr, int np, int ns, int nt, String comment) {
             try {
                 addToSet(primaries, np, chr);
                 addToSet(secondaries, ns, chr);
                 addToSet(tertiaries, nt, chr);
 
-                newPrimary.setLength(0);
-                newSecondary.setLength(0);
-                newTertiary.setLength(0);
-
-                FractionalUCA.hexBytes(np, newPrimary);
-                FractionalUCA.hexBytes(ns, newSecondary);
-                FractionalUCA.hexBytes(nt, newTertiary);
-
-                String weightString = "[" + newPrimary 
-                        + ", " + newSecondary 
-                        + ", " + newTertiary 
-                        + "]";
-
+                sb.setLength(0);
                 if (show) {
-                    fractionalLog.print(Utility.hex(chr) + ";\t");
+                    sb.append(Utility.hex(chr)).append(";\t");
                 }
-                fractionalLog.print(weightString);
+
+                sb.append('[');
+                FractionalUCA.hexBytes(np, sb);
+                sb.append(", ");
+                FractionalUCA.hexBytes(ns, sb);
+                sb.append(", ");
+                FractionalUCA.hexBytes(nt, sb);
+                sb.append(']');
+
                 if (comment != null) {
-                    fractionalLog.println("\t" + comment);
+                    sb.append('\t').append(comment).append('\n');
                 }
+
+                fractionalLog.print(sb);
+            } catch (Exception e) {
+                throw new ChainException("Character is {0}", new String[] {Utility.hex(chr)}, e);
+            }
+        }
+
+        private void printAndRecordCodePoint(boolean show, String chr, int cp, int ns, int nt, String comment) {
+            try {
+                // TODO: Do we need to record the new primary weight? -- addToSet(primaries, np, chr);
+                addToSet(secondaries, ns, chr);
+                addToSet(tertiaries, nt, chr);
+
+                sb.setLength(0);
+                if (show) {
+                    sb.append(Utility.hex(chr)).append(";\t");
+                }
+
+                sb.append("[U+").append(Utility.hex(cp));
+                if (ns != 0x500) {
+                    sb.append(", ");
+                    FractionalUCA.hexBytes(ns, sb);
+                }
+                if (ns != 0x500 || nt != 5) {
+                    sb.append(", ");
+                    FractionalUCA.hexBytes(nt, sb);
+                }
+                sb.append(']');
+
+                if (comment != null) {
+                    sb.append('\t').append(comment).append('\n');
+                }
+
+                fractionalLog.print(sb);
             } catch (Exception e) {
                 throw new ChainException("Character is {0}", new String[] {Utility.hex(chr)}, e);
             }
@@ -747,10 +805,12 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         FractionalUCA.HighByteToReorderingToken highByteToScripts = new FractionalUCA.HighByteToReorderingToken();
         Map<Integer, String> reorderingTokenOverrides = new TreeMap<Integer, String>();
 
+        /* We do not compute fractional implicit weights any more.
         FractionalUCA.checkImplicit();
+        */
         FractionalUCA.checkFixes();
 
-        FractionalUCA.Variables.variableHigh = UCA.getPrimary(getCollator().getVariableHighCE());
+        FractionalUCA.Variables.variableHigh = CEList.getPrimary(getCollator().getVariableHighCE());
         UCA r = getCollator();
         RoBitSet secondarySet = r.getStatistics().getSecondarySet();
 
@@ -792,8 +852,6 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         //                System.out.println("WHOOPS! Missing weight");
         //            }
         //        }
-
-        int bumpNextToo = 0;
 
         subtotal = (FractionalUCA.Variables.COMMON << 8) + FractionalUCA.Variables.COMMON; // skip forbidden bytes, leave gap
 
@@ -903,8 +961,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         String highCompat = UTF16.valueOf(0x2F805);
 
         System.out.println("Sorting");
-        Map ordered = new TreeMap();
-        Set contentsForCanonicalIteration = new TreeSet();
+        Map<String, String> ordered = new TreeMap<String, String>();
+        Set<String> contentsForCanonicalIteration = new TreeSet<String>();
         UCA.UCAContents ucac = getCollator().getContents(null);
         int ccounter = 0;
         while (true) {
@@ -937,18 +995,15 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             //                continue;
             //            }
             //
-            //            if (!Default.ucd().isNoncharacter(i)) {
             if (!Default.ucd().isAllocated(i)) {
                 continue;
             }
             if (Default.nfd().isNormalized(i)) {
                 continue;
             }
-            if (Default.ucd().isHangulSyllable(i)) {
+            if (UCD.isHangulSyllable(i)) {
                 continue;
-                //if (collator.getCEType(i) >= UCA.FIXED_CE) continue;
             }
-            //}
             String s = UTF16.valueOf(i);
             if (!contentsForCanonicalIteration.contains(s)) {
                 contentsForCanonicalIteration.add(s);
@@ -961,12 +1016,12 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             }
         }
 
-        Set additionalSet = new HashSet();
+        Set<String> additionalSet = new HashSet<String>();
         System.out.println("Loading canonical iterator");
         if (WriteCollationData.canIt == null) {
             WriteCollationData.canIt = new CanonicalIterator(".");
         }
-        Iterator it2 = contentsForCanonicalIteration.iterator();
+        Iterator<String> it2 = contentsForCanonicalIteration.iterator();
         System.out.println("Adding any FCD equivalents that have different sort keys");
         while (it2.hasNext()) {
             String key = (String)it2.next();
@@ -1011,8 +1066,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                     first = false;
                 }
                 System.out.println(" => " + Default.ucd().getCodeAndName(s));
-                System.out.println("    old: " + getCollator().toString(nonDecompSortKey));
-                System.out.println("    new: " + getCollator().toString(sortKey));
+                System.out.println("    old: " + UCA.toString(nonDecompSortKey));
+                System.out.println("    new: " + UCA.toString(sortKey));
                 canCount++;
                 additionalSet.add(s);
                 ordered.put(sortKey + '\u0000' + s, s);
@@ -1041,7 +1096,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             }
          */
         // JUST FOR TESTING
-        if (false) {
+        final boolean TESTING = false;
+        if (TESTING) {
             String sample = "\u3400\u3401\u4DB4\u4DB5\u4E00\u4E01\u9FA4\u9FA5\uAC00\uAC01\uD7A2\uD7A3";
             for (int i = 0; i < sample.length(); ++i) {
                 String s = sample.substring(i, i+1);
@@ -1101,17 +1157,47 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         String[] sampleEq = new String[500];
         int[] sampleLen = new int[500];
 
-        Iterator it = ordered.keySet().iterator();
-        int oldFirstPrimary = UCA.getPrimary(UCA.TERMINATOR);
-        boolean wasVariable = false;
+        Iterator<String> it = ordered.keySet().iterator();
+        int oldFirstPrimary = CEList.getPrimary(UCA.TERMINATOR);
+        // boolean wasVariable = false;
 
         fractionalLog.println("# Fractional UCA Table, generated from standard UCA");
         fractionalLog.println("# " + WriteCollationData.getNormalDate());
         fractionalLog.println("# VERSION: UCA=" + getCollator().getDataVersion() + ", UCD=" + getCollator().getUCDVersion());
-        fractionalLog.println("# For a description of the format and usage, see CollationAuxiliary.html");
+        fractionalLog.println("# For a description of the format and usage, see");
+        fractionalLog.println("#   http://www.unicode.org/reports/tr35/tr35-collation.html");
         fractionalLog.println();
         fractionalLog.println("[UCA version = " + getCollator().getDataVersion() + "]");
 
+        // Print the Unified_Ideograph ranges in collation order.
+        // As a result, a parser need not have this data available for the current Unicode version.
+        UnicodeSet hanSet =
+                ToolUnicodePropertySource.make(getCollator().getUCDVersion()).
+                getProperty("Unified_Ideograph").getSet("True");
+        UnicodeSet coreHanSet = (UnicodeSet) hanSet.clone();
+        coreHanSet.retain(0x4e00, 0xffff);  // BlockCJK_Unified_Ideograph or CJK_Compatibility_Ideographs
+        StringBuilder hanSB = new StringBuilder("[Unified_Ideograph");
+        UnicodeSetIterator hanIter = new UnicodeSetIterator(coreHanSet);
+        while (hanIter.nextRange()) {
+            int start = hanIter.codepoint;
+            int end = hanIter.codepointEnd;
+            hanSB.append(' ').append(Utility.hex(start));
+            if (start < end) {
+                hanSB.append("..").append(Utility.hex(end));
+            }
+        }
+        hanSet.remove(0x4e00, 0xffff);
+        hanIter.reset(hanSet);
+        while (hanIter.nextRange()) {
+            int start = hanIter.codepoint;
+            int end = hanIter.codepointEnd;
+            hanSB.append(' ').append(Utility.hex(start));
+            if (start < end) {
+                hanSB.append("..").append(Utility.hex(end));
+            }
+        }
+        hanSB.append("]");
+        fractionalLog.println(hanSB);
 
         String lastChr = "";
         int lastNp = 0;
@@ -1145,7 +1231,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         FractionalUCA.FCE firstTrailing = new FractionalUCA.FCE(false, "trailing");
         FractionalUCA.FCE lastTrailing = new FractionalUCA.FCE(true, "trailing");
 
-        Map fractBackMap = new TreeMap();
+        Map<Integer, Pair> fractBackMap = new TreeMap<Integer, Pair>();
 
         //int topVariable = -1;
 
@@ -1160,12 +1246,12 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             }
 
             // get CEs and fix
-            int len = getCollator().getCEs(chr, true, ces);
-            int firstPrimary = UCA.getPrimary(ces[0]);
-            String message = null;
+            int len = getCollator().getCEs(chr, true, ces);  // TODO: CEList ces = getCollator().getCEList(chr, true);
+            int firstPrimary = CEList.getPrimary(ces[0]);
+            // String message = null;
             if (firstPrimary != oldFirstPrimary) {
                 fractionalLog.println();
-                boolean isVariable = getCollator().isVariable(ces[0]);
+                //                boolean isVariable = getCollator().isVariable(ces[0]);
                 //                if (isVariable != wasVariable) {
                 //                    if (isVariable) {
                 //                        message = "# START OF VARIABLE SECTION!!!";
@@ -1176,7 +1262,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 //                    //fractionalLog.println(message);
                 //                    //fractionalLog.println();
                 //                }
-                wasVariable = isVariable;
+                //                wasVariable = isVariable;
                 oldFirstPrimary = firstPrimary;
             }
             oldStr.setLength(0);
@@ -1211,54 +1297,17 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             for (int q = firstCE; q < len; ++q) {
                 nonePrinted = false;
 
-                int pri = UCA.getPrimary(ces[q]);
-                int sec = UCA.getSecondary(ces[q]); 
-                int ter = UCA.getTertiary(ces[q]);
+                int pri = CEList.getPrimary(ces[q]);
+                int sec = CEList.getSecondary(ces[q]); 
+                int ter = CEList.getTertiary(ces[q]);
 
                 oldStr.append(CEList.toString(ces[q]));// + "," + Integer.toString(ces[q],16);
 
-                // special treatment for unsupported!
-
-                if (UCA.isImplicitLeadPrimary(pri)) {
-                    if (DEBUG) {
-                        System.out.println("DEBUG: " + CEList.toString(ces, len) 
-                                + ", Current: " + q + ", " + Default.ucd().getCodeAndName(chr));
-                    }
-                    ++q;
-                    oldStr.append(CEList.toString(ces[q]));// + "," + Integer.toString(ces[q],16);
-
-                    int pri2 = UCA.getPrimary(ces[q]);
-                    // get old code point
-
-                    int cp = UCA.ImplicitToCodePoint(pri, pri2);
-
-                    // double check results!
-
-                    int[] testImplicit = new int[2];
-                    getCollator().CodepointToImplicit(cp, testImplicit);
-                    boolean gotError = pri != testImplicit[0] || pri2 != testImplicit[1];
-                    if (gotError) {
-                        System.out.println("ERROR");
-                    }
-                    if (DEBUG || gotError) {
-                        System.out.println("Computing Unsupported CP as: "
-                                + Utility.hex(pri)
-                                + ", " + Utility.hex(pri2)
-                                + " => " + Utility.hex(cp)
-                                + " => " + Utility.hex(testImplicit[0])
-                                + ", " + Utility.hex(testImplicit[1])
-                                // + ", " + Utility.hex(fixPrimary(pri) & INT_MASK)
-                                );
-                    }
-
-                    pri = cp | FractionalUCA.Variables.MARK_CODE_POINT;
-                }
-
                 if (sec != 0x20) {
-                    boolean changed = secEq.add(new Integer(sec), new Integer(pri));
+                    /* boolean changed = */ secEq.add(new Integer(sec), new Integer(pri));
                 }
                 if (ter != 0x2) {
-                    boolean changed = terEq.add(new Integer(ter), new Integer((pri << 16) | sec));
+                    /* boolean changed = */ terEq.add(new Integer(ter), new Integer((pri << 16) | sec));
                 }
 
                 if (sampleEq[sec] == null || sampleLen[sec] > len) {
@@ -1270,28 +1319,61 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                     sampleLen[sec] = len;
                 }
 
-                if ((pri & FractionalUCA.Variables.MARK_CODE_POINT) == 0 && pri == 0) {
+                // special treatment for unsupported!
+
+                int np;
+                int implicitCodePoint = 0;
+                if (UCA.isImplicitLeadPrimary(pri)) {
+                    if (DEBUG) {
+                        System.out.println("DEBUG: " + CEList.toString(ces, len) 
+                                + ", Current: " + q + ", " + Default.ucd().getCodeAndName(chr));
+                    }
+                    ++q;
+                    oldStr.append(CEList.toString(ces[q]));// + "," + Integer.toString(ces[q],16);
+
+                    int pri2 = CEList.getPrimary(ces[q]);
+                    implicitCodePoint = UCA.ImplicitToCodePoint(pri, pri2);
+                    if (DEBUG) {
+                        System.out.println("Computing Unsupported CP as: "
+                                + Utility.hex(pri)
+                                + ", " + Utility.hex(pri2)
+                                + " => " + Utility.hex(implicitCodePoint));
+                    }
+
+                    /* We do not compute fractional implicit weights any more.
+                    // was: np = FractionalUCA.getImplicitPrimary(pri);
+                    */
+                    np = Variables.IMPLICIT_BASE_BYTE << 16;
+                } else {
+                    np = FractionalUCA.fixPrimary(pri);
+                }
+
+                int ns = FractionalUCA.fixSecondary(sec);
+                int nt = FractionalUCA.fixTertiary(ter, chr);
+
+                if (implicitCodePoint == 0 && pri == 0) {
                     if (chr.equals("\u01C6")) {
                         System.out.println("At dz-caron");
                     }
                     Integer key = new Integer(ces[q]);
-                    Pair value = (Pair) fractBackMap.get(key);
+                    Pair value = fractBackMap.get(key);
                     if (value == null
                             || (len < ((Integer)(value.first)).intValue())) {
                         fractBackMap.put(key, new Pair(new Integer(len), chr));
                     }
                 }
 
-                // int oldPrimaryValue = UCA.getPrimary(ces[q]);
-                int np = FractionalUCA.fixPrimary(pri);
-                int ns = FractionalUCA.fixSecondary(sec);
-                int nt = FractionalUCA.fixTertiary(ter, chr);
-
+                // Note: (q == firstCE) != isFirst when pri is an implicit primary
+                // because we read pri2 and incremented q.
                 if (q == firstCE) { // only look at first one
                     highByteToScripts.addScriptsIn(np, chr);
                 }
 
-                fractionalStatistics.printAndRecord(false, chr, np, ns, nt, null);
+                if (implicitCodePoint == 0) {
+                    fractionalStatistics.printAndRecord(false, chr, np, ns, nt, null);
+                } else {
+                    fractionalStatistics.printAndRecordCodePoint(false, chr, implicitCodePoint, ns, nt, null);
+                }
 
                 if (isFirst) {
                     if (!FractionalUCA.sameTopByte(np, lastNp)) {
@@ -1319,7 +1401,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 // RECORD STATS
                 // but ONLY if we are not part of an implicit
 
-                if ((pri & FractionalUCA.Variables.MARK_CODE_POINT) == 0) {
+                if (implicitCodePoint == 0) {
                     if (np != 0) {
                         firstSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
                         lastSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
@@ -1337,7 +1419,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                     } else if (getCollator().isVariable(ces[q])) {
                         firstVariable.setValue(np, ns, nt, chr);
                         lastVariable.setValue(np, ns, nt, chr); 
-                    } else if (UCA.getPrimary(ces[q]) > UCA_Types.UNSUPPORTED_LIMIT) {        // Trailing (none currently)
+                    } else if (CEList.getPrimary(ces[q]) > UCA_Types.UNSUPPORTED_LIMIT) {        // Trailing (none currently)
                         System.out.println("Trailing: " 
                                 + Default.ucd().getCodeAndName(chr) + ", "
                                 + CEList.toString(ces[q]) + ", " 
@@ -1377,9 +1459,6 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         fractionalStatistics.printAndRecord(true, "\uFFFE", 0x020000, 2, 2, "# Special LOWEST primary, for merge/interleaving");
         fractionalStatistics.printAndRecord(true, "\uFFFF", 0xEFFE00, 5, 5, "# Special HIGHEST primary, for ranges");
 
-        //        fractionalLog.println("FFFE; [02, 02, 02]     # Special LOWEST primary, for merge/interleaving");
-        //        fractionalLog.println("FFFF; [EF FE, 05, 05]  # Special HIGHEST primary, for ranges");
-
         fractionalLog.println();
         fractionalLog.println("# SPECIAL FINAL VALUES for Script Reordering");
         fractionalLog.println();
@@ -1392,22 +1471,16 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             }
             int previousByte = i-1;
             fractionalStatistics.printAndRecord(true, fakeString.next(), (previousByte << 16) | 0xFE00, 5, 5, "# Special final value for reordering token");
-
-            //            fractionalLog.println(Utility.hex(fakeString.next()) +
-            //                    "; [" + hexBytes((previousByte << 16) | 0xFE00) +
-            //            ", 05, 05]     # Special final value for reordering token");
-
         }
 
         // ADD HOMELESS COLLATION ELEMENTS
         fractionalLog.println();
         fractionalLog.println("# HOMELESS COLLATION ELEMENTS");
 
-        char fakeTrail = 'a';
-        Iterator it3 = fractBackMap.keySet().iterator();
+        Iterator<Integer> it3 = fractBackMap.keySet().iterator();
         while (it3.hasNext()) {
             Integer key = (Integer) it3.next();
-            Pair pair = (Pair) fractBackMap.get(key);
+            Pair pair = fractBackMap.get(key);
             if (((Integer)pair.first).intValue() < 2) {
                 continue;
             }
@@ -1415,23 +1488,12 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
             int ce = key.intValue();
 
-            int np = FractionalUCA.fixPrimary(UCA.getPrimary(ce));
-            int ns = FractionalUCA.fixSecondary(UCA.getSecondary(ce));
-            int nt = FractionalUCA.fixTertiary(UCA.getTertiary(ce), sample);
+            int np = FractionalUCA.fixPrimary(CEList.getPrimary(ce));
+            int ns = FractionalUCA.fixSecondary(CEList.getSecondary(ce));
+            int nt = FractionalUCA.fixTertiary(CEList.getTertiary(ce), sample);
 
             highByteToScripts.addScriptsIn(np, sample);
             fractionalStatistics.printAndRecord(true, fakeString.next(), np, ns, nt, null);
-
-            //            newPrimary.setLength(0);
-            //            newSecondary.setLength(0);
-            //            newTertiary.setLength(0);
-            //
-            //            FractionalUCA.hexBytes(np, newPrimary);
-            //            FractionalUCA.hexBytes(ns, newSecondary);
-            //            FractionalUCA.hexBytes(nt, newTertiary);
-            //
-            //            fractionalLog.print(Utility.hex(fakeString.next()) + "; " 
-            //                    + "[, " + newSecondary + ", " + newTertiary + "]");
 
             longLog.print("\t# " + getCollator().getCEList(sample, true) + "\t* " + Default.ucd().getCodeAndName(sample));
             fractionalLog.println();
@@ -1448,17 +1510,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             // also add homeless
             fractionalStatistics.printAndRecord(true, fakeString.next(), 0, 0, fakeTertiary, null);
 
-            //            newTertiary.setLength(0);
-            //            FractionalUCA.hexBytes(fakeTertiary, newTertiary);
-            //
-            //            fractionalLog.print(Utility.hex(fakeString.next()) + "; " 
-            //                    + "[,, " + newTertiary 
-            //                    + "]");
             fractionalLog.println("\t# CONSTRUCTED FAKE SECONDARY-IGNORABLE");
         }
 
-        int firstImplicit = FractionalUCA.getImplicitPrimary(UCD_Types.CJK_BASE);
-        int lastImplicit = FractionalUCA.getImplicitPrimary(0x10FFFD);
+        int firstImplicit = Variables.IMPLICIT_BASE_BYTE;  // was FractionalUCA.getImplicitPrimary(UCD_Types.CJK_BASE);
+        int lastImplicit = Variables.IMPLICIT_MAX_BYTE;  // was FractionalUCA.getImplicitPrimary(0x10FFFD);
 
         fractionalLog.println();
         fractionalLog.println("# VALUES BASED ON UCA");
@@ -1576,23 +1632,31 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             }
          */
         summary.println();
-        summary.println("# First Implicit: " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(0)));
-        summary.println("# Last Implicit: " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(0x10FFFF)));
-        summary.println("# First CJK: " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(0x4E00)));
-        summary.println("# Last CJK: " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(0xFA2F)));
-        summary.println("# First CJK_A: " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(0x3400)));
-        summary.println("# Last CJK_A: " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(0x4DBF)));
+        /* We do not compute fractional implicit weights any more.
+        summary.println("# First Implicit: " + Utility.hex(FractionalUCA.Variables.IMPLICIT_BASE_BYTE));  // was FractionalUCA.getImplicitPrimary(0)
+        summary.println("# Last Implicit: " + Utility.hex(FractionalUCA.Variables.IMPLICIT_MAX_BYTE));  // was FractionalUCA.getImplicitPrimary(0x10FFFF)
+        summary.println("# First CJK: " + Utility.hex(FractionalUCA.Variables.IMPLICIT_BASE_BYTE));  // was FractionalUCA.getImplicitPrimary(0x4E00)
+        summary.println("# Last CJK: " + Utility.hex(FractionalUCA.Variables.IMPLICIT_BASE_BYTE));  // was FractionalUCA.getImplicitPrimary(0xFA2F), should have been dynamic
+        summary.println("# First CJK_A: " + Utility.hex(FractionalUCA.Variables.IMPLICIT_BASE_BYTE + 1));  // was FractionalUCA.getImplicitPrimary(0x3400)
+        summary.println("# Last CJK_A: " + Utility.hex(FractionalUCA.Variables.IMPLICIT_BASE_BYTE + 1));  // was FractionalUCA.getImplicitPrimary(0x4DBF), should have been dynamic
+        */
 
         if (DEBUG) {
+            /* We do not compute fractional implicit weights any more.
             boolean lastOne = false;
             for (int i = 0; i < 0x10FFFF; ++i) {
-                boolean thisOne = Default.ucd().isCJK_BASE(i) || Default.ucd().isCJK_AB(i);
+                boolean thisOne = UCD.isCJK_BASE(i) || UCD.isCJK_AB(i);
                 if (thisOne != lastOne) {
-                    summary.println("# Implicit Cusp: CJK=" + lastOne + ": " + Utility.hex(i-1) + " => " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(i-1)));
-                    summary.println("# Implicit Cusp: CJK=" + thisOne + ": " + Utility.hex(i) + " => " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(i)));
+                    summary.println("# Implicit Cusp: CJK=" + lastOne + ": " + Utility.hex(i-1) +
+                            " => " + Utility.hex(FractionalUCA.Variables.INT_MASK &
+                                                 FractionalUCA.getImplicitPrimary(i-1)));
+                    summary.println("# Implicit Cusp: CJK=" + thisOne + ": " + Utility.hex(i) +
+                            " => " + Utility.hex(FractionalUCA.Variables.INT_MASK &
+                                                 FractionalUCA.getImplicitPrimary(i)));
                     lastOne = thisOne;
                 }
             }
+            */
             summary.println("Compact Secondary 153: " + FractionalUCA.compactSecondary[0x153]);
             summary.println("Compact Secondary 157: " + FractionalUCA.compactSecondary[0x157]);
         }
@@ -1654,13 +1718,13 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     static Transform<Integer, String> ScriptTransform = new Transform<Integer, String>() {
         public String transform(Integer codePoint) {
-            return Default.ucd().getScriptID(codePoint, SHORT);
+            return Default.ucd().getScriptID(codePoint, UCD_Types.SHORT);
         }
     };
 
     static Transform<Integer, String> GeneralCategoryTransform  = new Transform<Integer, String>() {
         public String transform(Integer codePoint) {
-            return Default.ucd().getCategoryID(codePoint, SHORT);
+            return Default.ucd().getCategoryID(codePoint, UCD_Types.SHORT);
         }
     };
 
@@ -1724,6 +1788,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         // E3 9B 5F C8
     }
 
+    /* We do not compute fractional implicit weights any more.
     static void checkImplicit() {
         System.out.println("Starting Implicit Check");
 
@@ -1745,18 +1810,18 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
         FractionalUCA.showImplicit("# 3B9D", 0x3B9D);
 
-        FractionalUCA.showImplicit("# First CJK", CJK_BASE);
-        FractionalUCA.showImplicit("# Last CJK", CJK_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK-compat", CJK_COMPAT_USED_BASE);
-        FractionalUCA.showImplicit("# Last CJK-compat", CJK_COMPAT_USED_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK_A", CJK_A_BASE);
-        FractionalUCA.showImplicit("# Last CJK_A", CJK_A_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK_B", CJK_B_BASE);
-        FractionalUCA.showImplicit("# Last CJK_B", CJK_B_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK_C", CJK_C_BASE);
-        FractionalUCA.showImplicit("# Last CJK_C", CJK_C_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK_D", CJK_D_BASE);
-        FractionalUCA.showImplicit("# Last CJK_D", CJK_D_LIMIT-1);
+        FractionalUCA.showImplicit("# First CJK", UCD_Types.CJK_BASE);
+        FractionalUCA.showImplicit("# Last CJK", UCD_Types.CJK_LIMIT-1);
+        FractionalUCA.showImplicit("# First CJK-compat", UCD_Types.CJK_COMPAT_USED_BASE);
+        FractionalUCA.showImplicit("# Last CJK-compat", UCD_Types.CJK_COMPAT_USED_LIMIT-1);
+        FractionalUCA.showImplicit("# First CJK_A", UCD_Types.CJK_A_BASE);
+        FractionalUCA.showImplicit("# Last CJK_A", UCD_Types.CJK_A_LIMIT-1);
+        FractionalUCA.showImplicit("# First CJK_B", UCD_Types.CJK_B_BASE);
+        FractionalUCA.showImplicit("# Last CJK_B", UCD_Types.CJK_B_LIMIT-1);
+        FractionalUCA.showImplicit("# First CJK_C", UCD_Types.CJK_C_BASE);
+        FractionalUCA.showImplicit("# Last CJK_C", UCD_Types.CJK_C_LIMIT-1);
+        FractionalUCA.showImplicit("# First CJK_D", UCD_Types.CJK_D_BASE);
+        FractionalUCA.showImplicit("# Last CJK_D", UCD_Types.CJK_D_LIMIT-1);
         FractionalUCA.showImplicit("# First Other Implicit", 0);
         FractionalUCA.showImplicit("# Last Other Implicit", 0x10FFFF);
 
@@ -1776,11 +1841,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
                 // separate the three groups
 
-                if (Default.ucd().isCJK_BASE(i) || CJK_COMPAT_USED_BASE <= i && i < CJK_COMPAT_USED_LIMIT) {
+                if (UCD.isCJK_BASE(i) || UCD_Types.CJK_COMPAT_USED_BASE <= i && i < UCD_Types.CJK_COMPAT_USED_LIMIT) {
                     if (batch != 0) {
                         continue;
                     }
-                } else if (Default.ucd().isCJK_AB(i)) {
+                } else if (UCD.isCJK_AB(i)) {
                     if (batch != 1) {
                         continue;
                     }
@@ -1822,8 +1887,8 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 }
 
                 // print range to look at
-
-                if (false) {
+                final boolean TESTING = false;
+                if (TESTING) {
                     int b = i & 0xFF;
                     if (b == 255 || b == 0 || b == 1) {
                         System.out.println(Utility.hex(i) + " => " + Utility.hex(newPrimary));
@@ -1835,6 +1900,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         }
         System.out.println("Successful Implicit Check!!");
     }
+    */
 
     static void checkFixes() {
         System.out.println("Checking Secondary/Tertiary Fixes");
@@ -1880,6 +1946,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
 
     static int[] primaryDelta;
 
+    /* We do not compute fractional implicit weights any more.
     static void showImplicit(String title, int cp) {
         if (DEBUG) {
             FractionalUCA.showImplicit2(title + "-1", cp-1);
@@ -1906,15 +1973,10 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
     static int getImplicitPrimaryFromSwapped(int cp) {
         return FractionalUCA.implicit.getImplicitFromRaw(cp);
     }
+    */
 
     static int fixPrimary(int x) {
-        int result = 0;
-        if ((x & FractionalUCA.Variables.MARK_CODE_POINT) != 0) {
-            result = FractionalUCA.getImplicitPrimary(x & ~FractionalUCA.Variables.MARK_CODE_POINT);
-        } else {
-            result = primaryDelta[x];
-        }
-        return result;
+        return primaryDelta[x];
     }
 
     static int fixSecondary(int x) {
@@ -1994,11 +2056,12 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         int[] kenCes = new int[50];
         int[] markCes = new int[50];
         int[] kenComp = new int[50];
-        Map forLater = new TreeMap();
+        Map<String, String> forLater = new TreeMap<String, String>();
         int count = 0;
         int typeLimit = UCD_Types.CANONICAL;
         boolean decompType = false;
-        if (false) {
+        final boolean TESTING = false;
+        if (TESTING) {
             typeLimit = UCD_Types.COMPATIBILITY;
             decompType = true;
         }
@@ -2028,7 +2091,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                     forLater.put((char)(FractionalUCA.Variables.COMPRESSED | type) + s, comp);
                     continue;
                 }                
-                if (type == Default.ucd().CANONICAL && WriteCollationData.multipleZeroPrimaries(markCes, markLen)) {
+                if (type == UCD_Types.CANONICAL && WriteCollationData.multipleZeroPrimaries(markCes, markLen)) {
                     forLater.put((char)(FractionalUCA.Variables.MULTIPLES | type) + s, comp);
                     continue;
                 }
@@ -2036,7 +2099,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
             }
         }
 
-        Iterator it = forLater.keySet().iterator();
+        Iterator<String> it = forLater.keySet().iterator();
         byte oldType = (byte)0xFF; // anything unique
         int caseCount = 0;
         WriteCollationData.writeVersionAndDate(fractionalLog, fullFileName, true);
@@ -2050,7 +2113,7 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
                 fractionalLog.println("===============================================================");
                 fractionalLog.print("CASE " + (caseCount++) + ": ");
                 byte rType = (byte)(type & FractionalUCA.Variables.OTHER_MASK);
-                fractionalLog.println("    Decomposition Type = " + Default.ucd().getDecompositionTypeID_fromIndex(rType));
+                fractionalLog.println("    Decomposition Type = " + UCD.getDecompositionTypeID_fromIndex(rType));
                 if ((type & FractionalUCA.Variables.COMPRESSED) != 0) {
                     fractionalLog.println("    Successfully Compressed a la Ken");
                     fractionalLog.println("    [XXXX.0020.YYYY][0000.ZZZZ.0002] => [XXXX.ZZZZ.YYYY]");
@@ -2106,9 +2169,11 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         fractionalLog.close();
     }
 
+    /* We do not compute fractional implicit weights any more.
     static int getImplicitPrimary(int cp) {
         return FractionalUCA.implicit.getImplicitFromCodePoint(cp);
     }
+    */
 
     static boolean sameTopByte(int x, int y) {
         int x1 = x & 0xFF0000;
@@ -2121,7 +2186,9 @@ public class FractionalUCA implements UCD_Types, UCA_Types {
         return x1 == y1;
     }
 
+    /* We do not compute fractional implicit weights any more.
     static ImplicitCEGenerator implicit = new ImplicitCEGenerator(FractionalUCA.Variables.IMPLICIT_BASE_BYTE, FractionalUCA.Variables.IMPLICIT_MAX_BYTE);
+    */
 
     //    static final boolean needsCaseBit(String x) {
     //        String s = Default.nfkd().normalize(x);
@@ -2153,9 +2220,9 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
     static int ducetFirstNonVariable, ducetLastVariable;
 
     static void findBumps(int[] representatives) {
-        int[] ces = new int[LIMIT_SCRIPT];
+        int[] ces = new int[UCD_Types.LIMIT_SCRIPT];
         int[] scriptsLeastPrimary = new int[UCD_Types.LIMIT_SCRIPT];
-        int[] scriptChar = new int[LIMIT_SCRIPT];
+        int[] scriptChar = new int[UCD_Types.LIMIT_SCRIPT];
 
         Range[] categoryLeastPrimary = new Range[32];
         {
@@ -2167,11 +2234,11 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
 
         UnicodeSet threeByteSymbolPrimaries = new UnicodeSet();
         UnicodeSet threeByteChars = new UnicodeSet();
-        int nonCurrencySymbols = bitmask(OTHER_SYMBOL, MATH_SYMBOL, MODIFIER_SYMBOL);
-        int spaces = bitmask(SPACE_SEPARATOR, LINE_SEPARATOR, PARAGRAPH_SEPARATOR, CONTROL);
-        int punctuation = bitmask(DASH_PUNCTUATION, START_PUNCTUATION, END_PUNCTUATION, CONNECTOR_PUNCTUATION,
-                OTHER_PUNCTUATION, INITIAL_PUNCTUATION, FINAL_PUNCTUATION);
-        int numbers = bitmask(DECIMAL_DIGIT_NUMBER, LETTER_NUMBER, OTHER_NUMBER);
+        int nonCurrencySymbols = bitmask(UCD_Types.OTHER_SYMBOL, UCD_Types.MATH_SYMBOL, UCD_Types.MODIFIER_SYMBOL);
+        int spaces = bitmask(UCD_Types.SPACE_SEPARATOR, UCD_Types.LINE_SEPARATOR, UCD_Types.PARAGRAPH_SEPARATOR, UCD_Types.CONTROL);
+        int punctuation = bitmask(UCD_Types.DASH_PUNCTUATION, UCD_Types.START_PUNCTUATION, UCD_Types.END_PUNCTUATION, UCD_Types.CONNECTOR_PUNCTUATION,
+                UCD_Types.OTHER_PUNCTUATION, UCD_Types.INITIAL_PUNCTUATION, UCD_Types.FINAL_PUNCTUATION);
+        int numbers = bitmask(UCD_Types.DECIMAL_DIGIT_NUMBER, UCD_Types.LETTER_NUMBER, UCD_Types.OTHER_NUMBER);
         ducetFirstNonVariable = getCollator().getStatistics().firstDucetNonVariable;
         UCA r = getCollator();
 
@@ -2196,9 +2263,6 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
                 if (primary > 0) {
                     categoryLeastPrimary[cat].add(primary);                
                 }
-                if (primary == 0x132) {
-                    primary = primary;
-                }
                 if (ch < 0xFF || maskContains(spaces, cat)) {
                     // do nothing, assume Latin 1 is "frequent"
                 } else if (maskContains(nonCurrencySymbols, cat)) {
@@ -2206,7 +2270,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
                     threeByteChars.addAll(ch2.toString());
                 } else {
                     byte script = FractionalUCA.getFixedScript(ch);
-                    if (script != COMMON_SCRIPT && script != INHERITED_SCRIPT && !MAJOR_SCRIPTS.get(script)) {
+                    if (script != UCD_Types.COMMON_SCRIPT && script != UCD_Types.INHERITED_SCRIPT && !MAJOR_SCRIPTS.get(script)) {
                         threeByteSymbolPrimaries.add(primary);
                         threeByteChars.addAll(ch2.toString());
                     }
@@ -2220,19 +2284,20 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
                 }
              */
             byte script = FractionalUCA.getFixedScript(ch);
-            if (script == COMMON_SCRIPT || script == INHERITED_SCRIPT || script == Unknown_Script) {
+            if (script == UCD_Types.COMMON_SCRIPT || script == UCD_Types.INHERITED_SCRIPT || script == UCD_Types.Unknown_Script) {
                 continue;
             }
-            if (false && script == Default.ucd().SYRIAC_SCRIPT) {
+            boolean TESTING = false;
+            if (TESTING && script == UCD_Types.SYRIAC_SCRIPT) {
                 System.out.println(Default.ucd().getName(ch));
             }
 
             // get least primary for script
             if (scriptsLeastPrimary[script] == 0 || scriptsLeastPrimary[script] > primary) {
-                if (cat <= Default.ucd().OTHER_LETTER && cat != Default.ucd().Lm) {
+                if (cat <= UCD_Types.OTHER_LETTER && cat != UCD_Types.Lm) {
                     scriptsLeastPrimary[script] = primary;
                     scriptChar[script] = ch;
-                    if (false && script == Default.ucd().GREEK_SCRIPT) {
+                    if (TESTING && script == UCD_Types.GREEK_SCRIPT) {
                         System.out.println("*" + Utility.hex(primary) + Default.ucd().getName(ch));
                     }
                 }
@@ -2247,7 +2312,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
                 punctuationRange.add(categoryLeastPrimary[i]);
             } else if (maskContains(numbers, i)) {
                 digitRange.add(categoryLeastPrimary[i]);
-            } else if (i == CURRENCY_SYMBOL) {
+            } else if (i == UCD_Types.CURRENCY_SYMBOL) {
                 currencyRange.add(categoryLeastPrimary[i]);
             } else if (categoryLeastPrimary[i].hasItems()){
                 symbolRange.add(categoryLeastPrimary[i]);
@@ -2269,7 +2334,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         System.out.println("3-byte primaries" + threeByteChars.toPattern(false));
 
         // capture in order the ranges that are major vs minor
-        TreeMap<Integer,Row.R2<Boolean, Integer>> majorPrimary = new TreeMap();
+        TreeMap<Integer,Row.R2<Boolean, Integer>> majorPrimary = new TreeMap<Integer,Row.R2<Boolean, Integer>>();
 
         // set bumps
         for (int script = 0; script < scriptsLeastPrimary.length; ++script) {
@@ -2288,13 +2353,13 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         // now add ranges of primaries that are major, for selecting 2 byte vs 3 byte forms.
         int lastPrimary = 1;
         boolean lastMajor = true;
-        int lastScript = COMMON_SCRIPT;
+        int lastScript = UCD_Types.COMMON_SCRIPT;
         for (Entry<Integer, Row.R2<Boolean, Integer>> majorPrimaryEntry : majorPrimary.entrySet()) {
             int primary = majorPrimaryEntry.getKey();
             boolean major = majorPrimaryEntry.getValue().get0();
             int script = majorPrimaryEntry.getValue().get1();
             addMajorPrimaries(lastPrimary, primary-1, lastMajor, lastScript);
-            if (lastScript == HANGUL_SCRIPT) {
+            if (lastScript == UCD_Types.HANGUL_SCRIPT) {
                 for (int i = lastPrimary; i < primary; ++i) {
                     CharSequence ch2 = getCollator().getRepresentativePrimary(i);
                     if (!UCD.isModernJamo(Character.codePointAt(ch2, 0))) {
@@ -2359,17 +2424,18 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
     }
 
     static void hexBytes(long x, StringBuffer result) {
-        byte lastb = 1;
+        int oldLength = result.length();
+        //byte lastb = 1;
         for (int shift = 24; shift >= 0; shift -= 8) {
             byte b = (byte)(x >>> shift);
             if (b != 0) {
-                if (result.length() != 0) {
+                if (result.length() != oldLength) {
                     result.append(" ");
                 }
                 result.append(Utility.hex(b));
                 //if (lastb == 0) System.err.println(" bad zero byte: " + result);
             }
-            lastb = b;
+            //lastb = b;
         }
     }
 
@@ -2435,13 +2501,13 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         byte script = Default.ucd().getScript(ch);
         // HACK
         if (ch == 0x0F7E || ch == 0x0F7F) {
-            if (script != TIBETAN_SCRIPT) {
+            if (script != UCD_Types.TIBETAN_SCRIPT) {
                 throw new IllegalArgumentException("Illegal script values");
             }
             //script = TIBETAN_SCRIPT;
         }
-        if (script == HIRAGANA_SCRIPT) {
-            script = KATAKANA_SCRIPT;
+        if (script == UCD_Types.HIRAGANA_SCRIPT) {
+            script = UCD_Types.KATAKANA_SCRIPT;
         }
         return script;
     }
@@ -2450,16 +2516,16 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
         byte cat = Default.ucd().getCategory(ch);
         // HACK
         if (ch == 0x0F7E || ch == 0x0F7F) {
-            cat = Default.ucd().OTHER_LETTER;
+            cat = UCD_Types.OTHER_LETTER;
         }
         return cat;
     }
 
     static void setSingle(char ch, int[] ces) {
         getCollator().getCEs(String.valueOf(ch), true, ces);
-        FractionalUCA.singles.set(UCA.getPrimary(ces[0]));
+        FractionalUCA.singles.set(CEList.getPrimary(ces[0]));
         if (ch == 'a') {
-            FractionalUCA.Variables.gapForA = UCA.getPrimary(ces[0]);
+            FractionalUCA.Variables.gapForA = CEList.getPrimary(ces[0]);
         }
     }
 
@@ -2472,7 +2538,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
 
     static int fixCompatibilityCE(String s, boolean decompose, int[] output, boolean compress) {
         byte type = WriteCollationData.getDecompType(UTF16.charAt(s, 0));
-        char ch = s.charAt(0);
+        //char ch = s.charAt(0);
 
         String decomp = Default.nfkd().normalize(s);
         int len = 0;
@@ -2483,7 +2549,7 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
 
         //for (int j = 0; j < decomp.length(); ++j) {
         for (int k = 0; k < markLen; ++k) {
-            int t = UCA.getTertiary(WriteCollationData.markCes[k]);
+            int t = CEList.getTertiary(WriteCollationData.markCes[k]);
             t = CEList.remap(k, type, t);
             /*
                 if (type != CANONICAL) {
@@ -2510,8 +2576,8 @@ de-u-vt-ducet: Shifts the same set of characters as the DUCET default.
                 }
              */
             output[len++] = UCA.makeKey(
-                    UCA.getPrimary(WriteCollationData.markCes[k]),
-                    UCA.getSecondary(WriteCollationData.markCes[k]),
+                    CEList.getPrimary(WriteCollationData.markCes[k]),
+                    CEList.getSecondary(WriteCollationData.markCes[k]),
                     t);
             //}
         }
