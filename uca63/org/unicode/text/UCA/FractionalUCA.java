@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -44,13 +45,56 @@ public class FractionalUCA {
     public static int SPECIAL_LOWEST_DUCET = 1;
     public static int SPECIAL_HIGHEST_DUCET = 0x7FFF;
 
-
     static Map<Integer,String> reorderingTokenOverridesNonFractional = new TreeMap<Integer,String>();
 
-    static class HighByteToReorderingToken {
-        ReorderingTokens[] highByteToReorderingToken = new ReorderingTokens[256];
-        boolean mergedScripts = false;
-        Counter<String> compressCount = new Counter<String>();
+    /**
+     * FractionalUCA properties for a UCA primary weight.
+     *
+     * <p>TODO: There are many more arrays and bit sets that
+     * map from UCA primary weights to some single properties.
+     * Refactor them into this struct and map.
+     */
+    private static class UCAPrimaryProps {
+        private static final Map<Integer, UCAPrimaryProps> map = new HashMap<Integer, UCAPrimaryProps>();
+
+        /**
+         * true if this primary is at the start of a reordering group.
+         */
+        public boolean startsGroup;
+        /**
+         * The reorder code of the group or script for which this is the first primary.
+         * -1 if none.
+         */
+        public int reorderCodeIfFirst = -1;
+
+        UCAPrimaryProps() {}
+
+        /**
+         * Returns the properties struct for the UCA primary weight.
+         * Returns null if there is none yet.
+         */
+        public static UCAPrimaryProps get(int ucaPrimary) {
+            UCAPrimaryProps props = map.get(ucaPrimary);
+            return props != null ? props : null;
+        }
+
+        /**
+         * Returns the properties struct for the UCA primary weight.
+         * Creates and caches a new one if there is none yet.
+         */
+        public static UCAPrimaryProps getOrCreate(int ucaPrimary) {
+            UCAPrimaryProps props = map.get(ucaPrimary);
+            if (props == null) {
+                map.put(ucaPrimary, props = new UCAPrimaryProps());
+            }
+            return props;
+        }
+    }
+
+    private static class HighByteToReorderingToken {
+        private ReorderingTokens[] highByteToReorderingToken = new ReorderingTokens[256];
+        private boolean mergedScripts = false;
+        private Counter<String> compressCount = new Counter<String>();
 
         {
             for (int i = 0; i < highByteToReorderingToken.length; ++i) {
@@ -61,8 +105,6 @@ public class FractionalUCA {
             highByteToReorderingToken[1].reorderingToken.add("LEVEL-SEPARATOR",1);
             highByteToReorderingToken[2].reorderingToken.add("FIELD-SEPARATOR",1);
             highByteToReorderingToken[3].reorderingToken.add("SPACE",1);
-            //highByteToScripts[3].scripts.add("COMPRESSION",1);
-            //highByteToScripts[4].scripts.add("TAILORING_GAP",1);
             for (int i = FractionalUCA.Variables.IMPLICIT_BASE_BYTE; i <= FractionalUCA.Variables.IMPLICIT_MAX_BYTE; ++i) {
                 highByteToReorderingToken[i].reorderingToken.add("IMPLICIT",1);
             }
@@ -74,15 +116,12 @@ public class FractionalUCA {
             }
         }
 
-        void addScriptsIn(long primary, String value) {
-            for (int shift = 24; shift >= 0; shift -= 8) {
-                int b = 0xFF & (int)(primary >>> shift);
-                if (b != 0) {
-                    highByteToReorderingToken[b].addInfoFrom(primary, value);
-                    return;
-                }
-            }
+        void addScriptsIn(long fractionalPrimary, String value) {
             // don't add to 0
+            int leadByte = getLeadByte(fractionalPrimary);
+            if (leadByte != 0) {
+                highByteToReorderingToken[leadByte].addInfoFrom(fractionalPrimary, value);
+            }
         }
 
         public String getInfo(boolean doScripts) {
@@ -101,9 +140,9 @@ public class FractionalUCA {
         private void addScriptCats(Map<String, Counter<Integer>> map, int i, Counter<String> scripts) {
             for (String script : scripts) {
                 long count = scripts.get(script);
-                Counter<Integer> bitSet = map.get(script);
-                if (bitSet == null) map.put(script, bitSet = new Counter<Integer>());
-                bitSet.add(i, count);
+                Counter<Integer> scriptCounter = map.get(script);
+                if (scriptCounter == null) map.put(script, scriptCounter = new Counter<Integer>());
+                scriptCounter.add(i, count);
             }
         }
 
@@ -136,15 +175,25 @@ public class FractionalUCA {
             }
             StringBuilder result = new StringBuilder();
             for (int k = 0; k < highByteToReorderingToken.length; ++k) {
-                ReorderingTokens bitSet = highByteToReorderingToken[k];
+                ReorderingTokens tokens = highByteToReorderingToken[k];
                 result.append("[top_byte\t" + Utility.hex(k,2) + "\t");
-                bitSet.appendTo(result, false);
-                if (compressCount.get(highByteToReorderingToken[k].getRawReorderingTokens()) < 2) {
+                tokens.appendTo(result, false);
+                boolean isCompressible = compressCount.get(tokens.getRawReorderingTokens()) < 2;
+                if (isCompressible != compressibleBytes.get(k)) {
+                    throw new AssertionError(String.format(
+                            "primary lead byte %02X: " +
+                            "primary-weight-assignment compressibleBytes=%s != " +
+                            "%s=HighByteToReorderingToken.isCompressible",
+                            k,
+                            compressibleBytes.get(k),
+                            isCompressible));
+                }
+                if (isCompressible) {
                     result.append("\tCOMPRESS");
                 }
                 result.append(" ]");
                 result.append("\t#\t");
-                highByteToReorderingToken[k].appendTo(result, true);
+                tokens.appendTo(result, true);
                 result.append("\n");
             }
             return result.toString();
@@ -152,21 +201,21 @@ public class FractionalUCA {
 
         private void cleanup(Map<Integer,String> overrides, int firstScriptPrimary) {
             mergedScripts = true;
-            ReorderingTokens[] mergedScripts = new ReorderingTokens[256];
+            ReorderingTokens[] mergedTokens = new ReorderingTokens[256];
 
             for (int k = 0; k < highByteToReorderingToken.length; ++k) {
-                mergedScripts[k] = new ReorderingTokens(highByteToReorderingToken[k]);
+                mergedTokens[k] = new ReorderingTokens(highByteToReorderingToken[k]);
             }
             // Any bytes that share scripts need to be combined
             // brute force, because we don't care about speed
             boolean fixedOne = true;
             while(fixedOne) {
                 fixedOne = false;
-                for (int k = 1; k < mergedScripts.length; ++k) {
-                    if (mergedScripts[k-1].intersects(mergedScripts[k]) 
-                            && !mergedScripts[k-1].equals(mergedScripts[k])) {
-                        mergedScripts[k-1].or(mergedScripts[k]);
-                        mergedScripts[k] = mergedScripts[k-1];
+                for (int k = 1; k < mergedTokens.length; ++k) {
+                    if (mergedTokens[k-1].intersects(mergedTokens[k]) 
+                            && !mergedTokens[k-1].equals(mergedTokens[k])) {
+                        mergedTokens[k-1].or(mergedTokens[k]);
+                        mergedTokens[k] = mergedTokens[k-1];
                         fixedOne = true;
                     }
                 }
@@ -174,14 +223,14 @@ public class FractionalUCA {
             for (Entry<Integer, String> override : overrides.entrySet()) {
                 int value = override.getKey();
                 String tag = override.getValue();
-                mergedScripts[value].setScripts(tag);
+                mergedTokens[value].setScripts(tag);
             }
-            int firstScriptPrimaryHighByte = (firstScriptPrimary >>> 16);
+            int firstScriptPrimaryHighByte = getLeadByte(firstScriptPrimary);
             for (int k = 0; k < highByteToReorderingToken.length; ++k) {
-                if (mergedScripts[k].reorderingToken.isEmpty()) {
-                    mergedScripts[k].setScripts("Hani");
+                if (mergedTokens[k].reorderingToken.isEmpty()) {
+                    mergedTokens[k].setScripts("Hani");
                 }
-                highByteToReorderingToken[k] = mergedScripts[k];
+                highByteToReorderingToken[k] = mergedTokens[k];
                 if (k > firstScriptPrimaryHighByte) {
                     compressCount.add(highByteToReorderingToken[k].getRawReorderingTokens(), 1);
                 } else {
@@ -191,7 +240,11 @@ public class FractionalUCA {
         }
     }
 
-    static class FCE {
+    /**
+     * Finds the minimum or maximum fractional collation element
+     * among those added via {@link FCE#setValue(int, int, int, String)}.
+     */
+    private static class FCE {
         static final long UNDEFINED_MAX = Long.MAX_VALUE;
         static final long UNDEFINED_MIN = Long.MIN_VALUE;
         long[] key;
@@ -228,6 +281,10 @@ public class FractionalUCA {
             return key[0] == UNDEFINED_MIN || key[0] == UNDEFINED_MAX;
         }
 
+        /**
+         * Left-justifies the weight.
+         * If the weight is not zero, then the lead byte is moved to bits 31..24.
+         */
         long fixWeight(int weight) {
             long result = weight & FractionalUCA.Variables.INT_MASK;
             if (result == 0) {
@@ -284,10 +341,6 @@ public class FractionalUCA {
 
         long getValue(int zeroBasedLevel) {
             return key[zeroBasedLevel];
-        }
-
-        String getSource() {
-            return source;
         }
 
         public String toString() {
@@ -376,11 +429,17 @@ public class FractionalUCA {
         static final BitSet compressSet = new BitSet();
     }
 
-    static class FractionalWeight {
+    /**
+     * Computes valid FractionalUCA primary weights of desired byte lengths.
+     * Always starts with the first primary weight after 02.
+     * {@link PrimaryWeight#setToNext(int, boolean, boolean)} increments
+     * one 1/2/3-byte weight to another 1/2/3-byte weight.
+     */
+    static class PrimaryWeight {
         static final int REORDERING_BOUNDARY_CHARACTER_MIN = 0xFDD0;
         static final int REORDERING_BOUNDARY_CHARACTER_MAX = 0xFDEF;
 
-        static final int minByte1 = 2; // no gap before
+        static final int minByte1 = 2; // merge separator byte
 
         static final int minByte2 = 5; // 4 is ok, but we leave a gap of 1
         static final int minByte2plus = 10; // leave extra gap for bump.
@@ -798,6 +857,9 @@ public class FractionalUCA {
     }
 
     static void writeFractionalUCA(String filename) throws IOException {
+        // TODO: This function and most fields should not be static,
+        // so that use of this class for different data cannot cause values from
+        // one run to bleed into the next.
         FractionalUCA.HighByteToReorderingToken highByteToScripts = new FractionalUCA.HighByteToReorderingToken();
         Map<Integer, String> reorderingTokenOverrides = new TreeMap<Integer, String>();
 
@@ -831,16 +893,14 @@ public class FractionalUCA {
         //TO DO: find secondaries that don't overlap, and reassign
 
         System.out.println("Finding Bumps");        
-        //int[] representatives = new int[65536];
-        FractionalUCA.findBumps(null);
+        FractionalUCA.findBumps();
 
         System.out.println("Fixing Primaries");
-        UCA r1 = getCollator();
-        RoBitSet primarySet = r1.getStatistics().getPrimarySet();        
+        RoBitSet primarySet = getCollator().getStatistics().getPrimarySet();        
 
         FractionalUCA.primaryDelta = new int[65536];
 
-        FractionalWeight currentWeight = new FractionalWeight();
+        PrimaryWeight fractionalPrimary = new PrimaryWeight();
 
         // start at 1 so zero stays zero.
         for (int primary = primarySet.nextSetBit(1); primary >= 0; primary = primarySet.nextSetBit(primary+1)) {
@@ -850,27 +910,44 @@ public class FractionalUCA {
             // if we change lengths, then we have to change the initial segment
             // if 'bumps' are set, then we change the first byte
 
+            UCAPrimaryProps props = UCAPrimaryProps.get(primary);
+            if (props != null) {  // TODO: Assign a fractional primary for this group or script.
+                String groupComment =
+                        props.startsGroup ?
+                        " starts reordering group" : "";
+                System.out.println(String.format(
+                        "# %s first primary%s\n",
+                        ReorderCodes.getName(props.reorderCodeIfFirst),
+                        groupComment));
+            }
 
             int currentByteLength = getFractionalLengthForUCAPrimary(primary);
 
-            String old = currentWeight.toString();
-            currentWeight.setToNext(currentByteLength, FractionalUCA.bumps.get(primary), punctuationRange.getMinimum() == primary);
+            String old = fractionalPrimary.toString();
+            fractionalPrimary.setToNext(
+                    currentByteLength,
+                    FractionalUCA.newLeadByteForUCAPrimary.get(primary),
+                    primary == groupFirstPrimary[ReorderCodes.PUNCTUATION]);  // TODO: fix this HACK
+            if (props != null && props.startsGroup && groupIsCompressible[props.reorderCodeIfFirst]) {
+                // TODO: do this for the first-script primary once we assign that
+                compressibleBytes.set(fractionalPrimary.byte1);
+            }
 
-            String newWeight = currentWeight.toString();
+            String newWeight = fractionalPrimary.toString();
             if (DEBUG_FW) {
                 System.out.println(
                         currentByteLength
-                        + ", " + (FractionalUCA.bumps.get(primary) + "").toUpperCase().substring(0, 1)
+                        + ", " + (FractionalUCA.newLeadByteForUCAPrimary.get(primary) + "").toUpperCase().substring(0, 1)
                         + ", " + old
                         + " => " + newWeight
                         + "\t" + Utility.hex(Character.codePointAt(
                                 getCollator().getRepresentativePrimary(primary),0)));
             }
 
-            FractionalUCA.primaryDelta[primary] = currentWeight.getIntValue();
+            FractionalUCA.primaryDelta[primary] = fractionalPrimary.getIntValue();
         }
 
-        BitSet bumpedFirstBytes = currentWeight.getBumpedFirstBytes();
+        BitSet bumpedFirstBytes = fractionalPrimary.getBumpedFirstBytes();
 
 
         // now translate!!
@@ -1031,7 +1108,7 @@ public class FractionalUCA {
         for (Entry<Integer, String> entry : reorderingTokenOverridesNonFractional.entrySet()) {
             int primary = entry.getKey();
             String token = entry.getValue();
-            int highByte = (FractionalUCA.primaryDelta[primary] >>> 16); 
+            int highByte = getLeadByte(FractionalUCA.primaryDelta[primary]); 
             // Hack
             for (; lastHighByte < highByte; ++lastHighByte) { // 
                 reorderingTokenOverrides.put(lastHighByte, token);
@@ -1385,11 +1462,8 @@ public class FractionalUCA {
         fractionalLog.println();
 
         FakeString fakeString = new FakeString();
-        int currentSpecial = FractionalWeight.REORDERING_BOUNDARY_CHARACTER_MIN;
-        for (int i = bumpedFirstBytes.nextSetBit(0); i >= 0; i = bumpedFirstBytes.nextSetBit(i+1)) {
-            if (currentSpecial > FractionalWeight.REORDERING_BOUNDARY_CHARACTER_MAX) {
-                throw new IllegalArgumentException("Special too large: " + Utility.hex(currentSpecial));
-            }
+        fakeString.next();  // skip the boundary before spaces
+        for (int i = bumpedFirstBytes.nextSetBit(4); i >= 0; i = bumpedFirstBytes.nextSetBit(i+1)) {
             int previousByte = i-1;
             fractionalStatistics.printAndRecord(true, fakeString.next(), (previousByte << 16) | 0xFE00, 5, 5, "# Special final value for reordering token");
         }
@@ -2122,51 +2196,27 @@ public class FractionalUCA {
     //        return false;
     //    }
 
-    private static Range spaceRange = new Range();
-    private static Range punctuationRange = new Range();
-    private static Range symbolRange = new Range();
-    private static Range currencyRange = new Range();
-    private static Range digitRange = new Range();
-    private static int ducetFirstNonVariable, ducetLastVariable;
+    private static int ucaFirstNonVariable;
 
     /**
      * Analyzes the UCA primary weights.
      * <ul>
      * <li>Determines the lengths of the corresponding fractional weights.
-     * <li>Also, TBD
-     * <li>TBD
+     * <li>Sets a flag for the first UCA primary in each reordering group.
      * </ul>
      */
-    private static void findBumps(int[] representatives) {
-        int[] scriptsLeastPrimary = new int[UCD_Types.LIMIT_SCRIPT];
-        int[] scriptChar = new int[UCD_Types.LIMIT_SCRIPT];
-
-        Range[] categoryLeastPrimary = new Range[32];
-        {
-            for (int i = 0; i < categoryLeastPrimary.length; ++i) {
-                categoryLeastPrimary[i] = new Range();
-            }
-        }
+    private static void findBumps() {
+        int[] groupChar = new int[ReorderCodes.LIMIT];
 
         BitSet threeByteSymbolPrimaries = new BitSet();
         UnicodeSet threeByteChars = new UnicodeSet();
-        int nonCurrencySymbols = bitmask(UCD_Types.OTHER_SYMBOL, UCD_Types.MATH_SYMBOL, UCD_Types.MODIFIER_SYMBOL);
-        int spaces = bitmask(UCD_Types.SPACE_SEPARATOR, UCD_Types.LINE_SEPARATOR, UCD_Types.PARAGRAPH_SEPARATOR, UCD_Types.CONTROL);
-        int punctuation = bitmask(UCD_Types.DASH_PUNCTUATION, UCD_Types.START_PUNCTUATION, UCD_Types.END_PUNCTUATION, UCD_Types.CONNECTOR_PUNCTUATION,
-                UCD_Types.OTHER_PUNCTUATION, UCD_Types.INITIAL_PUNCTUATION, UCD_Types.FINAL_PUNCTUATION);
-        int numbers = bitmask(UCD_Types.DECIMAL_DIGIT_NUMBER, UCD_Types.LETTER_NUMBER, UCD_Types.OTHER_NUMBER);
-        ducetFirstNonVariable = getCollator().getStatistics().firstDucetNonVariable;
-        UCA r = getCollator();
+        ucaFirstNonVariable = getCollator().getStatistics().firstDucetNonVariable;
 
 
-        RoBitSet primarySet = r.getStatistics().getPrimarySet();
+        RoBitSet primarySet = getCollator().getStatistics().getPrimarySet();
         int firstScriptPrimary = getCollator().getStatistics().firstScript;
 
         for (int primary = primarySet.nextSetBit(0); primary >= 0; primary = primarySet.nextSetBit(primary+1)) {
-            if (primary < ducetFirstNonVariable) {
-                ducetLastVariable = primary;
-            }
-
             CharSequence ch2 = getCollator().getRepresentativePrimary(primary);
             int ch = Character.codePointAt(ch2,0);
             byte cat = FractionalUCA.getFixedCategory(ch);
@@ -2176,16 +2226,26 @@ public class FractionalUCA {
             // also collect data on primaries
 
             if (primary < firstScriptPrimary) {
+                int reorderCode = ReorderCodes.getSpecialReorderCode(ch);
                 if (primary > 0) {
-                    categoryLeastPrimary[cat].add(primary);                
+                    if (groupFirstPrimary[reorderCode] == 0 || primary < groupFirstPrimary[reorderCode]) {
+                        groupFirstPrimary[reorderCode] = primary;
+                        groupChar[script] = ch;
+                    }
                 }
-                if (ch < 0xFF || maskContains(spaces, cat)) {
+                if (ch < 0xFF || reorderCode == ReorderCodes.SPACE) {
                     // do nothing, assume Latin 1 is "frequent"
-                } else if (maskContains(nonCurrencySymbols, cat)) {
+                } else if (cat == UCD_Types.OTHER_SYMBOL ||
+                        cat == UCD_Types.MATH_SYMBOL ||
+                        cat == UCD_Types.MODIFIER_SYMBOL) {
+                    // Note: We do not test reorderCode == ReorderCodes.SYMBOL
+                    // because that includes Lm etc.
                     threeByteSymbolPrimaries.set(primary);
                     threeByteChars.addAll(ch2.toString());
                 } else {
-                    if (script != UCD_Types.COMMON_SCRIPT && script != UCD_Types.INHERITED_SCRIPT && !MAJOR_SCRIPTS.get(script)) {
+                    if (script != UCD_Types.COMMON_SCRIPT &&
+                            script != UCD_Types.INHERITED_SCRIPT &&
+                            !MAJOR_SCRIPTS.get(script)) {
                         threeByteSymbolPrimaries.set(primary);
                         threeByteChars.addAll(ch2.toString());
                     }
@@ -2202,10 +2262,10 @@ public class FractionalUCA {
             }
 
             // get least primary for script
-            if (scriptsLeastPrimary[script] == 0 || scriptsLeastPrimary[script] > primary) {
+            if (groupFirstPrimary[script] == 0 || groupFirstPrimary[script] > primary) {
                 if (cat <= UCD_Types.OTHER_LETTER && cat != UCD_Types.Lm) {
-                    scriptsLeastPrimary[script] = primary;
-                    scriptChar[script] = ch;
+                    groupFirstPrimary[script] = primary;
+                    groupChar[script] = ch;
                     if (TESTING && script == UCD_Types.GREEK_SCRIPT) {
                         System.out.println("*" + Utility.hex(primary) + Default.ucd().getName(ch));
                     }
@@ -2213,48 +2273,38 @@ public class FractionalUCA {
             }
         }
 
-        // set the categories
-        for (int i = 0; i < 32; ++i) {
-            if (maskContains(spaces, i)) {
-                spaceRange.add(categoryLeastPrimary[i]);
-            } else if (maskContains(punctuation, i)) {
-                punctuationRange.add(categoryLeastPrimary[i]);
-            } else if (maskContains(numbers, i)) {
-                digitRange.add(categoryLeastPrimary[i]);
-            } else if (i == UCD_Types.CURRENCY_SYMBOL) {
-                currencyRange.add(categoryLeastPrimary[i]);
-            } else if (categoryLeastPrimary[i].hasItems()){
-                symbolRange.add(categoryLeastPrimary[i]);
-            }
-        }
-
-        setLowToken(punctuationRange.getMinimum(), "SPACE");        
-        setLowToken(symbolRange.getMinimum(), "PUNCTUATION");
-        setLowToken(ducetLastVariable, "SYMBOL");
-        setLowToken(currencyRange.getMinimum(), "SYMBOL");
-        setLowToken(digitRange.getMinimum(), "CURRENCY");
-        setLowToken(firstScriptPrimary, "DIGIT");
-
-        System.out.println("Bump at leastPunctuation: " + punctuationRange);
-        System.out.println("Bump at leastNonCurrencySymbol: " + symbolRange);
-        System.out.println("Bump at leastCurrencySymbol: " + currencyRange);
-        System.out.println("Bump at leastNumber: " + digitRange);
-        System.out.println("Bump at ducet: " + Utility.hex(ducetFirstNonVariable));
+        System.out.println("Bump at ducet: " + Utility.hex(ucaFirstNonVariable));
         System.out.println("3-byte primaries" + threeByteChars.toPattern(false));
 
         // capture in order the ranges that are major vs minor
-        TreeMap<Integer, Row.R2<Boolean, Integer>> majorPrimary = new TreeMap<Integer, Row.R2<Boolean, Integer>>();
+        TreeMap<Integer, Row.R2<Boolean, Integer>> majorPrimary =
+                new TreeMap<Integer, Row.R2<Boolean, Integer>>();
 
         // set bumps
-        for (int script = 0; script < scriptsLeastPrimary.length; ++script) {
-            int primary = scriptsLeastPrimary[script];
+        for (int reorderCode = 0; reorderCode < ReorderCodes.LIMIT; ++reorderCode) {
+            int primary = groupFirstPrimary[reorderCode];
             if (primary > 0) {
-                boolean isMajor = MAJOR_SCRIPTS.get(script);
-                majorPrimary.put(primary, Row.of(isMajor,script));
+                boolean isMajor;
+                if (reorderCode < ReorderCodes.FIRST) {
+                    isMajor = MAJOR_SCRIPTS.get(reorderCode);
+                } else {
+                    isMajor = true;
+                    int nextGroupPrimary = reorderCode < ReorderCodes.DIGIT ?  // TODO: HACK
+                            groupFirstPrimary[reorderCode + 1] :
+                            groupFirstPrimary[UCD_Types.LATIN_SCRIPT];
+                    reorderingTokenOverridesNonFractional.put(
+                            nextGroupPrimary, ReorderCodes.getNameForSpecial(reorderCode));
+                }
+                majorPrimary.put(primary, Row.of(isMajor, reorderCode));
+                UCAPrimaryProps props = UCAPrimaryProps.getOrCreate(primary);
+                props.startsGroup = isMajor;
+                props.reorderCodeIfFirst = reorderCode;
                 if (isMajor) {
-                    FractionalUCA.bumps.set(primary);
-                    System.out.println("Bumps:\t" + Utility.hex(primary) + " " + UCD.getScriptID_fromIndex((byte) script)
-                            + " " + Utility.hex(scriptChar[script]) + " " + Default.ucd().getName(scriptChar[script]));
+                    FractionalUCA.newLeadByteForUCAPrimary.set(primary);
+                    System.out.println("Bumps:\t" + Utility.hex(primary) + " "
+                            + ReorderCodes.getName(reorderCode) + " "
+                            + Utility.hex(groupChar[reorderCode]) + " "
+                            + Default.ucd().getName(groupChar[reorderCode]));
                 }
             }
         }
@@ -2280,8 +2330,8 @@ public class FractionalUCA {
             lastMajor = major;
             lastScript = script;
         }
-        int lastUCAPrimary = primarySet.size() - 1;
-        addMajorPrimaries(lastPrimary, lastUCAPrimary, lastMajor, lastScript);
+        int veryLastUCAPrimary = primarySet.size() - 1;
+        addMajorPrimaries(lastPrimary, veryLastUCAPrimary, lastMajor, lastScript);
         twoBytePrimaryForUCAPrimary.andNot(threeByteSymbolPrimaries);
 
         char[][] singlePairs = {{'a','z'}, {' '}, {'0', '9'}, {'.'},  {','},}; // , {'\u3041', '\u30F3'}
@@ -2292,23 +2342,6 @@ public class FractionalUCA {
                 FractionalUCA.setSingleBytePrimaryFor(k);
             }
         }
-    }
-
-    private static void setLowToken(int nextHigher, String token) {
-        reorderingTokenOverridesNonFractional.put(nextHigher, token);
-        FractionalUCA.bumps.set(nextHigher);
-    }
-
-    private static boolean maskContains(int threeByteCats, int cat) {
-        return (threeByteCats & (1 << cat)) != 0;
-    }
-
-    private static int bitmask(int... decimalDigitNumber) {
-        int result = 0;
-        for (int i : decimalDigitNumber) {
-            result |= (1 << i);
-        }
-        return result;
     }
 
     private static boolean isThreeByteMajorScript(int script) {
@@ -2350,6 +2383,17 @@ public class FractionalUCA {
         }
         System.out.println("Major:\t" + isMajor + "\t" + UCD.getScriptID_fromIndex((byte)script)
                 + "\t" + hexBytes(startPrimary) + ".." + hexBytes(endPrimary));
+    }
+
+    private static int getLeadByte(long weight) {
+        int w = (int)weight;
+        for (int shift = 24; shift >= 0; shift -= 8) {
+            int b = w >>> shift;
+            if (b != 0) {
+                return b;
+            }
+        }
+        return 0;
     }
 
     private static void hexBytes(long x, StringBuffer result) {
@@ -2434,6 +2478,112 @@ public class FractionalUCA {
         return cat;
     }
 
+
+    /**
+     * Helper class for reorder codes:
+     * Script code (0..FF) or reordering group code
+     * ({@link ReorderCodes#FIRST}..{@link ReorderCodes#LIMIT}).
+     */
+    private static class ReorderCodes {
+        private static final int FIRST = 0x100;
+        private static final int SPACE = 0x100;
+        private static final int PUNCTUATION = 0x101;
+        private static final int SYMBOL = 0x102;
+        private static final int CURRENCY = 0x103;
+        private static final int DIGIT = 0x104;
+        private static final int LIMIT = 0x105;
+
+        private static final String[] SPECIAL_NAMES = {
+            "SPACE", "PUNCTUATION", "SYMBOL", "CURRENCY", "DIGIT"
+        };
+
+        private static final int getSpecialReorderCode(int ch) {
+            byte cat = FractionalUCA.getFixedCategory(ch);
+            switch (cat) {
+            case UCD_Types.SPACE_SEPARATOR:
+            case UCD_Types.LINE_SEPARATOR:
+            case UCD_Types.PARAGRAPH_SEPARATOR:
+            case UCD_Types.CONTROL:
+                return SPACE;
+            case UCD_Types.DASH_PUNCTUATION:
+            case UCD_Types.START_PUNCTUATION:
+            case UCD_Types.END_PUNCTUATION:
+            case UCD_Types.CONNECTOR_PUNCTUATION:
+            case UCD_Types.OTHER_PUNCTUATION:
+            case UCD_Types.INITIAL_PUNCTUATION:
+            case UCD_Types.FINAL_PUNCTUATION:
+                return PUNCTUATION;
+            case UCD_Types.OTHER_SYMBOL:
+            case UCD_Types.MATH_SYMBOL:
+            case UCD_Types.MODIFIER_SYMBOL:
+                return SYMBOL;
+            case UCD_Types.CURRENCY_SYMBOL:
+                return CURRENCY;
+            case UCD_Types.DECIMAL_DIGIT_NUMBER:
+            case UCD_Types.LETTER_NUMBER:
+            case UCD_Types.OTHER_NUMBER:
+                return DIGIT;
+            default:
+                // Lm etc.
+                return SYMBOL;
+            }
+        }
+
+        private static final String getNameForSpecial(int reorderCode) {
+            return SPECIAL_NAMES[reorderCode - FIRST];
+        }
+
+        private static final String getName(int reorderCode) {
+            if (reorderCode < FIRST) {
+                return UCD.getScriptID_fromIndex((byte) reorderCode);
+            } else {
+                return SPECIAL_NAMES[reorderCode - FIRST];
+            }
+        }
+    }
+
+    /**
+     * First UCA primary weight per reordering group.
+     */
+    private static final int[] groupFirstPrimary = new int[ReorderCodes.LIMIT];
+    /**
+     * Reordering groups with sort-key-compressible fractional primary weights.
+     * Only the first script in the group needs to be marked.
+     * These are a subset of the {@link #MAJOR_SCRIPTS}.
+     *
+     * <p>Whether a group is compressible should be determined by whether all of its primaries
+     * fit into one lead byte, but we need to know this before assigning
+     * fractional primary weights so that we can assign them optimally.
+     */
+    private static final boolean[] groupIsCompressible = new boolean[ReorderCodes.LIMIT];
+
+    static {
+        groupIsCompressible[UCD_Types.GREEK_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.GEORGIAN_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.ARMENIAN_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.HEBREW_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.THAANA_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.ETHIOPIC_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.DEVANAGARI_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.BENGALI_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.GURMUKHI_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.GUJARATI_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.ORIYA_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.TAMIL_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.TELUGU_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.KANNADA_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.MALAYALAM_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.SINHALA_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.THAI_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.LAO_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.TIBETAN_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.MYANMAR_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.KHMER_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.HANGUL_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.KATAKANA_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.BOPOMOFO_SCRIPT] = true;
+    }
+
     private static void setSingleBytePrimaryFor(char ch) {
         CEList ces = getCollator().getCEList(String.valueOf(ch), true);
         int firstPrimary = CEList.getPrimary(ces.at(0));
@@ -2445,7 +2595,12 @@ public class FractionalUCA {
 
     private static BitSet singleBytePrimaryForUCAPrimary = new BitSet();
     private static BitSet twoBytePrimaryForUCAPrimary = new BitSet();
-    private static BitSet bumps = new BitSet();
+    private static BitSet newLeadByteForUCAPrimary = new BitSet();
+    /**
+     * One flag per fractional primary lead byte for whether
+     * the fractional weights that start with that byte are sort-key-compressible.
+     */
+    private static BitSet compressibleBytes = new BitSet(256);
 
     private static boolean isEven(int x) {
         return (x & 1) == 0;
