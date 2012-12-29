@@ -50,7 +50,7 @@ public class FractionalUCA {
     /**
      * FractionalUCA properties for a UCA primary weight.
      *
-     * <p>TODO: There are many more arrays and bit sets that
+     * <p>TODO: There are probably more arrays and bit sets that
      * map from UCA primary weights to some single properties.
      * Refactor them into this struct and map.
      */
@@ -66,6 +66,11 @@ public class FractionalUCA {
          * -1 if none.
          */
         public int reorderCodeIfFirst = -1;
+
+        public boolean useSingleBytePrimary;
+        public boolean useTwoBytePrimary;
+
+        public int fractionalPrimary;
 
         UCAPrimaryProps() {}
 
@@ -88,6 +93,19 @@ public class FractionalUCA {
                 map.put(ucaPrimary, props = new UCAPrimaryProps());
             }
             return props;
+        }
+
+        /**
+         * Returns the planned number of fractional primary weight bytes.
+         */
+        private int getFractionalLength() {
+            if (useSingleBytePrimary) {
+                return 1;
+            }
+            if (useTwoBytePrimary) {
+                return 2;
+            }
+            return 3;
         }
     }
 
@@ -898,8 +916,6 @@ public class FractionalUCA {
         System.out.println("Fixing Primaries");
         RoBitSet primarySet = getCollator().getStatistics().getPrimarySet();        
 
-        FractionalUCA.primaryDelta = new int[65536];
-
         PrimaryWeight fractionalPrimary = new PrimaryWeight();
 
         // start at 1 so zero stays zero.
@@ -910,8 +926,14 @@ public class FractionalUCA {
             // if we change lengths, then we have to change the initial segment
             // if 'bumps' are set, then we change the first byte
 
+            boolean startsGroup = false;
+            int currentByteLength = 3;
+
             UCAPrimaryProps props = UCAPrimaryProps.get(primary);
             if (props != null) {  // TODO: Assign a fractional primary for this group or script.
+                startsGroup = props.startsGroup;
+                currentByteLength = props.getFractionalLength();
+
                 String groupComment =
                         props.startsGroup ?
                         " starts reordering group" : "";
@@ -921,12 +943,10 @@ public class FractionalUCA {
                         groupComment));
             }
 
-            int currentByteLength = getFractionalLengthForUCAPrimary(primary);
-
             String old = fractionalPrimary.toString();
             fractionalPrimary.setToNext(
                     currentByteLength,
-                    FractionalUCA.newLeadByteForUCAPrimary.get(primary),
+                    startsGroup,
                     primary == groupFirstPrimary[ReorderCodes.PUNCTUATION]);  // TODO: fix this HACK
             if (props != null && props.startsGroup && groupIsCompressible[props.reorderCodeIfFirst]) {
                 // TODO: do this for the first-script primary once we assign that
@@ -937,14 +957,14 @@ public class FractionalUCA {
             if (DEBUG_FW) {
                 System.out.println(
                         currentByteLength
-                        + ", " + (FractionalUCA.newLeadByteForUCAPrimary.get(primary) + "").toUpperCase().substring(0, 1)
+                        + ", " + (startsGroup ? "T" : "F")
                         + ", " + old
                         + " => " + newWeight
                         + "\t" + Utility.hex(Character.codePointAt(
                                 getCollator().getRepresentativePrimary(primary),0)));
             }
 
-            FractionalUCA.primaryDelta[primary] = fractionalPrimary.getIntValue();
+            UCAPrimaryProps.getOrCreate(primary).fractionalPrimary = fractionalPrimary.getIntValue();
         }
 
         BitSet bumpedFirstBytes = fractionalPrimary.getBumpedFirstBytes();
@@ -1108,7 +1128,7 @@ public class FractionalUCA {
         for (Entry<Integer, String> entry : reorderingTokenOverridesNonFractional.entrySet()) {
             int primary = entry.getKey();
             String token = entry.getValue();
-            int highByte = getLeadByte(FractionalUCA.primaryDelta[primary]); 
+            int highByte = getLeadByte(UCAPrimaryProps.get(primary).fractionalPrimary); 
             // Hack
             for (; lastHighByte < highByte; ++lastHighByte) { // 
                 reorderingTokenOverrides.put(lastHighByte, token);
@@ -1588,7 +1608,7 @@ public class FractionalUCA {
         //reorderingTokenOverrides.put(5, "SPACE");
 
         int firstScriptPrimary = getCollator().getStatistics().firstScript;
-        int fractionalFirstScriptPrimary = FractionalUCA.primaryDelta[firstScriptPrimary];
+        int fractionalFirstScriptPrimary = UCAPrimaryProps.get(firstScriptPrimary).fractionalPrimary;
         highByteToScripts.cleanup(reorderingTokenOverrides, fractionalFirstScriptPrimary);
 
         fractionalLog.println("# Top Byte => Reordering Tokens");
@@ -1939,8 +1959,6 @@ public class FractionalUCA {
         System.out.println("END Checking Secondary/Tertiary Fixes");
     }
 
-    static int[] primaryDelta;
-
     /* We do not compute fractional implicit weights any more.
     static void showImplicit(String title, int cp) {
         if (DEBUG) {
@@ -1971,7 +1989,8 @@ public class FractionalUCA {
     */
 
     static int fixPrimary(int x) {
-        return primaryDelta[x];
+        UCAPrimaryProps props = UCAPrimaryProps.get(x);
+        return props != null ? props.fractionalPrimary : 0;
     }
 
     static int fixSecondary(int x) {
@@ -2300,7 +2319,6 @@ public class FractionalUCA {
                 props.startsGroup = isMajor;
                 props.reorderCodeIfFirst = reorderCode;
                 if (isMajor) {
-                    FractionalUCA.newLeadByteForUCAPrimary.set(primary);
                     System.out.println("Bumps:\t" + Utility.hex(primary) + " "
                             + ReorderCodes.getName(reorderCode) + " "
                             + Utility.hex(groupChar[reorderCode]) + " "
@@ -2322,7 +2340,7 @@ public class FractionalUCA {
                 for (int i = lastPrimary; i < primary; ++i) {
                     CharSequence ch2 = getCollator().getRepresentativePrimary(i);
                     if (!UCD.isModernJamo(Character.codePointAt(ch2, 0))) {
-                        twoBytePrimaryForUCAPrimary.clear(i);
+                        UCAPrimaryProps.get(i).useTwoBytePrimary = false;
                     }
                 }
             }
@@ -2332,7 +2350,14 @@ public class FractionalUCA {
         }
         int veryLastUCAPrimary = primarySet.size() - 1;
         addMajorPrimaries(lastPrimary, veryLastUCAPrimary, lastMajor, lastScript);
-        twoBytePrimaryForUCAPrimary.andNot(threeByteSymbolPrimaries);
+        for (int i = threeByteSymbolPrimaries.nextSetBit(0);
+                i >= 0;
+                i = threeByteSymbolPrimaries.nextSetBit(i + 1)) {
+            UCAPrimaryProps props = UCAPrimaryProps.get(i);
+            if (props != null) {
+                props.useTwoBytePrimary = false;
+            }
+        }
 
         char[][] singlePairs = {{'a','z'}, {' '}, {'0', '9'}, {'.'},  {','},}; // , {'\u3041', '\u30F3'}
         for (int j = 0; j < singlePairs.length; ++j) {
@@ -2379,7 +2404,9 @@ public class FractionalUCA {
 
     private static void addMajorPrimaries(int startPrimary, int endPrimary, boolean isMajor, int script) {
         if (isMajor ? !isThreeByteMajorScript(script) : isTwoByteMinorScript(script)) {
-            twoBytePrimaryForUCAPrimary.set(startPrimary, endPrimary + 1);
+            for (int p = startPrimary; p <= endPrimary; ++p) {
+                UCAPrimaryProps.getOrCreate(p).useTwoBytePrimary = true;
+            }
         }
         System.out.println("Major:\t" + isMajor + "\t" + UCD.getScriptID_fromIndex((byte)script)
                 + "\t" + hexBytes(startPrimary) + ".." + hexBytes(endPrimary));
@@ -2587,15 +2614,12 @@ public class FractionalUCA {
     private static void setSingleBytePrimaryFor(char ch) {
         CEList ces = getCollator().getCEList(String.valueOf(ch), true);
         int firstPrimary = CEList.getPrimary(ces.at(0));
-        FractionalUCA.singleBytePrimaryForUCAPrimary.set(firstPrimary);
+        UCAPrimaryProps.getOrCreate(firstPrimary).useSingleBytePrimary = true;
         if (ch == 'a') {
-            FractionalUCA.Variables.gapForA = firstPrimary;
+            FractionalUCA.Variables.gapForA = firstPrimary;  // TODO: HACK
         }
     }
 
-    private static BitSet singleBytePrimaryForUCAPrimary = new BitSet();
-    private static BitSet twoBytePrimaryForUCAPrimary = new BitSet();
-    private static BitSet newLeadByteForUCAPrimary = new BitSet();
     /**
      * One flag per fractional primary lead byte for whether
      * the fractional weights that start with that byte are sort-key-compressible.
@@ -2652,15 +2676,5 @@ public class FractionalUCA {
             //}
         }
         return len;
-    }
-
-    private static int getFractionalLengthForUCAPrimary(int ucaPrimary) {
-        if (singleBytePrimaryForUCAPrimary.get(ucaPrimary)) {
-            return 1;
-        }
-        if (twoBytePrimaryForUCAPrimary.get(ucaPrimary)) {
-            return 2;
-        }
-        return 3;
     }
 }
