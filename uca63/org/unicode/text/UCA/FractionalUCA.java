@@ -981,6 +981,8 @@ public class FractionalUCA {
         // TODO: This function and most class fields should not be static,
         // so that use of this class for different data cannot cause values from
         // one run to bleed into the next.
+        UCAPrimaryProps.map.clear();
+
         FractionalUCA.HighByteToReorderingToken highByteToScripts = new FractionalUCA.HighByteToReorderingToken();
         Map<Integer, String> reorderingTokenOverrides = new TreeMap<Integer, String>();
 
@@ -1010,248 +1012,10 @@ public class FractionalUCA {
 
         //TO DO: find secondaries that don't overlap, and reassign
 
-        System.out.println("Finding Bumps");        
-        FractionalUCA.findBumps();
-
-        System.out.println("Fixing Primaries");
-        RoBitSet primarySet = getCollator().getStatistics().getPrimarySet();        
-
-        PrimaryWeight fractionalPrimary = new PrimaryWeight();
-
-        // Pre-populate an empty UCAPrimaryProps for primary 0.
-        // Avoids testing for null later.
-        UCAPrimaryProps.getOrCreate(0);
-
-        // start at 1 so zero stays zero.
-        for (int primary = primarySet.nextSetBit(1); primary >= 0; primary = primarySet.nextSetBit(primary+1)) {
-
-            // we know that we need a primary weight for this item.
-            // we base it on the last value, and whether we have a 1, 2, or 3-byte weight
-            // if we change lengths, then we have to change the initial segment
-            // if 'bumps' are set, then we change the first byte
-
-            String old = fractionalPrimary.toString();
-
-            UCAPrimaryProps props = UCAPrimaryProps.getOrCreate(primary);
-            int currentByteLength = props.getFractionalLength();
-            boolean scriptChange = false;
-
-            int reorderCode = props.reorderCodeIfFirst;
-            if (reorderCode >= 0) {
-                int firstFractional;
-                if (props.startsGroup) {
-                    boolean compress = groupIsCompressible[reorderCode];
-                    firstFractional = fractionalPrimary.startNewGroup(3, compress);
-                    String groupComment = " starts reordering group";
-                    if (compress) {
-                        compressibleBytes.set(getLeadByte(firstFractional));
-                        groupComment = groupComment + " (compressible)";
-                    }
-                    System.out.println(String.format(
-                            "[%s]  # %s first primary%s",
-                            hexBytes(firstFractional),
-                            ReorderCodes.getName(reorderCode),
-                            groupComment));
-
-                    if (reorderCode == ReorderCodes.DIGIT) {
-                        numericFractionalPrimary = fractionalPrimary.next(1, true);
-                    }
-                } else {
-                    // New script in current reordering group.
-                    firstFractional = fractionalPrimary.next(3, true);
-                    System.out.println(String.format(
-                            "[%s]  # %s first primary",
-                            hexBytes(firstFractional),
-                            ReorderCodes.getName(reorderCode)));
-                }
-                props.scriptFirstPrimary = firstFractional;
-                firstFractionalPrimary[reorderCode] = firstFractional;
-                scriptChange = true;
-            }
-
-            props.fractionalPrimary = fractionalPrimary.next(currentByteLength, scriptChange);
-
-            String newWeight = fractionalPrimary.toString();
-            if (DEBUG_FW) {
-                System.out.println(
-                        currentByteLength
-                        + ", " + old
-                        + " => " + newWeight
-                        + "\t" + Utility.hex(Character.codePointAt(
-                                getCollator().getRepresentativePrimary(primary),0)));
-            }
-        }
-
-        {
-            // Create an entry for the first primary in the Hani script.
-            UCAPrimaryProps props = UCAPrimaryProps.getOrCreate(UCA_Types.UNSUPPORTED_BASE);
-            props.startsGroup = true;
-            props.reorderCodeIfFirst = UCD_Types.HAN_SCRIPT;
-            props.scriptFirstPrimary = fractionalPrimary.startNewGroup(3, false);
-            System.out.println(String.format(
-                    "[%s]  # %s first primary%s",
-                    hexBytes(props.scriptFirstPrimary),
-                    ReorderCodes.getName(UCD_Types.HAN_SCRIPT),
-                    " starts reordering group"));
-
-            // Map special UCA primary weights.
-            UCAPrimaryProps.getOrCreate(0xfffd).fractionalPrimary = 0xeffd;
-            UCAPrimaryProps.getOrCreate(0xfffe).fractionalPrimary = 0xeffe;
-            UCAPrimaryProps.getOrCreate(0xffff).fractionalPrimary = 0xefff;
-        }
+        fixPrimaries();
 
         // now translate!!
-        String highCompat = UTF16.valueOf(0x2F805);
-
-        System.out.println("Sorting");
-        /**
-         * ordered is a sorted map from UCA-type sort key string to its character string.
-         * The sort key has U+0000 plus the character string appended.
-         * This serves as a simple tie-breaker, although it is different from UCA's identical level.
-         */
-        Map<String, String> ordered = new TreeMap<String, String>();
-        Set<String> contentsForCanonicalIteration = new TreeSet<String>();
-        UCA.UCAContents ucac = getCollator().getContents(null);
-        int ccounter = 0;
-        while (true) {
-            Utility.dot(ccounter++);
-            String s = ucac.next();
-            if (s == null) {
-                break;
-            }
-            if (s.equals("\uFFFF") || s.equals("\uFFFE")) {
-                continue; // Suppress the FFFF and FFFE, since we are adding them artificially later.
-            }
-            if (s.equals("\uFA36") || s.equals("\uF900") || s.equals("\u2ADC") || s.equals(highCompat)) {
-                System.out.println(" * " + Default.ucd().getCodeAndName(s));
-            }
-            contentsForCanonicalIteration.add(s);
-            ordered.put(getCollator().getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
-        }
-
-        // Add canonically equivalent characters!!
-        System.out.println("Start Adding canonical Equivalents2");
-        int canCount = 0;
-
-        System.out.println("Add missing decomposibles and non-characters");
-        for (int i = 0; i <= 0x10FFFF; ++i) {
-            if (Default.ucd().isNoncharacter(i)) {
-                continue;
-            }
-            //            int bottomBits = i & 0xFFFF;
-            //            if (bottomBits == 0xFFFE || bottomBits == 0xFFFF) {
-            //                continue;
-            //            }
-            //
-            if (!Default.ucd().isAllocated(i)) {
-                continue;
-            }
-            if (Default.nfd().isNormalized(i)) {
-                continue;
-            }
-            if (UCD.isHangulSyllable(i)) {
-                continue;
-            }
-            String s = UTF16.valueOf(i);
-            if (!contentsForCanonicalIteration.contains(s)) {
-                contentsForCanonicalIteration.add(s);
-                //            String sortKey = i == 0xFFFE ? String.valueOf(SPECIAL_LOWEST_DUCET) 
-                //                    : i == 0xFFFF ? String.valueOf(SPECIAL_HIGHEST_DUCET) : 
-                String sortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE);
-                ordered.put(sortKey + '\u0000' + s, s);
-                if (DEBUG) System.out.println(" + " + Default.ucd().getCodeAndName(s));
-                canCount++;
-            }
-        }
-
-        Set<String> additionalSet = new HashSet<String>();
-        System.out.println("Loading canonical iterator");
-        if (WriteCollationData.canIt == null) {
-            WriteCollationData.canIt = new CanonicalIterator(".");
-        }
-        Iterator<String> it2 = contentsForCanonicalIteration.iterator();
-        System.out.println("Adding any FCD equivalents that have different sort keys");
-        while (it2.hasNext()) {
-            String key = (String)it2.next();
-            if (key == null) {
-                System.out.println("Null Key");
-                continue;
-            }
-            WriteCollationData.canIt.setSource(key);
-
-            boolean first = true;
-            while (true) {
-                String s = WriteCollationData.canIt.next();
-                if (s == null) {
-                    break;
-                }
-                if (s.equals(key)) {
-                    continue;
-                }
-                if (contentsForCanonicalIteration.contains(s)) {
-                    continue;
-                }
-                if (additionalSet.contains(s)) {
-                    continue;
-                }
-
-
-                // Skip anything that is not FCD.
-                if (!Default.nfd().isFCD(s)) {
-                    continue;
-                }
-
-                // We ONLY add if the sort key would be different
-                // Than what we would get if we didn't decompose!!
-                String sortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE);
-                String nonDecompSortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE, false, AppendToCe.none);
-                if (sortKey.equals(nonDecompSortKey)) {
-                    continue;
-                }
-
-                if (first) {
-                    System.out.println(" " + Default.ucd().getCodeAndName(key));
-                    first = false;
-                }
-                System.out.println(" => " + Default.ucd().getCodeAndName(s));
-                System.out.println("    old: " + UCA.toString(nonDecompSortKey));
-                System.out.println("    new: " + UCA.toString(sortKey));
-                canCount++;
-                additionalSet.add(s);
-                ordered.put(sortKey + '\u0000' + s, s);
-            }
-        }
-        System.out.println("Done Adding canonical Equivalents -- added " + canCount);
-        /*
-
-            for (int ch = 0; ch < 0x10FFFF; ++ch) {
-                Utility.dot(ch);
-                byte type = collator.getCEType(ch);
-                if (type >= UCA.FIXED_CE && !nfd.hasDecomposition(ch))
-                    continue;
-                }
-                String s = org.unicode.text.UTF16.valueOf(ch);
-                ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
-            }
-
-            Hashtable multiTable = collator.getContracting();
-            Enumeration enum = multiTable.keys();
-            int ecount = 0;
-            while (enum.hasMoreElements()) {
-                Utility.dot(ecount++);
-                String s = (String)enum.nextElement();
-                ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
-            }
-         */
-        // JUST FOR TESTING
-        final boolean TESTING = false;
-        if (TESTING) {
-            String sample = "\u3400\u3401\u4DB4\u4DB5\u4E00\u4E01\u9FA4\u9FA5\uAC00\uAC01\uD7A2\uD7A3";
-            for (int i = 0; i < sample.length(); ++i) {
-                String s = sample.substring(i, i+1);
-                ordered.put(getCollator().getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
-            }
-        }
+        Map<String, String> ordered = getSortedReverseUCAMappings();
 
         // add special reordering tokens
         for (int reorderCode = ReorderCodes.FIRST; reorderCode < ReorderCodes.LIMIT; ++reorderCode) {
@@ -1313,35 +1077,7 @@ public class FractionalUCA {
         fractionalLog.println();
         fractionalLog.println("[UCA version = " + getCollator().getDataVersion() + "]");
 
-        // Print the Unified_Ideograph ranges in collation order.
-        // As a result, a parser need not have this data available for the current Unicode version.
-        UnicodeSet hanSet =
-                ToolUnicodePropertySource.make(getCollator().getUCDVersion()).
-                getProperty("Unified_Ideograph").getSet("True");
-        UnicodeSet coreHanSet = (UnicodeSet) hanSet.clone();
-        coreHanSet.retain(0x4e00, 0xffff);  // BlockCJK_Unified_Ideograph or CJK_Compatibility_Ideographs
-        StringBuilder hanSB = new StringBuilder("[Unified_Ideograph");
-        UnicodeSetIterator hanIter = new UnicodeSetIterator(coreHanSet);
-        while (hanIter.nextRange()) {
-            int start = hanIter.codepoint;
-            int end = hanIter.codepointEnd;
-            hanSB.append(' ').append(Utility.hex(start));
-            if (start < end) {
-                hanSB.append("..").append(Utility.hex(end));
-            }
-        }
-        hanSet.remove(0x4e00, 0xffff);
-        hanIter.reset(hanSet);
-        while (hanIter.nextRange()) {
-            int start = hanIter.codepoint;
-            int end = hanIter.codepointEnd;
-            hanSB.append(' ').append(Utility.hex(start));
-            if (start < end) {
-                hanSB.append("..").append(Utility.hex(end));
-            }
-        }
-        hanSB.append("]");
-        fractionalLog.println(hanSB);
+        printUnifiedIdeographRanges(fractionalLog);
 
         String lastChr = "";
         int lastNp = 0;
@@ -2566,6 +2302,289 @@ public class FractionalUCA {
         }
         System.out.println("Major:\t" + isMajor + "\t" + UCD.getScriptID_fromIndex((byte)script)
                 + "\t" + Utility.hex(startPrimary) + ".." + Utility.hex(endPrimary));
+    }
+
+    private static void fixPrimaries() {
+        System.out.println("Finding Bumps");        
+        FractionalUCA.findBumps();
+
+        System.out.println("Fixing Primaries");
+        RoBitSet primarySet = getCollator().getStatistics().getPrimarySet();        
+
+        PrimaryWeight fractionalPrimary = new PrimaryWeight();
+
+        // Pre-populate an empty UCAPrimaryProps for primary 0.
+        // Avoids testing for null later.
+        UCAPrimaryProps.getOrCreate(0);
+
+        // start at 1 so zero stays zero.
+        for (int primary = primarySet.nextSetBit(1); primary >= 0; primary = primarySet.nextSetBit(primary+1)) {
+
+            // we know that we need a primary weight for this item.
+            // we base it on the last value, and whether we have a 1, 2, or 3-byte weight
+            // if we change lengths, then we have to change the initial segment
+            // if 'bumps' are set, then we change the first byte
+
+            String old = fractionalPrimary.toString();
+
+            UCAPrimaryProps props = UCAPrimaryProps.getOrCreate(primary);
+            int currentByteLength = props.getFractionalLength();
+            boolean scriptChange = false;
+
+            int reorderCode = props.reorderCodeIfFirst;
+            if (reorderCode >= 0) {
+                int firstFractional;
+                if (props.startsGroup) {
+                    boolean compress = groupIsCompressible[reorderCode];
+                    firstFractional = fractionalPrimary.startNewGroup(3, compress);
+                    String groupComment = " starts reordering group";
+                    if (compress) {
+                        compressibleBytes.set(getLeadByte(firstFractional));
+                        groupComment = groupComment + " (compressible)";
+                    }
+                    System.out.println(String.format(
+                            "[%s]  # %s first primary%s",
+                            hexBytes(firstFractional),
+                            ReorderCodes.getName(reorderCode),
+                            groupComment));
+
+                    if (reorderCode == ReorderCodes.DIGIT) {
+                        numericFractionalPrimary = fractionalPrimary.next(1, true);
+                    }
+                } else {
+                    // New script in current reordering group.
+                    firstFractional = fractionalPrimary.next(3, true);
+                    System.out.println(String.format(
+                            "[%s]  # %s first primary",
+                            hexBytes(firstFractional),
+                            ReorderCodes.getName(reorderCode)));
+                }
+                props.scriptFirstPrimary = firstFractional;
+                firstFractionalPrimary[reorderCode] = firstFractional;
+                scriptChange = true;
+            }
+
+            props.fractionalPrimary = fractionalPrimary.next(currentByteLength, scriptChange);
+
+            String newWeight = fractionalPrimary.toString();
+            if (DEBUG_FW) {
+                System.out.println(
+                        currentByteLength
+                        + ", " + old
+                        + " => " + newWeight
+                        + "\t" + Utility.hex(Character.codePointAt(
+                                getCollator().getRepresentativePrimary(primary),0)));
+            }
+        }
+
+        // Create an entry for the first primary in the Hani script.
+        UCAPrimaryProps props = UCAPrimaryProps.getOrCreate(UCA_Types.UNSUPPORTED_BASE);
+        props.startsGroup = true;
+        props.reorderCodeIfFirst = UCD_Types.HAN_SCRIPT;
+        props.scriptFirstPrimary = fractionalPrimary.startNewGroup(3, false);
+        System.out.println(String.format(
+                "[%s]  # %s first primary%s",
+                hexBytes(props.scriptFirstPrimary),
+                ReorderCodes.getName(UCD_Types.HAN_SCRIPT),
+                " starts reordering group"));
+
+        // Map special UCA primary weights.
+        UCAPrimaryProps.getOrCreate(0xfffd).fractionalPrimary = 0xeffd;
+        UCAPrimaryProps.getOrCreate(0xfffe).fractionalPrimary = 0xeffe;
+        UCAPrimaryProps.getOrCreate(0xffff).fractionalPrimary = 0xefff;
+    }
+
+    /**
+     * Returns a sorted map from UCA-type sort key string to its character string.
+     * The sort key has U+0000 plus the character string appended.
+     * This serves as a simple tie-breaker, although it is different from UCA's identical level.
+     *
+     * This method also adds canonical equivalents (canonical closure),
+     * if any are missing.
+     */
+    private static Map<String, String> getSortedReverseUCAMappings() {
+        String highCompat = UTF16.valueOf(0x2F805);
+
+        System.out.println("Sorting");
+        Map<String, String> ordered = new TreeMap<String, String>();
+        Set<String> contentsForCanonicalIteration = new TreeSet<String>();
+        UCA.UCAContents ucac = getCollator().getContents(null);
+        int ccounter = 0;
+        while (true) {
+            Utility.dot(ccounter++);
+            String s = ucac.next();
+            if (s == null) {
+                break;
+            }
+            if (s.equals("\uFFFF") || s.equals("\uFFFE")) {
+                continue; // Suppress the FFFF and FFFE, since we are adding them artificially later.
+            }
+            if (s.equals("\uFA36") || s.equals("\uF900") || s.equals("\u2ADC") || s.equals(highCompat)) {
+                System.out.println(" * " + Default.ucd().getCodeAndName(s));
+            }
+            contentsForCanonicalIteration.add(s);
+            ordered.put(getCollator().getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
+        }
+
+        // Add canonically equivalent characters!!
+        System.out.println("Start Adding canonical Equivalents2");
+        int canCount = 0;
+
+        System.out.println("Add missing decomposibles and non-characters");
+        for (int i = 0; i <= 0x10FFFF; ++i) {
+            if (Default.ucd().isNoncharacter(i)) {
+                continue;
+            }
+            //            int bottomBits = i & 0xFFFF;
+            //            if (bottomBits == 0xFFFE || bottomBits == 0xFFFF) {
+            //                continue;
+            //            }
+            //
+            if (!Default.ucd().isAllocated(i)) {
+                continue;
+            }
+            if (Default.nfd().isNormalized(i)) {
+                continue;
+            }
+            if (UCD.isHangulSyllable(i)) {
+                continue;
+            }
+            String s = UTF16.valueOf(i);
+            if (!contentsForCanonicalIteration.contains(s)) {
+                contentsForCanonicalIteration.add(s);
+                //            String sortKey = i == 0xFFFE ? String.valueOf(SPECIAL_LOWEST_DUCET) 
+                //                    : i == 0xFFFF ? String.valueOf(SPECIAL_HIGHEST_DUCET) : 
+                String sortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE);
+                ordered.put(sortKey + '\u0000' + s, s);
+                if (DEBUG) System.out.println(" + " + Default.ucd().getCodeAndName(s));
+                canCount++;
+            }
+        }
+
+        Set<String> additionalSet = new HashSet<String>();
+        System.out.println("Loading canonical iterator");
+        if (WriteCollationData.canIt == null) {
+            WriteCollationData.canIt = new CanonicalIterator(".");
+        }
+        Iterator<String> it2 = contentsForCanonicalIteration.iterator();
+        System.out.println("Adding any FCD equivalents that have different sort keys");
+        while (it2.hasNext()) {
+            String key = (String)it2.next();
+            if (key == null) {
+                System.out.println("Null Key");
+                continue;
+            }
+            WriteCollationData.canIt.setSource(key);
+
+            boolean first = true;
+            while (true) {
+                String s = WriteCollationData.canIt.next();
+                if (s == null) {
+                    break;
+                }
+                if (s.equals(key)) {
+                    continue;
+                }
+                if (contentsForCanonicalIteration.contains(s)) {
+                    continue;
+                }
+                if (additionalSet.contains(s)) {
+                    continue;
+                }
+
+
+                // Skip anything that is not FCD.
+                if (!Default.nfd().isFCD(s)) {
+                    continue;
+                }
+
+                // We ONLY add if the sort key would be different
+                // Than what we would get if we didn't decompose!!
+                String sortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE);
+                String nonDecompSortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE, false, AppendToCe.none);
+                if (sortKey.equals(nonDecompSortKey)) {
+                    continue;
+                }
+
+                if (first) {
+                    System.out.println(" " + Default.ucd().getCodeAndName(key));
+                    first = false;
+                }
+                System.out.println(" => " + Default.ucd().getCodeAndName(s));
+                System.out.println("    old: " + UCA.toString(nonDecompSortKey));
+                System.out.println("    new: " + UCA.toString(sortKey));
+                canCount++;
+                additionalSet.add(s);
+                ordered.put(sortKey + '\u0000' + s, s);
+            }
+        }
+        System.out.println("Done Adding canonical Equivalents -- added " + canCount);
+        /*
+
+            for (int ch = 0; ch < 0x10FFFF; ++ch) {
+                Utility.dot(ch);
+                byte type = collator.getCEType(ch);
+                if (type >= UCA.FIXED_CE && !nfd.hasDecomposition(ch))
+                    continue;
+                }
+                String s = org.unicode.text.UTF16.valueOf(ch);
+                ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
+            }
+
+            Hashtable multiTable = collator.getContracting();
+            Enumeration enum = multiTable.keys();
+            int ecount = 0;
+            while (enum.hasMoreElements()) {
+                Utility.dot(ecount++);
+                String s = (String)enum.nextElement();
+                ordered.put(collator.getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
+            }
+         */
+        // JUST FOR TESTING
+        final boolean TESTING = false;
+        if (TESTING) {
+            String sample = "\u3400\u3401\u4DB4\u4DB5\u4E00\u4E01\u9FA4\u9FA5\uAC00\uAC01\uD7A2\uD7A3";
+            for (int i = 0; i < sample.length(); ++i) {
+                String s = sample.substring(i, i+1);
+                ordered.put(getCollator().getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
+            }
+        }
+
+        return ordered;
+    }
+
+    /**
+     * Prints the Unified_Ideograph ranges in collation order.
+     * As a result, a parser need not have this data available for the current Unicode version.
+     */
+    private static void printUnifiedIdeographRanges(PrintWriter fractionalLog) {
+        UnicodeSet hanSet =
+                ToolUnicodePropertySource.make(getCollator().getUCDVersion()).
+                getProperty("Unified_Ideograph").getSet("True");
+        UnicodeSet coreHanSet = (UnicodeSet) hanSet.clone();
+        coreHanSet.retain(0x4e00, 0xffff);  // BlockCJK_Unified_Ideograph or CJK_Compatibility_Ideographs
+        StringBuilder hanSB = new StringBuilder("[Unified_Ideograph");
+        UnicodeSetIterator hanIter = new UnicodeSetIterator(coreHanSet);
+        while (hanIter.nextRange()) {
+            int start = hanIter.codepoint;
+            int end = hanIter.codepointEnd;
+            hanSB.append(' ').append(Utility.hex(start));
+            if (start < end) {
+                hanSB.append("..").append(Utility.hex(end));
+            }
+        }
+        hanSet.remove(0x4e00, 0xffff);
+        hanIter.reset(hanSet);
+        while (hanIter.nextRange()) {
+            int start = hanIter.codepoint;
+            int end = hanIter.codepointEnd;
+            hanSB.append(' ').append(Utility.hex(start));
+            if (start < end) {
+                hanSB.append("..").append(Utility.hex(end));
+            }
+        }
+        hanSB.append("]");
+        fractionalLog.println(hanSB);
     }
 
     private static int getLeadByte(long weight) {
