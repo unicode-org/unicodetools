@@ -3215,8 +3215,6 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         0xE0000, 0xEFFFD, 0xEFFFE, 0xEFFFF,
         0xF0000, 0xFFFFD, 0xFFFFE, 0xFFFFF,
         0x100000, 0x10FFFD, 0x10FFFE, 0x10FFFF,
-        FractionalUCA.Variables.IMPLICIT_4BYTE_BOUNDARY, FractionalUCA.Variables.IMPLICIT_4BYTE_BOUNDARY - 1,
-        FractionalUCA.Variables.IMPLICIT_4BYTE_BOUNDARY + 1,
     };
 
     static final int     MARK                   = 1;

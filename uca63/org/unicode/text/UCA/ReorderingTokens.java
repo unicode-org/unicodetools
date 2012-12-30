@@ -56,7 +56,17 @@ class ReorderingTokens {
 
         if (!(script == Default.ucd().Unknown_Script || script == Default.ucd().COMMON_SCRIPT)
                 && (cat == Default.ucd().OTHER_LETTER || cat == Default.ucd().UPPERCASE_LETTER || cat == Default.ucd().LOWERCASE_LETTER || cat == Default.ucd().TITLECASE_LETTER)) {
+            // Add script aliases Hira & Hrkt before adding Kana.
+            if (script == UCD_Types.KATAKANA_SCRIPT && !reorderingToken.containsKey("Hira")) {
+                reorderingToken.add("Hira", 1);
+                reorderingToken.add("Hrkt", 1);
+            }
             reorderingToken.add(Default.ucd().getScriptID_fromIndex((byte)script, UCD_Types.SHORT), 1);
+            // Add script aliases Hans & Hant after Hani.
+            if (script == UCD_Types.HAN_SCRIPT && !reorderingToken.containsKey("Hans")) {
+                reorderingToken.add("Hans", 1);
+                reorderingToken.add("Hant", 1);
+            }
         } else {
             types.add(Default.ucd().getCategoryID_fromIndex(cat, UCD_Types.SHORT), 1);
         }
