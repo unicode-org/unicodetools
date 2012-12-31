@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -48,38 +50,39 @@ public class FractionalUCA {
 
     /**
      * UCA collation mapping data.
+     * Comparison is by sort key first, then by the string.
      */
     private static class Mapping implements Comparable<Mapping> {
+        /**
+         * Optional prefix (context) string. null if none.
+         */
+        public String prefix;
         public String s;
         /**
          * Only non-zero collation elements, enforced by the constructors.
          */
         public CEList ces;
         /**
-         * The sort key "string" has U+0000 plus the character string s appended.
-         * This serves as a simple tie-breaker, although it is different from UCA's identical level.
-         *
-         * <p>TODO: It seems like this should work, with minor string ordering differences,
-         * whether we use
-         * <ul>
-         * <li>getSortKey(AppendToCe.none) + '\u0000' + s, or
-         * <li>getSortKey(AppendToCe.nfd)
-         * </ul>
-         * <p>but it fails with the latter.
+         * Standard 3-level UCA sort key "string".
          */
         public String sortKey;
 
         public Mapping(String s) {
-            this(s, FractionalUCA.getCollator().getCEList(s, true));
+            this(null, s, FractionalUCA.getCollator().getCEList(s, true));
         }
 
         public Mapping(String s, CEList ces) {
-            this(s, ces,
-                    FractionalUCA.getCollator().getSortKey(ces,
-                            UCA.NON_IGNORABLE, AppendToCe.none) + '\u0000' + s);
+            this(null, s, ces);
         }
 
-        public Mapping(String s, CEList ces, String sortKey) {
+        public Mapping(String prefix, String s, CEList ces) {
+            this(prefix, s, ces,
+                    FractionalUCA.getCollator().getSortKey(ces,
+                            UCA.NON_IGNORABLE, AppendToCe.none));
+        }
+
+        public Mapping(String prefix, String s, CEList ces, String sortKey) {
+            this.prefix = prefix;
             this.s = s;
             this.ces = ces.onlyNonZero();
             this.sortKey = sortKey;
@@ -87,7 +90,28 @@ public class FractionalUCA {
 
         @Override
         public int compareTo(Mapping other) {
-            return sortKey.compareTo(other.sortKey);
+            int diff = sortKey.compareTo(other.sortKey);
+            if (diff == 0) {
+                // Simple tie-breaker.
+                // Should we instead compare the NFD versions of the strings in code point order?
+                // That would be consistent with the UCA identical level.
+                // We could compute the normalized strings on demand and cache them.
+                diff = s.compareTo(other.s);
+                if (diff == 0) {
+                    diff = comparePrefixes(prefix, other.prefix);
+                }
+            }
+            return diff;
+        }
+
+        private static int comparePrefixes(String p1, String p2) {
+            if (p1 == null) {
+                return p2 == null ? 0 : -1;
+            } else if (p2 == null) {
+                return 1;
+            } else {
+                return p1.compareTo(p2);
+            }
         }
     }
 
@@ -1156,6 +1180,7 @@ public class FractionalUCA {
         //int topVariable = -1;
 
         Set<Mapping> ordered = getSortedUCAMappings();
+        modifyMappings(ordered);
         for (Mapping mapping : ordered) {
             String chr = mapping.s;
             CEList ces = mapping.ces;
@@ -1220,34 +1245,24 @@ public class FractionalUCA {
                 }
             }
 
-            /* HACK
-    006C 00B7; [42, 05, 05][, E5 B1, 05]	# [1262.0020.0002][0000.01AF.0002]	* LATIN SMALL LETTER L ...
-    =>
-    006C | 00B7; [, E5 B1, 05]	# [1262.0020.0002][0000.01AF.0002]	* LATIN SMALL LETTER L ...
-    006C 0387; [42, 05, 05][, E5 B1, 05]	# [1262.0020.0002][0000.01AF.0002]	* LATIN SMALL LETTER L ...
-    0140; [42, 05, 05][, E5 B1, 05]	# [1262.0020.0002][0000.01AF.0002]	* LATIN SMALL LETTER L WITH MIDDLE DOT
-    004C 00B7; [42, 05, 8F][, E5 B1, 05]	# [1262.0020.0008][0000.01AF.0002]	* LATIN CAPITAL LETTER L ...
-    004C 0387; [42, 05, 8F][, E5 B1, 05]	# [1262.0020.0008][0000.01AF.0002]	* LATIN CAPITAL LETTER L ...
-    013F; [42, 05, 8F][, E5 B1, 05]	# [1262.0020.0008][0000.01AF.0002]	* LATIN CAPITAL LETTER L WITH MIDDLE DOT
-             */
-            boolean middleDotHack = chr.length() == 2
-                    && (chr.equals("l\u00B7") || chr.equals("L\u00B7")
-                            || chr.equals("l\u0387") || chr.equals("L\u0387"));
+            if (mapping.prefix != null) {
+                fractionalLog.print(Utility.hex(mapping.prefix) + " | ");
+            }
+            fractionalLog.print(Utility.hex(chr) + "; ");
 
-            fractionalLog.print(com.ibm.icu.impl.Utility.hex(chr, 4, middleDotHack ? " | " : " ") + "; ");            
-
-            //      if (middleDotHack) {
-            //        log.print(Utility.hex(codeUnits, 0, chr.length(), middleDotHack ? " | " : " ") + "; ");            
-            //      } else {
-            //        log.print(Utility.hex(codeUnits, 0, chr.length(), " ") + "; ");
-            //      }
-            boolean nonePrinted = true;
+            // In order to support continuation CEs (as for implicit primaries),
+            // we need a flag for the first variable-length CE rather than just testing q==0.
             boolean isFirst = true;
 
-            int firstCE = middleDotHack ? 1 : 0;
-
-            for (int q = firstCE; q < ces.length(); ++q) {
-                nonePrinted = false;
+            for (int q = 0;; ++q) {
+                if (q == ces.length()) {
+                    if (q == 0) {
+                        // chr maps to nothing.
+                        fractionalLog.print("[,,]");
+                        oldStr.append(ces);
+                    }
+                    break;
+                }
 
                 int ce = ces.at(q);
                 int pri = CEList.getPrimary(ce);
@@ -1322,6 +1337,7 @@ public class FractionalUCA {
                     int ns = FractionalUCA.fixSecondary(sec);
                     int nt = FractionalUCA.fixTertiary(ter, chr);
 
+                    // TODO: add the prefix to the stats?
                     fractionalStatistics.printAndRecord(false, chr, np, ns, nt, null);
 
                     // RECORD STATS
@@ -1374,10 +1390,6 @@ public class FractionalUCA {
                     lastNp = np;
                     isFirst = false;
                 }
-            }
-            if (nonePrinted) {
-                fractionalLog.print("[,,]");
-                oldStr.append(CEList.toString(0));
             }
             String name = UTF16.hasMoreCodePointsThan(chr, 1) 
                     ? Default.ucd().getName(UTF16.charAt(chr, 0)) + " ..."
@@ -2461,11 +2473,6 @@ public class FractionalUCA {
             if (Default.ucd().isNoncharacter(i)) {
                 continue;
             }
-            //            int bottomBits = i & 0xFFFF;
-            //            if (bottomBits == 0xFFFE || bottomBits == 0xFFFF) {
-            //                continue;
-            //            }
-            //
             if (!Default.ucd().isAllocated(i)) {
                 continue;
             }
@@ -2539,7 +2546,7 @@ public class FractionalUCA {
                 System.out.println("    new: " + UCA.toString(sortKey));
                 canCount++;
                 additionalSet.add(s);
-                ordered.add(new Mapping(s, ces, sortKey + '\u0000' + s));
+                ordered.add(new Mapping(null, s, ces, sortKey));
             }
         }
         System.out.println("Done Adding canonical Equivalents -- added " + canCount);
@@ -2575,6 +2582,35 @@ public class FractionalUCA {
         }
 
         return ordered;
+    }
+
+    private static void modifyMappings(Set<Mapping> ordered) {
+        // Turn L+middle dot contractions into prefix rules.
+        List<Mapping> newMappings = new LinkedList<Mapping>();
+        Mapping lastMiddleDotMapping = new Mapping("L\u0387");
+        Iterator<Mapping> it = ordered.iterator();
+        while (it.hasNext()) {
+            Mapping mapping = it.next();
+            if (mapping.compareTo(lastMiddleDotMapping) > 0) {
+                break;
+            }
+            String s = mapping.s;
+            CEList ces = mapping.ces;
+            if (s.length() == 2 && ces.length() == 2
+                    && (s.equals("l\u00B7") || s.equals("L\u00B7")
+                            || s.equals("l\u0387") || s.equals("L\u0387"))) {
+                it.remove();
+                // Move the l/L to the prefix.
+                String prefix = s.substring(0, 1);
+                s = s.substring(1);
+                // Retain only the prefix-conditional CE for the middle dot.
+                ces = ces.sub(1, 2);
+                // Make a new mapping for the middle dot.
+                mapping = new Mapping(prefix, s, ces);
+                newMappings.add(mapping);
+            }
+        }
+        ordered.addAll(newMappings);
     }
 
     /**
