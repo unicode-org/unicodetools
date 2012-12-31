@@ -43,10 +43,10 @@ public class WriteConformanceTest {
                 CEList ces = WriteCollationData.getCollator(collatorType).getCEList(t, true);
                 System.out.println("CEs:    " + ces);
 
-                String test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, true, AppendToCe.nfd);
+                String test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, true, AppendToCe.tieBreaker);
                 System.out.println("Decomp: " + WriteCollationData.getCollator(collatorType).toString(test));
 
-                test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, false, AppendToCe.nfd);
+                test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, false, AppendToCe.tieBreaker);
                 System.out.println("No Dec: " + WriteCollationData.getCollator(collatorType).toString(test));
             }
         }
@@ -91,7 +91,7 @@ public class WriteConformanceTest {
                 }
             }
             Utility.dot(counter++);
-            WriteCollationData.addStringX(s, option, collatorType, AppendToCe.nfd);
+            WriteCollationData.addStringX(s, option, collatorType, AppendToCe.tieBreaker);
         }
 
         // Add special examples

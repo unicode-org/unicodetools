@@ -98,7 +98,7 @@ public class WriteAllkeys {
 
     public static String addString(UCA collator, String s,
             Map<String, String> sorted) {
-        String colDbase = collator.getSortKey(s, UCA.SHIFTED, true, AppendToCe.nfd);
+        String colDbase = collator.getSortKey(s, UCA.SHIFTED, true, AppendToCe.tieBreaker);
         sorted.put(colDbase, s);
         return colDbase;
     }

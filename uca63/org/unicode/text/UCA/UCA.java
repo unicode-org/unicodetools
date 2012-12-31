@@ -157,6 +157,19 @@ final public class UCA implements Comparator, UCA_Types {
     }
 
     /**
+     * Constructs a sort key for given CEs.
+     * @param ces collation elements
+     * @param alternate choice of different 4th level weight construction
+     * @param appendIdentical whether to append an identical level, and which kind of one
+     * @return Result is a String not really of Unicodes, but of weights.
+     * String is just a handy way of returning them in Java, since there are no
+     * unsigned shorts.
+     */
+    public String getSortKey(CEList ces, byte alternate, AppendToCe appendIdentical) {
+        return getSortKey(ces, "", alternate, defaultDecomposition, appendIdentical);
+    }
+
+    /**
      * Constructs a sort key for a string of input Unicode characters. Uses
      * default values for alternate and decomposition.
      * @param sourceString string to make a sort key for.
@@ -165,7 +178,7 @@ final public class UCA implements Comparator, UCA_Types {
      * unsigned shorts.
      */
     public String getSortKey(String sourceString) {
-        return getSortKey(sourceString, defaultAlternate, defaultDecomposition, AppendToCe.none);
+        return getSortKey(null, sourceString, defaultAlternate, defaultDecomposition, AppendToCe.none);
     }
     /**
      * Constructs a sort key for a string of input Unicode characters. Uses
@@ -178,12 +191,12 @@ final public class UCA implements Comparator, UCA_Types {
      */
 
     public String getSortKey(String sourceString, byte alternate) {
-        return getSortKey(sourceString, alternate, defaultDecomposition, AppendToCe.none);
+        return getSortKey(null, sourceString, alternate, defaultDecomposition, AppendToCe.none);
     }
 
     public static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 0x5);
 
-    public enum AppendToCe {none, nfd}
+    public enum AppendToCe {none, nfd, tieBreaker}
 
     private void setSourceString(String sourceString, boolean decomposition) {
         decompositionBuffer.setLength(0);
@@ -201,12 +214,29 @@ final public class UCA implements Comparator, UCA_Types {
      * @param alternate choice of different 4th level weight construction
      * @param decomposition true for UCA, false where the text is guaranteed to be
      * normalization form C with no combining marks of class 0.
-     * @param appendIdentical TODO
+     * @param appendIdentical whether to append an identical level, and which kind of one
      * @return Result is a String not of really of Unicodes, but of weights.
      * String is just a handy way of returning them in Java, since there are no
      * unsigned shorts.
      */
     public String getSortKey(String sourceString, byte alternate, boolean decomposition, AppendToCe appendIdentical) {
+        return getSortKey(null, sourceString, alternate, decomposition, appendIdentical);
+    }
+
+    /**
+     * Constructs a sort key for given CEs, and/or a string of input Unicode characters.
+     * When the CEs are used up, then the sourceString is processed.
+     * @param ces collation elements to be considered first, can be null
+     * @param sourceString string to make a sort key for, can be empty but not null
+     * @param alternate choice of different 4th level weight construction
+     * @param decomposition true for UCA, false where the text is guaranteed to be
+     * normalization form C with no combining marks of class 0.
+     * @param appendIdentical whether to append an identical level, and which kind of one
+     * @return Result is a String not really of Unicodes, but of weights.
+     * String is just a handy way of returning them in Java, since there are no
+     * unsigned shorts.
+     */
+    public String getSortKey(CEList ces, String sourceString, byte alternate, boolean decomposition, AppendToCe appendIdentical) {
         setSourceString(sourceString, decomposition);
 
         // Weight strings - not chars, weights.
@@ -220,9 +250,8 @@ final public class UCA implements Comparator, UCA_Types {
         boolean lastWasVariable = false;
 
         // process CEs, building weight strings
-        CEList ces = null;
         int cesIndex = 0;
-        int cesLength = 0;
+        int cesLength = ces == null ? 0 : ces.length();
         while (true) {
             int ce;
             if (cesIndex < cesLength) {
@@ -302,7 +331,7 @@ final public class UCA implements Comparator, UCA_Types {
         // For simplicity, we use the strength setting here.
         // To optimize, we wouldn't actually generate the weights in the first place.
 
-        StringBuffer result = primaries;
+        StringBuilder result = primaries;
         if (strength >= 2) {
             result.append(LEVEL_SEPARATOR);    // separator
             result.append(secondaries);
@@ -326,12 +355,12 @@ final public class UCA implements Comparator, UCA_Types {
             }
         }
         if (appendIdentical != AppendToCe.none) {
-            if (appendIdentical == AppendToCe.nfd) {
-                String cpo = UCA.codePointOrder(toD.normalize(sourceString));
-                result.append('\u0000').append(cpo);
+            String cpo = UCA.codePointOrder(toD.normalize(sourceString));
+            result.append('\u0000').append(cpo);
+            if (appendIdentical == AppendToCe.tieBreaker) {
+                cpo = UCA.codePointOrder(sourceString);
+                result.append('\u0000').append(cpo).append((char) cpo.length());
             }
-            String cpo = UCA.codePointOrder(sourceString);
-            result.append('\u0000').append(cpo).append((char) cpo.length());
         }
         return result.toString();
     }
@@ -1038,10 +1067,10 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      * lists of weights. But this is a convenient way to store them,
      * since Java doesn't have unsigned shorts.
      */
-    private StringBuffer primaries = new StringBuffer(100);
-    private StringBuffer secondaries = new StringBuffer(100);
-    private StringBuffer tertiaries = new StringBuffer(100);
-    private StringBuffer quaternaries = new StringBuffer(100);
+    private StringBuilder primaries = new StringBuilder(100);
+    private StringBuilder secondaries = new StringBuilder(100);
+    private StringBuilder tertiaries = new StringBuilder(100);
+    private StringBuilder quaternaries = new StringBuilder(100);
 
     /**
      * Temporary buffer used to collect progress data for debugging

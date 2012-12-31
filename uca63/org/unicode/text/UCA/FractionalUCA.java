@@ -47,6 +47,51 @@ public class FractionalUCA {
     public static int SPECIAL_HIGHEST_DUCET = 0x7FFF;
 
     /**
+     * UCA collation mapping data.
+     */
+    private static class Mapping implements Comparable<Mapping> {
+        public String s;
+        /**
+         * Only non-zero collation elements, enforced by the constructors.
+         */
+        public CEList ces;
+        /**
+         * The sort key "string" has U+0000 plus the character string s appended.
+         * This serves as a simple tie-breaker, although it is different from UCA's identical level.
+         *
+         * <p>TODO: It seems like this should work, with minor string ordering differences,
+         * whether we use
+         * <ul>
+         * <li>getSortKey(AppendToCe.none) + '\u0000' + s, or
+         * <li>getSortKey(AppendToCe.nfd)
+         * </ul>
+         * <p>but it fails with the latter.
+         */
+        public String sortKey;
+
+        public Mapping(String s) {
+            this(s, FractionalUCA.getCollator().getCEList(s, true));
+        }
+
+        public Mapping(String s, CEList ces) {
+            this(s, ces,
+                    FractionalUCA.getCollator().getSortKey(ces,
+                            UCA.NON_IGNORABLE, AppendToCe.none) + '\u0000' + s);
+        }
+
+        public Mapping(String s, CEList ces, String sortKey) {
+            this.s = s;
+            this.ces = ces.onlyNonZero();
+            this.sortKey = sortKey;
+        }
+
+        @Override
+        public int compareTo(Mapping other) {
+            return sortKey.compareTo(other.sortKey);
+        }
+    }
+
+    /**
      * FractionalUCA properties for a UCA primary weight.
      *
      * <p>TODO: There are probably more arrays and bit sets that
@@ -1015,7 +1060,6 @@ public class FractionalUCA {
         fixPrimaries();
 
         // now translate!!
-        Map<String, String> ordered = getSortedReverseUCAMappings();
 
         // add special reordering tokens
         for (int reorderCode = ReorderCodes.FIRST; reorderCode < ReorderCodes.LIMIT; ++reorderCode) {
@@ -1056,16 +1100,13 @@ public class FractionalUCA {
         //log.println("[Variable Low = " + UCA.toString(collator.getVariableLow()) + "]");
         //log.println("[Variable High = " + UCA.toString(collator.getVariableHigh()) + "]");
 
-        int[] ces = new int[100];
-
         StringBuffer oldStr = new StringBuffer();
 
         OldEquivalenceClass secEq = new OldEquivalenceClass("\r\n#", 2, true);
         OldEquivalenceClass terEq = new OldEquivalenceClass("\r\n#", 2, true);
-        String[] sampleEq = new String[500];
-        int[] sampleLen = new int[500];
+        String[] sampleEq = new String[0x200];
+        int[] sampleLen = new int[0x200];
 
-        Iterator<String> it = ordered.keySet().iterator();
         int oldFirstPrimary = CEList.getPrimary(UCA.TERMINATOR);
         // boolean wasVariable = false;
 
@@ -1082,7 +1123,6 @@ public class FractionalUCA {
         String lastChr = "";
         int lastNp = 0;
         //boolean doVariable = false;
-        char[] codeUnits = new char[100];
 
         FractionalUCA.FCE firstTertiaryIgnorable = new FractionalUCA.FCE(false, "tertiary ignorable");
         FractionalUCA.FCE lastTertiaryIgnorable = new FractionalUCA.FCE(true, "tertiary ignorable");
@@ -1115,19 +1155,11 @@ public class FractionalUCA {
 
         //int topVariable = -1;
 
-        while (it.hasNext()) {
-            Object sortKey = it.next();
-            String chr = (String)ordered.get(sortKey);  
-
-            char lastChar = chr.charAt(chr.length() - 1);
-            if (Character.isHighSurrogate(lastChar)) {
-                System.out.println("Skipping trailing surrogate: " + chr + "\t" + Utility.hex(chr));
-                continue;
-            }
-
-            // get CEs and fix
-            int len = getCollator().getCEs(chr, true, ces);  // TODO: CEList ces = getCollator().getCEList(chr, true);
-            int firstPrimary = CEList.getPrimary(ces[0]);
+        Set<Mapping> ordered = getSortedUCAMappings();
+        for (Mapping mapping : ordered) {
+            String chr = mapping.s;
+            CEList ces = mapping.ces;
+            int firstPrimary = ces.isEmpty() ? 0 : CEList.getPrimary(ces.at(0));
             // String message = null;
             if (firstPrimary != oldFirstPrimary) {
                 fractionalLog.println();
@@ -1146,7 +1178,6 @@ public class FractionalUCA {
                 oldFirstPrimary = firstPrimary;
             }
             oldStr.setLength(0);
-            chr.getChars(0, chr.length(), codeUnits, 0);
 
             UCAPrimaryProps props = UCAPrimaryProps.get(firstPrimary);
             if (props != null && props.scriptFirstPrimary != 0) {
@@ -1200,8 +1231,8 @@ public class FractionalUCA {
     013F; [42, 05, 8F][, E5 B1, 05]	# [1262.0020.0008][0000.01AF.0002]	* LATIN CAPITAL LETTER L WITH MIDDLE DOT
              */
             boolean middleDotHack = chr.length() == 2
-                    && (codeUnits[0] == 'l' || codeUnits[0] == 'L')
-                    && (codeUnits[1] == '\u00B7' || codeUnits[1] == '\u0387');
+                    && (chr.equals("l\u00B7") || chr.equals("L\u00B7")
+                            || chr.equals("l\u0387") || chr.equals("L\u0387"));
 
             fractionalLog.print(com.ibm.icu.impl.Utility.hex(chr, 4, middleDotHack ? " | " : " ") + "; ");            
 
@@ -1215,14 +1246,15 @@ public class FractionalUCA {
 
             int firstCE = middleDotHack ? 1 : 0;
 
-            for (int q = firstCE; q < len; ++q) {
+            for (int q = firstCE; q < ces.length(); ++q) {
                 nonePrinted = false;
 
-                int pri = CEList.getPrimary(ces[q]);
-                int sec = CEList.getSecondary(ces[q]); 
-                int ter = CEList.getTertiary(ces[q]);
+                int ce = ces.at(q);
+                int pri = CEList.getPrimary(ce);
+                int sec = CEList.getSecondary(ce); 
+                int ter = CEList.getTertiary(ce);
 
-                oldStr.append(CEList.toString(ces[q]));// + "," + Integer.toString(ces[q],16);
+                oldStr.append(CEList.toString(ce));// + "," + Integer.toString(ce,16);
 
                 if (sec != 0x20) {
                     /* boolean changed = */ secEq.add(new Integer(sec), new Integer(pri));
@@ -1231,29 +1263,28 @@ public class FractionalUCA {
                     /* boolean changed = */ terEq.add(new Integer(ter), new Integer((pri << 16) | sec));
                 }
 
-                if (sampleEq[sec] == null || sampleLen[sec] > len) {
+                if (sampleEq[sec] == null || sampleLen[sec] > ces.length()) {
                     sampleEq[sec] = chr;
-                    sampleLen[sec] = len;
+                    sampleLen[sec] = ces.length();
                 }
-                if (sampleEq[ter] == null || sampleLen[sec] > len) {
+                if (sampleEq[ter] == null || sampleLen[ter] > ces.length()) {
                     sampleEq[ter] = chr;
-                    sampleLen[sec] = len;
+                    sampleLen[ter] = ces.length();
                 }
 
                 // special treatment for unsupported!
 
                 int np;
-                int implicitCodePoint = 0;
                 if (UCA.isImplicitLeadPrimary(pri)) {
                     if (DEBUG) {
-                        System.out.println("DEBUG: " + CEList.toString(ces, len) 
+                        System.out.println("DEBUG: " + ces
                                 + ", Current: " + q + ", " + Default.ucd().getCodeAndName(chr));
                     }
                     ++q;
-                    oldStr.append(CEList.toString(ces[q]));// + "," + Integer.toString(ces[q],16);
+                    oldStr.append(CEList.toString(ces.at(q)));// + "," + Integer.toString(ces.at(q),16);
 
-                    int pri2 = CEList.getPrimary(ces[q]);
-                    implicitCodePoint = UCA.ImplicitToCodePoint(pri, pri2);
+                    int pri2 = CEList.getPrimary(ces.at(q));
+                    int implicitCodePoint = UCA.ImplicitToCodePoint(pri, pri2);
                     if (DEBUG) {
                         System.out.println("Computing Unsupported CP as: "
                                 + Utility.hex(pri)
@@ -1265,35 +1296,66 @@ public class FractionalUCA {
                     // was: np = FractionalUCA.getImplicitPrimary(pri);
                     */
                     np = Variables.IMPLICIT_BASE_BYTE << 16;
-                } else {
-                    np = FractionalUCA.fixPrimary(pri);
-                }
+                    int ns = FractionalUCA.fixSecondary(sec);
+                    int nt = FractionalUCA.fixTertiary(ter, chr);
 
-                int ns = FractionalUCA.fixSecondary(sec);
-                int nt = FractionalUCA.fixTertiary(ter, chr);
-
-                if (implicitCodePoint == 0 && pri == 0) {
-                    if (chr.equals("\u01C6")) {
-                        System.out.println("At dz-caron");
-                    }
-                    Integer key = new Integer(ces[q]);
-                    Pair value = fractBackMap.get(key);
-                    if (value == null
-                            || (len < ((Integer)(value.first)).intValue())) {
-                        fractBackMap.put(key, new Pair(new Integer(len), chr));
-                    }
-                }
-
-                // Note: (q == firstCE) != isFirst when pri is an implicit primary
-                // because we read pri2 and incremented q.
-                if (q == firstCE) { // only look at first one
-                    highByteToScripts.addScriptsIn(np, chr);
-                }
-
-                if (implicitCodePoint == 0) {
-                    fractionalStatistics.printAndRecord(false, chr, np, ns, nt, null);
-                } else {
                     fractionalStatistics.printAndRecordCodePoint(false, chr, implicitCodePoint, ns, nt, null);
+                } else {
+                    // pri is a non-implicit UCA primary.
+                    np = FractionalUCA.fixPrimary(pri);
+                    if (isFirst) { // only look at first one
+                        highByteToScripts.addScriptsIn(np, chr);
+                    }
+    
+                    if (pri == 0) {
+                        if (chr.equals("\u01C6")) {
+                            System.out.println("At dz-caron");
+                        }
+                        Integer key = new Integer(ce);
+                        Pair value = fractBackMap.get(key);
+                        if (value == null
+                                || (ces.length() < ((Integer)(value.first)).intValue())) {
+                            fractBackMap.put(key, new Pair(ces.length(), chr));
+                        }
+                    }
+
+                    int ns = FractionalUCA.fixSecondary(sec);
+                    int nt = FractionalUCA.fixTertiary(ter, chr);
+
+                    fractionalStatistics.printAndRecord(false, chr, np, ns, nt, null);
+
+                    // RECORD STATS
+                    // but ONLY if we are not part of an implicit
+
+                    if (np != 0) {
+                        firstSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
+                        lastSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
+                    }
+                    if (ns != 0) {
+                        firstTertiaryInSecondaryNonIgnorable.setValue(0, 0, nt & 0x3F, chr);
+                        lastTertiaryInSecondaryNonIgnorable.setValue(0, 0, nt & 0x3F, chr);
+                    }
+                    if (np == 0 && ns == 0) {
+                        firstSecondaryIgnorable.setValue(np, ns, nt, chr);
+                        lastSecondaryIgnorable.setValue(np, ns, nt, chr); 
+                    } else if (np == 0) {
+                        firstPrimaryIgnorable.setValue(np, ns, nt, chr);
+                        lastPrimaryIgnorable.setValue(np, ns, nt, chr); 
+                    } else if (getCollator().isVariable(ce)) {
+                        firstVariable.setValue(np, ns, nt, chr);
+                        lastVariable.setValue(np, ns, nt, chr); 
+                    } else if (pri > UCA_Types.UNSUPPORTED_LIMIT) {        // Trailing (none currently)
+                        System.out.println("Trailing: " 
+                                + Default.ucd().getCodeAndName(chr) + ", "
+                                + CEList.toString(ce) + ", " 
+                                + Utility.hex(pri) + ", " 
+                                + Utility.hex(UCA_Types.UNSUPPORTED_LIMIT));
+                        firstTrailing.setValue(np, ns, nt, chr);
+                        lastTrailing.setValue(np, ns, nt, chr); 
+                    } else {
+                        firstNonIgnorable.setValue(np, ns, nt, chr);
+                        lastNonIgnorable.setValue(np, ns, nt, chr); 
+                    }
                 }
 
                 if (isFirst) {
@@ -1311,41 +1373,6 @@ public class FractionalUCA {
                     }
                     lastNp = np;
                     isFirst = false;
-                }
-
-                // RECORD STATS
-                // but ONLY if we are not part of an implicit
-
-                if (implicitCodePoint == 0) {
-                    if (np != 0) {
-                        firstSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
-                        lastSecondaryInPrimaryNonIgnorable.setValue(0, ns, 0, chr);
-                    }
-                    if (ns != 0) {
-                        firstTertiaryInSecondaryNonIgnorable.setValue(0, 0, nt & 0x3F, chr);
-                        lastTertiaryInSecondaryNonIgnorable.setValue(0, 0, nt & 0x3F, chr);
-                    }
-                    if (np == 0 && ns == 0) {
-                        firstSecondaryIgnorable.setValue(np, ns, nt, chr);
-                        lastSecondaryIgnorable.setValue(np, ns, nt, chr); 
-                    } else if (np == 0) {
-                        firstPrimaryIgnorable.setValue(np, ns, nt, chr);
-                        lastPrimaryIgnorable.setValue(np, ns, nt, chr); 
-                    } else if (getCollator().isVariable(ces[q])) {
-                        firstVariable.setValue(np, ns, nt, chr);
-                        lastVariable.setValue(np, ns, nt, chr); 
-                    } else if (CEList.getPrimary(ces[q]) > UCA_Types.UNSUPPORTED_LIMIT) {        // Trailing (none currently)
-                        System.out.println("Trailing: " 
-                                + Default.ucd().getCodeAndName(chr) + ", "
-                                + CEList.toString(ces[q]) + ", " 
-                                + Utility.hex(pri) + ", " 
-                                + Utility.hex(UCA_Types.UNSUPPORTED_LIMIT));
-                        firstTrailing.setValue(np, ns, nt, chr);
-                        lastTrailing.setValue(np, ns, nt, chr); 
-                    } else {
-                        firstNonIgnorable.setValue(np, ns, nt, chr);
-                        lastNonIgnorable.setValue(np, ns, nt, chr); 
-                    }
                 }
             }
             if (nonePrinted) {
@@ -1592,12 +1619,12 @@ public class FractionalUCA {
                 summary.println("# UCA : (FRAC) CODE [    UCA CE    ] Name");
                 summary.println();
             }
-            int len = getCollator().getCEs(sampleEq[i], true, ces);
+            CEList ces = getCollator().getCEList(sampleEq[i], true);
             int newval = i < 0x20 ? FractionalUCA.fixTertiary(i,sampleEq[i]) : FractionalUCA.fixSecondary(i);
             summary.print("# " + Utility.hex(i) + ": (" + Utility.hex(newval) + ") "
                     + Utility.hex(sampleEq[i]) + " ");
-            for (int q = 0; q < len; ++q) {
-                summary.print(CEList.toString(ces[q]));
+            for (int q = 0; q < ces.length(); ++q) {
+                summary.print(CEList.toString(ces.at(q)));
             }
             summary.println(" " + Default.ucd().getName(sampleEq[i]));
 
@@ -2395,20 +2422,19 @@ public class FractionalUCA {
     }
 
     /**
-     * Returns a sorted map from UCA-type sort key string to its character string.
-     * The sort key has U+0000 plus the character string appended.
-     * This serves as a simple tie-breaker, although it is different from UCA's identical level.
+     * Returns a set of UCA mappings, sorted by their nearly-UCA-type sort key strings.
      *
-     * This method also adds canonical equivalents (canonical closure),
+     * <p>This method also adds canonical equivalents (canonical closure),
      * if any are missing.
      */
-    private static Map<String, String> getSortedReverseUCAMappings() {
+    private static Set<Mapping> getSortedUCAMappings() {
         String highCompat = UTF16.valueOf(0x2F805);
 
         System.out.println("Sorting");
-        Map<String, String> ordered = new TreeMap<String, String>();
+        Set<Mapping> ordered = new TreeSet<Mapping>();
         Set<String> contentsForCanonicalIteration = new TreeSet<String>();
-        UCA.UCAContents ucac = getCollator().getContents(null);
+        UCA uca = getCollator();
+        UCA.UCAContents ucac = uca.getContents(null);
         int ccounter = 0;
         while (true) {
             Utility.dot(ccounter++);
@@ -2423,7 +2449,7 @@ public class FractionalUCA {
                 System.out.println(" * " + Default.ucd().getCodeAndName(s));
             }
             contentsForCanonicalIteration.add(s);
-            ordered.put(getCollator().getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
+            ordered.add(new Mapping(s, ucac.getCEs()));
         }
 
         // Add canonically equivalent characters!!
@@ -2452,10 +2478,7 @@ public class FractionalUCA {
             String s = UTF16.valueOf(i);
             if (!contentsForCanonicalIteration.contains(s)) {
                 contentsForCanonicalIteration.add(s);
-                //            String sortKey = i == 0xFFFE ? String.valueOf(SPECIAL_LOWEST_DUCET) 
-                //                    : i == 0xFFFF ? String.valueOf(SPECIAL_HIGHEST_DUCET) : 
-                String sortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE);
-                ordered.put(sortKey + '\u0000' + s, s);
+                ordered.add(new Mapping(s));
                 if (DEBUG) System.out.println(" + " + Default.ucd().getCodeAndName(s));
                 canCount++;
             }
@@ -2500,8 +2523,9 @@ public class FractionalUCA {
 
                 // We ONLY add if the sort key would be different
                 // Than what we would get if we didn't decompose!!
-                String sortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE);
-                String nonDecompSortKey = getCollator().getSortKey(s, UCA.NON_IGNORABLE, false, AppendToCe.none);
+                CEList ces = uca.getCEList(s, true);
+                String sortKey = uca.getSortKey(ces, UCA.NON_IGNORABLE, AppendToCe.none);
+                String nonDecompSortKey = uca.getSortKey(s, UCA.NON_IGNORABLE, false, AppendToCe.none);
                 if (sortKey.equals(nonDecompSortKey)) {
                     continue;
                 }
@@ -2515,7 +2539,7 @@ public class FractionalUCA {
                 System.out.println("    new: " + UCA.toString(sortKey));
                 canCount++;
                 additionalSet.add(s);
-                ordered.put(sortKey + '\u0000' + s, s);
+                ordered.add(new Mapping(s, ces, sortKey + '\u0000' + s));
             }
         }
         System.out.println("Done Adding canonical Equivalents -- added " + canCount);
@@ -2546,7 +2570,7 @@ public class FractionalUCA {
             String sample = "\u3400\u3401\u4DB4\u4DB5\u4E00\u4E01\u9FA4\u9FA5\uAC00\uAC01\uD7A2\uD7A3";
             for (int i = 0; i < sample.length(); ++i) {
                 String s = sample.substring(i, i+1);
-                ordered.put(getCollator().getSortKey(s, UCA.NON_IGNORABLE) + '\u0000' + s, s);
+                ordered.add(new Mapping(s));
             }
         }
 

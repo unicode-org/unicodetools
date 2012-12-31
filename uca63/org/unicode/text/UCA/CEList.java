@@ -149,6 +149,34 @@ public final class CEList implements java.lang.Comparable<CEList> {
         return destIndex;
     }
 
+    /**
+     * Returns a version of itself with no zero CEs.
+     * Returns this if it does not contain zero CEs already.
+     */
+    public CEList onlyNonZero() {
+        int i = startOffset;
+        for (;; ++i) {
+            if (i == endOffset) {
+                return this;
+            }
+            if (contents[i] == 0) {
+                break;
+            }
+        }
+        int newCount = i - startOffset;
+        while (++i < endOffset) {
+            if (contents[i] != 0) {
+                ++newCount;
+            }
+        }
+        if (newCount == 0) {
+            return EMPTY;
+        }
+        int[] newContents = new int[newCount];
+        appendNonZeroTo(newContents, 0);
+        return new CEList(newContents);
+    }
+
     public int hashCode() {
         int result = count;
         for (int i = startOffset; i < endOffset; ++i) {
