@@ -186,7 +186,6 @@ public class FractionalUCA {
     private static class HighByteToReorderingToken {
         private ReorderingTokens[] highByteToReorderingToken = new ReorderingTokens[256];
         private boolean mergedScripts = false;
-        private Counter<String> compressCount = new Counter<String>();
 
         {
             for (int i = 0; i < highByteToReorderingToken.length; ++i) {
@@ -270,23 +269,7 @@ public class FractionalUCA {
                 ReorderingTokens tokens = highByteToReorderingToken[k];
                 result.append("[top_byte\t" + Utility.hex(k,2) + "\t");
                 tokens.appendTo(result, false);
-                boolean isCompressible = compressCount.get(tokens.getRawReorderingTokens()) < 2;
-                if (isCompressible != compressibleBytes.get(k)) {
-                    boolean TESTING = false;
-                    String msg = String.format(
-                            "# Error: primary lead byte %02X: " +
-                            "primary-weight-assignment compressibleBytes=%s != " +
-                            "%s=HighByteToReorderingToken.isCompressible",
-                            k,
-                            compressibleBytes.get(k),
-                            isCompressible);
-                    if (TESTING) {
-                        System.out.println(msg);
-                    } else {
-                        throw new AssertionError(msg);
-                    }
-                }
-                if (isCompressible) {
+                if (compressibleBytes.get(k)) {
                     result.append("\tCOMPRESS");
                 }
                 result.append(" ]");
@@ -300,7 +283,7 @@ public class FractionalUCA {
             return result.toString();
         }
 
-        private void cleanup(Map<Integer,String> overrides, int firstScriptPrimary) {
+        private void cleanup(Map<Integer,String> overrides) {
             mergedScripts = true;
             ReorderingTokens[] mergedTokens = new ReorderingTokens[256];
 
@@ -326,7 +309,6 @@ public class FractionalUCA {
                 String tag = override.getValue();
                 mergedTokens[value].setScripts(tag);
             }
-            int firstScriptPrimaryHighByte = getLeadByte(firstScriptPrimary);
             for (int k = 0; k < highByteToReorderingToken.length; ++k) {
                 if (mergedTokens[k].reorderingToken.isEmpty()) {
                     mergedTokens[k].setScripts("Hani");
@@ -334,11 +316,6 @@ public class FractionalUCA {
                     mergedTokens[k].reorderingToken.add("Hant", 1);
                 }
                 highByteToReorderingToken[k] = mergedTokens[k];
-                if (k > firstScriptPrimaryHighByte) {
-                    compressCount.add(highByteToReorderingToken[k].getRawReorderingTokens(), 1);
-                } else {
-                    compressCount.add(highByteToReorderingToken[k].getRawReorderingTokens(), 2); // ensure > 1
-                }
             }
         }
     }
@@ -1081,7 +1058,8 @@ public class FractionalUCA {
 
         //TO DO: find secondaries that don't overlap, and reassign
 
-        fixPrimaries();
+        StringBuilder topByteInfo = new StringBuilder();
+        fixPrimaries(topByteInfo);
 
         // now translate!!
 
@@ -1131,8 +1109,7 @@ public class FractionalUCA {
         String[] sampleEq = new String[0x200];
         int[] sampleLen = new int[0x200];
 
-        int oldFirstPrimary = CEList.getPrimary(UCA.TERMINATOR);
-        // boolean wasVariable = false;
+        int oldFirstPrimary = 0;
 
         fractionalLog.println("# Fractional UCA Table, generated from standard UCA");
         fractionalLog.println("# " + WriteCollationData.getNormalDate());
@@ -1143,10 +1120,17 @@ public class FractionalUCA {
         fractionalLog.println("[UCA version = " + getCollator().getDataVersion() + "]");
 
         printUnifiedIdeographRanges(fractionalLog);
+        fractionalLog.println();
+
+        // Print the [top_byte] information before any of the mappings
+        // so that parsers can use this data while working with the fractional primary weights,
+        // in particular the COMPRESS bits.
+        fractionalLog.println("# Top Byte => Reordering Tokens");
+        fractionalLog.print(topByteInfo);
+        fractionalLog.println();
 
         String lastChr = "";
         int lastNp = 0;
-        //boolean doVariable = false;
 
         FractionalUCA.FCE firstTertiaryIgnorable = new FractionalUCA.FCE(false, "tertiary ignorable");
         FractionalUCA.FCE lastTertiaryIgnorable = new FractionalUCA.FCE(true, "tertiary ignorable");
@@ -1188,18 +1172,6 @@ public class FractionalUCA {
             // String message = null;
             if (firstPrimary != oldFirstPrimary) {
                 fractionalLog.println();
-                //                boolean isVariable = getCollator().isVariable(ces[0]);
-                //                if (isVariable != wasVariable) {
-                //                    if (isVariable) {
-                //                        message = "# START OF VARIABLE SECTION!!!";
-                //                    } else {
-                //                        //topVariable = FractionalUCA.primaryDelta[oldFirstPrimary];
-                //                        doVariable = true;
-                //                    }
-                //                    //fractionalLog.println(message);
-                //                    //fractionalLog.println();
-                //                }
-                //                wasVariable = isVariable;
                 oldFirstPrimary = firstPrimary;
             }
             oldStr.setLength(0);
@@ -1380,11 +1352,6 @@ public class FractionalUCA {
                             showRange("Last", summary, lastChr, lastNp);
                         }
                         summary.println();
-                        //                        if (doVariable) {
-                        //                            doVariable = false;
-                        //                            summary.println("#" + message);
-                        //                            summary.println();
-                        //                        }
                         showRange("First", summary, chr, np);
                     }
                     lastNp = np;
@@ -1536,12 +1503,7 @@ public class FractionalUCA {
         //        fractionalLog.println("[vt-ducet " + hexBytes(FractionalUCA.primaryDelta[ducetFirstNonVariable]) + "]");
         //        fractionalLog.println();
 
-        int fractionalFirstScriptPrimary = firstFractionalPrimary[UCD_Types.LATIN_SCRIPT];
-        highByteToScripts.cleanup(reorderingTokenOverrides, fractionalFirstScriptPrimary);
-
-        fractionalLog.println("# Top Byte => Reordering Tokens");
-        fractionalLog.println(highByteToScripts.toString());
-        fractionalLog.println();
+        highByteToScripts.cleanup(reorderingTokenOverrides);
 
         fractionalLog.println("# Reordering Tokens => Top Bytes");
         fractionalLog.println(highByteToScripts.getInfo(true));
@@ -2343,7 +2305,11 @@ public class FractionalUCA {
                 + "\t" + Utility.hex(startPrimary) + ".." + Utility.hex(endPrimary));
     }
 
-    private static void fixPrimaries() {
+    /**
+     * Calls {@link #findBumps()}, assigns a fractional primary weight for every UCA primary,
+     * and writes the [top_byte] information.
+     */
+    private static void fixPrimaries(StringBuilder topByteInfo) {
         System.out.println("Finding Bumps");        
         FractionalUCA.findBumps();
 
@@ -2356,8 +2322,19 @@ public class FractionalUCA {
         // Avoids testing for null later.
         UCAPrimaryProps.getOrCreate(0);
 
+        topByteInfo.append("[top_byte\t00\tTERMINATOR ]\n");
+        topByteInfo.append("[top_byte\t01\tLEVEL-SEPARATOR ]\n");
+        topByteInfo.append("[top_byte\t02\tFIELD-SEPARATOR ]\n");
+
+        StringBuilder groupInfo = new StringBuilder();
+        int previousGroupLeadByte = 3;
+        boolean previousGroupIsCompressible = false;
+        int numPrimaries = 0;
+
         // start at 1 so zero stays zero.
-        for (int primary = primarySet.nextSetBit(1); primary >= 0; primary = primarySet.nextSetBit(primary+1)) {
+        for (int primary = primarySet.nextSetBit(1);
+                0 <= primary && primary < UCA_Types.UNSUPPORTED_BASE;
+                primary = primarySet.nextSetBit(primary+1)) {
 
             // we know that we need a primary weight for this item.
             // we base it on the last value, and whether we have a 1, 2, or 3-byte weight
@@ -2376,9 +2353,24 @@ public class FractionalUCA {
                 if (props.startsGroup) {
                     boolean compress = groupIsCompressible[reorderCode];
                     firstFractional = fractionalPrimary.startNewGroup(3, compress);
+                    int leadByte = getLeadByte(firstFractional);
+
+                    // Finish the previous reordering group.
+                    appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
+                            previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
+                    previousGroupLeadByte = leadByte;
+                    previousGroupIsCompressible = compress;
+                    numPrimaries = 0;
+                    groupInfo.setLength(0);
+                    groupInfo.append(ReorderCodes.getShortName(reorderCode));
+                    if (reorderCode == UCD_Types.HIRAGANA_SCRIPT) {
+                        groupInfo.append(" Hrkt Kana");  // script aliases
+                    }
+
+                    // Now record the new group.
                     String groupComment = " starts reordering group";
                     if (compress) {
-                        compressibleBytes.set(getLeadByte(firstFractional));
+                        compressibleBytes.set(leadByte);
                         groupComment = groupComment + " (compressible)";
                     }
                     System.out.println(String.format(
@@ -2389,10 +2381,18 @@ public class FractionalUCA {
 
                     if (reorderCode == ReorderCodes.DIGIT) {
                         numericFractionalPrimary = fractionalPrimary.next(1, true);
+                        ++numPrimaries;
                     }
                 } else {
                     // New script in current reordering group.
                     firstFractional = fractionalPrimary.next(3, true);
+                    if (groupInfo.length() != 0) {
+                        groupInfo.append(' ');
+                    }
+                    groupInfo.append(ReorderCodes.getShortName(reorderCode));
+                    if (reorderCode == UCD_Types.Meroitic_Cursive) {
+                        groupInfo.append(" Mero");  // script aliases
+                    }
                     System.out.println(String.format(
                             "[%s]  # %s first primary",
                             hexBytes(firstFractional),
@@ -2400,10 +2400,12 @@ public class FractionalUCA {
                 }
                 props.scriptFirstPrimary = firstFractional;
                 firstFractionalPrimary[reorderCode] = firstFractional;
+                ++numPrimaries;
                 scriptChange = true;
             }
 
             props.fractionalPrimary = fractionalPrimary.next(currentByteLength, scriptChange);
+            ++numPrimaries;
 
             String newWeight = fractionalPrimary.toString();
             if (DEBUG_FW) {
@@ -2417,20 +2419,80 @@ public class FractionalUCA {
         }
 
         // Create an entry for the first primary in the Hani script.
+        int firstFractional = fractionalPrimary.startNewGroup(3, false);
+        int leadByte = getLeadByte(firstFractional);
+
+        // Finish the previous reordering group.
+        appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
+                previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
+        previousGroupLeadByte = leadByte;
+
+        // Record Hani.
         UCAPrimaryProps props = UCAPrimaryProps.getOrCreate(UCA_Types.UNSUPPORTED_BASE);
         props.startsGroup = true;
         props.reorderCodeIfFirst = UCD_Types.HAN_SCRIPT;
-        props.scriptFirstPrimary = fractionalPrimary.startNewGroup(3, false);
+        props.scriptFirstPrimary = firstFractional;
+        firstFractionalPrimary[UCD_Types.HAN_SCRIPT] = firstFractional;
         System.out.println(String.format(
                 "[%s]  # %s first primary%s",
-                hexBytes(props.scriptFirstPrimary),
+                hexBytes(firstFractional),
                 ReorderCodes.getName(UCD_Types.HAN_SCRIPT),
                 " starts reordering group"));
 
-        // Map special UCA primary weights.
+        leadByte = Variables.IMPLICIT_BASE_BYTE;
+        appendTopByteInfo(topByteInfo, false, previousGroupLeadByte, leadByte, "Hani Hans Hant", 0);
+        previousGroupLeadByte = leadByte;
+
+        // Record the remaining fixed ranges.
+        leadByte = Variables.IMPLICIT_MAX_BYTE + 1;
+        appendTopByteInfo(topByteInfo, false, previousGroupLeadByte, leadByte, "IMPLICIT", 0);
+        previousGroupLeadByte = leadByte;
+
+        // Map reserved high UCA primary weights in the trailing-primary range.
         UCAPrimaryProps.getOrCreate(0xfffd).fractionalPrimary = 0xeffd;
         UCAPrimaryProps.getOrCreate(0xfffe).fractionalPrimary = 0xeffe;
         UCAPrimaryProps.getOrCreate(0xffff).fractionalPrimary = 0xefff;
+
+        leadByte = Variables.SPECIAL_BASE;
+        appendTopByteInfo(topByteInfo, false, previousGroupLeadByte, leadByte, "TRAILING", 0);
+
+        appendTopByteInfo(topByteInfo, false, leadByte, 0x100, "SPECIAL", 0);
+    }
+
+    private static void appendTopByteInfo(StringBuilder topByteInfo, boolean compress,
+            int b, int limit, CharSequence groupInfo, int count) {
+        boolean canCompress = (limit - b) == 1;
+        if (compress) {
+            if (!canCompress) {
+                throw new IllegalArgumentException(
+                        "reordering group {" + groupInfo +
+                        "} marked for compression but uses more than one lead byte " +
+                        Utility.hex(b, 2) + ".." +
+                        Utility.hex(limit, 2));
+            }
+        } else if (canCompress) {
+            System.out.println(
+                    "# Note: reordering group {" + groupInfo + "} " +
+                    "not marked for compression but uses only one lead byte " +
+                    Utility.hex(b, 2));
+        }
+
+        while (b < limit) {
+            topByteInfo.append("[top_byte\t").
+                    append(Utility.hex(b, 2)).
+                    append("\t").append(groupInfo);
+            if (compress) {
+                topByteInfo.append("\tCOMPRESS");
+            }
+            topByteInfo.append(" ]");
+            if (count != 0) {
+                // Write the number of primaries on the group's first line.
+                topByteInfo.append("  # ").append(count).append(" primary weights");
+                count = 0;
+            }
+            topByteInfo.append('\n');
+            ++b;
+        }
     }
 
     /**
@@ -2584,8 +2646,10 @@ public class FractionalUCA {
         return ordered;
     }
 
+    /**
+     * Turns L+middle dot contractions into prefix rules.
+     */
     private static void modifyMappings(Set<Mapping> ordered) {
-        // Turn L+middle dot contractions into prefix rules.
         List<Mapping> newMappings = new LinkedList<Mapping>();
         Mapping lastMiddleDotMapping = new Mapping("L\u0387");
         Iterator<Mapping> it = ordered.iterator();
@@ -2745,6 +2809,11 @@ public class FractionalUCA {
      * Helper class for reorder codes:
      * Script code (0..FF) or reordering group code
      * ({@link ReorderCodes#FIRST}..{@link ReorderCodes#LIMIT}).
+     *
+     * <p>Note: The <i>names</i> of the special-group constants are the same as in
+     * {@link com.ibm.icu.text.Collator.ReorderCodes}
+     * but the script and reorder code numeric <i>values</i>
+     * are totally different from those in ICU.
      */
     private static class ReorderCodes {
         private static final int FIRST = 0x100;
@@ -2806,6 +2875,14 @@ public class FractionalUCA {
         private static final String getName(int reorderCode) {
             if (reorderCode < FIRST) {
                 return UCD.getScriptID_fromIndex((byte) reorderCode);
+            } else {
+                return SPECIAL_NAMES[reorderCode - FIRST];
+            }
+        }
+
+        private static final String getShortName(int reorderCode) {
+            if (reorderCode < FIRST) {
+                return UCD.getScriptID_fromIndex((byte) reorderCode, UCD_Types.SHORT);
             } else {
                 return SPECIAL_NAMES[reorderCode - FIRST];
             }
