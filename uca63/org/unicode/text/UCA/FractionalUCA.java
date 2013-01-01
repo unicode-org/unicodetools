@@ -63,7 +63,12 @@ public class FractionalUCA {
          */
         public CEList ces;
         /**
-         * Standard 3-level UCA sort key "string".
+         * Modified CEs, if any.
+         * If not null, then these are the CEs to be transformed into fractional CEs.
+         */
+        public CEList modifiedCEs;
+        /**
+         * Standard 3-level UCA sort key "string" corresponding to ces.
          */
         public String sortKey;
 
@@ -86,6 +91,26 @@ public class FractionalUCA {
             this.s = s;
             this.ces = ces.onlyNonZero();
             this.sortKey = sortKey;
+        }
+
+        public CEList getCEsForFractional() {
+            if (modifiedCEs != null) {
+                return modifiedCEs;
+            }
+            return ces;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            if (prefix != null) {
+                sb.append(Utility.hex(prefix)).append(" | ");
+            }
+            sb.append(Utility.hex(s)).append(" -> ").append(ces).toString();
+            if (modifiedCEs != null) {
+                sb.append(" modified: ").append(modifiedCEs);
+            }
+            return sb.toString();
         }
 
         @Override
@@ -1167,7 +1192,8 @@ public class FractionalUCA {
         modifyMappings(ordered);
         for (Mapping mapping : ordered) {
             String chr = mapping.s;
-            CEList ces = mapping.ces;
+            CEList ces = mapping.getCEsForFractional();
+            // TODO: Should we print and record the unmodified mapping.ces?
             int firstPrimary = ces.isEmpty() ? 0 : CEList.getPrimary(ces.at(0));
             // String message = null;
             if (firstPrimary != oldFirstPrimary) {
@@ -2647,20 +2673,51 @@ public class FractionalUCA {
     }
 
     /**
-     * Turns L+middle dot contractions into prefix rules.
+     * Modifies some of the UCA mappings before they are converted to fractional CEs.
+     * <ul>
+     * <li>Turns L+middle dot contractions into prefix rules.
+     * <li>Merges artificial secondary CEs into the preceding primary ones.
+     *     DUCET primary CEs only use the "common" secondary weight.
+     *     All secondary distinctions are made via additional secondary CEs.
+     *     In FractionalUCA we change that, to reduce the number of expansions.
+     * </ul>
      */
     private static void modifyMappings(Set<Mapping> ordered) {
+        System.out.println("Modify UCA Mappings");
+
+        // Find the highest secondary weight assigned to a character.
+        // Look at the first CE of each mapping, and look at only primary ignorable CEs.
+        // Higher secondary weights are DUCET-specific, for secondary distinctions
+        // of primary CEs.
+        int maxNormalSecondary = 0;
+        int numSecondariesMerged = 0;
+        // Avoid merging the precomposed L+middle dot too. Look for its CEs.
+        int lMiddleDotPri;
+        int lMiddleDotSec;
+        {
+            CEList lMiddleDotCEs = getCollator().getCEList("\u0140", true);
+            if (lMiddleDotCEs.length() != 2) {
+                throw new IllegalArgumentException(
+                        "L+middle dot has unexpected CEs: " + lMiddleDotCEs);
+            }
+            lMiddleDotPri = CEList.getPrimary(lMiddleDotCEs.at(0));
+            lMiddleDotSec = CEList.getSecondary(lMiddleDotCEs.at(1));
+        }
+
         List<Mapping> newMappings = new LinkedList<Mapping>();
-        Mapping lastMiddleDotMapping = new Mapping("L\u0387");
         Iterator<Mapping> it = ordered.iterator();
         while (it.hasNext()) {
             Mapping mapping = it.next();
-            if (mapping.compareTo(lastMiddleDotMapping) > 0) {
-                break;
-            }
-            String s = mapping.s;
             CEList ces = mapping.ces;
-            if (s.length() == 2 && ces.length() == 2
+            if (ces.isEmpty()) {
+                continue;
+            }
+
+            // Look for L+middle dot first so that the middle dot's secondary weight
+            // does not get merged into the L's primary CE.
+            // (That would prevent it from turning into a prefix mapping.)
+            String s = mapping.s;
+            if (s.length() == 2 && ces.length() == 2 && mapping.prefix == null
                     && (s.equals("l\u00B7") || s.equals("L\u00B7")
                             || s.equals("l\u0387") || s.equals("L\u0387"))) {
                 it.remove();
@@ -2672,9 +2729,103 @@ public class FractionalUCA {
                 // Make a new mapping for the middle dot.
                 mapping = new Mapping(prefix, s, ces);
                 newMappings.add(mapping);
+                continue;
+            }
+
+            // Check and merge secondary CEs.
+            int firstCE = ces.at(0);
+            if (CEList.getPrimary(firstCE) == 0) {
+                int sec = CEList.getSecondary(firstCE);
+                if (sec > maxNormalSecondary) {
+                    maxNormalSecondary = sec;
+                }
+                // Check that no primary CE follows because
+                // we may not have seen all of the ignorable mappings yet
+                // and may therefore not have an accurate maxNormalSecondary yet.
+                for (int i = 1; i < ces.length(); ++i) {
+                    if (CEList.getPrimary(ces.at(i)) != 0) {
+                        throw new IllegalArgumentException(
+                                "UCA Mapping " + mapping +
+                                "contains a primary CE after the initial ignorable CE");
+                    }
+                }
+            } else {
+                for (int i = 0; i < ces.length(); ++i) {
+                    int ce = ces.at(i);
+                    int sec = CEList.getSecondary(ce);
+                    if (CEList.getPrimary(ce) != 0) {
+                        if (sec != UCA_Types.NEUTRAL_SECONDARY && sec != 0) {
+                            throw new IllegalArgumentException(
+                                    "UCA Mapping " + mapping +
+                                    "contains a primary CE with a non-common secondary weight");
+                        }
+                    } else if (sec > maxNormalSecondary) {
+                        if (ces.length() == 2 && sec == lMiddleDotSec &&
+                                CEList.getPrimary(firstCE) == lMiddleDotPri) {
+                            break;
+                        }
+                        if ((i + 1) < ces.length()) {
+                            int nextCE = ces.at(i + 1);
+                            int nextPri = CEList.getPrimary(nextCE);
+                            int nextSec = CEList.getSecondary(nextCE);
+                            if (nextPri == 0 && nextSec > maxNormalSecondary) {
+                                throw new IllegalArgumentException(
+                                        "UCA Mapping " + mapping +
+                                        "contains two artificial secondary CEs in a row");
+                            }
+                        }
+                        // Check that the previous CE is a primary CE.
+                        int previous = i - 1;
+                        int previousCE = ces.at(previous);
+                        int previousPri = CEList.getPrimary(previousCE);
+                        if (previousPri == 0) {
+                            continue;
+                        }
+                        if (CEList.getSecondary(previousCE) == 0) {
+                            // Index i is after a continuation,
+                            // should be for a two-CE implicit primary.
+                            previousCE = ces.at(--previous);
+                            previousPri = CEList.getPrimary(previousCE);
+                            if (previousPri == 0 || CEList.getSecondary(previousCE) == 0) {
+                                // Something unexpected.
+                                continue;
+                            }
+                        }
+                        // Copy the CEs before the previous primary CE.
+                        int[] newCEs = new int[ces.length() - 1];
+                        for (int j = 0; j < previous; ++j) {
+                            newCEs[j] = ces.at(j);
+                        }
+                        // Merge ces[i]'s secondary weight into the previous primary CE.
+                        // Reduce the secondary weight to just after the common weight.
+                        sec = UCA_Types.NEUTRAL_SECONDARY + sec - maxNormalSecondary;
+                        // TODO: This is broken!
+                        // Map secondaries of primary CEs vs. ignorable CEs to separate ranges of fractional secondaries.
+                        int previousTer = CEList.getTertiary(previousCE);
+                        newCEs[previous] = UCA.makeKey(previousPri, sec, previousTer);
+                        while (++previous < i) {
+                            // Copy the remainder of the continuation CE.
+                            newCEs[previous] = ces.at(previous);
+                        }
+                        // Copy the CEs after ces[i], shifting left by one to remove ces[i].
+                        for (int j = i + 1; j < ces.length(); ++j) {
+                            newCEs[j - 1] = ces.at(j);
+                        }
+                        // Store the modified CEs and continue with looking at the next CE.
+                        // We do not replace the whole mapping because the modified CEs
+                        // are not well-formed (secondary weights of primary vs. ignorable CEs overlap now)
+                        // and therefore we should not use them to create a sort key.
+                        mapping.modifiedCEs = ces = new CEList(newCEs);
+                        --i;
+                        ++numSecondariesMerged;
+                    }
+                }
             }
         }
         ordered.addAll(newMappings);
+        System.out.println(
+                "Number of artificial secondary CEs merged into the preceding primary CEs: " +
+                numSecondariesMerged);
     }
 
     /**
