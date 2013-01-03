@@ -373,9 +373,6 @@ public class FractionalUCA {
             return key0;
         }
         public void show(Appendable summary) {
-            /* We do not compute fractional implicit weights any more.
-            checkImplicits();
-            */
             try {
                 show(Type.primary, primaries, summary);
                 show(Type.secondary, secondaries, summary);
@@ -384,32 +381,6 @@ public class FractionalUCA {
                 throw new IllegalArgumentException(e);
             }
         }
-        /* We do not compute fractional implicit weights any more.
-        private void checkImplicits() {
-            TreeMap<Integer, Integer> implicitToCodepoint = new TreeMap<Integer, Integer>();
-            for (int codepoint = 0; codepoint <= 0x10FFFF; ++codepoint) {
-                int implicitWeight = leftJustify(implicit.getImplicitFromCodePoint(codepoint));
-                implicitToCodepoint.put(implicitWeight, codepoint);
-            }
-            int lastImplicit = 0;
-            int lastCodepoint = 0;
-            for (Entry<Integer, Integer> entry : implicitToCodepoint.entrySet()) {
-                int implicitWeight = entry.getKey();
-                int codepoint = entry.getValue();
-                if (lastImplicit != 0) {
-                    try {
-                        checkGap(Type.primary, lastImplicit, implicitWeight);
-                    } catch (Exception e) {
-                        throw new IllegalArgumentException("Strings:\t" 
-                                + Default.ucd().getCodeAndName(lastCodepoint) 
-                                + ", " + Default.ucd().getCodeAndName(codepoint), e);
-                    }
-                }
-                lastImplicit = implicitWeight;
-                lastCodepoint = codepoint;
-            }
-        }
-        */
 
         private static final UnicodeSet AVOID_CODE_POINTS =  // doesn't depend on version
                 new UnicodeSet("[[:C:][:Noncharacter_Code_Point:]]").freeze();
@@ -445,14 +416,8 @@ public class FractionalUCA {
         }
         private void show(Type type, Map<Long, UnicodeSet> map, Appendable summary) throws IOException {
             summary.append("\n# Start " + type + " statistics \n");
-            long lastWeight = -1;
             for (Entry<Long, UnicodeSet> entry : map.entrySet()) {
                 long weight = entry.getKey();
-                if (lastWeight >= 0) {
-                    checkGap(type, (int)lastWeight, (int)weight);
-                }
-                lastWeight = weight;
-
                 UnicodeSet uset = entry.getValue();
                 String pattern = uset.toPattern(false);
                 summary.append(Fractional.hexBytes(weight))
@@ -475,63 +440,6 @@ public class FractionalUCA {
             public int gap() {
                 return gap;
             }
-        }
-
-        /**
-         * Check that there is enough room between weight1 and the weight2. Both
-         * are left-justified: that is, of the form XXYYZZWW where XX is only
-         * zero if the whole value is zero.
-         * 
-         * @param type
-         * @param weight1
-         * @param weight2
-         */
-        private static void checkGap(Type type, int weight1, int weight2) {
-            if (weight1 >= weight2) {
-                throw new IllegalArgumentException("Weights out of order: " + Fractional.hexBytes(weight1) + ",\t" + Fractional.hexBytes(weight2));
-            }
-            if (true) { return; }  // TODO: fix & reenable
-            // find the first difference between bytes
-            for (int i = 24; i >= 0; i -= 8) {
-                int b1 = (int) ((weight1 >>> i) & 0xFF);
-                int b2 = (int) ((weight2 >>> i) & 0xFF);
-                // keep going until we find a byte difference
-                if (b2 == b1) {
-                    continue;
-                }
-                if (b2 > b1 + 27) {
-                    // OK, there is a gap of 27 or greater. Example:
-                    // AA BB CC 38
-                    // AA BB CC 5C
-                    return;
-                }
-                if (i != 0) { // if we are at not at the end
-
-                    if (b2 > b1 + 1) {
-                        // OK, there is a gap of 1 or greater, and we are not in the final byte. Example:
-                        // AA 85
-                        // AA 87
-                        return;
-                    }
-                    // We now know that b2 == b1 +1
-
-                    // get next bytes
-                    i -= 8;
-                    b1 = (int) ((weight1 >> i) & 0xFF);
-                    b2 = 0x100 + (int) ((weight2 >> i) & 0xFF); // add 100 to express the true difference
-                    if (b1 + type.gap() < b2) {
-                        // OK, the gap is enough.
-                        // AA 85
-                        // AA 86 05
-                        // or
-                        // AA 85 FD
-                        // AA 86 03
-                        return;
-                    }
-                }
-                throw new IllegalArgumentException("Weights too close: " + Fractional.hexBytes(weight1) + ",\t" + Fractional.hexBytes(weight2));
-            }
-            throw new IllegalArgumentException("Internal Error: " + Fractional.hexBytes(weight1) + ",\t" + Fractional.hexBytes(weight2));
         }
 
         private StringBuffer sb = new StringBuffer();
@@ -630,9 +538,6 @@ public class FractionalUCA {
         // so that use of this class for different data cannot cause values from
         // one run to bleed into the next.
 
-        /* We do not compute fractional implicit weights any more.
-        FractionalUCA.checkImplicit();
-        */
         FractionalUCA.checkFixes();
 
         UCA uca = getCollator();
@@ -808,7 +713,7 @@ public class FractionalUCA {
                     // Note: Hans = Hant = Hani but we do not print Hans/Hant here because
                     // they have the same script sample character as Hani,
                     // and we cannot write multiple mappings for the same string.
-    
+
                     if (reorderCode == ReorderCodes.DIGIT) {
                         fractionalStatistics.printAndRecord(
                                 true, "\uFDD04",
@@ -886,9 +791,6 @@ public class FractionalUCA {
                                 + " => " + Utility.hex(implicitCodePoint));
                     }
 
-                    /* We do not compute fractional implicit weights any more.
-                    // was: np = FractionalUCA.getImplicitPrimary(pri);
-                    */
                     int ns = FractionalUCA.fixSecondary(sec);
                     int nt = FractionalUCA.fixTertiary(ter, chr);
 
@@ -1134,36 +1036,6 @@ public class FractionalUCA {
             }
          */
         summary.println();
-        /* We do not compute fractional implicit weights any more.
-        summary.println("# First Implicit: " + Utility.hex(Fractional.IMPLICIT_BASE_BYTE));  // was FractionalUCA.getImplicitPrimary(0)
-        summary.println("# Last Implicit: " + Utility.hex(Fractional.IMPLICIT_MAX_BYTE));  // was FractionalUCA.getImplicitPrimary(0x10FFFF)
-        summary.println("# First CJK: " + Utility.hex(Fractional.IMPLICIT_BASE_BYTE));  // was FractionalUCA.getImplicitPrimary(0x4E00)
-        summary.println("# Last CJK: " + Utility.hex(Fractional.IMPLICIT_BASE_BYTE));  // was FractionalUCA.getImplicitPrimary(0xFA2F), should have been dynamic
-        summary.println("# First CJK_A: " + Utility.hex(Fractional.IMPLICIT_BASE_BYTE + 1));  // was FractionalUCA.getImplicitPrimary(0x3400)
-        summary.println("# Last CJK_A: " + Utility.hex(Fractional.IMPLICIT_BASE_BYTE + 1));  // was FractionalUCA.getImplicitPrimary(0x4DBF), should have been dynamic
-        */
-
-        if (DEBUG) {
-            /* We do not compute fractional implicit weights any more.
-            boolean lastOne = false;
-            for (int i = 0; i < 0x10FFFF; ++i) {
-                boolean thisOne = UCD.isCJK_BASE(i) || UCD.isCJK_AB(i);
-                if (thisOne != lastOne) {
-                    summary.println("# Implicit Cusp: CJK=" + lastOne + ": " + Utility.hex(i-1) +
-                            " => " + Utility.hex(FractionalUCA.Variables.INT_MASK &
-                                                 FractionalUCA.getImplicitPrimary(i-1)));
-                    summary.println("# Implicit Cusp: CJK=" + thisOne + ": " + Utility.hex(i) +
-                            " => " + Utility.hex(FractionalUCA.Variables.INT_MASK &
-                                                 FractionalUCA.getImplicitPrimary(i)));
-                    lastOne = thisOne;
-                }
-            }
-            */
-            summary.println("Compact Secondary 153: " + FractionalUCA.compactSecondary[0x153]);
-            summary.println("Compact Secondary 157: " + FractionalUCA.compactSecondary[0x157]);
-        }
-
-
 
         summary.println();
         summary.println("# Disjoint classes for Secondaries");
@@ -1290,120 +1162,6 @@ public class FractionalUCA {
         // E3 9B 5F C8
     }
 
-    /* We do not compute fractional implicit weights any more.
-    static void checkImplicit() {
-        System.out.println("Starting Implicit Check");
-
-        long oldPrimary = 0;
-        int oldChar = -1;
-        int oldSwap = -1;
-
-        // test monotonically increasing
-
-        for (int i = 0; i < 0x21FFFF; ++i) {
-            long newPrimary = FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimaryFromSwapped(i);
-            if (newPrimary < oldPrimary) {
-                throw new IllegalArgumentException(Utility.hex(i) + ": overlap: "
-                        + Utility.hex(oldChar) + " (" + Utility.hex(oldPrimary) + ")"
-                        + " > " + Utility.hex(i) + "(" + Utility.hex(newPrimary) + ")");
-            }
-            oldPrimary = newPrimary;
-        }
-
-        FractionalUCA.showImplicit("# 3B9D", 0x3B9D);
-
-        FractionalUCA.showImplicit("# First CJK", UCD_Types.CJK_BASE);
-        FractionalUCA.showImplicit("# Last CJK", UCD_Types.CJK_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK-compat", UCD_Types.CJK_COMPAT_USED_BASE);
-        FractionalUCA.showImplicit("# Last CJK-compat", UCD_Types.CJK_COMPAT_USED_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK_A", UCD_Types.CJK_A_BASE);
-        FractionalUCA.showImplicit("# Last CJK_A", UCD_Types.CJK_A_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK_B", UCD_Types.CJK_B_BASE);
-        FractionalUCA.showImplicit("# Last CJK_B", UCD_Types.CJK_B_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK_C", UCD_Types.CJK_C_BASE);
-        FractionalUCA.showImplicit("# Last CJK_C", UCD_Types.CJK_C_LIMIT-1);
-        FractionalUCA.showImplicit("# First CJK_D", UCD_Types.CJK_D_BASE);
-        FractionalUCA.showImplicit("# Last CJK_D", UCD_Types.CJK_D_LIMIT-1);
-        FractionalUCA.showImplicit("# First Other Implicit", 0);
-        FractionalUCA.showImplicit("# Last Other Implicit", 0x10FFFF);
-
-        FractionalUCA.showImplicit3("# FIRST", 0);
-        FractionalUCA.showImplicit3("# Boundary-1", FractionalUCA.Variables.IMPLICIT_4BYTE_BOUNDARY-1);
-        FractionalUCA.showImplicit3("# Boundary00", FractionalUCA.Variables.IMPLICIT_4BYTE_BOUNDARY);
-        FractionalUCA.showImplicit3("# Boundary+1", FractionalUCA.Variables.IMPLICIT_4BYTE_BOUNDARY+1);
-        FractionalUCA.showImplicit3("# LAST", 0x21FFFF);
-
-
-        for (int batch = 0; batch < 3; ++batch) {
-            // init each batch
-            oldPrimary = 0;
-            oldChar = -1;
-
-            for (int i = 0; i <= 0x10FFFF; ++i) {
-
-                // separate the three groups
-
-                if (UCD.isCJK_BASE(i) || UCD_Types.CJK_COMPAT_USED_BASE <= i && i < UCD_Types.CJK_COMPAT_USED_LIMIT) {
-                    if (batch != 0) {
-                        continue;
-                    }
-                } else if (UCD.isCJK_AB(i)) {
-                    if (batch != 1) {
-                        continue;
-                    }
-                } else if (batch != 2) {
-                    continue;
-                }
-
-
-                // test swapping
-
-                int currSwap = ImplicitCEGenerator.swapCJK(i);
-                if (currSwap < oldSwap) {
-                    throw new IllegalArgumentException(Utility.hex(i) + ": overlap: "
-                            + Utility.hex(oldChar) + " (" + Utility.hex(oldSwap) + ")"
-                            + " > " + Utility.hex(i) + "(" + Utility.hex(currSwap) + ")");
-                }
-
-
-                long newPrimary = FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(i);
-
-                // test correct values
-
-
-                if (newPrimary < oldPrimary && oldChar != -1) {
-                    throw new IllegalArgumentException(Utility.hex(i) + ": overlap: "
-                            + Utility.hex(oldChar) + " (" + Utility.hex(oldPrimary) + ")"
-                            + " > " + Utility.hex(i) + "(" + Utility.hex(newPrimary) + ")");
-                }
-
-
-                long b0 = (newPrimary >> 24) & 0xFF;
-                long b1 = (newPrimary >> 16) & 0xFF;
-                long b2 = (newPrimary >> 8) & 0xFF;
-                long b3 = newPrimary & 0xFF;
-
-                if (b0 < Fractional.IMPLICIT_BASE_BYTE || b0 > Fractional.IMPLICIT_MAX_BYTE  || b1 < 3 || b2 < 3 || b3 == 1 || b3 == 2) {
-                    throw new IllegalArgumentException(Utility.hex(i) + ": illegal byte value: " + Utility.hex(newPrimary)
-                            + ", " + Utility.hex(b1) + ", " + Utility.hex(b2) + ", " + Utility.hex(b3));
-                }
-
-                // print range to look at
-                final boolean TESTING = false;
-                if (TESTING) {
-                    int b = i & 0xFF;
-                    if (b == 255 || b == 0 || b == 1) {
-                        System.out.println(Utility.hex(i) + " => " + Utility.hex(newPrimary));
-                    }
-                }
-                oldPrimary = newPrimary;
-                oldChar = i;
-            }
-        }
-        System.out.println("Successful Implicit Check!!");
-    }
-    */
-
     static void checkFixes() {
         System.out.println("Checking Secondary/Tertiary Fixes");
         int lastVal = -1;
@@ -1445,35 +1203,6 @@ public class FractionalUCA {
         }
         System.out.println("END Checking Secondary/Tertiary Fixes");
     }
-
-    /* We do not compute fractional implicit weights any more.
-    static void showImplicit(String title, int cp) {
-        if (DEBUG) {
-            FractionalUCA.showImplicit2(title + "-1", cp-1);
-        }
-
-        FractionalUCA.showImplicit2(title + "00", cp);
-
-        if (DEBUG) {
-            FractionalUCA.showImplicit2(title + "+1", cp+1);
-        }
-    }
-
-    static void showImplicit3(String title, int cp) {
-        System.out.println("*" + title + ":\t" + Utility.hex(cp)
-                + " => " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimaryFromSwapped(cp)));
-    }
-
-    static void showImplicit2(String title, int cp) {
-        System.out.println(title + ":\t" + Utility.hex(cp)
-                + " => " + Utility.hex(ImplicitCEGenerator.swapCJK(cp))
-                + " => " + Utility.hex(FractionalUCA.Variables.INT_MASK & FractionalUCA.getImplicitPrimary(cp)));
-    }
-
-    static int getImplicitPrimaryFromSwapped(int cp) {
-        return FractionalUCA.implicit.getImplicitFromRaw(cp);
-    }
-    */
 
     static int fixSecondary(int x) {
         x = FractionalUCA.compactSecondary[x];
@@ -1545,12 +1274,6 @@ public class FractionalUCA {
 
     static int[] compactSecondary;
 
-    /* We do not compute fractional implicit weights any more.
-    static int getImplicitPrimary(int cp) {
-        return FractionalUCA.implicit.getImplicitFromCodePoint(cp);
-    }
-    */
-
     static boolean sameTopByte(int x, int y) {
         int x1 = x & 0xFF0000;
         int y1 = y & 0xFF0000;
@@ -1561,10 +1284,6 @@ public class FractionalUCA {
         y1 = y & 0xFF00;
         return x1 == y1;
     }
-
-    /* We do not compute fractional implicit weights any more.
-    static ImplicitCEGenerator implicit = new ImplicitCEGenerator(Fractional.IMPLICIT_BASE_BYTE, Fractional.IMPLICIT_MAX_BYTE);
-    */
 
     //    static final boolean needsCaseBit(String x) {
     //        String s = Default.nfkd().normalize(x);
