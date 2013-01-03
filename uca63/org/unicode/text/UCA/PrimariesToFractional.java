@@ -13,7 +13,9 @@ import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.impl.Row;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 
 /**
  * Maps UCA-style primary weights to byte-fractional primaries.
@@ -419,6 +421,7 @@ public final class PrimariesToFractional {
         
         groupIsCompressible[UCD_Types.GREEK_SCRIPT] = true;
         groupIsCompressible[UCD_Types.CYRILLIC_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.ARABIC_SCRIPT] = true;
         groupIsCompressible[UCD_Types.GEORGIAN_SCRIPT] = true;
         groupIsCompressible[UCD_Types.ARMENIAN_SCRIPT] = true;
         groupIsCompressible[UCD_Types.HEBREW_SCRIPT] = true;
@@ -833,43 +836,27 @@ public final class PrimariesToFractional {
             }
         }
 
-        char[][] twoBytePairs = {
-            // Cyrillic а-я
-            {'\u0430', '\u044F'},
-            // Further Cyrillic main exemplar characters from CLDR 22,
-            // for common locales plus Mongolian.
-            // TODO: We could make this dynamic, using CLDR's tools to fetch this data.
-            // TODO: Consider adding Cyrillic auxiliary exemplar characters.
-            {'\u0451', '\u045C'},
-            {'\u045E', '\u045F'},
-            {'\u0491', '\u0491'},
-            {'\u0493', '\u0493'},
-            {'\u0495', '\u0495'},
-            {'\u049B', '\u049B'},
-            {'\u049D', '\u049D'},
-            {'\u04A3', '\u04A3'},
-            {'\u04A5', '\u04A5'},
-            {'\u04AF', '\u04AF'},
-            {'\u04B1', '\u04B1'},
-            {'\u04B3', '\u04B3'},
-            {'\u04B7', '\u04B7'},
-            {'\u04B9', '\u04B9'},
-            {'\u04BB', '\u04BB'},
-            {'\u04CA', '\u04CA'},
-            {'\u04D5', '\u04D5'},
-            {'\u04D9', '\u04D9'},
-            {'\u04E3', '\u04E3'},
-            {'\u04E9', '\u04E9'},
-            {'\u04EF', '\u04EF'},
-            // Jamo L, V, T
-            {'\u1100','\u1112'}, {'\u1161','\u1175'}, {'\u11A8','\u11C2'}
-        };
-        for (int j = 0; j < twoBytePairs.length; ++j) {
-            char start = twoBytePairs[j][0];
-            char end = twoBytePairs[j][1];
-            for (char k = start; k <= end; ++k) {
-                setTwoBytePrimaryFor(k);
-            }
+        UnicodeSet twoByteChars = new UnicodeSet(
+                "[" +
+                // Cyrillic main exemplar characters from CLDR 22,
+                // for common locales plus Mongolian.
+                // TODO: We could make this dynamic, using CLDR's tools to fetch this data.
+                // TODO: Consider adding Cyrillic auxiliary exemplar characters.
+                "\u0430-\u044F\u0451-\u045C\u045E-\u045F\u0491\u0493\u0495\u049B\u049D" +
+                "\u04A3\u04A5\u04AF\u04B1\u04B3\u04B7\u04B9\u04BB\u04CA" +
+                "\u04D5\u04D9\u04E3\u04E9\u04EF" +
+                // Arabic main exemplar characters from CLDR 22,
+                // except for primary ignorable characters.
+                "\u0621-\u063A\u0641-\u064A\u066E\u0672\u0679\u067C\u067E" +
+                "\u0681\u0685\u0686\u0688\u0689\u0691\u0693\u0696\u0698\u069A" +
+                "\u06A9\u06AB\u06AF\u06BA\u06BC\u06BE\u06C1\u06C2\u06C4\u06C7\u06C9\u06CC\u06CD" +
+                "\u06D0\u06D2" +
+                // Jamo L, V, T
+                "\u1100-\u1112\u1161-\u1175\u11A8-\u11C2" +
+                "]");
+        UnicodeSetIterator twoByteIter = new UnicodeSetIterator(twoByteChars);
+        while (twoByteIter.next()) {
+            setTwoBytePrimaryFor(twoByteIter.codepoint);
         }
     }
 
@@ -883,6 +870,8 @@ public final class PrimariesToFractional {
         return
                 // We cherry-pick the main Cyrillic letters for two-byte primaries.
                 script == UCD_Types.CYRILLIC_SCRIPT ||
+                // We cherry-pick the main Arabic letters for two-byte primaries.
+                script == UCD_Types.ARABIC_SCRIPT ||
                 // We cherry-pick the conjoining Jamo L/V/T for two-byte primaries.
                 script == UCD_Types.HANGUL_SCRIPT ||
                 script == UCD_Types.ETHIOPIC_SCRIPT ||
@@ -923,8 +912,8 @@ public final class PrimariesToFractional {
         getOrCreateProps(firstPrimary).useSingleBytePrimary = true;
     }
 
-    private void setTwoBytePrimaryFor(char ch) {
-        CEList ces = uca.getCEList(String.valueOf(ch), true);
+    private void setTwoBytePrimaryFor(int ch) {
+        CEList ces = uca.getCEList(UTF16.valueOf(ch), true);
         int firstPrimary = CEList.getPrimary(ces.at(0));
         getOrCreateProps(firstPrimary).useTwoBytePrimary = true;
     }
