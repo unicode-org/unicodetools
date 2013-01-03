@@ -546,6 +546,34 @@ public final class PrimariesToFractional {
                 scriptChange = true;
             }
 
+            if (currentByteLength == 3 && fractionalPrimary.lastByteLength <= 2) {
+                // We slightly optimize the assignment of primary weights:
+                // If a 3-byte primary is surrounded by one-or-two-byte primaries,
+                // then we can shorten the middle one to two bytes as well,
+                // because we would generate at least a two-byte gap before and after anyway.
+                //
+                // We lose a little tailoring space for further 3-byte weights
+                // with the same two-byte prefix, but the sort key will be shorter,
+                // and if the CE has non-common secondary or tertiary weights,
+                // then it will take less space in the binary data.
+                //
+                // This requires a lookahead to the desired length of the next primary weight.
+                // (But not to the next weight itself which we have not computed yet.)
+                //
+                // We do not want to auto-shorten the first-script primary weights
+                // because they are essentially never used,
+                // and we know they fit into long-primary CEs.
+                // (They are generated with the next() call above,
+                // so we need not handle them specially here.)
+                int nextPrimary = primarySet.nextSetBit(primary + 1);
+                PrimaryToFractional nextProps = getProps(nextPrimary);
+                if (0 <= nextPrimary && nextPrimary < UCA_Types.UNSUPPORTED_BASE &&
+                        nextProps != null &&
+                        nextProps.reorderCodeIfFirst < 0 &&
+                        nextProps.getFractionalLength() <= 2) {
+                    currentByteLength = 2;
+                }
+            }
             props.fractionalPrimary = fractionalPrimary.next(currentByteLength, scriptChange);
             ++numPrimaries;
 
