@@ -653,74 +653,6 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
      * log.println("</body></html>"); log.close();
      */
 
-    static final byte getDecompType(int cp) {
-        byte result = Default.ucd().getDecompositionType(cp);
-        if (result == Default.ucd().CANONICAL) {
-            String d = Default.nfd().normalize(cp); // TODO
-            int cp1;
-            for (int i = 0; i < d.length(); i += UTF16.getCharCount(cp1)) {
-                cp1 = UTF16.charAt(d, i);
-                byte t = Default.ucd().getDecompositionType(cp1);
-                if (t > Default.ucd().CANONICAL) {
-                    return t;
-                }
-            }
-        }
-        return result;
-    }
-
-    static final boolean multipleZeroPrimaries(int[] a, int aLen) {
-        int count = 0;
-        for (int i = 0; i < aLen; ++i) {
-            if (CEList.getPrimary(a[i]) == 0) {
-                if (count == 1) {
-                    return true;
-                }
-                count++;
-            } else {
-                count = 0;
-            }
-        }
-        return false;
-    }
-
-    static int kenCompress(int[] markCes, int markLen) {
-        if (markLen == 0) {
-            return 0;
-        }
-        int out = 1;
-        for (int i = 1; i < markLen; ++i) {
-            int next = markCes[i];
-            int prev = markCes[out - 1];
-            if (CEList.getPrimary(next) == 0
-                    && CEList.getSecondary(prev) == 0x20
-                    && CEList.getTertiary(next) == 0x2) {
-                markCes[out - 1] = UCA.makeKey(
-                        CEList.getPrimary(prev),
-                        CEList.getSecondary(next),
-                        CEList.getTertiary(prev));
-                FractionalUCA.Variables.compressSet.set(CEList.getSecondary(next));
-            } else {
-                markCes[out++] = next;
-            }
-        }
-        return out;
-    }
-
-    static boolean arraysMatch(int[] a, int aLen, int[] b, int bLen) {
-        if (aLen != bLen) {
-            return false;
-        }
-        for (int i = 0; i < aLen; ++i) {
-            if (a[i] != b[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    static int[] markCes = new int[50];
-
     static int getStrengthDiff(CEList celist) {
         int result = QUARTERNARY_DIFF;
         for (int j = 0; j < celist.length(); ++j) {
@@ -1753,7 +1685,7 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
         int lastExpansionStart = 0;
         int expansionStart = 0;
 
-        long variableTop = getCollator(collatorType2).getVariableHighCE() & FractionalUCA.Variables.INT_MASK;
+        long variableTop = getCollator(collatorType2).getVariableHighCE() & 0xffffffffL;
 
         // for debugging ordering
         String lastSortKey = "";

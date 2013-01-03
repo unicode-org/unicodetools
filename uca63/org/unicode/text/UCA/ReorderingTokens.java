@@ -51,8 +51,8 @@ class ReorderingTokens {
         int cp = Default.nfkd().normalize(source).codePointAt(0);
         //for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
         //cp = source.codePointAt(i);
-        byte cat = FractionalUCA.getFixedCategory(cp);
-        int script = FractionalUCA.getFixedScript(cp);
+        byte cat = Fractional.getFixedCategory(cp);
+        int script = Fractional.getFixedScript(cp);
 
         if (!(script == Default.ucd().Unknown_Script || script == Default.ucd().COMMON_SCRIPT)
                 && (cat == Default.ucd().OTHER_LETTER || cat == Default.ucd().UPPERCASE_LETTER || cat == Default.ucd().LOWERCASE_LETTER || cat == Default.ucd().TITLECASE_LETTER)) {
@@ -90,8 +90,8 @@ class ReorderingTokens {
         int cp = source.codePointAt(0);
         //for (int i = 0; i < source.length(); i += Character.charCount(cp)) {
         //cp = source.codePointAt(i);
-        byte cat = FractionalUCA.getFixedCategory(cp);
-        int script = FractionalUCA.getFixedScript(cp);
+        byte cat = Fractional.getFixedCategory(cp);
+        int script = Fractional.getFixedScript(cp);
         //        if (result.length() != 0) {
         //          result.append(' ');
         //        }

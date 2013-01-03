@@ -103,7 +103,7 @@ public class Main {
             else if (arg.equalsIgnoreCase("writeConformanceCldr")) WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA.NON_IGNORABLE, shortPrint, CollatorType.cldr);
             else if (arg.equalsIgnoreCase("writeConformanceShiftedCldr")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.cldr);
             
-            else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) FractionalUCA.testCompatibilityCharacters();
+            else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) TestCompatibilityCharacters.testCompatibilityCharacters(WriteCollationData.getCollator(CollatorType.cldrWithoutFFFx));
             else if (arg.equalsIgnoreCase("writeCollationValidityLog")) WriteCollationData.writeCollationValidityLog();
             else if (arg.equalsIgnoreCase("writeCaseExceptions")) WriteCollationData.writeCaseExceptions();
             else if (arg.equalsIgnoreCase("writeJavascriptInfo")) WriteCollationData.writeJavascriptInfo();
