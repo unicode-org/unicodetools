@@ -418,6 +418,7 @@ public final class PrimariesToFractional {
         this.uca = uca;
         
         groupIsCompressible[UCD_Types.GREEK_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.CYRILLIC_SCRIPT] = true;
         groupIsCompressible[UCD_Types.GEORGIAN_SCRIPT] = true;
         groupIsCompressible[UCD_Types.ARMENIAN_SCRIPT] = true;
         groupIsCompressible[UCD_Types.HEBREW_SCRIPT] = true;
@@ -805,14 +806,6 @@ public final class PrimariesToFractional {
             boolean major = majorPrimaryEntry.getValue().get0();
             int script = majorPrimaryEntry.getValue().get1();
             addMajorPrimaries(lastPrimary, primary-1, lastMajor, lastScript);
-            if (lastScript == UCD_Types.HANGUL_SCRIPT) {
-                for (int i = lastPrimary; i < primary; ++i) {
-                    CharSequence ch2 = uca.getRepresentativePrimary(i);
-                    if (!UCD.isModernJamo(Character.codePointAt(ch2, 0))) {
-                        getProps(i).useTwoBytePrimary = false;
-                    }
-                }
-            }
             lastPrimary = primary;
             lastMajor = major;
             lastScript = script;
@@ -828,12 +821,54 @@ public final class PrimariesToFractional {
             }
         }
 
-        char[][] singlePairs = {{'a','z'}, {' '}, {'0', '9'}, {'.'},  {','},}; // , {'\u3041', '\u30F3'}
+        char[][] singlePairs = {
+            {'a','z'}, {' ', ' '},
+            {'0', '9'}, {'.', '.'},  {',', ','}
+        };
         for (int j = 0; j < singlePairs.length; ++j) {
             char start = singlePairs[j][0];
-            char end = singlePairs[j][singlePairs[j].length == 1 ? 0 : 1];
+            char end = singlePairs[j][1];
             for (char k = start; k <= end; ++k) {
                 setSingleBytePrimaryFor(k);
+            }
+        }
+
+        char[][] twoBytePairs = {
+            // Cyrillic а-я
+            {'\u0430', '\u044F'},
+            // Further Cyrillic main exemplar characters from CLDR 22,
+            // for common locales plus Mongolian.
+            // TODO: We could make this dynamic, using CLDR's tools to fetch this data.
+            // TODO: Consider adding Cyrillic auxiliary exemplar characters.
+            {'\u0451', '\u045C'},
+            {'\u045E', '\u045F'},
+            {'\u0491', '\u0491'},
+            {'\u0493', '\u0493'},
+            {'\u0495', '\u0495'},
+            {'\u049B', '\u049B'},
+            {'\u049D', '\u049D'},
+            {'\u04A3', '\u04A3'},
+            {'\u04A5', '\u04A5'},
+            {'\u04AF', '\u04AF'},
+            {'\u04B1', '\u04B1'},
+            {'\u04B3', '\u04B3'},
+            {'\u04B7', '\u04B7'},
+            {'\u04B9', '\u04B9'},
+            {'\u04BB', '\u04BB'},
+            {'\u04CA', '\u04CA'},
+            {'\u04D5', '\u04D5'},
+            {'\u04D9', '\u04D9'},
+            {'\u04E3', '\u04E3'},
+            {'\u04E9', '\u04E9'},
+            {'\u04EF', '\u04EF'},
+            // Jamo L, V, T
+            {'\u1100','\u1112'}, {'\u1161','\u1175'}, {'\u11A8','\u11C2'}
+        };
+        for (int j = 0; j < twoBytePairs.length; ++j) {
+            char start = twoBytePairs[j][0];
+            char end = twoBytePairs[j][1];
+            for (char k = start; k <= end; ++k) {
+                setTwoBytePrimaryFor(k);
             }
         }
     }
@@ -846,6 +881,10 @@ public final class PrimariesToFractional {
         // their CEs can be stored compactly as long-primary CEs,
         // and the then-possible primary sort key compression makes sort keys hardly longer.
         return
+                // We cherry-pick the main Cyrillic letters for two-byte primaries.
+                script == UCD_Types.CYRILLIC_SCRIPT ||
+                // We cherry-pick the conjoining Jamo L/V/T for two-byte primaries.
+                script == UCD_Types.HANGUL_SCRIPT ||
                 script == UCD_Types.ETHIOPIC_SCRIPT ||
                 script == UCD_Types.MYANMAR_SCRIPT;
     }
@@ -857,8 +896,6 @@ public final class PrimariesToFractional {
         // and the CEs for the uppercase characters cannot be stored as "long primary" CEs.
         // (They would have to use less efficient storage.)
         //
-        // Similar for Glagolitic: Cased, fits into the second Cyrillic lead byte.
-        //
         // Note: We could also do this for Deseret:
         // It is also cased and has relatively few primaries,
         // but making them two-byte primaries would take up too much space in its reordering group
@@ -867,8 +904,7 @@ public final class PrimariesToFractional {
         // At least *lowercase* Deseret sorts in code point order
         // and can therefore be stored as a compact range.
         return
-                script == UCD_Types.COPTIC ||
-                script == UCD_Types.GLAGOLITIC;
+                script == UCD_Types.COPTIC;
     }
 
     private void addMajorPrimaries(int startPrimary, int endPrimary, boolean isMajor, int script) {
@@ -885,5 +921,11 @@ public final class PrimariesToFractional {
         CEList ces = uca.getCEList(String.valueOf(ch), true);
         int firstPrimary = CEList.getPrimary(ces.at(0));
         getOrCreateProps(firstPrimary).useSingleBytePrimary = true;
+    }
+
+    private void setTwoBytePrimaryFor(char ch) {
+        CEList ces = uca.getCEList(String.valueOf(ch), true);
+        int firstPrimary = CEList.getPrimary(ces.at(0));
+        getOrCreateProps(firstPrimary).useTwoBytePrimary = true;
     }
 }
