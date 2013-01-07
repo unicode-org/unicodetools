@@ -120,6 +120,13 @@ public final class PrimariesToFractional {
         private boolean useTwoBytePrimary;
 
         private int fractionalPrimary;
+        /**
+         * {@link PrimaryToFractional} serves as a container for {@link SecTerToFractional}.
+         * {@link PrimaryToFractional} does not set or use this reference at all.
+         * We just avoid yet another map from primary weights to values,
+         * and another map lookup for the same primary.
+         */
+        public SecTerToFractional secTerToFractional;
 
         private PrimaryToFractional() {}
 
@@ -546,9 +553,10 @@ public final class PrimariesToFractional {
                 scriptChange = true;
             }
 
-            if (currentByteLength == 3 && fractionalPrimary.lastByteLength <= 2) {
+            if (currentByteLength == 3 && (scriptChange || fractionalPrimary.lastByteLength <= 2)) {
                 // We slightly optimize the assignment of primary weights:
                 // If a 3-byte primary is surrounded by one-or-two-byte primaries,
+                // or script boundaries,
                 // then we can shorten the middle one to two bytes as well,
                 // because we would generate at least a two-byte gap before and after anyway.
                 //
@@ -569,8 +577,8 @@ public final class PrimariesToFractional {
                 PrimaryToFractional nextProps = getProps(nextPrimary);
                 if (0 <= nextPrimary && nextPrimary < UCA_Types.UNSUPPORTED_BASE &&
                         nextProps != null &&
-                        nextProps.reorderCodeIfFirst < 0 &&
-                        nextProps.getFractionalLength() <= 2) {
+                        (nextProps.reorderCodeIfFirst >= 0 ||
+                                nextProps.getFractionalLength() <= 2)) {
                     currentByteLength = 2;
                 }
             }
@@ -669,9 +677,17 @@ public final class PrimariesToFractional {
         }
     }
 
-    private static boolean isHanUCAPrimary(int ucaPrimary) {
-        return UCA_Types.UNSUPPORTED_CJK_BASE <= ucaPrimary &&
-                ucaPrimary < UCA_Types.UNSUPPORTED_OTHER_BASE;
+    /**
+     * Pins Han and unassigned-implicit UCA primaries to their respective first primaries.
+     */
+    private static int pinUCAPrimary(int ucaPrimary) {
+        if (ucaPrimary < UCA_Types.UNSUPPORTED_BASE || UCA_Types.UNSUPPORTED_LIMIT <= ucaPrimary) {
+            return ucaPrimary;
+        }
+        if (ucaPrimary < UCA_Types.UNSUPPORTED_OTHER_BASE) {
+            return UCA_Types.UNSUPPORTED_CJK_BASE;
+        }
+        return UCA_Types.UNSUPPORTED_OTHER_BASE;
     }
 
     /**
@@ -686,11 +702,8 @@ public final class PrimariesToFractional {
      * Same as {@link #getProps(int)} but returns the same object for all
      * Han UCA primary lead weights.
      */
-    public PrimaryToFractional getPropsPinHan(int ucaPrimary) {
-        if (isHanUCAPrimary(ucaPrimary)) {
-            ucaPrimary = UCA_Types.UNSUPPORTED_CJK_BASE;
-        }
-        return map.get(ucaPrimary);
+    public PrimaryToFractional getPropsPinImplicit(int ucaPrimary) {
+        return map.get(pinUCAPrimary(ucaPrimary));
     }
 
     /**

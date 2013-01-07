@@ -6,8 +6,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.Map.Entry;
@@ -16,7 +17,6 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCA.MappingsForFractionalUCA.MappingWithSortKey;
 import org.unicode.text.UCA.PrimariesToFractional.PrimaryToFractional;
 import org.unicode.text.UCA.UCA.CollatorType;
-import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
@@ -199,20 +199,6 @@ public class FractionalUCA {
             }
         }
 
-        /*
-        FCE (boolean max, int primary, int secondary, int tertiary) {
-            this(max);
-            key[0] = fixWeight(primary);
-            key[1] = fixWeight(secondary);
-            key[2] = fixWeight(tertiary);
-        }
-
-        FCE (boolean max, int primary) {
-            this(max);
-            key[0] = primary & INT_MASK;
-        }
-         */
-
         boolean isUnset() {
             return key[0] == UNDEFINED_MIN || key[0] == UNDEFINED_MAX;
         }
@@ -222,7 +208,7 @@ public class FractionalUCA {
          * If the weight is not zero, then the lead byte is moved to bits 31..24.
          */
         static long fixWeight(int weight) {
-            long result = weight & FractionalUCA.Variables.INT_MASK;
+            long result = weight & 0xFFFFFFFFL;
             if (result == 0) {
                 return result;
             }
@@ -336,14 +322,6 @@ public class FractionalUCA {
         }
     }
 
-    private static class Variables {
-        static final long INT_MASK = 0xFFFFFFFFL;
-
-        static final int  BYTES_TO_AVOID     = 3, OTHER_COUNT = 256 - BYTES_TO_AVOID, LAST_COUNT = OTHER_COUNT / 2;
-
-        static final int secondaryDoubleStart = 0xD0;
-    }
-
     public static class FractionalStatistics {
         private PrimariesToFractional ps2f;
         private Map<Long,UnicodeSet> primaries = new TreeMap<Long,UnicodeSet>();
@@ -374,9 +352,9 @@ public class FractionalUCA {
         }
         public void show(Appendable summary) {
             try {
-                show(Type.primary, primaries, summary);
-                show(Type.secondary, secondaries, summary);
-                show(Type.tertiary, tertiaries, summary);
+                show("primary", primaries, summary);
+                show("secondary", secondaries, summary);
+                show("tertiary", tertiaries, summary);
             } catch (IOException e) {
                 throw new IllegalArgumentException(e);
             }
@@ -414,7 +392,7 @@ public class FractionalUCA {
             }
             return s;
         }
-        private void show(Type type, Map<Long, UnicodeSet> map, Appendable summary) throws IOException {
+        private void show(String type, Map<Long, UnicodeSet> map, Appendable summary) throws IOException {
             summary.append("\n# Start " + type + " statistics \n");
             for (Entry<Long, UnicodeSet> entry : map.entrySet()) {
                 long weight = entry.getKey();
@@ -429,17 +407,6 @@ public class FractionalUCA {
                 ;
             }
             summary.append("# End " + type + "  statistics \n");
-        }
-
-        enum Type {
-            primary(5), secondary(5), tertiary(5); // TODO figure out the right values, use constants
-            final int gap;
-            Type(int gap) {
-                this.gap = gap;
-            }
-            public int gap() {
-                return gap;
-            }
         }
 
         private StringBuffer sb = new StringBuffer();
@@ -476,7 +443,6 @@ public class FractionalUCA {
         private void printAndRecordCodePoint(
                 boolean show, String chr, int cp, int ns, int nt, String comment) {
             try {
-                // TODO: Do we need to record the new primary weight? -- addToSet(primaries, np, chr);
                 addToSet(secondaries, ns, chr);
                 addToSet(tertiaries, nt, chr);
 
@@ -486,11 +452,11 @@ public class FractionalUCA {
                 }
 
                 sb.append("[U+").append(Utility.hex(cp));
-                if (ns != 0x500) {
+                if (ns != 5 && ns != 0x500) {
                     sb.append(", ");
                     Fractional.hexBytes(ns, sb);
                 }
-                if (ns != 0x500 || nt != 5) {
+                if ((ns != 5 && ns != 0x500) || nt != 5) {
                     sb.append(", ");
                     Fractional.hexBytes(nt, sb);
                 }
@@ -538,8 +504,6 @@ public class FractionalUCA {
         // so that use of this class for different data cannot cause values from
         // one run to bleed into the next.
 
-        FractionalUCA.checkFixes();
-
         UCA uca = getCollator();
         StringBuilder topByteInfo = new StringBuilder();
         PrimariesToFractional ps2f =
@@ -549,24 +513,7 @@ public class FractionalUCA {
                 new FractionalUCA.HighByteToReorderingToken(ps2f);
         Map<Integer, String> reorderingTokenOverrides = new TreeMap<Integer, String>();
 
-        RoBitSet secondarySet = uca.getStatistics().getSecondarySet();
-
         FractionalStatistics fractionalStatistics = new FractionalStatistics(ps2f);
-
-        int subtotal = 0;
-        System.out.println("Fixing Secondaries");
-        FractionalUCA.compactSecondary = new int[secondarySet.size()];
-        for (int secondary = 0; secondary < FractionalUCA.compactSecondary.length; ++secondary) {
-            if (secondarySet.get(secondary)) {
-                FractionalUCA.compactSecondary[secondary] = subtotal++;
-                /*System.out.println("compact[" + Utility.hex(secondary)
-                        + "]=" + Utility.hex(compactSecondary[secondary])
-                        + ", " + Utility.hex(fixSecondary(secondary)));*/
-            }
-        }
-        System.out.println();
-
-        //TO DO: find secondaries that don't overlap, and reassign
 
         // now translate!!
 
@@ -669,6 +616,7 @@ public class FractionalUCA {
         //int topVariable = -1;
 
         SortedSet<MappingWithSortKey> ordered = new MappingsForFractionalUCA(uca).getMappings();
+        secondaryAndTertiaryWeightsToFractional(ordered, ps2f);
         for (MappingWithSortKey mapping : ordered) {
             String chr = mapping.getString();
             CEList ces = mapping.getCEs();
@@ -684,7 +632,7 @@ public class FractionalUCA {
                     oldFirstPrimary = firstPrimary;
                 }
     
-                props = ps2f.getPropsPinHan(firstPrimary);
+                props = ps2f.getPropsPinImplicit(firstPrimary);
                 int firstFractional = props.getAndResetScriptFirstPrimary();
                 if (firstFractional != 0) {
                     int reorderCode = props.getReorderCodeIfFirst();
@@ -769,7 +717,7 @@ public class FractionalUCA {
 
                 // props was fetched for the firstPrimary before the loop.
                 if (q != 0) {
-                    props = ps2f.getPropsPinHan(pri);
+                    props = ps2f.getPropsPinImplicit(pri);
                 }
                 int np = props.getFractionalPrimary();
 
@@ -791,8 +739,9 @@ public class FractionalUCA {
                                 + " => " + Utility.hex(implicitCodePoint));
                     }
 
-                    int ns = FractionalUCA.fixSecondary(sec);
-                    int nt = FractionalUCA.fixTertiary(ter, chr);
+                    int secTer = getFractionalSecAndTer(props, sec, ter);
+                    int ns = secTer >>> 16;
+                    int nt = secTer & 0xffff;
 
                     fractionalStatistics.printAndRecordCodePoint(false, chr, implicitCodePoint, ns, nt, null);
                 } else {
@@ -813,8 +762,9 @@ public class FractionalUCA {
                         }
                     }
 
-                    int ns = FractionalUCA.fixSecondary(sec);
-                    int nt = FractionalUCA.fixTertiary(ter, chr);
+                    int secTer = getFractionalSecAndTer(props, sec, ter);
+                    int ns = secTer >>> 16;
+                    int nt = secTer & 0xffff;
 
                     // TODO: add the prefix to the stats?
                     fractionalStatistics.printAndRecord(false, chr, np, ns, nt, null);
@@ -902,10 +852,11 @@ public class FractionalUCA {
 
             int ce = key.intValue();
 
-            PrimaryToFractional props = ps2f.getPropsPinHan(CEList.getPrimary(ce));
+            PrimaryToFractional props = ps2f.getPropsPinImplicit(CEList.getPrimary(ce));
             int np = props.getFractionalPrimary();
-            int ns = FractionalUCA.fixSecondary(CEList.getSecondary(ce));
-            int nt = FractionalUCA.fixTertiary(CEList.getTertiary(ce), sample);
+            int secTer = getFractionalSecAndTer(props, CEList.getSecondary(ce), CEList.getTertiary(ce));
+            int ns = secTer >>> 16;
+            int nt = secTer & 0xffff;
 
             highByteToScripts.addScriptsIn(np, sample);
             fractionalStatistics.printAndRecord(true, fakeString.next(), np, ns, nt, null);
@@ -915,7 +866,7 @@ public class FractionalUCA {
         }
 
         // Since the UCA doesn't have secondary ignorables, fake them.
-        int fakeTertiary = 0x3F03;
+        int fakeTertiary = (Fractional.FIRST_IGNORABLE_TER_ASSIGNED << 8) | 2;
         if (firstSecondaryIgnorable.isUnset()) {
             System.out.println("No first/last secondary ignorable: resetting to HARD CODED, adding homeless");
             //long bound = lastTertiaryInSecondaryNonIgnorable.getValue(2);
@@ -1012,17 +963,22 @@ public class FractionalUCA {
         fractionalLog.println(highByteToScripts.getInfo(false));
         fractionalLog.println();
 
-
         fractionalLog.println();
         fractionalLog.println("# FIXED VALUES");
 
-        // fractionalLog.println("# superceded! [top "  + lastNonIgnorable.formatFCE() + "]");
         fractionalLog.println("[fixed first implicit byte " + Utility.hex(Fractional.IMPLICIT_BASE_BYTE,2) + "]");
         fractionalLog.println("[fixed last implicit byte " + Utility.hex(Fractional.IMPLICIT_MAX_BYTE,2) + "]");
         fractionalLog.println("[fixed first trail byte " + Utility.hex(Fractional.IMPLICIT_MAX_BYTE+1,2) + "]");
         fractionalLog.println("[fixed last trail byte " + Utility.hex(Fractional.SPECIAL_BASE-1,2) + "]");
         fractionalLog.println("[fixed first special byte " + Utility.hex(Fractional.SPECIAL_BASE,2) + "]");
         fractionalLog.println("[fixed last special byte " + Utility.hex(0xFF,2) + "]");
+        fractionalLog.println();
+        fractionalLog.println("[fixed secondary common byte " + Utility.hex(Fractional.COMMON_SEC, 2) + "]");
+        fractionalLog.println("[fixed last secondary common byte " + Utility.hex(Fractional.COMMON_SEC_TOP, 2) + "]");
+        fractionalLog.println("[fixed first ignorable secondary byte " + Utility.hex(Fractional.FIRST_IGNORABLE_SEC, 2) + "]");
+        fractionalLog.println();
+        fractionalLog.println("[fixed tertiary common byte " + Utility.hex(Fractional.COMMON_TER, 2) + "]");
+        fractionalLog.println("[fixed first ignorable tertiary byte " + Utility.hex(Fractional.FIRST_IGNORABLE_TER, 2) + "]");
 
         showRange("Last", summary, lastChr, lastNp);
         //summary.println("Last:  " + Utility.hex(lastNp) + ", " + WriteCollationData.ucd.getCodeAndName(UTF16.charAt(lastChr, 0)));
@@ -1048,7 +1004,9 @@ public class FractionalUCA {
         summary.println();
         summary.println("# Example characters for each TERTIARY value");
         summary.println();
-        summary.println("# UCA : (FRAC) CODE [    UCA CE    ] Name");
+        // TODO: reenable printing of (FRAC)?
+        // summary.println("# UCA : (FRAC) CODE [    UCA CE    ] Name");
+        summary.println("# UCA : CODE [    UCA CE    ] Name");
         summary.println();
 
         for (int i = 0; i < sampleEq.length; ++i) {
@@ -1059,12 +1017,22 @@ public class FractionalUCA {
                 summary.println();
                 summary.println("# Example characters for each SECONDARY value");
                 summary.println();
-                summary.println("# UCA : (FRAC) CODE [    UCA CE    ] Name");
+                // TODO: reenable printing of (FRAC)?
+                // summary.println("# UCA : (FRAC) CODE [    UCA CE    ] Name");
+                summary.println("# UCA : CODE [    UCA CE    ] Name");
                 summary.println();
             }
             CEList ces = getCollator().getCEList(sampleEq[i], true);
-            int newval = i < 0x20 ? FractionalUCA.fixTertiary(i,sampleEq[i]) : FractionalUCA.fixSecondary(i);
-            summary.print("# " + Utility.hex(i) + ": (" + Utility.hex(newval) + ") "
+            // TODO: reenable printing of (FRAC)?
+            // Now that we "fix" secondary and tertiary weights per primary weight
+            // rather than with a constant distribution,
+            // we would have to store the fractional weight with the sample,
+            // near where we do the conversion.
+            // However, it is also less meaningful because the samples for a particular UCA weight
+            // do not correspond to the samples for a particular fractional weight any more.
+            // It might make more sense to collect and print samples separately.
+            // int newval = i < 0x20 ? FractionalUCA.fixTertiary(i,sampleEq[i]) : FractionalUCA.fixSecondary(i);
+            summary.print("# " + Utility.hex(i) + ": "  // TODO: reenable printing of (FRAC)?  + "(" + Utility.hex(newval) + ") "
                     + Utility.hex(sampleEq[i]) + " ");
             for (int q = 0; q < ces.length(); ++q) {
                 summary.print(CEList.toString(ces.at(q)));
@@ -1076,6 +1044,67 @@ public class FractionalUCA {
         fractionalLog.close();
         summary.close();
         log.close();
+    }
+
+    private static void secondaryAndTertiaryWeightsToFractional(
+            SortedSet<MappingWithSortKey> ordered,
+            PrimariesToFractional ps2f) {
+        // Collect all secondary weights per primary, and all tertiary weights per primary+secondary.
+        List<SecTerToFractional> allSecTerToFractional = new LinkedList<SecTerToFractional>();
+        for (MappingWithSortKey mapping : ordered) {
+            CEList ces = mapping.getCEs();
+            for (int i = 0; i < ces.length(); ++i) {
+                int ce = ces.at(i);
+                int sec = CEList.getSecondary(ce);
+                int ter = CEList.getTertiary(ce);
+                if ((sec != 0 && sec != UCA_Types.NEUTRAL_SECONDARY) ||
+                        (ter != 0 && ter != UCA_Types.NEUTRAL_TERTIARY)) {
+                    int pri = CEList.getPrimary(ce);
+                    PrimaryToFractional p2f = ps2f.getPropsPinImplicit(pri);
+                    SecTerToFractional st2f = p2f.secTerToFractional;
+                    if (st2f == null) {
+                        st2f = p2f.secTerToFractional = new SecTerToFractional(pri == 0);
+                        allSecTerToFractional.add(st2f);
+                    }
+                    st2f.addUCASecondaryAndTertiary(sec, ter);
+                }
+            }
+        }
+
+        // Assign fractional weights accordingly.
+        for (SecTerToFractional st2f : allSecTerToFractional) {
+            st2f.assignFractionalWeights();
+        }
+    }
+
+    /**
+     * Converts the UCA secondary & tertiary weights to fractional weights.
+     * Returns an int with the fractional secondary in the upper 16 bits
+     * and the fractional tertiary in the lower 16 bits.
+     */
+    private static int getFractionalSecAndTer(PrimaryToFractional p2f, int sec, int ter) {
+        if (sec == 0) {
+            if (ter == 0) {
+                return 0;
+            }
+            if (ter == UCA_Types.NEUTRAL_TERTIARY) {
+                return Fractional.COMMON_TER;
+            }
+        } else if (sec == UCA_Types.NEUTRAL_SECONDARY && ter == UCA_Types.NEUTRAL_TERTIARY) {
+            return (Fractional.COMMON_SEC << 16) | Fractional.COMMON_TER;
+        }
+        int secTer = p2f.secTerToFractional.getFractionalSecAndTer(sec, ter);
+
+        // get case bits. 00 is low, 01 is mixed (never happens), 10 is high
+        int caseBits = CaseBit.getCaseFromTertiary(ter).getBits();
+        if (caseBits != 0) {
+            if ((secTer & 0xff00) != 0) {
+                // The tertiary lead byte is in bits 15..8, move the case bits there too.
+                caseBits <<= 8;
+            }
+            secTer |= caseBits;
+        }
+        return secTer;
     }
 
     private static class FakeString {
@@ -1157,124 +1186,12 @@ public class FractionalUCA {
     }
 
     private static String padHexBytes(int lastNp) {
-        String result = Fractional.hexBytes(lastNp & FractionalUCA.Variables.INT_MASK);
+        String result = Fractional.hexBytes(lastNp & 0xFFFFFFFFL);
         return result + Utility.repeat(" ", 11-result.length());
         // E3 9B 5F C8
     }
 
-    static void checkFixes() {
-        System.out.println("Checking Secondary/Tertiary Fixes");
-        int lastVal = -1;
-        for (int i = 0; i <= 0x16E; ++i) {
-            if (i == 0x153) {
-                System.out.println("debug");
-            }
-            int val = FractionalUCA.fixSecondary2(i, 999, 999); // HACK for UCA
-            if (val <= lastVal) {
-                throw new IllegalArgumentException(
-                        "Unordered: " + Utility.hex(val) + " => " + Utility.hex(lastVal));
-            }
-            int top = val >>> 8;
-        int bottom = val & 0xFF;
-        if (top != 0 && (top < Fractional.COMMON_SEC || top > 0xEF)
-                || (top > Fractional.COMMON_SEC && top < 0x87)
-                || (bottom != 0 && (FractionalUCA.isEven(bottom) || bottom < Fractional.COMMON_SEC || bottom > 0xFD))
-                || (bottom == 0 && top != 0 && FractionalUCA.isEven(top))) {
-            throw new IllegalArgumentException("Secondary out of range: " + Utility.hex(i) + " => " 
-                    + Utility.hex(top) + ", " + Utility.hex(bottom));
-        }
-        }
-
-        lastVal = -1;
-        for (int i = 0; i <= 0x1E; ++i) {
-            if (i == 1 || i == 7) {
-                continue; // never occurs
-            }
-            int val = FractionalUCA.fixTertiary(i, ""); // not interested in case bits, so ok to pass in ""
-            val &= 0x7F; // mask off case bits
-            if (val <= lastVal) {
-                throw new IllegalArgumentException(
-                        "Unordered: " + Utility.hex(val) + " => " + Utility.hex(lastVal));
-            }
-            if (val != 0 && (FractionalUCA.isEven(val) || val < Fractional.COMMON_TER || val > 0x3D)) {
-                throw new IllegalArgumentException("Tertiary out of range: " + Utility.hex(i) + " => " 
-                        + Utility.hex(val));
-            }
-        }
-        System.out.println("END Checking Secondary/Tertiary Fixes");
-    }
-
-    static int fixSecondary(int x) {
-        x = FractionalUCA.compactSecondary[x];
-        return FractionalUCA.fixSecondary2(x, FractionalUCA.compactSecondary[0x153], FractionalUCA.compactSecondary[0x157]);
-    }
-
-    static int fixSecondary2(int x, int gap1, int gap2) {
-        int top = x;
-        int bottom = 0;
-        if (top == 0) {
-            // ok, zero
-        } else if (top == 1) {
-            top = Fractional.COMMON_SEC;
-        } else {
-            top *= 2; // create gap between elements. top is now 4 or more
-            top += 0x80 + Fractional.COMMON_SEC - 2; // insert gap to make top at least 87
-
-            if (top >= 149) top += 2; // HACK for backwards compatibility.
-
-            // lowest values are singletons. Others are 2 bytes
-            if (top > FractionalUCA.Variables.secondaryDoubleStart) {
-                top -= FractionalUCA.Variables.secondaryDoubleStart;
-                top *= 4; // leave bigger gap just in case
-                if (x > gap1) {
-                    top += 256; // leave gap after COMBINING ENCLOSING KEYCAP (see below)
-                }
-                if (x > gap2) {
-                    top += 64; // leave gap after RUNIC LETTER SHORT-TWIG-AR A (see below)
-                }
-
-                bottom = (top % FractionalUCA.Variables.LAST_COUNT) * 2 + Fractional.COMMON_SEC;
-                top = (top / FractionalUCA.Variables.LAST_COUNT) + FractionalUCA.Variables.secondaryDoubleStart;
-            }
-        }
-        return (top << 8) | bottom;
-    }
-
-    static int fixTertiary(int x, String originalString) {
-        if (x == 0) {
-            return x;
-        }
-        if (x == 1 || x == 7) {
-            throw new IllegalArgumentException("Tertiary illegal: " + x);
-        }
-        // 2 => COMMON, 1 is unused
-        int y = x < 7 ? x : x - 1; // we now use 1F = MAX. Causes a problem so we shift everything to fill a gap at 7 (unused).
-
-        int result = 2 * (y - 2) + Fractional.COMMON_TER;
-
-        if (result >= 0x3E) {
-            throw new IllegalArgumentException("Tertiary too large: "
-                    + Utility.hex(x) + " => " + Utility.hex(result));
-        }
-
-        // get case bits. 00 is low, 01 is mixed (never happens), 10 is high
-        int caseBits;
-        if (GET_CASE_FROM_STRING) {
-            caseBits = CaseBit.getPropertyCasing(originalString).getBits();
-        } else {
-            caseBits = CaseBit.getCaseFromTertiary(x).getBits();
-        }
-        if (caseBits != 0) {
-            result |= caseBits;
-        }
-        return result;
-    }
-
-    static final boolean GET_CASE_FROM_STRING = false;
-
-    static int[] compactSecondary;
-
-    static boolean sameTopByte(int x, int y) {
+    private static boolean sameTopByte(int x, int y) {
         int x1 = x & 0xFF0000;
         int y1 = y & 0xFF0000;
         if (x1 != 0 || y1 != 0) {
@@ -1328,9 +1245,5 @@ public class FractionalUCA {
         }
         hanSB.append("]");
         fractionalLog.println(hanSB);
-    }
-
-    private static boolean isEven(int x) {
-        return (x & 1) == 0;
     }
 }
