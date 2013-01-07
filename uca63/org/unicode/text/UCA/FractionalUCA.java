@@ -554,8 +554,6 @@ public class FractionalUCA {
         WriteCollationData.writeVersionAndDate(summary, summaryFileName, true);
         summary.println("# Primary Ranges");
 
-        StringBuffer oldStr = new StringBuffer();
-
         OldEquivalenceClass secEq = new OldEquivalenceClass("\r\n#", 2, true);
         OldEquivalenceClass terEq = new OldEquivalenceClass("\r\n#", 2, true);
         String[] sampleEq = new String[0x200];
@@ -620,10 +618,9 @@ public class FractionalUCA {
         for (MappingWithSortKey mapping : ordered) {
             String chr = mapping.getString();
             CEList ces = mapping.getCEs();
-            oldStr.setLength(0);
+            CEList originalCEs = mapping.getOriginalCEs();
             PrimaryToFractional props = null;
 
-            // TODO: Should we print and record the unmodified mapping.ces?
             if (!ces.isEmpty()) {
                 int firstPrimary = CEList.getPrimary(ces.at(0));
                 // String message = null;
@@ -687,7 +684,6 @@ public class FractionalUCA {
                     if (q == 0) {
                         // chr maps to nothing.
                         fractionalLog.print("[,,]");
-                        oldStr.append(ces);
                     }
                     break;
                 }
@@ -697,8 +693,6 @@ public class FractionalUCA {
                 int sec = CEList.getSecondary(ce); 
                 int ter = CEList.getTertiary(ce);
 
-                oldStr.append(CEList.toString(ce));// + "," + Integer.toString(ce,16);
-
                 if (sec != 0x20) {
                     /* boolean changed = */ secEq.add(new Integer(sec), new Integer(pri));
                 }
@@ -706,13 +700,13 @@ public class FractionalUCA {
                     /* boolean changed = */ terEq.add(new Integer(ter), new Integer((pri << 16) | sec));
                 }
 
-                if (sampleEq[sec] == null || sampleLen[sec] > ces.length()) {
+                if (sampleEq[sec] == null || sampleLen[sec] > originalCEs.length()) {
                     sampleEq[sec] = chr;
-                    sampleLen[sec] = ces.length();
+                    sampleLen[sec] = originalCEs.length();
                 }
-                if (sampleEq[ter] == null || sampleLen[ter] > ces.length()) {
+                if (sampleEq[ter] == null || sampleLen[ter] > originalCEs.length()) {
                     sampleEq[ter] = chr;
-                    sampleLen[ter] = ces.length();
+                    sampleLen[ter] = originalCEs.length();
                 }
 
                 // props was fetched for the firstPrimary before the loop.
@@ -728,7 +722,6 @@ public class FractionalUCA {
                                 + ", Current: " + q + ", " + Default.ucd().getCodeAndName(chr));
                     }
                     ++q;
-                    oldStr.append(CEList.toString(ces.at(q)));// + "," + Integer.toString(ces.at(q),16);
 
                     int pri2 = CEList.getPrimary(ces.at(q));
                     int implicitCodePoint = UCA.ImplicitToCodePoint(pri, pri2);
@@ -822,7 +815,8 @@ public class FractionalUCA {
             String gcInfo = getStringTransform(chr, "/", ScriptTransform);
             String scriptInfo = getStringTransform(chr, "/", GeneralCategoryTransform);
 
-            longLog.print("\t# " + gcInfo + " " + scriptInfo + "\t" + oldStr + "\t* " + name);
+            longLog.print("\t# " + gcInfo + " " + scriptInfo + "\t" +
+                    originalCEs.toString().replace(" ", "") + "\t* " + name);
             fractionalLog.println();
             lastChr = chr;
         }
@@ -1013,7 +1007,7 @@ public class FractionalUCA {
             if (sampleEq[i] == null) {
                 continue;
             }
-            if (i == 0x20) {
+            if (i == UCA_Types.NEUTRAL_SECONDARY) {
                 summary.println();
                 summary.println("# Example characters for each SECONDARY value");
                 summary.println();
@@ -1038,7 +1032,6 @@ public class FractionalUCA {
                 summary.print(CEList.toString(ces.at(q)));
             }
             summary.println(" " + Default.ucd().getName(sampleEq[i]));
-
         }
         fractionalStatistics.show(log);
         fractionalLog.close();
