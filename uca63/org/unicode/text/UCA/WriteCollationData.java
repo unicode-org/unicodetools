@@ -2616,12 +2616,26 @@ public class WriteCollationData implements UCD_Types, UCA_Types {
     // UNICODE_VERSION);
     // static Normalizer NFD = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
 
-    // Print only year and month, to reduce gratuitous file changes.
-    private static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MMM");  // was "yyyy-MM-dd','HH:mm:ss' GMT'"
+    // Do not print a full date+time, to reduce gratuitous file changes.
+    private static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    // was "yyyy-MM-dd','HH:mm:ss' GMT'" in UCA 6.2
 
     static String getNormalDate() {
         // return Default.getDate() + " [MD]";
-    	return myDateFormat.format(new Date()) + " [MS]";
+        String noDate = System.getProperty("NODATE");
+        if (noDate != null) {
+            return "(date omitted)";
+        }
+    	String date = myDateFormat.format(new Date());
+    	String author = System.getProperty("AUTHOR");
+    	if (author == null) {
+    	    author = " [MS]";
+    	} else if (author.isEmpty()) {
+    	    // empty value in -DAUTHOR= or -DAUTHOR means add no author
+    	} else {
+    	    author = " [" + author + ']';
+    	}
+    	return date + author;
     }
 
     static void copyFile(PrintWriter log, String fileName) throws IOException {
