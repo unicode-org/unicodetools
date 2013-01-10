@@ -23,6 +23,9 @@ import com.ibm.icu.text.UnicodeSetIterator;
  * @since 2013-jan-02 (mostly pulled out of {@link FractionalUCA})
  */
 public final class PrimariesToFractional {
+    /**
+     * Scripts that start reordering groups, and normally get two-byte primary weights.
+     */
     private static final BitSet MAJOR_SCRIPTS = new BitSet();
     static {
         for (byte i : new Byte[]{
@@ -30,6 +33,7 @@ public final class PrimariesToFractional {
                 UCD_Types.ARMENIAN_SCRIPT,
                 UCD_Types.BENGALI_SCRIPT,
                 UCD_Types.BOPOMOFO_SCRIPT,
+                UCD_Types.CHEROKEE_SCRIPT,
                 UCD_Types.CYRILLIC_SCRIPT,
                 UCD_Types.DEVANAGARI_SCRIPT,
                 UCD_Types.ETHIOPIC_SCRIPT,
@@ -178,7 +182,7 @@ public final class PrimariesToFractional {
     /**
      * Computes valid FractionalUCA primary weights of desired byte lengths.
      * Always starts with the first primary weight after 02.
-     * {@link PrimaryWeight#next(int, boolean)} increments
+     * {@link PrimaryWeight#next(int)} increments
      * one 1/2/3-byte weight to another 1/2/3-byte weight.
      */
     private static class PrimaryWeight {
@@ -199,13 +203,18 @@ public final class PrimariesToFractional {
         private static final int MAX2_COMPRESSED = 0xfe;
 
         /**
-         * Increment byte2 a little more at script boundaries
-         * and around single-byte primaries,
+         * Increment byte2 a little more around single-byte primaries,
          * for tailoring of at least 4 two-byte primaries or more than 1000 three-byte primaries.
          */
-        private static final int GAP2_PLUS = 4;
+        private static final int GAP2_FOR_SINGLE = 4;
+        /**
+         * Increment byte2 a little more at major-script boundaries,
+         * for tailoring of at least 4 two-byte primaries or more than 1000 three-byte primaries.
+         */
+        private static final int GAP2_FOR_MAJOR_SCRIPT = 4;
 
         private static final int GAP3 = 7;
+        private static final int GAP3_FOR_MINOR_SCRIPT = 40;
 
         private int minByte2 = MIN2_UNCOMPRESSED;
         private int maxByte2 = MAX2_UNCOMPRESSED;
@@ -218,12 +227,22 @@ public final class PrimariesToFractional {
         private int byte3;
         private int lastByteLength = 1;
         private boolean compressibleLeadByte;
+        /**
+         * The first script in each group is a "major" script and gets a somewhat larger gap
+         * before its first primary and after its last primary.
+         */
+        private boolean firstScriptInGroup;
+        /**
+         * Leave a somewhat larger gap between the special script-first primary
+         * and the first real letter primary.
+         */
+        private boolean firstPrimaryInScript;
 
         public int getIntValue() {
             return (byte1 << 16) + (byte2 << 8) + byte3;
         }
 
-        public int startNewGroup(int newByteLength, boolean compress) {
+        public int startNewGroup(boolean compress) {
             int oByte1 = byte1;
             int oByte2 = byte2;
 
@@ -231,8 +250,8 @@ public final class PrimariesToFractional {
             if (lastByteLength == 1) {
                 // Single-byte gap of 1 from a single-byte weight to the new reordering group.
                 inc1 = 2;
-            } else if ((byte2 + GAP2_PLUS) <= maxByte2) {
-                // End-of-script two-byte-weight gap.
+            } else if ((byte2 + GAP2_FOR_SINGLE) <= maxByte2) {
+                // End-of-group two-byte-weight gap.
                 inc1 = 1;
             } else {
                 // The two-byte-weight gap would be too small.
@@ -241,32 +260,54 @@ public final class PrimariesToFractional {
             addTo1(inc1);
 
             int newMinByte2 = compress ? MIN2_COMPRESSED : MIN2_UNCOMPRESSED;
-            switch (newByteLength) {
-            case 1:
-                byte2 = byte3 = 0;
-                break;
-            case 2:
-                byte2 = newMinByte2;
-                byte3 = 0;
-                break;
-            case 3:
-                byte2 = newMinByte2;
-                byte3 = MIN_BYTE;
-                break;
-            }
+            byte2 = newMinByte2;
+            byte3 = MIN_BYTE;
 
-            check(oByte1, oByte2, newByteLength, true);
+            check(oByte1, oByte2, 3, true);
 
             compressibleLeadByte = compress;
             minByte2 = newMinByte2;
             maxByte2 = compressibleLeadByte ? MAX2_COMPRESSED : MAX2_UNCOMPRESSED;;
-            lastByteLength = newByteLength;
+            lastByteLength = 3;
+            firstScriptInGroup = firstPrimaryInScript = true;
             return getIntValue();
         }
 
-        public int next(int newByteLength, boolean scriptChange) {
+        public int startNewScript() {
             int oByte1 = byte1;
             int oByte2 = byte2;
+
+            if (lastByteLength == 1) {
+                // Larger two-byte gap after a single.
+                addTo1(1);
+                byte2 = minByte2 + GAP2_FOR_SINGLE;
+                byte3 = MIN_BYTE;
+            } else if (firstScriptInGroup) {
+                // End-of-major-script two-byte-weight gap.
+                addTo2(GAP2_FOR_MAJOR_SCRIPT + 1);
+                byte3 = MIN_BYTE;
+            } else if (lastByteLength == 2) {
+                // At least a two-byte gap after a double.
+                addTo2(2);
+                byte3 = MIN_BYTE;
+            } else /* lastByteLength == 3 */ {
+                addTo3(GAP3_FOR_MINOR_SCRIPT + 1);
+            }
+
+            check(oByte1, oByte2, 3, false);
+
+            lastByteLength = 3;
+            firstScriptInGroup = false;
+            firstPrimaryInScript = true;
+            return getIntValue();
+        }
+
+        public int next(int newByteLength) {
+            int oByte1 = byte1;
+            int oByte2 = byte2;
+
+            // Script-first primaries are three-byters.
+            assert !firstPrimaryInScript || lastByteLength == 3;
 
             switch (lastByteLength) {
             case 1:
@@ -278,12 +319,12 @@ public final class PrimariesToFractional {
                 case 2:
                     // Larger two-byte gap after a single.
                     addTo1(1);
-                    byte2 = minByte2 + GAP2_PLUS;
+                    byte2 = minByte2 + GAP2_FOR_SINGLE;
                     break;
                 case 3:
                     // Larger two-byte gap after a single.
                     addTo1(1);
-                    byte2 = minByte2 + GAP2_PLUS;
+                    byte2 = minByte2 + GAP2_FOR_SINGLE;
                     byte3 = MIN_BYTE;
                     break;
                 }
@@ -292,16 +333,16 @@ public final class PrimariesToFractional {
                 switch (newByteLength) {
                 case 1:
                     // At least a larger two-byte gap before a single.
-                    addTo1((byte2 + GAP2_PLUS) <= maxByte2 ? 1 : 2);
+                    addTo1((byte2 + GAP2_FOR_SINGLE) <= maxByte2 ? 1 : 2);
                     byte2 = 0;
                     break;
                 case 2:
                     // Normal two-byte gap.
-                    addTo2(scriptChange ? GAP2_PLUS + 1: 2);
+                    addTo2(2);
                     break;
                 case 3:
                     // At least a two-byte gap after a double.
-                    addTo2(scriptChange ? GAP2_PLUS + 1: 2);
+                    addTo2(2);
                     byte3 = MIN_BYTE;
                     break;
                 }
@@ -310,25 +351,28 @@ public final class PrimariesToFractional {
                 switch (newByteLength) {
                 case 1:
                     // At least a larger two-byte gap before a single.
-                    addTo1((byte2 + GAP2_PLUS) <= maxByte2 ? 1 : 2);
+                    addTo1((byte2 + GAP2_FOR_SINGLE) <= maxByte2 ? 1 : 2);
                     byte2 = byte3 = 0;
                     break;
                 case 2:
-                    // At least a two-byte gap before a double.
-                    addTo2(scriptChange ? GAP2_PLUS + 1: 2);
+                    if (firstPrimaryInScript && firstScriptInGroup) {
+                        // Larger two-byte gap before the first letter of a major script.
+                        addTo2(GAP2_FOR_MAJOR_SCRIPT + 1);
+                    } else {
+                        // At least a two-byte gap before a double.
+                        addTo2(2);
+                    }
                     byte3 = 0;
                     break;
                 case 3:
-                    if (scriptChange) {
-                        // TODO: At least a small two-byte gap between minor scripts.
-                        //       Issue: At least one of the miscellaneous-scripts reordering groups
-                        //       overflows with this.
-                        // addTo2(2);
-                        // byte3 = MIN_BYTE;
-
-                        // TODO: The following is a smaller gap in the meantime.
-                        // At least a large three-byte gap between minor scripts.
-                        addTo3(40 + 1);
+                    if (firstPrimaryInScript) {
+                        if (firstScriptInGroup) {
+                            // Larger two-byte gap before the first letter of a major script.
+                            addTo2(GAP2_FOR_MAJOR_SCRIPT);
+                        } else {
+                            // Larger three-byte gap before the first letter of a minor script.
+                            addTo3(GAP3_FOR_MINOR_SCRIPT + 1);
+                        }
                     } else {
                         // Normal three-byte gap.
                         addTo3(GAP3 + 1);
@@ -341,6 +385,7 @@ public final class PrimariesToFractional {
             check(oByte1, oByte2, newByteLength, false);
 
             lastByteLength = newByteLength;
+            firstPrimaryInScript = false;
             return getIntValue();
         }
 
@@ -449,6 +494,7 @@ public final class PrimariesToFractional {
         groupIsCompressible[UCD_Types.TIBETAN_SCRIPT] = true;
         groupIsCompressible[UCD_Types.MYANMAR_SCRIPT] = true;
         groupIsCompressible[UCD_Types.KHMER_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.CHEROKEE_SCRIPT] = true;
         groupIsCompressible[UCD_Types.HANGUL_SCRIPT] = true;
         groupIsCompressible[UCD_Types.HIRAGANA_SCRIPT] = true;
         groupIsCompressible[UCD_Types.BOPOMOFO_SCRIPT] = true;
@@ -494,14 +540,13 @@ public final class PrimariesToFractional {
 
             PrimaryToFractional props = getOrCreateProps(primary);
             int currentByteLength = props.getFractionalLength();
-            boolean scriptChange = false;
 
             int reorderCode = props.reorderCodeIfFirst;
             if (reorderCode >= 0) {
                 int firstFractional;
                 if (props.startsGroup) {
                     boolean compress = groupIsCompressible[reorderCode];
-                    firstFractional = fractionalPrimary.startNewGroup(3, compress);
+                    firstFractional = fractionalPrimary.startNewGroup(compress);
                     int leadByte = Fractional.getLeadByte(firstFractional);
 
                     // Finish the previous reordering group.
@@ -529,12 +574,12 @@ public final class PrimariesToFractional {
                             groupComment));
 
                     if (reorderCode == ReorderCodes.DIGIT) {
-                        numericFractionalPrimary = fractionalPrimary.next(1, true);
+                        numericFractionalPrimary = fractionalPrimary.next(1);
                         ++numPrimaries;
                     }
                 } else {
                     // New script in current reordering group.
-                    firstFractional = fractionalPrimary.next(3, true);
+                    firstFractional = fractionalPrimary.startNewScript();
                     if (groupInfo.length() != 0) {
                         groupInfo.append(' ');
                     }
@@ -550,10 +595,11 @@ public final class PrimariesToFractional {
                 props.scriptFirstPrimary = firstFractional;
                 firstFractionalPrimary[reorderCode] = firstFractional;
                 ++numPrimaries;
-                scriptChange = true;
             }
 
-            if (currentByteLength == 3 && (scriptChange || fractionalPrimary.lastByteLength <= 2)) {
+            if (currentByteLength == 3 &&
+                    (fractionalPrimary.firstPrimaryInScript ||
+                            fractionalPrimary.lastByteLength <= 2)) {
                 // We slightly optimize the assignment of primary weights:
                 // If a 3-byte primary is surrounded by one-or-two-byte primaries,
                 // or script boundaries,
@@ -582,7 +628,7 @@ public final class PrimariesToFractional {
                     currentByteLength = 2;
                 }
             }
-            props.fractionalPrimary = fractionalPrimary.next(currentByteLength, scriptChange);
+            props.fractionalPrimary = fractionalPrimary.next(currentByteLength);
             ++numPrimaries;
 
             String newWeight = fractionalPrimary.toString();
@@ -598,7 +644,7 @@ public final class PrimariesToFractional {
         }
 
         // Create an entry for the first primary in the Hani script.
-        int firstFractional = fractionalPrimary.startNewGroup(3, false);
+        int firstFractional = fractionalPrimary.startNewGroup(false);
         int leadByte = Fractional.getLeadByte(firstFractional);
 
         // Finish the previous reordering group.
@@ -650,7 +696,7 @@ public final class PrimariesToFractional {
                         "reordering group {" + groupInfo +
                         "} marked for compression but uses more than one lead byte " +
                         Utility.hex(b, 2) + ".." +
-                        Utility.hex(limit, 2));
+                        Utility.hex(limit - 1, 2));
             }
         } else if (canCompress) {
             System.out.println(
@@ -916,7 +962,8 @@ public final class PrimariesToFractional {
                 // We cherry-pick the conjoining Jamo L/V/T for two-byte primaries.
                 script == UCD_Types.HANGUL_SCRIPT ||
                 script == UCD_Types.ETHIOPIC_SCRIPT ||
-                script == UCD_Types.MYANMAR_SCRIPT;
+                script == UCD_Types.MYANMAR_SCRIPT ||
+                script == UCD_Types.CHEROKEE_SCRIPT;
     }
 
     private static boolean isTwoByteMinorScript(int script) {
