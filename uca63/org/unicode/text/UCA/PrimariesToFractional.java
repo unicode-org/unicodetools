@@ -846,20 +846,11 @@ public final class PrimariesToFractional {
             } else if (script == UCD_Types.KATAKANA_SCRIPT) {
                 script = UCD_Types.HIRAGANA_SCRIPT;
             }
-            boolean TESTING = false;
-            if (TESTING && script == UCD_Types.SYRIAC_SCRIPT) {
-                System.out.println(Default.ucd().getName(ch));
-            }
 
             // get least primary for script
             if (groupFirstPrimary[script] == 0 || groupFirstPrimary[script] > primary) {
-                if (cat <= UCD_Types.OTHER_LETTER && cat != UCD_Types.Lm) {
-                    groupFirstPrimary[script] = primary;
-                    groupChar[script] = ch;
-                    if (TESTING && script == UCD_Types.GREEK_SCRIPT) {
-                        System.out.println("*" + Utility.hex(primary) + Default.ucd().getName(ch));
-                    }
-                }
+                groupFirstPrimary[script] = primary;
+                groupChar[script] = ch;
             }
         }
 
