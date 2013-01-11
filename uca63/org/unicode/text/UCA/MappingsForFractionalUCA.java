@@ -213,9 +213,7 @@ public final class MappingsForFractionalUCA {
     
         Set<String> additionalSet = new HashSet<String>();
         System.out.println("Loading canonical iterator");
-        if (WriteCollationData.canIt == null) {
-            WriteCollationData.canIt = new CanonicalIterator(".");
-        }
+        CanonicalIterator canIt = new CanonicalIterator(".");
         Iterator<String> it2 = contentsForCanonicalIteration.iterator();
         System.out.println("Adding any FCD equivalents that have different sort keys");
         while (it2.hasNext()) {
@@ -224,11 +222,11 @@ public final class MappingsForFractionalUCA {
                 System.out.println("Null Key");
                 continue;
             }
-            WriteCollationData.canIt.setSource(key);
+            canIt.setSource(key);
     
             boolean first = true;
             while (true) {
-                String s = WriteCollationData.canIt.next();
+                String s = canIt.next();
                 if (s == null) {
                     break;
                 }
