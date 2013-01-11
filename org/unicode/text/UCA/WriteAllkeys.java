@@ -42,7 +42,7 @@ public class WriteAllkeys {
                 );
         
         UCA collator = WriteCollationData.getCollator(collatorType);
-        UCA.UCAContents cc = collator.getContents(UCA.FIXED_CE, null);
+        UCA.UCAContents cc = collator.getContents(null);
         log.println("@version " + collator.getDataVersion() + "\n");
 
         Map<String,String> sorted = new TreeMap();
@@ -98,7 +98,7 @@ public class WriteAllkeys {
 
     public static String addString(UCA collator, String s,
             Map<String, String> sorted) {
-        String colDbase = collator.getSortKey(s, UCA.SHIFTED, true, AppendToCe.nfd);
+        String colDbase = collator.getSortKey(s, UCA_Types.NON_IGNORABLE, true, AppendToCe.tieBreaker);
         sorted.put(colDbase, s);
         return colDbase;
     }

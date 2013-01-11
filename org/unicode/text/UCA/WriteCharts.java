@@ -71,7 +71,7 @@ public class WriteCharts implements UCD_Types {
 		//Normalizer nfd = new Normalizer(Normalizer.NFD);
 		//Normalizer nfc = new Normalizer(Normalizer.NFC);
 
-		UCA.UCAContents cc = uca.getContents(UCA.FIXED_CE, null); // nfd instead of null if skipping decomps
+		UCA.UCAContents cc = uca.getContents(null); // nfd instead of null if skipping decomps
 		cc.setDoEnableSamples(true);
 
 		Set set = new TreeSet();
@@ -953,7 +953,7 @@ public class WriteCharts implements UCD_Types {
 		//        }
 		indexFile.println("</p><hr width='50%'><p style='font-size: 70%; text-align: center;'>");
 		indexFile.println("UCD: " + Default.ucd().getVersion() + extra);
-		indexFile.println("<br>" + Default.getDate() + " <a href='http://www.macchiato.com/' target='_top'>MED</a>");
+		indexFile.println("<br>" + WriteCollationData.getNormalDate() + " <a href='http://www.macchiato.com/' target='_top'>MED</a>");
 		indexFile.println("</p></div></body></html>");
 		indexFile.close();
 	}
