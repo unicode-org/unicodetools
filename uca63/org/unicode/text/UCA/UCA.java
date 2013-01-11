@@ -22,6 +22,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -154,6 +155,10 @@ final public class UCA implements Comparator, UCA_Types {
             in.close();
         }
         cleanup();
+    }
+
+    public Normalizer getNFDNormalizer() {
+        return toD;
     }
 
     /**
@@ -1529,7 +1534,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     }
      */
     
-    public Iterator<String> getContractions() {
+    public Set<String> getContractions() {
         return ucaData.getContractions();
     }
 

@@ -48,6 +48,9 @@ final class Validity {
     private static PrintWriter              log;
     private static UCA                      uca;
 
+    private static String ERROR_STRING = "<b style=color:red>ERROR</b>";
+    private static String KNOWN_ISSUE_STRING = "<b style=color:orange>Known Issue</b>";
+
     // Called by UCA.Main.
     static void writeCollationValidityLog() throws IOException {
         log = Utility.openPrintWriter(UCA.getUCA_GEN_DIR(), "CheckCollationValidity.html", Utility.UTF8_WINDOWS);
@@ -66,7 +69,7 @@ final class Validity {
 
         System.out.println("Sorting");
 
-        UCA.UCAContents cc = uca.getContents(null);
+        UCAContents cc = uca.getContents(null);
         // cc.setDoEnableSamples(true);
         UnicodeSet coverage = new UnicodeSet();
 
@@ -155,6 +158,7 @@ final class Validity {
         checkWellformedTable();
         addClosure();
         writeDuplicates();
+        checkMissingPrefixContractions();
         writeOverlap();
 
         log.println("<h2>11. Coverage</h2>");
@@ -264,7 +268,7 @@ final class Validity {
         log.println("<p>These are not necessarily errors, but should be examined for <i>possible</i> errors</p>");
         log.println("<table border='1' cellspacing='0' cellpadding='2'>");
 
-        UCA.UCAContents cc = uca.getContents(Default.nfd());
+        UCAContents cc = uca.getContents(Default.nfd());
 
         Map<CEList,Set<String>> map = new TreeMap<CEList,Set<String>>();
 
@@ -305,12 +309,56 @@ final class Validity {
         log.flush();
     }
 
+    /**
+     * Checks for well-formedness condition 5:
+     *
+     * <p>If a table contains a contraction consisting of a sequence of N code points,
+     * with N > 2 and the last code point being a non-starter,
+     * then the table must also contain a contraction
+     * consisting of the sequence of the first N-1 code points.
+     *
+     * <p>For example, if "ae+umlaut" is a contraction, then "ae" must be a contraction as well.
+     */
+    private static void checkMissingPrefixContractions() {
+        log.println("<h2>10. Checking for missing prefix contractions (WF5)</h2>");
+        log.println("<table border='1' cellspacing='0' cellpadding='2'>");
+        log.println("<tr><th>Severity</th><th>missing prefix</th><th>of contraction</th></tr>");
+        Set<String> contractions = uca.getContractions();
+        for (String contraction : contractions) {
+            if (!UTF16.hasMoreCodePointsThan(contraction, 2)) {
+                continue;
+            }
+            int lastCodePoint = contraction.codePointBefore(contraction.length());
+            int cc = uca.getNFDNormalizer().getCanonicalClass(lastCodePoint);
+            if (cc != 0) {
+                int prefixLength = contraction.length() - Character.charCount(lastCodePoint);
+                String prefixContraction = contraction.substring(0, prefixLength);
+                if (!contractions.contains(prefixContraction)) {
+                    String severity;
+                    if (prefixContraction.equals("\u0FB2\u0F71") ||
+                            prefixContraction.equals("\u0FB3\u0F71")) {
+                        // see http://www.unicode.org/reports/tr10/#Well_Formed_DUCET
+                        severity = KNOWN_ISSUE_STRING;
+                    } else {
+                        severity = ERROR_STRING;
+                    }
+                    log.println("<tr><td>" + severity
+                            + "</td><td>" + Default.ucd().getCodeAndName(prefixContraction)
+                            + "</td><td>" + Default.ucd().getCodeAndName(contraction)
+                            + "</td></tr>");
+                }
+            }
+        }
+        log.println("</table>");
+        log.flush();
+    }
+
     private static void writeOverlap() {
         log.println("<h2>10. Checking overlaps</h2>");
         log.println("<p>These are not necessarily errors, but should be examined for <i>possible</i> errors</p>");
         log.println("<table border='1' cellspacing='0' cellpadding='2'>");
 
-        UCA.UCAContents cc = uca.getContents(Default.nfd());
+        UCAContents cc = uca.getContents(Default.nfd());
 
         Map<CEList, String> map = new TreeMap<CEList, String>();
         Map<CEList, Set<CEList>> tails = new TreeMap<CEList, Set<CEList>>();
@@ -529,8 +577,6 @@ final class Validity {
         }
         int oldStrength = uca.getStrength();
         uca.setStrength(strength);
-        // Normalizer nfkd = new Normalizer(Normalizer.NFKD, UNICODE_VERSION);
-        // Normalizer nfc = new Normalizer(Normalizer.NFC, UNICODE_VERSION);
         switch (strength) {
         case 1:
             log.println("<h2>3. Primaries Incompatible with NFKD</h2>");
@@ -711,7 +757,7 @@ final class Validity {
         log.println("<tr><th>Count</th><th>Type</th><th>Name</th><th>Code</th><th>Sort Keys</th></tr>");
 
         Set<String> contentsForCanonicalIteration = new TreeSet<String>();
-        UCA.UCAContents ucac = uca.getContents(null); // NFD
+        UCAContents ucac = uca.getContents(null); // NFD
         int ccounter = 0;
         while (true) {
             Utility.dot(ccounter++);
@@ -808,9 +854,7 @@ final class Validity {
             errorCount++;
         }
 
-        // Normalizer nfd = new Normalizer(Normalizer.NFD, UNICODE_VERSION);
-
-        UCA.UCAContents cc = uca.getContents(Default.nfd());
+        UCAContents cc = uca.getContents(Default.nfd());
 
         int minps = Integer.MAX_VALUE;
         int minpst = Integer.MAX_VALUE;

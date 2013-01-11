@@ -128,8 +128,7 @@ public class CaseBitTest extends TestFmwk {
             sorted.put(uca.getCEList(s, true), s);
             regular++;
         }
-        for (Iterator<String> it = uca.getContractions(); it.hasNext();) {
-            String s = it.next();
+        for (String s : uca.getContractions()) {
             if (s.codePointCount(0, s.length()) != 1) { // don't count twice
                 s = Default.nfd().normalize(s);
                 sorted.put(uca.getCEList(s, true), s);

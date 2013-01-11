@@ -332,8 +332,8 @@ public class UCA_Data {
         return Collections.unmodifiableSortedMap(sorted);
     }
 
-    Iterator<String> getContractions() {
-        return contractions.iterator();
+    Set<String> getContractions() {
+        return Collections.unmodifiableSet(contractions);
     }
 
     int getContractionCount() {
