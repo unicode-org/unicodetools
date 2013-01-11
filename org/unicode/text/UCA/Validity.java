@@ -2,7 +2,6 @@ package org.unicode.text.UCA;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -159,7 +158,6 @@ final class Validity {
         addClosure();
         writeDuplicates();
         checkMissingPrefixContractions();
-        writeOverlap();
 
         log.println("<h2>11. Coverage</h2>");
         BagFormatter bf = new BagFormatter();
@@ -351,192 +349,6 @@ final class Validity {
         }
         log.println("</table>");
         log.flush();
-    }
-
-    private static void writeOverlap() {
-        log.println("<h2>10. Checking overlaps</h2>");
-        log.println("<p>These are not necessarily errors, but should be examined for <i>possible</i> errors</p>");
-        log.println("<table border='1' cellspacing='0' cellpadding='2'>");
-
-        UCAContents cc = uca.getContents(Default.nfd());
-
-        Map<CEList, String> map = new TreeMap<CEList, String>();
-        Map<CEList, Set<CEList>> tails = new TreeMap<CEList, Set<CEList>>();
-
-        int counter = 0;
-        System.out.println("Collecting items");
-
-        while (true) {
-            String s = cc.next();
-            if (s == null) {
-                break;
-            }
-            Utility.dot(counter++);
-            if (!Default.nfd().isNormalized(s)) {
-                continue; // only normalized stuff
-            }
-            CEList celist = uca.getCEList(s, true);
-            if (!map.containsKey(celist)) {
-                map.put(celist, s);
-            }
-        }
-
-        Utility.fixDot();
-        System.out.println("Collecting tails");
-
-        Map<CEList,String> mapNames = new TreeMap<CEList,String>();
-        mapNames.putAll(map);
-
-        for (Entry<CEList, String> entry : map.entrySet()) {
-            CEList celist = entry.getKey();
-            String s = entry.getValue();
-            Utility.dot(counter++);
-            int len = celist.length();
-            if (len < 2) {
-                continue;
-            }
-
-            for (int i = 1; i < len; ++i) {
-                CEList tail = celist.sub(i, len);
-                Utility.dot(counter++);
-                if (map.get(tail) == null && mapNames.get(tail) == null) { // skip anything in main
-                    Utility.addToSet(tails, tail, celist);
-                    mapNames.put(tail, s+"//"+i);
-                }
-            }
-        }
-
-        Utility.fixDot();
-        System.out.println("Finding overlaps");
-
-        // we now have a set of main maps, and a set of tails
-        // the main maps to string, the tails map to set of CELists
-
-        Iterator<CEList> it = map.keySet().iterator();
-        List<CEList> first = new ArrayList<CEList>();
-        List<CEList> second = new ArrayList<CEList>();
-
-        while (it.hasNext()) {
-            CEList celist = (CEList) it.next();
-            int len = celist.length();
-            if (len < 2) {
-                continue;
-            }
-            Utility.dot(counter++);
-            first.clear();
-            second.clear();
-            if (overlaps(map, tails, celist, 0, first, second)) {
-                reverse(first);
-                reverse(second);
-
-                log.println("<tr><td>" + getHTML_NameSet(first, null, false)
-                        + "</td><td>" + getHTML_NameSet(first, mapNames, true)
-                        + "</td><td>" + getHTML_NameSet(second, null, false)
-                        + "</td><td>" + getHTML_NameSet(second, mapNames, true)
-                        + "</td></tr>");
-            }
-        }
-        log.println("</table>");
-        log.flush();
-    }
-
-    private static void reverse(List<CEList> ell) {
-        int i = 0;
-        int j = ell.size() - 1;
-        while (i < j) {
-            CEList temp = ell.get(i);
-            ell.set(i, ell.get(j));
-            ell.set(j, temp);
-            ++i;
-            --j;
-        }
-    }
-
-    private static final boolean DEBUG_SHOW_OVERLAP = false;
-
-    private static boolean overlaps(Map<CEList, String> map, Map<CEList, Set<CEList>> tails, CEList celist, int depth, List<CEList> me, List<CEList> other) {
-        if (depth == 5) {
-            return false;
-        }
-        boolean gotOne = false;
-        if (DEBUG_SHOW_OVERLAP && depth > 0) {
-            String foo = map.get(celist);
-            System.out.println(Utility.repeat("**", depth) + "Trying:" + celist + ", "
-                    + (foo != null ? Default.ucd().getCodeAndName(foo) : ""));
-            gotOne = true;
-        }
-        int len = celist.length();
-        // if the tail of the celist matches something, then ArrayList
-        // A. subtract the match and retry
-        // B. if that doesn't work, see if the result is the tail of something
-        // else.
-        for (int i = 1; i < len; ++i) {
-            CEList tail = celist.sub(i, len);
-            if (map.get(tail) != null) {
-
-                if (DEBUG_SHOW_OVERLAP && !gotOne) {
-                    String foo = map.get(celist);
-                    System.out.println(Utility.repeat("**", depth) + "Trying:" + celist + ", "
-                            + (foo != null ? Default.ucd().getCodeAndName(foo) : ""));
-                    gotOne = true;
-                }
-
-                if (DEBUG_SHOW_OVERLAP) {
-                    System.out
-                    .println(Utility.repeat("**", depth) + "  Match tail at " + i + ": " + tail + ", " + Default.ucd().getCodeAndName(map.get(tail)));
-                }
-                // temporarily add tail
-                int oldListSize = me.size();
-                me.add(tail);
-
-                // the tail matched, try 3 options
-                CEList head = celist.sub(0, i);
-
-                // see if the head matches exactly!
-
-                if (map.get(head) != null) {
-                    if (DEBUG_SHOW_OVERLAP) {
-                        System.out.println(Utility.repeat("**", depth) + "  Match head at "
-                                + i + ": " + head + ", " + Default.ucd().getCodeAndName(map.get(head)));
-                    }
-                    me.add(head);
-                    other.add(celist);
-                    return true;
-                }
-
-                // see if the end of the head matches something (recursively)
-
-                if (DEBUG_SHOW_OVERLAP) {
-                    System.out.println(Utility.repeat("**", depth) + "  Checking rest");
-                }
-                if (overlaps(map, tails, head, depth + 1, me, other)) {
-                    return true;
-                }
-
-                // otherwise we see if the head is some tail
-
-                Set<CEList> possibleFulls = tails.get(head);
-                if (possibleFulls != null) {
-                    Iterator<CEList> it = possibleFulls.iterator();
-                    while (it.hasNext()) {
-                        CEList full = it.next();
-                        CEList possibleHead = full.sub(0, full.length() - head.length());
-                        if (DEBUG_SHOW_OVERLAP) {
-                            System.out.println(Utility.repeat("**", depth) + "  Reversing " + full
-                                    + ", " + Default.ucd().getCodeAndName(map.get(full))
-                                    + ", " + possibleHead);
-                        }
-                        if (overlaps(map, tails, possibleHead, depth + 1, other, me)) {
-                            return true;
-                        }
-                    }
-                }
-
-                // didn't work, so retract!
-                me.remove(oldListSize);
-            }
-        }
-        return false;
     }
 
     // if m exists, then it is a mapping to strings. Use it.
