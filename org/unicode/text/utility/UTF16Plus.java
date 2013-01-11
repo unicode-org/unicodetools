@@ -11,6 +11,9 @@
 
 package org.unicode.text.utility;
 
-public class UTF16Plus {
+public final class UTF16Plus {
+    public static boolean isSingleCodePoint(CharSequence seq) {
+        int length = seq.length();
+        return length > 0 && Character.offsetByCodePoints(seq, 0, 1) == length;
+    }
 }
-

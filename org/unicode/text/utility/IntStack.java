@@ -15,7 +15,7 @@ package org.unicode.text.utility;
 // Simple stack mechanism, with push, pop and access
 // =============================================================
 
-public final class IntStack implements Comparable, Cloneable {
+public final class IntStack implements Comparable<IntStack>, Cloneable {
     private int[] values;
     private int top = 0;
     private int first = 0;
@@ -23,11 +23,11 @@ public final class IntStack implements Comparable, Cloneable {
     public IntStack(int initialSize) {
         values = new int[initialSize];
     }
-    
+
     public IntStack append(IntStack other) {
         // TODO speed up by copying arrays
-        for (int i = 0; i < other.getTop(); ++i) {
-            push(other.get(i));
+        for (int i = other.first; i < other.top; ++i) {
+            push(other.values[i]);
         }
         return this;
     }
@@ -73,24 +73,32 @@ public final class IntStack implements Comparable, Cloneable {
     }
 
     public int get(int index) {
-        if (first <= index && index < top) return values[index];
-        throw new IllegalArgumentException("Stack index out of bounds");
+        int i = first + index;
+        if (first <= i && i < top) {
+            return values[i];
+        }
+        throw new ArrayIndexOutOfBoundsException(index);
     }
 
-    public int getTop() {
-        return top;
+    public void set(int index, int value) {
+        int i = first + index;
+        if (first <= i && i < top) {
+            values[i] = value;
+            return;
+        }
+        throw new ArrayIndexOutOfBoundsException(index);
     }
 
     public boolean isEmpty() {
-        return top - first == 0;
+        return top == first;
     }
     
     public void clear() {
         top = first = 0;
     }
     
-    public int compareTo(Object other) {
-        IntStack that = (IntStack) other;
+    public int compareTo(IntStack other) {
+        IntStack that = other;
         int myLen = top - first;
         int thatLen = that.top - that.first;
         int limit = first + ((myLen < thatLen) ? myLen : thatLen);
@@ -102,7 +110,7 @@ public final class IntStack implements Comparable, Cloneable {
         return myLen - thatLen;
     }
 
-    public boolean equals(Object other) {
+    public boolean equals(IntStack other) {
         return compareTo(other) == 0;
     }
 
@@ -113,10 +121,10 @@ public final class IntStack implements Comparable, Cloneable {
         }
         return result;
     }
-    
+
     public Object clone() {
         try {
-            IntStack result = (IntStack) (super.clone());
+            IntStack result = (IntStack) super.clone();
             result.values = (int[]) result.values.clone();
             return result;
         } catch (CloneNotSupportedException e) {
@@ -124,14 +132,6 @@ public final class IntStack implements Comparable, Cloneable {
         }
     }
 
-    public void put(int index, int value) {
-        if (first <= index && index < top) {
-            values[index] = value;
-            return;
-        }
-        throw new IllegalArgumentException("Stack index out of bounds");
-    }
-    
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (int i = first; i < top; ++i) {

@@ -22,20 +22,18 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
-import org.unicode.text.UCD.UCDProperty;
 import org.unicode.text.UCD.UCD_Types;
-import org.unicode.text.UCD.UnifiedBinaryProperty;
 import org.unicode.text.utility.IntStack;
-import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
@@ -45,43 +43,34 @@ import com.ibm.icu.text.UnicodeSetIterator;
 //import org.unicode.text.CollationData.*;
 
 /**
- * Collator is a working version of UTR#10 Unicode Collation Algorithm,
+ * UCA is a working version of the UTS #10 Unicode Collation Algorithm,
  * as described on http://www.unicode.org/unicode/reports/tr10/
  * @author Mark Davis
 
-It is not optimized, although it does use some techniques that are required for
-a real optimization, such as squeezing all the weights into 32 bits.<p>
+<p>It is not optimized, although it does use some techniques that are required for
+a real optimization, such as squeezing all the weights into 32 bits.
 
-Invariants relied upon by the algorithm:
+<p>Invariants relied upon by the algorithm:
 
-UCA Data:
-1. While it contains secondaries greater than 0xFF, 
-these can be folded down by subtracting 0xC0--without collision--to be less than 0xFF
-2. Tertiary values are less than 0x80
-3. Contracting characters must be "completed": if "abcd" is a contracting character, 
-then "abc" is also.
-4. Variables (marked with *), have a distinct, closed range of primaries. 
-That is, there are no variable CEs X, Z and non-ignorable CE Y such that X[1] <= Y[1] <= Z[1]
-5. It needs to be fixed when reading: only non-zero weights (levels 1-3) are really variable!
+<p>UCA Data:
+<ol>
+  <li>Tertiary values are less than 0x80
+  <li>Variables (marked with *), have a distinct, closed range of primaries. 
+    That is, there are no variable CEs X, Z and non-ignorable CE Y such that X[1] <= Y[1] <= Z[1]<br>
+    This saves a bit in each CE.
+  <li>It needs to be fixed when reading: only non-zero weights (levels 1-3) are really variable!
+</ol>
 
-#4 saves a bit in each CE.
-
-Limits
-1. There is a limit on the number of expanding characters. If N is the number of expanding
-characters, then their total lengths must be less than 65536-N. This should never pose a
-problem in practice.
-2. If any of the weight limits are reached (FFFF for primary, FF for secondary, tertiary),
+<p>Limits: If any of the weight limits are reached (FFFF for primary, 1FF for secondary, 7F for tertiary),
 expanding characters can be used to achieve the right results, as discussed in UTR#10.
 
-Remarks:
-Neither the old 14651 nor the old UCA algorithms for backwards really worked.
+<p>Remarks:
+<p>Neither the old 14651 nor the old UCA algorithms for backwards really worked.
 This is because of shared
 characters between scripts with different directions, like French with Arabic or Greek.
  */
 
 final public class UCA implements Comparator, UCA_Types {
-
-    private static final boolean DEBUG_TEST = false;
 
     public static final int TEST_PRIMARY = 0xFDFC;
 
@@ -168,6 +157,23 @@ final public class UCA implements Comparator, UCA_Types {
         cleanup();
     }
 
+    public Normalizer getNFDNormalizer() {
+        return toD;
+    }
+
+    /**
+     * Constructs a sort key for given CEs.
+     * @param ces collation elements
+     * @param alternate choice of different 4th level weight construction
+     * @param appendIdentical whether to append an identical level, and which kind of one
+     * @return Result is a String not really of Unicodes, but of weights.
+     * String is just a handy way of returning them in Java, since there are no
+     * unsigned shorts.
+     */
+    public String getSortKey(CEList ces, byte alternate, AppendToCe appendIdentical) {
+        return getSortKey(ces, "", alternate, defaultDecomposition, appendIdentical);
+    }
+
     /**
      * Constructs a sort key for a string of input Unicode characters. Uses
      * default values for alternate and decomposition.
@@ -177,7 +183,7 @@ final public class UCA implements Comparator, UCA_Types {
      * unsigned shorts.
      */
     public String getSortKey(String sourceString) {
-        return getSortKey(sourceString, defaultAlternate, defaultDecomposition, AppendToCe.none);
+        return getSortKey(null, sourceString, defaultAlternate, defaultDecomposition, AppendToCe.none);
     }
     /**
      * Constructs a sort key for a string of input Unicode characters. Uses
@@ -190,33 +196,53 @@ final public class UCA implements Comparator, UCA_Types {
      */
 
     public String getSortKey(String sourceString, byte alternate) {
-        return getSortKey(sourceString, alternate, defaultDecomposition, AppendToCe.none);
+        return getSortKey(null, sourceString, alternate, defaultDecomposition, AppendToCe.none);
     }
 
     public static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 0x5);
 
-    public enum AppendToCe {none, nfd}
-    
-    /**
-     * Constructs a sort key for a string of input Unicode characters.
-     * @param sourceString string to make a sort key for.
-     * @param alternate choice of different 4th level weight construction
-     * @param decomposition true for UCA, false where the text is guaranteed to be
-     * normalization form C with no combining marks of class 0.
-     * @param appendIdentical TODO
-     * @return Result is a String not of really of Unicodes, but of weights.
-     * String is just a handy way of returning them in Java, since there are no
-     * unsigned shorts.
-     */
-    public String getSortKey(String sourceString, byte alternate, boolean decomposition, AppendToCe appendIdentical) {
+    public enum AppendToCe {none, nfd, tieBreaker}
+
+    private void setSourceString(String sourceString, boolean decomposition) {
         decompositionBuffer.setLength(0);
         if (decomposition) {
             toD.normalize(sourceString, decompositionBuffer);
         } else {
             decompositionBuffer.append(sourceString);
         }
-        storedDecomposition = decomposition;    // record the setting for other methods
-        index = 0;                              // position in source string
+        index[0] = 0;
+    }
+
+    /**
+     * Constructs a sort key for a string of input Unicode characters.
+     * @param sourceString string to make a sort key for.
+     * @param alternate choice of different 4th level weight construction
+     * @param decomposition true for UCA, false where the text is guaranteed to be
+     * normalization form C with no combining marks of class 0.
+     * @param appendIdentical whether to append an identical level, and which kind of one
+     * @return Result is a String not of really of Unicodes, but of weights.
+     * String is just a handy way of returning them in Java, since there are no
+     * unsigned shorts.
+     */
+    public String getSortKey(String sourceString, byte alternate, boolean decomposition, AppendToCe appendIdentical) {
+        return getSortKey(null, sourceString, alternate, decomposition, appendIdentical);
+    }
+
+    /**
+     * Constructs a sort key for given CEs, and/or a string of input Unicode characters.
+     * When the CEs are used up, then the sourceString is processed.
+     * @param ces collation elements to be considered first, can be null
+     * @param sourceString string to make a sort key for, can be empty but not null
+     * @param alternate choice of different 4th level weight construction
+     * @param decomposition true for UCA, false where the text is guaranteed to be
+     * normalization form C with no combining marks of class 0.
+     * @param appendIdentical whether to append an identical level, and which kind of one
+     * @return Result is a String not really of Unicodes, but of weights.
+     * String is just a handy way of returning them in Java, since there are no
+     * unsigned shorts.
+     */
+    public String getSortKey(CEList ces, String sourceString, byte alternate, boolean decomposition, AppendToCe appendIdentical) {
+        setSourceString(sourceString, decomposition);
 
         // Weight strings - not chars, weights.
         primaries.setLength(0);             // clear out
@@ -225,19 +251,28 @@ final public class UCA implements Comparator, UCA_Types {
         quaternaries.setLength(0);          // clear out
         if (SHOW_CE) debugList.setLength(0); // clear out
 
-        rearrangeBuffer = EMPTY;            // clear the rearrange buffer (thai)
-        hangulBufferPosition = 0;           // clear hangul buffer
-        hangulBuffer.setLength(0);           // clear hangul buffer
-
         char weight4 = '\u0000'; // DEFAULT FOR NON_IGNORABLE
         boolean lastWasVariable = false;
 
         // process CEs, building weight strings
+        int cesIndex = 0;
+        int cesLength = ces == null ? 0 : ces.length();
         while (true) {
-            //fixQuaternatiesPosition = quaternaries.length();
-            int ce = getCE();
-            if (ce == TERMINATOR) break;
-            if (ce == 0) continue;
+            int ce;
+            if (cesIndex < cesLength) {
+                ce = ces.at(cesIndex++);
+                if (ce == 0) {
+                    continue;
+                }
+            } else {
+                ces = nextCEs();
+                if (ces == null) {
+                    break;
+                }
+                cesIndex = 0;
+                cesLength = ces.length();
+                continue;
+            }
 
             switch (alternate) {
             case ZEROED:
@@ -301,7 +336,7 @@ final public class UCA implements Comparator, UCA_Types {
         // For simplicity, we use the strength setting here.
         // To optimize, we wouldn't actually generate the weights in the first place.
 
-        StringBuffer result = primaries;
+        StringBuilder result = primaries;
         if (strength >= 2) {
             result.append(LEVEL_SEPARATOR);    // separator
             result.append(secondaries);
@@ -325,12 +360,12 @@ final public class UCA implements Comparator, UCA_Types {
             }
         }
         if (appendIdentical != AppendToCe.none) {
-            if (appendIdentical == AppendToCe.nfd) {
-                String cpo = UCA.codePointOrder(toD.normalize(sourceString));
-                result.append('\u0000').append(cpo);
+            String cpo = UCA.codePointOrder(toD.normalize(sourceString));
+            result.append('\u0000').append(cpo);
+            if (appendIdentical == AppendToCe.tieBreaker) {
+                cpo = UCA.codePointOrder(sourceString);
+                result.append('\u0000').append(cpo).append((char) cpo.length());
             }
-            String cpo = UCA.codePointOrder(sourceString);
-            result.append('\u0000').append(cpo).append((char) cpo.length());
         }
         return result.toString();
     }
@@ -467,124 +502,117 @@ final public class UCA implements Comparator, UCA_Types {
     }
 
     /**
-     * Returns a list of CEs for a unicode character at a position.
-     * @param sourceString string to make a sort key for.
-     * @param offset position in string
-     * @param decomposition true for UCA, false where the text is guaranteed to be
-     * normalization form C with no combining marks of class 0.
-     * @param output array for output. Must be large enough on entry. When done, is terminated with TERMINATOR.
+     * Gets all collation elements for the input string and appends them to the output stack.
+     *
+     * @param sourceString input string
+     * @param decomposition if true then the string is NFD'ed,
+     *      otherwise it must already be normalized
+     * @param output IntStack gets the collation elements appended
      */
     public void getCEs(String sourceString, boolean decomposition, IntStack output) {
-        decompositionBuffer.setLength(0);
-        if (decomposition) {
-            toD.normalize(sourceString, decompositionBuffer);
-        } else {
-            decompositionBuffer.append(sourceString);
-        }
-        rearrangeBuffer = EMPTY;            // clear the rearrange buffer (thai)
-        index = 0;
+        setSourceString(sourceString, decomposition);
 
-        // process CEs, building weight strings
-        while (true) {
-            //fixQuaternatiesPosition = quaternaries.length();
-            int ce = getCE();
-            if (ce == 0) continue;
-            if (ce == TERMINATOR) break;
-            output.push(ce);
+        CEList ces;
+        while ((ces = nextCEs()) != null) {
+            ces.appendNonZeroTo(output);
         }
     }
 
-
     /**
-     * Returns a list of CEs for a unicode character at a position.
-     * @param sourceString string to make a sort key for.
-     * @param offset position in string
-     * @param decomposition true for UCA, false where the text is guaranteed to be
-     * normalization form C with no combining marks of class 0.
-     * @param output array for output. Must be large enough on entry. When done, is terminated with TERMINATOR.
-     * @return count of CEs
+     * Gets all collation elements for the input string and writes them to the output array.
+     *
+     * @param sourceString input string
+     * @param decomposition if true then the string is NFD'ed,
+     *      otherwise it must already be normalized
+     * @param output array where the collation elements are written
+     * @return number of collation element integers written to the output
+     * @throws IndexOutOfBoundsException if the output array is too short
      */
     public int getCEs(String sourceString, boolean decomposition, int[] output) {
-        decompositionBuffer.setLength(0);
-        if (decomposition) {
-            toD.normalize(sourceString, decompositionBuffer);
-        } else {
-            decompositionBuffer.append(sourceString);
-        }
-        rearrangeBuffer = EMPTY;            // clear the rearrange buffer (thai)
-        index = 0;
+        setSourceString(sourceString, decomposition);
         int outpos = 0;
         output[0] = 0; // just in case!!
 
-        // process CEs, building weight strings
-        while (true) {
-            //fixQuaternatiesPosition = quaternaries.length();
-            int ce = getCE();
-            if (ce == 0) continue;
-            if (ce == TERMINATOR) break;
-            output[outpos++] = ce;
+        CEList ces;
+        while ((ces = nextCEs()) != null) {
+            outpos = ces.appendNonZeroTo(output, outpos);
         }
         return outpos;
     }
 
     /**
-     * Returns a CEList for a unicode character at a position.
-     * @param sourceString string to make a sort key for.
-     * @param offset position in string
-     * @param decomposition true for UCA, false where the text is guaranteed to be
-     * normalization form C with no combining marks of class 0.
-     * @param output array for output. Must be large enough on entry. When done, is terminated with TERMINATOR.
-     * @return count of CEs
+     * Gets all collation elements for the input string and returns them as a CEList.
+     *
+     * @param sourceString input string
+     * @param decomposition if true then the string is NFD'ed,
+     *      otherwise it must already be normalized
+     * @return a CEList with the collation elements
      */
-
     public CEList getCEList(String sourceString, boolean decomposition) {
-        int len;
-        while (true) {
-            try {
-                len = getCEs(sourceString, decomposition, ceListBuffer);
-                break;
-            } catch (ArrayIndexOutOfBoundsException e) {
-                ceListBuffer = new int[ceListBuffer.length * 2];
-            }
+        setSourceString(sourceString, decomposition);
+
+        // If there is only one CEList, then return that one.
+        CEList ces1 = nextCEs();
+        if (ces1 == null) {
+            return null;  // not even one (should only happen for an empty sourceString)
         }
-        return new CEList(ceListBuffer, 0, len);
+        CEList ces = nextCEs();
+        if (ces == null) {
+            // only one CEList
+            if (ces1.isCompletelyIgnorable()) {
+                return CEList.EMPTY;
+            }
+            if (!ces1.containsZero()) {
+                return ces1;
+            }
+            // Weird: ces1 contains both zero and non-zero collation elements.
+            // Collect and return only the non-zero ones.
+        }
+
+        // Otherwise concatenate all lists into a new one.
+        IntStack stack = new IntStack(30);
+        ces1.appendNonZeroTo(stack);
+        do {
+            ces.appendNonZeroTo(stack);
+        } while ((ces = nextCEs()) != null);
+        return stack.isEmpty() ? CEList.EMPTY : new CEList(stack);
     }
 
-    int[] ceListBuffer = new int[30]; // temporary storage, to avoid multiple creation
-
-
     /**
-     * Return the type of the CE
+     * Returns true if there is an explicit mapping for ch, or one that starts with ch.
      */
-    public byte getCEType(int ch) {
-        return ucaData.getCEType(ch);
+    public boolean codePointHasExplicitMappings(int ch) {
+        return ucaData.codePointHasExplicitMappings(ch);
     }
 
     /**
-     * Utility, used to get the primary weight from a 32-bit CE
-     * The primary is 16 bits, stored in b31..b16
+     * Returns the primary weight from a 32-bit CE.
+     * The primary is 16 bits, stored in b31..b16.
+     *
+     * @deprecated use {@link CEList#getPrimary(int)}
      */
     public static char getPrimary(int ce) {
-        return (char)(ce >>> 16);
+        return CEList.getPrimary(ce);
     }
 
-    static final int SECONDARY_MAX = 0x1FF;
-    static final int TERTIARY_MAX = 0x7F;
-
     /**
-     * Utility, used to get the secondary weight from a 32-bit CE
-     * The secondary is 8 bits, stored in b15..b8
+     * Returns the secondary weight from a 32-bit CE.
+     * The secondary is 9 bits, stored in b15..b7.
+     *
+     * @deprecated use {@link CEList#getSecondary(int)}
      */
     public static char getSecondary(int ce) {
-        return (char)((ce >>> 7) & SECONDARY_MAX);
+        return CEList.getSecondary(ce);
     }
 
     /**
-     * Utility, used to get the tertiary weight from a 32-bit CE
-     * The tertiary is 6 bits, stored in b6..b0
+     * Returns the tertiary weight from a 32-bit CE.
+     * The tertiary is 7 bits, stored in b6..b0.
+     *
+     * @deprecated use {@link CEList#getTertiary(int)}
      */
     public static char getTertiary(int ce) {
-        return (char)(ce & TERTIARY_MAX);
+        return CEList.getTertiary(ce);
     }
 
     /**
@@ -726,16 +754,16 @@ final public class UCA implements Comparator, UCA_Types {
     }
 
     public static String toStringUCA(CEList ceList, String value, int variableTop, StringBuilder extraComment) {
-        if (ceList.count == 0) {
+        if (ceList.isEmpty()) {
             return "[.0000.0000.0000.0000]";
         }
         extraComment.setLength(0);
         boolean lastWasVariable = false;
         StringBuffer result = new StringBuffer();
-        String quad = ceList.count == 1 ? value : toD.normalize(value);
+        String quad = ceList.length() == 1 ? value : toD.normalize(value);
         int qIndex = 0;
 
-        for (int i = 0; i < ceList.count; ++i) {
+        for (int i = 0; i < ceList.length(); ++i) {
             int ce = ceList.at(i);
             char p = UCA.getPrimary(ce);
             char s = UCA.getSecondary(ce);
@@ -926,13 +954,12 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     // =============================================================
 
 
-    IntStack expandingStack = new IntStack(10);
-
     /**
      * Array used to reorder surrogates to top of 16-bit range, and others down.
      * Adds 2000 to D800..DFFF, making them F800..FFFF
      * Subtracts 800 from E000..FFFF, making them D800..F7FF
      */
+    /* This is for alternate code in appendInCodePointOrder()
     private static final int[] utf16CodePointOrder = {
         0, 0, 0, 0,                        // 00, 08, 10, 18
         0, 0, 0, 0,                        // 20, 28, 30, 38
@@ -943,6 +970,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         0, 0, 0, 0x2000,                   // C0, C8, D0, D8
         -0x800, -0x800, -0x800, -0x800     // E0, E8, F0, F8
     };
+    */
 
     /**
      * NFD required
@@ -985,7 +1013,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     /**
      * Position in decompositionBuffer used when constructing sort key
      */
-    private int index;
+    private int[] index = new int[1];
 
     /**
      * List of files to use for constructing the CE data, used by build()
@@ -1026,19 +1054,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     private int variableLowCE;  // used for testing against
     private int variableHighCE; // used for testing against
 
-    /*
-
-    private void fixSurrogateContraction(char ch) {
-        //if (DEBUGCHAR) System.out.println(Utility.hex(ch) + ": " + line.substring(0, position[0]) + "|" + line.substring(position[0]));            
-        if (ch == NOT_A_CHAR || !UTF16.isLeadSurrogate(ch)) return;
-        String chs = String.valueOf(ch);
-        Object probe = contractingTable.get(chs);
-        if (probe != null) return;
-        contractingTable.put(chs, new Integer(UNSUPPORTED));
-    }
-
-     */
-
     /**
      * Marks whether we are using the full data set, or an abbreviated version for
      * an applet.
@@ -1052,127 +1067,54 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     // =============================================================
 
     /**
-     * Temporary buffers used in getSortKey to store weights
-     * these are NOT strings of Unicode characters--they are
+     * Temporary buffers used in getSortKey to store weights.
+     * These are NOT strings of Unicode characters--they are
      * lists of weights. But this is a convenient way to store them,
      * since Java doesn't have unsigned shorts.
      */
-    private StringBuffer primaries = new StringBuffer(100);
-    private StringBuffer secondaries = new StringBuffer(100);
-    private StringBuffer tertiaries = new StringBuffer(100);
-    private StringBuffer quaternaries = new StringBuffer(100);
+    private StringBuilder primaries = new StringBuilder(100);
+    private StringBuilder secondaries = new StringBuilder(100);
+    private StringBuilder tertiaries = new StringBuilder(100);
+    private StringBuilder quaternaries = new StringBuilder(100);
 
     /**
      * Temporary buffer used to collect progress data for debugging
      */
     StringBuffer debugList = new StringBuffer(100);
 
-    /**
-     * Temporary with requested decomposition
-     */
-    boolean storedDecomposition;
+    private StringBuffer hangulBuffer = new StringBuffer();
+
+    private int[] implicit = new int[2];
 
     /**
-     * Used for supporting Thai rearrangement
+     * Returns the collation elements for the character or substring
+     * of the decomposition buffer starting at the index.
+     * Advances the index past that.
+     * Returns null at the end of the input.
      */
-    static final char EMPTY = '\uFFFF';
-    char rearrangeBuffer = EMPTY;
-    UnicodeSet rearrangeList = new UnicodeSet();
-    int hangulBufferPosition = 0;
-    StringBuffer hangulBuffer = new StringBuffer();
-
-    // =============================================================
-    // getCE: Get the next Collation Element
-    // Main Routine
-    // =============================================================
-
-    /**
-     * Gets the next Collation Element from the decomposition buffer.
-     * May take one or more characters.
-     * Resets index to point at the next position to get characters from.
-     *@param quaternary the collection of 4th level weights, synthesized from the
-     * (normalized) character code.
-     */
-    private int getCE() {
-        if (!expandingStack.isEmpty()) return expandingStack.popFront();
-        char ch;
-
-        // Fetch next character. Handle rearrangement for Thai, etc.
-        if (rearrangeBuffer != EMPTY) {
-            ch = rearrangeBuffer;
-            rearrangeBuffer = EMPTY;
-        } else if (hangulBufferPosition < hangulBuffer.length()) {
-            ch = hangulBuffer.charAt(hangulBufferPosition++);
-            if (hangulBufferPosition == hangulBuffer.length()) {
-                hangulBuffer.setLength(0);
-                hangulBufferPosition = 0;
-            }
-        } else {
-            if (index >= decompositionBuffer.length()) return TERMINATOR;
-            ch = decompositionBuffer.charAt(index++); // get next
-            if (rearrangeList.contains(ch) && index < decompositionBuffer.length()) {// if in list
-                rearrangeBuffer = ch;   // store for later
-                ch = decompositionBuffer.charAt(index++);   // never rearrange twice!!
-            }
+    private CEList nextCEs() {
+        if (index[0] >= decompositionBuffer.length()) {
+            return null;
+        }
+        CEList ces = ucaData.fetchCEs(decompositionBuffer, index);
+        if (ces != null) {
+            return ces;
         }
 
-        index = ucaData.get(ch, decompositionBuffer, index, expandingStack);
-        int ce = expandingStack.popFront(); // pop first (guaranteed to exist!)
-        if (ce == UNSUPPORTED_FLAG) {
-            return handleUnsupported(ch);
-        }
-        return ce;
-    }
-
-    private int handleUnsupported(char ch) {
-        int bigChar = ch;
-
-        // Special check for Hangul
-        if (ucd.isHangulSyllable(bigChar)) {
-            // MUST DECOMPOSE!!
-            hangulBuffer = new StringBuffer();
-            decomposeHangul(bigChar, hangulBuffer);
-            return getCE();
-            // RECURSIVE!!!
+        int i = index[0];
+        int c = decompositionBuffer.codePointAt(i);
+        if (UCD.isHangulSyllable(c)) {
+            hangulBuffer.setLength(0);
+            decomposeHangul(c, hangulBuffer);
+            decompositionBuffer.replace(i, i + 1, hangulBuffer.toString());
+            return nextCEs();
         }
 
-        // special check and fix for unsupported surrogate pair, 20 1/8 bits
-        special:
-            if (0xD800 <= bigChar && bigChar <= 0xDFFF) {
-                // ignore unmatched surrogates (e.g. return zero)
-                if (bigChar >= 0xDC00 || index >= decompositionBuffer.length()) {
-                    //return 0; // unmatched
-                    break special;
-                }
-                int ch2 = decompositionBuffer.charAt(index);
-                if (ch2 < 0xDC00 || 0xDFFF < ch2) {
-                    break special;
-                    //return 0;  // unmatched
-                }
-                index++; // skip next char
-                bigChar = 0x10000 + ((ch - 0xD800) << 10) + (ch2 - 0xDC00); // extract value
-            }
-
-
-        //        if (ucd.isNoncharacter(bigChar)) { // illegal code value, ignore!!
-        //            return 0;
-        //        }
-
-        // find the implicit values; returned in 0 and 1
-        int[] implicit = new int[2];
-        CodepointToImplicit(bigChar, implicit);
-
-        // Now compose the two keys
-
-        // push BBBB
-
-        expandingStack.push(makeKey(implicit[1], 0, 0));
-
-        // return AAAA
-
-        return makeKey(implicit[0], NEUTRAL_SECONDARY, NEUTRAL_TERTIARY);
-
-
+        index[0] = i + Character.charCount(c);
+        CodepointToImplicit(c, implicit);
+        implicit[0] = makeKey(implicit[0], NEUTRAL_SECONDARY, NEUTRAL_TERTIARY);
+        implicit[1] = makeKey(implicit[1], 0, 0);
+        return new CEList(implicit);
     }
 
     /**
@@ -1241,12 +1183,12 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      */
 
 
-    public UCAContents getContents(byte ceLimit, Normalizer skipDecomps) {
-        return new UCAContents(ceLimit, skipDecomps, ucdVersion);
+    public UCAContents getContents(Normalizer skipDecomps) {
+        return new UCAContents(skipDecomps, ucdVersion);
     }
 
 
-    static final UnicodeSet moreSamples = new UnicodeSet();
+    private static final UnicodeSet moreSamples = new UnicodeSet();
     static {
         moreSamples.add("\u09C7\u09BE");
         moreSamples.add("\u09C7\u09D7");
@@ -1268,28 +1210,19 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
 
     public class UCAContents {
-        int current = -1;
-        Normalizer skipDecomps;
-        Normalizer nfd;
-        Normalizer nfkd;
-        Iterator enum1 = null;
-        byte ceLimit;
-        int currentRange = SAMPLE_RANGES.length; // set to ZERO to enable
-        int startOfRange = SAMPLE_RANGES[0][0];
-        int endOfRange = startOfRange;
-        int itemInRange = startOfRange;
-        int skip = 1;
-        boolean doSamples = false;
-        AbbreviatedUnicodeSetIterator usi = new AbbreviatedUnicodeSetIterator();
-        UnicodeSetIterator moreSampleIterator = new UnicodeSetIterator(moreSamples);
+        private Iterator<Map.Entry<String, CEList>> iter = ucaData.getSortedMappings().entrySet().iterator();
+        private CEList ces;
+        private Normalizer skipDecomps;
+        private Normalizer nfkd;
+        private int currentRange = SAMPLE_RANGES.length; // set to ZERO to enable
+        private int startOfRange = SAMPLE_RANGES[0][0];
+        private int endOfRange = startOfRange;
+        private int itemInRange = startOfRange;
+        private boolean doSamples = false;
+        private AbbreviatedUnicodeSetIterator usi = new AbbreviatedUnicodeSetIterator();
+        private UnicodeSetIterator moreSampleIterator = new UnicodeSetIterator(moreSamples);
 
-
-        /**
-         * use FIXED_CE as the limit
-         */
-        UCAContents(byte ceLimit, Normalizer skipDecomps, String unicodeVersion) {
-            this.ceLimit = ceLimit;
-            this.nfd = new Normalizer(Normalizer.NFD, unicodeVersion);
+        UCAContents(Normalizer skipDecomps, String unicodeVersion) {
             this.nfkd = new Normalizer(Normalizer.NFKD, unicodeVersion);
             this.skipDecomps = skipDecomps;
             currentRange = 0;
@@ -1307,10 +1240,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             }
         }
 
-        /**
-         * use FIXED_CE as the limit
-         * @param newValue TODO
-         */
         public void setDoEnableSamples(boolean newValue) {
             doSamples = newValue;
         }
@@ -1320,50 +1249,27 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
          */
         public String next() {
             String result = null; // null if done
+            ces = null;
 
             // normal case
-            while (current++ < 0x10FFFF) {
-                if (DEBUG && current == 0xdbff) {
-                    System.out.println("DEBUG");
+            while (iter.hasNext()) {
+                Map.Entry<String, CEList> entry = iter.next();
+                result = entry.getKey();
+                if (UTF16Plus.isSingleCodePoint(result)) {
+                    int c = result.codePointAt(0);
+                    if (skipDecomps != null && !skipDecomps.isNormalized(c)) {  // CHECK THIS
+                        result = null;
+                        continue;
+                    }
+                    if (!getStatistics().haveUnspecified) {
+                        getStatistics().unspecified.add(c);
+                    }
                 }
-                //char ch = (char)current;
-                byte type = getCEType(current);
-                if (type >= ceLimit || type == CONTRACTING_CE) continue;
-
-                //if (nfd.isNormalized(current) || type == HANGUL_CE) {
-                //}
-
-                if (skipDecomps != null && !skipDecomps.isNormalized(current)) continue; // CHECK THIS
-
-                result = UTF16.valueOf(current);
-                if (!getStatistics().haveUnspecified) getStatistics().unspecified.add(current);
+                ces = entry.getValue();
                 return result;
             }
 
-            // contractions
-            if (enum1 == null) enum1 = ucaData.getContractions();
-            while (enum1.hasNext()) {
-                result = (String)enum1.next();
-//                if (result.length() == 1 && UTF16.isLeadSurrogate(result.charAt(0))) {
-//                    if (DEBUG_TEST) {
-//                        System.out.println("Skipping Lead" + ucd.getCodeAndName(result));
-//                    }
-//                    continue; // try again
-//                }
-                if (result.length() > 0 && UTF16.isLeadSurrogate(result.charAt(result.length()-1))) {
-                    if (DEBUG_TEST) {
-                        System.out.println("Skipping final lead: " + ucd.getCodeAndName(result));
-                    }
-                    continue; // try again
-                }
-                if (!getStatistics().haveUnspecified) {
-                    if (UTF16.countCodePoint(result) == 1) {
-                        getStatistics().unspecified.add(result);
-                    }
-                }
-                return result;
-            }
-
+            // Update statistics once after all mappings have been enumerated.
             if (!getStatistics().haveUnspecified) {
                 if (DEBUG) System.out.println("Specified = " + getStatistics().unspecified.toPattern(true));
                 UnicodeSet temp = new UnicodeSet();
@@ -1398,12 +1304,14 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 if (usi.codepoint == usi.IS_STRING) result = usi.string;
                 else result = UTF16.valueOf(usi.codepoint);
                 if (DEBUG) System.out.println("Unspecified: " + ucd.getCodeAndName(result));
+                ces = getCEList(result, true);
                 return result;
             }
 
             if (moreSampleIterator.next()) {
                 result = moreSampleIterator.getString();
                 if (DEBUG) System.out.println("More Samples: " + ucd.getCodeAndName(result));
+                ces = getCEList(result, true);
                 return result;
             }
 
@@ -1429,34 +1337,18 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     //itemInRange += skip;
                     itemInRange = endOfRange - 5;
                 }
+                ces = getCEList(result, true);
+                return result;
             }
 
-            return result;
+            return null;
         }
 
         /**
-         * returns a string and its ces
+         * Returns the CEs for the string that was returned by the last call to next().
          */
-        public String next(int[] ces, int[] len) {
-
-            String result = next(); // null if done
-            if (result != null) {
-                len[0] = getCEs(result, true, ces);
-            }
-            return result;
-        }
-
-        int[] lengthBuffer = new int[1];
-
-        /**
-         * returns a string and its ces
-         */
-        public boolean next(Pair result) {
-            String s = next(ceListBuffer, lengthBuffer);
-            if (s == null) return false;
-            result.first = new CEList(ceListBuffer, 0, lengthBuffer[0]);
-            result.second = s;
-            return true;
+        public CEList getCEs() {
+            return ces;
         }
 
         /**
@@ -1506,13 +1398,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         String inputLine = "";
         boolean[] wasImplicitLeadPrimary = new boolean[1];
 
-        // In UAX 3.1, the rearrange list is moved to UCD.
-
-        if (ucaData.lessThan410) {        	
-            rearrangeList = UnifiedBinaryProperty.make(UCD.BINARY_PROPERTIES + UCD.Logical_Order_Exception, ucd)
-            .getSet();
-        }
-
         while (true) try {
             inputLine = in.readLine();
             if (inputLine == null) break;       // means file is done
@@ -1535,15 +1420,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             if (line.startsWith("@")) {
                 if (line.startsWith("@version")) {
                     dataVersion = line.substring("@version".length()+1).trim();
-                    continue;
-                }
-
-                if (line.startsWith("@rearrange")) {
-                    line = line.substring("@rearrange".length()+1).trim();
-                    String[] list = Utility.split(line, ',');
-                    for (int i = 0; i < list.length; ++i) {
-                        rearrangeList.add(Integer.parseInt(list[i].trim(), 16));
-                    }
                     continue;
                 }
 
@@ -1658,7 +1534,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     }
      */
     
-    public Iterator<String> getContractions() {
+    public Set<String> getContractions() {
         return ucaData.getContractions();
     }
 
@@ -1666,18 +1542,12 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      * Checks the internal tables corresponding to the UCA data.
      */
     private void cleanup() {
-
-        UCDProperty ubp = UnifiedBinaryProperty.make(
-                UCD.BINARY_PROPERTIES + UCD.Logical_Order_Exception, ucd);
-        UnicodeSet desiredSet = ubp.getSet();
-
-        if (ucaData.lessThan410 && !rearrangeList.equals(desiredSet)) {
-            throw new IllegalArgumentException("Rearrangement should be " + desiredSet.toPattern(true)
-                    + ", but is " + rearrangeList.toPattern(true));
-        }
-
         ucaData.checkConsistency();
 
+        /* TODO(Markus):
+         * - Stop checking for all code unit prefixes (this is the code commented out here).
+         * - Instead, start checking that for every contraction that ends with a non-zero ccc
+         *   there is a mapping for the one-code-point-shorter contraction.
         Map missingStrings = new HashMap();
         Map tempMap = new HashMap();
 
@@ -1711,13 +1581,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
         enum1 = missingStrings.keySet().iterator();
         if (missingStrings.size() != 0) {
-            /**
-            while (enum1.hasMoreElements()) {
-                String sequence = (String)enum1.nextElement();
-                getCE(sequence);
-                FIX LATER;
-            }
-             */
             String errorMessage = "";
             while (enum1.hasNext()) {
                 String missing = (String)enum1.next();
@@ -1726,10 +1589,11 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             }
             throw new IllegalArgumentException("Contracting table not closed! Missing " + errorMessage);
         }
+         */
 
         //fixlater;
         variableLowCE = makeKey(1,0,0);
-        variableHighCE = makeKey(ucaData.variableHigh, SECONDARY_MAX, TERTIARY_MAX); // turn on bottom bits
+        variableHighCE = makeKey(ucaData.variableHigh, CEList.SECONDARY_MAX, CEList.TERTIARY_MAX); // turn on bottom bits
 
         //int hangulHackBottom;
         //int hangulHackTop;
@@ -1875,10 +1739,10 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
             }
             variable = false; // FIX DATA FILE
         }
-        if (key2 > SECONDARY_MAX) {
+        if (key2 > CEList.SECONDARY_MAX) {
             throw new IllegalArgumentException("Weight2 doesn't fit: " + Utility.hex(key2) + "," + line);
         }
-        if (key3 > TERTIARY_MAX) {
+        if (key3 > CEList.TERTIARY_MAX) {
             throw new IllegalArgumentException("Weight3 doesn't fit: " + Utility.hex(key3) + "," + line);
         }
         // adjust variable bounds, if needed

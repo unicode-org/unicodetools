@@ -397,7 +397,7 @@ public class WriteHTMLCollation implements UCD_Types {
         Iterator it = forLater.keySet().iterator();
         byte oldType = (byte)0xFF; // anything unique
         int caseCount = 0;
-        log.println("Generated: " + new Date());
+        log.println("Generated: " + getNormalDate());
         while (it.hasNext()) {
             String key = (String) it.next();
             byte type = (byte)key.charAt(0);

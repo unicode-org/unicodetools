@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
+import java.util.TreeMap;
 
 import org.unicode.text.UCA.UCA.AppendToCe;
 import org.unicode.text.UCA.UCA.CollatorType;
@@ -12,16 +13,28 @@ import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.CanonicalIterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class WriteConformanceTest {
+    private static final boolean DEBUG = true;
+    private static final boolean DEBUG_SHOW_ITERATION = true;
+    private static int addCounter = 0;
 
-    static final boolean DEBUG = true;
-
-    static final UnicodeSet RTL = new UnicodeSet("[[:bc=r:][:bc=al:][:bc=an:]]").freeze();
+    private static final UnicodeSet RTL = new UnicodeSet("[[:bc=r:][:bc=al:][:bc=an:]]").freeze();
 
     private static final boolean SKIP_SPECIAL_TIBETAN = true;
+
+    private static final char LOW_ACCENT = '\u0334';
+
+    private static final String   SUPPLEMENTARY_ACCENT         = UTF16.valueOf(0x1D165);
+    private static final String   COMPLETELY_IGNOREABLE        = "\u0001";
+    private static final String   COMPLETELY_IGNOREABLE_ACCENT = "\u0591";
+    private static final String[] CONTRACTION_TEST = { SUPPLEMENTARY_ACCENT, COMPLETELY_IGNOREABLE, COMPLETELY_IGNOREABLE_ACCENT };
+
+    private static CanonicalIterator canIt = null;
+    private static TreeMap<String, String> sortedD = new TreeMap<String, String>();
 
     static void writeConformance(String filename, byte option, boolean shortPrint, CollatorType collatorType) throws IOException {
         // UCD ucd30 = UCD.make("3.0.0");
@@ -43,11 +56,11 @@ public class WriteConformanceTest {
                 CEList ces = WriteCollationData.getCollator(collatorType).getCEList(t, true);
                 System.out.println("CEs:    " + ces);
 
-                String test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, true, AppendToCe.nfd);
-                System.out.println("Decomp: " + WriteCollationData.getCollator(collatorType).toString(test));
+                String test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, true, AppendToCe.tieBreaker);
+                System.out.println("Decomp: " + UCA.toString(test));
 
-                test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, false, AppendToCe.nfd);
-                System.out.println("No Dec: " + WriteCollationData.getCollator(collatorType).toString(test));
+                test = WriteCollationData.getCollator(collatorType).getSortKey(t, option, false, AppendToCe.tieBreaker);
+                System.out.println("No Dec: " + UCA.toString(test));
             }
         }
 
@@ -67,7 +80,7 @@ public class WriteConformanceTest {
         System.out.println("Sorting");
         int counter = 0;
 
-        UCA.UCAContents cc = WriteCollationData.getCollator(collatorType).getContents(UCA.FIXED_CE, null);
+        UCA.UCAContents cc = WriteCollationData.getCollator(collatorType).getContents(null);
         cc.setDoEnableSamples(true);
         UnicodeSet found2 = new UnicodeSet();
 
@@ -84,14 +97,14 @@ public class WriteConformanceTest {
 
             found2.addAll(s);
 
-            if (WriteCollationData.DEBUG_SHOW_ITERATION) {
+            if (DEBUG_SHOW_ITERATION) {
                 int cp = UTF16.charAt(s, 0);
                 if (cp == 0x1CD0 || !Default.ucd().isAssigned(cp) || UCD.isCJK_BASE(cp)) {
                     System.out.println(Default.ucd().getCodeAndName(s));
                 }
             }
             Utility.dot(counter++);
-            WriteCollationData.addStringX(s, option, collatorType, AppendToCe.nfd);
+            addStringX(s, option, collatorType, AppendToCe.tieBreaker);
         }
 
         // Add special examples
@@ -139,22 +152,19 @@ public class WriteConformanceTest {
          */
 
         Utility.fixDot();
-        System.out.println("Total: " + WriteCollationData.sortedD.size());
-        Iterator it;
+        System.out.println("Total: " + sortedD.size());
 
         System.out.println("Writing");
         // String version = collator.getVersion();
 
-        it = WriteCollationData.sortedD.keySet().iterator();
+        Iterator<String> it = sortedD.keySet().iterator();
 
-        String lastKey = "";
-        
         int level = (option == UCA.NON_IGNORABLE ? 3 : 4);
 
         while (it.hasNext()) {
             Utility.dot(counter);
-            String key = (String) it.next();
-            String source = (String) WriteCollationData.sortedD.get(key);
+            String key = it.next();
+            String source = sortedD.get(key);
             int fluff = key.charAt(key.length() - 1);
             key = key.substring(0, key.length() - fluff - 2);
             // String status = key.equals(lastKey) ? "*" : "";
@@ -166,8 +176,8 @@ public class WriteConformanceTest {
             }
 
             String clipped = source.substring(0, source.length() - 1);
-            if (clipped.charAt(0) == WriteCollationData.LOW_ACCENT && extra != WriteCollationData.LOW_ACCENT) {
-                extra = WriteCollationData.LOW_ACCENT;
+            if (clipped.charAt(0) == LOW_ACCENT && extra != LOW_ACCENT) {
+                extra = LOW_ACCENT;
                 clipped = source.substring(1);
             }
             if (UCharacter.isLowSurrogate(extra)) { // restore
@@ -196,8 +206,66 @@ public class WriteConformanceTest {
         }
 
         log.close();
-        WriteCollationData.sortedD.clear();
+        sortedD.clear();
         System.out.println("Done");
     }
 
+    private static void addStringX(String s, byte option, CollatorType collatorType, AppendToCe appendToCe) {
+        int firstChar = UTF16.charAt(s, 0);
+        addStringY(s + 'a', option, collatorType, appendToCe);
+        addStringY(s + 'b', option, collatorType, appendToCe);
+        addStringY(s + '?', option, collatorType, appendToCe);
+        addStringY(s + 'A', option, collatorType, appendToCe);
+        addStringY(s + '!', option, collatorType, appendToCe);
+        if (option == UCA_Types.SHIFTED && WriteCollationData.getCollator(collatorType).isVariable(firstChar)) {
+            addStringY(s + LOW_ACCENT, option, collatorType, appendToCe);
+        }
+
+        // NOW, if the character decomposes, or is a combining mark (non-zero),
+        // try combinations
+
+        if (Default.ucd().getCombiningClass(firstChar) > 0
+                || !Default.nfd().isNormalized(s) && !UCD.isHangulSyllable(firstChar)) {
+            // if it ends with a non-starter, try the decompositions.
+            String decomp = Default.nfd().normalize(s);
+            if (Default.ucd().getCombiningClass(UTF16.charAt(decomp, decomp.length() - 1)) > 0) {
+                if (canIt == null) {
+                    canIt = new CanonicalIterator(".");
+                }
+                canIt.setSource(s + LOW_ACCENT);
+                int limit = 4;
+                for (String can = canIt.next(); can != null; can = canIt.next()) {
+                    if (s.equals(can)) {
+                        continue;
+                    }
+                    if (--limit < 0) {
+                        continue; // just include a sampling
+                    }
+                    addStringY(can, option, collatorType, appendToCe);
+                    // System.out.println(addCounter++ + " Adding " +
+                    // Default.ucd.getCodeAndName(can));
+                }
+            }
+        }
+        if (UTF16.countCodePoint(s) > 1) {
+            for (int i = 1; i < s.length(); ++i) {
+                if (UTF16.isLeadSurrogate(s.charAt(i - 1))) {
+                    continue; // skip if in middle of supplementary
+                }
+
+                for (int j = 0; j < CONTRACTION_TEST.length; ++j) {
+                    String extra = s.substring(0, i) + CONTRACTION_TEST[j] + s.substring(i);
+                    addStringY(extra + 'a', option, collatorType, appendToCe);
+                    if (DEBUG) {
+                        System.out.println(addCounter++ + " Adding " + Default.ucd().getCodeAndName(extra));
+                    }
+                }
+            }
+        }
+    }
+
+    private static void addStringY(String s, byte option, CollatorType collatorType, AppendToCe appendToCe) {
+        String colDbase = WriteCollationData.getCollator(collatorType).getSortKey(s, option, true, appendToCe);
+        sortedD.put(colDbase, s);
+    }
 }
