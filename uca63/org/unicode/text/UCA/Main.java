@@ -13,7 +13,6 @@ package org.unicode.text.UCA;
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.NFSkippable;
-import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.lang.UCharacter;
@@ -104,7 +103,7 @@ public class Main {
             else if (arg.equalsIgnoreCase("writeConformanceShiftedCldr")) WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA.SHIFTED, shortPrint, CollatorType.cldr);
             
             else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) TestCompatibilityCharacters.testCompatibilityCharacters(WriteCollationData.getCollator(CollatorType.cldrWithoutFFFx));
-            else if (arg.equalsIgnoreCase("writeCollationValidityLog")) WriteCollationData.writeCollationValidityLog();
+            else if (arg.equalsIgnoreCase("writeCollationValidityLog")) Validity.writeCollationValidityLog();
             else if (arg.equalsIgnoreCase("writeCaseExceptions")) WriteCollationData.writeCaseExceptions();
             else if (arg.equalsIgnoreCase("writeJavascriptInfo")) WriteCollationData.writeJavascriptInfo();
             else if (arg.equalsIgnoreCase("writeCaseFolding")) WriteCollationData.writeCaseFolding();
