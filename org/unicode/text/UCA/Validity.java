@@ -220,9 +220,6 @@ final class Validity {
         for (int i = pos; i < decompSortKey.length(); ++i) {
             int weight = decompSortKey.charAt(i);
             int newWeight = CEList.remap(ch, type, weight);
-            if (i > pos + 1) {
-                newWeight = 0x1F;
-            }
             newSortKey += (char) newWeight;
         }
         return newSortKey;
@@ -429,11 +426,11 @@ final class Validity {
             String decomp = Default.nfkd().normalize(ch);
             if (ch != ' ' && decomp.charAt(0) == ' ') {
                 skipSet.add(ch);
-                continue; // skip wierd decomps
+                continue; // skip weird decomps
             }
             if (ch != '\u0640' && decomp.charAt(0) == '\u0640') {
                 skipSet.add(ch);
-                continue; // skip wierd decomps
+                continue; // skip weird decomps
             }
 
             String sortKey = uca.getSortKey(UTF16.valueOf(ch), UCA.NON_IGNORABLE, decomposition, AppendToCe.none);
@@ -745,8 +742,10 @@ final class Validity {
                 }
 
                 // IF we are in the trailing range, something is wrong.
-                if (p >= UCA_Types.UNSUPPORTED_LIMIT) {
-                    log.println("<tr><td>" + (++errorCount) + ". > " + Utility.hex(UCA_Types.UNSUPPORTED_LIMIT, 4)
+                // UCA 6.3+ sets aside primary weights FFFD..FFFF as specials, so those are ok.
+                // See http://www.unicode.org/draft/reports/tr10/tr10.html#Trailing_Weights
+                if (UCA_Types.UNSUPPORTED_LIMIT <= p && p < 0xfffd) {
+                    log.println("<tr><td>" + (++errorCount) + ". Unexpected trailing-weight primary"
                             + "</td><td>" + ces
                             + "</td><td>" + Default.ucd().getCodeAndName(str) + "</td></tr>");
                     lastPrimary = p;
@@ -988,6 +987,8 @@ final class Validity {
     .removeAll(gc.getSet("Co"))
     .freeze();
 
+    private static final UnicodeSet SPECIALS = new UnicodeSet(0xFFFD, 0xFFFD).freeze();
+
     private static final UnicodeMap<String> EMPTY = new UnicodeMap<String>().freeze();
     private static final UnicodeMap<String> IGNORABLE_REASONS = new UnicodeMap<String>()
             .putAll(new UnicodeSet("[ࠤࠨःংঃਃઃଂଃఁ-ఃಂಃംഃංඃཿ းះៈᬄᮂ᳡ᳲ�ꢀꢁꦃ꯬�𑀀𑀂𑂂��𝅥𝅦𝅭-𝅲]"), "Unknown why these are ignored")
@@ -1015,6 +1016,7 @@ final class Validity {
         currency_symbols('\u00A4', CURRENCY_SYMBOLS, EMPTY),
         numbers('\u0030', NUMBERS, EMPTY), 
         scripts('a', OTHERS, SCRIPT_REASONS),
+        specials('\uFFFD', SPECIALS, EMPTY),
         fail(-1, UnicodeSet.EMPTY, EMPTY);
         final int least;
         final UnicodeSet expected;
