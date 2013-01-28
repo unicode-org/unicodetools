@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.tool.Option;
 import org.unicode.cldr.tool.Option.Options;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.With;
 import org.unicode.text.UCA.CEList;
@@ -30,8 +29,6 @@ import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.Normalizer2.Mode;
 
 public class ScriptCount {
     private static final double LOG2 = Math.log(2);

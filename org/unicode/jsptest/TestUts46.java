@@ -1,34 +1,20 @@
 package org.unicode.jsptest;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.Random;
 import java.util.Set;
 
-import org.unicode.idna.GenerateIdna;
 import org.unicode.idna.GenerateIdnaTest;
 import org.unicode.idna.Idna;
 import org.unicode.idna.Regexes;
 import org.unicode.idna.Uts46;
 import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
-import org.unicode.jsp.UnicodeUtilities;
-import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.BagFormatter;
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.FileUtilities;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 public class TestUts46 extends TestFmwk{
 

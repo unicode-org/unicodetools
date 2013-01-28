@@ -18,9 +18,9 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.Normalizer.Mode;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.Normalizer.Mode;
 
 public class Confusables implements Iterable<String>{
   public enum ScriptCheck {same, none};

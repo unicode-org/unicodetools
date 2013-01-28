@@ -1,8 +1,5 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 public class ToolIdna2008 {
 //

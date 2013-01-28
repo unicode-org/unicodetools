@@ -8,10 +8,10 @@ import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,9 +24,9 @@ import sun.text.normalizer.UTF16;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.Normalizer2.Mode;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.text.Normalizer2.Mode;
 import com.ibm.icu.util.ULocale;
 
 public class FindHanSizes {

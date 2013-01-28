@@ -2,10 +2,7 @@ package org.unicode.draft;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TreeSet;
 
-import com.ibm.icu.impl.CurrencyData.CurrencyFormatInfo;
-import com.ibm.icu.util.TimeUnit;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.DateFormat;
@@ -18,6 +15,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Calendar;
 import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.CurrencyAmount;
+import com.ibm.icu.util.TimeUnit;
 import com.ibm.icu.util.TimeUnitAmount;
 import com.ibm.icu.util.ULocale;
 

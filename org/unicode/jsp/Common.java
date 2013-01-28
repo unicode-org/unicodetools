@@ -8,12 +8,12 @@ import org.unicode.jsp.XPropertyFactory.HanType.HanTypeValues;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.Normalizer;
+import com.ibm.icu.text.Normalizer.Mode;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.Normalizer.Mode;
 import com.ibm.icu.util.ULocale;
 
 public class Common {

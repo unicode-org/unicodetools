@@ -1,13 +1,10 @@
 package org.unicode.text.UCA;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 

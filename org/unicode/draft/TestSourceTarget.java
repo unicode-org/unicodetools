@@ -1,11 +1,9 @@
 package org.unicode.draft;
 
 import java.util.Collections;
-import java.util.Enumeration;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UnicodeFilter;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestSourceTarget extends TestFmwk {

@@ -2,8 +2,6 @@ package org.unicode.test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -14,13 +12,10 @@ import org.unicode.text.UCA.CaseBit;
 import org.unicode.text.UCA.CaseBit.Casing;
 import org.unicode.text.UCA.CaseBit.CasingList;
 import org.unicode.text.UCA.UCA;
-import org.unicode.text.UCA.UCA_Types;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.TestData.RegexMatcher;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
-
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.Relation;

@@ -2,25 +2,17 @@ package org.unicode.draft;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.unicode.cldr.tool.Option.Options;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
-import org.unicode.draft.HanFrequencies.ReadingAlt;
-import org.unicode.draft.HanFrequencies.ReadingRows;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 

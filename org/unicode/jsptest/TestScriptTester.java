@@ -9,9 +9,9 @@ import java.util.TreeSet;
 
 import org.unicode.jsp.Builder;
 import org.unicode.jsp.Confusables;
+import org.unicode.jsp.Confusables.ScriptCheck;
 import org.unicode.jsp.ScriptTester;
 import org.unicode.jsp.XIDModifications;
-import org.unicode.jsp.Confusables.ScriptCheck;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.Normalizer;

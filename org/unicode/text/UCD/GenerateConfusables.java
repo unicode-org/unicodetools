@@ -20,7 +20,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -36,8 +35,8 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
-import org.unicode.idna.Uts46;
 import org.unicode.idna.Idna.IdnaType;
+import org.unicode.idna.Uts46;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.ArrayComparator;

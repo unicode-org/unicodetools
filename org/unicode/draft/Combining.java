@@ -16,8 +16,6 @@ import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.UTF16;
-
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.PrettyPrinter;
@@ -27,6 +25,7 @@ import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.RuleBasedCollator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 

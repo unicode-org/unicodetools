@@ -18,13 +18,11 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.Normalizer2.Mode;
 import com.ibm.icu.text.SpoofChecker;
 import com.ibm.icu.text.UnicodeCompressor;
 import com.ibm.icu.text.UnicodeSet;

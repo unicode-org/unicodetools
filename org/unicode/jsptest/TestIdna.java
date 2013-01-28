@@ -3,8 +3,8 @@ package org.unicode.jsptest;
 import java.io.IOException;
 
 import org.unicode.idna.Idna2008;
-import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Idna2008.Idna2008Type;
+import org.unicode.idna.IdnaTypes;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.text.utility.Utility;
 
