@@ -11,72 +11,72 @@ import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.util.ULocale;
 
 public class MessageFormatCheck extends TestFmwk {
-  private static final long 
-  SECOND = 1000L,
-  MINUTE = 60*SECOND,
-  HOUR = 60*MINUTE,
-  DAY = 24*HOUR,
-  MONTH = 31*DAY,
-  YEAR = 12*DAY;
-  private MessageFormat format;
-  private HashMap args;
+	private static final long
+	SECOND = 1000L,
+	MINUTE = 60*SECOND,
+	HOUR = 60*MINUTE,
+	DAY = 24*HOUR,
+	MONTH = 31*DAY,
+	YEAR = 12*DAY;
+	private MessageFormat format;
+	private HashMap args;
 
-  public static void main(String[] args) {
-    new MessageFormatCheck().run(args);
-  }
+	public static void main(String[] args) {
+		new MessageFormatCheck().run(args);
+	}
 
-  @Override
-  protected void init() throws Exception {
-    format = new MessageFormat("The directory {directory} contains {file_count,number,#,##0.0}KB.");
-    args = new HashMap();
-    args.put("directory", "foo/bar/");
-    args.put("file_count", 3.4567d);
-  }
-  
-  public void TestDuration() {
-    DurationFormat durationFormat = DurationFormat.getInstance(ULocale.FRANCE);
-    long now = new Date().getTime();
-    for (long duration : new Long[]{2L, 2*SECOND, 2*MINUTE, 2*HOUR, 2*DAY, 2*MONTH, 2*YEAR}) {
-      System.out.println();
-      System.out.println("formatDurationFrom: " + durationFormat.formatDurationFrom(duration, now));
-      System.out.println("formatDurationFromNowTo: " + durationFormat.formatDurationFromNowTo(new Date(now+duration)));
-      System.out.println("formatDurationFromNow: " + durationFormat.formatDurationFromNow(duration));
-      System.out.println("format: " + durationFormat.format(duration));
-    }
-  }
-  
-  public void TestSettingFormats() {
-    MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0}.");
-    assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(new Object[]{new Double(1.2345)}));
-  }
-  
-  public void TestNamedArguments() {
-    assertEquals("Basic test", "The directory foo/bar/ contains 3.5KB.", format.format(args));
-    // the following failed on ICU 3.8
-    format.setFormatByArgumentName("file_count", NumberFormat.getIntegerInstance(ULocale.FRENCH));
-    assertEquals("Resetting format", "The directory foo/bar/ contains 3KB.", format.format(args));
-  }
+	@Override
+	protected void init() throws Exception {
+		format = new MessageFormat("The directory {directory} contains {file_count,number,#,##0.0}KB.");
+		args = new HashMap();
+		args.put("directory", "foo/bar/");
+		args.put("file_count", 3.4567d);
+	}
 
-  public void TestGetFormats() {
-    Format[] formats = format.getFormatsByArgumentIndex();
-    System.out.println(Arrays.asList(formats));
-  }
-  
-  public void TestNicerSyntax() {
-    MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0} with {1}.");
-    assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format((Number)1.2345, "abcd"));
-    assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(new Object[]{1.2345, "abcd"}));
-    Entry foo;
-    
-    // with named entries
-    format = new MessageFormat("The directory {directory} contains {file_count,number,#,##0.0}KB.");
-    //format.format(new Args().add("directory", "foo/bar/").add("file_count", 3.4567d));
-    
-    MessageFormat.format("The directory {0} contains {1,number,#,##0.0}KB.", "foo/bar", 3.145);
-  }
-  
+	public void TestDuration() {
+		final DurationFormat durationFormat = DurationFormat.getInstance(ULocale.FRANCE);
+		final long now = new Date().getTime();
+		for (final long duration : new Long[]{2L, 2*SECOND, 2*MINUTE, 2*HOUR, 2*DAY, 2*MONTH, 2*YEAR}) {
+			System.out.println();
+			System.out.println("formatDurationFrom: " + durationFormat.formatDurationFrom(duration, now));
+			System.out.println("formatDurationFromNowTo: " + durationFormat.formatDurationFromNowTo(new Date(now+duration)));
+			System.out.println("formatDurationFromNow: " + durationFormat.formatDurationFromNow(duration));
+			System.out.println("format: " + durationFormat.format(duration));
+		}
+	}
 
-  /*
+	public void TestSettingFormats() {
+		final MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0}.");
+		assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(new Object[]{new Double(1.2345)}));
+	}
+
+	public void TestNamedArguments() {
+		assertEquals("Basic test", "The directory foo/bar/ contains 3.5KB.", format.format(args));
+		// the following failed on ICU 3.8
+		format.setFormatByArgumentName("file_count", NumberFormat.getIntegerInstance(ULocale.FRENCH));
+		assertEquals("Resetting format", "The directory foo/bar/ contains 3KB.", format.format(args));
+	}
+
+	public void TestGetFormats() {
+		final Format[] formats = format.getFormatsByArgumentIndex();
+		System.out.println(Arrays.asList(formats));
+	}
+
+	public void TestNicerSyntax() {
+		final MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0} with {1}.");
+		assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(1.2345, "abcd"));
+		assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(new Object[]{1.2345, "abcd"}));
+		final Entry foo;
+
+		// with named entries
+		format = new MessageFormat("The directory {directory} contains {file_count,number,#,##0.0}KB.");
+		//format.format(new Args().add("directory", "foo/bar/").add("file_count", 3.4567d));
+
+		MessageFormat.format("The directory {0} contains {1,number,#,##0.0}KB.", "foo/bar", 3.145);
+	}
+
+
+	/*
 Problems:
 
 1. The following methods should be deprecated: they will fail if the string is localized and elements are rearranged.
@@ -92,8 +92,8 @@ but there should at least be some way to find out what is happening.
 3. The following throws an exception if there are named arguments.
     public Format[] getFormatsByArgumentIndex() {
 Fine, but that means that there is no way to get a format for a named argument.
-  
-To address #2 and #3 I suggest having 
+
+To address #2 and #3 I suggest having
   List getArgumentNames() // returns a list of names that occur in the format. Numeric arguments are returned as strings (eg "3")
   getFormatByArgumentName(String name) // returns the first format with a matching name. Numeric arguments are passed by string (eg "3")
 
@@ -104,7 +104,7 @@ That is, there are a bunch of tests like:
                     "This method is not available in MessageFormat objects " +
                     "that use alphanumeric argument names.");
         }
-                
+
 There are also some awkward pieces of code like:
         for (int j = 0; j <= maxOffset; j++) {
             if (Integer.parseInt(argumentNames[j]) == argumentIndex) {
@@ -112,7 +112,7 @@ There are also some awkward pieces of code like:
             }
         }
 (It would be better to change have argumentString = String.valueOf(argumentIndex), and not parse on every iteration.)
-        
+
 I think we need a consistent model of how this is to work. My suggestion is:
   A. {0,xxx} and {count,xxx} are treated identically: "0" and "count" are just names.
   B. When formatting, etc, an array of objects is treated logically just as if it were a Map, eg ["abc", "def"...] is treated as if it were {"0"="abc", "1"="def"...}
@@ -128,7 +128,7 @@ If we add the following method (under a flag), then the format can be cleaner, l
     public final String format(Object...items) {
         return super.format(items);
     }
-    
+
 6. Ugly Syntax#2. With named arguments, it's worse:
     HashMap args = new HashMap();
     args.put("directory", "foo/bar/");
@@ -138,7 +138,7 @@ If we add the following method (under a flag), then the format can be cleaner, l
 I've been playing around with ways to make this more palatable. Perhaps something like:
 
     format.format(new Args().add("directory", "foo/bar/").add("file_count", 3.4567d));
-    
+
 To do that, we could just define in MessageFormat:
   static class Args extends HashMap<String,Object> {
     public Args add(String key, Object value) {
@@ -147,5 +147,5 @@ To do that, we could just define in MessageFormat:
     }
   }
 
-   */
+	 */
 }

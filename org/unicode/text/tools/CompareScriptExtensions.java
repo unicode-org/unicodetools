@@ -15,32 +15,32 @@ public class CompareScriptExtensions {
 	static final UnicodeProperty scriptXProp = tups.getProperty("scx");
 
 	public static void main(String[] args) {
-		UnicodeMap<String> diffs = new UnicodeMap();
+		final UnicodeMap<String> diffs = new UnicodeMap();
 
 		for (int i = 0; i <= 0x10FFFF; ++i) {
-			String spx = scriptXProp.getValue(i);
+			final String spx = scriptXProp.getValue(i);
 			if (spx == null) {
 				continue;
 			}
-			String sp = scriptProp.getValue(i);
+			final String sp = scriptProp.getValue(i);
 			if (!sp.equals(spx)) {
 				diffs.put(i, sp + "\t" + getLongForm(spx));
 			}
 		}
-		TreeSet<String> s = new TreeSet<String>(diffs.getAvailableValues());
-		for (String value : s) {
+		final TreeSet<String> s = new TreeSet<String>(diffs.getAvailableValues());
+		for (final String value : s) {
 			System.out.println(value + "\t" + diffs.getSet(value).toPattern(false));
 		}
 	}
 
 	private static String getLongForm(String spx) {
-		String[] items = spx.split(" ");
-		StringBuffer result = new StringBuffer();
-		for (int i = 0; i < items.length; ++i) {
+		final String[] items = spx.split(" ");
+		final StringBuffer result = new StringBuffer();
+		for (final String item : items) {
 			if (result.length() != 0) {
 				result.append(" ");
 			}
-			result.append(UScript.getName(UScript.getCodeFromName(items[i])));
+			result.append(UScript.getName(UScript.getCodeFromName(item)));
 		}
 		return result.toString();
 	}

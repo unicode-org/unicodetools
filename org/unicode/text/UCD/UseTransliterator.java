@@ -11,15 +11,15 @@ import com.ibm.icu.text.Transliterator;
 public class UseTransliterator {
 	public static void main(String[] args) throws IOException {
 		try {
-			String filename = args[0];
-			File f2 = new File("org/unicode/text/UCD/");
+			final String filename = args[0];
+			final File f2 = new File("org/unicode/text/UCD/");
 			System.out.println(f2.getAbsolutePath());
 			TransliteratorUtilities.registerTransliteratorFromFile("org/unicode/text/UCD/", "any-temp");
-			Transliterator t = Transliterator.getInstance("any-temp");
-			File f = new File(filename);
-			String fileContents = TransliteratorUtilities.getFileContents(f.getParent() + File.separator, f.getName());
-			String newContents = t.transliterate(fileContents);
-			PrintWriter pw = BagFormatter.openUTF8Writer(f.getParent() + File.separator, "new-" + f.getName());
+			final Transliterator t = Transliterator.getInstance("any-temp");
+			final File f = new File(filename);
+			final String fileContents = TransliteratorUtilities.getFileContents(f.getParent() + File.separator, f.getName());
+			final String newContents = t.transliterate(fileContents);
+			final PrintWriter pw = BagFormatter.openUTF8Writer(f.getParent() + File.separator, "new-" + f.getName());
 			pw.write(newContents);
 			pw.close();
 		} finally {

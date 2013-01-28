@@ -24,264 +24,269 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class Cmudict {
-    static final String BASE_DIR = org.unicode.text.utility.Utility.DATA_DIRECTORY + "/translit/";
-    static final Collator col = Collator.getInstance(ULocale.ROOT);
-    //static final StressFixer stressFixer = new StressFixer();
-    static final Transliterator arpabet = getTransliteratorFromFile("arpabet-ipa", BASE_DIR, "arpabet-ipa.txt");
-    static final Transliterator respell = getTransliteratorFromFile("ipa-en", BASE_DIR, "respell.txt");
+	static final String BASE_DIR = org.unicode.text.utility.Utility.DATA_DIRECTORY + "/translit/";
+	static final Collator col = Collator.getInstance(ULocale.ROOT);
+	//static final StressFixer stressFixer = new StressFixer();
+	static final Transliterator arpabet = getTransliteratorFromFile("arpabet-ipa", BASE_DIR, "arpabet-ipa.txt");
+	static final Transliterator respell = getTransliteratorFromFile("ipa-en", BASE_DIR, "respell.txt");
 
-    public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 
-        UnicodeSet SKIP_START = new UnicodeSet("[^a-z’]").freeze();
-        UnicodeSet WORD_OK = new UnicodeSet("[-.a-z’¹²³\\u0020]").freeze();
-        Set<String> funnyWords = new TreeSet<String>();
+		final UnicodeSet SKIP_START = new UnicodeSet("[^a-z’]").freeze();
+		final UnicodeSet WORD_OK = new UnicodeSet("[-.a-z’¹²³\\u0020]").freeze();
+		final Set<String> funnyWords = new TreeSet<String>();
 
-        Relation<String,String> toIPA = new Relation(new TreeMap<String,String>(col), LinkedHashSet.class);
-        Relation<String,String> fromIpa = new Relation(new TreeMap(col), TreeSet.class);
-        Set<String> ipaWithoutStress = new TreeSet<String>(col);
-        Relation<String,String> ipaDifferingByStress = new Relation(new TreeMap(col), TreeSet.class);
+		final Relation<String,String> toIPA = new Relation(new TreeMap<String,String>(col), LinkedHashSet.class);
+		final Relation<String,String> fromIpa = new Relation(new TreeMap(col), TreeSet.class);
+		final Set<String> ipaWithoutStress = new TreeSet<String>(col);
+		final Relation<String,String> ipaDifferingByStress = new Relation(new TreeMap(col), TreeSet.class);
 
-        BufferedReader in = BagFormatter.openUTF8Reader(BASE_DIR, "cmudict.0.7a.txt");
-        while (true) {
-            String line = in.readLine();
-            if (line == null) {
-                break;
-            }
-            if (line.startsWith("\uFEFF")) {
-                line = line.substring(1); // remove BOM
-            }
-            if (line.startsWith(";;;")) {
-                continue;
-            }
-            //            if (SKIP_START.contains(line.codePointAt(0))) {
-            //                System.out.println("*SKIPPING: " + line);
-            //                continue;
-            //            }
-            int wordEnd = line.indexOf(' ');
-            String word = line.substring(0,wordEnd).toLowerCase(Locale.ENGLISH)
-            .replace('\'', '’')
-            .replace('_', ' ')
-            .replace("(1)","") // ¹
-            .replace("(2)","") // ²
-            .replace("(3)","") // ³
-            ;
-            if (!WORD_OK.containsAll(word) || SKIP_START.contains(word.codePointAt(0))
-                    || word.startsWith("’") && word.contains("quote")) {
-                funnyWords.add(word);
-                continue;
-            }
-            String pronunciation = line.substring(wordEnd+1);
-            String ipa = getIpa(pronunciation);
-            fromIpa.put(ipa, word);
-            toIPA.put(word, ipa);
-            if (ipa.contains("\uFFFD")) {
-                System.out.print("");
-            }
-            if (!ipa.contains("ˈ")) {
-                ipaWithoutStress.add(ipa);
-            }
-            String stresslessIpa = ipa.replace("ˈ","").replace("ˌ","");
-            ipaDifferingByStress.put(stresslessIpa, ipa);
-        }
-        in.close();
-        System.out.println("*Skipped Words:\t" + funnyWords);
+		final BufferedReader in = BagFormatter.openUTF8Reader(BASE_DIR, "cmudict.0.7a.txt");
+		while (true) {
+			String line = in.readLine();
+			if (line == null) {
+				break;
+			}
+			if (line.startsWith("\uFEFF")) {
+				line = line.substring(1); // remove BOM
+			}
+			if (line.startsWith(";;;")) {
+				continue;
+			}
+			//            if (SKIP_START.contains(line.codePointAt(0))) {
+			//                System.out.println("*SKIPPING: " + line);
+			//                continue;
+			//            }
+			final int wordEnd = line.indexOf(' ');
+			final String word = line.substring(0,wordEnd).toLowerCase(Locale.ENGLISH)
+					.replace('\'', '’')
+					.replace('_', ' ')
+					.replace("(1)","") // ¹
+					.replace("(2)","") // ²
+					.replace("(3)","") // ³
+					;
+			if (!WORD_OK.containsAll(word) || SKIP_START.contains(word.codePointAt(0))
+					|| word.startsWith("’") && word.contains("quote")) {
+				funnyWords.add(word);
+				continue;
+			}
+			final String pronunciation = line.substring(wordEnd+1);
+			final String ipa = getIpa(pronunciation);
+			fromIpa.put(ipa, word);
+			toIPA.put(word, ipa);
+			if (ipa.contains("\uFFFD")) {
+				System.out.print("");
+			}
+			if (!ipa.contains("ˈ")) {
+				ipaWithoutStress.add(ipa);
+			}
+			final String stresslessIpa = ipa.replace("ˈ","").replace("ˌ","");
+			ipaDifferingByStress.put(stresslessIpa, ipa);
+		}
+		in.close();
+		System.out.println("*Skipped Words:\t" + funnyWords);
 
-        //        System.out.println("*No Stress");
-        //
-        //        for (String ipa : ipaWithoutStress) {
-        //            System.out.println(ipa + "\t" + homonyms.get(ipa));
-        //        }
-        //
-        //        System.out.println("*Only by Stress");
-        //
-        //        for (Entry<String, Set<String>> ipaWoAndW : ipaDifferingByStress.entrySet()) {
-        //            Set<String> values = ipaWoAndW.getValue();
-        //            if (values.size() == 1) {
-        //                continue;
-        //            }
-        //            for (String ipa : values) {
-        //                System.out.print(ipa + "\t" + homonyms.get(ipa) + "\t;\t");
-        //            }
-        //            System.out.println();
-        //        }
-        //
-        //        for (Entry<String, Set<String>> ipaAndWords : homonyms.entrySet()) {
-        //            String ipa = ipaAndWords.getKey();
-        //            String result = stressFixer.fix(ipa);
-        //            if (!ipa.equals(result)) {
-        //                System.out.println("IPA simplified:\t" + ipa + "\t" + result);
-        //            }
-        //        }
+		//        System.out.println("*No Stress");
+		//
+		//        for (String ipa : ipaWithoutStress) {
+		//            System.out.println(ipa + "\t" + homonyms.get(ipa));
+		//        }
+		//
+		//        System.out.println("*Only by Stress");
+		//
+		//        for (Entry<String, Set<String>> ipaWoAndW : ipaDifferingByStress.entrySet()) {
+		//            Set<String> values = ipaWoAndW.getValue();
+		//            if (values.size() == 1) {
+		//                continue;
+		//            }
+		//            for (String ipa : values) {
+		//                System.out.print(ipa + "\t" + homonyms.get(ipa) + "\t;\t");
+		//            }
+		//            System.out.println();
+		//        }
+		//
+		//        for (Entry<String, Set<String>> ipaAndWords : homonyms.entrySet()) {
+		//            String ipa = ipaAndWords.getKey();
+		//            String result = stressFixer.fix(ipa);
+		//            if (!ipa.equals(result)) {
+		//                System.out.println("IPA simplified:\t" + ipa + "\t" + result);
+		//            }
+		//        }
 
 
-        System.out.println("Post-processing");
-        Set<String> removals = new HashSet<String>();
-        Relation<String,String> specials = new Relation(new TreeMap(col), LinkedHashSet.class);
+		System.out.println("Post-processing");
+		final Set<String> removals = new HashSet<String>();
+		final Relation<String,String> specials = new Relation(new TreeMap(col), LinkedHashSet.class);
 
-        for (Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
-            String word = entry.getKey();
-            boolean startsWith = word.startsWith("’");
-            boolean endsWith = word.endsWith("’");
-            if (!startsWith && !endsWith) {
-                continue;
-            }
-            Set<String> values = entry.getValue();
-            String newWord = word;
-            if (startsWith) {
-                newWord = newWord.substring(1);
-            }
-            if (endsWith) {
-                newWord = newWord.substring(0, newWord.length()-1);
-            }
-            Collection<String> values2 = toIPA.get(newWord);
-            if (values2 == null) {
-                specials.putAll(newWord, values);
-            } else if (values.equals(values2)) {
-                // System.out.println("Values Match:\t" + word + "\t" + values + "\t" + values2);
-                removals.add(word);
-            } else {
-                System.out.println("Values Differ:\t" + word + "\t" + values + "\t" + newWord + "\t" + values2);
-            }
-        }
-        toIPA.removeAll(removals);
-        for (Entry<String, Set<String>> entry : specials.keyValuesSet()) {
-            System.out.println("Missing?\t" + entry);
-        }
+		for (final Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
+			final String word = entry.getKey();
+			final boolean startsWith = word.startsWith("’");
+			final boolean endsWith = word.endsWith("’");
+			if (!startsWith && !endsWith) {
+				continue;
+			}
+			final Set<String> values = entry.getValue();
+			String newWord = word;
+			if (startsWith) {
+				newWord = newWord.substring(1);
+			}
+			if (endsWith) {
+				newWord = newWord.substring(0, newWord.length()-1);
+			}
+			final Collection<String> values2 = toIPA.get(newWord);
+			if (values2 == null) {
+				specials.putAll(newWord, values);
+			} else if (values.equals(values2)) {
+				// System.out.println("Values Match:\t" + word + "\t" + values + "\t" + values2);
+				removals.add(word);
+			} else {
+				System.out.println("Values Differ:\t" + word + "\t" + values + "\t" + newWord + "\t" + values2);
+			}
+		}
+		toIPA.removeAll(removals);
+		for (final Entry<String, Set<String>> entry : specials.keyValuesSet()) {
+			System.out.println("Missing?\t" + entry);
+		}
 
-        PrintWriter out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "cmudict.txt") ;
-        for (Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
-            String word = entry.getKey();
-            Set<String> values = entry.getValue();
-            out.println(word + "\t→\t" + showIpa(values));
-        }
-        out.close();
+		PrintWriter out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "cmudict.txt") ;
+		for (final Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
+			final String word = entry.getKey();
+			final Set<String> values = entry.getValue();
+			out.println(word + "\t→\t" + showIpa(values));
+		}
+		out.close();
 
-        out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "homonyms.txt") ;
-        Set<String> temp = new TreeSet(col);
-        for (Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
-            Set<String> values = entry.getValue();
-            if (values.size() == 1) {
-                continue;
-            }
-            temp.clear();
-            for (String value : values) {
-                value = value.replace("’","");
-                temp.add(value);
-            }
-            if (temp.size() == 1) {
-                continue;
-            }
-            out.println(respell.transform(entry.getKey()) + "\t" + values);
-        }
-        out.close();
-        Map<String, String> reverseIpa = new TreeMap<String, String>(col);
-        Map<String, String> checkRespellRoundtrip = new TreeMap<String, String>(col);
+		out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "homonyms.txt") ;
+		final Set<String> temp = new TreeSet(col);
+		for (final Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
+			final Set<String> values = entry.getValue();
+			if (values.size() == 1) {
+				continue;
+			}
+			temp.clear();
+			for (String value : values) {
+				value = value.replace("’","");
+				temp.add(value);
+			}
+			if (temp.size() == 1) {
+				continue;
+			}
+			out.println(respell.transform(entry.getKey()) + "\t" + values);
+		}
+		out.close();
+		final Map<String, String> reverseIpa = new TreeMap<String, String>(col);
+		final Map<String, String> checkRespellRoundtrip = new TreeMap<String, String>(col);
 
-        for (Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
-            String ipa = entry.getKey();
-            String respelled = respell.transform(ipa);
-            String old = checkRespellRoundtrip.get(respelled);
-            if (old != null) {
-                System.out.println("*Collision:\t" + respelled + "\t" + ipa + "\t" + old);
-            } else {
-                checkRespellRoundtrip.put(respelled, ipa);
-            }
-            String respelledKey = respell.transform(ipa);
-            String reversedRespelledKey = reverse(respelledKey, RESPELL_UNITS);
-            if (reverseIpa.containsKey(reversedRespelledKey)) {
-                String otherIpa = reverseIpa.get(reversedRespelledKey);
-                String respelledOtherIpa = respell.transform(otherIpa);
-                String reversedRespelledOtherIpa = respell.transform(respelledOtherIpa);
-                System.out.println("Collision:"
-                        + "\t" + ipa 
-                        + "\t" + respelledKey
-                        + "\t" + reversedRespelledKey
-                        + "\t" + otherIpa
-                        + "\t" + respelledOtherIpa
-                        + "\t" + reversedRespelledOtherIpa
-                        );
-            }
-            reverseIpa.put(reversedRespelledKey, ipa);
-        }
+		for (final Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
+			final String ipa = entry.getKey();
+			final String respelled = respell.transform(ipa);
+			final String old = checkRespellRoundtrip.get(respelled);
+			if (old != null) {
+				System.out.println("*Collision:\t" + respelled + "\t" + ipa + "\t" + old);
+			} else {
+				checkRespellRoundtrip.put(respelled, ipa);
+			}
+			final String respelledKey = respell.transform(ipa);
+			final String reversedRespelledKey = reverse(respelledKey, RESPELL_UNITS);
+			if (reverseIpa.containsKey(reversedRespelledKey)) {
+				final String otherIpa = reverseIpa.get(reversedRespelledKey);
+				final String respelledOtherIpa = respell.transform(otherIpa);
+				final String reversedRespelledOtherIpa = respell.transform(respelledOtherIpa);
+				System.out.println("Collision:"
+						+ "\t" + ipa
+						+ "\t" + respelledKey
+						+ "\t" + reversedRespelledKey
+						+ "\t" + otherIpa
+						+ "\t" + respelledOtherIpa
+						+ "\t" + reversedRespelledOtherIpa
+						);
+			}
+			reverseIpa.put(reversedRespelledKey, ipa);
+		}
 
-        out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "reversed.txt");
-        for (Entry<String, String> reversed_normal : reverseIpa.entrySet()) {
-            String original = reversed_normal.getValue();
-            out.println(CollectionUtilities.join(fromIpa.get(original), ", ") + "\t{" 
-                    // + reversed_normal.getKey() + ", " 
-                    + original + "}");
-        }
-        out.close();
+		out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "reversed.txt");
+		for (final Entry<String, String> reversed_normal : reverseIpa.entrySet()) {
+			final String original = reversed_normal.getValue();
+			out.println(CollectionUtilities.join(fromIpa.get(original), ", ") + "\t{"
+					// + reversed_normal.getKey() + ", "
+					+ original + "}");
+		}
+		out.close();
 
-    }
+	}
 
-    static UnicodeSet IPA_UNITS = new UnicodeSet("[{aɪ}{aʊ}{ɔɪ}{tʃ}{dʒ}]").freeze();
-    static UnicodeSet RESPELL_UNITS = new UnicodeSet("[{ùr}{òu}{òi}{cħ}{dʒ}{tħ}{ţħ}{sħ}{nġ}]").freeze();
-    
-    private static String reverse(String sourceString, UnicodeSet units) {
-        StringBuilder result = new StringBuilder(); 
-        StringBuilder temp = new StringBuilder(sourceString);
-        for (int i = 0; i < temp.length(); ++i) {
-            int matchValue = units.matchesAt(temp, i);
-            if (matchValue > i) {
-                char ch1 = temp.charAt(i);
-                char ch2 = temp.charAt(i+1);
-                temp.setCharAt(i, ch2);
-                temp.setCharAt(i+1, ch1);
-            }
-        }
-        // pass through and reverse duals
-        // chars-only ok
-        for (int i = temp.length() - 1; i >= 0; --i) {
-            char ch = temp.charAt(i);
-            result.append(ch);
-        }
-        return result.toString();
-    }
+	static UnicodeSet IPA_UNITS = new UnicodeSet("[{aɪ}{aʊ}{ɔɪ}{tʃ}{dʒ}]").freeze();
+	static UnicodeSet RESPELL_UNITS = new UnicodeSet("[{ùr}{òu}{òi}{cħ}{dʒ}{tħ}{ţħ}{sħ}{nġ}]").freeze();
 
-    private static String getIpa(String pronunciation) {
-        String ipa = arpabet.transform(pronunciation);
-        ipa = ipa.replace(""+PRIMARY_STRESS, "").replace(""+SECONDARY_STRESS, "");
-        return ipa;
-    }
+	private static String reverse(String sourceString, UnicodeSet units) {
+		final StringBuilder result = new StringBuilder();
+		final StringBuilder temp = new StringBuilder(sourceString);
+		for (int i = 0; i < temp.length(); ++i) {
+			final int matchValue = units.matchesAt(temp, i);
+			if (matchValue > i) {
+				final char ch1 = temp.charAt(i);
+				final char ch2 = temp.charAt(i+1);
+				temp.setCharAt(i, ch2);
+				temp.setCharAt(i+1, ch1);
+			}
+		}
+		// pass through and reverse duals
+		// chars-only ok
+		for (int i = temp.length() - 1; i >= 0; --i) {
+			final char ch = temp.charAt(i);
+			result.append(ch);
+		}
+		return result.toString();
+	}
 
-    private static String showIpa(Set<String> values) {
-        if (values.size() == 1) {
-            String value = values.iterator().next();
-            String respelled = respell.transform(value);
-            return value + " (" + respelled + ")";
-        }
-        String result = "{";
-        for (String value : values) {
-            if (result.length() > 1) {
-                result += ", ";
-            }
-            String respelled = respell.transform(value);
-            result += value + " (" + respelled + ")";
-        }
-        return result + "}";
-    }
+	private static String getIpa(String pronunciation) {
+		String ipa = arpabet.transform(pronunciation);
+		ipa = ipa.replace(""+PRIMARY_STRESS, "").replace(""+SECONDARY_STRESS, "");
+		return ipa;
+	}
 
-    public static Transliterator getTransliteratorFromFile(String ID, String dir, String file) {
-        try {
-            BufferedReader br = BagFormatter.openUTF8Reader(dir, file);
-            StringBuffer input = new StringBuffer();
-            while (true) {
-                String line = br.readLine();
-                if (line == null) break;
-                if (line.startsWith("\uFEFF")) line = line.substring(1); // remove BOM
-                input.append(line);
-                input.append('\n');
-            }
-            return Transliterator.createFromRules(ID, input.toString(), Transliterator.FORWARD);
-        } catch (IOException e) {
-            throw (IllegalArgumentException) new IllegalArgumentException("Can't open transliterator file " + file).initCause(e);
-        }
-    }
+	private static String showIpa(Set<String> values) {
+		if (values.size() == 1) {
+			final String value = values.iterator().next();
+			final String respelled = respell.transform(value);
+			return value + " (" + respelled + ")";
+		}
+		String result = "{";
+		for (final String value : values) {
+			if (result.length() > 1) {
+				result += ", ";
+			}
+			final String respelled = respell.transform(value);
+			result += value + " (" + respelled + ")";
+		}
+		return result + "}";
+	}
 
-    static final UnicodeSet VOWELS = new UnicodeSet("[æ {aɪ} {aʊ} ɑ e ə ɛ ɚ i ɪ o {ɔɪ} u ʊ]");
-    private static final char SECONDARY_STRESS = 'ˌ';
-    private static final char PRIMARY_STRESS = 'ˈ';
+	public static Transliterator getTransliteratorFromFile(String ID, String dir, String file) {
+		try {
+			final BufferedReader br = BagFormatter.openUTF8Reader(dir, file);
+			final StringBuffer input = new StringBuffer();
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					break;
+				}
+				if (line.startsWith("\uFEFF"))
+				{
+					line = line.substring(1); // remove BOM
+				}
+				input.append(line);
+				input.append('\n');
+			}
+			return Transliterator.createFromRules(ID, input.toString(), Transliterator.FORWARD);
+		} catch (final IOException e) {
+			throw (IllegalArgumentException) new IllegalArgumentException("Can't open transliterator file " + file).initCause(e);
+		}
+	}
+
+	static final UnicodeSet VOWELS = new UnicodeSet("[æ {aɪ} {aʊ} ɑ e ə ɛ ɚ i ɪ o {ɔɪ} u ʊ]");
+	private static final char SECONDARY_STRESS = 'ˌ';
+	private static final char PRIMARY_STRESS = 'ˈ';
 }
 //    static final class StressFixer {
 //        int vowelCount;
@@ -358,7 +363,7 @@ public class Cmudict {
 //                        char ch = input.charAt(offset); // chars ok, only BMP
 //                        if (ch == 'ˌ') {
 //                            if (!haveOne) {
-//                                
+//
 //                                haveOne = true;
 //                            }
 //                        } else {

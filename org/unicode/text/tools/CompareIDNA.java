@@ -17,56 +17,58 @@ import com.ibm.icu.util.VersionInfo;
 
 public class CompareIDNA {
 
-    static UnicodeSet skipList = new UnicodeSet("[[:age=6.0:]-[:age=5.2:]]");
+	static UnicodeSet skipList = new UnicodeSet("[[:age=6.0:]-[:age=5.2:]]");
 
-    public static void main(String[] args) throws IOException {
-        
-        UnicodeMap<Idna2008Type> IDNA2008Computed = Idna2008t.getTypeMapping();
-        // verify
+	public static void main(String[] args) throws IOException {
 
-        UnicodeMap<Idna2008.Idna2008Type> idna2008Map = Idna2008.getTypeMapping();
-        UnicodeMap<String> differences = new UnicodeMap<String>();
-        for (int i = 0; i < 0x10FFFF; ++i) {
-            if (skipList.contains(i)) continue;
-            Idna2008Type tableValue = idna2008Map.get(i);
-            Idna2008Type computedValue = IDNA2008Computed.get(i);
-            if (tableValue != computedValue) {
-                differences.put(i, tableValue + "/" + computedValue);
-            }
-        }
+		final UnicodeMap<Idna2008Type> IDNA2008Computed = Idna2008t.getTypeMapping();
+		// verify
 
-        System.out.println(differences);
+		final UnicodeMap<Idna2008.Idna2008Type> idna2008Map = Idna2008.getTypeMapping();
+		final UnicodeMap<String> differences = new UnicodeMap<String>();
+		for (int i = 0; i < 0x10FFFF; ++i) {
+			if (skipList.contains(i)) {
+				continue;
+			}
+			final Idna2008Type tableValue = idna2008Map.get(i);
+			final Idna2008Type computedValue = IDNA2008Computed.get(i);
+			if (tableValue != computedValue) {
+				differences.put(i, tableValue + "/" + computedValue);
+			}
+		}
 
-        UnicodeMap<String> diff = new UnicodeMap<String>();
-        for (int i = 0; i <= 0x10FFFF; ++i) {
-//            if (UnicodeUtilities.IGNORE_IN_IDNA_DIFF.contains(i)) {
-//                continue;
-//            }
+		System.out.println(differences);
 
-            IdnaType type = Uts46.SINGLETON.getType(i);
+		final UnicodeMap<String> diff = new UnicodeMap<String>();
+		for (int i = 0; i <= 0x10FFFF; ++i) {
+			//            if (UnicodeUtilities.IGNORE_IN_IDNA_DIFF.contains(i)) {
+			//                continue;
+			//            }
 
-            Idna2008Type idna2008 = IDNA2008Computed.get(i);
-            if (type == IdnaType.ignored) {
-                type = IdnaType.mapped;
-            }
+			IdnaType type = Uts46.SINGLETON.getType(i);
 
-            IdnaType idna2003 = Idna2003.getIDNA2003Type(i);
-            if (idna2003 == IdnaType.ignored) {
-                idna2003 = IdnaType.mapped;
-            }
+			final Idna2008Type idna2008 = IDNA2008Computed.get(i);
+			if (type == IdnaType.ignored) {
+				type = IdnaType.mapped;
+			}
 
-            IdnaType idna2008Mapped = 
-                (idna2008 == Idna2008Type.UNASSIGNED || idna2008 == Idna2008Type.DISALLOWED) ? IdnaType.disallowed
-                        : IdnaType.valid;
+			IdnaType idna2003 = Idna2003.getIDNA2003Type(i);
+			if (idna2003 == IdnaType.ignored) {
+				idna2003 = IdnaType.mapped;
+			}
 
-            VersionInfo age = UCharacter.getAge(i);
-            String ageString = age.getMajor() >= 4 ? "U4+" : "U3.2";
-            diff.put(i, ageString + "_" + idna2003 + "_" + type + "_" + idna2008Mapped);
-        }
+			final IdnaType idna2008Mapped =
+					(idna2008 == Idna2008Type.UNASSIGNED || idna2008 == Idna2008Type.DISALLOWED) ? IdnaType.disallowed
+							: IdnaType.valid;
 
-        for (String types : new TreeSet<String>(diff.values())) {
-            UnicodeSet set = diff.getSet(types);
-            System.out.println(types + " ;\t" + set.size() + " ;\t" + set);
-        }
-    }
+			final VersionInfo age = UCharacter.getAge(i);
+			final String ageString = age.getMajor() >= 4 ? "U4+" : "U3.2";
+			diff.put(i, ageString + "_" + idna2003 + "_" + type + "_" + idna2008Mapped);
+		}
+
+		for (final String types : new TreeSet<String>(diff.values())) {
+			final UnicodeSet set = diff.getSet(types);
+			System.out.println(types + " ;\t" + set.size() + " ;\t" + set);
+		}
+	}
 }

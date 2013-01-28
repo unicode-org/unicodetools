@@ -1,13 +1,13 @@
 /**
-*******************************************************************************
-* Copyright (C) 1996-2001, International Business Machines Corporation and    *
-* others. All Rights Reserved.                                                *
-*******************************************************************************
-*
-* $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF8StreamWriter.java,v $
-*
-*******************************************************************************
-*/
+ *******************************************************************************
+ * Copyright (C) 1996-2001, International Business Machines Corporation and    *
+ * others. All Rights Reserved.                                                *
+ *******************************************************************************
+ *
+ * $Source: /home/cvsroot/unicodetools/org/unicode/text/utility/UTF8StreamWriter.java,v $
+ *
+ *******************************************************************************
+ */
 
 package org.unicode.text.utility;
 import java.io.IOException;
@@ -25,152 +25,161 @@ import java.io.Writer;
  * </pre>
  * NB: unsynchronized for simplicity and speed. The same object must NOT be used in multiple threads.
  */
- // TODO: Fix case of surrogate pair crossing input buffer boundary
+// TODO: Fix case of surrogate pair crossing input buffer boundary
 
 public final class UTF8StreamWriter extends Writer {
 
-    private OutputStream output;
-    private byte[] bBuffer; // do a bit of buffering ourselves for efficiency
-    private int bSafeEnd;
-    private int bEnd;
-    private int bIndex = 0;
-    private int highSurrogate = 0;
-    private boolean removeCR;
-    private boolean Latin1;
+	private final OutputStream output;
+	private final byte[] bBuffer; // do a bit of buffering ourselves for efficiency
+	private final int bSafeEnd;
+	private final int bEnd;
+	private int bIndex = 0;
+	private int highSurrogate = 0;
+	private final boolean removeCR;
+	private final boolean Latin1;
 
-    public UTF8StreamWriter(OutputStream stream, int buffersize) {
-        this(stream, buffersize, true, false);
-    }
+	public UTF8StreamWriter(OutputStream stream, int buffersize) {
+		this(stream, buffersize, true, false);
+	}
 
-    public UTF8StreamWriter(OutputStream stream, int buffersize, boolean removeCR, boolean latin1) {
-        if (buffersize < 5) {
-            throw new IllegalArgumentException("UTF8StreamWriter buffersize must be >= 5");
-        }
-        output = stream;
-        bBuffer = new byte[buffersize];
-        bEnd = buffersize;
-        bSafeEnd = buffersize - 4;
-        this.removeCR = removeCR;
-        this.Latin1 = latin1;
-    }
+	public UTF8StreamWriter(OutputStream stream, int buffersize, boolean removeCR, boolean latin1) {
+		if (buffersize < 5) {
+			throw new IllegalArgumentException("UTF8StreamWriter buffersize must be >= 5");
+		}
+		output = stream;
+		bBuffer = new byte[buffersize];
+		bEnd = buffersize;
+		bSafeEnd = buffersize - 4;
+		this.removeCR = removeCR;
+		Latin1 = latin1;
+	}
 
-    private static final int
-        NEED_2_BYTES = 1<<7,
-        NEED_3_BYTES = 1<<(2*5 + 1),
-        NEED_4_BYTES = 1<<(3*5 + 1);
+	private static final int
+	NEED_2_BYTES = 1<<7,
+	NEED_3_BYTES = 1<<(2*5 + 1),
+	NEED_4_BYTES = 1<<(3*5 + 1);
 
-    private static final int
-        TRAILING_BOTTOM_MASK = 0x3F,
-        TRAILING_TOP = 0x80;
+	private static final int
+	TRAILING_BOTTOM_MASK = 0x3F,
+	TRAILING_TOP = 0x80;
 
-    private static final int MAGIC = 0x10000 + ((0 - 0xD800) << 10) + (0 - 0xDC00);
-    
-    public final void write(char[] buffer, int cStart, int cLength) throws IOException {
-        int cEnd = cStart + cLength;
-        while (cStart < cEnd) {
+	private static final int MAGIC = 0x10000 + ((0 - 0xD800) << 10) + (0 - 0xDC00);
 
-            // write if we need to
+	@Override
+	public final void write(char[] buffer, int cStart, int cLength) throws IOException {
+		final int cEnd = cStart + cLength;
+		while (cStart < cEnd) {
 
-            if (bIndex > bSafeEnd) {
-                output.write(bBuffer, 0, bIndex);
-                bIndex = 0;
-            }
+			// write if we need to
 
-            // get code point
+			if (bIndex > bSafeEnd) {
+				output.write(bBuffer, 0, bIndex);
+				bIndex = 0;
+			}
 
-            int utf32 = buffer[cStart++];
-            
-            if (utf32 == 0x0D && removeCR) continue; // skip write
-            
-            if (Latin1) {
-                if (utf32 > 0xFF) bBuffer[bIndex++] = (byte)'?';
-                else bBuffer[bIndex++] = (byte)utf32;
-                continue;
-            }
+			// get code point
 
-            // special check for surrogates
+			final int utf32 = buffer[cStart++];
 
-            if (highSurrogate != 0) {
-                if (utf32 >= 0xDC00 && utf32 <= 0xDFFF) {
-                    writeCodePoint((highSurrogate << 10) + utf32 + MAGIC);
-                    highSurrogate = 0;
-                    continue;
-                }
-                writeCodePoint(highSurrogate);
-                highSurrogate = 0;
-            }
+			if (utf32 == 0x0D && removeCR)
+			{
+				continue; // skip write
+			}
 
-            if (0xD800 <= utf32 && utf32 <= 0xDBFF) {
-                highSurrogate = utf32;
-                continue;
-            }
+			if (Latin1) {
+				if (utf32 > 0xFF) {
+					bBuffer[bIndex++] = (byte)'?';
+				} else {
+					bBuffer[bIndex++] = (byte)utf32;
+				}
+				continue;
+			}
 
-            // normal case
+			// special check for surrogates
 
-            writeCodePoint(utf32);
-        }
-    }
+			if (highSurrogate != 0) {
+				if (utf32 >= 0xDC00 && utf32 <= 0xDFFF) {
+					writeCodePoint((highSurrogate << 10) + utf32 + MAGIC);
+					highSurrogate = 0;
+					continue;
+				}
+				writeCodePoint(highSurrogate);
+				highSurrogate = 0;
+			}
 
-    private final void writeCodePoint(int utf32) {
+			if (0xD800 <= utf32 && utf32 <= 0xDBFF) {
+				highSurrogate = utf32;
+				continue;
+			}
 
-        // convert to bytes
+			// normal case
+
+			writeCodePoint(utf32);
+		}
+	}
+
+	private final void writeCodePoint(int utf32) {
+
+		// convert to bytes
 
 		if (utf32 < NEED_2_BYTES) {
-		    bBuffer[bIndex++] = (byte)utf32;
-		    return;
-        }
+			bBuffer[bIndex++] = (byte)utf32;
+			return;
+		}
 
 		// Find out how many bytes we need to write
 		// At this point, it is at least 2.
 
-	    //int count;
+		//int count;
 		int backIndex;
 		int firstByteMark;
 		if (utf32 < NEED_3_BYTES) {
-		    backIndex = bIndex += 2;
-		    firstByteMark = 0xC0;
+			backIndex = bIndex += 2;
+			firstByteMark = 0xC0;
 		} else if (utf32 < NEED_4_BYTES) {
-		    backIndex = bIndex += 3;
-		    firstByteMark = 0xE0;
+			backIndex = bIndex += 3;
+			firstByteMark = 0xE0;
 			bBuffer[--backIndex] = (byte)(TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
 			utf32 >>= 6;
 		} else {
-		    backIndex = bIndex += 4;
-		    firstByteMark = 0xF0;
+			backIndex = bIndex += 4;
+			firstByteMark = 0xF0;
 			bBuffer[--backIndex] = (byte)(TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
 			utf32 >>= 6;
-			bBuffer[--backIndex] = (byte)(TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
-			utf32 >>= 6;
+		bBuffer[--backIndex] = (byte)(TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
+		utf32 >>= 6;
 		};
 		bBuffer[--backIndex] = (byte)(TRAILING_TOP | (utf32 & TRAILING_BOTTOM_MASK));
 		utf32 >>= 6;
-		bBuffer[--backIndex] = (byte)(firstByteMark | utf32);
-    }
+					bBuffer[--backIndex] = (byte)(firstByteMark | utf32);
+	}
 
-    private void internalFlush() throws IOException {
-        if (highSurrogate != 0) {
-            if (bIndex > bEnd) {
-                output.write(bBuffer, 0, bIndex);
-                bIndex = 0;
-            }
-            writeCodePoint(highSurrogate);
-            highSurrogate = 0;
-        }
+	private void internalFlush() throws IOException {
+		if (highSurrogate != 0) {
+			if (bIndex > bEnd) {
+				output.write(bBuffer, 0, bIndex);
+				bIndex = 0;
+			}
+			writeCodePoint(highSurrogate);
+			highSurrogate = 0;
+		}
 
-        // write buffer if we need to
-        if (bIndex != 0) {
-            output.write(bBuffer, 0, bIndex);
-            bIndex = 0;
-        }
-    }
+		// write buffer if we need to
+		if (bIndex != 0) {
+			output.write(bBuffer, 0, bIndex);
+			bIndex = 0;
+		}
+	}
 
-    public void close() throws IOException {
-        internalFlush();
-        output.close();
-    }
+	@Override
+	public void close() throws IOException {
+		internalFlush();
+		output.close();
+	}
 
-    public void flush() throws IOException {
-        internalFlush();
-        output.flush();
-    }
+	@Override
+	public void flush() throws IOException {
+		internalFlush();
+		output.flush();
+	}
 }

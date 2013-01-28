@@ -32,17 +32,17 @@ import com.ibm.icu.util.ULocale;
 
 
 class GenerateStringPrep implements UCD_Types {
-	
+
 	public static void main (String[] args) throws IOException {
 		//checkChars(false);
 		new GenerateStringPrep().genStringPrep();
 		System.out.println("Done");
 	}
-	
+
 	UnicodeSet[] coreChars = new UnicodeSet[100];
 	UnicodeSet decomposable = new UnicodeSet();
 	UnicodeMap suspect = new UnicodeMap();
-	
+
 	ToolUnicodePropertySource ups = ToolUnicodePropertySource.make("");
 	ToolUnicodePropertySource ups32 = ToolUnicodePropertySource.make("3.2.0");
 	//UnicodeSet id_continue = ups.getSet("ID_Continue=true");
@@ -54,19 +54,19 @@ class GenerateStringPrep implements UCD_Types {
 			wordChars.retainAll(ups.getSet("gc=Sk"));
 		}
 		wordChars.addAll(new UnicodeSet("[\\u0027 \\u002D \\u002E \\u003A \\u00B7 \\u058A \\u05F3" +
-		" \\u05F4 \\u200C \\u200D \\u2010 \\u2019 \\u2027 \\u30A0 \\u04C0" +
-		" \\u055A \\u02B9 \\u02BA]"));
+				" \\u05F4 \\u200C \\u200D \\u2010 \\u2019 \\u2027 \\u30A0 \\u04C0" +
+				" \\u055A \\u02B9 \\u02BA]"));
 		//wordChars.removeAll(xid_continue);
 	}
-	
+
 	UnicodeSet patternProp = ups.getSet("Pattern_Syntax=Yes").removeAll(wordChars);
 	UnicodeSet isNFKC = ups.getSet("NFKC_Quickcheck=NO").complement();
 	UnicodeSet non_spacing = new UnicodeSet(ups.getSet("gc=Me"))
-		.addAll(ups.getSet("gc=Mn"))
-		.removeAll(ups.getSet("Default_Ignorable_Code_Point=Yes"));
-	
+	.addAll(ups.getSet("gc=Mn"))
+	.removeAll(ups.getSet("Default_Ignorable_Code_Point=Yes"));
+
 	UnicodeSet not_xid_continue = new UnicodeSet(xid_continue).complement().removeAll(wordChars);
-	
+
 	//UnicodeSet[] decompChars = new UnicodeSet[100];
 	UCD ucd = Default.ucd();
 
@@ -74,9 +74,9 @@ class GenerateStringPrep implements UCD_Types {
 	{
 		uca0.setStrength(Collator.IDENTICAL);
 	}
-	static GenerateHanTransliterator.MultiComparator uca 
-		= new GenerateHanTransliterator.MultiComparator(new Comparator[] {
-				uca0, new UTF16.StringComparator()});
+	static GenerateHanTransliterator.MultiComparator uca
+	= new GenerateHanTransliterator.MultiComparator(new Comparator[] {
+			uca0, new UTF16.StringComparator()});
 
 	UnicodeSet bidiR = new UnicodeSet(
 			"[[:Bidi_Class=AL:][:Bidi_Class=R:]]");
@@ -94,42 +94,51 @@ class GenerateStringPrep implements UCD_Types {
 		bf.setUnicodePropertyFactory(ups);
 		//bf.setValueSource(UnicodeLabel.NULL);
 		if (false) {
-			
+
 			System.out.println("word chars: " + bf.showSetNames(wordChars));
 			System.out.println("pat: " + bf.showSetNames(patternProp));
 			System.out.println("xid: " + bf.showSetNames(not_xid_continue));
 		}
 		for (int cp = 0; cp <= 0x10FFFF; ++cp) {
 			Utility.dot(cp);
-			int cat = Default.ucd().getCategory(cp);
-			if (cat == UCD.Cn || cat == UCD.Co || cat == UCD.Cs) continue;
-			if (!Default.nfd().isNormalized(cp)) decomposable.add(cp);
+			final int cat = Default.ucd().getCategory(cp);
+			if (cat == UCD_Types.Cn || cat == UCD_Types.Co || cat == UCD_Types.Cs) {
+				continue;
+			}
+			if (!Default.nfd().isNormalized(cp)) {
+				decomposable.add(cp);
+			}
 			// get IDNA
-			int idnaType = getIDNAType(cp);
+			final int idnaType = getIDNAType(cp);
 			idnaTypeSet[idnaType].add(cp);
-			
-			String str = UTF16.valueOf(cp);
-			if (str.equals(ucd.getCase(str, FULL, UPPER))) hasNoUpper.add(cp);
-			if (str.equals(ucd.getCase(str, FULL, FOLD))) isCaseFolded.add(cp);
-			
+
+			final String str = UTF16.valueOf(cp);
+			if (str.equals(ucd.getCase(str, FULL, UPPER))) {
+				hasNoUpper.add(cp);
+			}
+			if (str.equals(ucd.getCase(str, FULL, FOLD))) {
+				isCaseFolded.add(cp);
+			}
+
 			// scripts
-			int script = ucd.getScript(cp);
-			if (coreChars[script] == null)
+			final int script = ucd.getScript(cp);
+			if (coreChars[script] == null) {
 				coreChars[script] = new UnicodeSet();
+			}
 			coreChars[script].add(cp);
 		}
 		// fix characters with no uppercase
 		hasNoUpperMinus = new UnicodeSet(hasNoUpper).removeAll(wordChars);
 		System.out.println(bf.showSetNames(hasNoUpper));
-		
+
 		Utility.fixDot();
-		PrintWriter htmlOut = BagFormatter.openUTF8Writer(GEN_DIR, "idn-chars.html");
-		PrintWriter htmlOut2 = BagFormatter.openUTF8Writer(GEN_DIR, "script-chars.html");
+		final PrintWriter htmlOut = BagFormatter.openUTF8Writer(GEN_DIR, "idn-chars.html");
+		final PrintWriter htmlOut2 = BagFormatter.openUTF8Writer(GEN_DIR, "script-chars.html");
 		PrintWriter textOut = BagFormatter.openUTF8Writer(GEN_DIR, "idn-chars.txt");
 		textOut.println('\uFEFF');
 		textOut.println("For documentation, see idn-chars.html");
-		
-		Utility.appendFile("./org/unicode/text/UCD/idn-charsHeader.html", Utility.UTF8_WINDOWS, htmlOut, 
+
+		Utility.appendFile("./org/unicode/text/UCD/idn-charsHeader.html", Utility.UTF8_WINDOWS, htmlOut,
 				new String[] {"%date%", Default.getDate()});
 		/*
 		out
@@ -142,18 +151,19 @@ class GenerateStringPrep implements UCD_Types {
 		out.println(".Non-XID       { background-color: #FFCCCC }");
 		out.println(".Decomposable       { background-color: #FFFFCC }");
 		out.println(".Pattern_Syntax       { background-color: #FFCCFF }");
-		
+
 		out.println("th           { text-align: left }");
 		out.println("-->");
 		out.println("</style></head><body><table>");
-		*/
+		 */
 		htmlOut.println("<table border='1' cellpadding='2' cellspacing='0'>");
 		htmlOut2.println("<html><body><table border='1' cellpadding='2' cellspacing='0'>");
 
 		for (int scriptCode = 0; scriptCode < coreChars.length; ++scriptCode) {
 			if (scriptCode == COMMON_SCRIPT
-					|| scriptCode == INHERITED_SCRIPT)
+					|| scriptCode == INHERITED_SCRIPT) {
 				continue;
+			}
 			showCodes(htmlOut, textOut, scriptCode, htmlOut2);
 		}
 		showCodes(htmlOut, textOut, COMMON_SCRIPT, htmlOut2);
@@ -171,13 +181,13 @@ class GenerateStringPrep implements UCD_Types {
 		textOut.println();
 		bf.setValueSource("word-chars");
 		bf.showSetNames(textOut, wordChars);
-		
+
 		textOut.println();
 		textOut.println("# *** FOR REVIEW ***");
 		bf.setLabelSource(UnicodeLabel.NULL);
-		for (Iterator it = new TreeSet(suspect.getAvailableValues()).iterator(); it.hasNext();) {
+		for (final Iterator it = new TreeSet(suspect.getAvailableValues()).iterator(); it.hasNext();) {
 			textOut.println();
-			String value = (String)it.next();
+			final String value = (String)it.next();
 			bf.setValueSource(value);
 			bf.showSetNames(textOut, suspect.keySet(value));
 		}
@@ -187,35 +197,36 @@ class GenerateStringPrep implements UCD_Types {
 		bf.setUnicodePropertyFactory(ups);
 		textOut.println();
 		textOut.println("# *** Comparison of IDN with CF_NFKC_ID (case-folded, NFKC, XID), U3.2 only ***");
-		UnicodeSet U32 = ups32.getSet("gc=cn").complement();
-		UnicodeSet CF_NFKC_ID = new UnicodeSet(xid_continue).retainAll(isNFKC).retainAll(isCaseFolded).retainAll(U32);		
+		final UnicodeSet U32 = ups32.getSet("gc=cn").complement();
+		final UnicodeSet CF_NFKC_ID = new UnicodeSet(xid_continue).retainAll(isNFKC).retainAll(isCaseFolded).retainAll(U32);
 		bf.showSetDifferences(textOut, "CF_NFKC_ID", CF_NFKC_ID, "IDN", idnaTypeSet[OK]);
 		textOut.close();
 
 	}
-	
+
 	/**
 	 * 
 	 */
 	private void showScriptToBlock() {
-		UnicodeMap scripts = ToolUnicodePropertySource.make("").getProperty("script").getUnicodeMap();
-		UnicodeMap blocks = ToolUnicodePropertySource.make("").getProperty("block").getUnicodeMap();
-		UnicodeMap.Composer myCompose = new UnicodeMap.Composer() {
+		final UnicodeMap scripts = ToolUnicodePropertySource.make("").getProperty("script").getUnicodeMap();
+		final UnicodeMap blocks = ToolUnicodePropertySource.make("").getProperty("block").getUnicodeMap();
+		final UnicodeMap.Composer myCompose = new UnicodeMap.Composer() {
+			@Override
 			public Object compose(int codepoint, String string, Object a, Object b) {
 				return a + "\t" + b;
 			}
 		};
-		UnicodeMap sb = ((UnicodeMap)scripts.cloneAsThawed()).composeWith(blocks, myCompose);
-		for (Iterator it = sb.getAvailableValues(new TreeSet()).iterator(); it.hasNext();) {
+		final UnicodeMap sb = scripts.cloneAsThawed().composeWith(blocks, myCompose);
+		for (final Iterator it = sb.getAvailableValues(new TreeSet()).iterator(); it.hasNext();) {
 			System.out.println(it.next());
 		}
 		throw new IllegalArgumentException();
 	}
-	
+
 	Map scriptToGif = CollectionUtilities.asMap(script_to_gif);
-	
+
 	static String[][] script_to_gif = {
-			
+
 		{"Common","common.gif"}, //Miscellaneous_Symbols
 		{"Inherited","combiningdiacritics.gif"}, //Combining_Diacritical_Marks
 		{"Arabic","arabic.gif"}, //Arabic
@@ -280,10 +291,12 @@ class GenerateStringPrep implements UCD_Types {
 		{"Yi","yi.gif"}, //Yi_Syllables
 
 	};
-	
+
 	UnicodeSet idnaTypeSet[] = new UnicodeSet[IDNA_TYPE_LIMIT];
 	{
-		for (int i = 0; i < idnaTypeSet.length; ++i) idnaTypeSet[i] = new UnicodeSet();
+		for (int i = 0; i < idnaTypeSet.length; ++i) {
+			idnaTypeSet[i] = new UnicodeSet();
+		}
 	}
 	static final int OK = 0, DELETED = 1, ILLEGAL = 2, REMAPPED = 3, IDNA_TYPE_LIMIT = 4;
 	/**
@@ -295,18 +308,20 @@ class GenerateStringPrep implements UCD_Types {
 		try {
 			intermediate = IDNA.convertToASCII(inbuffer,
 					IDNA.DEFAULT); // USE_STD3_RULES
-			if (intermediate.length() == 0)
+			if (intermediate.length() == 0) {
 				return DELETED;
+			}
 			outbuffer = IDNA.convertToUnicode(intermediate,
 					IDNA.USE_STD3_RULES);
-		} catch (StringPrepParseException e) {
+		} catch (final StringPrepParseException e) {
 			return ILLEGAL;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println("Failure at: " + Utility.hex(cp));
 			return ILLEGAL;
 		}
-		if (!TestData.equals(inbuffer, outbuffer))
+		if (!TestData.equals(inbuffer, outbuffer)) {
 			return REMAPPED;
+		}
 		return OK;
 	}
 	static StringBuffer inbuffer = new StringBuffer();
@@ -323,104 +338,137 @@ class GenerateStringPrep implements UCD_Types {
 	 * @param decompChars
 	 */
 	private void showCodes(PrintWriter htmlOut, PrintWriter textOut, int scriptCode, PrintWriter htmlOut2) {
-		if (coreChars[scriptCode] == null) return;
-		String script = Default.ucd().getScriptID_fromIndex((byte) scriptCode);
+		if (coreChars[scriptCode] == null) {
+			return;
+		}
+		Default.ucd();
+		String script = UCD.getScriptID_fromIndex((byte) scriptCode);
 		script = Utility.getUnskeleton(script.toLowerCase(),true);
 		System.out.println(script);
-		
+
 		htmlOut.println();
-		String scriptLine = "<tr><th class='script'><img src='images/" + ((String)scriptToGif.get(script)).toLowerCase()
-		+ "'> Script: " + script + "</th></tr>";
+		final String scriptLine = "<tr><th class='script'><img src='images/" + ((String)scriptToGif.get(script)).toLowerCase()
+				+ "'> Script: " + script + "</th></tr>";
 		htmlOut.println(scriptLine);
 		htmlOut2.println(scriptLine);
 		textOut.println();
 		textOut.println("#*** Script: " + script + " ***");
-		UnicodeSet core = new UnicodeSet(coreChars[scriptCode]);
-		
-		UnicodeSet deleted = extract(idnaTypeSet[DELETED], core);
-		UnicodeSet illegal = extract(idnaTypeSet[ILLEGAL], core);
-		UnicodeSet remapped = extract(idnaTypeSet[REMAPPED], core);
-		
-		UnicodeSet remappedIsNFKC = extract(isNFKC, remapped);
-		UnicodeSet remappedIsNFKCDecomp = extract(decomposable, remappedIsNFKC);
-		
-		UnicodeSet decomp = extract(decomposable, core);
-		UnicodeSet pattern = extract(patternProp, core);
-		UnicodeSet non_id = extract(not_xid_continue, core);
-		
+		final UnicodeSet core = new UnicodeSet(coreChars[scriptCode]);
+
+		final UnicodeSet deleted = extract(idnaTypeSet[DELETED], core);
+		final UnicodeSet illegal = extract(idnaTypeSet[ILLEGAL], core);
+		final UnicodeSet remapped = extract(idnaTypeSet[REMAPPED], core);
+
+		final UnicodeSet remappedIsNFKC = extract(isNFKC, remapped);
+		final UnicodeSet remappedIsNFKCDecomp = extract(decomposable, remappedIsNFKC);
+
+		final UnicodeSet decomp = extract(decomposable, core);
+		final UnicodeSet pattern = extract(patternProp, core);
+		final UnicodeSet non_id = extract(not_xid_continue, core);
+
 		UnicodeSet bicameralNoupper = new UnicodeSet();
 		if (!hasNoUpper.containsAll(core)) {
 			bicameralNoupper = extract(hasNoUpperMinus, core);
 		}
 
-		UnicodeSet foo = new UnicodeSet(bicameralNoupper).addAll(non_id);
-		for (UnicodeSetIterator it = new UnicodeSetIterator(foo); it.next(); ) {
+		final UnicodeSet foo = new UnicodeSet(bicameralNoupper).addAll(non_id);
+		for (final UnicodeSetIterator it = new UnicodeSetIterator(foo); it.next(); ) {
 			String cat = Default.ucd().getCategoryID(it.codepoint);
-			String name = Default.ucd().getName(it.codepoint);
-			if (name.indexOf("MUSICAL SYMBOL") >= 0 
-					|| name.indexOf("DINGBA") >= 0 
-					|| name.indexOf("RADICAL ") >= 0 
-					 						) cat = "XX";
+			final String name = Default.ucd().getName(it.codepoint);
+			if (name.indexOf("MUSICAL SYMBOL") >= 0
+					|| name.indexOf("DINGBA") >= 0
+					|| name.indexOf("RADICAL ") >= 0
+					) {
+				cat = "XX";
+			}
 			suspect.put(it.codepoint, cat);
 		}
-		
-		if (core.size() != 0) printlnSet(htmlOut, textOut, script, "Atomic", core, scriptCode, uca);
-		if (bicameralNoupper.size() != 0) printlnSet(htmlOut, textOut, script, "Atomic-no-uppercase", bicameralNoupper, scriptCode, uca);
-		if (pattern.size() != 0) printlnSet(htmlOut, textOut, script, "Pattern_Syntax", pattern, scriptCode, uca);
-		if (non_id.size() != 0) printlnSet(htmlOut, textOut, script, "Non-XID", non_id, scriptCode, uca);
-		if (decomp.size() != 0) printlnSet(htmlOut, textOut, script, "NFD-Decomposable", decomp, scriptCode, uca);
 
-		if (remappedIsNFKC.size() != 0) printlnSet(htmlOut, textOut, script, "IDN-Remapped-Case-Atomic", remappedIsNFKC, scriptCode, uca);
-		if (remappedIsNFKCDecomp.size() != 0) printlnSet(htmlOut, textOut, script, "IDN-Remapped-Case-NFD-Decomposable", remappedIsNFKCDecomp, scriptCode, uca);
-		if (remapped.size() != 0) printlnSet(htmlOut, textOut, script, "IDN-Remapped-Compat", remapped, scriptCode, uca);
-		if (deleted.size() != 0) printlnSet(htmlOut, textOut, script, "IDN-Deleted", deleted, scriptCode, uca);
-		if (illegal.size() != 0) printlnSet(htmlOut, textOut, script, "IDN-Prohibited", illegal, scriptCode, uca);
+		if (core.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "Atomic", core, scriptCode, uca);
+		}
+		if (bicameralNoupper.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "Atomic-no-uppercase", bicameralNoupper, scriptCode, uca);
+		}
+		if (pattern.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "Pattern_Syntax", pattern, scriptCode, uca);
+		}
+		if (non_id.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "Non-XID", non_id, scriptCode, uca);
+		}
+		if (decomp.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "NFD-Decomposable", decomp, scriptCode, uca);
+		}
+
+		if (remappedIsNFKC.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "IDN-Remapped-Case-Atomic", remappedIsNFKC, scriptCode, uca);
+		}
+		if (remappedIsNFKCDecomp.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "IDN-Remapped-Case-NFD-Decomposable", remappedIsNFKCDecomp, scriptCode, uca);
+		}
+		if (remapped.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "IDN-Remapped-Compat", remapped, scriptCode, uca);
+		}
+		if (deleted.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "IDN-Deleted", deleted, scriptCode, uca);
+		}
+		if (illegal.size() != 0) {
+			printlnSet(htmlOut, textOut, script, "IDN-Prohibited", illegal, scriptCode, uca);
+		}
 	}
-	
+
 	private void showCodes(PrintWriter htmlOut, PrintWriter textOut, UnicodeSet uset) throws IOException {
-		String script = Default.ucd().getScriptID_fromIndex((byte) INHERITED_SCRIPT);
+		Default.ucd();
+		String script = UCD.getScriptID_fromIndex(INHERITED_SCRIPT);
 		script = Utility.getUnskeleton(script.toLowerCase(),true);
-		String scriptLine = "<tr><th class='script'><img src='images/" 
-			+ ((String)scriptToGif.get(script)).toLowerCase()
-			+ "'> Script: " + script + "</th></tr>";
+		final String scriptLine = "<tr><th class='script'><img src='images/"
+				+ ((String)scriptToGif.get(script)).toLowerCase()
+				+ "'> Script: " + script + "</th></tr>";
 		htmlOut.println(scriptLine);
-		UnicodeMap m = getPositions();
-		
-		for (Iterator it = m.getAvailableValues(new TreeSet(uca)).iterator(); it.hasNext(); ) {
-			String type = (String) it.next();
-			UnicodeSet current = m.keySet(type).retainAll(non_spacing);
-			if (current.size() == 0) continue;
+		final UnicodeMap m = getPositions();
+
+		for (final Iterator it = m.getAvailableValues(new TreeSet(uca)).iterator(); it.hasNext(); ) {
+			final String type = (String) it.next();
+			final UnicodeSet current = m.keySet(type).retainAll(non_spacing);
+			if (current.size() == 0) {
+				continue;
+			}
 			printlnSet(htmlOut, textOut, script, "Visible_Combining_Marks_" + type, current, INHERITED_SCRIPT, positionComparator);
 		}
 	}
-	
+
 	/**
 	 * @throws IOException
 	 * 
 	 */
 	private UnicodeMap getPositions() throws IOException {
-		UnicodeMap result = new UnicodeMap();
-		BufferedReader in = bf.openUTF8Reader(UCD_Types.BASE_DIR + "confusables/", "positions.txt");
+		final UnicodeMap result = new UnicodeMap();
+		final BufferedReader in = BagFormatter.openUTF8Reader(UCD_Types.BASE_DIR + "confusables/", "positions.txt");
 		String type="Undetermined";
 		while (true) {
-			String line = Utility.readDataLine(in);
-			if (line == null) break;
-			if (line.length() == 0) continue;
+			final String line = Utility.readDataLine(in);
+			if (line == null) {
+				break;
+			}
+			if (line.length() == 0) {
+				continue;
+			}
 			if (line.startsWith("@")) {
 				type = line.substring(1);
 				continue;
 			}
-			String[] pieces = Utility.split(line, ';');
-			String code = Utility.fromHex(pieces[0]);
+			final String[] pieces = Utility.split(line, ';');
+			final String code = Utility.fromHex(pieces[0]);
 			result.put(UTF16.charAt(code,0), type);
 		}
 		return result;
 	}
 
 	static Comparator positionComparator = new Comparator() {
+		@Override
 		public int compare(Object o1, Object o2) {
-			String s1 = (String)o1;
-			String s2 = (String)o2;
+			final String s1 = (String)o1;
+			final String s2 = (String)o2;
 			return Default.ucd().getName(s1).compareTo(Default.ucd().getName(s2));
 		}
 	};
@@ -429,7 +477,7 @@ class GenerateStringPrep implements UCD_Types {
 	 * 
 	 */
 	private UnicodeSet extract(UnicodeSet other, UnicodeSet core) {
-		UnicodeSet decomp = new UnicodeSet(core).retainAll(other);
+		final UnicodeSet decomp = new UnicodeSet(core).retainAll(other);
 		core.removeAll(decomp);
 		return decomp;
 	}
@@ -445,10 +493,11 @@ class GenerateStringPrep implements UCD_Types {
 	 */
 	private  void printlnSet(PrintWriter htmlOut, PrintWriter textOut,
 			String script, String title, UnicodeSet unicodeset, int scriptCode, Comparator comparator) {
-		if (unicodeset == null)
+		if (unicodeset == null) {
 			return;
-		int size = unicodeset.size();
-		String dir = unicodeset.containsSome(bidiR)
+		}
+		final int size = unicodeset.size();
+		final String dir = unicodeset.containsSome(bidiR)
 				&& unicodeset.containsNone(bidiL) ? " dir='rtl'" : "";
 		htmlOut.println("<tr><th class='" + title + "'><a href='#" +
 				title + "'>" + title + "</a> ("
@@ -458,7 +507,7 @@ class GenerateStringPrep implements UCD_Types {
 		textOut.println();
 		textOut.println("# " + title);
 		bf.setValueSource(script + " ; " + title);
-		UnicodeSetIterator usi = new UnicodeSetIterator();
+		final UnicodeSetIterator usi = new UnicodeSetIterator();
 		if (scriptCode == HAN_SCRIPT || scriptCode == HANGUL_SCRIPT) {
 			usi.reset(unicodeset);
 			while (usi.nextRange()) {
@@ -475,17 +524,18 @@ class GenerateStringPrep implements UCD_Types {
 			}
 			bf.showSetNames(textOut, unicodeset);
 		} else {
-			Set reordered = new TreeSet(comparator);
+			final Set reordered = new TreeSet(comparator);
 			usi.reset(unicodeset);
 			while (usi.next()) {
-				String x = usi.getString();
-				boolean foo = reordered.add(x);
-				if (!foo)
+				final String x = usi.getString();
+				final boolean foo = reordered.add(x);
+				if (!foo) {
 					throw new IllegalArgumentException("Collision with "
 							+ Default.ucd().getCodeAndName(x));
+				}
 			}
-			for (Iterator it = reordered.iterator(); it.hasNext();) {
-				Object key = it.next();
+			for (final Iterator it = reordered.iterator(); it.hasNext();) {
+				final Object key = it.next();
 				htmlOut.print(formatCode((String)key));
 			}
 			bf.showSetNames(textOut, reordered);
@@ -498,12 +548,12 @@ class GenerateStringPrep implements UCD_Types {
 	 * @return
 	 */
 	private String formatCode(String string) {
-		int cat = ucd.getCategory(UTF16.charAt(string,0));
+		final int cat = ucd.getCategory(UTF16.charAt(string,0));
 		String pad = "\u00A0", pad1 = pad;
 		if (cat == Me || cat == Mn) {
 			pad = "\u00A0\u00A0";
 			pad1 = "\u00A0\u00A0\u25cc";
-		}	
+		}
 		return "<span title='" + ucd.getCodeAndName(string) + "'>"
 		+ pad1
 		+ TransliteratorUtilities.toHTMLControl.transliterate(string)
