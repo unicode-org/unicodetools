@@ -16,6 +16,8 @@ import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.text.UTF16;
+
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.PrettyPrinter;
@@ -74,7 +76,8 @@ public class Combining {
         }
     }
     long totalTotal = mulCounter.getTotal();
-    double worldPop = CharacterFrequency.getLanguageToPopulation("mul");
+    //double worldPop = CharacterFrequency.getLanguageToPopulation("mul");
+    long worldPop = CharacterFrequency.getCodePointCounter("mul", true).getTotal();
 
     for (String language : CharacterFrequency.getLanguagesWithCounter()) {
       if (language.equals("und")) continue;
@@ -90,7 +93,7 @@ public class Combining {
       String htmlTitle = language + " - " + englishLocaleName;
       System.out.println(htmlTitle);
 
-      double pop = CharacterFrequency.getLanguageToPopulation(language);
+      long pop = counter.getTotal();
 
 
       // get exemplars
@@ -121,25 +124,26 @@ public class Combining {
       Collection<String> typeList = new LinkedHashSet<String>();
 
       long rank = 0;
-      for (String sequence : counter.getKeysetSortedByCount(false)) {
+      for (int sequence : counter.getKeysetSortedByCount(false)) {
         long count = counter.get(sequence);
         //if (count < COUNT_LIMIT) break; // skip for now
         String hex = Utility.hex(sequence);
 
         out.writeUnsignedLong(count);
-        out.writeUTF(sequence);
+        String sequence2 = UTF16.valueOf(sequence);
+        out.writeUTF(sequence2);
 
-        String type = getType(sequence, typeList);
-        String name = SKIP_NAME.containsAll(sequence) ? "" : UCharacter.getName(sequence, "+");
+        String type = getType(sequence2, typeList);
+        String name = SKIP_NAME.containsAll(sequence2) ? "" : UCharacter.getName(sequence2, "+");
         if (name == null) {
           name = "none";
         }
-        ExemplarInfo.Status exemplar = exemplarInfo.getStatus(sequence);
-        indexChars.add(sequence, exemplar);
+        ExemplarInfo.Status exemplar = exemplarInfo.getStatus(sequence2);
+        indexChars.add(sequence2, exemplar);
         String percent = pf.format(count/(double)total);
         String decimal = nf.format(count);
         String rankStr = nf.format(++rank);
-        String level = exemplarInfo.getEducationLevel(sequence);
+        String level = exemplarInfo.getEducationLevel(sequence2);
         table.addRow()
         .addCell(rankStr)
         .addCell(decimal)

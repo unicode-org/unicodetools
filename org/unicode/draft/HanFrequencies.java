@@ -184,12 +184,12 @@ public class HanFrequencies {
     }
 
     private static LinkedHashMap<String, Integer> getFilteredList(String locale) {
-        Counter<String> counter1 = CharacterFrequency.getCharCounter(locale);
+        Counter<Integer> counter1 = CharacterFrequency.getCodePointCounter(locale, true);
         LinkedHashMap<String,Integer> list1 = new LinkedHashMap<String,Integer>();
         int rank = 0;
-        for (String item : counter1.getKeysetSortedByCount(false)) {
-            if (HAN.containsAll(item)) {
-                list1.put(item, ++rank);
+        for (Integer item : counter1.getKeysetSortedByCount(false)) {
+            if (HAN.contains(item)) {
+                list1.put(UTF16.valueOf(item), ++rank);
             }
         }
         return list1;
@@ -199,10 +199,10 @@ public class HanFrequencies {
         System.out.println("Writing:\t" + locale);
         PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(UCD_Types.GEN_DIR + "/hanfrequency", 
                 locale + ".txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
-        Counter<String> counter = CharacterFrequency.getCharCounter(locale);
+        Counter<Integer> counter = CharacterFrequency.getCodePointCounter(locale, true);
         long total = 0;
-        for (String item : counter) {
-            if (!HAN.containsAll(item)) {
+        for (Integer item : counter) {
+            if (!HAN.contains(item)) {
                 continue;
             }
             total += counter.get(item);
@@ -212,8 +212,8 @@ public class HanFrequencies {
         int setCount = 0;
         long runningTotal = 0;
         int chunkLimit = 1000;
-        for (String item : counter.getKeysetSortedByCount(false)) {
-            if (!HAN.containsAll(item)) {
+        for (Integer item : counter.getKeysetSortedByCount(false)) {
+            if (!HAN.contains(item)) {
                 continue;
             }
             long count = counter.get(item);

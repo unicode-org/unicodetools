@@ -20,6 +20,7 @@ import org.unicode.cldr.util.SupplementalDataInfo;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.util.ULocale;
 
@@ -88,7 +89,8 @@ public class LanguageDetectionVsTags {
     }
     if (true) return;
 
-    Set<Row.R3<Long, String, Counter<Type>>> countLangTypes = new TreeSet<Row.R3<Long, String, Counter<Type>>>(new InverseComparator());
+    InverseComparator<Row.R3<Long, String, Counter<Type>>> inverseComparator = new InverseComparator<Row.R3<Long, String, Counter<Type>>>();
+	TreeSet<R3<Long, String, Counter<Type>>> countLangTypes = new TreeSet<Row.R3<Long, String, Counter<Type>>>(inverseComparator);
     for (String lang : detectedToCountAndTag.keySet()) {
         Counter<String> counter = detectedToCountAndTag.get(lang);
         final long total = counter.getTotal();
