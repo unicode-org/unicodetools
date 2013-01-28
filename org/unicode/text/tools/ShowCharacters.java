@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.unicode.cldr.util.With;
-import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
@@ -21,7 +20,6 @@ import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.RegexMatcher;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
-import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.impl.Row.R5;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;

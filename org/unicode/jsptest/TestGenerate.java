@@ -5,17 +5,14 @@ import java.util.Comparator;
 import java.util.TreeSet;
 
 import org.unicode.idna.Idna;
-import org.unicode.idna.Idna2003;
-import org.unicode.idna.Idna2008;
-import org.unicode.idna.Uts46;
 import org.unicode.idna.Idna.IdnaType;
-import org.unicode.idna.Idna2008.Idna2008Type;
+import org.unicode.idna.Idna2003;
+import org.unicode.idna.Uts46;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -30,7 +27,6 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
-import com.ibm.icu.util.VersionInfo;
 
 public class TestGenerate{
 

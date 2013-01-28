@@ -12,7 +12,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.zip.GZIPOutputStream;
-import java.util.zip.ZipOutputStream;
 
 import org.unicode.draft.UnicodeDataInput.StringReader;
 import org.unicode.draft.UnicodeDataOutput.StringWriter;

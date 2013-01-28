@@ -30,8 +30,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
@@ -40,9 +38,7 @@ import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

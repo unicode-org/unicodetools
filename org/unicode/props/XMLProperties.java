@@ -11,7 +11,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.unicode.cldr.util.XMLFileReader;
-import org.unicode.props.XMLProperties.XmlLeaf;
 import org.unicode.text.utility.Utility;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
@@ -23,7 +22,6 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.text.UnicodeSet;
 
 public class XMLProperties {
 

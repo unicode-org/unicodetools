@@ -1,6 +1,5 @@
 package org.unicode.tools;
 
-import java.util.Arrays;
 import java.util.Locale;
 
 import org.unicode.jsp.XIDModifications;

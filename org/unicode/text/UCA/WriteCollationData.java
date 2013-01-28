@@ -28,11 +28,11 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Vector;
-import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
 import org.unicode.text.UCA.UCA.CollatorType;

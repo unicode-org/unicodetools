@@ -16,11 +16,11 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.idna.Idna;
+import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
 import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Uts46;
-import org.unicode.idna.Idna.IdnaType;
 import org.unicode.jsp.Common;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeRegex;

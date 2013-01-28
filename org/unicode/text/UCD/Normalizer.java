@@ -13,15 +13,13 @@ package org.unicode.text.UCD;
 
 import java.util.BitSet;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.Transform;
 
 /**
  * Implements Unicode Normalization Forms C, D, KC, KD.<br>

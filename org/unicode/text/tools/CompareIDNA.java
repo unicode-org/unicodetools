@@ -3,13 +3,12 @@ package org.unicode.text.tools;
 import java.io.IOException;
 import java.util.TreeSet;
 
+import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
+import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.Idna2008t;
 import org.unicode.idna.Uts46;
-import org.unicode.idna.Idna.IdnaType;
-import org.unicode.idna.Idna2008.Idna2008Type;
-import org.unicode.jsp.UnicodeUtilities;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;

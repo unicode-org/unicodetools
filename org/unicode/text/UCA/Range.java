@@ -3,7 +3,6 @@
  */
 package org.unicode.text.UCA;
 
-import org.unicode.text.utility.Utility;
 
 public class Range {
     private int minimum = Integer.MAX_VALUE;

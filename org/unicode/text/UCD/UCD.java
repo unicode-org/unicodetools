@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.FileUtilities;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;

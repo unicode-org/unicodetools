@@ -2,30 +2,16 @@ package org.unicode.draft;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.unicode.cldr.tool.LanguageCodeConverter;
 import org.unicode.cldr.util.Counter;
-import org.unicode.text.UCD.Default;
 
 import com.ibm.icu.dev.util.BagFormatter;
-import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UScript;
-import com.ibm.icu.text.NumberFormat;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 
 /**
  * Here are the latest results of the code point frequencies for one

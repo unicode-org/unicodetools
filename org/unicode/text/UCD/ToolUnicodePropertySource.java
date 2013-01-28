@@ -26,7 +26,6 @@ import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.AliasAddAction;
-import com.ibm.icu.dev.util.UnicodeProperty.BaseProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.SimpleProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.StringUCharacterIterator;
