@@ -17,100 +17,101 @@ import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestIdna extends TestFmwk {
-  public static void main(String[] args) {
-    new TestIdna().run(args);
-  }
+	public static void main(String[] args) {
+		new TestIdna().run(args);
+	}
 
-  static class MyHandler extends FileUtilities.SemiFileReader {
-    UnicodeSet wideNarrow = new UnicodeSet("[[:dt=wide:][:dt=narrow:]]").freeze();
+	static class MyHandler extends FileUtilities.SemiFileReader {
+		UnicodeSet wideNarrow = new UnicodeSet("[[:dt=wide:][:dt=narrow:]]").freeze();
 
-    UnicodeMap<Idna2008Type> types = Idna2008.getTypeMapping();
+		UnicodeMap<Idna2008Type> types = Idna2008.getTypeMapping();
 
-    UnicodeSet sourceNotAllowed = new UnicodeSet();
-    UnicodeSet targetNotAllowed = new UnicodeSet();
-    UnicodeSet equalsIdnabis = new UnicodeSet();
-    UnicodeMap<String> diffIdnaBis = new UnicodeMap<String>();
+		UnicodeSet sourceNotAllowed = new UnicodeSet();
+		UnicodeSet targetNotAllowed = new UnicodeSet();
+		UnicodeSet equalsIdnabis = new UnicodeSet();
+		UnicodeMap<String> diffIdnaBis = new UnicodeMap<String>();
 
-    public boolean handleLine(int start, int end, String[] items) {
-      String type = items[1];
-      String value;
-      if (type.equals("mapped")) {
-        value = Utility.fromHex(items[2]);
-      } else if (type.equals("ignored")) {
-        value = "";
-      } else {
-        return true;
-      }
-      for (int i = start; i <= end; ++i) {
-        addMapping(i, value);
-      }
-      return true;
-    }
-    
-    private void addMapping(int source, String targetChars) {
-      Idna2008Type type = types.get(source);
-      if (type != Idna2008Type.DISALLOWED) {
-        sourceNotAllowed.add(source);
-        return;
-      } else {
-        int cp;
-        for (int i = 0; i < targetChars.length(); i += Character.charCount(cp)) {
-          cp = targetChars.codePointAt(i);
-          Idna2008Type type2 = types.get(cp);
-          if (type2 == Idna2008Type.DISALLOWED && cp != '.' && cp != '-') {
-            targetNotAllowed.add(source);
-            return;
-          }
-        }
-      }
-      String idnabismapping = getIdnabisMapping(source);
-      if (idnabismapping.equals(targetChars)) {
-        equalsIdnabis.add(source);
-        return;
-      }
-      diffIdnaBis.put(source, targetChars);
-    }
-    
-    private String getIdnabisMapping(int source) {
-      String idnabisMapping;
-      idnabisMapping = UCharacter.toLowerCase(UTF16.valueOf(source));
-      if (wideNarrow.containsSome(idnabisMapping)) {
-        StringBuilder temp = new StringBuilder();
-        int cp;
-        for (int i = 0; i < idnabisMapping.length(); i += Character.charCount(cp)) {
-          cp = idnabisMapping.codePointAt(i);
-          if (wideNarrow.contains(cp)) {
-            temp.append(Normalizer.normalize(cp, Normalizer.NFKC));
-          } else {
-            temp.appendCodePoint(cp);
-          }
-        }
-        idnabisMapping = temp.toString();
-      }
-      idnabisMapping = Normalizer.normalize(idnabisMapping, Normalizer.NFC);
-      return idnabisMapping;
-    }
-  }
+		@Override
+		public boolean handleLine(int start, int end, String[] items) {
+			final String type = items[1];
+			String value;
+			if (type.equals("mapped")) {
+				value = Utility.fromHex(items[2]);
+			} else if (type.equals("ignored")) {
+				value = "";
+			} else {
+				return true;
+			}
+			for (int i = start; i <= end; ++i) {
+				addMapping(i, value);
+			}
+			return true;
+		}
 
-  public void TestExtract() throws IOException {
+		private void addMapping(int source, String targetChars) {
+			final Idna2008Type type = types.get(source);
+			if (type != Idna2008Type.DISALLOWED) {
+				sourceNotAllowed.add(source);
+				return;
+			} else {
+				int cp;
+				for (int i = 0; i < targetChars.length(); i += Character.charCount(cp)) {
+					cp = targetChars.codePointAt(i);
+					final Idna2008Type type2 = types.get(cp);
+					if (type2 == Idna2008Type.DISALLOWED && cp != '.' && cp != '-') {
+						targetNotAllowed.add(source);
+						return;
+					}
+				}
+			}
+			final String idnabismapping = getIdnabisMapping(source);
+			if (idnabismapping.equals(targetChars)) {
+				equalsIdnabis.add(source);
+				return;
+			}
+			diffIdnaBis.put(source, targetChars);
+		}
 
-    MyHandler handler = new MyHandler();
-    handler.process(IdnaTypes.class, "IdnaMappingTable.txt");
+		private String getIdnabisMapping(int source) {
+			String idnabisMapping;
+			idnabisMapping = UCharacter.toLowerCase(UTF16.valueOf(source));
+			if (wideNarrow.containsSome(idnabisMapping)) {
+				final StringBuilder temp = new StringBuilder();
+				int cp;
+				for (int i = 0; i < idnabisMapping.length(); i += Character.charCount(cp)) {
+					cp = idnabisMapping.codePointAt(i);
+					if (wideNarrow.contains(cp)) {
+						temp.append(Normalizer.normalize(cp, Normalizer.NFKC));
+					} else {
+						temp.appendCodePoint(cp);
+					}
+				}
+				idnabisMapping = temp.toString();
+			}
+			idnabisMapping = Normalizer.normalize(idnabisMapping, Normalizer.NFC);
+			return idnabisMapping;
+		}
+	}
 
-    logln("sourceNotAllowed: " + handler.sourceNotAllowed.size() + "\t" + handler.sourceNotAllowed);
-    logln("targetNotAllowed: " + handler.targetNotAllowed.size() + "\t" + handler.targetNotAllowed);
-    logln("equalsIdnabis: " + handler.equalsIdnabis.size() + "\t" + handler.equalsIdnabis);
-    logln("diffIdnabis: " + handler.diffIdnaBis.size());
-    assertNotEquals("diffIdnaBis", 0, handler.diffIdnaBis.keySet().size());
-    for (String source : handler.diffIdnaBis.keySet()) {
-      Object targetChars = handler.diffIdnaBis.get(source);
-      logln("\t" + Utility.hex(source) + " ( " + source + " ) => "
-              + Utility.hex(targetChars) + " ( " + targetChars + " ) # " + UCharacter.getName(source.codePointAt(0)));
-    }
-  }
+	public void TestExtract() throws IOException {
+
+		final MyHandler handler = new MyHandler();
+		handler.process(IdnaTypes.class, "IdnaMappingTable.txt");
+
+		logln("sourceNotAllowed: " + handler.sourceNotAllowed.size() + "\t" + handler.sourceNotAllowed);
+		logln("targetNotAllowed: " + handler.targetNotAllowed.size() + "\t" + handler.targetNotAllowed);
+		logln("equalsIdnabis: " + handler.equalsIdnabis.size() + "\t" + handler.equalsIdnabis);
+		logln("diffIdnabis: " + handler.diffIdnaBis.size());
+		assertNotEquals("diffIdnaBis", 0, handler.diffIdnaBis.keySet().size());
+		for (final String source : handler.diffIdnaBis.keySet()) {
+			final Object targetChars = handler.diffIdnaBis.get(source);
+			logln("\t" + Utility.hex(source) + " ( " + source + " ) => "
+					+ Utility.hex(targetChars) + " ( " + targetChars + " ) # " + UCharacter.getName(source.codePointAt(0)));
+		}
+	}
 
 
-  /*
+	/*
    1.  Upper case characters are mapped to their lower case equivalents
        by using the algorithm for mapping case in Unicode characters.
 
@@ -129,7 +130,7 @@ public class TestIdna extends TestFmwk {
        FULL STOP character (U+002E), the following character can be
        mapped to the FULL STOP before label separation occurs:
 
-   *  IDEOGRAPHIC FULL STOP (U+3002)
+	 *  IDEOGRAPHIC FULL STOP (U+3002)
 
        There are other characters that are used as "full stops" that one
        could consider mapping as label separators, but their use as such
@@ -157,5 +158,5 @@ public class TestIdna extends TestFmwk {
       is either "<wide>" or "<narrow>" to the "Decomposition_Mapping" of
       that character (contained in the second part of the sixth column)
       in <http://www.unicode.org/Public/UNIDATA/UnicodeData.txt>.
-   */
+	 */
 }

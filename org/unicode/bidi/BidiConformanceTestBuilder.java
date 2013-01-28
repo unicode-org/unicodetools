@@ -17,9 +17,9 @@ public class BidiConformanceTestBuilder {
 
 	private static final int R_DEFAULT = -2;
 
-    private static final int BIDI_START_LEVEL = -1;
+	private static final int BIDI_START_LEVEL = -1;
 
-    public static int MAX_SIZE = 4;
+	public static int MAX_SIZE = 4;
 
 	private static BitSet SKIPS = new BitSet();
 	static {
@@ -29,14 +29,14 @@ public class BidiConformanceTestBuilder {
 		SKIPS.set(BidiReference.RLO);
 		SKIPS.set(BidiReference.LRO);
 		SKIPS.set(BidiReference.PDF);
-		SKIPS.set(BidiReference.BN);   
+		SKIPS.set(BidiReference.BN);
 	}
 
 	// have an iterator to get all possible variations less than a given size
 	static class Sample {
 		private byte[] byte_array = new byte[0];
 		private final List<Byte> items = new ArrayList<Byte>();
-		private int maxSize;
+		private final int maxSize;
 
 		public Sample(int maxSize) {
 			this.maxSize = maxSize;
@@ -44,7 +44,7 @@ public class BidiConformanceTestBuilder {
 
 		boolean next() {
 			for (int i = items.size()-1; i >= 0; --i) {
-				Byte oldValue = items.get(i);
+				final Byte oldValue = items.get(i);
 				if (oldValue < BidiReference.TYPE_MAX) {
 					items.set(i, (byte) (oldValue + 1));
 					return true;
@@ -58,8 +58,9 @@ public class BidiConformanceTestBuilder {
 			return false;
 		}
 
+		@Override
 		public String toString() {
-			StringBuilder result = new StringBuilder();
+			final StringBuilder result = new StringBuilder();
 			for (int i = 0; i < items.size(); ++i) {
 				if (i != 0) {
 					result.append(" ");
@@ -81,11 +82,11 @@ public class BidiConformanceTestBuilder {
 	}
 
 	public static void write(PrintWriter out) throws FileNotFoundException {
-		int[] linebreaks = new int[1];
+		final int[] linebreaks = new int[1];
 
-		Map<String, Set<String>> resultToSource = new TreeMap<String, Set<String>>(SHORTEST_FIRST);
-		Map<String, Integer> condensed = new HashMap<String, Integer>();
-		Sample sample = new Sample(MAX_SIZE);
+		final Map<String, Set<String>> resultToSource = new TreeMap<String, Set<String>>(SHORTEST_FIRST);
+		final Map<String, Integer> condensed = new HashMap<String, Integer>();
+		final Sample sample = new Sample(MAX_SIZE);
 
 		main:
 			while (sample.next()) {
@@ -96,8 +97,8 @@ public class BidiConformanceTestBuilder {
 					}
 				}
 
-				String typeString = sample.toString();
-				byte[] TYPELIST = sample.getArray();
+				final String typeString = sample.toString();
+				final byte[] TYPELIST = sample.getArray();
 				linebreaks[0] = TYPELIST.length;
 				condensed.clear();
 				for (byte paragraphEmbeddingLevel = BIDI_START_LEVEL; paragraphEmbeddingLevel <= 1; ++paragraphEmbeddingLevel) {
@@ -107,12 +108,12 @@ public class BidiConformanceTestBuilder {
 					if (bitmask == null) {
 						bitmask = 0;
 					}
-					int reordered = paragraphEmbeddingLevel == R_DEFAULT ? 3 : paragraphEmbeddingLevel+1;
+					final int reordered = paragraphEmbeddingLevel == R_DEFAULT ? 3 : paragraphEmbeddingLevel+1;
 					bitmask |= 1<<(reordered);
 					condensed.put(reorderedIndexes, bitmask);
 				}
-				for (String reorderedIndexes : condensed.keySet()) {
-					Integer bitset = condensed.get(reorderedIndexes);
+				for (final String reorderedIndexes : condensed.keySet()) {
+					final Integer bitset = condensed.get(reorderedIndexes);
 					addResult(resultToSource, typeString + "; " + Integer.toHexString(bitset).toUpperCase(Locale.ENGLISH), reorderedIndexes);
 				}
 			}
@@ -123,13 +124,13 @@ public class BidiConformanceTestBuilder {
 		//      out.println("@Type:\t" + BidiReference.typenames[i] + ":\t" + data);
 		//    }
 		int totalCount = 0;
-		for (String reorderedIndexes : resultToSource.keySet()) {
+		for (final String reorderedIndexes : resultToSource.keySet()) {
 			out.println();
-			String[] parts = reorderedIndexes.split(";");
+			final String[] parts = reorderedIndexes.split(";");
 			out.println("@Levels:\t" + parts[0].trim());
 			out.println("@Reorder:\t" + (parts.length < 2 ? "" : parts[1].trim()));
 			int count = 0;
-			for (String sources : resultToSource.get(reorderedIndexes)) {
+			for (final String sources : resultToSource.get(reorderedIndexes)) {
 				out.println(sources);
 				++totalCount;
 				++count;
@@ -158,10 +159,10 @@ public class BidiConformanceTestBuilder {
 
 	private static String reorderedIndexes(byte[] types, byte paragraphEmbeddingLevel, int[] linebreaks) {
 
-		StringBuilder result = new StringBuilder();
-		BidiReference bidi = new BidiReference(types, paragraphEmbeddingLevel);
+		final StringBuilder result = new StringBuilder();
+		final BidiReference bidi = new BidiReference(types, paragraphEmbeddingLevel);
 
-		byte[] levels = bidi.getLevels(linebreaks);
+		final byte[] levels = bidi.getLevels(linebreaks);
 		for (int i = 0; i < levels.length; ++i) {
 			if (SKIPS.get(types[i])) {
 				result.append(" x");
@@ -171,13 +172,12 @@ public class BidiConformanceTestBuilder {
 		}
 		result.append(";");
 
-		int[] reordering = bidi.getReordering(linebreaks);
+		final int[] reordering = bidi.getReordering(linebreaks);
 
 		int lastItem = -1;
 		boolean LTR = true;
 
-		for (int i = 0; i < reordering.length; ++i) {
-			final int item = reordering[i];
+		for (final int item : reordering) {
 			if (item < lastItem) {
 				LTR = false;
 			}
@@ -195,8 +195,9 @@ public class BidiConformanceTestBuilder {
 
 	static Comparator<String> SHORTEST_FIRST = new Comparator<String>() {
 
+		@Override
 		public int compare(String o1, String o2) {
-			int result = o1.length() - o2.length();
+			final int result = o1.length() - o2.length();
 			if (result != 0) {
 				return result;
 			}

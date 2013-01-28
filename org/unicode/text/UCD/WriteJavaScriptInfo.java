@@ -1,13 +1,13 @@
 /**
-*******************************************************************************
-* Copyright (C) 1996-2001, International Business Machines Corporation and    *
-* others. All Rights Reserved.                                                *
-*******************************************************************************
-*
-* $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/WriteJavaScriptInfo.java,v $
-*
-*******************************************************************************
-*/
+ *******************************************************************************
+ * Copyright (C) 1996-2001, International Business Machines Corporation and    *
+ * others. All Rights Reserved.                                                *
+ *******************************************************************************
+ *
+ * $Source: /home/cvsroot/unicodetools/org/unicode/text/UCD/WriteJavaScriptInfo.java,v $
+ *
+ *******************************************************************************
+ */
 
 package org.unicode.text.UCD;
 
@@ -17,34 +17,40 @@ import java.io.PrintWriter;
 import org.unicode.text.utility.Utility;
 
 public class WriteJavaScriptInfo implements UCD_Types {
-    
-    static public void assigned() throws IOException {
-        PrintWriter log = Utility.openPrintWriter("log/assigned.js", Utility.LATIN1_UNIX);
-        UCD ucd = UCD.make();
-        boolean wasIn = false;
-        int lastWritten = -100;
-        int i;
-        for (i = 0; i <= 0x10FFFF; ++i) {
-            byte cat = ucd.getCategory(i);
-            boolean in = cat != Cn && cat != Co && cat != Cs;
-            if (wasIn == in) continue;
-            if (in) {
-                log.print(i + ",");
-                lastWritten = i;
-            } else {
-                if (lastWritten != i-1) log.print(i-1);
-                log.println(",");
-            }
-            wasIn = in;
-        }
-        if (wasIn) {
-            if (lastWritten != i-1) log.print(i-1);
-            log.println(",");
-        }
-        log.close();
-    }
-    
-    /* TODO: fix enumeration of compositions
+
+	static public void assigned() throws IOException {
+		final PrintWriter log = Utility.openPrintWriter("log/assigned.js", Utility.LATIN1_UNIX);
+		final UCD ucd = UCD.make();
+		boolean wasIn = false;
+		int lastWritten = -100;
+		int i;
+		for (i = 0; i <= 0x10FFFF; ++i) {
+			final byte cat = ucd.getCategory(i);
+			final boolean in = cat != Cn && cat != Co && cat != Cs;
+			if (wasIn == in) {
+				continue;
+			}
+			if (in) {
+				log.print(i + ",");
+				lastWritten = i;
+			} else {
+				if (lastWritten != i-1) {
+					log.print(i-1);
+				}
+				log.println(",");
+			}
+			wasIn = in;
+		}
+		if (wasIn) {
+			if (lastWritten != i-1) {
+				log.print(i-1);
+			}
+			log.println(",");
+		}
+		log.close();
+	}
+
+	/* TODO: fix enumeration of compositions
 
     static public void writeJavascriptInfo() throws IOException {
         System.err.println("Writing Javascript data");
@@ -148,6 +154,6 @@ public class WriteJavaScriptInfo implements UCD_Types {
         System.err.println("Done writing Javascript data");
     }
 
-    */
+	 */
 
 }

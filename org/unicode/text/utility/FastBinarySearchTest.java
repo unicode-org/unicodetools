@@ -8,7 +8,7 @@ provided under terms of a License Agreement between Taligent and Sun. This
 technology is protected by multiple US and International patents. This notice and
 attribution to Taligent may not be removed.
   Taligent is a registered trademark of Taligent, Inc.
-*/
+ */
 
 package org.unicode.text.utility;
 
@@ -16,8 +16,8 @@ public class FastBinarySearchTest
 {
 	static boolean printResult(FastIntBinarySearch search, int value)
 	{
-		int ndx = search.findIndex(value);
-		int data[] = search.getData();
+		final int ndx = search.findIndex(value);
+		final int data[] = search.getData();
 		String errorString = null;
 		if (ndx < 0) {
 			if (!(ndx < data[0])) {
@@ -46,12 +46,15 @@ public class FastBinarySearchTest
 	static void test(int testArray[])
 	{
 		boolean passed = true;
-		FastIntBinarySearch search = new FastIntBinarySearch(testArray);
+		final FastIntBinarySearch search = new FastIntBinarySearch(testArray);
 		for (int i = -1; passed && i < testArray[testArray.length-1]+2; i++) {
 			passed = passed && printResult(search, i);
 		}
-		if (passed) System.out.println("test passed");
-		else System.out.println("test failed");
+		if (passed) {
+			System.out.println("test passed");
+		} else {
+			System.out.println("test failed");
+		}
 	}
 
 	//							      0, 1, 2, 3, 4, 5,  6,  7,  8,  9,  10, 11, 12, 13, 14, 15, 16, 17

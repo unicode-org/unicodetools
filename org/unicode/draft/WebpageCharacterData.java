@@ -36,9 +36,9 @@ navboost, pagerank, language, encoding, url
 ...Data/unicode-count62.txt
  */
 public class WebpageCharacterData {
-    
+
 	private static final UnicodeSet DEBUG_SET = new UnicodeSet(0x0020,0x0020).freeze();
-    private static final String SOURCE_DATA = "unicode-count75.txt"; // "unicode-count-2012-July-21.txt";
+	private static final String SOURCE_DATA = "unicode-count75.txt"; // "unicode-count-2012-July-21.txt";
 
 	enum Columns {
 		// 000009	ht	954857442	0	0	0	953577889	0	0	0	11182029595621	0	0	0	804363	56255	139	22	http://www.palmbeachschools.org/	71269	55048	139	22	http://www.palmbeachschools.org/jobs/	50871	54366	139	22	http://rtghaiti.com/
@@ -54,8 +54,9 @@ public class WebpageCharacterData {
 		public String get() {
 			return parts[ordinal()];
 		}
+		@Override
 		public String toString() {
-		    return name() + "(" + get() + ")";
+			return name() + "(" + get() + ")";
 		}
 	}
 
@@ -68,40 +69,42 @@ public class WebpageCharacterData {
 	}
 
 	static public void doData() throws IOException {
-		BufferedReader in = BagFormatter.openUTF8Reader(
-		        "/Users/markdavis/Documents/indigo/DATA/frequency/",
-		        SOURCE_DATA);
+		final BufferedReader in = BagFormatter.openUTF8Reader(
+				"/Users/markdavis/Documents/indigo/DATA/frequency/",
+				SOURCE_DATA);
 		int lineCounter = 0;
-		int zeroCountLines = 0;
-		HashMap<String, String> langSeen = new HashMap<String,String>();
+		final int zeroCountLines = 0;
+		final HashMap<String, String> langSeen = new HashMap<String,String>();
 		while (true) {
-			String line = in.readLine();
-			if (line == null) break;
+			final String line = in.readLine();
+			if (line == null) {
+				break;
+			}
 			if ((++lineCounter % 100000) == 0) {
 				System.out.println(lineCounter);
 			}
 			Columns.set(line);
 
-			int codePoint = Integer.parseInt(Columns.codePoint.get(), 16);
-			boolean debugCodepoint = DEBUG_SET != null && DEBUG_SET.contains(codePoint);
+			final int codePoint = Integer.parseInt(Columns.codePoint.get(), 16);
+			final boolean debugCodepoint = DEBUG_SET != null && DEBUG_SET.contains(codePoint);
 			if (debugCodepoint) {
 				System.out.println(line + ",\t\t" + Arrays.asList(Columns.values()));
 			}
-			String lang0 = Columns.language.get();
+			final String lang0 = Columns.language.get();
 			String lang = langSeen.get(lang0);
 			if (lang == null) {
-				lang = LanguageCodeConverter.fromGoogleLocaleId(lang0); 
+				lang = LanguageCodeConverter.fromGoogleLocaleId(lang0);
 				langSeen.put(lang0, lang);
 				if (debugCodepoint) {
 					System.out.println(lang0 + " => " + lang);
 				}
 			}
-			
 
-			long good = Long.parseLong(Columns.postHtmlCount2.get());
+
+			final long good = Long.parseLong(Columns.postHtmlCount2.get());
 			addToCounter(lang2chars, lang, codePoint, good);
 			addToCounter(lang2chars, "mul", codePoint, good);
-			long rank = Long.parseLong(Columns.postHtmlCount3.get());
+			final long rank = Long.parseLong(Columns.postHtmlCount3.get());
 			addToCounter(lang2charsPageRank, lang, codePoint, rank);
 			addToCounter(lang2charsPageRank, "mul", codePoint, rank);
 		}
@@ -114,16 +117,16 @@ public class WebpageCharacterData {
 	}
 
 	public static void writeData(Map<String, Counter<Integer>> map, String directory) throws IOException {
-		Counter<String> totalLang = new Counter<String>();
-		Counter<String> totalLangChars = new Counter<String>();
-		for (Entry<String, Counter<Integer>> entry : map.entrySet()) {
-			String lang = entry.getKey();
-			Counter<Integer> counter = entry.getValue();
-			PrintWriter out = BagFormatter.openUTF8Writer(directory, lang + ".txt");
+		final Counter<String> totalLang = new Counter<String>();
+		final Counter<String> totalLangChars = new Counter<String>();
+		for (final Entry<String, Counter<Integer>> entry : map.entrySet()) {
+			final String lang = entry.getKey();
+			final Counter<Integer> counter = entry.getValue();
+			final PrintWriter out = BagFormatter.openUTF8Writer(directory, lang + ".txt");
 			long totalCount = 0;
 			long totalChars = 0;
-			for (Integer cp : counter.getKeysetSortedByCount(false)) {
-				long count = counter.getCount(cp);
+			for (final Integer cp : counter.getKeysetSortedByCount(false)) {
+				final long count = counter.getCount(cp);
 				totalCount += count;
 				totalChars += 1;
 				out.println(com.ibm.icu.impl.Utility.hex(cp) + " ; " + count); //  + " # " + UCharacter.getExtendedName(cp));
@@ -133,8 +136,8 @@ public class WebpageCharacterData {
 			out.println("# END");
 			out.close();
 		}
-		
-		for (String lang : totalLang.getKeysetSortedByCount(false)) {
+
+		for (final String lang : totalLang.getKeysetSortedByCount(false)) {
 			System.out.println(lang + "\t" + totalLang.get(lang) + "\t" + totalLangChars.get(lang));
 		}
 	}

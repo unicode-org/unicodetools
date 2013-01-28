@@ -22,7 +22,7 @@ public class ShowPropertyMetadata {
 		}
 	};
 	static {
-		EnumSet<UcdProperty> temp2 = EnumSet.allOf(UcdProperty.class);
+		final EnumSet<UcdProperty> temp2 = EnumSet.allOf(UcdProperty.class);
 		temp2.removeAll(IndexUnicodeProperties.NORMATIVE_PROPERTY);
 		temp2.removeAll(IndexUnicodeProperties.INFORMATIVE_PROPERTY);
 		temp2.removeAll(IndexUnicodeProperties.CONTRIBUTORY_PROPERTY);
@@ -30,28 +30,28 @@ public class ShowPropertyMetadata {
 	}
 
 	static EnumSet<UcdProperty> soFar = EnumSet.noneOf(UcdProperty.class);
-	
+
 	enum PropertyType {
-		Deprecated(IndexUnicodeProperties.DEPRECATED_PROPERTY, 
-				IndexUnicodeProperties.STABLIZED_PROPERTY, 
+		Deprecated(IndexUnicodeProperties.DEPRECATED_PROPERTY,
+				IndexUnicodeProperties.STABLIZED_PROPERTY,
 				IndexUnicodeProperties.OBSOLETE_PROPERTY),
-		Immutable(UcdProperty.Jamo_Short_Name, IndexUnicodeProperties.IMMUTABLE_PROPERTY), 
-		Normative(IndexUnicodeProperties.NORMATIVE_PROPERTY), 
-		Informative(IndexUnicodeProperties.INFORMATIVE_PROPERTY), 
-		Provisional(IndexUnicodeProperties.PROVISIONAL_PROPERTY), 
-		Contributory(IndexUnicodeProperties.CONTRIBUTORY_PROPERTY);
-//		Stabilized(), 
-//		Obsolete();
+				Immutable(UcdProperty.Jamo_Short_Name, IndexUnicodeProperties.IMMUTABLE_PROPERTY),
+				Normative(IndexUnicodeProperties.NORMATIVE_PROPERTY),
+				Informative(IndexUnicodeProperties.INFORMATIVE_PROPERTY),
+				Provisional(IndexUnicodeProperties.PROVISIONAL_PROPERTY),
+				Contributory(IndexUnicodeProperties.CONTRIBUTORY_PROPERTY);
+		//		Stabilized(),
+		//		Obsolete();
 
 		EnumSet<UcdProperty> set;
-		
+
 		PropertyType(EnumSet<UcdProperty>... set) {
 			this(null, set);
 		}
 		PropertyType(UcdProperty skip, EnumSet<UcdProperty>... set) {
 			this.set = EnumSet.noneOf(UcdProperty.class);
-			for (EnumSet<UcdProperty> i : set) {
-				for (UcdProperty j : i) {
+			for (final EnumSet<UcdProperty> i : set) {
+				for (final UcdProperty j : i) {
 					if (soFar.contains(j) || j == skip) {
 						continue;
 					}
@@ -64,24 +64,24 @@ public class ShowPropertyMetadata {
 
 	public static void main(String[] args) {
 
-		Relation<UcdProperty,PropertyType> propToType = 
+		final Relation<UcdProperty,PropertyType> propToType =
 				Relation.of(new TreeMap<UcdProperty, Set<PropertyType>>(),
-				TreeSet.class);
-		for (PropertyType ptype : PropertyType.values()) {
-			for (UcdProperty prop : ptype.set) {
+						TreeSet.class);
+		for (final PropertyType ptype : PropertyType.values()) {
+			for (final UcdProperty prop : ptype.set) {
 				propToType.put(prop,ptype);
 			}
 		}
-		
+
 		// invert
-		Relation<Set<PropertyType>,UcdProperty> typesToProperties = 
+		final Relation<Set<PropertyType>,UcdProperty> typesToProperties =
 				Relation.of(new TreeMap<Set<PropertyType>, Set<UcdProperty>>(COMPARABLE),
-				TreeSet.class);
-		for (Entry<UcdProperty, Set<PropertyType>> e : propToType.keyValuesSet()) {
+						TreeSet.class);
+		for (final Entry<UcdProperty, Set<PropertyType>> e : propToType.keyValuesSet()) {
 			typesToProperties.put(e.getValue(), e.getKey());
 		}
 
-		for (Entry<Set<PropertyType>, UcdProperty> e : typesToProperties.keyValueSet()) {
+		for (final Entry<Set<PropertyType>, UcdProperty> e : typesToProperties.keyValueSet()) {
 			System.out.println(e.getValue() + ";\t" + CollectionUtilities.join(e.getKey(), ";\t"));
 		}
 	}

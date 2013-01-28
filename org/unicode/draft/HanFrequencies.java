@@ -26,201 +26,205 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class HanFrequencies {
 
-    public static final UnicodeSet HAN = new UnicodeSet("[[:ideographic:][:sc=han:]]");
+	public static final UnicodeSet HAN = new UnicodeSet("[[:ideographic:][:sc=han:]]");
 
-    public static void main(String[] args) throws IOException {
-        for (String s : args) {
-            if ("-f".equals(s)) {
-                generateFrequencies();
-            } else if ("-r".equals(s)) {
-                generateReadings();
-            }
-        }
-    }
+	public static void main(String[] args) throws IOException {
+		for (final String s : args) {
+			if ("-f".equals(s)) {
+				generateFrequencies();
+			} else if ("-r".equals(s)) {
+				generateReadings();
+			}
+		}
+	}
 
-    private static void generateReadings() throws IOException {
-        BufferedReader freq = BagFormatter.openUTF8Reader(UCD_Types.GEN_DIR + "/hanfrequency", "unifiedZh.txt");
-        UnicodeMap<Integer> rank = new UnicodeMap<Integer>();
-        int count = 0;
-        while (true) {
-            String line = freq.readLine();
-            if (line == null) {
-                break;
-            }
-            String[] parts = line.split("\t");
-            // 的    s   1   t   1
-            rank.put(parts[0], ++count);
-        }
-        freq.close();
-        BufferedReader readings = BagFormatter.openUTF8Reader(Utility.DATA_DIRECTORY + "/frequency", "han-reading-diff.txt");
-        Set<R2<Integer, Map<ReadingRows,String>>> ordered = new TreeSet<R2<Integer,Map<ReadingRows,String>>>();
-        while (true) {
-            String line = readings.readLine();
-            if (line == null) {
-                break;
-            }
-            if (line.startsWith("#") || line.isEmpty()) {
-                continue;
-            }
-            line = line; // just to make spreadsheets happy with the hex.
-            String[] parts = line.split("\t");
-            //4F3D    伽   jiā;    gā; jiā x   # std=old
-            try {
-                Integer rankValue = rank.get(parts[1]);
-                if (rankValue == null) {
-                    rankValue = ++count; // next value
-                    System.out.println("Missing rank: " + line);
-                }
-                if (parts[1].codePointAt(0) != Integer.parseInt(parts[0],16) || parts.length != 7) {
-                    throw new IllegalArgumentException();
-                }
-                Map<ReadingRows,String> values = new TreeMap<ReadingRows,String>();
-                values.put(ReadingRows.hex, "x" + parts[0]);
-                values.put(ReadingRows.character, parts[1]);
-                values.put(ReadingRows.oldVal, parts[2]);
-                values.put(ReadingRows.newVal, parts[3]);
-                values.put(ReadingRows.CN, parts[4]);
-                String[] alt = parts[5].split(":");
-                
-                ReadingAlt type = alt[0].equals("?") ? ReadingAlt.x : ReadingAlt.valueOf(alt[0]);
-                values.put(ReadingRows.TW, type == ReadingAlt.tw ? alt[1] : "");
-                values.put(ReadingRows.name, type == ReadingAlt.nm ? alt[1] : "");
-                values.put(ReadingRows.combo, type == ReadingAlt.co ? alt[1] : "");
-                String comment = parts[6];
-                if (comment.startsWith("# ")) {
-                    comment = comment.substring(2);
-                } else if (comment.equals("#")) {
-                    comment = "";
-                }
-                values.put(ReadingRows.comment, comment);
+	private static void generateReadings() throws IOException {
+		final BufferedReader freq = BagFormatter.openUTF8Reader(UCD_Types.GEN_DIR + "/hanfrequency", "unifiedZh.txt");
+		final UnicodeMap<Integer> rank = new UnicodeMap<Integer>();
+		int count = 0;
+		while (true) {
+			final String line = freq.readLine();
+			if (line == null) {
+				break;
+			}
+			final String[] parts = line.split("\t");
+			// 的    s   1   t   1
+			rank.put(parts[0], ++count);
+		}
+		freq.close();
+		final BufferedReader readings = BagFormatter.openUTF8Reader(Utility.DATA_DIRECTORY + "/frequency", "han-reading-diff.txt");
+		final Set<R2<Integer, Map<ReadingRows,String>>> ordered = new TreeSet<R2<Integer,Map<ReadingRows,String>>>();
+		while (true) {
+			String line = readings.readLine();
+			if (line == null) {
+				break;
+			}
+			if (line.startsWith("#") || line.isEmpty()) {
+				continue;
+			}
+			line = line; // just to make spreadsheets happy with the hex.
+			final String[] parts = line.split("\t");
+			//4F3D    伽   jiā;    gā; jiā x   # std=old
+			try {
+				Integer rankValue = rank.get(parts[1]);
+				if (rankValue == null) {
+					rankValue = ++count; // next value
+					System.out.println("Missing rank: " + line);
+				}
+				if (parts[1].codePointAt(0) != Integer.parseInt(parts[0],16) || parts.length != 7) {
+					throw new IllegalArgumentException();
+				}
+				final Map<ReadingRows,String> values = new TreeMap<ReadingRows,String>();
+				values.put(ReadingRows.hex, "x" + parts[0]);
+				values.put(ReadingRows.character, parts[1]);
+				values.put(ReadingRows.oldVal, parts[2]);
+				values.put(ReadingRows.newVal, parts[3]);
+				values.put(ReadingRows.CN, parts[4]);
+				final String[] alt = parts[5].split(":");
 
-                R2<Integer, Map<ReadingRows,String>> row = Row.of(rankValue, values);
-                ordered.add(row);
-            } catch (Exception e) {
-                throw new IllegalArgumentException(line, e);
-            }
-        }
-        readings.close();
+				final ReadingAlt type = alt[0].equals("?") ? ReadingAlt.x : ReadingAlt.valueOf(alt[0]);
+				values.put(ReadingRows.TW, type == ReadingAlt.tw ? alt[1] : "");
+				values.put(ReadingRows.name, type == ReadingAlt.nm ? alt[1] : "");
+				values.put(ReadingRows.combo, type == ReadingAlt.co ? alt[1] : "");
+				String comment = parts[6];
+				if (comment.startsWith("# ")) {
+					comment = comment.substring(2);
+				} else if (comment.equals("#")) {
+					comment = "";
+				}
+				values.put(ReadingRows.comment, comment);
 
-        PrintWriter out = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR + "/hanfrequency", "han-reading-diff.html");
-        //PrintStream out = System.out;
-        ReadingRows[] values = ReadingRows.values();
-        out.println("<html><body><table>");
-        for (R2<Integer, Map<ReadingRows,String>> entry : ordered) {
-            out.print("<tr><td>");
-            out.print(entry.get0());
-            for (ReadingRows heading : values) {
-                out.print("</td><td>");
-                String column = entry.get1().get(heading);
-                column = column.replace(";","");
-                out.print(column);
-            }
-            out.println("</td></tr>");
-        }
-        out.println("</table></body></html>");
-        out.close();
-    }
-    
-    enum ReadingRows {hex, character, oldVal, newVal, CN, TW, name, combo, comment}
-    enum ReadingAlt {x, co, nm, tw}
+				final R2<Integer, Map<ReadingRows,String>> row = Row.of(rankValue, values);
+				ordered.add(row);
+			} catch (final Exception e) {
+				throw new IllegalArgumentException(line, e);
+			}
+		}
+		readings.close();
 
-//    #   tw: - alt reading for TW (not Hant; in HK,MO this reading is not relevant)
-//    #   nm: - alt reading for names (personal or geographic)
-//    #   co: - alt non-name reading only used in combinations
+		final PrintWriter out = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR + "/hanfrequency", "han-reading-diff.html");
+		//PrintStream out = System.out;
+		final ReadingRows[] values = ReadingRows.values();
+		out.println("<html><body><table>");
+		for (final R2<Integer, Map<ReadingRows,String>> entry : ordered) {
+			out.print("<tr><td>");
+			out.print(entry.get0());
+			for (final ReadingRows heading : values) {
+				out.print("</td><td>");
+				String column = entry.get1().get(heading);
+				column = column.replace(";","");
+				out.print(column);
+			}
+			out.println("</td></tr>");
+		}
+		out.println("</table></body></html>");
+		out.close();
+	}
+
+	enum ReadingRows {hex, character, oldVal, newVal, CN, TW, name, combo, comment}
+	enum ReadingAlt {x, co, nm, tw}
+
+	//    #   tw: - alt reading for TW (not Hant; in HK,MO this reading is not relevant)
+	//    #   nm: - alt reading for names (personal or geographic)
+	//    #   co: - alt non-name reading only used in combinations
 
 
-    private static void generateFrequencies() {
-        Set<String> languages = CharacterFrequency.getLanguagesWithCounter();
-        showInterleaved();
-        //System.out.println(languages);
-        show("zh");
-        show("zh-Hant");
-        show("ja");
-        show("ko");
-        show("mul");
-    }
+	private static void generateFrequencies() {
+		final Set<String> languages = CharacterFrequency.getLanguagesWithCounter();
+		showInterleaved();
+		//System.out.println(languages);
+		show("zh");
+		show("zh-Hant");
+		show("ja");
+		show("ko");
+		show("mul");
+	}
 
-    private static void showInterleaved() {
-        PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(UCD_Types.GEN_DIR + "/hanfrequency", 
-                "unifiedZh.txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
+	private static void showInterleaved() {
+		final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(UCD_Types.GEN_DIR + "/hanfrequency",
+				"unifiedZh.txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
 
-        LinkedHashMap<String, Integer> rank1 = getFilteredList("zh");
-        Iterator<Entry<String, Integer>> it1 = rank1.entrySet().iterator();
-        LinkedHashMap<String, Integer> rank2 = getFilteredList("zh-Hant");
-        Iterator<Entry<String, Integer>> it2 = rank2.entrySet().iterator();
+		final LinkedHashMap<String, Integer> rank1 = getFilteredList("zh");
+		final Iterator<Entry<String, Integer>> it1 = rank1.entrySet().iterator();
+		final LinkedHashMap<String, Integer> rank2 = getFilteredList("zh-Hant");
+		final Iterator<Entry<String, Integer>> it2 = rank2.entrySet().iterator();
 
-        HashSet<String> alreadyDone = new HashSet<String>();
+		final HashSet<String> alreadyDone = new HashSet<String>();
 
-        while (true) {
-            Entry<String, Integer> item1 = writeItem(out, it1, rank2, alreadyDone, "st");
-            Entry<String, Integer> item2 = writeItem(out, it2, rank1, alreadyDone, "ts");
-            if (item1 == null && item2 == null) break;
-        }
-        out.close();
-    }
+		while (true) {
+			final Entry<String, Integer> item1 = writeItem(out, it1, rank2, alreadyDone, "st");
+			final Entry<String, Integer> item2 = writeItem(out, it2, rank1, alreadyDone, "ts");
+			if (item1 == null && item2 == null) {
+				break;
+			}
+		}
+		out.close();
+	}
 
-    private static Entry<String, Integer> writeItem(PrintWriter out, Iterator<Entry<String, Integer>> it1, LinkedHashMap<String, Integer> otherRank, HashSet<String> alreadyDone, String titles) {
-        Entry<String, Integer> entry1 = it1.hasNext() ? it1.next() : null;
+	private static Entry<String, Integer> writeItem(PrintWriter out, Iterator<Entry<String, Integer>> it1, LinkedHashMap<String, Integer> otherRank, HashSet<String> alreadyDone, String titles) {
+		final Entry<String, Integer> entry1 = it1.hasNext() ? it1.next() : null;
 
-        if (entry1 != null) {
-            String item1 = entry1.getKey();
-            if (!alreadyDone.contains(item1)) {
-                Integer otherValue = otherRank.get(item1);
-                out.println(item1 
-                        + "\t" + titles.charAt(0) + "\t" + entry1.getValue() 
-                        + "\t" + titles.charAt(1) + "\t" + (otherValue == null ? "-" : otherValue.toString()));
-                alreadyDone.add(item1);
-            }
-        }
-        return entry1;
-    }
+		if (entry1 != null) {
+			final String item1 = entry1.getKey();
+			if (!alreadyDone.contains(item1)) {
+				final Integer otherValue = otherRank.get(item1);
+				out.println(item1
+						+ "\t" + titles.charAt(0) + "\t" + entry1.getValue()
+						+ "\t" + titles.charAt(1) + "\t" + (otherValue == null ? "-" : otherValue.toString()));
+				alreadyDone.add(item1);
+			}
+		}
+		return entry1;
+	}
 
-    private static LinkedHashMap<String, Integer> getFilteredList(String locale) {
-        Counter<Integer> counter1 = CharacterFrequency.getCodePointCounter(locale, true);
-        LinkedHashMap<String,Integer> list1 = new LinkedHashMap<String,Integer>();
-        int rank = 0;
-        for (Integer item : counter1.getKeysetSortedByCount(false)) {
-            if (HAN.contains(item)) {
-                list1.put(UTF16.valueOf(item), ++rank);
-            }
-        }
-        return list1;
-    }
+	private static LinkedHashMap<String, Integer> getFilteredList(String locale) {
+		final Counter<Integer> counter1 = CharacterFrequency.getCodePointCounter(locale, true);
+		final LinkedHashMap<String,Integer> list1 = new LinkedHashMap<String,Integer>();
+		int rank = 0;
+		for (final Integer item : counter1.getKeysetSortedByCount(false)) {
+			if (HAN.contains(item)) {
+				list1.put(UTF16.valueOf(item), ++rank);
+			}
+		}
+		return list1;
+	}
 
-    private static void show(String locale) {
-        System.out.println("Writing:\t" + locale);
-        PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(UCD_Types.GEN_DIR + "/hanfrequency", 
-                locale + ".txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
-        Counter<Integer> counter = CharacterFrequency.getCodePointCounter(locale, true);
-        long total = 0;
-        for (Integer item : counter) {
-            if (!HAN.contains(item)) {
-                continue;
-            }
-            total += counter.get(item);
-        }
-        long countLimit = (long)(total * 0.999995d);
-        UnicodeSet currentSet = new UnicodeSet();
-        int setCount = 0;
-        long runningTotal = 0;
-        int chunkLimit = 1000;
-        for (Integer item : counter.getKeysetSortedByCount(false)) {
-            if (!HAN.contains(item)) {
-                continue;
-            }
-            long count = counter.get(item);
-            runningTotal += count;
-            currentSet.add(item);
-            if (currentSet.size() >= chunkLimit) {
-                setCount += currentSet.size();
-                out.println(setCount + "\t" + (runningTotal/(double)total) + "\t" + currentSet.toPattern(false));
-                out.flush();
-                System.out.print(".");
-                currentSet.clear();
-            }
-            if (runningTotal > countLimit) break;
-        }
-        System.out.println();
-        out.close();
-    }
+	private static void show(String locale) {
+		System.out.println("Writing:\t" + locale);
+		final PrintWriter out = org.unicode.text.utility.Utility.openPrintWriter(UCD_Types.GEN_DIR + "/hanfrequency",
+				locale + ".txt", org.unicode.text.utility.Utility.UTF8_WINDOWS);
+		final Counter<Integer> counter = CharacterFrequency.getCodePointCounter(locale, true);
+		long total = 0;
+		for (final Integer item : counter) {
+			if (!HAN.contains(item)) {
+				continue;
+			}
+			total += counter.get(item);
+		}
+		final long countLimit = (long)(total * 0.999995d);
+		final UnicodeSet currentSet = new UnicodeSet();
+		int setCount = 0;
+		long runningTotal = 0;
+		final int chunkLimit = 1000;
+		for (final Integer item : counter.getKeysetSortedByCount(false)) {
+			if (!HAN.contains(item)) {
+				continue;
+			}
+			final long count = counter.get(item);
+			runningTotal += count;
+			currentSet.add(item);
+			if (currentSet.size() >= chunkLimit) {
+				setCount += currentSet.size();
+				out.println(setCount + "\t" + (runningTotal/(double)total) + "\t" + currentSet.toPattern(false));
+				out.flush();
+				System.out.print(".");
+				currentSet.clear();
+			}
+			if (runningTotal > countLimit) {
+				break;
+			}
+		}
+		System.out.println();
+		out.close();
+	}
 }
