@@ -29,7 +29,10 @@ public class CheckXmlProperties {
 
 		System.out.println("Loading XML Props");
 		timer.start();
-		final XMLProperties props = new XMLProperties(Utility.UCD_DIRECTORY, INCLUDE_UNIHAN, MAX_LINE_COUNT);
+		final XMLProperties props = new XMLProperties(
+				"/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/ucdxml/",
+				//Utility.UCD_DIRECTORY, 
+				INCLUDE_UNIHAN, MAX_LINE_COUNT);
 		timer.stop();
 		System.out.println(timer);
 
