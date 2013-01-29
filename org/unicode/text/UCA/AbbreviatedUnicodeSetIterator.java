@@ -16,37 +16,37 @@ import com.ibm.icu.text.UnicodeSetIterator;
 
 public class AbbreviatedUnicodeSetIterator extends UnicodeSetIterator {
 
-	private boolean abbreviated;
-	private int perRange;
+    private boolean abbreviated;
+    private int perRange;
 
-	public AbbreviatedUnicodeSetIterator() {
-		super();
-		abbreviated = false;
-	}
+    public AbbreviatedUnicodeSetIterator() {
+        super();
+        abbreviated = false;
+    }
 
-	@Override
-	public void reset(UnicodeSet newSet) {
-		reset(newSet, false);
-	}
+    @Override
+    public void reset(UnicodeSet newSet) {
+        reset(newSet, false);
+    }
 
-	public void reset(UnicodeSet newSet, boolean abb) {
-		reset(newSet, abb, 100);
-	}
+    public void reset(UnicodeSet newSet, boolean abb) {
+        reset(newSet, abb, 100);
+    }
 
-	public void reset(UnicodeSet newSet, boolean abb, int density) {
-		super.reset(newSet);
-		abbreviated = abb;
-		perRange = newSet.getRangeCount();
-		if (perRange != 0) {
-			perRange = density / perRange;
-		}
-	}
+    public void reset(UnicodeSet newSet, boolean abb, int density) {
+        super.reset(newSet);
+        abbreviated = abb;
+        perRange = newSet.getRangeCount();
+        if (perRange != 0) {
+            perRange = density / perRange;
+        }
+    }
 
-	@Override
-	protected void loadRange(int myRange) {
-		super.loadRange(myRange);
-		if (abbreviated && (endElement > nextElement + perRange)) {
-			endElement = nextElement + perRange;
-		}
-	}
+    @Override
+    protected void loadRange(int myRange) {
+        super.loadRange(myRange);
+        if (abbreviated && (endElement > nextElement + perRange)) {
+            endElement = nextElement + perRange;
+        }
+    }
 }

@@ -14,16 +14,16 @@ package org.unicode.text.utility;
 import java.util.Comparator;
 
 public final class LengthFirstComparator implements Comparator {
-	@Override
-	public int compare(Object a, Object b) {
-		final String as = (String) a;
-		final String bs = (String) b;
-		if (as.length() < bs.length()) {
-			return -1;
-		}
-		if (as.length() > bs.length()) {
-			return 1;
-		}
-		return as.compareTo(bs);
-	}
+    @Override
+    public int compare(Object a, Object b) {
+        final String as = (String) a;
+        final String bs = (String) b;
+        if (as.length() < bs.length()) {
+            return -1;
+        }
+        if (as.length() > bs.length()) {
+            return 1;
+        }
+        return as.compareTo(bs);
+    }
 }

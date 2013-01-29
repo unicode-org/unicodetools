@@ -11,72 +11,72 @@ import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.util.ULocale;
 
 public class MessageFormatCheck extends TestFmwk {
-	private static final long
-	SECOND = 1000L,
-	MINUTE = 60*SECOND,
-	HOUR = 60*MINUTE,
-	DAY = 24*HOUR,
-	MONTH = 31*DAY,
-	YEAR = 12*DAY;
-	private MessageFormat format;
-	private HashMap args;
+    private static final long
+    SECOND = 1000L,
+    MINUTE = 60*SECOND,
+    HOUR = 60*MINUTE,
+    DAY = 24*HOUR,
+    MONTH = 31*DAY,
+    YEAR = 12*DAY;
+    private MessageFormat format;
+    private HashMap args;
 
-	public static void main(String[] args) {
-		new MessageFormatCheck().run(args);
-	}
+    public static void main(String[] args) {
+        new MessageFormatCheck().run(args);
+    }
 
-	@Override
-	protected void init() throws Exception {
-		format = new MessageFormat("The directory {directory} contains {file_count,number,#,##0.0}KB.");
-		args = new HashMap();
-		args.put("directory", "foo/bar/");
-		args.put("file_count", 3.4567d);
-	}
+    @Override
+    protected void init() throws Exception {
+        format = new MessageFormat("The directory {directory} contains {file_count,number,#,##0.0}KB.");
+        args = new HashMap();
+        args.put("directory", "foo/bar/");
+        args.put("file_count", 3.4567d);
+    }
 
-	public void TestDuration() {
-		final DurationFormat durationFormat = DurationFormat.getInstance(ULocale.FRANCE);
-		final long now = new Date().getTime();
-		for (final long duration : new Long[]{2L, 2*SECOND, 2*MINUTE, 2*HOUR, 2*DAY, 2*MONTH, 2*YEAR}) {
-			System.out.println();
-			System.out.println("formatDurationFrom: " + durationFormat.formatDurationFrom(duration, now));
-			System.out.println("formatDurationFromNowTo: " + durationFormat.formatDurationFromNowTo(new Date(now+duration)));
-			System.out.println("formatDurationFromNow: " + durationFormat.formatDurationFromNow(duration));
-			System.out.println("format: " + durationFormat.format(duration));
-		}
-	}
+    public void TestDuration() {
+        final DurationFormat durationFormat = DurationFormat.getInstance(ULocale.FRANCE);
+        final long now = new Date().getTime();
+        for (final long duration : new Long[]{2L, 2*SECOND, 2*MINUTE, 2*HOUR, 2*DAY, 2*MONTH, 2*YEAR}) {
+            System.out.println();
+            System.out.println("formatDurationFrom: " + durationFormat.formatDurationFrom(duration, now));
+            System.out.println("formatDurationFromNowTo: " + durationFormat.formatDurationFromNowTo(new Date(now+duration)));
+            System.out.println("formatDurationFromNow: " + durationFormat.formatDurationFromNow(duration));
+            System.out.println("format: " + durationFormat.format(duration));
+        }
+    }
 
-	public void TestSettingFormats() {
-		final MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0}.");
-		assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(new Object[]{new Double(1.2345)}));
-	}
+    public void TestSettingFormats() {
+        final MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0}.");
+        assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(new Object[]{new Double(1.2345)}));
+    }
 
-	public void TestNamedArguments() {
-		assertEquals("Basic test", "The directory foo/bar/ contains 3.5KB.", format.format(args));
-		// the following failed on ICU 3.8
-		format.setFormatByArgumentName("file_count", NumberFormat.getIntegerInstance(ULocale.FRENCH));
-		assertEquals("Resetting format", "The directory foo/bar/ contains 3KB.", format.format(args));
-	}
+    public void TestNamedArguments() {
+        assertEquals("Basic test", "The directory foo/bar/ contains 3.5KB.", format.format(args));
+        // the following failed on ICU 3.8
+        format.setFormatByArgumentName("file_count", NumberFormat.getIntegerInstance(ULocale.FRENCH));
+        assertEquals("Resetting format", "The directory foo/bar/ contains 3KB.", format.format(args));
+    }
 
-	public void TestGetFormats() {
-		final Format[] formats = format.getFormatsByArgumentIndex();
-		System.out.println(Arrays.asList(formats));
-	}
+    public void TestGetFormats() {
+        final Format[] formats = format.getFormatsByArgumentIndex();
+        System.out.println(Arrays.asList(formats));
+    }
 
-	public void TestNicerSyntax() {
-		final MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0} with {1}.");
-		assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(1.2345, "abcd"));
-		assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(new Object[]{1.2345, "abcd"}));
-		final Entry foo;
+    public void TestNicerSyntax() {
+        final MessageFormat format2 = new MessageFormat("The number {0} is formatted as {0,number,#,##0.0} with {1}.");
+        assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(1.2345, "abcd"));
+        assertEquals("Resetting format", "The number 1.234 is formatted as 1.2.", format2.format(new Object[]{1.2345, "abcd"}));
+        final Entry foo;
 
-		// with named entries
-		format = new MessageFormat("The directory {directory} contains {file_count,number,#,##0.0}KB.");
-		//format.format(new Args().add("directory", "foo/bar/").add("file_count", 3.4567d));
+        // with named entries
+        format = new MessageFormat("The directory {directory} contains {file_count,number,#,##0.0}KB.");
+        //format.format(new Args().add("directory", "foo/bar/").add("file_count", 3.4567d));
 
-		MessageFormat.format("The directory {0} contains {1,number,#,##0.0}KB.", "foo/bar", 3.145);
-	}
+        MessageFormat.format("The directory {0} contains {1,number,#,##0.0}KB.", "foo/bar", 3.145);
+    }
 
 
-	/*
+    /*
 Problems:
 
 1. The following methods should be deprecated: they will fail if the string is localized and elements are rearranged.
@@ -147,5 +147,5 @@ To do that, we could just define in MessageFormat:
     }
   }
 
-	 */
+     */
 }
