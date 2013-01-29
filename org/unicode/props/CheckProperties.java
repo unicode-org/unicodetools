@@ -90,12 +90,13 @@ public class CheckProperties {
 		}
 
 		final Timer total = new Timer();
-		final IndexUnicodeProperties last = IndexUnicodeProperties.make(version);
-		final UnicodeMap<String> gcLast = showValue(last, UcdProperty.General_Category, '\u00A7');
 		//        showValue(last, UcdProperty.kMandarin, '\u5427');
 		//        showValue(last, UcdProperty.General_Category, '\u5427');
 
-		latest = IndexUnicodeProperties.make(Default.ucdVersion());
+		latest = IndexUnicodeProperties.make(version);
+		final IndexUnicodeProperties last = IndexUnicodeProperties.make(Utility.getPreviousUcdVersion(version));
+		final UnicodeMap<String> gcLast = showValue(last, UcdProperty.General_Category, '\u00A7');
+		
 		//        showValue(latest, UcdProperty.General_Category, '\u00A7');
 		//        showValue(latest, UcdProperty.kMandarin, '\u5427');
 
