@@ -742,9 +742,9 @@ public class FractionalUCA {
 
                     final int secTer = getFractionalSecAndTer(props, sec, ter);
                     final int ns = secTer >>> 16;
-        final int nt = secTer & 0xffff;
+                    final int nt = secTer & 0xffff;
 
-        fractionalStatistics.printAndRecordCodePoint(false, chr, implicitCodePoint, ns, nt, null);
+                    fractionalStatistics.printAndRecordCodePoint(false, chr, implicitCodePoint, ns, nt, null);
                 } else {
                     // pri is a non-implicit UCA primary.
                     if (isFirst) { // only look at first one
@@ -829,6 +829,9 @@ public class FractionalUCA {
             lastChr = chr;
         }
 
+        fractionalLog.println();
+        fractionalStatistics.printAndRecord(true, "\uFDD1\uFDD1",
+                Fractional.IMPLICIT_MAX_BYTE << 16, 5, 5, "# unassigned first primary");
         fractionalLog.println();
         fractionalLog.println("# SPECIAL MAX/MIN COLLATION ELEMENTS");
         fractionalLog.println();
