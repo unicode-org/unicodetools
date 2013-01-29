@@ -94,7 +94,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
 	public final static String FIELD_SEPARATOR = "; ";
 	public final static Pattern TAB = Pattern.compile("[ ]*\t[ ]*");
-	static final boolean SHOW_PROP_INFO = true;
 	private static final boolean SHOW_LOADED = false;
 	static final Relation<UcdProperty,String> DATA_LOADING_ERRORS
 	= Relation.of(new EnumMap<UcdProperty,Set<String>>(UcdProperty.class), LinkedHashSet.class);
@@ -709,7 +708,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
 	private IndexUnicodeProperties(String ucdVersion2) {
 		ucdVersion = ucdVersion2;
-		oldVersion = ucdVersion2.compareTo("6.2.0") < 0;
+		oldVersion = ucdVersion2.compareTo("6.3.0") < 0;
 	}
 
 	public static final IndexUnicodeProperties make(String ucdVersion) {

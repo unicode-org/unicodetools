@@ -49,7 +49,7 @@ public class CheckProperties {
 	static LinkedHashSet<String> SKIPPING = new LinkedHashSet<String>();
 	static LinkedHashSet<String> NOT_IN_ICU = new LinkedHashSet<String>();
 
-	enum Action {SHOW, COMPARE, ICU, EMPTY, INFO, SPACES, DETAILS, DEFAULTS, JSON}
+	enum Action {SHOW, COMPARE, ICU, EMPTY, INFO, SPACES, DETAILS, DEFAULTS, JSON, NAMES}
 	enum Extent {SOME, ALL}
 
 	static IndexUnicodeProperties latest;
@@ -58,6 +58,7 @@ public class CheckProperties {
 		EnumSet<Action> actions = EnumSet.noneOf(Action.class);
 		final EnumSet<UcdProperty> properties = EnumSet.noneOf(UcdProperty.class);
 		Extent extent = null;
+		String version = null;
 
 		for (final String arg : args) {
 			try {
@@ -72,6 +73,10 @@ public class CheckProperties {
 				properties.add(UcdProperty.forString(arg));
 				continue;
 			} catch (final Exception e) {}
+			if (arg.matches("\\d+\\.\\d+\\.\\d+")) {
+				version = arg;
+				continue;
+			}
 			throw new IllegalArgumentException("Illegal Argument: " + arg);
 		}
 		if (actions.size() == 0) {
@@ -80,15 +85,12 @@ public class CheckProperties {
 		if (extent == null) {
 			extent = Extent.ALL;
 		}
-
+		if (version == null) {
+			version = LAST_RELEASE;
+		}
 
 		final Timer total = new Timer();
-		for (final Entry<String, PropertyParsingInfo> entry : IndexUnicodeProperties.getFile2PropertyInfoSet().keyValueSet()) {
-			if (IndexUnicodeProperties.SHOW_PROP_INFO) {
-				System.out.println(entry.getKey() + " ; " + entry.getValue());
-			}
-		}
-		final IndexUnicodeProperties last = IndexUnicodeProperties.make(LAST_RELEASE);
+		final IndexUnicodeProperties last = IndexUnicodeProperties.make(version);
 		final UnicodeMap<String> gcLast = showValue(last, UcdProperty.General_Category, '\u00A7');
 		//        showValue(last, UcdProperty.kMandarin, '\u5427');
 		//        showValue(last, UcdProperty.General_Category, '\u5427');
@@ -131,6 +133,11 @@ public class CheckProperties {
 						);
 		for (final Action action : actions) {
 			switch(action) {
+			case NAMES:
+				for (final Entry<String, PropertyParsingInfo> entry : IndexUnicodeProperties.getFile2PropertyInfoSet().keyValueSet()) {
+					System.out.println(entry.getKey() + " ; " + entry.getValue());
+				}
+				break;
 			case SHOW:
 				for (final UcdProperty prop : values) {
 					show(latest, prop, actions.contains(Action.SPACES), false);
@@ -442,6 +449,13 @@ public class CheckProperties {
 	}
 
 	private static void compareICU(UcdProperty prop, IndexUnicodeProperties direct, Set<String> summary) {
+		PropertyNames<UcdProperty> names = prop.getNames();
+
+		if (prop == UcdProperty.Unicode_1_Name) {
+			NOT_IN_ICU.add(prop.toString());
+			return;
+		}
+
 		final ICUPropertyFactory propFactory = ICUPropertyFactory.make();
 		final UnicodeProperty icuProp = propFactory.getProperty(prop.toString());
 		if (icuProp == null) {
@@ -449,6 +463,10 @@ public class CheckProperties {
 			return;
 		}
 		final UnicodeMap<String> icuMap = icuProp.getUnicodeMap();
+		if (prop == UcdProperty.Numeric_Value) {
+			icuMap.setMissing("NaN");
+		}
+
 		final UnicodeMap<String> directMap = direct.load(prop);
 		showChanges(prop, new UnicodeSet("[^[:cn:][:co:][:cs:]]"), null, icuMap, direct, directMap, summary);
 	}
