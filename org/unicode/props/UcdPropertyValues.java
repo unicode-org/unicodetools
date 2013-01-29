@@ -12,7 +12,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Age_Values {
+    public enum Age_Values {
         V1_1("1.1"),
         V2_0("2.0"),
         V2_1("2.1"),
@@ -37,7 +37,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Bidi_Class_Values {
+    public enum Bidi_Class_Values {
         Arabic_Letter("AL"),
         Arabic_Number("AN"),
         Paragraph_Separator("B"),
@@ -66,8 +66,8 @@ public class UcdPropertyValues {
         }
     }
 
-		// Bidi_Mirroring_Glyph
-	public enum Block_Values {
+    // Bidi_Mirroring_Glyph
+    public enum Block_Values {
         Aegean_Numbers("Aegean_Numbers"),
         Alchemical_Symbols("Alchemical"),
         Alphabetic_Presentation_Forms("Alphabetic_PF"),
@@ -298,8 +298,8 @@ public class UcdPropertyValues {
         }
     }
 
-		// CJK_Radical
-	public enum Canonical_Combining_Class_Values {
+    // CJK_Radical
+    public enum Canonical_Combining_Class_Values {
         Not_Reordered("0", "NR"),
         Overlay("1", "OV"),
         Nukta("7", "NK"),
@@ -366,9 +366,9 @@ public class UcdPropertyValues {
         }
     }
 
-		// Case_Folding
-		// Decomposition_Mapping
-	public enum Decomposition_Type_Values {
+    // Case_Folding
+    // Decomposition_Mapping
+    public enum Decomposition_Type_Values {
         Canonical("Can", "can"),
         Compat("Com", "com"),
         Circle("Enc", "enc"),
@@ -396,7 +396,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum East_Asian_Width_Values {
+    public enum East_Asian_Width_Values {
         Ambiguous("A"),
         Fullwidth("F"),
         Halfwidth("H"),
@@ -412,11 +412,11 @@ public class UcdPropertyValues {
         }
     }
 
-		// Emoji_DCM
-		// Emoji_KDDI
-		// Emoji_SB
-		// FC_NFKC_Closure
-	public enum General_Category_Values {
+    // Emoji_DCM
+    // Emoji_KDDI
+    // Emoji_SB
+    // FC_NFKC_Closure
+    public enum General_Category_Values {
         Other("C"),
         Control("Cc", "cntrl"),
         Format("Cf"),
@@ -464,7 +464,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Grapheme_Cluster_Break_Values {
+    public enum Grapheme_Cluster_Break_Values {
         Control("CN"),
         CR("CR"),
         Extend("EX"),
@@ -487,7 +487,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Hangul_Syllable_Type_Values {
+    public enum Hangul_Syllable_Type_Values {
         Leading_Jamo("L"),
         LV_Syllable("LV"),
         LVT_Syllable("LVT"),
@@ -503,8 +503,8 @@ public class UcdPropertyValues {
         }
     }
 
-		// ISO_Comment
-	public enum Indic_Matra_Category_Values {
+    // ISO_Comment
+    public enum Indic_Matra_Category_Values {
         Bottom("Bottom"),
         Bottom_And_Right("Bottom_And_Right"),
         Invisible("Invisible"),
@@ -529,7 +529,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Indic_Syllabic_Category_Values {
+    public enum Indic_Syllabic_Category_Values {
         Avagraha("Avagraha"),
         Bindu("Bindu"),
         Consonant("Consonant"),
@@ -560,7 +560,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Jamo_Short_Name_Values {
+    public enum Jamo_Short_Name_Values {
         A("A"),
         AE("AE"),
         B("B"),
@@ -622,7 +622,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Joining_Group_Values {
+    public enum Joining_Group_Values {
         Ain("Ain"),
         Alaph("Alaph"),
         Alef("Alef"),
@@ -690,7 +690,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Joining_Type_Values {
+    public enum Joining_Type_Values {
         Join_Causing("C"),
         Dual_Joining("D"),
         Left_Joining("L"),
@@ -706,7 +706,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Line_Break_Values {
+    public enum Line_Break_Values {
         Ambiguous("AI"),
         Alphabetic("AL"),
         Break_Both("B2"),
@@ -756,8 +756,8 @@ public class UcdPropertyValues {
         }
     }
 
-		// Lowercase_Mapping
-	public enum NFC_Quick_Check_Values {
+    // Lowercase_Mapping
+    public enum NFC_Quick_Check_Values {
         Maybe("M"),
         No("N"),
         Yes("Y");
@@ -770,7 +770,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum NFD_Quick_Check_Values {
+    public enum NFD_Quick_Check_Values {
         No("N"),
         Yes("Y");
         private final PropertyNames<NFD_Quick_Check_Values> names;
@@ -782,8 +782,8 @@ public class UcdPropertyValues {
         }
     }
 
-		// NFKC_Casefold
-	public enum NFKC_Quick_Check_Values {
+    // NFKC_Casefold
+    public enum NFKC_Quick_Check_Values {
         Maybe("M"),
         No("N"),
         Yes("Y");
@@ -796,7 +796,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum NFKD_Quick_Check_Values {
+    public enum NFKD_Quick_Check_Values {
         No("N"),
         Yes("Y");
         private final PropertyNames<NFKD_Quick_Check_Values> names;
@@ -808,11 +808,11 @@ public class UcdPropertyValues {
         }
     }
 
-		// Name
-		// Name_Alias
-		// Named_Sequences
-		// Named_Sequences_Prov
-	public enum Numeric_Type_Values {
+    // Name
+    // Name_Alias
+    // Named_Sequences
+    // Named_Sequences_Prov
+    public enum Numeric_Type_Values {
         Decimal("De"),
         Digit("Di"),
         None("None"),
@@ -826,8 +826,8 @@ public class UcdPropertyValues {
         }
     }
 
-		// Numeric_Value
-	public enum Script_Values {
+    // Numeric_Value
+    public enum Script_Values {
         Arabic("Arab"),
         Imperial_Aramaic("Armi"),
         Armenian("Armn"),
@@ -941,8 +941,8 @@ public class UcdPropertyValues {
         }
     }
 
-		// Script_Extensions
-	public enum Sentence_Break_Values {
+    // Script_Extensions
+    public enum Sentence_Break_Values {
         ATerm("AT"),
         Close("CL"),
         CR("CR"),
@@ -967,15 +967,15 @@ public class UcdPropertyValues {
         }
     }
 
-		// Simple_Case_Folding
-		// Simple_Lowercase_Mapping
-		// Simple_Titlecase_Mapping
-		// Simple_Uppercase_Mapping
-		// Standardized_Variant
-		// Titlecase_Mapping
-		// Unicode_1_Name
-		// Uppercase_Mapping
-	public enum Word_Break_Values {
+    // Simple_Case_Folding
+    // Simple_Lowercase_Mapping
+    // Simple_Titlecase_Mapping
+    // Simple_Uppercase_Mapping
+    // Standardized_Variant
+    // Titlecase_Mapping
+    // Unicode_1_Name
+    // Uppercase_Mapping
+    public enum Word_Break_Values {
         CR("CR"),
         ExtendNumLet("EX"),
         Extend("Extend"),
@@ -999,95 +999,95 @@ public class UcdPropertyValues {
         }
     }
 
-		// kAccountingNumeric
-		// kBigFive
-		// kCCCII
-		// kCNS1986
-		// kCNS1992
-		// kCangjie
-		// kCantonese
-		// kCheungBauer
-		// kCheungBauerIndex
-		// kCihaiT
-		// kCompatibilityVariant
-		// kCowles
-		// kDaeJaweon
-		// kDefinition
-		// kEACC
-		// kFenn
-		// kFennIndex
-		// kFourCornerCode
-		// kFrequency
-		// kGB0
-		// kGB1
-		// kGB3
-		// kGB5
-		// kGB7
-		// kGB8
-		// kGSR
-		// kGradeLevel
-		// kHDZRadBreak
-		// kHKGlyph
-		// kHKSCS
-		// kHanYu
-		// kHangul
-		// kHanyuPinlu
-		// kHanyuPinyin
-		// kIBMJapan
-		// kIICore
-		// kIRGDaeJaweon
-		// kIRGDaiKanwaZiten
-		// kIRGHanyuDaZidian
-		// kIRGKangXi
-		// kIRG_GSource
-		// kIRG_HSource
-		// kIRG_JSource
-		// kIRG_KPSource
-		// kIRG_KSource
-		// kIRG_MSource
-		// kIRG_TSource
-		// kIRG_USource
-		// kIRG_VSource
-		// kJIS0213
-		// kJapaneseKun
-		// kJapaneseOn
-		// kJis0
-		// kJis1
-		// kKPS0
-		// kKPS1
-		// kKSC0
-		// kKSC1
-		// kKangXi
-		// kKarlgren
-		// kKorean
-		// kLau
-		// kMainlandTelegraph
-		// kMandarin
-		// kMatthews
-		// kMeyerWempe
-		// kMorohashi
-		// kNelson
-		// kOtherNumeric
-		// kPhonetic
-		// kPrimaryNumeric
-		// kPseudoGB1
-		// kRSAdobe_Japan1_6
-		// kRSJapanese
-		// kRSKanWa
-		// kRSKangXi
-		// kRSKorean
-		// kRSUnicode
-		// kSBGY
-		// kSemanticVariant
-		// kSimplifiedVariant
-		// kSpecializedSemanticVariant
-		// kTaiwanTelegraph
-		// kTang
-		// kTotalStrokes
-		// kTraditionalVariant
-		// kVietnamese
-		// kXHC1983
-		// kXerox
-		// kZVariant
+    // kAccountingNumeric
+    // kBigFive
+    // kCCCII
+    // kCNS1986
+    // kCNS1992
+    // kCangjie
+    // kCantonese
+    // kCheungBauer
+    // kCheungBauerIndex
+    // kCihaiT
+    // kCompatibilityVariant
+    // kCowles
+    // kDaeJaweon
+    // kDefinition
+    // kEACC
+    // kFenn
+    // kFennIndex
+    // kFourCornerCode
+    // kFrequency
+    // kGB0
+    // kGB1
+    // kGB3
+    // kGB5
+    // kGB7
+    // kGB8
+    // kGSR
+    // kGradeLevel
+    // kHDZRadBreak
+    // kHKGlyph
+    // kHKSCS
+    // kHanYu
+    // kHangul
+    // kHanyuPinlu
+    // kHanyuPinyin
+    // kIBMJapan
+    // kIICore
+    // kIRGDaeJaweon
+    // kIRGDaiKanwaZiten
+    // kIRGHanyuDaZidian
+    // kIRGKangXi
+    // kIRG_GSource
+    // kIRG_HSource
+    // kIRG_JSource
+    // kIRG_KPSource
+    // kIRG_KSource
+    // kIRG_MSource
+    // kIRG_TSource
+    // kIRG_USource
+    // kIRG_VSource
+    // kJIS0213
+    // kJapaneseKun
+    // kJapaneseOn
+    // kJis0
+    // kJis1
+    // kKPS0
+    // kKPS1
+    // kKSC0
+    // kKSC1
+    // kKangXi
+    // kKarlgren
+    // kKorean
+    // kLau
+    // kMainlandTelegraph
+    // kMandarin
+    // kMatthews
+    // kMeyerWempe
+    // kMorohashi
+    // kNelson
+    // kOtherNumeric
+    // kPhonetic
+    // kPrimaryNumeric
+    // kPseudoGB1
+    // kRSAdobe_Japan1_6
+    // kRSJapanese
+    // kRSKanWa
+    // kRSKangXi
+    // kRSKorean
+    // kRSUnicode
+    // kSBGY
+    // kSemanticVariant
+    // kSimplifiedVariant
+    // kSpecializedSemanticVariant
+    // kTaiwanTelegraph
+    // kTang
+    // kTotalStrokes
+    // kTraditionalVariant
+    // kVietnamese
+    // kXHC1983
+    // kXerox
+    // kZVariant
 
 }

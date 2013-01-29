@@ -17,7 +17,7 @@ import org.unicode.text.UCD.UCD_Types;
 
 public class WriteHTMLCollation implements UCD_Types {
 
-	/*    public static final String copyright =
+    /*    public static final String copyright =
       "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
 
     static final boolean EXCLUDE_UNSUPPORTED = true;
@@ -267,9 +267,9 @@ public class WriteHTMLCollation implements UCD_Types {
         sortedD.put(colDbase, s);
     }
 
-	 *//**
-	 * Check that the primaries are the same as the compatibility decomposition.
-	 *//*
+     *//**
+     * Check that the primaries are the same as the compatibility decomposition.
+     *//*
     static void checkBadDecomps(int strength, boolean decomposition) {
         int oldStrength = collator.getStrength();
         collator.setStrength(strength);
@@ -2126,5 +2126,5 @@ A4C6;YI RADICAL KE;So;0;ON;;;;;N;;;;;
         return 0x100000;
     }
 
-	  */
+      */
 }

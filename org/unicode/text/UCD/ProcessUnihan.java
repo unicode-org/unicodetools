@@ -14,7 +14,7 @@ package org.unicode.text.UCD;
 // stub file, ignore
 
 public final class ProcessUnihan {
-	/*
+    /*
 
     static final boolean TESTING = false;
     static int type;
@@ -65,6 +65,6 @@ public final class ProcessUnihan {
             if (tags.containsKey(tag)) {}
         }
     }
-	 */
+     */
 }
 

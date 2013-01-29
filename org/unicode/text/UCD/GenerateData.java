@@ -28,7 +28,7 @@ import com.ibm.icu.text.UTF16;
 
 public class GenerateData implements UCD_Types {
 
-	/*   static final boolean DEBUG = false;
+    /*   static final boolean DEBUG = false;
 
     static final String HORIZONTAL_LINE = "# ================================================";
 
@@ -745,199 +745,199 @@ public class GenerateData implements UCD_Types {
         System.out.println();
     }
 
-	 */
-	static public void writeNormalizerTestSuite(String directory, String fileName) throws IOException {
+     */
+    static public void writeNormalizerTestSuite(String directory, String fileName) throws IOException {
 
-		final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, fileName).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
-		final PrintWriter log = fc.out;
+        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, fileName).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        final PrintWriter log = fc.out;
 
-		final String newFile = directory + fileName + UnicodeDataFile.getFileSuffix(true);
-		//PrintWriter log = Utility.openPrintWriter(newFile, Utility.UTF8_UNIX);
-		//String[] batName = {""};
-		//String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, fileName, UnicodeDataFile.getFileSuffix(true), batName);
+        final String newFile = directory + fileName + UnicodeDataFile.getFileSuffix(true);
+        //PrintWriter log = Utility.openPrintWriter(newFile, Utility.UTF8_UNIX);
+        //String[] batName = {""};
+        //String mostRecent = org.unicode.cldr.util.Utility.generateBat(directory, fileName, UnicodeDataFile.getFileSuffix(true), batName);
 
-		final String[] example = new String[256];
+        final String[] example = new String[256];
 
-		//log.println("# " + fileName + UnicodeDataFile.getFileSuffix(false));
-		//log.println(UnicodeDataFile.generateDateLine());
-		//        log.println("#");
-		//        log.println("# Normalization Test Suite");
-		//        log.println("# Format:");
-		//        log.println("#");
-		//        log.println("#   Columns (c1, c2,...) are separated by semicolons");
-		//        log.println("#   Comments are indicated with hash marks");
-		//        log.println("#");
-		//        log.println("# CONFORMANCE:");
-		//        log.println("# 1. The following invariants must be true for all conformant implementations");
-		//        log.println("#");
-		//        log.println("#    NFC");
-		//        log.println("#      c2 ==  NFC(c1) ==  NFC(c2) ==  NFC(c3)");
-		//        log.println("#      c4 ==  NFC(c4) ==  NFC(c5)");
-		//        log.println("#");
-		//        log.println("#    NFD");
-		//        log.println("#      c3 ==  NFD(c1) ==  NFD(c2) ==  NFD(c3)");
-		//        log.println("#      c5 ==  NFD(c4) ==  NFD(c5)");
-		//        log.println("#");
-		//        log.println("#    NFKC");
-		//        log.println("#      c4 == NFKC(c1) == NFKC(c2) == NFKC(c3) == NFKC(c4) == NFKC(c5)");
-		//        log.println("#");
-		//        log.println("#    NFKD");
-		//        log.println("#      c5 == NFKD(c1) == NFKD(c2) == NFKD(c3) == NFKD(c4) == NFKD(c5)");
-		//        log.println("#");
-		//        log.println("# 2. For every code point X assigned in this version of Unicode that is not specifically");
-		//        log.println("#    listed in Part 1, the following invariants must be true for all conformant");
-		//        log.println("#    implementations:");
-		//        log.println("#");
-		//        log.println("#      X == NFC(X) == NFD(X) == NFKC(X) == NFKD(X)");
+        //log.println("# " + fileName + UnicodeDataFile.getFileSuffix(false));
+        //log.println(UnicodeDataFile.generateDateLine());
+        //        log.println("#");
+        //        log.println("# Normalization Test Suite");
+        //        log.println("# Format:");
+        //        log.println("#");
+        //        log.println("#   Columns (c1, c2,...) are separated by semicolons");
+        //        log.println("#   Comments are indicated with hash marks");
+        //        log.println("#");
+        //        log.println("# CONFORMANCE:");
+        //        log.println("# 1. The following invariants must be true for all conformant implementations");
+        //        log.println("#");
+        //        log.println("#    NFC");
+        //        log.println("#      c2 ==  NFC(c1) ==  NFC(c2) ==  NFC(c3)");
+        //        log.println("#      c4 ==  NFC(c4) ==  NFC(c5)");
+        //        log.println("#");
+        //        log.println("#    NFD");
+        //        log.println("#      c3 ==  NFD(c1) ==  NFD(c2) ==  NFD(c3)");
+        //        log.println("#      c5 ==  NFD(c4) ==  NFD(c5)");
+        //        log.println("#");
+        //        log.println("#    NFKC");
+        //        log.println("#      c4 == NFKC(c1) == NFKC(c2) == NFKC(c3) == NFKC(c4) == NFKC(c5)");
+        //        log.println("#");
+        //        log.println("#    NFKD");
+        //        log.println("#      c5 == NFKD(c1) == NFKD(c2) == NFKD(c3) == NFKD(c4) == NFKD(c5)");
+        //        log.println("#");
+        //        log.println("# 2. For every code point X assigned in this version of Unicode that is not specifically");
+        //        log.println("#    listed in Part 1, the following invariants must be true for all conformant");
+        //        log.println("#    implementations:");
+        //        log.println("#");
+        //        log.println("#      X == NFC(X) == NFD(X) == NFKC(X) == NFKD(X)");
 
-		System.out.println("Writing Part 1");
+        System.out.println("Writing Part 1");
 
-		//        log.println("#");
-		//        log.println("@Part0 # Specific cases");
-		//        log.println("#");
+        //        log.println("#");
+        //        log.println("@Part0 # Specific cases");
+        //        log.println("#");
 
-		for (final String testSuiteCase : testSuiteCases) {
-			writeLine(testSuiteCase, log, false);
-		}
+        for (final String testSuiteCase : testSuiteCases) {
+            writeLine(testSuiteCase, log, false);
+        }
 
-		System.out.println("Writing Part 2");
+        System.out.println("Writing Part 2");
 
-		log.println("#");
-		log.println("@Part1 # Character by character test");
-		log.println("# All characters not explicitly occurring in c1 of Part 1 have identical NFC, D, KC, KD forms.");
-		log.println("#");
+        log.println("#");
+        log.println("@Part1 # Character by character test");
+        log.println("# All characters not explicitly occurring in c1 of Part 1 have identical NFC, D, KC, KD forms.");
+        log.println("#");
 
-		for (int ch = 0; ch < 0x10FFFF; ++ch) {
-			Utility.dot(ch);
-			if (!Default.ucd().isAssigned(ch)) {
-				continue;
-			}
-			if (Default.ucd().isPUA(ch)) {
-				continue;
-			}
-			final String cc = UTF32.valueOf32(ch);
-			writeLine(cc,log, true);
-		}
-		Utility.fixDot();
+        for (int ch = 0; ch < 0x10FFFF; ++ch) {
+            Utility.dot(ch);
+            if (!Default.ucd().isAssigned(ch)) {
+                continue;
+            }
+            if (Default.ucd().isPUA(ch)) {
+                continue;
+            }
+            final String cc = UTF32.valueOf32(ch);
+            writeLine(cc,log, true);
+        }
+        Utility.fixDot();
 
-		System.out.println("Finding Examples");
+        System.out.println("Finding Examples");
 
-		for (int ch = 0; ch < 0x10FFFF; ++ch) {
-			Utility.dot(ch);
-			if (!Default.ucd().isAssigned(ch)) {
-				continue;
-			}
-			if (Default.ucd().isPUA(ch)) {
-				continue;
-			}
-			final int cc = Default.ucd().getCombiningClass(ch);
-			if (example[cc] == null) {
-				example[cc] = UTF32.valueOf32(ch);
-			}
-		}
+        for (int ch = 0; ch < 0x10FFFF; ++ch) {
+            Utility.dot(ch);
+            if (!Default.ucd().isAssigned(ch)) {
+                continue;
+            }
+            if (Default.ucd().isPUA(ch)) {
+                continue;
+            }
+            final int cc = Default.ucd().getCombiningClass(ch);
+            if (example[cc] == null) {
+                example[cc] = UTF32.valueOf32(ch);
+            }
+        }
 
-		Utility.fixDot();
-		System.out.println("Writing Part 2");
+        Utility.fixDot();
+        System.out.println("Writing Part 2");
 
-		log.println("#");
-		log.println("@Part2 # Canonical Order Test");
-		log.println("#");
+        log.println("#");
+        log.println("@Part2 # Canonical Order Test");
+        log.println("#");
 
-		for (int ch = 0; ch < 0x10FFFF; ++ch) {
+        for (int ch = 0; ch < 0x10FFFF; ++ch) {
 
-			Utility.dot(ch);
-			if (!Default.ucd().isAssigned(ch)) {
-				continue;
-			}
-			if (Default.ucd().isPUA(ch)) {
-				continue;
-			}
-			final short c = Default.ucd().getCombiningClass(ch);
-			if (c == 0) {
-				continue;
-			}
+            Utility.dot(ch);
+            if (!Default.ucd().isAssigned(ch)) {
+                continue;
+            }
+            if (Default.ucd().isPUA(ch)) {
+                continue;
+            }
+            final short c = Default.ucd().getCombiningClass(ch);
+            if (c == 0) {
+                continue;
+            }
 
-			// add character with higher class, same class, lower class
+            // add character with higher class, same class, lower class
 
-			String sample = "";
-			for (int i = c+1; i < example.length; ++i) {
-				if (example[i] == null) {
-					continue;
-				}
-				sample += example[i];
-				break;
-			}
-			sample += example[c];
-			for (int i = c-1; i > 0; --i) {
-				if (example[i] == null) {
-					continue;
-				}
-				sample += example[i];
-				break;
-			}
+            String sample = "";
+            for (int i = c+1; i < example.length; ++i) {
+                if (example[i] == null) {
+                    continue;
+                }
+                sample += example[i];
+                break;
+            }
+            sample += example[c];
+            for (int i = c-1; i > 0; --i) {
+                if (example[i] == null) {
+                    continue;
+                }
+                sample += example[i];
+                break;
+            }
 
-			writeLine("a" + sample + UTF32.valueOf32(ch) + "b", log, false);
-			writeLine("a" + UTF32.valueOf32(ch) + sample + "b", log, false);
-		}
+            writeLine("a" + sample + UTF32.valueOf32(ch) + "b", log, false);
+            writeLine("a" + UTF32.valueOf32(ch) + sample + "b", log, false);
+        }
 
-		System.out.println("Writing Part 3");
-		log.println("#");
-		log.println("@Part3 # PRI #29 Test");
-		log.println("#");
+        System.out.println("Writing Part 3");
+        log.println("#");
+        log.println("@Part3 # PRI #29 Test");
+        log.println("#");
 
-		final Set prilist = new TreeSet();
+        final Set prilist = new TreeSet();
 
-		for (int ch = 0; ch < 0x10FFFF; ++ch) {
-			Utility.dot(ch);
-			if (!Default.ucd().isAssigned(ch)) {
-				continue;
-			}
-			if (Default.ucd().isPUA(ch)) {
-				continue;
-			}
-			if (0xAC00 <= ch && ch <= 0xD7FF) { // skip most
-				if (((ch - 0xAC00) % 91) != 0) {
-					continue;
-				}
-			}
-			// also gather data for pri29 test
-			if (ch == 0x09CB) {
-				System.out.println("debug");
-			}
-			if (Default.ucd().getDecompositionType(ch) != CANONICAL) {
-				continue;
-			}
-			//if (!Default.nfc().isNormalized(ch)) continue;
-			final String s = Default.ucd().getDecompositionMapping(ch);
-			if (UTF16.hasMoreCodePointsThan(s, 2)) {
-				continue;
-			}
-			if (!UTF16.hasMoreCodePointsThan(s, 1)) {
-				continue;
-			}
-			final int c1 = UTF16.charAt(s, 0);
-			final int c2 = UTF16.charAt(s, UTF16.getCharCount(c1));
-			if (Default.ucd().getCombiningClass(c1) != 0) {
-				continue;
-			}
-			if (Default.ucd().getCombiningClass(c2) != 0) {
-				continue;
-			}
-			prilist.add(UTF16.valueOf(c1) + '\u0334' + UTF16.valueOf(c2));
-		}
-		Utility.fixDot();
+        for (int ch = 0; ch < 0x10FFFF; ++ch) {
+            Utility.dot(ch);
+            if (!Default.ucd().isAssigned(ch)) {
+                continue;
+            }
+            if (Default.ucd().isPUA(ch)) {
+                continue;
+            }
+            if (0xAC00 <= ch && ch <= 0xD7FF) { // skip most
+                if (((ch - 0xAC00) % 91) != 0) {
+                    continue;
+                }
+            }
+            // also gather data for pri29 test
+            if (ch == 0x09CB) {
+                System.out.println("debug");
+            }
+            if (Default.ucd().getDecompositionType(ch) != CANONICAL) {
+                continue;
+            }
+            //if (!Default.nfc().isNormalized(ch)) continue;
+            final String s = Default.ucd().getDecompositionMapping(ch);
+            if (UTF16.hasMoreCodePointsThan(s, 2)) {
+                continue;
+            }
+            if (!UTF16.hasMoreCodePointsThan(s, 1)) {
+                continue;
+            }
+            final int c1 = UTF16.charAt(s, 0);
+            final int c2 = UTF16.charAt(s, UTF16.getCharCount(c1));
+            if (Default.ucd().getCombiningClass(c1) != 0) {
+                continue;
+            }
+            if (Default.ucd().getCombiningClass(c2) != 0) {
+                continue;
+            }
+            prilist.add(UTF16.valueOf(c1) + '\u0334' + UTF16.valueOf(c2));
+        }
+        Utility.fixDot();
 
-		for (final Iterator it = prilist.iterator(); it.hasNext();) {
-			writeLine((String)it.next(),log, false);
-		}
+        for (final Iterator it = prilist.iterator(); it.hasNext();) {
+            writeLine((String)it.next(),log, false);
+        }
 
-		Utility.fixDot();
-		log.println("#");
-		log.println("# EOF");
-		fc.close();
-		//Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
-	}
-	/*
+        Utility.fixDot();
+        log.println("#");
+        log.println("# EOF");
+        fc.close();
+        //Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
+    }
+    /*
 
     static void handleIdentical() throws IOException {
         DirectoryIterator target = new DirectoryIterator(GEN_DIR + File.separator + "DerivedData");
@@ -957,78 +957,78 @@ public class GenerateData implements UCD_Types {
         }
     }
 
-	 */
-	static void writeLine(String cc, PrintWriter log, boolean check) {
-		final String c = Default.nfc().normalize(cc);
-		String d = Default.nfd().normalize(cc);
-		final String kc = Default.nfkc().normalize(cc);
-		final String kd = Default.nfkd().normalize(cc);
-		if (check & cc.equals(c) && cc.equals(d) && cc.equals(kc) && cc.equals(kd)) {
-			return;
-		}
+     */
+    static void writeLine(String cc, PrintWriter log, boolean check) {
+        final String c = Default.nfc().normalize(cc);
+        String d = Default.nfd().normalize(cc);
+        final String kc = Default.nfkc().normalize(cc);
+        final String kd = Default.nfkd().normalize(cc);
+        if (check & cc.equals(c) && cc.equals(d) && cc.equals(kc) && cc.equals(kd)) {
+            return;
+        }
 
-		// consistency check
-		final String dc = Default.nfd().normalize(c);
-		final String dkc = Default.nfd().normalize(kc);
-		if (!dc.equals(d) || !dkc.equals(kd)) {
-			System.out.println("Danger Will Robinson!");
-			Normalizer.SHOW_PROGRESS = true;
-			d = Default.nfd().normalize(cc);
-		}
+        // consistency check
+        final String dc = Default.nfd().normalize(c);
+        final String dkc = Default.nfd().normalize(kc);
+        if (!dc.equals(d) || !dkc.equals(kd)) {
+            System.out.println("Danger Will Robinson!");
+            Normalizer.SHOW_PROGRESS = true;
+            d = Default.nfd().normalize(cc);
+        }
 
-		// printout
-		log.println(
-				Utility.hex(cc," ") + ";" + Utility.hex(c," ") + ";" + Utility.hex(d," ") + ";"
-						+ Utility.hex(kc," ") + ";" + Utility.hex(kd," ")
-						+ "; # ("
-						+ comma(cc) + "; " + comma(c) + "; " + comma(d) + "; " + comma(kc) + "; " + comma(kd) + "; "
-						+ ") " + Default.ucd().getName(cc));
-	}
+        // printout
+        log.println(
+                Utility.hex(cc," ") + ";" + Utility.hex(c," ") + ";" + Utility.hex(d," ") + ";"
+                        + Utility.hex(kc," ") + ";" + Utility.hex(kd," ")
+                        + "; # ("
+                        + comma(cc) + "; " + comma(c) + "; " + comma(d) + "; " + comma(kc) + "; " + comma(kd) + "; "
+                        + ") " + Default.ucd().getName(cc));
+    }
 
-	static StringBuffer commaResult = new StringBuffer();
+    static StringBuffer commaResult = new StringBuffer();
 
-	// not recursive!!!
-	static final String comma(String s) {
-		//if (true) return s;
-		commaResult.setLength(0);
-		int cp;
-		for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
-			cp = UTF16.charAt(s, i);
-			if (Default.ucd().getCategory(cp) == Mn) {
-				commaResult.append('\u25CC');
-			}
-			UTF16.append(commaResult, cp);
-		}
-		return commaResult.toString();
-	}
+    // not recursive!!!
+    static final String comma(String s) {
+        //if (true) return s;
+        commaResult.setLength(0);
+        int cp;
+        for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
+            cp = UTF16.charAt(s, i);
+            if (Default.ucd().getCategory(cp) == Mn) {
+                commaResult.append('\u25CC');
+            }
+            UTF16.append(commaResult, cp);
+        }
+        return commaResult.toString();
+    }
 
-	static final String[] testSuiteCases = {
-		"\u1E0A",
-		"\u1E0C",
-		"\u1E0A\u0323",
-		"\u1E0C\u0307",
-		"D\u0307\u0323",
-		"D\u0323\u0307",
-		"\u1E0A\u031B",
-		"\u1E0C\u031B",
-		"\u1E0A\u031B\u0323",
-		"\u1E0C\u031B\u0307",
-		"D\u031B\u0307\u0323",
-		"D\u031B\u0323\u0307",
-		"\u00C8",
-		"\u0112",
-		"E\u0300",
-		"E\u0304",
-		"\u1E14",
-		"\u0112\u0300",
-		"\u1E14\u0304",
-		"E\u0304\u0300",
-		"E\u0300\u0304",
-		"\u05B8\u05B9\u05B1\u0591\u05C3\u05B0\u05AC\u059F",
-		"\u0592\u05B7\u05BC\u05A5\u05B0\u05C0\u05C4\u05AD"
+    static final String[] testSuiteCases = {
+        "\u1E0A",
+        "\u1E0C",
+        "\u1E0A\u0323",
+        "\u1E0C\u0307",
+        "D\u0307\u0323",
+        "D\u0323\u0307",
+        "\u1E0A\u031B",
+        "\u1E0C\u031B",
+        "\u1E0A\u031B\u0323",
+        "\u1E0C\u031B\u0307",
+        "D\u031B\u0307\u0323",
+        "D\u031B\u0323\u0307",
+        "\u00C8",
+        "\u0112",
+        "E\u0300",
+        "E\u0304",
+        "\u1E14",
+        "\u0112\u0300",
+        "\u1E14\u0304",
+        "E\u0304\u0300",
+        "E\u0300\u0304",
+        "\u05B8\u05B9\u05B1\u0591\u05C3\u05B0\u05AC\u059F",
+        "\u0592\u05B7\u05BC\u05A5\u05B0\u05C0\u05C4\u05AD"
 
-	};
-	/*
+    };
+    /*
     static final void backwardsCompat(String directory, String filename, int[] list) throws IOException {
 
 

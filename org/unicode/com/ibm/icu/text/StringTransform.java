@@ -16,12 +16,12 @@ import com.ibm.icu.text.Transform;
  *
  */
 public interface StringTransform extends Transform<String,String> {
-	/**
-	 * Transform the text in some way, to be determined by the subclass.
-	 * @param source text to be transformed (eg lowercased)
-	 * @return result
-	 * @stable ICU 3.8
-	 */
-	@Override
-	public String transform(String source);
+    /**
+     * Transform the text in some way, to be determined by the subclass.
+     * @param source text to be transformed (eg lowercased)
+     * @return result
+     * @stable ICU 3.8
+     */
+    @Override
+    public String transform(String source);
 }
