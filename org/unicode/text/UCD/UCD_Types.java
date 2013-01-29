@@ -22,7 +22,7 @@ public interface UCD_Types {
 	public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("UCD_DIR", "data/")) + "/";
 	public static final String UCD_DIR = BASE_DIR + "ucd/";
 
-	public static final String GEN_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("GEN_DIR", "")) + "/";
+	public static final String GEN_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("GEN_DIR", "../Generated")) + "/";
 	public static final String BIN_DIR = GEN_DIR + "BIN/";
 
 	public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
