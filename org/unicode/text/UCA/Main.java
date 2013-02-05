@@ -106,7 +106,8 @@ public class Main {
             } else if (arg.equalsIgnoreCase("WriteRules")) {
                 WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("WriteRulesCLDR")) {
-                WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.cldr);
+                WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, false /*shortPrint*/, noCE, CollatorType.cldr);
+                WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, true, noCE, CollatorType.cldr);
             } else if (arg.equalsIgnoreCase("WriteRulesXML")) {
                 WriteCollationData.writeRules(WriteCollationData.IN_XML, shortPrint, noCE, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("WriteRulesCLDRXML")) {
@@ -126,9 +127,11 @@ public class Main {
             } else if (arg.equalsIgnoreCase("writeConformanceShifted")) {
                 WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA_Types.SHIFTED, shortPrint, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("writeConformanceCldr")) {
-                WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA_Types.NON_IGNORABLE, shortPrint, CollatorType.cldr);
+                WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA_Types.NON_IGNORABLE, false /*shortPrint*/, CollatorType.cldr);
+                WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA_Types.NON_IGNORABLE, true, CollatorType.cldr);
             } else if (arg.equalsIgnoreCase("writeConformanceShiftedCldr")) {
-                WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA_Types.SHIFTED, shortPrint, CollatorType.cldr);
+                WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA_Types.SHIFTED, false /*shortPrint*/, CollatorType.cldr);
+                WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA_Types.SHIFTED, true, CollatorType.cldr);
             } else if (arg.equalsIgnoreCase("testCompatibilityCharacters")) {
                 TestCompatibilityCharacters.testCompatibilityCharacters(WriteCollationData.getCollator(CollatorType.cldrWithoutFFFx));
             } else if (arg.equalsIgnoreCase("writeCollationValidityLog")) {

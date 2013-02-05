@@ -541,7 +541,7 @@ public class FractionalUCA {
 
         final String directory = UCA.getUCA_GEN_DIR() + "CollationAuxiliary" + File.separator;
 
-        final boolean shortPrint = false;
+        final boolean shortPrint = true;
         final PrintWriter longLog = Utility.openPrintWriter(directory, filename + ".txt", Utility.UTF8_WINDOWS);
         if (shortPrint) {
             final PrintWriter shortLog = Utility.openPrintWriter(directory, filename + "_SHORT.txt", Utility.UTF8_WINDOWS);
