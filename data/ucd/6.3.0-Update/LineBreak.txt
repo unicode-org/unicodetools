@@ -1,5 +1,5 @@
 # LineBreak-6.3.0.txt
-# Date: 2012-11-27, 18:07:00 GMT [KW, LI]
+# Date: 2013-02-06, 19:45:00 GMT [KW, LI]
 #
 # Line Break Properties
 #
@@ -7,7 +7,7 @@
 # Unicode Character Database.
 # It contains both normative and informative data.
 #
-# Copyright (c) 1991-2012 Unicode, Inc.
+# Copyright (c) 1991-2013 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # The format is two fields separated by a semicolon.
@@ -37,7 +37,7 @@
 # The unassigned code points that default to "PR" comprise a range in the
 # following block:
 #     Currency Symbols:                         U+20A0..U+20CF
-#  - Characters ranges are specified as for other property files in
+#  - Character ranges are specified as for other property files in
 #         the Unicode Character Database.
 #
 # The Unicode name of each character is provided in a comment for help
@@ -1558,6 +1558,7 @@
 0619;CM # ARABIC SMALL DAMMA
 061A;CM # ARABIC SMALL KASRA
 061B;EX # ARABIC SEMICOLON
+061C;CM # ARABIC LETTER MARK
 061E;EX # ARABIC TRIPLE DOT PUNCTUATION MARK
 061F;EX # ARABIC QUESTION MARK
 0620;AL # ARABIC LETTER KASHMIRI YEH
@@ -10773,7 +10774,7 @@
 3032;ID # VERTICAL KANA REPEAT WITH VOICED SOUND MARK
 3033;ID # VERTICAL KANA REPEAT MARK UPPER HALF
 3034;ID # VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF
-3035;ID # VERTICAL KANA REPEAT MARK LOWER HALF
+3035;CM # VERTICAL KANA REPEAT MARK LOWER HALF
 3036;ID # CIRCLED POSTAL MARK
 3037;ID # IDEOGRAPHIC TELEGRAPH LINE FEED SEPARATOR SYMBOL
 3038;ID # HANGZHOU NUMERAL TEN

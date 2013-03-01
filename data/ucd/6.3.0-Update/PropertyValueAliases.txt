@@ -1,8 +1,8 @@
-# PropertyValueAliases-6.2.0.txt
-# Date: 2012-08-14, 16:05:11 GMT [MD]
+# PropertyValueAliases-6.3.0.txt
+# Date: 2013-02-12, 19:20:00 GMT [MD, KW temp]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2012 Unicode, Inc.
+# Copyright (c) 1991-2013 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -91,14 +91,18 @@ bc ; CS                               ; Common_Separator
 bc ; EN                               ; European_Number
 bc ; ES                               ; European_Separator
 bc ; ET                               ; European_Terminator
+bc ; FSI                              ; First_Strong_Isolate
 bc ; L                                ; Left_To_Right
 bc ; LRE                              ; Left_To_Right_Embedding
+bc ; LRI                              ; Left_To_Right_Isolate
 bc ; LRO                              ; Left_To_Right_Override
 bc ; NSM                              ; Nonspacing_Mark
 bc ; ON                               ; Other_Neutral
 bc ; PDF                              ; Pop_Directional_Format
+bc ; PDI                              ; Pop_Directional_Isolate
 bc ; R                                ; Right_To_Left
 bc ; RLE                              ; Right_To_Left_Embedding
+bc ; RLI                              ; Right_To_Left_Isolate
 bc ; RLO                              ; Right_To_Left_Override
 bc ; S                                ; Segment_Separator
 bc ; WS                               ; White_Space
@@ -116,6 +120,12 @@ Bidi_M; Y                             ; Yes                              ; T    
 # Bidi_Mirroring_Glyph (bmg)
 
 # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
+
+# Bidi_Paired_Bracket_Type (bpt)
+
+bpt; c                                ; Close
+bpt; n                                ; None
+bpt; o                                ; Open
 
 # Block (blk)
 

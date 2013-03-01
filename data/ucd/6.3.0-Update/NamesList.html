@@ -28,7 +28,7 @@
     <tbody>
       <tr>
         <td valign="top" width="144">Revision</td>
-        <td valign="top">6.2.0</td>
+        <td valign="top">6.3.0</td>
       </tr>
       <tr>
         <td valign="top" width="144">Authors</td>
@@ -36,19 +36,19 @@
       </tr>
       <tr>
         <td valign="top" width="144">Date</td>
-        <td valign="top">2012-09-14</td>
+        <td valign="top">2013-01-02</td>
       </tr>
       <tr>
         <td valign="top" width="144">This Version</td>
         <td valign="top">
-		<a href="http://www.unicode.org/Public/6.2.0/ucd/NamesList.html">
-		http://www.unicode.org/Public/6.2.0/ucd/NamesList.html</a></td>
+		<a href="http://www.unicode.org/Public/6.3.0/ucd/NamesList.html">
+		http://www.unicode.org/Public/6.3.0/ucd/NamesList.html</a></td>
       </tr>
       <tr>
         <td valign="top" width="144">Previous Version</td>
         <td valign="top">
-		<a href="http://www.unicode.org/Public/6.1.0/ucd/NamesList.html">
-		http://www.unicode.org/Public/6.1.0/ucd/NamesList.html</a></td>
+		<a href="http://www.unicode.org/Public/6.2.0/ucd/NamesList.html">
+		http://www.unicode.org/Public/6.2.0/ucd/NamesList.html</a></td>
       </tr>
       <tr>
         <td valign="top" width="144">Latest Version</td>
@@ -209,7 +209,7 @@ CHAR_ENTRY:   NAME_LINE | RESERVED_LINE
     present at the very beginning of the file, forcing the encoding to be 
     interpreted as UTF-16 (little-endian only) or UTF-8.</p>
 <p>Several of these elements, while part of the formal definition of the 
-  file format, do not occur in final published versions of the nameslist.</p>
+  file format, do not occur in final published versions of the NamesList.</p>
 
 <h4>Blocks followed by Summaries</h4>
 <p>A block may be extended by a summary of standard variation sequences or selected alternate glyphs defined for characters in the block:</p>
@@ -491,6 +491,10 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
        <li>The final LF in the file must be present.</li>
 </ul>
   <h2>Modifications</h2>
+  <p><b>Version 6.3.0</b></p>
+        <ul>
+        <li>Reissued for Unicode 6.3.0.</li>
+        </ul>
   <p><b>Version 6.2.0</b></p>
         <ul>
   <li>Edited the variation syntax definitions, description and corresponding notes for wording.</li>
@@ -499,7 +503,7 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
   <li>Added syntax for elements required by variation sequence and alternate glyph summaries.</li>
   <li>Edited and reformatted some notes for readability.</li>
   <li>Documented the permitted presence of CROSS_REF outside character entries within blocks. 
-  Such CROSS_REFS have been present in published names lists, but that information was missing in 
+  Such CROSS_REFs have been present in published names lists, but that information was missing in 
   the syntax description. For an example see the Currency Symbols block in the code charts.</li>
   <li>Added description of UTF-8 charset declaration and file encoding.</li>
         </ul>
@@ -546,7 +550,7 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
 	<p><b>Version 5.0.0</b></p>
 	<ul>
 		<li>Added FORMALALIAS_LINE and INDEX_TAB to syntax.</li>
-		<li>Fixed the list of lines that may appear before a blockheader by 
+		<li>Fixed the list of lines that may appear before a BLOCKHEADER by 
 		adding NOTICE_LINE.</li>
 		<li>Minor fixes to the wording of several syntax definitions.</li>
 	</ul>
