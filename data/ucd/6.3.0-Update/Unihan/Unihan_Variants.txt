@@ -1,10 +1,10 @@
 #
 # Unihan_Variants.txt
-# Date: 2012-08-17 17:13:30 GMT [JHJ]
-# Unicode version: 6.2.0
+# Date: 2013-02-25 22:46:17 GMT [JHJ]
+# Unicode version: 6.3.0
 #
 # Unicode Character Database
-# Copyright (c) 1991-2012 Unicode, Inc.
+# Copyright (c) 1991-2013 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -11964,6 +11964,8 @@ U+FA2C	kCompatibilityVariant	U+9928
 U+FA2C	kZVariant	U+9928
 U+FA2D	kCompatibilityVariant	U+9DB4
 U+FA2D	kZVariant	U+9DB4
+U+FA2E	kCompatibilityVariant	U+90DE
+U+FA2F	kCompatibilityVariant	U+96B7
 U+FA30	kCompatibilityVariant	U+4FAE
 U+FA31	kCompatibilityVariant	U+50E7
 U+FA32	kCompatibilityVariant	U+514D

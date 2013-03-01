@@ -1,8 +1,8 @@
-# PropertyAliases-6.2.0.txt
-# Date: 2012-05-20, 17:41:20 GMT [MD]
+# PropertyAliases-6.3.0.txt
+# Date: 2013-02-12, 19:14:00 GMT [MD, KW temp]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2012 Unicode, Inc.
+# Copyright (c) 1991-2013 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -57,6 +57,7 @@ nv                       ; Numeric_Value
 # ================================================
 # String Properties
 # ================================================
+bpb                      ; Bidi_Paired_Bracket
 cf                       ; Case_Folding
 cjkCompatibilityVariant  ; kCompatibilityVariant
 dm                       ; Decomposition_Mapping
@@ -103,6 +104,7 @@ sc                       ; Script
 # Enumerated Properties
 # ================================================
 bc                       ; Bidi_Class
+bpt                      ; Bidi_Paired_Bracket_Type
 ccc                      ; Canonical_Combining_Class
 dt                       ; Decomposition_Type
 ea                       ; East_Asian_Width

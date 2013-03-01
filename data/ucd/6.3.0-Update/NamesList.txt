@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 6.3.0
-@@@+	U63M121121.lst
-	Unicode 6.3.0 names list, second delta.
+@@@+	U63M130207.lst
+	Unicode 6.3.0 names list, fifth delta.
 	Updated annotation for U+A980.
 	Move subhead for U+200C to include U+200B.
 	Commented out alt glyph lines for 222B, 222C.
@@ -14,13 +14,22 @@
 	Tweaked annotations for 0022, 0027.
 	Added subhead for new bidi format controls at 2066.
 	Added formal name aliases for 122D4 and 122D5.
+	Update xref for 2EE7.
+	Added xrefs for 2696, 1F40F, 264E, 2648.
+	Added notice for Bengali block.
+	Adjustments for adding 061C to repertoire.
+	Added annotation for A9CF.
+	Added annotations for 2592.
+	Added annotation for 111C4.
+	Updated aliases for FEFF.
+	Added xrefs for 2294 and 2A03.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
 	for this process are aimed at readability for the human reader,
 	at the expense of some details; therefore, this file should not
 	be parsed for machine-readable information.
-@+		Copyright (c) 1991-2012 Unicode, Inc.
+@+		Copyright (c) 1991-2013 Unicode, Inc.
 	For terms of use, see http://www.unicode.org/terms_of_use.html
 @@	0000	C0 Controls and Basic Latin (Basic Latin)	007F
 @@+
@@ -3668,6 +3677,10 @@
 	* also used with Thaana and Syriac in modern text
 	x (semicolon - 003B)
 	x (turned semicolon - 2E35)
+@		Format character
+061C	ARABIC LETTER MARK
+	* commonly abbreviated ALM
+@		Punctuation
 061E	ARABIC TRIPLE DOT PUNCTUATION MARK
 061F	ARABIC QUESTION MARK
 	* also used with Thaana and Syriac in modern text
@@ -4799,6 +4812,7 @@
 097E	DEVANAGARI LETTER DDDA
 097F	DEVANAGARI LETTER BBA
 @@	0980	Bengali	09FF
+@+		The Bengali script is also known as Bangla. In Assam, the preferred name of the script is Asamiya or Assamese. The Assamese language has also been written historically using distinct regional scripts known as Kamrupi.
 @		Various signs
 0981	BENGALI SIGN CANDRABINDU
 0982	BENGALI SIGN ANUSVARA
@@ -13386,6 +13400,7 @@
 	x (n-ary square intersection operator - 2A05)
 	~ 2293 FE00 with serifs
 2294	SQUARE CUP
+	x (n-ary square union operator - 2A06)
 	~ 2294 FE00 with serifs
 2295	CIRCLED PLUS
 	= direct sum
@@ -14620,7 +14635,9 @@
 2591	LIGHT SHADE
 	* 25%
 2592	MEDIUM SHADE
+	= speckles fill, dotted fill
 	* 50%
+	* used in mapping to cp949
 2593	DARK SHADE
 	* 75%
 @		Block elements
@@ -15021,6 +15038,7 @@
 2647	PLUTO
 @		Zodiacal symbols
 2648	ARIES
+	x (ram - 1F40F)
 	~ 2648 FE0E text style
 	~ 2648 FE0F emoji style
 2649	TAURUS
@@ -15040,6 +15058,7 @@
 	~ 264D FE0E text style
 	~ 264D FE0F emoji style
 264E	LIBRA
+	x (scales - 2696)
 	x (alchemical symbol for sublimation - 1F75E)
 	~ 264E FE0E text style
 	~ 264E FE0F emoji style
@@ -15195,6 +15214,7 @@
 	x (caduceus - 2624)
 2696	SCALES
 	= legal term, jurisprudence
+	x (libra - 264E)
 2697	ALEMBIC
 	= chemical term, chemistry
 	x (alchemical symbol for retort - 1F76D)
@@ -16633,6 +16653,7 @@
 	x (circled times - 2297)
 	x (heavy circled saltire - 2B59)
 2A03	N-ARY UNION OPERATOR WITH DOT
+	x (multiset multiplication - 228D)
 2A04	N-ARY UNION OPERATOR WITH PLUS
 	x (multiset union - 228E)
 2A05	N-ARY SQUARE INTERSECTION OPERATOR
@@ -18140,7 +18161,7 @@
 2EE6	CJK RADICAL C-SIMPLIFIED BIRD
 	x 9E1F
 2EE7	CJK RADICAL C-SIMPLIFIED SALT
-	x 9E75
+	x 5364
 2EE8	CJK RADICAL SIMPLIFIED WHEAT
 	x 9EA6
 2EE9	CJK RADICAL SIMPLIFIED YELLOW
@@ -23455,6 +23476,7 @@ A9CC	JAVANESE PADA PISELEH
 A9CD	JAVANESE TURNED PADA PISELEH
 @		Syllable reduplicator
 A9CF	JAVANESE PANGRANGKEP
+	* also used in Buginese
 	x (arabic-indic digit two - 0662)
 @		Digits
 A9D0	JAVANESE DIGIT ZERO
@@ -26789,7 +26811,8 @@ FEFC	ARABIC LIGATURE LAM WITH ALEF FINAL FORM
 	# <final> 0644 0627
 @		Special
 FEFF	ZERO WIDTH NO-BREAK SPACE
-	= BYTE ORDER MARK (BOM), ZWNBSP
+	% BYTE ORDER MARK
+	= BOM, ZWNBSP
 	* may be used to detect byte order by contrast with the noncharacter code point FFFE
 	* use as an indication of non-breaking is deprecated; see 2060 instead
 	x (zero width space - 200B)
@@ -29330,6 +29353,8 @@ FFFF	<not a character>
 111C2	SHARADA SIGN JIHVAMULIYA
 111C3	SHARADA SIGN UPADHMANIYA
 111C4	SHARADA OM
+	* use of this character is discouraged
+	* recommended sequence is 1118F 11180
 @		Punctuation
 111C5	SHARADA DANDA
 111C6	SHARADA DOUBLE DANDA
@@ -36863,6 +36888,7 @@ FFFF	<not a character>
 	* seventh of the signs of the Asian zodiac
 1F40F	RAM
 	* eighth of the signs of the Asian zodiac
+	x (aries - 2648)
 1F410	GOAT
 	* eighth of the signs of the Asian zodiac, used in Vietnam
 1F411	SHEEP
