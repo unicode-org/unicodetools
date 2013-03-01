@@ -89,7 +89,7 @@ public final class ConvertUCD implements UCD_Types {
         {"ArabicShaping", "OMIT", "jt", "jg"},
         {"BidiMirroring", "*bg"},
         {"Scripts", "sn"},
-        {"BidiBrackets", "bpb", "bpbt"}, // 0028; 0029; o # LEFT PARENTHESIS Bidi_Paired_Bracket, Bidi_Paired_Bracket_Type
+        {"BidiBrackets", "bpb", "bpt"}, // 0028; 0029; o # LEFT PARENTHESIS Bidi_Paired_Bracket, Bidi_Paired_Bracket_Type
         //{"Jamo", "jn"},
         //{"Scripts-1d4", "RANGE", "sn"},
         //{"Age", "*sn"},
