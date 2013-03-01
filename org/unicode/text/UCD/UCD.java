@@ -990,6 +990,14 @@ public final class UCD implements UCD_Types {
         return result;
     }
 
+    public byte getBidi_Paired_Bracket_Type(int codePoint) {
+        return get(codePoint, false).Bidi_Paired_Bracket_Type;
+    }
+
+    public int getBidi_Paired_Bracket(int codePoint) {
+        return get(codePoint, false).Bidi_Paired_Bracket;
+    }
+
 
     public byte getAge(int codePoint) {
         return get(codePoint, false).age;
@@ -1244,6 +1252,23 @@ public final class UCD implements UCD_Types {
                 : (length == EXTRA_ALIAS && prop == COPTIC) ? "Qaac"
                         : (length == EXTRA_ALIAS && prop == INHERITED_SCRIPT) ? "Qaai"
                                 : (length == SHORT) ? UCD_Names.SCRIPT[prop] : UCD_Names.LONG_SCRIPT[prop];
+    }
+
+    public String getBidi_Paired_Bracket_TypeID(int codePoint) {
+        return getBidi_Paired_Bracket_TypeID_fromIndex(getBidi_Paired_Bracket_Type(codePoint));
+    }
+
+    public String getBidi_Paired_Bracket_TypeID(int codePoint, byte length) {
+        return getBidi_Paired_Bracket_TypeID_fromIndex(getBidi_Paired_Bracket_Type(codePoint), length);
+    }
+
+    public static String getBidi_Paired_Bracket_TypeID_fromIndex(byte prop) {
+        return getBidi_Paired_Bracket_TypeID_fromIndex(prop, NORMAL);
+    }
+
+    public static String getBidi_Paired_Bracket_TypeID_fromIndex(byte prop, byte length) {
+        return prop < 0 || prop >= UCD_Names.Bidi_Paired_Bracket_Type.length ? null
+                : (length == SHORT) ? UCD_Names.Bidi_Paired_Bracket_Type_SHORT[prop] : UCD_Names.Bidi_Paired_Bracket_Type[prop];
     }
 
     public String getAgeID(int codePoint) {
