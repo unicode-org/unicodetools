@@ -51,6 +51,9 @@ class UData implements UCD_Types {
     byte joiningGroup = NO_SHAPING;
     byte script = Unknown_Script;
     byte age = 0;
+    
+    int Bidi_Paired_Bracket = 0;
+    byte Bidi_Paired_Bracket_Type = 0;
 
     static final UData UNASSIGNED = new UData();
     //static final UData NONCHARACTER = new UData();

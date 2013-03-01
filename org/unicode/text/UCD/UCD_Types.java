@@ -17,7 +17,7 @@ import org.unicode.text.utility.Utility;
 public interface UCD_Types {
     static final int FIX_FOR_NEW_VERSION = 0;
 
-    static final byte BINARY_FORMAT = 21; // bumped if binary format of UCD changes. Forces rebuild
+    static final byte BINARY_FORMAT = 22; // bumped if binary format of UCD changes. Forces rebuild
 
     public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("UCD_DIR", "data/")) + "/";
     public static final String UCD_DIR = BASE_DIR + "ucd/";
@@ -124,7 +124,8 @@ public interface UCD_Types {
     SCRIPT = 0xA00,
     AGE = 0xB00,
     HANGUL_SYLLABLE_TYPE = 0xC00,
-    DERIVED = 0xD00,
+    Bidi_Paired_Bracket_Type = 0xD00,
+    DERIVED = 0xE00,
     LIMIT_ENUM = DERIVED + 0x100,
     NEXT_ENUM = 0x100;
 
@@ -331,7 +332,8 @@ public interface UCD_Types {
     LIMIT_BIDI_CLASS = 24;
 
     // decompositionType
-    static final byte NONE = 0,
+    static final byte
+    NONE = 0,
             CANONICAL = 1,
             COMPATIBILITY = 2,
             COMPAT_UNSPECIFIED = 2,	// Otherwise unspecified compatibility character.
@@ -482,6 +484,9 @@ public interface UCD_Types {
     Takri = 104,
     LIMIT_SCRIPT = Takri + 1;
 
+    // Bidi_Paired_Bracket_Type
+    public static final byte
+    BPB_N = 0, BPT_O = 1, BPT_C = 2, LIMIT_BPT = 3;
 
     static final int  // TODO: change to using an enum
     UNKNOWN = 0,

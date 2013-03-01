@@ -1368,6 +1368,13 @@ isTitlecase(X) is false.
             }
             titlecase = true;
             break;
+            case UCD_Types.Bidi_Paired_Bracket_Type >> 8:
+                temp = (ucd.getBidi_Paired_Bracket_TypeID_fromIndex(ucd.getBidi_Paired_Bracket_Type(codepoint), style));
+            if (temp != null) {
+                temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
+            }
+            titlecase = true;
+            break;
             case UCD_Types.AGE >> 8:
                 temp = getAge(codepoint);
             break;

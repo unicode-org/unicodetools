@@ -41,6 +41,8 @@ public final class UCD_Names implements UCD_Types {
         {"na1", "Unicode_1_Name"},
         {"isc", "ISO_Comment"},
         {"age", "Age"},
+        {"bpb", "Bidi_Paired_Bracket"},
+        {"bpt", "Bidi_Paired_Bracket_Type"},
     };
 
     static final String[] UNIFIED_PROPERTIES = {
@@ -831,42 +833,6 @@ public final class UCD_Names implements UCD_Types {
         }
     }
 
-    static {
-        if (LIMIT_CATEGORY != GENERAL_CATEGORY.length || LIMIT_CATEGORY != LONG_GENERAL_CATEGORY.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: category");
-        }
-        if (LIMIT_BIDI_CLASS != BIDI_CLASS.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: bidi");
-        }
-        if (LIMIT_LINE_BREAK != LINE_BREAK.length || LIMIT_LINE_BREAK != LONG_LINE_BREAK.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: linebreak");
-        }
-        if (LIMIT_DECOMPOSITION_TYPE != LONG_DECOMPOSITION_TYPE.length || LIMIT_DECOMPOSITION_TYPE != DECOMPOSITION_TYPE.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: decomp type");
-        }
-        if (LIMIT_MIRRORED != MIRRORED_TABLE.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: compat type");
-        }
-        if (LIMIT_CASE != CASE_TABLE.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: case");
-        }
-        if (LIMIT_NUMERIC_TYPE != LONG_NUMERIC_TYPE.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: numeric type");
-        }
-        if (LIMIT_EAST_ASIAN_WIDTH != LONG_EAST_ASIAN_WIDTH.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: east Asian Width");
-        }
-        if (LIMIT_BINARY_PROPERTIES != BP.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: binary properties");
-        }
-        if (LIMIT_SCRIPT != LONG_SCRIPT.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: script");
-        }
-        if (LIMIT_AGE != SHORT_AGE.length || LIMIT_AGE != LONG_AGE.length) {
-            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: age");
-        }
-    }
-
     public static byte ON = Utility.lookup("ON", BIDI_CLASS, true);
 
     public static String[] HANGUL_SYLLABLE_TYPE = {
@@ -1182,6 +1148,18 @@ public final class UCD_Names implements UCD_Types {
         {"Unknown", "ZZ"}
     };
 
+    public static final String[] Bidi_Paired_Bracket_Type = {
+        "None",
+        "Open",
+        "Close"
+    };
+
+    public static final String[] Bidi_Paired_Bracket_Type_SHORT = {
+        "n",
+        "o",
+        "c"
+    };
+
 
     /*
 LETTER: 23598
@@ -1294,4 +1272,43 @@ IDEOGRAPHIC/TELEGRAPH/SYMBOL/FOR:       2176
         UNASSIGNED_INFO.mirrored = NO;
     }
      */
+    
+    static {
+        if (LIMIT_CATEGORY != GENERAL_CATEGORY.length || LIMIT_CATEGORY != LONG_GENERAL_CATEGORY.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: category");
+        }
+        if (LIMIT_BIDI_CLASS != BIDI_CLASS.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: bidi");
+        }
+        if (LIMIT_LINE_BREAK != LINE_BREAK.length || LIMIT_LINE_BREAK != LONG_LINE_BREAK.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: linebreak");
+        }
+        if (LIMIT_DECOMPOSITION_TYPE != LONG_DECOMPOSITION_TYPE.length || LIMIT_DECOMPOSITION_TYPE != DECOMPOSITION_TYPE.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: decomp type");
+        }
+        if (LIMIT_MIRRORED != MIRRORED_TABLE.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: compat type");
+        }
+        if (LIMIT_CASE != CASE_TABLE.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: case");
+        }
+        if (LIMIT_NUMERIC_TYPE != LONG_NUMERIC_TYPE.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: numeric type");
+        }
+        if (LIMIT_EAST_ASIAN_WIDTH != LONG_EAST_ASIAN_WIDTH.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: east Asian Width");
+        }
+        if (LIMIT_BINARY_PROPERTIES != BP.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: binary properties");
+        }
+        if (LIMIT_SCRIPT != LONG_SCRIPT.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: script");
+        }
+        if (LIMIT_BPT != Bidi_Paired_Bracket_Type.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: Bidi_Paired_Bracket_Type");
+        }
+        if (LIMIT_AGE != SHORT_AGE.length || LIMIT_AGE != LONG_AGE.length) {
+            throw new IllegalArgumentException("!! ERROR !! Enums and Names out of sync: age");
+        }
+    }
 }
