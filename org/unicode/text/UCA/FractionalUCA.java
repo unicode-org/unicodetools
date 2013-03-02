@@ -830,7 +830,8 @@ public class FractionalUCA {
         }
 
         fractionalLog.println();
-        fractionalStatistics.printAndRecord(true, "\uFDD1\uFDD1",
+        fractionalStatistics.printAndRecord(true,
+                "\uFDD1" + ReorderCodes.getSampleCharacter(UCD_Types.Unknown_Script),  // Zzzz
                 Fractional.IMPLICIT_MAX_BYTE << 16, 5, 5, "# unassigned first primary");
         fractionalLog.println();
         fractionalLog.println("# SPECIAL MAX/MIN COLLATION ELEMENTS");
