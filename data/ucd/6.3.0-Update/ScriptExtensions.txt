@@ -152,7 +152,7 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 060C          ; Arab Syrc Thaa # Po       ARABIC COMMA
 061B          ; Arab Syrc Thaa # Po       ARABIC SEMICOLON
 061F          ; Arab Syrc Thaa # Po       ARABIC QUESTION MARK
-
+061C ; Arab Syrc Thaa
 # Total code points: 3
 
 # ================================================
@@ -250,5 +250,14 @@ FF63          ; Bopo Hang Hani Hira Kana Yiii # Pe       HALFWIDTH RIGHT CORNER 
 FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDLE DOT
 
 # Total code points: 26
+
+A9CF ; Bugi Java
+
+# Script_Extensions=Deva Kthi
+0966..096F ; Deva Kthi
+# Script_Extensions=Beng Cakm Sylo
+09E6..09EF ; Beng Cakm Sylo
+# Script_Extensions=Cakm Mymr Tale
+1040..1049 ; Cakm Mymr Tale
 
 # EOF
