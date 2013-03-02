@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 10
+DeltaVersion: 11
 CopyrightYear: 2013
 
 File: extra/ScriptNfkc
@@ -160,6 +160,13 @@ Property:	Bidi_Class
 #                        U+10840 - U+10FFF,
 #                        U+1E800 - U+1EDFF,
 #                        U+1EF00 - U+1EFFF
+#
+# The unassigned code points that default to ET are in the ranges:
+#     [\u20A0..\u20CF]
+#
+# The unassigned code points that default to BN have the following properties:
+#     Default_Ignorable_Code_Point
+#     Noncharacter
 #
 # For all other cases:
 Format:	valueStyle=short skipUnassigned=Left_To_Right

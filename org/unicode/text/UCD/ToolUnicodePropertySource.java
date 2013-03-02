@@ -745,7 +745,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             .removeAll(unicodeMap.keySet("Extend")), "ALetter");
                     unicodeMap
                     .putAll(new UnicodeSet(
-                            "[\\u00B7\\u05F4\\u2027\\u003A\\u0387\\u0387\\uFE13\\uFE55\\uFF1A]"),
+                            "[\\u00B7\\u05F4\\u2027\\u003A\\u0387\\u0387\\uFE13\\uFE55\\uFF1A\u02D7]"),
                             "MidLetter");
                     /*
                      * 0387 ( · ) GREEK ANO TELEIA FE13 ( ︓ ) PRESENTATION FORM FOR

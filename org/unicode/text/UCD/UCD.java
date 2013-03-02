@@ -403,7 +403,7 @@ public final class UCD implements UCD_Types {
         return combiningClassSet.get(0xFF & value);
     }
 
-    static UnicodeSet BIDI_R_SET, BIDI_AL_SET, BIDI_BN_SET;
+    static UnicodeSet BIDI_R_SET, BIDI_AL_SET, BIDI_BN_SET, BIDI_ET_SET;
 
     /**
      * Get the bidi class
@@ -416,11 +416,16 @@ public final class UCD implements UCD_Types {
         if (BIDI_R_SET == null) { // build it
 
             BIDI_R_SET = new UnicodeSet();
+            BIDI_ET_SET = new UnicodeSet();
             BIDI_AL_SET = new UnicodeSet();
             final UnicodeSet temp2 = new UnicodeSet();
 
             if (blockData == null) {
                 loadBlocks();
+            }
+
+            if (compositeVersion >= 0x60300) {
+                blockData.keySet("Currency_Symbols",BIDI_ET_SET);
             }
 
             blockData.keySet("Hebrew",BIDI_R_SET);
@@ -517,7 +522,7 @@ public final class UCD implements UCD_Types {
                 }
                 BIDI_BN_SET.addAll(DefaultIg);
             }
-
+            
             if (SHOW_LOADING) {
                 System.out.println("BIDI_R_SET: " + BIDI_R_SET);
                 System.out.println("BIDI_AL_SET: " + BIDI_AL_SET);
@@ -538,6 +543,9 @@ public final class UCD implements UCD_Types {
         }
         if (BIDI_AL_SET.contains(codePoint)) {
             return BIDI_AL;
+        }
+        if (BIDI_ET_SET.contains(codePoint)) {
+            return BIDI_ET;
         }
         return BIDI_L;
     }
