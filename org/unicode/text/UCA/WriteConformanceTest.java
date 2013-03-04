@@ -24,7 +24,7 @@ public class WriteConformanceTest {
 
     private static final UnicodeSet RTL = new UnicodeSet("[[:bc=r:][:bc=al:][:bc=an:]]").freeze();
 
-    private static final boolean SKIP_SPECIAL_TIBETAN = true;
+    private static final boolean SKIP_SPECIAL_TIBETAN = false;
 
     private static final char LOW_ACCENT = '\u0334';
 
