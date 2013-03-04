@@ -712,7 +712,16 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     unicodeMap = new UnicodeMap();
                     unicodeMap.setErrorOnReset(true);
                     final UnicodeProperty cat = getProperty("General_Category");
+                    final UnicodeProperty script = getProperty("Script");
                     //unicodeMap.put(0x200B, "Other");
+
+                    unicodeMap.putAll(new UnicodeSet("[\"]"), "Double_Quote");
+                    unicodeMap.putAll(new UnicodeSet("[']"), "Single_Quote");
+                    unicodeMap.putAll(
+                            new UnicodeSet(cat.getSet("Other_Letter")
+                                    .retainAll(script.getSet("Hebrew"))),
+                            "Hebrew_Letter");
+
                     unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
                     unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
                     unicodeMap.putAll(new UnicodeSet("[\\u0085\\u000B\\u000C\\u000C\\u2028\\u2029]"),
@@ -723,7 +732,6 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
 
                     unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D).remove(0x200B), "Format");
-                    final UnicodeProperty script = getProperty("Script");
                     unicodeMap
                     .putAll(
                             script
@@ -742,11 +750,14 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             // .removeAll(script.getSet("Thai"))
                             // .removeAll(script.getSet("Lao"))
                             .removeAll(lineBreak.getSet("SA")).removeAll(script.getSet("Hiragana"))
-                            .removeAll(unicodeMap.keySet("Extend")), "ALetter");
+                            .removeAll(unicodeMap.keySet("Extend"))
+                            .removeAll(unicodeMap.keySet("Hebrew_Letter")),
+                            "ALetter");
                     unicodeMap
                     .putAll(new UnicodeSet(
-                            "[\\u00B7\\u05F4\\u2027\\u003A\\u0387\\u0387\\uFE13\\uFE55\\uFF1A\u02D7]"),
+                            "[\\u00B7\\u05F4\\u2027\\u0387]"),
                             "MidLetter");
+
                     /*
                      * 0387 ( · ) GREEK ANO TELEIA FE13 ( ︓ ) PRESENTATION FORM FOR
                      * VERTICAL COLON FE55 ( ﹕ ) SMALL COLON FF1A ( ： ) FULLWIDTH COLON
@@ -760,7 +771,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                      * FULLWIDTH COMMA FF1B ( ； ) FULLWIDTH SEMICOLON
                      */
                     unicodeMap.putAll(new UnicodeSet(
-                            "[\\u0027\\u002E\\u2018\\u2019\\u2024\\uFE52\\uFF07\\uFF0E]"), "MidNumLet");
+                            "[\\u002E\\u2018\\u2019\\u2024\\uFE52\\uFF07\\uFF0E]"), "MidNumLet");
 
                     unicodeMap.putAll(new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C), "Numeric"); // .remove(0x387)
                     unicodeMap.putAll(cat.getSet("Connector_Punctuation").remove(0x30FB).remove(0xFF65),
@@ -776,6 +787,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             { "MidNumLet", "MB" }, { "Numeric", "NU" }, { "ExtendNumLet", "EX" },
                             { "Other", "XX" }, { "Newline", "NL" },
                             { "Regional_Indicator", "RI" },
+                            { "Double_Quote", "DQ" },
+                            { "Single_Quote", "SQ" },
+                            { "Hebrew_Letter", "HL" },
                     }, AliasAddAction.REQUIRE_MAIN_ALIAS).swapFirst2ValueAliases());
         }
 

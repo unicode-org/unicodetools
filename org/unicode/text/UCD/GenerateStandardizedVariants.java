@@ -19,6 +19,9 @@ import java.util.Map;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.dev.util.UnicodeProperty;
+import com.ibm.icu.text.UnicodeSet;
+
 public final class GenerateStandardizedVariants implements UCD_Types {
 
     static final boolean DEBUG = false;
@@ -57,6 +60,10 @@ public final class GenerateStandardizedVariants implements UCD_Types {
         final String[] splits = new String[4];
         final String[] codes = new String[2];
         final String[] shapes = new String[4];
+        
+        ToolUnicodePropertySource tups = ToolUnicodePropertySource.make(Default.ucdVersion());
+        final UnicodeProperty ui = tups.getProperty("Unified_Ideograph");
+        UnicodeSet uiSet = ui.getSet("Yes");
 
         final BufferedReader in = Utility.openUnicodeFile("StandardizedVariants", Default.ucdVersion(), true, Utility.LATIN1);
         while (true) {
@@ -71,6 +78,9 @@ public final class GenerateStandardizedVariants implements UCD_Types {
             final int count = Utility.split(line, ';', splits);
             final int codeCount = Utility.split(splits[0], ' ', codes);
             final int code = Utility.codePointFromHex(codes[0]);
+            if (uiSet.contains(code)) {
+                continue;
+            }
 
             // <img alt="03E2" src="http://www.unicode.org/cgi-bin/refglyph?24-03E2" style="vertical-align:middle">
 
