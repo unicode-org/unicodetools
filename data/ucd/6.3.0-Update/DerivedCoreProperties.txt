@@ -1,5 +1,5 @@
 # DerivedCoreProperties-6.3.0.txt
-# Date: 2013-03-02, 16:07:35 GMT [MD]
+# Date: 2013-03-05, 12:56:50 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -2472,9 +2472,7 @@ FF41..FF5A    ; Cased # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 #    Word_Break(C) = MidLetter or MidNumLet, or
 #    General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
 
-0027          ; Case_Ignorable # Po       APOSTROPHE
 002E          ; Case_Ignorable # Po       FULL STOP
-003A          ; Case_Ignorable # Po       COLON
 005E          ; Case_Ignorable # Sk       CIRCUMFLEX ACCENT
 0060          ; Case_Ignorable # Sk       GRAVE ACCENT
 00A8          ; Case_Ignorable # Sk       DIAERESIS
@@ -2762,14 +2760,11 @@ ABED          ; Case_Ignorable # Mn       MEETEI MAYEK APUN IYEK
 FB1E          ; Case_Ignorable # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 FBB2..FBC1    ; Case_Ignorable # Sk  [16] ARABIC SYMBOL DOT ABOVE..ARABIC SYMBOL SMALL TAH BELOW
 FE00..FE0F    ; Case_Ignorable # Mn  [16] VARIATION SELECTOR-1..VARIATION SELECTOR-16
-FE13          ; Case_Ignorable # Po       PRESENTATION FORM FOR VERTICAL COLON
 FE20..FE26    ; Case_Ignorable # Mn   [7] COMBINING LIGATURE LEFT HALF..COMBINING CONJOINING MACRON
 FE52          ; Case_Ignorable # Po       SMALL FULL STOP
-FE55          ; Case_Ignorable # Po       SMALL COLON
 FEFF          ; Case_Ignorable # Cf       ZERO WIDTH NO-BREAK SPACE
 FF07          ; Case_Ignorable # Po       FULLWIDTH APOSTROPHE
 FF0E          ; Case_Ignorable # Po       FULLWIDTH FULL STOP
-FF1A          ; Case_Ignorable # Po       FULLWIDTH COLON
 FF3E          ; Case_Ignorable # Sk       FULLWIDTH CIRCUMFLEX ACCENT
 FF40          ; Case_Ignorable # Sk       FULLWIDTH GRAVE ACCENT
 FF70          ; Case_Ignorable # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
@@ -2809,7 +2804,7 @@ E0001         ; Case_Ignorable # Cf       LANGUAGE TAG
 E0020..E007F  ; Case_Ignorable # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Case_Ignorable # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1806
+# Total code points: 1801
 
 # ================================================
 

@@ -1,8 +1,8 @@
-# PropList-6.2.0.txt
-# Date: 2012-05-23, 20:34:59 GMT [MD]
+# PropList-6.3.0.txt
+# Date: 2013-03-05, 13:10:56 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2012 Unicode, Inc.
+# Copyright (c) 1991-2013 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
@@ -13,7 +13,6 @@
 0085          ; White_Space # Cc       <control-0085>
 00A0          ; White_Space # Zs       NO-BREAK SPACE
 1680          ; White_Space # Zs       OGHAM SPACE MARK
-#180E          ; White_Space # Zs       MONGOLIAN VOWEL SEPARATOR
 2000..200A    ; White_Space # Zs  [11] EN QUAD..HAIR SPACE
 2028          ; White_Space # Zl       LINE SEPARATOR
 2029          ; White_Space # Zp       PARAGRAPH SEPARATOR
@@ -21,16 +20,16 @@
 205F          ; White_Space # Zs       MEDIUM MATHEMATICAL SPACE
 3000          ; White_Space # Zs       IDEOGRAPHIC SPACE
 
-# Total code points: 26
+# Total code points: 25
 
 # ================================================
 
+061C          ; Bidi_Control # Cf       ARABIC LETTER MARK
 200E..200F    ; Bidi_Control # Cf   [2] LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
 202A..202E    ; Bidi_Control # Cf   [5] LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
-2066..2069    ; Bidi_Control
-061C    ; Bidi_Control
+2066..2069    ; Bidi_Control # Cf   [4] LEFT-TO-RIGHT ISOLATE..POP DIRECTIONAL ISOLATE
 
-# Total code points: 7
+# Total code points: 12
 
 # ================================================
 
@@ -540,7 +539,8 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 19B0..19C0    ; Other_Alphabetic # Mc  [17] NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW TAI LUE VOWEL SIGN IY
 19C8..19C9    ; Other_Alphabetic # Mc   [2] NEW TAI LUE TONE MARK-1..NEW TAI LUE TONE MARK-2
 1A17..1A18    ; Other_Alphabetic # Mn   [2] BUGINESE VOWEL SIGN I..BUGINESE VOWEL SIGN U
-1A19..1A1B    ; Other_Alphabetic # Mc   [3] BUGINESE VOWEL SIGN E..BUGINESE VOWEL SIGN AE
+1A19..1A1A    ; Other_Alphabetic # Mc   [2] BUGINESE VOWEL SIGN E..BUGINESE VOWEL SIGN O
+1A1B          ; Other_Alphabetic # Mn       BUGINESE VOWEL SIGN AE
 1A55          ; Other_Alphabetic # Mc       TAI THAM CONSONANT SIGN MEDIAL RA
 1A56          ; Other_Alphabetic # Mn       TAI THAM CONSONANT SIGN MEDIAL LA
 1A57          ; Other_Alphabetic # Mc       TAI THAM CONSONANT SIGN LA TANG LAI
@@ -968,7 +968,7 @@ FA27..FA29    ; Unified_Ideograph # Lo   [3] CJK COMPATIBILITY IDEOGRAPH-FA27..C
 034F          ; Other_Default_Ignorable_Code_Point # Mn       COMBINING GRAPHEME JOINER
 115F..1160    ; Other_Default_Ignorable_Code_Point # Lo   [2] HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
 17B4..17B5    ; Other_Default_Ignorable_Code_Point # Mn   [2] KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
-2065    ; Other_Default_Ignorable_Code_Point # Cn   [5] <reserved-2065>..<reserved-2069>
+2065          ; Other_Default_Ignorable_Code_Point # Cn       <reserved-2065>
 3164          ; Other_Default_Ignorable_Code_Point # Lo       HANGUL FILLER
 FFA0          ; Other_Default_Ignorable_Code_Point # Lo       HALFWIDTH HANGUL FILLER
 FFF0..FFF8    ; Other_Default_Ignorable_Code_Point # Cn   [9] <reserved-FFF0>..<reserved-FFF8>
@@ -977,7 +977,7 @@ E0002..E001F  ; Other_Default_Ignorable_Code_Point # Cn  [30] <reserved-E0002>..
 E0080..E00FF  ; Other_Default_Ignorable_Code_Point # Cn [128] <reserved-E0080>..<reserved-E00FF>
 E01F0..E0FFF  ; Other_Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 3780
+# Total code points: 3776
 
 # ================================================
 
