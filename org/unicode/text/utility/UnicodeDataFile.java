@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.MakeUnicodeFiles;
+import org.unicode.text.utility.Utility.RuntimeIOException;
 
 public class UnicodeDataFile {
     public PrintWriter out;
@@ -48,7 +49,7 @@ public class UnicodeDataFile {
         }
         try {
             Utility.appendFile("org/unicode/text/UCD/" + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
-        } catch (final IllegalArgumentException e) {
+        } catch (final RuntimeIOException e) {
             if (!(e.getCause() instanceof FileNotFoundException)) {
                 throw e;
             }
@@ -60,7 +61,7 @@ public class UnicodeDataFile {
     public void close() throws IOException {
         try {
             Utility.appendFile(filename + "Footer" + fileType, Utility.UTF8_UNIX, out);
-        } catch (final IllegalArgumentException e) {
+        } catch (final RuntimeIOException e) {
             if (!(e.getCause() instanceof FileNotFoundException)) {
                 throw e;
             }

@@ -976,7 +976,6 @@ E0000         ; Other_Default_Ignorable_Code_Point # Cn       <reserved-E0000>
 E0002..E001F  ; Other_Default_Ignorable_Code_Point # Cn  [30] <reserved-E0002>..<reserved-E001F>
 E0080..E00FF  ; Other_Default_Ignorable_Code_Point # Cn [128] <reserved-E0080>..<reserved-E00FF>
 E01F0..E0FFF  ; Other_Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
-061C; Other_Default_Ignorable_Code_Point
 
 # Total code points: 3780
 

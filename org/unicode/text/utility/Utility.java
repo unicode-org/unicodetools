@@ -988,19 +988,29 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
     }
 
+    public static class RuntimeIOException extends RuntimeException {
+        private static final long serialVersionUID = 2982482977979580522L;
+        public RuntimeIOException() {
+            super();
+        }
+        public RuntimeIOException(Exception e) {
+            super(e);
+        }
+    }
+    
     public static BufferedReader openReadFile(String filename, Encoding encoding) {
         FileInputStream fis;
         try {
             fis = new FileInputStream(filename);
         } catch (final FileNotFoundException e) {
-            throw new IllegalArgumentException(e);
+            throw new RuntimeIOException(e);
         }
         InputStreamReader isr;
         if (encoding == UTF8_UNIX || encoding == UTF8_WINDOWS) {
             try {
                 isr = new InputStreamReader(fis, "UTF8");
             } catch (final UnsupportedEncodingException e) {
-                throw new IllegalArgumentException(e);
+                throw new RuntimeIOException(e);
             }
         } else {
             isr = new InputStreamReader(fis);
@@ -1247,7 +1257,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     public static String getMostRecentUnicodeDataFile(String filename, String version,
             boolean acceptLatest, boolean show, String fileType) {
         // get all the files in the directory
-
+        
         final int compValue = acceptLatest ? 0 : 1;
         for (final String element : searchPath) {
             if (version.length() != 0 && version.compareTo(element) < compValue) {

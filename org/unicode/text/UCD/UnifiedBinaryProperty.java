@@ -260,13 +260,6 @@ public final class UnifiedBinaryProperty extends UCDProperty {
             break;
         }
         return true;
-        case Bidi_Paired_Bracket_Type>>8: if (propValue >= LIMIT_BPT) {
-            break;
-        }
-        if (propValue == BPB_N) {
-            break;
-        }
-        return true;
         case AGE>>8: if (propValue >= LIMIT_AGE) {
             break;
         }

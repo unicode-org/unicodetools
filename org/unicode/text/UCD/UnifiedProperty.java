@@ -110,6 +110,9 @@ public final class UnifiedProperty extends UCDProperty {
             }
 
             final String key = longRaw != null ? longRaw : shortRaw;
+            if (key.isEmpty()) {
+                throw new IllegalArgumentException();
+            }
             availablePropNames.add(key);
         }
         //System.out.println("Done Caching");

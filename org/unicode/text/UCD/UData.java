@@ -171,7 +171,12 @@ class UData implements UCD_Types {
         if (age != other.age) {
             return false;
         }
-
+        if (Bidi_Paired_Bracket != other.Bidi_Paired_Bracket) {
+            return false;
+        }
+        if (Bidi_Paired_Bracket_Type != other.Bidi_Paired_Bracket_Type) {
+            return false;
+        }
         return true;
     }
 
@@ -351,6 +356,12 @@ class UData implements UCD_Types {
         if (full || !bidiMirror.equals(s)) {
             result.append(" bmg='").append(Utility.quoteXML(bidiMirror)).append('\'');
         }
+        if (full || Bidi_Paired_Bracket != 0) {
+            result.append(" bpb='").append(Utility.quoteXML(Bidi_Paired_Bracket)).append('\'');
+        }
+        if (full || Bidi_Paired_Bracket_Type != 0) {
+            result.append(" bpt='").append(UCD_Names.Bidi_Paired_Bracket_Type_SHORT[Bidi_Paired_Bracket_Type]).append('\'');
+        }
 
         if (lastPos != result.length()) {
             result.append("\r\n");
@@ -421,6 +432,7 @@ class UData implements UCD_Types {
 
         os.writeDouble(numericValue);
         os.writeLong(binaryProperties);
+        os.writeInt(Bidi_Paired_Bracket);
 
         os.writeByte(generalCategory);
         os.writeByte(combiningClass);
@@ -433,6 +445,7 @@ class UData implements UCD_Types {
         os.writeByte(joiningGroup);
         os.writeByte(script);
         os.writeByte(age);
+        os.writeByte(Bidi_Paired_Bracket_Type);
     }
 
     public void readBytes(DataInputStream is) throws IOException {
@@ -453,6 +466,7 @@ class UData implements UCD_Types {
 
         numericValue = is.readDouble();
         binaryProperties = is.readLong();
+        Bidi_Paired_Bracket = is.readInt();
 
         generalCategory = is.readByte();
         combiningClass = is.readByte();
@@ -465,6 +479,7 @@ class UData implements UCD_Types {
         joiningGroup = is.readByte();
         script = is.readByte();
         age = is.readByte();
+        Bidi_Paired_Bracket_Type = is.readByte();
         fleshOut();
 
         // HACK
