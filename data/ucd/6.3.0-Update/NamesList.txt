@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 6.3.0
-@@@+	U63M130207.lst
-	Unicode 6.3.0 names list, fifth delta.
+@@@+	U63M130301.lst
+	Unicode 6.3.0 names list, sixth delta.
 	Updated annotation for U+A980.
 	Move subhead for U+200C to include U+200B.
 	Commented out alt glyph lines for 222B, 222C.
@@ -23,6 +23,9 @@
 	Added annotation for 111C4.
 	Updated aliases for FEFF.
 	Added xrefs for 2294 and 2A03.
+	Added xrefs for 002D and 2043.
+	Updated annotations for noncharacters, consistent with Corrigendum #9.
+	Updated annotation for 0024.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -147,7 +150,7 @@
 	= milréis, escudo
 	* used for many peso currencies in Latin America and elsewhere
 	* glyph may have one or two vertical bars
-	* other currency symbol characters: 20A0-20BA
+	* other currency symbol characters start at 20A0
 	x (currency sign - 00A4)
 	x (peso sign - 20B1)
 	x (heavy dollar sign - 1F4B2)
@@ -199,6 +202,7 @@
 	x (non-breaking hyphen - 2011)
 	x (figure dash - 2012)
 	x (en dash - 2013)
+	x (hyphen bullet - 2043)
 	x (minus sign - 2212)
 	x (roman uncia sign - 10191)
 002E	FULL STOP
@@ -5182,7 +5186,7 @@
 0AF1	GUJARATI RUPEE SIGN
 	* preferred spelling is 0AB0 0AC2 0AF0
 @@	0B00	Oriya	0B7F
-@+		As of 2012, the Oriya script and language are officially spelled Odia in India.
+@+		As of 2012, the name "Oriya" for this script and language is officially spelled "Odia" in India. That change in spelling does not affect the Unicode block or character names, which are constrained by stability guarantees.
 @		Various signs
 0B01	ORIYA SIGN CANDRABINDU
 0B02	ORIYA SIGN ANUSVARA
@@ -12122,6 +12126,7 @@
 	x (right semidirect product - 22CC)
 2042	ASTERISM
 2043	HYPHEN BULLET
+	x (hyphen-minus - 002D)
 2044	FRACTION SLASH
 	= solidus (in typography)
 	* for composing arbitrary fractions
@@ -26255,7 +26260,7 @@ FDC6	ARABIC LIGATURE SEEN WITH KHAH WITH YEH FINAL FORM
 FDC7	ARABIC LIGATURE NOON WITH JEEM WITH YEH FINAL FORM
 	# <final> 0646 062C 064A
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 FDD0	<not a character>
 FDD1	<not a character>
 FDD2	<not a character>
@@ -27303,13 +27308,11 @@ FFFD	REPLACEMENT CHARACTER
 	* used to replace an incoming character whose value is unknown or unrepresentable in Unicode
 	* compare the use of 001A as a control character to indicate the substitute function
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 FFFE	<not a character>
-	* the value FFFE is guaranteed not to be a Unicode character at all
-	* may be used to detect byte order by contrast with FEFF which is a character
+	* may be used to detect byte order by contrast with FEFF
 	x (zero width no-break space - FEFF)
 FFFF	<not a character>
-	* the value FFFF is guaranteed not to be a Unicode character at all
 @@	10000	Linear B Syllabary	1007F
 @@+
 @		Basic syllables
@@ -37777,12 +37780,10 @@ FFFF	<not a character>
 	= uncia semis
 	x (ounce sign - 2125)
 @@	1FF80	Unassigned	1FFFF
-@		Not character codes
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@		Noncharacters
+@+		These codes are intended for process-internal uses.
 1FFFE	<not a character>
-	* the value 1FFFE is guaranteed not to be a Unicode character at all
 1FFFF	<not a character>
-	* the value 1FFFF is guaranteed not to be a Unicode character at all
 @@	20000	CJK Unified Ideographs Extension B	2A6D6
 @@	2A700	CJK Unified Ideographs Extension C	2B734
 @@	2B740	CJK Unified Ideographs Extension D	2B81D
@@ -38885,88 +38886,64 @@ FFFF	<not a character>
 	: 2A600
 @@	2FF80	Unassigned	2FFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 2FFFE	<not a character>
-	* the value 2FFFE is guaranteed not to be a Unicode character at all
 2FFFF	<not a character>
-	* the value 2FFFF is guaranteed not to be a Unicode character at all
 @@	3FF80	Unassigned	3FFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 3FFFE	<not a character>
-	* the value 3FFFE is guaranteed not to be a Unicode character at all
 3FFFF	<not a character>
-	* the value 3FFFF is guaranteed not to be a Unicode character at all
 @@	4FF80	Unassigned	4FFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 4FFFE	<not a character>
-	* the value 4FFFE is guaranteed not to be a Unicode character at all
 4FFFF	<not a character>
-	* the value 4FFFF is guaranteed not to be a Unicode character at all
 @@	5FF80	Unassigned	5FFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 5FFFE	<not a character>
-	* the value 5FFFE is guaranteed not to be a Unicode character at all
 5FFFF	<not a character>
-	* the value 5FFFF is guaranteed not to be a Unicode character at all
 @@	6FF80	Unassigned	6FFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 6FFFE	<not a character>
-	* the value 6FFFE is guaranteed not to be a Unicode character at all
 6FFFF	<not a character>
-	* the value 6FFFF is guaranteed not to be a Unicode character at all
 @@	7FF80	Unassigned	7FFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 7FFFE	<not a character>
-	* the value 7FFFE is guaranteed not to be a Unicode character at all
 7FFFF	<not a character>
-	* the value 7FFFF is guaranteed not to be a Unicode character at all
 @@	8FF80	Unassigned	8FFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 8FFFE	<not a character>
-	* the value 8FFFE is guaranteed not to be a Unicode character at all
 8FFFF	<not a character>
-	* the value 8FFFF is guaranteed not to be a Unicode character at all
 @@	9FF80	Unassigned	9FFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 9FFFE	<not a character>
-	* the value 9FFFE is guaranteed not to be a Unicode character at all
 9FFFF	<not a character>
-	* the value 9FFFF is guaranteed not to be a Unicode character at all
 @@	AFF80	Unassigned	AFFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 AFFFE	<not a character>
-	* the value AFFFE is guaranteed not to be a Unicode character at all
 AFFFF	<not a character>
-	* the value AFFFF is guaranteed not to be a Unicode character at all
 @@	BFF80	Unassigned	BFFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 BFFFE	<not a character>
-	* the value BFFFE is guaranteed not to be a Unicode character at all
 BFFFF	<not a character>
-	* the value BFFFF is guaranteed not to be a Unicode character at all
 @@	CFF80	Unassigned	CFFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 CFFFE	<not a character>
-	* the value CFFFE is guaranteed not to be a Unicode character at all
 CFFFF	<not a character>
-	* the value CFFFF is guaranteed not to be a Unicode character at all
 @@	DFF80	Unassigned	DFFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 DFFFE	<not a character>
-	* the value DFFFE is guaranteed not to be a Unicode character at all
 DFFFF	<not a character>
-	* the value DFFFF is guaranteed not to be a Unicode character at all
 @@	E0000	Tags	E007F
 @+		Tag characters are deprecated, and their use is strongly discouraged.
 @		Tag identifiers
@@ -39314,24 +39291,18 @@ E01EE	VARIATION SELECTOR-255
 E01EF	VARIATION SELECTOR-256
 @@	EFF80	Unassigned	EFFFF
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 EFFFE	<not a character>
-	* the value EFFFE is guaranteed not to be a Unicode character at all
 EFFFF	<not a character>
-	* the value EFFFF is guaranteed not to be a Unicode character at all
 @@	FFF80	Supplementary Private Use Area-A	FFFFF
 @+		The entire plane is dedicated to private use with the exception of the last two code points.
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 FFFFE	<not a character>
-	* the value FFFFE is guaranteed not to be a Unicode character at all
 FFFFF	<not a character>
-	* the value FFFFF is guaranteed not to be a Unicode character at all
 @@	10FF80	Supplementary Private Use Area-B	10FFFF
 @+		The entire plane is dedicated to private use with the exception of the last two code points.
 @		Noncharacters
-@+		These codes are intended for process-internal uses, but are not permitted for interchange.
+@+		These codes are intended for process-internal uses.
 10FFFE	<not a character>
-	* the value 10FFFE is guaranteed not to be a Unicode character at all
 10FFFF	<not a character>
-	* the value 10FFFF is guaranteed not to be a Unicode character at all

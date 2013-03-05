@@ -662,7 +662,9 @@ public final class UCD implements UCD_Types {
         hanExceptions = new IntMap();
         BufferedReader in = null;
         try {
-            in = Utility.openUnicodeFile("Unihan", version, true, Utility.UTF8);
+            String hanNumericName = compositeVersion >= 0x50200 ? "Unihan_NumericValues" : "Unihan";
+            
+            in = Utility.openUnicodeFile(hanNumericName, version, true, Utility.UTF8);
             int lineCounter = 0;
             while (true) {
                 Utility.dot(++lineCounter);

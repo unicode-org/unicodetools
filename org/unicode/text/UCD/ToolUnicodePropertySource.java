@@ -26,6 +26,8 @@ import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.AliasAddAction;
+import com.ibm.icu.dev.util.UnicodeProperty.BaseProperty;
+import com.ibm.icu.dev.util.UnicodeProperty.Factory;
 import com.ibm.icu.dev.util.UnicodeProperty.SimpleProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.StringUCharacterIterator;
@@ -325,6 +327,24 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 return ucd.getBidiMirror(codepoint);
             }
         }.setValues("<string>").setMain("Bidi_Mirroring_Glyph", "bmg", UnicodeProperty.MISC, version));
+
+        add(new UnicodeProperty.SimpleProperty() {
+            @Override
+            public String _getValue(int codepoint) {
+                return UTF16.valueOf(ucd.getBidi_Paired_Bracket(codepoint));
+            }
+        }.setValues("<string>").setMain("Bidi_Paired_Bracket", "bpb", UnicodeProperty.MISC, version));
+
+        BaseProperty bpt = new UnicodeProperty.SimpleProperty() {
+            @Override
+            public String _getValue(int codepoint) {
+                return ucd.getBidi_Paired_Bracket_TypeID(codepoint);
+            }
+        }.setValues(UCD_Names.Bidi_Paired_Bracket_Type, UCD_Names.Bidi_Paired_Bracket_Type_SHORT)
+        .swapFirst2ValueAliases()
+        .setMain("Bidi_Paired_Bracket_Type", "bpt", UnicodeProperty.ENUMERATED, version);
+        add(bpt);
+
 
         add(new UnicodeProperty.SimpleProperty() {
             @Override
@@ -1382,13 +1402,6 @@ isTitlecase(X) is false.
             }
             titlecase = true;
             break;
-            case UCD_Types.Bidi_Paired_Bracket_Type >> 8:
-                temp = (ucd.getBidi_Paired_Bracket_TypeID_fromIndex(ucd.getBidi_Paired_Bracket_Type(codepoint), style));
-            if (temp != null) {
-                temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
-            }
-            titlecase = true;
-            break;
             case UCD_Types.AGE >> 8:
                 temp = getAge(codepoint);
             break;
@@ -1463,7 +1476,7 @@ isTitlecase(X) is false.
 
     }
 
-    private int remapUCDType(int result) {
+    private static int remapUCDType(int result) {
         switch (result) {
         case UCD_Types.NUMERIC_PROP:
             result = UnicodeProperty.NUMERIC;

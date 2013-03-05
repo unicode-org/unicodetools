@@ -746,8 +746,12 @@ public class MakeUnicodeFiles {
 
                 final UnicodeProperty up = ups.getProperty(propAlias);
                 final List aliases = up.getNameAliases();
+                String firstAlias = aliases.get(0).toString();
+                if (firstAlias.isEmpty()) {
+                    throw new IllegalArgumentException("Internal error");
+                }
                 if (aliases.size() == 1) {
-                    sortedSet.add(mt.process(aliases.get(0) + "\t; " + aliases.get(0)));
+                    sortedSet.add(mt.process(firstAlias + "\t; " + firstAlias));
                 } else {
                     buffer.setLength(0);
                     boolean isFirst = true;
@@ -761,7 +765,7 @@ public class MakeUnicodeFiles {
                     }
                     if (aliases.size() == 1) {
                         // repeat
-                        buffer.append("\t; ").append(aliases.get(0));
+                        buffer.append("\t; ").append(firstAlias);
                     }
                     sortedSet.add(mt.process(buffer.toString()));
                 }

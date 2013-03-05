@@ -1,5 +1,5 @@
-Generate: StandardizedVariants
-DeltaVersion: 12
+Generate: Alias
+DeltaVersion: 13
 CopyrightYear: 2013
 
 File: extra/ScriptNfkc
@@ -46,6 +46,19 @@ Property: SPECIAL
 
 File: auxiliary/SentenceBreakTest
 Property: SPECIAL
+
+File:	extra/BidiPairedBracketType
+Property: BidiPairedBracketType
+Format:	valueList skipUnassigned=None
+# Property: BidiPairedBracketType
+#
+# @missing: 0000..10FFFF; None
+
+File:	extra/BidiPairedBracket
+Property: BidiPairedBracket
+# Property: BidiPairedBracket
+#
+# @missing: 0000..10FFFF; None
 
 File:	extra/Blocks
 Property: Block

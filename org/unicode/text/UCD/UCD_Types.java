@@ -17,7 +17,7 @@ import org.unicode.text.utility.Utility;
 public interface UCD_Types {
     static final int FIX_FOR_NEW_VERSION = 0;
 
-    static final byte BINARY_FORMAT = 22; // bumped if binary format of UCD changes. Forces rebuild
+    static final byte BINARY_FORMAT = 23; // bumped if binary format of UCD changes. Forces rebuild
 
     public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("UCD_DIR", "data/")) + "/";
     public static final String UCD_DIR = BASE_DIR + "ucd/";
@@ -124,7 +124,6 @@ public interface UCD_Types {
     SCRIPT = 0xA00,
     AGE = 0xB00,
     HANGUL_SYLLABLE_TYPE = 0xC00,
-    Bidi_Paired_Bracket_Type = 0xD00,
     DERIVED = 0xE00,
     LIMIT_ENUM = DERIVED + 0x100,
     NEXT_ENUM = 0x100;
