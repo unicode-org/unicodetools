@@ -123,9 +123,11 @@ public class Main {
             } else if (arg.equalsIgnoreCase("WriteAllKeysDucet")) {
                 WriteAllkeys.writeAllkeys("allkeys_DUCET", CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("writeConformance")) {
-                WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA_Types.NON_IGNORABLE, shortPrint, CollatorType.ducet);
+                WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA_Types.NON_IGNORABLE, false /*shortPrint*/, CollatorType.ducet);
+                WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA_Types.NON_IGNORABLE, true, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("writeConformanceShifted")) {
-                WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA_Types.SHIFTED, shortPrint, CollatorType.ducet);
+                WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA_Types.SHIFTED, false /*shortPrint*/, CollatorType.ducet);
+                WriteConformanceTest.writeConformance("CollationTest_SHIFTED", UCA_Types.SHIFTED, true, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("writeConformanceCldr")) {
                 WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA_Types.NON_IGNORABLE, false /*shortPrint*/, CollatorType.cldr);
                 WriteConformanceTest.writeConformance("CollationTest_NON_IGNORABLE", UCA_Types.NON_IGNORABLE, true, CollatorType.cldr);
