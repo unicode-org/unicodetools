@@ -839,6 +839,7 @@ public class FractionalUCA {
 
         fractionalStatistics.printAndRecord(true, "\uFFFE", 0x020000, 2, 2, "# Special LOWEST primary, for merge/interleaving");
         fractionalStatistics.printAndRecord(true, "\uFFFF", 0xEFFF00, 5, 5, "# Special HIGHEST primary, for ranges");
+        lastTrailing.setValue(0xEFFF00, 5, 5, "\uFFFF");
 
         fractionalLog.println();
 
