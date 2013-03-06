@@ -1,5 +1,5 @@
 # BidiBrackets-6.3.0.txt
-# Date: 2013-02-12, 01:09:00 GMT [AG, LI, KW]
+# Date: 2013-03-05, 22:53:00 GMT [AG, LI, KW]
 #
 # Bidi_Paired_Bracket and Bidi_Paired_Bracket_Type Properties
 # 
@@ -9,9 +9,9 @@
 # Copyright (c) 1991-2013 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-# Bidi_Paired_Bracket is a normative property of type String, which
-# establishes a mapping between characters that are treated as bracket
-# pairs by the Unicode Bidirectional Algorithm.
+# Bidi_Paired_Bracket is a normative property of type Miscellaneous,
+# which establishes a mapping between characters that are treated as
+# bracket pairs by the Unicode Bidirectional Algorithm.
 #
 # Bidi_Paired_Bracket_Type is a normative property of type Enumeration,
 # which classifies characters into opening and closing paired brackets

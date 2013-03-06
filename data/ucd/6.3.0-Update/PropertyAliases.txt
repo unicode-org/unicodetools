@@ -1,5 +1,5 @@
 # PropertyAliases-6.3.0.txt
-# Date: 2013-02-12, 19:14:00 GMT [MD, KW temp]
+# Date: 2013-03-05, 21:40:52 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -57,7 +57,6 @@ nv                       ; Numeric_Value
 # ================================================
 # String Properties
 # ================================================
-bpb                      ; Bidi_Paired_Bracket
 cf                       ; Case_Folding
 cjkCompatibilityVariant  ; kCompatibilityVariant
 dm                       ; Decomposition_Mapping
@@ -75,6 +74,7 @@ uc                       ; Uppercase_Mapping
 # Miscellaneous Properties
 # ================================================
 bmg                      ; Bidi_Mirroring_Glyph
+bpb                      ; Bidi_Paired_Bracket
 cjkIICore                ; kIICore
 cjkIRG_GSource           ; kIRG_GSource
 cjkIRG_HSource           ; kIRG_HSource
@@ -188,6 +188,6 @@ XO_NFKC                  ; Expands_On_NFKC
 XO_NFKD                  ; Expands_On_NFKD
 
 # ================================================
-# Total:    115
+# Total:    117
 
 # EOF
