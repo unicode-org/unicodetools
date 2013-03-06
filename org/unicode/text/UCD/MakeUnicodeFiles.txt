@@ -1,4 +1,4 @@
-Generate: .*
+Generate: Alias
 DeltaVersion: 14
 CopyrightYear: 2013
 
