@@ -880,33 +880,25 @@ public class MakeUnicodeFiles {
             final String shortProp = up.getFirstNameAlias();
             sortedSet.clear();
             final boolean isJamoShortName = propName.equals("Jamo_Short_Name");
+            final boolean isJoiningGroup = propName.equals("Joining_Group");
 
             if (isJamoShortName || ((1<<type) & (UnicodeProperty.STRING_OR_MISC_MASK | (1<<UnicodeProperty.NUMERIC))) == 0) {
-                for (final Iterator it2 = up.getAvailableValues().iterator(); it2.hasNext();) {
-                    final String value = (String) it2.next();
+                for (final String value : (List<String>) up.getAvailableValues()) {
                     final List l = up.getValueAliases(value);
+                    // HACK
+                    if (isJoiningGroup && value.equals("Hamzah_On_Ha_Goal")) {
+                        continue;
+                    }
                     if (DEBUG) {
                         System.out.println(value + "\t" + bf.join(l));
                     }
 
                     // HACK
                     Tabber mt = mt2;
-                    //          if (propName.equals("Block")
-                    ////                  || propName.equals("Joining_Group")
-                    //                  ) {
-                    //            l.add(0, "n/a");
-                    //          } else
                     if (l.size() == 1) {
                         if (propName.equals("Canonical_Combining_Class")) {
                             continue;
                         }
-                        //                        if (// propName.equals("Block") ||
-                        //                                //                    propName.equals("Joining_Group")
-                        //                                //                    //|| propName.equals("Numeric_Type")
-                        //                                //                    ||
-                        //                                propName.equals("Age")) {
-                        //                            l.add(0, "n/a");
-                        //                        } else
                         {
                             l.add(0, l.get(0)); // double up
                         }

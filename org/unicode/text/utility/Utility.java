@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -37,6 +38,7 @@ import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCDProperty;
 import org.unicode.text.UCD.UCD_Types;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.Replaceable;
@@ -997,7 +999,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             super(e);
         }
     }
-    
+
     public static BufferedReader openReadFile(String filename, Encoding encoding) {
         FileInputStream fis;
         try {
@@ -1164,9 +1166,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         final File foo = new File(file2);
         File newName = new File(foo.getParent(), "ZZZ-UNCHANGED-" + foo.getName());
         if (newName.exists()) {
-            for (int i = 1; newName.exists(); ++i) {
-                newName = new File(foo.getParent(), "ZZZ-UNCHANGED" + i + "-" + foo.getName());
-            }
+            newName.delete();
         }
         System.out.println("IDENTICAL TO PREVIOUS, RENAMING : " + foo);
         System.out.println("TO : " + newName);
@@ -1199,6 +1199,9 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 continue;
             }
             if (line1.startsWith("<p><b>Date:</b>")) {
+                continue;
+            }
+            if (line1.startsWith("<td valign=\"top\">20") && line1.endsWith("GMT</td>")) {
                 continue;
             }
 
@@ -1257,24 +1260,30 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     public static String getMostRecentUnicodeDataFile(String filename, String version,
             boolean acceptLatest, boolean show, String fileType) {
         // get all the files in the directory
-        
+
         final int compValue = acceptLatest ? 0 : 1;
+        Set<String> tries = show ? new LinkedHashSet<String>() : null;
+        String result = null;
         for (final String element : searchPath) {
             if (version.length() != 0 && version.compareTo(element) < compValue) {
                 continue;
             }
 
             final String directoryName = UCD_Types.UCD_DIR + File.separator + element + "-Update" + File.separator;
-            if (show) {
-                System.out.println("\tTrying: '" + directoryName + "', '" + filename + "'");
-            }
-            final String result = searchDirectory(new File(directoryName), filename, show, fileType);
+            result = searchDirectory(new File(directoryName), filename, show, fileType);
             if (result != null) {
-                return result;
+                break;
             }
-
+            if (show) {
+                tries.add(element);
+            }
         }
-        return null;
+        if (show && !tries.isEmpty()) {
+            System.out.println("\tTried: '" + UCD_Types.UCD_DIR + File.separator + "("
+                    + CollectionUtilities.join(tries, "|") + ")-Update"
+                    + File.separator + filename + "*" + fileType + "'");
+        }
+        return result;
     }
 
     public static Set getDirectoryContentsLastFirst(File directory) {
