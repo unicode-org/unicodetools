@@ -476,7 +476,8 @@ File:   BidiTest
 #
 # This file provides a conformance test for UBA (Unicode Bidi Algorithm) implementations.
 # It is designed to be reasonably compact, and yet provide a thorough test of all cases up to
-# a given limit (currently 4).
+# a given limit (currently 4). Additionally, it contains some longer cases useful for testing
+# some common pitfalls of UBA implementations.
 #
 # Format:
 #
