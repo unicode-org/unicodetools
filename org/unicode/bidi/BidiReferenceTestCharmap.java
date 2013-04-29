@@ -2,8 +2,9 @@ package org.unicode.bidi;
 
 /*
  * (C) Copyright IBM Corp. 1999, All Rights Reserved
+ * (C) Copyright Google Inc. 2013, All Rights Reserved
  *
- * version 1.0
+ * Distributed under the Terms of Use in http://www.unicode.org/copyright.html.
  */
 
 import java.io.PrintWriter;
@@ -47,6 +48,10 @@ public abstract class BidiReferenceTestCharmap {
     private static final byte S = BidiReference.S;
     private static final byte WS = BidiReference.WS;
     private static final byte ON = BidiReference.ON;
+    private static final byte RLI = BidiReference.RLI;
+    private static final byte LRI = BidiReference.LRI;
+    private static final byte FSI = BidiReference.FSI;
+    private static final byte PDI = BidiReference.PDI;
 
     private static final byte TYPE_MIN = BidiReference.TYPE_MIN;
     private static final byte TYPE_MAX = BidiReference.TYPE_MAX;
@@ -142,6 +147,10 @@ public abstract class BidiReferenceTestCharmap {
             setMap(PDF, "^");
             setMap(RLE, "]");
             setMap(LRE, "[");
+            setMap(RLI, ">");
+            setMap(LRI, "<");
+            setMap(FSI, "?");
+            setMap(PDI, "=");
             setMap(NSM, "~");
             setMap( BN, "`");
             setMap(  B, "|"); // visible character for convenience
@@ -158,7 +167,7 @@ public abstract class BidiReferenceTestCharmap {
         }
 
         /**
-         * Standard character mapping for Latin-1.  Protected so that it can be
+         * Standard character mapping for Latin-1. Protected so that it can be
          * directly accessed by subclasses.
          */
         protected static final byte[] baseMap = {
@@ -171,13 +180,13 @@ public abstract class BidiReferenceTestCharmap {
             EN,  EN,  EN,  EN,  EN,  EN,  EN,  EN,  // 30-37  0  1  2  3  4  5  6  7
             EN,  EN,  CS,  ON,  ON,  ON,  ON,  ON,  // 38-3f  8  9  :  ;  <  =  >  ?
             ON,   L,   L,   L,   L,   L,   L,   L,  // 40-47  @  A  B  C  D  E  F  G
-            L,   L,   L,   L,   L,   L,   L,   L,  // 48-4f  H  I  J  K  L  M  N  O
-            L,   L,   L,   L,   L,   L,   L,   L,  // 50-57  P  Q  R  S  T  U  V  W
-            L,   L,   L,  ON,  ON,  ON,  ON,   S,  // 58-5f  X  Y  Z  [  \  ]  ^  _
+             L,   L,   L,   L,   L,   L,   L,   L,  // 48-4f  H  I  J  K  L  M  N  O
+             L,   L,   L,   L,   L,   L,   L,   L,  // 50-57  P  Q  R  S  T  U  V  W
+             L,   L,   L,  ON,  ON,  ON,  ON,   S,  // 58-5f  X  Y  Z  [  \  ]  ^  _
             ON,   L,   L,   L,   L,   L,   L,   L,  // 60-67  `  a  b  c  d  e  f  g
-            L,   L,   L,   L,   L,   L,   L,   L,  // 68-6f  h  i  j  k  l  m  n  o
-            L,   L,   L,   L,   L,   L,   L,   L,  // 70-77  p  q  r  s  t  u  v  w
-            L,   L,   L,  ON,  ON,  ON,  ON,  ON   // 78-7f  x  y  z  {  |  }  ~  DEL
+             L,   L,   L,   L,   L,   L,   L,   L,  // 68-6f  h  i  j  k  l  m  n  o
+             L,   L,   L,   L,   L,   L,   L,   L,  // 70-77  p  q  r  s  t  u  v  w
+             L,   L,   L,  ON,  ON,  ON,  ON,  ON   // 78-7f  x  y  z  {  |  }  ~  DEL
         };
 
         /**
@@ -189,8 +198,8 @@ public abstract class BidiReferenceTestCharmap {
         }
 
         /**
-         * Standard implementation of dumpInfo that displays, for each bidi direction type,
-         * the characters that are mapped to that type.
+         * Standard implementation of dumpInfo that displays, for each bidi
+         * direction type, the characters that are mapped to that type.
          */
         @Override
         public void dumpInfo(PrintWriter w) {
@@ -198,7 +207,7 @@ public abstract class BidiReferenceTestCharmap {
             // organized by type and coalescing printable characters
 
             w.print(name);
-            for (byte t = TYPE_MIN; t < TYPE_MAX; ++t) {
+            for (byte t = TYPE_MIN; t <= TYPE_MAX; ++t) {
                 w.println();
                 w.print("   ".substring(typenames[t].length()) + typenames[t] + ": ");
                 int runStart = 0;
@@ -252,12 +261,16 @@ public abstract class BidiReferenceTestCharmap {
         }
 
         /**
-         * Utility used to output a 'name' of single character, passed as an integer.  Printable
-         * characters are represented as themselves, non-printable characters as hex values.  Comma,
-         * hyphen, and space are represented as strings surrounded by square brackets.
+         * Utility used to output a 'name' of single character, passed as an
+         * integer. Printable characters are represented as themselves,
+         * non-printable characters as hex values. Comma, hyphen, and space are
+         * represented as strings surrounded by square brackets.
          *
-         * @param i the integer value of the character
-         * @param w the PrintWriter on which to output the representation of the character
+         * @param i
+         *            the integer value of the character
+         * @param w
+         *            the PrintWriter on which to output the representation of
+         *            the character
          */
         protected static void dumpChar(int i, PrintWriter w) {
             final char c = (char)i;
