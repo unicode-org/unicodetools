@@ -1,5 +1,5 @@
 # PropertyValueAliases-6.3.0.txt
-# Date: 2013-02-12, 19:20:00 GMT [MD, KW temp]
+# Date: 2013-03-06, 10:29:34 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -74,6 +74,7 @@ age; 5.2                              ; V5_2
 age; 6.0                              ; V6_0
 age; 6.1                              ; V6_1
 age; 6.2                              ; V6_2
+age; 6.3                              ; V6_3
 age; NA                               ; Unassigned
 
 # Alphabetic (Alpha)
@@ -120,6 +121,10 @@ Bidi_M; Y                             ; Yes                              ; T    
 # Bidi_Mirroring_Glyph (bmg)
 
 # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
+
+# Bidi_Paired_Bracket (bpb)
+
+# @missing: 0000..10FFFF; Bidi_Paired_Bracket; <none>
 
 # Bidi_Paired_Bracket_Type (bpt)
 
@@ -1196,9 +1201,11 @@ WSpace; Y                             ; Yes                              ; T    
 # Word_Break (WB)
 
 WB ; CR                               ; CR
+WB ; DQ                               ; Double_Quote
 WB ; EX                               ; ExtendNumLet
 WB ; Extend                           ; Extend
 WB ; FO                               ; Format
+WB ; HL                               ; Hebrew_Letter
 WB ; KA                               ; Katakana
 WB ; LE                               ; ALetter
 WB ; LF                               ; LF
@@ -1208,6 +1215,7 @@ WB ; MN                               ; MidNum
 WB ; NL                               ; Newline
 WB ; NU                               ; Numeric
 WB ; RI                               ; Regional_Indicator
+WB ; SQ                               ; Single_Quote
 WB ; XX                               ; Other
 
 # XID_Continue (XIDC)

@@ -1,5 +1,5 @@
 # DerivedCoreProperties-6.3.0.txt
-# Date: 2013-03-05, 12:56:50 GMT [MD]
+# Date: 2013-04-11, 08:36:26 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -2327,7 +2327,7 @@ FF21..FF3A    ; Uppercase # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH
 # ================================================
 
 # Derived Property:   Cased (Cased)
-#  As defined by Unicode Standard Definition D120
+#  As defined by Unicode Standard Definition D135
 #  C has the Lowercase or Uppercase property or has a General_Category value of Titlecase_Letter.
 
 0041..005A    ; Cased # L&  [26] LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER Z
@@ -2467,7 +2467,7 @@ FF41..FF5A    ; Cased # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 # ================================================
 
 # Derived Property:   Case_Ignorable (CI)
-#  As defined by Unicode Standard Definition D121
+#  As defined by Unicode Standard Definition D136
 #  C is defined to be case-ignorable if
 #    Word_Break(C) = MidLetter or MidNumLet, or
 #    General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
@@ -2810,7 +2810,7 @@ E0100..E01EF  ; Case_Ignorable # Mn [240] VARIATION SELECTOR-17..VARIATION SELEC
 
 # Derived Property:   Changes_When_Lowercased (CWL)
 #  Characters whose normalized forms are not stable under a toLowercase mapping.
-#  For more information, see D124 in Section 3.13, "Default Case Algorithms".
+#  For more information, see D139 in Section 3.13, "Default Case Algorithms".
 #  Changes_When_Lowercased(X) is true when toLowercase(toNFD(X)) != toNFD(X)
 
 0041..005A    ; Changes_When_Lowercased # L&  [26] LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER Z
@@ -3391,7 +3391,7 @@ FF21..FF3A    ; Changes_When_Lowercased # L&  [26] FULLWIDTH LATIN CAPITAL LETTE
 
 # Derived Property:   Changes_When_Uppercased (CWU)
 #  Characters whose normalized forms are not stable under a toUppercase mapping.
-#  For more information, see D125 in Section 3.13, "Default Case Algorithms".
+#  For more information, see D140 in Section 3.13, "Default Case Algorithms".
 #  Changes_When_Uppercased(X) is true when toUppercase(toNFD(X)) != toNFD(X)
 
 0061..007A    ; Changes_When_Uppercased # L&  [26] LATIN SMALL LETTER A..LATIN SMALL LETTER Z
@@ -3987,7 +3987,7 @@ FF41..FF5A    ; Changes_When_Uppercased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 
 # Derived Property:   Changes_When_Titlecased (CWT)
 #  Characters whose normalized forms are not stable under a toTitlecase mapping.
-#  For more information, see D126 in Section 3.13, "Default Case Algorithms".
+#  For more information, see D141 in Section 3.13, "Default Case Algorithms".
 #  Changes_When_Titlecased(X) is true when toTitlecase(toNFD(X)) != toNFD(X)
 
 0061..007A    ; Changes_When_Titlecased # L&  [26] LATIN SMALL LETTER A..LATIN SMALL LETTER Z
@@ -4584,7 +4584,7 @@ FF41..FF5A    ; Changes_When_Titlecased # L&  [26] FULLWIDTH LATIN SMALL LETTER 
 
 # Derived Property:   Changes_When_Casefolded (CWCF)
 #  Characters whose normalized forms are not stable under case folding.
-#  For more information, see D127 in Section 3.13, "Default Case Algorithms".
+#  For more information, see D142 in Section 3.13, "Default Case Algorithms".
 #  Changes_When_Casefolded(X) is true when toCasefold(toNFD(X)) != toNFD(X)
 
 0041..005A    ; Changes_When_Casefolded # L&  [26] LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER Z
@@ -5176,7 +5176,7 @@ FF21..FF3A    ; Changes_When_Casefolded # L&  [26] FULLWIDTH LATIN CAPITAL LETTE
 
 # Derived Property:   Changes_When_Casemapped (CWCM)
 #  Characters whose normalized forms are not stable under case mapping.
-#  For more information, see D128 in Section 3.13, "Default Case Algorithms".
+#  For more information, see D143 in Section 3.13, "Default Case Algorithms".
 #  Changes_When_Casemapped(X) is true when CWL(X), or CWT(X), or CWU(X)
 
 0041..005A    ; Changes_When_Casemapped # L&  [26] LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER Z

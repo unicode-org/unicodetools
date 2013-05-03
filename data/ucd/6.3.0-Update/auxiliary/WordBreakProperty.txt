@@ -1,5 +1,5 @@
 # WordBreakProperty-6.3.0.txt
-# Date: 2013-03-03, 16:59:59 GMT [MD]
+# Date: 2013-03-06, 11:10:51 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -939,11 +939,12 @@ FFDA..FFDC    ; ALetter # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL 
 # ================================================
 
 00B7          ; MidLetter # Po       MIDDLE DOT
+02D7          ; MidLetter # Sk       MODIFIER LETTER MINUS SIGN
 0387          ; MidLetter # Po       GREEK ANO TELEIA
 05F4          ; MidLetter # Po       HEBREW PUNCTUATION GERSHAYIM
 2027          ; MidLetter # Po       HYPHENATION POINT
 
-# Total code points: 4
+# Total code points: 5
 
 # ================================================
 

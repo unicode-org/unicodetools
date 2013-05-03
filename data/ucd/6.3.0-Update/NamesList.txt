@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 6.3.0
-@@@+	U63M130301.lst
-	Unicode 6.3.0 names list, sixth delta.
+@@@+	U63M130401.lst
+	Unicode 6.3.0 names list, eighth delta.
 	Updated annotation for U+A980.
 	Move subhead for U+200C to include U+200B.
 	Commented out alt glyph lines for 222B, 222C.
@@ -26,6 +26,8 @@
 	Added xrefs for 002D and 2043.
 	Updated annotations for noncharacters, consistent with Corrigendum #9.
 	Updated annotation for 0024.
+	Updated annotation for 0B83.
+	Added annotation for 06AA.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -3952,6 +3954,7 @@
 06A9	ARABIC LETTER KEHEH
 	* Persian, Urdu, ...
 06AA	ARABIC LETTER SWASH KAF
+	* represents a letter distinct from Arabic KAF (0643) in Sindhi
 06AB	ARABIC LETTER KAF WITH RING
 	* Pashto
 	* may appear like an Arabic KAF (0643) with a ring below the base
@@ -5322,7 +5325,7 @@
 	* not used in Tamil
 0B83	TAMIL SIGN VISARGA
 	= aytham
-	* in fonts which display the Tamil pulli as a ring shape, the glyph for aytham also uses rings
+	* just as for the Tamil pulli, the glyph for aytham may use either dots or rings
 @		Independent vowels
 0B85	TAMIL LETTER A
 0B86	TAMIL LETTER AA

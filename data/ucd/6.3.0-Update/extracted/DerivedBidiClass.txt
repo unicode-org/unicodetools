@@ -1,5 +1,5 @@
 # DerivedBidiClass-6.3.0.txt
-# Date: 2013-03-02, 16:07:34 GMT [MD]
+# Date: 2013-04-11, 08:36:22 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -47,12 +47,14 @@
 #                        U+1E800 - U+1EDFF,
 #                        U+1EF00 - U+1EFFF
 #
-# The unassigned code points that default to ET are in the ranges:
-#     [\u20A0..\u20CF]
+# The unassigned code points that default to ET are in the range:
+#     [\u20A0-\u20CF]
 #
-# The unassigned code points that default to BN have the following properties:
+#     Currency Symbols:  U+20A0  -  U+20CF
+#
+# The unassigned code points that default to BN have one of the following properties:
 #     Default_Ignorable_Code_Point
-#     Noncharacter
+#     Noncharacter_Code_Point
 #
 # For all other cases:
 
