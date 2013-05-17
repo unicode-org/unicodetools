@@ -389,7 +389,7 @@ public final class BidiReference {
         }
     }
 
-    public static final int MAX_DEPTH = 61;
+    public static final int MAX_DEPTH = 125;
 
     // This stack will store the embedding levels and override and isolated
     // statuses
