@@ -65,7 +65,7 @@ FileType ; NamedSequencesProv ; NamedSequences
 # The format is:
 # Field0 : file name
 # Field1 : property name
-# Field2 : field number in file (default is 1
+# Field2 : field number in file (default is 1)
 # Field3 : special handling
 #   Rational : Value is a rational number
 #   Skip1FT  : Skip line if field 1 is F or T
@@ -101,6 +101,9 @@ LineBreak ; Line_Break
 GraphemeBreakProperty ; Grapheme_Cluster_Break
 SentenceBreakProperty ; Sentence_Break
 WordBreakProperty ; Word_Break
+BidiBrackets ; Bidi_Paired_Bracket ; 1
+BidiBrackets ; Bidi_Paired_Bracket_Type ; 2
+
 #
 NameAliases ; Name_Alias
 #NormalizationCorrections ; used in Decomposition Mappings

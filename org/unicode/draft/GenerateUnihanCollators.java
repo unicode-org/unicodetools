@@ -23,7 +23,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.CldrUtility.Output;
 import org.unicode.cldr.util.Counter;
 import org.unicode.draft.ComparePinyin.PinyinSource;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
@@ -49,6 +48,7 @@ import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateUnihanCollators {
@@ -980,7 +980,7 @@ public class GenerateUnihanCollators {
         }
     }
 
-    private static void showIndexValue(FileType fileType, PrintWriter out, Output<String> comment, String indexValue) {
+    private static <T> void showIndexValue(FileType fileType, PrintWriter out, Output<T> comment, String indexValue) {
         if (fileType == FileType.txt) {
             out.println("<" + indexValue + "\t# INDEX " + comment);
         } else {

@@ -775,7 +775,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             "ALetter");
                     unicodeMap
                     .putAll(new UnicodeSet(
-                            "[\\u00B7\\u05F4\\u2027\\u0387]"),
+                            "[\\u00B7\\u05F4\\u2027\\u0387\\u02D7]"),
                             "MidLetter");
 
                     /*

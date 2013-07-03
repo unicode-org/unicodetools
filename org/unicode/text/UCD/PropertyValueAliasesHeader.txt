@@ -25,13 +25,14 @@
 #
 # Loose matching should be applied to all property names and property values, with
 # the exception of String Property values. With loose matching of property names and
-# values, the case distinctions, whitespace, and '_' are ignored. For Numeric Property
-# values, numeric equivalencies are applied: thus "01.00" is equivalent to "1".
+# values, the case distinctions, whitespace, hyphens, and '_' are ignored.
+# For Numeric Property values, numeric equivalence is applied: thus "01.00"
+# is equivalent to "1".
 #
 # NOTE: Property value names are NOT unique across properties. For example:
 #
 #   AL means Arabic Letter for the Bidi_Class property, and
-#   AL means Above_Left for the Combining_Class property, and
+#   AL means Above_Left for the Canonical_Class property, and
 #   AL means Alphabetic for the Line_Break property.
 #
 # In addition, some property names may be the same as some property value names.
