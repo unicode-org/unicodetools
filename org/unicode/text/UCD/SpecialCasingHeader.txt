@@ -32,7 +32,7 @@
 # A language ID is defined by BCP 47, with '-' and '_' treated equivalently.
 #
 # A context for a character C is defined by Section 3.13 Default Case 
-# Operations, of The Unicode Standard, Version 5.0.
+# Algorithms, of The Unicode Standard, Version 6.3.
 # (This is identical to the context defined by Unicode 4.1.0,
 #  as specified in http://www.unicode.org/versions/Unicode4.1.0/)
 #
