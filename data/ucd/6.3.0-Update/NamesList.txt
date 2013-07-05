@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 6.3.0
-@@@+	U63M130401.lst
-	Unicode 6.3.0 names list, eighth delta.
+@@@+	U63M130702.lst
+	Unicode 6.3.0 names list, twelfth delta.
 	Updated annotation for U+A980.
 	Move subhead for U+200C to include U+200B.
 	Commented out alt glyph lines for 222B, 222C.
@@ -28,6 +28,13 @@
 	Updated annotation for 0024.
 	Updated annotation for 0B83.
 	Added annotation for 06AA.
+	Updated notice at 2500.
+	Updated subheads for various Jamo blocks.
+	Updated annotations and cross-references for several math characters.
+	Updated casing for two Assamese annotations.
+	Removed extraneous tab in entry for 1F4AE.
+	Added several explicit standardized variant summary headers.
+	Added notice about the exceptional bidi behavior of FD3E and FD3F.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -251,6 +258,7 @@
 	~ 0039 FE0F emoji style
 @		ASCII punctuation and symbols
 003A	COLON
+	* also used to denote division or scale; for that mathematical use 2236 is preferred
 	x (armenian full stop - 0589)
 	x (hebrew punctuation sof pasuq - 05C3)
 	x (ratio - 2236)
@@ -437,7 +445,6 @@
 @		Control character
 007F	<control>
 	= DELETE
-@~	Standardized Variation Sequences
 @@	0080	C1 Controls and Latin-1 Supplement (Latin-1 Supplement)	00FF
 @		C1 controls
 @+		Alias names are those for ISO/IEC 6429:1992.
@@ -601,6 +608,7 @@
 	= midpoint (in typography)
 	= Georgian comma
 	= Greek middle dot (ano teleia)
+	* also used as a raised decimal point or to denote multiplication; for multiplication 22C5 is preferred
 	x (greek ano teleia - 0387)
 	x (runic single punctuation - 16EB)
 	x (bullet - 2022)
@@ -778,8 +786,15 @@
 	: 006F 0308
 @		Mathematical operator
 00F7	DIVISION SIGN
+	= obelus
+	* occasionally used as an alternate, more visually distinct version of 2212 or 2011 in some contexts
+	* historically used as a punctuation mark to denote questionable passages in manuscripts
+	x (syriac harklean obelus - 070B)
+	x (commercial minus sign - 2052)
+	x (minus sign - 2212)
 	x (division slash - 2215)
 	x (divides - 2223)
+	x (ratio - 2236)
 	x (heavy division sign - 2797)
 @		Letters
 00F8	LATIN SMALL LETTER O WITH STROKE
@@ -4142,6 +4157,7 @@
 	* placed at the end of an incomplete word
 070B	SYRIAC HARKLEAN OBELUS
 	* marks the beginning of a phrase, word, or morpheme that has a marginal note
+	x (division sign - 00F7)
 070C	SYRIAC HARKLEAN METOBELUS
 	* marks the end of a section with a marginal note
 070D	SYRIAC HARKLEAN ASTERISCUS
@@ -4933,9 +4949,9 @@
 09EF	BENGALI DIGIT NINE
 @		Additions for Assamese
 09F0	BENGALI LETTER RA WITH MIDDLE DIAGONAL
-	= assamese letter ra
+	= Assamese letter ra
 09F1	BENGALI LETTER RA WITH LOWER DIAGONAL
-	= assamese letter wa
+	= Assamese letter wa
 	= bengali letter va with lower diagonal (1.0)
 @		Currency signs
 09F2	BENGALI RUPEE MARK
@@ -6949,6 +6965,7 @@
 1112	HANGUL CHOSEONG HIEUH
 	= H
 	* voiceless glottal fricative
+@		Old initial consonants
 1113	HANGUL CHOSEONG NIEUN-KIYEOK
 1114	HANGUL CHOSEONG SSANGNIEUN
 1115	HANGUL CHOSEONG NIEUN-TIKEUT
@@ -7083,6 +7100,7 @@
 	= YI
 1175	HANGUL JUNGSEONG I
 	= I
+@		Old medial vowels
 1176	HANGUL JUNGSEONG A-O
 1177	HANGUL JUNGSEONG A-U
 1178	HANGUL JUNGSEONG YA-O
@@ -7190,6 +7208,7 @@
 	= P
 11C2	HANGUL JONGSEONG HIEUH
 	= H
+@		Old final consonants
 11C3	HANGUL JONGSEONG KIYEOK-RIEUL
 11C4	HANGUL JONGSEONG KIYEOK-SIOS-KIYEOK
 11C5	HANGUL JONGSEONG NIEUN-KIYEOK
@@ -9246,7 +9265,7 @@
 18A8	MONGOLIAN LETTER MANCHU ALI GALI BHA
 18A9	MONGOLIAN LETTER ALI GALI DAGALGA
 18AA	MONGOLIAN LETTER MANCHU ALI GALI LHA
-@~	Standarized Variation Sequences
+@~	Standardized Variation Sequences
 @+	Unlike other blocks, these variation sequences use the script-specific variation selectors for Mongolian.
 @@	18B0	Unified Canadian Aboriginal Syllabics Extended	18FF
 @		Syllables for Moose Cree
@@ -12169,6 +12188,7 @@
 	* used in Finno-Ugric Phonetic Alphabet to indicate a related borrowed form with different sound
 	x (percent sign - 0025)
 	x (arabic percent sign - 066A)
+	x (division sign - 00F7)
 2053	SWUNG DASH
 	x (tilde - 007E)
 2054	INVERTED UNDERTIE
@@ -12239,7 +12259,6 @@
 206D	ACTIVATE ARABIC FORM SHAPING
 206E	NATIONAL DIGIT SHAPES
 206F	NOMINAL DIGIT SHAPES
-@~	Standardized Variation Sequences
 @@	2070	Superscripts and Subscripts	209F
 @		Superscripts
 @+		See also superscript Latin letters in the Spacing Modifier Letters block starting at 02B0.
@@ -12744,7 +12763,6 @@
 	x (greek small letter digamma - 03DD)
 @		Biblical editorial symbol
 214F	SYMBOL FOR SAMARITAN SOURCE
-@~	Standardized Variation Sequences
 @@	2150	Number Forms	218F
 @		Fractions
 @+		Other fraction number forms are found in the Latin-1 Supplement block.
@@ -13073,7 +13091,6 @@
 21FD	LEFTWARDS OPEN-HEADED ARROW
 21FE	RIGHTWARDS OPEN-HEADED ARROW
 21FF	LEFT RIGHT OPEN-HEADED ARROW
-@~	Standardized Variation Sequences
 @@	2200	Mathematical Operators	22FF
 @@+
 @		Miscellaneous mathematical symbols
@@ -13234,6 +13251,7 @@
 2235	BECAUSE
 @		Relations
 2236	RATIO
+	* preferred to 003A for denotation of division or scale in mathematical use
 	x (colon - 003A)
 2237	PROPORTION
 @		Operator
@@ -13527,6 +13545,7 @@
 	x (white diamond - 25C7)
 	x (black small diamond - 2B29)
 22C5	DOT OPERATOR
+	* preferred to 00B7 for denotation of multiplication
 	x (middle dot - 00B7)
 22C6	STAR OPERATOR
 	* APL
@@ -13615,10 +13634,7 @@
 22FD	CONTAINS WITH OVERBAR
 22FE	SMALL CONTAINS WITH OVERBAR
 22FF	Z NOTATION BAG MEMBERSHIP
-@@~	Alternative Glyph Listing
-@+	Experimental listing
-@~	Standarized Variation Sequences
-@+	Experimental listing
+@~	Standardized Variation Sequences
 @@	2300	Miscellaneous Technical	23FF
 @		Miscellaneous technical
 2300	DIAMETER SIGN
@@ -14055,7 +14071,6 @@
 23F2	TIMER CLOCK
 23F3	HOURGLASS WITH FLOWING SAND
 	x (hourglass - 231B)
-@~	Standardized Variation Sequences
 @@	2400	Control Pictures	243F
 @+		The diagonal lettering glyphs are only exemplary; alternate representations may be, and often are used in the visible display of control codes.
 @		Graphic pictures for control codes
@@ -14451,9 +14466,8 @@
 @		Additional white on black circled number
 24FF	NEGATIVE CIRCLED DIGIT ZERO
 	x (dingbat negative circled digit one - 2776)
-@~	Standardized Variation Sequences
 @@	2500	Box Drawing	257F
-@+	All of these characters are intended for compatibility with old sets oriented toward character cell graphics.
+@+		All of these characters are intended for compatibility with character cell graphic sets in use prior to 1990.
 @		Light and heavy solid lines
 2500	BOX DRAWINGS LIGHT HORIZONTAL
 	= Videotex Mosaic DG 15
@@ -14859,8 +14873,9 @@
 	~ 25FE FE0F emoji style
 25FF	LOWER RIGHT TRIANGLE
 	x (right triangle - 22BF)
-@~	Standarized Variation Sequences
-@+	Emoji style variants include rendering of characters in ways not achievable with traditional or even digital typography. The sample glyphs shown here cannot faithfully represent the range of intended appearances.
+;	;2600
+;@~	Standardized Variation Sequences
+;@+	Emoji style variants include rendering of characters in ways not achievable with traditional or even digital typography. The sample glyphs shown here cannot faithfully represent the range of intended appearances.
 @@	2600	Miscellaneous Symbols	26FF
 @@+
 @		Weather and astrological symbols
@@ -15499,7 +15514,6 @@
 	x (teacup without handle - 1F375)
 26FF	WHITE FLAG WITH HORIZONTAL MIDDLE BLACK STRIPE
 	= Japanese self-defence force site
-@~	Standardized Variation Sequences
 @@	2700	Dingbats	27BF
 @+		ITC Zapf dingbats series 100. Some of the ITC Zapf dingbats have been unified with geometric shape characters. Gaps in the chart have subsequently been filled with other dingbat-like symbols.
 	x (black telephone - 260E)
@@ -15802,7 +15816,6 @@
 27BE	OPEN-OUTLINED RIGHTWARDS ARROW
 @		Miscellaneous
 27BF	DOUBLE CURLY LOOP
-@~	Standardized Variation Sequences
 @@	27C0	Miscellaneous Mathematical Symbols-A	27EF
 @		Miscellaneous symbols
 27C0	THREE DIMENSIONAL ANGLE
@@ -16426,7 +16439,6 @@
 297D	RIGHT FISH TAIL
 297E	UP FISH TAIL
 297F	DOWN FISH TAIL
-@~	Standardized Variation Sequences
 @@	2980	Miscellaneous Mathematical Symbols-B	29FF
 @		Miscellaneous mathematical symbols
 2980	TRIPLE VERTICAL BAR DELIMITER
@@ -17244,7 +17256,6 @@
 2B59	HEAVY CIRCLED SALTIRE
 	= police station
 	x (n-ary circled times operator - 2A02)
-@~	Standardized Variation Sequences
 @@	2C00	Glagolitic	2C5F
 @		Capital letters
 2C00	GLAGOLITIC CAPITAL LETTER AZU
@@ -18784,7 +18795,6 @@
 	* visual indicator that the following ideograph is to be taken as a variant of the intended character
 303F	IDEOGRAPHIC HALF FILL SPACE
 	* visual indicator of a screen space for half of an ideograph
-@~	Standardized Variation Sequences
 @@	3040	Hiragana	309F
 @		Hiragana letters
 3041	HIRAGANA LETTER SMALL A
@@ -19118,7 +19128,7 @@
 312D	BOPOMOFO LETTER IH
 	* for analytic representation of apical vowel
 @@	3130	Hangul Compatibility Jamo	318F
-@		Modern letters
+@		Consonant letters
 3131	HANGUL LETTER KIYEOK
 	# 1100 hangul choseong kiyeok
 3132	HANGUL LETTER SSANGKIYEOK
@@ -19181,6 +19191,7 @@
 314E	HANGUL LETTER HIEUH
 	* voiceless glottal fricative
 	# 1112 hangul choseong hieuh
+@		Vowel letters
 314F	HANGUL LETTER A
 	# 1161 hangul jungseong a
 3150	HANGUL LETTER AE
@@ -19227,7 +19238,7 @@
 3164	HANGUL FILLER
 	= chaeum
 	# 1160 hangul jungseong filler
-@		Old letters
+@		Old consonant letters
 3165	HANGUL LETTER SSANGNIEUN
 	# 1114 hangul choseong ssangnieun
 3166	HANGUL LETTER NIEUN-TIKEUT
@@ -19300,6 +19311,7 @@
 3186	HANGUL LETTER YEORINHIEUH
 	* glottal stop
 	# 1159 hangul choseong yeorinhieuh
+@		Old vowel letters
 3187	HANGUL LETTER YO-YA
 	# 1184 hangul jungseong yo-ya
 3188	HANGUL LETTER YO-YAE
@@ -20048,7 +20060,6 @@
 	# <circle> 30F1
 32FE	CIRCLED KATAKANA WO
 	# <circle> 30F2
-@~	Standardized Variation Sequences
 @@	3300	CJK Compatibility	33FF
 @		Squared Katakana words
 3300	SQUARE APAATO
@@ -23328,7 +23339,7 @@ A953	REJANG VIRAMA
 @		Punctuation
 A95F	REJANG SECTION MARK
 @@	A960	Hangul Jamo Extended-A	A97F
-@		Initial consonants
+@		Old initial consonants
 A960	HANGUL CHOSEONG TIKEUT-MIEUM
 A961	HANGUL CHOSEONG TIKEUT-PIEUP
 A962	HANGUL CHOSEONG TIKEUT-SIOS
@@ -23907,7 +23918,7 @@ ABF9	MEETEI MAYEK DIGIT NINE
 	= mapal
 @@	AC00	Hangul Syllables	D7A3
 @@	D7B0	Hangul Jamo Extended-B	D7FF
-@		Medial vowels
+@		Old medial vowels
 D7B0	HANGUL JUNGSEONG O-YEO
 D7B1	HANGUL JUNGSEONG O-O-I
 D7B2	HANGUL JUNGSEONG YO-A
@@ -23931,7 +23942,7 @@ D7C3	HANGUL JUNGSEONG I-YU
 D7C4	HANGUL JUNGSEONG I-I
 D7C5	HANGUL JUNGSEONG ARAEA-A
 D7C6	HANGUL JUNGSEONG ARAEA-E
-@		Final consonants
+@		Old final consonants
 D7CB	HANGUL JONGSEONG NIEUN-RIEUL
 D7CC	HANGUL JONGSEONG NIEUN-CHIEUCH
 D7CD	HANGUL JONGSEONG SSANGTIKEUT
@@ -24945,6 +24956,7 @@ FAD8	CJK COMPATIBILITY IDEOGRAPH-FAD8
 	: 9F43
 FAD9	CJK COMPATIBILITY IDEOGRAPH-FAD9
 	: 9F8E
+@~	Standardized Variation Sequences
 @@	FB00	Alphabetic Presentation Forms	FB4F
 @		Latin ligatures
 @+		See the Basic Latin block starting at 0020
@@ -26023,6 +26035,7 @@ FD3C	ARABIC LIGATURE ALEF WITH FATHATAN FINAL FORM
 FD3D	ARABIC LIGATURE ALEF WITH FATHATAN ISOLATED FORM
 	# <isolated> 0627 064B
 @		Punctuation
+@+		For legacy reasons, these parentheses do not mirror in bidirectional display and do not have the Bidi_Paired_Bracket property.
 FD3E	ORNATE LEFT PARENTHESIS
 FD3F	ORNATE RIGHT PARENTHESIS
 @		Ligatures (three elements)
@@ -35857,7 +35870,6 @@ FFFF	<not a character>
 1F02A	MAHJONG TILE JOKER
 	= baida
 1F02B	MAHJONG TILE BACK
-@~	Standardized Variation Sequences
 @@	1F030	Domino Tiles	1F09F
 @		Horizontal tiles
 1F030	DOMINO TILE HORIZONTAL BACK
@@ -36387,7 +36399,6 @@ FFFF	<not a character>
 1F1FD	REGIONAL INDICATOR SYMBOL LETTER X
 1F1FE	REGIONAL INDICATOR SYMBOL LETTER Y
 1F1FF	REGIONAL INDICATOR SYMBOL LETTER Z
-@~	Standardized Variation Sequences
 @@	1F200	Enclosed Ideographic Supplement	1F2FF
 @		Squared hiragana from ARIB STD B24
 1F200	SQUARE HIRAGANA HOKA
@@ -36576,7 +36587,6 @@ FFFF	<not a character>
 1F251	CIRCLED IDEOGRAPH ACCEPT
 	= accept sign
 	# <circle> 53EF
-@~	Standardized Variation Sequences
 @@	1F300	Miscellaneous Symbols and Pictographs	1F5FF
 @		Weather, landscape, and sky symbols
 1F300	CYCLONE
@@ -38887,6 +38897,7 @@ FFFF	<not a character>
 	: 9F3B
 2FA1D	CJK COMPATIBILITY IDEOGRAPH-2FA1D
 	: 2A600
+@~	Standardized Variation Sequences
 @@	2FF80	Unassigned	2FFFF
 @		Noncharacters
 @+		These codes are intended for process-internal uses.

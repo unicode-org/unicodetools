@@ -1,5 +1,5 @@
 # BidiBrackets-6.3.0.txt
-# Date: 2013-03-05, 22:53:00 GMT [AG, LI, KW]
+# Date: 2013-06-05, 22:35:00 GMT [AG, LI, KW]
 #
 # Bidi_Paired_Bracket and Bidi_Paired_Bracket_Type Properties
 # 
@@ -17,19 +17,20 @@
 # which classifies characters into opening and closing paired brackets
 # for the purposes of the Unicode Bidirectional Algorithm.
 #
-# The set of code points listed in this file was originally derived
-# using the character properties General_Category (gc), Bidi_Class (bc),
-# Bidi_Mirrored (Bidi_M), and Bidi_Mirroring_Glyph (bmg), as follows:
-# two characters, A and B, form a pair if A has gc=Ps and B has gc=Pe,
-# both have bc=ON and Bidi_M=Y, and bmg of A is B. Bidi_Paired_Bracket
-# maps A to B and vice versa, and their Bidi_Paired_Bracket_Type
-# property values are Open and Close, respectively.
+# This file lists the set of code points with Bidi_Paired_Bracket_Type
+# property values Open and Close. The set is derived from the character
+# properties General_Category (gc), Bidi_Class (bc), Bidi_Mirrored (Bidi_M),
+# and Bidi_Mirroring_Glyph (bmg), as follows: two characters, A and B,
+# form a bracket pair if A has gc=Ps and B has gc=Pe, both have bc=ON and
+# Bidi_M=Y, and bmg of A is B. Bidi_Paired_Bracket (bpb) maps A to B and
+# vice versa, and their Bidi_Paired_Bracket_Type (bpt) property values are
+# Open (o) and Close (c), respectively.
 #
-# Note that, as of Unicode 6.3, the set of characters with Bidi_M=Y is
-# strictly included in the set of characters with bc=ON. As a result,
-# the latter condition can be optimized away, but it is important to be
-# aware of it, because the bidirectional paired brackets are processed
-# as neutral characters by the Unicode Bidirectional Algorithm.
+# The Unicode property value stability policy guarantees that characters
+# which have bpt=o or bpt=c also have bc=ON and Bidi_M=Y. As a result, an
+# implementation can optimize the lookup of the Bidi_Paired_Bracket_Type
+# property values Open and Close by restricting the processing to characters
+# with bc=ON.
 #
 # The format of the file is three fields separated by a semicolon.
 # Field 0: Unicode code point value, represented as a hexadecimal value
@@ -67,6 +68,10 @@
 207E; 207D; c # SUPERSCRIPT RIGHT PARENTHESIS
 208D; 208E; o # SUBSCRIPT LEFT PARENTHESIS
 208E; 208D; c # SUBSCRIPT RIGHT PARENTHESIS
+2308; 2309; o # LEFT CEILING
+2309; 2308; c # RIGHT CEILING
+230A; 230B; o # LEFT FLOOR
+230B; 230A; c # RIGHT FLOOR
 2329; 232A; o # LEFT-POINTING ANGLE BRACKET
 232A; 2329; c # RIGHT-POINTING ANGLE BRACKET
 2768; 2769; o # MEDIUM LEFT PARENTHESIS ORNAMENT
