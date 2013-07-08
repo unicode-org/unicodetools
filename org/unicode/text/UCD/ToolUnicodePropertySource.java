@@ -775,9 +775,20 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             "ALetter");
                     unicodeMap
                     .putAll(new UnicodeSet(
-                            "[\\u00B7\\u05F4\\u2027\\u0387\\u02D7]"),
+                            "[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A\\u02D7]"),
                             "MidLetter");
+/*
+ * ? \\u02D7 U+02D7 ( ˗ ) MODIFIER LETTER MINUS SIGN
+U+00B7 ( · ) MIDDLE DOT
+U+0387 ( · ) GREEK ANO TELEIA
+U+05F4 ( ״ ) HEBREW PUNCTUATION GERSHAYIM
+U+2027 ( ‧ ) HYPHENATION POINT
 
+U+003A ( : ) COLON (used in Swedish)
+U+FE13 ( ︓ ) PRESENTATION FORM FOR VERTICAL COLON
+U+FE55 ( ﹕ ) SMALL COLON
+U+FF1A ( ： ) FULLWIDTH COLON
+ */
                     /*
                      * 0387 ( · ) GREEK ANO TELEIA FE13 ( ︓ ) PRESENTATION FORM FOR
                      * VERTICAL COLON FE55 ( ﹕ ) SMALL COLON FF1A ( ： ) FULLWIDTH COLON
@@ -889,6 +900,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(new SimpleBinaryProperty("Case_Ignorable", "CI", version, new UnicodeSet()
         .addAll(getProperty("WordBreak").getSet("MidNumLet"))
         .addAll(getProperty("WordBreak").getSet("MidLetter"))
+        .addAll(getProperty("WordBreak").getSet("SQ"))
         .addAll(getProperty("GeneralCategory").getSet("Mn"))
         .addAll(getProperty("GeneralCategory").getSet("Me"))
         .addAll(getProperty("GeneralCategory").getSet("Cf"))

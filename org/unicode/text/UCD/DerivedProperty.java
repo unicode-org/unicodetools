@@ -885,6 +885,9 @@ of characters, the first of which has a non-zero combining class.
             @Override
             public boolean hasValue(int cp) {
                 final byte cat = ucdData.getCategory(cp);
+                //Word_Break(C) = MidLetter or MidNumLet, or
+                //General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
+
                 if (cat == Lm || cat == Cf || cat == Mn || cat == Me) {
                     return true;
                 }
