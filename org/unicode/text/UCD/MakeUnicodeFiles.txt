@@ -1,5 +1,5 @@
-Generate: SpecialCasing|PropertyValueAliases
-DeltaVersion: 18
+Generate: .
+DeltaVersion: 19
 CopyrightYear: 2013
 
 File: extra/ScriptNfkc
@@ -221,7 +221,7 @@ Property:   Case_Ignorable
 # Derived Property:   Case_Ignorable (CI)
 #  As defined by Unicode Standard Definition D136
 #  C is defined to be case-ignorable if 
-#    Word_Break(C) = MidLetter or MidNumLet, or
+#    Word_Break(C) = MidLetter or MidNumLet or Single_Quote, or
 #    General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
 
 Property:   Changes_When_Lowercased
