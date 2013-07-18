@@ -1,5 +1,5 @@
 # DerivedCoreProperties-6.3.0.txt
-# Date: 2013-04-11, 08:36:26 GMT [MD]
+# Date: 2013-07-05, 14:08:44 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -83,7 +83,10 @@
 21DD          ; Math # So       RIGHTWARDS SQUIGGLE ARROW
 21E4..21E5    ; Math # So   [2] LEFTWARDS ARROW TO BAR..RIGHTWARDS ARROW TO BAR
 21F4..22FF    ; Math # Sm [268] RIGHT ARROW WITH SMALL CIRCLE..Z NOTATION BAG MEMBERSHIP
-2308..230B    ; Math # Sm   [4] LEFT CEILING..RIGHT FLOOR
+2308          ; Math # Ps       LEFT CEILING
+2309          ; Math # Pe       RIGHT CEILING
+230A          ; Math # Ps       LEFT FLOOR
+230B          ; Math # Pe       RIGHT FLOOR
 2320..2321    ; Math # Sm   [2] TOP HALF INTEGRAL..BOTTOM HALF INTEGRAL
 237C          ; Math # Sm       RIGHT ANGLE WITH DOWNWARDS ZIGZAG ARROW
 239B..23B3    ; Math # Sm  [25] LEFT PARENTHESIS UPPER HOOK..SUMMATION BOTTOM
@@ -2469,10 +2472,12 @@ FF41..FF5A    ; Cased # L&  [26] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH LATIN
 # Derived Property:   Case_Ignorable (CI)
 #  As defined by Unicode Standard Definition D136
 #  C is defined to be case-ignorable if
-#    Word_Break(C) = MidLetter or MidNumLet, or
+#    Word_Break(C) = MidLetter or MidNumLet or Single_Quote, or
 #    General_Category(C) = Nonspacing_Mark (Mn), Enclosing_Mark (Me), Format (Cf), Modifier_Letter (Lm), or Modifier_Symbol (Sk).
 
+0027          ; Case_Ignorable # Po       APOSTROPHE
 002E          ; Case_Ignorable # Po       FULL STOP
+003A          ; Case_Ignorable # Po       COLON
 005E          ; Case_Ignorable # Sk       CIRCUMFLEX ACCENT
 0060          ; Case_Ignorable # Sk       GRAVE ACCENT
 00A8          ; Case_Ignorable # Sk       DIAERESIS
@@ -2760,11 +2765,14 @@ ABED          ; Case_Ignorable # Mn       MEETEI MAYEK APUN IYEK
 FB1E          ; Case_Ignorable # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 FBB2..FBC1    ; Case_Ignorable # Sk  [16] ARABIC SYMBOL DOT ABOVE..ARABIC SYMBOL SMALL TAH BELOW
 FE00..FE0F    ; Case_Ignorable # Mn  [16] VARIATION SELECTOR-1..VARIATION SELECTOR-16
+FE13          ; Case_Ignorable # Po       PRESENTATION FORM FOR VERTICAL COLON
 FE20..FE26    ; Case_Ignorable # Mn   [7] COMBINING LIGATURE LEFT HALF..COMBINING CONJOINING MACRON
 FE52          ; Case_Ignorable # Po       SMALL FULL STOP
+FE55          ; Case_Ignorable # Po       SMALL COLON
 FEFF          ; Case_Ignorable # Cf       ZERO WIDTH NO-BREAK SPACE
 FF07          ; Case_Ignorable # Po       FULLWIDTH APOSTROPHE
 FF0E          ; Case_Ignorable # Po       FULLWIDTH FULL STOP
+FF1A          ; Case_Ignorable # Po       FULLWIDTH COLON
 FF3E          ; Case_Ignorable # Sk       FULLWIDTH CIRCUMFLEX ACCENT
 FF40          ; Case_Ignorable # Sk       FULLWIDTH GRAVE ACCENT
 FF70          ; Case_Ignorable # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
@@ -2804,7 +2812,7 @@ E0001         ; Case_Ignorable # Cf       LANGUAGE TAG
 E0020..E007F  ; Case_Ignorable # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Case_Ignorable # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1801
+# Total code points: 1806
 
 # ================================================
 
@@ -9289,7 +9297,10 @@ E0100..E01EF  ; Grapheme_Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELE
 21D5..21F3    ; Grapheme_Base # So  [31] UP DOWN DOUBLE ARROW..UP DOWN WHITE ARROW
 21F4..22FF    ; Grapheme_Base # Sm [268] RIGHT ARROW WITH SMALL CIRCLE..Z NOTATION BAG MEMBERSHIP
 2300..2307    ; Grapheme_Base # So   [8] DIAMETER SIGN..WAVY LINE
-2308..230B    ; Grapheme_Base # Sm   [4] LEFT CEILING..RIGHT FLOOR
+2308          ; Grapheme_Base # Ps       LEFT CEILING
+2309          ; Grapheme_Base # Pe       RIGHT CEILING
+230A          ; Grapheme_Base # Ps       LEFT FLOOR
+230B          ; Grapheme_Base # Pe       RIGHT FLOOR
 230C..231F    ; Grapheme_Base # So  [20] BOTTOM RIGHT CROP..BOTTOM RIGHT CORNER
 2320..2321    ; Grapheme_Base # Sm   [2] TOP HALF INTEGRAL..BOTTOM HALF INTEGRAL
 2322..2328    ; Grapheme_Base # So   [7] FROWN..KEYBOARD

@@ -1,5 +1,5 @@
 # DerivedCombiningClass-6.3.0.txt
-# Date: 2013-03-02, 16:07:34 GMT [MD]
+# Date: 2013-07-05, 14:08:44 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -780,7 +780,10 @@
 21D5..21F3    ; 0 # So  [31] UP DOWN DOUBLE ARROW..UP DOWN WHITE ARROW
 21F4..22FF    ; 0 # Sm [268] RIGHT ARROW WITH SMALL CIRCLE..Z NOTATION BAG MEMBERSHIP
 2300..2307    ; 0 # So   [8] DIAMETER SIGN..WAVY LINE
-2308..230B    ; 0 # Sm   [4] LEFT CEILING..RIGHT FLOOR
+2308          ; 0 # Ps       LEFT CEILING
+2309          ; 0 # Pe       RIGHT CEILING
+230A          ; 0 # Ps       LEFT FLOOR
+230B          ; 0 # Pe       RIGHT FLOOR
 230C..231F    ; 0 # So  [20] BOTTOM RIGHT CROP..BOTTOM RIGHT CORNER
 2320..2321    ; 0 # Sm   [2] TOP HALF INTEGRAL..BOTTOM HALF INTEGRAL
 2322..2328    ; 0 # So   [7] FROWN..KEYBOARD

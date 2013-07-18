@@ -23,8 +23,8 @@
 </tbody></table>
 <div class="body">
   <h1>UCA Conformance Tests</h1>
-  <h2 align="center">Version 6.2.0<br>2012-09-12</h2>
-<p>The following files provide conformance tests for the Unicode Collation Algorithm (<a href="http://www.unicode.org/reports/tr10/tr10-26.html">UTS 
+  <h2 align="center" class="changed">Version 6.3.0<br>2013-03-06</h2>
+<p>The following files provide conformance tests for the Unicode Collation Algorithm (<a href="http://www.unicode.org/reports/tr10/tr10-27.html">UTS 
   #10: Unicode Collation Algorithm</a>).</p>
   <ul>
     <li>CollationTest_SHIFTED.txt</li>
@@ -34,11 +34,12 @@
   </ul>
   <p>These files are large, and thus packaged in zip format to save download time.</p>
   <h3>Format</h3>
-  <p>There are <span >four</span> different files:</p>
+  <p>There are four different files:</p>
   <ul>
-    <li><span >The shifted vs non-ignorable files</span> correspond to the two <span >alternate</span> <a href="http://www.unicode.org/reports/tr10/tr10-26.html#Variable_Weighting">3.<span >6</span>.2 
+    <li>The shifted vs non-ignorable files correspond to the two alternate
+      <a href="http://www.unicode.org/reports/tr10/tr10-27.html#Variable_Weighting"><span class="removed">3.6.2</span>
       Variable Weighting</a> values.</li>
-    <li >The SHORT versions omit the comments, for more compact storage.</li>
+    <li>The SHORT versions omit the comments, for more compact storage.</li>
   </ul>
 <p>The format is illustrated by the following example:</p>
   <pre>0385 0021;  # (΅) GREEK DIALYTIKA TONOS  [0316 015D | 0020 0032 0020 | 0002 0002 0002 |]</pre>
@@ -63,7 +64,7 @@
   <h3>Testing</h3>
   <p>The files are designed so each line in the file will order as being greater than or equal to 
   the previous one, when using the UCA and the
-  <a href="http://www.unicode.org/reports/tr10/tr10-26.html#Default_Unicode_Collation_Element_Table">
+  <a href="http://www.unicode.org/reports/tr10/tr10-27.html#Default_Unicode_Collation_Element_Table">
   Default Unicode Collation Element Table</a>. A test program can read in each line, compare it to 
   the last line, and signal an error if order is not correct. The exact comparison that should be 
   used is as follows:</p>

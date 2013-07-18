@@ -1,5 +1,5 @@
 # PropList-6.3.0.txt
-# Date: 2013-03-05, 13:10:56 GMT [MD]
+# Date: 2013-07-05, 14:19:21 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -231,6 +231,10 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 21D5..21DB    ; Other_Math # So   [7] UP DOWN DOUBLE ARROW..RIGHTWARDS TRIPLE ARROW
 21DD          ; Other_Math # So       RIGHTWARDS SQUIGGLE ARROW
 21E4..21E5    ; Other_Math # So   [2] LEFTWARDS ARROW TO BAR..RIGHTWARDS ARROW TO BAR
+2308          ; Other_Math # Ps       LEFT CEILING
+2309          ; Other_Math # Pe       RIGHT CEILING
+230A          ; Other_Math # Ps       LEFT FLOOR
+230B          ; Other_Math # Pe       RIGHT FLOOR
 23B4..23B5    ; Other_Math # So   [2] TOP SQUARE BRACKET..BOTTOM SQUARE BRACKET
 23B7          ; Other_Math # So       RADICAL SYMBOL BOTTOM
 23D0          ; Other_Math # So       VERTICAL LINE EXTENSION
@@ -359,7 +363,7 @@ FF3E          ; Other_Math # Sk       FULLWIDTH CIRCUMFLEX ACCENT
 1EEA5..1EEA9  ; Other_Math # Lo   [5] ARABIC MATHEMATICAL DOUBLE-STRUCK WAW..ARABIC MATHEMATICAL DOUBLE-STRUCK YEH
 1EEAB..1EEBB  ; Other_Math # Lo  [17] ARABIC MATHEMATICAL DOUBLE-STRUCK LAM..ARABIC MATHEMATICAL DOUBLE-STRUCK GHAIN
 
-# Total code points: 1358
+# Total code points: 1362
 
 # ================================================
 
@@ -877,8 +881,11 @@ A7F8..A7F9    ; Other_Lowercase # Lm   [2] MODIFIER LETTER CAPITAL H WITH STROKE
 
 2160..216F    ; Other_Uppercase # Nl  [16] ROMAN NUMERAL ONE..ROMAN NUMERAL ONE THOUSAND
 24B6..24CF    ; Other_Uppercase # So  [26] CIRCLED LATIN CAPITAL LETTER A..CIRCLED LATIN CAPITAL LETTER Z
+1F130..1F149  ; Other_Uppercase # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
+1F150..1F169  ; Other_Uppercase # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
+1F170..1F189  ; Other_Uppercase # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 42
+# Total code points: 120
 
 # ================================================
 
@@ -1212,7 +1219,10 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 21D5..21F3    ; Pattern_Syntax # So  [31] UP DOWN DOUBLE ARROW..UP DOWN WHITE ARROW
 21F4..22FF    ; Pattern_Syntax # Sm [268] RIGHT ARROW WITH SMALL CIRCLE..Z NOTATION BAG MEMBERSHIP
 2300..2307    ; Pattern_Syntax # So   [8] DIAMETER SIGN..WAVY LINE
-2308..230B    ; Pattern_Syntax # Sm   [4] LEFT CEILING..RIGHT FLOOR
+2308          ; Pattern_Syntax # Ps       LEFT CEILING
+2309          ; Pattern_Syntax # Pe       RIGHT CEILING
+230A          ; Pattern_Syntax # Ps       LEFT FLOOR
+230B          ; Pattern_Syntax # Pe       RIGHT FLOOR
 230C..231F    ; Pattern_Syntax # So  [20] BOTTOM RIGHT CROP..BOTTOM RIGHT CORNER
 2320..2321    ; Pattern_Syntax # Sm   [2] TOP HALF INTEGRAL..BOTTOM HALF INTEGRAL
 2322..2328    ; Pattern_Syntax # So   [7] FROWN..KEYBOARD

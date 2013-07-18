@@ -1,5 +1,5 @@
 # DerivedGeneralCategory-6.3.0.txt
-# Date: 2013-03-02, 16:07:37 GMT [MD]
+# Date: 2013-07-05, 14:08:45 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -2850,6 +2850,8 @@ FF0D          ; Pd #       FULLWIDTH HYPHEN-MINUS
 2045          ; Ps #       LEFT SQUARE BRACKET WITH QUILL
 207D          ; Ps #       SUPERSCRIPT LEFT PARENTHESIS
 208D          ; Ps #       SUBSCRIPT LEFT PARENTHESIS
+2308          ; Ps #       LEFT CEILING
+230A          ; Ps #       LEFT FLOOR
 2329          ; Ps #       LEFT-POINTING ANGLE BRACKET
 2768          ; Ps #       MEDIUM LEFT PARENTHESIS ORNAMENT
 276A          ; Ps #       MEDIUM FLATTENED LEFT PARENTHESIS ORNAMENT
@@ -2912,7 +2914,7 @@ FF5B          ; Ps #       FULLWIDTH LEFT CURLY BRACKET
 FF5F          ; Ps #       FULLWIDTH LEFT WHITE PARENTHESIS
 FF62          ; Ps #       HALFWIDTH LEFT CORNER BRACKET
 
-# Total code points: 72
+# Total code points: 74
 
 # ================================================
 
@@ -2927,6 +2929,8 @@ FF62          ; Ps #       HALFWIDTH LEFT CORNER BRACKET
 2046          ; Pe #       RIGHT SQUARE BRACKET WITH QUILL
 207E          ; Pe #       SUPERSCRIPT RIGHT PARENTHESIS
 208E          ; Pe #       SUBSCRIPT RIGHT PARENTHESIS
+2309          ; Pe #       RIGHT CEILING
+230B          ; Pe #       RIGHT FLOOR
 232A          ; Pe #       RIGHT-POINTING ANGLE BRACKET
 2769          ; Pe #       MEDIUM RIGHT PARENTHESIS ORNAMENT
 276B          ; Pe #       MEDIUM FLATTENED RIGHT PARENTHESIS ORNAMENT
@@ -2989,7 +2993,7 @@ FF5D          ; Pe #       FULLWIDTH RIGHT CURLY BRACKET
 FF60          ; Pe #       FULLWIDTH RIGHT WHITE PARENTHESIS
 FF63          ; Pe #       HALFWIDTH RIGHT CORNER BRACKET
 
-# Total code points: 71
+# Total code points: 73
 
 # ================================================
 
@@ -3177,7 +3181,6 @@ FF64..FF65    ; Po #   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDL
 21D2          ; Sm #       RIGHTWARDS DOUBLE ARROW
 21D4          ; Sm #       LEFT RIGHT DOUBLE ARROW
 21F4..22FF    ; Sm # [268] RIGHT ARROW WITH SMALL CIRCLE..Z NOTATION BAG MEMBERSHIP
-2308..230B    ; Sm #   [4] LEFT CEILING..RIGHT FLOOR
 2320..2321    ; Sm #   [2] TOP HALF INTEGRAL..BOTTOM HALF INTEGRAL
 237C          ; Sm #       RIGHT ANGLE WITH DOWNWARDS ZIGZAG ARROW
 239B..23B3    ; Sm #  [25] LEFT PARENTHESIS UPPER HOOK..SUMMATION BOTTOM
@@ -3216,7 +3219,7 @@ FFE9..FFEC    ; Sm #   [4] HALFWIDTH LEFTWARDS ARROW..HALFWIDTH DOWNWARDS ARROW
 1D7C3         ; Sm #       MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
 1EEF0..1EEF1  ; Sm #   [2] ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 
-# Total code points: 952
+# Total code points: 948
 
 # ================================================
 
