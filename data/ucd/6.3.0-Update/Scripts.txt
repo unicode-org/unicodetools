@@ -1,5 +1,5 @@
 # Scripts-6.3.0.txt
-# Date: 2013-03-02, 16:07:55 GMT [MD]
+# Date: 2013-07-05, 14:09:02 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -200,7 +200,10 @@
 21D5..21F3    ; Common # So  [31] UP DOWN DOUBLE ARROW..UP DOWN WHITE ARROW
 21F4..22FF    ; Common # Sm [268] RIGHT ARROW WITH SMALL CIRCLE..Z NOTATION BAG MEMBERSHIP
 2300..2307    ; Common # So   [8] DIAMETER SIGN..WAVY LINE
-2308..230B    ; Common # Sm   [4] LEFT CEILING..RIGHT FLOOR
+2308          ; Common # Ps       LEFT CEILING
+2309          ; Common # Pe       RIGHT CEILING
+230A          ; Common # Ps       LEFT FLOOR
+230B          ; Common # Pe       RIGHT FLOOR
 230C..231F    ; Common # So  [20] BOTTOM RIGHT CROP..BOTTOM RIGHT CORNER
 2320..2321    ; Common # Sm   [2] TOP HALF INTEGRAL..BOTTOM HALF INTEGRAL
 2322..2328    ; Common # So   [7] FROWN..KEYBOARD

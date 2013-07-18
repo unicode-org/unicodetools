@@ -1,5 +1,5 @@
 # SentenceBreakProperty-6.3.0.txt
-# Date: 2013-03-02, 16:07:55 GMT [MD]
+# Date: 2013-07-05, 14:09:03 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -2248,6 +2248,10 @@ FF61          ; STerm # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 207E          ; Close # Pe       SUPERSCRIPT RIGHT PARENTHESIS
 208D          ; Close # Ps       SUBSCRIPT LEFT PARENTHESIS
 208E          ; Close # Pe       SUBSCRIPT RIGHT PARENTHESIS
+2308          ; Close # Ps       LEFT CEILING
+2309          ; Close # Pe       RIGHT CEILING
+230A          ; Close # Ps       LEFT FLOOR
+230B          ; Close # Pe       RIGHT FLOOR
 2329          ; Close # Ps       LEFT-POINTING ANGLE BRACKET
 232A          ; Close # Pe       RIGHT-POINTING ANGLE BRACKET
 275B..275E    ; Close # So   [4] HEAVY SINGLE TURNED COMMA QUOTATION MARK ORNAMENT..HEAVY DOUBLE COMMA QUOTATION MARK ORNAMENT
@@ -2387,7 +2391,7 @@ FF60          ; Close # Pe       FULLWIDTH RIGHT WHITE PARENTHESIS
 FF62          ; Close # Ps       HALFWIDTH LEFT CORNER BRACKET
 FF63          ; Close # Pe       HALFWIDTH RIGHT CORNER BRACKET
 
-# Total code points: 177
+# Total code points: 181
 
 # ================================================
 

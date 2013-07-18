@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-6.3.0.txt
-# Date: 2013-03-02, 16:07:36 GMT [MD]
+# Date: 2013-07-05, 14:08:45 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -872,7 +872,10 @@
 22A6..22BE    ; N # Sm  [25] ASSERTION..RIGHT ANGLE WITH ARC
 22C0..22FF    ; N # Sm  [64] N-ARY LOGICAL AND..Z NOTATION BAG MEMBERSHIP
 2300..2307    ; N # So   [8] DIAMETER SIGN..WAVY LINE
-2308..230B    ; N # Sm   [4] LEFT CEILING..RIGHT FLOOR
+2308          ; N # Ps       LEFT CEILING
+2309          ; N # Pe       RIGHT CEILING
+230A          ; N # Ps       LEFT FLOOR
+230B          ; N # Pe       RIGHT FLOOR
 230C..2311    ; N # So   [6] BOTTOM RIGHT CROP..SQUARE LOZENGE
 2313..231F    ; N # So  [13] SEGMENT..BOTTOM RIGHT CORNER
 2320..2321    ; N # Sm   [2] TOP HALF INTEGRAL..BOTTOM HALF INTEGRAL
