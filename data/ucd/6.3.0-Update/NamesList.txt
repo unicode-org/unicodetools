@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 6.3.0
-@@@+	U63M130702.lst
-	Unicode 6.3.0 names list, twelfth delta.
+@@@+	U63M130730.lst
+	Unicode 6.3.0 names list, fourteenth delta.
 	Updated annotation for U+A980.
 	Move subhead for U+200C to include U+200B.
 	Commented out alt glyph lines for 222B, 222C.
@@ -35,6 +35,8 @@
 	Removed extraneous tab in entry for 1F4AE.
 	Added several explicit standardized variant summary headers.
 	Added notice about the exceptional bidi behavior of FD3E and FD3F.
+	Added xrefs for diamonds and squares related to modal logic.
+	Removed obelus as alias for 2020.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -445,6 +447,7 @@
 @		Control character
 007F	<control>
 	= DELETE
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	0080	C1 Controls and Latin-1 Supplement (Latin-1 Supplement)	00FF
 @		C1 controls
 @+		Alias names are those for ISO/IEC 6429:1992.
@@ -12016,7 +12019,7 @@
 	* has same semantic as 201C, but differs in appearance
 @		General punctuation
 2020	DAGGER
-	= obelisk, obelus, long cross
+	= obelisk, long cross, oblong cross
 	x (turned dagger - 2E38)
 2021	DOUBLE DAGGER
 	= diesis, double obelisk
@@ -12259,6 +12262,7 @@
 206D	ACTIVATE ARABIC FORM SHAPING
 206E	NATIONAL DIGIT SHAPES
 206F	NOMINAL DIGIT SHAPES
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	2070	Superscripts and Subscripts	209F
 @		Superscripts
 @+		See also superscript Latin letters in the Spacing Modifier Letters block starting at 02B0.
@@ -12763,6 +12767,7 @@
 	x (greek small letter digamma - 03DD)
 @		Biblical editorial symbol
 214F	SYMBOL FOR SAMARITAN SOURCE
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	2150	Number Forms	218F
 @		Fractions
 @+		Other fraction number forms are found in the Latin-1 Supplement block.
@@ -13091,6 +13096,7 @@
 21FD	LEFTWARDS OPEN-HEADED ARROW
 21FE	RIGHTWARDS OPEN-HEADED ARROW
 21FF	LEFT RIGHT OPEN-HEADED ARROW
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	2200	Mathematical Operators	22FF
 @@+
 @		Miscellaneous mathematical symbols
@@ -14071,6 +14077,7 @@
 23F2	TIMER CLOCK
 23F3	HOURGLASS WITH FLOWING SAND
 	x (hourglass - 231B)
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	2400	Control Pictures	243F
 @+		The diagonal lettering glyphs are only exemplary; alternate representations may be, and often are used in the visible display of control codes.
 @		Graphic pictures for control codes
@@ -14466,6 +14473,7 @@
 @		Additional white on black circled number
 24FF	NEGATIVE CIRCLED DIGIT ZERO
 	x (dingbat negative circled digit one - 2776)
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	2500	Box Drawing	257F
 @+		All of these characters are intended for compatibility with character cell graphic sets in use prior to 1990.
 @		Light and heavy solid lines
@@ -14688,6 +14696,7 @@
 	= alchemical symbol for salt
 	* may be used to represent a missing ideograph
 	x (combining enclosing square - 20DE)
+	x (white medium square - 25FB)
 	x (ballot box - 2610)
 	x (white large square - 2B1C)
 	x (geta mark - 3013)
@@ -14770,6 +14779,7 @@
 	x (combining enclosing diamond - 20DF)
 	x (diamond operator - 22C4)
 	x (white diamond suit - 2662)
+	x (white concave-sided diamond - 27E1)
 	x (white medium diamond - 2B26)
 	x (alchemical symbol for soap - 1F754)
 25C8	WHITE DIAMOND CONTAINING BLACK SMALL DIAMOND
@@ -14857,6 +14867,7 @@
 25FB	WHITE MEDIUM SQUARE
 	= always (modal operator)
 	x (white square - 25A1)
+	x (white square with leftwards tick - 27E4)
 	~ 25FB FE0E text style
 	~ 25FB FE0F emoji style
 25FC	BLACK MEDIUM SQUARE
@@ -14873,9 +14884,7 @@
 	~ 25FE FE0F emoji style
 25FF	LOWER RIGHT TRIANGLE
 	x (right triangle - 22BF)
-;	;2600
-;@~	Standardized Variation Sequences
-;@+	Emoji style variants include rendering of characters in ways not achievable with traditional or even digital typography. The sample glyphs shown here cannot faithfully represent the range of intended appearances.
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	2600	Miscellaneous Symbols	26FF
 @@+
 @		Weather and astrological symbols
@@ -15514,6 +15523,7 @@
 	x (teacup without handle - 1F375)
 26FF	WHITE FLAG WITH HORIZONTAL MIDDLE BLACK STRIPE
 	= Japanese self-defence force site
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	2700	Dingbats	27BF
 @+		ITC Zapf dingbats series 100. Some of the ITC Zapf dingbats have been unified with geometric shape characters. Gaps in the chart have subsequently been filled with other dingbat-like symbols.
 	x (black telephone - 260E)
@@ -15816,6 +15826,7 @@
 27BE	OPEN-OUTLINED RIGHTWARDS ARROW
 @		Miscellaneous
 27BF	DOUBLE CURLY LOOP
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	27C0	Miscellaneous Mathematical Symbols-A	27EF
 @		Miscellaneous symbols
 27C0	THREE DIMENSIONAL ANGLE
@@ -15908,6 +15919,7 @@
 	x (lozenge - 25CA)
 27E1	WHITE CONCAVE-SIDED DIAMOND
 	= never (modal operator)
+	x (white diamond - 25C7)
 27E2	WHITE CONCAVE-SIDED DIAMOND WITH LEFTWARDS TICK
 	= was never (modal operator)
 27E3	WHITE CONCAVE-SIDED DIAMOND WITH RIGHTWARDS TICK
@@ -15915,6 +15927,7 @@
 27E4	WHITE SQUARE WITH LEFTWARDS TICK
 	= was always (modal operator)
 	x (white square - 25A1)
+	x (white medium square - 25FB)
 27E5	WHITE SQUARE WITH RIGHTWARDS TICK
 	= will always be (modal operator)
 @		Mathematical brackets
@@ -16439,6 +16452,7 @@
 297D	RIGHT FISH TAIL
 297E	UP FISH TAIL
 297F	DOWN FISH TAIL
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	2980	Miscellaneous Mathematical Symbols-B	29FF
 @		Miscellaneous mathematical symbols
 2980	TRIPLE VERTICAL BAR DELIMITER
@@ -17256,6 +17270,7 @@
 2B59	HEAVY CIRCLED SALTIRE
 	= police station
 	x (n-ary circled times operator - 2A02)
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	2C00	Glagolitic	2C5F
 @		Capital letters
 2C00	GLAGOLITIC CAPITAL LETTER AZU
@@ -18795,6 +18810,7 @@
 	* visual indicator that the following ideograph is to be taken as a variant of the intended character
 303F	IDEOGRAPHIC HALF FILL SPACE
 	* visual indicator of a screen space for half of an ideograph
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	3040	Hiragana	309F
 @		Hiragana letters
 3041	HIRAGANA LETTER SMALL A
@@ -20060,6 +20076,7 @@
 	# <circle> 30F1
 32FE	CIRCLED KATAKANA WO
 	# <circle> 30F2
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	3300	CJK Compatibility	33FF
 @		Squared Katakana words
 3300	SQUARE APAATO
@@ -35870,6 +35887,7 @@ FFFF	<not a character>
 1F02A	MAHJONG TILE JOKER
 	= baida
 1F02B	MAHJONG TILE BACK
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	1F030	Domino Tiles	1F09F
 @		Horizontal tiles
 1F030	DOMINO TILE HORIZONTAL BACK
@@ -36399,6 +36417,7 @@ FFFF	<not a character>
 1F1FD	REGIONAL INDICATOR SYMBOL LETTER X
 1F1FE	REGIONAL INDICATOR SYMBOL LETTER Y
 1F1FF	REGIONAL INDICATOR SYMBOL LETTER Z
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	1F200	Enclosed Ideographic Supplement	1F2FF
 @		Squared hiragana from ARIB STD B24
 1F200	SQUARE HIRAGANA HOKA
@@ -36587,6 +36606,7 @@ FFFF	<not a character>
 1F251	CIRCLED IDEOGRAPH ACCEPT
 	= accept sign
 	# <circle> 53EF
+@~	!{FE0E FE0F} Standardized Variation Sequences
 @@	1F300	Miscellaneous Symbols and Pictographs	1F5FF
 @		Weather, landscape, and sky symbols
 1F300	CYCLONE
