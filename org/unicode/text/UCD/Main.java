@@ -60,9 +60,6 @@ public final class Main implements UCD_Types {
 
         try {
             for (int i = 0; i < args.length; ++i) {
-
-                final long mask = 0;
-
                 final String arg = args[i];
                 if (arg.charAt(0) == '#')
                 {

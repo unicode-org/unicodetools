@@ -32,7 +32,7 @@
 # NOTE: Property value names are NOT unique across properties. For example:
 #
 #   AL means Arabic Letter for the Bidi_Class property, and
-#   AL means Above_Left for the Canonical_Class property, and
+#   AL means Above_Left for the Canonical_Combining_Class property, and
 #   AL means Alphabetic for the Line_Break property.
 #
 # In addition, some property names may be the same as some property value names.
