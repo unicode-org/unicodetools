@@ -37,8 +37,6 @@ import com.ibm.icu.text.UnicodeSet;
 
 public final class UCD implements UCD_Types {
 
-    private static int SPOT_CHECK = 0x20AC;
-
     static final boolean DEBUG = false;
     static final boolean SHOW_LOADING = false;
 
