@@ -836,7 +836,7 @@ public class MakeUnicodeFiles {
         final BagFormatter bf = new BagFormatter(toolFactory);
         final BagFormatter bfdiff = new BagFormatter(toolFactory);
         final StringBuffer buffer = new StringBuffer();
-        final Set<String> sortedSet = new TreeSet(CASELESS_COMPARATOR);
+        final Set<String> sortedSet = new TreeSet<String>(CASELESS_COMPARATOR);
 
         //gc ; C         ; Other                            # Cc | Cf | Cn | Co | Cs
         // 123456789012345678901234567890123
@@ -864,9 +864,9 @@ public class MakeUnicodeFiles {
         .add(2,Tabber.LEFT) // ;
         .add(33,Tabber.LEFT);
 
-        final Set<String> skipNames = new HashSet(Arrays.asList("Lowercase_Mapping", "Uppercase_Mapping", "Titlecase_Mapping"));
+        final Set<String> skipNames = new HashSet<String>(Arrays.asList("Lowercase_Mapping", "Uppercase_Mapping", "Titlecase_Mapping"));
 
-        for (final Iterator it = toolFactory.getAvailableNames().iterator(); it.hasNext();) {
+        for (final Iterator<String> it = toolFactory.getAvailableNames().iterator(); it.hasNext();) {
             final String propName = (String) it.next();
             final UnicodeProperty up = toolFactory.getProperty(propName);
             final int type = up.getType();
@@ -883,8 +883,8 @@ public class MakeUnicodeFiles {
             final boolean isJoiningGroup = propName.equals("Joining_Group");
 
             if (isJamoShortName || ((1<<type) & (UnicodeProperty.STRING_OR_MISC_MASK | (1<<UnicodeProperty.NUMERIC))) == 0) {
-                for (final String value : (List<String>) up.getAvailableValues()) {
-                    final List l = up.getValueAliases(value);
+                for (final String value : up.getAvailableValues()) {
+                    final List<String> l = up.getValueAliases(value);
                     // HACK
                     if (isJoiningGroup && value.equals("Hamzah_On_Ha_Goal")) {
                         continue;
@@ -899,9 +899,7 @@ public class MakeUnicodeFiles {
                         if (propName.equals("Canonical_Combining_Class")) {
                             continue;
                         }
-                        {
-                            l.add(0, l.get(0)); // double up
-                        }
+                        l.add(0, l.get(0)); // double up
                     } else if (propName.equals("Canonical_Combining_Class")) {
                         if (l.size() == 2) {
                             l.add(l.get(1)); // double up final value
@@ -916,7 +914,7 @@ public class MakeUnicodeFiles {
 
                     buffer.setLength(0);
                     buffer.append(shortProp);
-                    for (final Iterator it3 = l.iterator(); it3.hasNext();) {
+                    for (final Iterator<String> it3 = l.iterator(); it3.hasNext();) {
                         buffer.append("\t; \t" + it3.next());
                     }
                     //Character.codePointAt(seq, index)
@@ -936,6 +934,8 @@ public class MakeUnicodeFiles {
             pw.println();
             if (sortedSet.size() == 0 || isJamoShortName) {
                 printDefaultValueComment(pw, propName, up, true, null);
+            } else if (propName.equals("Bidi_Paired_Bracket_Type")) {
+                printDefaultValueComment(pw, propName, up, true, "n");
             }
             for (final Object element : sortedSet) {
                 final String line = (String) element;
@@ -1393,11 +1393,9 @@ public class MakeUnicodeFiles {
         }
     }
 
-    static Comparator CASELESS_COMPARATOR = new Comparator() {
+    static Comparator<String> CASELESS_COMPARATOR = new Comparator<String>() {
         @Override
-        public int compare(Object o1, Object o2) {
-            final String s = o1.toString();
-            final String t = o2.toString();
+        public int compare(String s, String t) {
             return s.compareToIgnoreCase(t);
         }
     };
