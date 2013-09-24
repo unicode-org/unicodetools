@@ -50,7 +50,7 @@ public class GenerateIdnaTest {
     }
 
     public static void setUnicodeVersion() {
-        Default.setUCD("6.2.0");
+        Default.setUCD("6.3.0");
         UnicodeTransform.setFactory(new ToolUnicodeTransformFactory());
         final ToolUnicodePropertySource toolUPS1 = ToolUnicodePropertySource.make(Default.ucdVersion());
         final XSymbolTable toolUPS = new UnicodePropertySymbolTable(toolUPS1);
