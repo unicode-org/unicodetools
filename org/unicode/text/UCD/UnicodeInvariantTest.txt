@@ -155,7 +155,7 @@ Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1
 ##########################
 
 # Stability: The Bidi_Class property values will not be further subdivided. 
-\p{bc=/^(AL|AN|B|BN|CS|EN|ES|ET|L|LRE|LRO|NSM|ON|PDF|R|RLE|RLO|S|WS)$/} = [\u0000-\U0010FFFF]
+\p{bc=/^(AL|AN|B|BN|CS|EN|ES|ET|L|LRE|LRO|NSM|ON|PDF|R|RLE|RLO|S|WS|LRI|RLI|FSI|PDI)$/} = [\u0000-\U0010FFFF]
 
 # Stability: The property values for the bidirectional properties Bidi_Class and Bidi_Mirrored preserve canonical equivalence.
 # This test utilizes the fact that bc=NSM inherit behavior in the algorithm, so these are just filtered
@@ -365,18 +365,18 @@ Show [\u20b9]
 
 Let $IDInclusions = [[:block=/Ideographs/:][\U00020000-\U0003FFFF] & [:gc=Cn:] - [:NChar:]]
 \p{LB=ID} ⊃ $IDInclusions
-\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions]
+\p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20BB-\u20CF]]
 
 Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379]
-\p{LB=OP} = [\p{GC=Ps} $OPInclusions]
-[\p{LB=CL}\p{LB=CP}] ⊃ \p{GC=Pe}
-\p{LB=CM} = [\p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL}]
+\p{LB=OP} = [\p{GC=Ps} $OPInclusions - [\u2308\u230A]]
+[\p{LB=CL}\p{LB=CP}] ⊃ [\p{GC=Pe} - [\u2309\u230B]]
+\p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL}]
 
 Let $NUInclusions = [\u066B\u066C]
 \p{LB=NU} = [\p{GC=Nd} $NUInclusions - \p{EA=F} ]
 
-Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213]
-\p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO} ]
+Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213\u20BB-\u20CF]
+\p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO}]
 
 Let $QUInclusions = [\u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
 \p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} $QUInclusions]

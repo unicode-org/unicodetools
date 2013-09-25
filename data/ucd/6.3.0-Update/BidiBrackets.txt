@@ -1,5 +1,5 @@
 # BidiBrackets-6.3.0.txt
-# Date: 2013-06-05, 22:35:00 GMT [AG, LI, KW]
+# Date: 2013-08-27, 17:30:00 GMT [AG, LI, KW]
 #
 # Bidi_Paired_Bracket and Bidi_Paired_Bracket_Type Properties
 # 
@@ -26,6 +26,10 @@
 # vice versa, and their Bidi_Paired_Bracket_Type (bpt) property values are
 # Open (o) and Close (c), respectively.
 #
+# For legacy reasons, the characters U+FD3E ORNATE LEFT PARENTHESIS and
+# U+FD3F ORNATE RIGHT PARENTHESIS do not mirror in bidirectional display
+# and therefore do not form a bracket pair.
+#
 # The Unicode property value stability policy guarantees that characters
 # which have bpt=o or bpt=c also have bc=ON and Bidi_M=Y. As a result, an
 # implementation can optimize the lookup of the Bidi_Paired_Bracket_Type
@@ -47,8 +51,6 @@
 #
 # This file was originally created by Andrew Glass and Laurentiu Iancu
 # for Unicode 6.3.
-#
-# @missing: 0000..10FFFF; <none>; n
 
 0028; 0029; o # LEFT PARENTHESIS
 0029; 0028; c # RIGHT PARENTHESIS

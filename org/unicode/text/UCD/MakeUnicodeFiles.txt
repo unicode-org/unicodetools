@@ -1,5 +1,5 @@
-Generate: .*
-DeltaVersion: 21
+Generate: BidiTest
+DeltaVersion: 23
 CopyrightYear: 2013
 
 File: extra/ScriptNfkc
@@ -480,6 +480,28 @@ File:   BidiTest
 # It is designed to be reasonably compact, and yet provide a thorough test of all cases up to
 # a given limit (currently 4). Additionally, it contains some longer cases useful for testing
 # some common pitfalls of UBA implementations.
+#
+# Note that for the test cases in this file, it is assumed that no bidi
+# paired brackets exist in the input that would affect the resolved levels
+# or reordering. For test cases with bidi paired brackets and other
+# character-code specific test cases, refer to BidiCharacterTest.txt.
+# Implementations are expected to correctly cover all test cases in both
+# test files.
+#
+# The test cases in this file are further limited in the following ways:
+#
+# - The Bidi_Class B (Paragraph_Separator) only appears as the last
+#   character in a sequence. Thus, each sequence is assumed to consist of
+#   only one paragraph. Implementations may need extra testing for rule P1
+#   of the UBA.
+#
+# - For the application of rules L1 and L2, it is assumed that all the
+#   characters in the input would be rendered on a single line, with no line
+#   breaks.
+#
+# - Implementation of rules L3 and L4 is platform- and character-specific
+#   and test cases for it are not provided in this data file.
+#
 #
 # Format:
 #

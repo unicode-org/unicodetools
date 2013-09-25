@@ -1,5 +1,5 @@
 # PropertyValueAliases-6.3.0.txt
-# Date: 2013-05-08, 13:54:34 GMT [MD]
+# Date: 2013-08-27, 16:02:08 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -39,7 +39,7 @@
 # NOTE: Property value names are NOT unique across properties. For example:
 #
 #   AL means Arabic Letter for the Bidi_Class property, and
-#   AL means Above_Left for the Canonical_Class property, and
+#   AL means Above_Left for the Canonical_Combining_Class property, and
 #   AL means Alphabetic for the Line_Break property.
 #
 # In addition, some property names may be the same as some property value names.
@@ -129,6 +129,7 @@ Bidi_M; Y                             ; Yes                              ; T    
 
 # Bidi_Paired_Bracket_Type (bpt)
 
+# @missing: 0000..10FFFF; Bidi_Paired_Bracket_Type; n
 bpt; c                                ; Close
 bpt; n                                ; None
 bpt; o                                ; Open
