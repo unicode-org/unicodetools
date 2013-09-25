@@ -1,5 +1,5 @@
 # PropList-6.3.0.txt
-# Date: 2013-07-05, 14:19:21 GMT [MD]
+# Date: 2013-09-25, 18:58:50 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -881,11 +881,8 @@ A7F8..A7F9    ; Other_Lowercase # Lm   [2] MODIFIER LETTER CAPITAL H WITH STROKE
 
 2160..216F    ; Other_Uppercase # Nl  [16] ROMAN NUMERAL ONE..ROMAN NUMERAL ONE THOUSAND
 24B6..24CF    ; Other_Uppercase # So  [26] CIRCLED LATIN CAPITAL LETTER A..CIRCLED LATIN CAPITAL LETTER Z
-1F130..1F149  ; Other_Uppercase # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
-1F150..1F169  ; Other_Uppercase # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
-1F170..1F189  ; Other_Uppercase # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 120
+# Total code points: 42
 
 # ================================================
 
