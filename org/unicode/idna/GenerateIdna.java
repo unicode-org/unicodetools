@@ -35,6 +35,7 @@ public class GenerateIdna {
     public static final String DIR = Utility.GEN_DIR + "idna/"; // Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
     private static final boolean TESTING = true;
+    private static final boolean DISALLOW_BIDI_CONTROLS = true;
     public static UnicodeSet U32;
     public static UnicodeSet U40;
     public static UnicodeSet VALID_ASCII;
@@ -235,6 +236,7 @@ public class GenerateIdna {
                 baseValidSet).retainAll(baseExclusionSet));
 
         final UnicodeSet deviationSet = new UnicodeSet("[\u200C \u200D \u00DF \u03C2]").freeze(); // \u200C \u200D
+        final UnicodeSet bidiControls = properties.getSet("bidi_control=true");
 
         /**
          * 1. If the code point is in the deviation set the status is deviation and
@@ -266,7 +268,8 @@ public class GenerateIdna {
             }
             if (deviationSet.contains(cp)) {
                 result = Row.of(IdnaType.deviation, baseMappingValue);
-            } else if (baseExclusionSet.contains(cp)) {
+            } else if (baseExclusionSet.contains(cp) 
+                    || DISALLOW_BIDI_CONTROLS && bidiControls.contains(cp)) { // Step 5.
                 result = disallowedResult;
             } else if (!labelSeparator.contains(cp) && !baseValidSet.containsAll(baseMappingValue)) {
                 result = disallowedResult;
