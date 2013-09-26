@@ -1,5 +1,5 @@
-Generate: BidiTest
-DeltaVersion: 23
+Generate: .
+DeltaVersion: 24
 CopyrightYear: 2013
 
 File: extra/ScriptNfkc
