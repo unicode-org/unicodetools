@@ -42,6 +42,7 @@ public class GenerateIdna {
     public static UnicodeSet NSTD3_ASCII;
     static ToolUnicodePropertySource properties;
     static UnicodeSet cn;
+    static UnicodeSet bidiControls;
     public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss 'GMT'", ULocale.US);
     static {
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -64,6 +65,7 @@ public class GenerateIdna {
         NSTD3_ASCII = new UnicodeSet("[[\\u0000-\\u007F]-[.]]").freeze();
         properties = ToolUnicodePropertySource.make(Default.ucdVersion());
         cn = properties.getSet("gc=Cn").freeze();
+        bidiControls = properties.getSet("bidi_control=true");
 
 
 
@@ -187,6 +189,7 @@ public class GenerateIdna {
         baseMapping.put(0xFF0E, "\u002E");
         baseMapping.put(0x3002, "\u002E");
         baseMapping.put(0xFF61, "\u002E");
+        baseMapping.putAll(bidiControls, null);
         baseMapping.freeze();
 
 
@@ -236,7 +239,6 @@ public class GenerateIdna {
                 baseValidSet).retainAll(baseExclusionSet));
 
         final UnicodeSet deviationSet = new UnicodeSet("[\u200C \u200D \u00DF \u03C2]").freeze(); // \u200C \u200D
-        final UnicodeSet bidiControls = properties.getSet("bidi_control=true");
 
         /**
          * 1. If the code point is in the deviation set the status is deviation and
@@ -269,7 +271,7 @@ public class GenerateIdna {
             if (deviationSet.contains(cp)) {
                 result = Row.of(IdnaType.deviation, baseMappingValue);
             } else if (baseExclusionSet.contains(cp) 
-                    || DISALLOW_BIDI_CONTROLS && bidiControls.contains(cp)) { // Step 5.
+                    || false && bidiControls.contains(cp)) { // Step 5.
                 result = disallowedResult;
             } else if (!labelSeparator.contains(cp) && !baseValidSet.containsAll(baseMappingValue)) {
                 result = disallowedResult;

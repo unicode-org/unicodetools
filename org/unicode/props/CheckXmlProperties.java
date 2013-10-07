@@ -1,12 +1,14 @@
 package org.unicode.props;
 
 import org.unicode.cldr.util.Timer;
+import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 
 public class CheckXmlProperties {
+    private final static String ucdVersion = "6.3.0";
     static final boolean LONG_TEST = true;
     private static final boolean INCLUDE_UNIHAN = true && LONG_TEST;
     private static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 4000; // Integer.MAX_VALUE;
@@ -23,15 +25,14 @@ public class CheckXmlProperties {
 
         System.out.println("Loading Index Props");
         timer.start();
-        final IndexUnicodeProperties iup = IndexUnicodeProperties.make("6.2.0");
+        final IndexUnicodeProperties iup = IndexUnicodeProperties.make(ucdVersion);
         timer.stop();
         System.out.println(timer);
 
         System.out.println("Loading XML Props");
         timer.start();
         final XMLProperties props = new XMLProperties(
-                "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/ucdxml/",
-                //Utility.UCD_DIRECTORY,
+                UCD_Types.BASE_DIR + "/ucdxml/" + ucdVersion + "/",
                 INCLUDE_UNIHAN, MAX_LINE_COUNT);
         timer.stop();
         System.out.println(timer);

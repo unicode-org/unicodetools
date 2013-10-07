@@ -10,11 +10,14 @@ import java.util.TreeMap;
 import org.unicode.cldr.util.Counter;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
+import org.unicode.text.utility.Utility;
 
 
 public class CharacterFrequency {
-    private static final String DATA_DIR = "/Users/markdavis/Documents/indigo/DATA/frequency/languages/";
-    private static final String DATA_DIR_RANK = "/Users/markdavis/Documents/indigo/DATA/frequency/languages-rank/";
+    private static final String DATA_DIR = Utility.WORKSPACE_DIRECTORY +
+    		"DATA/frequency/languages/";
+    private static final String DATA_DIR_RANK = Utility.WORKSPACE_DIRECTORY +
+    		"DATA/frequency/languages-rank/";
     public static final boolean DEBUG = false;
     //	static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 10000;
     //	static final int MAX_SEQUENCE_CHARS = 15;
