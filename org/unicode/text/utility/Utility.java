@@ -50,7 +50,7 @@ import com.ibm.icu.text.UnicodeSet;
 public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static final String UCD_DIRECTORY = UCD_DIR;
-    //public static final String WORKSPACE_DIRECTORY = "/Users/markdavis/Documents/indigo/";
+    public static final String WORKSPACE_DIRECTORY = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/";
     public static final String DATA_DIRECTORY = UCD_DIR + "/../";
     public static final String GENERATED_DIRECTORY = DATA_DIRECTORY + "/Generated/";
 

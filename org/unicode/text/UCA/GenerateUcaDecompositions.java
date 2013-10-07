@@ -115,7 +115,8 @@ public class GenerateUcaDecompositions {
     public static void compareUcaDecomp() {
         final UnicodeMap<String> kensDecomp = new UnicodeMap();
         final UnicodeMap<String> kensDecompType = new UnicodeMap();
-        for (final String line : FileUtilities.in("/Users/markdavis/Documents/indigo/DATA/UCA/6.2.0/","decomps-6.2.0.txt")) {
+        for (final String line : FileUtilities.in("/Users/markdavis/Documents/indigo/" +
+        		"DATA/UCA/6.2.0/","decomps-6.2.0.txt")) {
             final String[] parts = FileUtilities.cleanSemiFields(line);
             if (parts == null) {
                 continue;
