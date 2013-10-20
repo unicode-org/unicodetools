@@ -8,7 +8,7 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 
 public class CheckXmlProperties {
-    private final static String ucdVersion = "6.3.0";
+    private final static String ucdVersion = Utility.searchPath[0];
     static final boolean LONG_TEST = true;
     private static final boolean INCLUDE_UNIHAN = true && LONG_TEST;
     private static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 4000; // Integer.MAX_VALUE;

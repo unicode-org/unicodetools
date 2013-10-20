@@ -13,6 +13,7 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.tool.ConvertLanguageData.InverseComparator;
 import org.unicode.cldr.tool.LikelySubtags;
+import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.LanguageTagParser;
@@ -168,7 +169,7 @@ public class LanguageDetectionVsTags {
     }
 
     static LanguageTagParser langTagParser = new LanguageTagParser();
-    static SupplementalDataInfo supplementalData = SupplementalDataInfo.getInstance(CldrUtility.SUPPLEMENTAL_DIRECTORY);
+    static SupplementalDataInfo supplementalData = SupplementalDataInfo.getInstance(CLDRPaths.SUPPLEMENTAL_DIRECTORY);
     static Map<String, String> likelySubtags = supplementalData.getLikelySubtags();
 
     private static String fixID(String string) {
