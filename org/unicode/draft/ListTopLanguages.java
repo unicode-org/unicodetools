@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.unicode.cldr.util.CLDRFile;
+import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Factory;
@@ -18,10 +19,10 @@ import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.text.NumberFormat;
 
 public class ListTopLanguages {
-    static SupplementalDataInfo sdata = SupplementalDataInfo.getInstance(CldrUtility.SUPPLEMENTAL_DIRECTORY);
+    static SupplementalDataInfo sdata = SupplementalDataInfo.getInstance(CLDRPaths.SUPPLEMENTAL_DIRECTORY);
     static Map<String, Map<String, R2<List<String>, String>>> localeAliasInfo = sdata.getLocaleAliasInfo();
     static Map<String, String> likelySubtags = sdata.getLikelySubtags();
-    static Factory cldrFactory = Factory.make(CldrUtility.MAIN_DIRECTORY, ".*");
+    static Factory cldrFactory = Factory.make(CLDRPaths.MAIN_DIRECTORY, ".*");
     static CLDRFile english = cldrFactory.make("en", true);
 
     public static void main(String[] args) {
