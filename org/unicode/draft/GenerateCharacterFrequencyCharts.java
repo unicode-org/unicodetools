@@ -13,7 +13,11 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.ExemplarInfo;
 import org.unicode.cldr.draft.ExemplarInfo.Status;
 import org.unicode.cldr.tool.TablePrinter;
+import org.unicode.cldr.unittest.TestAll.TestInfo;
+import org.unicode.cldr.util.CLDRLocale;
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.SupplementalDataInfo;
+import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
@@ -31,12 +35,12 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 
-public class Combining {
+public class GenerateCharacterFrequencyCharts {
 
     static UnicodeSet SKIP_NAME = new UnicodeSet("[:UnifiedIdeograph:]");
 
     public static void main(String[] args) throws IOException {
-        new Combining().run();
+        new GenerateCharacterFrequencyCharts().run();
     }
 
     private void run() throws IOException {
@@ -49,12 +53,12 @@ public class Combining {
 
         final TablePrinter indexTable = new TablePrinter()
         .addColumn("Char Count").setCellAttributes("class='count'").setSortAscending(false).setSortPriority(0).setCellPattern("{0,number,#,##0}")
-        .addColumn("%/Total").setCellAttributes("class='pc'").setCellPattern("{0,number,#,##0.0%}")
+        .addColumn("%/Total").setCellAttributes("class='pc'").setCellPattern("{0,number,#,##0.00%}")
         .addColumn("Locale").setCellAttributes("class='locale'").setCellPattern("<a href=''{0}.html''>{0}</a>")
         .addColumn("Name")
         .addColumn("Lit. Pop").setCellAttributes("class='count'").setCellPattern("{0,number,#,##0}")
         .addColumn("%World").setCellAttributes("class='pc'").setCellPattern("{0,number,#,##0.00%}")
-        .addColumn("Ch/Lit").setCellAttributes("class='pc'").setCellPattern("{0,number,#,##0.0}")
+        .addColumn("Ch/Lit").setCellAttributes("class='pc'").setCellPattern("{0,number,#,##0.00%}")
         .addColumn("Chars")
         ;
         final TablePrinter summaryTable = new TablePrinter()
@@ -77,7 +81,20 @@ public class Combining {
         }
         final long totalTotal = mulCounter.getTotal();
         //double worldPop = CharacterFrequency.getLanguageToPopulation("mul");
-        final long worldPop = CharacterFrequency.getCodePointCounter("mul", true).getTotal();
+        //final long worldPop = CharacterFrequency.getCodePointCounter("mul", true).getTotal();
+
+        TestInfo testInfo = TestInfo.getInstance();
+        SupplementalDataInfo supplemental = testInfo.getSupplementalDataInfo();
+
+        double worldPop = 0;
+
+        for (final String language : CharacterFrequency.getLanguagesWithCounter()) {
+            if (language.equals("und")) {
+                continue;
+            }
+            final String cldrLanguage = ExemplarInfo.getCldrLanguage(language);
+            worldPop += getPopulation(supplemental, cldrLanguage);
+        }
 
         for (final String language : CharacterFrequency.getLanguagesWithCounter()) {
             if (language.equals("und")) {
@@ -87,7 +104,7 @@ public class Combining {
             final CharacterSamples indexChars = new CharacterSamples(language);
 
             final String cldrLanguage = ExemplarInfo.getCldrLanguage(language);
-            final Counter<Integer> counter = CharacterFrequency.getCodePointCounter(language, true);
+            final Counter<Integer> counter = CharacterFrequency.getCodePointCounter(language, false);
             final long total = counter.getTotal();
 
             final String htmlFilename = language + ".html";
@@ -95,7 +112,9 @@ public class Combining {
             final String htmlTitle = language + " - " + englishLocaleName;
             System.out.println(htmlTitle);
 
-            final long pop = counter.getTotal();
+            PopulationData popInfo = supplemental.getLanguagePopulationData(cldrLanguage);
+
+            final double pop = language.equals("mul") ? worldPop : getPopulation(supplemental, cldrLanguage);
 
 
             // get exemplars
@@ -160,14 +179,16 @@ public class Combining {
                 }
             }
 
+            double charsOverTotal = total/(double)totalTotal;
+            double popOverTotal = pop/worldPop;
             indexTable.addRow()
             .addCell(total)
-            .addCell(total/(double)totalTotal)
+            .addCell(charsOverTotal)
             .addCell(language)
             .addCell(englishLocaleName)
             .addCell(pop)
-            .addCell(pop/worldPop)
-            .addCell(total/(double)pop)
+            .addCell(popOverTotal)
+            .addCell(charsOverTotal/popOverTotal)
             .addCell(indexChars.toString())
             .finishRow();
 
@@ -187,6 +208,22 @@ public class Combining {
         printIndex(summaryTable, "summary.html");
 
         System.out.println("Missing exemplars:\t" + missingExemplars);
+    }
+
+    public double getPopulation(SupplementalDataInfo supplemental,
+            final String cldrLanguage) {
+        PopulationData popInfo = supplemental.getLanguagePopulationData(cldrLanguage);
+        if (popInfo == null) {
+            String defaultScript = supplemental.getDefaultScript(cldrLanguage);
+            if (defaultScript != null) {
+                popInfo = supplemental.getLanguagePopulationData(cldrLanguage + "_" + defaultScript);
+            }
+            if (popInfo == null) {
+                System.out.println("Can't get pop data for: " + cldrLanguage);
+                return 0;
+            }
+        }
+        return popInfo.getLiteratePopulation();
     }
 
     private void printIndex(TablePrinter indexTable, String file) throws IOException {
