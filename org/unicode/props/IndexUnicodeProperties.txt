@@ -278,3 +278,7 @@ EmojiSources ; Emoji_SB ; 3
 NamedSequences ; Named_Sequences
 NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
+
+IdnaMappingTable; Idn_Status;
+IdnaMappingTable; Idn_Mapping; 2
+IdnaMappingTable; Idn_2008; 3

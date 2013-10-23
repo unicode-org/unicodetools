@@ -64,3 +64,20 @@
 # @missing: 0000..10FFFF; Other_Uppercase  ; No
 
 # Overrides for bugs
+
+# Extras
+
+# @missing: 0000..10FFFF; Idn_Status  ; disallowed
+# @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
+# @missing: 0000..10FFFF; Idn_2008  ; na
+
+idns ; valid 					; v
+idns ; ignored					; i
+idns ; mapped					; m
+idns ; deviation				; dv
+idns ; disallowed				; da
+idns ; disallowed_STD3_valid	; ds3v
+idns ; disallowed_STD3_mapped	; ds3m
+idn8 ; NV8						; nv8
+idn8 ; na						; na
+

@@ -176,3 +176,6 @@ kTang ;                       MULTI_VALUED ;                 \*?[A-Za-z()\x{E6}\
 Script_Extensions ;           MULTI_VALUED ;                <enum> 
 Standardized_Variant ;        MULTI_VALUED ;               .* 
 
+Idn_Status; SINGLE_VALUED; <enum>
+Idn_Mapping; SINGLE_VALUED; $codePoints
+Idn_2008; SINGLE_VALUED; <enum>
