@@ -95,3 +95,11 @@ cjkZVariant ; kZVariant
 idns ; Idn_Status
 idnm ; Idn_Mapping
 idn8 ; Idn_2008
+
+#idmods ; Id_Mod_Status
+#idmodt ; Id_Mod_Type
+
+#ConfSL ; Confusable_SL
+#ConfSA ; Confusable_SA
+#ConfML ; Confusable_ML
+#Conf ; Confusable

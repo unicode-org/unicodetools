@@ -282,3 +282,11 @@ StandardizedVariants ; Standardized_Variant
 IdnaMappingTable; Idn_Status;
 IdnaMappingTable; Idn_Mapping; 2
 IdnaMappingTable; Idn_2008; 3
+
+# xidmodifications; Id_Mod_Status;
+# xidmodifications; Id_Mod_Type; 2
+
+# confusables ; Confusable_SL
+# confusables ; Confusable_SA
+# confusables ; Confusable_ML
+# confusables ; Confusable

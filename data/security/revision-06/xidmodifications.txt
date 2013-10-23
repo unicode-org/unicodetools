@@ -1,7 +1,7 @@
 ﻿# Security Profile for General Identifiers
 # File: xidmodifications.txt
 # Version: 4.0-draft
-# Generated: 2013-10-23, 12:52:20 GMT
+# Generated: 2013-10-23, 21:46:20 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -13,14 +13,23 @@
 
 #	Status/Type:	allowed ; inclusion
 
+0027          ; allowed ; inclusion            #      (')  APOSTROPHE
 002D..002E    ; allowed ; inclusion            #  [2] (-...)  HYPHEN-MINUS..FULL STOP
+003A          ; allowed ; inclusion            #      (:)  COLON
 00B7          ; allowed ; inclusion            #      (·)  MIDDLE DOT
+0375          ; allowed ; inclusion            #      (͵)  GREEK LOWER NUMERAL SIGN
+058A          ; allowed ; inclusion            #      (֊)  ARMENIAN HYPHEN
 05F3..05F4    ; allowed ; inclusion            #  [2] (׳..״)  HEBREW PUNCTUATION GERESH..HEBREW PUNCTUATION GERSHAYIM
+06FD..06FE    ; allowed ; inclusion            #  [2] (۽..۾)  ARABIC SIGN SINDHI AMPERSAND..ARABIC SIGN SINDHI POSTPOSITION MEN
 0F0B          ; allowed ; inclusion            #      (་)  TIBETAN MARK INTERSYLLABIC TSHEG
 200C..200D    ; allowed ; inclusion            #  [2] (U+200C..U+200D)  ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
+2010          ; allowed ; inclusion            #      (‐)  HYPHEN
 2019          ; allowed ; inclusion            #      (’)  RIGHT SINGLE QUOTATION MARK
+2027          ; allowed ; inclusion            #      (‧)  HYPHENATION POINT
+30A0          ; allowed ; inclusion            #      (゠)  KATAKANA-HIRAGANA DOUBLE HYPHEN
+30FB          ; allowed ; inclusion            #      (・)  KATAKANA MIDDLE DOT
 
-# Total code points: 9
+# Total code points: 19
 
 #	Status/Type:	allowed ; recommended
 
@@ -43,6 +52,7 @@
 01F8..021B    ; allowed ; recommended          # [36] (Ǹ..ț)  LATIN CAPITAL LETTER N WITH GRAVE..LATIN SMALL LETTER T WITH COMMA BELOW
 021E..021F    ; allowed ; recommended          #  [2] (Ȟ..ȟ)  LATIN CAPITAL LETTER H WITH CARON..LATIN SMALL LETTER H WITH CARON
 0226..0233    ; allowed ; recommended          # [14] (Ȧ..ȳ)  LATIN CAPITAL LETTER A WITH DOT ABOVE..LATIN SMALL LETTER Y WITH MACRON
+0259          ; allowed ; recommended          #      (ə)  LATIN SMALL LETTER SCHWA
 02BB..02BC    ; allowed ; recommended          #  [2] (ʻ..ʼ)  MODIFIER LETTER TURNED COMMA..MODIFIER LETTER APOSTROPHE
 02EC          ; allowed ; recommended          #      (ˬ)  MODIFIER LETTER VOICING
 0300..0304    ; allowed ; recommended          #  [5] (̀..̄)  COMBINING GRAVE ACCENT..COMBINING MACRON
@@ -68,6 +78,7 @@
 0531..0556    ; allowed ; recommended          # [38] (Ա..Ֆ)  ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITAL LETTER FEH
 0559          ; allowed ; recommended          #      (ՙ)  ARMENIAN MODIFIER LETTER LEFT HALF RING
 0561..0586    ; allowed ; recommended          # [38] (ա..ֆ)  ARMENIAN SMALL LETTER AYB..ARMENIAN SMALL LETTER FEH
+05B4          ; allowed ; recommended          #      (ִ)  HEBREW POINT HIRIQ
 05D0..05EA    ; allowed ; recommended          # [27] (א..ת)  HEBREW LETTER ALEF..HEBREW LETTER TAV
 05F0..05F2    ; allowed ; recommended          #  [3] (װ..ײ)  HEBREW LIGATURE YIDDISH DOUBLE VAV..HEBREW LIGATURE YIDDISH DOUBLE YOD
 0620..063F    ; allowed ; recommended          # [32] (ؠ..ؿ)  ARABIC LETTER KASHMIRI YEH..ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE
@@ -292,6 +303,7 @@
 17DC          ; allowed ; recommended          #      (ៜ)  KHMER SIGN AVAKRAHASANYA
 17E0..17E9    ; allowed ; recommended          # [10] (០..៩)  KHMER DIGIT ZERO..KHMER DIGIT NINE
 1E00..1E99    ; allowed ; recommended          # [154] (Ḁ..ẙ)  LATIN CAPITAL LETTER A WITH RING BELOW..LATIN SMALL LETTER Y WITH RING ABOVE
+1EBF          ; allowed ; recommended          #      (ế)  LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
 1F00..1F15    ; allowed ; recommended          # [22] (ἀ..ἕ)  GREEK SMALL LETTER ALPHA WITH PSILI..GREEK SMALL LETTER EPSILON WITH DASIA AND OXIA
 1F18..1F1D    ; allowed ; recommended          #  [6] (Ἐ..Ἕ)  GREEK CAPITAL LETTER EPSILON WITH PSILI..GREEK CAPITAL LETTER EPSILON WITH DASIA AND OXIA
 1F20..1F45    ; allowed ; recommended          # [38] (ἠ..ὅ)  GREEK SMALL LETTER ETA WITH PSILI..GREEK SMALL LETTER OMICRON WITH DASIA AND OXIA
@@ -375,7 +387,7 @@ FA27..FA29    ; allowed ; recommended          #  [3] (﨧..﨩)  CJK COMPATIBIL
 2A700..2B734  ; allowed ; recommended          # [4149] (𪜀..𫜴)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B740..2B81D  ; allowed ; recommended          # [222] (𫝀..𫠝)  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 
-# Total code points: 89367
+# Total code points: 89370
 
 #	Status/Type:	restricted ; default-ignorable
 
@@ -539,8 +551,6 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 
 #	Status/Type:	restricted ; limited-use
 
-0027          ; restricted ; limited-use       #      (')  APOSTROPHE
-003A          ; restricted ; limited-use       #      (:)  COLON
 0181..018C    ; restricted ; limited-use       # [12] (Ɓ..ƌ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN SMALL LETTER D WITH TOPBAR
 018E..019F    ; restricted ; limited-use       # [18] (Ǝ..Ɵ)  LATIN CAPITAL LETTER REVERSED E..LATIN CAPITAL LETTER O WITH MIDDLE TILDE
 01A2..01A9    ; restricted ; limited-use       #  [8] (Ƣ..Ʃ)  LATIN CAPITAL LETTER OI..LATIN CAPITAL LETTER ESH
@@ -553,7 +563,6 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 0237..024F    ; restricted ; limited-use       # [25] (ȷ..ɏ)  LATIN SMALL LETTER DOTLESS J..LATIN SMALL LETTER Y WITH STROKE
 0253..0254    ; restricted ; limited-use       #  [2] (ɓ..ɔ)  LATIN SMALL LETTER B WITH HOOK..LATIN SMALL LETTER OPEN O
 0256..0257    ; restricted ; limited-use       #  [2] (ɖ..ɗ)  LATIN SMALL LETTER D WITH TAIL..LATIN SMALL LETTER D WITH HOOK
-0259          ; restricted ; limited-use       #      (ə)  LATIN SMALL LETTER SCHWA
 025B          ; restricted ; limited-use       #      (ɛ)  LATIN SMALL LETTER OPEN E
 0260          ; restricted ; limited-use       #      (ɠ)  LATIN SMALL LETTER G WITH HOOK
 0263          ; restricted ; limited-use       #      (ɣ)  LATIN SMALL LETTER GAMMA
@@ -574,8 +583,8 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 0334          ; restricted ; limited-use       #      (̴)  COMBINING TILDE OVERLAY
 0336          ; restricted ; limited-use       #      (̶)  COMBINING LONG STROKE OVERLAY
 0358          ; restricted ; limited-use       #      (͘)  COMBINING DOT ABOVE RIGHT
-058A          ; restricted ; limited-use       #      (֊)  ARMENIAN HYPHEN
-0591..05BD    ; restricted ; limited-use       # [45] (֑..ֽ)  HEBREW ACCENT ETNAHTA..HEBREW POINT METEG
+0591..05B3    ; restricted ; limited-use       # [35] (֑..ֳ)  HEBREW ACCENT ETNAHTA..HEBREW POINT HATAF QAMATS
+05B5..05BD    ; restricted ; limited-use       #  [9] (ֵ..ֽ)  HEBREW POINT TSERE..HEBREW POINT METEG
 05BF          ; restricted ; limited-use       #      (ֿ)  HEBREW POINT RAFE
 05C1..05C2    ; restricted ; limited-use       #  [2] (ׁ..ׂ)  HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
 05C4..05C5    ; restricted ; limited-use       #  [2] (ׄ..ׅ)  HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
@@ -633,14 +642,10 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 1C00..1C37    ; restricted ; limited-use       # [56] (ᰀ..᰷)  LEPCHA LETTER KA..LEPCHA SIGN NUKTA
 1C40..1C49    ; restricted ; limited-use       # [10] (᱀..᱉)  LEPCHA DIGIT ZERO..LEPCHA DIGIT NINE
 1C4D..1C7D    ; restricted ; limited-use       # [49] (ᱍ..ᱽ)  LEPCHA LETTER TTA..OL CHIKI AHAD
-2010          ; restricted ; limited-use       #      (‐)  HYPHEN
-2027          ; restricted ; limited-use       #      (‧)  HYPHENATION POINT
 2054          ; restricted ; limited-use       #      (⁔)  INVERTED UNDERTIE
 2C67..2C6C    ; restricted ; limited-use       #  [6] (Ⱨ..ⱬ)  LATIN CAPITAL LETTER H WITH DESCENDER..LATIN SMALL LETTER Z WITH DESCENDER
 2D30..2D67    ; restricted ; limited-use       # [56] (ⴰ..ⵧ)  TIFINAGH LETTER YA..TIFINAGH LETTER YO
 2D7F          ; restricted ; limited-use       #      (⵿)  TIFINAGH CONSONANT JOINER
-30A0          ; restricted ; limited-use       #      (゠)  KATAKANA-HIRAGANA DOUBLE HYPHEN
-30FB          ; restricted ; limited-use       #      (・)  KATAKANA MIDDLE DOT
 A000..A48C    ; restricted ; limited-use       # [1165] (ꀀ..ꒌ)  YI SYLLABLE IT..YI SYLLABLE YYR
 A4D0..A4FD    ; restricted ; limited-use       # [46] (ꓐ..ꓽ)  LISU LETTER BA..LISU LETTER TONE MYA JEU
 A500..A60C    ; restricted ; limited-use       # [269] (ꔀ..ꘌ)  VAI SYLLABLE EE..VAI SYLLABLE LENGTHENER
@@ -673,7 +678,7 @@ FB1E          ; restricted ; limited-use       #      (ﬞ)  HEBREW POINT JUDEO-
 16F50..16F7E  ; restricted ; limited-use       # [47] (𖽐..𖽾)  MIAO LETTER NASALIZATION..MIAO VOWEL SIGN NG
 16F8F..16F9F  ; restricted ; limited-use       # [17] (𖾏..𖾟)  MIAO TONE RIGHT..MIAO LETTER REFORMED TONE-8
 
-# Total code points: 4845
+# Total code points: 4836
 
 #	Status/Type:	restricted ; not-NFKC
 
@@ -956,7 +961,6 @@ FFE8..FFEE    ; restricted ; not-NFKC          #  [7] (￨..￮)  HALFWIDTH FORM
 02E5..02EB    ; restricted ; not-xid           #  [7] (˥..˫)  MODIFIER LETTER EXTRA-HIGH TONE BAR..MODIFIER LETTER YANG DEPARTING TONE MARK
 02ED          ; restricted ; not-xid           #      (˭)  MODIFIER LETTER UNASPIRATED
 02EF..02FF    ; restricted ; not-xid           # [17] (˯..˿)  MODIFIER LETTER LOW DOWN ARROWHEAD..MODIFIER LETTER LOW LEFT ARROW
-0375          ; restricted ; not-xid           #      (͵)  GREEK LOWER NUMERAL SIGN
 03F6          ; restricted ; not-xid           #      (϶)  GREEK REVERSED LUNATE EPSILON SYMBOL
 0482          ; restricted ; not-xid           #      (҂)  CYRILLIC THOUSANDS SIGN
 0488..0489    ; restricted ; not-xid           #  [2] (҈..҉)  COMBINING CYRILLIC HUNDRED THOUSANDS SIGN..COMBINING CYRILLIC MILLIONS SIGN
@@ -976,7 +980,6 @@ FFE8..FFEE    ; restricted ; not-NFKC          #  [7] (￨..￮)  HALFWIDTH FORM
 06DD          ; restricted ; not-xid           #      (U+06DD)  ARABIC END OF AYAH
 06DE          ; restricted ; not-xid           #      (۞)  ARABIC START OF RUB EL HIZB
 06E9          ; restricted ; not-xid           #      (۩)  ARABIC PLACE OF SAJDAH
-06FD..06FE    ; restricted ; not-xid           #  [2] (۽..۾)  ARABIC SIGN SINDHI AMPERSAND..ARABIC SIGN SINDHI POSTPOSITION MEN
 0700..070D    ; restricted ; not-xid           # [14] (܀..܍)  SYRIAC END OF PARAGRAPH..SYRIAC HARKLEAN ASTERISCUS
 070F          ; restricted ; not-xid           #      (U+070F)  SYRIAC ABBREVIATION MARK
 07F6..07F9    ; restricted ; not-xid           #  [4] (߶..߹)  NKO SYMBOL OO DENNEN..NKO EXCLAMATION MARK
@@ -1197,7 +1200,7 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 1F680..1F6C5  ; restricted ; not-xid           # [70] (🚀..🛅)  ROCKET..LEFT LUGGAGE
 1F700..1F773  ; restricted ; not-xid           # [116] (🜀..🝳)  ALCHEMICAL SYMBOL FOR QUINTESSENCE..ALCHEMICAL SYMBOL FOR HALF OUNCE
 
-# Total code points: 5347
+# Total code points: 5344
 
 #	Status/Type:	restricted ; obsolete
 
@@ -1273,7 +1276,8 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 1D79..1D9A    ; restricted ; technical         # [34] (ᵹ..ᶚ)  LATIN SMALL LETTER INSULAR G..LATIN SMALL LETTER EZH WITH RETROFLEX HOOK
 1DC0..1DE6    ; restricted ; technical         # [39] (᷀..ᷦ)  COMBINING DOTTED GRAVE ACCENT..COMBINING LATIN SMALL LETTER Z
 1DFC..1DFF    ; restricted ; technical         #  [4] (᷼..᷿)  COMBINING DOUBLE INVERTED BREVE BELOW..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
-1E9C..1EFF    ; restricted ; technical         # [100] (ẜ..ỿ)  LATIN SMALL LETTER LONG S WITH DIAGONAL STROKE..LATIN SMALL LETTER Y WITH LOOP
+1E9C..1EBE    ; restricted ; technical         # [35] (ẜ..Ế)  LATIN SMALL LETTER LONG S WITH DIAGONAL STROKE..LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND ACUTE
+1EC0..1EFF    ; restricted ; technical         # [64] (Ề..ỿ)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND GRAVE..LATIN SMALL LETTER Y WITH LOOP
 203F..2040    ; restricted ; technical         #  [2] (‿..⁀)  UNDERTIE..CHARACTER TIE
 2118          ; restricted ; technical         #      (℘)  SCRIPT CAPITAL P
 212E          ; restricted ; technical         #      (℮)  ESTIMATED SYMBOL
@@ -1286,4 +1290,4 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 FE20..FE26    ; restricted ; technical         #  [7] (︠..︦)  COMBINING LIGATURE LEFT HALF..COMBINING CONJOINING MACRON
 FE73          ; restricted ; technical         #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 463
+# Total code points: 462

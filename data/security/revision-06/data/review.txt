@@ -1,7 +1,7 @@
 ﻿# Review List for IDN
 # File: review.txt
 # Version: 4.0-draft
-# Generated: 2013-10-23, 12:52:20 GMT
+# Generated: 2013-10-23, 21:46:20 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -509,7 +509,7 @@
 0256          ; restricted ; limited-use       #      (ɖ)  LATIN SMALL LETTER D WITH TAIL
 0257          ; restricted ; limited-use       #      (ɗ)  LATIN SMALL LETTER D WITH HOOK
 0258          ; restricted ; technical         #      (ɘ)  LATIN SMALL LETTER REVERSED E
-0259          ; restricted ; limited-use       #      (ə)  LATIN SMALL LETTER SCHWA
+0259          ; output                         #      (ə)  LATIN SMALL LETTER SCHWA
 025A          ; restricted ; technical         #      (ɚ)  LATIN SMALL LETTER SCHWA WITH HOOK
 025B          ; restricted ; limited-use       #      (ɛ)  LATIN SMALL LETTER OPEN E
 025C          ; restricted ; technical         #      (ɜ)  LATIN SMALL LETTER REVERSED OPEN E
@@ -787,7 +787,7 @@
 0372          ; restricted ; historic          #      (Ͳ)  GREEK CAPITAL LETTER ARCHAIC SAMPI
 0373          ; restricted ; historic          #      (ͳ)  GREEK SMALL LETTER ARCHAIC SAMPI
 0374          ; restricted ; not-NFKC          #      (ʹ)  GREEK NUMERAL SIGN
-0375          ; restricted ; not-xid           #      (͵)  GREEK LOWER NUMERAL SIGN
+0375          ; output                         #      (͵)  GREEK LOWER NUMERAL SIGN
 0376          ; restricted ; historic          #      (Ͷ)  GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA
 0377          ; restricted ; historic          #      (ͷ)  GREEK SMALL LETTER PAMPHYLIAN DIGAMMA
 037B          ; output                         #      (ͻ)  GREEK SMALL REVERSED LUNATE SIGMA SYMBOL
@@ -1279,7 +1279,7 @@
 0586          ; output                         #      (ֆ)  ARMENIAN SMALL LETTER FEH
 0587          ; restricted ; not-NFKC          #      (և)  ARMENIAN SMALL LIGATURE ECH YIWN
 0589          ; restricted ; not-xid           #      (։)  ARMENIAN FULL STOP
-058A          ; restricted ; limited-use       #      (֊)  ARMENIAN HYPHEN
+058A          ; output                         #      (֊)  ARMENIAN HYPHEN
 058F          ; restricted ; not-xid           #      (֏)  ARMENIAN DRAM SIGN
 0591          ; restricted ; limited-use       #      (֑)  HEBREW ACCENT ETNAHTA
 0592          ; restricted ; limited-use       #      (֒)  HEBREW ACCENT SEGOL
@@ -1316,7 +1316,7 @@
 05B1          ; restricted ; limited-use       #      (ֱ)  HEBREW POINT HATAF SEGOL
 05B2          ; restricted ; limited-use       #      (ֲ)  HEBREW POINT HATAF PATAH
 05B3          ; restricted ; limited-use       #      (ֳ)  HEBREW POINT HATAF QAMATS
-05B4          ; restricted ; limited-use       #      (ִ)  HEBREW POINT HIRIQ
+05B4          ; output-nonstarting             #      (ִ)  HEBREW POINT HIRIQ
 05B5          ; restricted ; limited-use       #      (ֵ)  HEBREW POINT TSERE
 05B6          ; restricted ; limited-use       #      (ֶ)  HEBREW POINT SEGOL
 05B7          ; restricted ; limited-use       #      (ַ)  HEBREW POINT PATAH
@@ -1612,8 +1612,8 @@
 06FA          ; output                         #      (ۺ)  ARABIC LETTER SHEEN WITH DOT BELOW
 06FB          ; output                         #      (ۻ)  ARABIC LETTER DAD WITH DOT BELOW
 06FC          ; output                         #      (ۼ)  ARABIC LETTER GHAIN WITH DOT BELOW
-06FD          ; restricted ; not-xid           #      (۽)  ARABIC SIGN SINDHI AMPERSAND
-06FE          ; restricted ; not-xid           #      (۾)  ARABIC SIGN SINDHI POSTPOSITION MEN
+06FD          ; output                         #      (۽)  ARABIC SIGN SINDHI AMPERSAND
+06FE          ; output                         #      (۾)  ARABIC SIGN SINDHI POSTPOSITION MEN
 06FF          ; output                         #      (ۿ)  ARABIC LETTER HEH WITH INVERTED V
 0700..070D    ; restricted ; not-xid           # [14] (܀..܍)  SYRIAC END OF PARAGRAPH..SYRIAC HARKLEAN ASTERISCUS
 0710..074A    ; restricted ; limited-use       # [59] (ܐ..݊)  SYRIAC LETTER ALAPH..SYRIAC BARREKH
@@ -4983,7 +4983,7 @@
 1EBC          ; restricted ; technical         #      (Ẽ)  LATIN CAPITAL LETTER E WITH TILDE
 1EBD          ; restricted ; technical         #      (ẽ)  LATIN SMALL LETTER E WITH TILDE
 1EBE          ; restricted ; technical         #      (Ế)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND ACUTE
-1EBF          ; restricted ; technical         #      (ế)  LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
+1EBF          ; output                         #      (ế)  LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
 1EC0          ; restricted ; technical         #      (Ề)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND GRAVE
 1EC1          ; restricted ; technical         #      (ề)  LATIN SMALL LETTER E WITH CIRCUMFLEX AND GRAVE
 1EC2          ; restricted ; technical         #      (Ể)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND HOOK ABOVE
@@ -5268,7 +5268,7 @@
 1FFC          ; input                          #      (ῼ)  GREEK CAPITAL LETTER OMEGA WITH PROSGEGRAMMENI
 200B          ; restricted ; default-ignorable #      (U+200B)  ZERO WIDTH SPACE
 200C..200D    ; output                         #  [2] (U+200C..U+200D)  ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
-2010          ; restricted ; limited-use       #      (‐)  HYPHEN
+2010          ; output                         #      (‐)  HYPHEN
 2011          ; restricted ; not-NFKC          #      (‑)  NON-BREAKING HYPHEN
 2012          ; restricted ; not-xid           #      (‒)  FIGURE DASH
 2013          ; restricted ; not-xid           #      (–)  EN DASH
@@ -5287,7 +5287,7 @@
 2021          ; restricted ; not-xid           #      (‡)  DOUBLE DAGGER
 2022          ; restricted ; not-xid           #      (•)  BULLET
 2023          ; restricted ; not-xid           #      (‣)  TRIANGULAR BULLET
-2027          ; restricted ; limited-use       #      (‧)  HYPHENATION POINT
+2027          ; output                         #      (‧)  HYPHENATION POINT
 2030          ; restricted ; not-xid           #      (‰)  PER MILLE SIGN
 2031          ; restricted ; not-xid           #      (‱)  PER TEN THOUSAND SIGN
 2032          ; restricted ; not-xid           #      (′)  PRIME
@@ -8559,7 +8559,7 @@
 309D          ; output                         #      (ゝ)  HIRAGANA ITERATION MARK
 309E          ; output                         #      (ゞ)  HIRAGANA VOICED ITERATION MARK
 309F          ; restricted ; not-NFKC          #      (ゟ)  HIRAGANA DIGRAPH YORI
-30A0          ; restricted ; limited-use       #      (゠)  KATAKANA-HIRAGANA DOUBLE HYPHEN
+30A0          ; output                         #      (゠)  KATAKANA-HIRAGANA DOUBLE HYPHEN
 30A1          ; output                         #      (ァ)  KATAKANA LETTER SMALL A
 30A2          ; output                         #      (ア)  KATAKANA LETTER A
 30A3          ; output                         #      (ィ)  KATAKANA LETTER SMALL I
@@ -8650,7 +8650,7 @@
 30F8          ; output                         #      (ヸ)  KATAKANA LETTER VI
 30F9          ; output                         #      (ヹ)  KATAKANA LETTER VE
 30FA          ; output                         #      (ヺ)  KATAKANA LETTER VO
-30FB          ; restricted ; limited-use       #      (・)  KATAKANA MIDDLE DOT
+30FB          ; output                         #      (・)  KATAKANA MIDDLE DOT
 30FC          ; output                         #      (ー)  KATAKANA-HIRAGANA PROLONGED SOUND MARK
 30FD          ; output                         #      (ヽ)  KATAKANA ITERATION MARK
 30FE          ; output                         #      (ヾ)  KATAKANA VOICED ITERATION MARK
