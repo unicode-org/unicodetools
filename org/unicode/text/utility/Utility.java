@@ -1269,7 +1269,13 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 continue;
             }
 
-            final String directoryName = UCD_Types.UCD_DIR + File.separator + element + "-Update" + File.separator;
+            String directoryName = UCD_Types.UCD_DIR + File.separator + element + "-Update" + File.separator;
+            result = searchDirectory(new File(directoryName), filename, show, fileType);
+            if (result != null) {
+                break;
+            }
+            // check the idna directory
+            directoryName = UCD_Types.BASE_DIR + "idna/" + element + "/";
             result = searchDirectory(new File(directoryName), filename, show, fileType);
             if (result != null) {
                 break;
@@ -1287,6 +1293,9 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static Set getDirectoryContentsLastFirst(File directory) {
+        if (!directory.exists()) {
+            return null;
+        }
         if (SHOW_SEARCH_PATH) {
             try {
                 System.out.println(directory.getCanonicalPath());
@@ -1309,9 +1318,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String searchDirectory(File directory, String filename, boolean show, String fileType) {
-        final Iterator it = getDirectoryContentsLastFirst(directory).iterator();
-        while (it.hasNext()) {
-            final String fn = (String) it.next();
+        Set<String> directoryContentsLastFirst = getDirectoryContentsLastFirst(directory);
+        if (directoryContentsLastFirst == null) {
+            return null;
+        }
+        for (String fn : directoryContentsLastFirst) {
             final File foo = new File(directory, fn);
             // System.out.println("\tChecking: '" + foo.getCanonicalPath() + "'");
             if (foo.isDirectory()) {

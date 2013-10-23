@@ -891,7 +891,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 {
                     for (final PropertyParsingInfo propInfo : propInfoSet) {
                         final UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
-                        String string = parts[propInfo.fieldNumber];
+                        String string = propInfo.fieldNumber >= parts.length ? "" 
+                                : parts[propInfo.fieldNumber];
                         switch(propInfo.special) {
                         case None:
                             break;

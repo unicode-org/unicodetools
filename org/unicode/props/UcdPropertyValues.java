@@ -523,6 +523,36 @@ public class UcdPropertyValues {
     }
 
 		// ISO_Comment
+	public enum Idn_2008_Values {
+        nv8("NV8"),
+        na("na");
+        private final PropertyNames<Idn_2008_Values> names;
+        private Idn_2008_Values (String shortName, String...otherNames) {
+            names = new PropertyNames(Idn_2008_Values.class, this, shortName, otherNames);
+        }
+        public PropertyNames<Idn_2008_Values> getNames() {
+            return names;
+        }
+    }
+
+		// Idn_Mapping
+	public enum Idn_Status_Values {
+        v("valid"),
+        i("ignored"),
+        m("mapped"),
+        dv("deviation"),
+        da("disallowed"),
+        ds3v("disallowed_STD3_valid"),
+        ds3m("disallowed_STD3_mapped");
+        private final PropertyNames<Idn_Status_Values> names;
+        private Idn_Status_Values (String shortName, String...otherNames) {
+            names = new PropertyNames(Idn_Status_Values.class, this, shortName, otherNames);
+        }
+        public PropertyNames<Idn_Status_Values> getNames() {
+            return names;
+        }
+    }
+
 	public enum Indic_Matra_Category_Values {
         Bottom("Bottom"),
         Bottom_And_Right("Bottom_And_Right"),
