@@ -622,29 +622,39 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 [[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]] ; not-chars
 [:default_ignorable_code_point:]; default-ignorable
 
-# Updated to UAX31, Table 3. Candidate Characters for Inclusion in Identifiers
-
-0027 ; limited-use # (') APOSTROPHE
-002D ; inclusion # (-) HYPHEN-MINUS
-002E ; inclusion # (.) FULL STOP
-003A ; limited-use # (:) COLON
-00B7 ; inclusion # (·) MIDDLE DOT
-058A ; limited-use # (֊) ARMENIAN HYPHEN
-05F3 ; inclusion # (׳) HEBREW PUNCTUATION GERESH
-05F4 ; inclusion # (״) HEBREW PUNCTUATION GERSHAYIM
-0F0B ; inclusion # ( ་ ) TIBETAN MARK INTERSYLLABIC TSHEG
-200C ; inclusion # () ZERO WIDTH NON-JOINER*
-200D ; inclusion # () ZERO WIDTH JOINER*
-2010 ; limited-use # (‐) HYPHEN
-2019 ; inclusion # (’) RIGHT SINGLE QUOTATION MARK
-2027 ; limited-use # (‧) HYPHENATION POINT
-30A0 ; limited-use # (=) KATAKANA-HIRAGANA DOUBLE HYPHEN
-30FB ; limited-use # ( ・ ) KATAKANA MIDDLE DOT
-
 [\u0D8F \u0D90 \u0DA6 \u0DDF \u0DF3] ; limited-use # gihan@uom.lk
 0F39  ; limited-use #  chris.fynn@gmail.com
 
 2E32 ; historic # 122A022
 2E35 ; historic # 122A022
 2E39 ; historic # 122A022
+
+# Updated to UAX31, Table 3. Candidate Characters for Inclusion in Identifiers
+
+0027 ; inclusion # (') APOSTROPHE
+002D ; inclusion # (-) HYPHEN-MINUS
+002E ; inclusion # (.) FULL STOP
+003A ; inclusion # (:) COLON
+00B7 ; inclusion # (·) MIDDLE DOT
+058A ; inclusion # (֊) ARMENIAN HYPHEN
+05F3 ; inclusion # (׳) HEBREW PUNCTUATION GERESH
+05F4 ; inclusion # (״) HEBREW PUNCTUATION GERSHAYIM
+0F0B ; inclusion # ( ་ ) TIBETAN MARK INTERSYLLABIC TSHEG
+200C ; inclusion # () ZERO WIDTH NON-JOINER*
+200D ; inclusion # () ZERO WIDTH JOINER*
+2010 ; inclusion # (‐) HYPHEN
+2019 ; inclusion # (’) RIGHT SINGLE QUOTATION MARK
+2027 ; inclusion # (‧) HYPHENATION POINT
+30A0 ; inclusion # (=) KATAKANA-HIRAGANA DOUBLE HYPHEN
+30FB ; inclusion # ( ・ ) KATAKANA MIDDLE DOT
+
+1EBF ; recommended # LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
+05B4 ; recommended # HEBREW POINT HIRIQ
+0259 ; recommended # LATIN SMALL LETTER SCHWA
+
+06FD; inclusion     # ARABIC SIGN SINDHI AMPERSAND
+06FE; inclusion     # ARABIC SIGN SINDHI POSTPOSITION MEN
+0375; inclusion   # GREEK LOWER NUMERAL SIGN (KERAIA)
+
+
 

@@ -1268,7 +1268,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             if (version.length() != 0 && version.compareTo(element) < compValue) {
                 continue;
             }
-
+            // check the standard ucd directory
             String directoryName = UCD_Types.UCD_DIR + File.separator + element + "-Update" + File.separator;
             result = searchDirectory(new File(directoryName), filename, show, fileType);
             if (result != null) {

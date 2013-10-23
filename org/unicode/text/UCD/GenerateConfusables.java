@@ -60,8 +60,13 @@ import com.ibm.icu.util.ULocale;
 
 
 public class GenerateConfusables {
+    private static final String version = "4.0-draft";
+    private static final String REVISION = "06";
+    private static final String outdir = Utility.UNICODETOOLS_DIRECTORY + "data/security/revision-" + REVISION + "/data/";
+    private static final String indir = outdir + "source/";
+
+
     private static final boolean SHOW_SUPPRESS = false;
-    public static String version = "3.0-draft";
     public static boolean EXCLUDE_CONFUSABLE_COMPAT = true;
     public static String recommended_scripts = "recommended";
 
@@ -362,9 +367,6 @@ public class GenerateConfusables {
     static Map gatheredNFKD = new TreeMap();
     static UnicodeMap nfcMap;
     static UnicodeMap nfkcMap;
-
-    static final String indir = Utility.UNICODE_DRAFT_DIRECTORY + "reports/tr39/data/source/";
-    static final String outdir = Utility.UNICODE_DRAFT_DIRECTORY + "reports/tr39/data/";
 
     static Comparator codepointComparator = new UTF16.StringComparator(true,false,0);
     static Comparator UCAComparator = new com.ibm.icu.impl.MultiComparator(new Comparator[] {Collator.getInstance(ULocale.ROOT), codepointComparator});
@@ -907,7 +909,7 @@ public class GenerateConfusables {
             bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
             bf.setMergeRanges(true);
 
-            PrintWriter out = openAndWriteHeader(outdir, "xidmodifications.txt", "Security Profile for General Identifiers");
+            PrintWriter out = openAndWriteHeader(outdir + "../", "xidmodifications.txt", "Security Profile for General Identifiers");
             /* PrintWriter out = BagFormatter.openUTF8Writer(outdir, "xidmodifications.txt");
 
 			out.println("# Security Profile for General Identifiers");
@@ -2507,7 +2509,7 @@ public class GenerateConfusables {
             //            } else
             if (stem.equals("intentional.txt")) {
                 newName = stem;
-                newDir = outdir;
+                newDir = outdir + "../";
             } else {
                 newName = "formatted-" + stem;
                 newDir = outdir + "/source/";
@@ -2546,12 +2548,12 @@ public class GenerateConfusables {
         ds.checkChar("ſ");
 
         total.writeData(outdir + "/source/", "confusablesRaw.txt");
-        total.writeSummary(outdir, "confusablesSummary.txt", false, null);
+        total.writeSummary(outdir + "../", "confusablesSummary.txt", false, null);
         total.writeSummary(outdir, "confusablesSummaryIdentifier.txt", true, null);
         //total.writeSummary(outdir, "confusablesSummaryCyrillic.txt", true,
         //		new UnicodeSet("[[:script=Cyrillic:][:script=common:][:script=inherited:]]"));
-        total.writeWholeScripts(outdir, "confusablesWholeScript.txt");
-        total.writeSourceOrder(outdir, "confusables.txt", false, false);
+        total.writeWholeScripts(outdir + "../", "confusablesWholeScript.txt");
+        total.writeSourceOrder(outdir + "../", "confusables.txt", false, false);
         //DataSet clean = total.clean();
         //clean.write(outdir, "confusables.txt", true);
     }

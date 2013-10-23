@@ -315,6 +315,7 @@
 0231          ; allowed ; recommended #      (ȱ)  LATIN SMALL LETTER O WITH DOT ABOVE AND MACRON
 0232          ; allowed ; recommended #      (Ȳ)  LATIN CAPITAL LETTER Y WITH MACRON
 0233          ; allowed ; recommended #      (ȳ)  LATIN SMALL LETTER Y WITH MACRON
+0259          ; allowed ; recommended #      (ə)  LATIN SMALL LETTER SCHWA
 02BB          ; allowed ; recommended #      (ʻ)  MODIFIER LETTER TURNED COMMA
 02BC          ; allowed ; recommended #      (ʼ)  MODIFIER LETTER APOSTROPHE
 02EC          ; allowed ; recommended #      (ˬ)  MODIFIER LETTER VOICING
@@ -643,6 +644,7 @@
 0584          ; allowed ; recommended #      (ք)  ARMENIAN SMALL LETTER KEH
 0585          ; allowed ; recommended #      (օ)  ARMENIAN SMALL LETTER OH
 0586          ; allowed ; recommended #      (ֆ)  ARMENIAN SMALL LETTER FEH
+05B4          ; allowed ; recommended #      (ִ)  HEBREW POINT HIRIQ
 05D0          ; allowed ; recommended #      (א)  HEBREW LETTER ALEF
 05D1          ; allowed ; recommended #      (ב)  HEBREW LETTER BET
 05D2          ; allowed ; recommended #      (ג)  HEBREW LETTER GIMEL
@@ -2477,6 +2479,7 @@
 1E97          ; allowed ; recommended #      (ẗ)  LATIN SMALL LETTER T WITH DIAERESIS
 1E98          ; allowed ; recommended #      (ẘ)  LATIN SMALL LETTER W WITH RING ABOVE
 1E99          ; allowed ; recommended #      (ẙ)  LATIN SMALL LETTER Y WITH RING ABOVE
+1EBF          ; allowed ; recommended #      (ế)  LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
 1F00          ; allowed ; recommended #      (ἀ)  GREEK SMALL LETTER ALPHA WITH PSILI
 1F01          ; allowed ; recommended #      (ἁ)  GREEK SMALL LETTER ALPHA WITH DASIA
 1F02          ; allowed ; recommended #      (ἂ)  GREEK SMALL LETTER ALPHA WITH PSILI AND VARIA
@@ -7343,7 +7346,7 @@ FA29          ; allowed ; recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2B81C         ; allowed ; recommended #      (𫠜)  CJK UNIFIED IDEOGRAPH-2B81C
 2B81D         ; allowed ; recommended #      (𫠝)  CJK UNIFIED IDEOGRAPH-2B81D
 
-# Total code points: 89365
+# Total code points: 89368
 
 034F          ; default-ignorable #      (U+034F)  COMBINING GRAPHEME JOINER
 180B..180D    ; default-ignorable #  [3] (U+180B..U+180D)  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
@@ -10956,7 +10959,6 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 0254          ; limited-use #      (ɔ)  LATIN SMALL LETTER OPEN O
 0256          ; limited-use #      (ɖ)  LATIN SMALL LETTER D WITH TAIL
 0257          ; limited-use #      (ɗ)  LATIN SMALL LETTER D WITH HOOK
-0259          ; limited-use #      (ə)  LATIN SMALL LETTER SCHWA
 025B          ; limited-use #      (ɛ)  LATIN SMALL LETTER OPEN E
 0260          ; limited-use #      (ɠ)  LATIN SMALL LETTER G WITH HOOK
 0263          ; limited-use #      (ɣ)  LATIN SMALL LETTER GAMMA
@@ -11017,7 +11019,6 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 05B1          ; limited-use #      (ֱ)  HEBREW POINT HATAF SEGOL
 05B2          ; limited-use #      (ֲ)  HEBREW POINT HATAF PATAH
 05B3          ; limited-use #      (ֳ)  HEBREW POINT HATAF QAMATS
-05B4          ; limited-use #      (ִ)  HEBREW POINT HIRIQ
 05B5          ; limited-use #      (ֵ)  HEBREW POINT TSERE
 05B6          ; limited-use #      (ֶ)  HEBREW POINT SEGOL
 05B7          ; limited-use #      (ַ)  HEBREW POINT PATAH
@@ -13778,7 +13779,7 @@ FB1E          ; limited-use #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 16F9E         ; limited-use #      (𖾞)  MIAO LETTER REFORMED TONE-6
 16F9F         ; limited-use #      (𖾟)  MIAO LETTER REFORMED TONE-8
 
-# Total code points: 4838
+# Total code points: 4836
 
 018D          ; obsolete #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
 01AA          ; obsolete #      (ƪ)  LATIN LETTER REVERSED ESH LOOP
@@ -14137,7 +14138,6 @@ FB1E          ; limited-use #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 1EBC          ; technical #      (Ẽ)  LATIN CAPITAL LETTER E WITH TILDE
 1EBD          ; technical #      (ẽ)  LATIN SMALL LETTER E WITH TILDE
 1EBE          ; technical #      (Ế)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND ACUTE
-1EBF          ; technical #      (ế)  LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
 1EC0          ; technical #      (Ề)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND GRAVE
 1EC1          ; technical #      (ề)  LATIN SMALL LETTER E WITH CIRCUMFLEX AND GRAVE
 1EC2          ; technical #      (Ể)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND HOOK ABOVE
@@ -14257,7 +14257,7 @@ FB1E          ; limited-use #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE20..FE26    ; technical #  [7] (︠..︦)  COMBINING LIGATURE LEFT HALF..COMBINING CONJOINING MACRON
 FE73          ; technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 463
+# Total code points: 462
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
