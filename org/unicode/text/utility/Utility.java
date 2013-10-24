@@ -1264,18 +1264,24 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         final int compValue = acceptLatest ? 0 : 1;
         Set<String> tries = show ? new LinkedHashSet<String>() : null;
         String result = null;
-        for (final String element : searchPath) {
+        for (String element : searchPath) {
             if (version.length() != 0 && version.compareTo(element) < compValue) {
                 continue;
             }
             // check the standard ucd directory
-            String directoryName = UCD_Types.UCD_DIR + File.separator + element + "-Update" + File.separator;
-            result = searchDirectory(new File(directoryName), filename, show, fileType);
-            if (result != null) {
+            if (filename.contains("/*/")) {
+                // check the idna directory
+                String[] parts = filename.split("/");
+                boolean security = parts[0].equals("security");
+                if (security) {
+                    // TODO fix versions
+                    element = "revision-06";
+                }
+                String directoryName = UCD_Types.BASE_DIR + parts[0] + "/" + element + "/";
+                result = directoryName + parts[2] + fileType;
                 break;
             }
-            // check the idna directory
-            directoryName = UCD_Types.BASE_DIR + "idna/" + element + "/";
+            String directoryName = UCD_Types.UCD_DIR + File.separator + element + "-Update" + File.separator;
             result = searchDirectory(new File(directoryName), filename, show, fileType);
             if (result != null) {
                 break;

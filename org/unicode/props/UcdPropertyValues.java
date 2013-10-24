@@ -386,6 +386,10 @@ public class UcdPropertyValues {
     }
 
 		// Case_Folding
+		// Confusable_MA
+		// Confusable_ML
+		// Confusable_SA
+		// Confusable_SL
 		// Decomposition_Mapping
 	public enum Decomposition_Type_Values {
         Canonical("Can", "can"),
@@ -523,8 +527,40 @@ public class UcdPropertyValues {
     }
 
 		// ISO_Comment
+	public enum Id_Mod_Status_Values {
+        restricted("r"),
+        allowed("a");
+        private final PropertyNames<Id_Mod_Status_Values> names;
+        private Id_Mod_Status_Values (String shortName, String...otherNames) {
+            names = new PropertyNames(Id_Mod_Status_Values.class, this, shortName, otherNames);
+        }
+        public PropertyNames<Id_Mod_Status_Values> getNames() {
+            return names;
+        }
+    }
+
+	public enum Id_Mod_Type_Values {
+        default_ignorable("di"),
+        historic("h"),
+        limited_use("lu"),
+        not_chars("nc"),
+        not_NFKC("nn"),
+        not_xid("nx"),
+        obsolete("o"),
+        technical("t"),
+        inclusion("inc"),
+        recommended("rec");
+        private final PropertyNames<Id_Mod_Type_Values> names;
+        private Id_Mod_Type_Values (String shortName, String...otherNames) {
+            names = new PropertyNames(Id_Mod_Type_Values.class, this, shortName, otherNames);
+        }
+        public PropertyNames<Id_Mod_Type_Values> getNames() {
+            return names;
+        }
+    }
+
 	public enum Idn_2008_Values {
-        nv8("NV8"),
+        NV8("nv8"),
         na("na");
         private final PropertyNames<Idn_2008_Values> names;
         private Idn_2008_Values (String shortName, String...otherNames) {
@@ -537,13 +573,13 @@ public class UcdPropertyValues {
 
 		// Idn_Mapping
 	public enum Idn_Status_Values {
-        v("valid"),
-        i("ignored"),
-        m("mapped"),
-        dv("deviation"),
-        da("disallowed"),
-        ds3v("disallowed_STD3_valid"),
-        ds3m("disallowed_STD3_mapped");
+        valid("v"),
+        ignored("i"),
+        mapped("m"),
+        deviation("dv"),
+        disallowed("da"),
+        disallowed_STD3_valid("ds3v"),
+        disallowed_STD3_mapped("ds3m");
         private final PropertyNames<Idn_Status_Values> names;
         private Idn_Status_Values (String shortName, String...otherNames) {
             names = new PropertyNames(Idn_Status_Values.class, this, shortName, otherNames);

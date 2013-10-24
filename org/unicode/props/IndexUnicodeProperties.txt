@@ -56,6 +56,9 @@ FileType ; CJKRadicals ; CJKRadicals
 FileType ; NamedSequences ; NamedSequences
 FileType ; NamedSequencesProv ; NamedSequences
 
+# an abbreviation of the property value is in field 2
+FileType ; security/*/confusables ; Confusables
+
 # =======================================
 # FILES FOR PROPERTIES
 # Note that in (currently) exactly one property a missing value in a field means an empty string; in others it means "no value"
@@ -279,14 +282,14 @@ NamedSequences ; Named_Sequences
 NamedSequencesProv ; Named_Sequences_Prov
 StandardizedVariants ; Standardized_Variant
 
-IdnaMappingTable; Idn_Status;
-IdnaMappingTable; Idn_Mapping; 2
-IdnaMappingTable; Idn_2008; 3
+idna/*/IdnaMappingTable; Idn_Status;
+idna/*/IdnaMappingTable; Idn_Mapping; 2
+idna/*/IdnaMappingTable; Idn_2008; 3
 
-# xidmodifications; Id_Mod_Status;
-# xidmodifications; Id_Mod_Type; 2
+security/*/xidmodifications; Id_Mod_Status;
+security/*/xidmodifications; Id_Mod_Type; 2
 
-# confusables ; Confusable_SL
-# confusables ; Confusable_SA
-# confusables ; Confusable_ML
-# confusables ; Confusable
+security/*/confusables ; Confusable_SL
+security/*/confusables ; Confusable_SA
+security/*/confusables ; Confusable_ML
+security/*/confusables ; Confusable_MA

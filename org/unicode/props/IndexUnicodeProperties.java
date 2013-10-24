@@ -380,7 +380,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
     static VariableReplacer vr = new VariableReplacer();
 
-    enum FileType {Field, HackField, PropertyValue, List, CJKRadicals, NamedSequences, NameAliases, StandardizedVariants}
+    enum FileType {Field, HackField, PropertyValue, List, CJKRadicals, NamedSequences, 
+        NameAliases, StandardizedVariants, Confusables}
     enum SpecialProperty {None, Skip1FT, Skip1ST, SkipAny4, Rational}
     enum ValueElements {
         Singleton, Unordered, Ordered;
@@ -489,7 +490,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             PropertyUtilities.putNew(data, codepoint, string, merger);
                         }
                     } catch (final Exception e) {
-                        throw new IllegalArgumentException(property + ":\t" + intRange.start + "..." + intRange.end + "\t" + string);
+                        throw new IllegalArgumentException(property + ":\t" + intRange.start + "..." + intRange.end + "\t" + string, e);
                     }
                 }
             }
@@ -803,6 +804,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     line = line.substring(0,hashPos);
                 }
                 line = line.trim();
+                if (line.startsWith("\ufeff")) {
+                    line = line.substring(1).trim();
+                }
                 if (line.isEmpty()) {
                     continue;
                 }
@@ -859,6 +863,15 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                         }
                         propInfo.put(data, intRange, value); break;
                     }
+                    break;
+                }
+                case Confusables: {
+                    final PropertyParsingInfo propInfo = property2PropertyInfo.get(UcdProperty.forString("Confusable_" + parts[2]));
+                    if (!propInfoSet.contains(propInfo)) {
+                        throw new IllegalArgumentException("Property not listed for file: " + propInfo);
+                    }
+                    final UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
+                    propInfo.put(data, intRange, parts[1]);
                     break;
                 }
                 case StandardizedVariants:
@@ -1117,7 +1130,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             break;
         }
-        case PropertyValue: {
+        case PropertyValue:
+        case Confusables: {
             final UcdProperty ucdProp = UcdProperty.forString(value1);
             final PropertyParsingInfo propInfo = property2PropertyInfo.get(ucdProp);
             setPropDefault(propInfo.property, value2, missing, isEmpty);
