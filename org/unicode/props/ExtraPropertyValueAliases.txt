@@ -68,36 +68,42 @@
 # Extras
 
 # @missing: 0000..10FFFF; Idn_Status   ; disallowed
-# @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
+
+idns ; v     ; valid
+idns ; i     ; ignored					
+idns ; m     ; mapped					
+idns ; dv    ; deviation				
+idns ; da    ; disallowed				
+idns ; ds3v  ; disallowed_STD3_valid	
+idns ; ds3m  ; disallowed_STD3_mapped
+
 # @missing: 0000..10FFFF; Idn_2008     ; na
 
-idns ; valid 					; v
-idns ; ignored					; i
-idns ; mapped					; m
-idns ; deviation				; dv
-idns ; disallowed				; da
-idns ; disallowed_STD3_valid	; ds3v
-idns ; disallowed_STD3_mapped	; ds3m
-idn8 ; NV8						; nv8
-idn8 ; na						; na
+idn8 ; nv8   ; NV8						
+idn8 ; na	 ; na
+
+# @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
+
 
 # @-missing: 0000..10FFFF; Id_Mod_Status  	; r
+
+idmods	; r	 ; restricted			
+idmods	; a	 ; allowed				
+
 # @-missing: 0000..10FFFF; Id_Mod_Type    	; nc
+
+idmodt	; di	; default_ignorable		
+idmodt	; h		; historic				
+idmodt	; lu	; limited_use			
+idmodt	; nc	; not_chars				
+idmodt	; nn	; not_NFKC				
+idmodt	; nx	; not_xid				
+idmodt	; o		; obsolete				
+idmodt	; t		; technical				
+idmodt	; inc	; inclusion				
+idmodt	; rec	; recommended	
+
 # @-missing: 0000..10FFFF; Confusable_SL    	; <code point>
 # @-missing: 0000..10FFFF; Confusable_SA    	; <code point>
 # @-missing: 0000..10FFFF; Confusable_ML    	; <code point>
-# @-missing: 0000..10FFFF; Confusable    	; <code point>
-
-# idmods ; restricted				; r
-# idmods ; allowed				; a
-
-# idmodt ; default_ignorable		; di
-# idmodt ; historic				; h
-# idmodt ; limited_use			; lu
-# idmodt ; not_chars				; nc
-# idmodt ; not_NFKC				; nn
-# idmodt ; not_xid				; nx
-# idmodt ; obsolete				; o
-# idmodt ; technical				; t
-# idmodt ; inclusion				; inc
-# idmodt ; recommended			; rec
+# @-missing: 0000..10FFFF; Confusable_MA    	; <code point>		
