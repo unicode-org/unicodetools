@@ -1,6 +1,8 @@
-package org.unicode.props;
+package org.unicode.propstest;
 
 import org.unicode.cldr.util.Timer;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 

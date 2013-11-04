@@ -1,4 +1,4 @@
-package org.unicode.props;
+package org.unicode.propstest;
 
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;

@@ -1,5 +1,7 @@
-package org.unicode.props;
+package org.unicode.propstest;
 
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
 
 import com.ibm.icu.dev.util.UnicodeMap;

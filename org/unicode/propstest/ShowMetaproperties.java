@@ -1,4 +1,4 @@
-package org.unicode.props;
+package org.unicode.propstest;
 
 import java.util.Comparator;
 import java.util.EnumSet;
@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.props.IndexUnicodeProperties.PropertyStatus;
 
 import com.ibm.icu.dev.util.CollectionUtilities;

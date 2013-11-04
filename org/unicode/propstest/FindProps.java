@@ -1,10 +1,13 @@
-package org.unicode.props;
+package org.unicode.propstest;
 
 import java.util.EnumSet;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import org.unicode.cldr.util.With;
+import org.unicode.props.GenerateEnums;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -16,7 +19,7 @@ import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
 
 public class FindProps {
-    static final IndexUnicodeProperties latest = IndexUnicodeProperties.make("6.3.0");
+    static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static final UnicodeMap<String> names = latest.load(UcdProperty.Name);
 
     public interface SetMaker<T> {

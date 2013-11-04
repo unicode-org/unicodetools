@@ -8,6 +8,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.unicode.props.UcdPropertyValues.Binary;
+
+import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.UnicodeProperty;
+
 /**
  * PropertyNames is a list of long, short, and other names.
  * @author markdavis
@@ -15,8 +20,29 @@ import java.util.regex.Pattern;
  * @param <T>
  */
 public class PropertyNames<T extends Enum> {
+    
+    public interface Named {
+//        public PropertyNames getName();
+//        public PropertyNames getShortName();
+        public PropertyNames getNames();
+    }
+    
     public enum PropertyType {
-        Numeric, String, Miscellaneous, Catalog, Enumerated, Binary,
+        Numeric(UnicodeProperty.NUMERIC), 
+        String(UnicodeProperty.STRING), 
+        Miscellaneous(UnicodeProperty.MISC), 
+        Catalog(UnicodeProperty.CATALOG), 
+        Enumerated(UnicodeProperty.ENUMERATED), 
+        Binary(UnicodeProperty.BINARY);
+
+        private final int oldNumber;
+        private PropertyType(int oldNumber) {
+            this.oldNumber = oldNumber;
+        }
+        
+        public int getOldNumber() {
+            return oldNumber;
+        }
     }
 
     final static Map<Class, NameMatcher> CLASS2NAME2ENUM = new HashMap<Class, NameMatcher>();
@@ -57,7 +83,7 @@ public class PropertyNames<T extends Enum> {
 
     public List<String> getAllNames() {
         final ArrayList<String> result = new ArrayList<String>();
-        result.add(toString());
+        result.add(enumItem.toString());
         result.add(shortName);
         result.addAll(otherNames);
         return result;
@@ -65,7 +91,10 @@ public class PropertyNames<T extends Enum> {
 
     @Override
     public String toString() {
-        return "{long: " + enumItem + ", short: " + shortName + ", others: " + otherNames + "}";
+        return "{long: " + enumItem 
+                + ", short: " + shortName 
+                + (otherNames.size() == 0 ? "" : ", others: " + CollectionUtilities.join(otherNames, ", "))
+                + "}";
     }
 
     public static List<Enum> getValues(Class y) {
@@ -97,7 +126,7 @@ public class PropertyNames<T extends Enum> {
                 string2Enum.put(minimalize(s), value);
             }
         }
-        PropertyNames<T> getNames() {
+        public PropertyNames<T> getNames() {
             return propertyNames;
         }
         public static String minimalize(String source) {

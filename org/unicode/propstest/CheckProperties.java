@@ -1,4 +1,4 @@
-package org.unicode.props;
+package org.unicode.propstest;
 
 import java.io.DataOutput;
 import java.io.File;
@@ -19,8 +19,16 @@ import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.With;
 import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyNames;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UnicodeSetUtilities;
+import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
 import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
 import org.unicode.props.PropertyNames.NameMatcher;
+import org.unicode.props.UcdPropertyValues.Binary;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
@@ -198,7 +206,7 @@ public class CheckProperties {
                     if (propInfo.originalRegex == null) {
                         continue;
                     }
-                    final String line = tabber.process(propInfo.property + " ;\t" + propInfo.multivalued + " ;\t" + propInfo.originalRegex);
+                    final String line = tabber.process(propInfo.property + " ;\t" + propInfo.getMultivalued() + " ;\t" + propInfo.originalRegex);
                     sorted.put(propInfo.originalRegex, line);
                 }
                 for (final Entry<String, String> regexLine : sorted.keyValueSet()) {
@@ -208,7 +216,7 @@ public class CheckProperties {
                 for (final UcdProperty prop : UcdProperty.values()) {
                     final PropertyParsingInfo propInfo = IndexUnicodeProperties.getPropertyInfo(prop);
                     System.out.println(propInfo);
-                    if (propInfo.regex == null) {
+                    if (propInfo.getRegex() == null) {
                         switch (prop.getType()) {
                         case Binary: case Catalog: case Enumerated: break;
                         default: missingRegex.add(prop);
@@ -220,8 +228,8 @@ public class CheckProperties {
                     final PropertyParsingInfo propInfo = IndexUnicodeProperties.getPropertyInfo(prop);
                     System.out.println(
                             prop + " ;\t"
-                                    + propInfo.multivalued + " ;\t"
-                                    + propInfo.regex
+                                    + propInfo.getMultivalued() + " ;\t"
+                                    + propInfo.getRegex()
                             );
                 }
                 break;
@@ -233,7 +241,7 @@ public class CheckProperties {
         showInfo("Not In ICU", NOT_IN_ICU);
         showInfo("Cache File Sizes", latest.getCacheFileSize().entrySet());
 
-        final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors = IndexUnicodeProperties.DATA_LOADING_ERRORS.keyValuesSet();
+        final Set<Entry<UcdProperty, Set<String>>> dataLoadingErrors = IndexUnicodeProperties.getDataLoadingErrors().keyValuesSet();
         if (dataLoadingErrors.size() != 0) {
             System.out.println("Data loading errors: " + dataLoadingErrors.size());
             for (final Entry<UcdProperty, Set<String>> s : dataLoadingErrors) {
@@ -249,7 +257,7 @@ public class CheckProperties {
             }
         }
 
-        final Set<String> latestFiles = latest.fileNames;
+        final Set<String> latestFiles = latest.getFileNames();
         final File dir = new File(Utility.UCD_DIRECTORY);
         final List<File> result = new ArrayList<File>();
         checkFiles(latestFiles, dir, result);
@@ -416,8 +424,8 @@ public class CheckProperties {
                 prop
                 + ";\t" + prop.getType()
                 + ";\t" + IndexUnicodeProperties.getPropertyStatus(prop)
-                + ";\t" + info.multivalued
-                + ";\t" + info.defaultValue
+                + ";\t" + info.getMultivalued()
+                + ";\t" + info.getDefaultValue()
                 + ";\t" + (info.originalRegex == null ? "<enum>" : info.originalRegex)
                 );
     }
@@ -480,7 +488,7 @@ public class CheckProperties {
 
     public static UnicodeMap<String> showValue(IndexUnicodeProperties last, UcdProperty ucdProperty, int codePoint) {
         final UnicodeMap<String> gcLast = last.load(ucdProperty);
-        System.out.println(last.ucdVersion + ", " + ucdProperty + "(" + Utility.hex(codePoint) + ")=" + gcLast.get(codePoint));
+        System.out.println(last.getUcdVersion() + ", " + ucdProperty + "(" + Utility.hex(codePoint) + ")=" + gcLast.get(codePoint));
         return gcLast;
     }
 

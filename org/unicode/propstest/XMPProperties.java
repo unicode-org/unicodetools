@@ -1,4 +1,4 @@
-package org.unicode.props;
+package org.unicode.propstest;
 
 public class XMPProperties {
 
