@@ -1,4 +1,4 @@
-package org.unicode.props;
+package org.unicode.propstest;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +11,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.unicode.cldr.util.XMLFileReader;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;

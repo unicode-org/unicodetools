@@ -19,43 +19,47 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
+import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.PropertyNames.PropertyType;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
 
 public class GenerateEnums {
+    public static final String ENUM_VERSION = "7.0.0"; // Default.ucdVersion()
+
     public static final String SOURCE_DIR = Utility.UCD_DIRECTORY;
 
     public static final String PROPERTY_FILE_OUTPUT = Utility.UNICODETOOLS_DIRECTORY + "/org/unicode/props/UcdProperty.java";
     public static final String PROPERTY_VALUE_OUTPUT = Utility.UNICODETOOLS_DIRECTORY + "/org/unicode/props/UcdPropertyValues.java";
 
-    private static class Locations {
-        private static Set<String> files = addAll(new HashSet<String>(), new File(SOURCE_DIR));
-        public static boolean contains(String file) {
-            return files.contains(file.replace("_",""));
-        }
-        private static Set<String> addAll(HashSet<String> result, File sourceDir) {
-            for (String file : sourceDir.list()) {
-                if (!file.endsWith(".txt")) {
-                    final File subDir = new File(file);
-                    if (subDir.isDirectory()) {
-                        addAll(result, subDir);
-                    }
-                    continue;
-                }
-                // ArabicShaping-6.1.0d2.txt
-                file = file.substring(0,file.length()-4);
-                final int pos = file.indexOf('-');
-                if (pos >= 0) {
-                    file = file.substring(0,pos);
-                }
-                result.add(file);
-            }
-            return result;
-        }
-    }
+//    private static class Locations {
+//        private static Set<String> files = addAll(new HashSet<String>(), new File(SOURCE_DIR));
+//        public static boolean contains(String file) {
+//            return files.contains(file.replace("_",""));
+//        }
+//        private static Set<String> addAll(HashSet<String> result, File sourceDir) {
+//            for (String file : sourceDir.list()) {
+//                if (!file.endsWith(".txt")) {
+//                    final File subDir = new File(file);
+//                    if (subDir.isDirectory()) {
+//                        addAll(result, subDir);
+//                    }
+//                    continue;
+//                }
+//                // ArabicShaping-6.1.0d2.txt
+//                file = file.substring(0,file.length()-4);
+//                final int pos = file.indexOf('-');
+//                if (pos >= 0) {
+//                    file = file.substring(0,pos);
+//                }
+//                result.add(file);
+//            }
+//            return result;
+//        }
+//    }
 
 
     static Map<String,PropName> lookup = new HashMap<String,PropName>();
@@ -114,11 +118,12 @@ public class GenerateEnums {
             return longName.compareTo(arg0.longName);
         }
     }
+    
     public static void main(String[] args) throws IOException {
 
         final Map<PropName, List<String[]>> values = new TreeMap<PropName, List<String[]>>();
 
-        addPropertyAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyAliases", Default.ucdVersion(), true, true)));
+        addPropertyAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyAliases", ENUM_VERSION, true, true)));
         addPropertyAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyAliases.txt"));
 
         writeMainUcdFile();
@@ -132,14 +137,14 @@ public class GenerateEnums {
 
     public static void writeValueEnumFile(Map<PropName, List<String[]>> values) throws IOException {
         final PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
-        output.println("package org.unicode.props;\npublic class UcdPropertyValues {");
+        output.println("package org.unicode.props;\nimport org.unicode.props.PropertyNames.Named;\npublic class UcdPropertyValues {");
 
         //[Alpha, N, No, F, False]
-        addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", Default.ucdVersion(), true, true)));
+        addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", ENUM_VERSION, true, true))); 
         addPropertyValueAliases(values, FileUtilities.in(GenerateEnums.class, "ExtraPropertyValueAliases.txt"));
 
         output.println(
-                "    public enum Binary {\n"+
+                "\n    public enum Binary implements Named {\n"+
                         "        No(\"N\", \"F\", \"False\"),\n"+
                         "        Yes(\"Y\", \"T\", \"True\");\n"+
                         "        private final PropertyNames<Binary> names;\n"+
@@ -163,7 +168,7 @@ public class GenerateEnums {
                 output.println("\t\t// " + propName.longName);
                 continue;
             }
-            output.println("\tpublic enum " + (propName.longName + "_Values") + " {");
+            output.println("\tpublic enum " + (propName.longName + "_Values") + " implements Named {");
             final StringBuilder constants = new StringBuilder();
             boolean first = true;
             for (final String[] parts : partList) {

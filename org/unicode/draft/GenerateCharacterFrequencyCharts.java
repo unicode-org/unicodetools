@@ -61,6 +61,17 @@ public class GenerateCharacterFrequencyCharts {
         .addColumn("Ch/Lit").setCellAttributes("class='pc'").setCellPattern("{0,number,#,##0.00%}")
         .addColumn("Chars")
         ;
+        
+        final TablePrinter indexTable2 = new TablePrinter()
+        .addColumn("Char Count").setCellAttributes("class='count'").setSortAscending(false).setSortPriority(0).setCellPattern("{0,number,#,##0}")
+        .addColumn("%/Total").setCellAttributes("class='pc'").setCellPattern("{0,number,#,##0.0000%}")
+        .addColumn("Locale").setCellAttributes("class='locale'").setCellPattern("<a href=''{0}.html''>{0}</a>")
+        .addColumn("Name")
+        .addColumn("Lit. Pop").setCellAttributes("class='count'").setCellPattern("{0,number,#,##0}")
+        .addColumn("%World").setCellAttributes("class='pc'").setCellPattern("{0,number,#,##0.0000%}")
+        .addColumn("Ch/Lit").setCellAttributes("class='pc'").setCellPattern("{0,number,#,##0.0000%}")
+        ;
+
         final TablePrinter summaryTable = new TablePrinter()
         .addColumn("Locale").setCellAttributes("class='locale'")
         .addColumn("Name")
@@ -192,6 +203,16 @@ public class GenerateCharacterFrequencyCharts {
             .addCell(indexChars.toString())
             .finishRow();
 
+            indexTable2.addRow()
+            .addCell(total)
+            .addCell(charsOverTotal)
+            .addCell(language)
+            .addCell(englishLocaleName)
+            .addCell(pop)
+            .addCell(popOverTotal)
+            .addCell(charsOverTotal/popOverTotal)
+            .finishRow();
+
             summaryTable.addRow()
             .addCell(language)
             .addCell(englishLocaleName)
@@ -205,6 +226,7 @@ public class GenerateCharacterFrequencyCharts {
             html.close();
         }
         printIndex(indexTable, "index.html");
+        printIndex(indexTable2, "index2.html");
         printIndex(summaryTable, "summary.html");
 
         System.out.println("Missing exemplars:\t" + missingExemplars);
