@@ -1,12 +1,15 @@
 package org.unicode.propstest;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -47,6 +50,7 @@ import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
+import org.unicode.props.UcdPropertyValues.Script_Values;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -65,6 +69,8 @@ import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
 
 public class TestProperties extends TestFmwk {
+    private static final boolean CHECK_DIFFS = false;
+
     public static void main(String[] args) {
         new TestProperties().run(args);
     }
@@ -73,7 +79,122 @@ public class TestProperties extends TestFmwk {
 
     static IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static UnicodeMap<String> newName = iup.load(UcdProperty.Name);
+    static UnicodeMap<String> blocks = iup.load(UcdProperty.Block);
     static IndexUnicodeProperties iup6_3 = IndexUnicodeProperties.make("6.3");
+
+    public void TestScripts() {
+        UnicodeMap<String> generalCategory = iup.load(UcdProperty.General_Category);
+        //        IndexUnicodeProperties iup2_0 = IndexUnicodeProperties.make("2.0");
+        //        UnicodeMap<String> veryOldGeneralCategory = iup2_0.load(UcdProperty.General_Category);
+        //        showDiffs(generalCategory, veryOldGeneralCategory);
+        //        if (true) return;
+
+        UnicodeMap<String> scripts = iup.load(UcdProperty.Script);
+        UnicodeMap<String> oldGeneralCategory = iup6_3.load(UcdProperty.General_Category);
+        UnicodeMap<String> oldScripts = iup6_3.load(UcdProperty.Script);
+        HashSet<String> oldScriptValues = new HashSet(oldScripts.values());
+        Counter<String> newScriptCounts = new Counter<String>();
+        for (Script_Values s : UcdPropertyValues.Script_Values.values()) {
+            String name = s.name();
+            if (oldScriptValues.contains(name)) {
+                continue;
+            }
+            newScriptCounts.add(name,0);
+        }
+
+        //        showDiffs(generalCategory, oldGeneralCategory);
+        //        showValues(oldGeneralCategory);
+        //        System.out.println("#unassigned");
+        //        showValues(generalCategory.getSet("Unassigned"));
+        //        System.out.println("#unassigned old");
+        //        showValues(oldGeneralCategory.getSet("Unassigned"));
+        UnicodeSet newChars = new UnicodeSet(oldGeneralCategory.getSet("Unassigned"))
+        .removeAll(generalCategory.getSet("Unassigned"));
+        //        System.out.println("#new chars");
+        //        showValues(newChars);
+        HashMap<String, String> skeletonToScript = getSkeletonMap(scripts.values(), true);
+        skeletonToScript.remove("HAN");
+        skeletonToScript.remove("YI");
+        HashMap<String, String> blockToSkeleton = getSkeletonMap(blocks.values(), false);
+        UnicodeMap<String> newScripts = new UnicodeMap<String>();
+        UnicodeSet nonspacing = new UnicodeSet(
+                generalCategory.getSet(General_Category_Values.Nonspacing_Mark.name()))
+        .addAll(generalCategory.getSet(General_Category_Values.Enclosing_Mark.name()));
+        for (String s : newChars) {
+            String block = blocks.get(s);
+            String skeletonBlock = blockToSkeleton.get(block);
+            String newScriptValue = "Common";
+            for (Entry<String, String> entry : skeletonToScript.entrySet()) {
+                String skeletonScript = entry.getKey();
+                if (skeletonBlock.contains(skeletonScript)) {
+                    newScriptValue = entry.getValue();
+                    break;
+                }
+                String name = newName.get(s);
+                String skeletonName = name.toUpperCase(Locale.ENGLISH).replace("_","");
+                if (skeletonName.contains(skeletonScript)) {
+                    newScriptValue = entry.getValue();
+                    break;
+                }
+            }
+            if (newScriptValue.equals("Common") && nonspacing.contains(s)) {
+                newScriptValue = Script_Values.Common.name();
+            }
+            newScripts.put(s, newScriptValue);
+            newScriptCounts.add(newScriptValue, 1);
+        }
+        showValues(newScripts);
+        System.out.println("#counts");
+        for (String c : newScriptCounts.getKeysetSortedByCount(false)) {
+            System.out.println(newScriptCounts.get(c) + "\t" + c);
+        }
+    }
+
+    public HashMap<String, String> getSkeletonMap(Collection<String> collection, boolean skeletonToNormal) {
+        HashMap<String, String> capNewScripts = new HashMap<String, String>();
+        for (String normal : collection) {
+            String skeleton = normal.toUpperCase(Locale.ENGLISH).replace("_","");
+            if (skeletonToNormal) {
+                capNewScripts.put(skeleton, normal);
+            } else {
+                capNewScripts.put(normal,skeleton);
+            }
+        }
+        return capNewScripts;
+    }
+    public void showDiffs(UnicodeMap<String> generalCategory,
+            UnicodeMap<String> oldGeneralCategory) {
+        showDiffs(oldGeneralCategory, generalCategory, findDifferences2(oldGeneralCategory, generalCategory));
+    }
+    private void showValues(UnicodeSet us) {
+        for (UnicodeSetIterator it = new UnicodeSetIterator(us); it.nextRange();) {
+            int start = it.codepoint;
+            int end = it.codepointEnd;
+            System.out.println(Utility.hex(start)
+                    + (start == end ? "" : ".." + Utility.hex(end))
+                    + "\t#\t" + newName.get(start)
+                    + (start == end ? "" : ".." + newName.get(end))
+                    );
+        }
+    }
+
+    private <T> void showValues(UnicodeMap<T> us) {
+        Iterable<EntryRange> ers = us.entryRanges();
+        for (EntryRange it : ers) {
+            if (it.value == null) {
+                continue;
+            }
+            int start = it.codepoint;
+            int end = it.codepointEnd;
+            System.out.println(Utility.hex(start)
+                    + (start == end ? "" : ".." + Utility.hex(end))
+                    + " ;\t" + it.value
+                    + "\t#\t" + newName.get(start)
+                    + (start == end ? "" : ".." + newName.get(end))
+                    );
+        }
+    }
+
 
     public void TestProp() {
         boolean skipIt = false;
@@ -114,6 +235,16 @@ public class TestProperties extends TestFmwk {
         }
         logln(message + "\t!DIFF!");
         UnicodeSet diffs = findDifferences(propUmOld, propUmNew);
+        if (CHECK_DIFFS) {
+            UnicodeSet diffs2 = findDifferences2(propUmOld, propUmNew);
+            if (!diffs.equals(diffs2)) {
+                throw new IllegalArgumentException(); 
+            }
+        }
+        showDiffs(propUmOld, propUmNew, diffs);
+    }
+    public void showDiffs(UnicodeMap<String> propUmOld,
+            UnicodeMap<String> propUmNew, UnicodeSet diffs) {
         for (UnicodeSetIterator it = new UnicodeSetIterator(diffs); it.nextRange();) {
             int start = it.codepoint;
             String oldValue = propUmOld.get(start);
@@ -142,7 +273,7 @@ public class TestProperties extends TestFmwk {
             //            }
         }
     }
-    
+
     public void logCharValues(int start, int end, String oldValue, String newValue) {
         logln("\t\t" + Utility.hex(start)
                 + (start == end ? "" : ".." + Utility.hex(end))
@@ -153,6 +284,16 @@ public class TestProperties extends TestFmwk {
                 );
     }
 
+    private <T> UnicodeSet findDifferences2(UnicodeMap<T> m1,
+            UnicodeMap<T> m2) {
+        UnicodeSet result = new UnicodeSet();
+        for (int i = 0; i < 0x10FFFF; ++i) {
+            if (!UnicodeMap.areEqual(m1.get(i), m2.get(i))) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
     // should be method on UnicodeMap
     private <T> UnicodeSet findDifferences(UnicodeMap<T> m1,
             UnicodeMap<T> m2) {
