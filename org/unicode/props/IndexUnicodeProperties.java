@@ -646,7 +646,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 handleMissing(FileType.PropertyValue, null, line);
             }
         }
-        for (final String line : FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", GenerateEnums.ENUM_VERSION, true, true))) {
+        for (final String line : FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", GenerateEnums.ENUM_VERSION, true, false))) {
             handleMissing(FileType.PropertyValue, null, line);
         }
         for (final String line : FileUtilities.in(IndexUnicodeProperties.class, "IndexPropertyRegex.txt")) {

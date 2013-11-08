@@ -75,10 +75,12 @@ FileType ; security/*/confusables ; Confusables
 #   Skip1ST  : Skip line if field 1 is S or T
 #   SkipAny4 : Skip line if field 4 is not empty
 
+# TODO: use other 'core' files instead of the derived ones
+# 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 UnicodeData; Name ; 1
-DerivedGeneralCategory; General_Category
-DerivedCombiningClass; Canonical_Combining_Class
-DerivedBidiClass; Bidi_Class
+UnicodeData; General_Category ; 2
+UnicodeData; Canonical_Combining_Class ; 3
+UnicodeData; Bidi_Class ; 4
 DerivedDecompositionType; Decomposition_Type ; 1
 UnicodeData; Decomposition_Mapping ; 5 
 UnicodeData; Bidi_Mirrored; 9
