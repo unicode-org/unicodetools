@@ -1,0 +1,66 @@
+# DerivedJoiningType-3.1.0.txt
+#
+# Unicode Character Database: Derived Property Data
+# Generated algorithmically from the Unicode Character Database
+# For documentation, see DerivedProperties.html
+# Date: 2001-03-02 00:04:36.1 GMT [MD]
+# Note: Unassigned and Noncharacter codepoints are omitted,
+#       except when listing Noncharacter or Cn.
+# ================================================
+
+
+# ================================================
+# Joining Type (listing ArabicShaping.txt, field 1)
+# ================================================
+
+0640          ; C # Lm       ARABIC TATWEEL
+
+# Total code points: 1
+
+# ================================================
+
+0626          ; D # Lo       ARABIC LETTER YEH WITH HAMZA ABOVE
+0628          ; D # Lo       ARABIC LETTER BEH
+062A..062E    ; D # Lo   [5] ARABIC LETTER TEH..ARABIC LETTER KHAH
+0633..063A    ; D # Lo   [8] ARABIC LETTER SEEN..ARABIC LETTER GHAIN
+0641..0647    ; D # Lo   [7] ARABIC LETTER FEH..ARABIC LETTER HEH
+0649..064A    ; D # Lo   [2] ARABIC LETTER ALEF MAKSURA..ARABIC LETTER YEH
+0678..0687    ; D # Lo  [16] ARABIC LETTER HIGH HAMZA YEH..ARABIC LETTER TCHEHEH
+069A..06BF    ; D # Lo  [38] ARABIC LETTER SEEN WITH DOT BELOW AND DOT ABOVE..ARABIC LETTER TCHEH WITH DOT ABOVE
+06C1          ; D # Lo       ARABIC LETTER HEH GOAL
+06CC          ; D # Lo       ARABIC LETTER FARSI YEH
+06CE          ; D # Lo       ARABIC LETTER YEH WITH SMALL V
+06D0..06D1    ; D # Lo   [2] ARABIC LETTER E..ARABIC LETTER YEH WITH THREE DOTS BELOW
+06FA..06FC    ; D # Lo   [3] ARABIC LETTER SHEEN WITH DOT BELOW..ARABIC LETTER GHAIN WITH DOT BELOW
+0712..0714    ; D # Lo   [3] SYRIAC LETTER BETH..SYRIAC LETTER GAMAL GARSHUNI
+071A..071D    ; D # Lo   [4] SYRIAC LETTER HETH..SYRIAC LETTER YUDH
+071F..0727    ; D # Lo   [9] SYRIAC LETTER KAPH..SYRIAC LETTER REVERSED PE
+0729          ; D # Lo       SYRIAC LETTER QAPH
+072B          ; D # Lo       SYRIAC LETTER SHIN
+
+# Total code points: 104
+
+# ================================================
+
+0622..0625    ; R # Lo   [4] ARABIC LETTER ALEF WITH MADDA ABOVE..ARABIC LETTER ALEF WITH HAMZA BELOW
+0627          ; R # Lo       ARABIC LETTER ALEF
+0629          ; R # Lo       ARABIC LETTER TEH MARBUTA
+062F..0632    ; R # Lo   [4] ARABIC LETTER DAL..ARABIC LETTER ZAIN
+0648          ; R # Lo       ARABIC LETTER WAW
+0671..0673    ; R # Lo   [3] ARABIC LETTER ALEF WASLA..ARABIC LETTER ALEF WITH WAVY HAMZA BELOW
+0675..0677    ; R # Lo   [3] ARABIC LETTER HIGH HAMZA ALEF..ARABIC LETTER U WITH HAMZA ABOVE
+0688..0699    ; R # Lo  [18] ARABIC LETTER DDAL..ARABIC LETTER REH WITH FOUR DOTS ABOVE
+06C0          ; R # Lo       ARABIC LETTER HEH WITH YEH ABOVE
+06C2..06CB    ; R # Lo  [10] ARABIC LETTER HEH GOAL WITH HAMZA ABOVE..ARABIC LETTER VE
+06CD          ; R # Lo       ARABIC LETTER YEH WITH TAIL
+06CF          ; R # Lo       ARABIC LETTER WAW WITH DOT ABOVE
+06D2..06D3    ; R # Lo   [2] ARABIC LETTER YEH BARREE..ARABIC LETTER YEH BARREE WITH HAMZA ABOVE
+0710          ; R # Lo       SYRIAC LETTER ALAPH
+0715..0719    ; R # Lo   [5] SYRIAC LETTER DALATH..SYRIAC LETTER ZAIN
+071E          ; R # Lo       SYRIAC LETTER YUDH HE
+0728          ; R # Lo       SYRIAC LETTER SADHE
+072A          ; R # Lo       SYRIAC LETTER RISH
+072C          ; R # Lo       SYRIAC LETTER TAW
+
+# Total code points: 60
+

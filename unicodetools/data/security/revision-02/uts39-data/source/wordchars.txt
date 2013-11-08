@@ -1,0 +1,20 @@
+﻿# Source file for idnchars/confusables
+# $Revision: 1.4 $
+# $Date: 2006/08/05 22:38:09 $
+
+002D  ; word-chars # Pd (-)  HYPHEN-MINUS
+#2019  ; word-chars # Pf (’)  RIGHT SINGLE QUOTATION MARK
+#2018  ; word-chars # (‘)  LEFT SINGLE QUOTATION MARK
+30FB  ; word-chars # .. (・) KATAKANA MIDDLE DOT
+#2027  ; word-chars # Po (‧)  HYPHENATION POINT
+#3003  ; word-chars # .. (〃) DITTO MARK
+
+# already in: 00B7  ; word-chars # Po (·)  MIDDLE DOT
+# already in: 02B9  ; word-chars # Lm (ʹ)  MODIFIER LETTER PRIME
+# already in: 02BA  ; word-chars # Lm (ʺ)  MODIFIER LETTER DOUBLE PRIME
+# already in: 04C0  ; word-chars # L& (Ӏ)  CYRILLIC LETTER PALOCHKA
+
+#02BB; remap-to; 2018
+#02BC; remap-to; 2019
+#0027; remap-to; 2019 
+
