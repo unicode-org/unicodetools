@@ -1,0 +1,105 @@
+# ================================================
+# Enumerated Properties
+# ================================================
+
+
+# ================================================
+# Miscellaneous Properties
+# ================================================
+
+CJKR ; CJK_Radical
+
+EDCM ; Emoji_DCM
+EKDDI ; Emoji_KDDI
+ESB ; Emoji_SB
+NS ; Named_Sequences
+NSP ; Named_Sequences_Prov
+SV ; Standardized_Variant
+
+cjkCheungBauerIndex ; kCheungBauerIndex
+cjkCowles ; kCowles
+cjkDaeJaweon ; kDaeJaweon
+cjkFennIndex ; kFennIndex
+cjkGSR ; kGSR
+cjkHanYu ; kHanYu
+cjkIRGDaeJaweon ; kIRGDaeJaweon
+cjkIRGDaiKanwaZiten ; kIRGDaiKanwaZiten
+cjkIRGHanyuDaZidian ; kIRGHanyuDaZidian
+cjkIRGKangXi ; kIRGKangXi
+cjkKangXi ; kKangXi
+cjkKarlgren ; kKarlgren
+cjkLau ; kLau
+cjkMatthews ; kMatthews
+cjkMeyerWempe ; kMeyerWempe
+cjkMorohashi ; kMorohashi
+cjkNelson ; kNelson
+cjkSBGY ; kSBGY
+cjkCangjie ; kCangjie
+cjkCheungBauer ; kCheungBauer
+cjkCihaiT ; kCihaiT
+cjkFenn ; kFenn
+cjkFourCornerCode ; kFourCornerCode
+cjkFrequency ; kFrequency
+cjkGradeLevel ; kGradeLevel
+cjkHDZRadBreak ; kHDZRadBreak
+cjkHKGlyph ; kHKGlyph
+cjkPhonetic ; kPhonetic
+cjkTotalStrokes ; kTotalStrokes
+cjkBigFive ; kBigFive
+cjkCCCII ; kCCCII
+cjkCNS1986 ; kCNS1986
+cjkCNS1992 ; kCNS1992
+cjkEACC ; kEACC
+cjkGB0 ; kGB0
+cjkGB1 ; kGB1
+cjkGB3 ; kGB3
+cjkGB5 ; kGB5
+cjkGB7 ; kGB7
+cjkGB8 ; kGB8
+cjkHKSCS ; kHKSCS
+cjkIBMJapan ; kIBMJapan
+cjkJis0 ; kJis0
+cjkJis1 ; kJis1
+cjkJIS0213 ; kJIS0213
+cjkKPS0 ; kKPS0
+cjkKPS1 ; kKPS1
+cjkKSC0 ; kKSC0
+cjkKSC1 ; kKSC1
+cjkMainlandTelegraph ; kMainlandTelegraph
+cjkPseudoGB1 ; kPseudoGB1
+cjkTaiwanTelegraph ; kTaiwanTelegraph
+cjkXerox ; kXerox
+cjkRSAdobe_Japan1_6 ; kRSAdobe_Japan1_6
+cjkRSJapanese ; kRSJapanese
+cjkRSKangXi ; kRSKangXi
+cjkRSKanWa ; kRSKanWa
+cjkRSKorean ; kRSKorean
+cjkCantonese ; kCantonese
+cjkDefinition ; kDefinition
+cjkHangul ; kHangul
+cjkHanyuPinlu ; kHanyuPinlu
+cjkHanyuPinyin ; kHanyuPinyin
+cjkJapaneseKun ; kJapaneseKun
+cjkJapaneseOn ; kJapaneseOn
+cjkKorean ; kKorean
+cjkMandarin ; kMandarin
+cjkTang ; kTang
+cjkVietnamese ; kVietnamese
+cjkXHC1983 ; kXHC1983
+cjkSemanticVariant ; kSemanticVariant
+cjkSimplifiedVariant ; kSimplifiedVariant
+cjkSpecializedSemanticVariant ; kSpecializedSemanticVariant
+cjkTraditionalVariant ; kTraditionalVariant
+cjkZVariant ; kZVariant
+
+idns ; Idn_Status
+idnm ; Idn_Mapping
+idn8 ; Idn_2008
+
+idmods ; Id_Mod_Status
+idmodt ; Id_Mod_Type
+
+ConfSL ; Confusable_SL
+ConfSA ; Confusable_SA
+ConfML ; Confusable_ML
+ConfMA ; Confusable_MA ; Confusable

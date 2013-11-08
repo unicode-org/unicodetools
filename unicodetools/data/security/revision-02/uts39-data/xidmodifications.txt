@@ -1,0 +1,557 @@
+﻿# Security Profile for General Identifiers
+# File: xidmodifications.txt
+# Version: 2.0
+# Generated: 2006-08-15, 04:35:09 GMT
+# Checkin: $Revision: 1.11 $
+#
+# For documentation and usage, see http://www.unicode.org/reports/tr39/
+#
+# Characters restricted
+
+0000..0008    ; restricted ; default-ignorable                                        #  [9] (U+0000..U+0008)  <control-0000>..<control-0008>
+000E..001F    ; restricted ; default-ignorable                                        # [18] (U+000E..U+001F)  <control-000E>..<control-001F>
+007F..0084    ; restricted ; default-ignorable                                        #  [6] (U+007F..U+0084)  <control-007F>..<control-0084>
+0086..009F    ; restricted ; default-ignorable                                        # [26] (U+0086..U+009F)  <control-0086>..<control-009F>
+00A1..00A7    ; restricted ; not in XID+                                              #  [7] (¡..§)  INVERTED EXCLAMATION MARK..SECTION SIGN
+00A9          ; restricted ; not in XID+                                              #      (©)  COPYRIGHT SIGN
+00AB..00AC    ; restricted ; not in XID+                                              #  [2] («..¬)  LEFT-POINTING DOUBLE ANGLE QUOTATION MARK..NOT SIGN
+00AD          ; restricted ; default-ignorable                                        #      (U+00AD)  SOFT HYPHEN
+00AE          ; restricted ; not in XID+                                              #      (®)  REGISTERED SIGN
+00B0..00B1    ; restricted ; not in XID+                                              #  [2] (°..±)  DEGREE SIGN..PLUS-MINUS SIGN
+00B6          ; restricted ; not in XID+                                              #      (¶)  PILCROW SIGN
+00BB          ; restricted ; not in XID+                                              #      (»)  RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+00BF          ; restricted ; not in XID+                                              #      (¿)  INVERTED QUESTION MARK
+00D7          ; restricted ; not in XID+                                              #      (×)  MULTIPLICATION SIGN
+00F7          ; restricted ; not in XID+                                              #      (÷)  DIVISION SIGN
+0180          ; restricted ; technical symbol (phonetic)                              #      (ƀ)  LATIN SMALL LETTER B WITH STROKE
+018D          ; restricted ; obsolete phonetic                                        #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
+01AA..01AB    ; restricted ; obsolete phonetic                                        #  [2] (ƪ..ƫ)  LATIN LETTER REVERSED ESH LOOP..LATIN SMALL LETTER T WITH PALATAL HOOK
+01B9..01BB    ; restricted ; obsolete phonetic                                        #  [3] (ƹ..ƻ)  LATIN SMALL LETTER EZH REVERSED..LATIN LETTER TWO WITH STROKE
+01BE          ; restricted ; archaic phonetic                                         #      (ƾ)  LATIN LETTER INVERTED GLOTTAL STOP WITH STROKE
+01BF          ; restricted ; archaic                                                  #      (ƿ)  LATIN LETTER WYNN
+01C0..01C3    ; restricted ; technical symbol (phonetic)                              #  [4] (ǀ..ǃ)  LATIN LETTER DENTAL CLICK..LATIN LETTER RETROFLEX CLICK
+021C..021D    ; restricted ; archaic                                                  #  [2] (Ȝ..ȝ)  LATIN CAPITAL LETTER YOGH..LATIN SMALL LETTER YOGH
+0250..0252    ; restricted ; technical symbol (phonetic)                              #  [3] (ɐ..ɒ)  LATIN SMALL LETTER TURNED A..LATIN SMALL LETTER TURNED ALPHA
+0255          ; restricted ; technical symbol (phonetic)                              #      (ɕ)  LATIN SMALL LETTER C WITH CURL
+0258          ; restricted ; technical symbol (phonetic)                              #      (ɘ)  LATIN SMALL LETTER REVERSED E
+025A          ; restricted ; technical symbol (phonetic)                              #      (ɚ)  LATIN SMALL LETTER SCHWA WITH HOOK
+025C..025E    ; restricted ; technical symbol (phonetic)                              #  [3] (ɜ..ɞ)  LATIN SMALL LETTER REVERSED OPEN E..LATIN SMALL LETTER CLOSED REVERSED OPEN E
+025F          ; restricted ; obsolete phonetic                                        #      (ɟ)  LATIN SMALL LETTER DOTLESS J WITH STROKE
+0261..0262    ; restricted ; technical symbol (phonetic)                              #  [2] (ɡ..ɢ)  LATIN SMALL LETTER SCRIPT G..LATIN LETTER SMALL CAPITAL G
+0264..0267    ; restricted ; technical symbol (phonetic)                              #  [4] (ɤ..ɧ)  LATIN SMALL LETTER RAMS HORN..LATIN SMALL LETTER HENG WITH HOOK
+026A..026E    ; restricted ; technical symbol (phonetic)                              #  [5] (ɪ..ɮ)  LATIN LETTER SMALL CAPITAL I..LATIN SMALL LETTER LEZH
+0270..0271    ; restricted ; technical symbol (phonetic)                              #  [2] (ɰ..ɱ)  LATIN SMALL LETTER TURNED M WITH LONG LEG..LATIN SMALL LETTER M WITH HOOK
+0273..0274    ; restricted ; technical symbol (phonetic)                              #  [2] (ɳ..ɴ)  LATIN SMALL LETTER N WITH RETROFLEX HOOK..LATIN LETTER SMALL CAPITAL N
+0276          ; restricted ; technical symbol (phonetic)                              #      (ɶ)  LATIN LETTER SMALL CAPITAL OE
+0277          ; restricted ; obsoleted by IPA in 1989                                 #      (ɷ)  LATIN SMALL LETTER CLOSED OMEGA
+0278..027B    ; restricted ; technical symbol (phonetic)                              #  [4] (ɸ..ɻ)  LATIN SMALL LETTER PHI..LATIN SMALL LETTER TURNED R WITH HOOK
+027C          ; restricted ; obsoleted by IPA in 1989                                 #      (ɼ)  LATIN SMALL LETTER R WITH LONG LEG
+027D..027F    ; restricted ; technical symbol (phonetic)                              #  [3] (ɽ..ɿ)  LATIN SMALL LETTER R WITH TAIL..LATIN SMALL LETTER REVERSED R WITH FISHHOOK
+0281..0282    ; restricted ; technical symbol (phonetic)                              #  [2] (ʁ..ʂ)  LATIN LETTER SMALL CAPITAL INVERTED R..LATIN SMALL LETTER S WITH HOOK
+0284..0287    ; restricted ; technical symbol (phonetic)                              #  [4] (ʄ..ʇ)  LATIN SMALL LETTER DOTLESS J WITH STROKE AND HOOK..LATIN SMALL LETTER TURNED T
+0289          ; restricted ; technical symbol (phonetic)                              #      (ʉ)  LATIN SMALL LETTER U BAR
+028C..0291    ; restricted ; technical symbol (phonetic)                              #  [6] (ʌ..ʑ)  LATIN SMALL LETTER TURNED V..LATIN SMALL LETTER Z WITH CURL
+0293          ; restricted ; technical symbol (phonetic)                              #      (ʓ)  LATIN SMALL LETTER EZH WITH CURL
+0295..029D    ; restricted ; technical symbol (phonetic)                              #  [9] (ʕ..ʝ)  LATIN LETTER PHARYNGEAL VOICED FRICATIVE..LATIN SMALL LETTER J WITH CROSSED-TAIL
+029E          ; restricted ; obsolete phonetic                                        #      (ʞ)  LATIN SMALL LETTER TURNED K
+029F..02A2    ; restricted ; technical symbol (phonetic)                              #  [4] (ʟ..ʢ)  LATIN LETTER SMALL CAPITAL L..LATIN LETTER REVERSED GLOTTAL STOP WITH STROKE
+02A3..02AB    ; restricted ; technical symbol (Latin digraph)                         #  [9] (ʣ..ʫ)  LATIN SMALL LETTER DZ DIGRAPH..LATIN SMALL LETTER LZ DIGRAPH
+02AC..02AD    ; restricted ; technical symbol (phonetic)                              #  [2] (ʬ..ʭ)  LATIN LETTER BILABIAL PERCUSSIVE..LATIN LETTER BIDENTAL PERCUSSIVE
+02B9..02C1    ; restricted ; technical symbol (phonetic)                              #  [9] (ʹ..ˁ)  MODIFIER LETTER PRIME..MODIFIER LETTER REVERSED GLOTTAL STOP
+02C2..02C5    ; restricted ; not in XID+                                              #  [4] (˂..˅)  MODIFIER LETTER LEFT ARROWHEAD..MODIFIER LETTER DOWN ARROWHEAD
+02C6..02D1    ; restricted ; technical symbol (phonetic)                              # [12] (ˆ..ˑ)  MODIFIER LETTER CIRCUMFLEX ACCENT..MODIFIER LETTER HALF TRIANGULAR COLON
+02D2..02D7    ; restricted ; not in XID+                                              #  [6] (˒..˗)  MODIFIER LETTER CENTRED RIGHT HALF RING..MODIFIER LETTER MINUS SIGN
+02DE..02DF    ; restricted ; not in XID+                                              #  [2] (˞..˟)  MODIFIER LETTER RHOTIC HOOK..MODIFIER LETTER CROSS ACCENT
+02E5..02ED    ; restricted ; not in XID+                                              #  [9] (˥..˭)  MODIFIER LETTER EXTRA-HIGH TONE BAR..MODIFIER LETTER UNASPIRATED
+02EE          ; restricted ; technical symbol (phonetic)                              #      (ˮ)  MODIFIER LETTER DOUBLE APOSTROPHE
+0340..0341    ; restricted ; deprecated or discouraged                                #  [2] (̀..́)  COMBINING GRAVE TONE MARK..COMBINING ACUTE TONE MARK
+0343          ; restricted ; archaic                                                  #      (̓)  COMBINING GREEK KORONIS
+0344          ; restricted ; deprecated or discouraged                                #      (̈́)  COMBINING GREEK DIALYTIKA TONOS
+034F          ; restricted ; default-ignorable                                        #      (U+034F)  COMBINING GRAPHEME JOINER
+0375          ; restricted ; not in XID+                                              #      (͵)  GREEK LOWER NUMERAL SIGN
+03D0..03D1    ; restricted ; archaic                                                  #  [2] (ϐ..ϑ)  GREEK BETA SYMBOL..GREEK THETA SYMBOL
+03D5..03E1    ; restricted ; archaic                                                  # [13] (ϕ..ϡ)  GREEK PHI SYMBOL..GREEK SMALL LETTER SAMPI
+03E2..03EF    ; restricted ; liturgical script                                        # [14] (Ϣ..ϯ)  COPTIC CAPITAL LETTER SHEI..COPTIC SMALL LETTER DEI
+03F3          ; restricted ; presentation form                                        #      (ϳ)  GREEK LETTER YOT
+03F6          ; restricted ; not in XID+                                              #      (϶)  GREEK REVERSED LUNATE EPSILON SYMBOL
+03F7..03F8    ; restricted ; archaic (Bactrian)                                       #  [2] (Ϸ..ϸ)  GREEK CAPITAL LETTER SHO..GREEK SMALL LETTER SHO
+03F9..03FB    ; restricted ; archaic                                                  #  [3] (Ϲ..ϻ)  GREEK CAPITAL LUNATE SIGMA SYMBOL..GREEK SMALL LETTER SAN
+0482          ; restricted ; not in XID+                                              #      (҂)  CYRILLIC THOUSANDS SIGN
+0483..0486    ; restricted ; archaic                                                  #  [4] (҃..҆)  COMBINING CYRILLIC TITLO..COMBINING CYRILLIC PSILI PNEUMATA
+0488..0489    ; restricted ; not in XID+                                              #  [2] (҈..҉)  COMBINING CYRILLIC HUNDRED THOUSANDS SIGN..COMBINING CYRILLIC MILLIONS SIGN
+0559          ; restricted ; not part of identifers                                   #      (ՙ)  ARMENIAN MODIFIER LETTER LEFT HALF RING
+055A..055F    ; restricted ; not in XID+                                              #  [6] (՚..՟)  ARMENIAN APOSTROPHE..ARMENIAN ABBREVIATION MARK
+0589..058A    ; restricted ; not in XID+                                              #  [2] (։..֊)  ARMENIAN FULL STOP..ARMENIAN HYPHEN
+05A2          ; restricted ; archaic                                                  #      (֢)  HEBREW ACCENT ATNAH HAFUKH
+05BE          ; restricted ; not in XID+                                              #      (־)  HEBREW PUNCTUATION MAQAF
+05C0          ; restricted ; not in XID+                                              #      (׀)  HEBREW PUNCTUATION PASEQ
+05C3          ; restricted ; not in XID+                                              #      (׃)  HEBREW PUNCTUATION SOF PASUQ
+05C5..05C7    ; restricted ; archaic                                                  #  [3] (ׅ..ׇ)  HEBREW MARK LOWER DOT..HEBREW POINT QAMATS QATAN
+05F3..05F4    ; restricted ; not in XID+                                              #  [2] (׳..״)  HEBREW PUNCTUATION GERESH..HEBREW PUNCTUATION GERSHAYIM
+0600..0603    ; restricted ; default-ignorable                                        #  [4] (U+0600..U+0603)  ARABIC NUMBER SIGN..ARABIC SIGN SAFHA
+060C          ; restricted ; not in XID+                                              #      (،)  ARABIC COMMA
+061B          ; restricted ; not in XID+                                              #      (؛)  ARABIC SEMICOLON
+061F          ; restricted ; not in XID+                                              #      (؟)  ARABIC QUESTION MARK
+0640          ; restricted ; presentation form                                        #      (ـ)  ARABIC TATWEEL
+066A..066D    ; restricted ; not in XID+                                              #  [4] (٪..٭)  ARABIC PERCENT SIGN..ARABIC FIVE POINTED STAR
+066E..066F    ; restricted ; archaic                                                  #  [2] (ٮ..ٯ)  ARABIC LETTER DOTLESS BEH..ARABIC LETTER DOTLESS QAF
+068E          ; restricted ; archaic (Sindhi)                                         #      (ڎ)  ARABIC LETTER DUL
+06D4          ; restricted ; not in XID+                                              #      (۔)  ARABIC FULL STOP
+06DD          ; restricted ; default-ignorable                                        #      (U+06DD)  ARABIC END OF AYAH
+06DE          ; restricted ; not in XID+                                              #      (۞)  ARABIC START OF RUB EL HIZB
+06E9          ; restricted ; not in XID+                                              #      (۩)  ARABIC PLACE OF SAJDAH
+06FD..06FE    ; restricted ; not in XID+                                              #  [2] (۽..۾)  ARABIC SIGN SINDHI AMPERSAND..ARABIC SIGN SINDHI POSTPOSITION MEN
+0700..070D    ; restricted ; not in XID+                                              # [14] (܀..܍)  SYRIAC END OF PARAGRAPH..SYRIAC HARKLEAN ASTERISCUS
+070F          ; restricted ; default-ignorable                                        #      (U+070F)  SYRIAC ABBREVIATION MARK
+0740..074A    ; restricted ; technical                                                # [11] (݀..݊)  SYRIAC FEMININE DOT..SYRIAC BARREKH
+0964..0965    ; restricted ; not in XID+                                              #  [2] (।..॥)  DEVANAGARI DANDA..DEVANAGARI DOUBLE DANDA
+0970          ; restricted ; not in XID+                                              #      (॰)  DEVANAGARI ABBREVIATION SIGN
+09F2..09FA    ; restricted ; not in XID+                                              #  [9] (৲..৺)  BENGALI RUPEE MARK..BENGALI ISSHAR
+0B70          ; restricted ; not in XID+                                              #      (୰)  ORIYA ISSHAR
+0BF0..0BF2    ; restricted ; not in XID+                                              #  [3] (௰..௲)  TAMIL NUMBER TEN..TAMIL NUMBER ONE THOUSAND
+0CDE          ; restricted ; archaic                                                  #      (ೞ)  KANNADA LETTER FA
+0DF4          ; restricted ; not in XID+                                              #      (෴)  SINHALA PUNCTUATION KUNDDALIYA
+0E3F          ; restricted ; not in XID+                                              #      (฿)  THAI CURRENCY SYMBOL BAHT
+0E4F          ; restricted ; not in XID+                                              #      (๏)  THAI CHARACTER FONGMAN
+0E5A..0E5B    ; restricted ; not in XID+                                              #  [2] (๚..๛)  THAI CHARACTER ANGKHANKHU..THAI CHARACTER KHOMUT
+0F01..0F0B    ; restricted ; not in XID+                                              # [11] (༁..་)  TIBETAN MARK GTER YIG MGO TRUNCATED A..TIBETAN MARK INTERSYLLABIC TSHEG
+0F0D..0F17    ; restricted ; not in XID+                                              # [11] (།..༗)  TIBETAN MARK SHAD..TIBETAN ASTROLOGICAL SIGN SGRA GCAN -CHAR RTAGS
+0F1A..0F1F    ; restricted ; not in XID+                                              #  [6] (༚..༟)  TIBETAN SIGN RDEL DKAR GCIG..TIBETAN SIGN RDEL DKAR RDEL NAG
+0F2A..0F34    ; restricted ; not in XID+                                              # [11] (༪..༴)  TIBETAN DIGIT HALF ONE..TIBETAN MARK BSDUS RTAGS
+0F36          ; restricted ; not in XID+                                              #      (༶)  TIBETAN MARK CARET -DZUD RTAGS BZHI MIG CAN
+0F38          ; restricted ; not in XID+                                              #      (༸)  TIBETAN MARK CHE MGO
+0F3A..0F3D    ; restricted ; not in XID+                                              #  [4] (༺..༽)  TIBETAN MARK GUG RTAGS GYON..TIBETAN MARK ANG KHANG GYAS
+0F73          ; restricted ; deprecated or discouraged                                #      (ཱི)  TIBETAN VOWEL SIGN II
+0F75          ; restricted ; deprecated or discouraged                                #      (ཱུ)  TIBETAN VOWEL SIGN UU
+0F77          ; restricted ; deprecated or discouraged                                #      (ཷ)  TIBETAN VOWEL SIGN VOCALIC RR
+0F79          ; restricted ; deprecated or discouraged                                #      (ཹ)  TIBETAN VOWEL SIGN VOCALIC LL
+0F81          ; restricted ; deprecated or discouraged                                #      (ཱྀ)  TIBETAN VOWEL SIGN REVERSED II
+0F85          ; restricted ; not in XID+                                              #      (྅)  TIBETAN MARK PALUTA
+0FBE..0FC5    ; restricted ; not in XID+                                              #  [8] (྾..࿅)  TIBETAN KU RU KHA..TIBETAN SYMBOL RDO RJE
+0FC7..0FCC    ; restricted ; not in XID+                                              #  [6] (࿇..࿌)  TIBETAN SYMBOL RDO RJE RGYA GRAM..TIBETAN SYMBOL NOR BU BZHI -KHYIL
+0FCF          ; restricted ; not in XID+                                              #      (࿏)  TIBETAN SIGN RDEL NAG GSUM
+104A..104F    ; restricted ; not in XID+                                              #  [6] (၊..၏)  MYANMAR SIGN LITTLE SECTION..MYANMAR SYMBOL GENITIVE
+10F1..10F6    ; restricted ; archaic                                                  #  [6] (ჱ..ჶ)  GEORGIAN LETTER HE..GEORGIAN LETTER FI
+10FB          ; restricted ; not in XID+                                              #      (჻)  GEORGIAN PARAGRAPH SEPARATOR
+1100..1159    ; restricted ; archaic (used for ancient Hangul)                        # [90] (ᄀ..ᅙ)  HANGUL CHOSEONG KIYEOK..HANGUL CHOSEONG YEORINHIEUH
+115A..115E    ; restricted ; archaic (used for ancient Hangul)                        #  [5] (U+115A..U+115E)  <reserved-115A>..<reserved-115E>
+115F..1160    ; restricted ; default-ignorable                                        #  [2] (U+115F..U+1160)  HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
+1161..11A2    ; restricted ; archaic (used for ancient Hangul)                        # [66] (ᅡ..ᆢ)  HANGUL JUNGSEONG A..HANGUL JUNGSEONG SSANGARAEA
+11A3..11A7    ; restricted ; archaic (used for ancient Hangul)                        #  [5] (U+11A3..U+11A7)  <reserved-11A3>..<reserved-11A7>
+11A8..11F9    ; restricted ; archaic (used for ancient Hangul)                        # [82] (ᆨ..ᇹ)  HANGUL JONGSEONG KIYEOK..HANGUL JONGSEONG YEORINHIEUH
+11FA..11FF    ; restricted ; archaic (used for ancient Hangul)                        #  [6] (U+11FA..U+11FF)  <reserved-11FA>..<reserved-11FF>
+1361..1368    ; restricted ; not in XID+                                              #  [8] (፡..፨)  ETHIOPIC WORDSPACE..ETHIOPIC PARAGRAPH SEPARATOR
+1372..137C    ; restricted ; not in XID+                                              # [11] (፲..፼)  ETHIOPIC NUMBER TEN..ETHIOPIC NUMBER TEN THOUSAND
+166D..166E    ; restricted ; not in XID+                                              #  [2] (᙭..᙮)  CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
+1680..169A    ; restricted ; archaic script                                           # [27] (U+1680..ᚚ)  OGHAM SPACE MARK..OGHAM LETTER PEITH
+169B..169C    ; restricted ; not in XID+                                              #  [2] (᚛..᚜)  OGHAM FEATHER MARK..OGHAM REVERSED FEATHER MARK
+16A0..16EA    ; restricted ; archaic script                                           # [75] (ᚠ..ᛪ)  RUNIC LETTER FEHU FEOH FE F..RUNIC LETTER X
+16EB..16ED    ; restricted ; not in XID+                                              #  [3] (᛫..᛭)  RUNIC SINGLE PUNCTUATION..RUNIC CROSS PUNCTUATION
+16EE..16F0    ; restricted ; archaic script                                           #  [3] (ᛮ..ᛰ)  RUNIC ARLAUG SYMBOL..RUNIC BELGTHOR SYMBOL
+1700..170C    ; restricted ; archaic script                                           # [13] (ᜀ..ᜌ)  TAGALOG LETTER A..TAGALOG LETTER YA
+170E..1714    ; restricted ; archaic script                                           #  [7] (ᜎ..᜔)  TAGALOG LETTER LA..TAGALOG SIGN VIRAMA
+1720..1734    ; restricted ; archaic script                                           # [21] (ᜠ..᜴)  HANUNOO LETTER A..HANUNOO SIGN PAMUDPOD
+1735..1736    ; restricted ; not in XID+                                              #  [2] (᜵..᜶)  PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
+1740..1753    ; restricted ; archaic script                                           # [20] (ᝀ..ᝓ)  BUHID LETTER A..BUHID VOWEL SIGN U
+1760..176C    ; restricted ; archaic script                                           # [13] (ᝠ..ᝬ)  TAGBANWA LETTER A..TAGBANWA LETTER YA
+176E..1770    ; restricted ; archaic script                                           #  [3] (ᝮ..ᝰ)  TAGBANWA LETTER LA..TAGBANWA LETTER SA
+1772..1773    ; restricted ; archaic script                                           #  [2] (ᝲ..ᝳ)  TAGBANWA VOWEL SIGN I..TAGBANWA VOWEL SIGN U
+17A3..17A4    ; restricted ; deprecated or discouraged                                #  [2] (ឣ..ឤ)  KHMER INDEPENDENT VOWEL QAQ..KHMER INDEPENDENT VOWEL QAA
+17A8          ; restricted ; archaic ligature for the sequence 17A7 1780              #      (ឨ)  KHMER INDEPENDENT VOWEL QUK
+17B4..17B5    ; restricted ; not in XID+                                              #  [2] (U+17B4..U+17B5)  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
+17D1          ; restricted ; mostly obsolete                                          #      (៑)  KHMER SIGN VIRIAM
+17D3          ; restricted ; deprecated or discouraged                                #      (៓)  KHMER SIGN BATHAMASAT
+17D4..17D6    ; restricted ; not in XID+                                              #  [3] (។..៖)  KHMER SIGN KHAN..KHMER SIGN CAMNUC PII KUUH
+17D8..17DB    ; restricted ; not in XID+                                              #  [4] (៘..៛)  KHMER SIGN BEYYAL..KHMER CURRENCY SYMBOL RIEL
+17DD          ; restricted ; mostly obsolete                                          #      (៝)  KHMER SIGN ATTHACAN
+1800..1805    ; restricted ; not in XID+                                              #  [6] (᠀..᠅)  MONGOLIAN BIRGA..MONGOLIAN FOUR DOTS
+1807..180A    ; restricted ; not in XID+                                              #  [4] (᠇..᠊)  MONGOLIAN SIBE SYLLABLE BOUNDARY MARKER..MONGOLIAN NIRUGU
+180B..180D    ; restricted ; default-ignorable                                        #  [3] (U+180B..U+180D)  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
+1B00..1B4B    ; restricted ; archaic script                                           # [76] (ᬀ..ᭋ)  BALINESE SIGN ULU RICEM..BALINESE LETTER ASYURA SASAK
+1B50..1B7C    ; restricted ; archaic script                                           # [45] (᭐..᭼)  BALINESE DIGIT ZERO..BALINESE MUSICAL SYMBOL LEFT-HAND OPEN PING
+1D00..1DBF    ; restricted ; non-IPA phonetics                                        # [192] (ᴀ..ᶿ)  LATIN LETTER SMALL CAPITAL A..MODIFIER LETTER SMALL THETA
+1DC0..1DC3    ; restricted ; archaic                                                  #  [4] (᷀..᷃)  COMBINING DOTTED GRAVE ACCENT..COMBINING SUSPENSION MARK
+200B..200F    ; restricted ; default-ignorable                                        #  [5] (U+200B..U+200F)  ZERO WIDTH SPACE..RIGHT-TO-LEFT MARK
+2010          ; restricted ; not in XID+                                              #      (‐)  HYPHEN
+2012..2016    ; restricted ; not in XID+                                              #  [5] (‒..‖)  FIGURE DASH..DOUBLE VERTICAL LINE
+2018..2023    ; restricted ; not in XID+                                              # [12] (‘..‣)  LEFT SINGLE QUOTATION MARK..TRIANGULAR BULLET
+2027          ; restricted ; not in XID+                                              #      (‧)  HYPHENATION POINT
+202A..202E    ; restricted ; default-ignorable                                        #  [5] (U+202A..U+202E)  LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
+2030..2032    ; restricted ; not in XID+                                              #  [3] (‰..′)  PER MILLE SIGN..PRIME
+2035          ; restricted ; not in XID+                                              #      (‵)  REVERSED PRIME
+2038..203B    ; restricted ; not in XID+                                              #  [4] (‸..※)  CARET..REFERENCE MARK
+203D          ; restricted ; not in XID+                                              #      (‽)  INTERROBANG
+203F..2040    ; restricted ; technical                                                #  [2] (‿..⁀)  UNDERTIE..CHARACTER TIE
+2041..2046    ; restricted ; not in XID+                                              #  [6] (⁁..⁆)  CARET INSERTION POINT..RIGHT SQUARE BRACKET WITH QUILL
+204A..2052    ; restricted ; not in XID+                                              #  [9] (⁊..⁒)  TIRONIAN SIGN ET..COMMERCIAL MINUS SIGN
+2060..2063    ; restricted ; default-ignorable                                        #  [4] (U+2060..U+2063)  WORD JOINER..INVISIBLE SEPARATOR
+206A..206F    ; restricted ; deprecated or discouraged                                #  [6] (U+206A..U+206F)  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
+20A0..20A7    ; restricted ; not in XID+                                              #  [8] (₠..₧)  EURO-CURRENCY SIGN..PESETA SIGN
+20A9..20B1    ; restricted ; not in XID+                                              #  [9] (₩..₱)  WON SIGN..PESO SIGN
+20D0..20DC    ; restricted ; technical                                                # [13] (⃐..⃜)  COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
+20DD..20E0    ; restricted ; not in XID+                                              #  [4] (⃝..⃠)  COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
+20E1          ; restricted ; technical                                                #      (⃡)  COMBINING LEFT RIGHT ARROW ABOVE
+20E2..20E4    ; restricted ; not in XID+                                              #  [3] (⃢..⃤)  COMBINING ENCLOSING SCREEN..COMBINING ENCLOSING UPWARD POINTING TRIANGLE
+20E5..20EA    ; restricted ; technical                                                #  [6] (⃥..⃪)  COMBINING REVERSE SOLIDUS OVERLAY..COMBINING LEFTWARDS ARROW OVERLAY
+2104          ; restricted ; not in XID+                                              #      (℄)  CENTRE LINE SYMBOL
+2108          ; restricted ; not in XID+                                              #      (℈)  SCRUPLE
+2114          ; restricted ; not in XID+                                              #      (℔)  L B BAR SYMBOL
+2117          ; restricted ; not in XID+                                              #      (℗)  SOUND RECORDING COPYRIGHT
+2118          ; restricted ; technical symbol (math)                                  #      (℘)  SCRIPT CAPITAL P
+211E..211F    ; restricted ; not in XID+                                              #  [2] (℞..℟)  PRESCRIPTION TAKE..RESPONSE
+2123          ; restricted ; not in XID+                                              #      (℣)  VERSICLE
+2125          ; restricted ; not in XID+                                              #      (℥)  OUNCE SIGN
+2127          ; restricted ; not in XID+                                              #      (℧)  INVERTED OHM SIGN
+2129          ; restricted ; not in XID+                                              #      (℩)  TURNED GREEK SMALL LETTER IOTA
+212E          ; restricted ; technical                                                #      (℮)  ESTIMATED SYMBOL
+213A          ; restricted ; not in XID+                                              #      (℺)  ROTATED CAPITAL Q
+2141..2144    ; restricted ; not in XID+                                              #  [4] (⅁..⅄)  TURNED SANS-SERIF CAPITAL G..TURNED SANS-SERIF CAPITAL Y
+214A..214B    ; restricted ; not in XID+                                              #  [2] (⅊..⅋)  PROPERTY LINE..TURNED AMPERSAND
+2180..2183    ; restricted ; presentation form                                        #  [4] (ↀ..Ↄ)  ROMAN NUMERAL ONE THOUSAND C D..ROMAN NUMERAL REVERSED ONE HUNDRED
+2190..222B    ; restricted ; not in XID+                                              # [156] (←..∫)  LEFTWARDS ARROW..INTEGRAL
+222E          ; restricted ; not in XID+                                              #      (∮)  CONTOUR INTEGRAL
+2231..2328    ; restricted ; not in XID+                                              # [248] (∱..⌨)  CLOCKWISE INTEGRAL..KEYBOARD
+2329..232A    ; restricted ; deprecated or discouraged                                #  [2] (〈..〉)  LEFT-POINTING ANGLE BRACKET..RIGHT-POINTING ANGLE BRACKET
+232B..23CE    ; restricted ; not in XID+                                              # [164] (⌫..⏎)  ERASE TO THE LEFT..RETURN SYMBOL
+2400..2426    ; restricted ; not in XID+                                              # [39] (␀..␦)  SYMBOL FOR NULL..SYMBOL FOR SUBSTITUTE FORM TWO
+2440..244A    ; restricted ; not in XID+                                              # [11] (⑀..⑊)  OCR HOOK..OCR DOUBLE BACKSLASH
+2460..24EA    ; restricted ; presentation form                                        # [139] (①..⓪)  CIRCLED DIGIT ONE..CIRCLED DIGIT ZERO
+24EB..24FE    ; restricted ; not in XID+                                              # [20] (⓫..⓾)  NEGATIVE CIRCLED NUMBER ELEVEN..DOUBLE CIRCLED NUMBER TEN
+24FF          ; restricted ; presentation form                                        #      (⓿)  NEGATIVE CIRCLED DIGIT ZERO
+2500..2613    ; restricted ; not in XID+                                              # [276] (─..☓)  BOX DRAWINGS LIGHT HORIZONTAL..SALTIRE
+2616..2617    ; restricted ; not in XID+                                              #  [2] (☖..☗)  WHITE SHOGI PIECE..BLACK SHOGI PIECE
+2619..267D    ; restricted ; not in XID+                                              # [101] (☙..♽)  REVERSED ROTATED FLORAL HEART BULLET..PARTIALLY-RECYCLED PAPER SYMBOL
+2680..2689    ; restricted ; not in XID+                                              # [10] (⚀..⚉)  DIE FACE-1..BLACK CIRCLE WITH TWO WHITE DOTS
+2701..2704    ; restricted ; not in XID+                                              #  [4] (✁..✄)  UPPER BLADE SCISSORS..WHITE SCISSORS
+2706..2709    ; restricted ; not in XID+                                              #  [4] (✆..✉)  TELEPHONE LOCATION SIGN..ENVELOPE
+270C..2727    ; restricted ; not in XID+                                              # [28] (✌..✧)  VICTORY HAND..WHITE FOUR POINTED STAR
+2729..274B    ; restricted ; not in XID+                                              # [35] (✩..❋)  STRESS OUTLINED WHITE STAR..HEAVY EIGHT TEARDROP-SPOKED PROPELLER ASTERISK
+274D          ; restricted ; not in XID+                                              #      (❍)  SHADOWED WHITE CIRCLE
+274F..2752    ; restricted ; not in XID+                                              #  [4] (❏..❒)  LOWER RIGHT DROP-SHADOWED WHITE SQUARE..UPPER RIGHT SHADOWED WHITE SQUARE
+2756          ; restricted ; not in XID+                                              #      (❖)  BLACK DIAMOND MINUS WHITE X
+2758..275E    ; restricted ; not in XID+                                              #  [7] (❘..❞)  LIGHT VERTICAL BAR..HEAVY DOUBLE COMMA QUOTATION MARK ORNAMENT
+2761..2794    ; restricted ; not in XID+                                              # [52] (❡..➔)  CURVED STEM PARAGRAPH SIGN ORNAMENT..HEAVY WIDE-HEADED RIGHTWARDS ARROW
+2798..27AF    ; restricted ; not in XID+                                              # [24] (➘..➯)  HEAVY SOUTH EAST ARROW..NOTCHED LOWER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW
+27B1..27BE    ; restricted ; not in XID+                                              # [14] (➱..➾)  NOTCHED UPPER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW..OPEN-OUTLINED RIGHTWARDS ARROW
+27D0..27EB    ; restricted ; not in XID+                                              # [28] (⟐..⟫)  WHITE DIAMOND WITH CENTRED DOT..MATHEMATICAL RIGHT DOUBLE ANGLE BRACKET
+27F0..2A0B    ; restricted ; not in XID+                                              # [540] (⟰..⨋)  UPWARDS QUADRUPLE ARROW..SUMMATION WITH INTEGRAL
+2A0D..2A73    ; restricted ; not in XID+                                              # [103] (⨍..⩳)  FINITE PART INTEGRAL..EQUALS SIGN ABOVE TILDE OPERATOR
+2A77..2ADB    ; restricted ; not in XID+                                              # [101] (⩷..⫛)  EQUALS SIGN WITH TWO DOTS ABOVE AND TWO DOTS BELOW..TRANSVERSAL INTERSECTION
+2ADD..2AFF    ; restricted ; not in XID+                                              # [35] (⫝..⫿)  NONFORKING..N-ARY WHITE VERTICAL BAR
+2C00..2C2E    ; restricted ; archaic script                                           # [47] (Ⰰ..Ⱞ)  GLAGOLITIC CAPITAL LETTER AZU..GLAGOLITIC CAPITAL LETTER LATINATE MYSLITE
+2C30..2C5E    ; restricted ; archaic script                                           # [47] (ⰰ..ⱞ)  GLAGOLITIC SMALL LETTER AZU..GLAGOLITIC SMALL LETTER LATINATE MYSLITE
+2C80..2CEA    ; restricted ; liturgical script                                        # [107] (Ⲁ..⳪)  COPTIC CAPITAL LETTER ALFA..COPTIC SYMBOL SHIMA SIMA
+2CF9..2CFF    ; restricted ; liturgical script                                        #  [7] (⳹..⳿)  COPTIC OLD NUBIAN FULL STOP..COPTIC MORPHOLOGICAL DIVIDER
+2E00..2E0D    ; restricted ; technical (Editorial Marks for Biblical Text Annotation) # [14] (⸀..⸍)  RIGHT ANGLE SUBSTITUTION MARKER..RIGHT RAISED OMISSION BRACKET
+2E80..2E99    ; restricted ; not in XID+                                              # [26] (⺀..⺙)  CJK RADICAL REPEAT..CJK RADICAL RAP
+2E9B..2E9E    ; restricted ; not in XID+                                              #  [4] (⺛..⺞)  CJK RADICAL CHOKE..CJK RADICAL DEATH
+2EA0..2EF2    ; restricted ; not in XID+                                              # [83] (⺠..⻲)  CJK RADICAL CIVILIAN..CJK RADICAL J-SIMPLIFIED TURTLE
+3001..3004    ; restricted ; not in XID+                                              #  [4] (、..〄)  IDEOGRAPHIC COMMA..JAPANESE INDUSTRIAL STANDARD SYMBOL
+3008..3020    ; restricted ; not in XID+                                              # [25] (〈..〠)  LEFT ANGLE BRACKET..POSTAL MARK FACE
+3021..302F    ; restricted ; technical                                                # [15] (〡..〯)  HANGZHOU NUMERAL ONE..HANGUL DOUBLE DOT TONE MARK
+3030          ; restricted ; not in XID+                                              #      (〰)  WAVY DASH
+3031..3035    ; restricted ; presentation form                                        #  [5] (〱..〵)  VERTICAL KANA REPEAT MARK..VERTICAL KANA REPEAT MARK LOWER HALF
+3037          ; restricted ; not in XID+                                              #      (〷)  IDEOGRAPHIC TELEGRAPH LINE FEED SEPARATOR SYMBOL
+303B..303C    ; restricted ; presentation form                                        #  [2] (〻..〼)  VERTICAL IDEOGRAPHIC ITERATION MARK..MASU MARK
+303D..303F    ; restricted ; not in XID+                                              #  [3] (〽..〿)  PART ALTERNATION MARK..IDEOGRAPHIC HALF FILL SPACE
+30A0          ; restricted ; not in XID+                                              #      (゠)  KATAKANA-HIRAGANA DOUBLE HYPHEN
+3164          ; restricted ; default-ignorable                                        #      (U+3164)  HANGUL FILLER
+3165..318E    ; restricted ; archaic                                                  # [42] (ㅥ..ㆎ)  HANGUL LETTER SSANGNIEUN..HANGUL LETTER ARAEAE
+3190..3191    ; restricted ; not in XID+                                              #  [2] (㆐..㆑)  IDEOGRAPHIC ANNOTATION LINKING MARK..IDEOGRAPHIC ANNOTATION REVERSE MARK
+3251..327E    ; restricted ; presentation form                                        # [46] (㉑..㉾)  CIRCLED NUMBER TWENTY ONE..CIRCLED HANGUL IEUNG U
+327F          ; restricted ; not in XID+                                              #      (㉿)  KOREAN STANDARD SYMBOL
+3280..32FE    ; restricted ; presentation form                                        # [127] (㊀..㋾)  CIRCLED IDEOGRAPH ONE..CIRCLED KATAKANA WO
+32FF          ; restricted ; presentation form                                        #      (U+32FF)  <reserved-32FF>
+3300..33FF    ; restricted ; presentation form                                        # [256] (㌀..㏿)  SQUARE APAATO..SQUARE GAL
+3400..3446    ; restricted ; ~IICore                                                  # [71] (㐀..㑆)  CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-3446
+3448..3472    ; restricted ; ~IICore                                                  # [43] (㑈..㑲)  CJK UNIFIED IDEOGRAPH-3448..CJK UNIFIED IDEOGRAPH-3472
+3474..34E3    ; restricted ; ~IICore                                                  # [112] (㑴..㓣)  CJK UNIFIED IDEOGRAPH-3474..CJK UNIFIED IDEOGRAPH-34E3
+34E5..3576    ; restricted ; ~IICore                                                  # [146] (㓥..㕶)  CJK UNIFIED IDEOGRAPH-34E5..CJK UNIFIED IDEOGRAPH-3576
+3578..359D    ; restricted ; ~IICore                                                  # [38] (㕸..㖝)  CJK UNIFIED IDEOGRAPH-3578..CJK UNIFIED IDEOGRAPH-359D
+359F..35A0    ; restricted ; ~IICore                                                  #  [2] (㖟..㖠)  CJK UNIFIED IDEOGRAPH-359F..CJK UNIFIED IDEOGRAPH-35A0
+35A2..35AC    ; restricted ; ~IICore                                                  # [11] (㖢..㖬)  CJK UNIFIED IDEOGRAPH-35A2..CJK UNIFIED IDEOGRAPH-35AC
+35AE..35BE    ; restricted ; ~IICore                                                  # [17] (㖮..㖾)  CJK UNIFIED IDEOGRAPH-35AE..CJK UNIFIED IDEOGRAPH-35BE
+35C0..35CD    ; restricted ; ~IICore                                                  # [14] (㗀..㗍)  CJK UNIFIED IDEOGRAPH-35C0..CJK UNIFIED IDEOGRAPH-35CD
+35CF..35F2    ; restricted ; ~IICore                                                  # [36] (㗏..㗲)  CJK UNIFIED IDEOGRAPH-35CF..CJK UNIFIED IDEOGRAPH-35F2
+35F4..35FD    ; restricted ; ~IICore                                                  # [10] (㗴..㗽)  CJK UNIFIED IDEOGRAPH-35F4..CJK UNIFIED IDEOGRAPH-35FD
+35FF..360D    ; restricted ; ~IICore                                                  # [15] (㗿..㘍)  CJK UNIFIED IDEOGRAPH-35FF..CJK UNIFIED IDEOGRAPH-360D
+360F..3619    ; restricted ; ~IICore                                                  # [11] (㘏..㘙)  CJK UNIFIED IDEOGRAPH-360F..CJK UNIFIED IDEOGRAPH-3619
+361B..3917    ; restricted ; ~IICore                                                  # [765] (㘛..㤗)  CJK UNIFIED IDEOGRAPH-361B..CJK UNIFIED IDEOGRAPH-3917
+3919..395F    ; restricted ; ~IICore                                                  # [71] (㤙..㥟)  CJK UNIFIED IDEOGRAPH-3919..CJK UNIFIED IDEOGRAPH-395F
+3961..396D    ; restricted ; ~IICore                                                  # [13] (㥡..㥭)  CJK UNIFIED IDEOGRAPH-3961..CJK UNIFIED IDEOGRAPH-396D
+396F..39CE    ; restricted ; ~IICore                                                  # [96] (㥯..㧎)  CJK UNIFIED IDEOGRAPH-396F..CJK UNIFIED IDEOGRAPH-39CE
+39D1..39DE    ; restricted ; ~IICore                                                  # [14] (㧑..㧞)  CJK UNIFIED IDEOGRAPH-39D1..CJK UNIFIED IDEOGRAPH-39DE
+39E0..39F7    ; restricted ; ~IICore                                                  # [24] (㧠..㧷)  CJK UNIFIED IDEOGRAPH-39E0..CJK UNIFIED IDEOGRAPH-39F7
+39F9..39FD    ; restricted ; ~IICore                                                  #  [5] (㧹..㧽)  CJK UNIFIED IDEOGRAPH-39F9..CJK UNIFIED IDEOGRAPH-39FD
+39FF..3A17    ; restricted ; ~IICore                                                  # [25] (㧿..㨗)  CJK UNIFIED IDEOGRAPH-39FF..CJK UNIFIED IDEOGRAPH-3A17
+3A19..3A51    ; restricted ; ~IICore                                                  # [57] (㨙..㩑)  CJK UNIFIED IDEOGRAPH-3A19..CJK UNIFIED IDEOGRAPH-3A51
+3A53..3A66    ; restricted ; ~IICore                                                  # [20] (㩓..㩦)  CJK UNIFIED IDEOGRAPH-3A53..CJK UNIFIED IDEOGRAPH-3A66
+3A68..3A72    ; restricted ; ~IICore                                                  # [11] (㩨..㩲)  CJK UNIFIED IDEOGRAPH-3A68..CJK UNIFIED IDEOGRAPH-3A72
+3A74..3B38    ; restricted ; ~IICore                                                  # [197] (㩴..㬸)  CJK UNIFIED IDEOGRAPH-3A74..CJK UNIFIED IDEOGRAPH-3B38
+3B3A..3B4D    ; restricted ; ~IICore                                                  # [20] (㬺..㭍)  CJK UNIFIED IDEOGRAPH-3B3A..CJK UNIFIED IDEOGRAPH-3B4D
+3B4F..3C6D    ; restricted ; ~IICore                                                  # [287] (㭏..㱭)  CJK UNIFIED IDEOGRAPH-3B4F..CJK UNIFIED IDEOGRAPH-3C6D
+3C6F..3CDF    ; restricted ; ~IICore                                                  # [113] (㱯..㳟)  CJK UNIFIED IDEOGRAPH-3C6F..CJK UNIFIED IDEOGRAPH-3CDF
+3CE1..3DE6    ; restricted ; ~IICore                                                  # [262] (㳡..㷦)  CJK UNIFIED IDEOGRAPH-3CE1..CJK UNIFIED IDEOGRAPH-3DE6
+3DE8..3DEA    ; restricted ; ~IICore                                                  #  [3] (㷨..㷪)  CJK UNIFIED IDEOGRAPH-3DE8..CJK UNIFIED IDEOGRAPH-3DEA
+3DEC..3E73    ; restricted ; ~IICore                                                  # [136] (㷬..㹳)  CJK UNIFIED IDEOGRAPH-3DEC..CJK UNIFIED IDEOGRAPH-3E73
+3E75..3ECF    ; restricted ; ~IICore                                                  # [91] (㹵..㻏)  CJK UNIFIED IDEOGRAPH-3E75..CJK UNIFIED IDEOGRAPH-3ECF
+3ED1..4055    ; restricted ; ~IICore                                                  # [389] (㻑..䁕)  CJK UNIFIED IDEOGRAPH-3ED1..CJK UNIFIED IDEOGRAPH-4055
+4057..4064    ; restricted ; ~IICore                                                  # [14] (䁗..䁤)  CJK UNIFIED IDEOGRAPH-4057..CJK UNIFIED IDEOGRAPH-4064
+4066..4069    ; restricted ; ~IICore                                                  #  [4] (䁦..䁩)  CJK UNIFIED IDEOGRAPH-4066..CJK UNIFIED IDEOGRAPH-4069
+406B..40BA    ; restricted ; ~IICore                                                  # [80] (䁫..䂺)  CJK UNIFIED IDEOGRAPH-406B..CJK UNIFIED IDEOGRAPH-40BA
+40BC..40DE    ; restricted ; ~IICore                                                  # [35] (䂼..䃞)  CJK UNIFIED IDEOGRAPH-40BC..CJK UNIFIED IDEOGRAPH-40DE
+40E0..4136    ; restricted ; ~IICore                                                  # [87] (䃠..䄶)  CJK UNIFIED IDEOGRAPH-40E0..CJK UNIFIED IDEOGRAPH-4136
+4138..415E    ; restricted ; ~IICore                                                  # [39] (䄸..䅞)  CJK UNIFIED IDEOGRAPH-4138..CJK UNIFIED IDEOGRAPH-415E
+4160..4336    ; restricted ; ~IICore                                                  # [471] (䅠..䌶)  CJK UNIFIED IDEOGRAPH-4160..CJK UNIFIED IDEOGRAPH-4336
+4338..43AB    ; restricted ; ~IICore                                                  # [116] (䌸..䎫)  CJK UNIFIED IDEOGRAPH-4338..CJK UNIFIED IDEOGRAPH-43AB
+43AD..43B0    ; restricted ; ~IICore                                                  #  [4] (䎭..䎰)  CJK UNIFIED IDEOGRAPH-43AD..CJK UNIFIED IDEOGRAPH-43B0
+43B2..43DC    ; restricted ; ~IICore                                                  # [43] (䎲..䏜)  CJK UNIFIED IDEOGRAPH-43B2..CJK UNIFIED IDEOGRAPH-43DC
+43DE..44D5    ; restricted ; ~IICore                                                  # [248] (䏞..䓕)  CJK UNIFIED IDEOGRAPH-43DE..CJK UNIFIED IDEOGRAPH-44D5
+44D7..44E9    ; restricted ; ~IICore                                                  # [19] (䓗..䓩)  CJK UNIFIED IDEOGRAPH-44D7..CJK UNIFIED IDEOGRAPH-44E9
+44EB..4605    ; restricted ; ~IICore                                                  # [283] (䓫..䘅)  CJK UNIFIED IDEOGRAPH-44EB..CJK UNIFIED IDEOGRAPH-4605
+4607..464B    ; restricted ; ~IICore                                                  # [69] (䘇..䙋)  CJK UNIFIED IDEOGRAPH-4607..CJK UNIFIED IDEOGRAPH-464B
+464D..4660    ; restricted ; ~IICore                                                  # [20] (䙍..䙠)  CJK UNIFIED IDEOGRAPH-464D..CJK UNIFIED IDEOGRAPH-4660
+4662..4722    ; restricted ; ~IICore                                                  # [193] (䙢..䜢)  CJK UNIFIED IDEOGRAPH-4662..CJK UNIFIED IDEOGRAPH-4722
+4724..4728    ; restricted ; ~IICore                                                  #  [5] (䜤..䜨)  CJK UNIFIED IDEOGRAPH-4724..CJK UNIFIED IDEOGRAPH-4728
+472A..477B    ; restricted ; ~IICore                                                  # [82] (䜪..䝻)  CJK UNIFIED IDEOGRAPH-472A..CJK UNIFIED IDEOGRAPH-477B
+477D..478C    ; restricted ; ~IICore                                                  # [16] (䝽..䞌)  CJK UNIFIED IDEOGRAPH-477D..CJK UNIFIED IDEOGRAPH-478C
+478E..47F3    ; restricted ; ~IICore                                                  # [102] (䞎..䟳)  CJK UNIFIED IDEOGRAPH-478E..CJK UNIFIED IDEOGRAPH-47F3
+47F5..48B4    ; restricted ; ~IICore                                                  # [192] (䟵..䢴)  CJK UNIFIED IDEOGRAPH-47F5..CJK UNIFIED IDEOGRAPH-48B4
+48B6..48BB    ; restricted ; ~IICore                                                  #  [6] (䢶..䢻)  CJK UNIFIED IDEOGRAPH-48B6..CJK UNIFIED IDEOGRAPH-48BB
+48BD..48C4    ; restricted ; ~IICore                                                  #  [8] (䢽..䣄)  CJK UNIFIED IDEOGRAPH-48BD..CJK UNIFIED IDEOGRAPH-48C4
+48C6..48D2    ; restricted ; ~IICore                                                  # [13] (䣆..䣒)  CJK UNIFIED IDEOGRAPH-48C6..CJK UNIFIED IDEOGRAPH-48D2
+48D4..4946    ; restricted ; ~IICore                                                  # [115] (䣔..䥆)  CJK UNIFIED IDEOGRAPH-48D4..CJK UNIFIED IDEOGRAPH-4946
+4948..4979    ; restricted ; ~IICore                                                  # [50] (䥈..䥹)  CJK UNIFIED IDEOGRAPH-4948..CJK UNIFIED IDEOGRAPH-4979
+497B..497C    ; restricted ; ~IICore                                                  #  [2] (䥻..䥼)  CJK UNIFIED IDEOGRAPH-497B..CJK UNIFIED IDEOGRAPH-497C
+497E..4981    ; restricted ; ~IICore                                                  #  [4] (䥾..䦁)  CJK UNIFIED IDEOGRAPH-497E..CJK UNIFIED IDEOGRAPH-4981
+4984          ; restricted ; ~IICore                                                  #      (䦄)  CJK UNIFIED IDEOGRAPH-4984
+4987..499A    ; restricted ; ~IICore                                                  # [20] (䦇..䦚)  CJK UNIFIED IDEOGRAPH-4987..CJK UNIFIED IDEOGRAPH-499A
+499C..499E    ; restricted ; ~IICore                                                  #  [3] (䦜..䦞)  CJK UNIFIED IDEOGRAPH-499C..CJK UNIFIED IDEOGRAPH-499E
+49A0..49B5    ; restricted ; ~IICore                                                  # [22] (䦠..䦵)  CJK UNIFIED IDEOGRAPH-49A0..CJK UNIFIED IDEOGRAPH-49B5
+49B8..49D0    ; restricted ; ~IICore                                                  # [25] (䦸..䧐)  CJK UNIFIED IDEOGRAPH-49B8..CJK UNIFIED IDEOGRAPH-49D0
+49D2..4A11    ; restricted ; ~IICore                                                  # [64] (䧒..䨑)  CJK UNIFIED IDEOGRAPH-49D2..CJK UNIFIED IDEOGRAPH-4A11
+4A13..4AB7    ; restricted ; ~IICore                                                  # [165] (䨓..䪷)  CJK UNIFIED IDEOGRAPH-4A13..CJK UNIFIED IDEOGRAPH-4AB7
+4AB9..4C76    ; restricted ; ~IICore                                                  # [446] (䪹..䱶)  CJK UNIFIED IDEOGRAPH-4AB9..CJK UNIFIED IDEOGRAPH-4C76
+4C78..4C7C    ; restricted ; ~IICore                                                  #  [5] (䱸..䱼)  CJK UNIFIED IDEOGRAPH-4C78..CJK UNIFIED IDEOGRAPH-4C7C
+4C7E..4C80    ; restricted ; ~IICore                                                  #  [3] (䱾..䲀)  CJK UNIFIED IDEOGRAPH-4C7E..CJK UNIFIED IDEOGRAPH-4C80
+4C82..4C84    ; restricted ; ~IICore                                                  #  [3] (䲂..䲄)  CJK UNIFIED IDEOGRAPH-4C82..CJK UNIFIED IDEOGRAPH-4C84
+4C86..4C9E    ; restricted ; ~IICore                                                  # [25] (䲆..䲞)  CJK UNIFIED IDEOGRAPH-4C86..CJK UNIFIED IDEOGRAPH-4C9E
+4CA4..4CB2    ; restricted ; ~IICore                                                  # [15] (䲤..䲲)  CJK UNIFIED IDEOGRAPH-4CA4..CJK UNIFIED IDEOGRAPH-4CB2
+4CB4..4D07    ; restricted ; ~IICore                                                  # [84] (䲴..䴇)  CJK UNIFIED IDEOGRAPH-4CB4..CJK UNIFIED IDEOGRAPH-4D07
+4D09..4D12    ; restricted ; ~IICore                                                  # [10] (䴉..䴒)  CJK UNIFIED IDEOGRAPH-4D09..CJK UNIFIED IDEOGRAPH-4D12
+4D1A..4DAD    ; restricted ; ~IICore                                                  # [148] (䴚..䶭)  CJK UNIFIED IDEOGRAPH-4D1A..CJK UNIFIED IDEOGRAPH-4DAD
+4DAF..4DB5    ; restricted ; ~IICore                                                  #  [7] (䶯..䶵)  CJK UNIFIED IDEOGRAPH-4DAF..CJK UNIFIED IDEOGRAPH-4DB5
+4DC0..4DFF    ; restricted ; technical                                                # [64] (䷀..䷿)  HEXAGRAM FOR THE CREATIVE HEAVEN..HEXAGRAM FOR BEFORE COMPLETION
+A490..A4C6    ; restricted ; not in XID+                                              # [55] (꒐..꓆)  YI RADICAL QOT..YI RADICAL KE
+A700..A707    ; restricted ; archaic                                                  #  [8] (꜀..꜇)  MODIFIER LETTER CHINESE TONE YIN PING..MODIFIER LETTER CHINESE TONE YANG RU
+A708..A716    ; restricted ; technical (phonetic used for Chinese tones)              # [15] (꜈..꜖)  MODIFIER LETTER EXTRA-HIGH DOTTED TONE BAR..MODIFIER LETTER EXTRA-LOW LEFT-STEM TONE BAR
+A840..A877    ; restricted ; archaic script                                           # [56] (ꡀ..꡷)  PHAGS-PA LETTER KA..PHAGS-PA MARK DOUBLE SHAD
+D800..DFFF    ; restricted ; default-ignorable                                        # [2048] (U+D800..U+DFFF)  <surrogate-D800>..<surrogate-DFFF>
+FB00..FB06    ; restricted ; presentation form                                        #  [7] (ﬀ..ﬆ)  LATIN SMALL LIGATURE FF..LATIN SMALL LIGATURE ST
+FB07..FB12    ; restricted ; presentation form                                        # [12] (U+FB07..U+FB12)  <reserved-FB07>..<reserved-FB12>
+FB13..FB17    ; restricted ; presentation form                                        #  [5] (ﬓ..ﬗ)  ARMENIAN SMALL LIGATURE MEN NOW..ARMENIAN SMALL LIGATURE MEN XEH
+FB18..FB1C    ; restricted ; presentation form                                        #  [5] (U+FB18..U+FB1C)  <reserved-FB18>..<reserved-FB1C>
+FB1D..FB36    ; restricted ; presentation form                                        # [26] (יִ..זּ)  HEBREW LETTER YOD WITH HIRIQ..HEBREW LETTER ZAYIN WITH DAGESH
+FB37          ; restricted ; presentation form                                        #      (U+FB37)  <reserved-FB37>
+FB38..FB3C    ; restricted ; presentation form                                        #  [5] (טּ..לּ)  HEBREW LETTER TET WITH DAGESH..HEBREW LETTER LAMED WITH DAGESH
+FB3D          ; restricted ; presentation form                                        #      (U+FB3D)  <reserved-FB3D>
+FB3E          ; restricted ; presentation form                                        #      (מּ)  HEBREW LETTER MEM WITH DAGESH
+FB3F          ; restricted ; presentation form                                        #      (U+FB3F)  <reserved-FB3F>
+FB40..FB41    ; restricted ; presentation form                                        #  [2] (נּ..סּ)  HEBREW LETTER NUN WITH DAGESH..HEBREW LETTER SAMEKH WITH DAGESH
+FB42          ; restricted ; presentation form                                        #      (U+FB42)  <reserved-FB42>
+FB43..FB44    ; restricted ; presentation form                                        #  [2] (ףּ..פּ)  HEBREW LETTER FINAL PE WITH DAGESH..HEBREW LETTER PE WITH DAGESH
+FB45          ; restricted ; presentation form                                        #      (U+FB45)  <reserved-FB45>
+FB46..FBB1    ; restricted ; presentation form                                        # [108] (צּ..ﮱ)  HEBREW LETTER TSADI WITH DAGESH..ARABIC LETTER YEH BARREE WITH HAMZA ABOVE FINAL FORM
+FBB2..FBD2    ; restricted ; presentation form                                        # [33] (U+FBB2..U+FBD2)  <reserved-FBB2>..<reserved-FBD2>
+FBD3..FD3D    ; restricted ; presentation form                                        # [363] (ﯓ..ﴽ)  ARABIC LETTER NG ISOLATED FORM..ARABIC LIGATURE ALEF WITH FATHATAN ISOLATED FORM
+FD3E..FD3F    ; restricted ; not in XID+                                              #  [2] (﴾..﴿)  ORNATE LEFT PARENTHESIS..ORNATE RIGHT PARENTHESIS
+FD40..FD4F    ; restricted ; presentation form                                        # [16] (U+FD40..U+FD4F)  <reserved-FD40>..<reserved-FD4F>
+FD50..FD8F    ; restricted ; presentation form                                        # [64] (ﵐ..ﶏ)  ARABIC LIGATURE TEH WITH JEEM WITH MEEM INITIAL FORM..ARABIC LIGATURE MEEM WITH KHAH WITH MEEM INITIAL FORM
+FD90..FD91    ; restricted ; presentation form                                        #  [2] (U+FD90..U+FD91)  <reserved-FD90>..<reserved-FD91>
+FD92..FDC7    ; restricted ; presentation form                                        # [54] (ﶒ..ﷇ)  ARABIC LIGATURE MEEM WITH JEEM WITH KHAH INITIAL FORM..ARABIC LIGATURE NOON WITH JEEM WITH YEH FINAL FORM
+FDC8..FDEF    ; restricted ; presentation form                                        # [40] (U+FDC8..U+FDEF)  <reserved-FDC8>..<noncharacter-FDEF>
+FDF0..FDFD    ; restricted ; presentation form                                        # [14] (ﷰ..﷽)  ARABIC LIGATURE SALLA USED AS KORANIC STOP SIGN ISOLATED FORM..ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM
+FDFE..FDFF    ; restricted ; presentation form                                        #  [2] (U+FDFE..U+FDFF)  <reserved-FDFE>..<reserved-FDFF>
+FE00..FE19    ; restricted ; presentation form                                        # [26] (U+FE00..︙)  VARIATION SELECTOR-1..PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS
+FE1A..FE1F    ; restricted ; presentation form                                        #  [6] (U+FE1A..U+FE1F)  <reserved-FE1A>..<reserved-FE1F>
+FE20..FE23    ; restricted ; presentation form                                        #  [4] (︠..︣)  COMBINING LIGATURE LEFT HALF..COMBINING DOUBLE TILDE RIGHT HALF
+FE24..FE2F    ; restricted ; presentation form                                        # [12] (U+FE24..U+FE2F)  <reserved-FE24>..<reserved-FE2F>
+FE30..FE44    ; restricted ; presentation form                                        # [21] (︰..﹄)  PRESENTATION FORM FOR VERTICAL TWO DOT LEADER..PRESENTATION FORM FOR VERTICAL RIGHT WHITE CORNER BRACKET
+FE45..FE46    ; restricted ; not in XID+                                              #  [2] (﹅..﹆)  SESAME DOT..WHITE SESAME DOT
+FE47..FE52    ; restricted ; presentation form                                        # [12] (﹇..﹒)  PRESENTATION FORM FOR VERTICAL LEFT SQUARE BRACKET..SMALL FULL STOP
+FE53          ; restricted ; presentation form                                        #      (U+FE53)  <reserved-FE53>
+FE54..FE66    ; restricted ; presentation form                                        # [19] (﹔..﹦)  SMALL SEMICOLON..SMALL EQUALS SIGN
+FE67          ; restricted ; presentation form                                        #      (U+FE67)  <reserved-FE67>
+FE68..FE6B    ; restricted ; presentation form                                        #  [4] (﹨..﹫)  SMALL REVERSE SOLIDUS..SMALL COMMERCIAL AT
+FE6C..FE6F    ; restricted ; presentation form                                        #  [4] (U+FE6C..U+FE6F)  <reserved-FE6C>..<reserved-FE6F>
+FE70..FE74    ; restricted ; presentation form                                        #  [5] (ﹰ..ﹴ)  ARABIC FATHATAN ISOLATED FORM..ARABIC KASRATAN ISOLATED FORM
+FE75          ; restricted ; presentation form                                        #      (U+FE75)  <reserved-FE75>
+FE76..FEFC    ; restricted ; presentation form                                        # [135] (ﹶ..ﻼ)  ARABIC FATHA ISOLATED FORM..ARABIC LIGATURE LAM WITH ALEF FINAL FORM
+FEFF          ; restricted ; default-ignorable                                        #      (U+FEFF)  ZERO WIDTH NO-BREAK SPACE
+FFA0          ; restricted ; default-ignorable                                        #      (U+FFA0)  HALFWIDTH HANGUL FILLER
+10000..1000B  ; restricted ; archaic script                                           # [12] (𐀀..𐀋)  LINEAR B SYLLABLE B008 A..LINEAR B SYLLABLE B046 JE
+1000D..10026  ; restricted ; archaic script                                           # [26] (𐀍..𐀦)  LINEAR B SYLLABLE B036 JO..LINEAR B SYLLABLE B032 QO
+10028..1003A  ; restricted ; archaic script                                           # [19] (𐀨..𐀺)  LINEAR B SYLLABLE B060 RA..LINEAR B SYLLABLE B042 WO
+1003C..1003D  ; restricted ; archaic script                                           #  [2] (𐀼..𐀽)  LINEAR B SYLLABLE B017 ZA..LINEAR B SYLLABLE B074 ZE
+1003F..1004D  ; restricted ; archaic script                                           # [15] (𐀿..𐁍)  LINEAR B SYLLABLE B020 ZO..LINEAR B SYLLABLE B091 TWO
+10050..1005D  ; restricted ; archaic script                                           # [14] (𐁐..𐁝)  LINEAR B SYMBOL B018..LINEAR B SYMBOL B089
+10080..100FA  ; restricted ; archaic script                                           # [123] (𐂀..𐃺)  LINEAR B IDEOGRAM B100 MAN..LINEAR B IDEOGRAM VESSEL B305
+10140..10174  ; restricted ; archaic                                                  # [53] (𐅀..𐅴)  GREEK ACROPHONIC ATTIC ONE QUARTER..GREEK ACROPHONIC STRATIAN FIFTY MNAS
+10300..1031E  ; restricted ; archaic script                                           # [31] (𐌀..𐌞)  OLD ITALIC LETTER A..OLD ITALIC LETTER UU
+10320..10323  ; restricted ; not in XID+                                              #  [4] (𐌠..𐌣)  OLD ITALIC NUMERAL ONE..OLD ITALIC NUMERAL FIFTY
+10330..1034A  ; restricted ; archaic script                                           # [27] (𐌰..𐍊)  GOTHIC LETTER AHSA..GOTHIC LETTER NINE HUNDRED
+10380..1039D  ; restricted ; archaic script                                           # [30] (𐎀..𐎝)  UGARITIC LETTER ALPA..UGARITIC LETTER SSU
+1039F..103C3  ; restricted ; archaic script                                           # [37] (𐎟..𐏃)  UGARITIC WORD DIVIDER..OLD PERSIAN SIGN HA
+103C8..103D5  ; restricted ; archaic script                                           # [14] (𐏈..𐏕)  OLD PERSIAN SIGN AURAMAZDAA..OLD PERSIAN NUMBER HUNDRED
+10400..1049D  ; restricted ; archaic script                                           # [158] (𐐀..𐒝)  DESERET CAPITAL LETTER LONG I..OSMANYA LETTER OO
+104A0..104A9  ; restricted ; archaic script                                           # [10] (𐒠..𐒩)  OSMANYA DIGIT ZERO..OSMANYA DIGIT NINE
+10800..10805  ; restricted ; archaic script                                           #  [6] (𐠀..𐠅)  CYPRIOT SYLLABLE A..CYPRIOT SYLLABLE JA
+10808         ; restricted ; archaic script                                           #      (𐠈)  CYPRIOT SYLLABLE JO
+1080A..10835  ; restricted ; archaic script                                           # [44] (𐠊..𐠵)  CYPRIOT SYLLABLE KA..CYPRIOT SYLLABLE WO
+10837..10838  ; restricted ; archaic script                                           #  [2] (𐠷..𐠸)  CYPRIOT SYLLABLE XA..CYPRIOT SYLLABLE XE
+1083C         ; restricted ; archaic script                                           #      (𐠼)  CYPRIOT SYLLABLE ZA
+1083F         ; restricted ; archaic script                                           #      (𐠿)  CYPRIOT SYLLABLE ZO
+10900..10919  ; restricted ; archaic script                                           # [26] (𐤀..𐤙)  PHOENICIAN LETTER ALF..PHOENICIAN NUMBER ONE HUNDRED
+1091F         ; restricted ; archaic script                                           #      (𐤟)  PHOENICIAN WORD SEPARATOR
+10A00..10A03  ; restricted ; archaic script                                           #  [4] (𐨀..𐨃)  KHAROSHTHI LETTER A..KHAROSHTHI VOWEL SIGN VOCALIC R
+10A05..10A06  ; restricted ; archaic script                                           #  [2] (𐨅..𐨆)  KHAROSHTHI VOWEL SIGN E..KHAROSHTHI VOWEL SIGN O
+10A0C..10A13  ; restricted ; archaic script                                           #  [8] (𐨌..𐨓)  KHAROSHTHI VOWEL LENGTH MARK..KHAROSHTHI LETTER GHA
+10A15..10A17  ; restricted ; archaic script                                           #  [3] (𐨕..𐨗)  KHAROSHTHI LETTER CA..KHAROSHTHI LETTER JA
+10A19..10A33  ; restricted ; archaic script                                           # [27] (𐨙..𐨳)  KHAROSHTHI LETTER NYA..KHAROSHTHI LETTER TTTHA
+10A38..10A3A  ; restricted ; archaic script                                           #  [3] (𐨸..𐨺)  KHAROSHTHI SIGN BAR ABOVE..KHAROSHTHI SIGN DOT BELOW
+10A3F..10A47  ; restricted ; archaic script                                           #  [9] (𐨿..𐩇)  KHAROSHTHI VIRAMA..KHAROSHTHI NUMBER ONE THOUSAND
+10A50..10A58  ; restricted ; archaic script                                           #  [9] (𐩐..𐩘)  KHAROSHTHI PUNCTUATION DOT..KHAROSHTHI PUNCTUATION LINES
+12000..1236E  ; restricted ; archaic script                                           # [879] (𒀀..𒍮)  CUNEIFORM SIGN A..CUNEIFORM SIGN ZUM
+12400..12462  ; restricted ; archaic script                                           # [99] (𒐀..𒑢)  CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE QUARTER
+12470..12473  ; restricted ; archaic script                                           #  [4] (𒑰..𒑳)  CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL TRICOLON
+1D000..1D0F5  ; restricted ; not in XID+                                              # [246] (𝀀..𝃵)  BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MUSICAL SYMBOL GORGON NEO KATO
+1D0F6..1D0FF  ; restricted ; technical symbol (musical)                               # [10] (U+1D0F6..U+1D0FF)  <reserved-1D0F6>..<reserved-1D0FF>
+1D100..1D126  ; restricted ; not in XID+                                              # [39] (𝄀..𝄦)  MUSICAL SYMBOL SINGLE BARLINE..MUSICAL SYMBOL DRUM CLEF-2
+1D127..1D129  ; restricted ; technical symbol (musical)                               #  [3] (U+1D127..U+1D129)  <reserved-1D127>..<reserved-1D129>
+1D12A..1D15D  ; restricted ; not in XID+                                              # [52] (𝄪..𝅝)  MUSICAL SYMBOL DOUBLE SHARP..MUSICAL SYMBOL WHOLE NOTE
+1D15E..1D169  ; restricted ; technical symbol (musical)                               # [12] (𝅗𝅥..𝅩)  MUSICAL SYMBOL HALF NOTE..MUSICAL SYMBOL COMBINING TREMOLO-3
+1D16A..1D16C  ; restricted ; not in XID+                                              #  [3] (𝅪..𝅬)  MUSICAL SYMBOL FINGERED TREMOLO-1..MUSICAL SYMBOL FINGERED TREMOLO-3
+1D16D..1D172  ; restricted ; technical symbol (musical)                               #  [6] (𝅭..𝅲)  MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
+1D173..1D17A  ; restricted ; technical symbol (musical)                               #  [8] (U+1D173..U+1D17A)  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
+1D17B..1D182  ; restricted ; technical symbol (musical)                               #  [8] (𝅻..𝆂)  MUSICAL SYMBOL COMBINING ACCENT..MUSICAL SYMBOL COMBINING LOURE
+1D183..1D184  ; restricted ; not in XID+                                              #  [2] (𝆃..𝆄)  MUSICAL SYMBOL ARPEGGIATO UP..MUSICAL SYMBOL ARPEGGIATO DOWN
+1D185..1D18B  ; restricted ; technical symbol (musical)                               #  [7] (𝆅..𝆋)  MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
+1D18C..1D1A9  ; restricted ; not in XID+                                              # [30] (𝆌..𝆩)  MUSICAL SYMBOL RINFORZANDO..MUSICAL SYMBOL DEGREE SLASH
+1D1AA..1D1AD  ; restricted ; technical symbol (musical)                               #  [4] (𝆪..𝆭)  MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
+1D1AE..1D1BA  ; restricted ; not in XID+                                              # [13] (𝆮..𝆺)  MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL SEMIBREVIS BLACK
+1D1BB..1D1C0  ; restricted ; technical symbol (musical)                               #  [6] (𝆹𝅥..𝆺𝅥𝅯)  MUSICAL SYMBOL MINIMA..MUSICAL SYMBOL FUSA BLACK
+1D1C1..1D1DD  ; restricted ; not in XID+                                              # [29] (𝇁..𝇝)  MUSICAL SYMBOL LONGA PERFECTA REST..MUSICAL SYMBOL PES SUBPUNCTIS
+1D242..1D244  ; restricted ; technical symbol (musical)                               #  [3] (𝉂..𝉄)  COMBINING GREEK MUSICAL TRISEME..COMBINING GREEK MUSICAL PENTASEME
+1D300..1D356  ; restricted ; technical                                                # [87] (𝌀..𝍖)  MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
+1D400..1D454  ; restricted ; technical symbol (math)                                  # [85] (𝐀..𝑔)  MATHEMATICAL BOLD CAPITAL A..MATHEMATICAL ITALIC SMALL G
+1D455         ; restricted ; technical symbol (math)                                  #      (U+1D455)  <reserved-1D455>
+1D456..1D49C  ; restricted ; technical symbol (math)                                  # [71] (𝑖..𝒜)  MATHEMATICAL ITALIC SMALL I..MATHEMATICAL SCRIPT CAPITAL A
+1D49D         ; restricted ; technical symbol (math)                                  #      (U+1D49D)  <reserved-1D49D>
+1D49E..1D49F  ; restricted ; technical symbol (math)                                  #  [2] (𝒞..𝒟)  MATHEMATICAL SCRIPT CAPITAL C..MATHEMATICAL SCRIPT CAPITAL D
+1D4A0..1D4A1  ; restricted ; technical symbol (math)                                  #  [2] (U+1D4A0..U+1D4A1)  <reserved-1D4A0>..<reserved-1D4A1>
+1D4A2         ; restricted ; technical symbol (math)                                  #      (𝒢)  MATHEMATICAL SCRIPT CAPITAL G
+1D4A3..1D4A4  ; restricted ; technical symbol (math)                                  #  [2] (U+1D4A3..U+1D4A4)  <reserved-1D4A3>..<reserved-1D4A4>
+1D4A5..1D4A6  ; restricted ; technical symbol (math)                                  #  [2] (𝒥..𝒦)  MATHEMATICAL SCRIPT CAPITAL J..MATHEMATICAL SCRIPT CAPITAL K
+1D4A7..1D4A8  ; restricted ; technical symbol (math)                                  #  [2] (U+1D4A7..U+1D4A8)  <reserved-1D4A7>..<reserved-1D4A8>
+1D4A9..1D4AC  ; restricted ; technical symbol (math)                                  #  [4] (𝒩..𝒬)  MATHEMATICAL SCRIPT CAPITAL N..MATHEMATICAL SCRIPT CAPITAL Q
+1D4AD         ; restricted ; technical symbol (math)                                  #      (U+1D4AD)  <reserved-1D4AD>
+1D4AE..1D4B9  ; restricted ; technical symbol (math)                                  # [12] (𝒮..𝒹)  MATHEMATICAL SCRIPT CAPITAL S..MATHEMATICAL SCRIPT SMALL D
+1D4BA         ; restricted ; technical symbol (math)                                  #      (U+1D4BA)  <reserved-1D4BA>
+1D4BB         ; restricted ; technical symbol (math)                                  #      (𝒻)  MATHEMATICAL SCRIPT SMALL F
+1D4BC         ; restricted ; technical symbol (math)                                  #      (U+1D4BC)  <reserved-1D4BC>
+1D4BD..1D4C3  ; restricted ; technical symbol (math)                                  #  [7] (𝒽..𝓃)  MATHEMATICAL SCRIPT SMALL H..MATHEMATICAL SCRIPT SMALL N
+1D4C4         ; restricted ; technical symbol (math)                                  #      (U+1D4C4)  <reserved-1D4C4>
+1D4C5..1D505  ; restricted ; technical symbol (math)                                  # [65] (𝓅..𝔅)  MATHEMATICAL SCRIPT SMALL P..MATHEMATICAL FRAKTUR CAPITAL B
+1D506         ; restricted ; technical symbol (math)                                  #      (U+1D506)  <reserved-1D506>
+1D507..1D50A  ; restricted ; technical symbol (math)                                  #  [4] (𝔇..𝔊)  MATHEMATICAL FRAKTUR CAPITAL D..MATHEMATICAL FRAKTUR CAPITAL G
+1D50B..1D50C  ; restricted ; technical symbol (math)                                  #  [2] (U+1D50B..U+1D50C)  <reserved-1D50B>..<reserved-1D50C>
+1D50D..1D514  ; restricted ; technical symbol (math)                                  #  [8] (𝔍..𝔔)  MATHEMATICAL FRAKTUR CAPITAL J..MATHEMATICAL FRAKTUR CAPITAL Q
+1D515         ; restricted ; technical symbol (math)                                  #      (U+1D515)  <reserved-1D515>
+1D516..1D51C  ; restricted ; technical symbol (math)                                  #  [7] (𝔖..𝔜)  MATHEMATICAL FRAKTUR CAPITAL S..MATHEMATICAL FRAKTUR CAPITAL Y
+1D51D         ; restricted ; technical symbol (math)                                  #      (U+1D51D)  <reserved-1D51D>
+1D51E..1D539  ; restricted ; technical symbol (math)                                  # [28] (𝔞..𝔹)  MATHEMATICAL FRAKTUR SMALL A..MATHEMATICAL DOUBLE-STRUCK CAPITAL B
+1D53A         ; restricted ; technical symbol (math)                                  #      (U+1D53A)  <reserved-1D53A>
+1D53B..1D53E  ; restricted ; technical symbol (math)                                  #  [4] (𝔻..𝔾)  MATHEMATICAL DOUBLE-STRUCK CAPITAL D..MATHEMATICAL DOUBLE-STRUCK CAPITAL G
+1D53F         ; restricted ; technical symbol (math)                                  #      (U+1D53F)  <reserved-1D53F>
+1D540..1D544  ; restricted ; technical symbol (math)                                  #  [5] (𝕀..𝕄)  MATHEMATICAL DOUBLE-STRUCK CAPITAL I..MATHEMATICAL DOUBLE-STRUCK CAPITAL M
+1D545         ; restricted ; technical symbol (math)                                  #      (U+1D545)  <reserved-1D545>
+1D546         ; restricted ; technical symbol (math)                                  #      (𝕆)  MATHEMATICAL DOUBLE-STRUCK CAPITAL O
+1D547..1D549  ; restricted ; technical symbol (math)                                  #  [3] (U+1D547..U+1D549)  <reserved-1D547>..<reserved-1D549>
+1D54A..1D550  ; restricted ; technical symbol (math)                                  #  [7] (𝕊..𝕐)  MATHEMATICAL DOUBLE-STRUCK CAPITAL S..MATHEMATICAL DOUBLE-STRUCK CAPITAL Y
+1D551         ; restricted ; technical symbol (math)                                  #      (U+1D551)  <reserved-1D551>
+1D552..1D6A5  ; restricted ; technical symbol (math)                                  # [340] (𝕒..𝚥)  MATHEMATICAL DOUBLE-STRUCK SMALL A..MATHEMATICAL ITALIC SMALL DOTLESS J
+1D6A6..1D6A7  ; restricted ; technical symbol (math)                                  #  [2] (U+1D6A6..U+1D6A7)  <reserved-1D6A6>..<reserved-1D6A7>
+1D6A8..1D7CB  ; restricted ; technical symbol (math)                                  # [292] (𝚨..𝟋)  MATHEMATICAL BOLD CAPITAL ALPHA..MATHEMATICAL BOLD SMALL DIGAMMA
+1D7CC..1D7CD  ; restricted ; technical symbol (math)                                  #  [2] (U+1D7CC..U+1D7CD)  <reserved-1D7CC>..<reserved-1D7CD>
+1D7CE..1D7FF  ; restricted ; technical symbol (math)                                  # [50] (𝟎..𝟿)  MATHEMATICAL BOLD DIGIT ZERO..MATHEMATICAL MONOSPACE DIGIT NINE
+20000..2070D  ; restricted ; ~IICore                                                  # [1806] (𠀀..𠜍)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2070D
+2070F..20730  ; restricted ; ~IICore                                                  # [34] (𠜏..𠜰)  CJK UNIFIED IDEOGRAPH-2070F..CJK UNIFIED IDEOGRAPH-20730
+20732..20778  ; restricted ; ~IICore                                                  # [71] (𠜲..𠝸)  CJK UNIFIED IDEOGRAPH-20732..CJK UNIFIED IDEOGRAPH-20778
+2077A..20C52  ; restricted ; ~IICore                                                  # [1241] (𠝺..𠱒)  CJK UNIFIED IDEOGRAPH-2077A..CJK UNIFIED IDEOGRAPH-20C52
+20C54..20C77  ; restricted ; ~IICore                                                  # [36] (𠱔..𠱷)  CJK UNIFIED IDEOGRAPH-20C54..CJK UNIFIED IDEOGRAPH-20C77
+20C79..20C95  ; restricted ; ~IICore                                                  # [29] (𠱹..𠲕)  CJK UNIFIED IDEOGRAPH-20C79..CJK UNIFIED IDEOGRAPH-20C95
+20C97..20CCE  ; restricted ; ~IICore                                                  # [56] (𠲗..𠳎)  CJK UNIFIED IDEOGRAPH-20C97..CJK UNIFIED IDEOGRAPH-20CCE
+20CD0..20CD4  ; restricted ; ~IICore                                                  #  [5] (𠳐..𠳔)  CJK UNIFIED IDEOGRAPH-20CD0..CJK UNIFIED IDEOGRAPH-20CD4
+20CD6..20D14  ; restricted ; ~IICore                                                  # [63] (𠳖..𠴔)  CJK UNIFIED IDEOGRAPH-20CD6..CJK UNIFIED IDEOGRAPH-20D14
+20D16..20D7B  ; restricted ; ~IICore                                                  # [102] (𠴖..𠵻)  CJK UNIFIED IDEOGRAPH-20D16..CJK UNIFIED IDEOGRAPH-20D7B
+20D7D..20D7E  ; restricted ; ~IICore                                                  #  [2] (𠵽..𠵾)  CJK UNIFIED IDEOGRAPH-20D7D..CJK UNIFIED IDEOGRAPH-20D7E
+20D80..20E0D  ; restricted ; ~IICore                                                  # [142] (𠶀..𠸍)  CJK UNIFIED IDEOGRAPH-20D80..CJK UNIFIED IDEOGRAPH-20E0D
+20E10..20E76  ; restricted ; ~IICore                                                  # [103] (𠸐..𠹶)  CJK UNIFIED IDEOGRAPH-20E10..CJK UNIFIED IDEOGRAPH-20E76
+20E78..20E9C  ; restricted ; ~IICore                                                  # [37] (𠹸..𠺜)  CJK UNIFIED IDEOGRAPH-20E78..CJK UNIFIED IDEOGRAPH-20E9C
+20E9E..20EA1  ; restricted ; ~IICore                                                  #  [4] (𠺞..𠺡)  CJK UNIFIED IDEOGRAPH-20E9E..CJK UNIFIED IDEOGRAPH-20EA1
+20EA3..20ED6  ; restricted ; ~IICore                                                  # [52] (𠺣..𠻖)  CJK UNIFIED IDEOGRAPH-20EA3..CJK UNIFIED IDEOGRAPH-20ED6
+20ED8..20EF8  ; restricted ; ~IICore                                                  # [33] (𠻘..𠻸)  CJK UNIFIED IDEOGRAPH-20ED8..CJK UNIFIED IDEOGRAPH-20EF8
+20EFB..20F2C  ; restricted ; ~IICore                                                  # [50] (𠻻..𠼬)  CJK UNIFIED IDEOGRAPH-20EFB..CJK UNIFIED IDEOGRAPH-20F2C
+20F2F..20F4B  ; restricted ; ~IICore                                                  # [29] (𠼯..𠽋)  CJK UNIFIED IDEOGRAPH-20F2F..CJK UNIFIED IDEOGRAPH-20F4B
+20F4D..20FB3  ; restricted ; ~IICore                                                  # [103] (𠽍..𠾳)  CJK UNIFIED IDEOGRAPH-20F4D..CJK UNIFIED IDEOGRAPH-20FB3
+20FB5..20FBB  ; restricted ; ~IICore                                                  #  [7] (𠾵..𠾻)  CJK UNIFIED IDEOGRAPH-20FB5..CJK UNIFIED IDEOGRAPH-20FBB
+20FBD..20FE9  ; restricted ; ~IICore                                                  # [45] (𠾽..𠿩)  CJK UNIFIED IDEOGRAPH-20FBD..CJK UNIFIED IDEOGRAPH-20FE9
+20FEB..2105B  ; restricted ; ~IICore                                                  # [113] (𠿫..𡁛)  CJK UNIFIED IDEOGRAPH-20FEB..CJK UNIFIED IDEOGRAPH-2105B
+2105D..2106E  ; restricted ; ~IICore                                                  # [18] (𡁝..𡁮)  CJK UNIFIED IDEOGRAPH-2105D..CJK UNIFIED IDEOGRAPH-2106E
+21070..21074  ; restricted ; ~IICore                                                  #  [5] (𡁰..𡁴)  CJK UNIFIED IDEOGRAPH-21070..CJK UNIFIED IDEOGRAPH-21074
+21077..2107A  ; restricted ; ~IICore                                                  #  [4] (𡁷..𡁺)  CJK UNIFIED IDEOGRAPH-21077..CJK UNIFIED IDEOGRAPH-2107A
+2107C..210C0  ; restricted ; ~IICore                                                  # [69] (𡁼..𡃀)  CJK UNIFIED IDEOGRAPH-2107C..CJK UNIFIED IDEOGRAPH-210C0
+210C2..210C8  ; restricted ; ~IICore                                                  #  [7] (𡃂..𡃈)  CJK UNIFIED IDEOGRAPH-210C2..CJK UNIFIED IDEOGRAPH-210C8
+210CA..211D8  ; restricted ; ~IICore                                                  # [271] (𡃊..𡇘)  CJK UNIFIED IDEOGRAPH-210CA..CJK UNIFIED IDEOGRAPH-211D8
+211DA..220C6  ; restricted ; ~IICore                                                  # [3821] (𡇚..𢃆)  CJK UNIFIED IDEOGRAPH-211DA..CJK UNIFIED IDEOGRAPH-220C6
+220C8..227B4  ; restricted ; ~IICore                                                  # [1773] (𢃈..𢞴)  CJK UNIFIED IDEOGRAPH-220C8..CJK UNIFIED IDEOGRAPH-227B4
+227B6..22AD4  ; restricted ; ~IICore                                                  # [799] (𢞶..𢫔)  CJK UNIFIED IDEOGRAPH-227B6..CJK UNIFIED IDEOGRAPH-22AD4
+22AD6..22B42  ; restricted ; ~IICore                                                  # [109] (𢫖..𢭂)  CJK UNIFIED IDEOGRAPH-22AD6..CJK UNIFIED IDEOGRAPH-22B42
+22B44..22BC9  ; restricted ; ~IICore                                                  # [134] (𢭄..𢯉)  CJK UNIFIED IDEOGRAPH-22B44..CJK UNIFIED IDEOGRAPH-22BC9
+22BCB..22C50  ; restricted ; ~IICore                                                  # [134] (𢯋..𢱐)  CJK UNIFIED IDEOGRAPH-22BCB..CJK UNIFIED IDEOGRAPH-22C50
+22C52..22C54  ; restricted ; ~IICore                                                  #  [3] (𢱒..𢱔)  CJK UNIFIED IDEOGRAPH-22C52..CJK UNIFIED IDEOGRAPH-22C54
+22C56..22CC1  ; restricted ; ~IICore                                                  # [108] (𢱖..𢳁)  CJK UNIFIED IDEOGRAPH-22C56..CJK UNIFIED IDEOGRAPH-22CC1
+22CC3..22D07  ; restricted ; ~IICore                                                  # [69] (𢳃..𢴇)  CJK UNIFIED IDEOGRAPH-22CC3..CJK UNIFIED IDEOGRAPH-22D07
+22D09..22D4B  ; restricted ; ~IICore                                                  # [67] (𢴉..𢵋)  CJK UNIFIED IDEOGRAPH-22D09..CJK UNIFIED IDEOGRAPH-22D4B
+22D4D..22D66  ; restricted ; ~IICore                                                  # [26] (𢵍..𢵦)  CJK UNIFIED IDEOGRAPH-22D4D..CJK UNIFIED IDEOGRAPH-22D66
+22D68..22EB2  ; restricted ; ~IICore                                                  # [331] (𢵨..𢺲)  CJK UNIFIED IDEOGRAPH-22D68..CJK UNIFIED IDEOGRAPH-22EB2
+22EB4..23CB6  ; restricted ; ~IICore                                                  # [3587] (𢺴..𣲶)  CJK UNIFIED IDEOGRAPH-22EB4..CJK UNIFIED IDEOGRAPH-23CB6
+23CB8..244D2  ; restricted ; ~IICore                                                  # [2075] (𣲸..𤓒)  CJK UNIFIED IDEOGRAPH-23CB8..CJK UNIFIED IDEOGRAPH-244D2
+244D4..24DB7  ; restricted ; ~IICore                                                  # [2276] (𤓔..𤶷)  CJK UNIFIED IDEOGRAPH-244D4..CJK UNIFIED IDEOGRAPH-24DB7
+24DB9..24DE9  ; restricted ; ~IICore                                                  # [49] (𤶹..𤷩)  CJK UNIFIED IDEOGRAPH-24DB9..CJK UNIFIED IDEOGRAPH-24DE9
+24DEB..2512A  ; restricted ; ~IICore                                                  # [832] (𤷫..𥄪)  CJK UNIFIED IDEOGRAPH-24DEB..CJK UNIFIED IDEOGRAPH-2512A
+2512C..26257  ; restricted ; ~IICore                                                  # [4396] (𥄬..𦉗)  CJK UNIFIED IDEOGRAPH-2512C..CJK UNIFIED IDEOGRAPH-26257
+26259..267CB  ; restricted ; ~IICore                                                  # [1395] (𦉙..𦟋)  CJK UNIFIED IDEOGRAPH-26259..CJK UNIFIED IDEOGRAPH-267CB
+267CD..269F1  ; restricted ; ~IICore                                                  # [549] (𦟍..𦧱)  CJK UNIFIED IDEOGRAPH-267CD..CJK UNIFIED IDEOGRAPH-269F1
+269F3..269F9  ; restricted ; ~IICore                                                  #  [7] (𦧳..𦧹)  CJK UNIFIED IDEOGRAPH-269F3..CJK UNIFIED IDEOGRAPH-269F9
+269FB..27A3D  ; restricted ; ~IICore                                                  # [4163] (𦧻..𧨽)  CJK UNIFIED IDEOGRAPH-269FB..CJK UNIFIED IDEOGRAPH-27A3D
+27A3F..2815C  ; restricted ; ~IICore                                                  # [1822] (𧨿..𨅜)  CJK UNIFIED IDEOGRAPH-27A3F..CJK UNIFIED IDEOGRAPH-2815C
+2815E..28206  ; restricted ; ~IICore                                                  # [169] (𨅞..𨈆)  CJK UNIFIED IDEOGRAPH-2815E..CJK UNIFIED IDEOGRAPH-28206
+28208..282E1  ; restricted ; ~IICore                                                  # [218] (𨈈..𨋡)  CJK UNIFIED IDEOGRAPH-28208..CJK UNIFIED IDEOGRAPH-282E1
+282E3..28CC9  ; restricted ; ~IICore                                                  # [2535] (𨋣..𨳉)  CJK UNIFIED IDEOGRAPH-282E3..CJK UNIFIED IDEOGRAPH-28CC9
+28CCB..28CCC  ; restricted ; ~IICore                                                  #  [2] (𨳋..𨳌)  CJK UNIFIED IDEOGRAPH-28CCB..CJK UNIFIED IDEOGRAPH-28CCC
+28CCE..28CD1  ; restricted ; ~IICore                                                  #  [4] (𨳎..𨳑)  CJK UNIFIED IDEOGRAPH-28CCE..CJK UNIFIED IDEOGRAPH-28CD1
+28CD3..29D97  ; restricted ; ~IICore                                                  # [4293] (𨳓..𩶗)  CJK UNIFIED IDEOGRAPH-28CD3..CJK UNIFIED IDEOGRAPH-29D97
+29D99..2A6D6  ; restricted ; ~IICore                                                  # [2366] (𩶙..𪛖)  CJK UNIFIED IDEOGRAPH-29D99..CJK UNIFIED IDEOGRAPH-2A6D6
+E0001         ; restricted ; default-ignorable                                        #      (U+E0001)  LANGUAGE TAG
+E0020..E007F  ; restricted ; default-ignorable                                        # [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
+E0100..E01EF  ; restricted ; default-ignorable                                        # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
+
+# Total code points: 60431
+
+# Characters added
+
+002D          ; addition #      (-)  HYPHEN-MINUS
+30FB          ; addition #      (・)  KATAKANA MIDDLE DOT
+
+# Total code points: 2

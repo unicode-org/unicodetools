@@ -1,0 +1,373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+
+       "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="keywords" content="unicode, normalization, composition, decomposition">
+<meta name="description" content="Specifies the Unicode Normalization Formats">
+<title>UCD: Unicode NamesList File Format</title>
+<link rel="stylesheet" type="text/css" href="http://www.unicode.org/reports/reports.css">
+</head>
+
+<body bgcolor="#ffffff">
+
+<table class="header">
+  <tr>
+    <td class="icon"><a href="http://www.unicode.org"><img border="0" src="http://www.unicode.org/webscripts/logo60s2.gif" align="middle" alt="[Unicode]" width="34" height="33"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/ucd/">Unicode    
+      Character Database</a></td>   
+  </tr>
+  <tr>
+    <td class="gray">&nbsp;</td>
+  </tr>
+</table>
+<div class="body">
+  <h1>Unicode NamesList File Format</h1>   
+  <table class="wide">
+    <tbody>
+      <tr>
+        <td valign="top" width="144">Revision</td>
+        <td valign="top">5.0.0</td>
+      </tr>
+      <tr>
+        <td valign="top" width="144">Authors</td>
+        <td valign="top">Asmus Freytag</td>
+      </tr>
+      <tr>
+        <td valign="top" width="144">Date</td>
+        <td valign="top">2006-7-13</td>
+      </tr>
+      <tr>
+        <td valign="top" width="144">This Version</td>
+        <td valign="top">
+		<a href="http://www.unicode.org/Public/5.0.0/ucd/NamesList.html">http://www.unicode.org/Public/5.0.0/ucd/NamesList.html</a></td>
+      </tr>
+      <tr>
+        <td valign="top" width="144">Previous Version</td>
+        <td valign="top"><a href="http://www.unicode.org/Public/4.1.0/ucd/NamesList.html">http://www.unicode.org/Public/4.1.0/ucd/NamesList.html</a></td>
+      </tr>
+      <tr>
+        <td valign="top" width="144">Latest Version</td>
+        <td valign="top"><a href="http://www.unicode.org/Public/UNIDATA/NamesList.html">http://www.unicode.org/Public/UNIDATA/NamesList.html</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><br>
+  <i>Summary</i></h3>
+  <blockquote>
+    <p>This file describes the format and contents of NamesList.txt</p>
+  </blockquote>
+  <h3><i>Status</i></h3>
+  <blockquote>
+    <p><i>The file and the files described herein are part of the <a href="http://www.unicode.org/ucd/">Unicode 
+    Character Database</a> (UCD) and are governed by the <a href="#Terms of Use">UCD 
+    Terms of Use</a> stated at the end.</i></p>
+  </blockquote>
+  <hr width="50%">
+  <h2>1.0 Introduction</h2>
+  <p>The Unicode name list file NamesList.txt (also NamesList.lst) is a plain  
+  text file used to drive the layout of the character code charts in the Unicode  
+  Standard. The information in this file is a combination of several fields from  
+  the UnicodeData.txt and Blocks.txt files, together with additional annotations  
+  for many characters.&nbsp;</p>
+  <p> This document describes the syntax rules for the file  
+  format, but also gives brief information on how each construct is rendered  
+  when laid out for the book. Some of the syntax elements were used in  
+  preparation of the drafts of the book and may not be present in the final,  
+  released form of the NamesList.txt file.</p> 
+  <p>The syntax for formal aliases and index tabs was introduced with Unicode 
+	5.0.</p>
+	<p>The same input file can be used to do the draft preparation for ISO/IEC  
+  10646 (referred below as ISO-style). This necessitates the presence of some  
+  information in the name list file that is not needed (and in fact removed  
+  during parsing) for the Unicode code charts.</p>
+  <p>With access to the layout program (<a href="http://www.unicode.org/unibook/">unibook.exe</a>) it is a simple matter of   
+  creating name lists for the purpose of formatting working drafts containing   
+  proposed characters.</p>  
+  <p>The content of the NamesList.txt file is optimized for code chart creation. 
+  Some information that can be inferred by the reader from context has been 
+  suppressed to make the code charts more readable.&nbsp;</p> 
+  <h3>1.1 NamesList File Overview</h3>
+  <p>The namelist files are plain text files which in their most simple form look 
+  like this</p>
+  <p>@@&lt;tab&gt;0020&lt;tab&gt;BASIC LATIN&lt;tab&gt;007F<br>
+  ; this is a file comment (ignored)<br>
+  0020&lt;tab&gt;SPACE<br>
+  0021&lt;tab&gt;EXCLAMATION MARK<br>
+  0022&lt;tab&gt;QUOTATION MARK<br>
+  . . .<br>
+  007F&lt;tab&gt;DELETE</p>
+  <p>The semicolon (as first character), @ and &lt;tab&gt; characters are used 
+  by the file syntax and must be provided as shown. Hexadecimal digits must be 
+  in UPPER CASE. A double @@ introduces a block header, with the title, and 
+  start and ending code of the block provided as shown.</p>
+  <p>For an ISO-style, minimal name list, only the NAME_LINE and BLOCKHEADER and 
+  their constituent syntax elements are needed.</p>
+  <p>The full syntax with all the options is provided in the following sections.</p>
+  <h3>1.2 NamesList File Structure</h3>
+  <p>This section defines the overall file structure</p>
+  <pre><strong>NAMELIST:     TITLE_PAGE* BLOCK* 
+</strong>
+<strong>TITLE_PAGE:   TITLE 
+		| TITLE_PAGE SUBTITLE 
+		| TITLE_PAGE SUBHEADER 
+		| TITLE_PAGE IGNORED_LINE 
+		| TITLE_PAGE EMPTY_LINE
+		| TITLE_PAGE COMMENT_LINE
+		| TITLE_PAGE NOTICE_LINE
+		| TITLE_PAGE PAGEBREAK 
+</strong>
+<strong>BLOCK:	      BLOCKHEADER 
+		| BLOCKHEADER INDEX_TAB 
+		| BLOCK CHAR_ENTRY 
+		| BLOCK SUBHEADER 
+		| BLOCK NOTICE_LINE 
+		| BLOCK EMPTY_LINE 
+		| BLOCK IGNORED_LINE
+		| BLOCK PAGEBREAK
+
+CHAR_ENTRY:   NAME_LINE | RESERVED_LINE
+		| CHAR_ENTRY ALIAS_LINE
+		| CHAR_ENTRY FORMALALIAS_LINE
+		| CHAR_ENTRY COMMENT_LINE
+		| CHAR_ENTRY CROSS_REF
+		| CHAR_ENTRY DECOMPOSITION
+		| CHAR_ENTRY COMPAT_MAPPING
+		| CHAR_ENTRY IGNORED_LINE
+		| CHAR_ENTRY EMPTY_LINE
+		| CHAR_ENTRY NOTICE_LINE
+</strong></pre>
+  <p>In other words:<br>   
+  <br>
+  Neither TITLE nor&nbsp; SUBTITLE may occur after the first BLOCKHEADER.</p>   
+  <p>Only TITLE, SUBTITLE, SUBHEADER, PAGEBREAK, COMMENT_LINE,&nbsp; NOTICE_LINE, 
+	EMPTY_LINE and IGNORED_LINE may occur before the first BLOCKHEADER.</p>   
+  <p>Directly following either a NAME_LINE or a RESERVED_LINE an uninterrupted  
+  sequence of the following lines may occur (in any order and repeated as often  
+  as needed): ALIAS_LINE, CROSS_REF, DECOMPOSITION, COMPAT_MAPPING, NOTICE_LINE,  
+  EMPTY_LINE and IGNORED_LINE.</p> 
+  <p>Except for EMPTY_LINE, NOTICE_LINE and IGNORED_LINE, none of these lines may  
+  occur in any other place.</p>
+	<p>A PAGEBREAK may appear anywhere, except the middle of a CHARACTER_ENTRY. 
+	A PAGEBREAK before the file title lines may not be supported. INDEX_TABs may 
+	appear after any block header. </p> 
+  <p><b>Note</b>: A NOTICE_LINE displays differently depending on whether it follows a   
+  header or title or is part of a CHAR_ENTRY.</p>  
+  <h3>1.3 NamesList File Elements</h3>
+  <p>This section provides the details of the syntax for the individual 
+  elements.</p>
+  <pre style="font-size:8pt"><strong>ELEMENT		SYNTAX</strong>	// How rendered
+  
+<strong>NAME_LINE:	CHAR &lt;tab&gt; NAME LF
+</strong>			// the CHAR and the corresponding image are echoed, 
+			// followed by the name as given in LINE
+
+<strong>		CHAR TAB &quot;&lt;&quot; LCNAME &quot;&gt;&quot; LF
+</strong>			// control and non-characters use this form of									
+			// lower case, bracketed pseudo character name</pre>
+  <pre style="font-size:8pt"><strong>		CHAR TAB NAME COMMENT LF
+</strong>			// Names may have a comment, which is stripped off
+			// unless the file is parsed for an ISO style list
+										
+<strong>RESERVED_LINE:	CHAR TAB &lt;reserved&gt;		
+</strong>			// the CHAR is echoed followed by an icon for the
+			// reserved character and a fixed string e.g. &lt;reserved&gt;
+	
+<strong>COMMMENT_LINE:	&lt;tab&gt; &quot;*&quot; SP EXPAND_LINE
+</strong>			// * is replaced by BULLET, output line as comment
+		<strong>&lt;tab&gt; EXPAND_LINE</strong>	
+			// output line as comment
+
+<strong>ALIAS_LINE:	&lt;tab&gt; &quot;=&quot; SP LINE	
+</strong>			// replace = by itself, output line as alias
+
+<strong>FORMALALIAS_LINE:	&lt;tab&gt; &quot;%&quot; SP LINE		
+</strong>			// replace % by U+225D, output line as formal alias
+
+<strong>CROSS_REF:	&lt;tab&gt; &quot;X&quot; SP EXPAND_LINE	
+</strong>			// X is replaced by a right arrow
+		<strong>&lt;tab&gt; &quot;X&quot; SP &quot;(&quot; LCNAME SP &quot;-&quot; SP CHAR &quot;)&quot;	
+</strong>			// X is replaced by a right arrow
+			// the &quot;(&quot;, &quot;-&quot;, &quot;)&quot; are removed, the
+			// order of CHAR and STRING is reversed
+			// i.e. both inputs result in the same output
+
+<b>FILE_COMMENT:</b>	<b>&quot;;&quot;</b> <b>LINE</b><strong>
+IGNORED_LINE:	&lt;tab&gt; &quot;;&quot; EXPAND_LINE
+EMPTY_LINE:	LF			
+</strong>			// empty and ignored lines as well as 
+			// file comments are ignored
+
+<strong>DECOMPOSITION:	&lt;tab&gt; &quot;:&quot; EXPAND_LINE	
+</strong>			// replace ':' by EQUIV, expand line into 
+			// decomposition 
+
+<strong>COMPAT_MAPPING:	&lt;tab&gt; &quot;#&quot; SP EXPAND_LINE	
+</strong>			// replace '#' by APPROX, output line as mapping 
+
+<strong>NOTICE_LINE:	&quot;@+&quot; &lt;tab&gt; LINE		
+</strong>			// skip '@+', output text as notice
+<strong>		&quot;@+&quot; &lt;tab&gt; * SP LINE	
+</strong>			// skip '@+', output text as notice
+			// &quot;*&quot; expands to a bullet character
+			// Notices following a character code apply to the
+			// character and are indented. Notices not following
+			// a character code apply to the page/block/column 
+			// and are italicized, but not indented
+
+<strong>SUBTITLE:		&quot;@@@+&quot; &lt;tab&gt; LINE	
+</strong>			// skip &quot;@@@+&quot;, output text as subtitle
+
+<strong>SUBHEADER:	&quot;@&quot; &lt;tab&gt; LINE	
+</strong>			// skip '@', output line as text as column header
+
+<strong>BLOCKHEADER:	&quot;@@&quot; &lt;tab&gt; BLOCKSTART &lt;tab&gt; BLOCKNAME &lt;tab&gt; BLOCKEND
+</strong>			// skip &quot;@@&quot;, cause a page break and optional
+			// blank page, then output one or more charts
+			// followed by the list of character names. 
+			// use BLOCKSTART and BLOCKEND to define the 
+			// characters belonging to a block
+			// use blockname in page and table headers</pre>
+  <pre style="font-size:8pt"><b>BLOCKNAME:	LABEL
+		LABEL SP &quot;(&quot; LABEL &quot;)&quot;</b>			
+			// if an alternate label is present it replaces 
+			// the blockname when an ISO-style namelist is
+			// laid out; it is ignored in the Unicode charts
+
+<strong>BLOCKSTART:	CHAR</strong>	// first character position in block
+<strong>BLOCKEND:		CHAR</strong>	// last character position in block
+<strong>PAGE_BREAK:	&quot;@@&quot;</strong>	// insert a column break
+<strong>INDEX_TAB:	&quot;@@+&quot;</strong>	// start a new index tab at latest BLOCKSTART
+
+<strong>TITLE:		&quot;@@@&quot; &lt;tab&gt; LINE</strong>	
+			// skip &quot;@@@&quot;, output line as text
+			// Title is used in page headers
+
+<strong>EXPAND_LINE:	{CHAR | STRING}+ LF	</strong>
+			// all instances of CHAR *) are replaced by 
+			// CHAR NBSP x NBSP where x is the single Unicode
+			// character corresponding to char
+			// If character is combining, it is replaced with
+			// CHAR NBSP &lt;circ&gt; x NBSP where &lt;circ&gt; is the 
+			// dotted circle</pre>
+  <p><strong>Notes:</strong></p>
+  <ul>
+    <li>Blocks must be aligned on 16-code point boundary and contain an integer  
+      multiple of 16 code point columns. The exception to that rule is for blocks of  
+      ideographs etc. for which no names are listed in the file. Such blocks  
+      must end on the actual last character.</li> 
+    <li>Blocks must be non-overlapping and in ascending order.&nbsp; Namelines    
+      must be in ascending order and follow the block header for the block to    
+      which they belong.</li>   
+    <li>Reserved entries are optional, and will normally be supplied automatically. They  
+      are required whenever followed by ALIAS_LINE, COMMENT_LINE, NOTICE_LINE or CROSS_REF</li> 
+    <li>The French version of the nameslist uses French rules, which allow 
+      apostrophe and accented letters in character names.</li>
+  </ul>
+  <h3><strong>1.4 NamesList File Primitives</strong></h3>
+  <p>The following are the primitives and terminals for the NamesList syntax.</p>
+  <pre style="font-size:8pt"><strong>LINE:		STRING LF
+COMMENT:		&quot;(&quot; LABEL &quot;)&quot;
+		&quot;(&quot; LABEL &quot;)&quot; SP &quot;*&quot;
+</strong>		&quot;*&quot;<strong> </strong>
+<strong>NAME</strong>:	  	&lt;sequence of uppercase ASCII letters, digits and hyphen&gt; 
+<b>LCNAME:		</b>&lt;sequence of lowercase ASCII letters, digits and hyphen&gt;
+<strong>STRING</strong>:	  	&lt;sequence of Latin-1 characters, except space and controls&gt; 
+<strong>LABEL</strong>:	  	&lt;sequence of Latin-1 characters, except controls, &quot;(&quot; or &quot;)&quot;&gt; 
+<strong>CHAR</strong>:		<strong>X X X X</strong>
+		<strong>| X X X X X</strong>
+		<strong>| X X X X X X</strong>
+<strong>X:	  	&quot;0&quot;|&quot;1&quot;|&quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot;|&quot;A&quot;|&quot;B&quot;|&quot;C&quot;|&quot;D&quot;|&quot;E&quot;|&quot;F&quot; 
+&lt;tab&gt;:</strong>	  	&lt;sequence of one or more ASCII tab characters 0x09&gt;	
+<strong>SP</strong>:	  	&lt;ASCII 0x20&gt;
+<strong>LF</strong>:	  	&lt;any sequence of ASCII 0x0A and 0x0D&gt;
+</pre>
+  <p><strong>Notes:</strong>
+  <ul>
+    <li>Special lookahead logic prevents a 4 digit number for a standard, such  
+      as ISO 9999 from being misinterpreted as ISO CHAR. The hyphen in a character  
+      range CHAR-CHAR is replaced by an EN DASH on output.</li>
+    <li>The final LF in the file must be present</li>
+    <li>A CHAR inside ' or &quot; is expanded, but only its glyph image is    
+      printed,&nbsp; the code value is not echoed.</li>   
+    <li>Single and double straight quotes in an EXPAND_LINE are replaced by curly quotes using   
+      English rules. Smart apostrophes are supported, but nested quotes are not.</li>  
+    <li>The NamesList.txt file is encoded in Latin-1. While the code chart  
+      formatter can accept files in either Latin-1 and little-endian UTF-16,  
+      prefixed with a BOM, the character repertoire for running text (anything  
+      other than CHAR) is effectively restricted to Latin-1 characters.</li> 
+  </ul>
+  <h2>Modifications</h2>
+  <p><b>Version 5.0.0</b></p>
+	<ul>
+		<li>Added FORMALALIAS_LINE and INDEX_TAB to syntax.</li>
+		<li>Fixed the list of lines that may appear before a blockheader by 
+		adding NOTICE_LINE.</li>
+		<li>Minor fixes to the wording of several syntax definitions.</li>
+	</ul>
+	<p><b>Version 4.0.0</b></p>
+	<ul>
+		<li>Fixed syntax to better reflect restrictions on characters 
+  in character and block names.</li>
+		<li>Better document treatment of comments in block names, plus 
+  French name rules.</li>
+	</ul>
+  <p><b>Version 3.2.0</b></p>
+	<ul>
+		<li>Fixed several broken links, added a left margin,  
+  changed version numbering.</li>
+	</ul>
+  <p><b>Version 3.1.0 (2)</b></p>
+	<ul>
+		<li>Use of 4-6 digit hex notation is now supported.</li>
+	</ul>
+  <hr width="50%">
+  <h2>UCD <a name="Terms of Use">Terms of Use</a></h2>
+  <h3><i>Disclaimer</i></h3>
+  <blockquote>
+    <p><i>The Unicode Character Database is provided as is by Unicode, Inc. No 
+    claims are made as to fitness for any particular purpose. No warranties of 
+    any kind are expressed or implied. The recipient agrees to determine 
+    applicability of information provided. If this file has been purchased on 
+    magnetic or optical media from Unicode, Inc., the sole remedy for any claim 
+    will be exchange of defective media within 90 days of receipt.</i></p>
+    <p><i>This disclaimer is applicable for all other data files accompanying 
+    the Unicode Character Database, some of which have been compiled by the 
+    Unicode Consortium, and some of which have been supplied by other sources.</i></p>
+  </blockquote>
+  <h3><i>Limitations on Rights to Redistribute This Data</i></h3>
+  <blockquote>
+    <p><i>Recipient is granted the right to make copies in any form for internal 
+    distribution and to freely use the information supplied in the creation of 
+    products supporting the Unicode<sup>TM</sup> Standard. The files in the 
+    Unicode Character Database can be redistributed to third parties or other 
+    organizations (whether for profit or not) as long as this notice and the 
+    disclaimer notice are retained. Information can be extracted from these 
+    files and used in documentation or programs, as long as there is an 
+    accompanying notice indicating the source.</i></p>
+  </blockquote>
+  <hr width="50%">
+  <div align="center">
+    <center>
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td><a href="http://www.unicode.org/copyright.html">
+        <img src="http://www.unicode.org/img/hb_notice.gif" border="0" alt="Access to Copyright and terms of use" width="216" height="50"></a></td>
+      </tr>
+    </table>
+
+<script language="Javascript" type="text/javascript" src="http://www.unicode.org/webscripts/lastModified.js">
+                </script>
+    </center>
+  </div>
+</div>
+
+</body>
+
+</html>
+
