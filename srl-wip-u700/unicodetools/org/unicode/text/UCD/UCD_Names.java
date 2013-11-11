@@ -16,6 +16,7 @@ import java.util.Locale;
 import java.util.TreeMap;
 
 import org.unicode.text.utility.Utility;
+import org.unicode.text.utility.Utility.GrowingBucket;
 
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeProperty;
@@ -500,6 +501,7 @@ public final class UCD_Names implements UCD_Types {
         "6.1",
         "6.2",
         "6.3",
+        "7.0",
     };
 
     static final String[] LONG_AGE = {
@@ -519,6 +521,7 @@ public final class UCD_Names implements UCD_Types {
         "V6_1",
         "V6_2",
         "V6_3",
+        "V7_0",
     };
 
     static final String[] GENERAL_CATEGORY = {
@@ -870,7 +873,14 @@ public final class UCD_Names implements UCD_Types {
         "LeftJoining",
         "Transparent"
     };
-
+    public static GrowingBucket JOINING_GROUP = new GrowingBucket(new Utility.StringFunctor() {
+    	String process(String str) {
+    		return Utility.getUnskeleton(
+                    str.toLowerCase(Locale.ENGLISH),
+                    true);
+    	}});
+    
+    /*
     public static String[] JOINING_GROUP = {
         "NO_JOINING_GROUP",
         "AIN",
@@ -932,10 +942,21 @@ public final class UCD_Names implements UCD_Types {
         "ROHINGYA_YEH",
         "HAMZAH_ON_HA_GOAL",
         // BURUSHASHKI YEH BARREE
+        "STRAIGHT WAW", // srl
+        "MANICHAEAN ALEPH", // srl
+        "MANICHAEAN BETH", // srl
+        "MANICHAEAN GIMEL", // srl
+        "MANICHAEAN DALETH", // srl
+        "MANICHAEAN WAW", // srl
+        "MANICHAEAN ZAYIN", // srl
+        "MANICHAEAN HETH", // srl
+        "MANICHAEAN TETH", // srl
+        "MANICHAEAN YODH", // srl
     };
     static {
         fixArray(JOINING_GROUP);
     }
+    */
     static void fixArray (String[] array) {
         for (int i = 0; i < array.length; ++i) {
             array[i] = Utility.getUnskeleton(

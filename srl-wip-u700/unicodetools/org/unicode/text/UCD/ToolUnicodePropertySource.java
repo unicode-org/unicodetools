@@ -1343,7 +1343,7 @@ isTitlecase(X) is false.
                     return lookup(valueAlias, UCD_Names.LONG_JOINING_TYPE, UCD_Names.JOINING_TYPE,
                             null, result);
                 case UCD_Types.JOINING_GROUP >> 8:
-                    return lookup(valueAlias, UCD_Names.JOINING_GROUP, UCD_Names.JOINING_GROUP, ALIAS_JOINING_GROUP, result);
+                    return lookup(valueAlias, UCD_Names.JOINING_GROUP.getStringList(), UCD_Names.JOINING_GROUP, ALIAS_JOINING_GROUP, result);
                 case UCD_Types.SCRIPT >> 8:
                     return lookup(valueAlias, UCD_Names.LONG_SCRIPT, UCD_Names.SCRIPT,
                             UCD_Names.EXTRA_SCRIPT, result);

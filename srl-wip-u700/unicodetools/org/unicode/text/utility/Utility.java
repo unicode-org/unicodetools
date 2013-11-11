@@ -28,9 +28,11 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.DerivedProperty;
@@ -49,7 +51,56 @@ import com.ibm.icu.text.UnicodeSet;
 
 public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
-    public static final String UCD_DIRECTORY = UCD_DIR;
+	public static interface StringFunctor {
+
+	}
+
+	public static class GrowingBucket {
+		private StringFunctor processor;
+		private List<String> list = new ArrayList<String>();
+		private Map<String, Integer> lookup = new ConcurrentHashMap<String,Integer>();
+		private Map<String, Integer> lookupS = new ConcurrentHashMap<String,Integer>();
+		
+		public GrowingBucket(StringFunctor processor) {
+			this.processor = processor;
+		}
+
+		public int find(String source, boolean skeletonize) {
+			Integer result;
+			
+			if(skeletonize) {
+				final String sourceS = getSkeleton(source);
+				result = lookupS.get(sourceS);
+			} else {
+				result = lookup.get(source);
+			}
+			if(result != null) {
+				return result;
+			}
+
+			result = list.size();
+			lookup.put(source, result);
+			lookupS.put(getSkeleton(source), result);
+			list.add(source);
+
+			return result;
+			// never fails?
+		}
+
+		public String get(int prop) {
+			return list.get(prop);
+		}
+
+		public int length() {
+			return list.size();
+		}
+
+		public String[] getStringList() {
+			return list.toArray(new String[0]);
+		}
+	}
+
+	public static final String UCD_DIRECTORY = UCD_DIR;
     public static final String WORKSPACE_DIRECTORY = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/";
     public static final String DATA_DIRECTORY = UCD_DIR + "/../";
     public static final String GENERATED_DIRECTORY = DATA_DIRECTORY + "/Generated/";
@@ -235,6 +286,13 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static byte lookup(String source, String[] target, boolean skeletonize) {
         final int result = Utility.find(source, target, skeletonize);
+        if (result != -1) {
+            return (byte)result;
+        }
+        throw new ChainException("Could not find \"{0}\" in table [{1}]", new Object [] {source, Arrays.asList(target)});
+    }
+    public static byte lookup(String source, GrowingBucket target, boolean skeletonize) {
+        final int result = target.find(source, skeletonize);
         if (result != -1) {
             return (byte)result;
         }

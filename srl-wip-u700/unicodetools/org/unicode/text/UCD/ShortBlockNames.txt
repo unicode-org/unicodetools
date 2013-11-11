@@ -49,6 +49,7 @@ Diacriticals_For_Symbols    ;   Combining_Diacritical_Marks_For_Symbols
 Diacriticals_Sup    ;   Combining_Diacritical_Marks_Supplement
 Half_Marks  ;   Combining_Half_Marks
 Indic_Number_Forms  ;   Common_Indic_Number_Forms
+Combining_Diacritical_Marks_Extended ; Combining_Diacritical_Marks_Extended
 Control_Pictures    ;   Control_Pictures
 Coptic  ;   Coptic
 Counting_Rod    ;   Counting_Rod_Numerals
@@ -120,6 +121,7 @@ Latin_Ext_Additional    ;   Latin_Extended_Additional
 Latin_Ext_B ;   Latin_Extended_B
 Latin_Ext_C ;   Latin_Extended_C
 Latin_Ext_D ;   Latin_Extended_D
+Latin_Ext_E ;   Latin_Extended_E
 Lepcha  ;   Lepcha
 Letterlike_Symbols  ;   Letterlike_Symbols
 Limbu   ;   Limbu
@@ -150,6 +152,7 @@ Mongolian   ;   Mongolian
 Music   ;   Musical_Symbols
 Myanmar ;   Myanmar
 Myanmar_Ext_A   ;   Myanmar_Extended_A
+Myanmar_Ext_B   ;   Myanmar_Extended_B
 New_Tai_Lue ;   New_Tai_Lue
 NKo ;   NKo
 NB  ;   No_Block

@@ -43,8 +43,8 @@ public final class UCD implements UCD_Types {
     /**
      * Used for the default version.
      */
-    public static final String latestVersion = "6.3.0";
-    public static final String lastVersion = "6.2.0"; // last released version
+    public static final String latestVersion = "7.0.0";
+    public static final String lastVersion = "6.3.0"; // last released version
 
     /**
      * Create singleton instance for default (latest) version
@@ -1239,8 +1239,8 @@ public final class UCD implements UCD_Types {
 
     public static String getJoiningGroupID_fromIndex(byte prop, byte style) {
         // short version = long version
-        return prop < 0 || prop >= UCD_Names.JOINING_GROUP.length ? null
-                : UCD_Names.JOINING_GROUP[prop];
+        return prop < 0 || prop >= UCD_Names.JOINING_GROUP.length() ? null
+                : UCD_Names.JOINING_GROUP.get(prop);
     }
 
     public String getScriptID(int codePoint) {
@@ -2077,7 +2077,7 @@ to guarantee identifier closure.
             final String longName = blockNames.get(i);
             final String shortName = longToShortBlockNames.get(longName);
             if (shortName == null) {
-                throw new IllegalArgumentException("Missing short name: update ShortBlockNames.txt");
+                throw new IllegalArgumentException("Missing short name from " + longName+ " : update ShortBlockNames.txt");
             }
             result[0][i] = longName;
             result[1][i] = shortName;

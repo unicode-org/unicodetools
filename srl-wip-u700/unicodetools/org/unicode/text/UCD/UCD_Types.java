@@ -504,7 +504,8 @@ public interface UCD_Types {
     AGE61 = 13,
     AGE62 = 14,
     AGE63 = 15,
-    LIMIT_AGE = AGE63 + 1; // + FIX_FOR_NEW_VERSION;
+    AGE70 = 16,
+    LIMIT_AGE = AGE70 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
         "?",
