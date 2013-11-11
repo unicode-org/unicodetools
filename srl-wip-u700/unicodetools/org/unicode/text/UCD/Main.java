@@ -56,6 +56,7 @@ public final class Main implements UCD_Types {
     };
 
     public static void main (String[] args) throws Exception {
+    	System.out.println("UCD_DIR="+BASE_DIR);
         System.out.println("*** Start *** " + Default.getDate());
 
         try {

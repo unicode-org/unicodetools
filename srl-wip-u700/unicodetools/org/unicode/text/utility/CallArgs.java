@@ -27,8 +27,10 @@ public class CallArgs {
             }
             String[] methodArgs = null;
             final int par = arg.indexOf('(');
+            String methodArgsStr = "";
             if (par >= 0) {
-                methodArgs = Utility.split(arg.substring(par+1, arg.length()-1),',');
+            	methodArgsStr = arg.substring(par+1, arg.length()-1);
+                methodArgs = Utility.split(methodArgsStr,',');
                 arg = arg.substring(0,par);
             }
             final int pos = arg.indexOf('.');
@@ -49,7 +51,7 @@ public class CallArgs {
                 }
             }
             if (method == null) {
-                throw new IllegalArgumentException("Bad parameter: " + className + ", " + methodName);
+                throw new IllegalArgumentException("Bad parameter: " + className + "." + methodName + " when calling " + arg);
             }
             System.out.println(method.getName() + "\t" + bf.join(methodArgs));
             method.invoke(null,methodArgs);

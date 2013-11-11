@@ -15,6 +15,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -263,6 +264,7 @@ public final class ConvertUCD implements UCD_Types {
 
     public static void main (String[] args) throws Exception {
         System.out.println("Building binary version of UCD");
+        new java.io.File(GEN_DIR).mkdirs();
 
         log = new PrintWriter(new BufferedWriter(
                 new OutputStreamWriter(
@@ -701,6 +703,7 @@ public final class ConvertUCD implements UCD_Types {
     void writeJavaData() throws IOException {
         final Iterator it = charData.keySet().iterator();
         final int codePoint = -1;
+        new File(UCD_Types.BIN_DIR).mkdirs();
         System.out.println("Writing " + dataFilePrefix + version);
         final DataOutputStream dataOut = new DataOutputStream(
                 new BufferedOutputStream(
