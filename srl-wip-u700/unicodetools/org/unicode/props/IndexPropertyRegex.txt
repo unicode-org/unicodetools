@@ -1,0 +1,190 @@
+# =============================
+# Regex Validity Patterns
+# =============================
+# These are for all String, Misc, and Numeric Properties
+# The Catalog/Enum/Binary Properties are validated using the values in PropertyValueAliases.txt,
+# and thus have null regular expression validity patterns.
+#
+# This file also indicates where any property is multivalued.
+# =============================
+# Format
+# Field 1: property name
+# Field 2: cardinality
+#          SINGLE_VALUED: has only one value
+#          MULTI_VALUED: has multiple values, arbitrary order
+#          ORDERED: has multiple values, significant order
+#          EXTENSIBLE: currently single valued, but could have multiple values in future versions
+# Field 3: regex validity pattern
+# If the line starts with $, then it is a variable definition of the form $variable = <expression>.
+# Each regular expression validity pattern has all variables replaced before use.
+# =============================
+
+# Regex patterns from UAX #44 (fixed, plus missing)
+
+# Variables
+
+$digit  =   [0-9]
+$hexDigit   =   [A-F0-9]
+$alphaNum   =   [a-zA-Z0-9]
+$digits =   $digit+
+$label  =   $alphaNum+
+$positiveDecimal    =   $digits\.$digits
+$decimal    =   -?$positiveDecimal
+$rational   =   -?$digits(/$digits)?
+$optionalDecimal    =   -?$digits(\.$digits)?
+$name   =   $label(( -|- |[-_ ])$label)*
+$name2  =   $label([-_ ]$label)*
+$annotatedName  =   $name2( \(.*\))?
+$shortName  =   [A-Z]{0,3}
+$codePoint  =   (10|$hexDigit)?$hexDigit{4}
+$codePoints =   $codePoint(\s$codePoint)*
+$codePoint0 =   ($codePoints)?
+
+# Main data
+
+Bidi_Mirroring_Glyph ;        SINGLE_VALUED ;               $codePoint
+Simple_Lowercase_Mapping ;    SINGLE_VALUED ;               $codePoint
+Simple_Titlecase_Mapping ;    SINGLE_VALUED ;               $codePoint
+Simple_Uppercase_Mapping ;    SINGLE_VALUED ;               $codePoint
+
+NFKC_Casefold ;               SINGLE_VALUED ;               $codePoint0
+
+Case_Folding ;                SINGLE_VALUED ;               $codePoints
+Decomposition_Mapping ;       SINGLE_VALUED ;               $codePoints
+FC_NFKC_Closure ;             SINGLE_VALUED ;               $codePoints
+Lowercase_Mapping ;           SINGLE_VALUED ;               $codePoints
+Simple_Case_Folding ;         SINGLE_VALUED ;               $codePoints
+Titlecase_Mapping ;           SINGLE_VALUED ;               $codePoints
+Uppercase_Mapping ;           SINGLE_VALUED ;               $codePoints
+
+ISO_Comment ;                 SINGLE_VALUED ;               $name
+Name ;                        SINGLE_VALUED ;               $name
+Named_Sequences ;             SINGLE_VALUED ;               $name
+Named_Sequences_Prov ;        SINGLE_VALUED ;               $name
+Name_Alias ;                  MULTI_VALUED ;                $name
+Unicode_1_Name ;              SINGLE_VALUED ;               $annotatedName
+Jamo_Short_Name ;             SINGLE_VALUED ;               $shortName
+
+Block ;                       SINGLE_VALUED ;               $name2
+Script ;                      SINGLE_VALUED ;               $name2
+
+Numeric_Value ;               SINGLE_VALUED ;               $rational
+
+Emoji_DCM ;                   SINGLE_VALUED ;               [0-9A-F]{4}
+Emoji_KDDI ;                  SINGLE_VALUED ;               [0-9A-F]{4}
+Emoji_SB ;                    SINGLE_VALUED ;               [0-9A-F]{4}
+CJK_Radical ;                 SINGLE_VALUED ;               [1-9][0-9]?|1[0-9][0-9]|2(0[0-9]|1[0-4])|(90|120|147|149|154|159|162|16[7-9]|178|18[1-4]|187|19[5-7]|199|201|205|21[0-3])'
+
+# Regex patterns from UAX #38
+
+kHanyuPinyin ;                MULTI_VALUED ;                 (\d{5}\.\d{2}0,)*\d{5}\.\d{2}0:([a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+,)*[a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+
+kIICore ;                     SINGLE_VALUED ;                2\.1
+kIBMJapan ;                   SINGLE_VALUED ;                F[ABC][0-9A-F]{2}
+kIRG_GSource ;                SINGLE_VALUED ;                G(4K|BK|CH|CY|FZ|HC|HZ|((BK|CH|GH|HC|XC|ZH)-[0-9]{4}\.[0-9]{2})|HZ-[0-9]{5}\.[0-9]{2}|(KX-[01][0-9]{3}\.[0-9]{2})|((CYY|FZ|JZ|ZFY|ZJW)-[0-9]{5})|([0135789ES]-[0-9A-F]{4})|IDC-[0-9]{3})
+kIRG_HSource ;                SINGLE_VALUED ;                H-[0-9A-F]{4}
+kIRG_JSource ;                SINGLE_VALUED ;                J((([0134AK]|3A|ARIB)-[0-9A-F]{4,5})|(H-(((IB|JT|[0-9]{2})[0-9A-F]{4}S?))))
+kIRG_KPSource ;               SINGLE_VALUED ;                KP[01]-[0-9A-F]{4}
+kIRG_KSource ;                SINGLE_VALUED ;                K[0-57]-[0-9A-F]{4}
+kIRG_MSource ;                SINGLE_VALUED ;                MAC-[0-9]{5}
+kIRG_TSource ;                SINGLE_VALUED ;                T[1-7B-F]-[0-9A-F]{4}
+kIRG_USource ;                SINGLE_VALUED ;                U(TC|CI)-?[0-9]{5}
+kCompatibilityVariant ;       SINGLE_VALUED ;                U\+2?[0-9A-F]{4}
+kSimplifiedVariant ;          MULTI_VALUED ;                 U\+2?[0-9A-F]{4}
+kTraditionalVariant ;         MULTI_VALUED ;                 U\+2?[0-9A-F]{4}
+kSemanticVariant ;            MULTI_VALUED ;                 U\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?
+kSpecializedSemanticVariant ; MULTI_VALUED ;                 U\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?
+kZVariant ;                   EXTENSIBLE ;                   U\+2?[0-9A-F]{4}(<k[A-Za-z0-9]+(:[TBZ]+)?(,k[A-Za-z0-9]+(:[TBZ]+)?)*)?
+kIRG_VSource ;                SINGLE_VALUED ;                V[0-4]-[0-9A-F]{4}
+kBigFive ;                    SINGLE_VALUED ;                [0-9A-F]{4}
+kHKSCS ;                      SINGLE_VALUED ;                [0-9A-F]{4}
+kKPS0 ;                       SINGLE_VALUED ;                [0-9A-F]{4}
+kKPS1 ;                       SINGLE_VALUED ;                [0-9A-F]{4}
+kCCCII ;                      EXTENSIBLE ;                   [0-9A-F]{6}
+kEACC ;                       SINGLE_VALUED ;                [0-9A-F]{6}
+kAccountingNumeric ;          SINGLE_VALUED ;                [0-9]+
+kOtherNumeric ;               SINGLE_VALUED ;                [0-9]+
+kPrimaryNumeric ;             SINGLE_VALUED ;                [0-9]+
+kFenn ;                       MULTI_VALUED ;                 [0-9]+a?[A-KP*]
+kCowles ;                     MULTI_VALUED ;                 [0-9]{1,4}(\.[0-9]{1,2})?
+kXerox ;                      SINGLE_VALUED ;                [0-9]{3}:[0-9]{3}
+kSBGY ;                       MULTI_VALUED ;                 [0-9]{3}\.[0-7][0-9]
+kCheungBauerIndex ;           MULTI_VALUED ;                 [0-9]{3}\.[01][0-9]
+kCheungBauer ;                EXTENSIBLE ;                   [0-9]{3}\/[0-9]{2};[A-Z]*;[a-z1-6\[\]\/,]+
+kGB0 ;                        SINGLE_VALUED ;                [0-9]{4}
+kGB1 ;                        SINGLE_VALUED ;                [0-9]{4}
+kGB3 ;                        SINGLE_VALUED ;                [0-9]{4}
+kGB5 ;                        SINGLE_VALUED ;                [0-9]{4}
+kGB7 ;                        SINGLE_VALUED ;                [0-9]{4}
+kGB8 ;                        SINGLE_VALUED ;                [0-9]{4}
+kHKGlyph ;                    MULTI_VALUED ;                 [0-9]{4}
+kJis0 ;                       SINGLE_VALUED ;                [0-9]{4}
+kJis1 ;                       SINGLE_VALUED ;                [0-9]{4}
+kKSC0 ;                       SINGLE_VALUED ;                [0-9]{4}
+kKSC1 ;                       SINGLE_VALUED ;                [0-9]{4}
+kMainlandTelegraph ;          SINGLE_VALUED ;                [0-9]{4}
+kNelson ;                     MULTI_VALUED ;                 [0-9]{4}
+kPseudoGB1 ;                  SINGLE_VALUED ;                [0-9]{4}
+kTaiwanTelegraph ;            SINGLE_VALUED ;                [0-9]{4}
+kFourCornerCode ;             MULTI_VALUED ;                 [0-9]{4}(\.[0-9])?
+kGSR ;                        MULTI_VALUED ;                 [0-9]{4}[a-vx-z]\'?
+kDaeJaweon ;                  SINGLE_VALUED ;                [0-9]{4}\.[0-9]{2}[01]
+kIRGDaeJaweon ;               SINGLE_VALUED ;                [0-9]{4}\.[0-9]{2}[01]
+kKangXi ;                     SINGLE_VALUED ;                [0-9]{4}\.[0-9]{2}[01]
+kXHC1983 ;                    MULTI_VALUED ;                 [0-9]{4}\.[0-9]{3}\*?(,[0-9]{4}\.[0-9]{3}\*?)*:[a-z\x{300}\x{301}\x{304}\x{308}\x{30C}]+
+kIRGDaiKanwaZiten ;           SINGLE_VALUED ;                [0-9]{5}\'?
+kMorohashi ;                  EXTENSIBLE ;                   [0-9]{5}\'?
+kIRGKangXi ;                  SINGLE_VALUED ;                [01][0-9]{3}\.[0-7][0-9][01]
+kFrequency ;                  SINGLE_VALUED ;                [1-5]
+kGradeLevel ;                 SINGLE_VALUED ;                [1-6]
+kHanYu ;                      MULTI_VALUED ;                 [1-8][0-9]{4}\.[0-3][0-9][0-3]
+kIRGHanyuDaZidian ;           SINGLE_VALUED ;                [1-8][0-9]{4}\.[0-3][0-9][01]
+kCNS1992 ;                    SINGLE_VALUED ;                [1-9]-[0-9A-F]{4}
+kTotalStrokes ;               ORDERED ;                      [1-9][0-9]{0,2}
+kRSUnicode ;                  MULTI_VALUED ;                 [1-9][0-9]{0,2}\'?\.[0-9]{1,2}
+kRSJapanese ;                 EXTENSIBLE ;                   [1-9][0-9]{0,2}\.[0-9]{1,2}
+kRSKanWa ;                    EXTENSIBLE ;                   [1-9][0-9]{0,2}\.[0-9]{1,2}
+kRSKangXi ;                   EXTENSIBLE ;                   [1-9][0-9]{0,2}\.[0-9]{1,2}
+kRSKorean ;                   EXTENSIBLE ;                   [1-9][0-9]{0,2}\.[0-9]{1,2}
+kFennIndex ;                  MULTI_VALUED ;                 [1-9][0-9]{0,2}\.[01][0-9]
+kLau ;                        MULTI_VALUED ;                 [1-9][0-9]{0,3}
+kMatthews ;                   SINGLE_VALUED ;                [1-9][0-9]{0,3}(a|\.5)?
+kKarlgren ;                   SINGLE_VALUED ;                [1-9][0-9]{0,3}[A*]?
+kPhonetic ;                   MULTI_VALUED ;                 [1-9][0-9]{0,3}[A-D]?\*?
+kMeyerWempe ;                 MULTI_VALUED ;                 [1-9][0-9]{0,3}[a-t*]?
+kCihaiT ;                     MULTI_VALUED ;                 [1-9][0-9]{0,3}\.[0-9]{3}
+kCNS1986 ;                    SINGLE_VALUED ;                [12E]-[0-9A-F]{4}
+kJIS0213 ;                    SINGLE_VALUED ;                [12],[0-9]{2},[0-9]{1,2}
+kCangjie ;                    SINGLE_VALUED ;                [A-Z]+
+kJapaneseKun ;                MULTI_VALUED ;                 [A-Z]+
+kJapaneseOn ;                 MULTI_VALUED ;                 [A-Z]+
+kKorean ;                     MULTI_VALUED ;                 [A-Z]+
+kVietnamese ;                 MULTI_VALUED ;                 [A-Za-z\x{110}\x{111}\x{300}-\x{303}\x{306}\x{309}\x{31B}\x{323}]+
+kRSAdobe_Japan1_6 ;           MULTI_VALUED ;                 [CV]\+[0-9]{1,5}\+[1-9][0-9]{0,2}\.[1-9][0-9]?\.[0-9]{1,2}
+kHangul ;                     MULTI_VALUED ;                 [\x{1100}-\x{11FF}]+
+kHDZRadBreak ;                SINGLE_VALUED ;                [\x{2F00}-\x{2FD5}]\[U\+2F[0-9A-D][0-9A-F]\]:[1-8][0-9]{4}\.[0-3][0-9]0
+kDefinition ;                 SINGLE_VALUED ;                [^\t"]+
+kMandarin ;                   ORDERED ;                      [a-z\x{300}-\x{302}\x{304}\x{308}\x{30C}]+
+kHanyuPinlu ;                 MULTI_VALUED ;                 [a-z\x{308}]+[1-5]\([0-9]+\)
+kCantonese ;                  MULTI_VALUED ;                 [a-z]{1,6}[1-6]
+kTang ;                       MULTI_VALUED ;                 \*?[A-Za-z()\x{E6}\x{251}\x{259}\x{25B}\x{300}\x{30C}]+
+
+# =============================
+# Catalog/Enum/Binary Properties
+# All not listed are SINGLE_VALUED ; null
+# =============================
+
+Script_Extensions		;	MULTI_VALUED	;				<enum> 
+Standardized_Variant	;	MULTI_VALUED	;				.* 
+
+Idn_Status				;	SINGLE_VALUED	;				<enum>
+Idn_Mapping				;	SINGLE_VALUED	;				$codePoints
+Idn_2008				;	SINGLE_VALUED	;				<enum>
+
+
+Id_Mod_Status			;	SINGLE_VALUED	; 				<enum>
+Id_Mod_Type				;	SINGLE_VALUED	;				<enum>
+
+Confusable_SL			;	SINGLE_VALUED	;				$codePoints
+Confusable_SA			;	SINGLE_VALUED	;				$codePoints
+Confusable_ML			;	SINGLE_VALUED	;				$codePoints
+Confusable_MA				;	SINGLE_VALUED	;				$codePoints

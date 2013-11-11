@@ -1,0 +1,10 @@
+table   {border-style: solid; border-width: 1px; border-collapse: collapse}
+td,th   {vertical-align: top; border-style: solid; border-width: 1px;}
+th      {text-align: left; background-color:#eef}
+li      {margin-top:0.3em; margin-bottom:0.3em}
+table.s {margin:1em; background-color:#DDD}
+table.e {margin:1em; background-color:#FDD}
+p {margin:0}
+h2 {color:#F00}
+.b {background-color:#CFF}
+.bb {background-color:#DDD; margin:1em}

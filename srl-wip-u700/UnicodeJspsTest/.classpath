@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/unicode-jsps/build/classes" sourcepath="/unicode-jsps/src"/>
+	<classpathentry kind="lib" path="/unicode-jsps/WebContent/WEB-INF/lib/cldr.jar"/>
+	<classpathentry kind="lib" path="/unicode-jsps/WebContent/WEB-INF/lib/icu4j-src.jar"/>
+	<classpathentry kind="lib" path="/unicode-jsps/WebContent/WEB-INF/lib/icu4j.jar" sourcepath="/unicode-jsps/WebContent/WEB-INF/lib/icu4j-src.jar"/>
+	<classpathentry kind="lib" path="/unicode-jsps/WebContent/WEB-INF/lib/utilities-src.jar"/>
+	<classpathentry kind="lib" path="/unicode-jsps/WebContent/WEB-INF/lib/utilities.jar" sourcepath="/unicode-jsps/WebContent/WEB-INF/lib/icu4j-src.jar"/>
+	<classpathentry kind="lib" path="/unicode-jsps/WebContent/WEB-INF/lib/xercesImpl.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

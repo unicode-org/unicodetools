@@ -1,0 +1,2695 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Unicode Character Database</title>
+<link rel="stylesheet" type="text/css" href="http://www.unicode.org/reports/reports.css">
+<style type="text/css">
+<!--
+th           { background-color: #CCFFCC }
+-->
+</style>
+</head>
+
+<body bgcolor="#ffffff">
+
+<table class="header" width="100%">
+  <tr>
+    <td class="icon"><a href="http://www.unicode.org"><img align="middle" alt="[Unicode]" border="0" src="http://www.unicode.org/webscripts/logo60s2.gif" width="34" height="33"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/ucd">Unicode 
+      Character Database</a></td>
+  </tr>
+  <tr>
+    <td class="gray">&nbsp;</td>
+  </tr>
+</table>
+<div class="body">
+  <h1>UNICODE CHARACTER DATABASE</h1>
+  <table class="wide" border="1">
+    <tr>
+      <td valign="TOP" width="144">Revision</td>
+      <td valign="TOP">4.0.0</td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">Authors</td>
+      <td valign="TOP">Mark Davis and Ken Whistler</td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">Date</td>
+      <td valign="TOP">2003-04-18</td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">This Version</td>
+      <td valign="TOP"><a href="http://www.unicode.org/Public/4.0-Update/UCD-4.0.0.html">http://www.unicode.org/Public/4.0-Update/UCD-4.0.0.html</a></td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">Previous Version</td>
+      <td valign="TOP"><a href="http://www.unicode.org/Public/3.2-Update/UnicodeCharacterDatabase-3.2.0.html">http://www.unicode.org/Public/3.2-Update/UnicodeCharacterDatabase-3.2.0.html</a>,<br>
+        <a href="http://www.unicode.org/Public/3.2-Update/DerivedProperties-3.2.0.html">http://www.unicode.org/Public/3.2-Update/DerivedProperties-3.2.0.html</a>,<br>
+        <a href="http://www.unicode.org/Public/3.2-Update/UnicodeData-3.2.0.html">http://www.unicode.org/Public/3.2-Update/UnicodeData-3.2.0.html</a>,<br>
+        <a href="http://www.unicode.org/Public/3.2-Update/PropList-3.2.0.html">http://www.unicode.org/Public/3.2-Update/PropList-3.2.0.html</a></td>
+    </tr>
+    <tr>
+      <td valign="TOP" width="144">Latest Version</td>
+      <td valign="TOP"><a href="http://www.unicode.org/Public/UNIDATA/UCD.html">http://www.unicode.org/Public/UNIDATA/UCD.html</a></td>
+    </tr>
+  </table>
+  <h3><br>
+  S<i>ummary</i></h3>
+  <blockquote>
+    <p><i>This document describes the format and content of the Unicode 
+    Character Database (UCD)</i></p>
+  </blockquote>
+  <h3><i>Status</i></h3>
+  <blockquote>
+    <p><i>This file and the files described herein are part of the Unicode 
+    Character Database and are governed by the <a href="#UCD_Terms">UCD Terms of 
+    Use</a> given below.</i></p>
+    <p><i>The <a href="#References">References</a> provide related information 
+    that is useful in understanding this document.</i></p>
+    <p><i><b>Warning: </b>the information in this file does not completely 
+    describe the use and interpretation of Unicode character properties and 
+    behavior. It must be used in conjunction with the data in the other files in 
+    the Unicode Character Database, and relies on the notation and definitions 
+    supplied in <a href="http://www.unicode.org/standard/standard.html">The 
+    Unicode Standard</a>. All chapter references are to Version 4.0.0 of the 
+    standard unless otherwise indicated.</i></p>
+  </blockquote>
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#Introduction">Introduction</a></li>
+    <li><a href="#Conformance">Conformance</a></li>
+    <li><a href="#UCD_File_Format">UCD File Format</a></li>
+    <li><a href="#UCD_Files">UCD Files</a></li>
+    <li><a href="#Properties">Properties</a></li>
+    <li><a href="#Property_Values">Property Values</a>
+      <ul>
+        <li><a href="#General_Category_Values">General Category Values</a></li>
+        <li><a href="#Bidi_Class_Values">Bidi Class Values</a></li>
+        <li><a href="#Character_Decomposition_Mappings">Character Decomposition 
+          Mapping</a></li>
+        <li><a href="#Canonical_Combining_Class_Values">Canonical Combining 
+          Classes</a></li>
+        <li><a href="#Decompositions_and_Normalization">Decompositions and 
+          Normalization</a></li>
+        <li><a href="#Case_Mappings">Case Mappings</a></li>
+      </ul>
+    </li>
+    <li><a href="#UCD_Files">Other UCD Files</a></li>
+    <li><a href="#Derived_Extracted_Properties">Derived Extracted Properties</a></li>
+    <li><a href="#Property_Invariants">Property Invariants</a></li>
+    <li><a href="#References">References</a></li>
+    <li><a href="#Modification_History">Modification History</a></li>
+  </ul>
+  <h2><a name="Introduction">Introduction</a></h2>
+  <p>The Unicode Character Database (UCD) is a set of files that define the 
+  Unicode character properties and internal mappings. This document describes 
+  the properties and files that are part of <a href="http://www.unicode.org/reports/tr28/">The 
+  Unicode Standard, Version 4.0</a> [<a href="#U4.0">U4.0</a>]. The main changes 
+  in this version are:</p>
+  <ul>
+    <li>The four documentation files (<a href="http://www.unicode.org/Public/3.2-Update/UnicodeCharacterDatabase-3.2.0.html">UnicodeCharacterDatabase.html</a>, 
+      <a href="http://www.unicode.org/Public/3.2-Update/UnicodeData-3.2.0.html">UnicodeData.html</a>, 
+      <a href="http://www.unicode.org/Public/3.2-Update/DerivedProperties-3.2.0.html">DerivedProperties.html</a>, 
+      and <a href="http://www.unicode.org/Public/3.2-Update/PropList-3.2.0.html">PropList.html</a>) 
+      have been merged together.</li>
+    <li>There is an additional index by property instead of by file.</li>
+    <li>A number of additional properties have been added as a part of Unicode 
+      4.0.</li>
+  </ul>
+  <p>This documentation file does not link directly to other files in the UCD. 
+  This is because the files need to be exactly the same in the specific update 
+  directory (e.g. <a href="http://www.unicode.org/Public/4.0-Update/">http://www.unicode.org/Public/4.0-Update/</a>), 
+  and when copied to the &quot;latest&quot; directory (<a href="http://www.unicode.org/Public/UNIDATA/">http://www.unicode.org/Public/UNIDATA/</a>).</p>
+  <h2><a name="Conformance">Conformance</a></h2>
+  <p>For information on the meaning and application of the terms <i>normative, 
+  informative, </i>and<i> provisional</i>, see &quot;Chapter 3, Character 
+  Properties&quot; in the Unicode Standard, Version 4.0.</p>
+  <h2><a name="UCD_File_Format">UCD File Format</a></h2>
+  <p>Files in the UCD use the following format, unless otherwise specified.</p>
+  <ul>
+    <li>Each line of data consists of fields separated by semicolons. The fields 
+      are numbered starting with zero. Code points are expressed as hexadecimal 
+      numbers with four to six digits. They are written without &quot;U+&quot;. 
+      Within a sequence of code points, spaces are used for separation. Leading 
+      and trailing spaces within a field are not significant.</li>
+  </ul>
+  <ul>
+    <li>The first field (0) of each line in the Unicode Character Database files 
+      represents a code point or range. The remaining fields (1..n) are 
+      properties associated with that code point.</li>
+  </ul>
+  <ul>
+    <li>A range of code points is specified by the form &quot;X..Y&quot;. Each 
+      code point from X to Y has the associated properties. For example:
+      <blockquote>
+        <pre>0000..007F; Basic Latin
+0080..00FF; Latin-1 Supplement
+
+1680      ; White_Space # Zs OGHAM SPACE MARK
+2000..200A; White_Space # Zs [11] EN QUAD..HAIR SPACE</pre>
+      </blockquote>
+    </li>
+    <li>For backwards compatibility, in the file UnicodeData.txt a range is 
+      specified not by the form &quot;X..Y&quot;, but by their start and end 
+      characters. In such cases, the names of characters in the range are 
+      algorithmically derivable. Surrogate code points and private use 
+      characters have no names. See <a href="#U4.0">U4.0</a> for more 
+      information.</li>
+    <li>Hash marks (&quot;#&quot;) are used to indicate comments: all characters 
+      from the hash mark to the end of the line are comments, and disregarded 
+      when parsing data. In many files, the comments on data lines use a common 
+      format.
+      <blockquote>
+        <pre>00BC..00BE ; numeric # No [3] VULGAR FRACTION ONE QUARTER..VULGAR FRACTION THREE QUARTERS</pre>
+      </blockquote>
+    </li>
+    <li>The first part of the comment is generally the UCD general category. The 
+      symbol &quot;L&amp;&quot; indicates characters of type Lu, Ll, or Lt. This 
+      is the same as the LC property in PropertyValueAliases. The code point 
+      ranges are calculated so that they all have the same General Category (or 
+      LC). While this results in more ranges than are strictly necessary, it 
+      makes the contents of the ranges clearer. The second part of the comment 
+      (in square brackets), indicates the number of items in a range, if there 
+      is one. The third part is the name of the character in field zero: if it 
+      is a range, then the character names for the ends of the range are 
+      separated by &quot;..&quot;.
+      <p>However, the comments are purely informational, and may change format 
+      or be omitted in the future. They should not be parsed for content.</li>
+    <li>In the following table, NF* refers to one of NFD, NFC, NFKC, or NFKD.</li>
+    <li>The Unihan data format differs from the standard format, and is 
+      described in the header of the file. The header also describes which 
+      properties are informative, which are normative, and which are 
+      provisional.</li>
+    <li>
+      <p>In some cases, segments of the file are distinguished 
+      by a line starting with an &quot;@&quot; sign.</li>
+    <li>
+      <p>The files are either Latin-1 or UTF-8. Unless otherwise 
+      noted, non-ASCII characters only appear in comments.</li>
+  </ul>
+  <h2><a name="UCD_Files">UCD Files</a></h2>
+  <p>The following table describes the format and meaning of each property data 
+  file in the UCD. The first column lists the files and the properties for which 
+  they contain data. The second column indicates the type of property value: <b>S</b>tring, 
+  <b>N</b>umeric, <b>E</b>numeration (non-binary), <b>B</b>inary. The third 
+  column indicates the status (<b>N</b>ormative vs. <b>I</b>nformative), and the 
+  fourth column provides a description of the data.</p>
+  <p>The files with a small number of properties are listed first, followed by 
+  the files with a large number of properties: <a href="#DerivedCoreProperties.txt">DerivedCoreProperties.txt</a>, 
+  <a href="#DerivedNormalizationProperties.txt">DerivedNormalizationProperties.txt</a>, 
+  <a href="#Proplist.txt">Proplist.txt</a>, and <a href="#UnicodeData.txt">UnicodeData.txt</a>. 
+  For UnicodeData, the field numbers are supplied in the description. In a 
+  number of cases, fields in a data file only contribute to a UCD property; for 
+  example, the name field in <a href="#UnicodeData.txt">UnicodeData.txt</a> does 
+  not provide all the values for the Name property; <a href="#Jamo.txt">Jamo.txt</a> 
+  must be used as well.</p>
+  <p>None of these properties should be used without consulting the relevant 
+  discussions in the Unicode Standard.</p>
+  <p>Where a data file does not explicitly list property values 
+  for all code points, the code points are given default property values. These 
+  default property values are documented in the data files, with the exception 
+  of <a href="#UnicodeData.txt">UnicodeData.txt</a>. For that case the default 
+  property values are listed below in parentheses after the property name, with 
+  (=) indicating the code point itself.&nbsp; The default property values are 
+  also documented in any corresponding extracted data file.</p>
+  <table>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="ArabicShaping.txt">ArabicShaping.txt</a></th>
+    </tr>
+    <tr>
+      <td><a name="Joining_Type">Joining_Type</a><br>
+        <a name="Joining_Group">Joining_Group</a></td>
+      <td>E</td>
+      <td align="center">N</td>
+      <td>Basic Arabic and Syriac character shaping properties, such as initial, 
+        medial and final shapes. See Section 8.2<br>
+      </td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="BidiMirroring.txt">BidiMirroring.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td><a name="Bidi_Mirroring_Glyph">Bidi_Mirroring_Glyph</a></td>
+      <td>S</td>
+      <td align="center">I</td>
+      <td>Properties for substituting characters in an implementation of 
+        bidirectional mirroring. See UAX #9. Do not confuse this with the 
+        Bidi_Mirrored property.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="Blocks.txt">Blocks.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td><a name="Block">Block</a></td>
+      <td>
+        <p>E</p>
+      </td>
+      <td align="center">N</td>
+      <td>List of block names, which are arbitrary names for ranges of code 
+        points. See Chapter 16.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="CompositionExclusions.txt">CompositionExclusions.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td><a name="Composition_Exclusion">Composition Exclusion</a></td>
+      <td>B</td>
+      <td align="center">N</td>
+      <td>Properties for normalization. See UAX #15. Unlike other files, 
+        CompositionExclusions simply lists the relevant code points.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="CaseFolding.txt">CaseFolding.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td><a name="Simple_Case_Folding">Simple_Case_Folding</a><br>
+        <a name="Case_Folding">Case_Folding</a><br>
+        <a name="Special_Case_Condition">Special_Case_Condition</a></td>
+      <td>
+        <p>S</p>
+      </td>
+      <td align="center">N</td>
+      <td>Mapping from characters to their case-folded forms. This is an 
+        informative file containing normative derived properties.
+        <p><i>Derived from UnicodeData and SpecialCasing. </i>See UAX #21</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="DerivedAge.txt">DerivedAge.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td><a name="Age">Age</a></td>
+      <td>S</td>
+      <td align="center">N/I</td>
+      <td>This file shows when various code points were designated/assigned in 
+        successive versions of the Unicode standard.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="EastAsianWidth.txt">EastAsianWidth.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td><a name="East_Asian_Width">East_Asian_Width</a></td>
+      <td>E</td>
+      <td align="center">I</td>
+      <td>Properties for determining the choice of wide vs. narrow glyphs in 
+        East Asian contexts. Property values are described in UAX #11.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4">
+        <p align="LEFT"><a name="HangulSyllableType.txt">HangulSyllableType.txt</a></th>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Hangul_Syllable_Type">Hangul_Syllable_Type</a><br>
+        &nbsp;</td>
+      <td valign="top" align="center">
+        <p>E</p>
+      </td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">The values L, V, T, LV, and LVT used in Chapter 3.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4">
+        <p align="LEFT"><a name="Jamo.txt">Jamo.txt</a></th>
+    </tr>
+    <tr>
+      <td valign="top"><i>used in Name</i><br>
+        &nbsp;</td>
+      <td valign="top" align="center">S</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">The Hangul Syllable names are derived from the Jamo Short 
+        Names, as described in Chapter 3.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="LineBreak.txt">LineBreak.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td><a name="Line_Break">Line_Break</a></td>
+      <td>E</td>
+      <td align="center">N/I</td>
+      <td>Properties for line breaking. For more information, see UAX #14.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4">
+        <p align="LEFT"><a name="NormalizationCorrections.txt">NormalizationCorrections.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td valign="top"><i>used in Decomposition Mappings</i></td>
+      <td valign="top" align="center">S</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">NormalizationCorrections lists code point differences for 
+        <i><a href="http://www.unicode.org/versions/corrigendum3.html">Normalization 
+        Corrigenda</a>. </i>See UAX #15 for more information.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="PropertyAliases.txt">PropertyAliases.txt</a></th>
+    </tr>
+    <tr>
+      <td><i>n/a</i></td>
+      <td>S</td>
+      <td align="center">N/I</td>
+      <td>Property names and abbreviations. These names can be used for XML 
+        formats of UCD data, for regular-expression property tests, and other 
+        programmatic textual descriptions of Unicode data.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4">PropertyValueAliases.txt</th>
+    </tr>
+    <tr>
+      <td><i>n/a</i></td>
+      <td>S</td>
+      <td align="center">N/I</td>
+      <td>Property value names and abbreviations. These names can be used for 
+        XML formats of UCD data, for regular-expression property tests, and 
+        other programmatic textual descriptions of Unicode data.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="Scripts.txt">Scripts.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td><a name="Script">Script</a></td>
+      <td>
+        <p>E</p>
+      </td>
+      <td align="center">I</td>
+      <td>Default script values for use in regular expressions. For more 
+        information, see <a href="http://www.unicode.org/reports/tr24/">UTR #24</a>.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4">SpecialCasing.txt</th>
+    </tr>
+    <tr>
+      <td><a name="Uppercase_Mapping">Uppercase_Mapping<br>
+        </a><a name="Lowercase_Mapping">Lowercase_Mapping</a><br>
+        <a name="Titlecase_Mapping">Titlecase_Mapping<br>
+        </a>Special_Case_Condition</td>
+      <td>S</td>
+      <td align="center">I</td>
+      <td>Data for producing (in combination with Unicode Data) the full case 
+        mappings.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="Unihan.txt">Unihan.txt</a>&nbsp;(for 
+        more information, see Unihan Properties)</th>
+    </tr>
+    <tr>
+      <td><a name="Numeric_Type_Han">Numeric_Type</a><br>
+        <a name="Numeric_Value_Han">Numeric_Value</a></td>
+      <td>E</td>
+      <td align="center">I</td>
+      <td>The characters tagged with <a href="#kPrimaryNumeric">kPrimaryNumeric</a>, 
+        <a href="#kAccountingNumeric">kAccountingNumeric</a>, and <a href="#kOtherNumeric">kOtherNumeric</a> 
+        are given the Numeric_Type <i>numeric</i>, and the values indicated.
+        <p>Most characters have these properties based on values from the 
+        UnicodeData.txt data file. See <a href="#Numeric_Type">Numeric_Type</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><a name="Unicode_Radical_Stroke">Unicode_Radical_Stroke</a>
+        <p>&nbsp;</p>
+      </td>
+      <td>S</td>
+      <td align="center">I</td>
+      <td>The Unicode radical stroke count, based on the tag <a href="#kRSUnicode">kRSUnicode</a>.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="DerivedCoreProperties.txt">DerivedCoreProperties.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Alphabetic">Alphabetic</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters with the Alphabetic property. For more 
+        information, see <a href="http://www.unicode.org/uni2book/ch04.pdf">Chapter 
+        4, Character Properties</a>.
+        <p><i>Generated from: <a href="#Other_Alphabetic">Other_Alphabetic</a> + 
+        Lu + Ll + Lt + Lm + Lo + Nl</i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Default_Ignorable_Code_Point">Default_Ignorable_Code_Point</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">For programmatic determination of default-ignorable code 
+        points. New characters that should be ignored in processing (unless 
+        explicitly supported) will be assigned in these ranges, permitting 
+        programs to correctly handle the default behavior of such characters 
+        when not otherwise supported. For more information, see <a href="http://www.unicode.org/reports/tr29/">UAX 
+        #29: Text Boundaries</a>.
+        <p><i>Generated from <a href="#Other_Default_Ignorable_Code_Point">Other_Default_Ignorable_Code_Point</a> 
+        + Cf + Cc + Cs - White_Space</i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Lowercase">Lowercase</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters with the Lowercase property. For more 
+        information, see <a href="http://www.unicode.org/uni2book/ch04.pdf">Chapter 
+        4, Character Properties</a>.
+        <p><i>Generated from: <a href="#Other_Lowercase">Other_Lowercase</a> + 
+        Ll</i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Grapheme_Base">Grapheme_Base</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">For programmatic determination of grapheme cluster 
+        boundaries. For more information, see <a href="http://www.unicode.org/reports/tr29/">UAX 
+        #29: Text Boundaries</a>.
+        <p><i>Generated from: [0..10FFFF] - Cc - Cf - Cs - Co - Cn - Zl - Zp - <a href="#Grapheme_Extend">Grapheme_Extend</a></i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Grapheme_Extend">Grapheme_Extend</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">For programmatic determination of grapheme cluster 
+        boundaries. For more information, see <a href="http://www.unicode.org/reports/tr29/">UAX 
+        #29: Text Boundaries</a>.
+        <p><i>Generated from: <a href="#Other_Grapheme_Extend">Other_Grapheme_Extend</a> 
+        + Me + Mn</i></p>
+        <p><b>Note: </b>depending on an application's interpretation of Co 
+        (private use), they may be either in Grapheme_Base, or in 
+        Grapheme_Extend, or in neither.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="ID_Start">ID_Start</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters that can start an identifier.
+        <p><i>Generated from Lu + Ll + Lt + Lm + Lo + Nl + <a href="#Other_ID_Start">Other_ID_Start</a></i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="ID_Continue">ID_Continue</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters that can continue an identifier. See <a href="#Cf_Note">Cf 
+        Note</a>.
+        <p><i>Generated from: <a href="#ID_Start">ID_Start</a> + Mn + Mc + Nd + 
+        Pc</i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Math">Math</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters with the Math property. For more information, 
+        see <a href="http://www.unicode.org/uni2book/ch04.pdf">Chapter 4, 
+        Character Properties</a>.
+        <p><i>Generated from: Sm + <a href="#Other_Math">Other_Math</a></i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Uppercase">Uppercase</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters with the Uppercase property. For more 
+        information, see <a href="http://www.unicode.org/uni2book/ch04.pdf">Chapter 
+        4, Character Properties</a>.
+        <p><i>Generated from: Lu + <a href="#Other_Lowercase">Other_Uppercase</a></i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="XID_Start">XID_Start</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Same as ID_Start, except for modifications to allow 
+        closure under normalization forms NFKC and NFKD.
+        <p><i>Generated from: <a href="#ID_Start">ID_Start</a>; see <a href="#Closure_Note">Closure 
+        Note</a></i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="XID_Continue">XID_Continue</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Same as ID_Continue, except for modifications to allow 
+        closure under normalization forms NFKC and NFKD.
+        <p><i>Generated from: <a href="#ID_Continue">ID_Continue</a>; see <a href="#Closure_Note">Closure 
+        Note</a> and <a href="#Cf_Note">Cf Note</a>.</i></td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="DerivedNormalizationProperties.txt">DerivedNormalizationProperties.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Full_Composition_Exclusion">Full_Composition_Exclusion</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Characters that are excluded from composition: those 
+        explicitly in CompositionExclusions.txt, plus:<br>
+        <i>(3) Singleton Decompositions</i><br>
+        <i>(4) Non-Starter Decompositions</i></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Expands_On_NFC">Expands_On_NFC</a><br>
+        <a name="Expands_On_NFD">Expands_On_NFD</a><br>
+        <a name="Expands_On_NFKC">Expands_On_NFKC</a><br>
+        <a name="Expands_On_NFKD">Expands_On_NFKD</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Characters that expand to more than one character in the 
+        specified normalization form.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="FC_NFKC_Closure">FC_NFKC_Closure</a></td>
+      <td valign="top">S</td>
+      <td valign="top">N</td>
+      <td valign="top">Characters that require extra mappings for closure under 
+        Case Folding plus Normalization Form KC. Characters marked with this 
+        property have a third field with the mapping in it. Generated with the 
+        following, where Fold is the default fold operation (not Turkic):
+        <pre>b = NFKC(Fold(a));
+c = NFKC(Fold(b));
+if (c != b) add mapping from a to c</pre>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="NFD_Quick_Check">NFD_Quick_Check</a><br>
+        <a name="NFKD_Quick_Check">NFKD_Quick_Check</a><br>
+        <a name="NFC_Quick_Check">NFC_Quick_Check</a><br>
+        <a name="NFKC_Quick_Check">NFKC_Quick_Check</a></td>
+      <td valign="top">E</td>
+      <td valign="top">N</td>
+      <td valign="top">For property values, see <a href="#Decompositions_and_Normalization">Decompositions 
+        and Normalization</a>.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4"><a name="Proplist.txt">Proplist.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="ASCII_Hex_Digit">ASCII_Hex_Digit</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">ASCII characters commonly used for the representation of 
+        hexadecimal numbers.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Bidi_Control">Bidi_Control</a></td>
+      <td valign="top" align="center">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Those format control characters which have specific 
+        functions in the Bidirectional Algorithm.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Dash">Dash</a></td>
+      <td valign="top" align="center">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Those punctuation characters explicitly called out as 
+        dashes in the Unicode Standard, plus compatibility equivalents to those. 
+        Most of these have the Pd General Category, but some have the Sm General 
+        Category because of their use in mathematics.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Deprecated">Deprecated</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">For a machine-readable list of deprecated characters. No 
+        characters will ever be removed from the standard, but the usage of 
+        deprecated characters is strongly discouraged.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Diacritic">Diacritic</a></td>
+      <td valign="top" align="center">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters that linguistically modify the meaning of 
+        another character to which they apply. Some diacritics are not combining 
+        characters, and some combining characters are not diacritics.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Extender">Extender</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters whose principal function is to extend the 
+        value or shape of a preceding alphabetic character. Typical of these are 
+        length and iteration marks.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Grapheme_Link">Grapheme_Link</a></td>
+      <td valign="top" align="center">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Used in determining default grapheme cluster boundaries. 
+        For more information, see <a href="http://www.unicode.org/reports/tr29/">UAX 
+        #29: Text Boundaries</a>.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Hex_Digit">Hex_Digit</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters commonly used for the representation of 
+        hexadecimal numbers, plus their compatibility equivalents.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Hyphen">Hyphen</a> (<a href="#Stabilized">Stabilized</a> 
+        as of 3.2)</td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Those dashes used to mark connections between pieces of 
+        words, plus the Katakana middle dot. The Katakana middle dot functions 
+        like a hyphen, but is shaped like a dot rather than a dash.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Ideographic">Ideographic</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Characters considered to be CJKV (Chinese, Japanese, 
+        Korean, and Vietnamese) ideographs.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="IDS_Binary_Operator">IDS_Binary_Operator</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Used in Ideographic Description Sequences.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="IDS_Trinary_Operator">IDS_Trinary_Operator</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Used in Ideographic Description Sequences.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Join_Control">Join_Control</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Those format control characters which have specific 
+        functions for control of cursive joining and ligation.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Logical_Order_Exception">Logical_Order_Exception</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">There are a small number of characters that do not use 
+        logical order. These characters require special handling in most 
+        processing.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Noncharacter_Code_Point">Noncharacter_Code_Point</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Code points that are explicitly defined as illegal for 
+        the encoding of characters.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Other_Alphabetic">Other_Alphabetic</a></td>
+      <td valign="top" align="center">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Used in deriving the Alphabetic property.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Other_Default_Ignorable_Code_Point">Other_Default_Ignorable_Code_Point</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Used in deriving the Default_Ignorable_Code_Point 
+        property.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Other_Grapheme_Extend">Other_Grapheme_Extend</a></td>
+      <td valign="top" align="center">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Used in deriving&nbsp; the Grapheme_Extend property.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Other_ID_Start">Other_ID_Start</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Used for backwards compatibility of <a href="#ID_Start">ID_Start</a></td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Other_Lowercase">Other_Lowercase</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Used in deriving the Lowercase property.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Other_Math">Other_Math</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Used in deriving&nbsp; the Math property.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Other_Uppercase">Other_Uppercase</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Used in deriving the Uppercase property.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Quotation_Mark">Quotation_Mark</a></td>
+      <td valign="top">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Those punctuation characters that function as quotation 
+        marks.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Radical">Radical</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Used in Ideographic Description Sequences.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Soft_Dotted">Soft_Dotted</a></td>
+      <td valign="top" align="center">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Characters with a &quot;soft dot&quot;, like <i>i</i> or <i>j.</i> 
+        An accent placed on these characters causes the dot to disappear. An 
+        explicit <i>dot above</i> can be added where required, such as in 
+        Lithuanian.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Terminal_Punctuation">Terminal_Punctuation</a></td>
+      <td valign="top" align="center">B</td>
+      <td valign="top">I</td>
+      <td valign="top">Those punctuation characters that generally mark the end 
+        of textual units.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="Unified_Ideograph">Unified_Ideograph</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Used in Ideographic Description Sequences.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="left"><a name="White_Space">White_Space</a></td>
+      <td valign="top">B</td>
+      <td valign="top">N</td>
+      <td valign="top">Those separator characters and control characters which 
+        should be treated by programming languages as &quot;white space&quot; 
+        for the purpose of parsing elements.
+        <p><b>Note:</b> ZERO WIDTH SPACE and ZERO WIDTH NO-BREAK SPACE are not 
+        included, since their functions are restricted to line-break control. 
+        Their names are unfortunately misleading in this respect.</p>
+        <p><b>Note: </b>There are other senses of &quot;whitespace&quot; that 
+        encompass a different set of characters.</td>
+    </tr>
+    <tr>
+      <th valign="top" align="LEFT" colspan="4">
+        <p align="LEFT"><a name="UnicodeData.txt">UnicodeData.txt</a>&nbsp;</th>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Name">Name</a>* (&lt;reserved&gt;)</td>
+      <td valign="top" align="center">S</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(1) These names match exactly the names published in the 
+        code charts of the Unicode Standard. The Hangul Syllable names are 
+        omitted from this file; see Jamo.txt.</td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="General_Category">General_Category</a> (Cn)</td>
+      <td valign="top" align="center">E</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(2) This is a useful breakdown into various character 
+        types which can be used as a default categorization in implementations. 
+        For the property values, see <a href="#General_Category_Values">General 
+        Category Values</a>.</td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Canonical_Combining_Class">Canonical_Combining_Class</a> 
+        (0)</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(3) The classes used for the Canonical Ordering Algorithm 
+        in the Unicode Standard. For the property value names associated with 
+        different numeric values, see DerivedCombiningClass.txt and <a href="#Canonical_Combining_Class_Values">Canonical 
+        Combining Class Values</a>.</td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Bidi_Class">Bidi_Class</a> (L, 
+        AL, R)</td>
+      <td valign="top" align="center">E</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(4) These are the categories required by the 
+        Bidirectional Behavior Algorithm in the Unicode Standard. For the 
+        property values, see <a href="#Bidi_Class_Values">Bidi Class Values</a>. 
+        For more information, see UAX #9 Bidirectional Algorithm.
+        <p>The default property values depend on the code point:</p>
+        <table>
+          <tr>
+            <td>
+              <p>R</p>
+            </td>
+            <td>
+              <p>U+0590..U+05FF, U+07C0..U+08FF, U+FB1D..U+FB4F, 
+              U+10800..U+10FFF</p>
+              <p>(In 4.0.0, this includes the Hebrew and Cypriot 
+              Syllabary blocks, plus the reserved code points in U+07C0..U+08FF, 
+              U+FB1D..U+FB4F, U+10840..U+10FFF)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>AL</p>
+            </td>
+            <td>
+              <p>U+0600..U+07BF, U+FB50..U+FDCF, U+FDF0..U+FDFF, 
+              U+FE70..U+FEFE</p>
+              <p>(In 4.0.0, this includes the Arabic, Syriac, 
+              Thaana, Arabic Presentation Forms-A, and Arabic Presentation 
+              Forms-B blocks, plus the reserved code points in U+0750..U+077F, 
+              minus the noncharacters U+FDD0..U+FDEF and the BOM U+FEFF)</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>L</p>
+            </td>
+            <td>
+              <p>Otherwise</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Decomposition_Type">Decomposition_Type</a> (None)<br>
+        <a name="Decomposition_Mapping">Decomposition_Mapping</a> (=)</td>
+      <td valign="top" align="center">E<br>
+        S</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(5) This field contains both values, with the type in 
+        angle brackets. The decomposition mappings match exactly the 
+        decomposition mappings published with the character names in the Unicode 
+        Standard. For more information, see <a href="#Character_Decomposition_Mappings">Character 
+        Decomposition Mappings</a>.</td>
+    </tr>
+    <tr>
+      <td valign="top" rowspan="3"><a name="Numeric_Type">Numeric_Type</a> (None)<br>
+        <a name="Numeric_Value">Numeric_Value</a> (Not a Number)</td>
+      <td valign="top" align="center">E<br>
+        N</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(6) If the character has the <i>decimal digit</i> 
+        property, as specified in Chapter 4 of the Unicode Standard, then the 
+        value of that digit is represented with an integer value in fields 6, 7, 
+        and 8.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="center">E<br>
+        N</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(7) If the character has the <i>digit</i> property, but 
+        is not a decimal digit, then the value of that digit is represented with 
+        an integer value in fields 7 and 8. This covers digits that need special 
+        handling, such as the compatibility superscript digits.</td>
+    </tr>
+    <tr>
+      <td valign="top" align="center">E<br>
+        N</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(8) If the character has the <i>numeric</i> property, as 
+        specified in Chapter 4 of the Unicode Standard, the value of that 
+        character is represented with an positive or negative integer or 
+        rational number in this field. This includes fractions as, e.g., 
+        &quot;1/5&quot; for U+2155 VULGAR FRACTION ONE FIFTH.
+        <p>Some characters have these properties based on values from the Unihan 
+        data file. See <a href="#Numeric_Type_Han">Numeric_Type, Han</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Bidi_Mirrored">Bidi_Mirrored</a> (N)</td>
+      <td valign="top" align="center">B</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(9) If the character has been identified as a 
+        &quot;mirrored&quot; character in bidirectional text, this field has the 
+        value &quot;Y&quot;; otherwise &quot;N&quot;. The list of mirrored 
+        characters is also printed in Chapter 4 of the Unicode Standard. <i>Do 
+        not confuse this with the Bidi_Mirroring_Glyph property.</i></td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Unicode_1_Name">Unicode_1_Name</a> (&lt;none&gt;)</td>
+      <td valign="top" align="center">S</td>
+      <td valign="top" align="center">I</td>
+      <td valign="top">(10) This is the old name as published in Unicode 1.0. 
+        This name is only provided when it is significantly different from the 
+        current name for the character. The value of field 10 for control 
+        characters does not always match the Unicode 1.0 names. Instead, field 
+        10 contains ISO 6429 names for control functions, for printing in the 
+        code charts.</td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="ISO_Comment">ISO_Comment</a> (&lt;none&gt;)</td>
+      <td valign="top" align="center">
+        <p>S</p>
+      </td>
+      <td valign="top" align="center">I</td>
+      <td valign="top">(11) This is the ISO 10646 comment field. It appears in 
+        parentheses in the 10646 names list, or contains an asterisk to mark an 
+        Annex P note.</td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Simple_Uppercase_Mapping">Simple_Uppercase_Mapping</a> 
+        (=)</td>
+      <td valign="top" align="center">S</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(12) Simple uppercase mapping (single character result). 
+        If a character is part of an alphabet with case distinctions, and has a 
+        simple upper case equivalent, then the upper case equivalent is in this 
+        field. See the explanation below on case distinctions. The simple 
+        mappings have a single character result, where the full mappings may 
+        have multi-character results. For more information, see <a href="#Case_Mappings">Case 
+        Mappings</a>.
+        <p><i><b>Note: </b>The simple uppercase may be omitted in the data file 
+        if the uppercase is the same as the code point itself</i>.</td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Simple_Lowercase_Mapping">Simple_Lowercase_Mapping</a> 
+        (=)</td>
+      <td valign="top" align="center">S</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">(13) Simple lowercase mapping (single character result). 
+        Similar to Uppercase mapping.
+        <p><i><b>Note: </b>The simple lowercase may be omitted in the data file 
+        if the lowercase is the same as the code point itself</i>.</td>
+    </tr>
+    <tr>
+      <td valign="top"><a name="Simple_Titlecase_Mapping">Simple_Titlecase_Mapping</a> 
+        (=)</td>
+      <td valign="top" align="center">S</td>
+      <td valign="top" align="center">N</td>
+      <td valign="top">Similar to Uppercase mapping (single character result).
+        <p><i><b>Note: </b>The simple titlecase may be omitted in the data file 
+        if the titlecase is the same as the uppercase.</i></td>
+    </tr>
+  </table>
+  <p><b>Notes</b></p>
+  <ol>
+    <li><b><a name="Closure_Note">Closure</a>: </b>XID_Start and XID_Continue 
+      are defined by adding or removing certain special characters as per UAX 
+      #15, Annex 7. They do <i><b>not</b></i> remove the non-NFKD nor the 
+      non-NFKC characters; if that is desired it needs to be a separate filter. 
+      They merely ensure that:</li>
+    <blockquote>
+      <p align="center">if <code>isIdentifer(string)<br>
+      </code>then <code>isIdentifier(NFKC(string))<br>
+      </code>and <code>isIdentifier(NFKD(string))</code></p>
+    </blockquote>
+    <li><b><a name="Cf_Note">Cf</a>: </b>The general category Cf characters are 
+      not included in ID_Continue nor in XID_Continue; they should continue 
+      identifiers, but be filtered out of the result.</li>
+    <blockquote>
+      <p>For more information on identifiers, see <a href="http://www.unicode.org/uni2book/ch05.pdf">Chapter 
+      5, Implementation Guidelines</a>, and UAX #15, Annex&nbsp;7.</p>
+    </blockquote>
+    <li><a name="Stabilized"><b>Stabilized</b></a> properties are those that 
+      have not been found to be particularly useful in practice, and are no 
+      longer actively maintained, nor are they extended as new characters are 
+      added.</li>
+  </ol>
+  <h2><a name="Properties">Properties</a></h2>
+  <p>The following table lists the properties in the UCD. They are roughly 
+  organized into groups based on the usage of the property (this grouping is 
+  purely for convenience, and has no other implications). The link on each 
+  property leads to description in the file index. The contributory properties 
+  (those of the form Other_XXX) are sets of exceptions used to generate 
+  properties in DerivedCoreProperties.txt. They are not intended for general 
+  use, such as in APIs that return property values.</p>
+  <table border="1">
+    <tr>
+      <th width="33%">General</th>
+      <th width="33%">Decomposition and Normalization</th>
+      <th width="33%">CJK</th>
+    </tr>
+    <tr>
+      <td><a href="#Name">Name</a></td>
+      <td><a href="#Canonical_Combining_Class">Canonical_Combining_Class</a></td>
+      <td><a href="#Ideographic">Ideographic</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Block">Block</a></td>
+      <td><a href="#Decomposition_Mapping">Decomposition_Mapping</a></td>
+      <td><a href="#Unified_Ideograph">Unified_Ideograph</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Age">Age</a></td>
+      <td><a href="#Composition_Exclusion">Composition_Exclusion</a></td>
+      <td><a href="#Radical">Radical</a></td>
+    </tr>
+    <tr>
+      <td><a href="#General_Category">General_Category</a></td>
+      <td><a href="#Full_Composition_Exclusion">Full_Composition_Exclusion</a></td>
+      <td><a href="#IDS_Binary_Operator">IDS_Binary_Operator</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Script">Script</a></td>
+      <td><a href="#Decomposition_Type">Decomposition_Type</a></td>
+      <td><a href="#IDS_Trinary_Operator">IDS_Trinary_Operator</a></td>
+    </tr>
+    <tr>
+      <td><a href="#White_Space">White_Space</a></td>
+      <td><a href="#FC_NFKC_Closure">FC_NFKC_Closure</a></td>
+      <td><a href="#Unicode_Radical_Stroke">Unicode_Radical_Stroke</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Alphabetic">Alphabetic</a></td>
+      <td><a href="#NFC_Quick_Check">NFC_Quick_Check</a></td>
+      <th>Misc</th>
+    </tr>
+    <tr>
+      <td><a href="#Hangul_Syllable_Type">Hangul_Syllable_Type</a></td>
+      <td><a href="#NFKC_Quick_Check">NFKC_Quick_Check</a></td>
+      <td><a href="#Math">Math</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Noncharacter_Code_Point">Noncharacter_Code_Point</a></td>
+      <td><a href="#NFD_Quick_Check">NFD_Quick_Check</a></td>
+      <td><a href="#Quotation_Mark">Quotation_Mark</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Default_Ignorable_Code_Point">Default_Ignorable_Code_Point</a></td>
+      <td><a href="#NFKD_Quick_Check">NFKD_Quick_Check</a></td>
+      <td><a href="#Dash">Dash</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Deprecated">Deprecated</a></td>
+      <td><a href="#Expands_On_NFC">Expands_On_NFC</a></td>
+      <td><a href="#Hyphen">Hyphen</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Logical_Order_Exception">Logical_Order_Exception</a></td>
+      <td><a href="#Expands_On_NFD">Expands_On_NFD</a></td>
+      <td><a href="#Terminal_Punctuation">Terminal_Punctuation</a></td>
+    </tr>
+    <tr>
+      <th>Case</th>
+      <td><a href="#Expands_On_NFKC">Expands_On_NFKC</a></td>
+      <td><a href="#Diacritic">Diacritic</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Uppercase">Uppercase</a></td>
+      <td><a href="#Expands_On_NFKD">Expands_On_NFKD</a></td>
+      <td><a href="#Extender">Extender</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Lowercase">Lowercase</a></td>
+      <th>Shaping and Rendering</th>
+      <td><a href="#Grapheme_Base">Grapheme_Base</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Lowercase_Mapping">Lowercase_Mapping</a></td>
+      <td><a href="#Join_Control">Join_Control</a></td>
+      <td><a href="#Grapheme_Extend">Grapheme_Extend</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Titlecase_Mapping">Titlecase_Mapping</a></td>
+      <td><a href="#Joining_Group">Joining_Group</a></td>
+      <td><a href="#Grapheme_Link">Grapheme_Link</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Uppercase_Mapping">Uppercase_Mapping</a></td>
+      <td><a href="#Joining_Type">Joining_Type</a></td>
+      <td><a href="#Unicode_1_Name">Unicode_1_Name</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Case_Folding">Case_Folding</a></td>
+      <td><a href="#Line_Break">Line_Break</a></td>
+      <td><a href="#ISO_Comment">ISO_Comment</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Simple_Lowercase_Mapping">Simple_Lowercase_Mapping</a></td>
+      <td><a href="#East_Asian_Width">East_Asian_Width</a></td>
+      <th><i>Contributory Properties</i></th>
+    </tr>
+    <tr>
+      <td><a href="#Simple_Titlecase_Mapping">Simple_Titlecase_Mapping</a></td>
+      <th>Bidi</th>
+      <td><a href="#Other_Alphabetic">Other_Alphabetic</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Simple_Uppercase_Mapping">Simple_Uppercase_Mapping</a></td>
+      <td><a href="#Bidi_Control">Bidi_Control</a></td>
+      <td><a href="#Other_Default_Ignorable_Code_Point">Other_Default_Ignorable_Code_Point</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Simple_Case_Folding">Simple_Case_Folding</a></td>
+      <td><a href="#Bidi_Mirrored">Bidi_Mirrored</a></td>
+      <td><a href="#Other_Grapheme_Extend">Other_Grapheme_Extend</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Special_Case_Condition">Special_Case_Condition</a></td>
+      <td><a href="#Bidi_Class">Bidi_Class</a></td>
+      <td><a href="#Other_ID_Start">Other_ID_Start</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Soft_Dotted">Soft_Dotted</a></td>
+      <td><a href="#Bidi_Mirroring_Glyph">Bidi_Mirroring_Glyph</a></td>
+      <td><a href="#Other_Lowercase">Other_Lowercase</a></td>
+    </tr>
+    <tr>
+      <th>Identifiers</th>
+      <th>Numeric</th>
+      <td><a href="#Other_Math">Other_Math</a></td>
+    </tr>
+    <tr>
+      <td><a href="#ID_Continue">ID_Continue</a></td>
+      <td><a href="#Numeric_Value">Numeric_Value</a></td>
+      <td><a href="#Other_Uppercase">Other_Uppercase</a></td>
+    </tr>
+    <tr>
+      <td><a href="#ID_Start">ID_Start</a></td>
+      <td><a href="#Numeric_Type">Numeric_Type</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href="#XID_Continue">XID_Continue</a></td>
+      <td><a href="#Hex_Digit">Hex_Digit</a></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><a href="#XID_Start">XID_Start</a></td>
+      <td><a href="#ASCII_Hex_Digit">ASCII_Hex_Digit</a></td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+  <h2><a name="Property_Values">Property Values</a></h2>
+  <p>The following gives a summary of property values for certain properties. 
+  Other property values are documented in other locations; for example, the 
+  Linebreak property values are documented in UAX #14.</p>
+  <h3><a name="General_Category_Values">General Category Values</a></h3>
+  <p>The values in this field are abbreviations for the following values. For 
+  more information, see the Unicode Standard.</p>
+  <blockquote>
+    <p><b>Note:</b> The Unicode Standard does not assign information to control 
+    characters (except for certain cases). Implementations will generally also 
+    assign categories to certain control characters, notably CR and LF, 
+    according to platform conventions. See Section 5.8 &quot;Newline 
+    Guidelines&quot; for more information.</p>
+  </blockquote>
+  <table>
+    <tr>
+      <th>
+        <p align="LEFT">Abbr.</th>
+      <th>
+        <p align="LEFT">Description</th>
+    </tr>
+    <tr>
+      <td align="CENTER">Lu</td>
+      <td>Letter, Uppercase</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Ll</td>
+      <td>Letter, Lowercase</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Lt</td>
+      <td>Letter, Titlecase</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Lm</td>
+      <td>Letter, Modifier</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Lo</td>
+      <td>Letter, Other</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Mn</td>
+      <td>Mark, Non-Spacing</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Mc</td>
+      <td>Mark, Spacing Combining</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Me</td>
+      <td>Mark, Enclosing</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Nd</td>
+      <td>Number, Decimal</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Nl</td>
+      <td>Number, Letter</td>
+    </tr>
+    <tr>
+      <td align="CENTER">No</td>
+      <td>Number, Other</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Pc</td>
+      <td>Punctuation, Connector</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Pd</td>
+      <td>Punctuation, Dash</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Ps</td>
+      <td>Punctuation, Open</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Pe</td>
+      <td>Punctuation, Close</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Pi</td>
+      <td>Punctuation, Initial quote (may behave like Ps or Pe depending on 
+        usage)</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Pf</td>
+      <td>Punctuation, Final quote (may behave like Ps or Pe depending on usage)</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Po</td>
+      <td>Punctuation, Other</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Sm</td>
+      <td>Symbol, Math</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Sc</td>
+      <td>Symbol, Currency</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Sk</td>
+      <td>Symbol, Modifier</td>
+    </tr>
+    <tr>
+      <td align="CENTER">So</td>
+      <td>Symbol, Other</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Zs</td>
+      <td>Separator, Space</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Zl</td>
+      <td>Separator, Line</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Zp</td>
+      <td>Separator, Paragraph</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Cc</td>
+      <td>Other, Control</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Cf</td>
+      <td>Other, Format</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Cs</td>
+      <td>Other, Surrogate</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Co</td>
+      <td>Other, Private Use</td>
+    </tr>
+    <tr>
+      <td align="CENTER">Cn</td>
+      <td>Other, Not Assigned (no characters in the file have this property)</td>
+    </tr>
+  </table>
+  <blockquote>
+    <p><b>Note:</b> The term &quot;L&amp;&quot; is used to stand for Uppercase, 
+    Lowercase or Titlecase letters (Lu, Ll, or Lt) in comments. The LC value in 
+    PropertyValueAliases.txt also stands for Uppercase, Lowercase or Titlecase 
+    letters.</p>
+  </blockquote>
+  <h3><a name="Bidi_Class_Values">Bidi Class Values</a></h3>
+  <p>Please refer to Chapter 3 for an explanation of the algorithm for 
+  Bidirectional Behavior and an explanation of the significance of these 
+  categories. An up-to-date version can be found on UAX #9: The Bidirectional 
+  Algorithm.</p>
+  <table>
+    <tr>
+      <th valign="TOP" align="LEFT">
+        <p align="LEFT">Type</th>
+      <th valign="TOP" align="LEFT">
+        <p align="LEFT">Description</th>
+    </tr>
+    <tr>
+      <td valign="TOP">L</td>
+      <td valign="TOP">Left-to-Right</td>
+    </tr>
+    <tr>
+      <td valign="TOP">LRE</td>
+      <td valign="TOP">Left-to-Right Embedding</td>
+    </tr>
+    <tr>
+      <td valign="TOP">LRO</td>
+      <td valign="TOP">Left-to-Right Override</td>
+    </tr>
+    <tr>
+      <td valign="TOP">R</td>
+      <td valign="TOP">Right-to-Left</td>
+    </tr>
+    <tr>
+      <td valign="TOP">AL</td>
+      <td valign="TOP">Right-to-Left Arabic</td>
+    </tr>
+    <tr>
+      <td valign="TOP">RLE</td>
+      <td valign="TOP">Right-to-Left Embedding</td>
+    </tr>
+    <tr>
+      <td valign="TOP">RLO</td>
+      <td valign="TOP">Right-to-Left Override</td>
+    </tr>
+    <tr>
+      <td valign="TOP">PDF</td>
+      <td valign="TOP">Pop Directional Format</td>
+    </tr>
+    <tr>
+      <td valign="TOP">EN</td>
+      <td valign="TOP">European Number</td>
+    </tr>
+    <tr>
+      <td valign="TOP">ES</td>
+      <td valign="TOP">European Number Separator</td>
+    </tr>
+    <tr>
+      <td valign="TOP">ET</td>
+      <td valign="TOP">European Number Terminator</td>
+    </tr>
+    <tr>
+      <td valign="TOP">AN</td>
+      <td valign="TOP">Arabic Number</td>
+    </tr>
+    <tr>
+      <td valign="TOP">CS</td>
+      <td valign="TOP">Common Number Separator</td>
+    </tr>
+    <tr>
+      <td valign="TOP">NSM</td>
+      <td valign="TOP">Non-Spacing Mark</td>
+    </tr>
+    <tr>
+      <td valign="TOP">BN</td>
+      <td valign="TOP">Boundary Neutral</td>
+    </tr>
+    <tr>
+      <td valign="TOP">B</td>
+      <td valign="TOP">Paragraph Separator</td>
+    </tr>
+    <tr>
+      <td valign="TOP">S</td>
+      <td valign="TOP">Segment Separator</td>
+    </tr>
+    <tr>
+      <td valign="TOP">WS</td>
+      <td valign="TOP">Whitespace</td>
+    </tr>
+    <tr>
+      <td valign="TOP">ON</td>
+      <td valign="TOP">Other Neutrals</td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <h3><a name="Character_Decomposition_Mappings">Character Decomposition Mapping</a></h3>
+  <p>The tags supplied with certain decomposition mappings generally indicate 
+  formatting information. Where no such tag is given, the mapping is canonical. 
+  Conversely, the presence of a formatting tag also indicates that the mapping 
+  is a compatibility mapping and not a canonical mapping. In the absence of 
+  other formatting information in a compatibility mapping, the tag is used to 
+  distinguish it from canonical mappings.</p>
+  <p>In some instances a canonical mapping or a compatibility mapping may 
+  consist of a single character. For a canonical mapping, this indicates that 
+  the character is a canonical equivalent of another single character. For a 
+  compatibility mapping, this indicates that the character is a compatibility 
+  equivalent of another single character. The compatibility formatting tags used 
+  are:</p>
+  <table>
+    <tr>
+      <th>Tag</th>
+      <th>
+        <p align="LEFT">Description</th>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;font&gt;&nbsp;&nbsp;</td>
+      <td>A font variant (e.g. a blackletter form).</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;noBreak&gt;&nbsp;&nbsp;</td>
+      <td>A no-break version of a space or hyphen.</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;initial&gt;&nbsp;&nbsp;</td>
+      <td>An initial presentation form (Arabic).</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;medial&gt;&nbsp;&nbsp;</td>
+      <td>A medial presentation form (Arabic).</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;final&gt;&nbsp;&nbsp;</td>
+      <td>A final presentation form (Arabic).</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;isolated&gt;&nbsp;&nbsp;</td>
+      <td>An isolated presentation form (Arabic).</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;circle&gt;&nbsp;&nbsp;</td>
+      <td>An encircled form.</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;super&gt;&nbsp;&nbsp;</td>
+      <td>A superscript form.</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;sub&gt;&nbsp;&nbsp;</td>
+      <td>A subscript form.</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;vertical&gt;&nbsp;&nbsp;</td>
+      <td>A vertical layout presentation form.</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;wide&gt;&nbsp;&nbsp;</td>
+      <td>A wide (or zenkaku) compatibility character.</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;narrow&gt;&nbsp;&nbsp;</td>
+      <td>A narrow (or hankaku) compatibility character.</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;small&gt;&nbsp;&nbsp;</td>
+      <td>A small variant form (CNS compatibility).</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;square&gt;&nbsp;&nbsp;</td>
+      <td>A CJK squared font variant.</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;fraction&gt;&nbsp;&nbsp;</td>
+      <td>A vulgar fraction form.</td>
+    </tr>
+    <tr>
+      <td align="CENTER">&lt;compat&gt;&nbsp;&nbsp;</td>
+      <td>Otherwise unspecified compatibility character.</td>
+    </tr>
+  </table>
+  <p><b>Reminder: </b>There is a difference between decomposition and 
+  decomposition mapping. The decomposition mappings are defined in the 
+  UnicodeData, while the decomposition (also termed &quot;full 
+  decomposition&quot;) is defined in Chapter 3 to use those mappings <i>recursively.</i></p>
+  <ul>
+    <li>The canonical decomposition is formed by recursively applying the 
+      canonical mappings, then applying the canonical reordering algorithm.</li>
+    <li>The compatibility decomposition is formed by recursively applying the 
+      canonical <em>and</em> compatibility mappings, then applying the canonical 
+      reordering algorithm.</li>
+  </ul>
+  <h3><a name="Canonical_Combining_Class_Values">Canonical Combining Class 
+  Values</a></h3>
+  <table>
+    <tr>
+      <th>
+        <p align="LEFT">Value</th>
+      <th>
+        <p align="LEFT">Description</th>
+    </tr>
+    <tr>
+      <td align="RIGHT">0:</td>
+      <td>Spacing, split, enclosing, reordrant, and Tibetan subjoined</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">1:</td>
+      <td>Overlays and interior</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">7:</td>
+      <td>Nuktas</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">8:</td>
+      <td>Hiragana/Katakana voicing marks</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">9:</td>
+      <td>Viramas</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">10:</td>
+      <td>Start of fixed position classes</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">199:</td>
+      <td>End of fixed position classes</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">200:</td>
+      <td>Below left attached</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">202:</td>
+      <td>Below attached</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">204:</td>
+      <td>Below right attached</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">208:</td>
+      <td>Left attached (reordrant around single base character)</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">210:</td>
+      <td>Right attached</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">212:</td>
+      <td>Above left attached</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">214:</td>
+      <td>Above attached</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">216:</td>
+      <td>Above right attached</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">218:</td>
+      <td>Below left</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">220:</td>
+      <td>Below</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">222:</td>
+      <td>Below right</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">224:</td>
+      <td>Left (reordrant around single base character)</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">226:</td>
+      <td>Right</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">228:</td>
+      <td>Above left</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">230:</td>
+      <td>Above</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">232:</td>
+      <td>Above right</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">233:</td>
+      <td>Double below</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">234:</td>
+      <td>Double above</td>
+    </tr>
+    <tr>
+      <td align="RIGHT">240:</td>
+      <td>Below (iota subscript)</td>
+    </tr>
+  </table>
+  <blockquote>
+    <p><strong>Note: </strong>some of the combining classes in this list do not 
+    currently have members but are specified here for completeness.</p>
+  </blockquote>
+  <h3><a name="Decompositions_and_Normalization">Decompositions and 
+  Normalization</a></h3>
+  <p>Decomposition is specified in Chapter 3. <i>UAX #15: Unicode Normalization 
+  Forms</i> specifies the interaction between decomposition and normalization. 
+  That report specifies how the decompositions defined in UnicodeData.txt are 
+  used to derive normalized forms of Unicode text.</p>
+  <p>Note that as of the 2.1.9 update of the Unicode Character Database, the 
+  decompositions in the UnicodeData.txt file can be used to <i>recursively</i> 
+  derive the full decomposition in canonical order, without the need to 
+  separately apply canonical reordering. However, canonical reordering of 
+  combining character sequences <b><i>must</i></b> still be applied in 
+  decomposition when normalizing source text which contains any combining marks.</p>
+  <p>The QuickCheck property values are as follows:</p>
+  <div style="spacing:20">
+    <table>
+      <tr>
+        <th>Value</th>
+        <th>File Text</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>No</td>
+        <td>NF*_No</td>
+        <td>Characters that cannot ever occur in the respective normalization 
+          form. See <a href="#Decompositions_and_Normalization">Decompositions 
+          and Normalization</a>.</td>
+      </tr>
+      <tr>
+        <td>Maybe</td>
+        <td>NF*_Maybe</td>
+        <td>Characters that may occur in in the respective normalization, 
+          depending on the context. See <a href="#Decompositions_and_Normalization">QuickCheck 
+          Note</a>.</td>
+      </tr>
+      <tr>
+        <td>Yes</td>
+        <td>n/a</td>
+        <td>All other characters. This is the default value, and is not 
+          explicitly listed in the file.</td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  For more information, see UAX #15 Annex&nbsp;8.</p>
+  <h3><a name="Case_Mappings">Case Mappings</a></h3>
+  <p>There are a number of complications to case mappings that occur once the 
+  repertoire of characters is expanded beyond ASCII. For more information, see 
+  Chapter 3 in Unicode 4.0.</p>
+  <p>For compatibility with existing parsers, UnicodeData.txt only contains case 
+  mappings for characters where they are one-to-one mappings; it also omits 
+  information about context-sensitive case mappings. Information about these 
+  special cases can be found in a separate data file, SpecialCasing.txt.</p>
+  <h2><a name="Unihan_Tags">Unihan Tags</a></h2>
+  <p>The following is a summary of the data tags in the <a href="#Unihan.txt">Unihan.txt</a> 
+  file. Only a few of these correspond to Unicode normative or informative 
+  properties: the rest are provisional. For more information on the meaning of 
+  these tags, see the header of the data file.</p>
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Property Name</th>
+      <th>Description from Unihan (abbreviated)</th>
+    </tr>
+    <tr>
+      <th align="left">Numeric</th>
+      <td><a name="kAccountingNumeric">kAccountingNumeric</a></td>
+      <td>The value of the character when used in the writing of accounting 
+        numerals.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td><a name="kOtherNumeric">kOtherNumeric</a></td>
+      <td>The numeric value for the character in certain unusual, specialized 
+        contexts.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td><a name="kPrimaryNumeric">kPrimaryNumeric</a></td>
+      <td>The value of the character when used in the writing of numbers in the 
+        standard fashion.</td>
+    </tr>
+    <tr>
+      <th align="left">Variants
+      <td>kSemanticVariant</td>
+      <td>The Unicode value for a semantic variant for this character. A 
+        semantic variant is an x- or y-variant with similar or identical meaning 
+        which can generally be used in place of the indicated character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kSimplifiedVariant</td>
+      <td>The Unicode value for the simplified Chinese variant for this 
+        character (if any).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kSpecializedSemanticVariant</td>
+      <td>The Unicode value for a specialized semantic variant for this 
+        character. A specialized semantic variant is an x- or y-variant with 
+        similar or identical meaning only in certain contexts (such as 
+        accountants' numerals).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kTraditionalVariant</td>
+      <td>The Unicode value(s) for the traditional Chinese variant(s) for this 
+        character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kZVariant</td>
+      <td>The Unicode value(s) for known z-variants of this character.</td>
+    <tr>
+      <th align="left">Radical/Stroke
+      <td><a name="kRSUnicode">kRSUnicode</a></td>
+      <td>A standard radical/stroke count for this character in the form 
+        &quot;radical.additional strokes&quot;. A ' after the radical indicates 
+        the simplified version of the given radical.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kRSJapanese</td>
+      <td>A Japanese radical/stroke count for this character in the form 
+        &quot;radical.additional strokes&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kRSKanWa</td>
+      <td>A Morohashi radical/stroke count for this character in the form 
+        &quot;radical.additional strokes&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kRSKangXi</td>
+      <td>A KangXi radical/stroke count for this character in the form 
+        &quot;radical.additional strokes&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kRSKorean</td>
+      <td>A Korean radical/stroke count for this character in the form 
+        &quot;radical.additional strokes&quot;. A ' after the radical indicates 
+        the simplified version of the given radical.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kTotalStrokes</td>
+      <td>The total number of strokes in the character (including the radical).</td>
+    </tr>
+    <tr>
+      <th align="left">Pronunciations
+      <td>kCantonese</td>
+      <td>The Cantonese pronunciation(s) for this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kJapaneseKun</td>
+      <td>The Japanese pronunciation(s) of this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kJapaneseOn</td>
+      <td>The Sino-Japanese pronunciation(s) of this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kKorean</td>
+      <td>The Korean pronunciation(s) of this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kMandarin</td>
+      <td>The Mandarin pronunciation(s) for this character in pinyin.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kTang*</td>
+      <td>The Tang dynasty pronunciation(s) of this character, derived from 
+        _T'ang Poetic Vocabulary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kVietnamese</td>
+      <td>The character's pronunciation(s) in Quốc ngữ</td>
+    </tr>
+    <tr>
+      <th align="left">Definition
+      <td>kDefinition</td>
+      <td>An English definition for this character.</td>
+    </tr>
+    <tr>
+      <th align="left">Frequency
+      <td>kFrequency</td>
+      <td>A rough frequency measurement for the character based on analysis of 
+        Chinese USENET postings.</td>
+    </tr>
+    <tr>
+      <th align="left">Grade
+      <td>kGradeLevel*</td>
+      <td>The grade in the Hong Kong school system by which a student is 
+        expected to know the character.</td>
+    </tr>
+    <tr>
+      <th align="left">Dictionary Position</th>
+      <td>kAlternateKangXi</td>
+      <td>An alternate possible position for the character in the KangXi 
+        dictionary.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kAlternateMorohashi</td>
+      <td>An alternate possible position for the character in the Morohashi 
+        dictionary.</td>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kCihaiT*
+      <td>The position of this character in the Cihai (辭海) dictionary, 
+        single volume edition, published in Hong Kong by the Zhonghua Bookstore, 
+        1983 (reprint of the 1947 edition), ISBN 962-231-005-2.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kCowles*</td>
+      <td>The index of this character in Roy T. Cowles, _A Pocket Dictionary of 
+        Cantonese_, Hong Kong: University Press, 1999.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kDaeJaweon</td>
+      <td>The position of this character in the Dae Jaweon (Korean) dictionary 
+        used in the four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kFenn*</td>
+      <td>Data on the character from _Fenn's Chinese-English Pocket Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kHanYu</td>
+      <td>The position of this character in the Hanyu Da Zidian (HDZ) Chinese 
+        character dictionary (bibliographic information below).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kHKGlyph*</td>
+      <td>The index of the character in 常用字字形表 (二零零零年修訂本), 
+        香港: 香港教育學院, 2000, ISBN 962-949-040-4. This publication 
+        gives the &quot;proper&quot; shapes for characters as used in the Hong 
+        Kong school system.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRGDaeJaweon</td>
+      <td>The position of this character in the Dae Jaweon (Korean) dictionary 
+        used in the four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRGDaiKanwaZiten</td>
+      <td>The index of this character in the Dae Kanwa Ziten, aka Morohashi 
+        dictionary (Japanese) used in the four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRGHanyuDaZidian</td>
+      <td>The position of this character in the Hanyu Da Zidian (PRC) dictionary 
+        used in the four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRGKangXi</td>
+      <td>The position of this character in the KangXi dictionary used in the 
+        four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kKangXi</td>
+      <td>The position of this character in the KangXi dictionary used in the 
+        four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kKarlgren*</td>
+      <td>The index of this character in _Analytic Dictionary of Chinese and 
+        Sino-Japanese_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kLau*</td>
+      <td>The index of this character in _A Practical Cantonese-English 
+        Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kMatthews</td>
+      <td>The index of this character in _Mathews' Chinese-English Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kMeyerWempe*</td>
+      <td>The index of this character in the Student's Cantonese-English 
+        Dictionary.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kMorohashi</td>
+      <td>The index of this character in the Dae Kanwa Ziten, aka Morohashi 
+        dictionary (Japanese) used in the four-dictionary sorting algorithm.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kNelson</td>
+      <td>The index of this character in _The Modern Reader's Japanese-English 
+        Character Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kPhonetic*</td>
+      <td>The phonetic index for the character from _Ten Thousand Characters: An 
+        Analytic Dictionary_.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kSBGY</td>
+      <td>The position of this character in the Song Ben Guang Yun (SBGY) 
+        Medieval Chinese character dictionary (bibliographic and general 
+        information below).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kCangjie*</td>
+      <td>The cangjie input code for the character. This incorporates data from 
+        the file cangjie-table.b5 by Christian Wittern.</td>
+    </tr>
+    <tr>
+      <th align="left">Character Mapping
+      <td>kBigFive</td>
+      <td>The Big Five mapping for this character in hex; note that this does 
+        *not* cover any of the Big Five extensions in common use, including the 
+        ETEN extensions.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kCCCII</td>
+      <td>The CCCII mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kCNS1986</td>
+      <td>The CNS 11643-1986 mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kCNS1992</td>
+      <td>The CNS 11643-1992 mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kEACC</td>
+      <td>The EACC mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kGB0</td>
+      <td>The GB 2312-80 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kGB1</td>
+      <td>The GB 12345-90 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kGB3</td>
+      <td>The GB 7589-87 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kGB5</td>
+      <td>The GB 7590-87 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kGB7</td>
+      <td>The &quot;General Use Characters for Modern Chinese&quot; mapping for 
+        this character.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kGB8</td>
+      <td>The GB 8565-89 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kHKSCS</td>
+      <td>Mappings to the Big Five extended code points used for the Hong Kong 
+        Supplementary Character Set.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIBMJapan</td>
+      <td>The IBM Japanese mapping for this character in hex.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRG_GSource</td>
+      <td>The IRG &quot;G&quot; source mapping for this character in hex. The 
+        IRG &quot;G&quot; source consists of data from the following national 
+        standards, publications, and lists from the People's Republic of China 
+        and Singapore.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRG_HSource</td>
+      <td>The IRG &quot;H&quot; source mapping for this character in hex. The 
+        IRG &quot;H&quot; source consists of data from the Hong Kong 
+        Supplementary Character Set.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRG_JSource</td>
+      <td>The IRG &quot;J&quot; source mapping for this character in hex. The 
+        IRG &quot;J&quot; source consists of data from the following national 
+        standards and lists from Japan.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRG_KSource</td>
+      <td>The IRG &quot;K&quot; source mapping for this character in hex. The 
+        IRG &quot;K&quot; source consists of data from the following national 
+        standards and lists from the Republic of Korea (South Korea).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRG_KPSource</td>
+      <td>The IRG &quot;KP&quot; source mapping for this character in hex. The 
+        IRG &quot;KP&quot; source consists of data from the following national 
+        standards and lists from the Democratic People's Republic of Korea 
+        (North Korea).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRG_TSource</td>
+      <td>The IRG &quot;T&quot; source mapping for this character in hex. The 
+        IRG &quot;T&quot; source consists of data from the following national 
+        standards and lists from the Republic of China (Taiwan).</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kIRG_VSource</td>
+      <td>The IRG &quot;V&quot; source mapping for this character in hex. The 
+        IRG &quot;V&quot; source consists of data from the following national 
+        standards and lists from Vietnam.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kJIS0213</td>
+      <td>The JIS X 0213-2000 mapping for this character in min,ku,ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kJis0</td>
+      <td>The JIS X 0208-1990 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kJis1</td>
+      <td>The JIS X 0212-1990 mapping for this character in ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kKPS0</td>
+      <td>The KP 9566-97 mapping for this character in hexadecimal form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kKPS1</td>
+      <td>The KPS 10721-2000 mapping for this character in hexadecimal form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kKSC0</td>
+      <td>The KS X 1001:1992 (KS C 5601-1989) mapping for this character in 
+        ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kKSC1</td>
+      <td>The KS X 1002:1991 (KS C 5657-1991) mapping for this character in 
+        ku/ten form.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kMainlandTelegraph</td>
+      <td>The PRC telegraph code for this character, derived from &quot;Kanzi 
+        denpou koudo henkan-hyou&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kPseudoGB1</td>
+      <td>A &quot;GB 12345-90&quot; code point assigned this character for the 
+        purposes of including it within Unihan.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kTaiwanTelegraph</td>
+      <td>The Taiwanese telegraph code for this character, derived from 
+        &quot;Kanzi denpou koudo henkan-hyou&quot;.</td>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;
+      <td>kXerox</td>
+      <td>The Xerox code for this character.</td>
+    </tr>
+    <tr>
+      <th align="left">Redundant
+      <td>kCompatibilityVariant*</td>
+      <td>The compatibility decomposition for this ideograph, derived from the 
+        UnicodeData.txt file.</td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <h2>Other <a name="UCD_Files">UCD Files</a></h2>
+  <p>The following files in the Unicode Character Database are not used directly 
+  for Unicode properties. &nbsp;For more information about these files, see the 
+  referenced technical report(s), files, or section of Unicode Standard.</p>
+  <table>
+    <tr>
+      <th>&quot;.txt&quot; File</th>
+      <th>Description</th>
+      <th align="center">N/I</th>
+      <th>Summary</th>
+    </tr>
+    <tr>
+      <td>Index</td>
+      <td>Chapter 16</td>
+      <td align="center">I</td>
+      <td>Index to Unicode characters, as printed in the Unicode Standard.</td>
+    </tr>
+    <tr>
+      <td>NamesList</td>
+      <td>Chapter 16</td>
+      <td align="center">I</td>
+      <td>This file duplicates some of the material in the UnicodeData file, and 
+        adds annotations used in the character charts.</td>
+    </tr>
+    <tr>
+      <td>NormalizationTest</td>
+      <td>UAX #15</td>
+      <td align="center">N</td>
+      <td>Test file for conformance to Unicode Normalization Forms.</td>
+    </tr>
+    <tr>
+      <td>StandardizedVariants</td>
+      <td>Chapter 15</td>
+      <td align="center">N</td>
+      <td>Lists all the standardized variant sequences that have been defined, 
+        plus a description of the desired appearance. StandardizedVariants.html 
+        contains this information, plus a sample glyph showing the desired 
+        features.</td>
+    </tr>
+  </table>
+  <h2><br>
+  <a name="Derived_Extracted_Properties">Derived Extracted Properties</a></h2>
+  <p>The following files contain other properties of the UCD that are simply 
+  separated out, and listed in range format. These files are provided purely as 
+  a reformatting of existing data, with a certain exceptions listed below. They 
+  are all contained in a subdirectory called <i>extracted.</i></p>
+  <table>
+    <tr>
+      <th>Files</th>
+      <th valign="top">N/I</th>
+      <th>Definition and Generation</th>
+    </tr>
+    <tr>
+      <td valign="top">DerivedBidiClass*</td>
+      <td align="center" valign="top">N</td>
+      <td>From UnicodeData.txt, field 4</td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedBinaryProperties*</td>
+      <td align="center" valign="top">N</td>
+      <td>From UnicodeData.txt, field 9. See <a href="#Bidi_Note">Bidi Note</a>.</td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedCombiningClass*</td>
+      <td align="center" valign="top">N</td>
+      <td>From UnicodeData.txt, field 3</td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedDecompositionType*</td>
+      <td align="center" valign="top">*</td>
+      <td>From the &lt;tag&gt; in UnicodeData.txt, field 5. For characters with 
+        canonical decomposition mappings (no tag), the value 
+        &quot;canonical&quot; is used.
+        <p>* The value &quot;canonical&quot; is normative; the others are 
+        informative.</td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedEastAsianWidth*</td>
+      <td align="center" valign="top">I</td>
+      <td>From EastAsianWidth.txt, field 1</td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedGeneralCategory*</td>
+      <td align="center" valign="top">N</td>
+      <td>From UnicodeData.txt, field 2</td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedJoiningGroup*</td>
+      <td align="center" valign="top">N</td>
+      <td>From ArabicShaping.txt, field 2</td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedJoiningType*</td>
+      <td align="center" valign="top">N</td>
+      <td>From ArabicShaping.txt, field 1</td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedLineBreak*</td>
+      <td align="center" valign="top">*</td>
+      <td>From LineBreak.txt, field 1.
+        <p>* Some values are normative; some are informative. See UAX #11: Line 
+        Break Property for more information.</td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedNumericType*</td>
+      <td align="center" valign="top">N</td>
+      <td>The property value is based on the contents of UnicodeData.txt, fields 
+        6 through&nbsp;8:<br>
+        &nbsp;
+        <div align="center">
+          <center>
+          <table>
+            <tr>
+              <th width="50%">property value</th>
+              <th width="50%">non-empty fields</th>
+            </tr>
+            <tr>
+              <td width="50%">decimal</td>
+              <td width="50%">6, 7, &amp; 8</td>
+            </tr>
+            <tr>
+              <td width="50%">digit</td>
+              <td width="50%">7 &amp; 8</td>
+            </tr>
+            <tr>
+              <td width="50%">numeric</td>
+              <td width="50%">8</td>
+            </tr>
+          </table>
+          </center>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">DerivedNumericValues*</td>
+      <td align="center" valign="top">N</td>
+      <td><i><b>Non-binary Property</b></i>
+        <p>From UnicodeData.txt, field 8</td>
+    </tr>
+  </table>
+  <blockquote>
+    <p><b><a name="Bidi_Note">Bidi Note</a>:</b> The BidiMirrored property and 
+    the BidiMirroring property are different. The former is a normative property 
+    that indicates whether characters are mirrored in a right-to-left context in 
+    the Unicode Bidirectional Algorithm. The latter is an informative mapping of 
+    BidiMirrored characters, where possible, to characters that normally have 
+    the corresponding mirrored glyph.</p>
+  </blockquote>
+  <h2><a name="Property_Invariants">Property Invariants</a></h2>
+  <p>Values in the UCD are subject to correction as errors are found; however, 
+  some characteristics of the properties and files are considered invariants. 
+  Applications may wish to take these invariants into account when choosing how 
+  to implement character properties. The most important invariants are described 
+  in <a href="http://www.unicode.org/policies/policies.html">Unicode Policies</a>. 
+  The following lists some additional invariants and more detail on some of the 
+  invariants in Unicode Policies.</p>
+  <h4>UnicodeData Fields</h4>
+  <ul>
+    <li>The number of fields in UnicodeData.txt is fixed.
+      <ul>
+        <li>Any additional information about character properties to be added in 
+          the future will appear in separate data files, rather than being added 
+          as an additional field or by subdivision or reinterpretation of 
+          existing fields.</li>
+      </ul>
+    </li>
+    <li>The order of the fields is also fixed.</li>
+  </ul>
+  <h4>Combining Classes</h4>
+  <ul>
+    <li>Combining classes are limited to the values 0 to 255.
+      <ul>
+        <li>In practice, there are far fewer than 256 values used. 
+          Implementations may take advantage of this fact for compression, since 
+          only the ordering of the non-zero values matters for the Canonical 
+          Reordering Algorithm. It is possible for up to 256 values to be used 
+          in the future; however, UTC decisions in the future may restrict the 
+          number of values to 128, since this has implementation advantages. 
+          [Signed bytes can be used without widening to ints in Java, for 
+          example.]</li>
+      </ul>
+    </li>
+    <li>All characters other than those of General Category M* have the 
+      combining class 0.
+      <ul>
+        <li>Currently, all characters other than those of General Category Mn 
+          have the value 0. However, some characters of General Category Me or 
+          Mc may be given non-zero values in the future.</li>
+        <li>The precise values above the value 0 are not invariant--only the 
+          relative ordering of values is considered fixed. For example, it is 
+          not guaranteed in future versions that the class of U+05B4 will be 
+          precisely 14.</li>
+      </ul>
+    </li>
+  </ul>
+  <h4>Decimal Digits</h4>
+  <ul>
+    <li>In Unicode 4.0 and thereafter, the General_Category value <i>Decimal_Number</i> 
+      (Nd), and the Numeric_Type value <i>Decimal</i> (de) are defined to be 
+      co-extensive, that is, the set of character having <i>Nd</i> will always 
+      be the same as the set of characters having <i>de</i>.</li>
+  </ul>
+  <h2><a name="References">References</a></h2>
+  <table class="noborder" style="border-collapse: collapse" cellpadding="4" cellspacing="0">
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="FAQ">FAQ</a>]</td>
+      <td valign="top" class="noborder">Unicode Frequently Asked Questions<br>
+        <a href="http://www.unicode.org/faq/">http://www.unicode.org/faq/<br>
+        </a><i>For answers to common questions on technical issues.</i></td>
+    </tr>
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="Glossary">Glossary</a>]</td>
+      <td valign="top" class="noborder">Unicode Glossary<a href="http://www.unicode.org/glossary/"><br>
+        http://www.unicode.org/glossary/<br>
+        </a><i>For explanations of terminology used in this and other documents.</i></td>
+    </tr>
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="Reports">Reports</a>]</td>
+      <td valign="top" class="noborder">Unicode Technical Reports<br>
+        <a href="http://www.unicode.org/reports/">http://www.unicode.org/reports/<br>
+        </a><i>For information on the status and development process for 
+        technical reports, and for a list of technical reports.</i></td>
+    </tr>
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="U4.0">U4.0</a>]</td>
+      <td valign="top" class="noborder">The Unicode Standard Version 4.0</td>
+    </tr>
+    <tr>
+      <td valign="top" width="1" class="noborder">[<a name="Versions">Versions</a>]</td>
+      <td valign="top" class="noborder">Versions of the Unicode Standard<br>
+        <a href="http://www.unicode.org/versions/">http://www.unicode.org/versions/<br>
+        </a><i>For details on the precise contents of each version of the 
+        Unicode Standard, and how to cite them.</i></td>
+    </tr>
+  </table>
+  <h2><br>
+  <a name="Modification_History">Modification History</a></h2>
+  <p>This section provides a summary of the changes between update versions of 
+  the Unicode Standard. The modifications prior to Unicode 4.0 only listed 
+  changes in UnicodeData.txt. From 4.0 onward, the consolidated modifications 
+  include the changes in other files.</p>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_4_0_0">Unicode 
+  4.0</a></h3>
+  <ul>
+    <li><b>UnicodeData.txt</b>
+      <ul>
+        <li>Decimal Digits
+          <ul>
+            <li>Numeric_Type=decimal digit now aligned with General_Category=Nd</li>
+          </ul>
+        </li>
+        <li>Modifier letters*
+          <ul>
+            <li>The general category of 02B9..02BA, 02C6..02CF changed to 
+              general category Lm.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><b>Other Files</b>
+      <ul>
+        <li>New Properties and Values
+          <ul>
+            <li>Hangul_Syllable_Type, Unicode_Radical_Stroke</li>
+            <li>CJK numeric values added.</li>
+            <li>PropertyValueAliases adds block names</li>
+            <li>UCD fallback props more precisely defined, for code points not 
+              explicitly in data files</li>
+            <li>Added script value for Braille</li>
+            <li>New Linebreak properties: NL, WJ</li>
+          </ul>
+        </li>
+        <li>Khmer
+          <ul>
+            <li>Two Khmer characters are deprecated; four others strongly 
+              discouraged.</li>
+          </ul>
+        </li>
+        <li>Special Casing
+          <ul>
+            <li>Fixed for Turkish, Lithuanian</li>
+          </ul>
+        </li>
+        <li>Default Ignorables
+          <ul>
+            <li>Hangul Filler characters</li>
+            <li>Soft-Hyphen, CGJ, ZWS</li>
+            <li>Arabic End of Ayah and Syriac Abbreviation Mark no longer DI 
+              (their shaping classes are also fixed.)</li>
+          </ul>
+        </li>
+        <li>Grapheme_Extend
+          <ul>
+            <li>Removes halfwidth katakana marks, most Mc (except as needed for 
+              canonical equivalence)</li>
+          </ul>
+        </li>
+        <li><a href="#Stabilized">Stabilized</a> Properties
+          <ul>
+            <li>The <a href="#Hyphen">Hyphen</a> property is now stabilized.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_3_2_0">Unicode 
+  3.2</a></h3>
+  <p>Modifications made for Version 3.2.0 of UnicodeData.txt include:</p>
+  <blockquote>
+    <ul>
+      <li>Addition of 1016 new entries, to cover new characters encoded in 
+        Unicode 3.2.</li>
+      <li>Updated ISO 6429 names for control functions to match the currently 
+        published version of that standard.</li>
+      <li>Changed general category for Mongolian free variation selectors 
+        (U+180B..U+180D) from Cf to Mn.</li>
+      <li>Changed general category for U+0B83 TAMIL SIGN VISARGA (aytham) from 
+        Mc to Lo.</li>
+      <li>Changed general category for U+06DD ARABIC END OF AYAH from Me to Cf.</li>
+      <li>Changed general category for U+17D7 KHMER SIGN LEK TOO from Po to Lm.</li>
+      <li>Changed general category for U+17DC KHMER SIGN AVAKRAHASANYA from Po 
+        to Lo.</li>
+      <li>Changed canonical decomposition for U+F951 from 96FB to 964B (see <i><a href="http://www.unicode.org/versions/corrigendum3.html">Corrigendum 
+        #3: U+F951 Normalization</a></i>).</li>
+    </ul>
+  </blockquote>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_3_1_1">Unicode 
+  3.1.1</a></h3>
+  <p>Modifications made for Version 3.1.1 of UnicodeData.txt include:</p>
+  <ul>
+    <li>Modification of ISO 10646 annotation regarding Greek tonos, affecting 
+      entries for U+0301 and U+030D.</li>
+  </ul>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_3_1_0">Unicode 
+  3.1</a></h3>
+  <p>Modifications made for Version 3.1.0 of UnicodeData.txt include:</p>
+  <ul>
+    <li>Addition of 2237 new entries, to cover new characters and new ranges of 
+      unified Han characters encoded in Unicode 3.1.</li>
+    <li>Changed General Category value of 16EE..16F0 (Runic golden numbers) from 
+      No to Nl.</li>
+  </ul>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_3_0_1">Unicode 
+  3.0.1</a></h3>
+  <p>Modifications made for Version 3.0.1 of UnicodeData.txt include:</p>
+  <ul>
+    <li>Added 5- and 6-digit representation of code points past U+FFFF.</li>
+    <li>Added Private Use range definitions for Planes 15 and 16.</li>
+    <li>Minor additions for the 10646 comment field.</li>
+  </ul>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_3_0_0">Unicode 
+  3.0.0</a></h3>
+  <p>Modifications made for Version 3.0.0 of UnicodeData.txt include many new 
+  characters and a number of property changes. These are summarized in Appendix 
+  D of <em>The Unicode Standard, Version 3.0.</em></p>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_2_1_9">Unicode 
+  2.1.9</a></h3>
+  <p>Modifications made for Version 2.1.9 of UnicodeData.txt include:</p>
+  <ul>
+    <li>Corrected combining class for U+05AE HEBREW ACCENT ZINOR.</li>
+    <li>Corrected combining class for U+20E1 COMBINING LEFT RIGHT ARROW ABOVE</li>
+    <li>Corrected combining class for U+0F35 and U+0F37 to 220.</li>
+    <li>Corrected combining class for U+0F71 to 129.</li>
+    <li>Added a decomposition for U+0F0C TIBETAN MARK DELIMITER TSHEG BSTAR.</li>
+    <li>Added&nbsp; decompositions for several Greek symbol letters: 
+      U+03D0..U+03D2, U+03D5, U+03D6, U+03F0..U+03F2.</li>
+    <li>Removed&nbsp; decompositions from the conjoining jamo block: 
+      U+1100..U+11F8.</li>
+    <li>Changes to decomposition mappings for some Tibetan vowels for 
+      consistency in normalization. (U+0F71, U+0F73, U+0F77, U+0F79, U+0F81)</li>
+    <li>Updated the decomposition mappings for several Vietnamese characters 
+      with two diacritics (U+1EAC, U+1EAD, U+1EB6, U+1EB7, U+1EC6, U+1EC7, 
+      U+1ED8, U+1ED9), so that the recursive decomposition can be generated 
+      directly in canonically reordered form (not a normative change).</li>
+    <li>Updated the decomposition mappings for several Arabic compatibility 
+      characters involving shadda (U+FC5E..U+FC62, U+FCF2..U+FCF4), and two 
+      Latin characters (U+1E1C, U+1E1D), so that the decompositions are 
+      generated directly in canonically reordered form (not a normative change).</li>
+    <li>Changed BIDI category for: U+00A0 NO-BREAK SPACE, U+2007 FIGURE SPACE, 
+      U+2028 LINE SEPARATOR.</li>
+    <li>Changed BIDI category for extenders of General Category Lm: U+3005, 
+      U+3021..U+3035, U+FF9E, U+FF9F.</li>
+    <li>Changed General Category and BIDI category for the Greek numeral signs: 
+      U+0374, U+0375.</li>
+    <li>Corrected General Category for U+FFE8 HALFWIDTH FORMS LIGHT VERTICAL.</li>
+    <li>Added Unicode 1.0 names for many Tibetan characters (informative).</li>
+  </ul>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_2_1_8">Unicode 
+  2.1.8</a></h3>
+  <p>Modifications made for Version 2.1.8 of UnicodeData.txt include:</p>
+  <ul>
+    <li>Added combining class 240 for U+0345 COMBINING GREEK YPOGEGRAMMENI so 
+      that decompositions involving iota subscript are derivable directly in 
+      canonically reordered form; this also has a bearing on simplification of 
+      casing of polytonic Greek.</li>
+    <li>Changes in decompositions related to Greek tonos. These result from the 
+      clarification that monotonic Greek &quot;tonos&quot; should be equated 
+      with U+0301 COMBINING ACUTE, rather than with U+030D COMBINING VERTICAL 
+      LINE ABOVE. (All Greek characters in the Greek block involving 
+      &quot;tonos&quot;; some Greek characters in the polytonic Greek in the 
+      1FXX block.)</li>
+    <li>Changed decompositions involving dialytika tonos. (U+0390, U+03B0)</li>
+    <li>Changed ternary decompositions to binary. (U+0CCB, U+FB2C, U+FB2D) These 
+      changes simplify normalization.</li>
+    <li>Removed canonical decomposition for Latin Candrabindu. (U+0310)</li>
+    <li>Corrected error in canonical decomposition for U+1FF4.</li>
+    <li>Added compatibility decompositions to clarify collation tables. (U+2100, 
+      U+2101, U+2105, U+2106, U+1E9A)</li>
+    <li>A series of general category changes to assist the convergence of the 
+      Unicode definition of identifier with ISO TR 10176:
+      <ul>
+        <li>So &gt; Lo: U+0950, U+0AD0, U+0F00, U+0F88..U+0F8B</li>
+        <li>Po &gt; Lo: U+0E2F, U+0EAF, U+3006</li>
+        <li>Lm &gt; Sk: U+309B, U+309C</li>
+        <li>Po &gt; Pc: U+30FB, U+FF65</li>
+        <li>Ps/Pe &gt; Mn: U+0F3E, U+0F3F</li>
+      </ul>
+    </li>
+    <li>A series of bidi property changes for consistency.
+      <ul>
+        <li>L &gt; ET: U+09F2, U+09F3</li>
+        <li>ON &gt; L: U+3007</li>
+        <li>L &gt; ON: U+0F3A..U+0F3D, U+037E, U+0387</li>
+      </ul>
+    </li>
+    <li>Add case mapping: U+01A6 &lt;-&gt; U+0280</li>
+    <li>Updated symmetric swapping value for guillemets: U+00AB, U+00BB, U+2039, 
+      U+203A.</li>
+    <li>Changes to combining class values. Most Indic fixed position class 
+      non-spacing marks were changed to combining class 0. This fixes some 
+      inconsistencies in how canonical reordering would apply to Indic scripts, 
+      including Tibetan. Indic interacting top/bottom fixed position classes 
+      were merged into single (non-zero) classes as part of this change. Tibetan 
+      subjoined consonants are changed from combining class 6 to combining class 
+      0. Thai pinthu (U+0E3A) moved to combining class 9. Moved two Devanagari 
+      stress marks into generic above and below combining classes (U+0951, 
+      U+0952).</li>
+    <li>Corrected placement of semicolon near symmetric swapping field. (U+FA0E, 
+      etc., scattered positions to U+FA29)</li>
+  </ul>
+  <h3>Version 2.1.7</h3>
+  <p><i>This version was for internal change tracking only, and never publicly 
+  released.</i></p>
+  <h3>Version 2.1.6</h3>
+  <p><i>This version was for internal change tracking only, and never publicly 
+  released.</i></p>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_2_1_5">Unicode 
+  2.1.5</a></h3>
+  <p>Modifications made for Version 2.1.5 of UnicodeData.txt include:</p>
+  <ul>
+    <li>Changed decomposition for U+FF9E and U+FF9F so that correct collation 
+      weighting will automatically result from the canonical equivalences.</li>
+    <li>Removed canonical decompositions for U+04D4, U+04D5, U+04D8, U+04D9, 
+      U+04E0, U+04E1, U+04E8, U+04E9 (the implication being that no canonical 
+      equivalence is claimed between these 8 characters and similar Latin 
+      letters), and updated 4 canonical decompositions for U+04DB, U+04DC, 
+      U+04EA, U+04EB to reflect the implied difference in the base character.</li>
+    <li>Added Pi, and Pf categories and assigned the relevant quotation marks to 
+      those categories, based on the Unicode Technical Corrigendum on Quotation 
+      Characters.</li>
+    <li>Updating of many bidi properties, following the advice of the ad hoc 
+      committee on bidi, and to make the bidi properties of compatibility 
+      characters more consistent.</li>
+    <li>Changed category of several Tibetan characters: U+0F3E, U+0F3F, 
+      U+0F88..U+0F8B to make them non-combining, reflecting the combined opinion 
+      of Tibetan experts.</li>
+    <li>Added case mapping for U+03F2.</li>
+    <li>Corrected case mapping for U+0275.</li>
+    <li>Added titlecase mappings for U+03D0, U+03D1, U+03D5, U+03D6, U+03F0.. 
+      U+03F2.</li>
+    <li>Corrected compatibility label for U+2121.</li>
+    <li>Add specific entries for all the CJK compatibility ideographs, 
+      U+F900..U+FA2D, so the canonical decomposition for each (the URO character 
+      it is equivalent to) can be carried in the database.</li>
+  </ul>
+  <h3>Version 2.1.4</h3>
+  <p><i>This version was for internal change tracking only, and never publicly 
+  released.</i></p>
+  <h3>Version 2.1.3</h3>
+  <p><i>This version was for internal change tracking only, and never publicly 
+  released.</i></p>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_2_1_2">Unicode 
+  2.1.2</a></h3>
+  <p>Modifications made in updating UnicodeData.txt to Version 2.1.2 for the 
+  Unicode Standard, Version 2.1 (from Version 2.0) include:</p>
+  <ul>
+    <li>Added two characters (U+20AC and U+FFFC).</li>
+    <li>Amended bidi properties for U+0026, U+002E, U+0040, U+2007.</li>
+    <li>Corrected case mappings for U+018E, U+019F, U+01DD, U+0258, U+0275, 
+      U+03C2, U+1E9B.</li>
+    <li>Changed combining order class for U+0F71.</li>
+    <li>Corrected canonical decompositions for U+0F73, U+1FBE.</li>
+    <li>Changed decomposition for U+FB1F from compatibility to canonical.</li>
+    <li>Added compatibility decompositions for U+FBE8, U+FBE9, U+FBF9..U+FBFB.</li>
+    <li>Corrected compatibility decompositions for U+2469, U+246A, U+3358.</li>
+  </ul>
+  <h3>Version 2.1.1</h3>
+  <p><i>This version was for internal change tracking only, and never publicly 
+  released.</i></p>
+  <h3><a href="http://www.unicode.org/versions/enumeratedversions.html#Unicode_2_0_0">Unicode 
+  2.0.0</a></h3>
+  <p>The modifications made in updating UnicodeData.txt for the Unicode 
+  Standard, Version 2.0 include:</p>
+  <ul>
+    <li>Fixed decompositions with TONOS to use correct NSM: 030D.</li>
+    <li>Removed old Hangul Syllables; mapping to new characters are in a 
+      separate table.</li>
+    <li>Marked compatibility decompositions with additional tags.</li>
+    <li>Changed old tag names for clarity.</li>
+    <li>Revision of decompositions to use first-level decomposition, instead of 
+      maximal decomposition.</li>
+    <li>Correction of all known errors in decompositions from earlier versions.</li>
+    <li>Added control code names (as old Unicode names).</li>
+    <li>Added Hangul Jamo decompositions.</li>
+    <li>Added Number category to match properties list in book.</li>
+    <li>Fixed categories of Koranic Arabic marks.</li>
+    <li>Fixed categories of precomposed characters to match decomposition where 
+      possible.</li>
+    <li>Added Hebrew cantillation marks and the Tibetan script.</li>
+    <li>Added place holders for ranges such as CJK Ideographic Area and the 
+      Private Use Area.</li>
+    <li>Added categories Me, Sk, Pc, Nl, Cs, Cf, and rectified a number of 
+      mistakes in the database.</li>
+  </ul>
+  <h2><i><a name="UCD_Terms">UCD Terms of Use</a></i></h2>
+  <h3><i>Disclaimer</i></h3>
+  <blockquote>
+    <p><i>The Unicode Character Database is provided as is by Unicode, Inc. No 
+    claims are made as to fitness for any particular purpose. No warranties of 
+    any kind are expressed or implied. The recipient agrees to determine 
+    applicability of information provided. If this file has been purchased on 
+    magnetic or optical media from Unicode, Inc., the sole remedy for any claim 
+    will be exchange of defective media within 90 days of receipt.</i></p>
+    <p><i>This disclaimer is applicable for all other data files accompanying 
+    the Unicode Character Database, some of which have been compiled by the 
+    Unicode Consortium, and some of which have been supplied by other sources.</i></p>
+  </blockquote>
+  <h3><i>Limitations on Rights to Redistribute This Data</i></h3>
+  <blockquote>
+    <p><i>Recipient is granted the right to make copies in any form for internal 
+    distribution and to freely use the information supplied in the creation of 
+    products supporting the Unicode<sup>TM</sup> Standard. The files in the 
+    Unicode Character Database can be redistributed to third parties or other 
+    organizations (whether for profit or not) as long as this notice and the 
+    disclaimer notice are retained. Information can be extracted from these 
+    files and used in documentation or programs, as long as there is an 
+    accompanying notice indicating the source.</i></p>
+    <p><i>The file Unihan.txt contains older and inconsistent Terms of Use. That 
+    language is overridden by these terms.</i></p>
+  </blockquote>
+  <hr width="50%">
+  <div align="center">
+    <center>
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td><a href="http://www.unicode.org/copyright.html"><img src="http://www.unicode.org/img/hb_notice.gif" border="0" alt="Access to Copyright and terms of use" width="216" height="50"></a></td>
+      </tr>
+    </table>
+              <script language="Javascript"  
+src="http://www.unicode.org/webscripts/lastModified.js">
+                </script></center>
+  </div>
+</div>
+
+</body>

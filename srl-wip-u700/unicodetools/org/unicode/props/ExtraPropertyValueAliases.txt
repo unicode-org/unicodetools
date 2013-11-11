@@ -1,0 +1,109 @@
+# Missing PropertyValueAliases lines
+
+# Missing @-missing values
+
+# @missing: 0000..10FFFF; ASCII_Hex_Digit; No
+# @missing: 0000..10FFFF; Alphabetic; No
+# @missing: 0000..10FFFF; Bidi_Control; No
+# @missing: 0000..10FFFF; Case_Ignorable; No
+# @missing: 0000..10FFFF; Cased; No
+# @missing: 0000..10FFFF; Changes_When_Casefolded; No
+# @missing: 0000..10FFFF; Changes_When_Casemapped; No
+# @missing: 0000..10FFFF; Changes_When_Lowercased; No
+# @missing: 0000..10FFFF; Changes_When_NFKC_Casefolded; No
+# @missing: 0000..10FFFF; Changes_When_Titlecased; No
+# @missing: 0000..10FFFF; Changes_When_Uppercased; No
+# @missing: 0000..10FFFF; Dash; No
+# @missing: 0000..10FFFF; Default_Ignorable_Code_Point; No
+# @missing: 0000..10FFFF; Deprecated; No
+# @missing: 0000..10FFFF; Diacritic; No
+# @missing: 0000..10FFFF; Extender; No
+# @missing: 0000..10FFFF; Full_Composition_Exclusion; No
+# @missing: 0000..10FFFF; Grapheme_Base; No
+# @missing: 0000..10FFFF; Grapheme_Extend; No
+# @missing: 0000..10FFFF; Grapheme_Link; No
+# @missing: 0000..10FFFF; Hex_Digit; No
+# @missing: 0000..10FFFF; Hyphen; No
+# @missing: 0000..10FFFF; IDS_Binary_Operator; No
+# @missing: 0000..10FFFF; IDS_Trinary_Operator; No
+# @missing: 0000..10FFFF; ID_Continue; No
+# @missing: 0000..10FFFF; ID_Start; No
+# @missing: 0000..10FFFF; Ideographic; No
+# @missing: 0000..10FFFF; Join_Control; No
+# @missing: 0000..10FFFF; Logical_Order_Exception; No
+# @missing: 0000..10FFFF; Lowercase; No
+# @missing: 0000..10FFFF; Math; No
+# @missing: 0000..10FFFF; Noncharacter_Code_Point; No
+# @missing: 0000..10FFFF; Pattern_Syntax; No
+# @missing: 0000..10FFFF; Pattern_White_Space; No
+# @missing: 0000..10FFFF; Quotation_Mark; No
+# @missing: 0000..10FFFF; Radical; No
+# @missing: 0000..10FFFF; STerm; No
+# @missing: 0000..10FFFF; Soft_Dotted; No
+# @missing: 0000..10FFFF; Terminal_Punctuation; No
+# @missing: 0000..10FFFF; Unified_Ideograph; No
+# @missing: 0000..10FFFF; Uppercase; No
+# @missing: 0000..10FFFF; Variation_Selector; No
+# @missing: 0000..10FFFF; White_Space; No
+# @missing: 0000..10FFFF; XID_Continue; No
+# @missing: 0000..10FFFF; XID_Start; No
+
+# @missing: 0000..10FFFF; Bidi_Mirrored; No
+# @missing: 0000..10FFFF; Composition_Exclusion; No
+# @missing: 0000..10FFFF; Expands_On_NFC   ; No
+# @missing: 0000..10FFFF; Expands_On_NFD   ; No
+# @missing: 0000..10FFFF; Expands_On_NFKC  ; No
+# @missing: 0000..10FFFF; Expands_On_NFKD  ; No
+# @missing: 0000..10FFFF; Other_Alphabetic ; No
+# @missing: 0000..10FFFF; Other_Default_Ignorable_Code_Point   ; No
+# @missing: 0000..10FFFF; Other_Grapheme_Extend; No
+# @missing: 0000..10FFFF; Other_ID_Continue; No
+# @missing: 0000..10FFFF; Other_ID_Start   ; No
+# @missing: 0000..10FFFF; Other_Lowercase  ; No
+# @missing: 0000..10FFFF; Other_Math   ; No
+# @missing: 0000..10FFFF; Other_Uppercase  ; No
+
+# Overrides for bugs
+
+# Extras
+
+# @missing: 0000..10FFFF; Idn_Status   ; disallowed
+
+idns ; v     ; valid
+idns ; i     ; ignored					
+idns ; m     ; mapped					
+idns ; dv    ; deviation				
+idns ; da    ; disallowed				
+idns ; ds3v  ; disallowed_STD3_valid	
+idns ; ds3m  ; disallowed_STD3_mapped
+
+# @missing: 0000..10FFFF; Idn_2008     ; na
+
+idn8 ; nv8   ; NV8						
+idn8 ; na	 ; na
+
+# @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
+
+
+# @-missing: 0000..10FFFF; Id_Mod_Status  	; r
+
+idmods	; r	 ; restricted			
+idmods	; a	 ; allowed				
+
+# @-missing: 0000..10FFFF; Id_Mod_Type    	; nc
+
+idmodt	; di	; default_ignorable		
+idmodt	; h		; historic				
+idmodt	; lu	; limited_use			
+idmodt	; nc	; not_chars				
+idmodt	; nn	; not_NFKC				
+idmodt	; nx	; not_xid				
+idmodt	; o		; obsolete				
+idmodt	; t		; technical				
+idmodt	; inc	; inclusion				
+idmodt	; rec	; recommended	
+
+# @-missing: 0000..10FFFF; Confusable_SL    	; <code point>
+# @-missing: 0000..10FFFF; Confusable_SA    	; <code point>
+# @-missing: 0000..10FFFF; Confusable_ML    	; <code point>
+# @-missing: 0000..10FFFF; Confusable_MA    	; <code point>		

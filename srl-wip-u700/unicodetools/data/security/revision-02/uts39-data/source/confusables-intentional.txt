@@ -1,0 +1,101 @@
+# intentionals
+0391 ; 0041 ; 0410 # alpha ; a ; a
+00C6 ; 04D4 # ash ; a ie
+0182 ; 0411 # btopbar ; be
+0392 ; 0042 ; 0412 # beta ; b ; ve
+0043 ; 0421 # c ; es
+0393 ; 0413 # gamma ; ghe
+0395 ; 0045 ; 0415 # epsilon ; e ; ie
+018E ; 04D8 #  schwa ; schwa
+0396 ; 005A # zeta ; z 
+0397 ; 0048 ; 041D # eta ; h ; en
+2C67 ; 04A2 #  h with descender ; en with descender
+0399 ; 0049 ; 0406 # iota ; i ; i/palochka
+0399 ; 0049 ; 04C0 # iota ; i ; i/palochka
+004A ; 0408 #  j ; je
+039A ; 004B # kappa ; k 
+2C69 ; 049A #  k with descender ; ka with descender
+039B ; 0245 # lambda ; turned v 
+039C ; 004D ; 041C # mu ; m ; em
+039D ; 004E # nu ; n 
+039F ; 004F ; 041E # omicron ; o ; o
+019F ; 04E8 #  obar ; obar
+03A0 ; 041F # pi  pe
+03A1 ; 0050 ; 0420 # rho ; r ; er
+0053 ; 0405 #  s ; dze
+03A3 ; 01A9 # sigma ; esh 
+03A4 ; 0054 ; 0422 # tau ; t ; te
+03A5 ; 0059 # upsilon ; y 
+03A7 ; 0058 ; 0425 # khi ; x ; ha
+0061 ; 0430 #  a ; a
+00E6 ; 04D5 #  ash ; a ie
+0299 ; 0432 #  smallcap b ; ve
+0063 ; 0441 #  c ; es
+1D26 ; 0433 # smallcap gamma ; ge (arguable)
+0064 ; 0501 #  d ; komi d
+0065 ; 0435 #  e ; ie
+03B5 ; 025B # epsilon ; epsilon 
+0259 ; 04D9 #  schwa ; schwa
+0068 ; 04BB #  h ; shha
+0069 ; 0456 #  i ; i
+026A ; 04CF #  smallcap i ; small palochka (arguable)
+03B9 ; 0269 # iota ; iota 
+03F3 ; 006A ; 0458 # yot ; j ; je
+0138 ; 043A #  kra ; ka
+1D0D ; 043C #  smallcap m ; em
+029C ; 043D #  smallcap n ; en
+03BF ; 006F ; 043E # omicron ; o ; o
+0275 ; 04E9 #  obar ; obar
+1D28 ; 043F # smallcap pi ; pe (arguable)
+0070 ; 0440 #  p ; er
+1D29 ; 1D18 # smallcap rho ; smallcap p 
+0073 ; 0455 #  s ; dze
+1D1B ; 0442 #  smallcap t ; te
+0078 ; 0445 #  x ; ha
+0079 ; 0443 #  y ; u
+0292 ; 04E1 #  ezh ; dze
+
+00D0 ; 0110 ; 0189 # eth ; dbar ; african d
+
+1D2B ; 043B # smallcap el ; el
+
+10382 ; 103D1 ; 12079 # Ugaritic gamla ; Old Persian one ; Cuneiform dish
+1039A ; 12038 # Ugaritic to ; Cuneiform ash
+10393 ; 103D3 ; 1230B # Ugaritic ain ; Old Persian ten ; Cuneiform u
+
+01C3 ; 0021 # retroflex click ; exclamation mark
+101D; 1040 # Myanmar wa ; Myanmar zero
+17A2 ; 17A3 # Khmer qa ; Khmer qaq
+199E ; 19D0 # New Tai Lue low va ; New Tai Lue zero
+1B0D ; 1B52 # Balinese la lenga ; Balinese two
+1B11 ; 1B53 # Balinese okara ; Balinese three
+1B28 ; 1B58 # Balinese pa kapal ; Balinese eight
+1B5C ; 1B50 # Balinese windu ; Balinese zero
+104A0 ; 10486 # Osmanya deel ; Osmanya zero
+1835 ; 1855 # Mongolian ja ; Todo ya
+2135 ; 05D0 # alef symbol ; alef
+2136 ; 05D1 # bet symbol ; bet
+2137 ; 05D2 # gimel symbol ; gimel
+2138 ; 05D3 # dalet symbol ; dalet
+2160 ; 0049 # roman numeral one ; I
+2164 ; 0056 # roman numeral five ; V
+2169 ; 0058 # roman numeral ten ; X
+216C ; 004C # roman numeral fifty ; L
+216D ; 0043 # roman numeral one hundred ; C
+216E ; 0044 # roman numeral five hundred ; D
+216F ; 004D # roman numeral one thousand ; M
+2170 ; 0069 # roman numeral one ; i
+2174 ; 0076 # roman numeral five ; v
+2179 ; 0078 # roman numeral ten ; x
+217C ; 006C # roman numeral fifty ; l
+217D ; 0063 # roman numeral one hundred ; c
+217E ; 0064 # roman numeral five hundred ; d
+217F ; 006D # roman numeral one thousand ; m
+2373 ; 03B9 # APL iota ; iota
+2374 ; 03C1 # APL rho ; rho
+2375 ; 03C9 # APL omega ; omega
+237A ; 03B1 # APL alpha ; alpha
+
+01DD ; 0259 # turned e ; schwa
+
+
