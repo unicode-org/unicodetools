@@ -61,8 +61,8 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateConfusables {
     private static final String version = "4.0-draft";
-    private static final String REVISION = "06";
-    private static final String outdir = Utility.UNICODETOOLS_DIRECTORY + "data/security/revision-" + REVISION + "/data/";
+    private static final String REVISION = "6.3.0";
+    private static final String outdir = Utility.UNICODETOOLS_DIRECTORY + "data/security/" + REVISION + "/data/";
     private static final String indir = outdir + "source/";
 
 
