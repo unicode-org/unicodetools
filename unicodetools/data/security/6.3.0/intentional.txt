@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: intentional.txt
-# Version: 4.0-draft
-# Generated: 2013-10-23, 21:46:21 GMT
+# Version: 6.3.0
+# Generated: 2013-11-13, 00:04:55 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -82,9 +82,10 @@
 
 01A9 ;	03A3	# ( Ʃ ~ Σ ) LATIN CAPITAL LETTER ESH ~ GREEK CAPITAL LETTER SIGMA
 
+01DD ;	0259	# ( ǝ ~ ə ) LATIN SMALL LETTER TURNED E ~ LATIN SMALL LETTER SCHWA
+
 0245 ;	039B	# ( Ʌ ~ Λ ) LATIN CAPITAL LETTER TURNED V ~ GREEK CAPITAL LETTER LAMDA
 
-0259 ;	01DD	# ( ə ~ ǝ ) LATIN SMALL LETTER SCHWA ~ LATIN SMALL LETTER TURNED E
 0259 ;	04D9	# ( ə ~ ә ) LATIN SMALL LETTER SCHWA ~ CYRILLIC SMALL LETTER SCHWA
 
 025B ;	03B5	# ( ɛ ~ ε ) LATIN SMALL LETTER OPEN E ~ GREEK SMALL LETTER EPSILON
