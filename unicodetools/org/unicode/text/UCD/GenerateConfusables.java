@@ -60,7 +60,7 @@ import com.ibm.icu.util.ULocale;
 
 
 public class GenerateConfusables {
-    private static final String version = "4.0-draft";
+    private static final String version = "6.3.0";
     private static final String REVISION = "6.3.0";
     private static final String outdir = Utility.UNICODETOOLS_DIRECTORY + "data/security/" + REVISION + "/data/";
     private static final String indir = outdir + "source/";
@@ -70,6 +70,7 @@ public class GenerateConfusables {
     public static boolean EXCLUDE_CONFUSABLE_COMPAT = true;
     public static String recommended_scripts = "recommended";
 
+    static final UnicodeSet SPECIAL = new UnicodeSet("[\u01DD\u0259]").freeze();
 
     public static void main(String[] args) throws IOException {
         //quickTest();
@@ -546,6 +547,10 @@ public class GenerateConfusables {
             lowerIsBetter.putAll(remainingOutputSet, MARK_OUTPUT);
             lowerIsBetter.putAll(remainingOutputSet, MARK_ASCII);
             lowerIsBetter.setMissing(MARK_NOT_NFC);
+            
+            // EXCEPTIONAL CASES
+            // added to preserve source-target ordering in output.
+            lowerIsBetter.put('\u0259', MARK_NFC);
 
             lowerIsBetter.freeze();
             // add special values:
@@ -2709,13 +2714,14 @@ public class GenerateConfusables {
         return  XID.containsAll(x);
     }
 
-    static class _BetterTargetIsLess implements Comparator {
+    static class _BetterTargetIsLess implements Comparator<String> {
         IdentifierInfo info = IdentifierInfo.getIdentifierInfo();
 
         @Override
-        public int compare(Object o1, Object o2) {
-            final String a = (String)o1;
-            final String b = (String)o2;
+        public int compare(String a, String b) {
+            if (a.equals(b)) {
+                return 0;
+            }
             int diff;
 
             // longer is better (less)
@@ -2752,6 +2758,10 @@ public class GenerateConfusables {
         static final int BAD = 1000;
 
         private int getValue(String a) { // lower is better
+//            if (SPECIAL.contains(a)) {
+//                int debug = 0;
+//            }
+            
             int cp;
             int lastValue = 0;
             for (int i = 0; i < a.length(); i += UTF16.getCharCount(cp)) {

@@ -1,7 +1,7 @@
 ﻿# Summary: Recommended confusable mapping for IDN
 # File: confusablesSummary.txt
-# Version: 4.0-draft
-# Generated: 2013-10-23, 21:46:22 GMT
+# Version: 6.3.0
+# Generated: 2013-11-13, 00:04:56 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -4230,10 +4230,20 @@
 ←	(‎ ᘴ ‎)	1634	 CANADIAN SYLLABICS CARRIER TLHU	# →ᘮ→→℧→
 ←	(‎ ℧ ‎)	2127	 INVERTED OHM SIGN
 
-#	ə	ǝ	ә
+#	ǝ	ə	ә
 	(‎ ǝ ‎)	01DD	 LATIN SMALL LETTER TURNED E
 ←	(‎ ə ‎)	0259	 LATIN SMALL LETTER SCHWA
 ←	(‎ ә ‎)	04D9	 CYRILLIC SMALL LETTER SCHWA
+
+#	ǝo	əo	ᴔ
+	(‎ ǝo ‎)	01DD 006F	 LATIN SMALL LETTER TURNED E, LATIN SMALL LETTER O
+←	(‎ əo ‎)	0259 006F	 LATIN SMALL LETTER SCHWA, LATIN SMALL LETTER O
+←	(‎ ᴔ ‎)	1D14	 LATIN SMALL LETTER TURNED OE	# →əo→
+
+#	ǝ˞	ə˞	ɚ
+	(‎ ǝ˞ ‎)	01DD 02DE	 LATIN SMALL LETTER TURNED E, MODIFIER LETTER RHOTIC HOOK
+←	(‎ ə˞ ‎)	0259 02DE	 LATIN SMALL LETTER SCHWA, MODIFIER LETTER RHOTIC HOOK
+←	(‎ ɚ ‎)	025A	 LATIN SMALL LETTER SCHWA WITH HOOK	# →ə˞→
 
 #	Ƕ	Ԋ
 	(‎ Ƕ ‎)	01F6	 LATIN CAPITAL LETTER HWAIR
@@ -4284,14 +4294,6 @@
 ←	(‎ ᴐ ‎)	1D10	 LATIN LETTER SMALL CAPITAL OPEN O
 ←	(‎ ↄ ‎)	2184	 LATIN SMALL LETTER REVERSED C
 ←	(‎ ͻ ‎)	037B	 GREEK SMALL REVERSED LUNATE SIGMA SYMBOL
-
-#	əo	ᴔ
-	(‎ əo ‎)	0259 006F	 LATIN SMALL LETTER SCHWA, LATIN SMALL LETTER O
-←	(‎ ᴔ ‎)	1D14	 LATIN SMALL LETTER TURNED OE
-
-#	ə˞	ɚ
-	(‎ ə˞ ‎)	0259 02DE	 LATIN SMALL LETTER SCHWA, MODIFIER LETTER RHOTIC HOOK
-←	(‎ ɚ ‎)	025A	 LATIN SMALL LETTER SCHWA WITH HOOK
 
 #	ꞓ	ɛ	ε	є	ԑ	ⲉ	ϵ	𝛆	𝛜	𝜀	𝜖	𝜺	𝝐	𝝴	𝞊	𝞮	𝟄	⋴
 	(‎ ɛ ‎)	025B	 LATIN SMALL LETTER OPEN E
@@ -14840,5 +14842,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 6154
+# total : 6156
 
