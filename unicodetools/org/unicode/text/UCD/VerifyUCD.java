@@ -102,8 +102,8 @@ public class VerifyUCD implements UCD_Types {
         abstract String getTitle();
         abstract byte getUnallocatedProp();
         abstract byte getProp(int cp);
-        abstract String getName(byte prop);
-        abstract String getCode(byte prop);
+        abstract String getName(short prop);
+        abstract String getCode(short prop);
 
         byte[] subtotalBreaks = null;
 
@@ -111,7 +111,7 @@ public class VerifyUCD implements UCD_Types {
 
         byte[] permute = null;
 
-        byte getPermutation(byte prop) {
+        short getPermutation(short prop) {
             if (permute == null) {
                 return prop;
             }
@@ -121,7 +121,7 @@ public class VerifyUCD implements UCD_Types {
             return permute[prop];
         }
 
-        boolean doTotal(byte prop, boolean sub) {
+        boolean doTotal(short prop, boolean sub) {
             final byte[] myBreak = sub ? subtotalBreaks : cumulativeTotalBreaks;
             if (myBreak == null) {
                 return false;
@@ -154,7 +154,7 @@ public class VerifyUCD implements UCD_Types {
             return cat;
         }
         @Override
-        String getCode(byte prop) {
+        String getCode(short prop) {
             if (prop >= LIMIT_CATEGORY) {
                 return "???" + prop;
             }
@@ -165,7 +165,7 @@ public class VerifyUCD implements UCD_Types {
             return UCD.getCategoryID_fromIndex(prop);
         }
         @Override
-        String getName(byte prop) {
+        String getName(short prop) {
             if (prop >= LIMIT_CATEGORY) {
                 return "???" + prop;
             }
@@ -211,7 +211,7 @@ public class VerifyUCD implements UCD_Types {
             return Default.ucd().getScript(cp);
         }
         @Override
-        String getCode(byte prop) {
+        String getCode(short prop) {
             if (prop >= LIMIT_SCRIPT) {
                 return "???" + prop;
             }
@@ -219,7 +219,7 @@ public class VerifyUCD implements UCD_Types {
             return UCD.getScriptID_fromIndex(prop, SHORT);
         }
         @Override
-        String getName(byte prop) {
+        String getName(short prop) {
             if (prop >= LIMIT_SCRIPT) {
                 return "???" + prop;
             }
@@ -227,7 +227,7 @@ public class VerifyUCD implements UCD_Types {
             return UCD.getScriptID_fromIndex(prop, LONG);
         }
         @Override
-        byte getPermutation(byte prop) {
+        short getPermutation(short prop) {
             if (prop == LIMIT_SCRIPT-1) {
                 return COMMON_SCRIPT;
             }
@@ -299,8 +299,8 @@ public class VerifyUCD implements UCD_Types {
         }
         System.out.println("</th></tr>");
 
-        for (byte ii = 0; ii < count.length; ++ii) {
-            final byte i = prop.getPermutation(ii);
+        for (short ii = 0; ii < count.length; ++ii) {
+            final short i = prop.getPermutation(ii);
             // System.out.println(prop.getCode(ii) + ", " + ii + " => " + prop.getCode(i) + ", " + i);
             if (count[i][0] == 0) {
                 continue;
@@ -361,8 +361,8 @@ public class VerifyUCD implements UCD_Types {
                 }
                 return;
             }
-            final byte cat1 = CAT_PROP.getPermutation(CAT_PROP.getProp(value));
-            final byte cat2 = CAT_PROP.getPermutation(CAT_PROP.getProp(cp));
+            final short cat1 = CAT_PROP.getPermutation(CAT_PROP.getProp(value));
+            final short cat2 = CAT_PROP.getPermutation(CAT_PROP.getProp(cp));
             if (cat1 > cat2) {
                 array[index] = cp;
             }

@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 7.0.0
-@@@+	U70M130809.lst
-	Unicode 7.0.0 names list, fifteenth delta.
+@@@+	U70M131125.lst
+	Unicode 7.0.0 names list, sixteenth delta.
 	Based on FDAM1 + FDAM2, with modified annotations.
 	Added annotation for 06BA.
 	Added notice about spelling of Oriya as Odia.
@@ -37,6 +37,10 @@
 	Added xrefs and subheads to Pahawh Hmong.
 	Added xrefs for diamonds and squares related to modal logic.
 	Removed obelus as alias for 2020.
+	Added xref from 2139 to 1F6C8.
+	Added xref from 0023 to 2317.
+	Corrected block range for Latin Extended-E.
+	Added note about anomalous decomposition of 1F12E.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -154,6 +158,7 @@
 0023	NUMBER SIGN
 	= pound sign, hash, crosshatch, octothorpe
 	x (l b bar symbol - 2114)
+	x (viewdata square - 2317)
 	x (music sharp sign - 266F)
 	~ 0023 FE0E text style
 	~ 0023 FE0F emoji style
@@ -12853,6 +12858,7 @@
 @		Additional letterlike symbols
 2139	INFORMATION SOURCE
 	* intended for use with 20DD
+	x (circled information source - 1F6C8)
 	~ 2139 FE0E text style
 	~ 2139 FE0F emoji style
 	# <font> 0069 latin small letter i
@@ -24411,7 +24417,7 @@ AB2B	ETHIOPIC SYLLABLE BBAA
 AB2C	ETHIOPIC SYLLABLE BBEE
 AB2D	ETHIOPIC SYLLABLE BBE
 AB2E	ETHIOPIC SYLLABLE BBO
-@@	AB30	Latin Extended-E	ABBF
+@@	AB30	Latin Extended-E	AB6F
 @		Letters for German dialectology
 AB30	LATIN SMALL LETTER BARRED ALPHA
 AB31	LATIN SMALL LETTER A REVERSED-SCHWA
@@ -39783,6 +39789,7 @@ FFFF	<not a character>
 1F12E	CIRCLED WZ
 	* from the German term "Warenzeichen"
 	* indicate a trademarked term without making a legal claim of trademark status
+	* decomposition is anomalous, as the usual glyph shows a capital W and a small z
 	x (trade mark sign - 2122)
 	# <circle> 0057 005A
 @		Squared Latin letters

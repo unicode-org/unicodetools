@@ -1,5 +1,5 @@
-Generate: .
-DeltaVersion: 24
+Generate: Script
+DeltaVersion: 14
 CopyrightYear: 2013
 
 File: extra/ScriptNfkc
@@ -66,12 +66,11 @@ Property: Block
 #         and underbars are ignored.
 #         For example, "Latin Extended-A" and "latin extended a" are equivalent.
 #         For more information on the comparison of property values, 
-#            see UAX #44: http://www.unicode.org/reports/tr44/.
-Format:	valueList skipUnassigned=No_Block
+#            see UAX #44: http://www.unicode.org/reports/tr44/
 # Property: Block
 #
 # @missing: 0000..10FFFF; No_Block
-
+Format:	valueList valueStyle=long skipUnassigned=No_Block
 
 File:	CaseFolding
 Property: SPECIAL
@@ -132,6 +131,9 @@ Value:  V6_2
 
 Value:  V6_3
 # Newly assigned in Unicode 6.3.0 (September, 2013)
+
+Value:  V7_0
+# Newly assigned in Unicode 7.0.0 (expected June, 2014)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
