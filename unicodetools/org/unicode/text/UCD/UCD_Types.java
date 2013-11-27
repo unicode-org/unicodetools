@@ -333,25 +333,25 @@ public interface UCD_Types {
     // decompositionType
     static final byte
     NONE = 0,
-            CANONICAL = 1,
-            COMPATIBILITY = 2,
-            COMPAT_UNSPECIFIED = 2,	// Otherwise unspecified compatibility character.
-            COMPAT_FONT = 3,		// A font variant (e.g. a blackletter form).
-            COMPAT_NOBREAK = 4,	// A no-break version of a space or hyphen.
-            COMPAT_INITIAL = 5,	// // An initial presentation form (Arabic).
-            COMPAT_MEDIAL = 6,	// // A medial presentation form (Arabic).
-            COMPAT_FINAL = 7,	// // 	A final presentation form (Arabic).
-            COMPAT_ISOLATED = 8,	// An isolated presentation form (Arabic).
-            COMPAT_CIRCLE = 9,	// An encircled form.
-            COMPAT_SUPER = 10,	// 	A superscript form.
-            COMPAT_SUB = 11,	// 	A subscript form.
-            COMPAT_VERTICAL = 12,	// A vertical layout presentation form.
-            COMPAT_WIDE = 13,	// 	A wide (or zenkaku) compatibility character.
-            COMPAT_NARROW = 14,	// A narrow (or hankaku) compatibility character.
-            COMPAT_SMALL = 15,	// 	A small variant form (CNS compatibility).
-            COMPAT_SQUARE = 16,	// A CJK squared font variant.
-            COMPAT_FRACTION = 17,	// A vulgar fraction form.
-            LIMIT_DECOMPOSITION_TYPE = 18;
+    CANONICAL = 1,
+    COMPATIBILITY = 2,
+    COMPAT_UNSPECIFIED = 2,	// Otherwise unspecified compatibility character.
+    COMPAT_FONT = 3,		// A font variant (e.g. a blackletter form).
+    COMPAT_NOBREAK = 4,	// A no-break version of a space or hyphen.
+    COMPAT_INITIAL = 5,	// // An initial presentation form (Arabic).
+    COMPAT_MEDIAL = 6,	// // A medial presentation form (Arabic).
+    COMPAT_FINAL = 7,	// // 	A final presentation form (Arabic).
+    COMPAT_ISOLATED = 8,	// An isolated presentation form (Arabic).
+    COMPAT_CIRCLE = 9,	// An encircled form.
+    COMPAT_SUPER = 10,	// 	A superscript form.
+    COMPAT_SUB = 11,	// 	A subscript form.
+    COMPAT_VERTICAL = 12,	// A vertical layout presentation form.
+    COMPAT_WIDE = 13,	// 	A wide (or zenkaku) compatibility character.
+    COMPAT_NARROW = 14,	// A narrow (or hankaku) compatibility character.
+    COMPAT_SMALL = 15,	// 	A small variant form (CNS compatibility).
+    COMPAT_SQUARE = 16,	// A CJK squared font variant.
+    COMPAT_FRACTION = 17,	// A vulgar fraction form.
+    LIMIT_DECOMPOSITION_TYPE = 18;
 
     // mirrored type
     static final byte NO = 0, YES = 1, LIMIT_MIRRORED = 2;
@@ -375,7 +375,7 @@ public interface UCD_Types {
     static final byte NA = 0, L = 1, V = 2, T = 3, LV = 4, LVT = 5,
             HANGUL_SYLLABLE_TYPE_LIMIT = 6;
 
-    public static final byte // SCRIPT CODE
+    public static final short // SCRIPT CODE
     COMMON_SCRIPT = 0,
     LATIN_SCRIPT = 1,
     GREEK_SCRIPT = 2,
@@ -481,7 +481,30 @@ public interface UCD_Types {
     Sharada = 102,
     Sora_Sompeng = 103,
     Takri = 104,
-    LIMIT_SCRIPT = Takri + 1;
+    Caucasian_Albanian = 105,
+    Bassa_Vah = 106,
+    Duployan = 107,
+    Elbasan = 108,
+    Grantha = 109,
+    Pahawh_Hmong = 110,
+    Khojki = 111,
+    Linear_A = 112,
+    Mahajani = 113,
+    Manichaean = 114,
+    Mende_Kikakui = 115,
+    Modi = 116,
+    Mro = 117,
+    Old_North_Arabian = 118,
+    Nabataean = 119,
+    Palmyrene = 120,
+    Pau_Cin_Hau = 121,
+    Old_Permic = 122,
+    Psalter_Pahlavi = 123,
+    Siddham = 124,
+    Khudawadi = 125,
+    Tirhuta = 126,
+    Warang_Citi = 127,
+    LIMIT_SCRIPT = Warang_Citi + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte
@@ -504,7 +527,8 @@ public interface UCD_Types {
     AGE61 = 13,
     AGE62 = 14,
     AGE63 = 15,
-    LIMIT_AGE = AGE63 + 1; // + FIX_FOR_NEW_VERSION;
+    AGE70 = 16,
+    LIMIT_AGE = AGE70 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
         "?",
@@ -523,6 +547,7 @@ public interface UCD_Types {
         "6.1.0",
         "6.2.0",
         "6.3.0",
+        "7.0.0",
     };
 
     public static byte
@@ -593,8 +618,36 @@ public interface UCD_Types {
     FARSI_YEH = 55,
     NYA = 56,
     ROHINGYA_YEH = 57,
-    HAMZAH_ON_HA_GOAL = 58,
-    LIMIT_JOINING_GROUP = 59;
+    HAMZAH_ON_HA_GOAL = 58, 
+    STRAIGHT_WAW= 59,
+    MANICHAEAN_ALEPH= 60,
+    MANICHAEAN_AYIN= 61,
+    MANICHAEAN_BETH= 62,
+    MANICHAEAN_DALETH= 63,
+    MANICHAEAN_DHAMEDH= 64,
+    MANICHAEAN_FIVE= 65,
+    MANICHAEAN_GIMEL= 66,
+    MANICHAEAN_HETH= 67,
+    MANICHAEAN_HUNDRED= 68,
+    MANICHAEAN_KAPH= 69,
+    MANICHAEAN_LAMEDH= 70,
+    MANICHAEAN_MEM= 71,
+    MANICHAEAN_NUN= 72,
+    MANICHAEAN_ONE= 73,
+    MANICHAEAN_PE= 74,
+    MANICHAEAN_QOPH= 75,
+    MANICHAEAN_RESH= 76,
+    MANICHAEAN_SADHE= 77,
+    MANICHAEAN_SAMEKH= 78,
+    MANICHAEAN_TAW= 79,
+    MANICHAEAN_TEN= 80,
+    MANICHAEAN_TETH= 81,
+    MANICHAEAN_THAMEDH= 82,
+    MANICHAEAN_TWENTY= 83,
+    MANICHAEAN_WAW= 84,
+    MANICHAEAN_YODH= 85,
+    MANICHAEAN_ZAYIN= 86,
+    LIMIT_JOINING_GROUP = MANICHAEAN_ZAYIN+1;
 
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int

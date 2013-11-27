@@ -1,6 +1,6 @@
 
 # Blocks-7.0.0.txt
-# Date: 2013-10-02, 00:52:00 GMT [RP]
+# Date: 2013-11-12, 23:04:00 GMT [RP, KW]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -168,7 +168,7 @@ AA60..AA7F; Myanmar Extended-A
 AA80..AADF; Tai Viet
 AAE0..AAFF; Meetei Mayek Extensions
 AB00..AB2F; Ethiopic Extended-A
-AB30..ABBF; Latin Extended-E
+AB30..AB6F; Latin Extended-E
 ABC0..ABFF; Meetei Mayek
 AC00..D7AF; Hangul Syllables
 D7B0..D7FF; Hangul Jamo Extended-B

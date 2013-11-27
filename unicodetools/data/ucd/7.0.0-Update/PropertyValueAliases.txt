@@ -1,5 +1,5 @@
 # PropertyValueAliases-7.0.0.txt
-# Date: 2013-10-31, 22:34 [MS, KW]
+# Date: 2013-11-12, 23:21:00 [MS, KW]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -935,6 +935,10 @@ LOE; Y                                ; Yes                              ; T    
 Lower; N                              ; No                               ; F                                ; False
 Lower; Y                              ; Yes                              ; T                                ; True
 
+# Lowercase_Mapping (lc)
+
+# @missing: 0000..10FFFF; Lowercase_Mapping; <code point>
+
 # Math (Math)
 
 Math; N                               ; No                               ; F                                ; False
@@ -1233,6 +1237,10 @@ SD ; Y                                ; Yes                              ; T    
 Term; N                               ; No                               ; F                                ; False
 Term; Y                               ; Yes                              ; T                                ; True
 
+# Titlecase_Mapping (tc)
+
+# @missing: 0000..10FFFF; Titlecase_Mapping; <code point>
+
 # Unicode_1_Name (na1)
 
 # @missing: 0000..10FFFF; Unicode_1_Name; <none>
@@ -1246,6 +1254,10 @@ UIdeo; Y                              ; Yes                              ; T    
 
 Upper; N                              ; No                               ; F                                ; False
 Upper; Y                              ; Yes                              ; T                                ; True
+
+# Uppercase_Mapping (uc)
+
+# @missing: 0000..10FFFF; Uppercase_Mapping; <code point>
 
 # Variation_Selector (VS)
 

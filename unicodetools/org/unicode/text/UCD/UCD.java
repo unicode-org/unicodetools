@@ -43,8 +43,8 @@ public final class UCD implements UCD_Types {
     /**
      * Used for the default version.
      */
-    public static final String latestVersion = "6.3.0";
-    public static final String lastVersion = "6.2.0"; // last released version
+    public static final String latestVersion = "7.0.0";
+    public static final String lastVersion = "6.3.0"; // last released version
 
     /**
      * Create singleton instance for default (latest) version
@@ -1080,11 +1080,11 @@ public final class UCD implements UCD_Types {
         return getCategoryID_fromIndex(getCategory(codePoint), length);
     }
 
-    public static String getCategoryID_fromIndex(byte prop) {
+    public static String getCategoryID_fromIndex(short prop) {
         return getCategoryID_fromIndex(prop, NORMAL);
     }
 
-    public static String getCategoryID_fromIndex(byte prop, byte style) {
+    public static String getCategoryID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.GENERAL_CATEGORY.length ? null
                 : (style == EXTRA_ALIAS && prop == DECIMAL_DIGIT_NUMBER) ? "digit"
                         : (style != LONG) ? UCD_Names.GENERAL_CATEGORY[prop]
@@ -1152,11 +1152,11 @@ public final class UCD implements UCD_Types {
         return getBidiClassID_fromIndex(getBidiClass(codePoint));
     }
 
-    public static String getBidiClassID_fromIndex(byte prop) {
+    public static String getBidiClassID_fromIndex(short prop) {
         return getBidiClassID_fromIndex(prop, NORMAL);
     }
 
-    public static String getBidiClassID_fromIndex(byte prop, byte style) {
+    public static String getBidiClassID_fromIndex(short prop, byte style) {
         return prop < 0
                 || prop >= UCD_Names.BIDI_CLASS.length
                 ? null
@@ -1169,10 +1169,10 @@ public final class UCD implements UCD_Types {
         return getDecompositionTypeID_fromIndex(getDecompositionType(codePoint));
     }
 
-    public static String getDecompositionTypeID_fromIndex(byte prop) {
+    public static String getDecompositionTypeID_fromIndex(short prop) {
         return getDecompositionTypeID_fromIndex(prop, NORMAL);
     }
-    public static String getDecompositionTypeID_fromIndex(byte prop, byte style) {
+    public static String getDecompositionTypeID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.LONG_DECOMPOSITION_TYPE.length ? null
                 : style == SHORT ? UCD_Names.DECOMPOSITION_TYPE[prop] : UCD_Names.LONG_DECOMPOSITION_TYPE[prop];
     }
@@ -1181,11 +1181,11 @@ public final class UCD implements UCD_Types {
         return getNumericTypeID_fromIndex(getNumericType(codePoint));
     }
 
-    public static String getNumericTypeID_fromIndex(byte prop) {
+    public static String getNumericTypeID_fromIndex(short prop) {
         return getNumericTypeID_fromIndex(prop, NORMAL);
     }
 
-    public static String getNumericTypeID_fromIndex(byte prop, byte style) {
+    public static String getNumericTypeID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.LONG_NUMERIC_TYPE.length ? null
                 : style == SHORT ? UCD_Names.NUMERIC_TYPE[prop] : UCD_Names.LONG_NUMERIC_TYPE[prop];
     }
@@ -1194,11 +1194,11 @@ public final class UCD implements UCD_Types {
         return getEastAsianWidthID_fromIndex(getEastAsianWidth(codePoint));
     }
 
-    public static String getEastAsianWidthID_fromIndex(byte prop) {
+    public static String getEastAsianWidthID_fromIndex(short prop) {
         return getEastAsianWidthID_fromIndex(prop, NORMAL);
     }
 
-    public static String getEastAsianWidthID_fromIndex(byte prop, byte style) {
+    public static String getEastAsianWidthID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.LONG_EAST_ASIAN_WIDTH.length ? null
                 : style != LONG ? UCD_Names.EAST_ASIAN_WIDTH[prop] : UCD_Names.LONG_EAST_ASIAN_WIDTH[prop];
     }
@@ -1207,11 +1207,11 @@ public final class UCD implements UCD_Types {
         return getLineBreakID_fromIndex(getLineBreak(codePoint));
     }
 
-    public static String getLineBreakID_fromIndex(byte prop) {
+    public static String getLineBreakID_fromIndex(short prop) {
         return getLineBreakID_fromIndex(prop, NORMAL);
     }
 
-    public static String getLineBreakID_fromIndex(byte prop, byte style) {
+    public static String getLineBreakID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.LINE_BREAK.length ? null
                 : style != LONG ? UCD_Names.LINE_BREAK[prop] : UCD_Names.LONG_LINE_BREAK[prop];
     }
@@ -1220,11 +1220,11 @@ public final class UCD implements UCD_Types {
         return getJoiningTypeID_fromIndex(getJoiningType(codePoint));
     }
 
-    public static String getJoiningTypeID_fromIndex(byte prop) {
+    public static String getJoiningTypeID_fromIndex(short prop) {
         return getJoiningTypeID_fromIndex(prop, NORMAL);
     }
 
-    public static String getJoiningTypeID_fromIndex(byte prop, byte style) {
+    public static String getJoiningTypeID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.JOINING_TYPE.length ? null
                 : style != LONG ? UCD_Names.JOINING_TYPE[prop] : UCD_Names.LONG_JOINING_TYPE[prop];
     }
@@ -1233,11 +1233,11 @@ public final class UCD implements UCD_Types {
         return getJoiningGroupID_fromIndex(getJoiningGroup(codePoint));
     }
 
-    public static String getJoiningGroupID_fromIndex(byte prop) {
+    public static String getJoiningGroupID_fromIndex(short prop) {
         return getJoiningGroupID_fromIndex(prop, NORMAL);
     }
 
-    public static String getJoiningGroupID_fromIndex(byte prop, byte style) {
+    public static String getJoiningGroupID_fromIndex(short prop, byte style) {
         // short version = long version
         return prop < 0 || prop >= UCD_Names.JOINING_GROUP.length ? null
                 : UCD_Names.JOINING_GROUP[prop];
@@ -1251,11 +1251,11 @@ public final class UCD implements UCD_Types {
         return getScriptID_fromIndex(getScript(codePoint), length);
     }
 
-    public static String getScriptID_fromIndex(byte prop) {
+    public static String getScriptID_fromIndex(short prop) {
         return getScriptID_fromIndex(prop, NORMAL);
     }
 
-    public static String getScriptID_fromIndex(byte prop, byte length) {
+    public static String getScriptID_fromIndex(short prop, byte length) {
         return prop < 0 || prop >= UCD_Names.SCRIPT.length ? null
                 : (length == EXTRA_ALIAS && prop == COPTIC) ? "Qaac"
                         : (length == EXTRA_ALIAS && prop == INHERITED_SCRIPT) ? "Qaai"
@@ -1270,11 +1270,11 @@ public final class UCD implements UCD_Types {
         return getBidi_Paired_Bracket_TypeID_fromIndex(getBidi_Paired_Bracket_Type(codePoint), length);
     }
 
-    public static String getBidi_Paired_Bracket_TypeID_fromIndex(byte prop) {
+    public static String getBidi_Paired_Bracket_TypeID_fromIndex(short prop) {
         return getBidi_Paired_Bracket_TypeID_fromIndex(prop, NORMAL);
     }
 
-    public static String getBidi_Paired_Bracket_TypeID_fromIndex(byte prop, byte length) {
+    public static String getBidi_Paired_Bracket_TypeID_fromIndex(short prop, byte length) {
         return prop < 0 || prop >= UCD_Names.Bidi_Paired_Bracket_Type.length ? null
                 : (length == SHORT) ? UCD_Names.Bidi_Paired_Bracket_Type_SHORT[prop] : UCD_Names.Bidi_Paired_Bracket_Type[prop];
     }
@@ -1283,11 +1283,11 @@ public final class UCD implements UCD_Types {
         return getAgeID_fromIndex(getAge(codePoint));
     }
 
-    public static String getAgeID_fromIndex(byte prop) {
+    public static String getAgeID_fromIndex(short prop) {
         return getAgeID_fromIndex(prop, NORMAL);
     }
 
-    public static String getAgeID_fromIndex(byte prop, byte style) {
+    public static String getAgeID_fromIndex(short prop, byte style) {
         // no short for
         return prop < 0 || prop >= UCD_Names.SHORT_AGE.length ? null
                 : style == SHORT ? UCD_Names.SHORT_AGE[prop] : UCD_Names.LONG_AGE[prop];
@@ -1922,7 +1922,7 @@ to guarantee identifier closure.
         return NA;
     }
 
-    static String getHangulSyllableTypeID_fromIndex(byte prop, byte style) {
+    static String getHangulSyllableTypeID_fromIndex(short prop, byte style) {
         return prop < 0 || prop >= UCD_Names.HANGUL_SYLLABLE_TYPE.length ? null
                 : (style == LONG) ? UCD_Names.LONG_HANGUL_SYLLABLE_TYPE[prop]
                         : UCD_Names.HANGUL_SYLLABLE_TYPE[prop];

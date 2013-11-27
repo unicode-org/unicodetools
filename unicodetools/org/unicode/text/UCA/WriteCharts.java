@@ -650,8 +650,9 @@ public class WriteCharts implements UCD_Types {
         stoplist.addAll(Arrays.asList(stops));
         System.out.println("Stop-list: " + stoplist);
 
-        for (int i = 0; i < LIMIT_SCRIPT; ++i) {
-            stoplist.add(Default.ucd().getScriptID_fromIndex((byte)i));
+        for (short i = 0; i < LIMIT_SCRIPT; ++i) {
+            Default.ucd();
+            stoplist.add(UCD.getScriptID_fromIndex(i));
         }
         System.out.println("Stop-list: " + stoplist);
 
@@ -953,7 +954,7 @@ public class WriteCharts implements UCD_Types {
         default:
             if (script >= CAT_OFFSET) {
                 Default.ucd();
-                final String cat = UCD.getCategoryID_fromIndex((byte)(script - CAT_OFFSET), length);
+                final String cat = UCD.getCategoryID_fromIndex((short)(script - CAT_OFFSET), length);
                 if (!CAT_REMAP.reset(cat).matches()) {
                     return cat;
                 } else {
@@ -964,7 +965,8 @@ public class WriteCharts implements UCD_Types {
             } else if (script == Meroitic_Hieroglyphs ) {
                 return length == SHORT ? "Meroitic" : "Meroitic_Hieroglyphs/Cursive";
             } else {
-                return Default.ucd().getCase(Default.ucd().getScriptID_fromIndex((byte)script, length), FULL, TITLE);
+                Default.ucd();
+                return Default.ucd().getCase(UCD.getScriptID_fromIndex((short)script, length), FULL, TITLE);
             }
         }
     }
@@ -1092,7 +1094,7 @@ public class WriteCharts implements UCD_Types {
 
             final UnicodeSetIterator it = new UnicodeSetIterator();
 
-            for (byte script = 0; script < UCD_Types.LIMIT_SCRIPT; ++script) {
+            for (short script = 0; script < UCD_Types.LIMIT_SCRIPT; ++script) {
 
                 String scriptName = "";
                 try {
