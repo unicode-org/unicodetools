@@ -864,7 +864,7 @@ public class MakeUnicodeFiles {
         .add(2,Tabber.LEFT) // ;
         .add(33,Tabber.LEFT);
 
-        final Set<String> skipNames = new HashSet<String>(Arrays.asList("Lowercase_Mapping", "Uppercase_Mapping", "Titlecase_Mapping"));
+        //final Set<String> skipNames = new HashSet<String>(Arrays.asList("Lowercase_Mapping", "Uppercase_Mapping", "Titlecase_Mapping"));
 
         for (final Iterator<String> it = toolFactory.getAvailableNames().iterator(); it.hasNext();) {
             final String propName = (String) it.next();
@@ -873,9 +873,9 @@ public class MakeUnicodeFiles {
             if ((type & UnicodeProperty.EXTENDED_MASK) != 0) {
                 continue;
             }
-            if (skipNames.contains(propName)) {
-                continue;
-            }
+//            if (skipNames.contains(propName)) {
+//                continue;
+//            }
 
             final String shortProp = up.getFirstNameAlias();
             sortedSet.clear();
@@ -923,7 +923,8 @@ public class MakeUnicodeFiles {
                 }
             }
             // HACK
-            if (propName.equals("General_Category")) {
+            boolean isGC = propName.equals("General_Category");
+            if (isGC) {
                 for (final String element : specialGC) {
                     sortedSet.add(mt2.process(element));
                 }
@@ -932,7 +933,7 @@ public class MakeUnicodeFiles {
             pw.println();
             pw.println("# " + propName + " (" + shortProp + ")");
             pw.println();
-            if (sortedSet.size() == 0 || isJamoShortName) {
+            if (sortedSet.size() == 0 || isGC || isJamoShortName) {
                 printDefaultValueComment(pw, propName, up, true, null);
             } else if (propName.equals("Bidi_Paired_Bracket_Type")) {
                 printDefaultValueComment(pw, propName, up, true, "n");
@@ -1281,7 +1282,7 @@ public class MakeUnicodeFiles {
             //if (s.size() != 0)
             bf.setMergeRanges(ps.mergeRanges);
             bf.showSetNames(pw, s);
-            //System.out.println(bf.showSetNames(s));
+            System.out.println(bf.showSetNames(s));
         }
 
     }
