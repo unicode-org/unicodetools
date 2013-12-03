@@ -686,8 +686,18 @@ of characters, the first of which has a non-zero combining class.
                 shortName = "DI";
             }
 
-            UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0604 \\u06DD \\u070F\\U000110BD]");
+            final UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0605 \\u06DD \\u070F\\U000110BD]").freeze();
 
+            /**
+                # Derived Property: Default_Ignorable_Code_Point
+                #  Generated from
+                #    Other_Default_Ignorable_Code_Point
+                #  + Cf (Format characters)
+                #  + Variation_Selector
+                #  - White_Space
+                #  - FFF9..FFFB (Annotation Characters)
+                #  - 0600..0605, 06DD, 070F, 110BD (exceptional Cf characters that should be visible)
+             */
             @Override
             public boolean hasValue(int cp) {
                 if (removals.contains(cp)) {

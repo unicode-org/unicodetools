@@ -57,6 +57,9 @@ public class TestData implements UCD_Types {
 
     public static void main (String[] args) throws IOException {
         final UCD ucd = Default.ucd();
+        
+        String s = ucd.getBidiClassID(0x1F5DF);
+        
 
         final Counter<Integer> scriptCount = new Counter<Integer>();
 
@@ -283,10 +286,10 @@ public class TestData implements UCD_Types {
             final UnicodeSet base = new UnicodeSet("[:" + script + ":]");
             final UnicodeSetIterator it = new UnicodeSetIterator(base);
             while (it.next()) {
-                final String s = UTF16.valueOf(it.codepoint);
-                final String norm = Default.nfd().normalize(s);
-                if (s.equals(norm) && Default.nfkd().isNormalized(norm)) {
-                    log.println("# " + s + " <> XXX # " + Default.ucd().getName(it.codepoint));
+                final String s2 = UTF16.valueOf(it.codepoint);
+                final String norm = Default.nfd().normalize(s2);
+                if (s2.equals(norm) && Default.nfkd().isNormalized(norm)) {
+                    log.println("# " + s2 + " <> XXX # " + Default.ucd().getName(it.codepoint));
                 }
             }
         } finally {

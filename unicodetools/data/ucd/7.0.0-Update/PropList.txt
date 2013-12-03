@@ -1,5 +1,5 @@
-# PropList-6.3.0.txt
-# Date: 2013-09-25, 18:58:50 GMT [MD]
+# PropList-7.0.0.txt
+# Date: 2013-11-27, 09:54:42 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -1231,8 +1231,8 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 239B..23B3    ; Pattern_Syntax # Sm  [25] LEFT PARENTHESIS UPPER HOOK..SUMMATION BOTTOM
 23B4..23DB    ; Pattern_Syntax # So  [40] TOP SQUARE BRACKET..FUSE
 23DC..23E1    ; Pattern_Syntax # Sm   [6] TOP PARENTHESIS..BOTTOM TORTOISE SHELL BRACKET
-23E2..23F3    ; Pattern_Syntax # So  [18] WHITE TRAPEZIUM..HOURGLASS WITH FLOWING SAND
-23F4..23FF    ; Pattern_Syntax # Cn  [12] <reserved-23F4>..<reserved-23FF>
+23E2..23FA    ; Pattern_Syntax # So  [25] WHITE TRAPEZIUM..BLACK CIRCLE FOR RECORD
+23FB..23FF    ; Pattern_Syntax # Cn   [5] <reserved-23FB>..<reserved-23FF>
 2400..2426    ; Pattern_Syntax # So  [39] SYMBOL FOR NULL..SYMBOL FOR SUBSTITUTE FORM TWO
 2427..243F    ; Pattern_Syntax # Cn  [25] <reserved-2427>..<reserved-243F>
 2440..244A    ; Pattern_Syntax # So  [11] OCR HOOK..OCR DOUBLE BACKSLASH
@@ -1245,9 +1245,7 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 25F8..25FF    ; Pattern_Syntax # Sm   [8] UPPER LEFT TRIANGLE..LOWER RIGHT TRIANGLE
 2600..266E    ; Pattern_Syntax # So [111] BLACK SUN WITH RAYS..MUSIC NATURAL SIGN
 266F          ; Pattern_Syntax # Sm       MUSIC SHARP SIGN
-2670..26FF    ; Pattern_Syntax # So [144] WEST SYRIAC CROSS..WHITE FLAG WITH HORIZONTAL MIDDLE BLACK STRIPE
-2700          ; Pattern_Syntax # Cn       <reserved-2700>
-2701..2767    ; Pattern_Syntax # So [103] UPPER BLADE SCISSORS..ROTATED FLORAL HEART BULLET
+2670..2767    ; Pattern_Syntax # So [248] WEST SYRIAC CROSS..ROTATED FLORAL HEART BULLET
 2768          ; Pattern_Syntax # Ps       MEDIUM LEFT PARENTHESIS ORNAMENT
 2769          ; Pattern_Syntax # Pe       MEDIUM RIGHT PARENTHESIS ORNAMENT
 276A          ; Pattern_Syntax # Ps       MEDIUM FLATTENED LEFT PARENTHESIS ORNAMENT
@@ -1315,9 +1313,16 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 2B30..2B44    ; Pattern_Syntax # Sm  [21] LEFT ARROW WITH SMALL CIRCLE..RIGHTWARDS ARROW THROUGH SUPERSET
 2B45..2B46    ; Pattern_Syntax # So   [2] LEFTWARDS QUADRUPLE ARROW..RIGHTWARDS QUADRUPLE ARROW
 2B47..2B4C    ; Pattern_Syntax # Sm   [6] REVERSE TILDE OPERATOR ABOVE RIGHTWARDS ARROW..RIGHTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
-2B4D..2B4F    ; Pattern_Syntax # Cn   [3] <reserved-2B4D>..<reserved-2B4F>
-2B50..2B59    ; Pattern_Syntax # So  [10] WHITE MEDIUM STAR..HEAVY CIRCLED SALTIRE
-2B5A..2BFF    ; Pattern_Syntax # Cn [166] <reserved-2B5A>..<reserved-2BFF>
+2B4D..2B73    ; Pattern_Syntax # So  [39] DOWNWARDS TRIANGLE-HEADED ZIGZAG ARROW..DOWNWARDS TRIANGLE-HEADED ARROW TO BAR
+2B74..2B75    ; Pattern_Syntax # Cn   [2] <reserved-2B74>..<reserved-2B75>
+2B76..2B95    ; Pattern_Syntax # So  [32] NORTH WEST TRIANGLE-HEADED ARROW TO BAR..RIGHTWARDS BLACK ARROW
+2B96..2B97    ; Pattern_Syntax # Cn   [2] <reserved-2B96>..<reserved-2B97>
+2B98..2BB9    ; Pattern_Syntax # So  [34] THREE-D TOP-LIGHTED LEFTWARDS EQUILATERAL ARROWHEAD..UP ARROWHEAD IN A RECTANGLE BOX
+2BBA..2BBC    ; Pattern_Syntax # Cn   [3] <reserved-2BBA>..<reserved-2BBC>
+2BBD..2BC8    ; Pattern_Syntax # So  [12] BALLOT BOX WITH LIGHT X..BLACK MEDIUM RIGHT-POINTING TRIANGLE CENTRED
+2BC9          ; Pattern_Syntax # Cn       <reserved-2BC9>
+2BCA..2BD1    ; Pattern_Syntax # So   [8] TOP HALF BLACK CIRCLE..UNCERTAINTY SIGN
+2BD2..2BFF    ; Pattern_Syntax # Cn  [46] <reserved-2BD2>..<reserved-2BFF>
 2E00..2E01    ; Pattern_Syntax # Po   [2] RIGHT ANGLE SUBSTITUTION MARKER..RIGHT ANGLE DOTTED SUBSTITUTION MARKER
 2E02          ; Pattern_Syntax # Pi       LEFT SUBSTITUTION BRACKET
 2E03          ; Pattern_Syntax # Pf       RIGHT SUBSTITUTION BRACKET
@@ -1351,7 +1356,11 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 2E2F          ; Pattern_Syntax # Lm       VERTICAL TILDE
 2E30..2E39    ; Pattern_Syntax # Po  [10] RING POINT..TOP HALF SECTION SIGN
 2E3A..2E3B    ; Pattern_Syntax # Pd   [2] TWO-EM DASH..THREE-EM DASH
-2E3C..2E7F    ; Pattern_Syntax # Cn  [68] <reserved-2E3C>..<reserved-2E7F>
+2E3C..2E3F    ; Pattern_Syntax # Po   [4] STENOGRAPHIC FULL STOP..CAPITULUM
+2E40          ; Pattern_Syntax # Pd       DOUBLE HYPHEN
+2E41          ; Pattern_Syntax # Po       REVERSED COMMA
+2E42          ; Pattern_Syntax # Ps       DOUBLE LOW-REVERSED-9 QUOTATION MARK
+2E43..2E7F    ; Pattern_Syntax # Cn  [61] <reserved-2E43>..<reserved-2E7F>
 3001..3003    ; Pattern_Syntax # Po   [3] IDEOGRAPHIC COMMA..DITTO MARK
 3008          ; Pattern_Syntax # Ps       LEFT ANGLE BRACKET
 3009          ; Pattern_Syntax # Pe       RIGHT ANGLE BRACKET
