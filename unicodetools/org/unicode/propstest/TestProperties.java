@@ -1,6 +1,7 @@
 package org.unicode.propstest;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -63,6 +64,8 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
@@ -77,76 +80,73 @@ public class TestProperties extends TestFmwk {
 
     // TODO generate list of versions, plus 'latest'
 
-    static IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-    static UnicodeMap<String> newName = iup.load(UcdProperty.Name);
-    static UnicodeMap<String> blocks = iup.load(UcdProperty.Block);
-    static IndexUnicodeProperties iup6_3 = IndexUnicodeProperties.make("6.3");
+    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    static final UnicodeMap<String> newName = iup.load(UcdProperty.Name);
+    static final UnicodeMap<String> blocks = iup.load(UcdProperty.Block);
+    static final IndexUnicodeProperties lastVersion = IndexUnicodeProperties.make("6.3");
+    static final UnicodeMap<String> generalCategory = iup.load(UcdProperty.General_Category);
+    static final UnicodeSet newChars = iup.load(UcdProperty.Age).getSet(UcdPropertyValues.Age_Values.V7_0.name());
 
     public void TestScripts() {
-        UnicodeMap<String> generalCategory = iup.load(UcdProperty.General_Category);
-        //        IndexUnicodeProperties iup2_0 = IndexUnicodeProperties.make("2.0");
-        //        UnicodeMap<String> veryOldGeneralCategory = iup2_0.load(UcdProperty.General_Category);
-        //        showDiffs(generalCategory, veryOldGeneralCategory);
-        //        if (true) return;
+        System.out.println("New chars: " + newChars.size());
+        {
+            LinkedHashSet values = new LinkedHashSet(
+                    Arrays.asList(Script_Values.values()));
+            values.remove(Script_Values.Unknown);
+            values.remove(Script_Values.Katakana_Or_Hiragana);
+            listValues(UcdProperty.Script, values,
+                    new Transform<Script_Values, String>() {
+                @Override
+                public String transform(Script_Values source) {
+                    return source.getNames().getShortName();
+                }
+            });
+        }
+        {
+            LinkedHashSet values = new LinkedHashSet(
+                    Arrays.asList(General_Category_Values.values()));
+            listValues(UcdProperty.General_Category, values,
+                    new Transform<General_Category_Values, String>() {
+                @Override
+                public String transform(General_Category_Values source) {
+                    return source.getNames().getShortName();
+                }
+            });
+        }
+    }
 
-        UnicodeMap<String> scripts = iup.load(UcdProperty.Script);
-        UnicodeMap<String> oldGeneralCategory = iup6_3.load(UcdProperty.General_Category);
-        UnicodeMap<String> oldScripts = iup6_3.load(UcdProperty.Script);
-        HashSet<String> oldScriptValues = new HashSet(oldScripts.values());
-        Counter<String> newScriptCounts = new Counter<String>();
-        for (Script_Values s : UcdPropertyValues.Script_Values.values()) {
+    public <T extends Enum<T>> void listValues(UcdProperty ucdProperty, Collection<T> values, 
+            Transform<T, String> transform) {
+        UnicodeMap<String> scripts = iup.load(ucdProperty);
+        UnicodeMap<String> oldScripts = lastVersion.load(ucdProperty);
+
+        Counter<T> newScriptCounts = new Counter<T>();
+        Counter<T> oldScriptCounts = new Counter<T>();
+        for (T s : values) {
             String name = s.name();
-            if (oldScriptValues.contains(name)) {
+            UnicodeSet set = scripts.getSet(name);
+            if (set.size() == 0) {
                 continue;
             }
-            newScriptCounts.add(name,0);
-        }
-
-        //        showDiffs(generalCategory, oldGeneralCategory);
-        //        showValues(oldGeneralCategory);
-        //        System.out.println("#unassigned");
-        //        showValues(generalCategory.getSet("Unassigned"));
-        //        System.out.println("#unassigned old");
-        //        showValues(oldGeneralCategory.getSet("Unassigned"));
-        UnicodeSet newChars = new UnicodeSet(oldGeneralCategory.getSet("Unassigned"))
-        .removeAll(generalCategory.getSet("Unassigned"));
-        //        System.out.println("#new chars");
-        //        showValues(newChars);
-        HashMap<String, String> skeletonToScript = getSkeletonMap(scripts.values(), true);
-        skeletonToScript.remove("HAN");
-        skeletonToScript.remove("YI");
-        HashMap<String, String> blockToSkeleton = getSkeletonMap(blocks.values(), false);
-        UnicodeMap<String> newScripts = new UnicodeMap<String>();
-        UnicodeSet nonspacing = new UnicodeSet(
-                generalCategory.getSet(General_Category_Values.Nonspacing_Mark.name()))
-        .addAll(generalCategory.getSet(General_Category_Values.Enclosing_Mark.name()));
-        for (String s : newChars) {
-            String block = blocks.get(s);
-            String skeletonBlock = blockToSkeleton.get(block);
-            String newScriptValue = "Common";
-            for (Entry<String, String> entry : skeletonToScript.entrySet()) {
-                String skeletonScript = entry.getKey();
-                if (skeletonBlock.contains(skeletonScript)) {
-                    newScriptValue = entry.getValue();
-                    break;
-                }
-                String name = newName.get(s);
-                String skeletonName = name.toUpperCase(Locale.ENGLISH).replace("_","");
-                if (skeletonName.contains(skeletonScript)) {
-                    newScriptValue = entry.getValue();
-                    break;
-                }
+            UnicodeSet newSet = new UnicodeSet(set).retainAll(newChars);
+            int oldSize = set.size() - newSet.size();
+            if (oldSize > 0) {
+                oldScriptCounts.add(s, oldSize);
             }
-            if (newScriptValue.equals("Common") && nonspacing.contains(s)) {
-                newScriptValue = Script_Values.Common.name();
+            if (newSet.size() > 0) {
+                newScriptCounts.add(s, newSet.size());
             }
-            newScripts.put(s, newScriptValue);
-            newScriptCounts.add(newScriptValue, 1);
         }
-        showValues(newScripts);
         System.out.println("#counts");
-        for (String c : newScriptCounts.getKeysetSortedByCount(false)) {
-            System.out.println(newScriptCounts.get(c) + "\t" + c);
+        LinkedHashSet<T> sorted = new LinkedHashSet(newScriptCounts.getKeysetSortedByCount(false));
+        sorted.addAll(oldScriptCounts.getKeysetSortedByCount(false));
+        NumberFormat nf = NumberFormat.getInstance();
+        for (T c : sorted) {
+            System.out.println(
+                    nf.format(oldScriptCounts.get(c)) 
+                    + "\t" + nf.format(newScriptCounts.get(c))
+                    + "\t" + transform.transform(c)
+                    + "\t" + c);
         }
     }
 
@@ -162,6 +162,7 @@ public class TestProperties extends TestFmwk {
         }
         return capNewScripts;
     }
+
     public void showDiffs(UnicodeMap<String> generalCategory,
             UnicodeMap<String> oldGeneralCategory) {
         showDiffs(oldGeneralCategory, generalCategory, findDifferences2(oldGeneralCategory, generalCategory));
@@ -222,7 +223,7 @@ public class TestProperties extends TestFmwk {
     public void checkProp(String s) {
         UnicodeProperty prop = iup.getProperty(s);
         List<String> availableValues = prop.getAvailableValues();
-        UnicodeProperty oldProp = iup6_3.getProperty(s);
+        UnicodeProperty oldProp = lastVersion.getProperty(s);
 
         UnicodeMap<String> propUmOld = oldProp.getUnicodeMap();
         UnicodeMap<String> propUmNew = prop.getUnicodeMap();

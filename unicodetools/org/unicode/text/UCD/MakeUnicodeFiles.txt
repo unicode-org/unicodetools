@@ -1,5 +1,5 @@
-Generate: BreakProperty
-DeltaVersion: 16
+Generate: .
+DeltaVersion: 17
 CopyrightYear: 2013
 
 File: extra/ScriptNfkc
