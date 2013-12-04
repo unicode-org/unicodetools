@@ -1,5 +1,5 @@
 # PropertyValueAliases-7.0.0.txt
-# Date: 2013-11-12, 23:21:00 [MS, KW]
+# Date: 2013-12-04, 07:31:40 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -590,7 +590,7 @@ Comp_Ex; Y                            ; Yes                              ; T    
 
 # General_Category (gc)
 
-# @missing: 0000..10FFFF; General_Category; Cn
+# @missing: 0000..10FFFF; General_Category; Unassigned
 gc ; C                                ; Other                            # Cc | Cf | Cn | Co | Cs
 gc ; Cc                               ; Control                          ; cntrl
 gc ; Cf                               ; Format
@@ -840,6 +840,33 @@ jg ; Khaph                            ; Khaph
 jg ; Knotted_Heh                      ; Knotted_Heh
 jg ; Lam                              ; Lam
 jg ; Lamadh                           ; Lamadh
+jg ; Manichaean_Aleph                 ; Manichaean_Aleph
+jg ; Manichaean_Ayin                  ; Manichaean_Ayin
+jg ; Manichaean_Beth                  ; Manichaean_Beth
+jg ; Manichaean_Daleth                ; Manichaean_Daleth
+jg ; Manichaean_Dhamedh               ; Manichaean_Dhamedh
+jg ; Manichaean_Five                  ; Manichaean_Five
+jg ; Manichaean_Gimel                 ; Manichaean_Gimel
+jg ; Manichaean_Heth                  ; Manichaean_Heth
+jg ; Manichaean_Hundred               ; Manichaean_Hundred
+jg ; Manichaean_Kaph                  ; Manichaean_Kaph
+jg ; Manichaean_Lamedh                ; Manichaean_Lamedh
+jg ; Manichaean_Mem                   ; Manichaean_Mem
+jg ; Manichaean_Nun                   ; Manichaean_Nun
+jg ; Manichaean_One                   ; Manichaean_One
+jg ; Manichaean_Pe                    ; Manichaean_Pe
+jg ; Manichaean_Qoph                  ; Manichaean_Qoph
+jg ; Manichaean_Resh                  ; Manichaean_Resh
+jg ; Manichaean_Sadhe                 ; Manichaean_Sadhe
+jg ; Manichaean_Samekh                ; Manichaean_Samekh
+jg ; Manichaean_Taw                   ; Manichaean_Taw
+jg ; Manichaean_Ten                   ; Manichaean_Ten
+jg ; Manichaean_Teth                  ; Manichaean_Teth
+jg ; Manichaean_Thamedh               ; Manichaean_Thamedh
+jg ; Manichaean_Twenty                ; Manichaean_Twenty
+jg ; Manichaean_Waw                   ; Manichaean_Waw
+jg ; Manichaean_Yodh                  ; Manichaean_Yodh
+jg ; Manichaean_Zayin                 ; Manichaean_Zayin
 jg ; Meem                             ; Meem
 jg ; Mim                              ; Mim
 jg ; No_Joining_Group                 ; No_Joining_Group
@@ -857,6 +884,7 @@ jg ; Sadhe                            ; Sadhe
 jg ; Seen                             ; Seen
 jg ; Semkath                          ; Semkath
 jg ; Shin                             ; Shin
+jg ; Straight_Waw                     ; Straight_Waw
 jg ; Swash_Kaf                        ; Swash_Kaf
 jg ; Syriac_Waw                       ; Syriac_Waw
 jg ; Tah                              ; Tah
