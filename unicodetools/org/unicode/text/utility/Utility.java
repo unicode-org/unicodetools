@@ -1276,7 +1276,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 boolean security = parts[0].equals("security");
                 if (security) {
                     // TODO fix versions
-                    element = "revision-06";
+                    element = "6.3.0";//"revision-06";
                 }
                 String directoryName = UCD_Types.BASE_DIR + parts[0] + "/" + element + "/";
                 result = directoryName + parts[2] + fileType;
