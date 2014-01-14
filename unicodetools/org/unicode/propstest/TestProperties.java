@@ -3,6 +3,7 @@ package org.unicode.propstest;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ import org.unicode.cldr.tool.LikelySubtags;
 import org.unicode.cldr.unittest.TestAll.TestInfo;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CLDRFile.DraftStatus;
+import org.unicode.cldr.util.CLDRFile.DtdType;
 import org.unicode.cldr.util.CLDRFile.WinningChoice;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Factory;
@@ -87,7 +89,38 @@ public class TestProperties extends TestFmwk {
     static final UnicodeMap<String> generalCategory = iup.load(UcdProperty.General_Category);
     static final UnicodeSet newChars = iup.load(UcdProperty.Age).getSet(UcdPropertyValues.Age_Values.V7_0.name());
 
+    public void TestAAScripts() {
+        UnicodeMap<String> scriptInfo = iup.load(UcdProperty.Script);
+        UnicodeSet unknownScript = scriptInfo.getSet(
+                UcdPropertyValues.Script_Values.Unknown.toString());
+        unknownScript.removeAll(generalCategory.getSet(
+                UcdPropertyValues.General_Category_Values.Unassigned.toString()))
+                .removeAll(generalCategory.getSet(
+                UcdPropertyValues.General_Category_Values.Private_Use.toString()))
+                .removeAll(generalCategory.getSet(
+                UcdPropertyValues.General_Category_Values.Surrogate.toString()))
+                ;
+        UnicodeSet unknownMarks = new UnicodeSet(generalCategory.getSet(
+                UcdPropertyValues.General_Category_Values.Nonspacing_Mark.toString()))
+        .addAll(generalCategory.getSet(
+                UcdPropertyValues.General_Category_Values.Enclosing_Mark.toString()))
+                .addAll(generalCategory.getSet(
+                        UcdPropertyValues.General_Category_Values.Spacing_Mark.toString()))
+                        .retainAll(unknownScript)
+                        ;
+        unknownScript.removeAll(unknownMarks);
+        assertEquals("Missing Inherited", UnicodeSet.EMPTY, unknownMarks);
+        assertEquals("Missing Common", UnicodeSet.EMPTY, unknownScript);
+        for (UnicodeSetIterator it = new UnicodeSetIterator(unknownScript); 
+                it.nextRange();) {
+            System.out.println(Utility.hex(it.codepoint) + ".." + Utility.hex(it.codepointEnd)
+                    + "; Common # (" + generalCategory.get(it.codepoint) + ".." + generalCategory.get(it.codepointEnd) + ") "
+                    + nameMap.get(it.codepoint) + ".." + nameMap.get(it.codepointEnd)
+                    );
+        }
+    }
     public void TestScripts() {
+
         System.out.println("New chars: " + newChars.size());
         {
             LinkedHashSet values = new LinkedHashSet(
@@ -180,8 +213,8 @@ public class TestProperties extends TestFmwk {
     }
 
     private <T> void showValues(UnicodeMap<T> us) {
-        Iterable<EntryRange> ers = us.entryRanges();
-        for (EntryRange it : ers) {
+        Iterable<EntryRange<T>> ers = us.entryRanges();
+        for (EntryRange<T> it : ers) {
             if (it.value == null) {
                 continue;
             }
@@ -304,8 +337,8 @@ public class TestProperties extends TestFmwk {
             return m1.keySet();
         }
         UnicodeSet result = new UnicodeSet();
-        Iterator<EntryRange> it1 = m1.entryRanges().iterator();
-        Iterator<EntryRange> it2 = m2.entryRanges().iterator();
+        Iterator<EntryRange<T>> it1 = m1.entryRanges().iterator();
+        Iterator<EntryRange<T>> it2 = m2.entryRanges().iterator();
         EntryRange er1 = it1.next();
         EntryRange er2 = it2.next();
         while (true) {
@@ -374,7 +407,7 @@ public class TestProperties extends TestFmwk {
             }
         }
         // now add the remainders. 
-        Iterator<EntryRange> remainder = it2.hasNext() ? it2 : it1;
+        Iterator<EntryRange<T>> remainder = it2.hasNext() ? it2 : it1;
         while (remainder.hasNext()) {
             EntryRange er = remainder.next();
             result.add(er.codepoint, er.codepointEnd);
@@ -693,9 +726,10 @@ public class TestProperties extends TestFmwk {
         Counter<Level> unconfirmedCounter = new Counter<Level>();
         Counter<Level> missingCounter = new Counter<Level>();
         PathHeader.Factory pathHeaderFactory = PathHeader.getFactory(testInfo.getCldrFactory().make("en", true));
+        Comparator<String> ldmlComp2 = CLDRFile.getComparator(DtdType.ldml);
         Relation<MissingStatus, String> missingPaths = Relation.of(new EnumMap<MissingStatus, Set<String>>(
-                MissingStatus.class), TreeSet.class, CLDRFile.getLdmlComparator());
-        Set<String> unconfirmed = new TreeSet(CLDRFile.getLdmlComparator());
+                MissingStatus.class), TreeSet.class, ldmlComp2);
+        Set<String> unconfirmed = new TreeSet(ldmlComp2);
 
         Map<Level, Double> getData(CLDRFile f) {
             Map<Level, Double> confirmedCoverage = new EnumMap(Level.class);
