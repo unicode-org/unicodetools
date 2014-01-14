@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-7.0.0.txt
-# Date: 2013-11-27, 09:54:36 GMT [MD]
+# Date: 2014-01-11, 14:34:47 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2013 Unicode, Inc.
@@ -476,7 +476,6 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 114B9         ; SpacingMark # Mc       TIRHUTA VOWEL SIGN E
 114BB..114BE  ; SpacingMark # Mc   [4] TIRHUTA VOWEL SIGN AI..TIRHUTA VOWEL SIGN AU
 114C1         ; SpacingMark # Mc       TIRHUTA SIGN VISARGA
-114C5         ; SpacingMark # Mc       TIRHUTA GVANG
 115AF..115B1  ; SpacingMark # Mc   [3] SIDDHAM VOWEL SIGN AA..SIDDHAM VOWEL SIGN II
 115B8..115BB  ; SpacingMark # Mc   [4] SIDDHAM VOWEL SIGN E..SIDDHAM VOWEL SIGN AU
 115BE         ; SpacingMark # Mc       SIDDHAM SIGN VISARGA
@@ -490,7 +489,7 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 1D166         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING AUGMENTATION DOT
 
-# Total code points: 339
+# Total code points: 338
 
 # ================================================
 
