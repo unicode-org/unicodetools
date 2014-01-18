@@ -1,8 +1,8 @@
-# ScriptExtensions-6.3.0.txt
-# Date: 2013-03-02, 16:07:55 GMT [MD]
+# ScriptExtensions-7.0.0.txt
+# Date: 2014-01-14, 18:02:58 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 # The Script_Extensions property indicates which characters are commonly used
@@ -32,8 +32,9 @@
 1CED          ; Deva # Mn       VEDIC SIGN TIRYAK
 1CF2..1CF3    ; Deva # Mc   [2] VEDIC SIGN ARDHAVISARGA..VEDIC SIGN ROTATED ARDHAVISARGA
 1CF4          ; Deva # Mn       VEDIC TONE CANDRA ABOVE
+1CF8..1CF9    ; Deva # Mn   [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 
-# Total code points: 28
+# Total code points: 30
 
 # ================================================
 
@@ -52,6 +53,15 @@
 0363..036F    ; Latn # Mn  [13] COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
 
 # Total code points: 13
+
+# ================================================
+
+# Script_Extensions=Arab Copt
+
+102E0         ; Arab Copt # Mn       COPTIC EPACT THOUSANDS MARK
+102E1..102FB  ; Arab Copt # No  [27] COPTIC EPACT DIGIT ONE..COPTIC EPACT NUMBER NINE HUNDRED
+
+# Total code points: 28
 
 # ================================================
 
@@ -203,17 +213,17 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 
 # ================================================
 
-# Script_Extensions=Buhd Hano Tagb Tglg
+# Script_Extensions=Kali Latn Mymr
 
-1735..1736    ; Buhd Hano Tagb Tglg # Po   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
+A92E          ; Kali Latn Mymr # Po       KAYAH LI SIGN CWI
 
-# Total code points: 2
+# Total code points: 1
 
 # ================================================
 
-# Script_Extensions=Beng Deva Guru Orya Takr
+# Script_Extensions=Buhd Hano Tagb Tglg
 
-0964..0965    ; Beng Deva Guru Orya Takr # Po   [2] DEVANAGARI DANDA..DEVANAGARI DOUBLE DANDA
+1735..1736    ; Buhd Hano Tagb Tglg # Po   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 
 # Total code points: 2
 
@@ -283,5 +293,21 @@ FF63          ; Bopo Hang Hani Hira Kana Yiii # Pe       HALFWIDTH RIGHT CORNER 
 FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDLE DOT
 
 # Total code points: 26
+
+# ================================================
+
+# Script_Extensions=Beng Deva Gujr Guru Knda Mlym Orya Sylo Takr Taml Telu
+
+0964          ; Beng Deva Gujr Guru Knda Mlym Orya Sylo Takr Taml Telu # Po       DEVANAGARI DANDA
+
+# Total code points: 1
+
+# ================================================
+
+# Script_Extensions=Beng Deva Gujr Guru Knda Limb Mlym Orya Sylo Takr Taml Telu
+
+0965          ; Beng Deva Gujr Guru Knda Limb Mlym Orya Sylo Takr Taml Telu # Po       DEVANAGARI DOUBLE DANDA
+
+# Total code points: 1
 
 # EOF
