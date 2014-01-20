@@ -3,6 +3,7 @@ package org.unicode.idna;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -18,7 +19,7 @@ public class CheckIdna2008 {
 
     public static void main(String[] args) {
 
-        for (final String line : FileUtilities.in(org.unicode.text.utility.Utility.DATA_DIRECTORY + "/idna/", "f.txt")) {
+        for (final String line : FileUtilities.in(Settings.DATA_DIR + "/idna/", "f.txt")) {
             if (line.startsWith("Codepoints")) {continue;}
             final String[] parts = line.split(";");
             // 0041;DISALLOWED;Y;AB;LATIN CAPITAL LETTER A
@@ -32,7 +33,7 @@ public class CheckIdna2008 {
             patriksData.put(cp, allButFirst(parts));
         }
 
-        for (String line : FileUtilities.in(org.unicode.text.utility.Utility.DATA_DIRECTORY + "/idna/6.1.0/", "IdnaMappingTable.txt")) {
+        for (String line : FileUtilities.in(Settings.DATA_DIR + "/idna/6.1.0/", "IdnaMappingTable.txt")) {
             final int pos2 = line.indexOf('#');
             if (pos2 >= 0) {
                 line = line.substring(0,pos2);

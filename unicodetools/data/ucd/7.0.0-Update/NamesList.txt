@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 7.0.0
-@@@+	U70M131125.lst
-	Unicode 7.0.0 names list, sixteenth delta.
+@@@+	U70M140116.lst
+	Unicode 7.0.0 names list, seventeenth delta.
 	Based on FDAM1 + FDAM2, with modified annotations.
 	Added annotation for 06BA.
 	Added notice about spelling of Oriya as Odia.
@@ -41,13 +41,20 @@
 	Added xref from 0023 to 2317.
 	Corrected block range for Latin Extended-E.
 	Added note about anomalous decomposition of 1F12E.
+	Added annotations for surrounding parentheses diacritics 1ABB, 1ABC, 1ABE.
+	Added xrefs to/from 21B9 and 2B7E.
+	Added annotation for 118A0.
+	Minor corrections to subheads in Miscellaneous Symbols and Pictographs block.
+	Added several xrefs for asterisks and crosses in Geometric Shapes Extended block.
+	Updated annotation for 110BF and added xrefs to Khojki.
+	Added annotations and xrefs for 1123B and 1123C.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
 	for this process are aimed at readability for the human reader,
 	at the expense of some details; therefore, this file should not
 	be parsed for machine-readable information.
-@+		Copyright (c) 1991-2013 Unicode, Inc.
+@+		Copyright (c) 1991-2014 Unicode, Inc.
 	For terms of use, see http://www.unicode.org/terms_of_use.html
 @@	0000	C0 Controls and Basic Latin (Basic Latin)	007F
 @@+
@@ -1745,17 +1752,17 @@
 @@	0250	IPA Extensions	02AF
 @		IPA extensions
 @+		IPA includes basic Latin letters and a number of Latin or Greek letters from other blocks.
-		x (latin small letter ae - 00E6)
-		x (latin small letter c with cedilla - 00E7)
-		x (latin small letter eth - 00F0)
-		x (latin small letter o with stroke - 00F8)
-		x (latin small letter h with stroke - 0127)
-		x (latin small letter eng - 014B)
-		x (latin small ligature oe - 0153)
-		x (greek small letter beta - 03B2)
-		x (greek small letter theta - 03B8)
-		x (greek small letter lamda - 03BB)
-		x (greek small letter chi - 03C7)
+	x (latin small letter ae - 00E6)
+	x (latin small letter c with cedilla - 00E7)
+	x (latin small letter eth - 00F0)
+	x (latin small letter o with stroke - 00F8)
+	x (latin small letter h with stroke - 0127)
+	x (latin small letter eng - 014B)
+	x (latin small ligature oe - 0153)
+	x (greek small letter beta - 03B2)
+	x (greek small letter theta - 03B8)
+	x (greek small letter lamda - 03BB)
+	x (greek small letter chi - 03C7)
 0250	LATIN SMALL LETTER TURNED A
 	* low central unrounded vowel
 	* uppercase is 2C6F
@@ -9913,15 +9920,18 @@
 1AB5	COMBINING X-X BELOW
 1AB6	COMBINING WIGGLY LINE BELOW
 1AB7	COMBINING OPEN MARK BELOW
-		x 0328 combining ogonek
-		x 0345 combining greek ypogegrammeni
+	x 0328 combining ogonek
+	x 0345 combining greek ypogegrammeni
 1AB8	COMBINING DOUBLE OPEN MARK BELOW
 1AB9	COMBINING LIGHT CENTRALIZATION STROKE BELOW
 1ABA	COMBINING STRONG CENTRALIZATION STROKE BELOW
 1ABB	COMBINING PARENTHESES ABOVE
+	* intended to surround a diacritic above
 1ABC	COMBINING DOUBLE PARENTHESES ABOVE
 1ABD	COMBINING PARENTHESES BELOW
+	* intended to surround a diacritic below
 1ABE	COMBINING PARENTHESES OVERLAY
+	* intended to surround a base letter
 @@	1B00	Balinese	1B7F
 @		Various signs
 1B00	BALINESE SIGN ULU RICEM
@@ -12504,25 +12514,25 @@
 @@	20A0	Currency Symbols	20CF
 @		Currency symbols
 @+		A number of currency symbols are found in other blocks. Fullwidth versions of some currency symbols are found in the Halfwidth and Fullwidth Forms block.
-		x (dollar sign - 0024)
-		x (cent sign - 00A2)
-		x (pound sign - 00A3)
-		x (currency sign - 00A4)
-		x (yen sign - 00A5)
-		x (latin small letter f with hook - 0192)
-		x (afghani sign - 060B)
-		x (bengali rupee mark - 09F2)
-		x (bengali rupee sign - 09F3)
-		x (gujarati rupee sign - 0AF1)
-		x (tamil rupee sign - 0BF9)
-		x (thai currency symbol baht - 0E3F)
-		x (khmer currency symbol riel - 17DB)
-		x (script capital m - 2133)
-		x (cjk unified ideograph-5143 - 5143)
-		x (cjk unified ideograph-5186 - 5186)
-		x (cjk unified ideograph-5706 - 5706)
-		x (cjk unified ideograph-5713 - 5713)
-		x (rial sign - FDFC)
+	x (dollar sign - 0024)
+	x (cent sign - 00A2)
+	x (pound sign - 00A3)
+	x (currency sign - 00A4)
+	x (yen sign - 00A5)
+	x (latin small letter f with hook - 0192)
+	x (afghani sign - 060B)
+	x (bengali rupee mark - 09F2)
+	x (bengali rupee sign - 09F3)
+	x (gujarati rupee sign - 0AF1)
+	x (tamil rupee sign - 0BF9)
+	x (thai currency symbol baht - 0E3F)
+	x (khmer currency symbol riel - 17DB)
+	x (script capital m - 2133)
+	x (cjk unified ideograph-5143 - 5143)
+	x (cjk unified ideograph-5186 - 5186)
+	x (cjk unified ideograph-5706 - 5706)
+	x (cjk unified ideograph-5713 - 5713)
+	x (rial sign - FDFC)
 20A0	EURO-CURRENCY SIGN
 	* intended for ECU, but not widely used
 	* historical character; this is NOT the euro!
@@ -13141,6 +13151,7 @@
 	= home
 21B9	LEFTWARDS ARROW TO BAR OVER RIGHTWARDS ARROW TO BAR
 	= tab with shift tab
+	x (horizontal tab key - 2B7E)
 21BA	ANTICLOCKWISE OPEN CIRCLE ARROW
 21BB	CLOCKWISE OPEN CIRCLE ARROW
 @		Harpoons
@@ -15147,6 +15158,7 @@
 2613	SALTIRE
 	= St. Andrew's Cross
 	x (ballot x - 2717)
+	x (light saltire - 1F7A9)
 @		Weather symbol
 2614	UMBRELLA WITH RAIN DROPS
 	= showery weather
@@ -15834,6 +15846,7 @@
 @		Crosses
 2719	OUTLINED GREEK CROSS
 271A	HEAVY GREEK CROSS
+	x (very bold greek cross - 1F7A5)
 271B	OPEN CENTRE CROSS
 271C	HEAVY OPEN CENTRE CROSS
 271D	LATIN CROSS
@@ -15866,8 +15879,10 @@
 2730	SHADOWED WHITE STAR
 2731	HEAVY ASTERISK
 	x (asterisk - 002A)
+	x (heavy six spoked asterisk - 1F7B8)
 2732	OPEN CENTRE ASTERISK
 2733	EIGHT SPOKED ASTERISK
+	x (light eight spoked asterisk - 1F7BB)
 	~ 2733 FE0E text style
 	~ 2733 FE0F emoji style
 2734	EIGHT POINTED BLACK STAR
@@ -17617,6 +17632,7 @@
 	= page down
 @		Keyboard symbols
 2B7E	HORIZONTAL TAB KEY
+	x (leftwards arrow to bar over rightwards arrow to bar - 21B9)
 2B7F	VERTICAL TAB KEY
 @		Paired triangle-headed arrows
 2B80	LEFTWARDS TRIANGLE-HEADED ARROW OVER RIGHTWARDS TRIANGLE-HEADED ARROW
@@ -30843,8 +30859,10 @@ FFFF	<not a character>
 110BD	KAITHI NUMBER SIGN
 110BE	KAITHI SECTION MARK
 	* marks end of sentence
+	x (khojki section mark - 1123B)
 110BF	KAITHI DOUBLE SECTION MARK
-	* paragraph delimiter
+	* delimits larger chunks of text, such as paragraphs
+	x (khojki double section mark - 1123C)
 110C0	KAITHI DANDA
 110C1	KAITHI DOUBLE DANDA
 @@	110D0	Sora Sompeng	110FF
@@ -31254,7 +31272,11 @@ FFFF	<not a character>
 11239	KHOJKI DOUBLE DANDA
 1123A	KHOJKI WORD SEPARATOR
 1123B	KHOJKI SECTION MARK
+	* marks end of sentence
+	x (kaithi section mark - 110BE)
 1123C	KHOJKI DOUBLE SECTION MARK
+	* delimits larger chunks of text, such as paragraphs
+	x (kaithi double section mark - 110BF)
 1123D	KHOJKI ABBREVIATION SIGN
 @@	112B0	Khudawadi	112FF
 @		Independent vowels
@@ -31783,6 +31805,7 @@ FFFF	<not a character>
 @@	118A0	Warang Citi	118FF
 @		Uppercase vowels
 118A0	WARANG CITI CAPITAL LETTER NGAA
+	* functions as an anusvara
 118A1	WARANG CITI CAPITAL LETTER A
 118A2	WARANG CITI CAPITAL LETTER WI
 118A3	WARANG CITI CAPITAL LETTER YU
@@ -36147,9 +36170,9 @@ FFFF	<not a character>
 	x (musical symbol multi rest - 1D13A)
 @		Accidentals
 @+		The most common accidentals are encoded in the Miscellaneous Symbols block.
-		x (music flat sign - 266D)
-		x (music natural sign - 266E)
-		x (music sharp sign - 266F)
+	x (music flat sign - 266D)
+	x (music natural sign - 266E)
+	x (music sharp sign - 266F)
 1D12A	MUSICAL SYMBOL DOUBLE SHARP
 1D12B	MUSICAL SYMBOL DOUBLE FLAT
 1D12C	MUSICAL SYMBOL FLAT UP
@@ -40474,7 +40497,6 @@ FFFF	<not a character>
 1F39F	ADMISSION TICKETS
 	= ticket
 	x (ticket - 1F3AB)
-@		Entertainment symbols
 1F3A0	CAROUSEL HORSE
 	= amusement park
 1F3A1	FERRIS WHEEL
@@ -40518,7 +40540,7 @@ FFFF	<not a character>
 1F3B3	BOWLING
 1F3B4	FLOWER PLAYING CARDS
 	= flower cards
-@		Music symbols
+@		Musical symbols
 1F3B5	MUSICAL NOTE
 	= music, being in good mood
 	x (eighth note - 266A)
@@ -42157,11 +42179,13 @@ FFFF	<not a character>
 1F7A3	MEDIUM GREEK CROSS
 1F7A4	BOLD GREEK CROSS
 1F7A5	VERY BOLD GREEK CROSS
+	x (heavy greek cross - 271A)
 1F7A6	VERY HEAVY GREEK CROSS
 1F7A7	EXTREMELY HEAVY GREEK CROSS
 @		Saltires
 1F7A8	THIN SALTIRE
 1F7A9	LIGHT SALTIRE
+	x (saltire - 2613)
 1F7AA	MEDIUM SALTIRE
 1F7AB	BOLD SALTIRE
 1F7AC	HEAVY SALTIRE
@@ -42179,10 +42203,12 @@ FFFF	<not a character>
 1F7B6	MEDIUM SIX SPOKED ASTERISK
 1F7B7	BOLD SIX SPOKED ASTERISK
 1F7B8	HEAVY SIX SPOKED ASTERISK
+	x (heavy asterisk - 2731)
 1F7B9	VERY HEAVY SIX SPOKED ASTERISK
 1F7BA	EXTREMELY HEAVY SIX SPOKED ASTERISK
 @		Eight spoked asterisks
 1F7BB	LIGHT EIGHT SPOKED ASTERISK
+	x (eight spoked asterisk - 2733)
 1F7BC	MEDIUM EIGHT SPOKED ASTERISK
 1F7BD	BOLD EIGHT SPOKED ASTERISK
 1F7BE	HEAVY EIGHT SPOKED ASTERISK

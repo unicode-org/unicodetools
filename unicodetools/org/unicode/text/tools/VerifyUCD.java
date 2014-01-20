@@ -19,6 +19,7 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Names;
 import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.Tabber;
@@ -39,7 +40,7 @@ public class VerifyUCD {
         final String x = Default.ucd().getCase("\u0130", UCD_Types.FULL, UCD_Types.LOWER);
         final String y = Default.ucd().getCase(Default.nfd().normalize("\u0130"), UCD_Types.FULL, UCD_Types.LOWER);
 
-        Log.setLog(UCD_Types.GEN_DIR + "verifyUCD.html");
+        Log.setLog(Settings.GEN_DIR + "verifyUCD.html");
         Log.logln("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
         Log.logln("<title>UCD Canonical Check</title></head><body>");
         Log.getLog().println("<h2 align='right'>L2/06-386R2</h2>");

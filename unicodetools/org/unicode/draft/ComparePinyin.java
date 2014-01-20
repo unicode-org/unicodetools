@@ -167,12 +167,12 @@ public class ComparePinyin {
 
         final Tabber tabber = new Tabber.HTMLTabber();
 
-        final PrintWriter out = Utility.openPrintWriter("pinyinTable.html", null);
-        final PrintWriter pinyinCollation = Utility.openPrintWriter("pinyinCollation.txt", null);
+        final PrintWriter out = Utility.openPrintWriterGenDir("pinyinTable.html", null);
+        final PrintWriter pinyinCollation = Utility.openPrintWriterGenDir("pinyinCollation.txt", null);
         pinyinCollation.println("\uFEFF# Unihan Pinyin Collation\n" +
                 "&[last regular]");
 
-        final PrintWriter pinyinCollationInterleaved = Utility.openPrintWriter("pinyinCollationInterleaved.txt", null);
+        final PrintWriter pinyinCollationInterleaved = Utility.openPrintWriterGenDir("pinyinCollationInterleaved.txt", null);
         pinyinCollationInterleaved.println("\uFEFF# Unihan Pinyin Interleaved Collation\n" +
                 "&[last regular]");
 
@@ -447,7 +447,7 @@ public class ComparePinyin {
         }
 
         private void collectPinyin() {
-            final PrintWriter out = Utility.openPrintWriter("pinyin/pinyins.txt", null);
+            final PrintWriter out = Utility.openPrintWriterGenDir("pinyin/pinyins.txt", null);
             final String[] line = {"", "", "", "", "", "", "", ""};
             final Map<String,Integer> groupToIndex = new HashMap();
             int k = 3;

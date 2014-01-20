@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -28,7 +29,7 @@ public class GetTypology {
         final Map<String,Set<String>> toOriginals = new TreeMap();
 
         final String filename = "U52M09XXXX.lst";
-        final BufferedReader br = BagFormatter.openUTF8Reader(Utility.UCD_DIRECTORY, filename);
+        final BufferedReader br = BagFormatter.openUTF8Reader(Settings.UCD_DIR, filename);
         final StringBuilder name = new StringBuilder();
         String nameString = null;
 
@@ -101,7 +102,7 @@ public class GetTypology {
         }
         br.close();
 
-        final PrintWriter out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/classification", "classification_analysis.txt");
+        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/classification", "classification_analysis.txt");
         out.println("# Source:\t" + filename);
         int count;
         out.println();

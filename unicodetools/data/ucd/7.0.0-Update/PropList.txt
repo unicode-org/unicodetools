@@ -1392,4 +1392,66 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 2760
 
+# Dash
+2E40 ; Dash #      DOUBLE HYPHEN
+ 
+#Quotation_Mark:
+2E42; Quotation_Mark #    DOUBLE LOW-REVERSED-9 QUOTATION MARK
+ 
+# Terminal Punctuation (34 characters):
+2E3C ; Terminal_Punctuation #     STENOGRAPHIC FULL STOP
+2E41  ; Terminal_Punctuation #     REVERSED COMMA
+10AF0  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION STAR
+10AF1  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION FLEURON
+10AF2  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION DOUBLE DOT WITHIN DOT
+10AF3  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION DOT WITHIN DOT
+10AF4  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION DOT
+10AF5   ; Terminal_Punctuation # MANICHAEAN PUNCTUATION TWO DOTS
+10B99   ; Terminal_Punctuation #  PSALTER PAHLAVI SECTION MARK
+10B9A ; Terminal_Punctuation #   PSALTER PAHLAVI TURNED SECTION MARK
+10B9B ; Terminal_Punctuation #   PSALTER PAHLAVI FOUR DOTS WITH CROSS
+10B9C  ; Terminal_Punctuation #  PSALTER PAHLAVI FOUR DOTS WITH DOT
+111CD  ; Terminal_Punctuation #  SHARADA SUTRA MARK
+11238  ; Terminal_Punctuation #   KHOJKI DANDA
+11239  ; Terminal_Punctuation #   KHOJKI DOUBLE DANDA
+1123A   ; Terminal_Punctuation # KHOJKI WORD SEPARATOR
+1123B   ; Terminal_Punctuation #  KHOJKI SECTION MARK
+1123C  ; Terminal_Punctuation #   KHOJKI DOUBLE SECTION MARK
+115C2  ; Terminal_Punctuation #   SIDDHAM DANDA
+115C3  ; Terminal_Punctuation #   SIDDHAM DOUBLE DANDA
+115C4  ; Terminal_Punctuation #   SIDDHAM SEPARATOR DOT
+115C5  ; Terminal_Punctuation #   SIDDHAM SEPARATOR BAR
+115C9   ; Terminal_Punctuation #  SIDDHAM END OF TEXT MARK
+11641   ; Terminal_Punctuation #  MODI DANDA
+11642   ; Terminal_Punctuation #  MODI DOUBLE DANDA
+12474  ; Terminal_Punctuation #   CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
+16A6E  ; Terminal_Punctuation #  MRO DANDA
+16A6F  ; Terminal_Punctuation #  MRO DOUBLE DANDA
+16AF5   ; Terminal_Punctuation # BASSA VAH FULL STOP
+16B37  ; Terminal_Punctuation #   PAHAWH HMONG SIGN VOS THOM
+16B38  ; Terminal_Punctuation #   PAHAWH HMONG SIGN VOS TSHAB CEEB
+16B39  ; Terminal_Punctuation #   PAHAWH HMONG SIGN CIM CHEEM
+16B44   ; Terminal_Punctuation #  PAHAWH HMONG SIGN XAUS
+1BC9F  ; Terminal_Punctuation #  DUPLOYAN PUNCTUATION CHINOOK FULL STOP
+ 
+# STerm (18 characters):
+2E3C  ; STerm #    STENOGRAPHIC FULL STOP
+111CD ; STerm #    SHARADA SUTRA MARK
+11238 ; STerm #     KHOJKI DANDA
+11239  ; STerm #    KHOJKI DOUBLE DANDA
+1123B ; STerm #     KHOJKI SECTION MARK
+1123C ; STerm #     KHOJKI DOUBLE SECTION MARK
+115C2 ; STerm #     SIDDHAM DANDA
+115C3 ; STerm #     SIDDHAM DOUBLE DANDA
+115C9 ; STerm #     SIDDHAM END OF TEXT MARK
+11641 ; STerm #     MODI DANDA
+11642 ; STerm #     MODI DOUBLE DANDA
+16A6E ; STerm #    MRO DANDA
+16A6F ; STerm #    MRO DOUBLE DANDA
+16AF5 ; STerm #    BASSA VAH FULL STOP
+16B37 ; STerm #     PAHAWH HMONG SIGN VOS THOM
+16B38 ; STerm #     PAHAWH HMONG SIGN VOS TSHAB CEEB
+16B44 ; STerm #     PAHAWH HMONG SIGN XAUS
+1BC9F ; STerm #    DUPLOYAN PUNCTUATION CHINOOK FULL STOP
+
 # EOF

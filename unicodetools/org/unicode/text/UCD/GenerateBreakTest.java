@@ -27,9 +27,11 @@ import java.util.regex.Matcher;
 
 import org.unicode.cldr.util.Segmenter;
 import org.unicode.cldr.util.Segmenter.Builder;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
+import org.unicode.text.utility.UtilityBase;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
@@ -363,7 +365,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         //printLine(out, samples[LB_ZW], "", samples[LB_CL]);
         //printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
 
-        final UnicodeDataFile fc = UnicodeDataFile.openHTMLAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY + "auxiliary/", fileName + "BreakTest").setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        final UnicodeDataFile fc = UnicodeDataFile.openHTMLAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY + "auxiliary/", fileName + "BreakTest").setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = fc.out;
 
         /*        PrintWriter out = Utility.openPrintWriter("auxiliary/"
@@ -446,7 +448,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         // do main test
 
         final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY + "auxiliary/", fileName + "BreakTest"
-                + (shortVersion ? "_SHORT" : "")).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+                + (shortVersion ? "_SHORT" : "")).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = fc.out;
         /*        PrintWriter out = Utility.openPrintWriter("TR29/" + fileName + "BreakTest"
             + (shortVersion ? "_SHORT" : "")
@@ -808,7 +810,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 string.append("<span title='" +
                         Utility.quoteXML(ucd.getCodeAndName(cp) + " (" + getTypeID(cp) + ")", true)
                         + "'>"
-                        + Utility.quoteXML(Utility.getDisplay(cp), true)
+                        + Utility.quoteXML(UtilityBase.getDisplay(cp), true)
                         + "</span>");
                 string.append("<span title='" + getRule() + "'><span" + status + ">&nbsp;</span>&nbsp;</span>");
             } else {

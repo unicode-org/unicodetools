@@ -244,7 +244,7 @@ public class CompareProperties implements UCD_Types {
 
     public void printPartition() throws IOException {
         System.out.println("Set Size: " + map.size());
-        final PrintWriter output = Utility.openPrintWriter("Partition"
+        final PrintWriter output = Utility.openPrintWriterGenDir("Partition"
                 + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_WINDOWS);
 
         final Iterator it = map.keySet().iterator();
@@ -270,7 +270,7 @@ public class CompareProperties implements UCD_Types {
 
     public void printStatistics() throws IOException {
         System.out.println("Set Size: " + map.size());
-        final PrintWriter output = Utility.openPrintWriter("Statistics"
+        final PrintWriter output = Utility.openPrintWriterGenDir("Statistics"
                 + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_WINDOWS);
 
         System.out.println("Finding disjoints/contains");
@@ -432,7 +432,7 @@ public class CompareProperties implements UCD_Types {
 
     public static void listDifferences() throws IOException {
 
-        final PrintWriter output = Utility.openPrintWriter("PropertyDifferences" + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
+        final PrintWriter output = Utility.openPrintWriterGenDir("PropertyDifferences" + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
         output.println("# Listing of relationships among properties, suitable for analysis by spreadsheet");
         output.println("# Generated for " + Default.ucd().getVersion());
         output.println(UnicodeDataFile.generateDateLine());

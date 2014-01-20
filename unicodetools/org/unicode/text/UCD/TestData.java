@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -251,7 +252,7 @@ public class TestData implements UCD_Types {
                 // + "- [:id_continue:]"
                 + "-[:sk:]"
                 + "]]";
-        final PrintWriter pw = Utility.openPrintWriter("log/Syntax.txt", Utility.UTF8_WINDOWS);
+        final PrintWriter pw = Utility.openPrintWriterGenDir("log/Syntax.txt", Utility.UTF8_WINDOWS);
         showSet(pw, x, false);
         showSet(pw, "[[\\u2000-\\u205F]-" + x + "]", true);
         showSet(pw, "[[:whitespace:]&[:decompositiontype=none:]]", false);
@@ -281,7 +282,7 @@ public class TestData implements UCD_Types {
         }
 
         final String script = args[0];
-        final PrintWriter log = Utility.openPrintWriter("log/TranslitSkeleton_" + script + ".txt", Utility.UTF8_WINDOWS);
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/TranslitSkeleton_" + script + ".txt", Utility.UTF8_WINDOWS);
         try {
             final UnicodeSet base = new UnicodeSet("[:" + script + ":]");
             final UnicodeSetIterator it = new UnicodeSetIterator(base);
@@ -609,7 +610,7 @@ public class TestData implements UCD_Types {
     static PrintWriter log;
 
     public static void checkShaping() throws IOException {
-        log = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR, "checklog.txt");
+        log = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "checklog.txt");
         checkProperty("Joining_Type", "Non_Joining", "Joining_Type", "Transparent");
         checkProperty("Joining_Group", "No_Joining_Group", "Joining_Type", "Transparent");
         checkProperty("Line_Break", "Unknown", "Line_Break", "Combining_Mark");

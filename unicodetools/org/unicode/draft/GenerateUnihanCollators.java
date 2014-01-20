@@ -27,7 +27,7 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.draft.ComparePinyin.PinyinSource;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -559,7 +559,7 @@ public class GenerateUnihanCollators {
 
     private static <S> void testSorting(Comparator<String> oldComparator, UnicodeMap<S> krsunicode2, String filename) throws Exception {
         final List<String> temp = krsunicode2.keySet().addAllTo(new ArrayList<String>());
-        final String rules = getFileAsString(UCD_Types.GEN_DIR + File.separatorChar + "han" + File.separatorChar + filename + ".txt");
+        final String rules = getFileAsString(Settings.GEN_DIR + File.separatorChar + "han" + File.separatorChar + filename + ".txt");
 
         final Comparator collator = new MultiComparator(new RuleBasedCollator(rules), codepointComparator);
         final List<String> ruleSorted = sortList(collator, temp);

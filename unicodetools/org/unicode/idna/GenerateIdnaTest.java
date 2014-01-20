@@ -17,7 +17,7 @@ import org.unicode.idna.Uts46.IdnaChoice;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
-import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -62,7 +62,7 @@ public class GenerateIdnaTest {
 
     int generateTests(int lines) throws IOException {
         final String filename = "IdnaTest.txt";
-        final PrintWriter out = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR + "idna/", filename);
+        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "idna/", filename);
         out.println("# " + "IdnaTest"  + Default.ucdVersion() +  ".txt" + "\n" +
                 "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
                 "#\n" +

@@ -238,7 +238,7 @@ public final class NFSkippable extends UCDProperty {
     public static void main (String[] args) throws java.io.IOException {
 
 
-        final PrintWriter out = Utility.openPrintWriter("NFSafeSets.txt", Utility.UTF8_WINDOWS);
+        final PrintWriter out = Utility.openPrintWriterGenDir("NFSafeSets.txt", Utility.UTF8_WINDOWS);
         out.println(Utility.BOM);
         out.println("NFSafeSets");
         out.println("Version: " + Default.ucd().getVersion());

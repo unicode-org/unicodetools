@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UnicodeSet;
@@ -172,7 +173,7 @@ tolower
     public static void main(String[] args) throws IOException {
 
         final String version = Default.ucd().getVersion();
-        final PrintWriter log = Utility.openPrintWriter("Diff14652_" + version + ".txt", Utility.UTF8_WINDOWS);
+        final PrintWriter log = Utility.openPrintWriterGenDir("Diff14652_" + version + ".txt", Utility.UTF8_WINDOWS);
         try {
             log.write('\uFEFF');
             log.print("Version: " + version);
@@ -186,7 +187,7 @@ tolower
                 Utility.showSetDifferences("ID", ID, "Alphabetic+Digit+Pc", alphanumSet, false, Default.ucd());
             }
 
-            final BufferedReader br = Utility.openReadFile(UCD_Types.BASE_DIR + "ISO14652_CTYPE.txt", Utility.LATIN1);
+            final BufferedReader br = Utility.openReadFile(Settings.DATA_DIR + "ISO14652_CTYPE.txt", Utility.LATIN1);
             while (true) {
                 String line = br.readLine();
                 if (line == null) {

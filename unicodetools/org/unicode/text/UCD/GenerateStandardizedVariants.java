@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 
@@ -126,7 +127,7 @@ public final class GenerateStandardizedVariants implements UCD_Types {
         final String directory = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY;
         final String filename = directory + "StandardizedVariants" + UnicodeDataFile.getHTMLFileSuffix(true);
         final UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY, "StandardizedVariants")
-                .setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+                .setSkipCopyright(Settings.SKIP_COPYRIGHT);
 
         final PrintWriter out = outfile.out; // Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
         //String[] batName = {""};
@@ -166,7 +167,7 @@ public final class GenerateStandardizedVariants implements UCD_Types {
                 "@date@", Default.getDate(),
                 "@table@", table};
 
-        Utility.appendFile("org/unicode/text/UCD/StandardizedVariants-Template.html", Utility.UTF8, out, replacementList);
+        Utility.appendFile(Settings.SRC_UCD_DIR + "StandardizedVariants-Template.html", Utility.UTF8, out, replacementList);
 
         outfile.close();
     }

@@ -20,10 +20,9 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.unicode.text.UCD.UCD_Types;
 
 public class testParser implements XMLParseTypes {
-    public static final String BASE_DIR = UCD_Types.UCD_DIR + "/UNIDATA 3.0.1/";
+    public static final String BASE_DIR = Settings.UCD_DIR + "/UNIDATA 3.0.1/";
     public static final boolean VERBOSE = false;
 
     private static final String testFile = BASE_DIR + "UCD-Main.xml"; // "test.xml"; // BASE_DIR + "UCD-Main.xml";
@@ -73,7 +72,7 @@ public class testParser implements XMLParseTypes {
 
     static void test2() throws Exception {
 
-        final PrintWriter log = Utility.openPrintWriter("log/UCD-Extract.html", Utility.UTF8_WINDOWS);
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/UCD-Extract.html", Utility.UTF8_WINDOWS);
 
         //int fieldCount = 4;
         //int width = 100/fieldCount;

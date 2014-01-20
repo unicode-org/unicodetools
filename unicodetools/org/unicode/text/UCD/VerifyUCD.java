@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -646,7 +647,7 @@ can help you narrow these down.
         return true;
     }
 
-    public static final String IDN_DIR = BASE_DIR + "IDN/";
+    
 
     /*
         System.out.println(Default.ucd.toString(0x0387));
@@ -678,7 +679,7 @@ can help you narrow these down.
     static void generateXML() throws IOException {
 
         final String filename = "UCD.xml";
-        final PrintWriter log = Utility.openPrintWriter("log/" + filename, Utility.LATIN1_UNIX);
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/" + filename, Utility.LATIN1_UNIX);
 
         //log.println('\uFEFF');
         log.println("<ucd>");
@@ -709,14 +710,14 @@ can help you narrow these down.
 
         final String ttest = Default.ucd().getCase(test, FULL, TITLE);
 
-        final PrintWriter titleTest = Utility.openPrintWriter("log/TestTitle.txt", Utility.LATIN1_UNIX);
+        final PrintWriter titleTest = Utility.openPrintWriterGenDir("log/TestTitle.txt", Utility.LATIN1_UNIX);
         titleTest.println(test);
         titleTest.println(ttest);
         titleTest.close();
 
         System.out.println(Default.ucd().getCase("ABC,DE'F G\u0308H", FULL, TITLE));
         final String fileName = "CaseDifferences.txt";
-        final PrintWriter log = Utility.openPrintWriter("log/" + fileName, Utility.LATIN1_UNIX);
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/" + fileName, Utility.LATIN1_UNIX);
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Utility.dot(cp);
@@ -784,7 +785,7 @@ can help you narrow these down.
 
 
         final String fileName = "CaseNormalizationDifferences.txt";
-        final PrintWriter log = Utility.openPrintWriter("log/" + fileName, Utility.LATIN1_UNIX);
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/" + fileName, Utility.LATIN1_UNIX);
 
         log.println("Differences between case(normalize(cp)) and normalize(case(cp))");
         log.println("u, l, t - upper, lower, title");
@@ -1239,7 +1240,7 @@ can help you narrow these down.
         System.out.println("Writing IDNCheck.txt");
 
 
-        final PrintWriter log = Utility.openPrintWriter("log/IDNCheck.txt", Utility.LATIN1_UNIX);
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/IDNCheck.txt", Utility.LATIN1_UNIX);
         log.println("IDN Check");
         log.println("Total Errors: " + errorCount);
 
@@ -1294,7 +1295,7 @@ can help you narrow these down.
     public static void genIDN() throws IOException {
         final PrintWriter out = new PrintWriter(System.out);
 
-        final PrintWriter log = Utility.openPrintWriter("log/IDN-tables.txt", Utility.LATIN1_UNIX);
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/IDN-tables.txt", Utility.LATIN1_UNIX);
 
         /*UnicodeSet y = UnifiedBinaryProperty.make(CATEGORY + FORMAT).getSet();
         UnicodeSet x = new UnicodeSet(0xE0001,0xE007F).retainAll(y);
@@ -1799,7 +1800,7 @@ E0020-E007F; [TAGGING CHARACTERS]
 
     public static int verifyUTFMap(BitSet mappedOut) throws IOException {
         int errorCount = 0;
-        final BufferedReader input = new BufferedReader(new FileReader(IDN_DIR + "IDN-Mapping.txt"),32*1024);
+        final BufferedReader input = new BufferedReader(new FileReader(Settings.IDN_DIR + "IDN-Mapping.txt"),32*1024);
         String line = "";
         final Map idnFold = new TreeMap();
         final Map idnWhy = new HashMap();
@@ -1887,7 +1888,7 @@ E0020-E007F; [TAGGING CHARACTERS]
     }
 
     static BitSet getIDNList(String file) throws IOException {
-        final BufferedReader input = new BufferedReader(new FileReader(IDN_DIR + file),32*1024);
+        final BufferedReader input = new BufferedReader(new FileReader(Settings.IDN_DIR + file),32*1024);
         final BitSet result = new BitSet();
         String line;
         try {
@@ -2165,7 +2166,7 @@ E0020-E007F; [TAGGING CHARACTERS]
             }
         }
 
-        final PrintWriter log = Utility.openPrintWriter("log/CheckScriptsLog.txt", Utility.LATIN1_UNIX);
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/CheckScriptsLog.txt", Utility.LATIN1_UNIX);
 
         final Iterator it = m.keySet().iterator();
         while (it.hasNext()) {

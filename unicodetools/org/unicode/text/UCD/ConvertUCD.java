@@ -30,6 +30,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -266,7 +267,7 @@ public final class ConvertUCD implements UCD_Types {
 
         log = new PrintWriter(new BufferedWriter(
                 new OutputStreamWriter(
-                        new FileOutputStream(GEN_DIR + "UCD-log.txt"),
+                        new FileOutputStream(Settings.GEN_DIR + "UCD-log.txt"),
                         "UTF8"),
                         32*1024));
         log.write("\uFEFF"); // BOM
@@ -704,7 +705,7 @@ public final class ConvertUCD implements UCD_Types {
         System.out.println("Writing " + dataFilePrefix + version);
         final DataOutputStream dataOut = new DataOutputStream(
                 new BufferedOutputStream(
-                        new FileOutputStream(UCD_Types.BIN_DIR +  dataFilePrefix + version + ".bin"),
+                        new FileOutputStream(Settings.BIN_DIR +  dataFilePrefix + version + ".bin"),
                         128*1024));
 
         // write header

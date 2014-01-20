@@ -3,7 +3,7 @@ package org.unicode.propstest;
 import org.unicode.cldr.util.Timer;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -34,7 +34,7 @@ public class CheckXmlProperties {
         System.out.println("Loading XML Props");
         timer.start();
         final XMLProperties props = new XMLProperties(
-                UCD_Types.BASE_DIR + "/ucdxml/" + ucdVersion + "/",
+                Settings.DATA_DIR + "/ucdxml/" + ucdVersion + "/",
                 INCLUDE_UNIHAN, MAX_LINE_COUNT);
         timer.stop();
         System.out.println(timer);

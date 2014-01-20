@@ -9,7 +9,7 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.text.utility.Utility;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.Relation;
 
@@ -19,7 +19,7 @@ public class CheckUnihan {
         final SortedSet<String> props = new TreeSet<String>();
         final Relation<String,String> values = Relation.of(new HashMap<String,Set<String>>(), HashSet.class);
         final Pattern tabSplitter = Pattern.compile("\t");
-        for (final File file : new File(Utility.UCD_DIRECTORY + "/Unihan").listFiles()) {
+        for (final File file : new File(Settings.UCD_DIR + "/Unihan").listFiles()) {
             System.out.println(file.getName());
             for (final String line : FileUtilities.in(file.getParent(), file.getName())) {
                 if (line.length() == 0 || line.startsWith("#")) {

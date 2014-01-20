@@ -28,6 +28,7 @@ import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateWordBreakTest;
 import org.unicode.text.UCD.MakeUnicodeFiles.Format.PrintStyle;
 import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 
@@ -325,7 +326,7 @@ public class MakeUnicodeFiles {
              */
             try {
                 final BufferedReader br =
-                        Utility.openReadFile("org/unicode/text/UCD/MakeUnicodeFiles.txt", Utility.UTF8);
+                        Utility.openReadFile(Settings.SRC_UCD_DIR + "MakeUnicodeFiles.txt", Utility.UTF8);
                 final String key = null;
                 String file = null, property = null, value = "", comments = "";
                 while (true) {
@@ -647,7 +648,7 @@ public class MakeUnicodeFiles {
 
         for (final String propName : props.keySet()) {
             final UnicodeDataFile udf =
-                    UnicodeDataFile.openAndWriteHeader(directory, propName).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+                    UnicodeDataFile.openAndWriteHeader(directory, propName).setSkipCopyright(Settings.SKIP_COPYRIGHT);
             final PrintWriter pw = udf.out;
 
             final BagFormatter bf = new BagFormatter();
@@ -722,7 +723,7 @@ public class MakeUnicodeFiles {
     static final String SEPARATOR = "# ================================================";
 
     public static void generateAliasFile(String filename) throws IOException {
-        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter pw = udf.out;
         final UnicodeProperty.Factory ups
         = ToolUnicodePropertySource.make(Default.ucdVersion());
@@ -824,7 +825,7 @@ public class MakeUnicodeFiles {
     "gc\t;\tZ\t;\tSeparator\t# Zl | Zp | Zs"};
 
     public static void generateValueAliasFile(String filename) throws IOException {
-        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final UnicodeDataFile diff = UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + "extra/", "diff");
         final PrintWriter pw = udf.out;
         final PrintWriter diffOut = diff.out;
@@ -1032,7 +1033,7 @@ public class MakeUnicodeFiles {
             dir = "";
         }
         final UnicodeDataFile udf =
-                UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+                UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter pwFile = udf.out;
         // bf2.openUTF8Writer(UCD_Types.GEN_DIR, "Test" + filename + ".txt");
         Format.theFormat.printFileComments(pwFile, filename);
@@ -1402,7 +1403,7 @@ public class MakeUnicodeFiles {
     };
 
     public static void showDiff() throws IOException {
-        final PrintWriter out = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR, "propertyDifference.txt");
+        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "propertyDifference.txt");
         try {
             showDifferences(out, "4.0.1", "LB", "GC");
             showDifferences(out, "4.0.1", "East Asian Width", "LB");
@@ -1413,7 +1414,7 @@ public class MakeUnicodeFiles {
     }
 
     public static void showAllDiff() throws IOException {
-        final PrintWriter out = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR, "propertyDifference.txt");
+        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "propertyDifference.txt");
         try {
             final UnicodeProperty.Factory fac = ToolUnicodePropertySource.make("4.0.1");
             final List props = fac.getAvailableNames(

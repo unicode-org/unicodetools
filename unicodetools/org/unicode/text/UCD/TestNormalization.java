@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -31,7 +32,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public final class TestNormalization {
-    static final String DIR = UCD_Types.UCD_DIR + "Update 3.0.1/";
+    static final String DIR = Settings.UCD_DIR + "Update 3.0.1/";
     static final boolean SKIP_FILE = true;
 
     static PrintWriter out = null;

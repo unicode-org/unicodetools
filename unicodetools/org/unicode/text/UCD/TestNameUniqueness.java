@@ -17,6 +17,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -42,8 +43,8 @@ public class TestNameUniqueness implements UCD_Types {
          * @return null when done
          */
         static String[][] files = {
-            {UCD_Types.BASE_DIR + "", "pdam1040630.lst"},
-            {UCD_Types.UCD_DIR + "4.1.0-Update/", "NamedCompositeEntities-4.1.0d2.txt"}
+            {Settings.DATA_DIR + "", "pdam1040630.lst"},
+            {Settings.UCD_DIR + "4.1.0-Update/", "NamedCompositeEntities-4.1.0d2.txt"}
         };
 
         public String next() {
@@ -123,7 +124,7 @@ public class TestNameUniqueness implements UCD_Types {
     }
 
     void checkNames() throws IOException {
-        final PrintWriter out = Utility.openPrintWriter("log/name_uniqueness.txt", Utility.LATIN1_WINDOWS);
+        final PrintWriter out = Utility.openPrintWriterGenDir("log/name_uniqueness.txt", Utility.LATIN1_WINDOWS);
         try {
             out.println("Collisions");
             out.println();

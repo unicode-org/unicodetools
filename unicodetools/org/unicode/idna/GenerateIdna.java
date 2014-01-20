@@ -9,6 +9,7 @@ import java.util.TreeSet;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -32,7 +33,7 @@ public class GenerateIdna {
         // MUST BE FIRST
         GenerateIdnaTest.setUnicodeVersion();
     }
-    public static final String DIR = Utility.GEN_DIR + "idna/"; // Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
+    public static final String DIR = Settings.GEN_DIR + "idna/"; // Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
     private static final boolean TESTING = true;
     private static final boolean DISALLOW_BIDI_CONTROLS = true;

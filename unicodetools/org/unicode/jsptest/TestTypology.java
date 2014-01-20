@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.jsp.Subheader;
 import org.unicode.jsp.Typology;
-import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.BagFormatter;
@@ -71,8 +71,8 @@ public class TestTypology extends TestFmwk {
             System.out.println(list);
         }
 
-        final PrintWriter out = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR + "/categories", "CategoryLabels.txt");
-        final PrintWriter html = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR + "/categories", "CategoryLabels.html");
+        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/categories", "CategoryLabels.txt");
+        final PrintWriter html = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/categories", "CategoryLabels.html");
         final String fontList = "Georgia, 'Times New Roman', Times, Symbola, Aegyptus, Aegean, Akkadian, Analecta, Musica, Code2000,  Code2001,  Code2002, serif";
         html.println(
                 "<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>\n" +

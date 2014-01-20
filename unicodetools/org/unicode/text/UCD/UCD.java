@@ -26,6 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -1947,7 +1948,7 @@ to guarantee identifier closure.
 
     private void fillFromFile2(String version) {
         DataInputStream dataIn = null;
-        final String fileName = BIN_DIR + "UCD_Data" + version + ".bin";
+        final String fileName = Settings.BIN_DIR + "UCD_Data" + version + ".bin";
         int uDataFileCount = 0;
         try {
             dataIn = new DataInputStream(
@@ -2261,6 +2262,21 @@ to guarantee identifier closure.
             result.append(scriptId);
         }
         return result.toString();
+    }
+
+    public boolean isNew(int codepoint, UCD lastUCDVersion) {
+        return isAllocated(codepoint) && !lastUCDVersion.isAllocated(codepoint);
+    }
+
+    public boolean isNew(String s, UCD lastUCDVersion) {
+        int cp;
+        for (int i = 0; i < s.length(); ++i) {
+            cp = s.codePointAt(i);
+            if (isNew(cp, lastUCDVersion)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
