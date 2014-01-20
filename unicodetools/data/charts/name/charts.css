@@ -3,7 +3,9 @@ table       { border-spacing: 0; border-collapse: collapse;
 th, td      { border-spacing: 0; 
                 border-style: solid; border-color: teal; border-width: 1px;
                     color: black; vertical-align: top; }
-td          { font-size: 120%; text-align: Center; vertical-align: top; width: 48px }
+td          { font-size: 120%; text-align: Center; vertical-align: top; width: 48px ;
+		    font-family: "Symbola",Georgia,"Times New Roman",Serif;
+}
 
 table.headerTable {
   border-color: white;

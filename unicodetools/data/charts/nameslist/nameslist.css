@@ -12,6 +12,7 @@ th, td      {
     border-color: white; 
     border-width: 0px;
     vertical-align: top;
+    font-family: "Symbola",Georgia,"Times New Roman",Serif;
 }
 td.new, td.cellwnew, td.cellnew {
     background-color: #FFFFCC;
