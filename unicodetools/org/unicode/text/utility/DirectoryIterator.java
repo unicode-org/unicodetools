@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.text.UCD.UCD_Types;
 
 public class DirectoryIterator {
 
@@ -146,7 +145,7 @@ public class DirectoryIterator {
 
 
     static public void test() {
-        final File testDir = new File(UCD_Types.UCD_DIR);
+        final File testDir = new File(Settings.UCD_DIR);
         DirectoryIterator di;
 
         di = new DirectoryIterator(testDir, new RootFileFilter("DerivedBinaryProperties"));

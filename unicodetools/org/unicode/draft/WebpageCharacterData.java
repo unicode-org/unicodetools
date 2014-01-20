@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 
 import org.unicode.cldr.tool.LanguageCodeConverter;
 import org.unicode.cldr.util.Counter;
-import org.unicode.text.utility.Utility;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.text.UnicodeSet;
@@ -71,7 +71,7 @@ public class WebpageCharacterData {
 
     static public void doData() throws IOException {
         final BufferedReader in = BagFormatter.openUTF8Reader(
-                Utility.WORKSPACE_DIRECTORY +
+                Settings.WORKSPACE_DIRECTORY +
                 "DATA/frequency/",
                 SOURCE_DATA);
         int lineCounter = 0;
@@ -113,10 +113,10 @@ public class WebpageCharacterData {
         in.close();
         System.out.println("Writing data");
         //System.out.println("zeroCountLines " + zeroCountLines);
-        writeData(lang2chars, Utility.WORKSPACE_DIRECTORY +
+        writeData(lang2chars, Settings.WORKSPACE_DIRECTORY +
         		"DATA/frequency/languages");
         System.out.println("Writing ranked data");
-        writeData(lang2charsPageRank, Utility.WORKSPACE_DIRECTORY +
+        writeData(lang2charsPageRank, Settings.WORKSPACE_DIRECTORY +
         		"DATA/frequency/languages-rank");
     }
 

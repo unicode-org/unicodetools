@@ -33,7 +33,6 @@ import java.util.zip.GZIPOutputStream;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.UCD_Types;
 
 import com.ibm.icu.dev.util.DataInputCompressor;
 import com.ibm.icu.dev.util.DataOutputCompressor;
@@ -193,7 +192,7 @@ public class TestUtility {
         total = testUnicodeMapSerialization(iterations, total, pname, umap);
     }
 
-    static String outdircore = UCD_Types.GEN_DIR + "UCD_Data/";
+    static String outdircore = Settings.GEN_DIR + "UCD_Data/";
     static String outdir = outdircore + "4.1.0/";
     /**
      * @param pname

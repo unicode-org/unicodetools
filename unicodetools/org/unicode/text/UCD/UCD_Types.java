@@ -11,25 +11,12 @@
 
 package org.unicode.text.UCD;
 
-import org.unicode.text.utility.Utility;
 
 
 public interface UCD_Types {
     static final int FIX_FOR_NEW_VERSION = 0;
 
     static final byte BINARY_FORMAT = 23; // bumped if binary format of UCD changes. Forces rebuild
-
-    public static final String BASE_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("UCD_DIR", "data/")) + "/";
-    public static final String UCD_DIR = BASE_DIR + "ucd/";
-
-    public static final String GEN_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("GEN_DIR", "../Generated")) + "/";
-    public static final String BIN_DIR = GEN_DIR + "BIN/";
-
-    public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
-
-    public static final String SRC_DIR = "org/unicode/text/";
-
-    public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(org.unicode.cldr.util.CldrUtility.getProperty("copyright", "skip"));
 
     public static final char DOTTED_CIRCLE = '\u25CC';
 

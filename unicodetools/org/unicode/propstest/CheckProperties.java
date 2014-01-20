@@ -29,6 +29,7 @@ import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
 import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
@@ -46,7 +47,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class CheckProperties {
     private static final String LAST_RELEASE = Utility.searchPath[1];;
-    private static final String JUNK = Utility.UCD_DIRECTORY; // force load
+    private static final String JUNK = Settings.UCD_DIR; // force load
 
     private static final int DEBUG_CODE_POINT = 0x0600;
 
@@ -258,7 +259,7 @@ public class CheckProperties {
         }
 
         final Set<String> latestFiles = latest.getFileNames();
-        final File dir = new File(Utility.UCD_DIRECTORY);
+        final File dir = new File(Settings.UCD_DIR);
         final List<File> result = new ArrayList<File>();
         checkFiles(latestFiles, dir, result);
         showInfo("Files Not Read", result);

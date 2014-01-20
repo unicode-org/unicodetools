@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
-import org.unicode.text.utility.Utility;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.ICUPropertyFactory;
@@ -110,7 +110,7 @@ public class VerifyIdna {
     }
 
     private static UnicodeMap getPatriksMapping() throws IOException {
-        final BufferedReader in = BagFormatter.openReader(Utility.DATA_DIRECTORY + "/IDN/",
+        final BufferedReader in = BagFormatter.openReader(Settings.DATA_DIR + "/IDN/",
                 "draft-faltstrom-idnabis-tables-05.txt", "ascii");
         boolean inTable = false;
         final UnicodeMap patrik = new UnicodeMap();

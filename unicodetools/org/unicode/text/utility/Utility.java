@@ -32,10 +32,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.DerivedProperty;
 import org.unicode.text.UCD.UCD;
-import org.unicode.text.UCD.UCDProperty;
 import org.unicode.text.UCD.UCD_Types;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -48,16 +45,6 @@ import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 
 public final class Utility implements UCD_Types {    // COMMON UTILITIES
-
-    public static final String UCD_DIRECTORY = UCD_DIR;
-    public static final String WORKSPACE_DIRECTORY = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/";
-    public static final String DATA_DIRECTORY = UCD_DIR + "/../";
-    public static final String GENERATED_DIRECTORY = DATA_DIRECTORY + "/Generated/";
-
-    // TODO make this automatic
-    public static final String UNICODETOOLS_DIRECTORY = "/Users/markdavis/workspace/unicodetools/";
-
-    public static final String UNICODE_DRAFT_DIRECTORY = "/Users/markdavis/workspace/unicode-draft/";
 
     private static final boolean SHOW_SEARCH_PATH = false;
 
@@ -739,26 +726,6 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return quoteXML(source, false);
     }
 
-    private static UCDProperty defaultIgnorable = null;
-
-    public static String getDisplay(int cp) {
-        String result = UTF16.valueOf(cp);
-        final byte cat = Default.ucd().getCategory(cp);
-        if (cat == Mn || cat == Me) {
-            result = String.valueOf(DOTTED_CIRCLE) + result;
-        } else if (cat == Cf || cat == Cc || cp == 0x034F || cp == 0x00AD || cp == 0x1806) {
-            result = "\u25A1";
-        } else {
-            if (defaultIgnorable == null) {
-                defaultIgnorable = DerivedProperty.make(DefaultIgnorable);
-            }
-            if (defaultIgnorable.hasValue(cp)) {
-                result = "\u25A1";
-            }
-        }
-        return result;
-    }
-
     public static int compare(char[] a, int aStart, int aEnd, char[] b, int bStart, int bEnd) {
         while (aStart < aEnd && bStart < bEnd) {
             final int diff = a[aStart++] - b[bStart++];
@@ -883,8 +850,12 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         UTF8_WINDOWS = Encoding.UTF8_WINDOWS;
      */
 
+    public static PrintWriter openPrintWriterGenDir(String filename, Encoding options) {
+        return openPrintWriter(Settings.GEN_DIR, filename, options);
+    }
+
     public static PrintWriter openPrintWriter(String filename, Encoding options) {
-        return openPrintWriter(UCD_Types.GEN_DIR, filename, options);
+        return openPrintWriter("", filename, options);
     }
 
     // Normally use false, false.
@@ -911,7 +882,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String getOutputName(String filename) {
-        return UCD_Types.GEN_DIR + filename;
+        return Settings.GEN_DIR + filename;
     }
 
     public static void print(PrintWriter pw, Collection c, String separator) {
@@ -1278,11 +1249,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                     // TODO fix versions
                     element = "6.3.0";//"revision-06";
                 }
-                String directoryName = UCD_Types.BASE_DIR + parts[0] + "/" + element + "/";
+                String directoryName = Settings.DATA_DIR + parts[0] + "/" + element + "/";
                 result = directoryName + parts[2] + fileType;
                 break;
             }
-            String directoryName = UCD_Types.UCD_DIR + File.separator + element + "-Update" + File.separator;
+            String directoryName = Settings.UCD_DIR + File.separator + element + "-Update" + File.separator;
             result = searchDirectory(new File(directoryName), filename, show, fileType);
             if (result != null) {
                 break;
@@ -1292,7 +1263,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             }
         }
         if (show && !tries.isEmpty()) {
-            System.out.println("\tTried: '" + UCD_Types.UCD_DIR + File.separator + "("
+            System.out.println("\tTried: '" + Settings.UCD_DIR + File.separator + "("
                     + CollectionUtilities.join(tries, "|") + ")-Update"
                     + File.separator + filename + "*" + fileType + "'");
         }

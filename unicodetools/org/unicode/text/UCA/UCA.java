@@ -32,6 +32,7 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.IntStack;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
@@ -89,10 +90,6 @@ final public class UCA implements Comparator, UCA_Types {
      * Records the codeversion
      */
     private static final String codeVersion = "7";
-
-    // base directory will change depending on the installation
-    public static final String BASE_DIR = UCD_Types.BASE_DIR;
-
 
     // =============================================================
     // Test Settings
@@ -1948,7 +1945,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     public static UCA buildCollator(Remap primaryRemap) {
         try {
             System.out.println("Building UCA");
-            final String file = Utility.searchDirectory(new File(UCD_Types.BASE_DIR + "uca/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
+            final String file = Utility.searchDirectory(new File(Settings.DATA_DIR + "uca/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
             final UCA collator = new UCA(file, Default.ucdVersion(), primaryRemap);
             System.out.println("Built version " + collator.getDataVersion() + "/ucd: " + collator.getUCDVersion());
             System.out.println("Building UCD data");

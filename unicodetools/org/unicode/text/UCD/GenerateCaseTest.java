@@ -23,7 +23,7 @@ abstract public class GenerateCaseTest implements UCD_Types {
     public static void main(String[] args) throws IOException {
         System.out.println("Remember to add length marks (half & full) and other punctuation for sentence, with FF61");
 
-        final PrintWriter out = Utility.openPrintWriter("log/CaseTest.txt", Utility.UTF8_WINDOWS);
+        final PrintWriter out = Utility.openPrintWriterGenDir("log/CaseTest.txt", Utility.UTF8_WINDOWS);
 
         out.println("# CaseTest");
         out.println("# Generated: " + Default.getDate() + ", MED");

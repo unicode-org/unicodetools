@@ -23,6 +23,7 @@ import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -30,10 +31,8 @@ import com.ibm.icu.dev.util.BagFormatter;
 public class GenerateEnums {
     public static final String ENUM_VERSION = "7.0.0"; // Default.ucdVersion()
 
-    public static final String SOURCE_DIR = Utility.UCD_DIRECTORY;
-
-    public static final String PROPERTY_FILE_OUTPUT = Utility.UNICODETOOLS_DIRECTORY + "/org/unicode/props/UcdProperty.java";
-    public static final String PROPERTY_VALUE_OUTPUT = Utility.UNICODETOOLS_DIRECTORY + "/org/unicode/props/UcdPropertyValues.java";
+    public static final String PROPERTY_FILE_OUTPUT = Settings.UNICODETOOLS_DIRECTORY + "/org/unicode/props/UcdProperty.java";
+    public static final String PROPERTY_VALUE_OUTPUT = Settings.UNICODETOOLS_DIRECTORY + "/org/unicode/props/UcdPropertyValues.java";
 
 //    private static class Locations {
 //        private static Set<String> files = addAll(new HashSet<String>(), new File(SOURCE_DIR));

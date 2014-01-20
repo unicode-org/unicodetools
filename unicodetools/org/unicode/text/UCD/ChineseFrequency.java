@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
@@ -17,7 +18,6 @@ import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
 
 public class ChineseFrequency {
-    static final String DICT_DIR = UCD_Types.BASE_DIR + "dict/";
     static NumberFormat percent = new DecimalFormat("0.000000%");
     static NumberFormat percent3 = new DecimalFormat("000.000000%");
     static NumberFormat number = new DecimalFormat("#,##0");
@@ -31,7 +31,7 @@ public class ChineseFrequency {
 
     public static void test() throws IOException{
         final Set freq_char = new TreeSet(new InverseCompareTo());
-        final BufferedReader br = BagFormatter.openUTF8Reader(DICT_DIR, "kHYPLCDPF.txt");
+        final BufferedReader br = BagFormatter.openUTF8Reader(Settings.DICT_DIR, "kHYPLCDPF.txt");
         double grandTotal = 0.0;
         while (true) {
             final String line = br.readLine();
@@ -52,7 +52,7 @@ public class ChineseFrequency {
             freq_char.add(new Pair(new Long(total), new Integer(cp)));
         }
         br.close();
-        final PrintWriter pw = BagFormatter.openUTF8Writer(DICT_DIR,"kHYPLCDPF_frequency.txt");
+        final PrintWriter pw = BagFormatter.openUTF8Writer(Settings.DICT_DIR,"kHYPLCDPF_frequency.txt");
         pw.write("\uFEFF");
         pw.println("No.\tPercentage\tAccummulated\tHex\tChar");
 

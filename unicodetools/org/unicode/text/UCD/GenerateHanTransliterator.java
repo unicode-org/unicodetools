@@ -27,6 +27,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
@@ -60,7 +61,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
     public static void readUnihan() throws java.io.IOException {
 
-        log = Utility.openPrintWriter("log/Unihan_log.html", Utility.UTF8_WINDOWS);
+        log = Utility.openPrintWriterGenDir("log/Unihan_log.html", Utility.UTF8_WINDOWS);
         log.println("<body>");
         log.println("<head>");
         log.println("<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -306,7 +307,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             s.add(it.codepoint);
         }
         final String filename = "Raw_Transliterator_Han_Latin.txt";
-        final PrintWriter out = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR, filename);
+        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR, filename);
         for (final Iterator it = outmap.keySet().iterator(); it.hasNext();) {
             final String pinyin = (String) it.next();
             final UnicodeSet uset = (UnicodeSet) outmap.get(pinyin);
@@ -342,8 +343,8 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
     public static void quickMandarin() throws Exception {
         final UnicodeMap gcl = new UnicodeMap();
-        addField(UCD_Types.BASE_DIR + "dict/", "gcl_icu.txt", 2, 3, gcl);
-        addField(UCD_Types.BASE_DIR + "dict/", "gcl_other.txt", 2, 5, gcl);
+        addField(Settings.DATA_DIR + "dict/", "gcl_icu.txt", 2, 3, gcl);
+        addField(Settings.DATA_DIR + "dict/", "gcl_other.txt", 2, 5, gcl);
         final Transliterator icuPinyin = Transliterator.getInstance("han-latin");
         final UnicodeMap kMandarin = Default.ucd().getHanValue("kMandarin");
         final UnicodeMap kHanyuPinlu = Default.ucd().getHanValue("kHanyuPinlu");
@@ -352,7 +353,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         final UnicodeSet gotAtLeastOne = new UnicodeSet(gotMandarin).addAll(gotHanyu);
         int counter = 0;
         int hCount = 0;
-        log = Utility.openPrintWriter("log/Mandarin_First.txt", Utility.UTF8_WINDOWS);
+        log = Utility.openPrintWriterGenDir("log/Mandarin_First.txt", Utility.UTF8_WINDOWS);
         log.println("N\tCode\tChar\tUnihan\tICU\tGCL\tkHanyuPinlu / kMandarin");
         final UnicodeMap reformed = new UnicodeMap();
         for (final UnicodeSetIterator it = new UnicodeSetIterator(gotAtLeastOne); it.next(); ) {
@@ -483,7 +484,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             UnicodeMap map, UnicodeMap hanyu, UnicodeMap mand, Comparator p2)
                     throws IOException {
         final Set set = new TreeSet(col);
-        final PrintWriter pw = Utility.openPrintWriter("log/" + file, Utility.UTF8_WINDOWS);
+        final PrintWriter pw = Utility.openPrintWriterGenDir("log/" + file, Utility.UTF8_WINDOWS);
         for (final UnicodeSetIterator it = new UnicodeSetIterator(tailored); it.next(); ) {
             set.add(UTF16.valueOf(it.codepoint));
         }
@@ -594,8 +595,8 @@ public final class GenerateHanTransliterator implements UCD_Types {
             }
             filename += Default.ucd().getVersion() + ".txt";
 
-            err = Utility.openPrintWriter("log/Transliterate_err.txt", Utility.UTF8_WINDOWS);
-            log = Utility.openPrintWriter("log/Transliterate_log.txt", Utility.UTF8_WINDOWS);
+            err = Utility.openPrintWriterGenDir("log/Transliterate_err.txt", Utility.UTF8_WINDOWS);
+            log = Utility.openPrintWriterGenDir("log/Transliterate_log.txt", Utility.UTF8_WINDOWS);
             log.print('\uFEFF');
 
             if (false /*!SKIP_OVERRIDES*/) {
@@ -613,7 +614,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             log.println();
             log.println("@Unihan Data");
             log.println();
-            out2 = BagFormatter.openUTF8Writer(GEN_DIR, "unihan_kmandarinDump.txt");
+            out2 = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "unihan_kmandarinDump.txt");
 
             readUnihanData(key);
 
@@ -637,7 +638,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
 
             it = unihanMap.keySet().iterator();
             final Map badPinyin = new TreeMap();
-            final PrintWriter out2 = Utility.openPrintWriter("log/Raw_mapping.txt", Utility.UTF8_WINDOWS);
+            final PrintWriter out2 = Utility.openPrintWriterGenDir("log/Raw_mapping.txt", Utility.UTF8_WINDOWS);
             try {
                 while (it.hasNext()) {
                     final String keyChar = (String) it.next();
@@ -667,7 +668,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
                 out2.close();
             }
 
-            out = Utility.openPrintWriter("log/" + filename, Utility.UTF8_WINDOWS);
+            out = Utility.openPrintWriterGenDir("log/" + filename, Utility.UTF8_WINDOWS);
             out.println("# Start RAW data for converting CJK characters");
             /*
             out.println("# Note: adds space between them and letters.");
@@ -1472,7 +1473,7 @@ U+7878	·	nüè	#nuè
 
             if (type == CHINESE) {
                 System.out.println("Reading chinese_frequency.txt");
-                br = Utility.openReadFile(BASE_DIR + "dict/chinese_frequency.txt", Utility.UTF8);
+                br = Utility.openReadFile(Settings.DATA_DIR + "dict/chinese_frequency.txt", Utility.UTF8);
                 counter = 0;
                 while (true) {
                     line = Utility.readDataLine(br);
@@ -1495,7 +1496,7 @@ U+7878	·	nüè	#nuè
             if (type == JAPANESE) {
                 System.out.println("Reading japanese_frequency.txt");
 
-                br = Utility.openReadFile( BASE_DIR + "dict/japanese_frequency.txt", Utility.UTF8);
+                br = Utility.openReadFile( Settings.DATA_DIR + "dict/japanese_frequency.txt", Utility.UTF8);
                 final Map japaneseMap = new HashMap();
                 while (true) {
                     line = Utility.readDataLine(br);
@@ -1693,7 +1694,7 @@ U+7878	·	nüè	#nuè
         }
 
         System.out.println("Reading " + fname);
-        final BufferedReader br = Utility.openReadFile(BASE_DIR + "dict/" + fname, Utility.UTF8);
+        final BufferedReader br = Utility.openReadFile(Settings.DATA_DIR + "dict/" + fname, Utility.UTF8);
         int counter = 0;
         final String[] pieces = new String[50];
         String line = "";
@@ -1746,7 +1747,7 @@ U+7878	·	nüè	#nuè
         final String fname = "Chinese_override.txt";
 
         System.out.println("Reading " + fname);
-        final BufferedReader br = Utility.openReadFile(BASE_DIR + "dict/" + fname, Utility.UTF8);
+        final BufferedReader br = Utility.openReadFile(Settings.DATA_DIR + "dict/" + fname, Utility.UTF8);
         int counter = 0;
         final String[] pieces = new String[50];
         String line = "";
@@ -1802,8 +1803,8 @@ Bad pinyin data: \u4E7F	?	LE
 
     static void fixChineseOverrides() throws IOException {
 
-        log = Utility.openPrintWriter("log/Transliterate_log.txt", Utility.UTF8_WINDOWS);
-        out = Utility.openPrintWriter("log/new_Chinese_override.txt", Utility.UTF8_WINDOWS);
+        log = Utility.openPrintWriterGenDir("log/Transliterate_log.txt", Utility.UTF8_WINDOWS);
+        out = Utility.openPrintWriterGenDir("log/new_Chinese_override.txt", Utility.UTF8_WINDOWS);
         try {
 
             final String fname = "fixed_Chinese_transliterate_log.txt";
@@ -1813,7 +1814,7 @@ Bad pinyin data: \u4E7F	?	LE
             final String pinyinPrefix = "Bad pinyin data: ";
 
             System.out.println("Reading " + fname);
-            final BufferedReader br = Utility.openReadFile(BASE_DIR + "dict/" + fname, Utility.UTF8);
+            final BufferedReader br = Utility.openReadFile(Settings.DATA_DIR + "dict/" + fname, Utility.UTF8);
             try {
                 while (true) {
                     line = Utility.readDataLine(br);
@@ -2117,7 +2118,7 @@ Bad pinyin data: \u4E7F	?	LE
         System.out.println("Reading cdict.txt");
         final String fname = "cdict.txt";
 
-        final BufferedReader br = Utility.openReadFile(BASE_DIR + "dict/" + fname, Utility.UTF8);
+        final BufferedReader br = Utility.openReadFile(Settings.DATA_DIR + "dict/" + fname, Utility.UTF8);
         int counter = 0;
         final String[] pieces = new String[50];
         String line = "";

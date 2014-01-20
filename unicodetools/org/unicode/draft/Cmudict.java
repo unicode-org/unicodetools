@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.unicode.text.utility.Utility;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -24,7 +24,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class Cmudict {
-    static final String BASE_DIR = org.unicode.text.utility.Utility.DATA_DIRECTORY + "/translit/";
+    static final String BASE_DIR = Settings.DATA_DIR + "/translit/";
     static final Collator col = Collator.getInstance(ULocale.ROOT);
     //static final StressFixer stressFixer = new StressFixer();
     static final Transliterator arpabet = getTransliteratorFromFile("arpabet-ipa", BASE_DIR, "arpabet-ipa.txt");
@@ -148,7 +148,7 @@ public class Cmudict {
             System.out.println("Missing?\t" + entry);
         }
 
-        PrintWriter out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "cmudict.txt") ;
+        PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/translit/", "cmudict.txt") ;
         for (final Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
             final String word = entry.getKey();
             final Set<String> values = entry.getValue();
@@ -156,7 +156,7 @@ public class Cmudict {
         }
         out.close();
 
-        out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "homonyms.txt") ;
+        out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/translit/", "homonyms.txt") ;
         final Set<String> temp = new TreeSet(col);
         for (final Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
             final Set<String> values = entry.getValue();
@@ -204,7 +204,7 @@ public class Cmudict {
             reverseIpa.put(reversedRespelledKey, ipa);
         }
 
-        out = BagFormatter.openUTF8Writer(Utility.GENERATED_DIRECTORY + "/translit/", "reversed.txt");
+        out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/translit/", "reversed.txt");
         for (final Entry<String, String> reversed_normal : reverseIpa.entrySet()) {
             final String original = reversed_normal.getValue();
             out.println(CollectionUtilities.join(fromIpa.get(original), ", ") + "\t{"

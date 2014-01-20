@@ -150,7 +150,7 @@ public class BuildNames implements UCD_Types {
 
         final String fname = "ShortNames.txt";
         System.out.println("Writing " + fname);
-        final PrintWriter log = Utility.openPrintWriter(fname, Utility.LATIN1_WINDOWS);
+        final PrintWriter log = Utility.openPrintWriterGenDir(fname, Utility.LATIN1_WINDOWS);
 
         System.out.println("Gathering data");
         //Counter counter = new Counter();

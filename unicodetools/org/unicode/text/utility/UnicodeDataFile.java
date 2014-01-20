@@ -31,7 +31,7 @@ public class UnicodeDataFile {
         fileType = isHTML ? ".html" : ".txt";
         final String newSuffix = UnicodeDataFile.getFileSuffix(true, fileType);
         newFile = directory + filename + newSuffix;
-        out = Utility.openPrintWriter(newFile, Utility.UTF8_UNIX);
+        out = Utility.openPrintWriterGenDir(newFile, Utility.UTF8_UNIX);
         final String[] batName2 = {""};
         mostRecent = UnicodeDataFile.generateBat(directory, filename, newSuffix, fileType, batName2);
         batName = batName2[0];
@@ -48,7 +48,7 @@ public class UnicodeDataFile {
             out.println("# For documentation, see http://www.unicode.org/reports/tr44/");
         }
         try {
-            Utility.appendFile("org/unicode/text/UCD/" + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
+            Utility.appendFile(Settings.SRC_UCD_DIR + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
         } catch (final RuntimeIOException e) {
             if (!(e.getCause() instanceof FileNotFoundException)) {
                 throw e;
@@ -112,7 +112,7 @@ public class UnicodeDataFile {
 
     private static String generateBatAux(String batName, String oldName, String newName) throws IOException {
         final String fullBatName = batName + ".bat";
-        final PrintWriter output = Utility.openPrintWriter(batName + ".bat", Utility.LATIN1_UNIX);
+        final PrintWriter output = Utility.openPrintWriterGenDir(batName + ".bat", Utility.LATIN1_UNIX);
 
         newName = Utility.getOutputName(newName);
         System.out.println("Writing BAT to compare " + oldName + " and " + newName);

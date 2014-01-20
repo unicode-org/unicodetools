@@ -19,7 +19,7 @@ import org.unicode.text.utility.Utility;
 public class WriteJavaScriptInfo implements UCD_Types {
 
     static public void assigned() throws IOException {
-        final PrintWriter log = Utility.openPrintWriter("log/assigned.js", Utility.LATIN1_UNIX);
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/assigned.js", Utility.LATIN1_UNIX);
         final UCD ucd = UCD.make();
         boolean wasIn = false;
         int lastWritten = -100;

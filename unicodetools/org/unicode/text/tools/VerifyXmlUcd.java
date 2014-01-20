@@ -19,6 +19,7 @@ import org.unicode.cldr.util.XMLFileReader;
 import org.unicode.cldr.util.XPathParts;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.ICUPropertyFactory;
 import com.ibm.icu.dev.util.UnicodeProperty;
@@ -42,7 +43,7 @@ public class VerifyXmlUcd {
     public static void main(String[] args) throws IOException {
         try {
             //checkRegex();
-            testFile(org.unicode.text.utility.Utility.UCD_DIRECTORY + "/xml/ucd.nounihan.grouped.xml");
+            testFile(Settings.UCD_DIR + "/xml/ucd.nounihan.grouped.xml");
             // too many errors to test: testFile("C:/DATA/UCD/xml/ucd.nounihan.grouped.xml");
         } finally {
             System.out.println("DONE");

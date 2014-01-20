@@ -18,7 +18,7 @@ import org.unicode.cldr.util.CLDRLocale;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
-import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -132,9 +132,9 @@ public class GenerateCharacterFrequencyCharts {
 
             final ExemplarInfo exemplarInfo = ExemplarInfo.make(cldrLanguage, missingExemplars);
             // open files for writing, create table
-            final DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(UCD_Types.GEN_DIR + "/frequency/" + language + ".txt"));
+            final DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(Settings.GEN_DIR + "/frequency/" + language + ".txt"));
             final CompressedDataOutput out = new CompressedDataOutput().set(dataOutputStream);
-            final PrintWriter html = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR + "/frequency-html", htmlFilename);
+            final PrintWriter html = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/frequency-html", htmlFilename);
             html.println("<html><head><meta charset='UTF-8'>\n" +
                     "<link rel='stylesheet' type='text/css' href='index.css' media='screen'/>\n" +
                     "</head><body>\n" +
@@ -249,7 +249,7 @@ public class GenerateCharacterFrequencyCharts {
     }
 
     private void printIndex(TablePrinter indexTable, String file) throws IOException {
-        final PrintWriter index = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR + "/frequency-html", file);
+        final PrintWriter index = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/frequency-html", file);
         index.println("<html><head><meta charset='UTF-8'>\n" +
                 "<link rel='stylesheet' type='text/css' href='index.css' media='screen'/>\n" +
                 "</head><body>\n");

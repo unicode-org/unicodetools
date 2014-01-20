@@ -3,6 +3,7 @@ package org.unicode.text.UCD;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -30,7 +31,7 @@ public class IDNTester {
 
     public static void main(String[] args) throws IOException {
         initialize();
-        pw = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR, "idnCount.html");
+        pw = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "idnCount.html");
         pw.println("<html><body>");
         showSet("IDN InputOnly: ", IDNInputOnly);
         showSet("IDN Output: ", IDNOutput);

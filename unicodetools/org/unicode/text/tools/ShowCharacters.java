@@ -11,7 +11,7 @@ import java.util.TreeMap;
 import org.unicode.cldr.util.With;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
@@ -93,7 +93,7 @@ public class ShowCharacters {
             us.add(ch);
         }
 
-        final PrintWriter log = Utility.openPrintWriter(UCD_Types.GEN_DIR, "showChars.html", Utility.UTF8_WINDOWS);
+        final PrintWriter log = Utility.openPrintWriter(Settings.GEN_DIR, "showChars.html", Utility.UTF8_WINDOWS);
         log.println("<html><body>");
         log.println("<table style='border-collapse:collapse' border='1'>");
         log.println("<tr>"

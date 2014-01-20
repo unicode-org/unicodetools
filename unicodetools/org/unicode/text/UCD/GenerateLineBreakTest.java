@@ -88,7 +88,7 @@ public class GenerateLineBreakTest implements UCD_Types {
         //printLine(out, samples[LB_ZW], "", samples[LB_CL]);
         //printLine(out, samples[LB_ZW], " ", samples[LB_CL]);
 
-        PrintWriter out = Utility.openPrintWriter(fileName + "BreakTest.html", Utility.UTF8_WINDOWS);
+        PrintWriter out = Utility.openPrintWriterGenDir(fileName + "BreakTest.html", Utility.UTF8_WINDOWS);
         out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>"
                 + fileName + "</title></head>");
         out.println("<body bgcolor='#FFFFFF'><h3>Current (fixed only for consistency):</h3>");
@@ -105,7 +105,7 @@ public class GenerateLineBreakTest implements UCD_Types {
         // do main test
 
         for (int k = 0; k < 2; ++k) {
-            out = Utility.openPrintWriter(fileName + (k == 0 ? "Test_SHORT.txt" : "Test.txt"), Utility.LATIN1_WINDOWS);
+            out = Utility.openPrintWriterGenDir(fileName + (k == 0 ? "Test_SHORT.txt" : "Test.txt"), Utility.LATIN1_WINDOWS);
             int counter = 0;
 
             out.println("# Default " + fileName + " Break Test");

@@ -20,6 +20,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
@@ -48,7 +49,7 @@ public class GenerateCaseFolding implements UCD_Types {
     public static void makeCaseFold(boolean normalized) throws java.io.IOException {
         PICK_SHORT = NF_CLOSURE = normalized;
 
-        log = Utility.openPrintWriter(UCD_Types.GEN_DIR + "/log", "CaseFoldingLog" + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
+        log = Utility.openPrintWriter(Settings.GEN_DIR + "/log", "CaseFoldingLog" + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
         System.out.println("Writing Log: " + "CaseFoldingLog" + UnicodeDataFile.getFileSuffix(true));
 
         System.out.println("Making Full Data");
@@ -74,7 +75,7 @@ public class GenerateCaseFolding implements UCD_Types {
             filename += "-Normalized";
         }
         final String directory = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY;
-        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, filename).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = fc.out;
 
         /*
@@ -544,7 +545,7 @@ public class GenerateCaseFolding implements UCD_Types {
             suffix2 = "-Normalized";
         }
 
-        final PrintWriter log = Utility.openPrintWriter("log/SpecialCasingExceptions"
+        final PrintWriter log = Utility.openPrintWriterGenDir("log/SpecialCasingExceptions"
                 + suffix2 + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
 
         for (int ch = 0; ch <= 0x10FFFF; ++ch) {
@@ -682,7 +683,7 @@ public class GenerateCaseFolding implements UCD_Types {
         //String newFile = "DerivedData/SpecialCasing" + suffix2 + UnicodeDataFile.getFileSuffix(true);
         //PrintWriter out = Utility.openPrintWriter(newFile, Utility.LATIN1_UNIX);
 
-        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY, "SpecialCasing" + suffix2).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        final UnicodeDataFile udf = UnicodeDataFile.openAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY, "SpecialCasing" + suffix2).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = udf.out;
 
         /*       String[] batName = {""};
@@ -714,7 +715,7 @@ public class GenerateCaseFolding implements UCD_Types {
                                             case 3: out.println("# Ligatures"); break;
                                             case 4: skipLine = true; break;
                                             case 5: out.println("# No corresponding uppercase precomposed character"); break;
-                                            case 6: Utility.appendFile("org/unicode/text/UCD/SpecialCasingIota.txt", Utility.UTF8, out); break;
+                                            case 6: Utility.appendFile(Settings.SRC_UCD_DIR + "SpecialCasingIota.txt", Utility.UTF8, out); break;
                                             case 7: out.println("# Some characters with YPOGEGRAMMENI also have no corresponding titlecases"); break;
                                             case 8: skipLine = true; break;
                                             }
@@ -724,7 +725,7 @@ public class GenerateCaseFolding implements UCD_Types {
                                         }
                                         out.println(line);
         }
-        Utility.appendFile("org/unicode/text/UCD/SpecialCasingFooter.txt", Utility.UTF8, out);
+        Utility.appendFile(Settings.SRC_UCD_DIR + "SpecialCasingFooter.txt", Utility.UTF8, out);
         udf.close();
         //Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
     }

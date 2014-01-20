@@ -778,7 +778,7 @@ of characters, the first of which has a non-zero combining class.
             public boolean hasValue(int cp) {
                 if (case_sensitive == null) {
                     try {
-                        log = Utility.openPrintWriter("log/Case_Sensitive_Log.txt", Utility.UTF8_UNIX);
+                        log = Utility.openPrintWriterGenDir("log/Case_Sensitive_Log.txt", Utility.UTF8_UNIX);
 
                         System.out.println("Building Case-Sensitive cache");
                         case_sensitive = new UnicodeSet();

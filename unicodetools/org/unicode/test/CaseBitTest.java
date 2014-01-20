@@ -15,6 +15,7 @@ import org.unicode.text.UCA.UCA;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.test.TestFmwk;
@@ -91,7 +92,7 @@ public class CaseBitTest extends TestFmwk {
     public UCA getUca() {
         if (uca == null) {
             try {
-                final String file = Utility.searchDirectory(new File(UCD_Types.BASE_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
+                final String file = Utility.searchDirectory(new File(Settings.DATA_DIR + "UCA/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
                 uca = new UCA(file, Default.ucdVersion(), null);
             } catch (final IOException e) {
                 throw new IllegalArgumentException(e);

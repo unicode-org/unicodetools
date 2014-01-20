@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
@@ -748,7 +749,7 @@ public class GenerateData implements UCD_Types {
      */
     static public void writeNormalizerTestSuite(String directory, String fileName) throws IOException {
 
-        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, fileName).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, fileName).setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter log = fc.out;
 
         final String newFile = directory + fileName + UnicodeDataFile.getFileSuffix(true);

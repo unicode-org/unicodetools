@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Utility;
 
@@ -28,7 +29,7 @@ public final class TernaryStore {
     static void test() throws java.io.IOException {
 
 
-        final PrintWriter pw = Utility.openPrintWriter("log/TestTernary.txt", Utility.LATIN1_WINDOWS);
+        final PrintWriter pw = Utility.openPrintWriterGenDir("log/TestTernary.txt", Utility.LATIN1_WINDOWS);
         try {
             dp = new DepthPrinter(pw);
 
@@ -57,7 +58,7 @@ public final class TernaryStore {
 
             //if (true) return;
 
-            final BufferedReader br = Utility.openReadFile(UCD_Types.BASE_DIR + "dict/DiploFreq.txt", Utility.LATIN1);
+            final BufferedReader br = Utility.openReadFile(Settings.DATA_DIR + "dict/DiploFreq.txt", Utility.LATIN1);
             String line;
             counter = 0;
             while (counter < tests.length) {

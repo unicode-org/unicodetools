@@ -37,6 +37,7 @@ import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Uts46;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.ArrayComparator;
@@ -62,7 +63,7 @@ import com.ibm.icu.util.ULocale;
 public class GenerateConfusables {
     private static final String version = "6.3.0";
     private static final String REVISION = "6.3.0";
-    private static final String outdir = Utility.UNICODETOOLS_DIRECTORY + "data/security/" + REVISION + "/data/";
+    private static final String outdir = Settings.UNICODETOOLS_DIRECTORY + "data/security/" + REVISION + "/data/";
     private static final String indir = outdir + "source/";
 
 
@@ -1810,7 +1811,7 @@ public class GenerateConfusables {
 
             if (appendFile) {
                 final String[] replacements = {"%date%", Default.getDate()};
-                Utility.appendFile("org/unicode/text/UCD/confusablesHeader.txt",
+                Utility.appendFile(Settings.SRC_UCD_DIR + "confusablesHeader.txt",
                         Utility.UTF8_WINDOWS, out, replacements);
             }
             if (true) {
@@ -2654,7 +2655,7 @@ public class GenerateConfusables {
 		// write it out
 		PrintWriter out = BagFormatter.openUTF8Writer(Utility.GEN_DIR, "confusables.txt");
 		String[] replacements = {"%date%", Default.getDate()};
-		Utility.appendFile("org/unicode/text/UCD/confusablesHeader.txt",
+		Utility.appendFile(Settings.SRC_UCD_DIR + "confusablesHeader.txt",
 				Utility.UTF8_WINDOWS, out, replacements);
 		for (Iterator it = s.iterator(); it.hasNext();) {
 			Data d = (Data) it.next();

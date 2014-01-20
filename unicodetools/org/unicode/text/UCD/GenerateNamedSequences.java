@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 
@@ -111,7 +112,7 @@ public final class GenerateNamedSequences implements UCD_Types {
 
         final String directory = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY + "extra/";
         final String filename = directory + filename2 + UnicodeDataFile.getHTMLFileSuffix(true);
-        final UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader(directory, filename2).setSkipCopyright(UCD_Types.SKIP_COPYRIGHT);
+        final UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader(directory, filename2).setSkipCopyright(Settings.SKIP_COPYRIGHT);
 
         final PrintWriter out = outfile.out; // Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
         /*
@@ -132,7 +133,7 @@ public final class GenerateNamedSequences implements UCD_Types {
                 "@date@", Default.getDate(),
                 "@table@", table};
 
-        Utility.appendFile("org/unicode/text/UCD/NamedSequences-Template.html", Utility.UTF8, out, replacementList);
+        Utility.appendFile(Settings.SRC_UCD_DIR + "NamedSequences-Template.html", Utility.UTF8, out, replacementList);
 
         outfile.close();
         //Utility.renameIdentical(mostRecent, Utility.getOutputName(filename), batName[0]);

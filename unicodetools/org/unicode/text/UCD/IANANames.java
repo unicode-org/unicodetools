@@ -19,6 +19,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.lang.UCharacter;
@@ -73,7 +74,7 @@ public class IANANames implements UCD_Types {
     }
 
     public IANANames() throws IOException {
-        final BufferedReader in = Utility.openReadFile(BASE_DIR + "IANA/character-sets.txt", Utility.LATIN1);
+        final BufferedReader in = Utility.openReadFile(Settings.DATA_DIR + "IANA/character-sets.txt", Utility.LATIN1);
         try {
             boolean atStart = true;
             String lastName = "";

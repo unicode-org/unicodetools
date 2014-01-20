@@ -32,6 +32,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CaseIterator;
@@ -467,7 +468,7 @@ public class QuickTest implements UCD_Types {
         //proposed = status.getSet("Px");
         System.out.println(proposed);
         //showStatus(status);
-        final PrintWriter pw = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR, "bidimirroring_chars.txt");
+        final PrintWriter pw = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "bidimirroring_chars.txt");
         showStatus(pw, status);
         pw.close();
     }

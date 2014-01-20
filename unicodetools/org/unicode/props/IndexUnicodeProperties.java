@@ -40,6 +40,7 @@ import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.props.PropertyUtilities.Joiner;
 import org.unicode.props.PropertyUtilities.Merge;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import sun.text.normalizer.UTF16;
@@ -1024,11 +1025,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return property2UnicodeMap.get(prop2);
     }
 
-    static final String CACHE_DIR = Utility.GEN_DIR + "BIN/";
-
     private void storeCachedMap(UcdProperty prop2, UnicodeMap<String> data) {
         try {
-            final String cacheFileDirName = CACHE_DIR + getUcdVersion();
+            final String cacheFileDirName = Settings.BIN_DIR + getUcdVersion();
             final File cacheFileDir = new File(cacheFileDirName);
             if (!cacheFileDir.exists()) {
                 cacheFileDir.mkdir();
@@ -1069,7 +1068,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         FileInputStream fis;
         File cacheFile;
         try {
-            final String cacheFileName = CACHE_DIR + getUcdVersion() + "/" + prop2 + ".bin";
+            final String cacheFileName = Settings.BIN_DIR + getUcdVersion() + "/" + prop2 + ".bin";
             cacheFile = new File(cacheFileName);
             // if the source file is older than the cached, skip
             if (sourceFileName != null) {

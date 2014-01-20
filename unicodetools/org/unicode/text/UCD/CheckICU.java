@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -192,7 +193,7 @@ public class CheckICU {
                 leading.add(i);
             }
         }
-        final PrintWriter pw = BagFormatter.openUTF8Writer(UCD_Types.GEN_DIR, "Trailing.txt");
+        final PrintWriter pw = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "Trailing.txt");
         pw.println("+Trailing+Starter");
         bf.showSetNames(pw,  new UnicodeSet(trailing).retainAll(starter));
         pw.println("+Trailing-Starter");

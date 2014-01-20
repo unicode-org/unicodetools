@@ -17,10 +17,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -45,6 +47,8 @@ public class MakeNamesChart {
     static UnicodeSet usePicture;// = new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
 
     static UCD lastUCDVersion;
+    
+    static final String NAMESLIST_DIR = Settings.CHARTS_GEN_DIR + "nameslist/";
 
     public static void main(String[] args) throws Exception {
         //	  checkFile();
@@ -62,12 +66,11 @@ public class MakeNamesChart {
         usePicture = new UnicodeSet().addAll(up.getSet("defaultignorablecodepoint=Yes"));// new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
         isWhiteSpace = new UnicodeSet(up.getSet("whitespace=Yes"));
 
-        final String folder = "/charts/nameslist/";
 
-        Utility.copyTextFile("org/unicode/text/UCA/nameslist_index.html", Utility.UTF8, folder + "index.html");
-        Utility.copyTextFile("org/unicode/text/UCA/charts.css", Utility.LATIN1, folder + "charts.css");
-        Utility.copyTextFile("org/unicode/text/UCA/nameslist_help.html", Utility.UTF8, folder + "help.html");
-        Utility.copyTextFile("org/unicode/text/UCA/nameslist.css", Utility.LATIN1, folder + "nameslist.css");
+        Utility.copyTextFile(Settings.SRC_UCA_DIR + "nameslist_index.html", Utility.UTF8, NAMESLIST_DIR + "index.html");
+        Utility.copyTextFile(Settings.SRC_UCA_DIR + "charts.css", Utility.LATIN1, NAMESLIST_DIR + "charts.css");
+        Utility.copyTextFile(Settings.SRC_UCA_DIR + "nameslist_help.html", Utility.UTF8, NAMESLIST_DIR + "help.html");
+        Utility.copyTextFile(Settings.SRC_UCA_DIR + "nameslist.css", Utility.LATIN1, NAMESLIST_DIR + "nameslist.css");
 
         final List nameList = new ArrayList();
         final ArrayList lines = new ArrayList();
@@ -91,10 +94,10 @@ public class MakeNamesChart {
             String[] lineParts = firstLine.split("\t");
             final String fileName = lineParts[1] + ".html";
             nameList.add(firstLine);
-            System.out.println();
-            System.out.println("file: " + chartPrefix + fileName);
+//            System.out.println();
+//            System.out.println("file: " + chartPrefix + fileName);
             //PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", chartPrefix + fileName);
-            PrintWriter out = Utility.openPrintWriter("charts/nameslist/" + chartPrefix + fileName, Utility.UTF8_WINDOWS);
+            PrintWriter out = Utility.openPrintWriter(NAMESLIST_DIR, chartPrefix + fileName, Utility.UTF8_WINDOWS);
             final String heading = TransliteratorUtilities.toHTML.transliterate(getHeading(lineParts[2]));
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
                     "<head>\n" +
@@ -176,7 +179,7 @@ public class MakeNamesChart {
             }
             out.close();
             //out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", namePrefix + fileName);
-            out = Utility.openPrintWriter("charts/nameslist/" + namePrefix + fileName, Utility.UTF8_WINDOWS);
+            out = Utility.openPrintWriter(NAMESLIST_DIR, namePrefix + fileName, Utility.UTF8_WINDOWS);
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
                     "<html>\n" +
                     "<head>\n" +
@@ -287,7 +290,7 @@ public class MakeNamesChart {
         }
         blockInfo.in.close();
         // PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", "mainList.html");
-        final PrintWriter out = Utility.openPrintWriter("charts/nameslist/" + "mainList.html", Utility.UTF8_WINDOWS);
+        final PrintWriter out = Utility.openPrintWriter(NAMESLIST_DIR, "mainList.html", Utility.UTF8_WINDOWS);
         FileUtilities.appendFile(WriteCharts.class, "nameslist_chart_header.html", out);
         //		out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
         //				"<title>Main List</title><link rel='stylesheet' type='text/css' href='nameslist.css'>" +
@@ -345,7 +348,7 @@ public class MakeNamesChart {
     }
 
     private static boolean isNew(int codepoint) {
-        return Default.ucd().isAllocated(codepoint) && !lastUCDVersion.isAllocated(codepoint);
+        return Default.ucd().isNew(codepoint, lastUCDVersion);
     }
 
     private static void showNameDifferences(Map hasName, Map hasNoName) {
@@ -493,7 +496,27 @@ public class MakeNamesChart {
         return body;
     }
 
+/*
+CROSS_REF:  TAB "x" SP CHAR SP LCNAME LF    
+        | TAB "x" SP CHAR SP "<" LCNAME ">" LF
+            // x is replaced by a right arrow
+
+        | TAB "x" SP "(" LCNAME SP "-" SP CHAR ")" LF    
+        | TAB "x" SP "(" "<" LCNAME ">" SP "-" SP CHAR ")" LF  
+            // x is replaced by a right arrow;
+            // (second type as used for control and noncharacters)
+
+            // In the forms with parentheses the "(","-" and ")" are removed
+            // and the order of CHAR and LCNAME is reversed;
+            // i.e. all inputs result in the same order of output
+
+        | TAB "x" SP CHAR LF
+            // x is replaced by a right arrow
+            // (this type is the only one without LCNAME 
+            // and is used for ideographs)
+ */
     static Matcher pointer = Pattern.compile("x \\((.*) - ([0-9A-F]+)\\)").matcher("");
+    static Matcher pointer1 = Pattern.compile("x ([0-9A-F]{4,6}) (.*)").matcher("");
     static Matcher pointer2 = Pattern.compile("x ([0-9A-F]{4,6})").matcher("");
     static Matcher findHex = Pattern.compile("[0-9A-F]+").matcher("");
 
@@ -504,23 +527,32 @@ public class MakeNamesChart {
         String name = null;
         if (pointer.reset(body).matches()) {
             cp = Integer.parseInt(pointer.group(2),16);
-            name = pointer.group(1);
-            String name2 = Default.ucd().getName(cp);
-            if (name2 == null) {
-                name2 = "<not a character>";
-            }
-            if (!name.equalsIgnoreCase(name2)) {
-                System.out.println("Mismatch in name for " + body + " in " + Utility.hex(lastCodePoint));
-                System.out.println("\tName is: " + name2);
-            }
+            name = checkName(body, cp, pointer.group(1));
+        } else if (pointer1.reset(body).matches()) {
+            cp = Integer.parseInt(pointer1.group(1),16);
+            name = checkName(body, cp, pointer1.group(2));
         } else if (pointer2.reset(body).matches()) {
             cp = Integer.parseInt(pointer2.group(1),16);
             // name = UCharacter.getName(cp).toLowerCase();
             // System.out.println("Irregular format: " + body);
         } else {
-            throw new IllegalArgumentException("Bad format: " + body);
+            String mismatch = RegexUtilities.showMismatch(pointer, body);
+            String mismatch2 = RegexUtilities.showMismatch(pointer2, body);
+            throw new IllegalArgumentException("Bad format:\n\t" + mismatch + "\n\t" + mismatch2);
         }
         return "\u2192 " + Utility.hex(cp,4) /*+ " " + showChar(cp)*/ + (name != null ? " " + name : "");
+    }
+
+    public static String checkName(String body, int cp, String name) {
+        String name2 = Default.ucd().getName(cp);
+        if (name2 == null) {
+            name2 = "<not a character>";
+        }
+        if (!name.equalsIgnoreCase(name2)) {
+            System.out.println("Mismatch in name for " + body + " in " + Utility.hex(lastCodePoint));
+            System.out.println("\tName is: " + name2);
+        }
+        return name;
     }
 
     static String showChar(int cp, boolean addRlmIfNeeded) {
