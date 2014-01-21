@@ -727,6 +727,7 @@ public class WriteCharts implements UCD_Types {
     public static String showCell(String comp, String classType) {
         if (isNew(comp)) {
             classType = "new";
+            indexHasNew = true;
         }
 
         if (comp == null) {
@@ -746,6 +747,7 @@ public class WriteCharts implements UCD_Types {
 //        }
         if (isNew(s)) {
             classType = "new";
+            indexHasNew = true;
         }
         final String name = Default.ucd().getName(s);
         String comp = Default.nfc().normalize(s);
@@ -792,6 +794,7 @@ public class WriteCharts implements UCD_Types {
         }
         if (isNew(s)) {
             classname = "new";
+            indexHasNew = true;
         }
         
         // TODO: merge with showCell
@@ -904,7 +907,10 @@ public class WriteCharts implements UCD_Types {
     };
 
     static PrintWriter indexFile;
-
+    static String indexAnchorText;
+    static String indexAttributes;
+    static boolean indexHasNew = false;
+    
     static PrintWriter openFile(int count, String directory, int script) throws IOException {
         final String scriptName = getChunkName(script, LONG);
         final String shortScriptName = getChunkName(script, SHORT);
@@ -914,7 +920,7 @@ public class WriteCharts implements UCD_Types {
         final PrintWriter output = Utility.openPrintWriter(directory, fileName, Utility.UTF8_WINDOWS);
         Utility.fixDot();
         System.out.println("Writing: " + scriptName);
-        indexFile.println("<a href = '" + fileName + hover + "'>" + scriptName + "</a><br>\n");
+        showIndex(scriptName, fileName + hover);
         final String title = "UCA: " + scriptName;
         output.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n"
                 + "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -930,7 +936,7 @@ public class WriteCharts implements UCD_Types {
         final PrintWriter output = Utility.openPrintWriter(directory, fileName, Utility.UTF8_WINDOWS);
         Utility.fixDot();
         System.out.println("Writing: " + name);
-        indexFile.println("<a href = '" + fileName + "'>" + name + "</a><br>\n");
+        showIndex(name, fileName);
         final String title = name;
         output.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
                 "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
@@ -939,6 +945,24 @@ public class WriteCharts implements UCD_Types {
         output.println("</head><body>");
         output.println("<table>");
         return output;
+    }
+
+    public static void showIndex(String anchorText, String attributes) {
+        indexAnchorText = anchorText;
+        indexAttributes = attributes;
+    }
+
+    static void closeFile(PrintWriter output) {
+        if (output == null) {
+            return;
+        }
+        if (indexHasNew) {
+            indexAttributes += "' class='new";
+        }
+        indexFile.println("<a href = '" + indexAttributes + "'>" + indexAnchorText + "</a><br>\n");
+        indexHasNew = false;
+        output.println("</table></body></html>");
+        output.close();
     }
 
     static final int
@@ -991,15 +1015,6 @@ public class WriteCharts implements UCD_Types {
             }
         }
     }
-
-    static void closeFile(PrintWriter output) {
-        if (output == null) {
-            return;
-        }
-        output.println("</table></body></html>");
-        output.close();
-    }
-
 
     static public final byte COLLATION = 0, NORMALIZATION = 1, CASE = 2, NAME = 3, SCRIPT = 4, NAMELIST = 5;
 

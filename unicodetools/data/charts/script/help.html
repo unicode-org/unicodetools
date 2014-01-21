@@ -7,26 +7,37 @@
 <meta name="ProgId" content="FrontPage.Editor.Document">
 <title>Chart Instructions</title>
 <style type='text/css'>
-
 <!--
-
-th           { background-color: #eeeeee }
+th {
+	background-color: #eeeeee
+}
 -->
-
 </style>
 </head>
 
 <body>
 
-<h1>Instructions</h1>
-<p>The Script charts provide an index to Unicode characters by script.
-Where the script = Common, the General Category is used in the index instead, at the end of the list.
-A character is included in a script if any component of its decomposition belongs to the script.</p>
-<blockquote>
-  <p><i>To properly view these charts, your browser should be reasonably recent 
-  so it handles Unicode and cascading style sheets, and you should install a 
-  Unicode font and configure your browser to use it.</i></p>
-</blockquote>
+	<h1>About Script Charts</h1>
+	<p>The Script charts provide an index to Unicode characters by
+		script:</p>
+	<ul>
+		<li>Characters with decompositions are listed under the script of
+			the decomposed characters.</li>
+		<li>Characters with multiple script values are listed under each
+			of those scripts.</li>
+		<li>Other characters (script values of Common or Inherited) are
+			listed under General Category values at the end of the index.</li>
+	</ul>
+	<p>Hovering over a cell will show the name of the character in that
+		cell.</p>
+	<p>
+		<i>To properly view these charts, you need to have an updated
+			browser and Unicode fonts that cover the characters you are
+			interested in. For more information, see <a
+			href='http://www.unicode.org/help/display_problems.html'>Display
+				Problems</a>.
+		</i>
+	</p>
 </body>
 
 </html>
