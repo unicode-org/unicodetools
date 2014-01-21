@@ -1,8 +1,8 @@
 # DerivedEastAsianWidth-7.0.0.txt
-# Date: 2014-01-11, 14:34:41 GMT [MD]
+# Date: 2014-01-17, 16:38:30 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
@@ -1478,7 +1478,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 16800..16A38  ; N # Lo [569] BAMUM LETTER PHASE-A NGKUE MFON..BAMUM LETTER PHASE-F VUEQ
 16A40..16A5E  ; N # Lo  [31] MRO LETTER TA..MRO LETTER TEK
 16A60..16A69  ; N # Nd  [10] MRO DIGIT ZERO..MRO DIGIT NINE
-16A6E..16A6F  ; N # So   [2] MRO DANDA..MRO DOUBLE DANDA
+16A6E..16A6F  ; N # Po   [2] MRO DANDA..MRO DOUBLE DANDA
 16AD0..16AED  ; N # Lo  [30] BASSA VAH LETTER ENNI..BASSA VAH LETTER I
 16AF0..16AF4  ; N # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
 16AF5         ; N # Po       BASSA VAH FULL STOP

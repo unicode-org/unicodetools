@@ -1,8 +1,8 @@
 # SentenceBreakProperty-7.0.0.txt
-# Date: 2014-01-11, 14:35:09 GMT [MD]
+# Date: 2014-01-18, 10:50:41 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
@@ -2336,6 +2336,7 @@ FF0E          ; ATerm # Po       FULLWIDTH FULL STOP
 203C..203D    ; STerm # Po   [2] DOUBLE EXCLAMATION MARK..INTERROBANG
 2047..2049    ; STerm # Po   [3] DOUBLE QUESTION MARK..EXCLAMATION QUESTION MARK
 2E2E          ; STerm # Po       REVERSED QUESTION MARK
+2E3C          ; STerm # Po       STENOGRAPHIC FULL STOP
 3002          ; STerm # Po       IDEOGRAPHIC FULL STOP
 A4FF          ; STerm # Po       LISU PUNCTUATION FULL STOP
 A60E..A60F    ; STerm # Po   [2] VAI FULL STOP..VAI QUESTION MARK
@@ -2357,8 +2358,19 @@ FF61          ; STerm # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 110BE..110C1  ; STerm # Po   [4] KAITHI SECTION MARK..KAITHI DOUBLE DANDA
 11141..11143  ; STerm # Po   [3] CHAKMA DANDA..CHAKMA QUESTION MARK
 111C5..111C6  ; STerm # Po   [2] SHARADA DANDA..SHARADA DOUBLE DANDA
+111CD         ; STerm # Po       SHARADA SUTRA MARK
+11238..11239  ; STerm # Po   [2] KHOJKI DANDA..KHOJKI DOUBLE DANDA
+1123B..1123C  ; STerm # Po   [2] KHOJKI SECTION MARK..KHOJKI DOUBLE SECTION MARK
+115C2..115C3  ; STerm # Po   [2] SIDDHAM DANDA..SIDDHAM DOUBLE DANDA
+115C9         ; STerm # Po       SIDDHAM END OF TEXT MARK
+11641..11642  ; STerm # Po   [2] MODI DANDA..MODI DOUBLE DANDA
+16A6E..16A6F  ; STerm # Po   [2] MRO DANDA..MRO DOUBLE DANDA
+16AF5         ; STerm # Po       BASSA VAH FULL STOP
+16B37..16B38  ; STerm # Po   [2] PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN VOS TSHAB CEEB
+16B44         ; STerm # Po       PAHAWH HMONG SIGN XAUS
+1BC9F         ; STerm # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 
-# Total code points: 80
+# Total code points: 98
 
 # ================================================
 

@@ -1,8 +1,8 @@
 # PropList-7.0.0.txt
-# Date: 2013-11-27, 09:54:42 GMT [MD]
+# Date: 2014-01-18, 10:50:28 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
@@ -52,6 +52,7 @@
 2E17          ; Dash # Pd       DOUBLE OBLIQUE HYPHEN
 2E1A          ; Dash # Pd       HYPHEN WITH DIAERESIS
 2E3A..2E3B    ; Dash # Pd   [2] TWO-EM DASH..THREE-EM DASH
+2E40          ; Dash # Pd       DOUBLE HYPHEN
 301C          ; Dash # Pd       WAVE DASH
 3030          ; Dash # Pd       WAVY DASH
 30A0          ; Dash # Pd       KATAKANA-HIRAGANA DOUBLE HYPHEN
@@ -60,7 +61,7 @@ FE58          ; Dash # Pd       SMALL EM DASH
 FE63          ; Dash # Pd       SMALL HYPHEN-MINUS
 FF0D          ; Dash # Pd       FULLWIDTH HYPHEN-MINUS
 
-# Total code points: 27
+# Total code points: 28
 
 # ================================================
 
@@ -92,6 +93,7 @@ FF65          ; Hyphen # Po       HALFWIDTH KATAKANA MIDDLE DOT
 201F          ; Quotation_Mark # Pi       DOUBLE HIGH-REVERSED-9 QUOTATION MARK
 2039          ; Quotation_Mark # Pi       SINGLE LEFT-POINTING ANGLE QUOTATION MARK
 203A          ; Quotation_Mark # Pf       SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+2E42          ; Quotation_Mark # Ps       DOUBLE LOW-REVERSED-9 QUOTATION MARK
 300C          ; Quotation_Mark # Ps       LEFT CORNER BRACKET
 300D          ; Quotation_Mark # Pe       RIGHT CORNER BRACKET
 300E          ; Quotation_Mark # Ps       LEFT WHITE CORNER BRACKET
@@ -107,7 +109,7 @@ FF07          ; Quotation_Mark # Po       FULLWIDTH APOSTROPHE
 FF62          ; Quotation_Mark # Ps       HALFWIDTH LEFT CORNER BRACKET
 FF63          ; Quotation_Mark # Pe       HALFWIDTH RIGHT CORNER BRACKET
 
-# Total code points: 29
+# Total code points: 30
 
 # ================================================
 
@@ -150,6 +152,8 @@ FF63          ; Quotation_Mark # Pe       HALFWIDTH RIGHT CORNER BRACKET
 203C..203D    ; Terminal_Punctuation # Po   [2] DOUBLE EXCLAMATION MARK..INTERROBANG
 2047..2049    ; Terminal_Punctuation # Po   [3] DOUBLE QUESTION MARK..EXCLAMATION QUESTION MARK
 2E2E          ; Terminal_Punctuation # Po       REVERSED QUESTION MARK
+2E3C          ; Terminal_Punctuation # Po       STENOGRAPHIC FULL STOP
+2E41          ; Terminal_Punctuation # Po       REVERSED COMMA
 3001..3002    ; Terminal_Punctuation # Po   [2] IDEOGRAPHIC COMMA..IDEOGRAPHIC FULL STOP
 A4FE..A4FF    ; Terminal_Punctuation # Po   [2] LISU PUNCTUATION COMMA..LISU PUNCTUATION FULL STOP
 A60D..A60F    ; Terminal_Punctuation # Po   [3] VAI COMMA..VAI QUESTION MARK
@@ -175,14 +179,26 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 103D0         ; Terminal_Punctuation # Po       OLD PERSIAN WORD DIVIDER
 10857         ; Terminal_Punctuation # Po       IMPERIAL ARAMAIC SECTION SIGN
 1091F         ; Terminal_Punctuation # Po       PHOENICIAN WORD SEPARATOR
+10AF0..10AF5  ; Terminal_Punctuation # Po   [6] MANICHAEAN PUNCTUATION STAR..MANICHAEAN PUNCTUATION TWO DOTS
 10B3A..10B3F  ; Terminal_Punctuation # Po   [6] TINY TWO DOTS OVER ONE DOT PUNCTUATION..LARGE ONE RING OVER TWO RINGS PUNCTUATION
+10B99..10B9C  ; Terminal_Punctuation # Po   [4] PSALTER PAHLAVI SECTION MARK..PSALTER PAHLAVI FOUR DOTS WITH DOT
 11047..1104D  ; Terminal_Punctuation # Po   [7] BRAHMI DANDA..BRAHMI PUNCTUATION LOTUS
 110BE..110C1  ; Terminal_Punctuation # Po   [4] KAITHI SECTION MARK..KAITHI DOUBLE DANDA
 11141..11143  ; Terminal_Punctuation # Po   [3] CHAKMA DANDA..CHAKMA QUESTION MARK
 111C5..111C6  ; Terminal_Punctuation # Po   [2] SHARADA DANDA..SHARADA DOUBLE DANDA
-12470..12473  ; Terminal_Punctuation # Po   [4] CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL TRICOLON
+111CD         ; Terminal_Punctuation # Po       SHARADA SUTRA MARK
+11238..1123C  ; Terminal_Punctuation # Po   [5] KHOJKI DANDA..KHOJKI DOUBLE SECTION MARK
+115C2..115C5  ; Terminal_Punctuation # Po   [4] SIDDHAM DANDA..SIDDHAM SEPARATOR BAR
+115C9         ; Terminal_Punctuation # Po       SIDDHAM END OF TEXT MARK
+11641..11642  ; Terminal_Punctuation # Po   [2] MODI DANDA..MODI DOUBLE DANDA
+12470..12474  ; Terminal_Punctuation # Po   [5] CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
+16A6E..16A6F  ; Terminal_Punctuation # Po   [2] MRO DANDA..MRO DOUBLE DANDA
+16AF5         ; Terminal_Punctuation # Po       BASSA VAH FULL STOP
+16B37..16B39  ; Terminal_Punctuation # Po   [3] PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN CIM CHEEM
+16B44         ; Terminal_Punctuation # Po       PAHAWH HMONG SIGN XAUS
+1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 
-# Total code points: 176
+# Total code points: 210
 
 # ================================================
 
@@ -1090,6 +1106,7 @@ AABB..AABC    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL AUE..TAI VIET 
 203C..203D    ; STerm # Po   [2] DOUBLE EXCLAMATION MARK..INTERROBANG
 2047..2049    ; STerm # Po   [3] DOUBLE QUESTION MARK..EXCLAMATION QUESTION MARK
 2E2E          ; STerm # Po       REVERSED QUESTION MARK
+2E3C          ; STerm # Po       STENOGRAPHIC FULL STOP
 3002          ; STerm # Po       IDEOGRAPHIC FULL STOP
 A4FF          ; STerm # Po       LISU PUNCTUATION FULL STOP
 A60E..A60F    ; STerm # Po   [2] VAI FULL STOP..VAI QUESTION MARK
@@ -1113,8 +1130,19 @@ FF61          ; STerm # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 110BE..110C1  ; STerm # Po   [4] KAITHI SECTION MARK..KAITHI DOUBLE DANDA
 11141..11143  ; STerm # Po   [3] CHAKMA DANDA..CHAKMA QUESTION MARK
 111C5..111C6  ; STerm # Po   [2] SHARADA DANDA..SHARADA DOUBLE DANDA
+111CD         ; STerm # Po       SHARADA SUTRA MARK
+11238..11239  ; STerm # Po   [2] KHOJKI DANDA..KHOJKI DOUBLE DANDA
+1123B..1123C  ; STerm # Po   [2] KHOJKI SECTION MARK..KHOJKI DOUBLE SECTION MARK
+115C2..115C3  ; STerm # Po   [2] SIDDHAM DANDA..SIDDHAM DOUBLE DANDA
+115C9         ; STerm # Po       SIDDHAM END OF TEXT MARK
+11641..11642  ; STerm # Po   [2] MODI DANDA..MODI DOUBLE DANDA
+16A6E..16A6F  ; STerm # Po   [2] MRO DANDA..MRO DOUBLE DANDA
+16AF5         ; STerm # Po       BASSA VAH FULL STOP
+16B37..16B38  ; STerm # Po   [2] PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN VOS TSHAB CEEB
+16B44         ; STerm # Po       PAHAWH HMONG SIGN XAUS
+1BC9F         ; STerm # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 
-# Total code points: 83
+# Total code points: 101
 
 # ================================================
 
@@ -1391,67 +1419,5 @@ FD3F          ; Pattern_Syntax # Pe       ORNATE RIGHT PARENTHESIS
 FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 2760
-
-# Dash
-2E40 ; Dash #      DOUBLE HYPHEN
- 
-#Quotation_Mark:
-2E42; Quotation_Mark #    DOUBLE LOW-REVERSED-9 QUOTATION MARK
- 
-# Terminal Punctuation (34 characters):
-2E3C ; Terminal_Punctuation #     STENOGRAPHIC FULL STOP
-2E41  ; Terminal_Punctuation #     REVERSED COMMA
-10AF0  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION STAR
-10AF1  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION FLEURON
-10AF2  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION DOUBLE DOT WITHIN DOT
-10AF3  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION DOT WITHIN DOT
-10AF4  ; Terminal_Punctuation #  MANICHAEAN PUNCTUATION DOT
-10AF5   ; Terminal_Punctuation # MANICHAEAN PUNCTUATION TWO DOTS
-10B99   ; Terminal_Punctuation #  PSALTER PAHLAVI SECTION MARK
-10B9A ; Terminal_Punctuation #   PSALTER PAHLAVI TURNED SECTION MARK
-10B9B ; Terminal_Punctuation #   PSALTER PAHLAVI FOUR DOTS WITH CROSS
-10B9C  ; Terminal_Punctuation #  PSALTER PAHLAVI FOUR DOTS WITH DOT
-111CD  ; Terminal_Punctuation #  SHARADA SUTRA MARK
-11238  ; Terminal_Punctuation #   KHOJKI DANDA
-11239  ; Terminal_Punctuation #   KHOJKI DOUBLE DANDA
-1123A   ; Terminal_Punctuation # KHOJKI WORD SEPARATOR
-1123B   ; Terminal_Punctuation #  KHOJKI SECTION MARK
-1123C  ; Terminal_Punctuation #   KHOJKI DOUBLE SECTION MARK
-115C2  ; Terminal_Punctuation #   SIDDHAM DANDA
-115C3  ; Terminal_Punctuation #   SIDDHAM DOUBLE DANDA
-115C4  ; Terminal_Punctuation #   SIDDHAM SEPARATOR DOT
-115C5  ; Terminal_Punctuation #   SIDDHAM SEPARATOR BAR
-115C9   ; Terminal_Punctuation #  SIDDHAM END OF TEXT MARK
-11641   ; Terminal_Punctuation #  MODI DANDA
-11642   ; Terminal_Punctuation #  MODI DOUBLE DANDA
-12474  ; Terminal_Punctuation #   CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
-16A6E  ; Terminal_Punctuation #  MRO DANDA
-16A6F  ; Terminal_Punctuation #  MRO DOUBLE DANDA
-16AF5   ; Terminal_Punctuation # BASSA VAH FULL STOP
-16B37  ; Terminal_Punctuation #   PAHAWH HMONG SIGN VOS THOM
-16B38  ; Terminal_Punctuation #   PAHAWH HMONG SIGN VOS TSHAB CEEB
-16B39  ; Terminal_Punctuation #   PAHAWH HMONG SIGN CIM CHEEM
-16B44   ; Terminal_Punctuation #  PAHAWH HMONG SIGN XAUS
-1BC9F  ; Terminal_Punctuation #  DUPLOYAN PUNCTUATION CHINOOK FULL STOP
- 
-# STerm (18 characters):
-2E3C  ; STerm #    STENOGRAPHIC FULL STOP
-111CD ; STerm #    SHARADA SUTRA MARK
-11238 ; STerm #     KHOJKI DANDA
-11239  ; STerm #    KHOJKI DOUBLE DANDA
-1123B ; STerm #     KHOJKI SECTION MARK
-1123C ; STerm #     KHOJKI DOUBLE SECTION MARK
-115C2 ; STerm #     SIDDHAM DANDA
-115C3 ; STerm #     SIDDHAM DOUBLE DANDA
-115C9 ; STerm #     SIDDHAM END OF TEXT MARK
-11641 ; STerm #     MODI DANDA
-11642 ; STerm #     MODI DOUBLE DANDA
-16A6E ; STerm #    MRO DANDA
-16A6F ; STerm #    MRO DOUBLE DANDA
-16AF5 ; STerm #    BASSA VAH FULL STOP
-16B37 ; STerm #     PAHAWH HMONG SIGN VOS THOM
-16B38 ; STerm #     PAHAWH HMONG SIGN VOS TSHAB CEEB
-16B44 ; STerm #     PAHAWH HMONG SIGN XAUS
-1BC9F ; STerm #    DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 
 # EOF

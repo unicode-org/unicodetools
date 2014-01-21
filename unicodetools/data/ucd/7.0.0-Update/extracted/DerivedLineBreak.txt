@@ -1,8 +1,8 @@
 # DerivedLineBreak-7.0.0.txt
-# Date: 2014-01-11, 14:34:43 GMT [MD]
+# Date: 2014-01-17, 16:38:32 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
@@ -2022,7 +2022,7 @@ ABEB          ; BA # Po       MEETEI MAYEK CHEIKHEI
 115C9         ; BA # Po       SIDDHAM END OF TEXT MARK
 11641..11642  ; BA # Po   [2] MODI DANDA..MODI DOUBLE DANDA
 12470..12474  ; BA # Po   [5] CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
-16A6E..16A6F  ; BA # So   [2] MRO DANDA..MRO DOUBLE DANDA
+16A6E..16A6F  ; BA # Po   [2] MRO DANDA..MRO DOUBLE DANDA
 16AF5         ; BA # Po       BASSA VAH FULL STOP
 16B37..16B39  ; BA # Po   [3] PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN CIM CHEEM
 16B44         ; BA # Po       PAHAWH HMONG SIGN XAUS

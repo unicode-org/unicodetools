@@ -1,5 +1,5 @@
 # Scripts-7.0.0.txt
-# Date: 2014-01-14, 06:01:25 GMT [MD]
+# Date: 2014-01-17, 16:38:54 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -2353,7 +2353,7 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 
 16A40..16A5E  ; Mro # Lo  [31] MRO LETTER TA..MRO LETTER TEK
 16A60..16A69  ; Mro # Nd  [10] MRO DIGIT ZERO..MRO DIGIT NINE
-16A6E..16A6F  ; Mro # So   [2] MRO DANDA..MRO DOUBLE DANDA
+16A6E..16A6F  ; Mro # Po   [2] MRO DANDA..MRO DOUBLE DANDA
 
 # Total code points: 43
 

@@ -1,8 +1,8 @@
 # DerivedBidiClass-7.0.0.txt
-# Date: 2014-01-11, 14:34:36 GMT [MD]
+# Date: 2014-01-17, 16:38:26 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
@@ -829,7 +829,7 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 16800..16A38  ; L # Lo [569] BAMUM LETTER PHASE-A NGKUE MFON..BAMUM LETTER PHASE-F VUEQ
 16A40..16A5E  ; L # Lo  [31] MRO LETTER TA..MRO LETTER TEK
 16A60..16A69  ; L # Nd  [10] MRO DIGIT ZERO..MRO DIGIT NINE
-16A6E..16A6F  ; L # So   [2] MRO DANDA..MRO DOUBLE DANDA
+16A6E..16A6F  ; L # Po   [2] MRO DANDA..MRO DOUBLE DANDA
 16AD0..16AED  ; L # Lo  [30] BASSA VAH LETTER ENNI..BASSA VAH LETTER I
 16AF5         ; L # Po       BASSA VAH FULL STOP
 16B00..16B2F  ; L # Lo  [48] PAHAWH HMONG VOWEL KEEB..PAHAWH HMONG CONSONANT CAU
