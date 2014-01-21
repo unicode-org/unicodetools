@@ -1,8 +1,8 @@
 # DerivedCombiningClass-7.0.0.txt
-# Date: 2014-01-11, 14:34:38 GMT [MD]
+# Date: 2014-01-17, 16:38:27 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
@@ -1507,7 +1507,7 @@ FFFC..FFFD    ; 0 # So   [2] OBJECT REPLACEMENT CHARACTER..REPLACEMENT CHARACTER
 16800..16A38  ; 0 # Lo [569] BAMUM LETTER PHASE-A NGKUE MFON..BAMUM LETTER PHASE-F VUEQ
 16A40..16A5E  ; 0 # Lo  [31] MRO LETTER TA..MRO LETTER TEK
 16A60..16A69  ; 0 # Nd  [10] MRO DIGIT ZERO..MRO DIGIT NINE
-16A6E..16A6F  ; 0 # So   [2] MRO DANDA..MRO DOUBLE DANDA
+16A6E..16A6F  ; 0 # Po   [2] MRO DANDA..MRO DOUBLE DANDA
 16AD0..16AED  ; 0 # Lo  [30] BASSA VAH LETTER ENNI..BASSA VAH LETTER I
 16AF5         ; 0 # Po       BASSA VAH FULL STOP
 16B00..16B2F  ; 0 # Lo  [48] PAHAWH HMONG VOWEL KEEB..PAHAWH HMONG CONSONANT CAU
