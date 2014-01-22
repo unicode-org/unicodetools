@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
@@ -257,9 +258,11 @@ public class VerifyUCD implements UCD_Types {
         statistics(SCRIPT_PROP);
     }
 
+    static final int PROPMAX = 200;
+
     public static void statistics(SimpleProp prop) throws IOException {
-        final int[][] count = new int[100][5];
-        final int[][] sample = new int[100][5];
+        final int[][] count = new int[PROPMAX][5];
+        final int[][] sample = new int[PROPMAX][5];
         final int[] subtotalCount = new int[5];
         final int[] totalCount = new int[5];
 
@@ -2609,6 +2612,5 @@ E0020-E007F; [TAGGING CHARACTERS]
     static String dummy3(int a) {
         return String.valueOf((char)(a >>> 16)) + (char)a;
     }
-
 
 }
