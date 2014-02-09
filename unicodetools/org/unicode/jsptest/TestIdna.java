@@ -8,7 +8,8 @@ import org.unicode.idna.IdnaTypes;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.text.utility.Utility;
 
-import sun.text.normalizer.UTF16;
+import com.ibm.icu.text.UTF16;
+
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.UnicodeMap;

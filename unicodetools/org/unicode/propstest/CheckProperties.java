@@ -32,7 +32,8 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import sun.text.normalizer.UTF16;
+//import com.ibm.icu.text.UTF16;
+
 
 import com.ibm.icu.dev.util.ICUPropertyFactory;
 import com.ibm.icu.dev.util.Relation;
@@ -43,6 +44,7 @@ import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class CheckProperties {

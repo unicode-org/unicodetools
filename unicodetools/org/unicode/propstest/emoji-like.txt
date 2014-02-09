@@ -1,0 +1,1553 @@
+# Code Point(s)	Proposed 7.0 Default	Proposed 7.0 SVs
+U+231A	emoji	
+U+231B	emoji	
+U+23E9	emoji	SV
+U+23EA	emoji	SV
+U+23EB	emoji	
+U+23EC	emoji	
+U+23F0	emoji	
+U+23F3	emoji	
+U+2614	emoji	SV
+U+2615	emoji	SV
+U+2648	emoji	SV
+U+2649	emoji	SV
+U+264A	emoji	SV
+U+264B	emoji	SV
+U+264C	emoji	SV
+U+264D	emoji	SV
+U+264E	emoji	SV
+U+264F	emoji	SV
+U+2650	emoji	SV
+U+2651	emoji	SV
+U+2652	emoji	SV
+U+2653	emoji	SV
+U+267F	emoji	SV
+U+2693	emoji	
+U+26A1	emoji	SV
+U+26AA	emoji	
+U+26AB	emoji	
+U+26BD	emoji	SV
+U+26BE	emoji	SV
+U+26C4	emoji	SV
+U+26C5	emoji	
+U+26CE	emoji	SV
+U+26D4	emoji	
+U+26EA	emoji	SV
+U+26F2	emoji	SV
+U+26F3	emoji	SV
+U+26F5	emoji	SV
+U+26F7	emoji	
+U+26F8	emoji	
+U+26F9	emoji	
+U+26FA	emoji	SV
+U+26FD	emoji	SV
+U+2705	emoji	
+U+270A	emoji	SV
+U+270B	emoji	SV
+U+2728	emoji	SV
+U+274C	emoji	SV
+U+274E	emoji	
+U+2753	emoji	SV
+U+2754	emoji	SV
+U+2755	emoji	SV
+U+2757	emoji	SV
+U+2B1B	emoji	
+U+2B1C	emoji	
+U+2B50	emoji	SV
+U+2B55	emoji	SV
+U+1F004	emoji	SV
+U+1F0CF	emoji	
+U+1F18E	emoji	SV
+U+1F191	emoji	
+U+1F192	emoji	SV
+U+1F193	emoji	
+U+1F194	emoji	SV
+U+1F195	emoji	SV
+U+1F196	emoji	
+U+1F197	emoji	SV
+U+1F198	emoji	
+U+1F199	emoji	SV
+U+1F19A	emoji	SV
+U+1F201	emoji	SV
+U+1F21A	emoji	SV
+U+1F22F	emoji	SV
+U+1F232	emoji	
+U+1F233	emoji	SV
+U+1F234	emoji	
+U+1F235	emoji	SV
+U+1F236	emoji	SV
+U+1F238	emoji	SV
+U+1F239	emoji	SV
+U+1F23A	emoji	SV
+U+1F250	emoji	SV
+U+1F251	emoji	
+U+1F300	emoji	SV
+U+1F301	emoji	
+U+1F302	emoji	SV
+U+1F303	emoji	SV
+U+1F304	emoji	SV
+U+1F305	emoji	SV
+U+1F306	emoji	SV
+U+1F307	emoji	SV
+U+1F308	emoji	SV
+U+1F309	emoji	
+U+1F30A	emoji	SV
+U+1F30B	emoji	
+U+1F30C	emoji	
+U+1F30D	emoji	
+U+1F30E	emoji	
+U+1F30F	emoji	
+U+1F310	emoji	
+U+1F311	emoji	
+U+1F312	emoji	
+U+1F313	emoji	
+U+1F314	emoji	
+U+1F315	emoji	
+U+1F316	emoji	
+U+1F317	emoji	
+U+1F318	emoji	
+U+1F319	emoji	SV
+U+1F31A	emoji	
+U+1F31B	emoji	
+U+1F31C	emoji	
+U+1F31D	emoji	
+U+1F31E	emoji	
+U+1F31F	emoji	SV
+U+1F320	emoji	
+U+1F321	emoji	
+U+1F322	emoji	
+U+1F323	emoji	
+U+1F324	emoji	
+U+1F325	emoji	
+U+1F326	emoji	
+U+1F327	emoji	
+U+1F328	emoji	
+U+1F329	emoji	
+U+1F32A	emoji	
+U+1F32B	emoji	
+U+1F32C	emoji	
+U+1F330	emoji	
+U+1F331	emoji	
+U+1F332	emoji	
+U+1F333	emoji	
+U+1F334	emoji	SV
+U+1F335	emoji	SV
+U+1F336	emoji	
+U+1F337	emoji	SV
+U+1F338	emoji	SV
+U+1F339	emoji	SV
+U+1F33A	emoji	SV
+U+1F33B	emoji	SV
+U+1F33C	emoji	
+U+1F33D	emoji	
+U+1F33E	emoji	SV
+U+1F33F	emoji	
+U+1F340	emoji	SV
+U+1F341	emoji	SV
+U+1F342	emoji	SV
+U+1F343	emoji	SV
+U+1F344	emoji	
+U+1F345	emoji	SV
+U+1F346	emoji	SV
+U+1F347	emoji	
+U+1F348	emoji	
+U+1F349	emoji	SV
+U+1F34A	emoji	SV
+U+1F34B	emoji	
+U+1F34C	emoji	
+U+1F34D	emoji	
+U+1F34E	emoji	SV
+U+1F34F	emoji	
+U+1F350	emoji	
+U+1F351	emoji	
+U+1F352	emoji	
+U+1F353	emoji	SV
+U+1F354	emoji	SV
+U+1F355	emoji	
+U+1F356	emoji	
+U+1F357	emoji	
+U+1F358	emoji	SV
+U+1F359	emoji	SV
+U+1F35A	emoji	SV
+U+1F35B	emoji	SV
+U+1F35C	emoji	SV
+U+1F35D	emoji	SV
+U+1F35E	emoji	SV
+U+1F35F	emoji	SV
+U+1F360	emoji	
+U+1F361	emoji	SV
+U+1F362	emoji	SV
+U+1F363	emoji	SV
+U+1F364	emoji	
+U+1F365	emoji	
+U+1F366	emoji	SV
+U+1F367	emoji	SV
+U+1F368	emoji	
+U+1F369	emoji	
+U+1F36A	emoji	
+U+1F36B	emoji	
+U+1F36C	emoji	
+U+1F36D	emoji	
+U+1F36E	emoji	
+U+1F36F	emoji	
+U+1F370	emoji	SV
+U+1F371	emoji	SV
+U+1F372	emoji	SV
+U+1F373	emoji	SV
+U+1F374	emoji	SV
+U+1F375	emoji	SV
+U+1F376	emoji	SV
+U+1F377	emoji	
+U+1F378	emoji	SV
+U+1F379	emoji	
+U+1F37A	emoji	SV
+U+1F37B	emoji	SV
+U+1F37C	emoji	
+U+1F37D	emoji	
+U+1F380	emoji	SV
+U+1F381	emoji	SV
+U+1F382	emoji	SV
+U+1F383	emoji	SV
+U+1F384	emoji	SV
+U+1F385	emoji	SV
+U+1F386	emoji	SV
+U+1F387	emoji	SV
+U+1F388	emoji	SV
+U+1F389	emoji	SV
+U+1F38A	emoji	
+U+1F38B	emoji	
+U+1F38C	emoji	SV
+U+1F38D	emoji	SV
+U+1F38E	emoji	SV
+U+1F38F	emoji	SV
+U+1F390	emoji	SV
+U+1F391	emoji	SV
+U+1F392	emoji	SV
+U+1F393	emoji	SV
+U+1F394	emoji	
+U+1F395	emoji	
+U+1F396	emoji	
+U+1F397	emoji	
+U+1F398	emoji	
+U+1F399	emoji	
+U+1F39A	emoji	
+U+1F39B	emoji	
+U+1F39C	emoji	
+U+1F39D	emoji	
+U+1F39E	emoji	
+U+1F39F	emoji	
+U+1F3A0	emoji	
+U+1F3A1	emoji	SV
+U+1F3A2	emoji	SV
+U+1F3A3	emoji	
+U+1F3A4	emoji	SV
+U+1F3A5	emoji	SV
+U+1F3A6	emoji	SV
+U+1F3A7	emoji	SV
+U+1F3A8	emoji	SV
+U+1F3A9	emoji	SV
+U+1F3AA	emoji	
+U+1F3AB	emoji	SV
+U+1F3AC	emoji	SV
+U+1F3AD	emoji	
+U+1F3AE	emoji	
+U+1F3AF	emoji	SV
+U+1F3B0	emoji	SV
+U+1F3B1	emoji	SV
+U+1F3B2	emoji	
+U+1F3B3	emoji	
+U+1F3B4	emoji	
+U+1F3B5	emoji	SV
+U+1F3B6	emoji	SV
+U+1F3B7	emoji	SV
+U+1F3B8	emoji	SV
+U+1F3B9	emoji	
+U+1F3BA	emoji	SV
+U+1F3BB	emoji	
+U+1F3BC	emoji	
+U+1F3BD	emoji	
+U+1F3BE	emoji	SV
+U+1F3BF	emoji	SV
+U+1F3C0	emoji	SV
+U+1F3C1	emoji	SV
+U+1F3C2	emoji	
+U+1F3C3	emoji	SV
+U+1F3C4	emoji	SV
+U+1F3C5	emoji	
+U+1F3C6	emoji	SV
+U+1F3C7	emoji	
+U+1F3C8	emoji	SV
+U+1F3C9	emoji	
+U+1F3CA	emoji	SV
+U+1F3CB	emoji	
+U+1F3CC	emoji	
+U+1F3CD	emoji	
+U+1F3CE	emoji	
+U+1F3D4	emoji	
+U+1F3D5	emoji	
+U+1F3D6	emoji	
+U+1F3D7	emoji	
+U+1F3D8	emoji	
+U+1F3D9	emoji	
+U+1F3DA	emoji	
+U+1F3DB	emoji	
+U+1F3DC	emoji	
+U+1F3DD	emoji	
+U+1F3DE	emoji	
+U+1F3DF	emoji	
+U+1F3E0	emoji	SV
+U+1F3E1	emoji	
+U+1F3E2	emoji	SV
+U+1F3E3	emoji	SV
+U+1F3E4	emoji	
+U+1F3E5	emoji	SV
+U+1F3E6	emoji	SV
+U+1F3E7	emoji	SV
+U+1F3E8	emoji	SV
+U+1F3E9	emoji	SV
+U+1F3EA	emoji	SV
+U+1F3EB	emoji	SV
+U+1F3EC	emoji	SV
+U+1F3ED	emoji	SV
+U+1F3EE	emoji	
+U+1F3EF	emoji	SV
+U+1F3F0	emoji	SV
+U+1F3F1	emoji	
+U+1F3F2	emoji	
+U+1F3F3	emoji	
+U+1F3F4	emoji	
+U+1F3F5	emoji	
+U+1F3F6	emoji	
+U+1F3F7	emoji	
+U+1F400	emoji	
+U+1F401	emoji	
+U+1F402	emoji	
+U+1F403	emoji	
+U+1F404	emoji	
+U+1F405	emoji	
+U+1F406	emoji	
+U+1F407	emoji	
+U+1F408	emoji	
+U+1F409	emoji	
+U+1F40A	emoji	
+U+1F40B	emoji	
+U+1F40C	emoji	
+U+1F40D	emoji	SV
+U+1F40E	emoji	SV
+U+1F40F	emoji	
+U+1F410	emoji	
+U+1F411	emoji	SV
+U+1F412	emoji	SV
+U+1F413	emoji	
+U+1F414	emoji	SV
+U+1F415	emoji	
+U+1F416	emoji	
+U+1F417	emoji	SV
+U+1F418	emoji	SV
+U+1F419	emoji	SV
+U+1F41A	emoji	SV
+U+1F41B	emoji	SV
+U+1F41C	emoji	
+U+1F41D	emoji	
+U+1F41E	emoji	
+U+1F41F	emoji	SV
+U+1F420	emoji	SV
+U+1F421	emoji	
+U+1F422	emoji	
+U+1F423	emoji	
+U+1F424	emoji	SV
+U+1F425	emoji	
+U+1F426	emoji	SV
+U+1F427	emoji	SV
+U+1F428	emoji	SV
+U+1F429	emoji	
+U+1F42A	emoji	
+U+1F42B	emoji	SV
+U+1F42C	emoji	SV
+U+1F42D	emoji	SV
+U+1F42E	emoji	SV
+U+1F42F	emoji	SV
+U+1F430	emoji	SV
+U+1F431	emoji	SV
+U+1F432	emoji	
+U+1F433	emoji	SV
+U+1F434	emoji	SV
+U+1F435	emoji	SV
+U+1F436	emoji	SV
+U+1F437	emoji	SV
+U+1F438	emoji	SV
+U+1F439	emoji	SV
+U+1F43A	emoji	SV
+U+1F43B	emoji	SV
+U+1F43C	emoji	
+U+1F43D	emoji	
+U+1F43E	emoji	
+U+1F43F	emoji	
+U+1F440	emoji	SV
+U+1F441	emoji	
+U+1F442	emoji	SV
+U+1F443	emoji	SV
+U+1F444	emoji	SV
+U+1F445	emoji	
+U+1F446	emoji	SV
+U+1F447	emoji	SV
+U+1F448	emoji	SV
+U+1F449	emoji	SV
+U+1F44A	emoji	SV
+U+1F44B	emoji	SV
+U+1F44C	emoji	SV
+U+1F44D	emoji	SV
+U+1F44E	emoji	SV
+U+1F44F	emoji	SV
+U+1F450	emoji	SV
+U+1F451	emoji	SV
+U+1F452	emoji	SV
+U+1F453	emoji	
+U+1F454	emoji	SV
+U+1F455	emoji	SV
+U+1F456	emoji	
+U+1F457	emoji	SV
+U+1F458	emoji	SV
+U+1F459	emoji	SV
+U+1F45A	emoji	
+U+1F45B	emoji	
+U+1F45C	emoji	SV
+U+1F45D	emoji	
+U+1F45E	emoji	
+U+1F45F	emoji	SV
+U+1F460	emoji	SV
+U+1F461	emoji	SV
+U+1F462	emoji	SV
+U+1F463	emoji	SV
+U+1F464	emoji	
+U+1F465	emoji	
+U+1F466	emoji	SV
+U+1F467	emoji	SV
+U+1F468	emoji	SV
+U+1F469	emoji	SV
+U+1F46A	emoji	
+U+1F46B	emoji	SV
+U+1F46C	emoji	
+U+1F46D	emoji	
+U+1F46E	emoji	SV
+U+1F46F	emoji	SV
+U+1F470	emoji	
+U+1F471	emoji	SV
+U+1F472	emoji	SV
+U+1F473	emoji	SV
+U+1F474	emoji	SV
+U+1F475	emoji	SV
+U+1F476	emoji	SV
+U+1F477	emoji	SV
+U+1F478	emoji	SV
+U+1F479	emoji	
+U+1F47A	emoji	
+U+1F47B	emoji	SV
+U+1F47C	emoji	SV
+U+1F47D	emoji	SV
+U+1F47E	emoji	SV
+U+1F47F	emoji	SV
+U+1F480	emoji	SV
+U+1F481	emoji	SV
+U+1F482	emoji	SV
+U+1F483	emoji	SV
+U+1F484	emoji	SV
+U+1F485	emoji	SV
+U+1F486	emoji	SV
+U+1F487	emoji	SV
+U+1F488	emoji	SV
+U+1F489	emoji	SV
+U+1F48A	emoji	SV
+U+1F48B	emoji	SV
+U+1F48C	emoji	
+U+1F48D	emoji	SV
+U+1F48E	emoji	SV
+U+1F48F	emoji	SV
+U+1F490	emoji	SV
+U+1F491	emoji	SV
+U+1F492	emoji	SV
+U+1F493	emoji	SV
+U+1F494	emoji	SV
+U+1F495	emoji	
+U+1F496	emoji	
+U+1F497	emoji	SV
+U+1F498	emoji	SV
+U+1F499	emoji	SV
+U+1F49A	emoji	SV
+U+1F49B	emoji	SV
+U+1F49C	emoji	SV
+U+1F49D	emoji	SV
+U+1F49E	emoji	
+U+1F49F	emoji	SV
+U+1F4A0	emoji	
+U+1F4A1	emoji	SV
+U+1F4A2	emoji	SV
+U+1F4A3	emoji	SV
+U+1F4A4	emoji	SV
+U+1F4A5	emoji	
+U+1F4A6	emoji	SV
+U+1F4A7	emoji	
+U+1F4A8	emoji	SV
+U+1F4A9	emoji	SV
+U+1F4AA	emoji	SV
+U+1F4AB	emoji	
+U+1F4AC	emoji	
+U+1F4AD	emoji	
+U+1F4AE	emoji	
+U+1F4AF	emoji	
+U+1F4B0	emoji	SV
+U+1F4B1	emoji	SV
+U+1F4B2	emoji	
+U+1F4B3	emoji	
+U+1F4B4	emoji	
+U+1F4B5	emoji	
+U+1F4B6	emoji	
+U+1F4B7	emoji	
+U+1F4B8	emoji	
+U+1F4B9	emoji	SV
+U+1F4BA	emoji	SV
+U+1F4BB	emoji	SV
+U+1F4BC	emoji	SV
+U+1F4BD	emoji	SV
+U+1F4BE	emoji	
+U+1F4BF	emoji	SV
+U+1F4C0	emoji	SV
+U+1F4C1	emoji	
+U+1F4C2	emoji	
+U+1F4C3	emoji	
+U+1F4C4	emoji	
+U+1F4C5	emoji	
+U+1F4C6	emoji	
+U+1F4C7	emoji	
+U+1F4C8	emoji	
+U+1F4C9	emoji	
+U+1F4CA	emoji	
+U+1F4CB	emoji	
+U+1F4CC	emoji	
+U+1F4CD	emoji	
+U+1F4CE	emoji	
+U+1F4CF	emoji	
+U+1F4D0	emoji	
+U+1F4D1	emoji	
+U+1F4D2	emoji	
+U+1F4D3	emoji	
+U+1F4D4	emoji	
+U+1F4D5	emoji	
+U+1F4D6	emoji	SV
+U+1F4D7	emoji	
+U+1F4D8	emoji	
+U+1F4D9	emoji	
+U+1F4DA	emoji	
+U+1F4DB	emoji	
+U+1F4DC	emoji	
+U+1F4DD	emoji	SV
+U+1F4DE	emoji	
+U+1F4DF	emoji	
+U+1F4E0	emoji	SV
+U+1F4E1	emoji	SV
+U+1F4E2	emoji	SV
+U+1F4E3	emoji	SV
+U+1F4E4	emoji	
+U+1F4E5	emoji	
+U+1F4E6	emoji	
+U+1F4E7	emoji	
+U+1F4E8	emoji	
+U+1F4E9	emoji	SV
+U+1F4EA	emoji	
+U+1F4EB	emoji	SV
+U+1F4EC	emoji	
+U+1F4ED	emoji	
+U+1F4EE	emoji	SV
+U+1F4EF	emoji	
+U+1F4F0	emoji	
+U+1F4F1	emoji	SV
+U+1F4F2	emoji	SV
+U+1F4F3	emoji	SV
+U+1F4F4	emoji	SV
+U+1F4F5	emoji	
+U+1F4F6	emoji	SV
+U+1F4F7	emoji	SV
+U+1F4F8	emoji	
+U+1F4F9	emoji	
+U+1F4FA	emoji	SV
+U+1F4FB	emoji	SV
+U+1F4FC	emoji	SV
+U+1F4FD	emoji	
+U+1F4FE	emoji	
+U+1F500	emoji	
+U+1F501	emoji	
+U+1F502	emoji	
+U+1F503	emoji	
+U+1F504	emoji	
+U+1F505	emoji	
+U+1F506	emoji	
+U+1F507	emoji	
+U+1F508	emoji	
+U+1F509	emoji	
+U+1F50A	emoji	SV
+U+1F50B	emoji	
+U+1F50C	emoji	
+U+1F50D	emoji	SV
+U+1F50E	emoji	
+U+1F50F	emoji	
+U+1F510	emoji	
+U+1F511	emoji	SV
+U+1F512	emoji	SV
+U+1F513	emoji	SV
+U+1F514	emoji	SV
+U+1F515	emoji	
+U+1F516	emoji	
+U+1F517	emoji	
+U+1F518	emoji	
+U+1F51E	emoji	SV
+U+1F51F	emoji	
+U+1F520	emoji	
+U+1F521	emoji	
+U+1F522	emoji	
+U+1F523	emoji	
+U+1F524	emoji	
+U+1F525	emoji	SV
+U+1F526	emoji	
+U+1F527	emoji	
+U+1F528	emoji	SV
+U+1F529	emoji	
+U+1F52A	emoji	
+U+1F52B	emoji	SV
+U+1F52C	emoji	
+U+1F52D	emoji	
+U+1F52E	emoji	
+U+1F52F	emoji	SV
+U+1F530	emoji	SV
+U+1F531	emoji	SV
+U+1F532	emoji	SV
+U+1F533	emoji	SV
+U+1F534	emoji	SV
+U+1F535	emoji	
+U+1F536	emoji	
+U+1F537	emoji	
+U+1F538	emoji	
+U+1F539	emoji	
+U+1F53A	emoji	
+U+1F53B	emoji	
+U+1F53C	emoji	
+U+1F53D	emoji	
+U+1F54A	emoji	
+U+1F550	emoji	SV
+U+1F551	emoji	SV
+U+1F552	emoji	SV
+U+1F553	emoji	SV
+U+1F554	emoji	SV
+U+1F555	emoji	SV
+U+1F556	emoji	SV
+U+1F557	emoji	SV
+U+1F558	emoji	SV
+U+1F559	emoji	SV
+U+1F55A	emoji	SV
+U+1F55B	emoji	SV
+U+1F55C	emoji	
+U+1F55D	emoji	
+U+1F55E	emoji	
+U+1F55F	emoji	
+U+1F560	emoji	
+U+1F561	emoji	
+U+1F562	emoji	
+U+1F563	emoji	
+U+1F564	emoji	
+U+1F565	emoji	
+U+1F566	emoji	
+U+1F567	emoji	
+U+1F568	emoji	
+U+1F569	emoji	
+U+1F56A	emoji	
+U+1F56B	emoji	
+U+1F56C	emoji	
+U+1F56D	emoji	
+U+1F56E	emoji	
+U+1F56F	emoji	
+U+1F570	emoji	
+U+1F571	emoji	
+U+1F572	emoji	
+U+1F573	emoji	
+U+1F574	emoji	
+U+1F575	emoji	
+U+1F576	emoji	
+U+1F577	emoji	
+U+1F578	emoji	
+U+1F579	emoji	
+U+1F57B	emoji	
+U+1F57C	emoji	
+U+1F57D	emoji	
+U+1F57E	emoji	
+U+1F57F	emoji	
+U+1F580	emoji	
+U+1F581	emoji	
+U+1F582	emoji	
+U+1F583	emoji	
+U+1F584	emoji	
+U+1F585	emoji	
+U+1F586	emoji	
+U+1F587	emoji	
+U+1F588	emoji	
+U+1F589	emoji	
+U+1F58A	emoji	
+U+1F58B	emoji	
+U+1F58C	emoji	
+U+1F58D	emoji	
+U+1F58E	emoji	
+U+1F58F	emoji	
+U+1F590	emoji	
+U+1F591	emoji	
+U+1F592	emoji	
+U+1F593	emoji	
+U+1F594	emoji	
+U+1F595	emoji	
+U+1F596	emoji	
+U+1F597	emoji	
+U+1F598	emoji	
+U+1F599	emoji	
+U+1F59A	emoji	
+U+1F59B	emoji	
+U+1F59C	emoji	
+U+1F59D	emoji	
+U+1F59E	emoji	
+U+1F59F	emoji	
+U+1F5A0	emoji	
+U+1F5A1	emoji	
+U+1F5A2	emoji	
+U+1F5A3	emoji	
+U+1F5A5	emoji	
+U+1F5A6	emoji	
+U+1F5A7	emoji	
+U+1F5A8	emoji	
+U+1F5A9	emoji	
+U+1F5AA	emoji	
+U+1F5AB	emoji	
+U+1F5AC	emoji	
+U+1F5AD	emoji	
+U+1F5AE	emoji	
+U+1F5AF	emoji	
+U+1F5B0	emoji	
+U+1F5B1	emoji	
+U+1F5B2	emoji	
+U+1F5B3	emoji	
+U+1F5B4	emoji	
+U+1F5B5	emoji	
+U+1F5B6	emoji	
+U+1F5B7	emoji	
+U+1F5B8	emoji	
+U+1F5B9	emoji	
+U+1F5BA	emoji	
+U+1F5BB	emoji	
+U+1F5BC	emoji	
+U+1F5BD	emoji	
+U+1F5BE	emoji	
+U+1F5BF	emoji	
+U+1F5C0	emoji	
+U+1F5C1	emoji	
+U+1F5C2	emoji	
+U+1F5C3	emoji	
+U+1F5C4	emoji	
+U+1F5C5	emoji	
+U+1F5C6	emoji	
+U+1F5C7	emoji	
+U+1F5C8	emoji	
+U+1F5C9	emoji	
+U+1F5CA	emoji	
+U+1F5CB	emoji	
+U+1F5CC	emoji	
+U+1F5CD	emoji	
+U+1F5CE	emoji	
+U+1F5CF	emoji	
+U+1F5D0	emoji	
+U+1F5D1	emoji	
+U+1F5D2	emoji	
+U+1F5D3	emoji	
+U+1F5D4	emoji	
+U+1F5D5	emoji	
+U+1F5D6	emoji	
+U+1F5D7	emoji	
+U+1F5D8	emoji	
+U+1F5D9	emoji	
+U+1F5DA	emoji	
+U+1F5DB	emoji	
+U+1F5DC	emoji	
+U+1F5DD	emoji	
+U+1F5DE	emoji	
+U+1F5DF	emoji	
+U+1F5E0	emoji	
+U+1F5E1	emoji	
+U+1F5E2	emoji	
+U+1F5E3	emoji	
+U+1F5E4	emoji	
+U+1F5E5	emoji	
+U+1F5E6	emoji	
+U+1F5E7	emoji	
+U+1F5E8	emoji	
+U+1F5E9	emoji	
+U+1F5EA	emoji	
+U+1F5EB	emoji	
+U+1F5EC	emoji	
+U+1F5ED	emoji	
+U+1F5EE	emoji	
+U+1F5EF	emoji	
+U+1F5F0	emoji	
+U+1F5F1	emoji	
+U+1F5F2	emoji	
+U+1F5F3	emoji	
+U+1F5F4	emoji	
+U+1F5F5	emoji	
+U+1F5F6	emoji	
+U+1F5F7	emoji	
+U+1F5F8	emoji	
+U+1F5F9	emoji	
+U+1F5FA	emoji	
+U+1F5FB	emoji	SV
+U+1F5FC	emoji	SV
+U+1F5FD	emoji	SV
+U+1F5FE	emoji	
+U+1F5FF	emoji	
+U+1F600	emoji	
+U+1F601	emoji	SV
+U+1F602	emoji	SV
+U+1F603	emoji	SV
+U+1F604	emoji	SV
+U+1F605	emoji	
+U+1F606	emoji	
+U+1F607	emoji	
+U+1F608	emoji	
+U+1F609	emoji	SV
+U+1F60A	emoji	SV
+U+1F60B	emoji	
+U+1F60C	emoji	SV
+U+1F60D	emoji	SV
+U+1F60E	emoji	
+U+1F60F	emoji	SV
+U+1F610	emoji	
+U+1F611	emoji	
+U+1F612	emoji	SV
+U+1F613	emoji	SV
+U+1F614	emoji	SV
+U+1F615	emoji	
+U+1F616	emoji	SV
+U+1F617	emoji	
+U+1F618	emoji	SV
+U+1F619	emoji	
+U+1F61A	emoji	SV
+U+1F61B	emoji	
+U+1F61C	emoji	SV
+U+1F61D	emoji	SV
+U+1F61E	emoji	SV
+U+1F61F	emoji	
+U+1F620	emoji	SV
+U+1F621	emoji	SV
+U+1F622	emoji	SV
+U+1F623	emoji	SV
+U+1F624	emoji	
+U+1F625	emoji	SV
+U+1F626	emoji	
+U+1F627	emoji	
+U+1F628	emoji	SV
+U+1F629	emoji	
+U+1F62A	emoji	SV
+U+1F62B	emoji	
+U+1F62C	emoji	
+U+1F62D	emoji	SV
+U+1F62E	emoji	
+U+1F62F	emoji	
+U+1F630	emoji	SV
+U+1F631	emoji	SV
+U+1F632	emoji	SV
+U+1F633	emoji	SV
+U+1F634	emoji	
+U+1F635	emoji	
+U+1F636	emoji	
+U+1F637	emoji	SV
+U+1F638	emoji	
+U+1F639	emoji	
+U+1F63A	emoji	
+U+1F63B	emoji	
+U+1F63C	emoji	
+U+1F63D	emoji	
+U+1F63E	emoji	
+U+1F63F	emoji	
+U+1F640	emoji	
+U+1F641	emoji	
+U+1F642	emoji	
+U+1F645	emoji	SV
+U+1F646	emoji	SV
+U+1F647	emoji	SV
+U+1F648	emoji	
+U+1F649	emoji	
+U+1F64A	emoji	
+U+1F64B	emoji	
+U+1F64C	emoji	SV
+U+1F64D	emoji	
+U+1F64E	emoji	
+U+1F64F	emoji	SV
+U+1F680	emoji	SV
+U+1F681	emoji	
+U+1F682	emoji	
+U+1F683	emoji	SV
+U+1F684	emoji	SV
+U+1F685	emoji	SV
+U+1F686	emoji	
+U+1F687	emoji	SV
+U+1F688	emoji	
+U+1F689	emoji	SV
+U+1F68A	emoji	
+U+1F68B	emoji	
+U+1F68C	emoji	SV
+U+1F68D	emoji	
+U+1F68E	emoji	
+U+1F68F	emoji	SV
+U+1F690	emoji	
+U+1F691	emoji	SV
+U+1F692	emoji	SV
+U+1F693	emoji	SV
+U+1F694	emoji	
+U+1F695	emoji	SV
+U+1F696	emoji	
+U+1F697	emoji	SV
+U+1F698	emoji	
+U+1F699	emoji	SV
+U+1F69A	emoji	SV
+U+1F69B	emoji	
+U+1F69C	emoji	
+U+1F69D	emoji	
+U+1F69E	emoji	
+U+1F69F	emoji	
+U+1F6A0	emoji	
+U+1F6A1	emoji	
+U+1F6A2	emoji	SV
+U+1F6A3	emoji	
+U+1F6A4	emoji	SV
+U+1F6A5	emoji	SV
+U+1F6A6	emoji	
+U+1F6A7	emoji	SV
+U+1F6A8	emoji	
+U+1F6A9	emoji	
+U+1F6AA	emoji	
+U+1F6AB	emoji	
+U+1F6AC	emoji	SV
+U+1F6AD	emoji	SV
+U+1F6AE	emoji	
+U+1F6AF	emoji	
+U+1F6B0	emoji	
+U+1F6B1	emoji	
+U+1F6B2	emoji	SV
+U+1F6B3	emoji	
+U+1F6B4	emoji	
+U+1F6B5	emoji	
+U+1F6B6	emoji	SV
+U+1F6B7	emoji	
+U+1F6B8	emoji	
+U+1F6B9	emoji	SV
+U+1F6BA	emoji	SV
+U+1F6BB	emoji	SV
+U+1F6BC	emoji	SV
+U+1F6BD	emoji	SV
+U+1F6BE	emoji	SV
+U+1F6BF	emoji	
+U+1F6C0	emoji	SV
+U+1F6C1	emoji	
+U+1F6C2	emoji	
+U+1F6C3	emoji	
+U+1F6C4	emoji	
+U+1F6C5	emoji	
+U+1F6C6	emoji	
+U+1F6C7	emoji	
+U+1F6C8	emoji	
+U+1F6C9	emoji	
+U+1F6CA	emoji	
+U+1F6CB	emoji	
+U+1F6CC	emoji	
+U+1F6CD	emoji	
+U+1F6CE	emoji	
+U+1F6CF	emoji	
+U+1F6E0	emoji	
+U+1F6E1	emoji	
+U+1F6E2	emoji	
+U+1F6E3	emoji	
+U+1F6E4	emoji	
+U+1F6E5	emoji	
+U+1F6E6	emoji	
+U+1F6E7	emoji	
+U+1F6E8	emoji	
+U+1F6E9	emoji	
+U+1F6EA	emoji	
+U+1F6EB	emoji	
+U+1F6EC	emoji	
+U+1F6F0	emoji	
+U+1F6F1	emoji	
+U+1F6F2	emoji	
+U+1F6F3	emoji	
+U+1F1E6 U+1F1E9	emoji	SV
+U+1F1E6 U+1F1EA	emoji	SV
+U+1F1E6 U+1F1EB	emoji	SV
+U+1F1E6 U+1F1EC	emoji	SV
+U+1F1E6 U+1F1EE	emoji	SV
+U+1F1E6 U+1F1F1	emoji	SV
+U+1F1E6 U+1F1F2	emoji	SV
+U+1F1E6 U+1F1F4	emoji	SV
+U+1F1E6 U+1F1F6	emoji	SV
+U+1F1E6 U+1F1F7	emoji	SV
+U+1F1E6 U+1F1F8	emoji	SV
+U+1F1E6 U+1F1F9	emoji	SV
+U+1F1E6 U+1F1FA	emoji	SV
+U+1F1E6 U+1F1FC	emoji	SV
+U+1F1E6 U+1F1FD	emoji	SV
+U+1F1E6 U+1F1FF	emoji	SV
+U+1F1E7 U+1F1E6	emoji	SV
+U+1F1E7 U+1F1E7	emoji	SV
+U+1F1E7 U+1F1E9	emoji	SV
+U+1F1E7 U+1F1EA	emoji	SV
+U+1F1E7 U+1F1EB	emoji	SV
+U+1F1E7 U+1F1EC	emoji	SV
+U+1F1E7 U+1F1ED	emoji	SV
+U+1F1E7 U+1F1EE	emoji	SV
+U+1F1E7 U+1F1EF	emoji	SV
+U+1F1E7 U+1F1F1	emoji	SV
+U+1F1E7 U+1F1F2	emoji	SV
+U+1F1E7 U+1F1F3	emoji	SV
+U+1F1E7 U+1F1F4	emoji	SV
+U+1F1E7 U+1F1F6	emoji	SV
+U+1F1E7 U+1F1F7	emoji	SV
+U+1F1E7 U+1F1F8	emoji	SV
+U+1F1E7 U+1F1F9	emoji	SV
+U+1F1E7 U+1F1FB	emoji	SV
+U+1F1E7 U+1F1FC	emoji	SV
+U+1F1E7 U+1F1FE	emoji	SV
+U+1F1E7 U+1F1FF	emoji	SV
+U+1F1E8 U+1F1E6	emoji	SV
+U+1F1E8 U+1F1E8	emoji	SV
+U+1F1E8 U+1F1E9	emoji	SV
+U+1F1E8 U+1F1EB	emoji	SV
+U+1F1E8 U+1F1EC	emoji	SV
+U+1F1E8 U+1F1ED	emoji	SV
+U+1F1E8 U+1F1EE	emoji	SV
+U+1F1E8 U+1F1F0	emoji	SV
+U+1F1E8 U+1F1F1	emoji	SV
+U+1F1E8 U+1F1F2	emoji	SV
+U+1F1E8 U+1F1F3	emoji	SV
+U+1F1E8 U+1F1F4	emoji	SV
+U+1F1E8 U+1F1F7	emoji	SV
+U+1F1E8 U+1F1FA	emoji	SV
+U+1F1E8 U+1F1FB	emoji	SV
+U+1F1E8 U+1F1FC	emoji	SV
+U+1F1E8 U+1F1FD	emoji	SV
+U+1F1E8 U+1F1FE	emoji	SV
+U+1F1E8 U+1F1FF	emoji	SV
+U+1F1E9 U+1F1EA	emoji	SV
+U+1F1E9 U+1F1EF	emoji	SV
+U+1F1E9 U+1F1F0	emoji	SV
+U+1F1E9 U+1F1F2	emoji	SV
+U+1F1E9 U+1F1F4	emoji	SV
+U+1F1E9 U+1F1FF	emoji	SV
+U+1F1EA U+1F1E8	emoji	SV
+U+1F1EA U+1F1EA	emoji	SV
+U+1F1EA U+1F1EC	emoji	SV
+U+1F1EA U+1F1ED	emoji	SV
+U+1F1EA U+1F1F7	emoji	SV
+U+1F1EA U+1F1F8	emoji	SV
+U+1F1EA U+1F1F9	emoji	SV
+U+1F1EB U+1F1EE	emoji	SV
+U+1F1EB U+1F1EF	emoji	SV
+U+1F1EB U+1F1F0	emoji	SV
+U+1F1EB U+1F1F2	emoji	SV
+U+1F1EB U+1F1F4	emoji	SV
+U+1F1EB U+1F1F7	emoji	SV
+U+1F1EC U+1F1E6	emoji	SV
+U+1F1EC U+1F1E7	emoji	SV
+U+1F1EC U+1F1E9	emoji	SV
+U+1F1EC U+1F1EA	emoji	SV
+U+1F1EC U+1F1EB	emoji	SV
+U+1F1EC U+1F1EC	emoji	SV
+U+1F1EC U+1F1ED	emoji	SV
+U+1F1EC U+1F1EE	emoji	SV
+U+1F1EC U+1F1F1	emoji	SV
+U+1F1EC U+1F1F2	emoji	SV
+U+1F1EC U+1F1F3	emoji	SV
+U+1F1EC U+1F1F5	emoji	SV
+U+1F1EC U+1F1F6	emoji	SV
+U+1F1EC U+1F1F7	emoji	SV
+U+1F1EC U+1F1F8	emoji	SV
+U+1F1EC U+1F1F9	emoji	SV
+U+1F1EC U+1F1FA	emoji	SV
+U+1F1EC U+1F1FC	emoji	SV
+U+1F1EC U+1F1FE	emoji	SV
+U+1F1ED U+1F1F0	emoji	SV
+U+1F1ED U+1F1F2	emoji	SV
+U+1F1ED U+1F1F3	emoji	SV
+U+1F1ED U+1F1F7	emoji	SV
+U+1F1ED U+1F1F9	emoji	SV
+U+1F1ED U+1F1FA	emoji	SV
+U+1F1EE U+1F1E9	emoji	SV
+U+1F1EE U+1F1EA	emoji	SV
+U+1F1EE U+1F1F1	emoji	SV
+U+1F1EE U+1F1F2	emoji	SV
+U+1F1EE U+1F1F3	emoji	SV
+U+1F1EE U+1F1F4	emoji	SV
+U+1F1EE U+1F1F6	emoji	SV
+U+1F1EE U+1F1F7	emoji	SV
+U+1F1EE U+1F1F8	emoji	SV
+U+1F1EE U+1F1F9	emoji	SV
+U+1F1EF U+1F1EA	emoji	SV
+U+1F1EF U+1F1F2	emoji	SV
+U+1F1EF U+1F1F4	emoji	SV
+U+1F1EF U+1F1F5	emoji	SV
+U+1F1F0 U+1F1EA	emoji	SV
+U+1F1F0 U+1F1EC	emoji	SV
+U+1F1F0 U+1F1ED	emoji	SV
+U+1F1F0 U+1F1EE	emoji	SV
+U+1F1F0 U+1F1F2	emoji	SV
+U+1F1F0 U+1F1F3	emoji	SV
+U+1F1F0 U+1F1F5	emoji	SV
+U+1F1F0 U+1F1F7	emoji	SV
+U+1F1F0 U+1F1FC	emoji	SV
+U+1F1F0 U+1F1FE	emoji	SV
+U+1F1F0 U+1F1FF	emoji	SV
+U+1F1F1 U+1F1E6	emoji	SV
+U+1F1F1 U+1F1E7	emoji	SV
+U+1F1F1 U+1F1E8	emoji	SV
+U+1F1F1 U+1F1EE	emoji	SV
+U+1F1F1 U+1F1F0	emoji	SV
+U+1F1F1 U+1F1F7	emoji	SV
+U+1F1F1 U+1F1F8	emoji	SV
+U+1F1F1 U+1F1F9	emoji	SV
+U+1F1F1 U+1F1FA	emoji	SV
+U+1F1F1 U+1F1FB	emoji	SV
+U+1F1F1 U+1F1FE	emoji	SV
+U+1F1F2 U+1F1E6	emoji	SV
+U+1F1F2 U+1F1E8	emoji	SV
+U+1F1F2 U+1F1E9	emoji	SV
+U+1F1F2 U+1F1EA	emoji	SV
+U+1F1F2 U+1F1EB	emoji	SV
+U+1F1F2 U+1F1EC	emoji	SV
+U+1F1F2 U+1F1ED	emoji	SV
+U+1F1F2 U+1F1F0	emoji	SV
+U+1F1F2 U+1F1F1	emoji	SV
+U+1F1F2 U+1F1F2	emoji	SV
+U+1F1F2 U+1F1F3	emoji	SV
+U+1F1F2 U+1F1F4	emoji	SV
+U+1F1F2 U+1F1F5	emoji	SV
+U+1F1F2 U+1F1F6	emoji	SV
+U+1F1F2 U+1F1F7	emoji	SV
+U+1F1F2 U+1F1F8	emoji	SV
+U+1F1F2 U+1F1F9	emoji	SV
+U+1F1F2 U+1F1FA	emoji	SV
+U+1F1F2 U+1F1FB	emoji	SV
+U+1F1F2 U+1F1FC	emoji	SV
+U+1F1F2 U+1F1FD	emoji	SV
+U+1F1F2 U+1F1FE	emoji	SV
+U+1F1F2 U+1F1FF	emoji	SV
+U+1F1F3 U+1F1E6	emoji	SV
+U+1F1F3 U+1F1E8	emoji	SV
+U+1F1F3 U+1F1EA	emoji	SV
+U+1F1F3 U+1F1EB	emoji	SV
+U+1F1F3 U+1F1EC	emoji	SV
+U+1F1F3 U+1F1EE	emoji	SV
+U+1F1F3 U+1F1F1	emoji	SV
+U+1F1F3 U+1F1F4	emoji	SV
+U+1F1F3 U+1F1F5	emoji	SV
+U+1F1F3 U+1F1F7	emoji	SV
+U+1F1F3 U+1F1FA	emoji	SV
+U+1F1F3 U+1F1FF	emoji	SV
+U+1F1F4 U+1F1F2	emoji	SV
+U+1F1F5 U+1F1E6	emoji	SV
+U+1F1F5 U+1F1EA	emoji	SV
+U+1F1F5 U+1F1EB	emoji	SV
+U+1F1F5 U+1F1EC	emoji	SV
+U+1F1F5 U+1F1ED	emoji	SV
+U+1F1F5 U+1F1F0	emoji	SV
+U+1F1F5 U+1F1F1	emoji	SV
+U+1F1F5 U+1F1F2	emoji	SV
+U+1F1F5 U+1F1F3	emoji	SV
+U+1F1F5 U+1F1F7	emoji	SV
+U+1F1F5 U+1F1F8	emoji	SV
+U+1F1F5 U+1F1F9	emoji	SV
+U+1F1F5 U+1F1FC	emoji	SV
+U+1F1F5 U+1F1FE	emoji	SV
+U+1F1F6 U+1F1E6	emoji	SV
+U+1F1F7 U+1F1EA	emoji	SV
+U+1F1F7 U+1F1F4	emoji	SV
+U+1F1F7 U+1F1F8	emoji	SV
+U+1F1F7 U+1F1FA	emoji	SV
+U+1F1F7 U+1F1FC	emoji	SV
+U+1F1F8 U+1F1E6	emoji	SV
+U+1F1F8 U+1F1E7	emoji	SV
+U+1F1F8 U+1F1E8	emoji	SV
+U+1F1F8 U+1F1E9	emoji	SV
+U+1F1F8 U+1F1EA	emoji	SV
+U+1F1F8 U+1F1EC	emoji	SV
+U+1F1F8 U+1F1ED	emoji	SV
+U+1F1F8 U+1F1EE	emoji	SV
+U+1F1F8 U+1F1EF	emoji	SV
+U+1F1F8 U+1F1F0	emoji	SV
+U+1F1F8 U+1F1F1	emoji	SV
+U+1F1F8 U+1F1F2	emoji	SV
+U+1F1F8 U+1F1F3	emoji	SV
+U+1F1F8 U+1F1F4	emoji	SV
+U+1F1F8 U+1F1F7	emoji	SV
+U+1F1F8 U+1F1F8	emoji	SV
+U+1F1F8 U+1F1F9	emoji	SV
+U+1F1F8 U+1F1FB	emoji	SV
+U+1F1F8 U+1F1FD	emoji	SV
+U+1F1F8 U+1F1FE	emoji	SV
+U+1F1F8 U+1F1FF	emoji	SV
+U+1F1F9 U+1F1E8	emoji	SV
+U+1F1F9 U+1F1E9	emoji	SV
+U+1F1F9 U+1F1EB	emoji	SV
+U+1F1F9 U+1F1EC	emoji	SV
+U+1F1F9 U+1F1ED	emoji	SV
+U+1F1F9 U+1F1EF	emoji	SV
+U+1F1F9 U+1F1F0	emoji	SV
+U+1F1F9 U+1F1F1	emoji	SV
+U+1F1F9 U+1F1F2	emoji	SV
+U+1F1F9 U+1F1F3	emoji	SV
+U+1F1F9 U+1F1F4	emoji	SV
+U+1F1F9 U+1F1F7	emoji	SV
+U+1F1F9 U+1F1F9	emoji	SV
+U+1F1F9 U+1F1FB	emoji	SV
+U+1F1F9 U+1F1FC	emoji	SV
+U+1F1F9 U+1F1FF	emoji	SV
+U+1F1FA U+1F1E6	emoji	SV
+U+1F1FA U+1F1EC	emoji	SV
+U+1F1FA U+1F1F2	emoji	SV
+U+1F1FA U+1F1F8	emoji	SV
+U+1F1FA U+1F1F8	emoji	SV
+U+1F1FA U+1F1FE	emoji	SV
+U+1F1FA U+1F1FF	emoji	SV
+U+1F1FB U+1F1E6	emoji	SV
+U+1F1FB U+1F1E8	emoji	SV
+U+1F1FB U+1F1EA	emoji	SV
+U+1F1FB U+1F1EC	emoji	SV
+U+1F1FB U+1F1EE	emoji	SV
+U+1F1FB U+1F1F3	emoji	SV
+U+1F1FB U+1F1FA	emoji	SV
+U+1F1FC U+1F1EB	emoji	SV
+U+1F1FC U+1F1F8	emoji	SV
+U+1F1FE U+1F1EA	emoji	SV
+U+1F1FE U+1F1F9	emoji	SV
+U+1F1FF U+1F1E6	emoji	SV
+U+1F1FF U+1F1F2	emoji	SV
+U+1F1FF U+1F1FC	emoji	SV
+U+00A9	text	SV
+U+00AE	text	SV
+U+203C	text	SV
+U+2049	text	SV
+U+2122	text	SV
+U+2139	text	SV
+U+2194	text	SV
+U+2195	text	SV
+U+2196	text	SV
+U+2197	text	SV
+U+2198	text	SV
+U+2199	text	SV
+U+21A9	text	SV
+U+21AA	text	SV
+U+23ED	text	SV
+U+23EE	text	SV
+U+23EF	text	SV
+U+23F1	text	SV
+U+23F2	text	SV
+U+23F4	text	SV
+U+23F5	text	SV
+U+23F6	text	SV
+U+23F7	text	SV
+U+23F8	text	SV
+U+23F9	text	SV
+U+23FA	text	SV
+U+24C2	text	SV
+U+25AA	text	SV
+U+25AB	text	SV
+U+25B6	text	SV
+U+25C0	text	SV
+U+25FB	text	SV
+U+25FC	text	SV
+U+25FD	text	SV
+U+25FE	text	SV
+U+2600	text	SV
+U+2601	text	SV
+U+2602	text	SV
+U+2603	text	SV
+U+2604	text	SV
+U+2605	text	SV
+U+2606	text	SV
+U+260E	text	SV
+U+260F	text	SV
+U+2610	text	SV
+U+2611	text	SV
+U+2612	text	SV
+U+2616	text	SV
+U+2617	text	SV
+U+2618	text	SV
+U+2619	text	SV
+U+261A	text	SV
+U+261B	text	SV
+U+261C	text	SV
+U+261D	text	SV
+U+261E	text	SV
+U+261F	text	SV
+U+2620	text	SV
+U+2622	text	SV
+U+2623	text	SV
+U+2624	text	SV
+U+2638	text	SV
+U+2639	text	SV
+U+263A	text	SV
+U+263B	text	SV
+U+263C	text	SV
+U+263D	text	SV
+U+263E	text	SV
+U+2654	text	SV
+U+2655	text	SV
+U+2656	text	SV
+U+2657	text	SV
+U+2658	text	SV
+U+2659	text	SV
+U+265A	text	SV
+U+265B	text	SV
+U+265C	text	SV
+U+265D	text	SV
+U+265E	text	SV
+U+265F	text	SV
+U+2660	text	SV
+U+2661	text	SV
+U+2662	text	SV
+U+2663	text	SV
+U+2664	text	SV
+U+2665	text	SV
+U+2666	text	SV
+U+2667	text	SV
+U+2668	text	SV
+U+2669	text	SV
+U+266A	text	SV
+U+266B	text	SV
+U+266C	text	SV
+U+266D	text	SV
+U+266E	text	SV
+U+266F	text	SV
+U+2672	text	SV
+U+267B	text	SV
+U+267E	text	SV
+U+2680	text	SV
+U+2681	text	SV
+U+2682	text	SV
+U+2683	text	SV
+U+2684	text	SV
+U+2685	text	SV
+U+2690	text	SV
+U+2691	text	SV
+U+2692	text	SV
+U+2694	text	SV
+U+2695	text	SV
+U+2696	text	SV
+U+2697	text	SV
+U+2698	text	SV
+U+2699	text	SV
+U+269A	text	SV
+U+269B	text	SV
+U+269C	text	SV
+U+269D	text	SV
+U+26A0	text	SV
+U+26B0	text	SV
+U+26B1	text	SV
+U+26BF	text	SV
+U+26C0	text	SV
+U+26C1	text	SV
+U+26C2	text	SV
+U+26C3	text	SV
+U+26C6	text	SV
+U+26C7	text	SV
+U+26C8	text	SV
+U+26C9	text	SV
+U+26CA	text	SV
+U+26CC	text	SV
+U+26CD	text	SV
+U+26CF	text	SV
+U+26D0	text	SV
+U+26D1	text	SV
+U+26D2	text	SV
+U+26D3	text	SV
+U+26D5	text	SV
+U+26D6	text	SV
+U+26D7	text	SV
+U+26D8	text	SV
+U+26D9	text	SV
+U+26DC	text	SV
+U+26DF	text	SV
+U+26E4	text	SV
+U+26E5	text	SV
+U+26E6	text	SV
+U+26E7	text	SV
+U+26E8	text	SV
+U+26E9	text	SV
+U+26EB	text	SV
+U+26EC	text	SV
+U+26ED	text	SV
+U+26EE	text	SV
+U+26EF	text	SV
+U+26F0	text	SV
+U+26F1	text	SV
+U+26F4	text	SV
+U+26FC	text	SV
+U+26FE	text	SV
+U+26FF	text	SV
+U+2700	text	SV
+U+2702	text	SV
+U+2703	text	SV
+U+2704	text	SV
+U+2706	text	SV
+U+2707	text	SV
+U+2708	text	SV
+U+2709	text	SV
+U+270C	text	SV
+U+270D	text	SV
+U+270E	text	SV
+U+270F	text	SV
+U+2710	text	SV
+U+2711	text	SV
+U+2712	text	SV
+U+2713	text	SV
+U+2715	text	SV
+U+2717	text	SV
+U+2718	text	SV
+U+2733	text	SV
+U+2734	text	SV
+U+2744	text	SV
+U+2747	text	SV
+U+2764	text	SV
+U+27A1	text	SV
+U+27BF	text	SV
+U+2934	text	SV
+U+2935	text	SV
+U+2B05	text	SV
+U+2B06	text	SV
+U+2B07	text	SV
+U+303D	text	SV
+U+3297	text	SV
+U+3299	text	SV
+U+1F0A0	text	SV
+U+1F0A1	text	SV
+U+1F0A2	text	SV
+U+1F0A3	text	SV
+U+1F0A4	text	SV
+U+1F0A5	text	SV
+U+1F0A6	text	SV
+U+1F0A7	text	SV
+U+1F0A8	text	SV
+U+1F0A9	text	SV
+U+1F0AA	text	SV
+U+1F0AB	text	SV
+U+1F0AC	text	SV
+U+1F0AD	text	SV
+U+1F0AE	text	SV
+U+1F0B1	text	SV
+U+1F0B2	text	SV
+U+1F0B3	text	SV
+U+1F0B4	text	SV
+U+1F0B5	text	SV
+U+1F0B6	text	SV
+U+1F0B7	text	SV
+U+1F0B8	text	SV
+U+1F0B9	text	SV
+U+1F0BA	text	SV
+U+1F0BB	text	SV
+U+1F0BC	text	SV
+U+1F0BD	text	SV
+U+1F0BE	text	SV
+U+1F0BF	text	SV
+U+1F0C1	text	SV
+U+1F0C2	text	SV
+U+1F0C3	text	SV
+U+1F0C4	text	SV
+U+1F0C5	text	SV
+U+1F0C6	text	SV
+U+1F0C7	text	SV
+U+1F0C8	text	SV
+U+1F0C9	text	SV
+U+1F0CA	text	SV
+U+1F0CB	text	SV
+U+1F0CC	text	SV
+U+1F0CD	text	SV
+U+1F0CE	text	SV
+U+1F0D1	text	SV
+U+1F0D2	text	SV
+U+1F0D3	text	SV
+U+1F0D4	text	SV
+U+1F0D5	text	SV
+U+1F0D6	text	SV
+U+1F0D7	text	SV
+U+1F0D8	text	SV
+U+1F0D9	text	SV
+U+1F0DA	text	SV
+U+1F0DB	text	SV
+U+1F0DC	text	SV
+U+1F0DD	text	SV
+U+1F0DE	text	SV
+U+1F0DF	text	SV
+U+1F0E0	text	SV
+U+1F0E1	text	SV
+U+1F0E2	text	SV
+U+1F0E3	text	SV
+U+1F0E4	text	SV
+U+1F0E5	text	SV
+U+1F0E6	text	SV
+U+1F0E7	text	SV
+U+1F0E8	text	SV
+U+1F0E9	text	SV
+U+1F0EA	text	SV
+U+1F0EB	text	SV
+U+1F0EC	text	SV
+U+1F0ED	text	SV
+U+1F0EE	text	SV
+U+1F0EF	text	SV
+U+1F0F0	text	SV
+U+1F0F1	text	SV
+U+1F0F2	text	SV
+U+1F0F3	text	SV
+U+1F0F4	text	SV
+U+1F0F5	text	SV
+U+1F170	text	SV
+U+1F171	text	SV
+U+1F17E	text	SV
+U+1F17F	text	SV
+U+1F202	text	SV
+U+1F237	text	SV
+U+1F51D	text	SV
+U+0023 U+20E3	text	SV
+U+0030 U+20E3	text	SV
+U+0031 U+20E3	text	SV
+U+0032 U+20E3	text	SV
+U+0033 U+20E3	text	SV
+U+0034 U+20E3	text	SV
+U+0035 U+20E3	text	SV
+U+0036 U+20E3	text	SV
+U+0037 U+20E3	text	SV
+U+0038 U+20E3	text	SV
+U+0039 U+20E3	text	SV
+U+0023	text	
+U+0030	text	
+U+0031	text	
+U+0032	text	
+U+0033	text	
+U+0034	text	
+U+0035	text	
+U+0036	text	
+U+0037	text	
+U+0038	text	
+U+0039	text	
+U+2002	text-only	
+U+2003	text-only	
+U+2005	text-only	
+U+2714	text-only	
+U+2716	text-only	
+U+2795	text-only	
+U+2796	text-only	
+U+2797	text-only	
+U+27B0	text-only	
+U+3030	text-only	
+U+1F519	text-only	
+U+1F51A	text-only	
+U+1F51B	text-only	
+U+1F51C	text-only	

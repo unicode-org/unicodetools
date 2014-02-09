@@ -251,6 +251,9 @@ private final PropertyNames.PropertyType type;
 	public PropertyNames<UcdProperty> getNames() {
 		return names;
 	}
+	public String getShortName() {
+		return names.getShortName();
+	}
 	public static UcdProperty forString(String name) {
 		return Numeric_Value.names.forString(name);
 	}

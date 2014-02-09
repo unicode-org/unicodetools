@@ -131,7 +131,7 @@ public class TestProperties extends TestFmwk {
                     new Transform<Script_Values, String>() {
                 @Override
                 public String transform(Script_Values source) {
-                    return source.getNames().getShortName();
+                    return source.getShortName();
                 }
             });
         }
@@ -142,7 +142,7 @@ public class TestProperties extends TestFmwk {
                     new Transform<General_Category_Values, String>() {
                 @Override
                 public String transform(General_Category_Values source) {
-                    return source.getNames().getShortName();
+                    return source.getShortName();
                 }
             });
         }

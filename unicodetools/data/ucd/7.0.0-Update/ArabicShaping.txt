@@ -1,22 +1,22 @@
 # ArabicShaping-7.0.0.txt
-# Date: 2013-10-01, 22:15:00 GMT [RP, KW]
+# Date: 2014-01-24, 15:00:00 GMT [RP, KW, LI]
 #
 # This file is a normative contributory data file in the
 # Unicode Character Database.
 #
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # This file defines the Joining_Type and Joining_Group property values for
 # Arabic, Syriac, N'Ko, Mandaic, Manichaean, and Psalter Pahlavi positional
 # shaping, repeating in machine readable form the information exemplified in
-# Tables 9-3, 9-8, 9-9, 9-10, 9-14, 9-15, 9-16, 10-4, 10-5, 10-XX, 19-5 of The
+# Tables 9-3, 9-8, 9-9, 9-10, 9-14, 9-15, 9-16, 9-19, 9-20, 10-XX, 19-5 of The
 # Unicode Standard, Version 7.0. This file also defines Joining_Type values
 # for Mongolian and Phags-pa positional shaping, which are not listed in
 # tables in the standard.
 #
-# See sections 9.2, 9.3, 10.8, 10.9, 13.4, 14.3, 19.4 of The Unicode Standard,
-# Version 7.0 for more information.
+# See Sections 9.2, 9.3, 9.5, 10.7, 10.8, 13.4, 14.3, 19.4 of
+# The Unicode Standard, Version 7.0 for more information.
 #
 # Each line contains four fields, separated by a semicolon.
 #
@@ -39,11 +39,11 @@
 #   U Non_Joining
 #   T Transparent
 #
-# See Section 8.2, Arabic for more information on these joining types.
+# See Section 9.2, Arabic for more information on these joining types.
 # Note that for cursive joining scripts which are typically rendered
 # top-to-bottom, rather than right-to-left, Joining_Type=L conventionally
 # refers to bottom joining, and Joining_Type=R conventionally refers
-# to top joining. See Section 10.4 Phags-pa for more information on the
+# to top joining. See Section 14.3, Phags-pa for more information on the
 # interpretation of joining types in vertical layout.
 #
 # Field 3: defines the joining group (property name: Joining_Group)

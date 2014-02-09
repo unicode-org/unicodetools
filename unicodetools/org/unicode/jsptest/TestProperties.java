@@ -16,7 +16,8 @@ import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.XPropertyFactory;
 
-import sun.text.normalizer.UTF16;
+import com.ibm.icu.text.UTF16;
+
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.UnicodeMap;

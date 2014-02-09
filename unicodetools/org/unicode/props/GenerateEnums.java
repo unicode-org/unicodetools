@@ -132,7 +132,21 @@ public class GenerateEnums {
             System.out.println(s);
         }
     }
-
+    
+    public static String getNameStuff2(final String enumName) {
+        return ";\n"  +
+                "        private final PropertyNames<" + enumName + "> names;\n"+
+                "        private " + enumName + " (String shortName, String...otherNames) {\n"+
+                "            names = new PropertyNames(" + enumName + ".class, this, shortName, otherNames);\n"+
+                "        }\n"+
+                "        public PropertyNames<" + enumName + "> getNames() {\n"+
+                "            return names;\n"+
+                "        }\n" +
+                "        public String getShortName() {\n" +
+                "            return names.getShortName();\n" +
+                "        }\n" +
+                "    }\n";
+    }
 
     public static void writeValueEnumFile(Map<PropName, List<String[]>> values) throws IOException {
         final PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
@@ -145,15 +159,18 @@ public class GenerateEnums {
         output.println(
                 "\n    public enum Binary implements Named {\n"+
                         "        No(\"N\", \"F\", \"False\"),\n"+
-                        "        Yes(\"Y\", \"T\", \"True\");\n"+
-                        "        private final PropertyNames<Binary> names;\n"+
-                        "        private Binary (String shortName, String...otherNames) {\n"+
-                        "            names = new PropertyNames(Binary.class, this, shortName, otherNames);\n"+
-                        "        }\n"+
-                        "        public PropertyNames<Binary> getNames() {\n"+
-                        "            return names;\n"+
-                        "        }\n"+
-                        "    }\n"
+                        "        Yes(\"Y\", \"T\", \"True\")" +
+                        getNameStuff2("Binary")
+//                        ";\n"+
+//                        
+//                        "        private final PropertyNames<Binary> names;\n"+
+//                        "        private Binary (String shortName, String...otherNames) {\n"+
+//                        "            names = new PropertyNames(Binary.class, this, shortName, otherNames);\n"+
+//                        "        }\n"+
+//                        "        public PropertyNames<Binary> getNames() {\n"+
+//                        "            return names;\n"+
+//                        "        }\n"+
+//                        "    }\n"
                 );
 
         for (final Entry<PropName, List<String[]>> value : values.entrySet()) {
@@ -202,23 +219,13 @@ public class GenerateEnums {
                 }
             }
             final String enumName = propName.longName;
-            final String valuesName = enumName + "_Values.class"; // HACK
 
-            output.println(
-                    ";\n"  +
-                            "        private final PropertyNames<" + enumName + "_Values> names;\n"+
-                            "        private " + enumName + "_Values (String shortName, String...otherNames) {\n"+
-                            "            names = new PropertyNames(" + valuesName + ", this, shortName, otherNames);\n"+
-                            "        }\n"+
-                            "        public PropertyNames<" + enumName + "_Values> getNames() {\n"+
-                            "            return names;\n"+
-                            "        }\n" +
-                            "    }\n"
-                    );
+            output.println(getNameStuff2(enumName+"_Values"));
         }
-        output.println("\n}");
+        output.println("}");
         output.close();
     }
+
 
     static Set<String> WARNINGS = new LinkedHashSet<String>();
     private static void addWarning(String string) {
@@ -338,6 +345,9 @@ public class GenerateEnums {
                 "\tpublic PropertyNames<UcdProperty> getNames() {\n"+
                 "\t\treturn names;\n"+
                 "\t}\n"+
+                "\tpublic String getShortName() {\n" +
+                "\t\treturn names.getShortName();\n" +
+                "\t}\n" +
                 "\tpublic static UcdProperty forString(String name) {\n"+
                 "\t\treturn Numeric_Value.names.forString(name);\n"+
                 "\t}\n"+

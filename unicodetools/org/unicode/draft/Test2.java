@@ -31,7 +31,8 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
 
-import sun.text.normalizer.UTF16;
+import com.ibm.icu.text.UTF16;
+
 
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UCharacterEnums.ECharacterCategory;

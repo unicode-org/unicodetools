@@ -19,7 +19,8 @@ import org.unicode.text.UCA.CEList;
 import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Settings;
 
-import sun.text.normalizer.UTF16;
+import com.ibm.icu.text.UTF16;
+
 
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
