@@ -43,7 +43,8 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import sun.text.normalizer.UTF16;
+import com.ibm.icu.text.UTF16;
+
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;

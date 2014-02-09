@@ -31,7 +31,8 @@ import org.unicode.jsp.XPropertyFactory;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
-import sun.text.normalizer.UTF16;
+import com.ibm.icu.text.UTF16;
+
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.BNF;

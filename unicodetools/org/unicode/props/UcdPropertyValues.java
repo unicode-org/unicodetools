@@ -12,6 +12,9 @@ public class UcdPropertyValues {
         public PropertyNames<Binary> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 	public enum Age_Values implements Named {
@@ -38,6 +41,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Age_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -72,6 +78,9 @@ public class UcdPropertyValues {
         public PropertyNames<Bidi_Class_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 		// Bidi_Mirroring_Glyph
@@ -86,6 +95,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Bidi_Paired_Bracket_Type_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -350,6 +362,9 @@ public class UcdPropertyValues {
         public PropertyNames<Block_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 		// CJK_Radical
@@ -418,6 +433,9 @@ public class UcdPropertyValues {
         public PropertyNames<Canonical_Combining_Class_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 		// Case_Folding
@@ -452,6 +470,9 @@ public class UcdPropertyValues {
         public PropertyNames<Decomposition_Type_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 	public enum East_Asian_Width_Values implements Named {
@@ -467,6 +488,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<East_Asian_Width_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -520,6 +544,9 @@ public class UcdPropertyValues {
         public PropertyNames<General_Category_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 	public enum Grapheme_Cluster_Break_Values implements Named {
@@ -543,6 +570,9 @@ public class UcdPropertyValues {
         public PropertyNames<Grapheme_Cluster_Break_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 	public enum Hangul_Syllable_Type_Values implements Named {
@@ -559,6 +589,9 @@ public class UcdPropertyValues {
         public PropertyNames<Hangul_Syllable_Type_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 		// ISO_Comment
@@ -571,6 +604,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Id_Mod_Status_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -592,6 +628,9 @@ public class UcdPropertyValues {
         public PropertyNames<Id_Mod_Type_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 	public enum Idn_2008_Values implements Named {
@@ -603,6 +642,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Idn_2008_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -621,6 +663,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Idn_Status_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -646,6 +691,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Indic_Matra_Category_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -677,6 +725,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Indic_Syllabic_Category_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -739,6 +790,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Jamo_Short_Name_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -836,6 +890,9 @@ public class UcdPropertyValues {
         public PropertyNames<Joining_Group_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 	public enum Joining_Type_Values implements Named {
@@ -851,6 +908,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Joining_Type_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -902,6 +962,9 @@ public class UcdPropertyValues {
         public PropertyNames<Line_Break_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 		// Lowercase_Mapping
@@ -916,6 +979,9 @@ public class UcdPropertyValues {
         public PropertyNames<NFC_Quick_Check_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 	public enum NFD_Quick_Check_Values implements Named {
@@ -927,6 +993,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<NFD_Quick_Check_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -942,6 +1011,9 @@ public class UcdPropertyValues {
         public PropertyNames<NFKC_Quick_Check_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 	public enum NFKD_Quick_Check_Values implements Named {
@@ -953,6 +1025,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<NFKD_Quick_Check_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -971,6 +1046,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Numeric_Type_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -1110,6 +1188,9 @@ public class UcdPropertyValues {
         public PropertyNames<Script_Values> getNames() {
             return names;
         }
+        public String getShortName() {
+            return names.getShortName();
+        }
     }
 
 		// Script_Extensions
@@ -1135,6 +1216,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Sentence_Break_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -1170,6 +1254,9 @@ public class UcdPropertyValues {
         }
         public PropertyNames<Word_Break_Values> getNames() {
             return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
         }
     }
 
@@ -1263,5 +1350,4 @@ public class UcdPropertyValues {
 		// kXHC1983
 		// kXerox
 		// kZVariant
-
 }

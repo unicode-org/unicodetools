@@ -1,53 +1,13 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 7.0.0
-@@@+	U70M140116.lst
-	Unicode 7.0.0 names list, seventeenth delta.
-	Based on FDAM1 + FDAM2, with modified annotations.
-	Added annotation for 06BA.
-	Added notice about spelling of Oriya as Odia.
-	Added aliases for 09F0 and 09F1.
-	Added annotations and xrefs for 0022, 0027, 05F3, 05F4.
-	Added subhead for new bidi format controls at 2066.
-	Added formal name aliases for 122D4 and 122D5.
-	Updated xref for 2EE7.
-	Added xrefs for 2696, 1F40F, 264E, 2648.
-	Added notice for Bengali block.
-	Corrected notice at 1F78C.
-	Adjustments for adding 061C to repertoire.
-	Added annotation for A9CF.
-	Added annotations for 2592.
-	Added annotation for 111C4.
-	Updated aliases for FEFF.
-	Added xrefs for 2294 and 2A03.
-	Added xrefs for 002D and 2043.
-	Updated annotations for noncharacters, consistent with Corrigendum #9.
-	Updated annotation for 0024.
-	Updated annotation for 0B83.
-	Corrected notice at 1F784.
-	Added annotation for 06AA.
-	Added entries from FDAM2 (Vilnius).
-	Updated subheads for various Jamo blocks.
-	Updated annotations and cross-references for several math characters.
-	Updated casing for two Assamese annotations.
-	Removed extraneous tab in entry for 1F4AE.
-	Removed superfluous tab in 3 xrefs.
-	Added several explicit standardized variant summary headers.
-	Added more xrefs for some of the newly added punctuation marks and others.
-	Added notice about the exceptional bidi behavior of FD3E and FD3F.
-	Added xrefs and subheads to Pahawh Hmong.
-	Added xrefs for diamonds and squares related to modal logic.
-	Removed obelus as alias for 2020.
-	Added xref from 2139 to 1F6C8.
-	Added xref from 0023 to 2317.
-	Corrected block range for Latin Extended-E.
-	Added note about anomalous decomposition of 1F12E.
-	Added annotations for surrounding parentheses diacritics 1ABB, 1ABC, 1ABE.
-	Added xrefs to/from 21B9 and 2B7E.
-	Added annotation for 118A0.
-	Minor corrections to subheads in Miscellaneous Symbols and Pictographs block.
-	Added several xrefs for asterisks and crosses in Geometric Shapes Extended block.
-	Updated annotation for 110BF and added xrefs to Khojki.
-	Added annotations and xrefs for 1123B and 1123C.
+@@@+	U70M140207.lst
+	Unicode 7.0.0 names list, eighteenth delta.
+	Based on FDAM1 + FDAM2, with modified annotations, plus 20BD.
+	Corrected syntax on two xrefs for 1AB7.
+	Added clarifying annotations for 055C and 055E.
+	Added annotation for ruble sign: 20BD.
+	Updated subhead for Samaveda svara marks in Grantha, for consistency.
+	Cross-referenced the Devanagari and Grantha sets of svara markers.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -3486,11 +3446,13 @@
 	x (modifier letter acute accent - 02CA)
 055C	ARMENIAN EXCLAMATION MARK
 	= batsaganchakan nshan
+	* marks intonation on word, rather than occurring finally
 055D	ARMENIAN COMMA
 	= bowt
 	x (modifier letter grave accent - 02CB)
 055E	ARMENIAN QUESTION MARK
 	= hartsakan nshan
+	* marks intonation on word, rather than occurring finally
 055F	ARMENIAN ABBREVIATION MARK
 	= patiw
 @		Lowercase letters
@@ -9920,8 +9882,8 @@
 1AB5	COMBINING X-X BELOW
 1AB6	COMBINING WIGGLY LINE BELOW
 1AB7	COMBINING OPEN MARK BELOW
-		x 0328 combining ogonek
-		x 0345 combining greek ypogegrammeni
+	x (combining ogonek - 0328)
+	x (combining greek ypogegrammeni - 0345)
 1AB8	COMBINING DOUBLE OPEN MARK BELOW
 1AB9	COMBINING LIGHT CENTRALIZATION STROKE BELOW
 1ABA	COMBINING STRONG CENTRALIZATION STROKE BELOW
@@ -12615,6 +12577,8 @@
 	x (script capital m - 2133)
 20BC	MANAT SIGN
 	* Azerbaijan
+20BD	RUBLE SIGN
+	* Russia
 @@	20D0	Combining Diacritical Marks for Symbols	20FF
 @		Combining diacritical marks for symbols
 20D0	COMBINING LEFT HARPOON ABOVE
@@ -23751,7 +23715,8 @@ A8D7	SAURASHTRA DIGIT SEVEN
 A8D8	SAURASHTRA DIGIT EIGHT
 A8D9	SAURASHTRA DIGIT NINE
 @@	A8E0	Devanagari Extended	A8FF
-@		Cantillation marks for the Samaveda
+@		Cantillation marks (svara) for the Samaveda
+@+	See the similar set of Grantha svara markers for the Samaveda, encoded in the range 11366-11374.
 A8E0	COMBINING DEVANAGARI DIGIT ZERO
 	= vaidika saamasvara anka shuunya
 A8E1	COMBINING DEVANAGARI DIGIT ONE
@@ -31440,7 +31405,8 @@ FFFF	<not a character>
 @		Dependent vowel signs
 11362	GRANTHA VOWEL SIGN VOCALIC L
 11363	GRANTHA VOWEL SIGN VOCALIC LL
-@		Sama Vedic svara markers
+@		Cantillation marks (svara) for the Samaveda
+@+	See the similar set of Devanagari svara markers for the Samaveda, encoded in the range A8E0-A8F1.
 11366	COMBINING GRANTHA DIGIT ZERO
 11367	COMBINING GRANTHA DIGIT ONE
 11368	COMBINING GRANTHA DIGIT TWO

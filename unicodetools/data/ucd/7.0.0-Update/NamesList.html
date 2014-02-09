@@ -28,7 +28,7 @@
     <tbody>
       <tr>
         <td valign="top" width="144">Revision</td>
-        <td valign="top">6.3.0</td>
+        <td valign="top">7.0.0</td>
       </tr>
       <tr>
         <td valign="top" width="144">Authors</td>
@@ -36,23 +36,23 @@
       </tr>
       <tr>
         <td valign="top" width="144">Date</td>
-        <td valign="top">2013-01-02</td>
+        <td valign="top">2014-01-23</td>
       </tr>
       <tr>
         <td valign="top" width="144">This Version</td>
+        <td valign="top">
+		<a href="http://www.unicode.org/Public/7.0.0/ucd/NamesList.html">
+		http://www.unicode.org/Public/7.0.0/ucd/NamesList.html</a></td>
+      </tr>
+      <tr>
+        <td valign="top" width="144">Previous Version</td>
         <td valign="top">
 		<a href="http://www.unicode.org/Public/6.3.0/ucd/NamesList.html">
 		http://www.unicode.org/Public/6.3.0/ucd/NamesList.html</a></td>
       </tr>
       <tr>
-        <td valign="top" width="144">Previous Version</td>
-        <td valign="top">
-		<a href="http://www.unicode.org/Public/6.2.0/ucd/NamesList.html">
-		http://www.unicode.org/Public/6.2.0/ucd/NamesList.html</a></td>
-      </tr>
-      <tr>
         <td valign="top" width="144">Latest Version</td>
-        <td valign="top"><a href="http://www.unicode.org/Public/UNIDATA/NamesList.html">http://www.unicode.org/Public/UNIDATA/NamesList.html</a></td>
+        <td valign="top"><a href="http://www.unicode.org/Public/UCD/latest/ucd/NamesList.html">http://www.unicode.org/Public/UCD/latest/ucd/NamesList.html</a></td>
       </tr>
     </tbody>
   </table>
@@ -64,7 +64,7 @@
   <h3><i>Status</i></h3>
   <blockquote>
     <p><i>The file and the files described herein are part of the <a href="http://www.unicode.org/ucd/">Unicode 
-    Character Database</a> (UCD). The Unicode <a href="http://www.unicode.org/copyright.html"> 
+    Character Database</a> (UCD). The Unicode <a href="http://www.unicode.org/terms_of_use.html"> 
     Terms of Use</a> apply.</i></p>
   </blockquote>
   <hr width="50%">
@@ -204,7 +204,7 @@ CHAR_ENTRY:   NAME_LINE | RESERVED_LINE
 <p>A PAGEBREAK may appear anywhere, except the middle of a CHARACTER_ENTRY. 
     A PAGEBREAK before the file title lines may not be supported. INDEX_TABs may 
     appear after any block header.</p>
-<p>If the first line a of a file is a file comment, it may contain a UTF-8 
+<p>If the first line of a file is a file comment, it may contain a UTF-8 
     charset declaration (see below). Alternatively, or in addition, a BOM may be 
     present at the very beginning of the file, forcing the encoding to be 
     interpreted as UTF-16 (little-endian only) or UTF-8.</p>
@@ -491,6 +491,10 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
        <li>The final LF in the file must be present.</li>
 </ul>
   <h2>Modifications</h2>
+  <p><b>Version 7.0.0</b></p>
+        <ul>
+        <li>Reissued for Unicode 7.0.0.</li>
+        </ul>
   <p><b>Version 6.3.0</b></p>
         <ul>
         <li>Reissued for Unicode 6.3.0.</li>

@@ -15,7 +15,8 @@ import java.util.TreeSet;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Settings;
 
-import sun.text.normalizer.UTF16;
+import com.ibm.icu.text.UTF16;
+
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
