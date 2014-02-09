@@ -1,4 +1,4 @@
-Generate: .
+Generate: Script
 DeltaVersion: 27
 CopyrightYear: 2014
 
