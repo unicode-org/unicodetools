@@ -26,6 +26,7 @@ import java.awt.image.ColorModel;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageFilter;
 import java.awt.image.ImageProducer;
+import java.awt.image.RenderedImage;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,6 +44,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -52,9 +54,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGEncodeParam;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
+//import com.sun.image.codec.jpeg.JPEGCodec;
+//import com.sun.image.codec.jpeg.JPEGEncodeParam;
+//import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 public class Globe {
     public static final boolean DEBUG = false;
@@ -2268,18 +2270,19 @@ public class Globe {
     public static void writeImage(BufferedImage image, String filename,
             float quality) {
         try {
-            final BufferedOutputStream out = new BufferedOutputStream(
-                    new FileOutputStream(filename));
-            final JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-            final JPEGEncodeParam param = encoder
-                    .getDefaultJPEGEncodeParam(image);
-            quality = Math.max(0, Math.min(quality, 100));
-            param.setQuality(quality / 100.0f, false);
-            encoder.setJPEGEncodeParam(param);
-            encoder.encode(image);
-            out.close();
-            System.out.println("Saving on: "
-                    + new File(filename).getCanonicalPath());
+//            final BufferedOutputStream out = new BufferedOutputStream(
+//                    new FileOutputStream(filename));
+            File filename2 = new File(filename);
+            ImageIO.write(image, "jpg", filename2);
+//            final JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+//            final JPEGEncodeParam param = encoder
+//                    .getDefaultJPEGEncodeParam(image);
+//            quality = Math.max(0, Math.min(quality, 100));
+//            param.setQuality(quality / 100.0f, false);
+//            encoder.setJPEGEncodeParam(param);
+//            encoder.encode(image);
+//            out.close();
+            System.out.println("Saving on: " + filename2.getCanonicalPath());
         } catch (final Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failed write of image");
@@ -2321,17 +2324,18 @@ public class Globe {
                     RenderingHints.VALUE_INTERPOLATION_BILINEAR);
             graphics2D.drawImage(image, 0, 0, thumbWidth, thumbHeight, null);
             // save thumbnail image to OUTFILE
-            final BufferedOutputStream out = new BufferedOutputStream(new
-                    FileOutputStream(args[1]));
-            final JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-            final JPEGEncodeParam param = encoder.
-                    getDefaultJPEGEncodeParam(thumbImage);
             int quality = Integer.parseInt(args[4]);
-            quality = Math.max(0, Math.min(quality, 100));
-            param.setQuality(quality / 100.0f, false);
-            encoder.setJPEGEncodeParam(param);
-            encoder.encode(thumbImage);
-            out.close();
+            writeImage(thumbImage, args[1], quality);
+//            final BufferedOutputStream out = new BufferedOutputStream(new
+//                    FileOutputStream(args[1]));
+//            final JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+//            final JPEGEncodeParam param = encoder.
+//                    getDefaultJPEGEncodeParam(thumbImage);
+//            quality = Math.max(0, Math.min(quality, 100));
+//            param.setQuality(quality / 100.0f, false);
+//            encoder.setJPEGEncodeParam(param);
+//            encoder.encode(thumbImage);
+//            out.close();
             System.out.println("Done.");
             System.exit(0);
         }
