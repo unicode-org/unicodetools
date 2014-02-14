@@ -48,7 +48,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class CheckProperties {
-    private static final String LAST_RELEASE = Utility.searchPath[1];;
+    private static final String LAST_RELEASE = Utility.searchPath[0];;
     private static final String JUNK = Settings.UCD_DIR; // force load
 
     private static final int DEBUG_CODE_POINT = 0x0600;
@@ -59,7 +59,7 @@ public class CheckProperties {
     static LinkedHashSet<String> SKIPPING = new LinkedHashSet<String>();
     static LinkedHashSet<String> NOT_IN_ICU = new LinkedHashSet<String>();
 
-    enum Action {SHOW, COMPARE, ICU, EMPTY, INFO, SPACES, DETAILS, DEFAULTS, JSON, NAMES}
+    enum Action {SHOW, COMPARE, ICU, EMPTY, INFO, SPACES, DETAILS, DEFAULTS, JSON, NAMES, ONLY_NEW}
     enum Extent {SOME, ALL}
 
     static IndexUnicodeProperties latest;
@@ -90,7 +90,7 @@ public class CheckProperties {
             throw new IllegalArgumentException("Illegal Argument: " + arg);
         }
         if (actions.size() == 0) {
-            actions = EnumSet.of(Action.COMPARE);
+            actions = EnumSet.of(Action.COMPARE, Action.ONLY_NEW);
         }
         if (extent == null) {
             extent = Extent.ALL;
@@ -105,7 +105,8 @@ public class CheckProperties {
 
         latest = IndexUnicodeProperties.make(version);
         final IndexUnicodeProperties last = IndexUnicodeProperties.make(Utility.getPreviousUcdVersion(version));
-        final UnicodeMap<String> gcLast = showValue(last, UcdProperty.General_Category, '\u00A7');
+        //final UnicodeMap<String> gcLast = showValue(last, UcdProperty.General_Category, '\u00A7');
+        final UnicodeMap<String> gcLast = last.load(UcdProperty.General_Category);
 
         //        showValue(latest, UcdProperty.General_Category, '\u00A7');
         //        showValue(latest, UcdProperty.kMandarin, '\u5427');
@@ -118,6 +119,7 @@ public class CheckProperties {
         //addAll(ignore, gcLast.getSet("Cc"));
 
         final UnicodeSet retain = new UnicodeSet(ignore).complement().freeze();
+         
 
         //        compare(UcdProperty.General_Category, last, latest, retain);
         //

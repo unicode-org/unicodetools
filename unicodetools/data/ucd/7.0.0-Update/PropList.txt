@@ -1487,4 +1487,21 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 2760
 
+A9E6          ; Extender # MYANMAR MODIFIER LETTER SHAN REDUPLICATION
+1135D         ; Extender # GRANTHA SIGN PLUTA
+115C6         ; Extender # SIDDHAM REPETITION MARK-1
+115C7         ; Extender # SIDDHAM REPETITION MARK-2
+115C8         ; Extender # SIDDHAM REPETITION MARK-3
+16B42         ; Extender # PAHAWH HMONG SIGN VOS NRUA
+16B43         ; Extender # PAHAWH HMONG SIGN IB YAM
+ 
+ 
+# Other_Grapheme_Extend (5 characters)
+ 
+1133E          ; Other_Grapheme_Extend # GRANTHA VOWEL SIGN AA
+11357          ; Other_Grapheme_Extend # GRANTHA AU LENGTH MARK
+114B0          ; Other_Grapheme_Extend # TIRHUTA VOWEL SIGN AA
+114BD          ; Other_Grapheme_Extend # TIRHUTA VOWEL SIGN SHORT O
+115AF          ; Other_Grapheme_Extend # SIDDHAM VOWEL SIGN AA
+
 # EOF
