@@ -774,7 +774,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         final PropertyParsingInfo fileInfo = property2PropertyInfo.get(prop2);
-        final String fullFilename = Utility.getMostRecentUnicodeDataFile(fileInfo.file, getUcdVersion(), true, false);
+        final String fullFilename = Utility.getMostRecentUnicodeDataFile(fileInfo.file, ucdVersion, true, false);
 
         if (FILE_CACHE) {
             data0 = getCachedMap(prop2, fullFilename);
@@ -814,7 +814,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
             for (String line : FileUtilities.in("", fullFilename)) {
                 ++lineCount;
-                if (line.contains("F900")) {
+                if (line.contains("037F")) {
                     final int y = 3;
                 }
                 final int hashPos = line.indexOf('#');

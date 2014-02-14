@@ -50,7 +50,7 @@ public class GenerateIdnaTest {
     }
 
     public static void setUnicodeVersion() {
-        Default.setUCD("6.3.0");
+        Default.setUCD("7.0.0");
         UnicodeTransform.setFactory(new ToolUnicodeTransformFactory());
         final ToolUnicodePropertySource toolUPS1 = ToolUnicodePropertySource.make(Default.ucdVersion());
         final XSymbolTable toolUPS = new UnicodePropertySymbolTable(toolUPS1);
@@ -62,7 +62,7 @@ public class GenerateIdnaTest {
 
     int generateTests(int lines) throws IOException {
         final String filename = "IdnaTest.txt";
-        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "idna/", filename);
+        final PrintWriter out = BagFormatter.openUTF8Writer(GenerateIdna.DIR, filename);
         out.println("# " + "IdnaTest"  + Default.ucdVersion() +  ".txt" + "\n" +
                 "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
                 "#\n" +
