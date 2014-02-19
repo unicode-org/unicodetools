@@ -1,5 +1,5 @@
 # ArabicShaping-7.0.0.txt
-# Date: 2014-01-24, 15:00:00 GMT [RP, KW, LI]
+# Date: 2014-02-14, 21:00:00 GMT [RP, KW, LI]
 #
 # This file is a normative contributory data file in the
 # Unicode Character Database.
@@ -15,7 +15,7 @@
 # for Mongolian and Phags-pa positional shaping, which are not listed in
 # tables in the standard.
 #
-# See Sections 9.2, 9.3, 9.5, 10.7, 10.8, 13.4, 14.3, 19.4 of
+# See Sections 9.2, 9.3, 9.5, 10.5, 10.6, 13.4, 14.3, 19.4 of
 # The Unicode Standard, Version 7.0 for more information.
 #
 # Each line contains four fields, separated by a semicolon.

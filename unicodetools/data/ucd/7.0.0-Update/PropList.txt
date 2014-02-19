@@ -1,5 +1,5 @@
 # PropList-7.0.0.txt
-# Date: 2014-02-09, 17:35:23 GMT [MD]
+# Date: 2014-02-12, 02:08:43 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -928,12 +928,16 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 A015          ; Extender # Lm       YI SYLLABLE WU
 A60C          ; Extender # Lm       VAI SYLLABLE LENGTHENER
 A9CF          ; Extender # Lm       JAVANESE PANGRANGKEP
+A9E6          ; Extender # Lm       MYANMAR MODIFIER LETTER SHAN REDUPLICATION
 AA70          ; Extender # Lm       MYANMAR MODIFIER LETTER KHAMTI REDUPLICATION
 AADD          ; Extender # Lm       TAI VIET SYMBOL SAM
 AAF3..AAF4    ; Extender # Lm   [2] MEETEI MAYEK SYLLABLE REPETITION MARK..MEETEI MAYEK WORD REPETITION MARK
 FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
+1135D         ; Extender # Lo       GRANTHA SIGN PLUTA
+115C6..115C8  ; Extender # Po   [3] SIDDHAM REPETITION MARK-1..SIDDHAM REPETITION MARK-3
+16B42..16B43  ; Extender # Lm   [2] PAHAWH HMONG SIGN VOS NRUA..PAHAWH HMONG SIGN IB YAM
 
-# Total code points: 31
+# Total code points: 38
 
 # ================================================
 
@@ -1007,10 +1011,15 @@ FFFFE..FFFFF  ; Noncharacter_Code_Point # Cn   [2] <noncharacter-FFFFE>..<noncha
 200C..200D    ; Other_Grapheme_Extend # Cf   [2] ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
 302E..302F    ; Other_Grapheme_Extend # Mc   [2] HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
 FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
+1133E         ; Other_Grapheme_Extend # Mc       GRANTHA VOWEL SIGN AA
+11357         ; Other_Grapheme_Extend # Mc       GRANTHA AU LENGTH MARK
+114B0         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN AA
+114BD         ; Other_Grapheme_Extend # Mc       TIRHUTA VOWEL SIGN SHORT O
+115AF         ; Other_Grapheme_Extend # Mc       SIDDHAM VOWEL SIGN AA
 1D165         ; Other_Grapheme_Extend # Mc       MUSICAL SYMBOL COMBINING STEM
 1D16E..1D172  ; Other_Grapheme_Extend # Mc   [5] MUSICAL SYMBOL COMBINING FLAG-1..MUSICAL SYMBOL COMBINING FLAG-5
 
-# Total code points: 25
+# Total code points: 30
 
 # ================================================
 
@@ -1486,22 +1495,5 @@ FD3F          ; Pattern_Syntax # Ps       ORNATE RIGHT PARENTHESIS
 FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 2760
-
-A9E6          ; Extender # MYANMAR MODIFIER LETTER SHAN REDUPLICATION
-1135D         ; Extender # GRANTHA SIGN PLUTA
-115C6         ; Extender # SIDDHAM REPETITION MARK-1
-115C7         ; Extender # SIDDHAM REPETITION MARK-2
-115C8         ; Extender # SIDDHAM REPETITION MARK-3
-16B42         ; Extender # PAHAWH HMONG SIGN VOS NRUA
-16B43         ; Extender # PAHAWH HMONG SIGN IB YAM
- 
- 
-# Other_Grapheme_Extend (5 characters)
- 
-1133E          ; Other_Grapheme_Extend # GRANTHA VOWEL SIGN AA
-11357          ; Other_Grapheme_Extend # GRANTHA AU LENGTH MARK
-114B0          ; Other_Grapheme_Extend # TIRHUTA VOWEL SIGN AA
-114BD          ; Other_Grapheme_Extend # TIRHUTA VOWEL SIGN SHORT O
-115AF          ; Other_Grapheme_Extend # SIDDHAM VOWEL SIGN AA
 
 # EOF
