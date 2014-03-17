@@ -1,5 +1,5 @@
 # PropList-7.0.0.txt
-# Date: 2014-02-12, 02:08:43 GMT [MD]
+# Date: 2014-02-19, 15:51:26 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -139,6 +139,7 @@ FF63          ; Quotation_Mark # Pe       HALFWIDTH RIGHT CORNER BRACKET
 1361..1368    ; Terminal_Punctuation # Po   [8] ETHIOPIC WORDSPACE..ETHIOPIC PARAGRAPH SEPARATOR
 166D..166E    ; Terminal_Punctuation # Po   [2] CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
 16EB..16ED    ; Terminal_Punctuation # Po   [3] RUNIC SINGLE PUNCTUATION..RUNIC CROSS PUNCTUATION
+1735..1736    ; Terminal_Punctuation # Po   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 17D4..17D6    ; Terminal_Punctuation # Po   [3] KHMER SIGN KHAN..KHMER SIGN CAMNUC PII KUUH
 17DA          ; Terminal_Punctuation # Po       KHMER SIGN KOOMUUT
 1802..1805    ; Terminal_Punctuation # Po   [4] MONGOLIAN COMMA..MONGOLIAN FOUR DOTS
@@ -179,6 +180,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 103D0         ; Terminal_Punctuation # Po       OLD PERSIAN WORD DIVIDER
 10857         ; Terminal_Punctuation # Po       IMPERIAL ARAMAIC SECTION SIGN
 1091F         ; Terminal_Punctuation # Po       PHOENICIAN WORD SEPARATOR
+10A56..10A57  ; Terminal_Punctuation # Po   [2] KHAROSHTHI PUNCTUATION DANDA..KHAROSHTHI PUNCTUATION DOUBLE DANDA
 10AF0..10AF5  ; Terminal_Punctuation # Po   [6] MANICHAEAN PUNCTUATION STAR..MANICHAEAN PUNCTUATION TWO DOTS
 10B3A..10B3F  ; Terminal_Punctuation # Po   [6] TINY TWO DOTS OVER ONE DOT PUNCTUATION..LARGE ONE RING OVER TWO RINGS PUNCTUATION
 10B99..10B9C  ; Terminal_Punctuation # Po   [4] PSALTER PAHLAVI SECTION MARK..PSALTER PAHLAVI FOUR DOTS WITH DOT
@@ -198,7 +200,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 16B44         ; Terminal_Punctuation # Po       PAHAWH HMONG SIGN XAUS
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 
-# Total code points: 210
+# Total code points: 214
 
 # ================================================
 
@@ -705,8 +707,11 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 16B30..16B36  ; Other_Alphabetic # Mn   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
 16F51..16F7E  ; Other_Alphabetic # Mc  [46] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN NG
 1BC9E         ; Other_Alphabetic # Mn       DUPLOYAN DOUBLE MARK
+1F130..1F149  ; Other_Alphabetic # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
+1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
+1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1038
+# Total code points: 1116
 
 # ================================================
 
@@ -968,8 +973,11 @@ AB5C..AB5F    ; Other_Lowercase # Lm   [4] MODIFIER LETTER SMALL HENG..MODIFIER 
 
 2160..216F    ; Other_Uppercase # Nl  [16] ROMAN NUMERAL ONE..ROMAN NUMERAL ONE THOUSAND
 24B6..24CF    ; Other_Uppercase # So  [26] CIRCLED LATIN CAPITAL LETTER A..CIRCLED LATIN CAPITAL LETTER Z
+1F130..1F149  ; Other_Uppercase # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
+1F150..1F169  ; Other_Uppercase # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
+1F170..1F189  ; Other_Uppercase # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 42
+# Total code points: 120
 
 # ================================================
 
@@ -1158,8 +1166,6 @@ AABB..AABC    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL AUE..TAI VIET 
 0021          ; STerm # Po       EXCLAMATION MARK
 002E          ; STerm # Po       FULL STOP
 003F          ; STerm # Po       QUESTION MARK
-#055C          ; STerm # Po       ARMENIAN EXCLAMATION MARK
-#055E          ; STerm # Po       ARMENIAN QUESTION MARK
 0589          ; STerm # Po       ARMENIAN FULL STOP
 061F          ; STerm # Po       ARABIC QUESTION MARK
 06D4          ; STerm # Po       ARABIC FULL STOP
@@ -1218,7 +1224,7 @@ FF61          ; STerm # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 16B44         ; STerm # Po       PAHAWH HMONG SIGN XAUS
 1BC9F         ; STerm # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 
-# Total code points: 101
+# Total code points: 99
 
 # ================================================
 
@@ -1496,15 +1502,4 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 2760
 
-1735..1736 ; Terminal_Punctuation
-10A56..10A57 ; Terminal_Punctuation
-# 055C, U+055E to STerm=No for Unicode 7.0.
-
-1F130..1F149 ; Other_Alphabetic  # [26] (🄰..🅉)  SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
-1F150..1F169 ; Other_Alphabetic   # [26] (🅐..🅩)  NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
-1F170..1F189 ; Other_Alphabetic   # [26] (🅰..🆉)  NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
-
-1F130..1F149 ; Other_Uppercase  # [26] (🄰..🅉)  SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
-1F150..1F169 ; Other_Uppercase   # [26] (🅐..🅩)  NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
-1F170..1F189 ; Other_Uppercase   # [26] (🅰..🆉)  NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 # EOF

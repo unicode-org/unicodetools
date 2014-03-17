@@ -1,13 +1,20 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 7.0.0
-@@@+	U70M140207.lst
-	Unicode 7.0.0 names list, eighteenth delta.
+@@@+	U70M140310.lst
+	Unicode 7.0.0 names list, twentieth delta.
 	Based on FDAM1 + FDAM2, with modified annotations, plus 20BD.
 	Corrected syntax on two xrefs for 1AB7.
 	Added clarifying annotations for 055C and 055E.
 	Added annotation for ruble sign: 20BD.
 	Updated subhead for Samaveda svara marks in Grantha, for consistency.
 	Cross-referenced the Devanagari and Grantha sets of svara markers.
+	Added annotation for 1135D.
+	Correct annotation for 0FCE, add xref to 0F1F.
+	Updated transliteration of candrakkala in annotation for 0D4D.
+	Deleted a number of random U+ prefixes on code points in annotations.
+	Updated the subhead for 1DF5.
+	Updated the notice at 11580 for Siddham.
+	Regeneration to fix typo in name for 1F6E4.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -3729,7 +3736,7 @@
 @		Addition for Kashmiri
 0620	ARABIC LETTER KASHMIRI YEH
 @		Based on ISO 8859-6
-@+		Arabic letter names follow romanization conventions derived from ISO 8859-6. These differ from the Literary Arabic pronunciation of the letter names. For example, U+0628 ARABIC LETTER BEH has a Literary Arabic pronunciation of ba'.
+@+		Arabic letter names follow romanization conventions derived from ISO 8859-6. These differ from the Literary Arabic pronunciation of the letter names. For example, 0628 ARABIC LETTER BEH has a Literary Arabic pronunciation of ba'.
 0621	ARABIC LETTER HAMZA
 	x (modifier letter right half ring - 02BE)
 0622	ARABIC LETTER ALEF WITH MADDA ABOVE
@@ -5828,7 +5835,7 @@
 	: 0D46 0D57
 @		Virama
 0D4D	MALAYALAM SIGN VIRAMA
-	= chandrakkala (the preferred name)
+	= candrakkala (the preferred name)
 	= vowel half-u
 @		Dot reph
 0D4E	MALAYALAM LETTER DOT REPH
@@ -6386,6 +6393,10 @@
 0F1D	TIBETAN SIGN RDEL NAG GCIG
 0F1E	TIBETAN SIGN RDEL NAG GNYIS
 0F1F	TIBETAN SIGN RDEL DKAR RDEL NAG
+	= deka dena
+	* normally indicates a neutral fortune
+	* may also signify good luck earlier, bad luck later
+	x (tibetan sign rdel nag rdel dkar - 0FCE)
 @		Digits
 0F20	TIBETAN DIGIT ZERO
 0F21	TIBETAN DIGIT ONE
@@ -6649,7 +6660,8 @@
 @		Astrological signs
 0FCE	TIBETAN SIGN RDEL NAG RDEL DKAR
 	= dena deka
-	* signifies good luck earlier, bad luck later
+	* signifies bad luck earlier, good luck later
+	x (tibetan sign rdel dkar rdel nag - 0F1F)
 0FCF	TIBETAN SIGN RDEL NAG GSUM
 @		Marks
 0FD0	TIBETAN MARK BSKA- SHOG GI MGO RGYAN
@@ -9506,7 +9518,7 @@
 194E	LIMBU DIGIT EIGHT
 194F	LIMBU DIGIT NINE
 @@	1950	Tai Le	197F
-@+		Note the similarly named but distinct New Tai Lue script encoded at U+1980..U+19DF.
+@+		Note the similarly named but distinct New Tai Lue script encoded at 1980..19DF.
 @		Consonants
 1950	TAI LE LETTER KA
 1951	TAI LE LETTER XA
@@ -9546,7 +9558,7 @@
 1973	TAI LE LETTER TONE-5
 1974	TAI LE LETTER TONE-6
 @@	1980	New Tai Lue	19DF
-@+		Note the similarly named but distinct Tai Le script encoded at U+1950..U+197F. The New Tai Lue script is also known as Xishuang Banna Dai.
+@+		Note the similarly named but distinct Tai Le script encoded at 1950..197F. The New Tai Lue script is also known as Xishuang Banna Dai.
 @		Consonants
 1980	NEW TAI LUE LETTER HIGH QA
 1981	NEW TAI LUE LETTER LOW QA
@@ -10969,7 +10981,7 @@
 1DF2	COMBINING LATIN SMALL LETTER A WITH DIAERESIS
 1DF3	COMBINING LATIN SMALL LETTER O WITH DIAERESIS
 1DF4	COMBINING LATIN SMALL LETTER U WITH DIAERESIS
-@		Superscript letter diacritic for American lexicography
+@		Diacritic for American lexicography
 1DF5	COMBINING UP TACK ABOVE
 @		Double diacritic mark for UPA
 1DFC	COMBINING DOUBLE INVERTED BREVE BELOW
@@ -12650,7 +12662,7 @@
 20F0	COMBINING ASTERISK ABOVE
 @@	2100	Letterlike Symbols	214F
 @		Letterlike symbols
-@+		Some of the letterlike symbols are intended to complete the set of mathematical alphanumeric symbols starting at U+1D400.
+@+		Some of the letterlike symbols are intended to complete the set of mathematical alphanumeric symbols starting at 1D400.
 2100	ACCOUNT OF
 	# 0061 002F 0063
 2101	ADDRESSED TO THE SUBJECT
@@ -14404,7 +14416,7 @@
 2487	PARENTHESIZED NUMBER TWENTY
 	# 0028 0032 0030 0029
 @		Numbers period
-@+		See also similar symbols starting at U+1F100.
+@+		See also similar symbols starting at 1F100.
 2488	DIGIT ONE FULL STOP
 	# 0031 002E
 2489	DIGIT TWO FULL STOP
@@ -14446,7 +14458,7 @@
 249B	NUMBER TWENTY FULL STOP
 	# 0032 0030 002E
 @		Parenthesized Latin letters
-@+		See also the uppercase set starting at U+1F100.
+@+		See also the uppercase set starting at 1F100.
 249C	PARENTHESIZED LATIN SMALL LETTER A
 	# 0028 0061 0029
 249D	PARENTHESIZED LATIN SMALL LETTER B
@@ -15212,7 +15224,7 @@
 2638	WHEEL OF DHARMA
 	x (helm symbol - 2388)
 @		Emoticons
-@+		Many other emoticons are encoded in the Emoticons block starting at U+1F600.
+@+		Many other emoticons are encoded in the Emoticons block starting at 1F600.
 2639	WHITE FROWNING FACE
 	x (slightly frowning face - 1F641)
 263A	WHITE SMILING FACE
@@ -17601,7 +17613,7 @@
 @		Paired triangle-headed arrows
 2B80	LEFTWARDS TRIANGLE-HEADED ARROW OVER RIGHTWARDS TRIANGLE-HEADED ARROW
 	x (leftwards arrow over rightwards arrow - 21C6)
-2B81	UPWARDS TRIANGLE-HEADED ARROW LEFTWARDS DOWNWARDS OF TRIANGLE-HEADED ARROW
+2B81	UPWARDS TRIANGLE-HEADED ARROW LEFTWARDS OF DOWNWARDS TRIANGLE-HEADED ARROW
 2B82	RIGHTWARDS TRIANGLE-HEADED ARROW OVER LEFTWARDS TRIANGLE-HEADED ARROW
 2B83	DOWNWARDS TRIANGLE-HEADED ARROW LEFTWARDS OF UPWARDS TRIANGLE-HEADED ARROW
 	x (downwards arrow leftwards of upwards arrow - 21F5)
@@ -31396,6 +31408,7 @@ FFFF	<not a character>
 11357	GRANTHA AU LENGTH MARK
 @		Sign
 1135D	GRANTHA SIGN PLUTA
+	* vowel-lengthening mark
 @		Anusvaras
 1135E	GRANTHA LETTER VEDIC ANUSVARA
 1135F	GRANTHA LETTER VEDIC DOUBLE ANUSVARA
@@ -31515,7 +31528,7 @@ FFFF	<not a character>
 114D8	TIRHUTA DIGIT EIGHT
 114D9	TIRHUTA DIGIT NINE
 @@	11580	Siddham	115FF
-@+		The script is also known by the names 'Siddhamatrika' and 'Kutila'.
+@+		The script is also known by the name 'Siddhamatrika'.
 @		Independent vowels
 11580	SIDDHAM LETTER A
 11581	SIDDHAM LETTER AA
@@ -35718,7 +35731,7 @@ FFFF	<not a character>
 	* French number thousands
 	* French suffix -eur
 	* Romanian affix trans-/-lui
-	* not Romanian hundreds - use U+0307 combining dot above and U+0308 combining diaeresis
+	* not Romanian hundreds - use 0307 combining dot above and 0308 combining diaeresis
 	x (dot above - 02D9)
 1BC85	DUPLOYAN AFFIX HIGH CIRCLE
 	* French ordinal number
@@ -35759,7 +35772,7 @@ FFFF	<not a character>
 	* French suffix -ie
 	* French iterative number
 	* Romanian affix inter-
-	* not Romanian millions - see U+0323 combining dot below and U+0324 combining diaeresis below
+	* not Romanian millions - see 0323 combining dot below and 0324 combining diaeresis below
 1BC95	DUPLOYAN AFFIX LOW CIRCLE
 	* French suffix -iere
 	* French percent
@@ -39678,7 +39691,7 @@ FFFF	<not a character>
 	* collective
 @@	1F100	Enclosed Alphanumeric Supplement	1F1FF
 @		Number with full stop
-@+		This symbol completes the set of numbers with full stop starting at U+2488.
+@+		This symbol completes the set of numbers with full stop starting at 2488.
 1F100	DIGIT ZERO FULL STOP
 	# 0030 002E
 @		Numbers with comma
@@ -39707,7 +39720,7 @@ FFFF	<not a character>
 1F10B	DINGBAT CIRCLED SANS-SERIF DIGIT ZERO
 1F10C	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
 @		Parenthesized Latin letters
-@+		This set provides uppercase versions of the set starting at U+249C.
+@+		This set provides uppercase versions of the set starting at 249C.
 1F110	PARENTHESIZED LATIN CAPITAL LETTER A
 	# 0028 0041 0029
 1F111	PARENTHESIZED LATIN CAPITAL LETTER B
@@ -41816,7 +41829,7 @@ FFFF	<not a character>
 1F6E2	OIL DRUM
 	= commodities
 1F6E3	MOTORWAY
-1F6E4	RAILWAYS TRACK
+1F6E4	RAILWAY TRACK
 	= railroad
 @		Vehicles
 1F6E5	MOTOR BOAT

@@ -1,5 +1,5 @@
 # ScriptExtensions-7.0.0.txt
-# Date: 2014-01-14, 18:02:58 GMT [MD]
+# Date: 2014-02-19, 19:39:26 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -142,6 +142,14 @@ A9CF          ; Bugi Java # Lm       JAVANESE PANGRANGKEP
 
 # ================================================
 
+# Script_Extensions=Gujr Khoj
+
+0AE6..0AEF    ; Gujr Khoj # Nd  [10] GUJARATI DIGIT ZERO..GUJARATI DIGIT NINE
+
+# Total code points: 10
+
+# ================================================
+
 # Script_Extensions=Hira Kana
 
 3031..3035    ; Hira Kana # Lm   [5] VERTICAL KANA REPEAT MARK..VERTICAL KANA REPEAT MARK LOWER HALF
@@ -254,17 +262,6 @@ FE45..FE46    ; Bopo Hang Hani Hira Kana # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # ================================================
 
-# Script_Extensions=Deva Gujr Guru Kthi Takr
-
-A830..A835    ; Deva Gujr Guru Kthi Takr # No   [6] NORTH INDIC FRACTION ONE QUARTER..NORTH INDIC FRACTION THREE SIXTEENTHS
-A836..A837    ; Deva Gujr Guru Kthi Takr # So   [2] NORTH INDIC QUARTER MARK..NORTH INDIC PLACEHOLDER MARK
-A838          ; Deva Gujr Guru Kthi Takr # Sc       NORTH INDIC RUPEE MARK
-A839          ; Deva Gujr Guru Kthi Takr # So       NORTH INDIC QUANTITY MARK
-
-# Total code points: 10
-
-# ================================================
-
 # Script_Extensions=Bopo Hang Hani Hira Kana Yiii
 
 3001..3002    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] IDEOGRAPHIC COMMA..IDEOGRAPHIC FULL STOP
@@ -296,6 +293,17 @@ FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC C
 
 # ================================================
 
+# Script_Extensions=Deva Gujr Guru Kthi Mahj Modi Takr Tirh
+
+A830..A835    ; Deva Gujr Guru Kthi Mahj Modi Takr Tirh # No   [6] NORTH INDIC FRACTION ONE QUARTER..NORTH INDIC FRACTION THREE SIXTEENTHS
+A836..A837    ; Deva Gujr Guru Kthi Mahj Modi Takr Tirh # So   [2] NORTH INDIC QUARTER MARK..NORTH INDIC PLACEHOLDER MARK
+A838          ; Deva Gujr Guru Kthi Mahj Modi Takr Tirh # Sc       NORTH INDIC RUPEE MARK
+A839          ; Deva Gujr Guru Kthi Mahj Modi Takr Tirh # So       NORTH INDIC QUANTITY MARK
+
+# Total code points: 10
+
+# ================================================
+
 # Script_Extensions=Beng Deva Gujr Guru Knda Mlym Orya Sylo Takr Taml Telu
 
 0964          ; Beng Deva Gujr Guru Knda Mlym Orya Sylo Takr Taml Telu # Po       DEVANAGARI DANDA
@@ -309,8 +317,5 @@ FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC C
 0965          ; Beng Deva Gujr Guru Knda Limb Mlym Orya Sylo Takr Taml Telu # Po       DEVANAGARI DOUBLE DANDA
 
 # Total code points: 1
-
-0AE6..0AEF    ; Gujr Khoj # Nd  [10] GUJARATI DIGIT ZERO..GUJARATI DIGIT NINE
-A830..A839 ; Deva Gujr Guru Kthi Mahj Modi Takr Tirh
 
 # EOF
