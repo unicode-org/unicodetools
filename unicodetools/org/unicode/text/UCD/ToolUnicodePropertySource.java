@@ -17,7 +17,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
-import org.unicode.jsp.ScriptTester.ScriptExtensions;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
@@ -27,7 +26,6 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.AliasAddAction;
 import com.ibm.icu.dev.util.UnicodeProperty.BaseProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.Factory;
 import com.ibm.icu.dev.util.UnicodeProperty.SimpleProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.StringUCharacterIterator;
@@ -700,6 +698,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     .addAll(new UnicodeSet("[\u0E33 \u0EB3]"))
                     .removeAll(new UnicodeSet("[\u102B\u102C\u1038\u1062-\u1064\u1067-\u106D\u1083\u1087-\u108C\u108F\u109A-\u109C\u19B0-\u19B4\u19B8\u19B9\u19BB-\u19C0\u19C8\u19C9\u1A61\u1A63\u1A64\uAA7B]"))
                     .removeAll(unicodeMap.keySet("Extend"))
+                    .remove(0xAA7D)
                     , "SpacingMark");
 
             final UnicodeProperty hangul = getProperty("Hangul_Syllable_Type");
@@ -986,7 +985,7 @@ isTitlecase(X) is false.
             final UnicodeMap<String> umap = new UnicodeMap<String>();
             for (final BitSet set : sortedValues) {
                 final UnicodeSet uset = extensions.getSet(set);
-                umap.putAll(uset, ScriptExtensions.getNames(set, UProperty.NameChoice.SHORT, " "));
+                umap.putAll(uset, ScriptExtensions.getNames(set, UCD_Types.SHORT, " "));
             }
             final UnicodeMapProperty prop2 = new UnicodeMapProperty()
             .set(umap);
