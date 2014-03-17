@@ -1,10 +1,10 @@
 #
 # Unihan_DictionaryLikeData.txt
-# Date: 2013-02-25 22:46:17 GMT [JHJ]
-# Unicode version: 6.3.0
+# Date: 2014-02-19 23:29:18 GMT [JHJ]
+# Unicode version: 7.0.0
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #

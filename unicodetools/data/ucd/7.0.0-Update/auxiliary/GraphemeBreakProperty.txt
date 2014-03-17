@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-7.0.0.txt
-# Date: 2014-02-12, 02:08:37 GMT [MD]
+# Date: 2014-02-19, 15:51:21 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -447,7 +447,6 @@ A9BD..A9C0    ; SpacingMark # Mc   [4] JAVANESE CONSONANT SIGN KERET..JAVANESE P
 AA2F..AA30    ; SpacingMark # Mc   [2] CHAM VOWEL SIGN O..CHAM VOWEL SIGN AI
 AA33..AA34    ; SpacingMark # Mc   [2] CHAM CONSONANT SIGN YA..CHAM CONSONANT SIGN RA
 AA4D          ; SpacingMark # Mc       CHAM CONSONANT SIGN FINAL H
-AA7D          ; SpacingMark # Mc       MYANMAR SIGN TAI LAING TONE-5
 AAEB          ; SpacingMark # Mc       MEETEI MAYEK VOWEL SIGN II
 AAEE..AAEF    ; SpacingMark # Mc   [2] MEETEI MAYEK VOWEL SIGN AU..MEETEI MAYEK VOWEL SIGN AAU
 AAF5          ; SpacingMark # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
@@ -492,7 +491,7 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 1D166         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING AUGMENTATION DOT
 
-# Total code points: 332
+# Total code points: 331
 
 # ================================================
 

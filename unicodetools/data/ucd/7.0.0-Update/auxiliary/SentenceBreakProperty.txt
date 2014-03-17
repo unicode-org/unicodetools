@@ -1,5 +1,5 @@
 # SentenceBreakProperty-7.0.0.txt
-# Date: 2014-02-09, 17:35:36 GMT [MD]
+# Date: 2014-02-19, 15:51:38 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -1764,8 +1764,11 @@ FF21..FF3A    ; Upper # L&  [26] FULLWIDTH LATIN CAPITAL LETTER A..FULLWIDTH LAT
 1D756..1D76E  ; Upper # L&  [25] MATHEMATICAL SANS-SERIF BOLD CAPITAL ALPHA..MATHEMATICAL SANS-SERIF BOLD CAPITAL OMEGA
 1D790..1D7A8  ; Upper # L&  [25] MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL ALPHA..MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL OMEGA
 1D7CA         ; Upper # L&       MATHEMATICAL BOLD CAPITAL DIGAMMA
+1F130..1F149  ; Upper # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
+1F150..1F169  ; Upper # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
+1F170..1F189  ; Upper # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1563
+# Total code points: 1641
 
 # ================================================
 
@@ -2310,8 +2313,6 @@ FF0E          ; ATerm # Po       FULLWIDTH FULL STOP
 
 0021          ; STerm # Po       EXCLAMATION MARK
 003F          ; STerm # Po       QUESTION MARK
-055C          ; STerm # Po       ARMENIAN EXCLAMATION MARK
-055E          ; STerm # Po       ARMENIAN QUESTION MARK
 0589          ; STerm # Po       ARMENIAN FULL STOP
 061F          ; STerm # Po       ARABIC QUESTION MARK
 06D4          ; STerm # Po       ARABIC FULL STOP
@@ -2368,7 +2369,7 @@ FF61          ; STerm # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 16B44         ; STerm # Po       PAHAWH HMONG SIGN XAUS
 1BC9F         ; STerm # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 
-# Total code points: 98
+# Total code points: 96
 
 # ================================================
 

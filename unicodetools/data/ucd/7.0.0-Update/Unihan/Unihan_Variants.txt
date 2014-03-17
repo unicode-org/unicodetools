@@ -1,10 +1,10 @@
 #
 # Unihan_Variants.txt
-# Date: 2013-02-25 22:46:17 GMT [JHJ]
-# Unicode version: 6.3.0
+# Date: 2014-02-19 23:29:18 GMT [JHJ]
+# Unicode version: 7.0.0
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -25,6 +25,7 @@ U+342E	kSemanticVariant	U+8944
 U+342F	kSemanticVariant	U+5EB8
 U+3431	kSemanticVariant	U+9B12<kMatthews
 U+3434	kSemanticVariant	U+6500
+U+3435	kSemanticVariant	U+5112
 U+343D	kTraditionalVariant	U+5051
 U+3441	kSemanticVariant	U+20B74
 U+3444	kSemanticVariant	U+4FAE<kMatthews
@@ -136,6 +137,7 @@ U+3A79	kSemanticVariant	U+22DA3<kMatthews
 U+3A85	kSemanticVariant	U+66F4<kMatthews
 U+3AAF	kSemanticVariant	U+8209
 U+3AC3	kSemanticVariant	U+5043<kMatthews
+U+3ACE	kSemanticVariant	U+5E51<kHanYu:T U+23108<kHanYu:T
 U+3ADA	kSemanticVariant	U+6612<kHanYu
 U+3ADA	kZVariant	U+66F6
 U+3B05	kSemanticVariant	U+66FC<kMatthews
@@ -811,6 +813,7 @@ U+510D	kSemanticVariant	U+50BB
 U+510E	kSpecializedSemanticVariant	U+8F09<kFenn
 U+510E	kZVariant	U+50A4
 U+5110	kSimplifiedVariant	U+50A7
+U+5112	kSemanticVariant	U+3435
 U+5113	kSemanticVariant	U+6AAF<kLau U+67B1<kLau
 U+5114	kSimplifiedVariant	U+4FE6
 U+5115	kSimplifiedVariant	U+4FAA
@@ -1204,6 +1207,8 @@ U+5346	kZVariant	U+5352
 U+5347	kZVariant	U+6607
 U+5349	kSemanticVariant	U+8294<kMatthews
 U+534B	kZVariant	U+4E16
+U+534C	kSemanticVariant	U+2098C<kHanYu
+U+534C	kSpecializedSemanticVariant	U+2099C
 U+534D	kSemanticVariant	U+4E07<kFenn U+5350 U+842C<kFenn
 U+534D	kZVariant	U+5350
 U+534E	kTraditionalVariant	U+83EF
@@ -3657,6 +3662,7 @@ U+6655	kTraditionalVariant	U+6688
 U+6656	kTraditionalVariant	U+6689
 U+665A	kZVariant	U+6669
 U+665D	kSimplifiedVariant	U+663C
+U+6661	kSemanticVariant	U+231C0<kHanYu:T
 U+6662	kZVariant	U+6670
 U+6669	kZVariant	U+665A
 U+6670	kSemanticVariant	U+6673<kFenn
@@ -12158,6 +12164,9 @@ U+2073C	kSemanticVariant	U+6390<kFenn
 U+20786	kSimplifiedVariant	U+206C6
 U+207B0	kSemanticVariant	U+527F<kFenn
 U+2080E	kSimplifiedVariant	U+206B3
+U+2098C	kSemanticVariant	U+5E4C<kHanYu:T
+U+2098C	kSpecializedSemanticVariant	U+2099C
+U+2099C	kSpecializedSemanticVariant	U+5E4C U+2098C
 U+20B74	kSemanticVariant	U+3441
 U+20BD7	kSemanticVariant	U+5482<kFenn
 U+20BDF	kTraditionalVariant	U+54EF
@@ -12244,7 +12253,9 @@ U+22F7E	kTraditionalVariant	U+6585
 U+23040	kZVariant	U+27959
 U+2305A	kSemanticVariant	U+2305F<kHanYu
 U+2305F	kSemanticVariant	U+2305A<kHanYu
+U+23108	kSemanticVariant	U+3ACE<kHanYu:T
 U+23190	kTraditionalVariant	U+66E5
+U+231C0	kSemanticVariant	U+6661<kHanYu:TZ
 U+2325E	kSemanticVariant	U+66A0<kMeyerWempe
 U+23368	kTraditionalVariant	U+26888
 U+2336F	kTraditionalVariant	U+816A
@@ -12480,6 +12491,8 @@ U+289AB	kSimplifiedVariant	U+4980
 U+289DC	kSimplifiedVariant	U+4981
 U+289F1	kSimplifiedVariant	U+28C4A
 U+28AD2	kSimplifiedVariant	U+28C50
+U+28B15	kZVariant	U+28B1F
+U+28B1F	kZVariant	U+28B15
 U+28B82	kSimplifiedVariant	U+28C55
 U+28BC5	kSimplifiedVariant	U+497F
 U+28C3E	kTraditionalVariant	U+93B7
