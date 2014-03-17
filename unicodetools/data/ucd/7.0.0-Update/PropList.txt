@@ -1158,8 +1158,8 @@ AABB..AABC    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL AUE..TAI VIET 
 0021          ; STerm # Po       EXCLAMATION MARK
 002E          ; STerm # Po       FULL STOP
 003F          ; STerm # Po       QUESTION MARK
-055C          ; STerm # Po       ARMENIAN EXCLAMATION MARK
-055E          ; STerm # Po       ARMENIAN QUESTION MARK
+#055C          ; STerm # Po       ARMENIAN EXCLAMATION MARK
+#055E          ; STerm # Po       ARMENIAN QUESTION MARK
 0589          ; STerm # Po       ARMENIAN FULL STOP
 061F          ; STerm # Po       ARABIC QUESTION MARK
 06D4          ; STerm # Po       ARABIC FULL STOP
@@ -1496,4 +1496,15 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 2760
 
+1735..1736 ; Terminal_Punctuation
+10A56..10A57 ; Terminal_Punctuation
+# 055C, U+055E to STerm=No for Unicode 7.0.
+
+1F130..1F149 ; Other_Alphabetic  # [26] (🄰..🅉)  SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
+1F150..1F169 ; Other_Alphabetic   # [26] (🅐..🅩)  NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
+1F170..1F189 ; Other_Alphabetic   # [26] (🅰..🆉)  NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
+
+1F130..1F149 ; Other_Uppercase  # [26] (🄰..🅉)  SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
+1F150..1F169 ; Other_Uppercase   # [26] (🅐..🅩)  NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
+1F170..1F189 ; Other_Uppercase   # [26] (🅰..🆉)  NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 # EOF

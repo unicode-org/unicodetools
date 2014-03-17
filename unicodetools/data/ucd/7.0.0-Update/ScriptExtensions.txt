@@ -310,4 +310,7 @@ FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC C
 
 # Total code points: 1
 
+0AE6..0AEF    ; Gujr Khoj # Nd  [10] GUJARATI DIGIT ZERO..GUJARATI DIGIT NINE
+A830..A839 ; Deva Gujr Guru Kthi Mahj Modi Takr Tirh
+
 # EOF
