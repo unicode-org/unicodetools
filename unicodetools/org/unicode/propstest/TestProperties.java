@@ -42,7 +42,6 @@ import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 import org.unicode.cldr.util.VettingViewer.MissingStatus;
 import org.unicode.draft.GetNames;
-import org.unicode.jsp.ScriptTester.ScriptExtensions;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames;

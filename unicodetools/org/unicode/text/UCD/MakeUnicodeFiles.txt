@@ -1,5 +1,5 @@
-Generate: .
-DeltaVersion: 28
+Generate: .*
+DeltaVersion: 33
 CopyrightYear: 2014
 
 File: extra/ScriptNfkc
@@ -204,7 +204,7 @@ Property:	Math
 
 Property:	Alphabetic
 # Derived Property: Alphabetic
-#  Generated from: Lu+Ll+Lt+Lm+Lo+Nl + Other_Alphabetic
+#  Generated from: Uppercase + Lowercase + Lt + Lm + Lo + Nl + Other_Alphabetic
 
 Property:	Lowercase
 # Derived Property: Lowercase

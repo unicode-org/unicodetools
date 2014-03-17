@@ -1,10 +1,10 @@
 # decomps-7.0.0.txt
-# Date: 2013-10-22, 17:46:31 GMT [KW]
+# Date: 2014-02-13, 16:39:46 GMT [KW]
 #
 # This file lists decompositions used in generating the Default Unicode Collation Element Table
 #   (DUCET) for the Unicode Collation Algorithm
 #
-# Copyright (c) 2001-2013 Unicode, Inc.
+# Copyright (c) 2001-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # See UTS #10, Unicode Collation Algorithm, for more information.
