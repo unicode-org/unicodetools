@@ -4,7 +4,7 @@
 #  This process can be achieved by first transforming the text to NFC before casing.
 #  E.g. <alpha><iota_subscript><acute> is uppercased to <ALPHA><acute><IOTA>
 
-# The following cases are already in the UnicodeData file, so are only commented here.
+# The following cases are already in the UnicodeData.txt file, so are only commented here.
 
 # 0345; 0345; 0345; 0399; # COMBINING GREEK YPOGEGRAMMENI
 

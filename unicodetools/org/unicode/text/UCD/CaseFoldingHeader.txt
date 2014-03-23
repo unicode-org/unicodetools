@@ -18,7 +18,7 @@
 #
 # For information on case folding, including how to have case folding 
 # preserve normalization formats, see Section 3.13 Default Case Algorithms in
-# The Unicode Standard, Version 5.0.
+# The Unicode Standard.
 #
 # ================================================================================
 # Format
@@ -50,7 +50,5 @@
 
 #  All code points not explicitly listed for Case_Folding
 #  have the value C for the status field, and the code point itself for the mapping field.
-
-# @missing: 0000..10FFFF; C; <code point>
 
 # =================================================================
