@@ -1,4 +1,4 @@
-Generate: .*
+Generate: .
 DeltaVersion: 33
 CopyrightYear: 2014
 
@@ -466,7 +466,6 @@ Property:	Numeric_Value
 # in this file, they should be expressed to the limits of the precision
 # available when used.
 #
-# @missing: 0000..10FFFF; NaN; ; NaN
 Format: sortNumeric
 
 File:	HangulSyllableType

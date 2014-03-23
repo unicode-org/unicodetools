@@ -14,7 +14,7 @@
 
 03A3; 03C2; 03A3; 03A3; Final_Sigma; # GREEK CAPITAL LETTER SIGMA
 
-# Note: the following cases for non-final are already in the UnicodeData file.
+# Note: the following cases for non-final are already in the UnicodeData.txt file.
 
 # 03A3; 03C3; 03A3; 03A3; # GREEK CAPITAL LETTER SIGMA
 # 03C3; 03C3; 03A3; 03A3; # GREEK SMALL LETTER SIGMA
@@ -77,7 +77,7 @@
 0069; 0069; 0130; 0130; tr; # LATIN SMALL LETTER I
 0069; 0069; 0130; 0130; az; # LATIN SMALL LETTER I
 
-# Note: the following case is already in the UnicodeData file.
+# Note: the following case is already in the UnicodeData.txt file.
 
 # 0131; 0131; 0049; 0049; tr; # LATIN SMALL LETTER DOTLESS I
 

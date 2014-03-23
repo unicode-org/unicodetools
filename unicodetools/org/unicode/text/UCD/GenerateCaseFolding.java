@@ -75,7 +75,8 @@ public class GenerateCaseFolding implements UCD_Types {
             filename += "-Normalized";
         }
         final String directory = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY;
-        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, filename).setSkipCopyright(Settings.SKIP_COPYRIGHT);
+        final UnicodeDataFile fc = UnicodeDataFile.openAndWriteHeader(directory, filename)
+                .setSkipCopyright(Settings.SKIP_COPYRIGHT);
         final PrintWriter out = fc.out;
 
         /*
