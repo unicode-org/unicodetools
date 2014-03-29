@@ -1248,6 +1248,7 @@ U+1F1FE U+1F1F9	V6.0	emoji	flags	🇾🇹	flag Mayotte
 U+1F1FF U+1F1E6	V6.0	emoji	flags	🇿🇦	flag South Africa
 U+1F1FF U+1F1F2	V6.0	emoji	flags	🇿🇲	flag Zambia
 U+1F1FF U+1F1FC	V6.0	emoji	flags	🇿🇼	flag Zimbabwe
+U+1F1FD U+1F1F0	V6.0	emoji	flags	🇽🇰	flag Kosovo
 U+1F600	V6.1	emoji	people faces	😀	GRINNING FACE
 U+1F611	V6.1	emoji	people faces	😑	EXPRESSIONLESS FACE
 U+1F615	V6.1	emoji	people faces	😕	CONFUSED FACE
