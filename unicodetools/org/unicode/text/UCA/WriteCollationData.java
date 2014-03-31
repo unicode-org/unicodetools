@@ -1710,7 +1710,7 @@ public class WriteCollationData {
         return result.toString();
     }
 
-    static UCA getCollator(CollatorType type) {
+    public static UCA getCollator(CollatorType type) {
         switch(type) {
         case cldr:
             if (cldrCollator == null) {
