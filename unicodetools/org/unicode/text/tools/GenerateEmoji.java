@@ -23,11 +23,13 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.draft.ScriptMetadata.Trinary;
 import org.unicode.jsp.Subheader;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Binary;
+import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.UCA.UCA;
 import org.unicode.text.UCA.UCA.CollatorType;
@@ -102,6 +104,13 @@ public class GenerateEmoji {
             "Enclosed Alphanumeric Supplement", 
             "Miscellaneous Symbols And Pictographs",
             "Miscellaneous Symbols And Arrows"));
+
+    public static String getEmojiVariant(String browserChars, char variant) {
+        if (STANDARDIZED_VARIANT.get(browserChars + variant) != null) {
+            browserChars = browserChars + EMOJI_VARIANT;
+        }
+        return browserChars;
+    }
 
     enum Label {
         people, body, face, nature, clothing, emotion, 
@@ -336,12 +345,8 @@ public class GenerateEmoji {
                     }
                 }
             }
-            String browserChars = getEmojiVariant(chars);
-            String textChars = chars;
-            boolean hasTextVariant = STANDARDIZED_VARIANT.get(chars + TEXT_VARIANT) != null;
-            if (hasTextVariant) {
-                textChars = chars + TEXT_VARIANT;
-            }
+            String browserChars = getEmojiVariant(chars, EMOJI_VARIANT);
+            String textChars = getEmojiVariant(chars, TEXT_VARIANT);
 
             return "<tr>" +
             (form == Form.imagesOnly ? "" : 
@@ -358,7 +363,7 @@ public class GenerateEmoji {
                                     "<td class='name'>" + name)
                                     + (form.compareTo(Form.shortForm) <= 0 ? "" : "</td>\n" +
                                             "<td class='default'>" + defaultPresentation
-                                            + (hasTextVariant ? "*" : ""))
+                                            + (!textChars.equals(chars) ? "*" : ""))
                                             + (form.compareTo(Form.shortForm) <= 0 ? "" : "</td>\n" +
                                                     "<td class='name'>" 
                                                     + CollectionUtilities.join(labels, ", ") + "</td>\n" +
@@ -381,12 +386,6 @@ public class GenerateEmoji {
                             (shortForm ? "" : "<th>Labels*</th>\n" +
                                     "<th>Block: <i>Subhead</i></th>\n") +
                                     "</tr>";
-        }
-        public static String getEmojiVariant(String browserChars) {
-            if (STANDARDIZED_VARIANT.get(browserChars + EMOJI_VARIANT) != null) {
-                browserChars = browserChars + EMOJI_VARIANT;
-            }
-            return browserChars;
         }
 
         static final Set<String> ANDROID_IMAGES = new TreeSet<>();
@@ -493,7 +492,6 @@ public class GenerateEmoji {
                 System.out.println(s);
             }
         }
-        test();
 
         // show data
         UnicodeSet newItems = new UnicodeSet();
@@ -537,6 +535,7 @@ public class GenerateEmoji {
 
         showLabels();
         showOtherUnicode();
+        test();
     }
 
     private static UnicodeSet getStrings(UnicodeSet us) {
@@ -569,7 +568,7 @@ public class GenerateEmoji {
                 }
                 String flag = getFlag(data.chars);
                 out.print("<span title='U+" + Utility.hex(data.chars, "U+") + " " + data.name.toLowerCase() + "'>" 
-                        + (flag == null ? Data.getEmojiVariant(data.chars) : flag)
+                        + (flag == null ? getEmojiVariant(data.chars, EMOJI_VARIANT) : flag)
                         + "</span>");
             }
             out.println("</td></tr>");
@@ -578,30 +577,33 @@ public class GenerateEmoji {
         out.close();
     }
 
-    private static void showOtherUnicode() throws IOException {
-        String lastLabel = null;
-        Map<String, UnicodeSet> labelToUnicodeSet = new LinkedHashMap();
-        for (String line : FileUtilities.in(GenerateEmoji.class, "otherLabels.txt")) {
-            line = line.trim();
-            if (line.isEmpty() || line.startsWith("#")) {
-                continue;
-            }
-            char first = line.charAt(0);
-            if ('a' <= first && first <= 'z' || 'A' <= first && first <= 'Z') {
-                lastLabel = line;
-            } else {
-                UnicodeSet set = new UnicodeSet("[" + line.replace("^", "\\^") + "]");
-                UnicodeSet s = labelToUnicodeSet.get(lastLabel);
-                if (s == null) {
-                    labelToUnicodeSet.put(lastLabel, set);
-                } else {
-                    s.addAll(set);
-                }
-            }
-        }
+    static final UnicodeSet EXCLUDE_SET = new UnicodeSet()
+    .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Unassigned.toString()))
+    .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Private_Use.toString()))
+    .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Surrogate.toString()))
+    .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Control.toString()))
+    .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Nonspacing_Mark.toString()))
+    ;
 
-        PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "other-labels.html");
-        writeHeader(out, "Other Labels");
+    private static void showOtherUnicode() throws IOException {
+        Map<String, UnicodeSet> labelToUnicodeSet = new TreeMap();
+        
+        getLabels("otherLabels.txt", labelToUnicodeSet);
+        getLabels("otherLabelsComputed.txt", labelToUnicodeSet);
+        UnicodeSet symbolMath = LATEST.load(UcdProperty.Math).getSet(Binary.Yes.toString());
+        UnicodeSet symbolMathAlphanum = new UnicodeSet()
+        .addAll(LATEST.load(UcdProperty.Alphabetic).getSet(Binary.Yes.toString()))
+        .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Decimal_Number.toString()))
+        .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Letter_Number.toString()))
+        .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Other_Number.toString()))
+        .retainAll(symbolMath);
+        symbolMath.removeAll(symbolMathAlphanum);
+        addSet(labelToUnicodeSet, "Symbol-Math", symbolMath);
+        addSet(labelToUnicodeSet, "Symbol-Math-Alphanum", symbolMathAlphanum);
+        addSet(labelToUnicodeSet, "Symbol-Braille", 
+                LATEST.load(UcdProperty.Block).getSet(Block_Values.Braille_Patterns.toString()));
+        addSet(labelToUnicodeSet, "Symbol-APL", new UnicodeSet("[⌶-⍺ ⎕]"));
+
         UnicodeSet otherSymbols = new UnicodeSet()
         .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Math_Symbol.toString()))
         .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Other_Symbol.toString()))
@@ -622,31 +624,71 @@ public class GenerateEmoji {
         .removeAll(Data.DATA_CHARACTERS)
         .retainAll(COMMON_SCRIPT);
         ;
+        
+        for (Entry<String, UnicodeSet> entry : labelToUnicodeSet.entrySet()) {
+            UnicodeSet uset = entry.getValue();
+            otherSymbols.removeAll(uset);
+            otherPunctuation.removeAll(uset);
+        }
+        if (!otherPunctuation.isEmpty()) {
+            addSet(labelToUnicodeSet, "Punctuation-Other", otherPunctuation);
+        }
+        if (!otherSymbols.isEmpty()) {
+            addSet(labelToUnicodeSet, "Symbol-Other", otherSymbols);
+        }
+        
+        PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "other-labels.html");
+        writeHeader(out, "Other Labels");
 
         for (Entry<String, UnicodeSet> entry : labelToUnicodeSet.entrySet()) {
             String label = entry.getKey();
             UnicodeSet uset = entry.getValue();
-            otherSymbols.removeAll(uset);
-            otherPunctuation.removeAll(uset);
             if (label.equalsIgnoreCase("exclude")) {
                 continue;
             }
             displayUnicodeset(out, label, uset);
         }
-        if (!otherSymbols.isEmpty()) {
-            displayUnicodeset(out, "UNCATEGORIZED SYMBOLS", otherSymbols);
-        }
-        if (!otherPunctuation.isEmpty()) {
-            displayUnicodeset(out, "UNCATEGORIZED PUNCTUATION", otherPunctuation);
-        }
 
         writeFooter(out);
         out.close();
+    }
+    public static void getLabels(String string, Map<String, UnicodeSet> labelToUnicodeSet) {
+        String lastLabel = null;
+        for (String line : FileUtilities.in(GenerateEmoji.class, string)) {
+            line = line.trim();
+            if (line.isEmpty() || line.startsWith("#")) {
+                continue;
+            }
+            char first = line.charAt(0);
+            if ('a' <= first && first <= 'z' || 'A' <= first && first <= 'Z') {
+                lastLabel = line;
+            } else {
+                UnicodeSet set = new UnicodeSet("[" + line
+                        .replace("&", "\\&")
+                        .replace("\\", "\\\\")
+                        .replace("[", "\\[")
+                        .replace("]", "\\]")
+                        .replace("^", "\\^")
+                        .replace("{", "\\{")
+                        .replace("-", "\\-")
+                        + "]");
+                addSet(labelToUnicodeSet, lastLabel, set);
+            }
+        }
+    }
+    
+    public static <T> void addSet(Map<T, UnicodeSet> labelToUnicodeSet, T key, UnicodeSet set) {
+        UnicodeSet s = labelToUnicodeSet.get(key);
+        if (s == null) {
+            labelToUnicodeSet.put(key, s = new UnicodeSet());
+        }
+        s.addAll(set).removeAll(EXCLUDE_SET);
     }
 
     public static void displayUnicodeset(PrintWriter out, String label,
             UnicodeSet uset) {
         out.println("<tr><td>" + label + "</td>\n" + "<td class='chars'>");
+        System.out.println(label + "\t" + uset.size());
         Set<String> sorted = uset.addAllTo(new TreeSet(CODEPOINT_COMPARE));
         boolean first = true;
         for (String s : sorted) {
@@ -826,7 +868,7 @@ public class GenerateEmoji {
                     out.print("\n");
                 }
                 out.print("<span title='" + Default.ucd().getName(s) + "'>" 
-                        + Data.getEmojiVariant(s) 
+                        + getEmojiVariant(s, EMOJI_VARIANT) 
                         + "</span>");
             }            
             out.println("</td></tr>");
