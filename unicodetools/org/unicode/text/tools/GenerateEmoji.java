@@ -845,7 +845,7 @@ public class GenerateEmoji {
                     chars = getEmojiVariant(s, EMOJI_VARIANT);
                 }
             }
-            out.print("<span title=' U+" + Utility.hex(s, "U+") + " " + getName(s) + "'>" 
+            out.print("<span title='U+" + Utility.hex(s, " U+") + " " + getName(s) + "'>" 
                     + chars
                     + "</span>");
         }
