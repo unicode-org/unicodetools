@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,6 +28,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ScriptMetadata.Trinary;
+import org.unicode.cldr.util.With;
 import org.unicode.draft.GetNames;
 import org.unicode.jsp.Subheader;
 import org.unicode.props.IndexUnicodeProperties;
@@ -64,11 +69,18 @@ public class GenerateEmoji {
     static final char TEXT_VARIANT = '\uFE0F';
     static final String REPLACEMENT_CHARACTER = "\uFFFD";
     static final String TEXT_VARIANT_STRING = String.valueOf(TEXT_VARIANT);
-    static final UnicodeSet EXCLUDE = new UnicodeSet("[⛤-⛧ \\U0001F544-\\U0001F549]");
+    static final UnicodeSet EXCLUDE = new UnicodeSet(
+            "[🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭🗴🗵🗶🗷🗸🗹★☆⛫⛩\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549]");
     static final Set<String> SKIP_WORDS = new HashSet(Arrays.asList("with", "a", "in", "without", "and", "white", "symbol", "sign", "for", "of", "black"));
     static final Map<Row.R2<Integer, Integer>,Integer> ANDROID_REMAP = new HashMap<>();
     static final UnicodeMap<String> ANDROID_REMAP_VALUES = new UnicodeMap();
     static final Set<String> ANDROID_IMAGES = new TreeSet<>();
+    private static final Comparator<String> CODEPOINT_LENGTH = new Comparator<String>() {
+        @Override
+        public int compare(String o1, String o2) {
+            return o1.codePointCount(0, o1.length()) - o2.codePointCount(0, o2.length());
+        }
+    };
     static {
         addAndroidRemap("🇨🇳", 0xFE4ED); // cn
         addAndroidRemap("🇩🇪", 0xFE4E8); // de
@@ -114,6 +126,7 @@ public class GenerateEmoji {
 
     static final Comparator CODEPOINT_COMPARE = 
             new MultiComparator<String>(
+                    CODEPOINT_LENGTH,
                     UCA.buildCollator(null), // don't need cldr features
                     new UTF16.StringComparator(true,false,0)); 
     //Collator.getInstance(ULocale.ENGLISH);
@@ -226,6 +239,20 @@ public class GenerateEmoji {
             }
         }
         ANNOTATIONS_TO_CHARS.freeze();
+    }
+
+    public static String getTwitterUrl(String s) {
+        StringBuilder result = new StringBuilder("https://abs.twimg.com/emoji/v1/72x72/");
+        boolean first = true;
+        for (int cp : With.codePointArray(s)) {
+            if (first) {
+                first = false;
+            } else {
+                result.append("-");
+            }
+            result.append(Integer.toHexString(cp));
+        }
+        return  result.append(".png").toString();
     }
 
     static final BiRelation<String,String> NAME_TO_CHARS = new BiRelation<>();
@@ -342,6 +369,7 @@ public class GenerateEmoji {
     }
 
     static class Data implements Comparable<Data>{
+        private static final String MISSING_CELL = "<td class='miss'>missing</td>\n";
         final String chars;
         final String code;
         final UcdPropertyValues.Age_Values age;
@@ -480,17 +508,21 @@ public class GenerateEmoji {
                 header += ": <i>" + subhead + "</i>";
             }
             String android = androidPng(firstCodepoint, secondCodepoint, true);
-            String androidChars = "<i class='smaller'>missing</i>";
+            String androidCell = MISSING_CELL;
             if (android != null && new File(IMAGES_OUTPUT_DIR, android).exists()) {
-                androidChars = "<img class='imga' src='images/" + android + "'>";
                 if (secondCodepoint != 0) {
                     String secondString = androidPng(firstCodepoint, secondCodepoint, false);
                     if (secondString != null) {
-                        androidChars += "<img class='imga' src='images/" + secondString + "'>";
+                        android = secondString;
                     }
                 }
+                androidCell = "<td class='andr'><img alt='" + chars
+                        + "' class='imga' src='images/" + android + "'></td>\n";
             }
-            String browserChars = getEmojiVariant(chars, EMOJI_VARIANT);
+
+            String browserCell = !APPLE_CHARS.contains(chars) ? MISSING_CELL :
+                "<td class='chars'>" + getEmojiVariant(chars, EMOJI_VARIANT) + "</td>\n";
+
             String textChars = getEmojiVariant(chars, TEXT_VARIANT);
             Set<String> annotations = ANNOTATIONS_TO_CHARS.getKeys(chars);
             if (annotations != null) {
@@ -499,14 +531,21 @@ public class GenerateEmoji {
                     annotations.remove(label.toString());
                 }
             }
-
+            String twitterCell = ! TWITTER_CHARS.contains(chars) ? MISSING_CELL
+                    : "<td class='andr'>" +
+                    "<img class='imga' alt='" + chars
+                    + "' src='" +
+                    getTwitterUrl(chars) +
+                    "'>" + "</td>\n";
+            String anchor = getAnchor(code);
             return "<tr>"
+            + "<td class='code'><a href='#" + anchor + "' name='" + anchor + "'>" + code + "</td>\n"
             + "<td class='symb'>" + symbolaChars + "</td>\n"
-            + "<td class='chars'>" + browserChars + "</td>\n"
+            + browserCell
             + (form != Form.fullForm ? "" :
                 //"<td class='segoe'>" + textChars + "</td>\n" +
-                "<td class='andr'>" + androidChars + "</td>\n") // 
-                + "<td class='code'>" + code + "</td>\n"
+                androidCell
+                + twitterCell) // 
                 + (form.compareTo(Form.shortForm) <= 0 ? "" : 
                     "<td class='name'>" + name + "</td>\n")
                     + "<td class='age'>" + getVersion() + "</td>\n"
@@ -519,15 +558,20 @@ public class GenerateEmoji {
                         "<td class='name'>" + header + "</td>")
                         + "</tr>";
         }
+        private String getAnchor(String code2) {
+            return code.replace(" ", "-").replace("+", "").replace("U", "");
+        }
         public static String toHtmlHeaderString(Form form) {
             boolean shortForm = form.compareTo(Form.shortForm) <= 0;
             return "<tr>"
-            + "<th>Symbola*</th>\n"
-            + "<th>Browser</th>\n" +
+            + "<th class='rchars'>Code</th>\n"
+            + "<th class='cchars'>B&W*</th>\n"
+            + "<th class='cchars'>Apple</th>\n" +
             (form != Form.fullForm ? "" : 
                 // "<th>Segoe</th>\n" +
-                    "<th>Android</th>\n")
-                    + "<th>Code</th>\n"
+                "<th class='cchars'>Android</th>\n"
+                +"<th class='cchars'>Twitter</th>\n"
+                    )
                     + (shortForm ? "" : 
                         "<th>Name</th>\n"
                         + "<th>Version</th>\n"
@@ -538,6 +582,17 @@ public class GenerateEmoji {
         }
     }
 
+    public static int getResponseCode(String urlString) {
+        try {
+            URL u = new URL(urlString); 
+            HttpURLConnection huc =  (HttpURLConnection)  u.openConnection(); 
+            huc.setRequestMethod("GET"); 
+            huc.connect(); 
+            return huc.getResponseCode();
+        } catch (Exception e) {
+            return -1;
+        }
+    }
     static final UnicodeSet VERSION70 = VERSION.getSet(UcdPropertyValues.Age_Values.V7_0.toString());
 
     static String getFlagCode(String chars) {
@@ -586,7 +641,8 @@ public class GenerateEmoji {
 
     static String getFlag(String chars) {
         String cc = getFlagCode(chars);
-        return cc == null ? null : "<img class='imgf' src='http://unicode.org/draft/reports/tr51/images/" + cc + ".png'>";
+        return cc == null ? null : "<img alt='" + chars
+                    + "' class='imgf' src='http://unicode.org/draft/reports/tr51/images/" + cc + ".png'>";
     }
 
     public static boolean isRegionalIndicator(int firstCodepoint) {
@@ -656,7 +712,31 @@ public class GenerateEmoji {
         showAnnotations();
         showOtherUnicode();
         test();
+        // check twitter glyphs
+        System.out.println("static final UnicodeSet EMEOJI_CHARS = new UnicodeSet(\n\""
+                + Data.DATA_CHARACTERS.toPattern(false) + "\");");
+
+        if (false) {
+            UnicodeSet twitterChars = new UnicodeSet();
+            int limit = 0;
+            for (String s : Data.DATA_CHARACTERS) {
+                if (getResponseCode(getTwitterUrl(s)) == 200) {
+                    twitterChars.add(s);
+                }
+                if ((limit++ % 50) == 0) {
+                    System.out.println(limit + "\t" + s);
+                }
+            }
+            System.out.println("static final UnicodeSet TWITTER_CHARS = new UnicodeSet(\n\""
+                    + twitterChars.toPattern(false) + "\");");
+        }
     }
+
+    static final UnicodeSet APPLE_CHARS = new UnicodeSet(
+            "[©®‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🅰🅱🅾🅿🆊🆎🆏🆑-🆚🇦-🇿🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌬🌰-🍽🎀-🏎🏔-🏷🐀-📾🔀-🔿🕊🕐-🕹🕻-🖣🖥-🙂🙅-🙏🙬-🙯🚀-🛏🛠-🛬🛰-🛳{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]");
+
+    static final UnicodeSet TWITTER_CHARS = new UnicodeSet(
+            "[©®‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🇦-🇿🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🛅{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]");
 
     private static UnicodeSet getStrings(UnicodeSet us) {
         UnicodeSet result = new UnicodeSet();
