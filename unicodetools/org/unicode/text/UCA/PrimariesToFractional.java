@@ -24,6 +24,13 @@ import com.ibm.icu.text.UnicodeSetIterator;
  */
 public final class PrimariesToFractional {
     /**
+     * We can create larger gaps at the beginning and end of each script.
+     * However, as of CLDR 25, there is no particular need for tailoring
+     * more characters there than "in the middle" of scripts.
+     */
+    private static final boolean EXTRA_SCRIPT_GAP = false;
+
+    /**
      * Scripts that start reordering groups, and normally get two-byte primary weights.
      */
     private static final BitSet MAJOR_SCRIPTS = new BitSet();
@@ -211,10 +218,24 @@ public final class PrimariesToFractional {
          * Increment byte2 a little more at major-script boundaries,
          * for tailoring of at least 4 two-byte primaries or more than 1000 three-byte primaries.
          */
-        private static final int GAP2_FOR_MAJOR_SCRIPT = 4;
+        private static final int GAP2_FOR_MAJOR_SCRIPT = EXTRA_SCRIPT_GAP ? 4 : 1;
 
-        private static final int GAP3 = 7;
-        private static final int GAP3_FOR_MINOR_SCRIPT = 40;
+        /**
+         * Increment byte3 with a tailoring gap.
+         *
+         * <p>When the gap is too large, then we allocate too many primary weights for
+         * a minor script and might overflow the single lead byte of a compressible reordering group.
+         *
+         * <p>When the gap is too small, then only a small number of characters can be tailored
+         * (efficiently or at all) between root collation weights.
+         *
+         * <p>We can sometimes split reordering groups,
+         * which then allows more weights per group lead byte,
+         * but we normally want to start a group with a "major" script and few additional scripts
+         * naturally qualify as "major".
+         */
+        private static final int GAP3 = 6;
+        private static final int GAP3_FOR_MINOR_SCRIPT = EXTRA_SCRIPT_GAP ? 40 : GAP3;
 
         private int minByte2 = MIN2_UNCOMPRESSED;
         private int maxByte2 = MAX2_UNCOMPRESSED;
@@ -237,6 +258,8 @@ public final class PrimariesToFractional {
          * and the first real letter primary.
          */
         private boolean firstPrimaryInScript;
+
+        private int numErrors = 0;
 
         public int getIntValue() {
             return (byte1 << 16) + (byte2 << 8) + byte3;
@@ -428,13 +451,24 @@ public final class PrimariesToFractional {
                 // If there are too many primaries, then we need to
                 // either turn more of them into three-byters
                 // or split their group or make it not compressible.
-                assertTrue(!compressibleLeadByte || byte1 == oByte1);
+                if (compressibleLeadByte && byte1 != oByte1) {
+                    ++numErrors;
+                    System.err.println(String.format(
+                            "error in class PrimaryWeight: overflow of compressible lead byte %02X",
+                            oByte1 & 0xff));
+                }
             }
         }
 
         private void assertTrue(boolean b) {
             if (!b) {
                 throw new IllegalArgumentException();
+            }
+        }
+
+        private void assertNoErrors() {
+            if (numErrors > 0) {
+                throw new IllegalArgumentException(numErrors + " errors");
             }
         }
 
@@ -544,6 +578,7 @@ public final class PrimariesToFractional {
 
             final int reorderCode = props.reorderCodeIfFirst;
             if (reorderCode >= 0) {
+                System.out.println("last weight: " + old);
                 int firstFractional;
                 if (props.startsGroup) {
                     final boolean compress = groupIsCompressible[reorderCode];
@@ -599,7 +634,7 @@ public final class PrimariesToFractional {
             }
 
             if (currentByteLength == 3 &&
-                    (fractionalPrimary.firstPrimaryInScript ||
+                    ((fractionalPrimary.firstPrimaryInScript && EXTRA_SCRIPT_GAP) ||
                             fractionalPrimary.lastByteLength <= 2)) {
                 // We slightly optimize the assignment of primary weights:
                 // If a 3-byte primary is surrounded by one-or-two-byte primaries,
@@ -624,7 +659,7 @@ public final class PrimariesToFractional {
                 final PrimaryToFractional nextProps = getProps(nextPrimary);
                 if (0 <= nextPrimary && nextPrimary < UCA_Types.UNSUPPORTED_BASE &&
                         nextProps != null &&
-                        (nextProps.reorderCodeIfFirst >= 0 ||
+                        ((nextProps.reorderCodeIfFirst >= 0 && EXTRA_SCRIPT_GAP) ||
                         nextProps.getFractionalLength() <= 2)) {
                     currentByteLength = 2;
                 }
@@ -643,6 +678,7 @@ public final class PrimariesToFractional {
                                 uca.getRepresentativePrimary(primary),0)));
             }
         }
+        System.out.println("last weight: " + fractionalPrimary.toString());
 
         // Create an entry for the first primary in the Hani script.
         final int firstFractional = fractionalPrimary.startNewGroup(false);
@@ -685,6 +721,7 @@ public final class PrimariesToFractional {
         appendTopByteInfo(topByteInfo, false, previousGroupLeadByte, leadByte, "TRAILING", 0);
 
         appendTopByteInfo(topByteInfo, false, leadByte, 0x100, "SPECIAL", 0);
+        fractionalPrimary.assertNoErrors();
         return this;
     }
 
@@ -693,11 +730,15 @@ public final class PrimariesToFractional {
         final boolean canCompress = (limit - b) == 1;
         if (compress) {
             if (!canCompress) {
-                throw new IllegalArgumentException(
+                // Was throw new IllegalArgumentException(...)
+                // but PrimaryWeight also records an error and will throw an exception at the end,
+                // after printing error messages.
+                System.err.println(
                         "reordering group {" + groupInfo +
                         "} marked for compression but uses more than one lead byte " +
                         Utility.hex(b, 2) + ".." +
                         Utility.hex(limit - 1, 2));
+                compress = false;
             }
         } else if (canCompress) {
             System.out.println(
