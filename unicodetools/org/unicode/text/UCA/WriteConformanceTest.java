@@ -18,7 +18,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class WriteConformanceTest {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final boolean DEBUG_SHOW_ITERATION = true;
     private static int addCounter = 0;
 
