@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -52,14 +53,24 @@ import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.LocaleDisplayNames;
+import com.ibm.icu.text.LocaleDisplayNames.DialectHandling;
+import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateEmoji {
-    private static final int LAST_REGIONAL = 0x1F1FF;
-    private static final int FIRST_REGIONAL = 0x1F1E6;
+    private static final char ENCLOSING_KEYCAP = '\u20E3';
+    private static final UnicodeSet ASCII_LETTER_HYPHEN = new UnicodeSet('-', '-', 'A', 'Z', 'a', 'z').freeze();
+    private static final UnicodeSet EXTRAS = new UnicodeSet(
+            "[\\u2714\\u2716\\u303D\\u3030 \\u00A9 \\u00AE \\u2795-\\u2797 \\u27B0 \\U0001F519-\\U0001F51C {🇽🇰}]")
+    .add("*"+ENCLOSING_KEYCAP)
+    .freeze();
+    static final UnicodeSet EXCLUDE = new UnicodeSet(
+            "[🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭🗴🗵🗶🗷🗸🗹★☆⛫⛩\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549]").freeze();
+
     private static final String OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/";
     private static final String IMAGES_OUTPUT_DIR = OUTPUT_DIR + "images/";
     static final Pattern tab = Pattern.compile("\t");
@@ -69,8 +80,7 @@ public class GenerateEmoji {
     static final char TEXT_VARIANT = '\uFE0F';
     static final String REPLACEMENT_CHARACTER = "\uFFFD";
     static final String TEXT_VARIANT_STRING = String.valueOf(TEXT_VARIANT);
-    static final UnicodeSet EXCLUDE = new UnicodeSet(
-            "[🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭🗴🗵🗶🗷🗸🗹★☆⛫⛩\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549]");
+
     static final Set<String> SKIP_WORDS = new HashSet(Arrays.asList("with", "a", "in", "without", "and", "white", "symbol", "sign", "for", "of", "black"));
     static final Map<Row.R2<Integer, Integer>,Integer> ANDROID_REMAP = new HashMap<>();
     static final UnicodeMap<String> ANDROID_REMAP_VALUES = new UnicodeMap();
@@ -94,7 +104,7 @@ public class GenerateEmoji {
         addAndroidRemap("🇺🇸", 0xFE4E6); // us
         addAndroidRemap("#⃣", 0xFE82C);
         for (int i = 1; i <= 9; ++i) {
-            addAndroidRemap((char)('0' + i) + "\u20E3", 0xFE82D + i); // 1 => U+FE82E
+            addAndroidRemap((char)('0' + i) + "" + ENCLOSING_KEYCAP, 0xFE82D + i); // 1 => U+FE82E
         }
         addAndroidRemap("0⃣", 0xFE837);
     }
@@ -105,7 +115,7 @@ public class GenerateEmoji {
     }
 
     public static String androidPng(int firstCodepoint, int secondCodepoint, boolean first) {
-        if (secondCodepoint == 0x20e3) {
+        if (secondCodepoint == ENCLOSING_KEYCAP) {
             int debug = 0;
         }
         if (secondCodepoint != 0) {
@@ -119,12 +129,17 @@ public class GenerateEmoji {
                 return null;
             }
         }
-        String filename = "emoji_u" + Utility.hex(first ? firstCodepoint : secondCodepoint).toLowerCase() + ".png";
+        String filename = "android/emoji_u" + Utility.hex(first ? firstCodepoint : secondCodepoint).toLowerCase(Locale.ENGLISH) + ".png";
         ANDROID_IMAGES.add(filename);
         return filename;
     }
 
     static final Comparator CODEPOINT_COMPARE = 
+            new MultiComparator<String>(
+                    UCA.buildCollator(null), // don't need cldr features
+                    new UTF16.StringComparator(true,false,0));
+
+    static final Comparator CODEPOINT_COMPARE_SHORTER = 
             new MultiComparator<String>(
                     CODEPOINT_LENGTH,
                     UCA.buildCollator(null), // don't need cldr features
@@ -173,9 +188,13 @@ public class GenerateEmoji {
             "Miscellaneous Symbols And Pictographs",
             "Miscellaneous Symbols And Arrows"));
 
-    public static String getEmojiVariant(String browserChars, char variant) {
-        if (STANDARDIZED_VARIANT.get(browserChars + variant) != null) {
-            browserChars = browserChars + EMOJI_VARIANT;
+    public static String getEmojiVariant(String browserChars, String variant) {
+        int first = browserChars.codePointAt(0);
+        String probe = new StringBuilder()
+        .appendCodePoint(first)
+        .append(variant).toString();
+        if (STANDARDIZED_VARIANT.get(probe) != null) {
+            browserChars = probe + browserChars.substring(Character.charCount(first));
         }
         return browserChars;
     }
@@ -240,20 +259,14 @@ public class GenerateEmoji {
         }
         ANNOTATIONS_TO_CHARS.freeze();
     }
-
-    public static String getTwitterUrl(String s) {
-        StringBuilder result = new StringBuilder("https://abs.twimg.com/emoji/v1/72x72/");
-        boolean first = true;
-        for (int cp : With.codePointArray(s)) {
-            if (first) {
-                first = false;
-            } else {
-                result.append("-");
-            }
-            result.append(Integer.toHexString(cp));
+    static final Transform<String,String> WINDOWS_URL = new Transform<String,String>() {
+        public String transform(String s) {
+            String base = "images/windows/windows_";
+            String separator = "_";
+            return base + Emoji.buildFileName(s, separator) + ".png";
         }
-        return  result.append(".png").toString();
-    }
+
+    };
 
     static final BiRelation<String,String> NAME_TO_CHARS = new BiRelation<>();
     static {
@@ -289,6 +302,9 @@ public class GenerateEmoji {
                 if (first == '*') {
                     sublabel = line.substring(1).trim();
                 } else if ('a' <= first && first <= 'z') {
+                    if (!ASCII_LETTER_HYPHEN.containsAll(line)) {
+                        throw new IllegalArgumentException();
+                    }
                     lastLabel = Label.get(line);
                     sublabel = null;
                 } else {
@@ -316,12 +332,19 @@ public class GenerateEmoji {
                 }
                 NAME_TO_CHARS.removeKey(label.toString());
             }
-
+            for (String isoCountries : ULocale.getISOCountries()) {
+                if (!ASCII_LETTER_HYPHEN.containsAll(isoCountries)) {
+                    continue;
+                }
+                String cc = Emoji.getHexFromFlagCode(isoCountries);
+                CHARS_TO_LABELS.put(cc, Label.flag);
+            }
             // remove misc
             for (Entry<String, Set<Label>> entry : CHARS_TO_LABELS.keyValuesSet()) {
+                String chars = entry.getKey();
                 Set<Label> set = entry.getValue();
                 if (set.contains(Label.sign) && set.size() > 1) {
-                    CHARS_TO_LABELS.remove(entry.getKey(), Label.sign);
+                    CHARS_TO_LABELS.remove(chars, Label.sign);
                 }
             }
             CHARS_TO_LABELS.freeze();
@@ -330,6 +353,7 @@ public class GenerateEmoji {
                 System.out.println(i++ + "\t" + entry.getKey() + "\t" + entry.getValue());
             }
         }
+
 
     }
 
@@ -351,8 +375,8 @@ public class GenerateEmoji {
         }
         int secondCodepoint = line.codePointAt(i+firstLen);
         int secondLen = Character.charCount(secondCodepoint);
-        if (secondCodepoint == 0x20E3 // special case
-                || (isRegionalIndicator(firstCodepoint) && isRegionalIndicator(secondCodepoint))) {
+        if (secondCodepoint == ENCLOSING_KEYCAP
+                || (Emoji.isRegionalIndicator(firstCodepoint) && Emoji.isRegionalIndicator(secondCodepoint))) {
             return line.substring(i, i+firstLen+secondLen);
         }
         return line.substring(i, i+firstLen);
@@ -360,7 +384,7 @@ public class GenerateEmoji {
 
 
     public static void addWords(String chars, String name) {
-        String nameString = name.replaceAll("[^A-Za-z]+", " ").toLowerCase();
+        String nameString = name.replaceAll("[^A-Za-z]+", " ").toLowerCase(Locale.ENGLISH);
         for (String word : nameString.split(" ")) {
             if (!SKIP_WORDS.contains(word) && word.length() > 1 && getFlagCode(chars) == null) {
                 NAME_TO_CHARS.add(word, chars);
@@ -370,6 +394,7 @@ public class GenerateEmoji {
 
     static class Data implements Comparable<Data>{
         private static final String MISSING_CELL = "<td class='miss'>missing</td>\n";
+        private static final String MISSING7_CELL = "<td class='miss7'>new 7.0</td>\n";
         final String chars;
         final String code;
         final UcdPropertyValues.Age_Values age;
@@ -397,7 +422,7 @@ public class GenerateEmoji {
             //            if (diff != 0) {
             //                return diff;
             //            }
-            return CODEPOINT_COMPARE.compare(chars, o.chars);
+            return CODEPOINT_COMPARE_SHORTER.compare(chars, o.chars);
         }
 
         public Data(String chars, String code, String age,
@@ -410,7 +435,7 @@ public class GenerateEmoji {
             this.age = UcdPropertyValues.Age_Values.valueOf(age.replace('.', '_'));
             this.defaultPresentation = defaultPresentation;
             this.labels = storeLabels();
-            this.name = name;
+            this.name = getName(chars);
             addWords(chars, name);
             DATA_CHARACTERS.add(chars);
             for (Label label : labels) {
@@ -491,39 +516,52 @@ public class GenerateEmoji {
             return age.toString().replace('_', '.') + (JSOURCES.contains(chars) ? "*" : "");
         }
 
-        public String toHtmlString(Form form) {
-            String symbolaChars = getFlag(chars);
-            if (symbolaChars == null) {
-                symbolaChars = chars;
-            }
-            int firstCodepoint = chars.codePointAt(0);
-            int firstLen = Character.charCount(firstCodepoint);
-            int secondCodepoint = firstLen >= chars.length() ? 0 : chars.codePointAt(firstLen);
+        public String toHtmlString(Form form, int item) {
+            String missingCell = VERSION70.containsSome(chars) ? MISSING7_CELL : MISSING_CELL;
+            String core = Emoji.buildFileName(chars,"_");
 
-            String header = Default.ucd().getBlock(firstCodepoint).replace('_', ' ');
-            String subhead = subheader.getSubheader(firstCodepoint);
-            if (SKIP_BLOCKS.contains(header)) {
-                header = "<i>" + subhead + "</i>";
-            } else if (!header.equalsIgnoreCase(subhead)) {
-                header += ": <i>" + subhead + "</i>";
-            }
-            String android = androidPng(firstCodepoint, secondCodepoint, true);
-            String androidCell = MISSING_CELL;
-            if (android != null && new File(IMAGES_OUTPUT_DIR, android).exists()) {
-                if (secondCodepoint != 0) {
-                    String secondString = androidPng(firstCodepoint, secondCodepoint, false);
-                    if (secondString != null) {
-                        android = secondString;
-                    }
-                }
-                androidCell = "<td class='andr'><img alt='" + chars
-                        + "' class='imga' src='images/" + android + "'></td>\n";
-            }
+            String symbolaCell = getCell("ref", core, missingCell);
+            //                    String symbolaCell = Emoji.isRegionalIndicator(chars.codePointAt(0))
+            //                            ? getCell("ref", core, missingCell)
+            //                            : "<td class='symb'>" + chars + "</td>\n";
+            //                    getFlag(chars)
+            //            if (symbolaChars == null) {
+            //                symbolaChars = chars;
+            //            }
+            //            int firstCodepoint = chars.codePointAt(0);
+            //            int firstLen = Character.charCount(firstCodepoint);
+            //            int secondCodepoint = firstLen >= chars.length() ? 0 : chars.codePointAt(firstLen);
 
-            String browserCell = !APPLE_CHARS.contains(chars) ? MISSING_CELL :
-                "<td class='chars'>" + getEmojiVariant(chars, EMOJI_VARIANT) + "</td>\n";
+            //            String header = Default.ucd().getBlock(firstCodepoint).replace('_', ' ');
+            //            String subhead = subheader.getSubheader(firstCodepoint);
+            //            if (SKIP_BLOCKS.contains(header)) {
+            //                header = "<i>" + subhead + "</i>";
+            //            } else if (!header.equalsIgnoreCase(subhead)) {
+            //                header += ": <i>" + subhead + "</i>";
+            //            }
 
-            String textChars = getEmojiVariant(chars, TEXT_VARIANT);
+            String androidCell = getCell("android", core, missingCell);
+            String appleCell = getCell("apple", core, missingCell);
+            String windowsCell = getCell("windows", core, missingCell);
+            String twitterCell = getCell("twitter", core, missingCell);
+
+            //            String android = androidPng(firstCodepoint, secondCodepoint, true);
+            //            String androidCell = missingCell;
+            //            if (android != null && new File(IMAGES_OUTPUT_DIR, android).exists()) {
+            //                if (secondCodepoint != 0) {
+            //                    String secondString = androidPng(firstCodepoint, secondCodepoint, false);
+            //                    if (secondString != null) {
+            //                        android = secondString;
+            //                    }
+            //                }
+            //                androidCell = "<td class='andr'><img alt='" + chars
+            //                        + "' class='imga' src='images/" + android + "'></td>\n";
+            //            }
+
+
+            String browserCell =  "<td class='chars'>" + getEmojiVariant(chars, EMOJI_VARIANT_STRING) + "</td>\n";
+
+            String textChars = getEmojiVariant(chars, TEXT_VARIANT_STRING);
             Set<String> annotations = ANNOTATIONS_TO_CHARS.getKeys(chars);
             if (annotations != null) {
                 annotations = new LinkedHashSet(annotations);
@@ -531,54 +569,85 @@ public class GenerateEmoji {
                     annotations.remove(label.toString());
                 }
             }
-            String twitterCell = ! TWITTER_CHARS.contains(chars) ? MISSING_CELL
-                    : "<td class='andr'>" +
-                    "<img class='imga' alt='" + chars
-                    + "' src='" +
-                    getTwitterUrl(chars) +
-                    "'>" + "</td>\n";
+            //            String twitterCell = ! TWITTER_CHARS.contains(chars) ? missingCell
+            //                    : "<td class='andr'>" +
+            //                    "<img class='imga' alt='" + chars
+            //                    + "' src='" +
+            //                    TWITTER_URL.transform(chars) +
+            //                    "'>" + "</td>\n";
+            //            String appleCell = !GITHUB_APPLE_CHARS.contains(chars) && !APPLE_LOCAL.contains(chars)
+            //                    ? missingCell
+            //                            : "<td class='andr'>" +
+            //                            "<img class='imga' alt='" + chars
+            //                            + "' src='" +
+            //                            APPLE_URL.transform(chars) +
+            //                            "'>" + "</td>\n";
+            //            String windowsCell = !WINDOWS_CHARS.contains(chars) ? missingCell : "<td class='andr'>" +
+            //                    "<img class='imga' alt='" + chars
+            //                    + "' src='" +
+            //                    WINDOWS_URL.transform(chars) +
+            //                    "'>" + "</td>\n";
             String anchor = getAnchor(code);
             return "<tr>"
-            + "<td class='code'><a href='#" + anchor + "' name='" + anchor + "'>" + code + "</td>\n"
-            + "<td class='symb'>" + symbolaChars + "</td>\n"
-            + browserCell
-            + (form != Form.fullForm ? "" :
-                //"<td class='segoe'>" + textChars + "</td>\n" +
-                androidCell
-                + twitterCell) // 
-                + (form.compareTo(Form.shortForm) <= 0 ? "" : 
-                    "<td class='name'>" + name + "</td>\n")
-                    + "<td class='age'>" + getVersion() + "</td>\n"
-                    + "<td class='default'>" + defaultPresentation + (!textChars.equals(chars) ? "*" : "") + "</td>\n"
+            + "<td class='rchars'>" + item + "</td>\n"
+            + "<td class='code'>" + getDoubleLink(anchor, code) + "</td>\n"
+            + (form != Form.fullForm ? 
+                    browserCell :
+                        symbolaCell
+                        + appleCell
+                        + androidCell
+                        + twitterCell
+                        + windowsCell
+                    )
+                    //+ browserCell
                     + (form.compareTo(Form.shortForm) <= 0 ? "" : 
-                        "<td class='name'>" 
-                        + CollectionUtilities.join(labels, ", ")
-                        + (annotations == null ? "" : ";<br>" + CollectionUtilities.join(annotations, ", "))
-                        + "</td>\n" +
-                        "<td class='name'>" + header + "</td>")
-                        + "</tr>";
+                        "<td class='name'>" + name + "</td>\n")
+                        + "<td class='age'>" + getVersion() + "</td>\n"
+                        + "<td class='default'>" + defaultPresentation + (!textChars.equals(chars) ? "*" : "") + "</td>\n"
+                        + (form.compareTo(Form.shortForm) <= 0 ? "" : 
+                            "<td class='name'>" 
+                            + CollectionUtilities.join(labels, ", ")
+                            + (annotations == null ? "" : ";<br>" + CollectionUtilities.join(annotations, ", "))
+                            + "</td>\n"
+                            //                          +  "<td class='name'>" + header + "</td>"
+                                )
+                                + "</tr>";
         }
+
+        public String getCell(String type, String core, String missingCell) {
+            String filename = type + "/" + type + "_" + core + ".png";
+            String androidCell = missingCell;
+            if (filename != null && new File(IMAGES_OUTPUT_DIR, filename).exists()) {
+                androidCell = "<td class='andr'><img alt='" + chars + "' class='imga' src='images/" + filename + "'></td>\n";
+            }
+            return androidCell;
+        }
+
         private String getAnchor(String code2) {
             return code.replace(" ", "-").replace("+", "").replace("U", "");
         }
         public static String toHtmlHeaderString(Form form) {
             boolean shortForm = form.compareTo(Form.shortForm) <= 0;
             return "<tr>"
+            + "<th>Count</th>\n"
             + "<th class='rchars'>Code</th>\n"
-            + "<th class='cchars'>B&W*</th>\n"
-            + "<th class='cchars'>Apple</th>\n" +
-            (form != Form.fullForm ? "" : 
-                // "<th>Segoe</th>\n" +
-                "<th class='cchars'>Android</th>\n"
-                +"<th class='cchars'>Twitter</th>\n"
+            + (form != Form.fullForm 
+            ? "<th class='cchars'>Browser</th>\n" : 
+                "<th class='cchars'>B&amp;W*</th>\n"
+                + "<th class='cchars'>Apple*</th>\n"
+                + "<th class='cchars'>Android</th>\n"
+                + "<th class='cchars'>Twitter</th>\n"
+                + "<th class='cchars'>Windows</th>\n"
                     )
+                    //+ "<th class='cchars'>Browser</th>\n"
                     + (shortForm ? "" : 
                         "<th>Name</th>\n"
                         + "<th>Version</th>\n"
                         + "<th>Default</th>\n"
-                        + "<th>Labels*</th>\n"
-                        + "<th>Block: <i>Subhead</i></th>\n")
-                        + "</tr>";
+                        + "<th>Labels; Annotations</th>\n"
+                        //                        + "<th>Block: <i>Subhead</i></th>\n"
+                            )
+                            + "</tr>";
         }
     }
 
@@ -597,18 +666,18 @@ public class GenerateEmoji {
 
     static String getFlagCode(String chars) {
         int firstCodepoint = chars.codePointAt(0);
-        if (!isRegionalIndicator(firstCodepoint)) {
+        if (!Emoji.isRegionalIndicator(firstCodepoint)) {
             return null;
         }
         int firstLen = Character.charCount(firstCodepoint);
         int secondCodepoint = firstLen >= chars.length() ? 0 : chars.codePointAt(firstLen);
-        if (!isRegionalIndicator(secondCodepoint)) {
+        if (!Emoji.isRegionalIndicator(secondCodepoint)) {
             return null;
         }
         secondCodepoint = chars.codePointAt(2);
-        String cc = (char)(firstCodepoint - FIRST_REGIONAL + 'A') 
+        String cc = (char)(firstCodepoint - Emoji.FIRST_REGIONAL + 'A') 
                 + ""
-                + (char)(secondCodepoint - FIRST_REGIONAL + 'A');
+                + (char)(secondCodepoint - Emoji.FIRST_REGIONAL + 'A');
         String remapped = REMAP_FLAGS.get(cc);
         if (remapped != null) {
             cc = remapped;
@@ -642,11 +711,7 @@ public class GenerateEmoji {
     static String getFlag(String chars) {
         String cc = getFlagCode(chars);
         return cc == null ? null : "<img alt='" + chars
-                    + "' class='imgf' src='http://unicode.org/draft/reports/tr51/images/" + cc + ".png'>";
-    }
-
-    public static boolean isRegionalIndicator(int firstCodepoint) {
-        return FIRST_REGIONAL <= firstCodepoint && firstCodepoint <= LAST_REGIONAL;
+                + "' class='imgf' src='http://unicode.org/draft/reports/tr51/images/" + cc + ".png'>";
     }
 
     public static void main(String[] args) throws IOException {
@@ -661,12 +726,14 @@ public class GenerateEmoji {
                 addNewItem(s, Data.STRING_TO_DATA);
             }
         }
-        for (String s : new UnicodeSet("[\\u2714\\u2716\\u303D\\u3030 \\u00A9 \\u00AE \\u2795-\\u2797 \\u27B0 \\U0001F519-\\U0001F51C {🇽🇰}]")) {
+        for (String s : EXTRAS) {
             if (!Data.STRING_TO_DATA.containsKey(s)) {
                 addNewItem(s, Data.STRING_TO_DATA);
                 System.out.println(s);
             }
         }
+        LinkedHashMap missingMap = new LinkedHashMap();
+        //addFileCodepoints(new File(IMAGES_OUTPUT_DIR), missingMap);
 
         // show data
         UnicodeSet newItems = new UnicodeSet();
@@ -689,47 +756,97 @@ public class GenerateEmoji {
         print(Form.regularForm, Data.STRING_TO_DATA);
         print(Form.fullForm, Data.STRING_TO_DATA);
 
-        LinkedHashMap missingMap = new LinkedHashMap();
 
-        for (String s : new File(IMAGES_OUTPUT_DIR).list()) {
-            if (ANDROID_IMAGES.contains(s) || s.startsWith(".") || s.length() == 6) {
-                continue;
-            }
-            // emoji_u1f5c3.png
-            if (!s.startsWith("emoji_u") || !s.endsWith(".png")) {
-                throw new IllegalArgumentException(s);
-            }
-            String code1 = s.substring(7,s.length()-4);
-            int codepoint = Integer.parseInt(code1,16);
-            if (codepoint == 0x20e3 || codepoint >= 0xF0000) {
-                continue;
-            }
-            addNewItem(new Data(codepoint), missingMap);
-        }
         print(Form.missingForm, missingMap);
 
         showLabels();
+        showSubhead();
         showAnnotations();
         showOtherUnicode();
         test();
         // check twitter glyphs
-        System.out.println("static final UnicodeSet EMEOJI_CHARS = new UnicodeSet(\n\""
-                + Data.DATA_CHARACTERS.toPattern(false) + "\");");
 
-        if (false) {
-            UnicodeSet twitterChars = new UnicodeSet();
-            int limit = 0;
-            for (String s : Data.DATA_CHARACTERS) {
-                if (getResponseCode(getTwitterUrl(s)) == 200) {
-                    twitterChars.add(s);
-                }
-                if ((limit++ % 50) == 0) {
-                    System.out.println(limit + "\t" + s);
+        if (true) {
+            System.out.println("static final UnicodeSet EMOJI_CHARS = new UnicodeSet(\n\"" + Data.DATA_CHARACTERS.toPattern(false) + "\");");
+            // getUrlCharacters("TWITTER", TWITTER_URL);
+            //getUrlCharacters("APPLE", APPLE_URL);
+        }
+        System.out.println(new UnicodeSet(Emoji.GITHUB_APPLE_CHARS).removeAll(APPLE_CHARS).toPattern(false));
+        System.out.println(list(new UnicodeSet(APPLE_CHARS).removeAll(Emoji.GITHUB_APPLE_CHARS)));
+    }
+
+    public static void addFileCodepoints(File imagesOutputDir, LinkedHashMap missingMap) {
+        for (File file : imagesOutputDir.listFiles()) {
+            if (file.isDirectory()) {
+                addFileCodepoints(file, missingMap);
+                continue;
+            }
+            String s = file.getName();
+            String original = s;
+            if (s.length() == 6 || ANDROID_IMAGES.contains(s) || s.startsWith(".") || !s.endsWith(".png")) {
+                continue;
+            }
+            s = s.substring(0,s.length()-4);
+            String chars = null;
+            chars = extractCodes(s, "windows_", WINDOWS_CHARS);
+            if (chars == null) {
+                chars = extractCodes(s, "apple-", null);
+                if (chars == null) {
+                    chars = extractCodes(s, "emoji_u", null);
                 }
             }
-            System.out.println("static final UnicodeSet TWITTER_CHARS = new UnicodeSet(\n\""
-                    + twitterChars.toPattern(false) + "\");");
+            // "" means skip, null is failure
+            if (chars == null) {
+                throw new IllegalArgumentException(original + ":" + s);
+            } else if (!chars.isEmpty()) {
+                addNewItem(chars, missingMap);
+            }
         }
+    }
+
+    static final UnicodeSet WINDOWS_CHARS = new UnicodeSet();
+
+    private static String extractCodes(String s, String prefix, UnicodeSet chars) {
+        if (!s.startsWith(prefix)) {
+            return null;
+        }
+        String[] parts = s.substring(prefix.length()).split("[-_]");
+        StringBuilder result = new StringBuilder();
+        for (String part : parts) {
+            int codePoint = Integer.parseInt(part,16);
+            if (codePoint >= 0xF0000) {
+                return "";
+            }
+            result.appendCodePoint(codePoint);
+        }
+        String stringResult = result.toString();
+        if (chars != null) {
+            chars.add(stringResult);
+        }
+        return stringResult;
+    }
+
+    private static String list(UnicodeSet uset) {
+        return CollectionUtilities.join(With.in(uset).toList(), " ");
+    }
+
+    public static void getUrlCharacters(String title, Transform<String, String> transform) {
+        //http://emojistatic.github.io/images/32/1f4ab.png
+        UnicodeSet twitterChars = new UnicodeSet();
+        int limit = 0;
+        for (String s : Data.DATA_CHARACTERS) {
+            String twitterUrl = transform.transform(s);
+            if (getResponseCode(twitterUrl) == 200) {
+                twitterChars.add(s);
+            }
+            if ((limit++ % 50) == 0) {
+                System.out.println(limit + "\t" + s);
+            }
+        }
+        System.out.println("static final UnicodeSet " +
+                title +
+                "_CHARS = new UnicodeSet(\n\""
+                + twitterChars.toPattern(false) + "\");");
     }
 
     static final UnicodeSet APPLE_CHARS = new UnicodeSet(
@@ -750,14 +867,14 @@ public class GenerateEmoji {
 
     private static void showLabels() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-labels.html");
-        writeHeader(out, "Draft Emoji Labels");
+        writeHeader(out, "Emoji Labels", "Main categories for character picking.");
         for (Label l : Label.values()) {
             Set<Data> set = Data.LABELS_TO_DATA.get(l);
             if (set == null) {
                 System.out.println("No chars for: " + l);
                 continue;
             }
-            out.println("<tr><td>" + l + "</td></tr>\n" +
+            out.println("<tr><td>" + getDoubleLink(l.toString(), l.toString()) + "</td></tr>\n" +
                     "<tr><td class='lchars'>");
             boolean first = true;
             for (Data data : set) {
@@ -767,8 +884,8 @@ public class GenerateEmoji {
                     out.print("\n");
                 }
                 String flag = getFlag(data.chars);
-                out.print("<span title='U+" + Utility.hex(data.chars, " U+") + " " + data.name.toLowerCase() + "'>" 
-                        + (flag == null ? getEmojiVariant(data.chars, EMOJI_VARIANT) : flag)
+                out.print("<span title='U+" + Utility.hex(data.chars, " U+") + " " + data.name.toLowerCase(Locale.ENGLISH) + "'>" 
+                        + (flag == null ? getEmojiVariant(data.chars, EMOJI_VARIANT_STRING) : flag)
                         + "</span>");
             }
             out.println("</td></tr>");
@@ -777,9 +894,38 @@ public class GenerateEmoji {
         out.close();
     }
 
+    private static void showSubhead() throws IOException {
+        Map<String, UnicodeSet> subheadToChars = new TreeMap();
+        for (String s : Data.DATA_CHARACTERS) {
+            int firstCodepoint = s.codePointAt(0);
+            String header = Default.ucd().getBlock(firstCodepoint).replace('_', ' ');
+            String subhead = subheader.getSubheader(firstCodepoint);
+            header = header.contains(subhead) ? header : header + ": " + subhead;
+            UnicodeSet uset = subheadToChars.get(header);
+            if (uset == null) {
+                subheadToChars.put(header, uset = new UnicodeSet());
+            }
+            uset.add(s);
+        }
+        PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-subhead.html");
+        writeHeader(out, "Emoji Subhead", "Unicode Subhead mapping.");
+        for (Entry<String, UnicodeSet> entry : subheadToChars.entrySet()) {
+            String label = entry.getKey();
+            UnicodeSet uset = entry.getValue();
+            if (label.equalsIgnoreCase("exclude")) {
+                continue;
+            }
+            displayUnicodeset(out, label, null, uset, true);
+        }
+        writeFooter(out);
+        out.close();
+    }
+
+
     private static void showAnnotations() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-annotations.html");
-        writeHeader(out, "Draft Emoji Annotations");
+        writeHeader(out, "Emoji Annotations", "Finer-grained character annotations. " +
+                "For brevity, flags are not shown: they would have names of the associated countries.");
 
         Set<String> skip = new HashSet<>();
         for (Entry<String, Set<String>> entry : ANNOTATIONS_TO_CHARS.keyValuesSet()) {
@@ -855,7 +1001,7 @@ public class GenerateEmoji {
         }
 
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "other-labels.html");
-        writeHeader(out, "Other Labels");
+        writeHeader(out, "Other Labels", "...");
 
         for (Entry<String, UnicodeSet> entry : labelToUnicodeSet.entrySet()) {
             String label = entry.getKey();
@@ -878,6 +1024,9 @@ public class GenerateEmoji {
             }
             char first = line.charAt(0);
             if ('a' <= first && first <= 'z' || 'A' <= first && first <= 'Z') {
+                if (!ASCII_LETTER_HYPHEN.containsAll(line)) {
+                    throw new IllegalArgumentException();
+                }
                 lastLabel = line;
             } else {
                 UnicodeSet set = new UnicodeSet("[" + line
@@ -904,13 +1053,13 @@ public class GenerateEmoji {
 
     public static void displayUnicodeset(PrintWriter out, String label,
             String sublabel, UnicodeSet uset, boolean showEmoji) {
-        out.println("<tr><td>" + label + "</td>");
+        out.println("<tr><td>" + getDoubleLink(label, label) + "</td>");
         if (sublabel != null) {
             out.println("<tr><td>" + sublabel + "</td>");
         }
         out.println("<td class='lchars'>");
         System.out.println(label + "\t" + uset.size());
-        Set<String> sorted = uset.addAllTo(new TreeSet(CODEPOINT_COMPARE));
+        Set<String> sorted = uset.addAllTo(new TreeSet(CODEPOINT_COMPARE_SHORTER));
         boolean first = true;
         for (String s : sorted) {
             if (first) {
@@ -922,7 +1071,7 @@ public class GenerateEmoji {
             if (showEmoji) {
                 chars = getFlag(s);
                 if (chars == null) {
-                    chars = getEmojiVariant(s, EMOJI_VARIANT);
+                    chars = getEmojiVariant(s, EMOJI_VARIANT_STRING);
                 }
             }
             out.print("<span title='U+" + Utility.hex(s, " U+") + " " + getName(s) + "'>" 
@@ -931,14 +1080,29 @@ public class GenerateEmoji {
         }
         out.println("</td></tr>");
     }
+
+    static final LocaleDisplayNames LOCALE_DISPLAY = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
+
     public static String getName(String s) {
-        String name = NAME.get(s.codePointAt(0));
-        return name.toLowerCase();
+        if (s.indexOf(ENCLOSING_KEYCAP) >= 0) {
+            return "keycap " + NAME.get(s.codePointAt(0)).toLowerCase(Locale.ENGLISH);
+        }
+        String flag = getFlagCode(s);
+        if (flag != null) {
+            String result = LOCALE_DISPLAY.regionDisplayName(flag);
+            if (result.endsWith(" SAR China")) {
+                result = result.substring(0, result.length() - " SAR China".length());
+            }
+            return "flag for " + result;
+        }
+        return NAME.get(s.codePointAt(0)).toLowerCase(Locale.ENGLISH);
     }
 
 
     public static void addNewItem(String s, Map<String, Data> missingMap) {
-        addNewItem(new Data(s), missingMap);
+        if (!Data.DATA_CHARACTERS.contains(s)) {
+            addNewItem(new Data(s), missingMap);
+        }
     }
 
     public static void addNewItem(Data item, Map<String, Data> missingMap) {
@@ -962,7 +1126,7 @@ public class GenerateEmoji {
         final String title;
         Form(String prefix) {
             filePrefix = prefix.isEmpty() ? "" : prefix + "-";
-            title = "Draft Emoji Data"
+            title = "Emoji Data"
                     + (prefix.isEmpty() ? "" : " (" + UCharacter.toTitleCase(prefix, null) + ")");
         }
     }
@@ -970,10 +1134,11 @@ public class GenerateEmoji {
     public static <T> void print(Form form, Map<String, Data> set) throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, 
                 form.filePrefix + "emoji-list.html");
-        writeHeader(out, form.title);
+        writeHeader(out, form.title, "List of emoji characters.");
         out.println(Data.toHtmlHeaderString(form));
+        int item = 0;
         for (Data data : new TreeSet<Data>(set.values())) {
-            out.println(data.toHtmlString(form));
+            out.println(data.toHtmlString(form, ++item));
         }
         writeFooter(out);
         out.close();
@@ -983,20 +1148,29 @@ public class GenerateEmoji {
         out.println("</table></body></html>");
     }
 
-    public static void writeHeader(PrintWriter out, String title) {
-        out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>\n" +
+    public static void writeHeader(PrintWriter out, String title, String firstLine) {
+        out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n" +
+        		"<html>\n" +
+        		"<head>\n" +
+        		"<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n" +
                 "<link rel='stylesheet' type='text/css' href='emoji-list.css'>\n" +
-                "<title>" +
+                "<title>Draft " +
                 title +
                 "</title>\n" +
-                "</head><body><table>");
+                "</head>\n" +
+                "<body>" + "<h1>Draft " +
+                title +
+                "</h1>\n"
+                + "<p>" + firstLine +
+                " For more information, see <a href='http://unicode.org/draft/reports/tr51/tr51.html'>Unicode Emoji</a></p>\n"
+                + "<table>");
     }
 
     static boolean CHECKFACE = false;
 
     static void test() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-diff.html");
-        writeHeader(out, "Diff List");
+        writeHeader(out, "Diff List", "Differences from other categories.");
 
         UnicodeSet AnimalPlantFood = new UnicodeSet("[☕ 🌰-🌵 🌷-🍼 🎂 🐀-🐾]");
         testEquals(out, "AnimalPlantFood", AnimalPlantFood, Label.nature, Label.food);
@@ -1091,7 +1265,7 @@ public class GenerateEmoji {
                     "<td>" + missing.size() + "/" + containee.size() + "</td>\n" +
                     "<td class='lchars'>"); 
             boolean first = true;
-            Set<String> sorted = new TreeSet<String>(CODEPOINT_COMPARE);
+            Set<String> sorted = new TreeSet<String>(CODEPOINT_COMPARE_SHORTER);
             missing.addAllTo(sorted);
             for (String s : sorted) {
                 if (first) {
@@ -1100,7 +1274,7 @@ public class GenerateEmoji {
                     out.print("\n");
                 }
                 out.print("<span title='" + Default.ucd().getName(s) + "'>" 
-                        + getEmojiVariant(s, EMOJI_VARIANT) 
+                        + getEmojiVariant(s, EMOJI_VARIANT_STRING) 
                         + "</span>");
             }            
             out.println("</td></tr>");
@@ -1117,5 +1291,10 @@ public class GenerateEmoji {
         containee.removeAll(VERSION70);
         //containee.retainAll(JSOURCES);
         return containee;
+    }
+
+    public static String getDoubleLink(String anchor, String code) {
+        anchor = anchor.replace(' ', '_').toLowerCase(Locale.ENGLISH);
+        return "<a href='#" + anchor + "' name='" + anchor + "'>" + code + "</a>";
     }
 }
