@@ -76,7 +76,7 @@ public class LoadImage extends Component {
             String core = Emoji.buildFileName(s, "_");
             System.out.println(core);
             BufferedImage sourceImage = ImageIO.read(new URL(url));
-            BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/apple", "apple_" + core);
+            BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/apple", "apple_" + core, 72);
         }
     }
 
@@ -88,7 +88,7 @@ public class LoadImage extends Component {
             throws IOException { // 🌰-🌵
         UnicodeSet quicktest = unicodeSet;
         int height2 = 72;
-        int width = height2*3/2;
+        int width = height2;
         BufferedImage sourceImage = new BufferedImage(width, height2, IMAGE_TYPE);
         Graphics2D graphics = sourceImage.createGraphics();
         graphics.setRenderingHint(
@@ -97,12 +97,7 @@ public class LoadImage extends Component {
         graphics.setRenderingHint(
                 RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        Font myFont = new Font(font, 0, height2);
-        graphics.setFont(myFont);
-        graphics.setColor(Color.BLACK);
-        graphics.setBackground(Color.WHITE);
-        FontMetrics metrics = graphics.getFontMetrics();
-        int ascent = metrics.getAscent();
+        FontMetrics metrics = setFont(font, height2, graphics);
         UnicodeSet firstChars = new UnicodeSet();
         String fileDirectory = outputDir + "/ref2";
         for (String s : quicktest) { // 
@@ -123,23 +118,44 @@ public class LoadImage extends Component {
 
             graphics.clearRect(0, 0, width, height2);
             if (false) {
-                FontRenderContext frc = graphics.getFontRenderContext();
-                GlyphVector gv = myFont.createGlyphVector(frc, s);
-                Rectangle2D bounds = gv.getVisualBounds();
-                int xStart = (int)(width - bounds.getWidth()+0.5)/2;
-                Shape shape = gv.getOutline(xStart, ascent);
-                graphics.draw(shape);
+//                FontRenderContext frc = graphics.getFontRenderContext();
+//                GlyphVector gv = myFont.createGlyphVector(frc, s);
+//                Rectangle2D bounds = gv.getVisualBounds();
+//                int xStart = (int)(width - bounds.getWidth()+0.5)/2;
+//                Shape shape = gv.getOutline(xStart, metrics.getAscent());
+//                graphics.draw(shape);
             } else {
                 Rectangle2D bounds = metrics.getStringBounds(s, graphics);
+                boolean reset = false;
+                if (bounds.getWidth() > width) {
+                    int height3 = (int)(height2*width/bounds.getWidth()+0.5);
+                    metrics = setFont(font, height3, graphics);
+                    bounds = metrics.getStringBounds(s, graphics);
+                    reset = true;
+                }
                 int xStart = (int)(width - bounds.getWidth()+0.5)/2;
-                graphics.drawString(s, xStart, ascent);
+                int yStart = (int)(height2 - bounds.getHeight() + 0.5)/2 + metrics.getAscent();
+                graphics.drawString(s, xStart, yStart);
+                if (reset) {
+                    metrics = setFont(font, height2, graphics);
+                }
             }
             String url = Emoji.APPLE_URL.transform(s);
             System.out.println(core);
 
             //BufferedImage sourceImage = ImageIO.read(new URL(url));
-            BufferedImage targetImage = writeResizedImage(url, sourceImage, fileDirectory, filename);
+            BufferedImage targetImage = writeResizedImage(url, sourceImage, fileDirectory, filename, height2);
         }
+    }
+
+    public static FontMetrics setFont(String font, int height2,
+            Graphics2D graphics) {
+        Font myFont = new Font(font, 0, height2);
+        graphics.setFont(myFont);
+        graphics.setColor(Color.BLACK);
+        graphics.setBackground(Color.WHITE);
+        FontMetrics metrics = graphics.getFontMetrics();
+        return metrics;
     }
 
     public static void doTwitter(String inputDir, String outputDir)
@@ -149,7 +165,7 @@ public class LoadImage extends Component {
             String core = Emoji.buildFileName(s, "_");
             System.out.println(core);
             BufferedImage sourceImage = ImageIO.read(new URL(url));
-            BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core);
+            BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
         }
     }
 
@@ -165,7 +181,7 @@ public class LoadImage extends Component {
             // emoji_u00a9.png
             BufferedImage sourceImage = ImageIO.read(file);
             //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
-            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/android", "android_" + core);
+            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/android", "android_" + core, 72);
         }
     }
     public static void doWindows(String inputDir, String outputDir)
@@ -180,7 +196,7 @@ public class LoadImage extends Component {
             // emoji_u00a9.png
             BufferedImage sourceImage = ImageIO.read(file);
             //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
-            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/windows", "windows_" + core);
+            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/windows", "windows_" + core, 72);
         }
     }
     public static void doRef(String inputDir, String outputDir)
@@ -199,14 +215,13 @@ public class LoadImage extends Component {
             // emoji_u00a9.png
             BufferedImage sourceImage = ImageIO.read(file);
             //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
-            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/ref", "ref_" + core);
+            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/ref", "ref_" + core, 72);
         }
     }
 
 
     public static BufferedImage writeResizedImage(String name, BufferedImage sourceImage,
-            String outputDir, String outputName) throws IOException {
-        int height = 72;
+            String outputDir, String outputName, int height) throws IOException {
         int sourceHeight = sourceImage.getHeight();
         BufferedImage targetImage;
         if (height == sourceHeight) {
