@@ -1,5 +1,5 @@
 # IndicMatraCategory-7.0.0.txt
-# Date: 2014-03-14, 20:00:00 GMT [KW, LI, AG]
+# Date: 2014-03-18, 20:00:00 GMT [KW, LI, AG]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -214,7 +214,6 @@ ABE9..ABEA    ; Right # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEETEI MAYEK V
 19B5..19B7    ; Left # Mc   [3] NEW TAI LUE VOWEL SIGN E..NEW TAI LUE VOWEL SIGN O
 19BA          ; Left # Mc       NEW TAI LUE VOWEL SIGN AY
 1A19          ; Left # Mc       BUGINESE VOWEL SIGN E
-1A1B          ; Left # Mn       BUGINESE VOWEL SIGN AE
 1A6E..1A72    ; Left # Mc   [5] TAI THAM VOWEL SIGN E..TAI THAM VOWEL SIGN THAM AI
 1B3E..1B3F    ; Left # Mc   [2] BALINESE VOWEL SIGN TALING..BALINESE VOWEL SIGN TALING REPA
 1BA6          ; Left # Mc       SUNDANESE VOWEL SIGN PANAELAENG
@@ -256,7 +255,8 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0B4B          ; Left_And_Right # Mc       ORIYA VOWEL SIGN O
 0BCA..0BCC    ; Left_And_Right # Mc   [3] TAMIL VOWEL SIGN O..TAMIL VOWEL SIGN AU
 0D4A..0D4C    ; Left_And_Right # Mc   [3] MALAYALAM VOWEL SIGN O..MALAYALAM VOWEL SIGN AU
-0DDC..0DDE    ; Left_And_Right # Mc   [3] SINHALA VOWEL SIGN KOMBUVA HAA AELA-PILLA..SINHALA VOWEL SIGN KOMBUVA HAA GAYANUKITTA
+0DDC          ; Left_And_Right # Mc       SINHALA VOWEL SIGN KOMBUVA HAA AELA-PILLA
+0DDE          ; Left_And_Right # Mc       SINHALA VOWEL SIGN KOMBUVA HAA GAYANUKITTA
 17C0          ; Left_And_Right # Mc       KHMER VOWEL SIGN IE
 17C4..17C5    ; Left_And_Right # Mc   [2] KHMER VOWEL SIGN OO..KHMER VOWEL SIGN AU
 1B40..1B41    ; Left_And_Right # Mc   [2] BALINESE VOWEL SIGN TALING TEDUNG..BALINESE VOWEL SIGN TALING REPA TEDUNG
@@ -313,6 +313,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 1920..1921    ; Top # Mn   [2] LIMBU VOWEL SIGN A..LIMBU VOWEL SIGN I
 1927..1928    ; Top # Mn   [2] LIMBU VOWEL SIGN E..LIMBU VOWEL SIGN O
 1A17          ; Top # Mn       BUGINESE VOWEL SIGN I
+1A1B          ; Top # Mn       BUGINESE VOWEL SIGN AE
 1A62          ; Top # Mn       TAI THAM VOWEL SIGN MAI SAT
 1A65..1A68    ; Top # Mn   [4] TAI THAM VOWEL SIGN I..TAI THAM VOWEL SIGN UUE
 1A6B          ; Top # Mn       TAI THAM VOWEL SIGN O
@@ -464,6 +465,7 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 # Indic_Matra_Category=Top_And_Left_And_Right
 
 0B4C          ; Top_And_Left_And_Right # Mc       ORIYA VOWEL SIGN AU
+0DDD          ; Top_And_Left_And_Right # Mc       SINHALA VOWEL SIGN KOMBUVA HAA DIGA AELA-PILLA
 17BF          ; Top_And_Left_And_Right # Mc       KHMER VOWEL SIGN YA
 115BB         ; Top_And_Left_And_Right # Mc       SIDDHAM VOWEL SIGN AU
 

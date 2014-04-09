@@ -1,8 +1,8 @@
 # PropertyValueAliases-7.0.0.txt
-# Date: 2013-12-04, 07:31:40 GMT [MD]
+# Date: 2014-04-09, 20:01:11 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -130,10 +130,10 @@ Bidi_M; Y                             ; Yes                              ; T    
 
 # Bidi_Paired_Bracket_Type (bpt)
 
-# @missing: 0000..10FFFF; Bidi_Paired_Bracket_Type; n
 bpt; c                                ; Close
 bpt; n                                ; None
 bpt; o                                ; Open
+# @missing: 0000..10FFFF; Bidi_Paired_Bracket_Type; n
 
 # Block (blk)
 
@@ -590,7 +590,6 @@ Comp_Ex; Y                            ; Yes                              ; T    
 
 # General_Category (gc)
 
-# @missing: 0000..10FFFF; General_Category; Unassigned
 gc ; C                                ; Other                            # Cc | Cf | Cn | Co | Cs
 gc ; Cc                               ; Control                          ; cntrl
 gc ; Cf                               ; Format
@@ -629,6 +628,7 @@ gc ; Z                                ; Separator                        # Zl | 
 gc ; Zl                               ; Line_Separator
 gc ; Zp                               ; Paragraph_Separator
 gc ; Zs                               ; Space_Separator
+# @missing: 0000..10FFFF; General_Category; Unassigned
 
 # Grapheme_Base (Gr_Base)
 
@@ -731,6 +731,7 @@ InMC; Visual_Order_Left               ; Visual_Order_Left
 
 InSC; Avagraha                        ; Avagraha
 InSC; Bindu                           ; Bindu
+InSC; Cantillation_Mark               ; Cantillation_Mark
 InSC; Consonant                       ; Consonant
 InSC; Consonant_Dead                  ; Consonant_Dead
 InSC; Consonant_Final                 ; Consonant_Final
@@ -739,6 +740,7 @@ InSC; Consonant_Medial                ; Consonant_Medial
 InSC; Consonant_Placeholder           ; Consonant_Placeholder
 InSC; Consonant_Repha                 ; Consonant_Repha
 InSC; Consonant_Subjoined             ; Consonant_Subjoined
+InSC; Gemination_Mark                 ; Gemination_Mark
 InSC; Modifying_Letter                ; Modifying_Letter
 InSC; Nukta                           ; Nukta
 InSC; Other                           ; Other
@@ -753,7 +755,6 @@ InSC; Vowel_Independent               ; Vowel_Independent
 
 # Jamo_Short_Name (JSN)
 
-# @missing: 0000..10FFFF; Jamo_Short_Name; <none>
 JSN; A                                ; A
 JSN; AE                               ; AE
 JSN; B                                ; B
@@ -806,6 +807,7 @@ JSN; YEO                              ; YEO
 JSN; YI                               ; YI
 JSN; YO                               ; YO
 JSN; YU                               ; YU
+# @missing: 0000..10FFFF; Jamo_Short_Name; <none>
 
 # Join_Control (Join_C)
 

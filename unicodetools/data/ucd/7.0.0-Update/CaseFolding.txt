@@ -1,8 +1,8 @@
 # CaseFolding-7.0.0.txt
-# Date: 2013-11-27, 09:54:27 GMT [MD]
+# Date: 2014-04-09, 20:00:56 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -25,7 +25,7 @@
 #
 # For information on case folding, including how to have case folding 
 # preserve normalization formats, see Section 3.13 Default Case Algorithms in
-# The Unicode Standard, Version 5.0.
+# The Unicode Standard.
 #
 # ================================================================================
 # Format
@@ -57,8 +57,6 @@
 
 #  All code points not explicitly listed for Case_Folding
 #  have the value C for the status field, and the code point itself for the mapping field.
-
-# @missing: 0000..10FFFF; C; <code point>
 
 # =================================================================
 0041; C; 0061; # LATIN CAPITAL LETTER A
