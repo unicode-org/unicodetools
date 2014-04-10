@@ -27,6 +27,24 @@ public class Emoji {
         }
         return  result.toString();
     }
+    
+    static public String parseFileName(String chars, String separator) {
+        StringBuilder result = new StringBuilder();
+        int dotPos = chars.lastIndexOf('.');
+        if (dotPos >= 0) {
+            chars = chars.substring(0,dotPos);
+        }
+        String[] parts = chars.split(separator);
+        boolean first = true;
+        for (String part : parts) {
+            if (first) {
+                first = false;
+                continue;
+            }
+            result.appendCodePoint(Integer.parseInt(part,16));
+        }
+        return  result.toString();
+    }
 
     public static String getHexFromFlagCode(String isoCountries) {
         String cc = new StringBuilder()

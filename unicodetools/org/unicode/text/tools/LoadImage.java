@@ -13,11 +13,25 @@ import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageTypeSpecifier;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.metadata.IIOMetadata;
+import javax.imageio.stream.FileImageOutputStream;
+import javax.imageio.stream.ImageOutputStream;
 
 import com.ibm.icu.text.UnicodeSet;
 
@@ -26,7 +40,7 @@ import com.ibm.icu.text.UnicodeSet;
  */
 public class LoadImage extends Component {
 
-    private static final int IMAGE_TYPE = BufferedImage.TYPE_INT_RGB;
+    private static final int IMAGE_TYPE = BufferedImage.TYPE_INT_ARGB;
 
     private static final long serialVersionUID = 1L;
 
@@ -58,15 +72,16 @@ public class LoadImage extends Component {
 
     public static void main(String[] args) throws IOException {
 
-        String inputDir = "/Users/markdavis/workspace/unicode-draft/reports/tr51/images/";
+        String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
         String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
 
-        //        doAndroid(inputDir, outputDir);
-        //        doTwitter(inputDir, outputDir);
+        //List<BufferedImage> list = doAndroid(inputDir, outputDir);
         //        doWindows(inputDir, outputDir);
-        //doRef(inputDir, outputDir);
-        //doGitHub(inputDir, outputDir);
-        doSymbola(inputDir, outputDir, "Symbola", SYMBOLA);
+                doRef(inputDir, outputDir);
+        //        doTwitter(inputDir, outputDir);
+        //        doGitHub(inputDir, outputDir);
+//        List<BufferedImage> list = doSymbola(inputDir, outputDir, "Apple Emoji", SYMBOLA, 144); // "Symbola"
+//        createAnimatedImage(new File(outputDir, "animated-symbola.gif"), list);
     }
 
     public static void doGitHub(String inputDir, String outputDir)
@@ -84,76 +99,66 @@ public class LoadImage extends Component {
 
     private static final UnicodeSet SYMBOLA = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(NON_SYMBOLA).freeze();
 
-    public static void doSymbola(String inputDir, String outputDir, String font, UnicodeSet unicodeSet)
+    public static List<BufferedImage> doSymbola(String inputDir, String outputDir, String font, UnicodeSet unicodeSet, int height)
             throws IOException { // 🌰-🌵
-        UnicodeSet quicktest = unicodeSet;
-        int height2 = 72;
-        int width = height2;
-        BufferedImage sourceImage = new BufferedImage(width, height2, IMAGE_TYPE);
+        List<BufferedImage> result = new ArrayList<>();
+        Set<String> sorted = unicodeSet.addAllTo(new TreeSet());
+        int width = height;
+        BufferedImage sourceImage = new BufferedImage(width, height, IMAGE_TYPE);
         Graphics2D graphics = sourceImage.createGraphics();
+        graphics.setColor(Color.BLACK);
+        graphics.setBackground(Color.WHITE);
         graphics.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_OFF);
         graphics.setRenderingHint(
                 RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        FontMetrics metrics = setFont(font, height2, graphics);
+        FontMetrics metrics = setFont(font, height, graphics);
         UnicodeSet firstChars = new UnicodeSet();
-        String fileDirectory = outputDir + "/ref2";
-        for (String s : quicktest) { // 
+        String fileDirectory = outputDir + "/ref";
+        for (String s : sorted) { // 
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
+                continue;
+            }
+            if (graphics.getFont().canDisplayUpTo(s) != -1) {
                 continue;
             }
             String core = Emoji.buildFileName(s, "_");
             String filename = "ref_" + core;
             File outputfile = new File(fileDirectory, filename + ".png");
-//            if (outputfile.exists()) {
-//                continue; // workaround for ugly Java problem
-//            }
-//            char first = s.charAt(0);
-//            if (firstChars.contains(first)) {
-//                continue; // workaround for ugly Java problem
-//            }
-//            firstChars.add(first);
-
-            graphics.clearRect(0, 0, width, height2);
-            if (false) {
-//                FontRenderContext frc = graphics.getFontRenderContext();
-//                GlyphVector gv = myFont.createGlyphVector(frc, s);
-//                Rectangle2D bounds = gv.getVisualBounds();
-//                int xStart = (int)(width - bounds.getWidth()+0.5)/2;
-//                Shape shape = gv.getOutline(xStart, metrics.getAscent());
-//                graphics.draw(shape);
-            } else {
-                Rectangle2D bounds = metrics.getStringBounds(s, graphics);
-                boolean reset = false;
-                if (bounds.getWidth() > width) {
-                    int height3 = (int)(height2*width/bounds.getWidth()+0.5);
-                    metrics = setFont(font, height3, graphics);
-                    bounds = metrics.getStringBounds(s, graphics);
-                    reset = true;
-                }
-                int xStart = (int)(width - bounds.getWidth()+0.5)/2;
-                int yStart = (int)(height2 - bounds.getHeight() + 0.5)/2 + metrics.getAscent();
-                graphics.drawString(s, xStart, yStart);
-                if (reset) {
-                    metrics = setFont(font, height2, graphics);
-                }
+            graphics.clearRect(0, 0, width, height);
+            Rectangle2D bounds = metrics.getStringBounds(s, graphics);
+            boolean reset = false;
+            if (bounds.getWidth() > width) {
+                int height3 = (int)(height*width/bounds.getWidth()+0.5);
+                metrics = setFont(font, height3, graphics);
+                bounds = metrics.getStringBounds(s, graphics);
+                reset = true;
+            }
+            int xStart = (int)(width - bounds.getWidth()+0.5)/2;
+            int yStart = (int)(height - bounds.getHeight() + 0.5)/2 + metrics.getAscent();
+            graphics.drawString(s, xStart, yStart);
+            if (reset) {
+                metrics = setFont(font, height, graphics);
             }
             String url = Emoji.APPLE_URL.transform(s);
-            System.out.println(core);
-
-            //BufferedImage sourceImage = ImageIO.read(new URL(url));
-            BufferedImage targetImage = writeResizedImage(url, sourceImage, fileDirectory, filename, height2);
+            //BufferedImage targetImage = writeResizedImage(url, sourceImage, fileDirectory, filename, height2);
+            result.add(deepCopy(sourceImage));
+            System.out.println(core + "\t" + s);
         }
+        return result;
     }
 
     public static FontMetrics setFont(String font, int height2,
             Graphics2D graphics) {
-        Font myFont = new Font(font, 0, height2);
+        Font myFont;
+        if (font != null) {
+            myFont = new Font(font, 0, height2);
+        } else {
+            myFont = graphics.getFont().deriveFont(height2);
+        }
         graphics.setFont(myFont);
-        graphics.setColor(Color.BLACK);
-        graphics.setBackground(Color.WHITE);
         FontMetrics metrics = graphics.getFontMetrics();
         return metrics;
     }
@@ -169,8 +174,9 @@ public class LoadImage extends Component {
         }
     }
 
-    public static void doAndroid(String inputDir, String outputDir)
+    public static List<BufferedImage> doAndroid(String inputDir, String outputDir)
             throws IOException {
+        List<BufferedImage> result = new ArrayList<>();
         for (File file : new File(inputDir, "android").listFiles()) {
             if (file.isDirectory()) {
                 continue;
@@ -180,9 +186,10 @@ public class LoadImage extends Component {
             System.out.println(file);
             // emoji_u00a9.png
             BufferedImage sourceImage = ImageIO.read(file);
-            //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
             BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/android", "android_" + core, 72);
+            result.add(targetImage);
         }
+        return result;
     }
     public static void doWindows(String inputDir, String outputDir)
             throws IOException {
@@ -201,7 +208,7 @@ public class LoadImage extends Component {
     }
     public static void doRef(String inputDir, String outputDir)
             throws IOException {
-        for (File file : new File(inputDir).listFiles()) {
+        for (File file : new File(inputDir, "ref").listFiles()) {
             if (file.isDirectory()) {
                 continue;
             }
@@ -240,6 +247,14 @@ public class LoadImage extends Component {
             // https://abs.twimg.com/emoji/v1/72x72/231a.png
 
             Graphics2D graphics = targetImage.createGraphics();
+            graphics.setRenderingHint(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            graphics.setRenderingHint(
+                    RenderingHints.KEY_TEXT_ANTIALIASING,
+                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+            graphics.setBackground(Color.WHITE);
+            graphics.clearRect(0, 0, width, height);
 
             graphics.drawImage(sourceImage, 0, 0, targetImage.getWidth(),
                     targetImage.getHeight(),
@@ -252,5 +267,34 @@ public class LoadImage extends Component {
         //        ImageIO.write(sourceImage, "png", outputfile2);
         //
         return targetImage;
+    }
+
+    public static void createAnimatedImage(File file, List<BufferedImage> input) throws IOException {
+        BufferedImage firstImage = input.get(0);
+
+        // create a new BufferedOutputStream with the last argument
+        ImageOutputStream output =
+                new FileImageOutputStream(file);
+
+        // create a gif sequence with the type of the first image, 1 second
+        // between frames, which loops continuously
+        GifSequenceWriter writer =
+                new GifSequenceWriter(output, firstImage.getType(), 1,
+                        false);
+
+        // write out the first image to our sequence...
+        writer.writeToSequence(firstImage);
+        for (int i = 1; i < input.size(); i++) {
+            writer.writeToSequence(input.get(i));
+        }
+
+        writer.close();
+        output.close();
+    }
+    static BufferedImage deepCopy(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 }

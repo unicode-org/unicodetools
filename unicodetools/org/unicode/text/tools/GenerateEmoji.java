@@ -108,6 +108,7 @@ public class GenerateEmoji {
         }
         addAndroidRemap("0⃣", 0xFE837);
     }
+
     public static Integer addAndroidRemap(String real, int replacement) {
         ANDROID_REMAP_VALUES.put(replacement, real);
         int first = real.codePointAt(0);
@@ -168,20 +169,27 @@ public class GenerateEmoji {
         .freeze();
         System.out.println("Core:\t" + JSOURCES.size() + "\t" + JSOURCES);
     }
-    static final Map<String,String> REMAP_FLAGS = new HashMap();
-    static {
-        REMAP_FLAGS.put("BL", "FR");
-        REMAP_FLAGS.put("BV", "NO");
-        REMAP_FLAGS.put("GF", "FR");
-        REMAP_FLAGS.put("HM", "AU");
-        REMAP_FLAGS.put("MF", "FR");
-        REMAP_FLAGS.put("RE", "FR");
-        REMAP_FLAGS.put("SJ", "NO");
-        REMAP_FLAGS.put("TF", "FR");
-        REMAP_FLAGS.put("UM", "US");
-        REMAP_FLAGS.put("WF", "FR");
-        REMAP_FLAGS.put("YT", "FR");
-    }
+    //    static final Map<String,String> REMAP_FLAGS = new HashMap();
+    //    static {
+    //        addFlagRemap("BL", "FR");
+    //        addFlagRemap("BV", "NO");
+    //        addFlagRemap("GF", "FR");
+    //        addFlagRemap("HM", "AU");   
+    //        addFlagRemap("MF", "FR");
+    //        addFlagRemap("RE", "FR");
+    //        addFlagRemap("SJ", "NO");
+    //        addFlagRemap("TF", "FR");
+    //        addFlagRemap("UM", "US");
+    //        addFlagRemap("WF", "FR");
+    //        addFlagRemap("YT", "FR");
+    //    }
+    //    public static void addFlagRemap(String originalCountry, String replacementCountry) {
+    //        REMAP_FLAGS.put(originalCountry, replacementCountry);
+    //        System.out.println(
+    //                Emoji.buildFileName(Emoji.getHexFromFlagCode(originalCountry),"_") 
+    //                + " => "
+    //                + Emoji.buildFileName(Emoji.getHexFromFlagCode(replacementCountry),"_"));
+    //    }
     static final Subheader subheader = new Subheader("/Users/markdavis/workspace/unicodetools/data/ucd/7.0.0-Update/");
     static final Set<String> SKIP_BLOCKS = new HashSet(Arrays.asList("Miscellaneous Symbols", 
             "Enclosed Alphanumeric Supplement", 
@@ -591,7 +599,7 @@ public class GenerateEmoji {
             return "<tr>"
             + "<td class='rchars'>" + item + "</td>\n"
             + "<td class='code'>" + getDoubleLink(anchor, code) + "</td>\n"
-            + (form != Form.fullForm ? 
+            + (form != Form.fullForm && form != Form.missingForm ? 
                     browserCell :
                         symbolaCell
                         + appleCell
@@ -615,12 +623,15 @@ public class GenerateEmoji {
         }
 
         public String getCell(String type, String core, String missingCell) {
-            String filename = type + "/" + type + "_" + core + ".png";
+            String filename = getImageFilename(type, core);
             String androidCell = missingCell;
             if (filename != null && new File(IMAGES_OUTPUT_DIR, filename).exists()) {
                 androidCell = "<td class='andr'><img alt='" + chars + "' class='imga' src='images/" + filename + "'></td>\n";
             }
             return androidCell;
+        }
+        public static String getImageFilename(String type, String core) {
+            return type + "/" + type + "_" + core + ".png";
         }
 
         private String getAnchor(String code2) {
@@ -631,7 +642,7 @@ public class GenerateEmoji {
             return "<tr>"
             + "<th>Count</th>\n"
             + "<th class='rchars'>Code</th>\n"
-            + (form != Form.fullForm 
+            + (form != Form.fullForm && form != Form.missingForm 
             ? "<th class='cchars'>Browser</th>\n" : 
                 "<th class='cchars'>B&amp;W*</th>\n"
                 + "<th class='cchars'>Apple*</th>\n"
@@ -678,13 +689,13 @@ public class GenerateEmoji {
         String cc = (char)(firstCodepoint - Emoji.FIRST_REGIONAL + 'A') 
                 + ""
                 + (char)(secondCodepoint - Emoji.FIRST_REGIONAL + 'A');
-        String remapped = REMAP_FLAGS.get(cc);
-        if (remapped != null) {
-            cc = remapped;
-        }
-        if (REPLACEMENT_CHARACTER.equals(cc)) {
-            return null;
-        }
+        //        String remapped = REMAP_FLAGS.get(cc);
+        //        if (remapped != null) {
+        //            cc = remapped;
+        //        }
+        //        if (REPLACEMENT_CHARACTER.equals(cc)) {
+        //            return null;
+        //        }
         return cc;
     }
 
@@ -709,9 +720,13 @@ public class GenerateEmoji {
     }
 
     static String getFlag(String chars) {
+        String core = Emoji.buildFileName(chars,"_");
+        String filename = Data.getImageFilename("ref", core);
         String cc = getFlagCode(chars);
         return cc == null ? null : "<img alt='" + chars
-                + "' class='imgf' src='http://unicode.org/draft/reports/tr51/images/" + cc + ".png'>";
+                + "' class='imgf' src='images/" + filename + 
+                //"http//unicode.org/draft/reports/tr51/images/" + cc + ".png'" +
+                "'>";
     }
 
     public static void main(String[] args) throws IOException {
@@ -733,7 +748,9 @@ public class GenerateEmoji {
             }
         }
         LinkedHashMap missingMap = new LinkedHashMap();
-        //addFileCodepoints(new File(IMAGES_OUTPUT_DIR), missingMap);
+        addFileCodepoints(new File(IMAGES_OUTPUT_DIR), missingMap);
+        UnicodeSet fileChars = new UnicodeSet().addAll(missingMap.keySet()).removeAll(Emoji.EMOJI_CHARS);
+        System.out.println("MISSING: " + fileChars.toPattern(false));
 
         // show data
         UnicodeSet newItems = new UnicodeSet();
@@ -753,10 +770,9 @@ public class GenerateEmoji {
         //print(Form.imagesOnly, columns, Data.STRING_TO_DATA);
         //print(Form.shortForm, Data.STRING_TO_DATA);
         System.out.println(Data.LABELS_TO_DATA.keySet());
-        print(Form.regularForm, Data.STRING_TO_DATA);
+        
+        print(Form.noImages, Data.STRING_TO_DATA);
         print(Form.fullForm, Data.STRING_TO_DATA);
-
-
         print(Form.missingForm, missingMap);
 
         showLabels();
@@ -775,32 +791,19 @@ public class GenerateEmoji {
         System.out.println(list(new UnicodeSet(APPLE_CHARS).removeAll(Emoji.GITHUB_APPLE_CHARS)));
     }
 
-    public static void addFileCodepoints(File imagesOutputDir, LinkedHashMap missingMap) {
+    public static void addFileCodepoints(File imagesOutputDir, Map<String, Data> results) {
         for (File file : imagesOutputDir.listFiles()) {
             if (file.isDirectory()) {
-                addFileCodepoints(file, missingMap);
+                addFileCodepoints(file, results);
                 continue;
             }
             String s = file.getName();
             String original = s;
-            if (s.length() == 6 || ANDROID_IMAGES.contains(s) || s.startsWith(".") || !s.endsWith(".png")) {
+            if (s.startsWith(".") || !s.endsWith(".png")) {
                 continue;
             }
-            s = s.substring(0,s.length()-4);
-            String chars = null;
-            chars = extractCodes(s, "windows_", WINDOWS_CHARS);
-            if (chars == null) {
-                chars = extractCodes(s, "apple-", null);
-                if (chars == null) {
-                    chars = extractCodes(s, "emoji_u", null);
-                }
-            }
-            // "" means skip, null is failure
-            if (chars == null) {
-                throw new IllegalArgumentException(original + ":" + s);
-            } else if (!chars.isEmpty()) {
-                addNewItem(chars, missingMap);
-            }
+            String chars = Emoji.parseFileName(s, "_");
+            addNewItem(chars, results);
         }
     }
 
@@ -900,6 +903,9 @@ public class GenerateEmoji {
             int firstCodepoint = s.codePointAt(0);
             String header = Default.ucd().getBlock(firstCodepoint).replace('_', ' ');
             String subhead = subheader.getSubheader(firstCodepoint);
+            if (subhead == null) {
+                subhead = "UNNAMED";
+            }
             header = header.contains(subhead) ? header : header + ": " + subhead;
             UnicodeSet uset = subheadToChars.get(header);
             if (uset == null) {
@@ -990,6 +996,7 @@ public class GenerateEmoji {
 
         for (Entry<String, UnicodeSet> entry : labelToUnicodeSet.entrySet()) {
             UnicodeSet uset = entry.getValue();
+            uset.removeAll(Emoji.EMOJI_CHARS);
             otherSymbols.removeAll(uset);
             otherPunctuation.removeAll(uset);
         }
@@ -1001,7 +1008,7 @@ public class GenerateEmoji {
         }
 
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "other-labels.html");
-        writeHeader(out, "Other Labels", "...");
+        writeHeader(out, "Other Labels", "Draft categories for other Symbols and Punctuation.");
 
         for (Entry<String, UnicodeSet> entry : labelToUnicodeSet.entrySet()) {
             String label = entry.getKey();
@@ -1084,8 +1091,9 @@ public class GenerateEmoji {
     static final LocaleDisplayNames LOCALE_DISPLAY = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
 
     public static String getName(String s) {
+        final String name = NAME.get(s.codePointAt(0));
         if (s.indexOf(ENCLOSING_KEYCAP) >= 0) {
-            return "keycap " + NAME.get(s.codePointAt(0)).toLowerCase(Locale.ENGLISH);
+            return "keycap " + name.toLowerCase(Locale.ENGLISH);
         }
         String flag = getFlagCode(s);
         if (flag != null) {
@@ -1095,7 +1103,7 @@ public class GenerateEmoji {
             }
             return "flag for " + result;
         }
-        return NAME.get(s.codePointAt(0)).toLowerCase(Locale.ENGLISH);
+        return name == null ? "UNNAMED" : name.toLowerCase(Locale.ENGLISH);
     }
 
 
@@ -1117,14 +1125,15 @@ public class GenerateEmoji {
     }
 
     enum Form {
-        imagesOnly("images"), 
-        shortForm("short"), 
-        regularForm(""), 
-        fullForm("full"), 
-        missingForm("missing");
+        shortForm("short", " short form."), 
+        noImages("", " without images."), 
+        fullForm("full", "with images."), 
+        missingForm("missing", " with images; have icons but are not including.");
         final String filePrefix;
         final String title;
-        Form(String prefix) {
+        final String description;
+        Form(String prefix, String description) {
+            this.description = description;
             filePrefix = prefix.isEmpty() ? "" : prefix + "-";
             title = "Emoji Data"
                     + (prefix.isEmpty() ? "" : " (" + UCharacter.toTitleCase(prefix, null) + ")");
@@ -1134,7 +1143,7 @@ public class GenerateEmoji {
     public static <T> void print(Form form, Map<String, Data> set) throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, 
                 form.filePrefix + "emoji-list.html");
-        writeHeader(out, form.title, "List of emoji characters.");
+        writeHeader(out, form.title, "List of emoji characters, " + form.description);
         out.println(Data.toHtmlHeaderString(form));
         int item = 0;
         for (Data data : new TreeSet<Data>(set.values())) {
@@ -1150,19 +1159,18 @@ public class GenerateEmoji {
 
     public static void writeHeader(PrintWriter out, String title, String firstLine) {
         out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n" +
-        		"<html>\n" +
-        		"<head>\n" +
-        		"<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n" +
                 "<link rel='stylesheet' type='text/css' href='emoji-list.css'>\n" +
                 "<title>Draft " +
                 title +
                 "</title>\n" +
                 "</head>\n" +
-                "<body>" + "<h1>Draft " +
-                title +
-                "</h1>\n"
+                "<body>\n"
+                + "<h1>Draft " + title + "</h1>\n"
                 + "<p>" + firstLine +
-                " For more information, see <a href='http://unicode.org/draft/reports/tr51/tr51.html'>Unicode Emoji</a></p>\n"
+                " For more information, see <a target='_blank' href='http://unicode.org/draft/reports/tr51/tr51.html'>Unicode Emoji</a>.</p>\n"
                 + "<table>");
     }
 
