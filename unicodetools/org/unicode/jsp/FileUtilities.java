@@ -138,8 +138,8 @@ public final class FileUtilities {
             throw (RuntimeException) new IllegalArgumentException("Bad file name: "
                     //              + path + "\t" + externalForm + "\t" +
                     + file1.getCanonicalPath()
-                    + "\r\n" + foo
-                    + "\r\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())
+                    + "\n" + foo
+                    + "\n" + new File(".").getCanonicalFile() + " => " + Arrays.asList(new File(".").getCanonicalFile().list())
                     )
             .initCause(e);
         }

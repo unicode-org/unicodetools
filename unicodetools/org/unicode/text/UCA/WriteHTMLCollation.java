@@ -870,8 +870,8 @@ public class WriteHTMLCollation implements UCD_Types {
         StringBuffer newTertiary = new StringBuffer();
         StringBuffer oldStr = new StringBuffer();
 
-        EquivalenceClass secEq = new EquivalenceClass("\r\n#", 4, true);
-        EquivalenceClass terEq = new EquivalenceClass("\r\n#", 4, true);
+        EquivalenceClass secEq = new EquivalenceClass("\n#", 4, true);
+        EquivalenceClass terEq = new EquivalenceClass("\n#", 4, true);
         String[] sampleEq = new String[500];
 
         Iterator it = ordered.keySet().iterator();

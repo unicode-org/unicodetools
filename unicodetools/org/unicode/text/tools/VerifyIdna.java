@@ -66,9 +66,9 @@ public class VerifyIdna {
                     System.out.println("Difference in Contents");
                     //System.out.println(bf.showSetDifferences("pat", patItems, "alt", altItems));
                     final UnicodeSet patDiffAlt = new UnicodeSet(patItems).removeAll(altItems);
-                    System.out.println("\tpat-alt:\r\n" + bf.showSetNames(patDiffAlt));
+                    System.out.println("\tpat-alt:\n" + bf.showSetNames(patDiffAlt));
                     final UnicodeSet altDiffPat = new UnicodeSet(altItems).removeAll(patItems);
-                    System.out.println("\talt-pat:\r\n"  + bf.showSetNames(altDiffPat));
+                    System.out.println("\talt-pat:\n"  + bf.showSetNames(altDiffPat));
                     //System.out.println("\tpat:\t" + patItems);
                     //System.out.println("\talt:\t" + altItems);
                 }

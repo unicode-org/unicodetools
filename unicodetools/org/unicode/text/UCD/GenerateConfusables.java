@@ -1413,9 +1413,9 @@ public class GenerateConfusables {
                             + Default.ucd().getCodeAndName(a)
                             + " overlaps "
                             + Default.ucd().getCodeAndName(b2)
-                            + "\r\n\tfrom "
+                            + "\n\tfrom "
                             + Default.ucd().getCodeAndName(b)
-                            + "\r\n\twith reason "
+                            + "\n\twith reason "
                             + reason + " plus "
                             + getReasons(b2, b));
                     return true;

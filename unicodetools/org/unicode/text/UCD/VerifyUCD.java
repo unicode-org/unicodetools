@@ -1936,8 +1936,8 @@ E0020-E007F; [TAGGING CHARACTERS]
     }
 
     /*
-                    + "\r\n#  Generated from <2060..206F, FFF0..FFFB, E0000..E0FFF>"
-                    + "\r\n#    + Other_Default_Ignorable_Code_Point + (Cf + Cc + Cs - White_Space)";
+                    + "\n#  Generated from <2060..206F, FFF0..FFFB, E0000..E0FFF>"
+                    + "\n#    + Other_Default_Ignorable_Code_Point + (Cf + Cc + Cs - White_Space)";
      */
 
     public static void diffIgnorable () {

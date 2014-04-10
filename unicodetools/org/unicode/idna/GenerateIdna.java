@@ -112,6 +112,8 @@ public class GenerateIdna {
 
             if (status == IdnaType.valid && !IDNA2008Valid.contains(cp) && cp != '.') {
                 endStatus += Utility.repeat(" ", MAX_STATUS_LENGTH-endStatus.length()) + " ;      ; NV8";
+            } else if (Idna2008.GRANDFATHERED_VALID.contains(cp)) {
+                endStatus += Utility.repeat(" ", MAX_STATUS_LENGTH-endStatus.length()) + " ;      ; XV8";
             }
             stringMappingTable.put(cp, endStatus);
 

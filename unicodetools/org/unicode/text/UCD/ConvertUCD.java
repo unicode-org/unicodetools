@@ -649,11 +649,11 @@ public final class ConvertUCD implements UCD_Types {
         try {
             // write header
 
-            output.write("<?xml version='1.0' encoding='utf-8'?>\r\n");
-            output.write("<UnicodeCharacterDatabase>\r\n");
-            output.write(" <!-- IMPORTANT: see UCD-Notes.html for information on the format. This file CANNOT be read correctly without that information. -->\r\n");
-            output.write(" <unicode version='" + major + "' minor='" + minor + "' update='" + update + "'/>\r\n");
-            output.write(" <fileVersion status='DRAFT' date='" + new Date() + "'/>\r\n");
+            output.write("<?xml version='1.0' encoding='utf-8'?>\n");
+            output.write("<UnicodeCharacterDatabase>\n");
+            output.write(" <!-- IMPORTANT: see UCD-Notes.html for information on the format. This file CANNOT be read correctly without that information. -->\n");
+            output.write(" <unicode version='" + major + "' minor='" + minor + "' update='" + update + "'/>\n");
+            output.write(" <fileVersion status='DRAFT' date='" + new Date() + "'/>\n");
 
             // write blocks
 
@@ -663,7 +663,7 @@ public final class ConvertUCD implements UCD_Types {
                 output.write(" <block start='" + Utility.quoteXML(block[0])
                     + "' end='" + Utility.quoteXML(block[1])
                     + "' name='" + Utility.quoteXML(block[2])
-                    + "'/>\r\n" );
+                    + "'/>\n" );
             }
 
             // write char data
@@ -687,12 +687,12 @@ public final class ConvertUCD implements UCD_Types {
                     output.write(" " + label + "='" + value + "'");
                 }
      *//*
-                output.write("/>\r\n");
+                output.write("/>\n");
             }
 
             // write footer
 
-            output.write("</UnicodeCharacterDatabase>\r\n");
+            output.write("</UnicodeCharacterDatabase>\n");
         } finally {
             output.close();
         }
@@ -732,7 +732,7 @@ public final class ConvertUCD implements UCD_Types {
 
                 final UData uData = (UData) charData.get(cc);
                 if (false && uData.name == null) {
-                    System.out.println("Warning: NULL name\r\n" + uData);
+                    System.out.println("Warning: NULL name\n" + uData);
                     System.out.println();
                 }
                 if (false && uData.codePoint == 0x2801) {

@@ -684,7 +684,7 @@ public class TestJsp  extends TestFmwk {
         final int[] abSizes = new int[3];
         UnicodeJsp.getDifferences("[:letter:]", "[:idna:]", false, abResults, abSizes, abLinks);
         for (int i = 0; i < abResults.length; ++i) {
-            logln(abSizes[i] + "\r\n\t" + abResults[i] + "\r\n\t" + abLinks[i]);
+            logln(abSizes[i] + "\n\t" + abResults[i] + "\n\t" + abLinks[i]);
         }
 
         final UnicodeSet unicodeSet = new UnicodeSet();

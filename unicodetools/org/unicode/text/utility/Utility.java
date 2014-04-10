@@ -1534,7 +1534,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 line = pretrans.transliterate(line);
             }
             buffer.append(line);
-            buffer.append("\r\n"); // separate with whitespace
+            buffer.append("\n"); // separate with whitespace
         }
         fli.close();
 
@@ -1550,7 +1550,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             if (line.length() > 0 && line.charAt(0) == '\uFEFF') line = line.substring(1); // strip BOM
             if (pretrans != null) line = pretrans.transliterate(line);
             buffer.append(line);
-            buffer.append("\r\n"); // separate with whitespace
+            buffer.append("\n"); // separate with whitespace
         }
         br.close();
         //System.out.println(buffer.toString());

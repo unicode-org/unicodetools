@@ -477,7 +477,7 @@ public class GenerateCaseFolding implements UCD_Types {
             final String s2 = (String) it2.next();
             if (!first) {
                 if (crtab) {
-                    result += ";\r\n\t";
+                    result += ";\n\t";
                 } else {
                     result += "; ";
                 }

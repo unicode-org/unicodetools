@@ -137,7 +137,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
         /*
         log.println("Properties");
         log.print(" ");
-        Utility.print(log, props, "\r\n ");
+        Utility.print(log, props, "\n ");
         log.println();
         log.println();
 
@@ -663,7 +663,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
                 }
                 err.println();
                 err.println("Summary of Bad syllables");
-                Utility.printMapOfCollection(err, badPinyin, "\r\n", ":\t", ", ");
+                Utility.printMapOfCollection(err, badPinyin, "\n", ":\t", ", ");
             } finally {
                 out2.close();
             }

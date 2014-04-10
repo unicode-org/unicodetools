@@ -6,6 +6,8 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class Idna2008 extends Idna {
 
+    public static final UnicodeSet GRANDFATHERED_VALID = new UnicodeSet().add(0x19DA).freeze();
+
     public enum Idna2008Type {
         UNASSIGNED, DISALLOWED, PVALID, CONTEXTJ, CONTEXTO
     }
@@ -89,7 +91,8 @@ public class Idna2008 extends Idna {
         // Else If .cp. .in. LetterDigits Then PVALID;
         // Else DISALLOWED;
 
-        final UnicodeMap<Idna2008Type> Incompatible = new UnicodeMap<Idna2008Type>().put(0x19DA, Idna2008Type.PVALID).freeze();
+        
+        final UnicodeMap<Idna2008Type> Incompatible = new UnicodeMap<Idna2008Type>().putAll(GRANDFATHERED_VALID, Idna2008Type.PVALID).freeze();
 
         IDNA2008Computed = new UnicodeMap<Idna2008Type>();
 

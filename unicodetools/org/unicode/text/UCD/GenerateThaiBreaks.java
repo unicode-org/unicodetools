@@ -138,7 +138,7 @@ public class GenerateThaiBreaks {
                 return current.toString() + "(" + UCD.getCode(current.toString().substring(1)) + "))";
             } else {
                 Default.ucd();
-                return "\r\n" + current + "(" + UCD.getCode(current.toString()) + "))";
+                return "\n" + current + "(" + UCD.getCode(current.toString()) + "))";
             }
         }
         @Override

@@ -309,17 +309,17 @@ public class CheckICU {
         }
 
         final StringBuffer result = new StringBuffer();
-        result.append(title + "\tFAILURE\r\n");
-        result.append("\t" + name1 + " = " + bf.join(set1) + "\r\n");
-        result.append("\t" + name2 + " = " + bf.join(set2) + "\r\n");
+        result.append(title + "\tFAILURE\n");
+        result.append("\t" + name1 + " = " + bf.join(set1) + "\n");
+        result.append("\t" + name2 + " = " + bf.join(set2) + "\n");
 
         // damn'd collection doesn't have a clone, so
         // we go with Set, even though that
         // may not preserve order and duplicates
         if (temp.size() != 0) {
-            result.append("\t" + name2 + " & " + name1 + ":\r\n");
+            result.append("\t" + name2 + " & " + name1 + ":\n");
             result.append("\t" + bf.join(temp));
-            result.append("\r\n");
+            result.append("\n");
         }
 
 
@@ -327,18 +327,18 @@ public class CheckICU {
         temp.addAll(set1);
         temp.removeAll(set2);
         if (temp.size() != 0) {
-            result.append("\t" + name1 + " - " + name2 + ":\r\n");
+            result.append("\t" + name1 + " - " + name2 + ":\n");
             result.append("\t" + bf.join(temp));
-            result.append("\r\n");
+            result.append("\n");
         }
 
         temp.clear();
         temp.addAll(set2);
         temp.removeAll(set1);
         if (temp.size() != 0) {
-            result.append("\t" + name2 + " - " + name1 + ":\r\n");
+            result.append("\t" + name2 + " - " + name1 + ":\n");
             result.append("\t" + bf.join(temp));
-            result.append("\r\n");
+            result.append("\n");
         }
 
 

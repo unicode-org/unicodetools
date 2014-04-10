@@ -61,7 +61,7 @@ public class VerifyXmlUcd {
                 continue;
             }
             final Matcher matcher = Pattern.compile(patternString.replace("\\U0010FFFF","\uDBFF\uDFFF")).matcher("");
-            System.out.format("Testing %s (%s) with /%s/\r\n", shortName, prop, patternString);
+            System.out.format("Testing %s (%s) with /%s/\n", shortName, prop, patternString);
             try {
                 Collection<String> values = property.getAvailableValues();
                 if (values.iterator().next().equals("<string>")) {
@@ -77,7 +77,7 @@ public class VerifyXmlUcd {
                 int maxFail = 100;
                 for (final String value : values) {
                     if (!matcher.reset(value).matches()) {
-                        System.out.format("\tFails %s (%s)\r\n", Utility.hex(value), value);
+                        System.out.format("\tFails %s (%s)\n", Utility.hex(value), value);
                         if (--maxFail < 0) {
                             break;
                         }
@@ -119,7 +119,7 @@ public class VerifyXmlUcd {
 
 
     private static void testFile(String file) throws IOException {
-        System.out.format("\r\nTesting: %s\r\n\r\n", file);
+        System.out.format("\nTesting: %s\n\n", file);
         final File file2 = new File(file);
         if (!file2.canRead()) {
             System.out.println("Can't read " + file2.getCanonicalPath());
@@ -172,8 +172,8 @@ public class VerifyXmlUcd {
             }
             showDifference("core", core, "xml_core", accummulatedProperties);
             showDifference("blocks", Default.ucd().getBlockNames(), "xml_blocks", accummulatedBlocks);
-            System.out.format("unhandled elements: %s\r\n", unhandledElements);
-            System.out.format("skipped properties: %s\r\n", bogusPropertiesSkipped);
+            System.out.format("unhandled elements: %s\n", unhandledElements);
+            System.out.format("skipped properties: %s\n", bogusPropertiesSkipped);
         }
 
         private void showDifference(String title1, Collection core, String title2, Collection accummulatedProperties) {
@@ -181,8 +181,8 @@ public class VerifyXmlUcd {
             core_minus_xml.removeAll(accummulatedProperties);
             final Set xml_minus_core = new HashSet(accummulatedProperties);
             xml_minus_core.removeAll(core);
-            System.out.format(title1 + " - " + title2 + " %s\r\n", core_minus_xml);
-            System.out.format(title2 + " - " + title1 + ": %s\r\n", xml_minus_core);
+            System.out.format(title1 + " - " + title2 + " %s\n", core_minus_xml);
+            System.out.format(title2 + " - " + title1 + ": %s\n", xml_minus_core);
         }
 
         @Override
@@ -220,7 +220,7 @@ public class VerifyXmlUcd {
                     final UnicodeSet xmlBlock = new UnicodeSet(cpStart, cpEnd);
                     final UnicodeSet toolBlock = Default.ucd().getBlockSet(blockName, new UnicodeSet());
                     if (!xmlBlock.equals(toolBlock)) {
-                        System.out.format("blocks differ: %s, %s != %s\r\n", blockName, xmlBlock, toolBlock);
+                        System.out.format("blocks differ: %s, %s != %s\n", blockName, xmlBlock, toolBlock);
                     }
                 } else {
                     unhandledElements.add(finalElement);

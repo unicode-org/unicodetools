@@ -200,8 +200,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 for (int j = 1; j < test.length(); ++j) {
                     if (test2.isBreak(test, j)) {
                         if (!shown) {
-                            System.out.println(showData(ucd, UTF16.valueOf(i), INFOPROPS, "\r\n\t"));
-                            System.out.println(" => " + showData(ucd, decomp, INFOPROPS, "\r\n\t"));
+                            System.out.println(showData(ucd, UTF16.valueOf(i), INFOPROPS, "\n\t"));
+                            System.out.println(" => " + showData(ucd, decomp, INFOPROPS, "\n\t"));
                             shown = true;
                         }
                         System.out.println(j  + ": " + test2.fileName);
@@ -421,18 +421,18 @@ abstract public class GenerateBreakTest implements UCD_Types {
             out.println("</table>");
         }
 
-        out.println("<hr width='50%'>\r\n" +
-                "<div align='center'>\r\n" +
-                "<center>\r\n" +
-                "<table cellspacing='0' cellpadding='0' border='0'>\r\n" +
-                "<tr>\r\n" +
-                "<td><a href='http://www.unicode.org/unicode/copyright.html'>\r\n" +
-                "<img src='http://www.unicode.org/img/hb_notice.gif' border='0' alt='Access to Copyright and terms of use' width='216' height='50'></a></td>\r\n" +
-                "</tr>\r\n" +
-                "</table>\r\n" +
-                "<script language='Javascript' type='text/javascript' src='http://www.unicode.org/webscripts/lastModified.js'>\r\n" +
-                "</script>\r\n" +
-                "</center>\r\n" +
+        out.println("<hr width='50%'>\n" +
+                "<div align='center'>\n" +
+                "<center>\n" +
+                "<table cellspacing='0' cellpadding='0' border='0'>\n" +
+                "<tr>\n" +
+                "<td><a href='http://www.unicode.org/unicode/copyright.html'>\n" +
+                "<img src='http://www.unicode.org/img/hb_notice.gif' border='0' alt='Access to Copyright and terms of use' width='216' height='50'></a></td>\n" +
+                "</tr>\n" +
+                "</table>\n" +
+                "<script language='Javascript' type='text/javascript' src='http://www.unicode.org/webscripts/lastModified.js'>\n" +
+                "</script>\n" +
+                "</center>\n" +
                 "</div>");
         for (int i = 0; i < 50; ++i) {
             out.println("<br>"); // leave blank lines so scroll-to-top works.

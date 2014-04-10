@@ -175,8 +175,8 @@ public final class DerivedProperty implements UCD_Types {
             name = nfx.getName() + "_UnsafeStart";
             shortName = nfx.getName() + "_SS";
             header = "# Derived Property: " + name
-                + "\r\n#   Generated according to UAX #15."
-                + "\r\n#   Characters that are cc==0, BUT which may interact with previous characters."
+                + "\n#   Generated according to UAX #15."
+                + "\n#   Characters that are cc==0, BUT which may interact with previous characters."
                 ;
         }
         public boolean hasValue(int cp) {
