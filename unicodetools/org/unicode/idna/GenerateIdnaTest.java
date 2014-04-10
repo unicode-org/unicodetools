@@ -106,6 +106,9 @@ public class GenerateIdnaTest {
 
 
         count += generateLine("\u00a1", out);
+        for (String s : Idna2008.GRANDFATHERED_VALID) {
+            count += generateLine(s, out);
+        }
 
         for (final Object[] testCaseLine : testCases) {
             final String source = testCaseLine[0].toString();
@@ -231,9 +234,10 @@ public class GenerateIdnaTest {
                 + (hasUnicodeErrors ? showErrors(toUnicodeErrors) : unicode.equals(source) ? "" : unicodeReveal)
                 + ";\t"
                 + (hasAsciiErrors ? showErrors(asciiErrors) : unicode.equals(ascii) ? "" :  hexForTest.transform(ascii))
-                + (hasUnicodeErrors || validIdna2008 ? "" : ";\tNV8") // checking
-                + (!NEW_FORMAT ? "" : ""
-                        + (unicodeReveal.equals(unicode) ? "" : "\t#\t" + unicode))
+                + (Idna2008.GRANDFATHERED_VALID.containsSome(unicode) ? ";\tXV8" 
+                        : hasUnicodeErrors || validIdna2008 ? "" :  ";\tNV8") // checking
+                        + (!NEW_FORMAT ? "" : ""
+                                + (unicodeReveal.equals(unicode) ? "" : "\t#\t" + unicode))
                 );
     }
 

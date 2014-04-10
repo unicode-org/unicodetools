@@ -16,7 +16,7 @@ public class TestZoneName {
         for (final String id : TimeZone.getAvailableIDs()) {
             zones.add(TimeZone.getTimeZone(id));
         }
-        System.out.format("Number of Timezones: %d\r\n", zones.size());
+        System.out.format("Number of Timezones: %d\n", zones.size());
         // get names for locale. We do it 4 times with different patterns
         final ULocale locale = ULocale.FRANCE;
 
@@ -27,11 +27,11 @@ public class TestZoneName {
                 pattern.setTimeZone(zone);
                 final String name = pattern.format(today);
                 if (false) {
-                    System.out.format("ID: %s,\t\tLocalized Name:%s\r\n", zone.getID(), name);
+                    System.out.format("ID: %s,\t\tLocalized Name:%s\n", zone.getID(), name);
                 }
             }
             final long end = System.currentTimeMillis();
-            System.out.format("Pattern: %s,\tMilliseconds:%d\r\n", patternString, end-start);
+            System.out.format("Pattern: %s,\tMilliseconds:%d\n", patternString, end-start);
             System.out.println();
         }
     }

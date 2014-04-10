@@ -562,8 +562,8 @@ public class FractionalUCA {
         WriteCollationData.writeVersionAndDate(summary, summaryFileName, true);
         summary.println("# Primary Ranges");
 
-        final OldEquivalenceClass secEq = new OldEquivalenceClass("\r\n#", 2, true);
-        final OldEquivalenceClass terEq = new OldEquivalenceClass("\r\n#", 2, true);
+        final OldEquivalenceClass secEq = new OldEquivalenceClass("\n#", 2, true);
+        final OldEquivalenceClass terEq = new OldEquivalenceClass("\n#", 2, true);
         final String[] sampleEq = new String[0x200];
         final int[] sampleLen = new int[0x200];
 

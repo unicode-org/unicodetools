@@ -512,7 +512,7 @@ public class GenerateData implements UCD_Types {
         Utility.appendFile("PropertyAliasesHeader.txt", Utility.LATIN1, log);
         log.println(HORIZONTAL_LINE);
         log.println();
-        int count = Utility.print(log, sorted, "\r\n", new MyBreaker(true));
+        int count = Utility.print(log, sorted, "\n", new MyBreaker(true));
         log.println();
         log.println();
         log.println(HORIZONTAL_LINE);
@@ -532,7 +532,7 @@ public class GenerateData implements UCD_Types {
         Utility.appendFile("PropertyValueAliasesHeader.txt", Utility.LATIN1, log);
         log.println(HORIZONTAL_LINE);
         log.println();
-        Utility.print(log, sorted, "\r\n", new MyBreaker(false));
+        Utility.print(log, sorted, "\n", new MyBreaker(false));
         log.println();
         log.close();
         Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
@@ -550,7 +550,7 @@ public class GenerateData implements UCD_Types {
         log.println("# Note: no two property names can be the same,");
         log.println("# nor can two property value names for the same property be the same.");
         log.println();
-        Utility.print(log, accumulation, "\r\n", new MyBreaker(false));
+        Utility.print(log, accumulation, "\n", new MyBreaker(false));
         log.println();
         log.close();
         Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName[0]);
@@ -607,7 +607,7 @@ public class GenerateData implements UCD_Types {
             String o = old.toString();
             String sep = "";
             if (!c.substring(0,2).equals(o.substring(0,2))) {
-                sep = "\r\n";
+                sep = "\n";
                 if (status) {
                     byte type = getType(c);
                     sep = sep + HORIZONTAL_LINE + sep + "# " + UCD_Names.PROP_TYPE_NAMES[type][0] + " Properties" + sep + HORIZONTAL_LINE + sep;

@@ -161,7 +161,7 @@ final class Validity {
 
         log.println("<h2>11. Coverage</h2>");
         final BagFormatter bf = new BagFormatter();
-        bf.setLineSeparator("<br>\r\n");
+        bf.setLineSeparator("<br>\n");
         final ToolUnicodePropertySource ups = getToolUnicodeSource();
         bf.setUnicodePropertyFactory(ups);
         bf.setShowLiteral(TransliteratorUtilities.toHTML);

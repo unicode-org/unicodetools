@@ -211,13 +211,13 @@ public class QuickTest implements UCD_Types {
         final ToolUnicodePropertySource ups = ToolUnicodePropertySource.make("5.0.0");
         bf.setUnicodePropertyFactory(ups);
 
-        System.out.println("Starter, CWF-Only: " + "\r\n" + bf.showSetNames(starterLeadingOnly));
-        System.out.println("Starter, CWP-Only: " + "\r\n" + bf.showSetNames(starterTrailingOnly));
-        System.out.println("Starter, Stable: " + "\r\n" + bf.showSetNames(starterStable));
-        System.out.println("Starter, Both: " + "\r\n" + bf.showSetNames(starterBoth));
-        System.out.println("Non-Starter, CWP: " + "\r\n" + bf.showSetNames(nonStarterTrailing));
-        System.out.println("Non-Starter, Non-CWP: " + "\r\n" + bf.showSetNames(nonStarterNonTrailing));
-        System.out.println("Disallowed: " + "\r\n" + bf.showSetNames(disallowed));
+        System.out.println("Starter, CWF-Only: " + "\n" + bf.showSetNames(starterLeadingOnly));
+        System.out.println("Starter, CWP-Only: " + "\n" + bf.showSetNames(starterTrailingOnly));
+        System.out.println("Starter, Stable: " + "\n" + bf.showSetNames(starterStable));
+        System.out.println("Starter, Both: " + "\n" + bf.showSetNames(starterBoth));
+        System.out.println("Non-Starter, CWP: " + "\n" + bf.showSetNames(nonStarterTrailing));
+        System.out.println("Non-Starter, Non-CWP: " + "\n" + bf.showSetNames(nonStarterNonTrailing));
+        System.out.println("Disallowed: " + "\n" + bf.showSetNames(disallowed));
 
         //		System.out.println(bf.showSetDifferences("NFC CWP", leadingC, "NFC Trailing", trailingC));
     }
@@ -526,7 +526,7 @@ public class QuickTest implements UCD_Types {
                         + codeUnitLength + " code units) \t"
                         + longestLength + " expansion) \t"
                         + Default.ucd().getCodeAndName(codePoint)
-                        + "\r\n\t=> " + Default.ucd().getCodeAndName(processedString)
+                        + "\n\t=> " + Default.ucd().getCodeAndName(processedString)
                         );
             } else if (codeUnitLength == longestLength) {
                 longestSet.put(codePoint, processedString);

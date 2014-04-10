@@ -271,7 +271,7 @@ public class UnicodeJsp {
     }
 
     private static String getConfusablesCore(String test, Confusables confusables) {
-        test = test.replaceAll("[\r\n\t]", " ").trim();
+        test = test.replaceAll("[\n\t]", " ").trim();
         final StringBuilder result = new StringBuilder();
         final double maxSize = confusables.getMaxSize();
         final List<Collection<String>> alternates = confusables.getAlternates();

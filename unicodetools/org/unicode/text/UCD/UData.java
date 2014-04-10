@@ -310,7 +310,7 @@ class UData implements UCD_Types {
         if (full || script != COMMON_SCRIPT) {
             result.append(" sn='").append(UCD.getScriptID_fromIndex(script,SHORT)).append('\'');
         }
-        result.append(" n='").append(Utility.quoteXML(name)).append("'\r\n");
+        result.append(" n='").append(Utility.quoteXML(name)).append("'\n");
 
         int lastPos = result.length();
 
@@ -364,7 +364,7 @@ class UData implements UCD_Types {
         }
 
         if (lastPos != result.length()) {
-            result.append("\r\n");
+            result.append("\n");
             lastPos = result.length();
         }
 
@@ -376,7 +376,7 @@ class UData implements UCD_Types {
             }
         }
         if (lastPos != result.length()) {
-            result.append("\r\n");
+            result.append("\n");
             lastPos = result.length();
         }
 

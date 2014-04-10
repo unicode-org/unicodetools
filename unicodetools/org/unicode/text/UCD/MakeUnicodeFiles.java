@@ -1520,7 +1520,7 @@ public class MakeUnicodeFiles {
                         }
                     } else if (doOverlaps) { // doesn't contain, isn't contained
                         if (overlaps.length() != 0) {
-                            overlaps += "\r\n\t";
+                            overlaps += "\n\t";
                         }
                         intersection.clear().addAll(s2).retainAll(s1);
                         disjoint.clear().addAll(s1).removeAll(s2);
@@ -1629,13 +1629,13 @@ public class MakeUnicodeFiles {
     if (pos < 0) return null; // should never happen
     UnicodeProperty prop = factory.getProperty(s.substring(0,pos));
     if (prop == null) {
-    throw new IllegalArgumentException("Invalid Property: " + s + "\r\nUse "
+    throw new IllegalArgumentException("Invalid Property: " + s + "\nUse "
     + showSet(factory.getAvailableNames()));
     }
     String value = s.substring(pos+1);
     UnicodeSet set = prop.getSet(value);
     if (set.size() == 0) {
-    throw new IllegalArgumentException("Empty Property-Value: " + s + "\r\nUse "
+    throw new IllegalArgumentException("Empty Property-Value: " + s + "\nUse "
     + showSet(prop.getAvailableValues()));
     }
     if (DEBUG) System.out.println("\tReturning " + set.toPattern(true));

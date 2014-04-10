@@ -50,7 +50,7 @@ import com.ibm.icu.util.TimeZone;
 
 public class CldrUtility {
 
-    public static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    public static final String LINE_SEPARATOR = "\n"; //System.getProperty("line.separator");
 
     /**
      * Very simple class, used to replace variables in a string. For example<p>
