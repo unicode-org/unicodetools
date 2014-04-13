@@ -59,11 +59,12 @@ import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateEmoji {
     private static final char ENCLOSING_KEYCAP = '\u20E3';
-    private static final UnicodeSet ASCII_LETTER_HYPHEN = new UnicodeSet('-', '-', 'A', 'Z', 'a', 'z').freeze();
+    private static final UnicodeSet ASCII_LETTER_HYPHEN = new UnicodeSet('-', '-', 'A', 'Z', 'a', 'z', '’', '’').freeze();
     private static final UnicodeSet ASCII_LETTER_HYPHEN_SPACE = new UnicodeSet(ASCII_LETTER_HYPHEN).add(0x0020).freeze();
     private static final UnicodeSet EXTRAS = new UnicodeSet(
             "[\\u2714\\u2716\\u303D\\u3030 \\u00A9 \\u00AE \\u2795-\\u2797 \\u27B0 \\U0001F519-\\U0001F51C {🇽🇰}]")
@@ -237,7 +238,7 @@ public class GenerateEmoji {
             valueToKeys.put(value, key);
             return this;
         }
-        
+
         BiRelation<K, V> remove(K key, V value) {
             keyToValues.remove(key, value);
             valueToKeys.remove(value, key);
@@ -287,37 +288,38 @@ public class GenerateEmoji {
             CODEPOINT_COMPARE, 
             CODEPOINT_COMPARE);
     static {
-        String lastLabel = null;
+        Output<String> lastLabel = new Output();
         for (String line : FileUtilities.in(GenerateEmoji.class, "emojiAnnotations.txt")) {
             line = line.trim();
             if (line.isEmpty() || line.startsWith("#")) {
                 continue;
             }
-            // U+00AE   Registered symbol, Registered
-            int tabPos = line.indexOf('\t');
-            if (tabPos >= 0) {
-                String temp = line.substring(0,tabPos);
-                if (ASCII_LETTER_HYPHEN_SPACE.containsAll(temp)) {
-                    lastLabel = temp;
-                    line = line.substring(tabPos + 1);
-                } else {
-                    throw new IllegalArgumentException("Bad line format: " + line);
-                }
-            }
-            if (line.startsWith("*")) {
-                lastLabel = line.substring(1).trim();
-                continue;
-            }
+            line = getLabelFromLine(lastLabel, line);
             for (int i = 0; i < line.length();) {
                 String string = getEmojiSequence(line, i);
                 i += string.length();
                 if (skipEmojiSequence(string)) {
                     continue;
                 }
-                ANNOTATIONS_TO_CHARS.add(lastLabel, string);
+                ANNOTATIONS_TO_CHARS.add(lastLabel.value, string);
             }
         }
         ANNOTATIONS_TO_CHARS.freeze();
+    }
+
+    public static String getLabelFromLine(Output<String> newLabel, String line) {
+        line = line.replace(EMOJI_VARIANT_STRING, "").replace(TEXT_VARIANT_STRING, "");
+        int tabPos = line.indexOf('\t');
+        if (tabPos >= 0) {
+            String temp = line.substring(0,tabPos);
+            if (ASCII_LETTER_HYPHEN_SPACE.containsAll(temp)) {
+                newLabel.value = temp;
+                line = line.substring(tabPos + 1);
+            } else {
+                throw new IllegalArgumentException("Bad line format: " + line);
+            }
+        }
+        return line;
     }
     static final Transform<String,String> WINDOWS_URL = new Transform<String,String>() {
         public String transform(String s) {
@@ -358,7 +360,7 @@ public class GenerateEmoji {
                 return o1.compareTo(o2);
             }
         };
-        
+
         static final BiRelation<String, Label> CHARS_TO_LABELS 
         = BiRelation.of(
                 new TreeMap(CODEPOINT_COMPARE), 
@@ -370,34 +372,23 @@ public class GenerateEmoji {
                 );
 
         static {
-            Label lastLabel = null;
+            Output<String> lastLabel = new Output<>();
             String sublabel = null;
             for (String line : FileUtilities.in(GenerateEmoji.class, "emojiLabels.txt")) {
                 line = line.trim();
                 if (line.isEmpty() || line.startsWith("#")) {
                     continue;
                 }
-                char first = line.charAt(0);
-                if (first == '*') {
-                    sublabel = line.substring(1).trim();
-                } else if ('a' <= first && first <= 'z') {
-                    if (!ASCII_LETTER_HYPHEN.containsAll(line)) {
-                        throw new IllegalArgumentException();
+                line = getLabelFromLine(lastLabel, line);
+                for (int i = 0; i < line.length();) {
+                    String string = getEmojiSequence(line, i);
+                    i += string.length();
+                    if (skipEmojiSequence(string)) {
+                        continue;
                     }
-                    lastLabel = Label.get(line);
-                    sublabel = null;
-                } else {
-                    for (int i = 0; i < line.length();) {
-                        String string = getEmojiSequence(line, i);
-                        i += string.length();
-                        if (skipEmojiSequence(string)) {
-                            continue;
-                        }
-                        addLabel(string, lastLabel);
-                        if (sublabel != null) {
-                            NAME_TO_CHARS.add(sublabel, string);
-                        }
-                        //NAME_TO_CHARS.put(lastLabel.toString(), string);
+                    addLabel(string, Label.valueOf(lastLabel.value));
+                    if (sublabel != null) {
+                        NAME_TO_CHARS.add(sublabel, string);
                     }
                 }
             }
@@ -455,6 +446,9 @@ public class GenerateEmoji {
     }
 
     private static String getEmojiSequence(String line, int i) {
+        // it is base + variant? + keycap
+        // or
+        // RI + RI + variant?
         int firstCodepoint = line.codePointAt(i);
         int firstLen = Character.charCount(firstCodepoint);
         if (i + firstLen == line.length()) {
@@ -466,6 +460,13 @@ public class GenerateEmoji {
                 || (Emoji.isRegionalIndicator(firstCodepoint) && Emoji.isRegionalIndicator(secondCodepoint))) {
             return line.substring(i, i+firstLen+secondLen);
         }
+        //        if ((secondCodepoint == EMOJI_VARIANT || secondCodepoint == TEXT_VARIANT) && i + firstLen + secondLen < line.length()) {
+        //            int codePoint3 = line.codePointAt(i+firstLen+secondLen);
+        //            int len3 = Character.charCount(codePoint3);
+        //            if (codePoint3 == ENCLOSING_KEYCAP) {
+        //                return line.substring(i, i+firstLen+secondLen+len3);
+        //            }
+        //        }
         return line.substring(i, i+firstLen);
     }
 
@@ -488,8 +489,8 @@ public class GenerateEmoji {
         final String defaultPresentation;
         final Set<Label> labels;
         final String name;
-//        static final Relation<Label, Data> LABELS_TO_DATA 
-//        = Relation.of(new EnumMap(Label.class), TreeSet.class); // , BY_LABEL
+        //        static final Relation<Label, Data> LABELS_TO_DATA 
+        //        = Relation.of(new EnumMap(Label.class), TreeSet.class); // , BY_LABEL
 
         static final UnicodeSet DATA_CHARACTERS = new UnicodeSet();
 
@@ -525,9 +526,9 @@ public class GenerateEmoji {
             this.name = getName(chars);
             addWords(chars, name);
             DATA_CHARACTERS.add(chars);
-//            for (Label label : labels) {
-//                LABELS_TO_DATA.put(label, this);
-//            }
+            //            for (Label label : labels) {
+            //                LABELS_TO_DATA.put(label, this);
+            //            }
             if (!Utility.fromHex(code).equals(chars)) {
                 throw new IllegalArgumentException();
             }
@@ -849,7 +850,7 @@ public class GenerateEmoji {
         }
         //print(Form.imagesOnly, columns, Data.STRING_TO_DATA);
         //print(Form.shortForm, Data.STRING_TO_DATA);
-//        System.out.println(Data.LABELS_TO_DATA.keySet());
+        //        System.out.println(Data.LABELS_TO_DATA.keySet());
 
         print(Form.noImages, Data.STRING_TO_DATA);
         print(Form.fullForm, Data.STRING_TO_DATA);
@@ -1147,7 +1148,8 @@ public class GenerateEmoji {
                     chars = getEmojiVariant(s, EMOJI_VARIANT_STRING);
                 }
             }
-            out.print("<span title='U+" + Utility.hex(s, " U+") + " " + getName(s) + "'>" 
+            out.print("<span title='" +
+                    getHex(s) + " " + getName(s) + "'>" 
                     + chars
                     + "</span>");
         }
