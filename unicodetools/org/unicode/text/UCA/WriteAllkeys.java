@@ -88,7 +88,7 @@ public class WriteAllkeys {
                         );
             } else {
                 log.println(hex
-                        + " ; " + UCA.toStringUCA(ceList, value, variableTop, extraComment)
+                        + " ; " + UCA.toStringUCA(ceList, variableTop, extraComment)
                         + " # " + Default.ucd().getName(value)
                         + extraComment
                         );
