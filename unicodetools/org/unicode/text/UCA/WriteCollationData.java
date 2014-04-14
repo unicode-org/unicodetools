@@ -322,9 +322,12 @@ public class WriteCollationData {
         log.println("# UCA Version: " + getCollator(CollatorType.ducet).getDataVersion());
         log.println("# UCD Version: " + getCollator(CollatorType.ducet).getDataVersion());
         log.println("# Generated:   " + getNormalDate());
-        log.println("# For a description of the format and usage, see Collation" +
-                (auxiliary ? "Auxiliary" : "Test") +
-                ".html");
+        if (auxiliary) {
+            log.println("# For a description of the format and usage, see\n" +
+                    "# http://www.unicode.org/reports/tr35/tr35-collation.html#Root_Data_Files");
+        } else {
+            log.println("# For a description of the format and usage, see CollationTest.html");
+        }
         log.println();
     }
 

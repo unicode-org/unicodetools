@@ -725,19 +725,13 @@ final public class UCA implements Comparator, UCA_Types {
 
         final int max = Math.max(primary.length(), Math.max(secondary.length(), tertiary.length()));
 
-        final String quad = max == 1 ? original : toD.normalize(original);
-
         final StringBuffer result = new StringBuffer();
-        int qPos = 0;
-        int lastQ = 0;
         boolean lastWasVariable = false;
 
         for (int i = 0; i < max; ++i) {
             final char p = i < primary.length() ? primary.charAt(i) : 0;
             final char s = i < secondary.length() ? secondary.charAt(i) : p != 0 ? '\u0020' : 0;
             final char t = i < tertiary.length() ? tertiary.charAt(i) : s != 0 ? '\u0002' : 0;
-            final int q = lastQ = t == 0 ? 0 : qPos < quad.length() ? quad.codePointAt(qPos) : lastQ;
-            qPos += Character.charCount(q);
             final boolean isVariable = isVariablePrimary(p, variableTop, lastWasVariable);
             lastWasVariable = isVariable;
 
@@ -746,7 +740,6 @@ final public class UCA implements Comparator, UCA_Types {
             .append(isVariable ? "*" : ".").append(Utility.hex(p))
             .append(".").append(Utility.hex(s))
             .append(".").append(Utility.hex(t))
-            .append(".").append(Utility.hex(q))
             .append("]");
         }
         final boolean noncanonical = !toD.isNormalized(original);
@@ -776,26 +769,19 @@ final public class UCA implements Comparator, UCA_Types {
             && variableBottom <= primary;
     }
 
-    public static String toStringUCA(CEList ceList, String value, int variableTop, StringBuilder extraComment) {
+    public static String toStringUCA(CEList ceList, int variableTop, StringBuilder extraComment) {
         if (ceList.isEmpty()) {
-            return "[.0000.0000.0000.0000]";
+            return "[.0000.0000.0000]";
         }
         extraComment.setLength(0);
         boolean lastWasVariable = false;
         final StringBuffer result = new StringBuffer();
-        final String quad = ceList.length() == 1 ? value : toD.normalize(value);
-        int qIndex = 0;
 
         for (int i = 0; i < ceList.length(); ++i) {
             final int ce = ceList.at(i);
             final char p = UCA.getPrimary(ce);
             final char s = UCA.getSecondary(ce);
             final char t = UCA.getTertiary(ce);
-            final int q = quad.codePointAt(qIndex);
-            final int delta = Character.charCount(q);
-            if (qIndex + delta < quad.length()) {
-                qIndex += delta;
-            }
 
             final boolean isVariable = isVariablePrimary(p, variableTop, lastWasVariable);
 
@@ -806,7 +792,6 @@ final public class UCA implements Comparator, UCA_Types {
             .append(isVariable ? "*" : ".").append(Utility.hex(p))
             .append(".").append(Utility.hex(s))
             .append(".").append(Utility.hex(t))
-            .append(".").append(Utility.hex(q))
             .append("]");
         }
         return result.toString();
@@ -1520,10 +1505,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 }
 
                 // collect CEs
-                if (false && value == 0x2F00) {
-                    System.out.println("debug");
-                }
-
                 wasImplicitLeadPrimary[0] = false;
 
                 final int ce = getCEFromLine(firstCodePoint, line, position, record, wasImplicitLeadPrimary, true);
