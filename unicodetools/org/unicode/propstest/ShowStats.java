@@ -46,7 +46,7 @@ public class ShowStats {
     static final UnicodeMap<String> emojiSB = latest.load(UcdProperty.Emoji_SB);
     static final UnicodeMap<String> svsRaw = latest.load(UcdProperty.Standardized_Variant);
     static final UnicodeSet svs = new UnicodeSet();
-    
+
     static {
         for (Entry<String, String> entry : svsRaw.entrySet()) {
             String v = entry.getValue();
@@ -57,7 +57,27 @@ public class ShowStats {
         svs.freeze();
     }
 
-    static EnumMap<General_Category_Values, General_Category_Values> CAT = new EnumMap(General_Category_Values.class);
+    enum Bucket {
+        Ideographic, 
+        Other_Letter, 
+        Emoji, 
+        Other_Symbol, 
+        Mark, 
+        Number, 
+        Punctuation, 
+        Format("Format/Control/Sep"), 
+        Other;
+        final String title;
+
+        private Bucket(String name) {
+            this.title = name;
+        }
+        private Bucket() {
+            this.title = name();
+        }
+    }
+
+    static EnumMap<General_Category_Values, Bucket> CAT = new EnumMap(General_Category_Values.class);
     static {
         for (General_Category_Values cat : UcdPropertyValues.General_Category_Values.values()) {
             switch (cat) {
@@ -66,7 +86,7 @@ public class ShowStats {
             case Uppercase_Letter:
             case Titlecase_Letter:
             case Other_Letter:
-                CAT.put(cat, General_Category_Values.Letter); break;
+                CAT.put(cat, Bucket.Other_Letter); break;
 
             case Other_Punctuation:
             case Close_Punctuation:
@@ -75,35 +95,35 @@ public class ShowStats {
             case Final_Punctuation:
             case Initial_Punctuation:
             case Open_Punctuation:
-                CAT.put(cat, General_Category_Values.Punctuation); break;
+                CAT.put(cat,  Bucket.Punctuation); break;
 
             case Math_Symbol:
             case Currency_Symbol:
             case Modifier_Symbol:
             case Other_Symbol:
-                CAT.put(cat, General_Category_Values.Symbol); break;
+                CAT.put(cat,  Bucket.Other_Symbol); break;
 
             case Space_Separator:
             case Paragraph_Separator:
             case Line_Separator:
             case Control:
             case Format:
-                CAT.put(cat, General_Category_Values.Format); break;
+                CAT.put(cat, Bucket.Format); break;
 
             case Decimal_Number:
             case Letter_Number:
             case Other_Number:
-                CAT.put(cat, General_Category_Values.Number); break;
+                CAT.put(cat, Bucket.Number); break;
 
             case Nonspacing_Mark:
             case Enclosing_Mark:
             case Spacing_Mark:
-                CAT.put(cat, General_Category_Values.Mark); break;
+                CAT.put(cat, Bucket.Mark); break;
 
             case Unassigned:
             case Surrogate: // we don't care about these.
             case Private_Use:
-                CAT.put(cat, General_Category_Values.Unassigned); break;
+                CAT.put(cat, Bucket.Other); break;
 
             case Symbol:
             case Separator:
@@ -132,27 +152,30 @@ public class ShowStats {
 
     public static void main(String[] args) {
 
-        showEmoji();
-        if (true) return;
+        //        showEmoji();
+        //        if (true) return;
 
-        Counter c = new Counter<Row.R2<General_Category_Values, Age_Values>>();
+        Counter c = new Counter<Row.R2<Bucket, Age_Values>>();
         Counter catCounter = new Counter<General_Category_Values>();
         EnumMap<Age_Values,EnumSet<Script_Values>> scriptCounter = new EnumMap(Age_Values.class);
-        Counter<Age_Values> emojis = new Counter<Age_Values>();
+//        Counter<Age_Values> emojis = new Counter<Age_Values>();
 
         for (int i = 0; i <= 0x10ffff; ++i) {
             General_Category_Values rawCat = General_Category_Values.valueOf(cat.get(i));
-            General_Category_Values catGroup = CAT.get(rawCat);
+            Bucket catGroup = CAT.get(rawCat);
             Binary ideographic = Binary.valueOf(ideo.get(i));
             if (ideographic == Binary.Yes) {
-                catGroup = General_Category_Values.Other_Letter;
+                catGroup = Bucket.Ideographic;
+            }
+            if (org.unicode.text.tools.Emoji.EMOJI_CHARS.contains(i)) {
+                catGroup = Bucket.Emoji;
             }
             Age_Values ageValue = Age_Values.valueOf(age.get(i));
             c.add(Row.of(catGroup, ageValue), 1);
             catCounter.add(catGroup,1);
-            if (catGroup == General_Category_Values.Symbol && ageValue == Age_Values.V7_0) {
-                System.out.println(block.get(i) + "\tU+" + Utility.hex(i) + "\t" + rawCat + "\t" + name.get(i));
-            }
+            //            if (catGroup == General_Category_Values.Symbol && ageValue == Age_Values.V7_0) {
+            //                System.out.println(block.get(i) + "\tU+" + Utility.hex(i) + "\t" + rawCat + "\t" + name.get(i));
+            //            }
 
             // add to all older
             Script_Values scriptValue = Script_Values.valueOf(script.get(i));
@@ -161,20 +184,30 @@ public class ShowStats {
                     continue;
                 }
                 addScript(scriptCounter, ageV, scriptValue);
+                if (org.unicode.text.tools.Emoji.EMOJI_CHARS.contains(i)) {
+//                    emojis.add(ageV, 1);
+                }
             }
 
         }
+        System.out.print("Script");
+        for (Age_Values age : Age_Values.values()) {
+            if (age == Age_Values.Unassigned) {
+                continue;
+            }
+            System.out.print("\t" + scriptCounter.get(age).size());
+        }
+        System.out.print("\n");
         for (Age_Values age : Age_Values.values()) {
             System.out.print("\t" + age.getShortName());
         }
         System.out.print("\n");
-        for (General_Category_Values cat : General_Category_Values.values()) {
-            if (cat == General_Category_Values.Unassigned || catCounter.get(cat) == 0) {
+        
+        for (Bucket cat : Bucket.values()) {
+            if (cat == Bucket.Other || catCounter.get(cat) == 0) {
                 continue;
             }
-            System.out.print(cat == General_Category_Values.Format ? "Format/Control/Sep" 
-                    : cat == General_Category_Values.Other_Letter ? "Ideographic" 
-                            : cat.toString());
+            System.out.print(cat.title);
             long total = 0;
             for (Age_Values age : Age_Values.values()) {
                 if (age == Age_Values.Unassigned) {
@@ -186,26 +219,16 @@ public class ShowStats {
             System.out.print("\n");
         }
 
-        System.out.print("Script");
-        long total = 0;
-        for (Age_Values age : Age_Values.values()) {
-            if (age == Age_Values.Unassigned) {
-                continue;
-            }
-            System.out.print("\t" + scriptCounter.get(age).size());
-        }
-        System.out.print("\n");
 
-        System.out.print("Emoji");
-        total = 0;
-        for (Age_Values age : Age_Values.values()) {
-            if (age == Age_Values.Unassigned) {
-                continue;
-            }
-            total += emojis.get(age);
-            System.out.print("\t" + total);
-        }
-        System.out.print("\n");
+//        System.out.print("Emoji");
+//        total = 0;
+//        for (Age_Values age : Age_Values.values()) {
+//            if (age == Age_Values.Unassigned) {
+//                continue;
+//            }
+//            System.out.print("\t" + emojis.get(age));
+//        }
+//        System.out.print("\n");
 
     }
 
@@ -250,7 +273,7 @@ public class ShowStats {
         }
         return CollectionUtilities.join(emojiSources, " ");
     }
-    
+
     private static String getBlock(String s, Set<String> emojiSources) {
         emojiSources.clear();
         int cp;
