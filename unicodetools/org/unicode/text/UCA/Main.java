@@ -107,7 +107,10 @@ public class Main {
                 WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, shortPrint, noCE, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("WriteRulesCLDR")) {
                 WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, false /*shortPrint*/, noCE, CollatorType.cldr);
-                WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, true, noCE, CollatorType.cldr);
+                if (!noCE) {
+                    // short omits CEs anyway
+                    WriteCollationData.writeRules(WriteCollationData.WITHOUT_NAMES, true, noCE, CollatorType.cldr);
+                }
             } else if (arg.equalsIgnoreCase("WriteRulesXML")) {
                 WriteCollationData.writeRules(WriteCollationData.IN_XML, shortPrint, noCE, CollatorType.ducet);
             } else if (arg.equalsIgnoreCase("WriteRulesCLDRXML")) {
