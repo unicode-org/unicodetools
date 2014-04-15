@@ -1,6 +1,6 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 7.0.0
-@@@+	U70M140310.lst
+@@@+	U70M140414.lst
 	Unicode 7.0.0 names list, twentieth delta.
 	Based on FDAM1 + FDAM2, with modified annotations, plus 20BD.
 	Corrected syntax on two xrefs for 1AB7.
@@ -15,6 +15,8 @@
 	Updated the subhead for 1DF5.
 	Updated the notice at 11580 for Siddham.
 	Regeneration to fix typo in name for 1F6E4.
+	Updated annotations for 1F540 through 1F545.
+	Updated annotations about use for Bihari languages in the Devanagari block.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4695,12 +4697,14 @@
 090C	DEVANAGARI LETTER VOCALIC L
 090D	DEVANAGARI LETTER CANDRA E
 090E	DEVANAGARI LETTER SHORT E
-	* for transcribing Dravidian short e
+	* Kashmiri, Bihari languages
+	* also used for transcribing Dravidian short e
 090F	DEVANAGARI LETTER E
 0910	DEVANAGARI LETTER AI
 0911	DEVANAGARI LETTER CANDRA O
 0912	DEVANAGARI LETTER SHORT O
-	* for transcribing Dravidian short o
+	* Kashmiri, Bihari languages
+	* also used for transcribing Dravidian short o
 0913	DEVANAGARI LETTER O
 0914	DEVANAGARI LETTER AU
 @		Consonants
@@ -4748,7 +4752,8 @@
 0937	DEVANAGARI LETTER SSA
 0938	DEVANAGARI LETTER SA
 0939	DEVANAGARI LETTER HA
-@		Dependent vowel signs for Kashmiri
+@		Dependent vowel signs
+@+		These dependent vowel signs are used in Kashmiri and in the Bihari languages (Bhojpuri, Magadhi, and Maithili).
 093A	DEVANAGARI VOWEL SIGN OE
 093B	DEVANAGARI VOWEL SIGN OOE
 @		Various signs
@@ -4767,12 +4772,14 @@
 0945	DEVANAGARI VOWEL SIGN CANDRA E
 	= candra
 0946	DEVANAGARI VOWEL SIGN SHORT E
-	* for transcribing Dravidian vowels
+	* Kashmiri, Bihari languages
+	* also used for transcribing Dravidian short e
 0947	DEVANAGARI VOWEL SIGN E
 0948	DEVANAGARI VOWEL SIGN AI
 0949	DEVANAGARI VOWEL SIGN CANDRA O
 094A	DEVANAGARI VOWEL SIGN SHORT O
-	* for transcribing Dravidian vowels
+	* Kashmiri, Bihari languages
+	* also used for transcribing Dravidian short o
 094B	DEVANAGARI VOWEL SIGN O
 094C	DEVANAGARI VOWEL SIGN AU
 @		Virama
@@ -4784,7 +4791,7 @@
 	* character has historic use only
 	* combines with E to form AI, with AA to form O, and with O to form AU
 094F	DEVANAGARI VOWEL SIGN AW
-	* Kashmiri
+	* Kashmiri, Bihari languages
 @		Sign
 0950	DEVANAGARI OM
 	x (om symbol - 1F549)
@@ -4855,10 +4862,12 @@
 0971	DEVANAGARI SIGN HIGH SPACING DOT
 @		Independent vowel for Marathi
 0972	DEVANAGARI LETTER CANDRA A
-@		Independent vowels for Kashmiri
+@		Independent vowels
+@+		These independent vowels are used in Kashmiri and in the Bihari languages.
 0973	DEVANAGARI LETTER OE
 0974	DEVANAGARI LETTER OOE
 0975	DEVANAGARI LETTER AW
+@		Independent vowels for Kashmiri
 0976	DEVANAGARI LETTER UE
 0977	DEVANAGARI LETTER UUE
 @		Additional consonants
@@ -41174,18 +41183,18 @@ FFFF	<not a character>
 1F53F	UPPER RIGHT SHADOWED WHITE CIRCLE
 @		Religious symbols
 1F540	CIRCLED CROSS POMMEE
-	* Orthodox typikon symbol for great feast service
+	* Orthodox typicon symbol for great feast service
 1F541	CROSS POMMEE WITH HALF-CIRCLE BELOW
-	* Orthodox typikon symbol for vigil service
+	* Orthodox typicon symbol for vigil service
 1F542	CROSS POMMEE
-	* Orthodox typikon symbol for Polyeleos
+	* Orthodox typicon symbol for Polyeleos
 	x (four teardrop-spoked asterisk - 2722)
 1F543	NOTCHED LEFT SEMICIRCLE WITH THREE DOTS
-	* Orthodox typikon symbol for lower rank feast
+	* Orthodox typicon symbol for lower rank feast
 1F544	NOTCHED RIGHT SEMICIRCLE WITH THREE DOTS
-	* Orthodox typikon for lower rank feast
+	* Orthodox typicon symbol for lower rank feast
 1F545	SYMBOL FOR MARKS CHAPTER
-	* Orthodox typikon for difficult sections 
+	* Orthodox typicon symbol for difficult sections
 1F546	WHITE LATIN CROSS
 	= cross outline
 	x (shadowed white latin cross - 271E)

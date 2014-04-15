@@ -1,6 +1,6 @@
 #
 # Unihan_OtherMappings.txt
-# Date: 2014-02-19 23:29:18 GMT [JHJ]
+# Date: 2014-04-11 00:45:23 GMT [JHJ]
 # Unicode version: 7.0.0
 #
 # Unicode Character Database
