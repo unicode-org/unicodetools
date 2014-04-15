@@ -175,7 +175,7 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 
 # Script_Extensions=Arab Mand Syrc
 
-0640          ; Arab Mand Syrc # Lm       ARABIC TATWEEL
+0640          ; Arab Mand Mani Phlp Syrc # Lm       ARABIC TATWEEL
 
 # Total code points: 1
 
