@@ -221,6 +221,8 @@ Unihan_IRGSources ; kIRG_TSource
 Unihan_IRGSources ; kIRG_USource
 Unihan_IRGSources ; kIRG_VSource
 Unihan_IRGSources ; kIRG_MSource
+Unihan_IRGSources ; kRSUnicode
+Unihan_IRGSources ; kCompatibilityVariant
 Unihan_NumericValues ; kAccountingNumeric
 Unihan_NumericValues ; kOtherNumeric
 Unihan_NumericValues ; kPrimaryNumeric
@@ -253,7 +255,7 @@ Unihan_RadicalStrokeCounts ;  kRSJapanese
 Unihan_RadicalStrokeCounts ;  kRSKangXi
 Unihan_RadicalStrokeCounts ;  kRSKanWa
 Unihan_RadicalStrokeCounts ;  kRSKorean
-Unihan_RadicalStrokeCounts ;  kRSUnicode
+Unihan_RadicalStrokeCounts ; kRSUnicode	; v6.3
 Unihan_Readings ; kCantonese
 Unihan_Readings ; kDefinition
 Unihan_Readings ; kHangul
@@ -266,7 +268,7 @@ Unihan_Readings ; kMandarin
 Unihan_Readings ; kTang
 Unihan_Readings ; kVietnamese
 Unihan_Readings ; kXHC1983
-Unihan_Variants ; kCompatibilityVariant
+Unihan_Variants ; kCompatibilityVariant	; v6.3
 Unihan_Variants ; kSemanticVariant
 Unihan_Variants ; kSimplifiedVariant
 Unihan_Variants ; kSpecializedSemanticVariant

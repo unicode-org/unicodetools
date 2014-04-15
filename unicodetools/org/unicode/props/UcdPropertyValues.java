@@ -700,6 +700,7 @@ public class UcdPropertyValues {
 	public enum Indic_Syllabic_Category_Values implements Named {
         Avagraha("Avagraha"),
         Bindu("Bindu"),
+        Cantillation_Mark("Cantillation_Mark"),
         Consonant("Consonant"),
         Consonant_Dead("Consonant_Dead"),
         Consonant_Final("Consonant_Final"),
@@ -708,6 +709,7 @@ public class UcdPropertyValues {
         Consonant_Placeholder("Consonant_Placeholder"),
         Consonant_Repha("Consonant_Repha"),
         Consonant_Subjoined("Consonant_Subjoined"),
+        Gemination_Mark("Gemination_Mark"),
         Modifying_Letter("Modifying_Letter"),
         Nukta("Nukta"),
         Other("Other"),
