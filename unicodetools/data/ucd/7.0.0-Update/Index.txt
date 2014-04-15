@@ -1272,6 +1272,8 @@ CURRENCY SYMBOL RIEL, KHMER	17DB
 currency symbol, florin	0192
 Currency Symbols	20A0
 currency, argentinian former	20B3
+currency, armenian	058F
+currency, azerbaijani	20BC
 currency, brazilian	20A2
 currency, costa rican	20A1
 currency, el salvadorian	20A1
@@ -1289,6 +1291,7 @@ currency, mongolian	20AE
 currency, nigerian	20A6
 currency, paraguayan	20B2
 currency, phillipine	20B1
+currency, russian	20BD
 currency, spanish	20A7
 currency, turkish	20A4
 currency, ukrainian	20B4
@@ -1680,6 +1683,7 @@ Drafting Symbols	232D
 DRAGON	1F409
 DRAGON FACE	1F432
 dram	0292
+DRAM SIGN, ARMENIAN	058F
 Draughts and Checkers, Symbols for	26C0
 DRIVE SLOW SIGN	26DA
 drive-in restaurant	26FE
@@ -3176,6 +3180,7 @@ MALTESE CROSS	2720
 MAN	1F468
 MAN AND WOMAN HOLDING HANDS	1F46B
 MAN, OLDER	1F474
+MANAT SIGN	20BC
 MANCHU COMMA, MONGOLIAN	1808
 MANCHU FULL STOP, MONGOLIAN	1809
 Mandaic	0840
@@ -4364,6 +4369,7 @@ ROOT, FOURTH	221C
 ROOT, SQUARE	221A
 ROTATED CAPITAL Q	213A
 rough breathing mark, greek	0314
+RUBLE SIGN	20BD
 rule, parted	00A6
 RULE-DELAYED	29F4
 Rumi Numeral Symbols	10E60
