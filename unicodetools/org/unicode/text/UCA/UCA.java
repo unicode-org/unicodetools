@@ -71,7 +71,7 @@ This is because of shared
 characters between scripts with different directions, like French with Arabic or Greek.
  */
 
-final public class UCA implements Comparator, UCA_Types {
+final public class UCA implements Comparator<String>, UCA_Types {
 
     public static final int TEST_PRIMARY = 0xFDFC;
 
@@ -81,8 +81,8 @@ final public class UCA implements Comparator, UCA_Types {
             "Copyright (C) 2000, IBM Corp. and others. All Rights Reserved.";
 
     @Override
-    public int compare(Object a, Object b) {
-        return getSortKey((String) a).compareTo(getSortKey((String) b));
+    public int compare(String a, String b) {
+        return getSortKey(a).compareTo(getSortKey(b));
     }
 
 
@@ -129,7 +129,6 @@ final public class UCA implements Comparator, UCA_Types {
         // load the normalizer
         if (toD == null) {
             toD = new Normalizer(UCD_Types.NFD, unicodeVersion);
-            toKD = new Normalizer(UCD_Types.NFKD, unicodeVersion);
         }
 
         ucd = UCD.make(unicodeVersion);
@@ -706,61 +705,11 @@ final public class UCA implements Comparator, UCA_Types {
 
     static final int variableBottom = UCA.getPrimary(CE_FFFE)+1;
 
-    /**
+    /*
      * Produces a human-readable string for a sort key.
-     * @param variableTop TODO
-     * @param extraComment
+     * removed after unicodetools svn r641
      */
-    static public String toStringUCA(String sortKey, String original, int variableTop, StringBuilder extraComment) {
-        extraComment.setLength(0);
-        final int primaryEnd = sortKey.indexOf(0);
-        final int secondaryEnd = sortKey.indexOf(0, primaryEnd+1);
-        int tertiaryEnd = sortKey.indexOf(0, secondaryEnd+1);
-        if (tertiaryEnd < 0) {
-            tertiaryEnd = sortKey.length();
-        }
-        final String primary = sortKey.substring(0, primaryEnd);
-        final String secondary = sortKey.substring(primaryEnd+1, secondaryEnd);
-        final String tertiary = sortKey.substring(secondaryEnd+1, tertiaryEnd);
-
-        final int max = Math.max(primary.length(), Math.max(secondary.length(), tertiary.length()));
-
-        final StringBuffer result = new StringBuffer();
-        boolean lastWasVariable = false;
-
-        for (int i = 0; i < max; ++i) {
-            final char p = i < primary.length() ? primary.charAt(i) : 0;
-            final char s = i < secondary.length() ? secondary.charAt(i) : p != 0 ? '\u0020' : 0;
-            final char t = i < tertiary.length() ? tertiary.charAt(i) : s != 0 ? '\u0002' : 0;
-            final boolean isVariable = isVariablePrimary(p, variableTop, lastWasVariable);
-            lastWasVariable = isVariable;
-
-            result
-            .append("[")
-            .append(isVariable ? "*" : ".").append(Utility.hex(p))
-            .append(".").append(Utility.hex(s))
-            .append(".").append(Utility.hex(t))
-            .append("]");
-        }
-        final boolean noncanonical = !toD.isNormalized(original);
-        final boolean compatibility = !noncanonical && !toKD.isNormalized(original);
-
-        final int ceCount = max;
-        if (ceCount > 1) {
-            if (compatibility) {
-                extraComment.append("; QQKN");
-            } else {
-                extraComment.append("; QCCM");
-            }
-        } else {
-            if (compatibility) {
-                extraComment.append("; QQK");
-            } else if (noncanonical) {
-                extraComment.append("; QQC");
-            }
-        }
-        return result.toString();
-    }
+    // static public String toStringUCA(String sortKey, String original, int variableTop, StringBuilder extraComment)
 
     public static boolean isVariablePrimary(char primary, int variableTop,
             boolean lastWasVariable) {
@@ -770,7 +719,7 @@ final public class UCA implements Comparator, UCA_Types {
     }
 
     public static String toStringUCA(CEList ceList, int variableTop, StringBuilder extraComment) {
-        if (ceList.isEmpty()) {
+        if (ceList == null || ceList.isEmpty()) {
             return "[.0000.0000.0000]";
         }
         extraComment.setLength(0);
@@ -798,7 +747,7 @@ final public class UCA implements Comparator, UCA_Types {
     }
 
 
-    /**
+    /*
      * Produces a human-readable string for a collation element.
      * value is terminated by -1!
      */
@@ -812,7 +761,7 @@ final public class UCA implements Comparator, UCA_Types {
     }
     &/
 
-    /**
+    /*
      * Produces a human-readable string for a collation element.
      * value is terminated by -1!
      */
@@ -991,7 +940,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      * NFD required
      */
     private static Normalizer toD;
-    private static Normalizer toKD;
 
     /**
      * Records the dataversion
@@ -1871,7 +1819,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     /**
      * Used for checking data file integrity
      */
-    private final Map uniqueTable = new HashMap();
+    private final Map<Long, Character> uniqueTable = new HashMap<Long, Character>();
 
     /**
      * Used for checking data file integrity
@@ -1881,12 +1829,11 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         {
             return; // don't check decomposables.
         }
-        final Object ceObj = new Long(((long)result << 16) | fourth);
-        final Object probe = uniqueTable.get(ceObj);
+        final Long ceObj = new Long(((long)result << 16) | fourth);
+        final Character probe = uniqueTable.get(ceObj);
         if (probe != null) {
             System.out.println("\tCE(" + Utility.hex(value)
-                    + ")=CE(" + Utility.hex(((Character)probe).charValue()) + "); " + line);
-
+                    + ")=CE(" + Utility.hex(probe.charValue()) + "); " + line);
         } else {
             uniqueTable.put(ceObj, new Character(value));
         }

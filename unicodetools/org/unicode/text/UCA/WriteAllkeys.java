@@ -47,7 +47,7 @@ public class WriteAllkeys {
         final UCA.UCAContents cc = collator.getContents(null);
         log.println("@version " + collator.getDataVersion() + "\n");
 
-        final Map<String,String> sorted = new TreeMap();
+        final Map<String,String> sorted = new TreeMap<String,String>();
 
         while (true) {
             final String s = cc.next();
@@ -61,7 +61,7 @@ public class WriteAllkeys {
         addString(collator, "\uFFFE", sorted);
         addString(collator, "\uFFFF", sorted);
 
-        final int variableTop = UCA.getPrimary(collator.getVariableHighCE());
+        final int variableTop = CEList.getPrimary(collator.getVariableHighCE());
         final StringBuilder extraComment = new StringBuilder();
         for (final Entry<String, String> entry : sorted.entrySet()) {
             //String key = entry.getKey();
@@ -75,25 +75,11 @@ public class WriteAllkeys {
                 hex += " ";
             }
             final CEList ceList = collator.getCEList(value, true);
-            if (ceList == null) {
-                final String sortkey = collator.getSortKey(value, UCA_Types.NON_IGNORABLE, true, AppendToCe.none);
-                // 0000  ; [.0000.0000.0000.0000] # [0000] NULL (in 6429)
-                // 0430 0306 ; [.1947.0020.0002.04D1] # CYRILLIC SMALL LETTER A WITH BREVE
-                // 1F60  ; [.1904.0020.0002.03C9][.0000.0022.0002.0313] # GREEK SMALL LETTER OMEGA WITH PSILI; QQCM
-
-                log.println(hex
-                        + " ; " + UCA.toStringUCA(sortkey, value, variableTop, extraComment)
-                        + " # " + Default.ucd().getName(value)
-                        + extraComment
-                        );
-            } else {
-                log.println(hex
-                        + " ; " + UCA.toStringUCA(ceList, variableTop, extraComment)
-                        + " # " + Default.ucd().getName(value)
-                        + extraComment
-                        );
-
-            }
+            log.println(hex
+                    + " ; " + UCA.toStringUCA(ceList, variableTop, extraComment)
+                    + " # " + Default.ucd().getName(value)
+                    + extraComment
+                    );
         }
         log.close();
     }
@@ -106,7 +92,6 @@ public class WriteAllkeys {
     }
 
     static String dropIdentical(String sortKeyWithIdentical) {
-        final char extra = sortKeyWithIdentical.charAt(sortKeyWithIdentical.length() - 1);
         final String clipped = sortKeyWithIdentical.substring(0, sortKeyWithIdentical.length() - 1);
         return clipped;
     }
