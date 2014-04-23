@@ -8,15 +8,15 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.text.UCA.CEList;
-import org.unicode.text.UCA.CaseBit;
-import org.unicode.text.UCA.CaseBit.Casing;
-import org.unicode.text.UCA.CaseBit.CasingList;
 import org.unicode.text.UCA.UCA;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.unused.CaseBit;
+import org.unicode.unused.CaseBit.Casing;
+import org.unicode.unused.CaseBit.CasingList;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.Relation;

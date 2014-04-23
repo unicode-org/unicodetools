@@ -1,7 +1,5 @@
-/**
- * 
- */
-package org.unicode.text.UCA;
+// Obsolete code. Moved here from org.unicode.text.UCA on 2014-apr-23 after svn r642.
+package org.unicode.unused;
 
 
 public class Range {

@@ -1101,14 +1101,13 @@ public class FractionalUCA {
         }
         int secTer = p2f.secTerToFractional.getFractionalSecAndTer(sec, ter);
 
-        // get case bits. 00 is low, 01 is mixed (never happens), 10 is high
-        int caseBits = CaseBit.getCaseFromTertiary(ter).getBits();
-        if (caseBits != 0) {
+        if (UCA_Types.uppercaseTertiaries.get(ter)) {
             if ((secTer & 0xff00) != 0) {
-                // The tertiary lead byte is in bits 15..8, move the case bits there too.
-                caseBits <<= 8;
+                // The tertiary lead byte is in bits 15..8, set the uppercase bit there too.
+                secTer |= 0x8000;
+            } else {
+                secTer |= 0x80;
             }
-            secTer |= caseBits;
         }
         return secTer;
     }

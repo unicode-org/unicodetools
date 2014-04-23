@@ -10,6 +10,7 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -54,18 +55,6 @@ class ReorderingTokens {
         final byte cat = Fractional.getFixedCategory(cp);
         final int script = Fractional.getFixedScript(cp);
 
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
         if (!(script == UCD_Types.Unknown_Script || script == UCD_Types.COMMON_SCRIPT)
                 && (cat == UCD_Types.OTHER_LETTER || cat == UCD_Types.UPPERCASE_LETTER || cat == UCD_Types.LOWERCASE_LETTER || cat == UCD_Types.TITLECASE_LETTER)) {
             // Add script aliases Hira & Hrkt before adding Kana.
@@ -73,14 +62,14 @@ class ReorderingTokens {
                 reorderingToken.add("Hira", 1);
                 reorderingToken.add("Hrkt", 1);
             }
-            reorderingToken.add(Default.ucd().getScriptID_fromIndex((byte)script, UCD_Types.SHORT), 1);
+            reorderingToken.add(UCD.getScriptID_fromIndex((byte)script, UCD_Types.SHORT), 1);
             // Add script aliases Hans & Hant after Hani.
             if (script == UCD_Types.HAN_SCRIPT && !reorderingToken.containsKey("Hans")) {
                 reorderingToken.add("Hans", 1);
                 reorderingToken.add("Hant", 1);
             }
         } else {
-            types.add(Default.ucd().getCategoryID_fromIndex(cat, UCD_Types.SHORT), 1);
+            types.add(UCD.getCategoryID_fromIndex(cat, UCD_Types.SHORT), 1);
         }
         //}
     }
@@ -104,26 +93,14 @@ class ReorderingTokens {
         //cp = source.codePointAt(i);
         final byte cat = Fractional.getFixedCategory(cp);
         final int script = Fractional.getFixedScript(cp);
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
-        ;
-        Default.ucd();
         //        if (result.length() != 0) {
         //          result.append(' ');
         //        }
         if (!(script == UCD_Types.Unknown_Script || script == UCD_Types.COMMON_SCRIPT)
                 && (cat == UCD_Types.OTHER_LETTER || cat == UCD_Types.UPPERCASE_LETTER || cat == UCD_Types.LOWERCASE_LETTER || cat == UCD_Types.TITLECASE_LETTER)) {
-            result = (Default.ucd().getScriptID_fromIndex((byte)script, UCD_Types.SHORT));
+            result = (UCD.getScriptID_fromIndex((byte)script, UCD_Types.SHORT));
         } else {
-            result = (Default.ucd().getCategoryID_fromIndex(cat, UCD_Types.SHORT));
+            result = (UCD.getCategoryID_fromIndex(cat, UCD_Types.SHORT));
         }
         // }
         return result;
@@ -134,11 +111,11 @@ class ReorderingTokens {
         throw new UnsupportedOperationException();
     }
 
-    static Set<String> common = new TreeSet();
+    static Set<String> common = new TreeSet<String>();
     static {
-        common.add(Default.ucd().getScriptID_fromIndex(UCD_Types.COMMON_SCRIPT, UCD_Types.SHORT));
-        common.add(Default.ucd().getScriptID_fromIndex(UCD_Types.Unknown_Script, UCD_Types.SHORT));
-        common.add(Default.ucd().getScriptID_fromIndex(UCD_Types.INHERITED_SCRIPT, UCD_Types.SHORT));
+        common.add(UCD.getScriptID_fromIndex(UCD_Types.COMMON_SCRIPT, UCD_Types.SHORT));
+        common.add(UCD.getScriptID_fromIndex(UCD_Types.Unknown_Script, UCD_Types.SHORT));
+        common.add(UCD.getScriptID_fromIndex(UCD_Types.INHERITED_SCRIPT, UCD_Types.SHORT));
     }
 
     <T extends Appendable> T  appendTo(T result, boolean categoriesAlso) {
@@ -149,7 +126,6 @@ class ReorderingTokens {
             if (categoriesAlso) {
                 result.append("[").append(primaryCount.size() + "").append("]\t");
             }
-            final boolean first = true;
             if (!categoriesAlso) {
                 final String scriptNames = reorderingToken.size() != 0 ? CollectionUtilities.join(reorderingToken.keySet(), " ") : "Zyyy";
                 result.append(scriptNames);
