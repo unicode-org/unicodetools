@@ -1,4 +1,8 @@
-package org.unicode.text.UCA;
+// Obsolete code. Moved here from org.unicode.text.UCA on 2014-apr-23 after svn r642.
+// The UCA tools do not deal with ICU 1.8-52 style implicit fractional primary weights any more.
+// ICU 53 uses a range-offset mechanism for Unified_Ideograph,
+// and a different implicit algorithm for unassigned code points.
+package org.unicode.unused;
 
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;

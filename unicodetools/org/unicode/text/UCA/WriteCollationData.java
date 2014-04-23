@@ -112,39 +112,6 @@ public class WriteCollationData {
     }
 
     // Called by UCA.Main.
-    static void writeCaseExceptions() {
-        System.err.println("Writing Case Exceptions");
-        for (char a = 0; a < 0xFFFF; ++a) {
-            if (!Default.ucd().isRepresented(a)) {
-                continue;
-                // if (0xA000 <= a && a <= 0xA48F) continue; // skip YI
-            }
-
-            final String b = Case.fold(a);
-            final String c = Default.nfkc().normalize(b);
-            final String d = Case.fold(c);
-            final String e = Default.nfkc().normalize(d);
-            if (!e.equals(c)) {
-                System.out.println(Utility.hex(a) + "; " + Utility.hex(d, " ") + " # " + Default.ucd().getName(a));
-                /*
-                 * System.out.println(Utility.hex(a) + ", " + Utility.hex(b,
-                 * " ") + ", " + Utility.hex(c, " ") + ", " + Utility.hex(d,
-                 * " ") + ", " + Utility.hex(e, " "));
-                 * 
-                 * System.out.println(ucd.getName(a) + ", " + ucd.getName(b) +
-                 * ", " + ucd.getName(c) + ", " + ucd.getName(d) + ", " +
-                 * ucd.getName(e));
-                 */
-            }
-            final String f = Case.fold(e);
-            final String g = Default.nfkc().normalize(f);
-            if (!f.equals(d) || !g.equals(e)) {
-                System.out.println("!!!!!!SKY IS FALLING!!!!!!");
-            }
-        }
-    }
-
-    // Called by UCA.Main.
     static void writeCaseFolding() throws IOException {
         System.err.println("Writing Javascript data");
         final BufferedReader in = Utility.openUnicodeFile("CaseFolding", UNICODE_VERSION, true, Utility.LATIN1);
@@ -607,8 +574,7 @@ public class WriteCollationData {
     static void writeRules(byte option, boolean shortPrint, boolean noCE, CollatorType collatorType2) throws IOException {
         System.out.println("Sorting");
         final Map<ArrayWrapper, String> backMap = new HashMap<ArrayWrapper, String>();
-        final java.util.Comparator<String> cm = new RuleComparator();
-        final Map<String, String> ordered = new TreeMap<String, String>(cm);
+        final Map<String, String> ordered = new TreeMap<String, String>();
 
         final UCA.UCAContents cc = getCollator(collatorType2).getContents(SKIP_CANONICAL_DECOMPOSIBLES ? Default.nfd() : null);
 
@@ -841,7 +807,7 @@ public class WriteCollationData {
             if (it.hasNext()) {
                 final String nextSortKey = it.next();
                 nextChr = ordered.get(nextSortKey);
-                final int result = cm.compare(nextSortKey, lastSortKey);
+                final int result = nextSortKey.compareTo(lastSortKey);
                 if (result < 0) {
                     System.out.println();
                     System.out.println("DANGER: Sort Key Unordered!");
@@ -857,16 +823,16 @@ public class WriteCollationData {
                         System.out.println((loopCounter - 1) + "   Last = " + Utility.hex(lastSortKey)
                                 + ", " + Default.ucd().getCodeAndName(lastSortKey.charAt(lastSortKey.length() - 1)));
                     }
-                    System.out.println(cm.compare(lastSortKey, nextSortKey)
-                            + ", " + cm.compare(nextSortKey, lastSortKey));
+                    System.out.println(lastSortKey.compareTo(nextSortKey)
+                            + ", " + nextSortKey.compareTo(lastSortKey));
                     System.out.println(loopCounter + " NULL AT  " + Utility.hex(nextSortKey)
                             + ", " + Default.ucd().getCodeAndName(nextSortKey.charAt(nextSortKey.length() - 1)));
                     nextChr = "??";
                     showNext = true;
                 } else if (showNext) {
                     showNext = false;
-                    System.out.println(cm.compare(lastSortKey, nextSortKey)
-                            + ", " + cm.compare(nextSortKey, lastSortKey));
+                    System.out.println(lastSortKey.compareTo(nextSortKey)
+                            + ", " + nextSortKey.compareTo(lastSortKey));
                     System.out.println(loopCounter + "   Next = " + Utility.hex(nextSortKey)
                             + ", " + Default.ucd().getCodeAndName(nextChr));
                 }

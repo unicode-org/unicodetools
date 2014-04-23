@@ -776,7 +776,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
     }
      */
 
-    static boolean isImplicitLeadCE(int ce) {
+    public static boolean isImplicitLeadCE(int ce) {
         return isImplicitLeadPrimary(getPrimary(ce));
     }
 
@@ -829,7 +829,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      * Takes implicit value
      */
 
-    static int ImplicitToCodePoint(int leadImplicit, int trailImplicit) {
+    public static int ImplicitToCodePoint(int leadImplicit, int trailImplicit) {
         // could probably optimize all this, but it is not worth it.
         if (leadImplicit < UNSUPPORTED_BASE || leadImplicit >= UNSUPPORTED_LIMIT) {
             throw new IllegalArgumentException("Lead implicit out of bounds: " + Utility.hex(leadImplicit));

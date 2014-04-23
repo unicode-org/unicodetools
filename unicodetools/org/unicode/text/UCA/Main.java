@@ -141,8 +141,6 @@ public class Main {
                 TestCompatibilityCharacters.testCompatibilityCharacters(WriteCollationData.getCollator(CollatorType.cldrWithoutFFFx));
             } else if (arg.equalsIgnoreCase("writeCollationValidityLog")) {
                 Validity.writeCollationValidityLog();
-            } else if (arg.equalsIgnoreCase("writeCaseExceptions")) {
-                WriteCollationData.writeCaseExceptions();
             } else if (arg.equalsIgnoreCase("writeJavascriptInfo")) {
                 WriteCollationData.writeJavascriptInfo();
             } else if (arg.equalsIgnoreCase("writeCaseFolding")) {

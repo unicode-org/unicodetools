@@ -10,6 +10,8 @@
  */
 
 package org.unicode.text.UCA;
+import java.util.BitSet;
+
 import org.unicode.text.utility.Settings;
 
 public interface UCA_Types {
@@ -23,6 +25,13 @@ public interface UCA_Types {
 
     static final int NEUTRAL_SECONDARY = 0x20;
     static final int NEUTRAL_TERTIARY = 0x02;
+
+    /**
+     * Uppercase and normal-Kana UCA tertiary weights.
+     * Bits/weights 08-0C, 0E, 11, 12, 1D.
+     * See http://www.unicode.org/reports/tr10/#Tertiary_Weight_Table
+     */
+    static final BitSet uppercaseTertiaries = BitSet.valueOf(new long[] { 0x20065F00 });
 
     /** Enum for alternate handling */
     public static final byte SHIFTED = 0, ZEROED = 1, NON_IGNORABLE = 2, SHIFTED_TRIMMED = 3, LAST = 3;

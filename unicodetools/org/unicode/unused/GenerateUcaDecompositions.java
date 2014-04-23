@@ -1,10 +1,13 @@
-package org.unicode.text.UCA;
+// Obsolete code. Moved here from org.unicode.text.UCA on 2014-apr-23 after svn r642.
+package org.unicode.unused;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.text.UCA.CEList;
+import org.unicode.text.UCA.UCA;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
