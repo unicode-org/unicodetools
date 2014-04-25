@@ -20,7 +20,6 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.props.PropertyNames.Named;
-import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;

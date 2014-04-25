@@ -374,7 +374,7 @@ public final class Normalizer implements Transform<String,String>, UCD_Types {
             }
             final int chClass = data.getCanonicalClass(ch);
             final int composite = data.getPairwiseComposition(starterCh, ch);
-            if (composite != NormalizationDataStandard.NOT_COMPOSITE
+            if (composite != NormalizationData.NOT_COMPOSITE
                     && (lastClass < chClass || lastClass == 0)) {
                 UTF16.setCharAt(target, starterPos, composite);
                 // we know that we will only be replacing non-supplementaries by non-supplementaries
@@ -404,15 +404,15 @@ public final class Normalizer implements Transform<String,String>, UCD_Types {
      * Contains normalization data from the Unicode Character Database.
      * use false for the minimal set, true for the real set.
      */
-    private final NormalizationDataStandard data;
+    private final NormalizationData data;
 
     private static HashMap versionCache = new HashMap();
 
-    private static NormalizationDataStandard getData (String version) {
+    private static NormalizationData getData (String version) {
         if (version.length() == 0) {
             version = UCD.latestVersion;
         }
-        NormalizationDataStandard result = (NormalizationDataStandard)versionCache.get(version);
+        NormalizationData result = (NormalizationData)versionCache.get(version);
         if (result == null) {
             result = new NormalizationDataStandard(version);
             versionCache.put(version, result);

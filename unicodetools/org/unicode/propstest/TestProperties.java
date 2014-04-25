@@ -1,28 +1,24 @@
 package org.unicode.propstest;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.cldr.draft.ScriptCategories;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
 import org.unicode.cldr.tool.LikelySubtags;
-import org.unicode.cldr.unittest.TestAll.TestInfo;
+import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CLDRFile.DraftStatus;
 import org.unicode.cldr.util.CLDRFile.DtdType;
@@ -30,25 +26,22 @@ import org.unicode.cldr.util.CLDRFile.WinningChoice;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.Iso639Data;
-import org.unicode.cldr.util.Level;
-import org.unicode.cldr.util.PathHeader;
-import org.unicode.cldr.util.VettingViewer;
 import org.unicode.cldr.util.Iso639Data.Type;
 import org.unicode.cldr.util.LanguageTagParser;
+import org.unicode.cldr.util.Level;
+import org.unicode.cldr.util.PathHeader;
 import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.StandardCodes.LstrField;
 import org.unicode.cldr.util.StandardCodes.LstrType;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
+import org.unicode.cldr.util.VettingViewer;
 import org.unicode.cldr.util.VettingViewer.MissingStatus;
-import org.unicode.draft.GetNames;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
-import org.unicode.props.PropertyNames.NameMatcher;
-import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
@@ -592,7 +585,7 @@ public class TestProperties extends TestFmwk {
 
     static final  UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
 
-    static final  TestInfo testInfo = TestInfo.getInstance();
+    static final  CLDRConfig testInfo = CLDRConfig.getInstance();
 
     private static final SupplementalDataInfo SUPPLEMENTAL_DATA_INFO = testInfo.getSupplementalDataInfo();
     static final  Factory cldrFactory = testInfo.getCldrFactory();

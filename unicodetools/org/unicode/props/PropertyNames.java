@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 import org.unicode.props.UcdPropertyValues.Binary;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeProperty;
 
 /**
  * PropertyNames is a list of long, short, and other names.
@@ -27,24 +26,6 @@ public class PropertyNames<T extends Enum> {
         public PropertyNames getNames();
     }
     
-    public enum PropertyType {
-        Numeric(UnicodeProperty.NUMERIC), 
-        String(UnicodeProperty.STRING), 
-        Miscellaneous(UnicodeProperty.MISC), 
-        Catalog(UnicodeProperty.CATALOG), 
-        Enumerated(UnicodeProperty.ENUMERATED), 
-        Binary(UnicodeProperty.BINARY);
-
-        private final int oldNumber;
-        private PropertyType(int oldNumber) {
-            this.oldNumber = oldNumber;
-        }
-        
-        public int getOldNumber() {
-            return oldNumber;
-        }
-    }
-
     final static Map<Class, NameMatcher> CLASS2NAME2ENUM = new HashMap<Class, NameMatcher>();
 
     private final NameMatcher                  name2enum;

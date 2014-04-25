@@ -13,7 +13,7 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.ExemplarInfo;
 import org.unicode.cldr.draft.ExemplarInfo.Status;
 import org.unicode.cldr.tool.TablePrinter;
-import org.unicode.cldr.unittest.TestAll.TestInfo;
+import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRLocale;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.SupplementalDataInfo;
@@ -94,7 +94,7 @@ public class GenerateCharacterFrequencyCharts {
         //double worldPop = CharacterFrequency.getLanguageToPopulation("mul");
         //final long worldPop = CharacterFrequency.getCodePointCounter("mul", true).getTotal();
 
-        TestInfo testInfo = TestInfo.getInstance();
+        CLDRConfig testInfo = CLDRConfig.getInstance();
         SupplementalDataInfo supplemental = testInfo.getSupplementalDataInfo();
 
         double worldPop = 0;
