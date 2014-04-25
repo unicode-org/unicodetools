@@ -74,10 +74,12 @@ public class LoadImage extends Component {
 
         String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
         String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
+        UnicodeSet s = new UnicodeSet("[▫◻◼◽◾☀⚪⚫❗⤴⤵⬅⬆⬇⬛⬜⭐⭕〽]");
+        List<BufferedImage> list = doSymbola(inputDir, outputDir, "android", "AndroidEmoji", s, 144); // "Symbola"
 
         //List<BufferedImage> list = doAndroid(inputDir, outputDir);
         //        doWindows(inputDir, outputDir);
-                doRef(inputDir, outputDir);
+//                doRef(inputDir, outputDir);
         //        doTwitter(inputDir, outputDir);
         //        doGitHub(inputDir, outputDir);
 //        List<BufferedImage> list = doSymbola(inputDir, outputDir, "Apple Emoji", SYMBOLA, 144); // "Symbola"
@@ -99,7 +101,8 @@ public class LoadImage extends Component {
 
     private static final UnicodeSet SYMBOLA = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(NON_SYMBOLA).freeze();
 
-    public static List<BufferedImage> doSymbola(String inputDir, String outputDir, String font, UnicodeSet unicodeSet, int height)
+    public static List<BufferedImage> doSymbola(String inputDir, String outputDir, 
+            String prefix, String font, UnicodeSet unicodeSet, int height)
             throws IOException { // 🌰-🌵
         List<BufferedImage> result = new ArrayList<>();
         Set<String> sorted = unicodeSet.addAllTo(new TreeSet());
@@ -116,7 +119,8 @@ public class LoadImage extends Component {
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         FontMetrics metrics = setFont(font, height, graphics);
         UnicodeSet firstChars = new UnicodeSet();
-        String fileDirectory = outputDir + "/ref";
+        String fileDirectory = outputDir + "/" +
+                prefix;
         for (String s : sorted) { // 
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 continue;
@@ -125,7 +129,8 @@ public class LoadImage extends Component {
                 continue;
             }
             String core = Emoji.buildFileName(s, "_");
-            String filename = "ref_" + core;
+            String filename = prefix +
+            		"_" + core;
             File outputfile = new File(fileDirectory, filename + ".png");
             graphics.clearRect(0, 0, width, height);
             Rectangle2D bounds = metrics.getStringBounds(s, graphics);
@@ -143,7 +148,7 @@ public class LoadImage extends Component {
                 metrics = setFont(font, height, graphics);
             }
             String url = Emoji.APPLE_URL.transform(s);
-            //BufferedImage targetImage = writeResizedImage(url, sourceImage, fileDirectory, filename, height2);
+            BufferedImage targetImage = writeResizedImage(url, sourceImage, fileDirectory, filename, height);
             result.add(deepCopy(sourceImage));
             System.out.println(core + "\t" + s);
         }

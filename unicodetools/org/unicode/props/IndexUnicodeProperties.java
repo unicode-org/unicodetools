@@ -36,7 +36,6 @@ import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.idna.Regexes;
 import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.PropertyNames.Named;
-import org.unicode.props.PropertyNames.PropertyType;
 import org.unicode.props.PropertyUtilities.Joiner;
 import org.unicode.props.PropertyUtilities.Merge;
 import org.unicode.text.UCD.Default;

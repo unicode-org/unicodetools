@@ -8,15 +8,13 @@ import org.unicode.text.utility.ChainException;
 
 import com.ibm.icu.text.UTF16;
 
-class NormalizationDataStandard {
+class NormalizationDataStandard implements NormalizationData {
     private final UCD ucd;
     private final HashMap<Long,Integer> compTable = new HashMap<Long,Integer>();
     private final BitSet isSecond = new BitSet();
     private final BitSet isFirst = new BitSet();
     private final BitSet canonicalRecompose = new BitSet();
     private final BitSet compatibilityRecompose = new BitSet();
-    public static final int NOT_COMPOSITE = 0xFFFF;
-
     NormalizationDataStandard(String version) {
         ucd = UCD.make(version);
         for (int i = 0; i < 0x10FFFF; ++i) {
@@ -86,22 +84,42 @@ class NormalizationDataStandard {
         // are allowable until we have processed all the characters
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#getUCDVersion()
+     */
+    @Override
     public String getUCDVersion() {
         return ucd.getVersion();
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#getCanonicalClass(int)
+     */
+    @Override
     public short getCanonicalClass(int cp) {
         return ucd.getCombiningClass(cp);
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#isTrailing(int)
+     */
+    @Override
     public boolean isTrailing(int cp) {
         return isSecond.get(cp);
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#isLeading(int)
+     */
+    @Override
     public boolean isLeading(int cp) {
         return isFirst.get(cp);
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#normalizationDiffers(int, boolean, boolean)
+     */
+    @Override
     public boolean normalizationDiffers(int cp, boolean composition, boolean compat) {
         final byte dt = ucd.getDecompositionType(cp);
         if (!composition) {
@@ -121,6 +139,10 @@ class NormalizationDataStandard {
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#getRecursiveDecomposition(int, java.lang.StringBuffer, boolean)
+     */
+    @Override
     public void getRecursiveDecomposition(int cp, StringBuffer buffer, boolean compat) {
         final byte dt = ucd.getDecompositionType(cp);
         // we know we decompose all CANONICAL, plus > CANONICAL if compat is TRUE.
@@ -138,6 +160,10 @@ class NormalizationDataStandard {
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#getPairwiseComposition(int, int)
+     */
+    @Override
     public int getPairwiseComposition(int starterCh, int ch) {
         final int hangulPoss = UCD.composeHangul(starterCh, ch);
         if (hangulPoss != 0xFFFF) {
@@ -150,16 +176,28 @@ class NormalizationDataStandard {
         return obj.intValue();
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#hasCompatDecomposition(int)
+     */
+    @Override
     public boolean hasCompatDecomposition(int i) {
         return ucd.getDecompositionType(i) >= UCD_Types.CANONICAL;
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#isNonSpacing(int)
+     */
+    @Override
     public boolean isNonSpacing(int cp) {
         final int cat = ucd.getCategory(cp);
         final boolean nonSpacing = cat != UCD_Types.Mn && cat != UCD_Types.Me;
         return nonSpacing;
     }
 
+    /* (non-Javadoc)
+     * @see org.unicode.text.UCD.NormalizationData#getCompositionStatus(java.util.BitSet, java.util.BitSet, java.util.BitSet)
+     */
+    @Override
     public void getCompositionStatus(BitSet leading, BitSet trailing, BitSet resulting) {
         for (final Entry<Long, Integer> entry : compTable.entrySet()) {
             final Long key = entry.getKey();

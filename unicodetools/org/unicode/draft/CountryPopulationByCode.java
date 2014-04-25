@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.unittest.TestAll.TestInfo;
+import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.SupplementalDataInfo.OfficialStatus;
@@ -27,7 +27,7 @@ public class CountryPopulationByCode {
     private static final boolean SHOW_WEIGHTS = true;
     private static final boolean SHOW_SOURCE = false;
     private static final boolean FILTER = true;
-    static TestInfo testInfo = TestInfo.getInstance();
+    static CLDRConfig testInfo = CLDRConfig.getInstance();
 
     public static void main(String[] args) {
         final Set<String> territories = testInfo.getStandardCodes().getAvailableCodes("territory");
