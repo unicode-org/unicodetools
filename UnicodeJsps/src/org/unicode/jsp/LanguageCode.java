@@ -55,6 +55,14 @@ public class LanguageCode {
   static final Map<String,String> fixCodes = ((MyHandler)new MyHandler().process(LanguageCode.class, "fixCodes.txt")).map;
 
   public static String validate(String input, ULocale ulocale) {
+      StringBuilder builder = new StringBuilder();
+      for (String item : input.split("[,;]\\s*|\\s+")) {
+          validate(item, ulocale, builder);
+      }
+      return builder.toString();
+  }
+  
+  private static void validate(String input, ULocale ulocale, StringBuilder builder) {
     String oldInput = input;
     StringBuilder canonical = new StringBuilder();
     String prefix = "";
@@ -80,18 +88,21 @@ public class LanguageCode {
           + "</span>" + input.substring(posAfter, input.length())
           + "<br><i>Couldn't parse past the point marked with <span class='x'>×</span>.</i></p>\n";
           if (posBefore <= 0) {
-            return prefix;
+            builder.append(prefix);
+            return;
           }
           input = input.substring(0, posBefore-1);
           m.reset(input);
           if (!m.matches()) {
-            return prefix;
+              builder.append(prefix);
+              return;
           }
           break;
         }
       }
     }
-    StringBuilder builder = new StringBuilder().append("<table>\n").append(getLine("th", "Type", "2.1", "Code", "Name", "Replacement?"));
+    int start = builder.length();
+    builder.append("<table>\n").append(getLine("th", "Type", "2.1", "Code", "Name", "Replacement?"));
 
     String languageCode = Subtag.language.get(m);
     if (languageCode != null) {
@@ -233,10 +244,9 @@ public class LanguageCode {
     builder.append("</table>\n");
     String canonicalString = canonical.toString();
     if (!canonicalString.equals(oldInput)) {
-      builder.insert(0, "<p>Suggested Canonical Form: <b><a href='languageid.jsp?a=" + canonical + "' target='languageid'>" + canonical + "</b></p>\n");
+      builder.insert(start, "<p>Suggested Canonical Form: <b><a href='languageid.jsp?a=" + canonical + "' target='languageid'>" + canonical + "</b></p>\n");
     }
-    builder.insert(0, prefix);
-    return builder.toString();
+    builder.insert(start, prefix);
   }
 
   private static void addFixed(StringBuilder canonical, String code, String fixed) {
