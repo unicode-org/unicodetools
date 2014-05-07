@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Map.Entry;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -33,7 +34,11 @@ import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
 
+import org.unicode.text.tools.GenerateEmoji.Source;
+
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetIterator;
 
 /**
  * This class demonstrates how to load an Image from an external file
@@ -70,20 +75,62 @@ public class LoadImage extends Component {
     static final UnicodeSet TWITTER_CHARS = new UnicodeSet(
             "[©®‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🇦-🇿🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🛅{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]");
 
+    static String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
+    static String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
     public static void main(String[] args) throws IOException {
+        doAnimatedGif();
 
-        String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
-        String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
-        UnicodeSet s = new UnicodeSet("[▫◻◼◽◾☀⚪⚫❗⤴⤵⬅⬆⬇⬛⬜⭐⭕〽]");
-        List<BufferedImage> list = doSymbola(inputDir, outputDir, "android", "AndroidEmoji", s, 144); // "Symbola"
+        if (false) {
+        UnicodeSet result = checkCanDisplay(new Font("Symbola",0,24));
+        System.out.println(result.toPattern(false));
+            List<BufferedImage> list;
+            doAnimatedGif();
+            UnicodeSet s = new UnicodeSet("[▫◻◼◽◾☀⚪⚫❗⤴⤵⬅⬆⬇⬛⬜⭐⭕〽]");
+            list = doSymbola(inputDir, outputDir, "android", "AndroidEmoji", s, 144); // "Symbola"
+            list = doAndroid(inputDir, outputDir);
+            doWindows(inputDir, outputDir);
+            doRef(inputDir, outputDir);
+            doTwitter(inputDir, outputDir);
+            doGitHub(inputDir, outputDir);
+            //List<BufferedImage> list = doSymbola(inputDir, outputDir, "Apple Emoji", SYMBOLA, 144); // "Symbola"
+            createAnimatedImage(new File(outputDir, "animated-symbola.gif"), list, 1, false);
+        }
+    }
 
-        //List<BufferedImage> list = doAndroid(inputDir, outputDir);
-        //        doWindows(inputDir, outputDir);
-//                doRef(inputDir, outputDir);
-        //        doTwitter(inputDir, outputDir);
-        //        doGitHub(inputDir, outputDir);
-//        List<BufferedImage> list = doSymbola(inputDir, outputDir, "Apple Emoji", SYMBOLA, 144); // "Symbola"
-//        createAnimatedImage(new File(outputDir, "animated-symbola.gif"), list);
+    private static UnicodeSet checkCanDisplay(Font f) {
+        UnicodeSet result = new UnicodeSet();
+        UnicodeSet glyphCodes = new UnicodeSet();
+        FontRenderContext frc = new FontRenderContext(null, true, true);
+        for (UnicodeSetIterator it = new UnicodeSetIterator(new UnicodeSet("[^[:c:]]")); 
+                it.next(); ) {
+            int i = it.codepoint;
+            if (f.canDisplay(i)) {
+                GlyphVector gv = f.createGlyphVector(frc, UTF16.valueOf(i));
+                final int glyphCode = gv.getGlyphCode(0);
+                if (glyphCode >= 0) {
+                    result.add(i);
+                    glyphCodes.add(glyphCode);
+                }
+            }
+        }
+        return result;
+    }
+
+    public static void doAnimatedGif(Source... ordering) throws IOException {
+        List<BufferedImage> list = new ArrayList();
+        for (Entry<String, Set<String>> entry : GenerateEmoji.ORDERING_TO_CHAR.keyValuesSet()) {
+            final String key = entry.getKey();
+            System.out.println("\t" + key);
+            //if (!key.contains("time")) continue;
+            for (String chars : entry.getValue()) {
+                System.out.println("\t" + chars);
+                File file = GenerateEmoji.getBestFile(chars, ordering);
+                BufferedImage sourceImage = ImageIO.read(file);
+                BufferedImage targetImage = resizeImage(sourceImage, sourceImage.getHeight(), 72, true);
+                list.add(targetImage);
+            }
+        }
+        createAnimatedImage(new File(outputDir, "animated-emoji.gif"), list, 100, true);
     }
 
     public static void doGitHub(String inputDir, String outputDir)
@@ -103,7 +150,7 @@ public class LoadImage extends Component {
 
     public static List<BufferedImage> doSymbola(String inputDir, String outputDir, 
             String prefix, String font, UnicodeSet unicodeSet, int height)
-            throws IOException { // 🌰-🌵
+                    throws IOException { // 🌰-🌵
         List<BufferedImage> result = new ArrayList<>();
         Set<String> sorted = unicodeSet.addAllTo(new TreeSet());
         int width = height;
@@ -130,7 +177,7 @@ public class LoadImage extends Component {
             }
             String core = Emoji.buildFileName(s, "_");
             String filename = prefix +
-            		"_" + core;
+                    "_" + core;
             File outputfile = new File(fileDirectory, filename + ".png");
             graphics.clearRect(0, 0, width, height);
             Rectangle2D bounds = metrics.getStringBounds(s, graphics);
@@ -239,32 +286,12 @@ public class LoadImage extends Component {
         if (height == sourceHeight) {
             targetImage = sourceImage;
         } else {
-            double scale = height / (double) sourceHeight;
-            int width = (int)(sourceImage.getWidth() * scale + 0.5);
+            //            System.out.println(name
+            //                    + "\t" + sourceImage.getWidth() + ", " + sourceHeight 
+            //                    + " => " + outputName + "\t" 
+            //                    + targetImage.getWidth() + ", " + targetImage.getHeight());
 
-            targetImage = new BufferedImage(width, height, IMAGE_TYPE);
-
-            System.out.println(name
-                    + "\t" + sourceImage.getWidth() + ", " + sourceHeight 
-                    + " => " + outputName + "\t" 
-                    + targetImage.getWidth() + ", " + targetImage.getHeight());
-
-            // https://abs.twimg.com/emoji/v1/72x72/231a.png
-
-            Graphics2D graphics = targetImage.createGraphics();
-            graphics.setRenderingHint(
-                    RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON);
-            graphics.setRenderingHint(
-                    RenderingHints.KEY_TEXT_ANTIALIASING,
-                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-            graphics.setBackground(Color.WHITE);
-            graphics.clearRect(0, 0, width, height);
-
-            graphics.drawImage(sourceImage, 0, 0, targetImage.getWidth(),
-                    targetImage.getHeight(),
-                    0, 0, sourceImage.getWidth(), sourceHeight,
-                    null);
+            targetImage = resizeImage(sourceImage, sourceHeight, height, false);
         }
         File outputfile = new File(outputDir, outputName + ".png");
         ImageIO.write(targetImage, "png", outputfile);
@@ -274,7 +301,44 @@ public class LoadImage extends Component {
         return targetImage;
     }
 
-    public static void createAnimatedImage(File file, List<BufferedImage> input) throws IOException {
+    public static BufferedImage resizeImage(BufferedImage sourceImage,
+            int sourceHeight, int height, boolean square) {
+        BufferedImage targetImage;
+        double scale = height / (double) sourceHeight;
+        int width = (int)(sourceImage.getWidth() * scale);
+        int targetWidth = width;
+        int targetHeight = height;
+        int x = 0, y = 0;
+        if (square) {
+            if (width > height) {
+                targetWidth = width = height;
+                targetHeight = height * sourceImage.getHeight() / sourceImage.getWidth();
+                y = (height - targetHeight)/2;
+            }
+        }
+        targetImage = new BufferedImage(width, height, IMAGE_TYPE);
+
+
+        // https://abs.twimg.com/emoji/v1/72x72/231a.png
+
+        Graphics2D graphics = targetImage.createGraphics();
+        graphics.setRenderingHint(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.setRenderingHint(
+                RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        graphics.setBackground(Color.WHITE);
+        graphics.clearRect(0, 0, width, height);
+
+        graphics.drawImage(sourceImage, x, y, targetWidth, targetHeight,
+                0, 0, sourceImage.getWidth(), sourceHeight,
+                null);
+        return targetImage;
+    }
+
+    public static void createAnimatedImage(File file, List<BufferedImage> input, 
+            int timeBetweenImages, boolean loopContinuously) throws IOException {
         BufferedImage firstImage = input.get(0);
 
         // create a new BufferedOutputStream with the last argument
@@ -284,8 +348,8 @@ public class LoadImage extends Component {
         // create a gif sequence with the type of the first image, 1 second
         // between frames, which loops continuously
         GifSequenceWriter writer =
-                new GifSequenceWriter(output, firstImage.getType(), 1,
-                        false);
+                new GifSequenceWriter(output, firstImage.getType(), timeBetweenImages,
+                        loopContinuously);
 
         // write out the first image to our sequence...
         writer.writeToSequence(firstImage);

@@ -1,11 +1,15 @@
 package org.unicode.text.tools;
 
+import java.util.Comparator;
 import java.util.Locale;
 
 import org.unicode.cldr.util.With;
+import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class Emoji {
@@ -98,5 +102,14 @@ public class Emoji {
     }
 
     static final int LAST_REGIONAL = 0x1F1FF;
+    static final char ENCLOSING_KEYCAP = '\u20E3';
+    static final Comparator<String> CODEPOINT_LENGTH = new Comparator<String>() {
+        @Override
+        public int compare(String o1, String o2) {
+            return o1.codePointCount(0, o1.length()) - o2.codePointCount(0, o2.length());
+        }
+    };
+
+
 
 }
