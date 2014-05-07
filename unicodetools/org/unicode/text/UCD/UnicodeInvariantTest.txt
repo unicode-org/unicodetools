@@ -141,8 +141,9 @@ In \P{U-1:GC=Cn} name=U-1:name
 
 # Red Flag: cased and case_ignorable should be disjoint
 
-Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770[\u1D62-\u1D6A\u2071\u207F\u2095-\u209C\u2C7C\uA7F8\uA7F9]]
+Let $caseOverlap = [\u02B0-\u02B8\u02C0\u02C1\u02E0-\u02E4\u0345\u037A\u1D2C-\u1D61\u1D78\u1D9B-\u1DBF\u2090-\u2094\u2C7D\uA770[\u1D62-\u1D6A\u2071\u207F\u2095-\u209C\u2C7C\uA7F8\uA7F9 \uA69C-\uA69D\uAB5C-\uAB5F]]
 # 6.1.0, added 22 overlap characters
+# 7.0 added \uA69C-\uA69D\uAB5C-\uAB5F
 \p{cased} ∥ [\p{caseignorable} - $caseOverlap]
 
 ##########################
@@ -279,9 +280,9 @@ In \P{U-1:GC=Cn} ccc=U-1:ccc
 
 # Canonical decompositions (minus exclusions) must be identical across releases (also required by strong normalization stability),
 # except where a character and at lease one character in its decomposition are both new in the release.
-Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB[\U0001112E\U0001112F]]
+Let $NFC_Exceptions = [\U0001109A\U0001109C\U000110AB[\U0001112E\U0001112F \U0001134B-\U0001134C \U000114BB-\U000114BC \U000114BE \U000115BA-\U000115BB]]
 # 6.1.0 Added CHAKMA VOWEL SIGN O..CHAKMA VOWEL SIGN AU
-
+# 7.0 Added 1134B..1134C, 114BB..114BC, 114BE, and 115BA..115BB
 [\p{Decomposition_Type=Canonical} - \p{Full_Composition_Exclusion} - $NFC_Exceptions] = [\p{U-1:Decomposition_Type=Canonical} - \p{U-1:Full_Composition_Exclusion} - $NFC_Exceptions]
 
 # Stability: All characters other than those with General_Category property values Spacing_Mark (Mc) and Nonspacing_Mark (Mn) have the Canonical_Combining_Class property value 0.
@@ -336,9 +337,9 @@ Let $anyNumericValue = \p{Numeric_Value=/-?[0-9]+.[0-9]+/}
 
 # Musical symbol combining marks, other oddities
 
-Let $AlphaExclusions = [\u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:][\u302E\u302F]]
+Let $AlphaExclusions = [\uAA7D \u0F3E\u0F3F\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u1CE1\uAA7B\uABEC\U0001D165\U0001D166\U0001D16D-\U0001D172][[:gc=mc:]&[:ccc=9:][\u302E\u302F]]
 # 6.1.0 Added HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
-
+# 7.0 Added AA7D
 \p{Alphabetic} ⊇ [\p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} \p{GC=Mc} - $AlphaExclusions]
 
 # Show [\p{GC=Mc} - \p{alphabetic}]
@@ -368,7 +369,9 @@ Let $IDInclusions = [[:block=/Ideographs/:][\U00020000-\U0003FFFF] & [:gc=Cn:] -
 \p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20BB-\u20CF]]
 
 Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379]
-\p{LB=OP} = [\p{GC=Ps} $OPInclusions - [\u2308\u230A]]
+# 7.0 Removed hack  - [\u2308\u230A]
+
+\p{LB=OP} = [\p{GC=Ps} $OPInclusions]
 [\p{LB=CL}\p{LB=CP}] ⊃ [\p{GC=Pe} - [\u2309\u230B]]
 \p{LB=CM} = [[\u3035] \p{GC=Mn} \p{GC=Me} \p{GC=Mc} \p{GC=Cc} \p{GC=Cf} -\p{LB=SA} -\p{LB=WJ} -\p{LB=ZW} -\p{LB=BA} -\p{LB=LF} -\p{LB=BK} -\p{LB=CR} -\p{LB=NL} -\p{LB=GL} -\p{LB=AL}]
 
@@ -378,7 +381,8 @@ Let $NUInclusions = [\u066B\u066C]
 Let $PRInclusions = [\u002b\u005c\u00b1\u2116\u2212\u2213\u20BB-\u20CF]
 \p{LB=PR} = [\p{GC=Sc} $PRInclusions - \p{LB=PO}]
 
-Let $QUInclusions = [\u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
+Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u275E \u2E00-\u2E01 \u2E06-\u2E08 \u2E0B]
+# 7.0 added 275F..2760 1F676..1F678
 \p{LB=QU} = [\p{GC=Pf} \p{GC=Pi} $QUInclusions]
 \p{LB=SG} = \p{GC=Cs}
 \p{LB=SP} = \N{SPACE}
@@ -391,7 +395,8 @@ Let $SAScripts = [\p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=kh
 $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
-Let $SAScriptExceptions = [\u19DA\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAA7B\uAADB-\uAADF]
+Let $SAScriptExceptions = [\uAA7D \u19DA\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAA7B\uAADB-\uAADF]
+#7.0 Added AA7D
 
 [$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
 
@@ -405,7 +410,7 @@ Let $SAScriptExceptions = [\u19DA\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u1
 # Warning: the uax31 tables don't have machine-readable tables, so must be updated each release.
 Let $uax31table3 = [\u0027\u002D\u002E\u003A\u00B7\u058A\u05F3\u05F4\u0F0B\u200C\u200D\u2010\u2019\u2027\u30A0\u30FB]
 
-Let $WBRemovals = [\u0387\u0604\u2018\u2024\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{Cf}\p{Block=Enclosed Alphanumerics}]
+Let $WBRemovals = [\u0387\u0604\u2018\u2024\u2E2F\uFE13\uFE52\uFE55\uFF07\uFF0E\uFF1A\u200c\u200d'.\:\u00AD\u00B7\u05F3\u05F4\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u2019\u2027\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB\U000110BD\U0001D173-\U0001D17A\U000E0001\U000E0020-\U000E007F\p{Cf}\p{Block=Enclosed Alphanumerics}[\u02D7\u0605\u061C\u180E\u2066-\u2069\U0001BCA0-\U0001BCA3\U0001F130-\U0001F149\U0001F150-\U0001F169\U0001F170-\U0001F189]]
 Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 # 6.1.0 adjust SAMVAT, KHMER VOWEL INHERENT*
 
@@ -422,8 +427,9 @@ Let $Uax31Removals = [\-\u058A\u0F0B\u2010\u30A0\u30FB\u2E2F\u17B4-\u17B5]
 \p{ID_Start} = [\p{Other_ID_Start} \p{GC=Lu} \p{GC=Ll} \p{GC=Lt} \p{GC=Lm} \p{GC=Lo} \p{GC=Nl} - \p{Pattern_Syntax} - \p{Pattern_White_Space}]
 \p{ID_Continue} = [\p{Other_ID_Continue} \p{ID_Start} \p{GC=Mn} \p{GC=Mc} \p{GC=Nd} \p{GC=Pc} - \p{Pattern_Syntax} - \p{Pattern_White_Space}] 
 
-Let $DIExclusions = [\u0600-\u0604\u06DD\u070F\uFFF9-\uFFFB\U000110BD]
+Let $DIExclusions = [\u0600-\u0605\u06DD\u070F\uFFF9-\uFFFB\U000110BD]
 # 6.1.0 adjust SAMVAT
+# 7.0 Added 605
 
 \p{Default_Ignorable_Code_Point} = [\p{Other_Default_Ignorable_Code_Point} \p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $DIExclusions]]
 
