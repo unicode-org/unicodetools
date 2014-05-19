@@ -1,7 +1,7 @@
 ﻿# Summary: Whole-Script Confusables
 # File: confusablesWholeScript.txt
-# Version: 6.3.0
-# Generated: 2013-11-13, 00:04:56 GMT
+# Version: 7.0.0
+# Generated: 2014-05-19, 13:33:47 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -35,6 +35,12 @@
 # Armenian; Devanagari: [օ]
 
 0585          ; Armn; Deva; L #      (օ)  ARMENIAN SMALL LETTER OH
+
+# Total code points: 1
+
+# Armenian; Georgian: [օ]
+
+0585          ; Armn; Geor; L #      (օ)  ARMENIAN SMALL LETTER OH
 
 # Total code points: 1
 
@@ -227,13 +233,15 @@
 
 # Total code points: 2
 
-# Cyrillic; Georgian: [уүұ]
+# Cyrillic; Georgian: [оуүұө]
 
+043E          ; Cyrl; Geor; L #      (о)  CYRILLIC SMALL LETTER O
 0443          ; Cyrl; Geor; L #      (у)  CYRILLIC SMALL LETTER U
 04AF          ; Cyrl; Geor; L #      (ү)  CYRILLIC SMALL LETTER STRAIGHT U
 04B1          ; Cyrl; Geor; L #      (ұ)  CYRILLIC SMALL LETTER STRAIGHT U WITH STROKE
+04E9          ; Cyrl; Geor; L #      (ө)  CYRILLIC SMALL LETTER BARRED O
 
-# Total code points: 3
+# Total code points: 5
 
 # Cyrillic; Greek: [ако-рт-фцєіқҟҭүұӏөԑ]
 
@@ -387,6 +395,12 @@
 
 # Total code points: 1
 
+# Devanagari; Georgian: [०]
+
+0966          ; Deva; Geor; L #      (०)  DEVANAGARI DIGIT ZERO
+
+# Total code points: 1
+
 # Devanagari; Greek: [०]
 
 0966          ; Deva; Grek; L #      (०)  DEVANAGARI DIGIT ZERO
@@ -485,21 +499,102 @@
 
 # Total code points: 1
 
-# Georgian; Cyrillic: [ყ]
+# Georgian; Armenian: [ჿ]
+
+10FF          ; Geor; Armn; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Cyrillic: [ყჿ]
 
 10E7          ; Geor; Cyrl; L #      (ყ)  GEORGIAN LETTER QAR
+10FF          ; Geor; Cyrl; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 2
+
+# Georgian; Devanagari: [ჿ]
+
+10FF          ; Geor; Deva; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 
 # Total code points: 1
 
-# Georgian; Greek: [ყ]
+# Georgian; Greek: [ყჿ]
 
 10E7          ; Geor; Grek; L #      (ყ)  GEORGIAN LETTER QAR
+10FF          ; Geor; Grek; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 2
+
+# Georgian; Gujarati: [ჿ]
+
+10FF          ; Geor; Gujr; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 
 # Total code points: 1
 
-# Georgian; Latin: [ყ]
+# Georgian; Gurmukhi: [ჿ]
+
+10FF          ; Geor; Guru; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Hebrew: [ჿ]
+
+10FF          ; Geor; Hebr; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Kannada: [ჿ]
+
+10FF          ; Geor; Knda; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Lao: [ჿ]
+
+10FF          ; Geor; Laoo; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Latin: [ყჿ]
 
 10E7          ; Geor; Latn; L #      (ყ)  GEORGIAN LETTER QAR
+10FF          ; Geor; Latn; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 2
+
+# Georgian; Malayalam: [ჿ]
+
+10FF          ; Geor; Mlym; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Myanmar: [ჿ]
+
+10FF          ; Geor; Mymr; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Sinhala: [ჿ]
+
+10FF          ; Geor; Sinh; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Tamil: [ჿ]
+
+10FF          ; Geor; Taml; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Telugu: [ჿ]
+
+10FF          ; Geor; Telu; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Thai: [ჿ]
+
+10FF          ; Geor; Thai; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 
 # Total code points: 1
 
@@ -538,11 +633,13 @@
 
 # Total code points: 2
 
-# Greek; Georgian: [γ]
+# Greek; Georgian: [γοσ]
 
 03B3          ; Grek; Geor; L #      (γ)  GREEK SMALL LETTER GAMMA
+03BF          ; Grek; Geor; L #      (ο)  GREEK SMALL LETTER OMICRON
+03C3          ; Grek; Geor; L #      (σ)  GREEK SMALL LETTER SIGMA
 
-# Total code points: 1
+# Total code points: 3
 
 # Greek; Gujarati: [οσ]
 
@@ -678,6 +775,12 @@
 
 # Total code points: 13
 
+# Gujarati; Georgian: [૦]
+
+0AE6          ; Gujr; Geor; L #      (૦)  GUJARATI DIGIT ZERO
+
+# Total code points: 1
+
 # Gujarati; Greek: [૦]
 
 0AE6          ; Gujr; Grek; L #      (૦)  GUJARATI DIGIT ZERO
@@ -792,6 +895,12 @@
 0A66          ; Guru; Deva; L #      (੦)  GURMUKHI DIGIT ZERO
 
 # Total code points: 5
+
+# Gurmukhi; Georgian: [੦]
+
+0A66          ; Guru; Geor; L #      (੦)  GURMUKHI DIGIT ZERO
+
+# Total code points: 1
 
 # Gurmukhi; Greek: [੦]
 
@@ -932,6 +1041,12 @@
 
 # Total code points: 2
 
+# Hebrew; Georgian: [ס]
+
+05E1          ; Hebr; Geor; L #      (ס)  HEBREW LETTER SAMEKH
+
+# Total code points: 1
+
 # Hebrew; Greek: [טס]
 
 05D8          ; Hebr; Grek; L #      (ט)  HEBREW LETTER TET
@@ -1047,6 +1162,13 @@
 
 0C82          ; Knda; Deva; L #      (ಂ)  KANNADA SIGN ANUSVARA
 0CE6          ; Knda; Deva; L #      (೦)  KANNADA DIGIT ZERO
+
+# Total code points: 2
+
+# Kannada; Georgian: [ಂ೦]
+
+0C82          ; Knda; Geor; L #      (ಂ)  KANNADA SIGN ANUSVARA
+0CE6          ; Knda; Geor; L #      (೦)  KANNADA DIGIT ZERO
 
 # Total code points: 2
 
@@ -1192,6 +1314,12 @@
 
 # Total code points: 1
 
+# Lao; Georgian: [໐]
+
+0ED0          ; Laoo; Geor; L #      (໐)  LAO DIGIT ZERO
+
+# Total code points: 1
+
 # Lao; Greek: [໐]
 
 0ED0          ; Laoo; Grek; L #      (໐)  LAO DIGIT ZERO
@@ -1323,11 +1451,14 @@ A793          ; Latn; Cyrl; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 3
 
-# Latin; Georgian: [y]
+# Latin; Georgian: [oyøơ]
 
+006F          ; Latn; Geor; L #      (o)  LATIN SMALL LETTER O
 0079          ; Latn; Geor; L #      (y)  LATIN SMALL LETTER Y
+00F8          ; Latn; Geor; L #      (ø)  LATIN SMALL LETTER O WITH STROKE
+01A1          ; Latn; Geor; L #      (ơ)  LATIN SMALL LETTER O WITH HORN
 
-# Total code points: 1
+# Total code points: 4
 
 # Latin; Greek: [aikn-pt-vyßøıĸŧơꞓ]
 
@@ -1467,6 +1598,13 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 3
 
+# Malayalam; Georgian: [ം൦]
+
+0D02          ; Mlym; Geor; L #      (ം)  MALAYALAM SIGN ANUSVARA
+0D66          ; Mlym; Geor; L #      (൦)  MALAYALAM DIGIT ZERO
+
+# Total code points: 2
+
 # Malayalam; Greek: [ംഠ൦]
 
 0D02          ; Mlym; Grek; L #      (ം)  MALAYALAM SIGN ANUSVARA
@@ -1597,6 +1735,13 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 101D          ; Mymr; Deva; L #      (ဝ)  MYANMAR LETTER WA
 1040          ; Mymr; Deva; L #      (၀)  MYANMAR DIGIT ZERO
+
+# Total code points: 2
+
+# Myanmar; Georgian: [ဝ၀]
+
+101D          ; Mymr; Geor; L #      (ဝ)  MYANMAR LETTER WA
+1040          ; Mymr; Geor; L #      (၀)  MYANMAR DIGIT ZERO
 
 # Total code points: 2
 
@@ -1782,6 +1927,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
+# Sinhala; Georgian: [ං]
+
+0D82          ; Sinh; Geor; L #      (ං)  SINHALA SIGN ANUSVARAYA
+
+# Total code points: 1
+
 # Sinhala; Greek: [ං]
 
 0D82          ; Sinh; Grek; L #      (ං)  SINHALA SIGN ANUSVARAYA
@@ -1873,6 +2024,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0BE6          ; Taml; Deva; L #      (௦)  TAMIL DIGIT ZERO
 
 # Total code points: 2
+
+# Tamil; Georgian: [௦]
+
+0BE6          ; Taml; Geor; L #      (௦)  TAMIL DIGIT ZERO
+
+# Total code points: 1
 
 # Tamil; Greek: [௦]
 
@@ -1993,6 +2150,13 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
+# Telugu; Georgian: [ం౦]
+
+0C02          ; Telu; Geor; L #      (ం)  TELUGU SIGN ANUSVARA
+0C66          ; Telu; Geor; L #      (౦)  TELUGU DIGIT ZERO
+
+# Total code points: 2
+
 # Telugu; Greek: [ం౦]
 
 0C02          ; Telu; Grek; L #      (ం)  TELUGU SIGN ANUSVARA
@@ -2102,6 +2266,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 # Thai; Devanagari: [๐]
 
 0E50          ; Thai; Deva; L #      (๐)  THAI DIGIT ZERO
+
+# Total code points: 1
+
+# Thai; Georgian: [๐]
+
+0E50          ; Thai; Geor; L #      (๐)  THAI DIGIT ZERO
 
 # Total code points: 1
 
@@ -2227,6 +2397,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 # Armenian; Devanagari: [օ]
 
 0585          ; Armn; Deva; A #      (օ)  ARMENIAN SMALL LETTER OH
+
+# Total code points: 1
+
+# Armenian; Georgian: [օ]
+
+0585          ; Armn; Geor; A #      (օ)  ARMENIAN SMALL LETTER OH
 
 # Total code points: 1
 
@@ -2465,13 +2641,15 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Cyrillic; Georgian: [уүұ]
+# Cyrillic; Georgian: [оуүұө]
 
+043E          ; Cyrl; Geor; A #      (о)  CYRILLIC SMALL LETTER O
 0443          ; Cyrl; Geor; A #      (у)  CYRILLIC SMALL LETTER U
 04AF          ; Cyrl; Geor; A #      (ү)  CYRILLIC SMALL LETTER STRAIGHT U
 04B1          ; Cyrl; Geor; A #      (ұ)  CYRILLIC SMALL LETTER STRAIGHT U WITH STROKE
+04E9          ; Cyrl; Geor; A #      (ө)  CYRILLIC SMALL LETTER BARRED O
 
-# Total code points: 3
+# Total code points: 5
 
 # Cyrillic; Greek: [ІАВГЕК-РТФХако-рт-фцєіҐҒҚқҞҟҢҬ-ҲӅӇӉӍӏӨөԑ]
 
@@ -2665,6 +2843,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
+# Devanagari; Georgian: [०]
+
+0966          ; Deva; Geor; A #      (०)  DEVANAGARI DIGIT ZERO
+
+# Total code points: 1
+
 # Devanagari; Greek: [०]
 
 0966          ; Deva; Grek; A #      (०)  DEVANAGARI DIGIT ZERO
@@ -2763,21 +2947,102 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Georgian; Cyrillic: [ყ]
+# Georgian; Armenian: [ჿ]
+
+10FF          ; Geor; Armn; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Cyrillic: [ყჿ]
 
 10E7          ; Geor; Cyrl; A #      (ყ)  GEORGIAN LETTER QAR
+10FF          ; Geor; Cyrl; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 2
+
+# Georgian; Devanagari: [ჿ]
+
+10FF          ; Geor; Deva; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 
 # Total code points: 1
 
-# Georgian; Greek: [ყ]
+# Georgian; Greek: [ყჿ]
 
 10E7          ; Geor; Grek; A #      (ყ)  GEORGIAN LETTER QAR
+10FF          ; Geor; Grek; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 2
+
+# Georgian; Gujarati: [ჿ]
+
+10FF          ; Geor; Gujr; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 
 # Total code points: 1
 
-# Georgian; Latin: [ყ]
+# Georgian; Gurmukhi: [ჿ]
+
+10FF          ; Geor; Guru; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Hebrew: [ჿ]
+
+10FF          ; Geor; Hebr; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Kannada: [ჿ]
+
+10FF          ; Geor; Knda; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Lao: [ჿ]
+
+10FF          ; Geor; Laoo; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Latin: [ყჿ]
 
 10E7          ; Geor; Latn; A #      (ყ)  GEORGIAN LETTER QAR
+10FF          ; Geor; Latn; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 2
+
+# Georgian; Malayalam: [ჿ]
+
+10FF          ; Geor; Mlym; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Myanmar: [ჿ]
+
+10FF          ; Geor; Mymr; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Sinhala: [ჿ]
+
+10FF          ; Geor; Sinh; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Tamil: [ჿ]
+
+10FF          ; Geor; Taml; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Telugu: [ჿ]
+
+10FF          ; Geor; Telu; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+
+# Total code points: 1
+
+# Georgian; Thai: [ჿ]
+
+10FF          ; Geor; Thai; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 
 # Total code points: 1
 
@@ -2825,11 +3090,13 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Greek; Georgian: [γ]
+# Greek; Georgian: [γοσ]
 
 03B3          ; Grek; Geor; A #      (γ)  GREEK SMALL LETTER GAMMA
+03BF          ; Grek; Geor; A #      (ο)  GREEK SMALL LETTER OMICRON
+03C3          ; Grek; Geor; A #      (σ)  GREEK SMALL LETTER SIGMA
 
-# Total code points: 1
+# Total code points: 3
 
 # Greek; Gujarati: [οσ]
 
@@ -2978,6 +3245,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 13
 
+# Gujarati; Georgian: [૦]
+
+0AE6          ; Gujr; Geor; A #      (૦)  GUJARATI DIGIT ZERO
+
+# Total code points: 1
+
 # Gujarati; Greek: [૦]
 
 0AE6          ; Gujr; Grek; A #      (૦)  GUJARATI DIGIT ZERO
@@ -3092,6 +3365,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0A66          ; Guru; Deva; A #      (੦)  GURMUKHI DIGIT ZERO
 
 # Total code points: 5
+
+# Gurmukhi; Georgian: [੦]
+
+0A66          ; Guru; Geor; A #      (੦)  GURMUKHI DIGIT ZERO
+
+# Total code points: 1
 
 # Gurmukhi; Greek: [੦]
 
@@ -3254,6 +3533,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
+# Hebrew; Georgian: [ס]
+
+05E1          ; Hebr; Geor; A #      (ס)  HEBREW LETTER SAMEKH
+
+# Total code points: 1
+
 # Hebrew; Greek: [וטיןסױ]
 
 05D5          ; Hebr; Grek; A #      (ו)  HEBREW LETTER VAV
@@ -3372,6 +3657,13 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 0C82          ; Knda; Deva; A #      (ಂ)  KANNADA SIGN ANUSVARA
 0CE6          ; Knda; Deva; A #      (೦)  KANNADA DIGIT ZERO
+
+# Total code points: 2
+
+# Kannada; Georgian: [ಂ೦]
+
+0C82          ; Knda; Geor; A #      (ಂ)  KANNADA SIGN ANUSVARA
+0CE6          ; Knda; Geor; A #      (೦)  KANNADA DIGIT ZERO
 
 # Total code points: 2
 
@@ -3514,6 +3806,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 # Lao; Devanagari: [໐]
 
 0ED0          ; Laoo; Deva; A #      (໐)  LAO DIGIT ZERO
+
+# Total code points: 1
+
+# Lao; Georgian: [໐]
+
+0ED0          ; Laoo; Geor; A #      (໐)  LAO DIGIT ZERO
 
 # Total code points: 1
 
@@ -3671,11 +3969,14 @@ A792..A793    ; Latn; Cyrl; A #  [2] (Ꞓ..ꞓ)  LATIN CAPITAL LETTER C WITH BAR
 
 # Total code points: 3
 
-# Latin; Georgian: [y]
+# Latin; Georgian: [oyøơ]
 
+006F          ; Latn; Geor; A #      (o)  LATIN SMALL LETTER O
 0079          ; Latn; Geor; A #      (y)  LATIN SMALL LETTER Y
+00F8          ; Latn; Geor; A #      (ø)  LATIN SMALL LETTER O WITH STROKE
+01A1          ; Latn; Geor; A #      (ơ)  LATIN SMALL LETTER O WITH HORN
 
-# Total code points: 1
+# Total code points: 4
 
 # Latin; Greek: [ABEHIK-PTX-Zaikln-pt-vyØßøĦıĸŁłŦŧƠơǾꞓ]
 
@@ -3852,6 +4153,13 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 3
 
+# Malayalam; Georgian: [ം൦]
+
+0D02          ; Mlym; Geor; A #      (ം)  MALAYALAM SIGN ANUSVARA
+0D66          ; Mlym; Geor; A #      (൦)  MALAYALAM DIGIT ZERO
+
+# Total code points: 2
+
 # Malayalam; Greek: [ംഠ൦]
 
 0D02          ; Mlym; Grek; A #      (ം)  MALAYALAM SIGN ANUSVARA
@@ -3983,6 +4291,13 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 101D          ; Mymr; Deva; A #      (ဝ)  MYANMAR LETTER WA
 1040          ; Mymr; Deva; A #      (၀)  MYANMAR DIGIT ZERO
+
+# Total code points: 2
+
+# Myanmar; Georgian: [ဝ၀]
+
+101D          ; Mymr; Geor; A #      (ဝ)  MYANMAR LETTER WA
+1040          ; Mymr; Geor; A #      (၀)  MYANMAR DIGIT ZERO
 
 # Total code points: 2
 
@@ -4189,6 +4504,12 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
+# Sinhala; Georgian: [ං]
+
+0D82          ; Sinh; Geor; A #      (ං)  SINHALA SIGN ANUSVARAYA
+
+# Total code points: 1
+
 # Sinhala; Greek: [ං]
 
 0D82          ; Sinh; Grek; A #      (ං)  SINHALA SIGN ANUSVARAYA
@@ -4281,6 +4602,12 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0BE6          ; Taml; Deva; A #      (௦)  TAMIL DIGIT ZERO
 
 # Total code points: 2
+
+# Tamil; Georgian: [௦]
+
+0BE6          ; Taml; Geor; A #      (௦)  TAMIL DIGIT ZERO
+
+# Total code points: 1
 
 # Tamil; Greek: [௦]
 
@@ -4402,6 +4729,13 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
+# Telugu; Georgian: [ం౦]
+
+0C02          ; Telu; Geor; A #      (ం)  TELUGU SIGN ANUSVARA
+0C66          ; Telu; Geor; A #      (౦)  TELUGU DIGIT ZERO
+
+# Total code points: 2
+
 # Telugu; Greek: [ం౦]
 
 0C02          ; Telu; Grek; A #      (ం)  TELUGU SIGN ANUSVARA
@@ -4511,6 +4845,12 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 # Thai; Devanagari: [๐]
 
 0E50          ; Thai; Deva; A #      (๐)  THAI DIGIT ZERO
+
+# Total code points: 1
+
+# Thai; Georgian: [๐]
+
+0E50          ; Thai; Geor; A #      (๐)  THAI DIGIT ZERO
 
 # Total code points: 1
 
