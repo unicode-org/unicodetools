@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: formatted-macFonts.txt
 # Version: 7.0.0
-# Generated: 2014-05-19, 13:33:45 GMT
+# Generated: 2014-05-19, 13:40:01 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -15,7 +15,6 @@
 0022 ;	2033	#* ( " ~ ″ ) QUOTATION MARK ~ DOUBLE PRIME
 
 0025 ;	066A	#* ( % ~ ٪ ) PERCENT SIGN ~ ARABIC PERCENT SIGN
-0025 ;	2030	#* ( % ~ ‰ ) PERCENT SIGN ~ PER MILLE SIGN
 
 0027 ;	05F3	#* ( ' ~ ‎׳‎ ) APOSTROPHE ~ HEBREW PUNCTUATION GERESH
 0027 ;	2019	#* ( ' ~ ’ ) APOSTROPHE ~ RIGHT SINGLE QUOTATION MARK
