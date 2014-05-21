@@ -1,7 +1,7 @@
 ﻿# Summary: Recommended confusable mapping for IDN
 # File: confusablesSummary.txt
 # Version: 7.0.0
-# Generated: 2014-05-19, 13:40:03 GMT
+# Generated: 2014-05-21, 06:07:02 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -923,7 +923,7 @@
 	(‎ /̄ ‎)	002F 0304	 SOLIDUS, COMBINING MACRON
 ←	(‎ ⧶ ‎)	29F6	 SOLIDUS WITH OVERBAR
 
-#	O	0	Ｏ	০	ଠ	୦	ഠ	〇	Ο	О	Օ	߀	Ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐔖	𑢵	𑣠	𝐎	𝑂	𝑶	𝒪	𝓞	𝔒	𝕆	𝕺	𝖮	𝗢	𝘖	𝙊	𝙾	𝚶	𝛰	𝜪	𝝤	𝞞	𝟎	𝟘	𝟢	𝟬	𝟶
+#	O	0	Ｏ	০	ଠ	୦	ഠ	〇	Ο	О	Օ	߀	Ⲟ	ⵔ	ꓳ	𐊒	𐊫	𐐄	𐔖	𑓐	𑢵	𑣠	𝐎	𝑂	𝑶	𝒪	𝓞	𝔒	𝕆	𝕺	𝖮	𝗢	𝘖	𝙊	𝙾	𝚶	𝛰	𝜪	𝝤	𝞞	𝟎	𝟘	𝟢	𝟬	𝟶
 	(‎ 0 ‎)	0030	 DIGIT ZERO
 ←	(‎ O ‎)	004F	 LATIN CAPITAL LETTER O
 ←	(‎ Ｏ ‎)	FF2F	 FULLWIDTH LATIN CAPITAL LETTER O	# →Ο→
@@ -943,6 +943,7 @@
 ←	(‎ 𐊫 ‎)	102AB	 CARIAN LETTER O	# →O→
 ←	(‎ 𐐄 ‎)	10404	 DESERET CAPITAL LETTER LONG O	# →O→
 ←	(‎ 𐔖 ‎)	10516	 ELBASAN LETTER O	# →O→
+←	(‎ 𑓐 ‎)	114D0	 TIRHUTA DIGIT ZERO	# →০→
 ←	(‎ 𑢵 ‎)	118B5	 WARANG CITI CAPITAL LETTER AT	# →O→
 ←	(‎ 𑣠 ‎)	118E0	 WARANG CITI DIGIT ZERO
 ←	(‎ 𝐎 ‎)	1D40E	 MATHEMATICAL BOLD CAPITAL O	# →O→
@@ -3884,6 +3885,11 @@
 ←	(‎ 𝘸 ‎)	1D638	 MATHEMATICAL SANS-SERIF ITALIC SMALL W	# →w→
 ←	(‎ 𝙬 ‎)	1D66C	 MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL W	# →w→
 ←	(‎ 𝚠 ‎)	1D6A0	 MATHEMATICAL MONOSPACE SMALL W	# →w→
+
+#	vv̇	ẇ	𑓅
+	(‎ vv̇ ‎)	0076 0076 0307	 LATIN SMALL LETTER V, LATIN SMALL LETTER V, COMBINING DOT ABOVE
+←	(‎ ẇ ‎)	0077 0307	 LATIN SMALL LETTER W, COMBINING DOT ABOVE
+←	(‎ 𑓅 ‎)	114C5	 TIRHUTA GVANG	# →ẇ→
 
 #	vv҃	ѡ҃	ѽ
 	(‎ vv҃ ‎)	0076 0076 0483	 LATIN SMALL LETTER V, LATIN SMALL LETTER V, COMBINING CYRILLIC TITLO
@@ -7598,7 +7604,7 @@
 ←	(‎ 𑂻 ‎)	110BB	 KAITHI ABBREVIATION SIGN
 ←	(‎ 𑇇 ‎)	111C7	 SHARADA ABBREVIATION SIGN
 
-#	ঃ	ਃ	ః	ಃ	ഃ	ඃ	း
+#	ঃ	ਃ	ః	ಃ	ഃ	ඃ	း	𑓁
 	(‎ ঃ ‎)	0983	 BENGALI SIGN VISARGA
 ←	(‎ ਃ ‎)	0A03	 GURMUKHI SIGN VISARGA
 ←	(‎ ః ‎)	0C03	 TELUGU SIGN VISARGA	# →ਃ→
@@ -7606,6 +7612,7 @@
 ←	(‎ ഃ ‎)	0D03	 MALAYALAM SIGN VISARGA	# →ಃ→→ః→→ਃ→
 ←	(‎ ඃ ‎)	0D83	 SINHALA SIGN VISARGAYA	# →ഃ→→ಃ→→ః→→ਃ→
 ←	(‎ း ‎)	1038	 MYANMAR SIGN VISARGA	# →ඃ→→ഃ→→ಃ→→ః→→ਃ→
+←	(‎ 𑓁 ‎)	114C1	 TIRHUTA SIGN VISARGA
 
 #	অা	আ
 	(‎ অা ‎)	0985 09BE	 BENGALI LETTER A, BENGALI VOWEL SIGN AA
@@ -7616,6 +7623,126 @@
 ←	(‎ ঌৢ ‎)	098C 09E2	 BENGALI LETTER VOCALIC L, BENGALI VOWEL SIGN VOCALIC L	# →ৠ→
 ←	(‎ ৠ ‎)	09E0	 BENGALI LETTER VOCALIC RR
 ←	(‎ ৡ ‎)	09E1	 BENGALI LETTER VOCALIC LL	# →ঌৢ→→ৠ→
+
+#	ঘ	𑒒
+	(‎ ঘ ‎)	0998	 BENGALI LETTER GHA
+←	(‎ 𑒒 ‎)	11492	 TIRHUTA LETTER GHA
+
+#	চ	𑒔
+	(‎ চ ‎)	099A	 BENGALI LETTER CA
+←	(‎ 𑒔 ‎)	11494	 TIRHUTA LETTER CA
+
+#	জ	𑒖
+	(‎ জ ‎)	099C	 BENGALI LETTER JA
+←	(‎ 𑒖 ‎)	11496	 TIRHUTA LETTER JA
+
+#	ঞ	𑒘
+	(‎ ঞ ‎)	099E	 BENGALI LETTER NYA
+←	(‎ 𑒘 ‎)	11498	 TIRHUTA LETTER NYA
+
+#	ট	𑒙
+	(‎ ট ‎)	099F	 BENGALI LETTER TTA
+←	(‎ 𑒙 ‎)	11499	 TIRHUTA LETTER TTA
+
+#	ড	𑒛
+	(‎ ড ‎)	09A1	 BENGALI LETTER DDA
+←	(‎ 𑒛 ‎)	1149B	 TIRHUTA LETTER DDA
+
+#	ণ	𑒪
+	(‎ ণ ‎)	09A3	 BENGALI LETTER NNA
+←	(‎ 𑒪 ‎)	114AA	 TIRHUTA LETTER LA
+
+#	ত	𑒞
+	(‎ ত ‎)	09A4	 BENGALI LETTER TA
+←	(‎ 𑒞 ‎)	1149E	 TIRHUTA LETTER TA
+
+#	থ	𑒟
+	(‎ থ ‎)	09A5	 BENGALI LETTER THA
+←	(‎ 𑒟 ‎)	1149F	 TIRHUTA LETTER THA
+
+#	দ	𑒠
+	(‎ দ ‎)	09A6	 BENGALI LETTER DA
+←	(‎ 𑒠 ‎)	114A0	 TIRHUTA LETTER DA
+
+#	ধ	𑒡
+	(‎ ধ ‎)	09A7	 BENGALI LETTER DHA
+←	(‎ 𑒡 ‎)	114A1	 TIRHUTA LETTER DHA
+
+#	ন	𑒢
+	(‎ ন ‎)	09A8	 BENGALI LETTER NA
+←	(‎ 𑒢 ‎)	114A2	 TIRHUTA LETTER NA
+
+#	প	𑒣
+	(‎ প ‎)	09AA	 BENGALI LETTER PA
+←	(‎ 𑒣 ‎)	114A3	 TIRHUTA LETTER PA
+
+#	ব	𑒩
+	(‎ ব ‎)	09AC	 BENGALI LETTER BA
+←	(‎ 𑒩 ‎)	114A9	 TIRHUTA LETTER RA
+
+#	ম	𑒧
+	(‎ ম ‎)	09AE	 BENGALI LETTER MA
+←	(‎ 𑒧 ‎)	114A7	 TIRHUTA LETTER MA
+
+#	য	𑒨
+	(‎ য ‎)	09AF	 BENGALI LETTER YA
+←	(‎ 𑒨 ‎)	114A8	 TIRHUTA LETTER YA
+
+#	র	𑒫
+	(‎ র ‎)	09B0	 BENGALI LETTER RA
+←	(‎ 𑒫 ‎)	114AB	 TIRHUTA LETTER VA
+
+#	ল	𑒝
+	(‎ ল ‎)	09B2	 BENGALI LETTER LA
+←	(‎ 𑒝 ‎)	1149D	 TIRHUTA LETTER NNA
+
+#	ষ	𑒭
+	(‎ ষ ‎)	09B7	 BENGALI LETTER SSA
+←	(‎ 𑒭 ‎)	114AD	 TIRHUTA LETTER SSA
+
+#	স	𑒮
+	(‎ স ‎)	09B8	 BENGALI LETTER SA
+←	(‎ 𑒮 ‎)	114AE	 TIRHUTA LETTER SA
+
+#	ঽ	𑓄
+	(‎ ঽ ‎)	09BD	 BENGALI SIGN AVAGRAHA
+←	(‎ 𑓄 ‎)	114C4	 TIRHUTA SIGN AVAGRAHA
+
+#	া	𑒰
+	(‎ া ‎)	09BE	 BENGALI VOWEL SIGN AA
+←	(‎ 𑒰 ‎)	114B0	 TIRHUTA VOWEL SIGN AA
+
+#	ি	𑒱
+	(‎ ি ‎)	09BF	 BENGALI VOWEL SIGN I
+←	(‎ 𑒱 ‎)	114B1	 TIRHUTA VOWEL SIGN I
+
+#	ে	𑒹
+	(‎ ে ‎)	09C7	 BENGALI VOWEL SIGN E
+←	(‎ 𑒹 ‎)	114B9	 TIRHUTA VOWEL SIGN E
+
+#	ো	𑒼
+	(‎ ো ‎)	09CB	 BENGALI VOWEL SIGN O
+←	(‎ 𑒼 ‎)	114BC	 TIRHUTA VOWEL SIGN O
+
+#	ৌ	𑒾
+	(‎ ৌ ‎)	09CC	 BENGALI VOWEL SIGN AU
+←	(‎ 𑒾 ‎)	114BE	 TIRHUTA VOWEL SIGN AU
+
+#	ৗ	𑒽
+	(‎ ৗ ‎)	09D7	 BENGALI AU LENGTH MARK
+←	(‎ 𑒽 ‎)	114BD	 TIRHUTA VOWEL SIGN SHORT O
+
+#	১	𑓑
+	(‎ ১ ‎)	09E7	 BENGALI DIGIT ONE
+←	(‎ 𑓑 ‎)	114D1	 TIRHUTA DIGIT ONE
+
+#	২	𑓒
+	(‎ ২ ‎)	09E8	 BENGALI DIGIT TWO
+←	(‎ 𑓒 ‎)	114D2	 TIRHUTA DIGIT TWO
+
+#	৬	𑓖
+	(‎ ৬ ‎)	09EC	 BENGALI DIGIT SIX
+←	(‎ 𑓖 ‎)	114D6	 TIRHUTA DIGIT SIX
 
 #	ਅਾ	ਆ
 	(‎ ਅਾ ‎)	0A05 0A3E	 GURMUKHI LETTER A, GURMUKHI VOWEL SIGN AA
@@ -15940,5 +16067,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 6639
+# total : 6673
 
