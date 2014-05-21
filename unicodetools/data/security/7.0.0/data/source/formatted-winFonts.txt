@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: formatted-winFonts.txt
 # Version: 7.0.0
-# Generated: 2014-05-21, 13:50:16 GMT
+# Generated: 2014-05-21, 14:22:11 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
