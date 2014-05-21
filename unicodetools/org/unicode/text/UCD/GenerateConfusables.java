@@ -55,7 +55,6 @@ import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.dev.util.XEquivalenceClass.Linkage;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
@@ -74,6 +73,12 @@ public class GenerateConfusables {
     static final UCD DEFAULT_UCD = Default.ucd();
     static final UnicodeProperty.Factory ups = ToolUnicodePropertySource.make(version); // ICUPropertyFactory.make();
     static final UnicodeProperty SCRIPT_PROPERTY = ups.getProperty("sc");
+    
+    private static final String EXCAPE_FUNNY_RULE = 
+            ":: [[:C:]-[:cn:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ";
+    
+    public static final Transliterator EXCAPE_FUNNY = Transliterator.createFromRules(
+            "any-html", EXCAPE_FUNNY_RULE, Transliterator.FORWARD);
 
     public static BagFormatter makeFormatter() {
         return new BagFormatter(ups)
@@ -801,7 +806,7 @@ public class GenerateConfusables {
             final BagFormatter bf = makeFormatter()
                     .setUnicodePropertyFactory(ups)
                     .setLabelSource(null)
-                    .setShowLiteral(TransliteratorUtilities.toHTMLControl)
+                    .setShowLiteral(EXCAPE_FUNNY)
                     .setMergeRanges(true);
 
             final PrintWriter out = openAndWriteHeader(outdir, "review.txt", "Review List for IDN");
@@ -856,7 +861,7 @@ public class GenerateConfusables {
         private void writeIDChars() throws IOException {
             final BagFormatter bf = makeFormatter();
             bf.setLabelSource(null);
-            bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
+            bf.setShowLiteral(EXCAPE_FUNNY);
             bf.setMergeRanges(true);
 
             final UnicodeSet letters = new UnicodeSet("[[:Alphabetic:][:Mark:][:Nd:]]");
@@ -923,7 +928,7 @@ public class GenerateConfusables {
         private void printIDModifications() throws IOException {
             final BagFormatter bf = makeFormatter();
             bf.setLabelSource(null);
-            bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
+            bf.setShowLiteral(EXCAPE_FUNNY);
             bf.setMergeRanges(true);
 
             PrintWriter out = openAndWriteHeader(outdir + "../", "xidmodifications.txt", "Security Profile for General Identifiers");
@@ -1762,7 +1767,7 @@ public class GenerateConfusables {
                         }
                     } else {
                         if (targetString.contains("(")) {
-                            System.err.println("ERROR: paren on " + count + "\t" + line);
+                            System.err.println("WARNING: paren on " + count + "\t" + line);
                         }
                         final String target = fromHexOld(targetString);
                         if (UnicodeSet.resemblesPattern(sourceString, 0)) {
@@ -2173,7 +2178,7 @@ public class GenerateConfusables {
                 representable.removeAll(script);
                 final BagFormatter bf = makeFormatter();
                 bf.setValueSource(ups.getProperty("script"));
-                bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
+                bf.setShowLiteral(EXCAPE_FUNNY);
                 bf.showSetNames(out, representable);
             }
             out.close();
@@ -2283,18 +2288,12 @@ public class GenerateConfusables {
         private final String label;
        {
             for (short i = 0; i < UCD_Types.LIMIT_SCRIPT; ++i) {
-//                String shortName = UCD.getScriptID_fromIndex(i, UCD_Types.SHORT);
-//                int icuIndex = UScript.getCodeFromName(shortName);
-//                if (icuIndex < 0) {
-//                    icuIndex = MAX_ICU_SCRIPT++;
-//                }
-//                UCD_TO_ICU_INDEX[i] = icuIndex;
                 script_representables[i] = new UnicodeSet();
                 //script_set[i] = new UnicodeSet("[:script=" + DEFAULT_UCD.getScriptID(i, UCD_Types.LONG) + ":]"); // ugly hack
                 script_set[i] = SCRIPT_PROPERTY.getSet(UCD.getScriptID_fromIndex(i)); // ugly hack
             }
             bf.setValueSource(ups.getProperty("script"));
-            bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
+            bf.setShowLiteral(EXCAPE_FUNNY);
             bf.setLabelSource(UnicodeLabel.NULL);
         }
         
@@ -2397,7 +2396,6 @@ public class GenerateConfusables {
                 if (scriptToUnicodeSetToScript[j] == null) {
                     continue;
                 }
-                
                 
                 for (int q = 0; q < scriptToUnicodeSetToScript[j].length; ++q) {
                     final UnicodeSetToScript uss = scriptToUnicodeSetToScript[j][q];
