@@ -1,5 +1,5 @@
-Generate: ScriptExtensions
-DeltaVersion: 37
+Generate: .
+DeltaVersion: 38
 CopyrightYear: 2014
 
 File: extra/ScriptNfkc

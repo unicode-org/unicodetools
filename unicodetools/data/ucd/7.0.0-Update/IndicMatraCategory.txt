@@ -1,5 +1,5 @@
 # IndicMatraCategory-7.0.0.txt
-# Date: 2014-03-18, 20:00:00 GMT [KW, LI, AG]
+# Date: 2014-05-09, 03:34:00 GMT [KW, LI, AG, RP]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -214,12 +214,15 @@ ABE9..ABEA    ; Right # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEETEI MAYEK V
 19B5..19B7    ; Left # Mc   [3] NEW TAI LUE VOWEL SIGN E..NEW TAI LUE VOWEL SIGN O
 19BA          ; Left # Mc       NEW TAI LUE VOWEL SIGN AY
 1A19          ; Left # Mc       BUGINESE VOWEL SIGN E
+1A55          ; Left # Mc       TAI THAM CONSONANT SIGN MEDIAL RA
 1A6E..1A72    ; Left # Mc   [5] TAI THAM VOWEL SIGN E..TAI THAM VOWEL SIGN THAM AI
 1B3E..1B3F    ; Left # Mc   [2] BALINESE VOWEL SIGN TALING..BALINESE VOWEL SIGN TALING REPA
 1BA6          ; Left # Mc       SUNDANESE VOWEL SIGN PANAELAENG
-1C27..1C28    ; Left # Mc   [2] LEPCHA VOWEL SIGN I..LEPCHA VOWEL SIGN O
+1C27..1C28    ; Left # Mc   [3] LEPCHA VOWEL SIGN I..LEPCHA VOWEL SIGN O
+1C34..1C35    ; Left # Mc   [2] LEPCHA CONSONANT SIGN NYIN-DO..LEPCHA CONSONANT SIGN KANG
 A9BA..A9BB    ; Left # Mc   [2] JAVANESE VOWEL SIGN TALING..JAVANESE VOWEL SIGN DIRGA MURE
 AA2F..AA30    ; Left # Mc   [2] CHAM VOWEL SIGN O..CHAM VOWEL SIGN AI
+AA34          ; Left # Mc       CHAM CONSONANT SIGN RA
 AAEB          ; Left # Mc       MEETEI MAYEK VOWEL SIGN II
 AAEE          ; Left # Mc       MEETEI MAYEK VOWEL SIGN AU
 110B1         ; Left # Mc       KAITHI VOWEL SIGN I
@@ -272,6 +275,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 0955          ; Top # Mn       DEVANAGARI VOWEL SIGN CANDRA LONG E
 0A47..0A48    ; Top # Mn   [2] GURMUKHI VOWEL SIGN EE..GURMUKHI VOWEL SIGN AI
 0A4B..0A4C    ; Top # Mn   [2] GURMUKHI VOWEL SIGN OO..GURMUKHI VOWEL SIGN AU
+0A71          ; Top # Mn       GURMUKHI ADDAK
 0AC5          ; Top # Mn       GUJARATI VOWEL SIGN CANDRA E
 0AC7..0AC8    ; Top # Mn   [2] GUJARATI VOWEL SIGN E..GUJARATI VOWEL SIGN AI
 0B3F          ; Top # Mn       ORIYA VOWEL SIGN I
@@ -309,7 +313,8 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 1752          ; Top # Mn       BUHID VOWEL SIGN I
 1772          ; Top # Mn       TAGBANWA VOWEL SIGN I
 17B7..17BA    ; Top # Mn   [4] KHMER VOWEL SIGN I..KHMER VOWEL SIGN YY
-17D1          ; Top # Mn       KHMER SIGN VIRIAM
+17C9..17D1    ; Top # Mn   [9] KHMER SIGN BANTOC..KHMER SIGN VIRIAM
+17D3          ; Top # Mn       KHMER SIGN BATHAMASAT
 1920..1921    ; Top # Mn   [2] LIMBU VOWEL SIGN A..LIMBU VOWEL SIGN I
 1927..1928    ; Top # Mn   [2] LIMBU VOWEL SIGN E..LIMBU VOWEL SIGN O
 1A17          ; Top # Mn       BUGINESE VOWEL SIGN I
@@ -349,6 +354,7 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11134         ; Top # Mn       CHAKMA MAAYYAA
 111BC..111BE  ; Top # Mn   [3] SHARADA VOWEL SIGN E..SHARADA VOWEL SIGN O
 11230..11231  ; Top # Mn   [2] KHOJKI VOWEL SIGN E..KHOJKI VOWEL SIGN AI
+11237         ; Top # Mn       KHOJKI SIGN SHADDA
 112E5..112E8  ; Top # Mn   [4] KHUDAWADI VOWEL SIGN E..KHUDAWADI VOWEL SIGN AU
 11340         ; Top # Mn       GRANTHA VOWEL SIGN II
 114BA         ; Top # Mn       TIRHUTA VOWEL SIGN SHORT E
@@ -482,20 +488,5 @@ A9C0          ; Bottom_And_Right # Mc       JAVANESE PANGKON
 
 10A01         ; Overstruck # Mn       KHAROSHTHI VOWEL SIGN I
 10A06         ; Overstruck # Mn       KHAROSHTHI VOWEL SIGN O
-
-# Indic_Matra_Category=Invisible
-
-# The Invisible category refers to viramas for certain script
-# which are used only to control consonant stacking or cluster
-# formation, and which have no visible display on their own.
-
-1039          ; Invisible # Mn       MYANMAR SIGN VIRAMA
-17D2          ; Invisible # Mn       KHMER SIGN COENG
-1A60          ; Invisible # Mn       TAI THAM SIGN SAKOT
-1BAB          ; Invisible # Mn       SUNDANESE SIGN VIRAMA
-AAF6          ; Invisible # Mn       MEETEI MAYEK VIRAMA
-10A3F         ; Invisible # Mn       KHAROSHTHI VIRAMA
-1107F         ; Invisible # Mn       BRAHMI NUMBER JOINER
-11133         ; Invisible # Mn       CHAKMA VIRAMA
 
 # EOF

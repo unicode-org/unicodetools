@@ -1,6 +1,6 @@
 #
 # Unihan_Variants.txt
-# Date: 2014-04-11 00:45:23 GMT [JHJ]
+# Date: 2014-05-09 18:17:02 GMT [JHJ]
 # Unicode version: 7.0.0
 #
 # Unicode Character Database
@@ -284,6 +284,7 @@ U+46FC	kSemanticVariant	U+8B6D<kMatthews,kMeyerWempe
 U+4700	kSimplifiedVariant	U+4727
 U+470A	kSemanticVariant	U+5608<kMatthews,kMeyerWempe
 U+4723	kTraditionalVariant	U+8A22
+U+4724	kTraditionalVariant	U+9FC1
 U+4725	kTraditionalVariant	U+27A59
 U+4727	kTraditionalVariant	U+4700
 U+4729	kTraditionalVariant	U+8B8C
@@ -11386,6 +11387,7 @@ U+9FA4	kSemanticVariant	U+8AE7<kMatthews
 U+9FA5	kSemanticVariant	U+7C72<kLau,kMatthews,kMeyerWempe
 U+9FAD	kSimplifiedVariant	U+29A0E
 U+9FAF	kSimplifiedVariant	U+28C46
+U+9FC1	kSimplifiedVariant	U+4724
 U+9FCC	kSemanticVariant	U+6DBC
 U+F900	kZVariant	U+8C48
 U+F901	kZVariant	U+66F4
@@ -11704,9 +11706,9 @@ U+2073C	kSemanticVariant	U+6390<kFenn
 U+20786	kSimplifiedVariant	U+206C6
 U+207B0	kSemanticVariant	U+527F<kFenn
 U+2080E	kSimplifiedVariant	U+206B3
-U+2098C	kSemanticVariant	U+5E4C<kHanYu:T
+U+2098C	kSemanticVariant	U+534C<kHanYu:T
 U+2098C	kSpecializedSemanticVariant	U+2099C
-U+2099C	kSpecializedSemanticVariant	U+5E4C U+2098C
+U+2099C	kSpecializedSemanticVariant	U+534C U+2098C
 U+20B74	kSemanticVariant	U+3441
 U+20BD7	kSemanticVariant	U+5482<kFenn
 U+20BDF	kTraditionalVariant	U+54EF

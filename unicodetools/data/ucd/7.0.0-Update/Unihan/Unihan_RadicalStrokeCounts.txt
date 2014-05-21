@@ -1,6 +1,6 @@
 #
 # Unihan_RadicalStrokeCounts.txt
-# Date: 2014-04-11 00:45:23 GMT [JHJ]
+# Date: 2014-05-09 18:17:02 GMT [JHJ]
 # Unicode version: 7.0.0
 #
 # Unicode Character Database
