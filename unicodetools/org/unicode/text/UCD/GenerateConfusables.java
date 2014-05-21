@@ -61,8 +61,8 @@ import com.ibm.icu.util.ULocale;
 
 
 public class GenerateConfusables {
-    private static final String version = "6.3.0";
-    private static final String REVISION = "6.3.0";
+    private static final String version = "7.0.0";
+    private static final String REVISION = "7.0.0";
     private static final String outdir = Settings.UNICODETOOLS_DIRECTORY + "data/security/" + REVISION + "/data/";
     private static final String indir = outdir + "source/";
 
@@ -337,7 +337,8 @@ public class GenerateConfusables {
     static PrintWriter log;
     static final String ARROW = "→"; // \u2194
     static final String BACKARROW = "\u2190";
-    static UnicodeProperty.Factory ups = ToolUnicodePropertySource.make(""); // ICUPropertyFactory.make();
+    static final UnicodeProperty.Factory ups = ToolUnicodePropertySource.make(""); // ICUPropertyFactory.make();
+    static final UnicodeProperty SCRIPT_PROPERTY = ups.getProperty("sc");
 
     static UnicodeSet UNASSIGNED =
             ups.getSet("gc=Cn")
@@ -717,7 +718,8 @@ public class GenerateConfusables {
                     break; // do nothing;
                 }
                 if (status != null) {
-                    final UnicodeSet us = new UnicodeSet().applyPropertyAlias("script", script);
+                    final UnicodeSet us = SCRIPT_PROPERTY.getSet(script);
+                    //final UnicodeSet us = new UnicodeSet().applyPropertyAlias("script", script);
                     for (final String s : us) {
                         final Reason old = removals.get(s);
                         if (old == null) {
@@ -785,7 +787,7 @@ public class GenerateConfusables {
          * 
          */
         private void writeIDReview() throws IOException {
-            final BagFormatter bf = new BagFormatter();
+            final BagFormatter bf = new BagFormatter().setLineSeparator("\n");
             bf.setUnicodePropertyFactory(ups);
             bf.setLabelSource(null);
             bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
@@ -841,7 +843,7 @@ public class GenerateConfusables {
          * 
          */
         private void writeIDChars() throws IOException {
-            final BagFormatter bf = new BagFormatter();
+            final BagFormatter bf = new BagFormatter().setLineSeparator("\n");
             bf.setUnicodePropertyFactory(ups);
             bf.setLabelSource(null);
             bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
@@ -909,7 +911,7 @@ public class GenerateConfusables {
          * 
          */
         private void printIDModifications() throws IOException {
-            final BagFormatter bf = new BagFormatter();
+            final BagFormatter bf = new BagFormatter().setLineSeparator("\n");
             bf.setUnicodePropertyFactory(ups);
             bf.setLabelSource(null);
             bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
@@ -1214,6 +1216,9 @@ public class GenerateConfusables {
                         || decompType == UCD_Types.COMPAT_FRACTION
                         || decompType == UCD_Types.COMPAT_NARROW
                         || decompType == UCD_Types.COMPAT_WIDE
+                        || decompType == UCD_Types.COMPAT_WIDE
+                        || cp == '﬩'
+                        || cp == '︒'
                         ) {
                     _skipNFKD.add(cp);
                     continue;
@@ -1652,6 +1657,7 @@ public class GenerateConfusables {
             }
             final boolean isLowercase = combined.equals(Default.ucd().getCase(combined, UCD_Types.FULL, UCD_Types.FOLD));
             final boolean isMixed = isMixedScript(combined);
+            // Here's where we add data, if you need to debug
             raw.add(source,target,type);
             dataMixedAnycase.add(source, target, type);
             if (isLowercase) {
@@ -2156,7 +2162,7 @@ public class GenerateConfusables {
                 out.println("# Base Letters Representable with Script");
                 out.println();
                 representable.removeAll(script);
-                final BagFormatter bf = new BagFormatter();
+                final BagFormatter bf = new BagFormatter().setLineSeparator("\n");
                 bf.setValueSource(ups.getProperty("script"));
                 bf.setShowLiteral(TransliteratorUtilities.toHTMLControl);
                 bf.showSetNames(out, representable);
@@ -2264,7 +2270,8 @@ public class GenerateConfusables {
         private final UnicodeSet filterSet;
         private final UnicodeSet[] script_representables = new UnicodeSet[UScript.CODE_LIMIT];
         private final UnicodeSet[] script_set = new UnicodeSet[UScript.CODE_LIMIT];
-        private final BagFormatter bf = new BagFormatter();
+        private final BagFormatter bf = new BagFormatter()
+        .setLineSeparator("\n");
         private final String label;
         {
             for (int i = 0; i < UScript.CODE_LIMIT; ++i) {
