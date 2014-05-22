@@ -40,6 +40,7 @@ import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
 import org.unicode.cldr.util.Pair;
+import org.unicode.draft.GetNames;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Uts46;
 import org.unicode.text.utility.Settings;
@@ -66,13 +67,17 @@ import com.ibm.icu.util.ULocale;
 
 
 public class GenerateConfusables {
+    // Align these three normally.
     private static final String version = "7.0.0";
     private static final String REVISION = "7.0.0";
+    private static final String VERSION_PROP_VALUE = "V7_0";
+
     private static final String outdir = Settings.UNICODETOOLS_DIRECTORY + "data/security/" + REVISION + "/data/";
     private static final String indir = outdir + "source/";
     static final UCD DEFAULT_UCD = Default.ucd();
     static final UnicodeProperty.Factory ups = ToolUnicodePropertySource.make(version); // ICUPropertyFactory.make();
     static final UnicodeProperty SCRIPT_PROPERTY = ups.getProperty("sc");
+    static final UnicodeProperty AGE = ups.getProperty("age");
     
     private static final String EXCAPE_FUNNY_RULE = 
             ":: [[:C:]-[:cn:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]] hex/unicode ; ";
@@ -442,6 +447,7 @@ public class GenerateConfusables {
     }
 
     private static class IdentifierInfo {
+
         static private IdentifierInfo info;
 
         static IdentifierInfo getIdentifierInfo() {
@@ -954,7 +960,7 @@ public class GenerateConfusables {
             bf.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
             }).set(recastRemovals).setMain("Removals", "GCB",
                     UnicodeProperty.ENUMERATED, "1.0"));
-
+            
             final Set<String> fullListing = new HashSet<String>(Arrays.asList("technical limited-use historic discouraged obsolete".split("\\s+")));
             final Set<String> sortedValues = new TreeSet<String>(Collator.getInstance(ULocale.ENGLISH));
             sortedValues.addAll(recastRemovals.values());
@@ -1071,8 +1077,21 @@ public class GenerateConfusables {
                 for (final Iterator it = values.iterator(); it.hasNext();) {
                     final String reason1 = (String) it.next();
                     bf.setValueSource(reason1);
+                    final UnicodeSet keySet = someRemovals.keySet(reason1);
+                    if (reason1.contains("recommended")) {
+                        System.out.println("Recommended: " + keySet.toPattern(false));
+                        UnicodeSet current = AGE.getSet(VERSION_PROP_VALUE);
+                        System.out.println("Current: " + current.toPattern(false));
+                        UnicodeSet newRecommended = new UnicodeSet(keySet).retainAll(current);
+                        for (String s : newRecommended) {
+                            // [:script=Phag:] ; historic # UAX31 T4 #     Phags Pa
+                            System.out.println(Utility.hex(s) 
+                                    + "\t;\thistoric\t#\t" 
+                                    + DEFAULT_UCD.getName(s));
+                        }
+                    }
                     out.println("");
-                    bf.showSetNames(out, someRemovals.keySet(reason1));
+                    bf.showSetNames(out, keySet);
                 }
             } else {
                 bf.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
