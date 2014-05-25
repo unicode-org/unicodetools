@@ -316,6 +316,19 @@ $combiningExclusions ⊇ [$firstNonStarter & \p{dt=canonical}]
 # Other Invariant Tests, not in Stability Policies
 ##########################
 
+# 138-A029 check that STerm is a proper subset of Terminal_Punctuation
+
+\p{Terminal_Punctuation} ⊃ \p{STerm}
+
+# 132-M3 if a character has a general category of "Number", it must have a numeric type that is not equal to "none".
+
+[\p{General_Category=Decimal_Number}\p{General_Category=Letter_Number}\p{General_Category=Other_Number}] ∥ \p{Numeric_Type=None}
+
+# 133-C25] The distinction between numeric type = digit and and numeric type = numeric is not useful. 
+# No new characters will be assigned the numeric type "digit"
+
+\p{Numeric_Type=Digit} = \p{U-1:Numeric_Type=Digit}
+
 ##########################
 # Numbers
 ##########################
