@@ -177,6 +177,9 @@ $Other_ID_Start = [$ID_Start - [$GC:Lu $GC:Ll $GC:Lt $GC:Lm $GC:Lo $GC:Nl]]
 $Other_Default_Ignorable_Code_Point = [$Default_Ignorable_Code_Point - [[$GC:Cf $GC:Cc $GC:Cs $Variation_Selector $Noncharacter_Code_Point] - [$White_Space\uFFF9-\uFFFB]]]
 $Other_Grapheme_Extend = [$Grapheme_Extend - [$GC:Me $GC:Mn]]
 
+# 138-A029 check that STerm is a proper subset of Terminal_Punctuation
+$Terminal_Punctuation ⊃ $STerm
+
 # ===========================
 
 # POSIX Compatibility Properties (UTS#18)
