@@ -25,6 +25,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -39,6 +40,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
+import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
 import org.unicode.draft.GetNames;
 import org.unicode.idna.Idna.IdnaType;
@@ -49,6 +51,7 @@ import org.unicode.text.utility.Utility;
 import com.ibm.icu.dev.util.ArrayComparator;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -1853,26 +1856,54 @@ public class GenerateConfusables {
                 Utility.appendFile(Settings.SRC_UCD_DIR + "confusablesHeader.txt",
                         Utility.UTF8_WINDOWS, out, replacements);
             }
+            Relation<Pair<String,String>, String> confusableMap 
+            = Relation.of(new TreeMap(MyPairComparator), TreeSet.class); 
             if (true) {
-                writeSourceOrder(out, dataMixedAnycase, "SL", "Single-Script, Lowercase Confusables", skipNFKEquivs, true, true);
-                writeSourceOrder(out, dataMixedAnycase, "SA", "Single-Script, Anycase Confusables", skipNFKEquivs, false, true);
-                writeSourceOrder(out, dataMixedAnycase, "ML", "Mixed-Script, Lowercase Confusables", skipNFKEquivs, true, false);
-                writeSourceOrder(out, dataMixedAnycase, "MA", "Mixed-Script, Anycase Confusables", skipNFKEquivs, false, false);
-            } else {
-                writeSourceOrder(out, dataSingleLowercase, "SL", "Single-Script, Lowercase Confusables", skipNFKEquivs, false, false);
-                writeSourceOrder(out, dataSingleAnycase, "SA", "Single-Script, Anycase Confusables", skipNFKEquivs, false, false);
-                writeSourceOrder(out, dataMixedLowercase, "ML", "Mixed-Script, Lowercase Confusables", skipNFKEquivs, false, false);
-                writeSourceOrder(out, dataMixedAnycase, "MA", "Mixed-Script, Anycase Confusables", skipNFKEquivs, false, false);
+                writeSourceOrder(out, dataMixedAnycase, "SL", "Single-Script, Lowercase Confusables", skipNFKEquivs, 
+                        true, true, confusableMap);
+                writeSourceOrder(out, dataMixedAnycase, "SA", "Single-Script, Anycase Confusables", skipNFKEquivs, 
+                        false, true, confusableMap);
+                writeSourceOrder(out, dataMixedAnycase, "ML", "Mixed-Script, Lowercase Confusables", skipNFKEquivs, 
+                        true, false, confusableMap);
+                writeSourceOrder(out, dataMixedAnycase, "MA", "Mixed-Script, Anycase Confusables", skipNFKEquivs, 
+                        false, false, confusableMap);
+                Counter<Set<String>> counter = new Counter();
+                Map<Set<String>, Pair<String, String>> examples = new HashMap<Set<String>, Pair<String, String>>();
+                for (Entry<Pair<String, String>, Set<String>> entry : confusableMap.keyValuesSet()) {
+                    final Set<String> set = entry.getValue();
+                    counter.add(set, 1);
+                    if (!examples.containsKey(set)) {
+                        examples.put(set, entry.getKey());
+                    }
+                }
+                for (Set<String> entry : counter) {
+                    System.out.println(counter.get(entry) + "\t" + entry + "\t" + examples.get(entry));
+                }
+//            } else {
+//                writeSourceOrder(out, dataSingleLowercase, "SL", "Single-Script, Lowercase Confusables", skipNFKEquivs, false, false);
+//                writeSourceOrder(out, dataSingleAnycase, "SA", "Single-Script, Anycase Confusables", skipNFKEquivs, false, false);
+//                writeSourceOrder(out, dataMixedLowercase, "ML", "Mixed-Script, Lowercase Confusables", skipNFKEquivs, false, false);
+//                writeSourceOrder(out, dataMixedAnycase, "MA", "Mixed-Script, Anycase Confusables", skipNFKEquivs, false, false);
             }
             out.close();
         }
+        static Comparator<Pair<String,String>> MyPairComparator = new Comparator<Pair<String,String>>() {
+            public int compare(Pair<String, String> o1, Pair<String, String> o2) {
+                int result = UCAComparator.compare(o1.getFirst(), o2.getFirst());
+                return result != 0 ? result : UCAComparator.compare(o1.getSecond(), o2.getSecond());
+            }
+            
+        };
         /**
          * @param skipNFKEquivs TODO
          * @param onlyLowercase TODO
          * @param onlySingleScript TODO
+         * @param confusableMap 
          * 
          */
-        private void writeSourceOrder(PrintWriter out, MyEquivalenceClass data, String tag, String title, boolean skipNFKEquivs, boolean onlyLowercase, boolean onlySingleScript) {
+        private void writeSourceOrder(PrintWriter out, MyEquivalenceClass data, String tag, String title,
+                boolean skipNFKEquivs, boolean onlyLowercase, boolean onlySingleScript, 
+                Relation<Pair<String, String>, String> confusableMap) {
             // first get all the sets. Then get the best paradigm from each. Then sort.
             //			Set setOfSets = data.getEquivalenceSets();
             //			Map orderedResults = new TreeMap(betterTargetIsLess);
@@ -1909,6 +1940,8 @@ public class GenerateConfusables {
                     }
                 }
                 orderedPairs.add(new String[] {target, source});
+                Pair<String,String> pair = new Pair<String,String>(target, source);
+                confusableMap.put(pair, tag);
             }
             String lastTarget = null;
             for (final Iterator it = orderedPairs.iterator(); it.hasNext();) {

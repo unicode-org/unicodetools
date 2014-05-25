@@ -74,7 +74,8 @@ public class GenerateEmoji {
     .add("*"+Emoji.ENCLOSING_KEYCAP)
     .freeze();
     static final UnicodeSet EXCLUDE = new UnicodeSet(
-            "[🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭🗴🗵🗶🗷🗸🗹★☆⛫⛩\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549]").freeze();
+            "[🙬 🙭 🙮 🙯🗴🗵🗶🗷🗸🗹★☆⛫⛩\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549]").freeze();
+    // 🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭
     static final Set<String> SKIP_WORDS = new HashSet(Arrays.asList("with", "a", "in", "without", "and", "white", "symbol", "sign", "for", "of", "black"));
 
     static final IndexUnicodeProperties LATEST = IndexUnicodeProperties.make(Default.ucdVersion());
