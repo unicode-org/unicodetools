@@ -4942,3 +4942,21 @@ A7F7 ; —
 114D1	;	09E7
 114D2	;	09E8
 114D6	;	09EC
+
+# Roozebeh
+0031 ; 0627 # ‎ا
+0031 ; 0661 # ‎١
+0031 ; 06F1 # ‎۱
+
+* These are the most important Arabic/other confusables:
+
+0056 ; 0667 # V = ۷
+006F ; 0647 # o = ه
+039B ; 0668 # Λ = ٨
+0967 ; 0669 # १ = ٩
+
+* These digit pairs are missing. The glyphs in the chart don't look like each other that much, but in real life fonts, they are quite commonly identical:
+
+0664 ; 06F4
+0665 ; 06F5
+0666 ; 06F6
