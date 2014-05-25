@@ -1,7 +1,7 @@
 ﻿# Security Profile for General Identifiers
 # File: xidmodifications.txt
 # Version: 7.0.0
-# Generated: 2014-05-22, 11:08:15 GMT
+# Generated: 2014-05-25, 06:48:44 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -434,13 +434,12 @@ E01F0..E0FFF  ; restricted ; default-ignorable # [3600] (U+E01F0..U+E0FFF)  <res
 03FA..03FB    ; restricted ; historic          #  [2] (Ϻ..ϻ)  GREEK CAPITAL LETTER SAN..GREEK SMALL LETTER SAN
 0460..0481    ; restricted ; historic          # [34] (Ѡ..ҁ)  CYRILLIC CAPITAL LETTER OMEGA..CYRILLIC SMALL LETTER KOPPA
 0483..0487    ; restricted ; historic          #  [5] (҃..҇)  COMBINING CYRILLIC TITLO..COMBINING CYRILLIC POKRYTIE
-0528..052F    ; restricted ; historic          #  [8] (Ԩ..ԯ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK..CYRILLIC SMALL LETTER EL WITH DESCENDER
+052A..052D    ; restricted ; historic          #  [4] (Ԫ..ԭ)  CYRILLIC CAPITAL LETTER DZZHE..CYRILLIC SMALL LETTER DCHE
 0640          ; restricted ; historic          #      (ـ)  ARABIC TATWEEL
 066E..066F    ; restricted ; historic          #  [2] (ٮ..ٯ)  ARABIC LETTER DOTLESS BEH..ARABIC LETTER DOTLESS QAF
 068E          ; restricted ; historic          #      (ڎ)  ARABIC LETTER DUL
 0800..082D    ; restricted ; historic          # [46] (ࠀ..࠭)  SAMARITAN LETTER ALAF..SAMARITAN MARK NEQUDAA
-08A1          ; restricted ; historic          #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
-08AD..08B2    ; restricted ; historic          #  [6] (ࢭ..ࢲ)  ARABIC LETTER LOW ALEF..ARABIC LETTER ZAIN WITH INVERTED V ABOVE
+08AD..08B1    ; restricted ; historic          #  [5] (ࢭ..ࢱ)  ARABIC LETTER LOW ALEF..ARABIC LETTER STRAIGHT WAW
 094E          ; restricted ; historic          #      (ॎ)  DEVANAGARI VOWEL SIGN PRISHTHAMATRA E
 0951..0952    ; restricted ; historic          #  [2] (॑..॒)  DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI STRESS SIGN ANUDATTA
 0978          ; restricted ; historic          #      (ॸ)  DEVANAGARI LETTER MARWARI DDA
@@ -503,8 +502,7 @@ A8E0..A8F7    ; restricted ; historic          # [24] (꣠..ꣷ)  COMBINING DEVA
 A8FB          ; restricted ; historic          #      (ꣻ)  DEVANAGARI HEADSTROKE
 A930..A953    ; restricted ; historic          # [36] (ꤰ..꥓)  REJANG LETTER KA..REJANG VIRAMA
 A960..A97C    ; restricted ; historic          # [29] (ꥠ..ꥼ)  HANGUL CHOSEONG TIKEUT-MIEUM..HANGUL CHOSEONG SSANGYEORINHIEUH
-A9E0..A9FE    ; restricted ; historic          # [31] (ꧠ..ꧾ)  MYANMAR LETTER SHAN GHA..MYANMAR LETTER TAI LAING BHA
-AA7C..AA7F    ; restricted ; historic          #  [4] (ꩼ..ꩿ)  MYANMAR SIGN TAI LAING TONE-2..MYANMAR LETTER SHWE PALAUNG SHA
+A9E0..A9E6    ; restricted ; historic          #  [7] (ꧠ..ꧦ)  MYANMAR LETTER SHAN GHA..MYANMAR MODIFIER LETTER SHAN REDUPLICATION
 AB30..AB5A    ; restricted ; historic          # [43] (ꬰ..ꭚ)  LATIN SMALL LETTER BARRED ALPHA..LATIN SMALL LETTER Y WITH SHORT RIGHT LEG
 AB64..AB65    ; restricted ; historic          #  [2] (ꭤ..ꭥ)  LATIN SMALL LETTER INVERTED ALPHA..GREEK LETTER SMALL CAPITAL OMEGA
 D7B0..D7C6    ; restricted ; historic          # [23] (ힰ..ퟆ)  HANGUL JUNGSEONG O-YEO..HANGUL JUNGSEONG ARAEA-E
@@ -629,7 +627,7 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 1E800..1E8C4  ; restricted ; historic          # [197] (𞠀..𞣄)  MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8D0..1E8D6  ; restricted ; historic          #  [7] (𞣐..𞣖)  MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 6845
+# Total code points: 6811
 
 #	Status/Type:	restricted ; limited-use
 
@@ -665,6 +663,8 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 0334          ; restricted ; limited-use       #      (̴)  COMBINING TILDE OVERLAY
 0336          ; restricted ; limited-use       #      (̶)  COMBINING LONG STROKE OVERLAY
 0358          ; restricted ; limited-use       #      (͘)  COMBINING DOT ABOVE RIGHT
+0528..0529    ; restricted ; limited-use       #  [2] (Ԩ..ԩ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK..CYRILLIC SMALL LETTER EN WITH LEFT HOOK
+052E..052F    ; restricted ; limited-use       #  [2] (Ԯ..ԯ)  CYRILLIC CAPITAL LETTER EL WITH DESCENDER..CYRILLIC SMALL LETTER EL WITH DESCENDER
 0591..05B3    ; restricted ; limited-use       # [35] (֑..ֳ)  HEBREW ACCENT ETNAHTA..HEBREW POINT HATAF QAMATS
 05B5..05BD    ; restricted ; limited-use       #  [9] (ֵ..ֽ)  HEBREW POINT TSERE..HEBREW POINT METEG
 05BF          ; restricted ; limited-use       #      (ֿ)  HEBREW POINT RAFE
@@ -682,6 +682,8 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 07C0..07F5    ; restricted ; limited-use       # [54] (߀..ߵ)  NKO DIGIT ZERO..NKO LOW TONE APOSTROPHE
 07FA          ; restricted ; limited-use       #      (ߺ)  NKO LAJANYALAN
 0840..085B    ; restricted ; limited-use       # [28] (ࡀ..࡛)  MANDAIC LETTER HALQA..MANDAIC GEMINATION MARK
+08A1          ; restricted ; limited-use       #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
+08B2          ; restricted ; limited-use       #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 08E4..0900    ; restricted ; limited-use       # [29] (ࣤ..ऀ)  ARABIC CURLY FATHA..DEVANAGARI SIGN INVERTED CANDRABINDU
 0955          ; restricted ; limited-use       #      (ॕ)  DEVANAGARI VOWEL SIGN CANDRA LONG E
 0A51          ; restricted ; limited-use       #      (ੑ)  GURMUKHI SIGN UDAAT
@@ -741,10 +743,11 @@ A8D0..A8D9    ; restricted ; limited-use       # [10] (꣐..꣙)  SAURASHTRA DIG
 A900..A92D    ; restricted ; limited-use       # [46] (꤀..꤭)  KAYAH LI DIGIT ZERO..KAYAH LI TONE CALYA PLOPHU
 A980..A9C0    ; restricted ; limited-use       # [65] (ꦀ..꧀)  JAVANESE SIGN PANYANGGA..JAVANESE PANGKON
 A9D0..A9D9    ; restricted ; limited-use       # [10] (꧐..꧙)  JAVANESE DIGIT ZERO..JAVANESE DIGIT NINE
+A9E7..A9FE    ; restricted ; limited-use       # [24] (ꧧ..ꧾ)  MYANMAR LETTER TAI LAING NYA..MYANMAR LETTER TAI LAING BHA
 AA00..AA36    ; restricted ; limited-use       # [55] (ꨀ..ꨶ)  CHAM LETTER A..CHAM CONSONANT SIGN WA
 AA40..AA4D    ; restricted ; limited-use       # [14] (ꩀ..ꩍ)  CHAM LETTER FINAL K..CHAM CONSONANT SIGN FINAL H
 AA50..AA59    ; restricted ; limited-use       # [10] (꩐..꩙)  CHAM DIGIT ZERO..CHAM DIGIT NINE
-AA80..AAC2    ; restricted ; limited-use       # [67] (ꪀ..ꫂ)  TAI VIET LETTER LOW KO..TAI VIET TONE MAI SONG
+AA7C..AAC2    ; restricted ; limited-use       # [71] (ꩼ..ꫂ)  MYANMAR SIGN TAI LAING TONE-2..TAI VIET TONE MAI SONG
 AADB..AADD    ; restricted ; limited-use       #  [3] (ꫛ..ꫝ)  TAI VIET SYMBOL KON..TAI VIET SYMBOL SAM
 AAE0..AAEF    ; restricted ; limited-use       # [16] (ꫠ..ꫯ)  MEETEI MAYEK LETTER E..MEETEI MAYEK VOWEL SIGN AAU
 AAF2..AAF6    ; restricted ; limited-use       #  [5] (ꫲ..꫶)  MEETEI MAYEK ANJI..MEETEI MAYEK VIRAMA
@@ -759,7 +762,7 @@ FB1E          ; restricted ; limited-use       #      (ﬞ)  HEBREW POINT JUDEO-
 16F50..16F7E  ; restricted ; limited-use       # [47] (𖽐..𖽾)  MIAO LETTER NASALIZATION..MIAO VOWEL SIGN NG
 16F8F..16F9F  ; restricted ; limited-use       # [17] (𖾏..𖾟)  MIAO TONE RIGHT..MIAO LETTER REFORMED TONE-8
 
-# Total code points: 4839
+# Total code points: 4873
 
 #	Status/Type:	restricted ; not-NFKC
 
