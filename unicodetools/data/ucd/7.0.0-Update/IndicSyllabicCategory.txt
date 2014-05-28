@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-7.0.0.txt
-# Date: 2014-05-13, 20:02:00 GMT [KW, LI, AG, RP]
+# Date: 2014-05-23, 02:30:00 GMT [KW, LI, AG, RP]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -670,7 +670,7 @@ A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 0EA7          ; Consonant # Lo       LAO LETTER WO
 0EAA..0EAB    ; Consonant # Lo   [2] LAO LETTER SO SUNG..LAO LETTER HO SUNG
 0EAD..0EAE    ; Consonant # Lo   [2] LAO LETTER O..LAO LETTER HO TAM
-0EDC..0EDD    ; Consonant # Lo   [2] LAO HO NO..LAO HO MO
+0EDC..0EDF    ; Consonant # Lo   [4] LAO HO NO..LAO LETTER KHMU NYO
 0F40..0F47    ; Consonant # Lo   [8] TIBETAN LETTER KA..TIBETAN LETTER JA
 0F49..0F6C    ; Consonant # Lo  [36] TIBETAN LETTER NYA..TIBETAN LETTER RRA
 1000..1020    ; Consonant # Lo  [33] MYANMAR LETTER KA..MYANMAR LETTER LLA
@@ -887,10 +887,10 @@ AAC2          ; Tone_Letter # Lo       TAI VIET TONE MAI SONG
 # Indic_Syllabic_Category=Tone_Mark
 
 # Tone Mark (nonspacing or spacing lexical tone mark)
-# Excludes Vedic tone marks, which are more akin to cantillation marks.
 
 # [Not derivable]
 
+0951..0952    ; Tone_Mark # Mn   [2] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI STRESS SIGN ANUDATTA
 0E48..0E4B    ; Tone_Mark # Mn   [4] THAI CHARACTER MAI EK..THAI CHARACTER MAI CHATTAWA
 0EC8..0ECB    ; Tone_Mark # Mn   [4] LAO TONE MAI EK..LAO TONE MAI CATAWA
 1037          ; Tone_Mark # Mn       MYANMAR SIGN DOT BELOW
@@ -902,6 +902,10 @@ AAC2          ; Tone_Letter # Lo       TAI VIET TONE MAI SONG
 109A..109B    ; Tone_Mark # Mc   [2] MYANMAR SIGN KHAMTI TONE-1..MYANMAR SIGN KHAMTI TONE-3
 19C8..19C9    ; Tone_Mark # Mc   [2] NEW TAI LUE TONE MARK-1..NEW TAI LUE TONE MARK-2
 1A75..1A79    ; Tone_Mark # Mn   [5] TAI THAM SIGN TONE-1..TAI THAM SIGN KHUEN TONE-5
+1CD0..1CD2    ; Tone_Mark # Mn   [3] VEDIC TONE KARSHANA..VEDIC TONE PRENKHA
+1CD4..1CE0    ; Tone_Mark # Mn  [13] VEDIC SIGN YAJURVEDIC MIDLINE SVARITA..VEDIC TONE RIGVEDIC KASHMIRI INDEPENDENT SVARITA
+1CE1          ; Tone_Mark # Mc       VEDIC TONE ATHARVAVEDIC INDEPENDENT SVARITA
+1CF4          ; Tone_Mark # Mn       VEDIC TONE CANDRA ABOVE
 A92B..A92D    ; Tone_Mark # Mn   [3] KAYAH LI TONE PLOPHU..KAYAH LI TONE CALYA PLOPHU
 AA7B          ; Tone_Mark # Mc       MYANMAR SIGN PAO KAREN TONE
 AA7C          ; Tone_Mark # Mn       MYANMAR SIGN TAI LAING TONE-2

@@ -1,7 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 7.0.0
-@@@+	U70M140414.lst
-	Unicode 7.0.0 names list, twentieth delta.
+@@@+	U70M140523.lst
+	Unicode 7.0.0 names list, twenty-first delta.
 	Based on FDAM1 + FDAM2, with modified annotations, plus 20BD.
 	Corrected syntax on two xrefs for 1AB7.
 	Added clarifying annotations for 055C and 055E.
@@ -17,6 +17,16 @@
 	Regeneration to fix typo in name for 1F6E4.
 	Updated annotations for 1F540 through 1F545.
 	Updated annotations about use for Bihari languages in the Devanagari block.
+	Corrected annotation for 065D.
+	Added annotation for 1DFD.
+	Updated notice for CJK Compatibility Ideographs block.
+	Updated subhead at 275B.
+	Updated annotation for 3127.
+	Added annotation for 064C.
+	Updated annotations for 06BE.
+	Updated annotations for 0487 and A66F.
+	Added or corrected numerous annotations in Arabic block.
+	Added annotations to 204F and 2E41.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -3116,6 +3126,7 @@
 	x (combining comma above - 0313)
 0487	COMBINING CYRILLIC POKRYTIE
 	* used only with letter titlos
+	* also attested in Glagolitic
 	x (combining inverted breve - 0311)
 	x (combining cyrillic vzmet - A66F)
 0488	COMBINING CYRILLIC HUNDRED THOUSANDS SIGN
@@ -3724,6 +3735,7 @@
 061B	ARABIC SEMICOLON
 	* also used with Thaana and Syriac in modern text
 	x (semicolon - 003B)
+	x (reversed semicolon - 204F)
 	x (turned semicolon - 2E35)
 @		Format character
 061C	ARABIC LETTER MARK
@@ -3783,8 +3795,8 @@
 @		Based on ISO 8859-6
 0640	ARABIC TATWEEL
 	= kashida
-	* inserted to stretch characters
-	* also used with Syriac
+	* inserted to stretch characters or to carry tashkil with no base letter
+	* also used with Mandaic, Manichaean, Psalter Pahlavi, and Syriac
 0641	ARABIC LETTER FEH
 0642	ARABIC LETTER QAF
 0643	ARABIC LETTER KAF
@@ -3794,15 +3806,17 @@
 0647	ARABIC LETTER HEH
 0648	ARABIC LETTER WAW
 0649	ARABIC LETTER ALEF MAKSURA
-	* represents YEH-shaped letter with no dots in any positional form
+	* represents YEH-shaped dual-joining letter with no dots in any positional form
 	* not intended for use in combination with 0654
 	x (arabic letter yeh with hamza above - 0626)
 064A	ARABIC LETTER YEH
 	* loses its dots when used in combination with 0654
 	* retains its dots when used in combination with other combining marks
-@		Points from ISO 8859-6
+	x (arabic letter yeh with two dots below and hamza above - 08A8)
+@		Tashkil from ISO 8859-6
 064B	ARABIC FATHATAN
 064C	ARABIC DAMMATAN
+	* a common alternative form is written as two intertwined dammas, one of which is turned 180 degrees
 064D	ARABIC KASRATAN
 064E	ARABIC FATHA
 064F	ARABIC DAMMA
@@ -3816,8 +3830,8 @@
 @		Combining maddah and hamza
 0653	ARABIC MADDAH ABOVE
 0654	ARABIC HAMZA ABOVE
-	* not restricted to hamza semantics
-	* may also occur as a diacritic forming new letters
+	* restricted to hamza and ezafe semantics
+	* is not used as a diacritic to form new letters
 0655	ARABIC HAMZA BELOW
 @		Other combining marks
 0656	ARABIC SUBSCRIPT ALEF
@@ -3836,13 +3850,13 @@
 065C	ARABIC VOWEL SIGN DOT BELOW
 	* African languages
 065D	ARABIC REVERSED DAMMA
-	* Ormuri, African languages
+	* African languages
 065E	ARABIC FATHA WITH TWO DOTS
 	* Kalami
 065F	ARABIC WAVY HAMZA BELOW
 	* Kashmiri
 @		Arabic-Indic digits
-@+		These digits are used with Arabic proper; for languages of Iran, Pakistan, and India, see the Eastern Arabic-Indic digits at 06F0..06F9.
+@+		These digits are used with Arabic proper; for languages of Iran, Afghanistan, Pakistan, and India, see the Eastern Arabic-Indic digits at 06F0..06F9.
 0660	ARABIC-INDIC DIGIT ZERO
 0661	ARABIC-INDIC DIGIT ONE
 0662	ARABIC-INDIC DIGIT TWO
@@ -3991,7 +4005,7 @@
 06A6	ARABIC LETTER PEHEH
 	* Sindhi
 06A7	ARABIC LETTER QAF WITH DOT ABOVE
-	* Maghrib Arabic
+	* Maghrib Arabic, Uighur
 06A8	ARABIC LETTER QAF WITH THREE DOTS ABOVE
 	* Tunisian Arabic
 06A9	ARABIC LETTER KEHEH
@@ -4028,8 +4042,8 @@
 06B8	ARABIC LETTER LAM WITH THREE DOTS BELOW
 06B9	ARABIC LETTER NOON WITH DOT BELOW
 06BA	ARABIC LETTER NOON GHUNNA
-	* Urdu
-	* dotless in all contextual forms
+	* Urdu, archaic Arabic
+	* dotless in all four contextual forms
 06BB	ARABIC LETTER RNOON
 	* Sindhi
 06BC	ARABIC LETTER NOON WITH RING
@@ -4037,13 +4051,12 @@
 06BD	ARABIC LETTER NOON WITH THREE DOTS ABOVE
 	* old Malay
 06BE	ARABIC LETTER HEH DOACHASHMEE
-	* Urdu
-	* forms aspirate digraphs
+	* forms aspirate digraphs in Urdu and other languages of South Asia
+	* represents the glottal fricative /h/ in Uighur
 06BF	ARABIC LETTER TCHEH WITH DOT ABOVE
 06C0	ARABIC LETTER HEH WITH YEH ABOVE
 	= arabic letter hamzah on ha (1.0)
-	= izafet
-	* Urdu
+	* for ezafe, use 0654 over the language-appropriate base letter
 	* actually a ligature, not an independent letter
 	: 06D5 0654
 06C1	ARABIC LETTER HEH GOAL
@@ -4118,7 +4131,9 @@
 06E2	ARABIC SMALL HIGH MEEM ISOLATED FORM
 06E3	ARABIC SMALL LOW SEEN
 06E4	ARABIC SMALL HIGH MADDA
+	* typically used with 06E5, 06E6, 06E7, and 08F3
 06E5	ARABIC SMALL WAW
+	x (arabic small high waw - 08F3)
 06E6	ARABIC SMALL YEH
 06E7	ARABIC SMALL HIGH YEH
 06E8	ARABIC SMALL HIGH NOON
@@ -10996,6 +11011,7 @@
 1DFC	COMBINING DOUBLE INVERTED BREVE BELOW
 @		Miscellaneous mark
 1DFD	COMBINING ALMOST EQUAL TO BELOW
+	* diacritic indicating a strident vowel in Khoisan languages
 @		Additional marks for UPA
 1DFE	COMBINING LEFT ARROWHEAD ABOVE
 1DFF	COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
@@ -12314,7 +12330,9 @@
 	x (asterisk - 002A)
 	x (combining asterisk below - 0359)
 204F	REVERSED SEMICOLON
+	* also used in Sindhi
 	x (semicolon - 003B)
+	x (arabic semicolon - 061B)
 2050	CLOSE UP
 	* editing mark
 	x (modifier breve with inverted breve - AB5B)
@@ -15934,7 +15952,7 @@
 	x (vertical line - 007C)
 2759	MEDIUM VERTICAL BAR
 275A	HEAVY VERTICAL BAR
-@		Punctuation ornaments
+@		Punctuation mark ornaments
 275B	HEAVY SINGLE TURNED COMMA QUOTATION MARK ORNAMENT
 	x (left single quotation mark - 2018)
 275C	HEAVY SINGLE COMMA QUOTATION MARK ORNAMENT
@@ -18457,6 +18475,7 @@
 	x (modifier letter short equals sign - A78A)
 @		Reversed punctuation
 2E41	REVERSED COMMA
+	* also used in Sindhi
 	x (comma - 002C)
 	x (arabic comma - 060C)
 2E42	DOUBLE LOW-REVERSED-9 QUOTATION MARK
@@ -19644,7 +19663,7 @@
 3125	BOPOMOFO LETTER ENG
 3126	BOPOMOFO LETTER ER
 3127	BOPOMOFO LETTER I
-	* the horizontal stroke form is considered a rendering variant
+	* the horizontal stroke form is considered a vertical variant
 3128	BOPOMOFO LETTER U
 3129	BOPOMOFO LETTER IU
 @		Dialect (non-Mandarin) letters
@@ -22972,7 +22991,7 @@ A66E	CYRILLIC LETTER MULTIOCULAR O
 	* used in the epithet 'many-eyed'
 @		Abbreviation mark
 A66F	COMBINING CYRILLIC VZMET
-	* used with Cyrillic letters to indicate abbreviation
+	* used with Cyrillic and Glagolitic letters to indicate abbreviation
 	x (combining cyrillic titlo - 0483)
 	x (combining cyrillic pokrytie - 0487)
 @		Combining numeric signs
@@ -24686,7 +24705,7 @@ D7FB	HANGUL JONGSEONG PHIEUPH-THIEUTH
 @+		This range of 6400 code points is dedicated to private use.
 @@	F900	CJK Compatibility Ideographs	FAFF
 @@+
-@+		This block, despite its name, contains a number of unified CJK ideographs. Those characters are individually identified by annotations.
+@+		This block, despite its name, contains a number of unified CJK ideographs. Each is also individually identified by an annotation.
 @+		Subheaders identifying sources for subranges do not indicate required usage or preclude mappings to other sources. For example, many pronunciation variants from KS X 1001:1998 are also mapped to a J source.
 @		Pronunciation variants from KS X 1001:1998
 F900	CJK COMPATIBILITY IDEOGRAPH-F900

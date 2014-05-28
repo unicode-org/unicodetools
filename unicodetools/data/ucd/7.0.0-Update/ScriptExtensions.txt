@@ -1,5 +1,5 @@
 # ScriptExtensions-7.0.0.txt
-# Date: 2014-04-15, 18:13:32 GMT [MD]
+# Date: 2014-05-15, 00:11:35 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -48,6 +48,14 @@
 1CF8..1CF9    ; Deva # Mn   [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 
 # Total code points: 30
+
+# ================================================
+
+# Script_Extensions=Dupl
+
+1BCA0..1BCA3  ; Dupl # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
+
+# Total code points: 4
 
 # ================================================
 
@@ -139,14 +147,6 @@ A9CF          ; Bugi Java # Lm       JAVANESE PANGRANGKEP
 
 # ================================================
 
-# Script_Extensions=Deva Kthi
-
-0966..096F    ; Mahj Deva Kthi # Nd  [10] DEVANAGARI DIGIT ZERO..DEVANAGARI DIGIT NINE
-
-# Total code points: 10
-
-# ================================================
-
 # Script_Extensions=Deva Latn
 
 0951..0952    ; Deva Latn # Mn   [2] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI STRESS SIGN ANUDATTA
@@ -190,10 +190,9 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 
 060C          ; Arab Syrc Thaa # Po       ARABIC COMMA
 061B          ; Arab Syrc Thaa # Po       ARABIC SEMICOLON
-#061C          ; Arab Syrc Thaa # Cf       ARABIC LETTER MARK
 061F          ; Arab Syrc Thaa # Po       ARABIC QUESTION MARK
 
-# Total code points: 4
+# Total code points: 3
 
 # ================================================
 
@@ -208,6 +207,14 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 # Script_Extensions=Cakm Mymr Tale
 
 1040..1049    ; Cakm Mymr Tale # Nd  [10] MYANMAR DIGIT ZERO..MYANMAR DIGIT NINE
+
+# Total code points: 10
+
+# ================================================
+
+# Script_Extensions=Deva Kthi Mahj
+
+0966..096F    ; Deva Kthi Mahj # Nd  [10] DEVANAGARI DIGIT ZERO..DEVANAGARI DIGIT NINE
 
 # Total code points: 10
 
@@ -306,30 +313,29 @@ FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC C
 
 # ================================================
 
-# Script_Extensions=Deva Gujr Guru Kthi Mahj Modi Takr Tirh
+# Script_Extensions=Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh
 
-A830..A835    ; Sind Deva Gujr Guru Kthi Mahj Modi Takr Tirh # No   [6] NORTH INDIC FRACTION ONE QUARTER..NORTH INDIC FRACTION THREE SIXTEENTHS
-A836..A837    ; Sind Deva Gujr Guru Kthi Mahj Modi Takr Tirh # So   [2] NORTH INDIC QUARTER MARK..NORTH INDIC PLACEHOLDER MARK
-A838          ; Sind Deva Gujr Guru Kthi Mahj Modi Takr Tirh # Sc       NORTH INDIC RUPEE MARK
-A839          ; Sind Deva Gujr Guru Kthi Mahj Modi Takr Tirh # So       NORTH INDIC QUANTITY MARK
+A830..A835    ; Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh # No   [6] NORTH INDIC FRACTION ONE QUARTER..NORTH INDIC FRACTION THREE SIXTEENTHS
+A836..A837    ; Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh # So   [2] NORTH INDIC QUARTER MARK..NORTH INDIC PLACEHOLDER MARK
+A838          ; Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh # Sc       NORTH INDIC RUPEE MARK
+A839          ; Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh # So       NORTH INDIC QUANTITY MARK
 
 # Total code points: 10
 
 # ================================================
 
-# Script_Extensions=Beng Deva Gujr Guru Knda Mlym Orya Sylo Takr Taml Telu
+# Script_Extensions=Beng Deva Gran Gujr Guru Knda Mahj Mlym Orya Sind Sinh Sylo Takr Taml Telu Tirh
 
-0964          ; Sinh Gran Tirh Mahj Sind Beng Deva Gujr Guru Knda Mlym Orya Sylo Takr Taml Telu # Po       DEVANAGARI DANDA
+0964          ; Beng Deva Gran Gujr Guru Knda Mahj Mlym Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DANDA
 
 # Total code points: 1
 
 # ================================================
 
-# Script_Extensions=Beng Deva Gujr Guru Knda Limb Mlym Orya Sylo Takr Taml Telu
+# Script_Extensions=Beng Deva Gran Gujr Guru Knda Limb Mahj Mlym Orya Sind Sinh Sylo Takr Taml Telu Tirh
 
-0965          ; Sinh Gran Tirh Mahj Sind Beng Deva Gujr Guru Knda Limb Mlym Orya Sylo Takr Taml Telu # Po       DEVANAGARI DOUBLE DANDA
+0965          ; Beng Deva Gran Gujr Guru Knda Limb Mahj Mlym Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DOUBLE DANDA
 
 # Total code points: 1
 
-1BCA0..1BCA3 ; Dupl
 # EOF

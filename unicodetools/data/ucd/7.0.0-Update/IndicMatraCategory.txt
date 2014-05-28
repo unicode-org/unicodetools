@@ -1,5 +1,5 @@
 # IndicMatraCategory-7.0.0.txt
-# Date: 2014-05-09, 03:34:00 GMT [KW, LI, AG, RP]
+# Date: 2014-05-27, 21:23:00 GMT [KW, LI, AG, RP]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -89,8 +89,12 @@
 #
 # @missing: 0000..10FFFF; NA
 
-# Only Indic dependent vowels (Indic_Syllabic_Category=Vowel_Dependent)
-# and viramas (Indic_Syllabic_Category=Virama)
+# Only Indic dependent vowels (Indic_Syllabic_Category=Vowel_Dependent),
+# viramas (Indic_Syllabic_Category=Virama),
+# pure killers (Indic_Syllabic_Category=Pure_Killer), and
+# left-reordrant instances of 
+# medial consonants (Indic_Syllabic_Category=Consonant_Medial) and
+# bindi (Indic_Syllabic_Category=Bindu) in Lepcha
 # have a non-default value for this property.
 
 # ------------------------------------------------
