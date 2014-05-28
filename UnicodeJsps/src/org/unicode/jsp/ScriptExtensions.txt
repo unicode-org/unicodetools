@@ -1,26 +1,88 @@
-# ScriptExtensions-6.1.0.txt
-# Date: 2011-12-05, 22:51:22 GMT [MD]
+# ScriptExtensions-7.0.0.txt
+# Date: 2014-05-15, 00:11:35 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2011 Unicode, Inc.
+# Copyright (c) 1991-2014 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 # The Script_Extensions property indicates which characters are commonly used
-# with a limited number of scripts, but with more than one.
-# The property is provisional: values are expected to change over time as more information becomes available.
+# with more than one script, but with a limited number of scripts.
 # For each code point, there is one or more property values.  Each such value is a Script property value.
 # For more information, see:
 #   UAX #24: http://www.unicode.org/reports/tr24/ and
 #   UAX #44: http://www.unicode.org/reports/tr44/
 #
-#  All code points not explicitly listed for Script_Extensions
-#  have as their value the corresponding Script property value
+# Each Script_Extensions value in this file consists of a set
+# of one or more abbreviated Script property values. The ordering of the
+# values in that set is not material, but for stability in presentation
+# it is given here as alphabetical.
+#
+# The Script_Extensions values are presented in sorted order in the file.
+# They are sorted first by the number of Script property values in their sets,
+# and then alphabetically by first differing Script property value.
+#
+# Following each distinct Script_Extensions value is the list of code
+# points associated with that value, listed in code point order.
+#
+#
+# All code points not explicitly listed for Script_Extensions
+# have as their value the corresponding Script property value
 #
 # @missing: 0000..10FFFF; <script>
 
 # ================================================
 
 # Property:	Script_Extensions
+
+# ================================================
+
+# Script_Extensions=Deva
+
+1CD0..1CD2    ; Deva # Mn   [3] VEDIC TONE KARSHANA..VEDIC TONE PRENKHA
+1CD4..1CE0    ; Deva # Mn  [13] VEDIC SIGN YAJURVEDIC MIDLINE SVARITA..VEDIC TONE RIGVEDIC KASHMIRI INDEPENDENT SVARITA
+1CE1          ; Deva # Mc       VEDIC TONE ATHARVAVEDIC INDEPENDENT SVARITA
+1CE2..1CE8    ; Deva # Mn   [7] VEDIC SIGN VISARGA SVARITA..VEDIC SIGN VISARGA ANUDATTA WITH TAIL
+1CED          ; Deva # Mn       VEDIC SIGN TIRYAK
+1CF2..1CF3    ; Deva # Mc   [2] VEDIC SIGN ARDHAVISARGA..VEDIC SIGN ROTATED ARDHAVISARGA
+1CF4          ; Deva # Mn       VEDIC TONE CANDRA ABOVE
+1CF8..1CF9    ; Deva # Mn   [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
+
+# Total code points: 30
+
+# ================================================
+
+# Script_Extensions=Dupl
+
+1BCA0..1BCA3  ; Dupl # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
+
+# Total code points: 4
+
+# ================================================
+
+# Script_Extensions=Grek
+
+0342          ; Grek # Mn       COMBINING GREEK PERISPOMENI
+0345          ; Grek # Mn       COMBINING GREEK YPOGEGRAMMENI
+1DC0..1DC1    ; Grek # Mn   [2] COMBINING DOTTED GRAVE ACCENT..COMBINING DOTTED ACUTE ACCENT
+
+# Total code points: 4
+
+# ================================================
+
+# Script_Extensions=Latn
+
+0363..036F    ; Latn # Mn  [13] COMBINING LATIN SMALL LETTER A..COMBINING LATIN SMALL LETTER X
+
+# Total code points: 13
+
+# ================================================
+
+# Script_Extensions=Arab Copt
+
+102E0         ; Arab Copt # Mn       COPTIC EPACT THOUSANDS MARK
+102E1..102FB  ; Arab Copt # No  [27] COPTIC EPACT DIGIT ONE..COPTIC EPACT NUMBER NINE HUNDRED
+
+# Total code points: 28
 
 # ================================================
 
@@ -59,6 +121,14 @@ FDFD          ; Arab Thaa # So       ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHE
 
 # ================================================
 
+# Script_Extensions=Bugi Java
+
+A9CF          ; Bugi Java # Lm       JAVANESE PANGRANGKEP
+
+# Total code points: 1
+
+# ================================================
+
 # Script_Extensions=Cprt Linb
 
 10100..10102  ; Cprt Linb # Po   [3] AEGEAN WORD SEPARATOR LINE..AEGEAN CHECK MARK
@@ -66,6 +136,30 @@ FDFD          ; Arab Thaa # So       ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHE
 10137..1013F  ; Cprt Linb # So   [9] AEGEAN WEIGHT BASE UNIT..AEGEAN MEASURE THIRD SUBUNIT
 
 # Total code points: 57
+
+# ================================================
+
+# Script_Extensions=Cyrl Latn
+
+0485..0486    ; Cyrl Latn # Mn   [2] COMBINING CYRILLIC DASIA PNEUMATA..COMBINING CYRILLIC PSILI PNEUMATA
+
+# Total code points: 2
+
+# ================================================
+
+# Script_Extensions=Deva Latn
+
+0951..0952    ; Deva Latn # Mn   [2] DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI STRESS SIGN ANUDATTA
+
+# Total code points: 2
+
+# ================================================
+
+# Script_Extensions=Gujr Khoj
+
+0AE6..0AEF    ; Gujr Khoj # Nd  [10] GUJARATI DIGIT ZERO..GUJARATI DIGIT NINE
+
+# Total code points: 10
 
 # ================================================
 
@@ -92,14 +186,6 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 
 # ================================================
 
-# Script_Extensions=Arab Mand Syrc
-
-0640          ; Arab Mand Syrc # Lm       ARABIC TATWEEL
-
-# Total code points: 1
-
-# ================================================
-
 # Script_Extensions=Arab Syrc Thaa
 
 060C          ; Arab Syrc Thaa # Po       ARABIC COMMA
@@ -107,6 +193,30 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 061F          ; Arab Syrc Thaa # Po       ARABIC QUESTION MARK
 
 # Total code points: 3
+
+# ================================================
+
+# Script_Extensions=Beng Cakm Sylo
+
+09E6..09EF    ; Beng Cakm Sylo # Nd  [10] BENGALI DIGIT ZERO..BENGALI DIGIT NINE
+
+# Total code points: 10
+
+# ================================================
+
+# Script_Extensions=Cakm Mymr Tale
+
+1040..1049    ; Cakm Mymr Tale # Nd  [10] MYANMAR DIGIT ZERO..MYANMAR DIGIT NINE
+
+# Total code points: 10
+
+# ================================================
+
+# Script_Extensions=Deva Kthi Mahj
+
+0966..096F    ; Deva Kthi Mahj # Nd  [10] DEVANAGARI DIGIT ZERO..DEVANAGARI DIGIT NINE
+
+# Total code points: 10
 
 # ================================================
 
@@ -123,11 +233,11 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 
 # ================================================
 
-# Script_Extensions=Beng Deva Guru Orya
+# Script_Extensions=Kali Latn Mymr
 
-0964..0965    ; Beng Deva Guru Orya # Po   [2] DEVANAGARI DANDA..DEVANAGARI DOUBLE DANDA
+A92E          ; Kali Latn Mymr # Po       KAYAH LI SIGN CWI
 
-# Total code points: 2
+# Total code points: 1
 
 # ================================================
 
@@ -136,6 +246,14 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 1735..1736    ; Buhd Hano Tagb Tglg # Po   [2] PHILIPPINE SINGLE PUNCTUATION..PHILIPPINE DOUBLE PUNCTUATION
 
 # Total code points: 2
+
+# ================================================
+
+# Script_Extensions=Arab Mand Mani Phlp Syrc
+
+0640          ; Arab Mand Mani Phlp Syrc # Lm       ARABIC TATWEEL
+
+# Total code points: 1
 
 # ================================================
 
@@ -161,17 +279,6 @@ FF9E..FF9F    ; Hira Kana # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFW
 FE45..FE46    ; Bopo Hang Hani Hira Kana # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 206
-
-# ================================================
-
-# Script_Extensions=Deva Gujr Guru Kthi Takr
-
-A830..A835    ; Deva Gujr Guru Kthi Takr # No   [6] NORTH INDIC FRACTION ONE QUARTER..NORTH INDIC FRACTION THREE SIXTEENTHS
-A836..A837    ; Deva Gujr Guru Kthi Takr # So   [2] NORTH INDIC QUARTER MARK..NORTH INDIC PLACEHOLDER MARK
-A838          ; Deva Gujr Guru Kthi Takr # Sc       NORTH INDIC RUPEE MARK
-A839          ; Deva Gujr Guru Kthi Takr # So       NORTH INDIC QUANTITY MARK
-
-# Total code points: 10
 
 # ================================================
 
@@ -203,5 +310,32 @@ FF63          ; Bopo Hang Hani Hira Kana Yiii # Pe       HALFWIDTH RIGHT CORNER 
 FF64..FF65    ; Bopo Hang Hani Hira Kana Yiii # Po   [2] HALFWIDTH IDEOGRAPHIC COMMA..HALFWIDTH KATAKANA MIDDLE DOT
 
 # Total code points: 26
+
+# ================================================
+
+# Script_Extensions=Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh
+
+A830..A835    ; Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh # No   [6] NORTH INDIC FRACTION ONE QUARTER..NORTH INDIC FRACTION THREE SIXTEENTHS
+A836..A837    ; Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh # So   [2] NORTH INDIC QUARTER MARK..NORTH INDIC PLACEHOLDER MARK
+A838          ; Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh # Sc       NORTH INDIC RUPEE MARK
+A839          ; Deva Gujr Guru Kthi Mahj Modi Sind Takr Tirh # So       NORTH INDIC QUANTITY MARK
+
+# Total code points: 10
+
+# ================================================
+
+# Script_Extensions=Beng Deva Gran Gujr Guru Knda Mahj Mlym Orya Sind Sinh Sylo Takr Taml Telu Tirh
+
+0964          ; Beng Deva Gran Gujr Guru Knda Mahj Mlym Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DANDA
+
+# Total code points: 1
+
+# ================================================
+
+# Script_Extensions=Beng Deva Gran Gujr Guru Knda Limb Mahj Mlym Orya Sind Sinh Sylo Takr Taml Telu Tirh
+
+0965          ; Beng Deva Gran Gujr Guru Knda Limb Mahj Mlym Orya Sind Sinh Sylo Takr Taml Telu Tirh # Po       DEVANAGARI DOUBLE DANDA
+
+# Total code points: 1
 
 # EOF
