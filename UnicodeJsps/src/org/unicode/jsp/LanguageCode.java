@@ -102,7 +102,7 @@ public class LanguageCode {
       }
     }
     int start = builder.length();
-    builder.append("<table>\n").append(getLine("th", "Type", "2.1", "Code", "Name", "Replacement?"));
+    builder.append("<table>\n").append(getLine("th", "Type", "2.1", "Code", "Name", "Replacement"));
 
     String languageCode = Subtag.language.get(m);
     if (languageCode != null) {
