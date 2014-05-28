@@ -5,13 +5,13 @@ import java.util.Set;
 import org.unicode.props.PropertyNames.NameMatcher;
 public enum UcdProperty {
 
-    // Numeric
+		// Numeric
     Numeric_Value(PropertyType.Numeric, "nv"),
     kAccountingNumeric(PropertyType.Numeric, "cjkAccountingNumeric"),
     kOtherNumeric(PropertyType.Numeric, "cjkOtherNumeric"),
     kPrimaryNumeric(PropertyType.Numeric, "cjkPrimaryNumeric"),
 
-    // String
+		// String
     Case_Folding(PropertyType.String, "cf"),
     Decomposition_Mapping(PropertyType.String, "dm"),
     FC_NFKC_Closure(PropertyType.String, "FC_NFKC"),
@@ -25,7 +25,7 @@ public enum UcdProperty {
     Uppercase_Mapping(PropertyType.String, "uc"),
     kCompatibilityVariant(PropertyType.String, "cjkCompatibilityVariant"),
 
-    // Miscellaneous
+		// Miscellaneous
     Bidi_Mirroring_Glyph(PropertyType.Miscellaneous, "bmg"),
     Bidi_Paired_Bracket(PropertyType.Miscellaneous, "bpb"),
     CJK_Radical(PropertyType.Miscellaneous, "CJKR"),
@@ -137,12 +137,12 @@ public enum UcdProperty {
     kXerox(PropertyType.Miscellaneous, "cjkXerox"),
     kZVariant(PropertyType.Miscellaneous, "cjkZVariant"),
 
-    // Catalog
+		// Catalog
     Age(PropertyType.Catalog, UcdPropertyValues.Age_Values.class, "age"),
     Block(PropertyType.Catalog, UcdPropertyValues.Block_Values.class, "blk"),
     Script(PropertyType.Catalog, UcdPropertyValues.Script_Values.class, "sc"),
 
-    // Enumerated
+		// Enumerated
     Bidi_Class(PropertyType.Enumerated, UcdPropertyValues.Bidi_Class_Values.class, "bc"),
     Bidi_Paired_Bracket_Type(PropertyType.Enumerated, UcdPropertyValues.Bidi_Paired_Bracket_Type_Values.class, "bpt"),
     Canonical_Combining_Class(PropertyType.Enumerated, UcdPropertyValues.Canonical_Combining_Class_Values.class, "ccc"),
@@ -164,7 +164,7 @@ public enum UcdProperty {
     Sentence_Break(PropertyType.Enumerated, UcdPropertyValues.Sentence_Break_Values.class, "SB"),
     Word_Break(PropertyType.Enumerated, UcdPropertyValues.Word_Break_Values.class, "WB"),
 
-    // Binary
+		// Binary
     ASCII_Hex_Digit(PropertyType.Binary, UcdPropertyValues.Binary.class, "AHex"),
     Alphabetic(PropertyType.Binary, UcdPropertyValues.Binary.class, "Alpha"),
     Bidi_Control(PropertyType.Binary, UcdPropertyValues.Binary.class, "Bidi_C"),
@@ -224,48 +224,48 @@ public enum UcdProperty {
     White_Space(PropertyType.Binary, UcdPropertyValues.Binary.class, "WSpace"),
     XID_Continue(PropertyType.Binary, UcdPropertyValues.Binary.class, "XIDC"),
     XID_Start(PropertyType.Binary, UcdPropertyValues.Binary.class, "XIDS"),
-    ;
+		;
 
-    private final PropertyType type;
-    private final PropertyNames<UcdProperty> names;
-    // for enums
-    private final NameMatcher name2enum;
-    private final EnumSet enums;
-
-    private UcdProperty(PropertyType type, String shortName, String...otherNames) {
-        this.type = type;
-        names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
-        name2enum = null;
-        enums = null;
-    }
-    private UcdProperty(PropertyType type, Class classItem, String shortName, String...otherNames) {
-        this.type = type;
-        names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
-        enums = EnumSet.allOf(classItem);
-        name2enum = PropertyNames.getNameToEnums(classItem);
-    }
-
-    public PropertyType getType() {
-        return type;
-    }
-    public PropertyNames<UcdProperty> getNames() {
-        return names;
-    }
-    public String getShortName() {
-        return names.getShortName();
-    }
-    public static UcdProperty forString(String name) {
-        return Numeric_Value.names.forString(name); // use the first one
-    }
-    public Enum getEnum(String name) {
-        return name2enum == null ? null : name2enum.get(name);
-    }
-    public PropertyNames getEnumNames() {
-        return name2enum == null ? null : name2enum.getNames();
-    }
-    public Set<Enum> getEnums() {
-        return enums;
-    }
+private final PropertyType type;
+	private final PropertyNames<UcdProperty> names;
+	// for enums
+	private final NameMatcher name2enum;
+	private final EnumSet enums;
+	
+	private UcdProperty(PropertyType type, String shortName, String...otherNames) {
+		this.type = type;
+		names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
+		name2enum = null;
+		enums = null;
+	}
+	private UcdProperty(PropertyType type, Class classItem, String shortName, String...otherNames) {
+		this.type = type;
+		names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
+		enums = EnumSet.allOf(classItem);
+		name2enum = PropertyNames.getNameToEnums(classItem);
+	}
+	
+	public PropertyType getType() {
+		return type;
+	}
+	public PropertyNames<UcdProperty> getNames() {
+		return names;
+	}
+	public String getShortName() {
+		return names.getShortName();
+	}
+	public static UcdProperty forString(String name) {
+		return Numeric_Value.names.forString(name);
+	}
+	public Enum getEnum(String name) {
+		return name2enum == null ? null : name2enum.get(name);
+	}
+	public PropertyNames getEnumNames() {
+		return name2enum == null ? null : name2enum.getNames();
+	}
+	public Set<Enum> getEnums() {
+		return enums;
+	}
 
 
 }

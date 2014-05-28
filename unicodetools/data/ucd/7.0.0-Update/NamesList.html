@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <td valign="top" width="144">Date</td>
-        <td valign="top">2014-01-23</td>
+        <td valign="top">2014-05-27</td>
       </tr>
       <tr>
         <td valign="top" width="144">This Version</td>
@@ -89,7 +89,7 @@ declaration in a comment at the head of the file were introduced after Unicode
 6.1.0 was published, as was the syntax for the specification of variation sequences and alternate glyphs and their respective summaries.</p>
 
 <p>The same input file can be used for the preparation of drafts and final editions for ISO/IEC 
-  10646. Earlier versions of that standard used a different style, referred below as ISO-style. That style necessitated the presence of some 
+  10646. Earlier versions of that standard used a different style, referred to below as ISO-style. That style necessitated the presence of some 
   information in the name list file that is not needed (and in fact removed
   during parsing) for the Unicode code charts.</p>
 
@@ -125,7 +125,7 @@ their constituent syntax elements are needed.</p>
 
 <p>The full syntax with all the options is provided in the following sections.</p>
 
-<h3><a name="FileStructure"></a>2.0 NamesList File Structure</h3>
+<h2><a name="FileStructure"></a>2.0 NamesList File Structure</h2>
 
 <p>This section defines the overall file structure</p>
 
@@ -326,7 +326,7 @@ is machine generated and will always explicitly provide any summary subheads.</p
 <strong>COMPAT_MAPPING:	TAB &quot;#&quot; SP EXPAND_LINE       
 		| TAB &quot;#&quot; SP &quot;&lt;&quot; LCTAG &quot;&gt;&quot; SP EXPAND_LINE</strong>    
 			// Replace '#' by APPROX, output line as mapping;
-			// check the &lt;tag&gt; for balanced &lt; &gt;
+			// check for balanced &lt; &gt;
 
 <strong>NOTICE_LINE:	&quot;@+&quot; TAB LINE</strong>       
 			// Skip '@+', output text as notice
@@ -370,7 +370,7 @@ is machine generated and will always explicitly provide any summary subheads.</p
 <strong>BLOCKNAME:	LABEL
 		| LABEL SP &quot;(&quot; LABEL &quot;)&quot;</strong>       
 			// If an alternate label is present it replaces 
-			// the BLOCKNAME when an ISO-style namelist is
+			// the BLOCKNAME when an ISO-style names list is
 			// laid out; it is ignored in the Unicode charts
 
 <strong>BLOCKSTART:	CHAR</strong>	// First character position in block

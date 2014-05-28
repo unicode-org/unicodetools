@@ -1,5 +1,5 @@
 # PropertyValueAliases-7.0.0.txt
-# Date: 2014-04-09, 20:01:11 GMT [MD]
+# Date: 2014-05-14, 23:55:16 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -713,7 +713,6 @@ Ideo; Y                               ; Yes                              ; T    
 
 InMC; Bottom                          ; Bottom
 InMC; Bottom_And_Right                ; Bottom_And_Right
-InMC; Invisible                       ; Invisible
 InMC; Left                            ; Left
 InMC; Left_And_Right                  ; Left_And_Right
 InMC; NA                              ; NA
@@ -731,6 +730,7 @@ InMC; Visual_Order_Left               ; Visual_Order_Left
 
 InSC; Avagraha                        ; Avagraha
 InSC; Bindu                           ; Bindu
+InSC; Brahmi_Joining_Number           ; Brahmi_Joining_Number
 InSC; Cantillation_Mark               ; Cantillation_Mark
 InSC; Consonant                       ; Consonant
 InSC; Consonant_Dead                  ; Consonant_Dead
@@ -738,12 +738,19 @@ InSC; Consonant_Final                 ; Consonant_Final
 InSC; Consonant_Head_Letter           ; Consonant_Head_Letter
 InSC; Consonant_Medial                ; Consonant_Medial
 InSC; Consonant_Placeholder           ; Consonant_Placeholder
-InSC; Consonant_Repha                 ; Consonant_Repha
+InSC; Consonant_Preceding_Repha       ; Consonant_Preceding_Repha
 InSC; Consonant_Subjoined             ; Consonant_Subjoined
+InSC; Consonant_Succeeding_Repha      ; Consonant_Succeeding_Repha
 InSC; Gemination_Mark                 ; Gemination_Mark
+InSC; Invisible_Stacker               ; Invisible_Stacker
+InSC; Joiner                          ; Joiner
 InSC; Modifying_Letter                ; Modifying_Letter
+InSC; Non_Joiner                      ; Non_Joiner
 InSC; Nukta                           ; Nukta
+InSC; Number                          ; Number
+InSC; Number_Joiner                   ; Number_Joiner
 InSC; Other                           ; Other
+InSC; Pure_Killer                     ; Pure_Killer
 InSC; Register_Shifter                ; Register_Shifter
 InSC; Tone_Letter                     ; Tone_Letter
 InSC; Tone_Mark                       ; Tone_Mark

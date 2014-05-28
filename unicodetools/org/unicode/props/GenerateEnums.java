@@ -302,7 +302,7 @@ public class GenerateEnums {
                 //                }
                 output.print("    " + i.getKey());
                 final PropName pname = i.getValue();
-                final String type = "PropertyNames.PropertyType." + pt;
+                final String type = "PropertyType." + pt;
                 String classItem = null;
                 switch (pt) {
                 case Binary:
@@ -320,19 +320,19 @@ public class GenerateEnums {
         output.println("\t\t;");
         final boolean first = true;
         output.println("\n" +
-                "private final PropertyNames.PropertyType type;\n"+
+                "private final PropertyType type;\n"+
                 "\tprivate final PropertyNames<UcdProperty> names;\n"+
                 "\t// for enums\n"+
                 "\tprivate final NameMatcher name2enum;\n"+
                 "\tprivate final EnumSet enums;\n"+
                 "\t\n"+
-                "\tprivate UcdProperty(PropertyNames.PropertyType type, String shortName, String...otherNames) {\n"+
+                "\tprivate UcdProperty(PropertyType type, String shortName, String...otherNames) {\n"+
                 "\t\tthis.type = type;\n"+
                 "\t\tnames = new PropertyNames(UcdProperty.class, this, shortName, otherNames);\n"+
                 "\t\tname2enum = null;\n"+
                 "\t\tenums = null;\n"+
                 "\t}\n"+
-                "\tprivate UcdProperty(PropertyNames.PropertyType type, Class classItem, String shortName, String...otherNames) {\n"+
+                "\tprivate UcdProperty(PropertyType type, Class classItem, String shortName, String...otherNames) {\n"+
                 "\t\tthis.type = type;\n"+
                 //"\t\tObject[] x = classItem.getEnumConstants();\n"+
                 "\t\tnames = new PropertyNames(UcdProperty.class, this, shortName, otherNames);\n"+
@@ -340,7 +340,7 @@ public class GenerateEnums {
                 "\t\tname2enum = PropertyNames.getNameToEnums(classItem);\n"+
                 "\t}\n"+
                 "\t\n"+
-                "\tpublic PropertyNames.PropertyType getType() {\n"+
+                "\tpublic PropertyType getType() {\n"+
                 "\t\treturn type;\n"+
                 "\t}\n"+
                 "\tpublic PropertyNames<UcdProperty> getNames() {\n"+
