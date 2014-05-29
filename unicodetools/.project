@@ -3,6 +3,8 @@
 	<name>unicodetools</name>
 	<comment></comment>
 	<projects>
+		<project>cldr-tools</project>
+		<project>cldr-unittest</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
