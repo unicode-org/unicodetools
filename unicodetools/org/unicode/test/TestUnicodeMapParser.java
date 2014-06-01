@@ -70,6 +70,24 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
         check(ump, test, expected, -1);
     }
     
+    public void testStability() {
+        UnicodeMap<String> expected = new UnicodeMap<String>()
+                .putAll(INDEX_PROPS.getProperty("Script").getUnicodeMap())
+                .put('a', "HUH?");
+
+        String test = "{\\m{script},a=HUH?}";
+        check(ump, test, expected, -1);
+    }
+    
+    public void testEmbedding() {
+        UnicodeMap<String> expected = new UnicodeMap<String>()
+                .put('a', "b")
+                ;
+
+        String test = "{a=b,c=d&{q=r,a=b}}";
+        check(ump, test, expected, -1);
+    }
+    
     public void testRemove() {
         UnicodeMap<String> expected = new UnicodeMap<String>()
                 .putAll(INDEX_PROPS.getProperty("Script").getUnicodeMap())
