@@ -4,6 +4,7 @@ import java.util.BitSet;
 import java.util.HashMap;
 
 import org.unicode.text.utility.ChainException;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
@@ -374,7 +375,7 @@ public class NormalizerSample implements UCD_Types {
 
     private static Stub getData (String version) {
         if (version.length() == 0) {
-            version = UCD.latestVersion;
+            version = Settings.latestVersion;
         }
         Stub result = (Stub)versionCache.get(version);
         if (result == null) {

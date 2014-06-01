@@ -3,6 +3,12 @@ package org.unicode.text.utility;
 import org.unicode.cldr.util.CldrUtility;
 
 public class Settings {
+    /**
+     * Used for the default version.
+     */
+    public static final String latestVersion = "7.0.0";
+    public static final String lastVersion = "6.3.0"; // last released version
+
     public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(org.unicode.cldr.util.CldrUtility.getProperty("copyright", "skip"));
 
     public static final String DATA_DIR = Utility.fixFileName(org.unicode.cldr.util.CldrUtility.getProperty("UCD_DIR", "data/")) + "/";
@@ -23,5 +29,6 @@ public class Settings {
     public static final String SRC_DIR = Utility.fixFileName("org/unicode/text") + "/";
     public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";
     public static final String SRC_UCD_DIR = SRC_DIR + "UCD/";
+
 
 }

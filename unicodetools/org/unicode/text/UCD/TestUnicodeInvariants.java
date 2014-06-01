@@ -36,9 +36,9 @@ public class TestUnicodeInvariants {
 
     private static final Pattern IN_PATTERN = Pattern.compile("(.*)([≠=])(.*)");
     private static final boolean ICU_VERSION = false; // ignore the versions if this is true
-    private static final String LATEST_VERSION = UCD.latestVersion; // "5.2.0"; //
+    private static final String LATEST_VERSION = Settings.latestVersion; // "5.2.0"; //
     private static final Factory LATEST_PROPS = getProperties(LATEST_VERSION);
-    private static final String LAST_VERSION = UCD.lastVersion; // "5.1.0"; //
+    private static final String LAST_VERSION = Settings.lastVersion; // "5.1.0"; //
     private static final boolean SHOW_LOOKUP = false;
     private static int showRangeLimit = 20;
     static boolean doHtml = true;

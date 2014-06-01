@@ -14,6 +14,7 @@ package org.unicode.text.UCD;
 import java.util.BitSet;
 import java.util.HashMap;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -410,7 +411,7 @@ public final class Normalizer implements Transform<String,String>, UCD_Types {
 
     private static NormalizationData getData (String version) {
         if (version.length() == 0) {
-            version = UCD.latestVersion;
+            version = Settings.latestVersion;
         }
         NormalizationData result = (NormalizationData)versionCache.get(version);
         if (result == null) {

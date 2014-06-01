@@ -42,10 +42,10 @@ public final class UCD implements UCD_Types {
     static final boolean SHOW_LOADING = false;
 
     /**
-     * Used for the default version.
+     * Moved to Settings.java
      */
-    public static final String latestVersion = "7.0.0";
-    public static final String lastVersion = "6.3.0"; // last released version
+    //public static final String latestVersion = "7.0.0";
+    //public static final String lastVersion = "6.3.0"; // last released version
 
     /**
      * Create singleton instance for default (latest) version
@@ -59,7 +59,7 @@ public final class UCD implements UCD_Types {
      */
     public static UCD make(String version) {
         if (version == null || version.length() == 0) {
-            version = latestVersion;
+            version = Settings.latestVersion;
         }
         if (version.indexOf('.') < 0) {
             throw new IllegalArgumentException("Version must be of form 3.1.1");
