@@ -458,7 +458,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     result.oldFile = _file;
                     result.maxOldVersion = VersionInfo.getInstance(propertyInfo[2].substring(1));
                     getFile2PropertyInfoSet().put(_file, result);
-                    System.out.println(_property + ", " + result);
+//                    System.err.println(_property + ", " + result);
                     return;
                 }
                 temp = Integer.parseInt(propertyInfo[2]);
@@ -1173,14 +1173,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
         final Matcher missingMatcher = MISSING_PATTERN.matcher(missing);
         if (!missingMatcher.matches()) {
-            System.out.println(RegexUtilities.showMismatch(MISSING_PATTERN, missing));
+            System.err.println(RegexUtilities.showMismatch(MISSING_PATTERN, missing));
             throw new IllegalArgumentException("Bad @missing statement: " + missing);
         }
         final boolean isEmpty = missingMatcher.group(1).equals("empty");
         final int start = Integer.parseInt(missingMatcher.group(2),16);
         final int end = Integer.parseInt(missingMatcher.group(3),16);
         if (start != 0 || end != 0x10FFFF) {
-            System.out.println("Unexpected range: " + missing);
+            System.err.println("Unexpected range: " + missing);
         }
         // # @missing: 0000..10FFFF; cjkIRG_KPSource; <none>
 
@@ -1215,7 +1215,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             break;
         }
         default:
-            System.out.println("Unhandled missing line: " + missing);
+            System.err.println("Unhandled missing line: " + missing);
         }
     }
 

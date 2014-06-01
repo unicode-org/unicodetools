@@ -4,10 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import org.unicode.text.utility.Settings;
+
 
 public final class Default implements UCD_Types {
 
-    private static String ucdVersion = UCD.latestVersion;
+    private static String ucdVersion = Settings.latestVersion;
     private static UCD ucd;
     private static Normalizer nfc;
     private static Normalizer nfd;
@@ -22,6 +24,7 @@ public final class Default implements UCD_Types {
     }
 
     private static boolean inRecursiveCall = false;
+    
     private static void setUCD() {
         if (inRecursiveCall) {
             throw new IllegalArgumentException("Recursive call to setUCD");
@@ -102,5 +105,4 @@ public final class Default implements UCD_Types {
     public static void setYear(String lineValue) {
         year = lineValue;
     }
-
 }

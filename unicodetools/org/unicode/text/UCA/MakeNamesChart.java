@@ -58,7 +58,7 @@ public class MakeNamesChart {
 
         // http://www.unicode.org/~book/incoming/kenfiles/U50M051010.lst
         //Default.setUCD("5.0.0");
-        lastUCDVersion = UCD.make(UCD.lastVersion);
+        lastUCDVersion = UCD.make(Settings.lastVersion);
         final ToolUnicodePropertySource up = ToolUnicodePropertySource.make(Default.ucdVersion());
         skipChars = new UnicodeSet(up.getSet("gc=cn")).removeAll(up.getSet("gc=cn"));
         //"[[:gc=cn:]-[:noncharactercodepoint:]]");

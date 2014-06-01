@@ -276,7 +276,7 @@ public final class ConvertUCD implements UCD_Types {
             for (final String arg : args) {
                 String version = arg;
                 if (version.length() == 0) {
-                    version = UCD.latestVersion;
+                    version = Settings.latestVersion;
                 }
 
                 new ConvertUCD().toJava(version);
@@ -416,7 +416,7 @@ public final class ConvertUCD implements UCD_Types {
             }
         }
         String tempVersion = version;
-        if (version.equals(UCD.latestVersion)) {
+        if (version.equals(Settings.latestVersion)) {
             tempVersion = "";
         }
         final BufferedReader input = Utility.openUnicodeFile(labels[0], tempVersion, true, Utility.LATIN1);

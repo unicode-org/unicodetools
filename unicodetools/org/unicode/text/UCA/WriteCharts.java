@@ -1438,7 +1438,7 @@ public class WriteCharts implements UCD_Types {
         }
     }
 
-    static UCD lastUCDVersion = UCD.make(UCD.lastVersion);
+    static UCD lastUCDVersion = UCD.make(Settings.lastVersion);
 
     private static boolean isNew(int codepoint) {
         return Default.ucd().isNew(codepoint, lastUCDVersion);

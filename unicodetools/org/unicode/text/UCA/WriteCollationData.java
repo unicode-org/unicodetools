@@ -45,6 +45,7 @@ import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.CompactByteArray;
 import org.unicode.text.utility.CompactShortArray;
 import org.unicode.text.utility.IntStack;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
@@ -57,7 +58,7 @@ public class WriteCollationData {
 
     private static final boolean ADD_TIBETAN = true;
 
-    private static final String UNICODE_VERSION = UCD.latestVersion;
+    private static final String UNICODE_VERSION = Settings.latestVersion;
 
     private static UCA                 ducetCollator;
     private static UCA                 cldrCollator;

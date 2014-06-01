@@ -4,17 +4,11 @@ import java.text.ParsePosition;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.With;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.Factory;
-import com.ibm.icu.text.SymbolTable;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSet.XSymbolTable;
 
 /**
  * Syntax for reading a UnicodeMap from a string.
@@ -53,7 +47,7 @@ public class UnicodeMapParser<V> {
 
     private UnicodeMapParser(ValueParser<V> valueParser, Factory unicodePropertyFactory) {
         this.valueParser = valueParser;
-        this.unicodePropertyFactory = unicodePropertyFactory;
+        this.unicodePropertyFactory = unicodePropertyFactory == null ? ToolUnicodePropertySource.make("") : unicodePropertyFactory;
     }
 
     public static <V> UnicodeMapParser<V> create(ValueParser<V> valueParser, Factory unicodePropertyFactory) {
@@ -61,7 +55,7 @@ public class UnicodeMapParser<V> {
     }
 
     public static <V> UnicodeMapParser<V> create(ValueParser<V> valueParser) {
-        return new UnicodeMapParser<V>(valueParser, ToolUnicodePropertySource.make(""));
+        return new UnicodeMapParser<V>(valueParser, null);
     }
 
     public static UnicodeMapParser<String> create() {
