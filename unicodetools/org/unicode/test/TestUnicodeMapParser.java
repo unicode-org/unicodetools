@@ -3,6 +3,7 @@ package org.unicode.test;
 import java.text.ParsePosition;
 
 import org.unicode.cldr.unittest.TestFmwkPlus;
+import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UnicodeMapParser;
 import org.unicode.text.UCD.UnicodeMapParser.ValueParser;
 
@@ -15,16 +16,19 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
     }
     
     public void testBasic() {
-        UnicodeMapParser<String> ump = UnicodeMapParser.create();
-        UnicodeMap<String> expected = new UnicodeMap<String>().put('a', "b")
+        UnicodeMap<String> expected = new UnicodeMap<String>()
+                .put('a', " ")
                 .put('c', "d")
                 .putAll(new UnicodeSet("[:whitespace:]"),"x");
 
-        String test = "{\\u{61}=\\u{20},c=,[:whitespace:]=x}";
-        check(ump, expected, test);
+        String test = "{\\u{61}=\\u{20},c=d,[:whitespace:]=x}";
+        check(ump, test, expected, -1);
         
-        test = " { a = b , c = d , [:whitespace:] = x } ";
-        check(ump, expected, test);
+        test = "{\\u{61}=\\u{20},c=,[:whitespace:]=x}";
+        check(ump, test, null, 17);
+        
+        test = " { a = \\u{20} , c = d , [:whitespace:] = x } ";
+        check(ump, test, expected, -1);
         
 
         ValueParser<Integer> integerParser = new IntegerParser();
@@ -34,12 +38,42 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
                 .putAll(new UnicodeSet("[:whitespace:]"), 33);
         
         String test2 = "{a=1,c=2,[:whitespace:]=33}";
-        check(ump2, expected2, test2);
+        check(ump2, test2, expected2, -1);
         
         test2 = " { a = 1 , c = 2 , [:whitespace:] = 33 } ";
-        check(ump2, expected2, test2);
+        check(ump2, test2, expected2, -1);
     }
     
+    UnicodeMapParser<String> ump = UnicodeMapParser.create();
+
+    ToolUnicodePropertySource tups = ToolUnicodePropertySource.make("");
+
+    public void testAProperty() {
+        UnicodeMap<String> expected = new UnicodeMap<String>()
+                .putAll(tups.getProperty("Script").getUnicodeMap())
+                .put('a', "HUH?");
+
+        String test = "{\\m{script},a=HUH?}";
+        check(ump, test, expected, -1);
+    }
+    
+    public void testRemove() {
+        UnicodeMap<String> expected = new UnicodeMap<String>()
+                .putAll(tups.getProperty("Script").getUnicodeMap())
+                .putAll(0x100,0x10FFFF, null);
+        String test = "{\\m{script}&[\\u0000-\\u00FF]}";
+        check(ump, test, expected, -1);
+    }
+
+    public void testRetain() {
+        UnicodeMap<String> expected = new UnicodeMap<String>()
+                .putAll(tups.getProperty("Script").getUnicodeMap())
+                .putAll(0,0xFF, null);
+        String test = "{\\m{script}-[\\u0000-\\u00FF]}";
+        check(ump, test, expected, -1);
+    }
+
+
     static class IntegerParser implements UnicodeMapParser.ValueParser<Integer> {
         @Override
         public Integer parse(String source, ParsePosition pos) {
@@ -58,16 +92,20 @@ public class TestUnicodeMapParser extends TestFmwkPlus{
             }
             return result;
         }
-        
+        public Integer parse(String source) {
+            return Integer.parseInt(source, 16);
+        }
     }
 
-    public <V> void check(UnicodeMapParser<V> ump, UnicodeMap<V> expected, String test) {
+    public <V> void check(UnicodeMapParser<V> ump, String test, UnicodeMap<V> expected, int expectedErrorIndex) {
         ParsePosition end = new ParsePosition(0);
         UnicodeMap<V> um = ump.parse(test, end);
-        if (end.getErrorIndex() >= 0) {
-            errln(test.substring(0,end.getErrorIndex()) + "$$" + test.substring(end.getErrorIndex()));
+        if (!assertEquals(test, expectedErrorIndex, end.getErrorIndex())) {
+            if (end.getErrorIndex() >= 0) {
+                errln(test.substring(0,end.getErrorIndex()) + "$$" + test.substring(end.getErrorIndex()));
+            }
         } else {
-            assertEquals("", expected, um);
+            assertEquals(test, expected, um);
         }
     }
 }

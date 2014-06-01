@@ -146,7 +146,7 @@ Value:  V6_3
 # Newly assigned in Unicode 6.3.0 (September, 2013)
 
 Value:  V7_0
-# Newly assigned in Unicode 7.0.0 (expected June, 2014)
+# Newly assigned in Unicode 7.0.0 (June, 2014)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class
