@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
+import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.tool.UOption;
@@ -185,6 +186,10 @@ public class TestUnicodeInvariants {
                     showScript = true;
                 } else if (line.startsWith("HideScript")) {
                     showScript = false;
+                } else if (line.startsWith("Map")) {
+                    testMapLine(line, pp);
+                } else if (line.startsWith("ShowMap")) {
+                    showMapLine(line, pp);
                 } else if (line.startsWith("Show")) {
                     showLine(line, pp);
                 } else {
@@ -434,6 +439,23 @@ public class TestUnicodeInvariants {
         showLister.setMergeRanges(doRange);
     }
 
+    private static void showMapLine(String line, ParsePosition pp) {
+        String part = line.substring(7).trim();
+        pp.setIndex(0);
+        pp.setErrorIndex(-1);
+        if (part.startsWith("Each")) {
+            part = part.substring(4).trim();
+            showLister.setMergeRanges(false);
+        }
+        UnicodeMap um = UMP.parse(part, pp);
+        if (pp.getErrorIndex() != -1 || pp.getIndex() != part.length()) {
+            throw new IllegalArgumentException(pp.toString());
+        }
+        showLister.setValueSource(new UnicodeProperty.UnicodeMapProperty().set(um));
+        showLister.showSetNames(out, um.keySet());
+        showLister.setMergeRanges(doRange);
+    }
+
     private static void testLine(String line, ParsePosition pp) throws ParseException {
         if (line.startsWith("Test")) {
             line = line.substring(4).trim();
@@ -450,10 +472,7 @@ public class TestUnicodeInvariants {
         leftSide = line.substring(0,pp.getIndex());
         scan(PATTERN_WHITE_SPACE, line, pp, true);
         relation = line.charAt(pp.getIndex());
-        if (!INVARIANT_RELATIONS.contains(relation)) {
-            throw new ParseException("Invalid relation, must be one of " + INVARIANT_RELATIONS.toPattern(false),
-                    pp.getIndex());
-        }
+        checkRelation(pp, relation);
         pp.setIndex(pp.getIndex()+1); // skip char
         scan(PATTERN_WHITE_SPACE, line, pp, true);
         final int start = pp.getIndex();
@@ -502,19 +521,30 @@ public class TestUnicodeInvariants {
 
     }
 
+    public static void checkRelation(ParsePosition pp, char relation)
+            throws ParseException {
+        if (!INVARIANT_RELATIONS.contains(relation)) {
+            throw new ParseException("Invalid relation «" + relation +
+                    "», must be one of " + INVARIANT_RELATIONS.toPattern(false),
+                    pp.getIndex());
+        }
+    }
+
     private static void checkExpected(Expected expected, UnicodeSet segment, String rightStatus, String rightSide,
             String leftStatus, String leftSide) {
         switch (expected) {
-        case empty: if (segment.size() == 0) {
-            return;
-        } else {
-            break;
-        }
-        case not_empty: if (segment.size() != 0) {
-            return;
-        } else {
-            break;
-        }
+        case empty: 
+            if (segment.size() == 0) {
+                return;
+            } else {
+                break;
+            }
+        case not_empty: 
+            if (segment.size() != 0) {
+                return;
+            } else {
+                break;
+            }
         case irrelevant: return;
         }
         testFailureCount++;
@@ -525,6 +555,104 @@ public class TestUnicodeInvariants {
         if (doHtml) { out.println("<table class='e'>"); }
         errorLister.showSetNames(out, segment);
         if (doHtml) { out.println("</table>"); }
+        printErrorLine("Test Failure", Side.END, testFailureCount);
+        println();
+    }
+
+    static UnicodeMapParser UMP = UnicodeMapParser.create(UnicodeMapParser.STRING_VALUE_PARSER, 
+            new UnicodeMapParser.ChainedFactory(
+                    getProperties(Settings.latestVersion), 
+                    IndexUnicodeProperties.make(Settings.latestVersion)), 
+                    new UnicodeMapParser.ChainedFactory(
+                            getProperties(Settings.lastVersion), IndexUnicodeProperties.make(Settings.lastVersion)));
+
+    private static void testMapLine(String line, ParsePosition pp) throws ParseException {
+        char relation = 0;
+        String rightSide = null;
+        String leftSide = null;
+        UnicodeMap leftSet = null;
+        UnicodeMap rightSet = null;
+
+        pp.setIndex(3);
+        leftSet = UMP.parse(line, pp);
+        leftSide = line.substring(3, pp.getIndex());
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        relation = line.charAt(pp.getIndex());
+        checkRelation(pp, relation);
+        pp.setIndex(pp.getIndex()+1); // skip char
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        final int start = pp.getIndex();
+        rightSet = UMP.parse(line, pp); // new UnicodeSet(line, pp, symbolTable);
+        rightSide = line.substring(start,pp.getIndex());
+        scan(PATTERN_WHITE_SPACE, line, pp, true);
+        if (line.length() != pp.getIndex()) {
+            throw new ParseException("Extra characters at end", pp.getIndex());
+        }
+
+        Expected right_left = Expected.irrelevant;
+        Expected rightAndLeft = Expected.irrelevant;
+        Expected left_right = Expected.irrelevant;
+        switch(relation) {
+        case '=':
+            right_left = left_right = Expected.empty;
+            break;
+        case '\u2282':
+            right_left = Expected.not_empty;
+            left_right = Expected.empty;
+            break;
+        case '\u2283':
+            right_left = Expected.empty;
+            left_right = Expected.not_empty;
+            break;
+        case '\u2286':
+            left_right = Expected.empty;
+            break;
+        case '\u2287':
+            right_left = Expected.empty;
+            break;
+        case '∥':
+            rightAndLeft = Expected.empty;
+            break;
+        case '≉':
+            right_left = Expected.not_empty;
+            left_right = Expected.not_empty;
+            rightAndLeft = Expected.not_empty;
+            break;
+        default: throw new IllegalArgumentException("Internal Error");
+        }
+
+        checkExpected(right_left, UnicodeMapParser.removeAll(new UnicodeMap().putAll(rightSet), leftSet), "In", rightSide, "But Not In", leftSide);
+        checkExpected(rightAndLeft, UnicodeMapParser.retainAll(new UnicodeMap().putAll(rightSet), leftSet), "In", rightSide, "And In", leftSide);
+        checkExpected(left_right, UnicodeMapParser.removeAll(new UnicodeMap().putAll(leftSet), rightSet), "In", leftSide, "But Not In", rightSide);
+    }
+
+
+    private static void checkExpected(Expected expected, UnicodeMap segment, String rightStatus, String rightSide,
+            String leftStatus, String leftSide) {
+        switch (expected) {
+        case empty: 
+            if (segment.size() == 0) {
+                return;
+            } else {
+                break;
+            }
+        case not_empty: 
+            if (segment.size() != 0) {
+                return;
+            } else {
+                break;
+            }
+        case irrelevant: return;
+        }
+        testFailureCount++;
+        printErrorLine("Test Failure", Side.START, testFailureCount);
+        println("## Expected " + expected + ", got: " + segment.size());
+        println("## " + rightStatus + "\t" + rightSide);
+        println("## " + leftStatus + "\t" + leftSide);
+        println(segment.toString());
+        //        if (doHtml) { out.println("<table class='e'>"); }
+        //        errorLister.showSetNames(out, segment);
+        //        if (doHtml) { out.println("</table>"); }
         printErrorLine("Test Failure", Side.END, testFailureCount);
         println();
     }

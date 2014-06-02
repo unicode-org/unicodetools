@@ -1,16 +1,22 @@
 package org.unicode.text.UCD;
 
 import java.text.ParsePosition;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.InternalCldrException;
 
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.Factory;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.XSymbolTable;
+import com.ibm.icu.util.Output;
 
 /**
  * Syntax for reading a UnicodeMap from a string.
@@ -44,29 +50,90 @@ public class UnicodeMapParser<V> {
     private static final UnicodeSet WHITESPACE = new UnicodeSet("[:pattern_whitespace:]").freeze();
     private static final Pattern HEX = Pattern.compile("\\{([a-fA-F0-9]+)\\}");
 
+    enum Operation {ADD, REMOVE_KEYS, RETAIN_KEYS}
+
     public interface ValueParser<V> {
         public V parse(String source, ParsePosition pos);
         public V parse(String source);
     }
 
     private final ValueParser<V> valueParser;
-    private final Factory unicodePropertyFactory;
+    private final ChainedFactory unicodePropertyFactory;
+    private final ChainedFactory oldUnicodePropertyFactory;
+    private final XSymbolTable xSymbolTable; // todo, make use * for old.
 
-    private UnicodeMapParser(ValueParser<V> valueParser, Factory unicodePropertyFactory) {
+    public static class ChainedFactory {
+        private final Factory[] factories;
+        public ChainedFactory(Factory... factories) {
+            this.factories = factories;
+        }
+        public UnicodeProperty getProperty(String propertyName) {
+            for (Factory factory : factories) {
+                UnicodeProperty result = factory.getProperty(propertyName);
+                if (result != null) {
+                    return result;
+                }
+            }
+            return null;
+        }
+        public ChainedXSymbolTable getXSymbolTable() {
+            return new ChainedXSymbolTable(factories);
+        }
+    }
+
+    public static class ChainedXSymbolTable extends XSymbolTable {
+        private final XSymbolTable[] xSymbolTables;
+        public ChainedXSymbolTable(Factory... factories) {
+            xSymbolTables = new XSymbolTable[factories.length];
+            int i = 0;
+            for (Factory factory : factories) {
+                xSymbolTables[i++] = factory.getXSymbolTable();
+            }
+        }
+        @Override
+        public boolean applyPropertyAlias(String propertyName,
+                String propertyValue, UnicodeSet result) {
+            for (XSymbolTable xSymbolTable : xSymbolTables) {
+                if (xSymbolTable.applyPropertyAlias(propertyName, propertyValue, result)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    private UnicodeMapParser(ValueParser<V> valueParser, ChainedFactory unicodePropertyFactory, ChainedFactory oldUnicodePropertyFactory) {
         this.valueParser = valueParser;
-        this.unicodePropertyFactory = unicodePropertyFactory == null ? ToolUnicodePropertySource.make("") : unicodePropertyFactory;
+        this.unicodePropertyFactory = unicodePropertyFactory;
+        this.oldUnicodePropertyFactory = oldUnicodePropertyFactory;
+        xSymbolTable = unicodePropertyFactory.getXSymbolTable();
+    }
+
+    private UnicodeMapParser(ValueParser<V> valueParser, Factory unicodePropertyFactory, Factory oldUnicodePropertyFactory) {
+        this.valueParser = valueParser;
+        this.unicodePropertyFactory = new ChainedFactory(unicodePropertyFactory == null ? ToolUnicodePropertySource.make("") : unicodePropertyFactory);
+        this.oldUnicodePropertyFactory = new ChainedFactory(oldUnicodePropertyFactory);
+        xSymbolTable = unicodePropertyFactory.getXSymbolTable();
+    }
+
+    public static <V> UnicodeMapParser<V> create(ValueParser<V> valueParser, ChainedFactory unicodePropertyFactory, ChainedFactory oldUnicodePropertyFactory) {
+        return new UnicodeMapParser<V>(valueParser, unicodePropertyFactory, oldUnicodePropertyFactory);
+    }
+
+    public static <V> UnicodeMapParser<V> create(ValueParser<V> valueParser, Factory unicodePropertyFactory, Factory oldUnicodePropertyFactory) {
+        return new UnicodeMapParser<V>(valueParser, unicodePropertyFactory, oldUnicodePropertyFactory);
     }
 
     public static <V> UnicodeMapParser<V> create(ValueParser<V> valueParser, Factory unicodePropertyFactory) {
-        return new UnicodeMapParser<V>(valueParser, unicodePropertyFactory);
+        return new UnicodeMapParser<V>(valueParser, unicodePropertyFactory, null);
     }
 
     public static <V> UnicodeMapParser<V> create(ValueParser<V> valueParser) {
-        return new UnicodeMapParser<V>(valueParser, null);
+        return new UnicodeMapParser<V>(valueParser, (Factory) null, (Factory) null);
     }
 
     public static UnicodeMapParser<String> create() {
-        return create(STRING_VALUE_PARSER);
+        return create(STRING_VALUE_PARSER, (Factory) null, (Factory) null);
     }
 
     public final UnicodeMap<V> parse(String source, ParsePosition pos) {
@@ -80,8 +147,9 @@ public class UnicodeMapParser<V> {
             return setError(pos);
         }
         skipCodePoint(pos, cp);
-        boolean doAssignment = true;
         Operation op = Operation.ADD;
+        Output<Boolean> doAssignment = new Output<Boolean>();
+        doAssignment.value = Boolean.TRUE;
         main:
             while (true) {
                 UnicodeSet us = null;
@@ -95,23 +163,18 @@ public class UnicodeMapParser<V> {
                         UnicodeMap<V> um2 = parse(source, pos);
                         addUnicodeMap(op, um2, resultToAddTo);
                     }
-                    doAssignment = false;
+                    doAssignment.value = Boolean.FALSE;
                     break;
                 case '[':
-                    us = new UnicodeSet().applyPattern(source, pos, unicodePropertyFactory.getXSymbolTable(), 0);
-                    if (op != Operation.ADD) {
-                        if (op == Operation.REMOVE) {
-                            resultToAddTo.putAll(us, null);
-                        } else {
-                            resultToAddTo.putAll(us.complement(), null);
-                        }
-                        doAssignment = false;
-                    }
+                    us = doUnicodeSet(source, pos, op, doAssignment, resultToAddTo);
                     break;
                 case '\\':
                     if (matches(source, pos, "\\m")) {
                         parsePropertyAndAdd(source, pos, op, resultToAddTo);
-                        doAssignment = false;
+                        doAssignment.value = Boolean.FALSE;
+                        break;
+                    } else if (matches(source, pos, "\\p")) {
+                        us = doUnicodeSet(source, pos, op, doAssignment, resultToAddTo);
                         break;
                     }
                     // fall through
@@ -126,7 +189,7 @@ public class UnicodeMapParser<V> {
                     return null;
                 }
                 cp = eatSpaceAndPeek(source, pos);
-                if (doAssignment) {
+                if (doAssignment.value == Boolean.TRUE) {
                     if (cp != '=') {
                         return setError(pos);
                     }
@@ -143,21 +206,22 @@ public class UnicodeMapParser<V> {
                     }
                     cp = eatSpaceAndPeek(source, pos);
                 } else {
-                    doAssignment = true; // for next time.
+                    doAssignment.value = Boolean.TRUE; // for next time.
                 }
                 // OPERATION
                 switch(cp) {
                 case '}':
                     skipCodePoint(pos, cp);
+                    eatSpaceAndPeek(source, pos);
                     break main;
                 case ',': case '|':
                     op = Operation.ADD;
                     break;
                 case '&':
-                    op = Operation.RETAIN;
+                    op = Operation.RETAIN_KEYS;
                     break;
                 case '-':
-                    op = Operation.REMOVE;
+                    op = Operation.REMOVE_KEYS;
                     break;
                 default:
                     pos.setErrorIndex(pos.getIndex());
@@ -168,7 +232,20 @@ public class UnicodeMapParser<V> {
         return resultToAddTo;
     }
 
-    enum Operation {ADD, REMOVE, RETAIN}
+    public UnicodeSet doUnicodeSet(String source, ParsePosition pos,
+            Operation op, Output<Boolean> doAssignment,
+            UnicodeMap<V> resultToAddTo) {
+        UnicodeSet us = new UnicodeSet().applyPattern(source, pos, xSymbolTable, 0);
+        if (op != Operation.ADD) {
+            if (op == Operation.REMOVE_KEYS) {
+                resultToAddTo.putAll(us, null);
+            } else {
+                resultToAddTo.putAll(us.complement(), null);
+            }
+            doAssignment.value = Boolean.FALSE;
+        }
+        return us;
+    }
 
     private void parsePropertyAndAdd(String source, ParsePosition pos, Operation op, UnicodeMap<V> result) {
         final int current = pos.getIndex();
@@ -185,8 +262,10 @@ public class UnicodeMapParser<V> {
             pos.setErrorIndex(current+4);
             return;
         }
-        String propName = source.substring(current+3, term);
-        UnicodeProperty prop = unicodePropertyFactory.getProperty(propName);
+        boolean oldVersion = source.charAt(current+3) == '*';
+        UnicodeProperty prop = (oldVersion ?
+                oldUnicodePropertyFactory.getProperty(source.substring(current+4, term)) : 
+                    unicodePropertyFactory.getProperty(source.substring(current+3, term)));
         if (prop == null) {
             pos.setErrorIndex(current+4);
             return;
@@ -197,14 +276,14 @@ public class UnicodeMapParser<V> {
 
     public void addUnicodeMapString(Operation op, UnicodeMap<String> um,
             UnicodeMap<V> result) {
-        if (op == Operation.RETAIN) {
+        if (op == Operation.RETAIN_KEYS) {
             throw new InternalCldrException("Should never happen");
         }
         for (EntryRange<String> entry : um.entryRanges()) {
             if (entry.value == null) {
                 continue;
             }
-            final V value = op == Operation.REMOVE ? null : valueParser.parse((String)entry.value);
+            final V value = op == Operation.REMOVE_KEYS ? null : valueParser.parse((String)entry.value);
             if (entry.string == null) {
                 result.putAll(entry.codepoint, entry.codepointEnd, value);
             } else {
@@ -215,26 +294,26 @@ public class UnicodeMapParser<V> {
 
     public void addUnicodeMap(Operation op, UnicodeMap<V> um, UnicodeMap<V> result) {
         switch(op) {
-        case REMOVE: 
+        case REMOVE_KEYS: 
             result.putAll(um.keySet(), null); 
             break;
-        case RETAIN: 
+        case RETAIN_KEYS: 
             UnicodeSet toRemove = new UnicodeSet(result.keySet()).removeAll(um.keySet());
             result.putAll(toRemove, null); 
             break;
         case ADD: throw new InternalCldrException("Should never happen");
         }
-//        for (EntryRange<V> entry : um.entryRanges()) {
-//            if (entry.value == null) {
-//                continue;
-//            }
-//            final V value = op == Operation.REMOVE ? null : entry.value;
-//            if (entry.string == null) {
-//                result.putAll(entry.codepoint, entry.codepointEnd, value);
-//            } else {
-//                result.put(entry.string, value);
-//            }
-//        }
+        //        for (EntryRange<V> entry : um.entryRanges()) {
+        //            if (entry.value == null) {
+        //                continue;
+        //            }
+        //            final V value = op == Operation.REMOVE ? null : entry.value;
+        //            if (entry.string == null) {
+        //                result.putAll(entry.codepoint, entry.codepointEnd, value);
+        //            } else {
+        //                result.put(entry.string, value);
+        //            }
+        //        }
     }
 
     private boolean matches(String source, ParsePosition pos, String string) {
@@ -349,4 +428,80 @@ public class UnicodeMapParser<V> {
     //        }
     //        return b.toString();
     //    }
+
+    //    /**
+    //     * Assesses all the possible containment relations between collections A and B with one call.<br>
+    //     * Returns an int with bits set, according to a "Venn Diagram" view of A vs B.<br>
+    //     * NOT_A_SUPERSET_B: a - b != {}<br>
+    //     * NOT_A_DISJOINT_B: a * b != {}  // * is intersects<br>
+    //     * NOT_A_SUBSET_B: b - a != {}<br>
+    //     * Thus the bits can be used to get the following relations:<br>
+    //     * for A_SUPERSET_B, use (x & CollectionUtilities.NOT_A_SUPERSET_B) == 0<br>
+    //     * for A_SUBSET_B, use (x & CollectionUtilities.NOT_A_SUBSET_B) == 0<br>
+    //     * for A_EQUALS_B, use (x & CollectionUtilities.NOT_A_EQUALS_B) == 0<br>
+    //     * for A_DISJOINT_B, use (x & CollectionUtilities.NOT_A_DISJOINT_B) == 0<br>
+    //     * for A_OVERLAPS_B, use (x & CollectionUtilities.NOT_A_DISJOINT_B) != 0<br>
+    //     */
+    //    public static <V> int getContainmentRelation(UnicodeMap<V> a, UnicodeMap<V> b) {
+    //        if (a.size() == 0) {
+    //            return (b.size() == 0) 
+    //                    ? CollectionUtilities.ALL_EMPTY 
+    //                            : CollectionUtilities.NOT_A_SUPERSET_B;
+    //        } else if (b.size() == 0) {
+    //            return CollectionUtilities.NOT_A_SUBSET_B;
+    //        }
+    //        int result = 0;
+    //        // WARNING: one might think that the following can be short-circuited, by looking at
+    //        // the sizes of a and b. However, this would fail in general, where a different comparator is being
+    //        // used in the two collections. Unfortunately, there is no failsafe way to test for that.
+    //
+    //        // TODO optimize
+    //        if (b.size() > a.size()) {
+    //            result |= CollectionUtilities.NOT_A_SUPERSET_B;
+    //        }
+    //        for (EntryRange ae : a.entryRanges()) {
+    //            if (ae.string != null) {
+    //                result |= (Objects.equals(ae.value, b.get(ae.string))) 
+    //                        ? CollectionUtilities.NOT_A_DISJOINT_B 
+    //                                : CollectionUtilities.NOT_A_SUBSET_B;
+    //            } else {
+    //                for (int i = ae.codepoint; i <= ae.codepointEnd; ++i) {
+    //                    result |= (Objects.equals(ae.value, b.get(i))) 
+    //                            ? CollectionUtilities.NOT_A_DISJOINT_B 
+    //                                    : CollectionUtilities.NOT_A_SUBSET_B;
+    //                }
+    //            }
+    //        }
+    //        return result;
+    //    }
+
+    public static final <V> UnicodeMap<V> removeAll(UnicodeMap<V> source, UnicodeMap<V> reference) {
+        return removeRetainAll(source, reference, true);
+    }
+
+    public static final <V> UnicodeMap<V> retainAll(UnicodeMap<V> source, UnicodeMap<V> reference) {
+        return removeRetainAll(source, reference, false);
+    }
+
+    private static final <V> UnicodeMap<V> removeRetainAll(UnicodeMap<V> source, UnicodeMap<V> reference, boolean remove) {
+        UnicodeSet toNuke = new UnicodeSet();
+        // TODO Optimize
+        for (EntryRange ae : source.entryRanges()) {
+            if (ae.value == null) {
+                continue;
+            }
+            if (ae.string != null) {
+                if (ae.value.equals(reference.get(ae.string)) == remove) {
+                    toNuke.add(ae.string);
+                }
+            } else {
+                for (int i = ae.codepoint; i <= ae.codepointEnd; ++i) {
+                    if (ae.value.equals(reference.get(i)) == remove) {
+                        toNuke.add(i);
+                    }
+                }
+            }
+        }
+        return source.putAll(toNuke, null);
+    }
 }
