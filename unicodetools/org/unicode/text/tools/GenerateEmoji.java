@@ -73,9 +73,6 @@ public class GenerateEmoji {
             "[\\u2714\\u2716\\u303D\\u3030 \\u00A9 \\u00AE \\u2795-\\u2797 \\u27B0 \\U0001F519-\\U0001F51C {🇽🇰}]")
     .add("*"+Emoji.ENCLOSING_KEYCAP)
     .freeze();
-    static final UnicodeSet EXCLUDE = new UnicodeSet(
-            "[🙬 🙭 🙮 🙯🗴🗵🗶🗷🗸🗹★☆⛫⛩\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549]").freeze();
-    // 🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭
     static final Set<String> SKIP_WORDS = new HashSet(Arrays.asList("with", "a", "in", "without", "and", "white", "symbol", "sign", "for", "of", "black"));
 
     static final IndexUnicodeProperties LATEST = IndexUnicodeProperties.make(Default.ucdVersion());
@@ -329,7 +326,7 @@ public class GenerateEmoji {
         if (string.equals(" ") 
                 || string.equals(EMOJI_VARIANT_STRING) 
                 || string.equals(TEXT_VARIANT_STRING)
-                || EXCLUDE.contains(string)) {
+                || Emoji.EXCLUDE.contains(string)) {
             return true;
         }
         return false;
@@ -789,8 +786,7 @@ public class GenerateEmoji {
                     out.print("<tr><th>" + entry.getKey() + " chars</th>");
                     for (Source source : skipRef) {
                         final UnicodeSet us = ifNull(values.get(source), UnicodeSet.EMPTY);
-                        displayUnicodeSet(out, new UnicodeSet(us).removeAll(common), 
-                                Style.bestImage, false, 1, null);
+                        displayUnicodeSet(out, new UnicodeSet(us).removeAll(common), Style.bestImage, 0, 1, null, CODEPOINT_COMPARE);
                     }
                     out.print("</tr>");
                 }
@@ -799,7 +795,7 @@ public class GenerateEmoji {
                         +"<td class='cchars' colSpan='" + skipRef.size() + "'>"
                         + common.size() + "</td></tr>");
                 out.println("<tr><th>" + entry.getKey() + " (common)</th>");
-                displayUnicodeSet(out, common, Style.bestImage, false, skipRef.size(), null);
+                displayUnicodeSet(out, common, Style.bestImage, 0, skipRef.size(), null, CODEPOINT_COMPARE);
                 out.println("</td></tr>");
             }
             writeFooter(out);
@@ -1110,12 +1106,26 @@ public class GenerateEmoji {
     private static void showOrdering(Style style) throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, 
                 (style == Style.bestImage ? "" : "ref-") + "emoji-ordering.html");
-        writeHeader(out, "Emoji Ordering", "Proposed ordering for better results than default. " +
-                "Note: the categories are to assist in developing the ordering, " +
-                "and wouldn't be surfaced to users.");
+        writeHeader(out, "Emoji Ordering", 
+                "Proposed default ordering, designed to improve on the <a href='http://www.unicode.org/charts/collation/'>UCA</a> " +
+                "orderings (shown at the bottom), by grouping similar items together, such as ." +
+        		"The cell divisions are an artifact, simply to help in review. " +
+        		"The left side is an emoji image (* colorful where possible), while the right is black and white.");
+        out.println("<tr><th>Colored*</th><th>B&W</th></tr>");
+        UnicodeSet all = new UnicodeSet();
         for (Entry<String, Set<String>> entry : ORDERING_TO_CHAR.keyValuesSet()) {
-            displayUnicodeset(out, entry.getKey(), null, new UnicodeSet().addAll(entry.getValue()), style);
+            out.println("<tr>");
+            final UnicodeSet values = new UnicodeSet().addAll(entry.getValue());
+            all.addAll(values);
+            displayUnicodeSet(out, values, Style.bestImage, 10, 1, null, CODEPOINT_COMPARE);
+            displayUnicodeSet(out, values, Style.refImage, 10, 1, null, CODEPOINT_COMPARE);
+            out.println("</tr>");
         }
+        out.println("<tr>");
+        out.println("<tr><th colspan='2'>Unicode Collation Order (UCA - DUCET)</th></tr>");
+        final UCA uca = UCA.buildCollator(null);
+        displayUnicodeSet(out, all, Style.bestImage, 16, 2, null, uca);
+        out.println("</tr>");
         writeFooter(out);
         out.close();
     }
@@ -1336,13 +1346,11 @@ public class GenerateEmoji {
         s.addAll(set).removeAll(EXCLUDE_SET);
     }
 
-    public static void displayUnicodeset(PrintWriter out, String label,
-            String sublabel, UnicodeSet uset, Style showEmoji) {
+    public static void displayUnicodeset(PrintWriter out, String label,String sublabel, UnicodeSet uset, Style showEmoji) {
         displayUnicodeset(out, Collections.singleton(label), sublabel, uset, showEmoji, null);
     }
 
-    public static void displayUnicodeset(PrintWriter out, Set<String> labels,
-            String sublabel, UnicodeSet uset, Style showEmoji, String link) {
+    public static void displayUnicodeset(PrintWriter out, Set<String> labels, String sublabel, UnicodeSet uset, Style showEmoji, String link) {
         out.print("<tr><td>");
         boolean first = true;
         for (String label : labels) {
@@ -1359,21 +1367,22 @@ public class GenerateEmoji {
             out.println("<td>" + sublabel + "</td>");
         }
         if (SHOW) System.out.println(labels + "\t" + uset.size());
-        displayUnicodeSet(out, uset, showEmoji, true, 1, link);
+        displayUnicodeSet(out, uset, showEmoji, 16, 1, link, CODEPOINT_COMPARE);
         out.println("</tr>");
     }
 
     public static void displayUnicodeSet(PrintWriter out,
-            UnicodeSet uset, Style showEmoji, boolean addLineBreaks, int colSpan, String link) {
+            UnicodeSet uset, Style showEmoji, int maxPerLine, int colSpan, String link, 
+            Comparator comparator) {
         out.println("<td class='lchars'"
                 + (colSpan <= 1 ? "" : " colSpan='" + colSpan + "'")
                 + ">");
-        Set<String> sorted = uset.addAllTo(new TreeSet(CODEPOINT_COMPARE));
+        Set<String> sorted = uset.addAllTo(new TreeSet(comparator));
         int count = 0;
         for (String s : sorted) {
             if (count == 0) {
                 out.print("\n");
-            } else if (addLineBreaks && (count & 0xF) == 0) {
+            } else if (maxPerLine > 0 && (count % maxPerLine) == 0) {
                 out.print("<br>");
             } else {
                 out.print(" ");
@@ -1457,7 +1466,7 @@ public class GenerateEmoji {
     }
 
     public static void addNewItem(Data item, Map<String, Data> missingMap) {
-        if (item == null || EXCLUDE.contains(item.chars)) {
+        if (item == null || Emoji.EXCLUDE.contains(item.chars)) {
             return;
         }
         if (missingMap.containsKey(item.chars)) {
