@@ -32,6 +32,23 @@
 # Show <unicodeSet>
 #  List any set on the console, for viewing and debugging.
 ##########################
+# There is new syntax for comparing UnicodeMaps
+#  Map <unicodeMap> <unicodeMap>
+# The syntax is still being worked on.
+# To do:
+#  Parse \m{...} by itself
+#  Extend the UnicodeSyntax to take * (drop the multiple versions, not needed)
+#  Fix UnicodeProperty to not have a final getProperty...
+#  Fix UnicodeMap to return an iterator over EntryRange<V>
+#  Move utilities into UnicodeMap
+#  Make a YSymbolTable that returns a UnicodeMap for a property name
+#  &c.
+#
+# You can also use:
+#  ShowMap <unicodeMap>
+# For example: 
+#  ShowMap {\m{Age}}
+##########################
 # Test <unicodeSet> <relation> <unicodeSet>
 #
 # Tests that the relation is true for the two sets. The "Test" keyword is optional.
@@ -553,3 +570,7 @@ $cntrl ⊇  $C0Controls
 $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 
 [$alpha $lower $upper $punct $digit $xdigit $alnum $space $blank $cntrl $graph $print $word] = [^\p{gc=unassigned} \p{gc=surrogate}]
+
+# Map tests
+Map {\m{kMandarin}-\p{Age=V7_0}-[\u3435\u63A0\u7565\U0002098C]} = {\m{*kMandarin}-\p{Age=V7_0}-[\u3435\u63A0\u7565\U0002098C]}
+Map {\m{Case_Folding}-\p{Age=V7_0}} = {\m{*Case_Folding}-\p{Age=V7_0}}
