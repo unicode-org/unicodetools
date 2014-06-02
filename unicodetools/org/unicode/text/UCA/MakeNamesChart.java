@@ -47,7 +47,7 @@ public class MakeNamesChart {
     static UnicodeSet usePicture;// = new UnicodeSet("[[:whitespace:][:defaultignorablecodepoint:]]");
 
     static UCD lastUCDVersion;
-    
+
     static final String NAMESLIST_DIR = Settings.CHARTS_GEN_DIR + "nameslist/";
 
     public static void main(String[] args) throws Exception {
@@ -94,17 +94,24 @@ public class MakeNamesChart {
             String[] lineParts = firstLine.split("\t");
             final String fileName = lineParts[1] + ".html";
             nameList.add(firstLine);
-//            System.out.println();
-//            System.out.println("file: " + chartPrefix + fileName);
+            //            System.out.println();
+            //            System.out.println("file: " + chartPrefix + fileName);
             //PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", chartPrefix + fileName);
             PrintWriter out = Utility.openPrintWriter(NAMESLIST_DIR, chartPrefix + fileName, Utility.UTF8_WINDOWS);
             final String heading = TransliteratorUtilities.toHTML.transliterate(getHeading(lineParts[2]));
+                        
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
                     "<head>\n" +
                     "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n" +
                     "<title>" + heading + "</title>\n" +
                     "<link rel='stylesheet' type='text/css' href='charts.css'>\n" +
                     "<base target='names'>\n" +
+                    "<script type='text/javascript'>\n" +
+                    "  function codeAddress() {\n" +
+                    "    window.open('" + namePrefix + fileName + "', 'names');\n" +
+                    "  }\n" +
+                    "  window.onload = codeAddress;\n" +
+                    "</script>\n" +
                     "</head>\n" +
                     "<body>");
 
@@ -120,6 +127,7 @@ public class MakeNamesChart {
             if ("Unassigned".equals(lineParts[2])) {
                 System.out.println("debug");
             }
+
             // first pass through and collect all the code points
             collectedCodePoints.clear();
             for (int i = 1; i < lines.size(); ++i) {
@@ -134,6 +142,7 @@ public class MakeNamesChart {
                 }
             }
             collectedCodePoints.removeAll(skipChars);
+
             if (collectedCodePoints.size() == 0) {
                 out.println("<p align='center'>No Names List</p>");
             } else {
@@ -163,7 +172,8 @@ public class MakeNamesChart {
                     out.println("<td class='" + tdclass + "'"
                             + title
                             + ">\u00A0"
-                            + showChar(it.codepoint, true) + "\u00A0<br><tt><a href='" + namePrefix + fileName + "#"+ hexcp + "'>" +
+                            + showChar(it.codepoint, true) 
+                            + "\u00A0<br><tt><a href='" + namePrefix + fileName + "#"+ hexcp + "'>" +
                             hexcp + "</a></tt></td>");
                     counter++;
                 }
@@ -496,7 +506,7 @@ public class MakeNamesChart {
         return body;
     }
 
-/*
+    /*
 CROSS_REF:  TAB "x" SP CHAR SP LCNAME LF    
         | TAB "x" SP CHAR SP "<" LCNAME ">" LF
             // x is replaced by a right arrow
@@ -514,7 +524,7 @@ CROSS_REF:  TAB "x" SP CHAR SP LCNAME LF
             // x is replaced by a right arrow
             // (this type is the only one without LCNAME 
             // and is used for ideographs)
- */
+     */
     static Matcher pointer = Pattern.compile("x \\((.*) - ([0-9A-F]+)\\)").matcher("");
     static Matcher pointer1 = Pattern.compile("x ([0-9A-F]{4,6}) (.*)").matcher("");
     static Matcher pointer2 = Pattern.compile("x ([0-9A-F]{4,6})").matcher("");
