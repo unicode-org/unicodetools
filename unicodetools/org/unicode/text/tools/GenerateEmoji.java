@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ScriptMetadata.Trinary;
+import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.MapComparator;
 import org.unicode.cldr.util.With;
@@ -38,6 +39,7 @@ import org.unicode.jsp.Subheader;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
@@ -48,6 +50,7 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.tools.GenerateEmoji.Data;
 import org.unicode.text.utility.Utility;
 
+import com.google.common.collect.ComparisonChain;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;
@@ -64,6 +67,7 @@ import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmoji {
     private static boolean SHOW = false;
@@ -208,6 +212,19 @@ public class GenerateEmoji {
         ANNOTATIONS_TO_CHARS.freeze();
     }
 
+    static final UnicodeMap<Integer> DING_MAP = new UnicodeMap<>();
+    static {
+        for (String line : FileUtilities.in(GenerateEmoji.class, "dings.txt")) {
+            line = line.trim();
+            if (line.isEmpty() || line.startsWith("#")) {
+                continue;
+            }
+            String[] parts = line.split("\\s*;\\s*");
+            DING_MAP.put(Integer.parseInt(parts[0], 16), Integer.parseInt(parts[1], 16));
+        }
+        DING_MAP.freeze();
+    }
+    
     public static String getLabelFromLine(Output<Set<String>> newLabel, String line) {
         line = line.replace(EMOJI_VARIANT_STRING, "").replace(TEXT_VARIANT_STRING, "").trim();
         int tabPos = line.indexOf('\t');
@@ -480,7 +497,12 @@ public class GenerateEmoji {
                     + "\t" + name;
         }
         private String getVersion() {
-            return age.toString().replace('_', '.') + (JSOURCES.contains(chars) ? "*" : "");
+            String suffix = (JSOURCES.contains(chars) ? "ʲ" : "")
+                    + (DING_MAP.containsKey(chars) ? "ʷ" : "");
+            if (suffix.isEmpty()) {
+                suffix = "ˣ";
+            }
+            return age.toString().replace('_', '.') + suffix;
         }
 
 
@@ -987,6 +1009,7 @@ public class GenerateEmoji {
         showOrdering(Style.bestImage);
         showOrdering(Style.refImage);
         showLabels();
+        showVersions();
         showDefaultStyle();
         showSubhead();
         showAnnotations();
@@ -1016,7 +1039,7 @@ public class GenerateEmoji {
             }
             String s = file.getName();
             String original = s;
-            if (s.startsWith(".") || !s.endsWith(".png")) {
+            if (s.startsWith(".") || !s.endsWith(".png") || s.contains("emoji-palette")) {
                 continue;
             }
             String chars = Emoji.parseFileName(s, "_");
@@ -1159,8 +1182,70 @@ public class GenerateEmoji {
         writeFooter(out);
         out.close();
     }
-
-
+    enum CharSource {ARIB, Japanese, Dings, Other}
+    static final UnicodeSet ARIB = new UnicodeSet("[⚞⚟⚿⛄-⛍⛏-⛡⛣⛨-⛿⭕-⭙㉄-㉏ 恵-舘🈀🈐-🈱🉀-🉈]");
+    
+    static class VersionData implements Comparable<VersionData> {
+        final Age_Values versionInfo;
+        final Set<CharSource> setCharSource;
+        public VersionData(String s) {
+            Data data = Data.STRING_TO_DATA.get(s);
+            Set<CharSource> source = EnumSet.noneOf(CharSource.class);
+            if (JSOURCES.contains(s)) {
+                source.add(CharSource.Japanese);
+            }
+            if (DING_MAP.containsKey(s)) {
+                source.add(CharSource.Dings);
+            }
+            if (ARIB.contains(s)) {
+                source.add(CharSource.ARIB);
+            }
+            if (source.size() == 0) {
+                source.add(CharSource.Other);
+            }
+            this.versionInfo = data.age;
+            this.setCharSource = Collections.unmodifiableSet(source);
+        }
+        static final CollectionOfComparablesComparator ccc = new CollectionOfComparablesComparator();
+        @Override
+        public int hashCode() {
+            return versionInfo.hashCode() * 37 ^ setCharSource.hashCode();
+        }
+        @Override
+        public boolean equals(Object obj) {
+            return compareTo((VersionData)obj) == 0;
+        }
+        @Override
+        public int compareTo(VersionData o) {
+            Comparator foo;
+           return ComparisonChain.start()
+                   .compare(setCharSource, o.setCharSource, ccc)
+                   .compare(versionInfo, o.versionInfo)
+                   .result();
+        }  
+        @Override
+        public String toString() {
+            return CollectionUtilities.join(setCharSource, "+")
+                    + "/" +
+                    versionInfo.toString().replace('_', '.') 
+                    ;
+        }
+    }
+    private static void showVersions() throws IOException {
+        PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-versions.html");
+        writeHeader(out, "Emoji Versions", "Versions and sources for Emoji");
+        UnicodeMap<VersionData> m = new UnicodeMap<>();
+        for (String s : Emoji.EMOJI_CHARS) {
+            m.put(s, new VersionData(s));
+        }
+        TreeSet<VersionData> sorted = new TreeSet<>(m.values());
+        for (VersionData value : sorted) {
+            UnicodeSet chars = m.getSet(value);
+            displayUnicodeset(out, value.toString(), "", chars, Style.bestImage);
+        }
+        writeFooter(out);
+        out.close();
+    }
 
     private static void showSubhead() throws IOException {
         Map<String, UnicodeSet> subheadToChars = new TreeMap();
