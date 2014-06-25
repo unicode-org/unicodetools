@@ -20,10 +20,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -34,8 +40,12 @@ import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.tools.GenerateEmoji.Source;
+import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
@@ -61,7 +71,6 @@ public class LoadImage extends Component {
         } catch (IOException e) {
             return null;
         }
-
     }
 
     public Dimension getPreferredSize() {
@@ -78,15 +87,16 @@ public class LoadImage extends Component {
     static String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
     static String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
     public static void main(String[] args) throws IOException {
-        doAnimatedGif();
+        doSymbola(inputDir, outputDir, "ref", "ref", "Symbola", Emoji.EMOJI_CHARS, 144, true); // "Symbola"
+        // doAnimatedGif();
 
         if (false) {
-        UnicodeSet result = checkCanDisplay(new Font("Symbola",0,24));
-        System.out.println(result.toPattern(false));
+            UnicodeSet result = checkCanDisplay(new Font("Symbola",0,24));
+            System.out.println(result.toPattern(false));
             List<BufferedImage> list;
             doAnimatedGif();
             UnicodeSet s = new UnicodeSet("[▫◻◼◽◾☀⚪⚫❗⤴⤵⬅⬆⬇⬛⬜⭐⭕〽]");
-            list = doSymbola(inputDir, outputDir, "android", "AndroidEmoji", s, 144); // "Symbola"
+            list = doSymbola(inputDir, outputDir, null, "android", "AndroidEmoji", s, 144, false); // "Symbola"
             list = doAndroid(inputDir, outputDir);
             doWindows(inputDir, outputDir);
             doRef(inputDir, outputDir);
@@ -149,8 +159,11 @@ public class LoadImage extends Component {
     private static final UnicodeSet SYMBOLA = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(NON_SYMBOLA).freeze();
 
     public static List<BufferedImage> doSymbola(String inputDir, String outputDir, 
-            String prefix, String font, UnicodeSet unicodeSet, int height)
+            String dir, String prefix, String font, UnicodeSet unicodeSet, int height, boolean useFonts)
                     throws IOException { // 🌰-🌵
+        if (dir == null) {
+            dir = prefix;
+        }
         List<BufferedImage> result = new ArrayList<>();
         Set<String> sorted = unicodeSet.addAllTo(new TreeSet());
         int width = height;
@@ -164,20 +177,29 @@ public class LoadImage extends Component {
         graphics.setRenderingHint(
                 RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        String originalFont = font;
         FontMetrics metrics = setFont(font, height, graphics);
         UnicodeSet firstChars = new UnicodeSet();
-        String fileDirectory = outputDir + "/" +
-                prefix;
+        String fileDirectory = outputDir + "/" + prefix;
         for (String s : sorted) { // 
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 continue;
+            }
+            if (useFonts) {
+                FontData font1 = FontData.getFont(s);
+                if (font1 == null) {
+                    font = originalFont;
+                    //System.err.println("No UCS font for " + Utility.hex(s));
+                } else {
+                    font = font1.fontName;
+                }
+                metrics = setFont(font, height, graphics);
             }
             if (graphics.getFont().canDisplayUpTo(s) != -1) {
                 continue;
             }
             String core = Emoji.buildFileName(s, "_");
-            String filename = prefix +
-                    "_" + core;
+            String filename = prefix + "_" + core;
             File outputfile = new File(fileDirectory, filename + ".png");
             graphics.clearRect(0, 0, width, height);
             Rectangle2D bounds = metrics.getStringBounds(s, graphics);
@@ -278,6 +300,116 @@ public class LoadImage extends Component {
         }
     }
 
+    static class FontData {
+        final String fontName;
+        final int fontSize;
+        public FontData(String fontName, int fontSize) {
+            this.fontName = fontName;
+            this.fontSize = fontSize;
+        }
+        @Override
+        public String toString() {
+            return fontName + "," + fontSize;
+        }
+        @Override
+        public int hashCode() {
+            return fontName.hashCode() ^ fontSize;
+        }
+        @Override
+        public boolean equals(Object obj) {
+            FontData other = (FontData)obj;
+            return fontName.equals(other.fontName) && fontSize == other.fontSize;
+        }
+        static Map<FontData, FontData> KEY_TO_FONT = new HashMap<>();
+        static private FontData getFont(FontData key) {
+            FontData result = KEY_TO_FONT.get(key);
+            if (result == null) {
+                KEY_TO_FONT.put(key, key);
+                result = key;
+            }
+            return result;
+        }
+        static UnicodeMap<FontData> FONT_DATA = new UnicodeMap();
+        static public FontData getFont(int codepoint) {
+            return FONT_DATA.get(codepoint);
+        }
+        static public FontData getFont(String codepoint) {
+            return FONT_DATA.get(codepoint);
+        }
+        enum DataType {Q, X, R, I}
+        static {
+            Map<DataType,UnicodeSet> tempData = new LinkedHashMap();
+            Matcher lineMatch = Pattern.compile("([^,]*),\\s*(\\d+)(?:,\\s*(\\d+))?(.*)").matcher("");
+            Matcher m = Pattern.compile("/([QXRI])=(.*)").matcher("");
+            for (String line : FileUtilities.in(FontData.class, "CONFIG-FILE-SECTIONS.txt")) {
+                if (line.isEmpty() || line.startsWith(";")) {
+                    continue;
+                }
+                // TmsMathPak7bttPF,22 /Q=2047 /R=2047-2047
+                if (line.contains("2300")) {
+                    int debug = 0;
+                }
+                if (!lineMatch.reset(line).matches()) {
+                    throw new IllegalArgumentException("Couldn't match font line: " + line);
+                }
+                FontData key = getFont(new FontData(lineMatch.group(1).trim(), Integer.parseInt(lineMatch.group(2))));
+                tempData.clear();
+                String[] parts = lineMatch.group(4).trim().split("\\s*[ ,]\\s*");
+                for (String part : parts) {
+                    if (part.startsWith(";")) {
+                        break;
+                    } else if (part.isEmpty()) {
+                        continue;
+                    }
+                    if (!m.reset(part).matches()) {
+                        throw new IllegalArgumentException("Couldn't match font line: " + line);
+                    }
+                    // /X=0000-10FFFF /I=2000-206F
+                    String[] ranges = m.group(2).split("-");
+                    int r1 = Integer.parseInt(ranges[0],16);
+                    int r2 = ranges.length == 1 
+                            ? r1
+                                    : Integer.parseInt(ranges[1],16);
+                    tempData.put(DataType.valueOf(m.group(1)), new UnicodeSet(r1, r2));
+                }
+                ///I=2070-209F code points
+                UnicodeSet i = tempData.get(DataType.I);
+                if (i == null) {
+                    UnicodeSet q = tempData.get(DataType.Q);
+                    UnicodeSet r = tempData.get(DataType.R);
+                    if (q.getRangeStart(0) != r.getRangeStart(0)) {
+                        UnicodeSet missing = new UnicodeSet(q.getRangeStart(0),
+                                q.getRangeStart(0) + (r.getRangeEnd(0)-r.getRangeStart(0)));
+                        if (Emoji.EMOJI_CHARS.containsSome(missing)) {
+                            System.err.println("Couldn't get code points from: " + line);
+                        }
+                        continue;
+                        //throw new IllegalArgumentException("Couldn't get code points from: " + line);
+                    }
+                    i = r;
+                }
+                for (String s : i) {
+                    if (!Emoji.EMOJI_CHARS.contains(s)) {
+                        continue;
+                    }
+                    if (s.equals("\u231A")) {
+                        int debug = 0;
+                    }
+                    FontData old = FONT_DATA.get(s);
+                    if (old == null) {
+                        FONT_DATA.put(s, key); // only add new values
+                    }
+                }
+            }
+            FontData x = FONT_DATA.get("\u231A");
+            for (FontData value : FONT_DATA.values()) {
+                UnicodeSet keys = FONT_DATA.getSet(value);
+                System.out.println(keys.size() + "\t" + value + "\t" + keys);
+            }
+            UnicodeSet keys = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(FONT_DATA.keySet());
+            System.out.println(keys.size() + "\t" + "Missing" + "\t" + keys);
+        }
+    }
 
     public static BufferedImage writeResizedImage(String name, BufferedImage sourceImage,
             String outputDir, String outputName, int height) throws IOException {
