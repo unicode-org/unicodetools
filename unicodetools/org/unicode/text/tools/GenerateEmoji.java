@@ -1003,6 +1003,7 @@ public class GenerateEmoji {
         showOrdering(Style.refImage);
         showLabels();
         showVersions();
+        showVersionsOnly();
         showDefaultStyle();
         showSubhead();
         showAnnotations();
@@ -1236,8 +1237,8 @@ public class GenerateEmoji {
         }
     }
     private static void showVersions() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-versions.html");
-        writeHeader(out, "Emoji Versions", "Versions and sources for Emoji.");
+        PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-versions-sources.html");
+        writeHeader(out, "Emoji Versions & Sources", "Versions and sources for Emoji.");
         UnicodeMap<VersionData> m = new UnicodeMap<>();
         for (String s : Emoji.EMOJI_CHARS) {
             m.put(s, new VersionData(s));
@@ -1250,6 +1251,24 @@ public class GenerateEmoji {
         writeFooter(out);
         out.close();
     }
+    
+    private static void showVersionsOnly() throws IOException {
+        PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-versions.html");
+        writeHeader(out, "Emoji Versions", "Versions for Emoji.");
+        UnicodeMap<Age_Values> m = new UnicodeMap<>();
+        for (String s : Emoji.EMOJI_CHARS) {
+            Data data = Data.STRING_TO_DATA.get(s);
+            m.put(s, data.age);
+        }
+        TreeSet<Age_Values> sorted = new TreeSet<>(m.values());
+        for (Age_Values value : sorted) {
+            UnicodeSet chars = m.getSet(value);
+            displayUnicodeset(out, Collections.singleton(value.toString().replace("_", ".")), null, chars, Style.refImage, null);
+        }
+        writeFooter(out);
+        out.close();
+    }
+
 
     private static void showSubhead() throws IOException {
         Map<String, UnicodeSet> subheadToChars = new TreeMap();
