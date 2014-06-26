@@ -6,6 +6,36 @@
 ;"I=" means include; codepoint is same as glyph ID, in a range
 
 
+; NOTE!
+; Fiscella glyphs used by Unibook are encoded in
+; the PUA starting at F000 because Unibook can't use ASCII
+; to properly display *chart* glyphs; the ASCII range is used
+; for other page text and so forth.
+
+; 00A0-00FF LATIN-1 SUPPLEMENT
+Fiscella,22 /Q=F0A1 /R=00A1-00AC ; controls by SpecialsUC6
+Fiscella,22 /Q=F0AE /R=00AE-00FF
+
+
+; 2900-297F SUPPLEMENTAL ARROWS-B 
+UCS STIXGeneral,21 /X=0000-10FFFF /I=2900-297F
+
+
+; NOTE! The rest below are partial; other irrelevant
+; sub-sections removed because the glyphs you need are
+; all in these particular fonts, but the block ranges
+; are actually rendered with a patchwork of different fonts.
+
+; 2B00-2BFF MISCELLANEOUS SYMBOLS AND ARROWS
+Uni2B00Arrows,22 /X=0000-10FFFF /I=2B00-2BFF
+
+
+; 2E00-2E7F SUPPLEMENTAL PUNCTUATION
+Uni2E00Supplementalpunctuation,22 /X=0000-10FFFF /I=2E00-2E7F
+
+
+; 3200-32FF ENCLOSED CJK LETTERS AND MONTHS
+MS Mincho For UTC,22 /X=0000-10FFFF /I=3200-32FF
 
 
 ;--------------------------------
@@ -118,9 +148,25 @@ TmsMathPak7bttPF,22 /Q=2680 /R=2680-2689
 Uni2600Miscsymbols, 22 /X=0000-10FFFF /I=2600-26FF
 
 ; 2700-27BF DINGBATS
-ZapfDingbatsStd, 22,10 /Q=275F /R=275C-275C ;baseline shift hack for now
-ZapfDingbatsStd, 22,10 /Q=2760 /R=275E-275E ;baseline shift hack for now
-ZapfDingbatsStd, 22 /X=0000-10FFFF /I=2700-27BF
+; Hack, because ZB doesn't work for these
+Symbola,22 /I=2705-2705
+Symbola,22 /I=270B-270B
+Symbola,22 /I=274C-274C
+Symbola,22 /I=274E-274E
+Symbola,22 /I=2753-2753
+Symbola,22 /I=2754-2754
+Symbola,22 /I=2755-2755
+Symbola,22 /I=27B0-27B0
+Symbola,22 /I=27BF-27BF
+Symbola,22 /I=2728-2728
+Symbola,22 /I=2795-2795
+Symbola,22 /I=2796-2796
+Symbola,22 /I=2797-2797
+Symbola,22 /I=270A-270A
+
+Zapf Dingbats, 22,10 /Q=275F /R=275C-275C ;baseline shift hack for now
+Zapf Dingbats, 22,10 /Q=2760 /R=275E-275E ;baseline shift hack for now
+Zapf Dingbats, 22 /X=0000-10FFFF /I=2700-27BF
 Uni2600Miscsymbols, 22 /X=0000-10FFFF /I=2700-27BF
 
 ; 27C0-27EF MISCELLANEOUS MATHEMATICAL SYMBOLS-A
