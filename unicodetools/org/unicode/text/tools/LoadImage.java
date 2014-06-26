@@ -87,7 +87,13 @@ public class LoadImage extends Component {
     static String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
     static String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
     public static void main(String[] args) throws IOException {
-        doSymbola(inputDir, outputDir, "ref", "ref", "Symbola", Emoji.EMOJI_CHARS, 144, true); // "Symbola"
+        UnicodeSet dingbats = canDisplay("Zapf Dingbats");
+        System.out.println(dingbats);
+        if (true) return;
+        
+        UnicodeSet missing = new UnicodeSet("[\u00A9\u00AE\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B50\u2B55\u2E19\u3297\u3299]");
+        UnicodeSet missing2 = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
+        doSymbola(inputDir, outputDir, "ref", "ref", "Symbola", missing2, 144, true); // "Symbola"
         // doAnimatedGif();
 
         if (false) {
@@ -181,7 +187,7 @@ public class LoadImage extends Component {
         FontMetrics metrics = setFont(font, height, graphics);
         UnicodeSet firstChars = new UnicodeSet();
         String fileDirectory = outputDir + "/" + prefix;
-        for (String s : sorted) { // 
+        for (String s : sorted) { //
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 continue;
             }
@@ -497,5 +503,22 @@ public class LoadImage extends Component {
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
         WritableRaster raster = bi.copyData(null);
         return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    }
+    
+    static UnicodeSet canDisplay(String fontName) {
+        Font f = new Font("Zapf Dingbats", 0, 24);
+        UnicodeSet result = new UnicodeSet();
+        for (String s : Emoji.EMOJI_CHARS) {
+            if (canDisplay(f,s)) {
+                result.add(s);
+            }
+        }
+        return result;
+    }
+    static boolean canDisplay(Font f, String codepoint) {
+        final FontRenderContext fontRenderContext = new FontRenderContext(null, false, false);
+        GlyphVector glyphVector = f.createGlyphVector(fontRenderContext, codepoint);
+        int glyphCode = glyphVector.getGlyphCode(0);
+        return (glyphCode > 0);
     }
 }

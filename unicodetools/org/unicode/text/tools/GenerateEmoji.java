@@ -509,6 +509,9 @@ public class GenerateEmoji {
         }
         public static Set<CharSource> getCharSources(String s) {
             Set<CharSource> source = EnumSet.noneOf(CharSource.class);
+            if (DINGBATS.contains(s)) {
+                source.add(CharSource.ZDings);
+            }
             if (JSOURCES.contains(s)) {
                 source.add(CharSource.JCarrier);
             }
@@ -938,8 +941,11 @@ public class GenerateEmoji {
         String core = Emoji.buildFileName(chars,"_");
         String filename = getImageFilename(Source.ref, core);
         String cc = getFlagRegionName(chars);
-        return cc == null ? null : "<img alt='" + chars
-                + "' class='imgf' src='images/" + filename + "'>";
+        return cc == null ? null : "<img"
+        		+ " alt='" + chars + "'"
+                + " class='imgf'"
+                + " title='" + getCodeAndName(chars, " ") + "'"
+                + " src='images/" + filename + "'>";
     }
 
     public static void main(String[] args) throws IOException {
@@ -1188,6 +1194,7 @@ public class GenerateEmoji {
         out.close();
     }
     enum CharSource {
+        ZDings("ᶻ"),
         ARIB("ª"), 
         JCarrier("ʲ"), 
         WDings("ʷ"), 
@@ -1197,8 +1204,8 @@ public class GenerateEmoji {
             this.shortString = shortString;
         }
     }
-    static final UnicodeSet ARIB = new UnicodeSet("[⚞⚟⚿⛄-⛍⛏-⛡⛣⛨-⛿⭕-⭙㉄-㉏ 恵-舘🈀🈐-🈱🉀-🉈]");
-
+    static final UnicodeSet ARIB = new UnicodeSet("[²³¼-¾࿖‼⁉ℓ№℡℻⅐-⅛Ⅰ-Ⅻ↉ ①-⑿⒈-⒓ⒹⓈ⓫⓬▶◀☀-☃☎☓☔☖☗♠ ♣♥♦♨♬⚓⚞⚟⚡⚾⚿⛄-⛿✈❶-❿➡⟐⨀ ⬅-⬇⬛⬤⬮⬯〒〖〗〶㈪-㈳㈶㈷㈹㉄-㉏㉑-㉛ ㊋㊙�㍱㍻-㍾㎏㎐㎝㎞㎠-㎢㎤㎥㏊円年日月 🄀-🄊🄐-🄭🄱🄽🄿🅂🅆🅊-🅏🅗🅟🅹🅻🅼🅿🆊-🆍 🈀🈐-🈰🉀-🉈]").freeze();
+    static final UnicodeSet DINGBATS = new UnicodeSet("[\u2194\u2195\u260E\u261B\u261E\u2660\u2663\u2665\u2666\u2701-\u2704\u2706-\u2709\u270C-\u2712\u2714-\u2718\u2733\u2734\u2744\u2747\u2762-\u2767\u27A1]").freeze();
     static class VersionData implements Comparable<VersionData> {
         final Age_Values versionInfo;
         final Set<CharSource> setCharSource;

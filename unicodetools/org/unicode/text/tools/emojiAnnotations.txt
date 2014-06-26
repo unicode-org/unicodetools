@@ -13,6 +13,8 @@ aerial	🚡
 aesculapius	⚕
 africa	🌍
 airplane	✈️ 🛦 🛧 🛨 🛩 🛪 🛫 🛬
+departures, check-in	🛫
+arrivals	🛬
 alarm	⏰
 alembic	⚗
 alien	👽 👾
