@@ -1213,7 +1213,7 @@ toilet	🚽
 tokyo	🗼
 tomato	🍅
 tongue	👅 😛 😜 😝
-tool	⚒ ⛏ 🔥 🔦 🔧 🔨 🔩 🔪 🔫 🔬 🔭 🔮 🔰 🔱 🛠
+tool	⚒ ⛏ 🔥 🔦 🔧 🔨 🔩 🔪 🔫 🔬 🔭 🔮 🔰 🔱 🛠⚖ ⚗✀ ✁ ✂️ ✃ ✄
 top	🎩 🔝
 torch	🔦
 tornado	🌪
@@ -1413,6 +1413,10 @@ geometric	️   ▪️ ▫️ ◻️ ◼️ ◽️ ◾️ ☐     ⬛️ ⬜️ 
 
 punctuation	 ‼️ ⁉️
  ❓ ❔ ❕ ❗️ ❢ 〰
+fruit	🍇 🍈 🍉 🍊 🍋 🍌 🍍 🍎 🍏 🍐 🍑 🍒 🍓
+sweet, dessert	🍡 🍦 🍧 🍨 🍩 🍪  🎂🍰
+🍫 🍬 🍭 🍮 
+sweet	🍯 
 
 
 
