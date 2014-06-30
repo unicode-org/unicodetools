@@ -23,8 +23,8 @@
 </tbody></table>
 <div class="body">
   <h1>UCA Conformance Tests</h1>
-  <h2 align="center" class="changed">Version 6.3.0<br>2013-03-06</h2>
-<p>The following files provide conformance tests for the Unicode Collation Algorithm (<a href="http://www.unicode.org/reports/tr10/tr10-27.html">UTS 
+  <h2 align="center">Version 7.0.0<br>2014-05-27</h2>
+<p>The following files provide conformance tests for the Unicode Collation Algorithm (<a href="http://www.unicode.org/reports/tr10/tr10-30.html">UTS 
   #10: Unicode Collation Algorithm</a>).</p>
   <ul>
     <li>CollationTest_SHIFTED.txt</li>
@@ -33,12 +33,11 @@
     <li>CollationTest_NON_IGNORABLE_SHORT.txt</li>
   </ul>
   <p>These files are large, and thus packaged in zip format to save download time.</p>
-  <h3>Format</h3>
+  <h2>Format</h2>
   <p>There are four different files:</p>
   <ul>
     <li>The shifted vs non-ignorable files correspond to the two alternate
-      <a href="http://www.unicode.org/reports/tr10/tr10-27.html#Variable_Weighting"><span class="removed">3.6.2</span>
-      Variable Weighting</a> values.</li>
+      <a href="http://www.unicode.org/reports/tr10/tr10-30.html#Variable_Weighting">Variable Weighting</a> values.</li>
     <li>The SHORT versions omit the comments, for more compact storage.</li>
   </ul>
 <p>The format is illustrated by the following example:</p>
@@ -61,11 +60,11 @@
       </tr>
     </tbody></table>
   </blockquote>
-  <h3>Testing</h3>
+
+  <h2>Testing</h2>
   <p>The files are designed so each line in the file will order as being greater than or equal to 
   the previous one, when using the UCA and the
-  <a href="http://www.unicode.org/reports/tr10/tr10-27.html#Default_Unicode_Collation_Element_Table">
-  Default Unicode Collation Element Table</a>. A test program can read in each line, compare it to 
+  <a href="http://www.unicode.org/reports/tr10/tr10-30.html#Default_Unicode_Collation_Element_Table">Default Unicode Collation Element Table</a>. A test program can read in each line, compare it to 
   the last line, and signal an error if order is not correct. The exact comparison that should be 
   used is as follows:</p>
   <ol>
@@ -79,25 +78,45 @@
   <p>If there are any errors, then the UCA implementation is not compliant. </p>
   <p>These files contain test cases that include ill-formed strings, with surrogate code points. Implementations that do not weight surrogate code points the same way as  reserved code points may filter out such lines lines in the test cases, before testing for conformance.</p>
   <blockquote>
-    <table class="noborder" border="0" cellpadding="2" cellspacing="0">
-      <tbody><tr>
-        <th class="noborder" align="left" valign="top" width="1%"><b>Notes:</b></th>
-        <td class="noborder" valign="top">
-        <ul>
-          <li>This test is only valid for an untailored DUCET table.</li>
-          <li>Beginning with UCA 6.2,
-          the test data strings are compared with strength = identical,
-          using UCA S3.10 as a tie-breaker, which compares the NFD forms of the strings in code point order.
-          Before UCA 6.2, the test files did not use strength = identical,
-          and instead used as a tie-breaker the comparison of the unnormalized strings.<br>
-          Therefore, implementations which use the UCA test files to test
-          multiple versions of UCA need to use different tie-breaker comparisons
-          depending on the UCA version.</li>
-        </ul>
-        </td>
-      </tr>
-    </tbody></table>
+    <p><b>Note:</b> This test is only valid for an untailored DUCET table.</p>
   </blockquote>
+
+  <h2>Migration</h2>
+  <h3>Tie-breaker</h3>
+  <p>Beginning with UCA 6.2,
+  the test data strings are compared with strength = identical,
+  using UCA S3.10 as a tie-breaker, which compares the NFD forms of the strings in code point order.
+  Before UCA 6.2, the test files did not use strength = identical,
+  and instead used as a tie-breaker the comparison of the unnormalized strings.<br>
+  Therefore, implementations which use the UCA test files to test
+  multiple versions of UCA need to use different tie-breaker comparisons
+  depending on the UCA version.</p>
+
+  <h3>Discontiguous contractions</h3>
+  <p>Test data files for UCA 6.1 and earlier versions were generated with code that
+  had a bug in the contraction matching.
+  In that code, matches for certain contractions of Tibetan characters were found
+  despite intervening combining marks,
+  so that some test cases were not in proper order according to the UCA and the DUCET.
+  UCA 6.2 test files omitted the relevant test cases.
+  For UCA 6.3, the test data generation code was fixed and those test cases were restored.</p>
+
+  <p>For example, in the defective test data generation code,
+  the strings 0FB2 0F80 0F71 0334 and 0F77 0334 compared equal.
+  (U+0F77 is the TIBETAN VOWEL SIGN VOCALIC RR.)
+  However, UCA processing with the DUCET will not find the contraction 0FB2 0F71 0F80:</p>
+  <ul>
+    <li>UCA Step 1 normalizes 0FB2 0F80 0F71 0334 to 0FB2 0334 0F71 0F80.</li>
+    <li>Step 2.1 only finds a match for S=0FB2.</li>
+    <li>S2.1.1 loops over each of the following three characters C,
+    but there is no table entry for any of those three S+C.
+    In particular, there is no DUCET mapping for 0FB2+0F71
+    (see <i><a href="http://www.unicode.org/reports/tr10/tr10-30.html#Well_Formed_DUCET">Well-Formedness of the DUCET</a></i>).</li>
+    <li>The loop exits without finding any match beyond S=0FB2.</li>
+  </ul>
+
+  <p>See “Also note that the Algorithm employs two distinct contraction matching methods:”
+  at the end of <i>Section 4.2, <a href="http://www.unicode.org/reports/tr10/tr10-30.html#Step_2">Produce Array</a></i>.</p>
 </div>
 
 </body></html>

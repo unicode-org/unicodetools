@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.unicode.jsp.FileUtilities;
+import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
@@ -14,7 +15,7 @@ public class Uts46 extends Idna {
     public static Uts46 SINGLETON = new Uts46();
 
     private Uts46() {
-        new MyHandler().process(Uts46.class, "IdnaMappingTable.txt");
+        new MyHandler().process(Settings.DATA_DIR + "idna/" + Settings.latestVersion, "IdnaMappingTable.txt");
         types.freeze();
         mappings.freeze();
         mappings_display.freeze();

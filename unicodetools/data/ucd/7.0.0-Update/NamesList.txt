@@ -1,32 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 7.0.0
 @@@+	U70M140523.lst
-	Unicode 7.0.0 names list, twenty-first delta.
-	Based on FDAM1 + FDAM2, with modified annotations, plus 20BD.
-	Corrected syntax on two xrefs for 1AB7.
-	Added clarifying annotations for 055C and 055E.
-	Added annotation for ruble sign: 20BD.
-	Updated subhead for Samaveda svara marks in Grantha, for consistency.
-	Cross-referenced the Devanagari and Grantha sets of svara markers.
-	Added annotation for 1135D.
-	Correct annotation for 0FCE, add xref to 0F1F.
-	Updated transliteration of candrakkala in annotation for 0D4D.
-	Deleted a number of random U+ prefixes on code points in annotations.
-	Updated the subhead for 1DF5.
-	Updated the notice at 11580 for Siddham.
-	Regeneration to fix typo in name for 1F6E4.
-	Updated annotations for 1F540 through 1F545.
-	Updated annotations about use for Bihari languages in the Devanagari block.
-	Corrected annotation for 065D.
-	Added annotation for 1DFD.
-	Updated notice for CJK Compatibility Ideographs block.
-	Updated subhead at 275B.
-	Updated annotation for 3127.
-	Added annotation for 064C.
-	Updated annotations for 06BE.
-	Updated annotations for 0487 and A66F.
-	Added or corrected numerous annotations in Arabic block.
-	Added annotations to 204F and 2E41.
+	Unicode 7.0.0 final names list.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used

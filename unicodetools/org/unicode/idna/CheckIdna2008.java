@@ -15,7 +15,7 @@ public class CheckIdna2008 {
     static UnicodeMap<String> patriksData = new UnicodeMap();
     static UnicodeSet uts46 = new UnicodeSet();
     static UnicodeMap<String> utsData = new UnicodeMap<String>();
-    static IndexUnicodeProperties iup = IndexUnicodeProperties.make("6.1.0");
+    static IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
 
     public static void main(String[] args) {
 
@@ -33,7 +33,9 @@ public class CheckIdna2008 {
             patriksData.put(cp, allButFirst(parts));
         }
 
-        for (String line : FileUtilities.in(Settings.DATA_DIR + "/idna/6.1.0/", "IdnaMappingTable.txt")) {
+        for (String line : FileUtilities.in(Settings.DATA_DIR + "/idna/" +
+                Settings.latestVersion +
+        		"/", "IdnaMappingTable.txt")) {
             final int pos2 = line.indexOf('#');
             if (pos2 >= 0) {
                 line = line.substring(0,pos2);
