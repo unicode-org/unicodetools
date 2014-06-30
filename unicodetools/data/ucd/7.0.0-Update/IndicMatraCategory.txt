@@ -1,5 +1,5 @@
 # IndicMatraCategory-7.0.0.txt
-# Date: 2014-05-27, 21:23:00 GMT [KW, LI, AG, RP]
+# Date: 2014-06-03, 07:00:00 GMT [KW, LI, AG, RP]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -45,7 +45,7 @@
 #   4. Matras may ligate in various ways with a consonant (or even
 #      other elements of a syllable) instead of occurring in a
 #      discrete location.
-#   4. Matra display may be contextually determined. This is
+#   5. Matra display may be contextually determined. This is
 #      notable, for example, in the Tamil script, where the shape
 #      and placement of -u and -uu vowels depends strongly on
 #      which consonant they adjoin.
@@ -85,17 +85,22 @@
 # Property: Indic_Matra_Category
 #
 #  All code points not explicitly listed for Indic_Matra_Category
-#  have the value NA (Not_Applicable).
+#  have the value NA (not applicable).
 #
 # @missing: 0000..10FFFF; NA
 
-# Only Indic dependent vowels (Indic_Syllabic_Category=Vowel_Dependent),
-# viramas (Indic_Syllabic_Category=Virama),
-# pure killers (Indic_Syllabic_Category=Pure_Killer), and
-# left-reordrant instances of 
-# medial consonants (Indic_Syllabic_Category=Consonant_Medial) and
-# bindi (Indic_Syllabic_Category=Bindu) in Lepcha
-# have a non-default value for this property.
+# Only characters from the following syllabic categories have
+# a non-default value for the Indic_Matra_Category property:
+#   - dependent vowels (Indic_Syllabic_Category=Vowel_Dependent)
+#   - viramas (Indic_Syllabic_Category=Virama)
+#   - pure killers (Indic_Syllabic_Category=Pure_Killer)
+#   - gemination marks (Indic_Syllabic_Category=Gemination_Mark)
+#   - left-reordrant instances of medial consonants
+#     (Indic_Syllabic_Category=Consonant_Medial)
+#   - bindi (Indic_Syllabic_Category=Bindu) in Lepcha
+#   - repha forms of ra succeeding the main consonant
+#     (Indic_Syllabic_Category=Consonant_Succeeding_Repha)
+#   - register shifters (Indic_Syllabic_Category=Register_Shifter)
 
 # ------------------------------------------------
 
@@ -222,7 +227,7 @@ ABE9..ABEA    ; Right # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEETEI MAYEK V
 1A6E..1A72    ; Left # Mc   [5] TAI THAM VOWEL SIGN E..TAI THAM VOWEL SIGN THAM AI
 1B3E..1B3F    ; Left # Mc   [2] BALINESE VOWEL SIGN TALING..BALINESE VOWEL SIGN TALING REPA
 1BA6          ; Left # Mc       SUNDANESE VOWEL SIGN PANAELAENG
-1C27..1C28    ; Left # Mc   [3] LEPCHA VOWEL SIGN I..LEPCHA VOWEL SIGN O
+1C27..1C28    ; Left # Mc   [2] LEPCHA VOWEL SIGN I..LEPCHA VOWEL SIGN O
 1C34..1C35    ; Left # Mc   [2] LEPCHA CONSONANT SIGN NYIN-DO..LEPCHA CONSONANT SIGN KANG
 A9BA..A9BB    ; Left # Mc   [2] JAVANESE VOWEL SIGN TALING..JAVANESE VOWEL SIGN DIRGA MURE
 AA2F..AA30    ; Left # Mc   [2] CHAM VOWEL SIGN O..CHAM VOWEL SIGN AI
@@ -317,7 +322,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 1752          ; Top # Mn       BUHID VOWEL SIGN I
 1772          ; Top # Mn       TAGBANWA VOWEL SIGN I
 17B7..17BA    ; Top # Mn   [4] KHMER VOWEL SIGN I..KHMER VOWEL SIGN YY
-17C9..17D1    ; Top # Mn   [9] KHMER SIGN BANTOC..KHMER SIGN VIRIAM
+17C9..17D1    ; Top # Mn   [9] KHMER SIGN MUUSIKATOAN..KHMER SIGN VIRIAM
 17D3          ; Top # Mn       KHMER SIGN BATHAMASAT
 1920..1921    ; Top # Mn   [2] LIMBU VOWEL SIGN A..LIMBU VOWEL SIGN I
 1927..1928    ; Top # Mn   [2] LIMBU VOWEL SIGN E..LIMBU VOWEL SIGN O

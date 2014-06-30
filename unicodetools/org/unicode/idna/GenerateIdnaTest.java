@@ -50,7 +50,7 @@ public class GenerateIdnaTest {
     }
 
     public static void setUnicodeVersion() {
-        Default.setUCD("7.0.0");
+        Default.setUCD(Settings.latestVersion);
         UnicodeTransform.setFactory(new ToolUnicodeTransformFactory());
         final ToolUnicodePropertySource toolUPS1 = ToolUnicodePropertySource.make(Default.ucdVersion());
         final XSymbolTable toolUPS = new UnicodePropertySymbolTable(toolUPS1);
@@ -143,6 +143,9 @@ public class GenerateIdnaTest {
     }
 
     int generateLine(String source, PrintWriter out) {
+        if (source.contains("🌱")) {
+            int debug = 0;
+        }
         if (alreadyDone(source)) {
             return 0;
         }
