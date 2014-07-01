@@ -2049,6 +2049,7 @@ to guarantee identifier closure.
         }
         return (String)blockData.getValue(codePoint);
     }
+    
     public List getBlockNames() {
         return getBlockNames(null);
     }
@@ -2130,6 +2131,7 @@ to guarantee identifier closure.
                 blockData.setMissing("No_Block");
             } finally {
                 in.close();
+                blockData.freeze();
             }
             for (final String line : org.unicode.cldr.draft.FileUtilities.in(UCD.class, "ShortBlockNames.txt")) {
                 final String[] parts = line.trim().split("\\s*;\\s*");
