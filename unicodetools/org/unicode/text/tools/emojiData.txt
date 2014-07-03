@@ -1069,6 +1069,7 @@ U+1F1EA U+1F1ED	V6.0	emoji	flags	🇪🇭	flag Western Sahara
 U+1F1EA U+1F1F7	V6.0	emoji	flags	🇪🇷	flag Eritrea
 U+1F1EA U+1F1F8	V6.0	emoji	flags	🇪🇸	flag Spain
 U+1F1EA U+1F1F9	V6.0	emoji	flags	🇪🇹	flag Ethiopia
+U+1F1EA U+1F1FA	V6.0	emoji	flags	🇪🇺	flag European Union
 U+1F1EB U+1F1EE	V6.0	emoji	flags	🇫🇮	flag Finland
 U+1F1EB U+1F1EF	V6.0	emoji	flags	🇫🇯	flag Fiji
 U+1F1EB U+1F1F0	V6.0	emoji	flags	🇫🇰	flag Falkland Islands
