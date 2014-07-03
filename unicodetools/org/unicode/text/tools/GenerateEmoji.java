@@ -143,7 +143,7 @@ public class GenerateEmoji {
         missing.removeAll(sorted);
         if (!missing.isEmpty()) {
             ORDERING_TO_CHAR.putAll("other", missing);
-            System.err.println("Missing some orderings");
+            System.err.println("Missing some orderings: " + missing);
         }
         sorted.addAll(missing);
         mp.add(sorted);
@@ -1537,7 +1537,7 @@ public class GenerateEmoji {
             }
             out.print(cell);
             if (link != null) {
-                out.print("</a>");
+                out.println("</a>");
             }
         }
         out.println("</td>");

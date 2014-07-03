@@ -14,6 +14,8 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.unicode.cldr.util.RegexUtilities;
+import org.unicode.cldr.util.With;
+import org.unicode.cldr.util.XPathParts.Comments.CommentType;
 import org.unicode.draft.GetNames;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
@@ -51,7 +53,7 @@ public class NamesList {
     .addAll(US.getProperty("GC").getSet("Mn"))
     ;
 
-    enum Comment {
+    public enum Comment {
         comment("•", true), 
         formalAlias("※", false),
         alias("=", true), 
@@ -66,25 +68,13 @@ public class NamesList {
             this.keep = false;
         }
     }
-    
-    public static class SimpleData {
-        final String comment;
-        final String alias;
-        final String xrefs;
-        
-        public SimpleData(String comment, String alias, String xrefs) {
-            this.comment = comment;
-            this.alias = alias;
-            this.xrefs = xrefs;
-        }
-    }
 
     static final String CHAR = "(10[A-F0-9]{2,4}|[A-F0-9]{4,5})";
     static final String LCNAME = "[-<>0-9A-Za-z() ]+";
     static final String SP = "\\s+";
     static final String OSP = "\\s*";
     static final Pattern CHAR_PATTERN = Pattern.compile(CHAR);
-    static final Matcher INVISIBLE = UnicodeRegex.compile(TO_SUPPRESS.toPattern(true)).matcher("");
+    //static final Matcher INVISIBLE = UnicodeRegex.compile(TO_SUPPRESS.toPattern(true)).matcher("");
 
     static String transform(String input, Matcher m, Transform<String,String> transform) {
         StringBuilder result = null;
@@ -117,7 +107,7 @@ public class NamesList {
         }
     };
 
-    static Transform<String,String> CODE = new Transform<String,String>() {
+    public static final Transform<String,String> CODE = new Transform<String,String>() {
         @Override
         public String transform(String source) {
             return TO_SUPPRESS.contains(source) ? DOTTED_BOX : 
@@ -131,8 +121,8 @@ public class NamesList {
 
     class Data {
         final Relation<Comment,String> comments = Relation.of(new EnumMap<Comment,Set<String>>(Comment.class), LinkedHashSet.class);
-        final int codePoint;
-        public Data(int lastCodePoint) {
+        int codePoint;
+        void set(int lastCodePoint) {
             codePoint = lastCodePoint;
         }
         public String display(String sep, String sep2, String sep3) {
@@ -172,6 +162,7 @@ public class NamesList {
             } else {
                 if (trim.startsWith("uppercase is ") || trim.startsWith("lowercase is ")) {
                     System.err.println("Discarding case variant for: " + Utility.hex(codePoint) + " => " + trim);  
+                    return;
                 }
                 if (fixCodePoints) {
                     trim = transform(trim, XREF3, CODE_CHAR);
@@ -192,45 +183,48 @@ public class NamesList {
             return false;
         }
         void storeData() {
-            String comment = null;
-            String alias = null;
-            String xrefs = null;
-            for (Entry<Comment, Set<String>> entry : comments.keyValuesSet()) {
-                switch (entry.getKey()) {
-                case comment: 
-                    comment += (comment == null ? "" : "\n") + entry.getValue();
-                    break;
-                case alias: 
-                    alias += (alias == null ? "" : "\n") + entry.getValue();
-                    break;
-                case xref: 
-                    xrefs += (alias == null ? "" : "\n") + entry.getValue();
-                    break;
+            if (codePoint >= 0) {
+                String comment = null;
+                String alias = null;
+                String xrefs = null;
+                for (Entry<Comment, Set<String>> entry : comments.keyValuesSet()) {
+                    switch (entry.getKey()) {
+                    case comment: 
+                        comment = CollectionUtilities.join(entry.getValue(), "\n");
+                        break;
+                    case alias: 
+                        alias = CollectionUtilities.join(entry.getValue(), "\n");
+                        break;
+                    case xref: 
+                        xrefs = CollectionUtilities.join(entry.getValue(), "\n");
+                        break;
+                    }
                 }
+                informalAliases.put(codePoint, alias);
+                informalComments.put(codePoint, comment);
+                informalXrefs.put(codePoint, xrefs);
             }
-            informalAliases.put(codePoint, alias);
-            informalComments.put(codePoint, comment);
-            informalXrefs.put(codePoint, xrefs);
+            comments.clear();
         }
     }
 
-    UnicodeMap<Data> data = new UnicodeMap<>();
-    
-    UnicodeMap<String> informalAliases = new UnicodeMap<>();
-    UnicodeMap<String> informalComments = new UnicodeMap<>();
-    UnicodeMap<String> informalXrefs = new UnicodeMap<>();
-    
-    UnicodeMap<String> subheads = new UnicodeMap();
-    UnicodeMap<String> subheadComments = new UnicodeMap();
-    
-    Relation<Integer, String> errors = Relation.of(new TreeMap<Integer,Set<String>>(), LinkedHashSet.class);
-    Relation<Integer, String> fileComments = Relation.of(new TreeMap<Integer,Set<String>>(), LinkedHashSet.class);
+    //UnicodeMap<Data> data = new UnicodeMap<>();
+
+    public UnicodeMap<String> informalAliases = new UnicodeMap<>();
+    public UnicodeMap<String> informalComments = new UnicodeMap<>();
+    public UnicodeMap<String> informalXrefs = new UnicodeMap<>();
+
+    public UnicodeMap<String> subheads = new UnicodeMap();
+    public UnicodeMap<String> subheadComments = new UnicodeMap();
+
+    public Relation<Integer, String> errors = Relation.of(new TreeMap<Integer,Set<String>>(), LinkedHashSet.class);
+    public Relation<Integer, String> fileComments = Relation.of(new TreeMap<Integer,Set<String>>(), LinkedHashSet.class);
 
     int lastCodePoint = -1;
-    Data lastDataItem = null;
+    Data lastDataItem = new Data();
 
-    public NamesList(String file) {
-        BufferedReader in = Utility.openUnicodeFile(file, Default.ucdVersion(), true, Utility.LATIN1_WINDOWS);
+    public NamesList(String file, String ucdVersion) {
+        BufferedReader in = Utility.openUnicodeFile(file, ucdVersion, true, Utility.LATIN1_WINDOWS);
         int i = 0;
         String subhead = null;
         String subheadComment = null;
@@ -309,16 +303,13 @@ public class NamesList {
                             int pos = originalLine.indexOf('\t');
                             final String x = originalLine.substring(0,pos);
                             lastCodePoint = Integer.parseInt(x,16);
-                            if (data.containsKey(lastCodePoint)) {
-                                throw new IllegalArgumentException("Duplicate code point");
-                            }
+                            //                            if (data.containsKey(lastCodePoint)) {
+                            //                                throw new IllegalArgumentException("Duplicate code point");
+                            //                            }
                             subheads.put(lastCodePoint, subhead);
+                            lastDataItem.storeData();
                             subheadComments.put(lastCodePoint, subheadComment);
-                            if (lastDataItem != null) {
-                                lastDataItem.comments.freeze();
-                                lastDataItem.storeData();
-                            }
-                            data.put(lastCodePoint, lastDataItem = new Data(lastCodePoint));
+                            lastDataItem.set(lastCodePoint);
                             verifyName(originalLine, pos);                  
                         }
                     }
@@ -327,9 +318,35 @@ public class NamesList {
                 }
             }
             lastDataItem.storeData();
+            informalAliases.freeze();
+            informalComments.freeze();
+            informalXrefs.freeze();
+            subheads.freeze();
+            subheadComments.freeze();
+            errors.freeze();
+            fileComments.freeze();
         } catch (IOException e1) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private <T> void close(UnicodeMap<T> subheads2) {
+        T lastValue = null;
+        int lastEnd = -1;
+        UnicodeMap<T> filler = new UnicodeMap<T>();
+        for (EntryRange entryRange : subheads.entryRanges()) {
+            if (entryRange.value == null) {
+                continue;
+            }
+            if (entryRange.value.equals(lastValue)) {
+                filler.putAll(lastEnd+1, entryRange.codepoint-1, lastValue);
+            }
+            lastEnd = entryRange.codepointEnd;
+            lastValue = (T) entryRange.value;
+        }
+        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
+        subheads2.putAll(filler);
+        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
     }
 
     static final UnicodeSet HEX_AND_SPACE = new UnicodeSet("[0-9A-F\\ ]").freeze();
@@ -393,74 +410,5 @@ public class NamesList {
         //            System.err.println("Failed to read: x " + string);
         //        }
         return null;
-    }
-
-    public static void main(String[] args) {
-        NamesList nl = new NamesList("NamesList");
-
-        String lastSubheadComment = null;
-        String lastSubhead = null;
-        String lastblock = null;
-        for (Entry<Integer, String> fileComment : nl.fileComments.keyValueSet()) {
-            System.out.println(fileComment.getKey() + "\t" + fileComment.getValue());
-        }
-
-        for (Entry<String, Data> dataItem : nl.data.entrySet()) {
-            final String key = dataItem.getKey();
-            final int keyCodePoint = key.codePointAt(0);
-            String block = Default.ucd().getBlock(keyCodePoint);
-            if (!block.equals(lastblock)) {
-                if (block != null && !block.equals("No_Block")) {
-                    UnicodeSet set = Default.ucd().getBlockSet(block, new UnicodeSet());
-                    System.out.print("\n======\n" 
-                            + Utility.hex(set.getRangeStart(0))
-                            + "\t" + block.replace('_', ' ')
-                            + "\t" + Utility.hex(set.getRangeStart(1))
-                            + "\n");
-                }
-                lastblock = block;
-            }
-            lastSubhead = showChangedItem(nl.subheads, keyCodePoint, lastSubhead);
-            lastSubheadComment = showChangedItem(nl.subheadComments, keyCodePoint, lastSubheadComment);
-
-            String realName = Default.ucd().getName(keyCodePoint);
-
-            final Data value = dataItem.getValue();
-            System.out.println(Utility.hex(key) + "\t" + CODE.transform(key) + "\t" + realName);
-            if (value.isEmpty()) {
-                continue;
-            }
-            System.out.print(value.display("\t\t\t", "\t", "\n"));
-        }
-
-        //        lastSubhead = "";
-        //        for (EntryRange dataItem : nl.subheads.entryRanges()) {
-        //            if (dataItem.value == null || dataItem.value.equals(lastSubhead)) {
-        //                continue;
-        //            }
-        //            System.out.println(Utility.hex(dataItem.codepoint) + "\t" + dataItem.value);
-        //            lastSubhead = (String) dataItem.value;
-        //        }
-
-        for (Entry<Integer, Set<String>> dataItem : nl.errors.keyValuesSet()) {
-            final Integer key = dataItem.getKey();
-            final Set<String> values = dataItem.getValue();
-            System.err.println(Utility.hex(key));
-            for (String value : values) {
-                System.err.println("\t" + value);
-            }
-        }
-    }
-
-    public static String showChangedItem(UnicodeMap<String> map, final int keyCodePoint,
-            String lastSubhead) {
-        String subhead = map.get(keyCodePoint);
-        if (!Objects.equal(subhead, lastSubhead)) {
-            if (subhead != null) {
-                System.out.println(subhead);
-            }
-            lastSubhead = subhead;
-        }
-        return lastSubhead;
     }
 }
