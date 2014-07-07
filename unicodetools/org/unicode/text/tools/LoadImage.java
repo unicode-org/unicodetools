@@ -18,9 +18,16 @@ import java.awt.image.WritableRaster;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +51,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.tools.GenerateEmoji.Source;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UTF16;
@@ -87,11 +95,12 @@ public class LoadImage extends Component {
     static String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
     static String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
     public static void main(String[] args) throws IOException {
-        doAnimatedGif(true);
+        doAnimatedGif(false);
         if (true) return;
+        getAppleNumbers();
         UnicodeSet dingbats = canDisplay("Zapf Dingbats");
         System.out.println(dingbats);
-        
+
         UnicodeSet missing = new UnicodeSet("[\u00A9\u00AE\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B50\u2B55\u2E19\u3297\u3299]");
         UnicodeSet missing2 = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
         doSymbola(inputDir, outputDir, "ref", "ref", "Symbola", missing2, 144, true); // "Symbola"
@@ -110,6 +119,58 @@ public class LoadImage extends Component {
             doGitHub(inputDir, outputDir);
             //List<BufferedImage> list = doSymbola(inputDir, outputDir, "Apple Emoji", SYMBOLA, 144); // "Symbola"
             createAnimatedImage(new File(outputDir, "animated-symbola.gif"), list, 1, false);
+        }
+    }
+
+    private static void getAppleNumbers() throws IOException {
+        Set<String> codepointOrder = new TreeSet(new UTF16.StringComparator());
+        UnicodeSet found = new UnicodeSet("[©®🌠🔈🚃🚋🔊🔉{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]")
+        .addAll(Emoji.GITHUB_APPLE_CHARS);
+        for (String s : found) {
+            codepointOrder.add(s);
+        }
+        Set<Integer> skipSet = new HashSet();
+        skipSet.add(129);
+
+        int i = 1;
+        String newDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/AppleEmoji/";
+        final int maxNew = 846;
+        String oldDir = "/Users/markdavis/workspace/unicode-draft/reports/tr51/images/apple/";
+        PrintWriter out = BagFormatter.openUTF8Writer("/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images", "checkApple.html");
+        out.println("<html><body><table>");
+        for (String s : codepointOrder) {
+            while (skipSet.contains(i)) {
+                ++i;
+            }
+            writeAppleLine(out, newDir, i, oldDir, s);
+            ++i;
+        }
+        for (;i <= maxNew; ++i) {
+            writeAppleLine(out, newDir, i, oldDir, "");
+        }
+        out.println("</table></body></html>");
+        out.close();
+    }
+
+    static FileSystem dfs = FileSystems.getDefault();
+
+    public static void writeAppleLine(PrintWriter out, String newDir, int i,
+            String oldDir, String s) throws IOException {
+        final String gitName = newDir + i + ".png";
+        Path oldPath = dfs.getPath(gitName);     
+        final String fixedName = "apple_" + Emoji.buildFileName(s, "_") + ".png";
+
+        Path foo = Files.move(oldPath, oldPath.resolveSibling(fixedName), StandardCopyOption.ATOMIC_MOVE);
+
+        if (false) {
+            out.println("<tr>" +
+                    "<td>" + i + "</td>" +
+                    "<td>" + "<img src='" + gitName + "' >" + "</td>" +
+                    "<td>" + Utility.hex(s) + "</td>" +
+                    "<td>" + (s.isEmpty() ? "" : "<img src='" + oldDir + fixedName +
+                    		"' >") + "</td>" +
+                    "</tr>" 
+                    );
         }
     }
 
@@ -143,7 +204,7 @@ public class LoadImage extends Component {
                 BufferedImage sourceImage = ImageIO.read(file);
                 System.out.println(chars + "\t" + sourceImage.getWidth() + "\t" + sourceImage.getHeight());
                 if (onlySize) continue;
-                BufferedImage targetImage = resizeImage(sourceImage, sourceImage.getHeight(), 72, true);
+                BufferedImage targetImage = resizeImage(sourceImage, sourceImage.getHeight(), 160, true);
                 list.add(targetImage);
             }
         }
@@ -506,7 +567,7 @@ public class LoadImage extends Component {
         WritableRaster raster = bi.copyData(null);
         return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
-    
+
     static UnicodeSet canDisplay(String fontName) {
         Font f = new Font("Zapf Dingbats", 0, 24);
         UnicodeSet result = new UnicodeSet();
