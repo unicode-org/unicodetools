@@ -73,7 +73,7 @@ public class GenerateEmoji {
     private static final String DOC_DATA_FILES = "index.html#Data_Files";
     private static boolean SHOW = false;
     private static final UnicodeSet ASCII_LETTER_HYPHEN = new UnicodeSet('-', '-', 'A', 'Z', 'a', 'z', '’', '’').freeze();
-    private static final UnicodeSet KEYWORD_CHARS = new UnicodeSet(ASCII_LETTER_HYPHEN).add('0','9').add(0x0020).freeze();
+    private static final UnicodeSet KEYWORD_CHARS = new UnicodeSet(ASCII_LETTER_HYPHEN).add('0','9').add(0x0020).add('+').add(':').freeze();
     private static final UnicodeSet EXTRAS = new UnicodeSet(
             "[\\u2714\\u2716\\u303D\\u3030 \\u00A9 \\u00AE \\u2795-\\u2797 \\u27B0 \\U0001F519-\\U0001F51C {🇽🇰}]")
     .add("*"+Emoji.ENCLOSING_KEYCAP)

@@ -87,9 +87,10 @@ public class LoadImage extends Component {
     static String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
     static String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
     public static void main(String[] args) throws IOException {
+        doAnimatedGif(true);
+        if (true) return;
         UnicodeSet dingbats = canDisplay("Zapf Dingbats");
         System.out.println(dingbats);
-        if (true) return;
         
         UnicodeSet missing = new UnicodeSet("[\u00A9\u00AE\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B50\u2B55\u2E19\u3297\u3299]");
         UnicodeSet missing2 = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
@@ -100,7 +101,6 @@ public class LoadImage extends Component {
             UnicodeSet result = checkCanDisplay(new Font("Symbola",0,24));
             System.out.println(result.toPattern(false));
             List<BufferedImage> list;
-            doAnimatedGif();
             UnicodeSet s = new UnicodeSet("[▫◻◼◽◾☀⚪⚫❗⤴⤵⬅⬆⬇⬛⬜⭐⭕〽]");
             list = doSymbola(inputDir, outputDir, null, "android", "AndroidEmoji", s, 144, false); // "Symbola"
             list = doAndroid(inputDir, outputDir);
@@ -132,20 +132,22 @@ public class LoadImage extends Component {
         return result;
     }
 
-    public static void doAnimatedGif(Source... ordering) throws IOException {
+    public static void doAnimatedGif(boolean onlySize, Source... ordering) throws IOException {
         List<BufferedImage> list = new ArrayList();
         for (Entry<String, Set<String>> entry : GenerateEmoji.ORDERING_TO_CHAR.keyValuesSet()) {
             final String key = entry.getKey();
             System.out.println("\t" + key);
             //if (!key.contains("time")) continue;
             for (String chars : entry.getValue()) {
-                System.out.println("\t" + chars);
                 File file = GenerateEmoji.getBestFile(chars, ordering);
                 BufferedImage sourceImage = ImageIO.read(file);
+                System.out.println(chars + "\t" + sourceImage.getWidth() + "\t" + sourceImage.getHeight());
+                if (onlySize) continue;
                 BufferedImage targetImage = resizeImage(sourceImage, sourceImage.getHeight(), 72, true);
                 list.add(targetImage);
             }
         }
+        if (onlySize) return;
         createAnimatedImage(new File(outputDir, "animated-emoji.gif"), list, 100, true);
     }
 
