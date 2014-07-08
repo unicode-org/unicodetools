@@ -1533,3 +1533,10 @@ U+1F6F0	V7.0	emoji		🛰	SATELLITE
 U+1F6F1	V7.0	emoji	transport	🛱	ONCOMING FIRE ENGINE
 U+1F6F2	V7.0	emoji	transport	🛲	DIESEL LOCOMOTIVE
 U+1F6F3	V7.0	emoji	transport	🛳	PASSENGER SHIP
+
+U+1F1E6 U+1F1E8	V6.0	emoji	flags	🇦🇨	flag Ascension Island
+U+1F1E8 U+1F1F5	V6.0	emoji	flags	🇨🇵	flag Clipperton Island
+U+1F1E9 U+1F1EC	V6.0	emoji	flags	🇩🇬	flag Diego Garcia
+U+1F1EA U+1F1E6	V6.0	emoji	flags	🇪🇦	flag Ceuta and Melilla
+U+1F1EE U+1F1E8	V6.0	emoji	flags	🇮🇨	flag Canary Islands
+U+1F1F9 U+1F1E6	V6.0	emoji	flags	🇹🇦	flag Tristan da Cunha
