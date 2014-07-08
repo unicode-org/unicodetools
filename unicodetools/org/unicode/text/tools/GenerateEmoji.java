@@ -1211,6 +1211,9 @@ public class GenerateEmoji {
         final Set<CharSource> setCharSource;
         public VersionData(String s) {
             Data data = Data.STRING_TO_DATA.get(s);
+            if (data == null) {
+                throw new IllegalArgumentException(Utility.hex(s) + " Missing data");
+            }
             this.versionInfo = data.age;
             this.setCharSource = Collections.unmodifiableSet(Data.getCharSources(s));
         }
