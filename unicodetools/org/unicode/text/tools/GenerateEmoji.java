@@ -70,6 +70,7 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmoji {
+    private static final String BREAK = "<br>";
     private static final String DOC_DATA_FILES = "index.html#Data_Files";
     private static boolean SHOW = false;
     private static final UnicodeSet ASCII_LETTER_HYPHEN = new UnicodeSet('-', '-', 'A', 'Z', 'a', 'z', '’', '’').freeze();
@@ -675,7 +676,23 @@ public class GenerateEmoji {
         return type + "/" + type + "_" + core + ".png";
     }
 
+    static final UnicodeMap<Source> BEST_OVERRIDE = new UnicodeMap();
+    static {
+        BEST_OVERRIDE.putAll(new UnicodeSet("[🕐-🕧🚶🏃💃👪👫👬👭🙍🙎🙅🙆🙇🙋🙌🙏]"), Source.android);
+        BEST_OVERRIDE.putAll(new UnicodeSet("[✊-✌ 💅💪👂👃👯" +
+        		"👦 👰 👧  👨  👩  👮  👱  👲  👳 👴  👵  👶  👷  👸  💁  💂 👼" +
+        		"👈👉☝👆👇👊  👋  👌  👍👎 👏  👐]"), Source.twitter);
+        BEST_OVERRIDE.putAll(new UnicodeSet("[💆👯💏💑💇]"), Source.windows);
+        BEST_OVERRIDE.putAll(new UnicodeSet("[💇]"), Source.ref);
+        BEST_OVERRIDE.freeze();
+    }
+    
     public static String getBestImage(String s, Source... doFirst) {
+        Source source0 = BEST_OVERRIDE.get(s);
+        String cell0 = getImage(source0, s);
+        if (cell0 != null) {
+            return cell0;
+        }
         for (Source source : orderedEnum(doFirst)) {
             String cell = getImage(source, s);
             if (cell != null) {
@@ -1505,7 +1522,7 @@ public class GenerateEmoji {
             if (count == 0) {
                 out.print("\n");
             } else if (maxPerLine > 0 && (count % maxPerLine) == 0) {
-                out.print("<br>");
+                out.print(BREAK);
             } else {
                 out.print(" ");
             }
