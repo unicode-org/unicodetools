@@ -1,7 +1,7 @@
 ﻿# Security Profile for General Identifiers
 # File: xidmodifications.txt
 # Version: 7.0.0
-# Generated: 2014-05-25, 06:48:44 GMT
+# Generated: 2014-07-11, 12:55:50 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -409,7 +409,7 @@ FE00..FE0F    ; restricted ; default-ignorable # [16] (U+FE00..U+FE0F)  VARIATIO
 FEFF          ; restricted ; default-ignorable #      (U+FEFF)  ZERO WIDTH NO-BREAK SPACE
 FFA0          ; restricted ; default-ignorable #      (U+FFA0)  HALFWIDTH HANGUL FILLER
 FFF0..FFF8    ; restricted ; default-ignorable #  [9] (U+FFF0..U+FFF8)  <reserved-FFF0>..<reserved-FFF8>
-1BCA0..1BCA3  ; restricted ; default-ignorable #  [4] (𛲠..𛲣)  SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
+1BCA0..1BCA3  ; restricted ; default-ignorable #  [4] (U+1BCA0..U+1BCA3)  SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; restricted ; default-ignorable #  [8] (U+1D173..U+1D17A)  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 E0000         ; restricted ; default-ignorable #      (U+E0000)  <reserved-E0000>
 E0001         ; restricted ; default-ignorable #      (U+E0001)  LANGUAGE TAG
@@ -1057,7 +1057,7 @@ FFE8..FFEE    ; restricted ; not-NFKC          #  [7] (￨..￮)  HALFWIDTH FORM
 05C0          ; restricted ; not-xid           #      (׀)  HEBREW PUNCTUATION PASEQ
 05C3          ; restricted ; not-xid           #      (׃)  HEBREW PUNCTUATION SOF PASUQ
 05C6          ; restricted ; not-xid           #      (׆)  HEBREW PUNCTUATION NUN HAFUKHA
-0600..0605    ; restricted ; not-xid           #  [6] (U+0600..؅)  ARABIC NUMBER SIGN..ARABIC NUMBER MARK ABOVE
+0600..0605    ; restricted ; not-xid           #  [6] (U+0600..U+0605)  ARABIC NUMBER SIGN..ARABIC NUMBER MARK ABOVE
 0606..060F    ; restricted ; not-xid           # [10] (؆..؏)  ARABIC-INDIC CUBE ROOT..ARABIC SIGN MISRA
 061B          ; restricted ; not-xid           #      (؛)  ARABIC SEMICOLON
 061E..061F    ; restricted ; not-xid           #  [2] (؞..؟)  ARABIC TRIPLE DOT PUNCTUATION MARK..ARABIC QUESTION MARK
