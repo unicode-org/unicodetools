@@ -1,7 +1,7 @@
 ﻿# Recommended Identifier Profiles for IDN
 # File: idnchars.txt
 # Version: 7.0.0
-# Generated: 2014-05-25, 06:48:47 GMT
+# Generated: 2014-07-11, 12:55:51 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/

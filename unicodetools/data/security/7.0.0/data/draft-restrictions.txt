@@ -7378,6 +7378,7 @@ E0100..E01EF  ; default-ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR
 0373          ; historic #      (ͳ)  GREEK SMALL LETTER ARCHAIC SAMPI
 0376          ; historic #      (Ͷ)  GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA
 0377          ; historic #      (ͷ)  GREEK SMALL LETTER PAMPHYLIAN DIGAMMA
+037F          ; historic #      (Ϳ)  GREEK CAPITAL LETTER YOT
 03D8          ; historic #      (Ϙ)  GREEK LETTER ARCHAIC KOPPA
 03D9          ; historic #      (ϙ)  GREEK SMALL LETTER ARCHAIC KOPPA
 03DA          ; historic #      (Ϛ)  GREEK LETTER STIGMA
@@ -7432,6 +7433,10 @@ E0100..E01EF  ; default-ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR
 0485          ; historic #      (҅)  COMBINING CYRILLIC DASIA PNEUMATA
 0486          ; historic #      (҆)  COMBINING CYRILLIC PSILI PNEUMATA
 0487          ; historic #      (҇)  COMBINING CYRILLIC POKRYTIE
+052A          ; historic #      (Ԫ)  CYRILLIC CAPITAL LETTER DZZHE
+052B          ; historic #      (ԫ)  CYRILLIC SMALL LETTER DZZHE
+052C          ; historic #      (Ԭ)  CYRILLIC CAPITAL LETTER DCHE
+052D          ; historic #      (ԭ)  CYRILLIC SMALL LETTER DCHE
 0640          ; historic #      (ـ)  ARABIC TATWEEL
 066E          ; historic #      (ٮ)  ARABIC LETTER DOTLESS BEH
 066F          ; historic #      (ٯ)  ARABIC LETTER DOTLESS QAF
@@ -7482,12 +7487,33 @@ E0100..E01EF  ; default-ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR
 082B          ; historic #      (ࠫ)  SAMARITAN VOWEL SIGN O
 082C          ; historic #      (ࠬ)  SAMARITAN VOWEL SIGN SUKUN
 082D          ; historic #      (࠭)  SAMARITAN MARK NEQUDAA
+08AD          ; historic #      (ࢭ)  ARABIC LETTER LOW ALEF
+08AE          ; historic #      (ࢮ)  ARABIC LETTER DAL WITH THREE DOTS BELOW
+08AF          ; historic #      (ࢯ)  ARABIC LETTER SAD WITH THREE DOTS BELOW
+08B0          ; historic #      (ࢰ)  ARABIC LETTER GAF WITH INVERTED STROKE
+08B1          ; historic #      (ࢱ)  ARABIC LETTER STRAIGHT WAW
 094E          ; historic #      (ॎ)  DEVANAGARI VOWEL SIGN PRISHTHAMATRA E
 0951          ; historic #      (॑)  DEVANAGARI STRESS SIGN UDATTA
 0952          ; historic #      (॒)  DEVANAGARI STRESS SIGN ANUDATTA
+0978          ; historic #      (ॸ)  DEVANAGARI LETTER MARWARI DDA
+0980          ; historic #      (ঀ)  BENGALI ANJI
+0C00          ; historic #      (ఀ)  TELUGU SIGN COMBINING CANDRABINDU ABOVE
+0C34          ; historic #      (ఴ)  TELUGU LETTER LLLA
 0C58          ; historic #      (ౘ)  TELUGU LETTER TSA
 0C59          ; historic #      (ౙ)  TELUGU LETTER DZA
+0C81          ; historic #      (ಁ)  KANNADA SIGN CANDRABINDU
 0CDE          ; historic #      (ೞ)  KANNADA LETTER FA
+0D01          ; historic #      (ഁ)  MALAYALAM SIGN CANDRABINDU
+0DE6          ; historic #      (෦)  SINHALA LITH DIGIT ZERO
+0DE7          ; historic #      (෧)  SINHALA LITH DIGIT ONE
+0DE8          ; historic #      (෨)  SINHALA LITH DIGIT TWO
+0DE9          ; historic #      (෩)  SINHALA LITH DIGIT THREE
+0DEA          ; historic #      (෪)  SINHALA LITH DIGIT FOUR
+0DEB          ; historic #      (෫)  SINHALA LITH DIGIT FIVE
+0DEC          ; historic #      (෬)  SINHALA LITH DIGIT SIX
+0DED          ; historic #      (෭)  SINHALA LITH DIGIT SEVEN
+0DEE          ; historic #      (෮)  SINHALA LITH DIGIT EIGHT
+0DEF          ; historic #      (෯)  SINHALA LITH DIGIT NINE
 10F1          ; historic #      (ჱ)  GEORGIAN LETTER HE
 10F2          ; historic #      (ჲ)  GEORGIAN LETTER HIE
 10F3          ; historic #      (ჳ)  GEORGIAN LETTER WE
@@ -7498,7 +7524,7 @@ E0100..E01EF  ; default-ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR
 1161..11FF    ; historic # [159] (ᅡ..ᇿ)  HANGUL JUNGSEONG A..HANGUL JONGSEONG SSANGNIEUN
 1681..169A    ; historic # [26] (ᚁ..ᚚ)  OGHAM LETTER BEITH..OGHAM LETTER PEITH
 16A0..16EA    ; historic # [75] (ᚠ..ᛪ)  RUNIC LETTER FEHU FEOH FE F..RUNIC LETTER X
-16EE..16F0    ; historic #  [3] (ᛮ..ᛰ)  RUNIC ARLAUG SYMBOL..RUNIC BELGTHOR SYMBOL
+16EE..16F8    ; historic # [11] (ᛮ..ᛸ)  RUNIC ARLAUG SYMBOL..RUNIC LETTER FRANKS CASKET AESC
 1700..170C    ; historic # [13] (ᜀ..ᜌ)  TAGALOG LETTER A..TAGALOG LETTER YA
 170E..1714    ; historic #  [7] (ᜎ..᜔)  TAGALOG LETTER LA..TAGALOG SIGN VIRAMA
 1720..1734    ; historic # [21] (ᜠ..᜴)  HANUNOO LETTER A..HANUNOO SIGN PAMUDPOD
@@ -7535,6 +7561,20 @@ E0100..E01EF  ; default-ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR
 1A19          ; historic #      (ᨙ)  BUGINESE VOWEL SIGN E
 1A1A          ; historic #      (ᨚ)  BUGINESE VOWEL SIGN O
 1A1B          ; historic #      (ᨛ)  BUGINESE VOWEL SIGN AE
+1AB0          ; historic #      (᪰)  COMBINING DOUBLED CIRCUMFLEX ACCENT
+1AB1          ; historic #      (᪱)  COMBINING DIAERESIS-RING
+1AB2          ; historic #      (᪲)  COMBINING INFINITY
+1AB3          ; historic #      (᪳)  COMBINING DOWNWARDS ARROW
+1AB4          ; historic #      (᪴)  COMBINING TRIPLE DOT
+1AB5          ; historic #      (᪵)  COMBINING X-X BELOW
+1AB6          ; historic #      (᪶)  COMBINING WIGGLY LINE BELOW
+1AB7          ; historic #      (᪷)  COMBINING OPEN MARK BELOW
+1AB8          ; historic #      (᪸)  COMBINING DOUBLE OPEN MARK BELOW
+1AB9          ; historic #      (᪹)  COMBINING LIGHT CENTRALIZATION STROKE BELOW
+1ABA          ; historic #      (᪺)  COMBINING STRONG CENTRALIZATION STROKE BELOW
+1ABB          ; historic #      (᪻)  COMBINING PARENTHESES ABOVE
+1ABC          ; historic #      (᪼)  COMBINING DOUBLE PARENTHESES ABOVE
+1ABD          ; historic #      (᪽)  COMBINING PARENTHESES BELOW
 1CD0          ; historic #      (᳐)  VEDIC TONE KARSHANA
 1CD1          ; historic #      (᳑)  VEDIC TONE SHARA
 1CD2          ; historic #      (᳒)  VEDIC TONE PRENKHA
@@ -7573,6 +7613,8 @@ E0100..E01EF  ; default-ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR
 1CF4          ; historic #      (᳴)  VEDIC TONE CANDRA ABOVE
 1CF5          ; historic #      (ᳵ)  VEDIC SIGN JIHVAMULIYA
 1CF6          ; historic #      (ᳶ)  VEDIC SIGN UPADHMANIYA
+1CF8          ; historic #      (᳸)  VEDIC TONE RING ABOVE
+1CF9          ; historic #      (᳹)  VEDIC TONE DOUBLE RING ABOVE
 20D0          ; historic #      (⃐)  COMBINING LEFT HARPOON ABOVE
 20D1          ; historic #      (⃑)  COMBINING RIGHT HARPOON ABOVE
 20D2          ; historic #      (⃒)  COMBINING LONG VERTICAL LINE OVERLAY
@@ -7758,6 +7800,10 @@ A694          ; historic #      (Ꚕ)  CYRILLIC CAPITAL LETTER HWE
 A695          ; historic #      (ꚕ)  CYRILLIC SMALL LETTER HWE
 A696          ; historic #      (Ꚗ)  CYRILLIC CAPITAL LETTER SHWE
 A697          ; historic #      (ꚗ)  CYRILLIC SMALL LETTER SHWE
+A698          ; historic #      (Ꚙ)  CYRILLIC CAPITAL LETTER DOUBLE O
+A699          ; historic #      (ꚙ)  CYRILLIC SMALL LETTER DOUBLE O
+A69A          ; historic #      (Ꚛ)  CYRILLIC CAPITAL LETTER CROSSED O
+A69B          ; historic #      (ꚛ)  CYRILLIC SMALL LETTER CROSSED O
 A722          ; historic #      (Ꜣ)  LATIN CAPITAL LETTER EGYPTOLOGICAL ALEF
 A723          ; historic #      (ꜣ)  LATIN SMALL LETTER EGYPTOLOGICAL ALEF
 A724          ; historic #      (Ꜥ)  LATIN CAPITAL LETTER EGYPTOLOGICAL AIN
@@ -7858,6 +7904,21 @@ A784          ; historic #      (Ꞅ)  LATIN CAPITAL LETTER INSULAR S
 A785          ; historic #      (ꞅ)  LATIN SMALL LETTER INSULAR S
 A786          ; historic #      (Ꞇ)  LATIN CAPITAL LETTER INSULAR T
 A787          ; historic #      (ꞇ)  LATIN SMALL LETTER INSULAR T
+A794          ; historic #      (ꞔ)  LATIN SMALL LETTER C WITH PALATAL HOOK
+A795          ; historic #      (ꞕ)  LATIN SMALL LETTER H WITH PALATAL HOOK
+A796          ; historic #      (Ꞗ)  LATIN CAPITAL LETTER B WITH FLOURISH
+A797          ; historic #      (ꞗ)  LATIN SMALL LETTER B WITH FLOURISH
+A798          ; historic #      (Ꞙ)  LATIN CAPITAL LETTER F WITH STROKE
+A799          ; historic #      (ꞙ)  LATIN SMALL LETTER F WITH STROKE
+A79A          ; historic #      (Ꞛ)  LATIN CAPITAL LETTER VOLAPUK AE
+A79B          ; historic #      (ꞛ)  LATIN SMALL LETTER VOLAPUK AE
+A79C          ; historic #      (Ꞝ)  LATIN CAPITAL LETTER VOLAPUK OE
+A79D          ; historic #      (ꞝ)  LATIN SMALL LETTER VOLAPUK OE
+A79E          ; historic #      (Ꞟ)  LATIN CAPITAL LETTER VOLAPUK UE
+A79F          ; historic #      (ꞟ)  LATIN SMALL LETTER VOLAPUK UE
+A7AB..A7AD    ; historic #  [3] (Ɜ..Ɬ)  LATIN CAPITAL LETTER REVERSED OPEN E..LATIN CAPITAL LETTER L WITH BELT
+A7B0..A7B1    ; historic #  [2] (Ʞ..Ʇ)  LATIN CAPITAL LETTER TURNED K..LATIN CAPITAL LETTER TURNED T
+A7F7          ; historic #      (ꟷ)  LATIN EPIGRAPHIC LETTER SIDEWAYS I
 A7FB          ; historic #      (ꟻ)  LATIN EPIGRAPHIC LETTER REVERSED F
 A7FC          ; historic #      (ꟼ)  LATIN EPIGRAPHIC LETTER REVERSED P
 A7FD          ; historic #      (ꟽ)  LATIN EPIGRAPHIC LETTER INVERTED M
@@ -8005,6 +8066,58 @@ A979          ; historic #      (ꥹ)  HANGUL CHOSEONG SSANGTHIEUTH
 A97A          ; historic #      (ꥺ)  HANGUL CHOSEONG PHIEUPH-HIEUH
 A97B          ; historic #      (ꥻ)  HANGUL CHOSEONG HIEUH-SIOS
 A97C          ; historic #      (ꥼ)  HANGUL CHOSEONG SSANGYEORINHIEUH
+A9E0          ; historic #      (ꧠ)  MYANMAR LETTER SHAN GHA
+A9E1          ; historic #      (ꧡ)  MYANMAR LETTER SHAN CHA
+A9E2          ; historic #      (ꧢ)  MYANMAR LETTER SHAN JHA
+A9E3          ; historic #      (ꧣ)  MYANMAR LETTER SHAN NNA
+A9E4          ; historic #      (ꧤ)  MYANMAR LETTER SHAN BHA
+A9E5          ; historic #      (ꧥ)  MYANMAR SIGN SHAN SAW
+A9E6          ; historic #      (ꧦ)  MYANMAR MODIFIER LETTER SHAN REDUPLICATION
+AB30          ; historic #      (ꬰ)  LATIN SMALL LETTER BARRED ALPHA
+AB31          ; historic #      (ꬱ)  LATIN SMALL LETTER A REVERSED-SCHWA
+AB32          ; historic #      (ꬲ)  LATIN SMALL LETTER BLACKLETTER E
+AB33          ; historic #      (ꬳ)  LATIN SMALL LETTER BARRED E
+AB34          ; historic #      (ꬴ)  LATIN SMALL LETTER E WITH FLOURISH
+AB35          ; historic #      (ꬵ)  LATIN SMALL LETTER LENIS F
+AB36          ; historic #      (ꬶ)  LATIN SMALL LETTER SCRIPT G WITH CROSSED-TAIL
+AB37          ; historic #      (ꬷ)  LATIN SMALL LETTER L WITH INVERTED LAZY S
+AB38          ; historic #      (ꬸ)  LATIN SMALL LETTER L WITH DOUBLE MIDDLE TILDE
+AB39          ; historic #      (ꬹ)  LATIN SMALL LETTER L WITH MIDDLE RING
+AB3A          ; historic #      (ꬺ)  LATIN SMALL LETTER M WITH CROSSED-TAIL
+AB3B          ; historic #      (ꬻ)  LATIN SMALL LETTER N WITH CROSSED-TAIL
+AB3C          ; historic #      (ꬼ)  LATIN SMALL LETTER ENG WITH CROSSED-TAIL
+AB3D          ; historic #      (ꬽ)  LATIN SMALL LETTER BLACKLETTER O
+AB3E          ; historic #      (ꬾ)  LATIN SMALL LETTER BLACKLETTER O WITH STROKE
+AB3F          ; historic #      (ꬿ)  LATIN SMALL LETTER OPEN O WITH STROKE
+AB40          ; historic #      (ꭀ)  LATIN SMALL LETTER INVERTED OE
+AB41          ; historic #      (ꭁ)  LATIN SMALL LETTER TURNED OE WITH STROKE
+AB42          ; historic #      (ꭂ)  LATIN SMALL LETTER TURNED OE WITH HORIZONTAL STROKE
+AB43          ; historic #      (ꭃ)  LATIN SMALL LETTER TURNED O OPEN-O
+AB44          ; historic #      (ꭄ)  LATIN SMALL LETTER TURNED O OPEN-O WITH STROKE
+AB45          ; historic #      (ꭅ)  LATIN SMALL LETTER STIRRUP R
+AB46          ; historic #      (ꭆ)  LATIN LETTER SMALL CAPITAL R WITH RIGHT LEG
+AB47          ; historic #      (ꭇ)  LATIN SMALL LETTER R WITHOUT HANDLE
+AB48          ; historic #      (ꭈ)  LATIN SMALL LETTER DOUBLE R
+AB49          ; historic #      (ꭉ)  LATIN SMALL LETTER R WITH CROSSED-TAIL
+AB4A          ; historic #      (ꭊ)  LATIN SMALL LETTER DOUBLE R WITH CROSSED-TAIL
+AB4B          ; historic #      (ꭋ)  LATIN SMALL LETTER SCRIPT R
+AB4C          ; historic #      (ꭌ)  LATIN SMALL LETTER SCRIPT R WITH RING
+AB4D          ; historic #      (ꭍ)  LATIN SMALL LETTER BASELINE ESH
+AB4E          ; historic #      (ꭎ)  LATIN SMALL LETTER U WITH SHORT RIGHT LEG
+AB4F          ; historic #      (ꭏ)  LATIN SMALL LETTER U BAR WITH SHORT RIGHT LEG
+AB50          ; historic #      (ꭐ)  LATIN SMALL LETTER UI
+AB51          ; historic #      (ꭑ)  LATIN SMALL LETTER TURNED UI
+AB52          ; historic #      (ꭒ)  LATIN SMALL LETTER U WITH LEFT HOOK
+AB53          ; historic #      (ꭓ)  LATIN SMALL LETTER CHI
+AB54          ; historic #      (ꭔ)  LATIN SMALL LETTER CHI WITH LOW RIGHT RING
+AB55          ; historic #      (ꭕ)  LATIN SMALL LETTER CHI WITH LOW LEFT SERIF
+AB56          ; historic #      (ꭖ)  LATIN SMALL LETTER X WITH LOW RIGHT RING
+AB57          ; historic #      (ꭗ)  LATIN SMALL LETTER X WITH LONG LEFT LEG
+AB58          ; historic #      (ꭘ)  LATIN SMALL LETTER X WITH LONG LEFT LEG AND LOW RIGHT RING
+AB59          ; historic #      (ꭙ)  LATIN SMALL LETTER X WITH LONG LEFT LEG WITH SERIF
+AB5A          ; historic #      (ꭚ)  LATIN SMALL LETTER Y WITH SHORT RIGHT LEG
+AB64          ; historic #      (ꭤ)  LATIN SMALL LETTER INVERTED ALPHA
+AB65          ; historic #      (ꭥ)  GREEK LETTER SMALL CAPITAL OMEGA
 D7B0          ; historic #      (ힰ)  HANGUL JUNGSEONG O-YEO
 D7B1          ; historic #      (ힱ)  HANGUL JUNGSEONG O-O-I
 D7B2          ; historic #      (ힲ)  HANGUL JUNGSEONG YO-A
@@ -8164,14 +8277,491 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 102CE         ; historic #      (𐋎)  CARIAN LETTER LD2
 102CF         ; historic #      (𐋏)  CARIAN LETTER E2
 102D0         ; historic #      (𐋐)  CARIAN LETTER UUU3
-10300..1031E  ; historic # [31] (𐌀..𐌞)  OLD ITALIC LETTER A..OLD ITALIC LETTER UU
+102E0         ; historic #      (𐋠)  COPTIC EPACT THOUSANDS MARK
+10300..1031F  ; historic # [32] (𐌀..𐌟)  OLD ITALIC LETTER A..OLD ITALIC LETTER ESS
 10330..1034A  ; historic # [27] (𐌰..𐍊)  GOTHIC LETTER AHSA..GOTHIC LETTER NINE HUNDRED
+10350         ; historic #      (𐍐)  OLD PERMIC LETTER AN
+10351         ; historic #      (𐍑)  OLD PERMIC LETTER BUR
+10352         ; historic #      (𐍒)  OLD PERMIC LETTER GAI
+10353         ; historic #      (𐍓)  OLD PERMIC LETTER DOI
+10354         ; historic #      (𐍔)  OLD PERMIC LETTER E
+10355         ; historic #      (𐍕)  OLD PERMIC LETTER ZHOI
+10356         ; historic #      (𐍖)  OLD PERMIC LETTER DZHOI
+10357         ; historic #      (𐍗)  OLD PERMIC LETTER ZATA
+10358         ; historic #      (𐍘)  OLD PERMIC LETTER DZITA
+10359         ; historic #      (𐍙)  OLD PERMIC LETTER I
+1035A         ; historic #      (𐍚)  OLD PERMIC LETTER KOKE
+1035B         ; historic #      (𐍛)  OLD PERMIC LETTER LEI
+1035C         ; historic #      (𐍜)  OLD PERMIC LETTER MENOE
+1035D         ; historic #      (𐍝)  OLD PERMIC LETTER NENOE
+1035E         ; historic #      (𐍞)  OLD PERMIC LETTER VOOI
+1035F         ; historic #      (𐍟)  OLD PERMIC LETTER PEEI
+10360         ; historic #      (𐍠)  OLD PERMIC LETTER REI
+10361         ; historic #      (𐍡)  OLD PERMIC LETTER SII
+10362         ; historic #      (𐍢)  OLD PERMIC LETTER TAI
+10363         ; historic #      (𐍣)  OLD PERMIC LETTER U
+10364         ; historic #      (𐍤)  OLD PERMIC LETTER CHERY
+10365         ; historic #      (𐍥)  OLD PERMIC LETTER SHOOI
+10366         ; historic #      (𐍦)  OLD PERMIC LETTER SHCHOOI
+10367         ; historic #      (𐍧)  OLD PERMIC LETTER YRY
+10368         ; historic #      (𐍨)  OLD PERMIC LETTER YERU
+10369         ; historic #      (𐍩)  OLD PERMIC LETTER O
+1036A         ; historic #      (𐍪)  OLD PERMIC LETTER OO
+1036B         ; historic #      (𐍫)  OLD PERMIC LETTER EF
+1036C         ; historic #      (𐍬)  OLD PERMIC LETTER HA
+1036D         ; historic #      (𐍭)  OLD PERMIC LETTER TSIU
+1036E         ; historic #      (𐍮)  OLD PERMIC LETTER VER
+1036F         ; historic #      (𐍯)  OLD PERMIC LETTER YER
+10370         ; historic #      (𐍰)  OLD PERMIC LETTER YERI
+10371         ; historic #      (𐍱)  OLD PERMIC LETTER YAT
+10372         ; historic #      (𐍲)  OLD PERMIC LETTER IE
+10373         ; historic #      (𐍳)  OLD PERMIC LETTER YU
+10374         ; historic #      (𐍴)  OLD PERMIC LETTER YA
+10375         ; historic #      (𐍵)  OLD PERMIC LETTER IA
+10376         ; historic #      (𐍶)  COMBINING OLD PERMIC LETTER AN
+10377         ; historic #      (𐍷)  COMBINING OLD PERMIC LETTER DOI
+10378         ; historic #      (𐍸)  COMBINING OLD PERMIC LETTER ZATA
+10379         ; historic #      (𐍹)  COMBINING OLD PERMIC LETTER NENOE
+1037A         ; historic #      (𐍺)  COMBINING OLD PERMIC LETTER SII
 10380..1039D  ; historic # [30] (𐎀..𐎝)  UGARITIC LETTER ALPA..UGARITIC LETTER SSU
 103A0..103C3  ; historic # [36] (𐎠..𐏃)  OLD PERSIAN SIGN A..OLD PERSIAN SIGN HA
 103C8..103CF  ; historic #  [8] (𐏈..𐏏)  OLD PERSIAN SIGN AURAMAZDAA..OLD PERSIAN SIGN BUUMISH
 103D1..103D5  ; historic #  [5] (𐏑..𐏕)  OLD PERSIAN NUMBER ONE..OLD PERSIAN NUMBER HUNDRED
 10400..1049D  ; historic # [158] (𐐀..𐒝)  DESERET CAPITAL LETTER LONG I..OSMANYA LETTER OO
 104A0..104A9  ; historic # [10] (𐒠..𐒩)  OSMANYA DIGIT ZERO..OSMANYA DIGIT NINE
+10500         ; historic #      (𐔀)  ELBASAN LETTER A
+10501         ; historic #      (𐔁)  ELBASAN LETTER BE
+10502         ; historic #      (𐔂)  ELBASAN LETTER CE
+10503         ; historic #      (𐔃)  ELBASAN LETTER CHE
+10504         ; historic #      (𐔄)  ELBASAN LETTER DE
+10505         ; historic #      (𐔅)  ELBASAN LETTER NDE
+10506         ; historic #      (𐔆)  ELBASAN LETTER DHE
+10507         ; historic #      (𐔇)  ELBASAN LETTER EI
+10508         ; historic #      (𐔈)  ELBASAN LETTER E
+10509         ; historic #      (𐔉)  ELBASAN LETTER FE
+1050A         ; historic #      (𐔊)  ELBASAN LETTER GE
+1050B         ; historic #      (𐔋)  ELBASAN LETTER GJE
+1050C         ; historic #      (𐔌)  ELBASAN LETTER HE
+1050D         ; historic #      (𐔍)  ELBASAN LETTER I
+1050E         ; historic #      (𐔎)  ELBASAN LETTER JE
+1050F         ; historic #      (𐔏)  ELBASAN LETTER KE
+10510         ; historic #      (𐔐)  ELBASAN LETTER LE
+10511         ; historic #      (𐔑)  ELBASAN LETTER LLE
+10512         ; historic #      (𐔒)  ELBASAN LETTER ME
+10513         ; historic #      (𐔓)  ELBASAN LETTER NE
+10514         ; historic #      (𐔔)  ELBASAN LETTER NA
+10515         ; historic #      (𐔕)  ELBASAN LETTER NJE
+10516         ; historic #      (𐔖)  ELBASAN LETTER O
+10517         ; historic #      (𐔗)  ELBASAN LETTER PE
+10518         ; historic #      (𐔘)  ELBASAN LETTER QE
+10519         ; historic #      (𐔙)  ELBASAN LETTER RE
+1051A         ; historic #      (𐔚)  ELBASAN LETTER RRE
+1051B         ; historic #      (𐔛)  ELBASAN LETTER SE
+1051C         ; historic #      (𐔜)  ELBASAN LETTER SHE
+1051D         ; historic #      (𐔝)  ELBASAN LETTER TE
+1051E         ; historic #      (𐔞)  ELBASAN LETTER THE
+1051F         ; historic #      (𐔟)  ELBASAN LETTER U
+10520         ; historic #      (𐔠)  ELBASAN LETTER VE
+10521         ; historic #      (𐔡)  ELBASAN LETTER XE
+10522         ; historic #      (𐔢)  ELBASAN LETTER Y
+10523         ; historic #      (𐔣)  ELBASAN LETTER ZE
+10524         ; historic #      (𐔤)  ELBASAN LETTER ZHE
+10525         ; historic #      (𐔥)  ELBASAN LETTER GHE
+10526         ; historic #      (𐔦)  ELBASAN LETTER GHAMMA
+10527         ; historic #      (𐔧)  ELBASAN LETTER KHE
+10530         ; historic #      (𐔰)  CAUCASIAN ALBANIAN LETTER ALT
+10531         ; historic #      (𐔱)  CAUCASIAN ALBANIAN LETTER BET
+10532         ; historic #      (𐔲)  CAUCASIAN ALBANIAN LETTER GIM
+10533         ; historic #      (𐔳)  CAUCASIAN ALBANIAN LETTER DAT
+10534         ; historic #      (𐔴)  CAUCASIAN ALBANIAN LETTER EB
+10535         ; historic #      (𐔵)  CAUCASIAN ALBANIAN LETTER ZARL
+10536         ; historic #      (𐔶)  CAUCASIAN ALBANIAN LETTER EYN
+10537         ; historic #      (𐔷)  CAUCASIAN ALBANIAN LETTER ZHIL
+10538         ; historic #      (𐔸)  CAUCASIAN ALBANIAN LETTER TAS
+10539         ; historic #      (𐔹)  CAUCASIAN ALBANIAN LETTER CHA
+1053A         ; historic #      (𐔺)  CAUCASIAN ALBANIAN LETTER YOWD
+1053B         ; historic #      (𐔻)  CAUCASIAN ALBANIAN LETTER ZHA
+1053C         ; historic #      (𐔼)  CAUCASIAN ALBANIAN LETTER IRB
+1053D         ; historic #      (𐔽)  CAUCASIAN ALBANIAN LETTER SHA
+1053E         ; historic #      (𐔾)  CAUCASIAN ALBANIAN LETTER LAN
+1053F         ; historic #      (𐔿)  CAUCASIAN ALBANIAN LETTER INYA
+10540         ; historic #      (𐕀)  CAUCASIAN ALBANIAN LETTER XEYN
+10541         ; historic #      (𐕁)  CAUCASIAN ALBANIAN LETTER DYAN
+10542         ; historic #      (𐕂)  CAUCASIAN ALBANIAN LETTER CAR
+10543         ; historic #      (𐕃)  CAUCASIAN ALBANIAN LETTER JHOX
+10544         ; historic #      (𐕄)  CAUCASIAN ALBANIAN LETTER KAR
+10545         ; historic #      (𐕅)  CAUCASIAN ALBANIAN LETTER LYIT
+10546         ; historic #      (𐕆)  CAUCASIAN ALBANIAN LETTER HEYT
+10547         ; historic #      (𐕇)  CAUCASIAN ALBANIAN LETTER QAY
+10548         ; historic #      (𐕈)  CAUCASIAN ALBANIAN LETTER AOR
+10549         ; historic #      (𐕉)  CAUCASIAN ALBANIAN LETTER CHOY
+1054A         ; historic #      (𐕊)  CAUCASIAN ALBANIAN LETTER CHI
+1054B         ; historic #      (𐕋)  CAUCASIAN ALBANIAN LETTER CYAY
+1054C         ; historic #      (𐕌)  CAUCASIAN ALBANIAN LETTER MAQ
+1054D         ; historic #      (𐕍)  CAUCASIAN ALBANIAN LETTER QAR
+1054E         ; historic #      (𐕎)  CAUCASIAN ALBANIAN LETTER NOWC
+1054F         ; historic #      (𐕏)  CAUCASIAN ALBANIAN LETTER DZYAY
+10550         ; historic #      (𐕐)  CAUCASIAN ALBANIAN LETTER SHAK
+10551         ; historic #      (𐕑)  CAUCASIAN ALBANIAN LETTER JAYN
+10552         ; historic #      (𐕒)  CAUCASIAN ALBANIAN LETTER ON
+10553         ; historic #      (𐕓)  CAUCASIAN ALBANIAN LETTER TYAY
+10554         ; historic #      (𐕔)  CAUCASIAN ALBANIAN LETTER FAM
+10555         ; historic #      (𐕕)  CAUCASIAN ALBANIAN LETTER DZAY
+10556         ; historic #      (𐕖)  CAUCASIAN ALBANIAN LETTER CHAT
+10557         ; historic #      (𐕗)  CAUCASIAN ALBANIAN LETTER PEN
+10558         ; historic #      (𐕘)  CAUCASIAN ALBANIAN LETTER GHEYS
+10559         ; historic #      (𐕙)  CAUCASIAN ALBANIAN LETTER RAT
+1055A         ; historic #      (𐕚)  CAUCASIAN ALBANIAN LETTER SEYK
+1055B         ; historic #      (𐕛)  CAUCASIAN ALBANIAN LETTER VEYZ
+1055C         ; historic #      (𐕜)  CAUCASIAN ALBANIAN LETTER TIWR
+1055D         ; historic #      (𐕝)  CAUCASIAN ALBANIAN LETTER SHOY
+1055E         ; historic #      (𐕞)  CAUCASIAN ALBANIAN LETTER IWN
+1055F         ; historic #      (𐕟)  CAUCASIAN ALBANIAN LETTER CYAW
+10560         ; historic #      (𐕠)  CAUCASIAN ALBANIAN LETTER CAYN
+10561         ; historic #      (𐕡)  CAUCASIAN ALBANIAN LETTER YAYD
+10562         ; historic #      (𐕢)  CAUCASIAN ALBANIAN LETTER PIWR
+10563         ; historic #      (𐕣)  CAUCASIAN ALBANIAN LETTER KIW
+10600         ; historic #      (𐘀)  LINEAR A SIGN AB001
+10601         ; historic #      (𐘁)  LINEAR A SIGN AB002
+10602         ; historic #      (𐘂)  LINEAR A SIGN AB003
+10603         ; historic #      (𐘃)  LINEAR A SIGN AB004
+10604         ; historic #      (𐘄)  LINEAR A SIGN AB005
+10605         ; historic #      (𐘅)  LINEAR A SIGN AB006
+10606         ; historic #      (𐘆)  LINEAR A SIGN AB007
+10607         ; historic #      (𐘇)  LINEAR A SIGN AB008
+10608         ; historic #      (𐘈)  LINEAR A SIGN AB009
+10609         ; historic #      (𐘉)  LINEAR A SIGN AB010
+1060A         ; historic #      (𐘊)  LINEAR A SIGN AB011
+1060B         ; historic #      (𐘋)  LINEAR A SIGN AB013
+1060C         ; historic #      (𐘌)  LINEAR A SIGN AB016
+1060D         ; historic #      (𐘍)  LINEAR A SIGN AB017
+1060E         ; historic #      (𐘎)  LINEAR A SIGN AB020
+1060F         ; historic #      (𐘏)  LINEAR A SIGN AB021
+10610         ; historic #      (𐘐)  LINEAR A SIGN AB021F
+10611         ; historic #      (𐘑)  LINEAR A SIGN AB021M
+10612         ; historic #      (𐘒)  LINEAR A SIGN AB022
+10613         ; historic #      (𐘓)  LINEAR A SIGN AB022F
+10614         ; historic #      (𐘔)  LINEAR A SIGN AB022M
+10615         ; historic #      (𐘕)  LINEAR A SIGN AB023
+10616         ; historic #      (𐘖)  LINEAR A SIGN AB023M
+10617         ; historic #      (𐘗)  LINEAR A SIGN AB024
+10618         ; historic #      (𐘘)  LINEAR A SIGN AB026
+10619         ; historic #      (𐘙)  LINEAR A SIGN AB027
+1061A         ; historic #      (𐘚)  LINEAR A SIGN AB028
+1061B         ; historic #      (𐘛)  LINEAR A SIGN A028B
+1061C         ; historic #      (𐘜)  LINEAR A SIGN AB029
+1061D         ; historic #      (𐘝)  LINEAR A SIGN AB030
+1061E         ; historic #      (𐘞)  LINEAR A SIGN AB031
+1061F         ; historic #      (𐘟)  LINEAR A SIGN AB034
+10620         ; historic #      (𐘠)  LINEAR A SIGN AB037
+10621         ; historic #      (𐘡)  LINEAR A SIGN AB038
+10622         ; historic #      (𐘢)  LINEAR A SIGN AB039
+10623         ; historic #      (𐘣)  LINEAR A SIGN AB040
+10624         ; historic #      (𐘤)  LINEAR A SIGN AB041
+10625         ; historic #      (𐘥)  LINEAR A SIGN AB044
+10626         ; historic #      (𐘦)  LINEAR A SIGN AB045
+10627         ; historic #      (𐘧)  LINEAR A SIGN AB046
+10628         ; historic #      (𐘨)  LINEAR A SIGN AB047
+10629         ; historic #      (𐘩)  LINEAR A SIGN AB048
+1062A         ; historic #      (𐘪)  LINEAR A SIGN AB049
+1062B         ; historic #      (𐘫)  LINEAR A SIGN AB050
+1062C         ; historic #      (𐘬)  LINEAR A SIGN AB051
+1062D         ; historic #      (𐘭)  LINEAR A SIGN AB053
+1062E         ; historic #      (𐘮)  LINEAR A SIGN AB054
+1062F         ; historic #      (𐘯)  LINEAR A SIGN AB055
+10630         ; historic #      (𐘰)  LINEAR A SIGN AB056
+10631         ; historic #      (𐘱)  LINEAR A SIGN AB057
+10632         ; historic #      (𐘲)  LINEAR A SIGN AB058
+10633         ; historic #      (𐘳)  LINEAR A SIGN AB059
+10634         ; historic #      (𐘴)  LINEAR A SIGN AB060
+10635         ; historic #      (𐘵)  LINEAR A SIGN AB061
+10636         ; historic #      (𐘶)  LINEAR A SIGN AB065
+10637         ; historic #      (𐘷)  LINEAR A SIGN AB066
+10638         ; historic #      (𐘸)  LINEAR A SIGN AB067
+10639         ; historic #      (𐘹)  LINEAR A SIGN AB069
+1063A         ; historic #      (𐘺)  LINEAR A SIGN AB070
+1063B         ; historic #      (𐘻)  LINEAR A SIGN AB073
+1063C         ; historic #      (𐘼)  LINEAR A SIGN AB074
+1063D         ; historic #      (𐘽)  LINEAR A SIGN AB076
+1063E         ; historic #      (𐘾)  LINEAR A SIGN AB077
+1063F         ; historic #      (𐘿)  LINEAR A SIGN AB078
+10640         ; historic #      (𐙀)  LINEAR A SIGN AB079
+10641         ; historic #      (𐙁)  LINEAR A SIGN AB080
+10642         ; historic #      (𐙂)  LINEAR A SIGN AB081
+10643         ; historic #      (𐙃)  LINEAR A SIGN AB082
+10644         ; historic #      (𐙄)  LINEAR A SIGN AB085
+10645         ; historic #      (𐙅)  LINEAR A SIGN AB086
+10646         ; historic #      (𐙆)  LINEAR A SIGN AB087
+10647         ; historic #      (𐙇)  LINEAR A SIGN A100-102
+10648         ; historic #      (𐙈)  LINEAR A SIGN AB118
+10649         ; historic #      (𐙉)  LINEAR A SIGN AB120
+1064A         ; historic #      (𐙊)  LINEAR A SIGN A120B
+1064B         ; historic #      (𐙋)  LINEAR A SIGN AB122
+1064C         ; historic #      (𐙌)  LINEAR A SIGN AB123
+1064D         ; historic #      (𐙍)  LINEAR A SIGN AB131A
+1064E         ; historic #      (𐙎)  LINEAR A SIGN AB131B
+1064F         ; historic #      (𐙏)  LINEAR A SIGN A131C
+10650         ; historic #      (𐙐)  LINEAR A SIGN AB164
+10651         ; historic #      (𐙑)  LINEAR A SIGN AB171
+10652         ; historic #      (𐙒)  LINEAR A SIGN AB180
+10653         ; historic #      (𐙓)  LINEAR A SIGN AB188
+10654         ; historic #      (𐙔)  LINEAR A SIGN AB191
+10655         ; historic #      (𐙕)  LINEAR A SIGN A301
+10656         ; historic #      (𐙖)  LINEAR A SIGN A302
+10657         ; historic #      (𐙗)  LINEAR A SIGN A303
+10658         ; historic #      (𐙘)  LINEAR A SIGN A304
+10659         ; historic #      (𐙙)  LINEAR A SIGN A305
+1065A         ; historic #      (𐙚)  LINEAR A SIGN A306
+1065B         ; historic #      (𐙛)  LINEAR A SIGN A307
+1065C         ; historic #      (𐙜)  LINEAR A SIGN A308
+1065D         ; historic #      (𐙝)  LINEAR A SIGN A309A
+1065E         ; historic #      (𐙞)  LINEAR A SIGN A309B
+1065F         ; historic #      (𐙟)  LINEAR A SIGN A309C
+10660         ; historic #      (𐙠)  LINEAR A SIGN A310
+10661         ; historic #      (𐙡)  LINEAR A SIGN A311
+10662         ; historic #      (𐙢)  LINEAR A SIGN A312
+10663         ; historic #      (𐙣)  LINEAR A SIGN A313A
+10664         ; historic #      (𐙤)  LINEAR A SIGN A313B
+10665         ; historic #      (𐙥)  LINEAR A SIGN A313C
+10666         ; historic #      (𐙦)  LINEAR A SIGN A314
+10667         ; historic #      (𐙧)  LINEAR A SIGN A315
+10668         ; historic #      (𐙨)  LINEAR A SIGN A316
+10669         ; historic #      (𐙩)  LINEAR A SIGN A317
+1066A         ; historic #      (𐙪)  LINEAR A SIGN A318
+1066B         ; historic #      (𐙫)  LINEAR A SIGN A319
+1066C         ; historic #      (𐙬)  LINEAR A SIGN A320
+1066D         ; historic #      (𐙭)  LINEAR A SIGN A321
+1066E         ; historic #      (𐙮)  LINEAR A SIGN A322
+1066F         ; historic #      (𐙯)  LINEAR A SIGN A323
+10670         ; historic #      (𐙰)  LINEAR A SIGN A324
+10671         ; historic #      (𐙱)  LINEAR A SIGN A325
+10672         ; historic #      (𐙲)  LINEAR A SIGN A326
+10673         ; historic #      (𐙳)  LINEAR A SIGN A327
+10674         ; historic #      (𐙴)  LINEAR A SIGN A328
+10675         ; historic #      (𐙵)  LINEAR A SIGN A329
+10676         ; historic #      (𐙶)  LINEAR A SIGN A330
+10677         ; historic #      (𐙷)  LINEAR A SIGN A331
+10678         ; historic #      (𐙸)  LINEAR A SIGN A332
+10679         ; historic #      (𐙹)  LINEAR A SIGN A333
+1067A         ; historic #      (𐙺)  LINEAR A SIGN A334
+1067B         ; historic #      (𐙻)  LINEAR A SIGN A335
+1067C         ; historic #      (𐙼)  LINEAR A SIGN A336
+1067D         ; historic #      (𐙽)  LINEAR A SIGN A337
+1067E         ; historic #      (𐙾)  LINEAR A SIGN A338
+1067F         ; historic #      (𐙿)  LINEAR A SIGN A339
+10680         ; historic #      (𐚀)  LINEAR A SIGN A340
+10681         ; historic #      (𐚁)  LINEAR A SIGN A341
+10682         ; historic #      (𐚂)  LINEAR A SIGN A342
+10683         ; historic #      (𐚃)  LINEAR A SIGN A343
+10684         ; historic #      (𐚄)  LINEAR A SIGN A344
+10685         ; historic #      (𐚅)  LINEAR A SIGN A345
+10686         ; historic #      (𐚆)  LINEAR A SIGN A346
+10687         ; historic #      (𐚇)  LINEAR A SIGN A347
+10688         ; historic #      (𐚈)  LINEAR A SIGN A348
+10689         ; historic #      (𐚉)  LINEAR A SIGN A349
+1068A         ; historic #      (𐚊)  LINEAR A SIGN A350
+1068B         ; historic #      (𐚋)  LINEAR A SIGN A351
+1068C         ; historic #      (𐚌)  LINEAR A SIGN A352
+1068D         ; historic #      (𐚍)  LINEAR A SIGN A353
+1068E         ; historic #      (𐚎)  LINEAR A SIGN A354
+1068F         ; historic #      (𐚏)  LINEAR A SIGN A355
+10690         ; historic #      (𐚐)  LINEAR A SIGN A356
+10691         ; historic #      (𐚑)  LINEAR A SIGN A357
+10692         ; historic #      (𐚒)  LINEAR A SIGN A358
+10693         ; historic #      (𐚓)  LINEAR A SIGN A359
+10694         ; historic #      (𐚔)  LINEAR A SIGN A360
+10695         ; historic #      (𐚕)  LINEAR A SIGN A361
+10696         ; historic #      (𐚖)  LINEAR A SIGN A362
+10697         ; historic #      (𐚗)  LINEAR A SIGN A363
+10698         ; historic #      (𐚘)  LINEAR A SIGN A364
+10699         ; historic #      (𐚙)  LINEAR A SIGN A365
+1069A         ; historic #      (𐚚)  LINEAR A SIGN A366
+1069B         ; historic #      (𐚛)  LINEAR A SIGN A367
+1069C         ; historic #      (𐚜)  LINEAR A SIGN A368
+1069D         ; historic #      (𐚝)  LINEAR A SIGN A369
+1069E         ; historic #      (𐚞)  LINEAR A SIGN A370
+1069F         ; historic #      (𐚟)  LINEAR A SIGN A371
+106A0         ; historic #      (𐚠)  LINEAR A SIGN A400-VAS
+106A1         ; historic #      (𐚡)  LINEAR A SIGN A401-VAS
+106A2         ; historic #      (𐚢)  LINEAR A SIGN A402-VAS
+106A3         ; historic #      (𐚣)  LINEAR A SIGN A403-VAS
+106A4         ; historic #      (𐚤)  LINEAR A SIGN A404-VAS
+106A5         ; historic #      (𐚥)  LINEAR A SIGN A405-VAS
+106A6         ; historic #      (𐚦)  LINEAR A SIGN A406-VAS
+106A7         ; historic #      (𐚧)  LINEAR A SIGN A407-VAS
+106A8         ; historic #      (𐚨)  LINEAR A SIGN A408-VAS
+106A9         ; historic #      (𐚩)  LINEAR A SIGN A409-VAS
+106AA         ; historic #      (𐚪)  LINEAR A SIGN A410-VAS
+106AB         ; historic #      (𐚫)  LINEAR A SIGN A411-VAS
+106AC         ; historic #      (𐚬)  LINEAR A SIGN A412-VAS
+106AD         ; historic #      (𐚭)  LINEAR A SIGN A413-VAS
+106AE         ; historic #      (𐚮)  LINEAR A SIGN A414-VAS
+106AF         ; historic #      (𐚯)  LINEAR A SIGN A415-VAS
+106B0         ; historic #      (𐚰)  LINEAR A SIGN A416-VAS
+106B1         ; historic #      (𐚱)  LINEAR A SIGN A417-VAS
+106B2         ; historic #      (𐚲)  LINEAR A SIGN A418-VAS
+106B3         ; historic #      (𐚳)  LINEAR A SIGN A501
+106B4         ; historic #      (𐚴)  LINEAR A SIGN A502
+106B5         ; historic #      (𐚵)  LINEAR A SIGN A503
+106B6         ; historic #      (𐚶)  LINEAR A SIGN A504
+106B7         ; historic #      (𐚷)  LINEAR A SIGN A505
+106B8         ; historic #      (𐚸)  LINEAR A SIGN A506
+106B9         ; historic #      (𐚹)  LINEAR A SIGN A508
+106BA         ; historic #      (𐚺)  LINEAR A SIGN A509
+106BB         ; historic #      (𐚻)  LINEAR A SIGN A510
+106BC         ; historic #      (𐚼)  LINEAR A SIGN A511
+106BD         ; historic #      (𐚽)  LINEAR A SIGN A512
+106BE         ; historic #      (𐚾)  LINEAR A SIGN A513
+106BF         ; historic #      (𐚿)  LINEAR A SIGN A515
+106C0         ; historic #      (𐛀)  LINEAR A SIGN A516
+106C1         ; historic #      (𐛁)  LINEAR A SIGN A520
+106C2         ; historic #      (𐛂)  LINEAR A SIGN A521
+106C3         ; historic #      (𐛃)  LINEAR A SIGN A523
+106C4         ; historic #      (𐛄)  LINEAR A SIGN A524
+106C5         ; historic #      (𐛅)  LINEAR A SIGN A525
+106C6         ; historic #      (𐛆)  LINEAR A SIGN A526
+106C7         ; historic #      (𐛇)  LINEAR A SIGN A527
+106C8         ; historic #      (𐛈)  LINEAR A SIGN A528
+106C9         ; historic #      (𐛉)  LINEAR A SIGN A529
+106CA         ; historic #      (𐛊)  LINEAR A SIGN A530
+106CB         ; historic #      (𐛋)  LINEAR A SIGN A531
+106CC         ; historic #      (𐛌)  LINEAR A SIGN A532
+106CD         ; historic #      (𐛍)  LINEAR A SIGN A534
+106CE         ; historic #      (𐛎)  LINEAR A SIGN A535
+106CF         ; historic #      (𐛏)  LINEAR A SIGN A536
+106D0         ; historic #      (𐛐)  LINEAR A SIGN A537
+106D1         ; historic #      (𐛑)  LINEAR A SIGN A538
+106D2         ; historic #      (𐛒)  LINEAR A SIGN A539
+106D3         ; historic #      (𐛓)  LINEAR A SIGN A540
+106D4         ; historic #      (𐛔)  LINEAR A SIGN A541
+106D5         ; historic #      (𐛕)  LINEAR A SIGN A542
+106D6         ; historic #      (𐛖)  LINEAR A SIGN A545
+106D7         ; historic #      (𐛗)  LINEAR A SIGN A547
+106D8         ; historic #      (𐛘)  LINEAR A SIGN A548
+106D9         ; historic #      (𐛙)  LINEAR A SIGN A549
+106DA         ; historic #      (𐛚)  LINEAR A SIGN A550
+106DB         ; historic #      (𐛛)  LINEAR A SIGN A551
+106DC         ; historic #      (𐛜)  LINEAR A SIGN A552
+106DD         ; historic #      (𐛝)  LINEAR A SIGN A553
+106DE         ; historic #      (𐛞)  LINEAR A SIGN A554
+106DF         ; historic #      (𐛟)  LINEAR A SIGN A555
+106E0         ; historic #      (𐛠)  LINEAR A SIGN A556
+106E1         ; historic #      (𐛡)  LINEAR A SIGN A557
+106E2         ; historic #      (𐛢)  LINEAR A SIGN A559
+106E3         ; historic #      (𐛣)  LINEAR A SIGN A563
+106E4         ; historic #      (𐛤)  LINEAR A SIGN A564
+106E5         ; historic #      (𐛥)  LINEAR A SIGN A565
+106E6         ; historic #      (𐛦)  LINEAR A SIGN A566
+106E7         ; historic #      (𐛧)  LINEAR A SIGN A568
+106E8         ; historic #      (𐛨)  LINEAR A SIGN A569
+106E9         ; historic #      (𐛩)  LINEAR A SIGN A570
+106EA         ; historic #      (𐛪)  LINEAR A SIGN A571
+106EB         ; historic #      (𐛫)  LINEAR A SIGN A572
+106EC         ; historic #      (𐛬)  LINEAR A SIGN A573
+106ED         ; historic #      (𐛭)  LINEAR A SIGN A574
+106EE         ; historic #      (𐛮)  LINEAR A SIGN A575
+106EF         ; historic #      (𐛯)  LINEAR A SIGN A576
+106F0         ; historic #      (𐛰)  LINEAR A SIGN A577
+106F1         ; historic #      (𐛱)  LINEAR A SIGN A578
+106F2         ; historic #      (𐛲)  LINEAR A SIGN A579
+106F3         ; historic #      (𐛳)  LINEAR A SIGN A580
+106F4         ; historic #      (𐛴)  LINEAR A SIGN A581
+106F5         ; historic #      (𐛵)  LINEAR A SIGN A582
+106F6         ; historic #      (𐛶)  LINEAR A SIGN A583
+106F7         ; historic #      (𐛷)  LINEAR A SIGN A584
+106F8         ; historic #      (𐛸)  LINEAR A SIGN A585
+106F9         ; historic #      (𐛹)  LINEAR A SIGN A586
+106FA         ; historic #      (𐛺)  LINEAR A SIGN A587
+106FB         ; historic #      (𐛻)  LINEAR A SIGN A588
+106FC         ; historic #      (𐛼)  LINEAR A SIGN A589
+106FD         ; historic #      (𐛽)  LINEAR A SIGN A591
+106FE         ; historic #      (𐛾)  LINEAR A SIGN A592
+106FF         ; historic #      (𐛿)  LINEAR A SIGN A594
+10700         ; historic #      (𐜀)  LINEAR A SIGN A595
+10701         ; historic #      (𐜁)  LINEAR A SIGN A596
+10702         ; historic #      (𐜂)  LINEAR A SIGN A598
+10703         ; historic #      (𐜃)  LINEAR A SIGN A600
+10704         ; historic #      (𐜄)  LINEAR A SIGN A601
+10705         ; historic #      (𐜅)  LINEAR A SIGN A602
+10706         ; historic #      (𐜆)  LINEAR A SIGN A603
+10707         ; historic #      (𐜇)  LINEAR A SIGN A604
+10708         ; historic #      (𐜈)  LINEAR A SIGN A606
+10709         ; historic #      (𐜉)  LINEAR A SIGN A608
+1070A         ; historic #      (𐜊)  LINEAR A SIGN A609
+1070B         ; historic #      (𐜋)  LINEAR A SIGN A610
+1070C         ; historic #      (𐜌)  LINEAR A SIGN A611
+1070D         ; historic #      (𐜍)  LINEAR A SIGN A612
+1070E         ; historic #      (𐜎)  LINEAR A SIGN A613
+1070F         ; historic #      (𐜏)  LINEAR A SIGN A614
+10710         ; historic #      (𐜐)  LINEAR A SIGN A615
+10711         ; historic #      (𐜑)  LINEAR A SIGN A616
+10712         ; historic #      (𐜒)  LINEAR A SIGN A617
+10713         ; historic #      (𐜓)  LINEAR A SIGN A618
+10714         ; historic #      (𐜔)  LINEAR A SIGN A619
+10715         ; historic #      (𐜕)  LINEAR A SIGN A620
+10716         ; historic #      (𐜖)  LINEAR A SIGN A621
+10717         ; historic #      (𐜗)  LINEAR A SIGN A622
+10718         ; historic #      (𐜘)  LINEAR A SIGN A623
+10719         ; historic #      (𐜙)  LINEAR A SIGN A624
+1071A         ; historic #      (𐜚)  LINEAR A SIGN A626
+1071B         ; historic #      (𐜛)  LINEAR A SIGN A627
+1071C         ; historic #      (𐜜)  LINEAR A SIGN A628
+1071D         ; historic #      (𐜝)  LINEAR A SIGN A629
+1071E         ; historic #      (𐜞)  LINEAR A SIGN A634
+1071F         ; historic #      (𐜟)  LINEAR A SIGN A637
+10720         ; historic #      (𐜠)  LINEAR A SIGN A638
+10721         ; historic #      (𐜡)  LINEAR A SIGN A640
+10722         ; historic #      (𐜢)  LINEAR A SIGN A642
+10723         ; historic #      (𐜣)  LINEAR A SIGN A643
+10724         ; historic #      (𐜤)  LINEAR A SIGN A644
+10725         ; historic #      (𐜥)  LINEAR A SIGN A645
+10726         ; historic #      (𐜦)  LINEAR A SIGN A646
+10727         ; historic #      (𐜧)  LINEAR A SIGN A648
+10728         ; historic #      (𐜨)  LINEAR A SIGN A649
+10729         ; historic #      (𐜩)  LINEAR A SIGN A651
+1072A         ; historic #      (𐜪)  LINEAR A SIGN A652
+1072B         ; historic #      (𐜫)  LINEAR A SIGN A653
+1072C         ; historic #      (𐜬)  LINEAR A SIGN A654
+1072D         ; historic #      (𐜭)  LINEAR A SIGN A655
+1072E         ; historic #      (𐜮)  LINEAR A SIGN A656
+1072F         ; historic #      (𐜯)  LINEAR A SIGN A657
+10730         ; historic #      (𐜰)  LINEAR A SIGN A658
+10731         ; historic #      (𐜱)  LINEAR A SIGN A659
+10732         ; historic #      (𐜲)  LINEAR A SIGN A660
+10733         ; historic #      (𐜳)  LINEAR A SIGN A661
+10734         ; historic #      (𐜴)  LINEAR A SIGN A662
+10735         ; historic #      (𐜵)  LINEAR A SIGN A663
+10736         ; historic #      (𐜶)  LINEAR A SIGN A664
+10740         ; historic #      (𐝀)  LINEAR A SIGN A701 A
+10741         ; historic #      (𐝁)  LINEAR A SIGN A702 B
+10742         ; historic #      (𐝂)  LINEAR A SIGN A703 D
+10743         ; historic #      (𐝃)  LINEAR A SIGN A704 E
+10744         ; historic #      (𐝄)  LINEAR A SIGN A705 F
+10745         ; historic #      (𐝅)  LINEAR A SIGN A706 H
+10746         ; historic #      (𐝆)  LINEAR A SIGN A707 J
+10747         ; historic #      (𐝇)  LINEAR A SIGN A708 K
+10748         ; historic #      (𐝈)  LINEAR A SIGN A709 L
+10749         ; historic #      (𐝉)  LINEAR A SIGN A709-2 L2
+1074A         ; historic #      (𐝊)  LINEAR A SIGN A709-3 L3
+1074B         ; historic #      (𐝋)  LINEAR A SIGN A709-4 L4
+1074C         ; historic #      (𐝌)  LINEAR A SIGN A709-6 L6
+1074D         ; historic #      (𐝍)  LINEAR A SIGN A710 W
+1074E         ; historic #      (𐝎)  LINEAR A SIGN A711 X
+1074F         ; historic #      (𐝏)  LINEAR A SIGN A712 Y
+10750         ; historic #      (𐝐)  LINEAR A SIGN A713 OMEGA
+10751         ; historic #      (𐝑)  LINEAR A SIGN A714 ABB
+10752         ; historic #      (𐝒)  LINEAR A SIGN A715 BB
+10753         ; historic #      (𐝓)  LINEAR A SIGN A717 DD
+10754         ; historic #      (𐝔)  LINEAR A SIGN A726 EYYY
+10755         ; historic #      (𐝕)  LINEAR A SIGN A732 JE
+10760         ; historic #      (𐝠)  LINEAR A SIGN A800
+10761         ; historic #      (𐝡)  LINEAR A SIGN A801
+10762         ; historic #      (𐝢)  LINEAR A SIGN A802
+10763         ; historic #      (𐝣)  LINEAR A SIGN A803
+10764         ; historic #      (𐝤)  LINEAR A SIGN A804
+10765         ; historic #      (𐝥)  LINEAR A SIGN A805
+10766         ; historic #      (𐝦)  LINEAR A SIGN A806
+10767         ; historic #      (𐝧)  LINEAR A SIGN A807
 10800..10805  ; historic #  [6] (𐠀..𐠅)  CYPRIOT SYLLABLE A..CYPRIOT SYLLABLE JA
 10808         ; historic #      (𐠈)  CYPRIOT SYLLABLE JO
 1080A..10835  ; historic # [44] (𐠊..𐠵)  CYPRIOT SYLLABLE KA..CYPRIOT SYLLABLE WO
@@ -8200,6 +8790,60 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 10853         ; historic #      (𐡓)  IMPERIAL ARAMAIC LETTER RESH
 10854         ; historic #      (𐡔)  IMPERIAL ARAMAIC LETTER SHIN
 10855         ; historic #      (𐡕)  IMPERIAL ARAMAIC LETTER TAW
+10860         ; historic #      (𐡠)  PALMYRENE LETTER ALEPH
+10861         ; historic #      (𐡡)  PALMYRENE LETTER BETH
+10862         ; historic #      (𐡢)  PALMYRENE LETTER GIMEL
+10863         ; historic #      (𐡣)  PALMYRENE LETTER DALETH
+10864         ; historic #      (𐡤)  PALMYRENE LETTER HE
+10865         ; historic #      (𐡥)  PALMYRENE LETTER WAW
+10866         ; historic #      (𐡦)  PALMYRENE LETTER ZAYIN
+10867         ; historic #      (𐡧)  PALMYRENE LETTER HETH
+10868         ; historic #      (𐡨)  PALMYRENE LETTER TETH
+10869         ; historic #      (𐡩)  PALMYRENE LETTER YODH
+1086A         ; historic #      (𐡪)  PALMYRENE LETTER KAPH
+1086B         ; historic #      (𐡫)  PALMYRENE LETTER LAMEDH
+1086C         ; historic #      (𐡬)  PALMYRENE LETTER MEM
+1086D         ; historic #      (𐡭)  PALMYRENE LETTER FINAL NUN
+1086E         ; historic #      (𐡮)  PALMYRENE LETTER NUN
+1086F         ; historic #      (𐡯)  PALMYRENE LETTER SAMEKH
+10870         ; historic #      (𐡰)  PALMYRENE LETTER AYIN
+10871         ; historic #      (𐡱)  PALMYRENE LETTER PE
+10872         ; historic #      (𐡲)  PALMYRENE LETTER SADHE
+10873         ; historic #      (𐡳)  PALMYRENE LETTER QOPH
+10874         ; historic #      (𐡴)  PALMYRENE LETTER RESH
+10875         ; historic #      (𐡵)  PALMYRENE LETTER SHIN
+10876         ; historic #      (𐡶)  PALMYRENE LETTER TAW
+10880         ; historic #      (𐢀)  NABATAEAN LETTER FINAL ALEPH
+10881         ; historic #      (𐢁)  NABATAEAN LETTER ALEPH
+10882         ; historic #      (𐢂)  NABATAEAN LETTER FINAL BETH
+10883         ; historic #      (𐢃)  NABATAEAN LETTER BETH
+10884         ; historic #      (𐢄)  NABATAEAN LETTER GIMEL
+10885         ; historic #      (𐢅)  NABATAEAN LETTER DALETH
+10886         ; historic #      (𐢆)  NABATAEAN LETTER FINAL HE
+10887         ; historic #      (𐢇)  NABATAEAN LETTER HE
+10888         ; historic #      (𐢈)  NABATAEAN LETTER WAW
+10889         ; historic #      (𐢉)  NABATAEAN LETTER ZAYIN
+1088A         ; historic #      (𐢊)  NABATAEAN LETTER HETH
+1088B         ; historic #      (𐢋)  NABATAEAN LETTER TETH
+1088C         ; historic #      (𐢌)  NABATAEAN LETTER FINAL YODH
+1088D         ; historic #      (𐢍)  NABATAEAN LETTER YODH
+1088E         ; historic #      (𐢎)  NABATAEAN LETTER FINAL KAPH
+1088F         ; historic #      (𐢏)  NABATAEAN LETTER KAPH
+10890         ; historic #      (𐢐)  NABATAEAN LETTER FINAL LAMEDH
+10891         ; historic #      (𐢑)  NABATAEAN LETTER LAMEDH
+10892         ; historic #      (𐢒)  NABATAEAN LETTER FINAL MEM
+10893         ; historic #      (𐢓)  NABATAEAN LETTER MEM
+10894         ; historic #      (𐢔)  NABATAEAN LETTER FINAL NUN
+10895         ; historic #      (𐢕)  NABATAEAN LETTER NUN
+10896         ; historic #      (𐢖)  NABATAEAN LETTER SAMEKH
+10897         ; historic #      (𐢗)  NABATAEAN LETTER AYIN
+10898         ; historic #      (𐢘)  NABATAEAN LETTER PE
+10899         ; historic #      (𐢙)  NABATAEAN LETTER SADHE
+1089A         ; historic #      (𐢚)  NABATAEAN LETTER QOPH
+1089B         ; historic #      (𐢛)  NABATAEAN LETTER RESH
+1089C         ; historic #      (𐢜)  NABATAEAN LETTER FINAL SHIN
+1089D         ; historic #      (𐢝)  NABATAEAN LETTER SHIN
+1089E         ; historic #      (𐢞)  NABATAEAN LETTER TAW
 10900         ; historic #      (𐤀)  PHOENICIAN LETTER ALF
 10901         ; historic #      (𐤁)  PHOENICIAN LETTER BET
 10902         ; historic #      (𐤂)  PHOENICIAN LETTER GAML
@@ -8342,6 +8986,73 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 10A7A         ; historic #      (𐩺)  OLD SOUTH ARABIAN LETTER YODH
 10A7B         ; historic #      (𐩻)  OLD SOUTH ARABIAN LETTER THAW
 10A7C         ; historic #      (𐩼)  OLD SOUTH ARABIAN LETTER THETH
+10A80         ; historic #      (𐪀)  OLD NORTH ARABIAN LETTER HEH
+10A81         ; historic #      (𐪁)  OLD NORTH ARABIAN LETTER LAM
+10A82         ; historic #      (𐪂)  OLD NORTH ARABIAN LETTER HAH
+10A83         ; historic #      (𐪃)  OLD NORTH ARABIAN LETTER MEEM
+10A84         ; historic #      (𐪄)  OLD NORTH ARABIAN LETTER QAF
+10A85         ; historic #      (𐪅)  OLD NORTH ARABIAN LETTER WAW
+10A86         ; historic #      (𐪆)  OLD NORTH ARABIAN LETTER ES-2
+10A87         ; historic #      (𐪇)  OLD NORTH ARABIAN LETTER REH
+10A88         ; historic #      (𐪈)  OLD NORTH ARABIAN LETTER BEH
+10A89         ; historic #      (𐪉)  OLD NORTH ARABIAN LETTER TEH
+10A8A         ; historic #      (𐪊)  OLD NORTH ARABIAN LETTER ES-1
+10A8B         ; historic #      (𐪋)  OLD NORTH ARABIAN LETTER KAF
+10A8C         ; historic #      (𐪌)  OLD NORTH ARABIAN LETTER NOON
+10A8D         ; historic #      (𐪍)  OLD NORTH ARABIAN LETTER KHAH
+10A8E         ; historic #      (𐪎)  OLD NORTH ARABIAN LETTER SAD
+10A8F         ; historic #      (𐪏)  OLD NORTH ARABIAN LETTER ES-3
+10A90         ; historic #      (𐪐)  OLD NORTH ARABIAN LETTER FEH
+10A91         ; historic #      (𐪑)  OLD NORTH ARABIAN LETTER ALEF
+10A92         ; historic #      (𐪒)  OLD NORTH ARABIAN LETTER AIN
+10A93         ; historic #      (𐪓)  OLD NORTH ARABIAN LETTER DAD
+10A94         ; historic #      (𐪔)  OLD NORTH ARABIAN LETTER GEEM
+10A95         ; historic #      (𐪕)  OLD NORTH ARABIAN LETTER DAL
+10A96         ; historic #      (𐪖)  OLD NORTH ARABIAN LETTER GHAIN
+10A97         ; historic #      (𐪗)  OLD NORTH ARABIAN LETTER TAH
+10A98         ; historic #      (𐪘)  OLD NORTH ARABIAN LETTER ZAIN
+10A99         ; historic #      (𐪙)  OLD NORTH ARABIAN LETTER THAL
+10A9A         ; historic #      (𐪚)  OLD NORTH ARABIAN LETTER YEH
+10A9B         ; historic #      (𐪛)  OLD NORTH ARABIAN LETTER THEH
+10A9C         ; historic #      (𐪜)  OLD NORTH ARABIAN LETTER ZAH
+10AC0         ; historic #      (𐫀)  MANICHAEAN LETTER ALEPH
+10AC1         ; historic #      (𐫁)  MANICHAEAN LETTER BETH
+10AC2         ; historic #      (𐫂)  MANICHAEAN LETTER BHETH
+10AC3         ; historic #      (𐫃)  MANICHAEAN LETTER GIMEL
+10AC4         ; historic #      (𐫄)  MANICHAEAN LETTER GHIMEL
+10AC5         ; historic #      (𐫅)  MANICHAEAN LETTER DALETH
+10AC6         ; historic #      (𐫆)  MANICHAEAN LETTER HE
+10AC7         ; historic #      (𐫇)  MANICHAEAN LETTER WAW
+10AC9         ; historic #      (𐫉)  MANICHAEAN LETTER ZAYIN
+10ACA         ; historic #      (𐫊)  MANICHAEAN LETTER ZHAYIN
+10ACB         ; historic #      (𐫋)  MANICHAEAN LETTER JAYIN
+10ACC         ; historic #      (𐫌)  MANICHAEAN LETTER JHAYIN
+10ACD         ; historic #      (𐫍)  MANICHAEAN LETTER HETH
+10ACE         ; historic #      (𐫎)  MANICHAEAN LETTER TETH
+10ACF         ; historic #      (𐫏)  MANICHAEAN LETTER YODH
+10AD0         ; historic #      (𐫐)  MANICHAEAN LETTER KAPH
+10AD1         ; historic #      (𐫑)  MANICHAEAN LETTER XAPH
+10AD2         ; historic #      (𐫒)  MANICHAEAN LETTER KHAPH
+10AD3         ; historic #      (𐫓)  MANICHAEAN LETTER LAMEDH
+10AD4         ; historic #      (𐫔)  MANICHAEAN LETTER DHAMEDH
+10AD5         ; historic #      (𐫕)  MANICHAEAN LETTER THAMEDH
+10AD6         ; historic #      (𐫖)  MANICHAEAN LETTER MEM
+10AD7         ; historic #      (𐫗)  MANICHAEAN LETTER NUN
+10AD8         ; historic #      (𐫘)  MANICHAEAN LETTER SAMEKH
+10AD9         ; historic #      (𐫙)  MANICHAEAN LETTER AYIN
+10ADA         ; historic #      (𐫚)  MANICHAEAN LETTER AAYIN
+10ADB         ; historic #      (𐫛)  MANICHAEAN LETTER PE
+10ADC         ; historic #      (𐫜)  MANICHAEAN LETTER FE
+10ADD         ; historic #      (𐫝)  MANICHAEAN LETTER SADHE
+10ADE         ; historic #      (𐫞)  MANICHAEAN LETTER QOPH
+10ADF         ; historic #      (𐫟)  MANICHAEAN LETTER XOPH
+10AE0         ; historic #      (𐫠)  MANICHAEAN LETTER QHOPH
+10AE1         ; historic #      (𐫡)  MANICHAEAN LETTER RESH
+10AE2         ; historic #      (𐫢)  MANICHAEAN LETTER SHIN
+10AE3         ; historic #      (𐫣)  MANICHAEAN LETTER SSHIN
+10AE4         ; historic #      (𐫤)  MANICHAEAN LETTER TAW
+10AE5         ; historic #      (𐫥)  MANICHAEAN ABBREVIATION MARK ABOVE
+10AE6         ; historic #      (𐫦)  MANICHAEAN ABBREVIATION MARK BELOW
 10B00         ; historic #      (𐬀)  AVESTAN LETTER A
 10B01         ; historic #      (𐬁)  AVESTAN LETTER AA
 10B02         ; historic #      (𐬂)  AVESTAN LETTER AO
@@ -8437,6 +9148,24 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 10B70         ; historic #      (𐭰)  INSCRIPTIONAL PAHLAVI LETTER SADHE
 10B71         ; historic #      (𐭱)  INSCRIPTIONAL PAHLAVI LETTER SHIN
 10B72         ; historic #      (𐭲)  INSCRIPTIONAL PAHLAVI LETTER TAW
+10B80         ; historic #      (𐮀)  PSALTER PAHLAVI LETTER ALEPH
+10B81         ; historic #      (𐮁)  PSALTER PAHLAVI LETTER BETH
+10B82         ; historic #      (𐮂)  PSALTER PAHLAVI LETTER GIMEL
+10B83         ; historic #      (𐮃)  PSALTER PAHLAVI LETTER DALETH
+10B84         ; historic #      (𐮄)  PSALTER PAHLAVI LETTER HE
+10B85         ; historic #      (𐮅)  PSALTER PAHLAVI LETTER WAW-AYIN-RESH
+10B86         ; historic #      (𐮆)  PSALTER PAHLAVI LETTER ZAYIN
+10B87         ; historic #      (𐮇)  PSALTER PAHLAVI LETTER HETH
+10B88         ; historic #      (𐮈)  PSALTER PAHLAVI LETTER YODH
+10B89         ; historic #      (𐮉)  PSALTER PAHLAVI LETTER KAPH
+10B8A         ; historic #      (𐮊)  PSALTER PAHLAVI LETTER LAMEDH
+10B8B         ; historic #      (𐮋)  PSALTER PAHLAVI LETTER MEM-QOPH
+10B8C         ; historic #      (𐮌)  PSALTER PAHLAVI LETTER NUN
+10B8D         ; historic #      (𐮍)  PSALTER PAHLAVI LETTER SAMEKH
+10B8E         ; historic #      (𐮎)  PSALTER PAHLAVI LETTER PE
+10B8F         ; historic #      (𐮏)  PSALTER PAHLAVI LETTER SADHE
+10B90         ; historic #      (𐮐)  PSALTER PAHLAVI LETTER SHIN
+10B91         ; historic #      (𐮑)  PSALTER PAHLAVI LETTER TAW
 10C00         ; historic #      (𐰀)  OLD TURKIC LETTER ORKHON A
 10C01         ; historic #      (𐰁)  OLD TURKIC LETTER YENISEI A
 10C02         ; historic #      (𐰂)  OLD TURKIC LETTER YENISEI AE
@@ -8591,6 +9320,7 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1106D         ; historic #      (𑁭)  BRAHMI DIGIT SEVEN
 1106E         ; historic #      (𑁮)  BRAHMI DIGIT EIGHT
 1106F         ; historic #      (𑁯)  BRAHMI DIGIT NINE
+1107F         ; historic #      (𑁿)  BRAHMI NUMBER JOINER
 11080         ; historic #      (𑂀)  KAITHI SIGN CANDRABINDU
 11081         ; historic #      (𑂁)  KAITHI SIGN ANUSVARA
 11082         ; historic #      (𑂂)  KAITHI SIGN VISARGA
@@ -8685,6 +9415,43 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 110F7         ; historic #      (𑃷)  SORA SOMPENG DIGIT SEVEN
 110F8         ; historic #      (𑃸)  SORA SOMPENG DIGIT EIGHT
 110F9         ; historic #      (𑃹)  SORA SOMPENG DIGIT NINE
+11150         ; historic #      (𑅐)  MAHAJANI LETTER A
+11151         ; historic #      (𑅑)  MAHAJANI LETTER I
+11152         ; historic #      (𑅒)  MAHAJANI LETTER U
+11153         ; historic #      (𑅓)  MAHAJANI LETTER E
+11154         ; historic #      (𑅔)  MAHAJANI LETTER O
+11155         ; historic #      (𑅕)  MAHAJANI LETTER KA
+11156         ; historic #      (𑅖)  MAHAJANI LETTER KHA
+11157         ; historic #      (𑅗)  MAHAJANI LETTER GA
+11158         ; historic #      (𑅘)  MAHAJANI LETTER GHA
+11159         ; historic #      (𑅙)  MAHAJANI LETTER CA
+1115A         ; historic #      (𑅚)  MAHAJANI LETTER CHA
+1115B         ; historic #      (𑅛)  MAHAJANI LETTER JA
+1115C         ; historic #      (𑅜)  MAHAJANI LETTER JHA
+1115D         ; historic #      (𑅝)  MAHAJANI LETTER NYA
+1115E         ; historic #      (𑅞)  MAHAJANI LETTER TTA
+1115F         ; historic #      (𑅟)  MAHAJANI LETTER TTHA
+11160         ; historic #      (𑅠)  MAHAJANI LETTER DDA
+11161         ; historic #      (𑅡)  MAHAJANI LETTER DDHA
+11162         ; historic #      (𑅢)  MAHAJANI LETTER NNA
+11163         ; historic #      (𑅣)  MAHAJANI LETTER TA
+11164         ; historic #      (𑅤)  MAHAJANI LETTER THA
+11165         ; historic #      (𑅥)  MAHAJANI LETTER DA
+11166         ; historic #      (𑅦)  MAHAJANI LETTER DHA
+11167         ; historic #      (𑅧)  MAHAJANI LETTER NA
+11168         ; historic #      (𑅨)  MAHAJANI LETTER PA
+11169         ; historic #      (𑅩)  MAHAJANI LETTER PHA
+1116A         ; historic #      (𑅪)  MAHAJANI LETTER BA
+1116B         ; historic #      (𑅫)  MAHAJANI LETTER BHA
+1116C         ; historic #      (𑅬)  MAHAJANI LETTER MA
+1116D         ; historic #      (𑅭)  MAHAJANI LETTER RA
+1116E         ; historic #      (𑅮)  MAHAJANI LETTER LA
+1116F         ; historic #      (𑅯)  MAHAJANI LETTER VA
+11170         ; historic #      (𑅰)  MAHAJANI LETTER SA
+11171         ; historic #      (𑅱)  MAHAJANI LETTER HA
+11172         ; historic #      (𑅲)  MAHAJANI LETTER RRA
+11173         ; historic #      (𑅳)  MAHAJANI SIGN NUKTA
+11176         ; historic #      (𑅶)  MAHAJANI LIGATURE SHRI
 11180         ; historic #      (𑆀)  SHARADA SIGN CANDRABINDU
 11181         ; historic #      (𑆁)  SHARADA SIGN ANUSVARA
 11182         ; historic #      (𑆂)  SHARADA SIGN VISARGA
@@ -8764,6 +9531,434 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 111D7         ; historic #      (𑇗)  SHARADA DIGIT SEVEN
 111D8         ; historic #      (𑇘)  SHARADA DIGIT EIGHT
 111D9         ; historic #      (𑇙)  SHARADA DIGIT NINE
+111DA         ; historic #      (𑇚)  SHARADA EKAM
+11200         ; historic #      (𑈀)  KHOJKI LETTER A
+11201         ; historic #      (𑈁)  KHOJKI LETTER AA
+11202         ; historic #      (𑈂)  KHOJKI LETTER I
+11203         ; historic #      (𑈃)  KHOJKI LETTER U
+11204         ; historic #      (𑈄)  KHOJKI LETTER E
+11205         ; historic #      (𑈅)  KHOJKI LETTER AI
+11206         ; historic #      (𑈆)  KHOJKI LETTER O
+11207         ; historic #      (𑈇)  KHOJKI LETTER AU
+11208         ; historic #      (𑈈)  KHOJKI LETTER KA
+11209         ; historic #      (𑈉)  KHOJKI LETTER KHA
+1120A         ; historic #      (𑈊)  KHOJKI LETTER GA
+1120B         ; historic #      (𑈋)  KHOJKI LETTER GGA
+1120C         ; historic #      (𑈌)  KHOJKI LETTER GHA
+1120D         ; historic #      (𑈍)  KHOJKI LETTER NGA
+1120E         ; historic #      (𑈎)  KHOJKI LETTER CA
+1120F         ; historic #      (𑈏)  KHOJKI LETTER CHA
+11210         ; historic #      (𑈐)  KHOJKI LETTER JA
+11211         ; historic #      (𑈑)  KHOJKI LETTER JJA
+11213         ; historic #      (𑈓)  KHOJKI LETTER NYA
+11214         ; historic #      (𑈔)  KHOJKI LETTER TTA
+11215         ; historic #      (𑈕)  KHOJKI LETTER TTHA
+11216         ; historic #      (𑈖)  KHOJKI LETTER DDA
+11217         ; historic #      (𑈗)  KHOJKI LETTER DDHA
+11218         ; historic #      (𑈘)  KHOJKI LETTER NNA
+11219         ; historic #      (𑈙)  KHOJKI LETTER TA
+1121A         ; historic #      (𑈚)  KHOJKI LETTER THA
+1121B         ; historic #      (𑈛)  KHOJKI LETTER DA
+1121C         ; historic #      (𑈜)  KHOJKI LETTER DDDA
+1121D         ; historic #      (𑈝)  KHOJKI LETTER DHA
+1121E         ; historic #      (𑈞)  KHOJKI LETTER NA
+1121F         ; historic #      (𑈟)  KHOJKI LETTER PA
+11220         ; historic #      (𑈠)  KHOJKI LETTER PHA
+11221         ; historic #      (𑈡)  KHOJKI LETTER BA
+11222         ; historic #      (𑈢)  KHOJKI LETTER BBA
+11223         ; historic #      (𑈣)  KHOJKI LETTER BHA
+11224         ; historic #      (𑈤)  KHOJKI LETTER MA
+11225         ; historic #      (𑈥)  KHOJKI LETTER YA
+11226         ; historic #      (𑈦)  KHOJKI LETTER RA
+11227         ; historic #      (𑈧)  KHOJKI LETTER LA
+11228         ; historic #      (𑈨)  KHOJKI LETTER VA
+11229         ; historic #      (𑈩)  KHOJKI LETTER SA
+1122A         ; historic #      (𑈪)  KHOJKI LETTER HA
+1122B         ; historic #      (𑈫)  KHOJKI LETTER LLA
+1122C         ; historic #      (𑈬)  KHOJKI VOWEL SIGN AA
+1122D         ; historic #      (𑈭)  KHOJKI VOWEL SIGN I
+1122E         ; historic #      (𑈮)  KHOJKI VOWEL SIGN II
+1122F         ; historic #      (𑈯)  KHOJKI VOWEL SIGN U
+11230         ; historic #      (𑈰)  KHOJKI VOWEL SIGN E
+11231         ; historic #      (𑈱)  KHOJKI VOWEL SIGN AI
+11232         ; historic #      (𑈲)  KHOJKI VOWEL SIGN O
+11233         ; historic #      (𑈳)  KHOJKI VOWEL SIGN AU
+11234         ; historic #      (𑈴)  KHOJKI SIGN ANUSVARA
+11235         ; historic #      (𑈵)  KHOJKI SIGN VIRAMA
+11236         ; historic #      (𑈶)  KHOJKI SIGN NUKTA
+11237         ; historic #      (𑈷)  KHOJKI SIGN SHADDA
+112B0         ; historic #      (𑊰)  KHUDAWADI LETTER A
+112B1         ; historic #      (𑊱)  KHUDAWADI LETTER AA
+112B2         ; historic #      (𑊲)  KHUDAWADI LETTER I
+112B3         ; historic #      (𑊳)  KHUDAWADI LETTER II
+112B4         ; historic #      (𑊴)  KHUDAWADI LETTER U
+112B5         ; historic #      (𑊵)  KHUDAWADI LETTER UU
+112B6         ; historic #      (𑊶)  KHUDAWADI LETTER E
+112B7         ; historic #      (𑊷)  KHUDAWADI LETTER AI
+112B8         ; historic #      (𑊸)  KHUDAWADI LETTER O
+112B9         ; historic #      (𑊹)  KHUDAWADI LETTER AU
+112BA         ; historic #      (𑊺)  KHUDAWADI LETTER KA
+112BB         ; historic #      (𑊻)  KHUDAWADI LETTER KHA
+112BC         ; historic #      (𑊼)  KHUDAWADI LETTER GA
+112BD         ; historic #      (𑊽)  KHUDAWADI LETTER GGA
+112BE         ; historic #      (𑊾)  KHUDAWADI LETTER GHA
+112BF         ; historic #      (𑊿)  KHUDAWADI LETTER NGA
+112C0         ; historic #      (𑋀)  KHUDAWADI LETTER CA
+112C1         ; historic #      (𑋁)  KHUDAWADI LETTER CHA
+112C2         ; historic #      (𑋂)  KHUDAWADI LETTER JA
+112C3         ; historic #      (𑋃)  KHUDAWADI LETTER JJA
+112C4         ; historic #      (𑋄)  KHUDAWADI LETTER JHA
+112C5         ; historic #      (𑋅)  KHUDAWADI LETTER NYA
+112C6         ; historic #      (𑋆)  KHUDAWADI LETTER TTA
+112C7         ; historic #      (𑋇)  KHUDAWADI LETTER TTHA
+112C8         ; historic #      (𑋈)  KHUDAWADI LETTER DDA
+112C9         ; historic #      (𑋉)  KHUDAWADI LETTER DDDA
+112CA         ; historic #      (𑋊)  KHUDAWADI LETTER RRA
+112CB         ; historic #      (𑋋)  KHUDAWADI LETTER DDHA
+112CC         ; historic #      (𑋌)  KHUDAWADI LETTER NNA
+112CD         ; historic #      (𑋍)  KHUDAWADI LETTER TA
+112CE         ; historic #      (𑋎)  KHUDAWADI LETTER THA
+112CF         ; historic #      (𑋏)  KHUDAWADI LETTER DA
+112D0         ; historic #      (𑋐)  KHUDAWADI LETTER DHA
+112D1         ; historic #      (𑋑)  KHUDAWADI LETTER NA
+112D2         ; historic #      (𑋒)  KHUDAWADI LETTER PA
+112D3         ; historic #      (𑋓)  KHUDAWADI LETTER PHA
+112D4         ; historic #      (𑋔)  KHUDAWADI LETTER BA
+112D5         ; historic #      (𑋕)  KHUDAWADI LETTER BBA
+112D6         ; historic #      (𑋖)  KHUDAWADI LETTER BHA
+112D7         ; historic #      (𑋗)  KHUDAWADI LETTER MA
+112D8         ; historic #      (𑋘)  KHUDAWADI LETTER YA
+112D9         ; historic #      (𑋙)  KHUDAWADI LETTER RA
+112DA         ; historic #      (𑋚)  KHUDAWADI LETTER LA
+112DB         ; historic #      (𑋛)  KHUDAWADI LETTER VA
+112DC         ; historic #      (𑋜)  KHUDAWADI LETTER SHA
+112DD         ; historic #      (𑋝)  KHUDAWADI LETTER SA
+112DE         ; historic #      (𑋞)  KHUDAWADI LETTER HA
+112DF         ; historic #      (𑋟)  KHUDAWADI SIGN ANUSVARA
+112E0         ; historic #      (𑋠)  KHUDAWADI VOWEL SIGN AA
+112E1         ; historic #      (𑋡)  KHUDAWADI VOWEL SIGN I
+112E2         ; historic #      (𑋢)  KHUDAWADI VOWEL SIGN II
+112E3         ; historic #      (𑋣)  KHUDAWADI VOWEL SIGN U
+112E4         ; historic #      (𑋤)  KHUDAWADI VOWEL SIGN UU
+112E5         ; historic #      (𑋥)  KHUDAWADI VOWEL SIGN E
+112E6         ; historic #      (𑋦)  KHUDAWADI VOWEL SIGN AI
+112E7         ; historic #      (𑋧)  KHUDAWADI VOWEL SIGN O
+112E8         ; historic #      (𑋨)  KHUDAWADI VOWEL SIGN AU
+112E9         ; historic #      (𑋩)  KHUDAWADI SIGN NUKTA
+112EA         ; historic #      (𑋪)  KHUDAWADI SIGN VIRAMA
+112F0         ; historic #      (𑋰)  KHUDAWADI DIGIT ZERO
+112F1         ; historic #      (𑋱)  KHUDAWADI DIGIT ONE
+112F2         ; historic #      (𑋲)  KHUDAWADI DIGIT TWO
+112F3         ; historic #      (𑋳)  KHUDAWADI DIGIT THREE
+112F4         ; historic #      (𑋴)  KHUDAWADI DIGIT FOUR
+112F5         ; historic #      (𑋵)  KHUDAWADI DIGIT FIVE
+112F6         ; historic #      (𑋶)  KHUDAWADI DIGIT SIX
+112F7         ; historic #      (𑋷)  KHUDAWADI DIGIT SEVEN
+112F8         ; historic #      (𑋸)  KHUDAWADI DIGIT EIGHT
+112F9         ; historic #      (𑋹)  KHUDAWADI DIGIT NINE
+11301         ; historic #      (𑌁)  GRANTHA SIGN CANDRABINDU
+11302         ; historic #      (𑌂)  GRANTHA SIGN ANUSVARA
+11303         ; historic #      (𑌃)  GRANTHA SIGN VISARGA
+11305         ; historic #      (𑌅)  GRANTHA LETTER A
+11306         ; historic #      (𑌆)  GRANTHA LETTER AA
+11307         ; historic #      (𑌇)  GRANTHA LETTER I
+11308         ; historic #      (𑌈)  GRANTHA LETTER II
+11309         ; historic #      (𑌉)  GRANTHA LETTER U
+1130A         ; historic #      (𑌊)  GRANTHA LETTER UU
+1130B         ; historic #      (𑌋)  GRANTHA LETTER VOCALIC R
+1130C         ; historic #      (𑌌)  GRANTHA LETTER VOCALIC L
+1130F         ; historic #      (𑌏)  GRANTHA LETTER EE
+11310         ; historic #      (𑌐)  GRANTHA LETTER AI
+11313         ; historic #      (𑌓)  GRANTHA LETTER OO
+11314         ; historic #      (𑌔)  GRANTHA LETTER AU
+11315         ; historic #      (𑌕)  GRANTHA LETTER KA
+11316         ; historic #      (𑌖)  GRANTHA LETTER KHA
+11317         ; historic #      (𑌗)  GRANTHA LETTER GA
+11318         ; historic #      (𑌘)  GRANTHA LETTER GHA
+11319         ; historic #      (𑌙)  GRANTHA LETTER NGA
+1131A         ; historic #      (𑌚)  GRANTHA LETTER CA
+1131B         ; historic #      (𑌛)  GRANTHA LETTER CHA
+1131C         ; historic #      (𑌜)  GRANTHA LETTER JA
+1131D         ; historic #      (𑌝)  GRANTHA LETTER JHA
+1131E         ; historic #      (𑌞)  GRANTHA LETTER NYA
+1131F         ; historic #      (𑌟)  GRANTHA LETTER TTA
+11320         ; historic #      (𑌠)  GRANTHA LETTER TTHA
+11321         ; historic #      (𑌡)  GRANTHA LETTER DDA
+11322         ; historic #      (𑌢)  GRANTHA LETTER DDHA
+11323         ; historic #      (𑌣)  GRANTHA LETTER NNA
+11324         ; historic #      (𑌤)  GRANTHA LETTER TA
+11325         ; historic #      (𑌥)  GRANTHA LETTER THA
+11326         ; historic #      (𑌦)  GRANTHA LETTER DA
+11327         ; historic #      (𑌧)  GRANTHA LETTER DHA
+11328         ; historic #      (𑌨)  GRANTHA LETTER NA
+1132A         ; historic #      (𑌪)  GRANTHA LETTER PA
+1132B         ; historic #      (𑌫)  GRANTHA LETTER PHA
+1132C         ; historic #      (𑌬)  GRANTHA LETTER BA
+1132D         ; historic #      (𑌭)  GRANTHA LETTER BHA
+1132E         ; historic #      (𑌮)  GRANTHA LETTER MA
+1132F         ; historic #      (𑌯)  GRANTHA LETTER YA
+11330         ; historic #      (𑌰)  GRANTHA LETTER RA
+11332         ; historic #      (𑌲)  GRANTHA LETTER LA
+11333         ; historic #      (𑌳)  GRANTHA LETTER LLA
+11335         ; historic #      (𑌵)  GRANTHA LETTER VA
+11336         ; historic #      (𑌶)  GRANTHA LETTER SHA
+11337         ; historic #      (𑌷)  GRANTHA LETTER SSA
+11338         ; historic #      (𑌸)  GRANTHA LETTER SA
+11339         ; historic #      (𑌹)  GRANTHA LETTER HA
+1133C         ; historic #      (𑌼)  GRANTHA SIGN NUKTA
+1133D         ; historic #      (𑌽)  GRANTHA SIGN AVAGRAHA
+1133E         ; historic #      (𑌾)  GRANTHA VOWEL SIGN AA
+1133F         ; historic #      (𑌿)  GRANTHA VOWEL SIGN I
+11340         ; historic #      (𑍀)  GRANTHA VOWEL SIGN II
+11341         ; historic #      (𑍁)  GRANTHA VOWEL SIGN U
+11342         ; historic #      (𑍂)  GRANTHA VOWEL SIGN UU
+11343         ; historic #      (𑍃)  GRANTHA VOWEL SIGN VOCALIC R
+11344         ; historic #      (𑍄)  GRANTHA VOWEL SIGN VOCALIC RR
+11347         ; historic #      (𑍇)  GRANTHA VOWEL SIGN EE
+11348         ; historic #      (𑍈)  GRANTHA VOWEL SIGN AI
+1134B         ; historic #      (𑍋)  GRANTHA VOWEL SIGN OO
+1134C         ; historic #      (𑍌)  GRANTHA VOWEL SIGN AU
+1134D         ; historic #      (𑍍)  GRANTHA SIGN VIRAMA
+11357         ; historic #      (𑍗)  GRANTHA AU LENGTH MARK
+1135D         ; historic #      (𑍝)  GRANTHA SIGN PLUTA
+1135E         ; historic #      (𑍞)  GRANTHA LETTER VEDIC ANUSVARA
+1135F         ; historic #      (𑍟)  GRANTHA LETTER VEDIC DOUBLE ANUSVARA
+11360         ; historic #      (𑍠)  GRANTHA LETTER VOCALIC RR
+11361         ; historic #      (𑍡)  GRANTHA LETTER VOCALIC LL
+11362         ; historic #      (𑍢)  GRANTHA VOWEL SIGN VOCALIC L
+11363         ; historic #      (𑍣)  GRANTHA VOWEL SIGN VOCALIC LL
+11366         ; historic #      (𑍦)  COMBINING GRANTHA DIGIT ZERO
+11367         ; historic #      (𑍧)  COMBINING GRANTHA DIGIT ONE
+11368         ; historic #      (𑍨)  COMBINING GRANTHA DIGIT TWO
+11369         ; historic #      (𑍩)  COMBINING GRANTHA DIGIT THREE
+1136A         ; historic #      (𑍪)  COMBINING GRANTHA DIGIT FOUR
+1136B         ; historic #      (𑍫)  COMBINING GRANTHA DIGIT FIVE
+1136C         ; historic #      (𑍬)  COMBINING GRANTHA DIGIT SIX
+11370         ; historic #      (𑍰)  COMBINING GRANTHA LETTER A
+11371         ; historic #      (𑍱)  COMBINING GRANTHA LETTER KA
+11372         ; historic #      (𑍲)  COMBINING GRANTHA LETTER NA
+11373         ; historic #      (𑍳)  COMBINING GRANTHA LETTER VI
+11374         ; historic #      (𑍴)  COMBINING GRANTHA LETTER PA
+11480         ; historic #      (𑒀)  TIRHUTA ANJI
+11481         ; historic #      (𑒁)  TIRHUTA LETTER A
+11482         ; historic #      (𑒂)  TIRHUTA LETTER AA
+11483         ; historic #      (𑒃)  TIRHUTA LETTER I
+11484         ; historic #      (𑒄)  TIRHUTA LETTER II
+11485         ; historic #      (𑒅)  TIRHUTA LETTER U
+11486         ; historic #      (𑒆)  TIRHUTA LETTER UU
+11487         ; historic #      (𑒇)  TIRHUTA LETTER VOCALIC R
+11488         ; historic #      (𑒈)  TIRHUTA LETTER VOCALIC RR
+11489         ; historic #      (𑒉)  TIRHUTA LETTER VOCALIC L
+1148A         ; historic #      (𑒊)  TIRHUTA LETTER VOCALIC LL
+1148B         ; historic #      (𑒋)  TIRHUTA LETTER E
+1148C         ; historic #      (𑒌)  TIRHUTA LETTER AI
+1148D         ; historic #      (𑒍)  TIRHUTA LETTER O
+1148E         ; historic #      (𑒎)  TIRHUTA LETTER AU
+1148F         ; historic #      (𑒏)  TIRHUTA LETTER KA
+11490         ; historic #      (𑒐)  TIRHUTA LETTER KHA
+11491         ; historic #      (𑒑)  TIRHUTA LETTER GA
+11492         ; historic #      (𑒒)  TIRHUTA LETTER GHA
+11493         ; historic #      (𑒓)  TIRHUTA LETTER NGA
+11494         ; historic #      (𑒔)  TIRHUTA LETTER CA
+11495         ; historic #      (𑒕)  TIRHUTA LETTER CHA
+11496         ; historic #      (𑒖)  TIRHUTA LETTER JA
+11497         ; historic #      (𑒗)  TIRHUTA LETTER JHA
+11498         ; historic #      (𑒘)  TIRHUTA LETTER NYA
+11499         ; historic #      (𑒙)  TIRHUTA LETTER TTA
+1149A         ; historic #      (𑒚)  TIRHUTA LETTER TTHA
+1149B         ; historic #      (𑒛)  TIRHUTA LETTER DDA
+1149C         ; historic #      (𑒜)  TIRHUTA LETTER DDHA
+1149D         ; historic #      (𑒝)  TIRHUTA LETTER NNA
+1149E         ; historic #      (𑒞)  TIRHUTA LETTER TA
+1149F         ; historic #      (𑒟)  TIRHUTA LETTER THA
+114A0         ; historic #      (𑒠)  TIRHUTA LETTER DA
+114A1         ; historic #      (𑒡)  TIRHUTA LETTER DHA
+114A2         ; historic #      (𑒢)  TIRHUTA LETTER NA
+114A3         ; historic #      (𑒣)  TIRHUTA LETTER PA
+114A4         ; historic #      (𑒤)  TIRHUTA LETTER PHA
+114A5         ; historic #      (𑒥)  TIRHUTA LETTER BA
+114A6         ; historic #      (𑒦)  TIRHUTA LETTER BHA
+114A7         ; historic #      (𑒧)  TIRHUTA LETTER MA
+114A8         ; historic #      (𑒨)  TIRHUTA LETTER YA
+114A9         ; historic #      (𑒩)  TIRHUTA LETTER RA
+114AA         ; historic #      (𑒪)  TIRHUTA LETTER LA
+114AB         ; historic #      (𑒫)  TIRHUTA LETTER VA
+114AC         ; historic #      (𑒬)  TIRHUTA LETTER SHA
+114AD         ; historic #      (𑒭)  TIRHUTA LETTER SSA
+114AE         ; historic #      (𑒮)  TIRHUTA LETTER SA
+114AF         ; historic #      (𑒯)  TIRHUTA LETTER HA
+114B0         ; historic #      (𑒰)  TIRHUTA VOWEL SIGN AA
+114B1         ; historic #      (𑒱)  TIRHUTA VOWEL SIGN I
+114B2         ; historic #      (𑒲)  TIRHUTA VOWEL SIGN II
+114B3         ; historic #      (𑒳)  TIRHUTA VOWEL SIGN U
+114B4         ; historic #      (𑒴)  TIRHUTA VOWEL SIGN UU
+114B5         ; historic #      (𑒵)  TIRHUTA VOWEL SIGN VOCALIC R
+114B6         ; historic #      (𑒶)  TIRHUTA VOWEL SIGN VOCALIC RR
+114B7         ; historic #      (𑒷)  TIRHUTA VOWEL SIGN VOCALIC L
+114B8         ; historic #      (𑒸)  TIRHUTA VOWEL SIGN VOCALIC LL
+114B9         ; historic #      (𑒹)  TIRHUTA VOWEL SIGN E
+114BA         ; historic #      (𑒺)  TIRHUTA VOWEL SIGN SHORT E
+114BB         ; historic #      (𑒻)  TIRHUTA VOWEL SIGN AI
+114BC         ; historic #      (𑒼)  TIRHUTA VOWEL SIGN O
+114BD         ; historic #      (𑒽)  TIRHUTA VOWEL SIGN SHORT O
+114BE         ; historic #      (𑒾)  TIRHUTA VOWEL SIGN AU
+114BF         ; historic #      (𑒿)  TIRHUTA SIGN CANDRABINDU
+114C0         ; historic #      (𑓀)  TIRHUTA SIGN ANUSVARA
+114C1         ; historic #      (𑓁)  TIRHUTA SIGN VISARGA
+114C2         ; historic #      (𑓂)  TIRHUTA SIGN VIRAMA
+114C3         ; historic #      (𑓃)  TIRHUTA SIGN NUKTA
+114C4         ; historic #      (𑓄)  TIRHUTA SIGN AVAGRAHA
+114C5         ; historic #      (𑓅)  TIRHUTA GVANG
+114C7         ; historic #      (𑓇)  TIRHUTA OM
+114D0         ; historic #      (𑓐)  TIRHUTA DIGIT ZERO
+114D1         ; historic #      (𑓑)  TIRHUTA DIGIT ONE
+114D2         ; historic #      (𑓒)  TIRHUTA DIGIT TWO
+114D3         ; historic #      (𑓓)  TIRHUTA DIGIT THREE
+114D4         ; historic #      (𑓔)  TIRHUTA DIGIT FOUR
+114D5         ; historic #      (𑓕)  TIRHUTA DIGIT FIVE
+114D6         ; historic #      (𑓖)  TIRHUTA DIGIT SIX
+114D7         ; historic #      (𑓗)  TIRHUTA DIGIT SEVEN
+114D8         ; historic #      (𑓘)  TIRHUTA DIGIT EIGHT
+114D9         ; historic #      (𑓙)  TIRHUTA DIGIT NINE
+11580         ; historic #      (𑖀)  SIDDHAM LETTER A
+11581         ; historic #      (𑖁)  SIDDHAM LETTER AA
+11582         ; historic #      (𑖂)  SIDDHAM LETTER I
+11583         ; historic #      (𑖃)  SIDDHAM LETTER II
+11584         ; historic #      (𑖄)  SIDDHAM LETTER U
+11585         ; historic #      (𑖅)  SIDDHAM LETTER UU
+11586         ; historic #      (𑖆)  SIDDHAM LETTER VOCALIC R
+11587         ; historic #      (𑖇)  SIDDHAM LETTER VOCALIC RR
+11588         ; historic #      (𑖈)  SIDDHAM LETTER VOCALIC L
+11589         ; historic #      (𑖉)  SIDDHAM LETTER VOCALIC LL
+1158A         ; historic #      (𑖊)  SIDDHAM LETTER E
+1158B         ; historic #      (𑖋)  SIDDHAM LETTER AI
+1158C         ; historic #      (𑖌)  SIDDHAM LETTER O
+1158D         ; historic #      (𑖍)  SIDDHAM LETTER AU
+1158E         ; historic #      (𑖎)  SIDDHAM LETTER KA
+1158F         ; historic #      (𑖏)  SIDDHAM LETTER KHA
+11590         ; historic #      (𑖐)  SIDDHAM LETTER GA
+11591         ; historic #      (𑖑)  SIDDHAM LETTER GHA
+11592         ; historic #      (𑖒)  SIDDHAM LETTER NGA
+11593         ; historic #      (𑖓)  SIDDHAM LETTER CA
+11594         ; historic #      (𑖔)  SIDDHAM LETTER CHA
+11595         ; historic #      (𑖕)  SIDDHAM LETTER JA
+11596         ; historic #      (𑖖)  SIDDHAM LETTER JHA
+11597         ; historic #      (𑖗)  SIDDHAM LETTER NYA
+11598         ; historic #      (𑖘)  SIDDHAM LETTER TTA
+11599         ; historic #      (𑖙)  SIDDHAM LETTER TTHA
+1159A         ; historic #      (𑖚)  SIDDHAM LETTER DDA
+1159B         ; historic #      (𑖛)  SIDDHAM LETTER DDHA
+1159C         ; historic #      (𑖜)  SIDDHAM LETTER NNA
+1159D         ; historic #      (𑖝)  SIDDHAM LETTER TA
+1159E         ; historic #      (𑖞)  SIDDHAM LETTER THA
+1159F         ; historic #      (𑖟)  SIDDHAM LETTER DA
+115A0         ; historic #      (𑖠)  SIDDHAM LETTER DHA
+115A1         ; historic #      (𑖡)  SIDDHAM LETTER NA
+115A2         ; historic #      (𑖢)  SIDDHAM LETTER PA
+115A3         ; historic #      (𑖣)  SIDDHAM LETTER PHA
+115A4         ; historic #      (𑖤)  SIDDHAM LETTER BA
+115A5         ; historic #      (𑖥)  SIDDHAM LETTER BHA
+115A6         ; historic #      (𑖦)  SIDDHAM LETTER MA
+115A7         ; historic #      (𑖧)  SIDDHAM LETTER YA
+115A8         ; historic #      (𑖨)  SIDDHAM LETTER RA
+115A9         ; historic #      (𑖩)  SIDDHAM LETTER LA
+115AA         ; historic #      (𑖪)  SIDDHAM LETTER VA
+115AB         ; historic #      (𑖫)  SIDDHAM LETTER SHA
+115AC         ; historic #      (𑖬)  SIDDHAM LETTER SSA
+115AD         ; historic #      (𑖭)  SIDDHAM LETTER SA
+115AE         ; historic #      (𑖮)  SIDDHAM LETTER HA
+115AF         ; historic #      (𑖯)  SIDDHAM VOWEL SIGN AA
+115B0         ; historic #      (𑖰)  SIDDHAM VOWEL SIGN I
+115B1         ; historic #      (𑖱)  SIDDHAM VOWEL SIGN II
+115B2         ; historic #      (𑖲)  SIDDHAM VOWEL SIGN U
+115B3         ; historic #      (𑖳)  SIDDHAM VOWEL SIGN UU
+115B4         ; historic #      (𑖴)  SIDDHAM VOWEL SIGN VOCALIC R
+115B5         ; historic #      (𑖵)  SIDDHAM VOWEL SIGN VOCALIC RR
+115B8         ; historic #      (𑖸)  SIDDHAM VOWEL SIGN E
+115B9         ; historic #      (𑖹)  SIDDHAM VOWEL SIGN AI
+115BA         ; historic #      (𑖺)  SIDDHAM VOWEL SIGN O
+115BB         ; historic #      (𑖻)  SIDDHAM VOWEL SIGN AU
+115BC         ; historic #      (𑖼)  SIDDHAM SIGN CANDRABINDU
+115BD         ; historic #      (𑖽)  SIDDHAM SIGN ANUSVARA
+115BE         ; historic #      (𑖾)  SIDDHAM SIGN VISARGA
+115BF         ; historic #      (𑖿)  SIDDHAM SIGN VIRAMA
+115C0         ; historic #      (𑗀)  SIDDHAM SIGN NUKTA
+11600         ; historic #      (𑘀)  MODI LETTER A
+11601         ; historic #      (𑘁)  MODI LETTER AA
+11602         ; historic #      (𑘂)  MODI LETTER I
+11603         ; historic #      (𑘃)  MODI LETTER II
+11604         ; historic #      (𑘄)  MODI LETTER U
+11605         ; historic #      (𑘅)  MODI LETTER UU
+11606         ; historic #      (𑘆)  MODI LETTER VOCALIC R
+11607         ; historic #      (𑘇)  MODI LETTER VOCALIC RR
+11608         ; historic #      (𑘈)  MODI LETTER VOCALIC L
+11609         ; historic #      (𑘉)  MODI LETTER VOCALIC LL
+1160A         ; historic #      (𑘊)  MODI LETTER E
+1160B         ; historic #      (𑘋)  MODI LETTER AI
+1160C         ; historic #      (𑘌)  MODI LETTER O
+1160D         ; historic #      (𑘍)  MODI LETTER AU
+1160E         ; historic #      (𑘎)  MODI LETTER KA
+1160F         ; historic #      (𑘏)  MODI LETTER KHA
+11610         ; historic #      (𑘐)  MODI LETTER GA
+11611         ; historic #      (𑘑)  MODI LETTER GHA
+11612         ; historic #      (𑘒)  MODI LETTER NGA
+11613         ; historic #      (𑘓)  MODI LETTER CA
+11614         ; historic #      (𑘔)  MODI LETTER CHA
+11615         ; historic #      (𑘕)  MODI LETTER JA
+11616         ; historic #      (𑘖)  MODI LETTER JHA
+11617         ; historic #      (𑘗)  MODI LETTER NYA
+11618         ; historic #      (𑘘)  MODI LETTER TTA
+11619         ; historic #      (𑘙)  MODI LETTER TTHA
+1161A         ; historic #      (𑘚)  MODI LETTER DDA
+1161B         ; historic #      (𑘛)  MODI LETTER DDHA
+1161C         ; historic #      (𑘜)  MODI LETTER NNA
+1161D         ; historic #      (𑘝)  MODI LETTER TA
+1161E         ; historic #      (𑘞)  MODI LETTER THA
+1161F         ; historic #      (𑘟)  MODI LETTER DA
+11620         ; historic #      (𑘠)  MODI LETTER DHA
+11621         ; historic #      (𑘡)  MODI LETTER NA
+11622         ; historic #      (𑘢)  MODI LETTER PA
+11623         ; historic #      (𑘣)  MODI LETTER PHA
+11624         ; historic #      (𑘤)  MODI LETTER BA
+11625         ; historic #      (𑘥)  MODI LETTER BHA
+11626         ; historic #      (𑘦)  MODI LETTER MA
+11627         ; historic #      (𑘧)  MODI LETTER YA
+11628         ; historic #      (𑘨)  MODI LETTER RA
+11629         ; historic #      (𑘩)  MODI LETTER LA
+1162A         ; historic #      (𑘪)  MODI LETTER VA
+1162B         ; historic #      (𑘫)  MODI LETTER SHA
+1162C         ; historic #      (𑘬)  MODI LETTER SSA
+1162D         ; historic #      (𑘭)  MODI LETTER SA
+1162E         ; historic #      (𑘮)  MODI LETTER HA
+1162F         ; historic #      (𑘯)  MODI LETTER LLA
+11630         ; historic #      (𑘰)  MODI VOWEL SIGN AA
+11631         ; historic #      (𑘱)  MODI VOWEL SIGN I
+11632         ; historic #      (𑘲)  MODI VOWEL SIGN II
+11633         ; historic #      (𑘳)  MODI VOWEL SIGN U
+11634         ; historic #      (𑘴)  MODI VOWEL SIGN UU
+11635         ; historic #      (𑘵)  MODI VOWEL SIGN VOCALIC R
+11636         ; historic #      (𑘶)  MODI VOWEL SIGN VOCALIC RR
+11637         ; historic #      (𑘷)  MODI VOWEL SIGN VOCALIC L
+11638         ; historic #      (𑘸)  MODI VOWEL SIGN VOCALIC LL
+11639         ; historic #      (𑘹)  MODI VOWEL SIGN E
+1163A         ; historic #      (𑘺)  MODI VOWEL SIGN AI
+1163B         ; historic #      (𑘻)  MODI VOWEL SIGN O
+1163C         ; historic #      (𑘼)  MODI VOWEL SIGN AU
+1163D         ; historic #      (𑘽)  MODI SIGN ANUSVARA
+1163E         ; historic #      (𑘾)  MODI SIGN VISARGA
+1163F         ; historic #      (𑘿)  MODI SIGN VIRAMA
+11640         ; historic #      (𑙀)  MODI SIGN ARDHACANDRA
+11644         ; historic #      (𑙄)  MODI SIGN HUVA
+11650         ; historic #      (𑙐)  MODI DIGIT ZERO
+11651         ; historic #      (𑙑)  MODI DIGIT ONE
+11652         ; historic #      (𑙒)  MODI DIGIT TWO
+11653         ; historic #      (𑙓)  MODI DIGIT THREE
+11654         ; historic #      (𑙔)  MODI DIGIT FOUR
+11655         ; historic #      (𑙕)  MODI DIGIT FIVE
+11656         ; historic #      (𑙖)  MODI DIGIT SIX
+11657         ; historic #      (𑙗)  MODI DIGIT SEVEN
+11658         ; historic #      (𑙘)  MODI DIGIT EIGHT
+11659         ; historic #      (𑙙)  MODI DIGIT NINE
 11680         ; historic #      (𑚀)  TAKRI LETTER A
 11681         ; historic #      (𑚁)  TAKRI LETTER AA
 11682         ; historic #      (𑚂)  TAKRI LETTER I
@@ -8830,6 +10025,107 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 116C7         ; historic #      (𑛇)  TAKRI DIGIT SEVEN
 116C8         ; historic #      (𑛈)  TAKRI DIGIT EIGHT
 116C9         ; historic #      (𑛉)  TAKRI DIGIT NINE
+118A0..118BF  ; historic # [32] (𑢠..𑢿)  WARANG CITI CAPITAL LETTER NGAA..WARANG CITI CAPITAL LETTER VIYO
+118C0         ; historic #      (𑣀)  WARANG CITI SMALL LETTER NGAA
+118C1         ; historic #      (𑣁)  WARANG CITI SMALL LETTER A
+118C2         ; historic #      (𑣂)  WARANG CITI SMALL LETTER WI
+118C3         ; historic #      (𑣃)  WARANG CITI SMALL LETTER YU
+118C4         ; historic #      (𑣄)  WARANG CITI SMALL LETTER YA
+118C5         ; historic #      (𑣅)  WARANG CITI SMALL LETTER YO
+118C6         ; historic #      (𑣆)  WARANG CITI SMALL LETTER II
+118C7         ; historic #      (𑣇)  WARANG CITI SMALL LETTER UU
+118C8         ; historic #      (𑣈)  WARANG CITI SMALL LETTER E
+118C9         ; historic #      (𑣉)  WARANG CITI SMALL LETTER O
+118CA         ; historic #      (𑣊)  WARANG CITI SMALL LETTER ANG
+118CB         ; historic #      (𑣋)  WARANG CITI SMALL LETTER GA
+118CC         ; historic #      (𑣌)  WARANG CITI SMALL LETTER KO
+118CD         ; historic #      (𑣍)  WARANG CITI SMALL LETTER ENY
+118CE         ; historic #      (𑣎)  WARANG CITI SMALL LETTER YUJ
+118CF         ; historic #      (𑣏)  WARANG CITI SMALL LETTER UC
+118D0         ; historic #      (𑣐)  WARANG CITI SMALL LETTER ENN
+118D1         ; historic #      (𑣑)  WARANG CITI SMALL LETTER ODD
+118D2         ; historic #      (𑣒)  WARANG CITI SMALL LETTER TTE
+118D3         ; historic #      (𑣓)  WARANG CITI SMALL LETTER NUNG
+118D4         ; historic #      (𑣔)  WARANG CITI SMALL LETTER DA
+118D5         ; historic #      (𑣕)  WARANG CITI SMALL LETTER AT
+118D6         ; historic #      (𑣖)  WARANG CITI SMALL LETTER AM
+118D7         ; historic #      (𑣗)  WARANG CITI SMALL LETTER BU
+118D8         ; historic #      (𑣘)  WARANG CITI SMALL LETTER PU
+118D9         ; historic #      (𑣙)  WARANG CITI SMALL LETTER HIYO
+118DA         ; historic #      (𑣚)  WARANG CITI SMALL LETTER HOLO
+118DB         ; historic #      (𑣛)  WARANG CITI SMALL LETTER HORR
+118DC         ; historic #      (𑣜)  WARANG CITI SMALL LETTER HAR
+118DD         ; historic #      (𑣝)  WARANG CITI SMALL LETTER SSUU
+118DE         ; historic #      (𑣞)  WARANG CITI SMALL LETTER SII
+118DF         ; historic #      (𑣟)  WARANG CITI SMALL LETTER VIYO
+118E0         ; historic #      (𑣠)  WARANG CITI DIGIT ZERO
+118E1         ; historic #      (𑣡)  WARANG CITI DIGIT ONE
+118E2         ; historic #      (𑣢)  WARANG CITI DIGIT TWO
+118E3         ; historic #      (𑣣)  WARANG CITI DIGIT THREE
+118E4         ; historic #      (𑣤)  WARANG CITI DIGIT FOUR
+118E5         ; historic #      (𑣥)  WARANG CITI DIGIT FIVE
+118E6         ; historic #      (𑣦)  WARANG CITI DIGIT SIX
+118E7         ; historic #      (𑣧)  WARANG CITI DIGIT SEVEN
+118E8         ; historic #      (𑣨)  WARANG CITI DIGIT EIGHT
+118E9         ; historic #      (𑣩)  WARANG CITI DIGIT NINE
+118FF         ; historic #      (𑣿)  WARANG CITI OM
+11AC0         ; historic #      (𑫀)  PAU CIN HAU LETTER PA
+11AC1         ; historic #      (𑫁)  PAU CIN HAU LETTER KA
+11AC2         ; historic #      (𑫂)  PAU CIN HAU LETTER LA
+11AC3         ; historic #      (𑫃)  PAU CIN HAU LETTER MA
+11AC4         ; historic #      (𑫄)  PAU CIN HAU LETTER DA
+11AC5         ; historic #      (𑫅)  PAU CIN HAU LETTER ZA
+11AC6         ; historic #      (𑫆)  PAU CIN HAU LETTER VA
+11AC7         ; historic #      (𑫇)  PAU CIN HAU LETTER NGA
+11AC8         ; historic #      (𑫈)  PAU CIN HAU LETTER HA
+11AC9         ; historic #      (𑫉)  PAU CIN HAU LETTER GA
+11ACA         ; historic #      (𑫊)  PAU CIN HAU LETTER KHA
+11ACB         ; historic #      (𑫋)  PAU CIN HAU LETTER SA
+11ACC         ; historic #      (𑫌)  PAU CIN HAU LETTER BA
+11ACD         ; historic #      (𑫍)  PAU CIN HAU LETTER CA
+11ACE         ; historic #      (𑫎)  PAU CIN HAU LETTER TA
+11ACF         ; historic #      (𑫏)  PAU CIN HAU LETTER THA
+11AD0         ; historic #      (𑫐)  PAU CIN HAU LETTER NA
+11AD1         ; historic #      (𑫑)  PAU CIN HAU LETTER PHA
+11AD2         ; historic #      (𑫒)  PAU CIN HAU LETTER RA
+11AD3         ; historic #      (𑫓)  PAU CIN HAU LETTER FA
+11AD4         ; historic #      (𑫔)  PAU CIN HAU LETTER CHA
+11AD5         ; historic #      (𑫕)  PAU CIN HAU LETTER A
+11AD6         ; historic #      (𑫖)  PAU CIN HAU LETTER E
+11AD7         ; historic #      (𑫗)  PAU CIN HAU LETTER I
+11AD8         ; historic #      (𑫘)  PAU CIN HAU LETTER O
+11AD9         ; historic #      (𑫙)  PAU CIN HAU LETTER U
+11ADA         ; historic #      (𑫚)  PAU CIN HAU LETTER UA
+11ADB         ; historic #      (𑫛)  PAU CIN HAU LETTER IA
+11ADC         ; historic #      (𑫜)  PAU CIN HAU LETTER FINAL P
+11ADD         ; historic #      (𑫝)  PAU CIN HAU LETTER FINAL K
+11ADE         ; historic #      (𑫞)  PAU CIN HAU LETTER FINAL T
+11ADF         ; historic #      (𑫟)  PAU CIN HAU LETTER FINAL M
+11AE0         ; historic #      (𑫠)  PAU CIN HAU LETTER FINAL N
+11AE1         ; historic #      (𑫡)  PAU CIN HAU LETTER FINAL L
+11AE2         ; historic #      (𑫢)  PAU CIN HAU LETTER FINAL W
+11AE3         ; historic #      (𑫣)  PAU CIN HAU LETTER FINAL NG
+11AE4         ; historic #      (𑫤)  PAU CIN HAU LETTER FINAL Y
+11AE5         ; historic #      (𑫥)  PAU CIN HAU RISING TONE LONG
+11AE6         ; historic #      (𑫦)  PAU CIN HAU RISING TONE
+11AE7         ; historic #      (𑫧)  PAU CIN HAU SANDHI GLOTTAL STOP
+11AE8         ; historic #      (𑫨)  PAU CIN HAU RISING TONE LONG FINAL
+11AE9         ; historic #      (𑫩)  PAU CIN HAU RISING TONE FINAL
+11AEA         ; historic #      (𑫪)  PAU CIN HAU SANDHI GLOTTAL STOP FINAL
+11AEB         ; historic #      (𑫫)  PAU CIN HAU SANDHI TONE LONG
+11AEC         ; historic #      (𑫬)  PAU CIN HAU SANDHI TONE
+11AED         ; historic #      (𑫭)  PAU CIN HAU SANDHI TONE LONG FINAL
+11AEE         ; historic #      (𑫮)  PAU CIN HAU SANDHI TONE FINAL
+11AEF         ; historic #      (𑫯)  PAU CIN HAU MID-LEVEL TONE
+11AF0         ; historic #      (𑫰)  PAU CIN HAU GLOTTAL STOP VARIANT
+11AF1         ; historic #      (𑫱)  PAU CIN HAU MID-LEVEL TONE LONG FINAL
+11AF2         ; historic #      (𑫲)  PAU CIN HAU MID-LEVEL TONE FINAL
+11AF3         ; historic #      (𑫳)  PAU CIN HAU LOW-FALLING TONE LONG
+11AF4         ; historic #      (𑫴)  PAU CIN HAU LOW-FALLING TONE
+11AF5         ; historic #      (𑫵)  PAU CIN HAU GLOTTAL STOP
+11AF6         ; historic #      (𑫶)  PAU CIN HAU LOW-FALLING TONE LONG FINAL
+11AF7         ; historic #      (𑫷)  PAU CIN HAU LOW-FALLING TONE FINAL
+11AF8         ; historic #      (𑫸)  PAU CIN HAU GLOTTAL STOP FINAL
 12000         ; historic #      (𒀀)  CUNEIFORM SIGN A
 12001         ; historic #      (𒀁)  CUNEIFORM SIGN A TIMES A
 12002         ; historic #      (𒀂)  CUNEIFORM SIGN A TIMES BAD
@@ -9709,6 +11005,48 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1236C         ; historic #      (𒍬)  CUNEIFORM SIGN ZU5 TIMES A
 1236D         ; historic #      (𒍭)  CUNEIFORM SIGN ZUBUR
 1236E         ; historic #      (𒍮)  CUNEIFORM SIGN ZUM
+1236F         ; historic #      (𒍯)  CUNEIFORM SIGN KAP ELAMITE
+12370         ; historic #      (𒍰)  CUNEIFORM SIGN AB TIMES NUN
+12371         ; historic #      (𒍱)  CUNEIFORM SIGN AB2 TIMES A
+12372         ; historic #      (𒍲)  CUNEIFORM SIGN AMAR TIMES KUG
+12373         ; historic #      (𒍳)  CUNEIFORM SIGN DAG KISIM5 TIMES U2 PLUS MASH
+12374         ; historic #      (𒍴)  CUNEIFORM SIGN DAG3
+12375         ; historic #      (𒍵)  CUNEIFORM SIGN DISH PLUS SHU
+12376         ; historic #      (𒍶)  CUNEIFORM SIGN DUB TIMES SHE
+12377         ; historic #      (𒍷)  CUNEIFORM SIGN EZEN TIMES GUD
+12378         ; historic #      (𒍸)  CUNEIFORM SIGN EZEN TIMES SHE
+12379         ; historic #      (𒍹)  CUNEIFORM SIGN GA2 TIMES AN PLUS KAK PLUS A
+1237A         ; historic #      (𒍺)  CUNEIFORM SIGN GA2 TIMES ASH2
+1237B         ; historic #      (𒍻)  CUNEIFORM SIGN GE22
+1237C         ; historic #      (𒍼)  CUNEIFORM SIGN GIG
+1237D         ; historic #      (𒍽)  CUNEIFORM SIGN HUSH
+1237E         ; historic #      (𒍾)  CUNEIFORM SIGN KA TIMES ANSHE
+1237F         ; historic #      (𒍿)  CUNEIFORM SIGN KA TIMES ASH3
+12380         ; historic #      (𒎀)  CUNEIFORM SIGN KA TIMES GISH
+12381         ; historic #      (𒎁)  CUNEIFORM SIGN KA TIMES GUD
+12382         ; historic #      (𒎂)  CUNEIFORM SIGN KA TIMES HI TIMES ASH2
+12383         ; historic #      (𒎃)  CUNEIFORM SIGN KA TIMES LUM
+12384         ; historic #      (𒎄)  CUNEIFORM SIGN KA TIMES PA
+12385         ; historic #      (𒎅)  CUNEIFORM SIGN KA TIMES SHUL
+12386         ; historic #      (𒎆)  CUNEIFORM SIGN KA TIMES TU
+12387         ; historic #      (𒎇)  CUNEIFORM SIGN KA TIMES UR2
+12388         ; historic #      (𒎈)  CUNEIFORM SIGN LAGAB TIMES GI
+12389         ; historic #      (𒎉)  CUNEIFORM SIGN LU2 SHESHIG TIMES BAD
+1238A         ; historic #      (𒎊)  CUNEIFORM SIGN LU2 TIMES ESH2 PLUS LAL
+1238B         ; historic #      (𒎋)  CUNEIFORM SIGN LU2 TIMES SHU
+1238C         ; historic #      (𒎌)  CUNEIFORM SIGN MESH
+1238D         ; historic #      (𒎍)  CUNEIFORM SIGN MUSH3 TIMES ZA
+1238E         ; historic #      (𒎎)  CUNEIFORM SIGN NA4
+1238F         ; historic #      (𒎏)  CUNEIFORM SIGN NIN
+12390         ; historic #      (𒎐)  CUNEIFORM SIGN NIN9
+12391         ; historic #      (𒎑)  CUNEIFORM SIGN NINDA2 TIMES BAL
+12392         ; historic #      (𒎒)  CUNEIFORM SIGN NINDA2 TIMES GI
+12393         ; historic #      (𒎓)  CUNEIFORM SIGN NU11 ROTATED NINETY DEGREES
+12394         ; historic #      (𒎔)  CUNEIFORM SIGN PESH2 ASTERISK
+12395         ; historic #      (𒎕)  CUNEIFORM SIGN PIR2
+12396         ; historic #      (𒎖)  CUNEIFORM SIGN SAG TIMES IGI GUNU
+12397         ; historic #      (𒎗)  CUNEIFORM SIGN TI2
+12398         ; historic #      (𒎘)  CUNEIFORM SIGN UM TIMES ME
 12400         ; historic #      (𒐀)  CUNEIFORM NUMERIC SIGN TWO ASH
 12401         ; historic #      (𒐁)  CUNEIFORM NUMERIC SIGN THREE ASH
 12402         ; historic #      (𒐂)  CUNEIFORM NUMERIC SIGN FOUR ASH
@@ -9808,6 +11146,18 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 12460         ; historic #      (𒑠)  CUNEIFORM NUMERIC SIGN ONE QUARTER ASH
 12461         ; historic #      (𒑡)  CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE SIXTH
 12462         ; historic #      (𒑢)  CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE QUARTER
+12463         ; historic #      (𒑣)  CUNEIFORM NUMERIC SIGN ONE QUARTER GUR
+12464         ; historic #      (𒑤)  CUNEIFORM NUMERIC SIGN ONE HALF GUR
+12465         ; historic #      (𒑥)  CUNEIFORM NUMERIC SIGN ELAMITE ONE THIRD
+12466         ; historic #      (𒑦)  CUNEIFORM NUMERIC SIGN ELAMITE TWO THIRDS
+12467         ; historic #      (𒑧)  CUNEIFORM NUMERIC SIGN ELAMITE FORTY
+12468         ; historic #      (𒑨)  CUNEIFORM NUMERIC SIGN ELAMITE FIFTY
+12469         ; historic #      (𒑩)  CUNEIFORM NUMERIC SIGN FOUR U VARIANT FORM
+1246A         ; historic #      (𒑪)  CUNEIFORM NUMERIC SIGN FIVE U VARIANT FORM
+1246B         ; historic #      (𒑫)  CUNEIFORM NUMERIC SIGN SIX U VARIANT FORM
+1246C         ; historic #      (𒑬)  CUNEIFORM NUMERIC SIGN SEVEN U VARIANT FORM
+1246D         ; historic #      (𒑭)  CUNEIFORM NUMERIC SIGN EIGHT U VARIANT FORM
+1246E         ; historic #      (𒑮)  CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
 13000         ; historic #      (𓀀)  EGYPTIAN HIEROGLYPH A001
 13001         ; historic #      (𓀁)  EGYPTIAN HIEROGLYPH A002
 13002         ; historic #      (𓀂)  EGYPTIAN HIEROGLYPH A003
@@ -10879,6 +12229,332 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1342C         ; historic #      (𓐬)  EGYPTIAN HIEROGLYPH AA030
 1342D         ; historic #      (𓐭)  EGYPTIAN HIEROGLYPH AA031
 1342E         ; historic #      (𓐮)  EGYPTIAN HIEROGLYPH AA032
+16A40         ; historic #      (𖩀)  MRO LETTER TA
+16A41         ; historic #      (𖩁)  MRO LETTER NGI
+16A42         ; historic #      (𖩂)  MRO LETTER YO
+16A43         ; historic #      (𖩃)  MRO LETTER MIM
+16A44         ; historic #      (𖩄)  MRO LETTER BA
+16A45         ; historic #      (𖩅)  MRO LETTER DA
+16A46         ; historic #      (𖩆)  MRO LETTER A
+16A47         ; historic #      (𖩇)  MRO LETTER PHI
+16A48         ; historic #      (𖩈)  MRO LETTER KHAI
+16A49         ; historic #      (𖩉)  MRO LETTER HAO
+16A4A         ; historic #      (𖩊)  MRO LETTER DAI
+16A4B         ; historic #      (𖩋)  MRO LETTER CHU
+16A4C         ; historic #      (𖩌)  MRO LETTER KEAAE
+16A4D         ; historic #      (𖩍)  MRO LETTER OL
+16A4E         ; historic #      (𖩎)  MRO LETTER MAEM
+16A4F         ; historic #      (𖩏)  MRO LETTER NIN
+16A50         ; historic #      (𖩐)  MRO LETTER PA
+16A51         ; historic #      (𖩑)  MRO LETTER OO
+16A52         ; historic #      (𖩒)  MRO LETTER O
+16A53         ; historic #      (𖩓)  MRO LETTER RO
+16A54         ; historic #      (𖩔)  MRO LETTER SHI
+16A55         ; historic #      (𖩕)  MRO LETTER THEA
+16A56         ; historic #      (𖩖)  MRO LETTER EA
+16A57         ; historic #      (𖩗)  MRO LETTER WA
+16A58         ; historic #      (𖩘)  MRO LETTER E
+16A59         ; historic #      (𖩙)  MRO LETTER KO
+16A5A         ; historic #      (𖩚)  MRO LETTER LAN
+16A5B         ; historic #      (𖩛)  MRO LETTER LA
+16A5C         ; historic #      (𖩜)  MRO LETTER HAI
+16A5D         ; historic #      (𖩝)  MRO LETTER RI
+16A5E         ; historic #      (𖩞)  MRO LETTER TEK
+16A60         ; historic #      (𖩠)  MRO DIGIT ZERO
+16A61         ; historic #      (𖩡)  MRO DIGIT ONE
+16A62         ; historic #      (𖩢)  MRO DIGIT TWO
+16A63         ; historic #      (𖩣)  MRO DIGIT THREE
+16A64         ; historic #      (𖩤)  MRO DIGIT FOUR
+16A65         ; historic #      (𖩥)  MRO DIGIT FIVE
+16A66         ; historic #      (𖩦)  MRO DIGIT SIX
+16A67         ; historic #      (𖩧)  MRO DIGIT SEVEN
+16A68         ; historic #      (𖩨)  MRO DIGIT EIGHT
+16A69         ; historic #      (𖩩)  MRO DIGIT NINE
+16AD0         ; historic #      (𖫐)  BASSA VAH LETTER ENNI
+16AD1         ; historic #      (𖫑)  BASSA VAH LETTER KA
+16AD2         ; historic #      (𖫒)  BASSA VAH LETTER SE
+16AD3         ; historic #      (𖫓)  BASSA VAH LETTER FA
+16AD4         ; historic #      (𖫔)  BASSA VAH LETTER MBE
+16AD5         ; historic #      (𖫕)  BASSA VAH LETTER YIE
+16AD6         ; historic #      (𖫖)  BASSA VAH LETTER GAH
+16AD7         ; historic #      (𖫗)  BASSA VAH LETTER DHII
+16AD8         ; historic #      (𖫘)  BASSA VAH LETTER KPAH
+16AD9         ; historic #      (𖫙)  BASSA VAH LETTER JO
+16ADA         ; historic #      (𖫚)  BASSA VAH LETTER HWAH
+16ADB         ; historic #      (𖫛)  BASSA VAH LETTER WA
+16ADC         ; historic #      (𖫜)  BASSA VAH LETTER ZO
+16ADD         ; historic #      (𖫝)  BASSA VAH LETTER GBU
+16ADE         ; historic #      (𖫞)  BASSA VAH LETTER DO
+16ADF         ; historic #      (𖫟)  BASSA VAH LETTER CE
+16AE0         ; historic #      (𖫠)  BASSA VAH LETTER UWU
+16AE1         ; historic #      (𖫡)  BASSA VAH LETTER TO
+16AE2         ; historic #      (𖫢)  BASSA VAH LETTER BA
+16AE3         ; historic #      (𖫣)  BASSA VAH LETTER VU
+16AE4         ; historic #      (𖫤)  BASSA VAH LETTER YEIN
+16AE5         ; historic #      (𖫥)  BASSA VAH LETTER PA
+16AE6         ; historic #      (𖫦)  BASSA VAH LETTER WADDA
+16AE7         ; historic #      (𖫧)  BASSA VAH LETTER A
+16AE8         ; historic #      (𖫨)  BASSA VAH LETTER O
+16AE9         ; historic #      (𖫩)  BASSA VAH LETTER OO
+16AEA         ; historic #      (𖫪)  BASSA VAH LETTER U
+16AEB         ; historic #      (𖫫)  BASSA VAH LETTER EE
+16AEC         ; historic #      (𖫬)  BASSA VAH LETTER E
+16AED         ; historic #      (𖫭)  BASSA VAH LETTER I
+16AF0         ; historic #      (𖫰)  BASSA VAH COMBINING HIGH TONE
+16AF1         ; historic #      (𖫱)  BASSA VAH COMBINING LOW TONE
+16AF2         ; historic #      (𖫲)  BASSA VAH COMBINING MID TONE
+16AF3         ; historic #      (𖫳)  BASSA VAH COMBINING LOW-MID TONE
+16AF4         ; historic #      (𖫴)  BASSA VAH COMBINING HIGH-LOW TONE
+16B00         ; historic #      (𖬀)  PAHAWH HMONG VOWEL KEEB
+16B01         ; historic #      (𖬁)  PAHAWH HMONG VOWEL KEEV
+16B02         ; historic #      (𖬂)  PAHAWH HMONG VOWEL KIB
+16B03         ; historic #      (𖬃)  PAHAWH HMONG VOWEL KIV
+16B04         ; historic #      (𖬄)  PAHAWH HMONG VOWEL KAUB
+16B05         ; historic #      (𖬅)  PAHAWH HMONG VOWEL KAUV
+16B06         ; historic #      (𖬆)  PAHAWH HMONG VOWEL KUB
+16B07         ; historic #      (𖬇)  PAHAWH HMONG VOWEL KUV
+16B08         ; historic #      (𖬈)  PAHAWH HMONG VOWEL KEB
+16B09         ; historic #      (𖬉)  PAHAWH HMONG VOWEL KEV
+16B0A         ; historic #      (𖬊)  PAHAWH HMONG VOWEL KAIB
+16B0B         ; historic #      (𖬋)  PAHAWH HMONG VOWEL KAIV
+16B0C         ; historic #      (𖬌)  PAHAWH HMONG VOWEL KOOB
+16B0D         ; historic #      (𖬍)  PAHAWH HMONG VOWEL KOOV
+16B0E         ; historic #      (𖬎)  PAHAWH HMONG VOWEL KAWB
+16B0F         ; historic #      (𖬏)  PAHAWH HMONG VOWEL KAWV
+16B10         ; historic #      (𖬐)  PAHAWH HMONG VOWEL KUAB
+16B11         ; historic #      (𖬑)  PAHAWH HMONG VOWEL KUAV
+16B12         ; historic #      (𖬒)  PAHAWH HMONG VOWEL KOB
+16B13         ; historic #      (𖬓)  PAHAWH HMONG VOWEL KOV
+16B14         ; historic #      (𖬔)  PAHAWH HMONG VOWEL KIAB
+16B15         ; historic #      (𖬕)  PAHAWH HMONG VOWEL KIAV
+16B16         ; historic #      (𖬖)  PAHAWH HMONG VOWEL KAB
+16B17         ; historic #      (𖬗)  PAHAWH HMONG VOWEL KAV
+16B18         ; historic #      (𖬘)  PAHAWH HMONG VOWEL KWB
+16B19         ; historic #      (𖬙)  PAHAWH HMONG VOWEL KWV
+16B1A         ; historic #      (𖬚)  PAHAWH HMONG VOWEL KAAB
+16B1B         ; historic #      (𖬛)  PAHAWH HMONG VOWEL KAAV
+16B1C         ; historic #      (𖬜)  PAHAWH HMONG CONSONANT VAU
+16B1D         ; historic #      (𖬝)  PAHAWH HMONG CONSONANT NTSAU
+16B1E         ; historic #      (𖬞)  PAHAWH HMONG CONSONANT LAU
+16B1F         ; historic #      (𖬟)  PAHAWH HMONG CONSONANT HAU
+16B20         ; historic #      (𖬠)  PAHAWH HMONG CONSONANT NLAU
+16B21         ; historic #      (𖬡)  PAHAWH HMONG CONSONANT RAU
+16B22         ; historic #      (𖬢)  PAHAWH HMONG CONSONANT NKAU
+16B23         ; historic #      (𖬣)  PAHAWH HMONG CONSONANT QHAU
+16B24         ; historic #      (𖬤)  PAHAWH HMONG CONSONANT YAU
+16B25         ; historic #      (𖬥)  PAHAWH HMONG CONSONANT HLAU
+16B26         ; historic #      (𖬦)  PAHAWH HMONG CONSONANT MAU
+16B27         ; historic #      (𖬧)  PAHAWH HMONG CONSONANT CHAU
+16B28         ; historic #      (𖬨)  PAHAWH HMONG CONSONANT NCHAU
+16B29         ; historic #      (𖬩)  PAHAWH HMONG CONSONANT HNAU
+16B2A         ; historic #      (𖬪)  PAHAWH HMONG CONSONANT PLHAU
+16B2B         ; historic #      (𖬫)  PAHAWH HMONG CONSONANT NTHAU
+16B2C         ; historic #      (𖬬)  PAHAWH HMONG CONSONANT NAU
+16B2D         ; historic #      (𖬭)  PAHAWH HMONG CONSONANT AU
+16B2E         ; historic #      (𖬮)  PAHAWH HMONG CONSONANT XAU
+16B2F         ; historic #      (𖬯)  PAHAWH HMONG CONSONANT CAU
+16B30         ; historic #      (𖬰)  PAHAWH HMONG MARK CIM TUB
+16B31         ; historic #      (𖬱)  PAHAWH HMONG MARK CIM SO
+16B32         ; historic #      (𖬲)  PAHAWH HMONG MARK CIM KES
+16B33         ; historic #      (𖬳)  PAHAWH HMONG MARK CIM KHAV
+16B34         ; historic #      (𖬴)  PAHAWH HMONG MARK CIM SUAM
+16B35         ; historic #      (𖬵)  PAHAWH HMONG MARK CIM HOM
+16B36         ; historic #      (𖬶)  PAHAWH HMONG MARK CIM TAUM
+16B40         ; historic #      (𖭀)  PAHAWH HMONG SIGN VOS SEEV
+16B41         ; historic #      (𖭁)  PAHAWH HMONG SIGN MEEJ SUAB
+16B42         ; historic #      (𖭂)  PAHAWH HMONG SIGN VOS NRUA
+16B43         ; historic #      (𖭃)  PAHAWH HMONG SIGN IB YAM
+16B50         ; historic #      (𖭐)  PAHAWH HMONG DIGIT ZERO
+16B51         ; historic #      (𖭑)  PAHAWH HMONG DIGIT ONE
+16B52         ; historic #      (𖭒)  PAHAWH HMONG DIGIT TWO
+16B53         ; historic #      (𖭓)  PAHAWH HMONG DIGIT THREE
+16B54         ; historic #      (𖭔)  PAHAWH HMONG DIGIT FOUR
+16B55         ; historic #      (𖭕)  PAHAWH HMONG DIGIT FIVE
+16B56         ; historic #      (𖭖)  PAHAWH HMONG DIGIT SIX
+16B57         ; historic #      (𖭗)  PAHAWH HMONG DIGIT SEVEN
+16B58         ; historic #      (𖭘)  PAHAWH HMONG DIGIT EIGHT
+16B59         ; historic #      (𖭙)  PAHAWH HMONG DIGIT NINE
+16B63         ; historic #      (𖭣)  PAHAWH HMONG SIGN VOS LUB
+16B64         ; historic #      (𖭤)  PAHAWH HMONG SIGN XYOO
+16B65         ; historic #      (𖭥)  PAHAWH HMONG SIGN HLI
+16B66         ; historic #      (𖭦)  PAHAWH HMONG SIGN THIRD-STAGE HLI
+16B67         ; historic #      (𖭧)  PAHAWH HMONG SIGN ZWJ THAJ
+16B68         ; historic #      (𖭨)  PAHAWH HMONG SIGN HNUB
+16B69         ; historic #      (𖭩)  PAHAWH HMONG SIGN NQIG
+16B6A         ; historic #      (𖭪)  PAHAWH HMONG SIGN XIAB
+16B6B         ; historic #      (𖭫)  PAHAWH HMONG SIGN NTUJ
+16B6C         ; historic #      (𖭬)  PAHAWH HMONG SIGN AV
+16B6D         ; historic #      (𖭭)  PAHAWH HMONG SIGN TXHEEJ CEEV
+16B6E         ; historic #      (𖭮)  PAHAWH HMONG SIGN MEEJ TSEEB
+16B6F         ; historic #      (𖭯)  PAHAWH HMONG SIGN TAU
+16B70         ; historic #      (𖭰)  PAHAWH HMONG SIGN LOS
+16B71         ; historic #      (𖭱)  PAHAWH HMONG SIGN MUS
+16B72         ; historic #      (𖭲)  PAHAWH HMONG SIGN CIM HAIS LUS NTOG NTOG
+16B73         ; historic #      (𖭳)  PAHAWH HMONG SIGN CIM CUAM TSHOOJ
+16B74         ; historic #      (𖭴)  PAHAWH HMONG SIGN CIM TXWV
+16B75         ; historic #      (𖭵)  PAHAWH HMONG SIGN CIM TXWV CHWV
+16B76         ; historic #      (𖭶)  PAHAWH HMONG SIGN CIM PUB DAWB
+16B77         ; historic #      (𖭷)  PAHAWH HMONG SIGN CIM NRES TOS
+16B7D         ; historic #      (𖭽)  PAHAWH HMONG CLAN SIGN TSHEEJ
+16B7E         ; historic #      (𖭾)  PAHAWH HMONG CLAN SIGN YEEG
+16B7F         ; historic #      (𖭿)  PAHAWH HMONG CLAN SIGN LIS
+16B80         ; historic #      (𖮀)  PAHAWH HMONG CLAN SIGN LAUJ
+16B81         ; historic #      (𖮁)  PAHAWH HMONG CLAN SIGN XYOOJ
+16B82         ; historic #      (𖮂)  PAHAWH HMONG CLAN SIGN KOO
+16B83         ; historic #      (𖮃)  PAHAWH HMONG CLAN SIGN HAWJ
+16B84         ; historic #      (𖮄)  PAHAWH HMONG CLAN SIGN MUAS
+16B85         ; historic #      (𖮅)  PAHAWH HMONG CLAN SIGN THOJ
+16B86         ; historic #      (𖮆)  PAHAWH HMONG CLAN SIGN TSAB
+16B87         ; historic #      (𖮇)  PAHAWH HMONG CLAN SIGN PHAB
+16B88         ; historic #      (𖮈)  PAHAWH HMONG CLAN SIGN KHAB
+16B89         ; historic #      (𖮉)  PAHAWH HMONG CLAN SIGN HAM
+16B8A         ; historic #      (𖮊)  PAHAWH HMONG CLAN SIGN VAJ
+16B8B         ; historic #      (𖮋)  PAHAWH HMONG CLAN SIGN FAJ
+16B8C         ; historic #      (𖮌)  PAHAWH HMONG CLAN SIGN YAJ
+16B8D         ; historic #      (𖮍)  PAHAWH HMONG CLAN SIGN TSWB
+16B8E         ; historic #      (𖮎)  PAHAWH HMONG CLAN SIGN KWM
+16B8F         ; historic #      (𖮏)  PAHAWH HMONG CLAN SIGN VWJ
+1BC00         ; historic #      (𛰀)  DUPLOYAN LETTER H
+1BC01         ; historic #      (𛰁)  DUPLOYAN LETTER X
+1BC02         ; historic #      (𛰂)  DUPLOYAN LETTER P
+1BC03         ; historic #      (𛰃)  DUPLOYAN LETTER T
+1BC04         ; historic #      (𛰄)  DUPLOYAN LETTER F
+1BC05         ; historic #      (𛰅)  DUPLOYAN LETTER K
+1BC06         ; historic #      (𛰆)  DUPLOYAN LETTER L
+1BC07         ; historic #      (𛰇)  DUPLOYAN LETTER B
+1BC08         ; historic #      (𛰈)  DUPLOYAN LETTER D
+1BC09         ; historic #      (𛰉)  DUPLOYAN LETTER V
+1BC0A         ; historic #      (𛰊)  DUPLOYAN LETTER G
+1BC0B         ; historic #      (𛰋)  DUPLOYAN LETTER R
+1BC0C         ; historic #      (𛰌)  DUPLOYAN LETTER P N
+1BC0D         ; historic #      (𛰍)  DUPLOYAN LETTER D S
+1BC0E         ; historic #      (𛰎)  DUPLOYAN LETTER F N
+1BC0F         ; historic #      (𛰏)  DUPLOYAN LETTER K M
+1BC10         ; historic #      (𛰐)  DUPLOYAN LETTER R S
+1BC11         ; historic #      (𛰑)  DUPLOYAN LETTER TH
+1BC12         ; historic #      (𛰒)  DUPLOYAN LETTER SLOAN DH
+1BC13         ; historic #      (𛰓)  DUPLOYAN LETTER DH
+1BC14         ; historic #      (𛰔)  DUPLOYAN LETTER KK
+1BC15         ; historic #      (𛰕)  DUPLOYAN LETTER SLOAN J
+1BC16         ; historic #      (𛰖)  DUPLOYAN LETTER HL
+1BC17         ; historic #      (𛰗)  DUPLOYAN LETTER LH
+1BC18         ; historic #      (𛰘)  DUPLOYAN LETTER RH
+1BC19         ; historic #      (𛰙)  DUPLOYAN LETTER M
+1BC1A         ; historic #      (𛰚)  DUPLOYAN LETTER N
+1BC1B         ; historic #      (𛰛)  DUPLOYAN LETTER J
+1BC1C         ; historic #      (𛰜)  DUPLOYAN LETTER S
+1BC1D         ; historic #      (𛰝)  DUPLOYAN LETTER M N
+1BC1E         ; historic #      (𛰞)  DUPLOYAN LETTER N M
+1BC1F         ; historic #      (𛰟)  DUPLOYAN LETTER J M
+1BC20         ; historic #      (𛰠)  DUPLOYAN LETTER S J
+1BC21         ; historic #      (𛰡)  DUPLOYAN LETTER M WITH DOT
+1BC22         ; historic #      (𛰢)  DUPLOYAN LETTER N WITH DOT
+1BC23         ; historic #      (𛰣)  DUPLOYAN LETTER J WITH DOT
+1BC24         ; historic #      (𛰤)  DUPLOYAN LETTER J WITH DOTS INSIDE AND ABOVE
+1BC25         ; historic #      (𛰥)  DUPLOYAN LETTER S WITH DOT
+1BC26         ; historic #      (𛰦)  DUPLOYAN LETTER S WITH DOT BELOW
+1BC27         ; historic #      (𛰧)  DUPLOYAN LETTER M S
+1BC28         ; historic #      (𛰨)  DUPLOYAN LETTER N S
+1BC29         ; historic #      (𛰩)  DUPLOYAN LETTER J S
+1BC2A         ; historic #      (𛰪)  DUPLOYAN LETTER S S
+1BC2B         ; historic #      (𛰫)  DUPLOYAN LETTER M N S
+1BC2C         ; historic #      (𛰬)  DUPLOYAN LETTER N M S
+1BC2D         ; historic #      (𛰭)  DUPLOYAN LETTER J M S
+1BC2E         ; historic #      (𛰮)  DUPLOYAN LETTER S J S
+1BC2F         ; historic #      (𛰯)  DUPLOYAN LETTER J S WITH DOT
+1BC30         ; historic #      (𛰰)  DUPLOYAN LETTER J N
+1BC31         ; historic #      (𛰱)  DUPLOYAN LETTER J N S
+1BC32         ; historic #      (𛰲)  DUPLOYAN LETTER S T
+1BC33         ; historic #      (𛰳)  DUPLOYAN LETTER S T R
+1BC34         ; historic #      (𛰴)  DUPLOYAN LETTER S P
+1BC35         ; historic #      (𛰵)  DUPLOYAN LETTER S P R
+1BC36         ; historic #      (𛰶)  DUPLOYAN LETTER T S
+1BC37         ; historic #      (𛰷)  DUPLOYAN LETTER T R S
+1BC38         ; historic #      (𛰸)  DUPLOYAN LETTER W
+1BC39         ; historic #      (𛰹)  DUPLOYAN LETTER WH
+1BC3A         ; historic #      (𛰺)  DUPLOYAN LETTER W R
+1BC3B         ; historic #      (𛰻)  DUPLOYAN LETTER S N
+1BC3C         ; historic #      (𛰼)  DUPLOYAN LETTER S M
+1BC3D         ; historic #      (𛰽)  DUPLOYAN LETTER K R S
+1BC3E         ; historic #      (𛰾)  DUPLOYAN LETTER G R S
+1BC3F         ; historic #      (𛰿)  DUPLOYAN LETTER S K
+1BC40         ; historic #      (𛱀)  DUPLOYAN LETTER S K R
+1BC41         ; historic #      (𛱁)  DUPLOYAN LETTER A
+1BC42         ; historic #      (𛱂)  DUPLOYAN LETTER SLOAN OW
+1BC43         ; historic #      (𛱃)  DUPLOYAN LETTER OA
+1BC44         ; historic #      (𛱄)  DUPLOYAN LETTER O
+1BC45         ; historic #      (𛱅)  DUPLOYAN LETTER AOU
+1BC46         ; historic #      (𛱆)  DUPLOYAN LETTER I
+1BC47         ; historic #      (𛱇)  DUPLOYAN LETTER E
+1BC48         ; historic #      (𛱈)  DUPLOYAN LETTER IE
+1BC49         ; historic #      (𛱉)  DUPLOYAN LETTER SHORT I
+1BC4A         ; historic #      (𛱊)  DUPLOYAN LETTER UI
+1BC4B         ; historic #      (𛱋)  DUPLOYAN LETTER EE
+1BC4C         ; historic #      (𛱌)  DUPLOYAN LETTER SLOAN EH
+1BC4D         ; historic #      (𛱍)  DUPLOYAN LETTER ROMANIAN I
+1BC4E         ; historic #      (𛱎)  DUPLOYAN LETTER SLOAN EE
+1BC4F         ; historic #      (𛱏)  DUPLOYAN LETTER LONG I
+1BC50         ; historic #      (𛱐)  DUPLOYAN LETTER YE
+1BC51         ; historic #      (𛱑)  DUPLOYAN LETTER U
+1BC52         ; historic #      (𛱒)  DUPLOYAN LETTER EU
+1BC53         ; historic #      (𛱓)  DUPLOYAN LETTER XW
+1BC54         ; historic #      (𛱔)  DUPLOYAN LETTER U N
+1BC55         ; historic #      (𛱕)  DUPLOYAN LETTER LONG U
+1BC56         ; historic #      (𛱖)  DUPLOYAN LETTER ROMANIAN U
+1BC57         ; historic #      (𛱗)  DUPLOYAN LETTER UH
+1BC58         ; historic #      (𛱘)  DUPLOYAN LETTER SLOAN U
+1BC59         ; historic #      (𛱙)  DUPLOYAN LETTER OOH
+1BC5A         ; historic #      (𛱚)  DUPLOYAN LETTER OW
+1BC5B         ; historic #      (𛱛)  DUPLOYAN LETTER OU
+1BC5C         ; historic #      (𛱜)  DUPLOYAN LETTER WA
+1BC5D         ; historic #      (𛱝)  DUPLOYAN LETTER WO
+1BC5E         ; historic #      (𛱞)  DUPLOYAN LETTER WI
+1BC5F         ; historic #      (𛱟)  DUPLOYAN LETTER WEI
+1BC60         ; historic #      (𛱠)  DUPLOYAN LETTER WOW
+1BC61         ; historic #      (𛱡)  DUPLOYAN LETTER NASAL U
+1BC62         ; historic #      (𛱢)  DUPLOYAN LETTER NASAL O
+1BC63         ; historic #      (𛱣)  DUPLOYAN LETTER NASAL I
+1BC64         ; historic #      (𛱤)  DUPLOYAN LETTER NASAL A
+1BC65         ; historic #      (𛱥)  DUPLOYAN LETTER PERNIN AN
+1BC66         ; historic #      (𛱦)  DUPLOYAN LETTER PERNIN AM
+1BC67         ; historic #      (𛱧)  DUPLOYAN LETTER SLOAN EN
+1BC68         ; historic #      (𛱨)  DUPLOYAN LETTER SLOAN AN
+1BC69         ; historic #      (𛱩)  DUPLOYAN LETTER SLOAN ON
+1BC6A         ; historic #      (𛱪)  DUPLOYAN LETTER VOCALIC M
+1BC70         ; historic #      (𛱰)  DUPLOYAN AFFIX LEFT HORIZONTAL SECANT
+1BC71         ; historic #      (𛱱)  DUPLOYAN AFFIX MID HORIZONTAL SECANT
+1BC72         ; historic #      (𛱲)  DUPLOYAN AFFIX RIGHT HORIZONTAL SECANT
+1BC73         ; historic #      (𛱳)  DUPLOYAN AFFIX LOW VERTICAL SECANT
+1BC74         ; historic #      (𛱴)  DUPLOYAN AFFIX MID VERTICAL SECANT
+1BC75         ; historic #      (𛱵)  DUPLOYAN AFFIX HIGH VERTICAL SECANT
+1BC76         ; historic #      (𛱶)  DUPLOYAN AFFIX ATTACHED SECANT
+1BC77         ; historic #      (𛱷)  DUPLOYAN AFFIX ATTACHED LEFT-TO-RIGHT SECANT
+1BC78         ; historic #      (𛱸)  DUPLOYAN AFFIX ATTACHED TANGENT
+1BC79         ; historic #      (𛱹)  DUPLOYAN AFFIX ATTACHED TAIL
+1BC7A         ; historic #      (𛱺)  DUPLOYAN AFFIX ATTACHED E HOOK
+1BC7B         ; historic #      (𛱻)  DUPLOYAN AFFIX ATTACHED I HOOK
+1BC7C         ; historic #      (𛱼)  DUPLOYAN AFFIX ATTACHED TANGENT HOOK
+1BC80         ; historic #      (𛲀)  DUPLOYAN AFFIX HIGH ACUTE
+1BC81         ; historic #      (𛲁)  DUPLOYAN AFFIX HIGH TIGHT ACUTE
+1BC82         ; historic #      (𛲂)  DUPLOYAN AFFIX HIGH GRAVE
+1BC83         ; historic #      (𛲃)  DUPLOYAN AFFIX HIGH LONG GRAVE
+1BC84         ; historic #      (𛲄)  DUPLOYAN AFFIX HIGH DOT
+1BC85         ; historic #      (𛲅)  DUPLOYAN AFFIX HIGH CIRCLE
+1BC86         ; historic #      (𛲆)  DUPLOYAN AFFIX HIGH LINE
+1BC87         ; historic #      (𛲇)  DUPLOYAN AFFIX HIGH WAVE
+1BC88         ; historic #      (𛲈)  DUPLOYAN AFFIX HIGH VERTICAL
+1BC90         ; historic #      (𛲐)  DUPLOYAN AFFIX LOW ACUTE
+1BC91         ; historic #      (𛲑)  DUPLOYAN AFFIX LOW TIGHT ACUTE
+1BC92         ; historic #      (𛲒)  DUPLOYAN AFFIX LOW GRAVE
+1BC93         ; historic #      (𛲓)  DUPLOYAN AFFIX LOW LONG GRAVE
+1BC94         ; historic #      (𛲔)  DUPLOYAN AFFIX LOW DOT
+1BC95         ; historic #      (𛲕)  DUPLOYAN AFFIX LOW CIRCLE
+1BC96         ; historic #      (𛲖)  DUPLOYAN AFFIX LOW LINE
+1BC97         ; historic #      (𛲗)  DUPLOYAN AFFIX LOW WAVE
+1BC98         ; historic #      (𛲘)  DUPLOYAN AFFIX LOW VERTICAL
+1BC99         ; historic #      (𛲙)  DUPLOYAN AFFIX LOW ARROW
+1BC9D         ; historic #      (𛲝)  DUPLOYAN THICK LETTER SELECTOR
+1BC9E         ; historic #      (𛲞)  DUPLOYAN DOUBLE MARK
 1D165..1D169  ; historic #  [5] (𝅥..𝅩)  MUSICAL SYMBOL COMBINING STEM..MUSICAL SYMBOL COMBINING TREMOLO-3
 1D16D..1D172  ; historic #  [6] (𝅭..𝅲)  MUSICAL SYMBOL COMBINING AUGMENTATION DOT..MUSICAL SYMBOL COMBINING FLAG-5
 1D17B..1D182  ; historic #  [8] (𝅻..𝆂)  MUSICAL SYMBOL COMBINING ACCENT..MUSICAL SYMBOL COMBINING LOURE
@@ -10887,8 +12563,212 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1D242         ; historic #      (𝉂)  COMBINING GREEK MUSICAL TRISEME
 1D243         ; historic #      (𝉃)  COMBINING GREEK MUSICAL TETRASEME
 1D244         ; historic #      (𝉄)  COMBINING GREEK MUSICAL PENTASEME
+1E800         ; historic #      (𞠀)  MENDE KIKAKUI SYLLABLE M001 KI
+1E801         ; historic #      (𞠁)  MENDE KIKAKUI SYLLABLE M002 KA
+1E802         ; historic #      (𞠂)  MENDE KIKAKUI SYLLABLE M003 KU
+1E803         ; historic #      (𞠃)  MENDE KIKAKUI SYLLABLE M065 KEE
+1E804         ; historic #      (𞠄)  MENDE KIKAKUI SYLLABLE M095 KE
+1E805         ; historic #      (𞠅)  MENDE KIKAKUI SYLLABLE M076 KOO
+1E806         ; historic #      (𞠆)  MENDE KIKAKUI SYLLABLE M048 KO
+1E807         ; historic #      (𞠇)  MENDE KIKAKUI SYLLABLE M179 KUA
+1E808         ; historic #      (𞠈)  MENDE KIKAKUI SYLLABLE M004 WI
+1E809         ; historic #      (𞠉)  MENDE KIKAKUI SYLLABLE M005 WA
+1E80A         ; historic #      (𞠊)  MENDE KIKAKUI SYLLABLE M006 WU
+1E80B         ; historic #      (𞠋)  MENDE KIKAKUI SYLLABLE M126 WEE
+1E80C         ; historic #      (𞠌)  MENDE KIKAKUI SYLLABLE M118 WE
+1E80D         ; historic #      (𞠍)  MENDE KIKAKUI SYLLABLE M114 WOO
+1E80E         ; historic #      (𞠎)  MENDE KIKAKUI SYLLABLE M045 WO
+1E80F         ; historic #      (𞠏)  MENDE KIKAKUI SYLLABLE M194 WUI
+1E810         ; historic #      (𞠐)  MENDE KIKAKUI SYLLABLE M143 WEI
+1E811         ; historic #      (𞠑)  MENDE KIKAKUI SYLLABLE M061 WVI
+1E812         ; historic #      (𞠒)  MENDE KIKAKUI SYLLABLE M049 WVA
+1E813         ; historic #      (𞠓)  MENDE KIKAKUI SYLLABLE M139 WVE
+1E814         ; historic #      (𞠔)  MENDE KIKAKUI SYLLABLE M007 MIN
+1E815         ; historic #      (𞠕)  MENDE KIKAKUI SYLLABLE M008 MAN
+1E816         ; historic #      (𞠖)  MENDE KIKAKUI SYLLABLE M009 MUN
+1E817         ; historic #      (𞠗)  MENDE KIKAKUI SYLLABLE M059 MEN
+1E818         ; historic #      (𞠘)  MENDE KIKAKUI SYLLABLE M094 MON
+1E819         ; historic #      (𞠙)  MENDE KIKAKUI SYLLABLE M154 MUAN
+1E81A         ; historic #      (𞠚)  MENDE KIKAKUI SYLLABLE M189 MUEN
+1E81B         ; historic #      (𞠛)  MENDE KIKAKUI SYLLABLE M010 BI
+1E81C         ; historic #      (𞠜)  MENDE KIKAKUI SYLLABLE M011 BA
+1E81D         ; historic #      (𞠝)  MENDE KIKAKUI SYLLABLE M012 BU
+1E81E         ; historic #      (𞠞)  MENDE KIKAKUI SYLLABLE M150 BEE
+1E81F         ; historic #      (𞠟)  MENDE KIKAKUI SYLLABLE M097 BE
+1E820         ; historic #      (𞠠)  MENDE KIKAKUI SYLLABLE M103 BOO
+1E821         ; historic #      (𞠡)  MENDE KIKAKUI SYLLABLE M138 BO
+1E822         ; historic #      (𞠢)  MENDE KIKAKUI SYLLABLE M013 I
+1E823         ; historic #      (𞠣)  MENDE KIKAKUI SYLLABLE M014 A
+1E824         ; historic #      (𞠤)  MENDE KIKAKUI SYLLABLE M015 U
+1E825         ; historic #      (𞠥)  MENDE KIKAKUI SYLLABLE M163 EE
+1E826         ; historic #      (𞠦)  MENDE KIKAKUI SYLLABLE M100 E
+1E827         ; historic #      (𞠧)  MENDE KIKAKUI SYLLABLE M165 OO
+1E828         ; historic #      (𞠨)  MENDE KIKAKUI SYLLABLE M147 O
+1E829         ; historic #      (𞠩)  MENDE KIKAKUI SYLLABLE M137 EI
+1E82A         ; historic #      (𞠪)  MENDE KIKAKUI SYLLABLE M131 IN
+1E82B         ; historic #      (𞠫)  MENDE KIKAKUI SYLLABLE M135 IN
+1E82C         ; historic #      (𞠬)  MENDE KIKAKUI SYLLABLE M195 AN
+1E82D         ; historic #      (𞠭)  MENDE KIKAKUI SYLLABLE M178 EN
+1E82E         ; historic #      (𞠮)  MENDE KIKAKUI SYLLABLE M019 SI
+1E82F         ; historic #      (𞠯)  MENDE KIKAKUI SYLLABLE M020 SA
+1E830         ; historic #      (𞠰)  MENDE KIKAKUI SYLLABLE M021 SU
+1E831         ; historic #      (𞠱)  MENDE KIKAKUI SYLLABLE M162 SEE
+1E832         ; historic #      (𞠲)  MENDE KIKAKUI SYLLABLE M116 SE
+1E833         ; historic #      (𞠳)  MENDE KIKAKUI SYLLABLE M136 SOO
+1E834         ; historic #      (𞠴)  MENDE KIKAKUI SYLLABLE M079 SO
+1E835         ; historic #      (𞠵)  MENDE KIKAKUI SYLLABLE M196 SIA
+1E836         ; historic #      (𞠶)  MENDE KIKAKUI SYLLABLE M025 LI
+1E837         ; historic #      (𞠷)  MENDE KIKAKUI SYLLABLE M026 LA
+1E838         ; historic #      (𞠸)  MENDE KIKAKUI SYLLABLE M027 LU
+1E839         ; historic #      (𞠹)  MENDE KIKAKUI SYLLABLE M084 LEE
+1E83A         ; historic #      (𞠺)  MENDE KIKAKUI SYLLABLE M073 LE
+1E83B         ; historic #      (𞠻)  MENDE KIKAKUI SYLLABLE M054 LOO
+1E83C         ; historic #      (𞠼)  MENDE KIKAKUI SYLLABLE M153 LO
+1E83D         ; historic #      (𞠽)  MENDE KIKAKUI SYLLABLE M110 LONG LE
+1E83E         ; historic #      (𞠾)  MENDE KIKAKUI SYLLABLE M016 DI
+1E83F         ; historic #      (𞠿)  MENDE KIKAKUI SYLLABLE M017 DA
+1E840         ; historic #      (𞡀)  MENDE KIKAKUI SYLLABLE M018 DU
+1E841         ; historic #      (𞡁)  MENDE KIKAKUI SYLLABLE M089 DEE
+1E842         ; historic #      (𞡂)  MENDE KIKAKUI SYLLABLE M180 DOO
+1E843         ; historic #      (𞡃)  MENDE KIKAKUI SYLLABLE M181 DO
+1E844         ; historic #      (𞡄)  MENDE KIKAKUI SYLLABLE M022 TI
+1E845         ; historic #      (𞡅)  MENDE KIKAKUI SYLLABLE M023 TA
+1E846         ; historic #      (𞡆)  MENDE KIKAKUI SYLLABLE M024 TU
+1E847         ; historic #      (𞡇)  MENDE KIKAKUI SYLLABLE M091 TEE
+1E848         ; historic #      (𞡈)  MENDE KIKAKUI SYLLABLE M055 TE
+1E849         ; historic #      (𞡉)  MENDE KIKAKUI SYLLABLE M104 TOO
+1E84A         ; historic #      (𞡊)  MENDE KIKAKUI SYLLABLE M069 TO
+1E84B         ; historic #      (𞡋)  MENDE KIKAKUI SYLLABLE M028 JI
+1E84C         ; historic #      (𞡌)  MENDE KIKAKUI SYLLABLE M029 JA
+1E84D         ; historic #      (𞡍)  MENDE KIKAKUI SYLLABLE M030 JU
+1E84E         ; historic #      (𞡎)  MENDE KIKAKUI SYLLABLE M157 JEE
+1E84F         ; historic #      (𞡏)  MENDE KIKAKUI SYLLABLE M113 JE
+1E850         ; historic #      (𞡐)  MENDE KIKAKUI SYLLABLE M160 JOO
+1E851         ; historic #      (𞡑)  MENDE KIKAKUI SYLLABLE M063 JO
+1E852         ; historic #      (𞡒)  MENDE KIKAKUI SYLLABLE M175 LONG JO
+1E853         ; historic #      (𞡓)  MENDE KIKAKUI SYLLABLE M031 YI
+1E854         ; historic #      (𞡔)  MENDE KIKAKUI SYLLABLE M032 YA
+1E855         ; historic #      (𞡕)  MENDE KIKAKUI SYLLABLE M033 YU
+1E856         ; historic #      (𞡖)  MENDE KIKAKUI SYLLABLE M109 YEE
+1E857         ; historic #      (𞡗)  MENDE KIKAKUI SYLLABLE M080 YE
+1E858         ; historic #      (𞡘)  MENDE KIKAKUI SYLLABLE M141 YOO
+1E859         ; historic #      (𞡙)  MENDE KIKAKUI SYLLABLE M121 YO
+1E85A         ; historic #      (𞡚)  MENDE KIKAKUI SYLLABLE M034 FI
+1E85B         ; historic #      (𞡛)  MENDE KIKAKUI SYLLABLE M035 FA
+1E85C         ; historic #      (𞡜)  MENDE KIKAKUI SYLLABLE M036 FU
+1E85D         ; historic #      (𞡝)  MENDE KIKAKUI SYLLABLE M078 FEE
+1E85E         ; historic #      (𞡞)  MENDE KIKAKUI SYLLABLE M075 FE
+1E85F         ; historic #      (𞡟)  MENDE KIKAKUI SYLLABLE M133 FOO
+1E860         ; historic #      (𞡠)  MENDE KIKAKUI SYLLABLE M088 FO
+1E861         ; historic #      (𞡡)  MENDE KIKAKUI SYLLABLE M197 FUA
+1E862         ; historic #      (𞡢)  MENDE KIKAKUI SYLLABLE M101 FAN
+1E863         ; historic #      (𞡣)  MENDE KIKAKUI SYLLABLE M037 NIN
+1E864         ; historic #      (𞡤)  MENDE KIKAKUI SYLLABLE M038 NAN
+1E865         ; historic #      (𞡥)  MENDE KIKAKUI SYLLABLE M039 NUN
+1E866         ; historic #      (𞡦)  MENDE KIKAKUI SYLLABLE M117 NEN
+1E867         ; historic #      (𞡧)  MENDE KIKAKUI SYLLABLE M169 NON
+1E868         ; historic #      (𞡨)  MENDE KIKAKUI SYLLABLE M176 HI
+1E869         ; historic #      (𞡩)  MENDE KIKAKUI SYLLABLE M041 HA
+1E86A         ; historic #      (𞡪)  MENDE KIKAKUI SYLLABLE M186 HU
+1E86B         ; historic #      (𞡫)  MENDE KIKAKUI SYLLABLE M040 HEE
+1E86C         ; historic #      (𞡬)  MENDE KIKAKUI SYLLABLE M096 HE
+1E86D         ; historic #      (𞡭)  MENDE KIKAKUI SYLLABLE M042 HOO
+1E86E         ; historic #      (𞡮)  MENDE KIKAKUI SYLLABLE M140 HO
+1E86F         ; historic #      (𞡯)  MENDE KIKAKUI SYLLABLE M083 HEEI
+1E870         ; historic #      (𞡰)  MENDE KIKAKUI SYLLABLE M128 HOOU
+1E871         ; historic #      (𞡱)  MENDE KIKAKUI SYLLABLE M053 HIN
+1E872         ; historic #      (𞡲)  MENDE KIKAKUI SYLLABLE M130 HAN
+1E873         ; historic #      (𞡳)  MENDE KIKAKUI SYLLABLE M087 HUN
+1E874         ; historic #      (𞡴)  MENDE KIKAKUI SYLLABLE M052 HEN
+1E875         ; historic #      (𞡵)  MENDE KIKAKUI SYLLABLE M193 HON
+1E876         ; historic #      (𞡶)  MENDE KIKAKUI SYLLABLE M046 HUAN
+1E877         ; historic #      (𞡷)  MENDE KIKAKUI SYLLABLE M090 NGGI
+1E878         ; historic #      (𞡸)  MENDE KIKAKUI SYLLABLE M043 NGGA
+1E879         ; historic #      (𞡹)  MENDE KIKAKUI SYLLABLE M082 NGGU
+1E87A         ; historic #      (𞡺)  MENDE KIKAKUI SYLLABLE M115 NGGEE
+1E87B         ; historic #      (𞡻)  MENDE KIKAKUI SYLLABLE M146 NGGE
+1E87C         ; historic #      (𞡼)  MENDE KIKAKUI SYLLABLE M156 NGGOO
+1E87D         ; historic #      (𞡽)  MENDE KIKAKUI SYLLABLE M120 NGGO
+1E87E         ; historic #      (𞡾)  MENDE KIKAKUI SYLLABLE M159 NGGAA
+1E87F         ; historic #      (𞡿)  MENDE KIKAKUI SYLLABLE M127 NGGUA
+1E880         ; historic #      (𞢀)  MENDE KIKAKUI SYLLABLE M086 LONG NGGE
+1E881         ; historic #      (𞢁)  MENDE KIKAKUI SYLLABLE M106 LONG NGGOO
+1E882         ; historic #      (𞢂)  MENDE KIKAKUI SYLLABLE M183 LONG NGGO
+1E883         ; historic #      (𞢃)  MENDE KIKAKUI SYLLABLE M155 GI
+1E884         ; historic #      (𞢄)  MENDE KIKAKUI SYLLABLE M111 GA
+1E885         ; historic #      (𞢅)  MENDE KIKAKUI SYLLABLE M168 GU
+1E886         ; historic #      (𞢆)  MENDE KIKAKUI SYLLABLE M190 GEE
+1E887         ; historic #      (𞢇)  MENDE KIKAKUI SYLLABLE M166 GUEI
+1E888         ; historic #      (𞢈)  MENDE KIKAKUI SYLLABLE M167 GUAN
+1E889         ; historic #      (𞢉)  MENDE KIKAKUI SYLLABLE M184 NGEN
+1E88A         ; historic #      (𞢊)  MENDE KIKAKUI SYLLABLE M057 NGON
+1E88B         ; historic #      (𞢋)  MENDE KIKAKUI SYLLABLE M177 NGUAN
+1E88C         ; historic #      (𞢌)  MENDE KIKAKUI SYLLABLE M068 PI
+1E88D         ; historic #      (𞢍)  MENDE KIKAKUI SYLLABLE M099 PA
+1E88E         ; historic #      (𞢎)  MENDE KIKAKUI SYLLABLE M050 PU
+1E88F         ; historic #      (𞢏)  MENDE KIKAKUI SYLLABLE M081 PEE
+1E890         ; historic #      (𞢐)  MENDE KIKAKUI SYLLABLE M051 PE
+1E891         ; historic #      (𞢑)  MENDE KIKAKUI SYLLABLE M102 POO
+1E892         ; historic #      (𞢒)  MENDE KIKAKUI SYLLABLE M066 PO
+1E893         ; historic #      (𞢓)  MENDE KIKAKUI SYLLABLE M145 MBI
+1E894         ; historic #      (𞢔)  MENDE KIKAKUI SYLLABLE M062 MBA
+1E895         ; historic #      (𞢕)  MENDE KIKAKUI SYLLABLE M122 MBU
+1E896         ; historic #      (𞢖)  MENDE KIKAKUI SYLLABLE M047 MBEE
+1E897         ; historic #      (𞢗)  MENDE KIKAKUI SYLLABLE M188 MBEE
+1E898         ; historic #      (𞢘)  MENDE KIKAKUI SYLLABLE M072 MBE
+1E899         ; historic #      (𞢙)  MENDE KIKAKUI SYLLABLE M172 MBOO
+1E89A         ; historic #      (𞢚)  MENDE KIKAKUI SYLLABLE M174 MBO
+1E89B         ; historic #      (𞢛)  MENDE KIKAKUI SYLLABLE M187 MBUU
+1E89C         ; historic #      (𞢜)  MENDE KIKAKUI SYLLABLE M161 LONG MBE
+1E89D         ; historic #      (𞢝)  MENDE KIKAKUI SYLLABLE M105 LONG MBOO
+1E89E         ; historic #      (𞢞)  MENDE KIKAKUI SYLLABLE M142 LONG MBO
+1E89F         ; historic #      (𞢟)  MENDE KIKAKUI SYLLABLE M132 KPI
+1E8A0         ; historic #      (𞢠)  MENDE KIKAKUI SYLLABLE M092 KPA
+1E8A1         ; historic #      (𞢡)  MENDE KIKAKUI SYLLABLE M074 KPU
+1E8A2         ; historic #      (𞢢)  MENDE KIKAKUI SYLLABLE M044 KPEE
+1E8A3         ; historic #      (𞢣)  MENDE KIKAKUI SYLLABLE M108 KPE
+1E8A4         ; historic #      (𞢤)  MENDE KIKAKUI SYLLABLE M112 KPOO
+1E8A5         ; historic #      (𞢥)  MENDE KIKAKUI SYLLABLE M158 KPO
+1E8A6         ; historic #      (𞢦)  MENDE KIKAKUI SYLLABLE M124 GBI
+1E8A7         ; historic #      (𞢧)  MENDE KIKAKUI SYLLABLE M056 GBA
+1E8A8         ; historic #      (𞢨)  MENDE KIKAKUI SYLLABLE M148 GBU
+1E8A9         ; historic #      (𞢩)  MENDE KIKAKUI SYLLABLE M093 GBEE
+1E8AA         ; historic #      (𞢪)  MENDE KIKAKUI SYLLABLE M107 GBE
+1E8AB         ; historic #      (𞢫)  MENDE KIKAKUI SYLLABLE M071 GBOO
+1E8AC         ; historic #      (𞢬)  MENDE KIKAKUI SYLLABLE M070 GBO
+1E8AD         ; historic #      (𞢭)  MENDE KIKAKUI SYLLABLE M171 RA
+1E8AE         ; historic #      (𞢮)  MENDE KIKAKUI SYLLABLE M123 NDI
+1E8AF         ; historic #      (𞢯)  MENDE KIKAKUI SYLLABLE M129 NDA
+1E8B0         ; historic #      (𞢰)  MENDE KIKAKUI SYLLABLE M125 NDU
+1E8B1         ; historic #      (𞢱)  MENDE KIKAKUI SYLLABLE M191 NDEE
+1E8B2         ; historic #      (𞢲)  MENDE KIKAKUI SYLLABLE M119 NDE
+1E8B3         ; historic #      (𞢳)  MENDE KIKAKUI SYLLABLE M067 NDOO
+1E8B4         ; historic #      (𞢴)  MENDE KIKAKUI SYLLABLE M064 NDO
+1E8B5         ; historic #      (𞢵)  MENDE KIKAKUI SYLLABLE M152 NJA
+1E8B6         ; historic #      (𞢶)  MENDE KIKAKUI SYLLABLE M192 NJU
+1E8B7         ; historic #      (𞢷)  MENDE KIKAKUI SYLLABLE M149 NJEE
+1E8B8         ; historic #      (𞢸)  MENDE KIKAKUI SYLLABLE M134 NJOO
+1E8B9         ; historic #      (𞢹)  MENDE KIKAKUI SYLLABLE M182 VI
+1E8BA         ; historic #      (𞢺)  MENDE KIKAKUI SYLLABLE M185 VA
+1E8BB         ; historic #      (𞢻)  MENDE KIKAKUI SYLLABLE M151 VU
+1E8BC         ; historic #      (𞢼)  MENDE KIKAKUI SYLLABLE M173 VEE
+1E8BD         ; historic #      (𞢽)  MENDE KIKAKUI SYLLABLE M085 VE
+1E8BE         ; historic #      (𞢾)  MENDE KIKAKUI SYLLABLE M144 VOO
+1E8BF         ; historic #      (𞢿)  MENDE KIKAKUI SYLLABLE M077 VO
+1E8C0         ; historic #      (𞣀)  MENDE KIKAKUI SYLLABLE M164 NYIN
+1E8C1         ; historic #      (𞣁)  MENDE KIKAKUI SYLLABLE M058 NYAN
+1E8C2         ; historic #      (𞣂)  MENDE KIKAKUI SYLLABLE M170 NYUN
+1E8C3         ; historic #      (𞣃)  MENDE KIKAKUI SYLLABLE M098 NYEN
+1E8C4         ; historic #      (𞣄)  MENDE KIKAKUI SYLLABLE M060 NYON
+1E8D0         ; historic #      (𞣐)  MENDE KIKAKUI COMBINING NUMBER TEENS
+1E8D1         ; historic #      (𞣑)  MENDE KIKAKUI COMBINING NUMBER TENS
+1E8D2         ; historic #      (𞣒)  MENDE KIKAKUI COMBINING NUMBER HUNDREDS
+1E8D3         ; historic #      (𞣓)  MENDE KIKAKUI COMBINING NUMBER THOUSANDS
+1E8D4         ; historic #      (𞣔)  MENDE KIKAKUI COMBINING NUMBER TEN THOUSANDS
+1E8D5         ; historic #      (𞣕)  MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
+1E8D6         ; historic #      (𞣖)  MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 4845
+# Total code points: 6768
 
 0181..0182    ; limited-use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ; limited-use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
@@ -10984,6 +12864,10 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 0334          ; limited-use #      (̴)  COMBINING TILDE OVERLAY
 0336          ; limited-use #      (̶)  COMBINING LONG STROKE OVERLAY
 0358          ; limited-use #      (͘)  COMBINING DOT ABOVE RIGHT
+0528          ; limited-use #      (Ԩ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK
+0529          ; limited-use #      (ԩ)  CYRILLIC SMALL LETTER EN WITH LEFT HOOK
+052E          ; limited-use #      (Ԯ)  CYRILLIC CAPITAL LETTER EL WITH DESCENDER
+052F          ; limited-use #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
 0591          ; limited-use #      (֑)  HEBREW ACCENT ETNAHTA
 0592          ; limited-use #      (֒)  HEBREW ACCENT SEGOL
 0593          ; limited-use #      (֓)  HEBREW ACCENT SHALSHELET
@@ -11159,6 +13043,8 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 0859          ; limited-use #      (࡙)  MANDAIC AFFRICATION MARK
 085A          ; limited-use #      (࡚)  MANDAIC VOCALIZATION MARK
 085B          ; limited-use #      (࡛)  MANDAIC GEMINATION MARK
+08A1          ; limited-use #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
+08B2          ; limited-use #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 08E4          ; limited-use #      (ࣤ)  ARABIC CURLY FATHA
 08E5          ; limited-use #      (ࣥ)  ARABIC CURLY DAMMA
 08E6          ; limited-use #      (ࣦ)  ARABIC CURLY KASRA
@@ -11186,6 +13072,7 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 08FC          ; limited-use #      (ࣼ)  ARABIC DOUBLE RIGHT ARROWHEAD ABOVE WITH DOT
 08FD          ; limited-use #      (ࣽ)  ARABIC RIGHT ARROWHEAD ABOVE WITH DOT
 08FE          ; limited-use #      (ࣾ)  ARABIC DAMMA WITH DOT
+08FF          ; limited-use #      (ࣿ)  ARABIC MARK SIDEWAYS NOON GHUNNA
 0900          ; limited-use #      (ऀ)  DEVANAGARI SIGN INVERTED CANDRABINDU
 0955          ; limited-use #      (ॕ)  DEVANAGARI VOWEL SIGN CANDRA LONG E
 0A51          ; limited-use #      (ੑ)  GURMUKHI SIGN UDAAT
@@ -11462,6 +13349,8 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 191A          ; limited-use #      (ᤚ)  LIMBU LETTER SSA
 191B          ; limited-use #      (ᤛ)  LIMBU LETTER SA
 191C          ; limited-use #      (ᤜ)  LIMBU LETTER HA
+191D          ; limited-use #      (ᤝ)  LIMBU LETTER GYAN
+191E          ; limited-use #      (ᤞ)  LIMBU LETTER TRA
 1920          ; limited-use #      (ᤠ)  LIMBU VOWEL SIGN A
 1921          ; limited-use #      (ᤡ)  LIMBU VOWEL SIGN I
 1922          ; limited-use #      (ᤢ)  LIMBU VOWEL SIGN U
@@ -12787,6 +14676,30 @@ A9D6          ; limited-use #      (꧖)  JAVANESE DIGIT SIX
 A9D7          ; limited-use #      (꧗)  JAVANESE DIGIT SEVEN
 A9D8          ; limited-use #      (꧘)  JAVANESE DIGIT EIGHT
 A9D9          ; limited-use #      (꧙)  JAVANESE DIGIT NINE
+A9E7          ; limited-use #      (ꧧ)  MYANMAR LETTER TAI LAING NYA
+A9E8          ; limited-use #      (ꧨ)  MYANMAR LETTER TAI LAING FA
+A9E9          ; limited-use #      (ꧩ)  MYANMAR LETTER TAI LAING GA
+A9EA          ; limited-use #      (ꧪ)  MYANMAR LETTER TAI LAING GHA
+A9EB          ; limited-use #      (ꧫ)  MYANMAR LETTER TAI LAING JA
+A9EC          ; limited-use #      (ꧬ)  MYANMAR LETTER TAI LAING JHA
+A9ED          ; limited-use #      (ꧭ)  MYANMAR LETTER TAI LAING DDA
+A9EE          ; limited-use #      (ꧮ)  MYANMAR LETTER TAI LAING DDHA
+A9EF          ; limited-use #      (ꧯ)  MYANMAR LETTER TAI LAING NNA
+A9F0          ; limited-use #      (꧰)  MYANMAR TAI LAING DIGIT ZERO
+A9F1          ; limited-use #      (꧱)  MYANMAR TAI LAING DIGIT ONE
+A9F2          ; limited-use #      (꧲)  MYANMAR TAI LAING DIGIT TWO
+A9F3          ; limited-use #      (꧳)  MYANMAR TAI LAING DIGIT THREE
+A9F4          ; limited-use #      (꧴)  MYANMAR TAI LAING DIGIT FOUR
+A9F5          ; limited-use #      (꧵)  MYANMAR TAI LAING DIGIT FIVE
+A9F6          ; limited-use #      (꧶)  MYANMAR TAI LAING DIGIT SIX
+A9F7          ; limited-use #      (꧷)  MYANMAR TAI LAING DIGIT SEVEN
+A9F8          ; limited-use #      (꧸)  MYANMAR TAI LAING DIGIT EIGHT
+A9F9          ; limited-use #      (꧹)  MYANMAR TAI LAING DIGIT NINE
+A9FA          ; limited-use #      (ꧺ)  MYANMAR LETTER TAI LAING LLA
+A9FB          ; limited-use #      (ꧻ)  MYANMAR LETTER TAI LAING DA
+A9FC          ; limited-use #      (ꧼ)  MYANMAR LETTER TAI LAING DHA
+A9FD          ; limited-use #      (ꧽ)  MYANMAR LETTER TAI LAING BA
+A9FE          ; limited-use #      (ꧾ)  MYANMAR LETTER TAI LAING BHA
 AA00          ; limited-use #      (ꨀ)  CHAM LETTER A
 AA01          ; limited-use #      (ꨁ)  CHAM LETTER I
 AA02          ; limited-use #      (ꨂ)  CHAM LETTER U
@@ -12866,6 +14779,10 @@ AA56          ; limited-use #      (꩖)  CHAM DIGIT SIX
 AA57          ; limited-use #      (꩗)  CHAM DIGIT SEVEN
 AA58          ; limited-use #      (꩘)  CHAM DIGIT EIGHT
 AA59          ; limited-use #      (꩙)  CHAM DIGIT NINE
+AA7C          ; limited-use #      (ꩼ)  MYANMAR SIGN TAI LAING TONE-2
+AA7D          ; limited-use #      (ꩽ)  MYANMAR SIGN TAI LAING TONE-5
+AA7E          ; limited-use #      (ꩾ)  MYANMAR LETTER SHWE PALAUNG CHA
+AA7F          ; limited-use #      (ꩿ)  MYANMAR LETTER SHWE PALAUNG SHA
 AA80          ; limited-use #      (ꪀ)  TAI VIET LETTER LOW KO
 AA81          ; limited-use #      (ꪁ)  TAI VIET LETTER HIGH KO
 AA82          ; limited-use #      (ꪂ)  TAI VIET LETTER LOW KHO
@@ -13779,7 +15696,7 @@ FB1E          ; limited-use #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 16F9E         ; limited-use #      (𖾞)  MIAO LETTER REFORMED TONE-6
 16F9F         ; limited-use #      (𖾟)  MIAO LETTER REFORMED TONE-8
 
-# Total code points: 4836
+# Total code points: 4873
 
 018D          ; obsolete #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
 01AA          ; obsolete #      (ƪ)  LATIN LETTER REVERSED ESH LOOP
@@ -14099,6 +16016,21 @@ FB1E          ; limited-use #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 1DE4          ; technical #      (ᷤ)  COMBINING LATIN SMALL LETTER S
 1DE5          ; technical #      (ᷥ)  COMBINING LATIN SMALL LETTER LONG S
 1DE6          ; technical #      (ᷦ)  COMBINING LATIN SMALL LETTER Z
+1DE7          ; technical #      (ᷧ)  COMBINING LATIN SMALL LETTER ALPHA
+1DE8          ; technical #      (ᷨ)  COMBINING LATIN SMALL LETTER B
+1DE9          ; technical #      (ᷩ)  COMBINING LATIN SMALL LETTER BETA
+1DEA          ; technical #      (ᷪ)  COMBINING LATIN SMALL LETTER SCHWA
+1DEB          ; technical #      (ᷫ)  COMBINING LATIN SMALL LETTER F
+1DEC          ; technical #      (ᷬ)  COMBINING LATIN SMALL LETTER L WITH DOUBLE MIDDLE TILDE
+1DED          ; technical #      (ᷭ)  COMBINING LATIN SMALL LETTER O WITH LIGHT CENTRALIZATION STROKE
+1DEE          ; technical #      (ᷮ)  COMBINING LATIN SMALL LETTER P
+1DEF          ; technical #      (ᷯ)  COMBINING LATIN SMALL LETTER ESH
+1DF0          ; technical #      (ᷰ)  COMBINING LATIN SMALL LETTER U WITH LIGHT CENTRALIZATION STROKE
+1DF1          ; technical #      (ᷱ)  COMBINING LATIN SMALL LETTER W
+1DF2          ; technical #      (ᷲ)  COMBINING LATIN SMALL LETTER A WITH DIAERESIS
+1DF3          ; technical #      (ᷳ)  COMBINING LATIN SMALL LETTER O WITH DIAERESIS
+1DF4          ; technical #      (ᷴ)  COMBINING LATIN SMALL LETTER U WITH DIAERESIS
+1DF5          ; technical #      (᷵)  COMBINING UP TACK ABOVE
 1DFC          ; technical #      (᷼)  COMBINING DOUBLE INVERTED BREVE BELOW
 1DFD          ; technical #      (᷽)  COMBINING ALMOST EQUAL TO BELOW
 1DFE          ; technical #      (᷾)  COMBINING LEFT ARROWHEAD ABOVE
@@ -14254,112 +16186,20 @@ FB1E          ; limited-use #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 31FD          ; technical #      (ㇽ)  KATAKANA LETTER SMALL RU
 31FE          ; technical #      (ㇾ)  KATAKANA LETTER SMALL RE
 31FF          ; technical #      (ㇿ)  KATAKANA LETTER SMALL RO
-FE20..FE26    ; technical #  [7] (︠..︦)  COMBINING LIGATURE LEFT HALF..COMBINING CONJOINING MACRON
+FE20..FE2D    ; technical # [14] (︠..︭)  COMBINING LIGATURE LEFT HALF..COMBINING CONJOINING MACRON BELOW
 FE73          ; technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 462
+# Total code points: 484
 
 005F          ; ~IDNA #      (_)  LOW LINE
-037F          ; ~IDNA #      (Ϳ)  GREEK CAPITAL LETTER YOT
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
-0528..052F    ; ~IDNA #  [8] (Ԩ..ԯ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK..CYRILLIC SMALL LETTER EL WITH DESCENDER
-08A1          ; ~IDNA #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
-08AD..08B2    ; ~IDNA #  [6] (ࢭ..ࢲ)  ARABIC LETTER LOW ALEF..ARABIC LETTER ZAIN WITH INVERTED V ABOVE
-08FF          ; ~IDNA #      (ࣿ)  ARABIC MARK SIDEWAYS NOON GHUNNA
-0978          ; ~IDNA #      (ॸ)  DEVANAGARI LETTER MARWARI DDA
-0980          ; ~IDNA #      (ঀ)  BENGALI ANJI
-0C00          ; ~IDNA #      (ఀ)  TELUGU SIGN COMBINING CANDRABINDU ABOVE
-0C34          ; ~IDNA #      (ఴ)  TELUGU LETTER LLLA
-0C81          ; ~IDNA #      (ಁ)  KANNADA SIGN CANDRABINDU
-0D01          ; ~IDNA #      (ഁ)  MALAYALAM SIGN CANDRABINDU
-0DE6..0DEF    ; ~IDNA # [10] (෦..෯)  SINHALA LITH DIGIT ZERO..SINHALA LITH DIGIT NINE
 10A0..10C5    ; ~IDNA # [38] (Ⴀ..Ⴥ)  GEORGIAN CAPITAL LETTER AN..GEORGIAN CAPITAL LETTER HOE
 115F..1160    ; ~IDNA #  [2] (U+115F..U+1160)  HANGUL CHOSEONG FILLER..HANGUL JUNGSEONG FILLER
-16F1..16F8    ; ~IDNA #  [8] (ᛱ..ᛸ)  RUNIC LETTER K..RUNIC LETTER FRANKS CASKET AESC
 17B4..17B5    ; ~IDNA #  [2] (U+17B4..U+17B5)  KHMER VOWEL INHERENT AQ..KHMER VOWEL INHERENT AA
-191D..191E    ; ~IDNA #  [2] (ᤝ..ᤞ)  LIMBU LETTER GYAN..LIMBU LETTER TRA
-1AB0..1ABD    ; ~IDNA # [14] (᪰..᪽)  COMBINING DOUBLED CIRCUMFLEX ACCENT..COMBINING PARENTHESES BELOW
-1CF8..1CF9    ; ~IDNA #  [2] (᳸..᳹)  VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
-1DE7..1DF5    ; ~IDNA # [15] (ᷧ..᷵)  COMBINING LATIN SMALL LETTER ALPHA..COMBINING UP TACK ABOVE
 2132          ; ~IDNA #      (Ⅎ)  TURNED CAPITAL F
 2183          ; ~IDNA #      (Ↄ)  ROMAN NUMERAL REVERSED ONE HUNDRED
-A698..A69B    ; ~IDNA #  [4] (Ꚙ..ꚛ)  CYRILLIC CAPITAL LETTER DOUBLE O..CYRILLIC SMALL LETTER CROSSED O
-A794..A79F    ; ~IDNA # [12] (ꞔ..ꞟ)  LATIN SMALL LETTER C WITH PALATAL HOOK..LATIN SMALL LETTER VOLAPUK UE
-A7AB..A7AD    ; ~IDNA #  [3] (Ɜ..Ɬ)  LATIN CAPITAL LETTER REVERSED OPEN E..LATIN CAPITAL LETTER L WITH BELT
-A7B0..A7B1    ; ~IDNA #  [2] (Ʞ..Ʇ)  LATIN CAPITAL LETTER TURNED K..LATIN CAPITAL LETTER TURNED T
-A7F7          ; ~IDNA #      (ꟷ)  LATIN EPIGRAPHIC LETTER SIDEWAYS I
-A9E0..A9FE    ; ~IDNA # [31] (ꧠ..ꧾ)  MYANMAR LETTER SHAN GHA..MYANMAR LETTER TAI LAING BHA
-AA7C..AA7F    ; ~IDNA #  [4] (ꩼ..ꩿ)  MYANMAR SIGN TAI LAING TONE-2..MYANMAR LETTER SHWE PALAUNG SHA
-AB30..AB5A    ; ~IDNA # [43] (ꬰ..ꭚ)  LATIN SMALL LETTER BARRED ALPHA..LATIN SMALL LETTER Y WITH SHORT RIGHT LEG
-AB64..AB65    ; ~IDNA #  [2] (ꭤ..ꭥ)  LATIN SMALL LETTER INVERTED ALPHA..GREEK LETTER SMALL CAPITAL OMEGA
-FE27..FE2D    ; ~IDNA #  [7] (︧..︭)  COMBINING LIGATURE LEFT HALF BELOW..COMBINING CONJOINING MACRON BELOW
-102E0         ; ~IDNA #      (𐋠)  COPTIC EPACT THOUSANDS MARK
-1031F         ; ~IDNA #      (𐌟)  OLD ITALIC LETTER ESS
-10350..1037A  ; ~IDNA # [43] (𐍐..𐍺)  OLD PERMIC LETTER AN..COMBINING OLD PERMIC LETTER SII
-10500..10527  ; ~IDNA # [40] (𐔀..𐔧)  ELBASAN LETTER A..ELBASAN LETTER KHE
-10530..10563  ; ~IDNA # [52] (𐔰..𐕣)  CAUCASIAN ALBANIAN LETTER ALT..CAUCASIAN ALBANIAN LETTER KIW
-10600..10736  ; ~IDNA # [311] (𐘀..𐜶)  LINEAR A SIGN AB001..LINEAR A SIGN A664
-10740..10755  ; ~IDNA # [22] (𐝀..𐝕)  LINEAR A SIGN A701 A..LINEAR A SIGN A732 JE
-10760..10767  ; ~IDNA #  [8] (𐝠..𐝧)  LINEAR A SIGN A800..LINEAR A SIGN A807
-10860..10876  ; ~IDNA # [23] (𐡠..𐡶)  PALMYRENE LETTER ALEPH..PALMYRENE LETTER TAW
-10880..1089E  ; ~IDNA # [31] (𐢀..𐢞)  NABATAEAN LETTER FINAL ALEPH..NABATAEAN LETTER TAW
-10A80..10A9C  ; ~IDNA # [29] (𐪀..𐪜)  OLD NORTH ARABIAN LETTER HEH..OLD NORTH ARABIAN LETTER ZAH
-10AC0..10AC7  ; ~IDNA #  [8] (𐫀..𐫇)  MANICHAEAN LETTER ALEPH..MANICHAEAN LETTER WAW
-10AC9..10AE6  ; ~IDNA # [30] (𐫉..𐫦)  MANICHAEAN LETTER ZAYIN..MANICHAEAN ABBREVIATION MARK BELOW
-10B80..10B91  ; ~IDNA # [18] (𐮀..𐮑)  PSALTER PAHLAVI LETTER ALEPH..PSALTER PAHLAVI LETTER TAW
-1107F         ; ~IDNA #      (𑁿)  BRAHMI NUMBER JOINER
-11150..11173  ; ~IDNA # [36] (𑅐..𑅳)  MAHAJANI LETTER A..MAHAJANI SIGN NUKTA
-11176         ; ~IDNA #      (𑅶)  MAHAJANI LIGATURE SHRI
-111DA         ; ~IDNA #      (𑇚)  SHARADA EKAM
-11200..11211  ; ~IDNA # [18] (𑈀..𑈑)  KHOJKI LETTER A..KHOJKI LETTER JJA
-11213..11237  ; ~IDNA # [37] (𑈓..𑈷)  KHOJKI LETTER NYA..KHOJKI SIGN SHADDA
-112B0..112EA  ; ~IDNA # [59] (𑊰..𑋪)  KHUDAWADI LETTER A..KHUDAWADI SIGN VIRAMA
-112F0..112F9  ; ~IDNA # [10] (𑋰..𑋹)  KHUDAWADI DIGIT ZERO..KHUDAWADI DIGIT NINE
-11301..11303  ; ~IDNA #  [3] (𑌁..𑌃)  GRANTHA SIGN CANDRABINDU..GRANTHA SIGN VISARGA
-11305..1130C  ; ~IDNA #  [8] (𑌅..𑌌)  GRANTHA LETTER A..GRANTHA LETTER VOCALIC L
-1130F..11310  ; ~IDNA #  [2] (𑌏..𑌐)  GRANTHA LETTER EE..GRANTHA LETTER AI
-11313..11328  ; ~IDNA # [22] (𑌓..𑌨)  GRANTHA LETTER OO..GRANTHA LETTER NA
-1132A..11330  ; ~IDNA #  [7] (𑌪..𑌰)  GRANTHA LETTER PA..GRANTHA LETTER RA
-11332..11333  ; ~IDNA #  [2] (𑌲..𑌳)  GRANTHA LETTER LA..GRANTHA LETTER LLA
-11335..11339  ; ~IDNA #  [5] (𑌵..𑌹)  GRANTHA LETTER VA..GRANTHA LETTER HA
-1133C..11344  ; ~IDNA #  [9] (𑌼..𑍄)  GRANTHA SIGN NUKTA..GRANTHA VOWEL SIGN VOCALIC RR
-11347..11348  ; ~IDNA #  [2] (𑍇..𑍈)  GRANTHA VOWEL SIGN EE..GRANTHA VOWEL SIGN AI
-1134B..1134D  ; ~IDNA #  [3] (𑍋..𑍍)  GRANTHA VOWEL SIGN OO..GRANTHA SIGN VIRAMA
-11357         ; ~IDNA #      (𑍗)  GRANTHA AU LENGTH MARK
-1135D..11363  ; ~IDNA #  [7] (𑍝..𑍣)  GRANTHA SIGN PLUTA..GRANTHA VOWEL SIGN VOCALIC LL
-11366..1136C  ; ~IDNA #  [7] (𑍦..𑍬)  COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
-11370..11374  ; ~IDNA #  [5] (𑍰..𑍴)  COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
-11480..114C5  ; ~IDNA # [70] (𑒀..𑓅)  TIRHUTA ANJI..TIRHUTA GVANG
-114C7         ; ~IDNA #      (𑓇)  TIRHUTA OM
-114D0..114D9  ; ~IDNA # [10] (𑓐..𑓙)  TIRHUTA DIGIT ZERO..TIRHUTA DIGIT NINE
-11580..115B5  ; ~IDNA # [54] (𑖀..𑖵)  SIDDHAM LETTER A..SIDDHAM VOWEL SIGN VOCALIC RR
-115B8..115C0  ; ~IDNA #  [9] (𑖸..𑗀)  SIDDHAM VOWEL SIGN E..SIDDHAM SIGN NUKTA
-11600..11640  ; ~IDNA # [65] (𑘀..𑙀)  MODI LETTER A..MODI SIGN ARDHACANDRA
-11644         ; ~IDNA #      (𑙄)  MODI SIGN HUVA
-11650..11659  ; ~IDNA # [10] (𑙐..𑙙)  MODI DIGIT ZERO..MODI DIGIT NINE
-118A0..118E9  ; ~IDNA # [74] (𑢠..𑣩)  WARANG CITI CAPITAL LETTER NGAA..WARANG CITI DIGIT NINE
-118FF         ; ~IDNA #      (𑣿)  WARANG CITI OM
-11AC0..11AF8  ; ~IDNA # [57] (𑫀..𑫸)  PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
-1236F..12398  ; ~IDNA # [42] (𒍯..𒎘)  CUNEIFORM SIGN KAP ELAMITE..CUNEIFORM SIGN UM TIMES ME
-12463..1246E  ; ~IDNA # [12] (𒑣..𒑮)  CUNEIFORM NUMERIC SIGN ONE QUARTER GUR..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
-16A40..16A5E  ; ~IDNA # [31] (𖩀..𖩞)  MRO LETTER TA..MRO LETTER TEK
-16A60..16A69  ; ~IDNA # [10] (𖩠..𖩩)  MRO DIGIT ZERO..MRO DIGIT NINE
-16AD0..16AED  ; ~IDNA # [30] (𖫐..𖫭)  BASSA VAH LETTER ENNI..BASSA VAH LETTER I
-16AF0..16AF4  ; ~IDNA #  [5] (𖫰..𖫴)  BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
-16B00..16B36  ; ~IDNA # [55] (𖬀..𖬶)  PAHAWH HMONG VOWEL KEEB..PAHAWH HMONG MARK CIM TAUM
-16B40..16B43  ; ~IDNA #  [4] (𖭀..𖭃)  PAHAWH HMONG SIGN VOS SEEV..PAHAWH HMONG SIGN IB YAM
-16B50..16B59  ; ~IDNA # [10] (𖭐..𖭙)  PAHAWH HMONG DIGIT ZERO..PAHAWH HMONG DIGIT NINE
-16B63..16B77  ; ~IDNA # [21] (𖭣..𖭷)  PAHAWH HMONG SIGN VOS LUB..PAHAWH HMONG SIGN CIM NRES TOS
-16B7D..16B8F  ; ~IDNA # [19] (𖭽..𖮏)  PAHAWH HMONG CLAN SIGN TSHEEJ..PAHAWH HMONG CLAN SIGN VWJ
-1BC00..1BC6A  ; ~IDNA # [107] (𛰀..𛱪)  DUPLOYAN LETTER H..DUPLOYAN LETTER VOCALIC M
-1BC70..1BC7C  ; ~IDNA # [13] (𛱰..𛱼)  DUPLOYAN AFFIX LEFT HORIZONTAL SECANT..DUPLOYAN AFFIX ATTACHED TANGENT HOOK
-1BC80..1BC88  ; ~IDNA #  [9] (𛲀..𛲈)  DUPLOYAN AFFIX HIGH ACUTE..DUPLOYAN AFFIX HIGH VERTICAL
-1BC90..1BC99  ; ~IDNA # [10] (𛲐..𛲙)  DUPLOYAN AFFIX LOW ACUTE..DUPLOYAN AFFIX LOW ARROW
-1BC9D..1BC9E  ; ~IDNA #  [2] (𛲝..𛲞)  DUPLOYAN THICK LETTER SELECTOR..DUPLOYAN DOUBLE MARK
-1E800..1E8C4  ; ~IDNA # [197] (𞠀..𞣄)  MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
-1E8D0..1E8D6  ; ~IDNA #  [7] (𞣐..𞣖)  MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 2028
+# Total code points: 46
 
 0000..002F    ; ~Unicode Identifier # [48] (U+0000../)  <control-0000>..SOLIDUS
 003A..0040    ; ~Unicode Identifier #  [7] (:..@)  COLON..COMMERCIAL AT
@@ -14688,7 +16528,7 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 16B44..16B45  ; ~Unicode Identifier #  [2] (𖭄..𖭅)  PAHAWH HMONG SIGN XAUS..PAHAWH HMONG SIGN CIM TSOV ROG
 16B5B..16B61  ; ~Unicode Identifier #  [7] (𖭛..𖭡)  PAHAWH HMONG NUMBER TENS..PAHAWH HMONG NUMBER TRILLIONS
 1BC9C         ; ~Unicode Identifier #      (𛲜)  DUPLOYAN SIGN O WITH CROSS
-1BC9F..1BCA3  ; ~Unicode Identifier #  [5] (𛲟..𛲣)  DUPLOYAN PUNCTUATION CHINOOK FULL STOP..SHORTHAND FORMAT UP STEP
+1BC9F..1BCA3  ; ~Unicode Identifier #  [5] (𛲟..U+1BCA3)  DUPLOYAN PUNCTUATION CHINOOK FULL STOP..SHORTHAND FORMAT UP STEP
 1D000..1D0F5  ; ~Unicode Identifier # [246] (𝀀..𝃵)  BYZANTINE MUSICAL SYMBOL PSILI..BYZANTINE MUSICAL SYMBOL GORGON NEO KATO
 1D100..1D126  ; ~Unicode Identifier # [39] (𝄀..𝄦)  MUSICAL SYMBOL SINGLE BARLINE..MUSICAL SYMBOL DRUM CLEF-2
 1D129..1D164  ; ~Unicode Identifier # [60] (𝄩..𝅘𝅥𝅲)  MUSICAL SYMBOL MULTIPLE MEASURE REST..MUSICAL SYMBOL ONE HUNDRED TWENTY-EIGHTH NOTE
