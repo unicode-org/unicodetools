@@ -413,6 +413,8 @@ public class GenerateEmoji {
             return CODEPOINT_COMPARE.compare(chars, o.chars);
         }
 
+        static final UnicodeSet EMOJI_STYLE_OVERRIDE = new UnicodeSet("[🔙 🔚 🔛 🔜 🔝➕ ➖ ➗ ➰ ➿]").freeze();
+        
         public Data(String chars, String code, String age,
                 String defaultPresentation, String name) {
             this.chars = chars;
@@ -421,7 +423,7 @@ public class GenerateEmoji {
             }
             this.code = code;
             this.age = UcdPropertyValues.Age_Values.valueOf(age.replace('.', '_'));
-            this.defaultPresentation = Style.valueOf(defaultPresentation);
+            this.defaultPresentation = EMOJI_STYLE_OVERRIDE.contains(chars) ? Style.emoji : Style.valueOf(defaultPresentation);
             this.labels = storeLabels();
             this.name = getName(chars);
             //addWords(chars, name);

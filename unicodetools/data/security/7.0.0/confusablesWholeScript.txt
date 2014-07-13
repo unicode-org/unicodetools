@@ -1,7 +1,7 @@
 ﻿# Summary: Whole-Script Confusables
 # File: confusablesWholeScript.txt
 # Version: 7.0.0
-# Generated: 2014-07-11, 12:55:54 GMT
+# Generated: 2014-07-13, 14:47:57 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -1667,11 +1667,10 @@
 
 # Total code points: 12
 
-# Latin; Cyrillic: [a-eh-km-yæçøđħıĸŧơəꞓ]
+# Latin; Cyrillic: [a-eh-yæçøđħıĸŧơəꞓ]
 
 0061..0065    ; Latn; Cyrl; L #  [5] (a..e)  LATIN SMALL LETTER A..LATIN SMALL LETTER E
-0068..006B    ; Latn; Cyrl; L #  [4] (h..k)  LATIN SMALL LETTER H..LATIN SMALL LETTER K
-006D..0079    ; Latn; Cyrl; L # [13] (m..y)  LATIN SMALL LETTER M..LATIN SMALL LETTER Y
+0068..0079    ; Latn; Cyrl; L # [18] (h..y)  LATIN SMALL LETTER H..LATIN SMALL LETTER Y
 00E6..00E7    ; Latn; Cyrl; L #  [2] (æ..ç)  LATIN SMALL LETTER AE..LATIN SMALL LETTER C WITH CEDILLA
 00F8          ; Latn; Cyrl; L #      (ø)  LATIN SMALL LETTER O WITH STROKE
 0111          ; Latn; Cyrl; L #      (đ)  LATIN SMALL LETTER D WITH STROKE
@@ -1683,7 +1682,7 @@
 0259          ; Latn; Cyrl; L #      (ə)  LATIN SMALL LETTER SCHWA
 A793          ; Latn; Cyrl; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
-# Total code points: 33
+# Total code points: 34
 
 # Latin; Devanagari: [oøơ]
 
@@ -3076,15 +3075,16 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Cyrillic; Arabic: [ІЛоӅө]
+# Cyrillic; Arabic: [ІЛЮоӅө]
 
 0406          ; Cyrl; Arab; A #      (І)  CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
 041B          ; Cyrl; Arab; A #      (Л)  CYRILLIC CAPITAL LETTER EL
+042E          ; Cyrl; Arab; A #      (Ю)  CYRILLIC CAPITAL LETTER YU
 043E          ; Cyrl; Arab; A #      (о)  CYRILLIC SMALL LETTER O
 04C5          ; Cyrl; Arab; A #      (Ӆ)  CYRILLIC CAPITAL LETTER EL WITH TAIL
 04E9          ; Cyrl; Arab; A #      (ө)  CYRILLIC SMALL LETTER BARRED O
 
-# Total code points: 5
+# Total code points: 6
 
 # Cyrillic; Armenian: [ЅОФопцћһӨөԛԝ]
 
@@ -3125,7 +3125,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 5
 
-# Cyrillic; Greek: [ІАВГЕК-РТФХако-рт-фцєіҐҒҚқҞҟҢҬ-ҲӅӇӉӍӏӨөԑ]
+# Cyrillic; Greek: [ІАВГЕК-РТФХЮако-рт-фцєіҐҒҚқҞҟҢҬ-ҲӅӇӉӍӏӨөԑ]
 
 0406          ; Cyrl; Grek; A #      (І)  CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
 0410          ; Cyrl; Grek; A #      (А)  CYRILLIC CAPITAL LETTER A
@@ -3134,6 +3134,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 041A..0420    ; Cyrl; Grek; A #  [7] (К..Р)  CYRILLIC CAPITAL LETTER KA..CYRILLIC CAPITAL LETTER ER
 0422          ; Cyrl; Grek; A #      (Т)  CYRILLIC CAPITAL LETTER TE
 0424..0425    ; Cyrl; Grek; A #  [2] (Ф..Х)  CYRILLIC CAPITAL LETTER EF..CYRILLIC CAPITAL LETTER HA
+042E          ; Cyrl; Grek; A #      (Ю)  CYRILLIC CAPITAL LETTER YU
 0430          ; Cyrl; Grek; A #      (а)  CYRILLIC SMALL LETTER A
 043A          ; Cyrl; Grek; A #      (к)  CYRILLIC SMALL LETTER KA
 043E..0440    ; Cyrl; Grek; A #  [3] (о..р)  CYRILLIC SMALL LETTER O..CYRILLIC SMALL LETTER ER
@@ -3155,7 +3156,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 04E8..04E9    ; Cyrl; Grek; A #  [2] (Ө..ө)  CYRILLIC CAPITAL LETTER BARRED O..CYRILLIC SMALL LETTER BARRED O
 0511          ; Cyrl; Grek; A #      (ԑ)  CYRILLIC SMALL LETTER REVERSED ZE
 
-# Total code points: 48
+# Total code points: 49
 
 # Cyrillic; Gujarati: [оө]
 
@@ -3178,13 +3179,14 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Cyrillic; Hebrew: [Іоө]
+# Cyrillic; Hebrew: [ІЮоө]
 
 0406          ; Cyrl; Hebr; A #      (І)  CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
+042E          ; Cyrl; Hebr; A #      (Ю)  CYRILLIC CAPITAL LETTER YU
 043E          ; Cyrl; Hebr; A #      (о)  CYRILLIC SMALL LETTER O
 04E9          ; Cyrl; Hebr; A #      (ө)  CYRILLIC SMALL LETTER BARRED O
 
-# Total code points: 3
+# Total code points: 4
 
 # Cyrillic; Kannada: [оө]
 
@@ -4432,10 +4434,11 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 15
 
-# Latin; Arabic: [ILVloöøŁłơ]
+# Latin; Arabic: [ILOVloöøŁłơ]
 
 0049          ; Latn; Arab; A #      (I)  LATIN CAPITAL LETTER I
 004C          ; Latn; Arab; A #      (L)  LATIN CAPITAL LETTER L
+004F          ; Latn; Arab; A #      (O)  LATIN CAPITAL LETTER O
 0056          ; Latn; Arab; A #      (V)  LATIN CAPITAL LETTER V
 006C          ; Latn; Arab; A #      (l)  LATIN SMALL LETTER L
 006F          ; Latn; Arab; A #      (o)  LATIN SMALL LETTER O
@@ -4444,7 +4447,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0141..0142    ; Latn; Arab; A #  [2] (Ł..ł)  LATIN CAPITAL LETTER L WITH STROKE..LATIN SMALL LETTER L WITH STROKE
 01A1          ; Latn; Arab; A #      (ơ)  LATIN SMALL LETTER O WITH HORN
 
-# Total code points: 10
+# Total code points: 11
 
 # Latin; Armenian: [OSUf-hnoqu-wØøħƠơǾ]
 
@@ -4569,10 +4572,11 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 4
 
-# Latin; Hebrew: [ILlovøŁłơ]
+# Latin; Hebrew: [ILOlovøŁłơ]
 
 0049          ; Latn; Hebr; A #      (I)  LATIN CAPITAL LETTER I
 004C          ; Latn; Hebr; A #      (L)  LATIN CAPITAL LETTER L
+004F          ; Latn; Hebr; A #      (O)  LATIN CAPITAL LETTER O
 006C          ; Latn; Hebr; A #      (l)  LATIN SMALL LETTER L
 006F          ; Latn; Hebr; A #      (o)  LATIN SMALL LETTER O
 0076          ; Latn; Hebr; A #      (v)  LATIN SMALL LETTER V
@@ -4580,7 +4584,7 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0141..0142    ; Latn; Hebr; A #  [2] (Ł..ł)  LATIN CAPITAL LETTER L WITH STROKE..LATIN SMALL LETTER L WITH STROKE
 01A1          ; Latn; Hebr; A #      (ơ)  LATIN SMALL LETTER O WITH HORN
 
-# Total code points: 9
+# Total code points: 10
 
 # Latin; Kannada: [oøơ]
 

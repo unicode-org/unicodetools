@@ -1,7 +1,7 @@
 ﻿# Recommended Identifier Profiles for IDN
 # File: idnchars.txt
 # Version: 7.0.0
-# Generated: 2014-07-11, 12:55:51 GMT
+# Generated: 2014-07-13, 14:47:52 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -579,7 +579,6 @@ A7A5          ; output #      (ꞥ)  LATIN SMALL LETTER N WITH OBLIQUE STROKE
 A7A7          ; output #      (ꞧ)  LATIN SMALL LETTER R WITH OBLIQUE STROKE
 A7A9          ; output #      (ꞩ)  LATIN SMALL LETTER S WITH OBLIQUE STROKE
 A7FA          ; output #      (ꟺ)  LATIN LETTER SMALL CAPITAL TURNED M
-A9CF          ; output #      (ꧏ)  JAVANESE PANGRANGKEP
 AA60..AA76    ; output # [23] (ꩠ..ꩶ)  MYANMAR LETTER KHAMTI GA..MYANMAR LOGOGRAM KHAMTI HM
 AA7A..AA7B    ; output #  [2] (ꩺ..ꩻ)  MYANMAR LETTER AITON RA..MYANMAR SIGN PAO KAREN TONE
 AB01..AB06    ; output #  [6] (ꬁ..ꬆ)  ETHIOPIC SYLLABLE TTHU..ETHIOPIC SYLLABLE TTHO
@@ -600,7 +599,7 @@ FA27..FA29    ; output #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK 
 2A700..2B734  ; output # [4149] (𪜀..𫜴)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B740..2B81D  ; output # [222] (𫝀..𫠝)  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 
-# Total code points: 88810
+# Total code points: 88809
 
 # Not allowed at start of identifier
 

@@ -2927,7 +2927,6 @@ A7A8          ; allowed ; recommended #      (Ꞩ)  LATIN CAPITAL LETTER S WITH 
 A7A9          ; allowed ; recommended #      (ꞩ)  LATIN SMALL LETTER S WITH OBLIQUE STROKE
 A7AA          ; allowed ; recommended #      (Ɦ)  LATIN CAPITAL LETTER H WITH HOOK
 A7FA          ; allowed ; recommended #      (ꟺ)  LATIN LETTER SMALL CAPITAL TURNED M
-A9CF          ; allowed ; recommended #      (ꧏ)  JAVANESE PANGRANGKEP
 AA60          ; allowed ; recommended #      (ꩠ)  MYANMAR LETTER KHAMTI GA
 AA61          ; allowed ; recommended #      (ꩡ)  MYANMAR LETTER KHAMTI CA
 AA62          ; allowed ; recommended #      (ꩢ)  MYANMAR LETTER KHAMTI CHA
@@ -7346,7 +7345,7 @@ FA29          ; allowed ; recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2B81C         ; allowed ; recommended #      (𫠜)  CJK UNIFIED IDEOGRAPH-2B81C
 2B81D         ; allowed ; recommended #      (𫠝)  CJK UNIFIED IDEOGRAPH-2B81D
 
-# Total code points: 89368
+# Total code points: 89367
 
 034F          ; default-ignorable #      (U+034F)  COMBINING GRAPHEME JOINER
 180B..180D    ; default-ignorable #  [3] (U+180B..U+180D)  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
@@ -8066,6 +8065,7 @@ A979          ; historic #      (ꥹ)  HANGUL CHOSEONG SSANGTHIEUTH
 A97A          ; historic #      (ꥺ)  HANGUL CHOSEONG PHIEUPH-HIEUH
 A97B          ; historic #      (ꥻ)  HANGUL CHOSEONG HIEUH-SIOS
 A97C          ; historic #      (ꥼ)  HANGUL CHOSEONG SSANGYEORINHIEUH
+A9CF          ; historic #      (ꧏ)  JAVANESE PANGRANGKEP
 A9E0          ; historic #      (ꧠ)  MYANMAR LETTER SHAN GHA
 A9E1          ; historic #      (ꧡ)  MYANMAR LETTER SHAN CHA
 A9E2          ; historic #      (ꧢ)  MYANMAR LETTER SHAN JHA
@@ -12768,7 +12768,7 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1E8D5         ; historic #      (𞣕)  MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
 1E8D6         ; historic #      (𞣖)  MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 6768
+# Total code points: 6769
 
 0181..0182    ; limited-use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ; limited-use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
