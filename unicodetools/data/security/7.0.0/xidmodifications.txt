@@ -1,7 +1,7 @@
 ﻿# Security Profile for General Identifiers
 # File: xidmodifications.txt
 # Version: 7.0.0
-# Generated: 2014-07-11, 12:55:50 GMT
+# Generated: 2014-07-13, 14:47:51 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -366,7 +366,6 @@ A78D..A78E    ; allowed ; recommended          #  [2] (Ɥ..ꞎ)  LATIN CAPITAL 
 A790..A793    ; allowed ; recommended          #  [4] (Ꞑ..ꞓ)  LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER C WITH BAR
 A7A0..A7AA    ; allowed ; recommended          # [11] (Ꞡ..Ɦ)  LATIN CAPITAL LETTER G WITH OBLIQUE STROKE..LATIN CAPITAL LETTER H WITH HOOK
 A7FA          ; allowed ; recommended          #      (ꟺ)  LATIN LETTER SMALL CAPITAL TURNED M
-A9CF          ; allowed ; recommended          #      (ꧏ)  JAVANESE PANGRANGKEP
 AA60..AA76    ; allowed ; recommended          # [23] (ꩠ..ꩶ)  MYANMAR LETTER KHAMTI GA..MYANMAR LOGOGRAM KHAMTI HM
 AA7A..AA7B    ; allowed ; recommended          #  [2] (ꩺ..ꩻ)  MYANMAR LETTER AITON RA..MYANMAR SIGN PAO KAREN TONE
 AB01..AB06    ; allowed ; recommended          #  [6] (ꬁ..ꬆ)  ETHIOPIC SYLLABLE TTHU..ETHIOPIC SYLLABLE TTHO
@@ -387,7 +386,7 @@ FA27..FA29    ; allowed ; recommended          #  [3] (﨧..﨩)  CJK COMPATIBIL
 2A700..2B734  ; allowed ; recommended          # [4149] (𪜀..𫜴)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B740..2B81D  ; allowed ; recommended          # [222] (𫝀..𫠝)  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 
-# Total code points: 89370
+# Total code points: 89369
 
 #	Status/Type:	restricted ; default-ignorable
 
@@ -502,6 +501,7 @@ A8E0..A8F7    ; restricted ; historic          # [24] (꣠..ꣷ)  COMBINING DEVA
 A8FB          ; restricted ; historic          #      (ꣻ)  DEVANAGARI HEADSTROKE
 A930..A953    ; restricted ; historic          # [36] (ꤰ..꥓)  REJANG LETTER KA..REJANG VIRAMA
 A960..A97C    ; restricted ; historic          # [29] (ꥠ..ꥼ)  HANGUL CHOSEONG TIKEUT-MIEUM..HANGUL CHOSEONG SSANGYEORINHIEUH
+A9CF          ; restricted ; historic          #      (ꧏ)  JAVANESE PANGRANGKEP
 A9E0..A9E6    ; restricted ; historic          #  [7] (ꧠ..ꧦ)  MYANMAR LETTER SHAN GHA..MYANMAR MODIFIER LETTER SHAN REDUPLICATION
 AB30..AB5A    ; restricted ; historic          # [43] (ꬰ..ꭚ)  LATIN SMALL LETTER BARRED ALPHA..LATIN SMALL LETTER Y WITH SHORT RIGHT LEG
 AB64..AB65    ; restricted ; historic          #  [2] (ꭤ..ꭥ)  LATIN SMALL LETTER INVERTED ALPHA..GREEK LETTER SMALL CAPITAL OMEGA
@@ -627,7 +627,7 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 1E800..1E8C4  ; restricted ; historic          # [197] (𞠀..𞣄)  MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8D0..1E8D6  ; restricted ; historic          #  [7] (𞣐..𞣖)  MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 6811
+# Total code points: 6812
 
 #	Status/Type:	restricted ; limited-use
 

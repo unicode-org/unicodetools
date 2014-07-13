@@ -1,7 +1,7 @@
 ﻿# Review List for IDN
 # File: review.txt
 # Version: 7.0.0
-# Generated: 2014-07-11, 12:55:51 GMT
+# Generated: 2014-07-13, 14:47:52 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -10236,7 +10236,7 @@ A9CA          ; restricted ; not-xid           #      (꧊)  JAVANESE PADA ADEG
 A9CB          ; restricted ; not-xid           #      (꧋)  JAVANESE PADA ADEG ADEG
 A9CC          ; restricted ; not-xid           #      (꧌)  JAVANESE PADA PISELEH
 A9CD          ; restricted ; not-xid           #      (꧍)  JAVANESE TURNED PADA PISELEH
-A9CF          ; output                         #      (ꧏ)  JAVANESE PANGRANGKEP
+A9CF          ; restricted ; historic          #      (ꧏ)  JAVANESE PANGRANGKEP
 A9D0          ; restricted ; limited-use       #      (꧐)  JAVANESE DIGIT ZERO
 A9D1          ; restricted ; limited-use       #      (꧑)  JAVANESE DIGIT ONE
 A9D2          ; restricted ; limited-use       #      (꧒)  JAVANESE DIGIT TWO

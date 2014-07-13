@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: formatted-cherokee.txt
 # Version: 7.0.0
-# Generated: 2014-07-11, 12:55:51 GMT
+# Generated: 2014-07-13, 14:47:52 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/

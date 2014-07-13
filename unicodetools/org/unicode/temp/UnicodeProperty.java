@@ -4,7 +4,7 @@
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
-package org.unicode.props;
+package org.unicode.temp;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -22,6 +22,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
+
+import org.unicode.props.UnicodeLabel;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.CollectionUtilities.InverseMatcher;

@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: formatted-source.txt
 # Version: 7.0.0
-# Generated: 2014-07-11, 12:55:51 GMT
+# Generated: 2014-07-13, 14:47:52 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -2323,6 +2323,8 @@
 1173 1169 ;	D7BC	# ( ᅳᅩ ~ ힼ ) HANGUL JUNGSEONG EU, HANGUL JUNGSEONG O ~ HANGUL JUNGSEONG EU-O
 
 1173 116E ;	1195	# ( ᅳᅮ ~ ᆕ ) HANGUL JUNGSEONG EU, HANGUL JUNGSEONG U ~ HANGUL JUNGSEONG EU-U
+
+1173 1173 ;	1196	# ( ᅳᅳ ~ ᆖ ) HANGUL JUNGSEONG EU, HANGUL JUNGSEONG EU ~ HANGUL JUNGSEONG EU-EU
 
 1173 1175 ;	1174	# ( ᅳᅵ ~ ᅴ ) HANGUL JUNGSEONG EU, HANGUL JUNGSEONG I ~ HANGUL JUNGSEONG YI
 
