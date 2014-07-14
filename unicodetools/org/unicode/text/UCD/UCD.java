@@ -613,7 +613,15 @@ public final class UCD implements UCD_Types {
             //      dir = Utility.getMostRecentUnicodeDataFile("Unihan", version,
             //              true, true, String fileType) throws IOException {
             //
-            final String filename = unihanProp_file.get(propertyName);
+            String filename = null;
+            if (compositeVersion >= 0x70000) {
+                if (propertyName.equals("kRSUnicode") || propertyName.equals("kCompatibilityVariant")) {
+                    filename = "Unihan_IRGSources";
+                }
+            }
+            if (filename == null) {
+                filename = unihanProp_file.get(propertyName);
+            }
             if (filename == null) {
                 throw new IllegalArgumentException("Missing file for " + propertyName);
             }
