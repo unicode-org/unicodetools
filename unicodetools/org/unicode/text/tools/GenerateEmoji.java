@@ -498,15 +498,22 @@ public class GenerateEmoji {
         @Override
         public String toString() {
             return code 
-                    + "\t" + getVersion() 
+                    + "\t" + getVersionAndSources() 
                     + "\t" + defaultPresentation
                     + "\t" + chars 
                     + "\t" + name;
         }
-        private String getVersion() {
-            StringBuilder suffix = new StringBuilder(age.toString().replace('_', '.'));
+        private String getVersionAndSources() {
+            return getSources(new StringBuilder(getVersion()), true);
+        }
+        
+        public String getVersion() {
+            return age.toString().replace('_', '.');
+        }
+        
+        public String getSources(StringBuilder suffix, boolean superscript) {
             for (CharSource source : getCharSources(chars)) {
-                suffix.append(source.shortString);
+                suffix.append(superscript ? source.superscript : source.letter);
             }
             return suffix.toString();
         }
@@ -592,7 +599,7 @@ public class GenerateEmoji {
                     //+ browserCell
                     + (form.compareTo(Form.shortForm) <= 0 ? "" : 
                         "<td class='name'>" + name + "</td>\n")
-                        + "<td class='age'>" + getVersion() + "</td>\n"
+                        + "<td class='age'>" + getVersionAndSources() + "</td>\n"
                         + "<td class='default'>" + defaultPresentation + (!textChars.equals(chars) ? "*" : "") + "</td>\n"
                         + (form.compareTo(Form.shortForm) <= 0 ? "" : 
                             "<td class='name'>" 
@@ -625,8 +632,10 @@ public class GenerateEmoji {
                     + " ;\t" + defaultPresentation
                     + " ;\t" + order
                     + " ;\t" + CollectionUtilities.join(annotations, ", ")
-                    + " \t#\t" + getVersion()
-                    + "\t" + getName(chars) 
+                    + " ;\t" + getSources(new StringBuilder(), false)
+                    + " \t# " + getVersion()
+                    + " (" + chars 
+                    + ") " + getName(chars) 
                     ;
         }
 
@@ -1213,14 +1222,16 @@ public class GenerateEmoji {
         out.close();
     }
     enum CharSource {
-        ZDings("ᶻ"),
-        ARIB("ª"), 
-        JCarrier("ʲ"), 
-        WDings("ʷ"), 
-        Other("ˣ");
-        final String shortString;
-        private CharSource(String shortString) {
-            this.shortString = shortString;
+        ZDings("ᶻ", "z"),
+        ARIB("ª", "a"), 
+        JCarrier("ʲ", "j"), 
+        WDings("ʷ", "w"), 
+        Other("ˣ", "x");
+        final String superscript;
+        final String letter;
+        private CharSource(String shortString, String letter) {
+            this.superscript = shortString;
+            this.letter = letter;
         }
     }
     static final UnicodeSet ARIB = new UnicodeSet("[²³¼-¾࿖‼⁉ℓ№℡℻⅐-⅛Ⅰ-Ⅻ↉ ①-⑿⒈-⒓ⒹⓈ⓫⓬▶◀☀-☃☎☓☔☖☗♠ ♣♥♦♨♬⚓⚞⚟⚡⚾⚿⛄-⛿✈❶-❿➡⟐⨀ ⬅-⬇⬛⬤⬮⬯〒〖〗〶㈪-㈳㈶㈷㈹㉄-㉏㉑-㉛ ㊋㊙�㍱㍻-㍾㎏㎐㎝㎞㎠-㎢㎤㎥㏊円年日月 🄀-🄊🄐-🄭🄱🄽🄿🅂🅆🅊-🅏🅗🅟🅹🅻🅼🅿🆊-🆍 🈀🈐-🈰🉀-🉈]").freeze();
@@ -1646,7 +1657,7 @@ public class GenerateEmoji {
             		".");
             outText.println("#");
             outText.println("# Format");
-            outText.println("# Code ;\tDefault Style ;\tOrdering ;\tAnnotations\t#\tVersion\tName");
+            outText.println("# Code ;\tDefault Style ;\tOrdering ;\tAnnotations ;\tSources\t# Version Char Name");
             outText.println("#");
         }
         writeHeader(out, form.title, "List of emoji characters, " + form.description);
