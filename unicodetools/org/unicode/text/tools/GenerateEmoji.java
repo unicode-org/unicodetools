@@ -701,7 +701,7 @@ public class GenerateEmoji {
                 return cell;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Can't find image for: " + Utility.hex(s) + " " + getName(s));
     }
 
     static public String getImage(Source type, String chars) {

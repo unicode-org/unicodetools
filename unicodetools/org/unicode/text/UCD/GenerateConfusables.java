@@ -766,7 +766,7 @@ public class GenerateConfusables {
                 }
             }
             hasRecommendedScript.freeze();
-            
+
             for (final String script : ScriptMetadata.getScripts()) {
                 final Info scriptInfo = ScriptMetadata.getInfo(script);
                 final IdUsage idUsage = scriptInfo.idUsage;
@@ -2524,21 +2524,35 @@ public class GenerateConfusables {
             Map<Pair<String,String>, String> reorder = new TreeMap<>(); // reorder alphabetically
 
             for (short j = 0; j < UCD_Types.LIMIT_SCRIPT; ++j) {
-                if (scriptToUnicodeSetToScript[j] == null) {
+                final UnicodeSetToScript[] unicodeSetToScripts = scriptToUnicodeSetToScript[j];
+                if (unicodeSetToScripts == null) {
                     continue;
                 }
 
-                for (int q = 0; q < scriptToUnicodeSetToScript[j].length; ++q) {
-                    final UnicodeSetToScript uss = scriptToUnicodeSetToScript[j][q];
+                for (int q = 0; q < unicodeSetToScripts.length; ++q) {
+                    final UnicodeSetToScript uss = unicodeSetToScripts[q];
                     final short k = uss.getScript();
                     final UnicodeSet items = uss.getSet();
+                    
+                    // get other side
+                    UnicodeSet items2 = UnicodeSet.EMPTY;
+                    final UnicodeSetToScript[] unicodeSetToScripts2 = scriptToUnicodeSetToScript[k];
+                    for (int qq = 0; qq <  unicodeSetToScripts2.length; ++qq) {
+                        final UnicodeSetToScript uss2 = unicodeSetToScripts2[qq];
+                        if (uss2.getScript() == j) {
+                            items2 = uss2.getSet();
+                            break;
+                        }
+                    }
+                    
                     final String sname = UCD.getScriptID_fromIndex(j, UCD_Types.SHORT) + "; " 
                             + UCD.getScriptID_fromIndex(k, UCD_Types.SHORT) + "; " + label;
                     final String name = getScriptIndexName(j, UCD_Types.LONG) 
                             + "; " + getScriptIndexName(k, UCD_Types.LONG);
                     StringWriter b = new StringWriter();
                     PrintWriter out2 = new PrintWriter(b);
-                    out2.println("# " + name + ": " + items.toPattern(false) + "\n");
+                    out2.println("# " + name + ": "
+                            + items.toPattern(false) + "; " + items2.toPattern(false) + "\n");
                     bf.setValueSource(sname);
                     bf.showSetNames(out2, items);
                     out2.println("");
