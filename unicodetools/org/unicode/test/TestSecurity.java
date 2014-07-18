@@ -54,19 +54,25 @@ public class TestSecurity extends TestFmwkPlus {
         for (Entry<Style, UnicodeMap<String>> entry : data.entrySet()) {
             Style key = entry.getKey();
             UnicodeMap<String> map = entry.getValue();
+            boolean warningOnly = !key.equals("MA");
             for (Entry<String, String> codeToValue : map.entrySet()) {
                 String code = codeToValue.getKey();
                 String value = codeToValue.getValue();
                 String value2 = map.transform(value);
                 if (!value2.equals(value)) {
-                    errln(key
+                    final String message = key
                             + ", " + Utility.hex(code)+ " ( " + code + " )"  + Default.ucd().getName(code)
                             + "\n\t\texpect:\t" + Utility.hex(value2) + " ( " + value2 + " )" + Default.ucd().getName(value2)
                             + "\n\t\tactual:\t" + Utility.hex(value) + " ( " + value + " )" + " " + Default.ucd().getName(value)
-                            + "\n"
-                            );
+                            + "\n";
+                    if (warningOnly) {
+                        warnln(message);
+                    } else { 
+                        errln(message); 
+                    }
                 }
             }
         }
     }
 }
+
