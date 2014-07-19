@@ -113,7 +113,7 @@ below	🗥
 bento	🍱
 beverage	☕️
 biceps	💪
-bicycle	🚲 🚳 🚴 🚵
+bicycle,biking,bicycling	🚲 🚳 🚴 🚵
 bicyclist	🚴 🚵
 bike	🚲 🚳 🚴 🚵
 bikini	👙
@@ -1077,7 +1077,7 @@ snowboarder	🏂
 snowboarding	🏂
 snowflake	❄️
 snowman	☃ ⛄️ ⛇
-soccer	⚽️ 🏉
+soccer	⚽️ 
 soft	🍦
 solid	♻️ ❓
 soon	🔜
@@ -1644,7 +1644,7 @@ ghost	👻
 gift	🎁
 girl	👧
 goat	🐐
-golf	⛳
+golf,golfing	⛳
 grapes	🍇
 grimacing	😬
 grin	😁
@@ -1857,7 +1857,7 @@ sunrise	🌅
 surfer	🏄
 sushi	🍣
 sweat	😓
-swimmer	🏊
+swimmer,swimming	🏊
 symbols	🔣
 syringe	💉
 tada	🎉
