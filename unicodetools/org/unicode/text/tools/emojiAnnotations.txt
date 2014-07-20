@@ -1051,8 +1051,8 @@ silhouette	👤 👥 🗣
 six	🀕 🀞 🂦 🂶 🃆 🃖 🕕 🕡 6️⃣
 sixteenth	♬
 size	🗚 🗛
-skate	⛸
-ski	⛷ 🎿 🏂
+skate,skating,ice	⛸
+ski,skiing,skier	⛷ 🎿 🏂
 skull	☠ 💀 🕱
 sleeping	💤 😴 🛌
 sleepy	💤 😪
@@ -1292,7 +1292,7 @@ electric, electricity	️🔌
 volume	🔉 🔊
 vs	🆚
 vulcan	🖖
-walker	🚶
+walker,walk,walking,hiker,hiking	🚶
 waning	🌖 🌘
 warning	⚠️
 wastebasket	🗑
