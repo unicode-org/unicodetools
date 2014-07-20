@@ -104,7 +104,7 @@ public class Emoji {
         Map<String, R2<List<String>, String>> aliasInfo = sdi.getLocaleAliasInfo().get("territory");
         contained.removeAll(aliasInfo.keySet());
         for (String s: contained) {
-            System.out.println(s + "\t" + config.getEnglish().getName("territory", s));
+            //System.out.println(s + "\t" + config.getEnglish().getName("territory", s));
             EMOJI_CHARS.add(getHexFromFlagCode(s));
         }
         EMOJI_CHARS.freeze();

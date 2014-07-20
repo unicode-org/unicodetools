@@ -81,7 +81,7 @@ public class EmojiData {
         }
     }
 
-    public static Set<String> getAnnotations(HashMap<String, UnicodeSet> _annotationMap, String source, List<String> list) {
+    private static Set<String> getAnnotations(HashMap<String, UnicodeSet> _annotationMap, String source, List<String> list) {
         Set<String> result = new HashSet();
         for (String s : comma.split(list.get(3))) {
             result.add(s);
@@ -98,8 +98,8 @@ public class EmojiData {
         return annotationMap.keySet();
     }
 
-    public static UnicodeSet getAnnotationSet(String codePointString) {
-        UnicodeSet result = annotationMap.get(codePointString);
+    public static UnicodeSet getAnnotationSet(String annotationString) {
+        UnicodeSet result = annotationMap.get(annotationString);
         return result == null ? UnicodeSet.EMPTY : result;
     }
 
