@@ -580,7 +580,8 @@ public class FractionalUCA {
         printUnifiedIdeographRanges(fractionalLog);
         fractionalLog.println();
         RadicalStroke radicalStroke = new RadicalStroke(getCollator().getUCDVersion());
-        for (int pos = 0; pos >= 0; pos = radicalStroke.printNextRadical(pos)) {}
+        radicalStroke.printRadicalStrokeOrder(fractionalLog);
+        fractionalLog.println();
 
         // Print the [top_byte] information before any of the mappings
         // so that parsers can use this data while working with the fractional primary weights,
