@@ -1,5 +1,7 @@
 package org.unicode.text.UCA;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
@@ -133,15 +135,19 @@ final class RadicalStroke {
         assert numOutOfOrder <= 320;
     }
 
+    public void printRadicalStrokeOrder(Writer writer) throws IOException {
+        for (int pos = 0; pos >= 0; pos = printNextRadical(pos, writer)) {}
+    }
+
     /**
      * Prints the next radical and the Han ideographs that sort with it.
      *
      * @param pos The data position for the next radical;
      *        initially use 0, then pass in the return value from the previous call.
      * @return The next radical's position, or -1 if there are none more.
+     * @throws IOException 
      */
-    public int printNextRadical(int pos) {
-        // TODO: print to file
+    private int printNextRadical(int pos, Writer writer) throws IOException {
         if (pos == orderedHan.length) {
             return -1;
         }
@@ -154,18 +160,39 @@ final class RadicalStroke {
         }
         String radicalChars = radToChars.get(radicalString);
         sb.append(radicalString).append('=').append(radicalChars).append(':');
+        int start = 0;
+        int prev = 0;
         do {
-            sb.appendCodePoint((int)order & 0x1fffff);
-            // TODO: try to print ranges
+            int c = (int)order & 0x1fffff;
+            if (c != (prev + 1)) {
+                // c does not continue a range.
+                if (start < prev) {
+                    // Finish the previous range.
+                    if ((start + 2) <= prev) {  // at least 3 code points
+                        sb.append('-');
+                    }
+                    sb.appendCodePoint(prev);
+                }
+                sb.appendCodePoint(c);
+                start = c;
+            }
+            prev = c;
             if (++pos == orderedHan.length) {
                 pos = -1;
                 break;
             }
             order = orderedHan[pos];
         } while ((int)(order >> 30) == radicalNumberAndSimplified);
-        System.out.println(sb.append(']').toString());
+        if (start < prev) {
+            // Finish the last range.
+            if ((start + 2) <= prev) {  // at least 3 code points
+                sb.append('-');
+            }
+            sb.appendCodePoint(prev);
+        }
+        writer.append(sb.append(']').append('\n'));
         if (pos < 0) {
-            System.out.println("[radical end]");
+            writer.append("[radical end]\n");
         }
         return pos;
     }
