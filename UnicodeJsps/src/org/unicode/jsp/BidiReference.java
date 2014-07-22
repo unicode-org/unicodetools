@@ -1244,7 +1244,7 @@ public final class BidiReference {
   }
 
   public static String getHtmlTypename(int value) {
-    return "<a target='list' href='http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:bc=" + typenames[value] + ":]'>" + typenames[value] + "</a>";
+    return "<a target='list' href='list-unicodeset.jsp?a=[:bc=" + typenames[value] + ":]'>" + typenames[value] + "</a>";
   }
 
   private String getRule() {

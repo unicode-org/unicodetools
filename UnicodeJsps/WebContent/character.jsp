@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
 <%@ include file="header.jsp" %>
 <title>Unicode Utilities: Character Properties</title>
@@ -15,7 +15,7 @@ th           { text-align: left }
 <h1>Unicode Utilities: Character Properties</h1>
 <p><a target="help" href="http://cldr.unicode.org/unicode-utilities/character"><b>help</b></a> | <%@ include file="others.jsp" %></p>
 <div style='text-align:center'>
-<form name="myform" action="http://unicode.org/cldr/utility/character.jsp" method="get">
+<form name="myform" action="character.jsp" method="get">
   <%
 		request.setCharacterEncoding("UTF-8");
         String queryString = request.getQueryString();

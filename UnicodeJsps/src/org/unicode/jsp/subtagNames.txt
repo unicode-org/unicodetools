@@ -15,7 +15,7 @@
 029;Caribbean
 030;Eastern Asia
 034;Southern Asia
-035;South-Eastern Asia
+035;Southeast Asia
 039;Southern Europe
 053;Australasia
 054;Melanesia
@@ -4587,7 +4587,7 @@ mgk;Mawes
 mgl;Maleu-Kilenge
 mgm;Mambae
 mgn;Mbangi
-mgo;Meta'
+mgo;Meta’
 mgp;Eastern Magar
 mgq;Malila
 mgr;Mambwe-Lungu
@@ -5954,7 +5954,7 @@ pmn;Pam
 pmo;Pom
 pmq;Northern Pame
 pmr;Paynamar
-pms;Piemdontese
+pms;Piedmontese
 pmt;Tuamotuan
 pmu;Mirpur Panjabi
 pmw;Plains Miwok
@@ -6125,7 +6125,7 @@ pzn;Para Naga
 qu;Quechua
 qua;Quapaw
 qub;Huallaga Huánuco Quechua
-quc;K'iche'
+quc;Kʼicheʼ
 qud;Calderón Highland Quichua
 quf;Lambayeque Quechua
 qug;Chimborazo Highland Quichua

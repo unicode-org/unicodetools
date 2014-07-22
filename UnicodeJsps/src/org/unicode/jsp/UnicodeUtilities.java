@@ -966,9 +966,9 @@ public class UnicodeUtilities {
 
         String setAr = toHTML.transliterate(UtfParameters.fixQuery(setA));
         String setBr = toHTML.transliterate(UtfParameters.fixQuery(setB));
-        abLinks[0] = "http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[" + setAr + '-' + setBr + "]";
-        abLinks[1] = "http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[" + setBr + '-' + setAr + "]";
-        abLinks[2] = "http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[" + setAr + "%26" + setBr + "]";
+        abLinks[0] = "list-unicodeset.jsp?a=[" + setAr + '-' + setBr + "]";
+        abLinks[1] = "list-unicodeset.jsp?a=[" + setBr + '-' + setAr + "]";
+        abLinks[2] = "list-unicodeset.jsp?a=[" + setAr + "%26" + setBr + "]";
         String[] aMessage = new String[1];
         String[] bMessage = new String[1];
 
@@ -1255,6 +1255,7 @@ public class UnicodeUtilities {
         .addColumn("Datatype").setSpanRows(true).setCellAttributes("class='propDatatype'").setSortPriority(1)
         .addColumn("Source").setSpanRows(true).setCellAttributes("class='propSource'").setSortPriority(2)
         .addColumn("Property").setSpanRows(false).setCellAttributes("class='propTitle'")
+//        .addColumn("Abbr. Prop").setSpanRows(false).setCellAttributes("class='propTitle'")
         .addColumn("Values").setSpanRows(false).setCellAttributes("class='propValues'")
         ;
         //tablePrinter.addRows(data);
@@ -1272,19 +1273,19 @@ public class UnicodeUtilities {
             String propName = propData.get3();
             UnicodeProperty prop = factory.getProperty(propName);
             if (prop == null) continue;
-            String propHtml = toHTML.transform(propName);
             String shortName;
             try {
                 shortName = prop.getFirstNameAlias();
             } catch (Exception e) {
                 throw new IllegalArgumentException(propData.toString(), e);
             }
-            String shortHtml = toHTML(shortName);
-            String title = shortName == null || shortName.equals(propName) ? "" : " title='" + shortHtml + "'";
-            String propInfo = "<a name='" + propHtml + "'>" + propHtml + "</a>";
-            if (shortName != null && !shortName.equals(propName)) {
-                propInfo = "<span title='" + shortHtml + "'>" + propInfo + "</span>";
-            }
+            String shortHtml = shortName == null || shortName.equalsIgnoreCase(propName) ? "" : toHTML(shortName);
+//            String title = shortName == null || shortName.equals(propName) ? "" : " title='" + shortHtml + "'";
+            String propHtml = toHTML.transform(propName + (shortName.equalsIgnoreCase(propName) ? "" : " (" + shortName + ")"));
+            String propInfo = propHtml ; // "<a name='" + propHtml + "'>" + propHtml + "</a>";
+//            if (shortName != null && !shortName.equals(propName)) {
+//                propInfo = "<span title='" + shortHtml + "'>" + propInfo + "</span>";
+//            }
             //      out.append("<tr>")
             //      .append("<td>").append(propData.get0()).append("</td>\n")
             //      .append("<td>").append(propData.get1()).append("</td>\n")
@@ -1306,6 +1307,7 @@ public class UnicodeUtilities {
             .addCell(dataType)
             .addCell(propData.get2())
             .addCell(propInfo)
+            //.addCell(shortHtml)
             .addCell(propValues.toString())
             .finishRow();
             //out.append("</td></tr>\n");
