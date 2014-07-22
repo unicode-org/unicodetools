@@ -20,7 +20,7 @@
             
         String languageCode = utfParameters.getParameter("a");
         if (languageCode == null) {
-            languageCode = "gsw-Arab-AQ";
+            languageCode = "fr-CA, gsw-Arab-AQ, eng-Latn-840";
         }
         
         String choice = request.getParameter("l");

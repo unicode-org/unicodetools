@@ -431,7 +431,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
             if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
             if (UnicodeUtilities.LITURGICAL.contains(codepoint)) return liturgical;
-            if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
+            //if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
             //if (UnicodeUtilities.LIM.contains(codepoint)) return archaic;
             if (UnicodeUtilities.COMMON_USE_SCRIPTS.contains(codepoint)) {
                 if (UnicodeUtilities.SYMBOL.contains(codepoint)) return symbol;
