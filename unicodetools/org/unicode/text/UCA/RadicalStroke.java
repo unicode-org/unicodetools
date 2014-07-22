@@ -3,6 +3,7 @@ package org.unicode.text.UCA;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -38,6 +39,7 @@ final class RadicalStroke {
             .remove(0x561f).remove(0x5620)
             .remove(0x7adf).remove(0x7ae0)
             .remove(0x9824).remove(0x9825);
+    private UnicodeSet hanNotInCPOrder;
 
     RadicalStroke(String unicodeVersion) {
         UCD ucd = UCD.make(unicodeVersion);
@@ -124,6 +126,7 @@ final class RadicalStroke {
         }
         assert i == orderedHan.length;
         Arrays.sort(orderedHan);
+        hanInCPOrder.freeze();
         System.out.println("hanInCPOrder = " + hanInCPOrder.toPattern(false));
         int numOutOfOrder = LAST_UNIHAN_11 + 1 - 0x4e00 - hanInCPOrder.size();
         System.out.println("number of original-Unihan characters out of order: " + numOutOfOrder);
@@ -133,6 +136,7 @@ final class RadicalStroke {
         // Turn on the DEBUG flag and see if we can manually remove some characters from the set
         // so that a sequence of following ones does not get removed.
         assert numOutOfOrder <= 320;
+        hanNotInCPOrder = new UnicodeSet(hanSet).removeAll(hanInCPOrder).freeze();
     }
 
     public void printRadicalStrokeOrder(Writer writer) throws IOException {
@@ -204,6 +208,13 @@ final class RadicalStroke {
         return hanInCPOrder;
     }
 
+    /**
+     * Returns a set of Han characters for which code point order != radical-stroke order.
+     */
+    public UnicodeSet getHanNotInCPOrder() {
+        return hanNotInCPOrder;
+    }
+
     private static Map<String, String> getCJKRadicals(IndexUnicodeProperties iup) {
         UnicodeMap<String> cjkr = iup.load(UcdProperty.CJK_Radical);
         // cjkr maps from each radical code point to the radical string.
@@ -228,7 +239,7 @@ final class RadicalStroke {
                 map.put(radicalString, oldValue + (char)c);
             }
         }
-        return map;
+        return Collections.unmodifiableMap(map);
     }
 
     /**
