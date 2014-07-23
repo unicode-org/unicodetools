@@ -130,7 +130,7 @@ public class ScriptInfo {
         this.identifier = identifier;
         clear();
         int cp;
-        for (int i = 0; i < identifier.length(); i += Character.charCount(i)) {
+        for (int i = 0; i < identifier.length(); i += Character.charCount(cp)) {
             cp = Character.codePointAt(identifier, i);
             // Store a representative character for each kind of decimal digit
             if (ivi.generalCategory.getValue(cp) == General_Category_Values.Decimal_Number) {
@@ -176,6 +176,9 @@ public class ScriptInfo {
         explicitScripts.addAll(requiredScripts);
         explicitScripts.remove(Script_Values.Common);
         explicitScripts.remove(Script_Values.Inherited);
+        if (explicitScripts.contains(Script_Values.Unknown)) {
+            throw new IllegalArgumentException();
+        }
         // Note that the above code doesn't minimize alternatives. That is, it does not collapse
         // [[Arab Syrc Thaa]; [Arab Syrc]] to [[Arab Syrc]]
         // That would be a possible optimization, but is probably not worth the extra processing

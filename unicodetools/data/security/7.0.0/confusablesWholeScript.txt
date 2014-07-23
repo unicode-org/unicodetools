@@ -1,7 +1,7 @@
 ﻿# Summary: Whole-Script Confusables
 # File: confusablesWholeScript.txt
 # Version: 7.0.0
-# Generated: 2014-07-21, 13:28:56 GMT
+# Generated: 2014-07-23, 12:42:38 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -259,7 +259,7 @@
 
 # Total code points: 1
 
-# Armenian; Latin: [ագզհոռսցքօ]; [ae-jlnoqu-wøħœơ]
+# Armenian; Latin: [ագզհոռսցքօ]; [ae-hnoqu-wøħœơ]
 
 0561          ; Armn; Latn; L #      (ա)  ARMENIAN SMALL LETTER AYB
 0563          ; Armn; Latn; L #      (գ)  ARMENIAN SMALL LETTER GIM
@@ -887,7 +887,7 @@
 
 # Total code points: 2
 
-# Greek; Latin: [α-γεηικνο-ρσ-υ]; [aei-ln-pt-vyßæøıĸœŧơꞓ]
+# Greek; Latin: [α-γεηικνο-ρσ-υ]; [aeikln-pt-vyßæøıĸœŧơꞓ]
 
 03B1..03B3    ; Grek; Latn; L #  [3] (α..γ)  GREEK SMALL LETTER ALPHA..GREEK SMALL LETTER GAMMA
 03B5          ; Grek; Latn; L #      (ε)  GREEK SMALL LETTER EPSILON
@@ -1306,7 +1306,7 @@
 
 # Total code points: 1
 
-# Hebrew; Latin: [וטיןסװױ]; [aeilovøłœơ]
+# Hebrew; Latin: [וטיןסװױ]; [aelovøłœơ]
 
 05D5          ; Hebr; Latn; L #      (ו)  HEBREW LETTER VAV
 05D8..05D9    ; Hebr; Latn; L #  [2] (ט..י)  HEBREW LETTER TET..HEBREW LETTER YOD
@@ -1660,11 +1660,10 @@
 
 # Total code points: 9
 
-# Latin; Armenian: [ae-jlnoqu-wøħœơ]; [ագզհոռսցքօ]
+# Latin; Armenian: [ae-hnoqu-wøħœơ]; [ագզհոռսցքօ]
 
 0061          ; Latn; Armn; L #      (a)  LATIN SMALL LETTER A
-0065..006A    ; Latn; Armn; L #  [6] (e..j)  LATIN SMALL LETTER E..LATIN SMALL LETTER J
-006C          ; Latn; Armn; L #      (l)  LATIN SMALL LETTER L
+0065..0068    ; Latn; Armn; L #  [4] (e..h)  LATIN SMALL LETTER E..LATIN SMALL LETTER H
 006E..006F    ; Latn; Armn; L #  [2] (n..o)  LATIN SMALL LETTER N..LATIN SMALL LETTER O
 0071          ; Latn; Armn; L #      (q)  LATIN SMALL LETTER Q
 0075..0077    ; Latn; Armn; L #  [3] (u..w)  LATIN SMALL LETTER U..LATIN SMALL LETTER W
@@ -1673,7 +1672,7 @@
 0153          ; Latn; Armn; L #      (œ)  LATIN SMALL LIGATURE OE
 01A1          ; Latn; Armn; L #      (ơ)  LATIN SMALL LETTER O WITH HORN
 
-# Total code points: 18
+# Total code points: 15
 
 # Latin; Cyrillic: [a-eh-yæçøđħıĸœŧơəꞓ]; [агекмо-ухцъє-іјћҍґғқҟҫҭүұһҽҿӎӏӕәөԁԑԛԝ]
 
@@ -1717,11 +1716,12 @@ A793          ; Latn; Cyrl; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 8
 
-# Latin; Greek: [aei-ln-pt-vyßæøıĸœŧơꞓ]; [α-γεηικνο-ρσ-υ]
+# Latin; Greek: [aeikln-pt-vyßæøıĸœŧơꞓ]; [α-γεηικνο-ρσ-υ]
 
 0061          ; Latn; Grek; L #      (a)  LATIN SMALL LETTER A
 0065          ; Latn; Grek; L #      (e)  LATIN SMALL LETTER E
-0069..006C    ; Latn; Grek; L #  [4] (i..l)  LATIN SMALL LETTER I..LATIN SMALL LETTER L
+0069          ; Latn; Grek; L #      (i)  LATIN SMALL LETTER I
+006B..006C    ; Latn; Grek; L #  [2] (k..l)  LATIN SMALL LETTER K..LATIN SMALL LETTER L
 006E..0070    ; Latn; Grek; L #  [3] (n..p)  LATIN SMALL LETTER N..LATIN SMALL LETTER P
 0074..0076    ; Latn; Grek; L #  [3] (t..v)  LATIN SMALL LETTER T..LATIN SMALL LETTER V
 0079          ; Latn; Grek; L #      (y)  LATIN SMALL LETTER Y
@@ -1735,7 +1735,7 @@ A793          ; Latn; Cyrl; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 01A1          ; Latn; Grek; L #      (ơ)  LATIN SMALL LETTER O WITH HORN
 A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
-# Total code points: 22
+# Total code points: 21
 
 # Latin; Gujarati: [aeoøœơ]; [૦]
 
@@ -1759,11 +1759,10 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 6
 
-# Latin; Hebrew: [aeilovøłœơ]; [וטיןסװױ]
+# Latin; Hebrew: [aelovøłœơ]; [וטיןסװױ]
 
 0061          ; Latn; Hebr; L #      (a)  LATIN SMALL LETTER A
 0065          ; Latn; Hebr; L #      (e)  LATIN SMALL LETTER E
-0069          ; Latn; Hebr; L #      (i)  LATIN SMALL LETTER I
 006C          ; Latn; Hebr; L #      (l)  LATIN SMALL LETTER L
 006F          ; Latn; Hebr; L #      (o)  LATIN SMALL LETTER O
 0076          ; Latn; Hebr; L #      (v)  LATIN SMALL LETTER V
@@ -1772,7 +1771,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0153          ; Latn; Hebr; L #      (œ)  LATIN SMALL LIGATURE OE
 01A1          ; Latn; Hebr; L #      (ơ)  LATIN SMALL LETTER O WITH HORN
 
-# Total code points: 10
+# Total code points: 9
 
 # Latin; Kannada: [aeoøœơ]; [ಂ೦]
 
@@ -2807,7 +2806,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 5
 
-# Arabic; Latin: [اةهھہۃە۱۵۷]; [BILVaejloöøŁłœơ]
+# Arabic; Latin: [اةهھہۃە۱۵۷]; [ILVaejloöøŁłœơ]
 
 0627          ; Arab; Latn; A #      (ا)  ARABIC LETTER ALEF
 0629          ; Arab; Latn; A #      (ة)  ARABIC LETTER TEH MARBUTA
@@ -2968,7 +2967,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Armenian; Latin: [ՍՏՕագզհոռսցքօ]; [IOSUae-jlnoqu-wØøħœƠơǾ]
+# Armenian; Latin: [ՍՏՕագզհոռսցքօ]; [IOSUae-hlnoqu-wØøħœƠơǾ]
 
 054D          ; Armn; Latn; A #      (Ս)  ARMENIAN CAPITAL LETTER SEH
 054F          ; Armn; Latn; A #      (Տ)  ARMENIAN CAPITAL LETTER TIWN
@@ -3257,7 +3256,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Cyrillic; Latin: [Є-ІЈА-ВЕКМ-ОР-ТХЫЬЮагекмо-ухцъє-іјћҌҍґғҚқҞҟҢҪ-ҲһҽҿӇӉӍ-ӏӔӕәӨөԁԌԑԛ-ԝ]; [A-CE-PR-TW-Ya-eh-yÆÇØæçøđĦħıĸŁłœŦŧƠơǾəꞒꞓ]
+# Cyrillic; Latin: [Є-ІЈА-ВЕКМ-ОР-ТХЫЬЮагекмо-ухцъє-іјћҌҍґғҚқҞҟҢҪ-ҲһҽҿӇӉӍ-ӏӔӕәӨөԁԌԑԛ-ԝ]; [A-CEG-MOPS-UW-Ya-eh-yÆÇØæçøđĦħıĸŁłœŦŧƠơǾəꞒꞓ]
 
 0404..0406    ; Cyrl; Latn; A #  [3] (Є..І)  CYRILLIC CAPITAL LETTER UKRAINIAN IE..CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
 0408          ; Cyrl; Latn; A #      (Ј)  CYRILLIC CAPITAL LETTER JE
@@ -3695,7 +3694,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Greek; Latin: [ΑΒΕ-ΚΜΝΟΡΤΥΧα-γεη-κνο-ρσ-υ]; [ABEFHIK-PRTX-Zaei-ln-pt-vyÆØßæøĦıĸŁłœŦŧƠơǾꞓ]
+# Greek; Latin: [ΑΒΕ-ΚΜΝΟΡΤΥΧα-γεη-κνο-ρσ-υ]; [ABEHIK-PTUX-Zaei-ln-pt-vyÆØßæøĦıĸŁłœŦŧƠơǾꞓ]
 
 0391..0392    ; Grek; Latn; A #  [2] (Α..Β)  GREEK CAPITAL LETTER ALPHA..GREEK CAPITAL LETTER BETA
 0395..039A    ; Grek; Latn; A #  [6] (Ε..Κ)  GREEK CAPITAL LETTER EPSILON..GREEK CAPITAL LETTER KAPPA
@@ -4149,7 +4148,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Hebrew; Latin: [וטיןסװױ]; [ILaeijlovøŁłœơ]
+# Hebrew; Latin: [וטיןסװױ]; [ILaejlovøŁłœơ]
 
 05D5          ; Hebr; Latn; A #      (ו)  HEBREW LETTER VAV
 05D8..05D9    ; Hebr; Latn; A #  [2] (ט..י)  HEBREW LETTER TET..HEBREW LETTER YOD
@@ -4489,9 +4488,8 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 15
 
-# Latin; Arabic: [BILVaejloöøŁłœơ]; [اةهھہۃە۱۵۷]
+# Latin; Arabic: [ILVaejloöøŁłœơ]; [اةهھہۃە۱۵۷]
 
-0042          ; Latn; Arab; A #      (B)  LATIN CAPITAL LETTER B
 0049          ; Latn; Arab; A #      (I)  LATIN CAPITAL LETTER I
 004C          ; Latn; Arab; A #      (L)  LATIN CAPITAL LETTER L
 0056          ; Latn; Arab; A #      (V)  LATIN CAPITAL LETTER V
@@ -4506,16 +4504,16 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0153          ; Latn; Arab; A #      (œ)  LATIN SMALL LIGATURE OE
 01A1          ; Latn; Arab; A #      (ơ)  LATIN SMALL LETTER O WITH HORN
 
-# Total code points: 15
+# Total code points: 14
 
-# Latin; Armenian: [IOSUae-jlnoqu-wØøħœƠơǾ]; [ՍՏՕագզհոռսցքօ]
+# Latin; Armenian: [IOSUae-hlnoqu-wØøħœƠơǾ]; [ՍՏՕագզհոռսցքօ]
 
 0049          ; Latn; Armn; A #      (I)  LATIN CAPITAL LETTER I
 004F          ; Latn; Armn; A #      (O)  LATIN CAPITAL LETTER O
 0053          ; Latn; Armn; A #      (S)  LATIN CAPITAL LETTER S
 0055          ; Latn; Armn; A #      (U)  LATIN CAPITAL LETTER U
 0061          ; Latn; Armn; A #      (a)  LATIN SMALL LETTER A
-0065..006A    ; Latn; Armn; A #  [6] (e..j)  LATIN SMALL LETTER E..LATIN SMALL LETTER J
+0065..0068    ; Latn; Armn; A #  [4] (e..h)  LATIN SMALL LETTER E..LATIN SMALL LETTER H
 006C          ; Latn; Armn; A #      (l)  LATIN SMALL LETTER L
 006E..006F    ; Latn; Armn; A #  [2] (n..o)  LATIN SMALL LETTER N..LATIN SMALL LETTER O
 0071          ; Latn; Armn; A #      (q)  LATIN SMALL LETTER Q
@@ -4527,7 +4525,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 01A0..01A1    ; Latn; Armn; A #  [2] (Ơ..ơ)  LATIN CAPITAL LETTER O WITH HORN..LATIN SMALL LETTER O WITH HORN
 01FE          ; Latn; Armn; A #      (Ǿ)  LATIN CAPITAL LETTER O WITH STROKE AND ACUTE
 
-# Total code points: 25
+# Total code points: 23
 
 # Latin; Bengali: [IOlØƠǾ]; [০]
 
@@ -4540,11 +4538,13 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 6
 
-# Latin; Cyrillic: [A-CE-PR-TW-Ya-eh-yÆÇØæçøđĦħıĸŁłœŦŧƠơǾəꞒꞓ]; [Є-ІЈА-ВЕКМ-ОР-ТХЫЬЮагекмо-ухцъє-іјћҌҍґғҚқҞҟҢҪ-ҲһҽҿӇӉӍ-ӏӔӕәӨөԁԌԑԛ-ԝ]
+# Latin; Cyrillic: [A-CEG-MOPS-UW-Ya-eh-yÆÇØæçøđĦħıĸŁłœŦŧƠơǾəꞒꞓ]; [Є-ІЈА-ВЕКМ-ОР-ТХЫЬЮагекмо-ухцъє-іјћҌҍґғҚқҞҟҢҪ-ҲһҽҿӇӉӍ-ӏӔӕәӨөԁԌԑԛ-ԝ]
 
 0041..0043    ; Latn; Cyrl; A #  [3] (A..C)  LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER C
-0045..0050    ; Latn; Cyrl; A # [12] (E..P)  LATIN CAPITAL LETTER E..LATIN CAPITAL LETTER P
-0052..0054    ; Latn; Cyrl; A #  [3] (R..T)  LATIN CAPITAL LETTER R..LATIN CAPITAL LETTER T
+0045          ; Latn; Cyrl; A #      (E)  LATIN CAPITAL LETTER E
+0047..004D    ; Latn; Cyrl; A #  [7] (G..M)  LATIN CAPITAL LETTER G..LATIN CAPITAL LETTER M
+004F..0050    ; Latn; Cyrl; A #  [2] (O..P)  LATIN CAPITAL LETTER O..LATIN CAPITAL LETTER P
+0053..0055    ; Latn; Cyrl; A #  [3] (S..U)  LATIN CAPITAL LETTER S..LATIN CAPITAL LETTER U
 0057..0059    ; Latn; Cyrl; A #  [3] (W..Y)  LATIN CAPITAL LETTER W..LATIN CAPITAL LETTER Y
 0061..0065    ; Latn; Cyrl; A #  [5] (a..e)  LATIN SMALL LETTER A..LATIN SMALL LETTER E
 0068..0079    ; Latn; Cyrl; A # [18] (h..y)  LATIN SMALL LETTER H..LATIN SMALL LETTER Y
@@ -4564,7 +4564,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0259          ; Latn; Cyrl; A #      (ə)  LATIN SMALL LETTER SCHWA
 A792..A793    ; Latn; Cyrl; A #  [2] (Ꞓ..ꞓ)  LATIN CAPITAL LETTER C WITH BAR..LATIN SMALL LETTER C WITH BAR
 
-# Total code points: 66
+# Total code points: 64
 
 # Latin; Devanagari: [aeoøœơ]; [०]
 
@@ -4590,14 +4590,13 @@ A792..A793    ; Latn; Cyrl; A #  [2] (Ꞓ..ꞓ)  LATIN CAPITAL LETTER C WITH BAR
 
 # Total code points: 8
 
-# Latin; Greek: [ABEFHIK-PRTX-Zaei-ln-pt-vyÆØßæøĦıĸŁłœŦŧƠơǾꞓ]; [ΑΒΕ-ΚΜΝΟΡΤΥΧα-γεη-κνο-ρσ-υ]
+# Latin; Greek: [ABEHIK-PTUX-Zaei-ln-pt-vyÆØßæøĦıĸŁłœŦŧƠơǾꞓ]; [ΑΒΕ-ΚΜΝΟΡΤΥΧα-γεη-κνο-ρσ-υ]
 
 0041..0042    ; Latn; Grek; A #  [2] (A..B)  LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER B
-0045..0046    ; Latn; Grek; A #  [2] (E..F)  LATIN CAPITAL LETTER E..LATIN CAPITAL LETTER F
+0045          ; Latn; Grek; A #      (E)  LATIN CAPITAL LETTER E
 0048..0049    ; Latn; Grek; A #  [2] (H..I)  LATIN CAPITAL LETTER H..LATIN CAPITAL LETTER I
 004B..0050    ; Latn; Grek; A #  [6] (K..P)  LATIN CAPITAL LETTER K..LATIN CAPITAL LETTER P
-0052          ; Latn; Grek; A #      (R)  LATIN CAPITAL LETTER R
-0054          ; Latn; Grek; A #      (T)  LATIN CAPITAL LETTER T
+0054..0055    ; Latn; Grek; A #  [2] (T..U)  LATIN CAPITAL LETTER T..LATIN CAPITAL LETTER U
 0058..005A    ; Latn; Grek; A #  [3] (X..Z)  LATIN CAPITAL LETTER X..LATIN CAPITAL LETTER Z
 0061          ; Latn; Grek; A #      (a)  LATIN SMALL LETTER A
 0065          ; Latn; Grek; A #      (e)  LATIN SMALL LETTER E
@@ -4620,7 +4619,7 @@ A792..A793    ; Latn; Cyrl; A #  [2] (Ꞓ..ꞓ)  LATIN CAPITAL LETTER C WITH BAR
 01FE          ; Latn; Grek; A #      (Ǿ)  LATIN CAPITAL LETTER O WITH STROKE AND ACUTE
 A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
-# Total code points: 47
+# Total code points: 46
 
 # Latin; Gujarati: [aeoøœơ]; [૦]
 
@@ -4655,13 +4654,13 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 6
 
-# Latin; Hebrew: [ILaeijlovøŁłœơ]; [וטיןסװױ]
+# Latin; Hebrew: [ILaejlovøŁłœơ]; [וטיןסװױ]
 
 0049          ; Latn; Hebr; A #      (I)  LATIN CAPITAL LETTER I
 004C          ; Latn; Hebr; A #      (L)  LATIN CAPITAL LETTER L
 0061          ; Latn; Hebr; A #      (a)  LATIN SMALL LETTER A
 0065          ; Latn; Hebr; A #      (e)  LATIN SMALL LETTER E
-0069..006A    ; Latn; Hebr; A #  [2] (i..j)  LATIN SMALL LETTER I..LATIN SMALL LETTER J
+006A          ; Latn; Hebr; A #      (j)  LATIN SMALL LETTER J
 006C          ; Latn; Hebr; A #      (l)  LATIN SMALL LETTER L
 006F          ; Latn; Hebr; A #      (o)  LATIN SMALL LETTER O
 0076          ; Latn; Hebr; A #      (v)  LATIN SMALL LETTER V
@@ -4670,7 +4669,7 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0153          ; Latn; Hebr; A #      (œ)  LATIN SMALL LIGATURE OE
 01A1          ; Latn; Hebr; A #      (ơ)  LATIN SMALL LETTER O WITH HORN
 
-# Total code points: 14
+# Total code points: 13
 
 # Latin; Kannada: [aeoøœơ]; [ಂ೦]
 

@@ -19,8 +19,18 @@ public class TestSecurity extends TestFmwkPlus {
     }
 
     enum Style {SL, SA, ML, MA}
+    
+    static class Data {
+        final Style style;
+        final String result;
+        public Data(Style style, String result) {
+            this.style = style;
+            this.result = result;
+        }
+    }
 
-    EnumMap<Style, UnicodeMap<String>> data = new EnumMap<Style,UnicodeMap<String>>(Style.class);
+    EnumMap<Style, UnicodeMap<String>> style2map = new EnumMap<Style,UnicodeMap<String>>(Style.class);
+    UnicodeMap<EnumMap<Style,String>> char2data = new UnicodeMap<EnumMap<Style,String>>();
 
     @Override
     protected void init() throws Exception {
@@ -42,29 +52,36 @@ public class TestSecurity extends TestFmwkPlus {
             String source = Utility.fromHex(parts[0]);
             String target = Utility.fromHex(parts[1]);
             Style style = Style.valueOf(parts[2]);
-            UnicodeMap<String> map = data.get(style);
+            UnicodeMap<String> map = style2map.get(style);
             if (map == null) {
-                data.put(style, map = new UnicodeMap());
+                style2map.put(style, map = new UnicodeMap());
             }
             map.put(source, target);
+            EnumMap<Style, String> map2 = char2data.get(source);
+            if (map2 == null) {
+                char2data.put(source, map2 = new EnumMap(Style.class));
+            }
+            map2.put(style, target);
         }
     }
 
     public void TestIdempotence() {
-        for (Entry<Style, UnicodeMap<String>> entry : data.entrySet()) {
-            Style key = entry.getKey();
-            UnicodeMap<String> map = entry.getValue();
-            boolean warningOnly = !key.equals("MA");
-            for (Entry<String, String> codeToValue : map.entrySet()) {
-                String code = codeToValue.getKey();
+        for (Entry<String, EnumMap<Style, String>> entry : char2data.entrySet()) {
+            String code = entry.getKey();
+            EnumMap<Style, String> map = entry.getValue();
+            for (Entry<Style, String> codeToValue : map.entrySet()) {
+                Style style = codeToValue.getKey();
+                boolean warningOnly = style != Style.MA;
+
+                UnicodeMap<String> transformMap = style2map.get(style);
                 String value = codeToValue.getValue();
-                String value2 = map.transform(value);
+                String value2 = transformMap.transform(value);
                 if (!value2.equals(value)) {
-                    final String message = key
-                            + ", " + Utility.hex(code)+ " ( " + code + " )"  + Default.ucd().getName(code)
-                            + "\n\t\texpect:\t" + Utility.hex(value2) + " ( " + value2 + " )" + Default.ucd().getName(value2)
-                            + "\n\t\tactual:\t" + Utility.hex(value) + " ( " + value + " )" + " " + Default.ucd().getName(value)
-                            + "\n";
+                    final String message = style
+                            + "\tU+" + Utility.hex(code)+ " ( " + code + " ) "  + Default.ucd().getName(code)
+                            + "\t\texpect:\tU+" + Utility.hex(value2, "U+") + " ( " + value2 + " ) " + Default.ucd().getName(value2)
+                            + "\t\tactual:\tU+" + Utility.hex(value, "U+") + " ( " + value + " ) " + " " + Default.ucd().getName(value)
+                            ;
                     if (warningOnly) {
                         warnln(message);
                     } else { 
