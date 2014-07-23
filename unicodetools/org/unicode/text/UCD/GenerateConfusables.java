@@ -42,6 +42,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
+import org.unicode.cldr.draft.ScriptMetadata.Trinary;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
@@ -49,6 +50,9 @@ import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Uts46;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Binary;
+import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
+import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Settings;
@@ -77,6 +81,7 @@ import com.ibm.icu.util.ULocale;
 
 
 public class GenerateConfusables {
+    private static final Normalizer NFKD = Default.nfkd();
     private static final ToolUnicodeTransformFactory TOOL_FACTORY = new ToolUnicodeTransformFactory();
     // Align these three normally.
     private static final String version = Settings.latestVersion;
@@ -93,12 +98,34 @@ public class GenerateConfusables {
         UnicodeTransform.setFactory(TOOL_FACTORY);
     }
     static final UnicodeSet COMMON_OR_INHERITED;
+    static final UnicodeSet CASED;
+    static final UnicodeSet COMMON_OR_INHERITED_NFKD;
+    static final UnicodeSet CASED_NFKD;
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
-    static final UnicodeMap<Set<Script_Values>> scriptExtensions = iup.loadSet(UcdProperty.Script_Extensions, Script_Values.class, UcdProperty.Script);
+    static final UnicodeMap<Set<Script_Values>> scriptExtensions = iup.loadSet(UcdProperty.Script_Extensions, 
+            Script_Values.class, UcdProperty.Script);
     static {
         UnicodeSet common = scriptExtensions.getSet(Collections.singleton(Script_Values.Common));
         UnicodeSet inherited = scriptExtensions.getSet(Collections.singleton(Script_Values.Inherited));
         COMMON_OR_INHERITED = new UnicodeSet(common).addAll(inherited).freeze();
+        CASED = iup.loadEnum(UcdProperty.Changes_When_Casefolded, Binary.class).getSet(Binary.Yes);
+        COMMON_OR_INHERITED_NFKD = new UnicodeSet(COMMON_OR_INHERITED);
+        CASED_NFKD = new UnicodeSet(CASED);
+        final UnicodeSet notNFKD = iup.loadEnum(UcdProperty.NFKD_Quick_Check, NFKD_Quick_Check_Values.class).getSet(NFKD_Quick_Check_Values.No);
+        for (String s: notNFKD) {
+            if (s.equals("𝐉")) {
+                int debug = 0;
+            }
+            String nfkd = NFKD.normalize(s);
+            if (!COMMON_OR_INHERITED_NFKD.containsAll(nfkd)) {
+                COMMON_OR_INHERITED_NFKD.remove(s);
+            }
+            if (CASED_NFKD.containsSome(nfkd)) {
+                CASED_NFKD.add(s);
+            }
+        }
+        COMMON_OR_INHERITED_NFKD.freeze();
+        CASED_NFKD.freeze();
     }
 
     private static final UnicodeProperty SCRIPT_PROPERTY = ups.getProperty("sc");
@@ -147,6 +174,7 @@ public class GenerateConfusables {
             e.printStackTrace();
         } finally {
             System.out.println("Done");
+            System.out.println("!!! Remember to run TestSecurity.java !!!");
         }
     }
 
@@ -255,7 +283,7 @@ public class GenerateConfusables {
                 }
 
                 // skip NFKC forms
-                if (Default.nfkd().normalize(source).equals(Default.nfkd().normalize(target))) {
+                if (NFKD.normalize(source).equals(NFKD.normalize(target))) {
                     if (old != null) {
                         mapping.remove(source);
                     }
@@ -968,7 +996,7 @@ public class GenerateConfusables {
             if (extra.size() != 0) {
                 final UnicodeSet fixed = new UnicodeSet();
                 for (final UnicodeSetIterator it = new UnicodeSetIterator(extra); it.next();) {
-                    if (!letters.containsAll(Default.nfkd().normalize(it.getString()))) {
+                    if (!letters.containsAll(NFKD.normalize(it.getString()))) {
                         fixed.add(it.codepoint);
                     }
                 }
@@ -1305,7 +1333,7 @@ public class GenerateConfusables {
                     continue;
                 }
                 final String source = UTF16.valueOf(cp);
-                final String mapped = Default.nfkd().normalize(cp);
+                final String mapped = NFKD.normalize(cp);
                 String kmapped = getModifiedNKFC(source);
                 if (!kmapped.equals(source) && !kmapped.equals(nfc)) {
                     if (kmapped.startsWith(" ") || kmapped.startsWith("\u0640")) {
@@ -1664,7 +1692,7 @@ public class GenerateConfusables {
                     filteredSet.add(other);
                 }
             //            }
-            return (String) CollectionUtilities.getBest(filteredSet, betterTargetIsLess, -1);
+            return (String) CollectionUtilities.getBest(filteredSet, onlyLowercase || onlySameScript ? betterTargetIsLessFavorNeutral : betterTargetIsLess, -1);
         }
 
         public Set getOrderedExplicitItems() {
@@ -1855,7 +1883,7 @@ public class GenerateConfusables {
                     if (kind==FOLDING) {
                         final String target = fromHexOld(targetString);
                         final String source = fromHexOld(sourceString);
-                        final String nsource = Default.nfkd().normalize(source);
+                        final String nsource = NFKD.normalize(source);
                         final String first = UTF16.valueOf(UTF16.charAt(nsource, 0));
                         if (!first.equals(target)) {
                             add(source, target, type, count, line);
@@ -1892,8 +1920,8 @@ public class GenerateConfusables {
 
         private void add2(String source, String target, String type, int count, String line) {
             //if (pieces.length > 2) type = pieces[2].trim();
-            final String nfkdSource = Default.nfkd().normalize(source);
-            final String nfkdTarget = Default.nfkd().normalize(target);
+            final String nfkdSource = NFKD.normalize(source);
+            final String nfkdTarget = NFKD.normalize(target);
             if (NSM.containsAll(source) && NSM.containsNone(target)
                     || NSM.containsAll(target) && NSM.containsNone(source)) {
                 if (SHOW_SUPPRESS) {
@@ -2013,7 +2041,7 @@ public class GenerateConfusables {
                     continue;
                 }
                 if (skipNFKEquivs) {
-                    if (!Default.nfkd().normalize(source).equals(source)) {
+                    if (!NFKD.normalize(source).equals(source)) {
                         continue;
                     }
                 }
@@ -2379,30 +2407,30 @@ public class GenerateConfusables {
         /**
          * 
          */
-        private String getStatus(String source) {
-            // TODO Auto-generated method stub
-            final int val = betterTargetIsLess.getValue(source);
-            if (val == MARK_NOT_NFC.intValue()) {
-                return "[x]";
-            }
-            if (val == MARK_NFC.intValue()) {
-                return "[x]";
-            }
-            if (val == MARK_INPUT_LENIENT.intValue()) {
-                return "[L]";
-            }
-            if (val == MARK_INPUT_STRICT.intValue()) {
-                return "[I]";
-            }
-            if (val == MARK_OUTPUT.intValue()) {
-                return "[O]";
-            }
-            if (val == MARK_ASCII.intValue()) {
-                return "[A]";
-            }
-
-            return "?";
-        }
+//        private String getStatus(String source) {
+//            // TODO Auto-generated method stub
+//            final int val = betterTargetIsLess.getValue(source);
+//            if (val == MARK_NOT_NFC.intValue()) {
+//                return "[x]";
+//            }
+//            if (val == MARK_NFC.intValue()) {
+//                return "[x]";
+//            }
+//            if (val == MARK_INPUT_LENIENT.intValue()) {
+//                return "[L]";
+//            }
+//            if (val == MARK_INPUT_STRICT.intValue()) {
+//                return "[I]";
+//            }
+//            if (val == MARK_OUTPUT.intValue()) {
+//                return "[O]";
+//            }
+//            if (val == MARK_ASCII.intValue()) {
+//                return "[A]";
+//            }
+//
+//            return "?";
+//        }
 
         public void writeData(String string, String string2) {
             // TODO Auto-generated method stub
@@ -2892,7 +2920,8 @@ public class GenerateConfusables {
     MARK_OUTPUT = new Integer(10),
     MARK_ASCII = new Integer(10);
 
-    private static _BetterTargetIsLess betterTargetIsLess = new _BetterTargetIsLess();
+    private static _BetterTargetIsLess betterTargetIsLess = new _BetterTargetIsLess(false);
+    private static _BetterTargetIsLess betterTargetIsLessFavorNeutral = new _BetterTargetIsLess(true);
 
     private static boolean isXid(String x) {
         return  XID.containsAll(x);
@@ -2900,7 +2929,11 @@ public class GenerateConfusables {
 
     private static class _BetterTargetIsLess implements Comparator<String> {
         IdentifierInfo info = IdentifierInfo.getIdentifierInfo();
+        private boolean favorNeutral;
 
+        _BetterTargetIsLess(boolean favorNeutral) {
+            this.favorNeutral = favorNeutral;
+        }
         @Override
         public int compare(String a, String b) {
             if (a.equals(b)) {
@@ -2908,18 +2941,25 @@ public class GenerateConfusables {
             }
             int diff;
 
+            if (favorNeutral) {
+                boolean isCommonA = COMMON_OR_INHERITED.containsAll(a);
+                boolean isCommonB = COMMON_OR_INHERITED.containsAll(b);
+                if (isCommonA != isCommonB) {
+                    return isCommonA ? -1 : 1;
+                }
+                boolean isUncasedA = !CASED.containsAll(a);
+                boolean isUncasedB = !CASED.containsAll(b);
+                if (isUncasedA != isUncasedB) {
+                    return isCommonA ? -1 : 1;
+                }
+            }
+
             // longer is better (less)
             final int ca = UTF16.countCodePoint(a);
             final int cb = UTF16.countCodePoint(b);
             if (ca != cb)  {
                 return ca > cb ? -1 : 1;
             }
-
-            //            boolean isCommonA = COMMON_OR_INHERITED.containsAll(a);
-            //            boolean isCommonB = COMMON_OR_INHERITED.containsAll(b);
-            //            if (isCommonA != isCommonB) {
-            //                return isCommonA ? -1 : 1;
-            //            }
 
             String latestA = getMostRecentAge(a);
             String latestB = getMostRecentAge(b);

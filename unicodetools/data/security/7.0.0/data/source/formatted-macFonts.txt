@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: formatted-macFonts.txt
 # Version: 7.0.0
-# Generated: 2014-07-13, 15:31:44 GMT
+# Generated: 2014-07-21, 13:28:51 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -704,8 +704,6 @@
 0ABC ;	0B3C	# ( ઼ ~ ଼ ) GUJARATI SIGN NUKTA ~ ORIYA SIGN NUKTA
 
 0B8E ;	0BED	# ( எ ~ ௭ ) TAMIL LETTER E ~ TAMIL DIGIT SEVEN
-
-0BD0 ;	0421	# ( ௐ ~ С ) TAMIL OM ~ CYRILLIC CAPITAL LETTER ES
 
 0F62 ;	0F6A	# ( ར ~ ཪ ) TIBETAN LETTER RA ~ TIBETAN LETTER FIXED-FORM RA
 
