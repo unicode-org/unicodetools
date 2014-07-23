@@ -68,6 +68,7 @@ public class EmojiFrequency {
         return data.get(word);
     }
     public static void main(String[] args) {
+        System.out.println("Emoji\tTw. Count\tName\tAnnotations");
         NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
         for (Entry<String, Long> entry : data.entrySet()) {
             final String cp = entry.getKey();
@@ -78,8 +79,9 @@ public class EmojiFrequency {
                     + "\t" + data.annotations
                     );
         }
-        if (true) return;
         
+        System.out.println("\n\n\n");
+        System.out.println("Annotation\tTw. Count\tTw. Count Ave.\tSet");
         Counter<String> annotationToFrequency = new Counter<String>();
         Counter<String> annotationToCount = new Counter<String>();
         for (String cp : Emoji.EMOJI_CHARS) {
@@ -96,9 +98,9 @@ public class EmojiFrequency {
             final UnicodeSet us = EmojiData.getAnnotationSet(annotation);
             final Long count = entry.get0();
             System.out.println(
-                    nf.format(count)
+                    annotation
+                    + "\t" + nf.format(count)
                     + "\t" + nf.format(count/annotationToCount.get(annotation))
-                    + "\t" + annotation
                     + "\t" + us.toPattern(false)
                     );
         }
