@@ -87,7 +87,7 @@ public class ScriptInfo {
 
         public IdentifierVersionInfo(String version) {
             IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
-            generalCategory = iup.loadEnum(UcdProperty.General_Category);
+            generalCategory = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
             numericValue = iup.loadDouble(UcdProperty.Numeric_Value);
             scriptExtensions = iup.loadSet(UcdProperty.Script_Extensions, Script_Values.class, UcdProperty.Script);
             scriptExtensionsFlattened = IndexUnicodeProperties.freeze(

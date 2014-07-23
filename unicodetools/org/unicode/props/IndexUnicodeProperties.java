@@ -816,6 +816,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
     };
+    
+    public <T extends Enum<T>> UnicodeMap<Set<T>> loadSet(UcdProperty prop2, Class enumClass) {
+        return loadSet(prop2, enumClass, prop2);
+    }
 
     public <T extends Enum<T>> UnicodeMap<Set<T>> loadSet(UcdProperty prop2, Class enumClass, UcdProperty prop3) {
         UnicodeMap<String> m = load(prop2);
@@ -884,7 +888,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return result.freeze();
     }
 
-    public <T extends Enum<T>> UnicodeMap<T> loadEnum(UcdProperty prop2) {
+    public <T extends Enum<T>> UnicodeMap<T> loadEnum(UcdProperty prop2, Class<T> classIn) {
         UnicodeMap<String> m = load(prop2);
         UnicodeMap<T> result = new UnicodeMap<>();
         // TODO cache
