@@ -1,13 +1,18 @@
 package org.unicode.text.tools;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,6 +33,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
+import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ScriptMetadata.Trinary;
 import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
@@ -70,6 +76,8 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmoji {
+    private static final boolean DATAURL = true;
+
     private static final String BREAK = "<br>";
     private static final String DOC_DATA_FILES = "index.html#Data_Files";
     private static boolean SHOW = false;
@@ -251,14 +259,14 @@ public class GenerateEmoji {
         }
         return line;
     }
-    static final Transform<String,String> WINDOWS_URL = new Transform<String,String>() {
-        public String transform(String s) {
-            String base = "images/windows/windows_";
-            String separator = "_";
-            return base + Emoji.buildFileName(s, separator) + ".png";
-        }
-
-    };
+    //    private static final Transform<String,String> WINDOWS_URL = new Transform<String,String>() {
+    //        public String transform(String s) {
+    //            String base = "images /windows/windows_";
+    //            String separator = "_";
+    //            return base + Emoji.buildFileName(s, separator) + ".png";
+    //        }
+    //
+    //    };
 
     enum Label {
         person, body, face, nature, animal, plant, clothing, emotion, 
@@ -414,7 +422,7 @@ public class GenerateEmoji {
         }
 
         static final UnicodeSet EMOJI_STYLE_OVERRIDE = new UnicodeSet("[🔙 🔚 🔛 🔜 🔝➕ ➖ ➗ ➰ ➿]").freeze();
-        
+
         public Data(String chars, String code, String age,
                 String defaultPresentation, String name) {
             this.chars = chars;
@@ -506,11 +514,11 @@ public class GenerateEmoji {
         private String getVersionAndSources() {
             return getSources(new StringBuilder(getVersion()), true);
         }
-        
+
         public String getVersion() {
             return age.toString().replace('_', '.');
         }
-        
+
         public String getSources(StringBuilder suffix, boolean superscript) {
             for (CharSource source : getCharSources(chars)) {
                 suffix.append(superscript ? source.superscript : source.letter);
@@ -642,14 +650,17 @@ public class GenerateEmoji {
         public String getCell(Source type, String core, String missingCell) {
             String filename = getImageFilename(type, core);
             String androidCell = missingCell;
-            if (filename != null && new File(IMAGES_OUTPUT_DIR, filename).exists()) {
-                String className = "imga";
-                if (type == Source.ref && getFlagCode(chars) != null) {
-                    className = "imgf";
+            if (filename != null) {
+                final File file = new File(IMAGES_OUTPUT_DIR, filename);
+                String fullName = getDataUrl(filename);
+                if (fullName != null) {
+                    String className = "imga";
+                    if (type == Source.ref && getFlagCode(chars) != null) {
+                        className = "imgf";
+                    }
+                    androidCell = "<td class='andr'><img alt='" + chars + "' class='" +
+                            className + "' src='" + fullName + "'></td>\n";
                 }
-                androidCell = "<td class='andr'><img alt='" + chars + "' class='" +
-                        className +
-                		"' src='images/" + filename + "'></td>\n";
             }
             return androidCell;
         }
@@ -691,13 +702,13 @@ public class GenerateEmoji {
     static {
         BEST_OVERRIDE.putAll(new UnicodeSet("[🕐-🕧🚶🏃💃👪👫👬👭🙍🙎🙅🙆🙇🙋🙌🙏]"), Source.android);
         BEST_OVERRIDE.putAll(new UnicodeSet("[✊-✌ 💅💪👂👃👯" +
-        		"👦 👰 👧  👨  👩  👮  👱  👲  👳 👴  👵  👶  👷  👸  💁  💂 👼" +
-        		"👈👉☝👆👇👊  👋  👌  👍👎 👏  👐]"), Source.twitter);
+                "👦 👰 👧  👨  👩  👮  👱  👲  👳 👴  👵  👶  👷  👸  💁  💂 👼" +
+                "👈👉☝👆👇👊  👋  👌  👍👎 👏  👐]"), Source.twitter);
         BEST_OVERRIDE.putAll(new UnicodeSet("[💆👯💏💑💇]"), Source.windows);
         BEST_OVERRIDE.putAll(new UnicodeSet("[💇]"), Source.ref);
         BEST_OVERRIDE.freeze();
     }
-    
+
     public static String getBestImage(String s, Source... doFirst) {
         Source source0 = BEST_OVERRIDE.get(s);
         String cell0 = getImage(source0, s);
@@ -722,10 +733,10 @@ public class GenerateEmoji {
                 className = "imgf";
             }
             return "<img alt='" + chars + "'" +
-                    " class='" + className + "'" +
-                    " src='images/" + filename + "'" +
-                    " title='" + getCodeAndName(chars, " ") + "'" +
-                    ">";
+            " class='" + className + "'" +
+            " src='" + getDataUrl(filename) + "'" +
+            " title='" + getCodeAndName(chars, " ") + "'" +
+            ">";
         }
         return null;
     }
@@ -970,10 +981,10 @@ public class GenerateEmoji {
         String filename = getImageFilename(Source.ref, core);
         String cc = getFlagRegionName(chars);
         return cc == null ? null : "<img"
-        		+ " alt='" + chars + "'"
+                + " alt='" + chars + "'"
                 + " class='imgf'"
                 + " title='" + getCodeAndName(chars, " ") + "'"
-                + " src='images/" + filename + "'>";
+                + " src='" + getDataUrl(filename) + "'>";
     }
 
     public static void main(String[] args) throws IOException {
@@ -1167,7 +1178,7 @@ public class GenerateEmoji {
         final int rows = keyValuesSet.size();
         out.println("<tr><th>Colored*</th>"
                 + "<th rowSpan='" + (rows + 1) + "'>&nbsp;</th>"
-        		+ "<th>B&W</th>"
+                + "<th>B&W</th>"
                 + "<th rowSpan='" + (rows + 1) + "'>&nbsp;</th>"
                 + "<th>Unicode Collation Order (UCA - DUCET)</th></tr>");
         UnicodeSet all = new UnicodeSet();
@@ -1291,7 +1302,7 @@ public class GenerateEmoji {
         writeFooter(out);
         out.close();
     }
-    
+
     private static void showVersionsOnly() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-versions.html");
         writeHeader(out, "Emoji Versions", "Versions for Emoji.");
@@ -1654,7 +1665,7 @@ public class GenerateEmoji {
             outText.println("# DRAFT emoji-data.txt");
             outText.println("# For details about the format and other information, see " +
                     DOC_DATA_FILES +
-            		".");
+                    ".");
             outText.println("#");
             outText.println("# Format");
             outText.println("# Code ;\tDefault Style ;\tOrdering ;\tAnnotations ;\tSources\t# Version Char Name");
@@ -1840,5 +1851,18 @@ public class GenerateEmoji {
     public static String getDoubleLink(String anchor) {
         return getDoubleLink(anchor, anchor);
     }
-
+    
+    static String getDataUrl(String filename) {
+        final File file = new File(IMAGES_OUTPUT_DIR, filename);
+        if (!file.exists()) {
+            return null;
+        } else if (!DATAURL) {
+            return "images/" + filename;
+        }
+        try {
+            return "data:image/png;base64," + Base64.encode(Files.readAllBytes(file.toPath()));
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
 }
