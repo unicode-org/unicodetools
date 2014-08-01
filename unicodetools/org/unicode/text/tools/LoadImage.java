@@ -18,8 +18,10 @@ import java.awt.image.WritableRaster;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.ByteBuffer;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -46,6 +48,7 @@ import javax.imageio.ImageWriter;
 import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
+import javax.imageio.stream.MemoryCacheImageOutputStream;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.tools.GenerateEmoji.Source;
@@ -583,5 +586,18 @@ public class LoadImage extends Component {
         GlyphVector glyphVector = f.createGlyphVector(fontRenderContext, codepoint);
         int glyphCode = glyphVector.getGlyphCode(0);
         return (glyphCode > 0);
+    }
+    
+    static byte[] resizeImage(File file, int targetHeight, boolean square) {
+        try {
+            BufferedImage sourceImage = ImageIO.read(file);
+            BufferedImage targetImage = resizeImage(sourceImage, sourceImage.getHeight(), targetHeight, square);
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageOutputStream ios = new MemoryCacheImageOutputStream(outputStream);
+            ImageIO.write(targetImage, "png", ios);
+            return outputStream.toByteArray();
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 }
