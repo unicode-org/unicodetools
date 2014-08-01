@@ -72,6 +72,8 @@ public class Emoji {
     }
 
     static final int FIRST_REGIONAL = 0x1F1E6;
+    static final int LAST_REGIONAL = 0x1F1FF;
+
     public static final UnicodeSet EMOJI_CHARS = new UnicodeSet(
     "[⛩©®‼⁉℗™ℹ↔-↙↩↪⌚⌛⌨⍾⎈⏏⏩-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎-☒☔-☠☢-☤☮☯☹-☾♈-♯♲♻♾-⚅⚐-⚜⚠⚡⚪⚫⚰⚱⚽" +
     "-⛊⛍-⛙⛛-⛡⛨⛪⛰-⛵⛷-⛺⛼-✒✔-✘✨✳✴❄❇❌❎❓-❕❗❢-❧➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕⸙〠〰〽㊗㊙🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🅰🅱🅾🅿🆎🆏🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑" +
@@ -149,7 +151,6 @@ public class Emoji {
         return FIRST_REGIONAL <= firstCodepoint && firstCodepoint <= Emoji.LAST_REGIONAL;
     }
 
-    static final int LAST_REGIONAL = 0x1F1FF;
     static final char ENCLOSING_KEYCAP = '\u20E3';
     static final Comparator<String> CODEPOINT_LENGTH = new Comparator<String>() {
         @Override
