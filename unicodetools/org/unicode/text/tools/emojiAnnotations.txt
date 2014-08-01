@@ -785,7 +785,7 @@ officer	👮
 ogre	👹
 oh	🙀
 oil	🛢
-ok	👌 🖏 🆗
+ok	👌 🖏 🆗 🙆
 old	👴 👵  🗝
 oncoming	🚍 🚔 🚖 🚘 🛱
 one	⛕ 🀐 🀙 🕐 🕜 🖯
@@ -911,8 +911,7 @@ poultry	🍗
 pound	💷
 pouting	😡 😾 🙎
 prawn	🍤
-prayer	🙏
-praying	🙏
+prayer,praying,pray,ask,please,thanks	🙏
 present	🎁
 princess	👸
 print	🐾 👣
