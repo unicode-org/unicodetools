@@ -1868,7 +1868,7 @@ public class GenerateEmoji {
                     result = "images/" + filename;
                 } else {
                     byte[] bytes = RESIZE_IMAGE <= 0 ? Files.readAllBytes(file.toPath()) 
-                            : LoadImage.resizeImage(file, RESIZE_IMAGE, true);
+                            : LoadImage.resizeImage(file, RESIZE_IMAGE, false);
                     result = "data:image/png;base64," + Base64.encode(bytes);
                 }
                 IMAGE_CACHE.put(filename, result);
