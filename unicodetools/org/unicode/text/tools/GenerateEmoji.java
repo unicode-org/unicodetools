@@ -36,6 +36,7 @@ import java.util.regex.Pattern;
 import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ScriptMetadata.Trinary;
+import org.unicode.cldr.tool.CountryCodeConverter;
 import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.MapComparator;
@@ -196,6 +197,12 @@ public class GenerateEmoji {
     enum Style {plain, text, emoji, bestImage, refImage}
     static final Relation<Style,String> STYLE_TO_CHARS = Relation.of(new EnumMap(Style.class), TreeSet.class, CODEPOINT_COMPARE);
 
+    static final Set<String> STOP_WORDS = new HashSet<>(Arrays.asList("the", "of", "for", "a", "and", "state", 
+            "c�te", "verde▪cape", "dhekelia", "akrotiri", "comros", "pdr", "jamahiriya", "part",
+            "yugoslav", "tfyr", "autonomous", "rawanda", "da", "rb", "yugoslavia",
+            "states", "sar", "people's", "minor",
+            "sts."));
+
     static final Birelation<String,String> ANNOTATIONS_TO_CHARS = new Birelation(
             new TreeMap(CODEPOINT_COMPARE), 
             new TreeMap(CODEPOINT_COMPARE), 
@@ -225,7 +232,43 @@ public class GenerateEmoji {
                 }
             }
         }
+        for (int cp1 = Emoji.FIRST_REGIONAL; cp1 <= Emoji.LAST_REGIONAL; ++cp1) {
+            for (int cp2 = Emoji.FIRST_REGIONAL; cp2 <= Emoji.LAST_REGIONAL; ++cp2) {
+                String emoji = new StringBuilder().appendCodePoint(cp1).appendCodePoint(cp2).toString();
+                if (Emoji.EMOJI_CHARS.contains(emoji)) {
+                    ANNOTATIONS_TO_CHARS.add("flag", emoji);
+                }
+                String regionCode = getFlagCode(emoji);
+            }
+        }
+        // get extra names
+        for (String name : CountryCodeConverter.names()) {
+            String regionCode = CountryCodeConverter.getCodeFromName(name);
+            if (regionCode == null || regionCode.length() != 2) {
+                continue;
+            }
+            if (regionCode.equals("RS") 
+                    && name.contains("montenegro")) {
+                continue;
+            }
+            String emoji = getEmojiFromRegionCode(regionCode);
+            //System.out.println(regionCode + "=>" + name);
+            addParts(emoji, name);
+        }
         ANNOTATIONS_TO_CHARS.freeze();
+    }
+
+    public static void addParts(String emoji, String name) {
+        name = name.toLowerCase(Locale.ENGLISH);
+        for (String namePart : name.split("[- ,&\\(\\)]+")) {
+            if (STOP_WORDS.contains(namePart)) {
+                continue;
+            }
+            if (namePart.startsWith("d’") || namePart.startsWith("d'")) {
+                namePart = namePart.substring(2);
+            }
+            ANNOTATIONS_TO_CHARS.add(namePart, emoji);
+        }
     }
 
     static final UnicodeMap<Integer> DING_MAP = new UnicodeMap<>();
@@ -914,6 +957,13 @@ public class GenerateEmoji {
         }
     }
 
+    static String getEmojiFromRegionCode(String chars) {
+        return new StringBuilder()
+        .appendCodePoint(chars.charAt(0) + Emoji.FIRST_REGIONAL - 'A')
+        .appendCodePoint(chars.charAt(1) + Emoji.FIRST_REGIONAL - 'A')
+        .toString();
+    }
+    
     static String getFlagCode(String chars) {
         int firstCodepoint = chars.codePointAt(0);
         if (!Emoji.isRegionalIndicator(firstCodepoint)) {
@@ -1067,6 +1117,7 @@ public class GenerateEmoji {
             System.out.println(new UnicodeSet(Emoji.GITHUB_APPLE_CHARS).removeAll(APPLE_CHARS).toPattern(false));
             System.out.println(list(new UnicodeSet(APPLE_CHARS).removeAll(Emoji.GITHUB_APPLE_CHARS)));
         }
+        System.out.println("DONE");
     }
 
     private static <U> U ifNull(U keys, U defaultValue) {
@@ -1612,7 +1663,10 @@ public class GenerateEmoji {
             result = LOCALE_DISPLAY.regionDisplayName(result);
             if (result.endsWith(" SAR China")) {
                 result = result.substring(0, result.length() - " SAR China".length());
+            } else if (result.contains("(")) {
+                result = result.substring(0,result.indexOf('(')) + result.substring(result.lastIndexOf(')')+1);
             }
+            result.replaceAll("\\s\\s+", " ").trim();
         }
         return result;
     }
