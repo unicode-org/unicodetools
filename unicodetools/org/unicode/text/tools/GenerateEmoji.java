@@ -77,6 +77,7 @@ import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmoji {
     private static final boolean DATAURL = true;
+    private static final int RESIZE_IMAGE = 72;
 
     private static final String BREAK = "<br>";
     private static final String DOC_DATA_FILES = "index.html#Data_Files";
@@ -90,6 +91,8 @@ public class GenerateEmoji {
     static final Set<String> SKIP_WORDS = new HashSet(Arrays.asList("with", "a", "in", "without", "and", "white", "symbol", "sign", "for", "of", "black"));
 
     static final IndexUnicodeProperties LATEST = IndexUnicodeProperties.make(Default.ucdVersion());
+    private static final UCA UCA_COLLATOR = UCA.buildCollator(null);
+
     static final UnicodeMap<String> STANDARDIZED_VARIANT = LATEST.load(UcdProperty.Standardized_Variant);
     static final UnicodeMap<String> VERSION = LATEST.load(UcdProperty.Age);
     static final UnicodeMap<String> WHITESPACE = LATEST.load(UcdProperty.White_Space);
@@ -163,14 +166,14 @@ public class GenerateEmoji {
     static final Comparator CODEPOINT_COMPARE = 
             new MultiComparator<String>(
                     mp,
-                    UCA.buildCollator(null), // don't need cldr features
+                    UCA_COLLATOR, // don't need cldr features
                     new UTF16.StringComparator(true,false,0));
 
     static final Comparator CODEPOINT_COMPARE_SHORTER = 
             new MultiComparator<String>(
                     Emoji.CODEPOINT_LENGTH,
                     mp,
-                    UCA.buildCollator(null), // don't need cldr features
+                    UCA_COLLATOR, // don't need cldr features
                     new UTF16.StringComparator(true,false,0)); 
 
     static final Subheader subheader = new Subheader("/Users/markdavis/workspace/unicodetools/data/ucd/7.0.0-Update/");
@@ -1194,8 +1197,7 @@ public class GenerateEmoji {
             displayUnicodeSet(out, values, Style.refImage, charsPerRow, 1, 1, null, CODEPOINT_COMPARE);
             if (first) {
                 first = false;
-                final UCA uca = UCA.buildCollator(null);
-                displayUnicodeSet(out, all, Style.bestImage, charsPerRow, 1, rows, null, uca);
+                displayUnicodeSet(out, all, Style.bestImage, charsPerRow, 1, rows, null, UCA_COLLATOR);
             }
             out.println("</tr>");
         }
@@ -1688,6 +1690,7 @@ public class GenerateEmoji {
     }
 
     static final String FOOTER = "</table>" + Utility.repeat("<br>", 60) + "</body></html>";
+
     public static void writeFooter(PrintWriter out) {
         out.println(FOOTER);
     }
@@ -1851,16 +1854,26 @@ public class GenerateEmoji {
     public static String getDoubleLink(String anchor) {
         return getDoubleLink(anchor, anchor);
     }
-    
+
+    static Map<String, String> IMAGE_CACHE = new HashMap<>();
+
     static String getDataUrl(String filename) {
-        final File file = new File(IMAGES_OUTPUT_DIR, filename);
-        if (!file.exists()) {
-            return null;
-        } else if (!DATAURL) {
-            return "images/" + filename;
-        }
         try {
-            return "data:image/png;base64," + Base64.encode(Files.readAllBytes(file.toPath()));
+            String result = IMAGE_CACHE.get(filename);
+            if (result == null) {
+                final File file = new File(IMAGES_OUTPUT_DIR, filename);
+                if (!file.exists()) {
+                    result = "";
+                } else if (!DATAURL) {
+                    result = "images/" + filename;
+                } else {
+                    byte[] bytes = RESIZE_IMAGE <= 0 ? Files.readAllBytes(file.toPath()) 
+                            : LoadImage.resizeImage(file, RESIZE_IMAGE, true);
+                    result = "data:image/png;base64," + Base64.encode(bytes);
+                }
+                IMAGE_CACHE.put(filename, result);
+            }
+            return result.isEmpty() ? null : result;
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
