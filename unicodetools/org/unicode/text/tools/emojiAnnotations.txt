@@ -1206,7 +1206,7 @@ thunder	⛈
 ticket	🎟 🎫
 tiger	🐅 🐯
 tiled	🖽
-timer	⏲ ⏳
+timer	⏲ ⏳⌛  ⏳
 tired	😩 😫
 toilet	🚽
 tokyo	🗼

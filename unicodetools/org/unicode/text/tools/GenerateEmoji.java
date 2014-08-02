@@ -746,7 +746,7 @@ public class GenerateEmoji {
 
     static final UnicodeMap<Source> BEST_OVERRIDE = new UnicodeMap();
     static {
-        BEST_OVERRIDE.putAll(new UnicodeSet("[🕐-🕧🚶🏃💃👪👫👬👭🙍🙎🙅🙆🙇🙋🙌🙏]"), Source.android);
+        BEST_OVERRIDE.putAll(new UnicodeSet("[🕐-🕧🚶🏃💃👪👫👬👭🙍🙎🙅🙆🙇🙋🙌🙏💮]"), Source.android);
         BEST_OVERRIDE.putAll(new UnicodeSet("[✊-✌ 💅💪👂👃👯" +
                 "👦 👰 👧  👨  👩  👮  👱  👲  👳 👴  👵  👶  👷  👸  💁  💂 👼" +
                 "👈👉☝👆👇👊  👋  👌  👍👎 👏  👐]"), Source.twitter);
