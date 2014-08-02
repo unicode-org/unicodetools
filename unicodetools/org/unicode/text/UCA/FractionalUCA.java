@@ -583,6 +583,13 @@ public class FractionalUCA {
         radicalStroke.printRadicalStrokeOrder(fractionalLog);
         fractionalLog.println();
 
+        {
+            final PrintWriter unihanIndexWriter =
+                    Utility.openPrintWriter(directory, "unihan-index.txt", Utility.UTF8_WINDOWS);
+            radicalStroke.printUnihanIndex(unihanIndexWriter);
+            unihanIndexWriter.close();
+        }
+
         // Print the [top_byte] information before any of the mappings
         // so that parsers can use this data while working with the fractional primary weights,
         // in particular the COMPRESS bits.

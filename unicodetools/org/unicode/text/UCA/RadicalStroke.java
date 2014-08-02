@@ -14,6 +14,7 @@ import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
@@ -199,6 +200,39 @@ final class RadicalStroke {
             writer.append("[radical end]\n");
         }
         return pos;
+    }
+
+    public void printUnihanIndex(Writer writer) throws IOException {
+        writer.append("# Index characters for the unihan sort order in root.\n").
+                append("# Each index character is an ideograph representing a radical, \n").
+                append("# and sorts like the first ideograph in the radical-stroke order.\n");
+        StringBuilder sb = new StringBuilder();
+        for (int pos = 0;;) {
+            long order = orderedHan[pos];
+            int c = (int)order & 0x1fffff;  // First code point for the radical.
+            int radicalNumberAndSimplified = (int)(order >> 30);
+            String radicalString = Integer.toString(radicalNumberAndSimplified >> 2);
+            if ((radicalNumberAndSimplified & 1) != 0) {
+                radicalString += '\'';
+            }
+            String radicalChars = radToChars.get(radicalString);
+            // All radicals should be BMP characters.
+            assert radicalChars.length() == radicalChars.codePointCount(0, radicalChars.length());
+            // For the representative radical character,
+            // use the one at index 1 which is in the original Unihan block
+            // which has good font support,
+            // rather than the one at index 0 which is in the radicals block.
+            sb.replace(0, sb.length(), "&").appendCodePoint(c).
+                    append("=\\uFDD0").append(radicalChars.charAt(1)).
+                    append(" # radical ").append(radicalString).append('\n');
+            writer.append(sb);
+            do {
+                if (++pos == orderedHan.length) {
+                    return;
+                }
+                order = orderedHan[pos];
+            } while ((int)(order >> 30) == radicalNumberAndSimplified);
+        }
     }
 
     /**
