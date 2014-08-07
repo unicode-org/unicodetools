@@ -28,6 +28,7 @@ final class RadicalStroke {
 
     private static final boolean DEBUG = false;
 
+    private String unicodeVersion;
     private long[] orderedHan;
     private Map<String, String> radToChars;
     /**
@@ -43,6 +44,7 @@ final class RadicalStroke {
     private UnicodeSet hanNotInCPOrder;
 
     RadicalStroke(String unicodeVersion) {
+        this.unicodeVersion = unicodeVersion;
         UCD ucd = UCD.make(unicodeVersion);
         @SuppressWarnings("unchecked")
         UnicodeMap<String> rsUnicode = ucd.getHanValue("kRSUnicode");
@@ -204,8 +206,9 @@ final class RadicalStroke {
 
     public void printUnihanIndex(Writer writer) throws IOException {
         writer.append("# Index characters for the unihan sort order in root.\n").
-                append("# Each index character is an ideograph representing a radical, \n").
+                append("# Each index character is an ideograph representing a radical,\n").
                 append("# and sorts like the first ideograph in the radical-stroke order.\n");
+        writer.append("# Unicode ").append(unicodeVersion).append('\n');
         StringBuilder sb = new StringBuilder();
         for (int pos = 0;;) {
             long order = orderedHan[pos];
