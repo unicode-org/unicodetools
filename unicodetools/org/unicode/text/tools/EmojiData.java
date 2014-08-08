@@ -2,6 +2,7 @@ package org.unicode.text.tools;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -94,6 +95,10 @@ public class EmojiData {
         return data.get(codePointString);
     }
     
+    public static EmojiData getData(int codePoint) {
+        return data.get(codePoint);
+    }
+    
     public static Set<String> getAnnotations() {
         return annotationMap.keySet();
     }
@@ -135,6 +140,35 @@ public class EmojiData {
         }
         us.add(key);
     }
+    
+    public static final Comparator<String> EMOJI_COMPARATOR = new Comparator<String>() {
+
+        @Override
+        public int compare(String o1, String o2) {
+            int i1 = 0, i2 = 0;
+            while (true) {
+                if (i1 == o1.length()) {
+                    return i2 == o2.length() ? 0 : -1;
+                } else if (i2 == o2.length()) {
+                    return 1;
+                }
+                int cp1 = o1.codePointAt(i1);
+                int cp2 = o2.codePointAt(i2);
+                if (cp1 != cp2) {
+                    EmojiData d1 = EmojiData.getData(cp1);
+                    EmojiData d2 = EmojiData.getData(cp2);
+                    if (d1 == null) {
+                        return d2 == null ? cp1 - cp2 : 1;
+                    } else {
+                        return d2 == null ? -1 : d1.order - d2.order;
+                    }
+                }
+                i1 += Character.charCount(cp1);
+                i2 += Character.charCount(cp2);
+                continue;
+            }
+        }       
+    };
 
     public static void main(String[] args) {
         System.out.println("\u26e9" + ", " + getData("\u26e9"));
