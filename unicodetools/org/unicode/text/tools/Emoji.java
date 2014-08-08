@@ -24,7 +24,9 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class Emoji {
     static final UnicodeSet EXCLUDE = new UnicodeSet(
-    "[⍾☸🀰-🂓 🙬 🙭 🙮 🙯🗴🗵🗶🗷🗸🗹★☆⛫\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549]").freeze();
+    "[⍾☸🀰-🂓 🙬 🙭 🙮 🙯🗴🗵🗶🗷🗸🗹★☆⛫\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549" +
+    "☖  ☗  ⛉  ⛊  ⚀  ⚁  ⚂  ⚃  ⚄  ⚅ ♔  ♕  ♖  ♗  ♘  ♙  ♚  ♛  ♜  ♝  ♞  ♟  ⛀  ⛁  ⛂ ⛃" +
+    "]").freeze();
     // 🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭
 
     static final UnicodeSet GITHUB_APPLE_CHARS = new UnicodeSet(
@@ -75,7 +77,7 @@ public class Emoji {
     static final int LAST_REGIONAL = 0x1F1FF;
 
     public static final UnicodeSet EMOJI_CHARS = new UnicodeSet(
-    "[⛩©®‼⁉℗™ℹ↔-↙↩↪⌚⌛⌨⍾⎈⏏⏩-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎-☒☔-☠☢-☤☮☯☹-☾♈-♯♲♻♾-⚅⚐-⚜⚠⚡⚪⚫⚰⚱⚽" +
+    "[●◪⛩©®‼⁉℗™ℹ↔-↙↩↪⌚⌛⌨⍾⎈⏏⏩-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎-☒☔-☠☢-☤☮☯☹-☾♈-♯♲♻♾-⚅⚐-⚜⚠⚡⚪⚫⚰⚱⚽" +
     "-⛊⛍-⛙⛛-⛡⛨⛪⛰-⛵⛷-⛺⛼-✒✔-✘✨✳✴❄❇❌❎❓-❕❗❢-❧➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕⸙〠〰〽㊗㊙🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🅰🅱🅾🅿🆎🆏🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑" +
     "🌀-🌬🌰-🍽🎀-🏎🏔-🏷🐀-📾🔀-🔿🕊🕐-🕹🖁-🖣🖥-🖩🖮-🗳🗺-🙂🙅-🙏🙬-🙯🚀-🛏🛠-🛬🛰-🛳{*⃣}{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}"
     +

@@ -117,7 +117,7 @@ public class GenerateEmoji {
     }
     static final LocaleDisplayNames LOCALE_DISPLAY = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
 
-    private static final String OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/";
+    public static final String OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/";
     private static final String IMAGES_OUTPUT_DIR = OUTPUT_DIR + "images/";
     static final Pattern tab = Pattern.compile("\t");
     static final Pattern space = Pattern.compile(" ");
@@ -1278,9 +1278,11 @@ public class GenerateEmoji {
                     text.add(value);
                 }
             }
-            displayUnicodeset(out, Collections.singleton(word), "", plain, Style.plain, null);
-            displayUnicodeset(out, Collections.singleton(word), "with emoji variant", emoji, Style.emoji, null);
-            displayUnicodeset(out, Collections.singleton(word), "with text variant", text, Style.text, null);
+            final Set<String> singletonWord = Collections.singleton(word);
+            //xxx
+            displayUnicodeset(out, singletonWord, "", plain, Style.plain, null);
+            displayUnicodeset(out, singletonWord, "with emoji variant", emoji, Style.emoji, null);
+            displayUnicodeset(out, singletonWord, "with text variant", text, Style.text, null);
         }
         writeFooter(out);
         out.close();
@@ -1344,16 +1346,22 @@ public class GenerateEmoji {
         PrintWriter out = BagFormatter.openUTF8Writer(OUTPUT_DIR, "emoji-versions-sources.html");
         writeHeader(out, "Emoji Versions & Sources", "Versions and sources for Emoji.");
         UnicodeMap<VersionData> m = new UnicodeMap<>();
-        for (String s : Emoji.EMOJI_CHARS) {
-            m.put(s, new VersionData(s));
-        }
-        TreeSet<VersionData> sorted = new TreeSet<>(m.values());
+        TreeSet<VersionData> sorted = getSortedVersionInfo(m);
         for (VersionData value : sorted) {
             UnicodeSet chars = m.getSet(value);
             displayUnicodeset(out, Collections.singleton(value.getCharSources()), value.getVersion(), chars, Style.bestImage, null);
         }
         writeFooter(out);
         out.close();
+    }
+
+    public static TreeSet<VersionData> getSortedVersionInfo(
+            UnicodeMap<VersionData> m) {
+        for (String s : Emoji.EMOJI_CHARS) {
+            m.put(s, new VersionData(s));
+        }
+        TreeSet<VersionData> sorted = new TreeSet<>(m.values());
+        return sorted;
     }
 
     private static void showVersionsOnly() throws IOException {

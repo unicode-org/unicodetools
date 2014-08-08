@@ -171,8 +171,8 @@ public class LoadImage extends Component {
                     "<td>" + "<img src='" + gitName + "' >" + "</td>" +
                     "<td>" + Utility.hex(s) + "</td>" +
                     "<td>" + (s.isEmpty() ? "" : "<img src='" + oldDir + fixedName +
-                    		"' >") + "</td>" +
-                    "</tr>" 
+                            "' >") + "</td>" +
+                            "</tr>" 
                     );
         }
     }
@@ -587,11 +587,14 @@ public class LoadImage extends Component {
         int glyphCode = glyphVector.getGlyphCode(0);
         return (glyphCode > 0);
     }
-    
+
     static byte[] resizeImage(File file, int targetHeight, boolean square) {
         try {
             BufferedImage sourceImage = ImageIO.read(file);
-            BufferedImage targetImage = resizeImage(sourceImage, sourceImage.getHeight(), targetHeight, square);
+            BufferedImage targetImage = sourceImage;
+            if (sourceImage.getHeight() != targetHeight || square && sourceImage.getWidth() != targetHeight) {
+                targetImage = resizeImage(sourceImage, sourceImage.getHeight(), targetHeight, square);
+            }
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ImageOutputStream ios = new MemoryCacheImageOutputStream(outputStream);
             ImageIO.write(targetImage, "png", ios);
