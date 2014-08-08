@@ -24,6 +24,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ComparisonChain;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -34,6 +35,7 @@ public class GmailEmoji {
     static final UnicodeMap<String> Emoji_KDDI = LATEST.load(UcdProperty.Emoji_KDDI);
 
     static class Data implements Comparable<Data> {
+        private static final String URL_PREFIX = "https://mail.google.com/mail/u/0/e/";
         final int pua;
         final String unicode;
         final String name;
@@ -46,7 +48,6 @@ public class GmailEmoji {
         static final UnicodeMap<String> OVERRIDES = new UnicodeMap<String>()
                 .put(0xFE1E3, UNKNOWN)
                 .put(0xFEE1C, UNKNOWN)
-                .put(0xFE363, UNKNOWN)
                 .put(0xFEE31, "●")
                 .put(0xFEE26, "◪")
                 .put(0xFEE27, "⯀")
@@ -59,8 +60,7 @@ public class GmailEmoji {
                 .put(0xFE366, "😟")
                 .put(0xFE360, "😀")
                 .put(0xFE35C, "😎")
-                .put(0xFE363, "😕")
-                .put(0xFE337, "🙂")
+                .put(0xFE336, "🙂")
                 
                 .put(0xFEE28, "⛛")
                 .put(0xFEB46, "☒")
@@ -124,8 +124,10 @@ public class GmailEmoji {
         }
         
         public String toHtml() {
+            String uName = UCharacter.getName(unicode, " + ");
             return new StringBuilder("<tr><td>")
-            .append("<img src='https://mail.google.com/mail/u/0/e/" + url + "'>")
+            .append("<img src='" +
+            		URL_PREFIX + url + "'>")
             .append("</td><td>")
             //.append(data.unicode)
             .append("&#x" + Utility.hex(unicode, ";&#x") + ";")
@@ -135,16 +137,21 @@ public class GmailEmoji {
             .append("U+" + Integer.toHexString(pua).toUpperCase(Locale.ENGLISH))
             .append("</td><td>")
             .append(name)
+            .append("</td><td>")
+            .append(hasOverride ? "CHANGED" : "")
+            .append("</td><td>")
+            .append(uName == null || unicode.equals(BOGUS) ? "n/a" : name.equals(uName) ? "" : uName)
             .append("</td></tr>")
             .toString();
         }
     }
 
     static final Set<Data> pua2data;
+    static final UnicodeMap<Data> unicode2data = new UnicodeMap<Data>();
+
     static {
         Set<Data> _pua2data = new TreeSet<Data>();
         final Splitter semi = Splitter.on("\t").trimResults();
-        UnicodeMap<Data> soFar = new UnicodeMap<Data>();
         Data google = null;
         Data crab = null;
         //Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/emoji_images/gmail_emoji.txt
@@ -152,11 +159,11 @@ public class GmailEmoji {
             if (line.startsWith("#")) continue;
             List<String> list = semi.splitToList(line);
             Data data = new Data(list);
-            Data oldData = soFar.get(data.unicode);
+            Data oldData = unicode2data.get(data.unicode);
             if (oldData != null && !data.unicode.equals(Data.UNKNOWN) && !data.unicode.equals(Data.BOGUS)) {
                 System.out.println("Collision!\t" + oldData + " with " + data);
             } else {
-                soFar.put(data.unicode, data);
+                unicode2data.put(data.unicode, data);
             }
             _pua2data.add(data);
             if (data.pua == 0xFEEA0) {
@@ -166,12 +173,18 @@ public class GmailEmoji {
             }
         }
         pua2data = Collections.unmodifiableSet(_pua2data);
-        google.compareTo(crab);
+        unicode2data.freeze();
+        //google.compareTo(crab);
     }
 
     public static void main(String[] args) throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(GenerateEmoji.OUTPUT_DIR, "gmail-emoji.html");
-        out.println("<html><body>\n<h1>Unmapped</h1>\n<table>");
+        out.println("<html><head>\n" +
+        		"<style>\n" +
+        		"table, th, td {border: 1px solid silver;}</style>\n"
+        		+"</head><body>\n" +
+        		"<h1>Unmapped</h1>\n" +
+        		"<table style='border-collapse: collapse; border: 1px solid silver;'>");
         for (Data data : pua2data) {
             if (!data.unicode.equals(Data.UNKNOWN)) {
                 continue;
@@ -192,5 +205,11 @@ public class GmailEmoji {
         }
         out.println("</table></body></html>");
         out.close();
+    }
+
+    public static String getURL(String string) {
+        Data data = unicode2data.get(string);
+        return data == null || data.unicode.equals(Data.BOGUS) || data.unicode.equals(Data.UNKNOWN) ? null 
+                : Data.URL_PREFIX + data.url;
     }
 }
