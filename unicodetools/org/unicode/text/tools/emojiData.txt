@@ -1540,3 +1540,6 @@ U+1F1E9 U+1F1EC	V6.0	emoji	flags	🇩🇬	flag Diego Garcia
 U+1F1EA U+1F1E6	V6.0	emoji	flags	🇪🇦	flag Ceuta and Melilla
 U+1F1EE U+1F1E8	V6.0	emoji	flags	🇮🇨	flag Canary Islands
 U+1F1F9 U+1F1E6	V6.0	emoji	flags	🇹🇦	flag Tristan da Cunha
+
+U+25CF	V7.0	text		●	BLACK CIRCLE
+U+25EA	V7.0	text		◪	SQUARE WITH LOWER RIGHT DIAGONAL HALF BLACK
