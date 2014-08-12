@@ -222,12 +222,27 @@ public class WriteConformanceTest {
         System.out.println("Done");
     }
 
-    private static void addStringX(String s, byte option, AppendToCe appendToCe) {
+    private static boolean containsHanNotInCPOrder(String s) {
         if (hanNotInCPOrder != null) {
             String kDecomp = nfkd.normalize(s);
             if (hanNotInCPOrder.containsSome(kDecomp)) {
-                return;
+                return true;
             }
+            // Some characters do not NFKD-decompose to hanNotInCPOrder,
+            // but they DUCET-decompose to hanNotInCPOrder.
+            // We should use the decompositions from
+            // http://www.unicode.org/Public/UCA/latest/decomps.txt
+            // rather than just NFKD.
+            if (s.indexOf(0x2ea6) >= 0 || s.indexOf(0x2eea) >= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void addStringX(String s, byte option, AppendToCe appendToCe) {
+        if (containsHanNotInCPOrder(s)) {
+            return;
         }
         final int firstChar = s.codePointAt(0);
         addStringY(s + 'a', option, appendToCe);
