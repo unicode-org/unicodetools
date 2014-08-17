@@ -1949,7 +1949,8 @@ human	☺  ☹  ☻  🙁  🙂  😀  😁  😂
 shinto, shrine	⛩
 fantasy	😇  👼  😈  👿👸👹  👺  👻  👽  👾🚀🎅🔮
 barrier	🚧
-
+black, circle	●
+black,white,square	◪
 
 
 
