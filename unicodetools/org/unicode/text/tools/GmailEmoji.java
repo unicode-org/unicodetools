@@ -9,6 +9,8 @@ import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.omg.CORBA.UNKNOWN;
 import org.unicode.cldr.draft.FileUtilities;
@@ -40,6 +42,7 @@ public class GmailEmoji {
         final String unicode;
         final String name;
         final String url;
+        final String url2;
         final boolean hasOverride;
 
         static final String UNKNOWN = "\u0000";
@@ -72,7 +75,8 @@ public class GmailEmoji {
                         "\\U000FEE1D-\\U000FEE25\\U000FEE2D-\\U000FEE30\\U000FEE40-\\U000FEE4A" +
                         "\\U000FEE70-\\U000FEE7D\\U000FEEA0]"), BOGUS)
                         ;
-
+        static final Matcher URL_MATCH = Pattern.compile(".*/(.*)\\.[a-z]{3}").matcher("");
+        
         public Data(List<String> list) {
             pua = Integer.parseInt(list.get(0), 16);
             name = list.get(3);
@@ -80,6 +84,15 @@ public class GmailEmoji {
             url = temp.endsWith(".png") || temp.endsWith(".gif") ? temp.substring(0,temp.length()-4)
                     : temp.contains(".") ? temp
                             : "softbank_ne_jp."+ list.get(0).substring(2);
+            
+            // https://mail.google.com/mail/u/0/e/_default/360
+            if (!URL_MATCH.reset(temp).matches()) {
+                System.out.println("Match fails:\t" + temp);
+                url2 = url;
+            } else {
+                url2 = "_default/" + URL_MATCH.group(1);
+            }
+            
 
             String unicodeTemp = UNKNOWN;
             String override = OVERRIDES.get(pua);
@@ -127,7 +140,7 @@ public class GmailEmoji {
             String uName = UCharacter.getName(unicode, " + ");
             return new StringBuilder("<tr><td>")
             .append("<img src='" +
-            		URL_PREFIX + url + "'>")
+            		URL_PREFIX + url2 + "'>")
             .append("</td><td>")
             //.append(data.unicode)
             .append("&#x" + Utility.hex(unicode, ";&#x") + ";")
@@ -210,6 +223,6 @@ public class GmailEmoji {
     public static String getURL(String string) {
         Data data = unicode2data.get(string);
         return data == null || data.unicode.equals(Data.BOGUS) || data.unicode.equals(Data.UNKNOWN) ? null 
-                : Data.URL_PREFIX + data.url;
+                : Data.URL_PREFIX + data.url2;
     }
 }

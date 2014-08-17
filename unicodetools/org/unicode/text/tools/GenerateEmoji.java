@@ -1071,6 +1071,7 @@ public class GenerateEmoji {
         System.out.println("MISSING: " + fileChars.toPattern(false));
 
         // show data
+        System.out.println("Total Emoji:\t" + Emoji.EMOJI_CHARS.size());
         UnicodeSet newItems = new UnicodeSet();
         newItems.addAll(Data.STRING_TO_DATA.keySet());
         newItems.removeAll(JSOURCES);
