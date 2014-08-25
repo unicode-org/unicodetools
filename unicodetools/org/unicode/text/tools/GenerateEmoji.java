@@ -618,13 +618,19 @@ public class GenerateEmoji {
             String androidCell = getCell(Source.android, core, missingCell);
             String twitterCell = getCell(Source.twitter, core, missingCell);
             String windowsCell = getCell(Source.windows, core, missingCell);
-            String gmailCell = getCell(Source.gmail, chars, missingCell);
+            String gmailCell = getCell(Source.gmail, core, missingCell);
+            String sbCell = getCell(Source.sb, core, missingCell);
+            String dcmCell = getCell(Source.dcm, core, missingCell);
+            String kddiCell = getCell(Source.kddi, core, missingCell);
             if (stats != null) {
                 stats.add(chars, Source.apple, appleCell.equals(missingCell));
                 stats.add(chars, Source.android, androidCell.equals(missingCell));
                 stats.add(chars, Source.twitter, twitterCell.equals(missingCell));
                 stats.add(chars, Source.windows, windowsCell.equals(missingCell));
                 stats.add(chars, Source.gmail, gmailCell.equals(missingCell));
+                stats.add(chars, Source.sb, sbCell.equals(missingCell));
+                stats.add(chars, Source.dcm, dcmCell.equals(missingCell));
+                stats.add(chars, Source.kddi, kddiCell.equals(missingCell));
             }
 
             String browserCell =  "<td class='chars'>" + getEmojiVariant(chars, EMOJI_VARIANT_STRING) + "</td>\n";
@@ -643,15 +649,18 @@ public class GenerateEmoji {
             String anchor = getAnchor(code);
             return "<tr>"
             + "<td class='rchars'>" + item + "</td>\n"
-            + "<td class='code'>" + getDoubleLink(anchor, code) + "</td>\n"
-            + browserCell
-            + (form != Form.fullForm && form != Form.extraForm ? ""
-                    :  symbolaCell
+            + "<td class='code'>" + getDoubleLink(anchor, code) + "</td>\n" 
+            + (form != Form.fullForm && form != Form.extraForm ? symbolaCell
+                    :  browserCell
+                    + symbolaCell
                     + appleCell
                     + androidCell
                     + twitterCell
                     + windowsCell
                     + gmailCell
+                    + sbCell
+                    + dcmCell
+                    + kddiCell
                     )
                     //+ browserCell
                     + (form.compareTo(Form.shortForm) <= 0 ? "" : 
@@ -701,7 +710,8 @@ public class GenerateEmoji {
             String androidCell = missingCell;
             if (filename != null) {
                 //final File file = new File(IMAGES_OUTPUT_DIR, filename);
-                String fullName = type == Source.gmail ? filename : getDataUrl(filename);
+                String fullName = // type == Source.gmail ? filename : 
+                    getDataUrl(filename);
                 if (fullName != null) {
                     String className = "imga";
                     if (type == Source.ref && getFlagCode(chars) != null) {
@@ -722,15 +732,18 @@ public class GenerateEmoji {
             return "<tr>"
             + "<th>Count</th>\n"
             + "<th class='rchars'>Code</th>\n"
-            + "<th class='cchars'>Browser</th>\n"
             + (form != Form.fullForm && form != Form.extraForm 
-            ? "" : 
-                "<th class='cchars'>B&amp;W*</th>\n"
+            ? "<th class='cchars'>B&amp;W*</th>\n" : 
+                "<th class='cchars'>Browser</th>\n"
+                + "<th class='cchars'>B&amp;W*</th>\n"
                 + "<th class='cchars'>Apple*</th>\n"
-                + "<th class='cchars'>Android</th>\n"
-                + "<th class='cchars'>Twitter</th>\n"
-                + "<th class='cchars'>Windows</th>\n"
+                + "<th class='cchars'>Andr.</th>\n"
+                + "<th class='cchars'>Twit.</th>\n"
+                + "<th class='cchars'>Wind.</th>\n"
                 + "<th class='cchars'>GMail</th>\n"
+                + "<th class='cchars'>SB</th>\n"
+                + "<th class='cchars'>DCM</th>\n"
+                + "<th class='cchars'>KDDI</th>\n"
                     )
                     //+ "<th class='cchars'>Browser</th>\n"
                     + (shortForm ? "" : 
@@ -745,10 +758,14 @@ public class GenerateEmoji {
     }
 
     public static String getImageFilename(Source type, String core) {
-        if (type == Source.gmail) {
-            return GmailEmoji.getURL(core);
+//        if (type == Source.gmail) {
+//            return GmailEmoji.getURL(core);
+//        }
+        String suffix = ".png";
+        if (type != null && type.compareTo(Source.gmail) >= 0) {
+            suffix = ".gif";
         }
-        return type + "/" + type + "_" + core + ".png";
+        return type + "/" + type + "_" + core + suffix;
     }
 
     static final UnicodeMap<Source> BEST_OVERRIDE = new UnicodeMap();
@@ -825,7 +842,7 @@ public class GenerateEmoji {
         return null;
     }
 
-    enum Source {apple, android, twitter, windows, ref, gmail}
+    enum Source {apple, android, twitter, windows, ref, gmail, sb, dcm, kddi}
 
     private static class Stats {
         enum Type {countries, misc, cards, dominos, majong, v70}
@@ -1713,7 +1730,7 @@ public class GenerateEmoji {
 
     enum Form {
         shortForm("short", " short form."), 
-        noImages("", " without images."), 
+        noImages("", " with single image."), 
         fullForm("full", "with images."), 
         extraForm("extra", " with images; have icons but are not including.");
         final String filePrefix;

@@ -17,7 +17,9 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -28,6 +30,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -52,6 +55,7 @@ import javax.imageio.stream.MemoryCacheImageOutputStream;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.tools.GenerateEmoji.Source;
+import org.unicode.text.tools.GmailEmoji.Data;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -98,8 +102,13 @@ public class LoadImage extends Component {
     static String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
     static String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
     public static void main(String[] args) throws IOException {
-        doAnimatedGif(false);
+        doSb(outputDir);
         if (true) return;
+        doGmail(outputDir);
+        doKddi(outputDir);
+        doDoCoMo(outputDir);
+
+        doAnimatedGif(false);
         getAppleNumbers();
         UnicodeSet dingbats = canDisplay("Zapf Dingbats");
         System.out.println(dingbats);
@@ -320,6 +329,92 @@ public class LoadImage extends Component {
         }
     }
 
+    public static void doDoCoMo(String outputDir)
+            throws IOException {
+        for (String s : CarrierGlyphs.Emoji_DCM.keySet()) {
+            String url = CarrierGlyphs.DCM_URL.transform(s);
+            String core = Emoji.buildFileName(s, "_");
+            System.out.println(core);
+            copy(new URL(url), new File(outputDir + "/dcm","dcm_" + core + ".gif"));
+//            BufferedImage sourceImage = ImageIO.read(new URL(url));
+//            writeImage(sourceImage,outputDir + "/dcm","dcm_" + core, "gif");
+            //BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
+        }
+    }
+
+    public static void doKddi(String outputDir)
+            throws IOException {
+        for (String s : CarrierGlyphs.Emoji_KDDI.keySet()) {
+            String url = CarrierGlyphs.AU_URL.transform(s);
+            String core = Emoji.buildFileName(s, "_");
+            System.out.println(core);
+            copy(new URL(url), new File(outputDir + "/kddi","kddi_" + core + ".gif"));
+//            BufferedImage sourceImage = ImageIO.read(new URL(url));
+//            writeImage(sourceImage,outputDir + "/kddi","kddi_" + core, "gif");
+            //BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
+        }
+    }
+
+    public static void doSb(String outputDir)
+            throws IOException {
+        for (String s : CarrierGlyphs.Emoji_SB.keySet()) {
+            String url = CarrierGlyphs.SB_URL.transform(s);
+            String core = Emoji.buildFileName(s, "_");
+            System.out.println(core);
+            copy(new URL(url), new File(outputDir + "/sb","sb_" + core + ".gif"));
+        }
+//        for (String s : Arrays.asList("G", "E", "F", "O", "P", "Q")) {
+//            for (int i = 0x21; i <= 0x7E; ++i) {
+//                final String code = s + Integer.toHexString(i);
+//                String url = "http://trialgoods.com/images/200807sb/" + code + ".gif";
+//                //String core = Emoji.buildFileName(s, "_");
+//                try {
+//                    copy(new URL(url), new File(outputDir + "/sb","sb_" + code + ".gif"));
+////                    BufferedImage sourceImage = ImageIO.read(new URL(url));
+////                    writeImage(sourceImage,outputDir + "/sb","sb_" + code, "gif");
+//                    System.out.println(code);
+//                } catch (Exception e) {
+//                    System.out.println("Skipping " + code);
+//                    continue;
+//                }
+//                //BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
+//            }
+//        }
+    }
+
+    public static void doGmail(String outputDir)
+            throws IOException {
+        for (Entry<String, Data> entry : GmailEmoji.unicode2data.entrySet()) {
+            String s = entry.getKey();
+            String url = GmailEmoji.getURL(s);
+            if (url == null) continue;
+            String core = Emoji.buildFileName(s, "_");
+            System.out.println(core);
+            
+            final URL url2 = new URL(url);
+            File output = new File(outputDir + "/gmail","gmail_" + core + ".gif");
+            copy(url2, output);
+//            BufferedImage sourceImage = ImageIO.read(url2);
+//            writeImage(sourceImage,outputDir + "/gmail","gmail_" + core, "gif");
+            //BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
+        }
+    }
+    static void copy(URL url, File file) {
+        byte[] buffer = new byte[1024*16];
+        try (InputStream in = url.openStream();
+            OutputStream out = new FileOutputStream(file)){
+            while (true) {
+                int lengthRead = in.read(buffer, 0, buffer.length);
+                if (lengthRead == -1) {
+                    break;
+                }
+                out.write(buffer, 0, lengthRead);
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
     public static List<BufferedImage> doAndroid(String inputDir, String outputDir)
             throws IOException {
         List<BufferedImage> result = new ArrayList<>();
@@ -497,12 +592,17 @@ public class LoadImage extends Component {
 
             targetImage = resizeImage(sourceImage, sourceHeight, height, false);
         }
-        File outputfile = new File(outputDir, outputName + ".png");
-        ImageIO.write(targetImage, "png", outputfile);
+        writeImage(targetImage, outputDir, outputName, "png");
         //        File outputfile2 = new File(outputDir, "big-" + outputName + ".png");
         //        ImageIO.write(sourceImage, "png", outputfile2);
         //
         return targetImage;
+    }
+
+    public static void writeImage(BufferedImage sourceImage, String outputDir,
+            String outputName, String fileSuffix) throws IOException {
+        File outputfile = new File(outputDir, outputName + "." + fileSuffix);
+        ImageIO.write(sourceImage, "png", outputfile);
     }
 
     public static BufferedImage resizeImage(BufferedImage sourceImage,
