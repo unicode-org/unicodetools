@@ -3,7 +3,7 @@
 you may not be able to read some of the characters.
 Some suggested fonts that you can add for coverage are:
 <a href="http://greekfonts.teilar.gr/" target="_blank">Unicode Fonts for Ancient Scripts</a>,
-<a href="http://www.code2000.net/" target="_blank">Code2000 site</a>,
+<a href="https://www.google.com/get/noto/" target="_blank">Noto Fonts site</a>,
 <a href="http://www.alanwood.net/unicode/fonts.html" target="_blank">Large, multi-script Unicode fonts</a>.
 See also: <a href="http://www.unicode.org/help/display_problems.html" target="_blank">Unicode Display Problems</a>.</p>
 <p style="font-size:80%">Version 3.7;
