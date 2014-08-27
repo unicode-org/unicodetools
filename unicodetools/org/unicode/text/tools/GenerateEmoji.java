@@ -713,10 +713,11 @@ public class GenerateEmoji {
                 String fullName = // type == Source.gmail ? filename : 
                     getDataUrl(filename);
                 if (fullName != null) {
-                    String className = "imga";
-                    if (type == Source.ref && getFlagCode(chars) != null) {
-                        className = "imgf";
-                    }
+                    String className = type.getClassAttribute(chars);
+//                    String className = "imga";
+//                    if (type == Source.ref && getFlagCode(chars) != null) {
+//                        className = "imgf";
+//                    }
                     androidCell = "<td class='andr'><img alt='" + chars + "' class='" +
                             className + "' src='" + fullName + "'></td>\n";
                 }
@@ -762,7 +763,7 @@ public class GenerateEmoji {
 //            return GmailEmoji.getURL(core);
 //        }
         String suffix = ".png";
-        if (type != null && type.compareTo(Source.gmail) >= 0) {
+        if (type != null && type.isGif()) {
             suffix = ".gif";
         }
         return type + "/" + type + "_" + core + suffix;
@@ -798,10 +799,11 @@ public class GenerateEmoji {
         String core = Emoji.buildFileName(chars,"_");
         String filename = getImageFilename(type, core);
         if (filename != null && new File(IMAGES_OUTPUT_DIR, filename).exists()) {
-            String className = "imga";
-            if (type == Source.ref && getFlagCode(chars) != null) {
-                className = "imgf";
-            }
+            String className = type.getClassAttribute(chars);
+//            String className = "imga";
+//            if (type == Source.ref && getFlagCode(chars) != null) {
+//                className = "imgf";
+//            }
             return "<img alt='" + chars + "'" +
             " class='" + className + "'" +
             " src='" + getDataUrl(filename) + "'" +
@@ -842,7 +844,22 @@ public class GenerateEmoji {
         return null;
     }
 
-    enum Source {apple, android, twitter, windows, ref, gmail, sb, dcm, kddi}
+    enum Source {
+        apple, android, twitter, windows, ref, gmail, sb, dcm, kddi;
+        boolean isGif() {
+            return compareTo(Source.gmail) >= 0;
+        }
+        String getClassAttribute(String chars) {
+            if (isGif()) {
+                return "imgs";
+            }
+            String className = "imga";
+            if (this == Source.ref && getFlagCode(chars) != null) {
+                className = "imgf";
+            }
+            return className;
+        }
+    }
 
     private static class Stats {
         enum Type {countries, misc, cards, dominos, majong, v70}
