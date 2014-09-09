@@ -604,6 +604,10 @@
 0525          ; allowed ; recommended #      (ԥ)  CYRILLIC SMALL LETTER PE WITH DESCENDER
 0526          ; allowed ; recommended #      (Ԧ)  CYRILLIC CAPITAL LETTER SHHA WITH DESCENDER
 0527          ; allowed ; recommended #      (ԧ)  CYRILLIC SMALL LETTER SHHA WITH DESCENDER
+0528          ; allowed ; recommended #      (Ԩ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK
+0529          ; allowed ; recommended #      (ԩ)  CYRILLIC SMALL LETTER EN WITH LEFT HOOK
+052E          ; allowed ; recommended #      (Ԯ)  CYRILLIC CAPITAL LETTER EL WITH DESCENDER
+052F          ; allowed ; recommended #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
 0531..0556    ; allowed ; recommended # [38] (Ա..Ֆ)  ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITAL LETTER FEH
 0559          ; allowed ; recommended #      (ՙ)  ARMENIAN MODIFIER LETTER LEFT HALF RING
 0561          ; allowed ; recommended #      (ա)  ARMENIAN SMALL LETTER AYB
@@ -950,6 +954,7 @@
 07B0          ; allowed ; recommended #      (ް)  THAANA SUKUN
 07B1          ; allowed ; recommended #      (ޱ)  THAANA LETTER NAA
 08A0          ; allowed ; recommended #      (ࢠ)  ARABIC LETTER BEH WITH SMALL V BELOW
+08A1          ; allowed ; recommended #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
 08A2          ; allowed ; recommended #      (ࢢ)  ARABIC LETTER JEEM WITH TWO DOTS ABOVE
 08A3          ; allowed ; recommended #      (ࢣ)  ARABIC LETTER TAH WITH TWO DOTS ABOVE
 08A4          ; allowed ; recommended #      (ࢤ)  ARABIC LETTER FEH WITH DOT BELOW AND THREE DOTS ABOVE
@@ -961,6 +966,7 @@
 08AA          ; allowed ; recommended #      (ࢪ)  ARABIC LETTER REH WITH LOOP
 08AB          ; allowed ; recommended #      (ࢫ)  ARABIC LETTER WAW WITH DOT WITHIN
 08AC          ; allowed ; recommended #      (ࢬ)  ARABIC LETTER ROHINGYA YEH
+08B2          ; allowed ; recommended #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 0901          ; allowed ; recommended #      (ँ)  DEVANAGARI SIGN CANDRABINDU
 0902          ; allowed ; recommended #      (ं)  DEVANAGARI SIGN ANUSVARA
 0903          ; allowed ; recommended #      (ः)  DEVANAGARI SIGN VISARGA
@@ -2927,6 +2933,30 @@ A7A8          ; allowed ; recommended #      (Ꞩ)  LATIN CAPITAL LETTER S WITH 
 A7A9          ; allowed ; recommended #      (ꞩ)  LATIN SMALL LETTER S WITH OBLIQUE STROKE
 A7AA          ; allowed ; recommended #      (Ɦ)  LATIN CAPITAL LETTER H WITH HOOK
 A7FA          ; allowed ; recommended #      (ꟺ)  LATIN LETTER SMALL CAPITAL TURNED M
+A9E7          ; allowed ; recommended #      (ꧧ)  MYANMAR LETTER TAI LAING NYA
+A9E8          ; allowed ; recommended #      (ꧨ)  MYANMAR LETTER TAI LAING FA
+A9E9          ; allowed ; recommended #      (ꧩ)  MYANMAR LETTER TAI LAING GA
+A9EA          ; allowed ; recommended #      (ꧪ)  MYANMAR LETTER TAI LAING GHA
+A9EB          ; allowed ; recommended #      (ꧫ)  MYANMAR LETTER TAI LAING JA
+A9EC          ; allowed ; recommended #      (ꧬ)  MYANMAR LETTER TAI LAING JHA
+A9ED          ; allowed ; recommended #      (ꧭ)  MYANMAR LETTER TAI LAING DDA
+A9EE          ; allowed ; recommended #      (ꧮ)  MYANMAR LETTER TAI LAING DDHA
+A9EF          ; allowed ; recommended #      (ꧯ)  MYANMAR LETTER TAI LAING NNA
+A9F0          ; allowed ; recommended #      (꧰)  MYANMAR TAI LAING DIGIT ZERO
+A9F1          ; allowed ; recommended #      (꧱)  MYANMAR TAI LAING DIGIT ONE
+A9F2          ; allowed ; recommended #      (꧲)  MYANMAR TAI LAING DIGIT TWO
+A9F3          ; allowed ; recommended #      (꧳)  MYANMAR TAI LAING DIGIT THREE
+A9F4          ; allowed ; recommended #      (꧴)  MYANMAR TAI LAING DIGIT FOUR
+A9F5          ; allowed ; recommended #      (꧵)  MYANMAR TAI LAING DIGIT FIVE
+A9F6          ; allowed ; recommended #      (꧶)  MYANMAR TAI LAING DIGIT SIX
+A9F7          ; allowed ; recommended #      (꧷)  MYANMAR TAI LAING DIGIT SEVEN
+A9F8          ; allowed ; recommended #      (꧸)  MYANMAR TAI LAING DIGIT EIGHT
+A9F9          ; allowed ; recommended #      (꧹)  MYANMAR TAI LAING DIGIT NINE
+A9FA          ; allowed ; recommended #      (ꧺ)  MYANMAR LETTER TAI LAING LLA
+A9FB          ; allowed ; recommended #      (ꧻ)  MYANMAR LETTER TAI LAING DA
+A9FC          ; allowed ; recommended #      (ꧼ)  MYANMAR LETTER TAI LAING DHA
+A9FD          ; allowed ; recommended #      (ꧽ)  MYANMAR LETTER TAI LAING BA
+A9FE          ; allowed ; recommended #      (ꧾ)  MYANMAR LETTER TAI LAING BHA
 AA60          ; allowed ; recommended #      (ꩠ)  MYANMAR LETTER KHAMTI GA
 AA61          ; allowed ; recommended #      (ꩡ)  MYANMAR LETTER KHAMTI CA
 AA62          ; allowed ; recommended #      (ꩢ)  MYANMAR LETTER KHAMTI CHA
@@ -2952,6 +2982,10 @@ AA75          ; allowed ; recommended #      (ꩵ)  MYANMAR LOGOGRAM KHAMTI QN
 AA76          ; allowed ; recommended #      (ꩶ)  MYANMAR LOGOGRAM KHAMTI HM
 AA7A          ; allowed ; recommended #      (ꩺ)  MYANMAR LETTER AITON RA
 AA7B          ; allowed ; recommended #      (ꩻ)  MYANMAR SIGN PAO KAREN TONE
+AA7C          ; allowed ; recommended #      (ꩼ)  MYANMAR SIGN TAI LAING TONE-2
+AA7D          ; allowed ; recommended #      (ꩽ)  MYANMAR SIGN TAI LAING TONE-5
+AA7E          ; allowed ; recommended #      (ꩾ)  MYANMAR LETTER SHWE PALAUNG CHA
+AA7F          ; allowed ; recommended #      (ꩿ)  MYANMAR LETTER SHWE PALAUNG SHA
 AB01..AB06    ; allowed ; recommended #  [6] (ꬁ..ꬆ)  ETHIOPIC SYLLABLE TTHU..ETHIOPIC SYLLABLE TTHO
 AB09..AB0E    ; allowed ; recommended #  [6] (ꬉ..ꬎ)  ETHIOPIC SYLLABLE DDHU..ETHIOPIC SYLLABLE DDHO
 AB11..AB16    ; allowed ; recommended #  [6] (ꬑ..ꬖ)  ETHIOPIC SYLLABLE DZU..ETHIOPIC SYLLABLE DZO
@@ -7345,7 +7379,7 @@ FA29          ; allowed ; recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2B81C         ; allowed ; recommended #      (𫠜)  CJK UNIFIED IDEOGRAPH-2B81C
 2B81D         ; allowed ; recommended #      (𫠝)  CJK UNIFIED IDEOGRAPH-2B81D
 
-# Total code points: 89367
+# Total code points: 89401
 
 034F          ; default-ignorable #      (U+034F)  COMBINING GRAPHEME JOINER
 180B..180D    ; default-ignorable #  [3] (U+180B..U+180D)  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
@@ -7389,6 +7423,7 @@ E0100..E01EF  ; default-ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR
 03E0          ; historic #      (Ϡ)  GREEK LETTER SAMPI
 03E1          ; historic #      (ϡ)  GREEK SMALL LETTER SAMPI
 03E2..03EF    ; historic # [14] (Ϣ..ϯ)  COPTIC CAPITAL LETTER SHEI..COPTIC SMALL LETTER DEI
+03F3          ; historic #      (ϳ)  GREEK LETTER YOT
 03F7          ; historic #      (Ϸ)  GREEK CAPITAL LETTER SHO
 03F8          ; historic #      (ϸ)  GREEK SMALL LETTER SHO
 03FA          ; historic #      (Ϻ)  GREEK CAPITAL LETTER SAN
@@ -12768,7 +12803,7 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1E8D5         ; historic #      (𞣕)  MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
 1E8D6         ; historic #      (𞣖)  MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 6769
+# Total code points: 6770
 
 0181..0182    ; limited-use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ; limited-use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
@@ -12864,10 +12899,6 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 0334          ; limited-use #      (̴)  COMBINING TILDE OVERLAY
 0336          ; limited-use #      (̶)  COMBINING LONG STROKE OVERLAY
 0358          ; limited-use #      (͘)  COMBINING DOT ABOVE RIGHT
-0528          ; limited-use #      (Ԩ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK
-0529          ; limited-use #      (ԩ)  CYRILLIC SMALL LETTER EN WITH LEFT HOOK
-052E          ; limited-use #      (Ԯ)  CYRILLIC CAPITAL LETTER EL WITH DESCENDER
-052F          ; limited-use #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
 0591          ; limited-use #      (֑)  HEBREW ACCENT ETNAHTA
 0592          ; limited-use #      (֒)  HEBREW ACCENT SEGOL
 0593          ; limited-use #      (֓)  HEBREW ACCENT SHALSHELET
@@ -13043,8 +13074,6 @@ D7FB          ; historic #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 0859          ; limited-use #      (࡙)  MANDAIC AFFRICATION MARK
 085A          ; limited-use #      (࡚)  MANDAIC VOCALIZATION MARK
 085B          ; limited-use #      (࡛)  MANDAIC GEMINATION MARK
-08A1          ; limited-use #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
-08B2          ; limited-use #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 08E4          ; limited-use #      (ࣤ)  ARABIC CURLY FATHA
 08E5          ; limited-use #      (ࣥ)  ARABIC CURLY DAMMA
 08E6          ; limited-use #      (ࣦ)  ARABIC CURLY KASRA
@@ -14676,30 +14705,6 @@ A9D6          ; limited-use #      (꧖)  JAVANESE DIGIT SIX
 A9D7          ; limited-use #      (꧗)  JAVANESE DIGIT SEVEN
 A9D8          ; limited-use #      (꧘)  JAVANESE DIGIT EIGHT
 A9D9          ; limited-use #      (꧙)  JAVANESE DIGIT NINE
-A9E7          ; limited-use #      (ꧧ)  MYANMAR LETTER TAI LAING NYA
-A9E8          ; limited-use #      (ꧨ)  MYANMAR LETTER TAI LAING FA
-A9E9          ; limited-use #      (ꧩ)  MYANMAR LETTER TAI LAING GA
-A9EA          ; limited-use #      (ꧪ)  MYANMAR LETTER TAI LAING GHA
-A9EB          ; limited-use #      (ꧫ)  MYANMAR LETTER TAI LAING JA
-A9EC          ; limited-use #      (ꧬ)  MYANMAR LETTER TAI LAING JHA
-A9ED          ; limited-use #      (ꧭ)  MYANMAR LETTER TAI LAING DDA
-A9EE          ; limited-use #      (ꧮ)  MYANMAR LETTER TAI LAING DDHA
-A9EF          ; limited-use #      (ꧯ)  MYANMAR LETTER TAI LAING NNA
-A9F0          ; limited-use #      (꧰)  MYANMAR TAI LAING DIGIT ZERO
-A9F1          ; limited-use #      (꧱)  MYANMAR TAI LAING DIGIT ONE
-A9F2          ; limited-use #      (꧲)  MYANMAR TAI LAING DIGIT TWO
-A9F3          ; limited-use #      (꧳)  MYANMAR TAI LAING DIGIT THREE
-A9F4          ; limited-use #      (꧴)  MYANMAR TAI LAING DIGIT FOUR
-A9F5          ; limited-use #      (꧵)  MYANMAR TAI LAING DIGIT FIVE
-A9F6          ; limited-use #      (꧶)  MYANMAR TAI LAING DIGIT SIX
-A9F7          ; limited-use #      (꧷)  MYANMAR TAI LAING DIGIT SEVEN
-A9F8          ; limited-use #      (꧸)  MYANMAR TAI LAING DIGIT EIGHT
-A9F9          ; limited-use #      (꧹)  MYANMAR TAI LAING DIGIT NINE
-A9FA          ; limited-use #      (ꧺ)  MYANMAR LETTER TAI LAING LLA
-A9FB          ; limited-use #      (ꧻ)  MYANMAR LETTER TAI LAING DA
-A9FC          ; limited-use #      (ꧼ)  MYANMAR LETTER TAI LAING DHA
-A9FD          ; limited-use #      (ꧽ)  MYANMAR LETTER TAI LAING BA
-A9FE          ; limited-use #      (ꧾ)  MYANMAR LETTER TAI LAING BHA
 AA00          ; limited-use #      (ꨀ)  CHAM LETTER A
 AA01          ; limited-use #      (ꨁ)  CHAM LETTER I
 AA02          ; limited-use #      (ꨂ)  CHAM LETTER U
@@ -14779,10 +14784,6 @@ AA56          ; limited-use #      (꩖)  CHAM DIGIT SIX
 AA57          ; limited-use #      (꩗)  CHAM DIGIT SEVEN
 AA58          ; limited-use #      (꩘)  CHAM DIGIT EIGHT
 AA59          ; limited-use #      (꩙)  CHAM DIGIT NINE
-AA7C          ; limited-use #      (ꩼ)  MYANMAR SIGN TAI LAING TONE-2
-AA7D          ; limited-use #      (ꩽ)  MYANMAR SIGN TAI LAING TONE-5
-AA7E          ; limited-use #      (ꩾ)  MYANMAR LETTER SHWE PALAUNG CHA
-AA7F          ; limited-use #      (ꩿ)  MYANMAR LETTER SHWE PALAUNG SHA
 AA80          ; limited-use #      (ꪀ)  TAI VIET LETTER LOW KO
 AA81          ; limited-use #      (ꪁ)  TAI VIET LETTER HIGH KO
 AA82          ; limited-use #      (ꪂ)  TAI VIET LETTER LOW KHO
@@ -15696,7 +15697,7 @@ FB1E          ; limited-use #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 16F9E         ; limited-use #      (𖾞)  MIAO LETTER REFORMED TONE-6
 16F9F         ; limited-use #      (𖾟)  MIAO LETTER REFORMED TONE-8
 
-# Total code points: 4873
+# Total code points: 4839
 
 018D          ; obsolete #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
 01AA          ; obsolete #      (ƪ)  LATIN LETTER REVERSED ESH LOOP
@@ -15872,7 +15873,6 @@ FB1E          ; limited-use #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 0362          ; technical #      (͢)  COMBINING DOUBLE RIGHTWARDS ARROW BELOW
 03CF          ; technical #      (Ϗ)  GREEK CAPITAL KAI SYMBOL
 03D7          ; technical #      (ϗ)  GREEK KAI SYMBOL
-03F3          ; technical #      (ϳ)  GREEK LETTER YOT
 0953          ; technical #      (॓)  DEVANAGARI GRAVE ACCENT
 0954          ; technical #      (॔)  DEVANAGARI ACUTE ACCENT
 0F18          ; technical #      (༘)  TIBETAN ASTROLOGICAL SIGN -KHYUD PA
@@ -16189,7 +16189,7 @@ FB1E          ; limited-use #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE20..FE2D    ; technical # [14] (︠..︭)  COMBINING LIGATURE LEFT HALF..COMBINING CONJOINING MACRON BELOW
 FE73          ; technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 484
+# Total code points: 483
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA
