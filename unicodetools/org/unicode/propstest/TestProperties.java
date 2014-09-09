@@ -205,7 +205,7 @@ public class TestProperties extends TestFmwk {
     }
 
     private <T> void showValues(UnicodeMap<T> us) {
-        Iterable<EntryRange> ers = us.entryRanges();
+        Iterable<EntryRange<T>> ers = us.entryRanges();
         for (EntryRange<T> it : ers) {
             if (it.value == null) {
                 continue;
@@ -329,8 +329,8 @@ public class TestProperties extends TestFmwk {
             return m1.keySet();
         }
         UnicodeSet result = new UnicodeSet();
-        Iterator<EntryRange> it1 = m1.entryRanges().iterator();
-        Iterator<EntryRange> it2 = m2.entryRanges().iterator();
+        Iterator<EntryRange<T>> it1 = m1.entryRanges().iterator();
+        Iterator<EntryRange<T>> it2 = m2.entryRanges().iterator();
         EntryRange er1 = it1.next();
         EntryRange er2 = it2.next();
         while (true) {
@@ -399,7 +399,7 @@ public class TestProperties extends TestFmwk {
             }
         }
         // now add the remainders. 
-        Iterator<EntryRange> remainder = it2.hasNext() ? it2 : it1;
+        Iterator<EntryRange<T>> remainder = it2.hasNext() ? it2 : it1;
         while (remainder.hasNext()) {
             EntryRange er = remainder.next();
             result.add(er.codepoint, er.codepointEnd);

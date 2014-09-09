@@ -248,7 +248,7 @@ clothes	👚
 clothing	👑 👒 👓 👔 👕 👖 👗 👘 👙 👚 👛 👜 👝 👞 👟 👠 👡 👢 👣
 cloud	☁️ ⛅️ ⛆ ⛈ 🌤 🌥 🌦 🌧 🌨 🌩 🌪 🌫 🌬
 clover	🍀
-club	♣️ ♧ 🃑 🃒 🃓 🃔 🃕 🃖 🃗 🃘 🃙 🃚 🃛 🃜 🃝 🃞
+clubs	♣️ ♧ 
 coaster	🎢
 cocktail	🍸
 coffee	☕️
@@ -325,7 +325,7 @@ desert	🏜 🏝
 desktop	🖥 🗔
 devil	👿
 dialog	💬
-diamond	♢ ♦️ 🃁 🃂 🃃 🃄 🃅 🃆 🃇 🃈 🃉 🃊 🃋 🃌 🃍 🃎 💎 💠 🔶 🔷 🔸 🔹
+diamond	♢ ♦️ 💎 💠 🔶 🔷 🔸 🔹
 dice	⚀ ⚁ ⚂ ⚃ ⚄ ⚅ 🎲
 die	⚀ ⚁ ⚂ ⚃ ⚄ ⚅ 🎲
 diesel	🛲
@@ -1085,7 +1085,6 @@ sos	🆘
 sound	〰 ℗ 📾 🔉 🔊 🔕 🕩 🕪 🕬
 southeast	↘️
 southwest	↙️
-spade	♠️ ♤ 🂡 🂢 🂣 🂤 🂥 🂦 🂧 🂨 🂩 🂪 🂫 🂬 🂭 🂮
 spaghetti	🍝
 sparkle	✨ ❇️ 🌟 🎇 💖
 sparkler	✨ ❇️ 🌟 🎇 💖
@@ -1662,7 +1661,6 @@ headphones	🎧
 heart	❤
 heartbeat	💓
 heartpulse	💗
-hearts	♥
 helicopter	🚁
 herb	🌿
 hibiscus	🌺
@@ -1956,54 +1954,33 @@ vice	🗜
 medicine	💉
 mining	⛏
 clue	🗝
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+fool	🃠
+mountebank, juggler, magician, pagat	🃡
+papess, high, priestess	🃢
+empress	🃣
+emperor	🃤
+pope, hierophant, high, priest	🃥
+lovers	🃦
+chariot	🃧
+justice	🃨
+hermit	🃩
+wheel, fortune	🃪
+strength, fortitude	🃫
+hanged, man	🃬
+death	🃭
+temperance	🃮
+devil	🃯
+tower	🃰
+star	🃱
+moon	🃲
+sun	🃳
+judgment, angel	🃴
+world	🃵
+spade	♠️ ♤
+spades,swords	🂡 🂢 🂣 🂤 🂥 🂦 🂧 🂨 🂩 🂪 🂫 🂬 🂭 🂮
+hearts	♡♥️ 
+hearts,cups	🂱 🂲 🂳 🂴 🂵 🂶 🂷 🂸 🂹 🂺 🂻 🂼 🂽 🂾
+diamonds	♢ ♦️ 
+diamonds,pentacles	🃁 🃂 🃃 🃄 🃅 🃆 🃇 🃈 🃉 🃊 🃋 🃌 🃍 🃎
+clubs	 ♣️  ♧
+clubs,staves	🃑 🃒 🃓 🃔 🃕 🃖 🃗 🃘 🃙 🃚 🃛 🃜 🃝 🃞

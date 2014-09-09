@@ -31,9 +31,12 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -54,6 +57,11 @@ import javax.imageio.stream.ImageOutputStream;
 import javax.imageio.stream.MemoryCacheImageOutputStream;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CLDRConfig;
+import org.unicode.cldr.util.CLDRFile;
+import org.unicode.cldr.util.Factory;
+import org.unicode.cldr.util.Level;
+import org.unicode.cldr.util.LocaleIDParser;
 import org.unicode.text.tools.GenerateEmoji.Source;
 import org.unicode.text.tools.GmailEmoji.Data;
 import org.unicode.text.utility.Utility;
@@ -61,9 +69,14 @@ import org.unicode.text.utility.Utility;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UScript;
+import com.ibm.icu.text.BreakIterator;
+import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.ULocale;
 
 /**
  * This class demonstrates how to load an Image from an external file
@@ -101,14 +114,17 @@ public class LoadImage extends Component {
 
     static String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
     static String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
+    
     public static void main(String[] args) throws IOException {
-        doSb(outputDir);
+        writeCharSamples();
         if (true) return;
+        TarotSuits.makeTest();
+        doAnimatedGif(false, 72);
         doGmail(outputDir);
         doKddi(outputDir);
         doDoCoMo(outputDir);
+        doSb(outputDir);
 
-        doAnimatedGif(false);
         getAppleNumbers();
         UnicodeSet dingbats = canDisplay("Zapf Dingbats");
         System.out.println(dingbats);
@@ -132,6 +148,48 @@ public class LoadImage extends Component {
             //List<BufferedImage> list = doSymbola(inputDir, outputDir, "Apple Emoji", SYMBOLA, 144); // "Symbola"
             createAnimatedImage(new File(outputDir, "animated-symbola.gif"), list, 1, false);
         }
+    }
+
+    public static void writeCharSamples() throws IOException {
+        Collection<String> samples = new TreeSet<>(Collator.getInstance(ULocale.ROOT)); // Arrays.asList("a", "☕")
+        final CLDRConfig config = CLDRConfig.getInstance();
+        final Factory cldrFactory = config.getCldrFactory();
+        LocaleIDParser lidp = new LocaleIDParser();
+        final BreakIterator bi = BreakIterator.getSentenceInstance();
+
+        for (String cldrFile : cldrFactory.getAvailableLanguages()) {
+            if (cldrFile.equals("root")) continue;
+            lidp.set(cldrFile);
+            String lang = lidp.getLanguage();
+//            Level level = config.getStandardCodes().getLocaleCoverageLevel("cldr", lang);
+//            if (Level.MODERN.compareTo(level) > 0) {
+//                continue;
+//            }
+            CLDRFile cldrFileObj = cldrFactory.make(cldrFile, true);
+            UnicodeSet exemplars = cldrFileObj.getExemplarSet("", CLDRFile.WinningChoice.WINNING);
+            int script = 0;
+            for (String s : exemplars) {
+                script = UScript.getScript(s.codePointAt(0));
+                if (script != UScript.COMMON && script != UScript.INHERITED) break;
+            }
+            String sample = UScript.getSampleString(script);
+            if (sample.equals("ⴰ")) {
+                sample = "ⵞ";
+            }
+            //String sample = cldrFileObj.getName(CLDRFile.LANGUAGE_NAME, lang);
+            sample = UCharacter.toTitleCase(ULocale.ENGLISH, sample, bi, UCharacter.TITLECASE_NO_LOWERCASE);
+            samples.add(" " + sample + " ");
+        }
+        System.out.println(samples);
+        //samples = new LinkedHashSet<>(samples);
+
+//        for (int script = 0; script < UScript.CODE_LIMIT; ++script) {
+//            String sample = UScript.getSampleString(script);
+//            if (sample != null) {
+//                scripts.add(sample);
+//            }
+//        }
+        writeTextAnimatedImage(new File(outputDir, "animated-text.gif"), 144, 144, 14, samples);
     }
 
     private static void getAppleNumbers() throws IOException {
@@ -205,7 +263,9 @@ public class LoadImage extends Component {
         return result;
     }
 
-    public static void doAnimatedGif(boolean onlySize, Source... ordering) throws IOException {
+    public static void doAnimatedGif(boolean onlySize, int size, Source... ordering) throws IOException {
+        final File output = new File(outputDir, "animated-emoji.gif");
+        System.out.println(output.getCanonicalPath());
         List<BufferedImage> list = new ArrayList();
         for (Entry<String, Set<String>> entry : GenerateEmoji.ORDERING_TO_CHAR.keyValuesSet()) {
             final String key = entry.getKey();
@@ -216,12 +276,18 @@ public class LoadImage extends Component {
                 BufferedImage sourceImage = ImageIO.read(file);
                 System.out.println(chars + "\t" + sourceImage.getWidth() + "\t" + sourceImage.getHeight());
                 if (onlySize) continue;
-                BufferedImage targetImage = resizeImage(sourceImage, sourceImage.getHeight(), 160, true);
+                BufferedImage targetImage;
+                if (size == sourceImage.getHeight()) {
+                    targetImage = sourceImage;
+                } else {
+                    targetImage = resizeImage(sourceImage, sourceImage.getHeight(), size, true);
+                }
                 list.add(targetImage);
             }
         }
         if (onlySize) return;
-        createAnimatedImage(new File(outputDir, "animated-emoji.gif"), list, 100, true);
+        createAnimatedImage(output, list, 100, true);
+        System.out.println("Image created");
     }
 
     public static void doGitHub(String inputDir, String outputDir)
@@ -239,6 +305,44 @@ public class LoadImage extends Component {
 
     private static final UnicodeSet SYMBOLA = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(NON_SYMBOLA).freeze();
 
+    private static void writeTextAnimatedImage(File output, int height, int width, int margin, Iterable<String> textList) throws IOException {
+        //final File output = new File(outputDir, "animated-emoji.gif");
+        System.out.println(output.getCanonicalPath());
+        List<BufferedImage> list = new ArrayList<>();
+        for (String s : textList) {
+            BufferedImage bi = drawString(s, "Symbola", width, height, margin, false, true);
+            list.add(bi);
+        }
+        createAnimatedImage(output, list, 200, true);
+    }
+    
+    static public BufferedImage drawString(String text, String font, int width, int height, int margin, boolean scale, boolean center) {
+        BufferedImage sourceImage = new BufferedImage(width, height, IMAGE_TYPE);
+        Graphics2D graphics = sourceImage.createGraphics();
+        graphics.setColor(Color.BLACK);
+        graphics.setBackground(Color.WHITE);
+        graphics.setRenderingHint(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_OFF);
+        graphics.setRenderingHint(
+                RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        String originalFont = font;
+        FontMetrics metrics = setFont(font, height - 2*margin, graphics);
+        graphics.clearRect(0, 0, width, height);
+        Rectangle2D bounds = metrics.getStringBounds(text, graphics);
+        boolean reset = false;
+        if (scale && bounds.getWidth() > width - 2*margin) {
+            int height3 = (int)(height*width/bounds.getWidth()+0.5);
+            metrics = setFont(font, height3, graphics);
+            bounds = metrics.getStringBounds(text, graphics);
+            reset = true;
+        }
+        int xStart = (center ? (int)(width - bounds.getWidth()+0.5)/2 : margin);
+        int yStart = (int)(height - bounds.getHeight() + 0.5)/2 + metrics.getAscent();
+        graphics.drawString(text, xStart, yStart);
+        return sourceImage;
+    }
     public static List<BufferedImage> doSymbola(String inputDir, String outputDir, 
             String dir, String prefix, String font, UnicodeSet unicodeSet, int height, boolean useFonts)
                     throws IOException { // 🌰-🌵
@@ -336,8 +440,8 @@ public class LoadImage extends Component {
             String core = Emoji.buildFileName(s, "_");
             System.out.println(core);
             copy(new URL(url), new File(outputDir + "/dcm","dcm_" + core + ".gif"));
-//            BufferedImage sourceImage = ImageIO.read(new URL(url));
-//            writeImage(sourceImage,outputDir + "/dcm","dcm_" + core, "gif");
+            //            BufferedImage sourceImage = ImageIO.read(new URL(url));
+            //            writeImage(sourceImage,outputDir + "/dcm","dcm_" + core, "gif");
             //BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
         }
     }
@@ -349,8 +453,8 @@ public class LoadImage extends Component {
             String core = Emoji.buildFileName(s, "_");
             System.out.println(core);
             copy(new URL(url), new File(outputDir + "/kddi","kddi_" + core + ".gif"));
-//            BufferedImage sourceImage = ImageIO.read(new URL(url));
-//            writeImage(sourceImage,outputDir + "/kddi","kddi_" + core, "gif");
+            //            BufferedImage sourceImage = ImageIO.read(new URL(url));
+            //            writeImage(sourceImage,outputDir + "/kddi","kddi_" + core, "gif");
             //BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
         }
     }
@@ -363,23 +467,23 @@ public class LoadImage extends Component {
             System.out.println(core);
             copy(new URL(url), new File(outputDir + "/sb","sb_" + core + ".gif"));
         }
-//        for (String s : Arrays.asList("G", "E", "F", "O", "P", "Q")) {
-//            for (int i = 0x21; i <= 0x7E; ++i) {
-//                final String code = s + Integer.toHexString(i);
-//                String url = "http://trialgoods.com/images/200807sb/" + code + ".gif";
-//                //String core = Emoji.buildFileName(s, "_");
-//                try {
-//                    copy(new URL(url), new File(outputDir + "/sb","sb_" + code + ".gif"));
-////                    BufferedImage sourceImage = ImageIO.read(new URL(url));
-////                    writeImage(sourceImage,outputDir + "/sb","sb_" + code, "gif");
-//                    System.out.println(code);
-//                } catch (Exception e) {
-//                    System.out.println("Skipping " + code);
-//                    continue;
-//                }
-//                //BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
-//            }
-//        }
+        //        for (String s : Arrays.asList("G", "E", "F", "O", "P", "Q")) {
+        //            for (int i = 0x21; i <= 0x7E; ++i) {
+        //                final String code = s + Integer.toHexString(i);
+        //                String url = "http://trialgoods.com/images/200807sb/" + code + ".gif";
+        //                //String core = Emoji.buildFileName(s, "_");
+        //                try {
+        //                    copy(new URL(url), new File(outputDir + "/sb","sb_" + code + ".gif"));
+        ////                    BufferedImage sourceImage = ImageIO.read(new URL(url));
+        ////                    writeImage(sourceImage,outputDir + "/sb","sb_" + code, "gif");
+        //                    System.out.println(code);
+        //                } catch (Exception e) {
+        //                    System.out.println("Skipping " + code);
+        //                    continue;
+        //                }
+        //                //BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
+        //            }
+        //        }
     }
 
     public static void doGmail(String outputDir)
@@ -390,19 +494,19 @@ public class LoadImage extends Component {
             if (url == null) continue;
             String core = Emoji.buildFileName(s, "_");
             System.out.println(core);
-            
+
             final URL url2 = new URL(url);
             File output = new File(outputDir + "/gmail","gmail_" + core + ".gif");
             copy(url2, output);
-//            BufferedImage sourceImage = ImageIO.read(url2);
-//            writeImage(sourceImage,outputDir + "/gmail","gmail_" + core, "gif");
+            //            BufferedImage sourceImage = ImageIO.read(url2);
+            //            writeImage(sourceImage,outputDir + "/gmail","gmail_" + core, "gif");
             //BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
         }
     }
     static void copy(URL url, File file) {
         byte[] buffer = new byte[1024*16];
         try (InputStream in = url.openStream();
-            OutputStream out = new FileOutputStream(file)){
+                OutputStream out = new FileOutputStream(file)){
             while (true) {
                 int lengthRead = in.read(buffer, 0, buffer.length);
                 if (lengthRead == -1) {
@@ -701,6 +805,143 @@ public class LoadImage extends Component {
             return outputStream.toByteArray();
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
+        }
+    }
+    static final String[] TAROT = {
+
+    };
+
+    enum TarotSuits {
+        SWORDS(
+                0x1F0A1, 0x1F0AE,
+                "1/1a/Swords01.jpg",
+                "9/9e/Swords02.jpg",
+                "0/02/Swords03.jpg",
+                "b/bf/Swords04.jpg",
+                "2/23/Swords05.jpg",
+                "2/29/Swords06.jpg",
+                "3/34/Swords07.jpg",
+                "a/a7/Swords08.jpg",
+                "2/2f/Swords09.jpg",
+                "d/d4/Swords10.jpg",
+                "4/4c/Swords11.jpg",
+                "b/b0/Swords12.jpg",
+                "d/d4/Swords13.jpg",
+                "3/33/Swords14.jpg"
+                ),
+                CUPS(
+                        0x1F0B1, 0x1F0BE,
+                        "3/36/Cups01.jpg",
+                        "f/f8/Cups02.jpg",
+                        "7/7a/Cups03.jpg",
+                        "3/35/Cups04.jpg",
+                        "d/d7/Cups05.jpg",
+                        "1/17/Cups06.jpg",
+                        "a/ae/Cups07.jpg",
+                        "6/60/Cups08.jpg",
+                        "2/24/Cups09.jpg",
+                        "8/84/Cups10.jpg",
+                        "a/ad/Cups11.jpg",
+                        "f/fa/Cups12.jpg",
+                        "6/62/Cups13.jpg",
+                        "0/04/Cups14.jpg"
+                        ),
+                        PENTACLES(
+                                0x1F0C1, 0x1F0CE,
+                                "f/fd/Pents01.jpg",
+                                "9/9f/Pents02.jpg",
+                                "4/42/Pents03.jpg",
+                                "3/35/Pents04.jpg",
+                                "9/96/Pents05.jpg",
+                                "a/a6/Pents06.jpg",
+                                "6/6a/Pents07.jpg",
+                                "4/49/Pents08.jpg",
+                                "f/f0/Pents09.jpg",
+                                "4/42/Pents10.jpg",
+                                "e/ec/Pents11.jpg",
+                                "d/d5/Pents12.jpg",
+                                "8/88/Pents13.jpg",
+                                "1/1c/Pents14.jpg"
+                                ),
+                                WANDS(
+                                        0x1F0D1,
+                                        0x1F0DE, 
+                                        "1/11/Wands01.jpg",
+                                        "0/0f/Wands02.jpg",
+                                        "f/ff/Wands03.jpg",
+                                        "a/a4/Wands04.jpg",
+                                        "9/9d/Wands05.jpg",
+                                        "3/3b/Wands06.jpg",
+                                        "e/e4/Wands07.jpg",
+                                        "6/6b/Wands08.jpg",
+                                        "e/e7/Wands09.jpg",
+                                        "0/0b/Wands10.jpg",
+                                        "6/6a/Wands11.jpg",
+                                        "1/16/Wands12.jpg",
+                                        "0/0d/Wands13.jpg",
+                                        "c/ce/Wands14.jpg"),
+                                        MAJOR(
+                                                0x1F0E0,
+                                                0x1F0F5,
+                                                "9/90/RWS_Tarot_00_Fool.jpg",
+                                                "d/de/RWS_Tarot_01_Magician.jpg",
+                                                "8/88/RWS_Tarot_02_High_Priestess.jpg",
+                                                "d/d2/RWS_Tarot_03_Empress.jpg",
+                                                "c/c3/RWS_Tarot_04_Emperor.jpg",
+                                                "8/8d/RWS_Tarot_05_Hierophant.jpg",
+                                                "d/db/RWS_Tarot_06_Lovers.jpg",
+                                                "9/9b/RWS_Tarot_07_Chariot.jpg",
+                                                "f/f5/RWS_Tarot_08_Strength.jpg",
+                                                "4/4d/RWS_Tarot_09_Hermit.jpg",
+                                                "3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg",
+                                                "e/e0/RWS_Tarot_11_Justice.jpg",
+                                                "2/2b/RWS_Tarot_12_Hanged_Man.jpg",
+                                                "d/d7/RWS_Tarot_13_Death.jpg",
+                                                "f/f8/RWS_Tarot_14_Temperance.jpg",
+                                                "5/55/RWS_Tarot_15_Devil.jpg",
+                                                "5/53/RWS_Tarot_16_Tower.jpg",
+                                                "d/db/RWS_Tarot_17_Star.jpg",
+                                                "7/7f/RWS_Tarot_18_Moon.jpg",
+                                                "1/17/RWS_Tarot_19_Sun.jpg",
+                                                "d/dd/RWS_Tarot_20_Judgement.jpg",
+                                                "f/ff/RWS_Tarot_21_World.jpg"
+                                                );
+        private static final String PREFIX = "http://upload.wikimedia.org/wikipedia/en/";
+        private final int min;
+        private final int max;
+        private final int start;
+        private final String[] urls;
+
+        TarotSuits(int min, int max, String... names) {
+            this.min = min;
+            this.max = max;
+            urls = names;
+            start = min == 0x1F0E0 ? 0 : 1;
+        }
+        public String getUrl(int cp) {
+            int offset = cp - min;
+            if (offset >= 0 && cp <= max){
+                return PREFIX + urls[offset];
+            }
+            return null;
+        }
+        public static void makeTest() throws IOException {
+            PrintWriter out = BagFormatter.openUTF8Writer("/Users/markdavis/workspace/temp/", "tarot.html");
+            out.println("<html><body><table>");
+            for (TarotSuits x : values()) {
+                int counter = x.start;
+                for (int i = x.min; i <= x.max; ++i) {
+                    out.println("<tr>" +
+                            "<td>" + x + "</td>" +
+                            "<td>" + counter++ + "</td>" +
+                            "<td>" + Utility.hex(i) + "</td>" +
+                            "<td><img width='72' height='72' src='" + x.getUrl(i) + "'></td>" +
+                            "</tr>"
+                            );
+                }
+            }
+            out.println("</table></body></html>");
+            out.close();
         }
     }
 }
