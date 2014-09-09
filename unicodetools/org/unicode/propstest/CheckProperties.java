@@ -567,8 +567,8 @@ public class CheckProperties {
         final UnicodeMap<String> changes = new UnicodeMap<String>();
         final UnicodeSet newChars = new UnicodeSet(retain);
         final Set<String> strings = new TreeSet<String>();
-        strings.addAll(UnicodeSetUtilities.getMulticharacterStrings(lastMap.keySet()));
-        strings.addAll(UnicodeSetUtilities.getMulticharacterStrings(latestMap.keySet()));
+        strings.addAll(UnicodeSetUtilities.getMulticharacterStrings(lastMap.keySet())); // TODO use stringKeys
+        strings.addAll(UnicodeSetUtilities.getMulticharacterStrings(latestMap.keySet())); // TODO use stringKeys
         for (final String s : strings) {
             if (retain.containsAll(s)) {
                 newChars.add(s);
