@@ -1,7 +1,7 @@
 ﻿# Review List for IDN
 # File: review.txt
 # Version: 7.0.0
-# Generated: 2014-07-23, 12:42:34 GMT
+# Generated: 2014-09-09, 13:36:13 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -887,7 +887,7 @@
 03F0          ; restricted ; not-NFKC          #      (ϰ)  GREEK KAPPA SYMBOL
 03F1          ; restricted ; not-NFKC          #      (ϱ)  GREEK RHO SYMBOL
 03F2          ; restricted ; not-NFKC          #      (ϲ)  GREEK LUNATE SIGMA SYMBOL
-03F3          ; restricted ; technical         #      (ϳ)  GREEK LETTER YOT
+03F3          ; restricted ; historic          #      (ϳ)  GREEK LETTER YOT
 03F4          ; restricted ; not-NFKC          #      (ϴ)  GREEK CAPITAL THETA SYMBOL
 03F5          ; restricted ; not-NFKC          #      (ϵ)  GREEK LUNATE EPSILON SYMBOL
 03F6          ; restricted ; not-xid           #      (϶)  GREEK REVERSED LUNATE EPSILON SYMBOL
@@ -1195,14 +1195,14 @@
 0525          ; output                         #      (ԥ)  CYRILLIC SMALL LETTER PE WITH DESCENDER
 0526          ; input                          #      (Ԧ)  CYRILLIC CAPITAL LETTER SHHA WITH DESCENDER
 0527          ; output                         #      (ԧ)  CYRILLIC SMALL LETTER SHHA WITH DESCENDER
-0528          ; restricted ; limited-use       #      (Ԩ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK
-0529          ; restricted ; limited-use       #      (ԩ)  CYRILLIC SMALL LETTER EN WITH LEFT HOOK
+0528          ; input                          #      (Ԩ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK
+0529          ; output                         #      (ԩ)  CYRILLIC SMALL LETTER EN WITH LEFT HOOK
 052A          ; restricted ; historic          #      (Ԫ)  CYRILLIC CAPITAL LETTER DZZHE
 052B          ; restricted ; historic          #      (ԫ)  CYRILLIC SMALL LETTER DZZHE
 052C          ; restricted ; historic          #      (Ԭ)  CYRILLIC CAPITAL LETTER DCHE
 052D          ; restricted ; historic          #      (ԭ)  CYRILLIC SMALL LETTER DCHE
-052E          ; restricted ; limited-use       #      (Ԯ)  CYRILLIC CAPITAL LETTER EL WITH DESCENDER
-052F          ; restricted ; limited-use       #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
+052E          ; input                          #      (Ԯ)  CYRILLIC CAPITAL LETTER EL WITH DESCENDER
+052F          ; output                         #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
 0531          ; input                          #      (Ա)  ARMENIAN CAPITAL LETTER AYB
 0532          ; input                          #      (Բ)  ARMENIAN CAPITAL LETTER BEN
 0533          ; input                          #      (Գ)  ARMENIAN CAPITAL LETTER GIM
@@ -1877,7 +1877,7 @@
 085B          ; restricted ; limited-use       #      (࡛)  MANDAIC GEMINATION MARK
 085E          ; restricted ; not-xid           #      (࡞)  MANDAIC PUNCTUATION
 08A0          ; output                         #      (ࢠ)  ARABIC LETTER BEH WITH SMALL V BELOW
-08A1          ; restricted ; limited-use       #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
+08A1          ; output                         #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
 08A2          ; output                         #      (ࢢ)  ARABIC LETTER JEEM WITH TWO DOTS ABOVE
 08A3          ; output                         #      (ࢣ)  ARABIC LETTER TAH WITH TWO DOTS ABOVE
 08A4          ; output                         #      (ࢤ)  ARABIC LETTER FEH WITH DOT BELOW AND THREE DOTS ABOVE
@@ -1894,7 +1894,7 @@
 08AF          ; restricted ; historic          #      (ࢯ)  ARABIC LETTER SAD WITH THREE DOTS BELOW
 08B0          ; restricted ; historic          #      (ࢰ)  ARABIC LETTER GAF WITH INVERTED STROKE
 08B1          ; restricted ; historic          #      (ࢱ)  ARABIC LETTER STRAIGHT WAW
-08B2          ; restricted ; limited-use       #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
+08B2          ; output                         #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 08E4          ; restricted ; limited-use       #      (ࣤ)  ARABIC CURLY FATHA
 08E5          ; restricted ; limited-use       #      (ࣥ)  ARABIC CURLY DAMMA
 08E6          ; restricted ; limited-use       #      (ࣦ)  ARABIC CURLY KASRA
@@ -10256,30 +10256,30 @@ A9E3          ; restricted ; historic          #      (ꧣ)  MYANMAR LETTER SHAN
 A9E4          ; restricted ; historic          #      (ꧤ)  MYANMAR LETTER SHAN BHA
 A9E5          ; restricted ; historic          #      (ꧥ)  MYANMAR SIGN SHAN SAW
 A9E6          ; restricted ; historic          #      (ꧦ)  MYANMAR MODIFIER LETTER SHAN REDUPLICATION
-A9E7          ; restricted ; limited-use       #      (ꧧ)  MYANMAR LETTER TAI LAING NYA
-A9E8          ; restricted ; limited-use       #      (ꧨ)  MYANMAR LETTER TAI LAING FA
-A9E9          ; restricted ; limited-use       #      (ꧩ)  MYANMAR LETTER TAI LAING GA
-A9EA          ; restricted ; limited-use       #      (ꧪ)  MYANMAR LETTER TAI LAING GHA
-A9EB          ; restricted ; limited-use       #      (ꧫ)  MYANMAR LETTER TAI LAING JA
-A9EC          ; restricted ; limited-use       #      (ꧬ)  MYANMAR LETTER TAI LAING JHA
-A9ED          ; restricted ; limited-use       #      (ꧭ)  MYANMAR LETTER TAI LAING DDA
-A9EE          ; restricted ; limited-use       #      (ꧮ)  MYANMAR LETTER TAI LAING DDHA
-A9EF          ; restricted ; limited-use       #      (ꧯ)  MYANMAR LETTER TAI LAING NNA
-A9F0          ; restricted ; limited-use       #      (꧰)  MYANMAR TAI LAING DIGIT ZERO
-A9F1          ; restricted ; limited-use       #      (꧱)  MYANMAR TAI LAING DIGIT ONE
-A9F2          ; restricted ; limited-use       #      (꧲)  MYANMAR TAI LAING DIGIT TWO
-A9F3          ; restricted ; limited-use       #      (꧳)  MYANMAR TAI LAING DIGIT THREE
-A9F4          ; restricted ; limited-use       #      (꧴)  MYANMAR TAI LAING DIGIT FOUR
-A9F5          ; restricted ; limited-use       #      (꧵)  MYANMAR TAI LAING DIGIT FIVE
-A9F6          ; restricted ; limited-use       #      (꧶)  MYANMAR TAI LAING DIGIT SIX
-A9F7          ; restricted ; limited-use       #      (꧷)  MYANMAR TAI LAING DIGIT SEVEN
-A9F8          ; restricted ; limited-use       #      (꧸)  MYANMAR TAI LAING DIGIT EIGHT
-A9F9          ; restricted ; limited-use       #      (꧹)  MYANMAR TAI LAING DIGIT NINE
-A9FA          ; restricted ; limited-use       #      (ꧺ)  MYANMAR LETTER TAI LAING LLA
-A9FB          ; restricted ; limited-use       #      (ꧻ)  MYANMAR LETTER TAI LAING DA
-A9FC          ; restricted ; limited-use       #      (ꧼ)  MYANMAR LETTER TAI LAING DHA
-A9FD          ; restricted ; limited-use       #      (ꧽ)  MYANMAR LETTER TAI LAING BA
-A9FE          ; restricted ; limited-use       #      (ꧾ)  MYANMAR LETTER TAI LAING BHA
+A9E7          ; output                         #      (ꧧ)  MYANMAR LETTER TAI LAING NYA
+A9E8          ; output                         #      (ꧨ)  MYANMAR LETTER TAI LAING FA
+A9E9          ; output                         #      (ꧩ)  MYANMAR LETTER TAI LAING GA
+A9EA          ; output                         #      (ꧪ)  MYANMAR LETTER TAI LAING GHA
+A9EB          ; output                         #      (ꧫ)  MYANMAR LETTER TAI LAING JA
+A9EC          ; output                         #      (ꧬ)  MYANMAR LETTER TAI LAING JHA
+A9ED          ; output                         #      (ꧭ)  MYANMAR LETTER TAI LAING DDA
+A9EE          ; output                         #      (ꧮ)  MYANMAR LETTER TAI LAING DDHA
+A9EF          ; output                         #      (ꧯ)  MYANMAR LETTER TAI LAING NNA
+A9F0          ; output                         #      (꧰)  MYANMAR TAI LAING DIGIT ZERO
+A9F1          ; output                         #      (꧱)  MYANMAR TAI LAING DIGIT ONE
+A9F2          ; output                         #      (꧲)  MYANMAR TAI LAING DIGIT TWO
+A9F3          ; output                         #      (꧳)  MYANMAR TAI LAING DIGIT THREE
+A9F4          ; output                         #      (꧴)  MYANMAR TAI LAING DIGIT FOUR
+A9F5          ; output                         #      (꧵)  MYANMAR TAI LAING DIGIT FIVE
+A9F6          ; output                         #      (꧶)  MYANMAR TAI LAING DIGIT SIX
+A9F7          ; output                         #      (꧷)  MYANMAR TAI LAING DIGIT SEVEN
+A9F8          ; output                         #      (꧸)  MYANMAR TAI LAING DIGIT EIGHT
+A9F9          ; output                         #      (꧹)  MYANMAR TAI LAING DIGIT NINE
+A9FA          ; output                         #      (ꧺ)  MYANMAR LETTER TAI LAING LLA
+A9FB          ; output                         #      (ꧻ)  MYANMAR LETTER TAI LAING DA
+A9FC          ; output                         #      (ꧼ)  MYANMAR LETTER TAI LAING DHA
+A9FD          ; output                         #      (ꧽ)  MYANMAR LETTER TAI LAING BA
+A9FE          ; output                         #      (ꧾ)  MYANMAR LETTER TAI LAING BHA
 AA00          ; restricted ; limited-use       #      (ꨀ)  CHAM LETTER A
 AA01          ; restricted ; limited-use       #      (ꨁ)  CHAM LETTER I
 AA02          ; restricted ; limited-use       #      (ꨂ)  CHAM LETTER U
@@ -10391,10 +10391,10 @@ AA78          ; restricted ; not-xid           #      (꩸)  MYANMAR SYMBOL AITO
 AA79          ; restricted ; not-xid           #      (꩹)  MYANMAR SYMBOL AITON TWO
 AA7A          ; output                         #      (ꩺ)  MYANMAR LETTER AITON RA
 AA7B          ; output-nonstarting             #      (ꩻ)  MYANMAR SIGN PAO KAREN TONE
-AA7C          ; restricted ; limited-use       #      (ꩼ)  MYANMAR SIGN TAI LAING TONE-2
-AA7D          ; restricted ; limited-use       #      (ꩽ)  MYANMAR SIGN TAI LAING TONE-5
-AA7E          ; restricted ; limited-use       #      (ꩾ)  MYANMAR LETTER SHWE PALAUNG CHA
-AA7F          ; restricted ; limited-use       #      (ꩿ)  MYANMAR LETTER SHWE PALAUNG SHA
+AA7C          ; output-nonstarting             #      (ꩼ)  MYANMAR SIGN TAI LAING TONE-2
+AA7D          ; output-nonstarting             #      (ꩽ)  MYANMAR SIGN TAI LAING TONE-5
+AA7E          ; output                         #      (ꩾ)  MYANMAR LETTER SHWE PALAUNG CHA
+AA7F          ; output                         #      (ꩿ)  MYANMAR LETTER SHWE PALAUNG SHA
 AA80          ; restricted ; limited-use       #      (ꪀ)  TAI VIET LETTER LOW KO
 AA81          ; restricted ; limited-use       #      (ꪁ)  TAI VIET LETTER HIGH KO
 AA82          ; restricted ; limited-use       #      (ꪂ)  TAI VIET LETTER LOW KHO

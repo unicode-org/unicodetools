@@ -1,7 +1,7 @@
 ﻿# Summary: Recommended confusable mapping for IDN
 # File: confusablesSummaryIdentifier.txt
 # Version: 7.0.0
-# Generated: 2014-07-23, 12:42:37 GMT
+# Generated: 2014-09-09, 13:36:15 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -802,6 +802,10 @@
 	(‎ ئ ‎)	0626	 ARABIC LETTER YEH WITH HAMZA ABOVE
 ←	(‎ ىٴ ‎)	0649 0674	 ARABIC LETTER ALEF MAKSURA, ARABIC LETTER HIGH HAMZA	# →‎يٴ‎→→‎ٸ‎→
 ←	(‎ يٴ ‎)	064A 0674	 ARABIC LETTER YEH, ARABIC LETTER HIGH HAMZA	# →‎ٸ‎→
+
+#	بٔ	ࢡ
+	(‎ بٔ ‎)	0628 0654	 ARABIC LETTER BEH, ARABIC HAMZA ABOVE
+←	(‎ ࢡ ‎)	08A1	 ARABIC LETTER BEH WITH HAMZA ABOVE
 
 #	ج	خ
 	(‎ ج ‎)	062C	 ARABIC LETTER JEEM
@@ -1618,5 +1622,5 @@
 	(‎ 鹂 ‎)	9E42	 CJK UNIFIED IDEOGRAPH-9E42
 ←	(‎ 鹃 ‎)	9E43	 CJK UNIFIED IDEOGRAPH-9E43
 
-# total : 564
+# total : 565
 

@@ -659,10 +659,16 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 [\u037F \u0528-\u052F \u08A1 \u08AD-\u08B2 \u0978 \u0980 \u0C00 \u0C34 \u0C81 \u0D01 \u0DE6-\u0DEF \u1AB0-\u1ABD \uA698-\uA69B \uA794-\uA79F \uA7AB-\uA7AD \uA7B0 \uA7B1 \uA7F7 \uA9E0-\uA9FE \uAA7C-\uAA7F \uAB30-\uAB5A \uAB64 \uAB65 \U000102E0] ; historic
 
 
-0528..0529 ; limited-use
-052E..052F ; limited-use
-08A1 ; limited-use
-08B2 ; limited-use
-A9E7..A9FE ; limited-use
-AA7C..AA7F ; limited-use
+0528..0529 ; recommended
+052E..052F ; recommended
+08A1 ; recommended
+08B2 ; recommended
+A9E7..A9FE ; recommended
+AA7C..AA7F ; recommended
+
+16A40..16A5E ; limited-use
+16A60..16A69 ; limited-use
+
+03F3 ; historic
+037F ; historic
 
