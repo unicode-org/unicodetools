@@ -64,6 +64,8 @@ public class GmailEmoji {
                 .put(0xFE360, "😀")
                 .put(0xFE35C, "😎")
                 .put(0xFE336, "🙂")
+                .put(0xFE367, "😮")
+                .put(0xFE368, "😑")
                 
                 .put(0xFEE28, "⛛")
                 .put(0xFEB46, "☒")
