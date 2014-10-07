@@ -1279,9 +1279,10 @@ public class UnicodeUtilities {
             } catch (Exception e) {
                 throw new IllegalArgumentException(propData.toString(), e);
             }
-            String shortHtml = shortName == null || shortName.equalsIgnoreCase(propName) ? "" : toHTML(shortName);
+            String propHtml = toHTML.transform(propName);
+            String shortHtml = shortName == null || shortName.equalsIgnoreCase(propName) ? propHtml : toHTML(shortName);
 //            String title = shortName == null || shortName.equals(propName) ? "" : " title='" + shortHtml + "'";
-            String propHtml = toHTML.transform(propName + (shortName.equalsIgnoreCase(propName) ? "" : " (" + shortName + ")"));
+//            String propHtml = toHTML.transform(propName + (shortName.equalsIgnoreCase(propName) ? "" : " (" + shortName + ")"));
             String propInfo = propHtml ; // "<a name='" + propHtml + "'>" + propHtml + "</a>";
 //            if (shortName != null && !shortName.equals(propName)) {
 //                propInfo = "<span title='" + shortHtml + "'>" + propInfo + "</span>";
@@ -1297,7 +1298,8 @@ public class UnicodeUtilities {
             StringBuilder propValues = new StringBuilder();
             String dataType = propData.get1();
             if (propName.equals(propForValues) 
-                    || (dataType.equals("Binary") || dataType.equals("Enumerated")) && prop.getAvailableValues().size() < 6) {
+                    || (dataType.equals("Binary") || dataType.equals("Enumerated")) 
+                    && prop.getAvailableValues().size() < 10) {
                 getHtmlPropValues(prop, propHtml, shortHtml, propValues);
             } else {
                 propValues.append("<a href='" + myLink + "?a=" + propName + "#" + propName + "'>Show Values</a>");
@@ -1316,7 +1318,8 @@ public class UnicodeUtilities {
         out.append(tablePrinter.toTable());
     }
 
-    private static void getHtmlPropValues(UnicodeProperty prop, String propHtml, String shortPropHtml, StringBuilder propValues) {
+    private static void getHtmlPropValues(UnicodeProperty prop, String propHtml, 
+            String shortPropHtml, StringBuilder propValues) {
         List<String> availableValues = (List<String>)prop.getAvailableValues();
         TreeSet<String> sortedList = Builder.with(new TreeSet<String>(col)).addAll(availableValues).get();
         int count = 255;
@@ -1347,17 +1350,20 @@ public class UnicodeUtilities {
 
     private static String getPropLink(String propHtml, String shortPropHtml, String valueHtml, String shortValueHtml) {
         String propValue = valueHtml;
-        final String propExp = 
-                propValue == "Yes" ? propHtml
-                        : propValue == "No" ? "^" + propHtml
-                                : propHtml + "=" + propValue;
+        final String propExp = propHtml + "=" + propValue;
         //String title = shortName == null ? "" : " title='" + toHTML(shortName) + "'";
         String result = "<a target='u' href='list-unicodeset.jsp?a=[:" + propExp + ":]'" + 
                 ">" + valueHtml + "</a>";
-        if (shortValueHtml != null && !shortValueHtml.equals(valueHtml)) {
+        if (propHtml.isEmpty()) {
+            shortPropHtml = propHtml;
+        }
+        if (shortValueHtml == null) {
+            shortValueHtml = valueHtml;
+        }
+        if (!propHtml.equalsIgnoreCase(shortPropHtml) || !shortValueHtml.equalsIgnoreCase(valueHtml)) {
             String shortPropExp = 
-                    propValue == "Yes" ? shortPropHtml
-                            : propValue == "No" ? "^" + shortPropHtml
+                    propValue.equals("Yes") ? shortPropHtml
+                            : propValue.equals("No") ? "^" + shortPropHtml
                                     : shortPropHtml + "=" + shortValueHtml;        
             result += "\u00A0(<a target='u' href='list-unicodeset.jsp?a=[:" + shortPropExp + ":]'" + 
                     ">" + shortValueHtml + "</a>)";
