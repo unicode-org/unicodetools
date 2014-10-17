@@ -1,7 +1,9 @@
 package org.unicode.text.tools;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,14 +21,17 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class Linkifier {
-    static UnicodeSet SCHEME = new UnicodeSet("[-+.a-zA-Z0-9]").freeze();
+    static final UnicodeSet SCHEME = new UnicodeSet("[-+.a-zA-Z0-9]").freeze();
+    static final UnicodeSet INCLUSIONS = new UnicodeSet("[, ; \\: ! ¡ ¿ . · ' \" @ * \\\\ \\& % \\u200C \\u200D]").freeze();
+    static final UnicodeSet DOTS = new UnicodeSet("[.．。｡]").freeze();
+    static final String SCHEME_END = "://";
     static UnicodeSet NORMAL = new UnicodeSet("[\\p{L}\\p{N}\\p{M}\\p{S}\\p{Pd}\\p{Pc}]").freeze();
-    static UnicodeSet DOMAIN = UProperty.
-            private static final Normalizer2 uts46Norm2=
-            Normalizer2.getInstance(null, "uts46", Normalizer2.Mode.COMPOSE);  // uts46.nrm
-    static {
-        uts46Norm2.
-    }
+//    static UnicodeSet DOMAIN = UProperty.
+//            private static final Normalizer2 uts46Norm2=
+//            Normalizer2.getInstance(null, "uts46", Normalizer2.Mode.COMPOSE);  // uts46.nrm
+//    static {
+//        uts46Norm2.
+//    }
 
     private static String[] GROUPS = {"scheme", "domain", "path", "query", "fragment"};
     private static String[] REGEX_SOURCE = {
@@ -46,6 +51,117 @@ public class Linkifier {
         //        "$question = \\u003F ;",
         //        "$semi = \\u003B ;",
     };
+    
+    enum ScanStatus {
+        /**
+         * The scan made it to the end, and there is a valid token.
+         */
+        AT_END, 
+        /**
+         * The scan didn't make it to the end, but there is a valid token.
+         */
+        VALID, 
+        STOPPED, 
+        INVALID}
+    
+    private class ScanData {
+        String source;
+        int start;
+        int lastValidLimit;
+        int lastLimit;
+    }
+
+    private abstract class Scanner {
+        /**
+         * Scans the input for a valid token. Returns true if scanned to the end.
+         * @param input
+         * @param index
+         * @return
+         */
+        public abstract ScanStatus scan(ScanData input);
+    }
+
+    static class TldMatcher {
+        static final List<String> TLDS = Arrays.asList("com", "org", "de", "香港");
+        boolean matches(String s, int limit) {
+            for (String item : TLDS) {
+                if (s.regionMatches(limit-item.length(), item, 0, item.length())) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    
+    private class UrlScanner extends Scanner {
+        private static final char FRAGMENT_START = '#';
+        private static final char QUERY_START = '?';
+        private static final char PATH_START = '/';
+        Scanner schemeScanner = new SimpleScanner(new UnicodeSet("[-+.a-zA-Z0-9]"), UnicodeSet.EMPTY);
+        Scanner domainScanner = new DomainScanner();
+        Scanner pathScanner = new SimpleScanner(new UnicodeSet(NORMAL).add(PATH_START), INCLUSIONS);
+        Scanner queryScanner = new SimpleScanner(new UnicodeSet(NORMAL).add(QUERY_START), INCLUSIONS);
+        Scanner fragmentScanner = new SimpleScanner(new UnicodeSet(NORMAL).add(FRAGMENT_START), INCLUSIONS);
+        TldMatcher tldMatcher = new TldMatcher();
+        public ScanStatus scan(ScanData input) {
+            int start = input.lastValidLimit;
+            ScanStatus status = schemeScanner.scan(input);
+            if (status == ScanStatus.AT_END) {
+                return status;
+            }
+            if (input.source.regionMatches(input.lastValidLimit, SCHEME_END, 0, SCHEME_END.length())) {
+                // we have a scheme, look for a domain
+                input.lastValidLimit += SCHEME_END.length();
+                status = domainScanner.scan(input);
+                if (status == ScanStatus.INVALID) {
+                    return status;
+                }
+            } else { // no scheme. Look for domain from the beginning, but has to end with known TLD
+                input.lastValidLimit = start;
+                status = domainScanner.scan(input);
+                if (status.equals(ScanStatus.INVALID)) {
+                    return status;
+                }
+                if (!tldMatcher.matches(input.source, input.lastValidLimit)) {
+                    return ScanStatus.INVALID;
+                }
+            }
+            return status;
+        }
+    }
+    private class SimpleScanner extends Scanner {
+        private UnicodeSet ok;
+        private UnicodeSet softBreak;
+        public SimpleScanner(UnicodeSet ok, UnicodeSet softBreak) {
+            this.ok = ok.freeze();
+            this.softBreak = softBreak.freeze();
+        }
+        public ScanStatus scan(ScanData data) {
+            int cp;
+            int codePointLength;
+            for (int i = data.start; i < data.source.length(); i += codePointLength) {
+                cp = data.source.codePointAt(i);
+                codePointLength = Character.charCount(cp);
+                if (ok.contains(cp)) {
+                    data.lastValidLimit = i;
+                } else if (!softBreak.contains(cp)) {
+                    data.lastLimit = i;
+                    return data.lastValidLimit >= 0 ? ScanStatus.STOPPED : ScanStatus.INVALID;
+                }
+            }
+            data.lastLimit = data.source.length();
+            return ScanStatus.AT_END;
+        }
+    }
+    
+    static class DomainScanner extends SimpleScanner {
+
+        DomainScanner() {
+            super(NORMAL, DOTS);
+        }
+        
+    }
+    
     private static final String REGEX_STRING;
     private static final Pattern REGEX;
     static {

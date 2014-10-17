@@ -66,7 +66,6 @@ import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.Level;
 import org.unicode.cldr.util.LocaleIDParser;
-import org.unicode.cldr.util.Pair;
 import org.unicode.text.tools.GenerateEmoji.Source;
 import org.unicode.text.tools.GmailEmoji.Data;
 import org.unicode.text.utility.Utility;
@@ -121,7 +120,7 @@ public class LoadImage extends Component {
     static String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
 
     public static void main(String[] args) throws IOException {
-        getFlagOrder();
+        EmojiFlagOrder.getFlagOrder();
         if (true) return;
         writeCharSamples();
         TarotSuits.makeTest();
@@ -950,150 +949,6 @@ public class LoadImage extends Component {
             out.println("</table></body></html>");
             out.close();
         }
-    }
-
-    static class HSB implements Comparable<HSB> {
-        float [] hsb = new float[3];
-        float [] rgb = new float[3];
-
-        public void add(HSB other) {
-            hsb[0] += other.hsb[0];
-            hsb[1] += other.hsb[1];
-            hsb[2] += other.hsb[2];
-            rgb[0] += other.rgb[0];
-            rgb[1] += other.rgb[1];
-            rgb[2] += other.rgb[2];
-        }
-
-        public void divideBy(int count) {
-            hsb[0] /= count;
-            hsb[1] /= count;
-            hsb[2] /= count;
-            rgb[0] /= count;
-            rgb[1] /= count;
-            rgb[2] /= count;
-        }
-
-        public void set(int red, int green, int blue) {
-            rgb[0] = red/255.0f;
-            rgb[1] = green/255.0f;
-            rgb[2] = blue/255.0f;
-            Color.RGBtoHSB(red, green, blue, hsb);
-        }
-        @Override
-        public String toString() {
-            return hsb[0] + "; " + hsb[1] + "; " + hsb[2]
-                    + "; " + 
-                    rgb[0] + "; " + rgb[1] + "; " + rgb[2];
-        }
-
-        double getLuminance() {
-            return Math.sqrt(0.299d * rgb[0] * rgb[0] + 0.587d * rgb[1] * rgb[1] + 0.114d * rgb[2] * rgb[2]);
-        }
-        @Override
-        public int compareTo(HSB o) {
-            double diff = o.getLuminance() - getLuminance();
-            if (diff != 0) {
-                return diff < 0 ? -1 : 1;
-            }
-            for (int i = 0; i < 3; ++i) {
-                diff = hsb[2-i] - o.hsb[2-i];
-                if (diff != 0) {
-                    return diff < 0 ? -1 : 1;
-                }
-            }
-            return 0;
-        }
-    }
-    /**
-     * returns hue, saturation, brightness
-     * @param image
-     * @return
-     */
-    static HSB getAverage(BufferedImage image) {
-        final WritableRaster raster = image.getRaster();
-        //        final SampleModel sampleModel = raster.getSampleModel();
-        //        System.out.println(sampleModel);
-        final ColorModel colorModel = image.getColorModel();
-        //        final DataBuffer dataBuffer = raster.getDataBuffer();
-        //        final byte[][] pixels = ((DataBufferByte) dataBuffer).getBankData();
-        //        final boolean hasAlphaChannel = image.getAlphaRaster() != null;
-        //        System.out.println(hasAlphaChannel + ", "
-        //                + image.getWidth() + ", "
-        //                + image.getHeight() + ", "
-        //                + image.getWidth() * image.getHeight() + ", "
-        //                + pixels.length);
-        HSB hsbvals = new HSB();
-        HSB hsbTotals = new HSB();
-        int count = 0;
-        boolean funny = false;
-        for (int x = 0; x < image.getWidth(); ++x) {
-            for (int y = 0; y < image.getHeight(); ++y) {
-                int rgb = image.getRGB(x, y);
-                Object inData = raster.getDataElements(x, y, null);
-                int alpha = colorModel.getAlpha(inData);
-                if (alpha < 32) {
-                    continue; // skip
-                } else if (alpha != 255) {
-                    //throw new IllegalArgumentException();
-                }
-                int blue = colorModel.getBlue(inData);
-                int green = colorModel.getGreen(inData);
-                int red = colorModel.getRed(inData);
-                hsbvals.set(red, green, blue);
-                hsbTotals.add(hsbvals);
-                ++count;
-            }
-        }
-        //        if (hasAlphaChannel) {
-        //            final int pixelLength = 4;
-        //            for (int pixel = 0; pixel < pixels.length; pixel += pixelLength) {
-        //                int alpha = pixels[pixel] & 0xff; // alpha
-        //                if (alpha == 0) {
-        //                    continue; // skip
-        //                } else if (alpha != 255) {
-        //                    throw new IllegalArgumentException();
-        //                }
-        //                int blue = pixels[pixel + 1] & 0xff; // blue
-        //                int green = pixels[pixel + 2] & 0xff; // green
-        //                int red = pixels[pixel + 3] & 0xff; // red
-        //                hsbvals.set(red, green, blue);
-        //                hsbTotals.add(hsbvals);
-        //                ++count;
-        //            }
-        //        } else {
-        //            final int pixelLength = 3;
-        //            for (int pixel = 0; pixel < pixels.length; pixel += pixelLength) {
-        //                int blue = pixels[pixel] & 0xff; // blue
-        //                int green = pixels[pixel + 1] & 0xff; // green
-        //                int red = pixels[pixel + 2] & 0xff; // red
-        //                hsbvals.set(red, green, blue);
-        //                hsbTotals.add(hsbvals);
-        //                ++count;
-        //            }
-        //        }
-        hsbTotals.divideBy(count);
-        return hsbTotals;
-    }
-
-    private static void getFlagOrder() throws IOException {
-        Set<Pair<HSB,String>> sorted = new TreeSet<>();
-        for (String s : Emoji.EMOJI_CHARS) {
-            if (!Emoji.isRegionalIndicator(s.codePointAt(0))) {
-                continue;
-            }
-            File file = GenerateEmoji.getBestFile(s);
-            BufferedImage sourceImage = ImageIO.read(file);
-            HSB hsb = getAverage(sourceImage);
-            sorted.add(new Pair(hsb,s));
-        }
-        for (Pair<HSB, String> s : sorted) {
-            System.out.print(
-                    " " +
-                    //s.getFirst() + "\t" + 
-            s.getSecond());
-        }
-        System.out.println();
     }
 
 }
