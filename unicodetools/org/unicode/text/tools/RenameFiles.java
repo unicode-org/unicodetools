@@ -11,11 +11,13 @@ import java.nio.file.StandardCopyOption;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.text.utility.Settings;
+
 public class RenameFiles {
     public static void main(String[] args) throws IOException {
         Matcher m = Pattern.compile("([A-Z]{2})\\.png").matcher(""); 
-        //File dir = new File("/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/country-flags");
-        File dir = new File("/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/AppleEmoji");
+        //File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/country-flags");
+        File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/AppleEmoji");
        
         FileSystem dfs = FileSystems.getDefault();
 

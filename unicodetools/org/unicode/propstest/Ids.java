@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.With;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
@@ -21,7 +22,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class Ids {
     static final Pattern NCR_PATTERN = Pattern.compile("\\&[^;]+;");
-    static final String BASE = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/ids-b6bb70e/";
+    static final String BASE = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/ids-b6bb70e/";
 
     static class NcrToPua {
         int puaCounter = 0xE000;

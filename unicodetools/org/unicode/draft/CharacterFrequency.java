@@ -14,9 +14,9 @@ import org.unicode.text.utility.Settings;
 
 
 public class CharacterFrequency {
-    private static final String DATA_DIR = Settings.WORKSPACE_DIRECTORY +
+    private static final String DATA_DIR = Settings.OTHER_WORKSPACE_DIRECTORY +
     		"DATA/frequency/languages/";
-    private static final String DATA_DIR_RANK = Settings.WORKSPACE_DIRECTORY +
+    private static final String DATA_DIR_RANK = Settings.OTHER_WORKSPACE_DIRECTORY +
     		"DATA/frequency/languages-rank/";
     public static final boolean DEBUG = false;
     //	static final int MAX_LINE_COUNT = Integer.MAX_VALUE; // 10000;
