@@ -35,6 +35,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -68,6 +69,7 @@ import org.unicode.cldr.util.Level;
 import org.unicode.cldr.util.LocaleIDParser;
 import org.unicode.text.tools.GenerateEmoji.Source;
 import org.unicode.text.tools.GmailEmoji.Data;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -75,6 +77,7 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;
+import com.ibm.icu.lang.UScript.ScriptUsage;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
@@ -116,13 +119,14 @@ public class LoadImage extends Component {
     static final UnicodeSet TWITTER_CHARS = new UnicodeSet(
             "[©®‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🇦-🇿🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🛅{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]");
 
-    static String inputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/images/";
-    static String outputDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images/";
+    static String inputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/images/";
+    static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
 
     public static void main(String[] args) throws IOException {
-        EmojiFlagOrder.getFlagOrder();
+        writeCharSamples(true);
         if (true) return;
-        writeCharSamples();
+        doAnimatedGif(false, 72);
+        EmojiFlagOrder.getFlagOrder();
         TarotSuits.makeTest();
         doAnimatedGif(false, 72);
         doGmail(outputDir);
@@ -155,35 +159,64 @@ public class LoadImage extends Component {
         }
     }
 
-
-    public static void writeCharSamples() throws IOException {
+    static final BitSet SKIP_SCRIPTS = new BitSet();
+    static {
+        SKIP_SCRIPTS.set(UScript.BASSA_VAH);
+        SKIP_SCRIPTS.set(UScript.DUPLOYAN);
+        SKIP_SCRIPTS.set(UScript.GRANTHA);
+        SKIP_SCRIPTS.set(UScript.KHOJKI);
+        SKIP_SCRIPTS.set(UScript.KHUDAWADI);
+        SKIP_SCRIPTS.set(UScript.MAHAJANI);
+        SKIP_SCRIPTS.set(UScript.MENDE);
+        SKIP_SCRIPTS.set(UScript.MODI);
+        SKIP_SCRIPTS.set(UScript.MRO);
+        SKIP_SCRIPTS.set(UScript.NABATAEAN);
+        SKIP_SCRIPTS.set(UScript.OLD_PERMIC);
+        SKIP_SCRIPTS.set(UScript.PALMYRENE);
+        SKIP_SCRIPTS.set(UScript.PAU_CIN_HAU);
+        SKIP_SCRIPTS.set(UScript.TIRHUTA);
+        SKIP_SCRIPTS.set(UScript.WARANG_CITI);
+        SKIP_SCRIPTS.set(UScript.MANICHAEAN);
+    }
+    public static void writeCharSamples(boolean all) throws IOException {
         Collection<String> samples = new TreeSet<>(Collator.getInstance(ULocale.ROOT)); // Arrays.asList("a", "☕")
         final CLDRConfig config = CLDRConfig.getInstance();
         final Factory cldrFactory = config.getCldrFactory();
         LocaleIDParser lidp = new LocaleIDParser();
         final BreakIterator bi = BreakIterator.getSentenceInstance();
 
-        for (String cldrFile : cldrFactory.getAvailableLanguages()) {
-            if (cldrFile.equals("root")) continue;
-            lidp.set(cldrFile);
-            String lang = lidp.getLanguage();
-            //            Level level = config.getStandardCodes().getLocaleCoverageLevel("cldr", lang);
-            //            if (Level.MODERN.compareTo(level) > 0) {
-            //                continue;
-            //            }
-            CLDRFile cldrFileObj = cldrFactory.make(cldrFile, true);
-            UnicodeSet exemplars = cldrFileObj.getExemplarSet("", CLDRFile.WinningChoice.WINNING);
-            int script = 0;
-            for (String s : exemplars) {
-                script = UScript.getScript(s.codePointAt(0));
-                if (script != UScript.COMMON && script != UScript.INHERITED) break;
+        UnicodeSet rawSamples = new UnicodeSet();
+        if (all) {
+            for (int script = 0; script < UScript.CODE_LIMIT; ++script) {
+                ScriptUsage usage = UScript.getUsage(script);
+                if (usage == ScriptUsage.NOT_ENCODED || SKIP_SCRIPTS.get(script)) continue;
+                String sample = getSample(script);
+                rawSamples.add(sample);
             }
-            String sample = UScript.getSampleString(script);
-            if (sample.equals("ⴰ")) {
-                sample = "ⵞ";
+        } else {
+            for (String cldrFile : cldrFactory.getAvailableLanguages()) {
+                if (cldrFile.equals("root")) continue;
+                lidp.set(cldrFile);
+                String lang = lidp.getLanguage();
+                //            Level level = config.getStandardCodes().getLocaleCoverageLevel("cldr", lang);
+                //            if (Level.MODERN.compareTo(level) > 0) {
+                //                continue;
+                //            }
+                CLDRFile cldrFileObj = cldrFactory.make(cldrFile, true);
+                UnicodeSet exemplars = cldrFileObj.getExemplarSet("", CLDRFile.WinningChoice.WINNING);
+                int script = 0;
+                for (String s : exemplars) {
+                    script = UScript.getScript(s.codePointAt(0));
+                    if (script != UScript.COMMON && script != UScript.INHERITED) break;
+                }
+                String sample = getSample(script);
+                //String sample = cldrFileObj.getName(CLDRFile.LANGUAGE_NAME, lang);
+                sample = UCharacter.toTitleCase(ULocale.ENGLISH, sample, bi, UCharacter.TITLECASE_NO_LOWERCASE);
+                rawSamples.add(sample);
             }
-            //String sample = cldrFileObj.getName(CLDRFile.LANGUAGE_NAME, lang);
-            sample = UCharacter.toTitleCase(ULocale.ENGLISH, sample, bi, UCharacter.TITLECASE_NO_LOWERCASE);
+        }
+
+        for (String sample : rawSamples) {
             samples.add(" " + sample + " ");
         }
         System.out.println(samples);
@@ -195,7 +228,20 @@ public class LoadImage extends Component {
         //                scripts.add(sample);
         //            }
         //        }
-        writeTextAnimatedImage(new File(outputDir, "animated-text.gif"), 144, 144, 14, samples, 1000);
+        writeTextAnimatedImage(new File(outputDir, "animated-text.gif"), 288, 288, 14, samples, 1000);
+    }
+
+    private static String getSample(int script) {
+        String sample = UScript.getSampleString(script);
+        switch (sample) {
+        case "\u2800": sample = "⠎"; break;
+        case "\u07CA": sample = "‎ߘ‎"; break;
+        case "𐊠": sample = "𐊷"; break;
+        case "ꓐ": sample = "ꓨ"; break;
+        case "‎\uD802\uDED8": sample = "‎𐫁‎"; break;
+        case "ⴰ": sample = "ⵞ"; break;
+        }
+        return sample;
     }
 
     private static void getAppleNumbers() throws IOException {
@@ -209,10 +255,10 @@ public class LoadImage extends Component {
         skipSet.add(129);
 
         int i = 1;
-        String newDir = "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/AppleEmoji/";
+        String newDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/AppleEmoji/";
         final int maxNew = 846;
         String oldDir = "/Users/markdavis/workspace/unicode-draft/reports/tr51/images/apple/";
-        PrintWriter out = BagFormatter.openUTF8Writer("/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/Generated/images", "checkApple.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images", "checkApple.html");
         out.println("<html><body><table>");
         for (String s : codepointOrder) {
             while (skipSet.contains(i)) {

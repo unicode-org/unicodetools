@@ -71,7 +71,7 @@ public class WebpageCharacterData {
 
     static public void doData() throws IOException {
         final BufferedReader in = BagFormatter.openUTF8Reader(
-                Settings.WORKSPACE_DIRECTORY +
+                Settings.OTHER_WORKSPACE_DIRECTORY +
                 "DATA/frequency/",
                 SOURCE_DATA);
         int lineCounter = 0;
@@ -113,10 +113,10 @@ public class WebpageCharacterData {
         in.close();
         System.out.println("Writing data");
         //System.out.println("zeroCountLines " + zeroCountLines);
-        writeData(lang2chars, Settings.WORKSPACE_DIRECTORY +
+        writeData(lang2chars, Settings.OTHER_WORKSPACE_DIRECTORY +
         		"DATA/frequency/languages");
         System.out.println("Writing ranked data");
-        writeData(lang2charsPageRank, Settings.WORKSPACE_DIRECTORY +
+        writeData(lang2charsPageRank, Settings.OTHER_WORKSPACE_DIRECTORY +
         		"DATA/frequency/languages-rank");
     }
 

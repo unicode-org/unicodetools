@@ -170,7 +170,7 @@ public class GmailEmoji {
         Data google = null;
         Data crab = null;
         //Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/emoji_images/gmail_emoji.txt
-        for (String line : FileUtilities.in(Settings.WORKSPACE_DIRECTORY + "/data/emoji_images", "gmail_emoji.txt")) {
+        for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY + "/data/emoji_images", "gmail_emoji.txt")) {
             if (line.startsWith("#")) continue;
             List<String> list = semi.splitToList(line);
             Data data = new Data(list);

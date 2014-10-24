@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
 import org.unicode.text.tools.GenerateEmoji.Source;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -266,7 +267,7 @@ public class EmojiFlagOrder {
         // /Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/emoji_images/country-flags/ref_1f1e6_1f1e8.png
         // /Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/emoji_images/country-flags/ref_1f1e6_1f1e9.png
         String core = Emoji.buildFileName(s,"_");
-        return "/Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/emoji_images/country-flags/ref_" +
+        return Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji_images/country-flags/ref_" +
         core +
         ".png";
     }

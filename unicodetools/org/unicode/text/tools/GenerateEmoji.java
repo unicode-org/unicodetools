@@ -77,6 +77,7 @@ import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmoji {
+    private static final UnicodeSet ASCII_LETTERS = new UnicodeSet("[A-Za-z]").freeze();
     private static final boolean DATAURL = true;
     private static final int RESIZE_IMAGE = 72;
 
@@ -223,6 +224,9 @@ public class GenerateEmoji {
             line = getLabelFromLine(lastLabel, line);
             for (int i = 0; i < line.length();) {
                 String string = getEmojiSequence(line, i);
+                if (ASCII_LETTERS.containsSome(string)) {
+                    throw new IllegalArgumentException("Strange line with ASCII emoji: " + line);
+                }
                 i += string.length();
                 if (skipEmojiSequence(string)) {
                     continue;
@@ -232,6 +236,13 @@ public class GenerateEmoji {
                 }
             }
         }
+        // for programmatic additions, take this and modify
+//        for (String s : Emoji.EMOJI_CHARS) {
+//            String charName = UCharacter.getName(s.codePointAt(0));
+//            if (charName.contains("MARK")) {
+//                ANNOTATIONS_TO_CHARS.add("mark", s);
+//            }
+//        }
         for (int cp1 = Emoji.FIRST_REGIONAL; cp1 <= Emoji.LAST_REGIONAL; ++cp1) {
             for (int cp2 = Emoji.FIRST_REGIONAL; cp2 <= Emoji.LAST_REGIONAL; ++cp2) {
                 String emoji = new StringBuilder().appendCodePoint(cp1).appendCodePoint(cp2).toString();

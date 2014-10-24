@@ -33,7 +33,7 @@ public class EmojiFrequency {
     static long total;
     static {
         Matcher m = Pattern.compile("id=\"score-(\\p{XDigit}+)(-\\p{XDigit}+)?\">(\\d+)</span>").matcher("");
-        for (String line : FileUtilities.in(Settings.WORKSPACE_DIRECTORY + "data/frequency/emoji/", "emoji-tracker.txt")) {
+        for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY + "data/frequency/emoji/", "emoji-tracker.txt")) {
             if (line.startsWith("<section")) {
                 continue;
             }
