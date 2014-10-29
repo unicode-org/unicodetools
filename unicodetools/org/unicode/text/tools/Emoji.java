@@ -161,6 +161,10 @@ public class Emoji {
         }
     };
 
+    public static final String OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/";
+
+    static final String IMAGES_OUTPUT_DIR = OUTPUT_DIR + "images/";
+
 
 
 }

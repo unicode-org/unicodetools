@@ -1,5 +1,6 @@
 package org.unicode.text.tools;
 
+import java.io.File;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
@@ -37,14 +38,19 @@ public class FixEmojiText {
     private static void process2(int cp, StringBuilder result) {
         if (Emoji.EMOJI_CHARS.contains(cp)) {
             String hex = Utility.hex(cp);
+            String fileName = "apple/apple_"
+                    + hex.toLowerCase(Locale.ENGLISH)
+                    + ".png";
+            if (!new File(Emoji.IMAGES_OUTPUT_DIR
+                    + fileName).exists()) {
+                fileName = "ref/ref_"
+                        + hex.toLowerCase(Locale.ENGLISH)
+                        + ".png";
+            }
             result
             .append("\t\t\t\t\t<img height='24' width='auto' alt='")
             .appendCodePoint(cp)
-            .append("' src='images/"
-                    + "apple/apple"
-                    + "_"
-                    + hex.toLowerCase(Locale.ENGLISH)
-                    + ".png'"
+            .append("' src='images/" + fileName + "'"
                     + " title='U+" + hex
                     + " ")
                     .appendCodePoint(cp)
