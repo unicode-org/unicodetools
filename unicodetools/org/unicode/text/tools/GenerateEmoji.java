@@ -1,18 +1,11 @@
 package org.unicode.text.tools;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,10 +13,8 @@ import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -35,13 +26,10 @@ import java.util.regex.Pattern;
 
 import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.draft.ScriptMetadata.Trinary;
 import org.unicode.cldr.tool.CountryCodeConverter;
 import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
-import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.MapComparator;
 import org.unicode.cldr.util.With;
-import org.unicode.draft.GetNames;
 import org.unicode.jsp.Subheader;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -51,10 +39,7 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.UCA.UCA;
-import org.unicode.text.UCA.UCA.CollatorType;
-import org.unicode.text.UCA.WriteCollationData;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.tools.GenerateEmoji.Data;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.collect.ComparisonChain;
@@ -62,21 +47,19 @@ import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.MultiComparator;
-import com.ibm.icu.impl.Row;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.LocaleDisplayNames;
-import com.ibm.icu.text.LocaleDisplayNames.DialectHandling;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
-import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEmoji {
+    private static final UnicodeSet FITZ_OPTIONAL = new UnicodeSet("[\\u261D \\u261F \\u2639-\\u263B \\u270A-\\u270D \\U0001F3C2-\\U0001F3C4 \\U0001F3C7 \\U0001F3CA \\U0001F440-\\U0001F450 \\U0001F47F \\U0001F483 \\U0001F485 \\U0001F48B \\U0001F4AA \\U0001F58E-\\U0001F597 \\U0001F59E-\\U0001F5A3 \\U0001F5E2 \\U0001F600-\\U0001F637 \\U0001F641 \\U0001F642 \\U0001F64C \\U0001F64F \\U0001F6A3 \\U0001F6B4-\\U0001F6B6 \\U0001F6C0]");
+    private static final UnicodeSet FITZ_MINIMAL = new UnicodeSet("[\\U0001F385 \\U0001F466- \\U0001F478 \\U0001F47C \\U0001F481 \\U0001F482 \\U0001F486 \\U0001F487 \\U0001F48F \\U0001F491 \\U0001F645- \\U0001F647 \\U0001F64B \\U0001F64D \\U0001F64E]");
     private static final UnicodeSet ASCII_LETTERS = new UnicodeSet("[A-Za-z]").freeze();
     private static final boolean DATAURL = true;
     private static final int RESIZE_IMAGE = 72;
@@ -108,10 +91,14 @@ public class GenerateEmoji {
     static final UnicodeMap<String> NAME = LATEST.load(UcdProperty.Name);
     static final UnicodeSet JSOURCES = new UnicodeSet();
     static {
+        UnicodeMap<String> dcmProp = LATEST.load(UcdProperty.Emoji_DCM);
+        UnicodeMap<String> kddiProp = LATEST.load(UcdProperty.Emoji_KDDI);
+        UnicodeMap<String> sbProp = LATEST.load(UcdProperty.Emoji_SB);
+        checkDuplicates(dcmProp, kddiProp, sbProp);
         JSOURCES
-        .addAll(LATEST.load(UcdProperty.Emoji_DCM).keySet())
-        .addAll(LATEST.load(UcdProperty.Emoji_KDDI).keySet())
-        .addAll(LATEST.load(UcdProperty.Emoji_SB).keySet())
+        .addAll(dcmProp.keySet())
+        .addAll(kddiProp.keySet())
+        .addAll(sbProp.keySet())
         .removeAll(WHITESPACE.getSet(UcdPropertyValues.Binary.Yes.toString()))
         .freeze();
         if (SHOW) System.out.println("Core:\t" + JSOURCES.size() + "\t" + JSOURCES);
@@ -195,6 +182,29 @@ public class GenerateEmoji {
         return browserChars;
     }
 
+    private static void checkDuplicates(UnicodeMap<String> dcmProp, UnicodeMap<String> kddiProp, UnicodeMap<String> sbProp) {
+       Relation<String,String> carrierToUnicode = Relation.of(new TreeMap(), TreeSet.class);
+       for (Entry<String, String> unicodeToCarrier : dcmProp.entrySet()) {
+           carrierToUnicode.put(unicodeToCarrier.getValue(), unicodeToCarrier.getKey());
+       }
+       for (Entry<String, String> unicodeToCarrier : kddiProp.entrySet()) {
+           carrierToUnicode.put(unicodeToCarrier.getValue(), unicodeToCarrier.getKey());
+       }
+       for (Entry<String, String> unicodeToCarrier : sbProp.entrySet()) {
+           carrierToUnicode.put(unicodeToCarrier.getValue(), unicodeToCarrier.getKey());
+       }
+       int count = 0;
+       for (Entry<String, Set<String>> carrierAndUnicodes : carrierToUnicode.keyValuesSet()) {
+           Set<String> unicodes = carrierAndUnicodes.getValue();
+           if (unicodes.size() > 1) {
+               System.out.println(++count);
+               for (String s : unicodes) {
+                   System.out.println(carrierAndUnicodes.getKey() + "\tU+" + Utility.hex(s, " U+") + "\t" + UCharacter.getName(s, " + "));
+               }
+           }
+       }
+    }
+
     enum Style {plain, text, emoji, bestImage, refImage}
     static final Relation<Style,String> STYLE_TO_CHARS = Relation.of(new EnumMap(Style.class), TreeSet.class, CODEPOINT_COMPARE);
 
@@ -235,6 +245,12 @@ public class GenerateEmoji {
                     ANNOTATIONS_TO_CHARS.add(item, string);
                 }
             }
+        }
+        for (String s : FITZ_MINIMAL) {
+            ANNOTATIONS_TO_CHARS.add("fitz-minimal", s);
+        }
+        for (String s : FITZ_OPTIONAL) {
+            ANNOTATIONS_TO_CHARS.add("fitz-optional", s);
         }
         // for programmatic additions, take this and modify
 //        for (String s : Emoji.EMOJI_CHARS) {
@@ -639,9 +655,9 @@ public class GenerateEmoji {
                 stats.add(chars, Source.twitter, twitterCell.equals(missingCell));
                 stats.add(chars, Source.windows, windowsCell.equals(missingCell));
                 stats.add(chars, Source.gmail, gmailCell.equals(missingCell));
-                stats.add(chars, Source.sb, sbCell.equals(missingCell));
                 stats.add(chars, Source.dcm, dcmCell.equals(missingCell));
                 stats.add(chars, Source.kddi, kddiCell.equals(missingCell));
+                stats.add(chars, Source.sb, sbCell.equals(missingCell));
             }
 
             String browserCell =  "<td class='chars'>" + getEmojiVariant(chars, EMOJI_VARIANT_STRING) + "</td>\n";
@@ -669,9 +685,9 @@ public class GenerateEmoji {
                     + twitterCell
                     + windowsCell
                     + gmailCell
-                    + sbCell
                     + dcmCell
                     + kddiCell
+                    + sbCell
                     )
                     //+ browserCell
                     + (form.compareTo(Form.shortForm) <= 0 ? "" : 
@@ -748,14 +764,14 @@ public class GenerateEmoji {
             ? "<th class='cchars'>B&amp;W*</th>\n" : 
                 "<th class='cchars'>Browser</th>\n"
                 + "<th class='cchars'>B&amp;W*</th>\n"
-                + "<th class='cchars'>Apple*</th>\n"
-                + "<th class='cchars'>Andr.</th>\n"
-                + "<th class='cchars'>Twit.</th>\n"
-                + "<th class='cchars'>Wind.</th>\n"
+                + "<th class='cchars'>Apple</th>\n"
+                + "<th class='cchars'>Andr</th>\n"
+                + "<th class='cchars'>Twit</th>\n"
+                + "<th class='cchars'>Wind</th>\n"
                 + "<th class='cchars'>GMail</th>\n"
-                + "<th class='cchars'>SB</th>\n"
                 + "<th class='cchars'>DCM</th>\n"
                 + "<th class='cchars'>KDDI</th>\n"
+                + "<th class='cchars'>SB</th>\n"
                     )
                     //+ "<th class='cchars'>Browser</th>\n"
                     + (shortForm ? "" : 
@@ -1180,7 +1196,9 @@ public class GenerateEmoji {
     public static void addFileCodepoints(File imagesOutputDir, Map<String, Data> results) {
         for (File file : imagesOutputDir.listFiles()) {
             if (file.isDirectory()) {
-                addFileCodepoints(file, results);
+                if (!file.getName().equals("other")) {
+                    addFileCodepoints(file, results);
+                }
                 continue;
             }
             String s = file.getName();
