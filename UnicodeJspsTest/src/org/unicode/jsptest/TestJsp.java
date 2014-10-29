@@ -14,7 +14,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.Counter;
 import org.unicode.jsp.Common;
 import org.unicode.jsp.Idna;
 import org.unicode.jsp.Idna.IdnaType;
@@ -46,6 +45,8 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
+
+import org.unicode.cldr.util.Counter;
 
 public class TestJsp  extends TestFmwk {
 
