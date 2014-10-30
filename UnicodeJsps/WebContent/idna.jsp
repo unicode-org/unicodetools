@@ -32,7 +32,6 @@
     </tr>
 </table>
 <input id='main' type="submit" value="Show IDNA Status" onClick="window.location.href='idna.jsp?a='+document.getElementById('main').value"/>
-<a target="rules" href="idnaContextRules.txt">Context Rules</a>
 </form>
   <hr>
   <h2>Results (see <a href='#notes'>Notes</a>)</h2>
@@ -40,18 +39,19 @@
 <hr>
 <h2 id='notes'>Notes</h2>
 <ol>
-<li><a href='http://unicode.org/reports/tr46'>(draft) Unicode UTS #46: Unicode IDNA Compatibility Processing</a>
+<li><a href='http://unicode.org/reports/tr46'>Unicode UTS #46: Unicode IDNA Compatibility Processing</a>
 is designed to allow implementations to support both IDNA2008 and IDNA2003,
 without the compatibility problems resulting from the conflicts between them.</li>
 <li>The context rules are not fully implemented.</li>
 <li>Errors in labels are shown with red; the results may show &#xFFFD; if they are not determinant.</li>
-<li>The input can have hex Unicode, using the \u convention. For example, &#x2665; can be supplied as \u2665.</li>
-<li>The Punycode shown in the Input column is raw - without any mapping or transformation, 
-but breaking at dots (full stops and ideographic full stops), but not those in characters like &#x2488;)</li>
-<li>If there are accents or invisible characters they are shown on a second line with \u escapes,
+<li>The input can have hex Unicode, using the \u convention. For example, &#x2665; can be supplied as \u2665. 
+If there are accents or invisible characters they are shown on a second line with \u escapes,
 to show the difference between cases like &#x00D6; and O +  &#x0308;</li>
-<li>The behavior with of browsers with composed single characters like '&#x2488;' varies: 
-<ol><li>IE and FF map to "1" + "." <i>before</i> separating labels;</li>
+<li>The Punycode shown in the Input column is raw - without any mapping or transformation, 
+but breaking at dots (full stops and ideographic full stops), but not those in characters like 'U+2490 ( ⒐ ) DIGIT NINE FULL STOP')</li>
+<li>The behavior with of browsers with composed single characters like 'U+2490 ( ⒐ ) DIGIT NINE FULL STOP'
+(in <a href='http://lab⒐be'>http://lab⒐be</a>) varies: 
+<ol><li>IE and FF map '⒐' to "1" + "." <i>before</i> separating labels;</li>
 <li>Safari and Chrome map it <i>afterwards</i>.</li>
 </ol></li>
 </ol>
