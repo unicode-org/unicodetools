@@ -52,7 +52,7 @@ but breaking at dots (full stops and ideographic full stops), but not those in c
 (in <a target='_blank' href='http://lab&#x2490;be'>http://lab&#x2490;be</a>) varies: 
 <ol>
 <li>Chrome, Safari, and IE will fail to resolve http://lab&#x2490;be.</li>
-<li>Firefox maps '&#x2490;' to "9" + "." <i>before</i> separating labels;</li>, thus resolving http://lab&#x2490;be.
+<li>Firefox maps '&#x2490;' to "9" + "." <i>before</i> separating labels; thus resolving http://lab&#x2490;be.</li>
 </ol></li>
 </ol>
 <%@ include file="footer.jsp" %>
