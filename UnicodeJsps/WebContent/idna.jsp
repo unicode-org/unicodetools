@@ -50,8 +50,9 @@ to show the difference between cases like &#x00D6; and O +  &#x0308;</li>
 but breaking at dots (full stops and ideographic full stops), but not those in characters like 'U+2490 ( &#x2490; ) DIGIT NINE FULL STOP')</li>
 <li>The behavior with of browsers with composed single characters like 'U+2490 ( &#x2490; ) DIGIT NINE FULL STOP'
 (in <a target='_blank' href='http://lab&#x2490;be'>http://lab&#x2490;be</a>) varies: 
-<ol><li>IE and FF map '&#x2490;' to "1" + "." <i>before</i> separating labels;</li>
-<li>Safari and Chrome map it <i>afterwards</i>.</li>
+<ol>
+<li>Chrome, Safari, and IE will fail to resolve http://lab&#x2490;be.</li>
+<li>Firefox maps '&#x2490;' to "9" + "." <i>before</i> separating labels;</li>, thus resolving http://lab&#x2490;be.
 </ol></li>
 </ol>
 <%@ include file="footer.jsp" %>
