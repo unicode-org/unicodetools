@@ -56,6 +56,7 @@ import org.unicode.text.tools.GmailEmoji.Data;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
@@ -99,15 +100,18 @@ public class LoadImage extends Component {
         }
     }
 
-    static final UnicodeSet TWITTER_CHARS = new UnicodeSet(
+    static final UnicodeSet OLD_TWITTER_CHARS = new UnicodeSet(
             "[©®‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🇦-🇿🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🛅{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]");
 
-    static String inputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/images/";
+    static String inputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji_images/";
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
 
     public static void main(String[] args) throws IOException {
-        writeCharSamples(true);
+        doRef(inputDir, outputDir);
         if (true) return;
+        doTwitter(inputDir, outputDir);
+        doRef(inputDir, outputDir);
+        writeCharSamples(true);
         doAnimatedGif(false, 72);
         EmojiFlagOrder.getFlagOrder();
         TarotSuits.makeTest();
@@ -139,6 +143,24 @@ public class LoadImage extends Component {
             doGitHub(inputDir, outputDir);
             //List<BufferedImage> list = doSymbola(inputDir, outputDir, "Apple Emoji", SYMBOLA, 144); // "Symbola"
             createAnimatedImage(new File(outputDir, "animated-symbola.gif"), list, 1, false);
+        }
+    }
+
+    private static void renameCountryFlags() {
+        File dir = new File("/Users/markdavis/Google Drive/workspace/DATA/emoji_images/newCountryFlags");
+        for (File file : dir.listFiles()) {
+            String oldName = file.getName();
+            String[] parts = oldName.split("\\.");
+            if (parts.length != 2) throw new IllegalArgumentException();
+            if (parts[0].length() != 2) {
+                System.out.println("SKIPPING: " + file.getName());
+                continue;
+            }
+            String emoji = GenerateEmoji.getEmojiFromRegionCode(parts[0]);
+            String newName = "ref_" + Emoji.buildFileName(emoji,"_") + "." + parts[1];
+            File target = new File(dir + "/" + newName);
+            //System.out.println(file.getName() + "\t=>\t" + target);
+            file.renameTo(target);
         }
     }
 
@@ -315,7 +337,7 @@ public class LoadImage extends Component {
                 if (size == sourceImage.getHeight()) {
                     targetImage = sourceImage;
                 } else {
-                    targetImage = resizeImage(sourceImage, sourceImage.getHeight(), size, true);
+                    targetImage = resizeImage(sourceImage, size, size, Resizing.DEFAULT);
                 }
                 list.add(targetImage);
             }
@@ -457,15 +479,46 @@ public class LoadImage extends Component {
         return metrics;
     }
 
+    //    public static void doTwitterOld(String inputDir, String outputDir)
+    //            throws IOException {
+    //        for (String s : TWITTER_CHARS) {
+    //            String url = Emoji.TWITTER_URL.transform(s);
+    //            String core = Emoji.buildFileName(s, "_");
+    //            System.out.println(core);
+    //            BufferedImage sourceImage = ImageIO.read(new URL(url));
+    //            BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
+    //        }
+    //    }
+
     public static void doTwitter(String inputDir, String outputDir)
             throws IOException {
-        for (String s : TWITTER_CHARS) {
-            String url = Emoji.TWITTER_URL.transform(s);
-            String core = Emoji.buildFileName(s, "_");
-            System.out.println(core);
-            BufferedImage sourceImage = ImageIO.read(new URL(url));
-            BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
+        String inputDirectory = "/Users/markdavis/twemoji/72x72/";
+        UnicodeSet twitterChars = new UnicodeSet();
+        for (File file : new File(inputDirectory).listFiles()) {
+            if (file.isDirectory()) {
+                continue;
+            }
+            String name = file.getName();
+            if (name.startsWith(".")) {
+                continue;
+            }
+            String[] parts = name.split("\\.");
+            if (parts.length != 2) throw new IllegalArgumentException();
+            String core1 = Emoji.parseFileName(false, parts[0]);
+            twitterChars.add(core1);
+            String core = Emoji.buildFileName(core1, "_");
+            System.out.println(file + "\t" + core + (core.equals(parts[0]) ? "" 
+                    : "\tCHANGED"));
+            if (true) continue;
+            // emoji_u00a9.png
+            BufferedImage sourceImage = ImageIO.read(file);
+            //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
+            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
         }
+        twitterChars.freeze();
+        System.out.println("TwitterChars: " + twitterChars.toPattern(false));
+        System.out.println("Added: " + new UnicodeSet(twitterChars).removeAll(OLD_TWITTER_CHARS));
+        System.out.println("Removed: " + new UnicodeSet(OLD_TWITTER_CHARS).removeAll(twitterChars));
     }
 
     public static void doDoCoMo(String outputDir)
@@ -588,6 +641,7 @@ public class LoadImage extends Component {
     }
     public static void doRef(String inputDir, String outputDir)
             throws IOException {
+        String nepal = "NP";
         for (File file : new File(inputDir, "ref").listFiles()) {
             if (file.isDirectory()) {
                 continue;
@@ -597,12 +651,13 @@ public class LoadImage extends Component {
                 continue;
             }
             String core1 = name.substring(0, name.length()-".png".length());
+            Resizing addBorder = !core1.equals(nepal) ? Resizing.FLAG : Resizing.FLAG_NOBORDER;
             String core = Emoji.buildFileName(Emoji.getHexFromFlagCode(core1), "_");
             System.out.println(file);
             // emoji_u00a9.png
             BufferedImage sourceImage = ImageIO.read(file);
             //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
-            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/ref", "ref_" + core, 72);
+            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/ref", "ref_" + core, 108, 108, addBorder);
         }
     }
 
@@ -717,11 +772,41 @@ public class LoadImage extends Component {
         }
     }
 
+    public static class Resizing {
+        final boolean addBorder;
+        final boolean isFlag;
+        public Resizing(boolean isFlag, boolean addBorder) {
+            this.addBorder = addBorder;
+            this.isFlag = isFlag;
+        }
+        public static final Resizing 
+        DEFAULT = new Resizing(false, false),
+        FLAG = new Resizing(true, true),
+        FLAG_NOBORDER = new Resizing(true, false)
+        ;
+        @Override
+        public boolean equals(Object obj) {
+            Resizing other = (Resizing) obj; 
+            return addBorder == other.addBorder && isFlag == other.isFlag;
+        }
+        @Override
+        public int hashCode() {
+            // TODO Auto-generated method stub
+            return Objects.hashCode(addBorder, isFlag);
+        }
+    }
+    
     public static BufferedImage writeResizedImage(String name, BufferedImage sourceImage,
-            String outputDir, String outputName, int height) throws IOException {
+            String outputDir, String outputName, int heightAndWidth) throws IOException {
+        return writeResizedImage(name, sourceImage, outputDir, outputName, heightAndWidth, heightAndWidth, Resizing.DEFAULT);
+    }
+    
+    public static BufferedImage writeResizedImage(String name, BufferedImage sourceImage,
+            String outputDir, String outputName, int height, int width, Resizing resizing) throws IOException {
         int sourceHeight = sourceImage.getHeight();
+        int sourceWidth = sourceImage.getHeight();
         BufferedImage targetImage;
-        if (height == sourceHeight) {
+        if (height == sourceHeight && width == sourceWidth && !resizing.equals(Resizing.DEFAULT)) {
             targetImage = sourceImage;
         } else {
             //            System.out.println(name
@@ -729,7 +814,7 @@ public class LoadImage extends Component {
             //                    + " => " + outputName + "\t" 
             //                    + targetImage.getWidth() + ", " + targetImage.getHeight());
 
-            targetImage = resizeImage(sourceImage, sourceHeight, height, false);
+            targetImage = resizeImage(sourceImage, height, width, resizing);
         }
         writeImage(targetImage, outputDir, outputName, "png");
         //        File outputfile2 = new File(outputDir, "big-" + outputName + ".png");
@@ -745,22 +830,24 @@ public class LoadImage extends Component {
     }
 
     public static BufferedImage resizeImage(BufferedImage sourceImage,
-            int sourceHeight, int height, boolean square) {
+            int height, int width, Resizing resizing) {
+        int sourceHeight = sourceImage.getHeight();
+        int sourceWidth = sourceImage.getWidth();
         BufferedImage targetImage;
-        double scale = height / (double) sourceHeight;
-        int width = (int)(sourceImage.getWidth() * scale);
-        int targetWidth = width;
-        int targetHeight = height;
+        int targetHeight = height - (resizing.addBorder ? 2 : 0);
+        int targetWidth = (2 * sourceWidth * targetHeight + 1) / (2 * sourceHeight);
         int x = 0, y = 0;
-        if (square) {
-            if (width > height) {
-                targetWidth = width = height;
-                targetHeight = height * sourceImage.getHeight() / sourceImage.getWidth();
-                y = (height - targetHeight)/2;
+        if (targetWidth > targetHeight) {
+            targetWidth = width - (resizing.addBorder ? 2 : 0);
+            targetHeight = (2 * sourceHeight * targetWidth + 1) / (2 * sourceWidth);
+            if (targetHeight < 10 * height / 16) {
+                targetHeight = 10 * height / 16;
             }
+            y = (height - targetHeight + 1) / 2;
+//        } else if (targetHeight > 2 * height / 3) {
+//            
         }
         targetImage = new BufferedImage(width, height, IMAGE_TYPE);
-
 
         // https://abs.twimg.com/emoji/v1/72x72/231a.png
 
@@ -774,8 +861,14 @@ public class LoadImage extends Component {
         graphics.setBackground(Color.WHITE);
         graphics.clearRect(0, 0, width, height);
 
-        graphics.drawImage(sourceImage, x, y, targetWidth, targetHeight,
-                0, 0, sourceImage.getWidth(), sourceHeight,
+        if (resizing.addBorder) {
+            graphics.setPaint(Color.LIGHT_GRAY);
+            graphics.fillRect(x, y, targetWidth+2, targetHeight+2);
+            x += 1;
+            y += 1;
+        }
+        graphics.drawImage(sourceImage, x, y, x+targetWidth, y+targetHeight,
+                0, 0, sourceWidth, sourceHeight,
                 null);
         return targetImage;
     }
@@ -827,12 +920,12 @@ public class LoadImage extends Component {
         return (glyphCode > 0);
     }
 
-    static byte[] resizeImage(File file, int targetHeight, boolean square) {
+    static byte[] resizeImage(File file, int targetHeight, int targetWidth) {
         try {
             BufferedImage sourceImage = ImageIO.read(file);
             BufferedImage targetImage = sourceImage;
-            if (sourceImage.getHeight() != targetHeight || square && sourceImage.getWidth() != targetHeight) {
-                targetImage = resizeImage(sourceImage, sourceImage.getHeight(), targetHeight, square);
+            if (sourceImage.getHeight() != targetHeight || sourceImage.getWidth() != targetWidth) {
+                targetImage = resizeImage(sourceImage, targetHeight, targetHeight, Resizing.DEFAULT);
             }
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ImageOutputStream ios = new MemoryCacheImageOutputStream(outputStream);

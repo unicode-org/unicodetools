@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.StandardCodes;
@@ -47,16 +48,18 @@ public class Emoji {
         return  result.toString();
     }
     
-    static public String parseFileName(String chars, String separator) {
+    static Pattern DASH_OR_UNDERBAR = Pattern.compile("[-_]");
+    
+    static public String parseFileName(boolean hasPrefix, String chars) {
         StringBuilder result = new StringBuilder();
         int dotPos = chars.lastIndexOf('.');
         if (dotPos >= 0) {
             chars = chars.substring(0,dotPos);
         }
-        String[] parts = chars.split(separator);
+        String[] parts = DASH_OR_UNDERBAR.split(chars); //chars.split(separator);
         boolean first = true;
         for (String part : parts) {
-            if (first) {
+            if (hasPrefix && first) {
                 first = false;
                 continue;
             }
@@ -161,9 +164,9 @@ public class Emoji {
         }
     };
 
-    public static final String OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/";
+    public static final String OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/Public/emoji/1.0/";
 
-    static final String IMAGES_OUTPUT_DIR = OUTPUT_DIR + "images/";
+    static final String IMAGES_OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/images";
 
 
 

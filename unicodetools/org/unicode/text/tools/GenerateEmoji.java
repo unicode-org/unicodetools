@@ -1204,7 +1204,7 @@ public class GenerateEmoji {
             if (s.startsWith(".") || !s.endsWith(".png") || s.contains("emoji-palette")) {
                 continue;
             }
-            String chars = Emoji.parseFileName(s, "_");
+            String chars = Emoji.parseFileName(true, s);
             addNewItem(chars, results);
         }
     }
@@ -1999,7 +1999,7 @@ public class GenerateEmoji {
                     result = "images/" + filename;
                 } else {
                     byte[] bytes = RESIZE_IMAGE <= 0 ? Files.readAllBytes(file.toPath()) 
-                            : LoadImage.resizeImage(file, RESIZE_IMAGE, false);
+                            : LoadImage.resizeImage(file, RESIZE_IMAGE, RESIZE_IMAGE);
                     result = "data:image/png;base64," + Base64.encode(bytes);
                 }
                 IMAGE_CACHE.put(filename, result);
