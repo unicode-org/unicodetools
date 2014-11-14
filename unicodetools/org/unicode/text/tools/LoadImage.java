@@ -30,6 +30,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -58,6 +59,7 @@ import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;
@@ -143,24 +145,6 @@ public class LoadImage extends Component {
             doGitHub(inputDir, outputDir);
             //List<BufferedImage> list = doSymbola(inputDir, outputDir, "Apple Emoji", SYMBOLA, 144); // "Symbola"
             createAnimatedImage(new File(outputDir, "animated-symbola.gif"), list, 1, false);
-        }
-    }
-
-    private static void renameCountryFlags() {
-        File dir = new File("/Users/markdavis/Google Drive/workspace/DATA/emoji_images/newCountryFlags");
-        for (File file : dir.listFiles()) {
-            String oldName = file.getName();
-            String[] parts = oldName.split("\\.");
-            if (parts.length != 2) throw new IllegalArgumentException();
-            if (parts[0].length() != 2) {
-                System.out.println("SKIPPING: " + file.getName());
-                continue;
-            }
-            String emoji = GenerateEmoji.getEmojiFromRegionCode(parts[0]);
-            String newName = "ref_" + Emoji.buildFileName(emoji,"_") + "." + parts[1];
-            File target = new File(dir + "/" + newName);
-            //System.out.println(file.getName() + "\t=>\t" + target);
-            file.renameTo(target);
         }
     }
 
@@ -354,7 +338,7 @@ public class LoadImage extends Component {
             String core = Emoji.buildFileName(s, "_");
             System.out.println(core);
             BufferedImage sourceImage = ImageIO.read(new URL(url));
-            BufferedImage targetImage = writeResizedImage(url, sourceImage, outputDir + "/apple", "apple_" + core, 72);
+            BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/apple", "apple_" + core, 72);
         }
     }
 
@@ -459,7 +443,7 @@ public class LoadImage extends Component {
                 metrics = setFont(font, height, graphics);
             }
             String url = Emoji.APPLE_URL.transform(s);
-            BufferedImage targetImage = writeResizedImage(url, sourceImage, fileDirectory, filename, height);
+            BufferedImage targetImage = writeResizedImage(sourceImage, fileDirectory, filename, height);
             result.add(deepCopy(sourceImage));
             System.out.println(core + "\t" + s);
         }
@@ -513,7 +497,7 @@ public class LoadImage extends Component {
             // emoji_u00a9.png
             BufferedImage sourceImage = ImageIO.read(file);
             //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
-            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
+            BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/twitter", "twitter_" + core, 72);
         }
         twitterChars.freeze();
         System.out.println("TwitterChars: " + twitterChars.toPattern(false));
@@ -619,7 +603,7 @@ public class LoadImage extends Component {
             System.out.println(file);
             // emoji_u00a9.png
             BufferedImage sourceImage = ImageIO.read(file);
-            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/android", "android_" + core, 72);
+            BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/android", "android_" + core, 72);
             result.add(targetImage);
         }
         return result;
@@ -636,12 +620,11 @@ public class LoadImage extends Component {
             // emoji_u00a9.png
             BufferedImage sourceImage = ImageIO.read(file);
             //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
-            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/windows", "windows_" + core, 72);
+            BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/windows", "windows_" + core, 72);
         }
     }
     public static void doRef(String inputDir, String outputDir)
             throws IOException {
-        String nepal = "NP";
         for (File file : new File(inputDir, "ref").listFiles()) {
             if (file.isDirectory()) {
                 continue;
@@ -651,14 +634,33 @@ public class LoadImage extends Component {
                 continue;
             }
             String core1 = name.substring(0, name.length()-".png".length());
-            Resizing addBorder = !core1.equals(nepal) ? Resizing.FLAG : Resizing.FLAG_NOBORDER;
-            String core = Emoji.buildFileName(Emoji.getHexFromFlagCode(core1), "_");
-            System.out.println(file);
-            // emoji_u00a9.png
-            BufferedImage sourceImage = ImageIO.read(file);
-            //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
-            BufferedImage targetImage = writeResizedImage(name, sourceImage, outputDir + "/ref", "ref_" + core, 108, 108, addBorder);
+            Set<String> set = FLAG_REAL_TO_ALIASES.get(core1);
+            doFlags2(file.getParentFile(), core1, core1, outputDir);
+            if (set != null) {
+                for (String alias : set) {
+                    doFlags2(file.getParentFile(), core1, alias, outputDir);
+                }
+            }
         }
+    }
+
+    private static void doFlags2(File parent, String inputRegionCode, String alias, String outputDir) throws IOException {
+        Resizing addBorder = !inputRegionCode.equals("NP") ? Resizing.FLAG : Resizing.FLAG_NOBORDER;
+        String outputName = Emoji.buildFileName(Emoji.getHexFromFlagCode(alias), "_");
+        // emoji_u00a9.png
+        File input = new File(parent,inputRegionCode + ".png");
+        File output = new File(outputDir + "/ref", "ref_" + outputName);
+        if (true) {
+            System.out.println(input + " => " + output);
+        }
+        BufferedImage sourceImage;
+        try {
+            sourceImage = ImageIO.read(input);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(input.toString());
+        }
+        //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
+        BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/ref", "ref_" + outputName, 108, 108, addBorder);
     }
 
     static class FontData {
@@ -795,14 +797,14 @@ public class LoadImage extends Component {
             return Objects.hashCode(addBorder, isFlag);
         }
     }
-    
-    public static BufferedImage writeResizedImage(String name, BufferedImage sourceImage,
-            String outputDir, String outputName, int heightAndWidth) throws IOException {
-        return writeResizedImage(name, sourceImage, outputDir, outputName, heightAndWidth, heightAndWidth, Resizing.DEFAULT);
+
+    public static BufferedImage writeResizedImage(BufferedImage sourceImage, String outputDir,
+            String outputName, int heightAndWidth) throws IOException {
+        return writeResizedImage(sourceImage, outputDir, outputName, heightAndWidth, heightAndWidth, Resizing.DEFAULT);
     }
-    
-    public static BufferedImage writeResizedImage(String name, BufferedImage sourceImage,
-            String outputDir, String outputName, int height, int width, Resizing resizing) throws IOException {
+
+    public static BufferedImage writeResizedImage(BufferedImage sourceImage, String outputDir,
+            String outputName, int height, int width, Resizing resizing) throws IOException {
         int sourceHeight = sourceImage.getHeight();
         int sourceWidth = sourceImage.getHeight();
         BufferedImage targetImage;
@@ -830,24 +832,28 @@ public class LoadImage extends Component {
     }
 
     public static BufferedImage resizeImage(BufferedImage sourceImage,
-            int height, int width, Resizing resizing) {
+            int imageHeight, int imageWidth, Resizing resizing) {
         int sourceHeight = sourceImage.getHeight();
         int sourceWidth = sourceImage.getWidth();
         BufferedImage targetImage;
-        int targetHeight = height - (resizing.addBorder ? 2 : 0);
+        int borderWidth = imageWidth - (resizing.addBorder ? 2 : 0);
+        int borderHeight = imageHeight - (resizing.addBorder ? 2 : 0);
+        int targetHeight = borderHeight;
         int targetWidth = (2 * sourceWidth * targetHeight + 1) / (2 * sourceHeight);
-        int x = 0, y = 0;
-        if (targetWidth > targetHeight) {
-            targetWidth = width - (resizing.addBorder ? 2 : 0);
-            targetHeight = (2 * sourceHeight * targetWidth + 1) / (2 * sourceWidth);
-            if (targetHeight < 10 * height / 16) {
-                targetHeight = 10 * height / 16;
+        if (resizing.isFlag) {
+            if (targetWidth > targetHeight) {
+                targetWidth = borderWidth;
+                targetHeight = (2 * sourceHeight * targetWidth + 1) / (2 * sourceWidth);
+                if (targetHeight * 3 < 2 * borderHeight) {
+                    targetHeight = (4 * borderHeight + 3) / 6;
+                }
+            } else if (targetHeight * 4 > 3 * borderHeight) {
+                targetHeight = (3 * borderHeight + 2) / 4  - (resizing.addBorder ? 2 : 0);
+                targetWidth = (2 * sourceWidth * targetHeight + 1) / (2 * sourceHeight);
             }
-            y = (height - targetHeight + 1) / 2;
-//        } else if (targetHeight > 2 * height / 3) {
-//            
         }
-        targetImage = new BufferedImage(width, height, IMAGE_TYPE);
+
+        targetImage = new BufferedImage(imageWidth, imageHeight, IMAGE_TYPE);
 
         // https://abs.twimg.com/emoji/v1/72x72/231a.png
 
@@ -859,13 +865,13 @@ public class LoadImage extends Component {
                 RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graphics.setBackground(Color.WHITE);
-        graphics.clearRect(0, 0, width, height);
+        graphics.clearRect(0, 0, imageWidth, imageHeight);
 
+        int x = (imageWidth - targetWidth + 1) / 2;
+        int y = (imageHeight - targetHeight + 1) / 2;
         if (resizing.addBorder) {
             graphics.setPaint(Color.LIGHT_GRAY);
-            graphics.fillRect(x, y, targetWidth+2, targetHeight+2);
-            x += 1;
-            y += 1;
+            graphics.fillRect(x-1, y-1, targetWidth+2, targetHeight+2);
         }
         graphics.drawImage(sourceImage, x, y, x+targetWidth, y+targetHeight,
                 0, 0, sourceWidth, sourceHeight,
@@ -935,6 +941,7 @@ public class LoadImage extends Component {
             throw new IllegalArgumentException(e);
         }
     }
+
     static final String[] TAROT = {
 
     };
@@ -1072,5 +1079,22 @@ public class LoadImage extends Component {
             out.close();
         }
     }
-
+    static Relation<String,String> FLAG_REAL_TO_ALIASES = Relation.of(new HashMap(), HashSet.class);
+    static {
+        addAlias("BL", "FR");
+        addAlias("BV", "NO");
+        addAlias("GF", "FR");
+        addAlias("HM", "AU");
+        addAlias("MF", "FR");
+        addAlias("RE", "FR");
+        addAlias("SJ", "NO");
+        addAlias("TF", "FR");
+        addAlias("UM", "US");
+        addAlias("WF", "FR");
+        addAlias("YT", "FR");    
+        FLAG_REAL_TO_ALIASES.freeze();
+    }
+    private static void addAlias(String alias, String real) {
+        FLAG_REAL_TO_ALIASES.put(real, alias);
+    }
 }

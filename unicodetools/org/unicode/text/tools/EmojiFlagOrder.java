@@ -1,6 +1,5 @@
 package org.unicode.text.tools;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
@@ -16,13 +15,15 @@ import javax.imageio.ImageIO;
 
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
-import org.unicode.text.tools.GenerateEmoji.Source;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+import com.google.common.collect.ComparisonChain;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.util.ULocale;
 
 public class EmojiFlagOrder {
 
@@ -82,23 +83,24 @@ public class EmojiFlagOrder {
             return result;
         }
 
-    private static final int BLUE_FACTOR = 19;
-    private static final int GREEN_FACTOR = 183;
-    private static final int RED_FACTOR = 54;
+        private static final int BLUE_FACTOR = 19;
+        private static final int GREEN_FACTOR = 183;
+        private static final int RED_FACTOR = 54;
 
-    int getLuminance() {
-        // red, green, blue are 0..255
-        return (RED_FACTOR * red + GREEN_FACTOR * green + BLUE_FACTOR * blue) >> 8;
-    }
+        int getLuminance() {
+            // red, green, blue are 0..255
+            return (RED_FACTOR * red + GREEN_FACTOR * green + BLUE_FACTOR * blue) >> 8;
+        }
 
-    public HSB getContrast() {
-        int lum = getLuminance();
-        int contrast = lum < 0x6F ? lum + 0x40 : lum - 0x40;
-        return make(contrast, contrast, contrast);
-    }
+        public HSB getContrast() {
+            int lum = getLuminance();
+            int contrast = lum < 0x6F ? lum + 0x40 : lum - 0x40;
+            return make(contrast, contrast, contrast);
+        }
     }
 
     static class ImageInfo implements Comparable<ImageInfo> {
+        private String name;
         private long overall;
         private long count;
         private Set<R2<Long, HSB>> colorDistribution;
@@ -109,7 +111,11 @@ public class EmojiFlagOrder {
          * @param image
          * @return
          */
-        ImageInfo (BufferedImage image) {
+        ImageInfo (String name, BufferedImage image) {
+            this.name = name;
+            if (image == null) {
+                return;
+            }
             final WritableRaster raster = image.getRaster();
             //        final SampleModel sampleModel = raster.getSampleModel();
             //        System.out.println(sampleModel);
@@ -168,17 +174,17 @@ public class EmojiFlagOrder {
                     //                }
                 }
             }
-//            overall = Math.round(distance/(double)count);
+            //            overall = Math.round(distance/(double)count);
             overall = -lumTotal*1000/count;
 
         }
         @Override
         public int compareTo(ImageInfo o) {
-            long diff = overall - o.overall;
-            if (diff != 0) {
-                return diff < 0 ? -1 : 1;
-            }
-            return currentOrder - o.currentOrder;
+            return ComparisonChain.start()
+                    .compare(name,o.name, GenerateEmoji.UCA_COLLATOR)
+                    .compare(overall, o.overall)
+                    .compare(currentOrder, o.currentOrder)
+                    .result();
         }
     }
     public static HSB getHSB(int x, int y, final WritableRaster raster, final ColorModel colorModel) {
@@ -199,6 +205,7 @@ public class EmojiFlagOrder {
 
     static void getFlagOrder() throws IOException {
         Set<Pair<ImageInfo,String>> sorted = new TreeSet<>();
+        LocaleDisplayNames localeDisplayNames = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
         for (String s : Emoji.EMOJI_CHARS) {
             if (!Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 continue;
@@ -212,16 +219,18 @@ public class EmojiFlagOrder {
                 sourceImage = ImageIO.read(file);
             } catch (Exception e) {
                 System.out.println("Can't read: " + file);
-                continue;
+                sourceImage = null;
             }
-            ImageInfo info = new ImageInfo(sourceImage);
-            sorted.add(new Pair(info,s));
+            String sortString = localeDisplayNames.regionDisplayName(Emoji.getRegionCodeFromEmoji(s));
+            ImageInfo info = new ImageInfo(sortString, sourceImage);
+            sorted.add(new Pair<>(info,s));
         }
         NumberFormat percent = NumberFormat.getPercentInstance();
         percent.setMaximumFractionDigits(2);
         percent.setMinimumFractionDigits(2);
         NumberFormat percent2 = NumberFormat.getPercentInstance();
         double base = -1;
+        StringBuilder emojiList = new StringBuilder();
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, 
                 "flag-emoji-list.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Flags", "Flag list. ");
@@ -229,6 +238,7 @@ public class EmojiFlagOrder {
             for (Pair<ImageInfo, String> colorChar : sorted) {
                 final ImageInfo info = colorChar.getFirst();
                 final String codePoints = colorChar.getSecond();
+                emojiList.append(codePoints).append(' ');
                 if (base < 0) {
                     base = info.overall;
                 }
@@ -239,17 +249,21 @@ public class EmojiFlagOrder {
                         + "</td><td>" + percent2.format(info.overall/base)
                         + "</td>");
                 int limit = 15;
-                for (R2<Long, HSB> item : info.colorDistribution) {
-                    HSB color = item.get1();
-                    HSB inverse = color.getContrast();
-                    out.println("<td style='background-color:#" + color.toString() +
-                            ";color:#" + inverse.toString() +
-                            "'>" + percent.format(item.get0()/(double)info.count) + " " + item.get1() + "</td>");
-                    if (--limit < 0) break;
+                if (info.colorDistribution != null) {
+                    for (R2<Long, HSB> item : info.colorDistribution) {
+                        HSB color = item.get1();
+                        HSB inverse = color.getContrast();
+                        out.println("<td style='background-color:#" + color.toString() +
+                                ";color:#" + inverse.toString() +
+                                "'>" + percent.format(item.get0()/(double)info.count) + " " + item.get1() + "</td>");
+                        if (--limit < 0) break;
+                    }
                 }
                 out.println("</tr>");
             }
-            out.println("</table></body></html>");
+            out.println("</table>");
+            out.println("<p>country-flag\t" + emojiList + "<p>");
+            out.println("</body></html>");
             GenerateEmoji.writeFooter(out);
         }
     }

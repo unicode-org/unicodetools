@@ -62,7 +62,7 @@ public class GenerateEmoji {
     private static final UnicodeSet FITZ_MINIMAL = new UnicodeSet("[\\U0001F385 \\U0001F466- \\U0001F478 \\U0001F47C \\U0001F481 \\U0001F482 \\U0001F486 \\U0001F487 \\U0001F48F \\U0001F491 \\U0001F645- \\U0001F647 \\U0001F64B \\U0001F64D \\U0001F64E]");
     private static final UnicodeSet ASCII_LETTERS = new UnicodeSet("[A-Za-z]").freeze();
     private static final boolean DATAURL = true;
-    private static final int RESIZE_IMAGE = 72;
+    private static final int RESIZE_IMAGE = -1;
 
     private static final String BREAK = "<br>";
     private static final String DOC_DATA_FILES = "index.html#Data_Files";
@@ -76,7 +76,7 @@ public class GenerateEmoji {
     static final Set<String> SKIP_WORDS = new HashSet(Arrays.asList("with", "a", "in", "without", "and", "white", "symbol", "sign", "for", "of", "black"));
 
     static final IndexUnicodeProperties LATEST = IndexUnicodeProperties.make(Default.ucdVersion());
-    private static final UCA UCA_COLLATOR = UCA.buildCollator(null);
+    static final UCA UCA_COLLATOR = UCA.buildCollator(null);
 
     static final UnicodeMap<String> STANDARDIZED_VARIANT = LATEST.load(UcdProperty.Standardized_Variant);
     static final UnicodeMap<String> VERSION = LATEST.load(UcdProperty.Age);
@@ -276,7 +276,7 @@ public class GenerateEmoji {
                     && name.contains("montenegro")) {
                 continue;
             }
-            String emoji = getEmojiFromRegionCode(regionCode);
+            String emoji = Emoji.getEmojiFromRegionCode(regionCode);
             //System.out.println(regionCode + "=>" + name);
             addParts(emoji, name);
         }
@@ -427,7 +427,7 @@ public class GenerateEmoji {
         if (string.equals(" ") 
                 || string.equals(EMOJI_VARIANT_STRING) 
                 || string.equals(TEXT_VARIANT_STRING)
-                || Emoji.EXCLUDE.contains(string)) {
+                || !Emoji.EMOJI_CHARS.contains(string)) {
             return true;
         }
         return false;
@@ -919,6 +919,10 @@ public class GenerateEmoji {
                     "missing-emoji-list.html");
             EnumSet<Source> skipRef = EnumSet.allOf(Source.class);
             skipRef.remove(Source.ref);
+            skipRef.remove(Source.gmail);
+            skipRef.remove(Source.sb);
+            skipRef.remove(Source.dcm);
+            skipRef.remove(Source.kddi);
             writeHeader(out, "Missing", "Missing list of emoji characters");
             String headerRow = "<tr><th>" + "Type" + "</th>";
             for (Source type : skipRef) {
@@ -1023,13 +1027,6 @@ public class GenerateEmoji {
         }
     }
 
-    static String getEmojiFromRegionCode(String chars) {
-        return new StringBuilder()
-        .appendCodePoint(chars.charAt(0) + Emoji.FIRST_REGIONAL - 'A')
-        .appendCodePoint(chars.charAt(1) + Emoji.FIRST_REGIONAL - 'A')
-        .toString();
-    }
-    
     static String getFlagCode(String chars) {
         int firstCodepoint = chars.codePointAt(0);
         if (!Emoji.isRegionalIndicator(firstCodepoint)) {
@@ -1762,7 +1759,7 @@ public class GenerateEmoji {
     }
 
     public static void addNewItem(Data item, Map<String, Data> missingMap) {
-        if (item == null || Emoji.EXCLUDE.contains(item.chars)) {
+        if (item == null || !Emoji.EMOJI_CHARS.contains(item.chars)) {
             return;
         }
         if (missingMap.containsKey(item.chars)) {
