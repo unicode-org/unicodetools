@@ -75,10 +75,26 @@ public class Emoji {
         .toString();
         return cc;
     }
+    
+    static String getEmojiFromRegionCode(String chars) {
+        return new StringBuilder()
+        .appendCodePoint(chars.codePointAt(0) + FIRST_REGIONAL - 'A')
+        .appendCodePoint(chars.codePointAt(1) + FIRST_REGIONAL - 'A')
+        .toString();
+    }
+
+    static String getRegionCodeFromEmoji(String chars) {
+        int first = chars.codePointAt(0);
+        return new StringBuilder()
+        .appendCodePoint(first - FIRST_REGIONAL + 'A')
+        .appendCodePoint(chars.codePointAt(Character.charCount(first)) - FIRST_REGIONAL + 'A')
+        .toString();
+    }
 
     static final int FIRST_REGIONAL = 0x1F1E6;
     static final int LAST_REGIONAL = 0x1F1FF;
 
+    // 0-9
     public static final UnicodeSet EMOJI_CHARS = new UnicodeSet(
     "[●◪⛩©®‼⁉℗™ℹ↔-↙↩↪⌚⌛⌨⍾⎈⏏⏩-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎-☒☔-☠☢-☤☮☯☹-☾♈-♯♲♻♾-⚅⚐-⚜⚠⚡⚪⚫⚰⚱⚽" +
     "-⛊⛍-⛙⛛-⛡⛨⛪⛰-⛵⛷-⛺⛼-✒✔-✘✨✳✴❄❇❌❎❓-❕❗❢-❧➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕⸙〠〰〽㊗㊙🀀-🀫🀰-🂓🂠-🂮🂱-🂿🃁-🃏🃑-🃵🅰🅱🅾🅿🆎🆏🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑" +
@@ -135,6 +151,7 @@ public class Emoji {
             return  result.append(".png").toString();
         }
     };
+    
     static final Transform<String,String> TWITTER_URL = new Transform<String,String>() {
         public String transform(String s) {
             StringBuilder result = new StringBuilder("https://abs.twimg.com/emoji/v1/72x72/");
@@ -167,7 +184,8 @@ public class Emoji {
     public static final String OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/Public/emoji/1.0/";
 
     static final String IMAGES_OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/images";
-
-
-
+    
+    public static void main(String[] args) {
+        
+    }
 }
