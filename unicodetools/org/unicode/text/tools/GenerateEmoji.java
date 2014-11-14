@@ -70,7 +70,7 @@ public class GenerateEmoji {
     private static final UnicodeSet ASCII_LETTER_HYPHEN = new UnicodeSet('-', '-', 'A', 'Z', 'a', 'z', '’', '’').freeze();
     private static final UnicodeSet KEYWORD_CHARS = new UnicodeSet(ASCII_LETTER_HYPHEN).add('0','9').add(0x0020).add('+').add(':').freeze();
     private static final UnicodeSet EXTRAS = new UnicodeSet(
-            "[\\u2714\\u2716\\u303D\\u3030 \\u00A9 \\u00AE \\u2795-\\u2797 \\u27B0 \\U0001F519-\\U0001F51C {🇽🇰}]")
+            "[☦ ☪-☬ ☸ ✝ 🕉0-9\\u2714\\u2716\\u303D\\u3030 \\u00A9 \\u00AE \\u2795-\\u2797 \\u27B0 \\U0001F519-\\U0001F51C {🇽🇰}]")
     .add("*"+Emoji.ENCLOSING_KEYCAP)
     .freeze();
     static final Set<String> SKIP_WORDS = new HashSet(Arrays.asList("with", "a", "in", "without", "and", "white", "symbol", "sign", "for", "of", "black"));
@@ -142,7 +142,7 @@ public class GenerateEmoji {
         missing.removeAll(sorted);
         if (!missing.isEmpty()) {
             ORDERING_TO_CHAR.putAll("other", missing);
-            System.err.println("Missing some orderings: " + missing);
+            throw new IllegalArgumentException("Missing some orderings: " + missing);
         }
         sorted.addAll(missing);
         mp.add(sorted);
@@ -281,6 +281,11 @@ public class GenerateEmoji {
             addParts(emoji, name);
         }
         ANNOTATIONS_TO_CHARS.freeze();
+        UnicodeSet annotationCharacters = new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS.valuesSet());
+        if (!annotationCharacters.containsAll(Emoji.EMOJI_CHARS)) {
+            UnicodeSet missing = new UnicodeSet().addAll(Emoji.EMOJI_CHARS).removeAll(annotationCharacters);
+            throw new IllegalArgumentException("Missing annotations: " + missing.toPattern(false));
+        }
     }
 
     public static void addParts(String emoji, String name) {
@@ -817,7 +822,7 @@ public class GenerateEmoji {
                 return cell;
             }
         }
-        throw new IllegalArgumentException("Can't find image for: " + Utility.hex(s) + " " + getName(s));
+        throw new IllegalArgumentException("Can't find image for: " + Utility.hex(s) + " " + getName(s) + "\t" + Emoji.buildFileName(s,"_"));
     }
 
     static public String getImage(Source type, String chars) {
@@ -1115,7 +1120,7 @@ public class GenerateEmoji {
                 addNewItem(s, Data.STRING_TO_DATA);
             }
         }
-        for (String s : EXTRAS) {
+        for (String s : Emoji.EMOJI_CHARS) {
             if (!Data.STRING_TO_DATA.containsKey(s)) {
                 addNewItem(s, Data.STRING_TO_DATA);
                 if (SHOW) System.out.println(s);
