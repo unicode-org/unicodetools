@@ -11,14 +11,22 @@ public class EmojiRename {
     static final File DIR = new File("/Users/markdavis/Google Drive/workspace/DATA/emoji_images_source");
     static final Splitter DOT = Splitter.on('.');
     static final Splitter UNDERBAR = Splitter.on('_');
+    static final Splitter DASH = Splitter.on('-');
 
     public static void main(String[] args) {
         renameCountryFlags(ANDROID_TRANSFORM, "android", "android_large");
+        renameCountryFlags(TWITTER_TRANSFORM, "twitter");
+        renameCountryFlags(TWITTER_TRANSFORM, "apple", "apple_large");
     }
+    
     private static void renameCountryFlags(Transform<String,String> transform, String... subdirectories) {
         String base = subdirectories[0];
         for (String subdir : subdirectories) {
             File fileSubdir = new File(DIR,subdir);
+            if (!fileSubdir.exists()) {
+                System.out.println("Skipping missing subdirectory: " + fileSubdir);
+                continue;
+            }
             for (File file : fileSubdir.listFiles()) {
                 String oldName = file.getName();
                 if (oldName.startsWith(base)) {
@@ -33,15 +41,32 @@ public class EmojiRename {
                 String emoji = transform.transform(prefix);
                 String newName = base + "_" + Emoji.buildFileName(emoji,"_") + "." + suffix;
                 File target = new File(fileSubdir,newName);
-                if (NO_ACTION) {
-                    System.out.println(file.getName() + "\t=>\t" + target);
-                } else {
+                System.out.println(file.getName() + "\t=>\t" + target);
+                if (!NO_ACTION) {
                     file.renameTo(target);
                 }
 
             }
         }
     }
+
+    private static final Transform<String, String> TWITTER_TRANSFORM = new Transform<String, String>() {
+        @Override
+        public String transform(String prefix) {
+            String emoji = null;
+            // 1f1e8-1f1f3.png
+                StringBuilder b = new StringBuilder();
+                for (String hexes : DASH.split(prefix)) {
+                    b.appendCodePoint(Integer.parseInt(hexes,16));
+                }
+                emoji = b.toString();
+
+            if (emoji == null) {
+                throw new IllegalArgumentException(prefix);
+            }
+            return emoji;
+        }
+    };
 
     private static final Transform<String, String> ANDROID_TRANSFORM = new Transform<String, String>() {
         @Override
