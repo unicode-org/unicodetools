@@ -196,7 +196,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
         return getSortKey(null, sourceString, alternate, defaultDecomposition, AppendToCe.none);
     }
 
-    public static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 0x5);
+    public static final int CE_FFFE = UCA.makeKey(0x1, 0x20, 2);
 
     public enum AppendToCe {none, nfd, tieBreaker}
 
@@ -284,7 +284,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
             case SHIFTED:
                 if (ce == 0) {
                     weight4 = 0;
-                } else if (ce == CE_FFFE) { // variables
+                } else if (ce == CE_FFFE) {
                     weight4 = getPrimary(ce);
                     lastWasVariable = false;
                 } else if (isVariable(ce)) { // variables

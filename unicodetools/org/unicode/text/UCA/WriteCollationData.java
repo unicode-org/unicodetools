@@ -1690,8 +1690,8 @@ public class WriteCollationData {
                 {
                     cldrCollator = buildCldrCollator(false);
 
-                    cldrCollator.overrideCE("\uFFFE", 0x1, 0x20, 0x5);
-                    cldrCollator.overrideCE("\uFFFF", 0xFFFE, 0x20, 0x5);
+                    cldrCollator.overrideCE("\uFFFE", 0x1, 0x20, 2);
+                    cldrCollator.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
                 }
             }
             return cldrCollator;
@@ -1851,8 +1851,8 @@ public class WriteCollationData {
         final UCA result = UCA.buildCollator(primaryRemap);
 
         if (addFFFx) {
-            result.overrideCE("\uFFFE", 0x1, 0x20, 0x5);
-            result.overrideCE("\uFFFF", 0xFFFE, 0x20, 0x5);
+            result.overrideCE("\uFFFE", 0x1, 0x20, 2);
+            result.overrideCE("\uFFFF", 0xFFFE, 0x20, 2);
         }
 
         if (ADD_TIBETAN) {

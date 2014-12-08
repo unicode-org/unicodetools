@@ -847,7 +847,7 @@ public class FractionalUCA {
         fractionalLog.println("# SPECIAL MAX/MIN COLLATION ELEMENTS");
         fractionalLog.println();
 
-        fractionalStatistics.printAndRecord(true, "\uFFFE", 0x020000, 2, 2, "# Special LOWEST primary, for merge/interleaving");
+        fractionalStatistics.printAndRecord(true, "\uFFFE", 0x020000, 5, 5, "# Special LOWEST primary, for merge/interleaving");
         fractionalStatistics.printAndRecord(true, "\uFFFF", 0xEFFF00, 5, 5, "# Special HIGHEST primary, for ranges");
         lastTrailing.setValue(0xEFFF00, 5, 5, "\uFFFF");
 
