@@ -33,21 +33,16 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
 import javax.imageio.stream.MemoryCacheImageOutputStream;
 
-import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Factory;
@@ -60,7 +55,6 @@ import org.unicode.text.utility.Utility;
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.Relation;
-import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.lang.UScript.ScriptUsage;
@@ -107,10 +101,14 @@ public class LoadImage extends Component {
 
     static String inputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji_images/";
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
-
+    
     public static void main(String[] args) throws IOException {
-        doRef(inputDir, outputDir);
+        //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
+        doSymbola(inputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"
+
         if (true) return;
+
+        doRef(inputDir, outputDir);
         doTwitter(inputDir, outputDir);
         doRef(inputDir, outputDir);
         writeCharSamples(true);
@@ -127,9 +125,9 @@ public class LoadImage extends Component {
         UnicodeSet dingbats = canDisplay("Zapf Dingbats");
         System.out.println(dingbats);
 
-        UnicodeSet missing = new UnicodeSet("[\u00A9\u00AE\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B50\u2B55\u2E19\u3297\u3299]");
-        UnicodeSet missing2 = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
-        doSymbola(inputDir, outputDir, "ref", "ref", "Symbola", missing2, 144, true); // "Symbola"
+//        UnicodeSet missing = new UnicodeSet("[🌭🌮🌯🍾🍿🏏🏐🏑🏒🏓🏸🏹🏺🏻🏼🏽🏾🏿📿🕋🕌🕍🕎🙃🙄🛐🤀🤐🤑🤒🤓🤔🤕🤖🤗🤘🦀🦁🦂🦃🦄🧀]");
+        //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
+        doSymbola(inputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 144, true); // "Symbola"
         // doAnimatedGif();
 
         if (false) {
@@ -412,7 +410,7 @@ public class LoadImage extends Component {
                 continue;
             }
             if (useFonts) {
-                FontData font1 = FontData.getFont(s);
+                UnicodeFontData font1 = UnicodeFontData.getFont(s);
                 if (font1 == null) {
                     font = originalFont;
                     //System.err.println("No UCS font for " + Utility.hex(s));
@@ -661,117 +659,6 @@ public class LoadImage extends Component {
         }
         //BufferedImage sourceImage = ImageIO.read(new URL("http://abs.twimg.com/emoji/v1/72x72/23e9.png"));
         BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/ref", "ref_" + outputName, 108, 108, addBorder);
-    }
-
-    static class FontData {
-        final String fontName;
-        final int fontSize;
-        public FontData(String fontName, int fontSize) {
-            this.fontName = fontName;
-            this.fontSize = fontSize;
-        }
-        @Override
-        public String toString() {
-            return fontName + "," + fontSize;
-        }
-        @Override
-        public int hashCode() {
-            return fontName.hashCode() ^ fontSize;
-        }
-        @Override
-        public boolean equals(Object obj) {
-            FontData other = (FontData)obj;
-            return fontName.equals(other.fontName) && fontSize == other.fontSize;
-        }
-        static Map<FontData, FontData> KEY_TO_FONT = new HashMap<>();
-        static private FontData getFont(FontData key) {
-            FontData result = KEY_TO_FONT.get(key);
-            if (result == null) {
-                KEY_TO_FONT.put(key, key);
-                result = key;
-            }
-            return result;
-        }
-        static UnicodeMap<FontData> FONT_DATA = new UnicodeMap();
-        static public FontData getFont(int codepoint) {
-            return FONT_DATA.get(codepoint);
-        }
-        static public FontData getFont(String codepoint) {
-            return FONT_DATA.get(codepoint);
-        }
-        enum DataType {Q, X, R, I}
-        static {
-            Map<DataType,UnicodeSet> tempData = new LinkedHashMap();
-            Matcher lineMatch = Pattern.compile("([^,]*),\\s*(\\d+)(?:,\\s*(\\d+))?(.*)").matcher("");
-            Matcher m = Pattern.compile("/([QXRI])=(.*)").matcher("");
-            for (String line : FileUtilities.in(FontData.class, "CONFIG-FILE-SECTIONS.txt")) {
-                if (line.isEmpty() || line.startsWith(";")) {
-                    continue;
-                }
-                // TmsMathPak7bttPF,22 /Q=2047 /R=2047-2047
-                if (line.contains("2300")) {
-                    int debug = 0;
-                }
-                if (!lineMatch.reset(line).matches()) {
-                    throw new IllegalArgumentException("Couldn't match font line: " + line);
-                }
-                FontData key = getFont(new FontData(lineMatch.group(1).trim(), Integer.parseInt(lineMatch.group(2))));
-                tempData.clear();
-                String[] parts = lineMatch.group(4).trim().split("\\s*[ ,]\\s*");
-                for (String part : parts) {
-                    if (part.startsWith(";")) {
-                        break;
-                    } else if (part.isEmpty()) {
-                        continue;
-                    }
-                    if (!m.reset(part).matches()) {
-                        throw new IllegalArgumentException("Couldn't match font line: " + line);
-                    }
-                    // /X=0000-10FFFF /I=2000-206F
-                    String[] ranges = m.group(2).split("-");
-                    int r1 = Integer.parseInt(ranges[0],16);
-                    int r2 = ranges.length == 1 
-                            ? r1
-                                    : Integer.parseInt(ranges[1],16);
-                    tempData.put(DataType.valueOf(m.group(1)), new UnicodeSet(r1, r2));
-                }
-                ///I=2070-209F code points
-                UnicodeSet i = tempData.get(DataType.I);
-                if (i == null) {
-                    UnicodeSet q = tempData.get(DataType.Q);
-                    UnicodeSet r = tempData.get(DataType.R);
-                    if (q.getRangeStart(0) != r.getRangeStart(0)) {
-                        UnicodeSet missing = new UnicodeSet(q.getRangeStart(0),
-                                q.getRangeStart(0) + (r.getRangeEnd(0)-r.getRangeStart(0)));
-                        if (Emoji.EMOJI_CHARS.containsSome(missing)) {
-                            System.err.println("Couldn't get code points from: " + line);
-                        }
-                        continue;
-                        //throw new IllegalArgumentException("Couldn't get code points from: " + line);
-                    }
-                    i = r;
-                }
-                for (String s : i) {
-                    if (!Emoji.EMOJI_CHARS.contains(s)) {
-                        continue;
-                    }
-                    if (s.equals("\u231A")) {
-                        int debug = 0;
-                    }
-                    FontData old = FONT_DATA.get(s);
-                    if (old == null) {
-                        FONT_DATA.put(s, key); // only add new values
-                    }
-                }
-            }
-            FontData x = FONT_DATA.get("\u231A");
-            for (FontData value : FONT_DATA.values()) {
-                UnicodeSet keys = FONT_DATA.getSet(value);
-                System.out.println(keys.size() + "\t" + value + "\t" + keys);
-            }
-            UnicodeSet keys = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(FONT_DATA.keySet());
-            System.out.println(keys.size() + "\t" + "Missing" + "\t" + keys);
-        }
     }
 
     public static class Resizing {

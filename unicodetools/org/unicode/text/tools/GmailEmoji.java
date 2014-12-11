@@ -164,7 +164,18 @@ public class GmailEmoji {
     static final Set<Data> pua2data;
     static final UnicodeMap<Data> unicode2data = new UnicodeMap<Data>();
 
+    
     static {
+        /*
+         * 
+U+2762 => U+2757
+U+2603 => U+26C4
+U+2661 => U+2665
+U+2662 => U+2666
+U+270E => U+270F
+U+2711 => U+2712
+         */
+        if (true) throw new IllegalArgumentException("fix above");
         Set<Data> _pua2data = new TreeSet<Data>();
         final Splitter semi = Splitter.on("\t").trimResults();
         Data google = null;
