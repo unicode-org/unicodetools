@@ -100,7 +100,10 @@ public class Emoji {
     + "➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕⸙〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆏🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌬🌰-🍽🎀-🏎"
     + "🏔-🏷🐀-📾🔀-🔿🕊🕐-🕱🕳-🕹🖁-🖣🖥-🖩🖮-🗳🗺-🙂🙅-🙏🚀-🛏🛠-🛬🛰-🛳"
     + "{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]")
-    .removeAll(new UnicodeSet("[☫☬]"));
+    .removeAll(new UnicodeSet("[☫☬]"))
+    .removeAll(new UnicodeSet("[℗⏴-⏷●◪☙☤☼-☾♩-♯♾⚐⚑⚕⚚ ⚿⛆⛍⛐⛒⛕-⛙⛛⛜⛞-⛡⛨⛼⛾-✀✆✇✑ ❢❦❧🌢🌣🎔🎘🎜🎝🏱🏲🏶📾🔾🔿🕨-🕮🕱🖁-🖆 🖈🖉🖎🖏🖒-🖔🖗-🖣🖦🖧🖩🖮-🖰🖳-🖻🖽-🗁 🗅-🗐🗔-🗛🗟🗠🗤-🗮🗰-🗲🛆-🛈🛦-🛨🛪 🛱🛲]"))
+    .removeAll(new UnicodeSet("[🛉 🛊 🖑🗢☏☐☒☚-☜☞☟♲⛇✁✃✄✎✐✕✗✘  ♤  ♡  ♢ ♧❥🆏 ☻ ⛝ 0  1  2  3  4 5  6  7  8  9]"))
+    ;
 //    static final UnicodeSet EXCLUDE = new UnicodeSet(
 //    "[🂠-🂮 🂱-🂿 🃁-🃎 🃑-🃵 🀀-🀃 🀅-🀫 〠🕲⍾☸🀰-🂓 🙬 🙭 🙮 🙯🗴🗵🗶🗷🗸🗹★☆⛫\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549" +
 //    "☖  ☗  ⛉  ⛊  ⚀  ⚁  ⚂  ⚃  ⚄  ⚅ ♔  ♕  ♖  ♗  ♘  ♙  ♚  ♛  ♜  ♝  ♞  ♟  ⛀  ⛁  ⛂ ⛃" +
@@ -110,7 +113,7 @@ public class Emoji {
     static {
         System.out.println(EMOJI_CHARS.toPattern(false));
     }
-    
+    static final UnicodeSet FLAGS = new UnicodeSet();
     static {
         CLDRConfig config = CLDRConfig.getInstance();
         StandardCodes sc = config.getStandardCodes();
@@ -127,9 +130,10 @@ public class Emoji {
         contained.removeAll(aliasInfo.keySet());
         for (String s: contained) {
             //System.out.println(s + "\t" + config.getEnglish().getName("territory", s));
-            EMOJI_CHARS.add(getHexFromFlagCode(s));
+            FLAGS.add(getHexFromFlagCode(s));
         }
-        EMOJI_CHARS.freeze();
+        FLAGS.freeze();
+        EMOJI_CHARS.addAll(FLAGS).freeze();
     }
     
     static final Transform<String,String> APPLE_URL = new Transform<String,String>() {
@@ -182,7 +186,8 @@ public class Emoji {
 
     public static final String OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/Public/emoji/1.0/";
 
-    static final String IMAGES_OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/images";
+    static final String TR51_OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/";
+    static final String IMAGES_OUTPUT_DIR = TR51_OUTPUT_DIR + "images/";
     
     public static void main(String[] args) {
         
@@ -261,4 +266,6 @@ public class Emoji {
             //        }
             return line.substring(i, i+firstLen);
         }
+
+        static final UnicodeSet U80 = new UnicodeSet("[🌭🌮🌯🍾🍿🏏🏐🏑🏒🏓🏸🏹🏺🏻🏼🏽🏾🏿📿🕋🕌🕍🕎🙃🙄🛐🤀🤐🤑🤒🤓🤔🤕🤖🤗🤘🦀🦁🦂🦃🦄🧀]").freeze();
 }

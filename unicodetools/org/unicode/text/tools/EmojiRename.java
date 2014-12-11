@@ -17,8 +17,9 @@ public class EmojiRename {
         renameCountryFlags(ANDROID_TRANSFORM, "android", "android_large");
         renameCountryFlags(TWITTER_TRANSFORM, "twitter");
         renameCountryFlags(TWITTER_TRANSFORM, "apple", "apple_large");
+        renameCountryFlags(WINDOWS_TRANSFORM, "windows", "windows_large");
     }
-    
+
     private static void renameCountryFlags(Transform<String,String> transform, String... subdirectories) {
         String base = subdirectories[0];
         for (String subdir : subdirectories) {
@@ -29,7 +30,7 @@ public class EmojiRename {
             }
             for (File file : fileSubdir.listFiles()) {
                 String oldName = file.getName();
-                if (oldName.startsWith(base)) {
+                if (oldName.startsWith(base) || oldName.startsWith(".")) {
                     continue; // skip transformed names
                 }
                 List<String> parts = DOT.splitToList(oldName);
@@ -39,6 +40,9 @@ public class EmojiRename {
                 String prefix = parts.get(0);
                 String suffix = parts.get(1);
                 String emoji = transform.transform(prefix);
+                if (emoji == null) {
+                    continue;
+                }
                 String newName = base + "_" + Emoji.buildFileName(emoji,"_") + "." + suffix;
                 File target = new File(fileSubdir,newName);
                 System.out.println(file.getName() + "\t=>\t" + target);
@@ -50,20 +54,43 @@ public class EmojiRename {
         }
     }
 
+
+
     private static final Transform<String, String> TWITTER_TRANSFORM = new Transform<String, String>() {
         @Override
         public String transform(String prefix) {
             String emoji = null;
             // 1f1e8-1f1f3.png
-                StringBuilder b = new StringBuilder();
-                for (String hexes : DASH.split(prefix)) {
-                    b.appendCodePoint(Integer.parseInt(hexes,16));
-                }
-                emoji = b.toString();
+            StringBuilder b = new StringBuilder();
+            for (String hexes : DASH.split(prefix)) {
+                b.appendCodePoint(Integer.parseInt(hexes,16));
+            }
+            emoji = b.toString();
 
             if (emoji == null) {
                 throw new IllegalArgumentException(prefix);
             }
+            return emoji;
+        }
+    };
+
+    private static final Transform<String, String> WINDOWS_TRANSFORM = new Transform<String, String>() {
+        static final String WINDOWS_PREFIX = "glyph_0x";
+        @Override
+        public String transform(String prefix) {
+            String emoji = null;
+            // glyph_0x1f6a0.png
+            if (!prefix.startsWith(WINDOWS_PREFIX)) {
+                throw new IllegalArgumentException("«" + prefix + "»");
+            }
+            StringBuilder b = new StringBuilder();
+            String hexes = prefix.substring(WINDOWS_PREFIX.length());
+            int cp = Integer.parseInt(hexes,16);
+            if (!Emoji.EMOJI_CHARS.contains(cp)) {
+                return null; // don't change
+            }
+            b.appendCodePoint(cp);
+            emoji = b.toString();
             return emoji;
         }
     };
