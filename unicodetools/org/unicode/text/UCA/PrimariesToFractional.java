@@ -846,7 +846,7 @@ public final class PrimariesToFractional {
             final CharSequence ch2 = uca.getRepresentativePrimary(primary);
             final int ch = Character.codePointAt(ch2,0);
             final byte cat = Fractional.getFixedCategory(ch);
-            byte script = Fractional.getFixedScript(ch);
+            short script = Fractional.getFixedScript(ch);
 
             // see if we have an "infrequent" character: make it a 3 byte if so.
             // also collect data on primaries

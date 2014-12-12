@@ -49,7 +49,7 @@ class UData implements UCD_Types {
     byte lineBreak = LB_XX;
     byte joiningType = -1;
     byte joiningGroup = NO_SHAPING;
-    byte script = Unknown_Script;
+    short script = Unknown_Script;
     byte age = 0;
     
     int Bidi_Paired_Bracket = 0;
@@ -443,7 +443,7 @@ class UData implements UCD_Types {
         os.writeByte(lineBreak);
         os.writeByte(joiningType);
         os.writeByte(joiningGroup);
-        os.writeByte(script);
+        os.writeShort(script);
         os.writeByte(age);
         os.writeByte(Bidi_Paired_Bracket_Type);
     }
@@ -477,7 +477,7 @@ class UData implements UCD_Types {
         lineBreak = is.readByte();
         joiningType = is.readByte();
         joiningGroup = is.readByte();
-        script = is.readByte();
+        script = is.readShort();
         age = is.readByte();
         Bidi_Paired_Bracket_Type = is.readByte();
         fleshOut();

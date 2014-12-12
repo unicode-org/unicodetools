@@ -264,8 +264,8 @@ public final class Fractional {
         return temp.toString();
     }
 
-    /* package */ static byte getFixedScript(int ch) {
-        byte script = Default.ucd().getScript(ch);
+    /* package */ static short getFixedScript(int ch) {
+        short script = Default.ucd().getScript(ch);
         // HACK
         if (ch == 0x0F7E || ch == 0x0F7F) {
             if (script != UCD_Types.TIBETAN_SCRIPT) {

@@ -966,7 +966,7 @@ public final class ConvertUCD implements UCD_Types {
                 uData.lineBreak = Utility.lookup(fieldValue, UCD_Names.LINE_BREAK, true);
 
             } else if (fieldName.equals("sn")) {
-                uData.script = Utility.lookup(fieldValue, UCD_Names.LONG_SCRIPT, true);
+                uData.script = Utility.lookupShort(fieldValue, UCD_Names.LONG_SCRIPT, true);
                 if (DEBUG_SCRIPT && fieldValue.equals("Vai")) {
                     System.out.print("Test");
                 }

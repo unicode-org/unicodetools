@@ -92,7 +92,7 @@ public class WriteCharts implements UCD_Types {
 
         final Iterator it = set.iterator();
 
-        byte oldScript = -127;
+        short oldScript = -127;
 
         final int[] scriptCount = new int[255];
 
@@ -139,7 +139,7 @@ public class WriteCharts implements UCD_Types {
 
             final int cp = UTF16.charAt(s,0);
 
-            byte script = Default.ucd().getScript(cp);
+            short script = Default.ucd().getScript(cp);
             if (cp == 0x1DBF)
             {
                 script = UCD_Types.GREEK_SCRIPT; // 4.1.0 hack
@@ -274,7 +274,7 @@ public class WriteCharts implements UCD_Types {
             }
             final String decomp = Default.nfkd().normalize(i);
 
-            final byte script = getBestScript(decomp);
+            final short script = getBestScript(decomp);
 
             set.add(new Pair(new Integer(script == COMMON_SCRIPT ? cat + CAT_OFFSET : script),
                     new Pair(Default.ucd().getCase(decomp, FULL, FOLD),
@@ -775,7 +775,7 @@ public class WriteCharts implements UCD_Types {
     private static String showCell2(
             String sortKey,
             String s,
-            byte script,
+            short script,
             String classname) {
         final String name = Default.ucd().getName(s);
 
@@ -814,9 +814,9 @@ public class WriteCharts implements UCD_Types {
         return outline;
     }
 
-    static byte getBestScript(String s) {
+    static short getBestScript(String s) {
         int cp;
-        byte result = COMMON_SCRIPT;
+        short result = COMMON_SCRIPT;
         for (int i = 0; i < s.length(); i += UTF16.getCharCount(cp)) {
             cp = UTF16.charAt(s, i);
             result = Default.ucd().getScript(cp);
@@ -850,7 +850,7 @@ public class WriteCharts implements UCD_Types {
     static UnicodeProperty SCRIPT_EXTENSIONS = properties.getProperty("script extensions");
 
     private static void addScript(int cp, BitSet toReturn) {
-        final byte script2 = Default.ucd().getScript(cp);
+        final short script2 = Default.ucd().getScript(cp);
         if (script2 == COMMON_SCRIPT || script2 == INHERITED_SCRIPT) {
             final String scriptString = SCRIPT_EXTENSIONS.getValue(cp);
             if (scriptString == null) {
@@ -1162,7 +1162,7 @@ public class WriteCharts implements UCD_Types {
                     }
                     Utility.dot(cp);
 
-                    final byte newScript = Default.ucd().getScript(cp);
+                    final short newScript = Default.ucd().getScript(cp);
                     if (newScript != script) {
                         continue;
                     }

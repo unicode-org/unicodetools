@@ -604,7 +604,7 @@ public class MakeUnicodeFiles {
                 continue;
             }
             final String norm = Default.nfkc().normalize(i);
-            final byte script = ucd.getScript(i);
+            final short script = ucd.getScript(i);
             final BitSet scripts = ucd.getScripts(norm, normScripts);
             scripts.clear(UCD_Types.COMMON_SCRIPT);
             scripts.clear(UCD_Types.INHERITED_SCRIPT);
@@ -1147,12 +1147,12 @@ public class MakeUnicodeFiles {
         final boolean numeric = prop.getName().equals("Numeric_Value");
         bf.setValueSource(new UnicodeProperty.FilteredProperty(prop, Format.theFormat.hackMapFilter));
 
-        Collection aliases = prop.getAvailableValues();
+        Collection<String> aliases = prop.getAvailableValues();
         if (ps.orderByRangeStart) {
             if (DEBUG) {
                 System.out.println("Reordering");
             }
-            final TreeSet temp2 = new TreeSet(new RangeStartComparator(prop));
+            final TreeSet<String> temp2 = new TreeSet<String>(new RangeStartComparator(prop));
             temp2.addAll(aliases);
             aliases = temp2;
         }
@@ -1160,7 +1160,7 @@ public class MakeUnicodeFiles {
             if (DEBUG) {
                 System.out.println("Reordering");
             }
-            final TreeSet temp2 = new TreeSet(NUMERIC_STRING_COMPARATOR);
+            final TreeSet<String> temp2 = new TreeSet<String>(NUMERIC_STRING_COMPARATOR);
             temp2.addAll(aliases);
             aliases = temp2;
         }
@@ -1176,8 +1176,8 @@ public class MakeUnicodeFiles {
             //pw.println("# @missing: 0000..10FFFF; " + propName + missing);
             printDefaultValueComment(pw, propName, prop, propName != null && propName.length() != 0, missing);
         }
-        for (final Iterator it = aliases.iterator(); it.hasNext();) {
-            final String value = (String)it.next();
+        for (final Iterator<String> it = aliases.iterator(); it.hasNext();) {
+            final String value = it.next();
             if (DEBUG) {
                 System.out.println("Getting value " + value);
             }
@@ -1191,7 +1191,7 @@ public class MakeUnicodeFiles {
             }
 
             final int totalSize = s.size();
-            if (s.size() == 0) {
+            if (totalSize == 0) {
                 if (!"Canonical_Combining_Class".equals(prop.getName())) {
                     System.out.println("\tSkipping Empty: " + prop.getName() + "=" + value);
                 }
@@ -1288,9 +1288,9 @@ public class MakeUnicodeFiles {
 
     }
     //static NumberFormat nf = NumberFormat.getInstance();
-    static Comparator NUMERIC_STRING_COMPARATOR = new Comparator() {
+    static Comparator<String> NUMERIC_STRING_COMPARATOR = new Comparator<String>() {
         @Override
-        public int compare(Object o1, Object o2) {
+        public int compare(String o1, String o2) {
             if (o1 == o2) {
                 return 0;
             }
@@ -1301,8 +1301,8 @@ public class MakeUnicodeFiles {
                 return 1;
             }
             return Double.compare(
-                    Double.parseDouble((String) o1),
-                    Double.parseDouble((String) o2));
+                    Double.parseDouble(o1),
+                    Double.parseDouble(o2));
         }
 
     };
@@ -1349,16 +1349,16 @@ public class MakeUnicodeFiles {
         .showSetNames(pw, new UnicodeSet(0,0x10FFFF));
     }
 
-    static class RangeStartComparator implements Comparator {
+    static class RangeStartComparator implements Comparator<String> {
         UnicodeProperty prop;
         CompareProperties.UnicodeSetComparator comp = new CompareProperties.UnicodeSetComparator();
         RangeStartComparator(UnicodeProperty prop) {
             this.prop = prop;
         }
         @Override
-        public int compare(Object o1, Object o2) {
-            final UnicodeSet s1 = prop.getSet((String)o1);
-            final UnicodeSet s2 = prop.getSet((String)o2);
+        public int compare(String o1, String o2) {
+            final UnicodeSet s1 = prop.getSet(o1);
+            final UnicodeSet s2 = prop.getSet(o2);
             if (true) {
                 System.out.println("comparing " + o1 + ", " + o2
                         + s1.toPattern(true) + "?" + s2.toPattern(true)
@@ -1417,20 +1417,20 @@ public class MakeUnicodeFiles {
         final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "propertyDifference.txt");
         try {
             final UnicodeProperty.Factory fac = ToolUnicodePropertySource.make("4.0.1");
-            final List props = fac.getAvailableNames(
+            final List<String> props = fac.getAvailableNames(
                     (1<<UnicodeProperty.BINARY)
                     | (1<<UnicodeProperty.ENUMERATED)
                     //| (1<<UnicodeProperty.CATALOG)
                     );
-            final Set skipList = new HashSet();
+            final Set<String> skipList = new HashSet<String>();
             skipList.add("Age");
             skipList.add("Joining_Group");
             skipList.add("Canonical_Combining_Class");
 
-            for (final Iterator it = props.iterator(); it.hasNext();) {
-                final String prop1 = (String) it.next();
-                for (final Iterator it2 = props.iterator(); it2.hasNext();) {
-                    final String prop2 = (String) it2.next();
+            for (final Iterator<String> it = props.iterator(); it.hasNext();) {
+                final String prop1 = it.next();
+                for (final Iterator<String> it2 = props.iterator(); it2.hasNext();) {
+                    final String prop2 = it2.next();
                     if (prop1.equals(prop2)) {
                         continue;
                     }
@@ -1468,8 +1468,8 @@ public class MakeUnicodeFiles {
         final String skip1 = p1.getValue(0xEFFFD);
         final String skip2 = p2.getValue(0xEFFFD);
         main:
-            for (final Iterator it1 = p1.getAvailableValues().iterator(); it1.hasNext();) {
-                final String v1 = (String)it1.next();
+            for (final Iterator<String> it1 = p1.getAvailableValues().iterator(); it1.hasNext();) {
+                final String v1 = it1.next();
                 if (v1.equals(skip1)) {
                     continue;
                 }
@@ -1487,9 +1487,9 @@ public class MakeUnicodeFiles {
                 String contains = "";
                 String overlaps = "";
                 final UnicodeSet containsSet = new UnicodeSet();
-                final Set overlapsSet = new TreeSet();
-                for (final Iterator it2 = p2.getAvailableValues().iterator(); it2.hasNext();) {
-                    final String v2 = (String)it2.next();
+                final Set<String> overlapsSet = new TreeSet<String>();
+                for (final Iterator<String> it2 = p2.getAvailableValues().iterator(); it2.hasNext();) {
+                    final String v2 = it2.next();
                     if (v2.equals(skip2)) {
                         continue;
                     }
@@ -1549,10 +1549,10 @@ public class MakeUnicodeFiles {
     }
 
     static class UnicodeDataHack extends UnicodeLabel {
-        private final UnicodeProperty.Factory factory;
+        // private final UnicodeProperty.Factory factory;
         private final UnicodeProperty name;
         private final UnicodeProperty bidiMirrored;
-        private final UnicodeProperty numericValue;
+        // private final UnicodeProperty numericValue;
         private final UnicodeProperty numericType;
         private final UnicodeProperty decompositionValue;
         private final UnicodeProperty decompositionType;
@@ -1560,7 +1560,7 @@ public class MakeUnicodeFiles {
         private final UnicodeProperty combiningClass;
         private final UnicodeProperty category;
         UnicodeDataHack(UnicodeProperty.Factory factory) {
-            this.factory = factory;
+            // this.factory = factory;
             name = factory.getProperty("Name");
             category = factory.getProperty("General_Category");
             combiningClass = factory.getProperty("Canonical_Combining_Class");
@@ -1568,7 +1568,7 @@ public class MakeUnicodeFiles {
             decompositionType = factory.getProperty("Decomposition_Type");
             decompositionValue = factory.getProperty("Decomposition_Value");
             numericType = factory.getProperty("Numeric_Type");
-            numericValue = factory.getProperty("Numeric_Value");
+            // numericValue = factory.getProperty("Numeric_Value");
             bidiMirrored = factory.getProperty("Bidi_Mirrored");
             //name10
             //isoComment
