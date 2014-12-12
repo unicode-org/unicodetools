@@ -102,8 +102,8 @@ public class VerifyUCD implements UCD_Types {
 
     static abstract class SimpleProp {
         abstract String getTitle();
-        abstract byte getUnallocatedProp();
-        abstract byte getProp(int cp);
+        abstract short getUnallocatedProp();
+        abstract short getProp(int cp);
         abstract String getName(short prop);
         abstract String getCode(short prop);
 
@@ -143,12 +143,12 @@ public class VerifyUCD implements UCD_Types {
             return "General Category";
         }
         @Override
-        byte getUnallocatedProp() {
+        short getUnallocatedProp() {
             return Cn;
         }
 
         @Override
-        byte getProp(int cp) {
+        short getProp(int cp) {
             final byte cat = Default.ucd().getCategory(cp);
             if (cat == Cn && Default.ucd().getBinaryProperty(cp, Noncharacter_Code_Point)) {
                 return NC;
@@ -204,12 +204,12 @@ public class VerifyUCD implements UCD_Types {
             return "Script";
         }
         @Override
-        byte getUnallocatedProp() {
+        short getUnallocatedProp() {
             return COMMON_SCRIPT;
         }
 
         @Override
-        byte getProp(int cp) {
+        short getProp(int cp) {
             return Default.ucd().getScript(cp);
         }
         @Override
@@ -268,7 +268,7 @@ public class VerifyUCD implements UCD_Types {
 
 
 
-        byte cat;
+        short cat;
         for (int cp = 0; cp <= 0x10FFFF; ++cp) {
             Utility.dot(cp);
             if (!Default.ucd().isAllocated(cp)) {
@@ -2129,7 +2129,7 @@ E0020-E007F; [TAGGING CHARACTERS]
                 continue;
             }
             byte cat = Default.ucd().getCategory(i);
-            final byte script = Default.ucd().getScript(i);
+            final short script = Default.ucd().getScript(i);
             switch (cat) {
             case Lo: case Lt: case Ll: case Lu: case Lm: case Mc: case Sk:
                 ok = script != INHERITED_SCRIPT && script != COMMON_SCRIPT;

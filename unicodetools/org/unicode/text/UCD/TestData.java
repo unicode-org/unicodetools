@@ -74,7 +74,7 @@ public class TestData implements UCD_Types {
                 continue;
             }
             final String norm = Default.nfkc().normalize(i);
-            final byte script = ucd.getScript(i);
+            final short script = ucd.getScript(i);
             final BitSet scripts = ucd.getScripts(norm, normScripts);
             scripts.clear(UCD_Types.COMMON_SCRIPT);
             scripts.clear(UCD_Types.INHERITED_SCRIPT);

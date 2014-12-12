@@ -982,7 +982,7 @@ public final class UCD implements UCD_Types {
         return get(codePoint, false).lineBreak;
     }
 
-    public byte getScript(int codePoint) {
+    public short getScript(int codePoint) {
         if (codePoint == 0xE000) {
             codePoint += 0;
         }
@@ -990,15 +990,15 @@ public final class UCD implements UCD_Types {
     }
 
 
-    public byte getScript(String s) {
-        byte result = COMMON_SCRIPT;
+    public short getScript(String s) {
+        short result = COMMON_SCRIPT;
         if (s == null || s.length() == 0) {
             return result;
         }
         int cp;
         for (int i = 0; i < s.length(); i += UTF32.count16(cp)) {
             cp = UTF32.char32At(s, i);
-            final byte script = getScript(cp);
+            final short script = getScript(cp);
             if (script == INHERITED_SCRIPT) {
                 continue;
             }
@@ -2270,7 +2270,7 @@ to guarantee identifier closure.
         int cp;
         for (int i = 0; i < norm.length(); i += Character.charCount(cp)) {
             cp = Character.codePointAt(norm, i);
-            final byte script = getScript(cp);
+            final short script = getScript(cp);
             result.set(script & 0xFF);
         }
         return result;
@@ -2281,7 +2281,7 @@ to guarantee identifier closure.
         int cp;
         for (int i = 0; i < norm.length(); i += Character.charCount(cp)) {
             cp = Character.codePointAt(norm, i);
-            final byte script = getScript(cp);
+            final short script = getScript(cp);
             final String scriptId = getScriptID_fromIndex(script, choice);
             if (result.length() != 0) {
                 result.append(separator);

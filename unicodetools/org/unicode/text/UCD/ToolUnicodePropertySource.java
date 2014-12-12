@@ -1186,9 +1186,9 @@ isTitlecase(X) is false.
         }
 
         @Override
-        public List _getAvailableValues(List result) {
+        public List<String> _getAvailableValues(List<String> result) {
             if (result == null) {
-                result = new ArrayList();
+                result = new ArrayList<String>();
             }
             final int type = getType() & CORE_MASK;
             if (type == STRING || type == MISC) {
@@ -1201,84 +1201,84 @@ isTitlecase(X) is false.
             } else if (type == ENUMERATED || type == CATALOG) {
                 final byte style = UCD_Types.LONG;
                 final int prop = propMask >> 8;
-    String temp = null;
-    boolean titlecase = false;
-    for (int i = 0; i < 256; ++i) {
-        final boolean check = false;
-        try {
-            switch (prop) {
-            case UCD_Types.CATEGORY >> 8:
-                temp = (ucd.getCategoryID_fromIndex((byte) i, style));
-    break;
-    case UCD_Types.COMBINING_CLASS >> 8:
-        temp = (ucd.getCombiningClassID_fromIndex((short) i, style));
-    break;
-    case UCD_Types.BIDI_CLASS >> 8:
-        temp = (ucd.getBidiClassID_fromIndex((byte) i, style));
-    break;
-    case UCD_Types.DECOMPOSITION_TYPE >> 8:
-        temp = (ucd.getDecompositionTypeID_fromIndex((byte) i, style));
-    // check = temp != null;
-    break;
-    case UCD_Types.NUMERIC_TYPE >> 8:
-        temp = (ucd.getNumericTypeID_fromIndex((byte) i, style));
-    titlecase = true;
-    break;
-    case UCD_Types.EAST_ASIAN_WIDTH >> 8:
-        temp = (ucd.getEastAsianWidthID_fromIndex((byte) i, style));
-    break;
-    case UCD_Types.LINE_BREAK >> 8:
-        temp = (ucd.getLineBreakID_fromIndex((byte) i, style));
-    break;
-    case UCD_Types.JOINING_TYPE >> 8:
-        temp = (ucd.getJoiningTypeID_fromIndex((byte) i, style));
-    break;
-    case UCD_Types.JOINING_GROUP >> 8:
-        temp = (ucd.getJoiningGroupID_fromIndex((byte) i, style));
-    break;
-    case UCD_Types.SCRIPT >> 8:
-        temp = (ucd.getScriptID_fromIndex((byte) i, style));
-    titlecase = true;
-    if (UnicodeProperty.UNUSED.equals(temp)) {
-        continue;
-    }
-    if (temp != null) {
-        temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
-    }
-    break;
-    case UCD_Types.AGE >> 8:
-        temp = (ucd.getAgeID_fromIndex((byte) i, style));
-    break;
-    case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
-        temp = (ucd.getHangulSyllableTypeID_fromIndex((byte) i, style));
-    break;
-    default:
-        throw new IllegalArgumentException("Internal Error: " + prop);
+                String temp = null;
+                boolean titlecase = false;
+                for (short i = 0; i < 256; ++i) {
+                    final boolean check = false;
+                    try {
+                        switch (prop) {
+                        case UCD_Types.CATEGORY >> 8:
+                            temp = (UCD.getCategoryID_fromIndex(i, style));
+                            break;
+                        case UCD_Types.COMBINING_CLASS >> 8:
+                            temp = (UCD.getCombiningClassID_fromIndex(i, style));
+                            break;
+                        case UCD_Types.BIDI_CLASS >> 8:
+                            temp = (UCD.getBidiClassID_fromIndex(i, style));
+                            break;
+                        case UCD_Types.DECOMPOSITION_TYPE >> 8:
+                            temp = (UCD.getDecompositionTypeID_fromIndex(i, style));
+                            // check = temp != null;
+                            break;
+                        case UCD_Types.NUMERIC_TYPE >> 8:
+                            temp = (UCD.getNumericTypeID_fromIndex(i, style));
+                            titlecase = true;
+                            break;
+                        case UCD_Types.EAST_ASIAN_WIDTH >> 8:
+                            temp = (UCD.getEastAsianWidthID_fromIndex(i, style));
+                            break;
+                        case UCD_Types.LINE_BREAK >> 8:
+                            temp = (UCD.getLineBreakID_fromIndex(i, style));
+                            break;
+                        case UCD_Types.JOINING_TYPE >> 8:
+                            temp = (UCD.getJoiningTypeID_fromIndex(i, style));
+                            break;
+                        case UCD_Types.JOINING_GROUP >> 8:
+                            temp = (UCD.getJoiningGroupID_fromIndex(i, style));
+                            break;
+                        case UCD_Types.SCRIPT >> 8:
+                            temp = (UCD.getScriptID_fromIndex(i, style));
+                            titlecase = true;
+                            if (UnicodeProperty.UNUSED.equals(temp)) {
+                                continue;
+                            }
+                            if (temp != null) {
+                                temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
+                            }
+                            break;
+                        case UCD_Types.AGE >> 8:
+                            temp = (UCD.getAgeID_fromIndex(i, style));
+                            break;
+                        case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
+                            temp = (UCD.getHangulSyllableTypeID_fromIndex(i, style));
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Internal Error: " + prop);
+                    }
+                } catch (final ArrayIndexOutOfBoundsException e) {
+                    continue;
+                }
+                if (check) {
+                    System.out.println("Value: " + temp);
+                }
+                if (temp != null && temp.length() != 0 && !temp.equals(UNUSED)) {
+                    result.add(Utility.getUnskeleton(temp, titlecase));
+                }
+                if (check) {
+                    System.out.println("Value2: " + temp);
+                }
             }
-        } catch (final ArrayIndexOutOfBoundsException e) {
-            continue;
-        }
-        if (check) {
-            System.out.println("Value: " + temp);
-        }
-        if (temp != null && temp.length() != 0 && !temp.equals(UNUSED)) {
-            result.add(Utility.getUnskeleton(temp, titlecase));
-        }
-        if (check) {
-            System.out.println("Value2: " + temp);
-        }
-    }
-    // if (prop == (UCD_Types.DECOMPOSITION_TYPE>>8)) result.add("none");
-    // if (prop == (UCD_Types.JOINING_TYPE>>8)) result.add("Non_Joining");
-    // if (prop == (UCD_Types.NUMERIC_TYPE>>8)) result.add("None");
+            // if (prop == (UCD_Types.DECOMPOSITION_TYPE>>8)) result.add("none");
+            // if (prop == (UCD_Types.JOINING_TYPE>>8)) result.add("Non_Joining");
+            // if (prop == (UCD_Types.NUMERIC_TYPE>>8)) result.add("None");
             }
             return result;
         }
 
         @Override
-        public List _getNameAliases(List result) {
+        public List<String> _getNameAliases(List<String> result) {
             if (result == null) {
-                result = new ArrayList();
+                result = new ArrayList<String>();
             }
             addUnique(Utility.getUnskeleton(up.getName(UCD_Types.SHORT), false), result);
             final String longName = up.getName(UCD_Types.LONG);
@@ -1291,9 +1291,9 @@ isTitlecase(X) is false.
         }
 
         @Override
-        public List _getValueAliases(String valueAlias, List result) {
+        public List<String> _getValueAliases(String valueAlias, List<String> result) {
             if (result == null) {
-                result = new ArrayList();
+                result = new ArrayList<String>();
             }
             final int type = getType() & CORE_MASK;
             if (type == STRING || type == MISC || type == NUMERIC) {
@@ -1303,56 +1303,54 @@ isTitlecase(X) is false.
                 // UnicodeProperty.addUnique(valueAlias, result);
                 return lookup(valueAlias, UCD_Names.YN_TABLE_LONG, UCD_Names.YN_TABLE, YNTF, result);
             } else if (type == ENUMERATED || type == CATALOG) {
-                final byte style = UCD_Types.LONG;
                 final int prop = propMask >> 8;
-                final boolean titlecase = false;
                 for (int i = 0; i < 256; ++i) {
                     try {
                         switch (prop) {
                         case UCD_Types.CATEGORY >> 8:
                             return lookup(valueAlias, UCD_Names.LONG_GENERAL_CATEGORY,
                                     UCD_Names.GENERAL_CATEGORY, UCD_Names.EXTRA_GENERAL_CATEGORY, result);
-                case UCD_Types.COMBINING_CLASS >> 8:
-                    addUnique(String.valueOf(0xFF & Utility.lookup(valueAlias,
-                            UCD_Names.LONG_COMBINING_CLASS, true)), result);
-                return lookup(valueAlias, UCD_Names.LONG_COMBINING_CLASS,
-                        UCD_Names.COMBINING_CLASS, null, result);
-                case UCD_Types.BIDI_CLASS >> 8:
-                    return lookup(valueAlias, UCD_Names.LONG_BIDI_CLASS, UCD_Names.BIDI_CLASS, null,
-                            result);
-                case UCD_Types.DECOMPOSITION_TYPE >> 8:
-                    lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE, FIXED_DECOMPOSITION_TYPE,
-                            null, result);
-                return lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE,
-                        UCD_Names.DECOMPOSITION_TYPE, null, result);
-                case UCD_Types.NUMERIC_TYPE >> 8:
-                    return lookup(valueAlias, UCD_Names.LONG_NUMERIC_TYPE, UCD_Names.NUMERIC_TYPE,
-                            null, result);
-                case UCD_Types.EAST_ASIAN_WIDTH >> 8:
-                    return lookup(valueAlias, UCD_Names.LONG_EAST_ASIAN_WIDTH,
-                            UCD_Names.EAST_ASIAN_WIDTH, null, result);
-                case UCD_Types.LINE_BREAK >> 8:
-                    lookup(valueAlias, UCD_Names.LONG_LINE_BREAK, UCD_Names.LINE_BREAK, null, result);
-                if (valueAlias.equals("Inseparable")) {
-                    addUnique("Inseperable", result);
-                }
-                // Inseparable; Inseperable
-                return result;
-                case UCD_Types.JOINING_TYPE >> 8:
-                    return lookup(valueAlias, UCD_Names.LONG_JOINING_TYPE, UCD_Names.JOINING_TYPE,
-                            null, result);
-                case UCD_Types.JOINING_GROUP >> 8:
-                    return lookup(valueAlias, UCD_Names.JOINING_GROUP, UCD_Names.JOINING_GROUP, ALIAS_JOINING_GROUP, result);
-                case UCD_Types.SCRIPT >> 8:
-                    return lookup(valueAlias, UCD_Names.LONG_SCRIPT, UCD_Names.SCRIPT,
-                            UCD_Names.EXTRA_SCRIPT, result);
-                case UCD_Types.AGE >> 8:
-                    return lookup(valueAlias, UCD_Names.LONG_AGE, UCD_Names.SHORT_AGE, null, result);
-                case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
-                    return lookup(valueAlias, UCD_Names.LONG_HANGUL_SYLLABLE_TYPE,
-                            UCD_Names.HANGUL_SYLLABLE_TYPE, null, result);
-                default:
-                    throw new IllegalArgumentException("Internal Error: " + prop);
+                        case UCD_Types.COMBINING_CLASS >> 8:
+                            addUnique(String.valueOf(Utility.lookupShort(valueAlias,
+                                    UCD_Names.LONG_COMBINING_CLASS, true)), result);
+                        return lookup(valueAlias, UCD_Names.LONG_COMBINING_CLASS,
+                                UCD_Names.COMBINING_CLASS, null, result);
+                        case UCD_Types.BIDI_CLASS >> 8:
+                            return lookup(valueAlias, UCD_Names.LONG_BIDI_CLASS, UCD_Names.BIDI_CLASS, null,
+                                    result);
+                        case UCD_Types.DECOMPOSITION_TYPE >> 8:
+                            lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE, FIXED_DECOMPOSITION_TYPE,
+                                    null, result);
+                        return lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE,
+                                UCD_Names.DECOMPOSITION_TYPE, null, result);
+                        case UCD_Types.NUMERIC_TYPE >> 8:
+                            return lookup(valueAlias, UCD_Names.LONG_NUMERIC_TYPE, UCD_Names.NUMERIC_TYPE,
+                                    null, result);
+                        case UCD_Types.EAST_ASIAN_WIDTH >> 8:
+                            return lookup(valueAlias, UCD_Names.LONG_EAST_ASIAN_WIDTH,
+                                    UCD_Names.EAST_ASIAN_WIDTH, null, result);
+                        case UCD_Types.LINE_BREAK >> 8:
+                            lookup(valueAlias, UCD_Names.LONG_LINE_BREAK, UCD_Names.LINE_BREAK, null, result);
+                            if (valueAlias.equals("Inseparable")) {
+                                addUnique("Inseperable", result);
+                            }
+                            // Inseparable; Inseperable
+                            return result;
+                        case UCD_Types.JOINING_TYPE >> 8:
+                            return lookup(valueAlias, UCD_Names.LONG_JOINING_TYPE, UCD_Names.JOINING_TYPE,
+                                    null, result);
+                        case UCD_Types.JOINING_GROUP >> 8:
+                            return lookup(valueAlias, UCD_Names.JOINING_GROUP, UCD_Names.JOINING_GROUP, ALIAS_JOINING_GROUP, result);
+                        case UCD_Types.SCRIPT >> 8:
+                            return lookup(valueAlias, UCD_Names.LONG_SCRIPT, UCD_Names.SCRIPT,
+                                    UCD_Names.EXTRA_SCRIPT, result);
+                        case UCD_Types.AGE >> 8:
+                            return lookup(valueAlias, UCD_Names.LONG_AGE, UCD_Names.SHORT_AGE, null, result);
+                        case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
+                            return lookup(valueAlias, UCD_Names.LONG_HANGUL_SYLLABLE_TYPE,
+                                    UCD_Names.HANGUL_SYLLABLE_TYPE, null, result);
+                        default:
+                            throw new IllegalArgumentException("Internal Error: " + prop);
                         }
                     } catch (final ArrayIndexOutOfBoundsException e) {
                         continue;
@@ -1369,45 +1367,45 @@ isTitlecase(X) is false.
             boolean titlecase = false;
             switch (propMask >> 8) {
             case UCD_Types.CATEGORY >> 8:
-                temp = (ucd.getCategoryID_fromIndex(ucd.getCategory(codepoint), style));
+                temp = (UCD.getCategoryID_fromIndex(ucd.getCategory(codepoint), style));
             break;
             case UCD_Types.COMBINING_CLASS >> 8:
-                temp = (ucd.getCombiningClassID_fromIndex(ucd.getCombiningClass(codepoint), style));
+                temp = (UCD.getCombiningClassID_fromIndex(ucd.getCombiningClass(codepoint), style));
             // if (temp.startsWith("Fixed_")) temp = temp.substring(6);
             break;
             case UCD_Types.BIDI_CLASS >> 8:
-                temp = (ucd.getBidiClassID_fromIndex(ucd.getBidiClass(codepoint), style));
+                temp = (UCD.getBidiClassID_fromIndex(ucd.getBidiClass(codepoint), style));
             break;
             case UCD_Types.DECOMPOSITION_TYPE >> 8:
-                temp = (ucd.getDecompositionTypeID_fromIndex(ucd.getDecompositionType(codepoint), style));
+                temp = (UCD.getDecompositionTypeID_fromIndex(ucd.getDecompositionType(codepoint), style));
             if (temp == null || temp.length() == 0) {
                 temp = "none";
             }
             break;
             case UCD_Types.NUMERIC_TYPE >> 8:
-                temp = (ucd.getNumericTypeID_fromIndex(ucd.getNumericType(codepoint), style));
+                temp = (UCD.getNumericTypeID_fromIndex(ucd.getNumericType(codepoint), style));
             titlecase = true;
             if (temp == null || temp.length() == 0) {
                 temp = "None";
             }
             break;
             case UCD_Types.EAST_ASIAN_WIDTH >> 8:
-                temp = (ucd.getEastAsianWidthID_fromIndex(ucd.getEastAsianWidth(codepoint), style));
+                temp = (UCD.getEastAsianWidthID_fromIndex(ucd.getEastAsianWidth(codepoint), style));
             break;
             case UCD_Types.LINE_BREAK >> 8:
-                temp = (ucd.getLineBreakID_fromIndex(ucd.getLineBreak(codepoint), style));
+                temp = (UCD.getLineBreakID_fromIndex(ucd.getLineBreak(codepoint), style));
             break;
             case UCD_Types.JOINING_TYPE >> 8:
-                temp = (ucd.getJoiningTypeID_fromIndex(ucd.getJoiningType(codepoint), style));
+                temp = (UCD.getJoiningTypeID_fromIndex(ucd.getJoiningType(codepoint), style));
             if (temp == null || temp.length() == 0) {
                 temp = "Non_Joining";
             }
             break;
             case UCD_Types.JOINING_GROUP >> 8:
-                temp = (ucd.getJoiningGroupID_fromIndex(ucd.getJoiningGroup(codepoint), style));
+                temp = (UCD.getJoiningGroupID_fromIndex(ucd.getJoiningGroup(codepoint), style));
             break;
             case UCD_Types.SCRIPT >> 8:
-                temp = (ucd.getScriptID_fromIndex(ucd.getScript(codepoint), style));
+                temp = (UCD.getScriptID_fromIndex(ucd.getScript(codepoint), style));
             if (temp != null) {
                 temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
             }
@@ -1417,8 +1415,7 @@ isTitlecase(X) is false.
                 temp = getAge(codepoint);
             break;
             case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
-                temp = (ucd
-                        .getHangulSyllableTypeID_fromIndex(ucd.getHangulSyllableType(codepoint), style));
+                temp = (UCD.getHangulSyllableTypeID_fromIndex(ucd.getHangulSyllableType(codepoint), style));
             break;
             }
             if (temp != null) {
@@ -1525,7 +1522,7 @@ isTitlecase(X) is false.
         // System.out.println(valueAlias + "=>");
         // System.out.println("=>" + aux[pos]);
         if (aux != null) {
-            final int pos = 0xFF & Utility.lookup(valueAlias, main, true);
+            final int pos = Utility.lookupShort(valueAlias, main, true);
             UnicodeProperty.addUnique(aux[pos], result);
         }
         UnicodeProperty.addUnique(valueAlias, result);

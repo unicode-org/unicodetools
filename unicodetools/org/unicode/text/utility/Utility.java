@@ -223,7 +223,17 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     public static byte lookup(String source, String[] target, boolean skeletonize) {
         final int result = Utility.find(source, target, skeletonize);
         if (result != -1) {
+            assert Byte.MIN_VALUE <= result && result <= Byte.MAX_VALUE;
             return (byte)result;
+        }
+        throw new ChainException("Could not find \"{0}\" in table [{1}]", new Object [] {source, Arrays.asList(target)});
+    }
+
+    public static short lookupShort(String source, String[] target, boolean skeletonize) {
+        final int result = Utility.find(source, target, skeletonize);
+        if (result != -1) {
+            assert Short.MIN_VALUE <= result && result <= Short.MAX_VALUE;
+            return (short)result;
         }
         throw new ChainException("Could not find \"{0}\" in table [{1}]", new Object [] {source, Arrays.asList(target)});
     }
