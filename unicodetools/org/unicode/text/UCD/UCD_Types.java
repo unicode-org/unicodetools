@@ -22,9 +22,9 @@ public interface UCD_Types {
 
     public static final int
     // 4E00;<CJK Ideograph, First>;Lo;0;L;;;;;N;;;;;
-    // 9FCC;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
+    // 9FD5;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;;
     CJK_BASE = 0x4E00,
-    CJK_LIMIT = 0x9FCC+1,
+    CJK_LIMIT = 0x9FD5+1,
 
     CJK_COMPAT_USED_BASE = 0xFA0E,
     CJK_COMPAT_USED_LIMIT = 0xFA2F+1,
@@ -51,7 +51,12 @@ public interface UCD_Types {
     //2B81D;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;;
 
     CJK_D_BASE = 0x2B740,
-    CJK_D_LIMIT = 0x2B81D+1
+    CJK_D_LIMIT = 0x2B81D+1,
+
+    // 2B820;<CJK Ideograph Extension E, First>;Lo;0;L;;;;;N;;;;;
+    // 2CEA1;<CJK Ideograph Extension E, Last>;Lo;0;L;;;;;N;;;;;
+    CJK_E_BASE = 0x2B820,
+    CJK_E_LIMIT = 0x2CEA1+1
 
     // when adding to this list, look for all occurrences (in project) of CJK_C_BASE and CJK_C_LIMIT to check for code that needs changing.
     ;
@@ -491,7 +496,13 @@ public interface UCD_Types {
     Khudawadi = 125,
     Tirhuta = 126,
     Warang_Citi = 127,
-    LIMIT_SCRIPT = Warang_Citi + 1;
+    Ahom = 128,
+    Anatolian_Hieroglyphs = 129,
+    Hatran = 130,
+    Multani = 131,
+    Old_Hungarian = 132,
+    Sign_Writing = 133,
+    LIMIT_SCRIPT = Sign_Writing + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte
@@ -515,7 +526,8 @@ public interface UCD_Types {
     AGE62 = 14,
     AGE63 = 15,
     AGE70 = 16,
-    LIMIT_AGE = AGE70 + 1; // + FIX_FOR_NEW_VERSION;
+    AGE80 = 17,
+    LIMIT_AGE = AGE80 + 1; // + FIX_FOR_NEW_VERSION;
 
     static final String[] AGE_VERSIONS = {
         "?",
@@ -535,6 +547,7 @@ public interface UCD_Types {
         "6.2.0",
         "6.3.0",
         "7.0.0",
+        "8.0.0"
     };
 
     public static byte
