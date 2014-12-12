@@ -1361,6 +1361,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         {UCD_Types.CJK_B_BASE, UCD_Types.CJK_B_LIMIT},
         {UCD_Types.CJK_C_BASE, UCD_Types.CJK_C_LIMIT},
         {UCD_Types.CJK_D_BASE, UCD_Types.CJK_D_LIMIT},
+        {UCD_Types.CJK_E_BASE, UCD_Types.CJK_E_LIMIT},
         {0xE0000, 0xE007E},
         {0xF0000, 0xF00FD},
         {0xFFF00, 0xFFFFD},

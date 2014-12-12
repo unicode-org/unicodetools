@@ -9,8 +9,8 @@ public class Settings {
     /**
      * Used for the default version.
      */
-    public static final String latestVersion = "7.0.0";
-    public static final String lastVersion = "6.3.0"; // last released version
+    public static final String latestVersion = "8.0.0";
+    public static final String lastVersion = "7.0.0"; // last released version
 
     public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(CldrUtility.getProperty("copyright", "skip"));
 

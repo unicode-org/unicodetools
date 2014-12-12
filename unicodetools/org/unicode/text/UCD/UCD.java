@@ -1342,7 +1342,10 @@ public final class UCD implements UCD_Types {
             if (ch <= 0x9FCB && rCompositeVersion >= 0x50200) {
                 return CJK_BASE;
             }
-            if (ch <  CJK_LIMIT && rCompositeVersion >= 0x60100) {
+            if (ch <= 0x9FCC && rCompositeVersion >= 0x60100) {
+                return CJK_BASE;
+            }
+            if (ch <= 0x9FD5 && rCompositeVersion >= 0x80000) {
                 return CJK_BASE;
             }
             if (ch <= 0xAC00)
@@ -1428,6 +1431,16 @@ public final class UCD implements UCD_Types {
                 }
                 if (ch < CJK_D_LIMIT) {
                     return CJK_D_BASE;
+                }
+            }
+            // 2B820..2CEA1; CJK Unified Ideographs Extension E
+            if (rCompositeVersion >= 0x80000) {
+                if (ch <= CJK_E_BASE)
+                {
+                    return ch;       // Extension E first char
+                }
+                if (ch < CJK_E_LIMIT) {
+                    return CJK_E_BASE;
                 }
             }
 
@@ -1601,6 +1614,7 @@ to guarantee identifier closure.
         case 0x20000: // Extension B
         case 0x2A700: // Extension C
         case 0x2B740: // Extension D
+        case 0x2B820: // Extension E
         case 0xAC00: // Hangul Syllable
         case 0xE000: // Private Use
         case 0xF0000: // Private Use
@@ -1690,6 +1704,7 @@ to guarantee identifier closure.
         case 0x20000: // Extension B
         case 0x2A700: // Extension C
         case 0x2B740: // Extension D
+        case 0x2B820: // Extension E
             if (fixStrings) {
                 constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
             }
@@ -1776,6 +1791,7 @@ to guarantee identifier closure.
                 || CJK_B_BASE <= bigChar && bigChar < CJK_B_LIMIT
                 || CJK_C_BASE <= bigChar && bigChar < CJK_C_LIMIT
                 || CJK_D_BASE <= bigChar && bigChar < CJK_D_LIMIT
+                || CJK_E_BASE <= bigChar && bigChar < CJK_E_LIMIT
                 );
     }
 
@@ -2087,7 +2103,8 @@ to guarantee identifier closure.
             final String longName = blockNames.get(i);
             final String shortName = longToShortBlockNames.get(longName);
             if (shortName == null) {
-                throw new IllegalArgumentException("Missing short name: update ShortBlockNames.txt");
+                throw new IllegalArgumentException("Missing short block name for " + longName
+                        + " -- update ShortBlockNames.txt");
             }
             result[0][i] = longName;
             result[1][i] = shortName;

@@ -381,6 +381,12 @@ public final class UCD_Names implements UCD_Types {
         "Khudawadi",
         "Tirhuta",
         "Warang_Citi",
+        "Ahom",
+        "Anatolian_Hieroglyphs",
+        "Hatran",
+        "Multani",
+        "Old_Hungarian",
+        "Sign_Writing",
     };
 
     public static final Relation<String,String> EXTRA_SCRIPT = new Relation(new TreeMap(), LinkedHashSet.class);
@@ -436,15 +442,6 @@ public final class UCD_Names implements UCD_Types {
         "Hano",
         "Buhd",
         "Tagb",
-        /*
-    "LIMBU",
-    "TAI_LE",
-    "LINEAR_B",
-    "UGARITIC",
-    "SHAVIAN",
-    "OSMANYA",
-    "CYPRIOT",
-         */
         "Limb",
         "Tale",
         "Linb",
@@ -527,6 +524,12 @@ public final class UCD_Names implements UCD_Types {
         "Sind",
         "Tirh",
         "Wara",
+        "Ahom",
+        "Hluw",
+        "Hatr",
+        "Mult",
+        "Hung",
+        "Sgnw",
     };
 
     static final String[] SHORT_AGE = {
@@ -547,6 +550,7 @@ public final class UCD_Names implements UCD_Types {
         "6.2",
         "6.3",
         "7.0",
+        "8.0",
     };
 
     static final String[] LONG_AGE = {
@@ -567,6 +571,7 @@ public final class UCD_Names implements UCD_Types {
         "V6_2",
         "V6_3",
         "V7_0",
+        "V8_0",
     };
 
     static final String[] GENERAL_CATEGORY = {
