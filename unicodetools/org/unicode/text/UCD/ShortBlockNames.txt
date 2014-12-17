@@ -230,7 +230,7 @@ Sup_Punctuation	;	Supplemental_Punctuation
 Sup_Symbols_And_Pictographs	;	Supplemental_Symbols_And_Pictographs
 Sup_PUA_A	;	Supplementary_Private_Use_Area_A
 Sup_PUA_B	;	Supplementary_Private_Use_Area_B
-Sutton_SignWriting	;	Sutton_Sign_Writing
+Sutton_SignWriting	;	Sutton_SignWriting
 Syloti_Nagri	;	Syloti_Nagri
 Syriac	;	Syriac
 Tagalog	;	Tagalog

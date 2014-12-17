@@ -2146,7 +2146,10 @@ to guarantee identifier closure.
                     try {
                         final int start = Integer.parseInt(blockPattern.group(1), 16);
                         final int end = Integer.parseInt(blockPattern.group(2), 16);
-                        final String name = UnicodeProperty.regularize(blockPattern.group(3).trim(), true);
+                        final String groupName = blockPattern.group(3).trim();
+                        // "Sutton_SignWriting" without the underscore that regularize() would insert.
+                        final String name = groupName.equals("Sutton SignWriting") ?
+                                "Sutton_SignWriting" : UnicodeProperty.regularize(groupName, true);
                         blockData.putAll(start,end, name);
                     } catch (final RuntimeException e) {
                         System.err.println("Failed on line " + i + "\t" + line);
