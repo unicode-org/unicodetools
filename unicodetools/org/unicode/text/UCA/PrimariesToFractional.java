@@ -132,6 +132,13 @@ public final class PrimariesToFractional {
 
         private int fractionalPrimary;
         /**
+         * FractionalUCA sets neutralSec and neutralTer to the sec/ter values
+         * when secTerToFractional==null and both values are either 0 or neutral.
+         * These values are then added to secTerToFractional when it is allocated.
+         */
+        int neutralSec = -1;
+        int neutralTer = -1;
+        /**
          * {@link PrimaryToFractional} serves as a container for {@link SecTerToFractional}.
          * {@link PrimaryToFractional} does not set or use this reference at all.
          * We just avoid yet another map from primary weights to values,

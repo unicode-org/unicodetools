@@ -22,15 +22,19 @@ public final class SecTerToFractional {
     // (= the number of flags set).
     // When we assign fractional weights, we replace the flags with those weights.
     //
+    // A separate variable remembers the lowest tertiary UCA weight seen.
+    // This is normally the NEUTRAL_TERTIARY.
+    // If it is not, then the lowest actual tertiary
+    // will be mapped to the common fractional weight.
+    // This ensures that users of the fractional data
+    // always have a common tertiary weight for every secondary weight.
+    //
     // For secondary weights greater than the common weight,
     // we use a Map from the UCA secondary to a struct that stores
     // the fractional secondary (after it has been assigned)
     // and the associated tertiaries (if there are non-trivial ones).
 
-    /**
-     * UCA max tertiary = 1F.
-     */
-    private static final int UCA_TERTIARY_LIMIT = 0x20;
+    private static final int UCA_TERTIARY_LIMIT = UCA_Types.MAX_TERTIARY + 1;
     /**
      * If true, then we store the secondary and tertiary weights
      * for CEs like [00, 00, tt] and [00, ss, tt].
@@ -44,6 +48,7 @@ public final class SecTerToFractional {
      * where ss=common, if there are any besides the common tertiary.
      */
     private final boolean isPrimaryIgnorable;
+    private int commonSecLowestUCATer;
     /**
      * Tertiaries for the 00 or common secondary weight.
      * null if only 00 and common tertiary weights.
@@ -58,6 +63,7 @@ public final class SecTerToFractional {
 
     private static final class SecondaryToFractional {
         private int fractionalSecondary;
+        private int lowestUCATer;
         /**
          * Tertiaries-to-fractional.
          */
@@ -109,17 +115,41 @@ public final class SecTerToFractional {
      */
     public void assignFractionalWeights() {
         if (commonSecTs2f != null) {
-            final int numWeights = commonSecTs2f[0];
+            int numWeights = commonSecTs2f[0];
+            int lowTer = -1;
+            int terForcedToCommon;
+            if (commonSecLowestUCATer <= UCA_Types.NEUTRAL_TERTIARY) {
+                terForcedToCommon = -1;
+            } else {
+                int secondLowestTer = commonSecLowestUCATer + 1;
+                while (secondLowestTer <= UCA_Types.MAX_TERTIARY && commonSecTs2f[secondLowestTer] == 0) {
+                    ++secondLowestTer;
+                }
+                if (secondLowestTer == UCA_Types.NORMAL_HIRAGANA_TERTIARY) {
+                    // Small or compat Hiragana -> fractional below-common weight
+                    // Normal Hiragana -> fractional common weight
+                    numWeights -= 2;
+                    lowTer = commonSecLowestUCATer;
+                    commonSecTs2f[lowTer] = 0;
+                    terForcedToCommon = UCA_Types.NORMAL_HIRAGANA_TERTIARY;
+                } else {
+                    --numWeights;
+                    terForcedToCommon = commonSecLowestUCATer;
+                }
+            }
             Fractional.WeightIterator iter;
             if (isPrimaryIgnorable) {
                 iter = Fractional.assignTertiaryWeightsForTertiaryCEs(numWeights);
             } else {
                 iter = Fractional.assignTertiaryWeightsForSecondaryCEs(numWeights);
             }
-            setFractionalTertiaries(commonSecTs2f, iter);
+            setFractionalTertiaries(commonSecTs2f, terForcedToCommon, iter);
+            if (lowTer >= 0) {
+                commonSecTs2f[lowTer] = Fractional.COMMON_TER - 2;
+            }
         }
         if (ss2f != null) {
-            final int numWeights = ss2f.size();
+            int numWeights = ss2f.size();
             Fractional.WeightIterator iter;
             if (isPrimaryIgnorable) {
                 iter = Fractional.assignSecondaryWeightsForSecondaryCEs(numWeights);
@@ -129,17 +159,30 @@ public final class SecTerToFractional {
             for (final SecondaryToFractional s2f : ss2f.values()) {
                 s2f.fractionalSecondary = iter.nextWeight();
                 if (s2f.ts2f != null) {
+                    numWeights = s2f.ts2f[0];
+                    int terForcedToCommon;
+                    if (s2f.lowestUCATer <= UCA_Types.NEUTRAL_TERTIARY) {
+                        terForcedToCommon = -1;
+                    } else {
+                        // If this assertion fails, then add code like above
+                        // for commonSecLowestUCATer & lowTer.
+                        assert s2f.lowestUCATer != UCA_Types.SMALL_HIRAGANA_TERTIARY;
+                        --numWeights;
+                        terForcedToCommon = s2f.lowestUCATer;
+                    }
                     Fractional.WeightIterator terIter;
-                    terIter = Fractional.assignTertiaryWeightsForSecondaryCEs(s2f.ts2f[0]);
-                    setFractionalTertiaries(s2f.ts2f, terIter);
+                    terIter = Fractional.assignTertiaryWeightsForSecondaryCEs(numWeights);
+                    setFractionalTertiaries(s2f.ts2f, terForcedToCommon, terIter);
                 }
             }
         }
     }
 
-    private void setFractionalTertiaries(int[] secTs2f, Fractional.WeightIterator iter) {
+    private void setFractionalTertiaries(int[] secTs2f, int terForcedToCommon, Fractional.WeightIterator iter) {
         for (int ter = UCA_Types.NEUTRAL_TERTIARY + 1; ter < secTs2f.length; ++ter) {
-            if (secTs2f[ter] != 0) {
+            if (ter == terForcedToCommon) {
+                secTs2f[ter] = Fractional.COMMON_TER;
+            } else if (secTs2f[ter] != 0) {
                 secTs2f[ter] = iter.nextWeight();
             }
         }
@@ -156,6 +199,9 @@ public final class SecTerToFractional {
                     commonSecTs2f[ter] = 1;
                     ++commonSecTs2f[0];
                 }
+            }
+            if (commonSecLowestUCATer == 0 || ter < commonSecLowestUCATer) {
+                commonSecLowestUCATer = ter;
             }
         } else {
             SecondaryToFractional s2f;
@@ -176,6 +222,9 @@ public final class SecTerToFractional {
                     s2f.ts2f[ter] = 1;
                     ++s2f.ts2f[0];
                 }
+            }
+            if (s2f.lowestUCATer == 0 || ter < s2f.lowestUCATer) {
+                s2f.lowestUCATer = ter;
             }
         }
     }
