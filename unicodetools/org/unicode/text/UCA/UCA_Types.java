@@ -24,7 +24,11 @@ public interface UCA_Types {
     public static final char LEVEL_SEPARATOR = '\u0000';
 
     static final int NEUTRAL_SECONDARY = 0x20;
+    // http://www.unicode.org/reports/tr10/#Tertiary_Weight_Table
     static final int NEUTRAL_TERTIARY = 0x02;
+    static final int SMALL_HIRAGANA_TERTIARY = 0x0D;
+    static final int NORMAL_HIRAGANA_TERTIARY = 0x0E;
+    static final int MAX_TERTIARY = 0x1F;
 
     /**
      * Uppercase and normal-Kana UCA tertiary weights.

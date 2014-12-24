@@ -1071,18 +1071,35 @@ public class FractionalUCA {
             final CEList ces = mapping.getCEs();
             for (int i = 0; i < ces.length(); ++i) {
                 final int ce = ces.at(i);
+                final int pri = CEList.getPrimary(ce);
                 final int sec = CEList.getSecondary(ce);
                 final int ter = CEList.getTertiary(ce);
-                if ((sec != 0 && sec != UCA_Types.NEUTRAL_SECONDARY) ||
-                        (ter != 0 && ter != UCA_Types.NEUTRAL_TERTIARY)) {
-                    final int pri = CEList.getPrimary(ce);
-                    final PrimaryToFractional p2f = ps2f.getPropsPinImplicit(pri);
+                final boolean isNeutralSecTer =
+                        (sec == 0 || sec == UCA_Types.NEUTRAL_SECONDARY) &&
+                        (ter == 0 || ter == UCA_Types.NEUTRAL_TERTIARY);
+                final PrimaryToFractional p2f = ps2f.getPropsPinImplicit(pri);
+                if (isNeutralSecTer) {
+                    assert p2f.neutralSec < 0 || sec == p2f.neutralSec;
+                    assert p2f.neutralTer < 0 || ter == p2f.neutralTer;
+                    p2f.neutralSec = sec;
+                    p2f.neutralTer = ter;
+                    if (p2f.secTerToFractional != null) {
+                        p2f.secTerToFractional.addUCASecondaryAndTertiary(sec, ter);
+                    }
+                } else {
                     SecTerToFractional st2f = p2f.secTerToFractional;
                     if (st2f == null) {
                         st2f = p2f.secTerToFractional = new SecTerToFractional(pri == 0);
                         allSecTerToFractional.add(st2f);
+                        if (p2f.neutralSec >= 0) {
+                            st2f.addUCASecondaryAndTertiary(p2f.neutralSec, p2f.neutralTer);
+                        }
                     }
                     st2f.addUCASecondaryAndTertiary(sec, ter);
+                }
+                if (UCA.isImplicitLeadPrimary(pri)) {
+                    // Skip trailing implicit-weight CEs. See http://www.unicode.org/reports/tr10/#Implicit_Weights
+                    ++i;
                 }
             }
         }
