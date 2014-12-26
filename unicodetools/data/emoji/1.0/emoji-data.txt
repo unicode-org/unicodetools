@@ -1,0 +1,1250 @@
+# DRAFT emoji-data.txt
+# For details about the format and other information, see /../../../reports/tr51/index.html#Data_Files.
+#
+# Format
+# Code ;	Default Style ;	Ordering ;	Annotations ;	Sources	# Version Char Name
+#
+263A ;	text ;	0 ;	face, fitz-optional, human, outlined, people-android, people-apple, relaxed, smile, smiley, smiling ;	j w 	# V1.1 (☺) white smiling face
+2639 ;	text ;	1 ;	face, fitz-optional, frowning, human ;	w 	# V1.1 (☹) white frowning face
+1F641 ;	emoji ;	2 ;	face, fitz-optional, frowning, human ;	x 	# V7.0 (🙁) slightly frowning face
+1F642 ;	emoji ;	3 ;	face, fitz-optional, human, smile, smiley, smiling ;	x 	# V7.0 (🙂) slightly smiling face
+1F600 ;	emoji ;	4 ;	face, fitz-optional, grin, grinning, human, people-android, people-apple ;	x 	# V6.1 (😀) grinning face
+1F601 ;	emoji ;	5 ;	eye, face, fitz-optional, grin, grinning, human, people-android, people-apple, smile, smiley, smiling ;	j 	# V6.0 (😁) grinning face with smiling eyes
+1F602 ;	emoji ;	6 ;	face, fitz-optional, human, joy, people-android, people-apple, tears ;	j 	# V6.0 (😂) face with tears of joy
+1F603 ;	emoji ;	7 ;	face, fitz-optional, human, mouth, open, people-android, people-apple, smile, smiley, smiling ;	j 	# V6.0 (😃) smiling face with open mouth
+1F604 ;	emoji ;	8 ;	eye, face, fitz-optional, human, mouth, open, people-android, people-apple, smile, smiley, smiling ;	j 	# V6.0 (😄) smiling face with open mouth and smiling eyes
+1F605 ;	emoji ;	9 ;	cold, face, fitz-optional, human, open, people-android, people-apple, smile, smiley, smiling, sweat ;	j 	# V6.0 (😅) smiling face with open mouth and cold sweat
+1F606 ;	emoji ;	10 ;	face, fitz-optional, human, laughing, mouth, open, people-android, people-apple, satisfied, smile, smiley, smiling ;	j 	# V6.0 (😆) smiling face with open mouth and tightly-closed eyes
+1F609 ;	emoji ;	11 ;	face, fitz-optional, human, people-android, people-apple, wink ;	j 	# V6.0 (😉) winking face
+1F60A ;	emoji ;	12 ;	blush, eye, face, fitz-optional, human, people-android, people-apple, smile, smiley, smiling ;	j 	# V6.0 (😊) smiling face with smiling eyes
+1F60B ;	emoji ;	13 ;	delicious, face, fitz-optional, food, human, people-android, people-apple, savouring, smile, smiley, smiling, um, yum ;	j 	# V6.0 (😋) face savouring delicious food
+1F60C ;	emoji ;	14 ;	face, fitz-optional, human, people-android, people-apple, relieved ;	j 	# V6.0 (😌) relieved face
+1F60D ;	emoji ;	15 ;	eye, face, fitz-optional, heart, human, love, people-android, people-apple, smile, smiley, smiling ;	j 	# V6.0 (😍) smiling face with heart-shaped eyes
+1F60E ;	emoji ;	16 ;	bright, cool, eye, face, fitz-optional, glasses, human, people-android, people-apple, smile, smiley, smiling, sun, sunglasses, weather ;	x 	# V6.0 (😎) smiling face with sunglasses
+1F60F ;	emoji ;	17 ;	face, fitz-optional, human, people-android, people-apple, smirk, smirking ;	j 	# V6.0 (😏) smirking face
+1F610 ;	emoji ;	18 ;	deadpan, face, fitz-optional, human, neutral, people-android, people-apple ;	w 	# V6.0 (😐) neutral face
+1F611 ;	emoji ;	19 ;	expressionless, face, fitz-optional, human, inexpressive, people-android, people-apple, unexpressive ;	x 	# V6.1 (😑) expressionless face
+1F612 ;	emoji ;	20 ;	face, fitz-optional, human, people-android, people-apple, unamused, unhappy ;	j 	# V6.0 (😒) unamused face
+1F613 ;	emoji ;	21 ;	cold, face, fitz-optional, human, people-android, people-apple, sweat ;	j 	# V6.0 (😓) face with cold sweat
+1F614 ;	emoji ;	22 ;	dejected, face, fitz-optional, human, pensive, people-android, people-apple ;	j 	# V6.0 (😔) pensive face
+1F615 ;	emoji ;	23 ;	confused, face, fitz-optional, human, people-android, people-apple ;	x 	# V6.1 (😕) confused face
+1F616 ;	emoji ;	24 ;	confounded, face, fitz-optional, human, people-android, people-apple ;	j 	# V6.0 (😖) confounded face
+1F617 ;	emoji ;	25 ;	face, fitz-optional, human, kiss, kissing, people-android, people-apple ;	x 	# V6.1 (😗) kissing face
+1F618 ;	emoji ;	26 ;	face, fitz-optional, heart, human, kiss, people-android, people-apple ;	j 	# V6.0 (😘) face throwing a kiss
+1F619 ;	emoji ;	27 ;	eye, face, fitz-optional, human, kiss, people-android, people-apple, smile, smiley, smiling ;	x 	# V6.1 (😙) kissing face with smiling eyes
+1F61A ;	emoji ;	28 ;	closed, eye, face, fitz-optional, human, kiss, people-android, people-apple ;	j 	# V6.0 (😚) kissing face with closed eyes
+1F61B ;	emoji ;	29 ;	face, fitz-optional, human, people-android, people-apple, stuck-out, tongue ;	x 	# V6.1 (😛) face with stuck-out tongue
+1F61C ;	emoji ;	30 ;	eye, face, fitz-optional, human, joke, people-android, people-apple, stuck-out, tongue, wink ;	j 	# V6.0 (😜) face with stuck-out tongue and winking eye
+1F61D ;	emoji ;	31 ;	eye, face, fitz-optional, horrible, human, people-android, people-apple, stuck-out, taste, tongue ;	j 	# V6.0 (😝) face with stuck-out tongue and tightly-closed eyes
+1F61E ;	emoji ;	32 ;	disappointed, face, fitz-optional, human, people-android, people-apple ;	j 	# V6.0 (😞) disappointed face
+1F61F ;	emoji ;	33 ;	face, fitz-optional, human, people-android, people-apple, worried ;	x 	# V6.1 (😟) worried face
+1F620 ;	emoji ;	34 ;	anger, angry, face, fitz-optional, human, mad, people-android, people-apple ;	j 	# V6.0 (😠) angry face
+1F621 ;	emoji ;	35 ;	anger, angry, face, fitz-optional, human, people-android, people-apple, pouting, rage, red ;	j 	# V6.0 (😡) pouting face
+1F622 ;	emoji ;	36 ;	cry, face, fitz-optional, human, people-android, people-apple, sad, tear ;	j 	# V6.0 (😢) crying face
+1F623 ;	emoji ;	37 ;	face, fitz-optional, human, people-android, people-apple, perserve, persevere, persevering ;	j 	# V6.0 (😣) persevering face
+1F624 ;	emoji ;	38 ;	face, fitz-optional, human, people-android, people-apple, triumph, won ;	j 	# V6.0 (😤) face with look of triumph
+1F625 ;	emoji ;	39 ;	disappointed, face, fitz-optional, human, people-android, people-apple, relieved, whew ;	j 	# V6.0 (😥) disappointed but relieved face
+1F626 ;	emoji ;	40 ;	face, fitz-optional, frowning, human, mouth, open, people-android, people-apple ;	x 	# V6.1 (😦) frowning face with open mouth
+1F627 ;	emoji ;	41 ;	anguished, face, fitz-optional, human, people-android, people-apple ;	x 	# V6.1 (😧) anguished face
+1F628 ;	emoji ;	42 ;	face, fear, fearful, fitz-optional, human, people-android, people-apple, scared ;	j 	# V6.0 (😨) fearful face
+1F629 ;	emoji ;	43 ;	face, fitz-optional, human, people-android, people-apple, tired, weary ;	j 	# V6.0 (😩) weary face
+1F62A ;	emoji ;	44 ;	face, fitz-optional, human, people-android, people-apple, sleepy ;	j 	# V6.0 (😪) sleepy face
+1F62B ;	emoji ;	45 ;	face, fitz-optional, human, people-android, people-apple, tired ;	j 	# V6.0 (😫) tired face
+1F62C ;	emoji ;	46 ;	face, fitz-optional, grimace, grimacing, human, people-android, people-apple ;	x 	# V6.1 (😬) grimacing face
+1F62D ;	emoji ;	47 ;	cry, face, fitz-optional, human, people-android, people-apple, sad, sob, tear, tears ;	j 	# V6.0 (😭) loudly crying face
+1F62E ;	emoji ;	48 ;	face, fitz-optional, human, mouth, open, people-android, people-apple, sympathy ;	x 	# V6.1 (😮) face with open mouth
+1F62F ;	emoji ;	49 ;	face, fitz-optional, human, hushed, people-android, people-apple, stunned, surprised ;	x 	# V6.1 (😯) hushed face
+1F630 ;	emoji ;	50 ;	blue, cold, face, fitz-optional, human, mouth, open, people-android, people-apple, rushed, sweat ;	j 	# V6.0 (😰) face with open mouth and cold sweat
+1F631 ;	emoji ;	51 ;	face, fear, fearful, fitz-optional, human, people-android, people-apple, scared, scream, screaming ;	j 	# V6.0 (😱) face screaming in fear
+1F632 ;	emoji ;	52 ;	astonished, face, fitz-optional, human, people-android, people-apple, shocked, totally ;	j 	# V6.0 (😲) astonished face
+1F633 ;	emoji ;	53 ;	dazed, face, fitz-optional, flushed, human, people-android, people-apple ;	j 	# V6.0 (😳) flushed face
+1F634 ;	emoji ;	54 ;	face, fitz-optional, human, people-android, people-apple, sleeping ;	x 	# V6.1 (😴) sleeping face
+1F635 ;	emoji ;	55 ;	dizzy, face, fitz-optional, human, people-android, people-apple ;	j 	# V6.0 (😵) dizzy face
+1F636 ;	emoji ;	56 ;	face, fitz-optional, human, mouth, people-android, people-apple, silent ;	x 	# V6.0 (😶) face without mouth
+1F637 ;	emoji ;	57 ;	cold, face, fitz-optional, human, mask, medical, people-android, people-apple, under, weather ;	j 	# V6.0 (😷) face with medical mask
+1F607 ;	emoji ;	58 ;	angel, face, fantasy, fitz-optional, halo, human, innocent, people-android, people-apple, smile, smiley, smiling ;	x 	# V6.0 (😇) smiling face with halo
+1F608 ;	emoji ;	59 ;	face, fantasy, fitz-optional, horn, human, people-android, people-apple, smile, smiley, smiling ;	x 	# V6.0 (😈) smiling face with horns
+1F47F ;	emoji ;	60 ;	devil, face, fairy tale, fantasy, fitz-optional, human, imp, people-android, people-apple ;	j 	# V6.0 (👿) imp
+1F466 ;	emoji ;	61 ;	boy, fitz-minimal, human, people-android, people-apple, person ;	j 	# V6.0 (👦) boy
+1F467 ;	emoji ;	62 ;	fitz-minimal, girl, human, people-android, people-apple, person ;	j 	# V6.0 (👧) girl
+1F468 ;	emoji ;	63 ;	fitz-minimal, human, man, people-android, people-apple, person ;	j 	# V6.0 (👨) man
+1F469 ;	emoji ;	64 ;	fitz-minimal, human, people-android, people-apple, person, woman ;	j 	# V6.0 (👩) woman
+1F474 ;	emoji ;	65 ;	fitz-minimal, human, man, old, people-android, people-apple, person ;	j 	# V6.0 (👴) older man
+1F475 ;	emoji ;	66 ;	fitz-minimal, human, old, people-android, people-apple, person, woman ;	j 	# V6.0 (👵) older woman
+1F476 ;	emoji ;	67 ;	baby, fitz-minimal, human, people-android, people-apple, person ;	j 	# V6.0 (👶) baby
+1F471 ;	emoji ;	68 ;	blond, fitz-minimal, human, people-android, people-apple, person ;	j 	# V6.0 (👱) person with blond hair
+1F46E ;	emoji ;	69 ;	cop, fitz-minimal, human, officer, people-android, people-apple, person, police ;	j 	# V6.0 (👮) police officer
+1F472 ;	emoji ;	70 ;	fitz-minimal, gua, human, man, mao, people-android, people-apple, person, pi ;	j 	# V6.0 (👲) man with gua pi mao
+1F473 ;	emoji ;	71 ;	fitz-minimal, human, man, people-android, people-apple, person, turban ;	j 	# V6.0 (👳) man with turban
+1F477 ;	emoji ;	72 ;	construction, fitz-minimal, human, people-android, people-apple, person, worker ;	j 	# V6.0 (👷) construction worker
+1F478 ;	emoji ;	73 ;	fairy tale, fantasy, fitz-minimal, human, people-android, people-apple, person, princess ;	j 	# V6.0 (👸) princess
+1F482 ;	emoji ;	74 ;	fitz-minimal, guard, guardsman, human, people-android, people-apple, person ;	j 	# V6.0 (💂) guardsman
+1F385 ;	emoji ;	75 ;	activity, celebration, christmas, fantasy, father, fitz-minimal, human, objects-apple, people-android, person, santa ;	j 	# V6.0 (🎅) father christmas
+1F47C ;	emoji ;	76 ;	angel, baby, face, fairy tale, fantasy, fitz-minimal, human, people-android, people-apple ;	j 	# V6.0 (👼) baby angel
+1F575 ;	text ;	77 ;	human, person, sleuth, spy ;	w 	# V7.0 (🕵) sleuth or spy
+1F46F ;	emoji ;	78 ;	bunny, dancers, ear, fitz-minimal, girl, human, people-android, people-apple, person, woman ;	j 	# V6.0 (👯) woman with bunny ears
+1F486 ;	emoji ;	79 ;	face, fitz-minimal, human, massage, people-android, people-apple, person, salon ;	j 	# V6.0 (💆) face massage
+1F487 ;	emoji ;	80 ;	barber, beauty, fitz-minimal, haircut, human, parlor, people-android, people-apple, person ;	j 	# V6.0 (💇) haircut
+1F470 ;	emoji ;	81 ;	bride, fitz-minimal, human, people-android, people-apple, person, veil, wedding ;	j 	# V6.0 (👰) bride with veil
+1F64D ;	emoji ;	82 ;	fitz-minimal, frowning, gesture, human, people-android, people-apple, person ;	j 	# V6.0 (🙍) person frowning
+1F64E ;	emoji ;	83 ;	face, fitz-minimal, gesture, human, people-android, people-apple, person, pouting ;	j 	# V6.0 (🙎) person with pouting face
+1F645 ;	emoji ;	84 ;	face, fitz-minimal, forbidden, gesture, human, no, not, people-android, people-apple, person, prohibited ;	j 	# V6.0 (🙅) face with no good gesture
+1F646 ;	emoji ;	85 ;	face, fitz-minimal, gesture, human, ok, people-android, people-apple, person ;	j 	# V6.0 (🙆) face with ok gesture
+1F481 ;	emoji ;	86 ;	fitz-minimal, help, human, information, people-android, people-apple, person ;	j 	# V6.0 (💁) information desk person
+1F64B ;	emoji ;	87 ;	fitz-minimal, gesture, hand, happy, human, people-android, people-apple, person, raise ;	j 	# V6.0 (🙋) happy person raising one hand
+1F647 ;	emoji ;	88 ;	apology, bow, fitz-minimal, gesture, human, people-android, people-apple, person, sorry ;	j 	# V6.0 (🙇) person bowing deeply
+1F64C ;	emoji ;	89 ;	body, celebration, fitz-optional, gesture, hand, hooray, human, people-android, people-apple, person, raise ;	j 	# V6.0 (🙌) person raising both hands in celebration
+1F64F ;	emoji ;	90 ;	ask, body, fitz-optional, folded, gesture, hand, human, people-android, people-apple, person, please, pray, prayer, praying, thanks ;	j 	# V6.0 (🙏) person with folded hands
+1F5E3 ;	text ;	91 ;	face, head, human, person, rating, silhouette, speaking ;	w 	# V7.0 (🗣) speaking head in silhouette
+1F464 ;	emoji ;	92 ;	bust, people-android, people-apple, person, silhouette ;	j 	# V6.0 (👤) bust in silhouette
+1F465 ;	emoji ;	93 ;	bust, people-android, people-apple, person, silhouette ;	x 	# V6.0 (👥) busts in silhouette
+1F6B6 ;	emoji ;	94 ;	fitz-optional, hiker, hiking, human, pedestrian, people-apple, person, places-android, travel, walk, walker, walking ;	j 	# V6.0 (🚶) pedestrian
+1F3C3 ;	emoji ;	95 ;	fitz-optional, human, marathon, people-apple, person, places-android, runner, running, sport ;	j 	# V6.0 (🏃) runner
+1F483 ;	emoji ;	96 ;	dancer, fitz-optional, human, people-android, people-apple, person ;	j 	# V6.0 (💃) dancer
+1F574 ;	text ;	97 ;	business, human, man, person, suit ;	w 	# V7.0 (🕴) man in business suit levitating
+1F48F ;	emoji ;	98 ;	couplekiss, human, kiss, people-android, people-apple, person, romance ;	j 	# V6.0 (💏) kiss
+1F491 ;	emoji ;	99 ;	couple, heart, human, people-android, people-apple, person, romance ;	j 	# V6.0 (💑) couple with heart
+1F46A ;	emoji ;	100 ;	child, family, father, human, mother, people-android, people-apple, person ;	j w 	# V6.0 (👪) family
+1F46B ;	emoji ;	101 ;	couple, hand, hold, human, man, people-android, people-apple, person, woman ;	j 	# V6.0 (👫) man and woman holding hands
+1F46C ;	emoji ;	102 ;	couple, hand, hold, human, men, people-android, people-apple, person ;	x 	# V6.0 (👬) two men holding hands
+1F46D ;	emoji ;	103 ;	couple, hand, hold, human, people-android, people-apple, person, woman ;	x 	# V6.0 (👭) two women holding hands
+1F448 ;	emoji ;	104 ;	backhand, body, finger, fitz-optional, hand, human, index, people-android, people-apple, point ;	j w 	# V6.0 (👈) white left pointing backhand index
+1F449 ;	emoji ;	105 ;	backhand, body, finger, fitz-optional, hand, human, index, people-android, people-apple, point ;	j w 	# V6.0 (👉) white right pointing backhand index
+261D ;	text ;	106 ;	body, finger, fitz-optional, hand, human, index, people-android, people-apple, point, up ;	j w 	# V1.1 (☝) white up pointing index
+1F446 ;	emoji ;	107 ;	backhand, body, finger, fitz-optional, hand, human, index, people-android, people-apple, point, up ;	j w 	# V6.0 (👆) white up pointing backhand index
+1F595 ;	emoji ;	108 ;	body, extended, finger, fitz-optional, hand, human ;	x 	# V7.0 (🖕) reversed hand with middle finger extended
+1F447 ;	emoji ;	109 ;	backhand, body, down, finger, fitz-optional, hand, human, index, people-android, people-apple, point ;	j w 	# V6.0 (👇) white down pointing backhand index
+270C ;	text ;	110 ;	body, fitz-optional, hand, human, people-android, people-apple, v, victory ;	z j w 	# V1.1 (✌) victory hand
+1F596 ;	emoji ;	111 ;	body, finger, fitz-optional, hand, human, part, spock, vulcan ;	x 	# V7.0 (🖖) raised hand with part between middle and ring fingers
+270A ;	emoji ;	112 ;	body, fist, fitz-optional, hand, human, people-android, people-apple ;	j 	# V6.0 (✊) raised fist
+270B ;	emoji ;	113 ;	body, fitz-optional, hand, human, people-android, people-apple ;	j 	# V6.0 (✋) raised hand
+1F44A ;	emoji ;	114 ;	body, clenched, facepunch, fist, fitz-optional, hand, human, people-android, people-apple, punch ;	j 	# V6.0 (👊) fisted hand sign
+1F44B ;	emoji ;	115 ;	body, fitz-optional, hand, human, people-android, people-apple, wave, waving ;	j 	# V6.0 (👋) waving hand sign
+1F44C ;	emoji ;	116 ;	body, fitz-optional, hand, human, ok, people-android, people-apple ;	j 	# V6.0 (👌) ok hand sign
+1F44D ;	emoji ;	117 ;	+1, body, fitz-optional, hand, human, people-android, people-apple, thumb, thumbs’s up, up ;	j w 	# V6.0 (👍) thumbs up sign
+1F44E ;	emoji ;	118 ;	-1, body, down, fitz-optional, hand, human, people-android, people-apple, thumb, thumb’s down ;	j w 	# V6.0 (👎) thumbs down sign
+1F44F ;	emoji ;	119 ;	body, clap, fitz-optional, hand, human, people-android, people-apple ;	j 	# V6.0 (👏) clapping hands sign
+1F450 ;	emoji ;	120 ;	body, fitz-optional, hand, human, open, people-android, people-apple ;	j 	# V6.0 (👐) open hands sign
+270D ;	text ;	121 ;	body, fitz-optional, hand, human, writing ;	z w 	# V1.1 (✍) writing hand
+1F590 ;	text ;	122 ;	body, finger, fitz-optional, hand, human, splayed ;	w 	# V7.0 (🖐) raised hand with fingers splayed
+1F485 ;	emoji ;	123 ;	body, care, cosmetics, fitz-optional, human, manicure, nail, people-android, people-apple, polish ;	j 	# V6.0 (💅) nail polish
+1F4AA ;	emoji ;	124 ;	biceps, body, comic, fitz-optional, flex, human, muscle, people-android, people-apple ;	j 	# V6.0 (💪) flexed biceps
+1F463 ;	emoji ;	125 ;	body, clothing, footprint, footprints, people-android, people-apple, print ;	j 	# V6.0 (👣) footprints
+1F440 ;	emoji ;	126 ;	body, eyes, face, fitz-optional, human, people-android, people-apple ;	j 	# V6.0 (👀) eyes
+1F441 ;	text ;	127 ;	body, eye, fitz-optional, human ;	w 	# V7.0 (👁) eye
+1F442 ;	emoji ;	128 ;	body, ear, fitz-optional, human, people-android, people-apple ;	j w 	# V6.0 (👂) ear
+1F443 ;	emoji ;	129 ;	body, fitz-optional, human, nose, people-android, people-apple ;	j 	# V6.0 (👃) nose
+1F445 ;	emoji ;	130 ;	body, fitz-optional, human, people-android, people-apple, tongue ;	j 	# V6.0 (👅) tongue
+1F480 ;	emoji ;	131 ;	body, face, fairy tale, people-android, people-apple, skull ;	j 	# V6.0 (💀) skull
+2620 ;	text ;	132 ;	body, crossbones, face, skull ;	x 	# V1.1 (☠) skull and crossbones
+1F48B ;	emoji ;	133 ;	emotion, fitz-optional, heart, human, kiss, lips, mark, people-android, people-apple, romance ;	j 	# V6.0 (💋) kiss mark
+1F444 ;	emoji ;	134 ;	body, fitz-optional, human, lips, mouth, people-android, people-apple ;	j 	# V6.0 (👄) mouth
+1F498 ;	emoji ;	135 ;	arrow, cupid, emotion, heart, people-android, people-apple ;	j 	# V6.0 (💘) heart with arrow
+2764 ;	text ;	136 ;	emotion, heart, people-android, people-apple ;	z j 	# V1.1 (❤) heavy black heart
+1F493 ;	emoji ;	137 ;	beating, emotion, heart, heartbeat, people-android, people-apple, pulsating ;	j 	# V6.0 (💓) beating heart
+1F494 ;	emoji ;	138 ;	break, broken, emotion, heart, people-android, people-apple ;	j 	# V6.0 (💔) broken heart
+1F495 ;	emoji ;	139 ;	emotion, heart, love, people-android, people-apple ;	j 	# V6.0 (💕) two hearts
+1F496 ;	emoji ;	140 ;	emotion, excited, heart, people-android, people-apple, sparkle, sparkler ;	j 	# V6.0 (💖) sparkling heart
+1F497 ;	emoji ;	141 ;	emotion, excited, growing, heart, heartpulse, nervous, people-android, people-apple ;	j 	# V6.0 (💗) growing heart
+1F499 ;	emoji ;	142 ;	blue, emotion, heart, people-android, people-apple ;	j 	# V6.0 (💙) blue heart
+1F49A ;	emoji ;	143 ;	emotion, green, heart, people-android, people-apple ;	j 	# V6.0 (💚) green heart
+1F49B ;	emoji ;	144 ;	emotion, heart, people-android, people-apple, yellow ;	j 	# V6.0 (💛) yellow heart
+1F49C ;	emoji ;	145 ;	emotion, heart, people-android, people-apple, purple ;	j 	# V6.0 (💜) purple heart
+1F49D ;	emoji ;	146 ;	emotion, heart, objects-apple, people-android, ribbon, valentine ;	j 	# V6.0 (💝) heart with ribbon
+1F49E ;	emoji ;	147 ;	emotion, heart, people-android, people-apple, revolving ;	j 	# V6.0 (💞) revolving hearts
+1F49F ;	emoji ;	148 ;	emotion, heart, people-android, symbols-apple ;	j 	# V6.0 (💟) heart decoration
+2763 ;	text ;	149 ;	emotion, exclamation, heart, mark ;	z 	# V1.1 (❣) heavy heart exclamation mark ornament
+1F48C ;	emoji ;	150 ;	emotion, heart, letter, love, mail, people-apple, places-android, romance ;	j 	# V6.0 (💌) love letter
+1F4A7 ;	emoji ;	151 ;	cold, comic, drop, droplet, emotion, nature-android, object, people-apple, sweat, weather ;	j 	# V6.0 (💧) droplet
+1F4A4 ;	emoji ;	152 ;	comic, emotion, people-apple, sleeping, sleepy, symbols-android, word, zzz ;	j 	# V6.0 (💤) sleeping symbol
+1F4A2 ;	emoji ;	153 ;	anger, angry, comic, emotion, people-apple, symbols-android ;	j 	# V6.0 (💢) anger symbol
+1F4A3 ;	emoji ;	154 ;	bomb, comic, emotion, object, objects-android, objects-apple ;	j w 	# V6.0 (💣) bomb
+1F4A5 ;	emoji ;	155 ;	boom, collision, comic, emotion, people-apple, symbols-android ;	j 	# V6.0 (💥) collision symbol
+1F4A6 ;	emoji ;	156 ;	comic, emotion, object, people-apple, splashing, sweat, symbols-android ;	j 	# V6.0 (💦) splashing sweat symbol
+1F4A8 ;	emoji ;	157 ;	comic, dash, emotion, object, people-apple, running, symbols-android ;	j 	# V6.0 (💨) dash symbol
+1F4AB ;	emoji ;	158 ;	comic, dizzy, emotion, people-apple, star, symbols-android ;	j 	# V6.0 (💫) dizzy symbol
+1F4AC ;	emoji ;	159 ;	balloon, bubble, comic, dialog, emotion, objects-android, people-apple, speech ;	j 	# V6.0 (💬) speech balloon
+1F4AD ;	emoji ;	160 ;	balloon, bubble, comic, emotion, objects-android, people-apple, thought ;	x 	# V6.0 (💭) thought balloon
+1F573 ;	text ;	161 ;	emotion, hole ;	w 	# V7.0 (🕳) hole
+1F5EF ;	text ;	162 ;	anger, angry, balloon, bubble, emotion ;	w 	# V7.0 (🗯) right anger bubble
+1F453 ;	emoji ;	163 ;	clothing, eye, eyeglasses, glasses, objects-android, people-apple ;	j w 	# V6.0 (👓) eyeglasses
+1F576 ;	text ;	164 ;	dark, eye, glasses, object, sunglasses ;	w 	# V7.0 (🕶) dark sunglasses
+1F454 ;	emoji ;	165 ;	clothing, necktie, objects-android, people-apple ;	j 	# V6.0 (👔) necktie
+1F455 ;	emoji ;	166 ;	clothing, objects-android, people-apple, shirt, tshirt ;	j 	# V6.0 (👕) t-shirt
+1F456 ;	emoji ;	167 ;	clothing, jeans, objects-android, pants, people-apple, trousers ;	j 	# V6.0 (👖) jeans
+1F457 ;	emoji ;	168 ;	clothing, dress, objects-android, people-apple ;	j 	# V6.0 (👗) dress
+1F458 ;	emoji ;	169 ;	clothing, kimono, objects-android, people-apple ;	j 	# V6.0 (👘) kimono
+1F459 ;	emoji ;	170 ;	bikini, clothing, objects-android, people-apple ;	j 	# V6.0 (👙) bikini
+1F45A ;	emoji ;	171 ;	clothes, clothing, objects-android, people-apple, woman ;	j 	# V6.0 (👚) womans clothes
+1F45B ;	emoji ;	172 ;	clothing, coin, objects-android, people-apple, purse ;	j 	# V6.0 (👛) purse
+1F45C ;	emoji ;	173 ;	bag, clothing, handbag, objects-android, people-apple ;	j 	# V6.0 (👜) handbag
+1F45D ;	emoji ;	174 ;	bag, clothing, objects-android, people-apple, pouch ;	j 	# V6.0 (👝) pouch
+1F45E ;	emoji ;	175 ;	clothing, man, objects-android, people-apple, shoe ;	j 	# V6.0 (👞) mans shoe
+1F45F ;	emoji ;	176 ;	athletic, clothing, objects-android, people-apple, shoe, sneaker ;	j 	# V6.0 (👟) athletic shoe
+1F460 ;	emoji ;	177 ;	clothing, heel, objects-android, people-apple, shoe ;	j 	# V6.0 (👠) high-heeled shoe
+1F461 ;	emoji ;	178 ;	clothing, objects-android, people-apple, sandal, woman ;	j 	# V6.0 (👡) womans sandal
+1F462 ;	emoji ;	179 ;	boot, clothing, objects-android, people-apple, woman ;	j 	# V6.0 (👢) womans boots
+1F451 ;	emoji ;	180 ;	clothing, crown, objects-android, people-apple ;	j 	# V6.0 (👑) crown
+1F452 ;	emoji ;	181 ;	clothing, hat, objects-android, people-apple, woman ;	j 	# V6.0 (👒) womans hat
+1F3A9 ;	emoji ;	182 ;	activity, entertainment, hat, object, objects-android, people-apple, top, tophat ;	j 	# V6.0 (🎩) top hat
+26D1 ;	text ;	183 ;	cross, helmet, travel ;	a 	# V5.2 (⛑) helmet with white cross
+1F435 ;	emoji ;	184 ;	animal, face, monkey, nature, nature-android, nature-apple ;	j 	# V6.0 (🐵) monkey face
+1F648 ;	emoji ;	185 ;	evil, face, forbidden, gesture, monkey, no, not, people-android, people-apple, prohibited, see ;	j 	# V6.0 (🙈) see-no-evil monkey
+1F649 ;	emoji ;	186 ;	evil, face, forbidden, gesture, hear, monkey, no, not, people-android, people-apple, prohibited ;	j 	# V6.0 (🙉) hear-no-evil monkey
+1F64A ;	emoji ;	187 ;	evil, face, forbidden, gesture, monkey, no, not, people-android, people-apple, prohibited, speak ;	j 	# V6.0 (🙊) speak-no-evil monkey
+1F412 ;	emoji ;	188 ;	animal, monkey, nature, nature-android, nature-apple ;	j 	# V6.0 (🐒) monkey
+1F436 ;	emoji ;	189 ;	animal, dog, face, nature, nature-android, nature-apple ;	j 	# V6.0 (🐶) dog face
+1F415 ;	emoji ;	190 ;	animal, dog, nature, nature-android, nature-apple ;	w 	# V6.0 (🐕) dog
+1F429 ;	emoji ;	191 ;	animal, nature, nature-android, nature-apple, poodle ;	j 	# V6.0 (🐩) poodle
+1F43A ;	emoji ;	192 ;	animal, face, nature, nature-android, nature-apple, wolf ;	j 	# V6.0 (🐺) wolf face
+1F431 ;	emoji ;	193 ;	animal, cat, face, nature, nature-android, nature-apple ;	j 	# V6.0 (🐱) cat face
+1F638 ;	emoji ;	194 ;	animal, cat, eye, face, grin, grinning, nature, people-android, people-apple, smile, smiley, smiling ;	j 	# V6.0 (😸) grinning cat face with smiling eyes
+1F639 ;	emoji ;	195 ;	animal, cat, face, joy, nature, people-android, people-apple, tears ;	j 	# V6.0 (😹) cat face with tears of joy
+1F63A ;	emoji ;	196 ;	animal, cat, face, mouth, nature, open, people-android, people-apple, smile, smiley, smiling ;	j 	# V6.0 (😺) smiling cat face with open mouth
+1F63B ;	emoji ;	197 ;	animal, cat, eye, face, heart, love, nature, people-android, people-apple, smile, smiley, smiling ;	j 	# V6.0 (😻) smiling cat face with heart-shaped eyes
+1F63C ;	emoji ;	198 ;	animal, cat, face, ironic, nature, people-android, people-apple, smile, smiley, smiling, wry ;	j 	# V6.0 (😼) cat face with wry smile
+1F63D ;	emoji ;	199 ;	animal, cat, eye, face, kiss, nature, people-android, people-apple ;	j 	# V6.0 (😽) kissing cat face with closed eyes
+1F63E ;	emoji ;	200 ;	animal, cat, face, nature, people-android, people-apple, pouting ;	j 	# V6.0 (😾) pouting cat face
+1F63F ;	emoji ;	201 ;	animal, cat, cry, face, nature, people-android, people-apple, sad, tear ;	j 	# V6.0 (😿) crying cat face
+1F640 ;	emoji ;	202 ;	animal, cat, face, nature, oh, people-android, people-apple, surprised, weary ;	j 	# V6.0 (🙀) weary cat face
+1F408 ;	emoji ;	203 ;	animal, cat, nature, nature-android, nature-apple ;	w 	# V6.0 (🐈) cat
+1F42F ;	emoji ;	204 ;	animal, face, nature, nature-android, nature-apple, tiger ;	j 	# V6.0 (🐯) tiger face
+1F405 ;	emoji ;	205 ;	animal, nature, nature-apple, other-android, tiger ;	x 	# V6.0 (🐅) tiger
+1F406 ;	emoji ;	206 ;	animal, leopard, nature, nature-android, nature-apple ;	x 	# V6.0 (🐆) leopard
+1F434 ;	emoji ;	207 ;	animal, face, horse, nature, nature-android, nature-apple ;	j 	# V6.0 (🐴) horse face
+1F40E ;	emoji ;	208 ;	animal, horse, nature, nature-apple, places-android, racehorse ;	j 	# V6.0 (🐎) horse
+1F42E ;	emoji ;	209 ;	animal, cow, face, nature, nature-android, nature-apple ;	j 	# V6.0 (🐮) cow face
+1F402 ;	emoji ;	210 ;	animal, nature, nature-android, nature-apple, ox ;	x 	# V6.0 (🐂) ox
+1F403 ;	emoji ;	211 ;	animal, buffalo, nature, nature-android, nature-apple, water ;	x 	# V6.0 (🐃) water buffalo
+1F404 ;	emoji ;	212 ;	animal, cow, nature, nature-android, nature-apple ;	x 	# V6.0 (🐄) cow
+1F437 ;	emoji ;	213 ;	animal, face, nature, nature-android, nature-apple, pig ;	j 	# V6.0 (🐷) pig face
+1F416 ;	emoji ;	214 ;	animal, nature, nature-android, nature-apple, pig ;	x 	# V6.0 (🐖) pig
+1F417 ;	emoji ;	215 ;	animal, boar, nature, nature-android, nature-apple ;	j 	# V6.0 (🐗) boar
+1F43D ;	emoji ;	216 ;	animal, face, nature, nature-android, nature-apple, nose, pig ;	j 	# V6.0 (🐽) pig nose
+1F40F ;	emoji ;	217 ;	animal, nature, nature-android, nature-apple, ram, sheep ;	x 	# V6.0 (🐏) ram
+1F411 ;	emoji ;	218 ;	animal, nature, nature-android, nature-apple, sheep ;	j 	# V6.0 (🐑) sheep
+1F410 ;	emoji ;	219 ;	animal, goat, nature, nature-android, nature-apple ;	x 	# V6.0 (🐐) goat
+1F42A ;	emoji ;	220 ;	animal, camel, dromedary, hump, nature, nature-android, nature-apple ;	x 	# V6.0 (🐪) dromedary camel
+1F42B ;	emoji ;	221 ;	animal, bactrian, camel, hump, nature, nature-android, nature-apple ;	j 	# V6.0 (🐫) bactrian camel
+1F418 ;	emoji ;	222 ;	animal, elephant, nature, nature-android, nature-apple ;	j 	# V6.0 (🐘) elephant
+1F42D ;	emoji ;	223 ;	animal, face, mouse, nature, nature-android, nature-apple ;	j 	# V6.0 (🐭) mouse face
+1F401 ;	emoji ;	224 ;	animal, mouse, nature, nature-android, nature-apple ;	x 	# V6.0 (🐁) mouse
+1F400 ;	emoji ;	225 ;	animal, nature, nature-android, nature-apple, rat ;	x 	# V6.0 (🐀) rat
+1F439 ;	emoji ;	226 ;	animal, face, hamster, nature, nature-android, nature-apple ;	j 	# V6.0 (🐹) hamster face
+1F430 ;	emoji ;	227 ;	animal, bunny, face, nature, nature-android, nature-apple, rabbit ;	j 	# V6.0 (🐰) rabbit face
+1F407 ;	emoji ;	228 ;	animal, bunny, nature, nature-android, nature-apple, rabbit ;	x 	# V6.0 (🐇) rabbit
+1F43F ;	text ;	229 ;	animal, chipmunk, nature ;	w 	# V7.0 (🐿) chipmunk
+1F43B ;	emoji ;	230 ;	animal, bear, face, nature, nature-android, nature-apple ;	j 	# V6.0 (🐻) bear face
+1F428 ;	emoji ;	231 ;	animal, bear, koala, nature, nature-android, nature-apple ;	j 	# V6.0 (🐨) koala
+1F43C ;	emoji ;	232 ;	animal, face, nature, nature-android, nature-apple, panda ;	j 	# V6.0 (🐼) panda face
+1F43E ;	emoji ;	233 ;	animal, feet, nature, nature-android, nature-apple, paw, print ;	j 	# V6.0 (🐾) paw prints
+1F414 ;	emoji ;	234 ;	animal, chicken, nature, nature-android, nature-apple ;	j 	# V6.0 (🐔) chicken
+1F413 ;	emoji ;	235 ;	animal, nature, nature-android, nature-apple, rooster ;	x 	# V6.0 (🐓) rooster
+1F423 ;	emoji ;	236 ;	animal, baby, chick, hatching, nature, nature-android, nature-apple ;	j 	# V6.0 (🐣) hatching chick
+1F424 ;	emoji ;	237 ;	animal, baby, chick, nature, nature-android, nature-apple ;	j 	# V6.0 (🐤) baby chick
+1F425 ;	emoji ;	238 ;	animal, baby, chick, nature, nature-android, nature-apple ;	j 	# V6.0 (🐥) front-facing baby chick
+1F426 ;	emoji ;	239 ;	animal, bird, nature, nature-android, nature-apple ;	j w 	# V6.0 (🐦) bird
+1F427 ;	emoji ;	240 ;	animal, nature, nature-android, nature-apple, penguin ;	j 	# V6.0 (🐧) penguin
+1F54A ;	text ;	241 ;	animal, dove, flying, nature, peace ;	w 	# V7.0 (🕊) dove of peace
+1F438 ;	emoji ;	242 ;	animal, face, frog, nature, nature-android, nature-apple ;	j 	# V6.0 (🐸) frog face
+1F40A ;	emoji ;	243 ;	animal, crocodile, nature, nature-android, nature-apple ;	x 	# V6.0 (🐊) crocodile
+1F40D ;	emoji ;	244 ;	animal, nature, nature-android, nature-apple, snake ;	j 	# V6.0 (🐍) snake
+1F422 ;	emoji ;	245 ;	animal, nature, nature-android, nature-apple, turtle ;	j 	# V6.0 (🐢) turtle
+1F432 ;	emoji ;	246 ;	animal, dragon, face, nature, nature-android, nature-apple ;	j 	# V6.0 (🐲) dragon face
+1F409 ;	emoji ;	247 ;	animal, dragon, nature, nature-android, nature-apple ;	x 	# V6.0 (🐉) dragon
+1F433 ;	emoji ;	248 ;	animal, face, nature, nature-android, nature-apple, spouting, whale ;	j 	# V6.0 (🐳) spouting whale
+1F40B ;	emoji ;	249 ;	animal, nature, nature-android, nature-apple, whale ;	x 	# V6.0 (🐋) whale
+1F42C ;	emoji ;	250 ;	animal, dolphin, flipper, nature, nature-android, nature-apple ;	j 	# V6.0 (🐬) dolphin
+1F41F ;	emoji ;	251 ;	animal, fish, nature, nature-android, nature-apple ;	j w 	# V6.0 (🐟) fish
+1F420 ;	emoji ;	252 ;	animal, fish, nature, nature-android, nature-apple, tropical ;	j 	# V6.0 (🐠) tropical fish
+1F421 ;	emoji ;	253 ;	animal, blowfish, nature, nature-android, nature-apple ;	j 	# V6.0 (🐡) blowfish
+1F419 ;	emoji ;	254 ;	animal, nature, nature-android, nature-apple, octopus ;	j 	# V6.0 (🐙) octopus
+1F41A ;	emoji ;	255 ;	animal, nature, nature-android, nature-apple, shell, spiral ;	j 	# V6.0 (🐚) spiral shell
+1F40C ;	emoji ;	256 ;	animal, nature, nature-android, nature-apple, snail ;	j 	# V6.0 (🐌) snail
+1F41B ;	emoji ;	257 ;	animal, bug, nature, nature-android, nature-apple ;	j 	# V6.0 (🐛) bug
+1F41C ;	emoji ;	258 ;	animal, ant, nature, nature-android, nature-apple ;	j 	# V6.0 (🐜) ant
+1F41D ;	emoji ;	259 ;	animal, bee, honeybee, nature, nature-android, nature-apple ;	j 	# V6.0 (🐝) honeybee
+1F41E ;	emoji ;	260 ;	animal, beetle, lady, nature, nature-android, nature-apple ;	j 	# V6.0 (🐞) lady beetle
+1F577 ;	text ;	261 ;	animal, object, spider ;	w 	# V7.0 (🕷) spider
+1F578 ;	text ;	262 ;	animal, object, spider, web ;	w 	# V7.0 (🕸) spider web
+1F4A9 ;	emoji ;	263 ;	comic, dung, emotion, hankey, nature, object, people-android, people-apple, pile, poo, poop ;	j 	# V6.0 (💩) pile of poo
+1F479 ;	emoji ;	264 ;	creature, face, fairy tale, fantasy, japanese, ogre, people-android, people-apple ;	j 	# V6.0 (👹) japanese ogre
+1F47A ;	emoji ;	265 ;	creature, face, fairy tale, fantasy, goblin, japanese, people-android, people-apple ;	j 	# V6.0 (👺) japanese goblin
+1F47B ;	emoji ;	266 ;	creature, face, fairy tale, fantasy, ghost, objects-apple, people-android ;	j 	# V6.0 (👻) ghost
+1F47D ;	emoji ;	267 ;	alien, animal, creature, extraterrestrial, face, fairy tale, fantasy, nature, people-android, people-apple, ufo ;	j w 	# V6.0 (👽) extraterrestrial alien
+1F47E ;	emoji ;	268 ;	alien, animal, creature, face, fairy tale, fantasy, monster, nature, objects-apple, people-android, ufo ;	j 	# V6.0 (👾) alien monster
+1F490 ;	emoji ;	269 ;	animal, bouquet, flower, nature, nature-apple, object, places-android, romance ;	j 	# V6.0 (💐) bouquet
+1F395 ;	text ;	270 ;	bouquet, celebration, emotion, flower, nature, plant ;	w 	# V7.0 (🎕) bouquet of flowers
+2698 ;	text ;	271 ;	flower, object ;	x 	# V4.1 (⚘) flower
+1F338 ;	emoji ;	272 ;	blossom, cherry, flower, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🌸) cherry blossom
+1F4AE ;	emoji ;	273 ;	flower, object, symbols-android, symbols-apple ;	j 	# V6.0 (💮) white flower
+1F3F5 ;	text ;	274 ;	nature, rosette ;	w 	# V7.0 (🏵) rosette
+1F339 ;	emoji ;	275 ;	flower, nature, nature-android, nature-apple, plant, rose ;	j 	# V6.0 (🌹) rose
+1F33A ;	emoji ;	276 ;	flower, hibiscus, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🌺) hibiscus
+1F33B ;	emoji ;	277 ;	flower, nature, nature-android, nature-apple, plant, sun, sunflower, weather ;	j 	# V6.0 (🌻) sunflower
+1F33C ;	emoji ;	278 ;	blossom, flower, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🌼) blossom
+1F337 ;	emoji ;	279 ;	flower, nature, nature-android, nature-apple, plant, tulip ;	j 	# V6.0 (🌷) tulip
+2E19 ;	text ;	280 ;	branch, nature, palm, plant ;	x 	# V5.1 (⸙) palm branch
+2618 ;	text ;	281 ;	nature, plant, shamrock ;	x 	# V4.1 (☘) shamrock
+1F331 ;	emoji ;	282 ;	nature, nature-android, nature-apple, plant, seedling, young ;	j 	# V6.0 (🌱) seedling
+1F332 ;	emoji ;	283 ;	evergreen, nature, nature-android, nature-apple, plant, tree ;	x 	# V6.0 (🌲) evergreen tree
+1F333 ;	emoji ;	284 ;	deciduous, nature, nature-android, nature-apple, plant, shedding, tree ;	x 	# V6.0 (🌳) deciduous tree
+1F334 ;	emoji ;	285 ;	nature, nature-android, nature-apple, palm, plant, tree ;	j 	# V6.0 (🌴) palm tree
+1F335 ;	emoji ;	286 ;	cactus, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🌵) cactus
+1F33E ;	emoji ;	287 ;	ear, nature, nature-android, nature-apple, plant, rice ;	j 	# V6.0 (🌾) ear of rice
+1F33F ;	emoji ;	288 ;	herb, leaf, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🌿) herb
+1F340 ;	emoji ;	289 ;	4, clover, four, leaf, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🍀) four leaf clover
+1F341 ;	emoji ;	290 ;	fallen, leaf, maple, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🍁) maple leaf
+1F342 ;	emoji ;	291 ;	fallen, falling, leaf, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🍂) fallen leaf
+1F343 ;	emoji ;	292 ;	blow, fluttering, leaf, leaves, nature, nature-android, nature-apple, plant, wind ;	j 	# V6.0 (🍃) leaf fluttering in wind
+1F347 ;	emoji ;	293 ;	food, fruit, grapes, nature, nature-android, objects-apple, plant ;	j 	# V6.0 (🍇) grapes
+1F348 ;	emoji ;	294 ;	food, fruit, melon, nature, nature-android, objects-apple, plant ;	j 	# V6.0 (🍈) melon
+1F349 ;	emoji ;	295 ;	food, fruit, nature, nature-android, objects-apple, plant, watermelon ;	j 	# V6.0 (🍉) watermelon
+1F34A ;	emoji ;	296 ;	food, fruit, nature, nature-android, objects-apple, orange, plant, tangerine ;	j 	# V6.0 (🍊) tangerine
+1F34B ;	emoji ;	297 ;	citrus, food, fruit, lemon, nature, nature-android, objects-apple, plant ;	x 	# V6.0 (🍋) lemon
+1F34C ;	emoji ;	298 ;	banana, food, fruit, nature, nature-android, objects-apple, plant ;	j 	# V6.0 (🍌) banana
+1F34D ;	emoji ;	299 ;	food, fruit, nature, nature-android, objects-apple, pineapple, plant ;	j 	# V6.0 (🍍) pineapple
+1F34E ;	emoji ;	300 ;	apple, food, fruit, nature, nature-android, objects-apple, plant, red ;	j 	# V6.0 (🍎) red apple
+1F34F ;	emoji ;	301 ;	apple, food, fruit, green, nature, nature-android, objects-apple, plant ;	j 	# V6.0 (🍏) green apple
+1F350 ;	emoji ;	302 ;	food, fruit, nature, nature-android, objects-apple, pear, plant ;	x 	# V6.0 (🍐) pear
+1F351 ;	emoji ;	303 ;	food, fruit, nature, nature-android, objects-apple, peach, plant ;	j 	# V6.0 (🍑) peach
+1F352 ;	emoji ;	304 ;	cherries, cherry, food, fruit, nature, nature-android, objects-apple, plant ;	j 	# V6.0 (🍒) cherries
+1F353 ;	emoji ;	305 ;	berry, food, fruit, nature, nature-android, objects-apple, plant, strawberry ;	j 	# V6.0 (🍓) strawberry
+1F345 ;	emoji ;	306 ;	food, nature, nature-android, objects-apple, plant, tomato, vegetable ;	j 	# V6.0 (🍅) tomato
+1F346 ;	emoji ;	307 ;	aubergine, eggplant, food, nature, nature-android, objects-apple, plant, vegetable ;	j 	# V6.0 (🍆) aubergine
+1F33D ;	emoji ;	308 ;	corn, ear, maize, maze, nature, nature-android, objects-apple, plant ;	j 	# V6.0 (🌽) ear of maize
+1F336 ;	text ;	309 ;	food, hot, nature, pepper, plant ;	w 	# V7.0 (🌶) hot pepper
+1F344 ;	emoji ;	310 ;	mushroom, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🍄) mushroom
+1F330 ;	emoji ;	311 ;	chestnut, nature, nature-android, nature-apple, plant ;	j 	# V6.0 (🌰) chestnut
+1F35E ;	emoji ;	312 ;	bread, food, loaf, nature-android, objects-apple, restaurant ;	j 	# V6.0 (🍞) bread
+1F356 ;	emoji ;	313 ;	bone, food, meat, nature-android, objects-apple, restaurant ;	j 	# V6.0 (🍖) meat on bone
+1F357 ;	emoji ;	314 ;	chicken, food, leg, nature-android, objects-apple, poultry, restaurant ;	j 	# V6.0 (🍗) poultry leg
+1F354 ;	emoji ;	315 ;	burger, food, hamburger, nature-android, objects-apple, restaurant ;	j 	# V6.0 (🍔) hamburger
+1F35F ;	emoji ;	316 ;	food, french, fries, nature-android, objects-apple, restaurant ;	j 	# V6.0 (🍟) french fries
+1F355 ;	emoji ;	317 ;	food, nature-android, objects-apple, pizza, restaurant, slice ;	j 	# V6.0 (🍕) slice of pizza
+1F372 ;	emoji ;	318 ;	food, nature-android, objects-apple, pot, restaurant, stew ;	j 	# V6.0 (🍲) pot of food
+1F371 ;	emoji ;	319 ;	bento, box, food, nature-android, objects-apple, restaurant ;	j 	# V6.0 (🍱) bento box
+1F358 ;	emoji ;	320 ;	cracker, food, nature-android, objects-apple, restaurant, rice ;	j 	# V6.0 (🍘) rice cracker
+1F359 ;	emoji ;	321 ;	ball, food, japanese, nature-android, objects-apple, restaurant, rice ;	j 	# V6.0 (🍙) rice ball
+1F35A ;	emoji ;	322 ;	cooked, food, nature-android, objects-apple, restaurant, rice ;	j 	# V6.0 (🍚) cooked rice
+1F35B ;	emoji ;	323 ;	curry, food, nature-android, objects-apple, restaurant, rice ;	j 	# V6.0 (🍛) curry and rice
+1F35C ;	emoji ;	324 ;	bowl, food, nature-android, noodle, objects-apple, ramen, restaurant, steaming ;	j 	# V6.0 (🍜) steaming bowl
+1F35D ;	emoji ;	325 ;	food, nature-android, objects-apple, pasta, restaurant, spaghetti ;	j 	# V6.0 (🍝) spaghetti
+1F360 ;	emoji ;	326 ;	food, nature-android, objects-apple, potato, restaurant, roasted, sweet ;	j 	# V6.0 (🍠) roasted sweet potato
+1F362 ;	emoji ;	327 ;	food, kebab, nature-android, objects-apple, oden, restaurant, seafood, skewer, stick ;	j 	# V6.0 (🍢) oden
+1F363 ;	emoji ;	328 ;	food, nature-android, objects-apple, restaurant, sushi ;	j 	# V6.0 (🍣) sushi
+1F364 ;	emoji ;	329 ;	food, fried, nature-android, objects-apple, prawn, restaurant, shrimp ;	j 	# V6.0 (🍤) fried shrimp
+1F365 ;	emoji ;	330 ;	cake, fish, food, nature-android, objects-apple, restaurant, swirl ;	j 	# V6.0 (🍥) fish cake with swirl design
+1F361 ;	emoji ;	331 ;	dango, dessert, food, japanese, nature-android, objects-apple, restaurant, skewer, stick, sweet ;	j 	# V6.0 (🍡) dango
+1F366 ;	emoji ;	332 ;	cream, dessert, food, ice, icecream, nature-android, objects-apple, restaurant, soft, sweet ;	j 	# V6.0 (🍦) soft ice cream
+1F367 ;	emoji ;	333 ;	dessert, food, ice, nature-android, objects-apple, restaurant, shaved, sweet ;	j 	# V6.0 (🍧) shaved ice
+1F368 ;	emoji ;	334 ;	cream, dessert, food, ice, nature-android, objects-apple, restaurant, sweet ;	j 	# V6.0 (🍨) ice cream
+1F369 ;	emoji ;	335 ;	dessert, donut, doughnut, food, nature-android, objects-apple, restaurant, sweet ;	j 	# V6.0 (🍩) doughnut
+1F36A ;	emoji ;	336 ;	cookie, dessert, food, nature-android, objects-apple, restaurant, sweet ;	j 	# V6.0 (🍪) cookie
+1F382 ;	emoji ;	337 ;	birthday, cake, celebration, dessert, food, objects-android, objects-apple, sweet ;	j 	# V6.0 (🎂) birthday cake
+1F370 ;	emoji ;	338 ;	cake, dessert, food, nature-android, objects-apple, restaurant, shortcake, sliced, sweet ;	j 	# V6.0 (🍰) shortcake
+1F36B ;	emoji ;	339 ;	bar, chocolate, dessert, food, nature-android, objects-apple, restaurant, sweet ;	j 	# V6.0 (🍫) chocolate bar
+1F36C ;	emoji ;	340 ;	candy, dessert, food, nature-android, objects-apple, restaurant, sweet ;	j 	# V6.0 (🍬) candy
+1F36D ;	emoji ;	341 ;	candy, dessert, food, lollipop, nature-android, objects-apple, restaurant, sweet ;	j 	# V6.0 (🍭) lollipop
+1F36E ;	emoji ;	342 ;	custard, dessert, food, nature-android, objects-apple, pudding, restaurant, sweet ;	j 	# V6.0 (🍮) custard
+1F36F ;	emoji ;	343 ;	food, honey, honeypot, nature-android, objects-apple, pot, restaurant, sweet ;	j 	# V6.0 (🍯) honey pot
+2615 ;	emoji ;	344 ;	beverage, coffee, drink, food, hot, nature-android, objects-apple, tea ;	j 	# V4.0 (☕) hot beverage
+1F375 ;	emoji ;	345 ;	cup, drink, food, nature-android, objects-apple, tea, teacup ;	j 	# V6.0 (🍵) teacup without handle
+1F376 ;	emoji ;	346 ;	bar, bottle, cup, drink, food, nature-android, objects-apple, restaurant, sake ;	j 	# V6.0 (🍶) sake bottle and cup
+1F377 ;	emoji ;	347 ;	bar, drink, food, glass, nature-android, objects-apple, restaurant, wine ;	j 	# V6.0 (🍷) wine glass
+1F378 ;	emoji ;	348 ;	bar, cocktail, drink, food, glass, nature-android, objects-apple, restaurant ;	j w 	# V6.0 (🍸) cocktail glass
+1F379 ;	emoji ;	349 ;	bar, drink, food, nature-android, objects-apple, restaurant, tropical ;	j 	# V6.0 (🍹) tropical drink
+1F37A ;	emoji ;	350 ;	bar, beer, drink, food, mug, nature-android, objects-apple, restaurant ;	j 	# V6.0 (🍺) beer mug
+1F37B ;	emoji ;	351 ;	bar, beer, beers, clinking, drink, food, mugs, nature-android, objects-apple, restaurant ;	j 	# V6.0 (🍻) clinking beer mugs
+1F37C ;	emoji ;	352 ;	baby, bottle, drink, food, milk, nature-android, objects-apple ;	x 	# V6.0 (🍼) baby bottle
+1F37D ;	text ;	353 ;	food, fork, knife, plate, restaurant ;	w 	# V7.0 (🍽) fork and knife with plate
+1F374 ;	emoji ;	354 ;	food, fork, knife, nature-android, objects-apple, restaurant ;	j 	# V6.0 (🍴) fork and knife
+1F373 ;	emoji ;	355 ;	cooking, egg, food, frying, nature-android, objects-apple, pan, restaurant ;	j 	# V6.0 (🍳) cooking
+1F30D ;	emoji ;	356 ;	africa, earth, europe, globe, nature, nature-android, nature-apple, place ;	w 	# V6.0 (🌍) earth globe europe-africa
+1F30E ;	emoji ;	357 ;	americas, earth, globe, nature, nature-android, nature-apple, place ;	w 	# V6.0 (🌎) earth globe americas
+1F30F ;	emoji ;	358 ;	asia, australia, earth, globe, nature, nature-android, nature-apple, place ;	j w 	# V6.0 (🌏) earth globe asia-australia
+1F310 ;	emoji ;	359 ;	globe, meridians, nature, nature-android, nature-apple, place ;	x 	# V6.0 (🌐) globe with meridians
+1F5FA ;	text ;	360 ;	map, place, world ;	w 	# V7.0 (🗺) world map
+1F3D4 ;	text ;	361 ;	cold, mountain, nature, place, snow ;	w 	# V7.0 (🏔) snow capped mountain
+26F0 ;	text ;	362 ;	mountain, place ;	a 	# V5.2 (⛰) mountain
+1F30B ;	emoji ;	363 ;	eruption, nature-android, nature-apple, place, volcano, weather ;	j 	# V6.0 (🌋) volcano
+1F5FB ;	emoji ;	364 ;	fuji, mountain, place, places-android, places-apple ;	j 	# V6.0 (🗻) mount fuji
+1F3D5 ;	text ;	365 ;	camping, nature, place ;	w 	# V7.0 (🏕) camping
+1F3D6 ;	text ;	366 ;	beach, nature, place, umbrella ;	w 	# V7.0 (🏖) beach with umbrella
+1F3DC ;	text ;	367 ;	desert, nature, place ;	w 	# V7.0 (🏜) desert
+1F3DD ;	text ;	368 ;	desert, island, nature, place ;	w 	# V7.0 (🏝) desert island
+1F3DE ;	text ;	369 ;	national park, nature, park, place ;	w 	# V7.0 (🏞) national park
+1F3DF ;	text ;	370 ;	place, stadium ;	w 	# V7.0 (🏟) stadium
+1F3DB ;	text ;	371 ;	building, classical, place ;	w 	# V7.0 (🏛) classical building
+1F3D7 ;	text ;	372 ;	building, construction, place ;	w 	# V7.0 (🏗) building construction
+1F3D8 ;	text ;	373 ;	building, house, place ;	w 	# V7.0 (🏘) house buildings
+1F3D9 ;	text ;	374 ;	building, city, place ;	w 	# V7.0 (🏙) cityscape
+1F3DA ;	text ;	375 ;	building, derelict, house, place ;	w 	# V7.0 (🏚) derelict house building
+1F3E0 ;	emoji ;	376 ;	building, house, place, places-android, places-apple ;	j w 	# V6.0 (🏠) house building
+1F3E1 ;	emoji ;	377 ;	building, garden, home, house, place, places-android, places-apple ;	j 	# V6.0 (🏡) house with garden
+26EA ;	emoji ;	378 ;	building, christian, church, cross, place, places-android, places-apple, religion ;	a j 	# V5.2 (⛪) church
+1F3E2 ;	emoji ;	379 ;	building, office, place, places-android, places-apple ;	j 	# V6.0 (🏢) office building
+1F3E3 ;	emoji ;	380 ;	building, japanese, office, place, places-android, places-apple, post ;	j 	# V6.0 (🏣) japanese post office
+1F3E4 ;	emoji ;	381 ;	building, european, office, place, places-android, places-apple, post ;	x 	# V6.0 (🏤) european post office
+1F3E5 ;	emoji ;	382 ;	building, hospital, place, places-android, places-apple ;	j 	# V6.0 (🏥) hospital
+1F3E6 ;	emoji ;	383 ;	bank, building, place, places-android, places-apple ;	j 	# V6.0 (🏦) bank
+1F3E8 ;	emoji ;	384 ;	building, hotel, place, places-android, places-apple ;	j 	# V6.0 (🏨) hotel
+1F3E9 ;	emoji ;	385 ;	building, hotel, love, place, places-android, places-apple ;	j 	# V6.0 (🏩) love hotel
+1F3EA ;	emoji ;	386 ;	building, convenience, place, places-android, places-apple, store ;	j 	# V6.0 (🏪) convenience store
+1F3EB ;	emoji ;	387 ;	building, place, places-android, places-apple, school ;	j 	# V6.0 (🏫) school
+1F3EC ;	emoji ;	388 ;	building, department, place, places-android, places-apple, store ;	j 	# V6.0 (🏬) department store
+1F3ED ;	emoji ;	389 ;	building, factory, place, places-android, places-apple ;	j w 	# V6.0 (🏭) factory
+1F3EF ;	emoji ;	390 ;	building, castle, japanese, place, places-android, places-apple ;	j 	# V6.0 (🏯) japanese castle
+1F3F0 ;	emoji ;	391 ;	building, castle, european, place, places-android, places-apple ;	j 	# V6.0 (🏰) european castle
+1F492 ;	emoji ;	392 ;	activity, chapel, place, places-android, places-apple, romance, wedding ;	j 	# V6.0 (💒) wedding
+1F5FC ;	emoji ;	393 ;	place, places-android, places-apple, tokyo, tower ;	j 	# V6.0 (🗼) tokyo tower
+1F5FD ;	emoji ;	394 ;	liberty, place, places-android, places-apple, statue ;	j 	# V6.0 (🗽) statue of liberty
+1F5FE ;	emoji ;	395 ;	japan, map, place, places-android, places-apple ;	j 	# V6.0 (🗾) silhouette of japan
+26F2 ;	emoji ;	396 ;	fountain, object, place, places-android, places-apple ;	a j 	# V5.2 (⛲) fountain
+26FA ;	emoji ;	397 ;	camping, objects-android, place, places-apple, tent ;	a j 	# V5.2 (⛺) tent
+1F301 ;	emoji ;	398 ;	fog, foggy, nature-android, nature-apple, place, weather ;	j 	# V6.0 (🌁) foggy
+1F303 ;	emoji ;	399 ;	nature-android, night, place, places-apple, star, stars, weather ;	j 	# V6.0 (🌃) night with stars
+1F304 ;	emoji ;	400 ;	morning, mountain, nature-android, place, places-apple, sun, sunrise, weather ;	j 	# V6.0 (🌄) sunrise over mountains
+1F305 ;	emoji ;	401 ;	morning, nature-android, place, places-apple, sun, sunrise, weather ;	j 	# V6.0 (🌅) sunrise
+1F306 ;	emoji ;	402 ;	building, city, dusk, evening, landscape, nature-android, place, places-apple, sunset, weather ;	j 	# V6.0 (🌆) cityscape at dusk
+1F307 ;	emoji ;	403 ;	building, dusk, nature-android, place, places-apple, sunset, weather ;	j 	# V6.0 (🌇) sunset over buildings
+1F309 ;	emoji ;	404 ;	bridge, nature-android, night, place, places-apple, weather ;	j 	# V6.0 (🌉) bridge at night
+1F30A ;	emoji ;	405 ;	nature-android, nature-apple, ocean, place, water, wave, waves, weather ;	j 	# V6.0 (🌊) water wave
+2668 ;	text ;	406 ;	hot, hotsprings, places-android, places-apple, springs, travel ;	a j 	# V1.1 (♨) hot springs
+1F5FF ;	emoji ;	407 ;	face, moyai, places-android, places-apple, statue, travel ;	j 	# V6.0 (🗿) moyai
+1F30C ;	emoji ;	408 ;	milky way, nature-android, nature-apple, place, weather ;	j 	# V6.0 (🌌) milky way
+1F3A0 ;	emoji ;	409 ;	activity, carousel, entertainment, horse, objects-android, place, places-apple ;	j 	# V6.0 (🎠) carousel horse
+1F3A1 ;	emoji ;	410 ;	activity, amusement park, entertainment, ferris, objects-android, place, places-apple, wheel ;	j 	# V6.0 (🎡) ferris wheel
+1F3A2 ;	emoji ;	411 ;	activity, amusement park, coaster, entertainment, objects-android, place, places-apple, roller ;	j 	# V6.0 (🎢) roller coaster
+1F488 ;	emoji ;	412 ;	barber, place, places-android, places-apple, pole, shop ;	j 	# V6.0 (💈) barber pole
+1F3AA ;	emoji ;	413 ;	activity, circus, entertainment, objects-android, place, places-apple, tent ;	j 	# V6.0 (🎪) circus tent
+1F3AB ;	emoji ;	414 ;	activity, admission, entertainment, object, objects-android, place, places-apple, ticket ;	j 	# V6.0 (🎫) ticket
+1F3AD ;	emoji ;	415 ;	activity, art, entertainment, face, mask, object, objects-android, performing, place, places-apple ;	j w 	# V6.0 (🎭) performing arts
+1F3B0 ;	emoji ;	416 ;	activity, game, object, objects-android, place, places-apple, slot ;	j 	# V6.0 (🎰) slot machine
+1F682 ;	emoji ;	417 ;	locomotive, places-android, places-apple, railway, steam, train, travel, vehicle ;	x 	# V6.0 (🚂) steam locomotive
+1F683 ;	emoji ;	418 ;	car, electric, places-android, places-apple, railway, train, tram, travel, trolleybus, vehicle ;	j 	# V6.0 (🚃) railway car
+1F684 ;	emoji ;	419 ;	places-android, places-apple, railway, shinkansen, speed, train, travel, vehicle ;	j 	# V6.0 (🚄) high-speed train
+1F685 ;	emoji ;	420 ;	bullet, places-android, places-apple, railway, shinkansen, speed, train, travel, vehicle ;	j 	# V6.0 (🚅) high-speed train with bullet nose
+1F686 ;	emoji ;	421 ;	places-android, places-apple, railway, train, travel, vehicle ;	x 	# V6.0 (🚆) train
+1F687 ;	emoji ;	422 ;	metro, places-android, places-apple, subway, travel, vehicle ;	j w 	# V6.0 (🚇) metro
+1F688 ;	emoji ;	423 ;	light, places-android, places-apple, railway, travel, vehicle ;	x 	# V6.0 (🚈) light rail
+1F689 ;	emoji ;	424 ;	places-android, places-apple, railway, station, train, travel, vehicle ;	j 	# V6.0 (🚉) station
+1F68A ;	emoji ;	425 ;	places-android, places-apple, tram, travel, trolleybus, vehicle ;	x 	# V6.0 (🚊) tram
+1F69D ;	emoji ;	426 ;	monorail, places-android, places-apple, travel, vehicle ;	x 	# V6.0 (🚝) monorail
+1F69E ;	emoji ;	427 ;	car, mountain, places-android, places-apple, railway, travel, vehicle ;	x 	# V6.0 (🚞) mountain railway
+1F68B ;	emoji ;	428 ;	car, places-android, places-apple, tram, travel, trolleybus, vehicle ;	x 	# V6.0 (🚋) tram car
+1F68C ;	emoji ;	429 ;	bus, places-android, places-apple, travel, vehicle ;	j 	# V6.0 (🚌) bus
+1F68D ;	emoji ;	430 ;	bus, oncoming, places-android, places-apple, travel, vehicle ;	w 	# V6.0 (🚍) oncoming bus
+1F68E ;	emoji ;	431 ;	bus, places-android, places-apple, tram, travel, trolley, trolleybus, vehicle ;	x 	# V6.0 (🚎) trolleybus
+1F68F ;	emoji ;	432 ;	bus, busstop, places-android, places-apple, stop, travel, vehicle ;	j 	# V6.0 (🚏) bus stop
+1F690 ;	emoji ;	433 ;	bus, minibus, places-android, places-apple, travel, vehicle ;	x 	# V6.0 (🚐) minibus
+1F691 ;	emoji ;	434 ;	ambulance, places-android, places-apple, travel, vehicle ;	j w 	# V6.0 (🚑) ambulance
+1F692 ;	emoji ;	435 ;	engine, fire, places-android, places-apple, travel, truck, vehicle ;	j 	# V6.0 (🚒) fire engine
+1F693 ;	emoji ;	436 ;	car, patrol, places-android, places-apple, police, travel, vehicle ;	j 	# V6.0 (🚓) police car
+1F694 ;	emoji ;	437 ;	car, oncoming, places-android, places-apple, police, travel, vehicle ;	w 	# V6.0 (🚔) oncoming police car
+1F695 ;	emoji ;	438 ;	places-android, places-apple, taxi, travel, vehicle ;	j 	# V6.0 (🚕) taxi
+1F696 ;	emoji ;	439 ;	oncoming, places-android, places-apple, taxi, travel, vehicle ;	x 	# V6.0 (🚖) oncoming taxi
+1F697 ;	emoji ;	440 ;	automobile, car, places-android, places-apple, travel, vehicle ;	j 	# V6.0 (🚗) automobile
+1F698 ;	emoji ;	441 ;	automobile, car, oncoming, places-android, places-apple, travel, vehicle ;	w 	# V6.0 (🚘) oncoming automobile
+1F699 ;	emoji ;	442 ;	places-android, places-apple, recreational, rv, travel, vehicle ;	j 	# V6.0 (🚙) recreational vehicle
+1F69A ;	emoji ;	443 ;	delivery, places-android, places-apple, travel, truck, vehicle ;	j 	# V6.0 (🚚) delivery truck
+1F69B ;	emoji ;	444 ;	lorry, places-android, places-apple, semi, travel, truck, vehicle ;	x 	# V6.0 (🚛) articulated lorry
+1F69C ;	emoji ;	445 ;	places-android, places-apple, tractor, travel, vehicle ;	x 	# V6.0 (🚜) tractor
+1F6B2 ;	emoji ;	446 ;	bicycle, bicycling, bike, biking, places-android, places-apple, sport, travel, vehicle ;	j w 	# V6.0 (🚲) bicycle
+1F6B3 ;	emoji ;	447 ;	bicycle, bicycling, bike, biking, forbidden, no, not, places-android, prohibited, sport, symbols-apple, travel, vehicle ;	x 	# V6.0 (🚳) no bicycles
+1F6B4 ;	emoji ;	448 ;	bicycle, bicycling, bicyclist, bike, biking, cyclist, fitz-optional, human, objects-apple, person, places-android, sport, travel ;	x 	# V6.0 (🚴) bicyclist
+1F6B5 ;	emoji ;	449 ;	bicycle, bicycling, bicyclist, bike, biking, cyclist, fitz-optional, human, mountain, objects-apple, person, places-android, sport, travel ;	x 	# V6.0 (🚵) mountain bicyclist
+1F3CE ;	text ;	450 ;	car, racing, sport, travel ;	w 	# V7.0 (🏎) racing car
+1F3CD ;	text ;	451 ;	human, motorcycle, person, racing, sport, travel ;	w 	# V7.0 (🏍) racing motorcycle
+26FD ;	emoji ;	452 ;	fuel, fuelpump, gas, places-android, places-apple, pump, station, travel ;	a j 	# V5.2 (⛽) fuel pump
+1F6E3 ;	text ;	453 ;	motorway, travel ;	w 	# V7.0 (🛣) motorway
+1F6E4 ;	text ;	454 ;	railway, track, travel ;	w 	# V7.0 (🛤) railway track
+1F6A8 ;	emoji ;	455 ;	beacon, car, light, places-android, places-apple, police, revolving, travel ;	j 	# V6.0 (🚨) police cars revolving light
+2388 ;	text ;	456 ;	helm, travel ;	x 	# V3.0 (⎈) helm symbol
+2693 ;	emoji ;	457 ;	anchor, places-android, places-apple, travel ;	a j 	# V4.1 (⚓) anchor
+26F5 ;	emoji ;	458 ;	boat, places-android, places-apple, resort, sailboat, sea, travel, yacht ;	a j 	# V5.2 (⛵) sailboat
+1F6A3 ;	emoji ;	459 ;	boat, fitz-optional, places-android, places-apple, rowboat, travel, vehicle ;	x 	# V6.0 (🚣) rowboat
+1F6A4 ;	emoji ;	460 ;	boat, places-android, places-apple, speedboat, travel, vehicle ;	j 	# V6.0 (🚤) speedboat
+1F6F3 ;	text ;	461 ;	passenger, ship, travel, vehicle ;	w 	# V7.0 (🛳) passenger ship
+26F4 ;	text ;	462 ;	ferry, travel ;	a 	# V5.2 (⛴) ferry
+1F6E5 ;	text ;	463 ;	boat, motorboat, travel, vehicle ;	w 	# V7.0 (🛥) motor boat
+1F6A2 ;	emoji ;	464 ;	places-android, places-apple, ship, travel, vehicle ;	j 	# V6.0 (🚢) ship
+2708 ;	text ;	465 ;	airplane, places-android, places-apple, travel ;	z a j w 	# V1.1 (✈) airplane
+1F6E9 ;	text ;	466 ;	airplane, travel, vehicle ;	w 	# V7.0 (🛩) small airplane
+1F6EB ;	emoji ;	467 ;	airplane, check-in, departure, departures, travel, vehicle ;	x 	# V7.0 (🛫) airplane departure
+1F6EC ;	emoji ;	468 ;	airplane, arrivals, arriving, travel, vehicle ;	x 	# V7.0 (🛬) airplane arriving
+1F4BA ;	emoji ;	469 ;	chair, objects-android, office, places-apple, seat, travel ;	j 	# V6.0 (💺) seat
+1F681 ;	emoji ;	470 ;	helicopter, places-android, places-apple, travel, vehicle ;	x 	# V6.0 (🚁) helicopter
+1F69F ;	emoji ;	471 ;	places-android, places-apple, railway, suspension, travel, vehicle ;	x 	# V6.0 (🚟) suspension railway
+1F6A0 ;	emoji ;	472 ;	cable, gondola, mountain, places-android, places-apple, travel, vehicle ;	x 	# V6.0 (🚠) mountain cableway
+1F6A1 ;	emoji ;	473 ;	aerial, cable, car, gondola, places-android, places-apple, ropeway, tramway, travel, vehicle ;	x 	# V6.0 (🚡) aerial tramway
+1F680 ;	emoji ;	474 ;	fantasy, places-android, places-apple, rocket, travel, vehicle ;	j 	# V6.0 (🚀) rocket
+1F6F0 ;	text ;	475 ;	place, satellite, vehicle ;	w 	# V7.0 (🛰) satellite
+1F3E7 ;	emoji ;	476 ;	atm, automated, place, places-android, symbols-apple, teller ;	j 	# V6.0 (🏧) automated teller machine
+1F6AE ;	emoji ;	477 ;	litter, litterbox, place, put, symbols-android, symbols-apple, travel ;	x 	# V6.0 (🚮) put litter in its place symbol
+1F6A5 ;	emoji ;	478 ;	light, places-android, places-apple, signal, traffic, travel ;	j 	# V6.0 (🚥) horizontal traffic light
+1F6A6 ;	emoji ;	479 ;	light, places-android, places-apple, signal, traffic, travel ;	x 	# V6.0 (🚦) vertical traffic light
+1F6A7 ;	emoji ;	480 ;	barrier, construction, places-android, places-apple, travel, under ;	j 	# V6.0 (🚧) construction sign
+1F6AB ;	emoji ;	481 ;	entry, forbidden, no, not, prohibited, symbols-android, symbols-apple, travel ;	j 	# V6.0 (🚫) no entry sign
+1F6AD ;	emoji ;	482 ;	forbidden, no, not, prohibited, smoking, symbols-android, symbols-apple, travel ;	j w 	# V6.0 (🚭) no smoking symbol
+1F6AF ;	emoji ;	483 ;	forbidden, litter, no, not, prohibited, symbols-android, symbols-apple, travel ;	x 	# V6.0 (🚯) do not litter symbol
+1F6B0 ;	emoji ;	484 ;	drink, potable, symbols-android, symbols-apple, travel, water ;	x 	# V6.0 (🚰) potable water symbol
+1F6B1 ;	emoji ;	485 ;	drink, forbidden, no, not, potable, prohibited, symbols-android, symbols-apple, travel, water ;	x 	# V6.0 (🚱) non-potable water symbol
+1F6B7 ;	emoji ;	486 ;	forbidden, no, not, pedestrian, places-android, prohibited, symbols-apple, travel ;	x 	# V6.0 (🚷) no pedestrians
+1F6B8 ;	emoji ;	487 ;	child, crossing, places-android, symbols-apple, travel ;	x 	# V6.0 (🚸) children crossing
+267F ;	emoji ;	488 ;	access, symbols-android, symbols-apple, travel, wheelchair ;	j w 	# V4.1 (♿) wheelchair symbol
+1F6B9 ;	emoji ;	489 ;	men, men’s, restroom, symbols-android, symbols-apple, travel ;	j w 	# V6.0 (🚹) mens symbol
+1F6BA ;	emoji ;	490 ;	restroom, symbols-android, symbols-apple, travel, woman, women’s ;	j w 	# V6.0 (🚺) womens symbol
+1F6BB ;	emoji ;	491 ;	lavatory, restroom, symbols-android, symbols-apple, travel, wc ;	j 	# V6.0 (🚻) restroom
+1F6BC ;	emoji ;	492 ;	baby, changing, symbols-android, symbols-apple, travel ;	j w 	# V6.0 (🚼) baby symbol
+1F6BE ;	emoji ;	493 ;	closet, lavatory, places-android, restroom, symbols-apple, travel, water, wc ;	j 	# V6.0 (🚾) water closet
+1F6C2 ;	emoji ;	494 ;	control, passport, places-android, symbols-apple, travel ;	x 	# V6.0 (🛂) passport control
+1F6C3 ;	emoji ;	495 ;	customs, places-android, symbols-apple, travel ;	x 	# V6.0 (🛃) customs
+1F6C4 ;	emoji ;	496 ;	baggage, claim, places-android, symbols-apple, travel ;	x 	# V6.0 (🛄) baggage claim
+1F6C5 ;	emoji ;	497 ;	baggage, left luggage, locker, luggage, places-android, symbols-apple, travel ;	x 	# V6.0 (🛅) left luggage
+26A0 ;	text ;	498 ;	places-apple, symbols-android, travel, warning ;	j 	# V4.0 (⚠) warning sign
+26D4 ;	emoji ;	499 ;	entry, forbidden, no, not, prohibited, symbols-android, symbols-apple, travel ;	a j 	# V5.2 (⛔) no entry
+1F6CE ;	text ;	500 ;	bell, bellhop, hotel, object ;	w 	# V7.0 (🛎) bellhop bell
+1F6AA ;	emoji ;	501 ;	door, object, objects-android, objects-apple, travel ;	j 	# V6.0 (🚪) door
+1F6CC ;	emoji ;	502 ;	hotel, object, sleeping ;	x 	# V7.0 (🛌) sleeping accommodation
+1F6CF ;	text ;	503 ;	bed, hotel, object ;	w 	# V7.0 (🛏) bed
+1F6CB ;	text ;	504 ;	couch, hotel, lamp, object ;	w 	# V7.0 (🛋) couch and lamp
+1F6BD ;	emoji ;	505 ;	object, objects-apple, places-android, toilet, travel ;	j 	# V6.0 (🚽) toilet
+1F6BF ;	emoji ;	506 ;	object, objects-apple, places-android, shower, travel ;	x 	# V6.0 (🚿) shower
+1F6C0 ;	emoji ;	507 ;	bath, bathtub, fitz-optional, object, objects-apple, places-android, travel ;	j 	# V6.0 (🛀) bath
+1F6C1 ;	emoji ;	508 ;	bath, bathtub, object, objects-apple, places-android, travel ;	x 	# V6.0 (🛁) bathtub
+1F6CD ;	text ;	509 ;	bag, hotel, object, shopping ;	w 	# V7.0 (🛍) shopping bags
+231B ;	emoji ;	510 ;	hourglass, objects-apple, sand, symbols-android, time, timer ;	j 	# V1.1 (⌛) hourglass
+23F3 ;	emoji ;	511 ;	hourglass, objects-apple, sand, symbols-android, time, timer ;	j w 	# V6.0 (⏳) hourglass with flowing sand
+231A ;	emoji ;	512 ;	clock, objects-android, objects-apple, time, watch ;	j 	# V1.1 (⌚) watch
+23F0 ;	emoji ;	513 ;	alarm, clock, objects-apple, symbols-android, time ;	j 	# V6.0 (⏰) alarm clock
+23F1 ;	text ;	514 ;	clock, stopwatch, time ;	x 	# V6.0 (⏱) stopwatch
+23F2 ;	text ;	515 ;	clock, time, timer ;	x 	# V6.0 (⏲) timer clock
+1F570 ;	text ;	516 ;	clock, object ;	w 	# V7.0 (🕰) mantelpiece clock
+1F55B ;	emoji ;	517 ;	00, 12, 12:00, clock, face, o’clock, symbols-android, symbols-apple, time, twelve ;	j w 	# V6.0 (🕛) clock face twelve oclock
+1F567 ;	emoji ;	518 ;	12, 30, 12:30, clock, face, symbols-android, symbols-apple, thirty, time, twelve ;	w 	# V6.0 (🕧) clock face twelve-thirty
+1F550 ;	emoji ;	519 ;	00, 1, 1:00, clock, face, o’clock, one, symbols-android, symbols-apple, time ;	j w 	# V6.0 (🕐) clock face one oclock
+1F55C ;	emoji ;	520 ;	1, 30, 1:30, clock, face, one, symbols-android, symbols-apple, thirty, time ;	w 	# V6.0 (🕜) clock face one-thirty
+1F551 ;	emoji ;	521 ;	00, 2, 2:00, clock, face, o’clock, symbols-android, symbols-apple, time, two ;	j w 	# V6.0 (🕑) clock face two oclock
+1F55D ;	emoji ;	522 ;	2, 30, 2:30, clock, face, symbols-android, symbols-apple, thirty, time, two ;	w 	# V6.0 (🕝) clock face two-thirty
+1F552 ;	emoji ;	523 ;	00, 3, 3:00, clock, face, o’clock, symbols-android, symbols-apple, three, time ;	j w 	# V6.0 (🕒) clock face three oclock
+1F55E ;	emoji ;	524 ;	3, 30, 3:30, clock, face, symbols-android, symbols-apple, thirty, three, time ;	w 	# V6.0 (🕞) clock face three-thirty
+1F553 ;	emoji ;	525 ;	00, 4, 4:00, clock, face, four, o’clock, symbols-android, symbols-apple, time ;	j w 	# V6.0 (🕓) clock face four oclock
+1F55F ;	emoji ;	526 ;	4, 30, 4:30, clock, face, four, symbols-android, symbols-apple, thirty, time ;	w 	# V6.0 (🕟) clock face four-thirty
+1F554 ;	emoji ;	527 ;	00, 5, 5:00, clock, face, five, o’clock, symbols-android, symbols-apple, time ;	j w 	# V6.0 (🕔) clock face five oclock
+1F560 ;	emoji ;	528 ;	5, 30, 5:30, clock, face, five, symbols-android, symbols-apple, thirty, time ;	w 	# V6.0 (🕠) clock face five-thirty
+1F555 ;	emoji ;	529 ;	00, 6, 6:00, clock, face, o’clock, six, symbols-android, symbols-apple, time ;	j w 	# V6.0 (🕕) clock face six oclock
+1F561 ;	emoji ;	530 ;	6, 30, 6:30, clock, face, six, symbols-android, symbols-apple, thirty, time ;	w 	# V6.0 (🕡) clock face six-thirty
+1F556 ;	emoji ;	531 ;	00, 7, 7:00, clock, face, o’clock, seven, symbols-android, symbols-apple, time ;	j w 	# V6.0 (🕖) clock face seven oclock
+1F562 ;	emoji ;	532 ;	7, 30, 7:30, clock, face, seven, symbols-android, symbols-apple, thirty, time ;	w 	# V6.0 (🕢) clock face seven-thirty
+1F557 ;	emoji ;	533 ;	00, 8, 8:00, clock, eight, face, o’clock, symbols-android, symbols-apple, time ;	j w 	# V6.0 (🕗) clock face eight oclock
+1F563 ;	emoji ;	534 ;	8, 30, 8:30, clock, eight, face, symbols-android, symbols-apple, thirty, time ;	w 	# V6.0 (🕣) clock face eight-thirty
+1F558 ;	emoji ;	535 ;	00, 9, 9:00, clock, face, nine, o’clock, symbols-android, symbols-apple, time ;	j w 	# V6.0 (🕘) clock face nine oclock
+1F564 ;	emoji ;	536 ;	9, 30, 9:30, clock, face, nine, symbols-android, symbols-apple, thirty, time ;	w 	# V6.0 (🕤) clock face nine-thirty
+1F559 ;	emoji ;	537 ;	00, 10, 10:00, clock, face, o’clock, symbols-android, symbols-apple, ten, time ;	j w 	# V6.0 (🕙) clock face ten oclock
+1F565 ;	emoji ;	538 ;	10, 30, 10:30, clock, face, symbols-android, symbols-apple, ten, thirty, time ;	w 	# V6.0 (🕥) clock face ten-thirty
+1F55A ;	emoji ;	539 ;	00, 11, 11:00, clock, eleven, face, o’clock, symbols-android, symbols-apple, time ;	j w 	# V6.0 (🕚) clock face eleven oclock
+1F566 ;	emoji ;	540 ;	11, 30, 11:30, clock, eleven, face, symbols-android, symbols-apple, thirty, time ;	w 	# V6.0 (🕦) clock face eleven-thirty
+2648 ;	emoji ;	541 ;	aries, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♈) aries
+2649 ;	emoji ;	542 ;	symbols-android, symbols-apple, taurus, time, zodiac ;	j w 	# V1.1 (♉) taurus
+264A ;	emoji ;	543 ;	gemini, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♊) gemini
+264B ;	emoji ;	544 ;	cancer, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♋) cancer
+264C ;	emoji ;	545 ;	leo, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♌) leo
+264D ;	emoji ;	546 ;	symbols-android, symbols-apple, time, virgo, zodiac ;	j w 	# V1.1 (♍) virgo
+264E ;	emoji ;	547 ;	libra, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♎) libra
+264F ;	emoji ;	548 ;	scorpion, scorpius, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♏) scorpius
+2650 ;	emoji ;	549 ;	sagittarius, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♐) sagittarius
+2651 ;	emoji ;	550 ;	capricorn, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♑) capricorn
+2652 ;	emoji ;	551 ;	aquarius, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♒) aquarius
+2653 ;	emoji ;	552 ;	pisces, symbols-android, symbols-apple, time, zodiac ;	j w 	# V1.1 (♓) pisces
+26CE ;	emoji ;	553 ;	ophiuchus, symbols-android, symbols-apple, word, zodiac ;	a j 	# V6.0 (⛎) ophiuchus
+1F311 ;	emoji ;	554 ;	dark, moon, nature-android, nature-apple, place, time, weather ;	j 	# V6.0 (🌑) new moon symbol
+1F312 ;	emoji ;	555 ;	crescent, moon, nature-android, nature-apple, place, time, waxing, weather ;	x 	# V6.0 (🌒) waxing crescent moon symbol
+1F313 ;	emoji ;	556 ;	moon, nature-android, nature-apple, place, quarter, time, weather ;	j 	# V6.0 (🌓) first quarter moon symbol
+1F314 ;	emoji ;	557 ;	gibbous, moon, nature-android, nature-apple, place, time, waxing, weather ;	j 	# V6.0 (🌔) waxing gibbous moon symbol
+1F315 ;	emoji ;	558 ;	full, moon, nature-android, nature-apple, place, time, weather ;	j w 	# V6.0 (🌕) full moon symbol
+1F316 ;	emoji ;	559 ;	gibbous, moon, nature-android, nature-apple, place, time, waning, weather ;	x 	# V6.0 (🌖) waning gibbous moon symbol
+1F317 ;	emoji ;	560 ;	moon, nature-android, nature-apple, place, quarter, time, weather ;	x 	# V6.0 (🌗) last quarter moon symbol
+1F318 ;	emoji ;	561 ;	crescent, moon, nature-android, nature-apple, place, time, waning, weather ;	x 	# V6.0 (🌘) waning crescent moon symbol
+1F319 ;	emoji ;	562 ;	crescent, moon, nature-android, nature-apple, place, time, weather ;	j 	# V6.0 (🌙) crescent moon
+1F31A ;	emoji ;	563 ;	face, moon, nature-android, nature-apple, place, time, weather ;	x 	# V6.0 (🌚) new moon with face
+1F31B ;	emoji ;	564 ;	face, moon, nature-android, nature-apple, place, quarter, weather ;	j 	# V6.0 (🌛) first quarter moon with face
+1F31C ;	emoji ;	565 ;	face, moon, nature-android, nature-apple, place, quarter, weather ;	w 	# V6.0 (🌜) last quarter moon with face
+1F321 ;	text ;	566 ;	thermometer, weather ;	w 	# V7.0 (🌡) thermometer
+2600 ;	text ;	567 ;	bright, nature-android, nature-apple, rays, sun, sunny, weather ;	a j 	# V1.1 (☀) black sun with rays
+1F31D ;	emoji ;	568 ;	bright, face, full, moon, nature-android, nature-apple, place, weather ;	x 	# V6.0 (🌝) full moon with face
+1F31E ;	emoji ;	569 ;	bright, face, nature-android, nature-apple, place, sun, weather ;	x 	# V6.0 (🌞) sun with face
+2601 ;	text ;	570 ;	cloud, nature-android, nature-apple, weather ;	a j w 	# V1.1 (☁) cloud
+26C5 ;	emoji ;	571 ;	cloud, nature-android, nature-apple, sun, weather ;	a j 	# V5.2 (⛅) sun behind cloud
+26C8 ;	text ;	572 ;	cloud, rain, thunder, weather ;	a 	# V5.2 (⛈) thunder cloud and rain
+1F324 ;	text ;	573 ;	cloud, sun, weather ;	w 	# V7.0 (🌤) white sun with small cloud
+1F325 ;	text ;	574 ;	cloud, sun, weather ;	w 	# V7.0 (🌥) white sun behind cloud
+1F326 ;	text ;	575 ;	cloud, rain, sun, weather ;	w 	# V7.0 (🌦) white sun behind cloud with rain
+1F327 ;	text ;	576 ;	cloud, rain, weather ;	w 	# V7.0 (🌧) cloud with rain
+1F328 ;	text ;	577 ;	cloud, cold, snow, weather ;	w 	# V7.0 (🌨) cloud with snow
+1F329 ;	text ;	578 ;	cloud, lightning, weather ;	w 	# V7.0 (🌩) cloud with lightning
+1F32A ;	text ;	579 ;	cloud, tornado, weather ;	w 	# V7.0 (🌪) cloud with tornado
+1F32B ;	text ;	580 ;	cloud, fog, weather ;	w 	# V7.0 (🌫) fog
+1F32C ;	text ;	581 ;	blow, cloud, face, weather, wind ;	w 	# V7.0 (🌬) wind blowing face
+1F300 ;	emoji ;	582 ;	cyclone, dizzy, nature-android, nature-apple, twister, typhoon, weather ;	j 	# V6.0 (🌀) cyclone
+1F308 ;	emoji ;	583 ;	nature-android, nature-apple, rain, rainbow, weather ;	j 	# V6.0 (🌈) rainbow
+1F302 ;	emoji ;	584 ;	nature-android, people-apple, rain, umbrella, weather ;	j 	# V6.0 (🌂) closed umbrella
+2602 ;	text ;	585 ;	rain, umbrella, weather ;	a 	# V1.1 (☂) umbrella
+2614 ;	emoji ;	586 ;	drop, nature-android, nature-apple, rain, umbrella, weather ;	a j 	# V4.0 (☔) umbrella with rain drops
+26F1 ;	text ;	587 ;	rain, sun, travel, umbrella, weather ;	a 	# V5.2 (⛱) umbrella on ground
+2744 ;	text ;	588 ;	cold, nature-android, nature-apple, snow, snowflake, weather ;	z j w 	# V1.1 (❄) snowflake
+2603 ;	text ;	589 ;	cold, snow, snowman, weather ;	a 	# V1.1 (☃) snowman
+26C4 ;	emoji ;	590 ;	cold, nature-android, nature-apple, snow, snowman, weather ;	a j 	# V5.2 (⛄) snowman without snow
+1F31F ;	emoji ;	591 ;	glittery, glowing, people-apple, place, shining, sparkle, sparkler, star, symbols-android ;	j 	# V6.0 (🌟) glowing star
+1F320 ;	emoji ;	592 ;	activity, falling, nature, nature-apple, place, shooting, star, symbols-android ;	j 	# V6.0 (🌠) shooting star
+2604 ;	text ;	593 ;	comet, object ;	x 	# V1.1 (☄) comet
+1F3B2 ;	emoji ;	594 ;	dice, die, game, objects-android, objects-apple ;	j 	# V6.0 (🎲) game die
+2660 ;	text ;	595 ;	card, game, spade, spades, suit, symbols-android, symbols-apple ;	z a j 	# V1.1 (♠) black spade suit
+2665 ;	text ;	596 ;	card, emotion, game, heart, hearts, suit, symbols-android, symbols-apple ;	z a j 	# V1.1 (♥) black heart suit
+2666 ;	text ;	597 ;	card, diamond, diamonds, game, suit, symbols-android, symbols-apple ;	z a j 	# V1.1 (♦) black diamond suit
+2663 ;	text ;	598 ;	card, clubs, game, suit, symbols-android, symbols-apple ;	z a j 	# V1.1 (♣) black club suit
+1F0CF ;	emoji ;	599 ;	card, game, joker, objects-android, objects-apple, playing ;	j 	# V6.0 (🃏) playing card black joker
+1F004 ;	emoji ;	600 ;	game, mahjong, objects-android, objects-apple, red ;	j 	# V5.1 (🀄) mahjong tile red dragon
+1F3AE ;	emoji ;	601 ;	controller, game, objects-android, objects-apple, video ;	j w 	# V6.0 (🎮) video game
+1F579 ;	text ;	602 ;	game, joystick, object ;	w 	# V7.0 (🕹) joystick
+26BD ;	emoji ;	603 ;	ball, objects-apple, places-android, soccer, sport ;	j 	# V5.2 (⚽) soccer ball
+26BE ;	emoji ;	604 ;	ball, baseball, objects-apple, places-android, sport ;	a j 	# V5.2 (⚾) baseball
+1F3C0 ;	emoji ;	605 ;	ball, basketball, hoop, objects-apple, places-android, sport ;	j 	# V6.0 (🏀) basketball and hoop
+1F3C8 ;	emoji ;	606 ;	american, ball, football, objects-apple, places-android, sport ;	j 	# V6.0 (🏈) american football
+1F3C9 ;	emoji ;	607 ;	ball, football, objects-apple, places-android, rugby, sport ;	x 	# V6.0 (🏉) rugby football
+1F3BE ;	emoji ;	608 ;	ball, objects-apple, places-android, racquet, sport, tennis ;	j 	# V6.0 (🎾) tennis racquet and ball
+1F3B1 ;	emoji ;	609 ;	8, 8 ball, ball, billiard, eight, game, objects-apple, places-android, sport ;	j 	# V6.0 (🎱) billiards
+1F3B3 ;	emoji ;	610 ;	ball, bowling, game, objects-apple, places-android, sport ;	j 	# V6.0 (🎳) bowling
+26F3 ;	emoji ;	611 ;	flag, golf, golfing, hole, objects-apple, places-android, sport, travel ;	a j w 	# V5.2 (⛳) flag in hole
+1F3CC ;	text ;	612 ;	ball, golfer, human, person, sport ;	w 	# V7.0 (🏌) golfer
+26F8 ;	emoji ;	613 ;	ice, skate, skating, sport, travel ;	a 	# V5.2 (⛸) ice skate
+1F3A3 ;	emoji ;	614 ;	entertainment, fish, fishing, objects-apple, places-android, pole, sport ;	j 	# V6.0 (🎣) fishing pole and fish
+1F3BD ;	emoji ;	615 ;	people-apple, places-android, running, sash, shirt, sport ;	j 	# V6.0 (🎽) running shirt with sash
+1F3BF ;	emoji ;	616 ;	objects-apple, places-android, ski, skier, skiing, sport ;	j 	# V6.0 (🎿) ski and ski boot
+26F7 ;	emoji ;	617 ;	human, person, ski, skier, skiing, sport, travel ;	a w 	# V5.2 (⛷) skier
+1F3C2 ;	emoji ;	618 ;	fitz-optional, human, objects-apple, person, places-android, ski, skier, skiing, snowboard, snowboarder, snowboarding, sport ;	j w 	# V6.0 (🏂) snowboarder
+1F3C4 ;	emoji ;	619 ;	fitz-optional, human, objects-apple, person, places-android, sport, surfer, surfing ;	j w 	# V6.0 (🏄) surfer
+1F3C7 ;	emoji ;	620 ;	fitz-optional, horse, human, jockey, objects-apple, person, places-android, racing, sport, travel ;	x 	# V6.0 (🏇) horse racing
+1F3CA ;	emoji ;	621 ;	fitz-optional, human, objects-apple, person, places-android, sport, swim, swimmer, swimming, travel ;	j w 	# V6.0 (🏊) swimmer
+26F9 ;	emoji ;	622 ;	ball, human, person, sport, travel ;	a 	# V5.2 (⛹) person with ball
+1F3CB ;	text ;	623 ;	human, lifter, person, sport, weight ;	w 	# V7.0 (🏋) weight lifter
+1F3C5 ;	emoji ;	624 ;	medal, sport ;	x 	# V7.0 (🏅) sports medal
+1F3C6 ;	emoji ;	625 ;	objects-apple, places-android, prize, sport, trophy ;	j w 	# V6.0 (🏆) trophy
+1F507 ;	emoji ;	626 ;	mute, objects-apple, quiet, sound, speaker, symbols-android ;	x 	# V6.0 (🔇) speaker with cancellation stroke
+1F508 ;	emoji ;	627 ;	objects-apple, sound, speaker, symbols-android ;	w 	# V6.0 (🔈) speaker
+1F509 ;	emoji ;	628 ;	low, objects-apple, sound, speaker, symbols-android, volume, wave ;	x 	# V6.0 (🔉) speaker with one sound wave
+1F50A ;	emoji ;	629 ;	3, high, loud, objects-apple, sound, speaker, symbols-android, three, volume, waves ;	j 	# V6.0 (🔊) speaker with three sound waves
+1F4E2 ;	emoji ;	630 ;	address, communication, hand, loud, loudspeaker, objects-android, objects-apple, public, sound ;	j 	# V6.0 (📢) public address loudspeaker
+1F4E3 ;	emoji ;	631 ;	cheering, communication, mega, megaphone, objects-android, objects-apple, sound ;	j 	# V6.0 (📣) cheering megaphone
+1F4EF ;	emoji ;	632 ;	communication, horn, object, objects-android, objects-apple, postal, sound ;	x 	# V6.0 (📯) postal horn
+1F514 ;	emoji ;	633 ;	bell, objects-android, objects-apple, sound ;	j 	# V6.0 (🔔) bell
+1F515 ;	emoji ;	634 ;	bell, forbidden, no, not, objects-android, objects-apple, prohibited, sound ;	x 	# V6.0 (🔕) bell with cancellation stroke
+1F500 ;	emoji ;	635 ;	arrow, crossed, symbols-android, symbols-apple ;	x 	# V6.0 (🔀) twisted rightwards arrows
+1F501 ;	emoji ;	636 ;	arrow, clockwise, repeat, symbols-android, symbols-apple ;	x 	# V6.0 (🔁) clockwise rightwards and leftwards open circle arrows
+1F502 ;	emoji ;	637 ;	arrow, clockwise, once, symbols-android, symbols-apple ;	x 	# V6.0 (🔂) clockwise rightwards and leftwards open circle arrows with circled one overlay
+25B6 ;	text ;	638 ;	arrow, play, right, sound, symbols-android, symbols-apple, triangle ;	a j w 	# V1.1 (▶) black right-pointing triangle
+23E9 ;	emoji ;	639 ;	arrow, double, fast, forward, sound, symbols-android, symbols-apple ;	j w 	# V6.0 (⏩) black right-pointing double triangle
+23ED ;	text ;	640 ;	arrow, next scene, next track, sound, triangle ;	w 	# V6.0 (⏭) black right-pointing double triangle with vertical bar
+23EF ;	text ;	641 ;	arrow, pause, play, right, sound, triangle ;	x 	# V6.0 (⏯) black right-pointing triangle with double vertical bar
+25C0 ;	text ;	642 ;	arrow, left, reverse, sound, symbols-android, symbols-apple, triangle ;	a j w 	# V1.1 (◀) black left-pointing triangle
+23EA ;	emoji ;	643 ;	arrow, double, rewind, sound, symbols-android, symbols-apple ;	j w 	# V6.0 (⏪) black left-pointing double triangle
+23EE ;	text ;	644 ;	arrow, previous scene, previous track, sound, triangle ;	w 	# V6.0 (⏮) black left-pointing double triangle with vertical bar
+1F53C ;	emoji ;	645 ;	arrow, button, red, symbols-android, symbols-apple ;	j 	# V6.0 (🔼) up-pointing small red triangle
+23EB ;	emoji ;	646 ;	arrow, double, sound, symbols-android, symbols-apple ;	j 	# V6.0 (⏫) black up-pointing double triangle
+1F53D ;	emoji ;	647 ;	arrow, button, down, red, symbols-android, symbols-apple ;	j 	# V6.0 (🔽) down-pointing small red triangle
+23EC ;	emoji ;	648 ;	arrow, double, down, sound, symbols-android, symbols-apple ;	j 	# V6.0 (⏬) black down-pointing double triangle
+23F8 ;	text ;	649 ;	bar, double, pause, sound, vertical ;	w 	# V7.0 (⏸) double vertical bar
+23F9 ;	text ;	650 ;	sound, square, stop ;	w 	# V7.0 (⏹) black square for stop
+23FA ;	text ;	651 ;	circle, record, sound ;	w 	# V7.0 (⏺) black circle for record
+23CF ;	text ;	652 ;	eject, sound ;	x 	# V4.0 (⏏) eject symbol
+1F3BC ;	emoji ;	653 ;	activity, music, objects-android, objects-apple, score, sound ;	j 	# V6.0 (🎼) musical score
+1F3B5 ;	emoji ;	654 ;	activity, music, note, objects-android, objects-apple, sound ;	j 	# V6.0 (🎵) musical note
+1F3B6 ;	emoji ;	655 ;	activity, music, note, notes, objects-android, objects-apple, sound ;	j 	# V6.0 (🎶) multiple musical notes
+1F399 ;	text ;	656 ;	mic, microphone, music, object, sound, studio ;	w 	# V7.0 (🎙) studio microphone
+1F39A ;	text ;	657 ;	level, music, object, slider, sound ;	w 	# V7.0 (🎚) level slider
+1F39B ;	text ;	658 ;	control, knobs, music, object, sound ;	w 	# V7.0 (🎛) control knobs
+1F3A4 ;	emoji ;	659 ;	activity, entertainment, karaoke, mic, microphone, objects-android, objects-apple, sound ;	j 	# V6.0 (🎤) microphone
+1F3A7 ;	emoji ;	660 ;	activity, entertainment, headphone, headphones, objects-android, objects-apple, sound ;	j w 	# V6.0 (🎧) headphone
+1F3B7 ;	emoji ;	661 ;	activity, instrument, music, objects-android, objects-apple, sax, saxophone, sound ;	j 	# V6.0 (🎷) saxophone
+1F3B8 ;	emoji ;	662 ;	activity, guitar, instrument, music, objects-android, objects-apple, sound ;	j 	# V6.0 (🎸) guitar
+1F3B9 ;	emoji ;	663 ;	activity, instrument, keyboard, music, objects-android, objects-apple, piano, sound ;	j 	# V6.0 (🎹) musical keyboard
+1F3BA ;	emoji ;	664 ;	activity, instrument, music, objects-android, objects-apple, sound, trumpet ;	j 	# V6.0 (🎺) trumpet
+1F3BB ;	emoji ;	665 ;	activity, instrument, music, objects-android, objects-apple, sound, violin ;	j 	# V6.0 (🎻) violin
+1F4FB ;	emoji ;	666 ;	object, objects-android, objects-apple, radio, video ;	j w 	# V6.0 (📻) radio
+1F4F1 ;	emoji ;	667 ;	cell, communication, iphone, mobile, object, objects-android, objects-apple, phone ;	j 	# V6.0 (📱) mobile phone
+1F4F3 ;	emoji ;	668 ;	cell, communication, mobile, mode, object, phone, symbols-android, symbols-apple, vibration ;	j 	# V6.0 (📳) vibration mode
+1F4F4 ;	emoji ;	669 ;	cell, communication, mobile, object, off, phone, symbols-android, symbols-apple ;	j 	# V6.0 (📴) mobile phone off
+1F4F2 ;	emoji ;	670 ;	arrow, call, calling, cell, communication, finish, mobile, object, objects-android, objects-apple, phone, receive ;	j 	# V6.0 (📲) mobile phone with rightwards arrow at left
+1F4F5 ;	emoji ;	671 ;	cell, communication, forbidden, mobile, no, not, object, phone, prohibited, symbols-android, symbols-apple ;	x 	# V6.0 (📵) no mobile phones
+260E ;	text ;	672 ;	objects-android, objects-apple, office, phone, sound, telephone ;	z a j 	# V1.1 (☎) black telephone
+1F4DE ;	emoji ;	673 ;	communication, objects-android, objects-apple, phone, receiver, sound, telephone ;	j 	# V6.0 (📞) telephone receiver
+0023 20E3 ;	text ;	674 ;	hash, keycap, other-android, pound, symbols-apple, word ;	j 	# V3.0 (#⃣) keycap number sign
+002A 20E3 ;	text ;	675 ;	asterisk, keycap, star ;	x 	# V3.0 (*⃣) keycap asterisk
+0030 20E3 ;	text ;	676 ;	0, keycap, other-android, symbols-apple, word, zero ;	j 	# V3.0 (0⃣) keycap digit zero
+0031 20E3 ;	text ;	677 ;	1, keycap, one, other-android, symbols-apple, word ;	j 	# V3.0 (1⃣) keycap digit one
+0032 20E3 ;	text ;	678 ;	2, keycap, other-android, symbols-apple, two, word ;	j 	# V3.0 (2⃣) keycap digit two
+0033 20E3 ;	text ;	679 ;	3, keycap, other-android, symbols-apple, three, word ;	j 	# V3.0 (3⃣) keycap digit three
+0034 20E3 ;	text ;	680 ;	4, four, keycap, other-android, symbols-apple, word ;	j 	# V3.0 (4⃣) keycap digit four
+0035 20E3 ;	text ;	681 ;	5, five, keycap, other-android, symbols-apple, word ;	j 	# V3.0 (5⃣) keycap digit five
+0036 20E3 ;	text ;	682 ;	6, keycap, other-android, six, symbols-apple, word ;	j 	# V3.0 (6⃣) keycap digit six
+0037 20E3 ;	text ;	683 ;	7, keycap, other-android, seven, symbols-apple, word ;	j 	# V3.0 (7⃣) keycap digit seven
+0038 20E3 ;	text ;	684 ;	8, eight, keycap, other-android, symbols-apple, word ;	j 	# V3.0 (8⃣) keycap digit eight
+0039 20E3 ;	text ;	685 ;	9, keycap, nine, other-android, symbols-apple, word ;	j 	# V3.0 (9⃣) keycap digit nine
+1F51F ;	emoji ;	686 ;	10, keycap, other-android, symbols-apple, ten, word ;	j 	# V6.0 (🔟) keycap ten
+1F4F6 ;	emoji ;	687 ;	antenna, bars, communication, mobile, object, phone, signal, symbols-android, symbols-apple ;	j 	# V6.0 (📶) antenna with bars
+1F4DF ;	emoji ;	688 ;	communication, objects-android, objects-apple, office, pager ;	j w 	# V6.0 (📟) pager
+1F4E0 ;	emoji ;	689 ;	communication, fax, objects-android, objects-apple, office ;	j 	# V6.0 (📠) fax machine
+1F3A5 ;	emoji ;	690 ;	activity, camera, cinema, entertainment, movie, object, objects-android, objects-apple ;	j 	# V6.0 (🎥) movie camera
+1F3A6 ;	emoji ;	691 ;	activity, camera, cinema, entertainment, film, movie, object, objects-android, symbols-apple ;	j 	# V6.0 (🎦) cinema
+1F3AC ;	emoji ;	692 ;	activity, clapper, entertainment, movie, object, objects-android, objects-apple ;	j w 	# V6.0 (🎬) clapper board
+1F4FD ;	text ;	693 ;	cinema, film, movie, object, projector, video ;	w 	# V7.0 (📽) film projector
+1F4FA ;	emoji ;	694 ;	object, objects-android, objects-apple, television, tv, video ;	j w 	# V6.0 (📺) television
+1F4F7 ;	emoji ;	695 ;	camera, object, objects-android, objects-apple, video ;	j w 	# V6.0 (📷) camera
+1F4F8 ;	emoji ;	696 ;	camera, flash, object, video ;	x 	# V7.0 (📸) camera with flash
+1F4F9 ;	emoji ;	697 ;	camera, object, objects-android, objects-apple, video ;	j w 	# V6.0 (📹) video camera
+1F4FC ;	emoji ;	698 ;	object, objects-android, objects-apple, tape, vhs, video, videocassette ;	j 	# V6.0 (📼) videocassette
+1F505 ;	emoji ;	699 ;	brightness, dim, low, objects-apple, sign, symbols-android ;	x 	# V6.0 (🔅) low brightness symbol
+1F506 ;	emoji ;	700 ;	bright, brightness, objects-apple, sign, symbols-android ;	x 	# V6.0 (🔆) high brightness symbol
+1F50D ;	emoji ;	701 ;	glass, magnifying, object, objects-apple, search, symbols-android ;	j w 	# V6.0 (🔍) left-pointing magnifying glass
+1F50E ;	emoji ;	702 ;	glass, magnifying, object, objects-apple, search, symbols-android ;	j 	# V6.0 (🔎) right-pointing magnifying glass
+1F52C ;	emoji ;	703 ;	microscope, object, objects-android, objects-apple, tool ;	x 	# V6.0 (🔬) microscope
+1F52D ;	emoji ;	704 ;	object, objects-android, objects-apple, telescope, tool ;	x 	# V6.0 (🔭) telescope
+1F525 ;	emoji ;	705 ;	fire, flame, object, people-apple, symbols-android, tool ;	j 	# V6.0 (🔥) fire
+1F56F ;	text ;	706 ;	candle, object ;	w 	# V7.0 (🕯) candle
+1F4A1 ;	emoji ;	707 ;	bulb, comic, electric, idea, light, object, objects-apple, symbols-android ;	j 	# V6.0 (💡) electric light bulb
+1F526 ;	emoji ;	708 ;	electric, flashlight, light, object, objects-android, objects-apple, tool, torch ;	j 	# V6.0 (🔦) electric torch
+1F3EE ;	emoji ;	709 ;	bar, japanese, lantern, place, places-android, places-apple, red, restaurant ;	j 	# V6.0 (🏮) izakaya lantern
+1F383 ;	emoji ;	710 ;	activity, celebration, halloween, jack, lantern, object, objects-android, objects-apple ;	j 	# V6.0 (🎃) jack-o-lantern
+1F384 ;	emoji ;	711 ;	activity, celebration, christmas, object, objects-android, objects-apple, tree ;	j 	# V6.0 (🎄) christmas tree
+1F386 ;	emoji ;	712 ;	activity, celebration, firework, fireworks, object, objects-android, objects-apple ;	j 	# V6.0 (🎆) fireworks
+1F387 ;	emoji ;	713 ;	activity, celebration, firework, object, objects-android, objects-apple, sparkle, sparkler ;	j 	# V6.0 (🎇) firework sparkler
+2728 ;	emoji ;	714 ;	people-apple, sign, sparkle, sparkler, sparkles, star, symbols-android ;	j 	# V6.0 (✨) sparkles
+1F388 ;	emoji ;	715 ;	activity, balloon, celebration, object, objects-android, objects-apple ;	j 	# V6.0 (🎈) balloon
+1F389 ;	emoji ;	716 ;	activity, celebration, object, objects-android, objects-apple, party, popper, tada ;	j 	# V6.0 (🎉) party popper
+1F38A ;	emoji ;	717 ;	activity, ball, celebration, confetti, object, objects-android, objects-apple ;	j 	# V6.0 (🎊) confetti ball
+1F38B ;	emoji ;	718 ;	activity, banner, celebration, japanese, object, objects-android, objects-apple, tree ;	j 	# V6.0 (🎋) tanabata tree
+1F38C ;	emoji ;	719 ;	activity, celebration, cross, crossed, flag, japanese, objects-android, objects-apple ;	j 	# V6.0 (🎌) crossed flags
+1F38D ;	emoji ;	720 ;	activity, bamboo, celebration, japanese, object, objects-android, objects-apple, pine, plant ;	j 	# V6.0 (🎍) pine decoration
+1F38E ;	emoji ;	721 ;	activity, celebration, doll, dolls, festival, japanese, objects-android, objects-apple ;	j 	# V6.0 (🎎) japanese dolls
+1F38F ;	emoji ;	722 ;	activity, carp, celebration, flags, object, objects-android, objects-apple, streamer ;	j 	# V6.0 (🎏) carp streamer
+1F390 ;	emoji ;	723 ;	activity, celebration, chime, object, objects-android, objects-apple, wind ;	j 	# V6.0 (🎐) wind chime
+1F391 ;	emoji ;	724 ;	activity, celebration, ceremony, moon, nature-android, object, objects-apple ;	j 	# V6.0 (🎑) moon viewing ceremony
+1F393 ;	emoji ;	725 ;	activity, cap, celebration, graduation, object, objects-android, objects-apple ;	j w 	# V6.0 (🎓) graduation cap
+1F3A8 ;	emoji ;	726 ;	activity, art, artist, entertainment, object, objects-android, objects-apple, paint, palette ;	j 	# V6.0 (🎨) artist palette
+1F3AF ;	emoji ;	727 ;	activity, bull’s eye, dart, eye, game, hit, object, objects-android, objects-apple, target ;	j 	# V6.0 (🎯) direct hit
+1F3B4 ;	emoji ;	728 ;	activity, card, flower, game, japanese, object, objects-android, objects-apple, playing ;	j 	# V6.0 (🎴) flower playing cards
+1F380 ;	emoji ;	729 ;	celebration, object, objects-android, people-apple, ribbon ;	j 	# V6.0 (🎀) ribbon
+1F381 ;	emoji ;	730 ;	celebration, gift, object, objects-android, objects-apple, present, wrapped ;	j 	# V6.0 (🎁) wrapped present
+1F396 ;	text ;	731 ;	celebration, medal, military, object ;	w 	# V7.0 (🎖) military medal
+1F397 ;	text ;	732 ;	celebration, object, reminder, ribbon ;	w 	# V7.0 (🎗) reminder ribbon
+1F39E ;	text ;	733 ;	cinema, entertainment, film, frames, movie, object ;	w 	# V7.0 (🎞) film frames
+1F39F ;	text ;	734 ;	admission, entertainment, object, ticket ;	w 	# V7.0 (🎟) admission tickets
+1F3F7 ;	text ;	735 ;	label, object ;	w 	# V7.0 (🏷) label
+1F4D4 ;	emoji ;	736 ;	book, cover, decorated, notebook, objects-android, objects-apple, office ;	j 	# V6.0 (📔) notebook with decorative cover
+1F4D5 ;	emoji ;	737 ;	book, closed, objects-android, objects-apple, office ;	j 	# V6.0 (📕) closed book
+1F4D6 ;	emoji ;	738 ;	book, objects-android, objects-apple, office, open ;	j 	# V6.0 (📖) open book
+1F4D7 ;	emoji ;	739 ;	book, green, objects-android, objects-apple, office ;	j 	# V6.0 (📗) green book
+1F4D8 ;	emoji ;	740 ;	blue, book, objects-android, objects-apple, office ;	j 	# V6.0 (📘) blue book
+1F4D9 ;	emoji ;	741 ;	book, objects-android, objects-apple, office, orange ;	j 	# V6.0 (📙) orange book
+1F4DA ;	emoji ;	742 ;	book, books, objects-android, objects-apple, office ;	j w 	# V6.0 (📚) books
+1F4D3 ;	emoji ;	743 ;	notebook, objects-android, objects-apple, office ;	j 	# V6.0 (📓) notebook
+1F4D2 ;	emoji ;	744 ;	ledger, notebook, objects-android, objects-apple, office ;	j 	# V6.0 (📒) ledger
+1F4C3 ;	emoji ;	745 ;	curl, document, objects-android, objects-apple, office, page ;	j 	# V6.0 (📃) page with curl
+1F4DC ;	emoji ;	746 ;	objects-android, objects-apple, office, paper, scroll ;	j 	# V6.0 (📜) scroll
+1F4C4 ;	emoji ;	747 ;	document, objects-android, objects-apple, office, page ;	j 	# V6.0 (📄) page facing up
+1F4F0 ;	emoji ;	748 ;	communication, news, newspaper, object, objects-android, objects-apple, paper ;	j 	# V6.0 (📰) newspaper
+1F5DE ;	text ;	749 ;	news, newspaper, object, paper, rolled ;	w 	# V7.0 (🗞) rolled-up newspaper
+1F4D1 ;	emoji ;	750 ;	bookmark, mark, marker, objects-android, objects-apple, office, tabs ;	j 	# V6.0 (📑) bookmark tabs
+1F516 ;	emoji ;	751 ;	bookmark, mark, object, objects-apple, symbols-android ;	j 	# V6.0 (🔖) bookmark
+1F5BC ;	text ;	752 ;	frame, object, office, picture ;	w 	# V7.0 (🖼) frame with picture
+1F4B0 ;	emoji ;	753 ;	bag, dollar, money, moneybag, objects-android, objects-apple, office ;	j w 	# V6.0 (💰) money bag
+1F4B4 ;	emoji ;	754 ;	bank, banknote, bill, money, note, objects-android, objects-apple, office, yen ;	j 	# V6.0 (💴) banknote with yen sign
+1F4B5 ;	emoji ;	755 ;	bank, banknote, bill, dollar, money, note, objects-android, objects-apple, office ;	j 	# V6.0 (💵) banknote with dollar sign
+1F4B6 ;	emoji ;	756 ;	bank, banknote, bill, euro, money, note, objects-android, objects-apple, office ;	x 	# V6.0 (💶) banknote with euro sign
+1F4B7 ;	emoji ;	757 ;	bank, banknote, bill, money, note, objects-android, objects-apple, office, pound ;	x 	# V6.0 (💷) banknote with pound sign
+1F4B8 ;	emoji ;	758 ;	bank, banknote, bill, dollar, flying, money, note, objects-android, objects-apple, office, wings ;	j 	# V6.0 (💸) money with wings
+1F4B1 ;	emoji ;	759 ;	currency, exchange, money, objects-android, office, symbols-apple ;	j 	# V6.0 (💱) currency exchange
+1F4B2 ;	emoji ;	760 ;	dollar, money, objects-android, office, symbols-apple ;	j 	# V6.0 (💲) heavy dollar sign
+1F4B3 ;	emoji ;	761 ;	card, credit, objects-android, objects-apple, office ;	j w 	# V6.0 (💳) credit card
+1F4B9 ;	emoji ;	762 ;	chart, graph, market, objects-android, office, rising, symbols-apple, trend, upward, yen ;	j 	# V6.0 (💹) chart with upwards trend and yen sign
+2709 ;	text ;	763 ;	email, envelope, objects-android, objects-apple, office ;	z j 	# V1.1 (✉) envelope
+1F4E7 ;	emoji ;	764 ;	communication, e-mail, email, letter, mail, objects-apple, office, symbols-android ;	j 	# V6.0 (📧) e-mail symbol
+1F4E8 ;	emoji ;	765 ;	communication, email, envelope, incoming, letter, mail, objects-android, objects-apple, office, receive ;	j 	# V6.0 (📨) incoming envelope
+1F4E9 ;	emoji ;	766 ;	above, arrow, communication, down, email, envelope, letter, mail, objects-android, objects-apple, office, outgoing, sent ;	j 	# V6.0 (📩) envelope with downwards arrow above
+1F4E4 ;	emoji ;	767 ;	box, communication, letter, mail, objects-android, objects-apple, office, outbox, sent, tray ;	j w 	# V6.0 (📤) outbox tray
+1F4E5 ;	emoji ;	768 ;	box, communication, inbox, letter, mail, objects-android, objects-apple, office, receive, tray ;	j w 	# V6.0 (📥) inbox tray
+1F4E6 ;	emoji ;	769 ;	box, communication, objects-android, objects-apple, office, package, parcel ;	j w 	# V6.0 (📦) package
+1F4EB ;	emoji ;	770 ;	closed, communication, flag, mail, mailbox, objects-android, objects-apple, office, postbox ;	j w 	# V6.0 (📫) closed mailbox with raised flag
+1F4EA ;	emoji ;	771 ;	closed, communication, flag, lowered, mail, mailbox, objects-android, objects-apple, office, postbox ;	j w 	# V6.0 (📪) closed mailbox with lowered flag
+1F4EC ;	emoji ;	772 ;	communication, flag, mail, mailbox, objects-android, objects-apple, office, open, postbox ;	w 	# V6.0 (📬) open mailbox with raised flag
+1F4ED ;	emoji ;	773 ;	communication, flag, lowered, mail, mailbox, objects-android, objects-apple, office, open, postbox ;	w 	# V6.0 (📭) open mailbox with lowered flag
+1F4EE ;	emoji ;	774 ;	communication, mail, mailbox, objects-android, objects-apple, office, postbox ;	j 	# V6.0 (📮) postbox
+270F ;	text ;	775 ;	objects-android, objects-apple, office, pencil ;	z j 	# V1.1 (✏) pencil
+2712 ;	text ;	776 ;	nib, objects-android, objects-apple, office ;	z j 	# V1.1 (✒) black nib
+1F58B ;	text ;	777 ;	communication, fountain, office, pen ;	w 	# V7.0 (🖋) lower left fountain pen
+1F58A ;	text ;	778 ;	ballpoint, communication, office, pen ;	w 	# V7.0 (🖊) lower left ballpoint pen
+1F58C ;	text ;	779 ;	communication, office, paintbrush ;	w 	# V7.0 (🖌) lower left paintbrush
+1F58D ;	text ;	780 ;	communication, crayon, office ;	w 	# V7.0 (🖍) lower left crayon
+1F4DD ;	emoji ;	781 ;	communication, memo, objects-android, objects-apple, office, pencil ;	j 	# V6.0 (📝) memo
+1F4BB ;	emoji ;	782 ;	computer, objects-android, objects-apple, office, pc, personal ;	j w 	# V6.0 (💻) personal computer
+1F5A5 ;	text ;	783 ;	computer, desktop, office ;	w 	# V7.0 (🖥) desktop computer
+1F5A8 ;	text ;	784 ;	computer, office, printer ;	w 	# V7.0 (🖨) printer
+2328 ;	text ;	785 ;	computer, keyboard, sign ;	x 	# V1.1 (⌨) keyboard
+1F5B1 ;	text ;	786 ;	3, button, computer, mouse, office, three ;	w 	# V7.0 (🖱) three button mouse
+1F5B2 ;	text ;	787 ;	computer, office, trackball ;	w 	# V7.0 (🖲) trackball
+1F4BD ;	emoji ;	788 ;	computer, disc, minidisc, objects-android, objects-apple, office ;	j 	# V6.0 (💽) minidisc
+1F4BE ;	emoji ;	789 ;	computer, disc, disk, floppy, objects-android, objects-apple, office ;	j 	# V6.0 (💾) floppy disk
+1F4BF ;	emoji ;	790 ;	blu-ray, cd, computer, disc, dvd, objects-android, objects-apple, office, optical ;	j w 	# V6.0 (💿) optical disc
+1F4C0 ;	emoji ;	791 ;	computer, disc, dvd, objects-android, objects-apple, office ;	j 	# V6.0 (📀) dvd
+1F4BC ;	emoji ;	792 ;	briefcase, objects-android, office, people-apple ;	j 	# V6.0 (💼) briefcase
+1F4C1 ;	emoji ;	793 ;	file, folder, objects-android, objects-apple, office ;	j 	# V6.0 (📁) file folder
+1F4C2 ;	emoji ;	794 ;	file, folder, objects-android, objects-apple, office, open ;	j 	# V6.0 (📂) open file folder
+1F5C2 ;	text ;	795 ;	card, dividers, index, office ;	w 	# V7.0 (🗂) card index dividers
+1F4C5 ;	emoji ;	796 ;	calendar, date, objects-android, objects-apple, office ;	j 	# V6.0 (📅) calendar
+1F4C6 ;	emoji ;	797 ;	calendar, objects-android, objects-apple, office ;	j 	# V6.0 (📆) tear-off calendar
+1F5D2 ;	text ;	798 ;	note, office, pad, spiral ;	w 	# V7.0 (🗒) spiral note pad
+1F5D3 ;	text ;	799 ;	calendar, office, pad, spiral ;	w 	# V7.0 (🗓) spiral calendar pad
+1F4C7 ;	emoji ;	800 ;	card, index, objects-android, objects-apple, office, rolodex ;	j 	# V6.0 (📇) card index
+1F4C8 ;	emoji ;	801 ;	chart, graph, objects-android, objects-apple, office, trend, upward ;	j 	# V6.0 (📈) chart with upwards trend
+1F4C9 ;	emoji ;	802 ;	chart, down, graph, objects-android, objects-apple, office, trend ;	j 	# V6.0 (📉) chart with downwards trend
+1F4CA ;	emoji ;	803 ;	bar, chart, graph, objects-android, objects-apple, office ;	j 	# V6.0 (📊) bar chart
+1F4CB ;	emoji ;	804 ;	clipboard, objects-android, objects-apple, office ;	j w 	# V6.0 (📋) clipboard
+1F4CC ;	emoji ;	805 ;	objects-android, objects-apple, office, pin, pushpin ;	j 	# V6.0 (📌) pushpin
+1F4CD ;	emoji ;	806 ;	objects-android, office, pin, place, places-apple, pushpin ;	j 	# V6.0 (📍) round pushpin
+1F4CE ;	emoji ;	807 ;	objects-android, objects-apple, office, paperclip ;	j 	# V6.0 (📎) paperclip
+1F587 ;	text ;	808 ;	communication, links, office, paperclip ;	w 	# V7.0 (🖇) linked paperclips
+1F4CF ;	emoji ;	809 ;	objects-android, objects-apple, office, ruler, straight edge ;	j 	# V6.0 (📏) straight ruler
+1F4D0 ;	emoji ;	810 ;	objects-android, objects-apple, office, ruler, set, triangle ;	j 	# V6.0 (📐) triangular ruler
+1F4DB ;	emoji ;	811 ;	badge, name, objects-android, objects-apple, office ;	j 	# V6.0 (📛) name badge
+2702 ;	text ;	812 ;	objects-android, objects-apple, office, scissors, tool ;	z j w 	# V1.1 (✂) black scissors
+1F5C3 ;	text ;	813 ;	box, card, file, office ;	w 	# V7.0 (🗃) card file box
+1F5C4 ;	text ;	814 ;	cabinet, file, office ;	w 	# V7.0 (🗄) file cabinet
+1F5D1 ;	text ;	815 ;	office, wastebasket ;	w 	# V7.0 (🗑) wastebasket
+1F512 ;	emoji ;	816 ;	closed, lock, object, objects-apple, symbols-android ;	j w 	# V6.0 (🔒) lock
+1F513 ;	emoji ;	817 ;	lock, object, objects-apple, open, symbols-android, unlock ;	j w 	# V6.0 (🔓) open lock
+1F50F ;	emoji ;	818 ;	ink, lock, object, objects-apple, pen, privacy, symbols-android ;	j 	# V6.0 (🔏) lock with ink pen
+1F510 ;	emoji ;	819 ;	closed, key, lock, object, objects-apple, secure, symbols-android ;	j 	# V6.0 (🔐) closed lock with key
+1F511 ;	emoji ;	820 ;	key, lock, object, objects-apple, password, symbols-android ;	j 	# V6.0 (🔑) key
+1F5DD ;	text ;	821 ;	clue, key, lock, object, old ;	w 	# V7.0 (🗝) old key
+1F528 ;	emoji ;	822 ;	hammer, object, objects-apple, places-android, tool ;	j 	# V6.0 (🔨) hammer
+26CF ;	text ;	823 ;	mining, object, pick, tool, travel ;	a 	# V5.2 (⛏) pick
+2692 ;	text ;	824 ;	hammer, object, pick, tool ;	x 	# V4.1 (⚒) hammer and pick
+1F6E0 ;	text ;	825 ;	hammer, object, tool, wrench ;	w 	# V7.0 (🛠) hammer and wrench
+1F527 ;	emoji ;	826 ;	object, objects-apple, places-android, tool, wrench ;	j 	# V6.0 (🔧) wrench
+1F529 ;	emoji ;	827 ;	bolt, nut, object, objects-apple, places-android, tool ;	j 	# V6.0 (🔩) nut and bolt
+2699 ;	text ;	828 ;	gear, object, tool ;	x 	# V4.1 (⚙) gear
+1F5DC ;	text ;	829 ;	compression, object, tool, vice ;	w 	# V7.0 (🗜) compression
+2697 ;	text ;	830 ;	alembic, chemistry, object, tool ;	x 	# V4.1 (⚗) alembic
+2696 ;	text ;	831 ;	balance, justice, object, scales, tool, weight ;	x 	# V4.1 (⚖) scales
+1F489 ;	emoji ;	832 ;	doctor, medicine, needle, object, objects-android, objects-apple, shot, syringe, tool ;	j 	# V6.0 (💉) syringe
+1F5E1 ;	text ;	833 ;	dagger, knife, object, rating, weapon ;	w 	# V7.0 (🗡) dagger knife
+1F52A ;	emoji ;	834 ;	cooking, hocho, knife, object, objects-android, objects-apple, tool, weapon ;	j 	# V6.0 (🔪) hocho
+2694 ;	text ;	835 ;	crossed, object, swords, weapon ;	x 	# V4.1 (⚔) crossed swords
+1F52B ;	emoji ;	836 ;	gun, object, objects-android, objects-apple, pistol, revolver, tool, weapon ;	j 	# V6.0 (🔫) pistol
+1F6E1 ;	text ;	837 ;	object, shield, weapon ;	w 	# V7.0 (🛡) shield
+1F392 ;	emoji ;	838 ;	activity, bag, object, objects-android, objects-apple, satchel, school ;	j 	# V6.0 (🎒) school satchel
+1F50B ;	emoji ;	839 ;	battery, object, objects-android, objects-apple ;	j 	# V6.0 (🔋) battery
+1F50C ;	emoji ;	840 ;	electric, electricity, object, objects-android, objects-apple, plug ;	j 	# V6.0 (🔌) electric plug
+1F517 ;	emoji ;	841 ;	link, links, object, symbols-android, symbols-apple ;	j 	# V6.0 (🔗) link symbol
+26D3 ;	text ;	842 ;	chain, object, travel ;	a 	# V5.2 (⛓) chains
+1F6AC ;	emoji ;	843 ;	activity, allowed, object, objects-android, objects-apple, permitted, smoking, travel ;	j 	# V6.0 (🚬) smoking symbol
+1F484 ;	emoji ;	844 ;	cosmetics, lipstick, makeup, object, objects-android, people-apple ;	j 	# V6.0 (💄) lipstick
+1F48D ;	emoji ;	845 ;	object, people-apple, places-android, ring, romance ;	j 	# V6.0 (💍) ring
+1F48E ;	emoji ;	846 ;	diamond, gem, jewel, object, people-apple, places-android, romance ;	j 	# V6.0 (💎) gem stone
+1F6E2 ;	text ;	847 ;	drum, object, oil ;	w 	# V7.0 (🛢) oil drum
+1F52E ;	emoji ;	848 ;	ball, crystal, fantasy, fortune, object, objects-android, objects-apple, telling, tool ;	j 	# V6.0 (🔮) crystal ball
+1F52F ;	emoji ;	849 ;	fortune, object, star, symbols-android, symbols-apple, telling ;	j 	# V6.0 (🔯) six pointed star with middle dot
+1F531 ;	emoji ;	850 ;	anchor, emblem, object, symbols-android, symbols-apple, tool, trident ;	j 	# V6.0 (🔱) trident emblem
+1F5F3 ;	text ;	851 ;	ballot, box, object ;	w 	# V7.0 (🗳) ballot box with ballot
+1F48A ;	emoji ;	852 ;	doctor, medicine, object, objects-android, objects-apple, pill ;	j 	# V6.0 (💊) pill
+269B ;	text ;	853 ;	atheist, atom, object ;	x 	# V4.1 (⚛) atom symbol
+269C ;	text ;	854 ;	fleur, lis, object ;	x 	# V4.1 (⚜) fleur-de-lis
+26B0 ;	text ;	855 ;	coffin, object ;	x 	# V4.1 (⚰) coffin
+26B1 ;	text ;	856 ;	funeral, object, urn ;	x 	# V4.1 (⚱) funeral urn
+1F530 ;	emoji ;	857 ;	beginner, chevron, green, japanese, leaf, object, objects-android, place, places-apple, tool, yellow ;	j 	# V6.0 (🔰) japanese symbol for beginner
+1F4AF ;	emoji ;	858 ;	100, full, hundred, office, score, symbols-android, symbols-apple ;	j 	# V6.0 (💯) hundred points symbol
+1F4E1 ;	emoji ;	859 ;	antenna, communication, dish, objects-android, objects-apple, office, satellite ;	j 	# V6.0 (📡) satellite antenna
+1F3C1 ;	emoji ;	860 ;	checkered, chequered, flag, objects-apple, places-android, sport ;	j 	# V6.0 (🏁) chequered flag
+1F3F3 ;	text ;	861 ;	flag, waving ;	w 	# V7.0 (🏳) waving white flag
+1F3F4 ;	emoji ;	862 ;	flag, waving ;	x 	# V7.0 (🏴) waving black flag
+1F6A9 ;	emoji ;	863 ;	flag, places-apple, post, symbols-android, travel ;	j 	# V6.0 (🚩) triangular flag on post
+1F1E6 1F1EB ;	emoji ;	864 ;	afghanistan, flag ;	x 	# V6.0 (🇦🇫) flag for Afghanistan
+1F1E6 1F1FD ;	emoji ;	865 ;	åland, flag, islands ;	x 	# V6.0 (🇦🇽) flag for Åland Islands
+1F1E6 1F1F1 ;	emoji ;	866 ;	albania, flag ;	x 	# V6.0 (🇦🇱) flag for Albania
+1F1E9 1F1FF ;	emoji ;	867 ;	algeria, flag ;	x 	# V6.0 (🇩🇿) flag for Algeria
+1F1E6 1F1F8 ;	emoji ;	868 ;	american, flag, samoa ;	x 	# V6.0 (🇦🇸) flag for American Samoa
+1F1E6 1F1E9 ;	emoji ;	869 ;	andorra, flag ;	x 	# V6.0 (🇦🇩) flag for Andorra
+1F1E6 1F1F4 ;	emoji ;	870 ;	angola, flag ;	x 	# V6.0 (🇦🇴) flag for Angola
+1F1E6 1F1EE ;	emoji ;	871 ;	anguilla, flag ;	x 	# V6.0 (🇦🇮) flag for Anguilla
+1F1E6 1F1F6 ;	emoji ;	872 ;	antarctica, flag ;	x 	# V6.0 (🇦🇶) flag for Antarctica
+1F1E6 1F1EC ;	emoji ;	873 ;	antigua, barbuda, flag ;	x 	# V6.0 (🇦🇬) flag for Antigua & Barbuda
+1F1E6 1F1F7 ;	emoji ;	874 ;	argentina, flag ;	x 	# V6.0 (🇦🇷) flag for Argentina
+1F1E6 1F1F2 ;	emoji ;	875 ;	armenia, flag ;	x 	# V6.0 (🇦🇲) flag for Armenia
+1F1E6 1F1FC ;	emoji ;	876 ;	aruba, flag ;	x 	# V6.0 (🇦🇼) flag for Aruba
+1F1E6 1F1E8 ;	emoji ;	877 ;	ascension, flag, island ;	x 	# V6.0 (🇦🇨) flag for Ascension Island
+1F1E6 1F1FA ;	emoji ;	878 ;	australia, flag ;	x 	# V6.0 (🇦🇺) flag for Australia
+1F1E6 1F1F9 ;	emoji ;	879 ;	austria, flag ;	x 	# V6.0 (🇦🇹) flag for Austria
+1F1E6 1F1FF ;	emoji ;	880 ;	azerbaijan, flag ;	x 	# V6.0 (🇦🇿) flag for Azerbaijan
+1F1E7 1F1F8 ;	emoji ;	881 ;	bahamas, flag ;	x 	# V6.0 (🇧🇸) flag for Bahamas
+1F1E7 1F1ED ;	emoji ;	882 ;	bahrain, flag ;	x 	# V6.0 (🇧🇭) flag for Bahrain
+1F1E7 1F1E9 ;	emoji ;	883 ;	bangladesh, flag ;	x 	# V6.0 (🇧🇩) flag for Bangladesh
+1F1E7 1F1E7 ;	emoji ;	884 ;	barbados, flag ;	x 	# V6.0 (🇧🇧) flag for Barbados
+1F1E7 1F1FE ;	emoji ;	885 ;	belarus, flag ;	x 	# V6.0 (🇧🇾) flag for Belarus
+1F1E7 1F1EA ;	emoji ;	886 ;	belgium, flag ;	x 	# V6.0 (🇧🇪) flag for Belgium
+1F1E7 1F1FF ;	emoji ;	887 ;	belize, flag ;	x 	# V6.0 (🇧🇿) flag for Belize
+1F1E7 1F1EF ;	emoji ;	888 ;	benin, flag ;	x 	# V6.0 (🇧🇯) flag for Benin
+1F1E7 1F1F2 ;	emoji ;	889 ;	bermuda, flag ;	x 	# V6.0 (🇧🇲) flag for Bermuda
+1F1E7 1F1F9 ;	emoji ;	890 ;	bhutan, flag ;	x 	# V6.0 (🇧🇹) flag for Bhutan
+1F1E7 1F1F4 ;	emoji ;	891 ;	bolivia, flag, plurinational ;	x 	# V6.0 (🇧🇴) flag for Bolivia
+1F1E7 1F1E6 ;	emoji ;	892 ;	bosnia, flag, herzegovina ;	x 	# V6.0 (🇧🇦) flag for Bosnia & Herzegovina
+1F1E7 1F1FC ;	emoji ;	893 ;	botswana, flag ;	x 	# V6.0 (🇧🇼) flag for Botswana
+1F1E7 1F1FB ;	emoji ;	894 ;	bouvet, flag, island ;	x 	# V6.0 (🇧🇻) flag for Bouvet Island
+1F1E7 1F1F7 ;	emoji ;	895 ;	brazil, flag ;	x 	# V6.0 (🇧🇷) flag for Brazil
+1F1EE 1F1F4 ;	emoji ;	896 ;	british, flag, indian, ocean, territory ;	x 	# V6.0 (🇮🇴) flag for British Indian Ocean Territory
+1F1FB 1F1EC ;	emoji ;	897 ;	british, flag, islands, virgin ;	x 	# V6.0 (🇻🇬) flag for British Virgin Islands
+1F1E7 1F1F3 ;	emoji ;	898 ;	brunei, darussalam, flag ;	x 	# V6.0 (🇧🇳) flag for Brunei
+1F1E7 1F1EC ;	emoji ;	899 ;	bulgaria, flag ;	x 	# V6.0 (🇧🇬) flag for Bulgaria
+1F1E7 1F1EB ;	emoji ;	900 ;	burkina, faso, flag ;	x 	# V6.0 (🇧🇫) flag for Burkina Faso
+1F1E7 1F1EE ;	emoji ;	901 ;	burundi, flag ;	x 	# V6.0 (🇧🇮) flag for Burundi
+1F1F0 1F1ED ;	emoji ;	902 ;	cambodia, flag ;	x 	# V6.0 (🇰🇭) flag for Cambodia
+1F1E8 1F1F2 ;	emoji ;	903 ;	cameroon, flag ;	x 	# V6.0 (🇨🇲) flag for Cameroon
+1F1E8 1F1E6 ;	emoji ;	904 ;	canada, flag ;	x 	# V6.0 (🇨🇦) flag for Canada
+1F1EE 1F1E8 ;	emoji ;	905 ;	canary, flag, islands ;	x 	# V6.0 (🇮🇨) flag for Canary Islands
+1F1E8 1F1FB ;	emoji ;	906 ;	cabo, cape, flag, verde ;	x 	# V6.0 (🇨🇻) flag for Cape Verde
+1F1E7 1F1F6 ;	emoji ;	907 ;	bonaire, caribbean, eustatius, flag, netherlands, saba, sint ;	x 	# V6.0 (🇧🇶) flag for Caribbean Netherlands
+1F1F0 1F1FE ;	emoji ;	908 ;	cayman, flag, islands ;	x 	# V6.0 (🇰🇾) flag for Cayman Islands
+1F1E8 1F1EB ;	emoji ;	909 ;	african, central, flag, republic ;	x 	# V6.0 (🇨🇫) flag for Central African Republic
+1F1EA 1F1E6 ;	emoji ;	910 ;	ceuta, flag, melilla ;	x 	# V6.0 (🇪🇦) flag for Ceuta & Melilla
+1F1F9 1F1E9 ;	emoji ;	911 ;	chad, flag ;	x 	# V6.0 (🇹🇩) flag for Chad
+1F1E8 1F1F1 ;	emoji ;	912 ;	chile, flag ;	x 	# V6.0 (🇨🇱) flag for Chile
+1F1E8 1F1F3 ;	emoji ;	913 ;	china, flag, other-android, places-apple ;	j 	# V6.0 (🇨🇳) flag for China
+1F1E8 1F1FD ;	emoji ;	914 ;	christmas, flag, island ;	x 	# V6.0 (🇨🇽) flag for Christmas Island
+1F1E8 1F1F5 ;	emoji ;	915 ;	clipperton, flag, island ;	x 	# V6.0 (🇨🇵) flag for Clipperton Island
+1F1E8 1F1E8 ;	emoji ;	916 ;	cocos, flag, islands, keeling ;	x 	# V6.0 (🇨🇨) flag for Cocos  Islands
+1F1E8 1F1F4 ;	emoji ;	917 ;	colombia, flag ;	x 	# V6.0 (🇨🇴) flag for Colombia
+1F1F0 1F1F2 ;	emoji ;	918 ;	comoros, flag ;	x 	# V6.0 (🇰🇲) flag for Comoros
+1F1E8 1F1EC ;	emoji ;	919 ;	brazzaville, congo, flag, rep., republic ;	x 	# V6.0 (🇨🇬) flag for Congo - Brazzaville
+1F1E8 1F1E9 ;	emoji ;	920 ;	congo, dem., democratic, flag, kinshasa, rep., republic ;	x 	# V6.0 (🇨🇩) flag for Congo - Kinshasa
+1F1E8 1F1F0 ;	emoji ;	921 ;	cook, flag, islands ;	x 	# V6.0 (🇨🇰) flag for Cook Islands
+1F1E8 1F1F7 ;	emoji ;	922 ;	costa, flag, rica ;	x 	# V6.0 (🇨🇷) flag for Costa Rica
+1F1E8 1F1EE ;	emoji ;	923 ;	coast, cote, côte, flag, ivoire, ivory ;	x 	# V6.0 (🇨🇮) flag for Côte d’Ivoire
+1F1ED 1F1F7 ;	emoji ;	924 ;	croatia, flag ;	x 	# V6.0 (🇭🇷) flag for Croatia
+1F1E8 1F1FA ;	emoji ;	925 ;	cuba, flag ;	x 	# V6.0 (🇨🇺) flag for Cuba
+1F1E8 1F1FC ;	emoji ;	926 ;	antilles, curacao, curaçao, flag, netherlands ;	x 	# V6.0 (🇨🇼) flag for Curaçao
+1F1E8 1F1FE ;	emoji ;	927 ;	cyprus, flag ;	x 	# V6.0 (🇨🇾) flag for Cyprus
+1F1E8 1F1FF ;	emoji ;	928 ;	czech, flag, republic ;	x 	# V6.0 (🇨🇿) flag for Czech Republic
+1F1E9 1F1F0 ;	emoji ;	929 ;	denmark, flag ;	x 	# V6.0 (🇩🇰) flag for Denmark
+1F1E9 1F1EC ;	emoji ;	930 ;	diego, flag, garcia ;	x 	# V6.0 (🇩🇬) flag for Diego Garcia
+1F1E9 1F1EF ;	emoji ;	931 ;	djibouti, flag ;	x 	# V6.0 (🇩🇯) flag for Djibouti
+1F1E9 1F1F2 ;	emoji ;	932 ;	dominica, flag ;	x 	# V6.0 (🇩🇲) flag for Dominica
+1F1E9 1F1F4 ;	emoji ;	933 ;	dominica, dominican, flag, republic ;	x 	# V6.0 (🇩🇴) flag for Dominican Republic
+1F1EA 1F1E8 ;	emoji ;	934 ;	ecuador, flag ;	x 	# V6.0 (🇪🇨) flag for Ecuador
+1F1EA 1F1EC ;	emoji ;	935 ;	arab, egypt, flag, rep. ;	x 	# V6.0 (🇪🇬) flag for Egypt
+1F1F8 1F1FB ;	emoji ;	936 ;	el, flag, salvador ;	x 	# V6.0 (🇸🇻) flag for El Salvador
+1F1EC 1F1F6 ;	emoji ;	937 ;	equatorial, flag, guinea ;	x 	# V6.0 (🇬🇶) flag for Equatorial Guinea
+1F1EA 1F1F7 ;	emoji ;	938 ;	eritrea, flag ;	x 	# V6.0 (🇪🇷) flag for Eritrea
+1F1EA 1F1EA ;	emoji ;	939 ;	estonia, flag ;	x 	# V6.0 (🇪🇪) flag for Estonia
+1F1EA 1F1F9 ;	emoji ;	940 ;	ethiopia, flag ;	x 	# V6.0 (🇪🇹) flag for Ethiopia
+1F1EA 1F1FA ;	emoji ;	941 ;	european, flag, union ;	x 	# V6.0 (🇪🇺) flag for European Union
+1F1EB 1F1F0 ;	emoji ;	942 ;	falkland, flag, islands, islas, malvinas ;	x 	# V6.0 (🇫🇰) flag for Falkland Islands
+1F1EB 1F1F4 ;	emoji ;	943 ;	faeroe, faroe, flag, islands ;	x 	# V6.0 (🇫🇴) flag for Faroe Islands
+1F1EB 1F1EF ;	emoji ;	944 ;	fiji, flag ;	x 	# V6.0 (🇫🇯) flag for Fiji
+1F1EB 1F1EE ;	emoji ;	945 ;	finland, flag ;	x 	# V6.0 (🇫🇮) flag for Finland
+1F1EB 1F1F7 ;	emoji ;	946 ;	flag, france, other-android, places-apple ;	j 	# V6.0 (🇫🇷) flag for France
+1F1EC 1F1EB ;	emoji ;	947 ;	flag, french, guiana ;	x 	# V6.0 (🇬🇫) flag for French Guiana
+1F1F5 1F1EB ;	emoji ;	948 ;	flag, french, polynesia ;	x 	# V6.0 (🇵🇫) flag for French Polynesia
+1F1F9 1F1EB ;	emoji ;	949 ;	flag, french, southern, territories ;	x 	# V6.0 (🇹🇫) flag for French Southern Territories
+1F1EC 1F1E6 ;	emoji ;	950 ;	flag, gabon ;	x 	# V6.0 (🇬🇦) flag for Gabon
+1F1EC 1F1F2 ;	emoji ;	951 ;	flag, gambia ;	x 	# V6.0 (🇬🇲) flag for Gambia
+1F1EC 1F1EA ;	emoji ;	952 ;	flag, georgia ;	x 	# V6.0 (🇬🇪) flag for Georgia
+1F1E9 1F1EA ;	emoji ;	953 ;	flag, germany, other-android, places-apple ;	j 	# V6.0 (🇩🇪) flag for Germany
+1F1EC 1F1ED ;	emoji ;	954 ;	flag, ghana ;	x 	# V6.0 (🇬🇭) flag for Ghana
+1F1EC 1F1EE ;	emoji ;	955 ;	flag, gibraltar ;	x 	# V6.0 (🇬🇮) flag for Gibraltar
+1F1EC 1F1F7 ;	emoji ;	956 ;	flag, greece ;	x 	# V6.0 (🇬🇷) flag for Greece
+1F1EC 1F1F1 ;	emoji ;	957 ;	flag, greenland ;	x 	# V6.0 (🇬🇱) flag for Greenland
+1F1EC 1F1E9 ;	emoji ;	958 ;	flag, grenada ;	x 	# V6.0 (🇬🇩) flag for Grenada
+1F1EC 1F1F5 ;	emoji ;	959 ;	flag, guadeloupe ;	x 	# V6.0 (🇬🇵) flag for Guadeloupe
+1F1EC 1F1FA ;	emoji ;	960 ;	flag, guam ;	x 	# V6.0 (🇬🇺) flag for Guam
+1F1EC 1F1F9 ;	emoji ;	961 ;	flag, guatemala ;	x 	# V6.0 (🇬🇹) flag for Guatemala
+1F1EC 1F1EC ;	emoji ;	962 ;	channel, flag, guernsey, islands ;	x 	# V6.0 (🇬🇬) flag for Guernsey
+1F1EC 1F1F3 ;	emoji ;	963 ;	flag, guinea ;	x 	# V6.0 (🇬🇳) flag for Guinea
+1F1EC 1F1FC ;	emoji ;	964 ;	bissau, flag, guinea ;	x 	# V6.0 (🇬🇼) flag for Guinea-Bissau
+1F1EC 1F1FE ;	emoji ;	965 ;	flag, guyana ;	x 	# V6.0 (🇬🇾) flag for Guyana
+1F1ED 1F1F9 ;	emoji ;	966 ;	flag, haiti ;	x 	# V6.0 (🇭🇹) flag for Haiti
+1F1ED 1F1F2 ;	emoji ;	967 ;	flag, heard, island, islands, mcdonald ;	x 	# V6.0 (🇭🇲) flag for Heard & McDonald Islands
+1F1ED 1F1F3 ;	emoji ;	968 ;	flag, honduras ;	x 	# V6.0 (🇭🇳) flag for Honduras
+1F1ED 1F1F0 ;	emoji ;	969 ;	china, flag, hong, kong ;	x 	# V6.0 (🇭🇰) flag for Hong Kong
+1F1ED 1F1FA ;	emoji ;	970 ;	flag, hungary ;	x 	# V6.0 (🇭🇺) flag for Hungary
+1F1EE 1F1F8 ;	emoji ;	971 ;	flag, iceland ;	x 	# V6.0 (🇮🇸) flag for Iceland
+1F1EE 1F1F3 ;	emoji ;	972 ;	flag, india ;	x 	# V6.0 (🇮🇳) flag for India
+1F1EE 1F1E9 ;	emoji ;	973 ;	flag, indonesia ;	x 	# V6.0 (🇮🇩) flag for Indonesia
+1F1EE 1F1F7 ;	emoji ;	974 ;	flag, iran, islamic, rep., republic ;	x 	# V6.0 (🇮🇷) flag for Iran
+1F1EE 1F1F6 ;	emoji ;	975 ;	flag, iraq ;	x 	# V6.0 (🇮🇶) flag for Iraq
+1F1EE 1F1EA ;	emoji ;	976 ;	flag, ireland ;	x 	# V6.0 (🇮🇪) flag for Ireland
+1F1EE 1F1F2 ;	emoji ;	977 ;	flag, isle, man ;	x 	# V6.0 (🇮🇲) flag for Isle of Man
+1F1EE 1F1F1 ;	emoji ;	978 ;	flag, israel ;	x 	# V6.0 (🇮🇱) flag for Israel
+1F1EE 1F1F9 ;	emoji ;	979 ;	flag, italy, other-android, places-apple ;	j 	# V6.0 (🇮🇹) flag for Italy
+1F1EF 1F1F2 ;	emoji ;	980 ;	flag, jamaica ;	x 	# V6.0 (🇯🇲) flag for Jamaica
+1F1EF 1F1F5 ;	emoji ;	981 ;	flag, japan, other-android, places-apple ;	j 	# V6.0 (🇯🇵) flag for Japan
+1F1EF 1F1EA ;	emoji ;	982 ;	flag, jersey ;	x 	# V6.0 (🇯🇪) flag for Jersey
+1F1EF 1F1F4 ;	emoji ;	983 ;	flag, jordan ;	x 	# V6.0 (🇯🇴) flag for Jordan
+1F1F0 1F1FF ;	emoji ;	984 ;	flag, kazakhstan ;	x 	# V6.0 (🇰🇿) flag for Kazakhstan
+1F1F0 1F1EA ;	emoji ;	985 ;	flag, kenya ;	x 	# V6.0 (🇰🇪) flag for Kenya
+1F1F0 1F1EE ;	emoji ;	986 ;	flag, kiribati ;	x 	# V6.0 (🇰🇮) flag for Kiribati
+1F1FD 1F1F0 ;	emoji ;	987 ;	flag, kosovo ;	x 	# V6.0 (🇽🇰) flag for Kosovo
+1F1F0 1F1FC ;	emoji ;	988 ;	flag, kuwait ;	x 	# V6.0 (🇰🇼) flag for Kuwait
+1F1F0 1F1EC ;	emoji ;	989 ;	flag, kyrgyz, kyrgyzstan, republic ;	x 	# V6.0 (🇰🇬) flag for Kyrgyzstan
+1F1F1 1F1E6 ;	emoji ;	990 ;	democratic, flag, lao, laos, republic ;	x 	# V6.0 (🇱🇦) flag for Laos
+1F1F1 1F1FB ;	emoji ;	991 ;	flag, latvia ;	x 	# V6.0 (🇱🇻) flag for Latvia
+1F1F1 1F1E7 ;	emoji ;	992 ;	flag, lebanon ;	x 	# V6.0 (🇱🇧) flag for Lebanon
+1F1F1 1F1F8 ;	emoji ;	993 ;	flag, lesotho ;	x 	# V6.0 (🇱🇸) flag for Lesotho
+1F1F1 1F1F7 ;	emoji ;	994 ;	flag, liberia ;	x 	# V6.0 (🇱🇷) flag for Liberia
+1F1F1 1F1FE ;	emoji ;	995 ;	arab, flag, libya, libyan ;	x 	# V6.0 (🇱🇾) flag for Libya
+1F1F1 1F1EE ;	emoji ;	996 ;	flag, liechtenstein ;	x 	# V6.0 (🇱🇮) flag for Liechtenstein
+1F1F1 1F1F9 ;	emoji ;	997 ;	flag, lithuania ;	x 	# V6.0 (🇱🇹) flag for Lithuania
+1F1F1 1F1FA ;	emoji ;	998 ;	flag, luxembourg ;	x 	# V6.0 (🇱🇺) flag for Luxembourg
+1F1F2 1F1F4 ;	emoji ;	999 ;	administrative, china, flag, macao, macau, region, special ;	x 	# V6.0 (🇲🇴) flag for Macau
+1F1F2 1F1F0 ;	emoji ;	1000 ;	flag, former, fyr, macedonia, rep., republic ;	x 	# V6.0 (🇲🇰) flag for Macedonia
+1F1F2 1F1EC ;	emoji ;	1001 ;	flag, madagascar ;	x 	# V6.0 (🇲🇬) flag for Madagascar
+1F1F2 1F1FC ;	emoji ;	1002 ;	flag, malawi ;	x 	# V6.0 (🇲🇼) flag for Malawi
+1F1F2 1F1FE ;	emoji ;	1003 ;	flag, malaysia ;	x 	# V6.0 (🇲🇾) flag for Malaysia
+1F1F2 1F1FB ;	emoji ;	1004 ;	flag, maldives ;	x 	# V6.0 (🇲🇻) flag for Maldives
+1F1F2 1F1F1 ;	emoji ;	1005 ;	flag, mali ;	x 	# V6.0 (🇲🇱) flag for Mali
+1F1F2 1F1F9 ;	emoji ;	1006 ;	flag, malta ;	x 	# V6.0 (🇲🇹) flag for Malta
+1F1F2 1F1ED ;	emoji ;	1007 ;	flag, islands, marshall ;	x 	# V6.0 (🇲🇭) flag for Marshall Islands
+1F1F2 1F1F6 ;	emoji ;	1008 ;	flag, martinique ;	x 	# V6.0 (🇲🇶) flag for Martinique
+1F1F2 1F1F7 ;	emoji ;	1009 ;	flag, mauritania ;	x 	# V6.0 (🇲🇷) flag for Mauritania
+1F1F2 1F1FA ;	emoji ;	1010 ;	flag, mauritius ;	x 	# V6.0 (🇲🇺) flag for Mauritius
+1F1FE 1F1F9 ;	emoji ;	1011 ;	flag, mayotte ;	x 	# V6.0 (🇾🇹) flag for Mayotte
+1F1F2 1F1FD ;	emoji ;	1012 ;	flag, mexico ;	x 	# V6.0 (🇲🇽) flag for Mexico
+1F1EB 1F1F2 ;	emoji ;	1013 ;	fed., federated, flag, micronesia ;	x 	# V6.0 (🇫🇲) flag for Micronesia
+1F1F2 1F1E9 ;	emoji ;	1014 ;	flag, moldova, republic ;	x 	# V6.0 (🇲🇩) flag for Moldova
+1F1F2 1F1E8 ;	emoji ;	1015 ;	flag, monaco ;	x 	# V6.0 (🇲🇨) flag for Monaco
+1F1F2 1F1F3 ;	emoji ;	1016 ;	flag, mongolia ;	x 	# V6.0 (🇲🇳) flag for Mongolia
+1F1F2 1F1EA ;	emoji ;	1017 ;	flag, montenegro ;	x 	# V6.0 (🇲🇪) flag for Montenegro
+1F1F2 1F1F8 ;	emoji ;	1018 ;	flag, montserrat ;	x 	# V6.0 (🇲🇸) flag for Montserrat
+1F1F2 1F1E6 ;	emoji ;	1019 ;	flag, morocco ;	x 	# V6.0 (🇲🇦) flag for Morocco
+1F1F2 1F1FF ;	emoji ;	1020 ;	flag, mozambique ;	x 	# V6.0 (🇲🇿) flag for Mozambique
+1F1F2 1F1F2 ;	emoji ;	1021 ;	burma, flag, myanmar ;	x 	# V6.0 (🇲🇲) flag for Myanmar 
+1F1F3 1F1E6 ;	emoji ;	1022 ;	flag, namibia ;	x 	# V6.0 (🇳🇦) flag for Namibia
+1F1F3 1F1F7 ;	emoji ;	1023 ;	flag, nauru ;	x 	# V6.0 (🇳🇷) flag for Nauru
+1F1F3 1F1F5 ;	emoji ;	1024 ;	flag, nepal ;	x 	# V6.0 (🇳🇵) flag for Nepal
+1F1F3 1F1F1 ;	emoji ;	1025 ;	flag, netherlands ;	x 	# V6.0 (🇳🇱) flag for Netherlands
+1F1F3 1F1E8 ;	emoji ;	1026 ;	caledonia, flag, new ;	x 	# V6.0 (🇳🇨) flag for New Caledonia
+1F1F3 1F1FF ;	emoji ;	1027 ;	flag, new, zealand ;	x 	# V6.0 (🇳🇿) flag for New Zealand
+1F1F3 1F1EE ;	emoji ;	1028 ;	flag, nicaragua ;	x 	# V6.0 (🇳🇮) flag for Nicaragua
+1F1F3 1F1EA ;	emoji ;	1029 ;	flag, niger ;	x 	# V6.0 (🇳🇪) flag for Niger
+1F1F3 1F1EC ;	emoji ;	1030 ;	flag, nigeria ;	x 	# V6.0 (🇳🇬) flag for Nigeria
+1F1F3 1F1FA ;	emoji ;	1031 ;	flag, niue ;	x 	# V6.0 (🇳🇺) flag for Niue
+1F1F3 1F1EB ;	emoji ;	1032 ;	flag, island, norfolk ;	x 	# V6.0 (🇳🇫) flag for Norfolk Island
+1F1F2 1F1F5 ;	emoji ;	1033 ;	flag, islands, mariana, northern ;	x 	# V6.0 (🇲🇵) flag for Northern Mariana Islands
+1F1F0 1F1F5 ;	emoji ;	1034 ;	dem., democratic, flag, korea, north, rep., republic ;	x 	# V6.0 (🇰🇵) flag for North Korea
+1F1F3 1F1F4 ;	emoji ;	1035 ;	flag, norway ;	x 	# V6.0 (🇳🇴) flag for Norway
+1F1F4 1F1F2 ;	emoji ;	1036 ;	flag, oman ;	x 	# V6.0 (🇴🇲) flag for Oman
+1F1F5 1F1F0 ;	emoji ;	1037 ;	flag, pakistan ;	x 	# V6.0 (🇵🇰) flag for Pakistan
+1F1F5 1F1FC ;	emoji ;	1038 ;	flag, palau ;	x 	# V6.0 (🇵🇼) flag for Palau
+1F1F5 1F1F8 ;	emoji ;	1039 ;	bank, flag, gaza, occupied, palestine, palestinian, strip, territories, territory, west ;	x 	# V6.0 (🇵🇸) flag for Palestinian Territories
+1F1F5 1F1E6 ;	emoji ;	1040 ;	flag, panama ;	x 	# V6.0 (🇵🇦) flag for Panama
+1F1F5 1F1EC ;	emoji ;	1041 ;	flag, guinea, new, papua ;	x 	# V6.0 (🇵🇬) flag for Papua New Guinea
+1F1F5 1F1FE ;	emoji ;	1042 ;	flag, paraguay ;	x 	# V6.0 (🇵🇾) flag for Paraguay
+1F1F5 1F1EA ;	emoji ;	1043 ;	flag, peru ;	x 	# V6.0 (🇵🇪) flag for Peru
+1F1F5 1F1ED ;	emoji ;	1044 ;	flag, philippines ;	x 	# V6.0 (🇵🇭) flag for Philippines
+1F1F5 1F1F3 ;	emoji ;	1045 ;	flag, islands, pitcairn ;	x 	# V6.0 (🇵🇳) flag for Pitcairn Islands
+1F1F5 1F1F1 ;	emoji ;	1046 ;	flag, poland ;	x 	# V6.0 (🇵🇱) flag for Poland
+1F1F5 1F1F9 ;	emoji ;	1047 ;	flag, portugal ;	x 	# V6.0 (🇵🇹) flag for Portugal
+1F1F5 1F1F7 ;	emoji ;	1048 ;	flag, puerto, rico ;	x 	# V6.0 (🇵🇷) flag for Puerto Rico
+1F1F6 1F1E6 ;	emoji ;	1049 ;	flag, qatar ;	x 	# V6.0 (🇶🇦) flag for Qatar
+1F1F7 1F1EA ;	emoji ;	1050 ;	flag, reunion, réunion ;	x 	# V6.0 (🇷🇪) flag for Réunion
+1F1F7 1F1F4 ;	emoji ;	1051 ;	flag, romania ;	x 	# V6.0 (🇷🇴) flag for Romania
+1F1F7 1F1FA ;	emoji ;	1052 ;	federation, flag, other-android, places-apple, russia, russian ;	j 	# V6.0 (🇷🇺) flag for Russia
+1F1F7 1F1FC ;	emoji ;	1053 ;	flag, republic, rwanda ;	x 	# V6.0 (🇷🇼) flag for Rwanda
+1F1FC 1F1F8 ;	emoji ;	1054 ;	flag, samoa ;	x 	# V6.0 (🇼🇸) flag for Samoa
+1F1F8 1F1F2 ;	emoji ;	1055 ;	flag, marino, san ;	x 	# V6.0 (🇸🇲) flag for San Marino
+1F1F8 1F1F9 ;	emoji ;	1056 ;	flag, principe, príncipe, sao, são, tome, tomé ;	x 	# V6.0 (🇸🇹) flag for São Tomé & Príncipe
+1F1F8 1F1E6 ;	emoji ;	1057 ;	arabia, flag, saudi ;	x 	# V6.0 (🇸🇦) flag for Saudi Arabia
+1F1F8 1F1F3 ;	emoji ;	1058 ;	flag, senegal ;	x 	# V6.0 (🇸🇳) flag for Senegal
+1F1F7 1F1F8 ;	emoji ;	1059 ;	flag, serbia ;	x 	# V6.0 (🇷🇸) flag for Serbia
+1F1F8 1F1E8 ;	emoji ;	1060 ;	flag, seychelles ;	x 	# V6.0 (🇸🇨) flag for Seychelles
+1F1F8 1F1F1 ;	emoji ;	1061 ;	flag, leone, sierra ;	x 	# V6.0 (🇸🇱) flag for Sierra Leone
+1F1F8 1F1EC ;	emoji ;	1062 ;	flag, singapore ;	x 	# V6.0 (🇸🇬) flag for Singapore
+1F1F8 1F1FD ;	emoji ;	1063 ;	dutch, flag, maarten, sint ;	x 	# V6.0 (🇸🇽) flag for Sint Maarten
+1F1F8 1F1F0 ;	emoji ;	1064 ;	flag, republic, slovak, slovakia ;	x 	# V6.0 (🇸🇰) flag for Slovakia
+1F1F8 1F1EE ;	emoji ;	1065 ;	flag, slovenia ;	x 	# V6.0 (🇸🇮) flag for Slovenia
+1F1F8 1F1E7 ;	emoji ;	1066 ;	flag, islands, solomon ;	x 	# V6.0 (🇸🇧) flag for Solomon Islands
+1F1F8 1F1F4 ;	emoji ;	1067 ;	flag, somalia ;	x 	# V6.0 (🇸🇴) flag for Somalia
+1F1FF 1F1E6 ;	emoji ;	1068 ;	africa, flag, south ;	x 	# V6.0 (🇿🇦) flag for South Africa
+1F1EC 1F1F8 ;	emoji ;	1069 ;	flag, georgia, islands, sandwich, south ;	x 	# V6.0 (🇬🇸) flag for South Georgia & South Sandwich Islands
+1F1F0 1F1F7 ;	emoji ;	1070 ;	flag, korea, other-android, places-apple, rep., republic, south ;	j 	# V6.0 (🇰🇷) flag for South Korea
+1F1F8 1F1F8 ;	emoji ;	1071 ;	flag, south, sudan ;	x 	# V6.0 (🇸🇸) flag for South Sudan
+1F1EA 1F1F8 ;	emoji ;	1072 ;	flag, other-android, places-apple, spain ;	j 	# V6.0 (🇪🇸) flag for Spain
+1F1F1 1F1F0 ;	emoji ;	1073 ;	flag, lanka, sri ;	x 	# V6.0 (🇱🇰) flag for Sri Lanka
+1F1E7 1F1F1 ;	emoji ;	1074 ;	barthelemy, barthélemy, flag, saint, st. ;	x 	# V6.0 (🇧🇱) flag for St. Barthélemy
+1F1F8 1F1ED ;	emoji ;	1075 ;	ascension, cunha, flag, helena, saint, st., tristan ;	x 	# V6.0 (🇸🇭) flag for St. Helena
+1F1F0 1F1F3 ;	emoji ;	1076 ;	flag, kitts, nevis, saint, st. ;	x 	# V6.0 (🇰🇳) flag for St. Kitts & Nevis
+1F1F1 1F1E8 ;	emoji ;	1077 ;	flag, lucia, saint, st. ;	x 	# V6.0 (🇱🇨) flag for St. Lucia
+1F1F2 1F1EB ;	emoji ;	1078 ;	flag, french, martin, saint, st. ;	x 	# V6.0 (🇲🇫) flag for St. Martin
+1F1F5 1F1F2 ;	emoji ;	1079 ;	flag, miquelon, pierre, saint, st. ;	x 	# V6.0 (🇵🇲) flag for St. Pierre & Miquelon
+1F1FB 1F1E8 ;	emoji ;	1080 ;	flag, grenadines, saint, st., vincent ;	x 	# V6.0 (🇻🇨) flag for St. Vincent & Grenadines
+1F1F8 1F1E9 ;	emoji ;	1081 ;	flag, sudan ;	x 	# V6.0 (🇸🇩) flag for Sudan
+1F1F8 1F1F7 ;	emoji ;	1082 ;	flag, suriname ;	x 	# V6.0 (🇸🇷) flag for Suriname
+1F1F8 1F1EF ;	emoji ;	1083 ;	flag, islands, jan, mayen, svalbard ;	x 	# V6.0 (🇸🇯) flag for Svalbard & Jan Mayen
+1F1F8 1F1FF ;	emoji ;	1084 ;	flag, swaziland ;	x 	# V6.0 (🇸🇿) flag for Swaziland
+1F1F8 1F1EA ;	emoji ;	1085 ;	flag, sweden ;	x 	# V6.0 (🇸🇪) flag for Sweden
+1F1E8 1F1ED ;	emoji ;	1086 ;	flag, switzerland ;	x 	# V6.0 (🇨🇭) flag for Switzerland
+1F1F8 1F1FE ;	emoji ;	1087 ;	arab, flag, republic, syria, syrian ;	x 	# V6.0 (🇸🇾) flag for Syria
+1F1F9 1F1FC ;	emoji ;	1088 ;	china, flag, province, taiwan ;	x 	# V6.0 (🇹🇼) flag for Taiwan
+1F1F9 1F1EF ;	emoji ;	1089 ;	flag, tajikistan ;	x 	# V6.0 (🇹🇯) flag for Tajikistan
+1F1F9 1F1FF ;	emoji ;	1090 ;	flag, republic, tanzania, united ;	x 	# V6.0 (🇹🇿) flag for Tanzania
+1F1F9 1F1ED ;	emoji ;	1091 ;	flag, thailand ;	x 	# V6.0 (🇹🇭) flag for Thailand
+1F1F9 1F1F1 ;	emoji ;	1092 ;	east, flag, leste, timor ;	x 	# V6.0 (🇹🇱) flag for Timor-Leste
+1F1F9 1F1EC ;	emoji ;	1093 ;	flag, togo ;	x 	# V6.0 (🇹🇬) flag for Togo
+1F1F9 1F1F0 ;	emoji ;	1094 ;	flag, tokelau ;	x 	# V6.0 (🇹🇰) flag for Tokelau
+1F1F9 1F1F4 ;	emoji ;	1095 ;	flag, tonga ;	x 	# V6.0 (🇹🇴) flag for Tonga
+1F1F9 1F1F9 ;	emoji ;	1096 ;	flag, tobago, trinidad ;	x 	# V6.0 (🇹🇹) flag for Trinidad & Tobago
+1F1F9 1F1E6 ;	emoji ;	1097 ;	cunha, flag, tristan ;	x 	# V6.0 (🇹🇦) flag for Tristan da Cunha
+1F1F9 1F1F3 ;	emoji ;	1098 ;	flag, tunisia ;	x 	# V6.0 (🇹🇳) flag for Tunisia
+1F1F9 1F1F7 ;	emoji ;	1099 ;	flag, turkey ;	x 	# V6.0 (🇹🇷) flag for Turkey
+1F1F9 1F1F2 ;	emoji ;	1100 ;	flag, turkmenistan ;	x 	# V6.0 (🇹🇲) flag for Turkmenistan
+1F1F9 1F1E8 ;	emoji ;	1101 ;	caicos, flag, islands, turks ;	x 	# V6.0 (🇹🇨) flag for Turks & Caicos Islands
+1F1F9 1F1FB ;	emoji ;	1102 ;	flag, tuvalu ;	x 	# V6.0 (🇹🇻) flag for Tuvalu
+1F1FA 1F1EC ;	emoji ;	1103 ;	flag, uganda ;	x 	# V6.0 (🇺🇬) flag for Uganda
+1F1FA 1F1E6 ;	emoji ;	1104 ;	flag, ukraine ;	x 	# V6.0 (🇺🇦) flag for Ukraine
+1F1E6 1F1EA ;	emoji ;	1105 ;	arab, emirates, flag, united ;	x 	# V6.0 (🇦🇪) flag for United Arab Emirates
+1F1EC 1F1E7 ;	emoji ;	1106 ;	britain, cornwall, flag, great, ireland, kingdom, northern, other-android, places-apple, scotland, united, wales ;	j 	# V6.0 (🇬🇧) flag for United Kingdom
+1F1FA 1F1F8 ;	emoji ;	1107 ;	america, flag, other-android, places-apple, u.s., u.s.a., united, us, usa ;	j 	# V6.0 (🇺🇸) flag for United States
+1F1FA 1F1FE ;	emoji ;	1108 ;	flag, uruguay ;	x 	# V6.0 (🇺🇾) flag for Uruguay
+1F1FA 1F1F2 ;	emoji ;	1109 ;	flag, islands, outlying, u.s., united ;	x 	# V6.0 (🇺🇲) flag for U.S. Outlying Islands
+1F1FB 1F1EE ;	emoji ;	1110 ;	flag, islands, u.s., united, virgin ;	x 	# V6.0 (🇻🇮) flag for U.S. Virgin Islands
+1F1FA 1F1FF ;	emoji ;	1111 ;	flag, uzbekistan ;	x 	# V6.0 (🇺🇿) flag for Uzbekistan
+1F1FB 1F1FA ;	emoji ;	1112 ;	flag, vanuatu ;	x 	# V6.0 (🇻🇺) flag for Vanuatu
+1F1FB 1F1E6 ;	emoji ;	1113 ;	city, flag, holy, see, vatican ;	x 	# V6.0 (🇻🇦) flag for Vatican City
+1F1FB 1F1EA ;	emoji ;	1114 ;	bolivarian, flag, republic, venezuela ;	x 	# V6.0 (🇻🇪) flag for Venezuela
+1F1FB 1F1F3 ;	emoji ;	1115 ;	flag, nam, viet, vietnam ;	x 	# V6.0 (🇻🇳) flag for Vietnam
+1F1FC 1F1EB ;	emoji ;	1116 ;	flag, futuna, islands, wallis ;	x 	# V6.0 (🇼🇫) flag for Wallis & Futuna
+1F1EA 1F1ED ;	emoji ;	1117 ;	flag, sahara, western ;	x 	# V6.0 (🇪🇭) flag for Western Sahara
+1F1FE 1F1EA ;	emoji ;	1118 ;	flag, rep., yemen ;	x 	# V6.0 (🇾🇪) flag for Yemen
+1F1FF 1F1F2 ;	emoji ;	1119 ;	flag, zambia ;	x 	# V6.0 (🇿🇲) flag for Zambia
+1F1FF 1F1FC ;	emoji ;	1120 ;	flag, zimbabwe ;	x 	# V6.0 (🇿🇼) flag for Zimbabwe
+2B06 ;	text ;	1121 ;	arrow, symbols-android, symbols-apple ;	a j 	# V4.0 (⬆) upwards black arrow
+2197 ;	text ;	1122 ;	arrow, northeast, symbols-android, symbols-apple ;	j 	# V1.1 (↗) north east arrow
+27A1 ;	text ;	1123 ;	arrow, symbols-android, symbols-apple ;	z a j 	# V1.1 (➡) black rightwards arrow
+2198 ;	text ;	1124 ;	arrow, southeast, symbols-android, symbols-apple ;	j 	# V1.1 (↘) south east arrow
+2B07 ;	text ;	1125 ;	arrow, down, symbols-android, symbols-apple ;	a j 	# V4.0 (⬇) downwards black arrow
+2199 ;	text ;	1126 ;	arrow, southwest, symbols-android, symbols-apple ;	j 	# V1.1 (↙) south west arrow
+2B05 ;	text ;	1127 ;	arrow, symbols-android, symbols-apple ;	a j 	# V4.0 (⬅) leftwards black arrow
+2196 ;	text ;	1128 ;	arrow, northwest, symbols-android, symbols-apple ;	j 	# V1.1 (↖) north west arrow
+2195 ;	text ;	1129 ;	arrow, symbols-android, symbols-apple ;	z j 	# V1.1 (↕) up down arrow
+2194 ;	text ;	1130 ;	arrow, symbols-android, symbols-apple ;	z j 	# V1.1 (↔) left right arrow
+21A9 ;	text ;	1131 ;	arrow, symbols-android, symbols-apple ;	j 	# V1.1 (↩) leftwards arrow with hook
+21AA ;	text ;	1132 ;	arrow, symbols-android, symbols-apple ;	j 	# V1.1 (↪) rightwards arrow with hook
+2934 ;	text ;	1133 ;	arrow, symbols-android, symbols-apple ;	j 	# V3.2 (⤴) arrow pointing rightwards then curving upwards
+2935 ;	text ;	1134 ;	arrow, down, symbols-android, symbols-apple ;	j 	# V3.2 (⤵) arrow pointing rightwards then curving downwards
+1F503 ;	emoji ;	1135 ;	arrow, clockwise, reload, symbols-android, symbols-apple ;	j 	# V6.0 (🔃) clockwise downwards and upwards open circle arrows
+1F504 ;	emoji ;	1136 ;	anticlockwise, arrow, clockwise, symbols-android, symbols-apple ;	x 	# V6.0 (🔄) anticlockwise downwards and upwards open circle arrows
+1F519 ;	emoji ;	1137 ;	above, arrow, back, symbols-android, symbols-apple ;	j 	# V6.0 (🔙) back with leftwards arrow above
+1F51A ;	emoji ;	1138 ;	above, arrow, end, symbols-android, symbols-apple ;	j 	# V6.0 (🔚) end with leftwards arrow above
+1F51B ;	emoji ;	1139 ;	above, arrow, mark, on, symbols-android, symbols-apple ;	j 	# V6.0 (🔛) on with exclamation mark with left right arrow above
+1F51C ;	emoji ;	1140 ;	above, arrow, soon, symbols-android, symbols-apple ;	j 	# V6.0 (🔜) soon with rightwards arrow above
+1F51D ;	emoji ;	1141 ;	above, arrow, symbols-android, symbols-apple, top, up ;	j 	# V6.0 (🔝) top with upwards arrow above
+1F549 ;	text ;	1142 ;	hindu, om, religion ;	w 	# V7.0 (🕉) om symbol
+2721 ;	text ;	1143 ;	david, jew, jewish, religion, star ;	w 	# V1.1 (✡) star of david
+2638 ;	text ;	1144 ;	buddhist, dharma, object, religion, wheel ;	w 	# V1.1 (☸) wheel of dharma
+262F ;	text ;	1145 ;	religion, sign, tao, taoist, yang, yin ;	w 	# V1.1 (☯) yin yang
+271D ;	text ;	1146 ;	christian, cross, religion ;	w 	# V1.1 (✝) latin cross
+2626 ;	text ;	1147 ;	christian, cross, religion ;	x 	# V1.1 (☦) orthodox cross
+26E9 ;	text ;	1148 ;	religion, shinto, shrine ;	a 	# V5.2 (⛩) shinto shrine
+262A ;	text ;	1149 ;	islam, muslim, religion ;	w 	# V1.1 (☪) star and crescent
+262E ;	text ;	1150 ;	peace, sign ;	x 	# V1.1 (☮) peace symbol
+2622 ;	text ;	1151 ;	radioactive, sign ;	x 	# V1.1 (☢) radioactive sign
+2623 ;	text ;	1152 ;	biohazard, sign ;	x 	# V1.1 (☣) biohazard sign
+267B ;	text ;	1153 ;	recycle, recycling, solid, symbols-android, symbols-apple, travel, universal ;	j 	# V3.2 (♻) black universal recycling symbol
+26A1 ;	emoji ;	1154 ;	danger, electric, electricity, high, nature, nature-android, nature-apple, travel, voltage, zap ;	a j 	# V4.0 (⚡) high voltage sign
+2B50 ;	emoji ;	1155 ;	nature, nature-apple, star, symbols-android ;	j 	# V5.1 (⭐) white medium star
+2B55 ;	emoji ;	1156 ;	circle, o, symbols-android, symbols-apple, travel ;	j 	# V5.2 (⭕) heavy large circle
+2705 ;	emoji ;	1157 ;	check, mark, sign, symbols-android, symbols-apple ;	j 	# V6.0 (✅) white heavy check mark
+2611 ;	text ;	1158 ;	ballot, box, check, sign, symbols-android, symbols-apple ;	j w 	# V1.1 (☑) ballot box with check
+2714 ;	text ;	1159 ;	check, mark, sign, symbols-android, symbols-apple ;	z j w 	# V1.1 (✔) heavy check mark
+2716 ;	text ;	1160 ;	cancel, multiplication, multiply, sign, symbols-android, symbols-apple, x ;	z j 	# V1.1 (✖) heavy multiplication x
+274C ;	emoji ;	1161 ;	cancel, mark, multiplication, multiply, sign, symbols-android, symbols-apple, x ;	j 	# V6.0 (❌) cross mark
+274E ;	emoji ;	1162 ;	mark, sign, square, symbols-android, symbols-apple ;	j 	# V6.0 (❎) negative squared cross mark
+2795 ;	emoji ;	1163 ;	plus, sign, symbols-android, symbols-apple ;	j 	# V6.0 (➕) heavy plus sign
+2796 ;	emoji ;	1164 ;	minus, sign, symbols-android, symbols-apple ;	j 	# V6.0 (➖) heavy minus sign
+2797 ;	emoji ;	1165 ;	division, sign, symbols-android, symbols-apple ;	j 	# V6.0 (➗) heavy division sign
+27B0 ;	emoji ;	1166 ;	cur, loop, sign, symbols-android, symbols-apple ;	j 	# V6.0 (➰) curly loop
+27BF ;	emoji ;	1167 ;	cur, double, loop, sign, symbols-android, symbols-apple ;	x 	# V6.0 (➿) double curly loop
+303D ;	text ;	1168 ;	mark, objects-android, part, sign, symbols-apple ;	j 	# V3.2 (〽) part alternation mark
+2733 ;	text ;	1169 ;	asterisk, sign, symbols-android, symbols-apple ;	z j 	# V1.1 (✳) eight spoked asterisk
+2734 ;	text ;	1170 ;	sign, star, symbols-android, symbols-apple ;	z j 	# V1.1 (✴) eight pointed black star
+2747 ;	text ;	1171 ;	sign, sparkle, sparkler, symbols-android, symbols-apple ;	z j 	# V1.1 (❇) sparkle
+25AA ;	text ;	1172 ;	geometric, sign, square, symbols-android, symbols-apple ;	j w 	# V1.1 (▪) black small square
+25AB ;	text ;	1173 ;	geometric, sign, square, symbols-android, symbols-apple ;	j 	# V1.1 (▫) white small square
+25FB ;	text ;	1174 ;	geometric, sign, square, symbols-android, symbols-apple ;	j 	# V3.2 (◻) white medium square
+25FC ;	text ;	1175 ;	geometric, sign, square, symbols-android, symbols-apple ;	j w 	# V3.2 (◼) black medium square
+25FD ;	emoji ;	1176 ;	geometric, sign, square, symbols-android, symbols-apple ;	j 	# V3.2 (◽) white medium small square
+25FE ;	emoji ;	1177 ;	geometric, sign, square, symbols-android, symbols-apple ;	j w 	# V3.2 (◾) black medium small square
+2B1B ;	emoji ;	1178 ;	geometric, sign, square, symbols-android, symbols-apple ;	a j w 	# V5.1 (⬛) black large square
+2B1C ;	emoji ;	1179 ;	geometric, sign, square, symbols-android, symbols-apple ;	j w 	# V5.1 (⬜) white large square
+1F536 ;	emoji ;	1180 ;	diamond, geometric, orange, sign, symbols-android, symbols-apple ;	j 	# V6.0 (🔶) large orange diamond
+1F537 ;	emoji ;	1181 ;	blue, diamond, geometric, sign, symbols-android, symbols-apple ;	j 	# V6.0 (🔷) large blue diamond
+1F538 ;	emoji ;	1182 ;	diamond, geometric, orange, sign, symbols-android, symbols-apple ;	j 	# V6.0 (🔸) small orange diamond
+1F539 ;	emoji ;	1183 ;	blue, diamond, geometric, sign, symbols-android, symbols-apple ;	j 	# V6.0 (🔹) small blue diamond
+1F53A ;	emoji ;	1184 ;	geometric, red, sign, symbols-android, symbols-apple ;	j 	# V6.0 (🔺) up-pointing red triangle
+1F53B ;	emoji ;	1185 ;	down, geometric, red, sign, symbols-android, symbols-apple ;	j 	# V6.0 (🔻) down-pointing red triangle
+1F4A0 ;	emoji ;	1186 ;	comic, diamond, emotion, geometric, inside, sign, symbols-android, symbols-apple ;	j 	# V6.0 (💠) diamond shape with a dot inside
+1F518 ;	emoji ;	1187 ;	button, geometric, radio, sign, symbols-android, symbols-apple ;	j 	# V6.0 (🔘) radio button
+1F532 ;	emoji ;	1188 ;	button, geometric, sign, square, symbols-android, symbols-apple ;	j 	# V6.0 (🔲) black square button
+1F533 ;	emoji ;	1189 ;	button, geometric, outlined, sign, square, symbols-android, symbols-apple ;	j 	# V6.0 (🔳) white square button
+26AA ;	emoji ;	1190 ;	circle, geometric, sign, symbols-android, symbols-apple ;	j 	# V4.1 (⚪) medium white circle
+26AB ;	emoji ;	1191 ;	circle, geometric, sign, symbols-android, symbols-apple ;	j w 	# V4.1 (⚫) medium black circle
+1F534 ;	emoji ;	1192 ;	circle, geometric, red, sign, symbols-android, symbols-apple ;	j 	# V6.0 (🔴) large red circle
+1F535 ;	emoji ;	1193 ;	blue, circle, geometric, sign, symbols-android, symbols-apple ;	j 	# V6.0 (🔵) large blue circle
+203C ;	text ;	1194 ;	bangbang, exclamation, mark, punctuation, symbols-android, symbols-apple, word ;	a j 	# V1.1 (‼) double exclamation mark
+2049 ;	text ;	1195 ;	exclamation, interrobang, mark, punctuation, question, symbols-android, symbols-apple, word ;	a j 	# V3.0 (⁉) exclamation question mark
+2753 ;	emoji ;	1196 ;	mark, punctuation, question, solid, symbols-android, symbols-apple, word ;	j w 	# V6.0 (❓) black question mark ornament
+2754 ;	emoji ;	1197 ;	mark, outlined, punctuation, question, symbols-android, symbols-apple, word ;	j 	# V6.0 (❔) white question mark ornament
+2755 ;	emoji ;	1198 ;	exclamation, mark, outlined, punctuation, symbols-android, symbols-apple, word ;	j 	# V6.0 (❕) white exclamation mark ornament
+2757 ;	emoji ;	1199 ;	exclamation, mark, punctuation, symbols-android, symbols-apple, word ;	j 	# V5.2 (❗) heavy exclamation mark symbol
+3030 ;	text ;	1200 ;	dash, punctuation, sound, symbols-android, symbols-apple, wavy ;	j 	# V1.1 (〰) wavy dash
+1F51E ;	emoji ;	1201 ;	18, eighteen, forbidden, no, not, prohibited, symbols-android, symbols-apple, under, underage, word ;	j 	# V6.0 (🔞) no one under eighteen symbol
+00A9 ;	text ;	1202 ;	copyright, symbols-android, symbols-apple, word ;	j 	# V1.1 (©) copyright sign
+00AE ;	text ;	1203 ;	registered, symbols-android, symbols-apple, word ;	j 	# V1.1 (®) registered sign
+1F520 ;	emoji ;	1204 ;	input, latin, letters, symbols-android, symbols-apple, uppercase, word ;	j 	# V6.0 (🔠) input symbol for latin capital letters
+1F521 ;	emoji ;	1205 ;	abcd, input, latin, letters, lowercase, symbols-android, symbols-apple, word ;	j 	# V6.0 (🔡) input symbol for latin small letters
+1F522 ;	emoji ;	1206 ;	1234, input, numbers, symbols-android, symbols-apple, word ;	j 	# V6.0 (🔢) input symbol for numbers
+1F523 ;	emoji ;	1207 ;	input, symbols, symbols-android, symbols-apple, word ;	j 	# V6.0 (🔣) input symbol for symbols
+1F524 ;	emoji ;	1208 ;	abc, alphabet, input, latin, letters, symbols-android, symbols-apple, word ;	j 	# V6.0 (🔤) input symbol for latin letters
+1F170 ;	text ;	1209 ;	a, blood, symbols-android, symbols-apple, word ;	j 	# V6.0 (🅰) negative squared latin capital letter a
+1F18E ;	emoji ;	1210 ;	ab, blood, symbols-android, symbols-apple, word ;	j 	# V6.0 (🆎) negative squared ab
+1F171 ;	text ;	1211 ;	b, blood, symbols-android, symbols-apple, word ;	j 	# V6.0 (🅱) negative squared latin capital letter b
+1F191 ;	emoji ;	1212 ;	cl, symbols-android, symbols-apple, word ;	j 	# V6.0 (🆑) squared cl
+1F192 ;	emoji ;	1213 ;	cool, symbols-android, symbols-apple, word ;	j 	# V6.0 (🆒) squared cool
+1F193 ;	emoji ;	1214 ;	free, symbols-android, symbols-apple, word ;	j 	# V6.0 (🆓) squared free
+2139 ;	text ;	1215 ;	information, symbols-android, symbols-apple, word ;	j 	# V3.0 (ℹ) information source
+1F194 ;	emoji ;	1216 ;	id, identity, symbols-android, symbols-apple, word ;	j 	# V6.0 (🆔) squared id
+24C2 ;	text ;	1217 ;	circle, m, places-android, symbols-apple, word ;	j 	# V1.1 (Ⓜ) circled latin capital letter m
+1F195 ;	emoji ;	1218 ;	new, symbols-android, symbols-apple, word ;	j 	# V6.0 (🆕) squared new
+1F196 ;	emoji ;	1219 ;	ng, symbols-android, symbols-apple, word ;	j 	# V6.0 (🆖) squared ng
+1F17E ;	text ;	1220 ;	blood, o, symbols-android, symbols-apple, word ;	j 	# V6.0 (🅾) negative squared latin capital letter o
+1F197 ;	emoji ;	1221 ;	ok, symbols-android, symbols-apple, word ;	j 	# V6.0 (🆗) squared ok
+1F17F ;	text ;	1222 ;	parking, places-android, symbols-apple, word ;	a j 	# V5.2 (🅿) negative squared latin capital letter p
+1F198 ;	emoji ;	1223 ;	help, sos, symbols-android, symbols-apple, word ;	j 	# V6.0 (🆘) squared sos
+2122 ;	text ;	1224 ;	mark, symbols-android, symbols-apple, tm, trademark, word ;	j 	# V1.1 (™) trade mark sign
+1F199 ;	emoji ;	1225 ;	mark, symbols-android, symbols-apple, up, word ;	j 	# V6.0 (🆙) squared up with exclamation mark
+1F19A ;	emoji ;	1226 ;	symbols-android, symbols-apple, versus, vs, word ;	j 	# V6.0 (🆚) squared vs
+1F201 ;	emoji ;	1227 ;	japanese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈁) squared katakana koko
+1F202 ;	text ;	1228 ;	japanese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈂) squared katakana sa
+1F239 ;	emoji ;	1229 ;	japanese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈹) squared cjk unified ideograph-5272
+1F251 ;	emoji ;	1230 ;	chinese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🉑) circled ideograph accept
+1F234 ;	emoji ;	1231 ;	chinese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈴) squared cjk unified ideograph-5408
+1F23A ;	emoji ;	1232 ;	chinese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈺) squared cjk unified ideograph-55b6
+1F250 ;	emoji ;	1233 ;	japanese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🉐) circled ideograph advantage
+1F22F ;	emoji ;	1234 ;	japanese, symbols-android, symbols-apple, word ;	a j 	# V5.2 (🈯) squared cjk unified ideograph-6307
+1F237 ;	text ;	1235 ;	japanese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈷) squared cjk unified ideograph-6708
+1F236 ;	emoji ;	1236 ;	japanese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈶) squared cjk unified ideograph-6709
+1F235 ;	emoji ;	1237 ;	chinese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈵) squared cjk unified ideograph-6e80
+1F21A ;	emoji ;	1238 ;	japanese, symbols-android, symbols-apple, word ;	a j 	# V5.2 (🈚) squared cjk unified ideograph-7121
+1F238 ;	emoji ;	1239 ;	chinese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈸) squared cjk unified ideograph-7533
+3297 ;	text ;	1240 ;	congratulation, congratulations, ideograph, symbols-android, symbols-apple, word ;	j 	# V1.1 (㊗) circled ideograph congratulation
+1F232 ;	emoji ;	1241 ;	japanese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈲) squared cjk unified ideograph-7981
+3299 ;	text ;	1242 ;	ideograph, secret, symbols-android, symbols-apple, word ;	a j 	# V1.1 (㊙) circled ideograph secret
+1F233 ;	emoji ;	1243 ;	chinese, symbols-android, symbols-apple, word ;	j 	# V6.0 (🈳) squared cjk unified ideograph-7a7a

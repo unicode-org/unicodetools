@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.cldr.util.With;
 import org.unicode.text.tools.GenerateEmoji.CharSource;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -54,7 +53,7 @@ public class EmojiData {
         EnumMap<DefaultPresentation, UnicodeSet> _defaultPresentationMap = new EnumMap<>(DefaultPresentation.class);
         EnumMap<CharSource, UnicodeSet> _charSourceMap = new EnumMap<>(CharSource.class);
         
-        for (String line : FileUtilities.in(Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/", "emoji-data.txt")) {
+        for (String line : FileUtilities.in(EmojiData.class, "emoji-data.txt")) {
             //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
             // U+263A ;    text ;  0 ; face, human, outlined, relaxed, smile, smiley, smiling ;    jw  # V1.1 (☺) white smiling face
             if (line.startsWith("#")) continue;

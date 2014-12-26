@@ -26,6 +26,7 @@
 $digit  =   [0-9]
 $hexDigit   =   [A-F0-9]
 $alphaNum   =   [a-zA-Z0-9]
+$dashName = $alphaNum+([-]$alphaNum)*
 $digits =   $digit+
 $label  =   $alphaNum+
 $positiveDecimal    =   $digits\.$digits
@@ -187,4 +188,8 @@ Id_Mod_Type				;	SINGLE_VALUED	;				<enum>
 Confusable_SL			;	SINGLE_VALUED	;				$codePoints
 Confusable_SA			;	SINGLE_VALUED	;				$codePoints
 Confusable_ML			;	SINGLE_VALUED	;				$codePoints
-Confusable_MA				;	SINGLE_VALUED	;				$codePoints
+Confusable_MA			;	SINGLE_VALUED	;				$codePoints
+
+Emoji_Style				;	SINGLE_VALUED	;				<enum>
+Emoji_Source			;	MULTI_VALUED	;				<enum>
+Emoji_Label				;	MULTI_VALUED_COMMA	;				$dashName

@@ -107,3 +107,17 @@ idmodt	; rec	; recommended
 # @-missing: 0000..10FFFF; Confusable_SA    	; <code point>
 # @-missing: 0000..10FFFF; Confusable_ML    	; <code point>
 # @-missing: 0000..10FFFF; Confusable_MA    	; <code point>		
+
+# @-missing: 0000..10FFFF; Emoji_Style  	; na
+
+Emoji_Style	; text	 ; Text			
+Emoji_Style	; emoji	 ; Emoji				
+Emoji_Style	; na	 ; NA	
+
+# @-missing: 0000..10FFFF; Emoji_Source  	; x
+
+Emoji_Source	; j	 ; Japanese_Carriers			
+Emoji_Source	; w	 ; Wing_Webdings				
+Emoji_Source	; z	 ; Zapf_Dingbats	
+Emoji_Source	; a	 ; ARIB	
+Emoji_Source	; x	 ; Other	

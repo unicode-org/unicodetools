@@ -2,6 +2,8 @@
 # Enumerated Properties
 # ================================================
 
+eStyle ; Emoji_Style
+eSource ; Emoji_Source
 
 # ================================================
 # Miscellaneous Properties
@@ -103,3 +105,5 @@ ConfSL ; Confusable_SL
 ConfSA ; Confusable_SA
 ConfML ; Confusable_ML
 ConfMA ; Confusable_MA ; Confusable
+
+eLabel ; Emoji_Label

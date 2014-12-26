@@ -72,6 +72,7 @@ public class TestProperties extends TestFmwk {
         new TestProperties().run(args);
     }
 
+    
     // TODO generate list of versions, plus 'latest'
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
@@ -80,7 +81,25 @@ public class TestProperties extends TestFmwk {
     static final IndexUnicodeProperties lastVersion = IndexUnicodeProperties.make("6.3");
     static final UnicodeMap<String> generalCategory = iup.load(UcdProperty.General_Category);
     static final UnicodeSet newChars = iup.load(UcdProperty.Age).getSet(UcdPropertyValues.Age_Values.V7_0.name());
+    static final  UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
 
+
+    public void TestAAEmoji() {
+        UnicodeMap<String> emojiStyle = iup.load(UcdProperty.Emoji_Style);
+        showByValue(emojiStyle);
+        
+        UnicodeMap<String> emojiSource = iup.load(UcdProperty.Emoji_Source);
+        showByValue(emojiSource);
+
+        UnicodeMap<String> emojiLabel = iup.load(UcdProperty.Emoji_Label);
+        showByValue(emojiLabel);
+    }
+    private void showByValue(UnicodeMap<String> emojiStyle) {
+        for (String value : new TreeSet<String>(emojiStyle.values())) {
+            UnicodeSet us = emojiStyle.getSet(value);
+            System.out.println(value + ":\t" + us.size() + "\t" +  us.toPattern(false));
+        }
+    }
     public void TestAAScripts() {
         UnicodeMap<String> scriptInfo = iup.load(UcdProperty.Script);
         UnicodeSet unknownScript = scriptInfo.getSet(
@@ -583,7 +602,6 @@ public class TestProperties extends TestFmwk {
         return bestIdUsage;
     }
 
-    static final  UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
 
     static final  CLDRConfig testInfo = CLDRConfig.getInstance();
 

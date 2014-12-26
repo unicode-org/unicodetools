@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
@@ -175,7 +174,7 @@ public class GenerateEmoji {
     static final EmojiAnnotations         ANNOTATIONS_TO_CHARS      = new EmojiAnnotations(CODEPOINT_COMPARE, "emojiAnnotations.txt");
     static final UnicodeSet DEFAULT_TEXT_STYLE = new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS.keyToValues.get("default-text-style")).freeze();
 
-    static final EmojiAnnotations         ANNOTATIONS_TO_CHARS_NEW  = new EmojiAnnotations(CODEPOINT_COMPARE, "emojiAnnotationsNew.txt");
+//    static final EmojiAnnotations         ANNOTATIONS_TO_CHARS_NEW  = new EmojiAnnotations(CODEPOINT_COMPARE, "emojiAnnotationsNew.txt");
 
     static final Subheader                subheader                 = new Subheader("/Users/markdavis/workspace/unicodetools/data/ucd/7.0.0-Update/");
     static final Set<String>              SKIP_BLOCKS               = new HashSet(Arrays.asList("Miscellaneous Symbols",
@@ -476,8 +475,12 @@ public class GenerateEmoji {
         }
 
         public String getSources(StringBuilder suffix, boolean superscript) {
+            boolean first = true;
             for (CharSource source : getCharSources(chars)) {
-                suffix.append(superscript ? source.superscript : source.letter);
+                suffix.append(superscript ? source.superscript 
+                        : first ? source.letter
+                                : " " + source.letter);
+                first = false;
             }
             return suffix.toString();
         }
@@ -603,14 +606,14 @@ public class GenerateEmoji {
             // annotations.remove(label.toString());
             // }
             // }
-            String flagRegion = getFlagRegionName(chars);
-            if (flagRegion != null) {
-                annotations.add(flagRegion);
-            }
+//            String flagRegion = getFlagRegionName(chars);
+//            if (flagRegion != null) {
+//                annotations.add(flagRegion);
+//            }
             if (annotations.isEmpty()) {
-                System.out.println("No annotations for:\t" + getName(chars, true) + "\t" + chars);
+                throw new IllegalArgumentException("No annotations for:\t" + getName(chars, true) + "\t" + chars);
             }
-            return code
+            return Utility.hex(chars, " ")
                     + " ;\t" + defaultPresentation
                     + " ;\t" + order
                     + " ;\t" + CollectionUtilities.join(annotations, ", ")
@@ -1094,7 +1097,7 @@ public class GenerateEmoji {
         showDefaultStyle();
         showSubhead();
         showAnnotations();
-        showAnnotationsDiff();
+//        showAnnotationsDiff();
         // compareOtherAnnotations();
         showOtherUnicode();
         test();
@@ -1106,6 +1109,7 @@ public class GenerateEmoji {
             // getUrlCharacters("APPLE", APPLE_URL);
             System.out.println(new UnicodeSet(Emoji.GITHUB_APPLE_CHARS).removeAll(APPLE_CHARS).toPattern(false));
             System.out.println(list(new UnicodeSet(APPLE_CHARS).removeAll(Emoji.GITHUB_APPLE_CHARS)));
+            System.out.println("Apple: " + APPLE_CHARS);
         }
         System.out.println("DONE");
     }
@@ -1632,40 +1636,40 @@ public class GenerateEmoji {
         out.close();
     }
 
-    private static void showAnnotationsDiff() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-annotations-diff.html");
-        writeHeader(out, "Emoji Annotations Diff", "Finer-grained character annotations. " +
-                "For brevity, flags are not shown: they would have names of the associated countries.");
-        out.println("<tr><th>Code</th><th>Image</th><th>Name</th><th>Old-Only</th><th>New-Only</th><th>Same Annotation</th></tr>");
-
-        for (String emoji : SORTED_EMOJI_CHARS_SET) {
-            Set<String> values = ANNOTATIONS_TO_CHARS.getKeys(emoji);
-            Set<String> valuesNew = ANNOTATIONS_TO_CHARS_NEW.getKeys(emoji);
-            boolean sameValues = Objects.equals(values, valuesNew);
-            Set<String> same = new LinkedHashSet(values);
-            same.retainAll(valuesNew);
-            Set<String> oldOnly = new LinkedHashSet(values);
-            oldOnly.removeAll(valuesNew);
-            Set<String> newOnly = new LinkedHashSet(valuesNew);
-            newOnly.removeAll(values);
-            UnicodeSet uset = new UnicodeSet().add(emoji);
-            out.print("<tr>");
-            out.println("<td class='code'>" + getDoubleLink(Utility.hex(emoji, " ")) + "</td>\n");
-
-            displayUnicodeSet(out, uset, Style.bestImage, 16, 1, 1, "full-emoji-list.html", CODEPOINT_COMPARE);
-            out.println("<td>" + getName(emoji, true) + "</td>\n");
-            if (sameValues) {
-                out.println("<td colSpan='3' bgcolor='#EEE'>" + CollectionUtilities.join(same, ", ") + "</td>\n");
-            } else {
-                out.println("<td bgcolor='#DFD'>" + CollectionUtilities.join(oldOnly, ", ") + "</td>\n");
-                out.println("<td bgcolor='#DDF'>" + CollectionUtilities.join(newOnly, ", ") + "</td>\n");
-                out.println("<td>" + CollectionUtilities.join(same, ", ") + "</td>\n");
-            }
-            out.println("</tr>");
-        }
-        writeFooter(out);
-        out.close();
-    }
+//    private static void showAnnotationsDiff() throws IOException {
+//        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-annotations-diff.html");
+//        writeHeader(out, "Emoji Annotations Diff", "Finer-grained character annotations. " +
+//                "For brevity, flags are not shown: they would have names of the associated countries.");
+//        out.println("<tr><th>Code</th><th>Image</th><th>Name</th><th>Old-Only</th><th>New-Only</th><th>Same Annotation</th></tr>");
+//
+//        for (String emoji : SORTED_EMOJI_CHARS_SET) {
+//            Set<String> values = ANNOTATIONS_TO_CHARS.getKeys(emoji);
+//            Set<String> valuesNew = ANNOTATIONS_TO_CHARS_NEW.getKeys(emoji);
+//            boolean sameValues = Objects.equals(values, valuesNew);
+//            Set<String> same = new LinkedHashSet(values);
+//            same.retainAll(valuesNew);
+//            Set<String> oldOnly = new LinkedHashSet(values);
+//            oldOnly.removeAll(valuesNew);
+//            Set<String> newOnly = new LinkedHashSet(valuesNew);
+//            newOnly.removeAll(values);
+//            UnicodeSet uset = new UnicodeSet().add(emoji);
+//            out.print("<tr>");
+//            out.println("<td class='code'>" + getDoubleLink(Utility.hex(emoji, " ")) + "</td>\n");
+//
+//            displayUnicodeSet(out, uset, Style.bestImage, 16, 1, 1, "full-emoji-list.html", CODEPOINT_COMPARE);
+//            out.println("<td>" + getName(emoji, true) + "</td>\n");
+//            if (sameValues) {
+//                out.println("<td colSpan='3' bgcolor='#EEE'>" + CollectionUtilities.join(same, ", ") + "</td>\n");
+//            } else {
+//                out.println("<td bgcolor='#DFD'>" + CollectionUtilities.join(oldOnly, ", ") + "</td>\n");
+//                out.println("<td bgcolor='#DDF'>" + CollectionUtilities.join(newOnly, ", ") + "</td>\n");
+//                out.println("<td>" + CollectionUtilities.join(same, ", ") + "</td>\n");
+//            }
+//            out.println("</tr>");
+//        }
+//        writeFooter(out);
+//        out.close();
+//    }
 
     static final UnicodeSet EXCLUDE_SET = new UnicodeSet()
     .addAll(GENERAL_CATEGORY.getSet(General_Category_Values.Unassigned.toString()))

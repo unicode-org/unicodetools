@@ -30,3 +30,6 @@ kTraditionalVariant
 kVietnamese
 kXHC1983
 Script_Extensions
+Emoji_Source
+Emoji_Label
+ 
