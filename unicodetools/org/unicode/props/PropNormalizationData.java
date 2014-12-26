@@ -2,14 +2,9 @@ package org.unicode.props;
 
 import java.util.BitSet;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
-import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.NormalizationData;
-import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;

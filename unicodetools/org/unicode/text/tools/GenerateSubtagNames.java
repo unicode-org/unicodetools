@@ -7,8 +7,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
-import javax.print.attribute.standard.MediaSize.Engineering;
-
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.StandardCodes;

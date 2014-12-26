@@ -91,7 +91,7 @@ public class ShowUnicodeGrowth {
             case UCD_Types.TITLECASE_LETTER:
             case UCD_Types.MODIFIER_LETTER:
             case UCD_Types.OTHER_LETTER:
-                final byte script = ucd.getScript(i);
+                final short script = ucd.getScript(i);
                 if (script == UCD_Types.HANGUL_SCRIPT) {
                     return  Type.hangul;
                 } else if (script == UCD_Types.HAN_SCRIPT) {

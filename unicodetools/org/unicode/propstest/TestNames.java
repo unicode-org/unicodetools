@@ -1,8 +1,5 @@
 package org.unicode.propstest;
 
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -12,20 +9,12 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
-import org.unicode.props.UcdPropertyValues.Age_Values;
-import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.UCD;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 

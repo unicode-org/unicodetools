@@ -23,7 +23,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;

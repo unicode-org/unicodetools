@@ -1,6 +1,5 @@
 package org.unicode.props;
 
-import java.util.BitSet;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;

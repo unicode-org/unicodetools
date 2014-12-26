@@ -7,7 +7,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.With;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;

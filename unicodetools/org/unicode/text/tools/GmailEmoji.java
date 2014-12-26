@@ -3,22 +3,17 @@ package org.unicode.text.tools;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.omg.CORBA.UNKNOWN;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.tools.EmojiData.DefaultPresentation;
-import org.unicode.text.tools.GenerateEmoji.CharSource;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -27,7 +22,6 @@ import com.google.common.collect.ComparisonChain;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class GmailEmoji {

@@ -3,11 +3,8 @@ package org.unicode.propstest;
 import java.util.EnumSet;
 import java.util.Set;
 
-import javax.swing.text.Utilities;
-
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.UCD.Default;

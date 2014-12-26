@@ -31,9 +31,6 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.Counter;
 
-import com.ibm.icu.text.UTF16;
-
-
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UCharacterEnums.ECharacterCategory;
 import com.ibm.icu.lang.UProperty;
@@ -47,6 +44,7 @@ import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.PluralRules;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Currency;
 import com.ibm.icu.util.ULocale;

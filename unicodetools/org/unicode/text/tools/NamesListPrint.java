@@ -1,7 +1,7 @@
 package org.unicode.text.tools;
 
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.unicode.cldr.util.With;
 import org.unicode.text.UCA.NamesList;

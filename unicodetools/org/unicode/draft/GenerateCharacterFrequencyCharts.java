@@ -14,7 +14,6 @@ import org.unicode.cldr.draft.ExemplarInfo;
 import org.unicode.cldr.draft.ExemplarInfo.Status;
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.CLDRConfig;
-import org.unicode.cldr.util.CLDRLocale;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;

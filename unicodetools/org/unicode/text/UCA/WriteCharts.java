@@ -35,8 +35,8 @@ import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Names;
 import org.unicode.text.UCD.UCD_Types;
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeProperty;

@@ -27,8 +27,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.text.utility.ChainException;
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Pair;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;

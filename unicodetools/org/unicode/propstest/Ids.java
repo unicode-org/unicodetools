@@ -14,8 +14,6 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 

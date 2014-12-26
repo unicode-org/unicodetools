@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (C) 1996-2013, International Business Machines Corporation and    *
+ * Copyright (C) 1996-2014, International Business Machines Corporation and    *
  * others. All Rights Reserved.                                                *
  *******************************************************************************
  */
@@ -18,14 +18,12 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import org.unicode.props.UnicodeLabel;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities.InverseMatcher;
 import com.ibm.icu.dev.util.CollectionUtilities.ObjectMatcher;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -37,7 +35,7 @@ import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
-public abstract class UnicodeProperty<T> extends UnicodeLabel {
+public abstract class UnicodeProperty extends UnicodeLabel {
 
     public static final UnicodeSet NONCHARACTERS = new UnicodeSet("[:noncharactercodepoint:]").freeze();
     public static final UnicodeSet PRIVATE_USE = new UnicodeSet("[:gc=privateuse:]").freeze();
@@ -203,11 +201,11 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         return _getVersion();
     }
 
-    public T getValue(int codepoint) {
+    public String getValue(int codepoint) {
         if (DEBUG && CHECK_VALUE == codepoint && CHECK_NAME.equals(getName())) {
-            T value = _getValue(codepoint);
+            String value = _getValue(codepoint);
             System.out.println(getName() + "(" + Utility.hex(codepoint) + "):"
-                    + (getType() == STRING ? Utility.hex(value.toString()) : value));
+                    + (getType() == STRING ? Utility.hex(value) : value));
             return value;
         }
         return _getValue(codepoint);
@@ -231,7 +229,7 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
             result = _getValueAliases(valueAlias, result); // for debugging
             throw new IllegalArgumentException("Internal error: " + getName()
                     + " doesn't contain " + valueAlias + ": "
-                    + CollectionUtilities.join(result, ", "));
+                    + new BagFormatter().join(result));
         }
         return result;
     }
@@ -244,7 +242,7 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
 
     protected abstract String _getVersion();
 
-    protected abstract T _getValue(int codepoint);
+    protected abstract String _getValue(int codepoint);
 
     protected abstract List<String> _getNameAliases(List<String> result);
 
@@ -265,12 +263,12 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         return getAvailableValues(null);
     }
 
-//    public final T getValue(int codepoint, boolean getShortest) {
-//        T result = getValue(codepoint);
-//        if (type >= MISC || result == null || !getShortest)
-//            return result;
-//        return getFirstValueAlias(result);
-//    }
+    public final String getValue(int codepoint, boolean getShortest) {
+        String result = getValue(codepoint);
+        if (type >= MISC || result == null || !getShortest)
+            return result;
+        return getFirstValueAlias(result);
+    }
 
     public final String getFirstNameAlias() {
         if (firstNameAlias == null) {
@@ -279,7 +277,7 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         return firstNameAlias;
     }
 
-    public final String getFirstValueAlias(T value) {
+    public final String getFirstValueAlias(String value) {
         if (valueToFirstValueAlias == null)
             _getFirstValueAliasCache();
         return valueToFirstValueAlias.get(value).toString();
@@ -300,7 +298,7 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
             if (DEBUG && CHECK_NAME.equals(getName())) {
                 System.out.println("First Alias: " + getName() + ": " + value
                         + " => " + first
-                        + CollectionUtilities.join(getValueAliases(value), ", "));
+                        + new BagFormatter().join(getValueAliases(value)));
             }
             valueToFirstValueAlias.put(value, first);
             if (value.length() > maxValueWidth) {
@@ -351,7 +349,7 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         if (isType(STRING_OR_MISC_MASK)) {
             for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
                 int i = usi.codepoint;
-                T value = getValue(i);
+                String value = getValue(i);
                 if (value != null && matcher.matches(value)) {
                     result.add(i);
                 }
@@ -469,20 +467,19 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         return unicodeMap;
     }
 
-    protected UnicodeMap<T> _getUnicodeMap() {
+    protected UnicodeMap _getUnicodeMap() {
         UnicodeMap result = new UnicodeMap();
-        HashMap<T,T> myIntern = new HashMap<T,T>();
+        HashMap myIntern = new HashMap();
         boolean uniformUnassigned = hasUniformUnassigned();
 
         for (UnicodeSetIterator usi = getStuffToTest(uniformUnassigned); usi.next();) { // int i = 0; i <= 0x10FFFF; ++i
             int i = usi.codepoint;
             // if (DEBUG && i == 0x41) System.out.println(i + "\t" +
             // getValue(i));
-            T value = getValue(i);
-            T iValue = myIntern.get(value);
-            if (iValue == null) {
+            String value = getValue(i);
+            String iValue = (String) myIntern.get(value);
+            if (iValue == null)
                 myIntern.put(value, iValue = value);
-            }
             result.put(i, iValue);
         }
         addUntested(result, uniformUnassigned);
@@ -492,9 +489,9 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
                 int i = usi.codepoint;
                 // if (DEBUG && i == 0x41) System.out.println(i + "\t" +
                 // getValue(i));
-                T value = getValue(i);
+                String value = getValue(i);
                 String resultValue = (String) result.getValue(i);
-                if (!Objects.equals(value.toString(),resultValue)) {
+                if (!value.equals(resultValue)) {
                     throw new RuntimeException("Value failure at: "
                             + Utility.hex(i));
                 }
@@ -756,7 +753,7 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
             return this;
         }
 
-        public final UnicodeProperty getProperty(String propertyAlias) {
+        public UnicodeProperty getProperty(String propertyAlias) {
             return (UnicodeProperty) skeletonNames
             .get(toSkeleton(propertyAlias));
         }
@@ -988,10 +985,10 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         }
     }
 
-    public static class FilteredProperty<T> extends UnicodeProperty<T> {
-        private UnicodeProperty<String> property;
+    public static class FilteredProperty extends UnicodeProperty {
+        private UnicodeProperty property;
 
-        protected StringFilter<T> filter;
+        protected StringFilter filter;
 
         protected UnicodeSetIterator matchIterator = new UnicodeSetIterator(
                 new UnicodeSet(0, 0x10FFFF));
@@ -1014,19 +1011,19 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
             return this;
         }
 
-        List<String> temp = new ArrayList(1);
+        List temp = new ArrayList(1);
 
-        public List<String> _getAvailableValues(List<String> result) {
+        public List _getAvailableValues(List result) {
             temp.clear();
             return filter.addUnique(property.getAvailableValues(temp), result);
         }
 
-        public List<String> _getNameAliases(List<String> result) {
+        public List _getNameAliases(List result) {
             temp.clear();
             return filter.addUnique(property.getNameAliases(temp), result);
         }
 
-        public T _getValue(int codepoint) {
+        public String _getValue(int codepoint) {
             return filter.remap(property.getValue(codepoint));
         }
 
@@ -1068,15 +1065,15 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
 
     }
 
-    public static abstract class StringFilter<T> implements Cloneable {
-        public abstract T remap(T original);
+    public static abstract class StringFilter implements Cloneable {
+        public abstract String remap(String original);
 
-        public final List<T> addUnique(Collection<T> source, List<T> result) {
-            if (result == null) {
+        public final List addUnique(Collection source, List result) {
+            if (result == null)
                 result = new ArrayList(1);
-            }
-            for (T item : source) {
-                UnicodeProperty.addUnique(remap(item), result);
+            Iterator it = source.iterator();
+            while (it.hasNext()) {
+                UnicodeProperty.addUnique(remap((String) it.next()), result);
             }
             return result;
         }
@@ -1087,16 +1084,16 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
          */
     }
 
-    public static class MapFilter<T> extends StringFilter<T> {
+    public static class MapFilter extends StringFilter {
         private Map valueMap;
 
         public MapFilter(Map valueMap) {
             this.valueMap = valueMap;
         }
 
-        public T remap(T original) {
+        public String remap(String original) {
             Object changed = valueMap.get(original);
-            return changed == null ? original : (T) changed;
+            return changed == null ? original : (String) changed;
         }
 
         public Map getMap() {
@@ -1104,7 +1101,7 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         }
     }
 
-    public interface PatternMatcher<T> extends ObjectMatcher<T> {
+    public interface PatternMatcher extends ObjectMatcher {
         public PatternMatcher set(String pattern);
     }
 
@@ -1165,7 +1162,7 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
 
     public enum AliasAddAction {IGNORE_IF_MISSING, REQUIRE_MAIN_ALIAS, ADD_MAIN_ALIAS}
 
-    public static abstract class BaseProperty<T> extends UnicodeProperty<T> {
+    public static abstract class BaseProperty extends UnicodeProperty {
         private static final String[] NO_VALUES = {"No", "N", "F", "False"};
 
         private static final String[] YES_VALUES = {"Yes", "Y", "T", "True"};
@@ -1175,9 +1172,9 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
          */
         private static final String[][] YES_NO_ALIASES = new String[][] {YES_VALUES, NO_VALUES};
 
-        protected List<String> propertyAliases = new ArrayList<>(1);
+        protected List propertyAliases = new ArrayList(1);
 
-        protected Map<String,List<String>> toValueAliases;
+        protected Map toValueAliases;
 
         protected String version;
 
@@ -1244,12 +1241,13 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         protected void _fixValueAliases() {
             if (toValueAliases == null)
                 toValueAliases = new HashMap(1);
-            for (T value : getAvailableValues()) {
+            for (Iterator it = getAvailableValues().iterator(); it.hasNext();) {
+                Object value = it.next();
                 _ensureValueInAliases(value);
             }
         }
 
-        protected void _ensureValueInAliases(T value) {
+        protected void _ensureValueInAliases(Object value) {
             List result = (List) toValueAliases.get(value);
             if (result == null)
                 toValueAliases.put(value, result = new ArrayList(1));
@@ -1347,7 +1345,7 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
          */
     }
 
-    public static class UnicodeMapProperty<T> extends BaseProperty<T> {
+    public static class UnicodeMapProperty extends BaseProperty {
         /*
          * Example of usage:
          * new UnicodeProperty.UnicodeMapProperty() {
@@ -1375,23 +1373,19 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
          }
          }.setMain("Grapheme_Cluster_Break", "GCB", UnicodeProperty.ENUMERATED, version)
          */
-        protected UnicodeMap<T> unicodeMap;
+        protected UnicodeMap unicodeMap;
 
-        protected UnicodeMap<T> _getUnicodeMap() {
+        protected UnicodeMap _getUnicodeMap() {
             return unicodeMap;
         }
 
-        public UnicodeMapProperty set(UnicodeMap<T> map) {
+        public UnicodeMapProperty set(UnicodeMap map) {
             unicodeMap = map.freeze();
             return this;
         }
 
-//        protected String _getValue(int codepoint) {
-//            return Objects.toString(unicodeMap.getValue(codepoint));
-//        }
-//
-        protected T _getValue(int codepoint) {
-            return unicodeMap.getValue(codepoint);
+        protected String _getValue(int codepoint) {
+            return (String) unicodeMap.getValue(codepoint);
         }
 
         /* protected List _getValueAliases(String valueAlias, List result) {
@@ -1399,14 +1393,10 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
          result.add(valueAlias);
          return result; // no other aliases
          }
-         */
-        protected List<String> _getAvailableValues(List<String> result) {
-             Collection<T> current = unicodeMap.getAvailableValues();
-             for (T item : current) {
-                 result.add(item.toString());
-             }
+         */protected List _getAvailableValues(List result) {
+             unicodeMap.getAvailableValues(result);
              if (toValueAliases != null) {
-                 for (String s : toValueAliases.keySet()) {
+                 for (Object s : toValueAliases.keySet()) {
                      if (!result.contains(s)) {
                          result.add(s);
                      }
@@ -1505,11 +1495,11 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
     }
 
     public boolean isDefault(int cp) {
-        T value = getValue(cp);
+        String value = getValue(cp);
         if (isType(STRING_OR_MISC_MASK)) {
             return equals(cp, value);
         }
-        T defaultValue = getValue(getSAMPLE_UNASSIGNED());
+        String defaultValue = getValue(getSAMPLE_UNASSIGNED());
         return defaultValue == null ? value == null : defaultValue.equals(value);   
     }
 
@@ -1521,9 +1511,10 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         return this;
     }
 
-    public static class UnicodeSetProperty extends BaseProperty<Boolean> {
-        static final Set<String> YesNo = new 
+    public static class UnicodeSetProperty extends BaseProperty {
         protected UnicodeSet unicodeSet;
+        private static final String[] YESNO_ARRAY = new String[]{"Yes", "No"};
+        private static final List YESNO = Arrays.asList(YESNO_ARRAY);
 
         public UnicodeSetProperty set(UnicodeSet set) {
             unicodeSet = set.freeze();
@@ -1531,17 +1522,16 @@ public abstract class UnicodeProperty<T> extends UnicodeLabel {
         }
 
         public UnicodeSetProperty set(String string) {
+            // TODO Auto-generated method stub
             return set(new UnicodeSet(string).freeze());
         }
 
-        protected Boolean _getValue(int codepoint) {
-            return unicodeSet.contains(codepoint) ? Boolean.FALSE : Boolean.TRUE;
+        protected String _getValue(int codepoint) {
+            return YESNO_ARRAY[unicodeSet.contains(codepoint) ? 0 : 1];
         }
 
-        protected List<String> _getAvailableValues(List<String> result) {
-            result.add("Yes");
-            result.add("No");
-            return result;
+        protected List _getAvailableValues(List result) {
+            return YESNO;
         }
     }
 

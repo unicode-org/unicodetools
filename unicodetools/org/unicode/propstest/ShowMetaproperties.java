@@ -9,8 +9,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.UcdProperty;
 import org.unicode.props.IndexUnicodeProperties.PropertyStatus;
+import org.unicode.props.UcdProperty;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;

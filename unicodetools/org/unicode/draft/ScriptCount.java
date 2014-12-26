@@ -19,9 +19,6 @@ import org.unicode.text.UCA.CEList;
 import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.text.UTF16;
-
-
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UCharacterEnums.ECharacterCategory;
@@ -31,6 +28,7 @@ import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.UTF16;
 
 public class ScriptCount {
     private static final double LOG2 = Math.log(2);

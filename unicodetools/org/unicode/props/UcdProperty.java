@@ -2,6 +2,7 @@
 package org.unicode.props;
 import java.util.EnumSet;
 import java.util.Set;
+
 import org.unicode.props.PropertyNames.NameMatcher;
 public enum UcdProperty {
 

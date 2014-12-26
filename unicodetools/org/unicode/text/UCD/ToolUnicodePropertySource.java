@@ -2,7 +2,6 @@ package org.unicode.text.UCD;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -30,12 +29,13 @@ import com.ibm.icu.dev.util.UnicodeProperty.SimpleProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.StringUCharacterIterator;
 import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.text.IDNA;
+import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.StringPrep;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
 
 /**
  * Class that provides all of the properties for formatting in the Unicode
@@ -370,7 +370,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         }.setMain("IdnOutput", "idnOut", UnicodeProperty.EXTENDED_BINARY, version));
 
         add(new UnicodeProperty.SimpleProperty() {
-            NumberFormat nf = NumberFormat.getInstance();
+            NumberFormat nf = NumberFormat.getInstance(ULocale.ENGLISH);
             {
                 nf.setGroupingUsed(false);
                 nf.setMaximumFractionDigits(8);

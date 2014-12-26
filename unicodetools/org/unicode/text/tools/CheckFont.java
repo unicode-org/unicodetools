@@ -7,15 +7,9 @@ import java.awt.GraphicsEnvironment;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageOutputStream;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import org.unicode.text.tools.GenerateEmoji.Data;
 
 import com.ibm.icu.text.UnicodeSet;
 

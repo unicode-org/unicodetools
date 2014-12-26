@@ -1,21 +1,15 @@
 package org.unicode.text.tools;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
-import org.unicode.text.tools.WordFrequency.Info;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;

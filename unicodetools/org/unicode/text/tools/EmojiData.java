@@ -13,7 +13,6 @@ import java.util.Set;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.tools.GenerateEmoji.CharSource;
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;

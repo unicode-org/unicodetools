@@ -31,9 +31,6 @@ import org.unicode.jsp.XPropertyFactory;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 
-import com.ibm.icu.text.UTF16;
-
-
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.BNF;
 import com.ibm.icu.dev.util.PrettyPrinter;
@@ -48,6 +45,7 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.LocaleData;

@@ -13,14 +13,10 @@ import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.With;
-import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 

@@ -1,21 +1,13 @@
 package org.unicode.text.tools;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 
-import org.unicode.text.tools.GenerateEmoji.Label;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 

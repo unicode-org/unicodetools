@@ -4,8 +4,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import com.ibm.icu.dev.util.Relation;
 
