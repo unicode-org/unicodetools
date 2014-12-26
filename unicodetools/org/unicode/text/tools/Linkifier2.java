@@ -3,24 +3,11 @@ package org.unicode.text.tools;
 import java.nio.charset.Charset;
 import java.text.ParsePosition;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.RegexUtilities;
-
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.UnicodeRegex;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.IDNA;
-import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.IDNA.Info;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
 
 public class Linkifier2 {
     static final List<String> SCHEMES = Arrays.asList("http://", "https://");

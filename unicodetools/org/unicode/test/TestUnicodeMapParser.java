@@ -10,7 +10,6 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
-import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.UnicodeSet;

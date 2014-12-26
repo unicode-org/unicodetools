@@ -2,38 +2,27 @@ package org.unicode.text.UCA;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.RegexUtilities;
-import org.unicode.cldr.util.With;
-import org.unicode.cldr.util.XPathParts.Comments.CommentType;
-import org.unicode.draft.GetNames;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.impl.UnicodeRegex;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.Output;
 
 public class NamesList {
 

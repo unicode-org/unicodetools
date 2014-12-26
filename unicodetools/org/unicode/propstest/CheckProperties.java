@@ -20,22 +20,21 @@ import org.unicode.cldr.util.With;
 import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
 import org.unicode.props.PropertyNames;
+import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeSetUtilities;
-import org.unicode.props.IndexUnicodeProperties.DefaultValueType;
-import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
-import org.unicode.props.PropertyNames.NameMatcher;
-import org.unicode.props.UcdPropertyValues.Binary;
-import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 //import com.ibm.icu.text.UTF16;
-
-
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.ICUPropertyFactory;
 import com.ibm.icu.dev.util.Relation;
@@ -43,11 +42,6 @@ import com.ibm.icu.dev.util.Tabber;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 
 public class CheckProperties {
     private static final String LAST_RELEASE = Utility.searchPath[0];;

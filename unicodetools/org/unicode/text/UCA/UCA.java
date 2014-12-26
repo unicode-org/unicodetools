@@ -32,8 +32,8 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.IntStack;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF16Plus;
 import org.unicode.text.utility.Utility;
 

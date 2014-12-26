@@ -1,6 +1,5 @@
 package org.unicode.propstest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -15,7 +14,6 @@ import org.unicode.props.UnicodeRelation;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.Relation;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UnicodeSet;
 
 public class UnicodeRelationTest extends TestFmwk{

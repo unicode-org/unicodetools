@@ -19,13 +19,11 @@ import org.unicode.jsp.CharEncoder;
 import org.unicode.jsp.FileUtilities;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
 
-import com.ibm.icu.text.UTF16;
-
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Normalizer2.Mode;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;

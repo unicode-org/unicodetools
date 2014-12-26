@@ -1,12 +1,10 @@
 package org.unicode.propstest;
 
 import java.util.Arrays;
-import java.util.BitSet;
 import java.util.EnumSet;
 import java.util.Set;
 
 import org.unicode.props.ScriptInfo;
-import org.unicode.props.ScriptInfo.IdentifierStatus;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.utility.Settings;
 

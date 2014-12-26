@@ -8,8 +8,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.unicode.props.UcdPropertyValues.Binary;
-
 import com.ibm.icu.dev.util.CollectionUtilities;
 
 /**

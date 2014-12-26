@@ -3,7 +3,6 @@ package org.unicode.propstest;
 import org.unicode.cldr.unittest.TestFmwkPlus;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.UnicodeSet;

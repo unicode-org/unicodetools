@@ -1,5 +1,4 @@
 package org.unicode.props;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -8,7 +7,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Freezable;
 

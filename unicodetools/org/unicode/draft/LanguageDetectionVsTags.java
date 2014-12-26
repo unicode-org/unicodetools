@@ -14,7 +14,6 @@ import java.util.TreeSet;
 import org.unicode.cldr.tool.ConvertLanguageData.InverseComparator;
 import org.unicode.cldr.tool.LikelySubtags;
 import org.unicode.cldr.util.CLDRPaths;
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.LanguageTagParser;
 import org.unicode.cldr.util.SupplementalDataInfo;

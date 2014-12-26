@@ -9,8 +9,6 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
 
 public class TestSecurity extends TestFmwkPlus {

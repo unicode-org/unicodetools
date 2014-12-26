@@ -1,9 +1,9 @@
 package org.unicode.text.tools;
 
 import java.util.Comparator;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;

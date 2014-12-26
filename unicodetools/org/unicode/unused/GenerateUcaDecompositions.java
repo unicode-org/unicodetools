@@ -12,14 +12,12 @@ import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.text.UTF16;
-
-
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class GenerateUcaDecompositions {

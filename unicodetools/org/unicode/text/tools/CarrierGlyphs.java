@@ -1,13 +1,9 @@
 package org.unicode.text.tools;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Comparator;
 import java.util.Locale;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -19,7 +15,6 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.ULocale;
 
 public class CarrierGlyphs {
     static final IndexUnicodeProperties LATEST = IndexUnicodeProperties

@@ -2,12 +2,10 @@ package org.unicode.propstest;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.cldr.draft.FileUtilities.FileProcessor;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
@@ -17,20 +15,14 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.FileUtilities;
-import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
-import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.util.Region;
 import com.ibm.icu.util.ULocale;
 
 public class ShowStats {

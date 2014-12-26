@@ -1,15 +1,11 @@
 package org.unicode.text.UCD;
 
 import java.text.ParsePosition;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.InternalCldrException;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.dev.util.UnicodeProperty;

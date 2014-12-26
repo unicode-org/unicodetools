@@ -15,13 +15,11 @@ import java.util.TreeSet;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.text.UTF16;
-
-
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class HanFrequencies {
