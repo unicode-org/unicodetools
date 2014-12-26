@@ -496,7 +496,42 @@ public class UcdPropertyValues {
 
 		// Emoji_DCM
 		// Emoji_KDDI
+		// Emoji_Label
 		// Emoji_SB
+	public enum Emoji_Source_Values implements Named {
+        Japanese_Carriers("j"),
+        Wing_Webdings("w"),
+        Zapf_Dingbats("z"),
+        ARIB("a"),
+        Other("x");
+        private final PropertyNames<Emoji_Source_Values> names;
+        private Emoji_Source_Values (String shortName, String...otherNames) {
+            names = new PropertyNames(Emoji_Source_Values.class, this, shortName, otherNames);
+        }
+        public PropertyNames<Emoji_Source_Values> getNames() {
+            return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
+        }
+    }
+
+	public enum Emoji_Style_Values implements Named {
+        Text("text"),
+        Emoji("emoji"),
+        NA("na");
+        private final PropertyNames<Emoji_Style_Values> names;
+        private Emoji_Style_Values (String shortName, String...otherNames) {
+            names = new PropertyNames(Emoji_Style_Values.class, this, shortName, otherNames);
+        }
+        public PropertyNames<Emoji_Style_Values> getNames() {
+            return names;
+        }
+        public String getShortName() {
+            return names.getShortName();
+        }
+    }
+
 		// FC_NFKC_Closure
 	public enum General_Category_Values implements Named {
         Other("C"),
@@ -1064,7 +1099,6 @@ public class UcdPropertyValues {
 		// Numeric_Value
 	public enum Script_Values implements Named {
         Caucasian_Albanian("Aghb"),
-        Ahom("Ahom"),
         Arabic("Arab"),
         Imperial_Aramaic("Armi"),
         Armenian("Armn"),
@@ -1103,13 +1137,10 @@ public class UcdPropertyValues {
         Hangul("Hang"),
         Han("Hani"),
         Hanunoo("Hano"),
-        Hatran("Hatr"),
         Hebrew("Hebr"),
         Hiragana("Hira"),
-        Anatolian_Hieroglyphs("Hluw"),
         Pahawh_Hmong("Hmng"),
         Katakana_Or_Hiragana("Hrkt"),
-        Old_Hungarian("Hung"),
         Old_Italic("Ital"),
         Javanese("Java"),
         Kayah_Li("Kali"),
@@ -1140,7 +1171,6 @@ public class UcdPropertyValues {
         Mongolian("Mong"),
         Mro("Mroo"),
         Meetei_Mayek("Mtei"),
-        Multani("Mult"),
         Myanmar("Mymr"),
         Old_North_Arabian("Narb"),
         Nabataean("Nbat"),
@@ -1164,7 +1194,6 @@ public class UcdPropertyValues {
         Samaritan("Samr"),
         Old_South_Arabian("Sarb"),
         Saurashtra("Saur"),
-        Sign_Writing("Sgnw"),
         Shavian("Shaw"),
         Sharada("Shrd"),
         Siddham("Sidd"),

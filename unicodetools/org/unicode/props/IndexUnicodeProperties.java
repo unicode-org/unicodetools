@@ -46,8 +46,6 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
-
-
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -70,7 +68,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
      */
     static final boolean GZIP = true;
     static final boolean SIMPLE_COMPRESSION = true;
-    static final boolean FILE_CACHE = true;
+    static final boolean FILE_CACHE = false; // true
 
     /**
      * Debugging
@@ -83,6 +81,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
      * General constants
      */
     public final static Pattern SEMICOLON = Pattern.compile("\\s*;\\s*");
+    public final static Pattern COMMA = Pattern.compile("\\s*,\\s*");
     public final static Pattern EQUALS = Pattern.compile("\\s*=\\s*");
     public final static Pattern SPACE = Pattern.compile("\\s+");
     static Pattern SLASHX = Pattern.compile("\\\\x\\{([0-9A-Fa-f]{1,6})\\}");
@@ -434,6 +433,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         //final Set<String> errors = new LinkedHashSet<String>();
         private Pattern regex = null;
         private ValueElements multivalued = ValueElements.Singleton;
+        private Pattern multivaluedSplit = SPACE;
         public String originalRegex;
 
 
@@ -570,12 +570,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 if (property==UcdProperty.Script_Extensions) {
                     string = normalizeEnum(string);
                 } else {
-                    checkRegex2(string);
+                    string = checkRegex2(string);
                 }
                 break;
             case String:
                 // check regex
-                checkRegex2(string);
+                string = checkRegex2(string);
                 if (string == null) {
                     // nothing
                 } else {
@@ -593,11 +593,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         public String normalizeEnum(String string) {
             if (getMultivalued().isBreakable(string)) {
                 final PropertyParsingInfo propInfo = property == UcdProperty.Script_Extensions ? getPropertyInfo(UcdProperty.Script) : this;
-                if (string.contains(" ")) {
+                String[] parts = multivaluedSplit.split(string);
+                if (parts.length > 1) {
                     final StringBuilder newString = new StringBuilder();
-                    for (final String part : SPACE.split(string)) {
+                    for (final String part : parts) {
                         if (newString.length() != 0) {
-                            newString.append(' ');
+                            newString.append('|');
                         }
                         newString.append(propInfo.checkEnum(part));
                     }
@@ -611,21 +612,34 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             return string;
         }
 
-        public void checkRegex2(String string) {
+        public String checkRegex2(String string) {
             if (getRegex() == null) {
                 getDataLoadingErrors().put(property, "Regex missing");
-                return;
+                return string;
             }
             if (string == null) {
-                return;
+                return string;
             }
-            if (getMultivalued().isBreakable(string) && string.contains(" ")) {
-                for (final String part : SPACE.split(string)) {
-                    checkRegex(part);
+            if (getMultivalued().isBreakable(string)) {
+                String[] parts = multivaluedSplit.split(string);
+                
+                if (parts.length > 1) {
+                    final StringBuilder newString = new StringBuilder();
+                    for (final String part : parts) {
+                        if (newString.length() != 0) {
+                            newString.append('|');
+                        }
+                        checkRegex(part);
+                        newString.append(part);
+                    }
+                    string = newString.toString();
+                } else {
+                    checkRegex(string);
                 }
             } else {
                 checkRegex(string);
             }
+            return string;
         }
         public String checkEnum(String string) {
             final Enum item = property.getEnum(string);
@@ -657,6 +671,16 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
         public Pattern getRegex() {
             return regex;
+        }
+
+        public void setMultiValued(String multivalued2) {
+            if (multivalued2.endsWith("_COMMA")) {
+                multivaluedSplit = COMMA;
+                multivalued = ValueElements.Unordered;
+                return;
+            }
+            multivalued = toMultiValued.get(multivalued2);
+
         }
     }
 
@@ -736,7 +760,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             final UcdProperty prop = UcdProperty.forString(propName);
             final PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
             final String multivalued = line.substring(propNameEnd, m.start());
-            propInfo.multivalued = toMultiValued.get(multivalued);
+            propInfo.setMultiValued(multivalued);
             if (propInfo.getMultivalued() == null) {
                 throw new IllegalArgumentException("Bad multivalued in: " + line);
             }
@@ -816,7 +840,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
     };
-    
+
     public <T extends Enum<T>> UnicodeMap<Set<T>> loadSet(UcdProperty prop2, Class enumClass) {
         return loadSet(prop2, enumClass, prop2);
     }
@@ -852,7 +876,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
         return target;
     }
-    
+
     // should be on UnicodeMap
     public static <T, U extends Map<T,UnicodeSet>> U invert(UnicodeMap<T> source, U target) {
         for (T value : source.values()) {
@@ -861,7 +885,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
         return target;
     }
-    
+
     // should be on UnicodeMap
     public static <T> Map<T,UnicodeSet> freeze(Map<T,UnicodeSet> target) {
         for (UnicodeSet entry : target.values()) {

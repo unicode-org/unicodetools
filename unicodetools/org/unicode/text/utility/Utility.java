@@ -1255,12 +1255,14 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             if (filename.contains("/*/")) {
                 // check the idna directory
                 String[] parts = filename.split("/");
-                boolean security = parts[0].equals("security");
-                if (security) {
+                String base = parts[0];
+                if (base.equals("security")) {
                     // TODO fix versions
                     element = "6.3.0";//"revision-06";
+                } else if (base.equals("emoji")) {
+                    element = "1.0";
                 }
-                String directoryName = Settings.DATA_DIR + parts[0] + "/" + element + "/";
+                String directoryName = Settings.DATA_DIR + base + "/" + element + "/";
                 result = directoryName + parts[2] + fileType;
                 break;
             }

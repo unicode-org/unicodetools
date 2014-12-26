@@ -297,3 +297,7 @@ security/*/confusables ; Confusable_SL
 security/*/confusables ; Confusable_SA
 security/*/confusables ; Confusable_ML
 security/*/confusables ; Confusable_MA
+
+emoji/*/emoji-data; Emoji_Style;
+emoji/*/emoji-data; Emoji_Source; 4
+emoji/*/emoji-data; Emoji_Label; 3

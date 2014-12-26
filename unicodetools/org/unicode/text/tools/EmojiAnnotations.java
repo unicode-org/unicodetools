@@ -43,17 +43,41 @@ public class EmojiAnnotations extends Birelation<String,String> {
             for (int i = 0; i < line.length();) {
                 String string = Emoji.getEmojiSequence(line, i);
                 if (Emoji.ASCII_LETTERS.containsSome(string)) {
-                    throw new IllegalArgumentException("Strange line with ASCII emoji: " + line);
+                    UnicodeSet overlap = new UnicodeSet().addAll(string).retainAll(Emoji.ASCII_LETTERS);
+                    String withPosition = line.replaceAll("("+overlap+")", "###$1");
+                    throw new IllegalArgumentException("Strange line with ASCII emoji: " + overlap + "; "+ withPosition);
                 }
                 i += string.length();
                 if (Emoji.skipEmojiSequence(string)) {
                     continue;
                 }
                 for (String item : lastLabel.value) {
-                    add(item, string);
+                    add(item.toLowerCase(Locale.ENGLISH), string);
                 }
             }
         }
+        UnicodeSet temp = new UnicodeSet(Emoji.APPLE)
+        .removeAll(getValues("people-apple"))
+        .removeAll(getValues("nature-apple"))
+        .removeAll(getValues("objects-apple"))
+        .removeAll(getValues("places-apple"))
+        .removeAll(getValues("symbols-apple"));
+        System.out.println("other-apple: " + temp.toPattern(false));
+        for (String s : temp) {
+            add("other-apple", s);
+        }
+
+        temp = new UnicodeSet(Emoji.APPLE)
+        .removeAll(getValues("people-android"))
+        .removeAll(getValues("nature-android"))
+        .removeAll(getValues("objects-android"))
+        .removeAll(getValues("places-android"))
+        .removeAll(getValues("symbols-android"));
+        System.out.println("other-android: " + temp.toPattern(false));
+        for (String s : temp) {
+            add("other-android", s);
+        }
+        
         //        for (String s : FITZ_MINIMAL) {
         //            ANNOTATIONS_TO_CHARS.add("fitz-minimal", s);
         //        }
