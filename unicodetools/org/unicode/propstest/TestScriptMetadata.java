@@ -1,6 +1,7 @@
 package org.unicode.propstest;
 
 import java.util.BitSet;
+import java.util.TreeSet;
 
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
@@ -38,7 +39,7 @@ public class TestScriptMetadata extends TestFmwkPlus{
     public void TestScriptOfSample() {
         BitSet bitset = new BitSet();
         main:
-            for (String script : ScriptMetadata.getScripts()) {
+            for (String script : new TreeSet<String>(ScriptMetadata.getScripts())) {
                 switch(script) {
                 case "Kore": case "Hant": case "Hans": case "Jpan": 
                     continue main;
@@ -48,7 +49,13 @@ public class TestScriptMetadata extends TestFmwkPlus{
                         info0.sampleChar.codePointCount(0, info0.sampleChar.length()));
                 String infoScript = script.equals("Kore") ? "Hang" : script.equals("Japn") ? "Kana" : script;
 
-                UnicodeSet withScript = SCRIPT_PROPERTY.getSet(script);
+                UnicodeSet withScript;
+                try {
+                    withScript = SCRIPT_PROPERTY.getSet(script);
+                } catch (Exception e) {
+                    errln("Failure with script value: " + script);
+                    continue;
+                }
 
                 int sampleCodepoint = info0.sampleChar.codePointAt(0);
                 String sampleCharScript = SCRIPT.get(sampleCodepoint);

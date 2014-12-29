@@ -40,6 +40,7 @@ import org.unicode.props.PropertyUtilities.Merge;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -58,6 +59,7 @@ import com.ibm.icu.util.VersionInfo;
  *
  */
 public class IndexUnicodeProperties extends UnicodeProperty.Factory {
+    private static final String SET_SEPARATOR = "|";
     /**
      * Control file caching
      */
@@ -76,6 +78,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
      * General constants
      */
     public final static Pattern SEMICOLON = Pattern.compile("\\s*;\\s*");
+    public final static Pattern DECOMP_REMOVE = Pattern.compile("\\{[^}]+\\}|\\<[^>]+\\>");
     public final static Pattern COMMA = Pattern.compile("\\s*,\\s*");
     public final static Pattern EQUALS = Pattern.compile("\\s*=\\s*");
     public final static Pattern SPACE = Pattern.compile("\\s+");
@@ -576,6 +579,8 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 } else {
                     try {
                         string = Utility.fromHex(string);
+                    } catch (RuntimeException e) {
+                        throw e;
                     } catch (Exception e) {
                         throw new IllegalArgumentException(property.toString());
                     }
@@ -593,7 +598,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     final StringBuilder newString = new StringBuilder();
                     for (final String part : parts) {
                         if (newString.length() != 0) {
-                            newString.append('|');
+                            newString.append(SET_SEPARATOR);
                         }
                         newString.append(propInfo.checkEnum(part));
                     }
@@ -617,12 +622,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             if (getMultivalued().isBreakable(string)) {
                 String[] parts = multivaluedSplit.split(string);
-                
+
                 if (parts.length > 1) {
                     final StringBuilder newString = new StringBuilder();
                     for (final String part : parts) {
                         if (newString.length() != 0) {
-                            newString.append('|');
+                            newString.append(SET_SEPARATOR);
                         }
                         checkRegex(part);
                         newString.append(part);
@@ -840,13 +845,15 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return loadSet(prop2, enumClass, prop2);
     }
 
+    static final Splitter SET_SPLITTER = Splitter.on(SET_SEPARATOR);
+    
     public <T extends Enum<T>> UnicodeMap<Set<T>> loadSet(UcdProperty prop2, Class enumClass, UcdProperty prop3) {
         UnicodeMap<String> m = load(prop2);
         UnicodeMap<Set<T>> result = new UnicodeMap<>();
         // TODO cache
         for (String value : m.values()) {
             Set<T> convertedValue = EnumSet.noneOf(enumClass);
-            for (String s : value.split("\\s+")) {
+            for (String s : SET_SPLITTER.split(value)) {
                 T enumv = (T) prop3.getEnum(s);
                 //System.out.println(s + " => " + enumv);
                 convertedValue.add(enumv);
@@ -965,6 +972,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             getFileNames().add(fullFilename);
 
             final Matcher semicolon = SEMICOLON.matcher("");
+            final Matcher decompRemove = DECOMP_REMOVE.matcher("");
             final Matcher tab = TAB.matcher("");
             final IntRange intRange = new IntRange();
             int lastCodepoint = 0;
@@ -975,7 +983,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
             for (String line : FileUtilities.in("", fullFilename)) {
                 ++lineCount;
-                if (line.contains("U+3400")) {
+//                if (prop2 == UcdProperty.Script) {
+//                    System.out.println(line);
+//                }
+                if (line.contains("10530")) {
                     final int y = 3;
                 }
                 final int hashPos = line.indexOf('#');
@@ -1120,11 +1131,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             break;
                         default: throw new IllegalArgumentException();
                         }
-                        if (fileType == FileType.HackField && propInfo.fieldNumber == 5) { // remove decomposition type
-                            final int dtEnd = string.indexOf('>');
-                            if (dtEnd >= 0) {
-                                string = string.substring(dtEnd + 1).trim();
-                            }
+                        if (fileType == FileType.HackField 
+                                && propInfo.fieldNumber == 5 
+                                && !string.isEmpty()
+                                && string.indexOf('<') >= 0) { // remove decomposition type
+                            string = decompRemove.reset(string).replaceAll("").trim();
                         }
                         propInfo.put(data, intRange, string, merger, hackHangul && propInfo.property == UcdProperty.Decomposition_Mapping);
                     }
@@ -1144,6 +1155,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 default: throw new IllegalArgumentException();
                 }
             }
+//            if (property2UnicodeMap.get(UcdProperty.Script).values().contains("Hatran")) {
+//                int x = 1;
+//            }
             if (SHOW_LOADED) {
                 System.out.println("Version\t" + getUcdVersion() + "\tLoaded: " + fileInfo.file + "\tlines: " + lineCount + (containsEOF ? "" : "\t*NO '# EOF'"));
             }
@@ -1259,7 +1273,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             gs.close();
             fis.close();
             cacheFileSize.put(prop2, cacheFile.length());
-            return newItem;
+            return newItem.freeze();
         } catch (final IOException e) {
             throw new IllegalArgumentException(e);
         }
@@ -1522,6 +1536,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             return result;
         }
+//        @Override
+//        public boolean hasUniformUnassigned() {
+//            //throw new UnsupportedOperationException();
+//            return false;
+//        }
     }
 
     {

@@ -97,7 +97,7 @@ public class TestProperties extends TestFmwk {
     private void showByValue(UnicodeMap<String> emojiStyle) {
         for (String value : new TreeSet<String>(emojiStyle.values())) {
             UnicodeSet us = emojiStyle.getSet(value);
-            System.out.println(value + ":\t" + us.size() + "\t" +  us.toPattern(false));
+            logln(value + ":\t" + us.size() + "\t" +  us.toPattern(false));
         }
     }
     public void TestAAScripts() {
@@ -390,8 +390,9 @@ public class TestProperties extends TestFmwk {
                 int maxOverlap = Math.min(er1.codepointEnd, er2.codepointEnd);
                 int max = Math.min(er1.codepointEnd, er2.codepointEnd);
                 // add the bits
-                if (er1.codepoint == min && er1.value != null
-                        || er2.codepoint == min && er2.value != null) {
+                if (min < minOverlap 
+                        && (er1.codepoint == min && er1.value != null
+                        || er2.codepoint == min && er2.value != null)) {
                     result.add(min, minOverlap-1);
                 }
                 if (!CollectionUtilities.equals(er1.value, er2.value)) {
@@ -594,7 +595,7 @@ public class TestProperties extends TestFmwk {
         IdUsage bestIdUsage = IdUsage.UNKNOWN;
         for (String script : scripts) {
             Info info = ScriptMetadata.getInfo(script);
-            IdUsage idUsage = info.idUsage;
+            IdUsage idUsage = info == null ? IdUsage.UNKNOWN : info.idUsage;
             if (bestIdUsage.compareTo(idUsage) < 0) {
                 bestIdUsage = idUsage;
             }
@@ -762,79 +763,7 @@ public class TestProperties extends TestFmwk {
         return testInfo.getEnglish().getName(baseLanguage) + " (" + baseLanguage + ")";
     }
 
-    public void TestExemplarsAgainstIdmod() {
-        UnicodeMap<String> statusMap = iup.load(UcdProperty.Id_Mod_Status);
-        UnicodeMap<String> typeMap = iup.load(UcdProperty.Id_Mod_Type);
-        UnicodeMap<String> xidContinue = iup.load(UcdProperty.XID_Continue);
 
-
-        CLDRFile english = testInfo.getEnglish();
-        LanguageTagParser ltp = new LanguageTagParser();
-
-        Set<String> nonapprovedLocales = new LinkedHashSet();
-        UnicodeMap<String> restricted = new UnicodeMap();
-        UnicodeSet allowedHangulTypes = new UnicodeSet("[ᄀ-ᄒ ᅡ-ᅵ ᆨ-ᇂ]").freeze();
-
-        for (String locale : cldrFactory.getAvailable()) {
-            if (defaultContents.contains(locale) 
-                    || !ltp.set(locale).getRegion().isEmpty()
-                    || ltp.getScript().equals("Dsrt")) {
-                continue;
-            }
-            CLDRFile f = cldrFactory.make(locale, false, DraftStatus.approved);
-            UnicodeSet uset = f.getExemplarSet("", WinningChoice.WINNING);
-            if (uset == null) {
-                nonapprovedLocales.add(locale);
-                continue;
-            }
-            String localeName = english.getName(locale) + " (" + locale + ")";
-            UnicodeSet flattened = new UnicodeSet();
-            for (String cp : uset) {
-                flattened.addAll(nfd.normalize(cp));
-            }
-            UnicodeSet suspicious = new UnicodeSet();
-            for (String cp : flattened) {
-                if (!nfkc.isNormalized(cp)) {
-                    continue;
-                }
-                if (!"Yes".equals(xidContinue.get(cp))) {
-                    continue;
-                }
-                if (allowedHangulTypes.contains(cp)) {
-                    continue;
-                }
-                if (!"allowed".equals(statusMap.get(cp))) {
-                    String s = restricted.get(cp);
-                    String info = localeName + " " + typeMap.get(cp);
-                    restricted.put(cp, s == null ? info : s + "; " + info);
-                    suspicious.add(cp);
-                }
-            }
-            if (!suspicious.isEmpty()) {
-                for (String path : f){
-                    if (path.contains("character")) {
-                        continue;
-                    }
-                    String value = f.getStringValue(path);
-                    suspicious.removeAll(nfd.normalize(value));
-                    suspicious.removeAll(nfd.normalize(UCharacter.toUpperCase(ULocale.ROOT, value)));
-                    suspicious.removeAll(nfd.normalize(UCharacter.toLowerCase(ULocale.ROOT, value)));
-                }
-            }
-            if (!suspicious.isEmpty()) {
-                logln(localeName + "\tSuspicious characters; never in CLDR data: ");
-                for (String cp : suspicious) {
-                    logln("\t" + getCodeAndName(cp));
-                }
-            }
-        }
-        for (String cp : restricted) {
-            System.out.println(Utility.hex(cp) + " (" + cp + ") " + nameMap.get(cp) + "\t" + restricted.get(cp));
-        }
-        for (String locale :  nonapprovedLocales) {
-            logln("No approved exemplars for " + english.getName(locale) + "\t" + locale);
-        }
-    }
 
     public String getCodeAndName(String cp) {
         return Utility.hex(cp) + " (" + cp + ") " + nameMap.get(cp);
