@@ -490,15 +490,15 @@ public class FractionalUCA {
                     "# %s first primary",
                     ReorderCodes.getName(reorderCode));
             if (startsGroup) {
-                comment = comment + " starts reordering group";
-                if (ps2f.isCompressibleFractionalPrimary(firstPrimary)) {
-                    comment = comment + " (compressible)";
-                }
+                comment = comment + " starts new lead byte";
             }
-            final String sampleChar = ReorderCodes.getSampleCharacter(reorderCode);
+            if (ps2f.isCompressibleFractionalPrimary(firstPrimary)) {
+                comment = comment + " (compressible)";
+            }
+            final String scriptStartString = ReorderCodes.getScriptStartString(reorderCode);
             printAndRecord(
                     true,
-                    "\uFDD1" + sampleChar,
+                    scriptStartString,
                     firstPrimary,
                     0x500,
                     5,
@@ -558,7 +558,7 @@ public class FractionalUCA {
         final PrintWriter log = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + "log" + File.separator, logFileName, Utility.UTF8_WINDOWS);
         //PrintWriter summary = new PrintWriter(new BufferedWriter(new FileWriter(directory + filename + "_summary.txt"), 32*1024));
 
-        summary.println("# Summary of Fractional UCA Table, generated from standard UCA");
+        summary.println("# Summary of Fractional UCA Table, generated from the UCA DUCET");
         WriteCollationData.writeVersionAndDate(summary, summaryFileName, true);
         summary.println("# Primary Ranges");
 
@@ -569,7 +569,7 @@ public class FractionalUCA {
 
         int oldFirstPrimary = 0;
 
-        fractionalLog.println("# Fractional UCA Table, generated from standard UCA");
+        fractionalLog.println("# Fractional UCA Table, generated from the UCA DUCET");
         fractionalLog.println("# " + WriteCollationData.getNormalDate());
         fractionalLog.println("# VERSION: UCA=" + getCollator().getDataVersion() + ", UCD=" + getCollator().getUCDVersion());
         fractionalLog.println("# For a description of the format and usage, see");
@@ -651,6 +651,19 @@ public class FractionalUCA {
                 final int firstFractional = props.getAndResetScriptFirstPrimary();
                 if (firstFractional != 0) {
                     final int reorderCode = props.getReorderCodeIfFirst();
+                    if (reorderCode == UCD_Types.LATIN_SCRIPT || reorderCode == UCD_Types.GREEK_SCRIPT) {
+                        int reservedFP;
+                        int reservedCode;
+                        if (reorderCode == UCD_Types.LATIN_SCRIPT) {
+                            reservedFP = ps2f.getReorderReservedBeforeLatinFractionalPrimary();
+                            reservedCode = ReorderCodes.REORDER_RESERVED_BEFORE_LATIN;
+                        } else {
+                            reservedFP = ps2f.getReorderReservedAfterLatinFractionalPrimary();
+                            reservedCode = ReorderCodes.REORDER_RESERVED_AFTER_LATIN;
+                        }
+                        fractionalStatistics.printAndRecordScriptFirstPrimary(
+                                true, reservedCode, true, reservedFP);
+                    }
 
                     fractionalStatistics.printAndRecordScriptFirstPrimary(
                             true, reorderCode,

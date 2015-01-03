@@ -23,8 +23,12 @@ public class ReorderCodes {
     public static final int DIGIT = 0x104;
     public static final int LIMIT = 0x105;
 
+    public static final int REORDER_RESERVED_BEFORE_LATIN = 0x106;
+    public static final int REORDER_RESERVED_AFTER_LATIN = 0x107;
+
     private static final String[] SPECIAL_NAMES = {
-        "SPACE", "PUNCTUATION", "SYMBOL", "CURRENCY", "DIGIT"
+        "SPACE", "PUNCTUATION", "SYMBOL", "CURRENCY", "DIGIT", null,
+        "REORDER_RESERVED_BEFORE_LATIN", "REORDER_RESERVED_AFTER_LATIN"
     };
 
     /**
@@ -32,7 +36,8 @@ public class ReorderCodes {
      * See the comments on {@link #getSampleCharacter(int)}.
      */
     private static final String[] SPECIAL_SAMPLES = {
-        "\u00A0", "\u201C", "\u263A", "\u20AC", "4"
+        "\u00A0", "\u201C", "\u263A", "\u20AC", "4", null,
+        "\uFF21", "\uFF3A"
     };
 
     public static final int getSpecialReorderCode(int ch) {
@@ -102,5 +107,11 @@ public class ReorderCodes {
         } else {
             return SPECIAL_SAMPLES[reorderCode - FIRST];
         }
+    }
+    public static final String getScriptStartString(int reorderCode) {
+        String sampleChar = getSampleCharacter(reorderCode);
+        // Use the U+FDD0 prefix for reorder-reserved ranges
+        // so that their primaries are registered but their mappings are not.
+        return (reorderCode < LIMIT ? "\uFDD1" : "\uFDD0") + sampleChar;
     }
 }
