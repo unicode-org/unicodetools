@@ -35,7 +35,10 @@ public final class PrimariesToFractional {
      */
     private static final BitSet MAJOR_SCRIPTS = new BitSet();
     static {
-        for (final byte i : new Byte[]{
+        for (final int i : new int[] {
+                ReorderCodes.SPACE,
+                ReorderCodes.SYMBOL,
+                ReorderCodes.DIGIT,
                 UCD_Types.ARABIC_SCRIPT,
                 UCD_Types.ARMENIAN_SCRIPT,
                 UCD_Types.BENGALI_SCRIPT,
@@ -43,8 +46,7 @@ public final class PrimariesToFractional {
                 UCD_Types.CHEROKEE_SCRIPT,
                 UCD_Types.CYRILLIC_SCRIPT,
                 UCD_Types.DEVANAGARI_SCRIPT,
-                UCD_Types.ETHIOPIC_SCRIPT,
-                UCD_Types.GEORGIAN_SCRIPT,
+                UCD_Types.GLAGOLITIC,
                 UCD_Types.GREEK_SCRIPT,
                 UCD_Types.GUJARATI_SCRIPT,
                 UCD_Types.GURMUKHI_SCRIPT,
@@ -54,7 +56,6 @@ public final class PrimariesToFractional {
                 UCD_Types.HIRAGANA_SCRIPT,
                 UCD_Types.KANNADA_SCRIPT,
                 UCD_Types.KATAKANA_SCRIPT,
-                UCD_Types.KHMER_SCRIPT,
                 UCD_Types.LAO_SCRIPT,
                 UCD_Types.LATIN_SCRIPT,
                 UCD_Types.MALAYALAM_SCRIPT,
@@ -63,11 +64,11 @@ public final class PrimariesToFractional {
                 UCD_Types.SINHALA_SCRIPT,
                 UCD_Types.TAMIL_SCRIPT,
                 UCD_Types.TELUGU_SCRIPT,
-                UCD_Types.THAANA_SCRIPT,
+                UCD_Types.SYRIAC_SCRIPT,
                 UCD_Types.THAI_SCRIPT,
                 UCD_Types.TIBETAN_SCRIPT
         }) {
-            MAJOR_SCRIPTS.set(i & 0xFF);
+            MAJOR_SCRIPTS.set(i);
         }
     }
 
@@ -87,6 +88,9 @@ public final class PrimariesToFractional {
      * then we would get an illegal prefix overlap.
      */
     private int numericFractionalPrimary;
+
+    private int reorderReservedBeforeLatinFractionalPrimary;
+    private int reorderReservedAfterLatinFractionalPrimary;
 
     /**
      * Reordering groups with sort-key-compressible fractional primary weights.
@@ -201,7 +205,7 @@ public final class PrimariesToFractional {
      */
     private static class PrimaryWeight {
         /**
-         * For most bytes except a weight's lead byte, 02 is ok.
+         * For most bytes except a primary weight's lead byte, 02 is ok.
          * It just needs to be greater than the level separator 01.
          */
         private static final int MIN_BYTE = 2;
@@ -322,6 +326,10 @@ public final class PrimariesToFractional {
                 byte3 = MIN_BYTE;
             } else /* lastByteLength == 3 */ {
                 addTo3(GAP3_FOR_MINOR_SCRIPT + 1);
+                // Round up to the next two-byte primary.
+                // FractionalUCA has groups and scripts starting at least on two-byte boundaries.
+                addTo2(1);
+                byte3 = MIN_BYTE;
             }
 
             check(oByte1, oByte2, 3, false);
@@ -516,10 +524,10 @@ public final class PrimariesToFractional {
         groupIsCompressible[UCD_Types.GREEK_SCRIPT] = true;
         groupIsCompressible[UCD_Types.CYRILLIC_SCRIPT] = true;
         groupIsCompressible[UCD_Types.ARABIC_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.GEORGIAN_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.GLAGOLITIC] = true;
         groupIsCompressible[UCD_Types.ARMENIAN_SCRIPT] = true;
         groupIsCompressible[UCD_Types.HEBREW_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.THAANA_SCRIPT] = true;
+        groupIsCompressible[UCD_Types.SYRIAC_SCRIPT] = true;
         groupIsCompressible[UCD_Types.ETHIOPIC_SCRIPT] = true;
         groupIsCompressible[UCD_Types.DEVANAGARI_SCRIPT] = true;
         groupIsCompressible[UCD_Types.BENGALI_SCRIPT] = true;
@@ -588,6 +596,51 @@ public final class PrimariesToFractional {
                 System.out.println("last weight: " + old);
                 int firstFractional;
                 if (props.startsGroup) {
+                    // Before and after Latin, one or more lead bytes are reserved
+                    // (not used by FractionalUCA primaries) for script reordering.
+                    //
+                    // Some lead bytes must be reserved because a script that does not use
+                    // one or more whole lead bytes must still be moved by a whole-byte offset
+                    // (to keep sort key bytes valid and compressible),
+                    // and so different parts of the original lead byte
+                    // map to different target bytes.
+                    // Each time a lead byte is split a reserved byte must be used up.
+                    //
+                    // We reserve bytes before and after Latin so that typical reorderings
+                    // can move small scripts there without moving any other scripts.
+                    if (reorderCode == UCD_Types.LATIN_SCRIPT || reorderCode == UCD_Types.GREEK_SCRIPT) {
+                        // Duplicate some of the code below.
+                        // Since the DUCET does not reserve such ranges,
+                        // there is no UCA primary to which we can assign a special object.
+                        //
+                        // Mark the reserved range as not compressible, to avoid confusion,
+                        // and to avoid tools code issues with using multiple lead bytes.
+                        firstFractional = fractionalPrimary.startNewGroup(false);
+                        final int leadByte = Fractional.getLeadByte(firstFractional);
+                        appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
+                                previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
+                        previousGroupLeadByte = leadByte;
+                        previousGroupIsCompressible = false;
+
+                        int reservedCode;
+                        if (reorderCode == UCD_Types.LATIN_SCRIPT) {
+                            reorderReservedBeforeLatinFractionalPrimary = firstFractional;
+                            reservedCode = ReorderCodes.REORDER_RESERVED_BEFORE_LATIN;
+                        } else {
+                            reorderReservedAfterLatinFractionalPrimary = firstFractional;
+                            reservedCode = ReorderCodes.REORDER_RESERVED_AFTER_LATIN;
+                        }
+                        numPrimaries = 0;
+                        final String name = ReorderCodes.getName(reservedCode);
+                        groupInfo.setLength(0);
+                        groupInfo.append(name);
+                        System.out.println(String.format(
+                                "[%s]  # %s first primary",
+                                Fractional.hexBytes(firstFractional), name));
+                        // Create a one-byte gap, to reserve two bytes total for this range.
+                        fractionalPrimary.byte1 += 1;
+                    }
+
                     final boolean compress = groupIsCompressible[reorderCode];
                     firstFractional = fractionalPrimary.startNewGroup(compress);
                     final int leadByte = Fractional.getLeadByte(firstFractional);
@@ -597,15 +650,15 @@ public final class PrimariesToFractional {
                             previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
                     previousGroupLeadByte = leadByte;
                     previousGroupIsCompressible = compress;
+
+                    // Now record the new group.
                     numPrimaries = 0;
                     groupInfo.setLength(0);
                     groupInfo.append(ReorderCodes.getShortName(reorderCode));
                     if (reorderCode == UCD_Types.HIRAGANA_SCRIPT) {
                         groupInfo.append(" Hrkt Kana");  // script aliases
                     }
-
-                    // Now record the new group.
-                    String groupComment = " starts reordering group";
+                    String groupComment = " starts new lead byte";
                     if (compress) {
                         compressibleBytes.set(leadByte);
                         groupComment = groupComment + " (compressible)";
@@ -785,6 +838,13 @@ public final class PrimariesToFractional {
         return UCA_Types.UNSUPPORTED_OTHER_BASE;
     }
 
+    public int getReorderReservedBeforeLatinFractionalPrimary() {
+        return reorderReservedBeforeLatinFractionalPrimary;
+    }
+    public int getReorderReservedAfterLatinFractionalPrimary() {
+        return reorderReservedAfterLatinFractionalPrimary;
+    }
+
     /**
      * Returns the properties for the UCA primary weight.
      * Returns null if there are no data for this primary.
@@ -876,9 +936,26 @@ public final class PrimariesToFractional {
                     threeByteSymbolPrimaries.set(primary);
                     threeByteChars.addAll(ch2.toString());
                 } else {
+                    // TODO: Hack for stability, for now. Revisit.
+                    boolean isThreeByteScript;
+                    switch (script) {
+                    case UCD_Types.SYRIAC_SCRIPT:
+                        isThreeByteScript = true;
+                        break;
+                    case UCD_Types.ETHIOPIC_SCRIPT:
+                    case UCD_Types.KHMER_SCRIPT:
+                        isThreeByteScript = false;
+                        break;
+                    default:
+                        isThreeByteScript = !MAJOR_SCRIPTS.get(script);
+                        break;
+                    }
+                    // It seems like this should instead be:
+                    // boolean isThreeByteScript = MAJOR_SCRIPTS.get(script) ?
+                    //         isThreeByteMajorScript(script) : !isTwoByteMinorScript(script);
                     if (script != UCD_Types.COMMON_SCRIPT &&
                             script != UCD_Types.INHERITED_SCRIPT &&
-                            !MAJOR_SCRIPTS.get(script)) {
+                            isThreeByteScript) {
                         threeByteSymbolPrimaries.set(primary);
                         threeByteChars.addAll(ch2.toString());
                     }
@@ -913,7 +990,7 @@ public final class PrimariesToFractional {
         for (int reorderCode = 0; reorderCode < ReorderCodes.LIMIT; ++reorderCode) {
             final int primary = groupFirstPrimary[reorderCode];
             if (primary > 0) {
-                final boolean isMajor = reorderCode >= ReorderCodes.FIRST || MAJOR_SCRIPTS.get(reorderCode);
+                final boolean isMajor = MAJOR_SCRIPTS.get(reorderCode);
                 majorPrimary.put(primary, Row.of(isMajor, reorderCode));
                 final PrimaryToFractional props = getOrCreateProps(primary);
                 props.startsGroup = isMajor;
@@ -980,6 +1057,8 @@ public final class PrimariesToFractional {
                         "\u06D0\u06D2" +
                         // Jamo L, V, T
                         "\u1100-\u1112\u1161-\u1175\u11A8-\u11C2" +
+                        // Bopomofo characters that have secondary or tertiary variants.
+                        "\u3105\u3106\u310A\u310D-\u3110\u3117\u311A\u311B\u311E\u3120\u3127\u3128\u31A4" +
                 "]");
         final UnicodeSetIterator twoByteIter = new UnicodeSetIterator(twoByteChars);
         while (twoByteIter.next()) {
@@ -1001,8 +1080,15 @@ public final class PrimariesToFractional {
                 script == UCD_Types.ARABIC_SCRIPT ||
                 // We cherry-pick the conjoining Jamo L/V/T for two-byte primaries.
                 script == UCD_Types.HANGUL_SCRIPT ||
+                // We cherry-pick those Bopomofo letters for two-byte primaries
+                // that have secondary or tertiary variants.
+                script == UCD_Types.BOPOMOFO_SCRIPT ||
                 script == UCD_Types.ETHIOPIC_SCRIPT ||
                 script == UCD_Types.MYANMAR_SCRIPT ||
+                // "Major" just to give Cyrillic a whole lead byte.
+                script == UCD_Types.GLAGOLITIC ||
+                // "Major" just to give Arabic a whole lead byte.
+                script == UCD_Types.SYRIAC_SCRIPT ||
                 script == UCD_Types.CHEROKEE_SCRIPT;
     }
 
@@ -1021,6 +1107,13 @@ public final class PrimariesToFractional {
         // At least *lowercase* Deseret sorts in code point order
         // and can therefore be stored as a compact range.
         return
+                script == ReorderCodes.PUNCTUATION ||
+                script == ReorderCodes.CURRENCY ||
+                // "Minor" just to keep it in the lead byte after Cyrillic.
+                script == UCD_Types.GEORGIAN_SCRIPT ||
+                // Recommended script, few users but fits with two bytes.
+                script == UCD_Types.THAANA_SCRIPT ||
+                script == UCD_Types.KHMER_SCRIPT ||
                 script == UCD_Types.COPTIC;
     }
 
