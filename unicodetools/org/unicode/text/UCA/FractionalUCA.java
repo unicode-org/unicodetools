@@ -651,18 +651,10 @@ public class FractionalUCA {
                 final int firstFractional = props.getAndResetScriptFirstFractionalPrimary();
                 if (firstFractional != 0) {
                     final int reorderCode = props.getReorderCode();
-                    if (reorderCode == UCD_Types.LATIN_SCRIPT || reorderCode == UCD_Types.GREEK_SCRIPT) {
-                        int reservedFP;
-                        int reservedCode;
-                        if (reorderCode == UCD_Types.LATIN_SCRIPT) {
-                            reservedFP = ps2f.getReorderReservedBeforeLatinFractionalPrimary();
-                            reservedCode = ReorderCodes.REORDER_RESERVED_BEFORE_LATIN;
-                        } else {
-                            reservedFP = ps2f.getReorderReservedAfterLatinFractionalPrimary();
-                            reservedCode = ReorderCodes.REORDER_RESERVED_AFTER_LATIN;
-                        }
+                    int reservedFirstFractional = props.getReservedBeforeFractionalPrimary();
+                    if (reservedFirstFractional != 0) {
                         fractionalStatistics.printAndRecordScriptFirstPrimary(
-                                true, reservedCode, true, reservedFP);
+                                true, props.getReservedBeforeReorderCode(), true, reservedFirstFractional);
                     }
 
                     fractionalStatistics.printAndRecordScriptFirstPrimary(
