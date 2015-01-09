@@ -485,11 +485,11 @@ public class FractionalUCA {
          * It only exists in FractionalUCA, there is no UCA primary for it.
          */
         private void printAndRecordScriptFirstPrimary(
-                boolean show, int reorderCode, boolean startsGroup, int firstPrimary) {
+                boolean show, int reorderCode, boolean newByte, int firstPrimary) {
             String comment = String.format(
                     "# %s first primary",
                     ReorderCodes.getName(reorderCode));
-            if (startsGroup) {
+            if (newByte) {
                 comment = comment + " starts new lead byte";
             }
             if (ps2f.isCompressibleFractionalPrimary(firstPrimary)) {
@@ -647,10 +647,10 @@ public class FractionalUCA {
                     oldFirstPrimary = firstPrimary;
                 }
 
-                props = ps2f.getPropsPinImplicit(firstPrimary);
-                final int firstFractional = props.getAndResetScriptFirstPrimary();
+                props = ps2f.getProps(firstPrimary);
+                final int firstFractional = props.getAndResetScriptFirstFractionalPrimary();
                 if (firstFractional != 0) {
-                    final int reorderCode = props.getReorderCodeIfFirst();
+                    final int reorderCode = props.getReorderCode();
                     if (reorderCode == UCD_Types.LATIN_SCRIPT || reorderCode == UCD_Types.GREEK_SCRIPT) {
                         int reservedFP;
                         int reservedCode;
@@ -667,7 +667,7 @@ public class FractionalUCA {
 
                     fractionalStatistics.printAndRecordScriptFirstPrimary(
                             true, reorderCode,
-                            props.isFirstInReorderingGroup(),
+                            props.beginsByte(),
                             firstFractional);
 
                     // Record script-first primaries with the scripts of their sample characters.
@@ -742,7 +742,7 @@ public class FractionalUCA {
 
                 // props was fetched for the firstPrimary before the loop.
                 if (q != 0) {
-                    props = ps2f.getPropsPinImplicit(pri);
+                    props = ps2f.getProps(pri);
                 }
                 final int np = props.getFractionalPrimary();
 
@@ -882,7 +882,7 @@ public class FractionalUCA {
 
             final int ce = key.intValue();
 
-            final PrimaryToFractional props = ps2f.getPropsPinImplicit(CEList.getPrimary(ce));
+            final PrimaryToFractional props = ps2f.getProps(CEList.getPrimary(ce));
             final int np = props.getFractionalPrimary();
             final int secTer = getFractionalSecAndTer(props, CEList.getSecondary(ce), CEList.getTertiary(ce));
             final int ns = secTer >>> 16;
@@ -1090,7 +1090,7 @@ public class FractionalUCA {
                 final boolean isNeutralSecTer =
                         (sec == 0 || sec == UCA_Types.NEUTRAL_SECONDARY) &&
                         (ter == 0 || ter == UCA_Types.NEUTRAL_TERTIARY);
-                final PrimaryToFractional p2f = ps2f.getPropsPinImplicit(pri);
+                final PrimaryToFractional p2f = ps2f.getProps(pri);
                 if (isNeutralSecTer) {
                     assert p2f.neutralSec < 0 || sec == p2f.neutralSec;
                     assert p2f.neutralTer < 0 || ter == p2f.neutralTer;

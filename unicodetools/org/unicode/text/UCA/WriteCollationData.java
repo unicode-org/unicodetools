@@ -1718,7 +1718,6 @@ public class WriteCollationData {
         final int firstForA = ceListForA.at(0);
         final int firstScriptPrimary = CEList.getPrimary(firstForA);
         final Remap primaryRemap = new Remap();
-        final RoBitSet primarySet = oldCollator.getStatistics().getPrimarySet();
         // gather the data
         final UnicodeSet spaces = new UnicodeSet();
         final UnicodeSet punctuation = new UnicodeSet();
@@ -1729,19 +1728,13 @@ public class WriteCollationData {
         final int oldVariableHigh = CEList.getPrimary(oldCollator.getVariableHighCE());
         int firstDucetNonVariable = -1;
 
-        for (int i = primarySet.nextSetBit(0); i >= 0; i = primarySet.nextSetBit(i+1)) {
-            if (i == 0)
-            {
-                continue; // skip ignorables
-            }
-            if (i == UCA.TEST_PRIMARY) {
-                i = i; // for debugging
-            }
+        for (final UCA.Primary up : oldCollator.getRegularPrimaries()) {
+            final int i = up.primary;
             if (firstDucetNonVariable < 0 && i > oldVariableHigh) {
                 firstDucetNonVariable = i;
             }
 
-            final CharSequence repChar = oldCollator.getRepresentativePrimary(i);
+            final String repChar = up.getRepresentative();
             CharSequence rep2 = filter(repChar);
             if (rep2 == null) {
                 rep2 = repChar;
@@ -1805,11 +1798,9 @@ public class WriteCollationData {
 
         fractionalLog.println("# Remapped primaries");
 
-        for (int i = primarySet.nextSetBit(0); i >= 0; i = primarySet.nextSetBit(i+1)) {
-            if (i == UCA.TEST_PRIMARY) {
-                i = i; // for debugging
-            }
-            final CharSequence repChar = oldCollator.getRepresentativePrimary(i);
+        for (final UCA.Primary up : oldCollator.getIgnorableAndRegularPrimaries()) {
+            final int i = up.primary;
+            final String repChar = up.getRepresentative();
             final CharSequence rep2 = repChar;
             //                        filter(repChar);
             //                    if (rep2 == null) {
