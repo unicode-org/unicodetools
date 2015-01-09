@@ -24,9 +24,8 @@ public final class PrimariesToFractional {
     private static final boolean EXTRA_SCRIPT_GAP = false;
     // TODO: delete EXTRA_SCRIPT_GAP & logic for it?
 
-    private final ScriptOptions[] scriptOptions = new ScriptOptions[ReorderCodes.LIMIT];
+    private final ScriptOptions[] scriptOptions = new ScriptOptions[ReorderCodes.FULL_LIMIT];
     private final ScriptOptions ignorableOptions = new ScriptOptions(-1);
-    private final ScriptOptions reservedRangeOptions = new ScriptOptions(-1);
 
     private final UCA uca;
 
@@ -39,9 +38,6 @@ public final class PrimariesToFractional {
      * then we would get an illegal prefix overlap.
      */
     private int numericFractionalPrimary;
-
-    private int reorderReservedBeforeLatinFractionalPrimary;
-    private int reorderReservedAfterLatinFractionalPrimary;
 
     /**
      * One flag per fractional primary lead byte for whether
@@ -78,6 +74,8 @@ public final class PrimariesToFractional {
         int scriptFirstFractional;
         /** true until the script-first fractional primary has been written. */
         boolean needToWriteScriptFirstFractional = true;
+
+        ScriptOptions reservedBefore;
 
         ScriptOptions(int reorderCode) {
             this.reorderCode = reorderCode;
@@ -200,6 +198,24 @@ public final class PrimariesToFractional {
         public int getFractionalPrimary() {
             return fractionalPrimary;
         }
+
+        /**
+         * @return the script-first fractional primary of the reserved range before
+         * this primary's script, or 0 if there is none
+         */
+        public int getReservedBeforeFractionalPrimary() {
+            return options != null && options.reservedBefore != null ?
+                    options.reservedBefore.scriptFirstFractional : 0;
+        }
+
+        /**
+         * @return the special reorder code of the reserved range before
+         * this primary's script, or -1 if there is none
+         */
+        public int getReservedBeforeReorderCode() {
+            return options != null && options.reservedBefore != null ?
+                    options.reservedBefore.reorderCode : -1;
+        }
     }
 
     /**
@@ -313,7 +329,7 @@ public final class PrimariesToFractional {
             maxByte2 = compressibleLeadByte ? MAX2_COMPRESSED : MAX2_UNCOMPRESSED;;
             lastByteLength = 3;
             firstScriptInGroup = firstPrimaryInScript = true;
-            return getIntValue();
+            return options.scriptFirstFractional = getIntValue();
         }
 
         public int startNewScript(ScriptOptions options) {
@@ -349,7 +365,7 @@ public final class PrimariesToFractional {
             lastByteLength = 3;
             firstScriptInGroup = false;
             firstPrimaryInScript = true;
-            return getIntValue();
+            return options.scriptFirstFractional = getIntValue();
         }
 
         public int next(int newByteLength) {
@@ -534,9 +550,6 @@ public final class PrimariesToFractional {
         this.uca = uca;
 
         ignorableOptions.wholeByte().notCompressible();
-        // Mark reserved ranges as not compressible, to avoid confusion,
-        // and to avoid tools code issues with using multiple lead bytes.
-        reservedRangeOptions.wholeByte().notCompressible();
 
         // Special reorder groups.
 
@@ -581,8 +594,16 @@ public final class PrimariesToFractional {
         // http://en.wikipedia.org/wiki/List_of_writing_systems shows scripts by number of users.
         // Neither list ranks by usage in computers or on the internet.
 
+        // Mark reserved ranges as not compressible, to avoid confusion,
+        // and to avoid tools code issues with using multiple lead bytes.
+        setOptionsForReservedRangeBeforeScript(
+                ReorderCodes.REORDER_RESERVED_BEFORE_LATIN, UCD_Types.LATIN_SCRIPT)
+                .wholeByte().notCompressible();
         // Latin uses multiple bytes, with single-byte primaries for A-Z.
         setOptionsForScript(UCD_Types.LATIN_SCRIPT).wholeByte().notCompressible().twoBytePrimaries();
+        setOptionsForReservedRangeBeforeScript(
+                ReorderCodes.REORDER_RESERVED_AFTER_LATIN, UCD_Types.GREEK_SCRIPT)
+                .wholeByte().notCompressible();
         // Recommended Script, and cased.
         setOptionsForScript(UCD_Types.GREEK_SCRIPT).newByte().twoBytePrimaries();
         // Not a Recommended Script but cased, and easily fits into the same lead byte as Greek.
@@ -638,6 +659,7 @@ public final class PrimariesToFractional {
                 UCD_Types.HIRAGANA_SCRIPT, UCD_Types.KATAKANA_SCRIPT, UCD_Types.KATAKANA_OR_HIRAGANA)
                 .wholeByte().twoBytePrimaries();
         // Recommended Script, uses two-byte primaries for characters with variants.
+        // TODO: maybe just .twoBytePrimaries() and another new byte for following scripts
         setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePunctuation();
         // Just register the scripts as aliases.
         setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
@@ -649,15 +671,22 @@ public final class PrimariesToFractional {
     }
  
     private ScriptOptions setOptionsForScript(int script) {
-        return scriptOptions[script] = new ScriptOptions(script);
+        return scriptOptions[script] = getOrCreateOptionsForScript(script);
     }
 
     private ScriptOptions setOptionsForScripts(int ...scripts) {
-        ScriptOptions o = new ScriptOptions(scripts[0]);  // The other scripts are aliases.
+        ScriptOptions o = getOrCreateOptionsForScript(scripts[0]);  // The other scripts are aliases.
         for (int script : scripts) {
             scriptOptions[script] = o;
         }
         return o;
+    }
+
+    private ScriptOptions setOptionsForReservedRangeBeforeScript(int beforeCode, int script) {
+        ScriptOptions r = getOrCreateOptionsForScript(beforeCode);
+        ScriptOptions o = getOrCreateOptionsForScript(script);
+        assert o.reservedBefore == null;
+        return o.reservedBefore = r;
     }
 
     private ScriptOptions getOptionsForScript(int script) {
@@ -705,65 +734,57 @@ public final class PrimariesToFractional {
             // If we change lengths, then we have to change the initial segment.
             // We change the first byte as determined before.
 
-            final String old = fractionalPrimary.toString();
-
             final PrimaryToFractional props = getOrCreateProps(primary);
             if (props.isFirstForScript(primary)) {
-                final int reorderCode = props.options.reorderCode;
-                System.out.println("last weight: " + old);
-                int firstFractional;
+                System.out.println("last weight: " + fractionalPrimary.toString());
+
+                // Before and after Latin, one or more lead bytes are reserved
+                // (not used by FractionalUCA primaries) for script reordering.
+                //
+                // Some lead bytes must be reserved because a script that does not use
+                // one or more whole lead bytes must still be moved by a whole-byte offset
+                // (to keep sort key bytes valid and compressible),
+                // and so different parts of the original lead byte
+                // map to different target bytes.
+                // Each time a lead byte is split a reserved byte must be used up.
+                //
+                // We reserve bytes before and after Latin so that typical reorderings
+                // can move small scripts there without moving any other scripts.
+                ScriptOptions options = props.options.reservedBefore;
+                if (options != null) {
+                    // Duplicate some of the code below.
+                    // Since the DUCET does not reserve such ranges,
+                    // there is no UCA primary to which we can assign a special object.
+                    assert options.beginsByte;
+                    final int firstFractional = fractionalPrimary.startNewByte(options);
+                    final int leadByte = Fractional.getLeadByte(firstFractional);
+                    appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
+                            previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
+                    previousGroupLeadByte = leadByte;
+                    previousGroupIsCompressible = options.compressible;
+
+                    numPrimaries = 0;
+                    final String name = ReorderCodes.getName(options.reorderCode);
+                    groupInfo.setLength(0);
+                    groupInfo.append(name);
+                    System.out.println(String.format(
+                            "[%s]  # %s first primary",
+                            Fractional.hexBytes(firstFractional), name));
+                    // Create a one-byte gap, to reserve two bytes total for this range.
+                    fractionalPrimary.byte1 += 1;
+                }
+
+                options = props.options;
+                final int reorderCode = options.reorderCode;
                 if (props.newByte) {
-                    // Before and after Latin, one or more lead bytes are reserved
-                    // (not used by FractionalUCA primaries) for script reordering.
-                    //
-                    // Some lead bytes must be reserved because a script that does not use
-                    // one or more whole lead bytes must still be moved by a whole-byte offset
-                    // (to keep sort key bytes valid and compressible),
-                    // and so different parts of the original lead byte
-                    // map to different target bytes.
-                    // Each time a lead byte is split a reserved byte must be used up.
-                    //
-                    // We reserve bytes before and after Latin so that typical reorderings
-                    // can move small scripts there without moving any other scripts.
-                    if (reorderCode == UCD_Types.LATIN_SCRIPT || reorderCode == UCD_Types.GREEK_SCRIPT) {
-                        // Duplicate some of the code below.
-                        // Since the DUCET does not reserve such ranges,
-                        // there is no UCA primary to which we can assign a special object.
-                        firstFractional = fractionalPrimary.startNewByte(reservedRangeOptions);
-                        final int leadByte = Fractional.getLeadByte(firstFractional);
-                        appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
-                                previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
-                        previousGroupLeadByte = leadByte;
-                        previousGroupIsCompressible = false;
-
-                        int reservedCode;
-                        if (reorderCode == UCD_Types.LATIN_SCRIPT) {
-                            reorderReservedBeforeLatinFractionalPrimary = firstFractional;
-                            reservedCode = ReorderCodes.REORDER_RESERVED_BEFORE_LATIN;
-                        } else {
-                            reorderReservedAfterLatinFractionalPrimary = firstFractional;
-                            reservedCode = ReorderCodes.REORDER_RESERVED_AFTER_LATIN;
-                        }
-                        numPrimaries = 0;
-                        final String name = ReorderCodes.getName(reservedCode);
-                        groupInfo.setLength(0);
-                        groupInfo.append(name);
-                        System.out.println(String.format(
-                                "[%s]  # %s first primary",
-                                Fractional.hexBytes(firstFractional), name));
-                        // Create a one-byte gap, to reserve two bytes total for this range.
-                        fractionalPrimary.byte1 += 1;
-                    }
-
-                    final boolean compress = props.options.compressible;
-                    firstFractional = fractionalPrimary.startNewByte(props.options);
+                    final int firstFractional = fractionalPrimary.startNewByte(options);
                     final int leadByte = Fractional.getLeadByte(firstFractional);
 
                     // Finish the previous reordering group.
                     appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
                             previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
                     previousGroupLeadByte = leadByte;
-                    previousGroupIsCompressible = compress;
+                    previousGroupIsCompressible = options.compressible;
 
                     // Now record the new group.
                     numPrimaries = 0;
@@ -773,7 +794,7 @@ public final class PrimariesToFractional {
                         groupInfo.append(" Hrkt Kana");  // script aliases
                     }
                     String groupComment = " starts new lead byte";
-                    if (compress) {
+                    if (options.compressible) {
                         compressibleBytes.set(leadByte);
                         groupComment = groupComment + " (compressible)";
                     }
@@ -788,8 +809,8 @@ public final class PrimariesToFractional {
                         ++numPrimaries;
                     }
                 } else {
-                    // New script in current reordering group.
-                    firstFractional = fractionalPrimary.startNewScript(props.options);
+                    // New script but not a new lead byte.
+                    final int firstFractional = fractionalPrimary.startNewScript(options);
                     if (groupInfo.length() != 0) {
                         groupInfo.append(' ');
                     }
@@ -802,7 +823,6 @@ public final class PrimariesToFractional {
                             Fractional.hexBytes(firstFractional),
                             ReorderCodes.getName(reorderCode)));
                 }
-                props.options.scriptFirstFractional = firstFractional;
                 ++numPrimaries;
             }
 
@@ -838,20 +858,23 @@ public final class PrimariesToFractional {
                     currentByteLength = 2;
                 }
             }
+            String old;
+            final boolean DEBUG_FW = false;
+            if (DEBUG_FW) {
+                old = fractionalPrimary.toString();
+            }
             props.fractionalPrimary = fractionalPrimary.next(currentByteLength);
             ++numPrimaries;
 
-            final String newWeight = fractionalPrimary.toString();
-            final boolean DEBUG_FW = false;
             if (DEBUG_FW) {
                 System.out.println(
                         currentByteLength
                         + ", " + old
-                        + " => " + newWeight
+                        + " => " + fractionalPrimary.toString()
                         + "\t" + Utility.hex(Character.codePointAt(up.getRepresentative(), 0)));
             }
         }
-        System.out.println("last weight: " + fractionalPrimary.toString());
+        System.out.println("last fractional primary weight: " + fractionalPrimary.toString());
 
         // Create an entry for the first primary in the Hani script.
         PrimaryToFractional hanProps = primaryProps[HAN_INDEX];
@@ -952,13 +975,6 @@ public final class PrimariesToFractional {
         throw new IllegalArgumentException("no properties for unassigned UCA primary " + ucaPrimary);
     }
 
-    public int getReorderReservedBeforeLatinFractionalPrimary() {
-        return reorderReservedBeforeLatinFractionalPrimary;
-    }
-    public int getReorderReservedAfterLatinFractionalPrimary() {
-        return reorderReservedAfterLatinFractionalPrimary;
-    }
-
     /**
      * Returns the properties for the UCA primary weight.
      * Returns the same object for all Han UCA primary lead weights.
@@ -1048,7 +1064,14 @@ public final class PrimariesToFractional {
                 ScriptOptions newOptions = getOrCreateOptionsForScript(script);
                 if (newOptions.firstPrimary == 0) {
                     newOptions.firstPrimary = primary;
-                    props.newByte = options.endsByte || newOptions.beginsByte;
+                    // Start a new lead byte according to the options.
+                    // Also, compressible and uncompressible groups/scripts must not share
+                    // a lead byte:
+                    // - We emit (and implementations test) compressibility by primary lead bytes.
+                    // - The set of bytes usable for primary second bytes depends on
+                    //   whether the lead byte is compressible.
+                    props.newByte = options.endsByte || newOptions.beginsByte ||
+                            options.compressible != newOptions.compressible;
                     System.out.println(
                             (props.newByte ? "New primary lead byte:\t" : "Continue lead byte:   \t")
                             + Utility.hex(primary) + " "
