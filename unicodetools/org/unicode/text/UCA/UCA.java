@@ -22,6 +22,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -116,6 +117,63 @@ final public class UCA implements Comparator<String>, UCA_Types {
 
     private String fileVersion = "??";
 
+    // TODO: create these objects (with final fields) while building the data, not later when iterating
+    static final class Primary {
+        int primary = -1;
+        int nextPrimary = -1;
+        private CharSequence representative;
+
+        private Primary() {}
+        String getRepresentative() {
+            // TODO: statistics should already store a String not a CharSequence
+            return representative.toString();
+        }
+    }
+
+    private final class PrimaryIterator implements Iterator<Primary> {
+        final Primary p = new Primary();
+        final RoBitSet primarySet = getStatistics().getPrimarySet();
+
+        PrimaryIterator(int start) {
+            p.nextPrimary = primarySet.nextSetBit(start);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return p.nextPrimary >= 0;
+        }
+
+        @Override
+        public Primary next() {
+            if (p.nextPrimary >= 0) {
+                p.primary = p.nextPrimary;
+                p.nextPrimary = primarySet.nextSetBit(p.primary + 1);
+                p.representative = getRepresentativePrimary(p.primary);
+                return p;
+            } else {
+                throw new NoSuchElementException();
+            }
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    private final class PrimaryIterable implements Iterable<UCA.Primary> {
+        int start;
+
+        PrimaryIterable(int start) {
+            this.start = start;
+        }
+
+        @Override
+        public Iterator<Primary> iterator() {
+            return new PrimaryIterator(start);
+        }
+    }
+
     /**
      * Initializes the collation from a stream of rules in the normal formal.
      * If the source is null, uses the normal Unicode data files, which
@@ -152,6 +210,25 @@ final public class UCA implements Comparator<String>, UCA_Types {
             in.close();
         }
         cleanup();
+    }
+
+    /**
+     * Returns all non-ignorable, below-Han UCA primary weights.
+     */
+    PrimaryIterable getRegularPrimaries() {
+        // Start after the ignorable primary 0.
+        return new PrimaryIterable(1);
+    }
+
+    /**
+     * Returns all below-Han UCA primary weights, starting with ignorable 0.
+     */
+    PrimaryIterable getIgnorableAndRegularPrimaries() {
+        return new PrimaryIterable(0);
+    }
+
+    int getLastRegularPrimary() {
+        return getStatistics().getPrimarySet().length() - 1;
     }
 
     public Normalizer getNFDNormalizer() {
@@ -1695,10 +1772,9 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
     boolean DEBUGCHAR = false;
 
 
-    public CharSequence getRepresentativePrimary(int primary) {
+    private CharSequence getRepresentativePrimary(int primary) {
         StringBuilder result = getStatistics().representativePrimary.get(primary);
         if (result == null) {
-            result = getStatistics().representativePrimarySeconds.get(primary);
             throw new IllegalArgumentException();
         }
         return result;

@@ -1,18 +1,11 @@
 package org.unicode.text.UCA;
 
 import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.TreeMap;
 
-import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.impl.Row;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
@@ -29,55 +22,13 @@ public final class PrimariesToFractional {
      * more characters there than "in the middle" of scripts.
      */
     private static final boolean EXTRA_SCRIPT_GAP = false;
+    // TODO: delete EXTRA_SCRIPT_GAP & logic for it?
 
-    /**
-     * Scripts that start reordering groups, and normally get two-byte primary weights.
-     */
-    private static final BitSet MAJOR_SCRIPTS = new BitSet();
-    static {
-        for (final int i : new int[] {
-                ReorderCodes.SPACE,
-                ReorderCodes.SYMBOL,
-                ReorderCodes.DIGIT,
-                UCD_Types.ARABIC_SCRIPT,
-                UCD_Types.ARMENIAN_SCRIPT,
-                UCD_Types.BENGALI_SCRIPT,
-                UCD_Types.BOPOMOFO_SCRIPT,
-                UCD_Types.CHEROKEE_SCRIPT,
-                UCD_Types.CYRILLIC_SCRIPT,
-                UCD_Types.DEVANAGARI_SCRIPT,
-                UCD_Types.GLAGOLITIC,
-                UCD_Types.GREEK_SCRIPT,
-                UCD_Types.GUJARATI_SCRIPT,
-                UCD_Types.GURMUKHI_SCRIPT,
-                UCD_Types.HAN_SCRIPT,
-                UCD_Types.HANGUL_SCRIPT,
-                UCD_Types.HEBREW_SCRIPT,
-                UCD_Types.HIRAGANA_SCRIPT,
-                UCD_Types.KANNADA_SCRIPT,
-                UCD_Types.KATAKANA_SCRIPT,
-                UCD_Types.LAO_SCRIPT,
-                UCD_Types.LATIN_SCRIPT,
-                UCD_Types.MALAYALAM_SCRIPT,
-                UCD_Types.MYANMAR_SCRIPT,
-                UCD_Types.ORIYA_SCRIPT,
-                UCD_Types.SINHALA_SCRIPT,
-                UCD_Types.TAMIL_SCRIPT,
-                UCD_Types.TELUGU_SCRIPT,
-                UCD_Types.SYRIAC_SCRIPT,
-                UCD_Types.THAI_SCRIPT,
-                UCD_Types.TIBETAN_SCRIPT
-        }) {
-            MAJOR_SCRIPTS.set(i);
-        }
-    }
+    private final ScriptOptions[] scriptOptions = new ScriptOptions[ReorderCodes.LIMIT];
+    private final ScriptOptions ignorableOptions = new ScriptOptions(-1);
+    private final ScriptOptions reservedRangeOptions = new ScriptOptions(-1);
 
     private final UCA uca;
-
-    /**
-     * The first fractional primary weight for each reorder code.
-     */
-    private final int[] firstFractionalPrimary = new int[ReorderCodes.LIMIT];
 
     /**
      * Fractional primary weight for numeric sorting (CODAN).
@@ -93,46 +44,97 @@ public final class PrimariesToFractional {
     private int reorderReservedAfterLatinFractionalPrimary;
 
     /**
-     * Reordering groups with sort-key-compressible fractional primary weights.
-     * Only the first script in the group needs to be marked.
-     * These are a subset of the {@link #MAJOR_SCRIPTS}.
-     *
-     * <p>Whether a group is compressible should be determined by whether all of its primaries
-     * fit into one lead byte, but we need to know this before assigning
-     * fractional primary weights so that we can assign them optimally.
-     */
-    private final boolean[] groupIsCompressible = new boolean[ReorderCodes.LIMIT];
-
-    /**
      * One flag per fractional primary lead byte for whether
      * the fractional weights that start with that byte are sort-key-compressible.
      */
     private final BitSet compressibleBytes = new BitSet(256);
 
-    private final Map<Integer, PrimaryToFractional> map = new HashMap<Integer, PrimaryToFractional>();
+    /** Maps UCA primaries to PrimaryToFractional objects. */
+    private PrimaryToFractional[] primaryProps;
+    // Put special properties into slots not used for UCA primaries.
+    private static final int HAN_INDEX = 1;
+    private static final int FFFD_INDEX = 2;
+    // vate static final int FFFE_INDEX = 3;
+    private static final int FFFF_INDEX = 4;
+
+    private static final class ScriptOptions {
+        final int reorderCode;
+
+        boolean beginsByte;
+        boolean endsByte;
+        /**
+         * If true, then primary weights of this group/script all have the same lead byte
+         * and are therefore compressible when writing sort keys.
+         * We need to know this before assigning
+         * fractional primary weights so that we can assign them optimally.
+         */
+        boolean compressible = true;
+        boolean defaultTwoBytePrimaries;
+        boolean defaultTwoBytePunctuation;
+
+        /** First UCA primary weight for this script. */
+        int firstPrimary;
+        /** The script-first fractional primary inserted before the normal fractional primary. */
+        int scriptFirstFractional;
+        /** true until the script-first fractional primary has been written. */
+        boolean needToWriteScriptFirstFractional = true;
+
+        ScriptOptions(int reorderCode) {
+            this.reorderCode = reorderCode;
+        }
+
+        /** Use one or more whole primary lead byte. */
+        ScriptOptions wholeByte() {
+            beginsByte = endsByte = true;
+            return this;
+        }
+        /** Start with a new primary lead byte. */
+        ScriptOptions newByte() {
+            beginsByte = true;
+            return this;
+        }
+        /** End with the top of a primary lead byte. */
+        ScriptOptions finishByte() {
+            endsByte = true;
+            return this;
+        }
+        ScriptOptions notCompressible() {
+            if (!beginsByte && !endsByte) {
+                throw new IllegalArgumentException(
+                        "non-compressible script must begin or end with a lead byte boundary, " +
+                        "or both; see LDML collation spec");
+            }
+            compressible = false;
+            return this;
+        }
+        ScriptOptions twoBytePrimaries() {
+            defaultTwoBytePrimaries = defaultTwoBytePunctuation = true;
+            return this;
+        }
+        ScriptOptions twoBytePunctuation() {
+            defaultTwoBytePunctuation = true;
+            return this;
+        }
+        ScriptOptions threeBytePunctuation() {
+            defaultTwoBytePunctuation = false;
+            return this;
+        }
+    }
 
     /**
      * FractionalUCA properties for a UCA primary weight.
      */
     public static class PrimaryToFractional {
+        private ScriptOptions options;
         /**
-         * true if this primary is at the start of a reordering group.
+         * true if this primary is at the start of a group or script
+         * that begins with a new primary lead byte.
          */
-        private boolean startsGroup;
-        /**
-         * The reorder code of the group or script for which this is the first primary.
-         * -1 if none.
-         */
-        private int reorderCodeIfFirst = -1;
-        /**
-         * The script-first fractional primary inserted before the normal fractional primary.
-         * 0 if not the first primary in a script or group.
-         * Will be reset to 0 again after first output.
-         */
-        private int scriptFirstPrimary;
+        private boolean newByte;
 
         private boolean useSingleBytePrimary;
         private boolean useTwoBytePrimary;
+        private boolean useThreeBytePrimary;
 
         private int fractionalPrimary;
         /**
@@ -159,18 +161,18 @@ public final class PrimariesToFractional {
             if (useSingleBytePrimary) {
                 return 1;
             }
-            if (useTwoBytePrimary) {
+            if (useTwoBytePrimary || (options.defaultTwoBytePrimaries && !useThreeBytePrimary)) {
                 return 2;
             }
             return 3;
         }
 
-        /**
-         * Returns the reorder code of the group or script for which this is the first primary.
-         * -1 if none.
-         */
-        public int getReorderCodeIfFirst() {
-            return reorderCodeIfFirst;
+        private boolean isFirstForScript(int primary) {
+            return primary == options.firstPrimary;
+        }
+
+        int getReorderCode() {
+            return options.reorderCode;
         }
 
         /**
@@ -179,14 +181,17 @@ public final class PrimariesToFractional {
          * otherwise returns 0.
          * The script-first primary is reset, so that the next call with the same UCA primary returns 0.
          */
-        public int getAndResetScriptFirstPrimary() {
-            final int firstFractional = scriptFirstPrimary;
-            scriptFirstPrimary = 0;
-            return firstFractional;
+        public int getAndResetScriptFirstFractionalPrimary() {
+            if (options == null || !options.needToWriteScriptFirstFractional) {
+                return 0;
+            } else {
+                options.needToWriteScriptFirstFractional = false;
+                return options.scriptFirstFractional;
+            }
         }
 
-        public boolean isFirstInReorderingGroup() {
-            return startsGroup;
+        public boolean beginsByte() {
+            return newByte;
         }
 
         /**
@@ -248,6 +253,9 @@ public final class PrimariesToFractional {
         private static final int GAP3 = 6;
         private static final int GAP3_FOR_MINOR_SCRIPT = EXTRA_SCRIPT_GAP ? 40 : GAP3;
 
+        private ScriptOptions options;
+        // TODO: tweak gap3 per script etc.
+
         private int minByte2 = MIN2_UNCOMPRESSED;
         private int maxByte2 = MAX2_UNCOMPRESSED;
 
@@ -276,7 +284,8 @@ public final class PrimariesToFractional {
             return (byte1 << 16) + (byte2 << 8) + byte3;
         }
 
-        public int startNewGroup(boolean compress) {
+        public int startNewByte(ScriptOptions options) {
+            this.options = options;
             final int oByte1 = byte1;
             final int oByte2 = byte2;
 
@@ -293,13 +302,13 @@ public final class PrimariesToFractional {
             }
             addTo1(inc1);
 
-            final int newMinByte2 = compress ? MIN2_COMPRESSED : MIN2_UNCOMPRESSED;
+            final int newMinByte2 = options.compressible ? MIN2_COMPRESSED : MIN2_UNCOMPRESSED;
             byte2 = newMinByte2;
             byte3 = MIN_BYTE;
 
             check(oByte1, oByte2, 3, true);
 
-            compressibleLeadByte = compress;
+            compressibleLeadByte = options.compressible;
             minByte2 = newMinByte2;
             maxByte2 = compressibleLeadByte ? MAX2_COMPRESSED : MAX2_UNCOMPRESSED;;
             lastByteLength = 3;
@@ -307,7 +316,8 @@ public final class PrimariesToFractional {
             return getIntValue();
         }
 
-        public int startNewScript() {
+        public int startNewScript(ScriptOptions options) {
+            this.options = options;
             final int oByte1 = byte1;
             final int oByte2 = byte2;
 
@@ -328,8 +338,10 @@ public final class PrimariesToFractional {
                 addTo3(GAP3_FOR_MINOR_SCRIPT + 1);
                 // Round up to the next two-byte primary.
                 // FractionalUCA has groups and scripts starting at least on two-byte boundaries.
-                addTo2(1);
-                byte3 = MIN_BYTE;
+                if (byte3 != MIN_BYTE) {
+                    addTo2(1);
+                    byte3 = MIN_BYTE;
+                }
             }
 
             check(oByte1, oByte2, 3, false);
@@ -521,33 +533,143 @@ public final class PrimariesToFractional {
     public PrimariesToFractional(UCA uca) {
         this.uca = uca;
 
-        groupIsCompressible[UCD_Types.GREEK_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.CYRILLIC_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.ARABIC_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.GLAGOLITIC] = true;
-        groupIsCompressible[UCD_Types.ARMENIAN_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.HEBREW_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.SYRIAC_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.ETHIOPIC_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.DEVANAGARI_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.BENGALI_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.GURMUKHI_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.GUJARATI_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.ORIYA_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.TAMIL_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.TELUGU_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.KANNADA_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.MALAYALAM_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.SINHALA_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.THAI_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.LAO_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.TIBETAN_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.MYANMAR_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.KHMER_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.CHEROKEE_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.HANGUL_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.HIRAGANA_SCRIPT] = true;
-        groupIsCompressible[UCD_Types.BOPOMOFO_SCRIPT] = true;
+        ignorableOptions.wholeByte().notCompressible();
+        // Mark reserved ranges as not compressible, to avoid confusion,
+        // and to avoid tools code issues with using multiple lead bytes.
+        reservedRangeOptions.wholeByte().notCompressible();
+
+        // Special reorder groups.
+
+        // Some spaces and punctuation share a lead byte.
+        setOptionsForScript(ReorderCodes.SPACE).newByte().notCompressible().twoBytePrimaries();
+        setOptionsForScript(ReorderCodes.PUNCTUATION).finishByte().notCompressible().twoBytePrimaries();
+
+        // Some general and currency symbols share a lead byte.
+        setOptionsForScript(ReorderCodes.SYMBOL).newByte().notCompressible().twoBytePrimaries();
+        setOptionsForScript(ReorderCodes.CURRENCY).finishByte().notCompressible().twoBytePrimaries();
+
+        setOptionsForScript(ReorderCodes.DIGIT).wholeByte().notCompressible().twoBytePrimaries();
+
+        // Set options for scripts in collation order,
+        // to keep byte boundaries understandable.
+        // Scripts that are not mentioned get default options.
+
+        // We consider several factors for how to allocate primary weights.
+        // - Collation elements are easy to store in 32-bit integers if
+        //   primary weights are one or two bytes,
+        //   or three bytes (long-primary CEs) if there are no secondary/tertiary variants.
+        // - Short weights for short sort keys.
+        // - Primary compression for short sort keys, requires all primaries
+        //   for a compressible script to use the same lead byte.
+        //   With compression, consecutive n-byte primaries approach (n-1) bytes each
+        //   in sort keys.
+        // - ICU stores a whole range of mappings with very little root collation data when
+        //   consecutive characters have consecutive three-byte primary weights,
+        //   with a consistent delta from each to the next.
+        // - For script reordering, giving a script one or more whole lead bytes
+        //   yields best performance, but we can do so only for a small number of scripts.
+        //   Second best is for a script to be the first in a lead byte,
+        //   see ICU ticket #11449.
+        //
+        // The more widely used a script or character, the more we want to optimize
+        // its lookup performance (via encoding simplicity/regularity)
+        // and its sort key length (with or without primary compression).
+        // For rare and historic characters, we optimize for minimal storage.
+
+        // "Recommended Scripts" (http://www.unicode.org/reports/tr31/#Table_Recommended_Scripts)
+        // are in "widespread modern customary use" but to widely varying degrees.
+        // http://en.wikipedia.org/wiki/List_of_writing_systems shows scripts by number of users.
+        // Neither list ranks by usage in computers or on the internet.
+
+        // Latin uses multiple bytes, with single-byte primaries for A-Z.
+        setOptionsForScript(UCD_Types.LATIN_SCRIPT).wholeByte().notCompressible().twoBytePrimaries();
+        // Recommended Script, and cased.
+        setOptionsForScript(UCD_Types.GREEK_SCRIPT).newByte().twoBytePrimaries();
+        // Not a Recommended Script but cased, and easily fits into the same lead byte as Greek.
+        setOptionsForScript(UCD_Types.COPTIC).twoBytePrimaries().threeBytePunctuation();
+        // Cyrillic uses one byte, with two-byte primaries for common characters.
+        setOptionsForScript(UCD_Types.CYRILLIC_SCRIPT).wholeByte().twoBytePunctuation();
+        // Recommended Script, and cased.
+        setOptionsForScript(UCD_Types.GEORGIAN_SCRIPT).twoBytePrimaries();
+        // Recommended Script, and cased. Does not fit in a lead byte with Georgian.
+        setOptionsForScript(UCD_Types.ARMENIAN_SCRIPT).newByte().twoBytePrimaries();
+        // Recommended Script, few primaries, with active computer/internet usage.
+        setOptionsForScript(UCD_Types.HEBREW_SCRIPT).newByte().twoBytePrimaries();
+        // Arabic uses one byte, with two-byte primaries for common characters.
+        setOptionsForScript(UCD_Types.ARABIC_SCRIPT).wholeByte().twoBytePunctuation();
+        // Recommended Script, few primaries.
+        setOptionsForScript(UCD_Types.THAANA_SCRIPT).twoBytePrimaries();
+        // Ethiopic is a Recommended Script but needs three-byte primaries so that
+        // they fit into one compressible lead byte.
+        setOptionsForScript(UCD_Types.ETHIOPIC_SCRIPT).twoBytePunctuation();
+        // Indic Recommended Scripts.
+        // With two-byte primaries, nearly each of these scripts uses more than half of a lead byte.
+        // Also, script reordering often reorders multiple of them,
+        // so using whole bytes preserves reorder-reserved bytes.
+        setOptionsForScript(UCD_Types.DEVANAGARI_SCRIPT).wholeByte().twoBytePrimaries();
+        setOptionsForScript(UCD_Types.BENGALI_SCRIPT).wholeByte().twoBytePrimaries();
+        setOptionsForScript(UCD_Types.GURMUKHI_SCRIPT).wholeByte().twoBytePrimaries();
+        setOptionsForScript(UCD_Types.GUJARATI_SCRIPT).wholeByte().twoBytePrimaries();
+        setOptionsForScript(UCD_Types.ORIYA_SCRIPT).wholeByte().twoBytePrimaries();
+        setOptionsForScript(UCD_Types.TAMIL_SCRIPT).wholeByte().twoBytePrimaries();
+        setOptionsForScript(UCD_Types.TELUGU_SCRIPT).wholeByte().twoBytePrimaries();
+        setOptionsForScript(UCD_Types.KANNADA_SCRIPT).wholeByte().twoBytePrimaries();
+        setOptionsForScript(UCD_Types.MALAYALAM_SCRIPT).wholeByte().twoBytePrimaries();
+        // Sinhala shares its lead byte with minor scripts.
+        setOptionsForScript(UCD_Types.SINHALA_SCRIPT).newByte().twoBytePrimaries();
+        // Recommended Script.
+        setOptionsForScript(UCD_Types.THAI_SCRIPT).wholeByte().twoBytePrimaries();
+        // Recommended Script.
+        setOptionsForScript(UCD_Types.LAO_SCRIPT).newByte().twoBytePrimaries();
+        // Recommended Script.
+        setOptionsForScript(UCD_Types.TIBETAN_SCRIPT).newByte().twoBytePrimaries();
+        // Myanmar is a Recommended Script but needs three-byte primaries so that
+        // they fit into one compressible lead byte.
+        setOptionsForScript(UCD_Types.MYANMAR_SCRIPT).newByte().twoBytePunctuation();
+        // Recommended Script.
+        setOptionsForScript(UCD_Types.KHMER_SCRIPT).twoBytePrimaries();
+        // Limited Use Script, but the previous lead byte is full.
+        // TODO: revisit boundary; Cher is cased in Unicode 8.
+        setOptionsForScript(UCD_Types.CHEROKEE_SCRIPT).newByte();
+        // Hangul uses one byte, with two-byte primaries for conjoining Jamo L/V/T.
+        setOptionsForScript(UCD_Types.HANGUL_SCRIPT).wholeByte().twoBytePunctuation();
+        // Kana uses one byte.
+        setOptionsForScripts(
+                UCD_Types.HIRAGANA_SCRIPT, UCD_Types.KATAKANA_SCRIPT, UCD_Types.KATAKANA_OR_HIRAGANA)
+                .wholeByte().twoBytePrimaries();
+        // Recommended Script, uses two-byte primaries for characters with variants.
+        setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePunctuation();
+        // Just register the scripts as aliases.
+        setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
+        // Han uses many bytes, so that tailoring tens of thousands of characters
+        // can use many two-byte primaries.
+        setOptionsForScript(UCD_Types.HAN_SCRIPT).wholeByte().notCompressible().twoBytePunctuation();
+
+        // All other scripts get default options.
+    }
+ 
+    private ScriptOptions setOptionsForScript(int script) {
+        return scriptOptions[script] = new ScriptOptions(script);
+    }
+
+    private ScriptOptions setOptionsForScripts(int ...scripts) {
+        ScriptOptions o = new ScriptOptions(scripts[0]);  // The other scripts are aliases.
+        for (int script : scripts) {
+            scriptOptions[script] = o;
+        }
+        return o;
+    }
+
+    private ScriptOptions getOptionsForScript(int script) {
+        return scriptOptions[script];
+    }
+
+    private ScriptOptions getOrCreateOptionsForScript(int script) {
+        ScriptOptions o = scriptOptions[script];
+        if (o == null) {
+            scriptOptions[script] = o = new ScriptOptions(script);
+        }
+        return o;
     }
 
     /**
@@ -560,8 +682,6 @@ public final class PrimariesToFractional {
         findBumps();
 
         System.out.println("Fixing Primaries");
-        final RoBitSet primarySet = uca.getStatistics().getPrimarySet();
-
         final PrimaryWeight fractionalPrimary = new PrimaryWeight();
 
         // Map UCA 0 to fractional 0.
@@ -576,26 +696,23 @@ public final class PrimariesToFractional {
         boolean previousGroupIsCompressible = false;
         int numPrimaries = 0;
 
-        // start at 1 so zero stays zero.
-        for (int primary = primarySet.nextSetBit(1);
-                0 <= primary && primary < UCA_Types.UNSUPPORTED_BASE;
-                primary = primarySet.nextSetBit(primary+1)) {
+        // Start at 1 so zero stays zero.
+        for (final UCA.Primary up : uca.getRegularPrimaries()) {
+            final int primary = up.primary;
 
-            // we know that we need a primary weight for this item.
-            // we base it on the last value, and whether we have a 1, 2, or 3-byte weight
-            // if we change lengths, then we have to change the initial segment
-            // if 'bumps' are set, then we change the first byte
+            // We need a fractional primary weight for this item.
+            // We base it on the last value, and whether we have a 1, 2, or 3-byte weight.
+            // If we change lengths, then we have to change the initial segment.
+            // We change the first byte as determined before.
 
             final String old = fractionalPrimary.toString();
 
             final PrimaryToFractional props = getOrCreateProps(primary);
-            int currentByteLength = props.getFractionalLength();
-
-            final int reorderCode = props.reorderCodeIfFirst;
-            if (reorderCode >= 0) {
+            if (props.isFirstForScript(primary)) {
+                final int reorderCode = props.options.reorderCode;
                 System.out.println("last weight: " + old);
                 int firstFractional;
-                if (props.startsGroup) {
+                if (props.newByte) {
                     // Before and after Latin, one or more lead bytes are reserved
                     // (not used by FractionalUCA primaries) for script reordering.
                     //
@@ -612,10 +729,7 @@ public final class PrimariesToFractional {
                         // Duplicate some of the code below.
                         // Since the DUCET does not reserve such ranges,
                         // there is no UCA primary to which we can assign a special object.
-                        //
-                        // Mark the reserved range as not compressible, to avoid confusion,
-                        // and to avoid tools code issues with using multiple lead bytes.
-                        firstFractional = fractionalPrimary.startNewGroup(false);
+                        firstFractional = fractionalPrimary.startNewByte(reservedRangeOptions);
                         final int leadByte = Fractional.getLeadByte(firstFractional);
                         appendTopByteInfo(topByteInfo, previousGroupIsCompressible,
                                 previousGroupLeadByte, leadByte, groupInfo, numPrimaries);
@@ -641,8 +755,8 @@ public final class PrimariesToFractional {
                         fractionalPrimary.byte1 += 1;
                     }
 
-                    final boolean compress = groupIsCompressible[reorderCode];
-                    firstFractional = fractionalPrimary.startNewGroup(compress);
+                    final boolean compress = props.options.compressible;
+                    firstFractional = fractionalPrimary.startNewByte(props.options);
                     final int leadByte = Fractional.getLeadByte(firstFractional);
 
                     // Finish the previous reordering group.
@@ -675,7 +789,7 @@ public final class PrimariesToFractional {
                     }
                 } else {
                     // New script in current reordering group.
-                    firstFractional = fractionalPrimary.startNewScript();
+                    firstFractional = fractionalPrimary.startNewScript(props.options);
                     if (groupInfo.length() != 0) {
                         groupInfo.append(' ');
                     }
@@ -688,11 +802,11 @@ public final class PrimariesToFractional {
                             Fractional.hexBytes(firstFractional),
                             ReorderCodes.getName(reorderCode)));
                 }
-                props.scriptFirstPrimary = firstFractional;
-                firstFractionalPrimary[reorderCode] = firstFractional;
+                props.options.scriptFirstFractional = firstFractional;
                 ++numPrimaries;
             }
 
+            int currentByteLength = props.getFractionalLength();
             if (currentByteLength == 3 &&
                     ((fractionalPrimary.firstPrimaryInScript && EXTRA_SCRIPT_GAP) ||
                             fractionalPrimary.lastByteLength <= 2)) {
@@ -715,11 +829,11 @@ public final class PrimariesToFractional {
                 // and we know they fit into long-primary CEs.
                 // (They are generated with the next() call above,
                 // so we need not handle them specially here.)
-                final int nextPrimary = primarySet.nextSetBit(primary + 1);
+                final int nextPrimary = up.nextPrimary;
                 final PrimaryToFractional nextProps = getProps(nextPrimary);
                 if (0 <= nextPrimary && nextPrimary < UCA_Types.UNSUPPORTED_BASE &&
                         nextProps != null &&
-                        ((nextProps.reorderCodeIfFirst >= 0 && EXTRA_SCRIPT_GAP) ||
+                        ((nextProps.isFirstForScript(nextPrimary) && EXTRA_SCRIPT_GAP) ||
                         nextProps.getFractionalLength() <= 2)) {
                     currentByteLength = 2;
                 }
@@ -734,14 +848,14 @@ public final class PrimariesToFractional {
                         currentByteLength
                         + ", " + old
                         + " => " + newWeight
-                        + "\t" + Utility.hex(Character.codePointAt(
-                                uca.getRepresentativePrimary(primary),0)));
+                        + "\t" + Utility.hex(Character.codePointAt(up.getRepresentative(), 0)));
             }
         }
         System.out.println("last weight: " + fractionalPrimary.toString());
 
         // Create an entry for the first primary in the Hani script.
-        final int firstFractional = fractionalPrimary.startNewGroup(false);
+        PrimaryToFractional hanProps = primaryProps[HAN_INDEX];
+        final int firstFractional = fractionalPrimary.startNewByte(hanProps.options);
         int leadByte = Fractional.getLeadByte(firstFractional);
 
         // Finish the previous reordering group.
@@ -750,11 +864,7 @@ public final class PrimariesToFractional {
         previousGroupLeadByte = leadByte;
 
         // Record Hani.
-        final PrimaryToFractional props = getOrCreateProps(UCA_Types.UNSUPPORTED_CJK_BASE);
-        props.startsGroup = true;
-        props.reorderCodeIfFirst = UCD_Types.HAN_SCRIPT;
-        props.scriptFirstPrimary = firstFractional;
-        firstFractionalPrimary[UCD_Types.HAN_SCRIPT] = firstFractional;
+        hanProps.options.scriptFirstFractional = firstFractional;
         System.out.println(String.format(
                 "[%s]  # %s first primary%s",
                 Fractional.hexBytes(firstFractional),
@@ -762,7 +872,7 @@ public final class PrimariesToFractional {
                 " starts reordering group"));
 
         leadByte = Fractional.IMPLICIT_BASE_BYTE;
-        props.fractionalPrimary = leadByte << 16;
+        hanProps.fractionalPrimary = leadByte << 16;
 
         appendTopByteInfo(topByteInfo, false, previousGroupLeadByte, leadByte, "Hani Hans Hant", 0);
         previousGroupLeadByte = leadByte;
@@ -825,17 +935,21 @@ public final class PrimariesToFractional {
         }
     }
 
-    /**
-     * Pins Han and unassigned-implicit UCA primaries to their respective first primaries.
-     */
-    private static int pinUCAPrimary(int ucaPrimary) {
-        if (ucaPrimary < UCA_Types.UNSUPPORTED_BASE || UCA_Types.UNSUPPORTED_LIMIT <= ucaPrimary) {
+    private static int pinPrimary(int ucaPrimary) {
+        if (HAN_INDEX <= ucaPrimary && ucaPrimary <= FFFF_INDEX) {
+            throw new IllegalArgumentException(
+                    "no properties for UCA primary used internally: " + ucaPrimary);
+        }
+        if (ucaPrimary < UCA_Types.UNSUPPORTED_BASE) {
             return ucaPrimary;
         }
         if (ucaPrimary < UCA_Types.UNSUPPORTED_OTHER_BASE) {
-            return UCA_Types.UNSUPPORTED_CJK_BASE;
+            return HAN_INDEX;
         }
-        return UCA_Types.UNSUPPORTED_OTHER_BASE;
+        if (0xfffd <= ucaPrimary && ucaPrimary <= 0xffff) {
+            return FFFD_INDEX + ucaPrimary - 0xfffd;
+        }
+        throw new IllegalArgumentException("no properties for unassigned UCA primary " + ucaPrimary);
     }
 
     public int getReorderReservedBeforeLatinFractionalPrimary() {
@@ -847,18 +961,12 @@ public final class PrimariesToFractional {
 
     /**
      * Returns the properties for the UCA primary weight.
+     * Returns the same object for all Han UCA primary lead weights.
      * Returns null if there are no data for this primary.
      */
     public PrimaryToFractional getProps(int ucaPrimary) {
-        return map.get(ucaPrimary);
-    }
-
-    /**
-     * Same as {@link #getProps(int)} but returns the same object for all
-     * Han UCA primary lead weights.
-     */
-    public PrimaryToFractional getPropsPinImplicit(int ucaPrimary) {
-        return map.get(pinUCAPrimary(ucaPrimary));
+        int index = pinPrimary(ucaPrimary);
+        return primaryProps[index];
     }
 
     /**
@@ -866,9 +974,10 @@ public final class PrimariesToFractional {
      * Creates and caches a new one if there are no data for this primary yet.
      */
     public PrimaryToFractional getOrCreateProps(int ucaPrimary) {
-        PrimaryToFractional props = map.get(ucaPrimary);
+        int index = pinPrimary(ucaPrimary);
+        PrimaryToFractional props = primaryProps[index];
         if (props == null) {
-            map.put(ucaPrimary, props = new PrimaryToFractional());
+            primaryProps[index] = props = new PrimaryToFractional();
         }
         return props;
     }
@@ -882,7 +991,8 @@ public final class PrimariesToFractional {
     }
 
     public int getFirstFractionalPrimary(int reorderCode) {
-        return firstFractionalPrimary[reorderCode];
+        ScriptOptions options = getOptionsForScript(reorderCode);
+        return options != null ? options.scriptFirstFractional : 0;
     }
 
     public int getNumericFractionalPrimary() {
@@ -897,22 +1007,15 @@ public final class PrimariesToFractional {
      * </ul>
      */
     private void findBumps() {
-        final int[] groupChar = new int[ReorderCodes.LIMIT];
-
-        final BitSet threeByteSymbolPrimaries = new BitSet();
-        final UnicodeSet threeByteChars = new UnicodeSet();
-
-
-        final RoBitSet primarySet = uca.getStatistics().getPrimarySet();
         final int firstScriptPrimary = uca.getStatistics().firstScript;
+        primaryProps = new PrimaryToFractional[uca.getLastRegularPrimary() + 1];
 
-        // First UCA primary weight per reordering group.
-        final int[] groupFirstPrimary = new int[ReorderCodes.LIMIT];
-
-        for (int primary = primarySet.nextSetBit(0); primary >= 0; primary = primarySet.nextSetBit(primary+1)) {
-            final CharSequence ch2 = uca.getRepresentativePrimary(primary);
-            final int ch = Character.codePointAt(ch2,0);
-            final byte cat = Fractional.getFixedCategory(ch);
+        ScriptOptions options = ignorableOptions;
+        // Start after ignorable primary 0.
+        for (final UCA.Primary up : uca.getRegularPrimaries()) {
+            final int primary = up.primary;
+            final PrimaryToFractional props = getOrCreateProps(primary);
+            final int ch = up.getRepresentative().codePointAt(0);
             short script = Fractional.getFixedScript(ch);
 
             // see if we have an "infrequent" character: make it a 3 byte if so.
@@ -920,113 +1023,49 @@ public final class PrimariesToFractional {
 
             if (primary < firstScriptPrimary) {
                 final int reorderCode = ReorderCodes.getSpecialReorderCode(ch);
-                if (primary > 0) {
-                    if (groupFirstPrimary[reorderCode] == 0 || primary < groupFirstPrimary[reorderCode]) {
-                        groupFirstPrimary[reorderCode] = primary;
-                        groupChar[script] = ch;
-                    }
-                }
                 if (ch < 0xFF || reorderCode == ReorderCodes.SPACE) {
                     // do nothing, assume Latin 1 is "frequent"
-                } else if (cat == UCD_Types.OTHER_SYMBOL ||
-                        cat == UCD_Types.MATH_SYMBOL ||
-                        cat == UCD_Types.MODIFIER_SYMBOL) {
-                    // Note: We do not test reorderCode == ReorderCodes.SYMBOL
-                    // because that includes Lm etc.
-                    threeByteSymbolPrimaries.set(primary);
-                    threeByteChars.addAll(ch2.toString());
                 } else {
-                    // TODO: Hack for stability, for now. Revisit.
-                    boolean isThreeByteScript;
-                    switch (script) {
-                    case UCD_Types.SYRIAC_SCRIPT:
-                        isThreeByteScript = true;
-                        break;
-                    case UCD_Types.ETHIOPIC_SCRIPT:
-                    case UCD_Types.KHMER_SCRIPT:
-                        isThreeByteScript = false;
-                        break;
-                    default:
-                        isThreeByteScript = !MAJOR_SCRIPTS.get(script);
-                        break;
-                    }
-                    // It seems like this should instead be:
-                    // boolean isThreeByteScript = MAJOR_SCRIPTS.get(script) ?
-                    //         isThreeByteMajorScript(script) : !isTwoByteMinorScript(script);
-                    if (script != UCD_Types.COMMON_SCRIPT &&
-                            script != UCD_Types.INHERITED_SCRIPT &&
-                            isThreeByteScript) {
-                        threeByteSymbolPrimaries.set(primary);
-                        threeByteChars.addAll(ch2.toString());
+                    final byte cat = Fractional.getFixedCategory(ch);
+                    if (cat == UCD_Types.OTHER_SYMBOL ||
+                            cat == UCD_Types.MATH_SYMBOL ||
+                            cat == UCD_Types.MODIFIER_SYMBOL ||
+                            (script != UCD_Types.COMMON_SCRIPT &&
+                                    script != UCD_Types.INHERITED_SCRIPT &&
+                                    !getOrCreateOptionsForScript(script).defaultTwoBytePunctuation)) {
+                        // Note: We do not test reorderCode == ReorderCodes.SYMBOL
+                        // because that includes Lm etc.
+                        props.useThreeBytePrimary = true;
                     }
                 }
-                continue;
+                script = (short) reorderCode;
             }
 
-            if (script == UCD_Types.COMMON_SCRIPT || script == UCD_Types.INHERITED_SCRIPT || script == UCD_Types.Unknown_Script) {
-                continue;
-            }
-            // Script aliases: Make sure we get only one script boundary.
-            if (script == UCD_Types.Meroitic_Hieroglyphs) {
-                script = UCD_Types.Meroitic_Cursive;
-            } else if (script == UCD_Types.KATAKANA_SCRIPT) {
-                script = UCD_Types.HIRAGANA_SCRIPT;
-            }
-
-            // get least primary for script
-            if (groupFirstPrimary[script] == 0 || groupFirstPrimary[script] > primary) {
-                groupFirstPrimary[script] = primary;
-                groupChar[script] = ch;
-            }
-        }
-
-        System.out.println("3-byte primaries" + threeByteChars.toPattern(false));
-
-        // capture in order the ranges that are major vs minor
-        final TreeMap<Integer, Row.R2<Boolean, Integer>> majorPrimary =
-                new TreeMap<Integer, Row.R2<Boolean, Integer>>();
-
-        // set bumps
-        for (int reorderCode = 0; reorderCode < ReorderCodes.LIMIT; ++reorderCode) {
-            final int primary = groupFirstPrimary[reorderCode];
-            if (primary > 0) {
-                final boolean isMajor = MAJOR_SCRIPTS.get(reorderCode);
-                majorPrimary.put(primary, Row.of(isMajor, reorderCode));
-                final PrimaryToFractional props = getOrCreateProps(primary);
-                props.startsGroup = isMajor;
-                props.reorderCodeIfFirst = reorderCode;
-                if (isMajor) {
-                    System.out.println("Bumps:\t" + Utility.hex(primary) + " "
-                            + ReorderCodes.getName(reorderCode) + " "
-                            + Utility.hex(groupChar[reorderCode]) + " "
-                            + Default.ucd().getName(groupChar[reorderCode]));
+            if (script == UCD_Types.COMMON_SCRIPT || script == UCD_Types.INHERITED_SCRIPT ||
+                    script == UCD_Types.Unknown_Script) {
+                // Not a real script, keep current options.
+            } else if (script != options.reorderCode) {
+                ScriptOptions newOptions = getOrCreateOptionsForScript(script);
+                if (newOptions.firstPrimary == 0) {
+                    newOptions.firstPrimary = primary;
+                    props.newByte = options.endsByte || newOptions.beginsByte;
+                    System.out.println(
+                            (props.newByte ? "New primary lead byte:\t" : "Continue lead byte:   \t")
+                            + Utility.hex(primary) + " "
+                            + ReorderCodes.getName(script) + " "
+                            + Utility.hex(ch) + " "
+                            + Default.ucd().getName(ch));
+                    options = newOptions;
                 }
             }
+            props.options = options;
         }
+        System.out.println("Last UCA primary:     \t" + Utility.hex(uca.getLastRegularPrimary()));
 
-        // now add ranges of primaries that are major, for selecting 2 byte vs 3 byte forms.
-        int lastPrimary = 1;
-        boolean lastMajor = true;
-        int lastScript = UCD_Types.COMMON_SCRIPT;
-        for (final Entry<Integer, Row.R2<Boolean, Integer>> majorPrimaryEntry : majorPrimary.entrySet()) {
-            final int primary = majorPrimaryEntry.getKey();
-            final boolean major = majorPrimaryEntry.getValue().get0();
-            final int script = majorPrimaryEntry.getValue().get1();
-            addMajorPrimaries(lastPrimary, primary-1, lastMajor, lastScript);
-            lastPrimary = primary;
-            lastMajor = major;
-            lastScript = script;
-        }
-        final int veryLastUCAPrimary = primarySet.size() - 1;
-        addMajorPrimaries(lastPrimary, veryLastUCAPrimary, lastMajor, lastScript);
-        for (int i = threeByteSymbolPrimaries.nextSetBit(0);
-                i >= 0;
-                i = threeByteSymbolPrimaries.nextSetBit(i + 1)) {
-            final PrimaryToFractional props = getProps(i);
-            if (props != null) {
-                props.useTwoBytePrimary = false;
-            }
-        }
+        PrimaryToFractional hanProps = primaryProps[HAN_INDEX] = new PrimaryToFractional();
+        hanProps.options = getOptionsForScript(UCD_Types.HAN_SCRIPT);
+        hanProps.options.firstPrimary = UCA_Types.UNSUPPORTED_CJK_BASE;
+        hanProps.newByte = true;
 
         final char[][] singlePairs = {
                 {'a','z'}, {' ', ' '},
@@ -1064,67 +1103,6 @@ public final class PrimariesToFractional {
         while (twoByteIter.next()) {
             setTwoBytePrimaryFor(twoByteIter.codepoint);
         }
-    }
-
-    private static boolean isThreeByteMajorScript(int script) {
-        // Some scripts are "major" (and start reordering groups)
-        // but have too many primaries for two bytes with a single lead byte.
-        // If they are uncased, that is, they have mostly common secondary/tertiary weights,
-        // then they lend themselves to using 3-byte primaries because
-        // their CEs can be stored compactly as long-primary CEs,
-        // and the then-possible primary sort key compression makes sort keys hardly longer.
-        return
-                // We cherry-pick the main Cyrillic letters for two-byte primaries.
-                script == UCD_Types.CYRILLIC_SCRIPT ||
-                // We cherry-pick the main Arabic letters for two-byte primaries.
-                script == UCD_Types.ARABIC_SCRIPT ||
-                // We cherry-pick the conjoining Jamo L/V/T for two-byte primaries.
-                script == UCD_Types.HANGUL_SCRIPT ||
-                // We cherry-pick those Bopomofo letters for two-byte primaries
-                // that have secondary or tertiary variants.
-                script == UCD_Types.BOPOMOFO_SCRIPT ||
-                script == UCD_Types.ETHIOPIC_SCRIPT ||
-                script == UCD_Types.MYANMAR_SCRIPT ||
-                // "Major" just to give Cyrillic a whole lead byte.
-                script == UCD_Types.GLAGOLITIC ||
-                // "Major" just to give Arabic a whole lead byte.
-                script == UCD_Types.SYRIAC_SCRIPT ||
-                script == UCD_Types.CHEROKEE_SCRIPT;
-    }
-
-    private static boolean isTwoByteMinorScript(int script) {
-        // Coptic is not a "major" script,
-        // but it fits into the Greek lead byte even with 2-byte primaries.
-        // This is desirable because Coptic is a cased script,
-        // and the CEs for the uppercase characters cannot be stored as "long primary" CEs.
-        // (They would have to use less efficient storage.)
-        //
-        // Note: We could also do this for Deseret:
-        // It is also cased and has relatively few primaries,
-        // but making them two-byte primaries would take up too much space in its reordering group
-        // and would push the group to two lead bytes and to not being compressible any more.
-        // Not worth it.
-        // At least *lowercase* Deseret sorts in code point order
-        // and can therefore be stored as a compact range.
-        return
-                script == ReorderCodes.PUNCTUATION ||
-                script == ReorderCodes.CURRENCY ||
-                // "Minor" just to keep it in the lead byte after Cyrillic.
-                script == UCD_Types.GEORGIAN_SCRIPT ||
-                // Recommended script, few users but fits with two bytes.
-                script == UCD_Types.THAANA_SCRIPT ||
-                script == UCD_Types.KHMER_SCRIPT ||
-                script == UCD_Types.COPTIC;
-    }
-
-    private void addMajorPrimaries(int startPrimary, int endPrimary, boolean isMajor, int script) {
-        if (isMajor ? !isThreeByteMajorScript(script) : isTwoByteMinorScript(script)) {
-            for (int p = startPrimary; p <= endPrimary; ++p) {
-                getOrCreateProps(p).useTwoBytePrimary = true;
-            }
-        }
-        System.out.println("Major:\t" + isMajor + "\t" + UCD.getScriptID_fromIndex((byte)script)
-                + "\t" + Utility.hex(startPrimary) + ".." + Utility.hex(endPrimary));
     }
 
     private void setSingleBytePrimaryFor(char ch) {

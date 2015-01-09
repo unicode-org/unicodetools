@@ -26,6 +26,8 @@ public class ReorderCodes {
     public static final int REORDER_RESERVED_BEFORE_LATIN = 0x106;
     public static final int REORDER_RESERVED_AFTER_LATIN = 0x107;
 
+    public static final int FULL_LIMIT = 0x108;
+
     private static final String[] SPECIAL_NAMES = {
         "SPACE", "PUNCTUATION", "SYMBOL", "CURRENCY", "DIGIT", null,
         "REORDER_RESERVED_BEFORE_LATIN", "REORDER_RESERVED_AFTER_LATIN"
@@ -86,7 +88,7 @@ public class ReorderCodes {
 
     public static final String getShortName(int reorderCode) {
         if (reorderCode < FIRST) {
-            return UCD.getScriptID_fromIndex((byte) reorderCode, UCD_Types.SHORT);
+            return UCD.getScriptID_fromIndex((short) reorderCode, UCD_Types.SHORT);
         } else {
             return SPECIAL_NAMES[reorderCode - FIRST];
         }
@@ -101,7 +103,7 @@ public class ReorderCodes {
      */
     public static final String getSampleCharacter(int reorderCode) {
         if (reorderCode < FIRST) {
-            final String scriptName = UCD.getScriptID_fromIndex((byte) reorderCode, UCD_Types.SHORT);
+            final String scriptName = UCD.getScriptID_fromIndex((short) reorderCode, UCD_Types.SHORT);
             final ScriptMetadata.Info info = ScriptMetadata.getInfo(scriptName);
             return info.sampleChar;
         } else {

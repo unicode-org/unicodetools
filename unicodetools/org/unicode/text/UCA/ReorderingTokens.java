@@ -62,7 +62,7 @@ class ReorderingTokens {
                 reorderingToken.add("Hira", 1);
                 reorderingToken.add("Hrkt", 1);
             }
-            reorderingToken.add(UCD.getScriptID_fromIndex((byte)script, UCD_Types.SHORT), 1);
+            reorderingToken.add(UCD.getScriptID_fromIndex((short) script, UCD_Types.SHORT), 1);
             // Add script aliases Hans & Hant after Hani.
             if (script == UCD_Types.HAN_SCRIPT && !reorderingToken.containsKey("Hans")) {
                 reorderingToken.add("Hans", 1);
@@ -98,7 +98,7 @@ class ReorderingTokens {
         //        }
         if (!(script == UCD_Types.Unknown_Script || script == UCD_Types.COMMON_SCRIPT)
                 && (cat == UCD_Types.OTHER_LETTER || cat == UCD_Types.UPPERCASE_LETTER || cat == UCD_Types.LOWERCASE_LETTER || cat == UCD_Types.TITLECASE_LETTER)) {
-            result = (UCD.getScriptID_fromIndex((byte)script, UCD_Types.SHORT));
+            result = (UCD.getScriptID_fromIndex((short) script, UCD_Types.SHORT));
         } else {
             result = (UCD.getCategoryID_fromIndex(cat, UCD_Types.SHORT));
         }
