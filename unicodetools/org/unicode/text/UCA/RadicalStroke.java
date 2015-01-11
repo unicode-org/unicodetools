@@ -61,7 +61,9 @@ final class RadicalStroke {
             assert c >= 0;
             int extension = (0x4E00 <= c && c <= 0xFFFF) ? 0 : 1;  // see UCA implicit weights BASE FB40 vs. FB80
             String rs = rsUnicode.get(c);
-            assert rs != null;
+            if (rs == null) {
+                rs = "999.0";
+            }
             // Use only the first radical-stroke value if there are multiple.
             int delim = rs.indexOf(' ');
             if (delim < 0) {
@@ -256,6 +258,7 @@ final class RadicalStroke {
         // cjkr maps from each radical code point to the radical string.
         // We invert it and return a map from radical to the two code points.
         Map<String, String> map = new TreeMap<String, String>();
+        map.put("999", "??");  // dummy entry for characters without RS data
         for (UnicodeMap.EntryRange<String> range : cjkr.entryRanges()) {
             String radicalString = range.value;
             if (radicalString == null) {
