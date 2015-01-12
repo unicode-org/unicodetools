@@ -16,14 +16,6 @@ import com.ibm.icu.text.UnicodeSetIterator;
  * @since 2013-jan-02 (mostly pulled out of {@link FractionalUCA})
  */
 public final class PrimariesToFractional {
-    /**
-     * We can create larger gaps at the beginning and end of each script.
-     * However, as of CLDR 25, there is no particular need for tailoring
-     * more characters there than "in the middle" of scripts.
-     */
-    private static final boolean EXTRA_SCRIPT_GAP = false;
-    // TODO: delete EXTRA_SCRIPT_GAP & logic for it?
-
     private final ScriptOptions[] scriptOptions = new ScriptOptions[ReorderCodes.FULL_LIMIT];
     private final ScriptOptions ignorableOptions = new ScriptOptions(-1);
 
@@ -147,6 +139,9 @@ public final class PrimariesToFractional {
          * {@link PrimaryToFractional} does not set or use this reference at all.
          * We just avoid yet another map from primary weights to values,
          * and another map lookup for the same primary.
+         *
+         * <p>This is null until there is a non-neutral secondary or tertiary weight
+         * for this primary.
          */
         public SecTerToFractional secTerToFractional;
 
@@ -246,11 +241,6 @@ public final class PrimariesToFractional {
          * for tailoring of at least 4 two-byte primaries or more than 1000 three-byte primaries.
          */
         private static final int GAP2_FOR_SINGLE = 4;
-        /**
-         * Increment byte2 a little more at major-script boundaries,
-         * for tailoring of at least 4 two-byte primaries or more than 1000 three-byte primaries.
-         */
-        private static final int GAP2_FOR_MAJOR_SCRIPT = EXTRA_SCRIPT_GAP ? 4 : 1;
 
         /**
          * Increment byte3 with a tailoring gap.
@@ -261,16 +251,11 @@ public final class PrimariesToFractional {
          * <p>When the gap is too small, then only a small number of characters can be tailored
          * (efficiently or at all) between root collation weights.
          *
-         * <p>We can sometimes split reordering groups,
-         * which then allows more weights per group lead byte,
-         * but we normally want to start a group with a "major" script and few additional scripts
-         * naturally qualify as "major".
+         * <p>We can adjust in the {@link PrimariesToFractional#PrimariesToFractional(UCA)}
+         * constructor which script starts a new lead byte.
+         * See the comments there for criteria.
          */
         private static final int GAP3 = 6;
-        private static final int GAP3_FOR_MINOR_SCRIPT = EXTRA_SCRIPT_GAP ? 40 : GAP3;
-
-        private ScriptOptions options;
-        // TODO: tweak gap3 per script etc.
 
         private int minByte2 = MIN2_UNCOMPRESSED;
         private int maxByte2 = MAX2_UNCOMPRESSED;
@@ -283,16 +268,6 @@ public final class PrimariesToFractional {
         private int byte3;
         private int lastByteLength = 1;
         private boolean compressibleLeadByte;
-        /**
-         * The first script in each group is a "major" script and gets a somewhat larger gap
-         * before its first primary and after its last primary.
-         */
-        private boolean firstScriptInGroup;
-        /**
-         * Leave a somewhat larger gap between the special script-first primary
-         * and the first real letter primary.
-         */
-        private boolean firstPrimaryInScript;
 
         private int numErrors = 0;
 
@@ -300,21 +275,29 @@ public final class PrimariesToFractional {
             return (byte1 << 16) + (byte2 << 8) + byte3;
         }
 
+        /**
+         * @return a three-byte weight at the start of a new primary lead byte
+         */
         public int startNewByte(ScriptOptions options) {
-            this.options = options;
             final int oByte1 = byte1;
             final int oByte2 = byte2;
 
             int inc1;
             if (lastByteLength == 1) {
-                // Single-byte gap of 1 from a single-byte weight to the new reordering group.
+                // Single-byte gap of 1 from a single-byte weight to the new lead byte.
                 inc1 = 2;
-            } else if ((byte2 + GAP2_FOR_SINGLE) <= maxByte2) {
-                // End-of-group two-byte-weight gap.
-                inc1 = 1;
-            } else {
-                // The two-byte-weight gap would be too small.
-                inc1 = 2;
+            } else if (lastByteLength == 2) {
+                // At least a two-byte gap after a double.
+                inc1 = byte2 < maxByte2 ? 1 : 2;
+            } else /* lastByteLength == 3 */ {
+                // At least a normal three-byte gap.
+                inc1 = byte2 < maxByte2 || (byte3 + GAP3) <= 0xff ? 1 : 2;
+            }
+            if(inc1 != 1 && compressibleLeadByte) {
+                ++numErrors;
+                System.err.println(String.format(
+                        "error in class PrimaryWeight: overflow of compressible lead byte %02X",
+                        oByte1 & 0xff));
             }
             addTo1(inc1);
 
@@ -328,12 +311,15 @@ public final class PrimariesToFractional {
             minByte2 = newMinByte2;
             maxByte2 = compressibleLeadByte ? MAX2_COMPRESSED : MAX2_UNCOMPRESSED;;
             lastByteLength = 3;
-            firstScriptInGroup = firstPrimaryInScript = true;
             return options.scriptFirstFractional = getIntValue();
         }
 
+        /**
+         * @return a three-byte weight at the start of a two-byte prefix
+         */
         public int startNewScript(ScriptOptions options) {
-            this.options = options;
+            assertTrue(compressibleLeadByte == options.compressible);
+
             final int oByte1 = byte1;
             final int oByte2 = byte2;
 
@@ -341,39 +327,25 @@ public final class PrimariesToFractional {
                 // Larger two-byte gap after a single.
                 addTo1(1);
                 byte2 = minByte2 + GAP2_FOR_SINGLE;
-                byte3 = MIN_BYTE;
-            } else if (firstScriptInGroup) {
-                // End-of-major-script two-byte-weight gap.
-                addTo2(GAP2_FOR_MAJOR_SCRIPT + 1);
-                byte3 = MIN_BYTE;
             } else if (lastByteLength == 2) {
                 // At least a two-byte gap after a double.
                 addTo2(2);
-                byte3 = MIN_BYTE;
             } else /* lastByteLength == 3 */ {
-                addTo3(GAP3_FOR_MINOR_SCRIPT + 1);
-                // Round up to the next two-byte primary.
-                // FractionalUCA has groups and scripts starting at least on two-byte boundaries.
-                if (byte3 != MIN_BYTE) {
-                    addTo2(1);
-                    byte3 = MIN_BYTE;
-                }
+                // At least a normal three-byte gap.
+                addTo2((byte3 + GAP3) <= 0xff ? 1 : 2);
             }
+            // FractionalUCA has groups and scripts starting at least on two-byte boundaries.
+            byte3 = MIN_BYTE;
 
             check(oByte1, oByte2, 3, false);
 
             lastByteLength = 3;
-            firstScriptInGroup = false;
-            firstPrimaryInScript = true;
             return options.scriptFirstFractional = getIntValue();
         }
 
         public int next(int newByteLength) {
             final int oByte1 = byte1;
             final int oByte2 = byte2;
-
-            // Script-first primaries are three-byters.
-            assert !firstPrimaryInScript || lastByteLength == 3;
 
             switch (lastByteLength) {
             case 1:
@@ -421,28 +393,13 @@ public final class PrimariesToFractional {
                     byte2 = byte3 = 0;
                     break;
                 case 2:
-                    if (firstPrimaryInScript && firstScriptInGroup) {
-                        // Larger two-byte gap before the first letter of a major script.
-                        addTo2(GAP2_FOR_MAJOR_SCRIPT + 1);
-                    } else {
-                        // At least a two-byte gap before a double.
-                        addTo2(2);
-                    }
+                    // At least a two-byte gap before a double.
+                    addTo2(2);
                     byte3 = 0;
                     break;
                 case 3:
-                    if (firstPrimaryInScript) {
-                        if (firstScriptInGroup) {
-                            // Larger two-byte gap before the first letter of a major script.
-                            addTo2(GAP2_FOR_MAJOR_SCRIPT);
-                        } else {
-                            // Larger three-byte gap before the first letter of a minor script.
-                            addTo3(GAP3_FOR_MINOR_SCRIPT + 1);
-                        }
-                    } else {
-                        // Normal three-byte gap.
-                        addTo3(GAP3 + 1);
-                    }
+                    // Normal three-byte gap.
+                    addTo3(GAP3 + 1);
                     break;
                 }
                 break;
@@ -451,7 +408,6 @@ public final class PrimariesToFractional {
             check(oByte1, oByte2, newByteLength, false);
 
             lastByteLength = newByteLength;
-            firstPrimaryInScript = false;
             return getIntValue();
         }
 
@@ -827,12 +783,9 @@ public final class PrimariesToFractional {
             }
 
             int currentByteLength = props.getFractionalLength();
-            if (currentByteLength == 3 &&
-                    ((fractionalPrimary.firstPrimaryInScript && EXTRA_SCRIPT_GAP) ||
-                            fractionalPrimary.lastByteLength <= 2)) {
+            if (currentByteLength == 3 && fractionalPrimary.lastByteLength <= 2) {
                 // We slightly optimize the assignment of primary weights:
                 // If a 3-byte primary is surrounded by one-or-two-byte primaries,
-                // or script boundaries,
                 // then we can shorten the middle one to two bytes as well,
                 // because we would generate at least a two-byte gap before and after anyway.
                 //
@@ -847,14 +800,12 @@ public final class PrimariesToFractional {
                 // We do not want to auto-shorten the first-script primary weights
                 // because they are essentially never used,
                 // and we know they fit into long-primary CEs.
-                // (They are generated with the next() call above,
+                // (They are generated with special calls above,
                 // so we need not handle them specially here.)
                 final int nextPrimary = up.nextPrimary;
                 final PrimaryToFractional nextProps = getProps(nextPrimary);
                 if (0 <= nextPrimary && nextPrimary < UCA_Types.UNSUPPORTED_BASE &&
-                        nextProps != null &&
-                        ((nextProps.isFirstForScript(nextPrimary) && EXTRA_SCRIPT_GAP) ||
-                        nextProps.getFractionalLength() <= 2)) {
+                        nextProps != null && nextProps.getFractionalLength() <= 2) {
                     currentByteLength = 2;
                 }
             }
