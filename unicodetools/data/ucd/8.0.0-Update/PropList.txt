@@ -1053,7 +1053,7 @@ FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND
 # ================================================
 
 3400..4DB5    ; Unified_Ideograph # Lo [6582] CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DB5
-4E00..9FCC    ; Unified_Ideograph # Lo [20941] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FCC
+4E00..9FD5    ; Unified_Ideograph # Lo [??] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FCC
 FA0E..FA0F    ; Unified_Ideograph # Lo   [2] CJK COMPATIBILITY IDEOGRAPH-FA0E..CJK COMPATIBILITY IDEOGRAPH-FA0F
 FA11          ; Unified_Ideograph # Lo       CJK COMPATIBILITY IDEOGRAPH-FA11
 FA13..FA14    ; Unified_Ideograph # Lo   [2] CJK COMPATIBILITY IDEOGRAPH-FA13..CJK COMPATIBILITY IDEOGRAPH-FA14
@@ -1064,8 +1064,9 @@ FA27..FA29    ; Unified_Ideograph # Lo   [3] CJK COMPATIBILITY IDEOGRAPH-FA27..C
 20000..2A6D6  ; Unified_Ideograph # Lo [42711] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A700..2B734  ; Unified_Ideograph # Lo [4149] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B740..2B81D  ; Unified_Ideograph # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
+2B820..2CEA1  ; Unified_Ideograph # CJK Ideograph Extension E
 
-# Total code points: 74617
+# Total code points: ??
 
 # ================================================
 
@@ -1138,6 +1139,8 @@ E0020..E007F  ; Deprecated # Cf  [96] TAG SPACE..CANCEL TAG
 
 0E40..0E44    ; Logical_Order_Exception # Lo   [5] THAI CHARACTER SARA E..THAI CHARACTER SARA AI MAIMALAI
 0EC0..0EC4    ; Logical_Order_Exception # Lo   [5] LAO VOWEL SIGN E..LAO VOWEL SIGN AI
+19B5..19B7    ; Logical_Order_Exception # New Tai Lue
+19BA          ; Logical_Order_Exception # New Tai Lue
 AAB5..AAB6    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL E..TAI VIET VOWEL O
 AAB9          ; Logical_Order_Exception # Lo       TAI VIET VOWEL UEA
 AABB..AABC    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL AY
