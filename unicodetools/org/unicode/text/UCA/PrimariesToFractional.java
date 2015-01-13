@@ -59,7 +59,7 @@ public final class PrimariesToFractional {
         boolean compressible = true;
         boolean defaultTwoBytePrimaries;
         boolean defaultTwoBytePunctuation;
-        boolean twoBytesIfVariants;
+        boolean twoBytesIfVariants = true;
 
         /** First UCA primary weight for this script. */
         int firstPrimary;
@@ -102,8 +102,8 @@ public final class PrimariesToFractional {
             defaultTwoBytePrimaries = defaultTwoBytePunctuation = true;
             return this;
         }
-        ScriptOptions twoBytePrimariesIfVariants() {
-            twoBytesIfVariants = true;
+        ScriptOptions noTwoBytePrimariesIfVariants() {
+            twoBytesIfVariants = false;
             return this;
         }
         ScriptOptions twoBytePunctuation() {
@@ -302,9 +302,11 @@ public final class PrimariesToFractional {
             }
             if(inc1 != 1 && compressibleLeadByte) {
                 ++numErrors;
-                System.err.println(String.format(
-                        "error in class PrimaryWeight: overflow of compressible lead byte %02X",
-                        oByte1 & 0xff));
+                System.out.flush();
+                System.err.printf(
+                        "error in class PrimaryWeight: overflow of compressible lead byte %02X\n",
+                        oByte1 & 0xff);
+                System.err.flush();
             }
             addTo1(inc1);
 
@@ -459,9 +461,11 @@ public final class PrimariesToFractional {
                 // or split their group or make it not compressible.
                 if (compressibleLeadByte && byte1 != oByte1) {
                     ++numErrors;
-                    System.err.println(String.format(
-                            "error in class PrimaryWeight: overflow of compressible lead byte %02X",
-                            oByte1 & 0xff));
+                    System.out.flush();
+                    System.err.printf(
+                            "error in class PrimaryWeight: overflow of compressible lead byte %02X\n",
+                            oByte1 & 0xff);
+                    System.err.flush();
                 }
             }
         }
@@ -573,15 +577,17 @@ public final class PrimariesToFractional {
         // Not a Recommended Script but cased, and easily fits into the same lead byte as Greek.
         setOptionsForScript(UCD_Types.COPTIC).twoBytePrimaries().threeBytePunctuation();
         // Cyrillic uses one byte, with two-byte primaries for common characters.
-        setOptionsForScript(UCD_Types.CYRILLIC_SCRIPT).wholeByte().twoBytePunctuation();
-        // Recommended Script, and cased.
-        setOptionsForScript(UCD_Types.GEORGIAN_SCRIPT).twoBytePrimaries();
+        setOptionsForScript(UCD_Types.CYRILLIC_SCRIPT).wholeByte()
+                .noTwoBytePrimariesIfVariants().twoBytePunctuation();
+        // Recommended Script, and cased; avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.GEORGIAN_SCRIPT).newByte().twoBytePrimaries();
         // Recommended Script, and cased. Does not fit in a lead byte with Georgian.
         setOptionsForScript(UCD_Types.ARMENIAN_SCRIPT).newByte().twoBytePrimaries();
         // Recommended Script, few primaries, with active computer/internet usage.
         setOptionsForScript(UCD_Types.HEBREW_SCRIPT).newByte().twoBytePrimaries();
         // Arabic uses one byte, with two-byte primaries for common characters.
-        setOptionsForScript(UCD_Types.ARABIC_SCRIPT).wholeByte().twoBytePunctuation();
+        setOptionsForScript(UCD_Types.ARABIC_SCRIPT).wholeByte()
+                .noTwoBytePrimariesIfVariants().twoBytePunctuation();
         // Recommended Script, few primaries.
         setOptionsForScript(UCD_Types.THAANA_SCRIPT).twoBytePrimaries();
         // Ethiopic is a Recommended Script but needs three-byte primaries so that
@@ -608,26 +614,32 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.LAO_SCRIPT).newByte().twoBytePrimaries();
         // Recommended Script.
         setOptionsForScript(UCD_Types.TIBETAN_SCRIPT).newByte().twoBytePrimaries();
+        // Limited Use Script, has tertiary variants, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Batak).newByte();
         // Myanmar is a Recommended Script but needs three-byte primaries so that
         // they fit into one compressible lead byte.
-        setOptionsForScript(UCD_Types.MYANMAR_SCRIPT).newByte().twoBytePunctuation();
+        setOptionsForScript(UCD_Types.MYANMAR_SCRIPT).twoBytePunctuation();
         // Recommended Script.
         setOptionsForScript(UCD_Types.KHMER_SCRIPT).twoBytePrimaries();
-        // Limited Use Script, but the previous lead byte is full.
-        // TODO: revisit boundary; Cher is cased in Unicode 8.
-        setOptionsForScript(UCD_Types.CHEROKEE_SCRIPT).newByte();
+        // Aspirational Use Script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.MONGOLIAN_SCRIPT).newByte();
+        // Ancient script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.RUNIC_SCRIPT).newByte();
+        // Limited Use Script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.Vai).newByte();
         // Hangul uses one byte, with two-byte primaries for conjoining Jamo L/V/T.
-        setOptionsForScript(UCD_Types.HANGUL_SCRIPT).wholeByte().twoBytePunctuation();
+        setOptionsForScript(UCD_Types.HANGUL_SCRIPT).wholeByte()
+                .noTwoBytePrimariesIfVariants().twoBytePunctuation();
         // Kana uses one byte.
         setOptionsForScripts(
                 UCD_Types.HIRAGANA_SCRIPT, UCD_Types.KATAKANA_SCRIPT, UCD_Types.KATAKANA_OR_HIRAGANA)
                 .wholeByte().twoBytePrimaries();
-        // Recommended Script, uses two-byte primaries for characters with variants.
-        // TODO: maybe just .twoBytePrimaries() and another new byte for following scripts
-        setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte()
-                .twoBytePrimariesIfVariants().twoBytePunctuation();
-        // Just register the scripts as aliases.
-        setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
+        // Recommended Script, some characters have variants.
+        setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePrimaries();
+        // Minor script, avoid lead byte overflow.
+        setOptionsForScript(UCD_Types.DESERET_SCRIPT).newByte();
+        // Register the scripts as aliases, avoid lead byte overflow.
+        setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs).newByte();
         // Han uses many bytes, so that tailoring tens of thousands of characters
         // can use many two-byte primaries.
         setOptionsForScript(UCD_Types.HAN_SCRIPT).wholeByte().notCompressible().twoBytePunctuation();
@@ -732,9 +744,9 @@ public final class PrimariesToFractional {
                     final String name = ReorderCodes.getName(options.reorderCode);
                     groupInfo.setLength(0);
                     groupInfo.append(name);
-                    System.out.println(String.format(
-                            "[%s]  # %s first primary",
-                            Fractional.hexBytes(firstFractional), name));
+                    System.out.printf(
+                            "[%s]  # %s first primary\n",
+                            Fractional.hexBytes(firstFractional), name);
                     // Create a one-byte gap, to reserve two bytes total for this range.
                     fractionalPrimary.byte1 += 1;
                 }
@@ -763,11 +775,11 @@ public final class PrimariesToFractional {
                         compressibleBytes.set(leadByte);
                         groupComment = groupComment + " (compressible)";
                     }
-                    System.out.println(String.format(
-                            "[%s]  # %s first primary%s",
+                    System.out.printf(
+                            "[%s]  # %s first primary%s\n",
                             Fractional.hexBytes(firstFractional),
                             ReorderCodes.getName(reorderCode),
-                            groupComment));
+                            groupComment);
 
                     if (reorderCode == ReorderCodes.DIGIT) {
                         numericFractionalPrimary = fractionalPrimary.next(1);
@@ -783,10 +795,10 @@ public final class PrimariesToFractional {
                     if (reorderCode == UCD_Types.Meroitic_Cursive) {
                         groupInfo.append(" Mero");  // script aliases
                     }
-                    System.out.println(String.format(
-                            "[%s]  # %s first primary",
+                    System.out.printf(
+                            "[%s]  # %s first primary\n",
                             Fractional.hexBytes(firstFractional),
-                            ReorderCodes.getName(reorderCode)));
+                            ReorderCodes.getName(reorderCode));
                 }
                 ++numPrimaries;
             }
@@ -811,10 +823,14 @@ public final class PrimariesToFractional {
                 // and we know they fit into long-primary CEs.
                 // (They are generated with special calls above,
                 // so we need not handle them specially here.)
+                //
+                // We do not want to auto-shorten just before the first-script primary weights
+                // because that could increase the gap in between.
                 final int nextPrimary = up.nextPrimary;
                 final PrimaryToFractional nextProps = getProps(nextPrimary);
                 if (0 <= nextPrimary && nextPrimary < UCA_Types.UNSUPPORTED_BASE &&
-                        nextProps != null && nextProps.getFractionalLength() <= 2) {
+                        nextProps != null && nextProps.getFractionalLength() <= 2 &&
+                        !nextProps.isFirstForScript(nextPrimary)) {
                     currentByteLength = 2;
                 }
             }
@@ -848,11 +864,11 @@ public final class PrimariesToFractional {
 
         // Record Hani.
         hanProps.options.scriptFirstFractional = firstFractional;
-        System.out.println(String.format(
-                "[%s]  # %s first primary%s",
+        System.out.printf(
+                "[%s]  # %s first primary%s\n",
                 Fractional.hexBytes(firstFractional),
                 ReorderCodes.getName(UCD_Types.HAN_SCRIPT),
-                " starts reordering group"));
+                " starts reordering group");
 
         leadByte = Fractional.IMPLICIT_BASE_BYTE;
         hanProps.fractionalPrimary = leadByte << 16;
@@ -886,11 +902,13 @@ public final class PrimariesToFractional {
                 // Was throw new IllegalArgumentException(...)
                 // but PrimaryWeight also records an error and will throw an exception at the end,
                 // after printing error messages.
+                System.out.flush();
                 System.err.println(
                         "reordering group {" + groupInfo +
                         "} marked for compression but uses more than one lead byte " +
                         Utility.hex(b, 2) + ".." +
                         Utility.hex(limit - 1, 2));
+                System.err.flush();
                 compress = false;
             }
         } else if (canCompress) {
