@@ -1083,23 +1083,40 @@ public final class PrimariesToFractional {
                 "[" +
                         // Cyrillic main exemplar characters from CLDR 22,
                         // for common locales plus Mongolian.
-                        // TODO: We could make this dynamic, using CLDR's tools to fetch this data.
-                        // TODO: Consider adding Cyrillic auxiliary exemplar characters.
+                        // We could make this dynamic, using CLDR's tools to fetch this data.
+                        // Consider adding Cyrillic auxiliary exemplar characters.
                         "\u0430-\u044F\u0451-\u045C\u045E-\u045F\u0491\u0493\u0495\u049B\u049D" +
                         "\u04A3\u04A5\u04AF\u04B1\u04B3\u04B7\u04B9\u04BB\u04CA" +
                         "\u04D5\u04D9\u04E3\u04E9\u04EF" +
+                        // Try to mostly fill the Cyrillic lead byte.
+                        // Most of Cyrillic & Cyrillic Supplement
+                        // but not archaic/historic characters.
+                        "\u0400-\u045F\u048A-\u04F9\u0500-\u050D" +
+
                         // Arabic main exemplar characters from CLDR 22,
                         // except for primary ignorable characters.
                         "\u0621-\u063A\u0641-\u064A\u066E\u0672\u0679\u067C\u067E" +
                         "\u0681\u0685\u0686\u0688\u0689\u0691\u0693\u0696\u0698\u069A" +
                         "\u06A9\u06AB\u06AF\u06BA\u06BC\u06BE\u06C1\u06C2\u06C4\u06C7\u06C9\u06CC\u06CD" +
                         "\u06D0\u06D2" +
+                        // Try to mostly fill the Arabic lead byte.
+                        // Some of the Unicode 1.1 Extended Arabic letters.
+                        "\u0674-\u06A0" +
                         // Jamo L, V, T
                         "\u1100-\u1112\u1161-\u1175\u11A8-\u11C2" +
+
+                        // Try to mostly fill the Hangul lead byte.
+                        // Some old Hangul letters, mostly with variants.
+                        // Old initial consonants
+                        "\u1114-\u1115\u111A-\u1123\u1127-\u112F\u1157-\u1159" +
+                        // Old medial vowels
+                        "\u1184-\u1188\u1191-\u1194\u119E-\u11A1" +
+                        // Old final consonants
+                        "\u11C7\u11C8\u11CC-\u11CE" +
                 "]");
         final UnicodeSetIterator twoByteIter = new UnicodeSetIterator(twoByteChars);
         while (twoByteIter.next()) {
-            setTwoBytePrimaryFor(twoByteIter.codepoint);
+            setTwoBytePrimaryFor(firstScriptPrimary, twoByteIter.codepoint);
         }
     }
 
@@ -1109,9 +1126,14 @@ public final class PrimariesToFractional {
         getOrCreateProps(firstPrimary).useSingleBytePrimary = true;
     }
 
-    private void setTwoBytePrimaryFor(int ch) {
+    private void setTwoBytePrimaryFor(int minPrimary, int ch) {
         final CEList ces = uca.getCEList(UTF16.valueOf(ch), true);
-        final int firstPrimary = CEList.getPrimary(ces.at(0));
-        getOrCreateProps(firstPrimary).useTwoBytePrimary = true;
+        if (ces != null && ces.length() != 0) {
+            final int firstPrimary = CEList.getPrimary(ces.at(0));
+            if (minPrimary <= firstPrimary && firstPrimary < UCA_Types.UNSUPPORTED_BASE) {
+                // non-Han letter
+                getOrCreateProps(firstPrimary).useTwoBytePrimary = true;
+            }
+        }
     }
 }
