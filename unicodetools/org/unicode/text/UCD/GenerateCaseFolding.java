@@ -53,19 +53,19 @@ public class GenerateCaseFolding implements UCD_Types {
         System.out.println("Writing Log: " + "CaseFoldingLog" + UnicodeDataFile.getFileSuffix(true));
 
         System.out.println("Making Full Data");
-        final Map fullData = getCaseFolding(true, NF_CLOSURE, "");
+        final Map<String, String> fullData = getCaseFolding(true, NF_CLOSURE, "");
         Utility.fixDot();
 
         System.out.println("Making Simple Data");
-        final Map simpleData = getCaseFolding(false, NF_CLOSURE, "");
+        final Map<String, String> simpleData = getCaseFolding(false, NF_CLOSURE, "");
         // write the data
 
         System.out.println("Making Turkish Full Data");
-        final Map fullDataTurkish = getCaseFolding(true, NF_CLOSURE, "tr");
+        final Map<String, String> fullDataTurkish = getCaseFolding(true, NF_CLOSURE, "tr");
         Utility.fixDot();
 
         System.out.println("Making Simple Data");
-        final Map simpleDataTurkish = getCaseFolding(false, NF_CLOSURE, "tr");
+        final Map<String, String> simpleDataTurkish = getCaseFolding(false, NF_CLOSURE, "tr");
         // write the data
 
         Utility.fixDot();
@@ -153,7 +153,6 @@ public class GenerateCaseFolding implements UCD_Types {
         if (COMMENT_DIFFS) {
             final String lower = Default.ucd().getCase(UTF16.valueOf(ch), FULL, LOWER);
             if (!lower.equals(result)) {
-                final String upper = Default.ucd().getCase(UTF16.valueOf(ch), FULL, UPPER);
                 final String lower2 = Default.ucd().getCase(UTF16.valueOf(ch), FULL, LOWER);
                 if (lower.equals(lower2)) {
                     comment = "[Diff " + Utility.hex(lower, " ") + "] ";
@@ -174,10 +173,9 @@ public class GenerateCaseFolding implements UCD_Types {
     static int probeCh = 0x01f0;
     static String shower = UTF16.valueOf(probeCh);
 
-    static Map getCaseFolding(boolean full, boolean nfClose, String condition) throws java.io.IOException {
-        final Map data = new TreeMap();
-        final Map repChar = new TreeMap();
-        //String option = "";
+    static Map<String, String> getCaseFolding(boolean full, boolean nfClose, String condition) throws java.io.IOException {
+        final Map<String, Set<String>> data = new TreeMap<String, Set<String>>();
+        final Map<String, String> repChar = new TreeMap<String, String>();
 
         // get the equivalence classes
 
@@ -192,10 +190,10 @@ public class GenerateCaseFolding implements UCD_Types {
 
         // get the representative characters
 
-        final Iterator it = data.keySet().iterator();
+        final Iterator<String> it = data.keySet().iterator();
         while (it.hasNext()) {
             final String s = (String) it.next();
-            final Set set = (Set) data.get(s);
+            final Set<String> set = data.get(s);
             show = set.contains(shower);
             if (show) {
                 Utility.fixDot();
@@ -206,17 +204,13 @@ public class GenerateCaseFolding implements UCD_Types {
 
             String rep = null;
             int repGood = 0;
-            String dup = null;
-            Iterator it2 = set.iterator();
+            Iterator<String> it2 = set.iterator();
             while (it2.hasNext()) {
                 final String s2 = (String)it2.next();
                 final int s2Good = goodness(s2, full, condition);
                 if (s2Good > repGood) {
                     rep = s2;
                     repGood = s2Good;
-                    dup = null;
-                } else if (s2Good == repGood) {
-                    dup = s2;
                 }
             }
             if (rep == null) {
@@ -276,7 +270,16 @@ public class GenerateCaseFolding implements UCD_Types {
         if (!full) {
             result <<= 8;
         }
-        final String low = lower(upper(s, full, condition), full, condition);
+        // Cherokee case-folds to uppercase letters which were encoded first.
+        // It became bicameral in Unicode 8 with the addition of lowercase letters.
+        int first = s.codePointAt(0);
+        boolean isCherokee = 0x13A0 <= first && first <= 0x13FF;  // original Cherokee block
+        final String low;
+        if (isCherokee) {
+            low = upper(lower(s, full, condition), full, condition);
+        } else {
+            low = lower(upper(s, full, condition), full, condition);
+        }
         if (s.equals(low)) {
             result |= ISLOWER;
         } else if (PICK_SHORT && Default.nfd().normalize(s).equals(Default.nfd().normalize(low))) {
@@ -344,7 +347,7 @@ public class GenerateCaseFolding implements UCD_Types {
             }
      */
 
-    static void getClosure(int ch, Map data, boolean full, boolean nfClose, String condition) {
+    static void getClosure(int ch, Map<String, Set<String>> data, boolean full, boolean nfClose, String condition) {
         if (ch == '\u023F') {
             System.out.println("???");
         }
@@ -360,7 +363,7 @@ public class GenerateCaseFolding implements UCD_Types {
         }
 
         // make new set
-        final Set set = new TreeSet();
+        final Set<String> set = new TreeSet<String>();
         set.add(charStr);
 
         // add cases to get started
@@ -371,7 +374,7 @@ public class GenerateCaseFolding implements UCD_Types {
         // close it
         main:
             while (true) {
-                final Iterator it = set.iterator();
+                final Iterator<String> it = set.iterator();
                 while (it.hasNext()) {
                     final String s = (String) it.next();
                     // do funny stuff since we can't modify set while iterating
@@ -442,7 +445,7 @@ public class GenerateCaseFolding implements UCD_Types {
         return Default.ucd().getCase(s, full ? FULL : SIMPLE, TITLE, condition);
     }
 
-    static boolean add(Set set, String s, Map data) {
+    static boolean add(Set<String> set, String s, Map<String, Set<String>> data) {
         if (set.contains(s)) {
             return false;
         }
@@ -450,10 +453,10 @@ public class GenerateCaseFolding implements UCD_Types {
         if (DEBUG) {
             System.err.println("adding: " + toString(set));
         }
-        final Set other = (Set) data.get(s);
+        final Set<String> other = data.get(s);
         if (other != null && other != set) { // merge
             // make all the items in set point to merged set
-            final Iterator it = other.iterator();
+            final Iterator<String> it = other.iterator();
             while (it.hasNext()) {
                 data.put(it.next(), set);
             }
@@ -465,13 +468,13 @@ public class GenerateCaseFolding implements UCD_Types {
         return true;
     }
 
-    static String toString(Set set) {
+    static String toString(Set<String> set) {
         return toString(set, false, false);
     }
 
-    static String toString(Set set, boolean name, boolean crtab) {
+    static String toString(Set<String> set, boolean name, boolean crtab) {
         String result = "{";
-        final Iterator it2 = set.iterator();
+        final Iterator<String> it2 = set.iterator();
         boolean first = true;
         while (it2.hasNext()) {
             final String s2 = (String) it2.next();
@@ -539,7 +542,7 @@ public class GenerateCaseFolding implements UCD_Types {
     }
 
     static void generateSpecialCasing(boolean normalize) throws IOException {
-        final Map sorted = new TreeMap();
+        final Map<Integer, String> sorted = new TreeMap<Integer, String>();
 
         String suffix2 = "";
         if (normalize) {
@@ -695,7 +698,7 @@ public class GenerateCaseFolding implements UCD_Types {
          */
         //Utility.appendFile("org/unicode/text/UCD/SpecialCasingHeader.txt", Utility.UTF8, out);
 
-        final Iterator it = sorted.keySet().iterator();
+        final Iterator<Integer> it = sorted.keySet().iterator();
         int lastOrder = -1;
         while (it.hasNext()) {
             final Integer key = (Integer) it.next();
