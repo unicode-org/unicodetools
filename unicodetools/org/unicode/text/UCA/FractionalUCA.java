@@ -513,9 +513,11 @@ public class FractionalUCA {
         // one run to bleed into the next.
 
         final UCA uca = getCollator();
+        final PrimariesToFractional ps2f = new PrimariesToFractional(uca);
+        final SortedSet<MappingWithSortKey> ordered = new MappingsForFractionalUCA(uca).getMappings();
+        secondaryAndTertiaryWeightsToFractional(ordered, ps2f);
         final StringBuilder topByteInfo = new StringBuilder();
-        final PrimariesToFractional ps2f =
-                new PrimariesToFractional(uca).assignFractionalPrimaries(topByteInfo);
+        ps2f.assignFractionalPrimaries(topByteInfo);
 
         final FractionalUCA.HighByteToReorderingToken highByteToScripts =
                 new FractionalUCA.HighByteToReorderingToken(ps2f);
@@ -631,8 +633,6 @@ public class FractionalUCA {
 
         //int topVariable = -1;
 
-        final SortedSet<MappingWithSortKey> ordered = new MappingsForFractionalUCA(uca).getMappings();
-        secondaryAndTertiaryWeightsToFractional(ordered, ps2f);
         for (final MappingWithSortKey mapping : ordered) {
             final String chr = mapping.getString();
             final CEList ces = mapping.getCEs();
@@ -1082,7 +1082,7 @@ public class FractionalUCA {
                 final boolean isNeutralSecTer =
                         (sec == 0 || sec == UCA_Types.NEUTRAL_SECONDARY) &&
                         (ter == 0 || ter == UCA_Types.NEUTRAL_TERTIARY);
-                final PrimaryToFractional p2f = ps2f.getProps(pri);
+                final PrimaryToFractional p2f = ps2f.getOrCreateProps(pri);
                 if (isNeutralSecTer) {
                     assert p2f.neutralSec < 0 || sec == p2f.neutralSec;
                     assert p2f.neutralTer < 0 || ter == p2f.neutralTer;
@@ -1260,6 +1260,7 @@ public class FractionalUCA {
         final UnicodeSet hanSet =
                 ToolUnicodePropertySource.make(getCollator().getUCDVersion()).
                 getProperty("Unified_Ideograph").getSet("True");
+        fractionalLog.println("# Unified_Ideograph: " + hanSet.size() + " characters");
         final UnicodeSet coreHanSet = (UnicodeSet) hanSet.clone();
         coreHanSet.retain(0x4e00, 0xffff);  // BlockCJK_Unified_Ideograph or CJK_Compatibility_Ideographs
         final StringBuilder hanSB = new StringBuilder("[Unified_Ideograph");

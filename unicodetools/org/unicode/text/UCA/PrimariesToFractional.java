@@ -59,6 +59,7 @@ public final class PrimariesToFractional {
         boolean compressible = true;
         boolean defaultTwoBytePrimaries;
         boolean defaultTwoBytePunctuation;
+        boolean twoBytesIfVariants;
 
         /** First UCA primary weight for this script. */
         int firstPrimary;
@@ -99,6 +100,10 @@ public final class PrimariesToFractional {
         }
         ScriptOptions twoBytePrimaries() {
             defaultTwoBytePrimaries = defaultTwoBytePunctuation = true;
+            return this;
+        }
+        ScriptOptions twoBytePrimariesIfVariants() {
+            twoBytesIfVariants = true;
             return this;
         }
         ScriptOptions twoBytePunctuation() {
@@ -154,7 +159,9 @@ public final class PrimariesToFractional {
             if (useSingleBytePrimary) {
                 return 1;
             }
-            if (useTwoBytePrimary || (options.defaultTwoBytePrimaries && !useThreeBytePrimary)) {
+            if (useTwoBytePrimary ||
+                    (options.defaultTwoBytePrimaries && !useThreeBytePrimary) ||
+                    (options.twoBytesIfVariants && secTerToFractional != null)) {
                 return 2;
             }
             return 3;
@@ -504,6 +511,7 @@ public final class PrimariesToFractional {
      */
     public PrimariesToFractional(UCA uca) {
         this.uca = uca;
+        primaryProps = new PrimaryToFractional[uca.getLastRegularPrimary() + 1];
 
         ignorableOptions.wholeByte().notCompressible();
 
@@ -616,7 +624,8 @@ public final class PrimariesToFractional {
                 .wholeByte().twoBytePrimaries();
         // Recommended Script, uses two-byte primaries for characters with variants.
         // TODO: maybe just .twoBytePrimaries() and another new byte for following scripts
-        setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte().twoBytePunctuation();
+        setOptionsForScript(UCD_Types.BOPOMOFO_SCRIPT).newByte()
+                .twoBytePrimariesIfVariants().twoBytePunctuation();
         // Just register the scripts as aliases.
         setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs);
         // Han uses many bytes, so that tailoring tens of thousands of characters
@@ -975,7 +984,6 @@ public final class PrimariesToFractional {
      */
     private void findBumps() {
         final int firstScriptPrimary = uca.getStatistics().firstScript;
-        primaryProps = new PrimaryToFractional[uca.getLastRegularPrimary() + 1];
 
         ScriptOptions options = ignorableOptions;
         // Start after ignorable primary 0.
@@ -1036,7 +1044,7 @@ public final class PrimariesToFractional {
         }
         System.out.println("Last UCA primary:     \t" + Utility.hex(uca.getLastRegularPrimary()));
 
-        PrimaryToFractional hanProps = primaryProps[HAN_INDEX] = new PrimaryToFractional();
+        PrimaryToFractional hanProps = getOrCreateProps(UCA_Types.UNSUPPORTED_CJK_BASE);
         hanProps.options = getOptionsForScript(UCD_Types.HAN_SCRIPT);
         hanProps.options.firstPrimary = UCA_Types.UNSUPPORTED_CJK_BASE;
         hanProps.newByte = true;
@@ -1070,8 +1078,6 @@ public final class PrimariesToFractional {
                         "\u06D0\u06D2" +
                         // Jamo L, V, T
                         "\u1100-\u1112\u1161-\u1175\u11A8-\u11C2" +
-                        // Bopomofo characters that have secondary or tertiary variants.
-                        "\u3105\u3106\u310A\u310D-\u3110\u3117\u311A\u311B\u311E\u3120\u3127\u3128\u31A4" +
                 "]");
         final UnicodeSetIterator twoByteIter = new UnicodeSetIterator(twoByteChars);
         while (twoByteIter.next()) {
