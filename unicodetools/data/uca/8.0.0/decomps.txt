@@ -1,10 +1,10 @@
 # decomps-8.0.0.txt
-# Date: 2014-11-14, 15:41:29 GMT [KW]
+# Date: 2015-01-12, 12:34:19 GMT [KW]
 #
 # This file lists decompositions used in generating the Default Unicode Collation Element Table
 #   (DUCET) for the Unicode Collation Algorithm
 #
-# Copyright (c) 2001-2014 Unicode, Inc.
+# Copyright (c) 2001-2015 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # See UTS #10, Unicode Collation Algorithm, for more information.
@@ -1017,7 +1017,7 @@
 1DE6;<sort>;007A # COMBINING LATIN SMALL LETTER Z => LATIN SMALL LETTER Z
 1DE7;<sort>;0251 # COMBINING LATIN SMALL LETTER ALPHA => LATIN SMALL LETTER ALPHA
 1DE8;<sort>;0062 # COMBINING LATIN SMALL LETTER B => LATIN SMALL LETTER B
-1DE9;<sort>;03B2 # COMBINING LATIN SMALL LETTER BETA => GREEK SMALL LETTER BETA
+1DE9;<sort>;A7B5 # COMBINING LATIN SMALL LETTER BETA => LATIN SMALL LETTER BETA
 1DEA;<sort>;0259 # COMBINING LATIN SMALL LETTER SCHWA => LATIN SMALL LETTER SCHWA
 1DEB;<sort>;0066 # COMBINING LATIN SMALL LETTER F => LATIN SMALL LETTER F
 1DEC;<sort>;AB38 # COMBINING LATIN SMALL LETTER L WITH DOUBLE MIDDLE TILDE => LATIN SMALL LETTER L WITH DOUBLE MIDDLE TILDE
