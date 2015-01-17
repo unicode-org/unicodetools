@@ -101,19 +101,19 @@ public class EmojiAnnotations extends Birelation<String,String> {
             }
         }
         // get extra names
-        for (String name : CountryCodeConverter.names()) {
-            String regionCode = CountryCodeConverter.getCodeFromName(name);
-            if (regionCode == null || regionCode.length() != 2) {
-                continue;
-            }
-            if (regionCode.equals("RS") 
-                    && name.contains("montenegro")) {
-                continue;
-            }
-            String emoji = Emoji.getEmojiFromRegionCode(regionCode);
-            //System.out.println(regionCode + "=>" + name);
-            addParts(emoji, name);
-        }
+//        for (String name : CountryCodeConverter.names()) {
+//            String regionCode = CountryCodeConverter.getCodeFromName(name);
+//            if (regionCode == null || regionCode.length() != 2) {
+//                continue;
+//            }
+//            if (regionCode.equals("RS") 
+//                    && name.contains("montenegro")) {
+//                continue;
+//            }
+//            String emoji = Emoji.getEmojiFromRegionCode(regionCode);
+//            //System.out.println(regionCode + "=>" + name);
+//            addParts(emoji, name);
+//        }
         freeze();
         UnicodeSet annotationCharacters = new UnicodeSet().addAll(valuesSet());
         if (!annotationCharacters.containsAll(Emoji.EMOJI_CHARS)) {
