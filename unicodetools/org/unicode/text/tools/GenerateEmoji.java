@@ -13,6 +13,7 @@ import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Locale;
@@ -28,6 +29,7 @@ import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
 import org.unicode.cldr.util.MapComparator;
+import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
 import org.unicode.jsp.Subheader;
 import org.unicode.props.GenerateEnums;
@@ -45,10 +47,13 @@ import org.unicode.text.utility.Utility;
 import com.google.common.collect.ComparisonChain;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
+import com.ibm.icu.dev.util.CollectionUtilities.SetComparator;
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.MultiComparator;
+import com.ibm.icu.impl.Row;
+import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.Transform;
@@ -2234,34 +2239,72 @@ public class GenerateEmoji {
         }
     }
 
+    static final String ANNOTATION_HEADER = "<?xml version='1.0' encoding='UTF-8' ?>\n"
+            + "<!DOCTYPE ldml SYSTEM '../../common/dtd/ldml.dtd'>\n"
+            + "<!-- Copyright © 1991-2013 Unicode, Inc. DRAFT emoji-annotations.txt For \n"
+            + " details about the format and other information, see /../../../reports/tr51/index.html#Data_Files. \n"
+            + " http://unicode.org/cldr/trac/ticket/8019 CLDR data files are interpreted \n"
+            + " according to the LDML specification (http://unicode.org/reports/tr35/) For \n"
+            + " terms of use, see http://www.unicode.org/copyright.html \n"
+            + " This is still under development, and will be refined before release. \n"
+            + " In particular, the annotations like 'people-apple' are only present during development, and will be withdrawn for the release.\n"
+            + " -->\n"
+            + "<ldml>\n"
+            + "\t<identity>\n"
+            + "\t\t<version number='$Revision: 10585 $' />\n"
+            + "\t\t<generation date='$Date: 2014-06-19 06:23:55 +0200 (Thu, 19 Jun 2014) $' />\n";
+
     private static void printAnnotations() throws IOException {
         try (
                 PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-annotations.xml")) {
-            outText.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
-                    + "<!DOCTYPE supplementalData SYSTEM \"../../common/dtd/ldmlSupplemental.dtd\">\n"
-                    + "<!-- Copyright © 1991-2013 Unicode, Inc.\n\n"
-                    + "\tDRAFT emoji-annotations.txt\n"
-                    + "\tFor details about the format and other information, see " + DOC_DATA_FILES + ".\n"
-                    + "\thttp://unicode.org/cldr/trac/ticket/8019 \n\n"
-                    + "CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)\n"
-                    + "For terms of use, see http://www.unicode.org/copyright.html\n"
-                    + "-->\n"
-                    + "<supplementalData>\n"
-                    + "\t<version number=\"$Revision: 10585 $\"/>\n"
-                    + "\t<generation date=\"$Date: 2014-06-19 06:23:55 +0200 (Thu, 19 Jun 2014) $\"/>\n"
+            outText.append(ANNOTATION_HEADER
+                    + "\t\t<language type='en'/>\n"
+                    + "\t</identity>\n"
                     + "\t<annotations>\n");
+            Set<Row.R2<Set<String>,UnicodeSet>> sorted = new TreeSet<>(PAIR_SORT);
             for (Entry<Set<String>, Set<String>> s : ANNOTATIONS_TO_CHARS.getValuesToKeys().keyValuesSet()) {
                 UnicodeSet chars = new UnicodeSet().addAll(s.getKey());
                 Set<String> annotations = s.getValue();
+                sorted.add(Row.of(annotations, chars));
+            }
+            for (R2<Set<String>, UnicodeSet> s : sorted) {
+                String annotations = CollectionUtilities.join(s.get0(), "; ");
+                UnicodeSet chars = s.get1();
                 outText.append("\t\t<annotation cp='")
                 .append(chars.toPattern(false))
                 .append("'>")
-                .append(CollectionUtilities.join(annotations, "; "))
+                .append(annotations)
                 .append("</annotation>\n")
                 ;
             }
             outText.write("\t</annotations>\n"
-                    + "</supplementalData>");
+                    + "</ldml>");
         }
     }
+
+    public static <T> int compareX(Iterator<T> iterator1, Iterator<T> iterator2, Comparator<T> comparator) {
+        int diff;
+        while (true) {
+            if (!iterator1.hasNext()) {
+                return iterator2.hasNext() ? -1 : 0;
+            } else if (!iterator2.hasNext()) {
+                return 1;
+            }
+            diff = comparator.compare(iterator1.next(), iterator2.next());
+            if (diff != 0) {
+                return diff;
+            }
+        }
+    }
+
+    static final Comparator<Row.R2<Set<String>,UnicodeSet>> PAIR_SORT = new Comparator<Row.R2<Set<String>,UnicodeSet>>() {
+        SetComparator<Comparable> setComp;
+        public int compare(R2<Set<String>, UnicodeSet> o1, R2<Set<String>, UnicodeSet> o2) {
+            int diff = compareX(o1.get0().iterator(), o2.get0().iterator(), (Comparator<String>) UCA_COLLATOR);
+            if (diff != 0) {
+                return diff;
+            }
+            return o1.get1().compareTo(o2.get1());
+        }
+    };
 }
