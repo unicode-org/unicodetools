@@ -422,7 +422,6 @@ default-text-style	☺  ☹  🕵  🗣  🕴  ☝  ✌  ✍  🖐  👁  ☠  �
 dejected, pensive	😔
 delicious, savouring, um, yum	😋
 delivery	🚚
-dem.	🇨🇩  🇰🇵
 denmark	🇩🇰
 department	🏬
 derelict	🏚
@@ -1508,7 +1507,20 @@ zambia	🇿🇲
 zimbabwe	🇿🇼
 zodiac	♈  ♉  ♊  ♋  ♌  ♍  ♎  ♏  ♐  ♑  ♒  ♓  ⛎
 zzz	💤
-
+Aries, ram, zodiac	♈🐏
+Taurus, bull, ox, zodiac	♉🐂
+Gemini, twins, zodiac	♊👬
+crab, zodiac	♋
+lion, zodiac	♌
+Virgo, maiden, virgin, zodiac	♍👧
+Libra, balance, scales, justice, zodiac	♎⚖
+scorpion, zodiac	♏
+archer, zodiac	♐
+capricorn, goat, zodiac	♑🐐
+Aquarius, water, bearer, zodiac	♒
+Pisces, fish, zodiac	♓🐟
+Ophiuchus, serpent, snake, bearer, zodiac	⛎🐍
+animal	 🙈  🙉  🙊 🐱  😸  😹  😺  😻  😼  😽  😾  😿  🙀 
 
 
 
