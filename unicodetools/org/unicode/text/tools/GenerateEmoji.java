@@ -1089,7 +1089,7 @@ public class GenerateEmoji {
         print(Form.fullForm, Data.STRING_TO_DATA, stats);
         stats.write();
         print(Form.noImages, Data.STRING_TO_DATA, null);
-        print(Form.extraForm, missingMap, null);
+        //print(Form.extraForm, missingMap, null);
         showNewCharacters();
         for (String e : Emoji.EMOJI_CHARS) {
             Data data = Data.STRING_TO_DATA.get(e);
@@ -1104,17 +1104,17 @@ public class GenerateEmoji {
         STYLE_TO_CHARS.freeze();
         showTextStyle();
         showOrdering(Style.bestImage);
-        showOrdering(Style.refImage);
+        //showOrdering(Style.refImage);
         showLabels();
         showVersions();
         showVersionsOnly();
         showDefaultStyle();
-        showSubhead();
+        //showSubhead();
         showAnnotations();
         //        showAnnotationsDiff();
         // compareOtherAnnotations();
         showOtherUnicode();
-        test();
+        //oldAnnotationDiff();
         // check twitter glyphs
 
         if (SHOW) {
@@ -1160,7 +1160,7 @@ public class GenerateEmoji {
 
         // Set<String> newChars =
         // ANNOTATIONS_TO_CHARS.getValues("fitz-minimal");
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "temp.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-count.html");
         writeHeader(out, "Temp Items", "no message");
         showRow(out, "Minimal", minimal);
         showRow(out, "Optional", optional);
@@ -1204,6 +1204,7 @@ public class GenerateEmoji {
         }
         defaultText.freeze();
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "text-style.html");
+        PrintWriter out2 = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "text-vs.txt");
         writeHeader(out, "Text vs Emoji", "Default style (text vs emoji) by version. The 'Dings' include Dingbats, Webdings, and Wingdings.");
         out.println("<tr><th>Version</th>"
                 + "<th width='25%'>Default Text Style; no VS</th>"
@@ -1221,17 +1222,21 @@ public class GenerateEmoji {
             }
             UnicodeSet currentDings = new UnicodeSet(current).retainAll(dings);
             current.removeAll(dings);
-            showTextRow(out, version + "<span style='color:gray'>⊖ Dings</span>", current, defaultText);
-            showTextRow(out, version + " ∩ Dings", currentDings, defaultText);
+            String versionString = version.replace("_", ".");
+            showTextRow(out, versionString, true, current, defaultText, out2);
+            showTextRow(out, versionString, false, currentDings, defaultText, out2);
         }
         writeFooter(out);
         out.close();
+        out2.close();
     }
 
-    private static void showTextRow(PrintWriter out, String title, UnicodeSet current, UnicodeSet defaultText) {
+    private static void showTextRow(PrintWriter out, String version, boolean minusDings, UnicodeSet current, UnicodeSet defaultText, 
+            PrintWriter out2) {
         if (current.size() == 0) {
             return;
         }
+        String title = version + (minusDings ? " <span style='color:gray'>⊖ Dings</span>" : " ∩ Dings");
         UnicodeSet emojiSet = new UnicodeSet(current).removeAll(defaultText).removeAll(HAS_EMOJI_VS);
         UnicodeSet emojiSetVs = new UnicodeSet(current).removeAll(defaultText).retainAll(HAS_EMOJI_VS);
         UnicodeSet textSet = new UnicodeSet(current).retainAll(defaultText).removeAll(HAS_EMOJI_VS);
@@ -1245,6 +1250,16 @@ public class GenerateEmoji {
         out.print("</td><td>");
         getImages(out, emojiSetVs);
         out.print("</td></tr>");
+        if (textSet.isEmpty()) {
+            return;
+        }
+        out2.println("\n#\t" + version + (minusDings ? " ⊖ Dings" : " ∩ Dings") + "\n");
+        for (String s : textSet) {
+            // 2764 FE0E; text style;  # HEAVY BLACK HEART
+            // 2764 FE0F; emoji style; # HEAVY BLACK HEART
+            out2.println(Utility.hex(s, " ") + " FE0E; text style;   # " + UCharacter.getName(s, "+"));
+            out2.println(Utility.hex(s, " ") + " FE0F; emoji style;  # " + UCharacter.getName(s, "+"));
+        }
     }
 
     private static void getImages(PrintWriter out, UnicodeSet textSet) {
@@ -2019,7 +2034,7 @@ public class GenerateEmoji {
 
     static boolean CHECKFACE = false;
 
-    static void test() throws IOException {
+    static void oldAnnotationDiff() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-diff.html");
         writeHeader(out, "Diff List", "Differences from other categories.");
 

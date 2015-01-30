@@ -3,11 +3,14 @@ package org.unicode.text.tools;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
@@ -50,7 +53,7 @@ public class GenerateOtherAnnotations {
                 String chars = parts.get(1);
                 String annotationString = parts.get(3);
                 Set<String> annotations = new LinkedHashSet<>(localeSplitter.splitToList(annotationString));
-                
+
                 // the first item is special. It may be a TTS item
                 // use heuristics to remove it from rest
                 Iterator<String> it = annotations.iterator();
@@ -101,17 +104,17 @@ public class GenerateOtherAnnotations {
             }
         }
 
-        for (String s: GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
-            if (!missing.contains(s)) {
-                continue;
-            }
-            String englishAnn = english.get(s);
-            int pos = englishAnn.indexOf(';');
-            System.out.println("U+" + Utility.hex(s, ",U+") 
-                    + "\t" + s 
-                    + "\t" + englishAnn.substring(0,pos) 
-                    + "\t" + englishAnn.substring(pos+1).trim());
-        }
+        //        for (String s: GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
+        //            if (!missing.contains(s)) {
+        //                continue;
+        //            }
+        //            String englishAnn = english.get(s);
+        //            int pos = englishAnn.indexOf(';');
+        //            System.out.println("U+" + Utility.hex(s, ",U+") 
+        //                    + "\t" + s 
+        //                    + "\t" + englishAnn.substring(0,pos) 
+        //                    + "\t" + englishAnn.substring(pos+1).trim());
+        //        }
     }
 
     static final int[] delimiters = {LocaleData.QUOTATION_START, LocaleData.QUOTATION_END};
@@ -153,17 +156,81 @@ public class GenerateOtherAnnotations {
                 result.add(UCharacter.getName(s, "+"));
             }
             for (String annotation : GenerateEmoji.ANNOTATIONS_TO_CHARS.getKeys(s)) {
-                if (!annotation.contains("-")) {
-                    result.add(annotation);
+                if (annotation.contains("-")) {
+                    if (annotation.startsWith("fitz-") 
+                            || annotation.startsWith("-apple")
+                            || annotation.startsWith("-android")
+                            || annotation.equals("default-text-style")
+                            )
+                        continue;
                 }
+                result.add(annotation);
             }
             returnResult.put(s, CollectionUtilities.join(result, "; "));
         }
-//        for (String annotation : GenerateEmoji.ANNOTATIONS_TO_CHARS.keySet()) {
-//            Set<String> us = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(annotation);
-//            System.out.println(annotation + "\t" + us.size() + "\t" + new UnicodeSet().addAll(us).toPattern(false));
-//        }
+
+        Set<String> missing = new TreeSet<>(GenerateEmoji.CODEPOINT_COMPARE);
+        Emoji.EMOJI_CHARS.addAllTo(missing);
+
+        for (String label : Arrays.asList("people",
+                "nature",
+                "objects",
+                "places",                
+                "symbols")) {
+            Set<String> plain = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(label);
+            missing.removeAll(plain);
+            Set<String> apple = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(label+"-apple");
+            Set<String> android = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(label+"-android");
+
+            showDiff(label, "apple", apple, "android", android);
+
+            Set<String> joint = new HashSet<String>(apple);
+            joint.addAll(android);
+
+            showDiff(label, "(apple ∪ android)", joint, "plain", plain);
+
+            System.out.println();
+        }
+        showAndRemove("flag", missing);
+
+        System.out.println("missing" + "\t\t" + missing.size() + "\t" + CollectionUtilities.join(missing, " "));
+
+
+        for (String annotation : GenerateEmoji.ANNOTATIONS_TO_CHARS.keySet()) {
+            Set<String> sorted = new TreeSet<String>(GenerateEmoji.CODEPOINT_COMPARE);
+            sorted.addAll(GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(annotation));
+            System.out.println(annotation + "\t" + sorted.size() + "\t" + CollectionUtilities.join(sorted, " "));
+        }
         return returnResult.freeze();
+    }
+
+
+    private static void showAndRemove(String label, Set<String> missing) {
+        Set<String> plain = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(label);
+        missing.removeAll(plain);
+        System.out.println(label + "\t\t" + plain.size() + "\t" + CollectionUtilities.join(plain, " "));
+    }
+
+
+    private static void showDiff(String label, String a, Set<String> aSet, String b, Set<String> bSet) {
+        showDiff2(label, a, aSet, b, bSet, true);
+        showDiff2(label, b, bSet, a, aSet, true);
+        showDiff2(label, a, bSet, b, aSet, false);
+    }
+
+
+    private static void showDiff2(String label, String a, Set<String> aSet, String b, Set<String> bSet, boolean diff) {
+        Set<String> aMinusB = new TreeSet<String>(GenerateEmoji.CODEPOINT_COMPARE);
+        aMinusB.addAll(aSet);
+        String rel; 
+        if (diff) {
+            aMinusB.removeAll(bSet);
+            rel = " ⊖ ";
+        } else {
+            aMinusB.retainAll(bSet);
+            rel = " ∩ ";
+        }
+        System.out.println(label + "\t" + a + rel + b + "\t" + aMinusB.size() + "\t" + CollectionUtilities.join(aMinusB, " "));
     }
 
 }
