@@ -1361,6 +1361,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "U.S.A\u0300.",
                     "3.4",
                     "c.d",
+                    "C.d",
+                    "c.D",
+                    "C.D",
                     "etc.)\u2019 the",
                     "etc.)\u2019 The",
                     "etc.)\u2019 \u2018(the",
@@ -1411,7 +1414,17 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
         static String[] getExtraSamples() {
             final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(Default.ucd());
-            final String [] temp = {"can't", "can\u2019t", "ab\u00ADby", "a$-34,567.14%b", "3a" };
+            final String [] temp = {
+                    "can't", 
+                    "can\u2019t", 
+                    "ab\u00ADby", 
+                    "a$-34,567.14%b", 
+                    "3a",
+                    "c.d",
+                    "C.d",
+                    "c.D",
+                    "C.D",
+                    };
             final String[] extraSingleSamples = new String [temp.length * 2];
             System.arraycopy(temp, 0, extraSingleSamples, 0, temp.length);
             for (int i = 0; i < temp.length; ++i) {

@@ -110,10 +110,8 @@ public class Emoji {
     //    "]").freeze();
     //    // 🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭
 
-    static {
-        System.out.println(EMOJI_CHARS.toPattern(false));
-    }
     static final UnicodeSet FLAGS = new UnicodeSet();
+    static final UnicodeSet EMOJI_CHARS_WITHOUT_FLAGS = new UnicodeSet(EMOJI_CHARS).freeze();
     static {
         CLDRConfig config = CLDRConfig.getInstance();
         StandardCodes sc = config.getStandardCodes();
@@ -190,7 +188,9 @@ public class Emoji {
     static final String IMAGES_OUTPUT_DIR = TR51_OUTPUT_DIR + "images/";
 
     public static void main(String[] args) {
-
+        System.out.println("Without flags:\n" + EMOJI_CHARS_WITHOUT_FLAGS.toPattern(false));
+        System.out.println("Flags:\n" + FLAGS.toPattern(false));
+        System.out.println("With flags:\n" + EMOJI_CHARS.toPattern(false));
     }
 
     //    private static final UnicodeSet FITZ_OPTIONAL = new UnicodeSet("[\\u261D \\u261F \\u2639-\\u263B \\u270A-\\u270D \\U0001F3C2-\\U0001F3C4 \\U0001F3C7 \\U0001F3CA \\U0001F440-\\U0001F450 \\U0001F47F \\U0001F483 \\U0001F485 \\U0001F48B \\U0001F4AA \\U0001F58E-\\U0001F597 \\U0001F59E-\\U0001F5A3 \\U0001F5E2 \\U0001F600-\\U0001F637 \\U0001F641 \\U0001F642 \\U0001F64C \\U0001F64F \\U0001F6A3 \\U0001F6B4-\\U0001F6B6 \\U0001F6C0]");
