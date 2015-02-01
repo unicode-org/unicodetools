@@ -605,9 +605,18 @@ public class GenerateEmoji {
 
         enum DataStyle {plain, cldr}
 
-        public String toSemiString(int order) {
+        public String toSemiString(int order, UnicodeSet level1) {
+            // "# Code ;\tDefault Style ;\tLevel ;\tModifier ;\tSources ;\tVersion\t# (Character) Name\n" 
+
+            String extraString = "";
+            if (level1 != null) {
+                ModifierStatus modifier = MODIFIER_STATUS.get(chars);
+                extraString = " ;\t" + (level1.contains(chars) ? "L1" : "L2")
+                        + " ;\t" + modifier;
+            }
             return Utility.hex(chars, " ")
                     + " ;\t" + defaultPresentation
+                    + extraString
                     + " ;\t" + getSources(new StringBuilder(), false)
                     + " ;\t" + getVersion()
                     + "\t# (" + chars
@@ -684,6 +693,16 @@ public class GenerateEmoji {
                             + "</tr>";
         }
     }
+
+    enum ModifierStatus {none, modifier, minimal, optional}
+
+    static final UnicodeMap<ModifierStatus> MODIFIER_STATUS = new UnicodeMap<ModifierStatus>()
+            .putAll(Emoji.EMOJI_CHARS, ModifierStatus.none)
+            .putAll(new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3Fd}\\x{1F3Fe}\\x{1F3Ff}]"), ModifierStatus.none)
+            .putAll(new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3Fd}\\x{1F3Fe}\\x{1F3Ff}]"), ModifierStatus.modifier)
+            .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS.getValues("fitz-minimal")), ModifierStatus.minimal)
+            .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS.getValues("fitz-optional")), ModifierStatus.optional)
+            .freeze();
 
     public static String getImageFilename(Source type, String core) {
         // if (type == Source.gmail) {
@@ -848,6 +867,7 @@ public class GenerateEmoji {
                     + new UnicodeSet(totalData.get(Source.gmail)).removeAll(jc));
             System.out.println("jc-gmail" + "\t"
                     + new UnicodeSet(jc).removeAll(totalData.get(Source.gmail)));
+
             for (Entry<Source, UnicodeSet> entry : totalData.entrySet()) {
                 System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
             }
@@ -858,7 +878,7 @@ public class GenerateEmoji {
             skipRef.remove(Source.sb);
             skipRef.remove(Source.dcm);
             skipRef.remove(Source.kddi);
-            writeHeader(out, "Missing", "Missing list of emoji characters");
+            writeHeader(out, "Missing", "Missing list of emoji characters.");
             String headerRow = "<tr><th>" + "Type" + "</th>";
             for (Source type : skipRef) {
                 headerRow += "<th width='" + (80.0 / skipRef.size()) + "%'>" + type + "</th>";
@@ -1089,6 +1109,7 @@ public class GenerateEmoji {
         print(Form.fullForm, Data.STRING_TO_DATA, stats);
         stats.write();
         print(Form.noImages, Data.STRING_TO_DATA, null);
+        printData(Data.STRING_TO_DATA, stats);
         //print(Form.extraForm, missingMap, null);
         showNewCharacters();
         for (String e : Emoji.EMOJI_CHARS) {
@@ -1978,32 +1999,60 @@ public class GenerateEmoji {
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR,
                 form.filePrefix + "emoji-list.html");
         PrintWriter outText = null;
+        PrintWriter outText2 = null;
         int order = 0;
-        if (stats != null) {
-            outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-data.txt");
-            outText.println("# DRAFT emoji-data.txt");
-            outText.println("# For details about the format and other information, see " +
-                    DOC_DATA_FILES +
-                    ".");
-            outText.println("#");
-            outText.println("# Format");
-            outText.println("# Code ;\tDefault Style ;\tSources ;\tVersion\t# (Character) Name");
-            outText.println("#");
-        }
+        UnicodeSet level1 = null;
         writeHeader(out, form.title, "List of emoji characters, " + form.description);
         out.println(Data.toHtmlHeaderString(form));
         int item = 0;
         for (Data data : new TreeSet<Data>(set.values())) {
             out.println(data.toHtmlString(form, ++item, stats));
             if (outText != null) {
-                outText.println(data.toSemiString(order++));
+                outText.println(data.toSemiString(order++, null));
+                outText2.println(data.toSemiString(order++, level1));
             }
         }
         writeFooter(out);
         out.close();
-        if (outText != null) {
-            outText.close();
+    }
+
+    public static <T> void printData(Map<String, Data> set, Stats stats) throws IOException {
+        PrintWriter outText = null;
+        PrintWriter outText2 = null;
+        int order = 0;
+        UnicodeSet level1 = null;
+        outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-data.txt");
+        outText2 = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-data2.txt");
+        String format = "# Code ; Default Style ; Sources ; Version # (Character) Name\n";
+        String level = "#\tLevel:\tL1 for level 1, L2 for level 2\n";
+        String modifier = "#\tModiferStatus:\t'modifier' for an emoji modifier; 'minimal'/'optional' for the minimal/optional set; otherwise 'none'\n";
+        outText.println(dataHeader("", "", ""));
+        outText2.println(dataHeader("\tLevel ;\tModifierStatus ;", level, modifier));
+        level1 = new UnicodeSet()
+        .addAll(stats.totalData.get(Source.apple))
+        .retainAll(stats.totalData.get(Source.android))
+        .retainAll(stats.totalData.get(Source.windows))
+        .retainAll(stats.totalData.get(Source.twitter))
+        .freeze();
+        for (Data data : new TreeSet<Data>(set.values())) {
+            outText.println(data.toSemiString(order++, null));
+            outText2.println(data.toSemiString(order++, level1));
         }
+        outText.close();
+        outText2.close();
+    }
+
+    private static String dataHeader(String format, String level, String modifier) {
+        return "# DRAFT emoji-data.txt\n" 
+                + "# For details about the format and other information, see " + DOC_DATA_FILES + ".\n" 
+                + "#\n" 
+                + "# Format\n" 
+                + "# Code ;\tDefault Style ;" + format + "\tSources ;\tVersion\t# (Character) Name\n" 
+                + "#\tDefault Style:\ttext for default text presentation; 'emoji' for default emoji presentation\n"
+                + level
+                + modifier
+                + "#\tSources:\tInformative; see the key in http://www.unicode.org/reports/tr51/tr51.html#Full_Emoji_List_Columns\n"
+                + "#\tVersion:\tInformative; version the character was first encoded\n#";
     }
 
     static final String FOOTER = "</table>" + Utility.repeat("<br>", 60) + "</body></html>";
