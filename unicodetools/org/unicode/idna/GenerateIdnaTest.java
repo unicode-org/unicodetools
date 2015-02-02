@@ -399,6 +399,9 @@ public class GenerateIdnaTest {
     public static final Object[][] testCases = {
         { "。", "B",  // special case
             "。", 0 },
+            { "\uAB60", "B",  // special case
+                "\uAB60", 0 },
+            
             { "1234567890\u00E41234567890123456789012345678901234567890123456", "B",
                 "1234567890\u00E41234567890123456789012345678901234567890123456", Uts46.UIDNA_ERROR_LABEL_TOO_LONG },
 
