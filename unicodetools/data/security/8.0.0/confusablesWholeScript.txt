@@ -1,7 +1,7 @@
 ﻿# Summary: Whole-Script Confusables
 # File: confusablesWholeScript.txt
-# Version: 7.0.0
-# Generated: 2014-09-09, 13:36:16 GMT
+# Version: 8.0.0
+# Generated: 2015-02-03, 15:18:51 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -13,114 +13,128 @@
 
 # Lowercase Only
 
-# Arabic; Armenian: [هھہە۵]; [օ]
+# Arabic; Armenian: [ه٥ھہە۵]; [օ]
 
 0647          ; Arab; Armn; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Armn; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Armn; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Armn; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Armn; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Armn; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Cyrillic: [هھہە۵]; [оө]
+# Arabic; Cyrillic: [ه٥ھہە۵]; [оө]
 
 0647          ; Arab; Cyrl; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Cyrl; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Cyrl; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Cyrl; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Cyrl; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Cyrl; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Devanagari: [هھہە۵۹]; [०१]
+# Arabic; Devanagari: [ه٥٩ھہە۵۹]; [०१]
 
 0647          ; Arab; Deva; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Deva; L #      (٥)  ARABIC-INDIC DIGIT FIVE
+0669          ; Arab; Deva; L #      (٩)  ARABIC-INDIC DIGIT NINE
 06BE          ; Arab; Deva; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Deva; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Deva; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Deva; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 06F9          ; Arab; Deva; L #      (۹)  EXTENDED ARABIC-INDIC DIGIT NINE
 
-# Total code points: 6
+# Total code points: 8
 
-# Arabic; Georgian: [هھہە۵]; [ჿ]
+# Arabic; Georgian: [ه٥ھہە۵]; [ჿ]
 
 0647          ; Arab; Geor; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Geor; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Geor; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Geor; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Geor; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Geor; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Greek: [هھہە۵]; [οσ]
+# Arabic; Greek: [ه٥ھہە۵]; [οσ]
 
 0647          ; Arab; Grek; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Grek; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Grek; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Grek; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Grek; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Grek; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Gujarati: [هھہە۵]; [૦]
+# Arabic; Gujarati: [ه٥ھہە۵]; [૦]
 
 0647          ; Arab; Gujr; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Gujr; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Gujr; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Gujr; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Gujr; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Gujr; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Gurmukhi: [هھہە۵]; [੦]
+# Arabic; Gurmukhi: [ه٥ھہە۵]; [੦]
 
 0647          ; Arab; Guru; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Guru; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Guru; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Guru; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Guru; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Guru; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Hebrew: [اهھہە۱۵]; [ויןסױ]
+# Arabic; Hebrew: [اه١٥ھہە۱۵]; [ויןסױ]
 
 0627          ; Arab; Hebr; L #      (ا)  ARABIC LETTER ALEF
 0647          ; Arab; Hebr; L #      (ه)  ARABIC LETTER HEH
+0661          ; Arab; Hebr; L #      (١)  ARABIC-INDIC DIGIT ONE
+0665          ; Arab; Hebr; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Hebr; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Hebr; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Hebr; L #      (ە)  ARABIC LETTER AE
 06F1          ; Arab; Hebr; L #      (۱)  EXTENDED ARABIC-INDIC DIGIT ONE
 06F5          ; Arab; Hebr; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 7
+# Total code points: 9
 
-# Arabic; Kannada: [هھہە۵]; [ಂ೦]
+# Arabic; Kannada: [ه٥ھہە۵]; [ಂ೦]
 
 0647          ; Arab; Knda; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Knda; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Knda; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Knda; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Knda; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Knda; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Lao: [هھہە۵]; [໐]
+# Arabic; Lao: [ه٥ھہە۵]; [໐]
 
 0647          ; Arab; Laoo; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Laoo; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Laoo; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Laoo; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Laoo; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Laoo; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Latin: [اةهھہۃە۱۵]; [aeloöøłœơ]
+# Arabic; Latin: [اةه١٥ھہۃە۱۵]; [aeloöøłœơ]
 
 0627          ; Arab; Latn; L #      (ا)  ARABIC LETTER ALEF
 0629          ; Arab; Latn; L #      (ة)  ARABIC LETTER TEH MARBUTA
 0647          ; Arab; Latn; L #      (ه)  ARABIC LETTER HEH
+0661          ; Arab; Latn; L #      (١)  ARABIC-INDIC DIGIT ONE
+0665          ; Arab; Latn; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Latn; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Latn; L #      (ہ)  ARABIC LETTER HEH GOAL
 06C3          ; Arab; Latn; L #      (ۃ)  ARABIC LETTER TEH MARBUTA GOAL
@@ -128,69 +142,75 @@
 06F1          ; Arab; Latn; L #      (۱)  EXTENDED ARABIC-INDIC DIGIT ONE
 06F5          ; Arab; Latn; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 9
+# Total code points: 11
 
-# Arabic; Malayalam: [هھہە۵]; [ം൦]
+# Arabic; Malayalam: [ه٥ھہە۵]; [ം൦]
 
 0647          ; Arab; Mlym; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Mlym; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Mlym; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Mlym; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Mlym; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Mlym; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Myanmar: [هھہە۵]; [ဝ၀]
+# Arabic; Myanmar: [ه٥ھہە۵]; [ဝ၀]
 
 0647          ; Arab; Mymr; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Mymr; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Mymr; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Mymr; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Mymr; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Mymr; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Sinhala: [هھہە۵]; [ං]
+# Arabic; Sinhala: [ه٥ھہە۵]; [ං]
 
 0647          ; Arab; Sinh; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Sinh; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Sinh; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Sinh; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Sinh; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Sinh; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Tamil: [هھہە۵]; [௦]
+# Arabic; Tamil: [ه٥ھہە۵]; [௦]
 
 0647          ; Arab; Taml; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Taml; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Taml; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Taml; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Taml; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Taml; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Telugu: [هھہە۵]; [ం౦]
+# Arabic; Telugu: [ه٥ھہە۵]; [ం౦]
 
 0647          ; Arab; Telu; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Telu; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Telu; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Telu; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Telu; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Telu; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Thai: [هھہە۵]; [๐]
+# Arabic; Thai: [ه٥ھہە۵]; [๐]
 
 0647          ; Arab; Thai; L #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Thai; L #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Thai; L #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Thai; L #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Thai; L #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Thai; L #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Armenian; Arabic: [օ]; [هھہە۵]
+# Armenian; Arabic: [օ]; [ه٥ھہە۵]
 
 0585          ; Armn; Arab; L #      (օ)  ARMENIAN SMALL LETTER OH
 
@@ -390,7 +410,7 @@
 
 # Total code points: 1
 
-# Cyrillic; Arabic: [оө]; [هھہە۵]
+# Cyrillic; Arabic: [оө]; [ه٥ھہە۵]
 
 043E          ; Cyrl; Arab; L #      (о)  CYRILLIC SMALL LETTER O
 04E9          ; Cyrl; Arab; L #      (ө)  CYRILLIC SMALL LETTER BARRED O
@@ -561,7 +581,7 @@
 
 # Total code points: 2
 
-# Devanagari; Arabic: [०१]; [هھہە۵۹]
+# Devanagari; Arabic: [०१]; [ه٥٩ھہە۵۹]
 
 0966..0967    ; Deva; Arab; L #  [2] (०..१)  DEVANAGARI DIGIT ZERO..DEVANAGARI DIGIT ONE
 
@@ -690,7 +710,7 @@
 
 # Total code points: 1
 
-# Georgian; Arabic: [ჿ]; [هھہە۵]
+# Georgian; Arabic: [ჿ]; [ه٥ھہە۵]
 
 10FF          ; Geor; Arab; L #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 
@@ -795,7 +815,7 @@
 
 # Total code points: 1
 
-# Greek; Arabic: [οσ]; [هھہە۵]
+# Greek; Arabic: [οσ]; [ه٥ھہە۵]
 
 03BF          ; Grek; Arab; L #      (ο)  GREEK SMALL LETTER OMICRON
 03C3          ; Grek; Arab; L #      (σ)  GREEK SMALL LETTER SIGMA
@@ -948,7 +968,7 @@
 
 # Total code points: 2
 
-# Gujarati; Arabic: [૦]; [هھہە۵]
+# Gujarati; Arabic: [૦]; [ه٥ھہە۵]
 
 0AE6          ; Gujr; Arab; L #      (૦)  GUJARATI DIGIT ZERO
 
@@ -1075,7 +1095,7 @@
 
 # Total code points: 1
 
-# Gurmukhi; Arabic: [੦]; [هھہە۵]
+# Gurmukhi; Arabic: [੦]; [ه٥ھہە۵]
 
 0A66          ; Guru; Arab; L #      (੦)  GURMUKHI DIGIT ZERO
 
@@ -1232,7 +1252,7 @@
 
 # Total code points: 1
 
-# Hebrew; Arabic: [ויןסױ]; [اهھہە۱۵]
+# Hebrew; Arabic: [ויןסױ]; [اه١٥ھہە۱۵]
 
 05D5          ; Hebr; Arab; L #      (ו)  HEBREW LETTER VAV
 05D9          ; Hebr; Arab; L #      (י)  HEBREW LETTER YOD
@@ -1364,7 +1384,7 @@
 
 # Total code points: 1
 
-# Kannada; Arabic: [ಂ೦]; [هھہە۵]
+# Kannada; Arabic: [ಂ೦]; [ه٥ھہە۵]
 
 0C82          ; Knda; Arab; L #      (ಂ)  KANNADA SIGN ANUSVARA
 0CE6          ; Knda; Arab; L #      (೦)  KANNADA DIGIT ZERO
@@ -1529,7 +1549,7 @@
 
 # Total code points: 5
 
-# Lao; Arabic: [໐]; [هھہە۵]
+# Lao; Arabic: [໐]; [ه٥ھہە۵]
 
 0ED0          ; Laoo; Arab; L #      (໐)  LAO DIGIT ZERO
 
@@ -1646,7 +1666,7 @@
 
 # Total code points: 15
 
-# Latin; Arabic: [aeloöøłœơ]; [اةهھہۃە۱۵]
+# Latin; Arabic: [aeloöøłœơ]; [اةه١٥ھہۃە۱۵]
 
 0061          ; Latn; Arab; L #      (a)  LATIN SMALL LETTER A
 0065          ; Latn; Arab; L #      (e)  LATIN SMALL LETTER E
@@ -1861,7 +1881,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 6
 
-# Malayalam; Arabic: [ം൦]; [هھہە۵]
+# Malayalam; Arabic: [ം൦]; [ه٥ھہە۵]
 
 0D02          ; Mlym; Arab; L #      (ം)  MALAYALAM SIGN ANUSVARA
 0D66          ; Mlym; Arab; L #      (൦)  MALAYALAM DIGIT ZERO
@@ -2010,7 +2030,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Myanmar; Arabic: [ဝ၀]; [هھہە۵]
+# Myanmar; Arabic: [ဝ၀]; [ه٥ھہە۵]
 
 101D          ; Mymr; Arab; L #      (ဝ)  MYANMAR LETTER WA
 1040          ; Mymr; Arab; L #      (၀)  MYANMAR DIGIT ZERO
@@ -2209,7 +2229,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Sinhala; Arabic: [ං]; [هھہە۵]
+# Sinhala; Arabic: [ං]; [ه٥ھہە۵]
 
 0D82          ; Sinh; Arab; L #      (ං)  SINHALA SIGN ANUSVARAYA
 
@@ -2318,7 +2338,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Tamil; Arabic: [௦]; [هھہە۵]
+# Tamil; Arabic: [௦]; [ه٥ھہە۵]
 
 0BE6          ; Taml; Arab; L #      (௦)  TAMIL DIGIT ZERO
 
@@ -2441,7 +2461,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Telugu; Arabic: [ం౦]; [هھہە۵]
+# Telugu; Arabic: [ం౦]; [ه٥ھہە۵]
 
 0C02          ; Telu; Arab; L #      (ం)  TELUGU SIGN ANUSVARA
 0C66          ; Telu; Arab; L #      (౦)  TELUGU DIGIT ZERO
@@ -2576,7 +2596,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Thai; Arabic: [๐]; [هھہە۵]
+# Thai; Arabic: [๐]; [ه٥ھہە۵]
 
 0E50          ; Thai; Arab; L #      (๐)  THAI DIGIT ZERO
 
@@ -2697,20 +2717,24 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Any-Case
 
-# Arabic; Armenian: [هھہە۵]; [օ]
+# Arabic; Armenian: [ه٥ھہە۵]; [օ]
 
 0647          ; Arab; Armn; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Armn; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Armn; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Armn; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Armn; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Armn; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Cyrillic: [اهھہە۱۵۸]; [ІЛоӅө]
+# Arabic; Cyrillic: [اه١٥٨ھہە۱۵۸]; [ІЛоӅө]
 
 0627          ; Arab; Cyrl; A #      (ا)  ARABIC LETTER ALEF
 0647          ; Arab; Cyrl; A #      (ه)  ARABIC LETTER HEH
+0661          ; Arab; Cyrl; A #      (١)  ARABIC-INDIC DIGIT ONE
+0665          ; Arab; Cyrl; A #      (٥)  ARABIC-INDIC DIGIT FIVE
+0668          ; Arab; Cyrl; A #      (٨)  ARABIC-INDIC DIGIT EIGHT
 06BE          ; Arab; Cyrl; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Cyrl; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Cyrl; A #      (ە)  ARABIC LETTER AE
@@ -2718,33 +2742,39 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 06F5          ; Arab; Cyrl; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 06F8          ; Arab; Cyrl; A #      (۸)  EXTENDED ARABIC-INDIC DIGIT EIGHT
 
-# Total code points: 8
+# Total code points: 11
 
-# Arabic; Devanagari: [هھہە۵۹]; [०१]
+# Arabic; Devanagari: [ه٥٩ھہە۵۹]; [०१]
 
 0647          ; Arab; Deva; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Deva; A #      (٥)  ARABIC-INDIC DIGIT FIVE
+0669          ; Arab; Deva; A #      (٩)  ARABIC-INDIC DIGIT NINE
 06BE          ; Arab; Deva; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Deva; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Deva; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Deva; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 06F9          ; Arab; Deva; A #      (۹)  EXTENDED ARABIC-INDIC DIGIT NINE
 
-# Total code points: 6
+# Total code points: 8
 
-# Arabic; Georgian: [هھہە۵]; [ჿ]
+# Arabic; Georgian: [ه٥ھہە۵]; [ჿ]
 
 0647          ; Arab; Geor; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Geor; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Geor; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Geor; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Geor; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Geor; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Greek: [اهھہە۱۵۸]; [ΙΛοσ]
+# Arabic; Greek: [اه١٥٨ھہە۱۵۸]; [ΙΛοσ]
 
 0627          ; Arab; Grek; A #      (ا)  ARABIC LETTER ALEF
 0647          ; Arab; Grek; A #      (ه)  ARABIC LETTER HEH
+0661          ; Arab; Grek; A #      (١)  ARABIC-INDIC DIGIT ONE
+0665          ; Arab; Grek; A #      (٥)  ARABIC-INDIC DIGIT FIVE
+0668          ; Arab; Grek; A #      (٨)  ARABIC-INDIC DIGIT EIGHT
 06BE          ; Arab; Grek; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Grek; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Grek; A #      (ە)  ARABIC LETTER AE
@@ -2752,65 +2782,74 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 06F5          ; Arab; Grek; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 06F8          ; Arab; Grek; A #      (۸)  EXTENDED ARABIC-INDIC DIGIT EIGHT
 
-# Total code points: 8
+# Total code points: 11
 
-# Arabic; Gujarati: [هھہە۵]; [૦]
+# Arabic; Gujarati: [ه٥ھہە۵]; [૦]
 
 0647          ; Arab; Gujr; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Gujr; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Gujr; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Gujr; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Gujr; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Gujr; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Gurmukhi: [هھہە۵]; [੦]
+# Arabic; Gurmukhi: [ه٥ھہە۵]; [੦]
 
 0647          ; Arab; Guru; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Guru; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Guru; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Guru; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Guru; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Guru; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Hebrew: [اهھہە۱۵]; [ויןסױ]
+# Arabic; Hebrew: [اه١٥ھہە۱۵]; [ויןסױ]
 
 0627          ; Arab; Hebr; A #      (ا)  ARABIC LETTER ALEF
 0647          ; Arab; Hebr; A #      (ه)  ARABIC LETTER HEH
+0661          ; Arab; Hebr; A #      (١)  ARABIC-INDIC DIGIT ONE
+0665          ; Arab; Hebr; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Hebr; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Hebr; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Hebr; A #      (ە)  ARABIC LETTER AE
 06F1          ; Arab; Hebr; A #      (۱)  EXTENDED ARABIC-INDIC DIGIT ONE
 06F5          ; Arab; Hebr; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 7
+# Total code points: 9
 
-# Arabic; Kannada: [هھہە۵]; [ಂ೦]
+# Arabic; Kannada: [ه٥ھہە۵]; [ಂ೦]
 
 0647          ; Arab; Knda; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Knda; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Knda; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Knda; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Knda; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Knda; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Lao: [هھہە۵]; [໐]
+# Arabic; Lao: [ه٥ھہە۵]; [໐]
 
 0647          ; Arab; Laoo; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Laoo; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Laoo; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Laoo; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Laoo; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Laoo; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Latin: [اةهھہۃە۱۵۷]; [ILVaejloöøŁłœơ]
+# Arabic; Latin: [اةه١٥٧ھہۃە۱۵۷]; [AILVaejloöøŁłœơ]
 
 0627          ; Arab; Latn; A #      (ا)  ARABIC LETTER ALEF
 0629          ; Arab; Latn; A #      (ة)  ARABIC LETTER TEH MARBUTA
 0647          ; Arab; Latn; A #      (ه)  ARABIC LETTER HEH
+0661          ; Arab; Latn; A #      (١)  ARABIC-INDIC DIGIT ONE
+0665          ; Arab; Latn; A #      (٥)  ARABIC-INDIC DIGIT FIVE
+0667          ; Arab; Latn; A #      (٧)  ARABIC-INDIC DIGIT SEVEN
 06BE          ; Arab; Latn; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Latn; A #      (ہ)  ARABIC LETTER HEH GOAL
 06C3          ; Arab; Latn; A #      (ۃ)  ARABIC LETTER TEH MARBUTA GOAL
@@ -2819,69 +2858,75 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 06F5          ; Arab; Latn; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 06F7          ; Arab; Latn; A #      (۷)  EXTENDED ARABIC-INDIC DIGIT SEVEN
 
-# Total code points: 10
+# Total code points: 13
 
-# Arabic; Malayalam: [هھہە۵]; [ം൦]
+# Arabic; Malayalam: [ه٥ھہە۵]; [ം൦]
 
 0647          ; Arab; Mlym; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Mlym; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Mlym; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Mlym; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Mlym; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Mlym; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Myanmar: [هھہە۵]; [ဝ၀]
+# Arabic; Myanmar: [ه٥ھہە۵]; [ဝ၀]
 
 0647          ; Arab; Mymr; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Mymr; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Mymr; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Mymr; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Mymr; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Mymr; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Sinhala: [هھہە۵]; [ං]
+# Arabic; Sinhala: [ه٥ھہە۵]; [ං]
 
 0647          ; Arab; Sinh; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Sinh; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Sinh; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Sinh; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Sinh; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Sinh; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Tamil: [هھہە۵]; [௦]
+# Arabic; Tamil: [ه٥ھہە۵]; [௦]
 
 0647          ; Arab; Taml; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Taml; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Taml; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Taml; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Taml; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Taml; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Telugu: [هھہە۵]; [ం౦]
+# Arabic; Telugu: [ه٥ھہە۵]; [ం౦]
 
 0647          ; Arab; Telu; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Telu; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Telu; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Telu; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Telu; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Telu; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Arabic; Thai: [هھہە۵]; [๐]
+# Arabic; Thai: [ه٥ھہە۵]; [๐]
 
 0647          ; Arab; Thai; A #      (ه)  ARABIC LETTER HEH
+0665          ; Arab; Thai; A #      (٥)  ARABIC-INDIC DIGIT FIVE
 06BE          ; Arab; Thai; A #      (ھ)  ARABIC LETTER HEH DOACHASHMEE
 06C1          ; Arab; Thai; A #      (ہ)  ARABIC LETTER HEH GOAL
 06D5          ; Arab; Thai; A #      (ە)  ARABIC LETTER AE
 06F5          ; Arab; Thai; A #      (۵)  EXTENDED ARABIC-INDIC DIGIT FIVE
 
-# Total code points: 5
+# Total code points: 6
 
-# Armenian; Arabic: [օ]; [هھہە۵]
+# Armenian; Arabic: [օ]; [ه٥ھہە۵]
 
 0585          ; Armn; Arab; A #      (օ)  ARMENIAN SMALL LETTER OH
 
@@ -2893,8 +2938,9 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Armenian; Cyrillic: [ՏՓՕագզհոռսօ]; [ЅОФЮопцћһӨөԛԝ]
+# Armenian; Cyrillic: [ՍՏՓՕագզհոռսօ]; [ЅАОФЮопцћһӔӨөԛԝ]
 
+054D          ; Armn; Cyrl; A #      (Ս)  ARMENIAN CAPITAL LETTER SEH
 054F          ; Armn; Cyrl; A #      (Տ)  ARMENIAN CAPITAL LETTER TIWN
 0553          ; Armn; Cyrl; A #      (Փ)  ARMENIAN CAPITAL LETTER PIWR
 0555          ; Armn; Cyrl; A #      (Օ)  ARMENIAN CAPITAL LETTER OH
@@ -2906,7 +2952,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 057C..057D    ; Armn; Cyrl; A #  [2] (ռ..ս)  ARMENIAN SMALL LETTER RA..ARMENIAN SMALL LETTER SEH
 0585          ; Armn; Cyrl; A #      (օ)  ARMENIAN SMALL LETTER OH
 
-# Total code points: 11
+# Total code points: 12
 
 # Armenian; Devanagari: [օ]; [०]
 
@@ -2920,8 +2966,9 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Armenian; Greek: [ՓՕծոռսօ]; [ΘΟΦδηθοπσυ]
+# Armenian; Greek: [ՍՓՕծոռսօ]; [ΑΘΟΦδηθοπσυ]
 
+054D          ; Armn; Grek; A #      (Ս)  ARMENIAN CAPITAL LETTER SEH
 0553          ; Armn; Grek; A #      (Փ)  ARMENIAN CAPITAL LETTER PIWR
 0555          ; Armn; Grek; A #      (Օ)  ARMENIAN CAPITAL LETTER OH
 056E          ; Armn; Grek; A #      (ծ)  ARMENIAN SMALL LETTER CA
@@ -2929,7 +2976,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 057C..057D    ; Armn; Grek; A #  [2] (ռ..ս)  ARMENIAN SMALL LETTER RA..ARMENIAN SMALL LETTER SEH
 0585          ; Armn; Grek; A #      (օ)  ARMENIAN SMALL LETTER OH
 
-# Total code points: 7
+# Total code points: 8
 
 # Armenian; Gujarati: [օ]; [૦]
 
@@ -2967,7 +3014,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Armenian; Latin: [ՍՏՕագզհոռսցքօ]; [IOSUae-hlnoqu-wØøħœƠơǾ]
+# Armenian; Latin: [ՍՏՕագզհոռսցքօ]; [AEIOSUae-hlnoqu-wÆØøħœƠơǾ]
 
 054D          ; Armn; Latn; A #      (Ս)  ARMENIAN CAPITAL LETTER SEH
 054F          ; Armn; Latn; A #      (Տ)  ARMENIAN CAPITAL LETTER TIWN
@@ -3126,7 +3173,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Cyrillic; Arabic: [ІЛоӅө]; [اهھہە۱۵۸]
+# Cyrillic; Arabic: [ІЛоӅө]; [اه١٥٨ھہە۱۵۸]
 
 0406          ; Cyrl; Arab; A #      (І)  CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
 041B          ; Cyrl; Arab; A #      (Л)  CYRILLIC CAPITAL LETTER EL
@@ -3136,9 +3183,10 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 5
 
-# Cyrillic; Armenian: [ЅОФЮопцћһӨөԛԝ]; [ՏՓՕագզհոռսօ]
+# Cyrillic; Armenian: [ЅАОФЮопцћһӔӨөԛԝ]; [ՍՏՓՕագզհոռսօ]
 
 0405          ; Cyrl; Armn; A #      (Ѕ)  CYRILLIC CAPITAL LETTER DZE
+0410          ; Cyrl; Armn; A #      (А)  CYRILLIC CAPITAL LETTER A
 041E          ; Cyrl; Armn; A #      (О)  CYRILLIC CAPITAL LETTER O
 0424          ; Cyrl; Armn; A #      (Ф)  CYRILLIC CAPITAL LETTER EF
 042E          ; Cyrl; Armn; A #      (Ю)  CYRILLIC CAPITAL LETTER YU
@@ -3146,11 +3194,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0446          ; Cyrl; Armn; A #      (ц)  CYRILLIC SMALL LETTER TSE
 045B          ; Cyrl; Armn; A #      (ћ)  CYRILLIC SMALL LETTER TSHE
 04BB          ; Cyrl; Armn; A #      (һ)  CYRILLIC SMALL LETTER SHHA
+04D4          ; Cyrl; Armn; A #      (Ӕ)  CYRILLIC CAPITAL LIGATURE A IE
 04E8..04E9    ; Cyrl; Armn; A #  [2] (Ө..ө)  CYRILLIC CAPITAL LETTER BARRED O..CYRILLIC SMALL LETTER BARRED O
 051B          ; Cyrl; Armn; A #      (ԛ)  CYRILLIC SMALL LETTER QA
 051D          ; Cyrl; Armn; A #      (ԝ)  CYRILLIC SMALL LETTER WE
 
-# Total code points: 13
+# Total code points: 15
 
 # Cyrillic; Bengali: [ОЮӨ]; [০]
 
@@ -3354,7 +3403,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Devanagari; Arabic: [०१]; [هھہە۵۹]
+# Devanagari; Arabic: [०१]; [ه٥٩ھہە۵۹]
 
 0966..0967    ; Deva; Arab; A #  [2] (०..१)  DEVANAGARI DIGIT ZERO..DEVANAGARI DIGIT ONE
 
@@ -3483,7 +3532,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Georgian; Arabic: [ჿ]; [هھہە۵]
+# Georgian; Arabic: [ჿ]; [ه٥ھہە۵]
 
 10FF          ; Geor; Arab; A #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 
@@ -3588,7 +3637,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Greek; Arabic: [ΙΛοσ]; [اهھہە۱۵۸]
+# Greek; Arabic: [ΙΛοσ]; [اه١٥٨ھہە۱۵۸]
 
 0399          ; Grek; Arab; A #      (Ι)  GREEK CAPITAL LETTER IOTA
 039B          ; Grek; Arab; A #      (Λ)  GREEK CAPITAL LETTER LAMDA
@@ -3597,8 +3646,9 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 4
 
-# Greek; Armenian: [ΘΟΦδηθοπσυ]; [ՓՕծոռսօ]
+# Greek; Armenian: [ΑΘΟΦδηθοπσυ]; [ՍՓՕծոռսօ]
 
+0391          ; Grek; Armn; A #      (Α)  GREEK CAPITAL LETTER ALPHA
 0398          ; Grek; Armn; A #      (Θ)  GREEK CAPITAL LETTER THETA
 039F          ; Grek; Armn; A #      (Ο)  GREEK CAPITAL LETTER OMICRON
 03A6          ; Grek; Armn; A #      (Φ)  GREEK CAPITAL LETTER PHI
@@ -3608,7 +3658,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 03C3          ; Grek; Armn; A #      (σ)  GREEK SMALL LETTER SIGMA
 03C5          ; Grek; Armn; A #      (υ)  GREEK SMALL LETTER UPSILON
 
-# Total code points: 10
+# Total code points: 11
 
 # Greek; Bengali: [ΘΟθ]; [০]
 
@@ -3765,7 +3815,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Gujarati; Arabic: [૦]; [هھہە۵]
+# Gujarati; Arabic: [૦]; [ه٥ھہە۵]
 
 0AE6          ; Gujr; Arab; A #      (૦)  GUJARATI DIGIT ZERO
 
@@ -3892,7 +3942,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Gurmukhi; Arabic: [੦]; [هھہە۵]
+# Gurmukhi; Arabic: [੦]; [ه٥ھہە۵]
 
 0A66          ; Guru; Arab; A #      (੦)  GURMUKHI DIGIT ZERO
 
@@ -4067,7 +4117,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Hebrew; Arabic: [ויןסױ]; [اهھہە۱۵]
+# Hebrew; Arabic: [ויןסױ]; [اه١٥ھہە۱۵]
 
 05D5          ; Hebr; Arab; A #      (ו)  HEBREW LETTER VAV
 05D9          ; Hebr; Arab; A #      (י)  HEBREW LETTER YOD
@@ -4206,7 +4256,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Kannada; Arabic: [ಂ೦]; [هھہە۵]
+# Kannada; Arabic: [ಂ೦]; [ه٥ھہە۵]
 
 0C82          ; Knda; Arab; A #      (ಂ)  KANNADA SIGN ANUSVARA
 0CE6          ; Knda; Arab; A #      (೦)  KANNADA DIGIT ZERO
@@ -4371,7 +4421,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 5
 
-# Lao; Arabic: [໐]; [هھہە۵]
+# Lao; Arabic: [໐]; [ه٥ھہە۵]
 
 0ED0          ; Laoo; Arab; A #      (໐)  LAO DIGIT ZERO
 
@@ -4488,8 +4538,9 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 15
 
-# Latin; Arabic: [ILVaejloöøŁłœơ]; [اةهھہۃە۱۵۷]
+# Latin; Arabic: [AILVaejloöøŁłœơ]; [اةه١٥٧ھہۃە۱۵۷]
 
+0041          ; Latn; Arab; A #      (A)  LATIN CAPITAL LETTER A
 0049          ; Latn; Arab; A #      (I)  LATIN CAPITAL LETTER I
 004C          ; Latn; Arab; A #      (L)  LATIN CAPITAL LETTER L
 0056          ; Latn; Arab; A #      (V)  LATIN CAPITAL LETTER V
@@ -4504,10 +4555,12 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0153          ; Latn; Arab; A #      (œ)  LATIN SMALL LIGATURE OE
 01A1          ; Latn; Arab; A #      (ơ)  LATIN SMALL LETTER O WITH HORN
 
-# Total code points: 14
+# Total code points: 15
 
-# Latin; Armenian: [IOSUae-hlnoqu-wØøħœƠơǾ]; [ՍՏՕագզհոռսցքօ]
+# Latin; Armenian: [AEIOSUae-hlnoqu-wÆØøħœƠơǾ]; [ՍՏՕագզհոռսցքօ]
 
+0041          ; Latn; Armn; A #      (A)  LATIN CAPITAL LETTER A
+0045          ; Latn; Armn; A #      (E)  LATIN CAPITAL LETTER E
 0049          ; Latn; Armn; A #      (I)  LATIN CAPITAL LETTER I
 004F          ; Latn; Armn; A #      (O)  LATIN CAPITAL LETTER O
 0053          ; Latn; Armn; A #      (S)  LATIN CAPITAL LETTER S
@@ -4518,6 +4571,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 006E..006F    ; Latn; Armn; A #  [2] (n..o)  LATIN SMALL LETTER N..LATIN SMALL LETTER O
 0071          ; Latn; Armn; A #      (q)  LATIN SMALL LETTER Q
 0075..0077    ; Latn; Armn; A #  [3] (u..w)  LATIN SMALL LETTER U..LATIN SMALL LETTER W
+00C6          ; Latn; Armn; A #      (Æ)  LATIN CAPITAL LETTER AE
 00D8          ; Latn; Armn; A #      (Ø)  LATIN CAPITAL LETTER O WITH STROKE
 00F8          ; Latn; Armn; A #      (ø)  LATIN SMALL LETTER O WITH STROKE
 0127          ; Latn; Armn; A #      (ħ)  LATIN SMALL LETTER H WITH STROKE
@@ -4525,7 +4579,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 01A0..01A1    ; Latn; Armn; A #  [2] (Ơ..ơ)  LATIN CAPITAL LETTER O WITH HORN..LATIN SMALL LETTER O WITH HORN
 01FE          ; Latn; Armn; A #      (Ǿ)  LATIN CAPITAL LETTER O WITH STROKE AND ACUTE
 
-# Total code points: 23
+# Total code points: 26
 
 # Latin; Bengali: [IOlØƠǾ]; [০]
 
@@ -4775,7 +4829,7 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 6
 
-# Malayalam; Arabic: [ം൦]; [هھہە۵]
+# Malayalam; Arabic: [ം൦]; [ه٥ھہە۵]
 
 0D02          ; Mlym; Arab; A #      (ം)  MALAYALAM SIGN ANUSVARA
 0D66          ; Mlym; Arab; A #      (൦)  MALAYALAM DIGIT ZERO
@@ -4927,7 +4981,7 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Myanmar; Arabic: [ဝ၀]; [هھہە۵]
+# Myanmar; Arabic: [ဝ၀]; [ه٥ھہە۵]
 
 101D          ; Mymr; Arab; A #      (ဝ)  MYANMAR LETTER WA
 1040          ; Mymr; Arab; A #      (၀)  MYANMAR DIGIT ZERO
@@ -5147,7 +5201,7 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Sinhala; Arabic: [ං]; [هھہە۵]
+# Sinhala; Arabic: [ං]; [ه٥ھہە۵]
 
 0D82          ; Sinh; Arab; A #      (ං)  SINHALA SIGN ANUSVARAYA
 
@@ -5256,7 +5310,7 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 1
 
-# Tamil; Arabic: [௦]; [هھہە۵]
+# Tamil; Arabic: [௦]; [ه٥ھہە۵]
 
 0BE6          ; Taml; Arab; A #      (௦)  TAMIL DIGIT ZERO
 
@@ -5379,7 +5433,7 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Telugu; Arabic: [ం౦]; [هھہە۵]
+# Telugu; Arabic: [ం౦]; [ه٥ھہە۵]
 
 0C02          ; Telu; Arab; A #      (ం)  TELUGU SIGN ANUSVARA
 0C66          ; Telu; Arab; A #      (౦)  TELUGU DIGIT ZERO
@@ -5514,7 +5568,7 @@ A793          ; Latn; Grek; A #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Thai; Arabic: [๐]; [هھہە۵]
+# Thai; Arabic: [๐]; [ه٥ھہە۵]
 
 0E50          ; Thai; Arab; A #      (๐)  THAI DIGIT ZERO
 
