@@ -1,7 +1,7 @@
 ﻿# Summary: Recommended confusable mapping for IDN
 # File: confusablesSummaryIdentifier.txt
-# Version: 7.0.0
-# Generated: 2014-09-09, 13:36:15 GMT
+# Version: 8.0.0
+# Generated: 2015-02-03, 15:18:51 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -46,7 +46,7 @@
 ←	(‎ 〇 ‎)	3007	 IDEOGRAPHIC NUMBER ZERO	# →O→
 ←	(‎ Ο ‎)	039F	 GREEK CAPITAL LETTER OMICRON
 ←	(‎ О ‎)	041E	 CYRILLIC CAPITAL LETTER O
-←	(‎ Օ ‎)	0555	 ARMENIAN CAPITAL LETTER OH	# →Ο→
+←	(‎ Օ ‎)	0555	 ARMENIAN CAPITAL LETTER OH	# →О→
 
 #	O'	0'	Oʼ	Ơ
 	(‎ 0' ‎)	0030 0027	 DIGIT ZERO, APOSTROPHE
@@ -60,7 +60,7 @@
 ←	(‎ О̵ ‎)	041E 0335	 CYRILLIC CAPITAL LETTER O, COMBINING SHORT STROKE OVERLAY	# →O̵→
 ←	(‎ θ ‎)	03B8	 GREEK SMALL LETTER THETA	# →Ꮎ→→O̵→
 ←	(‎ Θ ‎)	0398	 GREEK CAPITAL LETTER THETA	# →Ꮎ→→O̵→
-←	(‎ Ө ‎)	04E8	 CYRILLIC CAPITAL LETTER BARRED O	# →Ɵ→→O̶→→O̵→
+←	(‎ Ө ‎)	04E8	 CYRILLIC CAPITAL LETTER BARRED O	# →Ѳ→→О̵→→O̵→
 
 #	O̸	0̸	Ø
 	(‎ 0̸ ‎)	0030 0338	 DIGIT ZERO, COMBINING LONG SOLIDUS OVERLAY
@@ -86,8 +86,8 @@
 ←	(‎ ا ‎)	0627	 ARABIC LETTER ALEF
 ←	(‎ ١ ‎)	0661	 ARABIC-INDIC DIGIT ONE
 ←	(‎ ۱ ‎)	06F1	 EXTENDED ARABIC-INDIC DIGIT ONE
-←	(‎ Ι ‎)	0399	 GREEK CAPITAL LETTER IOTA	# →l→
-←	(‎ І ‎)	0406	 CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I	# →l→
+←	(‎ Ι ‎)	0399	 GREEK CAPITAL LETTER IOTA	# →I→
+←	(‎ І ‎)	0406	 CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I	# →I→
 
 #	l'	1'	וי	ױ
 	(‎ 1' ‎)	0031 0027	 DIGIT ONE, APOSTROPHE
@@ -315,7 +315,7 @@
 
 #	b	Ь
 	(‎ b ‎)	0062	 LATIN SMALL LETTER B
-←	(‎ Ь ‎)	042C	 CYRILLIC CAPITAL LETTER SOFT SIGN	# →Ꮟ→
+←	(‎ Ь ‎)	042C	 CYRILLIC CAPITAL LETTER SOFT SIGN	# →Ƅ→
 
 #	b1	bl	Ьl	Ь1	ЬІ	Ы
 	(‎ b1 ‎)	0062 0031	 LATIN SMALL LETTER B, DIGIT ONE
@@ -430,7 +430,7 @@
 ←	(‎ ه ‎)	0647	 ARABIC LETTER HEH
 ←	(‎ ٥ ‎)	0665	 ARABIC-INDIC DIGIT FIVE
 ←	(‎ ھ ‎)	06BE	 ARABIC LETTER HEH DOACHASHMEE	# →‎ه‎→
-←	(‎ ہ ‎)	06C1	 ARABIC LETTER HEH GOAL	# →‎ﮦ‎→→‎ه‎→
+←	(‎ ہ ‎)	06C1	 ARABIC LETTER HEH GOAL	# →‎ە‎→→‎ه‎→
 ←	(‎ ە ‎)	06D5	 ARABIC LETTER AE	# →‎ه‎→
 ←	(‎ ۵ ‎)	06F5	 EXTENDED ARABIC-INDIC DIGIT FIVE	# →‎٥‎→
 ←	(‎ ० ‎)	0966	 DEVANAGARI DIGIT ZERO
@@ -462,7 +462,7 @@
 #	o̵	о̵	ө
 	(‎ o̵ ‎)	006F 0335	 LATIN SMALL LETTER O, COMBINING SHORT STROKE OVERLAY
 ←	(‎ о̵ ‎)	043E 0335	 CYRILLIC SMALL LETTER O, COMBINING SHORT STROKE OVERLAY	# →ѳ→
-←	(‎ ө ‎)	04E9	 CYRILLIC SMALL LETTER BARRED O	# →ɵ→
+←	(‎ ө ‎)	04E9	 CYRILLIC SMALL LETTER BARRED O	# →ѳ→
 
 #	o̸	ø
 	(‎ o̸ ‎)	006F 0338	 LATIN SMALL LETTER O, COMBINING LONG SOLIDUS OVERLAY
@@ -536,7 +536,7 @@
 	(‎ y ‎)	0079	 LATIN SMALL LETTER Y
 ←	(‎ γ ‎)	03B3	 GREEK SMALL LETTER GAMMA
 ←	(‎ у ‎)	0443	 CYRILLIC SMALL LETTER U
-←	(‎ ү ‎)	04AF	 CYRILLIC SMALL LETTER STRAIGHT U	# →у→
+←	(‎ ү ‎)	04AF	 CYRILLIC SMALL LETTER STRAIGHT U	# →γ→
 ←	(‎ ყ ‎)	10E7	 GEORGIAN LETTER QAR
 
 #	y̵	у̵	ү̵	ұ
@@ -817,7 +817,7 @@
 
 #	ى	ي	ی
 	(‎ ى ‎)	0649	 ARABIC LETTER ALEF MAKSURA
-←	(‎ ي ‎)	064A	 ARABIC LETTER YEH	# →‎ﻴ‎→→‎ﯿ‎→→‎ی‎→
+←	(‎ ي ‎)	064A	 ARABIC LETTER YEH	# →‎ﻳ‎→→‎ﯾ‎→→‎ی‎→
 ←	(‎ ی ‎)	06CC	 ARABIC LETTER FARSI YEH
 
 #	٢	۲
@@ -843,7 +843,7 @@
 
 #	ٹ	ڻ
 	(‎ ٹ ‎)	0679	 ARABIC LETTER TTEH
-←	(‎ ڻ ‎)	06BB	 ARABIC LETTER RNOON	# →‎ﮢ‎→→‎ﭩ‎→
+←	(‎ ڻ ‎)	06BB	 ARABIC LETTER RNOON	# →‎ﮢ‎→→‎ﭨ‎→
 
 #	ٻ	ې
 	(‎ ٻ ‎)	067B	 ARABIC LETTER BEEH

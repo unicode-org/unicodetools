@@ -1,7 +1,7 @@
 ﻿# Security Profile for General Identifiers
 # File: xidmodifications.txt
-# Version: 7.0.0
-# Generated: 2014-09-09, 13:36:12 GMT
+# Version: 8.0.0
+# Generated: 2015-02-03, 15:18:51 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -95,7 +95,7 @@
 06FF          ; allowed ; recommended          #      (ۿ)  ARABIC LETTER HEH WITH INVERTED V
 0750..07B1    ; allowed ; recommended          # [98] (ݐ..ޱ)  ARABIC LETTER BEH WITH THREE DOTS HORIZONTALLY BELOW..THAANA LETTER NAA
 08A0..08AC    ; allowed ; recommended          # [13] (ࢠ..ࢬ)  ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER ROHINGYA YEH
-08B2          ; allowed ; recommended          #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
+08B2..08B4    ; allowed ; recommended          #  [3] (ࢲ..ࢴ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE..ARABIC LETTER KAF WITH DOT BELOW
 0901..094D    ; allowed ; recommended          # [77] (ँ..्)  DEVANAGARI SIGN CANDRABINDU..DEVANAGARI SIGN VIRAMA
 094F..0950    ; allowed ; recommended          #  [2] (ॏ..ॐ)  DEVANAGARI VOWEL SIGN AW..DEVANAGARI OM
 0956..0957    ; allowed ; recommended          #  [2] (ॖ..ॗ)  DEVANAGARI VOWEL SIGN UE..DEVANAGARI VOWEL SIGN UUE
@@ -143,6 +143,7 @@
 0AD0          ; allowed ; recommended          #      (ૐ)  GUJARATI OM
 0AE0..0AE3    ; allowed ; recommended          #  [4] (ૠ..ૣ)  GUJARATI LETTER VOCALIC RR..GUJARATI VOWEL SIGN VOCALIC LL
 0AE6..0AEF    ; allowed ; recommended          # [10] (૦..૯)  GUJARATI DIGIT ZERO..GUJARATI DIGIT NINE
+0AF9          ; allowed ; recommended          #      (ૹ)  GUJARATI LETTER ZHA
 0B01..0B03    ; allowed ; recommended          #  [3] (ଁ..ଃ)  ORIYA SIGN CANDRABINDU..ORIYA SIGN VISARGA
 0B05..0B0C    ; allowed ; recommended          #  [8] (ଅ..ଌ)  ORIYA LETTER A..ORIYA LETTER VOCALIC L
 0B0F..0B10    ; allowed ; recommended          #  [2] (ଏ..ଐ)  ORIYA LETTER E..ORIYA LETTER AI
@@ -183,6 +184,7 @@
 0C46..0C48    ; allowed ; recommended          #  [3] (ె..ై)  TELUGU VOWEL SIGN E..TELUGU VOWEL SIGN AI
 0C4A..0C4D    ; allowed ; recommended          #  [4] (ొ..్)  TELUGU VOWEL SIGN O..TELUGU SIGN VIRAMA
 0C55..0C56    ; allowed ; recommended          #  [2] (ౕ..ౖ)  TELUGU LENGTH MARK..TELUGU AI LENGTH MARK
+0C5A          ; allowed ; recommended          #      (ౚ)  TELUGU LETTER RRRA
 0C60..0C61    ; allowed ; recommended          #  [2] (ౠ..ౡ)  TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C66..0C6F    ; allowed ; recommended          # [10] (౦..౯)  TELUGU DIGIT ZERO..TELUGU DIGIT NINE
 0C82..0C83    ; allowed ; recommended          #  [2] (ಂ..ಃ)  KANNADA SIGN ANUSVARA..KANNADA SIGN VISARGA
@@ -206,7 +208,7 @@
 0D46..0D48    ; allowed ; recommended          #  [3] (െ..ൈ)  MALAYALAM VOWEL SIGN E..MALAYALAM VOWEL SIGN AI
 0D4A..0D4E    ; allowed ; recommended          #  [5] (ൊ..ൎ)  MALAYALAM VOWEL SIGN O..MALAYALAM LETTER DOT REPH
 0D57          ; allowed ; recommended          #      (ൗ)  MALAYALAM AU LENGTH MARK
-0D60..0D61    ; allowed ; recommended          #  [2] (ൠ..ൡ)  MALAYALAM LETTER VOCALIC RR..MALAYALAM LETTER VOCALIC LL
+0D5F..0D61    ; allowed ; recommended          #  [3] (ൟ..ൡ)  MALAYALAM LETTER ARCHAIC II..MALAYALAM LETTER VOCALIC LL
 0D66..0D6F    ; allowed ; recommended          # [10] (൦..൯)  MALAYALAM DIGIT ZERO..MALAYALAM DIGIT NINE
 0D7A..0D7F    ; allowed ; recommended          #  [6] (ൺ..ൿ)  MALAYALAM LETTER CHILLU NN..MALAYALAM LETTER CHILLU K
 0D82..0D83    ; allowed ; recommended          #  [2] (ං..ඃ)  SINHALA SIGN ANUSVARAYA..SINHALA SIGN VISARGAYA
@@ -356,16 +358,16 @@
 3105..312D    ; allowed ; recommended          # [41] (ㄅ..ㄭ)  BOPOMOFO LETTER B..BOPOMOFO LETTER IH
 31A0..31BA    ; allowed ; recommended          # [27] (ㆠ..ㆺ)  BOPOMOFO LETTER BU..BOPOMOFO LETTER ZY
 3400..4DB5    ; allowed ; recommended          # [6582] (㐀..䶵)  CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DB5
-4E00..9FCC    ; allowed ; recommended          # [20941] (一..鿌)  CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FCC
+4E00..9FD5    ; allowed ; recommended          # [20950] (一..鿕)  CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FD5
 A660..A661    ; allowed ; recommended          #  [2] (Ꙡ..ꙡ)  CYRILLIC CAPITAL LETTER REVERSED TSE..CYRILLIC SMALL LETTER REVERSED TSE
 A674..A67B    ; allowed ; recommended          #  [8] (ꙴ..ꙻ)  COMBINING CYRILLIC LETTER UKRAINIAN IE..COMBINING CYRILLIC LETTER OMEGA
 A67F          ; allowed ; recommended          #      (ꙿ)  CYRILLIC PAYEROK
-A69F          ; allowed ; recommended          #      (ꚟ)  COMBINING CYRILLIC LETTER IOTIFIED E
+A69E..A69F    ; allowed ; recommended          #  [2] (ꚞ..ꚟ)  COMBINING CYRILLIC LETTER EF..COMBINING CYRILLIC LETTER IOTIFIED E
 A717..A71F    ; allowed ; recommended          #  [9] (ꜗ..ꜟ)  MODIFIER LETTER DOT VERTICAL BAR..MODIFIER LETTER LOW INVERTED EXCLAMATION MARK
 A788          ; allowed ; recommended          #      (ꞈ)  MODIFIER LETTER LOW CIRCUMFLEX ACCENT
-A78D..A78E    ; allowed ; recommended          #  [2] (Ɥ..ꞎ)  LATIN CAPITAL LETTER TURNED H..LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
-A790..A793    ; allowed ; recommended          #  [4] (Ꞑ..ꞓ)  LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER C WITH BAR
+A78D..A793    ; allowed ; recommended          #  [7] (Ɥ..ꞓ)  LATIN CAPITAL LETTER TURNED H..LATIN SMALL LETTER C WITH BAR
 A7A0..A7AA    ; allowed ; recommended          # [11] (Ꞡ..Ɦ)  LATIN CAPITAL LETTER G WITH OBLIQUE STROKE..LATIN CAPITAL LETTER H WITH HOOK
+A7B2..A7B7    ; allowed ; recommended          #  [6] (Ʝ..ꞷ)  LATIN CAPITAL LETTER J WITH CROSSED-TAIL..LATIN SMALL LETTER OMEGA
 A7FA          ; allowed ; recommended          #      (ꟺ)  LATIN LETTER SMALL CAPITAL TURNED M
 A9E7..A9FE    ; allowed ; recommended          # [24] (ꧧ..ꧾ)  MYANMAR LETTER TAI LAING NYA..MYANMAR LETTER TAI LAING BHA
 AA60..AA76    ; allowed ; recommended          # [23] (ꩠ..ꩶ)  MYANMAR LETTER KHAMTI GA..MYANMAR LOGOGRAM KHAMTI HM
@@ -375,6 +377,7 @@ AB09..AB0E    ; allowed ; recommended          #  [6] (ꬉ..ꬎ)  ETHIOPIC SYLLA
 AB11..AB16    ; allowed ; recommended          #  [6] (ꬑ..ꬖ)  ETHIOPIC SYLLABLE DZU..ETHIOPIC SYLLABLE DZO
 AB20..AB26    ; allowed ; recommended          #  [7] (ꬠ..ꬦ)  ETHIOPIC SYLLABLE CCHHA..ETHIOPIC SYLLABLE CCHHO
 AB28..AB2E    ; allowed ; recommended          #  [7] (ꬨ..ꬮ)  ETHIOPIC SYLLABLE BBA..ETHIOPIC SYLLABLE BBO
+AB60..AB63    ; allowed ; recommended          #  [4] (ꭠ..ꭣ)  LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER UO
 AC00..D7A3    ; allowed ; recommended          # [11172] (가..힣)  HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
 FA0E..FA0F    ; allowed ; recommended          #  [2] (﨎..﨏)  CJK COMPATIBILITY IDEOGRAPH-FA0E..CJK COMPATIBILITY IDEOGRAPH-FA0F
 FA11          ; allowed ; recommended          #      (﨑)  CJK COMPATIBILITY IDEOGRAPH-FA11
@@ -383,12 +386,32 @@ FA1F          ; allowed ; recommended          #      (﨟)  CJK COMPATIBILITY I
 FA21          ; allowed ; recommended          #      (﨡)  CJK COMPATIBILITY IDEOGRAPH-FA21
 FA23..FA24    ; allowed ; recommended          #  [2] (﨣..﨤)  CJK COMPATIBILITY IDEOGRAPH-FA23..CJK COMPATIBILITY IDEOGRAPH-FA24
 FA27..FA29    ; allowed ; recommended          #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK COMPATIBILITY IDEOGRAPH-FA29
+108E0..108F2  ; allowed ; recommended          # [19] (𐣠..𐣲)  HATRAN LETTER ALEPH..HATRAN LETTER QOPH
+108F4..108F5  ; allowed ; recommended          #  [2] (𐣴..𐣵)  HATRAN LETTER SHIN..HATRAN LETTER TAW
+10C80..10CB2  ; allowed ; recommended          # [51] (𐲀..𐲲)  OLD HUNGARIAN CAPITAL LETTER A..OLD HUNGARIAN CAPITAL LETTER US
+10CC0..10CF2  ; allowed ; recommended          # [51] (𐳀..𐳲)  OLD HUNGARIAN SMALL LETTER A..OLD HUNGARIAN SMALL LETTER US
+11280..11286  ; allowed ; recommended          #  [7] (𑊀..𑊆)  MULTANI LETTER A..MULTANI LETTER GA
+11288         ; allowed ; recommended          #      (𑊈)  MULTANI LETTER GHA
+1128A..1128D  ; allowed ; recommended          #  [4] (𑊊..𑊍)  MULTANI LETTER CA..MULTANI LETTER JJA
+1128F..1129D  ; allowed ; recommended          # [15] (𑊏..𑊝)  MULTANI LETTER NYA..MULTANI LETTER BA
+1129F..112A8  ; allowed ; recommended          # [10] (𑊟..𑊨)  MULTANI LETTER BHA..MULTANI LETTER RHA
+11700..11719  ; allowed ; recommended          # [26] (𑜀..𑜙)  AHOM LETTER KA..AHOM LETTER JHA
+1171D..1172B  ; allowed ; recommended          # [15] (𑜝..𑜫)  AHOM CONSONANT SIGN MEDIAL LA..AHOM SIGN KILLER
+11730..11739  ; allowed ; recommended          # [10] (𑜰..𑜹)  AHOM DIGIT ZERO..AHOM DIGIT NINE
+14400..14646  ; allowed ; recommended          # [583] (𔐀..𔙆)  ANATOLIAN HIEROGLYPH A001..ANATOLIAN HIEROGLYPH A530
 1B000..1B001  ; allowed ; recommended          #  [2] (𛀀..𛀁)  KATAKANA LETTER ARCHAIC E..HIRAGANA LETTER ARCHAIC YE
+1DA00..1DA36  ; allowed ; recommended          # [55] (𝨀..𝨶)  SIGNWRITING HEAD RIM..SIGNWRITING AIR SUCKING IN
+1DA3B..1DA6C  ; allowed ; recommended          # [50] (𝨻..𝩬)  SIGNWRITING MOUTH CLOSED NEUTRAL..SIGNWRITING EXCITEMENT
+1DA75         ; allowed ; recommended          #      (𝩵)  SIGNWRITING UPPER BODY TILTING FROM HIP JOINTS
+1DA84         ; allowed ; recommended          #      (𝪄)  SIGNWRITING LOCATION HEAD NECK
+1DA9B..1DA9F  ; allowed ; recommended          #  [5] (𝪛..𝪟)  SIGNWRITING FILL MODIFIER-2..SIGNWRITING FILL MODIFIER-6
+1DAA1..1DAAF  ; allowed ; recommended          # [15] (𝪡..𝪯)  SIGNWRITING ROTATION MODIFIER-2..SIGNWRITING ROTATION MODIFIER-16
 20000..2A6D6  ; allowed ; recommended          # [42711] (𠀀..𪛖)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A700..2B734  ; allowed ; recommended          # [4149] (𪜀..𫜴)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B740..2B81D  ; allowed ; recommended          # [222] (𫝀..𫠝)  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
+2B820..2CEA1  ; allowed ; recommended          # [5762] (𫠠..𬺡)  CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 
-# Total code points: 89403
+# Total code points: 96112
 
 #	Status/Type:	restricted ; default-ignorable
 
@@ -502,6 +525,7 @@ A7FB..A7FF    ; restricted ; historic          #  [5] (ꟻ..ꟿ)  LATIN EPIGRAPH
 A840..A873    ; restricted ; historic          # [52] (ꡀ..ꡳ)  PHAGS-PA LETTER KA..PHAGS-PA LETTER CANDRABINDU
 A8E0..A8F7    ; restricted ; historic          # [24] (꣠..ꣷ)  COMBINING DEVANAGARI DIGIT ZERO..DEVANAGARI SIGN CANDRABINDU AVAGRAHA
 A8FB          ; restricted ; historic          #      (ꣻ)  DEVANAGARI HEADSTROKE
+A8FD          ; restricted ; historic          #      (ꣽ)  DEVANAGARI JAIN OM
 A930..A953    ; restricted ; historic          # [36] (ꤰ..꥓)  REJANG LETTER KA..REJANG VIRAMA
 A960..A97C    ; restricted ; historic          # [29] (ꥠ..ꥼ)  HANGUL CHOSEONG TIKEUT-MIEUM..HANGUL CHOSEONG SSANGYEORINHIEUH
 A9CF          ; restricted ; historic          #      (ꧏ)  JAVANESE PANGRANGKEP
@@ -572,12 +596,14 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 11150..11173  ; restricted ; historic          # [36] (𑅐..𑅳)  MAHAJANI LETTER A..MAHAJANI SIGN NUKTA
 11176         ; restricted ; historic          #      (𑅶)  MAHAJANI LIGATURE SHRI
 11180..111C4  ; restricted ; historic          # [69] (𑆀..𑇄)  SHARADA SIGN CANDRABINDU..SHARADA OM
+111CA..111CC  ; restricted ; historic          #  [3] (𑇊..𑇌)  SHARADA SIGN NUKTA..SHARADA EXTRA SHORT VOWEL MARK
 111D0..111DA  ; restricted ; historic          # [11] (𑇐..𑇚)  SHARADA DIGIT ZERO..SHARADA EKAM
+111DC         ; restricted ; historic          #      (𑇜)  SHARADA HEADSTROKE
 11200..11211  ; restricted ; historic          # [18] (𑈀..𑈑)  KHOJKI LETTER A..KHOJKI LETTER JJA
 11213..11237  ; restricted ; historic          # [37] (𑈓..𑈷)  KHOJKI LETTER NYA..KHOJKI SIGN SHADDA
 112B0..112EA  ; restricted ; historic          # [59] (𑊰..𑋪)  KHUDAWADI LETTER A..KHUDAWADI SIGN VIRAMA
 112F0..112F9  ; restricted ; historic          # [10] (𑋰..𑋹)  KHUDAWADI DIGIT ZERO..KHUDAWADI DIGIT NINE
-11301..11303  ; restricted ; historic          #  [3] (𑌁..𑌃)  GRANTHA SIGN CANDRABINDU..GRANTHA SIGN VISARGA
+11300..11303  ; restricted ; historic          #  [4] (𑌀..𑌃)  GRANTHA SIGN COMBINING ANUSVARA ABOVE..GRANTHA SIGN VISARGA
 11305..1130C  ; restricted ; historic          #  [8] (𑌅..𑌌)  GRANTHA LETTER A..GRANTHA LETTER VOCALIC L
 1130F..11310  ; restricted ; historic          #  [2] (𑌏..𑌐)  GRANTHA LETTER EE..GRANTHA LETTER AI
 11313..11328  ; restricted ; historic          # [22] (𑌓..𑌨)  GRANTHA LETTER OO..GRANTHA LETTER NA
@@ -587,6 +613,7 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 1133C..11344  ; restricted ; historic          #  [9] (𑌼..𑍄)  GRANTHA SIGN NUKTA..GRANTHA VOWEL SIGN VOCALIC RR
 11347..11348  ; restricted ; historic          #  [2] (𑍇..𑍈)  GRANTHA VOWEL SIGN EE..GRANTHA VOWEL SIGN AI
 1134B..1134D  ; restricted ; historic          #  [3] (𑍋..𑍍)  GRANTHA VOWEL SIGN OO..GRANTHA SIGN VIRAMA
+11350         ; restricted ; historic          #      (𑍐)  GRANTHA OM
 11357         ; restricted ; historic          #      (𑍗)  GRANTHA AU LENGTH MARK
 1135D..11363  ; restricted ; historic          #  [7] (𑍝..𑍣)  GRANTHA SIGN PLUTA..GRANTHA VOWEL SIGN VOCALIC LL
 11366..1136C  ; restricted ; historic          #  [7] (𑍦..𑍬)  COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
@@ -596,6 +623,7 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 114D0..114D9  ; restricted ; historic          # [10] (𑓐..𑓙)  TIRHUTA DIGIT ZERO..TIRHUTA DIGIT NINE
 11580..115B5  ; restricted ; historic          # [54] (𑖀..𑖵)  SIDDHAM LETTER A..SIDDHAM VOWEL SIGN VOCALIC RR
 115B8..115C0  ; restricted ; historic          #  [9] (𑖸..𑗀)  SIDDHAM VOWEL SIGN E..SIDDHAM SIGN NUKTA
+115D8..115DD  ; restricted ; historic          #  [6] (𑗘..𑗝)  SIDDHAM LETTER THREE-CIRCLE ALTERNATE I..SIDDHAM VOWEL SIGN ALTERNATE UU
 11600..11640  ; restricted ; historic          # [65] (𑘀..𑙀)  MODI LETTER A..MODI SIGN ARDHACANDRA
 11644         ; restricted ; historic          #      (𑙄)  MODI SIGN HUVA
 11650..11659  ; restricted ; historic          # [10] (𑙐..𑙙)  MODI DIGIT ZERO..MODI DIGIT NINE
@@ -604,8 +632,9 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 118A0..118E9  ; restricted ; historic          # [74] (𑢠..𑣩)  WARANG CITI CAPITAL LETTER NGAA..WARANG CITI DIGIT NINE
 118FF         ; restricted ; historic          #      (𑣿)  WARANG CITI OM
 11AC0..11AF8  ; restricted ; historic          # [57] (𑫀..𑫸)  PAU CIN HAU LETTER PA..PAU CIN HAU GLOTTAL STOP FINAL
-12000..12398  ; restricted ; historic          # [921] (𒀀..𒎘)  CUNEIFORM SIGN A..CUNEIFORM SIGN UM TIMES ME
+12000..12399  ; restricted ; historic          # [922] (𒀀..𒎙)  CUNEIFORM SIGN A..CUNEIFORM SIGN U U
 12400..1246E  ; restricted ; historic          # [111] (𒐀..𒑮)  CUNEIFORM NUMERIC SIGN TWO ASH..CUNEIFORM NUMERIC SIGN NINE U VARIANT FORM
+12480..12543  ; restricted ; historic          # [196] (𒒀..𒕃)  CUNEIFORM SIGN AB TIMES NUN TENU..CUNEIFORM SIGN ZU5 TIMES THREE DISH TENU
 13000..1342E  ; restricted ; historic          # [1071] (𓀀..𓐮)  EGYPTIAN HIEROGLYPH A001..EGYPTIAN HIEROGLYPH AA032
 16A40..16A5E  ; restricted ; historic          # [31] (𖩀..𖩞)  MRO LETTER TA..MRO LETTER TEK
 16A60..16A69  ; restricted ; historic          # [10] (𖩠..𖩩)  MRO DIGIT ZERO..MRO DIGIT NINE
@@ -630,7 +659,7 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 1E800..1E8C4  ; restricted ; historic          # [197] (𞠀..𞣄)  MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8D0..1E8D6  ; restricted ; historic          #  [7] (𞣐..𞣖)  MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 6813
+# Total code points: 7023
 
 #	Status/Type:	restricted ; limited-use
 
@@ -683,7 +712,7 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 07C0..07F5    ; restricted ; limited-use       # [54] (߀..ߵ)  NKO DIGIT ZERO..NKO LOW TONE APOSTROPHE
 07FA          ; restricted ; limited-use       #      (ߺ)  NKO LAJANYALAN
 0840..085B    ; restricted ; limited-use       # [28] (ࡀ..࡛)  MANDAIC LETTER HALQA..MANDAIC GEMINATION MARK
-08E4..0900    ; restricted ; limited-use       # [29] (ࣤ..ऀ)  ARABIC CURLY FATHA..DEVANAGARI SIGN INVERTED CANDRABINDU
+08E3..0900    ; restricted ; limited-use       # [30] (ࣣ..ऀ)  ARABIC TURNED DAMMA BELOW..DEVANAGARI SIGN INVERTED CANDRABINDU
 0955          ; restricted ; limited-use       #      (ॕ)  DEVANAGARI VOWEL SIGN CANDRA LONG E
 0A51          ; restricted ; limited-use       #      (ੑ)  GURMUKHI SIGN UDAAT
 0A75          ; restricted ; limited-use       #      (ੵ)  GURMUKHI SIGN YAKASH
@@ -697,7 +726,8 @@ D7CB..D7FB    ; restricted ; historic          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 0DDF          ; restricted ; limited-use       #      (ෟ)  SINHALA VOWEL SIGN GAYANUKITTA
 0DF3          ; restricted ; limited-use       #      (ෳ)  SINHALA VOWEL SIGN DIGA GAYANUKITTA
 0F39          ; restricted ; limited-use       #      (༹)  TIBETAN MARK TSA -PHRU
-13A0..13F4    ; restricted ; limited-use       # [85] (Ꭰ..Ᏼ)  CHEROKEE LETTER A..CHEROKEE LETTER YV
+13A0..13F5    ; restricted ; limited-use       # [86] (Ꭰ..Ᏽ)  CHEROKEE LETTER A..CHEROKEE LETTER MV
+13F8..13FD    ; restricted ; limited-use       #  [6] (ᏸ..ᏽ)  CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
 1401..166C    ; restricted ; limited-use       # [620] (ᐁ..ᙬ)  CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
 166F..167F    ; restricted ; limited-use       # [17] (ᙯ..ᙿ)  CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS BLACKFOOT W
 1810..1819    ; restricted ; limited-use       # [10] (᠐..᠙)  MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
@@ -749,7 +779,7 @@ AA80..AAC2    ; restricted ; limited-use       # [67] (ꪀ..ꫂ)  TAI VIET LETTE
 AADB..AADD    ; restricted ; limited-use       #  [3] (ꫛ..ꫝ)  TAI VIET SYMBOL KON..TAI VIET SYMBOL SAM
 AAE0..AAEF    ; restricted ; limited-use       # [16] (ꫠ..ꫯ)  MEETEI MAYEK LETTER E..MEETEI MAYEK VOWEL SIGN AAU
 AAF2..AAF6    ; restricted ; limited-use       #  [5] (ꫲ..꫶)  MEETEI MAYEK ANJI..MEETEI MAYEK VIRAMA
-ABC0..ABEA    ; restricted ; limited-use       # [43] (ꯀ..ꯪ)  MEETEI MAYEK LETTER KOK..MEETEI MAYEK VOWEL SIGN NUNG
+AB70..ABEA    ; restricted ; limited-use       # [123] (ꭰ..ꯪ)  CHEROKEE SMALL LETTER A..MEETEI MAYEK VOWEL SIGN NUNG
 ABEC..ABED    ; restricted ; limited-use       #  [2] (꯬..꯭)  MEETEI MAYEK LUM IYEK..MEETEI MAYEK APUN IYEK
 ABF0..ABF9    ; restricted ; limited-use       # [10] (꯰..꯹)  MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NINE
 FB1E          ; restricted ; limited-use       #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
@@ -760,7 +790,7 @@ FB1E          ; restricted ; limited-use       #      (ﬞ)  HEBREW POINT JUDEO-
 16F50..16F7E  ; restricted ; limited-use       # [47] (𖽐..𖽾)  MIAO LETTER NASALIZATION..MIAO VOWEL SIGN NG
 16F8F..16F9F  ; restricted ; limited-use       # [17] (𖾏..𖾟)  MIAO TONE RIGHT..MIAO LETTER REFORMED TONE-8
 
-# Total code points: 4839
+# Total code points: 4927
 
 #	Status/Type:	restricted ; not-NFKC
 
@@ -1137,7 +1167,7 @@ FFE8..FFEE    ; restricted ; not-NFKC          #  [7] (￨..￮)  HALFWIDTH FORM
 2055..2056    ; restricted ; not-xid           #  [2] (⁕..⁖)  FLOWER PUNCTUATION MARK..THREE DOT PUNCTUATION
 2058..205E    ; restricted ; not-xid           #  [7] (⁘..⁞)  FOUR DOT PUNCTUATION..VERTICAL FOUR DOTS
 20A0..20A7    ; restricted ; not-xid           #  [8] (₠..₧)  EURO-CURRENCY SIGN..PESETA SIGN
-20A9..20BD    ; restricted ; not-xid           # [21] (₩..₽)  WON SIGN..RUBLE SIGN
+20A9..20BE    ; restricted ; not-xid           # [22] (₩..₾)  WON SIGN..LARI SIGN
 20DD..20E0    ; restricted ; not-xid           #  [4] (⃝..⃠)  COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E2..20E4    ; restricted ; not-xid           #  [3] (⃢..⃤)  COMBINING ENCLOSING SCREEN..COMBINING ENCLOSING UPWARD POINTING TRIANGLE
 2104          ; restricted ; not-xid           #      (℄)  CENTRE LINE SYMBOL
@@ -1153,6 +1183,7 @@ FFE8..FFEE    ; restricted ; not-NFKC          #  [7] (￨..￮)  HALFWIDTH FORM
 2141..2144    ; restricted ; not-xid           #  [4] (⅁..⅄)  TURNED SANS-SERIF CAPITAL G..TURNED SANS-SERIF CAPITAL Y
 214A..214D    ; restricted ; not-xid           #  [4] (⅊..⅍)  PROPERTY LINE..AKTIESELSKAB
 214F          ; restricted ; not-xid           #      (⅏)  SYMBOL FOR SAMARITAN SOURCE
+218A..218B    ; restricted ; not-xid           #  [2] (↊..↋)  TURNED DIGIT TWO..TURNED DIGIT THREE
 2190..222B    ; restricted ; not-xid           # [156] (←..∫)  LEFTWARDS ARROW..INTEGRAL
 222E          ; restricted ; not-xid           #      (∮)  CONTOUR INTEGRAL
 2231..2328    ; restricted ; not-xid           # [248] (∱..⌨)  CLOCKWISE INTEGRAL..KEYBOARD
@@ -1167,6 +1198,7 @@ FFE8..FFEE    ; restricted ; not-NFKC          #  [7] (￨..￮)  HALFWIDTH FORM
 2B98..2BB9    ; restricted ; not-xid           # [34] (⮘..⮹)  THREE-D TOP-LIGHTED LEFTWARDS EQUILATERAL ARROWHEAD..UP ARROWHEAD IN A RECTANGLE BOX
 2BBD..2BC8    ; restricted ; not-xid           # [12] (⮽..⯈)  BALLOT BOX WITH LIGHT X..BLACK MEDIUM RIGHT-POINTING TRIANGLE CENTRED
 2BCA..2BD1    ; restricted ; not-xid           #  [8] (⯊..⯑)  TOP HALF BLACK CIRCLE..UNCERTAINTY SIGN
+2BEC..2BEF    ; restricted ; not-xid           #  [4] (⯬..⯯)  LEFTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS..DOWNWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
 2CE5..2CEA    ; restricted ; not-xid           #  [6] (⳥..⳪)  COPTIC SYMBOL MI RO..COPTIC SYMBOL SHIMA SIMA
 2CF9..2CFF    ; restricted ; not-xid           #  [7] (⳹..⳿)  COPTIC OLD NUBIAN FULL STOP..COPTIC MORPHOLOGICAL DIVIDER
 2D70          ; restricted ; not-xid           #      (⵰)  TIFINAGH SEPARATOR MARK
@@ -1202,6 +1234,7 @@ A830..A839    ; restricted ; not-xid           # [10] (꠰..꠹)  NORTH INDIC FR
 A874..A877    ; restricted ; not-xid           #  [4] (꡴..꡷)  PHAGS-PA SINGLE HEAD MARK..PHAGS-PA MARK DOUBLE SHAD
 A8CE..A8CF    ; restricted ; not-xid           #  [2] (꣎..꣏)  SAURASHTRA DANDA..SAURASHTRA DOUBLE DANDA
 A8F8..A8FA    ; restricted ; not-xid           #  [3] (꣸..꣺)  DEVANAGARI SIGN PUSHPIKA..DEVANAGARI CARET
+A8FC          ; restricted ; not-xid           #      (꣼)  DEVANAGARI SIGN SIDDHAM
 A92E..A92F    ; restricted ; not-xid           #  [2] (꤮..꤯)  KAYAH LI SIGN CWI..KAYAH LI SIGN SHYA
 A95F          ; restricted ; not-xid           #      (꥟)  REJANG SECTION MARK
 A9C1..A9CD    ; restricted ; not-xid           # [13] (꧁..꧍)  JAVANESE LEFT RERENGGAN..JAVANESE TURNED PADA PISELEH
@@ -1233,9 +1266,13 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 10857..1085F  ; restricted ; not-xid           #  [9] (𐡗..𐡟)  IMPERIAL ARAMAIC SECTION SIGN..IMPERIAL ARAMAIC NUMBER TEN THOUSAND
 10877..1087F  ; restricted ; not-xid           #  [9] (𐡷..𐡿)  PALMYRENE LEFT-POINTING FLEURON..PALMYRENE NUMBER TWENTY
 108A7..108AF  ; restricted ; not-xid           #  [9] (𐢧..𐢯)  NABATAEAN NUMBER ONE..NABATAEAN NUMBER ONE HUNDRED
+108FB..108FF  ; restricted ; not-xid           #  [5] (𐣻..𐣿)  HATRAN NUMBER ONE..HATRAN NUMBER ONE HUNDRED
 10916..1091B  ; restricted ; not-xid           #  [6] (𐤖..𐤛)  PHOENICIAN NUMBER ONE..PHOENICIAN NUMBER THREE
 1091F         ; restricted ; not-xid           #      (𐤟)  PHOENICIAN WORD SEPARATOR
 1093F         ; restricted ; not-xid           #      (𐤿)  LYDIAN TRIANGULAR MARK
+109BC..109BD  ; restricted ; not-xid           #  [2] (𐦼..𐦽)  MEROITIC CURSIVE FRACTION ELEVEN TWELFTHS..MEROITIC CURSIVE FRACTION ONE HALF
+109C0..109CF  ; restricted ; not-xid           # [16] (𐧀..𐧏)  MEROITIC CURSIVE NUMBER ONE..MEROITIC CURSIVE NUMBER SEVENTY
+109D2..109FF  ; restricted ; not-xid           # [46] (𐧒..𐧿)  MEROITIC CURSIVE NUMBER ONE HUNDRED..MEROITIC CURSIVE FRACTION TEN TWELFTHS
 10A40..10A47  ; restricted ; not-xid           #  [8] (𐩀..𐩇)  KHAROSHTHI DIGIT ONE..KHAROSHTHI NUMBER ONE THOUSAND
 10A50..10A58  ; restricted ; not-xid           #  [9] (𐩐..𐩘)  KHAROSHTHI PUNCTUATION DOT..KHAROSHTHI PUNCTUATION LINES
 10A7D..10A7F  ; restricted ; not-xid           #  [3] (𐩽..𐩿)  OLD SOUTH ARABIAN NUMBER ONE..OLD SOUTH ARABIAN NUMERIC INDICATOR
@@ -1247,6 +1284,7 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 10B78..10B7F  ; restricted ; not-xid           #  [8] (𐭸..𐭿)  INSCRIPTIONAL PAHLAVI NUMBER ONE..INSCRIPTIONAL PAHLAVI NUMBER ONE THOUSAND
 10B99..10B9C  ; restricted ; not-xid           #  [4] (𐮙..𐮜)  PSALTER PAHLAVI SECTION MARK..PSALTER PAHLAVI FOUR DOTS WITH DOT
 10BA9..10BAF  ; restricted ; not-xid           #  [7] (𐮩..𐮯)  PSALTER PAHLAVI NUMBER ONE..PSALTER PAHLAVI NUMBER ONE HUNDRED
+10CFA..10CFF  ; restricted ; not-xid           #  [6] (𐳺..𐳿)  OLD HUNGARIAN NUMBER ONE..OLD HUNGARIAN NUMBER ONE THOUSAND
 10E60..10E7E  ; restricted ; not-xid           # [31] (𐹠..𐹾)  RUMI DIGIT ONE..RUMI FRACTION TWO THIRDS
 11047..1104D  ; restricted ; not-xid           #  [7] (𑁇..𑁍)  BRAHMI DANDA..BRAHMI PUNCTUATION LOTUS
 11052..11065  ; restricted ; not-xid           # [20] (𑁒..𑁥)  BRAHMI NUMBER ONE..BRAHMI NUMBER ONE THOUSAND
@@ -1255,13 +1293,17 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 110BE..110C1  ; restricted ; not-xid           #  [4] (𑂾..𑃁)  KAITHI SECTION MARK..KAITHI DOUBLE DANDA
 11140..11143  ; restricted ; not-xid           #  [4] (𑅀..𑅃)  CHAKMA SECTION MARK..CHAKMA QUESTION MARK
 11174..11175  ; restricted ; not-xid           #  [2] (𑅴..𑅵)  MAHAJANI ABBREVIATION SIGN..MAHAJANI SECTION MARK
-111C5..111C8  ; restricted ; not-xid           #  [4] (𑇅..𑇈)  SHARADA DANDA..SHARADA SEPARATOR
+111C5..111C9  ; restricted ; not-xid           #  [5] (𑇅..𑇉)  SHARADA DANDA..SHARADA SANDHI MARK
 111CD         ; restricted ; not-xid           #      (𑇍)  SHARADA SUTRA MARK
+111DB         ; restricted ; not-xid           #      (𑇛)  SHARADA SIGN SIDDHAM
+111DD..111DF  ; restricted ; not-xid           #  [3] (𑇝..𑇟)  SHARADA CONTINUATION SIGN..SHARADA SECTION MARK-2
 111E1..111F4  ; restricted ; not-xid           # [20] (𑇡..𑇴)  SINHALA ARCHAIC DIGIT ONE..SINHALA ARCHAIC NUMBER ONE THOUSAND
 11238..1123D  ; restricted ; not-xid           #  [6] (𑈸..𑈽)  KHOJKI DANDA..KHOJKI ABBREVIATION SIGN
+112A9         ; restricted ; not-xid           #      (𑊩)  MULTANI SECTION MARK
 114C6         ; restricted ; not-xid           #      (𑓆)  TIRHUTA ABBREVIATION SIGN
-115C1..115C9  ; restricted ; not-xid           #  [9] (𑗁..𑗉)  SIDDHAM SIGN SIDDHAM..SIDDHAM END OF TEXT MARK
+115C1..115D7  ; restricted ; not-xid           # [23] (𑗁..𑗗)  SIDDHAM SIGN SIDDHAM..SIDDHAM SECTION MARK WITH CIRCLES AND FOUR ENCLOSURES
 11641..11643  ; restricted ; not-xid           #  [3] (𑙁..𑙃)  MODI DANDA..MODI ABBREVIATION SIGN
+1173A..1173F  ; restricted ; not-xid           #  [6] (𑜺..𑜿)  AHOM NUMBER TEN..AHOM SYMBOL VI
 118EA..118F2  ; restricted ; not-xid           #  [9] (𑣪..𑣲)  WARANG CITI NUMBER TEN..WARANG CITI NUMBER NINETY
 12470..12474  ; restricted ; not-xid           #  [5] (𒑰..𒑴)  CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
 16A6E..16A6F  ; restricted ; not-xid           #  [2] (𖩮..𖩯)  MRO DANDA..MRO DOUBLE DANDA
@@ -1278,11 +1320,16 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 1D183..1D184  ; restricted ; not-xid           #  [2] (𝆃..𝆄)  MUSICAL SYMBOL ARPEGGIATO UP..MUSICAL SYMBOL ARPEGGIATO DOWN
 1D18C..1D1A9  ; restricted ; not-xid           # [30] (𝆌..𝆩)  MUSICAL SYMBOL RINFORZANDO..MUSICAL SYMBOL DEGREE SLASH
 1D1AE..1D1BA  ; restricted ; not-xid           # [13] (𝆮..𝆺)  MUSICAL SYMBOL PEDAL MARK..MUSICAL SYMBOL SEMIBREVIS BLACK
-1D1C1..1D1DD  ; restricted ; not-xid           # [29] (𝇁..𝇝)  MUSICAL SYMBOL LONGA PERFECTA REST..MUSICAL SYMBOL PES SUBPUNCTIS
+1D1C1..1D1E8  ; restricted ; not-xid           # [40] (𝇁..𝇨)  MUSICAL SYMBOL LONGA PERFECTA REST..MUSICAL SYMBOL KIEVAN FLAT SIGN
 1D200..1D241  ; restricted ; not-xid           # [66] (𝈀..𝉁)  GREEK VOCAL NOTATION SYMBOL-1..GREEK INSTRUMENTAL NOTATION SYMBOL-54
 1D245         ; restricted ; not-xid           #      (𝉅)  GREEK MUSICAL LEIMMA
 1D300..1D356  ; restricted ; not-xid           # [87] (𝌀..𝍖)  MONOGRAM FOR EARTH..TETRAGRAM FOR FOSTERING
 1D360..1D371  ; restricted ; not-xid           # [18] (𝍠..𝍱)  COUNTING ROD UNIT DIGIT ONE..COUNTING ROD TENS DIGIT NINE
+1D800..1D9FF  ; restricted ; not-xid           # [512] (𝠀..𝧿)  SIGNWRITING HAND-FIST INDEX..SIGNWRITING HEAD
+1DA37..1DA3A  ; restricted ; not-xid           #  [4] (𝨷..𝨺)  SIGNWRITING AIR BLOW SMALL ROTATIONS..SIGNWRITING BREATH EXHALE
+1DA6D..1DA74  ; restricted ; not-xid           #  [8] (𝩭..𝩴)  SIGNWRITING SHOULDER HIP SPINE..SIGNWRITING TORSO-FLOORPLANE TWISTING
+1DA76..1DA83  ; restricted ; not-xid           # [14] (𝩶..𝪃)  SIGNWRITING LIMB COMBINATION..SIGNWRITING LOCATION DEPTH
+1DA85..1DA8B  ; restricted ; not-xid           #  [7] (𝪅..𝪋)  SIGNWRITING LOCATION TORSO..SIGNWRITING PARENTHESIS
 1E8C7..1E8CF  ; restricted ; not-xid           #  [9] (𞣇..𞣏)  MENDE KIKAKUI DIGIT ONE..MENDE KIKAKUI DIGIT NINE
 1EEF0..1EEF1  ; restricted ; not-xid           #  [2] (𞻰..𞻱)  ARABIC MATHEMATICAL OPERATOR MEEM WITH HAH WITH TATWEEL..ARABIC MATHEMATICAL OPERATOR HAH WITH DAL
 1F000..1F02B  ; restricted ; not-xid           # [44] (🀀..🀫)  MAHJONG TILE EAST WIND..MAHJONG TILE BACK
@@ -1296,16 +1343,9 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 1F170..1F18F  ; restricted ; not-xid           # [32] (🅰..🆏)  NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED WC
 1F191..1F19A  ; restricted ; not-xid           # [10] (🆑..🆚)  SQUARED CL..SQUARED VS
 1F1E6..1F1FF  ; restricted ; not-xid           # [26] (🇦..🇿)  REGIONAL INDICATOR SYMBOL LETTER A..REGIONAL INDICATOR SYMBOL LETTER Z
-1F300..1F32C  ; restricted ; not-xid           # [45] (🌀..🌬)  CYCLONE..WIND BLOWING FACE
-1F330..1F37D  ; restricted ; not-xid           # [78] (🌰..🍽)  CHESTNUT..FORK AND KNIFE WITH PLATE
-1F380..1F3CE  ; restricted ; not-xid           # [79] (🎀..🏎)  RIBBON..RACING CAR
-1F3D4..1F3F7  ; restricted ; not-xid           # [36] (🏔..🏷)  SNOW CAPPED MOUNTAIN..LABEL
-1F400..1F4FE  ; restricted ; not-xid           # [255] (🐀..📾)  RAT..PORTABLE STEREO
-1F500..1F54A  ; restricted ; not-xid           # [75] (🔀..🕊)  TWISTED RIGHTWARDS ARROWS..DOVE OF PEACE
-1F550..1F579  ; restricted ; not-xid           # [42] (🕐..🕹)  CLOCK FACE ONE OCLOCK..JOYSTICK
+1F300..1F579  ; restricted ; not-xid           # [634] (🌀..🕹)  CYCLONE..JOYSTICK
 1F57B..1F5A3  ; restricted ; not-xid           # [41] (🕻..🖣)  LEFT HAND TELEPHONE RECEIVER..BLACK DOWN POINTING BACKHAND INDEX
-1F5A5..1F642  ; restricted ; not-xid           # [158] (🖥..🙂)  DESKTOP COMPUTER..SLIGHTLY SMILING FACE
-1F645..1F6CF  ; restricted ; not-xid           # [139] (🙅..🛏)  FACE WITH NO GOOD GESTURE..BED
+1F5A5..1F6D0  ; restricted ; not-xid           # [300] (🖥..🛐)  DESKTOP COMPUTER..PLACE OF WORSHIP
 1F6E0..1F6EC  ; restricted ; not-xid           # [13] (🛠..🛬)  HAMMER AND WRENCH..AIRPLANE ARRIVING
 1F6F0..1F6F3  ; restricted ; not-xid           #  [4] (🛰..🛳)  SATELLITE..PASSENGER SHIP
 1F700..1F773  ; restricted ; not-xid           # [116] (🜀..🝳)  ALCHEMICAL SYMBOL FOR QUINTESSENCE..ALCHEMICAL SYMBOL FOR HALF OUNCE
@@ -1315,8 +1355,12 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 1F850..1F859  ; restricted ; not-xid           # [10] (🡐..🡙)  LEFTWARDS SANS-SERIF ARROW..UP DOWN SANS-SERIF ARROW
 1F860..1F887  ; restricted ; not-xid           # [40] (🡠..🢇)  WIDE-HEADED LEFTWARDS LIGHT BARB ARROW..WIDE-HEADED SOUTH WEST VERY HEAVY BARB ARROW
 1F890..1F8AD  ; restricted ; not-xid           # [30] (🢐..🢭)  LEFTWARDS TRIANGLE ARROWHEAD..WHITE ARROW SHAFT WIDTH TWO THIRDS
+1F900         ; restricted ; not-xid           #      (🤀)  DHYANI BUDDHA
+1F910..1F918  ; restricted ; not-xid           #  [9] (🤐..🤘)  ZIPPER-MOUTH FACE..SIGN OF THE HORNS
+1F980..1F984  ; restricted ; not-xid           #  [5] (🦀..🦄)  CRAB..UNICORN FACE
+1F9C0         ; restricted ; not-xid           #      (🧀)  CHEESE WEDGE
 
-# Total code points: 6186
+# Total code points: 6894
 
 #	Status/Type:	restricted ; obsolete
 
@@ -1402,7 +1446,7 @@ FFFC..FFFD    ; restricted ; not-xid           #  [2] (￼..�)  OBJECT REPLACE
 3031..3035    ; restricted ; technical         #  [5] (〱..〵)  VERTICAL KANA REPEAT MARK..VERTICAL KANA REPEAT MARK LOWER HALF
 303B..303C    ; restricted ; technical         #  [2] (〻..〼)  VERTICAL IDEOGRAPHIC ITERATION MARK..MASU MARK
 31F0..31FF    ; restricted ; technical         # [16] (ㇰ..ㇿ)  KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
-FE20..FE2D    ; restricted ; technical         # [14] (︠..︭)  COMBINING LIGATURE LEFT HALF..COMBINING CONJOINING MACRON BELOW
+FE20..FE2F    ; restricted ; technical         # [16] (︠..︯)  COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
 FE73          ; restricted ; technical         #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 483
+# Total code points: 485
