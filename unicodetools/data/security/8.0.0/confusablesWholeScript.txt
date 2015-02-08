@@ -1,7 +1,7 @@
 ﻿# Summary: Whole-Script Confusables
 # File: confusablesWholeScript.txt
 # Version: 8.0.0
-# Generated: 2015-02-03, 15:18:51 GMT
+# Generated: 2015-02-03, 20:04:21 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
