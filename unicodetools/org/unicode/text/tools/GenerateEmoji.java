@@ -71,6 +71,7 @@ public class GenerateEmoji {
 
     private static final String           BREAK                     = "<br>";
     private static final String           DOC_DATA_FILES            = "/../../../reports/tr51/index.html#Data_Files";
+
     // private static final UnicodeSet EXTRAS = new UnicodeSet(
     // "[☦ ☪-☬ ☸ ✝ 🕉0-9\\u2714\\u2716\\u303D\\u3030 \\u00A9 \\u00AE \\u2795-\\u2797 \\u27B0 \\U0001F519-\\U0001F51C {🇽🇰}]")
     // .add("*"+Emoji.ENCLOSING_KEYCAP)
@@ -125,6 +126,7 @@ public class GenerateEmoji {
             }
             line = Emoji.getLabelFromLine(lastLabel, line);
             for (int i = 0; i < line.length();) {
+                line = Emoji.UNESCAPE.transform(line);
                 String string = Emoji.getEmojiSequence(line, i);
                 i += string.length();
                 if (Emoji.skipEmojiSequence(string)) {
@@ -142,7 +144,7 @@ public class GenerateEmoji {
         missing.removeAll(sorted);
         if (!missing.isEmpty()) {
             ORDERING_TO_CHAR.putAll("other", missing);
-            throw new IllegalArgumentException("Missing some orderings: " + missing);
+            throw new IllegalArgumentException("Missing some orderings: " + new UnicodeSet().addAll(missing));
         }
         sorted.addAll(missing);
         mp.add(sorted);
@@ -294,6 +296,7 @@ public class GenerateEmoji {
                 }
                 line = Emoji.getLabelFromLine(lastLabel, line);
                 for (int i = 0; i < line.length();) {
+                    line = Emoji.UNESCAPE.transform(line);
                     String string = Emoji.getEmojiSequence(line, i);
                     i += string.length();
                     if (Emoji.skipEmojiSequence(string)) {
@@ -863,10 +866,28 @@ public class GenerateEmoji {
             .addAll(totalData.get(Source.kddi))
             .addAll(totalData.get(Source.dcm))
             .freeze();
+            UnicodeSet textStyle = new UnicodeSet();
+            for (Entry<String, Data> s : Data.STRING_TO_DATA.entrySet()) {
+                if (s.getValue().defaultPresentation == Style.text) {
+                    textStyle.add(s.getKey());
+                }
+            }
+            UnicodeSet needsVS = new UnicodeSet();
+            for (String s : jc) {
+                int first = s.codePointAt(0);
+                if (!HAS_EMOJI_VS.contains(first) && textStyle.contains(first)) {
+                    needsVS.add(first);
+                }
+            }
+            
+            System.out.println("All Emoji\t" + Emoji.EMOJI_CHARS.toPattern(false));
+
+            System.out.println("needs VS\t" + needsVS.toPattern(false));
+            
             System.out.println("gmail-jc" + "\t"
-                    + new UnicodeSet(totalData.get(Source.gmail)).removeAll(jc));
+                    + new UnicodeSet(totalData.get(Source.gmail)).removeAll(jc).toPattern(false));
             System.out.println("jc-gmail" + "\t"
-                    + new UnicodeSet(jc).removeAll(totalData.get(Source.gmail)));
+                    + new UnicodeSet(jc).removeAll(totalData.get(Source.gmail)).toPattern(false));
 
             for (Entry<Source, UnicodeSet> entry : totalData.entrySet()) {
                 System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
@@ -2017,17 +2038,15 @@ public class GenerateEmoji {
     }
 
     public static <T> void printData(Map<String, Data> set, Stats stats) throws IOException {
-        PrintWriter outText = null;
+        //PrintWriter outText = null;
         PrintWriter outText2 = null;
         int order = 0;
         UnicodeSet level1 = null;
-        outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-data.txt");
-        outText2 = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-data2.txt");
+        //outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-data-old.txt");
+        outText2 = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-data.txt");
         String format = "# Code ; Default Style ; Sources ; Version # (Character) Name\n";
-        String level = "#\tLevel:\tL1 for level 1, L2 for level 2\n";
-        String modifier = "#\tModiferStatus:\t'modifier' for an emoji modifier; 'minimal'/'optional' for the minimal/optional set; otherwise 'none'\n";
-        outText.println(dataHeader("", "", ""));
-        outText2.println(dataHeader("\tLevel ;\tModifierStatus ;", level, modifier));
+        //outText.println(dataHeader("", "", ""));
+        outText2.println(dataHeader());
         level1 = new UnicodeSet()
         .addAll(stats.totalData.get(Source.apple))
         .retainAll(stats.totalData.get(Source.android))
@@ -2035,24 +2054,35 @@ public class GenerateEmoji {
         .retainAll(stats.totalData.get(Source.twitter))
         .freeze();
         for (Data data : new TreeSet<Data>(set.values())) {
-            outText.println(data.toSemiString(order++, null));
+            //outText.println(data.toSemiString(order++, null));
             outText2.println(data.toSemiString(order++, level1));
         }
-        outText.close();
+        //outText.close();
         outText2.close();
     }
 
-    private static String dataHeader(String format, String level, String modifier) {
+    private static String dataHeader() {
         return "# DRAFT emoji-data.txt\n" 
                 + "# For details about the format and other information, see " + DOC_DATA_FILES + ".\n" 
                 + "#\n" 
-                + "# Format\n" 
-                + "# Code ;\tDefault Style ;" + format + "\tSources ;\tVersion\t# (Character) Name\n" 
-                + "#\tDefault Style:\ttext for default text presentation; 'emoji' for default emoji presentation\n"
-                + level
-                + modifier
-                + "#\tSources:\tInformative; see the key in http://www.unicode.org/reports/tr51/tr51.html#Full_Emoji_List_Columns\n"
-                + "#\tVersion:\tInformative; version the character was first encoded\n#";
+                + "# Format: Code ; Default_Emoji_Style ; Emoji_Level ; Emoji_Modifier_Status ; Emoji_Sources ; Version # (Character) Name\n" 
+                + "#\n"
+                + "#   Field 1 — Default_Emoji_Style:\n"
+                + "#             text:      default text presentation\n"
+                + "#             emoji:     default emoji presentation\n"
+                + "#   Field 2 — Emoji_Level:\n"
+                + "#             L1:        level 1 emoji\n"
+                + "#             L2:        level 2 emoji\n"
+                + "#   Field 3 — Emoji_Modifier_Status:\n"
+                + "#             modifier:  an emoji modifier\n"
+                + "#             minimal:   a minimal emoji modifier base\n"
+                + "#             optional:  an optional emoji modifier base\n"
+                + "#             none:      none of the above\n"
+                + "#   Field 4 — Emoji_Sources (Informative):\n"
+                + "#             one or more values from {z, a, j, w, x}\n"
+                + "#             see the key in http://www.unicode.org/draft/reports/tr51/tr51.html#Major_Sources\n"
+                + "#   Field 5 — Version (Informative):\n"
+                + "#             version the character was first encoded, from DerivedAge\n#";
     }
 
     static final String FOOTER = "</table>" + Utility.repeat("<br>", 60) + "</body></html>";
