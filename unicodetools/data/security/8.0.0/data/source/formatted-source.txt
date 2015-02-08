@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: formatted-source.txt
 # Version: 8.0.0
-# Generated: 2015-02-03, 15:18:48 GMT
+# Generated: 2015-02-07, 16:17:21 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/

@@ -1,4 +1,4 @@
-﻿# Source file for idnchars/confusables
+﻿# New Source file for idnchars/confusables
 # $Revision: 1509 $
 # $Date: 2012-05-06 22:55:50 -0700 (Sun, 06 May 2012) $
 
@@ -472,70 +472,114 @@ A708..A716; technical # (phonetic)
 
 #10A0..10C5 2D00..2D2F; liturgical script (Asomtavruli, Nuskhuri)
 
-[:script=Armi:] ; historic # UAX31 T4 #     Imperial Aramaic
-[:script=Avst:] ; historic # UAX31 T4 #     Avestan
-[:script=Bugi:] ; historic # UAX31 T4 #     Buginese
-[:script=Buhd:] ; historic # UAX31 T4 #     Buhid
-[:script=Cari:] ; historic # UAX31 T4 #     Carian
-[:script=Copt:] ; historic # UAX31 T4 #     Coptic
-[:script=Cprt:] ; historic # UAX31 T4 #     Cypriot
-[:script=Dsrt:] ; historic # UAX31 T4 #     Deseret
-[:script=Egyp:] ; historic # UAX31 T4 #     Egyptian Hieroglyphs
-[:script=Glag:] ; historic # UAX31 T4 #     Glagolitic
-[:script=Goth:] ; historic # UAX31 T4 #     Gothic
-[:script=Hano:] ; historic # UAX31 T4 #     Hanunoo
-[:script=Ital:] ; historic # UAX31 T4 #     Old Italic
-[:script=Khar:] ; historic # UAX31 T4 #     Kharoshthi
-[:script=Kthi:] ; historic # UAX31 T4 #     Kaithi
-[:script=Linb:] ; historic # UAX31 T4 #     Linear B
-[:script=Lyci:] ; historic # UAX31 T4 #     Lycian
-[:script=Lydi:] ; historic # UAX31 T4 #     Lydian
-[:script=Ogam:] ; historic # UAX31 T4 #     Ogham
-[:script=Orkh:] ; historic # UAX31 T4 #     Old Turkic
-[:script=Osma:] ; historic # UAX31 T4 #     Osmanya
-[:script=Phag:] ; historic # UAX31 T4 #     Phags Pa
-[:script=Phli:] ; historic # UAX31 T4 #     Inscriptional Pahlavi
-[:script=Phnx:] ; historic # UAX31 T4 #     Phoenician
-[:script=Prti:] ; historic # UAX31 T4 #     Inscriptional Parthian
-[:script=Rjng:] ; historic # UAX31 T4 #     Rejang
-[:script=Runr:] ; historic # UAX31 T4 #     Runic
-[:script=Samr:] ; historic # UAX31 T4 #     Samaritan
-[:script=Sarb:] ; historic # UAX31 T4 #     Old South Arabian
-[:script=Shaw:] ; historic # UAX31 T4 #     Shavian
-[:script=Syrc:] ; historic # UAX31 T4 #     Syriac
-[:script=Tagb:] ; historic # UAX31 T4 #     Tagbanwa
-[:script=Tglg:] ; historic # UAX31 T4 #     Tagalog
-[:script=Ugar:] ; historic # UAX31 T4 #     Ugaritic
-[:script=Xpeo:] ; historic # UAX31 T4 #     Old Persian
-[:script=Xsux:] ; historic # UAX31 T4 #     Cuneiform
+[:script=Aghb:] ; exclusion # UAX31 T4 # Caucasian Albanian
+[:script=Ahom:] ; exclusion # UAX31 T4 # Ahom
+[:script=Armi:] ; exclusion # UAX31 T4 # Imperial Aramaic
+[:script=Avst:] ; exclusion # UAX31 T4 # Avestan
+[:script=Bass:] ; exclusion # UAX31 T4 # Bassa Vah
+[:script=Brah:] ; exclusion # UAX31 T4 # Brahmi
+[:script=Bugi:] ; exclusion # UAX31 T4 # Buginese
+[:script=Buhd:] ; exclusion # UAX31 T4 # Buhid
+[:script=Cari:] ; exclusion # UAX31 T4 # Carian
+[:script=Copt:] ; exclusion # UAX31 T4 # Coptic
+[:script=Cprt:] ; exclusion # UAX31 T4 # Cypriot
+[:script=Dsrt:] ; exclusion # UAX31 T4 # Deseret
+[:script=Dupl:] ; exclusion # UAX31 T4 # Duployan
+[:script=Egyp:] ; exclusion # UAX31 T4 # Egyptian Hieroglyphs
+[:script=Elba:] ; exclusion # UAX31 T4 # Elbasan
+[:script=Glag:] ; exclusion # UAX31 T4 # Glagolitic
+[:script=Goth:] ; exclusion # UAX31 T4 # Gothic
+[:script=Gran:] ; exclusion # UAX31 T4 # Grantha
+[:script=Hano:] ; exclusion # UAX31 T4 # Hanunoo
+[:script=Hatr:] ; exclusion # UAX31 T4 # Hatran
+[:script=Hluw:] ; exclusion # UAX31 T4 # Anatolian Hieroglyphs
+[:script=Hmng:] ; exclusion # UAX31 T4 # Pahawh Hmong
+[:script=Hung:] ; exclusion # UAX31 T4 # Old Hungarian
+[:script=Ital:] ; exclusion # UAX31 T4 # Old Italic
+[:script=Khar:] ; exclusion # UAX31 T4 # Kharoshthi
+[:script=Khoj:] ; exclusion # UAX31 T4 # Khojki
+[:script=Kthi:] ; exclusion # UAX31 T4 # Kaithi
+[:script=Lina:] ; exclusion # UAX31 T4 # Linear A
+[:script=Linb:] ; exclusion # UAX31 T4 # Linear B
+[:script=Lyci:] ; exclusion # UAX31 T4 # Lycian
+[:script=Lydi:] ; exclusion # UAX31 T4 # Lydian
+[:script=Mahj:] ; exclusion # UAX31 T4 # Mahajani
+[:script=Mani:] ; exclusion # UAX31 T4 # Manichaean
+[:script=Mend:] ; exclusion # UAX31 T4 # Mende Kikakui
+[:script=Mero:] ; exclusion # UAX31 T4 # Meroitic Hieroglyphs
+[:script=Merc:] ; exclusion # UAX31 T4 # Meroitic Cursive
+[:script=Modi:] ; exclusion # UAX31 T4 # Modi
+[:script=Mroo:] ; exclusion # UAX31 T4 # Mro
+[:script=Mult:] ; exclusion # UAX31 T4 # Multani
+[:script=Narb:] ; exclusion # UAX31 T4 # Old North Arabian
+[:script=Nbat:] ; exclusion # UAX31 T4 # Nabataean
+[:script=Ogam:] ; exclusion # UAX31 T4 # Ogham
+[:script=Orkh:] ; exclusion # UAX31 T4 # Old Turkic
+[:script=Osma:] ; exclusion # UAX31 T4 # Osmanya
+[:script=Palm:] ; exclusion # UAX31 T4 # Palmyrene
+[:script=Pauc:] ; exclusion # UAX31 T4 # Pau Cin Hau
+[:script=Perm:] ; exclusion # UAX31 T4 # Old Permic
+[:script=Phag:] ; exclusion # UAX31 T4 # Phags Pa
+[:script=Phlp:] ; exclusion # UAX31 T4 # Psalter Pahlavi
+[:script=Phli:] ; exclusion # UAX31 T4 # Inscriptional Pahlavi
+[:script=Phnx:] ; exclusion # UAX31 T4 # Phoenician
+[:script=Prti:] ; exclusion # UAX31 T4 # Inscriptional Parthian
+[:script=Rjng:] ; exclusion # UAX31 T4 # Rejang
+[:script=Runr:] ; exclusion # UAX31 T4 # Runic
+[:script=Samr:] ; exclusion # UAX31 T4 # Samaritan
+[:script=Sarb:] ; exclusion # UAX31 T4 # Old South Arabian
+[:script=Sgnw:] ; exclusion # UAX31 T4 # Sign Writing
+[:script=Shrd:] ; exclusion # UAX31 T4 # Sharada
+[:script=Shaw:] ; exclusion # UAX31 T4 # Shavian
+[:script=Sidd:] ; exclusion # UAX31 T4 # Siddham
+[:script=Sind:] ; exclusion # UAX31 T4 # Khudawadi
+[:script=Sora:] ; exclusion # UAX31 T4 # Sora Sompeng
+[:script=Tagb:] ; exclusion # UAX31 T4 # Tagbanwa
+[:script=Tglg:] ; exclusion # UAX31 T4 # Tagalog
+[:script=Takr:] ; exclusion # UAX31 T4 # Takri
+[:script=Tirh:] ; exclusion # UAX31 T4 # Tirhuta
+[:script=Ugar:] ; exclusion # UAX31 T4 # Ugaritic
+[:script=Wara:] ; exclusion # UAX31 T4 # Warang Citi
+[:script=Xpeo:] ; exclusion # UAX31 T4 # Old Persian
+[:script=Xsux:] ; exclusion # UAX31 T4 # Cuneiform
 
-[[:Extender=True:]&[:Joining_Type=Join_Causing:]] ; historic # UAX31 T4
-[:block=Combining_Diacritical_Marks_for_Symbols:] ; historic # UAX31 T4
-[:block=Musical_Symbols:] ; historic # UAX31 T4
-[:block=Ancient_Greek_Musical_Notation:] ; historic # UAX31 T4
-[:block=Phaistos_Disc:] ; historic # UAX31 T4
+[[:Extender=True:]&[:Joining_Type=Join_Causing:]] ; exclusion # UAX31 T4
+[:Default_Ignorable_Code_Point:] ; exclusion # UAX31 T4
+[:block=Combining_Diacritical_Marks_for_Symbols:] ; exclusion # UAX31 T4
+[:block=Musical_Symbols:] ; exclusion # UAX31 T4
+[:block=Ancient_Greek_Musical_Notation:] ; exclusion # UAX31 T4
+[:block=Phaistos_Disc:] ; exclusion # UAX31 T4
 
-[:script=Bali:] ; limited-use # UAX31 T5 LU #     Balinese
-[:script=Bamu:] ; limited-use # UAX31 T5 LU #     Bamum
-[:script=Cham:] ; limited-use # UAX31 T5 LU #     Cham
-[:script=Cher:] ; limited-use # UAX31 T5 LU #     Cherokee
-[:script=Java:] ; limited-use # UAX31 T5 LU #     Javanese
-[:script=Kali:] ; limited-use # UAX31 T5 LU #     Kayah_Li
-[:script=Lana:] ; limited-use # UAX31 T5 LU #     Tai Tham
-[:script=Lepc:] ; limited-use # UAX31 T5 LU #     Lepcha
-[:script=Limb:] ; limited-use # UAX31 T5 LU #     Limbu
-[:script=Lisu:] ; limited-use # UAX31 T5 LU #     Lisu
-[:script=Mtei:] ; limited-use # UAX31 T5 LU #     Meetei Mayek
-[:script=Nkoo:] ; limited-use # UAX31 T5 LU #     Nko
-[:script=Olck:] ; limited-use # UAX31 T5 LU #     Ol Chiki
-[:script=Saur:] ; limited-use # UAX31 T5 LU #     Saurashtra
-[:script=Sund:] ; limited-use # UAX31 T5 LU #     Sundanese
-[:script=Sylo:] ; limited-use # UAX31 T5 LU #     Syloti_Nagri
-[:script=Tale:] ; limited-use # UAX31 T5 LU #     Tai Le
-[:script=Talu:] ; limited-use # UAX31 T5 LU #     New Tai Lue
-[:script=Tavt:] ; limited-use # UAX31 T5 LU #     Tai Viet
-[:script=Vaii:] ; limited-use # UAX31 T5 LU #     Vai
+[:script=Bali:] ; limited-use # UAX31 T5 LU # Balinese
+[:script=Bamu:] ; limited-use # UAX31 T5 LU # Bamum
+[:script=Batk:] ; limited-use # UAX31 T5 LU # Batak
+[:script=Cakm:] ; limited-use # UAX31 T5 LU # Chakma
+[:script=Cham:] ; limited-use # UAX31 T5 LU # Cham
+[:script=Cher:] ; limited-use # UAX31 T5 LU # Cherokee
+[:script=Java:] ; limited-use # UAX31 T5 LU # Javanese
+[:script=Kali:] ; limited-use # UAX31 T5 LU # Kayah_Li
+[:script=Lana:] ; limited-use # UAX31 T5 LU # Tai Tham
+[:script=Lepc:] ; limited-use # UAX31 T5 LU # Lepcha
+[:script=Limb:] ; limited-use # UAX31 T5 LU # Limbu
+[:script=Lisu:] ; limited-use # UAX31 T5 LU # Lisu
+[:script=Mand:] ; limited-use # UAX31 T5 LU # Mandaic
+[:script=Mtei:] ; limited-use # UAX31 T5 LU # Meetei Mayek
+[:script=Nkoo:] ; limited-use # UAX31 T5 LU # Nko
+[:script=Olck:] ; limited-use # UAX31 T5 LU # Ol Chiki
+[:script=Saur:] ; limited-use # UAX31 T5 LU # Saurashtra
+[:script=Sund:] ; limited-use # UAX31 T5 LU # Sundanese
+[:script=Sylo:] ; limited-use # UAX31 T5 LU # Syloti_Nagri
+[:script=Syrc:] ; limited-use # UAX31 T5 LU # Syriac
+[:script=Tale:] ; limited-use # UAX31 T5 LU # Tai Le
+[:script=Talu:] ; limited-use # UAX31 T5 LU # New Tai Lue
+[:script=Tavt:] ; limited-use # UAX31 T5 LU # Tai Viet
+[:script=Vaii:] ; limited-use # UAX31 T5 LU # Vai
 
+[:script=Cans:]	; aspirational # Canadian_Aboriginal
+[:script=Plrd:]	; aspirational # Miao
+[:script=Mong:]	; aspirational # Mongolian
+[:script=Tfng:]	; aspirational # Tifinagh
+[:script=Yiii:]	; aspirational # Yi
 
 [\u1E9C-\u1EFF\u1E9F] ; technical # medievalist
 2132 ; historic # ( Ⅎ ) TURNED CAPITAL F
@@ -672,3 +716,4 @@ AA7C..AA7F ; recommended
 03F3 ; historic
 037F ; historic
 
+[:deprecated:] ; deprecated

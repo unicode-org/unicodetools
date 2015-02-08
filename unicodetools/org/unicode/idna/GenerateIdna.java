@@ -33,7 +33,8 @@ public class GenerateIdna {
         // MUST BE FIRST
         GenerateIdnaTest.setUnicodeVersion();
     }
-    public static final String DIR = Settings.GEN_DIR + "idna/new/"; // Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
+    public static final String DIR = Settings.UNICODE_DRAFT_PUBLIC + "idna/" + Default.ucdVersion() + "/"; 
+    // Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/data";
     private static final int MAX_STATUS_LENGTH = "disallowed_STD3_mapped".length();
     private static final boolean TESTING = true;
     private static final boolean DISALLOW_BIDI_CONTROLS = true;

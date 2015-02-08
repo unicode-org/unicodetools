@@ -5,7 +5,7 @@ import org.unicode.cldr.util.CldrUtility;
 public class Settings {
     public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(CldrUtility.getProperty("SVN_WORKSPACE", "/Users/markdavis/workspace")) + "/";
     public static final String OTHER_WORKSPACE_DIRECTORY = Utility.fixFileName(CldrUtility.getProperty("OTHER_WORKSPACE", "/Users/markdavis/Google Drive/workspace")) + "/";
-    
+
     /**
      * Used for the default version.
      */
@@ -27,6 +27,7 @@ public class Settings {
     
     public static final String UNICODETOOLS_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicodetools/";
     public static final String UNICODE_DRAFT_DIRECTORY = SVN_WORKSPACE_DIRECTORY + "unicode-draft/";
+    public static final String UNICODE_DRAFT_PUBLIC = SVN_WORKSPACE_DIRECTORY + "unicode-draft/Public/";
 
     public static final String SRC_DIR = Utility.fixFileName("org/unicode/text") + "/";
     public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";
