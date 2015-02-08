@@ -41,6 +41,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
             }
             line = Emoji.getLabelFromLine(lastLabel, line);
             for (int i = 0; i < line.length();) {
+                line = Emoji.UNESCAPE.transform(line);
                 String string = Emoji.getEmojiSequence(line, i);
                 if (Emoji.ASCII_LETTERS.containsSome(string)) {
                     UnicodeSet overlap = new UnicodeSet().addAll(string).retainAll(Emoji.ASCII_LETTERS);
