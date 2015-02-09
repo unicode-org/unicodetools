@@ -1,9 +1,11 @@
 package org.unicode.text.UCD;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -14,19 +16,26 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
+import org.unicode.cldr.util.CLDRConfig;
+import org.unicode.cldr.util.CLDRFile;
+import org.unicode.cldr.util.CLDRPaths;
+import org.unicode.cldr.util.Iso639Data;
+import org.unicode.cldr.util.SimpleFactory;
+import org.unicode.cldr.util.CLDRFile.WinningChoice;
+import org.unicode.cldr.util.Factory;
 import org.unicode.text.UCD.GenerateConfusables.FakeBreak;
-import org.unicode.text.UCD.GenerateConfusables.FakeBreak2;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
-class IdentifierInfo {
+public class IdentifierInfo {
 
     private static IdentifierInfo info;
 
@@ -40,13 +49,14 @@ class IdentifierInfo {
             throw (RuntimeException) new IllegalArgumentException("Unable to access data").initCause(e);
         }
     }
-    
+
     private static Integer MARK_NOT_NFC = new Integer(50);
     private static Integer MARK_NFC = new Integer(40);
     private static Integer MARK_INPUT_LENIENT = new Integer(30);
     private static Integer MARK_INPUT_STRICT = new Integer(20);
     private static Integer MARK_OUTPUT = new Integer(10);
     private static Integer MARK_ASCII = new Integer(10);
+    static final String NOT_IN_XID = "not in XID+";
 
 
     //        private final boolean mergeRanges = true;
@@ -62,7 +72,7 @@ class IdentifierInfo {
 
     private final UnicodeMap<String> additions = new UnicodeMap();
     private final UnicodeMap<String> remap = new UnicodeMap();
-    private final UnicodeMap<IdentifierInfo.Reason> removals = new UnicodeMap<IdentifierInfo.Reason>();
+    private final UnicodeMap<IdentifierInfo.IdentifierType> removals = new UnicodeMap<IdentifierInfo.IdentifierType>();
     private final UnicodeMap<String> recastRemovals = new UnicodeMap<String>();
 
     private UnicodeMap reviews, removals2;
@@ -98,7 +108,7 @@ class IdentifierInfo {
         //UnicodeSet notNfkcXid = new UnicodeSet(xidPlus).removeAll(removals.keySet()).removeAll(propNFKCSet);
         //removals.putAll(notNfkcXid, PROHIBITED + "compat variant");
         removalSet = new UnicodeSet();
-        for (final IdentifierInfo.Reason value : removals.values()) {
+        for (final IdentifierInfo.IdentifierType value : removals.values()) {
             if (value.isRestricted()) {
                 removalSet.addAll(removals.getSet(value));
             }
@@ -150,13 +160,13 @@ class IdentifierInfo {
                 remainingInputSet).retainAll(new UnicodeSet("[:M:]"));
         reviews = new UnicodeMap();
         //reviews.putAll(removals);
-        for (final IdentifierInfo.Reason value : removals.values()) {
+        for (final IdentifierInfo.IdentifierType value : removals.values()) {
             reviews.putAll(removals.getSet(value), value.propertyFileFormat());
         }
         reviews.putAll(remainingOutputSet, "output");
         reviews.putAll(inputSet_strict, "input");
         reviews.putAll(inputSet_lenient, "input-lenient");
-        reviews.putAll(specialRemove, GenerateConfusables.PROHIBITED + "output-disallowed");
+        reviews.putAll(specialRemove, IdentifierStatus.restricted + " ; output-disallowed");
 
         lowerIsBetter = new UnicodeMap();
 
@@ -203,13 +213,13 @@ class IdentifierInfo {
         //reviews.composeWith(remap, composer2);
         removals2 = new UnicodeMap().putAll(recastRemovals);
         removals2.putAll(GenerateConfusables.ups.getSet("XID_Continue=Yes").complement(),
-                GenerateConfusables.PROHIBITED + GenerateConfusables.NOT_IN_XID);
+                IdentifierStatus.restricted + " ; " + NOT_IN_XID);
         removals2.setMissing("future?");
 
         additions.freeze();
         remap.freeze();
 
-        for (final IdentifierInfo.Reason value : removals.values()) {
+        for (final IdentifierInfo.IdentifierType value : removals.values()) {
             recastRemovals.putAll(removals.getSet(value), value.propertyFileFormat());
         }
         recastRemovals.freeze();
@@ -218,51 +228,73 @@ class IdentifierInfo {
         removals2.freeze();
     }
 
-    enum Reason {
-        recommended("Recommended"),
-        inclusion("Inclusion"),
-        aspirational("Aspirational"),
-        limited_use("Limited_Use"),
-        uncommon_use("Uncommon_Use"),
-        technical("Technical"),
-        obsolete("Obsolete"),
-        exclusion("Exclusion"),
-        not_xid("Not_XID"),
-        not_nfkc("Not_NFKC"),
-        default_ignorable("Default_Ignorable"),
-        deprecated("Deprecated"),
-        not_chars("Not_Characters"),
-        ;
+    public enum IdentifierStatus {
+        allowed("Allowed"),
+        restricted("Restricted");
         final String name;
-        private Reason(String name) {
+        private IdentifierStatus(String name) {
             this.name = name;
-        }
-
-        private static IdentifierInfo.Reason fromString(String string) {
-            String rawReason = string.trim().replace("-","_").toLowerCase(Locale.ENGLISH);
-            if (rawReason.equals("allowed")) {
-                return Reason.recommended;
-                //rawReason = GenerateConfusables.recommended_scripts;
-            } else if (rawReason.equals("historic")) {
-                return Reason.obsolete;
-            } else if (rawReason.equals("limited_use")) {
-                return Reason.uncommon_use;
-            }
-            return valueOf(rawReason);
-        }
-        public boolean isRestricted() {
-            return this != Reason.inclusion && this != Reason.recommended;
         }
         @Override
         public String toString() {
-            return name().replace("_","-");
+            return name;
+        }
+        public static IdentifierStatus fromString(String string) {
+            String rawReason = string.trim().replace("-","_").toLowerCase(Locale.ENGLISH);
+            return valueOf(rawReason);
+        }
+    }
+
+    public enum IdentifierType {
+        recommended("Recommended", IdentifierStatus.allowed),
+        inclusion("Inclusion", IdentifierStatus.allowed),
+        uncommon_use("Uncommon_Use", IdentifierStatus.restricted),
+        technical("Technical", IdentifierStatus.restricted),
+        obsolete("Obsolete", IdentifierStatus.restricted),
+        aspirational("Aspirational", IdentifierStatus.restricted),
+        limited_use("Limited_Use", IdentifierStatus.restricted),
+        exclusion("Exclusion", IdentifierStatus.restricted),
+        not_xid("Not_XID", IdentifierStatus.restricted),
+        not_nfkc("Not_NFKC", IdentifierStatus.restricted),
+        default_ignorable("Default_Ignorable", IdentifierStatus.restricted),
+        deprecated("Deprecated", IdentifierStatus.restricted),
+        not_chars("Not_Characters", IdentifierStatus.restricted),
+        ;
+
+        public final String name;
+        public final IdentifierStatus identifierStatus;
+
+        private IdentifierType(String name, IdentifierStatus identifierStatus) {
+            this.name = name;
+            this.identifierStatus = identifierStatus;
+        }
+
+        public static IdentifierInfo.IdentifierType fromString(String string) {
+            String rawReason = string.trim().replace("-","_").toLowerCase(Locale.ENGLISH);
+            if (rawReason.equals("allowed")) {
+                return IdentifierType.recommended;
+                //rawReason = GenerateConfusables.recommended_scripts;
+            } else if (rawReason.equals("historic")) {
+                return IdentifierType.obsolete;
+//            } else if (rawReason.equals("limited_use")) {
+//                return IdentifierType.uncommon_use;
+            }
+            return valueOf(rawReason);
+        }
+
+        public boolean isRestricted() {
+            return this != IdentifierType.inclusion && this != IdentifierType.recommended;
+        }
+        @Override
+        public String toString() {
+            return name;
         }
         public String propertyFileFormat() {
-            return (isRestricted() ? GenerateConfusables.PROHIBITED : GenerateConfusables.UNPROHIBITED) + name;
+            return identifierStatus + " ; " + name;
         }
-        public boolean replaceBy(IdentifierInfo.Reason possibleReplacement) {
+        public boolean replaceBy(IdentifierInfo.IdentifierType possibleReplacement) {
             return compareTo(possibleReplacement) < 0
-//                    || this == historic && possibleReplacement == limited_use
+                    //                    || this == historic && possibleReplacement == limited_use
                     ; // && this != historic;
         }
     }
@@ -274,8 +306,8 @@ class IdentifierInfo {
         String line;
         // get all the removals.
         br = BagFormatter.openUTF8Reader(GenerateConfusables.indir, "removals.txt");
-        removals.putAll(new UnicodeSet("[^[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]]"),
-                Reason.recommended);
+        removals.putAll(0,0x10FFFF, // new UnicodeSet("[^[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]]"),
+                IdentifierType.recommended);
 
         UnicodeSet sources = new UnicodeSet();
         line = null;
@@ -290,7 +322,7 @@ class IdentifierInfo {
             if (line.length() == 0) {
                 continue;
             }
-            if (true) {
+            if (false) {
                 System.out.println(line);
             }
             try {
@@ -299,8 +331,18 @@ class IdentifierInfo {
                 if (pieces.length < 2) {
                     throw new IllegalArgumentException(counter + " Missing line " + line);
                 }
+                boolean override = false;
+                if (pieces.length == 3) {
+                    String overrideString = pieces[2].trim();
+                    if (!overrideString.isEmpty()) {
+                        if (!overrideString.equalsIgnoreCase("override")) {
+                            throw new IllegalArgumentException(line);
+                        }
+                        override = true;
+                    }
+                }
                 final String codelist = pieces[0].trim();
-                final IdentifierInfo.Reason reasons = Reason.fromString(pieces[1]);
+                final IdentifierInfo.IdentifierType reasons = IdentifierType.fromString(pieces[1]);
                 if (pieces[0].startsWith("[")) {
                     sources = TestUnicodeInvariants.parseUnicodeSet(codelist); //.retainAll(allocated);
                     if (sources.contains("ᢰ")) {
@@ -321,7 +363,23 @@ class IdentifierInfo {
                         sources.add(start, end);
                     }
                 }
-                removals.putAll(sources, reasons);
+                // removals.putAll(sources, reasons);
+                // in case of conflict, we only replace the old reason if the new one is worse
+                for (String s : sources) {
+                    IdentifierType oldReason = removals.get(s);
+                    if (oldReason == IdentifierType.inclusion 
+                            || oldReason == reasons) {
+                        continue; // always ok
+                    }
+                    if (override 
+                            || oldReason == null 
+                            || oldReason.compareTo(reasons) < 0
+                            || reasons == IdentifierType.inclusion) {
+                        removals.put(s, reasons);
+                    } else {
+                        System.out.println("Skipping: " + Utility.hex(s) + " " + s + ", old: " + oldReason + " new: " + reasons);
+                    }
+                }
                 //                    if (reasons == Reason.recommended) {
                 //                        removals.putAll(sources, UNPROHIBITED + recommended_scripts);
                 //                    } else if (reasons.equals("inclusion")) {
@@ -333,6 +391,7 @@ class IdentifierInfo {
                 badLines.add(counter + ")\t" + line + "\t" + e.getMessage());
             }
         }
+
         if (badLines.size() != 0) {
             throw new RuntimeException(
                     "Failure on lines " + CollectionUtilities.join(badLines, "\t\n"));
@@ -354,16 +413,16 @@ class IdentifierInfo {
         for (final String script : ScriptMetadata.getScripts()) {
             final Info scriptInfo = ScriptMetadata.getInfo(script);
             final IdUsage idUsage = scriptInfo.idUsage;
-            IdentifierInfo.Reason status;
+            IdentifierInfo.IdentifierType status;
             switch(idUsage) {
             case ASPIRATIONAL:
-                status = Reason.aspirational;
+                status = IdentifierType.aspirational;
                 break;
             case LIMITED_USE:
-                status = Reason.limited_use;
+                status = IdentifierType.limited_use;
                 break;
             case EXCLUSION:
-                status = Reason.exclusion;
+                status = IdentifierType.exclusion;
                 break;
             case RECOMMENDED:
             default:
@@ -377,7 +436,7 @@ class IdentifierInfo {
                     if (hasRecommendedScript.contains(s)) {
                         continue; // skip those that have at least one recommended script
                     }
-                    final IdentifierInfo.Reason old = removals.get(s);
+                    final IdentifierInfo.IdentifierType old = removals.get(s);
                     if (old == null) {
                         removals.put(s, status);
                     } else if (!old.equals(status)){
@@ -430,6 +489,7 @@ class IdentifierInfo {
         //      br.close();
 
     }
+
 
     void printIDNStuff() throws IOException {
         final PrintWriter out;
@@ -597,11 +657,11 @@ class IdentifierInfo {
         .setMain("Removals", "GCB", UnicodeProperty.ENUMERATED, "1.0"));
 
         final Set<String> fullListing = new HashSet<String>(Arrays.asList("technical limited-use historic discouraged obsolete".split("\\s+")));
-//        final Set<String> sortedValues = new TreeSet<String>(GenerateConfusables.UCAComparator);
-//        sortedValues.addAll(recastRemovals.values());
-//        System.out.println("Restriction Values: " + sortedValues);
-        for (Reason value : Reason.values()) {
-            if (value == Reason.not_chars) {
+        //        final Set<String> sortedValues = new TreeSet<String>(GenerateConfusables.UCAComparator);
+        //        sortedValues.addAll(recastRemovals.values());
+        //        System.out.println("Restriction Values: " + sortedValues);
+        for (IdentifierType value : IdentifierType.values()) {
+            if (value == IdentifierType.not_chars) {
                 continue;
             }
             final UnicodeSet uset = recastRemovals.getSet(value.propertyFileFormat());
@@ -658,8 +718,8 @@ class IdentifierInfo {
                         return "~Unicode Identifier";
                     }
                 }
-                if (x.startsWith(GenerateConfusables.PROHIBITED)) {
-                    x = x.substring(GenerateConfusables.PROHIBITED.length());
+                if (x.startsWith(IdentifierStatus.restricted.toString())) {
+                    x = x.substring(IdentifierStatus.restricted.toString().length());
                 }
                 //if (!propNFKCSet.contains(codePoint)) x += "*";
                 if (GenerateConfusables.GC_LOWERCASE.contains(codePoint)) {
@@ -709,7 +769,7 @@ class IdentifierInfo {
         out.println("# - The files in this directory are 'live', and may change at any time.");
         out.println("#   Please include the above Revision number in your feedback.");
 
-        bf.setRangeBreakSource(new FakeBreak2());
+        bf.setRangeBreakSource(new GenerateConfusables.FakeBreak2());
         if (true) {
             final Set values = new TreeSet(someRemovals.getAvailableValues());
             for (final Iterator it = values.iterator(); it.hasNext();) {

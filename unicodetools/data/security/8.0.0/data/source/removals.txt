@@ -2,8 +2,6 @@
 # $Revision: 1509 $
 # $Date: 2012-05-06 22:55:50 -0700 (Sun, 06 May 2012) $
 
-[\u0000-\U00010FFFF] ; allowed
-
 # High-Level exclusions
 [:^xid-continue:]; not-xid
 
@@ -122,126 +120,126 @@
 # Remove blocks of Latin, until such time as the usage can be verified
 
 #Latin Extended B - Non-European and historic Latin: 51
-0181 ; limited-use # ( Ɓ ) LATIN CAPITAL LETTER B WITH HOOK
-0182 ; limited-use # ( Ƃ ) LATIN CAPITAL LETTER B WITH TOPBAR
-0183 ; limited-use # ( ƃ ) LATIN SMALL LETTER B WITH TOPBAR
-0184 ; limited-use # ( Ƅ ) LATIN CAPITAL LETTER TONE SIX
-0185 ; limited-use # ( ƅ ) LATIN SMALL LETTER TONE SIX
-0186 ; limited-use # ( Ɔ ) LATIN CAPITAL LETTER OPEN O
-0187 ; limited-use # ( Ƈ ) LATIN CAPITAL LETTER C WITH HOOK
-0188 ; limited-use # ( ƈ ) LATIN SMALL LETTER C WITH HOOK
-0189 ; limited-use # ( Ɖ ) LATIN CAPITAL LETTER AFRICAN D
-018A ; limited-use # ( Ɗ ) LATIN CAPITAL LETTER D WITH HOOK
-018B ; limited-use # ( Ƌ ) LATIN CAPITAL LETTER D WITH TOPBAR
-018C ; limited-use # ( ƌ ) LATIN SMALL LETTER D WITH TOPBAR
-018E ; limited-use # ( Ǝ ) LATIN CAPITAL LETTER REVERSED E
-018F ; limited-use # ( Ə ) LATIN CAPITAL LETTER SCHWA
-0190 ; limited-use # ( Ɛ ) LATIN CAPITAL LETTER OPEN E
-0191 ; limited-use # ( Ƒ ) LATIN CAPITAL LETTER F WITH HOOK
-0192 ; limited-use # ( ƒ ) LATIN SMALL LETTER F WITH HOOK
-0193 ; limited-use # ( Ɠ ) LATIN CAPITAL LETTER G WITH HOOK
-0194 ; limited-use # ( Ɣ ) LATIN CAPITAL LETTER GAMMA
-0195 ; limited-use # ( ƕ ) LATIN SMALL LETTER HV
-0196 ; limited-use # ( Ɩ ) LATIN CAPITAL LETTER IOTA
-0197 ; limited-use # ( Ɨ ) LATIN CAPITAL LETTER I WITH STROKE
-0198 ; limited-use # ( Ƙ ) LATIN CAPITAL LETTER K WITH HOOK
-0199 ; limited-use # ( ƙ ) LATIN SMALL LETTER K WITH HOOK
-019A ; limited-use # ( ƚ ) LATIN SMALL LETTER L WITH BAR
-019B ; limited-use # ( ƛ ) LATIN SMALL LETTER LAMBDA WITH STROKE
-019C ; limited-use # ( Ɯ ) LATIN CAPITAL LETTER TURNED M
-019D ; limited-use # ( Ɲ ) LATIN CAPITAL LETTER N WITH LEFT HOOK
-019E ; limited-use # ( ƞ ) LATIN SMALL LETTER N WITH LONG RIGHT LEG
-019F ; limited-use # ( Ɵ ) LATIN CAPITAL LETTER O WITH MIDDLE TILDE
-01A2 ; limited-use # ( Ƣ ) LATIN CAPITAL LETTER OI
-01A3 ; limited-use # ( ƣ ) LATIN SMALL LETTER OI
-01A4 ; limited-use # ( Ƥ ) LATIN CAPITAL LETTER P WITH HOOK
-01A5 ; limited-use # ( ƥ ) LATIN SMALL LETTER P WITH HOOK
-01A6 ; limited-use # ( Ʀ ) LATIN LETTER YR
-01A7 ; limited-use # ( Ƨ ) LATIN CAPITAL LETTER TONE TWO
-01A8 ; limited-use # ( ƨ ) LATIN SMALL LETTER TONE TWO
-01A9 ; limited-use # ( Ʃ ) LATIN CAPITAL LETTER ESH
-01AC ; limited-use # ( Ƭ ) LATIN CAPITAL LETTER T WITH HOOK
-01AD ; limited-use # ( ƭ ) LATIN SMALL LETTER T WITH HOOK
-01AE ; limited-use # ( Ʈ ) LATIN CAPITAL LETTER T WITH RETROFLEX HOOK
-01B1 ; limited-use # ( Ʊ ) LATIN CAPITAL LETTER UPSILON
-01B2 ; limited-use # ( Ʋ ) LATIN CAPITAL LETTER V WITH HOOK
-01B3 ; limited-use # ( Ƴ ) LATIN CAPITAL LETTER Y WITH HOOK
-01B4 ; limited-use # ( ƴ ) LATIN SMALL LETTER Y WITH HOOK
-01B5 ; limited-use # ( Ƶ ) LATIN CAPITAL LETTER Z WITH STROKE
-01B6 ; limited-use # ( ƶ ) LATIN SMALL LETTER Z WITH STROKE
-01B7 ; limited-use # ( Ʒ ) LATIN CAPITAL LETTER EZH
-01B8 ; limited-use # ( Ƹ ) LATIN CAPITAL LETTER EZH REVERSED
-01BC ; limited-use # ( Ƽ ) LATIN CAPITAL LETTER TONE FIVE
-01BD ; limited-use # ( ƽ ) LATIN SMALL LETTER TONE FIVE
+0181 ; uncommon-use # ( Ɓ ) LATIN CAPITAL LETTER B WITH HOOK
+0182 ; uncommon-use # ( Ƃ ) LATIN CAPITAL LETTER B WITH TOPBAR
+0183 ; uncommon-use # ( ƃ ) LATIN SMALL LETTER B WITH TOPBAR
+0184 ; uncommon-use # ( Ƅ ) LATIN CAPITAL LETTER TONE SIX
+0185 ; uncommon-use # ( ƅ ) LATIN SMALL LETTER TONE SIX
+0186 ; uncommon-use # ( Ɔ ) LATIN CAPITAL LETTER OPEN O
+0187 ; uncommon-use # ( Ƈ ) LATIN CAPITAL LETTER C WITH HOOK
+0188 ; uncommon-use # ( ƈ ) LATIN SMALL LETTER C WITH HOOK
+0189 ; uncommon-use # ( Ɖ ) LATIN CAPITAL LETTER AFRICAN D
+018A ; uncommon-use # ( Ɗ ) LATIN CAPITAL LETTER D WITH HOOK
+018B ; uncommon-use # ( Ƌ ) LATIN CAPITAL LETTER D WITH TOPBAR
+018C ; uncommon-use # ( ƌ ) LATIN SMALL LETTER D WITH TOPBAR
+018E ; uncommon-use # ( Ǝ ) LATIN CAPITAL LETTER REVERSED E
+#cldr	018F ; uncommon-use # ( Ə ) LATIN CAPITAL LETTER SCHWA
+0190 ; uncommon-use # ( Ɛ ) LATIN CAPITAL LETTER OPEN E
+0191 ; uncommon-use # ( Ƒ ) LATIN CAPITAL LETTER F WITH HOOK
+0192 ; uncommon-use # ( ƒ ) LATIN SMALL LETTER F WITH HOOK
+0193 ; uncommon-use # ( Ɠ ) LATIN CAPITAL LETTER G WITH HOOK
+0194 ; uncommon-use # ( Ɣ ) LATIN CAPITAL LETTER GAMMA
+0195 ; uncommon-use # ( ƕ ) LATIN SMALL LETTER HV
+0196 ; uncommon-use # ( Ɩ ) LATIN CAPITAL LETTER IOTA
+0197 ; uncommon-use # ( Ɨ ) LATIN CAPITAL LETTER I WITH STROKE
+0198 ; uncommon-use # ( Ƙ ) LATIN CAPITAL LETTER K WITH HOOK
+0199 ; uncommon-use # ( ƙ ) LATIN SMALL LETTER K WITH HOOK
+019A ; uncommon-use # ( ƚ ) LATIN SMALL LETTER L WITH BAR
+019B ; uncommon-use # ( ƛ ) LATIN SMALL LETTER LAMBDA WITH STROKE
+019C ; uncommon-use # ( Ɯ ) LATIN CAPITAL LETTER TURNED M
+019D ; uncommon-use # ( Ɲ ) LATIN CAPITAL LETTER N WITH LEFT HOOK
+019E ; uncommon-use # ( ƞ ) LATIN SMALL LETTER N WITH LONG RIGHT LEG
+019F ; uncommon-use # ( Ɵ ) LATIN CAPITAL LETTER O WITH MIDDLE TILDE
+01A2 ; uncommon-use # ( Ƣ ) LATIN CAPITAL LETTER OI
+01A3 ; uncommon-use # ( ƣ ) LATIN SMALL LETTER OI
+01A4 ; uncommon-use # ( Ƥ ) LATIN CAPITAL LETTER P WITH HOOK
+01A5 ; uncommon-use # ( ƥ ) LATIN SMALL LETTER P WITH HOOK
+01A6 ; uncommon-use # ( Ʀ ) LATIN LETTER YR
+01A7 ; uncommon-use # ( Ƨ ) LATIN CAPITAL LETTER TONE TWO
+01A8 ; uncommon-use # ( ƨ ) LATIN SMALL LETTER TONE TWO
+01A9 ; uncommon-use # ( Ʃ ) LATIN CAPITAL LETTER ESH
+01AC ; uncommon-use # ( Ƭ ) LATIN CAPITAL LETTER T WITH HOOK
+01AD ; uncommon-use # ( ƭ ) LATIN SMALL LETTER T WITH HOOK
+01AE ; uncommon-use # ( Ʈ ) LATIN CAPITAL LETTER T WITH RETROFLEX HOOK
+01B1 ; uncommon-use # ( Ʊ ) LATIN CAPITAL LETTER UPSILON
+01B2 ; uncommon-use # ( Ʋ ) LATIN CAPITAL LETTER V WITH HOOK
+01B3 ; uncommon-use # ( Ƴ ) LATIN CAPITAL LETTER Y WITH HOOK
+01B4 ; uncommon-use # ( ƴ ) LATIN SMALL LETTER Y WITH HOOK
+01B5 ; uncommon-use # ( Ƶ ) LATIN CAPITAL LETTER Z WITH STROKE
+01B6 ; uncommon-use # ( ƶ ) LATIN SMALL LETTER Z WITH STROKE
+01B7 ; uncommon-use # ( Ʒ ) LATIN CAPITAL LETTER EZH
+01B8 ; uncommon-use # ( Ƹ ) LATIN CAPITAL LETTER EZH REVERSED
+01BC ; uncommon-use # ( Ƽ ) LATIN CAPITAL LETTER TONE FIVE
+01BD ; uncommon-use # ( ƽ ) LATIN SMALL LETTER TONE FIVE
 
 # Latin Extended B - Phonetic and historic letters: 5
-01DD ; limited-use # ( ǝ ) LATIN SMALL LETTER TURNED E
-01E4 ; limited-use # ( Ǥ ) LATIN CAPITAL LETTER G WITH STROKE
-01E5 ; limited-use # ( ǥ ) LATIN SMALL LETTER G WITH STROKE
+01DD ; uncommon-use # ( ǝ ) LATIN SMALL LETTER TURNED E
+01E4 ; uncommon-use # ( Ǥ ) LATIN CAPITAL LETTER G WITH STROKE
+01E5 ; uncommon-use # ( ǥ ) LATIN SMALL LETTER G WITH STROKE
 
 
 # Latin Extended B - Miscellaneous additions: 31
-0220 ; limited-use # ( Ƞ ) LATIN CAPITAL LETTER N WITH LONG RIGHT LEG
-0221 ; limited-use # ( ȡ ) LATIN SMALL LETTER D WITH CURL
-0222 ; limited-use # ( Ȣ ) LATIN CAPITAL LETTER OU
-0223 ; limited-use # ( ȣ ) LATIN SMALL LETTER OU
-0224 ; limited-use # ( Ȥ ) LATIN CAPITAL LETTER Z WITH HOOK
-0225 ; limited-use # ( ȥ ) LATIN SMALL LETTER Z WITH HOOK
-0237 ; limited-use # ( ȷ ) LATIN SMALL LETTER DOTLESS J
-0238 ; limited-use # ( ȸ ) LATIN SMALL LETTER DB DIGRAPH
-0239 ; limited-use # ( ȹ ) LATIN SMALL LETTER QP DIGRAPH
-023A ; limited-use # ( Ⱥ ) LATIN CAPITAL LETTER A WITH STROKE
-023B ; limited-use # ( Ȼ ) LATIN CAPITAL LETTER C WITH STROKE
-023C ; limited-use # ( ȼ ) LATIN SMALL LETTER C WITH STROKE
-023D ; limited-use # ( Ƚ ) LATIN CAPITAL LETTER L WITH BAR
-023E ; limited-use # ( Ⱦ ) LATIN CAPITAL LETTER T WITH DIAGONAL STROKE
-023F ; limited-use # ( ȿ ) LATIN SMALL LETTER S WITH SWASH TAIL
-0240 ; limited-use # ( ɀ ) LATIN SMALL LETTER Z WITH SWASH TAIL
-0241 ; limited-use # ( Ɂ ) LATIN CAPITAL LETTER GLOTTAL STOP
-0242 ; limited-use # ( ɂ ) LATIN SMALL LETTER GLOTTAL STOP
-0243 ; limited-use # ( Ƀ ) LATIN CAPITAL LETTER B WITH STROKE
-0244 ; limited-use # ( Ʉ ) LATIN CAPITAL LETTER U BAR
-0245 ; limited-use # ( Ʌ ) LATIN CAPITAL LETTER TURNED V
-0246 ; limited-use # ( Ɇ ) LATIN CAPITAL LETTER E WITH STROKE
-0247 ; limited-use # ( ɇ ) LATIN SMALL LETTER E WITH STROKE
-0248 ; limited-use # ( Ɉ ) LATIN CAPITAL LETTER J WITH STROKE
-0249 ; limited-use # ( ɉ ) LATIN SMALL LETTER J WITH STROKE
-024A ; limited-use # ( Ɋ ) LATIN CAPITAL LETTER SMALL Q WITH HOOK TAIL
-024B ; limited-use # ( ɋ ) LATIN SMALL LETTER Q WITH HOOK TAIL
-024C ; limited-use # ( Ɍ ) LATIN CAPITAL LETTER R WITH STROKE
-024D ; limited-use # ( ɍ ) LATIN SMALL LETTER R WITH STROKE
-024E ; limited-use # ( Ɏ ) LATIN CAPITAL LETTER Y WITH STROKE
-024F ; limited-use # ( ɏ ) LATIN SMALL LETTER Y WITH STROKE
+0220 ; uncommon-use # ( Ƞ ) LATIN CAPITAL LETTER N WITH LONG RIGHT LEG
+0221 ; uncommon-use # ( ȡ ) LATIN SMALL LETTER D WITH CURL
+0222 ; uncommon-use # ( Ȣ ) LATIN CAPITAL LETTER OU
+0223 ; uncommon-use # ( ȣ ) LATIN SMALL LETTER OU
+0224 ; uncommon-use # ( Ȥ ) LATIN CAPITAL LETTER Z WITH HOOK
+0225 ; uncommon-use # ( ȥ ) LATIN SMALL LETTER Z WITH HOOK
+0237 ; uncommon-use # ( ȷ ) LATIN SMALL LETTER DOTLESS J
+0238 ; uncommon-use # ( ȸ ) LATIN SMALL LETTER DB DIGRAPH
+0239 ; uncommon-use # ( ȹ ) LATIN SMALL LETTER QP DIGRAPH
+023A ; uncommon-use # ( Ⱥ ) LATIN CAPITAL LETTER A WITH STROKE
+023B ; uncommon-use # ( Ȼ ) LATIN CAPITAL LETTER C WITH STROKE
+023C ; uncommon-use # ( ȼ ) LATIN SMALL LETTER C WITH STROKE
+023D ; uncommon-use # ( Ƚ ) LATIN CAPITAL LETTER L WITH BAR
+023E ; uncommon-use # ( Ⱦ ) LATIN CAPITAL LETTER T WITH DIAGONAL STROKE
+023F ; uncommon-use # ( ȿ ) LATIN SMALL LETTER S WITH SWASH TAIL
+0240 ; uncommon-use # ( ɀ ) LATIN SMALL LETTER Z WITH SWASH TAIL
+0241 ; uncommon-use # ( Ɂ ) LATIN CAPITAL LETTER GLOTTAL STOP
+0242 ; uncommon-use # ( ɂ ) LATIN SMALL LETTER GLOTTAL STOP
+0243 ; uncommon-use # ( Ƀ ) LATIN CAPITAL LETTER B WITH STROKE
+0244 ; uncommon-use # ( Ʉ ) LATIN CAPITAL LETTER U BAR
+0245 ; uncommon-use # ( Ʌ ) LATIN CAPITAL LETTER TURNED V
+0246 ; uncommon-use # ( Ɇ ) LATIN CAPITAL LETTER E WITH STROKE
+0247 ; uncommon-use # ( ɇ ) LATIN SMALL LETTER E WITH STROKE
+0248 ; uncommon-use # ( Ɉ ) LATIN CAPITAL LETTER J WITH STROKE
+0249 ; uncommon-use # ( ɉ ) LATIN SMALL LETTER J WITH STROKE
+024A ; uncommon-use # ( Ɋ ) LATIN CAPITAL LETTER SMALL Q WITH HOOK TAIL
+024B ; uncommon-use # ( ɋ ) LATIN SMALL LETTER Q WITH HOOK TAIL
+024C ; uncommon-use # ( Ɍ ) LATIN CAPITAL LETTER R WITH STROKE
+024D ; uncommon-use # ( ɍ ) LATIN SMALL LETTER R WITH STROKE
+024E ; uncommon-use # ( Ɏ ) LATIN CAPITAL LETTER Y WITH STROKE
+024F ; uncommon-use # ( ɏ ) LATIN SMALL LETTER Y WITH STROKE
 
 # IPA Extensions - IPA extensions: 20
-0253 ; limited-use # ( ɓ ) LATIN SMALL LETTER B WITH HOOK
-0254 ; limited-use # ( ɔ ) LATIN SMALL LETTER OPEN O
-0256 ; limited-use # ( ɖ ) LATIN SMALL LETTER D WITH TAIL
-0257 ; limited-use # ( ɗ ) LATIN SMALL LETTER D WITH HOOK
-0259 ; limited-use # ( ə ) LATIN SMALL LETTER SCHWA
-025B ; limited-use # ( ɛ ) LATIN SMALL LETTER OPEN E
-0260 ; limited-use # ( ɠ ) LATIN SMALL LETTER G WITH HOOK
-0263 ; limited-use # ( ɣ ) LATIN SMALL LETTER GAMMA
-0268 ; limited-use # ( ɨ ) LATIN SMALL LETTER I WITH STROKE
-0269 ; limited-use # ( ɩ ) LATIN SMALL LETTER IOTA
-026F ; limited-use # ( ɯ ) LATIN SMALL LETTER TURNED M
-0272 ; limited-use # ( ɲ ) LATIN SMALL LETTER N WITH LEFT HOOK
-0275 ; limited-use # ( ɵ ) LATIN SMALL LETTER BARRED O
-0280 ; limited-use # ( ʀ ) LATIN LETTER SMALL CAPITAL R
-0283 ; limited-use # ( ʃ ) LATIN SMALL LETTER ESH
-0288 ; limited-use # ( ʈ ) LATIN SMALL LETTER T WITH RETROFLEX HOOK
-028A ; limited-use # ( ʊ ) LATIN SMALL LETTER UPSILON
-028B ; limited-use # ( ʋ ) LATIN SMALL LETTER V WITH HOOK
-0292 ; limited-use # ( ʒ ) LATIN SMALL LETTER EZH
-0294 ; limited-use # ( ʔ ) LATIN LETTER GLOTTAL STOP
+0253 ; uncommon-use # ( ɓ ) LATIN SMALL LETTER B WITH HOOK
+0254 ; uncommon-use # ( ɔ ) LATIN SMALL LETTER OPEN O
+0256 ; uncommon-use # ( ɖ ) LATIN SMALL LETTER D WITH TAIL
+0257 ; uncommon-use # ( ɗ ) LATIN SMALL LETTER D WITH HOOK
+#cldr	0259 ; uncommon-use # ( ə ) LATIN SMALL LETTER SCHWA
+025B ; uncommon-use # ( ɛ ) LATIN SMALL LETTER OPEN E
+0260 ; uncommon-use # ( ɠ ) LATIN SMALL LETTER G WITH HOOK
+0263 ; uncommon-use # ( ɣ ) LATIN SMALL LETTER GAMMA
+0268 ; uncommon-use # ( ɨ ) LATIN SMALL LETTER I WITH STROKE
+0269 ; uncommon-use # ( ɩ ) LATIN SMALL LETTER IOTA
+026F ; uncommon-use # ( ɯ ) LATIN SMALL LETTER TURNED M
+0272 ; uncommon-use # ( ɲ ) LATIN SMALL LETTER N WITH LEFT HOOK
+0275 ; uncommon-use # ( ɵ ) LATIN SMALL LETTER BARRED O
+0280 ; uncommon-use # ( ʀ ) LATIN LETTER SMALL CAPITAL R
+0283 ; uncommon-use # ( ʃ ) LATIN SMALL LETTER ESH
+0288 ; uncommon-use # ( ʈ ) LATIN SMALL LETTER T WITH RETROFLEX HOOK
+028A ; uncommon-use # ( ʊ ) LATIN SMALL LETTER UPSILON
+028B ; uncommon-use # ( ʋ ) LATIN SMALL LETTER V WITH HOOK
+0292 ; uncommon-use # ( ʒ ) LATIN SMALL LETTER EZH
+0294 ; uncommon-use # ( ʔ ) LATIN LETTER GLOTTAL STOP
 
 # Latin Extended C - Additions for Uighur: 6
-2C67 ; limited-use # ( Ⱨ ) LATIN CAPITAL LETTER H WITH DESCENDER
-2C68 ; limited-use # ( ⱨ ) LATIN SMALL LETTER H WITH DESCENDER
-2C69 ; limited-use # ( Ⱪ ) LATIN CAPITAL LETTER K WITH DESCENDER
-2C6A ; limited-use # ( ⱪ ) LATIN SMALL LETTER K WITH DESCENDER
-2C6B ; limited-use # ( Ⱬ ) LATIN CAPITAL LETTER Z WITH DESCENDER
-2C6C ; limited-use # ( ⱬ ) LATIN SMALL LETTER Z WITH DESCENDER
+2C67 ; uncommon-use # ( Ⱨ ) LATIN CAPITAL LETTER H WITH DESCENDER
+2C68 ; uncommon-use # ( ⱨ ) LATIN SMALL LETTER H WITH DESCENDER
+2C69 ; uncommon-use # ( Ⱪ ) LATIN CAPITAL LETTER K WITH DESCENDER
+2C6A ; uncommon-use # ( ⱪ ) LATIN SMALL LETTER K WITH DESCENDER
+2C6B ; uncommon-use # ( Ⱬ ) LATIN CAPITAL LETTER Z WITH DESCENDER
+2C6C ; uncommon-use # ( ⱬ ) LATIN SMALL LETTER Z WITH DESCENDER
 
 # Latin Extended C - Miscellaneous additions: 8
 2C6D..2C74 ; historic # ( Ɑ ) LATIN CAPITAL LETTER ALPHA .. ( ⱴ ) LATIN SMALL LETTER V WITH CURL
@@ -288,7 +286,7 @@ A730..A778; historic # ( ꜰ ) LATIN LETTER SMALL CAPITAL F .. ( ꝸ ) LATIN SMA
 2185..2188 ; historic # ( ↅ ) ROMAN NUMERAL SIX LATE FORM .. ( ↈ ) ROMAN NUMERAL ONE HUNDRED THOUSAND
 
 # Latin Extended D - Orthographic letters for glottals: 2
-A78B..A78C ; limited-use # ( Ꞌ ) LATIN CAPITAL LETTER SALTILLO .. ( ꞌ ) LATIN SMALL LETTER SALTILLO
+A78B..A78C ; uncommon-use # ( Ꞌ ) LATIN CAPITAL LETTER SALTILLO .. ( ꞌ ) LATIN SMALL LETTER SALTILLO
 
 # Individual characters, disposition typically based on comments in the Unicode names list.
 
@@ -412,7 +410,7 @@ FE73          ; technical # presentation form #      (ﹳ)  ARABIC TAIL FRAGMENT
 03FA..03FB; historic # GREEK LTR SAN (SML and capital)
 066E..066F; historic # ARABIC LTR DOTLESS BEH & QAF
 10F1..10F6; historic # GEORGIAN LETTERS
-2127; historic ; # unit of conductance # INVERTED OHM SIGN, turned Greek CPTL LTR omega
+2127; historic  # unit of conductance # INVERTED OHM SIGN, turned Greek CPTL LTR omega
 3165..318E; historic # HANGUL
 
 
@@ -575,6 +573,7 @@ A708..A716; technical # (phonetic)
 [:script=Tavt:] ; limited-use # UAX31 T5 LU # Tai Viet
 [:script=Vaii:] ; limited-use # UAX31 T5 LU # Vai
 
+
 [:script=Cans:]	; aspirational # Canadian_Aboriginal
 [:script=Plrd:]	; aspirational # Miao
 [:script=Mong:]	; aspirational # Mongolian
@@ -588,6 +587,8 @@ A708..A716; technical # (phonetic)
 2C76 ; historic # ( ⱶ ) LATIN SMALL LETTER HALF H
 01F6 ; historic # ( Ƕ ) LATIN CAPITAL LETTER HWAIR
 01F7 ; historic # ( Ƿ ) LATIN CAPITAL LETTER WYNN
+
+0289 ; uncommon-use # ( ʉ ) LATIN SMALL LETTER U BAR
 
 2C77..2C7B ; technical # ( ⱷ ) LATIN SMALL LETTER TAILLESS PHI
 A722..A725 ; technical # ( ꜥ ) LATIN SMALL LETTER EGYPTOLOGICAL AIN
@@ -606,10 +607,6 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 
 [\u0488\u0489\uA670-\uA672\u0487 \u2E2E \u2CFA \u2CFB \u2CF9 \u2E30 \u2E31 \u2056 \u2058-\u205E \u2E2A-\u2E2D \u2CFC \u2E02-\u2E05 \u2E09 \u2E0A \u2E0C \u2E0D \u2E00 \u2E01 \u2E06-\u2E08 \u2E0B \u2E0E-\u2E16 \u0482 \u214F \u2180-\u2183 \uA727\uA726 \uA729\uA728 \uA770 \uA72B\uA72A \uA72D\uA72C \uA72F\uA72E \uA723\uA722 \uA725\uA724 \u2CB7\u2CB6 \u2CB9\u2CB8 \u2CBB\u2CBA \u2CBD\u2CBC \u2CBF\u2CBE \u2CC1\u2CC0 \u2CC3\u2CC2 \u2CC5\u2CC4 \u2CC7\u2CC6 \u2CC9\u2CC8 \u2CCB\u2CCA \u2CCD\u2CCC \u2CCF\u2CCE \u2CD1\u2CD0 \u2CD3\u2CD2 \u2CD5\u2CD4 \u2CD7\u2CD6 \u2CD9\u2CD8 \u2CDB\u2CDA \u2CDD\u2CDC \u2CB3\u2CB2 \u2CB5\u2CB4 \u2CDF\u2CDE \u2CE1\u2CE0 \u2CE3\u2CE2 \uA681\uA680 \uA663\uA662 \uA685\uA684 \uA641\uA640 \uA643\uA642 \uA645\uA644 \uA689\uA688 \uA683\uA682 \uA647\uA646 \uA649\uA648 \uA665\uA664 \uA667\uA666 \uA669\uA66B\uA66D\uA66E\uA668\uA66A\uA66C \uA68D\uA68C \uA68B\uA68A \uA64B\uA64A \uA695\uA694 \uA64D\uA64C \uA68F\uA68E \uA691\uA690 \uA693\uA692 \uA687\uA686 \uA697\uA696 \uA64F\uA64E \u2E2F \uA651\uA650 \uA653\uA652 \uA655\uA654 \uA657\uA656 \uA659\uA658 \uA65B\uA65A \uA65D\uA65C \uA65F\uA65E \u2D00\u10A0 \u2D01\u10A1 \u2D02\u10A2 \u2D03\u10A3 \u2D04\u10A4 \u2D05\u10A5 \u2D06\u10A6 \u2D21\u10C1 \u2D07\u10A7 \u2D08\u10A8 \u2D09\u10A9 \u2D0A\u10AA \u2D0B\u10AB \u2D0C\u10AC \u2D22\u10C2 \u2D0D\u10AD \u2D0E\u10AE \u2D0F\u10AF \u2D10\u10B0 \u2D11\u10B1 \u2D12\u10B2 \u2D23\u10C3 \u2D13\u10B3 \u2D14\u10B4 \u2D15\u10B5 \u2D16\u10B6 \u2D17\u10B7 \u2D18\u10B8 \u2D19\u10B9 \u2D1A\u10BA \u2D1B\u10BB \u2D1C\u10BC \u2D1D\u10BD \u2D1E\u10BE \u2D24\u10C4 \u2D1F\u10BF \u2D20\u10C0 \u2D25\u10C5 \u07E8-\u07EA \uA610 \uA611 \uA62A \uA612 \uA62B] ; historic # from Ken's Typography
 
-# CLDR data
-02BB ; allowed # ( ʻ ) MODIFIER LETTER TURNED COMMA
-02BC ; allowed # ( ʼ ) MODIFIER LETTER APOSTROPHE
-0289 ; limited-use # ( ʉ ) LATIN SMALL LETTER U BAR
 
 # need better usage information on the following
 # 0289 ; recommended ( ʉ ) LATIN SMALL LETTER U BAR
@@ -630,20 +627,20 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 
 # comparison to IDNA2008
 1369..1371 ; obsolete # ( ፩ ) ETHIOPIC DIGIT ONE..U+1371 ( ፱ ) ETHIOPIC DIGIT NINE
-2054 ; limited-use # ( ⁔ ) INVERTED UNDERTIE
+2054 ; uncommon-use # ( ⁔ ) INVERTED UNDERTIE
 
-[[:sc=Hebr:]&[:gc=Mn:]] ; limited-use # Hebrew — Cantillation marks
-[[:sc=Arab:]&[:gc=Mn:]-[\u064B-\u0655]] ; limited-use ; Arabic
+[[:sc=Hebr:]&[:gc=Mn:]] ; uncommon-use # Hebrew — Cantillation marks
+[[:sc=Arab:]&[:gc=Mn:]-[\u064B-\u0655]] ; uncommon-use # Arabic
 2DE0..2DFF ; historic # Old Church Slavonic combining letters
 [:ccc=Double_Above:] ; technical # specialized use
 [:ccc=Double_Below:] ; technical # specialized use
 [:Block=Combining Diacritical Marks Supplement:] ; technical # specialized use, eg ( ᷊ ) COMBINING LATIN SMALL LETTER R BELOW
 
-0F18..0F19 ; technical ; Tibetan — Astrological signs items
+0F18..0F19 ; technical # Tibetan — Astrological signs items
 
 #### CLDR - Remove non-spacing marks that do not occur in values of CLDR locales where we have reasonable data (confirmed or contributed; the value or toNFKD(value))
 
-[\u0615-\u061A\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0332\u030D\uA67C\uA67D\u0316\u0336\u0305\u0321\u0322\u0334\u0358\uA66F\u0659-\u065E\u0900 \u0955 \u0A51 \u0A75 \u0B44 \u0B62 \u0B63 \u0C62 \u0C63 \u0D44 \u0D62 \u0D63 \u18A9] ; limited-use
+[\u0615-\u061A\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0332\u030D\uA67C\uA67D\u0316\u0336\u0305\u0321\u0322\u0334\u0358\uA66F\u0659-\u065E\u0900 \u0955 \u0A51 \u0A75 \u0B44 \u0B62 \u0B63 \u0C62 \u0C63 \u0D44 \u0D62 \u0D63 \u18A9] ; uncommon-use
 # derived from \p{mn}&\p{idr=recommended}-XXX-\p{Script=Ethiopic}-\p{Script=Lao}-\p{Script=Myanmar}-\p{Script=Tibetan}
 # where XXX is from TestPathsModule/GatherValueCharacters
 
@@ -666,8 +663,8 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 [[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]] ; not-chars
 [:default_ignorable_code_point:]; default-ignorable
 
-[\u0D8F \u0D90 \u0DA6 \u0DDF \u0DF3] ; limited-use # gihan@uom.lk
-0F39  ; limited-use #  chris.fynn@gmail.com
+[\u0D8F \u0D90 \u0DA6 \u0DDF \u0DF3] ; uncommon-use # gihan@uom.lk
+0F39  ; uncommon-use #  chris.fynn@gmail.com
 
 2E32 ; historic # 122A022
 2E35 ; historic # 122A022
@@ -692,9 +689,6 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 30A0 ; inclusion # (=) KATAKANA-HIRAGANA DOUBLE HYPHEN
 30FB ; inclusion # ( ・ ) KATAKANA MIDDLE DOT
 
-1EBF ; recommended # LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
-05B4 ; recommended # HEBREW POINT HIRIQ
-0259 ; recommended # LATIN SMALL LETTER SCHWA
 
 06FD; inclusion     # ARABIC SIGN SINDHI AMPERSAND
 06FE; inclusion     # ARABIC SIGN SINDHI POSTPOSITION MEN
@@ -703,17 +697,82 @@ A673  ; historic  # [*035B.0020.0002.A673] # SLAVONIC ASTERISK
 [\u037F \u0528-\u052F \u08A1 \u08AD-\u08B2 \u0978 \u0980 \u0C00 \u0C34 \u0C81 \u0D01 \u0DE6-\u0DEF \u1AB0-\u1ABD \uA698-\uA69B \uA794-\uA79F \uA7AB-\uA7AD \uA7B0 \uA7B1 \uA7F7 \uA9E0-\uA9FE \uAA7C-\uAA7F \uAB30-\uAB5A \uAB64 \uAB65 \U000102E0] ; historic
 
 
-0528..0529 ; recommended
-052E..052F ; recommended
-08A1 ; recommended
-08B2 ; recommended
-A9E7..A9FE ; recommended
-AA7C..AA7F ; recommended
-
-16A40..16A5E ; limited-use
-16A60..16A69 ; limited-use
+16A40..16A5E ; uncommon-use
+16A60..16A69 ; uncommon-use
 
 03F3 ; historic
 037F ; historic
 
 [:deprecated:] ; deprecated
+
+# CLDR data
+
+02BB ; allowed ; override # ( ʻ ) MODIFIER LETTER TURNED COMMA
+02BC ; allowed ; override # ( ʼ ) MODIFIER LETTER APOSTROPHE
+[Ạ-ỹ] ; allowed ; override # vietnamese
+[ẞ] ; allowed ; override # German
+
+# Other overrides
+
+1EBF ; recommended; override # LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
+05B4 ; recommended; override # HEBREW POINT HIRIQ
+0259 ; recommended; override # LATIN SMALL LETTER SCHWA
+
+0528..0529 ; recommended; override
+052E..052F ; recommended; override
+08A1 ; recommended; override
+08B2 ; recommended; override
+A9E7..A9FE ; recommended; override
+AA7C..AA7F ; recommended; override
+
+# 8.0.0
+# Deva
+A8FC; uncommon-use # DEVANAGARI SIGN SIDDHAM
+A8FD; uncommon-use # DEVANAGARI JAIN OM
+# Arab
+08B3; uncommon-use # ARABIC LETTER AIN WITH THREE DOTS BELOW
+08B4; uncommon-use # ARABIC LETTER KAF WITH DOT BELOW
+08E3; uncommon-use # ARABIC TURNED DAMMA BELOW
+# Mlym
+0D5F; obsolete # MALAYALAM LETTER ARCHAIC II
+# Cyrl
+A69E; uncommon-use # COMBINING CYRILLIC LETTER EF
+FE2E; uncommon-use # COMBINING CYRILLIC TITLO LEFT HALF
+FE2F; uncommon-use # COMBINING CYRILLIC TITLO RIGHT HALF
+# Zyyy
+218A; uncommon-use # TURNED DIGIT TWO
+218B; uncommon-use # TURNED DIGIT THREE
+2BEC; uncommon-use # LEFTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+2BED; uncommon-use # UPWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+2BEE; uncommon-use # RIGHTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+2BEF; uncommon-use # DOWNWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+1D1DE; uncommon-use # MUSICAL SYMBOL KIEVAN C CLEF
+1D1DF; uncommon-use # MUSICAL SYMBOL KIEVAN END OF PIECE
+1D1E0; uncommon-use # MUSICAL SYMBOL KIEVAN FINAL NOTE
+1D1E1; uncommon-use # MUSICAL SYMBOL KIEVAN RECITATIVE MARK
+1D1E2; uncommon-use # MUSICAL SYMBOL KIEVAN WHOLE NOTE
+1D1E3; uncommon-use # MUSICAL SYMBOL KIEVAN HALF NOTE
+1D1E4; uncommon-use # MUSICAL SYMBOL KIEVAN QUARTER NOTE STEM DOWN
+1D1E5; uncommon-use # MUSICAL SYMBOL KIEVAN QUARTER NOTE STEM UP
+1D1E6; uncommon-use # MUSICAL SYMBOL KIEVAN EIGHTH NOTE STEM DOWN
+1D1E7; uncommon-use # MUSICAL SYMBOL KIEVAN EIGHTH NOTE STEM UP
+1D1E8; uncommon-use # MUSICAL SYMBOL KIEVAN FLAT SIGN
+1F54F; uncommon-use # BOWL OF HYGIEIA
+# Hani
+#[\u9FCD-\u9FD5\U0002B820-\U0002CEA1]; uncommon-use
+# Latn
+A78F; uncommon-use # LATIN LETTER SINOLOGICAL DOT
+A7B2; uncommon-use # LATIN CAPITAL LETTER J WITH CROSSED-TAIL
+A7B3; uncommon-use # LATIN CAPITAL LETTER CHI
+A7B4; uncommon-use # LATIN CAPITAL LETTER BETA
+A7B5; uncommon-use # LATIN SMALL LETTER BETA
+A7B6; uncommon-use # LATIN CAPITAL LETTER OMEGA
+A7B7; uncommon-use # LATIN SMALL LETTER OMEGA
+AB60; uncommon-use # LATIN SMALL LETTER SAKHA YAT
+AB61; uncommon-use # LATIN SMALL LETTER IOTIFIED E
+AB62; uncommon-use # LATIN SMALL LETTER OPEN OE
+AB63; uncommon-use # LATIN SMALL LETTER UO
+# Gujr
+0AF9; uncommon-use # GUJARATI LETTER ZHA
+# Telu
+0C5A; uncommon-use # TELUGU LETTER RRRA

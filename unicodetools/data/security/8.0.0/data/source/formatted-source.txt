@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: formatted-source.txt
 # Version: 8.0.0
-# Generated: 2015-02-07, 16:17:21 GMT
+# Generated: 2015-02-09, 15:36:41 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -3398,6 +3398,12 @@
 25E6 0308 ;	2364	#* ( ◦̈ ~ ⍤ ) WHITE BULLET, COMBINING DIAERESIS ~ APL FUNCTIONAL SYMBOL JOT DIAERESIS
 
 2629 ;	1F70A	#* ( ☩ ~ 🜊 ) CROSS OF JERUSALEM ~ ALCHEMICAL SYMBOL FOR VINEGAR
+
+263D ;	1F312	#* ( ☽ ~ 🌒 ) FIRST QUARTER MOON ~ WAXING CRESCENT MOON SYMBOL
+263D ;	1F319	#* ( ☽ ~ 🌙 ) FIRST QUARTER MOON ~ CRESCENT MOON
+
+263E ;	1F318	#* ( ☾ ~ 🌘 ) LAST QUARTER MOON ~ WANING CRESCENT MOON SYMBOL
+263E ;	1F32D	#* ( ☾ ~ 🌭 ) LAST QUARTER MOON ~ HOT DOG
 
 264E ;	1F75E	#* ( ♎ ~ 🝞 ) LIBRA ~ ALCHEMICAL SYMBOL FOR SUBLIMATION
 
