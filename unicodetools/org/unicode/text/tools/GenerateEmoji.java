@@ -29,7 +29,6 @@ import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
 import org.unicode.cldr.util.MapComparator;
-import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
 import org.unicode.jsp.Subheader;
 import org.unicode.props.GenerateEnums;
@@ -1196,7 +1195,17 @@ public class GenerateEmoji {
         UnicodeSet nc = new UnicodeSet(Emoji.EMOJI_CHARS)
         .removeAll(carriers)
         .removeAll(otherStandard)
-        .removeAll(Emoji.FLAGS).freeze();
+        .removeAll(Emoji.FLAGS)
+        .freeze();
+        
+        UnicodeSet nc7 = new UnicodeSet(nc)
+        .retainAll(new UnicodeSet("[:age=7.0:]"))
+        .freeze();
+        
+        UnicodeSet nc8 = new UnicodeSet(nc)
+        .removeAll(nc7)
+        .freeze();
+        
         UnicodeSet otherFlags = new UnicodeSet(Emoji.FLAGS)
         .removeAll(carriers).freeze();
 
@@ -1207,9 +1216,10 @@ public class GenerateEmoji {
         showRow(out, "Minimal", minimal);
         showRow(out, "Optional", optional);
         showRow(out, "JCarriers", carriers.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
-        showRow(out, "Other Std", otherStandard.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
+        showRow(out, "Common Additions", otherStandard.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
         showRow(out, "Other Flags", otherFlags.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
-        showRow(out, "New7", nc.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
+        showRow(out, "Standard Additions", nc7.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
+        showRow(out, "8.0 Candidates", nc8.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
         writeFooter(out);
         out.close();
         // main:
