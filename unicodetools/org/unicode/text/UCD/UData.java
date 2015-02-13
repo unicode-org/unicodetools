@@ -51,7 +51,7 @@ class UData implements UCD_Types {
     byte joiningGroup = NO_SHAPING;
     short script = Unknown_Script;
     byte age = 0;
-    
+
     int Bidi_Paired_Bracket = 0;
     byte Bidi_Paired_Bracket_Type = 0;
 
@@ -182,6 +182,11 @@ class UData implements UCD_Types {
 
     public void fleshOut() {
         final String codeValue = UTF32.valueOf32(codePoint);
+        if (codePoint == 0x13A0) {
+            int debug = 0;
+        }
+
+        // do in reverse order of compact()
 
         if (decompositionMapping == null) {
             decompositionMapping = codeValue;
@@ -190,25 +195,24 @@ class UData implements UCD_Types {
             bidiMirror = codeValue;
         }
 
+        // simple casing
+
         if (simpleLowercase == null) {
             simpleLowercase = codeValue;
         }
-        if (simpleCaseFolding == null) {
-            simpleCaseFolding = simpleLowercase;
-        }
-        if (fullLowercase == null) {
-            fullLowercase = simpleLowercase;
-        }
-        if (fullCaseFolding == null) {
-            fullCaseFolding = fullLowercase;
-        }
-
         if (simpleUppercase == null) {
             simpleUppercase = codeValue;
         }
         if (simpleTitlecase == null) {
             simpleTitlecase = codeValue;
         }
+
+        // full casing
+
+        if (fullLowercase == null) {
+            fullLowercase = simpleLowercase;
+        }
+
         if (fullUppercase == null) {
             fullUppercase = simpleUppercase;
         }
@@ -216,11 +220,41 @@ class UData implements UCD_Types {
         if (fullTitlecase == null) {
             fullTitlecase = simpleTitlecase;
         }
+
+        // case folding
+
+        if (codePoint >= 0x13A0 && codePoint <= 0x13F5) { // HACK for Cherokee Uppercase
+            if (simpleCaseFolding == null) {
+                simpleCaseFolding = codeValue;
+            }
+            if (fullCaseFolding == null) {
+                fullCaseFolding = codeValue;
+            }
+        } else { // Non-Cherokee Uppercase
+            if (simpleCaseFolding == null) {
+                simpleCaseFolding = simpleLowercase;
+            }
+            if (fullCaseFolding == null) {
+                fullCaseFolding = fullLowercase;
+            }
+        }
     }
 
     public void compact() {
         fleshOut();
         final String codeValue = UTF32.valueOf32(codePoint);
+
+        // first case folding
+        
+        if (fullCaseFolding.equals(fullLowercase)
+                && codePoint >= 0x13A0 && codePoint <= 0x13F5) {
+            fullCaseFolding = null;
+        }
+        if (simpleCaseFolding.equals(simpleLowercase)) {
+            simpleCaseFolding = null;
+        }
+
+        // then full casing
 
         if (fullTitlecase.equals(simpleTitlecase)) {
             fullTitlecase = null;
@@ -229,6 +263,13 @@ class UData implements UCD_Types {
         if (fullUppercase.equals(simpleUppercase)) {
             fullUppercase = null;
         }
+
+        if (fullLowercase.equals(simpleLowercase)) {
+            fullLowercase = null;
+        }
+
+        // then simple casing
+
         if (simpleTitlecase.equals(codeValue)) {
             simpleTitlecase = null;
         }
@@ -236,18 +277,11 @@ class UData implements UCD_Types {
             simpleUppercase = null;
         }
 
-        if (fullCaseFolding.equals(fullLowercase)) {
-            fullCaseFolding = null;
-        }
-        if (fullLowercase.equals(simpleLowercase)) {
-            fullLowercase = null;
-        }
-        if (simpleCaseFolding.equals(simpleLowercase)) {
-            simpleCaseFolding = null;
-        }
         if (simpleLowercase.equals(codeValue)) {
             simpleLowercase = null;
         }
+
+        // then others
 
         if (decompositionMapping.equals(codeValue)) {
             decompositionMapping = null;

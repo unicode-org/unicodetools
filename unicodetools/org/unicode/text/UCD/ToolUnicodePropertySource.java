@@ -465,9 +465,12 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         add(new UnicodeProperty.SimpleProperty() {
             UnicodeSet ignorable = null;
             @Override
-            public String _getValue(int cp) {
+            public String _getValue(final int cp) {
                 if (!ucd.isRepresented(cp)) {
                     return null;
+                }
+                if (cp == 0xAB70 || cp == 0x13A0) {
+                    int debug = 0;
                 }
                 // lazy eval
                 if (ignorable == null) {
@@ -490,7 +493,13 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 if (d.equals(c)) {
                     return d;
                 }
-                throw new IllegalArgumentException("NFKC_CF requires THREE passes:\tU+" + Utility.hex(cp) + "\t" + Default.ucd().getName(cp));
+                throw new IllegalArgumentException(
+                        "NFKC_CF requires THREE passes:"
+                                + "\n\tsource:\tU+" + Utility.hex(cp) + "\t" + Default.ucd().getName(cp)
+                                + "\n\tcase1:\tU+" + Utility.hex(case1) + "\t" + Default.ucd().getName(case1)
+                                + "\n\ttrans1:\tU+" + Utility.hex(c) + "\t" + Default.ucd().getName(c)
+                                + "\n\ttrans2:\tU+" + Utility.hex(d) + "\t" + Default.ucd().getName(d)
+                        );
             }
             private String trans(String b) {
                 final String bb = removeFrom(b, ignorable);
@@ -1005,7 +1014,7 @@ isTitlecase(X) is false.
 
         UnicodeMap<String> map = latest.load(UcdProperty.Indic_Matra_Category);
         //String defaultValue = IndexUnicodeProperties.getDefaultValue(UcdProperty.Indic_Matra_Category);
-        add(new UnicodeProperty.UnicodeMapProperty().set(map).setMain("Indic_Matra_Category", "InMC", UnicodeProperty.ENUMERATED, ""));
+        add(new UnicodeProperty.UnicodeMapProperty().set(map).setMain("Indic_Positional_Category", "InPC", UnicodeProperty.ENUMERATED, ""));
 
         map = latest.load(UcdProperty.Indic_Syllabic_Category);
         //defaultValue = IndexUnicodeProperties.getDefaultValue(UcdProperty.Indic_Matra_Category);

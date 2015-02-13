@@ -1,5 +1,5 @@
-Generate: Script
-DeltaVersion: 9
+Generate: Blocks
+DeltaVersion: 10
 CopyrightYear: 2015
 
 File: extra/ScriptNfkc
@@ -13,10 +13,10 @@ File: ScriptExtensions
 # with more than one script, but with a limited number of scripts.
 # For each code point, there is one or more property values.  Each such value is a Script property value.
 # For more information, see:
-#   UAX #24: UNICODE SCRIPT PROPERTY, http://www.unicode.org/reports/tr24/
+#   UAX #24: Unicode Script Property, http://www.unicode.org/reports/tr24/
 #     Especially the sections:
-#        http://www.unicode.org/reports/tr24/proposed.html#Assignment_Script_Values
-#        http://www.unicode.org/reports/tr24/proposed.html#Assignment_ScriptX_Values
+#       http://www.unicode.org/reports/tr24/#Assignment_Script_Values
+#       http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
 #
 # Each Script_Extensions value in this file consists of a set
 # of one or more abbreviated Script property values. The ordering of the
@@ -82,10 +82,22 @@ Property: Block
 #         For example, "Latin Extended-A" and "latin extended a" are equivalent.
 #         For more information on the comparison of property values, 
 #            see UAX #44: http://www.unicode.org/reports/tr44/
+#
+#  All block ranges start with a value where (cp MOD 16) = 0,
+#  and end with a value where (cp MOD 16) = 15. In other words,
+#  the last hexadecimal digit of the start of range is ...0 
+#  and the last hexadecimal digit of the end of range is ...F.
+#  This constraint on block ranges guarantees that allocations
+#  are done in terms of whole columns, and that code chart display
+#  never involves splitting columns in the charts.
+#
+#  All code points not explicitly listed for Block
+#  have the value No_Block.
+
 # Property: Block
 #
 # @missing: 0000..10FFFF; No_Block
-Format:	valueList valueStyle=long skipUnassigned=No_Block
+Format:	valueList skipUnassigned=No_Block
 
 File:	CaseFolding
 Property: SPECIAL
@@ -665,10 +677,10 @@ Property: SPECIAL
 
 File:	Scripts
 # For more information, see:
-#   UAX #24: UNICODE SCRIPT PROPERTY, http://www.unicode.org/reports/tr24/
+#   UAX #24: Unicode Script Property, http://www.unicode.org/reports/tr24/
 #     Especially the sections:
-#        http://www.unicode.org/reports/tr24/proposed.html#Assignment_Script_Values
-#        http://www.unicode.org/reports/tr24/proposed.html#Assignment_ScriptX_Values
+#        http://www.unicode.org/reports/tr24/#Assignment_Script_Values
+#        http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
 #
 Property:	Script
 Format:	nameStyle=none skipValue=Unknown
