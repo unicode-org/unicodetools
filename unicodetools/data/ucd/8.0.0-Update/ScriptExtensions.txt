@@ -1,16 +1,19 @@
 # ScriptExtensions-8.0.0.txt
-# Date: 2014-08-27, 01:34:00 GMT [RP]
+# Date: 2015-02-10, 14:49:04 GMT [MD, KW edit]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2014 Unicode, Inc.
+# Copyright (c) 1991-2015 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
+#
 # The Script_Extensions property indicates which characters are commonly used
 # with more than one script, but with a limited number of scripts.
 # For each code point, there is one or more property values.  Each such value is a Script property value.
 # For more information, see:
-#   UAX #24: http://www.unicode.org/reports/tr24/ and
-#   UAX #44: http://www.unicode.org/reports/tr44/
+#   UAX #24, Unicode Script Property: http://www.unicode.org/reports/tr24/
+#     Especially the sections:
+#        http://www.unicode.org/reports/tr24/#Assignment_Script_Values
+#        http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
 #
 # Each Script_Extensions value in this file consists of a set
 # of one or more abbreviated Script property values. The ordering of the
@@ -23,7 +26,6 @@
 #
 # Following each distinct Script_Extensions value is the list of code
 # points associated with that value, listed in code point order.
-#
 #
 # All code points not explicitly listed for Script_Extensions
 # have as their value the corresponding Script property value

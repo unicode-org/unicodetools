@@ -1,8 +1,8 @@
 # PropertyValueAliases-8.0.0.txt
-# Date: 2014-12-28, 09:44:58 GMT [MD]
+# Date: 2015-01-15, 23:07:50 GMT [MD, KW manual edit]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2014 Unicode, Inc.
+# Copyright (c) 1991-2015 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -720,22 +720,22 @@ IDS; Y                                ; Yes                              ; T    
 Ideo; N                               ; No                               ; F                                ; False
 Ideo; Y                               ; Yes                              ; T                                ; True
 
-# Indic_Matra_Category (InMC)
+# Indic_Positional_Category (InPC)
 
-InMC; Bottom                          ; Bottom
-InMC; Bottom_And_Right                ; Bottom_And_Right
-InMC; Left                            ; Left
-InMC; Left_And_Right                  ; Left_And_Right
-InMC; NA                              ; NA
-InMC; Overstruck                      ; Overstruck
-InMC; Right                           ; Right
-InMC; Top                             ; Top
-InMC; Top_And_Bottom                  ; Top_And_Bottom
-InMC; Top_And_Bottom_And_Right        ; Top_And_Bottom_And_Right
-InMC; Top_And_Left                    ; Top_And_Left
-InMC; Top_And_Left_And_Right          ; Top_And_Left_And_Right
-InMC; Top_And_Right                   ; Top_And_Right
-InMC; Visual_Order_Left               ; Visual_Order_Left
+InPC; Bottom                          ; Bottom
+InPC; Bottom_And_Right                ; Bottom_And_Right
+InPC; Left                            ; Left
+InPC; Left_And_Right                  ; Left_And_Right
+InPC; NA                              ; NA
+InPC; Overstruck                      ; Overstruck
+InPC; Right                           ; Right
+InPC; Top                             ; Top
+InPC; Top_And_Bottom                  ; Top_And_Bottom
+InPC; Top_And_Bottom_And_Right        ; Top_And_Bottom_And_Right
+InPC; Top_And_Left                    ; Top_And_Left
+InPC; Top_And_Left_And_Right          ; Top_And_Left_And_Right
+InPC; Top_And_Right                   ; Top_And_Right
+InPC; Visual_Order_Left               ; Visual_Order_Left
 
 # Indic_Syllabic_Category (InSC)
 

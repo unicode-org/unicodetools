@@ -1,8 +1,8 @@
-# PropList-7.0.0.txt
-# Date: 2014-02-19, 15:51:26 GMT [MD]
+# PropList-8.0.0.txt
+# Date: 2015-01-13, 18:16:53 GMT [MD]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2014 Unicode, Inc.
+# Copyright (c) 1991-2015 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
@@ -425,7 +425,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 081B..0823    ; Other_Alphabetic # Mn   [9] SAMARITAN MARK EPENTHETIC YUT..SAMARITAN VOWEL SIGN A
 0825..0827    ; Other_Alphabetic # Mn   [3] SAMARITAN VOWEL SIGN SHORT A..SAMARITAN VOWEL SIGN U
 0829..082C    ; Other_Alphabetic # Mn   [4] SAMARITAN VOWEL SIGN LONG I..SAMARITAN VOWEL SIGN SUKUN
-08E4..08E9    ; Other_Alphabetic # Mn   [6] ARABIC CURLY FATHA..ARABIC CURLY KASRATAN
+08E3..08E9    ; Other_Alphabetic # Mn   [7] ARABIC TURNED DAMMA BELOW..ARABIC CURLY KASRATAN
 08F0..0902    ; Other_Alphabetic # Mn  [19] ARABIC OPEN FATHATAN..DEVANAGARI SIGN ANUSVARA
 0903          ; Other_Alphabetic # Mc       DEVANAGARI SIGN VISARGA
 093A          ; Other_Alphabetic # Mn       DEVANAGARI VOWEL SIGN OE
@@ -560,8 +560,8 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 1930..1931    ; Other_Alphabetic # Mc   [2] LIMBU SMALL LETTER KA..LIMBU SMALL LETTER NGA
 1932          ; Other_Alphabetic # Mn       LIMBU SMALL LETTER ANUSVARA
 1933..1938    ; Other_Alphabetic # Mc   [6] LIMBU SMALL LETTER TA..LIMBU SMALL LETTER LA
-19B0..19C0    ; Other_Alphabetic # Mc  [17] NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW TAI LUE VOWEL SIGN IY
-19C8..19C9    ; Other_Alphabetic # Mc   [2] NEW TAI LUE TONE MARK-1..NEW TAI LUE TONE MARK-2
+19B0..19C0    ; Other_Alphabetic # Lo  [17] NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW TAI LUE VOWEL SIGN IY
+19C8..19C9    ; Other_Alphabetic # Lo   [2] NEW TAI LUE TONE MARK-1..NEW TAI LUE TONE MARK-2
 1A17..1A18    ; Other_Alphabetic # Mn   [2] BUGINESE VOWEL SIGN I..BUGINESE VOWEL SIGN U
 1A19..1A1A    ; Other_Alphabetic # Mc   [2] BUGINESE VOWEL SIGN E..BUGINESE VOWEL SIGN O
 1A1B          ; Other_Alphabetic # Mn       BUGINESE VOWEL SIGN AE
@@ -605,7 +605,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 24B6..24E9    ; Other_Alphabetic # So  [52] CIRCLED LATIN CAPITAL LETTER A..CIRCLED LATIN SMALL LETTER Z
 2DE0..2DFF    ; Other_Alphabetic # Mn  [32] COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
 A674..A67B    ; Other_Alphabetic # Mn   [8] COMBINING CYRILLIC LETTER UKRAINIAN IE..COMBINING CYRILLIC LETTER OMEGA
-A69F          ; Other_Alphabetic # Mn       COMBINING CYRILLIC LETTER IOTIFIED E
+A69E..A69F    ; Other_Alphabetic # Mn   [2] COMBINING CYRILLIC LETTER EF..COMBINING CYRILLIC LETTER IOTIFIED E
 A823..A824    ; Other_Alphabetic # Mc   [2] SYLOTI NAGRI VOWEL SIGN A..SYLOTI NAGRI VOWEL SIGN I
 A825..A826    ; Other_Alphabetic # Mn   [2] SYLOTI NAGRI VOWEL SIGN U..SYLOTI NAGRI VOWEL SIGN E
 A827          ; Other_Alphabetic # Mc       SYLOTI NAGRI VOWEL SIGN OO
@@ -672,7 +672,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 112DF         ; Other_Alphabetic # Mn       KHUDAWADI SIGN ANUSVARA
 112E0..112E2  ; Other_Alphabetic # Mc   [3] KHUDAWADI VOWEL SIGN AA..KHUDAWADI VOWEL SIGN II
 112E3..112E8  ; Other_Alphabetic # Mn   [6] KHUDAWADI VOWEL SIGN U..KHUDAWADI VOWEL SIGN AU
-11301         ; Other_Alphabetic # Mn       GRANTHA SIGN CANDRABINDU
+11300..11301  ; Other_Alphabetic # Mn   [2] GRANTHA SIGN COMBINING ANUSVARA ABOVE..GRANTHA SIGN CANDRABINDU
 11302..11303  ; Other_Alphabetic # Mc   [2] GRANTHA SIGN ANUSVARA..GRANTHA SIGN VISARGA
 1133E..1133F  ; Other_Alphabetic # Mc   [2] GRANTHA VOWEL SIGN AA..GRANTHA VOWEL SIGN I
 11340         ; Other_Alphabetic # Mn       GRANTHA VOWEL SIGN II
@@ -693,6 +693,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 115B8..115BB  ; Other_Alphabetic # Mc   [4] SIDDHAM VOWEL SIGN E..SIDDHAM VOWEL SIGN AU
 115BC..115BD  ; Other_Alphabetic # Mn   [2] SIDDHAM SIGN CANDRABINDU..SIDDHAM SIGN ANUSVARA
 115BE         ; Other_Alphabetic # Mc       SIDDHAM SIGN VISARGA
+115DC..115DD  ; Other_Alphabetic # Mn   [2] SIDDHAM VOWEL SIGN ALTERNATE U..SIDDHAM VOWEL SIGN ALTERNATE UU
 11630..11632  ; Other_Alphabetic # Mc   [3] MODI VOWEL SIGN AA..MODI VOWEL SIGN II
 11633..1163A  ; Other_Alphabetic # Mn   [8] MODI VOWEL SIGN U..MODI VOWEL SIGN AI
 1163B..1163C  ; Other_Alphabetic # Mc   [2] MODI VOWEL SIGN O..MODI VOWEL SIGN AU
@@ -704,6 +705,10 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 116AD         ; Other_Alphabetic # Mn       TAKRI VOWEL SIGN AA
 116AE..116AF  ; Other_Alphabetic # Mc   [2] TAKRI VOWEL SIGN I..TAKRI VOWEL SIGN II
 116B0..116B5  ; Other_Alphabetic # Mn   [6] TAKRI VOWEL SIGN U..TAKRI VOWEL SIGN AU
+1171D..1171F  ; Other_Alphabetic # Mn   [3] AHOM CONSONANT SIGN MEDIAL LA..AHOM CONSONANT SIGN MEDIAL LIGATING RA
+11722..11725  ; Other_Alphabetic # Mn   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
+11726         ; Other_Alphabetic # Mc       AHOM VOWEL SIGN E
+11727..1172A  ; Other_Alphabetic # Mn   [4] AHOM VOWEL SIGN AW..AHOM VOWEL SIGN AM
 16B30..16B36  ; Other_Alphabetic # Mn   [7] PAHAWH HMONG MARK CIM TUB..PAHAWH HMONG MARK CIM TAUM
 16F51..16F7E  ; Other_Alphabetic # Mc  [46] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN NG
 1BC9E         ; Other_Alphabetic # Mn       DUPLOYAN DOUBLE MARK
@@ -711,15 +716,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Unicode 8
-08E3  ; Other_Alphabetic
-A69E  ; Other_Alphabetic
-11300  ; Other_Alphabetic
-115DC..115DD  ; Other_Alphabetic
-1171D..1171F  ; Other_Alphabetic
-11722..1172A  ; Other_Alphabetic
-
-# Total code points: ??
+# Total code points: 1133
 
 # ================================================
 
@@ -728,16 +725,16 @@ A69E  ; Other_Alphabetic
 3021..3029    ; Ideographic # Nl   [9] HANGZHOU NUMERAL ONE..HANGZHOU NUMERAL NINE
 3038..303A    ; Ideographic # Nl   [3] HANGZHOU NUMERAL TEN..HANGZHOU NUMERAL THIRTY
 3400..4DB5    ; Ideographic # Lo [6582] CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DB5
-4E00..9FD5    ; Ideographic # Lo [??] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FD5
+4E00..9FD5    ; Ideographic # Lo [20950] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FD5
 F900..FA6D    ; Ideographic # Lo [366] CJK COMPATIBILITY IDEOGRAPH-F900..CJK COMPATIBILITY IDEOGRAPH-FA6D
 FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COMPATIBILITY IDEOGRAPH-FAD9
 20000..2A6D6  ; Ideographic # Lo [42711] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A700..2B734  ; Ideographic # Lo [4149] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B740..2B81D  ; Ideographic # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
+2B820..2CEA1  ; Ideographic # Lo [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2F800..2FA1D  ; Ideographic # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
-2B820..2CEA1  ; Ideographic # CJK Ideograph Extension E
 
-# Total code points: ??
+# Total code points: 81404
 
 # ================================================
 
@@ -1062,7 +1059,7 @@ FF9E..FF9F    ; Other_Grapheme_Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND
 # ================================================
 
 3400..4DB5    ; Unified_Ideograph # Lo [6582] CJK UNIFIED IDEOGRAPH-3400..CJK UNIFIED IDEOGRAPH-4DB5
-4E00..9FD5    ; Unified_Ideograph # Lo [??] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FD5
+4E00..9FD5    ; Unified_Ideograph # Lo [20950] CJK UNIFIED IDEOGRAPH-4E00..CJK UNIFIED IDEOGRAPH-9FD5
 FA0E..FA0F    ; Unified_Ideograph # Lo   [2] CJK COMPATIBILITY IDEOGRAPH-FA0E..CJK COMPATIBILITY IDEOGRAPH-FA0F
 FA11          ; Unified_Ideograph # Lo       CJK COMPATIBILITY IDEOGRAPH-FA11
 FA13..FA14    ; Unified_Ideograph # Lo   [2] CJK COMPATIBILITY IDEOGRAPH-FA13..CJK COMPATIBILITY IDEOGRAPH-FA14
@@ -1073,9 +1070,9 @@ FA27..FA29    ; Unified_Ideograph # Lo   [3] CJK COMPATIBILITY IDEOGRAPH-FA27..C
 20000..2A6D6  ; Unified_Ideograph # Lo [42711] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A700..2B734  ; Unified_Ideograph # Lo [4149] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B740..2B81D  ; Unified_Ideograph # Lo [222] CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
-2B820..2CEA1  ; Unified_Ideograph # CJK Ideograph Extension E
+2B820..2CEA1  ; Unified_Ideograph # Lo [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 
-# Total code points: ??
+# Total code points: 80388
 
 # ================================================
 
@@ -1148,13 +1145,13 @@ E0020..E007F  ; Deprecated # Cf  [96] TAG SPACE..CANCEL TAG
 
 0E40..0E44    ; Logical_Order_Exception # Lo   [5] THAI CHARACTER SARA E..THAI CHARACTER SARA AI MAIMALAI
 0EC0..0EC4    ; Logical_Order_Exception # Lo   [5] LAO VOWEL SIGN E..LAO VOWEL SIGN AI
-19B5..19B7    ; Logical_Order_Exception # New Tai Lue
-19BA          ; Logical_Order_Exception # New Tai Lue
+19B5..19B7    ; Logical_Order_Exception # Lo   [3] NEW TAI LUE VOWEL SIGN E..NEW TAI LUE VOWEL SIGN O
+19BA          ; Logical_Order_Exception # Lo       NEW TAI LUE VOWEL SIGN AY
 AAB5..AAB6    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL E..TAI VIET VOWEL O
 AAB9          ; Logical_Order_Exception # Lo       TAI VIET VOWEL UEA
 AABB..AABC    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL AY
 
-# Total code points: 15
+# Total code points: 19
 
 # ================================================
 
@@ -1444,7 +1441,9 @@ E0100..E01EF  ; Variation_Selector # Mn [240] VARIATION SELECTOR-17..VARIATION S
 2BBD..2BC8    ; Pattern_Syntax # So  [12] BALLOT BOX WITH LIGHT X..BLACK MEDIUM RIGHT-POINTING TRIANGLE CENTRED
 2BC9          ; Pattern_Syntax # Cn       <reserved-2BC9>
 2BCA..2BD1    ; Pattern_Syntax # So   [8] TOP HALF BLACK CIRCLE..UNCERTAINTY SIGN
-2BD2..2BFF    ; Pattern_Syntax # Cn  [46] <reserved-2BD2>..<reserved-2BFF>
+2BD2..2BEB    ; Pattern_Syntax # Cn  [26] <reserved-2BD2>..<reserved-2BEB>
+2BEC..2BEF    ; Pattern_Syntax # So   [4] LEFTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS..DOWNWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+2BF0..2BFF    ; Pattern_Syntax # Cn  [16] <reserved-2BF0>..<reserved-2BFF>
 2E00..2E01    ; Pattern_Syntax # Po   [2] RIGHT ANGLE SUBSTITUTION MARKER..RIGHT ANGLE DOTTED SUBSTITUTION MARKER
 2E02          ; Pattern_Syntax # Pi       LEFT SUBSTITUTION BRACKET
 2E03          ; Pattern_Syntax # Pf       RIGHT SUBSTITUTION BRACKET
