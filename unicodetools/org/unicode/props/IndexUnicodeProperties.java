@@ -65,7 +65,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
      */
     static final boolean GZIP = true;
     static final boolean SIMPLE_COMPRESSION = true;
-    static final boolean FILE_CACHE = false; // true
+    static final boolean FILE_CACHE = true; // true
 
     /**
      * Debugging

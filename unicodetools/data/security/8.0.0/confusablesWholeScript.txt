@@ -1,7 +1,7 @@
 ﻿# Summary: Whole-Script Confusables
 # File: confusablesWholeScript.txt
 # Version: 8.0.0
-# Generated: 2015-02-08, 17:52:25 GMT
+# Generated: 2015-02-09, 15:36:43 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -3247,7 +3247,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 2
 
-# Cyrillic; Latin: [Є-ІЈА-ВЕКМ-ОР-ТХЫЬЮагекмо-ухцъє-іјћҌҍґғҚқҞҟҢҪ-ҲһҽҿӇӉӍ-ӏӔӕәӨөԁԌԑԛ-ԝ]; [A-CEG-MOPSTW-Ya-eh-yÆÇØæçøđĦħıĸŁłŦŧƠơǾəꞒꞓ]
+# Cyrillic; Latin: [Є-ІЈА-ВЕКМ-ОР-ТХЫЬЮагекмо-ухцъє-іјћҌҍґғҚқҞҟҢҪ-ҲһҽҿӇӉӍ-ӏӔӕӘәӨөԁԌԑԛ-ԝ]; [A-CEG-MOPSTW-Ya-eh-yÆÇØæçøđĦħıĸŁłŦŧƏƠơǾəꞒꞓ]
 
 0404..0406    ; Cyrl; Latn; A #  [3] (Є..І)  CYRILLIC CAPITAL LETTER UKRAINIAN IE..CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
 0408          ; Cyrl; Latn; A #      (Ј)  CYRILLIC CAPITAL LETTER JE
@@ -3284,14 +3284,14 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 04C9          ; Cyrl; Latn; A #      (Ӊ)  CYRILLIC CAPITAL LETTER EN WITH TAIL
 04CD..04CF    ; Cyrl; Latn; A #  [3] (Ӎ..ӏ)  CYRILLIC CAPITAL LETTER EM WITH TAIL..CYRILLIC SMALL LETTER PALOCHKA
 04D4..04D5    ; Cyrl; Latn; A #  [2] (Ӕ..ӕ)  CYRILLIC CAPITAL LIGATURE A IE..CYRILLIC SMALL LIGATURE A IE
-04D9          ; Cyrl; Latn; A #      (ә)  CYRILLIC SMALL LETTER SCHWA
+04D8..04D9    ; Cyrl; Latn; A #  [2] (Ә..ә)  CYRILLIC CAPITAL LETTER SCHWA..CYRILLIC SMALL LETTER SCHWA
 04E8..04E9    ; Cyrl; Latn; A #  [2] (Ө..ө)  CYRILLIC CAPITAL LETTER BARRED O..CYRILLIC SMALL LETTER BARRED O
 0501          ; Cyrl; Latn; A #      (ԁ)  CYRILLIC SMALL LETTER KOMI DE
 050C          ; Cyrl; Latn; A #      (Ԍ)  CYRILLIC CAPITAL LETTER KOMI SJE
 0511          ; Cyrl; Latn; A #      (ԑ)  CYRILLIC SMALL LETTER REVERSED ZE
 051B..051D    ; Cyrl; Latn; A #  [3] (ԛ..ԝ)  CYRILLIC SMALL LETTER QA..CYRILLIC SMALL LETTER WE
 
-# Total code points: 75
+# Total code points: 76
 
 # Cyrillic; Malayalam: [ОоӨө]; [ംഠ൦]
 
@@ -4518,7 +4518,7 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 
 # Total code points: 4
 
-# Latin; Cyrillic: [A-CEG-MOPSTW-Ya-eh-yÆÇØæçøđĦħıĸŁłŦŧƠơǾəꞒꞓ]; [Є-ІЈА-ВЕКМ-ОР-ТХЫЬЮагекмо-ухцъє-іјћҌҍґғҚқҞҟҢҪ-ҲһҽҿӇӉӍ-ӏӔӕәӨөԁԌԑԛ-ԝ]
+# Latin; Cyrillic: [A-CEG-MOPSTW-Ya-eh-yÆÇØæçøđĦħıĸŁłŦŧƏƠơǾəꞒꞓ]; [Є-ІЈА-ВЕКМ-ОР-ТХЫЬЮагекмо-ухцъє-іјћҌҍґғҚқҞҟҢҪ-ҲһҽҿӇӉӍ-ӏӔӕӘәӨөԁԌԑԛ-ԝ]
 
 0041..0043    ; Latn; Cyrl; A #  [3] (A..C)  LATIN CAPITAL LETTER A..LATIN CAPITAL LETTER C
 0045          ; Latn; Cyrl; A #      (E)  LATIN CAPITAL LETTER E
@@ -4538,12 +4538,13 @@ A793          ; Latn; Grek; L #      (ꞓ)  LATIN SMALL LETTER C WITH BAR
 0138          ; Latn; Cyrl; A #      (ĸ)  LATIN SMALL LETTER KRA
 0141..0142    ; Latn; Cyrl; A #  [2] (Ł..ł)  LATIN CAPITAL LETTER L WITH STROKE..LATIN SMALL LETTER L WITH STROKE
 0166..0167    ; Latn; Cyrl; A #  [2] (Ŧ..ŧ)  LATIN CAPITAL LETTER T WITH STROKE..LATIN SMALL LETTER T WITH STROKE
+018F          ; Latn; Cyrl; A #      (Ə)  LATIN CAPITAL LETTER SCHWA
 01A0..01A1    ; Latn; Cyrl; A #  [2] (Ơ..ơ)  LATIN CAPITAL LETTER O WITH HORN..LATIN SMALL LETTER O WITH HORN
 01FE          ; Latn; Cyrl; A #      (Ǿ)  LATIN CAPITAL LETTER O WITH STROKE AND ACUTE
 0259          ; Latn; Cyrl; A #      (ə)  LATIN SMALL LETTER SCHWA
 A792..A793    ; Latn; Cyrl; A #  [2] (Ꞓ..ꞓ)  LATIN CAPITAL LETTER C WITH BAR..LATIN SMALL LETTER C WITH BAR
 
-# Total code points: 62
+# Total code points: 63
 
 # Latin; Devanagari: [oøơ]; [०]
 

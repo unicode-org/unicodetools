@@ -1,7 +1,7 @@
 ﻿# Security Profile for General Identifiers
 # File: xidmodifications.txt
 # Version: 8.0.0
-# Generated: 2015-02-08, 17:52:25 GMT
+# Generated: 2015-02-09, 15:36:43 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -23,6 +23,7 @@
 0134..013E    ; Allowed ; Recommended          # [11] (Ĵ..ľ)  LATIN CAPITAL LETTER J WITH CIRCUMFLEX..LATIN SMALL LETTER L WITH CARON
 0141..0148    ; Allowed ; Recommended          #  [8] (Ł..ň)  LATIN CAPITAL LETTER L WITH STROKE..LATIN SMALL LETTER N WITH CARON
 014A..017E    ; Allowed ; Recommended          # [53] (Ŋ..ž)  LATIN CAPITAL LETTER ENG..LATIN SMALL LETTER Z WITH CARON
+018F          ; Allowed ; Recommended          #      (Ə)  LATIN CAPITAL LETTER SCHWA
 01A0..01A1    ; Allowed ; Recommended          #  [2] (Ơ..ơ)  LATIN CAPITAL LETTER O WITH HORN..LATIN SMALL LETTER O WITH HORN
 01AF..01B0    ; Allowed ; Recommended          #  [2] (Ư..ư)  LATIN CAPITAL LETTER U WITH HORN..LATIN SMALL LETTER U WITH HORN
 01CD..01DC    ; Allowed ; Recommended          # [16] (Ǎ..ǜ)  LATIN CAPITAL LETTER A WITH CARON..LATIN SMALL LETTER U WITH DIAERESIS AND GRAVE
@@ -75,7 +76,7 @@
 06FF          ; Allowed ; Recommended          #      (ۿ)  ARABIC LETTER HEH WITH INVERTED V
 0750..07B1    ; Allowed ; Recommended          # [98] (ݐ..ޱ)  ARABIC LETTER BEH WITH THREE DOTS HORIZONTALLY BELOW..THAANA LETTER NAA
 08A0..08AC    ; Allowed ; Recommended          # [13] (ࢠ..ࢬ)  ARABIC LETTER BEH WITH SMALL V BELOW..ARABIC LETTER ROHINGYA YEH
-08B2..08B4    ; Allowed ; Recommended          #  [3] (ࢲ..ࢴ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE..ARABIC LETTER KAF WITH DOT BELOW
+08B2          ; Allowed ; Recommended          #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 0901..094D    ; Allowed ; Recommended          # [77] (ँ..्)  DEVANAGARI SIGN CANDRABINDU..DEVANAGARI SIGN VIRAMA
 094F..0950    ; Allowed ; Recommended          #  [2] (ॏ..ॐ)  DEVANAGARI VOWEL SIGN AW..DEVANAGARI OM
 0956..0957    ; Allowed ; Recommended          #  [2] (ॖ..ॗ)  DEVANAGARI VOWEL SIGN UE..DEVANAGARI VOWEL SIGN UUE
@@ -123,7 +124,6 @@
 0AD0          ; Allowed ; Recommended          #      (ૐ)  GUJARATI OM
 0AE0..0AE3    ; Allowed ; Recommended          #  [4] (ૠ..ૣ)  GUJARATI LETTER VOCALIC RR..GUJARATI VOWEL SIGN VOCALIC LL
 0AE6..0AEF    ; Allowed ; Recommended          # [10] (૦..૯)  GUJARATI DIGIT ZERO..GUJARATI DIGIT NINE
-0AF9          ; Allowed ; Recommended          #      (ૹ)  GUJARATI LETTER ZHA
 0B01..0B03    ; Allowed ; Recommended          #  [3] (ଁ..ଃ)  ORIYA SIGN CANDRABINDU..ORIYA SIGN VISARGA
 0B05..0B0C    ; Allowed ; Recommended          #  [8] (ଅ..ଌ)  ORIYA LETTER A..ORIYA LETTER VOCALIC L
 0B0F..0B10    ; Allowed ; Recommended          #  [2] (ଏ..ଐ)  ORIYA LETTER E..ORIYA LETTER AI
@@ -164,7 +164,6 @@
 0C46..0C48    ; Allowed ; Recommended          #  [3] (ె..ై)  TELUGU VOWEL SIGN E..TELUGU VOWEL SIGN AI
 0C4A..0C4D    ; Allowed ; Recommended          #  [4] (ొ..్)  TELUGU VOWEL SIGN O..TELUGU SIGN VIRAMA
 0C55..0C56    ; Allowed ; Recommended          #  [2] (ౕ..ౖ)  TELUGU LENGTH MARK..TELUGU AI LENGTH MARK
-0C5A          ; Allowed ; Recommended          #      (ౚ)  TELUGU LETTER RRRA
 0C60..0C61    ; Allowed ; Recommended          #  [2] (ౠ..ౡ)  TELUGU LETTER VOCALIC RR..TELUGU LETTER VOCALIC LL
 0C66..0C6F    ; Allowed ; Recommended          # [10] (౦..౯)  TELUGU DIGIT ZERO..TELUGU DIGIT NINE
 0C82..0C83    ; Allowed ; Recommended          #  [2] (ಂ..ಃ)  KANNADA SIGN ANUSVARA..KANNADA SIGN VISARGA
@@ -188,7 +187,7 @@
 0D46..0D48    ; Allowed ; Recommended          #  [3] (െ..ൈ)  MALAYALAM VOWEL SIGN E..MALAYALAM VOWEL SIGN AI
 0D4A..0D4E    ; Allowed ; Recommended          #  [5] (ൊ..ൎ)  MALAYALAM VOWEL SIGN O..MALAYALAM LETTER DOT REPH
 0D57          ; Allowed ; Recommended          #      (ൗ)  MALAYALAM AU LENGTH MARK
-0D5F..0D61    ; Allowed ; Recommended          #  [3] (ൟ..ൡ)  MALAYALAM LETTER ARCHAIC II..MALAYALAM LETTER VOCALIC LL
+0D60..0D61    ; Allowed ; Recommended          #  [2] (ൠ..ൡ)  MALAYALAM LETTER VOCALIC RR..MALAYALAM LETTER VOCALIC LL
 0D66..0D6F    ; Allowed ; Recommended          # [10] (൦..൯)  MALAYALAM DIGIT ZERO..MALAYALAM DIGIT NINE
 0D7A..0D7F    ; Allowed ; Recommended          #  [6] (ൺ..ൿ)  MALAYALAM LETTER CHILLU NN..MALAYALAM LETTER CHILLU K
 0D82..0D83    ; Allowed ; Recommended          #  [2] (ං..ඃ)  SINHALA SIGN ANUSVARAYA..SINHALA SIGN VISARGAYA
@@ -286,7 +285,8 @@
 17DC          ; Allowed ; Recommended          #      (ៜ)  KHMER SIGN AVAKRAHASANYA
 17E0..17E9    ; Allowed ; Recommended          # [10] (០..៩)  KHMER DIGIT ZERO..KHMER DIGIT NINE
 1E00..1E99    ; Allowed ; Recommended          # [154] (Ḁ..ẙ)  LATIN CAPITAL LETTER A WITH RING BELOW..LATIN SMALL LETTER Y WITH RING ABOVE
-1EBF          ; Allowed ; Recommended          #      (ế)  LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
+1E9E          ; Allowed ; Recommended          #      (ẞ)  LATIN CAPITAL LETTER SHARP S
+1EA0..1EF9    ; Allowed ; Recommended          # [90] (Ạ..ỹ)  LATIN CAPITAL LETTER A WITH DOT BELOW..LATIN SMALL LETTER Y WITH TILDE
 1F00..1F15    ; Allowed ; Recommended          # [22] (ἀ..ἕ)  GREEK SMALL LETTER ALPHA WITH PSILI..GREEK SMALL LETTER EPSILON WITH DASIA AND OXIA
 1F18..1F1D    ; Allowed ; Recommended          #  [6] (Ἐ..Ἕ)  GREEK CAPITAL LETTER EPSILON WITH PSILI..GREEK CAPITAL LETTER EPSILON WITH DASIA AND OXIA
 1F20..1F45    ; Allowed ; Recommended          # [38] (ἠ..ὅ)  GREEK SMALL LETTER ETA WITH PSILI..GREEK SMALL LETTER OMICRON WITH DASIA AND OXIA
@@ -342,12 +342,12 @@
 A660..A661    ; Allowed ; Recommended          #  [2] (Ꙡ..ꙡ)  CYRILLIC CAPITAL LETTER REVERSED TSE..CYRILLIC SMALL LETTER REVERSED TSE
 A674..A67B    ; Allowed ; Recommended          #  [8] (ꙴ..ꙻ)  COMBINING CYRILLIC LETTER UKRAINIAN IE..COMBINING CYRILLIC LETTER OMEGA
 A67F          ; Allowed ; Recommended          #      (ꙿ)  CYRILLIC PAYEROK
-A69E..A69F    ; Allowed ; Recommended          #  [2] (ꚞ..ꚟ)  COMBINING CYRILLIC LETTER EF..COMBINING CYRILLIC LETTER IOTIFIED E
+A69F          ; Allowed ; Recommended          #      (ꚟ)  COMBINING CYRILLIC LETTER IOTIFIED E
 A717..A71F    ; Allowed ; Recommended          #  [9] (ꜗ..ꜟ)  MODIFIER LETTER DOT VERTICAL BAR..MODIFIER LETTER LOW INVERTED EXCLAMATION MARK
 A788          ; Allowed ; Recommended          #      (ꞈ)  MODIFIER LETTER LOW CIRCUMFLEX ACCENT
-A78D..A793    ; Allowed ; Recommended          #  [7] (Ɥ..ꞓ)  LATIN CAPITAL LETTER TURNED H..LATIN SMALL LETTER C WITH BAR
+A78D..A78E    ; Allowed ; Recommended          #  [2] (Ɥ..ꞎ)  LATIN CAPITAL LETTER TURNED H..LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
+A790..A793    ; Allowed ; Recommended          #  [4] (Ꞑ..ꞓ)  LATIN CAPITAL LETTER N WITH DESCENDER..LATIN SMALL LETTER C WITH BAR
 A7A0..A7AA    ; Allowed ; Recommended          # [11] (Ꞡ..Ɦ)  LATIN CAPITAL LETTER G WITH OBLIQUE STROKE..LATIN CAPITAL LETTER H WITH HOOK
-A7B2..A7B7    ; Allowed ; Recommended          #  [6] (Ʝ..ꞷ)  LATIN CAPITAL LETTER J WITH CROSSED-TAIL..LATIN SMALL LETTER OMEGA
 A7FA          ; Allowed ; Recommended          #      (ꟺ)  LATIN LETTER SMALL CAPITAL TURNED M
 A9E7..A9FE    ; Allowed ; Recommended          # [24] (ꧧ..ꧾ)  MYANMAR LETTER TAI LAING NYA..MYANMAR LETTER TAI LAING BHA
 AA60..AA76    ; Allowed ; Recommended          # [23] (ꩠ..ꩶ)  MYANMAR LETTER KHAMTI GA..MYANMAR LOGOGRAM KHAMTI HM
@@ -357,7 +357,6 @@ AB09..AB0E    ; Allowed ; Recommended          #  [6] (ꬉ..ꬎ)  ETHIOPIC SYLLA
 AB11..AB16    ; Allowed ; Recommended          #  [6] (ꬑ..ꬖ)  ETHIOPIC SYLLABLE DZU..ETHIOPIC SYLLABLE DZO
 AB20..AB26    ; Allowed ; Recommended          #  [7] (ꬠ..ꬦ)  ETHIOPIC SYLLABLE CCHHA..ETHIOPIC SYLLABLE CCHHO
 AB28..AB2E    ; Allowed ; Recommended          #  [7] (ꬨ..ꬮ)  ETHIOPIC SYLLABLE BBA..ETHIOPIC SYLLABLE BBO
-AB60..AB63    ; Allowed ; Recommended          #  [4] (ꭠ..ꭣ)  LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER UO
 AC00..D7A3    ; Allowed ; Recommended          # [11172] (가..힣)  HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
 FA0E..FA0F    ; Allowed ; Recommended          #  [2] (﨎..﨏)  CJK COMPATIBILITY IDEOGRAPH-FA0E..CJK COMPATIBILITY IDEOGRAPH-FA0F
 FA11          ; Allowed ; Recommended          #      (﨑)  CJK COMPATIBILITY IDEOGRAPH-FA11
@@ -372,7 +371,7 @@ FA27..FA29    ; Allowed ; Recommended          #  [3] (﨧..﨩)  CJK COMPATIBIL
 2B740..2B81D  ; Allowed ; Recommended          # [222] (𫝀..𫠝)  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; Allowed ; Recommended          # [5762] (𫠠..𬺡)  CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 
-# Total code points: 95191
+# Total code points: 95265
 
 #	Status/Type:	Inclusion
 
@@ -394,33 +393,11 @@ FA27..FA29    ; Allowed ; Recommended          #  [3] (﨧..﨩)  CJK COMPATIBIL
 
 # Total code points: 19
 
-#	Status/Type:	Aspirational
-
-1401..166C    ; Restricted ; Aspirational      # [620] (ᐁ..ᙬ)  CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
-166F..167F    ; Restricted ; Aspirational      # [17] (ᙯ..ᙿ)  CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS BLACKFOOT W
-1810..1819    ; Restricted ; Aspirational      # [10] (᠐..᠙)  MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
-1820..1877    ; Restricted ; Aspirational      # [88] (ᠠ..ᡷ)  MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
-1880..18A8    ; Restricted ; Aspirational      # [41] (ᢀ..ᢨ)  MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER MANCHU ALI GALI BHA
-18AA          ; Restricted ; Aspirational      #      (ᢪ)  MONGOLIAN LETTER MANCHU ALI GALI LHA
-18B0..18F5    ; Restricted ; Aspirational      # [70] (ᢰ..ᣵ)  CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
-2D30..2D67    ; Restricted ; Aspirational      # [56] (ⴰ..ⵧ)  TIFINAGH LETTER YA..TIFINAGH LETTER YO
-2D7F          ; Restricted ; Aspirational      #      (⵿)  TIFINAGH CONSONANT JOINER
-A000..A48C    ; Restricted ; Aspirational      # [1165] (ꀀ..ꒌ)  YI SYLLABLE IT..YI SYLLABLE YYR
-16F00..16F44  ; Restricted ; Aspirational      # [69] (𖼀..𖽄)  MIAO LETTER PA..MIAO LETTER HHA
-16F50..16F7E  ; Restricted ; Aspirational      # [47] (𖽐..𖽾)  MIAO LETTER NASALIZATION..MIAO VOWEL SIGN NG
-16F8F..16F9F  ; Restricted ; Aspirational      # [17] (𖾏..𖾟)  MIAO TONE RIGHT..MIAO LETTER REFORMED TONE-8
-
-# Total code points: 2202
-
-#	Status/Type:	Limited_Use
-
-
-# Total code points: 0
-
 #	Status/Type:	Uncommon_Use
 
 0181..018C    ; Restricted ; Uncommon_Use      # [12] (Ɓ..ƌ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN SMALL LETTER D WITH TOPBAR
-018E..019F    ; Restricted ; Uncommon_Use      # [18] (Ǝ..Ɵ)  LATIN CAPITAL LETTER REVERSED E..LATIN CAPITAL LETTER O WITH MIDDLE TILDE
+018E          ; Restricted ; Uncommon_Use      #      (Ǝ)  LATIN CAPITAL LETTER REVERSED E
+0190..019F    ; Restricted ; Uncommon_Use      # [16] (Ɛ..Ɵ)  LATIN CAPITAL LETTER OPEN E..LATIN CAPITAL LETTER O WITH MIDDLE TILDE
 01A2..01A9    ; Restricted ; Uncommon_Use      #  [8] (Ƣ..Ʃ)  LATIN CAPITAL LETTER OI..LATIN CAPITAL LETTER ESH
 01AC..01AE    ; Restricted ; Uncommon_Use      #  [3] (Ƭ..Ʈ)  LATIN CAPITAL LETTER T WITH HOOK..LATIN CAPITAL LETTER T WITH RETROFLEX HOOK
 01B1..01B8    ; Restricted ; Uncommon_Use      #  [8] (Ʊ..Ƹ)  LATIN CAPITAL LETTER UPSILON..LATIN CAPITAL LETTER EZH REVERSED
@@ -440,7 +417,8 @@ A000..A48C    ; Restricted ; Aspirational      # [1165] (ꀀ..ꒌ)  YI SYLLABLE 
 0275          ; Restricted ; Uncommon_Use      #      (ɵ)  LATIN SMALL LETTER BARRED O
 0280          ; Restricted ; Uncommon_Use      #      (ʀ)  LATIN LETTER SMALL CAPITAL R
 0283          ; Restricted ; Uncommon_Use      #      (ʃ)  LATIN SMALL LETTER ESH
-0288..028B    ; Restricted ; Uncommon_Use      #  [4] (ʈ..ʋ)  LATIN SMALL LETTER T WITH RETROFLEX HOOK..LATIN SMALL LETTER V WITH HOOK
+0288          ; Restricted ; Uncommon_Use      #      (ʈ)  LATIN SMALL LETTER T WITH RETROFLEX HOOK
+028A..028B    ; Restricted ; Uncommon_Use      #  [2] (ʊ..ʋ)  LATIN SMALL LETTER UPSILON..LATIN SMALL LETTER V WITH HOOK
 0292          ; Restricted ; Uncommon_Use      #      (ʒ)  LATIN SMALL LETTER EZH
 0294          ; Restricted ; Uncommon_Use      #      (ʔ)  LATIN LETTER GLOTTAL STOP
 0305          ; Restricted ; Uncommon_Use      #      (̅)  COMBINING OVERLINE
@@ -451,92 +429,42 @@ A000..A48C    ; Restricted ; Aspirational      # [1165] (ꀀ..ꒌ)  YI SYLLABLE 
 0334          ; Restricted ; Uncommon_Use      #      (̴)  COMBINING TILDE OVERLAY
 0336          ; Restricted ; Uncommon_Use      #      (̶)  COMBINING LONG STROKE OVERLAY
 0358          ; Restricted ; Uncommon_Use      #      (͘)  COMBINING DOT ABOVE RIGHT
-0591..05B3    ; Restricted ; Uncommon_Use      # [35] (֑..ֳ)  HEBREW ACCENT ETNAHTA..HEBREW POINT HATAF QAMATS
+0591..05A1    ; Restricted ; Uncommon_Use      # [17] (֑..֡)  HEBREW ACCENT ETNAHTA..HEBREW ACCENT PAZER
+05A3..05B3    ; Restricted ; Uncommon_Use      # [17] (֣..ֳ)  HEBREW ACCENT MUNAH..HEBREW POINT HATAF QAMATS
 05B5..05BD    ; Restricted ; Uncommon_Use      #  [9] (ֵ..ֽ)  HEBREW POINT TSERE..HEBREW POINT METEG
 05BF          ; Restricted ; Uncommon_Use      #      (ֿ)  HEBREW POINT RAFE
 05C1..05C2    ; Restricted ; Uncommon_Use      #  [2] (ׁ..ׂ)  HEBREW POINT SHIN DOT..HEBREW POINT SIN DOT
-05C4..05C5    ; Restricted ; Uncommon_Use      #  [2] (ׄ..ׅ)  HEBREW MARK UPPER DOT..HEBREW MARK LOWER DOT
-05C7          ; Restricted ; Uncommon_Use      #      (ׇ)  HEBREW POINT QAMATS QATAN
+05C4          ; Restricted ; Uncommon_Use      #      (ׄ)  HEBREW MARK UPPER DOT
 0610..061A    ; Restricted ; Uncommon_Use      # [11] (ؐ..ؚ)  ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM..ARABIC SMALL KASRA
 0656..065F    ; Restricted ; Uncommon_Use      # [10] (ٖ..ٟ)  ARABIC SUBSCRIPT ALEF..ARABIC WAVY HAMZA BELOW
 06D6..06DC    ; Restricted ; Uncommon_Use      #  [7] (ۖ..ۜ)  ARABIC SMALL HIGH LIGATURE SAD WITH LAM WITH ALEF MAKSURA..ARABIC SMALL HIGH SEEN
 06DF..06E4    ; Restricted ; Uncommon_Use      #  [6] (۟..ۤ)  ARABIC SMALL HIGH ROUNDED ZERO..ARABIC SMALL HIGH MADDA
 06E7..06E8    ; Restricted ; Uncommon_Use      #  [2] (ۧ..ۨ)  ARABIC SMALL HIGH YEH..ARABIC SMALL HIGH NOON
 06EA..06ED    ; Restricted ; Uncommon_Use      #  [4] (۪..ۭ)  ARABIC EMPTY CENTRE LOW STOP..ARABIC SMALL LOW MEEM
-0710..074A    ; Restricted ; Uncommon_Use      # [59] (ܐ..݊)  SYRIAC LETTER ALAPH..SYRIAC BARREKH
-074D..074F    ; Restricted ; Uncommon_Use      #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
-07C0..07E7    ; Restricted ; Uncommon_Use      # [40] (߀..ߧ)  NKO DIGIT ZERO..NKO LETTER NYA WOLOSO
-07EB..07F5    ; Restricted ; Uncommon_Use      # [11] (߫..ߵ)  NKO COMBINING SHORT HIGH TONE..NKO LOW TONE APOSTROPHE
-07FA          ; Restricted ; Uncommon_Use      #      (ߺ)  NKO LAJANYALAN
-0840..085B    ; Restricted ; Uncommon_Use      # [28] (ࡀ..࡛)  MANDAIC LETTER HALQA..MANDAIC GEMINATION MARK
+08B3..08B4    ; Restricted ; Uncommon_Use      #  [2] (ࢳ..ࢴ)  ARABIC LETTER AIN WITH THREE DOTS BELOW..ARABIC LETTER KAF WITH DOT BELOW
 08E3..0900    ; Restricted ; Uncommon_Use      # [30] (ࣣ..ऀ)  ARABIC TURNED DAMMA BELOW..DEVANAGARI SIGN INVERTED CANDRABINDU
 0955          ; Restricted ; Uncommon_Use      #      (ॕ)  DEVANAGARI VOWEL SIGN CANDRA LONG E
 0A51          ; Restricted ; Uncommon_Use      #      (ੑ)  GURMUKHI SIGN UDAAT
 0A75          ; Restricted ; Uncommon_Use      #      (ੵ)  GURMUKHI SIGN YAKASH
+0AF9          ; Restricted ; Uncommon_Use      #      (ૹ)  GUJARATI LETTER ZHA
 0B44          ; Restricted ; Uncommon_Use      #      (ୄ)  ORIYA VOWEL SIGN VOCALIC RR
 0B62..0B63    ; Restricted ; Uncommon_Use      #  [2] (ୢ..ୣ)  ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
+0C5A          ; Restricted ; Uncommon_Use      #      (ౚ)  TELUGU LETTER RRRA
 0C62..0C63    ; Restricted ; Uncommon_Use      #  [2] (ౢ..ౣ)  TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
 0D44          ; Restricted ; Uncommon_Use      #      (ൄ)  MALAYALAM VOWEL SIGN VOCALIC RR
 0D62..0D63    ; Restricted ; Uncommon_Use      #  [2] (ൢ..ൣ)  MALAYALAM VOWEL SIGN VOCALIC L..MALAYALAM VOWEL SIGN VOCALIC LL
-0D8F..0D90    ; Restricted ; Uncommon_Use      #  [2] (ඏ..ඐ)  SINHALA LETTER ILUYANNA..SINHALA LETTER ILUUYANNA
-0DA6          ; Restricted ; Uncommon_Use      #      (ඦ)  SINHALA LETTER SANYAKA JAYANNA
-0DDF          ; Restricted ; Uncommon_Use      #      (ෟ)  SINHALA VOWEL SIGN GAYANUKITTA
-0DF3          ; Restricted ; Uncommon_Use      #      (ෳ)  SINHALA VOWEL SIGN DIGA GAYANUKITTA
 0F39          ; Restricted ; Uncommon_Use      #      (༹)  TIBETAN MARK TSA -PHRU
-13A0..13F5    ; Restricted ; Uncommon_Use      # [86] (Ꭰ..Ᏽ)  CHEROKEE LETTER A..CHEROKEE LETTER MV
-13F8..13FD    ; Restricted ; Uncommon_Use      #  [6] (ᏸ..ᏽ)  CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
-18A9          ; Restricted ; Uncommon_Use      #      (ᢩ)  MONGOLIAN LETTER ALI GALI DAGALGA
-1900..191E    ; Restricted ; Uncommon_Use      # [31] (ᤀ..ᤞ)  LIMBU VOWEL-CARRIER LETTER..LIMBU LETTER TRA
-1920..192B    ; Restricted ; Uncommon_Use      # [12] (ᤠ..ᤫ)  LIMBU VOWEL SIGN A..LIMBU SUBJOINED LETTER WA
-1930..193B    ; Restricted ; Uncommon_Use      # [12] (ᤰ..᤻)  LIMBU SMALL LETTER KA..LIMBU SIGN SA-I
-1946..196D    ; Restricted ; Uncommon_Use      # [40] (᥆..ᥭ)  LIMBU DIGIT ZERO..TAI LE LETTER AI
-1970..1974    ; Restricted ; Uncommon_Use      #  [5] (ᥰ..ᥴ)  TAI LE LETTER TONE-2..TAI LE LETTER TONE-6
-1980..19AB    ; Restricted ; Uncommon_Use      # [44] (ᦀ..ᦫ)  NEW TAI LUE LETTER HIGH QA..NEW TAI LUE LETTER LOW SUA
-19B0..19C9    ; Restricted ; Uncommon_Use      # [26] (ᦰ..ᧉ)  NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW TAI LUE TONE MARK-2
-19D0..19DA    ; Restricted ; Uncommon_Use      # [11] (᧐..᧚)  NEW TAI LUE DIGIT ZERO..NEW TAI LUE THAM DIGIT ONE
-1A20..1A5E    ; Restricted ; Uncommon_Use      # [63] (ᨠ..ᩞ)  TAI THAM LETTER HIGH KA..TAI THAM CONSONANT SIGN SA
-1A60..1A7C    ; Restricted ; Uncommon_Use      # [29] (᩠..᩼)  TAI THAM SIGN SAKOT..TAI THAM SIGN KHUEN-LUE KARAN
-1A7F..1A89    ; Restricted ; Uncommon_Use      # [11] (᩿..᪉)  TAI THAM COMBINING CRYPTOGRAMMIC DOT..TAI THAM HORA DIGIT NINE
-1A90..1A99    ; Restricted ; Uncommon_Use      # [10] (᪐..᪙)  TAI THAM THAM DIGIT ZERO..TAI THAM THAM DIGIT NINE
-1AA7          ; Restricted ; Uncommon_Use      #      (ᪧ)  TAI THAM SIGN MAI YAMOK
-1B00..1B4B    ; Restricted ; Uncommon_Use      # [76] (ᬀ..ᭋ)  BALINESE SIGN ULU RICEM..BALINESE LETTER ASYURA SASAK
-1B50..1B59    ; Restricted ; Uncommon_Use      # [10] (᭐..᭙)  BALINESE DIGIT ZERO..BALINESE DIGIT NINE
-1B6B..1B73    ; Restricted ; Uncommon_Use      #  [9] (᭫..᭳)  BALINESE MUSICAL SYMBOL COMBINING TEGEH..BALINESE MUSICAL SYMBOL COMBINING GONG
-1B80..1BF3    ; Restricted ; Uncommon_Use      # [116] (ᮀ..᯳)  SUNDANESE SIGN PANYECEK..BATAK PANONGONAN
-1C00..1C37    ; Restricted ; Uncommon_Use      # [56] (ᰀ..᰷)  LEPCHA LETTER KA..LEPCHA SIGN NUKTA
-1C40..1C49    ; Restricted ; Uncommon_Use      # [10] (᱀..᱉)  LEPCHA DIGIT ZERO..LEPCHA DIGIT NINE
-1C4D..1C7D    ; Restricted ; Uncommon_Use      # [49] (ᱍ..ᱽ)  LEPCHA LETTER TTA..OL CHIKI AHAD
 2054          ; Restricted ; Uncommon_Use      #      (⁔)  INVERTED UNDERTIE
 2C67..2C6C    ; Restricted ; Uncommon_Use      #  [6] (Ⱨ..ⱬ)  LATIN CAPITAL LETTER H WITH DESCENDER..LATIN SMALL LETTER Z WITH DESCENDER
-A4D0..A4FD    ; Restricted ; Uncommon_Use      # [46] (ꓐ..ꓽ)  LISU LETTER BA..LISU LETTER TONE MYA JEU
-A500..A60C    ; Restricted ; Uncommon_Use      # [269] (ꔀ..ꘌ)  VAI SYLLABLE EE..VAI SYLLABLE LENGTHENER
-A613..A629    ; Restricted ; Uncommon_Use      # [23] (ꘓ..꘩)  VAI SYMBOL FEENG..VAI DIGIT NINE
 A66F          ; Restricted ; Uncommon_Use      #      (꙯)  COMBINING CYRILLIC VZMET
 A67C..A67D    ; Restricted ; Uncommon_Use      #  [2] (꙼..꙽)  COMBINING CYRILLIC KAVYKA..COMBINING CYRILLIC PAYEROK
-A6A0..A6F1    ; Restricted ; Uncommon_Use      # [82] (ꚠ..꛱)  BAMUM LETTER A..BAMUM COMBINING MARK TUKWENTIS
+A69E          ; Restricted ; Uncommon_Use      #      (ꚞ)  COMBINING CYRILLIC LETTER EF
 A78B..A78C    ; Restricted ; Uncommon_Use      #  [2] (Ꞌ..ꞌ)  LATIN CAPITAL LETTER SALTILLO..LATIN SMALL LETTER SALTILLO
-A800..A827    ; Restricted ; Uncommon_Use      # [40] (ꠀ..ꠧ)  SYLOTI NAGRI LETTER A..SYLOTI NAGRI VOWEL SIGN OO
-A880..A8C4    ; Restricted ; Uncommon_Use      # [69] (ꢀ..꣄)  SAURASHTRA SIGN ANUSVARA..SAURASHTRA SIGN VIRAMA
-A8D0..A8D9    ; Restricted ; Uncommon_Use      # [10] (꣐..꣙)  SAURASHTRA DIGIT ZERO..SAURASHTRA DIGIT NINE
-A900..A92D    ; Restricted ; Uncommon_Use      # [46] (꤀..꤭)  KAYAH LI DIGIT ZERO..KAYAH LI TONE CALYA PLOPHU
-A980..A9C0    ; Restricted ; Uncommon_Use      # [65] (ꦀ..꧀)  JAVANESE SIGN PANYANGGA..JAVANESE PANGKON
-A9D0..A9D9    ; Restricted ; Uncommon_Use      # [10] (꧐..꧙)  JAVANESE DIGIT ZERO..JAVANESE DIGIT NINE
-AA00..AA36    ; Restricted ; Uncommon_Use      # [55] (ꨀ..ꨶ)  CHAM LETTER A..CHAM CONSONANT SIGN WA
-AA40..AA4D    ; Restricted ; Uncommon_Use      # [14] (ꩀ..ꩍ)  CHAM LETTER FINAL K..CHAM CONSONANT SIGN FINAL H
-AA50..AA59    ; Restricted ; Uncommon_Use      # [10] (꩐..꩙)  CHAM DIGIT ZERO..CHAM DIGIT NINE
-AA80..AAC2    ; Restricted ; Uncommon_Use      # [67] (ꪀ..ꫂ)  TAI VIET LETTER LOW KO..TAI VIET TONE MAI SONG
-AADB..AADD    ; Restricted ; Uncommon_Use      #  [3] (ꫛ..ꫝ)  TAI VIET SYMBOL KON..TAI VIET SYMBOL SAM
-AAE0..AAEF    ; Restricted ; Uncommon_Use      # [16] (ꫠ..ꫯ)  MEETEI MAYEK LETTER E..MEETEI MAYEK VOWEL SIGN AAU
-AAF2..AAF6    ; Restricted ; Uncommon_Use      #  [5] (ꫲ..꫶)  MEETEI MAYEK ANJI..MEETEI MAYEK VIRAMA
-AB70..ABEA    ; Restricted ; Uncommon_Use      # [123] (ꭰ..ꯪ)  CHEROKEE SMALL LETTER A..MEETEI MAYEK VOWEL SIGN NUNG
-ABEC..ABED    ; Restricted ; Uncommon_Use      #  [2] (꯬..꯭)  MEETEI MAYEK LUM IYEK..MEETEI MAYEK APUN IYEK
-ABF0..ABF9    ; Restricted ; Uncommon_Use      # [10] (꯰..꯹)  MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NINE
-FB1E          ; Restricted ; Uncommon_Use      #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
-11100..11134  ; Restricted ; Uncommon_Use      # [53] (𑄀..𑄴)  CHAKMA SIGN CANDRABINDU..CHAKMA MAAYYAA
-11136..1113F  ; Restricted ; Uncommon_Use      # [10] (𑄶..𑄿)  CHAKMA DIGIT ZERO..CHAKMA DIGIT NINE
-16800..16A38  ; Restricted ; Uncommon_Use      # [569] (𖠀..𖨸)  BAMUM LETTER PHASE-A NGKUE MFON..BAMUM LETTER PHASE-F VUEQ
+A78F          ; Restricted ; Uncommon_Use      #      (ꞏ)  LATIN LETTER SINOLOGICAL DOT
+A7B2..A7B7    ; Restricted ; Uncommon_Use      #  [6] (Ʝ..ꞷ)  LATIN CAPITAL LETTER J WITH CROSSED-TAIL..LATIN SMALL LETTER OMEGA
+AB60..AB63    ; Restricted ; Uncommon_Use      #  [4] (ꭠ..ꭣ)  LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER UO
 
-# Total code points: 2717
+# Total code points: 269
 
 #	Status/Type:	Technical
 
@@ -558,6 +486,7 @@ FB1E          ; Restricted ; Uncommon_Use      #      (ﬞ)  HEBREW POINT JUDEO-
 027D..027F    ; Restricted ; Technical         #  [3] (ɽ..ɿ)  LATIN SMALL LETTER R WITH TAIL..LATIN SMALL LETTER REVERSED R WITH FISHHOOK
 0281..0282    ; Restricted ; Technical         #  [2] (ʁ..ʂ)  LATIN LETTER SMALL CAPITAL INVERTED R..LATIN SMALL LETTER S WITH HOOK
 0284..0287    ; Restricted ; Technical         #  [4] (ʄ..ʇ)  LATIN SMALL LETTER DOTLESS J WITH STROKE AND HOOK..LATIN SMALL LETTER TURNED T
+0289          ; Restricted ; Technical         #      (ʉ)  LATIN SMALL LETTER U BAR
 028C..0291    ; Restricted ; Technical         #  [6] (ʌ..ʑ)  LATIN SMALL LETTER TURNED V..LATIN SMALL LETTER Z WITH CURL
 0293          ; Restricted ; Technical         #      (ʓ)  LATIN SMALL LETTER EZH WITH CURL
 0295..029D    ; Restricted ; Technical         #  [9] (ʕ..ʝ)  LATIN LETTER PHARYNGEAL VOICED FRICATIVE..LATIN SMALL LETTER J WITH CROSSED-TAIL
@@ -582,6 +511,10 @@ FB1E          ; Restricted ; Uncommon_Use      #      (ﬞ)  HEBREW POINT JUDEO-
 03CF          ; Restricted ; Technical         #      (Ϗ)  GREEK CAPITAL KAI SYMBOL
 03D7          ; Restricted ; Technical         #      (ϗ)  GREEK KAI SYMBOL
 0953..0954    ; Restricted ; Technical         #  [2] (॓..॔)  DEVANAGARI GRAVE ACCENT..DEVANAGARI ACUTE ACCENT
+0D8F..0D90    ; Restricted ; Technical         #  [2] (ඏ..ඐ)  SINHALA LETTER ILUYANNA..SINHALA LETTER ILUUYANNA
+0DA6          ; Restricted ; Technical         #      (ඦ)  SINHALA LETTER SANYAKA JAYANNA
+0DDF          ; Restricted ; Technical         #      (ෟ)  SINHALA VOWEL SIGN GAYANUKITTA
+0DF3          ; Restricted ; Technical         #      (ෳ)  SINHALA VOWEL SIGN DIGA GAYANUKITTA
 0F18..0F19    ; Restricted ; Technical         #  [2] (༘..༙)  TIBETAN ASTROLOGICAL SIGN -KHYUD PA..TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
 17CB..17D0    ; Restricted ; Technical         #  [6] (់..័)  KHMER SIGN BANTOC..KHMER SIGN SAMYOK SANNYA
 1D00..1D2B    ; Restricted ; Technical         # [44] (ᴀ..ᴫ)  LATIN LETTER SMALL CAPITAL A..CYRILLIC LETTER SMALL CAPITAL EL
@@ -590,23 +523,27 @@ FB1E          ; Restricted ; Uncommon_Use      #      (ﬞ)  HEBREW POINT JUDEO-
 1D4E          ; Restricted ; Technical         #      (ᵎ)  MODIFIER LETTER SMALL TURNED I
 1D6B..1D77    ; Restricted ; Technical         # [13] (ᵫ..ᵷ)  LATIN SMALL LETTER UE..LATIN SMALL LETTER TURNED G
 1D79..1D9A    ; Restricted ; Technical         # [34] (ᵹ..ᶚ)  LATIN SMALL LETTER INSULAR G..LATIN SMALL LETTER EZH WITH RETROFLEX HOOK
-1DC0..1DF5    ; Restricted ; Technical         # [54] (᷀..᷵)  COMBINING DOTTED GRAVE ACCENT..COMBINING UP TACK ABOVE
+1DC4..1DCD    ; Restricted ; Technical         # [10] (᷄..᷍)  COMBINING MACRON-ACUTE..COMBINING DOUBLE CIRCUMFLEX ABOVE
+1DCF..1DD0    ; Restricted ; Technical         #  [2] (᷏..᷐)  COMBINING ZIGZAG BELOW..COMBINING IS BELOW
+1DE7..1DF5    ; Restricted ; Technical         # [15] (ᷧ..᷵)  COMBINING LATIN SMALL LETTER ALPHA..COMBINING UP TACK ABOVE
 1DFC..1DFF    ; Restricted ; Technical         #  [4] (᷼..᷿)  COMBINING DOUBLE INVERTED BREVE BELOW..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
-1E9C..1EBE    ; Restricted ; Technical         # [35] (ẜ..Ế)  LATIN SMALL LETTER LONG S WITH DIAGONAL STROKE..LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND ACUTE
-1EC0..1EFF    ; Restricted ; Technical         # [64] (Ề..ỿ)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND GRAVE..LATIN SMALL LETTER Y WITH LOOP
+1E9C..1E9D    ; Restricted ; Technical         #  [2] (ẜ..ẝ)  LATIN SMALL LETTER LONG S WITH DIAGONAL STROKE..LATIN SMALL LETTER LONG S WITH HIGH STROKE
+1E9F          ; Restricted ; Technical         #      (ẟ)  LATIN SMALL LETTER DELTA
+1EFA..1EFF    ; Restricted ; Technical         #  [6] (Ỻ..ỿ)  LATIN CAPITAL LETTER MIDDLE-WELSH LL..LATIN SMALL LETTER Y WITH LOOP
 203F..2040    ; Restricted ; Technical         #  [2] (‿..⁀)  UNDERTIE..CHARACTER TIE
 2118          ; Restricted ; Technical         #      (℘)  SCRIPT CAPITAL P
 212E          ; Restricted ; Technical         #      (℮)  ESTIMATED SYMBOL
 2C60..2C66    ; Restricted ; Technical         #  [7] (Ⱡ..ⱦ)  LATIN CAPITAL LETTER L WITH DOUBLE BAR..LATIN SMALL LETTER T WITH DIAGONAL STROKE
 2C77..2C7B    ; Restricted ; Technical         #  [5] (ⱷ..ⱻ)  LATIN SMALL LETTER TAILLESS PHI..LATIN LETTER SMALL CAPITAL TURNED E
-3021..302F    ; Restricted ; Technical         # [15] (〡..〯)  HANGZHOU NUMERAL ONE..HANGUL DOUBLE DOT TONE MARK
+3021..302D    ; Restricted ; Technical         # [13] (〡..〭)  HANGZHOU NUMERAL ONE..IDEOGRAPHIC ENTERING TONE MARK
 3031..3035    ; Restricted ; Technical         #  [5] (〱..〵)  VERTICAL KANA REPEAT MARK..VERTICAL KANA REPEAT MARK LOWER HALF
 303B..303C    ; Restricted ; Technical         #  [2] (〻..〼)  VERTICAL IDEOGRAPHIC ITERATION MARK..MASU MARK
 31F0..31FF    ; Restricted ; Technical         # [16] (ㇰ..ㇿ)  KATAKANA LETTER SMALL KU..KATAKANA LETTER SMALL RO
+FB1E          ; Restricted ; Technical         #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE20..FE2F    ; Restricted ; Technical         # [16] (︠..︯)  COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
 FE73          ; Restricted ; Technical         #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 485
+# Total code points: 373
 
 #	Status/Type:	Obsolete
 
@@ -630,9 +567,11 @@ FE73          ; Restricted ; Technical         #      (ﹳ)  ARABIC TAIL FRAGMEN
 0460..0481    ; Restricted ; Obsolete          # [34] (Ѡ..ҁ)  CYRILLIC CAPITAL LETTER OMEGA..CYRILLIC SMALL LETTER KOPPA
 0483..0487    ; Restricted ; Obsolete          #  [5] (҃..҇)  COMBINING CYRILLIC TITLO..COMBINING CYRILLIC POKRYTIE
 052A..052D    ; Restricted ; Obsolete          #  [4] (Ԫ..ԭ)  CYRILLIC CAPITAL LETTER DZZHE..CYRILLIC SMALL LETTER DCHE
+05A2          ; Restricted ; Obsolete          #      (֢)  HEBREW ACCENT ATNAH HAFUKH
+05C5          ; Restricted ; Obsolete          #      (ׅ)  HEBREW MARK LOWER DOT
+05C7          ; Restricted ; Obsolete          #      (ׇ)  HEBREW POINT QAMATS QATAN
 066E..066F    ; Restricted ; Obsolete          #  [2] (ٮ..ٯ)  ARABIC LETTER DOTLESS BEH..ARABIC LETTER DOTLESS QAF
 068E          ; Restricted ; Obsolete          #      (ڎ)  ARABIC LETTER DUL
-07E8..07EA    ; Restricted ; Obsolete          #  [3] (ߨ..ߪ)  NKO LETTER JONA JA..NKO LETTER JONA RA
 08AD..08B1    ; Restricted ; Obsolete          #  [5] (ࢭ..ࢱ)  ARABIC LETTER LOW ALEF..ARABIC LETTER STRAIGHT WAW
 094E          ; Restricted ; Obsolete          #      (ॎ)  DEVANAGARI VOWEL SIGN PRISHTHAMATRA E
 0951..0952    ; Restricted ; Obsolete          #  [2] (॑..॒)  DEVANAGARI STRESS SIGN UDATTA..DEVANAGARI STRESS SIGN ANUDATTA
@@ -644,6 +583,7 @@ FE73          ; Restricted ; Technical         #      (ﹳ)  ARABIC TAIL FRAGMEN
 0C81          ; Restricted ; Obsolete          #      (ಁ)  KANNADA SIGN CANDRABINDU
 0CDE          ; Restricted ; Obsolete          #      (ೞ)  KANNADA LETTER FA
 0D01          ; Restricted ; Obsolete          #      (ഁ)  MALAYALAM SIGN CANDRABINDU
+0D5F          ; Restricted ; Obsolete          #      (ൟ)  MALAYALAM LETTER ARCHAIC II
 0DE6..0DEF    ; Restricted ; Obsolete          # [10] (෦..෯)  SINHALA LITH DIGIT ZERO..SINHALA LITH DIGIT NINE
 10A0..10C5    ; Restricted ; Obsolete          # [38] (Ⴀ..Ⴥ)  GEORGIAN CAPITAL LETTER AN..GEORGIAN CAPITAL LETTER HOE
 10F1..10F6    ; Restricted ; Obsolete          #  [6] (ჱ..ჶ)  GEORGIAN LETTER HE..GEORGIAN LETTER FI
@@ -658,6 +598,9 @@ FE73          ; Restricted ; Technical         #      (ﹳ)  ARABIC TAIL FRAGMEN
 1CD0..1CD2    ; Restricted ; Obsolete          #  [3] (᳐..᳒)  VEDIC TONE KARSHANA..VEDIC TONE PRENKHA
 1CD4..1CF6    ; Restricted ; Obsolete          # [35] (᳔..ᳶ)  VEDIC SIGN YAJURVEDIC MIDLINE SVARITA..VEDIC SIGN UPADHMANIYA
 1CF8..1CF9    ; Restricted ; Obsolete          #  [2] (᳸..᳹)  VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
+1DC0..1DC3    ; Restricted ; Obsolete          #  [4] (᷀..᷃)  COMBINING DOTTED GRAVE ACCENT..COMBINING SUSPENSION MARK
+1DCE          ; Restricted ; Obsolete          #      (᷎)  COMBINING OGONEK ABOVE
+1DD1..1DE6    ; Restricted ; Obsolete          # [22] (᷑..ᷦ)  COMBINING UR ABOVE..COMBINING LATIN SMALL LETTER Z
 2132          ; Restricted ; Obsolete          #      (Ⅎ)  TURNED CAPITAL F
 214E          ; Restricted ; Obsolete          #      (ⅎ)  TURNED SMALL F
 2180..2188    ; Restricted ; Obsolete          #  [9] (ↀ..ↈ)  ROMAN NUMERAL ONE THOUSAND C D..ROMAN NUMERAL ONE HUNDRED THOUSAND
@@ -665,11 +608,7 @@ FE73          ; Restricted ; Technical         #      (ﹳ)  ARABIC TAIL FRAGMEN
 2C7E..2C7F    ; Restricted ; Obsolete          #  [2] (Ȿ..Ɀ)  LATIN CAPITAL LETTER S WITH SWASH TAIL..LATIN CAPITAL LETTER Z WITH SWASH TAIL
 2D00..2D25    ; Restricted ; Obsolete          # [38] (ⴀ..ⴥ)  GEORGIAN SMALL LETTER AN..GEORGIAN SMALL LETTER HOE
 2DE0..2DFF    ; Restricted ; Obsolete          # [32] (ⷠ..ⷿ)  COMBINING CYRILLIC LETTER BE..COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
-2E32          ; Restricted ; Obsolete          #      (⸲)  TURNED COMMA
-2E35          ; Restricted ; Obsolete          #      (⸵)  TURNED SEMICOLON
-2E39          ; Restricted ; Obsolete          #      (⸹)  TOP HALF SECTION SIGN
-A610..A612    ; Restricted ; Obsolete          #  [3] (ꘐ..ꘒ)  VAI SYLLABLE NDOLE FA..VAI SYLLABLE NDOLE SOO
-A62A..A62B    ; Restricted ; Obsolete          #  [2] (ꘪ..ꘫ)  VAI SYLLABLE NDOLE MA..VAI SYLLABLE NDOLE DO
+302E..302F    ; Restricted ; Obsolete          #  [2] (〮..〯)  HANGUL SINGLE DOT TONE MARK..HANGUL DOUBLE DOT TONE MARK
 A640..A65F    ; Restricted ; Obsolete          # [32] (Ꙁ..ꙟ)  CYRILLIC CAPITAL LETTER ZEMLYA..CYRILLIC SMALL LETTER YN
 A662..A66E    ; Restricted ; Obsolete          # [13] (Ꙣ..ꙮ)  CYRILLIC CAPITAL LETTER SOFT DE..CYRILLIC LETTER MULTIOCULAR O
 A680..A69B    ; Restricted ; Obsolete          # [28] (Ꚁ..ꚛ)  CYRILLIC CAPITAL LETTER DWE..CYRILLIC SMALL LETTER CROSSED O
@@ -692,12 +631,84 @@ D7CB..D7FB    ; Restricted ; Obsolete          # [49] (ퟋ..ퟻ)  HANGUL JONGSEO
 10140..10174  ; Restricted ; Obsolete          # [53] (𐅀..𐅴)  GREEK ACROPHONIC ATTIC ONE QUARTER..GREEK ACROPHONIC STRATIAN FIFTY MNAS
 102E0         ; Restricted ; Obsolete          #      (𐋠)  COPTIC EPACT THOUSANDS MARK
 
-# Total code points: 1023
+# Total code points: 1045
+
+#	Status/Type:	Aspirational
+
+1401..166C    ; Restricted ; Aspirational      # [620] (ᐁ..ᙬ)  CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
+166F..167F    ; Restricted ; Aspirational      # [17] (ᙯ..ᙿ)  CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS BLACKFOOT W
+1810..1819    ; Restricted ; Aspirational      # [10] (᠐..᠙)  MONGOLIAN DIGIT ZERO..MONGOLIAN DIGIT NINE
+1820..1877    ; Restricted ; Aspirational      # [88] (ᠠ..ᡷ)  MONGOLIAN LETTER A..MONGOLIAN LETTER MANCHU ZHA
+1880..18AA    ; Restricted ; Aspirational      # [43] (ᢀ..ᢪ)  MONGOLIAN LETTER ALI GALI ANUSVARA ONE..MONGOLIAN LETTER MANCHU ALI GALI LHA
+18B0..18F5    ; Restricted ; Aspirational      # [70] (ᢰ..ᣵ)  CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
+2D30..2D67    ; Restricted ; Aspirational      # [56] (ⴰ..ⵧ)  TIFINAGH LETTER YA..TIFINAGH LETTER YO
+2D7F          ; Restricted ; Aspirational      #      (⵿)  TIFINAGH CONSONANT JOINER
+A000..A48C    ; Restricted ; Aspirational      # [1165] (ꀀ..ꒌ)  YI SYLLABLE IT..YI SYLLABLE YYR
+16F00..16F44  ; Restricted ; Aspirational      # [69] (𖼀..𖽄)  MIAO LETTER PA..MIAO LETTER HHA
+16F50..16F7E  ; Restricted ; Aspirational      # [47] (𖽐..𖽾)  MIAO LETTER NASALIZATION..MIAO VOWEL SIGN NG
+16F8F..16F9F  ; Restricted ; Aspirational      # [17] (𖾏..𖾟)  MIAO TONE RIGHT..MIAO LETTER REFORMED TONE-8
+
+# Total code points: 2203
+
+#	Status/Type:	Limited_Use
+
+0710..074A    ; Restricted ; Limited_Use       # [59] (ܐ..݊)  SYRIAC LETTER ALAPH..SYRIAC BARREKH
+074D..074F    ; Restricted ; Limited_Use       #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
+07C0..07F5    ; Restricted ; Limited_Use       # [54] (߀..ߵ)  NKO DIGIT ZERO..NKO LOW TONE APOSTROPHE
+0840..085B    ; Restricted ; Limited_Use       # [28] (ࡀ..࡛)  MANDAIC LETTER HALQA..MANDAIC GEMINATION MARK
+13A0..13F5    ; Restricted ; Limited_Use       # [86] (Ꭰ..Ᏽ)  CHEROKEE LETTER A..CHEROKEE LETTER MV
+13F8..13FD    ; Restricted ; Limited_Use       #  [6] (ᏸ..ᏽ)  CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
+1900..191E    ; Restricted ; Limited_Use       # [31] (ᤀ..ᤞ)  LIMBU VOWEL-CARRIER LETTER..LIMBU LETTER TRA
+1920..192B    ; Restricted ; Limited_Use       # [12] (ᤠ..ᤫ)  LIMBU VOWEL SIGN A..LIMBU SUBJOINED LETTER WA
+1930..193B    ; Restricted ; Limited_Use       # [12] (ᤰ..᤻)  LIMBU SMALL LETTER KA..LIMBU SIGN SA-I
+1946..196D    ; Restricted ; Limited_Use       # [40] (᥆..ᥭ)  LIMBU DIGIT ZERO..TAI LE LETTER AI
+1970..1974    ; Restricted ; Limited_Use       #  [5] (ᥰ..ᥴ)  TAI LE LETTER TONE-2..TAI LE LETTER TONE-6
+1980..19AB    ; Restricted ; Limited_Use       # [44] (ᦀ..ᦫ)  NEW TAI LUE LETTER HIGH QA..NEW TAI LUE LETTER LOW SUA
+19B0..19C9    ; Restricted ; Limited_Use       # [26] (ᦰ..ᧉ)  NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW TAI LUE TONE MARK-2
+19D0..19DA    ; Restricted ; Limited_Use       # [11] (᧐..᧚)  NEW TAI LUE DIGIT ZERO..NEW TAI LUE THAM DIGIT ONE
+1A20..1A5E    ; Restricted ; Limited_Use       # [63] (ᨠ..ᩞ)  TAI THAM LETTER HIGH KA..TAI THAM CONSONANT SIGN SA
+1A60..1A7C    ; Restricted ; Limited_Use       # [29] (᩠..᩼)  TAI THAM SIGN SAKOT..TAI THAM SIGN KHUEN-LUE KARAN
+1A7F..1A89    ; Restricted ; Limited_Use       # [11] (᩿..᪉)  TAI THAM COMBINING CRYPTOGRAMMIC DOT..TAI THAM HORA DIGIT NINE
+1A90..1A99    ; Restricted ; Limited_Use       # [10] (᪐..᪙)  TAI THAM THAM DIGIT ZERO..TAI THAM THAM DIGIT NINE
+1AA7          ; Restricted ; Limited_Use       #      (ᪧ)  TAI THAM SIGN MAI YAMOK
+1B00..1B4B    ; Restricted ; Limited_Use       # [76] (ᬀ..ᭋ)  BALINESE SIGN ULU RICEM..BALINESE LETTER ASYURA SASAK
+1B50..1B59    ; Restricted ; Limited_Use       # [10] (᭐..᭙)  BALINESE DIGIT ZERO..BALINESE DIGIT NINE
+1B6B..1B73    ; Restricted ; Limited_Use       #  [9] (᭫..᭳)  BALINESE MUSICAL SYMBOL COMBINING TEGEH..BALINESE MUSICAL SYMBOL COMBINING GONG
+1B80..1BF3    ; Restricted ; Limited_Use       # [116] (ᮀ..᯳)  SUNDANESE SIGN PANYECEK..BATAK PANONGONAN
+1C00..1C37    ; Restricted ; Limited_Use       # [56] (ᰀ..᰷)  LEPCHA LETTER KA..LEPCHA SIGN NUKTA
+1C40..1C49    ; Restricted ; Limited_Use       # [10] (᱀..᱉)  LEPCHA DIGIT ZERO..LEPCHA DIGIT NINE
+1C4D..1C7D    ; Restricted ; Limited_Use       # [49] (ᱍ..ᱽ)  LEPCHA LETTER TTA..OL CHIKI AHAD
+A4D0..A4FD    ; Restricted ; Limited_Use       # [46] (ꓐ..ꓽ)  LISU LETTER BA..LISU LETTER TONE MYA JEU
+A500..A60C    ; Restricted ; Limited_Use       # [269] (ꔀ..ꘌ)  VAI SYLLABLE EE..VAI SYLLABLE LENGTHENER
+A610..A62B    ; Restricted ; Limited_Use       # [28] (ꘐ..ꘫ)  VAI SYLLABLE NDOLE FA..VAI SYLLABLE NDOLE DO
+A6A0..A6F1    ; Restricted ; Limited_Use       # [82] (ꚠ..꛱)  BAMUM LETTER A..BAMUM COMBINING MARK TUKWENTIS
+A800..A827    ; Restricted ; Limited_Use       # [40] (ꠀ..ꠧ)  SYLOTI NAGRI LETTER A..SYLOTI NAGRI VOWEL SIGN OO
+A880..A8C4    ; Restricted ; Limited_Use       # [69] (ꢀ..꣄)  SAURASHTRA SIGN ANUSVARA..SAURASHTRA SIGN VIRAMA
+A8D0..A8D9    ; Restricted ; Limited_Use       # [10] (꣐..꣙)  SAURASHTRA DIGIT ZERO..SAURASHTRA DIGIT NINE
+A900..A92D    ; Restricted ; Limited_Use       # [46] (꤀..꤭)  KAYAH LI DIGIT ZERO..KAYAH LI TONE CALYA PLOPHU
+A980..A9C0    ; Restricted ; Limited_Use       # [65] (ꦀ..꧀)  JAVANESE SIGN PANYANGGA..JAVANESE PANGKON
+A9D0..A9D9    ; Restricted ; Limited_Use       # [10] (꧐..꧙)  JAVANESE DIGIT ZERO..JAVANESE DIGIT NINE
+AA00..AA36    ; Restricted ; Limited_Use       # [55] (ꨀ..ꨶ)  CHAM LETTER A..CHAM CONSONANT SIGN WA
+AA40..AA4D    ; Restricted ; Limited_Use       # [14] (ꩀ..ꩍ)  CHAM LETTER FINAL K..CHAM CONSONANT SIGN FINAL H
+AA50..AA59    ; Restricted ; Limited_Use       # [10] (꩐..꩙)  CHAM DIGIT ZERO..CHAM DIGIT NINE
+AA80..AAC2    ; Restricted ; Limited_Use       # [67] (ꪀ..ꫂ)  TAI VIET LETTER LOW KO..TAI VIET TONE MAI SONG
+AADB..AADD    ; Restricted ; Limited_Use       #  [3] (ꫛ..ꫝ)  TAI VIET SYMBOL KON..TAI VIET SYMBOL SAM
+AAE0..AAEF    ; Restricted ; Limited_Use       # [16] (ꫠ..ꫯ)  MEETEI MAYEK LETTER E..MEETEI MAYEK VOWEL SIGN AAU
+AAF2..AAF6    ; Restricted ; Limited_Use       #  [5] (ꫲ..꫶)  MEETEI MAYEK ANJI..MEETEI MAYEK VIRAMA
+AB70..ABEA    ; Restricted ; Limited_Use       # [123] (ꭰ..ꯪ)  CHEROKEE SMALL LETTER A..MEETEI MAYEK VOWEL SIGN NUNG
+ABEC..ABED    ; Restricted ; Limited_Use       #  [2] (꯬..꯭)  MEETEI MAYEK LUM IYEK..MEETEI MAYEK APUN IYEK
+ABF0..ABF9    ; Restricted ; Limited_Use       # [10] (꯰..꯹)  MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NINE
+11100..11134  ; Restricted ; Limited_Use       # [53] (𑄀..𑄴)  CHAKMA SIGN CANDRABINDU..CHAKMA MAAYYAA
+11136..1113F  ; Restricted ; Limited_Use       # [10] (𑄶..𑄿)  CHAKMA DIGIT ZERO..CHAKMA DIGIT NINE
+16800..16A38  ; Restricted ; Limited_Use       # [569] (𖠀..𖨸)  BAMUM LETTER PHASE-A NGKUE MFON..BAMUM LETTER PHASE-F VUEQ
+
+# Total code points: 2459
 
 #	Status/Type:	Exclusion
 
 03E2..03EF    ; Restricted ; Exclusion         # [14] (Ϣ..ϯ)  COPTIC CAPITAL LETTER SHEI..COPTIC SMALL LETTER DEI
 0640          ; Restricted ; Exclusion         #      (ـ)  ARABIC TATWEEL
+07FA          ; Restricted ; Exclusion         #      (ߺ)  NKO LAJANYALAN
 0800..082D    ; Restricted ; Exclusion         # [46] (ࠀ..࠭)  SAMARITAN LETTER ALAF..SAMARITAN MARK NEQUDAA
 1681..169A    ; Restricted ; Exclusion         # [26] (ᚁ..ᚚ)  OGHAM LETTER BEITH..OGHAM LETTER PEITH
 16A0..16EA    ; Restricted ; Exclusion         # [75] (ᚠ..ᛪ)  RUNIC LETTER FEHU FEOH FE F..RUNIC LETTER X
@@ -862,7 +873,7 @@ A9CF          ; Restricted ; Exclusion         #      (ꧏ)  JAVANESE PANGRANGKE
 1E800..1E8C4  ; Restricted ; Exclusion         # [197] (𞠀..𞣄)  MENDE KIKAKUI SYLLABLE M001 KI..MENDE KIKAKUI SYLLABLE M060 NYON
 1E8D0..1E8D6  ; Restricted ; Exclusion         #  [7] (𞣐..𞣖)  MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 6952
+# Total code points: 6953
 
 #	Status/Type:	Not_XID
 
@@ -1018,10 +1029,7 @@ A9CF          ; Restricted ; Exclusion         #      (ꧏ)  JAVANESE PANGRANGKE
 2CE5..2CEA    ; Restricted ; Not_XID           #  [6] (⳥..⳪)  COPTIC SYMBOL MI RO..COPTIC SYMBOL SHIMA SIMA
 2CF9..2CFF    ; Restricted ; Not_XID           #  [7] (⳹..⳿)  COPTIC OLD NUBIAN FULL STOP..COPTIC MORPHOLOGICAL DIVIDER
 2D70          ; Restricted ; Not_XID           #      (⵰)  TIFINAGH SEPARATOR MARK
-2E00..2E31    ; Restricted ; Not_XID           # [50] (⸀..⸱)  RIGHT ANGLE SUBSTITUTION MARKER..WORD SEPARATOR MIDDLE DOT
-2E33..2E34    ; Restricted ; Not_XID           #  [2] (⸳..⸴)  RAISED DOT..RAISED COMMA
-2E36..2E38    ; Restricted ; Not_XID           #  [3] (⸶..⸸)  DAGGER WITH LEFT GUARD..TURNED DAGGER
-2E3A..2E42    ; Restricted ; Not_XID           #  [9] (⸺..⹂)  TWO-EM DASH..DOUBLE LOW-REVERSED-9 QUOTATION MARK
+2E00..2E42    ; Restricted ; Not_XID           # [67] (⸀..⹂)  RIGHT ANGLE SUBSTITUTION MARKER..DOUBLE LOW-REVERSED-9 QUOTATION MARK
 2E80..2E99    ; Restricted ; Not_XID           # [26] (⺀..⺙)  CJK RADICAL REPEAT..CJK RADICAL RAP
 2E9B..2E9E    ; Restricted ; Not_XID           #  [4] (⺛..⺞)  CJK RADICAL CHOKE..CJK RADICAL DEATH
 2EA0..2EF2    ; Restricted ; Not_XID           # [83] (⺠..⻲)  CJK RADICAL CIVILIAN..CJK RADICAL J-SIMPLIFIED TURTLE
@@ -1176,7 +1184,7 @@ FFFC..FFFD    ; Restricted ; Not_XID           #  [2] (￼..�)  OBJECT REPLACE
 1F980..1F984  ; Restricted ; Not_XID           #  [5] (🦀..🦄)  CRAB..UNICORN FACE
 1F9C0         ; Restricted ; Not_XID           #      (🧀)  CHEESE WEDGE
 
-# Total code points: 6894
+# Total code points: 6897
 
 #	Status/Type:	Not_NFKC
 
@@ -1446,22 +1454,16 @@ FFE8..FFEE    ; Restricted ; Not_NFKC          #  [7] (￨..￮)  HALFWIDTH FORM
 200E..200F    ; Restricted ; Default_Ignorable #  [2] (U+200E..U+200F)  LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
 202A..202E    ; Restricted ; Default_Ignorable #  [5] (U+202A..U+202E)  LEFT-TO-RIGHT EMBEDDING..RIGHT-TO-LEFT OVERRIDE
 2060..2064    ; Restricted ; Default_Ignorable #  [5] (U+2060..U+2064)  WORD JOINER..INVISIBLE PLUS
-2065          ; Restricted ; Default_Ignorable #      (U+2065)  <reserved-2065>
 2066..2069    ; Restricted ; Default_Ignorable #  [4] (U+2066..U+2069)  LEFT-TO-RIGHT ISOLATE..POP DIRECTIONAL ISOLATE
 3164          ; Restricted ; Default_Ignorable #      (U+3164)  HANGUL FILLER
 FE00..FE0F    ; Restricted ; Default_Ignorable # [16] (U+FE00..U+FE0F)  VARIATION SELECTOR-1..VARIATION SELECTOR-16
 FEFF          ; Restricted ; Default_Ignorable #      (U+FEFF)  ZERO WIDTH NO-BREAK SPACE
 FFA0          ; Restricted ; Default_Ignorable #      (U+FFA0)  HALFWIDTH HANGUL FILLER
-FFF0..FFF8    ; Restricted ; Default_Ignorable #  [9] (U+FFF0..U+FFF8)  <reserved-FFF0>..<reserved-FFF8>
 1BCA0..1BCA3  ; Restricted ; Default_Ignorable #  [4] (U+1BCA0..U+1BCA3)  SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; Restricted ; Default_Ignorable #  [8] (U+1D173..U+1D17A)  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
-E0000         ; Restricted ; Default_Ignorable #      (U+E0000)  <reserved-E0000>
-E0002..E001F  ; Restricted ; Default_Ignorable # [30] (U+E0002..U+E001F)  <reserved-E0002>..<reserved-E001F>
-E0080..E00FF  ; Restricted ; Default_Ignorable # [128] (U+E0080..U+E00FF)  <reserved-E0080>..<reserved-E00FF>
 E0100..E01EF  ; Restricted ; Default_Ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
-E01F0..E0FFF  ; Restricted ; Default_Ignorable # [3600] (U+E01F0..U+E0FFF)  <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 4068
+# Total code points: 299
 
 #	Status/Type:	Deprecated
 

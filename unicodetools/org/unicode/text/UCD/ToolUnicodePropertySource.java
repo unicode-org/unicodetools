@@ -1012,7 +1012,7 @@ isTitlecase(X) is false.
 
         final IndexUnicodeProperties latest = IndexUnicodeProperties.make(Default.ucdVersion());
 
-        UnicodeMap<String> map = latest.load(UcdProperty.Indic_Matra_Category);
+        UnicodeMap<String> map = latest.load(UcdProperty.Indic_Positional_Category);
         //String defaultValue = IndexUnicodeProperties.getDefaultValue(UcdProperty.Indic_Matra_Category);
         add(new UnicodeProperty.UnicodeMapProperty().set(map).setMain("Indic_Positional_Category", "InPC", UnicodeProperty.ENUMERATED, ""));
 

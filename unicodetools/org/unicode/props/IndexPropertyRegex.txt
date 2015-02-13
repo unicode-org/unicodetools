@@ -181,9 +181,8 @@ Idn_Status				;	SINGLE_VALUED	;				<enum>
 Idn_Mapping				;	SINGLE_VALUED	;				$codePoints
 Idn_2008				;	SINGLE_VALUED	;				<enum>
 
-
-Id_Mod_Status			;	SINGLE_VALUED	; 				<enum>
-Id_Mod_Type				;	SINGLE_VALUED	;				<enum>
+Identifier_Status		;	SINGLE_VALUED	; 				<enum>
+Identifier_Type			;	SINGLE_VALUED	;				<enum>
 
 Confusable_SL			;	SINGLE_VALUED	;				$codePoints
 Confusable_SA			;	SINGLE_VALUED	;				$codePoints
