@@ -641,14 +641,14 @@ public class UcdPropertyValues {
     }
 
 		// ISO_Comment
-	public enum Id_Mod_Status_Values implements Named {
-        restricted("r"),
-        allowed("a");
-        private final PropertyNames<Id_Mod_Status_Values> names;
-        private Id_Mod_Status_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Id_Mod_Status_Values.class, this, shortName, otherNames);
+	public enum Identifier_Status_Values implements Named {
+        Restricted("r"),
+        Allowed("a");
+        private final PropertyNames<Identifier_Status_Values> names;
+        private Identifier_Status_Values (String shortName, String...otherNames) {
+            names = new PropertyNames(Identifier_Status_Values.class, this, shortName, otherNames);
         }
-        public PropertyNames<Id_Mod_Status_Values> getNames() {
+        public PropertyNames<Identifier_Status_Values> getNames() {
             return names;
         }
         public String getShortName() {
@@ -656,22 +656,25 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Id_Mod_Type_Values implements Named {
-        default_ignorable("di"),
+	public enum Identifier_Type_Values implements Named {
+        Not_Character("nc", "not_chars"),
+        Deprecated("d"),
+        Default_Ignorable("di"),
+        Not_NFKC("nn"),
+        Not_XID("nx"),
+        Obsolete("o"),
+        Technical("t"),
+        Exclusion("ex"),
+        Uncommon_Use("uu"),
+        Limited_Use("lu"),
         historic("h"),
-        limited_use("lu"),
-        not_chars("nc"),
-        not_NFKC("nn"),
-        not_xid("nx"),
-        obsolete("o"),
-        technical("t"),
         inclusion("inc"),
         recommended("rec");
-        private final PropertyNames<Id_Mod_Type_Values> names;
-        private Id_Mod_Type_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Id_Mod_Type_Values.class, this, shortName, otherNames);
+        private final PropertyNames<Identifier_Type_Values> names;
+        private Identifier_Type_Values (String shortName, String...otherNames) {
+            names = new PropertyNames(Identifier_Type_Values.class, this, shortName, otherNames);
         }
-        public PropertyNames<Id_Mod_Type_Values> getNames() {
+        public PropertyNames<Identifier_Type_Values> getNames() {
             return names;
         }
         public String getShortName() {
@@ -715,7 +718,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Indic_Matra_Category_Values implements Named {
+	public enum Indic_Positional_Category_Values implements Named {
         Bottom("Bottom"),
         Bottom_And_Right("Bottom_And_Right"),
         Left("Left"),
@@ -730,11 +733,11 @@ public class UcdPropertyValues {
         Top_And_Left_And_Right("Top_And_Left_And_Right"),
         Top_And_Right("Top_And_Right"),
         Visual_Order_Left("Visual_Order_Left");
-        private final PropertyNames<Indic_Matra_Category_Values> names;
-        private Indic_Matra_Category_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Indic_Matra_Category_Values.class, this, shortName, otherNames);
+        private final PropertyNames<Indic_Positional_Category_Values> names;
+        private Indic_Positional_Category_Values (String shortName, String...otherNames) {
+            names = new PropertyNames(Indic_Positional_Category_Values.class, this, shortName, otherNames);
         }
-        public PropertyNames<Indic_Matra_Category_Values> getNames() {
+        public PropertyNames<Indic_Positional_Category_Values> getNames() {
             return names;
         }
         public String getShortName() {

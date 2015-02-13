@@ -434,8 +434,8 @@ public class TestProperties extends TestFmwk {
     }
 
     public void TestIdmod() {
-        show(UcdProperty.Id_Mod_Status);
-        show(UcdProperty.Id_Mod_Type);
+        show(UcdProperty.Identifier_Status);
+        show(UcdProperty.Identifier_Type);
         show(UcdProperty.Confusable_MA);
     }
 
@@ -520,7 +520,7 @@ public class TestProperties extends TestFmwk {
         simulateType.putAll(iup.load(UcdProperty.Default_Ignorable_Code_Point).getSet("Yes"), "default-ignorable");
         simulateType.putAll(new UnicodeSet("['\\-.\\:·͵֊׳״۽۾་‌‍‐’‧゠・_]"), "inclusion");
         // map technical to historic
-        UnicodeMap<String> typeMap = new UnicodeMap().putAll(iup.load(UcdProperty.Id_Mod_Type));
+        UnicodeMap<String> typeMap = new UnicodeMap().putAll(iup.load(UcdProperty.Identifier_Type));
         typeMap.putAll(typeMap.getSet("technical"), "not-CLDR");
         typeMap.putAll(typeMap.getSet("limited-use"), "not-CLDR");
         typeMap.putAll(typeMap.getSet("historic"), "not-CLDR");

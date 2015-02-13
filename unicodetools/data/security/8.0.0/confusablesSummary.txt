@@ -1,7 +1,7 @@
 ﻿# Summary: Recommended confusable mapping for IDN
 # File: confusablesSummary.txt
 # Version: 8.0.0
-# Generated: 2015-02-08, 17:52:25 GMT
+# Generated: 2015-02-09, 15:36:43 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -11043,6 +11043,16 @@
 	(‎ ☰ ‎)	2630	 TRIGRAM FOR HEAVEN
 ←	(‎ Ⲷ ‎)	2CB6	 COPTIC CAPITAL LETTER CRYPTOGRAMMIC EIE
 
+#	☽	🌒	🌙
+	(‎ ☽ ‎)	263D	 FIRST QUARTER MOON
+←	(‎ 🌒 ‎)	1F312	 WAXING CRESCENT MOON SYMBOL
+←	(‎ 🌙 ‎)	1F319	 CRESCENT MOON
+
+#	☾	🌘	🌭
+	(‎ ☾ ‎)	263E	 LAST QUARTER MOON
+←	(‎ 🌘 ‎)	1F318	 WANING CRESCENT MOON SYMBOL
+←	(‎ 🌭 ‎)	1F32D	 HOT DOG
+
 #	𝅘𝅥	♩
 	(‎ ♩ ‎)	2669	 QUARTER NOTE
 ←	(‎ 𝅘𝅥 ‎)	1D158 1D165	 MUSICAL SYMBOL NOTEHEAD BLACK, MUSICAL SYMBOL COMBINING STEM
@@ -16154,5 +16164,5 @@
 	(‎ 𪘀 ‎)	2A600	 CJK UNIFIED IDEOGRAPH-2A600
 ←	(‎ 𪘀 ‎)	2FA1D	 CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# total : 6766
+# total : 6770
 

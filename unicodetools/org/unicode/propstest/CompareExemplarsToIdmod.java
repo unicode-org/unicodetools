@@ -34,8 +34,8 @@ public class CompareExemplarsToIdmod {
     static final  Normalizer2 nfkc = Normalizer2.getNFKCInstance();
 
     public static void main(String[] args) {
-        UnicodeMap<String> statusMap = iup.load(UcdProperty.Id_Mod_Status);
-        UnicodeMap<String> typeMap = iup.load(UcdProperty.Id_Mod_Type);
+        UnicodeMap<String> statusMap = iup.load(UcdProperty.Identifier_Status);
+        UnicodeMap<String> typeMap = iup.load(UcdProperty.Identifier_Type);
         UnicodeMap<String> xidContinue = iup.load(UcdProperty.XID_Continue);
 
 

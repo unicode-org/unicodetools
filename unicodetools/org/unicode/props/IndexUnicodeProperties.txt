@@ -99,7 +99,7 @@ CompositionExclusions ; Composition_Exclusion
 DerivedAge ; Age
 EastAsianWidth ; East_Asian_Width
 HangulSyllableType ; Hangul_Syllable_Type
-IndicMatraCategory ; Indic_Matra_Category
+IndicPositionalCategory ; Indic_Positional_Category
 IndicSyllabicCategory ; Indic_Syllabic_Category
 Jamo ; Jamo_Short_Name
 LineBreak ; Line_Break
@@ -290,8 +290,8 @@ idna/*/IdnaMappingTable; Idn_Status;
 idna/*/IdnaMappingTable; Idn_Mapping; 2
 idna/*/IdnaMappingTable; Idn_2008; 3
 
-security/*/xidmodifications; Id_Mod_Status;
-security/*/xidmodifications; Id_Mod_Type; 2
+security/*/xidmodifications; Identifier_Status;
+security/*/xidmodifications; Identifier_Type; 2
 
 security/*/confusables ; Confusable_SL
 security/*/confusables ; Confusable_SA

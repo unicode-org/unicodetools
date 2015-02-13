@@ -1,7 +1,7 @@
 ﻿# Recommended confusable mapping for IDN
 # File: confusables.txt
 # Version: 8.0.0
-# Generated: 2015-02-08, 17:52:25 GMT
+# Generated: 2015-02-09, 15:36:43 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -1225,6 +1225,12 @@ FFED ;	25AA ;	MA	#* ( ￭ → ▪ ) HALFWIDTH BLACK SQUARE → BLACK SMALL SQUAR
 2CE9 ;	2627 ;	MA	#* ( ⳩ → ☧ ) COPTIC SYMBOL KHI RO → CHI RHO	# 
 
 1F70A ;	2629 ;	MA	#* ( 🜊 → ☩ ) ALCHEMICAL SYMBOL FOR VINEGAR → CROSS OF JERUSALEM	# 
+
+1F312 ;	263D ;	MA	#* ( 🌒 → ☽ ) WAXING CRESCENT MOON SYMBOL → FIRST QUARTER MOON	# 
+1F319 ;	263D ;	MA	#* ( 🌙 → ☽ ) CRESCENT MOON → FIRST QUARTER MOON	# 
+
+1F318 ;	263E ;	MA	#* ( 🌘 → ☾ ) WANING CRESCENT MOON SYMBOL → LAST QUARTER MOON	# 
+1F32D ;	263E ;	MA	#* ( 🌭 → ☾ ) HOT DOG → LAST QUARTER MOON	# 
 
 29D9 ;	299A ;	MA	#* ( ⧙ → ⦚ ) RIGHT WIGGLY FENCE → VERTICAL ZIGZAG LINE	# 
 
@@ -9084,5 +9090,5 @@ FACE ;	9F9C ;	MA	# ( 龜 → 龜 ) CJK COMPATIBILITY IDEOGRAPH-FACE → CJK UNIF
 
 2FD5 ;	9FA0 ;	MA	#* ( ⿕ → 龠 ) KANGXI RADICAL FLUTE → CJK UNIFIED IDEOGRAPH-9FA0	# 
 
-# total: 5951
+# total: 5955
 

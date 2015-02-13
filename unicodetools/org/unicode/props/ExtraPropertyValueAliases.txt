@@ -85,23 +85,26 @@ idn8 ; na	 ; na
 # @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
 
 
-# @-missing: 0000..10FFFF; Id_Mod_Status  	; r
+# @-missing: 0000..10FFFF; Identfier_Status  	; r
 
-idmods	; r	 ; restricted			
-idmods	; a	 ; allowed				
+idstatus	; r	 ; Restricted			
+idstatus	; a	 ; Allowed				
 
-# @-missing: 0000..10FFFF; Id_Mod_Type    	; nc
+# @-missing: 0000..10FFFF; Identfier_Type    	; nc
 
-idmodt	; di	; default_ignorable		
-idmodt	; h		; historic				
-idmodt	; lu	; limited_use			
-idmodt	; nc	; not_chars				
-idmodt	; nn	; not_NFKC				
-idmodt	; nx	; not_xid				
-idmodt	; o		; obsolete				
-idmodt	; t		; technical				
-idmodt	; inc	; inclusion				
-idmodt	; rec	; recommended	
+idtype	; nc	; Not_Character ; not_chars				
+idtype	; d		; Deprecated		
+idtype	; di	; Default_Ignorable		
+idtype	; nn	; Not_NFKC				
+idtype	; nx	; Not_XID		
+idtype	; o		; Obsolete				
+idtype	; t		; Technical				
+idtype	; ex	; Exclusion		
+idtype	; uu	; Uncommon_Use
+idtype	; lu	; Limited_Use			
+idtype	; h		; historic				
+idtype	; inc	; inclusion				
+idtype	; rec	; recommended	
 
 # @-missing: 0000..10FFFF; Confusable_SL    	; <code point>
 # @-missing: 0000..10FFFF; Confusable_SA    	; <code point>
