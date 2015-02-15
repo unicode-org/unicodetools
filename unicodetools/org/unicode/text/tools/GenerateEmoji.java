@@ -878,11 +878,11 @@ public class GenerateEmoji {
                     needsVS.add(first);
                 }
             }
-            
+
             System.out.println("All Emoji\t" + Emoji.EMOJI_CHARS.toPattern(false));
 
             System.out.println("needs VS\t" + needsVS.toPattern(false));
-            
+
             System.out.println("gmail-jc" + "\t"
                     + new UnicodeSet(totalData.get(Source.gmail)).removeAll(jc).toPattern(false));
             System.out.println("jc-gmail" + "\t"
@@ -1197,15 +1197,17 @@ public class GenerateEmoji {
         .removeAll(otherStandard)
         .removeAll(Emoji.FLAGS)
         .freeze();
-        
-        UnicodeSet nc7 = new UnicodeSet(nc)
-        .retainAll(new UnicodeSet("[:age=7.0:]"))
-        .freeze();
-        
+
         UnicodeSet nc8 = new UnicodeSet(nc)
-        .removeAll(nc7)
+        .removeAll(new UnicodeSet("[:age=7.0:]"))
+        .removeAll(nc.strings())
         .freeze();
-        
+
+        UnicodeSet nc7 = new UnicodeSet(nc)
+        .removeAll(nc8)
+        .freeze();
+
+
         UnicodeSet otherFlags = new UnicodeSet(Emoji.FLAGS)
         .removeAll(carriers).freeze();
 
@@ -1213,13 +1215,13 @@ public class GenerateEmoji {
         // ANNOTATIONS_TO_CHARS.getValues("fitz-minimal");
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-count.html");
         writeHeader(out, "Temp Items", "no message");
-        showRow(out, "Minimal", minimal);
-        showRow(out, "Optional", optional);
-        showRow(out, "JCarriers", carriers.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
-        showRow(out, "Common Additions", otherStandard.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
-        showRow(out, "Other Flags", otherFlags.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
-        showRow(out, "Standard Additions", nc7.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
-        showRow(out, "8.0 Candidates", nc8.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
+        showRow(out, "Minimal", minimal, true);
+        showRow(out, "Optional", optional, true);
+        showRow(out, "JCarriers", carriers.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
+        showRow(out, "Common Additions", otherStandard.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
+        showRow(out, "Other Flags", otherFlags.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
+        showRow(out, "Standard Additions", nc7.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
+        showRow(out, "8.0 Candidates", nc8.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), false);
         writeFooter(out);
         out.close();
         // main:
@@ -1328,21 +1330,27 @@ public class GenerateEmoji {
         }
     }
 
-    private static void showRow(PrintWriter out, String title, Set<String> minimal) {
+    private static void showRow(PrintWriter out, String title, Set<String> minimal, boolean abbreviate) {
         out.print("<tr><td>" + title + "</td>\n<td>");
         out.print("<tr><td>" + minimal.size() + "</td>\n<td>");
         showExplicitAppleImages(out, minimal);
         out.print("</td>\n<td width='45%'>");
-        showNames(out, minimal);
+        showNames(out, minimal, abbreviate);
         out.println("</td><tr>");
     }
 
-    private static void showNames(PrintWriter out, Set<String> minimal) {
+    private static void showNames(PrintWriter out, Set<String> minimal, boolean abbreviate) {
         UnicodeSet us = new UnicodeSet().addAll(minimal);
         for (EntryRange r : us.ranges()) {
             out.print(getCodeAndName2(UTF16.valueOf(r.codepoint)));
             if (r.codepoint != r.codepointEnd) {
-                out.print("<br>\n…" + getCodeAndName2(UTF16.valueOf(r.codepointEnd)));
+                if (abbreviate) {
+                    out.print("<br>\n…" + getCodeAndName2(UTF16.valueOf(r.codepointEnd)));
+                } else {
+                    for (int cp = r.codepoint+1; cp <= r.codepointEnd; ++cp) {
+                        out.print("<br>\n" + getCodeAndName2(UTF16.valueOf(cp)));
+                    }
+                }
             }
             out.println("<br>");
         }
