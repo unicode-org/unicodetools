@@ -1,5 +1,5 @@
-Generate: Blocks
-DeltaVersion: 10
+Generate: .
+DeltaVersion: 11
 CopyrightYear: 2015
 
 File: extra/ScriptNfkc
