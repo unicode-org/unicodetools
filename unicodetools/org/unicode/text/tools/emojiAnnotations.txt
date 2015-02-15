@@ -550,6 +550,7 @@ fitz-optional	☺  ☹  🙁  🙂  😀  😁  😂  😃  😄  😅  😆  �
 🏃  💃  👈  👉  ☝  👆  🖕  👇  ✌  🖖  ✊  ✋  👊  👋  👌  👍 
 👎  👏  👐  ✍  🖐  💅  💪 👂  👃  🚴  🚵 
 🚣  🛀  🏂  🏄  🏇  🏊
+\x{1F643} \x{1F644} \x{1F910} \x{1F911} \x{1F912} \x{1F913} \x{1F914} \x{1F915} \x{1F917} \x{1F918} 
 flag	⛳  🎌  🎏  📫  📪  📬  📭  🏁  🏳  🏴  🚩  🇦🇫  🇦🇽  🇦🇱  🇩🇿  🇦🇸 
 🇦🇩  🇦🇴  🇦🇮  🇦🇶  🇦🇬  🇦🇷  🇦🇲  🇦🇼  🇦🇨  🇦🇺  🇦🇹  🇦🇿  🇧🇸  🇧🇭  🇧🇩  🇧🇧 
 🇧🇾  🇧🇪  🇧🇿  🇧🇯  🇧🇲  🇧🇹  🇧🇴  🇧🇦  🇧🇼  🇧🇻  🇧🇷  🇮🇴  🇻🇬  🇧🇳  🇧🇬  🇧🇫 
@@ -1238,7 +1239,7 @@ sax, saxophone	🎷
 school	🏫  🎒
 scissors	✂
 score	🎼  💯
-scorpion, scorpius	♏
+scorpion, scorpius, scorpio	♏
 scroll	📜
 secret	㊙
 secure	🔐
@@ -1556,7 +1557,6 @@ Pisces, fish, zodiac	♓🐟
 Ophiuchus, serpent, snake, bearer, zodiac	⛎🐍
 animal	 🙈  🙉  🙊 🐱  😸  😹  😺  😻  😼  😽  😾  😿  🙀 
 face	\x{1F643} \x{1F644} \x{1F910} \x{1F911} \x{1F912} \x{1F913} \x{1F914} \x{1F915} \x{1F917} \x{1F916}
-modifier	\x{1F3FB} \x{1F3FC} \x{1F3FD} \x{1F3FE} \x{1F3FF}
 food	\x{1F32D} \x{1F32E} \x{1F32F} \x{1F37F} \x{1F9C0}
 animal	\x{1F980} \x{1F981} \x{1F982} \x{1F983} \x{1F984}
 drink	\x{1F37E}
@@ -1566,7 +1566,43 @@ object, religion	\x{1F4FF} \x{1F54E}
 tool, weapon	\x{1F3F9} \x{1F3FA}
 drink	\x{1F3FA}
 hand, rock-on, horns	\x{1F918}
-
+HOT DOG,hotdog,sausage,frankfurter	\x{1F32D}
+TACO, mexican	\x{1F32E}
+BURRITO, mexican	\x{1F32F}
+BOTTLE, POPPING, CORK	\x{1F37E}
+POPCORN	\x{1F37F}
+CRICKET, BAT, BALL	\x{1F3CF}
+VOLLEYBALL,ball	\x{1F3D0}
+FIELD, HOCKEY, STICK, BALL	\x{1F3D1}
+ICE, HOCKEY,STICK, PUCK	\x{1F3D2}
+TABLE TENNIS, PADDLE, BAT, BALL	\x{1F3D3}
+BADMINTON, RACQUET, SHUTTLECOCK, birdie	\x{1F3F8}
+BOW, ARROW,Sagittarius,archer	\x{1F3F9}
+AMPHORA, jug,Aquarius	\x{1F3FA}
+EMOJI MODIFIER,FITZPATRICK,skin,tone	\x{1F3FB} \x{1F3FC} \x{1F3FD} \x{1F3FE} \x{1F3FF}
+PRAYER, BEADS, necklace	\x{1F4FF}
+KAABA, islam,muslim	\x{1F54B}
+MOSQUE, islam,muslim	\x{1F54C}
+SYNAGOGUE, jew,jewish, temple	\x{1F54D}
+MENORAH,candlestick, candelabrum	\x{1F54E}
+UPSIDE-DOWN,FACE	\x{1F643}
+FACE, ROLLING, EYES	\x{1F644}
+WORSHIP	\x{1F6D0}
+ZIPPER,MOUTH,FACE	\x{1F910}
+MONEY,MOUTH,FACE	\x{1F911}
+FACE,THERMOMETER,sick, ill	\x{1F912}
+NERD, FACE,geek	\x{1F913}
+THINKING, FACE	\x{1F914}
+FACE, BANDAGE, injury, hurt	\x{1F915}
+ROBOT,FACE	\x{1F916}
+HUGGING,FACE,hug	\x{1F917}
+HORNS, rock-on	\x{1F918}
+CRAB,cancer	\x{1F980}
+LION,FACE,Leo	\x{1F981}
+SCORPION,scorpio,scorpius	\x{1F982}
+TURKEY	\x{1F983}
+UNICORN,FACE	\x{1F984}
+CHEESE	\x{1F9C0}
 
 
 
