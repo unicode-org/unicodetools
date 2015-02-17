@@ -5,13 +5,11 @@
 #
 # FORMAT:
 #
-# This file is in UTF8, with certain characters escaped using the \uXXXX convention where they
+# This file is in UTF8, with certain characters escaped using the \x{XXXX} convention where they
 # could otherwise have a confusing display. For example, this includes: 
 # - Default ignorable characters
 # - General Categories C and Z
 # - Bidi categories R, AL, AN.
-# Note that according to the \uXXXX escaping convention, a supplemental character (> 0x10FFFF) is represented
-# by a sequence of two surrogate characters: the first between D800 and DBFF, and the second between DC00 and DFFF.
 # 
 # Columns (c1, c2,...) are separated by semicolons.
 # Leading and trailing spaces and tabs in each column are ignored.
