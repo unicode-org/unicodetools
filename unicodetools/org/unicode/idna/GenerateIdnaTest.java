@@ -337,7 +337,7 @@ public class GenerateIdnaTest {
         ;
     }
 
-    Transliterator hexForTest = Transliterator.getInstance("[[:c:][:z:][:m:][:di:][:bc=R:][:bc=AL:][:bc=AN:]&[\\x{0}-\\x{FFFF}]] any-hex");
+    Transliterator hexForTest = Transliterator.getInstance("[[:c:][:z:][:m:][:di:][:bc=R:][:bc=AL:][:bc=AN:]&[\\x{0}-\\x{FFFF}]] any-hex/perl");
     static UnicodeSet IDNA2008Valid = new UnicodeSet(getIdna2008Valid()).add('.').freeze();
 
     //  1.  The first character must be a character with BIDI property L, R
