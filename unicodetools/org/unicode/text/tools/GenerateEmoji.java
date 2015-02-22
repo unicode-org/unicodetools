@@ -729,12 +729,12 @@ public class GenerateEmoji {
     }
 
     public static String getBestImage(String s, boolean useDataURL, Source... doFirst) {
-        if (doFirst.length == 0) {
-            Source source0 = BEST_OVERRIDE.get(s);
-            if (source0 != null) {
-                doFirst = new Source[]{source0};
-            }
-        }
+//        if (doFirst.length == 0) {
+//            Source source0 = BEST_OVERRIDE.get(s);
+//            if (source0 != null) {
+//                doFirst = new Source[]{source0};
+//            }
+//        }
         for (Source source : orderedEnum(doFirst)) {
             String cell = getImage(source, s, useDataURL);
             if (cell != null) {
@@ -1688,6 +1688,8 @@ public class GenerateEmoji {
     private static void showAnnotations() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-annotations.html");
         writeHeader(out, "Emoji Annotations", "Finer-grained character annotations. ");
+        PrintWriter outFlags = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-flags.html");
+        writeHeader(outFlags, "Emoji Annotations", "Finer-grained character annotations. ");
 
         Relation<UnicodeSet, String> seen = Relation.of(new HashMap(), TreeSet.class, CODEPOINT_COMPARE);
         for (Entry<String, Set<String>> entry : GenerateEmoji.ANNOTATIONS_TO_CHARS.keyValuesSet()) {
@@ -1719,9 +1721,15 @@ public class GenerateEmoji {
             // }
             // labelSeen.add(words);
             displayUnicodeset(out, words, null, uset, Style.bestImage, "full-emoji-list.html");
+            UnicodeSet flags = new UnicodeSet(uset).retainAll(Emoji.FLAGS);
+            if (!flags.isEmpty()) {
+                displayUnicodeset(outFlags, words, null, flags, Style.bestImage, "full-emoji-list.html");
+            }
         }
         writeFooter(out);
         out.close();
+        writeFooter(outFlags);
+        outFlags.close();
     }
 
     //    private static void showAnnotationsDiff() throws IOException {
@@ -2300,6 +2308,12 @@ public class GenerateEmoji {
     }
 
     static void printCollationOrder() throws IOException {
+        try (
+                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-ordering-list.txt")) {
+            for (String s : SORTED_EMOJI_CHARS_SET) {
+                outText.println(getCodeAndName2(s));
+            }
+        }
         try (
                 PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-ordering.txt")) {
             outText.append("<!-- DRAFT emoji-ordering.txt\n"
