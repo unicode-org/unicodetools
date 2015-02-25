@@ -68,7 +68,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
         .removeAll(getValues("objects-apple"))
         .removeAll(getValues("places-apple"))
         .removeAll(getValues("symbols-apple"));
-        System.out.println("other-apple: " + temp.toPattern(false));
+        System.out.println(temp.size() + " other-apple: " + temp.toPattern(false));
         for (String s : temp) {
             add("other-apple", s);
         }
@@ -79,7 +79,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
         .removeAll(getValues("objects-android"))
         .removeAll(getValues("places-android"))
         .removeAll(getValues("symbols-android"));
-        System.out.println("other-android: " + temp.toPattern(false));
+        System.out.println(temp.size() + " other-android: " + temp.toPattern(false));
         for (String s : temp) {
             add("other-android", s);
         }
@@ -91,7 +91,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
         .removeAll(getValues("places"))
         .removeAll(getValues("symbols"))
         .removeAll(getValues("flag"));
-        System.out.println("other: " + temp.toPattern(false));
+        System.out.println(temp.size() + " other: " + temp.toPattern(false));
         for (String s : temp) {
             add("other", s);
         }
