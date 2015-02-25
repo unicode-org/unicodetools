@@ -12,7 +12,7 @@ anguilla	🇦🇮
 antarctica	🇦🇶
 antigua, barbuda	🇦🇬
 antilles, curacao, curaçao	🇨🇼
-arab	🇪🇬  🇱🇾  🇸🇾  🇦🇪
+#arab	🇪🇬  🇱🇾  🇸🇾  🇦🇪
 arabia, saudi	🇸🇦
 argentina	🇦🇷
 armenia	🇦🇲
@@ -59,7 +59,7 @@ chad	🇹🇩
 chile	🇨🇱
 china	🇨🇳  🇭🇰  🇲🇴  🇹🇼
 christmas	🇨🇽
-city	🇻🇦
+#city	🇻🇦
 clipperton	🇨🇵
 coast, cote, côte, ivoire, ivory	🇨🇮
 cocos, keeling	🇨🇨
@@ -133,7 +133,7 @@ guyana	🇬🇾
 haiti	🇭🇹
 heard, mcdonald	🇭🇲
 helena	🇸🇭
-holy, vatican	🇻🇦
+vatican	🇻🇦
 honduras	🇭🇳
 hong kong	🇭🇰
 hungary	🇭🇺
@@ -247,7 +247,7 @@ saint	🇧🇱  🇸🇭  🇰🇳  🇱🇨  🇲🇫  🇵🇲  🇻🇨
 samoa	🇦🇸  🇼🇸
 san marino	🇸🇲
 sandwich	🇬🇸
-see	🇻🇦
+#see	🇻🇦
 senegal	🇸🇳
 serbia	🇷🇸
 seychelles	🇸🇨

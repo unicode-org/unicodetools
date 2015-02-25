@@ -53,6 +53,7 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.Transform;
@@ -177,7 +178,8 @@ public class GenerateEmoji {
         SORTED_EMOJI_CHARS_SET = Collections.unmodifiableSortedSet(temp);
     }
 
-    static final EmojiAnnotations         ANNOTATIONS_TO_CHARS      = new EmojiAnnotations(CODEPOINT_COMPARE, "emojiAnnotations.txt");
+    static final EmojiAnnotations         ANNOTATIONS_TO_CHARS      = new EmojiAnnotations(CODEPOINT_COMPARE, 
+            "emojiAnnotations.txt", "emojiAnnotationsGroups.txt", "emojiAnnotationsFlags.txt");
     static final UnicodeSet DEFAULT_TEXT_STYLE = new UnicodeSet()
     .addAll(ANNOTATIONS_TO_CHARS.keyToValues.get("default-text-style")).freeze();
 
@@ -729,12 +731,12 @@ public class GenerateEmoji {
     }
 
     public static String getBestImage(String s, boolean useDataURL, Source... doFirst) {
-//        if (doFirst.length == 0) {
-//            Source source0 = BEST_OVERRIDE.get(s);
-//            if (source0 != null) {
-//                doFirst = new Source[]{source0};
-//            }
-//        }
+        //        if (doFirst.length == 0) {
+        //            Source source0 = BEST_OVERRIDE.get(s);
+        //            if (source0 != null) {
+        //                doFirst = new Source[]{source0};
+        //            }
+        //        }
         for (Source source : orderedEnum(doFirst)) {
             String cell = getImage(source, s, useDataURL);
             if (cell != null) {
@@ -1151,7 +1153,11 @@ public class GenerateEmoji {
         showVersionsOnly();
         showDefaultStyle();
         //showSubhead();
-        showAnnotations();
+        showAnnotations(Emoji.OUTPUT_DIR, "emoji-annotations.html", Emoji.EMOJI_CHARS, null);
+        showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-flags.html", Emoji.FLAGS, null);
+        showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-groups.html", Emoji.EMOJI_CHARS, GROUP_ANNOTATIONS);
+        showAnnotationsBySize(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-size.html", Emoji.EMOJI_CHARS_WITHOUT_FLAGS);
+
         //        showAnnotationsDiff();
         // compareOtherAnnotations();
         showOtherUnicode();
@@ -1685,51 +1691,87 @@ public class GenerateEmoji {
         out.close();
     }
 
-    private static void showAnnotations() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-annotations.html");
-        writeHeader(out, "Emoji Annotations", "Finer-grained character annotations. ");
-        PrintWriter outFlags = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-flags.html");
-        writeHeader(outFlags, "Emoji Annotations", "Finer-grained character annotations. ");
+    private static void showAnnotations(String dir, String filename, UnicodeSet filterOut, Set<String> retainAnnotations) throws IOException {
+        try (PrintWriter out = BagFormatter.openUTF8Writer(dir, filename)) {
+            writeHeader(out, "Emoji Annotations", "Finer-grained character annotations. ");
 
-        Relation<UnicodeSet, String> seen = Relation.of(new HashMap(), TreeSet.class, CODEPOINT_COMPARE);
-        for (Entry<String, Set<String>> entry : GenerateEmoji.ANNOTATIONS_TO_CHARS.keyValuesSet()) {
-            String word = entry.getKey();
-            Set<String> values = entry.getValue();
-            UnicodeSet uset = new UnicodeSet().addAll(values);
-            try {
-                Label label = Label.valueOf(word);
-                continue;
-            } catch (Exception e) {
+            //        Relation<UnicodeSet, String> seen = Relation.of(new HashMap(), TreeSet.class, CODEPOINT_COMPARE);
+            //        for (Entry<String, Set<String>> entry : GenerateEmoji.ANNOTATIONS_TO_CHARS.keyValuesSet()) {
+            //            String word = entry.getKey();
+            //            Set<String> values = entry.getValue();            
+            //            UnicodeSet uset = new UnicodeSet().addAll(values);
+            //            try {
+            //                Label label = Label.valueOf(word);
+            //                continue;
+            //            } catch (Exception e) {
+            //            }
+            //            seen.put(uset, word);
+            //        }
+            Set<String> labelSeen = new HashSet<>();
+            Relation<Set<String>, String> setOfCharsToKeys = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValuesToKeys();
+
+            for (Entry<String, Set<String>> entry : GenerateEmoji.ANNOTATIONS_TO_CHARS.keyValuesSet()) {
+                String word = entry.getKey();
+                if (labelSeen.contains(word)) {
+                    continue;
+                }
+                Set<String> values = entry.getValue();
+                Set<String> words = setOfCharsToKeys.get(values);
+                labelSeen.addAll(words);
+                if (retainAnnotations != null) {
+                    words = new LinkedHashSet<>(words);
+                    words.retainAll(retainAnnotations);
+                }
+                if (words.isEmpty()) {
+                    continue;
+                }
+                UnicodeSet uset = new UnicodeSet().addAll(values);
+                // Set<String> words = seen.getAll(uset);
+                // if (words == null || labelSeen.contains(words)) {
+                // continue;
+                // }
+                // labelSeen.add(words);
+                UnicodeSet filtered = new UnicodeSet(uset).retainAll(filterOut);
+                if (!filtered.isEmpty()) {
+                    displayUnicodeset(out, words, null, filtered, Style.bestImage, "full-emoji-list.html");
+                }
             }
-            seen.put(uset, word);
+            writeFooter(out);
         }
-        Set<String> labelSeen = new HashSet<>();
-        Relation<Set<String>, String> setOfCharsToKeys = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValuesToKeys();
+    }
 
+    private static void showAnnotationsBySize(String dir, String filename, UnicodeSet retainSet) throws IOException {
+        PrintWriter out = BagFormatter.openUTF8Writer(dir, filename);
+        writeHeader(out, "Emoji Annotations", "Finer-grained character annotations. ");
+        TreeSet<Row.R3<Integer, UnicodeSet, String>> sorted = new TreeSet<>();
+        Relation<UnicodeSet,String> usToAnnotations = Relation.of(new HashMap(), TreeSet.class, UCA_COLLATOR);
         for (Entry<String, Set<String>> entry : GenerateEmoji.ANNOTATIONS_TO_CHARS.keyValuesSet()) {
             String word = entry.getKey();
-            if (labelSeen.contains(word)) {
+            if (GROUP_ANNOTATIONS.contains(word)) {
                 continue;
             }
             Set<String> values = entry.getValue();
-            Set<String> words = setOfCharsToKeys.get(values);
-            labelSeen.addAll(words);
             UnicodeSet uset = new UnicodeSet().addAll(values);
-            // Set<String> words = seen.getAll(uset);
-            // if (words == null || labelSeen.contains(words)) {
-            // continue;
-            // }
-            // labelSeen.add(words);
-            displayUnicodeset(out, words, null, uset, Style.bestImage, "full-emoji-list.html");
-            UnicodeSet flags = new UnicodeSet(uset).retainAll(Emoji.FLAGS);
-            if (!flags.isEmpty()) {
-                displayUnicodeset(outFlags, words, null, flags, Style.bestImage, "full-emoji-list.html");
+            UnicodeSet filtered = new UnicodeSet(uset).retainAll(retainSet);
+            if (filtered.isEmpty()) {
+                continue;
             }
+            sorted.add(Row.of(-filtered.size(), filtered, word));
+            usToAnnotations.put(filtered, word);
+        }
+        Set<String> seenAlready = new HashSet<>();
+        for (R3<Integer, UnicodeSet, String> entry : sorted) {
+            String word = entry.get2();
+            if (seenAlready.contains(word)) {
+                continue;
+            }
+            UnicodeSet uset = entry.get1();
+            Set<String> allWords = usToAnnotations.get(uset);
+            displayUnicodeset(out, allWords, null, uset, Style.bestImage, "full-emoji-list.html");
+            seenAlready.addAll(allWords);
         }
         writeFooter(out);
         out.close();
-        writeFooter(outFlags);
-        outFlags.close();
     }
 
     //    private static void showAnnotationsDiff() throws IOException {
@@ -1881,7 +1923,7 @@ public class GenerateEmoji {
 
     public static <T extends Object> void displayUnicodeset(PrintWriter out, Set<T> labels, String sublabel,
             UnicodeSet uset, Style showEmoji, String link) {
-        displayUnicodeset(out, labels, sublabel, Collections.EMPTY_SET, uset, showEmoji, link);
+        displayUnicodeset(out, labels, sublabel, Collections.<String> emptySet(), uset, showEmoji, link);
     }
 
     public static <T extends Object> void displayUnicodeset(PrintWriter out, Set<T> labels, String sublabel, Set<String> otherCols,
@@ -1923,7 +1965,7 @@ public class GenerateEmoji {
                 + (rowSpan <= 1 ? "" : " rowSpan='" + rowSpan + "'")
                 + (colSpan <= 1 ? "" : " colSpan='" + colSpan + "'")
                 + ">");
-        Set<String> sorted = uset.addAllTo(new TreeSet(comparator));
+        Set<String> sorted = uset.addAllTo(new TreeSet<String>(comparator));
         int count = 0;
         for (String s : sorted) {
             if (count == 0) {
@@ -2380,6 +2422,28 @@ public class GenerateEmoji {
             + "\t\t<version number='$Revision: 10585 $' />\n"
             + "\t\t<generation date='$Date: 2014-06-19 06:23:55 +0200 (Thu, 19 Jun 2014) $' />\n";
 
+    static final Set<String> GROUP_ANNOTATIONS = new HashSet<>(Arrays.asList(
+            "default-text-style",
+            "fitz-minimal",
+            "fitz-optional",
+            "nature",
+            "nature-android",
+            "nature-apple",
+            "objects",
+            "objects-android",
+            "objects-apple",
+            "people",
+            "people-android",
+            "people-apple",
+            "places",
+            "places-android",
+            "places-apple",
+            "symbols",
+            "symbols-android",
+            "symbols-apple",
+            "other-android",
+            "other"));
+
     private static void printAnnotations() throws IOException {
         try (
                 PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-annotations.xml")) {
@@ -2388,9 +2452,21 @@ public class GenerateEmoji {
                     + "\t</identity>\n"
                     + "\t<annotations>\n");
             Set<Row.R2<Set<String>,UnicodeSet>> sorted = new TreeSet<>(PAIR_SORT);
+            for (String s : Emoji.EMOJI_CHARS) {
+                Set<String> annotations = new LinkedHashSet<>(ANNOTATIONS_TO_CHARS.getKeys(s));
+                annotations.removeAll(GROUP_ANNOTATIONS);
+                if (annotations.isEmpty()) {
+                    throw new IllegalArgumentException("Missing annotation: " + s 
+                            + "\t" + ANNOTATIONS_TO_CHARS.getKeys(s));
+                }
+            }
             for (Entry<Set<String>, Set<String>> s : ANNOTATIONS_TO_CHARS.getValuesToKeys().keyValuesSet()) {
                 UnicodeSet chars = new UnicodeSet().addAll(s.getKey());
-                Set<String> annotations = s.getValue();
+                Set<String> annotations = new LinkedHashSet<>(s.getValue());
+                annotations.removeAll(GROUP_ANNOTATIONS);
+                if (annotations.isEmpty()) {
+                    continue;
+                }
                 sorted.add(Row.of(annotations, chars));
             }
             for (R2<Set<String>, UnicodeSet> s : sorted) {
