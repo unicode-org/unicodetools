@@ -110,15 +110,15 @@ public class EmojiAnnotations extends Birelation<String,String> {
         //                ANNOTATIONS_TO_CHARS.add("mark", s);
         //            }
         //        }
-//        for (int cp1 = Emoji.FIRST_REGIONAL; cp1 <= Emoji.LAST_REGIONAL; ++cp1) {
-//            for (int cp2 = Emoji.FIRST_REGIONAL; cp2 <= Emoji.LAST_REGIONAL; ++cp2) {
-//                String emoji = new StringBuilder().appendCodePoint(cp1).appendCodePoint(cp2).toString();
-//                if (Emoji.EMOJI_CHARS.contains(emoji)) {
-//                    add("flag", emoji);
-//                }
-//                //String regionCode = GenerateEmoji.getFlagCode(emoji);
-//            }
-//        }
+        for (int cp1 = Emoji.FIRST_REGIONAL; cp1 <= Emoji.LAST_REGIONAL; ++cp1) {
+            for (int cp2 = Emoji.FIRST_REGIONAL; cp2 <= Emoji.LAST_REGIONAL; ++cp2) {
+                String emoji = new StringBuilder().appendCodePoint(cp1).appendCodePoint(cp2).toString();
+                if (Emoji.EMOJI_CHARS.contains(emoji)) {
+                    add("flag", emoji);
+                }
+                //String regionCode = GenerateEmoji.getFlagCode(emoji);
+            }
+        }
         // get extra names
         //        for (String name : CountryCodeConverter.names()) {
         //            String regionCode = CountryCodeConverter.getCodeFromName(name);

@@ -1153,9 +1153,9 @@ public class GenerateEmoji {
         showVersionsOnly();
         showDefaultStyle();
         //showSubhead();
-        showAnnotations(Emoji.OUTPUT_DIR, "emoji-annotations.html", Emoji.EMOJI_CHARS, null);
-        showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-flags.html", Emoji.FLAGS, null);
-        showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-groups.html", Emoji.EMOJI_CHARS, GROUP_ANNOTATIONS);
+        showAnnotations(Emoji.OUTPUT_DIR, "emoji-annotations.html", Emoji.EMOJI_CHARS, null, false);
+        showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-flags.html", Emoji.FLAGS, GROUP_ANNOTATIONS, true);
+        showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-groups.html", Emoji.EMOJI_CHARS, GROUP_ANNOTATIONS, false);
         showAnnotationsBySize(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-size.html", Emoji.EMOJI_CHARS_WITHOUT_FLAGS);
 
         //        showAnnotationsDiff();
@@ -1691,7 +1691,7 @@ public class GenerateEmoji {
         out.close();
     }
 
-    private static void showAnnotations(String dir, String filename, UnicodeSet filterOut, Set<String> retainAnnotations) throws IOException {
+    private static void showAnnotations(String dir, String filename, UnicodeSet filterOut, Set<String> retainAnnotations, boolean removeInsteadOf) throws IOException {
         try (PrintWriter out = BagFormatter.openUTF8Writer(dir, filename)) {
             writeHeader(out, "Emoji Annotations", "Finer-grained character annotations. ");
 
@@ -1720,7 +1720,11 @@ public class GenerateEmoji {
                 labelSeen.addAll(words);
                 if (retainAnnotations != null) {
                     words = new LinkedHashSet<>(words);
-                    words.retainAll(retainAnnotations);
+                    if (removeInsteadOf) {
+                        words.removeAll(retainAnnotations);
+                    } else {
+                        words.retainAll(retainAnnotations);
+                    }
                 }
                 if (words.isEmpty()) {
                     continue;
@@ -2442,6 +2446,7 @@ public class GenerateEmoji {
             "symbols-android",
             "symbols-apple",
             "other-android",
+            "flag",
             "other"));
 
     private static void printAnnotations() throws IOException {

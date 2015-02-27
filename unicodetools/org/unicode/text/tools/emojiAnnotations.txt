@@ -735,7 +735,7 @@ circus	🎪
 clapper	🎬
 performing, theater, theatre	🎭
 controller	🎮
-bull’s eye, dart, hit, target	🎯
+bull, bullseye, dart, hit, target	🎯
 slot	🎰
 8 ball, billiard	🎱
 dice, die	🎲
@@ -811,8 +811,8 @@ wolf	🐺
 panda	🐼
 feet, paw	🐾
 chipmunk	🐿
-+1, thumbs’s up	👍
--1, thumb’s down	👎
++1, thumbs up	👍
+-1, thumbs down	👎
 clap	👏
 crown, king, queen	👑
 eyeglasses	👓
