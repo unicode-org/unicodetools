@@ -1,23 +1,77 @@
+
+# Generic annotations
+island	🇧🇻 🇮🇴 🇭🇲 🇦🇨 🇹🇨 🇨🇽 🇮🇨 🇰🇾 🇨🇵 🇨🇨 🇨🇰 🇫🇴 🇫🇰 🇲🇵 🇲🇭 🇳🇫 🇺🇲 🇵🇳 🇬🇸 🇸🇧 🇻🇬 🇻🇮
+new	🇳🇨 🇳🇿 🇵🇬
+united	🇺🇸 🇺🇲 🇻🇮 🇬🇧 🇦🇪
+republic	🇨🇫 🇨🇬 🇨🇩
+saint	🇧🇱 🇸🇭 🇻🇨 🇰🇳 🇱🇨 🇵🇲 🇲🇫
+sint	🇧🇶 🇸🇽
+south	🇿🇦 🇬🇸 🇰🇷 🇸🇸
+north	🇲🇵 🇰🇵
+west	🇪🇭
+east	🇹🇱
+
+american, united states, virgin	🇻🇮
+american, samoa	🇦🇸
+united states, minor outlying	🇺🇲
+british	🇬🇧
+british, indian ocean	🇮🇴
+british, virgin	🇻🇬
+french	🇬🇫 🇵🇫
+french, antarctic	🇹🇫
+netherlands, caribbean	🇧🇶
+
+# Specific names for flags
+stars and stripes	🇺🇸
+union jack		🇬🇧
+
+# Acronyms
+us, usa	🇺	🇺🇲 🇻🇮
+uk	🇬🇧
+uae	🇦🇪
+drc	🇨🇩
+
+# Platforms
+other-android	🇨🇳  🇫🇷  🇩🇪  🇮🇹  🇯🇵  🇷🇺  🇰🇷  🇪🇸 🇬🇧  🇺🇸
+places-apple	🇨🇳  🇫🇷  🇩🇪  🇮🇹  🇯🇵  🇷🇺  🇰🇷  🇪🇸 🇬🇧  🇺🇸
+flag	🇦🇫  🇦🇽  🇦🇱  🇩🇿  🇦🇸  🇦🇩  🇦🇴  🇦🇮 🇦🇶  🇦🇬  🇦🇷  🇦🇲  🇦🇼  🇦🇨  🇦🇺  🇦🇹 
+🇦🇿  🇧🇸  🇧🇭  🇧🇩  🇧🇧  🇧🇾  🇧🇪  🇧🇿 🇧🇯  🇧🇲  🇧🇹  🇧🇴  🇧🇦  🇧🇼  🇧🇻  🇧🇷 
+🇮🇴  🇻🇬  🇧🇳  🇧🇬  🇧🇫  🇧🇮  🇰🇭  🇨🇲 🇨🇦  🇮🇨  🇨🇻  🇧🇶  🇰🇾  🇨🇫  🇪🇦  🇹🇩 
+🇨🇱  🇨🇳  🇨🇽  🇨🇵  🇨🇨  🇨🇴  🇰🇲  🇨🇬 🇨🇩  🇨🇰  🇨🇷  🇨🇮  🇭🇷  🇨🇺  🇨🇼  🇨🇾 
+🇨🇿  🇩🇰  🇩🇬  🇩🇯  🇩🇲  🇩🇴  🇪🇨  🇪🇬 🇸🇻  🇬🇶  🇪🇷  🇪🇪  🇪🇹  🇪🇺  🇫🇰  🇫🇴 
+🇫🇯  🇫🇮  🇫🇷  🇬🇫  🇵🇫  🇹🇫  🇬🇦  🇬🇲 🇬🇪  🇩🇪  🇬🇭  🇬🇮  🇬🇷  🇬🇱  🇬🇩  🇬🇵 
+🇬🇺  🇬🇹  🇬🇬  🇬🇳  🇬🇼  🇬🇾  🇭🇹  🇭🇲 🇭🇳  🇭🇰  🇭🇺  🇮🇸  🇮🇳  🇮🇩  🇮🇷  🇮🇶 
+🇮🇪  🇮🇲  🇮🇱  🇮🇹  🇯🇲  🇯🇵  🇯🇪  🇯🇴 🇰🇿  🇰🇪  🇰🇮  🇽🇰  🇰🇼  🇰🇬  🇱🇦  🇱🇻 
+🇱🇧  🇱🇸  🇱🇷  🇱🇾  🇱🇮  🇱🇹  🇱🇺  🇲🇴 🇲🇰  🇲🇬  🇲🇼  🇲🇾  🇲🇻  🇲🇱  🇲🇹  🇲🇭 
+🇲🇶  🇲🇷  🇲🇺  🇾🇹  🇲🇽  🇫🇲  🇲🇩  🇲🇨 🇲🇳  🇲🇪  🇲🇸  🇲🇦  🇲🇿  🇲🇲  🇳🇦  🇳🇷 
+🇳🇵  🇳🇱  🇳🇨  🇳🇿  🇳🇮  🇳🇪  🇳🇬  🇳🇺 🇳🇫  🇲🇵  🇰🇵  🇳🇴  🇴🇲  🇵🇰  🇵🇼  🇵🇸 
+🇵🇦  🇵🇬  🇵🇾  🇵🇪  🇵🇭  🇵🇳  🇵🇱  🇵🇹 🇵🇷  🇶🇦  🇷🇪  🇷🇴  🇷🇺  🇷🇼  🇼🇸  🇸🇲 
+🇸🇹  🇸🇦  🇸🇳  🇷🇸  🇸🇨  🇸🇱  🇸🇬  🇸🇽 🇸🇰  🇸🇮  🇸🇧  🇸🇴  🇿🇦  🇬🇸  🇰🇷  🇸🇸 
+🇪🇸  🇱🇰  🇧🇱  🇸🇭  🇰🇳  🇱🇨  🇲🇫  🇵🇲 🇻🇨  🇸🇩  🇸🇷  🇸🇯  🇸🇿  🇸🇪  🇨🇭  🇸🇾 
+🇹🇼  🇹🇯  🇹🇿  🇹🇭  🇹🇱  🇹🇬  🇹🇰  🇹🇴 🇹🇹  🇹🇦  🇹🇳  🇹🇷  🇹🇲  🇹🇨  🇹🇻  🇺🇬 
+🇺🇦  🇦🇪  🇬🇧  🇺🇸  🇺🇾  🇺🇲  🇻🇮  🇺🇿 🇻🇺  🇻🇦  🇻🇪  🇻🇳  🇼🇫  🇪🇭  🇾🇪  🇿🇲 
+🇿🇼
+
+# #
+
 afghanistan	🇦🇫
-africa	🇿🇦
-african, central	🇨🇫
+south africa	🇿🇦
+central african republic	🇨🇫
 åland	🇦🇽
 albania	🇦🇱
 algeria	🇩🇿
-america, us, usa	🇺🇸  🇺🇲  🇻🇮
-american	🇦🇸
+united states, america	🇺🇸 🇺🇲 🇻🇮
 andorra	🇦🇩
 angola	🇦🇴
 anguilla	🇦🇮
 antarctica	🇦🇶
 antigua, barbuda	🇦🇬
 antilles, curacao, curaçao	🇨🇼
-#arab	🇪🇬  🇱🇾  🇸🇾  🇦🇪
-arabia, saudi	🇸🇦
+saudi arabia	🇸🇦
 argentina	🇦🇷
 armenia	🇦🇲
 aruba	🇦🇼
-ascension	🇦🇨  🇸🇭
+ascension	🇦🇨
 australia	🇦🇺
 austria	🇦🇹
 azerbaijan	🇦🇿
@@ -34,17 +88,16 @@ bermuda	🇧🇲
 bhutan	🇧🇹
 bissau	🇬🇼
 bolivia	🇧🇴
-bonaire, caribbean, eustatius, saba	🇧🇶
+bonaire, eustatius, saba	🇧🇶
 bosnia, herzegovina	🇧🇦
 botswana	🇧🇼
 bouvet	🇧🇻
 brazil	🇧🇷
 brazzaville	🇨🇬
-britain, cornwall, great, kingdom, scotland, wales	🇬🇧
-british	🇮🇴  🇻🇬
+britain, great britain, cornwall, united kingdom, scotland, wales, northern ireland, england	🇬🇧
 brunei, darussalam	🇧🇳
 bulgaria	🇧🇬
-burkina, faso	🇧🇫
+burkina faso	🇧🇫
 burma, myanmar	🇲🇲
 burundi	🇧🇮
 cabo, cape, verde	🇨🇻
@@ -59,38 +112,38 @@ chad	🇹🇩
 chile	🇨🇱
 china	🇨🇳  🇭🇰  🇲🇴  🇹🇼
 christmas	🇨🇽
-#city	🇻🇦
 clipperton	🇨🇵
-coast, cote, côte, ivoire, ivory	🇨🇮
+cote ivoire, côte ivoire, ivory coast	🇨🇮
 cocos, keeling	🇨🇨
 colombia	🇨🇴
 comoros	🇰🇲
 congo	🇨🇬  🇨🇩
+republic of the congo, congo republic, congo-brazzaville, brazzaville	🇨🇬
+democratic republic of congo, congo-kinshasa, kinshasa	🇨🇩
 cook	🇨🇰
-costa, rica	🇨🇷
+costa rica	🇨🇷
 croatia	🇭🇷
 cuba	🇨🇺
-cunha, tristan	🇸🇭  🇹🇦
+tristan da cunha	🇹🇦
 cyprus	🇨🇾
-czech	🇨🇿
+czech republic	🇨🇿
 denmark	🇩🇰
-diego, garcia	🇩🇬
+diego garcia	🇩🇬
 djibouti	🇩🇯
-dominica	🇩🇲  🇩🇴
-dominican	🇩🇴
-dutch, maarten	🇸🇽
-east	🇹🇱
+dominica	🇩🇲
+dominican republic	🇩🇴
+maarten	🇸🇽
 ecuador	🇪🇨
 egypt	🇪🇬
 el salvador	🇸🇻
 emirates	🇦🇪
-equatorial	🇬🇶
+equatorial guinea	🇬🇶
 eritrea	🇪🇷
 estonia	🇪🇪
 ethiopia	🇪🇹
-european	🇪🇺
-faeroe, faroe	🇫🇴
-falkland, islas, malvinas	🇫🇰
+european union	🇪🇺
+faroe	🇫🇴
+falkland, falklands, islas, malvinas	🇫🇰
 fiji	🇫🇯
 finland	🇫🇮
 flag	🇦🇫  🇦🇽  🇦🇱  🇩🇿  🇦🇸  🇦🇩  🇦🇴  🇦🇮 🇦🇶  🇦🇬  🇦🇷  🇦🇲  🇦🇼  🇦🇨  🇦🇺  🇦🇹 
@@ -139,39 +192,35 @@ hong kong	🇭🇰
 hungary	🇭🇺
 iceland	🇮🇸
 india	🇮🇳
-indian	🇮🇴
+chagos	🇮🇴
 indonesia	🇮🇩
 iran	🇮🇷
 iraq	🇮🇶
 ireland	🇮🇪  🇬🇧
-island	🇦🇨  🇧🇻  🇨🇽  🇨🇵  🇭🇲  🇳🇫
-islands	🇦🇽  🇻🇬  🇮🇨  🇰🇾  🇨🇨  🇨🇰  🇫🇰  🇫🇴 🇬🇬  🇭🇲  🇲🇭  🇲🇵  🇵🇳  🇸🇧  🇬🇸  🇸🇯 
-🇹🇨  🇺🇲  🇻🇮  🇼🇫
-isle	🇮🇲
+isle of man	🇮🇲
 israel	🇮🇱
 italy	🇮🇹
 jamaica	🇯🇲
-jan, mayen, svalbard	🇸🇯
+jan mayen, svalbard	🇸🇯
 japan	🇯🇵
 jersey	🇯🇪
 jordan	🇯🇴
 kazakhstan	🇰🇿
 kenya	🇰🇪
-kinshasa	🇨🇩
 kiribati	🇰🇮
 kitts, nevis	🇰🇳
 korea	🇰🇵  🇰🇷
 kosovo	🇽🇰
 kuwait	🇰🇼
-kyrgyz, kyrgyzstan	🇰🇬
-lanka, sri	🇱🇰
-lao, laos	🇱🇦
+kyrgyzstan	🇰🇬
+sri lanka	🇱🇰
+laos	🇱🇦
 latvia	🇱🇻
 lebanon	🇱🇧
 lesotho	🇱🇸
-leste, timor	🇹🇱
+east timor, timor-leste	🇹🇱
 liberia	🇱🇷
-libya, libyan	🇱🇾
+libya	🇱🇾
 liechtenstein	🇱🇮
 lithuania	🇱🇹
 lucia	🇱🇨
@@ -184,8 +233,7 @@ malaysia	🇲🇾
 maldives	🇲🇻
 mali	🇲🇱
 malta	🇲🇹
-man	🇮🇲
-mariana	🇲🇵
+northern mariana, mariana	🇲🇵
 marshall	🇲🇭
 martin	🇲🇫
 martinique	🇲🇶
@@ -202,12 +250,11 @@ montenegro	🇲🇪
 montserrat	🇲🇸
 morocco	🇲🇦
 mozambique	🇲🇿
-nam, viet, vietnam	🇻🇳
+viet nam, vietnam	🇻🇳
 namibia	🇳🇦
 nauru	🇳🇷
 nepal	🇳🇵
-netherlands	🇧🇶  🇨🇼  🇳🇱
-new	🇳🇨  🇳🇿  🇵🇬
+netherlands	🇳🇱
 new caledonia	🇳🇨
 new zealand	🇳🇿
 nicaragua	🇳🇮
@@ -215,13 +262,9 @@ niger	🇳🇪
 nigeria	🇳🇬
 niue	🇳🇺
 norfolk	🇳🇫
-north	🇰🇵
-northern	🇲🇵  🇬🇧
+north korea	🇰🇵
 norway	🇳🇴
-ocean	🇮🇴
 oman	🇴🇲
-other-android	🇨🇳  🇫🇷  🇩🇪  🇮🇹  🇯🇵  🇷🇺  🇰🇷  🇪🇸 🇬🇧  🇺🇸
-outlying	🇺🇲
 pakistan	🇵🇰
 palau	🇵🇼
 palestine	🇵🇸
@@ -231,42 +274,38 @@ paraguay	🇵🇾
 peru	🇵🇪
 philippines	🇵🇭
 pitcairn	🇵🇳
-places-apple	🇨🇳  🇫🇷  🇩🇪  🇮🇹  🇯🇵  🇷🇺  🇰🇷  🇪🇸 🇬🇧  🇺🇸
 poland	🇵🇱
 polynesia	🇵🇫
 portugal	🇵🇹
-principe, príncipe, sao, são, tome, tomé	🇸🇹
-puerto, rico	🇵🇷
+principe, príncipe, sao tome, são tomé	🇸🇹
+puerto rico	🇵🇷
 qatar	🇶🇦
 reunion, réunion	🇷🇪
 romania	🇷🇴
-russia, russian	🇷🇺
+russia	🇷🇺
 rwanda	🇷🇼
-sahara, western	🇪🇭
-saint	🇧🇱  🇸🇭  🇰🇳  🇱🇨  🇲🇫  🇵🇲  🇻🇨
+sahara, western sahara	🇪🇭
 samoa	🇦🇸  🇼🇸
 san marino	🇸🇲
-sandwich	🇬🇸
-#see	🇻🇦
+south georgia, south sandwich	🇬🇸
 senegal	🇸🇳
 serbia	🇷🇸
 seychelles	🇸🇨
 sierra leone	🇸🇱
 singapore	🇸🇬
-sint	🇧🇶  🇸🇽
-slovak, slovakia	🇸🇰
+slovakia	🇸🇰
 slovenia	🇸🇮
 solomon	🇸🇧
 somalia	🇸🇴
-south	🇿🇦  🇬🇸  🇰🇷  🇸🇸
-southern	🇹🇫
+south korea	🇰🇷
+south sudan	🇸🇸
 spain	🇪🇸
 sudan	🇸🇸  🇸🇩
 suriname	🇸🇷
 swaziland	🇸🇿
 sweden	🇸🇪
 switzerland	🇨🇭
-syria, syrian	🇸🇾
+syria	🇸🇾
 taiwan	🇹🇼
 tajikistan	🇹🇯
 tanzania	🇹🇿
@@ -281,13 +320,11 @@ turkmenistan	🇹🇲
 tuvalu	🇹🇻
 uganda	🇺🇬
 ukraine	🇺🇦
-union	🇪🇺
-united	🇹🇿  🇦🇪  🇬🇧  🇺🇸  🇺🇲  🇻🇮
 uruguay	🇺🇾
 uzbekistan	🇺🇿
 vanuatu	🇻🇺
 venezuela	🇻🇪
-virgin islands	🇻🇬  🇻🇮
+virgin	🇻🇬 🇻🇮
 yemen	🇾🇪
 zambia	🇿🇲
 zimbabwe	🇿🇼
