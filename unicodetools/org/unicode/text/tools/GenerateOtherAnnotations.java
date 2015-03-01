@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -29,6 +30,11 @@ import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateOtherAnnotations {
+
+    private static final Set<String> SKIP = new HashSet<>(GenerateEmoji.GROUP_ANNOTATIONS);
+    static {
+        SKIP.add("flag");
+    }
 
     public static void main(String[] args) throws IOException {
         String dir = "/Users/markdavis/Google Drive/workspace/DATA/emoji/";
@@ -71,7 +77,10 @@ public class GenerateOtherAnnotations {
                         + "\t<annotations>\n");
                 for (String s : GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
                     Set<String> annotations = map.get(s);
-                    if (annotations == null && Emoji.isRegionalIndicator(s.codePointAt(0))) {
+                    if (annotations == null) {
+                        annotations = Collections.emptySet();
+                    }
+                    if (annotations.isEmpty() && Emoji.isRegionalIndicator(s.codePointAt(0))) {
                         String regionCode = Emoji.getRegionCodeFromEmoji(s);
                         String name = ldn.regionDisplayName(regionCode);
                         if (!name.equals(regionCode)) {
@@ -80,10 +89,12 @@ public class GenerateOtherAnnotations {
                             System.out.println(locale + "\tmissing\t" + regionCode);
                         }
                     }
-                    if (annotations == null) {
+                    if (annotations.isEmpty()) {
                         missing.add(s);
+                        continue;
                     }
-                    String annotationString = annotations == null ? "MISSING" : CollectionUtilities.join(annotations, "; ");
+
+                    String annotationString = CollectionUtilities.join(annotations, "; ");
                     String englishAnnotationString = english.get(s);
                     outText
                     .append("\n\t\t<!-- " + fix(englishAnnotationString, ld) + " -->\n")
@@ -156,13 +167,8 @@ public class GenerateOtherAnnotations {
                 result.add(UCharacter.getName(s, "+"));
             }
             for (String annotation : GenerateEmoji.ANNOTATIONS_TO_CHARS.getKeys(s)) {
-                if (annotation.contains("-")) {
-                    if (annotation.startsWith("fitz-") 
-                            || annotation.startsWith("-apple")
-                            || annotation.startsWith("-android")
-                            || annotation.equals("default-text-style")
-                            )
-                        continue;
+                if (SKIP.contains(annotation)) {
+                    continue;
                 }
                 result.add(annotation);
             }
