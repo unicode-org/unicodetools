@@ -666,7 +666,7 @@ public class TestProperties extends TestFmwk {
 
     public UnicodeMap<String> getCldrExemplars() {
         LanguageTagParser ltp = new LanguageTagParser();
-        UnicodeMap<String> result = new UnicodeMap();
+        UnicodeMap<String> result = new UnicodeMap<>();
         Map<LstrType, Map<String, Map<LstrField, String>>> lstreg = StandardCodes.getEnumLstreg();
         Map<String, Map<LstrField, String>> langInfo = lstreg.get(LstrType.language);
         Map<String, String> likely = SUPPLEMENTAL_DATA_INFO.getLikelySubtags();

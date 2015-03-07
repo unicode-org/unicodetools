@@ -2,6 +2,7 @@ package org.unicode.props;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -19,10 +20,16 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         Set<T> make();
     }
 
-    static SetMaker<Object> HASHSET_MAKER = new SetMaker<Object>() {
+    public static SetMaker<Object> HASHSET_MAKER = new SetMaker<Object>() {
         @Override
         public Set<Object> make() {
             return new HashSet<Object>();
+        }
+    };
+
+    public static final SetMaker<Object> LINKED_HASHSET_MAKER = new SetMaker<Object>() {
+        public Set<Object> make() {
+            return new LinkedHashSet<Object>();
         }
     };
 
