@@ -5085,6 +5085,7 @@ A7F7 ; —
 🌒 ; ☽
 
 # New in Unicode 8.0 from Roozbeh
+05DF ; 0D66 0D30 0D66
 2BEC ; 219E
 2BED ; 219F
 2BEE ; 21A0
