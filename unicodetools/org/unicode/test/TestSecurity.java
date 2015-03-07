@@ -182,7 +182,7 @@ public class TestSecurity extends TestFmwkPlus {
         System.out.println("vi: " + vi.toPattern(false));
     }
 
-    private UnicodeMap<Set<String>> getCLDRCharacters() {
+    public static UnicodeMap<Set<String>> getCLDRCharacters() {
         UnicodeMap<Set<String>> result = new UnicodeMap<>();
         Factory factory = CLDRConfig.getInstance().getCldrFactory();
         //        File[] paths = { new File(CLDRPaths.MAIN_DIRECTORY)
@@ -223,7 +223,7 @@ public class TestSecurity extends TestFmwkPlus {
         return result;
     }
 
-    private UnicodeSet flatten(UnicodeSet result) {
+    private static UnicodeSet flatten(UnicodeSet result) {
         UnicodeSet result2 = new UnicodeSet();
         for (String s : result) { // flatten
             result2.addAll(s);
