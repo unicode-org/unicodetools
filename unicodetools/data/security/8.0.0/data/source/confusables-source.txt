@@ -4828,7 +4828,6 @@ A67C	;	0306
 08B1	;	و
 20BD	;	0554
 037F	;	J
-0605	;	0653
 0C00	;	0901
 0C81	;	0901
 0D01	;	0901
@@ -4937,11 +4936,10 @@ A7F7 ; —
 114D6	;	09EC
 
 # Arabic issues from Roozbeh:
-# Alef and Arabic digit one
+# These are the most important Arabic to non-Arabic confusables:
 0031 ; 0627 # ‎ا
 0031 ; 0661 # ‎١
 0031 ; 06F1 # ‎۱
-# These are the most important Arabic to non-Arabic confusables:
 0056 ; 0667 # V = ۷
 006F ; 0647 # o = ه
 039B ; 0668 # Λ = ٨
@@ -5072,6 +5070,17 @@ A7F7 ; —
 08F9 ; 0354
 08FA ; 0355
 08FF ; 0357
+# Arabic symbols
+0602 ; 060E
+0603 ; 0635
+0604 ; 0633 0645 0640
+0605 ; 0653
+0609 ; 066A 002E
+060A ; 0609 002E
+060D ; 066B
+060F ; 0639
+066A ; 02D9 002F 002E
+# TODO for Arabic: add Arabic Mathematical Alphabetic Symbols
 
 ᑐ ; ⊃
 ᑕ ; ⊂
