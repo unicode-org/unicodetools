@@ -451,6 +451,9 @@ rabbit	🐰  🐇
 dragon	🐲  🐉
 whale	🐳  🐋
 sheep	🐏  🐑
+ewe	🐑
+sow	🐖
+pig	🐗
 bird	🐦  🕊
 bear	🐻  🐨
 camel, hump	🐪  🐫
