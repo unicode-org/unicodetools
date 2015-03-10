@@ -1,8 +1,8 @@
 # IndicSyllabicCategory-8.0.0.txt
-# Date: 2014-12-02, 20:17:00 GMT [RP, KW]
+# Date: 2015-02-24, 02:31:00 GMT [RP]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2014 Unicode, Inc.
+# Copyright (c) 1991-2015 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see UAX #44: Unicode Character Database,
 # at http://www.unicode.org/reports/tr44/
@@ -178,9 +178,10 @@ AAF5          ; Visarga # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
 
 # Indic_Syllabic_Category=Nukta
 
-# Nukta (diacritic for borrowed consonants)
+# Nukta (diacritic for borrowed consonants or other consonant
+# modifications)
 
-# [Derivation: (ccc=7) - 1037]
+# [Derivation: (ccc=7) + 0F39 + 10A38..10A3A - 1037]
 
 093C          ; Nukta # Mn       DEVANAGARI SIGN NUKTA
 09BC          ; Nukta # Mn       BENGALI SIGN NUKTA
@@ -188,10 +189,12 @@ AAF5          ; Visarga # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
 0ABC          ; Nukta # Mn       GUJARATI SIGN NUKTA
 0B3C          ; Nukta # Mn       ORIYA SIGN NUKTA
 0CBC          ; Nukta # Mn       KANNADA SIGN NUKTA
+0F39          ; Nukta # Mn       TIBETAN MARK TSA -PHRU
 1B34          ; Nukta # Mn       BALINESE SIGN REREKAN
 1BE6          ; Nukta # Mn       BATAK SIGN TOMPI
 1C37          ; Nukta # Mn       LEPCHA SIGN NUKTA
 A9B3          ; Nukta # Mn       JAVANESE SIGN CECAK TELU
+10A38..10A3A  ; Nukta # Mn   [3] KHAROSHTHI SIGN BAR ABOVE..KHAROSHTHI SIGN DOT BELOW
 110BA         ; Nukta # Mn       KAITHI SIGN NUKTA
 11173         ; Nukta # Mn       MAHAJANI SIGN NUKTA
 111CA         ; Nukta # Mn       SHARADA SIGN NUKTA
@@ -470,6 +473,7 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 1920..1922    ; Vowel_Dependent # Mn   [3] LIMBU VOWEL SIGN A..LIMBU VOWEL SIGN U
 1923..1926    ; Vowel_Dependent # Mc   [4] LIMBU VOWEL SIGN EE..LIMBU VOWEL SIGN AU
 1927..1928    ; Vowel_Dependent # Mn   [2] LIMBU VOWEL SIGN E..LIMBU VOWEL SIGN O
+193A          ; Vowel_Dependent # Mn       LIMBU SIGN KEMPHRENG
 19B0..19C0    ; Vowel_Dependent # Lo  [17] NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW TAI LUE VOWEL SIGN IY
 1A17..1A18    ; Vowel_Dependent # Mn   [2] BUGINESE VOWEL SIGN I..BUGINESE VOWEL SIGN U
 1A19..1A1A    ; Vowel_Dependent # Mc   [2] BUGINESE VOWEL SIGN E..BUGINESE VOWEL SIGN O
@@ -507,6 +511,7 @@ A9B4..A9B5    ; Vowel_Dependent # Mc   [2] JAVANESE VOWEL SIGN TARUNG..JAVANESE 
 A9B6..A9B9    ; Vowel_Dependent # Mn   [4] JAVANESE VOWEL SIGN WULU..JAVANESE VOWEL SIGN SUKU MENDUT
 A9BA..A9BB    ; Vowel_Dependent # Mc   [2] JAVANESE VOWEL SIGN TALING..JAVANESE VOWEL SIGN DIRGA MURE
 A9BC          ; Vowel_Dependent # Mn       JAVANESE VOWEL SIGN PEPET
+A9E5          ; Vowel_Dependent # Mn       MYANMAR SIGN SHAN SAW
 AA29..AA2E    ; Vowel_Dependent # Mn   [6] CHAM VOWEL SIGN AA..CHAM VOWEL SIGN OE
 AA2F..AA30    ; Vowel_Dependent # Mc   [2] CHAM VOWEL SIGN O..CHAM VOWEL SIGN AI
 AA31..AA32    ; Vowel_Dependent # Mn   [2] CHAM VOWEL SIGN AU..CHAM VOWEL SIGN UE
@@ -527,7 +532,7 @@ ABE8          ; Vowel_Dependent # Mn       MEETEI MAYEK VOWEL SIGN UNAP
 ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEETEI MAYEK VOWEL SIGN NUNG
 10A01..10A03  ; Vowel_Dependent # Mn   [3] KHAROSHTHI VOWEL SIGN I..KHAROSHTHI VOWEL SIGN VOCALIC R
 10A05..10A06  ; Vowel_Dependent # Mn   [2] KHAROSHTHI VOWEL SIGN E..KHAROSHTHI VOWEL SIGN O
-10A0C         ; Vowel_Dependent # Mn       KHAROSHTHI VOWEL LENGTH MARK
+10A0C..10A0D  ; Vowel_Dependent # Mn   [2] KHAROSHTHI VOWEL LENGTH MARK..KHAROSHTHI SIGN DOUBLE RING BELOW
 11038..11045  ; Vowel_Dependent # Mn  [14] BRAHMI VOWEL SIGN AA..BRAHMI VOWEL SIGN AU
 110B0..110B2  ; Vowel_Dependent # Mc   [3] KAITHI VOWEL SIGN AA..KAITHI VOWEL SIGN II
 110B3..110B6  ; Vowel_Dependent # Mn   [4] KAITHI VOWEL SIGN U..KAITHI VOWEL SIGN AI
@@ -604,7 +609,7 @@ A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 0A72..0A73    ; Consonant_Placeholder # Lo   [2] GURMUKHI IRI..GURMUKHI URA
 104E          ; Consonant_Placeholder # Po       MYANMAR SYMBOL AFOREMENTIONED
 1900          ; Consonant_Placeholder # Lo       LIMBU VOWEL-CARRIER LETTER
-2012..2014    ; Consonant_Placeholder # Pd   [3] FIGURE DASH..EM DASH
+2010..2014    ; Consonant_Placeholder # Pd   [5] HYPHEN..EM DASH
 25CC          ; Consonant_Placeholder # So       DOTTED CIRCLE
 
 # ================================================
@@ -773,6 +778,28 @@ ABD2..ABDA    ; Consonant # Lo   [9] MEETEI MAYEK LETTER GOK..MEETEI MAYEK LETTE
 
 # ================================================
 
+# Indic_Syllabic_Category=Consonant_With_Stacker
+
+# Consonants that may make stacked ligatures with the next consonant
+# without the use of a virama
+
+# [Not derivable]
+
+0CF1..0CF2    ; Consonant_With_Stacker # Lo   [2] KANNADA SIGN JIHVAMULIYA..KANNADA SIGN UPADHMANIYA
+11003..11004  ; Consonant_With_Stacker # Lo   [2] BRAHMI SIGN JIHVAMULIYA..BRAHMI SIGN UPADHMANIYA
+
+# ================================================
+
+# Indic_Syllabic_Category=Consonant_Prefixed
+
+# Cluster-intial consonants
+
+# [Not derivable]
+
+111C2..111C3  ; Consonant_Prefixed # Lo   [2] SHARADA SIGN JIHVAMULIYA..SHARADA SIGN UPADHMANIYA
+
+# ================================================
+
 # Indic_Syllabic_Category=Consonant_Preceding_Repha
 
 # Repha Form of RA (reanalyzed in some scripts), when preceding the main consonant
@@ -845,6 +872,7 @@ AA35..AA36    ; Consonant_Medial # Mn   [2] CHAM CONSONANT SIGN LA..CHAM CONSONA
 
 1930..1931    ; Consonant_Final # Mc   [2] LIMBU SMALL LETTER KA..LIMBU SMALL LETTER NGA
 1933..1938    ; Consonant_Final # Mc   [6] LIMBU SMALL LETTER TA..LIMBU SMALL LETTER LA
+1939          ; Consonant_Final # Mn       LIMBU SIGN MUKPHRENG
 19C1..19C7    ; Consonant_Final # Lo   [7] NEW TAI LUE LETTER FINAL V..NEW TAI LUE LETTER FINAL B
 1A57          ; Consonant_Final # Mc       TAI THAM CONSONANT SIGN LA TANG LAI
 1A58..1A5E    ; Consonant_Final # Mn   [7] TAI THAM SIGN MAI KANG LAI..TAI THAM CONSONANT SIGN SA
@@ -965,14 +993,22 @@ A8E0..A8F1    ; Cantillation_Mark # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..CO
 
 # Indic_Syllabic_Category=Syllable_Modifier
 
-# Syllable Modifier (modifies something in the previous orthographic syllable)
+# Syllable Modifier (miscellaneous combining characters that modify
+# something in the orthographic syllable they succeed)
 
 # [Not derivable]
 
 00B2..00B3    ; Syllable_Modifier # Mn   [2] SUPERSCRIPT TWO..SUPERSCRIPT THREE
+0F35          ; Syllable_Modifier # Mn       TIBETAN MARK NGAS BZUNG NYI ZLA
+0F37          ; Syllable_Modifier # Mn       TIBETAN MARK NGAS BZUNG SGOR RTAGS
+0FC6          ; Syllable_Modifier # Mn       TIBETAN SYMBOL PADMA GDAN
 17CB          ; Syllable_Modifier # Mn       KHMER SIGN BANTOC
 17CE..17D0    ; Syllable_Modifier # Mn   [3] KHMER SIGN KAKABAT..KHMER SIGN SAMYOK SANNYA
 17D3          ; Syllable_Modifier # Mn       KHMER SIGN BATHAMASAT
+193B          ; Syllable_Modifier # Mn       LIMBU SIGN SA-I
+1A7A..1A7C    ; Syllable_Modifier # Mn   [3] TAI THAM SIGN RA HAAM..TAI THAM SIGN KHUEN-LUE KARAN
+1A7F          ; Syllable_Modifier # Mn       TAI THAM COMBINING CRYPTOGRAMMIC DOT
+1C36          ; Syllable_Modifier # Mn       LEPCHA SIGN RAN
 2074          ; Syllable_Modifier # Mn       SUPERSCRIPT FOUR
 2082..2084    ; Syllable_Modifier # Mn   [3] SUBSCRIPT TWO..SUBSCRIPT FOUR
 
@@ -1022,7 +1058,7 @@ A8E0..A8F1    ; Cantillation_Mark # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..CO
 
 # Indic_Syllabic_Category=Number
 
-# Number (can be used a vowel-holders like consonant placeholders)
+# Number (can be used as vowel-holders like consonant placeholders)
 
 # [Not derivable]
 
@@ -1073,10 +1109,9 @@ ABF0..ABF9    ; Number # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT NI
 
 # Indic_Syllabic_Category=Brahmi_Joining_Number
 
-# Brahmi Joining Number
-# Similar to Numbers, can be used as vowel-holders like consonant placeholders,
-# but may also be joined by a Number_Joiner of the same script (e.g. in
-# Brahmi)
+# Brahmi Joining Number (similar to Number in that in can be used as
+# vowel-holders like Consonant_Placeholder, but may also be joined by
+# a Number_Joiner of the same script, e.g. in Brahmi)
 
 # [Not derivable]
 

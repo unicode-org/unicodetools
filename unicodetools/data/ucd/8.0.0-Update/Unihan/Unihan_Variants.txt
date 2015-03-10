@@ -1,7 +1,7 @@
 #
 # Unihan_Variants.txt
-# Date: 2014-05-09 18:17:02 GMT [JHJ]
-# Unicode version: 7.0.0
+# Date: 2015-02-19 22:55:21 GMT [JHJ]
+# Unicode version:  8.0.0 
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.
@@ -312,6 +312,7 @@ U+48E9	kSemanticVariant	U+9187<kLau,kMatthews,kMeyerWempe
 U+490D	kSemanticVariant	U+288A5
 U+4940	kSemanticVariant	U+6375<kFenn
 U+4947	kSimplifiedVariant	U+4982
+U+4951	kSimplifiedVariant	U+9FCF
 U+4968	kSemanticVariant	U+9462<kMatthews,kMeyerWempe
 U+4969	kSimplifiedVariant	U+28C56
 U+4971	kSimplifiedVariant	U+497E
@@ -382,6 +383,7 @@ U+4CA0	kTraditionalVariant	U+9C06
 U+4CA1	kTraditionalVariant	U+9C0C
 U+4CA2	kTraditionalVariant	U+9C27
 U+4CA3	kTraditionalVariant	U+4C77
+U+4CA4	kTraditionalVariant	U+9FD0
 U+4CB0	kSimplifiedVariant	U+2A242
 U+4D09	kSimplifiedVariant	U+9E6E
 U+4D13	kTraditionalVariant	U+9CFE
@@ -1369,7 +1371,8 @@ U+5408	kZVariant	U+95A4
 U+540A	kSemanticVariant	U+5F14<kLau,kMatthews,kMeyerWempe
 U+540B	kSpecializedSemanticVariant	U+5BF8
 U+540C	kSemanticVariant	U+4EDD<kLau,kMatthews,kMeyerWempe
-U+540C	kTraditionalVariant	U+8855
+U+540C	kSimplifiedVariant	U+540C
+U+540C	kTraditionalVariant	U+540C U+8855
 U+540C	kZVariant	U+4EDD
 U+540E	kSimplifiedVariant	U+540E
 U+540E	kTraditionalVariant	U+540E U+5F8C
@@ -3606,6 +3609,7 @@ U+65DB	kSemanticVariant	U+5E61<kFenn
 U+65E0	kSemanticVariant	U+7121<kFenn
 U+65E0	kTraditionalVariant	U+7121
 U+65E2	kZVariant	U+65E3
+U+65E3	kZVariant	U+65E2
 U+65E6	kZVariant	U+86CB
 U+65E7	kSemanticVariant	U+820A<kMatthews,kMeyerWempe
 U+65E7	kTraditionalVariant	U+820A
@@ -9312,6 +9316,7 @@ U+93B0	kSimplifiedVariant	U+9552
 U+93B2	kSimplifiedVariant	U+954B
 U+93B3	kSimplifiedVariant	U+954D
 U+93B5	kSimplifiedVariant	U+9553
+U+93B6	kSimplifiedVariant	U+9FD4
 U+93B7	kSimplifiedVariant	U+28C3E
 U+93BB	kSemanticVariant	U+9396<kMatthews
 U+93BF	kSimplifiedVariant	U+954E
@@ -11389,6 +11394,11 @@ U+9FAD	kSimplifiedVariant	U+29A0E
 U+9FAF	kSimplifiedVariant	U+28C46
 U+9FC1	kSimplifiedVariant	U+4724
 U+9FCC	kSemanticVariant	U+6DBC
+U+9FCF	kTraditionalVariant	U+4951
+U+9FD0	kSimplifiedVariant	U+4CA4
+U+9FD2	kSimplifiedVariant	U+9FD3
+U+9FD3	kTraditionalVariant	U+9FD2
+U+9FD4	kTraditionalVariant	U+93B6
 U+F900	kZVariant	U+8C48
 U+F901	kZVariant	U+66F4
 U+F902	kZVariant	U+8ECA

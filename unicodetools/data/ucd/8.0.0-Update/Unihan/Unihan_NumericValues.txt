@@ -1,7 +1,7 @@
 #
 # Unihan_NumericValues.txt
-# Date: 2014-05-09 18:17:02 GMT [JHJ]
-# Unicode version: 7.0.0
+# Date: 2015-02-19 22:55:21 GMT [JHJ]
+# Unicode version:  8.0.0 
 #
 # Unicode Character Database
 # Copyright (c) 1991-2014 Unicode, Inc.

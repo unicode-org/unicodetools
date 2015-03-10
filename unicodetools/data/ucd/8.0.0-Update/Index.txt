@@ -2890,6 +2890,7 @@ laplace transform	2112
 large bowtie	2A1D
 LARGE CIRCLE	25EF
 Large Operators	29F8
+LARI SIGN	20BE
 LAST QUARTER MOON	263E
 LATERAL CLICK, LATIN LETTER	01C1
 Latin Abbreviations, Squared	3371
