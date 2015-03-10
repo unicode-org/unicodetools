@@ -1,7 +1,7 @@
-# Date: 2014-07-28, 23:25:00 GMT [KW]
+# Date: 2015-03-10, 20:20:00 GMT [KW]
 #
 # Unicode Character Database
-# Copyright (c) 1991-2014 Unicode, Inc.
+# Copyright (c) 1991-2015 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # For documentation, see the following:
@@ -11,14 +11,10 @@
 #
 # The UAXes can be accessed at http://www.unicode.org/versions/Unicode8.0.0/
 
-This directory contains early versions of some of the data files
-for the Unicode Character Database, in preparation for
+This directory contains the data files
+for the Unicode Character Database, for
 the beta review for Version 8.0.0 of the Unicode
-Standard. At this date, these files are very incomplete,
-and are posted primarily to provide preliminary information
-about the Version 8.0.0 repertoire and to document character
-property decisions made by the UTC prior to the start of
-beta review.
+Standard.
 
 Note that derived and extracted data files are produced
 by running a number of scripts and then populating

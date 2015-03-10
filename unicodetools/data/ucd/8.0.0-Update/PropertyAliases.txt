@@ -1,5 +1,5 @@
 # PropertyAliases-8.0.0.txt
-# Date: 2015-01-15, 23:07:50 GMT [MD, KW manual edit]
+# Date: 2015-02-14, 10:26:09 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2015 Unicode, Inc.
@@ -111,7 +111,7 @@ ea                       ; East_Asian_Width
 gc                       ; General_Category
 GCB                      ; Grapheme_Cluster_Break
 hst                      ; Hangul_Syllable_Type
-InPC                     ; Indic_Positional_Category ; Indic_Matra_Category ; InMC
+InPC                     ; Indic_Positional_Category
 InSC                     ; Indic_Syllabic_Category
 jg                       ; Joining_Group
 jt                       ; Joining_Type
