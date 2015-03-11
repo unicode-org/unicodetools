@@ -216,7 +216,8 @@ public class VerifyXmlUcd {
                     final int cpStart = Integer.parseInt(attributes.get("first-cp"),16);
                     final int cpEnd = Integer.parseInt(attributes.get("last-cp"),16);
                     final String blockName = attributes.get("name");
-                    accummulatedBlocks.add(UnicodeProperty.regularize(blockName,true));
+                    accummulatedBlocks.add(
+                            org.unicode.text.utility.Utility.getUnskeleton(blockName, true));
                     final UnicodeSet xmlBlock = new UnicodeSet(cpStart, cpEnd);
                     final UnicodeSet toolBlock = Default.ucd().getBlockSet(blockName, new UnicodeSet());
                     if (!xmlBlock.equals(toolBlock)) {

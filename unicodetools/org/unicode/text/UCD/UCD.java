@@ -2064,27 +2064,27 @@ to guarantee identifier closure.
         }
     }
 
-    UnicodeMap blockData;
+    UnicodeMap<String> blockData;
     Map<String, String> longToShortBlockNames = new HashMap<String, String>();
 
     public String getBlock(int codePoint) {
         if (blockData == null) {
             loadBlocks();
         }
-        return (String)blockData.getValue(codePoint);
+        return blockData.getValue(codePoint);
     }
-    
-    public List getBlockNames() {
+
+    public List<String> getBlockNames() {
         return getBlockNames(null);
     }
-    public List getBlockNames(List result) {
+    public List<String> getBlockNames(List<String> result) {
         if (result == null) {
-            result = new ArrayList();
+            result = new ArrayList<String>();
         }
         if (blockData == null) {
             loadBlocks();
         }
-        return (List)blockData.getAvailableValues(result);
+        return blockData.getAvailableValues(result);
     }
 
     public String[][] getBlockNameList() {
@@ -2113,7 +2113,7 @@ to guarantee identifier closure.
     }
 
     public UnicodeSet getBlockSet(String value, UnicodeSet result) {
-        final String blockName = UnicodeProperty.regularize(value, true);
+        final String blockName = Utility.getUnskeleton(value, true);
         if (blockData == null) {
             loadBlocks();
         }
@@ -2122,7 +2122,7 @@ to guarantee identifier closure.
 
     static final Matcher blockPattern = Pattern.compile("([0-9A-F]+)\\s*(?:[.][.]|[;])\\s*([0-9A-F]+)\\s*[;](.*)").matcher("");
     private void loadBlocks() {
-        blockData = new UnicodeMap();
+        blockData = new UnicodeMap<String>();
 
         try {
             final BufferedReader in = Utility.openUnicodeFile("Blocks", version, true, Utility.LATIN1);
@@ -2147,9 +2147,7 @@ to guarantee identifier closure.
                         final int start = Integer.parseInt(blockPattern.group(1), 16);
                         final int end = Integer.parseInt(blockPattern.group(2), 16);
                         final String groupName = blockPattern.group(3).trim();
-                        // "Sutton_SignWriting" without the underscore that regularize() would insert.
-                        final String name = groupName.equals("Sutton SignWriting") ?
-                                "Sutton_SignWriting" : UnicodeProperty.regularize(groupName, true);
+                        final String name = Utility.getUnskeleton(groupName, true);
                         blockData.putAll(start,end, name);
                     } catch (final RuntimeException e) {
                         System.err.println("Failed on line " + i + "\t" + line);

@@ -632,7 +632,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
          * if (source.equals("noBreak")) { // HACK if (titlecaseStart) return
          * "NoBreak"; return source; }
          */
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         int lastCat = -1;
         boolean haveFirstCased = true;
         for (int i = 0; i < source.length(); ++i) {

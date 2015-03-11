@@ -383,8 +383,7 @@ public class MakeUnicodeFiles {
                         } else if (line.startsWith("Value:")) {
                             value = lineValue;
                         } else if (line.startsWith("HackName:")) {
-                            final String regularItem =
-                                    UnicodeProperty.regularize(lineValue, true);
+                            final String regularItem = Utility.getUnskeleton(lineValue, true);
                             hackMap.put(regularItem, lineValue);
                         } else if (line.startsWith("FinalComments")) {
                             break;

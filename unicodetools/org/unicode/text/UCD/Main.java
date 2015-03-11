@@ -309,9 +309,13 @@ public final class Main implements UCD_Types {
 
                 //
             }
+        } catch (Exception e) {
+            // Print and rethrow.
+            System.err.println(e);
+            e.printStackTrace();
+            throw e;
         } finally {
             System.out.println("*** Done *** " + Default.getDate());
         }
     }
-
 }

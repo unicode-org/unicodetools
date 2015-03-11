@@ -1,6 +1,5 @@
 package org.unicode.text.utility;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +11,6 @@ import org.unicode.text.utility.Utility.RuntimeIOException;
 public class UnicodeDataFile {
     public PrintWriter out;
     private String newFile;
-    private String batName;
     private String mostRecent;
     private String filename;
     private UnicodeDataFile(){};
@@ -32,9 +30,8 @@ public class UnicodeDataFile {
         final String newSuffix = UnicodeDataFile.getFileSuffix(true, fileType);
         newFile = directory + filename + newSuffix;
         out = Utility.openPrintWriterGenDir(newFile, Utility.UTF8_UNIX);
-        final String[] batName2 = {""};
-        mostRecent = UnicodeDataFile.generateBat(directory, filename, newSuffix, fileType, batName2);
-        batName = batName2[0];
+        mostRecent = Utility.getMostRecentUnicodeDataFile(
+                UnicodeDataFile.fixFile(filename), Default.ucd().getVersion(), true, true, fileType);
         this.filename = filename;
 
         if (!isHTML) {
@@ -69,7 +66,7 @@ public class UnicodeDataFile {
 
         }
         out.close();
-        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), batName, skipCopyright);
+        Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), null, skipCopyright);
     }
 
     public static String generateDateLine() {
@@ -108,56 +105,6 @@ public class UnicodeDataFile {
         s = s.substring(0,len-6) + s.substring(len-4);
         System.out.println("Fixing File Name: " + s);
         return s;
-    }
-
-    private static String generateBatAux(String batName, String oldName, String newName) throws IOException {
-        final String fullBatName = batName + ".bat";
-        final PrintWriter output = Utility.openPrintWriterGenDir(batName + ".bat", Utility.LATIN1_UNIX);
-
-        newName = Utility.getOutputName(newName);
-        System.out.println("Writing BAT to compare " + oldName + " and " + newName);
-
-        final File newFile = new File(newName);
-        final File oldFile = new File(oldName);
-        output.println("\"C:\\Program Files\\Compare It!\\wincmp3.exe\" "
-                // "\"C:\\Program Files\\wincmp.exe\" "
-                + oldFile.getCanonicalFile()
-                + " "
-                + newFile.getCanonicalFile());
-        output.close();
-        return new File(Utility.getOutputName(fullBatName)).getCanonicalFile().toString();
-    }
-
-    /*
-        static String skeleton(String source) {
-            StringBuffer result = new StringBuffer();
-            source = source.toLowerCase();
-            for (int i = 0; i < source.length(); ++i) {
-                char c = source.charAt(i);
-                if (c == ' ' || c == '_' || c == '-') continue;
-                result.append(c);
-            }
-            return result.toString();
-        }
-     */
-    // static final byte KEEP_SPECIAL = 0, SKIP_SPECIAL = 1;
-
-    public static String generateBat(String directory, String fileRoot, String suffix, String fileType, String[] outputBatName) throws IOException {
-        final String mostRecent = Utility.getMostRecentUnicodeDataFile(UnicodeDataFile.fixFile(fileRoot), Default.ucd().getVersion(), true, true, fileType);
-        if (mostRecent != null) {
-            outputBatName[0] = UnicodeDataFile.generateBatAux(directory + "DIFF/Diff_" + fileRoot + suffix,
-                    mostRecent, directory + fileRoot + suffix);
-        } else {
-            System.out.println("No previous version of: " + fileRoot + ".txt");
-            return null;
-        }
-
-        final String lessRecent = Utility.getMostRecentUnicodeDataFile(UnicodeDataFile.fixFile(fileRoot), Default.ucd().getVersion(), false, true);
-        if (lessRecent != null && !mostRecent.equals(lessRecent)) {
-            UnicodeDataFile.generateBatAux(directory + "DIFF/OLDER-Diff_" + fileRoot + suffix,
-                    lessRecent, directory + fileRoot + suffix);
-        }
-        return mostRecent;
     }
 
     public boolean isSkipCopyright() {

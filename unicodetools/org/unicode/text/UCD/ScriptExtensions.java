@@ -51,9 +51,9 @@ public class ScriptExtensions {
         public boolean handleLine(int start, int end, String[] items) {
             final BitSet bitSet = new BitSet(UCD_Types.LIMIT_SCRIPT);
             for (final String script : SPACES.split(items[1])) {
-                int scriptCode = Utility.lookup(script, UCD_Names.SCRIPT, true);
+                int scriptCode = Utility.lookupShort(script, UCD_Names.SCRIPT, true);
                 if (scriptCode < 0) {
-                    scriptCode = Utility.lookup(script, UCD_Names.LONG_SCRIPT, true);
+                    scriptCode = Utility.lookupShort(script, UCD_Names.LONG_SCRIPT, true);
                 }
                 bitSet.set(scriptCode);
             }

@@ -98,8 +98,8 @@ public class ReorderCodes {
                 return "Multani";
             case UCD_Types.Old_Hungarian:
                 return "Old_Hungarian";
-            case UCD_Types.Sign_Writing:
-                return "Sign_Writing";
+            case UCD_Types.SignWriting:
+                return "SignWriting";
             default:
                 throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
             }
@@ -128,7 +128,7 @@ public class ReorderCodes {
                 return "Mult";
             case UCD_Types.Old_Hungarian:
                 return "Hung";
-            case UCD_Types.Sign_Writing:
+            case UCD_Types.SignWriting:
                 return "Sgnw";
             default:
                 throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
@@ -166,7 +166,7 @@ public class ReorderCodes {
                 return "𑊏";
             case UCD_Types.Old_Hungarian:
                 return "𐲡";
-            case UCD_Types.Sign_Writing:
+            case UCD_Types.SignWriting:
                 return "𝡐";
             default:
                 throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
