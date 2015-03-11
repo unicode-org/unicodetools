@@ -77,13 +77,15 @@ public class MakeUnicodeFiles {
         public static Format theFormat = new Format(); // singleton
 
 
-        Map printStyleMap = new TreeMap(UnicodeProperty.PROPERTY_COMPARATOR);
+        Map<String, PrintStyle> printStyleMap =
+                new TreeMap<String, PrintStyle>(UnicodeProperty.PROPERTY_COMPARATOR);
         static PrintStyle DEFAULT_PRINT_STYLE = new PrintStyle();
-        Map fileToPropertySet = new TreeMap();
-        Map fileToComments = new TreeMap();
-        Map fileToDirectory = new TreeMap();
-        TreeMap propertyToValueToComments = new TreeMap();
-        Map hackMap = new HashMap();
+        Map<String, List<String>> fileToPropertySet = new TreeMap<String, List<String>>();
+        Map<String, String> fileToComments = new TreeMap<String, String>();
+        Map<String, String> fileToDirectory = new TreeMap<String, String>();
+        Map<String, Map<String, String>> propertyToValueToComments =
+                new TreeMap<String, Map<String, String>>();
+        Map<String, String> hackMap = new HashMap<String, String>();
         UnicodeProperty.MapFilter hackMapFilter;
         String[] filesToDo;
 
@@ -114,7 +116,7 @@ public class MakeUnicodeFiles {
          */
 
         void printFileComments(PrintWriter pw, String filename) {
-            final String fileComments = (String) fileToComments.get(filename);
+            final String fileComments = fileToComments.get(filename);
             if (fileComments != null) {
                 pw.println(fileComments);
             }
@@ -126,7 +128,7 @@ public class MakeUnicodeFiles {
         }
 
         public PrintStyle getPrintStyle(String propname) {
-            final PrintStyle result = (PrintStyle) printStyleMap.get(propname);
+            final PrintStyle result = printStyleMap.get(propname);
             if (result != null) {
                 return result;
             }
@@ -214,7 +216,7 @@ public class MakeUnicodeFiles {
 
             @Override
             public String toString() {
-                final Class myClass = getClass();
+                final Class<? extends PrintStyle> myClass = getClass();
                 String result = myClass.getName() + "\n";
                 final Field[] myFields = myClass.getDeclaredFields();
                 for (final Field myField : myFields) {
@@ -244,10 +246,10 @@ public class MakeUnicodeFiles {
             if (DEBUG) {
                 showPVC(property, value, comments);
             }
-            TreeMap valueToComments =
-                    (TreeMap) propertyToValueToComments.get(property);
+            Map<String, String> valueToComments =
+                    propertyToValueToComments.get(property);
             if (valueToComments == null) {
-                valueToComments = new TreeMap();
+                valueToComments = new TreeMap<String, String>();
                 propertyToValueToComments.put(property, valueToComments);
             }
             valueToComments.put(value, comments);
@@ -267,11 +269,11 @@ public class MakeUnicodeFiles {
         }
 
         String getValueComments(String property, String value) {
-            final TreeMap valueToComments =
-                    (TreeMap) propertyToValueToComments.get(property);
+            final Map<String, String> valueToComments =
+                    propertyToValueToComments.get(property);
             String result = null;
             if (valueToComments != null) {
-                result = (String) valueToComments.get(value);
+                result = valueToComments.get(value);
             }
             if (DEBUG) {
                 System.out.println("Getting Property: <" + property + ">, Value: <"
@@ -280,8 +282,8 @@ public class MakeUnicodeFiles {
             return result;
         }
 
-        Map getValue2CommentsMap(String property) {
-            return (Map) propertyToValueToComments.get(property);
+        Map<String, String> getValue2CommentsMap(String property) {
+            return propertyToValueToComments.get(property);
         }
 
         static String afterEquals(String source) {
@@ -292,7 +294,7 @@ public class MakeUnicodeFiles {
             // Note: don't need to be international
             for (int i = 0; i < source.length(); ++i) {
                 final char ch = source.charAt(i);
-                if (Character.isWhitespace(source.charAt(i))) {
+                if (Character.isWhitespace(ch)) {
                     return source.substring(i).trim();
                 }
             }
@@ -323,10 +325,9 @@ public class MakeUnicodeFiles {
        // HACK
         valueComments.add("Bidi_Mirroring", "*", "# " + UCD_Names.UNIFIED_PROPERTY_HEADERS[9]);
              */
+            BufferedReader br = null;
             try {
-                final BufferedReader br =
-                        Utility.openReadFile(Settings.SRC_UCD_DIR + "MakeUnicodeFiles.txt", Utility.UTF8);
-                final String key = null;
+                br = Utility.openReadFile(Settings.SRC_UCD_DIR + "MakeUnicodeFiles.txt", Utility.UTF8);
                 String file = null, property = null, value = "", comments = "";
                 while (true) {
                     String line = br.readLine();
@@ -392,11 +393,17 @@ public class MakeUnicodeFiles {
                         }
                     }
                 }
-                br.close();
             } catch (final IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
                 throw new IllegalArgumentException("File missing");
+            } finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    } catch (IOException ignored) {
+                    }
+                }
             }
             hackMapFilter = new UnicodeProperty.MapFilter(hackMap);
             /*
@@ -457,7 +464,7 @@ public class MakeUnicodeFiles {
         }
 
         private void write() {
-            final TreeMap fileoptions = new TreeMap();
+            final TreeMap<String, String> fileoptions = new TreeMap<String, String>();
             /*for (int i = 0; i < FILE_OPTIONS.length; ++i) {
        String s = FILE_OPTIONS[i];
        int pos = s.indexOf(' ');
@@ -466,20 +473,20 @@ public class MakeUnicodeFiles {
        fileoptions.put(name, options);
        }
              */
-            for (final Iterator it = fileToPropertySet.keySet().iterator(); it.hasNext();) {
-                final String key = (String) it.next();
+            for (final Iterator<String> it = fileToPropertySet.keySet().iterator(); it.hasNext();) {
+                final String key = it.next();
                 if (DEBUG) {
                     System.out.println();
                     System.out.println("File:\t" + key);
                 }
-                final List propList2 = (List) fileToPropertySet.get(key);
+                final List<String> propList2 = fileToPropertySet.get(key);
                 if (propList2 == null) {
                     System.out.println("SPECIAL");
                     continue;
                 }
-                for (final Iterator pIt = propList2.iterator(); pIt.hasNext();) {
-                    final String prop = (String) pIt.next();
-                    final String options = (String)fileoptions.get(prop);
+                for (final Iterator<String> pIt = propList2.iterator(); pIt.hasNext();) {
+                    final String prop = pIt.next();
+                    final String options = fileoptions.get(prop);
                     if (DEBUG) {
                         System.out.println();
                         System.out.println("Property:\t" + prop);
@@ -487,13 +494,13 @@ public class MakeUnicodeFiles {
                             System.out.println("Format:\t" + options);
                         }
                     }
-                    final Map vc = getValue2CommentsMap(prop);
+                    final Map<String, String> vc = getValue2CommentsMap(prop);
                     if (vc == null) {
                         continue;
                     }
-                    for (final Iterator it2 = vc.keySet().iterator(); it2.hasNext();) {
-                        final String value = (String) it2.next();
-                        final String comment = (String) vc.get(value);
+                    for (final Iterator<String> it2 = vc.keySet().iterator(); it2.hasNext();) {
+                        final String value = it2.next();
+                        final String comment = vc.get(value);
                         if (DEBUG) {
                             if (!value.equals("")) {
                                 System.out.println("Value:\t" + value);
@@ -510,17 +517,17 @@ public class MakeUnicodeFiles {
         }
 
         private void addPropertyToFile(String filename, String property) {
-            List properties = (List) fileToPropertySet.get(filename);
+            List<String> properties = fileToPropertySet.get(filename);
             if (properties == null) {
-                properties = new ArrayList(1);
+                properties = new ArrayList<String>(1);
                 fileToPropertySet.put(filename, properties);
             }
             properties.add(property);
         }
-        public List getPropertiesFromFile(String filename) {
-            return (List) fileToPropertySet.get(filename);
+        public List<String> getPropertiesFromFile(String filename) {
+            return fileToPropertySet.get(filename);
         }
-        public Set getFiles() {
+        public Set<String> getFiles() {
             return fileToPropertySet.keySet();
         }
     }
@@ -530,10 +537,10 @@ public class MakeUnicodeFiles {
             final String fileNamePattern =
                     element.trim(); // .toLowerCase(Locale.ENGLISH);
             final Matcher matcher = Pattern.compile(fileNamePattern, Pattern.CASE_INSENSITIVE).matcher("");
-            final Iterator it = Format.theFormat.getFiles().iterator();
+            final Iterator<String> it = Format.theFormat.getFiles().iterator();
             boolean gotOne = false;
             while (it.hasNext()) {
-                final String propname = (String) it.next();
+                final String propname = it.next();
                 if (!matcher.reset(propname).find()) {
                     continue;
                 }
@@ -587,7 +594,7 @@ public class MakeUnicodeFiles {
     }
 
     private static void generateScriptNfkc(String filename) throws IOException {
-        final String dir = (String) Format.theFormat.fileToDirectory.get(filename);
+        final String dir = Format.theFormat.fileToDirectory.get(filename);
         final UnicodeDataFile udf =
                 UnicodeDataFile.openAndWriteHeader(MAIN_OUTPUT_DIRECTORY + dir, filename);
         final PrintWriter pw = udf.out;
@@ -595,7 +602,7 @@ public class MakeUnicodeFiles {
         final UCD ucd = Default.ucd();
 
         final BitSet normScripts = new BitSet();
-        final UnicodeMap<R3<Integer,String,String>> results = new UnicodeMap();
+        final UnicodeMap<R3<Integer,String,String>> results = new UnicodeMap<R3<Integer, String, String>>();
         for (int i = 0; i <= 0x10FFFF; ++i) {
             final byte dt = ucd.getDecompositionType(i);
             if (dt == UCD_Types.NONE) {
@@ -635,7 +642,7 @@ public class MakeUnicodeFiles {
     }
 
     private static void writeUnihan(String directory) throws IOException {
-        final Map<String, UnicodeMap> props = getUnihanProps();
+        final Map<String, UnicodeMap<String>> props = getUnihanProps();
         final UnicodeProperty.Factory toolFactory =
                 ToolUnicodePropertySource.make(Default.ucdVersion());
         final UnicodeSet unassigned =
@@ -664,7 +671,7 @@ public class MakeUnicodeFiles {
             pw.println();
             pw.println("# Property:\t" + propName);
 
-            final UnicodeMap map = props.get(propName);
+            final UnicodeMap<String> map = props.get(propName);
 
             if (map.getAvailableValues().size() < 100) {
                 writeEnumeratedValues(pw, bf, unassigned, prop, ps);
@@ -675,8 +682,8 @@ public class MakeUnicodeFiles {
         }
     }
 
-    private static  Map<String, UnicodeMap> getUnihanProps() {
-        final Map<String, UnicodeMap> unihanProps = new TreeMap<String, UnicodeMap>();
+    private static  Map<String, UnicodeMap<String>> getUnihanProps() {
+        final Map<String, UnicodeMap<String>> unihanProps = new TreeMap<String, UnicodeMap<String>>();
         try {
             final BufferedReader in = Utility.openUnicodeFile("Unihan", Default.ucdVersion(), true, Utility.UTF8);
             int lineCounter = 0;
@@ -699,9 +706,9 @@ public class MakeUnicodeFiles {
                 final int tabPos2 = line.indexOf('\t', tabPos+1);
 
                 final String property = line.substring(tabPos+1, tabPos2).trim();
-                UnicodeMap result = unihanProps.get(property);
+                UnicodeMap<String> result = unihanProps.get(property);
                 if (result == null) {
-                    unihanProps.put(property, result = new UnicodeMap());
+                    unihanProps.put(property, result = new UnicodeMap<String>());
                 }
 
                 final String scode = line.substring(2, tabPos).trim();
@@ -725,8 +732,7 @@ public class MakeUnicodeFiles {
         final PrintWriter pw = udf.out;
         final UnicodeProperty.Factory ups
         = ToolUnicodePropertySource.make(Default.ucdVersion());
-        final TreeSet sortedSet = new TreeSet(CASELESS_COMPARATOR);
-        final BagFormatter bf = new BagFormatter();
+        final TreeSet<String> sortedSet = new TreeSet<String>(CASELESS_COMPARATOR);
         final Tabber.MonoTabber mt = (Tabber.MonoTabber) new Tabber.MonoTabber()
         .add(25,Tabber.LEFT)
         .add(30,Tabber.LEFT);
@@ -736,15 +742,15 @@ public class MakeUnicodeFiles {
             if ((i & UnicodeProperty.EXTENDED_MASK) != 0) {
                 continue;
             }
-            final List list = ups.getAvailableNames(1<<i);
+            final List<String> list = ups.getAvailableNames(1<<i);
             //if (list.size() == 0) continue;
             sortedSet.clear();
             final StringBuffer buffer = new StringBuffer();
-            for (final Iterator it = list.iterator(); it.hasNext();) {
-                final String propAlias = (String)it.next();
+            for (final Iterator<String> it = list.iterator(); it.hasNext();) {
+                final String propAlias = it.next();
 
                 final UnicodeProperty up = ups.getProperty(propAlias);
-                final List aliases = up.getNameAliases();
+                final List<String> aliases = up.getNameAliases();
                 String firstAlias = aliases.get(0).toString();
                 if (firstAlias.isEmpty()) {
                     throw new IllegalArgumentException("Internal error");
@@ -754,7 +760,7 @@ public class MakeUnicodeFiles {
                 } else {
                     buffer.setLength(0);
                     boolean isFirst = true;
-                    for (final Iterator it2 = aliases.iterator(); it2.hasNext();) {
+                    for (final Iterator<String> it2 = aliases.iterator(); it2.hasNext();) {
                         if (isFirst) {
                             isFirst = false;
                         } else {
@@ -782,7 +788,7 @@ public class MakeUnicodeFiles {
             pw.println(SEPARATOR);
             pw.println("# " + UnicodeProperty.getTypeName(i) + " Properties");
             pw.println(SEPARATOR);
-            for (final Iterator it = sortedSet.iterator(); it.hasNext();) {
+            for (final Iterator<String> it = sortedSet.iterator(); it.hasNext();) {
                 pw.println(it.next());
                 count++;
             }
@@ -866,7 +872,7 @@ public class MakeUnicodeFiles {
         //final Set<String> skipNames = new HashSet<String>(Arrays.asList("Lowercase_Mapping", "Uppercase_Mapping", "Titlecase_Mapping"));
 
         for (final Iterator<String> it = toolFactory.getAvailableNames().iterator(); it.hasNext();) {
-            final String propName = (String) it.next();
+            final String propName = it.next();
             final UnicodeProperty up = toolFactory.getProperty(propName);
             final int type = up.getType();
             if ((type & UnicodeProperty.EXTENDED_MASK) != 0) {
@@ -1026,7 +1032,7 @@ public class MakeUnicodeFiles {
     }
 
     public static void generatePropertyFile(String filename) throws IOException {
-        String dir = (String) Format.theFormat.fileToDirectory.get(filename);
+        String dir = Format.theFormat.fileToDirectory.get(filename);
         if (dir == null) {
             dir = "";
         }
@@ -1042,13 +1048,13 @@ public class MakeUnicodeFiles {
         //System.out.println(unassigned.toPattern(true));
         // .removeAll(toolFactory.getSet("noncharactercodepoint=Yes"));
 
-        final List propList = Format.theFormat.getPropertiesFromFile(filename);
-        for (final Iterator propIt = propList.iterator(); propIt.hasNext();) {
+        final List<String> propList = Format.theFormat.getPropertiesFromFile(filename);
+        for (final Iterator<String> propIt = propList.iterator(); propIt.hasNext();) {
             final StringWriter pwReal = new StringWriter();
             final PrintWriter pwProp = new PrintWriter(pwReal);
 
             final BagFormatter bf = new BagFormatter(toolFactory);
-            final String nextPropName = (String) propIt.next();
+            final String nextPropName = propIt.next();
             UnicodeProperty prop;
             String name;
             try {
@@ -1265,26 +1271,28 @@ public class MakeUnicodeFiles {
                 pw.println();
                 pw.println(valueComment);
             }
-            if (false && ps.longValueHeading != null) {
-                String headingValue = value;
-                if (ps.longValueHeading == "ccc") {
-                    headingValue = Utility.replace(value, "_", "");
-                    final char c = headingValue.charAt(0);
-                    if ('0' <= c && c <= '9') {
-                        headingValue = "Other Combining Class";
-                    }
-                }
-                pw.println();
-                pw.println("# " + headingValue);
-            }
+//            if (false && ps.longValueHeading != null) {
+//                String headingValue = value;
+//                if (ps.longValueHeading == "ccc") {
+//                    headingValue = Utility.replace(value, "_", "");
+//                    final char c = headingValue.charAt(0);
+//                    if ('0' <= c && c <= '9') {
+//                        headingValue = "Other Combining Class";
+//                    }
+//                }
+//                pw.println();
+//                pw.println("# " + headingValue);
+//            }
             pw.println();
             //if (s.size() != 0)
             bf.setMergeRanges(ps.mergeRanges);
             bf.showSetNames(pw, s);
-            System.out.println(bf.showSetNames(s));
+            if (DEBUG) {
+                System.out.println(bf.showSetNames(s));
+            }
         }
-
     }
+
     //static NumberFormat nf = NumberFormat.getInstance();
     static Comparator<String> NUMERIC_STRING_COMPARATOR = new Comparator<String>() {
         @Override
@@ -1382,7 +1390,7 @@ public class MakeUnicodeFiles {
         @Override
         public String remap(String original) {
             // ok, because doesn't change length
-            final String mod = (String) Format.theFormat.hackMap.get(original);
+            final String mod = Format.theFormat.hackMap.get(original);
             if (mod != null) {
                 original = mod;
             }
@@ -1456,7 +1464,6 @@ public class MakeUnicodeFiles {
     }
 
     static void showDifferences(PrintWriter out, UnicodeProperty p1, UnicodeProperty p2, boolean doOverlaps) throws IOException {
-        final BagFormatter bf = new BagFormatter();
         //out.println("Comparing " + p1.getName() + " and " + p2.getName());
         System.out.println("Comparing " + p1.getName() + " and " + p2.getName());
         final String pn1 = '$' + p1.getName();
@@ -1534,15 +1541,15 @@ public class MakeUnicodeFiles {
                 if (overlaps.length() != 0) {
                     out.println("\t" + overlaps);
                 }
-                if (false && overlapsSet.size() != 0) {
-                    out.println("\t\u2260\u2284\u2285");
-                    for (final Iterator it3 = overlapsSet.iterator(); it3.hasNext();) {
-                        final String v3 = (String) it3.next();
-                        final UnicodeSet s3 = p2.getSet(v3);
-                        out.println("\t" + v3);
-                        bf.showSetDifferences(out,v1,s1,v3,s3);
-                    }
-                }
+//                if (false && overlapsSet.size() != 0) {
+//                    out.println("\t\u2260\u2284\u2285");
+//                    for (final Iterator<String> it3 = overlapsSet.iterator(); it3.hasNext();) {
+//                        final String v3 = it3.next();
+//                        final UnicodeSet s3 = p2.getSet(v3);
+//                        out.println("\t" + v3);
+//                        bf.showSetDifferences(out,v1,s1,v3,s3);
+//                    }
+//                }
             }
     }
 

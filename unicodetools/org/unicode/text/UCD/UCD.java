@@ -31,7 +31,6 @@ import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -64,7 +63,7 @@ public final class UCD implements UCD_Types {
         if (version.indexOf('.') < 0) {
             throw new IllegalArgumentException("Version must be of form 3.1.1");
         }
-        UCD result = (UCD)versionCache.get(version);
+        UCD result = versionCache.get(version);
         if (result == null) {
             //System.out.println(Utility.getStack());
             result = new UCD();
@@ -607,8 +606,8 @@ public final class UCD implements UCD_Types {
         unihanProp_file = Collections.unmodifiableMap(temp);
     }
 
-    public UnicodeMap getHanValue(String propertyName) {
-        final UnicodeMap result = new UnicodeMap();
+    public UnicodeMap<String> getHanValue(String propertyName) {
+        final UnicodeMap<String> result = new UnicodeMap<String>();
         try {
             //      dir = Utility.getMostRecentUnicodeDataFile("Unihan", version,
             //              true, true, String fileType) throws IOException {
@@ -734,17 +733,20 @@ public final class UCD implements UCD_Types {
                     throw new Exception("Unknown Numeric Type for " + line);
                 }
 
-                if (false) {
-                    Utility.fixDot();
-                    System.out.println(line);
-                    System.out.println(getNumericValue(code));
-                    System.out.println(getNumericTypeID(code));
-                }
+//                if (false) {
+//                    Utility.fixDot();
+//                    System.out.println(line);
+//                    System.out.println(getNumericValue(code));
+//                    System.out.println(getNumericTypeID(code));
+//                }
             }
-            in.close();
         } catch (final Exception e) {
             throw new ChainException("Han File Processing Exception", null, e);
         } finally {
+            try {
+                in.close();
+            } catch (IOException ignored) {
+            }
             Utility.fixDot();
             System.out.println("****Size: " + hanExceptions.size());
         }
@@ -1550,7 +1552,7 @@ to guarantee identifier closure.
     // *******************
 
     // cache of singletons
-    private static Map versionCache = new HashMap();
+    private static Map<String, UCD> versionCache = new HashMap<String, UCD>();
 
     private static final int LIMIT_CODE_POINT = 0x110000;
     private static final UData[] ALL_NULLS = new UData[1024];
@@ -1561,19 +1563,9 @@ to guarantee identifier closure.
     // extras
     private final BitSet combiningClassSet = new BitSet(256);
     private String version;
-    private String file;
     private long date = -1;
     private byte format = -1;
-    //private byte major = -1;
-    //private byte minor = -1;
-    //private byte update = -1;
     private int compositeVersion = -1;
-    private int size = -1;
-
-    // cache last UData
-    private final int lastCode = Integer.MIN_VALUE;
-    private final UData lastResult = UData.UNASSIGNED;
-    private final boolean lastCodeFixed = false;
 
     // hide constructor
     private UCD() {
@@ -1973,7 +1965,6 @@ to guarantee identifier closure.
     private void fillFromFile2(String version) {
         DataInputStream dataIn = null;
         final String fileName = Settings.BIN_DIR + "UCD_Data" + version + ".bin";
-        int uDataFileCount = 0;
         try {
             dataIn = new DataInputStream(
                     new BufferedInputStream(
@@ -1992,7 +1983,7 @@ to guarantee identifier closure.
                         new Object[]{version, new Byte(format), foundVersion});
             }
             date = dataIn.readLong();
-            size = uDataFileCount = dataIn.readInt();
+            int uDataFileCount = dataIn.readInt();
 
             boolean didJoiningHack = false;
             if (SHOW_LOADING) {
@@ -2051,8 +2042,6 @@ to guarantee identifier closure.
              */
             // everything is ok!
             this.version = version;
-            file = fileName;
-            //+ " " + new File(fileName).lastModified();
         } catch (final IOException e) {
             throw new ChainException("Can't read data file for {0}", new Object[]{version}, e);
         } finally {

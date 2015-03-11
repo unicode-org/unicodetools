@@ -13,7 +13,7 @@ File: ScriptExtensions
 # with more than one script, but with a limited number of scripts.
 # For each code point, there is one or more property values.  Each such value is a Script property value.
 # For more information, see:
-#   UAX #24: Unicode Script Property, http://www.unicode.org/reports/tr24/
+#   UAX #24, Unicode Script Property: http://www.unicode.org/reports/tr24/
 #     Especially the sections:
 #       http://www.unicode.org/reports/tr24/#Assignment_Script_Values
 #       http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
@@ -677,10 +677,10 @@ Property: SPECIAL
 
 File:	Scripts
 # For more information, see:
-#   UAX #24: Unicode Script Property, http://www.unicode.org/reports/tr24/
+#   UAX #24, Unicode Script Property: http://www.unicode.org/reports/tr24/
 #     Especially the sections:
-#        http://www.unicode.org/reports/tr24/#Assignment_Script_Values
-#        http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
+#       http://www.unicode.org/reports/tr24/#Assignment_Script_Values
+#       http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
 #
 Property:	Script
 Format:	nameStyle=none skipValue=Unknown
