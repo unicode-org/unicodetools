@@ -386,7 +386,7 @@ public final class UCD_Names implements UCD_Types {
         "Hatran",
         "Multani",
         "Old_Hungarian",
-        "Sign_Writing",
+        "SignWriting",  // Sutton SignWriting, in CamelCase without underscore
     };
 
     public static final Relation<String,String> EXTRA_SCRIPT = new Relation(new TreeMap(), LinkedHashSet.class);

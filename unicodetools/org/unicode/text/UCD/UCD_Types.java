@@ -501,8 +501,8 @@ public interface UCD_Types {
     Hatran = 130,
     Multani = 131,
     Old_Hungarian = 132,
-    Sign_Writing = 133,
-    LIMIT_SCRIPT = Sign_Writing + 1;
+    SignWriting = 133,  // Sutton SignWriting, in CamelCase without underscore
+    LIMIT_SCRIPT = SignWriting + 1;
 
     // Bidi_Paired_Bracket_Type
     public static final byte

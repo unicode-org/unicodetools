@@ -138,11 +138,12 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         return -1;
     }
 
-    /**
-     * These routines use the Java functions, because they only need to act on ASCII.
-     * Removes space, _, and lowercases.
-     */
+    // These routines use the Java functions, because they only need to act on ASCII.
 
+    /**
+     * Removes space, _, and lowercases.
+     * Calls ICU UnicodeProperty.toSkeleton() and may add Unicode tool specific overrides.
+     */
     public static String getSkeleton(String source) {
         return UnicodeProperty.toSkeleton(source);
         /*
@@ -169,15 +170,27 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
          */
     }
 
-    private static StringBuffer skeletonBuffer = new StringBuffer();
+    // private static StringBuffer skeletonBuffer = new StringBuffer();
 
     /**
-     * These routines use the Java functions, because they only need to act on ASCII
-     * Changes space, - into _, inserts _ between lower and UPPER.
+     * Sutton SignWriting really does want to be in CamelCase without underscore.
      */
+    private static final String Signwriting = "Signwriting";
+    /** @see Signwriting */
+    private static final String Sign_Writing = "Sign_Writing";
 
+    /**
+     * Changes space, - into _, inserts _ between lower and UPPER.
+     * Calls ICU UnicodeProperty.regularize() and adds Unicode tool specific overrides.
+     */
     public static String getUnskeleton(String source, boolean titlecaseStart) {
-        return UnicodeProperty.regularize(source, titlecaseStart);
+        String result = UnicodeProperty.regularize(source, titlecaseStart);
+        if (result != null && result.endsWith(Signwriting)) {
+            result = result.substring(0, result.length() - Signwriting.length()) + "SignWriting";
+        } else if (result != null && result.endsWith(Sign_Writing)) {
+            result = result.substring(0, result.length() - Sign_Writing.length()) + "SignWriting";
+        }
+        return result;
         /*
         if (source == null) return source;
         if (source.equals("noBreak")) return source; // HACK
@@ -207,17 +220,6 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
         return result.toString();
          */
-    }
-
-    public static String findSubstring(String source, Set target, boolean invert) {
-        final Iterator it = target.iterator();
-        while (it.hasNext()) {
-            final String other = it.next().toString();
-            if ((other.indexOf(source) >= 0) == invert) {
-                return other;
-            }
-        }
-        return null;
     }
 
     public static byte lookup(String source, String[] target, boolean skeletonize) {
