@@ -1,5 +1,5 @@
 # ScriptExtensions-8.0.0.txt
-# Date: 2015-03-06, 22:01:00 GMT [RP]
+# Date: 2015-03-11, 22:29:42 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2015 Unicode, Inc.
@@ -12,8 +12,8 @@
 # For more information, see:
 #   UAX #24, Unicode Script Property: http://www.unicode.org/reports/tr24/
 #     Especially the sections:
-#        http://www.unicode.org/reports/tr24/#Assignment_Script_Values
-#        http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
+#       http://www.unicode.org/reports/tr24/#Assignment_Script_Values
+#       http://www.unicode.org/reports/tr24/#Assignment_ScriptX_Values
 #
 # Each Script_Extensions value in this file consists of a set
 # of one or more abbreviated Script property values. The ordering of the
