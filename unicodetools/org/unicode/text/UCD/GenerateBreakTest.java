@@ -84,7 +84,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
     static final ToolUnicodePropertySource unicodePropertySource = ToolUnicodePropertySource.make("");
 
-    Set labels = new HashSet();
+    Set<String> labels = new HashSet<String>();
 
     int addToMap(String label) {
         labels.add(label);
@@ -97,7 +97,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
     int addToMapLast(String label) {
         final int result = addToMap(label);
-        final Set values = new HashSet(prop.getAvailableValues());
+        final Set<String> values = new HashSet<String>(prop.getAvailableValues());
         if (!values.equals(labels)) {
             throw new IllegalArgumentException("Missing Property Values: " + prop.getName()
                     + ": " + values.removeAll(labels));
@@ -333,9 +333,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
     protected String currentRule;
     protected String fileName;
     protected String propertyName;
-    protected List<String> samples = new ArrayList();
-    protected List<String> extraSamples = new ArrayList();
-    protected List<String> extraSingleSamples = new ArrayList();
+    protected List<String> samples = new ArrayList<String>();
+    protected List<String> extraSamples = new ArrayList<String>();
+    protected List<String> extraSingleSamples = new ArrayList<String>();
     protected int tableLimit = -1;
 
     protected int[] skippedSamples = new int[100];
@@ -489,10 +489,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 testCases.clear();
                 genTestItems(before, after, testCases);
                 genTestItems(before + "\u0308", after, testCases);
-                boolean isFirst = true;
                 for (final String testCase : testCases) {
                     printLine(out, testCase, !shortVersion /*&& isFirst */, false);
-                    isFirst = false;
                     ++counter;
                 }
             }
@@ -615,7 +613,6 @@ abstract public class GenerateBreakTest implements UCD_Types {
         final String width = "width='" + (100 / (tableLimit + 1)) + "%'";
         out.print("<table border='1' cellspacing='0' width='100%'>");
         String types = "";
-        final String codes = "";
         for (int type = 0; type < tableLimit; ++type) {
             final String after = samples.get(type);
             if (after == null) {
@@ -843,8 +840,18 @@ abstract public class GenerateBreakTest implements UCD_Types {
         // However, if there are characters that have different types (when recommended or not), then
         // we want a type for each cross-section
 
+        /**
+         * Set of lb values that already have sample characters.
+         * Faster to test than Map.contains(lb) because
+         * it avoids creating an Integer object for each code point.
+         */
         final BitSet bitset = new BitSet();
-        final Map list = new TreeMap();
+        /**
+         * Maps lb values to sample characters.
+         * We do not really need this map -- we could add each sample character directly to samples --
+         * but adding them in sorted order by lb value stabilizes the output.
+         */
+        final Map<Integer, String> lbToSampleChar = new TreeMap<Integer, String>();
 
         for (int i = 1; i <= 0x10FFFF; ++i) {
             if (!ucd.isAllocated(i)) {
@@ -857,64 +864,32 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 System.out.println("debug");
             }
             final byte lb = getSampleType(i);
-            final byte lb2 = lb; // HACK
-            if (lb == lb2 && skipType(lb)) {
+            if (skipType(lb)) {
                 skippedSamples[lb] = i;
                 didSkipSamples = true;
                 continue;
             }
 
-            final int combined = (mapType(lb) << 7) + mapType(lb2);
-            if (combined < 0) {
-                throw new IllegalArgumentException("should never happen");
+            if (!bitset.get(lb)) {
+                bitset.set(lb);
+                // Unassigned U+50005 is better than PUA U+E000
+                // because implementations may override PUA properties.
+                // A supplementary code point also adds to implementation code coverage.
+                String sample;
+                if (i == 0xE000 && getSampleType(0x50005) == lb) {
+                    sample = UTF16.valueOf(0x50005);
+                } else {
+                    sample = UTF16.valueOf(i);
+                }
+                lbToSampleChar.put(new Integer(lb), sample);
             }
-            if (!bitset.get(combined)) {
-                bitset.set(combined);
-                list.put(new Integer(combined), UTF16.valueOf(i));
-            }
-            /*
-            // if the sample slot is full OR
-            if (samples[lb] == null) {
-                samples[lb] = UTF16.valueOf(i);
-                if (sampleLimit <= lb) sampleLimit = lb + 1;
-                // byte lb2 = getType(i, true);
-                // if (lb2 != lb) bs.set(lb);
-            }
-             */
         }
 
-        final Iterator it = list.keySet().iterator();
-        while (it.hasNext()) {
-            final String sample = (String)list.get(it.next());
-            samples.add(sample);
-            if (DEBUG) {
-                System.out.println(getTypeID(sample) + ":\t" + ucd.getCodeAndName(sample));
-            }
-        }
+        samples.addAll(lbToSampleChar.values());
 
         tableLimit = samples.size();
 
         // now add values that are different
-        /*
-
-        for (int i = 1; i <= 0x10FFFF; ++i) {
-            if (!ucd.isAllocated(i)) continue;
-            if (0xD800 <= i && i <= 0xDFFF) continue;
-            byte lb = getType(i);
-            byte lb2 = getType(i, true);
-            if (lb == lb2) continue;
-            // pick some different ones
-            if (!bs.get(lb)) {
-                samples[sampleLimit++] = UTF16.valueOf(i);
-                bs.set(lb);
-            }
-            if (!bs2.get(lb2)) {
-                samples[sampleLimit++] = UTF16.valueOf(i);
-                bs.set(lb2);
-            }
-        }
-         */
-
         if (extraSamples.size() > 0) {
             samples.addAll(extraSamples);
         }
@@ -1013,19 +988,19 @@ abstract public class GenerateBreakTest implements UCD_Types {
             super(ucd);
             seg = segBuilder.make();
             this.sample = sample;
-            final List rules = segBuilder.getRules();
+            final List<String> rules = segBuilder.getRules();
             collectingRules = true;
-            for (final Iterator it = rules.iterator(); it.hasNext();) {
-                final String rule = (String)it.next();
+            for (final Iterator<String> it = rules.iterator(); it.hasNext();) {
+                final String rule = it.next();
                 setRule(rule);
             }
             variables = segBuilder.getOriginalVariables();
             collectingRules = false;
             map.add("Other", new UnicodeSet(0,0x10FFFF));
-            final UnicodeMap segSamples = seg.getSamples();
-            final Collection x = segSamples.getAvailableValues();
-            for (final Iterator it = x.iterator(); it.hasNext();) {
-                final String label = (String)it.next();
+            final UnicodeMap<String> segSamples = seg.getSamples();
+            final Collection<String> x = segSamples.getAvailableValues();
+            for (final Iterator<String> it = x.iterator(); it.hasNext();) {
+                final String label = it.next();
                 map.add(label, segSamples.keySet(label), true, false);
             }
             fileName = filename;
@@ -1044,18 +1019,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     ));
         }
 
-        private String[] combine(String[] extraSamples, String... strings) {
-            final String[] result = new String[extraSamples.length + strings.length];
-            System.arraycopy(extraSamples, 0, result, 0, extraSamples.length);
-            System.arraycopy(strings, 0, result, extraSamples.length, strings.length);
-            return result;
-        }
-
         @Override
         public boolean isBreak(String source, int offset) {
-            if (source.equals(DEBUG_STRING)) {
-                final int x = 0;
-            }
             final boolean result = seg.breaksAt(source, offset);
             setRule(String.valueOf(seg.getBreakRule()));
             return result;
@@ -2598,9 +2563,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
      */
 
     public static String[] add(String[] strings1, String... strings2) {
-        final ArrayList result = new ArrayList(Arrays.asList(strings1));
+        final ArrayList<String> result = new ArrayList<String>(Arrays.asList(strings1));
         result.addAll(Arrays.asList(strings2));
-        return (String[]) result.toArray(new String[strings1.length + strings2.length]);
+        return result.toArray(new String[strings1.length + strings2.length]);
     }
 }
-
