@@ -2479,7 +2479,7 @@ public class GenerateEmoji {
                 UnicodeSet chars = s.get1();
                 outText.append("\t\t<annotation cp='")
                 .append(chars.toPattern(false))
-                .append("'>")
+                .append("' draft='provisional'>")
                 .append(annotations)
                 .append("</annotation>\n")
                 ;
