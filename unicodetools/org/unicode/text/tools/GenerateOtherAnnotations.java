@@ -105,7 +105,7 @@ public class GenerateOtherAnnotations {
                         outText.append("' tts='")
                         .append(fix(ttsString, ld));
                     }
-                    outText.append("'>")
+                    outText.append("' draft='provisional'>")
                     .append(fix(annotationString, ld))
                     .append("</annotation>\n")
                     ;
