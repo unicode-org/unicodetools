@@ -15,6 +15,7 @@ import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.text.UnicodeSet;
 
 /**
+ * Tool to process raw character data, extracting a subset for faster processing by other tools.
  * Here are the latest results of the code point frequencies for one
 whole Base segment:
 

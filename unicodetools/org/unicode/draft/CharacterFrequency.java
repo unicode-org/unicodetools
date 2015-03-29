@@ -13,6 +13,10 @@ import org.unicode.jsp.FileUtilities.SemiFileReader;
 import org.unicode.text.utility.Settings;
 
 
+/**
+ * Run WebpageCharacterData first.
+ * Note that the data is post-html conversion, and whitespace is thus not represented.
+ */
 public class CharacterFrequency {
     private static final String DATA_DIR = Settings.OTHER_WORKSPACE_DIRECTORY +
     		"DATA/frequency/languages/";
@@ -249,7 +253,7 @@ public class CharacterFrequency {
             //			if (getLineCount() > CharacterFrequency.MAX_LINE_COUNT) {
             //				return false;
             //			}
-            if (DEBUG && (++lineCounter % 1000) == 0) {
+            if (DEBUG && ((++lineCounter % 1000) == 0 || lineCounter < 100)) {
                 System.out.println(lineCounter + "\t" + Arrays.asList(items) + "\t" + counter.getItemCount());
             }
 
