@@ -213,22 +213,32 @@ public class ScriptPopulation {
     static final UnicodeSet SHOULD_BE_GREEK = new UnicodeSet("[ℼ µℽ ʹ  ̓  ̈́]").freeze();
     static final UnicodeSet SHOULD_BE_COPTIC = new UnicodeSet("[\uFE24-\uFE26]").freeze();
     static final UnicodeSet SHOULD_BE_DEVA = new UnicodeSet("[᳓ ᳩ-ᳬᳮ-ᳱ ᳵ ᳶ]").freeze();
-    static final UnicodeSet latinMark = new UnicodeSet("[[:scx=common:][:scx=inherited:]&[:mark:]"
-            + "-[:variationselector:]"
-            + "-[\u034F]" // grapheme joiner
-            + "-[\\x{101FD}]"  // Phaistos Disc
-            + "-[:block=Musical Symbols:]"
-            + "]")
+    static final UnicodeSet MAKE_FORMAT_FOR_CHART = new UnicodeSet("["
+            + "[:variationselector:]"
+            + "[\u034F]" // grapheme joiner
+            +"]").freeze();
+    static final UnicodeSet MAKE_SYMBOL_FOR_CHART = new UnicodeSet("["
+            + "[:mark:]"
+            + "&[:block=Musical Symbols:]"
+            + "[\\x{101FD}]"  // Phaistos Disc
+            +"]").freeze();
+    static final UnicodeSet latinMark = new UnicodeSet("[[:scx=common:][:scx=inherited:]&[:mark:]]")
+    .removeAll(MAKE_FORMAT_FOR_CHART)
+    .removeAll(MAKE_SYMBOL_FOR_CHART)
     .removeAll(SHOULD_BE_GREEK)
     .removeAll(SHOULD_BE_COPTIC)
     .removeAll(SHOULD_BE_DEVA).freeze();
     static final UnicodeSet latinLetter = new UnicodeSet("[[:scx=common:][:scx=inherited:]&[:letter:]]")
+    .removeAll(MAKE_SYMBOL_FOR_CHART)
+    .removeAll(MAKE_FORMAT_FOR_CHART)
     .removeAll(SHOULD_BE_GREEK)
     .removeAll(SHOULD_BE_COPTIC)
-    .removeAll(SHOULD_BE_DEVA)
-    .complement().complement();
+    .removeAll(SHOULD_BE_DEVA);
     static final UnicodeSet SHOULD_BE_LATIN = new UnicodeSet(latinMark).addAll(latinLetter).freeze();
-    static final UnicodeSet SHOULD_BE_HAN = new UnicodeSet("[[:East_Asian_Width=Fullwidth:]\\p{Block=Counting Rod Numerals}-[:cn:]]").freeze();
+    static final UnicodeSet SHOULD_BE_HAN = new UnicodeSet("["
+            + "[:East_Asian_Width=Fullwidth:]"
+            + "\\p{Block=Counting Rod Numerals}"
+            + "-[:cn:]]").freeze();
     static final UnicodeSet SHOULD_BE_KANA = new UnicodeSet("[・]").freeze();
     static final UnicodeSet SHOULD_BE_PUNCTUATION = new UnicodeSet("[`´]").freeze();
 
@@ -295,7 +305,6 @@ public class ScriptPopulation {
                 return fixScript(UScript.HIRAGANA);
             }
 
-
             temp.clear();
             int script = UScript.getScript(cp);
             if (script != UScript.UNKNOWN && script != UScript.COMMON && script != UScript.INHERITED) {
@@ -323,8 +332,12 @@ public class ScriptPopulation {
             }
             if (SHOULD_BE_SYMBOL.contains(cp)) {
                 return Extra.Symbol.ordinal();
+            } else if (MAKE_SYMBOL_FOR_CHART.contains(cp)) {
+                return Extra.Symbol.ordinal();
             } else if (SHOULD_BE_PUNCTUATION.contains(cp)) {
                 return Extra.Punctuation.ordinal();
+            } else if (MAKE_FORMAT_FOR_CHART.contains(cp)) {
+                return Extra.Format.ordinal();
             }
 
             int category = UCharacter.getType(cp);
