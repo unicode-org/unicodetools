@@ -33,21 +33,21 @@
 #  List any set on the console, for viewing and debugging.
 ##########################
 # There is new syntax for comparing UnicodeMaps
-#  Map <unicodeMap> <unicodeMap>
-# The syntax is still being worked on.
-# To do:
-#  Parse \m{...} by itself
-#  Extend the UnicodeSyntax to take * (drop the multiple versions, not needed)
-#  Fix UnicodeProperty to not have a final getProperty...
-#  Fix UnicodeMap to return an iterator over EntryRange<V>
-#  Move utilities into UnicodeMap
-#  Make a YSymbolTable that returns a UnicodeMap for a property name
-#  &c.
 #
-# You can also use:
+#  Map <unicodeMap> relation <unicodeMap>
+#    unicodeMap           := { um_list }
+#    umList       := umItem (addItem | removeItem | retainItem)*
+#    addList      := [,|] umItem
+#    removeItem   := '-' (umItem | unicodeSet) // you can remove keys (unicodeSet) from a map
+#    retainItem   := '&' (umItem | unicodeSet) // you can retain keys (unicodeSet) in a map (removing others)
+#    umItem       := unicodeSet '=' value
+#    umItem       := '\m{' '*'? propertyName '}' // the * indicates the last version, equiv to U-1: for properties.
+#
+# For debugging, you can also use:
 #  ShowMap <unicodeMap>
 # For example: 
-#  ShowMap {\m{Age}}
+#  ShowMap {\m{whitespace}-\p{whitespace=no},{[b]=strangeValue}}
+#  this gets the map for whitespace, eg {' '=Yes, 'a'=No, ...}, subtracts the entries with No, and adds 'b'=strangeValue
 ##########################
 # Test <unicodeSet> <relation> <unicodeSet>
 #
@@ -398,7 +398,7 @@ Let $IDInclusions = [[:block=/Ideographs/:][\U00020000-\U0003FFFF] & [:gc=Cn:] -
 \p{LB=ID} ⊃ $IDInclusions
 \p{Line_Break=Unknown} = [\p{General_Category=Unassigned} \p{GeneralCategory=PrivateUse} - $IDInclusions - [\u20BB-\u20CF]]
 
-Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379]
+Let $OPInclusions = [\u00A1\u00BF\u2E18\U00013258-\U0001325A\U00013286\U00013288\U00013379\x{145CE}]
 # 7.0 Removed hack  - [\u2308\u230A]
 
 \p{LB=OP} = [\p{GC=Ps} $OPInclusions]
@@ -421,7 +421,7 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 \p{LB=ZW} = \N{ZERO WIDTH SPACE}
 
 # SA are limited to certain scripts:
-Let $SAScripts = [\p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet}]
+Let $SAScripts = [\p{script=ahom} \p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet}]
 $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
@@ -572,5 +572,16 @@ $punct  ⊇ [[\u0021-\u007E] - [0-9 A-Z a-z]]
 [$alpha $lower $upper $punct $digit $xdigit $alnum $space $blank $cntrl $graph $print $word] = [^\p{gc=unassigned} \p{gc=surrogate}]
 
 # Map tests
-Map {\m{kMandarin}-\p{Age=V7_0}-[\u3435\u63A0\u7565\U0002098C]} = {\m{*kMandarin}-\p{Age=V7_0}-[\u3435\u63A0\u7565\U0002098C]}
-Map {\m{Case_Folding}-\p{Age=V7_0}} = {\m{*Case_Folding}-\p{Age=V7_0}}
+
+# Verify that the mappings in Case_Folding for the old characters, 
+# are the same as the previous version's
+
+Map {\m{Case_Folding}&\p{age=7.0}} = {\m{*Case_Folding}&\p{age=7.0}}
+
+# The following are 'red flag' tests, just so that we review the changes and make sure they are ok.
+
+# Verify that the mappings in kMandarin
+# are the same as the last version's
+# Once they are checked, reset the exceptions (in [...]) so that no warning is given
+
+Map {\m{kMandarin}-[\x{9FCD}-\x{9FCF}\x{9FD4}\x{9FD5}]} = {\m{*kMandarin}}

@@ -11,7 +11,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.regex.Pattern;
 
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Settings;
@@ -34,8 +33,9 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public class TestUnicodeInvariants {
+    private static final boolean DEBUG = false;
 
-    private static final Pattern IN_PATTERN = Pattern.compile("(.*)([≠=])(.*)");
+    //private static final Pattern IN_PATTERN = Pattern.compile("(.*)([≠=])(.*)");
     private static final boolean ICU_VERSION = false; // ignore the versions if this is true
     private static final String LATEST_VERSION = Settings.latestVersion; // "5.2.0"; //
     private static final Factory LATEST_PROPS = getProperties(LATEST_VERSION);
@@ -45,7 +45,7 @@ public class TestUnicodeInvariants {
     static boolean doHtml = true;
 
     private static final int
-    HELP1 = 0,
+    //HELP1 = 0,
     FILE = 1,
     RANGE = 2,
     TABLE = 3
@@ -103,116 +103,121 @@ public class TestUnicodeInvariants {
     static final UnicodeSet INVARIANT_RELATIONS = new UnicodeSet("[=\u2282\u2283\u2286\u2287∥≉]");
     static final ParsePosition pp = new ParsePosition(0);
 
+    private static PrintWriter out;
+
     public static void testInvariants(String outputFile, boolean doRange) throws IOException {
         boolean showScript = false;
-        final PrintWriter out2 = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "UnicodeTestResults." + (doHtml ? "html" : "txt"));
-        final StringWriter writer = new StringWriter();
-        out = new PrintWriter(writer);
-        if (doHtml) {
-            out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
-            out.println("<link rel='stylesheet' type='text/css' href='UnicodeTestResults.css'>");
-            out.println("<title>Unicode Property Results</title>");
-            out.println("<style>\n" +
-                    "p {margin:0}\n" +
-                    ".b {font-weight:bold; color:green}\n" +
-                    ".bb {font-weight:bold; color:blue}\n" +
-                    ".e, .f {color:red}\n" +
-                    ".s {color:gray}\n" +
-                    "</style>");
-            out.println("</head><body><h1>#Unicode Invariant Results</h1>");
-        } else {
-            out.write('\uFEFF'); // BOM
-        }
-        final BufferedReader in = BagFormatter.openUTF8Reader(Settings.SRC_UCD_DIR, outputFile);
-        final HTMLTabber tabber = new Tabber.HTMLTabber();
-
-        errorLister = new BagFormatter()
-        .setMergeRanges(doRange)
-        .setLabelSource(null)
-        .setUnicodePropertyFactory(LATEST_PROPS)
-        //.setTableHtml("<table class='e'>")
-        .setShowLiteral(toHTML)
-        .setFixName(toHTML);
-        errorLister.setShowTotal(false);
-        if (doHtml) {
-            errorLister.setTabber(tabber);
-        }
-
-        showLister = new BagFormatter()
-        .setMergeRanges(doRange)
-        //.setLabelSource(null)
-        .setUnicodePropertyFactory(LATEST_PROPS)
-        //.setTableHtml("<table class='s'>")
-        .setShowLiteral(toHTML);
-        showLister.setShowTotal(false);
-        if (showScript) {
-            showLister.setValueSource(LATEST_PROPS.getProperty("script"));
-        }
-        if (doHtml) {
-            showLister.setTabber(tabber);
-        }
-
-        //symbolTable = new ChainedSymbolTable();
-        //      new ChainedSymbolTable(new SymbolTable[] {
-        //            ToolUnicodePropertySource.make(UCD.lastVersion).getSymbolTable("\u00D7"),
-        //            ToolUnicodePropertySource.make(Default.ucdVersion()).getSymbolTable("")});
-        parseErrorCount = 0;
-        testFailureCount = 0;
-        while (true) {
-            String line = in.readLine();
-            if (line == null) {
-                break;
-            }
-            try {
-                if (line.startsWith("\uFEFF")) {
-                    line = line.substring(1);
-                }
-                println(line);
-                line = line.trim();
-                final int pos = line.indexOf('#');
-                if (pos >= 0) {
-                    line = line.substring(0,pos).trim();
-                }
-                if (line.length() == 0) {
-                    continue;
-                }
-                if (line.equalsIgnoreCase("Stop")) {
-                    break;
-                } else if (line.startsWith("Let")) {
-                    letLine(pp, line);
-                } else if (line.startsWith("In")) {
-                    inLine(pp, line);
-                } else if (line.startsWith("ShowScript")) {
-                    showScript = true;
-                } else if (line.startsWith("HideScript")) {
-                    showScript = false;
-                } else if (line.startsWith("Map")) {
-                    testMapLine(line, pp);
-                } else if (line.startsWith("ShowMap")) {
-                    showMapLine(line, pp);
-                } else if (line.startsWith("Show")) {
-                    showLine(line, pp);
+        try (final PrintWriter out2 = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
+            final StringWriter writer = new StringWriter();
+            try (PrintWriter out3 = new PrintWriter(writer)) {
+                out = out3;
+                if (doHtml) {
+                    out3.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>");
+                    out3.println("<link rel='stylesheet' type='text/css' href='UnicodeTestResults.css'>");
+                    out3.println("<title>Unicode Property Results</title>");
+                    out3.println("<style>\n" +
+                            "p {margin:0}\n" +
+                            ".b {font-weight:bold; color:green}\n" +
+                            ".bb {font-weight:bold; color:blue}\n" +
+                            ".e, .f {color:red}\n" +
+                            ".s {color:gray}\n" +
+                            "</style>");
+                    out3.println("</head><body><h1>#Unicode Invariant Results</h1>");
                 } else {
-                    testLine(line, pp);
+                    out3.write('\uFEFF'); // BOM
                 }
-            } catch (final Exception e) {
-                parseErrorCount = parseError(parseErrorCount, line, e);
-                continue;
+                try (final BufferedReader in = BagFormatter.openUTF8Reader(Settings.SRC_UCD_DIR, outputFile)) {
+                    final HTMLTabber tabber = new Tabber.HTMLTabber();
+
+                    errorLister = new BagFormatter()
+                    .setMergeRanges(doRange)
+                    .setLabelSource(null)
+                    .setUnicodePropertyFactory(LATEST_PROPS)
+                    //.setTableHtml("<table class='e'>")
+                    .setShowLiteral(toHTML)
+                    .setFixName(toHTML);
+                    errorLister.setShowTotal(false);
+                    if (doHtml) {
+                        errorLister.setTabber(tabber);
+                    }
+
+                    showLister = new BagFormatter()
+                    .setMergeRanges(doRange)
+                    //.setLabelSource(null)
+                    .setUnicodePropertyFactory(LATEST_PROPS)
+                    //.setTableHtml("<table class='s'>")
+                    .setShowLiteral(toHTML);
+                    showLister.setShowTotal(false);
+                    if (showScript) {
+                        showLister.setValueSource(LATEST_PROPS.getProperty("script"));
+                    }
+                    if (doHtml) {
+                        showLister.setTabber(tabber);
+                    }
+
+                    //symbolTable = new ChainedSymbolTable();
+                    //      new ChainedSymbolTable(new SymbolTable[] {
+                    //            ToolUnicodePropertySource.make(UCD.lastVersion).getSymbolTable("\u00D7"),
+                    //            ToolUnicodePropertySource.make(Default.ucdVersion()).getSymbolTable("")});
+                    parseErrorCount = 0;
+                    testFailureCount = 0;
+                    while (true) {
+                        String line = in.readLine();
+                        if (line == null) {
+                            break;
+                        }
+                        try {
+                            if (line.startsWith("\uFEFF")) {
+                                line = line.substring(1);
+                            }
+                            println(line);
+                            line = line.trim();
+                            final int pos = line.indexOf('#');
+                            if (pos >= 0) {
+                                line = line.substring(0,pos).trim();
+                            }
+                            if (line.length() == 0) {
+                                continue;
+                            }
+                            if (line.equalsIgnoreCase("Stop")) {
+                                break;
+                            } else if (line.startsWith("Let")) {
+                                letLine(pp, line);
+                            } else if (line.startsWith("In")) {
+                                inLine(pp, line);
+                            } else if (line.startsWith("ShowScript")) {
+                                showScript = true;
+                            } else if (line.startsWith("HideScript")) {
+                                showScript = false;
+                            } else if (line.startsWith("Map")) {
+                                testMapLine(line, pp);
+                            } else if (line.startsWith("ShowMap")) {
+                                showMapLine(line, pp);
+                            } else if (line.startsWith("Show")) {
+                                showLine(line, pp);
+                            } else {
+                                testLine(line, pp);
+                            }
+                        } catch (final Exception e) {
+                            parseErrorCount = parseError(parseErrorCount, line, e);
+                            continue;
+                        }
+                    }
+                    println();
+                    println("**** SUMMARY ****");
+                    println();
+                    println("# ParseErrorCount=" + parseErrorCount);
+                    System.out.println("ParseErrorCount=" + parseErrorCount);
+                    println("# TestFailureCount=" + testFailureCount);
+                    System.out.println("TestFailureCount=" + testFailureCount);
+                    if (doHtml) {
+                        out3.println("</body></html>");
+                    }
+                    out2.append(writer.getBuffer());
+                }
             }
+            out = null;
         }
-        println();
-        println("**** SUMMARY ****");
-        println();
-        println("# ParseErrorCount=" + parseErrorCount);
-        System.out.println("ParseErrorCount=" + parseErrorCount);
-        println("# TestFailureCount=" + testFailureCount);
-        System.out.println("TestFailureCount=" + testFailureCount);
-        if (doHtml) {
-            out.println("</body></html>");
-        }
-        out2.append(writer.getBuffer());
-        out2.close();
-        out.close();
     }
 
     static class PropertyComparison {
@@ -225,7 +230,7 @@ public class TestUnicodeInvariants {
     private static void inLine(ParsePosition pp, String line) throws ParseException {
         pp.setIndex(2);
         final PropertyComparison propertyComparison = getPropertyComparison(pp, line);
-        final UnicodeMap failures = new UnicodeMap();
+        final UnicodeMap<String> failures = new UnicodeMap<>();
 
         for (final UnicodeSetIterator it = new UnicodeSetIterator(propertyComparison.valueSet); it.next();) {
             final String value1 = propertyComparison.property1.getValue(it.codepoint);
@@ -334,12 +339,12 @@ public class TestUnicodeInvariants {
         }
 
         @Override
-        protected List _getAvailableValues(List result) {
+        protected List<String> _getAvailableValues(List<String> result) {
             return propOrFilters.get(0).prop.getAvailableValues(result);
         }
 
         @Override
-        protected List _getNameAliases(List result) {
+        protected List<String> _getNameAliases(List<String> result) {
             final StringBuffer name = new StringBuffer();
             for (int i = 0; i < propOrFilters.size(); ++i) {
                 if (i != 0) {
@@ -400,7 +405,7 @@ public class TestUnicodeInvariants {
         }
 
         @Override
-        protected List _getValueAliases(String valueAlias, List result) {
+        protected List<String> _getValueAliases(String valueAlias, List<String> result) {
             return propOrFilters.get(0).prop.getAvailableValues(result);
         }
 
@@ -423,7 +428,7 @@ public class TestUnicodeInvariants {
         valueSet.complement().complement();
 
         symbolTable.add(variable.substring(1), valueSet.toPattern(false));
-        if (false) {
+        if (DEBUG) {
             System.out.println("Added variable: <" + variable + "><" + value + ">");
         }
         showSet(pp, value);
@@ -447,7 +452,7 @@ public class TestUnicodeInvariants {
             part = part.substring(4).trim();
             showLister.setMergeRanges(false);
         }
-        UnicodeMap um = UMP.parse(part, pp);
+        UnicodeMap<String> um = UMP.parse(part, pp);
         if (pp.getErrorIndex() != -1 || pp.getIndex() != part.length()) {
             throw new IllegalArgumentException(pp.toString());
         }
@@ -559,7 +564,7 @@ public class TestUnicodeInvariants {
         println();
     }
 
-    static UnicodeMapParser UMP = UnicodeMapParser.create(UnicodeMapParser.STRING_VALUE_PARSER, 
+    static UnicodeMapParser<String> UMP = UnicodeMapParser.create(UnicodeMapParser.STRING_VALUE_PARSER, 
             new UnicodeMapParser.ChainedFactory(
                     getProperties(Settings.latestVersion), 
                     IndexUnicodeProperties.make(Settings.latestVersion)), 
@@ -570,8 +575,8 @@ public class TestUnicodeInvariants {
         char relation = 0;
         String rightSide = null;
         String leftSide = null;
-        UnicodeMap leftSet = null;
-        UnicodeMap rightSet = null;
+        UnicodeMap<String> leftSet = null;
+        UnicodeMap<String> rightSet = null;
 
         pp.setIndex(3);
         leftSet = UMP.parse(line, pp);
@@ -621,13 +626,13 @@ public class TestUnicodeInvariants {
         default: throw new IllegalArgumentException("Internal Error");
         }
 
-        checkExpected(right_left, UnicodeMapParser.removeAll(new UnicodeMap().putAll(rightSet), leftSet), "In", rightSide, "But Not In", leftSide);
-        checkExpected(rightAndLeft, UnicodeMapParser.retainAll(new UnicodeMap().putAll(rightSet), leftSet), "In", rightSide, "And In", leftSide);
-        checkExpected(left_right, UnicodeMapParser.removeAll(new UnicodeMap().putAll(leftSet), rightSet), "In", leftSide, "But Not In", rightSide);
+        checkExpected(right_left, UnicodeMapParser.removeAll(new UnicodeMap<String>().putAll(rightSet), leftSet), "In", rightSide, "But Not In", leftSide);
+        checkExpected(rightAndLeft, UnicodeMapParser.retainAll(new UnicodeMap<String>().putAll(rightSet), leftSet), "In", rightSide, "And In", leftSide);
+        checkExpected(left_right, UnicodeMapParser.removeAll(new UnicodeMap<String>().putAll(leftSet), rightSet), "In", leftSide, "But Not In", rightSide);
     }
 
 
-    private static void checkExpected(Expected expected, UnicodeMap segment, String rightStatus, String rightSide,
+    private static void checkExpected(Expected expected, UnicodeMap<String> segment, String rightStatus, String rightSide,
             String leftStatus, String leftSide) {
         switch (expected) {
         case empty: 
@@ -735,7 +740,6 @@ public class TestUnicodeInvariants {
     private static final UnicodeSet PATTERN_WHITE_SPACE = new UnicodeSet("\\p{pattern white space}").freeze();
     private static int testFailureCount;
     private static int parseErrorCount;
-    private static PrintWriter out;
     private static BagFormatter errorLister;
     private static BagFormatter showLister;
     private static ChainedSymbolTable symbolTable = new ChainedSymbolTable();
