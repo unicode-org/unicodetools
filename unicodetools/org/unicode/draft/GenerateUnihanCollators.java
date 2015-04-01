@@ -33,6 +33,7 @@ import org.unicode.text.utility.Utility;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.impl.Differ;
 import com.ibm.icu.impl.MultiComparator;
@@ -102,7 +103,17 @@ public class GenerateUnihanCollators {
     };
 
     static final UnicodeMap<String>           kTotalStrokes       = Default.ucd().getHanValue("kTotalStrokes");
-    static final UnicodeMap<Integer>          bestStrokesS         = Default.ucd().getHanValue("kTotalStrokes");
+    static final UnicodeMap<Integer>          bestStrokesS        = new UnicodeMap<Integer>();
+    static {
+        for (EntryRange<String> s : kTotalStrokes.entryRanges()) {
+            Integer value = Integer.parseInt(s.value);
+            if (s.string != null) {
+                bestStrokesS.put(s.string, value);
+            } else {
+                bestStrokesS.putAll(s.codepoint, s.codepointEnd, value);
+            }
+        }
+    }
     static final UnicodeMap<Integer>          bestStrokesT         = new UnicodeMap<Integer>();
 
     static UnicodeMap<Row.R2<String, String>> bihuaData           = new UnicodeMap<Row.R2<String, String>>();
