@@ -23,7 +23,7 @@ import com.ibm.icu.util.Output;
  * removeItem   := '-' (umItem | string)
  * retainItem   := '&' (umItem | string)
  * umItem       := string '=' value
- * umItem       := '\m{' propertyName '}'
+ * umItem       := '\m{' '*'? propertyName '}'
  * string       := (unicodeSet | codepoint+)
  * codepoint    := character
  *              |  '\\u' ('{' [A-Fa-f0-9]{1,6} '}'
