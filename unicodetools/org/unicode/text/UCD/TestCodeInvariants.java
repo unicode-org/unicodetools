@@ -63,9 +63,11 @@ public class TestCodeInvariants {
                     }
                 }
 
-                // We also have the invariants for implict values, though not captured on the stability_policy page, that 
-                // 1. if a character has a any script extensions value with 1 implicit element, then it the script value for the character
-                // 2. NO script extensions value set with more than one element can contain an implicit value
+                // We also have the invariants for implicit values, though not captured on the stability_policy page, that 
+                // 1. BAD: scx={Common} and sc=Arabic. 
+                //    If a character has a script extensions value with 1 implicit element, then it must be the script value for the character
+                // 2. BAD: scx={Common, Arabic}
+                //    NO script extensions value set with more than one element can contain an implicit value
 
                 for (Set<Script_Values> extensions : scriptExtension.values()) {
                     if (extensions.size() == 1) {
