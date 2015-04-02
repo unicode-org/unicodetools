@@ -32,23 +32,6 @@
 # Show <unicodeSet>
 #  List any set on the console, for viewing and debugging.
 ##########################
-# There is new syntax for comparing UnicodeMaps
-#
-#  Map <unicodeMap> relation <unicodeMap>
-#    unicodeMap           := { um_list }
-#    umList       := umItem (addItem | removeItem | retainItem)*
-#    addList      := [,|] umItem
-#    removeItem   := '-' (umItem | unicodeSet) // you can remove keys (unicodeSet) from a map
-#    retainItem   := '&' (umItem | unicodeSet) // you can retain keys (unicodeSet) in a map (removing others)
-#    umItem       := unicodeSet '=' value
-#    umItem       := '\m{' '*'? propertyName '}' // the * indicates the last version, equiv to U-1: for properties.
-#
-# For debugging, you can also use:
-#  ShowMap <unicodeMap>
-# For example: 
-#  ShowMap {\m{whitespace}-\p{whitespace=no},{[b]=strangeValue}}
-#  this gets the map for whitespace, eg {' '=Yes, 'a'=No, ...}, subtracts the entries with No, and adds 'b'=strangeValue
-##########################
 # Test <unicodeSet> <relation> <unicodeSet>
 #
 # Tests that the relation is true for the two sets. The "Test" keyword is optional.
@@ -90,6 +73,41 @@
 #       it gets the decomposition mapping of X, then filters out all NSM characters, then gets the Bidi_Class.
 #       It then tests that against the result of filtering out NSM characters from X, then getting the BIDI_Class.
 #
+##########################
+# There is new syntax for testing UnicodeMaps
+#
+#  Map <unicodeMap> <relation> <unicodeMap>
+#
+#    unicodeMap   := { um_list }
+#    umList       := umItem (addItem | removeItem | retainItem)*
+#
+#    umItem       := unicodeSet '=' value
+#    umItem       := '\m{' '*'? propertyName '}' // the * indicates the last version, equiv to U-1: for properties.
+#
+#    addList      := [,|] umItem
+#    removeItem   := '-' (umItem | unicodeSet) // you can remove keys (unicodeSet) from a map
+#    retainItem   := '&' (umItem | unicodeSet) // you can retain keys (unicodeSet) in a map (removing others)
+#
+# A map is logically a set of pairs {<key1,value1​>, <key2,value2>...}, where the keys are unique
+#    You can add another map to it. If any new pair has the same key as an old one, the old pair is removed.
+#    You can remove a map or set from it. (Set-Difference)
+#        For a set, this removes all the keys that are in the set.
+#        For a map, this removes those pairs that are identical.
+#    You can also retain elements from a map or set. (Intersection)
+#        Sets vs Maps work similarly to removal.
+#
+# The relation tests the set of pairs. So two maps are equal when the pairs are the same.
+#
+# TODO:
+#    Add value operations:
+#    - remove/retain pairs with particular values
+#    - extract the set of keys from a map, for pairs with particular values
+#
+# For debugging, you can also use:
+#  ShowMap <unicodeMap>
+# For example: 
+#  ShowMap {\m{whitespace}-\p{whitespace=no},{[b]=strangeValue}}
+#  this gets the map for whitespace, eg {' '=Yes, 'a'=No, ...}, subtracts the entries with No, and adds 'b'=strangeValue
 ##########################
 # General Constants
 ##########################
@@ -420,15 +438,37 @@ Let $QUInclusions = [\u275F-\u2760 \U0001F676-\U0001F678 \u0022 \u0027 \u275B-\u
 \p{LB=WJ} = [\N{WORD JOINER} \N{ZERO WIDTH NO-BREAK SPACE}]
 \p{LB=ZW} = \N{ZERO WIDTH SPACE}
 
+# For the scripts (mostly of SE Asia) which have been identified as normally not
+# using spaces in their typography and which have therefore had their letters
+# all given Line_Break=SA (complex context dependent), test the following
+# invariant:
+# 
+# Add all characters that have an explicit Script property value from among the
+# set of scripts known to use Line_Break=SA values to the set $SAScripts. Then
+# the intersection of the $SAScripts set with the set of characters whose Line_Break
+# values are either LineBreak=SA or LineBreak=CM should always be
+# identical to the intersection of the $SAScripts set with the set of characters
+# which are Alphabetic=True or whose General_Category values are General_Category=Cf
+# or General_Category=Mn. 
+# 
+# Exceptional cases for which characters in $SAScripts have LineBreak=SA but
+# where those characters are non-alphabetic or have General_Category other
+# than Cf or Mn (such as General_Category=No numerical characters) are
+# covered by adding them to the exception set $SAScriptExceptions for the test.
+
 # SA are limited to certain scripts:
 Let $SAScripts = [\p{script=ahom} \p{script=thai} \p{script=lao} \p{script=myanmar} \p{script=khmer} \p{script=Tai_Le} \p{script=New_Tai_Lue} \p{script=Tai_Tham} \p{script=Tai_Viet}]
 $SAScripts ⊇ \p{LineBreak=SA}
 
 # And in $SA scripts, they are all the alphabetic spacing characters, plus some odd Cf & Mn, plus the NEW TAI LUE THAM DIGIT ONE
-Let $SAScriptExceptions = [\uAA7D \u19DA\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAA7B\uAADB-\uAADF]
+Let $SAScriptExceptions = [\x{1173A}\x{1173B}\x{1173F} \uAA7D \u19DA\u1063\u1064\u1069-\u106D\u1087-\u108C\u108F\u109A\u109B\u109E\u109F\u19DE\u19DF\u1AA0-\u1AA6\u1AA8-\u1AAD\uAA77-\uAA79\uAA7B\uAADE-\uAADF]
 #7.0 Added AA7D
 
 [$SAScripts & [\p{Alphabetic} \p{gc=cf} \p{gc=Mn} $SAScriptExceptions]] = [$SAScripts & [\p{LineBreak=SA} \p{LineBreak=CM}]]
+
+# Make sure there are not redundancies in the $SAScriptExceptions. These are not formally a problem, but make the test cleaner
+
+$SAScriptExceptions ∥ [\p{Alphabetic} \p{gc=cf} \p{gc=Mn}]
 
 ##########################
 # Word Break
