@@ -816,6 +816,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return make(VersionInfo.getInstance(ucdVersion));
     }
 
+    public static final IndexUnicodeProperties make(UcdPropertyValues.Age_Values ucdVersion) {
+        return make(VersionInfo.getInstance(ucdVersion.getShortName()));
+    }
 
     private final VersionInfo ucdVersion;
     final boolean oldVersion;

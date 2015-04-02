@@ -75,6 +75,12 @@ public class TestUnicodeInvariants {
         System.out.println("HTML?\t" + doHtml);
 
         testInvariants(file, doRange);
+        TestCodeInvariants.main(null);
+    }
+
+    private static void testCodeInvariants() {
+        // TODO Auto-generated method stub
+        
     }
 
     static Transliterator toHTML;
