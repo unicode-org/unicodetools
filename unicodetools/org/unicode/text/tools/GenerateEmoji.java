@@ -152,7 +152,7 @@ public class GenerateEmoji {
         ORDERING_TO_CHAR.freeze();
     }
 
-    static final Comparator               CODEPOINT_COMPARE         =
+    public static final Comparator               CODEPOINT_COMPARE         =
             new MultiComparator<String>(
                     mp,
                     UCA_COLLATOR, // don't

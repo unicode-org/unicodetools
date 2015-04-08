@@ -1,14 +1,19 @@
 package org.unicode.text.tools;
 
 import java.util.BitSet;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Counter2;
+import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.draft.CharacterFrequency;
+import org.unicode.text.tools.ScriptPopulation.Category.Extra;
 
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.lang.UScript.ScriptUsage;
 import com.ibm.icu.text.DecimalFormat;
@@ -35,16 +40,29 @@ public class ScriptPopulation {
         //    LikelySubtags likely = new LikelySubtags(supplemental);
         //    Counter2<Integer> scriptPopulation = new Counter2<>();
         Counter2<Integer> scriptFrequency = new Counter2<>();
+        Counter2<Pair<Boolean,Integer>> notoScriptFrequency = new Counter2<>();
+        Counter<Pair<Boolean,Integer>> notoScriptCount = new Counter<>();
         Counter2<Integer> rawScriptFrequency = new Counter2<>();
         Counter<Integer> freq = CharacterFrequency.getCodePointCounter("mul", true);
 
         @SuppressWarnings("unchecked")
         Counter2<Integer>[] categoryToTopItems = new Counter2[Category.CODE_LIMIT];
+        Counter2<Integer>[] notoCategoryToTopItems = new Counter2[Category.CODE_LIMIT];
+        Counter2<Integer>[] nonotoCategoryToTopItems = new Counter2[Category.CODE_LIMIT];
         for (int i = 0; i < categoryToTopItems.length; ++i) {
             categoryToTopItems[i] = new Counter2<>();
+            notoCategoryToTopItems[i] = new Counter2<>();
+            nonotoCategoryToTopItems[i] = new Counter2<>();
         }
+        
+//        for (int i = 0; i <= 0x10FFFF; ++i) {
+//            int scriptNum = Category.getCategory(i);
+//            Pair<Boolean, Integer> pair = Pair.of(false, scriptNum);
+//            notoScriptCount.add(pair, 1);
+//            notoScriptFrequency.add(pair, 0d);
+//        }
 
-        for (int cp : freq){
+        for (int cp = 0; cp <= 0x10FFFF; ++cp){
             long frequency = freq.get(cp);
             rawScriptFrequency.add(UScript.getScript(cp), (double) frequency);
 
@@ -60,8 +78,12 @@ public class ScriptPopulation {
                 continue;
             }
             scriptFrequency.add(scriptNum, (double)frequency);
-            categoryToTopItems[scriptNum]
-                    .add(i, (double)frequency);
+            categoryToTopItems[scriptNum].add(i, (double)frequency);
+            
+            boolean isNoto = NotoCoverage.isCovered(cp);
+            notoScriptFrequency.add(Pair.of(isNoto, scriptNum), (double)frequency);
+            notoScriptCount.add(Pair.of(isNoto, scriptNum), 1);
+            (isNoto ? notoCategoryToTopItems[scriptNum] : nonotoCategoryToTopItems[scriptNum]).add(i, (double)frequency);
         }
         // make sure all existing scripts have at least 1
         for (int script = Category.OFFSET; script < Category.CODE_LIMIT; ++script) {
@@ -87,22 +109,40 @@ public class ScriptPopulation {
                     + "\t" + Category.getName(category)  + "\t" + Category.getUsageName(category));
             int max = 20;
             Counter2<Integer> topItems = categoryToTopItems[category];
-            for (Integer codePoint : topItems.getKeysetSortedByCount(false, null)) {
-                if (--max < 0) {
-                    System.out.print("\t…");
-                    break;
-                }
-                Double cFreq = topItems.getCount(codePoint);
-                String str = UTF16.valueOf(codePoint);
-                if (codePoint == '=' || codePoint == '"' || codePoint == '\'' || codePoint == '+') {
-                    str = '\'' + str;
-                }
-                System.out.print(
-                        (SHOW_FREQ ? "\t" + cFreq : "")
-                        + "\t" + str);
-            };
+            showTop(max, topItems);
             System.out.println();
         }
+        
+        System.out.println("\nNOTO\n");
+        System.out.println("№\t-log(%)\tCount\tNoto?\tScript (*Cat)\tUAX31 Status\t1st\t2nd\t3rd\t4th\t5th\t6th\t7th\t8th\t9th\t10th\t11th\t12th\t13th\t14th\t15th\t16th\t17th\t18th\t19th\t20th\t…");
+
+        count = 0;
+        for (Pair<Boolean, Integer> entry : notoScriptFrequency.getKeysetSortedByCount(false, null)) {
+            Double frequ = notoScriptFrequency.getCount(entry);
+            long countItems = notoScriptCount.getCount(entry);
+            Boolean inNoto = entry.getFirst();
+            String noto = inNoto ? "Noto" : "missing";
+            Integer category = entry.getSecond();
+            if (category == Extra.Format.ordinal()
+                    || category == Extra.Unknown.ordinal()
+                    || category == Extra.Private.ordinal()
+                    || category == Extra.Control.ordinal()
+                    || category == Extra.Whitespace.ordinal()
+                    ) {
+                continue;
+            }
+            System.out.print(++count
+                    + (true ? "\t" + nf.format(Math.log(totalFreq/frequ)) : "")
+                    + "\t" + countItems
+                    + "\t" + noto
+                    + "\t" + Category.getName(category)
+                    + "\t" + Category.getUsageName(category));
+            int max = 20;
+            Counter2<Integer> topItems = inNoto ? notoCategoryToTopItems[category] : nonotoCategoryToTopItems[category];
+            showTop(max, topItems);
+            System.out.println();
+        }
+
         if (true) return;
 
         //    Relation<String, String> languagesWithoutScripts = Relation.of(new TreeMap<String,Set<String>>(), TreeSet.class);
@@ -209,6 +249,23 @@ public class ScriptPopulation {
         //    showScripts(fixedScripts);
     }
 
+    private static void showTop(int max, Counter2<Integer> topItems) {
+        for (Integer codePoint : topItems.getKeysetSortedByCount(false, null)) {
+            if (--max < 0) {
+                System.out.print("\t…");
+                break;
+            }
+            Double cFreq = topItems.getCount(codePoint);
+            String str = UTF16.valueOf(codePoint);
+            if (codePoint == '=' || codePoint == '"' || codePoint == '\'' || codePoint == '+') {
+                str = '\'' + str;
+            }
+            System.out.print(
+                    (SHOW_FREQ ? "\t" + cFreq : "")
+                    + "\t" + str);
+        };
+    }
+
     static final UnicodeSet SHOULD_BE_SYMBOL = new UnicodeSet("[@ * \\& # % ‰ ‱ † ‡ ※]").freeze(); // PRI 228
     static final UnicodeSet SHOULD_BE_GREEK = new UnicodeSet("[ℼ µℽ ʹ  ̓  ̈́]").freeze();
     static final UnicodeSet SHOULD_BE_COPTIC = new UnicodeSet("[\uFE24-\uFE26]").freeze();
@@ -248,7 +305,7 @@ public class ScriptPopulation {
         private static final Extra[] ITEMS = Extra.values();
         private static final int OFFSET = ITEMS.length;
 
-        public static final int CODE_LIMIT = UScript.CODE_LIMIT;
+        public static final int CODE_LIMIT = UScript.CODE_LIMIT + OFFSET;
 
         private static String getUsageName(Integer category) {
             ScriptUsage usage = Category.getUsage(category);
@@ -287,6 +344,15 @@ public class ScriptPopulation {
         static final StringBuilder buffer = new StringBuilder();
 
         public static int getCategory(int cp) {
+            
+            int defaultIgnorable = UCharacter.getIntPropertyValue(cp, UProperty.DEFAULT_IGNORABLE_CODE_POINT);
+            if (defaultIgnorable != 0) {
+                return Extra.Format.ordinal();
+            }
+            int deprecated = UCharacter.getIntPropertyValue(cp, UProperty.DEPRECATED);
+            if (deprecated != 0) {
+                return Extra.Unknown.ordinal();
+            }
 
             // first do script
 
