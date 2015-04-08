@@ -1,8 +1,6 @@
 package org.unicode.text.tools;
 
 import java.util.BitSet;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.Counter;
