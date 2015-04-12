@@ -16,6 +16,7 @@ import org.unicode.text.utility.Settings;
 /**
  * Run WebpageCharacterData first.
  * Note that the data is post-html conversion, and whitespace is thus not represented.
+ * For a program that uses this, see ScriptPopulation
  */
 public class CharacterFrequency {
     private static final String DATA_DIR = Settings.OTHER_WORKSPACE_DIRECTORY +

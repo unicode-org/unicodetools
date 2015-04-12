@@ -120,6 +120,11 @@ public class Emoji {
     //    // 🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭
 
     static final UnicodeSet FLAGS = new UnicodeSet();
+    static final UnicodeSet EMOJI_SINGLETONS = new UnicodeSet(EMOJI_CHARS)
+    .removeAll(new UnicodeSet("[©®™]"))
+    .removeAll(EMOJI_CHARS.strings())
+    .addAll(FIRST_REGIONAL,LAST_REGIONAL)
+    .freeze();
     static final UnicodeSet EMOJI_CHARS_WITHOUT_FLAGS = new UnicodeSet(EMOJI_CHARS).freeze();
     static {
         CLDRConfig config = CLDRConfig.getInstance();
@@ -200,6 +205,7 @@ public class Emoji {
         if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {
             throw new IllegalArgumentException();
         }
+        System.out.println("Singletons:\n" + EMOJI_SINGLETONS.toPattern(false));
         System.out.println("Without flags:\n" + EMOJI_CHARS_WITHOUT_FLAGS.toPattern(false));
         System.out.println("Flags:\n" + FLAGS.toPattern(false));
         System.out.println("With flags:\n" + EMOJI_CHARS.toPattern(false));
