@@ -1,6 +1,7 @@
 package org.unicode.text.tools;
 
 import java.util.BitSet;
+import java.util.Set;
 
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.Counter;
@@ -21,12 +22,16 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
+/**
+ * See CharacterFrequency for the base data
+ */
 public class ScriptPopulation {
     static CLDRConfig testInfo = CLDRConfig.getInstance();
     static SupplementalDataInfo supplemental = testInfo.getSupplementalDataInfo();
     static final boolean SHOW_FREQ = false;
     static final Normalizer2 nfkc = Normalizer2.getNFKCInstance();
     static final Normalizer2 NFC = Normalizer2.getNFCInstance();
+    private static final boolean SHOW_DECTILES = false;
 
     // define a category to be:
     // explicit script
@@ -38,6 +43,7 @@ public class ScriptPopulation {
         //    LikelySubtags likely = new LikelySubtags(supplemental);
         //    Counter2<Integer> scriptPopulation = new Counter2<>();
         Counter2<Integer> scriptFrequency = new Counter2<>();
+        Counter<Integer> scriptCount = new Counter<>();
         Counter2<Pair<Boolean,Integer>> notoScriptFrequency = new Counter2<>();
         Counter<Pair<Boolean,Integer>> notoScriptCount = new Counter<>();
         Counter2<Integer> rawScriptFrequency = new Counter2<>();
@@ -52,13 +58,13 @@ public class ScriptPopulation {
             notoCategoryToTopItems[i] = new Counter2<>();
             nonotoCategoryToTopItems[i] = new Counter2<>();
         }
-        
-//        for (int i = 0; i <= 0x10FFFF; ++i) {
-//            int scriptNum = Category.getCategory(i);
-//            Pair<Boolean, Integer> pair = Pair.of(false, scriptNum);
-//            notoScriptCount.add(pair, 1);
-//            notoScriptFrequency.add(pair, 0d);
-//        }
+
+        //        for (int i = 0; i <= 0x10FFFF; ++i) {
+        //            int scriptNum = Category.getCategory(i);
+        //            Pair<Boolean, Integer> pair = Pair.of(false, scriptNum);
+        //            notoScriptCount.add(pair, 1);
+        //            notoScriptFrequency.add(pair, 0d);
+        //        }
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp){
             long frequency = freq.get(cp);
@@ -76,8 +82,9 @@ public class ScriptPopulation {
                 continue;
             }
             scriptFrequency.add(scriptNum, (double)frequency);
+            scriptCount.add(scriptNum, 1);
             categoryToTopItems[scriptNum].add(i, (double)frequency);
-            
+
             boolean isNoto = NotoCoverage.isCovered(cp);
             notoScriptFrequency.add(Pair.of(isNoto, scriptNum), (double)frequency);
             notoScriptCount.add(Pair.of(isNoto, scriptNum), 1);
@@ -99,18 +106,27 @@ public class ScriptPopulation {
         nf.setMinimumSignificantDigits(3);
         double totalFreq = scriptFrequency.getTotal().doubleValue();
         int count = 0;
-        System.out.println("№\t-log(%)\tScript (*Cat)\tUAX31 Status\t1st\t2nd\t3rd\t4th\t5th\t6th\t7th\t8th\t9th\t10th\t11th\t12th\t13th\t14th\t15th\t16th\t17th\t18th\t19th\t20th\t…");
+        System.out.println("№\t-log(%)\tCount\tScript (*Cat)\tUAX31 Status\t1st\t2nd\t3rd\t4th\t5th\t6th\t7th\t8th\t9th\t10th\t11th\t12th\t13th\t14th\t15th\t16th\t17th\t18th\t19th\t20th\t…");
         for (Integer category : scriptFrequency.getKeysetSortedByCount(false, null)) {
+            if (category == Extra.Format.ordinal()
+                    || category == Extra.Unknown.ordinal()
+                    || category == Extra.Private.ordinal()
+                    || category == Extra.Control.ordinal()
+                    || category == Extra.Whitespace.ordinal()
+                    ) {
+                continue;
+            }
             Double frequ = scriptFrequency.getCount(category);
             System.out.print(++count
                     + (true ? "\t" + nf.format(Math.log(totalFreq/frequ)) : "")
+                    + "\t" + scriptCount.get(category)
                     + "\t" + Category.getName(category)  + "\t" + Category.getUsageName(category));
             int max = 20;
             Counter2<Integer> topItems = categoryToTopItems[category];
-            showTop(max, topItems);
+            showTop(max, topItems, frequ);
             System.out.println();
         }
-        
+
         System.out.println("\nNOTO\n");
         System.out.println("№\t-log(%)\tCount\tNoto?\tScript (*Cat)\tUAX31 Status\t1st\t2nd\t3rd\t4th\t5th\t6th\t7th\t8th\t9th\t10th\t11th\t12th\t13th\t14th\t15th\t16th\t17th\t18th\t19th\t20th\t…");
 
@@ -137,7 +153,7 @@ public class ScriptPopulation {
                     + "\t" + Category.getUsageName(category));
             int max = 20;
             Counter2<Integer> topItems = inNoto ? notoCategoryToTopItems[category] : nonotoCategoryToTopItems[category];
-            showTop(max, topItems);
+            showTop(max, topItems, frequ);
             System.out.println();
         }
 
@@ -247,10 +263,10 @@ public class ScriptPopulation {
         //    showScripts(fixedScripts);
     }
 
-    private static void showTop(int max, Counter2<Integer> topItems) {
-        for (Integer codePoint : topItems.getKeysetSortedByCount(false, null)) {
+    private static void showTop(int max, Counter2<Integer> topItems, Double frequ) {
+        Set<Integer> sorted = topItems.getKeysetSortedByCount(false, null);
+        for (Integer codePoint : sorted) {
             if (--max < 0) {
-                System.out.print("\t…");
                 break;
             }
             Double cFreq = topItems.getCount(codePoint);
@@ -262,6 +278,27 @@ public class ScriptPopulation {
                     (SHOW_FREQ ? "\t" + cFreq : "")
                     + "\t" + str);
         };
+        if (max < 0) {
+            System.out.print("\t…");
+            if (SHOW_DECTILES) {
+                int maxCap = 10; // dectile
+                int cap = 1;
+                int count = 0;
+                Double cummulative = 0d;
+                for (Integer codePoint : sorted) {
+                    ++count;
+                    Double cFreq = topItems.getCount(codePoint);
+                    cummulative += cFreq;
+                    if (cummulative * maxCap >= cap * frequ) {
+                        System.out.print("\t" + count);
+                        ++cap;
+                        if (cap == maxCap) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     static final UnicodeSet SHOULD_BE_SYMBOL = new UnicodeSet("[@ * \\& # % ‰ ‱ † ‡ ※]").freeze(); // PRI 228
@@ -298,7 +335,7 @@ public class ScriptPopulation {
     static final UnicodeSet SHOULD_BE_PUNCTUATION = new UnicodeSet("[`´]").freeze();
 
     static class Category {
-        enum Extra {Unknown, Whitespace, Letter, Mark, Numeric, Control, Format, Punctuation, Symbol, Private};
+        enum Extra {Unknown, Whitespace, Letter, Mark, Numeric, Control, Format, Punctuation, Symbol, Emoji, Private};
 
         private static final Extra[] ITEMS = Extra.values();
         private static final int OFFSET = ITEMS.length;
@@ -342,7 +379,12 @@ public class ScriptPopulation {
         static final StringBuilder buffer = new StringBuilder();
 
         public static int getCategory(int cp) {
-            
+            if (UCharacter.isWhitespace(cp)) {
+                return Extra.Whitespace.ordinal();
+            }
+            if (Emoji.EMOJI_SINGLETONS.contains(cp)) {
+                return Extra.Emoji.ordinal();
+            }
             int defaultIgnorable = UCharacter.getIntPropertyValue(cp, UProperty.DEFAULT_IGNORABLE_CODE_POINT);
             if (defaultIgnorable != 0) {
                 return Extra.Format.ordinal();
@@ -391,9 +433,6 @@ public class ScriptPopulation {
 
             // now do category
 
-            if (UCharacter.isWhitespace(cp)) {
-                return Extra.Whitespace.ordinal();
-            }
             if (SHOULD_BE_SYMBOL.contains(cp)) {
                 return Extra.Symbol.ordinal();
             } else if (MAKE_SYMBOL_FOR_CHART.contains(cp)) {

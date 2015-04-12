@@ -17,9 +17,11 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class CheckFonts {
     public static void main(String[] args) {
+
+        if (true) return;
         GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Font[] fonts = e.getAllFonts(); // Get the fonts
-        
+
         // order the fonts to put big ones first, avoiding costly glyph check
         String[] bigFonts = { "NotoSansCJKjp-Black", "NotoSans", "NotoSansSymbols", "NotoSansYi", "NotoSansEgyptianHieroglyphs", "NotoSansCuneiform",
                 "NotoSansCanadianAboriginal", "NotoSansBamum", "NotoNaskhArabic", "NotoSansEthiopic", "NotoKufiArabic", "NotoSansVai", "NotoSansLinearB" };
@@ -33,10 +35,10 @@ public class CheckFonts {
             }
         }
         allFonts.addAll(Arrays.asList(fonts));
-        
+
         UnicodeMap<String> ur = new UnicodeMap<>();
         UnicodeSet TESTSET = new UnicodeSet("[[:L:][:M:][:N:][:P:][:S:]]");
-        
+
         int oldKeysSize = 0;
         Set<String> seen = new HashSet<>();
         for (Font f : allFonts) {
@@ -54,7 +56,7 @@ public class CheckFonts {
             String baseName = pos < 0 ? fontName : fontName.substring(0,pos);
             if (seen.contains(baseName)) continue;
             seen.add(baseName);
-            
+
             //System.out.println("*" + fontName);
             for (String s : TESTSET) {
                 if (ur.containsKey(s)) {
@@ -81,7 +83,7 @@ public class CheckFonts {
             }
         }
     }
-    
+
     static final FontRenderContext fontRenderContext = new FontRenderContext(null, false, false);
 
     static boolean canDisplay(Font f, String codepoint) {
