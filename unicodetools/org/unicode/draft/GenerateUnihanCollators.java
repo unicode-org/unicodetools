@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.draft.ComparePinyin.PinyinSource;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
@@ -30,6 +31,7 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -102,19 +104,24 @@ public class GenerateUnihanCollators {
         }
     };
 
-    static final UnicodeMap<String>           kTotalStrokes       = Default.ucd().getHanValue("kTotalStrokes");
     static final UnicodeMap<Integer>          bestStrokesS        = new UnicodeMap<Integer>();
+    static final UnicodeMap<Integer>          bestStrokesT         = new UnicodeMap<Integer>();
     static {
+        UnicodeMap<String> kTotalStrokes = Default.ucd().getHanValue("kTotalStrokes");
+        Splitter onspace = Splitter.on(' ').trimResults();
         for (EntryRange<String> s : kTotalStrokes.entryRanges()) {
-            Integer value = Integer.parseInt(s.value);
+            List<String> parts = onspace.splitToList(s.value);
+            Integer sValue = Integer.parseInt(parts.get(0));
+            Integer tValue = parts.size() == 1 ? sValue : Integer.parseInt(parts.get(1));
             if (s.string != null) {
-                bestStrokesS.put(s.string, value);
+                bestStrokesS.put(s.string, sValue);
+                bestStrokesT.put(s.string, tValue);
             } else {
-                bestStrokesS.putAll(s.codepoint, s.codepointEnd, value);
+                bestStrokesS.putAll(s.codepoint, s.codepointEnd, sValue);
+                bestStrokesT.putAll(s.codepoint, s.codepointEnd, tValue);
             }
         }
     }
-    static final UnicodeMap<Integer>          bestStrokesT         = new UnicodeMap<Integer>();
 
     static UnicodeMap<Row.R2<String, String>> bihuaData           = new UnicodeMap<Row.R2<String, String>>();
 
@@ -150,6 +157,7 @@ public class GenerateUnihanCollators {
     private static UnicodeSet NEEDSQUOTE = new UnicodeSet("[[:pattern_syntax:][:pattern_whitespace:]]").freeze();
 
     static final XEquivalenceClass<Integer, Integer> variantEquivalents = new XEquivalenceClass<Integer, Integer>();
+    private static final String INDENT = "               ";
 
     static {
         System.out.println("kRSUnicode " + kRSUnicode.size());
@@ -273,7 +281,7 @@ public class GenerateUnihanCollators {
         }
 
         writeUnihanFields(bestPinyin, bestPinyin, mergedPinyin, PinyinComparator, "kMandarin");
-        writeUnihanFields(bestStrokesS, bestStrokesT, kTotalStrokes, SStrokeComparator, "kTotalStrokes");
+        writeUnihanFields(bestStrokesS, bestStrokesT, null, SStrokeComparator, "kTotalStrokes");
 
         //            showSorting(PinyinComparator, bestPinyin, "pinyin");
         //            UnicodeMap<String> shortPinyinMap = new UnicodeMap<String>().putAllFiltered(bestPinyin, shortPinyin);
@@ -331,7 +339,7 @@ public class GenerateUnihanCollators {
             } else {
                 item = simp.toString();
             }
-            final T commentSource = other.get(s);
+            final T commentSource = other == null ? null : other.get(s);
             String comments = "";
             if (commentSource == null) {
                 // do nothing
@@ -379,8 +387,8 @@ public class GenerateUnihanCollators {
             final String code = Utility.hex(item);
             buffer.append(pad(code,6)).append(";\t");
 
-            final String strokes = kTotalStrokes.get(item);
-            buffer.append(pad(strokes,3)).append(";\t");
+            int strokes = CldrUtility.ifNull(bestStrokesS.get(item), 0);
+            buffer.append(pad(String.valueOf(strokes),3)).append(";\t");
 
             final RsInfo rsInfo = RsInfo.from(item.codePointAt(0));
             String radical = null;
@@ -471,9 +479,8 @@ public class GenerateUnihanCollators {
 
         out.println("#Code\tkTotalStrokes\tValue\t#\tChar\tUnihan");
 
-        for (final String s : new UnicodeSet(bihuaData.keySet()).addAll(kTotalStrokes.keySet())) {
-            final String unihanStrokesString = kTotalStrokes.get(s);
-            final int unihanStrokes = unihanStrokesString == null ? NO_STROKE_INFO : Integer.parseInt(unihanStrokesString);
+        for (final String s : new UnicodeSet(bihuaData.keySet()).addAll(bestStrokesS.keySet())) {
+            final int unihanStrokes = CldrUtility.ifNull(bestStrokesS.get(s), NO_STROKE_INFO);
             final R2<String, String> bihua = bihuaData.get(s);
             final int bihuaStrokes = bihua == null ? NO_STROKE_INFO : bihua.get1().length();
             if (bihuaStrokes != NO_STROKE_INFO) {
@@ -547,8 +554,8 @@ public class GenerateUnihanCollators {
             final Set<String> allPinyins = mergedPinyin.get(s);
             final String firstPinyin = allPinyins == null ? "?" : allPinyins.iterator().next();
             final String rs = kRSUnicode.get(s);
-            final String totalStrokesString = kTotalStrokes.get(s);
-            final int totalStrokes = totalStrokesString == null ? 0 : Integer.parseInt(totalStrokesString);
+            
+            final int totalStrokes = org.unicode.cldr.util.CldrUtility.ifNull(bestStrokesS.get(s),0);
             // for (String rsItem : rs.split(" ")) {
             // RsInfo rsInfo = RsInfo.from(rsItem);
             // int totalStrokes = rsInfo.totalStrokes;
@@ -857,7 +864,7 @@ public class GenerateUnihanCollators {
             rsSorted.add(s);
         }
         if (fileType == FileType.txt) {
-            out.println("&[last regular]");
+            out.println(INDENT + "&[last regular]");
         } else {
             final String typeAlt = filename.replace("_", "' alt='");
             //            out.print(
@@ -890,7 +897,7 @@ public class GenerateUnihanCollators {
                     // show other characters
                     if (buffer.codePointCount(0, buffer.length()) < 128) {
                         if (fileType == FileType.txt) {
-                            out.println("<*" + sortingQuote(buffer.toString(), accumulated) + "\t#" + sortingQuote(oldValue, accumulated));
+                            out.println(INDENT + "<*" + sortingQuote(buffer.toString(), accumulated) + " # " + sortingQuote(oldValue, accumulated));
                         } else {
                             out.println("               <pc>" + buffer + "</pc><!-- " + oldValue + " -->");
                         }
@@ -899,7 +906,7 @@ public class GenerateUnihanCollators {
                         while (buffer.length() > 0) {
                             final String temp = extractFirst(buffer, 128);
                             if (fileType == FileType.txt) {
-                                out.println("<*" + sortingQuote(temp.toString(), accumulated) + "\t#" + sortingQuote(oldValue, accumulated) + " (p" + count++ + ")");
+                                out.println(INDENT + "<*" + sortingQuote(temp.toString(), accumulated) + " # " + sortingQuote(oldValue, accumulated) + " (p" + count++ + ")");
                             } else {
                                 out.println("               <pc>" + temp + "</pc><!-- " + oldValue + " (p" + count++ + ") -->");
                             }
@@ -993,7 +1000,7 @@ public class GenerateUnihanCollators {
 
     private static <T> void showIndexValue(FileType fileType, PrintWriter out, Output<T> comment, String indexValue) {
         if (fileType == FileType.txt) {
-            out.println("<" + indexValue + "\t# INDEX " + comment);
+            out.println(INDENT + "<'" + hexConstant(indexValue) + "' # INDEX " + comment);
         } else {
             out.println("               <p>" + indexValue + "</p><!-- INDEX " + comment + " -->");
         }
