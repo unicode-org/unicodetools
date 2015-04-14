@@ -678,21 +678,21 @@ public class GenerateUnihanCollators {
 
     private static void showTranslit(String filename) {
         final PrintWriter out = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, filename + ".txt", null);
-        final PrintWriter out2 = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY_REPLACE, filename + ".xml", null);
+        final PrintWriter out2 = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, filename + ".xml", null);
         final TreeSet<String> s = new TreeSet(pinyinSort);
         s.addAll(bestPinyin.getAvailableValues());
 
-        out2.println("<?xml version='1.0' encoding='UTF-8' ?>\n"
-                +"<!DOCTYPE supplementalData SYSTEM '../../common/dtd/ldmlSupplemental.dtd'>\n"
-                +"<supplementalData>\n"
-                +"  <version number='$Revision: 1.8 $'/>\n"
-                +"  <generation date='$Date: 2010/12/14 07:57:17 $'/>\n"
-                +"  <transforms>\n"
-                +"      <transform source='Han' target='Latin' direction='both'>\n"
-                +"          <comment># Warning: does not do round-trip mapping!!</comment>\n"
-                +"          <comment># Convert CJK characters</comment>\n"
-                +"          <tRule>::Han-Spacedhan();</tRule>\n"
-                +"          <comment># Start RAW data for converting CJK characters</comment>");
+//        out2.println("<?xml version='1.0' encoding='UTF-8' ?>\n"
+//                +"<!DOCTYPE supplementalData SYSTEM '../../common/dtd/ldmlSupplemental.dtd'>\n"
+//                +"<supplementalData>\n"
+//                +"  <version number='$Revision: 1.8 $'/>\n"
+//                +"  <generation date='$Date: 2010/12/14 07:57:17 $'/>\n"
+//                +"  <transforms>\n"
+//                +"      <transform source='Han' target='Latin' direction='both'>\n"
+//                +"          <comment># Warning: does not do round-trip mapping!!</comment>\n"
+//                +"          <comment># Convert CJK characters</comment>\n"
+//                +"          <tRule>::Han-Spacedhan();</tRule>\n"
+//                +"          <comment># Start RAW data for converting CJK characters</comment>");
 
         for (final String value : s) {
             final UnicodeSet uset = bestPinyin.getSet(value);
@@ -701,36 +701,36 @@ public class GenerateUnihanCollators {
             out2.println("           <tRule>" + uset.toPattern(false) + "→" + value + ";</tRule>");
         }
 
-        out2.println("          <comment># End RAW data for converting CJK characters</comment>\n"
-                +"          <comment># fallbacks</comment>\n"
-                +"          <comment>## | yi ← i;</comment>\n"
-                +"          <comment>## | wu ← u;</comment>\n"
-                +"          <comment>## | bi ← b;</comment>\n"
-                +"          <comment>## | ci ← c;</comment>\n"
-                +"          <comment>## | di ← d;</comment>\n"
-                +"          <comment>## | fu ← f;</comment>\n"
-                +"          <comment>## | gu ← g;</comment>\n"
-                +"          <comment>## | he ← h;</comment>\n"
-                +"          <comment>## | ji ← j;</comment>\n"
-                +"          <comment>## | ku ← k;</comment>\n"
-                +"          <comment>## | li ← l;</comment>\n"
-                +"          <comment>## | mi ← m;</comment>\n"
-                +"          <comment>## | pi ← p;</comment>\n"
-                +"          <comment>## | qi ← q;</comment>\n"
-                +"          <comment>## | l ← r;</comment>\n"
-                +"          <comment>## | si ← s;</comment>\n"
-                +"          <comment>## | ti ← t;</comment>\n"
-                +"          <comment>## | f ← v;</comment>\n"
-                +"          <comment>## | wa ← w;</comment>\n"
-                +"          <comment>## | xi ← x;</comment>\n"
-                +"          <comment>## | yi ← y;</comment>\n"
-                +"          <comment>## | zi ← z;</comment>\n"
-                +"          <comment># filter out the half-width hangul</comment>\n"
-                +"          <comment># :: [^ﾾ-￮] fullwidth-halfwidth ();</comment>\n"
-                +"          <comment>## :: (lower) ;</comment>\n"
-                +"      </transform>\n"
-                +"  </transforms>\n"
-                +"</supplementalData>");
+//        out2.println("          <comment># End RAW data for converting CJK characters</comment>\n"
+//                +"          <comment># fallbacks</comment>\n"
+//                +"          <comment>## | yi ← i;</comment>\n"
+//                +"          <comment>## | wu ← u;</comment>\n"
+//                +"          <comment>## | bi ← b;</comment>\n"
+//                +"          <comment>## | ci ← c;</comment>\n"
+//                +"          <comment>## | di ← d;</comment>\n"
+//                +"          <comment>## | fu ← f;</comment>\n"
+//                +"          <comment>## | gu ← g;</comment>\n"
+//                +"          <comment>## | he ← h;</comment>\n"
+//                +"          <comment>## | ji ← j;</comment>\n"
+//                +"          <comment>## | ku ← k;</comment>\n"
+//                +"          <comment>## | li ← l;</comment>\n"
+//                +"          <comment>## | mi ← m;</comment>\n"
+//                +"          <comment>## | pi ← p;</comment>\n"
+//                +"          <comment>## | qi ← q;</comment>\n"
+//                +"          <comment>## | l ← r;</comment>\n"
+//                +"          <comment>## | si ← s;</comment>\n"
+//                +"          <comment>## | ti ← t;</comment>\n"
+//                +"          <comment>## | f ← v;</comment>\n"
+//                +"          <comment>## | wa ← w;</comment>\n"
+//                +"          <comment>## | xi ← x;</comment>\n"
+//                +"          <comment>## | yi ← y;</comment>\n"
+//                +"          <comment>## | zi ← z;</comment>\n"
+//                +"          <comment># filter out the half-width hangul</comment>\n"
+//                +"          <comment># :: [^ﾾ-￮] fullwidth-halfwidth ();</comment>\n"
+//                +"          <comment>## :: (lower) ;</comment>\n"
+//                +"      </transform>\n"
+//                +"  </transforms>\n"
+//                +"</supplementalData>");
         out.close();
         out2.close();
     }
