@@ -1,21 +1,30 @@
 package org.unicode.text.tools;
 
 import java.util.BitSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.unicode.cldr.util.CLDRConfig;
+import org.unicode.cldr.util.ChainedMap;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Counter2;
 import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.draft.CharacterFrequency;
 import org.unicode.text.tools.ScriptPopulation.Category.Extra;
+import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.lang.UScript.ScriptUsage;
 import com.ibm.icu.text.DecimalFormat;
+import com.ibm.icu.text.IdentifierInfo;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
@@ -38,6 +47,8 @@ public class ScriptPopulation {
     // main general category
 
     public static void main(String[] args) {
+        checkCommon();
+        if (true) return;
         //    getLanguageInfo();
         //    LanguageTagParser ltp = new LanguageTagParser();
         //    LikelySubtags likely = new LikelySubtags(supplemental);
@@ -109,8 +120,8 @@ public class ScriptPopulation {
         System.out.println("№\t-log(%)\tCount\tScript (*Cat)\tUAX31 Status\t1st\t2nd\t3rd\t4th\t5th\t6th\t7th\t8th\t9th\t10th\t11th\t12th\t13th\t14th\t15th\t16th\t17th\t18th\t19th\t20th\t…");
         for (Integer category : scriptFrequency.getKeysetSortedByCount(false, null)) {
             if (category == Extra.Format.ordinal()
-                    || category == Extra.Unknown.ordinal()
-                    || category == Extra.Private.ordinal()
+                    //|| category == Extra.Unknown.ordinal()
+                    //|| category == Extra.Private.ordinal()
                     || category == Extra.Control.ordinal()
                     || category == Extra.Whitespace.ordinal()
                     ) {
@@ -263,6 +274,201 @@ public class ScriptPopulation {
         //    showScripts(fixedScripts);
     }
 
+    static final Map<String,String> REMAP_SCRIPT = new HashMap<>();
+    static {
+        REMAP_SCRIPT.put("Hant","Hani");
+        REMAP_SCRIPT.put("Hans","Hani");
+        REMAP_SCRIPT.put("Jpan","Kana");
+        REMAP_SCRIPT.put("Hira","Kana");
+        REMAP_SCRIPT.put("Kore","Hang");
+    }
+
+
+    private static void checkCommon() {
+        Counter<Integer>[] scriptToOthers = new Counter[UScript.CODE_LIMIT];
+        Counter<Integer> totalScriptFrequency = new Counter<>();
+        Map<Integer,Counter<Integer>> cpToScriptFrequency = new TreeMap<>();
+        for (String lang : CharacterFrequency.getLanguagesWithCounter()) {
+            if (lang.equals("mul")) continue;
+            ULocale max = ULocale.addLikelySubtags(new ULocale(lang));
+            String script = max.getScript();
+            String temp = REMAP_SCRIPT.get(script);
+            if (temp != null) {
+                script = temp;
+            }
+
+            int scriptCode = UScript.getCodeFromName(script);
+            //System.out.println(lang + "\t=>\t" + max + "\t" + scriptCode + "\t" + UScript.getName(scriptCode));
+            if (scriptCode == UScript.KAITHI) continue;
+            Counter<Integer> data = scriptToOthers[scriptCode];
+            if (data == null) {
+                scriptToOthers[scriptCode] = data = new Counter<Integer>();
+            }
+
+            Counter<Integer> freq = CharacterFrequency.getCodePointCounter(lang, true);
+            for (int cp : freq.keySet()) {
+                long value = freq.get(cp);
+                int cpScript = getScript(cp);
+                data.add(cpScript, value);
+
+                // data per language-script
+                totalScriptFrequency.add(scriptCode, value);
+                
+                Extra extra = getGeneralCategory(cp);
+                if (extra != Extra.Punctuation && extra != Extra.Letter && extra != Extra.Mark) continue;
+                if (cpScript == UScript.COMMON || cpScript == UScript.INHERITED) {
+                    Counter<Integer> counter = cpToScriptFrequency.get(cp);
+                    if (counter == null) {
+                        cpToScriptFrequency.put(cp, counter = new Counter<Integer>());
+                    }
+                    counter.add(scriptCode, value);
+                }
+            }
+        }
+        // normalize
+        Map<Integer, Counter2<Integer>> normcpToScriptFrequency = new TreeMap<Integer, Counter2<Integer>>();
+        for (Entry<Integer, Counter<Integer>> entry : cpToScriptFrequency.entrySet()) {
+            Counter<Integer> scriptFrequency = entry.getValue();
+            Counter2<Integer> normscriptFrequency = new Counter2<Integer>();
+            normcpToScriptFrequency.put(entry.getKey(), normscriptFrequency);
+            for (R2<Long, Integer> x : scriptFrequency.getEntrySetSortedByCount(false, null)) {
+                int script = x.get1();
+                double count = x.get0();
+                normscriptFrequency.add(script, count/totalScriptFrequency.get(script));
+            }
+        }
+        if (false) for (Extra extra : Extra.values()) {
+            for (Entry<Integer, Counter<Integer>> entry : cpToScriptFrequency.entrySet()) {
+                int cp = entry.getKey();
+                if (getGeneralCategory(cp) != extra) continue;
+                System.out.print(extra + "\tU+" + Utility.hex(cp) + "\t" + UCharacter.getName(cp));
+                int max = 5;
+                Counter<Integer> scriptFrequency = entry.getValue();
+                double total = scriptFrequency.getTotal();
+                for (R2<Long, Integer> x : scriptFrequency.getEntrySetSortedByCount(false, null)) {
+                    if (--max < 0) break;
+                    int script = x.get1();
+                    long count = x.get0();
+                    double proportion = count/total;
+                    System.out.print("\t" + UScript.getShortName(script) 
+                            + "\t" + proportion);
+                }
+                System.out.println();
+            }
+        }
+        System.out.println("\nNormalized\n");
+        for (Extra extra : Extra.values()) {
+            for (Entry<Integer, Counter2<Integer>> entry : normcpToScriptFrequency.entrySet()) {
+                int cp = entry.getKey();
+                if (getGeneralCategory(cp) != extra) continue;
+                System.out.print(extra + "\tU+" + Utility.hex(cp) + "\t" + UCharacter.getName(cp));
+                int max = 5;
+                Counter2<Integer> scriptFrequency = entry.getValue();
+                double total = scriptFrequency.getTotal().doubleValue();
+                for (Integer script : scriptFrequency.getKeysetSortedByCount(false, null)) {
+                    if (--max < 0) break;
+                    double count = scriptFrequency.getCount(script);
+                    double proportion = count/total;
+                    System.out.print("\t" + UScript.getShortName(script) 
+                            + "\t" + proportion);
+                }
+                System.out.println();
+            }
+        }
+
+
+//        for (int value : remapped.values()) {
+//            System.out.println(UScript.getName(value) + "\t" + remapped.getSet(value).toPattern(false));
+//        }
+
+        // filter out those below threshold
+        BitSet keep = new BitSet();
+        double threshold = 0.00001;
+        for (int scriptCode = 0 ; scriptCode < scriptToOthers.length; ++scriptCode) {
+            Counter<Integer> data = scriptToOthers[scriptCode];
+            if (data == null) {
+                continue;
+            }
+            double total = data.getTotal();
+            for (int scriptCode2 = 0 ; scriptCode2 < scriptToOthers.length; ++scriptCode2) {
+                if (data.get(scriptCode2)/total > threshold) {
+                    keep.set(scriptCode2);
+                }
+            }
+        }
+
+        System.out.print("\t");
+        for (int scriptCode = 0 ; scriptCode < scriptToOthers.length; ++scriptCode) {
+            if (!keep.get(scriptCode)) continue;
+            System.out.print("\t" + UScript.getShortName(scriptCode));
+        }
+        System.out.println();
+
+        for (int scriptCode = 0 ; scriptCode < scriptToOthers.length; ++scriptCode) {
+            Counter<Integer> data = scriptToOthers[scriptCode];
+            if (data == null) {
+                continue;
+            }
+            double total = data.getTotal();
+            System.out.print(UScript.getShortName(scriptCode) + "\t" + total);
+            for (int scriptCode2 = 0 ; scriptCode2 < scriptToOthers.length; ++scriptCode2) {
+                if (!keep.get(scriptCode2)) continue;
+                System.out.print("\t" + (data.get(scriptCode2)/total));
+            }
+            System.out.println();
+        }
+    }
+
+
+    // NOT THREADSAFE
+    static IdentifierInfo identifierInfo = new IdentifierInfo();
+    static final StringBuilder buffer = new StringBuilder();
+    static UnicodeMap<Integer> remapped = new UnicodeMap<>();
+
+    private static int getScript(int cp) {
+        int cpScript = UScript.getScript(cp);
+        if (cpScript == UScript.HIRAGANA) {
+            cpScript = UScript.KATAKANA;
+        }
+        if (cpScript == UScript.COMMON || cpScript == UScript.INHERITED) {
+            Integer cached = remapped.get(cp);
+            if (cached != null) {
+                return cached;
+            }
+
+            buffer.setLength(0);
+            buffer.appendCodePoint(cp);
+            String normalized = nfkc.normalize(buffer);
+            identifierInfo.setIdentifier(normalized);
+            BitSet scripts = identifierInfo.getScripts();
+            scripts.clear(UScript.UNKNOWN); // ignore
+
+            // favor Latin
+            int temp;
+            if (scripts.get(UScript.LATIN)) {
+                temp = UScript.LATIN;
+            } else {
+                temp = scripts.nextSetBit(0);
+                if (temp < 0) {
+                    for (BitSet alternates : identifierInfo.getAlternates()) {
+                        if (scripts.get(UScript.LATIN)) {
+                            temp = UScript.LATIN;
+                            break;
+                        } else {
+                            temp = scripts.nextSetBit(0);
+                            break;
+                        }
+                    }
+                }
+            }
+            if (temp > 0) {
+                cpScript = temp;
+            }
+            remapped.put(cp, cpScript);
+        }
+        return cpScript;
+    }
+
     private static void showTop(int max, Counter2<Integer> topItems, Double frequ) {
         Set<Integer> sorted = topItems.getKeysetSortedByCount(false, null);
         for (Integer codePoint : sorted) {
@@ -391,7 +597,7 @@ public class ScriptPopulation {
             }
             int deprecated = UCharacter.getIntPropertyValue(cp, UProperty.DEPRECATED);
             if (deprecated != 0) {
-                return Extra.Unknown.ordinal();
+                return Extra.Private.ordinal();
             }
 
             // first do script
@@ -443,61 +649,7 @@ public class ScriptPopulation {
                 return Extra.Format.ordinal();
             }
 
-            int category = UCharacter.getType(cp);
-            switch (category) {
-            case UCharacter.UPPERCASE_LETTER :
-            case UCharacter.LOWERCASE_LETTER :
-            case UCharacter.TITLECASE_LETTER :
-            case UCharacter.MODIFIER_LETTER :
-            case UCharacter.OTHER_LETTER :
-                return Extra.Letter.ordinal();
-
-            case UCharacter.NON_SPACING_MARK :
-            case UCharacter.ENCLOSING_MARK : 
-            case UCharacter.COMBINING_SPACING_MARK :
-                return Extra.Mark.ordinal();
-
-            case UCharacter.DECIMAL_DIGIT_NUMBER :
-            case UCharacter.LETTER_NUMBER :
-            case UCharacter.OTHER_NUMBER :
-                return Extra.Numeric.ordinal();
-
-            case UCharacter.SPACE_SEPARATOR:
-            case UCharacter.LINE_SEPARATOR :
-            case UCharacter.PARAGRAPH_SEPARATOR :
-                return Extra.Whitespace.ordinal();
-
-            case UCharacter.CONTROL :
-                return Extra.Control.ordinal();
-
-            case UCharacter.FORMAT :
-                return Extra.Format.ordinal();
-
-            case UCharacter.UNASSIGNED:
-            case UCharacter.SURROGATE :
-                return Extra.Unknown.ordinal();
-
-            case UCharacter.PRIVATE_USE :
-                return Extra.Private.ordinal();
-
-            case UCharacter.DASH_PUNCTUATION :
-            case UCharacter.START_PUNCTUATION :
-            case UCharacter.END_PUNCTUATION :
-            case UCharacter.CONNECTOR_PUNCTUATION :
-            case UCharacter.OTHER_PUNCTUATION :
-            case UCharacter.INITIAL_PUNCTUATION :
-            case UCharacter.FINAL_PUNCTUATION :
-                return Extra.Punctuation.ordinal();
-
-            case UCharacter.MATH_SYMBOL :
-            case UCharacter.CURRENCY_SYMBOL :
-            case UCharacter.MODIFIER_SYMBOL :
-            case UCharacter.OTHER_SYMBOL :
-                return Extra.Symbol.ordinal();
-
-            default:
-                throw new IllegalArgumentException();
-            }
+            return getGeneralCategory(cp).ordinal();
         }
 
         private static int getBestScript(int cp) {
@@ -592,4 +744,68 @@ public class ScriptPopulation {
     //      }
     //    }
     //  }
+
+    private static Extra getGeneralCategory(int cp) {
+        if (Emoji.EMOJI_SINGLETONS.contains(cp)) {
+            return Extra.Emoji;
+        }
+
+        int category = UCharacter.getType(cp);
+        switch (category) {
+        case UCharacter.UPPERCASE_LETTER :
+        case UCharacter.LOWERCASE_LETTER :
+        case UCharacter.TITLECASE_LETTER :
+        case UCharacter.MODIFIER_LETTER :
+        case UCharacter.MODIFIER_SYMBOL :
+        case UCharacter.OTHER_LETTER :
+            return Extra.Letter;
+
+        case UCharacter.NON_SPACING_MARK :
+        case UCharacter.ENCLOSING_MARK : 
+        case UCharacter.COMBINING_SPACING_MARK :
+            return UCharacter.getIntPropertyValue(cp, UProperty.VARIATION_SELECTOR) != 0 ? Extra.Format : Extra.Mark;
+
+        case UCharacter.DECIMAL_DIGIT_NUMBER :
+        case UCharacter.LETTER_NUMBER :
+        case UCharacter.OTHER_NUMBER :
+            return Extra.Numeric;
+
+        case UCharacter.SPACE_SEPARATOR:
+        case UCharacter.LINE_SEPARATOR :
+        case UCharacter.PARAGRAPH_SEPARATOR :
+            return Extra.Whitespace;
+
+        case UCharacter.CONTROL :
+            return UCharacter.isWhitespace(cp) ? Extra.Whitespace : Extra.Control;
+
+        case UCharacter.FORMAT :
+            return Extra.Format;
+
+        case UCharacter.UNASSIGNED:
+        case UCharacter.SURROGATE :
+            return Extra.Unknown;
+
+        case UCharacter.PRIVATE_USE :
+            return Extra.Private;
+
+        case UCharacter.DASH_PUNCTUATION :
+        case UCharacter.START_PUNCTUATION :
+        case UCharacter.END_PUNCTUATION :
+        case UCharacter.CONNECTOR_PUNCTUATION :
+        case UCharacter.OTHER_PUNCTUATION :
+        case UCharacter.INITIAL_PUNCTUATION :
+        case UCharacter.FINAL_PUNCTUATION :
+            return Extra.Punctuation;
+
+        case UCharacter.MATH_SYMBOL :
+        case UCharacter.CURRENCY_SYMBOL :
+        case UCharacter.OTHER_SYMBOL :
+            return Extra.Symbol;
+
+        default:
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }
