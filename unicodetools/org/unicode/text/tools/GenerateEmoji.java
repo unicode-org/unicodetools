@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
@@ -82,7 +83,7 @@ public class GenerateEmoji {
     static final IndexUnicodeProperties   LATEST                    = IndexUnicodeProperties.make(Default.ucdVersion());
     static final UCA                      UCA_COLLATOR              = UCA.buildCollator(null);
 
-    static final UnicodeMap<String>       STANDARDIZED_VARIANT      = LATEST.load(UcdProperty.Standardized_Variant);
+    public static final UnicodeMap<String>       STANDARDIZED_VARIANT      = LATEST.load(UcdProperty.Standardized_Variant);
     static final UnicodeMap<String>       VERSION                   = LATEST.load(UcdProperty.Age);
     static final UnicodeMap<String>       WHITESPACE                = LATEST.load(UcdProperty.White_Space);
     static final UnicodeMap<String>       GENERAL_CATEGORY          = LATEST.load(UcdProperty.General_Category);
@@ -730,7 +731,7 @@ public class GenerateEmoji {
         BEST_OVERRIDE.freeze();
     }
 
-    public static String getBestImage(String s, boolean useDataURL, Source... doFirst) {
+    public static String getBestImage(String s, boolean useDataURL, String extraClasses, Source... doFirst) {
         //        if (doFirst.length == 0) {
         //            Source source0 = BEST_OVERRIDE.get(s);
         //            if (source0 != null) {
@@ -738,7 +739,7 @@ public class GenerateEmoji {
         //            }
         //        }
         for (Source source : orderedEnum(doFirst)) {
-            String cell = getImage(source, s, useDataURL);
+            String cell = getImage(source, s, useDataURL, extraClasses);
             if (cell != null) {
                 return cell;
             }
@@ -746,7 +747,7 @@ public class GenerateEmoji {
         throw new IllegalArgumentException("Can't find image for: " + Utility.hex(s) + " " + getName(s, true) + "\t" + Emoji.buildFileName(s, "_"));
     }
 
-    static public String getImage(Source type, String chars, boolean useDataUrl) {
+    static public String getImage(Source type, String chars, boolean useDataUrl, String extraClasses) {
         String core = Emoji.buildFileName(chars, "_");
         String filename = getImageFilename(type, core);
         if (filename != null && new File(Emoji.IMAGES_OUTPUT_DIR, filename).exists()) {
@@ -756,7 +757,7 @@ public class GenerateEmoji {
             // className = "imgf";
             // }
             return "<img alt='" + chars + "'" +
-            (useDataUrl ? " class='" + className + "'" : " height=\"24\" width=\"auto\"") +
+            (useDataUrl ? " class='" + className + extraClasses + "'" : " height=\"24\" width=\"auto\"") +
             " src='" + (useDataUrl ? getDataUrl(filename) : "images/" + filename) + "'" +
             " title='" + getCodeAndName(chars, " ") + "'" +
             ">";
@@ -1071,13 +1072,13 @@ public class GenerateEmoji {
         }
     }
 
-    static String getFlag(String chars) {
+    static String getFlag(String chars, String extraClasses) {
         String core = Emoji.buildFileName(chars, "_");
         String filename = getImageFilename(Source.ref, core);
         String cc = getFlagRegionName(chars);
         return cc == null ? null : "<img"
                 + " alt='" + chars + "'"
-                + " class='imgf'"
+                + " class='imgf" + extraClasses + "'"
                 + " title='" + getCodeAndName(chars, " ") + "'"
                 + " src='" + getDataUrl(filename) + "'>";
     }
@@ -1192,7 +1193,7 @@ public class GenerateEmoji {
         .freeze();
         UnicodeSet otherStandard = new UnicodeSet(carriers);
         for (String s : Emoji.EMOJI_CHARS) {
-            String image = getImage(Source.apple, s, false);
+            String image = getImage(Source.apple, s, false, "");
             if (image != null) {
                 otherStandard.add(s);
             }
@@ -1328,7 +1329,7 @@ public class GenerateEmoji {
             if (link != null) {
                 out.print("<a href='" + link + "#" + Emoji.buildFileName(emoji, "_") + "' target='full'>");
             }
-            out.print(getBestImage(emoji, true, Source.apple));
+            out.print(getBestImage(emoji, true, "", Source.apple));
             if (link != null) {
                 out.print("</a>");
             }
@@ -1371,7 +1372,7 @@ public class GenerateEmoji {
 
     private static void showExplicitAppleImages(PrintWriter out, Set<String> minimal) {
         for (String emoji : minimal) {
-            out.println(getBestImage(emoji, false, Source.apple));
+            out.println(getBestImage(emoji, false, "", Source.apple));
             // out.println("<img height=\"24\" width=\"auto\" alt=\""
             // + emoji
             // + "\" src=\"images/apple/apple_"
@@ -1386,13 +1387,14 @@ public class GenerateEmoji {
 
     public static void addFileCodepoints(File imagesOutputDir, Map<String, Data> results) {
         for (File file : imagesOutputDir.listFiles()) {
+            String fileName = file.getName();
             if (file.isDirectory()) {
-                if (!file.getName().equals("other")) {
+                if (!fileName.equals("other") && !fileName.equals("proposed") && !fileName.equals("sample")) {
                     addFileCodepoints(file, results);
                 }
                 continue;
             }
-            String s = file.getName();
+            String s = fileName;
             String original = s;
             if (s.startsWith(".") || !s.endsWith(".png") || s.contains("emoji-palette")) {
                 continue;
@@ -1960,6 +1962,13 @@ public class GenerateEmoji {
     public static void displayUnicodeSet(PrintWriter out,
             UnicodeSet uset, Style showEmoji, int maxPerLine, int colSpan, int rowSpan,
             String link, Comparator comparator) {
+        Set<String> sorted = uset.addAllTo(new TreeSet<String>(comparator));
+        displayUnicodeSet(out, sorted, showEmoji, maxPerLine, colSpan, rowSpan, link, "");
+    }
+
+    public static void displayUnicodeSet(PrintWriter out, 
+            Collection<String> sorted, Style showEmoji, int maxPerLine, int colSpan, int rowSpan, 
+            String link, String extraClasses) {
         if (link == null) {
             link = "full-emoji-list.html";
         } else if (link.isEmpty()) {
@@ -1969,7 +1978,6 @@ public class GenerateEmoji {
                 + (rowSpan <= 1 ? "" : " rowSpan='" + rowSpan + "'")
                 + (colSpan <= 1 ? "" : " colSpan='" + colSpan + "'")
                 + ">");
-        Set<String> sorted = uset.addAllTo(new TreeSet<String>(comparator));
         int count = 0;
         for (String s : sorted) {
             if (count == 0) {
@@ -1983,7 +1991,7 @@ public class GenerateEmoji {
             if (link != null) {
                 out.print("<a href='" + link + "#" + Emoji.buildFileName(s, "_") + "' target='full'>");
             }
-            String cell = getFlag(s);
+            String cell = getFlag(s, extraClasses);
             if (cell == null) {
                 switch (showEmoji) {
                 case text:
@@ -2001,10 +2009,10 @@ public class GenerateEmoji {
                             + "</span>";
                     break;
                 case bestImage:
-                    cell = getBestImage(s, true);
+                    cell = getBestImage(s, true, extraClasses);
                     break;
                 case refImage:
-                    cell = getImage(Source.ref, s, true);
+                    cell = getImage(Source.ref, s, true, extraClasses);
                     break;
                 }
             }
@@ -2419,7 +2427,7 @@ public class GenerateEmoji {
             + " according to the LDML specification (http://unicode.org/reports/tr35/) For \n"
             + " terms of use, see http://www.unicode.org/copyright.html \n"
             + " This is still under development, and will be refined before release. \n"
-            + " In particular, the annotations like 'people-apple' are only present during development, and will be withdrawn for the release.\n"
+            + " In particular, the annotations like 'person-apple' are only present during development, and will be withdrawn for the release.\n"
             + " -->\n"
             + "<ldml>\n"
             + "\t<identity>\n"
@@ -2433,18 +2441,18 @@ public class GenerateEmoji {
             "nature",
             "nature-android",
             "nature-apple",
-            "objects",
-            "objects-android",
-            "objects-apple",
-            "people",
-            "people-android",
-            "people-apple",
-            "places",
-            "places-android",
-            "places-apple",
-            "symbols",
-            "symbols-android",
-            "symbols-apple",
+            "object",
+            "object-android",
+            "object-apple",
+            "person",
+            "person-android",
+            "person-apple",
+            "place",
+            "place-android",
+            "place-apple",
+            "symbol",
+            "symbol-android",
+            "symbol-apple",
             "other-android",
             "flag",
             "other"));

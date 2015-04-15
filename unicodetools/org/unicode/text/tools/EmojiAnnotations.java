@@ -63,33 +63,33 @@ public class EmojiAnnotations extends Birelation<String,String> {
             System.out.println(lineCount + "\tannotation lines from " + filename);
         }
         UnicodeSet temp = new UnicodeSet(Emoji.APPLE)
-        .removeAll(getValues("people-apple"))
+        .removeAll(getValues("person-apple"))
         .removeAll(getValues("nature-apple"))
-        .removeAll(getValues("objects-apple"))
-        .removeAll(getValues("places-apple"))
-        .removeAll(getValues("symbols-apple"));
+        .removeAll(getValues("object-apple"))
+        .removeAll(getValues("place-apple"))
+        .removeAll(getValues("symbol-apple"));
         System.out.println(temp.size() + " other-apple: " + temp.toPattern(false));
         for (String s : temp) {
             add("other-apple", s);
         }
 
         temp = new UnicodeSet(Emoji.APPLE)
-        .removeAll(getValues("people-android"))
+        .removeAll(getValues("person-android"))
         .removeAll(getValues("nature-android"))
-        .removeAll(getValues("objects-android"))
-        .removeAll(getValues("places-android"))
-        .removeAll(getValues("symbols-android"));
+        .removeAll(getValues("object-android"))
+        .removeAll(getValues("place-android"))
+        .removeAll(getValues("symbol-android"));
         System.out.println(temp.size() + " other-android: " + temp.toPattern(false));
         for (String s : temp) {
             add("other-android", s);
         }
         
         temp = new UnicodeSet(Emoji.EMOJI_CHARS)
-        .removeAll(getValues("people"))
+        .removeAll(getValues("person"))
         .removeAll(getValues("nature"))
-        .removeAll(getValues("objects"))
-        .removeAll(getValues("places"))
-        .removeAll(getValues("symbols"))
+        .removeAll(getValues("object"))
+        .removeAll(getValues("place"))
+        .removeAll(getValues("symbol"))
         .removeAll(getValues("flag"));
         System.out.println(temp.size() + " other: " + temp.toPattern(false));
         for (String s : temp) {
