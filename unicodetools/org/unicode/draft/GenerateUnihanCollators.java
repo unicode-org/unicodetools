@@ -29,7 +29,6 @@ import org.unicode.draft.ComparePinyin.PinyinSource;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
@@ -153,7 +152,7 @@ public class GenerateUnihanCollators {
     static final UnicodeMap<Set<String>>      mergedPinyin        = new UnicodeMap<Set<String>>();
     static final UnicodeSet                   originalPinyin;
 
-    static final UnicodeMap<RsInfo>           RS_INFO_CACHE       = new UnicodeMap();
+    static final UnicodeMap<RsInfo>           RS_INFO_CACHE       = new UnicodeMap<RsInfo>();
     static final Matcher                      RSUnicodeMatcher    = Pattern.compile("^([1-9][0-9]{0,2})('?)\\.([0-9]{1,2})$").matcher("");
 
     private static final boolean only19 = System.getProperty("only19") != null;
@@ -176,7 +175,10 @@ public class GenerateUnihanCollators {
             "[a {ai} {an} {ang} {ao} e {ei} {en} {eng} {er} i {ia} {ian} {iang} {iao} {ie} {in} {ing} {iong} {iu} o {ong} {ou} u {ua} {uai} {uan} {uang} {ue} {ui} {un} {uo} ü {üe}]")
     .freeze();
     static final int NO_STROKE_INFO = Integer.MAX_VALUE;
-    private static UnicodeSet NEEDSQUOTE = new UnicodeSet("[[:pattern_syntax:][:pattern_whitespace:]]").freeze();
+
+    // We need to quote at least the collation syntax characters, see
+    // http://www.unicode.org/reports/tr35/tr35-collation.html#Rules
+    private static UnicodeSet NEEDSQUOTE = new UnicodeSet("[_[:pattern_syntax:][:pattern_whitespace:]]").freeze();
 
     static final XEquivalenceClass<Integer, Integer> variantEquivalents = new XEquivalenceClass<Integer, Integer>();
     private static final String INDENT = "               ";
@@ -199,7 +201,6 @@ public class GenerateUnihanCollators {
                 System.out.println(s + "\t" + radicalMap.getSet(s).toPattern(false));
             }
         }
-        final UnicodeMap added = new UnicodeMap();
         addRadicals(kRSUnicode);
         closeUnderNFKD("Unihan", kRSUnicode);
 
@@ -462,7 +463,7 @@ public class GenerateUnihanCollators {
         // TODO Auto-generated method stub
         final UnicodeSet tailored = pinyinSort.getTailoredSet();
         final TreeMap<String, String> sorted = new TreeMap<String, String>(pinyinSort);
-        final Counter<String> counter = new Counter();
+        final Counter<String> counter = new Counter<String>();
         for (final String s : tailored) {
             String pinyin = bestPinyin.get(s);
             if (pinyin == null) {
@@ -477,7 +478,7 @@ public class GenerateUnihanCollators {
         System.out.println(counter);
         String lastPinyin = "";
         int count = 0;
-        final Counter<String> progressive = new Counter();
+        final Counter<String> progressive = new Counter<String>();
 
         for (final String s : sorted.keySet()) {
             final String pinyin = sorted.get(s);
@@ -597,18 +598,40 @@ public class GenerateUnihanCollators {
         out.close();
     }
 
+    // Markus: Could not figure out how to avoid type safety warnings with
+    // Comparator collator = new MultiComparator(coll, codepointComparator);
+    // Note that Collator is a Comparator<Object> and it cannot also be a Comparator<something else>.
+    private static final class CollatorWithTieBreaker implements Comparator<String> {
+        private final Collator coll;
+        private final Comparator<String> tieBreaker;
+        CollatorWithTieBreaker(Collator c, Comparator<String> tb) {
+            coll = c;
+            tieBreaker = tb;
+        }
+        public int compare(String left, String right) {
+            int result = coll.compare(left, right);
+            if (result != 0) {
+                return result;
+            }
+            return tieBreaker.compare(left, right);
+        }
+    }
+
     private static <S> void testSorting(Comparator<String> oldComparator, UnicodeMap<S> krsunicode2, String filename) throws Exception {
         final List<String> temp = krsunicode2.keySet().addAllTo(new ArrayList<String>());
-        final String rules = getFileAsString(Settings.GEN_DIR + File.separatorChar + "han" + File.separatorChar + filename + ".txt");
+        final String rules = getFileAsString(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY + File.separatorChar + filename + ".txt");
 
-        final Comparator collator = new MultiComparator(new RuleBasedCollator(rules), codepointComparator);
+        // The rules contain \uFDD0 and such and must be unescaped for the RuleBasedCollator.
+        final Collator coll = new RuleBasedCollator(com.ibm.icu.impl.Utility.unescape(rules));
+        final Comparator<String> collator = new CollatorWithTieBreaker(coll, codepointComparator);
         final List<String> ruleSorted = sortList(collator, temp);
 
-        final Comparator oldCollator = new MultiComparator(oldComparator, codepointComparator);
+        @SuppressWarnings("unchecked")
+        final Comparator<String> oldCollator = new MultiComparator<String>(oldComparator, codepointComparator);
         final List<String> originalSorted = sortList(oldCollator, temp);
         int badItems = 0;
         final int min = Math.min(originalSorted.size(), ruleSorted.size());
-        final Differ<String> differ = new Differ(100, 2);
+        final Differ<String> differ = new Differ<String>(100, 2);
         for (int k = 0; k < min; ++k) {
             final String ruleItem = ruleSorted.get(k);
             final String originalItem = originalSorted.get(k);
@@ -663,25 +686,16 @@ public class GenerateUnihanCollators {
         return "rules: " + differ.getBLine(i) + " " + item + " [" + Utility.hex(item) + "/" + krsunicode2.get(item) + "]";
     }
 
-    private static List<String> sortList(Comparator collator, List<String> temp) {
+    private static List<String> sortList(Comparator<String> collator, List<String> temp) {
         final String[] ruleSorted = temp.toArray(new String[temp.size()]);
         Arrays.sort(ruleSorted, collator);
         return Arrays.asList(ruleSorted);
     }
 
-    private static String getFileAsString(Class<GenerateUnihanCollators> relativeToClass, String filename) throws IOException {
-        final BufferedReader in = FileUtilities.openFile(relativeToClass, filename);
-        final StringBuilder builder = new StringBuilder();
-        while (true) {
-            final String line = in.readLine();
-            if (line == null) {
-                break;
-            }
-            builder.append(line).append('\n');
-        }
-        in.close();
-        return builder.toString();
-    }
+    // private static String getFileAsString(Class<GenerateUnihanCollators> relativeToClass, String filename) throws IOException {
+    //     final BufferedReader in = FileUtilities.openFile(relativeToClass, filename);
+    //     ... same as the version below
+    // }
 
     private static String getFileAsString(String filename) throws IOException {
         final InputStreamReader reader = new InputStreamReader(new FileInputStream(filename), FileUtilities.UTF8);
@@ -701,7 +715,7 @@ public class GenerateUnihanCollators {
     private static void showTranslit(String filename) {
         final PrintWriter out = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, filename + ".txt", null);
         final PrintWriter out2 = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, filename + ".xml", null);
-        final TreeSet<String> s = new TreeSet(pinyinSort);
+        final TreeSet<String> s = new TreeSet<String>(pinyinSort);
         s.addAll(bestPinyin.getAvailableValues());
 
         //        out2.println("<?xml version='1.0' encoding='UTF-8' ?>\n"
@@ -865,6 +879,7 @@ public class GenerateUnihanCollators {
         showSorting(comparator, unicodeMap, filename, FileType.xml, infoType);
     }
 
+    @SuppressWarnings("resource")
     private static <S> void showSorting(Comparator<String> comparator, UnicodeMap<S> unicodeMap, String filename,
             FileType fileType, InfoType infoType) {
         // special capture for Pinyin buckets
@@ -888,7 +903,7 @@ public class GenerateUnihanCollators {
         if (fileType == FileType.txt) {
             out.println(INDENT + "&[last regular]");
         } else {
-            final String typeAlt = filename.replace("_", "' alt='");
+            //            final String typeAlt = filename.replace("_", "' alt='");
             //            out.print(
             //                    "<?xml version='1.0' encoding='UTF-8' ?>\n"
             //                    +"<!DOCTYPE ldml SYSTEM '/Users/markdavis/Documents/workspace/cldr/common/dtd/ldml.dtd'>\n"
@@ -906,7 +921,6 @@ public class GenerateUnihanCollators {
         }
         S oldValue = null;
         String oldIndexValue = null;
-        String lastS = null;
         final Output<String> comment = new Output<String>();
         for (final String s : rsSorted) {
             final S newValue = unicodeMap.get(s);
@@ -960,12 +974,11 @@ public class GenerateUnihanCollators {
                 }
             }
             buffer.append(s);
-            lastS = s;
         }
 
         if (oldValue != null) {
             if (fileType == FileType.txt) {
-                out.println("<*" + sortingQuote(buffer.toString(), accumulated) + "\t#" + sortingQuote(oldValue, accumulated));
+                out.println(INDENT + "<*" + sortingQuote(buffer.toString(), accumulated) + " # " + sortingQuote(oldValue, accumulated));
             } else {
                 out.println("               <pc>" + buffer + "</pc><!-- " + oldValue + " -->");
             }
@@ -992,7 +1005,7 @@ public class GenerateUnihanCollators {
             //                continue; //already have it
             // character
             if (fileType == FileType.txt) {
-                out.println("&" + sortingQuote(kd, accumulated) + "<<<" + sortingQuote(s, accumulated));
+                out.println(INDENT + "&" + sortingQuote(kd, accumulated) + "<<<" + sortingQuote(s, accumulated));
             } else {
                 out.println("               <reset>" + kd + "</reset>");
                 out.println("               <t>" + s + "</t>");
