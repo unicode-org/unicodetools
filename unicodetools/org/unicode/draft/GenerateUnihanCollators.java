@@ -28,6 +28,7 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.draft.ComparePinyin.PinyinSource;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -43,9 +44,6 @@ import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.Normalizer;
-import com.ibm.icu.text.Normalizer2;
-import com.ibm.icu.text.Normalizer2.Mode;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
@@ -55,6 +53,15 @@ import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateUnihanCollators {
+    static String version = CldrUtility.getProperty("UVERSION");
+    static {
+        System.out.println("To make files for a different version of unicode, use -DUVERSION=x.y.z");
+        if (version != null) {
+            System.out.println("Resetting default version to: " + version);
+            Default.setUCD(version);
+        }
+    }
+
     private static final char INDEX_ITEM_BASE = '\u2800';
 
     enum FileType {txt, xml}
@@ -71,15 +78,28 @@ public class GenerateUnihanCollators {
     static final Transform<String, String>    fromNumericPinyin   = Transliterator.getInstance("NumericPinyin-Latin;nfc");
     static final Transliterator               toNumericPinyin     = Transliterator.getInstance("Latin-NumericPinyin;nfc");
 
-    static final Normalizer2                  nfkd                = Normalizer2.getInstance(null, "nfkc", Mode.DECOMPOSE);
-    static final Normalizer2                  nfd                 = Normalizer2.getInstance(null, "nfc", Mode.DECOMPOSE);
-    static final Normalizer2                  nfc                 = Normalizer2.getInstance(null, "nfc", Mode.COMPOSE);
+    static final Normalizer                  nfkd                = Default.nfkd();
+    static final Normalizer                  nfd                 = Default.nfd();
+    static final Normalizer                  nfc                 = Default.nfc();
 
     static final UnicodeSet                   PINYIN_LETTERS      = new UnicodeSet("['a-uw-zàáèéìíòóùúüāēěīōūǎǐǒǔǖǘǚǜ]").freeze();
+    
+    // these should be ok, eve if we are not on an old version
+    
     static final UnicodeSet                   NOT_NFC             = new UnicodeSet("[:nfc_qc=no:]").freeze();
     static final UnicodeSet                   NOT_NFD             = new UnicodeSet("[:nfd_qc=no:]").freeze();
     static final UnicodeSet                   NOT_NFKD             = new UnicodeSet("[:nfkd_qc=no:]").freeze();
-    static final UnicodeSet                   UNIHAN              = new UnicodeSet("[[:ideographic:][:script=han:]]").removeAll(NOT_NFC).freeze();
+    
+    // specifically restrict this to the set version. Theoretically there could be some variance in ideographic, but it isn't worth worrying about
+    
+    static final UnicodeSet                   UNIHAN_LATEST         = new UnicodeSet("[[:ideographic:][:script=han:]]")
+                                                                    .removeAll(NOT_NFC)
+                                                                    .freeze();
+    
+    static final UnicodeSet                   UNIHAN                = version == null ? UNIHAN_LATEST
+                                                                    : new UnicodeSet("[:age=" + version + ":]")
+                                                                    .retainAll(UNIHAN_LATEST)
+                                                                    .freeze();
 
     static Matcher                            unicodeCp           = Pattern.compile("^U\\+(2?[0-9A-F]{4})$").matcher("");
     static final HashMap<String, Boolean>     validPinyin         = new HashMap<String, Boolean>();
@@ -145,7 +165,9 @@ public class GenerateUnihanCollators {
     // kMandarin, space, [A-Z\x{308}]+[1-5] // 3475=HAN4 JI2 JIE2 ZHA3 ZI2
     // kHanyuPinlu, space, [a-z\x{308}]+[1-5]\([0-9]+\) 4E0A=shang4(12308)
     // shang5(392)
-    static UnicodeMap<String>        bestPinyin = new UnicodeMap();
+    static UnicodeMap<String>        bestPinyin = new UnicodeMap<>();
+
+    // while these use NFKD, for the repertoire they apply to it should work.
     static Transform<String, String> noaccents  = Transliterator.getInstance("nfkd; [[:m:]-[\u0308]] remove; nfc");
     static Transform<String, String> accents    = Transliterator.getInstance("nfkd; [^[:m:]-[\u0308]] remove; nfc");
 
@@ -197,7 +219,7 @@ public class GenerateUnihanCollators {
         final UnicodeMap<String> kXHC1983 = Default.ucd().getHanValue("kXHC1983");
         for (final String s : kXHC1983.keySet()) {
             final String original = kXHC1983.get(s);
-            String source = Normalizer.normalize(original, Normalizer.NFC);
+            String source = nfc.normalize(original);
             source = source.replaceAll("([0-9,.*]+:)*", "");
             addAll(s, original, PinyinSource.x, source.split(" "));
         }
@@ -205,7 +227,7 @@ public class GenerateUnihanCollators {
         final UnicodeMap<String> kHanyuPinyin = Default.ucd().getHanValue("kHanyuPinyin");
         for (final String s : kHanyuPinyin.keySet()) {
             final String original = kHanyuPinyin.get(s);
-            String source = Normalizer.normalize(original, Normalizer.NFC);
+            String source = nfc.normalize(original);
             source = source.replaceAll("^\\s*(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:", ""); // ,
             // only
             // for
@@ -554,7 +576,7 @@ public class GenerateUnihanCollators {
             final Set<String> allPinyins = mergedPinyin.get(s);
             final String firstPinyin = allPinyins == null ? "?" : allPinyins.iterator().next();
             final String rs = kRSUnicode.get(s);
-            
+
             final int totalStrokes = org.unicode.cldr.util.CldrUtility.ifNull(bestStrokesS.get(s),0);
             // for (String rsItem : rs.split(" ")) {
             // RsInfo rsInfo = RsInfo.from(rsItem);
@@ -682,17 +704,17 @@ public class GenerateUnihanCollators {
         final TreeSet<String> s = new TreeSet(pinyinSort);
         s.addAll(bestPinyin.getAvailableValues());
 
-//        out2.println("<?xml version='1.0' encoding='UTF-8' ?>\n"
-//                +"<!DOCTYPE supplementalData SYSTEM '../../common/dtd/ldmlSupplemental.dtd'>\n"
-//                +"<supplementalData>\n"
-//                +"  <version number='$Revision: 1.8 $'/>\n"
-//                +"  <generation date='$Date: 2010/12/14 07:57:17 $'/>\n"
-//                +"  <transforms>\n"
-//                +"      <transform source='Han' target='Latin' direction='both'>\n"
-//                +"          <comment># Warning: does not do round-trip mapping!!</comment>\n"
-//                +"          <comment># Convert CJK characters</comment>\n"
-//                +"          <tRule>::Han-Spacedhan();</tRule>\n"
-//                +"          <comment># Start RAW data for converting CJK characters</comment>");
+        //        out2.println("<?xml version='1.0' encoding='UTF-8' ?>\n"
+        //                +"<!DOCTYPE supplementalData SYSTEM '../../common/dtd/ldmlSupplemental.dtd'>\n"
+        //                +"<supplementalData>\n"
+        //                +"  <version number='$Revision: 1.8 $'/>\n"
+        //                +"  <generation date='$Date: 2010/12/14 07:57:17 $'/>\n"
+        //                +"  <transforms>\n"
+        //                +"      <transform source='Han' target='Latin' direction='both'>\n"
+        //                +"          <comment># Warning: does not do round-trip mapping!!</comment>\n"
+        //                +"          <comment># Convert CJK characters</comment>\n"
+        //                +"          <tRule>::Han-Spacedhan();</tRule>\n"
+        //                +"          <comment># Start RAW data for converting CJK characters</comment>");
 
         for (final String value : s) {
             final UnicodeSet uset = bestPinyin.getSet(value);
@@ -701,36 +723,36 @@ public class GenerateUnihanCollators {
             out2.println("           <tRule>" + uset.toPattern(false) + "→" + value + ";</tRule>");
         }
 
-//        out2.println("          <comment># End RAW data for converting CJK characters</comment>\n"
-//                +"          <comment># fallbacks</comment>\n"
-//                +"          <comment>## | yi ← i;</comment>\n"
-//                +"          <comment>## | wu ← u;</comment>\n"
-//                +"          <comment>## | bi ← b;</comment>\n"
-//                +"          <comment>## | ci ← c;</comment>\n"
-//                +"          <comment>## | di ← d;</comment>\n"
-//                +"          <comment>## | fu ← f;</comment>\n"
-//                +"          <comment>## | gu ← g;</comment>\n"
-//                +"          <comment>## | he ← h;</comment>\n"
-//                +"          <comment>## | ji ← j;</comment>\n"
-//                +"          <comment>## | ku ← k;</comment>\n"
-//                +"          <comment>## | li ← l;</comment>\n"
-//                +"          <comment>## | mi ← m;</comment>\n"
-//                +"          <comment>## | pi ← p;</comment>\n"
-//                +"          <comment>## | qi ← q;</comment>\n"
-//                +"          <comment>## | l ← r;</comment>\n"
-//                +"          <comment>## | si ← s;</comment>\n"
-//                +"          <comment>## | ti ← t;</comment>\n"
-//                +"          <comment>## | f ← v;</comment>\n"
-//                +"          <comment>## | wa ← w;</comment>\n"
-//                +"          <comment>## | xi ← x;</comment>\n"
-//                +"          <comment>## | yi ← y;</comment>\n"
-//                +"          <comment>## | zi ← z;</comment>\n"
-//                +"          <comment># filter out the half-width hangul</comment>\n"
-//                +"          <comment># :: [^ﾾ-￮] fullwidth-halfwidth ();</comment>\n"
-//                +"          <comment>## :: (lower) ;</comment>\n"
-//                +"      </transform>\n"
-//                +"  </transforms>\n"
-//                +"</supplementalData>");
+        //        out2.println("          <comment># End RAW data for converting CJK characters</comment>\n"
+        //                +"          <comment># fallbacks</comment>\n"
+        //                +"          <comment>## | yi ← i;</comment>\n"
+        //                +"          <comment>## | wu ← u;</comment>\n"
+        //                +"          <comment>## | bi ← b;</comment>\n"
+        //                +"          <comment>## | ci ← c;</comment>\n"
+        //                +"          <comment>## | di ← d;</comment>\n"
+        //                +"          <comment>## | fu ← f;</comment>\n"
+        //                +"          <comment>## | gu ← g;</comment>\n"
+        //                +"          <comment>## | he ← h;</comment>\n"
+        //                +"          <comment>## | ji ← j;</comment>\n"
+        //                +"          <comment>## | ku ← k;</comment>\n"
+        //                +"          <comment>## | li ← l;</comment>\n"
+        //                +"          <comment>## | mi ← m;</comment>\n"
+        //                +"          <comment>## | pi ← p;</comment>\n"
+        //                +"          <comment>## | qi ← q;</comment>\n"
+        //                +"          <comment>## | l ← r;</comment>\n"
+        //                +"          <comment>## | si ← s;</comment>\n"
+        //                +"          <comment>## | ti ← t;</comment>\n"
+        //                +"          <comment>## | f ← v;</comment>\n"
+        //                +"          <comment>## | wa ← w;</comment>\n"
+        //                +"          <comment>## | xi ← x;</comment>\n"
+        //                +"          <comment>## | yi ← y;</comment>\n"
+        //                +"          <comment>## | zi ← z;</comment>\n"
+        //                +"          <comment># filter out the half-width hangul</comment>\n"
+        //                +"          <comment># :: [^ﾾ-￮] fullwidth-halfwidth ();</comment>\n"
+        //                +"          <comment>## :: (lower) ;</comment>\n"
+        //                +"      </transform>\n"
+        //                +"  </transforms>\n"
+        //                +"</supplementalData>");
         out.close();
         out2.close();
     }
@@ -961,7 +983,7 @@ public class GenerateUnihanCollators {
 
         for (final String s : sorted) {
             // decomposable, but not tailored
-            final String kd = nfkd.getDecomposition(s.codePointAt(0));
+            final String kd = nfkd.normalize(s.codePointAt(0));
             if (!tailored.containsSome(kd))
             {
                 continue; // the decomp has to contain at least one tailored
@@ -1453,7 +1475,7 @@ public class GenerateUnihanCollators {
             if (first < 0x7F) {
                 rest = str.substring(0,1);
             } else {
-                rest = nfd.getDecomposition(first).substring(0,1);
+                rest = nfd.normalize(first).substring(0,1);
             }
             comment.value = rest;
             break;
