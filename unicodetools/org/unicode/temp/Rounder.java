@@ -27,7 +27,7 @@ public class Rounder {
     private double finalMedian;
 
     private String getFinalDigits() {
-        return finalLow + "/" + finalHigh + "/t" + finalMedian;
+        return finalLow + " / " + finalHigh + " / " + finalMedian;
     }
 
     public StringBuilder round(double lowPositive, double highPositive) {
@@ -69,28 +69,6 @@ public class Rounder {
             digits.append('0');
         }
         return digits;
-    }
-
-    public enum Position {
-        DEGREES("°", 1),
-        MINUTES("′", 60),
-        SECONDS("″", 60 * 60);
-        public final String symbol;
-        public final double divisor;
-
-        private Position(String symbol, int divisor) {
-            this.symbol = symbol;
-            this.divisor = divisor;
-        }
-
-        public static Position fromSymbol(char ch) {
-            for (Position p : Position.values()) {
-                if (p.symbol.charAt(0) == ch) {
-                    return p;
-                }
-            }
-            return null;
-        }
     }
 
     public StringBuilder round60(double lowPositive, double highPositive) {
@@ -147,6 +125,28 @@ public class Rounder {
         return digits;
     }
 
+    public enum Position {
+        DEGREES("°", 1),
+        MINUTES("′", 60),
+        SECONDS("″", 60 * 60);
+        public final String symbol;
+        public final double divisor;
+
+        private Position(String symbol, int divisor) {
+            this.symbol = symbol;
+            this.divisor = divisor;
+        }
+
+        public static Position fromSymbol(char ch) {
+            for (Position p : Position.values()) {
+                if (p.symbol.charAt(0) == ch) {
+                    return p;
+                }
+            }
+            return null;
+        }
+    }
+
     static double[] parseLowHigh(CharSequence ss) {
         String s = ss.toString();
         double base = Double.parseDouble(s);
@@ -201,7 +201,7 @@ public class Rounder {
 
     private static void tryRounder60() {
         System.out
-                .println("\nRounding when convering double degrees to degrees-minutes-seconds\nSource\tdegrees interpreted\t rounded & converted to dms\tdms interpreted\t rounded & converted back\tSame?");
+                .println("\nRounding when convering double degrees to degrees-minutes-seconds\nSource\tdegrees interpreted\tlast digit internals\t rounded & converted to dms\tdms interpreted\t rounded & converted back\tSame?");
         String[] tests = {
                 "12", "12.3", "12.30", "12.34", "12.340", "12.345", "12.3456", "12.34567", "12.3456789", "12.34567890"
         };
