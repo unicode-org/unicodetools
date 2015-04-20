@@ -12,6 +12,8 @@ import com.ibm.icu.util.ULocale;
  * @author markdavis
  */
 public class Rounder {
+    private static final double cmPerInch = 2.54d;
+
     public StringBuilder round(double lowPositive, double highPositive) {
         lowPositive = Math.nextUp(lowPositive);
         highPositive = Math.nextDown(highPositive);
@@ -174,8 +176,9 @@ public class Rounder {
     }
 
     public static void main(String[] args) {
-        tryRounder();
-        tryRounder60();
+        tryRounderlp100km();
+//        tryRounder();
+//        tryRounder60();
     }
 
     private static void tryRounder60() {
@@ -221,10 +224,10 @@ public class Rounder {
             double low = start[0];
             double high = start[1];
             StringBuilder rounded = rounder.round(low, high);
-            double[] start2 = { low / 2.54d, high / 2.54d };
+            double[] start2 = { low / cmPerInch, high / cmPerInch };
             StringBuilder rounded2 = rounder.round(start2[0], start2[1]);
             double[] back = parseLowHigh(rounded2);
-            double[] back2 = { back[0] * 2.54, back[1] * 2.54 };
+            double[] back2 = { back[0] * cmPerInch, back[1] * cmPerInch };
             StringBuilder rounded3 = rounder.round(back2[0], back2[1]);
             System.out.println('“' + test + '”'
                     + "\t" + showPlusMinus(start)
@@ -238,6 +241,44 @@ public class Rounder {
                     );
         }
     }
+    
+    private static void tryRounderlp100km() {
+        System.out
+                .println("Rounding when convering liters/100km values to mpg\nSource\tlp100km interpreted\tlp100km\tmapped to mpg\t rounded & converted \tmpg interpreted\tmapped to lp100km\t rounded & converted \tSame?\t");
+        String[] tests = {
+                "0.49", "0.5", "0.50", "0.51", "0.510", "0.52",
+                "4.9", "5", "5.0", "5.1", "5.10", "5.2",
+                "49", "50", "51", "51.0", "52"
+        };
+        double LPK = 235d;
+        Rounder rounder = new Rounder();
+        for (String test : tests) {
+            double[] start = parseLowHigh(test);
+
+            double low = start[0];
+            double high = start[1];
+            // 235 / (L/100 km) = mpgUS
+
+            StringBuilder rounded = rounder.round(low, high);
+            double[] start2 = { LPK / low, LPK / high };
+            StringBuilder rounded2 = rounder.round(start2[0], start2[1]);
+            double[] back = parseLowHigh(rounded2);
+            double[] back2 = { LPK / back[0], LPK / back[1] };
+            StringBuilder rounded3 = rounder.round(back2[0], back2[1]);
+            System.out.println('“' + test + '”'
+                    + "\t" + showPlusMinus(start)
+                    + "\t" + rounded + " lp100km"
+                    + "\t" + showPlusMinus(start2) + " mpg"
+                    + "\t" + rounded2 + " mpg"
+                    + "\t" + showPlusMinus(back) + " mpg"
+                    + "\t" + showPlusMinus(back2) + " lp100km"
+                    + "\t" + rounded3 + " lp100km"
+                    + (rounded.toString().equals(rounded3.toString()) ? "" : "\tNO")
+                    );
+        }
+    }
+    
+
 
     private static String showPlusMinus(double[] start) {
         double average = (start[0] + start[1]) / 2;
