@@ -1,5 +1,5 @@
 # PropList-8.0.0.txt
-# Date: 2015-03-11, 22:29:30 GMT [MD]
+# Date: 2015-04-01, 17:16:28 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2015 Unicode, Inc.
@@ -564,8 +564,6 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 1930..1931    ; Other_Alphabetic # Mc   [2] LIMBU SMALL LETTER KA..LIMBU SMALL LETTER NGA
 1932          ; Other_Alphabetic # Mn       LIMBU SMALL LETTER ANUSVARA
 1933..1938    ; Other_Alphabetic # Mc   [6] LIMBU SMALL LETTER TA..LIMBU SMALL LETTER LA
-#19B0..19C0    ; Other_Alphabetic # Lo  [17] NEW TAI LUE VOWEL SIGN VOWEL SHORTENER..NEW TAI LUE VOWEL SIGN IY
-#19C8..19C9    ; Other_Alphabetic # Lo   [2] NEW TAI LUE TONE MARK-1..NEW TAI LUE TONE MARK-2
 1A17..1A18    ; Other_Alphabetic # Mn   [2] BUGINESE VOWEL SIGN I..BUGINESE VOWEL SIGN U
 1A19..1A1A    ; Other_Alphabetic # Mc   [2] BUGINESE VOWEL SIGN E..BUGINESE VOWEL SIGN O
 1A1B          ; Other_Alphabetic # Mn       BUGINESE VOWEL SIGN AE
@@ -721,7 +719,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1135
+# Total code points: 1116
 
 # ================================================
 

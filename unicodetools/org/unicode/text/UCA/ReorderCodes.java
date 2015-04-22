@@ -80,7 +80,7 @@ public class ReorderCodes {
 
     public static final String getName(int reorderCode) {
         if (reorderCode < FIRST) {
-            String name = UCD.getScriptID_fromIndex((byte) reorderCode);
+            String name = UCD.getScriptID_fromIndex((short) reorderCode);
             if (name != null) {
                 return name;
             }
@@ -88,18 +88,8 @@ public class ReorderCodes {
             // - Remove scripts supported by ICU4J UScript and CLDR ScriptMetadata.
             // - Add scripts not yet supported there.
             switch (reorderCode) {
-            case UCD_Types.Ahom:
-                return "Ahom";
-            case UCD_Types.Anatolian_Hieroglyphs:
-                return "Anatolian_Hieroglyphs";
-            case UCD_Types.Hatran:
-                return "Hatran";
-            case UCD_Types.Multani:
-                return "Multani";
-            case UCD_Types.Old_Hungarian:
-                return "Old_Hungarian";
-            case UCD_Types.SignWriting:
-                return "SignWriting";
+//            case UCD_Types.Old_Hungarian:
+//                return "Old_Hungarian";
             default:
                 throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
             }
@@ -118,18 +108,8 @@ public class ReorderCodes {
             // - Remove scripts supported by ICU4J UScript and CLDR ScriptMetadata.
             // - Add scripts not yet supported there.
             switch (reorderCode) {
-            case UCD_Types.Ahom:
-                return "Ahom";
-            case UCD_Types.Anatolian_Hieroglyphs:
-                return "Hluw";
-            case UCD_Types.Hatran:
-                return "Hatr";
-            case UCD_Types.Multani:
-                return "Mult";
-            case UCD_Types.Old_Hungarian:
-                return "Hung";
-            case UCD_Types.SignWriting:
-                return "Sgnw";
+//            case UCD_Types.Old_Hungarian:
+//                return "Hung";
             default:
                 throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
             }
@@ -156,18 +136,8 @@ public class ReorderCodes {
             // - Remove scripts supported by ICU4J UScript and CLDR ScriptMetadata.
             // - Add scripts not yet supported there.
             switch (reorderCode) {
-            case UCD_Types.Ahom:
-                return "𑜗";
-            case UCD_Types.Anatolian_Hieroglyphs:
-                return "𔐀";
-            case UCD_Types.Hatran:
-                return "𐣴";
-            case UCD_Types.Multani:
-                return "𑊏";
-            case UCD_Types.Old_Hungarian:
-                return "𐲡";
-            case UCD_Types.SignWriting:
-                return "𝡐";
+//            case UCD_Types.Old_Hungarian:
+//                return "𐲡";
             default:
                 throw new UnsupportedOperationException("unknown reorderCode " + reorderCode);
             }
