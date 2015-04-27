@@ -63,8 +63,8 @@ public class GenerateEmojiFrequency {
 
     static final Set<String> DROP_ANNOTATIONS = new HashSet<>(Arrays.asList(
             "default-text-style",
-            "fitz-minimal",
-            "fitz-optional",
+            "fitz-primary",
+            "fitz-secondary",
             "nature-android",
             "nature-apple",
             "objects-android",

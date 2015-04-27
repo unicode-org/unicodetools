@@ -699,14 +699,14 @@ public class GenerateEmoji {
         }
     }
 
-    enum ModifierStatus {none, modifier, minimal, optional}
+    enum ModifierStatus {none, modifier, primary, secondary}
 
     static final UnicodeMap<ModifierStatus> MODIFIER_STATUS = new UnicodeMap<ModifierStatus>()
             .putAll(Emoji.EMOJI_CHARS, ModifierStatus.none)
             .putAll(new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3Fd}\\x{1F3Fe}\\x{1F3Ff}]"), ModifierStatus.none)
             .putAll(new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3Fd}\\x{1F3Fe}\\x{1F3Ff}]"), ModifierStatus.modifier)
-            .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS.getValues("fitz-minimal")), ModifierStatus.minimal)
-            .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS.getValues("fitz-optional")), ModifierStatus.optional)
+            .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS.getValues("fitz-primary")), ModifierStatus.primary)
+            .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS.getValues("fitz-secondary")), ModifierStatus.secondary)
             .freeze();
 
     public static String getImageFilename(Source type, String core) {
@@ -1178,20 +1178,19 @@ public class GenerateEmoji {
 
     static Set<Source> MAIN_SOURCES = Collections.unmodifiableSet(EnumSet.of(Source.apple, Source.android, Source.twitter, Source.windows));
 
-    private static void showNewCharacters() throws IOException {
-        Set<String> optional = ANNOTATIONS_TO_CHARS.getValues("fitz-optional");
-        Set<String> minimal = ANNOTATIONS_TO_CHARS.getValues("fitz-minimal");
+    static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+    static final UnicodeMap<String> emojiDCM = latest.load(UcdProperty.Emoji_DCM);
+    static final UnicodeMap<String> emojiKDDI = latest.load(UcdProperty.Emoji_KDDI);
+    static final UnicodeMap<String> emojiSB = latest.load(UcdProperty.Emoji_SB);
 
-        final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-        final UnicodeMap<String> emojiDCM = latest.load(UcdProperty.Emoji_DCM);
-        final UnicodeMap<String> emojiKDDI = latest.load(UcdProperty.Emoji_KDDI);
-        final UnicodeMap<String> emojiSB = latest.load(UcdProperty.Emoji_SB);
-        UnicodeSet carriers = new UnicodeSet()
-        .addAll(emojiDCM.keySet())
-        .addAll(emojiKDDI.keySet())
-        .addAll(emojiSB.keySet())
-        .freeze();
-        UnicodeSet otherStandard = new UnicodeSet(carriers);
+    static final UnicodeSet carriers = new UnicodeSet()
+    .addAll(emojiDCM.keySet())
+    .addAll(emojiKDDI.keySet())
+    .addAll(emojiSB.keySet())
+    .freeze();
+
+    static final UnicodeSet otherStandard = new UnicodeSet(carriers);
+    static { 
         for (String s : Emoji.EMOJI_CHARS) {
             String image = getImage(Source.apple, s, false, "");
             if (image != null) {
@@ -1199,31 +1198,38 @@ public class GenerateEmoji {
             }
         }
         otherStandard.removeAll(carriers).freeze();
-        UnicodeSet nc = new UnicodeSet(Emoji.EMOJI_CHARS)
-        .removeAll(carriers)
-        .removeAll(otherStandard)
-        .removeAll(Emoji.FLAGS)
-        .freeze();
+    }
+    
+    static final UnicodeSet LEVEL1 = new UnicodeSet(carriers).addAll(otherStandard).freeze();
+    
+    static final UnicodeSet nc = new UnicodeSet(Emoji.EMOJI_CHARS)
+    .removeAll(carriers)
+    .removeAll(otherStandard)
+    .removeAll(Emoji.FLAGS)
+    .freeze();
 
-        UnicodeSet nc8 = new UnicodeSet(nc)
-        .removeAll(new UnicodeSet("[:age=7.0:]"))
-        .removeAll(nc.strings())
-        .freeze();
+    static final UnicodeSet nc8 = new UnicodeSet(nc)
+    .removeAll(new UnicodeSet("[:age=7.0:]"))
+    .removeAll(nc.strings())
+    .freeze();
 
-        UnicodeSet nc7 = new UnicodeSet(nc)
-        .removeAll(nc8)
-        .freeze();
+    static final UnicodeSet nc7 = new UnicodeSet(nc)
+    .removeAll(nc8)
+    .freeze();
 
+    static final UnicodeSet otherFlags = new UnicodeSet(Emoji.FLAGS)
+    .removeAll(carriers).freeze();
 
-        UnicodeSet otherFlags = new UnicodeSet(Emoji.FLAGS)
-        .removeAll(carriers).freeze();
+    private static void showNewCharacters() throws IOException {
+        Set<String> optional = ANNOTATIONS_TO_CHARS.getValues("fitz-secondary");
+        Set<String> minimal = ANNOTATIONS_TO_CHARS.getValues("fitz-primary");
 
         // Set<String> newChars =
         // ANNOTATIONS_TO_CHARS.getValues("fitz-minimal");
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-count.html");
         writeHeader(out, "Temp Items", "no message");
-        showRow(out, "Minimal", minimal, true);
-        showRow(out, "Optional", optional, true);
+        showRow(out, "Primary", minimal, true);
+        showRow(out, "Secondary", optional, true);
         showRow(out, "JCarriers", carriers.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Common Additions", otherStandard.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Other Flags", otherFlags.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
@@ -2127,12 +2133,13 @@ public class GenerateEmoji {
         String format = "# Code ; Default Style ; Sources ; Version # (Character) Name\n";
         //outText.println(dataHeader("", "", ""));
         outText2.println(dataHeader());
-        level1 = new UnicodeSet()
-        .addAll(stats.totalData.get(Source.apple))
-        .retainAll(stats.totalData.get(Source.android))
-        .retainAll(stats.totalData.get(Source.windows))
-        .retainAll(stats.totalData.get(Source.twitter))
-        .freeze();
+        //        level1 = new UnicodeSet()
+        //        .addAll(stats.totalData.get(Source.apple))
+        //        .retainAll(stats.totalData.get(Source.android))
+        //        .retainAll(stats.totalData.get(Source.windows))
+        //        .retainAll(stats.totalData.get(Source.twitter))
+        //        .freeze();
+        level1 = new UnicodeSet(LEVEL1);
         for (Data data : new TreeSet<Data>(set.values())) {
             //outText.println(data.toSemiString(order++, null));
             outText2.println(data.toSemiString(order++, level1));
@@ -2153,14 +2160,16 @@ public class GenerateEmoji {
                 + "#   Field 2 — Emoji_Level:\n"
                 + "#             L1:        level 1 emoji\n"
                 + "#             L2:        level 2 emoji\n"
+                + "#             NA:        not applicable\n"
                 + "#   Field 3 — Emoji_Modifier_Status:\n"
                 + "#             modifier:  an emoji modifier\n"
-                + "#             minimal:   a minimal emoji modifier base\n"
-                + "#             optional:  an optional emoji modifier base\n"
-                + "#             none:      none of the above\n"
+                + "#             primary:   a primary emoji modifier base\n"
+                + "#             secondary: a secondary emoji modifier base\n"
+                + "#             none:      not applicable\n"
                 + "#   Field 4 — Emoji_Sources (Informative):\n"
                 + "#             one or more values from {z, a, j, w, x}\n"
                 + "#             see the key in http://www.unicode.org/draft/reports/tr51/tr51.html#Major_Sources\n"
+                + "#             NA:        not applicable\n"
                 + "#   Field 5 — Version (Informative):\n"
                 + "#             version the character was first encoded, from DerivedAge\n#";
     }
@@ -2436,8 +2445,8 @@ public class GenerateEmoji {
 
     static final Set<String> GROUP_ANNOTATIONS = new HashSet<>(Arrays.asList(
             "default-text-style",
-            "fitz-minimal",
-            "fitz-optional",
+            "fitz-primary",
+            "fitz-secondary",
             "nature",
             "nature-android",
             "nature-apple",
