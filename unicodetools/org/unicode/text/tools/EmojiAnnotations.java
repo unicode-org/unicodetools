@@ -56,7 +56,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                         continue;
                     }
                     for (String item : lastLabel.value) {
-                        add(item.toLowerCase(Locale.ENGLISH), string);
+                        add(fixAnnotation(item), string);
                     }
                 }
             }
@@ -139,6 +139,13 @@ public class EmojiAnnotations extends Birelation<String,String> {
             UnicodeSet missing = new UnicodeSet().addAll(Emoji.EMOJI_CHARS).removeAll(annotationCharacters);
             throw new IllegalArgumentException("Missing annotations: " + missing.toPattern(false));
         }
+    }
+
+    private String fixAnnotation(String item) {
+        String result = item.toLowerCase(Locale.ENGLISH);
+        return result
+                .replace("minimal", "primary")
+                .replace("optional", "secondary");
     }
 
 //    public void addParts(String emoji, String name) {
