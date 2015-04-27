@@ -19,7 +19,7 @@ import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
 
-public class GenerateLineBreakTest implements UCD_Types {
+public class XObsoleteGenerateLineBreakTest implements UCD_Types {
 
     // COMMON STUFF for Hangul
     static final byte hNot = -1, hL = 0, hV = 1, hT = 2, hLV = 3, hLVT = 4, hLIMIT = 5;
@@ -75,7 +75,7 @@ public class GenerateLineBreakTest implements UCD_Types {
 
     public static void main(String[] args) throws IOException {
 
-        new GenerateLineBreakTest().run();
+        new XObsoleteGenerateLineBreakTest().run();
 
         new GenerateWordBreakTest().run();
     }
@@ -764,7 +764,7 @@ public class GenerateLineBreakTest implements UCD_Types {
         return true;
     }
 
-    static class GenerateWordBreakTest extends GenerateLineBreakTest {
+    static class GenerateWordBreakTest extends XObsoleteGenerateLineBreakTest {
 
         static final byte CR = 0, LF = 1, Control = 2, Extend = 3, Link = 4, CGJ = 5, Base = 6, LetterBase = 7, Other = 8,
                 oLIMIT = 9, // RESET THIS IF LIST ABOVE CHANGES!
@@ -810,7 +810,6 @@ public class GenerateLineBreakTest implements UCD_Types {
         @Override
         public String getTableEntry(String before, String after, boolean recommended, String[] ruleOut) {
             final boolean normalBreak = isBreak(before + after, before.length(), recommended);
-            final String normalRule = rule;
             ruleOut[0] = rule;
             return normalBreak ? BREAK : NOBREAK;
         }
