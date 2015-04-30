@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 
 import org.unicode.cldr.util.Segmenter;
@@ -444,6 +445,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
     }
 
     private void generateTest(boolean shortVersion, String fileName, String propertyName) throws IOException {
+        Set<Double> rulesFound = new TreeSet<>();
+
         final List<String> testCases = new ArrayList<String>();
         // do main test
 
@@ -490,14 +493,14 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 genTestItems(before, after, testCases);
                 genTestItems(before + "\u0308", after, testCases);
                 for (final String testCase : testCases) {
-                    printLine(out, testCase, !shortVersion /*&& isFirst */, false);
+                    printLine(out, testCase, !shortVersion /*&& isFirst */, false, rulesFound);
                     ++counter;
                 }
             }
         }
 
         for (int ii = 0; ii < extraSingleSamples.size(); ++ii) {
-            printLine(out, extraSingleSamples.get(ii), true, false);
+            printLine(out, extraSingleSamples.get(ii), true, false, rulesFound);
             ++counter;
         }
         out.println("#");
@@ -505,6 +508,23 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println("#");
         out.println("# EOF");
         fc.close();
+        Set<Double> numbers = getMissing(fileName, rulesFound);
+        if (!numbers.isEmpty()) {
+            throw new IllegalArgumentException("***Rules missing from TESTS for " + fileName + ": " + numbers 
+                    + "You will need to add samples that trigger those rules. "
+                    + "See https://sites.google.com/site/unicodetools/home/changing-ucd-properties#TOC-Adding-Segmentation-Sample-Strings");
+        }
+    }
+
+    private Set<Double> getMissing(String fileName, Set<Double> rulesFound) {
+        Set<Double> numbers = getRuleNumbers();
+        numbers.removeAll(rulesFound);
+        if (fileName.equals("Grapheme")) {
+            numbers.remove(9.2d); // Prepend is optional, and by default empty
+        } else if (fileName.equals("Line")) {
+            numbers.remove(0.2d); // sot is an artifact
+        }
+        return numbers;
     }
 
     public void sampleDescription(PrintWriter out) {}
@@ -756,6 +776,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println("</table>");
         //out.println("</ul>");
 
+        Set<Double> rulesFound = new TreeSet<>();
+
         if (extraSingleSamples.size() > 0) {
             out.println("<h3>" + linkAndAnchor("samples", "Sample Strings") + "</h3>");
             out.println("<p>" +
@@ -768,11 +790,24 @@ abstract public class GenerateBreakTest implements UCD_Types {
             for (int ii = 0; ii < extraSingleSamples.size(); ++ii) {
                 final String ruleNumber = String.valueOf(ii+1);
                 out.println("<tr><th style='text-align:right'>" + linkAndAnchor("s" + ruleNumber, ruleNumber) + "</th><td><font size='5'>");
-                printLine(out, extraSingleSamples.get(ii), true, true);
+                printLine(out, extraSingleSamples.get(ii), true, true, rulesFound);
                 out.println("</font></td></tr>");
             }
             out.println("</table>");
         }
+        Set<Double> numbers = getMissing(fileName, rulesFound);
+        System.out.println("***Rules missing from SAMPLES for " + fileName + ": " + numbers);
+    }
+
+    Set<Double> getRuleNumbers() {
+        Set<Double> results = new TreeSet<Double>();
+        for (int ii = 0; ii < ruleListCount; ++ii) {
+            String ruleString = ruleList[ii];
+            final int parenPos = ruleString.indexOf(')');
+            final String ruleNumber = ruleString.substring(0,parenPos);
+            results.add(Double.parseDouble(ruleNumber));
+        }
+        return results;
     }
 
     public String linkAndAnchor(String anchor, String text) {
@@ -782,11 +817,13 @@ abstract public class GenerateBreakTest implements UCD_Types {
     static final String BREAK = "\u00F7";
     static final String NOBREAK = "\u00D7";
 
-    public void printLine(PrintWriter out, String source, boolean comments, boolean html) {
+    public void printLine(PrintWriter out, String source, boolean comments, boolean html, Set<Double> rules) {
         int cp;
         final StringBuffer string = new StringBuffer();
         final StringBuffer comment = new StringBuffer("\t# ");
         boolean hasBreak = isBreak(source, 0);
+        addToRules(rules, hasBreak);
+
         String status;
         if (html) {
             status = hasBreak ? " style='border-right: 1px solid blue'" : "";
@@ -801,6 +838,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
             cp = UTF16.charAt(source, offset);
             hasBreak = isBreak(source, offset + UTF16.getCharCount(cp));
+            addToRules(rules, hasBreak);
 
             if (html) {
                 status = hasBreak ? " style='border-right: 1px solid blue'" : "";
@@ -831,6 +869,13 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println(string);
         if (DEBUG) {
             System.out.println("*" + string);
+        }
+    }
+
+    private void addToRules(Set<Double> rules, boolean hasBreak) {
+        rules.add(Double.parseDouble(getRule()));
+        if (!hasBreak) {
+            rules.add(999d);
         }
     }
 
@@ -1065,7 +1110,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
     static class GenerateLineBreakTest extends XGenerateBreakTest {
         public GenerateLineBreakTest(UCD ucd) {
             super(ucd, Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()),"LineBreak"), "aa", "Line",
-                    new String[]{}, new String[] {
+                    new String[]{}, 
+                    new String[]{
                 "can't", "can\u2019t",
                 "'can' not",
                 "can 'not'",
@@ -1287,6 +1333,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8",
                 "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8\uD83C\uDDEA",
                 "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
+                "\u05D0-\u05D0",
             });
         }
         @Override
@@ -1342,6 +1389,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "etc.\u5B83",
                     "etc.\u3002",
                     "\u5B57\u3002\u5B83",
+                    "!\u0020\u0020",
             };
             final String[] temp = new String [extraSingleSamples.length * 2];
             System.arraycopy(extraSingleSamples, 0, temp, 0, extraSingleSamples.length);
@@ -1374,8 +1422,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "\uD83C\uDDF7\uD83C\uDDFA",
                     "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8",
                     "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8\uD83C\uDDEA",
-                    "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA")
-                    );
+                    "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
+                    "\u05D0\"\u05D0"
+                    ));
         }
         static String[] getExtraSamples() {
             final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(Default.ucd());
@@ -1389,7 +1438,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "C.d",
                     "c.D",
                     "C.D",
-                    };
+            };
             final String[] extraSingleSamples = new String [temp.length * 2];
             System.arraycopy(temp, 0, extraSingleSamples, 0, temp.length);
             for (int i = 0; i < temp.length; ++i) {
