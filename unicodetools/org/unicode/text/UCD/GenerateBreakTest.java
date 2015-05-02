@@ -19,6 +19,7 @@ import java.util.BitSet;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -334,9 +335,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
     protected String currentRule;
     protected String fileName;
     protected String propertyName;
-    protected List<String> samples = new ArrayList<String>();
-    protected List<String> extraSamples = new ArrayList<String>();
-    protected List<String> extraSingleSamples = new ArrayList<String>();
+    protected List<String> samples = new ArrayList<String>(); // should have one per property value, for the cross chart and before+after test
+    protected List<String> extraSamples = new ArrayList<String>(); // extras that are used in before+after test
+    protected List<String> extraSingleSamples = new ArrayList<String>(); // extras that are just added straight, no before+after, and also appear on charts
+    protected Set<String> extraTestSamples = new LinkedHashSet<>(); // extras that are just added to tests, not to charts
     protected int tableLimit = -1;
 
     protected int[] skippedSamples = new int[100];
@@ -503,6 +505,12 @@ abstract public class GenerateBreakTest implements UCD_Types {
             printLine(out, extraSingleSamples.get(ii), true, false, rulesFound);
             ++counter;
         }
+        
+        for (String extraTestSample : extraTestSamples) {
+            printLine(out, extraTestSample, true, false, rulesFound);
+            ++counter;
+        }
+        
         out.println("#");
         out.println("# Lines: " + counter);
         out.println("#");
@@ -1425,6 +1433,20 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
                     "\u05D0\"\u05D0"
                     ));
+            // 1. ÷ (Numeric|ALetter) ÷ (MidLetter|MidNum|MidNumLet) ÷ (MidLetter|MidNum|MidNumLet) ÷ (Numeric|ALetter) ÷
+            // 2. ÷ (Numeric|ALetter) × ExtendNumLet × (Numeric|ALetter) ÷ (MidLetter|MidNum|MidNumLet) ÷ (MidLetter|MidNum|MidNumLet) ÷ (Numeric|ALetter) ÷
+            for (String numLet : Arrays.asList("1", "a")) {
+                for (String mid : Arrays.asList(":", ".", ",")) {
+                    for (String mid2 : Arrays.asList(":", ".", ",")) {
+                        for (String numLet2 : Arrays.asList("1", "a")) {
+                            extraTestSamples.add(numLet + mid + mid2 + numLet2); 
+                            for (String numLet3 : Arrays.asList("1", "a")) {
+                                extraTestSamples.add(numLet + "_" + numLet3 + mid + mid2 + numLet2); 
+                            }
+                        }
+                    }
+                }
+            }
         }
         static String[] getExtraSamples() {
             final GenerateBreakTest grapheme = new GenerateGraphemeBreakTest(Default.ucd());
