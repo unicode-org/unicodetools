@@ -16,6 +16,32 @@ public class Rounder {
     private static final double kmPerMile = cmPerInch * 12 * 5280 / 100000d;
     private static final double lpkmToMpg = litersPerGallon / kmPerMile;
     
+    public static class BoundedDouble extends Number {
+        private double low;
+        private double high;
+        
+        @Override
+        public int intValue() {
+            return (int)((low + high) / 2);
+        }
+
+        @Override
+        public long longValue() {
+            return (long)((low + high) / 2);
+        }
+
+        @Override
+        public float floatValue() {
+            return (float)((low + high) / 2);
+        }
+
+        @Override
+        public double doubleValue() {
+            return (low + high) / 2;
+        }
+        
+    }
+    
     public static void main(String[] args) {
         tryRounderlpkm();
         tryRounder();
@@ -233,8 +259,9 @@ public class Rounder {
                 .println("Rounding when convering centimeter values to inches\nSource\tcm interpreted\tmapped to inches\t rounded & converted \tinches interpreted\tmapped to cm\t rounded & converted \tSame?\t");
         String[] tests = {
                 "0.49", "0.5", "0.50", "0.51", "0.510", "0.52",
-                "4.9", "5", "5.0", "5.1", "5.10", "5.2",
-                "49", "50", "51", "51.0", "52"
+                "4.8", "4.9", "5", "5.0", "5.1", "5.10", "5.2",
+                "49", "50", "51", "51.0", "52",
+                "0.98", "0.99", "0.100"
         };
         Rounder rounder = new Rounder();
         for (String test : tests) {
