@@ -23521,7 +23521,6 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 1F850..1F859  ; ~Unicode Identifier # [10] (🡐..🡙)  LEFTWARDS SANS-SERIF ARROW..UP DOWN SANS-SERIF ARROW
 1F860..1F887  ; ~Unicode Identifier # [40] (🡠..🢇)  WIDE-HEADED LEFTWARDS LIGHT BARB ARROW..WIDE-HEADED SOUTH WEST VERY HEAVY BARB ARROW
 1F890..1F8AD  ; ~Unicode Identifier # [30] (🢐..🢭)  LEFTWARDS TRIANGLE ARROWHEAD..WHITE ARROW SHAFT WIDTH TWO THIRDS
-1F900         ; ~Unicode Identifier #      (🤀)  DHYANI BUDDHA
 1F910..1F918  ; ~Unicode Identifier #  [9] (🤐..🤘)  ZIPPER-MOUTH FACE..SIGN OF THE HORNS
 1F980..1F984  ; ~Unicode Identifier #  [5] (🦀..🦄)  CRAB..UNICORN FACE
 1F9C0         ; ~Unicode Identifier #      (🧀)  CHEESE WEDGE
@@ -23529,4 +23528,4 @@ FFF9..FFFD    ; ~Unicode Identifier #  [5] (U+FFF9..�)  INTERLINEAR ANNOTATION
 E0001         ; ~Unicode Identifier #      (U+E0001)  LANGUAGE TAG
 E0020..E007F  ; ~Unicode Identifier # [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
 
-# Total code points: 11903
+# Total code points: 11902
