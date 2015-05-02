@@ -5,11 +5,12 @@
 #
 # FORMAT:
 #
-# This file is in UTF8, with certain characters escaped using the \x{XXXX} convention where they
-# could otherwise have a confusing display. For example, this includes: 
+# This file is in UTF8, with certain characters escaped using the \uXXXX or \x{XXXX}
+# convention where they could otherwise have a confusing display.
+# These characters include: 
+# - General Categories C, Z, and M
 # - Default ignorable characters
-# - General Categories C and Z
-# - Bidi categories R, AL, AN.
+# - Bidi categories R, AL, AN
 # 
 # Columns (c1, c2,...) are separated by semicolons.
 # Leading and trailing spaces and tabs in each column are ignored.
@@ -22,6 +23,8 @@
 #  Column 5: NV8 - present if the toUnicode value would not be a valid domain name under IDNA2008. Not a normative field.
 #
 # If the value of toUnicode is the same as source, the column will be blank.
+# The line comments currently show visible characters that have been escaped 
+# (after removing default-ignorables and controls, except for whitespace)
 #
 # An error in toUnicode or toASCII is indicated by a value in square brackets, such as "[B5 B6]".
 # In such a case, the contents is a list of error codes based on the step numbers in UTS46 and IDNA2008,
