@@ -25,6 +25,11 @@ import org.unicode.cldr.util.LanguageTagParser;
 import org.unicode.cldr.util.SimpleFactory;
 import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.CLDRFile.WinningChoice;
+import org.unicode.props.GenerateEnums;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Names;
@@ -39,6 +44,8 @@ import org.unicode.tools.Confusables.Style;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodePropertySource;
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -56,6 +63,28 @@ public class TestSecurity extends TestFmwkPlus {
 
     static Confusables CONFUSABLES = new Confusables(SECURITY_PUBLIC + Settings.latestVersion);
 
+    public void TestSpacing() {
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+        UnicodeMap<General_Category_Values> generalCategory = iup.loadEnum(
+                UcdProperty.General_Category, General_Category_Values.class);
+        for (Entry<String, EnumMap<Style, String>> data : CONFUSABLES.getChar2data().entrySet()) {
+            String source = data.getKey();
+            String target = data.getValue().get(Style.MA);
+            assertEquals("( " + source + " ) ? ( " + target + " )", isAllNonspacing(source, generalCategory), isAllNonspacing(target, generalCategory));
+        }
+    }
+    private Boolean isAllNonspacing(String source, UnicodeMap<General_Category_Values> generalCategory) {
+        for (int codepoint : CharSequences.codePoints(source)) {
+            switch(generalCategory.get(codepoint)) {
+            case Nonspacing_Mark: case Enclosing_Mark: 
+                continue;
+            default: 
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public void TestIdempotence() {
         for (Entry<String, EnumMap<Style, String>> entry : CONFUSABLES.getChar2data().entrySet()) {
             String code = entry.getKey();

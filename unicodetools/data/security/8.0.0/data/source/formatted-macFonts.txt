@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: formatted-macFonts.txt
 # Version: 8.0.0
-# Generated: 2015-02-09, 15:36:41 GMT
+# Generated: 2015-05-02, 17:23:49 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -1477,8 +1477,6 @@ FBFE ;	FEF4	# ( ‎ﯾ‎ ~ ‎ﻴ‎ ) ARABIC LETTER FARSI YEH INITIAL FORM ~ A
 
 FBFF ;	FEF3	# ( ‎ﯿ‎ ~ ‎ﻳ‎ ) ARABIC LETTER FARSI YEH MEDIAL FORM ~ ARABIC LETTER YEH INITIAL FORM
 FBFF ;	FEF4	# ( ‎ﯿ‎ ~ ‎ﻴ‎ ) ARABIC LETTER FARSI YEH MEDIAL FORM ~ ARABIC LETTER YEH MEDIAL FORM
-
-FC60 ;	FC62	#* ( ‎ﱠ‎ ~ ‎ﱢ‎ ) ARABIC LIGATURE SHADDA WITH FATHA ISOLATED FORM ~ ARABIC LIGATURE SHADDA WITH KASRA ISOLATED FORM
 
 FE31 ;	FF5C	#* ( ︱ ~ ｜ ) PRESENTATION FORM FOR VERTICAL EM DASH ~ FULLWIDTH VERTICAL LINE
 

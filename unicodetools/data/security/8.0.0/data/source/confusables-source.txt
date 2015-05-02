@@ -5075,11 +5075,11 @@ A7F7 ; —
 0603 ; 0635
 0604 ; 0633 0645 0640
 0605 ; 0653
-0609 ; 066A 002E
-060A ; 0609 002E
+#0609 ; 066A 002E
+#060A ; 0609 002E
 060D ; 066B
 060F ; 0639
-066A ; 02D9 002F 002E
+#066A ; 02D9 002F 002E
 # TODO for Arabic: add Arabic Mathematical Alphabetic Symbols
 
 ᑐ ; ⊃
@@ -5094,7 +5094,7 @@ A7F7 ; —
 🌒 ; ☽
 
 # New in Unicode 8.0 from Roozbeh
-05DF ; 0D66 0D30 0D66
+#05DF ; 0D66 0D30 0D66
 2BEC ; 219E
 2BED ; 219F
 2BEE ; 21A0

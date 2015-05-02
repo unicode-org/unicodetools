@@ -1,7 +1,7 @@
 ﻿# Review List for IDN
 # File: review.txt
 # Version: 8.0.0
-# Generated: 2015-02-09, 15:36:44 GMT
+# Generated: 2015-05-02, 17:23:53 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -19926,7 +19926,7 @@ FFEE          ; Restricted ; Not_NFKC          #      (￮)  HALFWIDTH WHITE CIR
 1F3F5         ; Restricted ; Not_XID           #      (🏵)  ROSETTE
 1F3F6         ; Restricted ; Not_XID           #      (🏶)  BLACK ROSETTE
 1F3F7         ; Restricted ; Not_XID           #      (🏷)  LABEL
-1F3F8         ; Restricted ; Not_XID           #      (🏸)  BADMINTON RACQUET AND BIRDIE
+1F3F8         ; Restricted ; Not_XID           #      (🏸)  BADMINTON RACQUET AND SHUTTLECOCK
 1F3F9         ; Restricted ; Not_XID           #      (🏹)  BOW AND ARROW
 1F3FA         ; Restricted ; Not_XID           #      (🏺)  AMPHORA
 1F3FB         ; Restricted ; Not_XID           #      (🏻)  EMOJI MODIFIER FITZPATRICK TYPE-1-2
@@ -21019,7 +21019,6 @@ FFEE          ; Restricted ; Not_NFKC          #      (￮)  HALFWIDTH WHITE CIR
 1F8AB         ; Restricted ; Not_XID           #      (🢫)  RIGHTWARDS FRONT-TILTED SHADOWED WHITE ARROW
 1F8AC         ; Restricted ; Not_XID           #      (🢬)  WHITE ARROW SHAFT WIDTH ONE
 1F8AD         ; Restricted ; Not_XID           #      (🢭)  WHITE ARROW SHAFT WIDTH TWO THIRDS
-1F900         ; Restricted ; Not_XID           #      (🤀)  DHYANI BUDDHA
 1F910         ; Restricted ; Not_XID           #      (🤐)  ZIPPER-MOUTH FACE
 1F911         ; Restricted ; Not_XID           #      (🤑)  MONEY-MOUTH FACE
 1F912         ; Restricted ; Not_XID           #      (🤒)  FACE WITH THERMOMETER
@@ -31708,7 +31707,7 @@ FFEE          ; Restricted ; Not_NFKC          #      (￮)  HALFWIDTH WHITE CIR
 2FA1D         ; Restricted ; Not_NFKC          #      (𪘀)  CJK COMPATIBILITY IDEOGRAPH-2FA1D
 E0100..E01EF  ; Restricted ; Default_Ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 120010
+# Total code points: 120009
 
 # Characters disallowed in IDNA
 # The IDNA spec doesn't allow any of these characters,
