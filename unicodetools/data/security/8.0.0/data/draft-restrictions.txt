@@ -8695,7 +8695,6 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 08AF          ;  ; Obsolete #      (ࢯ)  ARABIC LETTER SAD WITH THREE DOTS BELOW
 08B0          ;  ; Obsolete #      (ࢰ)  ARABIC LETTER GAF WITH INVERTED STROKE
 08B1          ;  ; Obsolete #      (ࢱ)  ARABIC LETTER STRAIGHT WAW
-093D          ;  ; Obsolete #      (ऽ)  DEVANAGARI SIGN AVAGRAHA
 094E          ;  ; Obsolete #      (ॎ)  DEVANAGARI VOWEL SIGN PRISHTHAMATRA E
 0951          ;  ; Obsolete #      (॑)  DEVANAGARI STRESS SIGN UDATTA
 0952          ;  ; Obsolete #      (॒)  DEVANAGARI STRESS SIGN ANUDATTA
@@ -8706,13 +8705,6 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 0971          ;  ; Obsolete #      (ॱ)  DEVANAGARI SIGN HIGH SPACING DOT
 0978          ;  ; Obsolete #      (ॸ)  DEVANAGARI LETTER MARWARI DDA
 0980          ;  ; Obsolete #      (ঀ)  BENGALI ANJI
-09BD          ;  ; Obsolete #      (ঽ)  BENGALI SIGN AVAGRAHA
-09E0          ;  ; Obsolete #      (ৠ)  BENGALI LETTER VOCALIC RR
-09E1          ;  ; Obsolete #      (ৡ)  BENGALI LETTER VOCALIC LL
-09E2          ;  ; Obsolete #      (ৢ)  BENGALI VOWEL SIGN VOCALIC L
-09E3          ;  ; Obsolete #      (ৣ)  BENGALI VOWEL SIGN VOCALIC LL
-0ABD          ;  ; Obsolete #      (ઽ)  GUJARATI SIGN AVAGRAHA
-0AE0          ;  ; Obsolete #      (ૠ)  GUJARATI LETTER VOCALIC RR
 0AE1          ;  ; Obsolete #      (ૡ)  GUJARATI LETTER VOCALIC LL
 0AE2          ;  ; Obsolete #      (ૢ)  GUJARATI VOWEL SIGN VOCALIC L
 0AE3          ;  ; Obsolete #      (ૣ)  GUJARATI VOWEL SIGN VOCALIC LL
@@ -8724,13 +8716,8 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 0C3D          ;  ; Obsolete #      (ఽ)  TELUGU SIGN AVAGRAHA
 0C58          ;  ; Obsolete #      (ౘ)  TELUGU LETTER TSA
 0C59          ;  ; Obsolete #      (ౙ)  TELUGU LETTER DZA
-0C60          ;  ; Obsolete #      (ౠ)  TELUGU LETTER VOCALIC RR
-0C61          ;  ; Obsolete #      (ౡ)  TELUGU LETTER VOCALIC LL
 0C81          ;  ; Obsolete #      (ಁ)  KANNADA SIGN CANDRABINDU
-0CBD          ;  ; Obsolete #      (ಽ)  KANNADA SIGN AVAGRAHA
 0CDE          ;  ; Obsolete #      (ೞ)  KANNADA LETTER FA
-0CE0          ;  ; Obsolete #      (ೠ)  KANNADA LETTER VOCALIC RR
-0CE1          ;  ; Obsolete #      (ೡ)  KANNADA LETTER VOCALIC LL
 0CE2          ;  ; Obsolete #      (ೢ)  KANNADA VOWEL SIGN VOCALIC L
 0CE3          ;  ; Obsolete #      (ೣ)  KANNADA VOWEL SIGN VOCALIC LL
 0CF1          ;  ; Obsolete #      (ೱ)  KANNADA SIGN JIHVAMULIYA
@@ -8738,11 +8725,8 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 0D01          ;  ; Obsolete #      (ഁ)  MALAYALAM SIGN CANDRABINDU
 0D3A          ;  ; Obsolete #      (ഺ)  MALAYALAM LETTER TTTA
 0D3D          ;  ; Obsolete #      (ഽ)  MALAYALAM SIGN AVAGRAHA
-0D4C          ;  ; Obsolete #      (ൌ)  MALAYALAM VOWEL SIGN AU
 0D4E          ;  ; Obsolete #      (ൎ)  MALAYALAM LETTER DOT REPH
 0D5F          ;  ; Obsolete #      (ൟ)  MALAYALAM LETTER ARCHAIC II
-0D60          ;  ; Obsolete #      (ൠ)  MALAYALAM LETTER VOCALIC RR
-0D61          ;  ; Obsolete #      (ൡ)  MALAYALAM LETTER VOCALIC LL
 0DE6          ;  ; Obsolete #      (෦)  SINHALA LITH DIGIT ZERO
 0DE7          ;  ; Obsolete #      (෧)  SINHALA LITH DIGIT ONE
 0DE8          ;  ; Obsolete #      (෨)  SINHALA LITH DIGIT TWO
@@ -9324,7 +9308,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1B000         ;  ; Obsolete #      (𛀀)  KATAKANA LETTER ARCHAIC E
 1B001         ;  ; Obsolete #      (𛀁)  HIRAGANA LETTER ARCHAIC YE
 
-# Total code points: 1084
+# Total code points: 1068
 
 0180          ;  ; Technical #      (ƀ)  LATIN SMALL LETTER B WITH STROKE
 01C0          ;  ; Technical #      (ǀ)  LATIN LETTER DENTAL CLICK
@@ -9515,12 +9499,9 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 06E5          ;  ; Technical #      (ۥ)  ARABIC SMALL WAW
 06E6          ;  ; Technical #      (ۦ)  ARABIC SMALL YEH
 08A1          ;  ; Technical #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
-0950          ;  ; Technical #      (ॐ)  DEVANAGARI OM
 0953          ;  ; Technical #      (॓)  DEVANAGARI GRAVE ACCENT
 0954          ;  ; Technical #      (॔)  DEVANAGARI ACUTE ACCENT
 097D          ;  ; Technical #      (ॽ)  DEVANAGARI LETTER GLOTTAL STOP
-0A74          ;  ; Technical #      (ੴ)  GURMUKHI EK ONKAR
-0AD0          ;  ; Technical #      (ૐ)  GUJARATI OM
 0B82          ;  ; Technical #      (ஂ)  TAMIL SIGN ANUSVARA
 0BD0          ;  ; Technical #      (ௐ)  TAMIL OM
 0D8F          ;  ; Technical #      (ඏ)  SINHALA LETTER ILUYANNA
@@ -9528,8 +9509,6 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 0DA6          ;  ; Technical #      (ඦ)  SINHALA LETTER SANYAKA JAYANNA
 0DDF          ;  ; Technical #      (ෟ)  SINHALA VOWEL SIGN GAYANUKITTA
 0DF3          ;  ; Technical #      (ෳ)  SINHALA VOWEL SIGN DIGA GAYANUKITTA
-0E2F          ;  ; Technical #      (ฯ)  THAI CHARACTER PAIYANNOI
-0EAF          ;  ; Technical #      (ຯ)  LAO ELLIPSIS
 0F00          ;  ; Technical #      (ༀ)  TIBETAN SYLLABLE OM
 0F18          ;  ; Technical #      (༘)  TIBETAN ASTROLOGICAL SIGN -KHYUD PA
 0F19          ;  ; Technical #      (༙)  TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
@@ -9748,7 +9727,7 @@ FB1E          ;  ; Technical #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE20..FE2F    ;  ; Technical # [16] (︠..︯)  COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
 FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 438
+# Total code points: 433
 
 0181..0182    ;  ; Uncommon_Use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ;  ; Uncommon_Use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
@@ -9850,7 +9829,6 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 04C4          ;  ; Uncommon_Use #      (ӄ)  CYRILLIC SMALL LETTER KA WITH HOOK
 04C6          ;  ; Uncommon_Use #      (ӆ)  CYRILLIC SMALL LETTER EL WITH TAIL
 04C8          ;  ; Uncommon_Use #      (ӈ)  CYRILLIC SMALL LETTER EN WITH HOOK
-04CA          ;  ; Uncommon_Use #      (ӊ)  CYRILLIC SMALL LETTER EN WITH TAIL
 04CE          ;  ; Uncommon_Use #      (ӎ)  CYRILLIC SMALL LETTER EM WITH TAIL
 04F7          ;  ; Uncommon_Use #      (ӷ)  CYRILLIC SMALL LETTER GHE WITH DESCENDER
 04FB          ;  ; Uncommon_Use #      (ӻ)  CYRILLIC SMALL LETTER GHE WITH STROKE AND HOOK
@@ -9986,7 +9964,6 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 0B44          ;  ; Uncommon_Use #      (ୄ)  ORIYA VOWEL SIGN VOCALIC RR
 0B62          ;  ; Uncommon_Use #      (ୢ)  ORIYA VOWEL SIGN VOCALIC L
 0B63          ;  ; Uncommon_Use #      (ୣ)  ORIYA VOWEL SIGN VOCALIC LL
-0C01          ;  ; Uncommon_Use #      (ఁ)  TELUGU SIGN CANDRABINDU
 0C5A          ;  ; Uncommon_Use #      (ౚ)  TELUGU LETTER RRRA
 0C62          ;  ; Uncommon_Use #      (ౢ)  TELUGU VOWEL SIGN VOCALIC L
 0C63          ;  ; Uncommon_Use #      (ౣ)  TELUGU VOWEL SIGN VOCALIC LL
@@ -10084,7 +10061,7 @@ AB61          ;  ; Uncommon_Use #      (ꭡ)  LATIN SMALL LETTER IOTIFIED E
 AB62          ;  ; Uncommon_Use #      (ꭢ)  LATIN SMALL LETTER OPEN OE
 AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 
-# Total code points: 418
+# Total code points: 416
 
 00B7          ; Allowed ; Inclusion #      (·)  MIDDLE DOT
 
@@ -10529,6 +10506,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 04C5          ; Allowed ; Recommended #      (Ӆ)  CYRILLIC CAPITAL LETTER EL WITH TAIL
 04C7          ; Allowed ; Recommended #      (Ӈ)  CYRILLIC CAPITAL LETTER EN WITH HOOK
 04C9          ; Allowed ; Recommended #      (Ӊ)  CYRILLIC CAPITAL LETTER EN WITH TAIL
+04CA          ; Allowed ; Recommended #      (ӊ)  CYRILLIC SMALL LETTER EN WITH TAIL
 04CB          ; Allowed ; Recommended #      (Ӌ)  CYRILLIC CAPITAL LETTER KHAKASSIAN CHE
 04CC          ; Allowed ; Recommended #      (ӌ)  CYRILLIC SMALL LETTER KHAKASSIAN CHE
 04CD          ; Allowed ; Recommended #      (Ӎ)  CYRILLIC CAPITAL LETTER EM WITH TAIL
@@ -11005,6 +10983,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 093A          ; Allowed ; Recommended #      (ऺ)  DEVANAGARI VOWEL SIGN OE
 093B          ; Allowed ; Recommended #      (ऻ)  DEVANAGARI VOWEL SIGN OOE
 093C          ; Allowed ; Recommended #      (़)  DEVANAGARI SIGN NUKTA
+093D          ; Allowed ; Recommended #      (ऽ)  DEVANAGARI SIGN AVAGRAHA
 093E          ; Allowed ; Recommended #      (ा)  DEVANAGARI VOWEL SIGN AA
 093F          ; Allowed ; Recommended #      (ि)  DEVANAGARI VOWEL SIGN I
 0940          ; Allowed ; Recommended #      (ी)  DEVANAGARI VOWEL SIGN II
@@ -11022,6 +11001,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 094C          ; Allowed ; Recommended #      (ौ)  DEVANAGARI VOWEL SIGN AU
 094D          ; Allowed ; Recommended #      (्)  DEVANAGARI SIGN VIRAMA
 094F          ; Allowed ; Recommended #      (ॏ)  DEVANAGARI VOWEL SIGN AW
+0950          ; Allowed ; Recommended #      (ॐ)  DEVANAGARI OM
 0956          ; Allowed ; Recommended #      (ॖ)  DEVANAGARI VOWEL SIGN UE
 0957          ; Allowed ; Recommended #      (ॗ)  DEVANAGARI VOWEL SIGN UUE
 0966          ; Allowed ; Recommended #      (०)  DEVANAGARI DIGIT ZERO
@@ -11094,6 +11074,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 09B8          ; Allowed ; Recommended #      (স)  BENGALI LETTER SA
 09B9          ; Allowed ; Recommended #      (হ)  BENGALI LETTER HA
 09BC          ; Allowed ; Recommended #      (়)  BENGALI SIGN NUKTA
+09BD          ; Allowed ; Recommended #      (ঽ)  BENGALI SIGN AVAGRAHA
 09BE          ; Allowed ; Recommended #      (া)  BENGALI VOWEL SIGN AA
 09BF          ; Allowed ; Recommended #      (ি)  BENGALI VOWEL SIGN I
 09C0          ; Allowed ; Recommended #      (ী)  BENGALI VOWEL SIGN II
@@ -11108,6 +11089,10 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 09CD          ; Allowed ; Recommended #      (্)  BENGALI SIGN VIRAMA
 09CE          ; Allowed ; Recommended #      (ৎ)  BENGALI LETTER KHANDA TA
 09D7          ; Allowed ; Recommended #      (ৗ)  BENGALI AU LENGTH MARK
+09E0          ; Allowed ; Recommended #      (ৠ)  BENGALI LETTER VOCALIC RR
+09E1          ; Allowed ; Recommended #      (ৡ)  BENGALI LETTER VOCALIC LL
+09E2          ; Allowed ; Recommended #      (ৢ)  BENGALI VOWEL SIGN VOCALIC L
+09E3          ; Allowed ; Recommended #      (ৣ)  BENGALI VOWEL SIGN VOCALIC LL
 09E6          ; Allowed ; Recommended #      (০)  BENGALI DIGIT ZERO
 09E7          ; Allowed ; Recommended #      (১)  BENGALI DIGIT ONE
 09E8          ; Allowed ; Recommended #      (২)  BENGALI DIGIT TWO
@@ -11189,6 +11174,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0A71          ; Allowed ; Recommended #      (ੱ)  GURMUKHI ADDAK
 0A72          ; Allowed ; Recommended #      (ੲ)  GURMUKHI IRI
 0A73          ; Allowed ; Recommended #      (ੳ)  GURMUKHI URA
+0A74          ; Allowed ; Recommended #      (ੴ)  GURMUKHI EK ONKAR
 0A81          ; Allowed ; Recommended #      (ઁ)  GUJARATI SIGN CANDRABINDU
 0A82          ; Allowed ; Recommended #      (ં)  GUJARATI SIGN ANUSVARA
 0A83          ; Allowed ; Recommended #      (ઃ)  GUJARATI SIGN VISARGA
@@ -11241,6 +11227,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0AB8          ; Allowed ; Recommended #      (સ)  GUJARATI LETTER SA
 0AB9          ; Allowed ; Recommended #      (હ)  GUJARATI LETTER HA
 0ABC          ; Allowed ; Recommended #      (઼)  GUJARATI SIGN NUKTA
+0ABD          ; Allowed ; Recommended #      (ઽ)  GUJARATI SIGN AVAGRAHA
 0ABE          ; Allowed ; Recommended #      (ા)  GUJARATI VOWEL SIGN AA
 0ABF          ; Allowed ; Recommended #      (િ)  GUJARATI VOWEL SIGN I
 0AC0          ; Allowed ; Recommended #      (ી)  GUJARATI VOWEL SIGN II
@@ -11255,6 +11242,8 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0ACB          ; Allowed ; Recommended #      (ો)  GUJARATI VOWEL SIGN O
 0ACC          ; Allowed ; Recommended #      (ૌ)  GUJARATI VOWEL SIGN AU
 0ACD          ; Allowed ; Recommended #      (્)  GUJARATI SIGN VIRAMA
+0AD0          ; Allowed ; Recommended #      (ૐ)  GUJARATI OM
+0AE0          ; Allowed ; Recommended #      (ૠ)  GUJARATI LETTER VOCALIC RR
 0AE6          ; Allowed ; Recommended #      (૦)  GUJARATI DIGIT ZERO
 0AE7          ; Allowed ; Recommended #      (૧)  GUJARATI DIGIT ONE
 0AE8          ; Allowed ; Recommended #      (૨)  GUJARATI DIGIT TWO
@@ -11399,6 +11388,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0BED          ; Allowed ; Recommended #      (௭)  TAMIL DIGIT SEVEN
 0BEE          ; Allowed ; Recommended #      (௮)  TAMIL DIGIT EIGHT
 0BEF          ; Allowed ; Recommended #      (௯)  TAMIL DIGIT NINE
+0C01          ; Allowed ; Recommended #      (ఁ)  TELUGU SIGN CANDRABINDU
 0C02          ; Allowed ; Recommended #      (ం)  TELUGU SIGN ANUSVARA
 0C03          ; Allowed ; Recommended #      (ః)  TELUGU SIGN VISARGA
 0C05          ; Allowed ; Recommended #      (అ)  TELUGU LETTER A
@@ -11466,6 +11456,8 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0C4D          ; Allowed ; Recommended #      (్)  TELUGU SIGN VIRAMA
 0C55          ; Allowed ; Recommended #      (ౕ)  TELUGU LENGTH MARK
 0C56          ; Allowed ; Recommended #      (ౖ)  TELUGU AI LENGTH MARK
+0C60          ; Allowed ; Recommended #      (ౠ)  TELUGU LETTER VOCALIC RR
+0C61          ; Allowed ; Recommended #      (ౡ)  TELUGU LETTER VOCALIC LL
 0C66          ; Allowed ; Recommended #      (౦)  TELUGU DIGIT ZERO
 0C67          ; Allowed ; Recommended #      (౧)  TELUGU DIGIT ONE
 0C68          ; Allowed ; Recommended #      (౨)  TELUGU DIGIT TWO
@@ -11528,6 +11520,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0CB8          ; Allowed ; Recommended #      (ಸ)  KANNADA LETTER SA
 0CB9          ; Allowed ; Recommended #      (ಹ)  KANNADA LETTER HA
 0CBC          ; Allowed ; Recommended #      (಼)  KANNADA SIGN NUKTA
+0CBD          ; Allowed ; Recommended #      (ಽ)  KANNADA SIGN AVAGRAHA
 0CBE          ; Allowed ; Recommended #      (ಾ)  KANNADA VOWEL SIGN AA
 0CBF          ; Allowed ; Recommended #      (ಿ)  KANNADA VOWEL SIGN I
 0CC0          ; Allowed ; Recommended #      (ೀ)  KANNADA VOWEL SIGN II
@@ -11544,6 +11537,8 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0CCD          ; Allowed ; Recommended #      (್)  KANNADA SIGN VIRAMA
 0CD5          ; Allowed ; Recommended #      (ೕ)  KANNADA LENGTH MARK
 0CD6          ; Allowed ; Recommended #      (ೖ)  KANNADA AI LENGTH MARK
+0CE0          ; Allowed ; Recommended #      (ೠ)  KANNADA LETTER VOCALIC RR
+0CE1          ; Allowed ; Recommended #      (ೡ)  KANNADA LETTER VOCALIC LL
 0CE6          ; Allowed ; Recommended #      (೦)  KANNADA DIGIT ZERO
 0CE7          ; Allowed ; Recommended #      (೧)  KANNADA DIGIT ONE
 0CE8          ; Allowed ; Recommended #      (೨)  KANNADA DIGIT TWO
@@ -11618,8 +11613,11 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0D48          ; Allowed ; Recommended #      (ൈ)  MALAYALAM VOWEL SIGN AI
 0D4A          ; Allowed ; Recommended #      (ൊ)  MALAYALAM VOWEL SIGN O
 0D4B          ; Allowed ; Recommended #      (ോ)  MALAYALAM VOWEL SIGN OO
+0D4C          ; Allowed ; Recommended #      (ൌ)  MALAYALAM VOWEL SIGN AU
 0D4D          ; Allowed ; Recommended #      (്)  MALAYALAM SIGN VIRAMA
 0D57          ; Allowed ; Recommended #      (ൗ)  MALAYALAM AU LENGTH MARK
+0D60          ; Allowed ; Recommended #      (ൠ)  MALAYALAM LETTER VOCALIC RR
+0D61          ; Allowed ; Recommended #      (ൡ)  MALAYALAM LETTER VOCALIC LL
 0D66          ; Allowed ; Recommended #      (൦)  MALAYALAM DIGIT ZERO
 0D67          ; Allowed ; Recommended #      (൧)  MALAYALAM DIGIT ONE
 0D68          ; Allowed ; Recommended #      (൨)  MALAYALAM DIGIT TWO
@@ -11756,6 +11754,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0E2C          ; Allowed ; Recommended #      (ฬ)  THAI CHARACTER LO CHULA
 0E2D          ; Allowed ; Recommended #      (อ)  THAI CHARACTER O ANG
 0E2E          ; Allowed ; Recommended #      (ฮ)  THAI CHARACTER HO NOKHUK
+0E2F          ; Allowed ; Recommended #      (ฯ)  THAI CHARACTER PAIYANNOI
 0E30          ; Allowed ; Recommended #      (ะ)  THAI CHARACTER SARA A
 0E31          ; Allowed ; Recommended #      (ั)  THAI CHARACTER MAI HAN-AKAT
 0E32          ; Allowed ; Recommended #      (า)  THAI CHARACTER SARA AA
@@ -11818,6 +11817,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0EAB          ; Allowed ; Recommended #      (ຫ)  LAO LETTER HO SUNG
 0EAD          ; Allowed ; Recommended #      (ອ)  LAO LETTER O
 0EAE          ; Allowed ; Recommended #      (ຮ)  LAO LETTER HO TAM
+0EAF          ; Allowed ; Recommended #      (ຯ)  LAO ELLIPSIS
 0EB0          ; Allowed ; Recommended #      (ະ)  LAO VOWEL SIGN A
 0EB1          ; Allowed ; Recommended #      (ັ)  LAO VOWEL SIGN MAI KAN
 0EB2          ; Allowed ; Recommended #      (າ)  LAO VOWEL SIGN AA
@@ -23071,7 +23071,7 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2CEA0         ; Allowed ; Recommended #      (𬺠)  CJK UNIFIED IDEOGRAPH-2CEA0
 2CEA1         ; Allowed ; Recommended #      (𬺡)  CJK UNIFIED IDEOGRAPH-2CEA1
 
-# Total code points: 94970
+# Total code points: 94993
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA

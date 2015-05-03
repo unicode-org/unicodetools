@@ -1,7 +1,7 @@
 ﻿# Security Profile for General Identifiers
 # File: xidAllowed.txt
 # Version: 8.0.0
-# Generated: 2015-05-02, 18:58:44 GMT
+# Generated: 2015-05-03, 11:36:42 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/

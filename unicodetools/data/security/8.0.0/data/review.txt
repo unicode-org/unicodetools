@@ -1,7 +1,7 @@
 ﻿# Review List for IDN
 # File: review.txt
 # Version: 8.0.0
-# Generated: 2015-05-02, 18:58:44 GMT
+# Generated: 2015-05-03, 11:36:42 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -1100,8 +1100,8 @@
 04C6          ; Restricted ; Uncommon_Use      #      (ӆ)  CYRILLIC SMALL LETTER EL WITH TAIL
 04C7          ; Restricted ; output-disallowed #      (Ӈ)  CYRILLIC CAPITAL LETTER EN WITH HOOK
 04C8          ; Restricted ; Uncommon_Use      #      (ӈ)  CYRILLIC SMALL LETTER EN WITH HOOK
-04C9          ; Restricted ; output-disallowed #      (Ӊ)  CYRILLIC CAPITAL LETTER EN WITH TAIL
-04CA          ; Restricted ; Uncommon_Use      #      (ӊ)  CYRILLIC SMALL LETTER EN WITH TAIL
+04C9          ; input                          #      (Ӊ)  CYRILLIC CAPITAL LETTER EN WITH TAIL
+04CA          ; output                         #      (ӊ)  CYRILLIC SMALL LETTER EN WITH TAIL
 04CB          ; input                          #      (Ӌ)  CYRILLIC CAPITAL LETTER KHAKASSIAN CHE
 04CC          ; output                         #      (ӌ)  CYRILLIC SMALL LETTER KHAKASSIAN CHE
 04CD          ; Restricted ; output-disallowed #      (Ӎ)  CYRILLIC CAPITAL LETTER EM WITH TAIL
@@ -1987,7 +1987,7 @@
 093A          ; output-nonstarting             #      (ऺ)  DEVANAGARI VOWEL SIGN OE
 093B          ; output-nonstarting             #      (ऻ)  DEVANAGARI VOWEL SIGN OOE
 093C          ; output-nonstarting             #      (़)  DEVANAGARI SIGN NUKTA
-093D          ; Restricted ; Obsolete          #      (ऽ)  DEVANAGARI SIGN AVAGRAHA
+093D          ; output                         #      (ऽ)  DEVANAGARI SIGN AVAGRAHA
 093E          ; output-nonstarting             #      (ा)  DEVANAGARI VOWEL SIGN AA
 093F          ; output-nonstarting             #      (ि)  DEVANAGARI VOWEL SIGN I
 0940          ; output-nonstarting             #      (ी)  DEVANAGARI VOWEL SIGN II
@@ -2006,7 +2006,7 @@
 094D          ; output-nonstarting             #      (्)  DEVANAGARI SIGN VIRAMA
 094E          ; Restricted ; Obsolete          #      (ॎ)  DEVANAGARI VOWEL SIGN PRISHTHAMATRA E
 094F          ; output-nonstarting             #      (ॏ)  DEVANAGARI VOWEL SIGN AW
-0950          ; Restricted ; Technical         #      (ॐ)  DEVANAGARI OM
+0950          ; output                         #      (ॐ)  DEVANAGARI OM
 0951          ; Restricted ; Obsolete          #      (॑)  DEVANAGARI STRESS SIGN UDATTA
 0952          ; Restricted ; Obsolete          #      (॒)  DEVANAGARI STRESS SIGN ANUDATTA
 0953          ; Restricted ; Technical         #      (॓)  DEVANAGARI GRAVE ACCENT
@@ -2103,7 +2103,7 @@
 09B8          ; output                         #      (স)  BENGALI LETTER SA
 09B9          ; output                         #      (হ)  BENGALI LETTER HA
 09BC          ; output-nonstarting             #      (়)  BENGALI SIGN NUKTA
-09BD          ; Restricted ; Obsolete          #      (ঽ)  BENGALI SIGN AVAGRAHA
+09BD          ; output                         #      (ঽ)  BENGALI SIGN AVAGRAHA
 09BE          ; output-nonstarting             #      (া)  BENGALI VOWEL SIGN AA
 09BF          ; output-nonstarting             #      (ি)  BENGALI VOWEL SIGN I
 09C0          ; output-nonstarting             #      (ী)  BENGALI VOWEL SIGN II
@@ -2121,10 +2121,10 @@
 09DC          ; Restricted ; Not_NFKC          #      (ড়)  BENGALI LETTER RRA
 09DD          ; Restricted ; Not_NFKC          #      (ঢ়)  BENGALI LETTER RHA
 09DF          ; Restricted ; Not_NFKC          #      (য়)  BENGALI LETTER YYA
-09E0          ; Restricted ; Obsolete          #      (ৠ)  BENGALI LETTER VOCALIC RR
-09E1          ; Restricted ; Obsolete          #      (ৡ)  BENGALI LETTER VOCALIC LL
-09E2          ; Restricted ; Obsolete          #      (ৢ)  BENGALI VOWEL SIGN VOCALIC L
-09E3          ; Restricted ; Obsolete          #      (ৣ)  BENGALI VOWEL SIGN VOCALIC LL
+09E0          ; output                         #      (ৠ)  BENGALI LETTER VOCALIC RR
+09E1          ; output                         #      (ৡ)  BENGALI LETTER VOCALIC LL
+09E2          ; output-nonstarting             #      (ৢ)  BENGALI VOWEL SIGN VOCALIC L
+09E3          ; output-nonstarting             #      (ৣ)  BENGALI VOWEL SIGN VOCALIC LL
 09E6          ; output                         #      (০)  BENGALI DIGIT ZERO
 09E7          ; output                         #      (১)  BENGALI DIGIT ONE
 09E8          ; output                         #      (২)  BENGALI DIGIT TWO
@@ -2224,7 +2224,7 @@
 0A71          ; output-nonstarting             #      (ੱ)  GURMUKHI ADDAK
 0A72          ; output                         #      (ੲ)  GURMUKHI IRI
 0A73          ; output                         #      (ੳ)  GURMUKHI URA
-0A74          ; Restricted ; Technical         #      (ੴ)  GURMUKHI EK ONKAR
+0A74          ; output                         #      (ੴ)  GURMUKHI EK ONKAR
 0A75          ; Restricted ; Uncommon_Use      #      (ੵ)  GURMUKHI SIGN YAKASH
 0A81          ; output-nonstarting             #      (ઁ)  GUJARATI SIGN CANDRABINDU
 0A82          ; output-nonstarting             #      (ં)  GUJARATI SIGN ANUSVARA
@@ -2278,7 +2278,7 @@
 0AB8          ; output                         #      (સ)  GUJARATI LETTER SA
 0AB9          ; output                         #      (હ)  GUJARATI LETTER HA
 0ABC          ; output-nonstarting             #      (઼)  GUJARATI SIGN NUKTA
-0ABD          ; Restricted ; Obsolete          #      (ઽ)  GUJARATI SIGN AVAGRAHA
+0ABD          ; output                         #      (ઽ)  GUJARATI SIGN AVAGRAHA
 0ABE          ; output-nonstarting             #      (ા)  GUJARATI VOWEL SIGN AA
 0ABF          ; output-nonstarting             #      (િ)  GUJARATI VOWEL SIGN I
 0AC0          ; output-nonstarting             #      (ી)  GUJARATI VOWEL SIGN II
@@ -2293,8 +2293,8 @@
 0ACB          ; output-nonstarting             #      (ો)  GUJARATI VOWEL SIGN O
 0ACC          ; output-nonstarting             #      (ૌ)  GUJARATI VOWEL SIGN AU
 0ACD          ; output-nonstarting             #      (્)  GUJARATI SIGN VIRAMA
-0AD0          ; Restricted ; Technical         #      (ૐ)  GUJARATI OM
-0AE0          ; Restricted ; Obsolete          #      (ૠ)  GUJARATI LETTER VOCALIC RR
+0AD0          ; output                         #      (ૐ)  GUJARATI OM
+0AE0          ; output                         #      (ૠ)  GUJARATI LETTER VOCALIC RR
 0AE1          ; Restricted ; Obsolete          #      (ૡ)  GUJARATI LETTER VOCALIC LL
 0AE2          ; Restricted ; Obsolete          #      (ૢ)  GUJARATI VOWEL SIGN VOCALIC L
 0AE3          ; Restricted ; Obsolete          #      (ૣ)  GUJARATI VOWEL SIGN VOCALIC LL
@@ -2474,7 +2474,7 @@
 0BF9          ; Restricted ; Not_XID           #      (௹)  TAMIL RUPEE SIGN
 0BFA          ; Restricted ; Not_XID           #      (௺)  TAMIL NUMBER SIGN
 0C00          ; Restricted ; Obsolete          #      (ఀ)  TELUGU SIGN COMBINING CANDRABINDU ABOVE
-0C01          ; Restricted ; Uncommon_Use      #      (ఁ)  TELUGU SIGN CANDRABINDU
+0C01          ; output-nonstarting             #      (ఁ)  TELUGU SIGN CANDRABINDU
 0C02          ; output-nonstarting             #      (ం)  TELUGU SIGN ANUSVARA
 0C03          ; output-nonstarting             #      (ః)  TELUGU SIGN VISARGA
 0C05          ; output                         #      (అ)  TELUGU LETTER A
@@ -2547,8 +2547,8 @@
 0C58          ; Restricted ; Obsolete          #      (ౘ)  TELUGU LETTER TSA
 0C59          ; Restricted ; Obsolete          #      (ౙ)  TELUGU LETTER DZA
 0C5A          ; Restricted ; Uncommon_Use      #      (ౚ)  TELUGU LETTER RRRA
-0C60          ; Restricted ; Obsolete          #      (ౠ)  TELUGU LETTER VOCALIC RR
-0C61          ; Restricted ; Obsolete          #      (ౡ)  TELUGU LETTER VOCALIC LL
+0C60          ; output                         #      (ౠ)  TELUGU LETTER VOCALIC RR
+0C61          ; output                         #      (ౡ)  TELUGU LETTER VOCALIC LL
 0C62          ; Restricted ; Uncommon_Use      #      (ౢ)  TELUGU VOWEL SIGN VOCALIC L
 0C63          ; Restricted ; Uncommon_Use      #      (ౣ)  TELUGU VOWEL SIGN VOCALIC LL
 0C66          ; output                         #      (౦)  TELUGU DIGIT ZERO
@@ -2622,7 +2622,7 @@
 0CB8          ; output                         #      (ಸ)  KANNADA LETTER SA
 0CB9          ; output                         #      (ಹ)  KANNADA LETTER HA
 0CBC          ; output-nonstarting             #      (಼)  KANNADA SIGN NUKTA
-0CBD          ; Restricted ; Obsolete          #      (ಽ)  KANNADA SIGN AVAGRAHA
+0CBD          ; output                         #      (ಽ)  KANNADA SIGN AVAGRAHA
 0CBE          ; output-nonstarting             #      (ಾ)  KANNADA VOWEL SIGN AA
 0CBF          ; output-nonstarting             #      (ಿ)  KANNADA VOWEL SIGN I
 0CC0          ; output-nonstarting             #      (ೀ)  KANNADA VOWEL SIGN II
@@ -2640,8 +2640,8 @@
 0CD5          ; output-nonstarting             #      (ೕ)  KANNADA LENGTH MARK
 0CD6          ; output-nonstarting             #      (ೖ)  KANNADA AI LENGTH MARK
 0CDE          ; Restricted ; Obsolete          #      (ೞ)  KANNADA LETTER FA
-0CE0          ; Restricted ; Obsolete          #      (ೠ)  KANNADA LETTER VOCALIC RR
-0CE1          ; Restricted ; Obsolete          #      (ೡ)  KANNADA LETTER VOCALIC LL
+0CE0          ; output                         #      (ೠ)  KANNADA LETTER VOCALIC RR
+0CE1          ; output                         #      (ೡ)  KANNADA LETTER VOCALIC LL
 0CE2          ; Restricted ; Obsolete          #      (ೢ)  KANNADA VOWEL SIGN VOCALIC L
 0CE3          ; Restricted ; Obsolete          #      (ೣ)  KANNADA VOWEL SIGN VOCALIC LL
 0CE6          ; output                         #      (೦)  KANNADA DIGIT ZERO
@@ -2724,13 +2724,13 @@
 0D48          ; output-nonstarting             #      (ൈ)  MALAYALAM VOWEL SIGN AI
 0D4A          ; output-nonstarting             #      (ൊ)  MALAYALAM VOWEL SIGN O
 0D4B          ; output-nonstarting             #      (ോ)  MALAYALAM VOWEL SIGN OO
-0D4C          ; Restricted ; Obsolete          #      (ൌ)  MALAYALAM VOWEL SIGN AU
+0D4C          ; output-nonstarting             #      (ൌ)  MALAYALAM VOWEL SIGN AU
 0D4D          ; output-nonstarting             #      (്)  MALAYALAM SIGN VIRAMA
 0D4E          ; Restricted ; Obsolete          #      (ൎ)  MALAYALAM LETTER DOT REPH
 0D57          ; output-nonstarting             #      (ൗ)  MALAYALAM AU LENGTH MARK
 0D5F          ; Restricted ; Obsolete          #      (ൟ)  MALAYALAM LETTER ARCHAIC II
-0D60          ; Restricted ; Obsolete          #      (ൠ)  MALAYALAM LETTER VOCALIC RR
-0D61          ; Restricted ; Obsolete          #      (ൡ)  MALAYALAM LETTER VOCALIC LL
+0D60          ; output                         #      (ൠ)  MALAYALAM LETTER VOCALIC RR
+0D61          ; output                         #      (ൡ)  MALAYALAM LETTER VOCALIC LL
 0D62          ; Restricted ; Uncommon_Use      #      (ൢ)  MALAYALAM VOWEL SIGN VOCALIC L
 0D63          ; Restricted ; Uncommon_Use      #      (ൣ)  MALAYALAM VOWEL SIGN VOCALIC LL
 0D66          ; output                         #      (൦)  MALAYALAM DIGIT ZERO
@@ -2892,7 +2892,7 @@
 0E2C          ; output                         #      (ฬ)  THAI CHARACTER LO CHULA
 0E2D          ; output                         #      (อ)  THAI CHARACTER O ANG
 0E2E          ; output                         #      (ฮ)  THAI CHARACTER HO NOKHUK
-0E2F          ; Restricted ; Technical         #      (ฯ)  THAI CHARACTER PAIYANNOI
+0E2F          ; output                         #      (ฯ)  THAI CHARACTER PAIYANNOI
 0E30          ; output                         #      (ะ)  THAI CHARACTER SARA A
 0E31          ; output-nonstarting             #      (ั)  THAI CHARACTER MAI HAN-AKAT
 0E32          ; output                         #      (า)  THAI CHARACTER SARA AA
@@ -2960,7 +2960,7 @@
 0EAB          ; output                         #      (ຫ)  LAO LETTER HO SUNG
 0EAD          ; output                         #      (ອ)  LAO LETTER O
 0EAE          ; output                         #      (ຮ)  LAO LETTER HO TAM
-0EAF          ; Restricted ; Technical         #      (ຯ)  LAO ELLIPSIS
+0EAF          ; output                         #      (ຯ)  LAO ELLIPSIS
 0EB0          ; output                         #      (ະ)  LAO VOWEL SIGN A
 0EB1          ; output-nonstarting             #      (ັ)  LAO VOWEL SIGN MAI KAN
 0EB2          ; output                         #      (າ)  LAO VOWEL SIGN AA
