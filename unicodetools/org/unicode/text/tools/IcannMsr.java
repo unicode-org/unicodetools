@@ -1,6 +1,5 @@
 package org.unicode.text.tools;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -30,10 +29,8 @@ import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Row;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.text.AlphabeticIndex.Record;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -41,6 +38,13 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ULocale;
 
 public class IcannMsr {
+    private static final String ICANN_DIR = "/Users/markdavis/Google Drive/workspace/DATA/icann/";
+    
+    // Change these with new versions
+    
+    private static final String XML_DATA = "msr-2-wle-rules-13apr15-en.xml";
+    private static final String DELTA_LIST = "MSR-2.0v5Delta.lst";
+    
     static final SetMaker<String>                SM        = new SetMaker<String>() {
         public Set<String> make() {
             return new LinkedHashSet<String>();
@@ -58,7 +62,7 @@ public class IcannMsr {
         UnicodeSet found = new UnicodeSet();
         boolean comment = false;
         int cp = -1;
-        for (String line : FileUtilities.in("/Users/markdavis/Google Drive/workspace/DATA/icann/", "MSR-2.0v4Delta.lst")) {
+        for (String line : FileUtilities.in(ICANN_DIR, DELTA_LIST)) {
             // System.out.println(line);
             if (line.isEmpty() || line.startsWith(";")) {
                 continue;
@@ -91,7 +95,7 @@ public class IcannMsr {
         List<Pair<String, String>> data = new ArrayList<>();
 
         //        try {
-        //            BufferedReader f = FileUtilities.openFile("/Users/markdavis/Google Drive/workspace/DATA/icann/", "msr-wle-rules-04dec14-en.xml");
+        //            BufferedReader f = FileUtilities.openFile(ICANN_DIR, "msr-wle-rules-04dec14-en.xml");
         //            int line = f.read();
         //            System.out.println(Utility.hex(line));
         //        } catch (IOException e) {
@@ -99,7 +103,8 @@ public class IcannMsr {
         Matcher first = Pattern.compile("@first-cp=\"([0-9A-Fa-f]+)\"").matcher("");
         Matcher last = Pattern.compile("@last-cp=\"([0-9A-Fa-f]+)\"").matcher("");
         Matcher only = Pattern.compile("@cp=\"([0-9A-Fa-f]+)\"").matcher("");
-        XMLFileReader.loadPathValues("/Users/markdavis/Google Drive/workspace/DATA/icann/msr-wle-rules-04dec14-en.xml", data, false);
+        XMLFileReader.loadPathValues(ICANN_DIR
+                + XML_DATA, data, false);
         for (Pair<String, String> datum : data) {
             String path = datum.getFirst();
             // (//lgr/data/range[@first-cp="20E0E"][@last-cp="20E0F"][@tag="sc:Hani"][@ref="4 ZH IIC"],)
@@ -159,7 +164,7 @@ public class IcannMsr {
             return identifierType;
         } catch (Exception e) {
             throw new IllegalArgumentException(Utility.hex(cp)
-                    + "\t" + UCharacter.getName(cp)
+                    + "\t" + getName(cp)
                     + "\t" + dataLine);
         }
     }
@@ -186,7 +191,7 @@ public class IcannMsr {
         UnicodeMap<Set<String>> cldrChars = TestSecurity.getCLDRCharacters();
 
         UnicodeMap<Pair<IdentifierType, IdentifierType>> diff = new UnicodeMap<>();
-        for (EntryRange x : new UnicodeSet("[^[:cn:][:co:][:cs:][:cwcf:]]").ranges()) {
+        for (EntryRange x : new UnicodeSet("[[:age=6.3:]-[[:nd:][:cn:][:co:][:cs:][:cwcf:]]]").ranges()) {
             for (int i = x.codepoint; i <= x.codepointEnd; ++i) {
                 IdentifierType unicode = xidMod.get(i);
                 IdentifierStatus unicodeStatus = unicode.identifierStatus;
@@ -241,7 +246,7 @@ public class IcannMsr {
                 if (value == skipValue) {
                     continue;
                 }
-                showSortedSet(out, set);
+                showSortedSet(out, set, null);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -250,7 +255,7 @@ public class IcannMsr {
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static final UnicodeMap<String> Script_Extensions = iup.load(UcdProperty.Script_Extensions);
 
-    private static void showSortedSet(PrintWriter out, UnicodeSet set) {
+    private static void showSortedSet(PrintWriter out, UnicodeSet set, IdentifierType _type) {
 
         for (String script : Script_Extensions.values()) {
             UnicodeSet ss = Script_Extensions.getSet(script);
@@ -259,7 +264,7 @@ public class IcannMsr {
             }
             UnicodeSet inScript = new UnicodeSet(ss).retainAll(set);
             for (EntryRange x : inScript.ranges()) {
-                show(out, x.codepoint, x.codepointEnd);
+                show(out, _type, x.codepoint, x.codepointEnd);
 //                if (x.codepoint == x.codepointEnd) {
 //                    continue;
 //                } else if (x.codepoint + 1 == x.codepointEnd) {
@@ -272,18 +277,38 @@ public class IcannMsr {
         }
     }
 
-    private static void show(PrintWriter out, int cpStart, int cpEnd) {
-        out.println("\t" + Utility.hex(cpStart)
+    // 1F54F; uncommon-use # BOWL OF HYGIEIA
+    //  0138         ĸ      Ll      Latin       LATIN SMALL LETTER KRA  
+    private static void show(PrintWriter out, IdentifierType _type, int cpStart, int cpEnd) {
+        out.println(Utility.hex(cpStart)
                 + (cpStart == cpEnd ? "\t" : ".." + Utility.hex(cpEnd))
-                + "\t " + UTF16.valueOf(cpStart)
-                + (cpStart == cpEnd ? "\t" : ".." + UTF16.valueOf(cpEnd))
-                + " \t" + getGc(cpStart)
-                + (cpStart == cpEnd ? "\t" : "..")
-                + "\t" + Script_Extensions.get(cpStart)
-                + (cpStart == cpEnd ? "\t" : "..")
-                + "\t" + UCharacter.getName(cpStart)
-                + (cpStart == cpEnd ? "\t" : "..")
+                + " ; " + (_type == null ? "???" : _type)
+                + "\t # " + (_type == null ? "" : "according to MSR 5 ")
+                + "( " + UTF16.valueOf(cpStart)
+                + (cpStart == cpEnd ? "" : ".." + UTF16.valueOf(cpEnd))
+                + " ) [" + getGc(cpStart)
+                + (cpStart == cpEnd ? "" : "..")
+                + ", " + Script_Extensions.get(cpStart)
+                + (cpStart == cpEnd ? "" : "..")
+                + "] " + getNames(cpStart, cpEnd)
                 );
+    }
+
+    private static String getNames(int cpStart, int cpEnd) {
+        String result = getName(cpStart);
+        if (cpStart == cpEnd) {
+            return result;
+        }
+        final String name2 = getName(cpEnd);
+        return result.isEmpty() && name2.isEmpty() ? "" : result + ".." + name2;
+    }
+
+    private static String getName(int cpStart) {
+        String name = UCharacter.getName(cpStart);
+        if (name.startsWith("CJK UNIFIED IDEOGRAPH")) {
+            return "";
+        }
+        return name;
     }
 
     private static String getGc(int cpStart) {
@@ -297,12 +322,14 @@ public class IcannMsr {
 
             for (Pair<IdentifierType, IdentifierType> value : sorted) {
                 UnicodeSet us = diff.getSet(value);
-                out.println("\n#39:" + value.getFirst()
-                        + "\tMSR:" + value.getSecond()
+                final IdentifierType msrValue = value.getSecond();
+                final IdentifierType uts39Value = value.getFirst();
+                out.println("\n#39:" + uts39Value
+                        + "\tMSR:" + msrValue
                         + "\tcount:" + us.size()
                         + "\t" + us.toPattern(false)
                         );
-                showSortedSet(out, us);
+                showSortedSet(out, us, msrValue);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

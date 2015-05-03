@@ -8560,6 +8560,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 
 # Total code points: 2374
 
+0138          ;  ; Obsolete #      (ĸ)  LATIN SMALL LETTER KRA
 018D          ;  ; Obsolete #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
 01AA          ;  ; Obsolete #      (ƪ)  LATIN LETTER REVERSED ESH LOOP
 01AB          ;  ; Obsolete #      (ƫ)  LATIN SMALL LETTER T WITH PALATAL HOOK
@@ -8594,6 +8595,9 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 0373          ;  ; Obsolete #      (ͳ)  GREEK SMALL LETTER ARCHAIC SAMPI
 0376          ;  ; Obsolete #      (Ͷ)  GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA
 0377          ;  ; Obsolete #      (ͷ)  GREEK SMALL LETTER PAMPHYLIAN DIGAMMA
+037B          ;  ; Obsolete #      (ͻ)  GREEK SMALL REVERSED LUNATE SIGMA SYMBOL
+037C          ;  ; Obsolete #      (ͼ)  GREEK SMALL DOTTED LUNATE SIGMA SYMBOL
+037D          ;  ; Obsolete #      (ͽ)  GREEK SMALL REVERSED DOTTED LUNATE SIGMA SYMBOL
 037F          ;  ; Obsolete #      (Ϳ)  GREEK CAPITAL LETTER YOT
 03D8          ;  ; Obsolete #      (Ϙ)  GREEK LETTER ARCHAIC KOPPA
 03D9          ;  ; Obsolete #      (ϙ)  GREEK SMALL LETTER ARCHAIC KOPPA
@@ -8649,6 +8653,26 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 0485          ;  ; Obsolete #      (҅)  COMBINING CYRILLIC DASIA PNEUMATA
 0486          ;  ; Obsolete #      (҆)  COMBINING CYRILLIC PSILI PNEUMATA
 0487          ;  ; Obsolete #      (҇)  COMBINING CYRILLIC POKRYTIE
+049D          ;  ; Obsolete #      (ҝ)  CYRILLIC SMALL LETTER KA WITH VERTICAL STROKE
+04A7          ;  ; Obsolete #      (ҧ)  CYRILLIC SMALL LETTER PE WITH MIDDLE HOOK
+04B9          ;  ; Obsolete #      (ҹ)  CYRILLIC SMALL LETTER CHE WITH VERTICAL STROKE
+0501          ;  ; Obsolete #      (ԁ)  CYRILLIC SMALL LETTER KOMI DE
+0503          ;  ; Obsolete #      (ԃ)  CYRILLIC SMALL LETTER KOMI DJE
+0505          ;  ; Obsolete #      (ԅ)  CYRILLIC SMALL LETTER KOMI ZJE
+0507          ;  ; Obsolete #      (ԇ)  CYRILLIC SMALL LETTER KOMI DZJE
+0509          ;  ; Obsolete #      (ԉ)  CYRILLIC SMALL LETTER KOMI LJE
+050B          ;  ; Obsolete #      (ԋ)  CYRILLIC SMALL LETTER KOMI NJE
+050D          ;  ; Obsolete #      (ԍ)  CYRILLIC SMALL LETTER KOMI SJE
+050F          ;  ; Obsolete #      (ԏ)  CYRILLIC SMALL LETTER KOMI TJE
+0515          ;  ; Obsolete #      (ԕ)  CYRILLIC SMALL LETTER LHA
+0517          ;  ; Obsolete #      (ԗ)  CYRILLIC SMALL LETTER RHA
+0519          ;  ; Obsolete #      (ԙ)  CYRILLIC SMALL LETTER YAE
+051B          ;  ; Obsolete #      (ԛ)  CYRILLIC SMALL LETTER QA
+051D          ;  ; Obsolete #      (ԝ)  CYRILLIC SMALL LETTER WE
+051F          ;  ; Obsolete #      (ԟ)  CYRILLIC SMALL LETTER ALEUT KA
+0521          ;  ; Obsolete #      (ԡ)  CYRILLIC SMALL LETTER EL WITH MIDDLE HOOK
+0523          ;  ; Obsolete #      (ԣ)  CYRILLIC SMALL LETTER EN WITH MIDDLE HOOK
+0527          ;  ; Obsolete #      (ԧ)  CYRILLIC SMALL LETTER SHHA WITH DESCENDER
 052A          ;  ; Obsolete #      (Ԫ)  CYRILLIC CAPITAL LETTER DZZHE
 052B          ;  ; Obsolete #      (ԫ)  CYRILLIC SMALL LETTER DZZHE
 052C          ;  ; Obsolete #      (Ԭ)  CYRILLIC CAPITAL LETTER DCHE
@@ -8656,27 +8680,69 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 05A2          ;  ; Obsolete #      (֢)  HEBREW ACCENT ATNAH HAFUKH
 05C5          ;  ; Obsolete #      (ׅ)  HEBREW MARK LOWER DOT
 05C7          ;  ; Obsolete #      (ׇ)  HEBREW POINT QAMATS QATAN
+063B          ;  ; Obsolete #      (ػ)  ARABIC LETTER KEHEH WITH TWO DOTS ABOVE
+063C          ;  ; Obsolete #      (ؼ)  ARABIC LETTER KEHEH WITH THREE DOTS BELOW
+063D          ;  ; Obsolete #      (ؽ)  ARABIC LETTER FARSI YEH WITH INVERTED V
+063E          ;  ; Obsolete #      (ؾ)  ARABIC LETTER FARSI YEH WITH TWO DOTS ABOVE
+063F          ;  ; Obsolete #      (ؿ)  ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE
 066E          ;  ; Obsolete #      (ٮ)  ARABIC LETTER DOTLESS BEH
 066F          ;  ; Obsolete #      (ٯ)  ARABIC LETTER DOTLESS QAF
 068E          ;  ; Obsolete #      (ڎ)  ARABIC LETTER DUL
+077E          ;  ; Obsolete #      (ݾ)  ARABIC LETTER SEEN WITH INVERTED V
+077F          ;  ; Obsolete #      (ݿ)  ARABIC LETTER KAF WITH TWO DOTS ABOVE
 08AD          ;  ; Obsolete #      (ࢭ)  ARABIC LETTER LOW ALEF
 08AE          ;  ; Obsolete #      (ࢮ)  ARABIC LETTER DAL WITH THREE DOTS BELOW
 08AF          ;  ; Obsolete #      (ࢯ)  ARABIC LETTER SAD WITH THREE DOTS BELOW
 08B0          ;  ; Obsolete #      (ࢰ)  ARABIC LETTER GAF WITH INVERTED STROKE
 08B1          ;  ; Obsolete #      (ࢱ)  ARABIC LETTER STRAIGHT WAW
+093D          ;  ; Obsolete #      (ऽ)  DEVANAGARI SIGN AVAGRAHA
 094E          ;  ; Obsolete #      (ॎ)  DEVANAGARI VOWEL SIGN PRISHTHAMATRA E
 0951          ;  ; Obsolete #      (॑)  DEVANAGARI STRESS SIGN UDATTA
 0952          ;  ; Obsolete #      (॒)  DEVANAGARI STRESS SIGN ANUDATTA
+0960          ;  ; Obsolete #      (ॠ)  DEVANAGARI LETTER VOCALIC RR
+0961          ;  ; Obsolete #      (ॡ)  DEVANAGARI LETTER VOCALIC LL
+0962          ;  ; Obsolete #      (ॢ)  DEVANAGARI VOWEL SIGN VOCALIC L
+0963          ;  ; Obsolete #      (ॣ)  DEVANAGARI VOWEL SIGN VOCALIC LL
+0971          ;  ; Obsolete #      (ॱ)  DEVANAGARI SIGN HIGH SPACING DOT
 0978          ;  ; Obsolete #      (ॸ)  DEVANAGARI LETTER MARWARI DDA
 0980          ;  ; Obsolete #      (ঀ)  BENGALI ANJI
+09BD          ;  ; Obsolete #      (ঽ)  BENGALI SIGN AVAGRAHA
+09E0          ;  ; Obsolete #      (ৠ)  BENGALI LETTER VOCALIC RR
+09E1          ;  ; Obsolete #      (ৡ)  BENGALI LETTER VOCALIC LL
+09E2          ;  ; Obsolete #      (ৢ)  BENGALI VOWEL SIGN VOCALIC L
+09E3          ;  ; Obsolete #      (ৣ)  BENGALI VOWEL SIGN VOCALIC LL
+0ABD          ;  ; Obsolete #      (ઽ)  GUJARATI SIGN AVAGRAHA
+0AE0          ;  ; Obsolete #      (ૠ)  GUJARATI LETTER VOCALIC RR
+0AE1          ;  ; Obsolete #      (ૡ)  GUJARATI LETTER VOCALIC LL
+0AE2          ;  ; Obsolete #      (ૢ)  GUJARATI VOWEL SIGN VOCALIC L
+0AE3          ;  ; Obsolete #      (ૣ)  GUJARATI VOWEL SIGN VOCALIC LL
+0B3D          ;  ; Obsolete #      (ଽ)  ORIYA SIGN AVAGRAHA
+0B60          ;  ; Obsolete #      (ୠ)  ORIYA LETTER VOCALIC RR
+0B61          ;  ; Obsolete #      (ୡ)  ORIYA LETTER VOCALIC LL
 0C00          ;  ; Obsolete #      (ఀ)  TELUGU SIGN COMBINING CANDRABINDU ABOVE
 0C34          ;  ; Obsolete #      (ఴ)  TELUGU LETTER LLLA
+0C3D          ;  ; Obsolete #      (ఽ)  TELUGU SIGN AVAGRAHA
 0C58          ;  ; Obsolete #      (ౘ)  TELUGU LETTER TSA
 0C59          ;  ; Obsolete #      (ౙ)  TELUGU LETTER DZA
+0C60          ;  ; Obsolete #      (ౠ)  TELUGU LETTER VOCALIC RR
+0C61          ;  ; Obsolete #      (ౡ)  TELUGU LETTER VOCALIC LL
 0C81          ;  ; Obsolete #      (ಁ)  KANNADA SIGN CANDRABINDU
+0CBD          ;  ; Obsolete #      (ಽ)  KANNADA SIGN AVAGRAHA
 0CDE          ;  ; Obsolete #      (ೞ)  KANNADA LETTER FA
+0CE0          ;  ; Obsolete #      (ೠ)  KANNADA LETTER VOCALIC RR
+0CE1          ;  ; Obsolete #      (ೡ)  KANNADA LETTER VOCALIC LL
+0CE2          ;  ; Obsolete #      (ೢ)  KANNADA VOWEL SIGN VOCALIC L
+0CE3          ;  ; Obsolete #      (ೣ)  KANNADA VOWEL SIGN VOCALIC LL
+0CF1          ;  ; Obsolete #      (ೱ)  KANNADA SIGN JIHVAMULIYA
+0CF2          ;  ; Obsolete #      (ೲ)  KANNADA SIGN UPADHMANIYA
 0D01          ;  ; Obsolete #      (ഁ)  MALAYALAM SIGN CANDRABINDU
+0D3A          ;  ; Obsolete #      (ഺ)  MALAYALAM LETTER TTTA
+0D3D          ;  ; Obsolete #      (ഽ)  MALAYALAM SIGN AVAGRAHA
+0D4C          ;  ; Obsolete #      (ൌ)  MALAYALAM VOWEL SIGN AU
+0D4E          ;  ; Obsolete #      (ൎ)  MALAYALAM LETTER DOT REPH
 0D5F          ;  ; Obsolete #      (ൟ)  MALAYALAM LETTER ARCHAIC II
+0D60          ;  ; Obsolete #      (ൠ)  MALAYALAM LETTER VOCALIC RR
+0D61          ;  ; Obsolete #      (ൡ)  MALAYALAM LETTER VOCALIC LL
 0DE6          ;  ; Obsolete #      (෦)  SINHALA LITH DIGIT ZERO
 0DE7          ;  ; Obsolete #      (෧)  SINHALA LITH DIGIT ONE
 0DE8          ;  ; Obsolete #      (෨)  SINHALA LITH DIGIT TWO
@@ -8687,6 +8753,16 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 0DED          ;  ; Obsolete #      (෭)  SINHALA LITH DIGIT SEVEN
 0DEE          ;  ; Obsolete #      (෮)  SINHALA LITH DIGIT EIGHT
 0DEF          ;  ; Obsolete #      (෯)  SINHALA LITH DIGIT NINE
+0F86          ;  ; Obsolete #      (྆)  TIBETAN SIGN LCI RTAGS
+0F87          ;  ; Obsolete #      (྇)  TIBETAN SIGN YANG RTAGS
+0F88          ;  ; Obsolete #      (ྈ)  TIBETAN SIGN LCE TSA CAN
+0F89          ;  ; Obsolete #      (ྉ)  TIBETAN SIGN MCHU CAN
+0F8A          ;  ; Obsolete #      (ྊ)  TIBETAN SIGN GRU CAN RGYINGS
+0F8B          ;  ; Obsolete #      (ྋ)  TIBETAN SIGN GRU MED RGYINGS
+0F8C          ;  ; Obsolete #      (ྌ)  TIBETAN SIGN INVERTED MCHU CAN
+0F8D          ;  ; Obsolete #      (ྍ)  TIBETAN SUBJOINED SIGN LCE TSA CAN
+0F8E          ;  ; Obsolete #      (ྎ)  TIBETAN SUBJOINED SIGN MCHU CAN
+0F8F          ;  ; Obsolete #      (ྏ)  TIBETAN SUBJOINED SIGN INVERTED MCHU CAN
 10F1          ;  ; Obsolete #      (ჱ)  GEORGIAN LETTER HE
 10F2          ;  ; Obsolete #      (ჲ)  GEORGIAN LETTER HIE
 10F3          ;  ; Obsolete #      (ჳ)  GEORGIAN LETTER WE
@@ -8699,6 +8775,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 17A8          ;  ; Obsolete #      (ឨ)  KHMER INDEPENDENT VOWEL QUK
 17D1          ;  ; Obsolete #      (៑)  KHMER SIGN VIRIAM
 17D3          ;  ; Obsolete #      (៓)  KHMER SIGN BATHAMASAT
+17DC          ;  ; Obsolete #      (ៜ)  KHMER SIGN AVAKRAHASANYA
 17DD          ;  ; Obsolete #      (៝)  KHMER SIGN ATTHACAN
 1AB0          ;  ; Obsolete #      (᪰)  COMBINING DOUBLED CIRCUMFLEX ACCENT
 1AB1          ;  ; Obsolete #      (᪱)  COMBINING DIAERESIS-RING
@@ -9244,14 +9321,28 @@ D7FA          ;  ; Obsolete #      (ퟺ)  HANGUL JONGSEONG PHIEUPH-SIOS
 D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 10140..10174  ;  ; Obsolete # [53] (𐅀..𐅴)  GREEK ACROPHONIC ATTIC ONE QUARTER..GREEK ACROPHONIC STRATIAN FIFTY MNAS
 102E0         ;  ; Obsolete #      (𐋠)  COPTIC EPACT THOUSANDS MARK
+1B000         ;  ; Obsolete #      (𛀀)  KATAKANA LETTER ARCHAIC E
+1B001         ;  ; Obsolete #      (𛀁)  HIRAGANA LETTER ARCHAIC YE
 
-# Total code points: 1005
+# Total code points: 1084
 
 0180          ;  ; Technical #      (ƀ)  LATIN SMALL LETTER B WITH STROKE
 01C0          ;  ; Technical #      (ǀ)  LATIN LETTER DENTAL CLICK
 01C1          ;  ; Technical #      (ǁ)  LATIN LETTER LATERAL CLICK
 01C2          ;  ; Technical #      (ǂ)  LATIN LETTER ALVEOLAR CLICK
 01C3          ;  ; Technical #      (ǃ)  LATIN LETTER RETROFLEX CLICK
+0201          ;  ; Technical #      (ȁ)  LATIN SMALL LETTER A WITH DOUBLE GRAVE
+0203          ;  ; Technical #      (ȃ)  LATIN SMALL LETTER A WITH INVERTED BREVE
+0205          ;  ; Technical #      (ȅ)  LATIN SMALL LETTER E WITH DOUBLE GRAVE
+0207          ;  ; Technical #      (ȇ)  LATIN SMALL LETTER E WITH INVERTED BREVE
+0209          ;  ; Technical #      (ȉ)  LATIN SMALL LETTER I WITH DOUBLE GRAVE
+020B          ;  ; Technical #      (ȋ)  LATIN SMALL LETTER I WITH INVERTED BREVE
+020D          ;  ; Technical #      (ȍ)  LATIN SMALL LETTER O WITH DOUBLE GRAVE
+020F          ;  ; Technical #      (ȏ)  LATIN SMALL LETTER O WITH INVERTED BREVE
+0211          ;  ; Technical #      (ȑ)  LATIN SMALL LETTER R WITH DOUBLE GRAVE
+0213          ;  ; Technical #      (ȓ)  LATIN SMALL LETTER R WITH INVERTED BREVE
+0215          ;  ; Technical #      (ȕ)  LATIN SMALL LETTER U WITH DOUBLE GRAVE
+0217          ;  ; Technical #      (ȗ)  LATIN SMALL LETTER U WITH INVERTED BREVE
 0234          ;  ; Technical #      (ȴ)  LATIN SMALL LETTER L WITH CURL
 0235          ;  ; Technical #      (ȵ)  LATIN SMALL LETTER N WITH CURL
 0236          ;  ; Technical #      (ȶ)  LATIN SMALL LETTER T WITH CURL
@@ -9348,7 +9439,12 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 02D1          ;  ; Technical #      (ˑ)  MODIFIER LETTER HALF TRIANGULAR COLON
 02EE          ;  ; Technical #      (ˮ)  MODIFIER LETTER DOUBLE APOSTROPHE
 030E          ;  ; Technical #      (̎)  COMBINING DOUBLE VERTICAL LINE ABOVE
+030F          ;  ; Technical #      (̏)  COMBINING DOUBLE GRAVE ACCENT
+0310          ;  ; Technical #      (̐)  COMBINING CANDRABINDU
+0311          ;  ; Technical #      (̑)  COMBINING INVERTED BREVE
 0312          ;  ; Technical #      (̒)  COMBINING TURNED COMMA ABOVE
+0313          ;  ; Technical #      (̓)  COMBINING COMMA ABOVE
+0314          ;  ; Technical #      (̔)  COMBINING REVERSED COMMA ABOVE
 0315          ;  ; Technical #      (̕)  COMBINING COMMA ABOVE RIGHT
 0317          ;  ; Technical #      (̗)  COMBINING ACUTE ACCENT BELOW
 0318          ;  ; Technical #      (̘)  COMBINING LEFT TACK BELOW
@@ -9359,19 +9455,28 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 031E          ;  ; Technical #      (̞)  COMBINING DOWN TACK BELOW
 031F          ;  ; Technical #      (̟)  COMBINING PLUS SIGN BELOW
 0320          ;  ; Technical #      (̠)  COMBINING MINUS SIGN BELOW
+0324          ;  ; Technical #      (̤)  COMBINING DIAERESIS BELOW
+0325          ;  ; Technical #      (̥)  COMBINING RING BELOW
 0329          ;  ; Technical #      (̩)  COMBINING VERTICAL LINE BELOW
 032A          ;  ; Technical #      (̪)  COMBINING BRIDGE BELOW
 032B          ;  ; Technical #      (̫)  COMBINING INVERTED DOUBLE ARCH BELOW
 032C          ;  ; Technical #      (̬)  COMBINING CARON BELOW
+032D          ;  ; Technical #      (̭)  COMBINING CIRCUMFLEX ACCENT BELOW
+032E          ;  ; Technical #      (̮)  COMBINING BREVE BELOW
 032F          ;  ; Technical #      (̯)  COMBINING INVERTED BREVE BELOW
+0330          ;  ; Technical #      (̰)  COMBINING TILDE BELOW
 0333          ;  ; Technical #      (̳)  COMBINING DOUBLE LOW LINE
+0335          ;  ; Technical #      (̵)  COMBINING SHORT STROKE OVERLAY
 0337          ;  ; Technical #      (̷)  COMBINING SHORT SOLIDUS OVERLAY
+0338          ;  ; Technical #      (̸)  COMBINING LONG SOLIDUS OVERLAY
+0339          ;  ; Technical #      (̹)  COMBINING RIGHT HALF RING BELOW
 033A          ;  ; Technical #      (̺)  COMBINING INVERTED BRIDGE BELOW
 033B          ;  ; Technical #      (̻)  COMBINING SQUARE BELOW
 033C          ;  ; Technical #      (̼)  COMBINING SEAGULL BELOW
 033D          ;  ; Technical #      (̽)  COMBINING X ABOVE
 033E          ;  ; Technical #      (̾)  COMBINING VERTICAL TILDE
 033F          ;  ; Technical #      (̿)  COMBINING DOUBLE OVERLINE
+0342          ;  ; Technical #      (͂)  COMBINING GREEK PERISPOMENI
 0346          ;  ; Technical #      (͆)  COMBINING BRIDGE ABOVE
 0347          ;  ; Technical #      (͇)  COMBINING EQUALS SIGN BELOW
 0348          ;  ; Technical #      (͈)  COMBINING DOUBLE VERTICAL LINE BELOW
@@ -9401,15 +9506,39 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 0362          ;  ; Technical #      (͢)  COMBINING DOUBLE RIGHTWARDS ARROW BELOW
 03CF          ;  ; Technical #      (Ϗ)  GREEK CAPITAL KAI SYMBOL
 03D7          ;  ; Technical #      (ϗ)  GREEK KAI SYMBOL
+03FC          ;  ; Technical #      (ϼ)  GREEK RHO WITH STROKE SYMBOL
+0529          ;  ; Technical #      (ԩ)  CYRILLIC SMALL LETTER EN WITH LEFT HOOK
+052F          ;  ; Technical #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
+0559          ;  ; Technical #      (ՙ)  ARMENIAN MODIFIER LETTER LEFT HALF RING
+0653          ;  ; Technical #      (ٓ)  ARABIC MADDAH ABOVE
+06AC          ;  ; Technical #      (ڬ)  ARABIC LETTER KAF WITH DOT ABOVE
+06E5          ;  ; Technical #      (ۥ)  ARABIC SMALL WAW
+06E6          ;  ; Technical #      (ۦ)  ARABIC SMALL YEH
+08A1          ;  ; Technical #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
+0950          ;  ; Technical #      (ॐ)  DEVANAGARI OM
 0953          ;  ; Technical #      (॓)  DEVANAGARI GRAVE ACCENT
 0954          ;  ; Technical #      (॔)  DEVANAGARI ACUTE ACCENT
+097D          ;  ; Technical #      (ॽ)  DEVANAGARI LETTER GLOTTAL STOP
+0A74          ;  ; Technical #      (ੴ)  GURMUKHI EK ONKAR
+0AD0          ;  ; Technical #      (ૐ)  GUJARATI OM
+0B82          ;  ; Technical #      (ஂ)  TAMIL SIGN ANUSVARA
+0BD0          ;  ; Technical #      (ௐ)  TAMIL OM
 0D8F          ;  ; Technical #      (ඏ)  SINHALA LETTER ILUYANNA
 0D90          ;  ; Technical #      (ඐ)  SINHALA LETTER ILUUYANNA
 0DA6          ;  ; Technical #      (ඦ)  SINHALA LETTER SANYAKA JAYANNA
 0DDF          ;  ; Technical #      (ෟ)  SINHALA VOWEL SIGN GAYANUKITTA
 0DF3          ;  ; Technical #      (ෳ)  SINHALA VOWEL SIGN DIGA GAYANUKITTA
+0E2F          ;  ; Technical #      (ฯ)  THAI CHARACTER PAIYANNOI
+0EAF          ;  ; Technical #      (ຯ)  LAO ELLIPSIS
+0F00          ;  ; Technical #      (ༀ)  TIBETAN SYLLABLE OM
 0F18          ;  ; Technical #      (༘)  TIBETAN ASTROLOGICAL SIGN -KHYUD PA
 0F19          ;  ; Technical #      (༙)  TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
+0F35          ;  ; Technical #      (༵)  TIBETAN MARK NGAS BZUNG NYI ZLA
+0F37          ;  ; Technical #      (༷)  TIBETAN MARK NGAS BZUNG SGOR RTAGS
+0F3E          ;  ; Technical #      (༾)  TIBETAN SIGN YAR TSHES
+0F3F          ;  ; Technical #      (༿)  TIBETAN SIGN MAR TSHES
+0F7B          ;  ; Technical #      (ཻ)  TIBETAN VOWEL SIGN EE
+0F7D          ;  ; Technical #      (ཽ)  TIBETAN VOWEL SIGN OO
 17CB          ;  ; Technical #      (់)  KHMER SIGN BANTOC
 17CC          ;  ; Technical #      (៌)  KHMER SIGN ROBAT
 17CD          ;  ; Technical #      (៍)  KHMER SIGN TOANDAKHIAT
@@ -9541,6 +9670,18 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 1DFD          ;  ; Technical #      (᷽)  COMBINING ALMOST EQUAL TO BELOW
 1DFE          ;  ; Technical #      (᷾)  COMBINING LEFT ARROWHEAD ABOVE
 1DFF          ;  ; Technical #      (᷿)  COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
+1E01          ;  ; Technical #      (ḁ)  LATIN SMALL LETTER A WITH RING BELOW
+1E13          ;  ; Technical #      (ḓ)  LATIN SMALL LETTER D WITH CIRCUMFLEX BELOW
+1E19          ;  ; Technical #      (ḙ)  LATIN SMALL LETTER E WITH CIRCUMFLEX BELOW
+1E1B          ;  ; Technical #      (ḛ)  LATIN SMALL LETTER E WITH TILDE BELOW
+1E2B          ;  ; Technical #      (ḫ)  LATIN SMALL LETTER H WITH BREVE BELOW
+1E2D          ;  ; Technical #      (ḭ)  LATIN SMALL LETTER I WITH TILDE BELOW
+1E3D          ;  ; Technical #      (ḽ)  LATIN SMALL LETTER L WITH CIRCUMFLEX BELOW
+1E4B          ;  ; Technical #      (ṋ)  LATIN SMALL LETTER N WITH CIRCUMFLEX BELOW
+1E71          ;  ; Technical #      (ṱ)  LATIN SMALL LETTER T WITH CIRCUMFLEX BELOW
+1E73          ;  ; Technical #      (ṳ)  LATIN SMALL LETTER U WITH DIAERESIS BELOW
+1E75          ;  ; Technical #      (ṵ)  LATIN SMALL LETTER U WITH TILDE BELOW
+1E77          ;  ; Technical #      (ṷ)  LATIN SMALL LETTER U WITH CIRCUMFLEX BELOW
 1E9C          ;  ; Technical #      (ẜ)  LATIN SMALL LETTER LONG S WITH DIAGONAL STROKE
 1E9D          ;  ; Technical #      (ẝ)  LATIN SMALL LETTER LONG S WITH HIGH STROKE
 1E9F          ;  ; Technical #      (ẟ)  LATIN SMALL LETTER DELTA
@@ -9564,6 +9705,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 2C79          ;  ; Technical #      (ⱹ)  LATIN SMALL LETTER TURNED R WITH TAIL
 2C7A          ;  ; Technical #      (ⱺ)  LATIN SMALL LETTER O WITH LOW RING INSIDE
 2C7B          ;  ; Technical #      (ⱻ)  LATIN LETTER SMALL CAPITAL TURNED E
+3007          ;  ; Technical #      (〇)  IDEOGRAPHIC NUMBER ZERO
 3021          ;  ; Technical #      (〡)  HANGZHOU NUMERAL ONE
 3022          ;  ; Technical #      (〢)  HANGZHOU NUMERAL TWO
 3023          ;  ; Technical #      (〣)  HANGZHOU NUMERAL THREE
@@ -9584,6 +9726,8 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 3035          ;  ; Technical #      (〵)  VERTICAL KANA REPEAT MARK LOWER HALF
 303B          ;  ; Technical #      (〻)  VERTICAL IDEOGRAPHIC ITERATION MARK
 303C          ;  ; Technical #      (〼)  MASU MARK
+3099          ;  ; Technical #      (゙)  COMBINING KATAKANA-HIRAGANA VOICED SOUND MARK
+309A          ;  ; Technical #      (゚)  COMBINING KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
 31F0          ;  ; Technical #      (ㇰ)  KATAKANA LETTER SMALL KU
 31F1          ;  ; Technical #      (ㇱ)  KATAKANA LETTER SMALL SI
 31F2          ;  ; Technical #      (ㇲ)  KATAKANA LETTER SMALL SU
@@ -9604,7 +9748,7 @@ FB1E          ;  ; Technical #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE20..FE2F    ;  ; Technical # [16] (︠..︯)  COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
 FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 373
+# Total code points: 438
 
 0181..0182    ;  ; Uncommon_Use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ;  ; Uncommon_Use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
@@ -9700,6 +9844,20 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 0334          ;  ; Uncommon_Use #      (̴)  COMBINING TILDE OVERLAY
 0336          ;  ; Uncommon_Use #      (̶)  COMBINING LONG STROKE OVERLAY
 0358          ;  ; Uncommon_Use #      (͘)  COMBINING DOT ABOVE RIGHT
+048B          ;  ; Uncommon_Use #      (ҋ)  CYRILLIC SMALL LETTER SHORT I WITH TAIL
+048D          ;  ; Uncommon_Use #      (ҍ)  CYRILLIC SMALL LETTER SEMISOFT SIGN
+048F          ;  ; Uncommon_Use #      (ҏ)  CYRILLIC SMALL LETTER ER WITH TICK
+04C4          ;  ; Uncommon_Use #      (ӄ)  CYRILLIC SMALL LETTER KA WITH HOOK
+04C6          ;  ; Uncommon_Use #      (ӆ)  CYRILLIC SMALL LETTER EL WITH TAIL
+04C8          ;  ; Uncommon_Use #      (ӈ)  CYRILLIC SMALL LETTER EN WITH HOOK
+04CA          ;  ; Uncommon_Use #      (ӊ)  CYRILLIC SMALL LETTER EN WITH TAIL
+04CE          ;  ; Uncommon_Use #      (ӎ)  CYRILLIC SMALL LETTER EM WITH TAIL
+04F7          ;  ; Uncommon_Use #      (ӷ)  CYRILLIC SMALL LETTER GHE WITH DESCENDER
+04FB          ;  ; Uncommon_Use #      (ӻ)  CYRILLIC SMALL LETTER GHE WITH STROKE AND HOOK
+04FD          ;  ; Uncommon_Use #      (ӽ)  CYRILLIC SMALL LETTER HA WITH HOOK
+04FF          ;  ; Uncommon_Use #      (ӿ)  CYRILLIC SMALL LETTER HA WITH STROKE
+0511          ;  ; Uncommon_Use #      (ԑ)  CYRILLIC SMALL LETTER REVERSED ZE
+0513          ;  ; Uncommon_Use #      (ԓ)  CYRILLIC SMALL LETTER EL WITH HOOK
 0591          ;  ; Uncommon_Use #      (֑)  HEBREW ACCENT ETNAHTA
 0592          ;  ; Uncommon_Use #      (֒)  HEBREW ACCENT SEGOL
 0593          ;  ; Uncommon_Use #      (֓)  HEBREW ACCENT SHALSHELET
@@ -9787,6 +9945,7 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 06EB          ;  ; Uncommon_Use #      (۫)  ARABIC EMPTY CENTRE HIGH STOP
 06EC          ;  ; Uncommon_Use #      (۬)  ARABIC ROUNDED HIGH STOP WITH FILLED CENTRE
 06ED          ;  ; Uncommon_Use #      (ۭ)  ARABIC SMALL LOW MEEM
+08B2          ;  ; Uncommon_Use #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 08B3          ;  ; Uncommon_Use #      (ࢳ)  ARABIC LETTER AIN WITH THREE DOTS BELOW
 08B4          ;  ; Uncommon_Use #      (ࢴ)  ARABIC LETTER KAF WITH DOT BELOW
 08E3          ;  ; Uncommon_Use #      (ࣣ)  ARABIC TURNED DAMMA BELOW
@@ -9820,12 +9979,14 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 08FF          ;  ; Uncommon_Use #      (ࣿ)  ARABIC MARK SIDEWAYS NOON GHUNNA
 0900          ;  ; Uncommon_Use #      (ऀ)  DEVANAGARI SIGN INVERTED CANDRABINDU
 0955          ;  ; Uncommon_Use #      (ॕ)  DEVANAGARI VOWEL SIGN CANDRA LONG E
+0A01          ;  ; Uncommon_Use #      (ਁ)  GURMUKHI SIGN ADAK BINDI
 0A51          ;  ; Uncommon_Use #      (ੑ)  GURMUKHI SIGN UDAAT
 0A75          ;  ; Uncommon_Use #      (ੵ)  GURMUKHI SIGN YAKASH
 0AF9          ;  ; Uncommon_Use #      (ૹ)  GUJARATI LETTER ZHA
 0B44          ;  ; Uncommon_Use #      (ୄ)  ORIYA VOWEL SIGN VOCALIC RR
 0B62          ;  ; Uncommon_Use #      (ୢ)  ORIYA VOWEL SIGN VOCALIC L
 0B63          ;  ; Uncommon_Use #      (ୣ)  ORIYA VOWEL SIGN VOCALIC LL
+0C01          ;  ; Uncommon_Use #      (ఁ)  TELUGU SIGN CANDRABINDU
 0C5A          ;  ; Uncommon_Use #      (ౚ)  TELUGU LETTER RRRA
 0C62          ;  ; Uncommon_Use #      (ౢ)  TELUGU VOWEL SIGN VOCALIC L
 0C63          ;  ; Uncommon_Use #      (ౣ)  TELUGU VOWEL SIGN VOCALIC LL
@@ -9833,6 +9994,62 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 0D62          ;  ; Uncommon_Use #      (ൢ)  MALAYALAM VOWEL SIGN VOCALIC L
 0D63          ;  ; Uncommon_Use #      (ൣ)  MALAYALAM VOWEL SIGN VOCALIC LL
 0F39          ;  ; Uncommon_Use #      (༹)  TIBETAN MARK TSA -PHRU
+0F6A          ;  ; Uncommon_Use #      (ཪ)  TIBETAN LETTER FIXED-FORM RA
+0F6B          ;  ; Uncommon_Use #      (ཫ)  TIBETAN LETTER KKA
+0F6C          ;  ; Uncommon_Use #      (ཬ)  TIBETAN LETTER RRA
+0F82          ;  ; Uncommon_Use #      (ྂ)  TIBETAN SIGN NYI ZLA NAA DA
+0F83          ;  ; Uncommon_Use #      (ྃ)  TIBETAN SIGN SNA LDAN
+0FAE          ;  ; Uncommon_Use #      (ྮ)  TIBETAN SUBJOINED LETTER ZHA
+0FAF          ;  ; Uncommon_Use #      (ྯ)  TIBETAN SUBJOINED LETTER ZA
+0FB0          ;  ; Uncommon_Use #      (ྰ)  TIBETAN SUBJOINED LETTER -A
+0FC6          ;  ; Uncommon_Use #      (࿆)  TIBETAN SYMBOL PADMA GDAN
+1028          ;  ; Uncommon_Use #      (ဨ)  MYANMAR LETTER MON E
+1033          ;  ; Uncommon_Use #      (ဳ)  MYANMAR VOWEL SIGN MON II
+1034          ;  ; Uncommon_Use #      (ဴ)  MYANMAR VOWEL SIGN MON O
+1050          ;  ; Uncommon_Use #      (ၐ)  MYANMAR LETTER SHA
+1051          ;  ; Uncommon_Use #      (ၑ)  MYANMAR LETTER SSA
+1052          ;  ; Uncommon_Use #      (ၒ)  MYANMAR LETTER VOCALIC R
+1053          ;  ; Uncommon_Use #      (ၓ)  MYANMAR LETTER VOCALIC RR
+1054          ;  ; Uncommon_Use #      (ၔ)  MYANMAR LETTER VOCALIC L
+1055          ;  ; Uncommon_Use #      (ၕ)  MYANMAR LETTER VOCALIC LL
+1056          ;  ; Uncommon_Use #      (ၖ)  MYANMAR VOWEL SIGN VOCALIC R
+1057          ;  ; Uncommon_Use #      (ၗ)  MYANMAR VOWEL SIGN VOCALIC RR
+1058          ;  ; Uncommon_Use #      (ၘ)  MYANMAR VOWEL SIGN VOCALIC L
+1059          ;  ; Uncommon_Use #      (ၙ)  MYANMAR VOWEL SIGN VOCALIC LL
+105A          ;  ; Uncommon_Use #      (ၚ)  MYANMAR LETTER MON NGA
+105B          ;  ; Uncommon_Use #      (ၛ)  MYANMAR LETTER MON JHA
+105C          ;  ; Uncommon_Use #      (ၜ)  MYANMAR LETTER MON BBA
+105D          ;  ; Uncommon_Use #      (ၝ)  MYANMAR LETTER MON BBE
+105E          ;  ; Uncommon_Use #      (ၞ)  MYANMAR CONSONANT SIGN MON MEDIAL NA
+105F          ;  ; Uncommon_Use #      (ၟ)  MYANMAR CONSONANT SIGN MON MEDIAL MA
+1060          ;  ; Uncommon_Use #      (ၠ)  MYANMAR CONSONANT SIGN MON MEDIAL LA
+1065          ;  ; Uncommon_Use #      (ၥ)  MYANMAR LETTER WESTERN PWO KAREN THA
+1066          ;  ; Uncommon_Use #      (ၦ)  MYANMAR LETTER WESTERN PWO KAREN PWA
+1067          ;  ; Uncommon_Use #      (ၧ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN EU
+1068          ;  ; Uncommon_Use #      (ၨ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN UE
+1069          ;  ; Uncommon_Use #      (ၩ)  MYANMAR SIGN WESTERN PWO KAREN TONE-1
+106A          ;  ; Uncommon_Use #      (ၪ)  MYANMAR SIGN WESTERN PWO KAREN TONE-2
+106B          ;  ; Uncommon_Use #      (ၫ)  MYANMAR SIGN WESTERN PWO KAREN TONE-3
+106C          ;  ; Uncommon_Use #      (ၬ)  MYANMAR SIGN WESTERN PWO KAREN TONE-4
+106D          ;  ; Uncommon_Use #      (ၭ)  MYANMAR SIGN WESTERN PWO KAREN TONE-5
+106E          ;  ; Uncommon_Use #      (ၮ)  MYANMAR LETTER EASTERN PWO KAREN NNA
+106F          ;  ; Uncommon_Use #      (ၯ)  MYANMAR LETTER EASTERN PWO KAREN YWA
+1070          ;  ; Uncommon_Use #      (ၰ)  MYANMAR LETTER EASTERN PWO KAREN GHWA
+1071          ;  ; Uncommon_Use #      (ၱ)  MYANMAR VOWEL SIGN GEBA KAREN I
+1072          ;  ; Uncommon_Use #      (ၲ)  MYANMAR VOWEL SIGN KAYAH OE
+1073          ;  ; Uncommon_Use #      (ၳ)  MYANMAR VOWEL SIGN KAYAH U
+1074          ;  ; Uncommon_Use #      (ၴ)  MYANMAR VOWEL SIGN KAYAH EE
+108E          ;  ; Uncommon_Use #      (ႎ)  MYANMAR LETTER RUMAI PALAUNG FA
+108F          ;  ; Uncommon_Use #      (ႏ)  MYANMAR SIGN RUMAI PALAUNG TONE-5
+109A          ;  ; Uncommon_Use #      (ႚ)  MYANMAR SIGN KHAMTI TONE-1
+109B          ;  ; Uncommon_Use #      (ႛ)  MYANMAR SIGN KHAMTI TONE-3
+109C          ;  ; Uncommon_Use #      (ႜ)  MYANMAR VOWEL SIGN AITON A
+109D          ;  ; Uncommon_Use #      (ႝ)  MYANMAR VOWEL SIGN AITON AI
+10F9          ;  ; Uncommon_Use #      (ჹ)  GEORGIAN LETTER TURNED GAN
+10FA          ;  ; Uncommon_Use #      (ჺ)  GEORGIAN LETTER AIN
+10FD          ;  ; Uncommon_Use #      (ჽ)  GEORGIAN LETTER AEN
+10FE          ;  ; Uncommon_Use #      (ჾ)  GEORGIAN LETTER HARD SIGN
+10FF          ;  ; Uncommon_Use #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 2054          ;  ; Uncommon_Use #      (⁔)  INVERTED UNDERTIE
 2C67          ;  ; Uncommon_Use #      (Ⱨ)  LATIN CAPITAL LETTER H WITH DESCENDER
 2C68          ;  ; Uncommon_Use #      (ⱨ)  LATIN SMALL LETTER H WITH DESCENDER
@@ -9840,6 +10057,14 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 2C6A          ;  ; Uncommon_Use #      (ⱪ)  LATIN SMALL LETTER K WITH DESCENDER
 2C6B          ;  ; Uncommon_Use #      (Ⱬ)  LATIN CAPITAL LETTER Z WITH DESCENDER
 2C6C          ;  ; Uncommon_Use #      (ⱬ)  LATIN SMALL LETTER Z WITH DESCENDER
+2DA0..2DA6    ;  ; Uncommon_Use #  [7] (ⶠ..ⶦ)  ETHIOPIC SYLLABLE SSA..ETHIOPIC SYLLABLE SSO
+2DA8..2DAE    ;  ; Uncommon_Use #  [7] (ⶨ..ⶮ)  ETHIOPIC SYLLABLE CCA..ETHIOPIC SYLLABLE CCO
+2DB0..2DB6    ;  ; Uncommon_Use #  [7] (ⶰ..ⶶ)  ETHIOPIC SYLLABLE ZZA..ETHIOPIC SYLLABLE ZZO
+2DB8..2DBE    ;  ; Uncommon_Use #  [7] (ⶸ..ⶾ)  ETHIOPIC SYLLABLE CCHA..ETHIOPIC SYLLABLE CCHO
+2DC0..2DC6    ;  ; Uncommon_Use #  [7] (ⷀ..ⷆ)  ETHIOPIC SYLLABLE QYA..ETHIOPIC SYLLABLE QYO
+2DC8..2DCE    ;  ; Uncommon_Use #  [7] (ⷈ..ⷎ)  ETHIOPIC SYLLABLE KYA..ETHIOPIC SYLLABLE KYO
+2DD0..2DD6    ;  ; Uncommon_Use #  [7] (ⷐ..ⷖ)  ETHIOPIC SYLLABLE XYA..ETHIOPIC SYLLABLE XYO
+2DD8..2DDE    ;  ; Uncommon_Use #  [7] (ⷘ..ⷞ)  ETHIOPIC SYLLABLE GYA..ETHIOPIC SYLLABLE GYO
 A66F          ;  ; Uncommon_Use #      (꙯)  COMBINING CYRILLIC VZMET
 A67C          ;  ; Uncommon_Use #      (꙼)  COMBINING CYRILLIC KAVYKA
 A67D          ;  ; Uncommon_Use #      (꙽)  COMBINING CYRILLIC PAYEROK
@@ -9851,12 +10076,15 @@ A7B2..A7B4    ;  ; Uncommon_Use #  [3] (Ʝ..Ꞵ)  LATIN CAPITAL LETTER J WITH C
 A7B5          ;  ; Uncommon_Use #      (ꞵ)  LATIN SMALL LETTER BETA
 A7B6          ;  ; Uncommon_Use #      (Ꞷ)  LATIN CAPITAL LETTER OMEGA
 A7B7          ;  ; Uncommon_Use #      (ꞷ)  LATIN SMALL LETTER OMEGA
+AB11..AB16    ;  ; Uncommon_Use #  [6] (ꬑ..ꬖ)  ETHIOPIC SYLLABLE DZU..ETHIOPIC SYLLABLE DZO
+AB20..AB26    ;  ; Uncommon_Use #  [7] (ꬠ..ꬦ)  ETHIOPIC SYLLABLE CCHHA..ETHIOPIC SYLLABLE CCHHO
+AB28..AB2E    ;  ; Uncommon_Use #  [7] (ꬨ..ꬮ)  ETHIOPIC SYLLABLE BBA..ETHIOPIC SYLLABLE BBO
 AB60          ;  ; Uncommon_Use #      (ꭠ)  LATIN SMALL LETTER SAKHA YAT
 AB61          ;  ; Uncommon_Use #      (ꭡ)  LATIN SMALL LETTER IOTIFIED E
 AB62          ;  ; Uncommon_Use #      (ꭢ)  LATIN SMALL LETTER OPEN OE
 AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 
-# Total code points: 269
+# Total code points: 418
 
 00B7          ; Allowed ; Inclusion #      (·)  MIDDLE DOT
 
@@ -9987,7 +10215,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0135          ; Allowed ; Recommended #      (ĵ)  LATIN SMALL LETTER J WITH CIRCUMFLEX
 0136          ; Allowed ; Recommended #      (Ķ)  LATIN CAPITAL LETTER K WITH CEDILLA
 0137          ; Allowed ; Recommended #      (ķ)  LATIN SMALL LETTER K WITH CEDILLA
-0138          ; Allowed ; Recommended #      (ĸ)  LATIN SMALL LETTER KRA
 0139          ; Allowed ; Recommended #      (Ĺ)  LATIN CAPITAL LETTER L WITH ACUTE
 013A          ; Allowed ; Recommended #      (ĺ)  LATIN SMALL LETTER L WITH ACUTE
 013B          ; Allowed ; Recommended #      (Ļ)  LATIN CAPITAL LETTER L WITH CEDILLA
@@ -10103,29 +10330,17 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 01FE          ; Allowed ; Recommended #      (Ǿ)  LATIN CAPITAL LETTER O WITH STROKE AND ACUTE
 01FF          ; Allowed ; Recommended #      (ǿ)  LATIN SMALL LETTER O WITH STROKE AND ACUTE
 0200          ; Allowed ; Recommended #      (Ȁ)  LATIN CAPITAL LETTER A WITH DOUBLE GRAVE
-0201          ; Allowed ; Recommended #      (ȁ)  LATIN SMALL LETTER A WITH DOUBLE GRAVE
 0202          ; Allowed ; Recommended #      (Ȃ)  LATIN CAPITAL LETTER A WITH INVERTED BREVE
-0203          ; Allowed ; Recommended #      (ȃ)  LATIN SMALL LETTER A WITH INVERTED BREVE
 0204          ; Allowed ; Recommended #      (Ȅ)  LATIN CAPITAL LETTER E WITH DOUBLE GRAVE
-0205          ; Allowed ; Recommended #      (ȅ)  LATIN SMALL LETTER E WITH DOUBLE GRAVE
 0206          ; Allowed ; Recommended #      (Ȇ)  LATIN CAPITAL LETTER E WITH INVERTED BREVE
-0207          ; Allowed ; Recommended #      (ȇ)  LATIN SMALL LETTER E WITH INVERTED BREVE
 0208          ; Allowed ; Recommended #      (Ȉ)  LATIN CAPITAL LETTER I WITH DOUBLE GRAVE
-0209          ; Allowed ; Recommended #      (ȉ)  LATIN SMALL LETTER I WITH DOUBLE GRAVE
 020A          ; Allowed ; Recommended #      (Ȋ)  LATIN CAPITAL LETTER I WITH INVERTED BREVE
-020B          ; Allowed ; Recommended #      (ȋ)  LATIN SMALL LETTER I WITH INVERTED BREVE
 020C          ; Allowed ; Recommended #      (Ȍ)  LATIN CAPITAL LETTER O WITH DOUBLE GRAVE
-020D          ; Allowed ; Recommended #      (ȍ)  LATIN SMALL LETTER O WITH DOUBLE GRAVE
 020E          ; Allowed ; Recommended #      (Ȏ)  LATIN CAPITAL LETTER O WITH INVERTED BREVE
-020F          ; Allowed ; Recommended #      (ȏ)  LATIN SMALL LETTER O WITH INVERTED BREVE
 0210          ; Allowed ; Recommended #      (Ȑ)  LATIN CAPITAL LETTER R WITH DOUBLE GRAVE
-0211          ; Allowed ; Recommended #      (ȑ)  LATIN SMALL LETTER R WITH DOUBLE GRAVE
 0212          ; Allowed ; Recommended #      (Ȓ)  LATIN CAPITAL LETTER R WITH INVERTED BREVE
-0213          ; Allowed ; Recommended #      (ȓ)  LATIN SMALL LETTER R WITH INVERTED BREVE
 0214          ; Allowed ; Recommended #      (Ȕ)  LATIN CAPITAL LETTER U WITH DOUBLE GRAVE
-0215          ; Allowed ; Recommended #      (ȕ)  LATIN SMALL LETTER U WITH DOUBLE GRAVE
 0216          ; Allowed ; Recommended #      (Ȗ)  LATIN CAPITAL LETTER U WITH INVERTED BREVE
-0217          ; Allowed ; Recommended #      (ȗ)  LATIN SMALL LETTER U WITH INVERTED BREVE
 0218          ; Allowed ; Recommended #      (Ș)  LATIN CAPITAL LETTER S WITH COMMA BELOW
 0219          ; Allowed ; Recommended #      (ș)  LATIN SMALL LETTER S WITH COMMA BELOW
 021A          ; Allowed ; Recommended #      (Ț)  LATIN CAPITAL LETTER T WITH COMMA BELOW
@@ -10162,30 +10377,13 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 030A          ; Allowed ; Recommended #      (̊)  COMBINING RING ABOVE
 030B          ; Allowed ; Recommended #      (̋)  COMBINING DOUBLE ACUTE ACCENT
 030C          ; Allowed ; Recommended #      (̌)  COMBINING CARON
-030F          ; Allowed ; Recommended #      (̏)  COMBINING DOUBLE GRAVE ACCENT
-0310          ; Allowed ; Recommended #      (̐)  COMBINING CANDRABINDU
-0311          ; Allowed ; Recommended #      (̑)  COMBINING INVERTED BREVE
-0313          ; Allowed ; Recommended #      (̓)  COMBINING COMMA ABOVE
-0314          ; Allowed ; Recommended #      (̔)  COMBINING REVERSED COMMA ABOVE
 031B          ; Allowed ; Recommended #      (̛)  COMBINING HORN
 0323          ; Allowed ; Recommended #      (̣)  COMBINING DOT BELOW
-0324          ; Allowed ; Recommended #      (̤)  COMBINING DIAERESIS BELOW
-0325          ; Allowed ; Recommended #      (̥)  COMBINING RING BELOW
 0326          ; Allowed ; Recommended #      (̦)  COMBINING COMMA BELOW
 0327          ; Allowed ; Recommended #      (̧)  COMBINING CEDILLA
 0328          ; Allowed ; Recommended #      (̨)  COMBINING OGONEK
-032D          ; Allowed ; Recommended #      (̭)  COMBINING CIRCUMFLEX ACCENT BELOW
-032E          ; Allowed ; Recommended #      (̮)  COMBINING BREVE BELOW
-0330          ; Allowed ; Recommended #      (̰)  COMBINING TILDE BELOW
 0331          ; Allowed ; Recommended #      (̱)  COMBINING MACRON BELOW
-0335          ; Allowed ; Recommended #      (̵)  COMBINING SHORT STROKE OVERLAY
-0338          ; Allowed ; Recommended #      (̸)  COMBINING LONG SOLIDUS OVERLAY
-0339          ; Allowed ; Recommended #      (̹)  COMBINING RIGHT HALF RING BELOW
-0342          ; Allowed ; Recommended #      (͂)  COMBINING GREEK PERISPOMENI
 0345          ; Allowed ; Recommended #      (ͅ)  COMBINING GREEK YPOGEGRAMMENI
-037B          ; Allowed ; Recommended #      (ͻ)  GREEK SMALL REVERSED LUNATE SIGMA SYMBOL
-037C          ; Allowed ; Recommended #      (ͼ)  GREEK SMALL DOTTED LUNATE SIGMA SYMBOL
-037D          ; Allowed ; Recommended #      (ͽ)  GREEK SMALL REVERSED DOTTED LUNATE SIGMA SYMBOL
 0386          ; Allowed ; Recommended #      (Ά)  GREEK CAPITAL LETTER ALPHA WITH TONOS
 0388..038A    ; Allowed ; Recommended #  [3] (Έ..Ί)  GREEK CAPITAL LETTER EPSILON WITH TONOS..GREEK CAPITAL LETTER IOTA WITH TONOS
 038C          ; Allowed ; Recommended #      (Ό)  GREEK CAPITAL LETTER OMICRON WITH TONOS
@@ -10228,7 +10426,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 03CC          ; Allowed ; Recommended #      (ό)  GREEK SMALL LETTER OMICRON WITH TONOS
 03CD          ; Allowed ; Recommended #      (ύ)  GREEK SMALL LETTER UPSILON WITH TONOS
 03CE          ; Allowed ; Recommended #      (ώ)  GREEK SMALL LETTER OMEGA WITH TONOS
-03FC          ; Allowed ; Recommended #      (ϼ)  GREEK RHO WITH STROKE SYMBOL
 03FD..042F    ; Allowed ; Recommended # [51] (Ͻ..Я)  GREEK CAPITAL REVERSED LUNATE SIGMA SYMBOL..CYRILLIC CAPITAL LETTER YA
 0430          ; Allowed ; Recommended #      (а)  CYRILLIC SMALL LETTER A
 0431          ; Allowed ; Recommended #      (б)  CYRILLIC SMALL LETTER BE
@@ -10279,11 +10476,8 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 045E          ; Allowed ; Recommended #      (ў)  CYRILLIC SMALL LETTER SHORT U
 045F          ; Allowed ; Recommended #      (џ)  CYRILLIC SMALL LETTER DZHE
 048A          ; Allowed ; Recommended #      (Ҋ)  CYRILLIC CAPITAL LETTER SHORT I WITH TAIL
-048B          ; Allowed ; Recommended #      (ҋ)  CYRILLIC SMALL LETTER SHORT I WITH TAIL
 048C          ; Allowed ; Recommended #      (Ҍ)  CYRILLIC CAPITAL LETTER SEMISOFT SIGN
-048D          ; Allowed ; Recommended #      (ҍ)  CYRILLIC SMALL LETTER SEMISOFT SIGN
 048E          ; Allowed ; Recommended #      (Ҏ)  CYRILLIC CAPITAL LETTER ER WITH TICK
-048F          ; Allowed ; Recommended #      (ҏ)  CYRILLIC SMALL LETTER ER WITH TICK
 0490          ; Allowed ; Recommended #      (Ґ)  CYRILLIC CAPITAL LETTER GHE WITH UPTURN
 0491          ; Allowed ; Recommended #      (ґ)  CYRILLIC SMALL LETTER GHE WITH UPTURN
 0492          ; Allowed ; Recommended #      (Ғ)  CYRILLIC CAPITAL LETTER GHE WITH STROKE
@@ -10297,7 +10491,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 049A          ; Allowed ; Recommended #      (Қ)  CYRILLIC CAPITAL LETTER KA WITH DESCENDER
 049B          ; Allowed ; Recommended #      (қ)  CYRILLIC SMALL LETTER KA WITH DESCENDER
 049C          ; Allowed ; Recommended #      (Ҝ)  CYRILLIC CAPITAL LETTER KA WITH VERTICAL STROKE
-049D          ; Allowed ; Recommended #      (ҝ)  CYRILLIC SMALL LETTER KA WITH VERTICAL STROKE
 049E          ; Allowed ; Recommended #      (Ҟ)  CYRILLIC CAPITAL LETTER KA WITH STROKE
 049F          ; Allowed ; Recommended #      (ҟ)  CYRILLIC SMALL LETTER KA WITH STROKE
 04A0          ; Allowed ; Recommended #      (Ҡ)  CYRILLIC CAPITAL LETTER BASHKIR KA
@@ -10307,7 +10500,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 04A4          ; Allowed ; Recommended #      (Ҥ)  CYRILLIC CAPITAL LIGATURE EN GHE
 04A5          ; Allowed ; Recommended #      (ҥ)  CYRILLIC SMALL LIGATURE EN GHE
 04A6          ; Allowed ; Recommended #      (Ҧ)  CYRILLIC CAPITAL LETTER PE WITH MIDDLE HOOK
-04A7          ; Allowed ; Recommended #      (ҧ)  CYRILLIC SMALL LETTER PE WITH MIDDLE HOOK
 04A8          ; Allowed ; Recommended #      (Ҩ)  CYRILLIC CAPITAL LETTER ABKHASIAN HA
 04A9          ; Allowed ; Recommended #      (ҩ)  CYRILLIC SMALL LETTER ABKHASIAN HA
 04AA          ; Allowed ; Recommended #      (Ҫ)  CYRILLIC CAPITAL LETTER ES WITH DESCENDER
@@ -10325,7 +10517,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 04B6          ; Allowed ; Recommended #      (Ҷ)  CYRILLIC CAPITAL LETTER CHE WITH DESCENDER
 04B7          ; Allowed ; Recommended #      (ҷ)  CYRILLIC SMALL LETTER CHE WITH DESCENDER
 04B8          ; Allowed ; Recommended #      (Ҹ)  CYRILLIC CAPITAL LETTER CHE WITH VERTICAL STROKE
-04B9          ; Allowed ; Recommended #      (ҹ)  CYRILLIC SMALL LETTER CHE WITH VERTICAL STROKE
 04BA          ; Allowed ; Recommended #      (Һ)  CYRILLIC CAPITAL LETTER SHHA
 04BB          ; Allowed ; Recommended #      (һ)  CYRILLIC SMALL LETTER SHHA
 04BC          ; Allowed ; Recommended #      (Ҽ)  CYRILLIC CAPITAL LETTER ABKHASIAN CHE
@@ -10335,17 +10526,12 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 04C1          ; Allowed ; Recommended #      (Ӂ)  CYRILLIC CAPITAL LETTER ZHE WITH BREVE
 04C2          ; Allowed ; Recommended #      (ӂ)  CYRILLIC SMALL LETTER ZHE WITH BREVE
 04C3          ; Allowed ; Recommended #      (Ӄ)  CYRILLIC CAPITAL LETTER KA WITH HOOK
-04C4          ; Allowed ; Recommended #      (ӄ)  CYRILLIC SMALL LETTER KA WITH HOOK
 04C5          ; Allowed ; Recommended #      (Ӆ)  CYRILLIC CAPITAL LETTER EL WITH TAIL
-04C6          ; Allowed ; Recommended #      (ӆ)  CYRILLIC SMALL LETTER EL WITH TAIL
 04C7          ; Allowed ; Recommended #      (Ӈ)  CYRILLIC CAPITAL LETTER EN WITH HOOK
-04C8          ; Allowed ; Recommended #      (ӈ)  CYRILLIC SMALL LETTER EN WITH HOOK
 04C9          ; Allowed ; Recommended #      (Ӊ)  CYRILLIC CAPITAL LETTER EN WITH TAIL
-04CA          ; Allowed ; Recommended #      (ӊ)  CYRILLIC SMALL LETTER EN WITH TAIL
 04CB          ; Allowed ; Recommended #      (Ӌ)  CYRILLIC CAPITAL LETTER KHAKASSIAN CHE
 04CC          ; Allowed ; Recommended #      (ӌ)  CYRILLIC SMALL LETTER KHAKASSIAN CHE
 04CD          ; Allowed ; Recommended #      (Ӎ)  CYRILLIC CAPITAL LETTER EM WITH TAIL
-04CE          ; Allowed ; Recommended #      (ӎ)  CYRILLIC SMALL LETTER EM WITH TAIL
 04CF          ; Allowed ; Recommended #      (ӏ)  CYRILLIC SMALL LETTER PALOCHKA
 04D0          ; Allowed ; Recommended #      (Ӑ)  CYRILLIC CAPITAL LETTER A WITH BREVE
 04D1          ; Allowed ; Recommended #      (ӑ)  CYRILLIC SMALL LETTER A WITH BREVE
@@ -10386,61 +10572,35 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 04F4          ; Allowed ; Recommended #      (Ӵ)  CYRILLIC CAPITAL LETTER CHE WITH DIAERESIS
 04F5          ; Allowed ; Recommended #      (ӵ)  CYRILLIC SMALL LETTER CHE WITH DIAERESIS
 04F6          ; Allowed ; Recommended #      (Ӷ)  CYRILLIC CAPITAL LETTER GHE WITH DESCENDER
-04F7          ; Allowed ; Recommended #      (ӷ)  CYRILLIC SMALL LETTER GHE WITH DESCENDER
 04F8          ; Allowed ; Recommended #      (Ӹ)  CYRILLIC CAPITAL LETTER YERU WITH DIAERESIS
 04F9          ; Allowed ; Recommended #      (ӹ)  CYRILLIC SMALL LETTER YERU WITH DIAERESIS
 04FA          ; Allowed ; Recommended #      (Ӻ)  CYRILLIC CAPITAL LETTER GHE WITH STROKE AND HOOK
-04FB          ; Allowed ; Recommended #      (ӻ)  CYRILLIC SMALL LETTER GHE WITH STROKE AND HOOK
 04FC          ; Allowed ; Recommended #      (Ӽ)  CYRILLIC CAPITAL LETTER HA WITH HOOK
-04FD          ; Allowed ; Recommended #      (ӽ)  CYRILLIC SMALL LETTER HA WITH HOOK
 04FE          ; Allowed ; Recommended #      (Ӿ)  CYRILLIC CAPITAL LETTER HA WITH STROKE
-04FF          ; Allowed ; Recommended #      (ӿ)  CYRILLIC SMALL LETTER HA WITH STROKE
 0500          ; Allowed ; Recommended #      (Ԁ)  CYRILLIC CAPITAL LETTER KOMI DE
-0501          ; Allowed ; Recommended #      (ԁ)  CYRILLIC SMALL LETTER KOMI DE
 0502          ; Allowed ; Recommended #      (Ԃ)  CYRILLIC CAPITAL LETTER KOMI DJE
-0503          ; Allowed ; Recommended #      (ԃ)  CYRILLIC SMALL LETTER KOMI DJE
 0504          ; Allowed ; Recommended #      (Ԅ)  CYRILLIC CAPITAL LETTER KOMI ZJE
-0505          ; Allowed ; Recommended #      (ԅ)  CYRILLIC SMALL LETTER KOMI ZJE
 0506          ; Allowed ; Recommended #      (Ԇ)  CYRILLIC CAPITAL LETTER KOMI DZJE
-0507          ; Allowed ; Recommended #      (ԇ)  CYRILLIC SMALL LETTER KOMI DZJE
 0508          ; Allowed ; Recommended #      (Ԉ)  CYRILLIC CAPITAL LETTER KOMI LJE
-0509          ; Allowed ; Recommended #      (ԉ)  CYRILLIC SMALL LETTER KOMI LJE
 050A          ; Allowed ; Recommended #      (Ԋ)  CYRILLIC CAPITAL LETTER KOMI NJE
-050B          ; Allowed ; Recommended #      (ԋ)  CYRILLIC SMALL LETTER KOMI NJE
 050C          ; Allowed ; Recommended #      (Ԍ)  CYRILLIC CAPITAL LETTER KOMI SJE
-050D          ; Allowed ; Recommended #      (ԍ)  CYRILLIC SMALL LETTER KOMI SJE
 050E          ; Allowed ; Recommended #      (Ԏ)  CYRILLIC CAPITAL LETTER KOMI TJE
-050F          ; Allowed ; Recommended #      (ԏ)  CYRILLIC SMALL LETTER KOMI TJE
 0510          ; Allowed ; Recommended #      (Ԑ)  CYRILLIC CAPITAL LETTER REVERSED ZE
-0511          ; Allowed ; Recommended #      (ԑ)  CYRILLIC SMALL LETTER REVERSED ZE
 0512          ; Allowed ; Recommended #      (Ԓ)  CYRILLIC CAPITAL LETTER EL WITH HOOK
-0513          ; Allowed ; Recommended #      (ԓ)  CYRILLIC SMALL LETTER EL WITH HOOK
 0514          ; Allowed ; Recommended #      (Ԕ)  CYRILLIC CAPITAL LETTER LHA
-0515          ; Allowed ; Recommended #      (ԕ)  CYRILLIC SMALL LETTER LHA
 0516          ; Allowed ; Recommended #      (Ԗ)  CYRILLIC CAPITAL LETTER RHA
-0517          ; Allowed ; Recommended #      (ԗ)  CYRILLIC SMALL LETTER RHA
 0518          ; Allowed ; Recommended #      (Ԙ)  CYRILLIC CAPITAL LETTER YAE
-0519          ; Allowed ; Recommended #      (ԙ)  CYRILLIC SMALL LETTER YAE
 051A          ; Allowed ; Recommended #      (Ԛ)  CYRILLIC CAPITAL LETTER QA
-051B          ; Allowed ; Recommended #      (ԛ)  CYRILLIC SMALL LETTER QA
 051C          ; Allowed ; Recommended #      (Ԝ)  CYRILLIC CAPITAL LETTER WE
-051D          ; Allowed ; Recommended #      (ԝ)  CYRILLIC SMALL LETTER WE
 051E          ; Allowed ; Recommended #      (Ԟ)  CYRILLIC CAPITAL LETTER ALEUT KA
-051F          ; Allowed ; Recommended #      (ԟ)  CYRILLIC SMALL LETTER ALEUT KA
 0520          ; Allowed ; Recommended #      (Ԡ)  CYRILLIC CAPITAL LETTER EL WITH MIDDLE HOOK
-0521          ; Allowed ; Recommended #      (ԡ)  CYRILLIC SMALL LETTER EL WITH MIDDLE HOOK
 0522          ; Allowed ; Recommended #      (Ԣ)  CYRILLIC CAPITAL LETTER EN WITH MIDDLE HOOK
-0523          ; Allowed ; Recommended #      (ԣ)  CYRILLIC SMALL LETTER EN WITH MIDDLE HOOK
 0524          ; Allowed ; Recommended #      (Ԥ)  CYRILLIC CAPITAL LETTER PE WITH DESCENDER
 0525          ; Allowed ; Recommended #      (ԥ)  CYRILLIC SMALL LETTER PE WITH DESCENDER
 0526          ; Allowed ; Recommended #      (Ԧ)  CYRILLIC CAPITAL LETTER SHHA WITH DESCENDER
-0527          ; Allowed ; Recommended #      (ԧ)  CYRILLIC SMALL LETTER SHHA WITH DESCENDER
 0528          ; Allowed ; Recommended #      (Ԩ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK
-0529          ; Allowed ; Recommended #      (ԩ)  CYRILLIC SMALL LETTER EN WITH LEFT HOOK
 052E          ; Allowed ; Recommended #      (Ԯ)  CYRILLIC CAPITAL LETTER EL WITH DESCENDER
-052F          ; Allowed ; Recommended #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
 0531..0556    ; Allowed ; Recommended # [38] (Ա..Ֆ)  ARMENIAN CAPITAL LETTER AYB..ARMENIAN CAPITAL LETTER FEH
-0559          ; Allowed ; Recommended #      (ՙ)  ARMENIAN MODIFIER LETTER LEFT HALF RING
 0561          ; Allowed ; Recommended #      (ա)  ARMENIAN SMALL LETTER AYB
 0562          ; Allowed ; Recommended #      (բ)  ARMENIAN SMALL LETTER BEN
 0563          ; Allowed ; Recommended #      (գ)  ARMENIAN SMALL LETTER GIM
@@ -10537,11 +10697,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0638          ; Allowed ; Recommended #      (ظ)  ARABIC LETTER ZAH
 0639          ; Allowed ; Recommended #      (ع)  ARABIC LETTER AIN
 063A          ; Allowed ; Recommended #      (غ)  ARABIC LETTER GHAIN
-063B          ; Allowed ; Recommended #      (ػ)  ARABIC LETTER KEHEH WITH TWO DOTS ABOVE
-063C          ; Allowed ; Recommended #      (ؼ)  ARABIC LETTER KEHEH WITH THREE DOTS BELOW
-063D          ; Allowed ; Recommended #      (ؽ)  ARABIC LETTER FARSI YEH WITH INVERTED V
-063E          ; Allowed ; Recommended #      (ؾ)  ARABIC LETTER FARSI YEH WITH TWO DOTS ABOVE
-063F          ; Allowed ; Recommended #      (ؿ)  ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE
 0641          ; Allowed ; Recommended #      (ف)  ARABIC LETTER FEH
 0642          ; Allowed ; Recommended #      (ق)  ARABIC LETTER QAF
 0643          ; Allowed ; Recommended #      (ك)  ARABIC LETTER KAF
@@ -10560,7 +10715,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0650          ; Allowed ; Recommended #      (ِ)  ARABIC KASRA
 0651          ; Allowed ; Recommended #      (ّ)  ARABIC SHADDA
 0652          ; Allowed ; Recommended #      (ْ)  ARABIC SUKUN
-0653          ; Allowed ; Recommended #      (ٓ)  ARABIC MADDAH ABOVE
 0654          ; Allowed ; Recommended #      (ٔ)  ARABIC HAMZA ABOVE
 0655          ; Allowed ; Recommended #      (ٕ)  ARABIC HAMZA BELOW
 0660          ; Allowed ; Recommended #      (٠)  ARABIC-INDIC DIGIT ZERO
@@ -10627,7 +10781,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 06A9          ; Allowed ; Recommended #      (ک)  ARABIC LETTER KEHEH
 06AA          ; Allowed ; Recommended #      (ڪ)  ARABIC LETTER SWASH KAF
 06AB          ; Allowed ; Recommended #      (ګ)  ARABIC LETTER KAF WITH RING
-06AC          ; Allowed ; Recommended #      (ڬ)  ARABIC LETTER KAF WITH DOT ABOVE
 06AD          ; Allowed ; Recommended #      (ڭ)  ARABIC LETTER NG
 06AE          ; Allowed ; Recommended #      (ڮ)  ARABIC LETTER KAF WITH THREE DOTS BELOW
 06AF          ; Allowed ; Recommended #      (گ)  ARABIC LETTER GAF
@@ -10668,8 +10821,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 06D2          ; Allowed ; Recommended #      (ے)  ARABIC LETTER YEH BARREE
 06D3          ; Allowed ; Recommended #      (ۓ)  ARABIC LETTER YEH BARREE WITH HAMZA ABOVE
 06D5          ; Allowed ; Recommended #      (ە)  ARABIC LETTER AE
-06E5          ; Allowed ; Recommended #      (ۥ)  ARABIC SMALL WAW
-06E6          ; Allowed ; Recommended #      (ۦ)  ARABIC SMALL YEH
 06EE          ; Allowed ; Recommended #      (ۮ)  ARABIC LETTER DAL WITH INVERTED V
 06EF          ; Allowed ; Recommended #      (ۯ)  ARABIC LETTER REH WITH INVERTED V
 06F0          ; Allowed ; Recommended #      (۰)  EXTENDED ARABIC-INDIC DIGIT ZERO
@@ -10732,8 +10883,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 077B          ; Allowed ; Recommended #      (ݻ)  ARABIC LETTER YEH BARREE WITH EXTENDED ARABIC-INDIC DIGIT THREE ABOVE
 077C          ; Allowed ; Recommended #      (ݼ)  ARABIC LETTER HAH WITH EXTENDED ARABIC-INDIC DIGIT FOUR BELOW
 077D          ; Allowed ; Recommended #      (ݽ)  ARABIC LETTER SEEN WITH EXTENDED ARABIC-INDIC DIGIT FOUR ABOVE
-077E          ; Allowed ; Recommended #      (ݾ)  ARABIC LETTER SEEN WITH INVERTED V
-077F          ; Allowed ; Recommended #      (ݿ)  ARABIC LETTER KAF WITH TWO DOTS ABOVE
 0780          ; Allowed ; Recommended #      (ހ)  THAANA LETTER HAA
 0781          ; Allowed ; Recommended #      (ށ)  THAANA LETTER SHAVIYANI
 0782          ; Allowed ; Recommended #      (ނ)  THAANA LETTER NOONU
@@ -10785,7 +10934,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 07B0          ; Allowed ; Recommended #      (ް)  THAANA SUKUN
 07B1          ; Allowed ; Recommended #      (ޱ)  THAANA LETTER NAA
 08A0          ; Allowed ; Recommended #      (ࢠ)  ARABIC LETTER BEH WITH SMALL V BELOW
-08A1          ; Allowed ; Recommended #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
 08A2          ; Allowed ; Recommended #      (ࢢ)  ARABIC LETTER JEEM WITH TWO DOTS ABOVE
 08A3          ; Allowed ; Recommended #      (ࢣ)  ARABIC LETTER TAH WITH TWO DOTS ABOVE
 08A4          ; Allowed ; Recommended #      (ࢤ)  ARABIC LETTER FEH WITH DOT BELOW AND THREE DOTS ABOVE
@@ -10797,7 +10945,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 08AA          ; Allowed ; Recommended #      (ࢪ)  ARABIC LETTER REH WITH LOOP
 08AB          ; Allowed ; Recommended #      (ࢫ)  ARABIC LETTER WAW WITH DOT WITHIN
 08AC          ; Allowed ; Recommended #      (ࢬ)  ARABIC LETTER ROHINGYA YEH
-08B2          ; Allowed ; Recommended #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 0901          ; Allowed ; Recommended #      (ँ)  DEVANAGARI SIGN CANDRABINDU
 0902          ; Allowed ; Recommended #      (ं)  DEVANAGARI SIGN ANUSVARA
 0903          ; Allowed ; Recommended #      (ः)  DEVANAGARI SIGN VISARGA
@@ -10858,7 +11005,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 093A          ; Allowed ; Recommended #      (ऺ)  DEVANAGARI VOWEL SIGN OE
 093B          ; Allowed ; Recommended #      (ऻ)  DEVANAGARI VOWEL SIGN OOE
 093C          ; Allowed ; Recommended #      (़)  DEVANAGARI SIGN NUKTA
-093D          ; Allowed ; Recommended #      (ऽ)  DEVANAGARI SIGN AVAGRAHA
 093E          ; Allowed ; Recommended #      (ा)  DEVANAGARI VOWEL SIGN AA
 093F          ; Allowed ; Recommended #      (ि)  DEVANAGARI VOWEL SIGN I
 0940          ; Allowed ; Recommended #      (ी)  DEVANAGARI VOWEL SIGN II
@@ -10876,13 +11022,8 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 094C          ; Allowed ; Recommended #      (ौ)  DEVANAGARI VOWEL SIGN AU
 094D          ; Allowed ; Recommended #      (्)  DEVANAGARI SIGN VIRAMA
 094F          ; Allowed ; Recommended #      (ॏ)  DEVANAGARI VOWEL SIGN AW
-0950          ; Allowed ; Recommended #      (ॐ)  DEVANAGARI OM
 0956          ; Allowed ; Recommended #      (ॖ)  DEVANAGARI VOWEL SIGN UE
 0957          ; Allowed ; Recommended #      (ॗ)  DEVANAGARI VOWEL SIGN UUE
-0960          ; Allowed ; Recommended #      (ॠ)  DEVANAGARI LETTER VOCALIC RR
-0961          ; Allowed ; Recommended #      (ॡ)  DEVANAGARI LETTER VOCALIC LL
-0962          ; Allowed ; Recommended #      (ॢ)  DEVANAGARI VOWEL SIGN VOCALIC L
-0963          ; Allowed ; Recommended #      (ॣ)  DEVANAGARI VOWEL SIGN VOCALIC LL
 0966          ; Allowed ; Recommended #      (०)  DEVANAGARI DIGIT ZERO
 0967          ; Allowed ; Recommended #      (१)  DEVANAGARI DIGIT ONE
 0968          ; Allowed ; Recommended #      (२)  DEVANAGARI DIGIT TWO
@@ -10893,7 +11034,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 096D          ; Allowed ; Recommended #      (७)  DEVANAGARI DIGIT SEVEN
 096E          ; Allowed ; Recommended #      (८)  DEVANAGARI DIGIT EIGHT
 096F          ; Allowed ; Recommended #      (९)  DEVANAGARI DIGIT NINE
-0971          ; Allowed ; Recommended #      (ॱ)  DEVANAGARI SIGN HIGH SPACING DOT
 0972          ; Allowed ; Recommended #      (ॲ)  DEVANAGARI LETTER CANDRA A
 0973          ; Allowed ; Recommended #      (ॳ)  DEVANAGARI LETTER OE
 0974          ; Allowed ; Recommended #      (ॴ)  DEVANAGARI LETTER OOE
@@ -10904,7 +11044,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 097A          ; Allowed ; Recommended #      (ॺ)  DEVANAGARI LETTER HEAVY YA
 097B          ; Allowed ; Recommended #      (ॻ)  DEVANAGARI LETTER GGA
 097C          ; Allowed ; Recommended #      (ॼ)  DEVANAGARI LETTER JJA
-097D          ; Allowed ; Recommended #      (ॽ)  DEVANAGARI LETTER GLOTTAL STOP
 097E          ; Allowed ; Recommended #      (ॾ)  DEVANAGARI LETTER DDDA
 097F          ; Allowed ; Recommended #      (ॿ)  DEVANAGARI LETTER BBA
 0981          ; Allowed ; Recommended #      (ঁ)  BENGALI SIGN CANDRABINDU
@@ -10955,7 +11094,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 09B8          ; Allowed ; Recommended #      (স)  BENGALI LETTER SA
 09B9          ; Allowed ; Recommended #      (হ)  BENGALI LETTER HA
 09BC          ; Allowed ; Recommended #      (়)  BENGALI SIGN NUKTA
-09BD          ; Allowed ; Recommended #      (ঽ)  BENGALI SIGN AVAGRAHA
 09BE          ; Allowed ; Recommended #      (া)  BENGALI VOWEL SIGN AA
 09BF          ; Allowed ; Recommended #      (ি)  BENGALI VOWEL SIGN I
 09C0          ; Allowed ; Recommended #      (ী)  BENGALI VOWEL SIGN II
@@ -10970,10 +11108,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 09CD          ; Allowed ; Recommended #      (্)  BENGALI SIGN VIRAMA
 09CE          ; Allowed ; Recommended #      (ৎ)  BENGALI LETTER KHANDA TA
 09D7          ; Allowed ; Recommended #      (ৗ)  BENGALI AU LENGTH MARK
-09E0          ; Allowed ; Recommended #      (ৠ)  BENGALI LETTER VOCALIC RR
-09E1          ; Allowed ; Recommended #      (ৡ)  BENGALI LETTER VOCALIC LL
-09E2          ; Allowed ; Recommended #      (ৢ)  BENGALI VOWEL SIGN VOCALIC L
-09E3          ; Allowed ; Recommended #      (ৣ)  BENGALI VOWEL SIGN VOCALIC LL
 09E6          ; Allowed ; Recommended #      (০)  BENGALI DIGIT ZERO
 09E7          ; Allowed ; Recommended #      (১)  BENGALI DIGIT ONE
 09E8          ; Allowed ; Recommended #      (২)  BENGALI DIGIT TWO
@@ -10986,7 +11120,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 09EF          ; Allowed ; Recommended #      (৯)  BENGALI DIGIT NINE
 09F0          ; Allowed ; Recommended #      (ৰ)  BENGALI LETTER RA WITH MIDDLE DIAGONAL
 09F1          ; Allowed ; Recommended #      (ৱ)  BENGALI LETTER RA WITH LOWER DIAGONAL
-0A01          ; Allowed ; Recommended #      (ਁ)  GURMUKHI SIGN ADAK BINDI
 0A02          ; Allowed ; Recommended #      (ਂ)  GURMUKHI SIGN BINDI
 0A03          ; Allowed ; Recommended #      (ਃ)  GURMUKHI SIGN VISARGA
 0A05          ; Allowed ; Recommended #      (ਅ)  GURMUKHI LETTER A
@@ -11056,7 +11189,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0A71          ; Allowed ; Recommended #      (ੱ)  GURMUKHI ADDAK
 0A72          ; Allowed ; Recommended #      (ੲ)  GURMUKHI IRI
 0A73          ; Allowed ; Recommended #      (ੳ)  GURMUKHI URA
-0A74          ; Allowed ; Recommended #      (ੴ)  GURMUKHI EK ONKAR
 0A81          ; Allowed ; Recommended #      (ઁ)  GUJARATI SIGN CANDRABINDU
 0A82          ; Allowed ; Recommended #      (ં)  GUJARATI SIGN ANUSVARA
 0A83          ; Allowed ; Recommended #      (ઃ)  GUJARATI SIGN VISARGA
@@ -11109,7 +11241,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0AB8          ; Allowed ; Recommended #      (સ)  GUJARATI LETTER SA
 0AB9          ; Allowed ; Recommended #      (હ)  GUJARATI LETTER HA
 0ABC          ; Allowed ; Recommended #      (઼)  GUJARATI SIGN NUKTA
-0ABD          ; Allowed ; Recommended #      (ઽ)  GUJARATI SIGN AVAGRAHA
 0ABE          ; Allowed ; Recommended #      (ા)  GUJARATI VOWEL SIGN AA
 0ABF          ; Allowed ; Recommended #      (િ)  GUJARATI VOWEL SIGN I
 0AC0          ; Allowed ; Recommended #      (ી)  GUJARATI VOWEL SIGN II
@@ -11124,11 +11255,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0ACB          ; Allowed ; Recommended #      (ો)  GUJARATI VOWEL SIGN O
 0ACC          ; Allowed ; Recommended #      (ૌ)  GUJARATI VOWEL SIGN AU
 0ACD          ; Allowed ; Recommended #      (્)  GUJARATI SIGN VIRAMA
-0AD0          ; Allowed ; Recommended #      (ૐ)  GUJARATI OM
-0AE0          ; Allowed ; Recommended #      (ૠ)  GUJARATI LETTER VOCALIC RR
-0AE1          ; Allowed ; Recommended #      (ૡ)  GUJARATI LETTER VOCALIC LL
-0AE2          ; Allowed ; Recommended #      (ૢ)  GUJARATI VOWEL SIGN VOCALIC L
-0AE3          ; Allowed ; Recommended #      (ૣ)  GUJARATI VOWEL SIGN VOCALIC LL
 0AE6          ; Allowed ; Recommended #      (૦)  GUJARATI DIGIT ZERO
 0AE7          ; Allowed ; Recommended #      (૧)  GUJARATI DIGIT ONE
 0AE8          ; Allowed ; Recommended #      (૨)  GUJARATI DIGIT TWO
@@ -11189,7 +11315,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0B38          ; Allowed ; Recommended #      (ସ)  ORIYA LETTER SA
 0B39          ; Allowed ; Recommended #      (ହ)  ORIYA LETTER HA
 0B3C          ; Allowed ; Recommended #      (଼)  ORIYA SIGN NUKTA
-0B3D          ; Allowed ; Recommended #      (ଽ)  ORIYA SIGN AVAGRAHA
 0B3E          ; Allowed ; Recommended #      (ା)  ORIYA VOWEL SIGN AA
 0B3F          ; Allowed ; Recommended #      (ି)  ORIYA VOWEL SIGN I
 0B40          ; Allowed ; Recommended #      (ୀ)  ORIYA VOWEL SIGN II
@@ -11204,8 +11329,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0B56          ; Allowed ; Recommended #      (ୖ)  ORIYA AI LENGTH MARK
 0B57          ; Allowed ; Recommended #      (ୗ)  ORIYA AU LENGTH MARK
 0B5F          ; Allowed ; Recommended #      (ୟ)  ORIYA LETTER YYA
-0B60          ; Allowed ; Recommended #      (ୠ)  ORIYA LETTER VOCALIC RR
-0B61          ; Allowed ; Recommended #      (ୡ)  ORIYA LETTER VOCALIC LL
 0B66          ; Allowed ; Recommended #      (୦)  ORIYA DIGIT ZERO
 0B67          ; Allowed ; Recommended #      (୧)  ORIYA DIGIT ONE
 0B68          ; Allowed ; Recommended #      (୨)  ORIYA DIGIT TWO
@@ -11217,7 +11340,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0B6E          ; Allowed ; Recommended #      (୮)  ORIYA DIGIT EIGHT
 0B6F          ; Allowed ; Recommended #      (୯)  ORIYA DIGIT NINE
 0B71          ; Allowed ; Recommended #      (ୱ)  ORIYA LETTER WA
-0B82          ; Allowed ; Recommended #      (ஂ)  TAMIL SIGN ANUSVARA
 0B83          ; Allowed ; Recommended #      (ஃ)  TAMIL SIGN VISARGA
 0B85          ; Allowed ; Recommended #      (அ)  TAMIL LETTER A
 0B86          ; Allowed ; Recommended #      (ஆ)  TAMIL LETTER AA
@@ -11266,7 +11388,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0BCB          ; Allowed ; Recommended #      (ோ)  TAMIL VOWEL SIGN OO
 0BCC          ; Allowed ; Recommended #      (ௌ)  TAMIL VOWEL SIGN AU
 0BCD          ; Allowed ; Recommended #      (்)  TAMIL SIGN VIRAMA
-0BD0          ; Allowed ; Recommended #      (ௐ)  TAMIL OM
 0BD7          ; Allowed ; Recommended #      (ௗ)  TAMIL AU LENGTH MARK
 0BE6          ; Allowed ; Recommended #      (௦)  TAMIL DIGIT ZERO
 0BE7          ; Allowed ; Recommended #      (௧)  TAMIL DIGIT ONE
@@ -11278,7 +11399,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0BED          ; Allowed ; Recommended #      (௭)  TAMIL DIGIT SEVEN
 0BEE          ; Allowed ; Recommended #      (௮)  TAMIL DIGIT EIGHT
 0BEF          ; Allowed ; Recommended #      (௯)  TAMIL DIGIT NINE
-0C01          ; Allowed ; Recommended #      (ఁ)  TELUGU SIGN CANDRABINDU
 0C02          ; Allowed ; Recommended #      (ం)  TELUGU SIGN ANUSVARA
 0C03          ; Allowed ; Recommended #      (ః)  TELUGU SIGN VISARGA
 0C05          ; Allowed ; Recommended #      (అ)  TELUGU LETTER A
@@ -11330,7 +11450,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0C37          ; Allowed ; Recommended #      (ష)  TELUGU LETTER SSA
 0C38          ; Allowed ; Recommended #      (స)  TELUGU LETTER SA
 0C39          ; Allowed ; Recommended #      (హ)  TELUGU LETTER HA
-0C3D          ; Allowed ; Recommended #      (ఽ)  TELUGU SIGN AVAGRAHA
 0C3E          ; Allowed ; Recommended #      (ా)  TELUGU VOWEL SIGN AA
 0C3F          ; Allowed ; Recommended #      (ి)  TELUGU VOWEL SIGN I
 0C40          ; Allowed ; Recommended #      (ీ)  TELUGU VOWEL SIGN II
@@ -11347,8 +11466,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0C4D          ; Allowed ; Recommended #      (్)  TELUGU SIGN VIRAMA
 0C55          ; Allowed ; Recommended #      (ౕ)  TELUGU LENGTH MARK
 0C56          ; Allowed ; Recommended #      (ౖ)  TELUGU AI LENGTH MARK
-0C60          ; Allowed ; Recommended #      (ౠ)  TELUGU LETTER VOCALIC RR
-0C61          ; Allowed ; Recommended #      (ౡ)  TELUGU LETTER VOCALIC LL
 0C66          ; Allowed ; Recommended #      (౦)  TELUGU DIGIT ZERO
 0C67          ; Allowed ; Recommended #      (౧)  TELUGU DIGIT ONE
 0C68          ; Allowed ; Recommended #      (౨)  TELUGU DIGIT TWO
@@ -11411,7 +11528,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0CB8          ; Allowed ; Recommended #      (ಸ)  KANNADA LETTER SA
 0CB9          ; Allowed ; Recommended #      (ಹ)  KANNADA LETTER HA
 0CBC          ; Allowed ; Recommended #      (಼)  KANNADA SIGN NUKTA
-0CBD          ; Allowed ; Recommended #      (ಽ)  KANNADA SIGN AVAGRAHA
 0CBE          ; Allowed ; Recommended #      (ಾ)  KANNADA VOWEL SIGN AA
 0CBF          ; Allowed ; Recommended #      (ಿ)  KANNADA VOWEL SIGN I
 0CC0          ; Allowed ; Recommended #      (ೀ)  KANNADA VOWEL SIGN II
@@ -11428,10 +11544,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0CCD          ; Allowed ; Recommended #      (್)  KANNADA SIGN VIRAMA
 0CD5          ; Allowed ; Recommended #      (ೕ)  KANNADA LENGTH MARK
 0CD6          ; Allowed ; Recommended #      (ೖ)  KANNADA AI LENGTH MARK
-0CE0          ; Allowed ; Recommended #      (ೠ)  KANNADA LETTER VOCALIC RR
-0CE1          ; Allowed ; Recommended #      (ೡ)  KANNADA LETTER VOCALIC LL
-0CE2          ; Allowed ; Recommended #      (ೢ)  KANNADA VOWEL SIGN VOCALIC L
-0CE3          ; Allowed ; Recommended #      (ೣ)  KANNADA VOWEL SIGN VOCALIC LL
 0CE6          ; Allowed ; Recommended #      (೦)  KANNADA DIGIT ZERO
 0CE7          ; Allowed ; Recommended #      (೧)  KANNADA DIGIT ONE
 0CE8          ; Allowed ; Recommended #      (೨)  KANNADA DIGIT TWO
@@ -11442,8 +11554,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0CED          ; Allowed ; Recommended #      (೭)  KANNADA DIGIT SEVEN
 0CEE          ; Allowed ; Recommended #      (೮)  KANNADA DIGIT EIGHT
 0CEF          ; Allowed ; Recommended #      (೯)  KANNADA DIGIT NINE
-0CF1          ; Allowed ; Recommended #      (ೱ)  KANNADA SIGN JIHVAMULIYA
-0CF2          ; Allowed ; Recommended #      (ೲ)  KANNADA SIGN UPADHMANIYA
 0D02          ; Allowed ; Recommended #      (ം)  MALAYALAM SIGN ANUSVARA
 0D03          ; Allowed ; Recommended #      (ഃ)  MALAYALAM SIGN VISARGA
 0D05          ; Allowed ; Recommended #      (അ)  MALAYALAM LETTER A
@@ -11497,8 +11607,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0D37          ; Allowed ; Recommended #      (ഷ)  MALAYALAM LETTER SSA
 0D38          ; Allowed ; Recommended #      (സ)  MALAYALAM LETTER SA
 0D39          ; Allowed ; Recommended #      (ഹ)  MALAYALAM LETTER HA
-0D3A          ; Allowed ; Recommended #      (ഺ)  MALAYALAM LETTER TTTA
-0D3D          ; Allowed ; Recommended #      (ഽ)  MALAYALAM SIGN AVAGRAHA
 0D3E          ; Allowed ; Recommended #      (ാ)  MALAYALAM VOWEL SIGN AA
 0D3F          ; Allowed ; Recommended #      (ി)  MALAYALAM VOWEL SIGN I
 0D40          ; Allowed ; Recommended #      (ീ)  MALAYALAM VOWEL SIGN II
@@ -11510,12 +11618,8 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0D48          ; Allowed ; Recommended #      (ൈ)  MALAYALAM VOWEL SIGN AI
 0D4A          ; Allowed ; Recommended #      (ൊ)  MALAYALAM VOWEL SIGN O
 0D4B          ; Allowed ; Recommended #      (ോ)  MALAYALAM VOWEL SIGN OO
-0D4C          ; Allowed ; Recommended #      (ൌ)  MALAYALAM VOWEL SIGN AU
 0D4D          ; Allowed ; Recommended #      (്)  MALAYALAM SIGN VIRAMA
-0D4E          ; Allowed ; Recommended #      (ൎ)  MALAYALAM LETTER DOT REPH
 0D57          ; Allowed ; Recommended #      (ൗ)  MALAYALAM AU LENGTH MARK
-0D60          ; Allowed ; Recommended #      (ൠ)  MALAYALAM LETTER VOCALIC RR
-0D61          ; Allowed ; Recommended #      (ൡ)  MALAYALAM LETTER VOCALIC LL
 0D66          ; Allowed ; Recommended #      (൦)  MALAYALAM DIGIT ZERO
 0D67          ; Allowed ; Recommended #      (൧)  MALAYALAM DIGIT ONE
 0D68          ; Allowed ; Recommended #      (൨)  MALAYALAM DIGIT TWO
@@ -11652,7 +11756,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0E2C          ; Allowed ; Recommended #      (ฬ)  THAI CHARACTER LO CHULA
 0E2D          ; Allowed ; Recommended #      (อ)  THAI CHARACTER O ANG
 0E2E          ; Allowed ; Recommended #      (ฮ)  THAI CHARACTER HO NOKHUK
-0E2F          ; Allowed ; Recommended #      (ฯ)  THAI CHARACTER PAIYANNOI
 0E30          ; Allowed ; Recommended #      (ะ)  THAI CHARACTER SARA A
 0E31          ; Allowed ; Recommended #      (ั)  THAI CHARACTER MAI HAN-AKAT
 0E32          ; Allowed ; Recommended #      (า)  THAI CHARACTER SARA AA
@@ -11715,7 +11818,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0EAB          ; Allowed ; Recommended #      (ຫ)  LAO LETTER HO SUNG
 0EAD          ; Allowed ; Recommended #      (ອ)  LAO LETTER O
 0EAE          ; Allowed ; Recommended #      (ຮ)  LAO LETTER HO TAM
-0EAF          ; Allowed ; Recommended #      (ຯ)  LAO ELLIPSIS
 0EB0          ; Allowed ; Recommended #      (ະ)  LAO VOWEL SIGN A
 0EB1          ; Allowed ; Recommended #      (ັ)  LAO VOWEL SIGN MAI KAN
 0EB2          ; Allowed ; Recommended #      (າ)  LAO VOWEL SIGN AA
@@ -11752,7 +11854,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0ED9          ; Allowed ; Recommended #      (໙)  LAO DIGIT NINE
 0EDE          ; Allowed ; Recommended #      (ໞ)  LAO LETTER KHMU GO
 0EDF          ; Allowed ; Recommended #      (ໟ)  LAO LETTER KHMU NYO
-0F00          ; Allowed ; Recommended #      (ༀ)  TIBETAN SYLLABLE OM
 0F20          ; Allowed ; Recommended #      (༠)  TIBETAN DIGIT ZERO
 0F21          ; Allowed ; Recommended #      (༡)  TIBETAN DIGIT ONE
 0F22          ; Allowed ; Recommended #      (༢)  TIBETAN DIGIT TWO
@@ -11763,10 +11864,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0F27          ; Allowed ; Recommended #      (༧)  TIBETAN DIGIT SEVEN
 0F28          ; Allowed ; Recommended #      (༨)  TIBETAN DIGIT EIGHT
 0F29          ; Allowed ; Recommended #      (༩)  TIBETAN DIGIT NINE
-0F35          ; Allowed ; Recommended #      (༵)  TIBETAN MARK NGAS BZUNG NYI ZLA
-0F37          ; Allowed ; Recommended #      (༷)  TIBETAN MARK NGAS BZUNG SGOR RTAGS
-0F3E          ; Allowed ; Recommended #      (༾)  TIBETAN SIGN YAR TSHES
-0F3F          ; Allowed ; Recommended #      (༿)  TIBETAN SIGN MAR TSHES
 0F40          ; Allowed ; Recommended #      (ཀ)  TIBETAN LETTER KA
 0F41          ; Allowed ; Recommended #      (ཁ)  TIBETAN LETTER KHA
 0F42          ; Allowed ; Recommended #      (ག)  TIBETAN LETTER GA
@@ -11802,32 +11899,15 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0F66          ; Allowed ; Recommended #      (ས)  TIBETAN LETTER SA
 0F67          ; Allowed ; Recommended #      (ཧ)  TIBETAN LETTER HA
 0F68          ; Allowed ; Recommended #      (ཨ)  TIBETAN LETTER A
-0F6A          ; Allowed ; Recommended #      (ཪ)  TIBETAN LETTER FIXED-FORM RA
-0F6B          ; Allowed ; Recommended #      (ཫ)  TIBETAN LETTER KKA
-0F6C          ; Allowed ; Recommended #      (ཬ)  TIBETAN LETTER RRA
 0F71          ; Allowed ; Recommended #      (ཱ)  TIBETAN VOWEL SIGN AA
 0F72          ; Allowed ; Recommended #      (ི)  TIBETAN VOWEL SIGN I
 0F74          ; Allowed ; Recommended #      (ུ)  TIBETAN VOWEL SIGN U
 0F7A          ; Allowed ; Recommended #      (ེ)  TIBETAN VOWEL SIGN E
-0F7B          ; Allowed ; Recommended #      (ཻ)  TIBETAN VOWEL SIGN EE
 0F7C          ; Allowed ; Recommended #      (ོ)  TIBETAN VOWEL SIGN O
-0F7D          ; Allowed ; Recommended #      (ཽ)  TIBETAN VOWEL SIGN OO
 0F7E          ; Allowed ; Recommended #      (ཾ)  TIBETAN SIGN RJES SU NGA RO
 0F7F          ; Allowed ; Recommended #      (ཿ)  TIBETAN SIGN RNAM BCAD
 0F80          ; Allowed ; Recommended #      (ྀ)  TIBETAN VOWEL SIGN REVERSED I
-0F82          ; Allowed ; Recommended #      (ྂ)  TIBETAN SIGN NYI ZLA NAA DA
-0F83          ; Allowed ; Recommended #      (ྃ)  TIBETAN SIGN SNA LDAN
 0F84          ; Allowed ; Recommended #      (྄)  TIBETAN MARK HALANTA
-0F86          ; Allowed ; Recommended #      (྆)  TIBETAN SIGN LCI RTAGS
-0F87          ; Allowed ; Recommended #      (྇)  TIBETAN SIGN YANG RTAGS
-0F88          ; Allowed ; Recommended #      (ྈ)  TIBETAN SIGN LCE TSA CAN
-0F89          ; Allowed ; Recommended #      (ྉ)  TIBETAN SIGN MCHU CAN
-0F8A          ; Allowed ; Recommended #      (ྊ)  TIBETAN SIGN GRU CAN RGYINGS
-0F8B          ; Allowed ; Recommended #      (ྋ)  TIBETAN SIGN GRU MED RGYINGS
-0F8C          ; Allowed ; Recommended #      (ྌ)  TIBETAN SIGN INVERTED MCHU CAN
-0F8D          ; Allowed ; Recommended #      (ྍ)  TIBETAN SUBJOINED SIGN LCE TSA CAN
-0F8E          ; Allowed ; Recommended #      (ྎ)  TIBETAN SUBJOINED SIGN MCHU CAN
-0F8F          ; Allowed ; Recommended #      (ྏ)  TIBETAN SUBJOINED SIGN INVERTED MCHU CAN
 0F90          ; Allowed ; Recommended #      (ྐ)  TIBETAN SUBJOINED LETTER KA
 0F91          ; Allowed ; Recommended #      (ྑ)  TIBETAN SUBJOINED LETTER KHA
 0F92          ; Allowed ; Recommended #      (ྒ)  TIBETAN SUBJOINED LETTER GA
@@ -11852,9 +11932,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0FAA          ; Allowed ; Recommended #      (ྪ)  TIBETAN SUBJOINED LETTER TSHA
 0FAB          ; Allowed ; Recommended #      (ྫ)  TIBETAN SUBJOINED LETTER DZA
 0FAD          ; Allowed ; Recommended #      (ྭ)  TIBETAN SUBJOINED LETTER WA
-0FAE          ; Allowed ; Recommended #      (ྮ)  TIBETAN SUBJOINED LETTER ZHA
-0FAF          ; Allowed ; Recommended #      (ྯ)  TIBETAN SUBJOINED LETTER ZA
-0FB0          ; Allowed ; Recommended #      (ྰ)  TIBETAN SUBJOINED LETTER -A
 0FB1          ; Allowed ; Recommended #      (ྱ)  TIBETAN SUBJOINED LETTER YA
 0FB2          ; Allowed ; Recommended #      (ྲ)  TIBETAN SUBJOINED LETTER RA
 0FB3          ; Allowed ; Recommended #      (ླ)  TIBETAN SUBJOINED LETTER LA
@@ -11866,7 +11943,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 0FBA          ; Allowed ; Recommended #      (ྺ)  TIBETAN SUBJOINED LETTER FIXED-FORM WA
 0FBB          ; Allowed ; Recommended #      (ྻ)  TIBETAN SUBJOINED LETTER FIXED-FORM YA
 0FBC          ; Allowed ; Recommended #      (ྼ)  TIBETAN SUBJOINED LETTER FIXED-FORM RA
-0FC6          ; Allowed ; Recommended #      (࿆)  TIBETAN SYMBOL PADMA GDAN
 1000          ; Allowed ; Recommended #      (က)  MYANMAR LETTER KA
 1001          ; Allowed ; Recommended #      (ခ)  MYANMAR LETTER KHA
 1002          ; Allowed ; Recommended #      (ဂ)  MYANMAR LETTER GA
@@ -11907,7 +11983,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1025          ; Allowed ; Recommended #      (ဥ)  MYANMAR LETTER U
 1026          ; Allowed ; Recommended #      (ဦ)  MYANMAR LETTER UU
 1027          ; Allowed ; Recommended #      (ဧ)  MYANMAR LETTER E
-1028          ; Allowed ; Recommended #      (ဨ)  MYANMAR LETTER MON E
 1029          ; Allowed ; Recommended #      (ဩ)  MYANMAR LETTER O
 102A          ; Allowed ; Recommended #      (ဪ)  MYANMAR LETTER AU
 102B          ; Allowed ; Recommended #      (ါ)  MYANMAR VOWEL SIGN TALL AA
@@ -11918,8 +11993,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1030          ; Allowed ; Recommended #      (ူ)  MYANMAR VOWEL SIGN UU
 1031          ; Allowed ; Recommended #      (ေ)  MYANMAR VOWEL SIGN E
 1032          ; Allowed ; Recommended #      (ဲ)  MYANMAR VOWEL SIGN AI
-1033          ; Allowed ; Recommended #      (ဳ)  MYANMAR VOWEL SIGN MON II
-1034          ; Allowed ; Recommended #      (ဴ)  MYANMAR VOWEL SIGN MON O
 1035          ; Allowed ; Recommended #      (ဵ)  MYANMAR VOWEL SIGN E ABOVE
 1036          ; Allowed ; Recommended #      (ံ)  MYANMAR SIGN ANUSVARA
 1037          ; Allowed ; Recommended #      (့)  MYANMAR SIGN DOT BELOW
@@ -11941,43 +12014,10 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1047          ; Allowed ; Recommended #      (၇)  MYANMAR DIGIT SEVEN
 1048          ; Allowed ; Recommended #      (၈)  MYANMAR DIGIT EIGHT
 1049          ; Allowed ; Recommended #      (၉)  MYANMAR DIGIT NINE
-1050          ; Allowed ; Recommended #      (ၐ)  MYANMAR LETTER SHA
-1051          ; Allowed ; Recommended #      (ၑ)  MYANMAR LETTER SSA
-1052          ; Allowed ; Recommended #      (ၒ)  MYANMAR LETTER VOCALIC R
-1053          ; Allowed ; Recommended #      (ၓ)  MYANMAR LETTER VOCALIC RR
-1054          ; Allowed ; Recommended #      (ၔ)  MYANMAR LETTER VOCALIC L
-1055          ; Allowed ; Recommended #      (ၕ)  MYANMAR LETTER VOCALIC LL
-1056          ; Allowed ; Recommended #      (ၖ)  MYANMAR VOWEL SIGN VOCALIC R
-1057          ; Allowed ; Recommended #      (ၗ)  MYANMAR VOWEL SIGN VOCALIC RR
-1058          ; Allowed ; Recommended #      (ၘ)  MYANMAR VOWEL SIGN VOCALIC L
-1059          ; Allowed ; Recommended #      (ၙ)  MYANMAR VOWEL SIGN VOCALIC LL
-105A          ; Allowed ; Recommended #      (ၚ)  MYANMAR LETTER MON NGA
-105B          ; Allowed ; Recommended #      (ၛ)  MYANMAR LETTER MON JHA
-105C          ; Allowed ; Recommended #      (ၜ)  MYANMAR LETTER MON BBA
-105D          ; Allowed ; Recommended #      (ၝ)  MYANMAR LETTER MON BBE
-105E          ; Allowed ; Recommended #      (ၞ)  MYANMAR CONSONANT SIGN MON MEDIAL NA
-105F          ; Allowed ; Recommended #      (ၟ)  MYANMAR CONSONANT SIGN MON MEDIAL MA
-1060          ; Allowed ; Recommended #      (ၠ)  MYANMAR CONSONANT SIGN MON MEDIAL LA
 1061          ; Allowed ; Recommended #      (ၡ)  MYANMAR LETTER SGAW KAREN SHA
 1062          ; Allowed ; Recommended #      (ၢ)  MYANMAR VOWEL SIGN SGAW KAREN EU
 1063          ; Allowed ; Recommended #      (ၣ)  MYANMAR TONE MARK SGAW KAREN HATHI
 1064          ; Allowed ; Recommended #      (ၤ)  MYANMAR TONE MARK SGAW KAREN KE PHO
-1065          ; Allowed ; Recommended #      (ၥ)  MYANMAR LETTER WESTERN PWO KAREN THA
-1066          ; Allowed ; Recommended #      (ၦ)  MYANMAR LETTER WESTERN PWO KAREN PWA
-1067          ; Allowed ; Recommended #      (ၧ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN EU
-1068          ; Allowed ; Recommended #      (ၨ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN UE
-1069          ; Allowed ; Recommended #      (ၩ)  MYANMAR SIGN WESTERN PWO KAREN TONE-1
-106A          ; Allowed ; Recommended #      (ၪ)  MYANMAR SIGN WESTERN PWO KAREN TONE-2
-106B          ; Allowed ; Recommended #      (ၫ)  MYANMAR SIGN WESTERN PWO KAREN TONE-3
-106C          ; Allowed ; Recommended #      (ၬ)  MYANMAR SIGN WESTERN PWO KAREN TONE-4
-106D          ; Allowed ; Recommended #      (ၭ)  MYANMAR SIGN WESTERN PWO KAREN TONE-5
-106E          ; Allowed ; Recommended #      (ၮ)  MYANMAR LETTER EASTERN PWO KAREN NNA
-106F          ; Allowed ; Recommended #      (ၯ)  MYANMAR LETTER EASTERN PWO KAREN YWA
-1070          ; Allowed ; Recommended #      (ၰ)  MYANMAR LETTER EASTERN PWO KAREN GHWA
-1071          ; Allowed ; Recommended #      (ၱ)  MYANMAR VOWEL SIGN GEBA KAREN I
-1072          ; Allowed ; Recommended #      (ၲ)  MYANMAR VOWEL SIGN KAYAH OE
-1073          ; Allowed ; Recommended #      (ၳ)  MYANMAR VOWEL SIGN KAYAH U
-1074          ; Allowed ; Recommended #      (ၴ)  MYANMAR VOWEL SIGN KAYAH EE
 1075          ; Allowed ; Recommended #      (ၵ)  MYANMAR LETTER SHAN KA
 1076          ; Allowed ; Recommended #      (ၶ)  MYANMAR LETTER SHAN KHA
 1077          ; Allowed ; Recommended #      (ၷ)  MYANMAR LETTER SHAN GA
@@ -12003,8 +12043,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 108B          ; Allowed ; Recommended #      (ႋ)  MYANMAR SIGN SHAN COUNCIL TONE-2
 108C          ; Allowed ; Recommended #      (ႌ)  MYANMAR SIGN SHAN COUNCIL TONE-3
 108D          ; Allowed ; Recommended #      (ႍ)  MYANMAR SIGN SHAN COUNCIL EMPHATIC TONE
-108E          ; Allowed ; Recommended #      (ႎ)  MYANMAR LETTER RUMAI PALAUNG FA
-108F          ; Allowed ; Recommended #      (ႏ)  MYANMAR SIGN RUMAI PALAUNG TONE-5
 1090          ; Allowed ; Recommended #      (႐)  MYANMAR SHAN DIGIT ZERO
 1091          ; Allowed ; Recommended #      (႑)  MYANMAR SHAN DIGIT ONE
 1092          ; Allowed ; Recommended #      (႒)  MYANMAR SHAN DIGIT TWO
@@ -12015,10 +12053,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1097          ; Allowed ; Recommended #      (႗)  MYANMAR SHAN DIGIT SEVEN
 1098          ; Allowed ; Recommended #      (႘)  MYANMAR SHAN DIGIT EIGHT
 1099          ; Allowed ; Recommended #      (႙)  MYANMAR SHAN DIGIT NINE
-109A          ; Allowed ; Recommended #      (ႚ)  MYANMAR SIGN KHAMTI TONE-1
-109B          ; Allowed ; Recommended #      (ႛ)  MYANMAR SIGN KHAMTI TONE-3
-109C          ; Allowed ; Recommended #      (ႜ)  MYANMAR VOWEL SIGN AITON A
-109D          ; Allowed ; Recommended #      (ႝ)  MYANMAR VOWEL SIGN AITON AI
 10C7          ; Allowed ; Recommended #      (Ⴧ)  GEORGIAN CAPITAL LETTER YN
 10CD          ; Allowed ; Recommended #      (Ⴭ)  GEORGIAN CAPITAL LETTER AEN
 10D0          ; Allowed ; Recommended #      (ა)  GEORGIAN LETTER AN
@@ -12056,11 +12090,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 10F0          ; Allowed ; Recommended #      (ჰ)  GEORGIAN LETTER HAE
 10F7          ; Allowed ; Recommended #      (ჷ)  GEORGIAN LETTER YN
 10F8          ; Allowed ; Recommended #      (ჸ)  GEORGIAN LETTER ELIFI
-10F9          ; Allowed ; Recommended #      (ჹ)  GEORGIAN LETTER TURNED GAN
-10FA          ; Allowed ; Recommended #      (ჺ)  GEORGIAN LETTER AIN
-10FD          ; Allowed ; Recommended #      (ჽ)  GEORGIAN LETTER AEN
-10FE          ; Allowed ; Recommended #      (ჾ)  GEORGIAN LETTER HARD SIGN
-10FF          ; Allowed ; Recommended #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 1200..1248    ; Allowed ; Recommended # [73] (ሀ..ቈ)  ETHIOPIC SYLLABLE HA..ETHIOPIC SYLLABLE QWA
 124A..124D    ; Allowed ; Recommended #  [4] (ቊ..ቍ)  ETHIOPIC SYLLABLE QWI..ETHIOPIC SYLLABLE QWE
 1250..1256    ; Allowed ; Recommended #  [7] (ቐ..ቖ)  ETHIOPIC SYLLABLE QHA..ETHIOPIC SYLLABLE QHO
@@ -12151,7 +12180,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 17CA          ; Allowed ; Recommended #      (៊)  KHMER SIGN TRIISAP
 17D2          ; Allowed ; Recommended #      (្)  KHMER SIGN COENG
 17D7          ; Allowed ; Recommended #      (ៗ)  KHMER SIGN LEK TOO
-17DC          ; Allowed ; Recommended #      (ៜ)  KHMER SIGN AVAKRAHASANYA
 17E0          ; Allowed ; Recommended #      (០)  KHMER DIGIT ZERO
 17E1          ; Allowed ; Recommended #      (១)  KHMER DIGIT ONE
 17E2          ; Allowed ; Recommended #      (២)  KHMER DIGIT TWO
@@ -12163,7 +12191,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 17E8          ; Allowed ; Recommended #      (៨)  KHMER DIGIT EIGHT
 17E9          ; Allowed ; Recommended #      (៩)  KHMER DIGIT NINE
 1E00          ; Allowed ; Recommended #      (Ḁ)  LATIN CAPITAL LETTER A WITH RING BELOW
-1E01          ; Allowed ; Recommended #      (ḁ)  LATIN SMALL LETTER A WITH RING BELOW
 1E02          ; Allowed ; Recommended #      (Ḃ)  LATIN CAPITAL LETTER B WITH DOT ABOVE
 1E03          ; Allowed ; Recommended #      (ḃ)  LATIN SMALL LETTER B WITH DOT ABOVE
 1E04          ; Allowed ; Recommended #      (Ḅ)  LATIN CAPITAL LETTER B WITH DOT BELOW
@@ -12181,15 +12208,12 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1E10          ; Allowed ; Recommended #      (Ḑ)  LATIN CAPITAL LETTER D WITH CEDILLA
 1E11          ; Allowed ; Recommended #      (ḑ)  LATIN SMALL LETTER D WITH CEDILLA
 1E12          ; Allowed ; Recommended #      (Ḓ)  LATIN CAPITAL LETTER D WITH CIRCUMFLEX BELOW
-1E13          ; Allowed ; Recommended #      (ḓ)  LATIN SMALL LETTER D WITH CIRCUMFLEX BELOW
 1E14          ; Allowed ; Recommended #      (Ḕ)  LATIN CAPITAL LETTER E WITH MACRON AND GRAVE
 1E15          ; Allowed ; Recommended #      (ḕ)  LATIN SMALL LETTER E WITH MACRON AND GRAVE
 1E16          ; Allowed ; Recommended #      (Ḗ)  LATIN CAPITAL LETTER E WITH MACRON AND ACUTE
 1E17          ; Allowed ; Recommended #      (ḗ)  LATIN SMALL LETTER E WITH MACRON AND ACUTE
 1E18          ; Allowed ; Recommended #      (Ḙ)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX BELOW
-1E19          ; Allowed ; Recommended #      (ḙ)  LATIN SMALL LETTER E WITH CIRCUMFLEX BELOW
 1E1A          ; Allowed ; Recommended #      (Ḛ)  LATIN CAPITAL LETTER E WITH TILDE BELOW
-1E1B          ; Allowed ; Recommended #      (ḛ)  LATIN SMALL LETTER E WITH TILDE BELOW
 1E1C          ; Allowed ; Recommended #      (Ḝ)  LATIN CAPITAL LETTER E WITH CEDILLA AND BREVE
 1E1D          ; Allowed ; Recommended #      (ḝ)  LATIN SMALL LETTER E WITH CEDILLA AND BREVE
 1E1E          ; Allowed ; Recommended #      (Ḟ)  LATIN CAPITAL LETTER F WITH DOT ABOVE
@@ -12205,9 +12229,7 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1E28          ; Allowed ; Recommended #      (Ḩ)  LATIN CAPITAL LETTER H WITH CEDILLA
 1E29          ; Allowed ; Recommended #      (ḩ)  LATIN SMALL LETTER H WITH CEDILLA
 1E2A          ; Allowed ; Recommended #      (Ḫ)  LATIN CAPITAL LETTER H WITH BREVE BELOW
-1E2B          ; Allowed ; Recommended #      (ḫ)  LATIN SMALL LETTER H WITH BREVE BELOW
 1E2C          ; Allowed ; Recommended #      (Ḭ)  LATIN CAPITAL LETTER I WITH TILDE BELOW
-1E2D          ; Allowed ; Recommended #      (ḭ)  LATIN SMALL LETTER I WITH TILDE BELOW
 1E2E          ; Allowed ; Recommended #      (Ḯ)  LATIN CAPITAL LETTER I WITH DIAERESIS AND ACUTE
 1E2F          ; Allowed ; Recommended #      (ḯ)  LATIN SMALL LETTER I WITH DIAERESIS AND ACUTE
 1E30          ; Allowed ; Recommended #      (Ḱ)  LATIN CAPITAL LETTER K WITH ACUTE
@@ -12223,7 +12245,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1E3A          ; Allowed ; Recommended #      (Ḻ)  LATIN CAPITAL LETTER L WITH LINE BELOW
 1E3B          ; Allowed ; Recommended #      (ḻ)  LATIN SMALL LETTER L WITH LINE BELOW
 1E3C          ; Allowed ; Recommended #      (Ḽ)  LATIN CAPITAL LETTER L WITH CIRCUMFLEX BELOW
-1E3D          ; Allowed ; Recommended #      (ḽ)  LATIN SMALL LETTER L WITH CIRCUMFLEX BELOW
 1E3E          ; Allowed ; Recommended #      (Ḿ)  LATIN CAPITAL LETTER M WITH ACUTE
 1E3F          ; Allowed ; Recommended #      (ḿ)  LATIN SMALL LETTER M WITH ACUTE
 1E40          ; Allowed ; Recommended #      (Ṁ)  LATIN CAPITAL LETTER M WITH DOT ABOVE
@@ -12237,7 +12258,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1E48          ; Allowed ; Recommended #      (Ṉ)  LATIN CAPITAL LETTER N WITH LINE BELOW
 1E49          ; Allowed ; Recommended #      (ṉ)  LATIN SMALL LETTER N WITH LINE BELOW
 1E4A          ; Allowed ; Recommended #      (Ṋ)  LATIN CAPITAL LETTER N WITH CIRCUMFLEX BELOW
-1E4B          ; Allowed ; Recommended #      (ṋ)  LATIN SMALL LETTER N WITH CIRCUMFLEX BELOW
 1E4C          ; Allowed ; Recommended #      (Ṍ)  LATIN CAPITAL LETTER O WITH TILDE AND ACUTE
 1E4D          ; Allowed ; Recommended #      (ṍ)  LATIN SMALL LETTER O WITH TILDE AND ACUTE
 1E4E          ; Allowed ; Recommended #      (Ṏ)  LATIN CAPITAL LETTER O WITH TILDE AND DIAERESIS
@@ -12275,13 +12295,9 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 1E6E          ; Allowed ; Recommended #      (Ṯ)  LATIN CAPITAL LETTER T WITH LINE BELOW
 1E6F          ; Allowed ; Recommended #      (ṯ)  LATIN SMALL LETTER T WITH LINE BELOW
 1E70          ; Allowed ; Recommended #      (Ṱ)  LATIN CAPITAL LETTER T WITH CIRCUMFLEX BELOW
-1E71          ; Allowed ; Recommended #      (ṱ)  LATIN SMALL LETTER T WITH CIRCUMFLEX BELOW
 1E72          ; Allowed ; Recommended #      (Ṳ)  LATIN CAPITAL LETTER U WITH DIAERESIS BELOW
-1E73          ; Allowed ; Recommended #      (ṳ)  LATIN SMALL LETTER U WITH DIAERESIS BELOW
 1E74          ; Allowed ; Recommended #      (Ṵ)  LATIN CAPITAL LETTER U WITH TILDE BELOW
-1E75          ; Allowed ; Recommended #      (ṵ)  LATIN SMALL LETTER U WITH TILDE BELOW
 1E76          ; Allowed ; Recommended #      (Ṷ)  LATIN CAPITAL LETTER U WITH CIRCUMFLEX BELOW
-1E77          ; Allowed ; Recommended #      (ṷ)  LATIN SMALL LETTER U WITH CIRCUMFLEX BELOW
 1E78          ; Allowed ; Recommended #      (Ṹ)  LATIN CAPITAL LETTER U WITH TILDE AND ACUTE
 1E79          ; Allowed ; Recommended #      (ṹ)  LATIN SMALL LETTER U WITH TILDE AND ACUTE
 1E7A          ; Allowed ; Recommended #      (Ṻ)  LATIN CAPITAL LETTER U WITH MACRON AND DIAERESIS
@@ -12511,17 +12527,8 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 2D27          ; Allowed ; Recommended #      (ⴧ)  GEORGIAN SMALL LETTER YN
 2D2D          ; Allowed ; Recommended #      (ⴭ)  GEORGIAN SMALL LETTER AEN
 2D80..2D96    ; Allowed ; Recommended # [23] (ⶀ..ⶖ)  ETHIOPIC SYLLABLE LOA..ETHIOPIC SYLLABLE GGWE
-2DA0..2DA6    ; Allowed ; Recommended #  [7] (ⶠ..ⶦ)  ETHIOPIC SYLLABLE SSA..ETHIOPIC SYLLABLE SSO
-2DA8..2DAE    ; Allowed ; Recommended #  [7] (ⶨ..ⶮ)  ETHIOPIC SYLLABLE CCA..ETHIOPIC SYLLABLE CCO
-2DB0..2DB6    ; Allowed ; Recommended #  [7] (ⶰ..ⶶ)  ETHIOPIC SYLLABLE ZZA..ETHIOPIC SYLLABLE ZZO
-2DB8..2DBE    ; Allowed ; Recommended #  [7] (ⶸ..ⶾ)  ETHIOPIC SYLLABLE CCHA..ETHIOPIC SYLLABLE CCHO
-2DC0..2DC6    ; Allowed ; Recommended #  [7] (ⷀ..ⷆ)  ETHIOPIC SYLLABLE QYA..ETHIOPIC SYLLABLE QYO
-2DC8..2DCE    ; Allowed ; Recommended #  [7] (ⷈ..ⷎ)  ETHIOPIC SYLLABLE KYA..ETHIOPIC SYLLABLE KYO
-2DD0..2DD6    ; Allowed ; Recommended #  [7] (ⷐ..ⷖ)  ETHIOPIC SYLLABLE XYA..ETHIOPIC SYLLABLE XYO
-2DD8..2DDE    ; Allowed ; Recommended #  [7] (ⷘ..ⷞ)  ETHIOPIC SYLLABLE GYA..ETHIOPIC SYLLABLE GYO
 3005          ; Allowed ; Recommended #      (々)  IDEOGRAPHIC ITERATION MARK
 3006          ; Allowed ; Recommended #      (〆)  IDEOGRAPHIC CLOSING MARK
-3007          ; Allowed ; Recommended #      (〇)  IDEOGRAPHIC NUMBER ZERO
 3041          ; Allowed ; Recommended #      (ぁ)  HIRAGANA LETTER SMALL A
 3042          ; Allowed ; Recommended #      (あ)  HIRAGANA LETTER A
 3043          ; Allowed ; Recommended #      (ぃ)  HIRAGANA LETTER SMALL I
@@ -12608,8 +12615,6 @@ AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 3094          ; Allowed ; Recommended #      (ゔ)  HIRAGANA LETTER VU
 3095          ; Allowed ; Recommended #      (ゕ)  HIRAGANA LETTER SMALL KA
 3096          ; Allowed ; Recommended #      (ゖ)  HIRAGANA LETTER SMALL KE
-3099          ; Allowed ; Recommended #      (゙)  COMBINING KATAKANA-HIRAGANA VOICED SOUND MARK
-309A          ; Allowed ; Recommended #      (゚)  COMBINING KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
 309D          ; Allowed ; Recommended #      (ゝ)  HIRAGANA ITERATION MARK
 309E          ; Allowed ; Recommended #      (ゞ)  HIRAGANA VOICED ITERATION MARK
 30A1          ; Allowed ; Recommended #      (ァ)  KATAKANA LETTER SMALL A
@@ -12918,9 +12923,6 @@ AA7E          ; Allowed ; Recommended #      (ꩾ)  MYANMAR LETTER SHWE PALAUNG 
 AA7F          ; Allowed ; Recommended #      (ꩿ)  MYANMAR LETTER SHWE PALAUNG SHA
 AB01..AB06    ; Allowed ; Recommended #  [6] (ꬁ..ꬆ)  ETHIOPIC SYLLABLE TTHU..ETHIOPIC SYLLABLE TTHO
 AB09..AB0E    ; Allowed ; Recommended #  [6] (ꬉ..ꬎ)  ETHIOPIC SYLLABLE DDHU..ETHIOPIC SYLLABLE DDHO
-AB11..AB16    ; Allowed ; Recommended #  [6] (ꬑ..ꬖ)  ETHIOPIC SYLLABLE DZU..ETHIOPIC SYLLABLE DZO
-AB20..AB26    ; Allowed ; Recommended #  [7] (ꬠ..ꬦ)  ETHIOPIC SYLLABLE CCHHA..ETHIOPIC SYLLABLE CCHHO
-AB28..AB2E    ; Allowed ; Recommended #  [7] (ꬨ..ꬮ)  ETHIOPIC SYLLABLE BBA..ETHIOPIC SYLLABLE BBO
 AC00..D7A3    ; Allowed ; Recommended # [11172] (가..힣)  HANGUL SYLLABLE GA..HANGUL SYLLABLE HIH
 FA0E          ; Allowed ; Recommended #      (﨎)  CJK COMPATIBILITY IDEOGRAPH-FA0E
 FA0F          ; Allowed ; Recommended #      (﨏)  CJK COMPATIBILITY IDEOGRAPH-FA0F
@@ -12934,8 +12936,6 @@ FA24          ; Allowed ; Recommended #      (﨤)  CJK COMPATIBILITY IDEOGRAPH-
 FA27          ; Allowed ; Recommended #      (﨧)  CJK COMPATIBILITY IDEOGRAPH-FA27
 FA28          ; Allowed ; Recommended #      (﨨)  CJK COMPATIBILITY IDEOGRAPH-FA28
 FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-FA29
-1B000         ; Allowed ; Recommended #      (𛀀)  KATAKANA LETTER ARCHAIC E
-1B001         ; Allowed ; Recommended #      (𛀁)  HIRAGANA LETTER ARCHAIC YE
 20000..2A6D6  ; Allowed ; Recommended # [42711] (𠀀..𪛖)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A700         ; Allowed ; Recommended #      (𪜀)  CJK UNIFIED IDEOGRAPH-2A700
 2A701         ; Allowed ; Recommended #      (𪜁)  CJK UNIFIED IDEOGRAPH-2A701
@@ -23071,7 +23071,7 @@ FA29          ; Allowed ; Recommended #      (﨩)  CJK COMPATIBILITY IDEOGRAPH-
 2CEA0         ; Allowed ; Recommended #      (𬺠)  CJK UNIFIED IDEOGRAPH-2CEA0
 2CEA1         ; Allowed ; Recommended #      (𬺡)  CJK UNIFIED IDEOGRAPH-2CEA1
 
-# Total code points: 95263
+# Total code points: 94970
 
 005F          ; ~IDNA #      (_)  LOW LINE
 04C0          ; ~IDNA #      (Ӏ)  CYRILLIC LETTER PALOCHKA

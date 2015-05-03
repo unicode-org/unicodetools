@@ -189,6 +189,7 @@ Confusable_SA			;	SINGLE_VALUED	;				$codePoints
 Confusable_ML			;	SINGLE_VALUED	;				$codePoints
 Confusable_MA			;	SINGLE_VALUED	;				$codePoints
 
-Emoji_Style				;	SINGLE_VALUED	;				<enum>
-Emoji_Source			;	MULTI_VALUED	;				<enum>
-Emoji_Label				;	MULTI_VALUED_COMMA	;				$dashName
+Emoji_Default_Style		;	SINGLE_VALUED	;				<enum>
+Emoji_Level				;	SINGLE_VALUED	;				<enum>
+Emoji_Modifier_Status	;	SINGLE_VALUED	;				<enum>
+Emoji_Correspondences	;	MULTI_VALUED	;				<enum>
