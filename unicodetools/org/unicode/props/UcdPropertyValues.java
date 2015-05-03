@@ -335,7 +335,7 @@ public class UcdPropertyValues {
         Supplemental_Punctuation("Sup_Punctuation"),
         Supplemental_Symbols_And_Pictographs("Sup_Symbols_And_Pictographs"),
         Superscripts_And_Subscripts("Super_And_Sub"),
-        Sutton_SignWriting("Sutton_SignWriting"),  // CamelCase without underscore
+        Sutton_SignWriting("Sutton_SignWriting"),
         Syloti_Nagri("Syloti_Nagri"),
         Syriac("Syriac"),
         Tagalog("Tagalog"),
@@ -758,8 +758,10 @@ public class UcdPropertyValues {
         Consonant_Medial("Consonant_Medial"),
         Consonant_Placeholder("Consonant_Placeholder"),
         Consonant_Preceding_Repha("Consonant_Preceding_Repha"),
+        Consonant_Prefixed("Consonant_Prefixed"),
         Consonant_Subjoined("Consonant_Subjoined"),
         Consonant_Succeeding_Repha("Consonant_Succeeding_Repha"),
+        Consonant_With_Stacker("Consonant_With_Stacker"),
         Gemination_Mark("Gemination_Mark"),
         Invisible_Stacker("Invisible_Stacker"),
         Joiner("Joiner"),
@@ -1215,7 +1217,7 @@ public class UcdPropertyValues {
         Samaritan("Samr"),
         Old_South_Arabian("Sarb"),
         Saurashtra("Saur"),
-        SignWriting("Sgnw"),  // Sutton SignWriting, in CamelCase without underscore
+        SignWriting("Sgnw"),
         Shavian("Shaw"),
         Sharada("Shrd"),
         Siddham("Sidd"),
