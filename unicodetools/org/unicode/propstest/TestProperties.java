@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.ScriptMetadata;
@@ -42,7 +43,12 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.ValueCardinality;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.Emoji_Correspondences_Values;
+import org.unicode.props.UcdPropertyValues.Emoji_Default_Style_Values;
+import org.unicode.props.UcdPropertyValues.Emoji_Level_Values;
+import org.unicode.props.UcdPropertyValues.Emoji_Modifier_Status_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
@@ -54,7 +60,6 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer2;
@@ -63,7 +68,6 @@ import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
-import com.ibm.icu.util.ULocale;
 
 public class TestProperties extends TestFmwk {
     private static final boolean CHECK_DIFFS = false;
@@ -72,7 +76,7 @@ public class TestProperties extends TestFmwk {
         new TestProperties().run(args);
     }
 
-    
+
     // TODO generate list of versions, plus 'latest'
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
@@ -85,21 +89,51 @@ public class TestProperties extends TestFmwk {
 
 
     public void TestAAEmoji() {
-        UnicodeMap<String> emojiStyle = iup.load(UcdProperty.Emoji_Style);
-        showByValue(emojiStyle);
-        
-        UnicodeMap<String> emojiSource = iup.load(UcdProperty.Emoji_Source);
-        showByValue(emojiSource);
+        UnicodeMap<Emoji_Default_Style_Values> style = iup.loadEnum(
+                UcdProperty.Emoji_Default_Style, Emoji_Default_Style_Values.class);
+        showByValue(UcdProperty.Emoji_Default_Style, style, ValueCardinality.Singleton);
 
-        UnicodeMap<String> emojiLabel = iup.load(UcdProperty.Emoji_Label);
-        showByValue(emojiLabel);
+        UnicodeMap<Emoji_Level_Values> levels = iup.loadEnum(
+                UcdProperty.Emoji_Level, Emoji_Level_Values.class);
+        showByValue(UcdProperty.Emoji_Level, levels, ValueCardinality.Singleton);
+
+        UnicodeMap<Emoji_Modifier_Status_Values> modifiers = iup.loadEnum(
+                UcdProperty.Emoji_Modifier_Status, Emoji_Modifier_Status_Values.class);
+        showByValue(UcdProperty.Emoji_Modifier_Status, modifiers, ValueCardinality.Singleton);
+
+        UnicodeMap<Set<Emoji_Correspondences_Values>> correspondences = iup.loadSet(
+                UcdProperty.Emoji_Correspondences, Emoji_Correspondences_Values.class);
+        showByValue(UcdProperty.Emoji_Correspondences, correspondences, ValueCardinality.Unordered);
     }
-    private void showByValue(UnicodeMap<String> emojiStyle) {
-        for (String value : new TreeSet<String>(emojiStyle.values())) {
+
+    private <T> void showByValue(UcdProperty prop, UnicodeMap<T> emojiStyle, ValueCardinality cardinality) {
+        logln(prop + ":\t" + emojiStyle.size());
+        TreeSet<T> sorted = cardinality == ValueCardinality.Singleton ? new TreeSet<T>() : new TreeSet<T>(new SetComparator());
+        sorted.addAll(emojiStyle.values());
+        for (T value : sorted) {
             UnicodeSet us = emojiStyle.getSet(value);
-            logln(value + ":\t" + us.size() + "\t" +  us.toPattern(false));
+            logln("\t" + value + ":\t" + us.size() + "\t" +  us.toPattern(false));
         }
     }
+    
+//    public static <T extends Comparable, U extends Set<T>> int compare(U o1, U o2) {
+//        int diff = o1.size() - o2.size();
+//        if (diff != 0) {
+//            return diff;
+//        }
+//        Collection<T> x1 = SortedSet.class.isInstance(o1) ? o1 : new TreeSet<T>(o1);
+//        Collection<T> x2 = SortedSet.class.isInstance(o2) ? o2 : new TreeSet<T>(o2);
+//        return CollectionUtilities.compare(x1, x2);
+//    }
+
+    public static class SetComparator<T extends Comparable> 
+    implements Comparator<Set<T>> {
+        public int compare(Set<T> o1, Set<T> o2) {
+            return CollectionUtilities.compare((Collection<T>)o1, (Collection<T>)o2);
+        }
+    };
+
+
     public void TestAAScripts() {
         UnicodeMap<String> scriptInfo = iup.load(UcdProperty.Script);
         UnicodeSet unknownScript = scriptInfo.getSet(
@@ -107,10 +141,10 @@ public class TestProperties extends TestFmwk {
         unknownScript.removeAll(generalCategory.getSet(
                 UcdPropertyValues.General_Category_Values.Unassigned.toString()))
                 .removeAll(generalCategory.getSet(
-                UcdPropertyValues.General_Category_Values.Private_Use.toString()))
-                .removeAll(generalCategory.getSet(
-                UcdPropertyValues.General_Category_Values.Surrogate.toString()))
-                ;
+                        UcdPropertyValues.General_Category_Values.Private_Use.toString()))
+                        .removeAll(generalCategory.getSet(
+                                UcdPropertyValues.General_Category_Values.Surrogate.toString()))
+                                ;
         UnicodeSet unknownMarks = new UnicodeSet(generalCategory.getSet(
                 UcdPropertyValues.General_Category_Values.Nonspacing_Mark.toString()))
         .addAll(generalCategory.getSet(
@@ -124,7 +158,7 @@ public class TestProperties extends TestFmwk {
         assertEquals("Missing Common", UnicodeSet.EMPTY, unknownScript);
         for (UnicodeSetIterator it = new UnicodeSetIterator(unknownScript); 
                 it.nextRange();) {
-            System.out.println(Utility.hex(it.codepoint) + ".." + Utility.hex(it.codepointEnd)
+            logln(Utility.hex(it.codepoint) + ".." + Utility.hex(it.codepointEnd)
                     + "; Common # (" + generalCategory.get(it.codepoint) + ".." + generalCategory.get(it.codepointEnd) + ") "
                     + nameMap.get(it.codepoint) + ".." + nameMap.get(it.codepointEnd)
                     );

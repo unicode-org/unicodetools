@@ -390,20 +390,15 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     enum FileType {Field, HackField, PropertyValue, List, CJKRadicals, NamedSequences, 
         NameAliases, StandardizedVariants, Confusables}
     enum SpecialProperty {None, Skip1FT, Skip1ST, SkipAny4, Rational}
-    enum ValueElements {
-        Singleton, Unordered, Ordered;
-        public boolean isBreakable(String string) {
-            return (this == ValueElements.Unordered || this == ValueElements.Ordered);
-        }
-    }
-    static Map<String,ValueElements> toMultiValued = new HashMap();
+    
+    static Map<String,ValueCardinality> toMultiValued = new HashMap();
     static {
-        toMultiValued.put("N/A", ValueElements.Singleton);
-        toMultiValued.put("space", ValueElements.Singleton);
-        toMultiValued.put("SINGLE_VALUED", ValueElements.Singleton);
-        toMultiValued.put("EXTENSIBLE", ValueElements.Singleton);
-        toMultiValued.put("MULTI_VALUED", ValueElements.Unordered);
-        for (final ValueElements multi : ValueElements.values()) {
+        toMultiValued.put("N/A", ValueCardinality.Singleton);
+        toMultiValued.put("space", ValueCardinality.Singleton);
+        toMultiValued.put("SINGLE_VALUED", ValueCardinality.Singleton);
+        toMultiValued.put("EXTENSIBLE", ValueCardinality.Singleton);
+        toMultiValued.put("MULTI_VALUED", ValueCardinality.Unordered);
+        for (final ValueCardinality multi : ValueCardinality.values()) {
             toMultiValued.put(multi.toString(), multi);
             toMultiValued.put(UCharacter.toUpperCase(multi.toString()), multi);
         }
@@ -430,7 +425,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         //UnicodeMap<String> data;
         //final Set<String> errors = new LinkedHashSet<String>();
         private Pattern regex = null;
-        private ValueElements multivalued = ValueElements.Singleton;
+        private ValueCardinality multivalued = ValueCardinality.Singleton;
         private Pattern multivaluedSplit = SPACE;
         public String originalRegex;
 
@@ -666,7 +661,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         public String getDefaultValue() {
             return defaultValue;
         }
-        public ValueElements getMultivalued() {
+        public ValueCardinality getMultivalued() {
             return multivalued;
         }
         public Pattern getRegex() {
@@ -676,7 +671,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         public void setMultiValued(String multivalued2) {
             if (multivalued2.endsWith("_COMMA")) {
                 multivaluedSplit = COMMA;
-                multivalued = ValueElements.Unordered;
+                multivalued = ValueCardinality.Unordered;
                 return;
             }
             multivalued = toMultiValued.get(multivalued2);
@@ -848,25 +843,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return loadSet(prop2, enumClass, prop2);
     }
 
-    static final Splitter SET_SPLITTER = Splitter.on(SET_SEPARATOR);
-    
-    public <T extends Enum<T>> UnicodeMap<Set<T>> loadSet(UcdProperty prop2, Class enumClass, UcdProperty prop3) {
-        UnicodeMap<String> m = load(prop2);
-        UnicodeMap<Set<T>> result = new UnicodeMap<>();
-        // TODO cache
-        for (String value : m.values()) {
-            Set<T> convertedValue = EnumSet.noneOf(enumClass);
-            for (String s : SET_SPLITTER.split(value)) {
-                T enumv = (T) prop3.getEnum(s);
-                //System.out.println(s + " => " + enumv);
-                convertedValue.add(enumv);
-            }
-            UnicodeSet uset = m.getSet(value);
-            result.putAll(uset, Collections.unmodifiableSet(convertedValue));
-        }
-        return result.freeze();
-    }
-
     // should be on UnicodeMap
     public static <T, V extends Collection<T>, U extends Map<T,UnicodeSet>> U invertSet(UnicodeMap<V> source, U target) {
         for (V valueSet : source.values()) {
@@ -925,6 +901,25 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             T enumv = (T) prop2.getEnum(value);
             UnicodeSet uset = m.getSet(value);
             result.putAll(uset, enumv);
+        }
+        return result.freeze();
+    }
+    
+    static final Splitter SET_SPLITTER = Splitter.on(SET_SEPARATOR);
+    
+    public <T extends Enum<T>> UnicodeMap<Set<T>> loadSet(UcdProperty prop2, Class enumClass, UcdProperty prop3) {
+        UnicodeMap<String> m = load(prop2);
+        UnicodeMap<Set<T>> result = new UnicodeMap<>();
+        // TODO cache
+        for (String value : m.values()) {
+            Set<T> convertedValue = EnumSet.noneOf(enumClass);
+            for (String s : SET_SPLITTER.split(value)) {
+                T enumv = (T) prop3.getEnum(s);
+                //System.out.println(s + " => " + enumv);
+                convertedValue.add(enumv);
+            }
+            UnicodeSet uset = m.getSet(value);
+            result.putAll(uset, Collections.unmodifiableSet(convertedValue));
         }
         return result.freeze();
     }

@@ -14,11 +14,19 @@ import java.util.regex.Pattern;
 import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
+import org.unicode.props.GenerateEnums;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyType;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
 import org.unicode.text.utility.Settings;
 
+import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.FileUtilities;
@@ -45,8 +53,30 @@ public class GenerateIdnaTest {
     private static final boolean NEW_FORMAT = true;
 
     public static void main(String[] args) throws IOException {
+        testBackwardsCompatibility();
         final int count = new GenerateIdnaTest().generateTests(1000);
         System.out.println("DONE " + count);
+    }
+
+    private static void testBackwardsCompatibility() {
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
+        UnicodeMap<String> idnaMapping = iup.load(UcdProperty.Idn_Mapping);
+        UnicodeMap<Idn_Status_Values> idnaStatus = iup.loadEnum(UcdProperty.Idn_Status, Idn_Status_Values.class);
+        IndexUnicodeProperties iupLast = IndexUnicodeProperties.make(Settings.lastVersion);
+        UnicodeMap<String> idnaMappingLast = iupLast.load(UcdProperty.Idn_Mapping);
+        UnicodeMap<Idn_Status_Values> idnaStatusLast = iupLast.loadEnum(UcdProperty.Idn_Status, Idn_Status_Values.class);
+        UnicodeMap<General_Category_Values> gcOld = iupLast.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
+        UnicodeSet oldAssigned = new UnicodeSet(gcOld.getSet(General_Category_Values.Unassigned)).complement().freeze();
+        for (String x : oldAssigned) {
+            assertEquals("mapping", idnaMappingLast.get(x), idnaMapping.get(x));
+            assertEquals("status", idnaStatusLast.get(x), idnaStatus.get(x));
+        }
+    }
+
+    private static <T> void assertEquals(String string, T expected, T actual) {
+        if (!Objects.equal(expected, actual)) {
+            throw new IllegalArgumentException(string + "expected: " + expected + " ≠ " + actual);
+        }
     }
 
     public static void setUnicodeVersion() {

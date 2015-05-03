@@ -776,3 +776,185 @@ AB63; uncommon-use # LATIN SMALL LETTER UO
 0AF9; uncommon-use # GUJARATI LETTER ZHA
 # Telu
 0C5A; uncommon-use # TELUGU LETTER RRRA
+
+1B001	 ; obsolete	 # ( 𛀁 ) [Lo, Hiragana] HIRAGANA LETTER ARCHAIC YE
+1B000	 ; obsolete	 # ( 𛀀 ) [Lo, Katakana] KATAKANA LETTER ARCHAIC E
+
+# MSR values
+048B	 ; Uncommon_Use	 # according to MSR 5 ( ҋ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER SHORT I WITH TAIL
+048D	 ; Uncommon_Use	 # according to MSR 5 ( ҍ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER SEMISOFT SIGN
+048F	 ; Uncommon_Use	 # according to MSR 5 ( ҏ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER ER WITH TICK
+04C4	 ; Uncommon_Use	 # according to MSR 5 ( ӄ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KA WITH HOOK
+04C6	 ; Uncommon_Use	 # according to MSR 5 ( ӆ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER EL WITH TAIL
+04C8	 ; Uncommon_Use	 # according to MSR 5 ( ӈ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER EN WITH HOOK
+04CA	 ; Uncommon_Use	 # according to MSR 5 ( ӊ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER EN WITH TAIL
+04CE	 ; Uncommon_Use	 # according to MSR 5 ( ӎ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER EM WITH TAIL
+04F7	 ; Uncommon_Use	 # according to MSR 5 ( ӷ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER GHE WITH DESCENDER
+04FB	 ; Uncommon_Use	 # according to MSR 5 ( ӻ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER GHE WITH STROKE AND HOOK
+04FD	 ; Uncommon_Use	 # according to MSR 5 ( ӽ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER HA WITH HOOK
+04FF	 ; Uncommon_Use	 # according to MSR 5 ( ӿ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER HA WITH STROKE
+0511	 ; Uncommon_Use	 # according to MSR 5 ( ԑ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER REVERSED ZE
+0513	 ; Uncommon_Use	 # according to MSR 5 ( ԓ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER EL WITH HOOK
+
+08B2	 ; Uncommon_Use	 # according to MSR 5 ( ࢲ ) [Lo, Arabic] ARABIC LETTER ZAIN WITH INVERTED V ABOVE
+
+0A01	 ; Uncommon_Use	 # according to MSR 5 ( ਁ ) [Mn, Gurmukhi] GURMUKHI SIGN ADAK BINDI
+
+0C01	 ; Uncommon_Use	 # according to MSR 5 ( ఁ ) [Mc, Telugu] TELUGU SIGN CANDRABINDU
+
+0F6A..0F6C ; Uncommon_Use	 # according to MSR 5 ( ཪ..ཬ ) [Lo.., Tibetan..] TIBETAN LETTER FIXED-FORM RA..
+0F82..0F83 ; Uncommon_Use	 # according to MSR 5 ( ྂ..ྃ ) [Mn.., Tibetan..] TIBETAN SIGN NYI ZLA NAA DA..
+0FAE..0FB0 ; Uncommon_Use	 # according to MSR 5 ( ྮ..ྰ ) [Mn.., Tibetan..] TIBETAN SUBJOINED LETTER ZHA..
+0FC6	 ; Uncommon_Use	 # according to MSR 5 ( ࿆ ) [Mn, Tibetan] TIBETAN SYMBOL PADMA GDAN
+
+1028	 ; Uncommon_Use	 # according to MSR 5 ( ဨ ) [Lo, Myanmar] MYANMAR LETTER MON E
+1033..1034 ; Uncommon_Use	 # according to MSR 5 ( ဳ..ဴ ) [Mn.., Myanmar..] MYANMAR VOWEL SIGN MON II..
+1050..1060 ; Uncommon_Use	 # according to MSR 5 ( ၐ..ၠ ) [Lo.., Myanmar..] MYANMAR LETTER SHA..
+1065..1074 ; Uncommon_Use	 # according to MSR 5 ( ၥ..ၴ ) [Lo.., Myanmar..] MYANMAR LETTER WESTERN PWO KAREN THA..
+108E..108F ; Uncommon_Use	 # according to MSR 5 ( ႎ..ႏ ) [Lo.., Myanmar..] MYANMAR LETTER RUMAI PALAUNG FA..
+109A..109D ; Uncommon_Use	 # according to MSR 5 ( ႚ..ႝ ) [Mc.., Myanmar..] MYANMAR SIGN KHAMTI TONE-1..
+
+10F9..10FA ; Uncommon_Use	 # according to MSR 5 ( ჹ..ჺ ) [Lo.., Georgian..] GEORGIAN LETTER TURNED GAN..
+10FD..10FF ; Uncommon_Use	 # according to MSR 5 ( ჽ..ჿ ) [Lo.., Georgian..] GEORGIAN LETTER AEN..
+
+2DA0..2DA6 ; Uncommon_Use	 # according to MSR 5 ( ⶠ..ⶦ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE SSA..
+2DA8..2DAE ; Uncommon_Use	 # according to MSR 5 ( ⶨ..ⶮ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE CCA..
+2DB0..2DB6 ; Uncommon_Use	 # according to MSR 5 ( ⶰ..ⶶ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE ZZA..
+2DB8..2DBE ; Uncommon_Use	 # according to MSR 5 ( ⶸ..ⶾ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE CCHA..
+2DC0..2DC6 ; Uncommon_Use	 # according to MSR 5 ( ⷀ..ⷆ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE QYA..
+2DC8..2DCE ; Uncommon_Use	 # according to MSR 5 ( ⷈ..ⷎ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE KYA..
+2DD0..2DD6 ; Uncommon_Use	 # according to MSR 5 ( ⷐ..ⷖ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE XYA..
+2DD8..2DDE ; Uncommon_Use	 # according to MSR 5 ( ⷘ..ⷞ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE GYA..
+AB11..AB16 ; Uncommon_Use	 # according to MSR 5 ( ꬑ..ꬖ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE DZU..
+AB20..AB26 ; Uncommon_Use	 # according to MSR 5 ( ꬠ..ꬦ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE CCHHA..
+AB28..AB2E ; Uncommon_Use	 # according to MSR 5 ( ꬨ..ꬮ ) [Lo.., Ethiopic..] ETHIOPIC SYLLABLE BBA..
+
+0201	 ; Technical	 # according to MSR 5 ( ȁ ) [Ll, Latin] LATIN SMALL LETTER A WITH DOUBLE GRAVE
+0203	 ; Technical	 # according to MSR 5 ( ȃ ) [Ll, Latin] LATIN SMALL LETTER A WITH INVERTED BREVE
+0205	 ; Technical	 # according to MSR 5 ( ȅ ) [Ll, Latin] LATIN SMALL LETTER E WITH DOUBLE GRAVE
+0207	 ; Technical	 # according to MSR 5 ( ȇ ) [Ll, Latin] LATIN SMALL LETTER E WITH INVERTED BREVE
+0209	 ; Technical	 # according to MSR 5 ( ȉ ) [Ll, Latin] LATIN SMALL LETTER I WITH DOUBLE GRAVE
+020B	 ; Technical	 # according to MSR 5 ( ȋ ) [Ll, Latin] LATIN SMALL LETTER I WITH INVERTED BREVE
+020D	 ; Technical	 # according to MSR 5 ( ȍ ) [Ll, Latin] LATIN SMALL LETTER O WITH DOUBLE GRAVE
+020F	 ; Technical	 # according to MSR 5 ( ȏ ) [Ll, Latin] LATIN SMALL LETTER O WITH INVERTED BREVE
+0211	 ; Technical	 # according to MSR 5 ( ȑ ) [Ll, Latin] LATIN SMALL LETTER R WITH DOUBLE GRAVE
+0213	 ; Technical	 # according to MSR 5 ( ȓ ) [Ll, Latin] LATIN SMALL LETTER R WITH INVERTED BREVE
+0215	 ; Technical	 # according to MSR 5 ( ȕ ) [Ll, Latin] LATIN SMALL LETTER U WITH DOUBLE GRAVE
+0217	 ; Technical	 # according to MSR 5 ( ȗ ) [Ll, Latin] LATIN SMALL LETTER U WITH INVERTED BREVE
+1E01	 ; Technical	 # according to MSR 5 ( ḁ ) [Ll, Latin] LATIN SMALL LETTER A WITH RING BELOW
+1E13	 ; Technical	 # according to MSR 5 ( ḓ ) [Ll, Latin] LATIN SMALL LETTER D WITH CIRCUMFLEX BELOW
+1E19	 ; Technical	 # according to MSR 5 ( ḙ ) [Ll, Latin] LATIN SMALL LETTER E WITH CIRCUMFLEX BELOW
+1E1B	 ; Technical	 # according to MSR 5 ( ḛ ) [Ll, Latin] LATIN SMALL LETTER E WITH TILDE BELOW
+1E2B	 ; Technical	 # according to MSR 5 ( ḫ ) [Ll, Latin] LATIN SMALL LETTER H WITH BREVE BELOW
+1E2D	 ; Technical	 # according to MSR 5 ( ḭ ) [Ll, Latin] LATIN SMALL LETTER I WITH TILDE BELOW
+1E3D	 ; Technical	 # according to MSR 5 ( ḽ ) [Ll, Latin] LATIN SMALL LETTER L WITH CIRCUMFLEX BELOW
+1E4B	 ; Technical	 # according to MSR 5 ( ṋ ) [Ll, Latin] LATIN SMALL LETTER N WITH CIRCUMFLEX BELOW
+1E71	 ; Technical	 # according to MSR 5 ( ṱ ) [Ll, Latin] LATIN SMALL LETTER T WITH CIRCUMFLEX BELOW
+1E73	 ; Technical	 # according to MSR 5 ( ṳ ) [Ll, Latin] LATIN SMALL LETTER U WITH DIAERESIS BELOW
+1E75	 ; Technical	 # according to MSR 5 ( ṵ ) [Ll, Latin] LATIN SMALL LETTER U WITH TILDE BELOW
+1E77	 ; Technical	 # according to MSR 5 ( ṷ ) [Ll, Latin] LATIN SMALL LETTER U WITH CIRCUMFLEX BELOW
+
+030F..0311 ; Technical	 # according to MSR 5 ( ̏..̑ ) [Mn.., Inherited..] COMBINING DOUBLE GRAVE ACCENT..
+0313..0314 ; Technical	 # according to MSR 5 ( ̓..̔ ) [Mn.., Inherited..] COMBINING COMMA ABOVE..
+0324..0325 ; Technical	 # according to MSR 5 ( ̤..̥ ) [Mn.., Inherited..] COMBINING DIAERESIS BELOW..
+032D..032E ; Technical	 # according to MSR 5 ( ̭..̮ ) [Mn.., Inherited..] COMBINING CIRCUMFLEX ACCENT BELOW..
+0330	 ; Technical	 # according to MSR 5 ( ̰ ) [Mn, Inherited] COMBINING TILDE BELOW
+0335	 ; Technical	 # according to MSR 5 ( ̵ ) [Mn, Inherited] COMBINING SHORT STROKE OVERLAY
+0338..0339 ; Technical	 # according to MSR 5 ( ̸..̹ ) [Mn.., Inherited..] COMBINING LONG SOLIDUS OVERLAY..
+
+0342	 ; Technical	 # according to MSR 5 ( ͂ ) [Mn, Greek] COMBINING GREEK PERISPOMENI
+03FC	 ; Technical	 # according to MSR 5 ( ϼ ) [Ll, Greek] GREEK RHO WITH STROKE SYMBOL
+
+0529	 ; Technical	 # according to MSR 5 ( ԩ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER EN WITH LEFT HOOK
+052F	 ; Technical	 # according to MSR 5 ( ԯ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER EL WITH DESCENDER
+
+0559	 ; Technical	 # according to MSR 5 ( ՙ ) [Lm, Armenian] ARMENIAN MODIFIER LETTER LEFT HALF RING
+
+06AC	 ; Technical	 # according to MSR 5 ( ڬ ) [Lo, Arabic] ARABIC LETTER KAF WITH DOT ABOVE
+06E5..06E6 ; Technical	 # according to MSR 5 ( ۥ..ۦ ) [Lm.., Arabic..] ARABIC SMALL WAW..
+08A1	 ; Technical	 # according to MSR 5 ( ࢡ ) [Lo, Arabic] ARABIC LETTER BEH WITH HAMZA ABOVE
+
+0653	 ; Technical	 # according to MSR 5 ( ٓ ) [Mn, Arabic|Syriac] ARABIC MADDAH ABOVE
+
+0950	 ; Technical	 # according to MSR 5 ( ॐ ) [Lo, Devanagari] DEVANAGARI OM
+097D	 ; Technical	 # according to MSR 5 ( ॽ ) [Lo, Devanagari] DEVANAGARI LETTER GLOTTAL STOP
+
+0A74	 ; Technical	 # according to MSR 5 ( ੴ ) [Lo, Gurmukhi] GURMUKHI EK ONKAR
+
+0AD0	 ; Technical	 # according to MSR 5 ( ૐ ) [Lo, Gujarati] GUJARATI OM
+
+0B82	 ; Technical	 # according to MSR 5 ( ஂ ) [Mn, Tamil] TAMIL SIGN ANUSVARA
+0BD0	 ; Technical	 # according to MSR 5 ( ௐ ) [Lo, Tamil] TAMIL OM
+
+0E2F	 ; Technical	 # according to MSR 5 ( ฯ ) [Lo, Thai] THAI CHARACTER PAIYANNOI
+
+0EAF	 ; Technical	 # according to MSR 5 ( ຯ ) [Lo, Lao] LAO ELLIPSIS
+
+0F00	 ; Technical	 # according to MSR 5 ( ༀ ) [Lo, Tibetan] TIBETAN SYLLABLE OM
+0F35	 ; Technical	 # according to MSR 5 ( ༵ ) [Mn, Tibetan] TIBETAN MARK NGAS BZUNG NYI ZLA
+0F37	 ; Technical	 # according to MSR 5 ( ༷ ) [Mn, Tibetan] TIBETAN MARK NGAS BZUNG SGOR RTAGS
+0F3E..0F3F ; Technical	 # according to MSR 5 ( ༾..༿ ) [Mc.., Tibetan..] TIBETAN SIGN YAR TSHES..
+0F7B	 ; Technical	 # according to MSR 5 ( ཻ ) [Mn, Tibetan] TIBETAN VOWEL SIGN EE
+0F7D	 ; Technical	 # according to MSR 5 ( ཽ ) [Mn, Tibetan] TIBETAN VOWEL SIGN OO
+
+3007	 ; Technical	 # according to MSR 5 ( 〇 ) [Nl, Han] IDEOGRAPHIC NUMBER ZERO
+
+3099..309A ; Technical	 # according to MSR 5 ( ゙..゚ ) [Mn.., Hiragana|Katakana..] COMBINING KATAKANA-HIRAGANA VOICED SOUND MARK..
+
+0138	 ; Obsolete	 # according to MSR 5 ( ĸ ) [Ll, Latin] LATIN SMALL LETTER KRA
+
+037B..037D ; Obsolete	 # according to MSR 5 ( ͻ..ͽ ) [Ll.., Greek..] GREEK SMALL REVERSED LUNATE SIGMA SYMBOL..
+
+049D	 ; Obsolete	 # according to MSR 5 ( ҝ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KA WITH VERTICAL STROKE
+04A7	 ; Obsolete	 # according to MSR 5 ( ҧ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER PE WITH MIDDLE HOOK
+04B9	 ; Obsolete	 # according to MSR 5 ( ҹ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER CHE WITH VERTICAL STROKE
+0501	 ; Obsolete	 # according to MSR 5 ( ԁ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KOMI DE
+0503	 ; Obsolete	 # according to MSR 5 ( ԃ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KOMI DJE
+0505	 ; Obsolete	 # according to MSR 5 ( ԅ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KOMI ZJE
+0507	 ; Obsolete	 # according to MSR 5 ( ԇ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KOMI DZJE
+0509	 ; Obsolete	 # according to MSR 5 ( ԉ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KOMI LJE
+050B	 ; Obsolete	 # according to MSR 5 ( ԋ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KOMI NJE
+050D	 ; Obsolete	 # according to MSR 5 ( ԍ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KOMI SJE
+050F	 ; Obsolete	 # according to MSR 5 ( ԏ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER KOMI TJE
+0515	 ; Obsolete	 # according to MSR 5 ( ԕ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER LHA
+0517	 ; Obsolete	 # according to MSR 5 ( ԗ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER RHA
+0519	 ; Obsolete	 # according to MSR 5 ( ԙ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER YAE
+051B	 ; Obsolete	 # according to MSR 5 ( ԛ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER QA
+051D	 ; Obsolete	 # according to MSR 5 ( ԝ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER WE
+051F	 ; Obsolete	 # according to MSR 5 ( ԟ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER ALEUT KA
+0521	 ; Obsolete	 # according to MSR 5 ( ԡ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER EL WITH MIDDLE HOOK
+0523	 ; Obsolete	 # according to MSR 5 ( ԣ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER EN WITH MIDDLE HOOK
+0527	 ; Obsolete	 # according to MSR 5 ( ԧ ) [Ll, Cyrillic] CYRILLIC SMALL LETTER SHHA WITH DESCENDER
+
+063B..063F ; Obsolete	 # according to MSR 5 ( ػ..ؿ ) [Lo.., Arabic..] ARABIC LETTER KEHEH WITH TWO DOTS ABOVE..
+077E..077F ; Obsolete	 # according to MSR 5 ( ݾ..ݿ ) [Lo.., Arabic..] ARABIC LETTER SEEN WITH INVERTED V..
+
+093D	 ; Obsolete	 # according to MSR 5 ( ऽ ) [Lo, Devanagari] DEVANAGARI SIGN AVAGRAHA
+0960..0963 ; Obsolete	 # according to MSR 5 ( ॠ..ॣ ) [Lo.., Devanagari..] DEVANAGARI LETTER VOCALIC RR..
+0971	 ; Obsolete	 # according to MSR 5 ( ॱ ) [Lm, Devanagari] DEVANAGARI SIGN HIGH SPACING DOT
+
+09BD	 ; Obsolete	 # according to MSR 5 ( ঽ ) [Lo, Bengali] BENGALI SIGN AVAGRAHA
+09E0..09E3 ; Obsolete	 # according to MSR 5 ( ৠ..ৣ ) [Lo.., Bengali..] BENGALI LETTER VOCALIC RR..
+
+0ABD	 ; Obsolete	 # according to MSR 5 ( ઽ ) [Lo, Gujarati] GUJARATI SIGN AVAGRAHA
+0AE0..0AE3 ; Obsolete	 # according to MSR 5 ( ૠ..ૣ ) [Lo.., Gujarati..] GUJARATI LETTER VOCALIC RR..
+
+0B3D	 ; Obsolete	 # according to MSR 5 ( ଽ ) [Lo, Oriya] ORIYA SIGN AVAGRAHA
+0B60..0B61 ; Obsolete	 # according to MSR 5 ( ୠ..ୡ ) [Lo.., Oriya..] ORIYA LETTER VOCALIC RR..
+
+0C3D	 ; Obsolete	 # according to MSR 5 ( ఽ ) [Lo, Telugu] TELUGU SIGN AVAGRAHA
+0C60..0C61 ; Obsolete	 # according to MSR 5 ( ౠ..ౡ ) [Lo.., Telugu..] TELUGU LETTER VOCALIC RR..
+
+0CBD	 ; Obsolete	 # according to MSR 5 ( ಽ ) [Lo, Kannada] KANNADA SIGN AVAGRAHA
+0CE0..0CE3 ; Obsolete	 # according to MSR 5 ( ೠ..ೣ ) [Lo.., Kannada..] KANNADA LETTER VOCALIC RR..
+0CF1..0CF2 ; Obsolete	 # according to MSR 5 ( ೱ..ೲ ) [Lo.., Kannada..] KANNADA SIGN JIHVAMULIYA..
+
+0D3A	 ; Obsolete	 # according to MSR 5 ( ഺ ) [Lo, Malayalam] MALAYALAM LETTER TTTA
+0D3D	 ; Obsolete	 # according to MSR 5 ( ഽ ) [Lo, Malayalam] MALAYALAM SIGN AVAGRAHA
+0D4C	 ; Obsolete	 # according to MSR 5 ( ൌ ) [Mc, Malayalam] MALAYALAM VOWEL SIGN AU
+0D4E	 ; Obsolete	 # according to MSR 5 ( ൎ ) [Lo, Malayalam] MALAYALAM LETTER DOT REPH
+0D60..0D61 ; Obsolete	 # according to MSR 5 ( ൠ..ൡ ) [Lo.., Malayalam..] MALAYALAM LETTER VOCALIC RR..
+
+0F86..0F8F ; Obsolete	 # according to MSR 5 ( ྆..ྏ ) [Mn.., Tibetan..] TIBETAN SIGN LCI RTAGS..
+
+17DC	 ; Obsolete	 # according to MSR 5 ( ៜ ) [Lo, Khmer] KHMER SIGN AVAKRAHASANYA
