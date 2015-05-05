@@ -39,8 +39,7 @@ public class TestCodeInvariants {
 
                 IndexUnicodeProperties current = IndexUnicodeProperties.make(age);
                 UnicodeMap<Script_Values> script = current.loadEnum(UcdProperty.Script, UcdPropertyValues.Script_Values.class);
-                UnicodeMap<Set<Script_Values>> scriptExtension = current.loadSet(UcdProperty.Script_Extensions, 
-                        UcdPropertyValues.Script_Values.class, UcdProperty.Script);
+                UnicodeMap<Set<Script_Values>> scriptExtension = current.loadEnumSet(UcdProperty.Script_Extensions, UcdPropertyValues.Script_Values.class);
 
                 // Now test for each explicit value.
 

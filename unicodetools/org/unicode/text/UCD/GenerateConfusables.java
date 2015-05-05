@@ -110,8 +110,7 @@ public class GenerateConfusables {
     static final UnicodeSet COMMON_OR_INHERITED_NFKD;
     static final UnicodeSet CASED_NFKD;
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
-    static final UnicodeMap<Set<Script_Values>> scriptExtensions = iup.loadSet(UcdProperty.Script_Extensions, 
-            Script_Values.class, UcdProperty.Script);
+    static final UnicodeMap<Set<Script_Values>> scriptExtensions = iup.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
     static final UnicodeSet notNFKD = iup.loadEnum(UcdProperty.NFKD_Quick_Check, NFKD_Quick_Check_Values.class).getSet(NFKD_Quick_Check_Values.No);
     static {
         UnicodeSet common = scriptExtensions.getSet(Collections.singleton(Script_Values.Common));

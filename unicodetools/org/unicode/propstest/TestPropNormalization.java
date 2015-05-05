@@ -57,7 +57,7 @@ public class TestPropNormalization extends TestFmwkPlus {
             short newCcc = pnd.getCcc(i);
             short oldCcc = Default.ucd().getCombiningClass(i);
             if (newCcc != oldCcc) {
-                System.out.println("Failed ccc\t " + Utility.hex(i) + "\t" + oldCcc + "\t" + newCcc);
+                errln("Failed ccc\t " + Utility.hex(i) + "\t" + oldCcc + "\t" + newCcc);
             }
             checkDecomp(pnd, Type.nfd, oldNfd, i);
             checkDecomp(pnd, Type.nfkd, oldNfkd, i);
@@ -74,7 +74,7 @@ public class TestPropNormalization extends TestFmwkPlus {
 //        }
     }
 
-    public static void checkDecomp(PropNormalizationData pnd, Type type,
+    public void checkDecomp(PropNormalizationData pnd, Type type,
             Normalizer oldNfd, int i) {
         String newNfd0 = pnd.normalize(UTF16.valueOf(i), type);
         boolean oldNorm = oldNfd.isNormalized(i);
@@ -86,7 +86,7 @@ public class TestPropNormalization extends TestFmwkPlus {
         }
         String oldNfd0 = oldNfd.normalize(i);
         if (!Objects.equals(oldNfd0, newNfd0)) {
-            System.out.println("Failed " + type + "\t" + Utility.hex(i) + "\t" +  Utility.hex(oldNfd0) + "\t" + Utility.hex(newNfd0));
+            errln("Failed " + type + "\t" + Utility.hex(i) + "\t" +  Utility.hex(oldNfd0) + "\t" + Utility.hex(newNfd0));
         }
     }
     

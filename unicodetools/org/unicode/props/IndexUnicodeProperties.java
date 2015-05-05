@@ -21,6 +21,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
@@ -260,6 +261,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             );
 
     public static final EnumSet<UcdProperty> PROVISIONAL_PROPERTY;
+    private static final boolean SHOW_PROGRESS = false;
 
     static {
         final EnumSet<UcdProperty> temp2 = EnumSet.allOf(UcdProperty.class);
@@ -286,20 +288,26 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     final EnumSet<UcdProperty> item2 = sets[j];
                     final String name2 = names[j];
                     if (item.containsAll(item2)) {
-                        System.out.println(name + "\tcontains\t" + name2);
+                        if (SHOW_PROGRESS) {
+                            System.out.println(name + "\tcontains\t" + name2);
+                        }
                     } else if (item2.containsAll(item)) {
-                        System.out.println(name2 + "\tcontains\t" + name);
+                        if (SHOW_PROGRESS) {
+                            System.out.println(name2 + "\tcontains\t" + name);
+                        }
                     } else {
                         temp.clear();
                         temp.addAll(item);
                         temp.retainAll(item2);
                         if (temp.size() != 0) {
-                            System.out.println(name + "\tintersects\t" + name2 + "\t" + temp);
+                            if (SHOW_PROGRESS) {
+                                System.out.println(name + "\tintersects\t" + name2 + "\t" + temp);
+                            }
                         }
                     }
                 }
             }
-            throw new IllegalArgumentException();
+            throw new UnicodePropertyException();
         }
     }
 
@@ -390,7 +398,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     enum FileType {Field, HackField, PropertyValue, List, CJKRadicals, NamedSequences, 
         NameAliases, StandardizedVariants, Confusables}
     enum SpecialProperty {None, Skip1FT, Skip1ST, SkipAny4, Rational}
-    
+
     static Map<String,ValueCardinality> toMultiValued = new HashMap();
     static {
         toMultiValued.put("N/A", ValueCardinality.Singleton);
@@ -440,7 +448,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
         public static void fromStrings(String... propertyInfo) {
             if (propertyInfo.length < 2 || propertyInfo.length > 4) {
-                throw new IllegalArgumentException("Must have 2 to 4 args: " + Arrays.asList(propertyInfo));
+                throw new UnicodePropertyException("Must have 2 to 4 args: " + Arrays.asList(propertyInfo));
             }
             String _file = propertyInfo[0];
             final String propName = propertyInfo[1];
@@ -470,7 +478,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 PropertyUtilities.putNew(property2PropertyInfo, _property, result);
                 getFile2PropertyInfoSet().put(_file, result);
             } catch (final Exception e) {
-                throw new IllegalArgumentException("Can't find property for <" + propName + ">", e);
+                throw new UnicodePropertyException("Can't find property for <" + propName + ">", e);
             }
         }
 
@@ -545,7 +553,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                             PropertyUtilities.putNew(data, codepoint, string, merger);
                         }
                     } catch (final Exception e) {
-                        throw new IllegalArgumentException(property + ":\t" + intRange.start + "..." + intRange.end + "\t" + string, e);
+                        throw new UnicodePropertyException(property + ":\t" + intRange.start + "..." + intRange.end + "\t" + string, e);
                     }
                 }
             }
@@ -577,7 +585,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     } catch (RuntimeException e) {
                         throw e;
                     } catch (Exception e) {
-                        throw new IllegalArgumentException(property.toString());
+                        throw new UnicodePropertyException(property.toString());
                     }
                 }
                 break;
@@ -745,19 +753,19 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             // have to do this painfully, since the regex may contain semicolons
             final Matcher m = SEMICOLON.matcher(line);
             if (!m.find()) {
-                throw new IllegalArgumentException("Bad semicolons in: " + line);
+                throw new UnicodePropertyException("Bad semicolons in: " + line);
             }
             final String propName = line.substring(0, m.start());
             final int propNameEnd = m.end();
             if (!m.find()) {
-                throw new IllegalArgumentException("Bad semicolons in: " + line);
+                throw new UnicodePropertyException("Bad semicolons in: " + line);
             }
             final UcdProperty prop = UcdProperty.forString(propName);
             final PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);
             final String multivalued = line.substring(propNameEnd, m.start());
             propInfo.setMultiValued(multivalued);
             if (propInfo.getMultivalued() == null) {
-                throw new IllegalArgumentException("Bad multivalued in: " + line);
+                throw new UnicodePropertyException("Bad multivalued in: " + line);
             }
             String regex = line.substring(m.end());
             propInfo.originalRegex = regex;
@@ -772,7 +780,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 propInfo.regex = hackCompile(regex);
             }
         } catch (final Exception e) {
-            throw new IllegalArgumentException(line, e);
+            throw new UnicodePropertyException(line, e);
         }
     }
 
@@ -839,10 +847,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     };
 
-    public <T extends Enum<T>> UnicodeMap<Set<T>> loadSet(UcdProperty prop2, Class enumClass) {
-        return loadSet(prop2, enumClass, prop2);
-    }
-
     // should be on UnicodeMap
     public static <T, V extends Collection<T>, U extends Map<T,UnicodeSet>> U invertSet(UnicodeMap<V> source, U target) {
         for (V valueSet : source.values()) {
@@ -875,9 +879,15 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return Collections.unmodifiableMap(target);
     }
 
+    final Map<UcdProperty, UnicodeMap> SPECIAL_CACHE = new ConcurrentHashMap<>();
+
     public UnicodeMap<Double> loadDouble(UcdProperty prop2) {
+        UnicodeMap<Double> result = SPECIAL_CACHE.get(prop2);
+        if (result != null) {
+            return result;
+        }
+        result = new UnicodeMap<>();
         UnicodeMap<String> m = load(prop2);
-        UnicodeMap<Double> result = new UnicodeMap<>();
         // TODO cache
         for (String value : m.values()) {
             double convertedValue;
@@ -890,39 +900,105 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             UnicodeSet uset = m.getSet(value);
             result.putAll(uset, convertedValue);
         }
-        return result.freeze();
+        SPECIAL_CACHE.put(prop2, result.freeze());
+        return result;
     }
 
     public <T extends Enum<T>> UnicodeMap<T> loadEnum(UcdProperty prop2, Class<T> classIn) {
+        UnicodeMap<T> result = SPECIAL_CACHE.get(prop2);
+        if (result != null) {
+            return result;
+        }
+        result = new UnicodeMap<>();
+        if (classIn != prop2.getEnumClass()) {
+            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+                    + prop2.getEnumClass());
+        }
         UnicodeMap<String> m = load(prop2);
-        UnicodeMap<T> result = new UnicodeMap<>();
         // TODO cache
         for (String value : m.values()) {
             T enumv = (T) prop2.getEnum(value);
             UnicodeSet uset = m.getSet(value);
             result.putAll(uset, enumv);
         }
-        return result.freeze();
+        SPECIAL_CACHE.put(prop2, result.freeze());
+        return result;
     }
-    
+
     static final Splitter SET_SPLITTER = Splitter.on(SET_SEPARATOR);
-    
-    public <T extends Enum<T>> UnicodeMap<Set<T>> loadSet(UcdProperty prop2, Class enumClass, UcdProperty prop3) {
+
+    public <T extends Enum<T>> UnicodeMap<Set<T>> loadEnumSet(UcdProperty prop2, Class enumClass) {
+        UnicodeMap<Set<T>> result = SPECIAL_CACHE.get(prop2);
+        if (result != null) {
+            return result;
+        }
+        result = new UnicodeMap<>();
+        if (enumClass != prop2.getEnumClass() 
+                || prop2.getCardinality() != ValueCardinality.Unordered) {
+            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+                    + prop2.getEnumClass() 
+                    + ", " + prop2.getCardinality());
+        }
         UnicodeMap<String> m = load(prop2);
-        UnicodeMap<Set<T>> result = new UnicodeMap<>();
+        if (enumClass != prop2.getEnumClass()) {
+            throw new UnicodePropertyException("Mismatch in class enum,  expected " + prop2.getEnumClass());
+        }
         // TODO cache
         for (String value : m.values()) {
             Set<T> convertedValue = EnumSet.noneOf(enumClass);
             for (String s : SET_SPLITTER.split(value)) {
-                T enumv = (T) prop3.getEnum(s);
+                T enumv = (T) prop2.getEnum(s);
                 //System.out.println(s + " => " + enumv);
                 convertedValue.add(enumv);
             }
             UnicodeSet uset = m.getSet(value);
             result.putAll(uset, Collections.unmodifiableSet(convertedValue));
         }
-        return result.freeze();
+        SPECIAL_CACHE.put(prop2, result.freeze());
+        return result;
     }
+
+    public UnicodeMap<Set<String>> loadSet(UcdProperty prop2) {
+        UnicodeMap<Set<String>> result = SPECIAL_CACHE.get(prop2);
+        if (result != null) {
+            return result;
+        }
+        result = new UnicodeMap<>();
+        if (prop2.getCardinality() != ValueCardinality.Unordered) {
+            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+                    + prop2.getCardinality());
+        }
+        UnicodeMap<String> m = load(prop2);
+        // TODO cache
+        for (String value : m.values()) {
+            Set<String> convertedValue = new LinkedHashSet<>(SET_SPLITTER.splitToList(value));
+            UnicodeSet uset = m.getSet(value);
+            result.putAll(uset, Collections.unmodifiableSet(convertedValue));
+        }
+        SPECIAL_CACHE.put(prop2, result.freeze());
+        return result;
+    }
+
+    public UnicodeMap<List<String>> loadList(UcdProperty prop2) {
+        UnicodeMap<List<String>> result = SPECIAL_CACHE.get(prop2);
+        if (result != null) {
+            return result;
+        }
+        result = new UnicodeMap<>();
+        if (prop2.getCardinality() != ValueCardinality.Ordered) {
+            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+                    + prop2.getCardinality());
+        }
+        UnicodeMap<String> m = load(prop2);
+        // TODO cache
+        for (String value : m.values()) {
+            UnicodeSet uset = m.getSet(value);
+            result.putAll(uset, Collections.unmodifiableList(SET_SPLITTER.splitToList(value)));
+        }
+        SPECIAL_CACHE.put(prop2, result.freeze());
+        return result;
+    }
+
 
     public UnicodeMap<String> load(UcdProperty prop2) {
         UnicodeMap<String> data0 = property2UnicodeMap.get(prop2);
@@ -981,9 +1057,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
             for (String line : FileUtilities.in("", fullFilename)) {
                 ++lineCount;
-//                if (prop2 == UcdProperty.Script) {
-//                    System.out.println(line);
-//                }
+                //                if (prop2 == UcdProperty.Script) {
+                //                    System.out.println(line);
+                //                }
                 if (line.contains("10530")) {
                     final int y = 3;
                 }
@@ -1042,7 +1118,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     final PropertyParsingInfo propInfo = property2PropertyInfo.get(UcdProperty.forString(parts[1]));
                     final UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
                     //                    if (!propInfoSet.contains(propInfo)) {
-                    //                        throw new IllegalArgumentException("Property not listed for file: " + propInfo);
+                    //                        throw new UnicodePropertyException("Property not listed for file: " + propInfo);
                     //                    }
                     switch(propInfo.property.getType()) {
                     case Binary:
@@ -1061,7 +1137,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 case Confusables: {
                     final PropertyParsingInfo propInfo = property2PropertyInfo.get(UcdProperty.forString("Confusable_" + parts[2]));
                     if (!propInfoSet.contains(propInfo)) {
-                        throw new IllegalArgumentException("Property not listed for file: " + propInfo);
+                        throw new UnicodePropertyException("Property not listed for file: " + propInfo);
                     }
                     final UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
                     propInfo.put(data, intRange, parts[1]);
@@ -1127,7 +1203,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                                 continue;
                             }
                             break;
-                        default: throw new IllegalArgumentException();
+                        default: throw new UnicodePropertyException();
                         }
                         if (fileType == FileType.HackField 
                                 && propInfo.fieldNumber == 5 
@@ -1142,7 +1218,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
                 case List: {
                     if (propInfoSet.size() != 1) {
-                        throw new IllegalArgumentException("List files must have only one property, and must be Boolean");
+                        throw new UnicodePropertyException("List files must have only one property, and must be Boolean");
                     }
                     final PropertyParsingInfo propInfo = propInfoSet.iterator().next();
                     final UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
@@ -1150,12 +1226,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     propInfo.put(data, intRange, "Yes");
                     break;
                 }
-                default: throw new IllegalArgumentException();
+                default: throw new UnicodePropertyException();
                 }
             }
-//            if (property2UnicodeMap.get(UcdProperty.Script).values().contains("Hatran")) {
-//                int x = 1;
-//            }
+            //            if (property2UnicodeMap.get(UcdProperty.Script).values().contains("Hatran")) {
+            //                int x = 1;
+            //            }
             if (SHOW_LOADED) {
                 System.out.println("Version\t" + getUcdVersion() + "\tLoaded: " + fileInfo.file + "\tlines: " + lineCount + (containsEOF ? "" : "\t*NO '# EOF'"));
             }
@@ -1189,7 +1265,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 // requires special handling later
                 break;
             default:
-                throw new IllegalArgumentException(); // unexpected error
+                throw new UnicodePropertyException(); // unexpected error
             }
             data.freeze();
             if (FILE_CACHE) {
@@ -1223,12 +1299,12 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             fos.close();
             cacheFileSize.put(prop2, new File(cacheFileName).length());
         } catch (final IOException e) {
-            throw new IllegalArgumentException(e);
+            throw new UnicodePropertyException(e);
         }
         // for verification
         final UnicodeMap<String> dup = getCachedMap(prop2, null);
         if (!data.equals(dup)) {
-            throw new IllegalArgumentException("Failed storage");
+            throw new UnicodePropertyException("Failed storage");
         }
     }
 
@@ -1273,7 +1349,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             cacheFileSize.put(prop2, cacheFile.length());
             return newItem.freeze();
         } catch (final IOException e) {
-            throw new IllegalArgumentException(e);
+            throw new UnicodePropertyException(e);
         }
     }
 
@@ -1291,7 +1367,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         final Matcher missingMatcher = MISSING_PATTERN.matcher(missing);
         if (!missingMatcher.matches()) {
             System.err.println(RegexUtilities.showMismatch(MISSING_PATTERN, missing));
-            throw new IllegalArgumentException("Bad @missing statement: " + missing);
+            throw new UnicodePropertyException("Bad @missing statement: " + missing);
         }
         final boolean isEmpty = missingMatcher.group(1).equals("empty");
         final int start = Integer.parseInt(missingMatcher.group(2),16);
@@ -1534,11 +1610,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             return result;
         }
-//        @Override
-//        public boolean hasUniformUnassigned() {
-//            //throw new UnsupportedOperationException();
-//            return false;
-//        }
+        //        @Override
+        //        public boolean hasUniformUnassigned() {
+        //            //throw new UnsupportedOperationException();
+        //            return false;
+        //        }
     }
 
     {

@@ -9,12 +9,14 @@ public class TestAll extends TestFmwk.TestGroup {
 
     public TestAll() {
         super(new String[] {
-            "TestProperties",
-            "TestPropNormalization", 
-            "TestScriptInfo.java", 
-            "TestScriptMetadata", 
-            "TestXUnicodeSet.java", 
-            "UnicodeRelationTest",
+                //"TestNames",
+                "TestProperties",
+                "TestPropertyAccess",
+                "TestPropNormalization",
+                "TestScriptInfo",
+                "TestScriptMetadata",
+                "TestXUnicodeSet",
+                "UnicodeRelationTest",
         });
     }
 

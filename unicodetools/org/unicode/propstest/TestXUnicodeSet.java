@@ -16,7 +16,7 @@ public class TestXUnicodeSet extends TestFmwkPlus{
         name = foo.getProperty("name");
         age = foo.getProperty("age");
         for (String prop : foo.getAvailableNames()) {
-            System.out.println(prop);
+            //System.out.println(prop);
             UnicodeProperty property = foo.getProperty(prop);
         }
     }

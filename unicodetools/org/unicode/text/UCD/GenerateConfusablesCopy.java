@@ -99,8 +99,7 @@ public class GenerateConfusablesCopy {
     static final UnicodeSet COMMON_OR_INHERITED_NFKD;
     static final UnicodeSet CASED_NFKD;
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
-    static final UnicodeMap<Set<Script_Values>> scriptExtensions = iup.loadSet(UcdProperty.Script_Extensions, 
-            Script_Values.class, UcdProperty.Script);
+    static final UnicodeMap<Set<Script_Values>> scriptExtensions = iup.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
     static {
         UnicodeSet common = scriptExtensions.getSet(Collections.singleton(Script_Values.Common));
         UnicodeSet inherited = scriptExtensions.getSet(Collections.singleton(Script_Values.Inherited));

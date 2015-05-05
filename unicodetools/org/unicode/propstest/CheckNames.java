@@ -18,7 +18,7 @@ import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestNames {
+public class CheckNames {
     static final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static final UnicodeMap<String> names = latest.load(UcdProperty.Name);
     static final UnicodeMap<String> nameAliases = latest.load(UcdProperty.Name_Alias);

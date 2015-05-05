@@ -30,7 +30,7 @@ public class PropertyUtilities {
     static final <K, V, M extends Map<K,V>> M putNew(M map, K key, V value) {
         final V oldValue = map.get(key);
         if (oldValue != null) {
-            throw new IllegalArgumentException("Key already present in Map: " + key + ",\told: " + oldValue + ",\tnew: " + value);
+            throw new UnicodePropertyException("Key already present in Map: " + key + ",\told: " + oldValue + ",\tnew: " + value);
         }
         map.put(key, value);
         return map;
@@ -40,7 +40,7 @@ public class PropertyUtilities {
         final V oldValue = map.get(key);
         if (oldValue != null) {
             if (merger == null) {
-                throw new IllegalArgumentException("Key already present in UnicodeMap: " + Utility.hex(key) + ",\told: " + oldValue + ",\tnew: " + value);
+                throw new UnicodePropertyException("Key already present in UnicodeMap: " + Utility.hex(key) + ",\told: " + oldValue + ",\tnew: " + value);
             }
             value = merger.merge(oldValue, value);
         }
@@ -52,7 +52,7 @@ public class PropertyUtilities {
         final V oldValue = map.get(key);
         if (oldValue != null) {
             if (merger == null) {
-                throw new IllegalArgumentException("Key already present in UnicodeMap: " + Utility.hex(key) + ",\told: " + oldValue + ",\tnew: " + value);
+                throw new UnicodePropertyException("Key already present in UnicodeMap: " + Utility.hex(key) + ",\told: " + oldValue + ",\tnew: " + value);
             }
             value = merger.merge(oldValue, value);
         }
@@ -62,7 +62,7 @@ public class PropertyUtilities {
 
     static final <V, C extends Collection<V>> C addNew(C collection, V value) {
         if (collection.contains(value)) {
-            throw new IllegalArgumentException("Value already present in Collection: " + value);
+            throw new UnicodePropertyException("Value already present in Collection: " + value);
         }
         collection.add(value);
         return collection;
