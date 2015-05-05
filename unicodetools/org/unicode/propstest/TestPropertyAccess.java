@@ -42,6 +42,9 @@ public class TestPropertyAccess extends TestFmwkPlus {
                         case Enumerated:
                             switch (cardinality) {
                             case Singleton: {
+                                if (prop == UcdProperty.Canonical_Combining_Class) {
+                                    logln(prop + "\t" + show(iup.loadInt(prop)));
+                                }
                                 logln(prop + "\t" + show(iup.loadEnum(prop, prop.getEnumClass())));
                                 break;
                             }
