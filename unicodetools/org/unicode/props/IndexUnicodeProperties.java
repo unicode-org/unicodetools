@@ -880,27 +880,42 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     final Map<UcdProperty, UnicodeMap> SPECIAL_CACHE = new ConcurrentHashMap<>();
+    final Map<UcdProperty, UnicodeMap<Integer>> INT_CACHE = new ConcurrentHashMap<>();
+    final Map<UcdProperty, UnicodeMap<Double>> DOUBLE_CACHE = new ConcurrentHashMap<>();
 
     public UnicodeMap<Double> loadDouble(UcdProperty prop2) {
-        UnicodeMap<Double> result = SPECIAL_CACHE.get(prop2);
-        if (result != null) {
-            return result;
-        }
-        result = new UnicodeMap<>();
-        UnicodeMap<String> m = load(prop2);
-        // TODO cache
-        for (String value : m.values()) {
-            double convertedValue;
-            int pos = value.indexOf('/');
-            if (pos >= 0) {
-                convertedValue = Integer.parseInt(value.substring(0,pos)) / (double)Integer.parseInt(value.substring(pos+1));
-            } else {
-                convertedValue = Double.parseDouble(value);
+        UnicodeMap<Double> result = DOUBLE_CACHE.get(prop2);
+        if (result == null) {
+            result = new UnicodeMap<>();
+            UnicodeMap<String> m = load(prop2);
+            for (String value : m.values()) {
+                double convertedValue;
+                int pos = value.indexOf('/');
+                if (pos >= 0) {
+                    convertedValue = Integer.parseInt(value.substring(0,pos)) / (double)Integer.parseInt(value.substring(pos+1));
+                } else {
+                    convertedValue = Double.parseDouble(value);
+                }
+                UnicodeSet uset = m.getSet(value);
+                result.putAll(uset, convertedValue);
             }
-            UnicodeSet uset = m.getSet(value);
-            result.putAll(uset, convertedValue);
+            DOUBLE_CACHE.put(prop2, result.freeze());
         }
-        SPECIAL_CACHE.put(prop2, result.freeze());
+        return result;
+    }
+
+    public UnicodeMap<Integer> loadInt(UcdProperty prop2) {
+        UnicodeMap<Integer> result = INT_CACHE.get(prop2);
+        if (result == null) {
+            UnicodeMap<String> m = load(prop2);
+            result = new UnicodeMap<>();
+            for (String value : m.values()) {
+                UnicodeSet uset = m.getSet(value);
+                String shortValue = ((Named) prop2.getEnum(value)).getNames().getShortName();
+                result.putAll(uset, Integer.parseInt(shortValue));
+            }
+            INT_CACHE.put(prop2, result.freeze());
+        }
         return result;
     }
 
@@ -915,7 +930,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     + prop2.getEnumClass());
         }
         UnicodeMap<String> m = load(prop2);
-        // TODO cache
         for (String value : m.values()) {
             T enumv = (T) prop2.getEnum(value);
             UnicodeSet uset = m.getSet(value);
@@ -932,18 +946,17 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         if (result != null) {
             return result;
         }
-        result = new UnicodeMap<>();
         if (enumClass != prop2.getEnumClass() 
                 || prop2.getCardinality() != ValueCardinality.Unordered) {
             throw new UnicodePropertyException("Mismatch in class data,  expected " 
                     + prop2.getEnumClass() 
                     + ", " + prop2.getCardinality());
         }
-        UnicodeMap<String> m = load(prop2);
         if (enumClass != prop2.getEnumClass()) {
             throw new UnicodePropertyException("Mismatch in class enum,  expected " + prop2.getEnumClass());
         }
-        // TODO cache
+        result = new UnicodeMap<>();
+        UnicodeMap<String> m = load(prop2);
         for (String value : m.values()) {
             Set<T> convertedValue = EnumSet.noneOf(enumClass);
             for (String s : SET_SPLITTER.split(value)) {
