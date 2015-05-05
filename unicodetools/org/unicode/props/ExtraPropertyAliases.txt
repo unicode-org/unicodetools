@@ -65,6 +65,7 @@ cjkGB7 ; kGB7
 cjkGB8 ; kGB8
 cjkHKSCS ; kHKSCS
 cjkIBMJapan ; kIBMJapan
+cjkJa ; kJa
 cjkJis0 ; kJis0
 cjkJis1 ; kJis1
 cjkJIS0213 ; kJIS0213
@@ -107,5 +108,3 @@ ConfSL ; Confusable_SL
 ConfSA ; Confusable_SA
 ConfML ; Confusable_ML
 ConfMA ; Confusable_MA ; Confusable
-
-eLabel ; Emoji_Label

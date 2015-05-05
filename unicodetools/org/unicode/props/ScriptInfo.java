@@ -88,7 +88,7 @@ public class ScriptInfo {
             IndexUnicodeProperties iup = IndexUnicodeProperties.make(version);
             generalCategory = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
             numericValue = iup.loadDouble(UcdProperty.Numeric_Value);
-            scriptExtensions = iup.loadSet(UcdProperty.Script_Extensions, Script_Values.class, UcdProperty.Script);
+            scriptExtensions = iup.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
             scriptExtensionsFlattened = IndexUnicodeProperties.freeze(
                     IndexUnicodeProperties.invertSet(scriptExtensions, new EnumMap<Script_Values, UnicodeSet>(Script_Values.class)));
             //            script = iup.loadEnum(UcdProperty.Script);
@@ -176,7 +176,7 @@ public class ScriptInfo {
         explicitScripts.remove(Script_Values.Common);
         explicitScripts.remove(Script_Values.Inherited);
         if (explicitScripts.contains(Script_Values.Unknown)) {
-            throw new IllegalArgumentException();
+            throw new UnicodePropertyException();
         }
         // Note that the above code doesn't minimize alternatives. That is, it does not collapse
         // [[Arab Syrc Thaa]; [Arab Syrc]] to [[Arab Syrc]]

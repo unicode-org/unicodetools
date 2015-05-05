@@ -106,9 +106,9 @@ idtype	; h		; historic
 idtype	; inc	; inclusion				
 idtype	; rec	; recommended	
 
-# @-missing: 0000..10FFFF; Confusable_SL    	; <code point>
-# @-missing: 0000..10FFFF; Confusable_SA    	; <code point>
-# @-missing: 0000..10FFFF; Confusable_ML    	; <code point>
+# @-missing: 0000..10FFFF; Confusable_SL    	; <code point>		
+# @-missing: 0000..10FFFF; Confusable_SA    	; <code point>		
+# @-missing: 0000..10FFFF; Confusable_ML    	; <code point>		
 # @-missing: 0000..10FFFF; Confusable_MA    	; <code point>		
 
 # @-missing: 0000..10FFFF; Emoji_Default_Style  	; text

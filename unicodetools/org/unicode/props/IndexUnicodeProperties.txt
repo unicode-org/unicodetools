@@ -239,6 +239,7 @@ Unihan_OtherMappings ;  kGB7
 Unihan_OtherMappings ;  kGB8
 Unihan_OtherMappings ;  kHKSCS
 Unihan_OtherMappings ;  kIBMJapan
+Unihan_OtherMappings ;  kJa
 Unihan_OtherMappings ;  kJis0
 Unihan_OtherMappings ;  kJis1
 Unihan_OtherMappings ;  kJIS0213

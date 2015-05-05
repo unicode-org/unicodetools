@@ -39,7 +39,9 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             Canonical_Combining_Class_Values vv = Canonical_Combining_Class_Values.valueOf(v);
             canonical.put(cp, Short.valueOf(vv.getNames().getShortName()));
         }
-        System.out.println("Nulls: " + nullValues);
+        if (SHOW_PROGRESS) {
+            System.out.println("Nulls: " + nullValues);
+        }
         canonical.freeze();
         
         UnicodeProperty dtp = properties.getProperty("dt");

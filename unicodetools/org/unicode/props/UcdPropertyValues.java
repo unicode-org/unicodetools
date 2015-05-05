@@ -540,7 +540,6 @@ public class UcdPropertyValues {
     }
 
 		// Emoji_KDDI
-		// Emoji_Label
 	public enum Emoji_Level_Values implements Named {
         Level1("L1"),
         Level2("L2"),
@@ -559,8 +558,8 @@ public class UcdPropertyValues {
 
 	public enum Emoji_Modifier_Status_Values implements Named {
         Modifier("m"),
-        Primary("p"),
-        Secondary("s"),
+        Primary("p", "minimal"),
+        Secondary("s", "optional"),
         NA("na");
         private final PropertyNames<Emoji_Modifier_Status_Values> names;
         private Emoji_Modifier_Status_Values (String shortName, String...otherNames) {
@@ -1410,6 +1409,7 @@ public class UcdPropertyValues {
 		// kIRG_USource
 		// kIRG_VSource
 		// kJIS0213
+		// kJa
 		// kJapaneseKun
 		// kJapaneseOn
 		// kJis0
