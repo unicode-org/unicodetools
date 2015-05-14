@@ -36,7 +36,7 @@ public class Emoji {
                     + "🏔-🏷🐀-📾🔀-🔿🕊🕐-🕱🕳-🕹🖁-🖣🖥-🖩🖮-🗳🗺-🙂🙅-🙏🚀-🛏🛠-🛬🛰-🛳"
                     + "{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]")
     .addAll(Unicode8Emoji)
-    .removeAll(new UnicodeSet("[☫☬🎕⚘⸙]"))
+    .removeAll(new UnicodeSet("[☫☬🎕⚘⸙⎈]"))
     .removeAll(new UnicodeSet("[℗⏴-⏷●◪☙☤☼-☾♩-♯♾⚐⚑⚕⚚ ⚿⛆⛍⛐⛒⛕-⛙⛛⛜⛞-⛡⛨⛼⛾-✀✆✇✑ ❢❦❧🌢🌣🎔🎘🎜🎝🏱🏲🏶📾🔾🔿🕨-🕮🕱🖁-🖆 🖈🖉🖎🖏🖒-🖔🖗-🖣🖦🖧🖩🖮-🖰🖳-🖻🖽-🗁 🗅-🗐🗔-🗛🗟🗠🗤-🗮🗰-🗲🛆-🛈🛦-🛨🛪 🛱🛲]"))
     .removeAll(new UnicodeSet("[🛉 🛊 🖑🗢☏☐☒☚-☜☞☟♲⛇✁✃✄✎✐✕✗✘  ♤  ♡  ♢ ♧❥🆏 ☻ ⛝ 0  1  2  3  4 5  6  7  8  9]"))
     // .freeze() will freeze later
@@ -196,9 +196,10 @@ public class Emoji {
         }
     };
 
-    public static final String OUTPUT_DIR = Settings.UNICODE_DRAFT_PUBLIC+ "emoji/1.0/";
+    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts/";
+    public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/1.0/";
 
-    static final String TR51_OUTPUT_DIR = "/Users/markdavis/workspace/unicode-draft/reports/tr51/";
+    static final String TR51_OUTPUT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
     static final String IMAGES_OUTPUT_DIR = TR51_OUTPUT_DIR + "images/";
 
     public static void main(String[] args) {

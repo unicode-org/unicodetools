@@ -389,7 +389,7 @@ public class GenerateEmoji {
         public Data(String chars, String code, String age,
                 String defaultPresentation, String name) {
             this.chars = chars;
-            if (chars.contains(Emoji.EMOJI_VARIANT_STRING) || chars.equals(Emoji.TEXT_VARIANT_STRING)) {
+            if (chars.contains(Emoji.EMOJI_VARIANT_STRING) || chars.contains(Emoji.TEXT_VARIANT_STRING)) {
                 throw new IllegalArgumentException();
             }
             this.code = code;
@@ -623,9 +623,9 @@ public class GenerateEmoji {
                     + " ;\t" + defaultPresentation
                     + extraString
                     + " ;\t" + getSources(new StringBuilder(), false)
-                    + " ;\t" + getVersion()
-                    + "\t# (" + chars
-                    + ") " + getName(chars, true);
+                    + "\t# " + getVersion()
+                    + " (" + chars
+                    + ") " + getName(chars, false);
             //            Set<String> annotations = new LinkedHashSet<>(ifNull(GenerateEmoji.ANNOTATIONS_TO_CHARS.getKeys(chars), Collections.EMPTY_SET));
             //            annotations.removeAll(SUPPRESS_ANNOTATIONS);
             // if (annotations != null) {
@@ -861,7 +861,7 @@ public class GenerateEmoji {
         }
 
         public void write() throws IOException {
-            PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR,
+            PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR,
                     "missing-emoji-list.html");
             UnicodeSet jc = new UnicodeSet()
             .addAll(totalData.get(Source.sb))
@@ -1154,7 +1154,7 @@ public class GenerateEmoji {
         showVersionsOnly();
         showDefaultStyle();
         //showSubhead();
-        showAnnotations(Emoji.OUTPUT_DIR, "emoji-annotations.html", Emoji.EMOJI_CHARS, null, false);
+        showAnnotations(Emoji.CHARTS_DIR, "emoji-annotations.html", Emoji.EMOJI_CHARS, null, false);
         showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-flags.html", Emoji.FLAGS, GROUP_ANNOTATIONS, true);
         showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-groups.html", Emoji.EMOJI_CHARS, GROUP_ANNOTATIONS, false);
         showAnnotationsBySize(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-size.html", Emoji.EMOJI_CHARS_WITHOUT_FLAGS);
@@ -1270,8 +1270,8 @@ public class GenerateEmoji {
                     + new UnicodeSet(DEFAULT_TEXT_STYLE).removeAll(defaultText));
         }
         defaultText.freeze();
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "text-style.html");
-        PrintWriter out2 = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "text-vs.txt");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "text-style.html");
+        PrintWriter out2 = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "text-vs.txt");
         writeHeader(out, "Text vs Emoji", "Default style (text vs emoji) by version. The 'Dings' include Dingbats, Webdings, and Wingdings.");
         out.println("<tr><th>Version</th>"
                 + "<th width='25%'>Default Text Style; no VS</th>"
@@ -1402,7 +1402,8 @@ public class GenerateEmoji {
             }
             String s = fileName;
             String original = s;
-            if (s.startsWith(".") || !s.endsWith(".png") || s.contains("emoji-palette")) {
+            if (s.startsWith(".") || !s.endsWith(".png") || s.contains("emoji-palette") 
+                    || s.contains("_200d")) { // ZWJ from new combos
                 continue;
             }
             String chars = Emoji.parseFileName(true, s);
@@ -1472,7 +1473,7 @@ public class GenerateEmoji {
     }
 
     private static void showLabels() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-labels.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-labels.html");
         writeHeader(out, "Emoji Labels", "Main categories for character picking. " +
                 "Characters may occur more than once. " +
                 "Categories could be grouped in the UI.");
@@ -1490,7 +1491,7 @@ public class GenerateEmoji {
     }
 
     private static void showOrdering(Style style) throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR,
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR,
                 (style == Style.bestImage ? "" : "ref-") + "emoji-ordering.html");
         writeHeader(out, "Emoji Ordering",
                 "Proposed default ordering, designed to improve on the <a href='http://www.unicode.org/charts/collation/'>UCA</a> " +
@@ -1527,7 +1528,7 @@ public class GenerateEmoji {
     }
 
     private static void showDefaultStyle() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-style.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-style.html");
         writeHeader(out, "Emoji Default Style Values", "Default Style Values for display.");
         for (Entry<Style, Set<String>> entry : STYLE_TO_CHARS.keyValuesSet()) {
             Style label = entry.getKey();
@@ -1629,7 +1630,7 @@ public class GenerateEmoji {
     }
 
     private static void showVersions() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-versions-sources.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions-sources.html");
         writeHeader(out, "Emoji Versions & Sources", "Versions and sources for Emoji.");
         UnicodeMap<VersionData> m = new UnicodeMap<>();
         TreeSet<VersionData> sorted = getSortedVersionInfo(m);
@@ -1652,7 +1653,7 @@ public class GenerateEmoji {
     }
 
     private static void showVersionsOnly() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-versions.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions.html");
         writeHeader(out, "Emoji Versions", "Versions for Emoji.");
         UnicodeMap<Age_Values> m = new UnicodeMap<>();
         for (String s : Emoji.EMOJI_CHARS) {
@@ -1685,7 +1686,7 @@ public class GenerateEmoji {
             }
             uset.add(s);
         }
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-subhead.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-subhead.html");
         writeHeader(out, "Emoji Subhead", "Unicode Subhead mapping.");
         for (Entry<String, UnicodeSet> entry : subheadToChars.entrySet()) {
             String label = entry.getKey();
@@ -1881,7 +1882,7 @@ public class GenerateEmoji {
             addSet(labelToUnicodeSet, "Symbol-Other", otherSymbols);
         }
 
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "other-labels.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "other-labels.html");
         writeHeader(out, "Other Labels", "Draft categories for other Symbols and Punctuation.");
 
         for (Entry<String, UnicodeSet> entry : labelToUnicodeSet.entrySet()) {
@@ -2103,7 +2104,7 @@ public class GenerateEmoji {
     }
 
     public static <T> void print(Form form, Map<String, Data> set, Stats stats) throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR,
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR,
                 form.filePrefix + "emoji-list.html");
         PrintWriter outText = null;
         PrintWriter outText2 = null;
@@ -2128,10 +2129,9 @@ public class GenerateEmoji {
         PrintWriter outText2 = null;
         int order = 0;
         UnicodeSet level1 = null;
-        //outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-data-old.txt");
-        outText2 = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-data.txt");
-        String format = "# Code ; Default Style ; Sources ; Version # (Character) Name\n";
-        //outText.println(dataHeader("", "", ""));
+        outText2 = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-data.txt");
+        // String format = "# Code ; Default Style ; Sources ; Version # (Character) Name\n";
+        // outText.println(dataHeader("", "", ""));
         outText2.println(dataHeader());
         //        level1 = new UnicodeSet()
         //        .addAll(stats.totalData.get(Source.apple))
@@ -2140,7 +2140,9 @@ public class GenerateEmoji {
         //        .retainAll(stats.totalData.get(Source.twitter))
         //        .freeze();
         level1 = new UnicodeSet(LEVEL1);
-        for (Data data : new TreeSet<Data>(set.values())) {
+        for (String cp : Emoji.EMOJI_CHARS) {
+            Data data = Data.STRING_TO_DATA.get(cp);
+            //final TreeSet<Data> sorted = new TreeSet<Data>(set.values());
             //outText.println(data.toSemiString(order++, null));
             outText2.println(data.toSemiString(order++, level1));
         }
@@ -2152,7 +2154,7 @@ public class GenerateEmoji {
         return "# DRAFT emoji-data.txt\n" 
                 + "# For details about the format and other information, see " + DOC_DATA_FILES + ".\n" 
                 + "#\n" 
-                + "# Format: Code ; Default_Emoji_Style ; Emoji_Level ; Emoji_Modifier_Status ; Emoji_Sources ; Version # (Character) Name\n" 
+                + "# Format: Code ; Default_Emoji_Style ; Emoji_Level ; Emoji_Modifier_Status ; Emoji_Sources # Comment\n" 
                 + "#\n"
                 + "#   Field 1 — Default_Emoji_Style:\n"
                 + "#             text:      default text presentation\n"
@@ -2166,12 +2168,16 @@ public class GenerateEmoji {
                 + "#             primary:   a primary emoji modifier base\n"
                 + "#             secondary: a secondary emoji modifier base\n"
                 + "#             none:      not applicable\n"
-                + "#   Field 4 — Emoji_Sources (Informative):\n"
+                + "#   Field 4 — Emoji_Sources:\n"
                 + "#             one or more values from {z, a, j, w, x}\n"
                 + "#             see the key in http://www.unicode.org/draft/reports/tr51/tr51.html#Major_Sources\n"
                 + "#             NA:        not applicable\n"
-                + "#   Field 5 — Version (Informative):\n"
-                + "#             version the character was first encoded, from DerivedAge\n#";
+                + "#   Comment — currently contains the version where the character was first encoded,\n"
+                + "#             followed by:\n"
+                + "#             - a character name in uppercase (for a single character),\n"
+                + "#             - a keycap name,\n"
+                + "#             - an associated flag, where is associated with value unicode region code\n"
+                + "#";
     }
 
     static final String FOOTER = "</table>" + Utility.repeat("<br>", 60) + "</body></html>";
@@ -2194,16 +2200,14 @@ public class GenerateEmoji {
                 + "<h1>Draft " + title + "</h1>\n"
                 + "<p>" + firstLine +
                 " For details about the format and other information, see " +
-                "<a target='text' href='" +
-                DOC_DATA_FILES +
-                "'>Unicode Emoji</a>.</p>\n"
+                "<a target='text' href='index.html'>Emoji Chart Index</a>.</p>\n"
                 + "<table border='1'>");
     }
 
     static boolean CHECKFACE = false;
 
     static void oldAnnotationDiff() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-diff.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-diff.html");
         writeHeader(out, "Diff List", "Differences from other categories.");
 
         UnicodeSet AnimalPlantFood = new UnicodeSet("[☕ 🌰-🌵 🌷-🍼 🎂 🐀-🐾]");
@@ -2378,7 +2382,7 @@ public class GenerateEmoji {
             }
         }
         try (
-                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-ordering.txt")) {
+                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-ordering.txt")) {
             outText.append("<!-- DRAFT emoji-ordering.txt\n"
                     + "\tFor details about the format and other information, see " + DOC_DATA_FILES + ".\n"
                     + "\thttp://unicode.org/cldr/trac/ticket/7270 -->\n"
@@ -2468,7 +2472,7 @@ public class GenerateEmoji {
 
     private static void printAnnotations() throws IOException {
         try (
-                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR, "emoji-annotations.xml")) {
+                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-annotations.xml")) {
             outText.append(ANNOTATION_HEADER
                     + "\t\t<language type='en'/>\n"
                     + "\t</identity>\n"
