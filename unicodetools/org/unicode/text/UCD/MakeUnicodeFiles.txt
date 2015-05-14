@@ -1,5 +1,5 @@
-Generate: WordBreak
-DeltaVersion: 19
+Generate: .
+DeltaVersion: 20
 CopyrightYear: 2015
 
 File: extra/ScriptNfkc
