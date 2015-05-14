@@ -8,6 +8,7 @@ import java.util.Locale;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
@@ -46,7 +47,8 @@ public class CarrierGlyphs {
         carrier.addAll(Emoji_KDDI.keySet());
         carrier.addAll(Emoji_DCM.keySet());
         carrier.addAll(Emoji_SB.keySet());
-        PrintWriter out = BagFormatter.openUTF8Writer("/Users/markdavis/workspace/unicode-draft/reports/tr51/", "carrier-emoji.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Settings.SVN_WORKSPACE_DIRECTORY
+                + "/reports/tr51/", "carrier-emoji.html");
         out.println("<html>\n" +
                 "<head>\n" +
                 "<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>\n" +
@@ -95,7 +97,7 @@ public class CarrierGlyphs {
         if (code == null) {
             return "";
         }
-        final String dir = "/Users/markdavis/workspace/unicode-draft/reports/tr51/";
+        final String dir = Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/";
         final String filename = "images/"
                 + type
                 + "/" 

@@ -243,7 +243,7 @@ public class LoadImage extends Component {
         int i = 1;
         String newDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/AppleEmoji/";
         final int maxNew = 846;
-        String oldDir = "/Users/markdavis/workspace/unicode-draft/reports/tr51/images/apple/";
+        String oldDir = Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/images/apple/";
         PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images", "checkApple.html");
         out.println("<html><body><table>");
         for (String s : codepointOrder) {

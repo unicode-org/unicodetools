@@ -5,13 +5,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.text.utility.Settings;
 
 public class EmojiLinkAdder {
     static Pattern TO_FIX = Pattern.compile("(\\s*<td>)([0-9A-Fa-f]{4,5})(</td>\\s*)");
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            args = new String[] {"/Users/markdavis/workspace/unicode-draft/reports/tr51/pri294-emoji-image-backgroundA.html"};  
+            args = new String[] {Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/pri294-emoji-image-backgroundA.html"};  
         }
         Matcher m = TO_FIX.matcher("");
 
