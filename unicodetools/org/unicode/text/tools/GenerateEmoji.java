@@ -24,6 +24,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 import org.apache.xerces.impl.dv.util.Base64;
@@ -106,7 +107,7 @@ public class GenerateEmoji {
         .addAll(sbProp.keySet())
         .removeAll(WHITESPACE.getSet(UcdPropertyValues.Binary.Yes.toString()))
         .freeze();
-        if (SHOW)
+        if (true)
             System.out.println("Core:\t" + JSOURCES.size() + "\t" + JSOURCES);
     }
     static final LocaleDisplayNames       LOCALE_DISPLAY            = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
@@ -1197,6 +1198,8 @@ public class GenerateEmoji {
                 otherStandard.add(s);
             }
         }
+        // HACK for now
+        otherStandard.remove("🖖");
         otherStandard.removeAll(carriers).freeze();
     }
     
@@ -1230,11 +1233,23 @@ public class GenerateEmoji {
         writeHeader(out, "Temp Items", "no message");
         showRow(out, "Primary", minimal, true);
         showRow(out, "Secondary", optional, true);
+        UnicodeSet modifierBase = new UnicodeSet().addAll(minimal).addAll(optional);
+        showRow(out, "Modifier_Base", modifierBase.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), false);
+        showRow(out, "Modifiers", new UnicodeSet("[\\x{1F3FB}-\\x{1F3FF}]").addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), false);
         showRow(out, "JCarriers", carriers.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Common Additions", otherStandard.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Other Flags", otherFlags.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Standard Additions", nc7.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
-        showRow(out, "8.0 Candidates", nc8.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), false);
+        UnicodeSet singletons = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(Emoji.EMOJI_CHARS.strings());
+        showRow(out, "Singletons", singletons.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
+//        UnicodeSet keycapBase = new UnicodeSet();
+//        for (String s : Emoji.EMOJI_CHARS.strings()) {
+//            if (s.indexOf(Emoji.KEYCAP_MARK) > 0) {
+//                keycapBase.add(s.codePointAt(0)); 
+//            }
+//        }
+//        showRow(out, "KeycapBase", keycapBase.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
+        showRow(out, "RegionalIndicators", Emoji.REGIONAL_INDICATORS.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         writeFooter(out);
         out.close();
         // main:
@@ -1344,10 +1359,11 @@ public class GenerateEmoji {
     }
 
     private static void showRow(PrintWriter out, String title, Set<String> minimal, boolean abbreviate) {
-        out.print("<tr><td>" + title + "</td>\n<td>");
+        out.print("<tr><td>" + title + "</td><td>Images</td><td>Names</td></tr>");
+        out.print("<tr><td colSpan='3'>" + new UnicodeSet().addAll(minimal).toPattern(false) + "</td></tr>");
         out.print("<tr><td>" + minimal.size() + "</td>\n<td>");
         showExplicitAppleImages(out, minimal);
-        out.print("</td>\n<td width='45%'>");
+        out.print("</td>\n<td width='10%'>");
         showNames(out, minimal, abbreviate);
         out.println("</td><tr>");
     }
