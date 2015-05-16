@@ -74,15 +74,17 @@ which provide the visual appearance of a CJK compatibility ideograph.
 Ideographic variation
 sequences are defined according to the registration process specified
 in UTS #37, and are listed in the Ideographic Variation Database. Only
-those two types of variation sequences are sanctioned for use by
-conformant implementations. In all other cases, use of a variation
-selector character does not change the visual appearance of the
-preceding base character from what it would have had in the absence of
-the variation selector.</p><p>The mathematical variants are all produced with the addition of Variation Selector 1 (VS1 or 
-  U+FE00) to mathematical operator base characters. There is no variation according to context. The 
-  Mongolian variants use the Mongolian Variant Selectors, and may vary according to context. That 
-  is, if a contextual shape is not listed below, then the variation sequence has an unmodified 
+    those two types of variation sequences are sanctioned for use by
+  conformant implementations. </p>
+  <p>In all other cases, use of a variation
+    selector character does not change the visual appearance of the
+    preceding base character from what it would have had in the absence of
+  the variation selector.  </p>
+  <p>The mathematical variants are all produced with the addition of <span class="changed">U+FE00 VARIATION SELECTOR-1 (VS1)</span> to mathematical operator base characters. There is no variation according to context. The 
+    Mongolian variants use the Mongolian Variant Selectors, and may vary according to context. That 
+    is, if a contextual shape is not listed below, then the variation sequence has an unmodified 
   appearance.</p>
+  <p><span class="changed">The emoji style variants are all produced with the addition of U+FE0E VARIATION SELECTOR-15 (VS15) for a text presentation or U+FE0F VARIATION SELECTOR-16 (VS16) for an emoji presentation. The colored glyphs used to show the variations below are purely illustrative. For other examples of colored glyphs, see <a href="http://unicode.org/emoji/charts"><em>Emoji Charts</em></a>. For more information about emoji variation sequences, including guidelines on variations in glyph shapes and colors, see <a href='unicode.org/reports/tr51'><em>UTR #51: Unicode Emoji</em></a>.</span></p>
   <blockquote>
     <p><a name="fonts"><b>Note: </b></a>The glyphs used to show the variations are often derived 
     from different physical fonts than the representative glyphs in the standard. They may therefore 
