@@ -1106,7 +1106,8 @@ E01F0..E0FFF  ; Other_Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>.
 2329          ; Deprecated # Ps       LEFT-POINTING ANGLE BRACKET
 232A          ; Deprecated # Pe       RIGHT-POINTING ANGLE BRACKET
 E0001         ; Deprecated # Cf       LANGUAGE TAG
-E0020..E007F  ; Deprecated # Cf  [96] TAG SPACE..CANCEL TAG
+#E0020..E007F  ; Deprecated # Cf  [96] TAG SPACE..CANCEL TAG
+E007F  ; Deprecated # Cf  [96] TAG SPACE..CANCEL TAG
 
 # Total code points: 111
 
