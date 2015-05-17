@@ -1,7 +1,7 @@
 ﻿# Review List for IDN
 # File: review.txt
 # Version: 8.0.0
-# Generated: 2015-05-03, 11:36:42 GMT
+# Generated: 2015-05-17, 03:09:05 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -220,7 +220,7 @@
 0135          ; output                         #      (ĵ)  LATIN SMALL LETTER J WITH CIRCUMFLEX
 0136          ; input                          #      (Ķ)  LATIN CAPITAL LETTER K WITH CEDILLA
 0137          ; output                         #      (ķ)  LATIN SMALL LETTER K WITH CEDILLA
-0138          ; Restricted ; Obsolete          #      (ĸ)  LATIN SMALL LETTER KRA
+0138          ; output                         #      (ĸ)  LATIN SMALL LETTER KRA
 0139          ; input                          #      (Ĺ)  LATIN CAPITAL LETTER L WITH ACUTE
 013A          ; output                         #      (ĺ)  LATIN SMALL LETTER L WITH ACUTE
 013B          ; input                          #      (Ļ)  LATIN CAPITAL LETTER L WITH CEDILLA
@@ -420,30 +420,30 @@
 01FD          ; output                         #      (ǽ)  LATIN SMALL LETTER AE WITH ACUTE
 01FE          ; input                          #      (Ǿ)  LATIN CAPITAL LETTER O WITH STROKE AND ACUTE
 01FF          ; output                         #      (ǿ)  LATIN SMALL LETTER O WITH STROKE AND ACUTE
-0200          ; Restricted ; output-disallowed #      (Ȁ)  LATIN CAPITAL LETTER A WITH DOUBLE GRAVE
-0201          ; Restricted ; Technical         #      (ȁ)  LATIN SMALL LETTER A WITH DOUBLE GRAVE
-0202          ; Restricted ; output-disallowed #      (Ȃ)  LATIN CAPITAL LETTER A WITH INVERTED BREVE
-0203          ; Restricted ; Technical         #      (ȃ)  LATIN SMALL LETTER A WITH INVERTED BREVE
-0204          ; Restricted ; output-disallowed #      (Ȅ)  LATIN CAPITAL LETTER E WITH DOUBLE GRAVE
-0205          ; Restricted ; Technical         #      (ȅ)  LATIN SMALL LETTER E WITH DOUBLE GRAVE
-0206          ; Restricted ; output-disallowed #      (Ȇ)  LATIN CAPITAL LETTER E WITH INVERTED BREVE
-0207          ; Restricted ; Technical         #      (ȇ)  LATIN SMALL LETTER E WITH INVERTED BREVE
-0208          ; Restricted ; output-disallowed #      (Ȉ)  LATIN CAPITAL LETTER I WITH DOUBLE GRAVE
-0209          ; Restricted ; Technical         #      (ȉ)  LATIN SMALL LETTER I WITH DOUBLE GRAVE
-020A          ; Restricted ; output-disallowed #      (Ȋ)  LATIN CAPITAL LETTER I WITH INVERTED BREVE
-020B          ; Restricted ; Technical         #      (ȋ)  LATIN SMALL LETTER I WITH INVERTED BREVE
-020C          ; Restricted ; output-disallowed #      (Ȍ)  LATIN CAPITAL LETTER O WITH DOUBLE GRAVE
-020D          ; Restricted ; Technical         #      (ȍ)  LATIN SMALL LETTER O WITH DOUBLE GRAVE
-020E          ; Restricted ; output-disallowed #      (Ȏ)  LATIN CAPITAL LETTER O WITH INVERTED BREVE
-020F          ; Restricted ; Technical         #      (ȏ)  LATIN SMALL LETTER O WITH INVERTED BREVE
-0210          ; Restricted ; output-disallowed #      (Ȑ)  LATIN CAPITAL LETTER R WITH DOUBLE GRAVE
-0211          ; Restricted ; Technical         #      (ȑ)  LATIN SMALL LETTER R WITH DOUBLE GRAVE
-0212          ; Restricted ; output-disallowed #      (Ȓ)  LATIN CAPITAL LETTER R WITH INVERTED BREVE
-0213          ; Restricted ; Technical         #      (ȓ)  LATIN SMALL LETTER R WITH INVERTED BREVE
-0214          ; Restricted ; output-disallowed #      (Ȕ)  LATIN CAPITAL LETTER U WITH DOUBLE GRAVE
-0215          ; Restricted ; Technical         #      (ȕ)  LATIN SMALL LETTER U WITH DOUBLE GRAVE
-0216          ; Restricted ; output-disallowed #      (Ȗ)  LATIN CAPITAL LETTER U WITH INVERTED BREVE
-0217          ; Restricted ; Technical         #      (ȗ)  LATIN SMALL LETTER U WITH INVERTED BREVE
+0200          ; input                          #      (Ȁ)  LATIN CAPITAL LETTER A WITH DOUBLE GRAVE
+0201          ; output                         #      (ȁ)  LATIN SMALL LETTER A WITH DOUBLE GRAVE
+0202          ; input                          #      (Ȃ)  LATIN CAPITAL LETTER A WITH INVERTED BREVE
+0203          ; output                         #      (ȃ)  LATIN SMALL LETTER A WITH INVERTED BREVE
+0204          ; input                          #      (Ȅ)  LATIN CAPITAL LETTER E WITH DOUBLE GRAVE
+0205          ; output                         #      (ȅ)  LATIN SMALL LETTER E WITH DOUBLE GRAVE
+0206          ; input                          #      (Ȇ)  LATIN CAPITAL LETTER E WITH INVERTED BREVE
+0207          ; output                         #      (ȇ)  LATIN SMALL LETTER E WITH INVERTED BREVE
+0208          ; input                          #      (Ȉ)  LATIN CAPITAL LETTER I WITH DOUBLE GRAVE
+0209          ; output                         #      (ȉ)  LATIN SMALL LETTER I WITH DOUBLE GRAVE
+020A          ; input                          #      (Ȋ)  LATIN CAPITAL LETTER I WITH INVERTED BREVE
+020B          ; output                         #      (ȋ)  LATIN SMALL LETTER I WITH INVERTED BREVE
+020C          ; input                          #      (Ȍ)  LATIN CAPITAL LETTER O WITH DOUBLE GRAVE
+020D          ; output                         #      (ȍ)  LATIN SMALL LETTER O WITH DOUBLE GRAVE
+020E          ; input                          #      (Ȏ)  LATIN CAPITAL LETTER O WITH INVERTED BREVE
+020F          ; output                         #      (ȏ)  LATIN SMALL LETTER O WITH INVERTED BREVE
+0210          ; input                          #      (Ȑ)  LATIN CAPITAL LETTER R WITH DOUBLE GRAVE
+0211          ; output                         #      (ȑ)  LATIN SMALL LETTER R WITH DOUBLE GRAVE
+0212          ; input                          #      (Ȓ)  LATIN CAPITAL LETTER R WITH INVERTED BREVE
+0213          ; output                         #      (ȓ)  LATIN SMALL LETTER R WITH INVERTED BREVE
+0214          ; input                          #      (Ȕ)  LATIN CAPITAL LETTER U WITH DOUBLE GRAVE
+0215          ; output                         #      (ȕ)  LATIN SMALL LETTER U WITH DOUBLE GRAVE
+0216          ; input                          #      (Ȗ)  LATIN CAPITAL LETTER U WITH INVERTED BREVE
+0217          ; output                         #      (ȗ)  LATIN SMALL LETTER U WITH INVERTED BREVE
 0218          ; input                          #      (Ș)  LATIN CAPITAL LETTER S WITH COMMA BELOW
 0219          ; output                         #      (ș)  LATIN SMALL LETTER S WITH COMMA BELOW
 021A          ; input                          #      (Ț)  LATIN CAPITAL LETTER T WITH COMMA BELOW
@@ -685,12 +685,12 @@
 030C          ; output-nonstarting             #      (̌)  COMBINING CARON
 030D          ; Restricted ; Uncommon_Use      #      (̍)  COMBINING VERTICAL LINE ABOVE
 030E          ; Restricted ; Technical         #      (̎)  COMBINING DOUBLE VERTICAL LINE ABOVE
-030F          ; Restricted ; Technical         #      (̏)  COMBINING DOUBLE GRAVE ACCENT
-0310          ; Restricted ; Technical         #      (̐)  COMBINING CANDRABINDU
-0311          ; Restricted ; Technical         #      (̑)  COMBINING INVERTED BREVE
+030F          ; output-nonstarting             #      (̏)  COMBINING DOUBLE GRAVE ACCENT
+0310          ; output-nonstarting             #      (̐)  COMBINING CANDRABINDU
+0311          ; output-nonstarting             #      (̑)  COMBINING INVERTED BREVE
 0312          ; Restricted ; Technical         #      (̒)  COMBINING TURNED COMMA ABOVE
-0313          ; Restricted ; Technical         #      (̓)  COMBINING COMMA ABOVE
-0314          ; Restricted ; Technical         #      (̔)  COMBINING REVERSED COMMA ABOVE
+0313          ; output-nonstarting             #      (̓)  COMBINING COMMA ABOVE
+0314          ; output-nonstarting             #      (̔)  COMBINING REVERSED COMMA ABOVE
 0315          ; Restricted ; Technical         #      (̕)  COMBINING COMMA ABOVE RIGHT
 0316          ; Restricted ; Uncommon_Use      #      (̖)  COMBINING GRAVE ACCENT BELOW
 0317          ; Restricted ; Technical         #      (̗)  COMBINING ACUTE ACCENT BELOW
@@ -706,8 +706,8 @@
 0321          ; Restricted ; Uncommon_Use      #      (̡)  COMBINING PALATALIZED HOOK BELOW
 0322          ; Restricted ; Uncommon_Use      #      (̢)  COMBINING RETROFLEX HOOK BELOW
 0323          ; output-nonstarting             #      (̣)  COMBINING DOT BELOW
-0324          ; Restricted ; Technical         #      (̤)  COMBINING DIAERESIS BELOW
-0325          ; Restricted ; Technical         #      (̥)  COMBINING RING BELOW
+0324          ; output-nonstarting             #      (̤)  COMBINING DIAERESIS BELOW
+0325          ; output-nonstarting             #      (̥)  COMBINING RING BELOW
 0326          ; output-nonstarting             #      (̦)  COMBINING COMMA BELOW
 0327          ; output-nonstarting             #      (̧)  COMBINING CEDILLA
 0328          ; output-nonstarting             #      (̨)  COMBINING OGONEK
@@ -715,19 +715,19 @@
 032A          ; Restricted ; Technical         #      (̪)  COMBINING BRIDGE BELOW
 032B          ; Restricted ; Technical         #      (̫)  COMBINING INVERTED DOUBLE ARCH BELOW
 032C          ; Restricted ; Technical         #      (̬)  COMBINING CARON BELOW
-032D          ; Restricted ; Technical         #      (̭)  COMBINING CIRCUMFLEX ACCENT BELOW
-032E          ; Restricted ; Technical         #      (̮)  COMBINING BREVE BELOW
+032D          ; output-nonstarting             #      (̭)  COMBINING CIRCUMFLEX ACCENT BELOW
+032E          ; output-nonstarting             #      (̮)  COMBINING BREVE BELOW
 032F          ; Restricted ; Technical         #      (̯)  COMBINING INVERTED BREVE BELOW
-0330          ; Restricted ; Technical         #      (̰)  COMBINING TILDE BELOW
+0330          ; output-nonstarting             #      (̰)  COMBINING TILDE BELOW
 0331          ; output-nonstarting             #      (̱)  COMBINING MACRON BELOW
 0332          ; Restricted ; Uncommon_Use      #      (̲)  COMBINING LOW LINE
 0333          ; Restricted ; Technical         #      (̳)  COMBINING DOUBLE LOW LINE
 0334          ; Restricted ; Uncommon_Use      #      (̴)  COMBINING TILDE OVERLAY
-0335          ; Restricted ; Technical         #      (̵)  COMBINING SHORT STROKE OVERLAY
+0335          ; output-nonstarting             #      (̵)  COMBINING SHORT STROKE OVERLAY
 0336          ; Restricted ; Uncommon_Use      #      (̶)  COMBINING LONG STROKE OVERLAY
 0337          ; Restricted ; Technical         #      (̷)  COMBINING SHORT SOLIDUS OVERLAY
-0338          ; Restricted ; Technical         #      (̸)  COMBINING LONG SOLIDUS OVERLAY
-0339          ; Restricted ; Technical         #      (̹)  COMBINING RIGHT HALF RING BELOW
+0338          ; output-nonstarting             #      (̸)  COMBINING LONG SOLIDUS OVERLAY
+0339          ; output-nonstarting             #      (̹)  COMBINING RIGHT HALF RING BELOW
 033A          ; Restricted ; Technical         #      (̺)  COMBINING INVERTED BRIDGE BELOW
 033B          ; Restricted ; Technical         #      (̻)  COMBINING SQUARE BELOW
 033C          ; Restricted ; Technical         #      (̼)  COMBINING SEAGULL BELOW
@@ -736,7 +736,7 @@
 033F          ; Restricted ; Technical         #      (̿)  COMBINING DOUBLE OVERLINE
 0340          ; Restricted ; Not_NFKC          #      (̀)  COMBINING GRAVE TONE MARK
 0341          ; Restricted ; Not_NFKC          #      (́)  COMBINING ACUTE TONE MARK
-0342          ; Restricted ; Technical         #      (͂)  COMBINING GREEK PERISPOMENI
+0342          ; output-nonstarting             #      (͂)  COMBINING GREEK PERISPOMENI
 0343          ; Restricted ; Not_NFKC          #      (̓)  COMBINING GREEK KORONIS
 0344          ; Restricted ; Not_NFKC          #      (̈́)  COMBINING GREEK DIALYTIKA TONOS
 0345          ; input-nonstarting              #      (ͅ)  COMBINING GREEK YPOGEGRAMMENI
@@ -790,9 +790,9 @@
 0375          ; output                         #      (͵)  GREEK LOWER NUMERAL SIGN
 0376          ; Restricted ; Obsolete          #      (Ͷ)  GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA
 0377          ; Restricted ; Obsolete          #      (ͷ)  GREEK SMALL LETTER PAMPHYLIAN DIGAMMA
-037B          ; Restricted ; Obsolete          #      (ͻ)  GREEK SMALL REVERSED LUNATE SIGMA SYMBOL
-037C          ; Restricted ; Obsolete          #      (ͼ)  GREEK SMALL DOTTED LUNATE SIGMA SYMBOL
-037D          ; Restricted ; Obsolete          #      (ͽ)  GREEK SMALL REVERSED DOTTED LUNATE SIGMA SYMBOL
+037B          ; output                         #      (ͻ)  GREEK SMALL REVERSED LUNATE SIGMA SYMBOL
+037C          ; output                         #      (ͼ)  GREEK SMALL DOTTED LUNATE SIGMA SYMBOL
+037D          ; output                         #      (ͽ)  GREEK SMALL REVERSED DOTTED LUNATE SIGMA SYMBOL
 037F          ; Restricted ; Obsolete          #      (Ϳ)  GREEK CAPITAL LETTER YOT
 0386          ; input                          #      (Ά)  GREEK CAPITAL LETTER ALPHA WITH TONOS
 0387          ; Restricted ; Not_NFKC          #      (·)  GREEK ANO TELEIA
@@ -896,10 +896,10 @@
 03F9          ; Restricted ; Not_NFKC          #      (Ϲ)  GREEK CAPITAL LUNATE SIGMA SYMBOL
 03FA          ; Restricted ; Obsolete          #      (Ϻ)  GREEK CAPITAL LETTER SAN
 03FB          ; Restricted ; Obsolete          #      (ϻ)  GREEK SMALL LETTER SAN
-03FC          ; Restricted ; Technical         #      (ϼ)  GREEK RHO WITH STROKE SYMBOL
-03FD          ; Restricted ; output-disallowed #      (Ͻ)  GREEK CAPITAL REVERSED LUNATE SIGMA SYMBOL
-03FE          ; Restricted ; output-disallowed #      (Ͼ)  GREEK CAPITAL DOTTED LUNATE SIGMA SYMBOL
-03FF          ; Restricted ; output-disallowed #      (Ͽ)  GREEK CAPITAL REVERSED DOTTED LUNATE SIGMA SYMBOL
+03FC          ; output                         #      (ϼ)  GREEK RHO WITH STROKE SYMBOL
+03FD          ; input                          #      (Ͻ)  GREEK CAPITAL REVERSED LUNATE SIGMA SYMBOL
+03FE          ; input                          #      (Ͼ)  GREEK CAPITAL DOTTED LUNATE SIGMA SYMBOL
+03FF          ; input                          #      (Ͽ)  GREEK CAPITAL REVERSED DOTTED LUNATE SIGMA SYMBOL
 0400          ; input                          #      (Ѐ)  CYRILLIC CAPITAL LETTER IE WITH GRAVE
 0401          ; input                          #      (Ё)  CYRILLIC CAPITAL LETTER IO
 0402          ; input                          #      (Ђ)  CYRILLIC CAPITAL LETTER DJE
@@ -1038,12 +1038,12 @@
 0487          ; Restricted ; Obsolete          #      (҇)  COMBINING CYRILLIC POKRYTIE
 0488          ; Restricted ; Not_XID           #      (҈)  COMBINING CYRILLIC HUNDRED THOUSANDS SIGN
 0489          ; Restricted ; Not_XID           #      (҉)  COMBINING CYRILLIC MILLIONS SIGN
-048A          ; Restricted ; output-disallowed #      (Ҋ)  CYRILLIC CAPITAL LETTER SHORT I WITH TAIL
-048B          ; Restricted ; Uncommon_Use      #      (ҋ)  CYRILLIC SMALL LETTER SHORT I WITH TAIL
-048C          ; Restricted ; output-disallowed #      (Ҍ)  CYRILLIC CAPITAL LETTER SEMISOFT SIGN
-048D          ; Restricted ; Uncommon_Use      #      (ҍ)  CYRILLIC SMALL LETTER SEMISOFT SIGN
-048E          ; Restricted ; output-disallowed #      (Ҏ)  CYRILLIC CAPITAL LETTER ER WITH TICK
-048F          ; Restricted ; Uncommon_Use      #      (ҏ)  CYRILLIC SMALL LETTER ER WITH TICK
+048A          ; input                          #      (Ҋ)  CYRILLIC CAPITAL LETTER SHORT I WITH TAIL
+048B          ; output                         #      (ҋ)  CYRILLIC SMALL LETTER SHORT I WITH TAIL
+048C          ; input                          #      (Ҍ)  CYRILLIC CAPITAL LETTER SEMISOFT SIGN
+048D          ; output                         #      (ҍ)  CYRILLIC SMALL LETTER SEMISOFT SIGN
+048E          ; input                          #      (Ҏ)  CYRILLIC CAPITAL LETTER ER WITH TICK
+048F          ; output                         #      (ҏ)  CYRILLIC SMALL LETTER ER WITH TICK
 0490          ; input                          #      (Ґ)  CYRILLIC CAPITAL LETTER GHE WITH UPTURN
 0491          ; output                         #      (ґ)  CYRILLIC SMALL LETTER GHE WITH UPTURN
 0492          ; input                          #      (Ғ)  CYRILLIC CAPITAL LETTER GHE WITH STROKE
@@ -1056,8 +1056,8 @@
 0499          ; output                         #      (ҙ)  CYRILLIC SMALL LETTER ZE WITH DESCENDER
 049A          ; input                          #      (Қ)  CYRILLIC CAPITAL LETTER KA WITH DESCENDER
 049B          ; output                         #      (қ)  CYRILLIC SMALL LETTER KA WITH DESCENDER
-049C          ; Restricted ; output-disallowed #      (Ҝ)  CYRILLIC CAPITAL LETTER KA WITH VERTICAL STROKE
-049D          ; Restricted ; Obsolete          #      (ҝ)  CYRILLIC SMALL LETTER KA WITH VERTICAL STROKE
+049C          ; input                          #      (Ҝ)  CYRILLIC CAPITAL LETTER KA WITH VERTICAL STROKE
+049D          ; output                         #      (ҝ)  CYRILLIC SMALL LETTER KA WITH VERTICAL STROKE
 049E          ; input                          #      (Ҟ)  CYRILLIC CAPITAL LETTER KA WITH STROKE
 049F          ; output                         #      (ҟ)  CYRILLIC SMALL LETTER KA WITH STROKE
 04A0          ; input                          #      (Ҡ)  CYRILLIC CAPITAL LETTER BASHKIR KA
@@ -1066,8 +1066,8 @@
 04A3          ; output                         #      (ң)  CYRILLIC SMALL LETTER EN WITH DESCENDER
 04A4          ; input                          #      (Ҥ)  CYRILLIC CAPITAL LIGATURE EN GHE
 04A5          ; output                         #      (ҥ)  CYRILLIC SMALL LIGATURE EN GHE
-04A6          ; Restricted ; output-disallowed #      (Ҧ)  CYRILLIC CAPITAL LETTER PE WITH MIDDLE HOOK
-04A7          ; Restricted ; Obsolete          #      (ҧ)  CYRILLIC SMALL LETTER PE WITH MIDDLE HOOK
+04A6          ; input                          #      (Ҧ)  CYRILLIC CAPITAL LETTER PE WITH MIDDLE HOOK
+04A7          ; output                         #      (ҧ)  CYRILLIC SMALL LETTER PE WITH MIDDLE HOOK
 04A8          ; input                          #      (Ҩ)  CYRILLIC CAPITAL LETTER ABKHASIAN HA
 04A9          ; output                         #      (ҩ)  CYRILLIC SMALL LETTER ABKHASIAN HA
 04AA          ; input                          #      (Ҫ)  CYRILLIC CAPITAL LETTER ES WITH DESCENDER
@@ -1084,8 +1084,8 @@
 04B5          ; output                         #      (ҵ)  CYRILLIC SMALL LIGATURE TE TSE
 04B6          ; input                          #      (Ҷ)  CYRILLIC CAPITAL LETTER CHE WITH DESCENDER
 04B7          ; output                         #      (ҷ)  CYRILLIC SMALL LETTER CHE WITH DESCENDER
-04B8          ; Restricted ; output-disallowed #      (Ҹ)  CYRILLIC CAPITAL LETTER CHE WITH VERTICAL STROKE
-04B9          ; Restricted ; Obsolete          #      (ҹ)  CYRILLIC SMALL LETTER CHE WITH VERTICAL STROKE
+04B8          ; input                          #      (Ҹ)  CYRILLIC CAPITAL LETTER CHE WITH VERTICAL STROKE
+04B9          ; output                         #      (ҹ)  CYRILLIC SMALL LETTER CHE WITH VERTICAL STROKE
 04BA          ; input                          #      (Һ)  CYRILLIC CAPITAL LETTER SHHA
 04BB          ; output                         #      (һ)  CYRILLIC SMALL LETTER SHHA
 04BC          ; input                          #      (Ҽ)  CYRILLIC CAPITAL LETTER ABKHASIAN CHE
@@ -1094,18 +1094,18 @@
 04BF          ; output                         #      (ҿ)  CYRILLIC SMALL LETTER ABKHASIAN CHE WITH DESCENDER
 04C1          ; input                          #      (Ӂ)  CYRILLIC CAPITAL LETTER ZHE WITH BREVE
 04C2          ; output                         #      (ӂ)  CYRILLIC SMALL LETTER ZHE WITH BREVE
-04C3          ; Restricted ; output-disallowed #      (Ӄ)  CYRILLIC CAPITAL LETTER KA WITH HOOK
-04C4          ; Restricted ; Uncommon_Use      #      (ӄ)  CYRILLIC SMALL LETTER KA WITH HOOK
-04C5          ; Restricted ; output-disallowed #      (Ӆ)  CYRILLIC CAPITAL LETTER EL WITH TAIL
-04C6          ; Restricted ; Uncommon_Use      #      (ӆ)  CYRILLIC SMALL LETTER EL WITH TAIL
-04C7          ; Restricted ; output-disallowed #      (Ӈ)  CYRILLIC CAPITAL LETTER EN WITH HOOK
-04C8          ; Restricted ; Uncommon_Use      #      (ӈ)  CYRILLIC SMALL LETTER EN WITH HOOK
+04C3          ; input                          #      (Ӄ)  CYRILLIC CAPITAL LETTER KA WITH HOOK
+04C4          ; output                         #      (ӄ)  CYRILLIC SMALL LETTER KA WITH HOOK
+04C5          ; input                          #      (Ӆ)  CYRILLIC CAPITAL LETTER EL WITH TAIL
+04C6          ; output                         #      (ӆ)  CYRILLIC SMALL LETTER EL WITH TAIL
+04C7          ; input                          #      (Ӈ)  CYRILLIC CAPITAL LETTER EN WITH HOOK
+04C8          ; output                         #      (ӈ)  CYRILLIC SMALL LETTER EN WITH HOOK
 04C9          ; input                          #      (Ӊ)  CYRILLIC CAPITAL LETTER EN WITH TAIL
 04CA          ; output                         #      (ӊ)  CYRILLIC SMALL LETTER EN WITH TAIL
 04CB          ; input                          #      (Ӌ)  CYRILLIC CAPITAL LETTER KHAKASSIAN CHE
 04CC          ; output                         #      (ӌ)  CYRILLIC SMALL LETTER KHAKASSIAN CHE
-04CD          ; Restricted ; output-disallowed #      (Ӎ)  CYRILLIC CAPITAL LETTER EM WITH TAIL
-04CE          ; Restricted ; Uncommon_Use      #      (ӎ)  CYRILLIC SMALL LETTER EM WITH TAIL
+04CD          ; input                          #      (Ӎ)  CYRILLIC CAPITAL LETTER EM WITH TAIL
+04CE          ; output                         #      (ӎ)  CYRILLIC SMALL LETTER EM WITH TAIL
 04CF          ; output                         #      (ӏ)  CYRILLIC SMALL LETTER PALOCHKA
 04D0          ; input                          #      (Ӑ)  CYRILLIC CAPITAL LETTER A WITH BREVE
 04D1          ; output                         #      (ӑ)  CYRILLIC SMALL LETTER A WITH BREVE
@@ -1145,64 +1145,64 @@
 04F3          ; output                         #      (ӳ)  CYRILLIC SMALL LETTER U WITH DOUBLE ACUTE
 04F4          ; input                          #      (Ӵ)  CYRILLIC CAPITAL LETTER CHE WITH DIAERESIS
 04F5          ; output                         #      (ӵ)  CYRILLIC SMALL LETTER CHE WITH DIAERESIS
-04F6          ; Restricted ; output-disallowed #      (Ӷ)  CYRILLIC CAPITAL LETTER GHE WITH DESCENDER
-04F7          ; Restricted ; Uncommon_Use      #      (ӷ)  CYRILLIC SMALL LETTER GHE WITH DESCENDER
+04F6          ; input                          #      (Ӷ)  CYRILLIC CAPITAL LETTER GHE WITH DESCENDER
+04F7          ; output                         #      (ӷ)  CYRILLIC SMALL LETTER GHE WITH DESCENDER
 04F8          ; input                          #      (Ӹ)  CYRILLIC CAPITAL LETTER YERU WITH DIAERESIS
 04F9          ; output                         #      (ӹ)  CYRILLIC SMALL LETTER YERU WITH DIAERESIS
-04FA          ; Restricted ; output-disallowed #      (Ӻ)  CYRILLIC CAPITAL LETTER GHE WITH STROKE AND HOOK
-04FB          ; Restricted ; Uncommon_Use      #      (ӻ)  CYRILLIC SMALL LETTER GHE WITH STROKE AND HOOK
-04FC          ; Restricted ; output-disallowed #      (Ӽ)  CYRILLIC CAPITAL LETTER HA WITH HOOK
-04FD          ; Restricted ; Uncommon_Use      #      (ӽ)  CYRILLIC SMALL LETTER HA WITH HOOK
-04FE          ; Restricted ; output-disallowed #      (Ӿ)  CYRILLIC CAPITAL LETTER HA WITH STROKE
-04FF          ; Restricted ; Uncommon_Use      #      (ӿ)  CYRILLIC SMALL LETTER HA WITH STROKE
-0500          ; Restricted ; output-disallowed #      (Ԁ)  CYRILLIC CAPITAL LETTER KOMI DE
-0501          ; Restricted ; Obsolete          #      (ԁ)  CYRILLIC SMALL LETTER KOMI DE
-0502          ; Restricted ; output-disallowed #      (Ԃ)  CYRILLIC CAPITAL LETTER KOMI DJE
-0503          ; Restricted ; Obsolete          #      (ԃ)  CYRILLIC SMALL LETTER KOMI DJE
-0504          ; Restricted ; output-disallowed #      (Ԅ)  CYRILLIC CAPITAL LETTER KOMI ZJE
-0505          ; Restricted ; Obsolete          #      (ԅ)  CYRILLIC SMALL LETTER KOMI ZJE
-0506          ; Restricted ; output-disallowed #      (Ԇ)  CYRILLIC CAPITAL LETTER KOMI DZJE
-0507          ; Restricted ; Obsolete          #      (ԇ)  CYRILLIC SMALL LETTER KOMI DZJE
-0508          ; Restricted ; output-disallowed #      (Ԉ)  CYRILLIC CAPITAL LETTER KOMI LJE
-0509          ; Restricted ; Obsolete          #      (ԉ)  CYRILLIC SMALL LETTER KOMI LJE
-050A          ; Restricted ; output-disallowed #      (Ԋ)  CYRILLIC CAPITAL LETTER KOMI NJE
-050B          ; Restricted ; Obsolete          #      (ԋ)  CYRILLIC SMALL LETTER KOMI NJE
-050C          ; Restricted ; output-disallowed #      (Ԍ)  CYRILLIC CAPITAL LETTER KOMI SJE
-050D          ; Restricted ; Obsolete          #      (ԍ)  CYRILLIC SMALL LETTER KOMI SJE
-050E          ; Restricted ; output-disallowed #      (Ԏ)  CYRILLIC CAPITAL LETTER KOMI TJE
-050F          ; Restricted ; Obsolete          #      (ԏ)  CYRILLIC SMALL LETTER KOMI TJE
-0510          ; Restricted ; output-disallowed #      (Ԑ)  CYRILLIC CAPITAL LETTER REVERSED ZE
-0511          ; Restricted ; Uncommon_Use      #      (ԑ)  CYRILLIC SMALL LETTER REVERSED ZE
-0512          ; Restricted ; output-disallowed #      (Ԓ)  CYRILLIC CAPITAL LETTER EL WITH HOOK
-0513          ; Restricted ; Uncommon_Use      #      (ԓ)  CYRILLIC SMALL LETTER EL WITH HOOK
-0514          ; Restricted ; output-disallowed #      (Ԕ)  CYRILLIC CAPITAL LETTER LHA
-0515          ; Restricted ; Obsolete          #      (ԕ)  CYRILLIC SMALL LETTER LHA
-0516          ; Restricted ; output-disallowed #      (Ԗ)  CYRILLIC CAPITAL LETTER RHA
-0517          ; Restricted ; Obsolete          #      (ԗ)  CYRILLIC SMALL LETTER RHA
-0518          ; Restricted ; output-disallowed #      (Ԙ)  CYRILLIC CAPITAL LETTER YAE
-0519          ; Restricted ; Obsolete          #      (ԙ)  CYRILLIC SMALL LETTER YAE
-051A          ; Restricted ; output-disallowed #      (Ԛ)  CYRILLIC CAPITAL LETTER QA
-051B          ; Restricted ; Obsolete          #      (ԛ)  CYRILLIC SMALL LETTER QA
-051C          ; Restricted ; output-disallowed #      (Ԝ)  CYRILLIC CAPITAL LETTER WE
-051D          ; Restricted ; Obsolete          #      (ԝ)  CYRILLIC SMALL LETTER WE
-051E          ; Restricted ; output-disallowed #      (Ԟ)  CYRILLIC CAPITAL LETTER ALEUT KA
-051F          ; Restricted ; Obsolete          #      (ԟ)  CYRILLIC SMALL LETTER ALEUT KA
-0520          ; Restricted ; output-disallowed #      (Ԡ)  CYRILLIC CAPITAL LETTER EL WITH MIDDLE HOOK
-0521          ; Restricted ; Obsolete          #      (ԡ)  CYRILLIC SMALL LETTER EL WITH MIDDLE HOOK
-0522          ; Restricted ; output-disallowed #      (Ԣ)  CYRILLIC CAPITAL LETTER EN WITH MIDDLE HOOK
-0523          ; Restricted ; Obsolete          #      (ԣ)  CYRILLIC SMALL LETTER EN WITH MIDDLE HOOK
+04FA          ; input                          #      (Ӻ)  CYRILLIC CAPITAL LETTER GHE WITH STROKE AND HOOK
+04FB          ; output                         #      (ӻ)  CYRILLIC SMALL LETTER GHE WITH STROKE AND HOOK
+04FC          ; input                          #      (Ӽ)  CYRILLIC CAPITAL LETTER HA WITH HOOK
+04FD          ; output                         #      (ӽ)  CYRILLIC SMALL LETTER HA WITH HOOK
+04FE          ; input                          #      (Ӿ)  CYRILLIC CAPITAL LETTER HA WITH STROKE
+04FF          ; output                         #      (ӿ)  CYRILLIC SMALL LETTER HA WITH STROKE
+0500          ; input                          #      (Ԁ)  CYRILLIC CAPITAL LETTER KOMI DE
+0501          ; output                         #      (ԁ)  CYRILLIC SMALL LETTER KOMI DE
+0502          ; input                          #      (Ԃ)  CYRILLIC CAPITAL LETTER KOMI DJE
+0503          ; output                         #      (ԃ)  CYRILLIC SMALL LETTER KOMI DJE
+0504          ; input                          #      (Ԅ)  CYRILLIC CAPITAL LETTER KOMI ZJE
+0505          ; output                         #      (ԅ)  CYRILLIC SMALL LETTER KOMI ZJE
+0506          ; input                          #      (Ԇ)  CYRILLIC CAPITAL LETTER KOMI DZJE
+0507          ; output                         #      (ԇ)  CYRILLIC SMALL LETTER KOMI DZJE
+0508          ; input                          #      (Ԉ)  CYRILLIC CAPITAL LETTER KOMI LJE
+0509          ; output                         #      (ԉ)  CYRILLIC SMALL LETTER KOMI LJE
+050A          ; input                          #      (Ԋ)  CYRILLIC CAPITAL LETTER KOMI NJE
+050B          ; output                         #      (ԋ)  CYRILLIC SMALL LETTER KOMI NJE
+050C          ; input                          #      (Ԍ)  CYRILLIC CAPITAL LETTER KOMI SJE
+050D          ; output                         #      (ԍ)  CYRILLIC SMALL LETTER KOMI SJE
+050E          ; input                          #      (Ԏ)  CYRILLIC CAPITAL LETTER KOMI TJE
+050F          ; output                         #      (ԏ)  CYRILLIC SMALL LETTER KOMI TJE
+0510          ; input                          #      (Ԑ)  CYRILLIC CAPITAL LETTER REVERSED ZE
+0511          ; output                         #      (ԑ)  CYRILLIC SMALL LETTER REVERSED ZE
+0512          ; input                          #      (Ԓ)  CYRILLIC CAPITAL LETTER EL WITH HOOK
+0513          ; output                         #      (ԓ)  CYRILLIC SMALL LETTER EL WITH HOOK
+0514          ; input                          #      (Ԕ)  CYRILLIC CAPITAL LETTER LHA
+0515          ; output                         #      (ԕ)  CYRILLIC SMALL LETTER LHA
+0516          ; input                          #      (Ԗ)  CYRILLIC CAPITAL LETTER RHA
+0517          ; output                         #      (ԗ)  CYRILLIC SMALL LETTER RHA
+0518          ; input                          #      (Ԙ)  CYRILLIC CAPITAL LETTER YAE
+0519          ; output                         #      (ԙ)  CYRILLIC SMALL LETTER YAE
+051A          ; input                          #      (Ԛ)  CYRILLIC CAPITAL LETTER QA
+051B          ; output                         #      (ԛ)  CYRILLIC SMALL LETTER QA
+051C          ; input                          #      (Ԝ)  CYRILLIC CAPITAL LETTER WE
+051D          ; output                         #      (ԝ)  CYRILLIC SMALL LETTER WE
+051E          ; input                          #      (Ԟ)  CYRILLIC CAPITAL LETTER ALEUT KA
+051F          ; output                         #      (ԟ)  CYRILLIC SMALL LETTER ALEUT KA
+0520          ; input                          #      (Ԡ)  CYRILLIC CAPITAL LETTER EL WITH MIDDLE HOOK
+0521          ; output                         #      (ԡ)  CYRILLIC SMALL LETTER EL WITH MIDDLE HOOK
+0522          ; input                          #      (Ԣ)  CYRILLIC CAPITAL LETTER EN WITH MIDDLE HOOK
+0523          ; output                         #      (ԣ)  CYRILLIC SMALL LETTER EN WITH MIDDLE HOOK
 0524          ; input                          #      (Ԥ)  CYRILLIC CAPITAL LETTER PE WITH DESCENDER
 0525          ; output                         #      (ԥ)  CYRILLIC SMALL LETTER PE WITH DESCENDER
-0526          ; Restricted ; output-disallowed #      (Ԧ)  CYRILLIC CAPITAL LETTER SHHA WITH DESCENDER
-0527          ; Restricted ; Obsolete          #      (ԧ)  CYRILLIC SMALL LETTER SHHA WITH DESCENDER
-0528          ; Restricted ; output-disallowed #      (Ԩ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK
-0529          ; Restricted ; Technical         #      (ԩ)  CYRILLIC SMALL LETTER EN WITH LEFT HOOK
+0526          ; input                          #      (Ԧ)  CYRILLIC CAPITAL LETTER SHHA WITH DESCENDER
+0527          ; output                         #      (ԧ)  CYRILLIC SMALL LETTER SHHA WITH DESCENDER
+0528          ; input                          #      (Ԩ)  CYRILLIC CAPITAL LETTER EN WITH LEFT HOOK
+0529          ; output                         #      (ԩ)  CYRILLIC SMALL LETTER EN WITH LEFT HOOK
 052A          ; Restricted ; Obsolete          #      (Ԫ)  CYRILLIC CAPITAL LETTER DZZHE
 052B          ; Restricted ; Obsolete          #      (ԫ)  CYRILLIC SMALL LETTER DZZHE
 052C          ; Restricted ; Obsolete          #      (Ԭ)  CYRILLIC CAPITAL LETTER DCHE
 052D          ; Restricted ; Obsolete          #      (ԭ)  CYRILLIC SMALL LETTER DCHE
-052E          ; Restricted ; output-disallowed #      (Ԯ)  CYRILLIC CAPITAL LETTER EL WITH DESCENDER
-052F          ; Restricted ; Technical         #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
+052E          ; input                          #      (Ԯ)  CYRILLIC CAPITAL LETTER EL WITH DESCENDER
+052F          ; output                         #      (ԯ)  CYRILLIC SMALL LETTER EL WITH DESCENDER
 0531          ; input                          #      (Ա)  ARMENIAN CAPITAL LETTER AYB
 0532          ; input                          #      (Բ)  ARMENIAN CAPITAL LETTER BEN
 0533          ; input                          #      (Գ)  ARMENIAN CAPITAL LETTER GIM
@@ -1241,7 +1241,7 @@
 0554          ; input                          #      (Ք)  ARMENIAN CAPITAL LETTER KEH
 0555          ; input                          #      (Օ)  ARMENIAN CAPITAL LETTER OH
 0556          ; input                          #      (Ֆ)  ARMENIAN CAPITAL LETTER FEH
-0559          ; Restricted ; Technical         #      (ՙ)  ARMENIAN MODIFIER LETTER LEFT HALF RING
+0559          ; output                         #      (ՙ)  ARMENIAN MODIFIER LETTER LEFT HALF RING
 055A          ; Restricted ; Not_XID           #      (՚)  ARMENIAN APOSTROPHE
 055B          ; Restricted ; Not_XID           #      (՛)  ARMENIAN EMPHASIS MARK
 055C          ; Restricted ; Not_XID           #      (՜)  ARMENIAN EXCLAMATION MARK
@@ -1430,11 +1430,11 @@
 0638          ; output                         #      (ظ)  ARABIC LETTER ZAH
 0639          ; output                         #      (ع)  ARABIC LETTER AIN
 063A          ; output                         #      (غ)  ARABIC LETTER GHAIN
-063B          ; Restricted ; Obsolete          #      (ػ)  ARABIC LETTER KEHEH WITH TWO DOTS ABOVE
-063C          ; Restricted ; Obsolete          #      (ؼ)  ARABIC LETTER KEHEH WITH THREE DOTS BELOW
-063D          ; Restricted ; Obsolete          #      (ؽ)  ARABIC LETTER FARSI YEH WITH INVERTED V
-063E          ; Restricted ; Obsolete          #      (ؾ)  ARABIC LETTER FARSI YEH WITH TWO DOTS ABOVE
-063F          ; Restricted ; Obsolete          #      (ؿ)  ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE
+063B          ; output                         #      (ػ)  ARABIC LETTER KEHEH WITH TWO DOTS ABOVE
+063C          ; output                         #      (ؼ)  ARABIC LETTER KEHEH WITH THREE DOTS BELOW
+063D          ; output                         #      (ؽ)  ARABIC LETTER FARSI YEH WITH INVERTED V
+063E          ; output                         #      (ؾ)  ARABIC LETTER FARSI YEH WITH TWO DOTS ABOVE
+063F          ; output                         #      (ؿ)  ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE
 0640          ; Restricted ; Exclusion         #      (ـ)  ARABIC TATWEEL
 0641          ; output                         #      (ف)  ARABIC LETTER FEH
 0642          ; output                         #      (ق)  ARABIC LETTER QAF
@@ -1454,7 +1454,7 @@
 0650          ; output-nonstarting             #      (ِ)  ARABIC KASRA
 0651          ; output-nonstarting             #      (ّ)  ARABIC SHADDA
 0652          ; output-nonstarting             #      (ْ)  ARABIC SUKUN
-0653          ; Restricted ; Technical         #      (ٓ)  ARABIC MADDAH ABOVE
+0653          ; output-nonstarting             #      (ٓ)  ARABIC MADDAH ABOVE
 0654          ; output-nonstarting             #      (ٔ)  ARABIC HAMZA ABOVE
 0655          ; output-nonstarting             #      (ٕ)  ARABIC HAMZA BELOW
 0656          ; Restricted ; Uncommon_Use      #      (ٖ)  ARABIC SUBSCRIPT ALEF
@@ -1543,7 +1543,7 @@
 06A9          ; output                         #      (ک)  ARABIC LETTER KEHEH
 06AA          ; output                         #      (ڪ)  ARABIC LETTER SWASH KAF
 06AB          ; output                         #      (ګ)  ARABIC LETTER KAF WITH RING
-06AC          ; Restricted ; Technical         #      (ڬ)  ARABIC LETTER KAF WITH DOT ABOVE
+06AC          ; output                         #      (ڬ)  ARABIC LETTER KAF WITH DOT ABOVE
 06AD          ; output                         #      (ڭ)  ARABIC LETTER NG
 06AE          ; output                         #      (ڮ)  ARABIC LETTER KAF WITH THREE DOTS BELOW
 06AF          ; output                         #      (گ)  ARABIC LETTER GAF
@@ -1599,8 +1599,8 @@
 06E2          ; Restricted ; Uncommon_Use      #      (ۢ)  ARABIC SMALL HIGH MEEM ISOLATED FORM
 06E3          ; Restricted ; Uncommon_Use      #      (ۣ)  ARABIC SMALL LOW SEEN
 06E4          ; Restricted ; Uncommon_Use      #      (ۤ)  ARABIC SMALL HIGH MADDA
-06E5          ; Restricted ; Technical         #      (ۥ)  ARABIC SMALL WAW
-06E6          ; Restricted ; Technical         #      (ۦ)  ARABIC SMALL YEH
+06E5          ; output                         #      (ۥ)  ARABIC SMALL WAW
+06E6          ; output                         #      (ۦ)  ARABIC SMALL YEH
 06E7          ; Restricted ; Uncommon_Use      #      (ۧ)  ARABIC SMALL HIGH YEH
 06E8          ; Restricted ; Uncommon_Use      #      (ۨ)  ARABIC SMALL HIGH NOON
 06E9          ; Restricted ; Not_XID           #      (۩)  ARABIC PLACE OF SAJDAH
@@ -1675,8 +1675,8 @@
 077B          ; output                         #      (ݻ)  ARABIC LETTER YEH BARREE WITH EXTENDED ARABIC-INDIC DIGIT THREE ABOVE
 077C          ; output                         #      (ݼ)  ARABIC LETTER HAH WITH EXTENDED ARABIC-INDIC DIGIT FOUR BELOW
 077D          ; output                         #      (ݽ)  ARABIC LETTER SEEN WITH EXTENDED ARABIC-INDIC DIGIT FOUR ABOVE
-077E          ; Restricted ; Obsolete          #      (ݾ)  ARABIC LETTER SEEN WITH INVERTED V
-077F          ; Restricted ; Obsolete          #      (ݿ)  ARABIC LETTER KAF WITH TWO DOTS ABOVE
+077E          ; output                         #      (ݾ)  ARABIC LETTER SEEN WITH INVERTED V
+077F          ; output                         #      (ݿ)  ARABIC LETTER KAF WITH TWO DOTS ABOVE
 0780          ; output                         #      (ހ)  THAANA LETTER HAA
 0781          ; output                         #      (ށ)  THAANA LETTER SHAVIYANI
 0782          ; output                         #      (ނ)  THAANA LETTER NOONU
@@ -1877,7 +1877,7 @@
 085B          ; Restricted ; Limited_Use       #      (࡛)  MANDAIC GEMINATION MARK
 085E          ; Restricted ; Not_XID           #      (࡞)  MANDAIC PUNCTUATION
 08A0          ; output                         #      (ࢠ)  ARABIC LETTER BEH WITH SMALL V BELOW
-08A1          ; Restricted ; Technical         #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
+08A1          ; output                         #      (ࢡ)  ARABIC LETTER BEH WITH HAMZA ABOVE
 08A2          ; output                         #      (ࢢ)  ARABIC LETTER JEEM WITH TWO DOTS ABOVE
 08A3          ; output                         #      (ࢣ)  ARABIC LETTER TAH WITH TWO DOTS ABOVE
 08A4          ; output                         #      (ࢤ)  ARABIC LETTER FEH WITH DOT BELOW AND THREE DOTS ABOVE
@@ -1894,7 +1894,7 @@
 08AF          ; Restricted ; Obsolete          #      (ࢯ)  ARABIC LETTER SAD WITH THREE DOTS BELOW
 08B0          ; Restricted ; Obsolete          #      (ࢰ)  ARABIC LETTER GAF WITH INVERTED STROKE
 08B1          ; Restricted ; Obsolete          #      (ࢱ)  ARABIC LETTER STRAIGHT WAW
-08B2          ; Restricted ; Uncommon_Use      #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
+08B2          ; output                         #      (ࢲ)  ARABIC LETTER ZAIN WITH INVERTED V ABOVE
 08B3          ; Restricted ; Uncommon_Use      #      (ࢳ)  ARABIC LETTER AIN WITH THREE DOTS BELOW
 08B4          ; Restricted ; Uncommon_Use      #      (ࢴ)  ARABIC LETTER KAF WITH DOT BELOW
 08E3          ; Restricted ; Uncommon_Use      #      (ࣣ)  ARABIC TURNED DAMMA BELOW
@@ -2022,10 +2022,10 @@
 095D          ; Restricted ; Not_NFKC          #      (ढ़)  DEVANAGARI LETTER RHA
 095E          ; Restricted ; Not_NFKC          #      (फ़)  DEVANAGARI LETTER FA
 095F          ; Restricted ; Not_NFKC          #      (य़)  DEVANAGARI LETTER YYA
-0960          ; Restricted ; Obsolete          #      (ॠ)  DEVANAGARI LETTER VOCALIC RR
-0961          ; Restricted ; Obsolete          #      (ॡ)  DEVANAGARI LETTER VOCALIC LL
-0962          ; Restricted ; Obsolete          #      (ॢ)  DEVANAGARI VOWEL SIGN VOCALIC L
-0963          ; Restricted ; Obsolete          #      (ॣ)  DEVANAGARI VOWEL SIGN VOCALIC LL
+0960          ; output                         #      (ॠ)  DEVANAGARI LETTER VOCALIC RR
+0961          ; output                         #      (ॡ)  DEVANAGARI LETTER VOCALIC LL
+0962          ; output-nonstarting             #      (ॢ)  DEVANAGARI VOWEL SIGN VOCALIC L
+0963          ; output-nonstarting             #      (ॣ)  DEVANAGARI VOWEL SIGN VOCALIC LL
 0964          ; Restricted ; Not_XID           #      (।)  DEVANAGARI DANDA
 0965          ; Restricted ; Not_XID           #      (॥)  DEVANAGARI DOUBLE DANDA
 0966          ; output                         #      (०)  DEVANAGARI DIGIT ZERO
@@ -2039,7 +2039,7 @@
 096E          ; output                         #      (८)  DEVANAGARI DIGIT EIGHT
 096F          ; output                         #      (९)  DEVANAGARI DIGIT NINE
 0970          ; Restricted ; Not_XID           #      (॰)  DEVANAGARI ABBREVIATION SIGN
-0971          ; Restricted ; Obsolete          #      (ॱ)  DEVANAGARI SIGN HIGH SPACING DOT
+0971          ; output                         #      (ॱ)  DEVANAGARI SIGN HIGH SPACING DOT
 0972          ; output                         #      (ॲ)  DEVANAGARI LETTER CANDRA A
 0973          ; output                         #      (ॳ)  DEVANAGARI LETTER OE
 0974          ; output                         #      (ॴ)  DEVANAGARI LETTER OOE
@@ -2051,7 +2051,7 @@
 097A          ; output                         #      (ॺ)  DEVANAGARI LETTER HEAVY YA
 097B          ; output                         #      (ॻ)  DEVANAGARI LETTER GGA
 097C          ; output                         #      (ॼ)  DEVANAGARI LETTER JJA
-097D          ; Restricted ; Technical         #      (ॽ)  DEVANAGARI LETTER GLOTTAL STOP
+097D          ; output                         #      (ॽ)  DEVANAGARI LETTER GLOTTAL STOP
 097E          ; output                         #      (ॾ)  DEVANAGARI LETTER DDDA
 097F          ; output                         #      (ॿ)  DEVANAGARI LETTER BBA
 0980          ; Restricted ; Obsolete          #      (ঀ)  BENGALI ANJI
@@ -2147,7 +2147,7 @@
 09F9          ; Restricted ; Not_XID           #      (৹)  BENGALI CURRENCY DENOMINATOR SIXTEEN
 09FA          ; Restricted ; Not_XID           #      (৺)  BENGALI ISSHAR
 09FB          ; Restricted ; Not_XID           #      (৻)  BENGALI GANDA MARK
-0A01          ; Restricted ; Uncommon_Use      #      (ਁ)  GURMUKHI SIGN ADAK BINDI
+0A01          ; output-nonstarting             #      (ਁ)  GURMUKHI SIGN ADAK BINDI
 0A02          ; output-nonstarting             #      (ਂ)  GURMUKHI SIGN BINDI
 0A03          ; output-nonstarting             #      (ਃ)  GURMUKHI SIGN VISARGA
 0A05          ; output                         #      (ਅ)  GURMUKHI LETTER A
@@ -2295,9 +2295,9 @@
 0ACD          ; output-nonstarting             #      (્)  GUJARATI SIGN VIRAMA
 0AD0          ; output                         #      (ૐ)  GUJARATI OM
 0AE0          ; output                         #      (ૠ)  GUJARATI LETTER VOCALIC RR
-0AE1          ; Restricted ; Obsolete          #      (ૡ)  GUJARATI LETTER VOCALIC LL
-0AE2          ; Restricted ; Obsolete          #      (ૢ)  GUJARATI VOWEL SIGN VOCALIC L
-0AE3          ; Restricted ; Obsolete          #      (ૣ)  GUJARATI VOWEL SIGN VOCALIC LL
+0AE1          ; output                         #      (ૡ)  GUJARATI LETTER VOCALIC LL
+0AE2          ; output-nonstarting             #      (ૢ)  GUJARATI VOWEL SIGN VOCALIC L
+0AE3          ; output-nonstarting             #      (ૣ)  GUJARATI VOWEL SIGN VOCALIC LL
 0AE6          ; output                         #      (૦)  GUJARATI DIGIT ZERO
 0AE7          ; output                         #      (૧)  GUJARATI DIGIT ONE
 0AE8          ; output                         #      (૨)  GUJARATI DIGIT TWO
@@ -2361,7 +2361,7 @@
 0B38          ; output                         #      (ସ)  ORIYA LETTER SA
 0B39          ; output                         #      (ହ)  ORIYA LETTER HA
 0B3C          ; output-nonstarting             #      (଼)  ORIYA SIGN NUKTA
-0B3D          ; Restricted ; Obsolete          #      (ଽ)  ORIYA SIGN AVAGRAHA
+0B3D          ; output                         #      (ଽ)  ORIYA SIGN AVAGRAHA
 0B3E          ; output-nonstarting             #      (ା)  ORIYA VOWEL SIGN AA
 0B3F          ; output-nonstarting             #      (ି)  ORIYA VOWEL SIGN I
 0B40          ; output-nonstarting             #      (ୀ)  ORIYA VOWEL SIGN II
@@ -2379,8 +2379,8 @@
 0B5C          ; Restricted ; Not_NFKC          #      (ଡ଼)  ORIYA LETTER RRA
 0B5D          ; Restricted ; Not_NFKC          #      (ଢ଼)  ORIYA LETTER RHA
 0B5F          ; output                         #      (ୟ)  ORIYA LETTER YYA
-0B60          ; Restricted ; Obsolete          #      (ୠ)  ORIYA LETTER VOCALIC RR
-0B61          ; Restricted ; Obsolete          #      (ୡ)  ORIYA LETTER VOCALIC LL
+0B60          ; output                         #      (ୠ)  ORIYA LETTER VOCALIC RR
+0B61          ; output                         #      (ୡ)  ORIYA LETTER VOCALIC LL
 0B62          ; Restricted ; Uncommon_Use      #      (ୢ)  ORIYA VOWEL SIGN VOCALIC L
 0B63          ; Restricted ; Uncommon_Use      #      (ୣ)  ORIYA VOWEL SIGN VOCALIC LL
 0B66          ; output                         #      (୦)  ORIYA DIGIT ZERO
@@ -2401,7 +2401,7 @@
 0B75          ; Restricted ; Not_XID           #      (୵)  ORIYA FRACTION ONE SIXTEENTH
 0B76          ; Restricted ; Not_XID           #      (୶)  ORIYA FRACTION ONE EIGHTH
 0B77          ; Restricted ; Not_XID           #      (୷)  ORIYA FRACTION THREE SIXTEENTHS
-0B82          ; Restricted ; Technical         #      (ஂ)  TAMIL SIGN ANUSVARA
+0B82          ; output-nonstarting             #      (ஂ)  TAMIL SIGN ANUSVARA
 0B83          ; output                         #      (ஃ)  TAMIL SIGN VISARGA
 0B85          ; output                         #      (அ)  TAMIL LETTER A
 0B86          ; output                         #      (ஆ)  TAMIL LETTER AA
@@ -2450,7 +2450,7 @@
 0BCB          ; output-nonstarting             #      (ோ)  TAMIL VOWEL SIGN OO
 0BCC          ; output-nonstarting             #      (ௌ)  TAMIL VOWEL SIGN AU
 0BCD          ; output-nonstarting             #      (்)  TAMIL SIGN VIRAMA
-0BD0          ; Restricted ; Technical         #      (ௐ)  TAMIL OM
+0BD0          ; output                         #      (ௐ)  TAMIL OM
 0BD7          ; output-nonstarting             #      (ௗ)  TAMIL AU LENGTH MARK
 0BE6          ; output                         #      (௦)  TAMIL DIGIT ZERO
 0BE7          ; output                         #      (௧)  TAMIL DIGIT ONE
@@ -2527,7 +2527,7 @@
 0C37          ; output                         #      (ష)  TELUGU LETTER SSA
 0C38          ; output                         #      (స)  TELUGU LETTER SA
 0C39          ; output                         #      (హ)  TELUGU LETTER HA
-0C3D          ; Restricted ; Obsolete          #      (ఽ)  TELUGU SIGN AVAGRAHA
+0C3D          ; output                         #      (ఽ)  TELUGU SIGN AVAGRAHA
 0C3E          ; output-nonstarting             #      (ా)  TELUGU VOWEL SIGN AA
 0C3F          ; output-nonstarting             #      (ి)  TELUGU VOWEL SIGN I
 0C40          ; output-nonstarting             #      (ీ)  TELUGU VOWEL SIGN II
@@ -2642,8 +2642,8 @@
 0CDE          ; Restricted ; Obsolete          #      (ೞ)  KANNADA LETTER FA
 0CE0          ; output                         #      (ೠ)  KANNADA LETTER VOCALIC RR
 0CE1          ; output                         #      (ೡ)  KANNADA LETTER VOCALIC LL
-0CE2          ; Restricted ; Obsolete          #      (ೢ)  KANNADA VOWEL SIGN VOCALIC L
-0CE3          ; Restricted ; Obsolete          #      (ೣ)  KANNADA VOWEL SIGN VOCALIC LL
+0CE2          ; output-nonstarting             #      (ೢ)  KANNADA VOWEL SIGN VOCALIC L
+0CE3          ; output-nonstarting             #      (ೣ)  KANNADA VOWEL SIGN VOCALIC LL
 0CE6          ; output                         #      (೦)  KANNADA DIGIT ZERO
 0CE7          ; output                         #      (೧)  KANNADA DIGIT ONE
 0CE8          ; output                         #      (೨)  KANNADA DIGIT TWO
@@ -2654,8 +2654,8 @@
 0CED          ; output                         #      (೭)  KANNADA DIGIT SEVEN
 0CEE          ; output                         #      (೮)  KANNADA DIGIT EIGHT
 0CEF          ; output                         #      (೯)  KANNADA DIGIT NINE
-0CF1          ; Restricted ; Obsolete          #      (ೱ)  KANNADA SIGN JIHVAMULIYA
-0CF2          ; Restricted ; Obsolete          #      (ೲ)  KANNADA SIGN UPADHMANIYA
+0CF1          ; output                         #      (ೱ)  KANNADA SIGN JIHVAMULIYA
+0CF2          ; output                         #      (ೲ)  KANNADA SIGN UPADHMANIYA
 0D01          ; Restricted ; Obsolete          #      (ഁ)  MALAYALAM SIGN CANDRABINDU
 0D02          ; output-nonstarting             #      (ം)  MALAYALAM SIGN ANUSVARA
 0D03          ; output-nonstarting             #      (ഃ)  MALAYALAM SIGN VISARGA
@@ -2710,8 +2710,8 @@
 0D37          ; output                         #      (ഷ)  MALAYALAM LETTER SSA
 0D38          ; output                         #      (സ)  MALAYALAM LETTER SA
 0D39          ; output                         #      (ഹ)  MALAYALAM LETTER HA
-0D3A          ; Restricted ; Obsolete          #      (ഺ)  MALAYALAM LETTER TTTA
-0D3D          ; Restricted ; Obsolete          #      (ഽ)  MALAYALAM SIGN AVAGRAHA
+0D3A          ; output                         #      (ഺ)  MALAYALAM LETTER TTTA
+0D3D          ; output                         #      (ഽ)  MALAYALAM SIGN AVAGRAHA
 0D3E          ; output-nonstarting             #      (ാ)  MALAYALAM VOWEL SIGN AA
 0D3F          ; output-nonstarting             #      (ി)  MALAYALAM VOWEL SIGN I
 0D40          ; output-nonstarting             #      (ീ)  MALAYALAM VOWEL SIGN II
@@ -2726,7 +2726,7 @@
 0D4B          ; output-nonstarting             #      (ോ)  MALAYALAM VOWEL SIGN OO
 0D4C          ; output-nonstarting             #      (ൌ)  MALAYALAM VOWEL SIGN AU
 0D4D          ; output-nonstarting             #      (്)  MALAYALAM SIGN VIRAMA
-0D4E          ; Restricted ; Obsolete          #      (ൎ)  MALAYALAM LETTER DOT REPH
+0D4E          ; output                         #      (ൎ)  MALAYALAM LETTER DOT REPH
 0D57          ; output-nonstarting             #      (ൗ)  MALAYALAM AU LENGTH MARK
 0D5F          ; Restricted ; Obsolete          #      (ൟ)  MALAYALAM LETTER ARCHAIC II
 0D60          ; output                         #      (ൠ)  MALAYALAM LETTER VOCALIC RR
@@ -3000,7 +3000,7 @@
 0EDD          ; Restricted ; Not_NFKC          #      (ໝ)  LAO HO MO
 0EDE          ; output                         #      (ໞ)  LAO LETTER KHMU GO
 0EDF          ; output                         #      (ໟ)  LAO LETTER KHMU NYO
-0F00          ; Restricted ; Technical         #      (ༀ)  TIBETAN SYLLABLE OM
+0F00          ; output                         #      (ༀ)  TIBETAN SYLLABLE OM
 0F01          ; Restricted ; Not_XID           #      (༁)  TIBETAN MARK GTER YIG MGO TRUNCATED A
 0F02          ; Restricted ; Not_XID           #      (༂)  TIBETAN MARK GTER YIG MGO -UM RNAM BCAD MA
 0F03          ; Restricted ; Not_XID           #      (༃)  TIBETAN MARK GTER YIG MGO -UM GTER TSHEG MA
@@ -3053,17 +3053,17 @@
 0F32          ; Restricted ; Not_XID           #      (༲)  TIBETAN DIGIT HALF NINE
 0F33          ; Restricted ; Not_XID           #      (༳)  TIBETAN DIGIT HALF ZERO
 0F34          ; Restricted ; Not_XID           #      (༴)  TIBETAN MARK BSDUS RTAGS
-0F35          ; Restricted ; Technical         #      (༵)  TIBETAN MARK NGAS BZUNG NYI ZLA
+0F35          ; output-nonstarting             #      (༵)  TIBETAN MARK NGAS BZUNG NYI ZLA
 0F36          ; Restricted ; Not_XID           #      (༶)  TIBETAN MARK CARET -DZUD RTAGS BZHI MIG CAN
-0F37          ; Restricted ; Technical         #      (༷)  TIBETAN MARK NGAS BZUNG SGOR RTAGS
+0F37          ; output-nonstarting             #      (༷)  TIBETAN MARK NGAS BZUNG SGOR RTAGS
 0F38          ; Restricted ; Not_XID           #      (༸)  TIBETAN MARK CHE MGO
 0F39          ; Restricted ; Uncommon_Use      #      (༹)  TIBETAN MARK TSA -PHRU
 0F3A          ; Restricted ; Not_XID           #      (༺)  TIBETAN MARK GUG RTAGS GYON
 0F3B          ; Restricted ; Not_XID           #      (༻)  TIBETAN MARK GUG RTAGS GYAS
 0F3C          ; Restricted ; Not_XID           #      (༼)  TIBETAN MARK ANG KHANG GYON
 0F3D          ; Restricted ; Not_XID           #      (༽)  TIBETAN MARK ANG KHANG GYAS
-0F3E          ; Restricted ; Technical         #      (༾)  TIBETAN SIGN YAR TSHES
-0F3F          ; Restricted ; Technical         #      (༿)  TIBETAN SIGN MAR TSHES
+0F3E          ; output-nonstarting             #      (༾)  TIBETAN SIGN YAR TSHES
+0F3F          ; output-nonstarting             #      (༿)  TIBETAN SIGN MAR TSHES
 0F40          ; output                         #      (ཀ)  TIBETAN LETTER KA
 0F41          ; output                         #      (ཁ)  TIBETAN LETTER KHA
 0F42          ; output                         #      (ག)  TIBETAN LETTER GA
@@ -3105,9 +3105,9 @@
 0F67          ; output                         #      (ཧ)  TIBETAN LETTER HA
 0F68          ; output                         #      (ཨ)  TIBETAN LETTER A
 0F69          ; Restricted ; Not_NFKC          #      (ཀྵ)  TIBETAN LETTER KSSA
-0F6A          ; Restricted ; Uncommon_Use      #      (ཪ)  TIBETAN LETTER FIXED-FORM RA
-0F6B          ; Restricted ; Uncommon_Use      #      (ཫ)  TIBETAN LETTER KKA
-0F6C          ; Restricted ; Uncommon_Use      #      (ཬ)  TIBETAN LETTER RRA
+0F6A          ; output                         #      (ཪ)  TIBETAN LETTER FIXED-FORM RA
+0F6B          ; output                         #      (ཫ)  TIBETAN LETTER KKA
+0F6C          ; output                         #      (ཬ)  TIBETAN LETTER RRA
 0F71          ; output-nonstarting             #      (ཱ)  TIBETAN VOWEL SIGN AA
 0F72          ; output-nonstarting             #      (ི)  TIBETAN VOWEL SIGN I
 0F73          ; Restricted ; Not_NFKC          #      (ཱི)  TIBETAN VOWEL SIGN II
@@ -3118,27 +3118,27 @@
 0F78          ; Restricted ; Not_NFKC          #      (ླྀ)  TIBETAN VOWEL SIGN VOCALIC L
 0F79          ; Restricted ; Deprecated        #      (ཹ)  TIBETAN VOWEL SIGN VOCALIC LL
 0F7A          ; output-nonstarting             #      (ེ)  TIBETAN VOWEL SIGN E
-0F7B          ; Restricted ; Technical         #      (ཻ)  TIBETAN VOWEL SIGN EE
+0F7B          ; output-nonstarting             #      (ཻ)  TIBETAN VOWEL SIGN EE
 0F7C          ; output-nonstarting             #      (ོ)  TIBETAN VOWEL SIGN O
-0F7D          ; Restricted ; Technical         #      (ཽ)  TIBETAN VOWEL SIGN OO
+0F7D          ; output-nonstarting             #      (ཽ)  TIBETAN VOWEL SIGN OO
 0F7E          ; output-nonstarting             #      (ཾ)  TIBETAN SIGN RJES SU NGA RO
 0F7F          ; output-nonstarting             #      (ཿ)  TIBETAN SIGN RNAM BCAD
 0F80          ; output-nonstarting             #      (ྀ)  TIBETAN VOWEL SIGN REVERSED I
 0F81          ; Restricted ; Not_NFKC          #      (ཱྀ)  TIBETAN VOWEL SIGN REVERSED II
-0F82          ; Restricted ; Uncommon_Use      #      (ྂ)  TIBETAN SIGN NYI ZLA NAA DA
-0F83          ; Restricted ; Uncommon_Use      #      (ྃ)  TIBETAN SIGN SNA LDAN
+0F82          ; output-nonstarting             #      (ྂ)  TIBETAN SIGN NYI ZLA NAA DA
+0F83          ; output-nonstarting             #      (ྃ)  TIBETAN SIGN SNA LDAN
 0F84          ; output-nonstarting             #      (྄)  TIBETAN MARK HALANTA
 0F85          ; Restricted ; Not_XID           #      (྅)  TIBETAN MARK PALUTA
-0F86          ; Restricted ; Obsolete          #      (྆)  TIBETAN SIGN LCI RTAGS
-0F87          ; Restricted ; Obsolete          #      (྇)  TIBETAN SIGN YANG RTAGS
-0F88          ; Restricted ; Obsolete          #      (ྈ)  TIBETAN SIGN LCE TSA CAN
-0F89          ; Restricted ; Obsolete          #      (ྉ)  TIBETAN SIGN MCHU CAN
-0F8A          ; Restricted ; Obsolete          #      (ྊ)  TIBETAN SIGN GRU CAN RGYINGS
-0F8B          ; Restricted ; Obsolete          #      (ྋ)  TIBETAN SIGN GRU MED RGYINGS
-0F8C          ; Restricted ; Obsolete          #      (ྌ)  TIBETAN SIGN INVERTED MCHU CAN
-0F8D          ; Restricted ; Obsolete          #      (ྍ)  TIBETAN SUBJOINED SIGN LCE TSA CAN
-0F8E          ; Restricted ; Obsolete          #      (ྎ)  TIBETAN SUBJOINED SIGN MCHU CAN
-0F8F          ; Restricted ; Obsolete          #      (ྏ)  TIBETAN SUBJOINED SIGN INVERTED MCHU CAN
+0F86          ; output-nonstarting             #      (྆)  TIBETAN SIGN LCI RTAGS
+0F87          ; output-nonstarting             #      (྇)  TIBETAN SIGN YANG RTAGS
+0F88          ; output                         #      (ྈ)  TIBETAN SIGN LCE TSA CAN
+0F89          ; output                         #      (ྉ)  TIBETAN SIGN MCHU CAN
+0F8A          ; output                         #      (ྊ)  TIBETAN SIGN GRU CAN RGYINGS
+0F8B          ; output                         #      (ྋ)  TIBETAN SIGN GRU MED RGYINGS
+0F8C          ; output                         #      (ྌ)  TIBETAN SIGN INVERTED MCHU CAN
+0F8D          ; output-nonstarting             #      (ྍ)  TIBETAN SUBJOINED SIGN LCE TSA CAN
+0F8E          ; output-nonstarting             #      (ྎ)  TIBETAN SUBJOINED SIGN MCHU CAN
+0F8F          ; output-nonstarting             #      (ྏ)  TIBETAN SUBJOINED SIGN INVERTED MCHU CAN
 0F90          ; output-nonstarting             #      (ྐ)  TIBETAN SUBJOINED LETTER KA
 0F91          ; output-nonstarting             #      (ྑ)  TIBETAN SUBJOINED LETTER KHA
 0F92          ; output-nonstarting             #      (ྒ)  TIBETAN SUBJOINED LETTER GA
@@ -3168,9 +3168,9 @@
 0FAB          ; output-nonstarting             #      (ྫ)  TIBETAN SUBJOINED LETTER DZA
 0FAC          ; Restricted ; Not_NFKC          #      (ྫྷ)  TIBETAN SUBJOINED LETTER DZHA
 0FAD          ; output-nonstarting             #      (ྭ)  TIBETAN SUBJOINED LETTER WA
-0FAE          ; Restricted ; Uncommon_Use      #      (ྮ)  TIBETAN SUBJOINED LETTER ZHA
-0FAF          ; Restricted ; Uncommon_Use      #      (ྯ)  TIBETAN SUBJOINED LETTER ZA
-0FB0          ; Restricted ; Uncommon_Use      #      (ྰ)  TIBETAN SUBJOINED LETTER -A
+0FAE          ; output-nonstarting             #      (ྮ)  TIBETAN SUBJOINED LETTER ZHA
+0FAF          ; output-nonstarting             #      (ྯ)  TIBETAN SUBJOINED LETTER ZA
+0FB0          ; output-nonstarting             #      (ྰ)  TIBETAN SUBJOINED LETTER -A
 0FB1          ; output-nonstarting             #      (ྱ)  TIBETAN SUBJOINED LETTER YA
 0FB2          ; output-nonstarting             #      (ྲ)  TIBETAN SUBJOINED LETTER RA
 0FB3          ; output-nonstarting             #      (ླ)  TIBETAN SUBJOINED LETTER LA
@@ -3191,7 +3191,7 @@
 0FC3          ; Restricted ; Not_XID           #      (࿃)  TIBETAN CANTILLATION SIGN SBUB -CHAL
 0FC4          ; Restricted ; Not_XID           #      (࿄)  TIBETAN SYMBOL DRIL BU
 0FC5          ; Restricted ; Not_XID           #      (࿅)  TIBETAN SYMBOL RDO RJE
-0FC6          ; Restricted ; Uncommon_Use      #      (࿆)  TIBETAN SYMBOL PADMA GDAN
+0FC6          ; output-nonstarting             #      (࿆)  TIBETAN SYMBOL PADMA GDAN
 0FC7          ; Restricted ; Not_XID           #      (࿇)  TIBETAN SYMBOL RDO RJE RGYA GRAM
 0FC8          ; Restricted ; Not_XID           #      (࿈)  TIBETAN SYMBOL PHUR PA
 0FC9          ; Restricted ; Not_XID           #      (࿉)  TIBETAN SYMBOL NOR BU
@@ -3251,7 +3251,7 @@
 1025          ; output                         #      (ဥ)  MYANMAR LETTER U
 1026          ; output                         #      (ဦ)  MYANMAR LETTER UU
 1027          ; output                         #      (ဧ)  MYANMAR LETTER E
-1028          ; Restricted ; Uncommon_Use      #      (ဨ)  MYANMAR LETTER MON E
+1028          ; output                         #      (ဨ)  MYANMAR LETTER MON E
 1029          ; output                         #      (ဩ)  MYANMAR LETTER O
 102A          ; output                         #      (ဪ)  MYANMAR LETTER AU
 102B          ; output-nonstarting             #      (ါ)  MYANMAR VOWEL SIGN TALL AA
@@ -3262,8 +3262,8 @@
 1030          ; output-nonstarting             #      (ူ)  MYANMAR VOWEL SIGN UU
 1031          ; output-nonstarting             #      (ေ)  MYANMAR VOWEL SIGN E
 1032          ; output-nonstarting             #      (ဲ)  MYANMAR VOWEL SIGN AI
-1033          ; Restricted ; Uncommon_Use      #      (ဳ)  MYANMAR VOWEL SIGN MON II
-1034          ; Restricted ; Uncommon_Use      #      (ဴ)  MYANMAR VOWEL SIGN MON O
+1033          ; output-nonstarting             #      (ဳ)  MYANMAR VOWEL SIGN MON II
+1034          ; output-nonstarting             #      (ဴ)  MYANMAR VOWEL SIGN MON O
 1035          ; output-nonstarting             #      (ဵ)  MYANMAR VOWEL SIGN E ABOVE
 1036          ; output-nonstarting             #      (ံ)  MYANMAR SIGN ANUSVARA
 1037          ; output-nonstarting             #      (့)  MYANMAR SIGN DOT BELOW
@@ -3291,43 +3291,43 @@
 104D          ; Restricted ; Not_XID           #      (၍)  MYANMAR SYMBOL COMPLETED
 104E          ; Restricted ; Not_XID           #      (၎)  MYANMAR SYMBOL AFOREMENTIONED
 104F          ; Restricted ; Not_XID           #      (၏)  MYANMAR SYMBOL GENITIVE
-1050          ; Restricted ; Uncommon_Use      #      (ၐ)  MYANMAR LETTER SHA
-1051          ; Restricted ; Uncommon_Use      #      (ၑ)  MYANMAR LETTER SSA
-1052          ; Restricted ; Uncommon_Use      #      (ၒ)  MYANMAR LETTER VOCALIC R
-1053          ; Restricted ; Uncommon_Use      #      (ၓ)  MYANMAR LETTER VOCALIC RR
-1054          ; Restricted ; Uncommon_Use      #      (ၔ)  MYANMAR LETTER VOCALIC L
-1055          ; Restricted ; Uncommon_Use      #      (ၕ)  MYANMAR LETTER VOCALIC LL
-1056          ; Restricted ; Uncommon_Use      #      (ၖ)  MYANMAR VOWEL SIGN VOCALIC R
-1057          ; Restricted ; Uncommon_Use      #      (ၗ)  MYANMAR VOWEL SIGN VOCALIC RR
-1058          ; Restricted ; Uncommon_Use      #      (ၘ)  MYANMAR VOWEL SIGN VOCALIC L
-1059          ; Restricted ; Uncommon_Use      #      (ၙ)  MYANMAR VOWEL SIGN VOCALIC LL
-105A          ; Restricted ; Uncommon_Use      #      (ၚ)  MYANMAR LETTER MON NGA
-105B          ; Restricted ; Uncommon_Use      #      (ၛ)  MYANMAR LETTER MON JHA
-105C          ; Restricted ; Uncommon_Use      #      (ၜ)  MYANMAR LETTER MON BBA
-105D          ; Restricted ; Uncommon_Use      #      (ၝ)  MYANMAR LETTER MON BBE
-105E          ; Restricted ; Uncommon_Use      #      (ၞ)  MYANMAR CONSONANT SIGN MON MEDIAL NA
-105F          ; Restricted ; Uncommon_Use      #      (ၟ)  MYANMAR CONSONANT SIGN MON MEDIAL MA
-1060          ; Restricted ; Uncommon_Use      #      (ၠ)  MYANMAR CONSONANT SIGN MON MEDIAL LA
+1050          ; output                         #      (ၐ)  MYANMAR LETTER SHA
+1051          ; output                         #      (ၑ)  MYANMAR LETTER SSA
+1052          ; output                         #      (ၒ)  MYANMAR LETTER VOCALIC R
+1053          ; output                         #      (ၓ)  MYANMAR LETTER VOCALIC RR
+1054          ; output                         #      (ၔ)  MYANMAR LETTER VOCALIC L
+1055          ; output                         #      (ၕ)  MYANMAR LETTER VOCALIC LL
+1056          ; output-nonstarting             #      (ၖ)  MYANMAR VOWEL SIGN VOCALIC R
+1057          ; output-nonstarting             #      (ၗ)  MYANMAR VOWEL SIGN VOCALIC RR
+1058          ; output-nonstarting             #      (ၘ)  MYANMAR VOWEL SIGN VOCALIC L
+1059          ; output-nonstarting             #      (ၙ)  MYANMAR VOWEL SIGN VOCALIC LL
+105A          ; output                         #      (ၚ)  MYANMAR LETTER MON NGA
+105B          ; output                         #      (ၛ)  MYANMAR LETTER MON JHA
+105C          ; output                         #      (ၜ)  MYANMAR LETTER MON BBA
+105D          ; output                         #      (ၝ)  MYANMAR LETTER MON BBE
+105E          ; output-nonstarting             #      (ၞ)  MYANMAR CONSONANT SIGN MON MEDIAL NA
+105F          ; output-nonstarting             #      (ၟ)  MYANMAR CONSONANT SIGN MON MEDIAL MA
+1060          ; output-nonstarting             #      (ၠ)  MYANMAR CONSONANT SIGN MON MEDIAL LA
 1061          ; output                         #      (ၡ)  MYANMAR LETTER SGAW KAREN SHA
 1062          ; output-nonstarting             #      (ၢ)  MYANMAR VOWEL SIGN SGAW KAREN EU
 1063          ; output-nonstarting             #      (ၣ)  MYANMAR TONE MARK SGAW KAREN HATHI
 1064          ; output-nonstarting             #      (ၤ)  MYANMAR TONE MARK SGAW KAREN KE PHO
-1065          ; Restricted ; Uncommon_Use      #      (ၥ)  MYANMAR LETTER WESTERN PWO KAREN THA
-1066          ; Restricted ; Uncommon_Use      #      (ၦ)  MYANMAR LETTER WESTERN PWO KAREN PWA
-1067          ; Restricted ; Uncommon_Use      #      (ၧ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN EU
-1068          ; Restricted ; Uncommon_Use      #      (ၨ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN UE
-1069          ; Restricted ; Uncommon_Use      #      (ၩ)  MYANMAR SIGN WESTERN PWO KAREN TONE-1
-106A          ; Restricted ; Uncommon_Use      #      (ၪ)  MYANMAR SIGN WESTERN PWO KAREN TONE-2
-106B          ; Restricted ; Uncommon_Use      #      (ၫ)  MYANMAR SIGN WESTERN PWO KAREN TONE-3
-106C          ; Restricted ; Uncommon_Use      #      (ၬ)  MYANMAR SIGN WESTERN PWO KAREN TONE-4
-106D          ; Restricted ; Uncommon_Use      #      (ၭ)  MYANMAR SIGN WESTERN PWO KAREN TONE-5
-106E          ; Restricted ; Uncommon_Use      #      (ၮ)  MYANMAR LETTER EASTERN PWO KAREN NNA
-106F          ; Restricted ; Uncommon_Use      #      (ၯ)  MYANMAR LETTER EASTERN PWO KAREN YWA
-1070          ; Restricted ; Uncommon_Use      #      (ၰ)  MYANMAR LETTER EASTERN PWO KAREN GHWA
-1071          ; Restricted ; Uncommon_Use      #      (ၱ)  MYANMAR VOWEL SIGN GEBA KAREN I
-1072          ; Restricted ; Uncommon_Use      #      (ၲ)  MYANMAR VOWEL SIGN KAYAH OE
-1073          ; Restricted ; Uncommon_Use      #      (ၳ)  MYANMAR VOWEL SIGN KAYAH U
-1074          ; Restricted ; Uncommon_Use      #      (ၴ)  MYANMAR VOWEL SIGN KAYAH EE
+1065          ; output                         #      (ၥ)  MYANMAR LETTER WESTERN PWO KAREN THA
+1066          ; output                         #      (ၦ)  MYANMAR LETTER WESTERN PWO KAREN PWA
+1067          ; output-nonstarting             #      (ၧ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN EU
+1068          ; output-nonstarting             #      (ၨ)  MYANMAR VOWEL SIGN WESTERN PWO KAREN UE
+1069          ; output-nonstarting             #      (ၩ)  MYANMAR SIGN WESTERN PWO KAREN TONE-1
+106A          ; output-nonstarting             #      (ၪ)  MYANMAR SIGN WESTERN PWO KAREN TONE-2
+106B          ; output-nonstarting             #      (ၫ)  MYANMAR SIGN WESTERN PWO KAREN TONE-3
+106C          ; output-nonstarting             #      (ၬ)  MYANMAR SIGN WESTERN PWO KAREN TONE-4
+106D          ; output-nonstarting             #      (ၭ)  MYANMAR SIGN WESTERN PWO KAREN TONE-5
+106E          ; output                         #      (ၮ)  MYANMAR LETTER EASTERN PWO KAREN NNA
+106F          ; output                         #      (ၯ)  MYANMAR LETTER EASTERN PWO KAREN YWA
+1070          ; output                         #      (ၰ)  MYANMAR LETTER EASTERN PWO KAREN GHWA
+1071          ; output-nonstarting             #      (ၱ)  MYANMAR VOWEL SIGN GEBA KAREN I
+1072          ; output-nonstarting             #      (ၲ)  MYANMAR VOWEL SIGN KAYAH OE
+1073          ; output-nonstarting             #      (ၳ)  MYANMAR VOWEL SIGN KAYAH U
+1074          ; output-nonstarting             #      (ၴ)  MYANMAR VOWEL SIGN KAYAH EE
 1075          ; output                         #      (ၵ)  MYANMAR LETTER SHAN KA
 1076          ; output                         #      (ၶ)  MYANMAR LETTER SHAN KHA
 1077          ; output                         #      (ၷ)  MYANMAR LETTER SHAN GA
@@ -3353,8 +3353,8 @@
 108B          ; output-nonstarting             #      (ႋ)  MYANMAR SIGN SHAN COUNCIL TONE-2
 108C          ; output-nonstarting             #      (ႌ)  MYANMAR SIGN SHAN COUNCIL TONE-3
 108D          ; output-nonstarting             #      (ႍ)  MYANMAR SIGN SHAN COUNCIL EMPHATIC TONE
-108E          ; Restricted ; Uncommon_Use      #      (ႎ)  MYANMAR LETTER RUMAI PALAUNG FA
-108F          ; Restricted ; Uncommon_Use      #      (ႏ)  MYANMAR SIGN RUMAI PALAUNG TONE-5
+108E          ; output                         #      (ႎ)  MYANMAR LETTER RUMAI PALAUNG FA
+108F          ; output-nonstarting             #      (ႏ)  MYANMAR SIGN RUMAI PALAUNG TONE-5
 1090          ; output                         #      (႐)  MYANMAR SHAN DIGIT ZERO
 1091          ; output                         #      (႑)  MYANMAR SHAN DIGIT ONE
 1092          ; output                         #      (႒)  MYANMAR SHAN DIGIT TWO
@@ -3365,10 +3365,10 @@
 1097          ; output                         #      (႗)  MYANMAR SHAN DIGIT SEVEN
 1098          ; output                         #      (႘)  MYANMAR SHAN DIGIT EIGHT
 1099          ; output                         #      (႙)  MYANMAR SHAN DIGIT NINE
-109A          ; Restricted ; Uncommon_Use      #      (ႚ)  MYANMAR SIGN KHAMTI TONE-1
-109B          ; Restricted ; Uncommon_Use      #      (ႛ)  MYANMAR SIGN KHAMTI TONE-3
-109C          ; Restricted ; Uncommon_Use      #      (ႜ)  MYANMAR VOWEL SIGN AITON A
-109D          ; Restricted ; Uncommon_Use      #      (ႝ)  MYANMAR VOWEL SIGN AITON AI
+109A          ; output-nonstarting             #      (ႚ)  MYANMAR SIGN KHAMTI TONE-1
+109B          ; output-nonstarting             #      (ႛ)  MYANMAR SIGN KHAMTI TONE-3
+109C          ; output-nonstarting             #      (ႜ)  MYANMAR VOWEL SIGN AITON A
+109D          ; output-nonstarting             #      (ႝ)  MYANMAR VOWEL SIGN AITON AI
 109E          ; Restricted ; Not_XID           #      (႞)  MYANMAR SYMBOL SHAN ONE
 109F          ; Restricted ; Not_XID           #      (႟)  MYANMAR SYMBOL SHAN EXCLAMATION
 10C7          ; input                          #      (Ⴧ)  GEORGIAN CAPITAL LETTER YN
@@ -3414,13 +3414,13 @@
 10F6          ; Restricted ; Obsolete          #      (ჶ)  GEORGIAN LETTER FI
 10F7          ; output                         #      (ჷ)  GEORGIAN LETTER YN
 10F8          ; output                         #      (ჸ)  GEORGIAN LETTER ELIFI
-10F9          ; Restricted ; Uncommon_Use      #      (ჹ)  GEORGIAN LETTER TURNED GAN
-10FA          ; Restricted ; Uncommon_Use      #      (ჺ)  GEORGIAN LETTER AIN
+10F9          ; output                         #      (ჹ)  GEORGIAN LETTER TURNED GAN
+10FA          ; output                         #      (ჺ)  GEORGIAN LETTER AIN
 10FB          ; Restricted ; Not_XID           #      (჻)  GEORGIAN PARAGRAPH SEPARATOR
 10FC          ; Restricted ; Not_NFKC          #      (ჼ)  MODIFIER LETTER GEORGIAN NAR
-10FD          ; Restricted ; Uncommon_Use      #      (ჽ)  GEORGIAN LETTER AEN
-10FE          ; Restricted ; Uncommon_Use      #      (ჾ)  GEORGIAN LETTER HARD SIGN
-10FF          ; Restricted ; Uncommon_Use      #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
+10FD          ; output                         #      (ჽ)  GEORGIAN LETTER AEN
+10FE          ; output                         #      (ჾ)  GEORGIAN LETTER HARD SIGN
+10FF          ; output                         #      (ჿ)  GEORGIAN LETTER LABIAL SIGN
 1100..115E    ; Restricted ; Obsolete          # [95] (ᄀ..ᅞ)  HANGUL CHOSEONG KIYEOK..HANGUL CHOSEONG TIKEUT-RIEUL
 1161..11FF    ; Restricted ; Obsolete          # [159] (ᅡ..ᇿ)  HANGUL JUNGSEONG A..HANGUL JONGSEONG SSANGNIEUN
 1200..1248    ; output                         # [73] (ሀ..ቈ)  ETHIOPIC SYLLABLE HA..ETHIOPIC SYLLABLE QWA
@@ -3562,7 +3562,7 @@
 17D9          ; Restricted ; Not_XID           #      (៙)  KHMER SIGN PHNAEK MUAN
 17DA          ; Restricted ; Not_XID           #      (៚)  KHMER SIGN KOOMUUT
 17DB          ; Restricted ; Not_XID           #      (៛)  KHMER CURRENCY SYMBOL RIEL
-17DC          ; Restricted ; Obsolete          #      (ៜ)  KHMER SIGN AVAKRAHASANYA
+17DC          ; output                         #      (ៜ)  KHMER SIGN AVAKRAHASANYA
 17DD          ; Restricted ; Obsolete          #      (៝)  KHMER SIGN ATTHACAN
 17E0          ; output                         #      (០)  KHMER DIGIT ZERO
 17E1          ; output                         #      (១)  KHMER DIGIT ONE
@@ -4789,8 +4789,8 @@
 1DFD          ; Restricted ; Technical         #      (᷽)  COMBINING ALMOST EQUAL TO BELOW
 1DFE          ; Restricted ; Technical         #      (᷾)  COMBINING LEFT ARROWHEAD ABOVE
 1DFF          ; Restricted ; Technical         #      (᷿)  COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
-1E00          ; Restricted ; output-disallowed #      (Ḁ)  LATIN CAPITAL LETTER A WITH RING BELOW
-1E01          ; Restricted ; Technical         #      (ḁ)  LATIN SMALL LETTER A WITH RING BELOW
+1E00          ; input                          #      (Ḁ)  LATIN CAPITAL LETTER A WITH RING BELOW
+1E01          ; output                         #      (ḁ)  LATIN SMALL LETTER A WITH RING BELOW
 1E02          ; input                          #      (Ḃ)  LATIN CAPITAL LETTER B WITH DOT ABOVE
 1E03          ; output                         #      (ḃ)  LATIN SMALL LETTER B WITH DOT ABOVE
 1E04          ; input                          #      (Ḅ)  LATIN CAPITAL LETTER B WITH DOT BELOW
@@ -4807,16 +4807,16 @@
 1E0F          ; output                         #      (ḏ)  LATIN SMALL LETTER D WITH LINE BELOW
 1E10          ; input                          #      (Ḑ)  LATIN CAPITAL LETTER D WITH CEDILLA
 1E11          ; output                         #      (ḑ)  LATIN SMALL LETTER D WITH CEDILLA
-1E12          ; Restricted ; output-disallowed #      (Ḓ)  LATIN CAPITAL LETTER D WITH CIRCUMFLEX BELOW
-1E13          ; Restricted ; Technical         #      (ḓ)  LATIN SMALL LETTER D WITH CIRCUMFLEX BELOW
+1E12          ; input                          #      (Ḓ)  LATIN CAPITAL LETTER D WITH CIRCUMFLEX BELOW
+1E13          ; output                         #      (ḓ)  LATIN SMALL LETTER D WITH CIRCUMFLEX BELOW
 1E14          ; input                          #      (Ḕ)  LATIN CAPITAL LETTER E WITH MACRON AND GRAVE
 1E15          ; output                         #      (ḕ)  LATIN SMALL LETTER E WITH MACRON AND GRAVE
 1E16          ; input                          #      (Ḗ)  LATIN CAPITAL LETTER E WITH MACRON AND ACUTE
 1E17          ; output                         #      (ḗ)  LATIN SMALL LETTER E WITH MACRON AND ACUTE
-1E18          ; Restricted ; output-disallowed #      (Ḙ)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX BELOW
-1E19          ; Restricted ; Technical         #      (ḙ)  LATIN SMALL LETTER E WITH CIRCUMFLEX BELOW
-1E1A          ; Restricted ; output-disallowed #      (Ḛ)  LATIN CAPITAL LETTER E WITH TILDE BELOW
-1E1B          ; Restricted ; Technical         #      (ḛ)  LATIN SMALL LETTER E WITH TILDE BELOW
+1E18          ; input                          #      (Ḙ)  LATIN CAPITAL LETTER E WITH CIRCUMFLEX BELOW
+1E19          ; output                         #      (ḙ)  LATIN SMALL LETTER E WITH CIRCUMFLEX BELOW
+1E1A          ; input                          #      (Ḛ)  LATIN CAPITAL LETTER E WITH TILDE BELOW
+1E1B          ; output                         #      (ḛ)  LATIN SMALL LETTER E WITH TILDE BELOW
 1E1C          ; input                          #      (Ḝ)  LATIN CAPITAL LETTER E WITH CEDILLA AND BREVE
 1E1D          ; output                         #      (ḝ)  LATIN SMALL LETTER E WITH CEDILLA AND BREVE
 1E1E          ; input                          #      (Ḟ)  LATIN CAPITAL LETTER F WITH DOT ABOVE
@@ -4831,10 +4831,10 @@
 1E27          ; output                         #      (ḧ)  LATIN SMALL LETTER H WITH DIAERESIS
 1E28          ; input                          #      (Ḩ)  LATIN CAPITAL LETTER H WITH CEDILLA
 1E29          ; output                         #      (ḩ)  LATIN SMALL LETTER H WITH CEDILLA
-1E2A          ; Restricted ; output-disallowed #      (Ḫ)  LATIN CAPITAL LETTER H WITH BREVE BELOW
-1E2B          ; Restricted ; Technical         #      (ḫ)  LATIN SMALL LETTER H WITH BREVE BELOW
-1E2C          ; Restricted ; output-disallowed #      (Ḭ)  LATIN CAPITAL LETTER I WITH TILDE BELOW
-1E2D          ; Restricted ; Technical         #      (ḭ)  LATIN SMALL LETTER I WITH TILDE BELOW
+1E2A          ; input                          #      (Ḫ)  LATIN CAPITAL LETTER H WITH BREVE BELOW
+1E2B          ; output                         #      (ḫ)  LATIN SMALL LETTER H WITH BREVE BELOW
+1E2C          ; input                          #      (Ḭ)  LATIN CAPITAL LETTER I WITH TILDE BELOW
+1E2D          ; output                         #      (ḭ)  LATIN SMALL LETTER I WITH TILDE BELOW
 1E2E          ; input                          #      (Ḯ)  LATIN CAPITAL LETTER I WITH DIAERESIS AND ACUTE
 1E2F          ; output                         #      (ḯ)  LATIN SMALL LETTER I WITH DIAERESIS AND ACUTE
 1E30          ; input                          #      (Ḱ)  LATIN CAPITAL LETTER K WITH ACUTE
@@ -4849,8 +4849,8 @@
 1E39          ; output                         #      (ḹ)  LATIN SMALL LETTER L WITH DOT BELOW AND MACRON
 1E3A          ; input                          #      (Ḻ)  LATIN CAPITAL LETTER L WITH LINE BELOW
 1E3B          ; output                         #      (ḻ)  LATIN SMALL LETTER L WITH LINE BELOW
-1E3C          ; Restricted ; output-disallowed #      (Ḽ)  LATIN CAPITAL LETTER L WITH CIRCUMFLEX BELOW
-1E3D          ; Restricted ; Technical         #      (ḽ)  LATIN SMALL LETTER L WITH CIRCUMFLEX BELOW
+1E3C          ; input                          #      (Ḽ)  LATIN CAPITAL LETTER L WITH CIRCUMFLEX BELOW
+1E3D          ; output                         #      (ḽ)  LATIN SMALL LETTER L WITH CIRCUMFLEX BELOW
 1E3E          ; input                          #      (Ḿ)  LATIN CAPITAL LETTER M WITH ACUTE
 1E3F          ; output                         #      (ḿ)  LATIN SMALL LETTER M WITH ACUTE
 1E40          ; input                          #      (Ṁ)  LATIN CAPITAL LETTER M WITH DOT ABOVE
@@ -4863,8 +4863,8 @@
 1E47          ; output                         #      (ṇ)  LATIN SMALL LETTER N WITH DOT BELOW
 1E48          ; input                          #      (Ṉ)  LATIN CAPITAL LETTER N WITH LINE BELOW
 1E49          ; output                         #      (ṉ)  LATIN SMALL LETTER N WITH LINE BELOW
-1E4A          ; Restricted ; output-disallowed #      (Ṋ)  LATIN CAPITAL LETTER N WITH CIRCUMFLEX BELOW
-1E4B          ; Restricted ; Technical         #      (ṋ)  LATIN SMALL LETTER N WITH CIRCUMFLEX BELOW
+1E4A          ; input                          #      (Ṋ)  LATIN CAPITAL LETTER N WITH CIRCUMFLEX BELOW
+1E4B          ; output                         #      (ṋ)  LATIN SMALL LETTER N WITH CIRCUMFLEX BELOW
 1E4C          ; input                          #      (Ṍ)  LATIN CAPITAL LETTER O WITH TILDE AND ACUTE
 1E4D          ; output                         #      (ṍ)  LATIN SMALL LETTER O WITH TILDE AND ACUTE
 1E4E          ; input                          #      (Ṏ)  LATIN CAPITAL LETTER O WITH TILDE AND DIAERESIS
@@ -4901,14 +4901,14 @@
 1E6D          ; output                         #      (ṭ)  LATIN SMALL LETTER T WITH DOT BELOW
 1E6E          ; input                          #      (Ṯ)  LATIN CAPITAL LETTER T WITH LINE BELOW
 1E6F          ; output                         #      (ṯ)  LATIN SMALL LETTER T WITH LINE BELOW
-1E70          ; Restricted ; output-disallowed #      (Ṱ)  LATIN CAPITAL LETTER T WITH CIRCUMFLEX BELOW
-1E71          ; Restricted ; Technical         #      (ṱ)  LATIN SMALL LETTER T WITH CIRCUMFLEX BELOW
-1E72          ; Restricted ; output-disallowed #      (Ṳ)  LATIN CAPITAL LETTER U WITH DIAERESIS BELOW
-1E73          ; Restricted ; Technical         #      (ṳ)  LATIN SMALL LETTER U WITH DIAERESIS BELOW
-1E74          ; Restricted ; output-disallowed #      (Ṵ)  LATIN CAPITAL LETTER U WITH TILDE BELOW
-1E75          ; Restricted ; Technical         #      (ṵ)  LATIN SMALL LETTER U WITH TILDE BELOW
-1E76          ; Restricted ; output-disallowed #      (Ṷ)  LATIN CAPITAL LETTER U WITH CIRCUMFLEX BELOW
-1E77          ; Restricted ; Technical         #      (ṷ)  LATIN SMALL LETTER U WITH CIRCUMFLEX BELOW
+1E70          ; input                          #      (Ṱ)  LATIN CAPITAL LETTER T WITH CIRCUMFLEX BELOW
+1E71          ; output                         #      (ṱ)  LATIN SMALL LETTER T WITH CIRCUMFLEX BELOW
+1E72          ; input                          #      (Ṳ)  LATIN CAPITAL LETTER U WITH DIAERESIS BELOW
+1E73          ; output                         #      (ṳ)  LATIN SMALL LETTER U WITH DIAERESIS BELOW
+1E74          ; input                          #      (Ṵ)  LATIN CAPITAL LETTER U WITH TILDE BELOW
+1E75          ; output                         #      (ṵ)  LATIN SMALL LETTER U WITH TILDE BELOW
+1E76          ; input                          #      (Ṷ)  LATIN CAPITAL LETTER U WITH CIRCUMFLEX BELOW
+1E77          ; output                         #      (ṷ)  LATIN SMALL LETTER U WITH CIRCUMFLEX BELOW
 1E78          ; input                          #      (Ṹ)  LATIN CAPITAL LETTER U WITH TILDE AND ACUTE
 1E79          ; output                         #      (ṹ)  LATIN SMALL LETTER U WITH TILDE AND ACUTE
 1E7A          ; input                          #      (Ṻ)  LATIN CAPITAL LETTER U WITH MACRON AND DIAERESIS
@@ -5213,7 +5213,7 @@
 1FB3          ; input                          #      (ᾳ)  GREEK SMALL LETTER ALPHA WITH YPOGEGRAMMENI
 1FB4          ; input                          #      (ᾴ)  GREEK SMALL LETTER ALPHA WITH OXIA AND YPOGEGRAMMENI
 1FB6          ; output                         #      (ᾶ)  GREEK SMALL LETTER ALPHA WITH PERISPOMENI
-1FB7          ; input-lenient                  #      (ᾷ)  GREEK SMALL LETTER ALPHA WITH PERISPOMENI AND YPOGEGRAMMENI
+1FB7          ; input                          #      (ᾷ)  GREEK SMALL LETTER ALPHA WITH PERISPOMENI AND YPOGEGRAMMENI
 1FB8          ; input                          #      (Ᾰ)  GREEK CAPITAL LETTER ALPHA WITH VRACHY
 1FB9          ; input                          #      (Ᾱ)  GREEK CAPITAL LETTER ALPHA WITH MACRON
 1FBA          ; input                          #      (Ὰ)  GREEK CAPITAL LETTER ALPHA WITH VARIA
@@ -5224,7 +5224,7 @@
 1FC3          ; input                          #      (ῃ)  GREEK SMALL LETTER ETA WITH YPOGEGRAMMENI
 1FC4          ; input                          #      (ῄ)  GREEK SMALL LETTER ETA WITH OXIA AND YPOGEGRAMMENI
 1FC6          ; output                         #      (ῆ)  GREEK SMALL LETTER ETA WITH PERISPOMENI
-1FC7          ; input-lenient                  #      (ῇ)  GREEK SMALL LETTER ETA WITH PERISPOMENI AND YPOGEGRAMMENI
+1FC7          ; input                          #      (ῇ)  GREEK SMALL LETTER ETA WITH PERISPOMENI AND YPOGEGRAMMENI
 1FC8          ; input                          #      (Ὲ)  GREEK CAPITAL LETTER EPSILON WITH VARIA
 1FC9          ; Restricted ; Not_NFKC          #      (Έ)  GREEK CAPITAL LETTER EPSILON WITH OXIA
 1FCA          ; input                          #      (Ὴ)  GREEK CAPITAL LETTER ETA WITH VARIA
@@ -5257,7 +5257,7 @@
 1FF3          ; input                          #      (ῳ)  GREEK SMALL LETTER OMEGA WITH YPOGEGRAMMENI
 1FF4          ; input                          #      (ῴ)  GREEK SMALL LETTER OMEGA WITH OXIA AND YPOGEGRAMMENI
 1FF6          ; output                         #      (ῶ)  GREEK SMALL LETTER OMEGA WITH PERISPOMENI
-1FF7          ; input-lenient                  #      (ῷ)  GREEK SMALL LETTER OMEGA WITH PERISPOMENI AND YPOGEGRAMMENI
+1FF7          ; input                          #      (ῷ)  GREEK SMALL LETTER OMEGA WITH PERISPOMENI AND YPOGEGRAMMENI
 1FF8          ; input                          #      (Ὸ)  GREEK CAPITAL LETTER OMICRON WITH VARIA
 1FF9          ; Restricted ; Not_NFKC          #      (Ό)  GREEK CAPITAL LETTER OMICRON WITH OXIA
 1FFA          ; input                          #      (Ὼ)  GREEK CAPITAL LETTER OMEGA WITH VARIA
@@ -8107,14 +8107,14 @@
 2D70          ; Restricted ; Not_XID           #      (⵰)  TIFINAGH SEPARATOR MARK
 2D7F          ; Restricted ; Aspirational      #      (⵿)  TIFINAGH CONSONANT JOINER
 2D80..2D96    ; output                         # [23] (ⶀ..ⶖ)  ETHIOPIC SYLLABLE LOA..ETHIOPIC SYLLABLE GGWE
-2DA0..2DA6    ; Restricted ; Uncommon_Use      #  [7] (ⶠ..ⶦ)  ETHIOPIC SYLLABLE SSA..ETHIOPIC SYLLABLE SSO
-2DA8..2DAE    ; Restricted ; Uncommon_Use      #  [7] (ⶨ..ⶮ)  ETHIOPIC SYLLABLE CCA..ETHIOPIC SYLLABLE CCO
-2DB0..2DB6    ; Restricted ; Uncommon_Use      #  [7] (ⶰ..ⶶ)  ETHIOPIC SYLLABLE ZZA..ETHIOPIC SYLLABLE ZZO
-2DB8..2DBE    ; Restricted ; Uncommon_Use      #  [7] (ⶸ..ⶾ)  ETHIOPIC SYLLABLE CCHA..ETHIOPIC SYLLABLE CCHO
-2DC0..2DC6    ; Restricted ; Uncommon_Use      #  [7] (ⷀ..ⷆ)  ETHIOPIC SYLLABLE QYA..ETHIOPIC SYLLABLE QYO
-2DC8..2DCE    ; Restricted ; Uncommon_Use      #  [7] (ⷈ..ⷎ)  ETHIOPIC SYLLABLE KYA..ETHIOPIC SYLLABLE KYO
-2DD0..2DD6    ; Restricted ; Uncommon_Use      #  [7] (ⷐ..ⷖ)  ETHIOPIC SYLLABLE XYA..ETHIOPIC SYLLABLE XYO
-2DD8..2DDE    ; Restricted ; Uncommon_Use      #  [7] (ⷘ..ⷞ)  ETHIOPIC SYLLABLE GYA..ETHIOPIC SYLLABLE GYO
+2DA0..2DA6    ; output                         #  [7] (ⶠ..ⶦ)  ETHIOPIC SYLLABLE SSA..ETHIOPIC SYLLABLE SSO
+2DA8..2DAE    ; output                         #  [7] (ⶨ..ⶮ)  ETHIOPIC SYLLABLE CCA..ETHIOPIC SYLLABLE CCO
+2DB0..2DB6    ; output                         #  [7] (ⶰ..ⶶ)  ETHIOPIC SYLLABLE ZZA..ETHIOPIC SYLLABLE ZZO
+2DB8..2DBE    ; output                         #  [7] (ⶸ..ⶾ)  ETHIOPIC SYLLABLE CCHA..ETHIOPIC SYLLABLE CCHO
+2DC0..2DC6    ; output                         #  [7] (ⷀ..ⷆ)  ETHIOPIC SYLLABLE QYA..ETHIOPIC SYLLABLE QYO
+2DC8..2DCE    ; output                         #  [7] (ⷈ..ⷎ)  ETHIOPIC SYLLABLE KYA..ETHIOPIC SYLLABLE KYO
+2DD0..2DD6    ; output                         #  [7] (ⷐ..ⷖ)  ETHIOPIC SYLLABLE XYA..ETHIOPIC SYLLABLE XYO
+2DD8..2DDE    ; output                         #  [7] (ⷘ..ⷞ)  ETHIOPIC SYLLABLE GYA..ETHIOPIC SYLLABLE GYO
 2DE0          ; Restricted ; Obsolete          #      (ⷠ)  COMBINING CYRILLIC LETTER BE
 2DE1          ; Restricted ; Obsolete          #      (ⷡ)  COMBINING CYRILLIC LETTER VE
 2DE2          ; Restricted ; Obsolete          #      (ⷢ)  COMBINING CYRILLIC LETTER GHE
@@ -8549,7 +8549,7 @@
 3004          ; Restricted ; Not_XID           #      (〄)  JAPANESE INDUSTRIAL STANDARD SYMBOL
 3005          ; output                         #      (々)  IDEOGRAPHIC ITERATION MARK
 3006          ; output                         #      (〆)  IDEOGRAPHIC CLOSING MARK
-3007          ; Restricted ; Technical         #      (〇)  IDEOGRAPHIC NUMBER ZERO
+3007          ; output                         #      (〇)  IDEOGRAPHIC NUMBER ZERO
 3008          ; Restricted ; Not_XID           #      (〈)  LEFT ANGLE BRACKET
 3009          ; Restricted ; Not_XID           #      (〉)  RIGHT ANGLE BRACKET
 300A          ; Restricted ; Not_XID           #      (《)  LEFT DOUBLE ANGLE BRACKET
@@ -8692,8 +8692,8 @@
 3094          ; output                         #      (ゔ)  HIRAGANA LETTER VU
 3095          ; output                         #      (ゕ)  HIRAGANA LETTER SMALL KA
 3096          ; output                         #      (ゖ)  HIRAGANA LETTER SMALL KE
-3099          ; Restricted ; Technical         #      (゙)  COMBINING KATAKANA-HIRAGANA VOICED SOUND MARK
-309A          ; Restricted ; Technical         #      (゚)  COMBINING KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
+3099          ; output-nonstarting             #      (゙)  COMBINING KATAKANA-HIRAGANA VOICED SOUND MARK
+309A          ; output-nonstarting             #      (゚)  COMBINING KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
 309D          ; output                         #      (ゝ)  HIRAGANA ITERATION MARK
 309E          ; output                         #      (ゞ)  HIRAGANA VOICED ITERATION MARK
 309F          ; Restricted ; Not_NFKC          #      (ゟ)  HIRAGANA DIGRAPH YORI
@@ -10446,9 +10446,9 @@ AAF5          ; Restricted ; Limited_Use       #      (ꫵ)  MEETEI MAYEK VOWEL 
 AAF6          ; Restricted ; Limited_Use       #      (꫶)  MEETEI MAYEK VIRAMA
 AB01..AB06    ; output                         #  [6] (ꬁ..ꬆ)  ETHIOPIC SYLLABLE TTHU..ETHIOPIC SYLLABLE TTHO
 AB09..AB0E    ; output                         #  [6] (ꬉ..ꬎ)  ETHIOPIC SYLLABLE DDHU..ETHIOPIC SYLLABLE DDHO
-AB11..AB16    ; Restricted ; Uncommon_Use      #  [6] (ꬑ..ꬖ)  ETHIOPIC SYLLABLE DZU..ETHIOPIC SYLLABLE DZO
-AB20..AB26    ; Restricted ; Uncommon_Use      #  [7] (ꬠ..ꬦ)  ETHIOPIC SYLLABLE CCHHA..ETHIOPIC SYLLABLE CCHHO
-AB28..AB2E    ; Restricted ; Uncommon_Use      #  [7] (ꬨ..ꬮ)  ETHIOPIC SYLLABLE BBA..ETHIOPIC SYLLABLE BBO
+AB11..AB16    ; output                         #  [6] (ꬑ..ꬖ)  ETHIOPIC SYLLABLE DZU..ETHIOPIC SYLLABLE DZO
+AB20..AB26    ; output                         #  [7] (ꬠ..ꬦ)  ETHIOPIC SYLLABLE CCHHA..ETHIOPIC SYLLABLE CCHHO
+AB28..AB2E    ; output                         #  [7] (ꬨ..ꬮ)  ETHIOPIC SYLLABLE BBA..ETHIOPIC SYLLABLE BBO
 AB30          ; Restricted ; Obsolete          #      (ꬰ)  LATIN SMALL LETTER BARRED ALPHA
 AB31          ; Restricted ; Obsolete          #      (ꬱ)  LATIN SMALL LETTER A REVERSED-SCHWA
 AB32          ; Restricted ; Obsolete          #      (ꬲ)  LATIN SMALL LETTER BLACKLETTER E

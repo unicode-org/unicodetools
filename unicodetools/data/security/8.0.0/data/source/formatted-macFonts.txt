@@ -1,7 +1,7 @@
 ﻿# Source File for IDN Confusables
 # File: formatted-macFonts.txt
 # Version: 8.0.0
-# Generated: 2015-05-03, 11:36:39 GMT
+# Generated: 2015-05-17, 03:09:01 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -209,8 +209,8 @@
 0076 ;	2228	# ( v ~ ∨ ) LATIN SMALL LETTER V ~ LOGICAL OR
 
 0077 ;	1D21	# ( w ~ ᴡ ) LATIN SMALL LETTER W ~ LATIN LETTER SMALL CAPITAL W
-0077 ;	0461	# ( w ~ ѡ ) LATIN SMALL LETTER W ~ CYRILLIC SMALL LETTER OMEGA
 0077 ;	051D	# ( w ~ ԝ ) LATIN SMALL LETTER W ~ CYRILLIC SMALL LETTER WE
+0077 ;	0461	# ( w ~ ѡ ) LATIN SMALL LETTER W ~ CYRILLIC SMALL LETTER OMEGA
 
 0078 ;	0445	# ( x ~ х ) LATIN SMALL LETTER X ~ CYRILLIC SMALL LETTER HA
 0078 ;	00D7	# ( x ~ × ) LATIN SMALL LETTER X ~ MULTIPLICATION SIGN
