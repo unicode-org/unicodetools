@@ -817,7 +817,23 @@ public class GenerateEmoji {
 
     private static class Stats {
         enum Type {
-            countries, misc, v70
+            carriers(GenerateEmoji.JCARRIERS),
+            commonAdditions(Emoji.COMMON_ADDITIONS),
+            flags(Emoji.FLAGS),
+            standardAdditions(nc7),
+            standardAdditions8(nc8);
+            final UnicodeSet items;
+            Type(UnicodeSet _items) {
+                items = _items;
+            }
+            static Type getType(String chars) {
+                for (Type t : Type.values()) {
+                    if (t.items.contains(chars)) {
+                        return t;
+                    }
+                }
+                return null;
+            }
         } // cards, dominos, majong,
 
         // static final UnicodeSet DOMINOS = new UnicodeSet("[🀰-🂓]");
@@ -838,14 +854,14 @@ public class GenerateEmoji {
             if (isMissing) {
 
                 // per type
-                Type type =
+                Type type = Type.getType(chars);
                         // VERSION70.containsAll(chars) ? Type.v70
                         // :
-                        getFlagCode(chars) != null ? Type.countries
+//                        getFlagCode(chars) != null ? Type.countries
                                 // : DOMINOS.containsAll(chars) ? Type.dominos
                                 // : CARDS.containsAll(chars) ? Type.cards
                                 // : MAHJONG.containsAll(chars) ? Type.majong
-                                : Type.misc;
+//                                : Type.misc;
                 EnumMap<Source, UnicodeSet> counter = data.get(type);
                 if (counter == null) {
                     data.put(type, counter = new EnumMap<Source, UnicodeSet>(Source.class));
@@ -864,11 +880,12 @@ public class GenerateEmoji {
         public void write() throws IOException {
             PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR,
                     "missing-emoji-list.html");
-            UnicodeSet jc = new UnicodeSet()
-            .addAll(totalData.get(Source.sb))
-            .addAll(totalData.get(Source.kddi))
-            .addAll(totalData.get(Source.dcm))
-            .freeze();
+            UnicodeSet jc = JCARRIERS; 
+//            new UnicodeSet()
+//            .addAll(totalData.get(Source.sb))
+//            .addAll(totalData.get(Source.kddi))
+//            .addAll(totalData.get(Source.dcm))
+//            .freeze();
             UnicodeSet textStyle = new UnicodeSet();
             for (Entry<String, Data> s : Data.STRING_TO_DATA.entrySet()) {
                 if (s.getValue().defaultPresentation == Style.text) {
@@ -1184,29 +1201,30 @@ public class GenerateEmoji {
     static final UnicodeMap<String> emojiKDDI = latest.load(UcdProperty.Emoji_KDDI);
     static final UnicodeMap<String> emojiSB = latest.load(UcdProperty.Emoji_SB);
 
-    static final UnicodeSet carriers = new UnicodeSet()
+    static final UnicodeSet JCARRIERS = new UnicodeSet()
     .addAll(emojiDCM.keySet())
     .addAll(emojiKDDI.keySet())
     .addAll(emojiSB.keySet())
     .freeze();
 
-    static final UnicodeSet otherStandard = new UnicodeSet(carriers);
-    static { 
-        for (String s : Emoji.EMOJI_CHARS) {
-            String image = getImage(Source.apple, s, false, "");
-            if (image != null) {
-                otherStandard.add(s);
-            }
-        }
-        // HACK for now
-        otherStandard.remove("🖖");
-        otherStandard.removeAll(carriers).freeze();
-    }
+    static final UnicodeSet otherStandard = Emoji.COMMON_ADDITIONS;
+    //new UnicodeSet(carriers);
+//    static { 
+//        for (String s : Emoji.EMOJI_CHARS) {
+//            String image = getImage(Source.apple, s, false, "");
+//            if (image != null) {
+//                otherStandard.add(s);
+//            }
+//        }
+//        // HACK for now
+//        otherStandard.remove("🖖");
+//        otherStandard.removeAll(carriers).freeze();
+//    }
     
-    static final UnicodeSet LEVEL1 = new UnicodeSet(carriers).addAll(otherStandard).freeze();
+    static final UnicodeSet LEVEL1 = new UnicodeSet(JCARRIERS).addAll(otherStandard).freeze();
     
     static final UnicodeSet nc = new UnicodeSet(Emoji.EMOJI_CHARS)
-    .removeAll(carriers)
+    .removeAll(JCARRIERS)
     .removeAll(otherStandard)
     .removeAll(Emoji.FLAGS)
     .freeze();
@@ -1221,7 +1239,7 @@ public class GenerateEmoji {
     .freeze();
 
     static final UnicodeSet otherFlags = new UnicodeSet(Emoji.FLAGS)
-    .removeAll(carriers).freeze();
+    .removeAll(JCARRIERS).freeze();
 
     private static void showNewCharacters() throws IOException {
         Set<String> optional = ANNOTATIONS_TO_CHARS.getValues("fitz-secondary");
@@ -1236,7 +1254,7 @@ public class GenerateEmoji {
         UnicodeSet modifierBase = new UnicodeSet().addAll(minimal).addAll(optional);
         showRow(out, "Modifier_Base", modifierBase.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), false);
         showRow(out, "Modifiers", new UnicodeSet("[\\x{1F3FB}-\\x{1F3FF}]").addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), false);
-        showRow(out, "JCarriers", carriers.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
+        showRow(out, "JCarriers", JCARRIERS.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Common Additions", otherStandard.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Other Flags", otherFlags.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Standard Additions", nc7.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
