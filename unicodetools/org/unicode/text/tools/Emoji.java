@@ -110,8 +110,13 @@ public class Emoji {
         .toString();
     }
 
+    public static final char EMOJI_VARIANT = '\uFE0F';
+    public static final char TEXT_VARIANT = '\uFE0E';
+    public static final char JOINER = '\u200D';
+
     static final int FIRST_REGIONAL = 0x1F1E6;
     static final int LAST_REGIONAL = 0x1F1FF;
+
     public static final UnicodeSet REGIONAL_INDICATORS = new UnicodeSet(FIRST_REGIONAL,LAST_REGIONAL).freeze();
 
     //    static final UnicodeSet EXCLUDE = new UnicodeSet(
@@ -126,6 +131,16 @@ public class Emoji {
     .removeAll(EMOJI_CHARS.strings())
     .addAll(FIRST_REGIONAL,LAST_REGIONAL)
     .freeze();
+    static final UnicodeSet EMOJI_CHARS_FLAT = new UnicodeSet(EMOJI_CHARS)
+    .addAll(FIRST_REGIONAL,LAST_REGIONAL)
+    .removeAll(EMOJI_CHARS.strings())
+    .addAll(new UnicodeSet("[{*⃣} {#⃣}]"))
+    .add(EMOJI_VARIANT)
+    .add(TEXT_VARIANT)
+    .add(JOINER)
+    .removeAll(new UnicodeSet("[[:L:][:M:][:^nt=none:]+_-]"))
+    .freeze();
+
     static final UnicodeSet EMOJI_CHARS_WITHOUT_FLAGS = new UnicodeSet(EMOJI_CHARS).freeze();
     static {
         CLDRConfig config = CLDRConfig.getInstance();
@@ -211,14 +226,14 @@ public class Emoji {
         System.out.println("Without flags:\n" + EMOJI_CHARS_WITHOUT_FLAGS.toPattern(false));
         System.out.println("Flags:\n" + FLAGS.toPattern(false));
         System.out.println("With flags:\n" + EMOJI_CHARS.toPattern(false));
+        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(false));
+        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(true));
     }
 
     //    private static final UnicodeSet FITZ_OPTIONAL = new UnicodeSet("[\\u261D \\u261F \\u2639-\\u263B \\u270A-\\u270D \\U0001F3C2-\\U0001F3C4 \\U0001F3C7 \\U0001F3CA \\U0001F440-\\U0001F450 \\U0001F47F \\U0001F483 \\U0001F485 \\U0001F48B \\U0001F4AA \\U0001F58E-\\U0001F597 \\U0001F59E-\\U0001F5A3 \\U0001F5E2 \\U0001F600-\\U0001F637 \\U0001F641 \\U0001F642 \\U0001F64C \\U0001F64F \\U0001F6A3 \\U0001F6B4-\\U0001F6B6 \\U0001F6C0]");
     //    private static final UnicodeSet FITZ_MINIMAL = new UnicodeSet("[\\U0001F385 \\U0001F466- \\U0001F478 \\U0001F47C \\U0001F481 \\U0001F482 \\U0001F486 \\U0001F487 \\U0001F48F \\U0001F491 \\U0001F645- \\U0001F647 \\U0001F64B \\U0001F64D \\U0001F64E]");
     static final UnicodeSet ASCII_LETTERS = new UnicodeSet("[A-Za-z]").freeze();
-    static final char EMOJI_VARIANT = '\uFE0F';
     static final String EMOJI_VARIANT_STRING = String.valueOf(EMOJI_VARIANT);
-    static final char TEXT_VARIANT = '\uFE0E';
     static final String TEXT_VARIANT_STRING = String.valueOf(TEXT_VARIANT);
 
     public static boolean skipEmojiSequence(String string) {
