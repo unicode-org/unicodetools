@@ -4,7 +4,8 @@ import org.unicode.cldr.util.CldrUtility;
 
 public class Settings {
     public static final String SVN_WORKSPACE_DIRECTORY = Utility.fixFileName(CldrUtility.getProperty("SVN_WORKSPACE", "/Users/markdavis/workspace")) + "/";
-    public static final String OTHER_WORKSPACE_DIRECTORY = Utility.fixFileName(CldrUtility.getProperty("OTHER_WORKSPACE", "/Users/markdavis/Google Drive/workspace")) + "/";
+    public static final String OTHER_WORKSPACE_DIRECTORY = Utility.fixFileName(
+            CldrUtility.getProperty("OTHER_WORKSPACE", SVN_WORKSPACE_DIRECTORY + "../Google Drive/workspace")) + "/";
 
     /**
      * Used for the default version.
@@ -21,7 +22,7 @@ public class Settings {
     
     public static final String CHARTS_GEN_DIR = DATA_DIR + "charts/";
 
-    public static final String GEN_DIR = Utility.fixFileName(CldrUtility.getProperty("GEN_DIR", "../Generated")) + "/";
+    public static final String GEN_DIR = Utility.fixFileName(CldrUtility.getProperty("GEN_DIR", OTHER_WORKSPACE_DIRECTORY+"Generated")) + "/";
     public static final String BIN_DIR = GEN_DIR + "BIN/";
     public static final String GEN_UCD_DIR = GEN_DIR + "ucd/";
     
