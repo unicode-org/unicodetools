@@ -103,7 +103,8 @@ public class LoadImage extends Component {
     
     public static void main(String[] args) throws IOException {
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
-        doSymbola(inputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"
+        //generatePngsFromFont(outputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"
+        generatePngsFromFont(outputDir, "proposed", "proposed", "UnicodeEmoji", Emoji.U90, 72, false); // "Symbola"
 
         if (true) return;
 
@@ -126,7 +127,7 @@ public class LoadImage extends Component {
 
 //        UnicodeSet missing = new UnicodeSet("[🌭🌮🌯🍾🍿🏏🏐🏑🏒🏓🏸🏹🏺🏻🏼🏽🏾🏿📿🕋🕌🕍🕎🙃🙄🛐🤀🤐🤑🤒🤓🤔🤕🤖🤗🤘🦀🦁🦂🦃🦄🧀]");
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
-        doSymbola(inputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 144, true); // "Symbola"
+        generatePngsFromFont(outputDir, "ref", "ref", "Symbola", Emoji.U80, 144, false); // "Symbola"
         // doAnimatedGif();
 
         if (false) {
@@ -134,7 +135,7 @@ public class LoadImage extends Component {
             System.out.println(result.toPattern(false));
             List<BufferedImage> list;
             UnicodeSet s = new UnicodeSet("[▫◻◼◽◾☀⚪⚫❗⤴⤵⬅⬆⬇⬛⬜⭐⭕〽]");
-            list = doSymbola(inputDir, outputDir, null, "android", "AndroidEmoji", s, 144, false); // "Symbola"
+            list = generatePngsFromFont(outputDir, null, "android", "AndroidEmoji", s, 144, false); // "Symbola"
             list = doAndroid(inputDir, outputDir);
             doWindows(inputDir, outputDir);
             doRef(inputDir, outputDir);
@@ -341,7 +342,7 @@ public class LoadImage extends Component {
 
     final static UnicodeSet NON_SYMBOLA = new UnicodeSet("[🅰🆎🅱🆑🆒🆓🆔🆕🆖🅾🆗🅿🆘🆙🆚🆏🈁🈂🈹🉑🈴🈺🉐🈯🈷🈶🈵🈚🈸🈲🈳]");
 
-    private static final UnicodeSet SYMBOLA = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(NON_SYMBOLA).freeze();
+    //private static final UnicodeSet SYMBOLA = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(NON_SYMBOLA).freeze();
 
     private static void writeTextAnimatedImage(File output, int height, int width, int margin, Iterable<String> textList, int millisBetween) throws IOException {
         //final File output = new File(outputDir, "animated-emoji.gif");
@@ -381,8 +382,9 @@ public class LoadImage extends Component {
         graphics.drawString(text, xStart, yStart);
         return sourceImage;
     }
-    public static List<BufferedImage> doSymbola(String inputDir, String outputDir, 
-            String dir, String prefix, String font, UnicodeSet unicodeSet, int height, boolean useFonts)
+    
+    public static List<BufferedImage> generatePngsFromFont(String outputDir, String dir, 
+            String prefix, String font, UnicodeSet unicodeSet, int height, boolean useFonts)
                     throws IOException { // 🌰-🌵
         if (dir == null) {
             dir = prefix;
@@ -454,6 +456,9 @@ public class LoadImage extends Component {
             myFont = new Font(font, 0, height2);
         } else {
             myFont = graphics.getFont().deriveFont(height2);
+        }
+        if (!font.equals(myFont.getName())) {
+            System.out.println("Accessing " + myFont.getName() + " when " + font + " was requested.");
         }
         graphics.setFont(myFont);
         FontMetrics metrics = graphics.getFontMetrics();
