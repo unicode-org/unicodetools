@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
 
 public class UnicodeSetTree<T> {
@@ -72,82 +73,72 @@ public class UnicodeSetTree<T> {
             return o1.compareTo(o2,UnicodeSet.ComparisonStyle.LONGER_FIRST);
         }
     };
-    Node base = new Node(new UnicodeSet());
 
-    Map<UnicodeSet,T> data = new TreeMap<UnicodeSet,T>(LONGEST);
+    final Node base = new Node(new UnicodeSet());
+
+    final Map<UnicodeSet,T> data = new TreeMap<UnicodeSet,T>(LONGEST);
+
+    static interface Merger<T> {
+        T merge(T a, T b);
+    }
+
+    final Merger<T> merger;
+
+    public UnicodeSetTree(Merger<T> merger2) {
+        merger = merger2;
+    }
 
     UnicodeSetTree<T> add(T name, UnicodeSet set) {
-        if (data.put(set, name) != null) {
-            throw new IllegalArgumentException("duplicate");
+        T old = data.get(set);
+        if (old != null) {
+            name = merger.merge(old, name);
         };
+        data.put(set, name);
         base.parent.addAll(set);
         return this;
     }
 
     void cleanup() {
-        int i = 0;
         UnicodeSet lastEntry = null;
         base.parent.freeze();
-        
+
         for (UnicodeSet entry : data.keySet()) {
             if (entry.equals(lastEntry)) {
                 throw new IllegalArgumentException("Duplicate: " + entry);
             }
-//            System.out.println(entry.size() + "\t" + entry.toPattern(false));
-//            if (++i > 0 || (++i % 10) == 0) {
-//                System.out.println(i);
-//                if (i == 72) {
-//                    SHOW = true;
-//                }
-//            }
             base.add(entry);
             lastEntry = entry;
         }
     }
 
-    void print() {
-        print(base, "");
+    public T get(UnicodeSet key) {
+        return data.get(key);
     }
 
-    private void print(Node node, String indent) {
+    static interface Visitor {
+        public <T> void show(UnicodeSetTree<T> tree, Node node, int indent);
+        public void showRemainder(UnicodeSet remainder, int indent);
+    }
+
+    void print(Visitor visitor) {
+        print(base, 0, visitor);
+    }
+
+    private void print(Node node, int indent, Visitor visitor) {
         if (node.parent != null) {
-            System.out.println(indent 
-                    + node.parent.size() 
-                    + (node.children.isEmpty() ? "\t" + node.parent.toPattern(false) : "")
-                    + "\t" + data.get(node.parent)
-                    );
+            visitor.show(this, node, indent);
         }
         if (node.children.isEmpty()) {
             return;
         }
-        indent = "\t" + indent;
+        ++indent;
         UnicodeSet remainder = new UnicodeSet(node.parent);
         for (Node child : node.children) {
-            print(child, indent);
+            print(child, indent, visitor);
             remainder.removeAll(child.parent);
         }
         if (remainder.size() != 0) {
-            System.out.println(indent 
-                    + remainder.size() 
-                    + "\t" + remainder.toPattern(false)
-                    + "\t" + "OTHER"
-                    );
+            visitor.showRemainder(remainder, indent);
         }
-    }
-
-    public static void main(String[] args) {
-        Relation<UnicodeSet,String> data2 = Relation.of(new HashMap(), HashSet.class);
-        for (Entry<String, Set<String>> foo : GenerateEmoji.ANNOTATIONS_TO_CHARS.keyToValues.keyValuesSet()) {
-            data2.put(new UnicodeSet().addAll(foo.getValue()), foo.getKey());
-        };
-        UnicodeSetTree<Set<String>> sample = new UnicodeSetTree<>();
-        for (Entry<UnicodeSet, Set<String>> entry : data2.keyValuesSet()) {
-            sample.add(entry.getValue(), entry.getKey());
-        }
-//        for (Entry<UnicodeSet, Set<String>> entry : sample.data.entrySet()) {
-//            System.out.println(entry.getValue() + "\t" + entry.getKey());
-//        }
-        sample.cleanup();
-        sample.print();
     }
 }
