@@ -2,6 +2,10 @@ package org.unicode.text.tools;
 
 import java.io.File;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.text.Transform;
@@ -14,10 +18,35 @@ public class EmojiRename {
     static final Splitter DASH = Splitter.on('-');
 
     public static void main(String[] args) {
-        renameCountryFlags(ANDROID_TRANSFORM, "android", "android_large");
-        renameCountryFlags(TWITTER_TRANSFORM, "twitter");
-        renameCountryFlags(TWITTER_TRANSFORM, "apple", "apple_large");
-        renameCountryFlags(WINDOWS_TRANSFORM, "windows", "windows_large");
+//        renameCountryFlags(ANDROID_TRANSFORM, "android", "android_large");
+//        renameCountryFlags(TWITTER_TRANSFORM, "twitter");
+//        renameCountryFlags(TWITTER_TRANSFORM, "apple", "apple_large");
+//        renameCountryFlags(WINDOWS_TRANSFORM, "windows", "windows_large");
+        rename("windows10", "glyph-(.*).png", "windows_$1.png");
+    }
+
+    private static void rename(String subdir, String sourcePattern, String targetPattern) {
+        File fileSubdir = new File(DIR,subdir);
+        if (!fileSubdir.exists()) {
+            System.out.println("Skipping missing subdirectory: " + fileSubdir);
+            return;
+        }
+        Matcher m = Pattern.compile(sourcePattern).matcher("");
+        for (File file : fileSubdir.listFiles()) {
+            String name = file.getName();
+            if (!m.reset(name).matches()) {
+                System.out.println("Mismatch: " + fileSubdir);
+                return;
+            }
+            int cp = Integer.parseInt(m.group(1),16);
+            if (!Emoji.EMOJI_CHARS.contains(cp)) {
+                continue;
+            }
+            String newName = targetPattern.replace("$1", Utility.hex(cp,4).toLowerCase());
+            File target = new File(fileSubdir, newName);
+            System.out.println(file.getName() + "\t=>\t" + newName);
+            file.renameTo(target);
+        }        
     }
 
     private static void renameCountryFlags(Transform<String,String> transform, String... subdirectories) {
