@@ -62,39 +62,35 @@ public class EmojiAnnotations extends Birelation<String,String> {
             }
             System.out.println(lineCount + "\tannotation lines from " + filename);
         }
-        UnicodeSet temp = new UnicodeSet(Emoji.APPLE)
-        .removeAll(getValues("person-apple"))
-        .removeAll(getValues("nature-apple"))
-        .removeAll(getValues("object-apple"))
-        .removeAll(getValues("place-apple"))
-        .removeAll(getValues("symbol-apple"));
-        System.out.println(temp.size() + " other-apple: " + temp.toPattern(false));
-        for (String s : temp) {
-            add("other-apple", s);
-        }
-
-        temp = new UnicodeSet(Emoji.APPLE)
-        .removeAll(getValues("person-android"))
-        .removeAll(getValues("nature-android"))
-        .removeAll(getValues("object-android"))
-        .removeAll(getValues("place-android"))
-        .removeAll(getValues("symbol-android"));
-        System.out.println(temp.size() + " other-android: " + temp.toPattern(false));
-        for (String s : temp) {
-            add("other-android", s);
-        }
+        addOther("-apple", Emoji.EMOJI_CHARS);
+        addOther("-android", Emoji.EMOJI_CHARS);
+        addOther("", Emoji.EMOJI_CHARS);
         
-        temp = new UnicodeSet(Emoji.EMOJI_CHARS)
-        .removeAll(getValues("person"))
-        .removeAll(getValues("nature"))
-        .removeAll(getValues("object"))
-        .removeAll(getValues("place"))
-        .removeAll(getValues("symbol"))
-        .removeAll(getValues("flag"));
-        System.out.println(temp.size() + " other: " + temp.toPattern(false));
-        for (String s : temp) {
-            add("other", s);
-        }
+//        final Set<String> personAndroid = getValues("person-android");
+//        if (personAndroid != null) {
+//            UnicodeSet temp = new UnicodeSet(Emoji.APPLE)
+//            .removeAll(personAndroid)
+//            .removeAll(getValues("nature-android"))
+//            .removeAll(getValues("object-android"))
+//            .removeAll(getValues("place-android"))
+//            .removeAll(getValues("symbol-android"));
+//            System.out.println(temp.size() + " other-android: " + temp.toPattern(false));
+//            for (String s : temp) {
+//                add("other-android", s);
+//            }
+//        }
+//
+//        UnicodeSet temp = new UnicodeSet(Emoji.EMOJI_CHARS)
+//        .removeAll(getValues("person"))
+//        .removeAll(getValues("nature"))
+//        .removeAll(getValues("object"))
+//        .removeAll(getValues("place"))
+//        .removeAll(getValues("symbol"))
+//        .removeAll(getValues("flag"));
+//        System.out.println(temp.size() + " other: " + temp.toPattern(false));
+//        for (String s : temp) {
+//            add("other", s);
+//        }
 
 
         //        for (String s : FITZ_MINIMAL) {
@@ -141,6 +137,23 @@ public class EmojiAnnotations extends Birelation<String,String> {
         }
     }
 
+    private void addOther(String suffix, UnicodeSet core) {
+        final Set<String> personApple = getValues("person" + suffix);
+        if (personApple != null) {
+            UnicodeSet temp = new UnicodeSet(core)
+            .removeAll(personApple)
+            .removeAll(getValues("nature" + suffix))
+            .removeAll(getValues("object" + suffix))
+            .removeAll(getValues("place" + suffix))
+            .removeAll(getValues("symbol" + suffix));
+            System.out.println(temp.size() + " other" + suffix
+                    + ": " + temp.toPattern(false));
+            for (String s : temp) {
+                add("other" + suffix, s);
+            }
+        }
+    }
+
     private String fixAnnotation(String item) {
         String result = item.toLowerCase(Locale.ENGLISH);
         return result
@@ -148,16 +161,16 @@ public class EmojiAnnotations extends Birelation<String,String> {
                 .replace("optional", "secondary");
     }
 
-//    public void addParts(String emoji, String name) {
-//        name = name.toLowerCase(Locale.ENGLISH);
-//        for (String namePart : name.split("[- ,&\\(\\)]+")) {
-//            if (STOP_WORDS.contains(namePart)) {
-//                continue;
-//            }
-//            if (namePart.startsWith("d’") || namePart.startsWith("d'")) {
-//                namePart = namePart.substring(2);
-//            }
-//            add(namePart, emoji);
-//        }
-//    }
+    //    public void addParts(String emoji, String name) {
+    //        name = name.toLowerCase(Locale.ENGLISH);
+    //        for (String namePart : name.split("[- ,&\\(\\)]+")) {
+    //            if (STOP_WORDS.contains(namePart)) {
+    //                continue;
+    //            }
+    //            if (namePart.startsWith("d’") || namePart.startsWith("d'")) {
+    //                namePart = namePart.substring(2);
+    //            }
+    //            add(namePart, emoji);
+    //        }
+    //    }
 }
