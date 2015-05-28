@@ -974,12 +974,18 @@ public class WriteCharts implements UCD_Types {
     CURRENCY = -2,
     DIGIT = -1,
     // scripts in here
-    CJK = 120,
-    CJK_AB = 121,
-    UNSUPPORTED = 122,
-    CAT_OFFSET = 128,
+    CJK = 300,
+    CJK_AB = CJK + 1,
+    UNSUPPORTED = CJK_AB + 1,
+    CAT_OFFSET = UNSUPPORTED + 10,
     // categories in here
     NO_CASE_MAPPING = 200;
+    
+    static {
+        if (CJK <= UCD_Names.SCRIPT.length) {
+            throw new IllegalArgumentException("Adjust CAT_OFFSET to be safe");
+        }
+    }
 
     static final Matcher CAT_REMAP = Pattern.compile("([A-Z][a-z]*)([A-Z].+)").matcher("");
 
