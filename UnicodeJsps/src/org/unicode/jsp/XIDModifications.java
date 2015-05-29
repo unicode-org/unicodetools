@@ -12,10 +12,10 @@ public class XIDModifications {
     @Override
     protected boolean handleLine(int start, int end, String[] items) {
       String type = items[1];
-      if (type.equals("allowed")) {
+      if (type.equalsIgnoreCase("allowed")) {
         allowed.add(start, end);
         reasons.putAll(start, end, items[2]);
-      } else if (type.equals("restricted")) {
+      } else if (type.equalsIgnoreCase("restricted")) {
         allowed.remove(start, end);
         reasons.putAll(start, end, items[2]);
       } else {
