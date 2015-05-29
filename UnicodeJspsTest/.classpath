@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/icu4j-src.jar"/>
-	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/icu4j.jar"/>
+	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/icu4j.jar" sourcepath="/UnicodeJsps/WebContent/WEB-INF/lib/icu4j-src.jar"/>
 	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/utilities-src.jar"/>
 	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/utilities.jar"/>
 	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/xercesImpl.jar"/>
