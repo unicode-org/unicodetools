@@ -303,7 +303,7 @@ public class UnicodeUtilities {
                 map.put(s, builder.toString());
             }
         }
-        TreeSet<String> sorted = new TreeSet<String>(Collator.getInstance(ULocale.ENGLISH));
+        TreeSet<String> sorted = new TreeSet<String>(UnicodeSetUtilities.MAIN_COLLATOR);
         sorted.addAll(map.values());
         String[] propsOld = new String[length];
         for (int i = 0; i < propsOld.length; ++i) {
@@ -573,6 +573,7 @@ public class UnicodeUtilities {
                     name = "<i>" + name + "</i>";
                 }
             }
+            literal = UnicodeSetUtilities.addEmojiVariation(literal);
             if (doTable) {
                 out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + "</td><td class='charCell'>\u00A0" + literal + "\u00A0</td><td" + (restricted ? " class='redName'" : "") +
                         ">" + name);
@@ -769,11 +770,13 @@ public class UnicodeUtilities {
             return getLiteral(trans.transform(sample)).replace("\n", "<br>");
         }
 
-        PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY)).setSpaceComparator(new Comparator<String>() {
-            public int compare(String o1, String o2) {
-                return 1;
-            }
-        });
+        PrettyPrinter pp = new PrettyPrinter().setOrdering(UnicodeSetUtilities.MAIN_COLLATOR)
+                //.setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY))
+                .setSpaceComparator(new Comparator<String>() {
+                    public int compare(String o1, String o2) {
+                        return 1;
+                    }
+                });
 
         Map<String, UnicodeSet> mapping = new TreeMap<String,UnicodeSet>(pp.getOrdering());
 
@@ -911,7 +914,8 @@ public class UnicodeUtilities {
     public static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
         String a_out;
         if (a.size() < 10000 && !abbreviate) {
-            PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY));
+            PrettyPrinter pp = new PrettyPrinter().setOrdering(UnicodeSetUtilities.MAIN_COLLATOR)
+                    .setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(RuleBasedCollator.PRIMARY));
 
             if (escape) {
                 pp.setToQuote(NON_ASCII);
@@ -1023,10 +1027,11 @@ public class UnicodeUtilities {
         { UProperty.DOUBLE_START, UProperty.DOUBLE_LIMIT },
         { UProperty.STRING_START, UProperty.STRING_LIMIT }, };
 
-    static Collator col = Collator.getInstance(ULocale.ROOT);
-    static {
-        ((RuleBasedCollator) col).setNumericCollation(true);
-    }
+    static Collator col = UnicodeSetUtilities.MAIN_COLLATOR;
+    //    Collator.getInstance(ULocale.ROOT);
+    //    static {
+    //        ((RuleBasedCollator) col).setNumericCollation(true);
+    //    }
 
     public static void showProperties(int cp, Appendable out) throws IOException {
         String text = UTF16.valueOf(cp);
@@ -1255,7 +1260,7 @@ public class UnicodeUtilities {
         .addColumn("Datatype").setSpanRows(true).setCellAttributes("class='propDatatype'").setSortPriority(1)
         .addColumn("Source").setSpanRows(true).setCellAttributes("class='propSource'").setSortPriority(2)
         .addColumn("Property").setSpanRows(false).setCellAttributes("class='propTitle'")
-//        .addColumn("Abbr. Prop").setSpanRows(false).setCellAttributes("class='propTitle'")
+        //        .addColumn("Abbr. Prop").setSpanRows(false).setCellAttributes("class='propTitle'")
         .addColumn("Values").setSpanRows(false).setCellAttributes("class='propValues'")
         ;
         //tablePrinter.addRows(data);
@@ -1281,12 +1286,12 @@ public class UnicodeUtilities {
             }
             String propHtml = toHTML.transform(propName);
             String shortHtml = shortName == null || shortName.equalsIgnoreCase(propName) ? propHtml : toHTML(shortName);
-//            String title = shortName == null || shortName.equals(propName) ? "" : " title='" + shortHtml + "'";
-//            String propHtml = toHTML.transform(propName + (shortName.equalsIgnoreCase(propName) ? "" : " (" + shortName + ")"));
+            //            String title = shortName == null || shortName.equals(propName) ? "" : " title='" + shortHtml + "'";
+            //            String propHtml = toHTML.transform(propName + (shortName.equalsIgnoreCase(propName) ? "" : " (" + shortName + ")"));
             String propInfo = propHtml ; // "<a name='" + propHtml + "'>" + propHtml + "</a>";
-//            if (shortName != null && !shortName.equals(propName)) {
-//                propInfo = "<span title='" + shortHtml + "'>" + propInfo + "</span>";
-//            }
+            //            if (shortName != null && !shortName.equals(propName)) {
+            //                propInfo = "<span title='" + shortHtml + "'>" + propInfo + "</span>";
+            //            }
             //      out.append("<tr>")
             //      .append("<td>").append(propData.get0()).append("</td>\n")
             //      .append("<td>").append(propData.get1()).append("</td>\n")

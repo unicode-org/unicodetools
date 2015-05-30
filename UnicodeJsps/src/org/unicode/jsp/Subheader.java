@@ -70,7 +70,7 @@ public class Subheader implements Iterable<String> {
         } 
     };
 
-    static final MultiComparator SHORTEST = new MultiComparator(SHORTEST_FIRST, Collator.getInstance(ULocale.ENGLISH));
+    static final MultiComparator SHORTEST = new MultiComparator(SHORTEST_FIRST, UnicodeSetUtilities.MAIN_COLLATOR);
 
     private void fillTables() {
         // fix plurals & casing
