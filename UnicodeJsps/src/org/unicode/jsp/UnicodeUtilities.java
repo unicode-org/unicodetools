@@ -1248,7 +1248,7 @@ public class UnicodeUtilities {
 
     /*jsp*/
     public static void showPropsTable(Appendable out, String propForValues, String myLink) throws IOException {
-        ((RuleBasedCollator)col).setNumericCollation(true);
+//        ((RuleBasedCollator)col).setNumericCollation(true);
         Map<String, Map<String, String>> alpha = new TreeMap<String, Map<String, String>>(col);
         Map<String, String> longToShort = new HashMap<String, String>();
 

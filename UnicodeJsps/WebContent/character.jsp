@@ -21,7 +21,7 @@ th           { text-align: left }
         String queryString = request.getQueryString();
         
         UtfParameters utfParameters = new UtfParameters(queryString);
-		String text = utfParameters.getParameter("a", "\u00C5", "\u00C5");
+		String text = utfParameters.getParameter("a", "\u2615", "\u2615");
 
 		int cp = UnicodeJsp.parseCode(text,null,null);
 		//text = UTF16.valueOf(cp);
