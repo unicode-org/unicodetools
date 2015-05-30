@@ -1,5 +1,6 @@
 package org.unicode.jsptest;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,6 +14,7 @@ import java.util.TreeSet;
 import org.unicode.jsp.Builder;
 import org.unicode.jsp.CharEncoder;
 import org.unicode.jsp.Common;
+import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
@@ -33,6 +35,12 @@ import com.ibm.icu.util.VersionInfo;
 public class TestUnicodeSet  extends TestFmwk {
     public static void main(String[] args) throws Exception {
         new TestUnicodeSet().run(args);
+    }
+    
+    public void TestEmoji() throws IOException {
+        StringBuilder b = new StringBuilder();
+        UnicodeJsp.showSet("scx", UnicodeSetUtilities.TAKES_EMOJI_VS, false, false, b);
+        System.out.println(b);
     }
 
     public void TestPretty() {
