@@ -94,7 +94,7 @@ public class WriteCharts implements UCD_Types {
 
         short oldScript = -127;
 
-        final int[] scriptCount = new int[255];
+        final int[] scriptCount = new int[SCRIPT_LIMIT];
 
         final int counter = 0;
 
@@ -130,6 +130,7 @@ public class WriteCharts implements UCD_Types {
         final int LEAST_DIGIT_PRIMARY = UCA.getPrimary(uca.getCEList("0", true).at(0));
 
         int lastCp = -1;
+        boolean firstLine = true;
         while (it.hasNext()) {
             Utility.dot(counter);
 
@@ -185,6 +186,9 @@ public class WriteCharts implements UCD_Types {
             if (script != oldScript
                     // && (script != COMMON_SCRIPT && script != INHERITED_SCRIPT)
                     ) {
+                if (output != null) {
+                    output.println("</tr>");
+                }
                 closeFile(output);
                 output = null;
                 oldScript = script;
@@ -199,6 +203,7 @@ public class WriteCharts implements UCD_Types {
                             + getChunkName(veryOldScript, LONG) + ", " + Default.ucd().getCodeAndName(lastCp));
                 }
                 output = openFile(scriptCount[script-NULL_ORDER], folder, script);
+                firstLine = true;
             }
 
             final boolean firstPrimaryEquals = currentPrimary == getFirstPrimary(lastSortKey);
@@ -226,23 +231,29 @@ public class WriteCharts implements UCD_Types {
             String breaker = "";
             if (columnCount > 10 || !firstPrimaryEquals) {
                 columnCount = 0;
+                breaker = firstLine ? "" : "</tr>\n";
                 if (!firstPrimaryEquals || script == UNSUPPORTED) {
-                    breaker = "</tr><tr>";
+                    breaker += "<tr>";
                 } else {
-                    breaker = "</tr><tr><td></td>"; // indent 1 cell
+                    breaker += "<tr><td></td>"; // indent 1 cell
                     ++columnCount;
                 }
+            } else if (firstLine) {
+                breaker = "<tr>";
             }
 
             final String classname = primaryCount > 1 ? XCLASSNAME[strength] : CLASSNAME[strength];
 
             final String outline = showCell2(sortKey, s, script, classname);
 
-            output.println(breaker + outline);
+            output.print(breaker + outline);
+            firstLine = false;
             ++columnCount;
             lastCp = cp;
         }
-
+        if (!firstLine) {
+            output.println("</tr>");
+        }
         closeFile(output);
         closeIndexFile(indexFile, "<br>UCA: " + uca.getDataVersion(), COLLATION, true);
     }
@@ -342,13 +353,14 @@ public class WriteCharts implements UCD_Types {
 
             showCell(output, code, "z", "", false);
 
-            prefix = c.equals(code) ? "g" : "<td class='n' ";
-            showCell(output, c, prefix, "", c.equals(code));
+            final boolean cEqCode = c.equals(code);
+            prefix = cEqCode ? "g" : "n";
+            showCell(output, c, prefix, "", cEqCode);
 
-            prefix = d.equals(c) ? "g" : "<td class='n' ";
+            prefix = d.equals(c) ? "g" : "n";
             showCell(output, d, prefix, "", d.equals(c));
 
-            prefix = kc.equals(c) ? "g" : "<td class='n' ";
+            prefix = kc.equals(c) ? "g" : "n";
             showCell(output, kc, prefix, "", kc.equals(c));
 
             prefix = (kd.equals(d) || kd.equals(kc)) ? "g" : "n";
@@ -466,7 +478,6 @@ public class WriteCharts implements UCD_Types {
 
             output.println("<tr>");
 
-            String prefix;
             final String code = UTF16.valueOf(cp);
             final String lower = Default.ucd().getCase(cp, FULL, LOWER);
             final String title = Default.ucd().getCase(cp, FULL, TITLE);
@@ -475,17 +486,17 @@ public class WriteCharts implements UCD_Types {
 
             showCell(output, code, "z", "", false);
 
-            prefix = lower.equals(code) ? "g" : "<td class='n' ";
-            showCell(output, lower, prefix, "", lower.equals(code));
+            final boolean lowerEqCode = lower.equals(code);
+            showCell(output, lower, lowerEqCode ? "g" : "n", "", lowerEqCode);
 
-            prefix = title.equals(upper) ? "g" : "<td class='n' ";
-            showCell(output, title, prefix, "", title.equals(upper));
+            final boolean titleEqUpper = title.equals(upper);
+            showCell(output, title, titleEqUpper ? "g" : "n", "", titleEqUpper);
 
-            prefix = upper.equals(code) ? "g" : "<td class='n' ";
-            showCell(output, upper, prefix, "", upper.equals(code));
+            final boolean upperEqCode = upper.equals(code);
+            showCell(output, upper, upperEqCode ? "g" : "n", "", upperEqCode);
 
-            prefix = fold.equals(lower) ? "g" : "<td class='n' ";
-            showCell(output, fold, prefix, "", fold.equals(lower));
+            final boolean foldEqLower = fold.equals(lower);
+            showCell(output, fold, foldEqLower ? "g" : "n", "", foldEqLower);
 
             output.println("</tr>");
 
@@ -568,6 +579,7 @@ public class WriteCharts implements UCD_Types {
 
             if (output == null) {
                 output = openFile(0, folder, script);
+                output.println("<tr>");
             }
 
             if (columnCount > 10) {
@@ -577,7 +589,7 @@ public class WriteCharts implements UCD_Types {
             showCell(output, UTF16.valueOf(cp), "", "", false);
             ++columnCount;
         }
-
+        output.println("</tr>");
         closeFile(output);
         closeIndexFile(indexFile, "", SCRIPT, true);
     }
@@ -979,7 +991,9 @@ public class WriteCharts implements UCD_Types {
     UNSUPPORTED = CJK_AB + 1,
     CAT_OFFSET = UNSUPPORTED + 10,
     // categories in here
-    NO_CASE_MAPPING = 200;
+    NO_CASE_MAPPING = CAT_OFFSET+50,
+    SCRIPT_LIMIT = NO_CASE_MAPPING + 5 - NULL_ORDER;
+  
     
     static {
         if (CJK <= UCD_Names.SCRIPT.length) {

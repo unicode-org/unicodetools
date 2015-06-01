@@ -89,6 +89,15 @@ public class GenerateEmoji {
     static final UCA                      UCA_COLLATOR              = UCA.buildCollator(null);
 
     public static final UnicodeMap<String>       STANDARDIZED_VARIANT      = LATEST.load(UcdProperty.Standardized_Variant);
+    static {
+        UnicodeSet HAS_EMOJI_VS = new UnicodeSet();
+        for (String s: Emoji.EMOJI_CHARS_FLAT) {
+            if (STANDARDIZED_VARIANT.containsKey(s+Emoji.EMOJI_VARIANT)) {
+                HAS_EMOJI_VS.add(s);
+            }
+        }
+        System.out.println("HAS_EMOJI_VS: " + HAS_EMOJI_VS.toPattern(false));
+    }
     static final UnicodeMap<String>       VERSION                   = LATEST.load(UcdProperty.Age);
     static final UnicodeMap<String>       WHITESPACE                = LATEST.load(UcdProperty.White_Space);
     static final UnicodeMap<String>       GENERAL_CATEGORY          = LATEST.load(UcdProperty.General_Category);
@@ -111,8 +120,8 @@ public class GenerateEmoji {
         .addAll(sbProp.keySet())
         .removeAll(WHITESPACE.getSet(UcdPropertyValues.Binary.Yes.toString()))
         .freeze();
-        if (true)
-            System.out.println("Core:\t" + JSOURCES.size() + "\t" + JSOURCES);
+//        if (true)
+//            System.out.println("Core:\t" + JSOURCES.size() + "\t" + JSOURCES);
     }
     static final LocaleDisplayNames       LOCALE_DISPLAY            = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
 

@@ -694,12 +694,12 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             // fix noncharacters, since XML can't handle
         case 0xFFFE: case 0xFFFF:
 
-            return "<codepoint hex=\"" + hex(c,1) + "\"/>";
+            return HTML ? '#' + hex(c,4) : "<codepoint hex=\"" + hex(c,1) + "\"/>";
         }
 
         // fix surrogates, since XML can't handle
         if (UTF32.isSurrogate(c)) {
-            return "<codepoint hex=\"" + hex(c,1) + "\"/>";
+            return HTML ? '#' + hex(c,4) : "<codepoint hex=\"" + hex(c,1) + "\"/>";
         }
 
         if (c <= 0x7E) {
