@@ -52,9 +52,9 @@ public class TestAlternateIterator extends TestFmwk {
           logln("\tScriptCheck:\t" + confusables.getScriptCheck());
           logln("\tAllowedCharacters:\t" + confusables.getAllowedCharacters());
           int count = 0;
-          for (String item : confusables) {
-              logln(++count + "\t" + item + "\t" + Utility.hex(item));
-          }
+//          for (String item : confusables) {
+//              logln(++count + "\t" + item + "\t" + Utility.hex(item));
+//          }
       } else {
           assertNotEquals("Confusable count", 0, confusables.iterator().hasNext());
       }

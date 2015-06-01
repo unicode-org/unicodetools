@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.SortedMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.UnicodeProperty.BaseProperty;
@@ -15,13 +12,12 @@ import org.unicode.jsp.UnicodeProperty.SimpleProperty;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.CollationElementIterator;
-import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.RawCollationKey;
 import com.ibm.icu.text.RuleBasedCollator;
-import com.ibm.icu.text.SpoofChecker;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
@@ -60,9 +56,10 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new UTS46());
         add(new IDNA2008());
         add(new IDNA2008c());
-        add(new Usage());
+        //add(new Usage());
         add(new HanType());
-        add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getReasons()).setMain("identifier-restriction", "idr", UnicodeProperty.ENUMERATED, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getStatus()).setMain("Identifier_Status", "ids", UnicodeProperty.ENUMERATED, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty().set(XIDModifications.getTypes()).setMain("Identifier_Type", "idt", UnicodeProperty.ENUMERATED, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Confusables.getMap()).setMain("confusable", "confusable", UnicodeProperty.ENUMERATED, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Idna2003.SINGLETON.mappings).setMain("toIdna2003", "toIdna2003", UnicodeProperty.STRING, "1.1"));
         add(new UnicodeProperty.UnicodeMapProperty().set(Uts46.SINGLETON.mappings).setMain("toUts46t", "toUts46t", UnicodeProperty.STRING, "1.1"));
@@ -122,7 +119,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new CodepointTransformProperty(new Transform<Integer,String>() {
             public String transform(Integer source) {
                 return UnicodeUtilities.getSubheader().getSubheader(source);
-            }}, false).setMain("Subheader", "subhead", UnicodeProperty.STRING, "1.1"));
+            }}, false).setMain("subhead", "subhead", UnicodeProperty.STRING, "1.1"));
 
         add(new UnicodeSetProperty().set("[:^nfcqc=n:]").setMain("isNFC", "isNFC", UnicodeProperty.BINARY, "1.1"));
         add(new UnicodeSetProperty().set("[:^nfdqc=n:]").setMain("isNFD", "isNFD", UnicodeProperty.BINARY, "1.1"));
@@ -131,28 +128,31 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         add(new UnicodeSetProperty().set("[\\u0000-\\u007F]").setMain("ASCII", "ASCII", UnicodeProperty.BINARY, "1.1"));
         add(new UnicodeSetProperty().set("[\\u0000-\\U0010FFFF]").setMain("ANY", "ANY", UnicodeProperty.BINARY, "1.1"));
 
-//        UnicodeSet emojiSource = new UnicodeSet("[©®‼⁉™ℹ↔-↙↩↪⌚⌛⌨⏏⏩-⏳⏸-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎☑☔☕☘☝☠☢☣☦☪☮☯☸-☺♈-♓♠♣♥♦♨♻♿⚒-⚔⚖⚗⚙⚛⚜⚠⚡"
-//                + "⚪⚫⚰⚱⚽⚾⛄⛅⛈⛎⛏⛑⛓⛔⛩⛪⛰-⛵⛷-⛺⛽✂✅✈-✍✏✒✔✖✝✡✨✳✴❄❇❌❎❓-❕❗❣❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌡🌤-🎓🎖🎗🎙-🎛🎞-🏰🏳-🏵🏷-📽📿-🔽🕉-🕎🕐-🕧🕯🕰🕳-🕹🖇🖊-🖍🖐🖕🖖🖥🖨🖱🖲🖼🗂-🗄🗑-🗓🗜-🗞🗡🗣🗯🗳🗺-🙏🚀-🛅🛋-🛐🛠-🛥🛩🛫🛬🛰🛳🤐-🤘🦀-🦄🧀"
-//                + "{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇦🇨}"
-//                + "{🇦🇩}{🇦🇪}{🇦🇫}{🇦🇬}{🇦🇮}{🇦🇱}{🇦🇲}{🇦🇴}{🇦🇶}{🇦🇷}{🇦🇸}{🇦🇹}{🇦🇺}{🇦🇼}{🇦🇽}{🇦🇿}{🇧🇦}{🇧🇧}{🇧🇩}{🇧🇪}{🇧🇫}{🇧🇬}{🇧🇭}{🇧🇮}{🇧🇯}{🇧🇱}{🇧🇲}{🇧🇳}{🇧🇴}{🇧🇶}{🇧🇷}{🇧🇸}"
-//                + "{🇧🇹}{🇧🇻}{🇧🇼}{🇧🇾}{🇧🇿}{🇨🇦}{🇨🇨}{🇨🇩}{🇨🇫}{🇨🇬}{🇨🇭}{🇨🇮}{🇨🇰}{🇨🇱}{🇨🇲}{🇨🇳}{🇨🇴}{🇨🇵}{🇨🇷}{🇨🇺}{🇨🇻}{🇨🇼}{🇨🇽}{🇨🇾}{🇨🇿}{🇩🇪}{🇩🇬}{🇩🇯}{🇩🇰}{🇩🇲}{🇩🇴}"
-//                + "{🇩🇿}{🇪🇦}{🇪🇨}{🇪🇪}{🇪🇬}{🇪🇭}{🇪🇷}{🇪🇸}{🇪🇹}{🇪🇺}{🇫🇮}{🇫🇯}{🇫🇰}{🇫🇲}{🇫🇴}{🇫🇷}{🇬🇦}{🇬🇧}{🇬🇩}{🇬🇪}{🇬🇫}{🇬🇬}{🇬🇭}{🇬🇮}{🇬🇱}{🇬🇲}{🇬🇳}{🇬🇵}{🇬🇶}{🇬🇷}"
-//                + "{🇬🇸}{🇬🇹}{🇬🇺}{🇬🇼}{🇬🇾}{🇭🇰}{🇭🇲}{🇭🇳}{🇭🇷}{🇭🇹}{🇭🇺}{🇮🇨}{🇮🇩}{🇮🇪}{🇮🇱}{🇮🇲}{🇮🇳}{🇮🇴}{🇮🇶}{🇮🇷}{🇮🇸}{🇮🇹}{🇯🇪}{🇯🇲}{🇯🇴}{🇯🇵}{🇰🇪}{🇰🇬}{🇰🇭}{🇰🇮}{🇰🇲}"
-//                + "{🇰🇳}{🇰🇵}{🇰🇷}{🇰🇼}{🇰🇾}{🇰🇿}{🇱🇦}{🇱🇧}{🇱🇨}{🇱🇮}{🇱🇰}{🇱🇷}{🇱🇸}{🇱🇹}{🇱🇺}{🇱🇻}{🇱🇾}{🇲🇦}{🇲🇨}{🇲🇩}{🇲🇪}{🇲🇫}{🇲🇬}{🇲🇭}{🇲🇰}{🇲🇱}{🇲🇲}{🇲🇳}{🇲🇴}{🇲🇵}{🇲🇶}{🇲🇷}{🇲🇸}"
-//                + "{🇲🇹}{🇲🇺}{🇲🇻}{🇲🇼}{🇲🇽}{🇲🇾}{🇲🇿}{🇳🇦}{🇳🇨}{🇳🇪}{🇳🇫}{🇳🇬}{🇳🇮}{🇳🇱}{🇳🇴}{🇳🇵}{🇳🇷}{🇳🇺}{🇳🇿}{🇴🇲}{🇵🇦}{🇵🇪}{🇵🇫}{🇵🇬}{🇵🇭}{🇵🇰}{🇵🇱}{🇵🇲}{🇵🇳}{🇵🇷}{🇵🇸}"
-//                + "{🇵🇹}{🇵🇼}{🇵🇾}{🇶🇦}{🇷🇪}{🇷🇴}{🇷🇸}{🇷🇺}{🇷🇼}{🇸🇦}{🇸🇧}{🇸🇨}{🇸🇩}{🇸🇪}{🇸🇬}{🇸🇭}{🇸🇮}{🇸🇯}{🇸🇰}{🇸🇱}{🇸🇲}{🇸🇳}{🇸🇴}{🇸🇷}{🇸🇸}{🇸🇹}{🇸🇻}{🇸🇽}{🇸🇾}{🇸🇿}{🇹🇦}{🇹🇨}"
-//                + "{🇹🇩}{🇹🇫}{🇹🇬}{🇹🇭}{🇹🇯}{🇹🇰}{🇹🇱}{🇹🇲}{🇹🇳}{🇹🇴}{🇹🇷}{🇹🇹}{🇹🇻}{🇹🇼}{🇹🇿}{🇺🇦}{🇺🇬}{🇺🇲}{🇺🇸}{🇺🇾}{🇺🇿}{🇻🇦}{🇻🇨}{🇻🇪}{🇻🇬}{🇻🇮}{🇻🇳}{🇻🇺}{🇼🇫}"
-//                + "{🇼🇸}{🇽🇰}{🇾🇪}{🇾🇹}{🇿🇦}{🇿🇲}{🇿🇼}]").freeze();    
+        //        UnicodeSet emojiSource = new UnicodeSet("[©®‼⁉™ℹ↔-↙↩↪⌚⌛⌨⏏⏩-⏳⏸-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎☑☔☕☘☝☠☢☣☦☪☮☯☸-☺♈-♓♠♣♥♦♨♻♿⚒-⚔⚖⚗⚙⚛⚜⚠⚡"
+        //                + "⚪⚫⚰⚱⚽⚾⛄⛅⛈⛎⛏⛑⛓⛔⛩⛪⛰-⛵⛷-⛺⛽✂✅✈-✍✏✒✔✖✝✡✨✳✴❄❇❌❎❓-❕❗❣❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌡🌤-🎓🎖🎗🎙-🎛🎞-🏰🏳-🏵🏷-📽📿-🔽🕉-🕎🕐-🕧🕯🕰🕳-🕹🖇🖊-🖍🖐🖕🖖🖥🖨🖱🖲🖼🗂-🗄🗑-🗓🗜-🗞🗡🗣🗯🗳🗺-🙏🚀-🛅🛋-🛐🛠-🛥🛩🛫🛬🛰🛳🤐-🤘🦀-🦄🧀"
+        //                + "{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇦🇨}"
+        //                + "{🇦🇩}{🇦🇪}{🇦🇫}{🇦🇬}{🇦🇮}{🇦🇱}{🇦🇲}{🇦🇴}{🇦🇶}{🇦🇷}{🇦🇸}{🇦🇹}{🇦🇺}{🇦🇼}{🇦🇽}{🇦🇿}{🇧🇦}{🇧🇧}{🇧🇩}{🇧🇪}{🇧🇫}{🇧🇬}{🇧🇭}{🇧🇮}{🇧🇯}{🇧🇱}{🇧🇲}{🇧🇳}{🇧🇴}{🇧🇶}{🇧🇷}{🇧🇸}"
+        //                + "{🇧🇹}{🇧🇻}{🇧🇼}{🇧🇾}{🇧🇿}{🇨🇦}{🇨🇨}{🇨🇩}{🇨🇫}{🇨🇬}{🇨🇭}{🇨🇮}{🇨🇰}{🇨🇱}{🇨🇲}{🇨🇳}{🇨🇴}{🇨🇵}{🇨🇷}{🇨🇺}{🇨🇻}{🇨🇼}{🇨🇽}{🇨🇾}{🇨🇿}{🇩🇪}{🇩🇬}{🇩🇯}{🇩🇰}{🇩🇲}{🇩🇴}"
+        //                + "{🇩🇿}{🇪🇦}{🇪🇨}{🇪🇪}{🇪🇬}{🇪🇭}{🇪🇷}{🇪🇸}{🇪🇹}{🇪🇺}{🇫🇮}{🇫🇯}{🇫🇰}{🇫🇲}{🇫🇴}{🇫🇷}{🇬🇦}{🇬🇧}{🇬🇩}{🇬🇪}{🇬🇫}{🇬🇬}{🇬🇭}{🇬🇮}{🇬🇱}{🇬🇲}{🇬🇳}{🇬🇵}{🇬🇶}{🇬🇷}"
+        //                + "{🇬🇸}{🇬🇹}{🇬🇺}{🇬🇼}{🇬🇾}{🇭🇰}{🇭🇲}{🇭🇳}{🇭🇷}{🇭🇹}{🇭🇺}{🇮🇨}{🇮🇩}{🇮🇪}{🇮🇱}{🇮🇲}{🇮🇳}{🇮🇴}{🇮🇶}{🇮🇷}{🇮🇸}{🇮🇹}{🇯🇪}{🇯🇲}{🇯🇴}{🇯🇵}{🇰🇪}{🇰🇬}{🇰🇭}{🇰🇮}{🇰🇲}"
+        //                + "{🇰🇳}{🇰🇵}{🇰🇷}{🇰🇼}{🇰🇾}{🇰🇿}{🇱🇦}{🇱🇧}{🇱🇨}{🇱🇮}{🇱🇰}{🇱🇷}{🇱🇸}{🇱🇹}{🇱🇺}{🇱🇻}{🇱🇾}{🇲🇦}{🇲🇨}{🇲🇩}{🇲🇪}{🇲🇫}{🇲🇬}{🇲🇭}{🇲🇰}{🇲🇱}{🇲🇲}{🇲🇳}{🇲🇴}{🇲🇵}{🇲🇶}{🇲🇷}{🇲🇸}"
+        //                + "{🇲🇹}{🇲🇺}{🇲🇻}{🇲🇼}{🇲🇽}{🇲🇾}{🇲🇿}{🇳🇦}{🇳🇨}{🇳🇪}{🇳🇫}{🇳🇬}{🇳🇮}{🇳🇱}{🇳🇴}{🇳🇵}{🇳🇷}{🇳🇺}{🇳🇿}{🇴🇲}{🇵🇦}{🇵🇪}{🇵🇫}{🇵🇬}{🇵🇭}{🇵🇰}{🇵🇱}{🇵🇲}{🇵🇳}{🇵🇷}{🇵🇸}"
+        //                + "{🇵🇹}{🇵🇼}{🇵🇾}{🇶🇦}{🇷🇪}{🇷🇴}{🇷🇸}{🇷🇺}{🇷🇼}{🇸🇦}{🇸🇧}{🇸🇨}{🇸🇩}{🇸🇪}{🇸🇬}{🇸🇭}{🇸🇮}{🇸🇯}{🇸🇰}{🇸🇱}{🇸🇲}{🇸🇳}{🇸🇴}{🇸🇷}{🇸🇸}{🇸🇹}{🇸🇻}{🇸🇽}{🇸🇾}{🇸🇿}{🇹🇦}{🇹🇨}"
+        //                + "{🇹🇩}{🇹🇫}{🇹🇬}{🇹🇭}{🇹🇯}{🇹🇰}{🇹🇱}{🇹🇲}{🇹🇳}{🇹🇴}{🇹🇷}{🇹🇹}{🇹🇻}{🇹🇼}{🇹🇿}{🇺🇦}{🇺🇬}{🇺🇲}{🇺🇸}{🇺🇾}{🇺🇿}{🇻🇦}{🇻🇨}{🇻🇪}{🇻🇬}{🇻🇮}{🇻🇳}{🇻🇺}{🇼🇫}"
+        //                + "{🇼🇸}{🇽🇰}{🇾🇪}{🇾🇹}{🇿🇦}{🇿🇲}{🇿🇼}]").freeze();    
 
         add(new UnicodeSetProperty().set(UnicodeSetUtilities.EMOJI_CHARACTERS).setMain("emoji", "emoji", UnicodeProperty.BINARY, "6.0"));
-//        UnicodeProperty prop2 = getProperty("emoji");
-//        UnicodeSet set = prop2.getSet("true");
-//        System.out.println(emojiSource.toPattern(false));
-//        System.out.println(set.toPattern(false));
+        //        UnicodeProperty prop2 = getProperty("emoji");
+        //        UnicodeSet set = prop2.getSet("true");
+        //        System.out.println(emojiSource.toPattern(false));
+        //        System.out.println(set.toPattern(false));
 
         add(new UnicodeSetProperty().set(new UnicodeSet("[\\u0000-\\uFFFF]")).setMain("bmp", "bmp", UnicodeProperty.BINARY, "6.0"));
 
         addCollationProperty();
+
+        //add(new IcuBidiPairedBracket());
+        add(new IcuEnumProperty(UProperty.BIDI_PAIRED_BRACKET_TYPE));
 
         // set up the special script property
         UnicodeProperty scriptProp = base.getProperty("sc");
@@ -165,31 +165,31 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         .addValueAliases(ScriptTester.getScriptSpecialsAlternates(), false)
                 );
 
-        SortedMap<String, Charset> charsets = Charset.availableCharsets();
-        if (DEBUG_CHARSET_NAMES) System.out.println(charsets.keySet());
-        Matcher charsetMatcher = Pattern.compile("ISO-8859-\\d*|GB2312|Shift_JIS|GBK|Big5|EUC-KR").matcher("");
-        for (String name : charsets.keySet()) {
-            if (!charsetMatcher.reset(name).matches()) {
-                continue;
-            }
-            Charset charset = charsets.get(name);
-            EncodingProperty prop = new EncodingProperty(charset);
-            prop.setType(UnicodeProperty.STRING);
-            prop.setName("enc_" + name);
-
-            EncodingPropertyBoolean isProp = new EncodingPropertyBoolean(charset);
-            isProp.setType(UnicodeProperty.BINARY);
-            isProp.setName("is_enc_" + name);
-
-            for (String alias : charset.aliases()) {
-                if (DEBUG_CHARSET_NAMES) System.out.println(name + " => " + alias);
-                prop.addName("enc_" + alias);
-                isProp.addName("isEnc_" + alias);
-            }
-
-            add(prop);
-            add(isProp);
-        }
+        //        SortedMap<String, Charset> charsets = Charset.availableCharsets();
+        //        if (DEBUG_CHARSET_NAMES) System.out.println(charsets.keySet());
+        //        Matcher charsetMatcher = Pattern.compile("ISO-8859-\\d*|GB2312|Shift_JIS|GBK|Big5|EUC-KR").matcher("");
+        //        for (String name : charsets.keySet()) {
+        //            if (!charsetMatcher.reset(name).matches()) {
+        //                continue;
+        //            }
+        //            Charset charset = charsets.get(name);
+        //            EncodingProperty prop = new EncodingProperty(charset);
+        //            prop.setType(UnicodeProperty.STRING);
+        //            prop.setName("enc_" + name);
+        //
+        //            EncodingPropertyBoolean isProp = new EncodingPropertyBoolean(charset);
+        //            isProp.setType(UnicodeProperty.BINARY);
+        //            isProp.setName("is_enc_" + name);
+        //
+        //            for (String alias : charset.aliases()) {
+        //                if (DEBUG_CHARSET_NAMES) System.out.println(name + " => " + alias);
+        //                prop.addName("enc_" + alias);
+        //                isProp.addName("isEnc_" + alias);
+        //            }
+        //
+        //            add(prop);
+        //            add(isProp);
+        //        }
 
         // exemplars
         //    String[] typeName = {"", "aux_"};
@@ -439,32 +439,80 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
     }
 
-    private static class Usage extends XEnumUnicodeProperty {
-        enum UsageValues {common, historic, deprecated, liturgical, limited, symbol, punctuation, na;
-        public static UsageValues getValue(int codepoint) {
-            if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
-            if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
-            if (UnicodeUtilities.LITURGICAL.contains(codepoint)) return liturgical;
-            //if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
-            //if (UnicodeUtilities.LIM.contains(codepoint)) return archaic;
-            if (UnicodeUtilities.COMMON_USE_SCRIPTS.contains(codepoint)) {
-                if (UnicodeUtilities.SYMBOL.contains(codepoint)) return symbol;
-                if (UnicodeUtilities.PUNCTUATION.contains(codepoint)) return punctuation;
-                return common;
+    private static class IcuEnumProperty extends XEnumUnicodeProperty {
+        final int propNum;
+        public IcuEnumProperty(int propNum) {
+            super(UCharacter.getPropertyName(propNum, NameChoice.LONG), getValues(propNum).toArray());
+            this.propNum = propNum;
+        }
+
+        private static List<String> getValues(int propNum) {
+            List<String> valueList = new ArrayList<String>();
+            for (int i = UCharacter.getIntPropertyMinValue(propNum); i <= UCharacter.getIntPropertyMaxValue(propNum); ++i) {
+                valueList.add(UCharacter.getPropertyValueName(propNum, i, NameChoice.LONG));
             }
-            return limited;
-        }
-        }
-        public Usage() {
-            super("Usage", UsageValues.values());
-            setType(UnicodeProperty.EXTENDED_ENUMERATED);
+            return valueList;
         }
 
         @Override
         protected String _getValue(int codepoint) {
-            return UsageValues.getValue(codepoint).toString();
+            int propValue = UCharacter.getIntPropertyValue(codepoint, propNum);
+            try {
+                return UCharacter.getPropertyValueName(propNum, propValue, NameChoice.LONG);
+            } catch (Exception e) {
+                return "n/a";
+            }
         }
     }
+
+//    private static class IcuBidiPairedBracket extends SimpleProperty {
+//        final int propNum;
+//        public IcuBidiPairedBracket() {
+//            setName(UCharacter.getPropertyName(UProperty.BIDI_PAIRED_BRACKET, NameChoice.LONG));
+//            this.propNum = UProperty.BIDI_PAIRED_BRACKET;
+//        }
+//        @Override
+//        public List _getNameAliases(List result) {
+//            return Arrays.asList(UCharacter.getPropertyName(propNum, NameChoice.LONG), UCharacter.getPropertyName(propNum, NameChoice.SHORT));
+//        }
+//
+//        @Override
+//        protected String _getValue(int codepoint) {
+//            return UTF16.valueOf(UCharacter.getBidiPairedBracket(codepoint));
+//        }
+//        @Override
+//        protected UnicodeMap _getUnicodeMap() {
+//            // TODO Auto-generated method stub
+//            return super._getUnicodeMap();
+//        }
+//    }
+
+//    private static class Usage extends XEnumUnicodeProperty {
+//        enum UsageValues {common, historic, deprecated, liturgical, limited, symbol, punctuation, na;
+//        public static UsageValues getValue(int codepoint) {
+//            if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
+//            if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
+//            if (UnicodeUtilities.LITURGICAL.contains(codepoint)) return liturgical;
+//            //if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
+//            //if (UnicodeUtilities.LIM.contains(codepoint)) return archaic;
+//            if (UnicodeUtilities.COMMON_USE_SCRIPTS.contains(codepoint)) {
+//                if (UnicodeUtilities.SYMBOL.contains(codepoint)) return symbol;
+//                if (UnicodeUtilities.PUNCTUATION.contains(codepoint)) return punctuation;
+//                return common;
+//            }
+//            return limited;
+//        }
+//        }
+//        public Usage() {
+//            super("Usage", UsageValues.values());
+//            setType(UnicodeProperty.EXTENDED_ENUMERATED);
+//        }
+//
+//        @Override
+//        protected String _getValue(int codepoint) {
+//            return UsageValues.getValue(codepoint).toString();
+//        }
+//    }
 
     static class HanType extends XEnumUnicodeProperty {
         enum HanTypeValues {na, Hans, Hant, Han}
@@ -563,7 +611,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
             unicodeSet = set;
             return this;
         }
-        
+
         protected UnicodeMap<String> _getUnicodeMap() {
             UnicodeMap<String> result = new UnicodeMap<String>();
             result.putAll(unicodeSet, "Yes");

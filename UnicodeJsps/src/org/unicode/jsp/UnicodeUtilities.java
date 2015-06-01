@@ -479,8 +479,8 @@ public class UnicodeUtilities {
             return result.toString();
         }
         try {
-            UnicodeSet allowed = new UnicodeSet(scriptSet).retainAll(XIDModifications.allowed);
-            UnicodeSet restricted = new UnicodeSet(scriptSet).removeAll(XIDModifications.allowed);
+            UnicodeSet allowed = new UnicodeSet(scriptSet).retainAll(XIDModifications.getAllowed());
+            UnicodeSet restricted = new UnicodeSet(scriptSet).removeAll(XIDModifications.getAllowed());
             result.append("<h2>Allowed</h2>");
             if (allowed.size() == 0) {
                 result.append("<i>none</i>");
@@ -492,8 +492,9 @@ public class UnicodeUtilities {
                 result.append("<h2>Restricted</h2>");
                 result.append("<i class='redName'>none</i>");
             } else {
-                for (String reason : XIDModifications.reasons.values()) {
-                    UnicodeSet shard = XIDModifications.reasons.getSet(reason);
+                final UnicodeMap<String> types = XIDModifications.getTypes();
+                for (String reason : types.values()) {
+                    UnicodeSet shard = types.getSet(reason);
                     UnicodeSet items = new UnicodeSet(restricted).retainAll(shard);
                     if (items.size() != 0) {
                         result.append("<h2>Restricted - <span class='redName'>" + reason + "</span></h2>");
@@ -1042,7 +1043,7 @@ public class UnicodeUtilities {
         } else {
             name = "<i>Unknown</i>";
         }
-        boolean allowed = XIDModifications.allowed.contains(cp);
+        boolean allowed = XIDModifications.isAllowed(cp);
 
         String scriptCat = factory.getProperty("script").getValue(cp).replace("_", " ");
         if (scriptCat.equals("Common") || scriptCat.equals("Inherited")) {
@@ -1062,7 +1063,7 @@ public class UnicodeUtilities {
         if (allowed) {
             out.append("<span class='allowed'>allowed</span>");
         } else {
-            out.append("<span class='restricted' title='Restricted in identifiers: " + XIDModifications.reasons.get(cp) + "'>restricted</span>");
+            out.append("<span class='restricted' title='Restricted in identifiers: " + XIDModifications.getType(cp) + "'>restricted</span>");
         }
         out.append("</td></tr>\n");
         StringBuilder confusableString = displayConfusables(cp);

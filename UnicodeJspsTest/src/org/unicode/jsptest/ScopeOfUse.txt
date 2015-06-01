@@ -1,0 +1,104 @@
+Property	;	Scope of Use	;	Deprecation
+Name	;	General	;	
+Name_Alias	;	General	;	
+Block	;	General	;	
+Age	;	General	;	
+General_Category	;	General	;	
+Script	;	General	;	
+Script_Extensions	;	General	;	
+White_Space	;	General	;	
+Alphabetic	;	General	;	
+Hangul_Syllable_Type	;	General	;	
+Noncharacter_Code_Point	;	General	;	
+Default_Ignorable_Code_Point	;	General	;	
+Deprecated	;	General	;	
+Logical_Order_Exception	;	General	;	
+Variation_Selector	;	General	;	
+Uppercase	;	Case	;	
+Lowercase	;	Case	;	
+Lowercase_Mapping	;	Case	;	
+Titlecase_Mapping	;	Case	;	
+Uppercase_Mapping	;	Case	;	
+Case_Folding	;	Case	;	
+Simple_Lowercase_Mapping	;	Case	;	
+Simple_Titlecase_Mapping	;	Case	;	
+Simple_Uppercase_Mapping	;	Case	;	
+Simple_Case_Folding	;	Case	;	
+Soft_Dotted	;	Case	;	
+Cased	;	Case	;	
+Case_Ignorable	;	Case	;	
+Changes_When_Lowercased	;	Case	;	
+Changes_When_Uppercased	;	Case	;	
+Changes_When_Titlecased	;	Case	;	
+Changes_When_Casefolded	;	Case	;	
+Changes_When_Casemapped	;	Case	;	
+Numeric_Value	;	Numeric	;	
+Numeric_Type	;	Numeric	;	
+Hex_Digit	;	Numeric	;	
+ASCII_Hex_Digit	;	Numeric	;	
+Canonical_Combining_Class	;	Normalization	;	
+Decomposition_Mapping	;	Normalization	;	
+Composition_Exclusion	;	Normalization	;	
+Full_Composition_Exclusion	;	Normalization	;	
+Decomposition_Type	;	Normalization	;	
+FC_NFKC_Closure	;	Normalization	;	(deprecated)
+NFC_Quick_Check	;	Normalization	;	
+NFKC_Quick_Check	;	Normalization	;	
+NFD_Quick_Check	;	Normalization	;	
+NFKD_Quick_Check	;	Normalization	;	
+Expands_On_NFC	;	Normalization	;	(deprecated)
+Expands_On_NFD	;	Normalization	;	(deprecated)
+Expands_On_NFKC	;	Normalization	;	(deprecated)
+Expands_On_NFKD	;	Normalization	;	(deprecated)
+NFKC_Casefold	;	Normalization	;	
+Changes_When_NFKC_Casefolded	;	Normalization	;	
+Join_Control	;	Shaping and Rendering	;	
+Joining_Group	;	Shaping and Rendering	;	
+Joining_Type	;	Shaping and Rendering	;	
+Line_Break	;	Shaping and Rendering	;	
+Grapheme_Cluster_Break	;	Shaping and Rendering	;	
+Sentence_Break	;	Shaping and Rendering	;	
+Word_Break	;	Shaping and Rendering	;	
+East_Asian_Width	;	Shaping and Rendering	;	
+Bidi_Class	;	Bidirectional	;	
+Bidi_Control	;	Bidirectional	;	
+Bidi_Mirrored	;	Bidirectional	;	
+Bidi_Mirroring_Glyph	;	Bidirectional	;	
+Bidi_Paired_Bracket	;	Bidirectional	;	
+Bidi_Paired_Bracket_Type	;	Bidirectional	;	
+ID_Continue	;	Identifiers	;	
+ID_Start	;	Identifiers	;	
+XID_Continue	;	Identifiers	;	
+XID_Start	;	Identifiers	;	
+Pattern_Syntax	;	Identifiers	;	
+Pattern_White_Space	;	Identifiers	;	
+Ideographic	;	CJK	;	
+Unified_Ideograph	;	CJK	;	
+Radical	;	CJK	;	
+IDS_Binary_Operator	;	CJK	;	
+IDS_Trinary_Operator	;	CJK	;	
+Unicode_Radical_Stroke	;	CJK	;	
+Math	;	Miscellaneous	;	
+Quotation_Mark	;	Miscellaneous	;	
+Dash	;	Miscellaneous	;	
+Hyphen	;	Miscellaneous	;	(deprecated, stabilized)
+STerm	;	Miscellaneous	;	
+Terminal_Punctuation	;	Miscellaneous	;	
+Diacritic	;	Miscellaneous	;	
+Extender	;	Miscellaneous	;	
+Grapheme_Base	;	Miscellaneous	;	
+Grapheme_Extend	;	Miscellaneous	;	
+Grapheme_Link	;	Miscellaneous	;	(deprecated)
+Unicode_1_Name	;	Miscellaneous	;	
+ISO_Comment	;	Miscellaneous	;	(deprecated, stabilized)
+Indic_Positional_Category	;	Miscellaneous	;	
+Indic_Syllabic_Category	;	Miscellaneous	;	
+Other_Alphabetic	;	Contributory Properties	;	
+Other_Default_Ignorable_Code_Point	;	Contributory Properties	;	
+Other_Grapheme_Extend	;	Contributory Properties	;	
+Other_ID_Start	;	Contributory Properties	;	
+Other_ID_Continue	;	Contributory Properties	;	
+Other_Lowercase	;	Contributory Properties	;	
+Other_Math	;	Contributory Properties	;	
+Other_Uppercase	;	Contributory Properties	;	
+Jamo_Short_Name	;	Contributory Properties	;	
