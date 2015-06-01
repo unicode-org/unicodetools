@@ -87,10 +87,10 @@ public class TestUnicodeSet  extends TestFmwk {
 //        checkProperties("[:exemplars_en:]", "[a]", "[\u0350]");
 //    }
 
-    public void TestAEncodings() {
-        checkProperties("[:isEncSJIS:]", "[\\u00B0]", "[\u0350]");
-        checkProperties("[:isEncEUCKR:]", "[\\u00B0]", "[\u0350]");
-    }
+//    public void TestAEncodings() {
+//        checkProperties("[:isEncSJIS:]", "[\\u00B0]", "[\u0350]");
+//        checkProperties("[:isEncEUCKR:]", "[\\u00B0]", "[\u0350]");
+//    }
 
     public void TestU60 () {
         logln("ICU Version: " + VersionInfo.ICU_VERSION.toString());
@@ -106,7 +106,7 @@ public class TestUnicodeSet  extends TestFmwk {
         assertTrue("6.0 characters", age60.contains(0x20B9));
 
         UnicodeSet emoji = UnicodeSetUtilities.parseUnicodeSet("[:emoji:]");
-        assertEquals("6.0 emoji", 729, emoji.size()); // really 749, but we flatten the set
+        assertEquals("6.0 emoji", 1281, emoji.size()); // really 749, but we flatten the set
 
         emoji.add(0);
         emoji.remove(0);
@@ -187,19 +187,19 @@ public class TestUnicodeSet  extends TestFmwk {
         }
     }
 
-    public void TestEncodingProp() {
-
-        XPropertyFactory factory = XPropertyFactory.make();
-        UnicodeProperty prop = factory.getProperty("enc_Latin1");
-        UnicodeProperty prop2 = factory.getProperty("enc_Latin2");
-        UnicodeMap<String> map = prop.getUnicodeMap();
-        UnicodeMap<String> map2 = prop2.getUnicodeMap();
-        for (String value : Builder.with(new TreeSet<String>()).addAll(map.values()).addAll(map2.values()).get()) {
-            logln(value + "\t" + map.getSet(value) + "\t" + map2.getSet(value));
-        }
-        UnicodeSet set = UnicodeSetUtilities.parseUnicodeSet("[:enc_Latin1=/61/:]");
-        assertNotEquals("Latin1", 0, set.size());
-    }
+//    public void TestEncodingProp() {
+//
+//        XPropertyFactory factory = XPropertyFactory.make();
+//        UnicodeProperty prop = factory.getProperty("enc_Latin1");
+//        UnicodeProperty prop2 = factory.getProperty("enc_Latin2");
+//        UnicodeMap<String> map = prop.getUnicodeMap();
+//        UnicodeMap<String> map2 = prop2.getUnicodeMap();
+//        for (String value : Builder.with(new TreeSet<String>()).addAll(map.values()).addAll(map2.values()).get()) {
+//            logln(value + "\t" + map.getSet(value) + "\t" + map2.getSet(value));
+//        }
+//        UnicodeSet set = UnicodeSetUtilities.parseUnicodeSet("[:enc_Latin1=/61/:]");
+//        assertNotEquals("Latin1", 0, set.size());
+//    }
 
     public void TestPerMill() {
         SortedMap<String, Charset> charsets = Charset.availableCharsets();
@@ -432,13 +432,15 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
 
 
 
-    public static void assertEquals(AbstractTestLog testFmwk, String test, UnicodeSet expected, UnicodeSet actual) {
+    public static boolean assertEquals(AbstractTestLog testFmwk, String test, UnicodeSet expected, UnicodeSet actual) {
         if (!expected.equals(actual)) {
             UnicodeSet inExpected = new UnicodeSet(expected).removeAll(actual);
             UnicodeSet inActual = new UnicodeSet(actual).removeAll(expected);
             testFmwk.errln(test + " - MISSING: " + inExpected + ", EXTRA: " + inActual);
+            return false;
         } else {
             testFmwk.logln("OK\t\t" + test);
+            return true;
         }
     }
 

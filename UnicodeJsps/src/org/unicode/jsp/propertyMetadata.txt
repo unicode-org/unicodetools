@@ -37,23 +37,23 @@ IDS_Trinary_Operator ;   UCD ;    Binary ; CJK
 Radical ;    UCD ;    Binary ; CJK
 Unified_Ideograph ;  UCD ;    Binary ; CJK
 HanType ;    X-Demo ;   Enumerated ; CJK
-enc_Shift_JIS ;  X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-9 ; X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-8 ; X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-7 ; X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-6 ; X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-5 ; X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-4 ; X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-3 ; X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-2 ; X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-15 ;    X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-14 ;    X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-13 ;    X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-10 ;    X-Demo ;   Catalog ; X-Encoding
-enc_ISO-8859-1 ; X-Demo ;   Catalog ; X-Encoding
-enc_GBK ;    X-Demo ;   Catalog ; X-Encoding
-enc_GB2312 ; X-Demo ;   Catalog ; X-Encoding
-enc_Big5 ;   X-Demo ;   Catalog ; X-Encoding
+#enc_Shift_JIS ;  X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-9 ; X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-8 ; X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-7 ; X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-6 ; X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-5 ; X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-4 ; X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-3 ; X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-2 ; X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-15 ;    X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-14 ;    X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-13 ;    X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-10 ;    X-Demo ;   Catalog ; X-Encoding
+#enc_ISO-8859-1 ; X-Demo ;   Catalog ; X-Encoding
+#enc_GBK ;    X-Demo ;   Catalog ; X-Encoding
+#enc_GB2312 ; X-Demo ;   Catalog ; X-Encoding
+#enc_Big5 ;   X-Demo ;   Catalog ; X-Encoding
 Alphabetic ; UCD ;    Binary ; General
 Default_Ignorable_Code_Point ;   UCD ;    Binary ; General
 Deprecated ; UCD ;    Binary ; General
@@ -66,11 +66,12 @@ Block ;  UCD ;    Catalog ;    General
 Script ; UCD ;    Catalog ;    General
 General_Category ;   UCD ;    Enumerated ; General
 Hangul_Syllable_Type ;   UCD ;    Enumerated ; General
-Usage ;  UTS ;    Enumerated ; X-Security
-Script_Specials ;    X-Demo ;    Enumerated ; X-Security
-identifier-restriction ; UTS ;    Enumerated ; X-Security
+#Usage ;  UTS ;    Enumerated ; X-Security
+#Script_Specials ;    X-Demo ;    Enumerated ; X-Security
+Identifier_Status ; UTS ;    Enumerated ; X-Security
+Identifier_Type ; UTS ;    Enumerated ; X-Security
 confusable ; UTS ;    Enumerated ; X-Security
-subhead ;    Unicode ;    String ; General
+subhead ;    UCD ;    String ; General
 ID_Continue ;    UCD ;    Binary ; Identifiers
 ID_Start ;   UCD ;    Binary ; Identifiers
 Pattern_Syntax ; UCD ;    Binary ; Identifiers
@@ -137,3 +138,22 @@ Joining_Type ;   UCD ;    Enumerated ; Shaping and Rendering
 Line_Break ; UCD ;    Enumerated ; Shaping and Rendering
 Sentence_Break ; UCD ;    Enumerated ; Shaping and Rendering
 Word_Break ; UCD ;    Enumerated ; Shaping and Rendering
+
+#Bidi_Paired_Bracket ; UCD ;    String ; Bidirectional
+Bidi_Paired_Bracket_Type ; UCD ;    Enumerated ; Bidirectional
+#Indic_Positional_Category ; UCD ;    Enumerated ; Miscellaneous
+#Indic_Syllabic_Category ; UCD ;    Enumerated ; Miscellaneous
+Name ; UCD ;    String ; General
+#Name_Alias ; UCD ;    String ; General
+Script_Extensions ; UCD ;    String ; General
+
+ANY ; UTS ;    Binary ; X-Regex
+ASCII ; UTS ;    Binary ; X-Regex
+bmp ; UTS ;    Binary ; X-Regex
+emoji ; UTR ;    Binary ; X-Emoji
+idna2008 ; UTS ;    Binary ; X-IDNA
+uca ; UTS ;    Binary ; X-UCA
+uca2 ; UTS ;    Binary ; X-UCA
+uca2.5 ; UTS ;    Binary ; X-UCA
+uca3 ; UTS ;    Binary ; X-UCA
+#Subheader ; UCD ;    String ; X-NamesList
