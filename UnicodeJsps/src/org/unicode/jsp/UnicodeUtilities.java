@@ -911,7 +911,10 @@ public class UnicodeUtilities {
 
     static final UnicodeSet NON_ASCII = new UnicodeSet("[^\\u0021-\\u007E]").freeze();
     static final UnicodeSet WHITESPACE_IGNORABLES_C = new UnicodeSet("[[:C:][:Default_Ignorable_Code_Point:][:patternwhitespace:][:whitespace:]]").freeze();
-
+    static final UnicodeSet CombiningMarks = new UnicodeSet("[:M:]").freeze();
+    static final UnicodeSet REGIONALS = new UnicodeSet(0x1F1E6,0x1F1FF).freeze();
+    static final UnicodeSet NOBREAKBEFORE = new UnicodeSet(CombiningMarks).addAll(REGIONALS).freeze();
+    
     public static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
         String a_out;
         if (a.size() < 10000 && !abbreviate) {
@@ -938,9 +941,14 @@ public class UnicodeUtilities {
             ++charCount;
             if (charCount > 20) {
                 // add a space, but not in x-y, or \\uXXXX
-                if (cp == '-' || oldCp == '-') {
-                    // do nothing
-                } else if (oldCp == '\\' || cp < 0x80) {
+                // TODO, don't change {...}
+                if (
+                        cp < 0x80
+                        || cp == '-' 
+                        || oldCp == '-' 
+                        || oldCp == '\\' 
+                        || NOBREAKBEFORE.contains(cp)
+                        ) {
                     // do nothing
                 } else {
                     out.append(' ');
@@ -1249,7 +1257,7 @@ public class UnicodeUtilities {
 
     /*jsp*/
     public static void showPropsTable(Appendable out, String propForValues, String myLink) throws IOException {
-//        ((RuleBasedCollator)col).setNumericCollation(true);
+        //        ((RuleBasedCollator)col).setNumericCollation(true);
         Map<String, Map<String, String>> alpha = new TreeMap<String, Map<String, String>>(col);
         Map<String, String> longToShort = new HashMap<String, String>();
 
