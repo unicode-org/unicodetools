@@ -143,7 +143,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         UnicodeMap<String> emoji = new UnicodeMap<String>()
                 .putAll(0,0x10FFFF, "no")
-                .putAll(UnicodeSetUtilities.SINGLETONS, "singleton")
+                .putAll(UnicodeSetUtilities.SINGLETONS, "other")
                 // do these after, since they remove singleton items
                 .putAll(UnicodeSetUtilities.FLAGS, "flag")
                 .putAll(UnicodeSetUtilities.KEYCAPS, "keycap")
