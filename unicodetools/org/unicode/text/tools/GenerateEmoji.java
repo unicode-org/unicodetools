@@ -1272,13 +1272,23 @@ public class GenerateEmoji {
         showRow(out, "Secondary", optional, true);
         UnicodeSet modifierBase = new UnicodeSet().addAll(minimal).addAll(optional);
         showRow(out, "Modifier_Base", modifierBase.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), false);
-        showRow(out, "Modifiers", new UnicodeSet("[\\x{1F3FB}-\\x{1F3FF}]").addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), false);
+        final UnicodeSet MODIFIERS = new UnicodeSet("[\\x{1F3FB}-\\x{1F3FF}]").freeze();
+        showRow(out, "Modifiers", MODIFIERS.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), false);
         showRow(out, "JCarriers", JCARRIERS.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Common Additions", otherStandard.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Other Flags", otherFlags.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         showRow(out, "Standard Additions", nc7.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
         UnicodeSet singletons = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(Emoji.EMOJI_CHARS.strings());
         showRow(out, "Singletons", singletons.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
+        showRow(out, "Groupings", Emoji.COMBOS.addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)), true);
+        showRowSet(out, "Diverse Primary", getDiverse(minimal, MODIFIERS).addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
+        Set<String> face = ANNOTATIONS_TO_CHARS.getValues("face");
+        Set<String> optional_face = new HashSet<>(optional);
+        optional_face.retainAll(face);
+        Set<String> optional_other = new HashSet<>(optional);
+        optional_other.removeAll(face);
+        showRowSet(out, "Diverse Secondary Face", getDiverse(optional_face, MODIFIERS).addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
+        showRowSet(out, "Diverse Secondary Other", getDiverse(optional_other, MODIFIERS).addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)));
 //        UnicodeSet keycapBase = new UnicodeSet();
 //        for (String s : Emoji.EMOJI_CHARS.strings()) {
 //            if (s.indexOf(Emoji.KEYCAP_MARK) > 0) {
@@ -1306,6 +1316,16 @@ public class GenerateEmoji {
         // + Utility.hex(emoji,"_")
         // );
         // }
+    }
+
+    private static UnicodeSet getDiverse(Set<String> minimal, final UnicodeSet MODIFIERS) {
+        UnicodeSet primaryDiverse = new UnicodeSet();
+        for (String item : minimal) {
+            for (String tone : MODIFIERS) {
+                primaryDiverse.add(item+tone);
+            }
+        }
+        return primaryDiverse.freeze();   
     }
 
     /** Main Chart */
@@ -1400,13 +1420,17 @@ public class GenerateEmoji {
     }
 
     private static void showRow(PrintWriter out, String title, Set<String> minimal, boolean abbreviate) {
-        out.print("<tr><td>" + title + "</td><td>Images</td><td>Names</td></tr>");
-        out.print("<tr><td colSpan='3'>" + new UnicodeSet().addAll(minimal).toPattern(false) + "</td></tr>");
+        showRowSet(out, title, minimal);
         out.print("<tr><td>" + minimal.size() + "</td>\n<td>");
         showExplicitAppleImages(out, minimal);
         out.print("</td>\n<td width='10%'>");
         showNames(out, minimal, abbreviate);
         out.println("</td><tr>");
+    }
+
+    private static void showRowSet(PrintWriter out, String title, Set<String> minimal) {
+        out.print("<tr><td>" + title + "</td><td>Images</td><td>Names</td></tr>");
+        out.print("<tr><td colSpan='3'>" + new UnicodeSet().addAll(minimal).toPattern(false) + "</td></tr>");
     }
 
     private static void showNames(PrintWriter out, Set<String> minimal, boolean abbreviate) {

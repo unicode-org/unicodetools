@@ -23,6 +23,7 @@ import org.unicode.jsp.PropertyMetadata;
 import org.unicode.jsp.UnicodeJsp;
 import org.unicode.jsp.UnicodeProperty;
 import org.unicode.jsp.UnicodeSetUtilities;
+import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
 
 import com.google.common.base.Splitter;
@@ -50,6 +51,36 @@ public class TestProperties extends TestFmwk {
         new TestProperties().run(args);
     }
 
+    public void TestEmoji() throws IOException {
+        String[] message = {""};
+        UnicodeSet primary = UnicodeUtilities.parseSimpleSet("[:emoji=group:]", message);
+        StringBuilder out = new StringBuilder();
+        UnicodeJsp.showSet("emoji", primary, false, false,  out);
+        assertTrue("", out.toString().contains("\u200D"));
+
+        checkContained("[:emoji:]", "[{🎅🏻}]");
+        checkContained("[:emoji!=no:]", "[{🎅🏻}]");
+        checkContained("[:emoji=primary:]", "[{🎅🏻}]");
+        checkContained("[:emoji=secondary:]", "[{✊🏻}]");
+        checkContained("[:emoji=face:]", "[{😀🏿}]");
+        checkContained("[:emoji=group:]", "[{👨‍❤️‍👨}]");
+        checkContained("[:emoji=singleton:]", "[🌵]");
+        checkContained("[:emoji=no:]", "[a]");
+        checkContained("[:emoji=flag:]", "[{🇺🇸}]");
+        checkContained("[:emoji=keycap:]", "[{#⃣}]");
+    }
+
+    private void checkContained(final String setPattern, final String containedPattern) {
+        String[] message = {""};
+        UnicodeSet primary = UnicodeUtilities.parseSimpleSet(setPattern, message);
+        UnicodeSet x = UnicodeUtilities.parseSimpleSet(containedPattern, message);
+        if (!primary.containsAll(x)) {
+            errln(primary.toPattern(false) + " doesn't contain " + x.toPattern(false));
+        } else {
+            logln(primary.toPattern(false) + " contains " + x.toPattern(false));
+        }
+    }
+    
     public static final Set<String> SKIP_CJK = Collections.unmodifiableSet(new HashSet<String>(Arrays.asList(
             "kAccountingNumeric",
             "kCompatibilityVariant",
@@ -319,7 +350,6 @@ public class TestProperties extends TestFmwk {
             start = current;
         }
     }
-
 
     static final class PropertyAliases {
         static Set<String> names = new TreeSet<String>();
