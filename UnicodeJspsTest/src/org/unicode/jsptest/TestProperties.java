@@ -62,9 +62,9 @@ public class TestProperties extends TestFmwk {
         checkContained("[:emoji!=no:]", "[{🎅🏻}]");
         checkContained("[:emoji=primary:]", "[{🎅🏻}]");
         checkContained("[:emoji=secondary:]", "[{✊🏻}]");
-        checkContained("[:emoji=face:]", "[{😀🏿}]");
+        checkContained("[:emoji=face:]", "[😀]");
         checkContained("[:emoji=group:]", "[{👨‍❤️‍👨}]");
-        checkContained("[:emoji=singleton:]", "[🌵]");
+        checkContained("[:emoji=other:]", "[🌵]");
         checkContained("[:emoji=no:]", "[a]");
         checkContained("[:emoji=flag:]", "[{🇺🇸}]");
         checkContained("[:emoji=keycap:]", "[{#⃣}]");

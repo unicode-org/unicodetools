@@ -150,7 +150,7 @@ Script_Extensions ; UCD ;    String ; General
 ANY ; UTS ;    Binary ; X-Regex
 ASCII ; UTS ;    Binary ; X-Regex
 bmp ; UTS ;    Binary ; X-Regex
-emoji ; UTR ;    Binary ; X-Emoji
+emoji ; UTR ;    Enumerated ; X-Emoji
 idna2008 ; UTS ;    Binary ; X-IDNA
 uca ; UTS ;    Binary ; X-UCA
 uca2 ; UTS ;    Binary ; X-UCA
