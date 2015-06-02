@@ -110,6 +110,8 @@ public class Emoji {
         .appendCodePoint(chars.codePointAt(Character.charCount(first)) - FIRST_REGIONAL + 'A')
         .toString();
     }
+    
+    static final UnicodeSet COMBOS = new UnicodeSet("[{👨‍❤️‍👨} {👩‍❤️‍👩} {👨‍👨‍👦‍👦} {👨‍👨‍👦} {👨‍👨‍👧‍👦} {👨‍👨‍👧‍👧} {👨‍👨‍👧} {👨‍👩‍👦‍👦} {👨‍👩‍👦} {👨‍👩‍👧‍👦} {👨‍👩‍👧‍👧} {👨‍👩‍👧} {👩‍👩‍👦‍👦} {👩‍👩‍👦} {👩‍👩‍👧‍👦} {👩‍👩‍👧‍👧} {👩‍👩‍👧} {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}]").freeze();
 
     public static final char EMOJI_VARIANT = '\uFE0F';
     public static final char TEXT_VARIANT = '\uFE0E';

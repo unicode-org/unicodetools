@@ -141,7 +141,21 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         //                + "{🇹🇩}{🇹🇫}{🇹🇬}{🇹🇭}{🇹🇯}{🇹🇰}{🇹🇱}{🇹🇲}{🇹🇳}{🇹🇴}{🇹🇷}{🇹🇹}{🇹🇻}{🇹🇼}{🇹🇿}{🇺🇦}{🇺🇬}{🇺🇲}{🇺🇸}{🇺🇾}{🇺🇿}{🇻🇦}{🇻🇨}{🇻🇪}{🇻🇬}{🇻🇮}{🇻🇳}{🇻🇺}{🇼🇫}"
         //                + "{🇼🇸}{🇽🇰}{🇾🇪}{🇾🇹}{🇿🇦}{🇿🇲}{🇿🇼}]").freeze();    
 
-        add(new UnicodeSetProperty().set(UnicodeSetUtilities.EMOJI_CHARACTERS).setMain("emoji", "emoji", UnicodeProperty.BINARY, "6.0"));
+        UnicodeMap<String> emoji = new UnicodeMap<String>()
+                .putAll(0,0x10FFFF, "no")
+                .putAll(UnicodeSetUtilities.SINGLETONS, "singleton")
+                // do these after, since they remove singleton items
+                .putAll(UnicodeSetUtilities.FLAGS, "flag")
+                .putAll(UnicodeSetUtilities.KEYCAPS, "keycap")
+                .putAll(UnicodeSetUtilities.GROUPS, "group")
+                .putAll(UnicodeSetUtilities.FACE, "face")
+                .putAll(UnicodeSetUtilities.PRIMARY, "primary")
+                .putAll(UnicodeSetUtilities.SECONDARY, "secondary")
+                ;
+        add(new UnicodeProperty.UnicodeMapProperty()
+        .set(emoji)
+        .setMain("Emoji", "emoji", UnicodeProperty.ENUMERATED, "8.0")
+                );
         //        UnicodeProperty prop2 = getProperty("emoji");
         //        UnicodeSet set = prop2.getSet("true");
         //        System.out.println(emojiSource.toPattern(false));

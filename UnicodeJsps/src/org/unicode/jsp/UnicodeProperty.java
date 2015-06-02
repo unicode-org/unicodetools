@@ -68,8 +68,8 @@ public abstract class UnicodeProperty extends UnicodeLabel {
     .add(SAMPLE_PRIVATE_USE_AREA_A)
     .add(SAMPLE_PRIVATE_USE_AREA_B)
     .freeze();
+    
     public static final UnicodeSet STUFF_TO_TEST_WITH_UNASSIGNED = new UnicodeSet(STUFF_TO_TEST).addAll(UNASSIGNED).freeze();
-
 
     public static boolean DEBUG = false;
 
@@ -281,7 +281,7 @@ public abstract class UnicodeProperty extends UnicodeLabel {
                 result);
     }
 
-    private UnicodeMap unicodeMap = null;
+    protected UnicodeMap unicodeMap = null;
 
     public static final String UNUSED = "??";
 
@@ -386,8 +386,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
      * @return the unicode map
      */
     public UnicodeMap getUnicodeMap(boolean getShortest) {
-        if (!getShortest)
-            return (UnicodeMap) getUnicodeMap_internal().cloneAsThawed();
+        if (!getShortest) {
+            return (UnicodeMap) getUnicodeMap_internal();
+        }
         UnicodeMap result = new UnicodeMap();
         boolean uniformUnassigned = hasUniformUnassigned();
 
@@ -1307,8 +1308,13 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         protected UnicodeMap unicodeMap;
 
         public UnicodeMapProperty set(UnicodeMap map) {
-            unicodeMap = map;
+            unicodeMap = map.freeze();
             return this;
+        }
+        
+        @Override
+        protected UnicodeMap _getUnicodeMap() {
+            return unicodeMap;
         }
 
         protected String _getValue(int codepoint) {

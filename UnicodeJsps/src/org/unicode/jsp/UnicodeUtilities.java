@@ -21,10 +21,13 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
 import org.unicode.jsp.Idna.IdnaType;
 import org.unicode.jsp.Idna2008.Idna2008Type;
+import org.unicode.jsp.UnicodeProperty.UnicodeMapProperty;
 
 import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -70,8 +73,8 @@ public class UnicodeUtilities {
         String HTML_RULES = BASE_RULES + CONTENT_RULES + "'\"' > '&quot;' ; ";
 
         HTML_RULES_CONTROLS = HTML_RULES
-                + "[[:di:]-[:cc:]-[:cs:]-[\\u200E\\u200F]] > ; " // remove, should ignore in rendering (but may not be in browser)
-                + "[[:nchar:][:cn:][:cs:][:co:][:cc:]-[:whitespace:]-[\\u200E\\u200F]] > \\uFFFD ; "; // should be missing glyph (but may not be in browser)
+                + "[[:di:]-[:cc:]-[:cs:]-[\\u200c-\\u200F]] > ; " // remove, should ignore in rendering (but may not be in browser)
+                + "[[:nchar:][:cn:][:cs:][:co:][:cc:]-[:whitespace:]-[\\u200c-\\u200F]] > \\uFFFD ; "; // should be missing glyph (but may not be in browser)
         //     + "([[:C:][:Z:][:whitespace:][:Default_Ignorable_Code_Point:]-[\\u0020]]) > &hex/xml($1) ; "; // [\\u0080-\\U0010FFFF]
 
         toHTML = Transliterator.createFromRules("any-xml", HTML_RULES_CONTROLS,
@@ -352,6 +355,14 @@ public class UnicodeUtilities {
     //  }
 
     public static String getStringProperties(UnicodeProperty prop, String s, String separator, boolean getShortest) {
+        // check for single code point, later
+        if (prop instanceof UnicodeMapProperty) {
+            Object value = prop.getUnicodeMap().get(s);
+            if (value != null) {
+                return (String) value;
+            }
+        }
+        
         StringBuilder builder = new StringBuilder();
         int cp;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
@@ -560,7 +571,14 @@ public class UnicodeUtilities {
             if (doTable) {
                 out.append("<tr><td>");
             }
+            boolean hasJoiner = string.contains("\u200D");
             String literal = UnicodeUtilities.toHTML.transliterate(string);
+            if (hasJoiner) {
+                boolean hasJoiner2 = literal.contains("\u200D");
+                if (hasJoiner2 != hasJoiner) {
+                    int debug = 0;
+                }
+            }
             if (UnicodeUtilities.RTL.containsSome(literal)) {
                 literal = '\u200E' + literal + '\u200E';
             }
@@ -578,8 +596,16 @@ public class UnicodeUtilities {
             if (doTable) {
                 out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + "</td><td class='charCell'>\u00A0" + literal + "\u00A0</td><td" + (restricted ? " class='redName'" : "") +
                         ">" + name);
+            } else if (ucdFormat) {
+                out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + " ;\t" + name);
             } else {
-                out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + " " + (ucdFormat ? 	"\t;" : "(\u00A0" + literal + "\u00A0) ") + name);
+                out.append("\u00A0" + literal + "\u00A0 \t" + UnicodeUtilities.getHex(string, separator, ucdFormat) + " \t" + name);
+                if (hasJoiner) {
+                    boolean hasJoiner2 = literal.contains("\u200D");
+                    if (hasJoiner2 != hasJoiner) {
+                        int debug = 0;
+                    }
+                }
             }
             if (identifierInfo) {
                 int cp = string.codePointAt(0);
@@ -914,7 +940,7 @@ public class UnicodeUtilities {
     static final UnicodeSet CombiningMarks = new UnicodeSet("[:M:]").freeze();
     static final UnicodeSet REGIONALS = new UnicodeSet(0x1F1E6,0x1F1FF).freeze();
     static final UnicodeSet NOBREAKBEFORE = new UnicodeSet(CombiningMarks).addAll(REGIONALS).freeze();
-    
+
     public static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
         String a_out;
         if (a.size() < 10000 && !abbreviate) {
