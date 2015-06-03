@@ -2098,7 +2098,7 @@ public class GenerateEmoji {
             if (link != null) {
                 out.print("<a href='" + link + "#" + Emoji.buildFileName(s, "_") + "' target='full'>");
             }
-            String cell = getFlag(s, extraClasses);
+            String cell = null; // getFlag(s, extraClasses);
             if (cell == null) {
                 switch (showEmoji) {
                 case text:
