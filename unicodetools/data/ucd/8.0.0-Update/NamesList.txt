@@ -1,29 +1,13 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 8.0.0
-@@@+	U80M150210.lst
-	Unicode 8.0.0 names list, sixth delta.
+@@@+	U80M150527.lst
+	Unicode 8.0.0 names list, tenth delta.
 	Based on published 4th Edition and Amd 1.
 	Repertoire synched with UnicodeData-8.0.0d8.txt
-	Added xrefs for angles and updated related subheads.
-	Added note re dahri/double dahri names for danda/double danda in Bengali.
-	Added annotation for 1F3DE.
-	Added xrefs for 2767, 2619, 1F659 and 1F65B.
-	Adjusted subheads to highlight fleurons better.
-	Extended annotations for Arabic letters with hamza above diacritics.
-	Updated annotation for 00A5.
-	Corrected typo in annotation for 030F.
-	Added annotation for 1ABE.
-	Updated annotation for 3127.
-	Updated annotation for 301C.
-	Corrected typo in annotation for 113D.
-	Update spelling for Xishuanbanna Dai.
-	Add annotation for 20BE lari sign.
-	Update end range for URO CJK.
-	Updated subheads and annotations for interpolation of new emoji.
-	Correct tabs in two subheads.
-	Adjusted for removal of DHYANI BUDDHA.
-	Addition of annotations for Tamil related to symbols and fraction signs.
-	Added preferred spelling annotation for 2DF5.
+	Converged subheads for Mensural, Gregorian and Kievan musical notation sections.
+	Updated annotations for 26A5, 26A6, 26A7.
+	Added annotation of fraction use to 0D2E.
+	Enabled output of Manichaean standardized variation sequences.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -438,7 +422,7 @@
 @		Control character
 007F	<control>
 	= DELETE
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	0080	C1 Controls and Latin-1 Supplement (Latin-1 Supplement)	00FF
 @		C1 controls
 @+		Alias names are those for ISO/IEC 6429:1992.
@@ -820,7 +804,7 @@
 	* French, medieval Hungarian orthography
 	x (latin capital letter y with diaeresis - 0178)
 	: 0079 0308
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	0100	Latin Extended-A	017F
 @		European Latin
 0100	LATIN CAPITAL LETTER A WITH MACRON
@@ -4607,6 +4591,7 @@
 	= u
 0846	MANDAIC LETTER AZ
 0847	MANDAIC LETTER IT
+	= pharyngeal hu
 0848	MANDAIC LETTER ATT
 0849	MANDAIC LETTER AKSA
 	= i
@@ -5472,6 +5457,7 @@
 0BA8	TAMIL LETTER NA
 0BA9	TAMIL LETTER NNNA
 0BAA	TAMIL LETTER PA
+	= maa
 	* also denotes the fraction one twentieth
 0BAE	TAMIL LETTER MA
 0BAF	TAMIL LETTER YA
@@ -5536,7 +5522,7 @@
 0BF0	TAMIL NUMBER TEN
 0BF1	TAMIL NUMBER ONE HUNDRED
 0BF2	TAMIL NUMBER ONE THOUSAND
-@		Tamil symbols
+@		Tamil calendrical symbols
 0BF3	TAMIL DAY SIGN
 	= naal, naali/padi
 	* denotes a measure of grain that equals 2 uri or 4 ulakku
@@ -5546,6 +5532,7 @@
 	= maatham
 0BF5	TAMIL YEAR SIGN
 	= varudam
+@		Tamil clerical symbols
 0BF6	TAMIL DEBIT SIGN
 	= patru
 0BF7	TAMIL CREDIT SIGN
@@ -5861,6 +5848,7 @@
 0D2C	MALAYALAM LETTER BA
 0D2D	MALAYALAM LETTER BHA
 0D2E	MALAYALAM LETTER MA
+	* also used to denote the fraction one eightieth (kaani)
 0D2F	MALAYALAM LETTER YA
 0D30	MALAYALAM LETTER RA
 0D31	MALAYALAM LETTER RRA
@@ -5946,8 +5934,11 @@
 0D72	MALAYALAM NUMBER ONE THOUSAND
 @		Fractions
 0D73	MALAYALAM FRACTION ONE QUARTER
+	= kaal
 0D74	MALAYALAM FRACTION ONE HALF
+	= ara
 0D75	MALAYALAM FRACTION THREE QUARTERS
+	= mukkaal
 @		Date mark
 0D79	MALAYALAM DATE MARK
 @		Chillu letters
@@ -12479,7 +12470,7 @@
 206D	ACTIVATE ARABIC FORM SHAPING
 206E	NATIONAL DIGIT SHAPES
 206F	NOMINAL DIGIT SHAPES
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	2070	Superscripts and Subscripts	209F
 @		Superscripts
 @+		See also superscript Latin letters in the Spacing Modifier Letters block starting at 02B0.
@@ -13000,7 +12991,7 @@
 	x (greek small letter digamma - 03DD)
 @		Biblical editorial symbol
 214F	SYMBOL FOR SAMARITAN SOURCE
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	2150	Number Forms	218F
 @		Fractions
 @+		Other fraction number forms are found in the Latin-1 Supplement block.
@@ -13341,7 +13332,7 @@
 21FD	LEFTWARDS OPEN-HEADED ARROW
 21FE	RIGHTWARDS OPEN-HEADED ARROW
 21FF	LEFT RIGHT OPEN-HEADED ARROW
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	2200	Mathematical Operators	22FF
 @@+
 @		Miscellaneous mathematical symbols
@@ -14360,7 +14351,7 @@
 23FA	BLACK CIRCLE FOR RECORD
 	= record
 	x (medium black circle - 26AB)
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	2400	Control Pictures	243F
 @+		The diagonal lettering glyphs are only exemplary; alternate representations may be, and often are used in the visible display of control codes.
 @		Graphic pictures for control codes
@@ -14756,7 +14747,7 @@
 @		Additional white on black circled number
 24FF	NEGATIVE CIRCLED DIGIT ZERO
 	x (dingbat negative circled digit one - 2776)
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	2500	Box Drawing	257F
 @+		All of these characters are intended for compatibility with character cell graphic sets in use prior to 1990.
 @		Light and heavy solid lines
@@ -15176,7 +15167,7 @@
 	~ 25FE FE0F emoji style
 25FF	LOWER RIGHT TRIANGLE
 	x (right triangle - 22BF)
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	2600	Miscellaneous Symbols	26FF
 @@+
 @		Weather and astrological symbols
@@ -15615,13 +15606,13 @@
 	* a glyph variant has the two circles on the same line
 	= bisexuality
 26A5	MALE AND FEMALE SIGN
-	= transgendered sexuality
+	= transgender
 	= hermaphrodite (in entomology)
 26A6	MALE WITH STROKE SIGN
-	= transgendered sexuality
+	= transgender
 	= alchemical symbol for iron or crocus of iron
 26A7	MALE WITH STROKE AND MALE AND FEMALE SIGN
-	= transgendered sexuality
+	= transgender
 26A8	VERTICAL MALE WITH STROKE SIGN
 	= alchemical symbol for iron
 26A9	HORIZONTAL MALE WITH STROKE SIGN
@@ -15727,6 +15718,7 @@
 	= icy road
 26D1	HELMET WITH WHITE CROSS
 	= maintenance
+	x (construction worker - 1F477)
 26D2	CIRCLED CROSSING LANES
 	= road closed
 	x (circled times - 2297)
@@ -15852,7 +15844,7 @@
 	x (teacup without handle - 1F375)
 26FF	WHITE FLAG WITH HORIZONTAL MIDDLE BLACK STRIPE
 	= Japanese self-defence force site
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	2700	Dingbats	27BF
 @+		ITC Zapf dingbats series 100. Some of the ITC Zapf dingbats have been unified with geometric shape characters. Gaps in the chart have subsequently been filled with other dingbat-like symbols.
 	x (black telephone - 260E)
@@ -16200,7 +16192,7 @@
 27BE	OPEN-OUTLINED RIGHTWARDS ARROW
 @		Miscellaneous
 27BF	DOUBLE CURLY LOOP
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	27C0	Miscellaneous Mathematical Symbols-A	27EF
 @		Miscellaneous symbols
 27C0	THREE DIMENSIONAL ANGLE
@@ -16826,7 +16818,7 @@
 297D	RIGHT FISH TAIL
 297E	UP FISH TAIL
 297F	DOWN FISH TAIL
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	2980	Miscellaneous Mathematical Symbols-B	29FF
 @		Miscellaneous mathematical symbols
 2980	TRIPLE VERTICAL BAR DELIMITER
@@ -16911,6 +16903,7 @@
 29B4	EMPTY SET WITH LEFT ARROW ABOVE
 @		Circle symbols
 29B5	CIRCLE WITH HORIZONTAL BAR
+	* used in superscripted form to mean standard state (chemistry)
 	x (circled minus - 2296)
 29B6	CIRCLED VERTICAL BAR
 	x (alchemical symbol for nitre - 1F715)
@@ -17870,7 +17863,7 @@
 	= fast cursor right
 2BEF	DOWNWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
 	= fast cursor down
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	2C00	Glagolitic	2C5F
 @		Capital letters
 2C00	GLAGOLITIC CAPITAL LETTER AZU
@@ -19446,7 +19439,7 @@
 	* visual indicator that the following ideograph is to be taken as a variant of the intended character
 303F	IDEOGRAPHIC HALF FILL SPACE
 	* visual indicator of a screen space for half of an ideograph
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	3040	Hiragana	309F
 @		Hiragana letters
 3041	HIRAGANA LETTER SMALL A
@@ -20713,7 +20706,7 @@
 	# <circle> 30F1
 32FE	CIRCLED KATAKANA WO
 	# <circle> 30F2
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	3300	CJK Compatibility	33FF
 @		Squared Katakana words
 3300	SQUARE APAATO
@@ -24637,7 +24630,7 @@ AB5F	MODIFIER LETTER SMALL U WITH LEFT HOOK
 @		Historic letters for Sakha (Yakut)
 @+		These letters were used from 1917 to 1927 in the official IPA-based Latin orthography of that era.
 AB60	LATIN SMALL LETTER SAKHA YAT
-	x (cyrillic small letter iotified a - A657)
+	x (cyrillic small letter yat - 0463)
 AB61	LATIN SMALL LETTER IOTIFIED E
 	x (cyrillic small letter iotified e - 0465)
 AB62	LATIN SMALL LETTER OPEN OE
@@ -26015,7 +26008,7 @@ FB4E	HEBREW LETTER PE WITH RAFE
 FB4F	HEBREW LIGATURE ALEF LAMED
 	# 05D0 05DC
 @@	FB50	Arabic Presentation Forms-A	FDFF
-@+		Preferred characters are found in the Arabic block 0600-06FF. This block also contains 32 noncharacters in the range FDD0-FDDF.
+@+		Preferred characters are found in the Arabic block 0600-06FF. This block also contains 32 noncharacters in the range FDD0-FDEF.
 @		Glyphs for contextual forms of letters for Persian, Urdu, Sindhi, etc.
 FB50	ARABIC LETTER ALEF WASLA ISOLATED FORM
 	# <isolated> 0671
@@ -30733,7 +30726,7 @@ FFFF	<not a character>
 10AF4	MANICHAEAN PUNCTUATION DOT
 10AF5	MANICHAEAN PUNCTUATION TWO DOTS
 10AF6	MANICHAEAN PUNCTUATION LINE FILLER
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	Standardized Variation Sequences
 @@	10B00	Avestan	10B3F
 @		Vowels
 10B00	AVESTAN LETTER A
@@ -38286,6 +38279,8 @@ FFFF	<not a character>
 1D1B4	MUSICAL SYMBOL DAMP
 1D1B5	MUSICAL SYMBOL DAMP ALL
 @		Mensural notation
+@+		The following range is specific to Mensural notation.
+@		Mensural notes
 1D1B6	MUSICAL SYMBOL MAXIMA
 1D1B7	MUSICAL SYMBOL LONGA
 1D1B8	MUSICAL SYMBOL BREVIS
@@ -38322,9 +38317,13 @@ FFFF	<not a character>
 @		Miscellaneous symbol
 1D1CF	MUSICAL SYMBOL CROIX
 @		Gregorian notation
+@+		The following range is specific to Gregorian notation.
+@		Clefs
 1D1D0	MUSICAL SYMBOL GREGORIAN C CLEF
 1D1D1	MUSICAL SYMBOL GREGORIAN F CLEF
+@		Accidental
 1D1D2	MUSICAL SYMBOL SQUARE B
+@		Notes
 1D1D3	MUSICAL SYMBOL VIRGA
 1D1D4	MUSICAL SYMBOL PODATUS
 1D1D5	MUSICAL SYMBOL CLIVIS
@@ -38336,6 +38335,8 @@ FFFF	<not a character>
 1D1DB	MUSICAL SYMBOL SCANDICUS FLEXUS
 1D1DC	MUSICAL SYMBOL TORCULUS RESUPINUS
 1D1DD	MUSICAL SYMBOL PES SUBPUNCTIS
+@		Kievan notation
+@+		The following range is specific to Kievan notation.
 @		Clef
 1D1DE	MUSICAL SYMBOL KIEVAN C CLEF
 	* Tsefaut (do or fa) clef
@@ -41407,7 +41408,7 @@ FFFF	<not a character>
 1DA89	SIGNWRITING SEMICOLON
 1DA8A	SIGNWRITING COLON
 1DA8B	SIGNWRITING PARENTHESIS
-	* is a closing parenthesis when used with 1DAA5 signwriting rotation modifier-5
+	* is a closing parenthesis when used with 1DAA4 signwriting rotation modifier-5
 @		Fill modifiers
 1DA9B	SIGNWRITING FILL MODIFIER-2
 1DA9C	SIGNWRITING FILL MODIFIER-3
@@ -42111,7 +42112,7 @@ FFFF	<not a character>
 1F02A	MAHJONG TILE JOKER
 	= baida
 1F02B	MAHJONG TILE BACK
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	1F030	Domino Tiles	1F09F
 @		Horizontal tiles
 1F030	DOMINO TILE HORIZONTAL BACK
@@ -42699,7 +42700,7 @@ FFFF	<not a character>
 1F1FD	REGIONAL INDICATOR SYMBOL LETTER X
 1F1FE	REGIONAL INDICATOR SYMBOL LETTER Y
 1F1FF	REGIONAL INDICATOR SYMBOL LETTER Z
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	1F200	Enclosed Ideographic Supplement	1F2FF
 @		Squared hiragana from ARIB STD B24
 1F200	SQUARE HIRAGANA HOKA
@@ -42892,7 +42893,7 @@ FFFF	<not a character>
 1F251	CIRCLED IDEOGRAPH ACCEPT
 	= accept sign
 	# <circle> 53EF
-@~	!{FE0E FE0F} Standardized Variation Sequences
+@~	!
 @@	1F300	Miscellaneous Symbols and Pictographs	1F5FF
 @		Weather, landscape, and sky symbols
 1F300	CYCLONE
@@ -43196,6 +43197,7 @@ FFFF	<not a character>
 	x (bullseye - 25CE)
 1F3B0	SLOT MACHINE
 1F3B1	BILLIARDS
+	* sometimes depicted as just an 8-ball
 1F3B2	GAME DIE
 1F3B3	BOWLING
 1F3B4	FLOWER PLAYING CARDS
@@ -43243,6 +43245,7 @@ FFFF	<not a character>
 1F3CC	GOLFER
 1F3CD	RACING MOTORCYCLE
 	= motorcycle
+	* may be depicted as an ordinary motorcycle, especially in emoji presentation
 1F3CE	RACING CAR
 	= race car
 1F3CF	CRICKET BAT AND BALL
@@ -43521,14 +43524,18 @@ FFFF	<not a character>
 1F46D	TWO WOMEN HOLDING HANDS
 1F46E	POLICE OFFICER
 1F46F	WOMAN WITH BUNNY EARS
+	* most popularly depicted as two women dancing
 1F470	BRIDE WITH VEIL
 1F471	PERSON WITH BLOND HAIR
 1F472	MAN WITH GUA PI MAO
 1F473	MAN WITH TURBAN
+	* may be shown with or without a beard
 1F474	OLDER MAN
 1F475	OLDER WOMAN
 1F476	BABY
 1F477	CONSTRUCTION WORKER
+	* the helmet may show a green cross, used as a safety reminder in Japan
+	x (helmet with white cross - 26D1)
 @		Fairy tale symbols
 1F478	PRINCESS
 1F479	JAPANESE OGRE
@@ -43537,12 +43544,16 @@ FFFF	<not a character>
 1F47C	BABY ANGEL
 1F47D	EXTRATERRESTRIAL ALIEN
 1F47E	ALIEN MONSTER
+	x (robot face - 1F916)
 1F47F	IMP
+	* commonly depicted as a frowning/angry version of 1F608 smiling face with horns
 1F480	SKULL
 @		Role symbols
 1F481	INFORMATION DESK PERSON
+	* often used to indicate "sassy" or "carefree"
 1F482	GUARDSMAN
 1F483	DANCER
+	* also used for "let's party"
 @		Personal care symbols
 1F484	LIPSTICK
 1F485	NAIL POLISH
@@ -43608,6 +43619,7 @@ FFFF	<not a character>
 	= running dash, briffits
 1F4A9	PILE OF POO
 	= dog dirt
+	* may be depicted with a friendly face
 1F4AA	FLEXED BICEPS
 	= strong, muscled
 1F4AB	DIZZY SYMBOL
@@ -43637,6 +43649,7 @@ FFFF	<not a character>
 1F4B9	CHART WITH UPWARDS TREND AND YEN SIGN
 @		Office symbols
 1F4BA	SEAT
+	* intended to denote a reserved or ticketed seat, as for an airplane, train, or theater
 1F4BB	PERSONAL COMPUTER
 	x (old personal computer - 1F5B3)
 1F4BC	BRIEFCASE
@@ -43692,6 +43705,7 @@ FFFF	<not a character>
 @		Communication symbols
 1F4DD	MEMO
 1F4DE	TELEPHONE RECEIVER
+	* commonly oriented rightwards, so that a face emoticon can be positioned to the right
 	x (left hand telephone receiver - 1F57B)
 	x (right hand telephone receiver - 1F57D)
 1F4DF	PAGER
@@ -43710,7 +43724,7 @@ FFFF	<not a character>
 1F4E6	PACKAGE
 	x (wrapped present - 1F381)
 1F4E7	E-MAIL SYMBOL
-	* glyph may show an @-sign instead of an E
+	* glyph may show an E instead of an @-sign
 	x (envelope with lightning - 1F584)
 1F4E8	INCOMING ENVELOPE
 	x (envelope - 2709)
@@ -43802,6 +43816,7 @@ FFFF	<not a character>
 	x (ringing bell - 1F56D)
 1F515	BELL WITH CANCELLATION STROKE
 1F516	BOOKMARK
+	* indicates a bookmark, not a price tag
 	x (label - 1F3F7)
 1F517	LINK SYMBOL
 1F518	RADIO BUTTON
@@ -43904,6 +43919,7 @@ FFFF	<not a character>
 1F54C	MOSQUE
 1F54D	SYNAGOGUE
 1F54E	MENORAH WITH NINE BRANCHES
+	= hanukiah
 @		Miscellaneous symbol
 1F54F	BOWL OF HYGIEIA
 	x (staff of aesculapius - 2695)
@@ -44250,10 +44266,12 @@ FFFF	<not a character>
 1F606	SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES
 1F607	SMILING FACE WITH HALO
 1F608	SMILING FACE WITH HORNS
+	* commonly depicted as a (sinister) smiling version of 1F47F imp
 1F609	WINKING FACE
 1F60A	SMILING FACE WITH SMILING EYES
 1F60B	FACE SAVOURING DELICIOUS FOOD
 1F60C	RELIEVED FACE
+	* indicates relief, not sleeping
 1F60D	SMILING FACE WITH HEART-SHAPED EYES
 1F60E	SMILING FACE WITH SUNGLASSES
 1F60F	SMIRKING FACE
@@ -44279,17 +44297,22 @@ FFFF	<not a character>
 1F61F	WORRIED FACE
 1F620	ANGRY FACE
 1F621	POUTING FACE
+	* intended to depict pouting rather than simply anger
 1F622	CRYING FACE
 1F623	PERSEVERING FACE
 1F624	FACE WITH LOOK OF TRIUMPH
+	* indicates triumph, not anger
 1F625	DISAPPOINTED BUT RELIEVED FACE
 1F626	FROWNING FACE WITH OPEN MOUTH
+	* frowning, not shocked or surprised
 1F627	ANGUISHED FACE
 1F628	FEARFUL FACE
 1F629	WEARY FACE
 1F62A	SLEEPY FACE
 1F62B	TIRED FACE
 1F62C	GRIMACING FACE
+	* should not be depicted with zipper mouth
+	x (zipper-mouth face - 1F910)
 1F62D	LOUDLY CRYING FACE
 1F62E	FACE WITH OPEN MOUTH
 1F62F	HUSHED FACE
@@ -44297,6 +44320,7 @@ FFFF	<not a character>
 1F631	FACE SCREAMING IN FEAR
 1F632	ASTONISHED FACE
 1F633	FLUSHED FACE
+	* embarrassed
 1F634	SLEEPING FACE
 1F635	DIZZY FACE
 1F636	FACE WITHOUT MOUTH
@@ -44311,8 +44335,10 @@ FFFF	<not a character>
 1F63C	CAT FACE WITH WRY SMILE
 1F63D	KISSING CAT FACE WITH CLOSED EYES
 1F63E	POUTING CAT FACE
+	* intended to depict pouting rather than simply anger
 1F63F	CRYING CAT FACE
 1F640	WEARY CAT FACE
+	* indicates tired, not horrified
 @		Faces
 1F641	SLIGHTLY FROWNING FACE
 	x (white frowning face - 2639)
@@ -44322,6 +44348,7 @@ FFFF	<not a character>
 1F644	FACE WITH ROLLING EYES
 @		Gesture symbols
 1F645	FACE WITH NO GOOD GESTURE
+	* conveys "no deal" or "not ok", not anger; the inverse of 1F646 face with ok gesture
 1F646	FACE WITH OK GESTURE
 1F647	PERSON BOWING DEEPLY
 1F648	SEE-NO-EVIL MONKEY
@@ -44332,9 +44359,10 @@ FFFF	<not a character>
 	= banzai!
 1F64D	PERSON FROWNING
 1F64E	PERSON WITH POUTING FACE
+	* intended to depict pouting rather than simply anger
 1F64F	PERSON WITH FOLDED HANDS
 	* can indicate sorrow or regret
-	* can indicate pleading
+	* can also indicate pleading, praying, bowing, or thanking
 @@	1F650	Ornamental Dingbats	1F67F
 @		Fleurons
 @+		Fleurons are leaf or floral-shaped ornaments used for text decoration.
@@ -44837,7 +44865,7 @@ FFFF	<not a character>
 1F78C	BLACK TINY SQUARE
 1F78D	BLACK SLIGHTLY SMALL SQUARE
 @		White squares
-@+		Constitute a set as follows: 25A1, 1F78E-1F792
+@+		Constitute a set as follows: 25A1, 1F78E-1F793
 1F78E	LIGHT WHITE SQUARE
 1F78F	MEDIUM WHITE SQUARE
 1F790	BOLD WHITE SQUARE
@@ -44862,8 +44890,8 @@ FFFF	<not a character>
 1F79B	WHITE DIAMOND CONTAINING BLACK MEDIUM DIAMOND
 @		Target symbol
 1F79C	DIAMOND TARGET
-@		Lozenges
-@+		Constitute a set as follows: 1F79D, 1F79E, 2B2A, 1F79F, 2B27, 29EB, and 25CA
+@		Black lozenges
+@+		Constitute a set as follows: 1F79D, 1F79E, 2B2A, 1F79F, 2B27, and 29EB
 1F79D	BLACK TINY LOZENGE
 1F79E	BLACK VERY SMALL LOZENGE
 1F79F	BLACK MEDIUM SMALL LOZENGE
@@ -45137,6 +45165,7 @@ FFFF	<not a character>
 1F914	THINKING FACE
 1F915	FACE WITH HEAD-BANDAGE
 1F916	ROBOT FACE
+	x (alien monster - 1F47E)
 1F917	HUGGING FACE
 @		Hand symbol
 1F918	SIGN OF THE HORNS
@@ -46322,9 +46351,10 @@ CFFFF	<not a character>
 DFFFE	<not a character>
 DFFFF	<not a character>
 @@	E0000	Tags	E007F
-@+		Tag characters are deprecated, and their use is strongly discouraged.
+@+		The use of tag characters to convey language tags is strongly discouraged.
 @		Tag identifiers
 E0001	LANGUAGE TAG
+	* This character is deprecated, and its use is strongly discouraged.
 @		Tag components
 E0020	TAG SPACE
 E0021	TAG EXCLAMATION MARK
@@ -46421,7 +46451,9 @@ E007B	TAG LEFT CURLY BRACKET
 E007C	TAG VERTICAL LINE
 E007D	TAG RIGHT CURLY BRACKET
 E007E	TAG TILDE
+@		Stateful tag terminator
 E007F	CANCEL TAG
+	* This character is deprecated, and its use is strongly discouraged.
 @@	E0100	Variation Selectors Supplement	E01EF
 @+		These complete the set started at FE00 to FE0F
 @		Variation selectors

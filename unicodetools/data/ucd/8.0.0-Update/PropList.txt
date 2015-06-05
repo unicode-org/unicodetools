@@ -1,5 +1,5 @@
 # PropList-8.0.0.txt
-# Date: 2015-04-01, 17:16:28 GMT [MD]
+# Date: 2015-05-16, 17:50:38 GMT [MD]
 #
 # Unicode Character Database
 # Copyright (c) 1991-2015 Unicode, Inc.
@@ -1106,10 +1106,9 @@ E01F0..E0FFF  ; Other_Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>.
 2329          ; Deprecated # Ps       LEFT-POINTING ANGLE BRACKET
 232A          ; Deprecated # Pe       RIGHT-POINTING ANGLE BRACKET
 E0001         ; Deprecated # Cf       LANGUAGE TAG
-#E0020..E007F  ; Deprecated # Cf  [96] TAG SPACE..CANCEL TAG
-E007F  ; Deprecated # Cf  [96] TAG SPACE..CANCEL TAG
+E007F         ; Deprecated # Cf       CANCEL TAG
 
-# Total code points: 111
+# Total code points: 16
 
 # ================================================
 
