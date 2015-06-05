@@ -1,5 +1,5 @@
 # USourceData-8.0.0.txt
-# Date: 2015-03-26, 19:01:00 GMT [JHJ]
+# Date: 2015-05-20, 21:00:00 GMT [JHJ]
 #
 # Copyright (c) 2008-2015 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -22,8 +22,9 @@
 #      W: Not to encode
 #      X: No action taken
 # Field 2: A Unicode code point
-#      Status == V, the code point of the character for which this is a variant
-#      Otherwise, the character is encoded at the indicated code point
+#      If the status is V (Field 1), the code point in Field 2 specifies
+#      the encoded character for which this entry is a variant. Otherwise, the
+#      code point specifies the encoded character for this entry.
 # Field 3: Radical-stroke count
 # Field 4: Virtual KangXi dictionary position
 # Field 5: Ideographic Description Sequence (IDS), if possible
@@ -1231,4 +1232,6 @@ UTC-01196;N;;9.10;0114.051;⿰伊合;UTCDoc L2/13-009 18
 UTC-01197;N;;1.6;0078.131;⿱合一;UTCDoc L2/13-009 19
 UTC-01198;N;;1.8;0078.171;⿳人伊一;UTCDoc L2/13-009 20
 UCI-01199;U;U+2F949;109.7;0809.030;⿰目夾;UTCDoc L2/14-260
+UTC-01200;N;;85.10;0643.241;⿰氵恩;UTCDoc L2/15-109
+UTC-01201;N;;112.5;0829.331;⿰⽯示;UTCDoc L2/15-114
 # EOF
