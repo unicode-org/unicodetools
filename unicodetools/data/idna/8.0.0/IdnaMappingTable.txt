@@ -1,5 +1,5 @@
 # IdnaMappingTable-8.0.0.txt
-# Date: 2015-02-06 12:20:37 GMT [MD]
+# Date: 2015-05-02 12:42:14 GMT [MD]
 #
 # Unicode IDNA Compatible Preprocessing (UTS #46)
 # Copyright (c) 1991-2015 Unicode, Inc.
@@ -1526,10 +1526,15 @@
 1380..138F    ; valid                                  # 4.1  ETHIOPIC SYLLABLE SEBATBEIT MWA..ETHIOPIC SYLLABLE PWE
 1390..1399    ; valid                  ;      ; NV8    # 4.1  ETHIOPIC TONAL MARK YIZET..ETHIOPIC TONAL MARK KURT
 139A..139F    ; disallowed                             # NA   <reserved-139A>..<reserved-139F>
-13A0..13F4    ; disallowed                             # 3.0  CHEROKEE LETTER A..CHEROKEE LETTER YV
-13F5          ; mapped                 ; 13FD          # 8.0  CHEROKEE LETTER MV
+13A0..13F4    ; valid                                  # 3.0  CHEROKEE LETTER A..CHEROKEE LETTER YV
+13F5          ; valid                                  # 8.0  CHEROKEE LETTER MV
 13F6..13F7    ; disallowed                             # NA   <reserved-13F6>..<reserved-13F7>
-13F8..13FD    ; valid                                  # 8.0  CHEROKEE SMALL LETTER YE..CHEROKEE SMALL LETTER MV
+13F8          ; mapped                 ; 13F0          # 8.0  CHEROKEE SMALL LETTER YE
+13F9          ; mapped                 ; 13F1          # 8.0  CHEROKEE SMALL LETTER YI
+13FA          ; mapped                 ; 13F2          # 8.0  CHEROKEE SMALL LETTER YO
+13FB          ; mapped                 ; 13F3          # 8.0  CHEROKEE SMALL LETTER YU
+13FC          ; mapped                 ; 13F4          # 8.0  CHEROKEE SMALL LETTER YV
+13FD          ; mapped                 ; 13F5          # 8.0  CHEROKEE SMALL LETTER MV
 13FE..13FF    ; disallowed                             # NA   <reserved-13FE>..<reserved-13FF>
 1400          ; valid                  ;      ; NV8    # 5.2  CANADIAN SYLLABICS HYPHEN
 1401..166C    ; valid                                  # 3.0  CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
@@ -4143,7 +4148,86 @@ AB5F          ; mapped                 ; AB52          # 7.0  MODIFIER LETTER SM
 AB60..AB63    ; valid                                  # 8.0  LATIN SMALL LETTER SAKHA YAT..LATIN SMALL LETTER UO
 AB64..AB65    ; valid                                  # 7.0  LATIN SMALL LETTER INVERTED ALPHA..GREEK LETTER SMALL CAPITAL OMEGA
 AB66..AB6F    ; disallowed                             # NA   <reserved-AB66>..<reserved-AB6F>
-AB70..ABBF    ; valid                                  # 8.0  CHEROKEE SMALL LETTER A..CHEROKEE SMALL LETTER YA
+AB70          ; mapped                 ; 13A0          # 8.0  CHEROKEE SMALL LETTER A
+AB71          ; mapped                 ; 13A1          # 8.0  CHEROKEE SMALL LETTER E
+AB72          ; mapped                 ; 13A2          # 8.0  CHEROKEE SMALL LETTER I
+AB73          ; mapped                 ; 13A3          # 8.0  CHEROKEE SMALL LETTER O
+AB74          ; mapped                 ; 13A4          # 8.0  CHEROKEE SMALL LETTER U
+AB75          ; mapped                 ; 13A5          # 8.0  CHEROKEE SMALL LETTER V
+AB76          ; mapped                 ; 13A6          # 8.0  CHEROKEE SMALL LETTER GA
+AB77          ; mapped                 ; 13A7          # 8.0  CHEROKEE SMALL LETTER KA
+AB78          ; mapped                 ; 13A8          # 8.0  CHEROKEE SMALL LETTER GE
+AB79          ; mapped                 ; 13A9          # 8.0  CHEROKEE SMALL LETTER GI
+AB7A          ; mapped                 ; 13AA          # 8.0  CHEROKEE SMALL LETTER GO
+AB7B          ; mapped                 ; 13AB          # 8.0  CHEROKEE SMALL LETTER GU
+AB7C          ; mapped                 ; 13AC          # 8.0  CHEROKEE SMALL LETTER GV
+AB7D          ; mapped                 ; 13AD          # 8.0  CHEROKEE SMALL LETTER HA
+AB7E          ; mapped                 ; 13AE          # 8.0  CHEROKEE SMALL LETTER HE
+AB7F          ; mapped                 ; 13AF          # 8.0  CHEROKEE SMALL LETTER HI
+AB80          ; mapped                 ; 13B0          # 8.0  CHEROKEE SMALL LETTER HO
+AB81          ; mapped                 ; 13B1          # 8.0  CHEROKEE SMALL LETTER HU
+AB82          ; mapped                 ; 13B2          # 8.0  CHEROKEE SMALL LETTER HV
+AB83          ; mapped                 ; 13B3          # 8.0  CHEROKEE SMALL LETTER LA
+AB84          ; mapped                 ; 13B4          # 8.0  CHEROKEE SMALL LETTER LE
+AB85          ; mapped                 ; 13B5          # 8.0  CHEROKEE SMALL LETTER LI
+AB86          ; mapped                 ; 13B6          # 8.0  CHEROKEE SMALL LETTER LO
+AB87          ; mapped                 ; 13B7          # 8.0  CHEROKEE SMALL LETTER LU
+AB88          ; mapped                 ; 13B8          # 8.0  CHEROKEE SMALL LETTER LV
+AB89          ; mapped                 ; 13B9          # 8.0  CHEROKEE SMALL LETTER MA
+AB8A          ; mapped                 ; 13BA          # 8.0  CHEROKEE SMALL LETTER ME
+AB8B          ; mapped                 ; 13BB          # 8.0  CHEROKEE SMALL LETTER MI
+AB8C          ; mapped                 ; 13BC          # 8.0  CHEROKEE SMALL LETTER MO
+AB8D          ; mapped                 ; 13BD          # 8.0  CHEROKEE SMALL LETTER MU
+AB8E          ; mapped                 ; 13BE          # 8.0  CHEROKEE SMALL LETTER NA
+AB8F          ; mapped                 ; 13BF          # 8.0  CHEROKEE SMALL LETTER HNA
+AB90          ; mapped                 ; 13C0          # 8.0  CHEROKEE SMALL LETTER NAH
+AB91          ; mapped                 ; 13C1          # 8.0  CHEROKEE SMALL LETTER NE
+AB92          ; mapped                 ; 13C2          # 8.0  CHEROKEE SMALL LETTER NI
+AB93          ; mapped                 ; 13C3          # 8.0  CHEROKEE SMALL LETTER NO
+AB94          ; mapped                 ; 13C4          # 8.0  CHEROKEE SMALL LETTER NU
+AB95          ; mapped                 ; 13C5          # 8.0  CHEROKEE SMALL LETTER NV
+AB96          ; mapped                 ; 13C6          # 8.0  CHEROKEE SMALL LETTER QUA
+AB97          ; mapped                 ; 13C7          # 8.0  CHEROKEE SMALL LETTER QUE
+AB98          ; mapped                 ; 13C8          # 8.0  CHEROKEE SMALL LETTER QUI
+AB99          ; mapped                 ; 13C9          # 8.0  CHEROKEE SMALL LETTER QUO
+AB9A          ; mapped                 ; 13CA          # 8.0  CHEROKEE SMALL LETTER QUU
+AB9B          ; mapped                 ; 13CB          # 8.0  CHEROKEE SMALL LETTER QUV
+AB9C          ; mapped                 ; 13CC          # 8.0  CHEROKEE SMALL LETTER SA
+AB9D          ; mapped                 ; 13CD          # 8.0  CHEROKEE SMALL LETTER S
+AB9E          ; mapped                 ; 13CE          # 8.0  CHEROKEE SMALL LETTER SE
+AB9F          ; mapped                 ; 13CF          # 8.0  CHEROKEE SMALL LETTER SI
+ABA0          ; mapped                 ; 13D0          # 8.0  CHEROKEE SMALL LETTER SO
+ABA1          ; mapped                 ; 13D1          # 8.0  CHEROKEE SMALL LETTER SU
+ABA2          ; mapped                 ; 13D2          # 8.0  CHEROKEE SMALL LETTER SV
+ABA3          ; mapped                 ; 13D3          # 8.0  CHEROKEE SMALL LETTER DA
+ABA4          ; mapped                 ; 13D4          # 8.0  CHEROKEE SMALL LETTER TA
+ABA5          ; mapped                 ; 13D5          # 8.0  CHEROKEE SMALL LETTER DE
+ABA6          ; mapped                 ; 13D6          # 8.0  CHEROKEE SMALL LETTER TE
+ABA7          ; mapped                 ; 13D7          # 8.0  CHEROKEE SMALL LETTER DI
+ABA8          ; mapped                 ; 13D8          # 8.0  CHEROKEE SMALL LETTER TI
+ABA9          ; mapped                 ; 13D9          # 8.0  CHEROKEE SMALL LETTER DO
+ABAA          ; mapped                 ; 13DA          # 8.0  CHEROKEE SMALL LETTER DU
+ABAB          ; mapped                 ; 13DB          # 8.0  CHEROKEE SMALL LETTER DV
+ABAC          ; mapped                 ; 13DC          # 8.0  CHEROKEE SMALL LETTER DLA
+ABAD          ; mapped                 ; 13DD          # 8.0  CHEROKEE SMALL LETTER TLA
+ABAE          ; mapped                 ; 13DE          # 8.0  CHEROKEE SMALL LETTER TLE
+ABAF          ; mapped                 ; 13DF          # 8.0  CHEROKEE SMALL LETTER TLI
+ABB0          ; mapped                 ; 13E0          # 8.0  CHEROKEE SMALL LETTER TLO
+ABB1          ; mapped                 ; 13E1          # 8.0  CHEROKEE SMALL LETTER TLU
+ABB2          ; mapped                 ; 13E2          # 8.0  CHEROKEE SMALL LETTER TLV
+ABB3          ; mapped                 ; 13E3          # 8.0  CHEROKEE SMALL LETTER TSA
+ABB4          ; mapped                 ; 13E4          # 8.0  CHEROKEE SMALL LETTER TSE
+ABB5          ; mapped                 ; 13E5          # 8.0  CHEROKEE SMALL LETTER TSI
+ABB6          ; mapped                 ; 13E6          # 8.0  CHEROKEE SMALL LETTER TSO
+ABB7          ; mapped                 ; 13E7          # 8.0  CHEROKEE SMALL LETTER TSU
+ABB8          ; mapped                 ; 13E8          # 8.0  CHEROKEE SMALL LETTER TSV
+ABB9          ; mapped                 ; 13E9          # 8.0  CHEROKEE SMALL LETTER WA
+ABBA          ; mapped                 ; 13EA          # 8.0  CHEROKEE SMALL LETTER WE
+ABBB          ; mapped                 ; 13EB          # 8.0  CHEROKEE SMALL LETTER WI
+ABBC          ; mapped                 ; 13EC          # 8.0  CHEROKEE SMALL LETTER WO
+ABBD          ; mapped                 ; 13ED          # 8.0  CHEROKEE SMALL LETTER WU
+ABBE          ; mapped                 ; 13EE          # 8.0  CHEROKEE SMALL LETTER WV
+ABBF          ; mapped                 ; 13EF          # 8.0  CHEROKEE SMALL LETTER YA
 ABC0..ABEA    ; valid                                  # 5.2  MEETEI MAYEK LETTER KOK..MEETEI MAYEK VOWEL SIGN NUNG
 ABEB          ; valid                  ;      ; NV8    # 5.2  MEETEI MAYEK CHEIKHEI
 ABEC..ABED    ; valid                                  # 5.2  MEETEI MAYEK LUM IYEK..MEETEI MAYEK APUN IYEK
@@ -7448,7 +7532,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 1F3D4..1F3DF  ; valid                  ;      ; NV8    # 7.0  SNOW CAPPED MOUNTAIN..STADIUM
 1F3E0..1F3F0  ; valid                  ;      ; NV8    # 6.0  HOUSE BUILDING..EUROPEAN CASTLE
 1F3F1..1F3F7  ; valid                  ;      ; NV8    # 7.0  WHITE PENNANT..LABEL
-1F3F8..1F3FF  ; valid                  ;      ; NV8    # 8.0  BADMINTON RACQUET AND BIRDIE..EMOJI MODIFIER FITZPATRICK TYPE-6
+1F3F8..1F3FF  ; valid                  ;      ; NV8    # 8.0  BADMINTON RACQUET AND SHUTTLECOCK..EMOJI MODIFIER FITZPATRICK TYPE-6
 1F400..1F43E  ; valid                  ;      ; NV8    # 6.0  RAT..PAW PRINTS
 1F43F         ; valid                  ;      ; NV8    # 7.0  CHIPMUNK
 1F440         ; valid                  ;      ; NV8    # 6.0  EYES
@@ -7517,9 +7601,7 @@ FFFE..FFFF    ; disallowed                             # 1.1  <noncharacter-FFFE
 1F860..1F887  ; valid                  ;      ; NV8    # 7.0  WIDE-HEADED LEFTWARDS LIGHT BARB ARROW..WIDE-HEADED SOUTH WEST VERY HEAVY BARB ARROW
 1F888..1F88F  ; disallowed                             # NA   <reserved-1F888>..<reserved-1F88F>
 1F890..1F8AD  ; valid                  ;      ; NV8    # 7.0  LEFTWARDS TRIANGLE ARROWHEAD..WHITE ARROW SHAFT WIDTH TWO THIRDS
-1F8AE..1F8FF  ; disallowed                             # NA   <reserved-1F8AE>..<reserved-1F8FF>
-1F900         ; valid                  ;      ; NV8    # 8.0  DHYANI BUDDHA
-1F901..1F90F  ; disallowed                             # NA   <reserved-1F901>..<reserved-1F90F>
+1F8AE..1F90F  ; disallowed                             # NA   <reserved-1F8AE>..<reserved-1F90F>
 1F910..1F918  ; valid                  ;      ; NV8    # 8.0  ZIPPER-MOUTH FACE..SIGN OF THE HORNS
 1F919..1F97F  ; disallowed                             # NA   <reserved-1F919>..<reserved-1F97F>
 1F980..1F984  ; valid                  ;      ; NV8    # 8.0  CRAB..UNICORN FACE
