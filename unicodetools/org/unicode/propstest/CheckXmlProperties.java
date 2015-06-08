@@ -53,7 +53,8 @@ public class CheckXmlProperties {
             empty.clear();
             for (int i = 0; i <= 0x10ffff; ++i) {
                 final String xval = XMLProperties.getXmlResolved(prop, i, xmap.get(i));
-                final String ival = iup.getResolvedValue(prop, i);
+                String ival = iup.getResolvedValue(prop, i);
+                ival = ival == null ? null : ival.replace('|', ' ');
                 if (!UnicodeProperty.equals(xval, ival)) {
                     // for debugging
                     final String xx = XMLProperties.getXmlResolved(prop, i, xmap.get(i));

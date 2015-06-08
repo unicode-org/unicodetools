@@ -297,6 +297,9 @@ public class XMLProperties {
 
         public UnicodeMap<String> doAttributes(String key, String value) {
             UcdProperty prop = UcdProperty.forString(key);
+            if (prop == UcdProperty.Deprecated && cp.start > 0xE0000 && cp.start < 0xE00FF) {
+                System.out.println(Utility.hex(cp.start) + "," + Utility.hex(cp.end) + "\t" + key + "\t" + value);
+            }
             if (prop == null) {
                 if (key.endsWith("cp")) {
                     if (key.equals("cp")

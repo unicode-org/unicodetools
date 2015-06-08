@@ -29,6 +29,7 @@ import org.unicode.props.UnicodeSetUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+
 //import com.ibm.icu.text.UTF16;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.ICUPropertyFactory;
@@ -556,7 +557,7 @@ public class CheckProperties {
         PrintWriter currentOut = prop.toString().startsWith("k") ? outCJK : out;
         // TODO handle strings in maps
 
-        System.out.println(prop.toString());
+        //System.out.println(prop.toString());
 
         final UnicodeMap<String> changes = new UnicodeMap<String>();
         final UnicodeSet newChars = new UnicodeSet(retain);
@@ -584,12 +585,13 @@ public class CheckProperties {
                 "\ttotal:\t" + changes.size());
         int limit = LIMIT_CHANGES;
 
+        UnicodeSet others = new UnicodeSet();
         for (final String value : new TreeSet<String>(changes.values())) {
-            if (--limit < 0) {
-                currentOut.println("\t\t\t\t…");
-                break;
-            }
             final UnicodeSet chars = changes.getSet(value);
+            if (--limit < 0) {
+                others.addAll(chars);
+                continue;
+            }
             if (false && chars.size() == 1) {
                 currentOut.println(prop + "\t" + value
                         //+ "\t" + FIX_INVISIBLES.transform(chars.toPattern(false))
@@ -597,20 +599,31 @@ public class CheckProperties {
                         + "\t" + getHexAndName(chars.iterator().next()));
                 continue;
             }
-            currentOut.print(prop + "\t" + value
+            currentOut.print(prop 
+                    + "\t" + value
                     //+ "\t" + FIX_INVISIBLES.transform(chars.toPattern(false))
-                    + "\tsubtotal:\t" + chars.size()
-                    + "\t\t\t" + abbreviate(chars, 50, false)
+                    + "\t" + chars.size()
+                    + "\t" + chars.toPattern(false) // abbreviate(chars, 50, false)
                     );
-            currentOut.println();
             int nameLimit = NAME_LIMIT;
+            String indent = "\t#\t";
             for (final String s : chars) {
                 if (--nameLimit < 0) {
-                    currentOut.println("\t\t\t\t\t\t…");
+                    currentOut.println(indent + "…");
                     break;
                 }
-                currentOut.println("\t\t\t\t\t\t" + getHexAndName(s));
+                currentOut.println(indent + getHexAndName(s));
+                indent = "\t\t\t\t\t\t#\t";
             }
+        }
+        if (others.size() != 0) {
+            //indent = "\t\t\t\t\t\t#\t";
+            currentOut.println(prop 
+                    + "\t" + "OTHERS\t\t"
+                    //+ "\t" + FIX_INVISIBLES.transform(chars.toPattern(false))
+                    + "\t" + others.size()
+                    + "\t" + others.toPattern(false) // abbreviate(others, 50, false)
+                    );
         }
         out.flush();
     }
