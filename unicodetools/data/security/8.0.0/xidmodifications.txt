@@ -1,7 +1,7 @@
 ﻿# Security Profile for General Identifiers
 # File: xidmodifications.txt
 # Version: 8.0.0
-# Generated: 2015-02-09, 15:36:43 GMT
+# Generated: 2015-05-17, 03:09:04 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -365,13 +365,12 @@ FA1F          ; Allowed ; Recommended          #      (﨟)  CJK COMPATIBILITY I
 FA21          ; Allowed ; Recommended          #      (﨡)  CJK COMPATIBILITY IDEOGRAPH-FA21
 FA23..FA24    ; Allowed ; Recommended          #  [2] (﨣..﨤)  CJK COMPATIBILITY IDEOGRAPH-FA23..CJK COMPATIBILITY IDEOGRAPH-FA24
 FA27..FA29    ; Allowed ; Recommended          #  [3] (﨧..﨩)  CJK COMPATIBILITY IDEOGRAPH-FA27..CJK COMPATIBILITY IDEOGRAPH-FA29
-1B000..1B001  ; Allowed ; Recommended          #  [2] (𛀀..𛀁)  KATAKANA LETTER ARCHAIC E..HIRAGANA LETTER ARCHAIC YE
 20000..2A6D6  ; Allowed ; Recommended          # [42711] (𠀀..𪛖)  CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A700..2B734  ; Allowed ; Recommended          # [4149] (𪜀..𫜴)  CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
 2B740..2B81D  ; Allowed ; Recommended          # [222] (𫝀..𫠝)  CJK UNIFIED IDEOGRAPH-2B740..CJK UNIFIED IDEOGRAPH-2B81D
 2B820..2CEA1  ; Allowed ; Recommended          # [5762] (𫠠..𬺡)  CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 
-# Total code points: 95265
+# Total code points: 95263
 
 #	Status/Type:	Inclusion
 
@@ -630,8 +629,9 @@ D7B0..D7C6    ; Restricted ; Obsolete          # [23] (ힰ..ퟆ)  HANGUL JUNGSEO
 D7CB..D7FB    ; Restricted ; Obsolete          # [49] (ퟋ..ퟻ)  HANGUL JONGSEONG NIEUN-RIEUL..HANGUL JONGSEONG PHIEUPH-THIEUTH
 10140..10174  ; Restricted ; Obsolete          # [53] (𐅀..𐅴)  GREEK ACROPHONIC ATTIC ONE QUARTER..GREEK ACROPHONIC STRATIAN FIFTY MNAS
 102E0         ; Restricted ; Obsolete          #      (𐋠)  COPTIC EPACT THOUSANDS MARK
+1B000..1B001  ; Restricted ; Obsolete          #  [2] (𛀀..𛀁)  KATAKANA LETTER ARCHAIC E..HIRAGANA LETTER ARCHAIC YE
 
-# Total code points: 1045
+# Total code points: 1047
 
 #	Status/Type:	Aspirational
 
@@ -1179,12 +1179,11 @@ FFFC..FFFD    ; Restricted ; Not_XID           #  [2] (￼..�)  OBJECT REPLACE
 1F850..1F859  ; Restricted ; Not_XID           # [10] (🡐..🡙)  LEFTWARDS SANS-SERIF ARROW..UP DOWN SANS-SERIF ARROW
 1F860..1F887  ; Restricted ; Not_XID           # [40] (🡠..🢇)  WIDE-HEADED LEFTWARDS LIGHT BARB ARROW..WIDE-HEADED SOUTH WEST VERY HEAVY BARB ARROW
 1F890..1F8AD  ; Restricted ; Not_XID           # [30] (🢐..🢭)  LEFTWARDS TRIANGLE ARROWHEAD..WHITE ARROW SHAFT WIDTH TWO THIRDS
-1F900         ; Restricted ; Not_XID           #      (🤀)  DHYANI BUDDHA
 1F910..1F918  ; Restricted ; Not_XID           #  [9] (🤐..🤘)  ZIPPER-MOUTH FACE..SIGN OF THE HORNS
 1F980..1F984  ; Restricted ; Not_XID           #  [5] (🦀..🦄)  CRAB..UNICORN FACE
 1F9C0         ; Restricted ; Not_XID           #      (🧀)  CHEESE WEDGE
 
-# Total code points: 6897
+# Total code points: 6896
 
 #	Status/Type:	Not_NFKC
 
@@ -1461,9 +1460,10 @@ FEFF          ; Restricted ; Default_Ignorable #      (U+FEFF)  ZERO WIDTH NO-BR
 FFA0          ; Restricted ; Default_Ignorable #      (U+FFA0)  HALFWIDTH HANGUL FILLER
 1BCA0..1BCA3  ; Restricted ; Default_Ignorable #  [4] (U+1BCA0..U+1BCA3)  SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; Restricted ; Default_Ignorable #  [8] (U+1D173..U+1D17A)  MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
+E0020..E007E  ; Restricted ; Default_Ignorable # [95] (U+E0020..U+E007E)  TAG SPACE..TAG TILDE
 E0100..E01EF  ; Restricted ; Default_Ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 299
+# Total code points: 394
 
 #	Status/Type:	Deprecated
 
@@ -1475,6 +1475,6 @@ E0100..E01EF  ; Restricted ; Default_Ignorable # [240] (U+E0100..U+E01EF)  VARIA
 206A..206F    ; Restricted ; Deprecated        #  [6] (U+206A..U+206F)  INHIBIT SYMMETRIC SWAPPING..NOMINAL DIGIT SHAPES
 2329..232A    ; Restricted ; Deprecated        #  [2] (〈..〉)  LEFT-POINTING ANGLE BRACKET..RIGHT-POINTING ANGLE BRACKET
 E0001         ; Restricted ; Deprecated        #      (U+E0001)  LANGUAGE TAG
-E0020..E007F  ; Restricted ; Deprecated        # [96] (U+E0020..U+E007F)  TAG SPACE..CANCEL TAG
+E007F         ; Restricted ; Deprecated        #      (U+E007F)  CANCEL TAG
 
-# Total code points: 111
+# Total code points: 16
