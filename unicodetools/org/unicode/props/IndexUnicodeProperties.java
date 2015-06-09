@@ -83,6 +83,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     public final static Pattern COMMA = Pattern.compile("\\s*,\\s*");
     public final static Pattern EQUALS = Pattern.compile("\\s*=\\s*");
     public final static Pattern SPACE = Pattern.compile("\\s+");
+    public final static Pattern NO_SPLIT = Pattern.compile("\\uFFFF");
     static Pattern SLASHX = Pattern.compile("\\\\x\\{([0-9A-Fa-f]{1,6})\\}");
     static Normalizer2 NFD = Normalizer2.getNFDInstance(); //
     //static Normalizer2 NFD2 = Normalizer2.getInstance(null, "NFC", Mode.DECOMPOSE);
@@ -114,7 +115,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             UcdProperty.Expands_On_NFD,
             UcdProperty.Expands_On_NFKC,
             UcdProperty.Expands_On_NFKD,
-            UcdProperty.FC_NFKC_Closure);
+            UcdProperty.FC_NFKC_Closure,
+            UcdProperty.Confusable_ML,
+            UcdProperty.Confusable_SA,
+            UcdProperty.Confusable_SL
+            );
 
     public static final EnumSet<UcdProperty> STABLIZED_PROPERTY = EnumSet.of(
             UcdProperty.Hyphen,
@@ -311,7 +316,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
     }
 
-    public enum PropertyStatus {Immutable, Normative, Informative, Provisional, Contributory, Deprecated, Stabilized, Obsolete}
+    public enum PropertyStatus {Obsolete, Stabilized, Deprecated, Contributory, Provisional, Informative, Normative, Immutable}
 
     public static PropertyStatus getPropertyStatus(UcdProperty prop) {
         if (OBSOLETE_PROPERTY.contains(prop)) {
@@ -677,13 +682,15 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
 
         public void setMultiValued(String multivalued2) {
+            if (property == UcdProperty.Name_Alias || property == UcdProperty.Standardized_Variant) {
+                multivaluedSplit = NO_SPLIT;
+            }
             if (multivalued2.endsWith("_COMMA")) {
                 multivaluedSplit = COMMA;
                 multivalued = ValueCardinality.Unordered;
                 return;
             }
             multivalued = toMultiValued.get(multivalued2);
-
         }
     }
 
@@ -1158,7 +1165,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 }
                 case StandardizedVariants:
                     if (!parts[2].isEmpty()) {
-                        parts[1] = parts[1] + "(" + parts[2] + ")";
+                        parts[1] = parts[1] + " (" + parts[2] + ")";
                     }
                     //$FALL-THROUGH$
                 case NameAliases:

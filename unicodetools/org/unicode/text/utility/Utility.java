@@ -1260,7 +1260,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 String base = parts[0];
                 if (base.equals("security")) {
                     // TODO fix versions
-                    element = "6.3.0";//"revision-06";
+                    // element = "6.3.0";//"revision-06";
                 } else if (base.equals("emoji")) {
                     element = "1.0";
                 }

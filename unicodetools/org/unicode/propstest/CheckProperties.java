@@ -177,6 +177,9 @@ public class CheckProperties {
             {
                 final Set<String> summary = new LinkedHashSet();
                 for (final UcdProperty prop : values) {
+                    if (IndexUnicodeProperties.DEPRECATED_PROPERTY.contains(prop)) {
+                        continue;
+                    }
                     compare(prop, last, latest, retain, summary);
                 }
                 showSummary(summary);
