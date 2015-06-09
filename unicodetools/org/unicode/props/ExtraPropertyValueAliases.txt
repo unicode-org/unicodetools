@@ -5,6 +5,7 @@
 # @missing: 0000..10FFFF; ASCII_Hex_Digit; No
 # @missing: 0000..10FFFF; Alphabetic; No
 # @missing: 0000..10FFFF; Bidi_Control; No
+# @missing: 0000..10FFFF; Bidi_Class; Left_To_Right
 # @missing: 0000..10FFFF; Case_Ignorable; No
 # @missing: 0000..10FFFF; Cased; No
 # @missing: 0000..10FFFF; Changes_When_Casefolded; No
@@ -85,12 +86,12 @@ idn8 ; na	 ; na
 # @missing: 0000..10FFFF; Idn_Mapping  ; <code point>
 
 
-# @-missing: 0000..10FFFF; Identfier_Status  	; r
+# @-missing: 0000..10FFFF; Identifier_Status  	; r
 
 idstatus	; r	 ; Restricted			
 idstatus	; a	 ; Allowed				
 
-# @-missing: 0000..10FFFF; Identfier_Type    	; nc
+# @missing: 0000..10FFFF; Identifier_Type    	; nc
 
 idtype	; nc	; Not_Character ; not_chars				
 idtype	; d		; Deprecated		

@@ -8,8 +8,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.IndexUnicodeProperties.PropertyStatus;
+import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -21,7 +20,7 @@ public class ShowMetaproperties {
         = Relation.of(new TreeMap<EnumSet<PropertyStatus>, Set<UcdProperty>>(
                 new EnumSetComparator<PropertyStatus>()), TreeSet.class);
         for (final UcdProperty prop : UcdProperty.values()) {
-            final EnumSet<PropertyStatus> propertyStatusSet = IndexUnicodeProperties.getPropertyStatusSet(prop);
+            final EnumSet<PropertyStatus> propertyStatusSet = PropertyStatus.getPropertyStatusSet(prop);
             if (propertyStatusSet.contains(PropertyStatus.Normative) && propertyStatusSet.contains(PropertyStatus.Informative)
                     || propertyStatusSet.contains(PropertyStatus.Normative) && propertyStatusSet.contains(PropertyStatus.Contributory)
                     || propertyStatusSet.contains(PropertyStatus.Informative) && propertyStatusSet.contains(PropertyStatus.Contributory)
