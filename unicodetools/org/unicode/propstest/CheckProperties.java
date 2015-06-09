@@ -23,11 +23,13 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
 import org.unicode.props.PropertyNames;
 import org.unicode.props.PropertyNames.NameMatcher;
+import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeSetUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+
 
 
 //import com.ibm.icu.text.UTF16;
@@ -177,7 +179,7 @@ public class CheckProperties {
             {
                 final Set<String> summary = new LinkedHashSet();
                 for (final UcdProperty prop : values) {
-                    if (IndexUnicodeProperties.DEPRECATED_PROPERTY.contains(prop)) {
+                    if (PropertyStatus.getPropertyStatus(prop) == PropertyStatus.Deprecated) { // DEPRECATED_PROPERTY.contains(prop)
                         continue;
                     }
                     compare(prop, last, latest, retain, summary);
@@ -451,7 +453,7 @@ public class CheckProperties {
         out.println(
                 prop
                 + ";\t" + prop.getType()
-                + ";\t" + IndexUnicodeProperties.getPropertyStatus(prop)
+                + ";\t" + PropertyStatus.getPropertyStatus(prop)
                 + ";\t" + info.getMultivalued()
                 + ";\t" + info.getDefaultValue()
                 + ";\t" + (info.originalRegex == null ? "<enum>" : info.originalRegex)
@@ -584,7 +586,7 @@ public class CheckProperties {
             SKIPPING.add(prop.toString());
             return;
         }
-        summary.add("\n" + prop + "\t" + IndexUnicodeProperties.getPropertyStatusSet(prop) +
+        summary.add("\n" + prop + "\t" + PropertyStatus.getPropertyStatusSet(prop) +
                 "\ttotal:\t" + changes.size());
         int limit = LIMIT_CHANGES;
 

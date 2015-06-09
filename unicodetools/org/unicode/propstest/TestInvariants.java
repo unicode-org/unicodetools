@@ -10,9 +10,10 @@ import java.util.Set;
 
 import org.unicode.cldr.unittest.TestFmwkPlus;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.IndexUnicodeProperties.PropertyStatus;
+import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UnicodePropertyException;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
@@ -50,7 +51,7 @@ public class TestInvariants extends TestFmwkPlus{
             UnicodeSet cn = gc.getSet(cat);
             int firstCodePoint = cn.getRangeStart(0);
             for (UcdProperty prop : UcdProperty.values()) {
-                PropertyStatus status = IndexUnicodeProperties.getPropertyStatus(prop);
+                PropertyStatus status = PropertyStatus.getPropertyStatus(prop);
                 if (status.compareTo(PropertyStatus.Provisional) < 0) {
                     continue;
                 }
@@ -168,4 +169,46 @@ public class TestInvariants extends TestFmwkPlus{
             //assertRelation(status.toString(), true, newSet, CONTAINS_US, oldSet);
         }
     }
+
+    private static final boolean SHOW_PROGRESS = false;
+
+//    public void TestPropertyStatus() {
+//        final EnumSet<UcdProperty>[] sets = new EnumSet[] {
+//                PropertyStatus.IMMUTABLE_PROPERTY,
+//                PropertyStatus.NORMATIVE_PROPERTY, PropertyStatus.INFORMATIVE_PROPERTY, PropertyStatus.PROVISIONAL_PROPERTY, PropertyStatus.CONTRIBUTORY_PROPERTY,
+//                PropertyStatus.DEPRECATED_PROPERTY, PropertyStatus.STABLIZED_PROPERTY, PropertyStatus.OBSOLETE_PROPERTY};
+//        final String[] names = {
+//                "IMMUTABLE_PROPERTY",
+//                "NORMATIVE_PROPERTY", "INFORMATIVE_PROPERTY", "PROVISIONAL_PROPERTY", "CONTRIBUTORY_PROPERTY",
+//                "DEPRECATED_PROPERTY", "STABLIZED_PROPERTY", "OBSOLETE_PROPERTY"};
+//
+//        final EnumSet<UcdProperty> temp = EnumSet.noneOf(UcdProperty.class);
+//        for (int i = 0; i < sets.length; ++i) {
+//            final EnumSet<UcdProperty> item = sets[i];
+//            final String name = names[i];
+//            for (int j = i+1; j < sets.length; ++j) {
+//                final EnumSet<UcdProperty> item2 = sets[j];
+//                final String name2 = names[j];
+//                if (item.containsAll(item2)) {
+//                    if (SHOW_PROGRESS) {
+//                        System.out.println(name + "\tcontains\t" + name2);
+//                    }
+//                } else if (item2.containsAll(item)) {
+//                    if (SHOW_PROGRESS) {
+//                        System.out.println(name2 + "\tcontains\t" + name);
+//                    }
+//                } else {
+//                    temp.clear();
+//                    temp.addAll(item);
+//                    temp.retainAll(item2);
+//                    if (temp.size() != 0) {
+//                        if (SHOW_PROGRESS) {
+//                            System.out.println(name + "\tintersects\t" + name2 + "\t" + temp);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        throw new UnicodePropertyException();
+//    }
 }
