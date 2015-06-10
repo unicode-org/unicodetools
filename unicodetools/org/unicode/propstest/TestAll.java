@@ -17,6 +17,7 @@ public class TestAll extends TestFmwk.TestGroup {
                 "TestScriptMetadata",
                 "TestXUnicodeSet",
                 "UnicodeRelationTest",
+                "TestInvariants"
         });
     }
 
