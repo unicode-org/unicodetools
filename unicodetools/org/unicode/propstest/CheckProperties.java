@@ -20,15 +20,16 @@ import org.unicode.cldr.util.With;
 import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.IndexUnicodeProperties.PropertyParsingInfo;
 import org.unicode.props.PropertyNames;
 import org.unicode.props.PropertyNames.NameMatcher;
+import org.unicode.props.PropertyParsingInfo;
 import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UnicodeSetUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+
 
 
 
@@ -159,7 +160,7 @@ public class CheckProperties {
         for (final Action action : actions) {
             switch(action) {
             case NAMES:
-                for (final Entry<String, PropertyParsingInfo> entry : IndexUnicodeProperties.getFile2PropertyInfoSet().keyValueSet()) {
+                for (final Entry<String, PropertyParsingInfo> entry : PropertyParsingInfo.getFile2PropertyInfoSet().keyValueSet()) {
                     out.println(entry.getKey() + " ; " + entry.getValue());
                 }
                 break;
@@ -222,7 +223,7 @@ public class CheckProperties {
                 final Relation<String, String> sorted = Relation.of(new TreeMap<String,Set<String>>(), LinkedHashSet.class);
                 final Set<UcdProperty> missingRegex = EnumSet.noneOf(UcdProperty.class);
                 for (final UcdProperty prop : UcdProperty.values()) {
-                    final PropertyParsingInfo propInfo = IndexUnicodeProperties.getPropertyInfo(prop);
+                    final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(prop);
                     if (propInfo.originalRegex == null) {
                         continue;
                     }
@@ -234,7 +235,7 @@ public class CheckProperties {
                 }
 
                 for (final UcdProperty prop : UcdProperty.values()) {
-                    final PropertyParsingInfo propInfo = IndexUnicodeProperties.getPropertyInfo(prop);
+                    final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(prop);
                     out.println(propInfo);
                     if (propInfo.getRegex() == null) {
                         switch (prop.getType()) {
@@ -245,7 +246,7 @@ public class CheckProperties {
                 }
                 out.println("\nMissing Regex");
                 for (final UcdProperty prop : missingRegex) {
-                    final PropertyParsingInfo propInfo = IndexUnicodeProperties.getPropertyInfo(prop);
+                    final PropertyParsingInfo propInfo = PropertyParsingInfo.getPropertyInfo(prop);
                     out.println(
                             prop + " ;\t"
                                     + propInfo.getMultivalued() + " ;\t"
@@ -448,7 +449,7 @@ public class CheckProperties {
     }
 
     private static void showDefaults(UcdProperty prop) {
-        final PropertyParsingInfo info = IndexUnicodeProperties.getPropertyInfo(prop);
+        final PropertyParsingInfo info = PropertyParsingInfo.getPropertyInfo(prop);
         latest.load(prop); // need to do this to get the @missing!
         out.println(
                 prop
