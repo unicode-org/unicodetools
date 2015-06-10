@@ -221,7 +221,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
     }
 
     private void addCollationProperty() {
-        RuleBasedCollator c = UnicodeSetUtilities.MAIN_COLLATOR;
+        RuleBasedCollator c = UnicodeSetUtilities.RAW_COLLATOR;
         //(RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
         //c.setCaseLevel(true);
 

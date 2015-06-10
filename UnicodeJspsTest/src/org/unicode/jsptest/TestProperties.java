@@ -2,14 +2,12 @@ package org.unicode.jsptest;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -55,8 +53,9 @@ public class TestProperties extends TestFmwk {
         String[] message = {""};
         UnicodeSet primary = UnicodeUtilities.parseSimpleSet("[:emoji=group:]", message);
         StringBuilder out = new StringBuilder();
-        UnicodeJsp.showSet("emoji", primary, false, false,  out);
+        UnicodeJsp.showSet("gc", "sc", primary, false, false, true, out);
         assertTrue("", out.toString().contains("\u200D"));
+        logln(out.toString());
 
         checkContained("[:emoji:]", "[{🎅🏻}]");
         checkContained("[:emoji!=no:]", "[{🎅🏻}]");

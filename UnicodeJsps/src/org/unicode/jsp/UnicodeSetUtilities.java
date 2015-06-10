@@ -7,11 +7,13 @@ import java.util.List;
 import org.unicode.jsp.UnicodeProperty.PatternMatcher;
 import org.unicode.jsp.UnicodeSetUtilities.ComparisonMatcher.Relation;
 
+import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.util.ULocale;
 
 public class UnicodeSetUtilities {
@@ -40,12 +42,14 @@ public class UnicodeSetUtilities {
     
     public static final UnicodeSet TAKES_EMOJI_VS = new UnicodeSet("[©®‼⁉™↔-↙↩↪⌚⌛Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛔⛪⛲⛳⛵⛺⛽✂✈✉✌✏✒✔✖✳✴❄❇❗❤➡⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🅰🅱🅾🅿🈂🈚🈯🈷]").freeze();
 
-    public static final RuleBasedCollator MAIN_COLLATOR = (RuleBasedCollator)Collator.getInstance(new ULocale("en-u-co-emoji"));
+    public static final StringComparator CODEPOINT_ORDER = new UTF16.StringComparator(true, false,0);
+    public static final RuleBasedCollator RAW_COLLATOR = (RuleBasedCollator) Collator.getInstance(new ULocale("en-u-co-emoji"));
     static {
-        MAIN_COLLATOR.setNumericCollation(true);
-        MAIN_COLLATOR.setCaseLevel(true);
-        MAIN_COLLATOR.freeze();
+        RAW_COLLATOR.setNumericCollation(true);
+        RAW_COLLATOR.setCaseLevel(true);
+        RAW_COLLATOR.freeze();
     }
+    public static final Comparator<String> MAIN_COLLATOR = new MultiComparator(RAW_COLLATOR, CODEPOINT_ORDER);
 
     public static String addEmojiVariation(String s) {
         StringBuilder b = new StringBuilder();

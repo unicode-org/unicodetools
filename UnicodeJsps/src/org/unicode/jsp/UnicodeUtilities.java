@@ -7,6 +7,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -248,67 +249,21 @@ public class UnicodeUtilities {
         numberFormat.setGroupingUsed(true);
     }
 
-    public static void showSet(String grouping, UnicodeSet a, CodePointShower codePointShower, Appendable out) throws IOException {
-        grouping = grouping.trim();
-        if (grouping.length() == 0) {
+    public static void showSetMain(UnicodeSet a, CodePointShower codePointShower, Appendable out) throws IOException {
+        if (codePointShower.groupingProps.isEmpty()) {
             showSet(a, codePointShower, out);
             return;
         }
-        String[] props = grouping.split("[;,\\s]\\s*");
-        int length = props.length;
 
-        if (length > 5) {
-            out.append("<p>Too many groups: " + Arrays.asList(props) + "</p>");
-            return;
-        }
-        boolean getShortest = false;
-        UnicodeProperty[] properties = new UnicodeProperty[length];
-        String[] names = new String[length];
-        for (int i = 0; i < length; ++i) {
-            try {
-                properties[i] = factory.getProperty(props[i]);
-                names[i] = properties[i].getName();
-                names[i].charAt(0); // trigger exception
-                properties[i].getValue(0, getShortest);
-            } catch (Exception e) {
-                out.append("<p>Unknown 'Group by' property name: '" + props[i] + "'</p>");
-                return;
-            }
-        }
         UnicodeMap<String> map = new UnicodeMap<String>();
-        StringBuilder builder = new StringBuilder();
-        for (UnicodeSetIterator it = new UnicodeSetIterator(a); it.next();) {
-            int s = it.codepoint;
-            if (s == UnicodeSetIterator.IS_STRING) {
-                String ss = it.string;
-                builder.setLength(0);
-                for (int i = 0; i < length; ++i) {
-                    if (i != 0) {
-                        builder.append("; ");
-                    }
-                    builder.append(names[i]).append("=");
-                    builder.append(getStringProperties(properties[i], ss, ",", getShortest));
-                }
-                map.put(ss, builder.toString());
-            } else {
-                builder.setLength(0);
-                for (int i = 0; i < length; ++i) {
-                    if (i != 0) {
-                        builder.append("; ");
-                    }
-                    try {
-                        builder.append(names[i]).append("=");
-                        builder.append(properties[i].getValue(s, getShortest));
-                    } catch (Exception e) {
-                        builder.append("Internal error: " + names[i] + ", " + properties[i] + ", " + getHex(i,true));
-                    }
-                }
-                map.put(s, builder.toString());
-            }
+        for (String s : a) {
+            map.put(s, codePointShower.getPropString(codePointShower.groupingProps, s, false));
         }
+
         TreeSet<String> sorted = new TreeSet<String>(UnicodeSetUtilities.MAIN_COLLATOR);
         sorted.addAll(map.values());
-        String[] propsOld = new String[length];
+        int length = codePointShower.groupingProps.size();
+        String[] propsOld = new String[codePointShower.groupingProps.size()];
         for (int i = 0; i < propsOld.length; ++i) {
             propsOld[i] = "";
         }
@@ -325,7 +280,6 @@ public class UnicodeUtilities {
             }
             lastLevel = level;
             UnicodeSet items = map.getSet(s);
-
             for (int i = lastLevel; i < length; ++i) {
                 out.append("<h2 class='L" + (i + 5 - length) + "'>" + props2[i] + 
                         (i == length - 1 ? " <div class='ri'>items: " + numberFormat.format(items.size()) : "</div>") +
@@ -362,15 +316,20 @@ public class UnicodeUtilities {
                 return (String) value;
             }
         }
-        
+
         StringBuilder builder = new StringBuilder();
         int cp;
+        String last = null;
         for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
             cp = s.codePointAt(i);
-            if (i != 0) {
-                builder.append(separator);
+            final String current = prop.getValue(cp, getShortest);
+            if (!current.equals(last)) {
+                if (i != 0) {
+                    builder.append(separator);
+                }
+                builder.append(current);
             }
-            builder.append(prop.getValue(cp, getShortest));
+            last = current;
         }
         return builder.toString();
     }
@@ -378,7 +337,7 @@ public class UnicodeUtilities {
     /*jsp*/
     public static void showSet(UnicodeSet inputSetRaw, CodePointShower codePointShower, Appendable out) throws IOException {
         if (codePointShower.doTable) {
-            out.append("<table>");
+            out.append("<table width='100%'>");
         }
         if (inputSetRaw.getRangeCount() > 10000) {
             if (codePointShower.doTable) {
@@ -397,7 +356,7 @@ public class UnicodeUtilities {
                 out.append("</td></tr>");
             }
         } else {
-            LinkedHashMap<String,UnicodeSet> items = new LinkedHashMap();
+            LinkedHashMap<String,UnicodeSet> items = new LinkedHashMap<String, UnicodeSet>();
             String specials = "Unassigned, Private use, or Surrogates";
 
             UnicodeSet specialSet = new UnicodeSet(inputSetRaw).retainAll(UnicodeProperty.SPECIALS);
@@ -405,7 +364,6 @@ public class UnicodeUtilities {
             if (specialSet.size() != 0) {
                 items.put(specials, specialSet);
             }
-
             for (UnicodeSetIterator it = new UnicodeSetIterator(inputSet); it.next();) {
                 int s = it.codepoint;
                 if (s == UnicodeSetIterator.IS_STRING) {
@@ -439,8 +397,13 @@ public class UnicodeUtilities {
                     out.append("</td></tr>");
                 }
 
-                if (set.size() > 500 || newBlock == specials) {
+                if (set.size() > 1000 || newBlock == specials) {
                     codePointShower.showAbbreviated(set, out);
+                } else if (codePointShower.collate) {
+                    TreeSet<String> sorted = set.addAllTo(new TreeSet<String>(UnicodeSetUtilities.MAIN_COLLATOR));
+                    for (String s : sorted) {
+                        codePointShower.showString(s, ", ", out);
+                    }
                 } else {
                     for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next();) {
                         int s = it.codepoint;
@@ -496,7 +459,7 @@ public class UnicodeUtilities {
             if (allowed.size() == 0) {
                 result.append("<i>none</i>");
             } else {
-                showSet(allowed, new CodePointShower(false, false, true), result);
+                showSet(allowed, new CodePointShower("", "", true, false, false), result);
             }
 
             if (restricted.size() == 0) {
@@ -509,7 +472,7 @@ public class UnicodeUtilities {
                     UnicodeSet items = new UnicodeSet(restricted).retainAll(shard);
                     if (items.size() != 0) {
                         result.append("<h2>Restricted - <span class='redName'>" + reason + "</span></h2>");
-                        showSet(items, new CodePointShower(false, false, true).setRestricted(true), result);
+                        showSet(items, new CodePointShower("", "", true, false, false).setRestricted(true), result);
                     }
                 }
             }
@@ -544,10 +507,13 @@ public class UnicodeUtilities {
 
     static class CodePointShower {
 
-        public boolean doTable;
-        public boolean abbreviate;
-        public boolean ucdFormat;
-        public boolean identifierInfo;
+        public final boolean doTable;
+        public final boolean abbreviate;
+        public final boolean ucdFormat;
+        public final boolean collate;
+        public final List<UnicodeProperty> groupingProps;
+        public final List<UnicodeProperty> infoProps;
+
         public boolean restricted;
 
         public CodePointShower setRestricted(boolean restricted) {
@@ -555,10 +521,13 @@ public class UnicodeUtilities {
             return this;
         }
 
-        public CodePointShower(boolean abbreviate, boolean ucdFormat, boolean identifierInfo) {
+        public CodePointShower(String grouping, String info, boolean abbreviate, boolean ucdFormat, boolean collate) {
+            this.groupingProps = getProps(grouping);
+            this.infoProps = getProps(info);
+            this.doTable = !infoProps.isEmpty();
             this.abbreviate = abbreviate;
             this.ucdFormat = ucdFormat;
-            this.identifierInfo = this.doTable = identifierInfo;
+            this.collate = collate;
         }
 
         void showCodePoint(int codePoint, Appendable out) throws IOException {
@@ -569,7 +538,7 @@ public class UnicodeUtilities {
 
         private void showString(final String string, String separator, Appendable out) throws IOException {
             if (doTable) {
-                out.append("<tr><td>");
+                out.append("<tr>");
             }
             boolean hasJoiner = string.contains("\u200D");
             String literal = UnicodeUtilities.toHTML.transliterate(string);
@@ -594,12 +563,15 @@ public class UnicodeUtilities {
             }
             literal = UnicodeSetUtilities.addEmojiVariation(literal);
             if (doTable) {
-                out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + "</td><td class='charCell'>\u00A0" + literal + "\u00A0</td><td" + (restricted ? " class='redName'" : "") +
-                        ">" + name);
+                out.append(
+                        "<td class='charCell' width='3m'>\u00A0" + literal + "\u00A0</td>"
+                                + "<td width='7m'>" + UnicodeUtilities.getHex(string, separator, ucdFormat) + "</td>"
+                                + "<td" + (restricted ? " class='redName'" : "") + ">" + name + "</td>");
             } else if (ucdFormat) {
                 out.append(UnicodeUtilities.getHex(string, separator, ucdFormat) + " ;\t" + name);
             } else {
-                out.append("\u00A0" + literal + "\u00A0 \t" + UnicodeUtilities.getHex(string, separator, ucdFormat) + " \t" + name);
+                //out.append("<div class='cx'>\u00A0" + literal + "\u00A0</div>" + UnicodeUtilities.getHex(string, separator, ucdFormat) + " \t" + name);
+                out.append("\u00A0" + literal + "\u00A0\t" + UnicodeUtilities.getHex(string, separator, ucdFormat) + " \t" + name);
                 if (hasJoiner) {
                     boolean hasJoiner2 = literal.contains("\u200D");
                     if (hasJoiner2 != hasJoiner) {
@@ -607,25 +579,44 @@ public class UnicodeUtilities {
                     }
                 }
             }
-            if (identifierInfo) {
+            if (!infoProps.isEmpty()) {
                 int cp = string.codePointAt(0);
-                StringBuilder confusableString = displayConfusables(cp);
+                //StringBuilder confusableString = displayConfusables(cp);
                 if (doTable) {
-                    out.append("</td><td title='Confusable Characters'>");
+                    out.append("<td align='right'>");
                 } else {
                     out.append("; ");
                 }
-                if (confusableString.length() == 0) {
-                    out.append("<span class='noConfusables'>none</span>");
-                } else {
-                    out.append(confusableString.toString());
+                out.append(getPropString(infoProps, string, true));
+                if (doTable) {
+                    out.append("</td>");
                 }
             }
             if (doTable) {
-                out.append("</td></tr>\n");
+                out.append("</tr>\n");
             } else {
                 out.append("<br>\n");
             }
+        }
+
+        List<UnicodeProperty> getProps(String input) {
+            List<UnicodeProperty> properties = new ArrayList();
+            input = input.trim();
+            String[] propNames = input.split("[;,\\s]\\s*");
+            boolean getShortest = false;
+            for (String s : propNames) {
+                try {
+                    UnicodeProperty property = factory.getProperty(s);
+                    String name = property.getName();
+                    // trigger exception
+                    name.charAt(0);
+                    property.getValue(0, getShortest);
+                    properties.add(property);
+                } catch (Exception e) {
+                    // ignore for now
+                }
+            }
+            return Collections.unmodifiableList(properties);
         }
 
         private void showAbbreviated(UnicodeSet a, Appendable out) throws IOException {
@@ -661,6 +652,34 @@ public class UnicodeUtilities {
             }
         }
 
+        String getPropString(List<UnicodeProperty> props, String codePoints, boolean shortName) {
+            StringBuilder builder = new StringBuilder();
+            for (UnicodeProperty prop : props) {
+                if (builder.length() != 0) {
+                    builder.append("; ");
+                }
+                String name = prop.getName();
+                if (shortName) {
+                    List<String> aliases = prop.getNameAliases();
+                    if (aliases != null && aliases.size() > 0) {
+                        name = aliases.get(0);
+                    }
+                }
+                builder.append(name).append("=").append(getStringProperties(prop, codePoints, ", ", shortName));
+            }
+            return builder.toString();
+        }
+
+        //        String getPropString(List<UnicodeProperty> props, int codePoint) {
+        //            StringBuilder builder = new StringBuilder();
+        //            for (UnicodeProperty prop : props) {
+        //                if (builder.length() != 0) {
+        //                    builder.append("; ");
+        //                }
+        //                builder.append(prop.getName()).append("=").append(prop.getValue(codePoint));
+        //            }
+        //            return builder.toString();
+        //        }
     }
 
     private static String getName(String string, String separator, boolean andCode) {
@@ -969,13 +988,19 @@ public class UnicodeUtilities {
                 // add a space, but not in x-y, or \\uXXXX
                 // TODO, don't change {...}
                 if (
+                        // no break before character
                         cp < 0x80
                         || cp == '-' 
+                        || cp == '}' 
+                        || NOBREAKBEFORE.contains(cp)
+                        // no break after character
                         || oldCp == '-' 
                         || oldCp == '\\' 
-                        || NOBREAKBEFORE.contains(cp)
+                        || oldCp == '{'
                         ) {
                     // do nothing
+                } else if (cp == ' ') {
+                    charCount = 0;
                 } else {
                     out.append(' ');
                     charCount = 0;
@@ -1062,7 +1087,7 @@ public class UnicodeUtilities {
         { UProperty.DOUBLE_START, UProperty.DOUBLE_LIMIT },
         { UProperty.STRING_START, UProperty.STRING_LIMIT }, };
 
-    static Collator col = UnicodeSetUtilities.MAIN_COLLATOR;
+    static Comparator<String> col = UnicodeSetUtilities.MAIN_COLLATOR;
     //    Collator.getInstance(ULocale.ROOT);
     //    static {
     //        ((RuleBasedCollator) col).setNumericCollation(true);
