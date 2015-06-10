@@ -66,14 +66,14 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
      */
     static final boolean GZIP = true;
     static final boolean SIMPLE_COMPRESSION = true;
-    static final boolean FILE_CACHE = true; // true
+    static final boolean FILE_CACHE = System.getProperty("DISABLE_PROP_FILE_CACHE") == null;
 
     /**
      * Debugging
      */
     private static final boolean SHOW_DEFAULTS = false;
     private static final boolean CHECK_PROPERTY_STATUS = false;
-    private static final UcdProperty CHECK_MISSING = null; // UcdProperty.Numeric_Value; //
+    private static final UcdProperty CHECK_PROPERTY = UcdProperty.Bidi_Class; // UcdProperty.Numeric_Value; //
 
     /**
      * General constants
@@ -759,6 +759,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
 
     public UnicodeMap<String> load(UcdProperty prop2) {
+        if (prop2 == CHECK_PROPERTY) {
+            int debug = 0;
+        }
         UnicodeMap<String> data0 = property2UnicodeMap.get(prop2);
         if (data0 != null) {
             return data0;
@@ -776,6 +779,11 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
         }
 
+        parseSourceFile(fileInfo, fullFilename, fileName);
+        return property2UnicodeMap.get(prop2);
+    }
+
+    private void parseSourceFile(final PropertyParsingInfo fileInfo, final String fullFilename, final String fileName) {
         FileType fileType = file2Type.get(fileName);
         if (fileType == null) {
             fileType = FileType.Field;
@@ -995,6 +1003,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
         }
         for (final PropertyParsingInfo propInfo : propInfoSet) {
+            if (propInfo.property == CHECK_PROPERTY) {
+                int debug = 0;
+            }
             final UnicodeMap<String> data = property2UnicodeMap.get(propInfo.property);
             final UnicodeSet nullValues = data.getSet(null);
             //            if (propInfo.defaultValue == null) {
@@ -1030,7 +1041,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                 storeCachedMap(propInfo.property, data);
             }
         }
-        return property2UnicodeMap.get(prop2);
     }
 
     private void storeCachedMap(UcdProperty prop2, UnicodeMap<String> data) {
@@ -1171,7 +1181,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public static void setPropDefault(UcdProperty prop, String value, String line, boolean isEmpty) {
-        if (prop == CHECK_MISSING) {
+        if (prop == CHECK_PROPERTY) {
             System.out.format("** %s %s %s %s\n", prop, value, line, isEmpty);
         }
         final PropertyParsingInfo propInfo = property2PropertyInfo.get(prop);

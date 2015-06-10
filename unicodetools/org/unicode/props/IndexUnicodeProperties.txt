@@ -76,11 +76,12 @@ FileType ; security/*/confusables ; Confusables
 #   SkipAny4 : Skip line if field 4 is not empty
 
 # TODO: use other 'core' files instead of the derived ones
+# Don't do for BIDI, however, since it misses the <reserved...> values.
 # 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 UnicodeData; Name ; 1
 UnicodeData; General_Category ; 2
 UnicodeData; Canonical_Combining_Class ; 3
-UnicodeData; Bidi_Class ; 4
+DerivedBidiClass; Bidi_Class ; 1
 DerivedDecompositionType; Decomposition_Type ; 1
 UnicodeData; Decomposition_Mapping ; 5 
 UnicodeData; Bidi_Mirrored; 9
