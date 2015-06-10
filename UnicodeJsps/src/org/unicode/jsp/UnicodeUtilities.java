@@ -957,8 +957,10 @@ public class UnicodeUtilities {
     static final UnicodeSet NON_ASCII = new UnicodeSet("[^\\u0021-\\u007E]").freeze();
     static final UnicodeSet WHITESPACE_IGNORABLES_C = new UnicodeSet("[[:C:][:Default_Ignorable_Code_Point:][:patternwhitespace:][:whitespace:]]").freeze();
     static final UnicodeSet CombiningMarks = new UnicodeSet("[:M:]").freeze();
-    static final UnicodeSet REGIONALS = new UnicodeSet(0x1F1E6,0x1F1FF).freeze();
-    static final UnicodeSet NOBREAKBEFORE = new UnicodeSet(CombiningMarks).addAll(REGIONALS).freeze();
+    static final UnicodeSet NOBREAKBEFORE = new UnicodeSet(CombiningMarks)
+    .addAll(UnicodeSetUtilities.MODIFIERS)
+    .addAll(UnicodeSetUtilities.REGIONALS)
+    .freeze();
 
     public static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
         String a_out;

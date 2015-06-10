@@ -150,6 +150,7 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
                 .putAll(UnicodeSetUtilities.GROUPS, "group")
                 .putAll(UnicodeSetUtilities.FACE, "face")
                 .putAll(UnicodeSetUtilities.PRIMARY, "primary")
+                .putAll(UnicodeSetUtilities.MODIFIERS, "modifier")
                 .putAll(UnicodeSetUtilities.SECONDARY, "secondary")
                 ;
         add(new UnicodeProperty.UnicodeMapProperty()
