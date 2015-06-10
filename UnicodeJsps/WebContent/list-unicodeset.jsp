@@ -13,7 +13,10 @@
 		
 		String setA = utfParameters.getParameter("a", "[:ASCII:]");
 		String group = utfParameters.getParameter("g", "");
+		String info = utfParameters.getParameter("i", "");
+		
 		boolean abbreviate = request.getParameter("abb") != null;
+		boolean collate = request.getParameter("c") != null;
         boolean ucdFormat = request.getParameter("ucd") != null;
         boolean escape = request.getParameter("esc") != null;
 		
@@ -38,16 +41,21 @@
       <td>
       <input id='main' type="submit" value="Show Set" onClick="window.location.href='list-unicodeset.jsp?a='+document.getElementById('main').value"/>&nbsp;&nbsp;
       <input type="checkbox" <%=abbreviate ? "checked" : ""%> name="abb"><label for="abb">Abbreviate</label>&nbsp;&nbsp;
+      <input type="checkbox" <%=collate ? "checked" : ""%> name="c"><label for="c">Collate</label>&nbsp;&nbsp;
       <input type="checkbox" <%=ucdFormat ? "checked" : ""%> name="ucd"><label for="ucd">UCD format</label>&nbsp;&nbsp;
       <input type="checkbox" <%=escape ? "checked" : ""%> name="esc"><label for="esc">Escape</label>&nbsp;&nbsp;
-      <label for="g">Group by:</label><input type="text" <%=escape ? "checked" : ""%> name="g" size="20" value="<%=group%>"></td>
+      <label for="g">Group by:</label>
+      <input type="text" <%=escape ? "checked" : ""%> name="g" size="25" value="<%=group%>">
+      <label for="i">Info:</label>
+      <input type="text" <%=escape ? "checked" : ""%> name="i" size="25" value="<%=info%>">
+      </td>
     </tr>
 </table>
   <p><%= sizeStr %> Code Points</p>
   <hr>
   <p><%=a_out%></p>
   <hr>
-  <% UnicodeJsp.showSet(group, a, abbreviate, ucdFormat, out); %>
+  <% UnicodeJsp.showSet(group, info, a, abbreviate, ucdFormat, collate, out); %>
 </form>
 <%@ include file="footer.jsp" %>
 </body>

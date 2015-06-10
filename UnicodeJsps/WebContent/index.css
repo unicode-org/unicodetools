@@ -58,3 +58,8 @@ caption {font-size:150%; font-weight: bold; }
 .char {display:inline; border:1px solid #EEEEFF;}
 .redName {color:#C00}
 .charCell {text-align:center;}
+.cx { 
+    display: inline-block;
+    width: 3em;
+    text-align: center;
+}
