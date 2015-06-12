@@ -41803,10 +41803,10 @@
          <reserved first-cp="D0000" last-cp="DFFFD" bc="L"/>
          <noncharacter first-cp="DFFFE" last-cp="DFFFF" age="2.0" NChar="Y"/>
       </group>
-      <group age="3.1" JSN="" gc="Cf" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="BN" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="T" jg="No_Joining_Group" ea="N" lb="CM" sc="Zyyy" scx="Zyyy" Dash="N" WSpace="N" Hyphen="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="Y" ODI="N" Alpha="N" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="N" Gr_Ext="N" OGr_Ext="N" Gr_Link="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="Y" IDS="N" OIDS="N" XIDS="N" IDC="N" OIDC="N" XIDC="N" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="CN" WB="FO" SB="FO" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" XO_NFC="N" XO_NFD="N" XO_NFKC="N" XO_NFKD="N" FC_NFKC="#" CI="Y" Cased="N" CWCF="N" CWCM="N" CWKCF="Y" CWL="N" CWT="N" CWU="N" NFKC_CF="" InSC="Other" InPC="NA" blk="Tags" isc="" na1="">
-         <reserved cp="E0000" age="unassigned" na="" gc="Cn" jt="U" lb="XX" sc="Zzzz" scx="Zzzz" ODI="Y" Dep="N" WB="XX" SB="XX" CI="N"/>
-         <char cp="E0001" na="LANGUAGE TAG"/>
-         <reserved first-cp="E0002" last-cp="E001F" age="unassigned" na="" gc="Cn" jt="U" lb="XX" sc="Zzzz" scx="Zzzz" ODI="Y" Dep="N" WB="XX" SB="XX" CI="N"/>
+      <group age="3.1" JSN="" gc="Cf" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="BN" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="T" jg="No_Joining_Group" ea="N" lb="CM" sc="Zyyy" scx="Zyyy" Dash="N" WSpace="N" Hyphen="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="Y" ODI="N" Alpha="N" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="N" Gr_Ext="N" OGr_Ext="N" Gr_Link="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="N" OIDS="N" XIDS="N" IDC="N" OIDC="N" XIDC="N" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="CN" WB="FO" SB="FO" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" XO_NFC="N" XO_NFD="N" XO_NFKC="N" XO_NFKD="N" FC_NFKC="#" CI="Y" Cased="N" CWCF="N" CWCM="N" CWKCF="Y" CWL="N" CWT="N" CWU="N" NFKC_CF="" InSC="Other" InPC="NA" blk="Tags" isc="" na1="">
+         <reserved cp="E0000" age="unassigned" na="" gc="Cn" jt="U" lb="XX" sc="Zzzz" scx="Zzzz" ODI="Y" WB="XX" SB="XX" CI="N"/>
+         <char cp="E0001" na="LANGUAGE TAG" Dep="Y"/>
+         <reserved first-cp="E0002" last-cp="E001F" age="unassigned" na="" gc="Cn" jt="U" lb="XX" sc="Zzzz" scx="Zzzz" ODI="Y" WB="XX" SB="XX" CI="N"/>
          <char cp="E0020" na="TAG SPACE"/>
          <char cp="E0021" na="TAG EXCLAMATION MARK"/>
          <char cp="E0022" na="TAG QUOTATION MARK"/>
@@ -41902,7 +41902,7 @@
          <char cp="E007C" na="TAG VERTICAL LINE"/>
          <char cp="E007D" na="TAG RIGHT CURLY BRACKET"/>
          <char cp="E007E" na="TAG TILDE"/>
-         <char cp="E007F" na="CANCEL TAG"/>
+         <char cp="E007F" na="CANCEL TAG" Dep="Y"/>
       </group>
       <group>
          <reserved first-cp="E0080" last-cp="E00FF" age="unassigned" na="" JSN="" gc="Cn" ccc="0" dt="none" dm="#" nt="None" nv="NaN" bc="BN" bpt="n" bpb="#" Bidi_M="N" bmg="" suc="#" slc="#" stc="#" uc="#" lc="#" tc="#" scf="#" cf="#" jt="U" jg="No_Joining_Group" ea="N" lb="XX" sc="Zzzz" scx="Zzzz" Dash="N" WSpace="N" Hyphen="N" QMark="N" Radical="N" Ideo="N" UIdeo="N" IDSB="N" IDST="N" hst="NA" DI="Y" ODI="Y" Alpha="N" OAlpha="N" Upper="N" OUpper="N" Lower="N" OLower="N" Math="N" OMath="N" Hex="N" AHex="N" NChar="N" VS="N" Bidi_C="N" Join_C="N" Gr_Base="N" Gr_Ext="N" OGr_Ext="N" Gr_Link="N" STerm="N" Ext="N" Term="N" Dia="N" Dep="N" IDS="N" OIDS="N" XIDS="N" IDC="N" OIDC="N" XIDC="N" SD="N" LOE="N" Pat_WS="N" Pat_Syn="N" GCB="CN" WB="XX" SB="XX" CE="N" Comp_Ex="N" NFC_QC="Y" NFD_QC="Y" NFKC_QC="Y" NFKD_QC="Y" XO_NFC="N" XO_NFD="N" XO_NFKC="N" XO_NFKD="N" FC_NFKC="#" CI="N" Cased="N" CWCF="N" CWCM="N" CWKCF="Y" CWL="N" CWT="N" CWU="N" NFKC_CF="" InSC="Other" InPC="NA" blk="NB" isc="" na1=""/>
@@ -43339,6 +43339,20 @@
       <named-sequence name="TAMIL SYLLABLE YU" cps="0BAF 0BC1"/>
       <named-sequence name="TAMIL SYLLABLE YUU" cps="0BAF 0BC2"/>
    </named-sequences>
+   <provisional-named-sequences>
+      <named-sequence name="KEYCAP ASTERISK" cps="002A 20E3"/>
+      <named-sequence name="KEYCAP DIGIT EIGHT" cps="0038 20E3"/>
+      <named-sequence name="KEYCAP DIGIT FIVE" cps="0035 20E3"/>
+      <named-sequence name="KEYCAP DIGIT FOUR" cps="0034 20E3"/>
+      <named-sequence name="KEYCAP DIGIT NINE" cps="0039 20E3"/>
+      <named-sequence name="KEYCAP DIGIT ONE" cps="0031 20E3"/>
+      <named-sequence name="KEYCAP DIGIT SEVEN" cps="0037 20E3"/>
+      <named-sequence name="KEYCAP DIGIT SIX" cps="0036 20E3"/>
+      <named-sequence name="KEYCAP DIGIT THREE" cps="0033 20E3"/>
+      <named-sequence name="KEYCAP DIGIT TWO" cps="0032 20E3"/>
+      <named-sequence name="KEYCAP DIGIT ZERO" cps="0030 20E3"/>
+      <named-sequence name="KEYCAP NUMBER SIGN" cps="0023 20E3"/>
+   </provisional-named-sequences>
    <normalization-corrections>
       <normalization-correction cp="F951" old="96FB" new="964B" version="3.2.0"/>
       <normalization-correction cp="2F868" old="2136A" new="36FC" version="4.0.0"/>
