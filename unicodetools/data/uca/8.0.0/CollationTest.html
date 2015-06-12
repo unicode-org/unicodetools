@@ -23,8 +23,8 @@
 </tbody></table>
 <div class="body">
   <h1>UCA Conformance Tests</h1>
-  <h2 align="center">Version 7.0.0<br>2014-05-27</h2>
-<p>The following files provide conformance tests for the Unicode Collation Algorithm (<a href="http://www.unicode.org/reports/tr10/tr10-30.html">UTS 
+  <h2 align="center">Version 8.0.0<br>2015-05-14</h2>
+<p>The following files provide conformance tests for the Unicode Collation Algorithm (<a href="http://www.unicode.org/reports/tr10/tr10-32.html">UTS 
   #10: Unicode Collation Algorithm</a>).</p>
   <ul>
     <li>CollationTest_SHIFTED.txt</li>
@@ -37,7 +37,7 @@
   <p>There are four different files:</p>
   <ul>
     <li>The shifted vs non-ignorable files correspond to the two alternate
-      <a href="http://www.unicode.org/reports/tr10/tr10-30.html#Variable_Weighting">Variable Weighting</a> values.</li>
+      <a href="http://www.unicode.org/reports/tr10/tr10-32.html#Variable_Weighting">Variable Weighting</a> values.</li>
     <li>The SHORT versions omit the comments, for more compact storage.</li>
   </ul>
 <p>The format is illustrated by the following example:</p>
@@ -64,7 +64,7 @@
   <h2>Testing</h2>
   <p>The files are designed so each line in the file will order as being greater than or equal to 
   the previous one, when using the UCA and the
-  <a href="http://www.unicode.org/reports/tr10/tr10-30.html#Default_Unicode_Collation_Element_Table">Default Unicode Collation Element Table</a>. A test program can read in each line, compare it to 
+  <a href="http://www.unicode.org/reports/tr10/tr10-32.html#Default_Unicode_Collation_Element_Table">Default Unicode Collation Element Table</a>. A test program can read in each line, compare it to 
   the last line, and signal an error if order is not correct. The exact comparison that should be 
   used is as follows:</p>
   <ol>
@@ -111,12 +111,12 @@
     <li>S2.1.1 loops over each of the following three characters C,
     but there is no table entry for any of those three S+C.
     In particular, there is no DUCET mapping for 0FB2+0F71
-    (see <i><a href="http://www.unicode.org/reports/tr10/tr10-30.html#Well_Formed_DUCET">Well-Formedness of the DUCET</a></i>).</li>
+    (see <i><a href="http://www.unicode.org/reports/tr10/tr10-32.html#Well_Formed_DUCET">Well-Formedness of the DUCET</a></i>).</li>
     <li>The loop exits without finding any match beyond S=0FB2.</li>
   </ul>
 
   <p>See “Also note that the Algorithm employs two distinct contraction matching methods:”
-  at the end of <i>Section 4.2, <a href="http://www.unicode.org/reports/tr10/tr10-30.html#Step_2">Produce Array</a></i>.</p>
+  at the end of <i>Section 4.2, <a href="http://www.unicode.org/reports/tr10/tr10-32.html#Step_2">Produce Array</a></i>.</p>
 </div>
 
 </body></html>

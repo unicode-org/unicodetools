@@ -80,6 +80,7 @@ public class XMLProperties {
 
     public void readFile(String systemID, int maxLines) {
         try {
+            System.out.println("Reading: " + systemID);
             final FileInputStream fis = new FileInputStream(systemID);
             final XMLReader xmlReader = XMLFileReader.createXMLReader(false);
             xmlReader.setErrorHandler(new MyErrorHandler());
@@ -123,7 +124,15 @@ public class XMLProperties {
         }
         @Override
         public void endElement(String arg0, String arg1, String arg2) throws SAXException {
-            final XmlLeaf removed = lastElements.remove(lastElements.size() - 1);
+            try {
+                if (lastElements.size() == 0) {
+                    System.out.println("endElement: can't remove last element. Args: " + arg0 + ", " + arg1 + ", " + arg2);
+                } else {
+                    final XmlLeaf removed = lastElements.remove(lastElements.size() - 1);
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new IllegalArgumentException("endElement: can't remove last element. Args: " + arg0 + ", " + arg1 + ", " + arg2, e);
+            }
             //System.out.println("Removed:\t" + removed);
         }
         @Override

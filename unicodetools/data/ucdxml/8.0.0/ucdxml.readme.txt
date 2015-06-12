@@ -19,9 +19,9 @@ the archive:
 
                     flat         grouped
 
-no Unihan data       740 KB          468 KB
-Unihan data only   5,620 KB        5,628 KB
-complete UCD       7,152 KB        6,096 KB
+no Unihan data       738 KB          467 KB
+Unihan data only   5,677 KB        5,683 KB
+complete UCD       7,238 KB        6,153 KB
 
 The flat versions do not use the group mechanism. The grouped versions
 use the group mechanism, with groups corresponding approximately to

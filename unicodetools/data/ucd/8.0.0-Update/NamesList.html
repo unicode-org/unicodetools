@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Language" content="en-us">
 <title>UCD: Unicode NamesList File Format</title>
-<link rel="stylesheet" type="text/css" href="http://www.unicode.org/reports/reports.css">
+<link rel="stylesheet" type="text/css" href="http://www.unicode.org/reports/reports-v2.css">
 </head>
 
 <body bgcolor="#ffffff">
@@ -24,7 +24,7 @@
 </table>
 <div class="body">
   <h1>Unicode NamesList File Format</h1>   
-  <table class="wide">
+  <table class="simple" width="90%">
     <tbody>
       <tr>
         <td valign="top" width="144">Revision</td>
@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <td valign="top" width="144">Date</td>
-        <td valign="top">2015-02-18</td>
+        <td valign="top">2015-06-08</td>
       </tr>
       <tr>
         <td valign="top" width="144">This Version</td>
@@ -69,7 +69,7 @@
   </blockquote>
   <hr width="50%">
 
-<h2><a name="Introduction" id="Introduction"></a>1.0 Introduction</h2>
+<h2>1.0 <a name="Introduction" href="#Introduction">Introduction</a></h2>
 
 <p>The Unicode name list file NamesList.txt (also NamesList.lst) is a plain
 text file used to drive the layout of the character code charts in the Unicode
@@ -102,7 +102,7 @@ proposed characters.</p>
 	Charts in the <a href="http://www.unicode.org/versions/latest">Unicode 
 	Standard</a>.</p> 
 
-<h3><a name="Overview"></a>1.1 NamesList File Overview</h3>
+<h3>1.1 <a name="Overview" href="#Overview">NamesList File Overview</a></h3>
 
 <p>The NamesList files are plain text files which in their most simple form look 
 like this:</p>
@@ -125,7 +125,7 @@ their constituent syntax elements are needed.</p>
 
 <p>The full syntax with all the options is provided in the following sections.</p>
 
-<h2><a name="FileStructure"></a>2.0 NamesList File Structure</h2>
+<h2>2.0 <a name="FileStructure" href="#FileStructure">NamesList File Structure</a></h2>
 
 <p>This section defines the overall file structure</p>
 
@@ -213,27 +213,26 @@ CHAR_ENTRY:   NAME_LINE | RESERVED_LINE
 
 <h4>Blocks followed by Summaries</h4>
 <p>A block may be extended by a summary of standard variation sequences or selected alternate glyphs defined for characters in the block:</p>
-<pre><strong>SUMMARY:   ALTGLYPH_SUMMARY
+<pre><strong>
+SUMMARY:   ALTGLYPH_SUMMARY
 		| VARIATION SUMMARY
 		| ALTGLYPH_SUMMARY VARIATION_SUMMARY
+		| MIXED_SUMMARY
 
-ALTGLYPH_SUMMARY:   ALTGLYPH_SUBHEAD
-		| ALTGLYPH_SUMMARY SUBHEAD
-		| ALTGLYPH_SUMMARY NOTICE_LINE
-		| ALTGLYPH_SUMMARY FILE_COMMENT
-		| ALTGLYPH_SUMMARY EMPTY_LINE
+ALTGLYPH_SUMMARY:   ALTGLYPH_SUBHEADER
+		| ALTGLYPH_SUMMARY SUMMARY_LINE
 
-VARIATION_SUMMARY:   VARIATION_SUBHEAD
-		| VARIATION_SUMMARY SUBHEAD
-		| VARIATION_SUMMARY NOTICE_LINE
-		| VARIATION_SUMMARY FILE_COMMENT
-		| VARIATION_SUMMARY EMPTY_LINE</strong>
+VARIATION_SUMMARY:   VARIATION_SUBHEADER
+		| VARIATION_SUMMARY SUMMARY_LINE
+				
+MIXED_SUMMARY:   MIXED_SUBHEADER
+		| MIXED_SUMMARY SUMMARY_LINE</strong>
 </pre>
 
-<p>When formatted for display, each summary will recap the information presented in the VARIATION_LINE elements 
-of the preceding block, grouped by alternate glyph variants and standardized variation sequences, and 
-preceded by the corresponding subhead. Additional SUBHEAD and NOTICE lines, if provided, immediately 
-follow the ALTGLYPH_SUBHEAD or VARIATION_SUBHEAD. There is no provision to provide subheads that are 
+<p>When formatted for display, each summary will recap the information presented in the VARIATION_LINE elements
+of the preceding block, grouped by alternate glyph variants and standardized variation sequences, and
+preceded by the corresponding subhead. Additional SUBHEADER and NOTICE lines, if provided, immediately
+follow the ALTGLYPH_SUBHEADER, VARIATION_SUBHEADER or MIXED_SUBHEADER. There is no provision to provide subheaders that are
 interspersed between items in the summary.</p>
 
 <p>These syntax constructs are entirely optional. If the ALTGLYPH_SUBHEAD or VARIATION_SUBHEAD are 
@@ -245,7 +244,7 @@ provide specific contents for these summary titles as well as allow the ability 
 information via SUBHEAD and NOTICE elements. The final published version of the Unicode names list 
 is machine generated and will always explicitly provide any summary subheads.</p>
 
-<h3><a name="FileElements"></a>2.1 NamesList File Elements</h3>
+<h3>2.1 <a name="FileElements" href="#FileElements">NamesList File Elements</a></h3>
 
 <p>This section provides the details of the syntax for the individual elements.</p>
 
@@ -345,19 +344,37 @@ is machine generated and will always explicitly provide any summary subheads.</p
 <strong>SUBHEADER:	&quot;@&quot; TAB LINE</strong> 
 			// Skip '@', output line as text as column header
 
-<strong>VARIATION_SUBHEAD:
-		&quot;@~&quot; TAB LINE</strong>
-			// Skip '@', output line as text as column header
-
-<strong>		| &quot;@~&quot;</strong>
+<strong>VARIATION_SUBHEADER:</strong>	<strong>&quot;@~&quot; TAB LINE</strong>			
+			// Output LINE as column header (summary subheader)
+		<strong>| &quot;@~&quot;</strong>					
 			// Output a default standard variation sequences summary subheader
-
-<strong>ALTGLYPH_SUBHEAD:
-		&quot;@@~&quot; TAB LINE</strong>       
-			// Skip '@', output line as text as column header
-
-<strong>		| &quot;@@~&quot;</strong>
+		<strong>| &quot;@~&quot; TAB &quot;!&quot;</strong>		
+			// Suppress output of a default standard variant sequences summary subheader
+			// and disable display of summary
+		<strong>| &quot;@~&quot; TAB &quot;!&quot; VARSEL_LIST</strong>
+		<strong>| &quot;@~&quot; TAB &quot;!&quot; VARSEL_LIST LINE</strong>
+			// Output a standard summary subheader, using default or LINE respectively
+			// Suppress any std variation sequences using selectors from the list
+											
+<strong>ALTGLYPH_SUBHEADER:</strong>	<strong>&quot;@@~&quot; TAB LINE</strong>			
+			// Output LINE as column header (summary subheader)
+		<strong>| &quot;@@~&quot;</strong>				
 			// Output a default alternate glyph summary subheader
+		<strong>| &quot;@@~&quot; TAB &quot;!&quot;</strong>		
+			// Suppress output of a default alternate glyph summary subheader
+			// and disable display of summary
+
+<strong>MIXED_SUBHEADER:	</strong><strong>&quot;@@@~&quot; TAB LINE</strong>			
+			// Output LINE as column header (summary subheader)
+		<strong>| &quot;@@@~&quot;</strong>					
+			// Output a default combined variation and alternate glyph summary subheader
+		<strong>| &quot;@@@~&quot; TAB &quot;!&quot;</strong>			
+			// Suppresses output of a default alternate glyph summary subheader
+			// and disable display of summary
+		<strong>| &quot;@@@~&quot; TAB &quot;!&quot; VARSEL_LIST</strong> 
+		<strong>| &quot;@@@~&quot; TAB &quot;!&quot; VARSEL_LIST LINE</strong>
+			// Output a combinded summary subheader, using default or LINE respectively
+			// Suppress any std variation sequences using selectors from the list
 
 <strong>BLOCKHEADER:	&quot;@@&quot; TAB BLOCKSTART TAB BLOCKNAME TAB BLOCKEND LF</strong>
 			// Skip &quot;@@&quot;, cause a page break and optional
@@ -407,20 +424,21 @@ is machine generated and will always explicitly provide any summary subheads.</p
 		apostrophe and accented letters in character names. </li>
 <li>An empty alternative glyph summary subheader expression will result in default header &quot;Selected Alternative Glyphs&quot;</li>
 <li>An empty standard variation subheader expression will result in the default header &quot;Standardized Variation Sequences&quot;</li>
+<li> A VARSEL_LIST may only contain code points for standard variation selectors (including script specific ones)</li>
 <li>When displaying a VARIATION_LINE for alternate glyphs, the &quot;ALTn&quot; selector is not displayed. </li>
 <li>If a glyph is unavailable for the variant glyph in a VARIATION_LINE it is replaced by the glyph for LIGHT SCREEN.</li>
 	</ul>
 
 
-<h3><a name="FilePrimitives"></a>2.2 NamesList File Primitives</h3>
+<h3>2.2 <a name="FilePrimitives" href="#FilePrimitives">NamesList File Primitives</a></h3>
 
 <p>The following are the primitives and terminals for the NamesList syntax.</p>
 
-<pre><strong>LINE:		STRING LF
+<pre><strong>LINE</strong>:		<strong>STRING LF
 COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
 		| &quot;(&quot; LABEL &quot;)&quot; SP &quot;*&quot;
-		| &quot;*&quot;
-</strong>
+		| &quot;*&quot;</strong>
+
 <strong>NAME</strong>:	  	&lt;sequence of uppercase ASCII letters, digits, space and hyphen&gt; 
 <strong>LCNAME</strong>:		&lt;sequence of lowercase ASCII letters, digits space and hyphen&gt;
 		<strong>| LCNAME &quot;-&quot; CHAR</strong>
@@ -428,9 +446,11 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
 <strong>LCTAG</strong>:		&lt;sequence of ASCII letters&gt;
 <strong>STRING</strong>:	  	&lt;sequence of Latin-1 characters, except controls&gt; 
 <strong>LABEL</strong>:	  	&lt;sequence of Latin-1 characters, except controls, &quot;(&quot; or &quot;)&quot;&gt; 
-<strong>VARSEL:</strong>		<strong>CHAR
+<strong>VARSEL</strong>:		<strong>CHAR
 		| ALT ( &quot;1&quot;|&quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot; )</strong>
-
+<strong>VARSEL_LIST</strong>:	<strong>&quot;{&quot;;CHAR_LIST &quot;}&quot;</strong>
+<strong>CHAR_LIST</strong>:	<strong>CHAR
+		| CHAR_LIST SP CHAR</strong>
 <strong>CHAR</strong>:		<strong>X X X X</strong>
 		<strong>| X X X X X </strong>
 		<strong>| X X X X X X </strong>
@@ -490,10 +510,12 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
        handle such exceptions.</li>
        <li>The final LF in the file must be present.</li>
 </ul>
-  <h2>Modifications</h2>
+  <h2><a name="Modifications" href="#Modifications">Modifications</a></h2>
   <p><b>Version 8.0.0</b></p>
         <ul>
         <li>Reissued for Unicode 8.0.0.</li>
+  <li>Added MIXED_SUBHEADER, VARSEL_LIST, and CHAR_LIST to the syntax.</li>
+  <li>Tweaked BNF and notes for variation summaries.</li>
         </ul>
   <p><b>Version 7.0.0</b></p>
         <ul>
