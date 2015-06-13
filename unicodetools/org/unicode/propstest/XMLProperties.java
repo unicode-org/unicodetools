@@ -34,7 +34,8 @@ public class XMLProperties {
         // Both
         CHAR,
         // Nonleaf
-        GROUP, UCD, REPERTOIRE, BLOCKS, NAMED_SEQUENCES, NORMALIZATION_CORRECTIONS, STANDARDIZED_VARIANTS, CJK_RADICALS, EMOJI_SOURCES
+        GROUP, UCD, REPERTOIRE, BLOCKS, NAMED_SEQUENCES, PROVISIONAL_NAMED_SEQUENCES, NORMALIZATION_CORRECTIONS, 
+        STANDARDIZED_VARIANTS, CJK_RADICALS, EMOJI_SOURCES
         ;
         static final XmlLeaf GREATEST_LEAF = NAME_ALIAS;
         static final XmlLeaf GREATEST_BOTH = CHAR;
@@ -61,7 +62,7 @@ public class XMLProperties {
         }
     }
     Set<String> leavesNotHandled = new LinkedHashSet<String>();
-    Set<String> leavesNotRecognized = new LinkedHashSet<String>();
+//    Set<String> leavesNotRecognized = new LinkedHashSet<String>();
 
 
     public XMLProperties(String folder, boolean includeUnihan, int maxLines) {
@@ -74,7 +75,7 @@ public class XMLProperties {
             final UnicodeMap<String> map = property2data.get(prop);
             map.freeze();
         }
-        System.out.println("Element names not recognized:\t" + leavesNotRecognized);
+//        System.out.println("Element names not recognized:\t" + leavesNotRecognized);
         System.out.println("Element names not handled:\t" + leavesNotHandled);
     }
 
@@ -162,8 +163,9 @@ public class XMLProperties {
             try {
                 final XmlLeaf xmlLeaf = XmlLeaf.forString(qName);
                 if (xmlLeaf == null) {
-                    leavesNotRecognized.add(qName);
-                    return;
+                    throw new IllegalArgumentException(qName);
+                    //leavesNotRecognized.add(qName);
+                    //return;
                 }
                 lastElements.add(xmlLeaf);
                 //System.out.println("Added:\t" + lastElements);
@@ -306,9 +308,9 @@ public class XMLProperties {
 
         public UnicodeMap<String> doAttributes(String key, String value) {
             UcdProperty prop = UcdProperty.forString(key);
-            if (prop == UcdProperty.Deprecated && cp.start > 0xE0000 && cp.start < 0xE00FF) {
-                System.out.println(Utility.hex(cp.start) + "," + Utility.hex(cp.end) + "\t" + key + "\t" + value);
-            }
+//            if (prop == UcdProperty.Deprecated && cp.start > 0xE0000 && cp.start < 0xE00FF) {
+//                System.out.println(Utility.hex(cp.start) + "," + Utility.hex(cp.end) + "\t" + key + "\t" + value);
+//            }
             if (prop == null) {
                 if (key.endsWith("cp")) {
                     if (key.equals("cp")
