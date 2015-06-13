@@ -219,8 +219,10 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             result = new UnicodeMap<>();
             for (String value : m.values()) {
                 UnicodeSet uset = m.getSet(value);
-                String shortValue = ((Named) prop2.getEnum(value)).getNames().getShortName();
-                result.putAll(uset, Integer.parseInt(shortValue));
+                if (prop2 == UcdProperty.Canonical_Combining_Class) { // hack
+                    value = ((Named) prop2.getEnum(value)).getNames().getShortName();
+                }
+                result.putAll(uset, Integer.parseInt(value));
             }
             INT_CACHE.put(prop2, result.freeze());
         }
