@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <td valign="top" width="144">Date</td>
-        <td valign="top">2015-06-08</td>
+        <td valign="top">2015-06-15</td>
       </tr>
       <tr>
         <td valign="top" width="144">This Version</td>
@@ -212,7 +212,7 @@ CHAR_ENTRY:   NAME_LINE | RESERVED_LINE
   file format, do not occur in final published versions of the NamesList.</p>
 
 <h4>Blocks followed by Summaries</h4>
-<p>A block may be extended by a summary of standard variation sequences or selected alternate glyphs defined for characters in the block:</p>
+<p>A block may be extended by a summary of standard variation sequences or selected alternate glyphs (or both) defined for characters in the block:</p>
 <pre><strong>
 SUMMARY:   ALTGLYPH_SUMMARY
 		| VARIATION SUMMARY
@@ -226,23 +226,28 @@ VARIATION_SUMMARY:   VARIATION_SUBHEADER
 		| VARIATION_SUMMARY SUMMARY_LINE
 				
 MIXED_SUMMARY:   MIXED_SUBHEADER
-		| MIXED_SUMMARY SUMMARY_LINE</strong>
+		| MIXED_SUMMARY SUMMARY_LINE
+
+SUMMARY_LINE:   SUBHEADER
+		| NOTICE_LINE
+		| FILE_COMMENT
+		| EMPTY_LINE</strong>
 </pre>
 
 <p>When formatted for display, each summary will recap the information presented in the VARIATION_LINE elements
 of the preceding block, grouped by alternate glyph variants and standardized variation sequences, and
-preceded by the corresponding subhead. Additional SUBHEADER and NOTICE lines, if provided, immediately
+preceded by the corresponding subheader. Additional SUBHEADER and NOTICE lines, if provided, immediately
 follow the ALTGLYPH_SUBHEADER, VARIATION_SUBHEADER or MIXED_SUBHEADER. There is no provision to provide subheaders that are
 interspersed between items in the summary.</p>
 
-<p>These syntax constructs are entirely optional. If the ALTGLYPH_SUBHEAD or VARIATION_SUBHEAD are 
+<p>These syntax constructs are entirely optional. If the ALTGLYPH_SUBHEADER or VARIATION_SUBHEADER are 
 omitted from the names list, but the preceding block nevertheless contains VARIATION_LINE elements 
 as described below, Unibook will automatically generate any required summaries using a default format for the headers.</p>
 
-<p>Thus, the main purpose for providing ALTGLYPH_SUBHEAD or VARIATION_SUBHEAD elements would be to 
+<p>Thus, the main purpose for providing ALTGLYPH_SUBHEADER or VARIATION_SUBHEADER elements would be to 
 provide specific contents for these summary titles as well as allow the ability to add additional 
-information via SUBHEAD and NOTICE elements. The final published version of the Unicode names list 
-is machine generated and will always explicitly provide any summary subheads.</p>
+information via SUBHEADER and NOTICE elements. The final published version of the Unicode names list 
+is machine generated and will always explicitly provide any summary subheaders.</p>
 
 <h3>2.1 <a name="FileElements" href="#FileElements">NamesList File Elements</a></h3>
 
@@ -311,12 +316,11 @@ is machine generated and will always explicitly provide any summary subheads.</p
 			// Empty and ignored lines as well as 
 			// file comments are ignored
 
-<strong>IGNORED_LINE:	TAB &quot;;&quot; EXPAND_LINE</strong>
-			// Skip &#39;;&#39; character, ignore text
+<strong>IGNORED_LINE:	TAB &quot;;&quot; LINE</strong>
+			// Ignore LINE
 
 <strong>SIDEBAR_LINE: 	&quot;;;&quot; LINE</strong>
-			// Skip &#39;;;&#39; characters, output line
-			// as marginal note
+			// Output LINE as marginal note
 
 <strong>DECOMPOSITION:	TAB &quot;:&quot; SP EXPAND_LINE</strong>       
 			// Replace ':' by EQUIV, expand line into 
@@ -328,21 +332,25 @@ is machine generated and will always explicitly provide any summary subheads.</p
 			// check for balanced &lt; &gt;
 
 <strong>NOTICE_LINE:	&quot;@+&quot; TAB LINE</strong>       
-			// Skip '@+', output text as notice
+			// Output LINE as notice
 
 <strong>		| &quot;@+&quot; TAB * SP LINE</strong>   
-			// Skip '@', output text as notice
+			// Output LINE as notice
 			// &quot;*&quot; expands to a bullet character
 			// Notices following a character code apply to the
 			// character and are indented. Notices not following
 			// a character code apply to the page/block/column 
 			// and are italicized, but not indented
 
+<strong>TITLE:		&quot;@@@&quot; TAB LINE</strong>      
+			// Output LINE as text
+			// Title is used in page headers
+
 <strong>SUBTITLE:	&quot;@@@+&quot; TAB LINE</strong>      
-			// Skip &quot;@@@+&quot;, output text as subtitle
+			// Output LINE as subtitle
 
 <strong>SUBHEADER:	&quot;@&quot; TAB LINE</strong> 
-			// Skip '@', output line as text as column header
+			// Output LINE as column header
 
 <strong>VARIATION_SUBHEADER:</strong>	<strong>&quot;@~&quot; TAB LINE</strong>			
 			// Output LINE as column header (summary subheader)
@@ -369,15 +377,15 @@ is machine generated and will always explicitly provide any summary subheads.</p
 		<strong>| &quot;@@@~&quot;</strong>					
 			// Output a default combined variation and alternate glyph summary subheader
 		<strong>| &quot;@@@~&quot; TAB &quot;!&quot;</strong>			
-			// Suppresses output of a default alternate glyph summary subheader
+			// Suppress output of a default alternate glyph summary subheader
 			// and disable display of summary
 		<strong>| &quot;@@@~&quot; TAB &quot;!&quot; VARSEL_LIST</strong> 
 		<strong>| &quot;@@@~&quot; TAB &quot;!&quot; VARSEL_LIST LINE</strong>
-			// Output a combinded summary subheader, using default or LINE respectively
+			// Output a combined summary subheader, using default or LINE respectively
 			// Suppress any std variation sequences using selectors from the list
 
 <strong>BLOCKHEADER:	&quot;@@&quot; TAB BLOCKSTART TAB BLOCKNAME TAB BLOCKEND LF</strong>
-			// Skip &quot;@@&quot;, cause a page break and optional
+			// Cause a page break and optional
 			// blank page, then output one or more charts
 			// followed by the list of character names. 
 			// Use BLOCKSTART and BLOCKEND to define
@@ -394,10 +402,6 @@ is machine generated and will always explicitly provide any summary subheads.</p
 <strong>BLOCKEND:	CHAR</strong>	// Last character position in block
 <strong>PAGEBREAK:	&quot;@@&quot;</strong>	// Insert a (column) break
 <strong>INDEX_TAB:	&quot;@@+&quot;</strong>	// Start a new index tab at latest BLOCKSTART
-
-<strong>TITLE:		&quot;@@@&quot; TAB LINE</strong>      
-			// Skip &quot;@@@&quot;, output line as text
-			// Title is used in page headers
 
 <strong>EXPAND_LINE:	{ESC_CHAR | CHAR | STRING | ESC +}+ LF</strong>
 			// Instances of CHAR (see Notes) are replaced by 
@@ -443,12 +447,12 @@ COMMENT:	&quot;(&quot; LABEL &quot;)&quot;
 <strong>LCNAME</strong>:		&lt;sequence of lowercase ASCII letters, digits space and hyphen&gt;
 		<strong>| LCNAME &quot;-&quot; CHAR</strong>
 
-<strong>LCTAG</strong>:		&lt;sequence of ASCII letters&gt;
-<strong>STRING</strong>:	  	&lt;sequence of Latin-1 characters, except controls&gt; 
-<strong>LABEL</strong>:	  	&lt;sequence of Latin-1 characters, except controls, &quot;(&quot; or &quot;)&quot;&gt; 
+<strong>LCTAG</strong>:		&lt;sequence of lowercase ASCII letters&gt;
+<strong>STRING</strong>:	  	&lt;sequence of ASCII or Latin-1 characters, except controls&gt; 
+<strong>LABEL</strong>:	  	&lt;sequence of ASCII or Latin-1 characters, except controls, &quot;(&quot; or &quot;)&quot;&gt; 
 <strong>VARSEL</strong>:		<strong>CHAR
 		| ALT ( &quot;1&quot;|&quot;2&quot;|&quot;3&quot;|&quot;4&quot;|&quot;5&quot;|&quot;6&quot;|&quot;7&quot;|&quot;8&quot;|&quot;9&quot; )</strong>
-<strong>VARSEL_LIST</strong>:	<strong>&quot;{&quot;;CHAR_LIST &quot;}&quot;</strong>
+<strong>VARSEL_LIST</strong>:	<strong>&quot;{&quot; CHAR_LIST &quot;}&quot;</strong>
 <strong>CHAR_LIST</strong>:	<strong>CHAR
 		| CHAR_LIST SP CHAR</strong>
 <strong>CHAR</strong>:		<strong>X X X X</strong>
