@@ -28,7 +28,7 @@ import org.unicode.props.UcdPropertyValues.*;public enum UcdProperty {
 		// Miscellaneous
     Bidi_Mirroring_Glyph(PropertyType.Miscellaneous, "bmg"),
     Bidi_Paired_Bracket(PropertyType.Miscellaneous, "bpb"),
-    CJK_Radical(PropertyType.Miscellaneous, "CJKR"),
+    CJK_Radical(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "CJKR"),
     Confusable_MA(PropertyType.Miscellaneous, "ConfMA"),
     Confusable_ML(PropertyType.Miscellaneous, "ConfML"),
     Confusable_SA(PropertyType.Miscellaneous, "ConfSA"),
@@ -121,7 +121,7 @@ import org.unicode.props.UcdPropertyValues.*;public enum UcdProperty {
     kRSKanWa(PropertyType.Miscellaneous, "cjkRSKanWa"),
     kRSKangXi(PropertyType.Miscellaneous, "cjkRSKangXi"),
     kRSKorean(PropertyType.Miscellaneous, "cjkRSKorean"),
-    kRSUnicode(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkRSUnicode"),
+    kRSUnicode(PropertyType.Miscellaneous, null, ValueCardinality.Ordered, "cjkRSUnicode"),
     kSBGY(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSBGY"),
     kSemanticVariant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSemanticVariant"),
     kSimplifiedVariant(PropertyType.Miscellaneous, null, ValueCardinality.Unordered, "cjkSimplifiedVariant"),

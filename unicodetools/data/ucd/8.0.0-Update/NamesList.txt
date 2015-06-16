@@ -1,13 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 8.0.0
 @@@+	U80M150527.lst
-	Unicode 8.0.0 names list, tenth delta.
-	Based on published 4th Edition and Amd 1.
-	Repertoire synched with UnicodeData-8.0.0d8.txt
-	Converged subheads for Mensural, Gregorian and Kievan musical notation sections.
-	Updated annotations for 26A5, 26A6, 26A7.
-	Added annotation of fraction use to 0D2E.
-	Enabled output of Manichaean standardized variation sequences.
+	Unicode 8.0.0 final names list.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used

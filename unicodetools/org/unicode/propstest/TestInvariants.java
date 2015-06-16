@@ -17,9 +17,8 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
-import org.unicode.props.UcdPropertyValues.Age_Values;
-import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
+import org.unicode.props.UcdPropertyValues.Binary;
+import org.unicode.props.UcdPropertyValues.*;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -47,6 +46,32 @@ public class TestInvariants extends TestFmwkPlus{
             }
             IUPS.put(age, IndexUnicodeProperties.make(age.getShortName()));
         }
+    }
+    
+    public void TestHanCompleteness() {
+        final UnicodeMap<String> totalStrokes = iup.load(UcdProperty.kTotalStrokes);
+        final UnicodeMap<String> mandarin = iup.load(UcdProperty.kMandarin);
+        final UnicodeMap<String> radicalStroke = iup.load(UcdProperty.kRSUnicode);
+        final UnicodeMap<String> hanyuPinyin = iup.load(UcdProperty.kHanyuPinyin);
+        final UnicodeMap<Binary> ideographic = iup.loadEnum(UcdProperty.Ideographic, Binary.class);
+        final UnicodeMap<String> haveDecomps = iup.load(UcdProperty.Decomposition_Mapping);
+        UnicodeSet ideographicSet = ideographic.getSet(Binary.Yes);
+        UnicodeSet missing;
+        
+        final UnicodeSet rs = radicalStroke.keySet();
+        missing = new UnicodeSet(ideographicSet).removeAll(rs);
+        assertEquals(UcdProperty.kRSUnicode.toString(), UnicodeSet.EMPTY, missing);
+
+        UnicodeSet comparison = new UnicodeSet(rs).removeAll(haveDecomps.keySet());
+        missing = new UnicodeSet(comparison).removeAll(totalStrokes.keySet());
+        assertEquals(UcdProperty.kTotalStrokes.toString(), UnicodeSet.EMPTY, missing);
+        
+        missing = new UnicodeSet(comparison).removeAll(mandarin.keySet());
+        assertEquals(UcdProperty.kMandarin.toString(), UnicodeSet.EMPTY, missing);
+        
+        missing.retainAll(hanyuPinyin.keySet());
+        assertEquals("Could be added from hanyuPinyin", UnicodeSet.EMPTY, missing);
+
     }
 
     public void TestUniformUnassigned() {
