@@ -1604,7 +1604,7 @@ public class GenerateEmoji {
                 (style == Style.bestImage ? "" : "ref-") + "emoji-ordering.html");
         writeHeader(out, "Emoji Ordering",
                 "This chart shows the default ordering of emoji characters from " + CLDR_DATA_LINK + ". "
-                        + "This is designed to improve on the <a target='uca' href='http://=unicode.org/charts/collation/'>UCA</a> " +
+                        + "This is designed to improve on the <a target='uca' href='http://unicode.org/charts/collation/'>UCA</a> " +
                         "orderings (shown at the right), by grouping similar items together." +
                         "The cell divisions are an artifact, simply to help in review. " +
                         "The left side is an emoji image (* colorful where possible), while the right is black and white.", "border='1'");
