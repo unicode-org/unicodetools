@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -11,6 +12,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
@@ -19,6 +22,7 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.ChainedMap;
 import org.unicode.cldr.util.ChainedMap.M3;
+import org.unicode.cldr.util.ChainedMap.M4;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -47,12 +51,16 @@ public class Ids {
 
     private static final Splitter DOT_SPLITTER = Splitter.on('.');
     private static final Splitter VBAR_SPLITTER = Splitter.on('|');
+    private static final Splitter TAB_SPLITTER = Splitter.on('\t');
+    private static final Splitter SEMI_SPLITTER = Splitter.on(';').trimResults();
     private static final Joiner SPACE_JOINER = Joiner.on(' ');
     private static final Joiner CRLF_JOINER = Joiner.on('\n');
 
     private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
     private static final UnicodeMap<List<String>> radicalStroke = iup.loadList(UcdProperty.kRSUnicode);
+    private static final UnicodeMap<Set<String>> adobeRadicalStroke = iup.loadSet(UcdProperty.kRSAdobe_Japan1_6);
     private static final UnicodeMap<Integer> numericRadicalStroke;
+    private static final M3<Integer,Boolean,UnicodeSet> USTROKE = ChainedMap.of(new TreeMap(), new TreeMap(), UnicodeSet.class);
     static {
         numericRadicalStroke = new UnicodeMap<>();
         for (Entry<String, List<String>> entry : radicalStroke.entrySet()) {
@@ -60,16 +68,27 @@ public class Ids {
             List<String> parts = DOT_SPLITTER.splitToList(items.get(0));
             String rad = parts.get(0);
             int radInt;
-            if (rad.endsWith("'")) {
-                radInt = Integer.parseInt(rad.substring(0,rad.length()-1))*10000 + 1000;
-            } else {
-                radInt = Integer.parseInt(rad)*10000;
-            }
+            boolean alt = rad.endsWith("'");
+            radInt = Integer.parseInt(alt ? rad.substring(0,rad.length()-1) : rad);
             final int remStrokes = Integer.parseInt(parts.get(1));
-            numericRadicalStroke.put(entry.getKey(), radInt + remStrokes);
+            numericRadicalStroke.put(entry.getKey(), radInt*10000 + (alt ? 1000 : 0) + remStrokes);
+            if (remStrokes == 0) {
+                UnicodeSet uset = USTROKE.get(radInt, alt);
+                if (uset == null) {
+                    USTROKE.put(radInt, alt, uset = new UnicodeSet());
+                }
+                uset.add(entry.getKey());
+            }
         }
         numericRadicalStroke.freeze();
+
+        for (Entry<Integer, Map<Boolean, UnicodeSet>> entry : USTROKE) {
+            for (Entry<Boolean, UnicodeSet> entry3 : entry.getValue().entrySet()) {
+                entry3.getValue().freeze();
+            }
+        }
     }
+
     private static final Comparator<String> UNIHAN = new Comparator<String>() {
         @Override
         public int compare(String o1, String o2) {
@@ -115,41 +134,104 @@ public class Ids {
 
     };
     //private static final UnicodeMap<String> totalStrokes = iup.load(UcdProperty.kTotalStrokes);
-    private static final UnicodeMap<String> cjkRadical;
+
+    static final Pattern ADOBE = Pattern.compile("[CV]\\+[0-9]{1,5}\\+([1-9][0-9]{0,2})\\.([1-9][0-9]?)\\.([0-9]{1,2})");
+    /**
+     *  radical, rstrokes, remaining => Unicode => remaining
+
+     */
+    private static final M4<Integer,Integer,Integer,UnicodeSet> ASTROKE = ChainedMap.of(new TreeMap(), new TreeMap(), new TreeMap(), UnicodeSet.class);
+    static {
+        Matcher m = ADOBE.matcher("");
+        for (Entry<String, Set<String>> entry : adobeRadicalStroke.entrySet()) {
+            String source = entry.getKey();
+            for (String s : entry.getValue()) {
+                if (!m.reset(s).matches()) {
+                    throw new IllegalArgumentException();
+                }
+                int radical = Integer.parseInt(m.group(1));
+                int rstrokes = Integer.parseInt(m.group(2));
+                int remaining = Integer.parseInt(m.group(3));
+                UnicodeSet map = ASTROKE.get(radical, rstrokes, remaining);
+                if (map == null) {
+                    ASTROKE.put(radical, rstrokes, remaining, map = new UnicodeSet());
+                }
+                map.add(source);
+            }
+        }
+        for (Entry<Integer, Map<Integer, Map<Integer, UnicodeSet>>> entry : ASTROKE) {
+            for (Entry<Integer, Map<Integer, UnicodeSet>> entry2 : entry.getValue().entrySet()) {
+                for (Entry<Integer, UnicodeSet> entry3 : entry2.getValue().entrySet()) {
+                    entry3.getValue().freeze();
+                }
+            }
+        }
+    }
+
+    private static final UnicodeMap<String> unicodeToRadical;
     private static final Relation<String,String> rawRadToUnicode;
     private static final Relation<String,String> radToUnicode;
+    private static final Relation<Integer,String> radToCjkRad;
     static {
-        UnicodeMap<List<String>> cjkRadicalRaw = iup.loadList(UcdProperty.CJK_Radical);
+        UnicodeMap<List<String>> unicodeToRadicalRaw = iup.loadList(UcdProperty.CJK_Radical);
 
         rawRadToUnicode = Relation.of(new TreeMap(), TreeSet.class);
-        for (Entry<String, List<String>> entry : cjkRadicalRaw.entrySet()) {
+        for (Entry<String, List<String>> entry : unicodeToRadicalRaw.entrySet()) {
             rawRadToUnicode.putAll(entry.getValue(), entry.getKey());
         }
         rawRadToUnicode.freeze();
 
-        cjkRadical = new UnicodeMap<>();
-        fillRadical(cjkRadicalRaw);
+        unicodeToRadical = new UnicodeMap<>();
+        // Add extra Adobe radicals first
+        for (Entry<Integer, Map<Integer, Map<Integer, UnicodeSet>>> entry : ASTROKE) {
+            final int radical = entry.getKey();
+            final String radString = String.valueOf(radical);
+            for (Entry<Integer, Map<Integer, UnicodeSet>> entry2 : entry.getValue().entrySet()) {
+                final int strokesInRadical = entry2.getKey();
+                if (radical == 212 && strokesInRadical == 10) {
+                    int debug = 0;
+                }
+                UnicodeSet itemsForZero = entry2.getValue().get(0);
+                if (itemsForZero != null) {
+                    for (String s : itemsForZero) {
+                        unicodeToRadical.put(s, radString);
+                    }
+                }
+            }
+        }
+
+        fillRadical(unicodeToRadicalRaw);
 
         radToUnicode = Relation.of(new TreeMap(), TreeSet.class);
-        for (Entry<String, String> entry : cjkRadical.entrySet()) {
+        for (Entry<String, String> entry : unicodeToRadical.entrySet()) {
             radToUnicode.put(entry.getValue(), entry.getKey());
         }
         radToUnicode.freeze();
+
+        radToCjkRad = Relation.of(new TreeMap(), TreeSet.class);
+        for (String line : FileUtilities.in(Ids.class, "idsCjkRadicals.txt")) {
+            int hashPos = line.indexOf('#');
+            if (hashPos >= 0) {
+                line= line.substring(0, hashPos).trim();
+            }
+            if (line.isEmpty()) {
+                continue;
+            }
+            List<String> parts = SEMI_SPLITTER.splitToList(line);
+            int cjkRad = Integer.parseInt(parts.get(0), 16);
+            int radNumber = Integer.parseInt(parts.get(1));
+            radToCjkRad.put(radNumber, UTF16.valueOf(cjkRad));
+        }
     }
 
     private static void fillRadical(UnicodeMap<List<String>> cjkRadicalRaw) {
-        Set<String> copyRad = new LinkedHashSet<String>();
-
+        Relation<String,Integer> unicodeToRsRadicals;
         for (EntryRange<List<String>> entry : radicalStroke.entryRanges()) {
             for (int cp = entry.codepoint; cp <= entry.codepointEnd; ++cp) {
                 for (String rs : entry.value) {
                     if (rs.endsWith(".0")) {
                         List<String> rad = cjkRadicalRaw.get(cp);
-                        String msg;
-                        if (rad != null) {
-                            msg = "Is CJK Radical";
-                        } else {
-                            msg = "Adding:";
+                        if (rad == null) {
                             rad = new ArrayList<String>();
                             for (String vb : VBAR_SPLITTER.split(rs)) {
                                 List<String> ds = DOT_SPLITTER.splitToList(vb);
@@ -157,30 +239,19 @@ public class Ids {
                                     rad.add(ds.get(0));
                                 }
                             }
-                            cjkRadical.put(cp, rad.iterator().next());
+                            unicodeToRadical.put(cp, rad.iterator().next());
                         }
-                        copyRad.clear();
-                        for (String s : rad) {
-                            copyRad.addAll(rawRadToUnicode.get(s));
-                        }
-                        //                        System.out.println(msg
-                        //                                + "\t" + "U+" + Utility.hex(cp)
-                        //                                + "\t" + UTF16.valueOf(cp) 
-                        //                                + "\t" + cleanRadical(rs.substring(0,rs.length()-2))
-                        //                                + "\t" + rad
-                        //                                + "\t" + copyRad
-                        //                                );
                     }
                 }
             }
         }
         for (Entry<String, List<String>> entry : cjkRadicalRaw.entrySet()) {
-            if (!cjkRadical.containsKey(entry.getKey())) {
-                cjkRadical.put(entry.getKey(), entry.getValue().iterator().next());
+            if (!unicodeToRadical.containsKey(entry.getKey())) {
+                unicodeToRadical.put(entry.getKey(), entry.getValue().iterator().next());
                 //System.out.println("Missing:\t" + entry.getKey() + "\t" + entry.getValue() + "\t" + UCharacter.getName(entry.getKey(),"+"));
             }
         }
-        cjkRadical.freeze();
+        unicodeToRadical.freeze();
     }
 
     private static final UnicodeSet IDS = new UnicodeSet("[[:IDS_Binary_Operator:][:IDS_Trinary_Operator:]]").freeze();
@@ -365,13 +436,13 @@ public class Ids {
             return "#" + rgb.substring(rgb.length()-6);
         }
 
-        public static List<CpPart> parse(String source) {
+        public static List<CpPart> parse(String sourceChar, String source, Output<Boolean> questionable) {
             if (DEBUG) System.out.println(source);
             ArrayList<CpPart> result = new ArrayList<CpPart>();
             final int[] codePoints = CharSequences.codePoints(source);
             int reached;
             try {
-                reached = parse(1, Positioning.BASE, 0, codePoints, result);
+                reached = parse(sourceChar, 1, Positioning.BASE, 0, codePoints, result, questionable);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new IllegalArgumentException("Error: expected more characters");
             }
@@ -381,14 +452,12 @@ public class Ids {
             return result;
         }
 
-        private static int parse(int depth, Positioning position, int pos, int[] codePoints, ArrayList<CpPart> result) {
+        private static int parse(String sourceChar, int depth, Positioning position, int pos, int[] codePoints, ArrayList<CpPart> result, Output<Boolean> questionable) {
+            questionable.value = false;
             final int lead = codePoints[pos++];
-            if (lead == '訁') {
-                boolean debug = false;
-            }
             final IdsData ids = IDS_INFO.get(lead);
             if (ids == null || ids == IdsData.IDEO) {
-                String radical = cjkRadical.get(lead);
+                String radical = unicodeToRadical.get(lead);
                 if (radical != null) {
                     result.add(new CpPart(lead, position, pos/(float)codePoints.length));
                     return pos;
@@ -402,6 +471,11 @@ public class Ids {
                 if (DEBUG) System.out.println(Utility.repeat("\t",depth) + UTF16.valueOf(codePoint) + " & " + combo);
 
                 IdsData partData = IDS_INFO.get(codePoint);
+                while (partData == null && codePoint == '？') {
+                    questionable.value = true;
+                    codePoint = codePoints[pos++];
+                    partData = IDS_INFO.get(codePoint);
+                }
                 if (partData == null) {
                     if (codePoint == '{') {
                         int first = codePoints[pos++] - 0x30;
@@ -417,21 +491,24 @@ public class Ids {
                             throw new IllegalArgumentException("Error: unexpected character " + Utility.hex(codePoint) + " at " + (pos-1));
                         }
                         codePoint = 0xE000 + first * 10 + second;
+                        Special.addToSpecial(codePoint, sourceChar);
                         partData = IDS_INFO.get(codePoint);
                         //                    } else if (codePoint == '？') {
                         //                        codePoint = 0xE07F;
                         //                        partData = IDS_INFO.get(codePoint);
                     } else if (codePoint == '↔') {
-                        int arg = codePoints[pos++];
-                        int mirrored = MIRRORED.indexOf(arg);
+                        codePoint = codePoints[pos++];
+                        int mirrored = MIRRORED.indexOf(codePoint);
                         if (mirrored >= 0) {
                             partData = IDS_INFO.get(0xE040 + mirrored);
+                            Special.addSpecial(0xE040 + mirrored, sourceChar, "mirrored " + UTF16.valueOf(codePoint));
                         }
                     } else if (codePoint == '↷') {
-                        int arg = codePoints[pos++];
-                        int mirrored = FLIPPED.indexOf(arg);
+                        codePoint = codePoints[pos++];
+                        int mirrored = FLIPPED.indexOf(codePoint);
                         if (mirrored >= 0) {
                             partData = IDS_INFO.get(0xE050 + mirrored);
+                            Special.addSpecial(0xE050 + mirrored, sourceChar, "rotated " + UTF16.valueOf(codePoint));
                         }
                     }
                 }
@@ -440,7 +517,7 @@ public class Ids {
                 } else if (partData == IdsData.IDEO) {
                     result.add(new CpPart(codePoint, combo, pos/(float)codePoints.length));
                 } else {
-                    pos = parse(depth + 1, combo, pos-1, codePoints, result);
+                    pos = parse(sourceChar, depth + 1, combo, pos-1, codePoints, result, questionable);
                 }
             }
             return pos;
@@ -472,6 +549,67 @@ public class Ids {
     private static final int LARGE = 72;
 
     private static final UnicodeMap<CharacterIds> IDS_RECURSIVE = new UnicodeMap<>();
+    
+    private static class Special {
+        static final Map<Integer, Special> specials = new TreeMap<>();
+
+        final String description;
+        UnicodeSet samples = new UnicodeSet();
+        
+        public Special(String description) {
+            this.description = description;
+        }
+        
+        public static void addSpecial(int codepoint, String sourceChar, String description) {
+            codepoint -= 0xE000;
+            Special special = specials.get(codepoint);
+            if (specials.get(codepoint) == null) {
+                special = new Special(description);
+                specials.put(codepoint, special);
+            }
+            special.samples.add(sourceChar);
+        }
+
+        public static void addSpecial(String line) {
+            int codepoint = (line.charAt(1)-0x30)*10+(line.charAt(2)-0x30);
+            if (specials.get(codepoint) != null) {
+                throw new IllegalArgumentException("special collision");
+            }
+            String description = line.substring(4).trim();
+            Special special = new Special(description);
+            specials.put(codepoint, special);
+        }
+
+        public static void addToSpecial(int codePoint, String sourceChar) {
+            Special special = specials.get(codePoint-0xE000);
+            special.samples.add(sourceChar);
+        }
+        
+        static void listSpecials() throws IOException {
+            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "ids/",
+                    "specials.html");
+                    ) {
+                showHeader(out);
+                out.println("<tr><td>" + "key"
+                        + "</td><td nowrap>" + "description"
+                        + "</td><td>" + "samples"
+                        + "</td></tr>");
+                for (Entry<Integer, Special> entry : specials.entrySet()) {
+                    out.println("<tr><td>" + entry.getKey()
+                            + "</td><td nowrap>" + entry.getValue().description
+                            + "</td><td>" + entry.getValue().samples.toPattern(false)
+                            + "</td></tr>");
+
+                }
+                showFooter(out);
+                //System.out.println("items:\t" + count);
+            }
+        }
+        @Override
+        public String toString() {
+            return description + "\t" + samples.toPattern(false);
+        }
+    }
 
     public static void main(String[] args) throws IOException {
         load();
@@ -480,20 +618,22 @@ public class Ids {
         showParseErrors(failures, "parseFailures.html");
         showParseErrors(missing, "missing.html");
         showRadicalMissing();
+        Special.listSpecials();
 
-        for (int i : CharSequences.codePoints(FLIPPED)) {
-            System.out.println("FLIPPED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) + "\t" + radicalStroke.get(i));
-        }
-        for (int i : CharSequences.codePoints(MIRRORED)) {
-            System.out.println("MIRRORED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) + "\t" + radicalStroke.get(i));
-        }
-        for (Entry<String, CharacterIds> entry : IDS_DATA.entrySet()) {
-            String source = entry.getKey();
-            final String idsSource = entry.getValue().idsSource;
-            if (idsSource.contains("↔") || idsSource.contains("↷")) {
-                System.out.println(source + "\t" + idsSource + "\t" + radicalStroke.get(source));
-            }
-        }
+
+//        for (int i : CharSequences.codePoints(FLIPPED)) {
+//            System.out.println("FLIPPED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) + "\t" + radicalStroke.get(i));
+//        }
+//        for (int i : CharSequences.codePoints(MIRRORED)) {
+//            System.out.println("MIRRORED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) + "\t" + radicalStroke.get(i));
+//        }
+//        for (Entry<String, CharacterIds> entry : IDS_DATA.entrySet()) {
+//            String source = entry.getKey();
+//            final String idsSource = entry.getValue().idsSource;
+//            if (idsSource.contains("↔") || idsSource.contains("↷")) {
+//                System.out.println(source + "\t" + idsSource + "\t" + radicalStroke.get(source));
+//            }
+//        }
     }
 
     private static void showRadicalMissing() throws IOException {
@@ -502,7 +642,7 @@ public class Ids {
                 ) {
             showHeader(out);     
             int count = 0;
-            out.println("<tr><th>Count</th><th>Source</th><th>IDS</th><th>Source Rad</th><th>Source RS</th></tr>");
+            out.println("<tr><th>Count</th><th>Source</th><th>IDS</th><th>Source Radical + RS(.0)</th><th>Source RS</th></tr>");
             main:
                 for (Entry<String, CharacterIds> entry : IDS_RECURSIVE.entrySet()) {
                     //            invert.put(entry.getValue().parts, entry.getKey());
@@ -563,7 +703,7 @@ public class Ids {
         try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "ids/", fileName);
                 ) {
             showHeader(out);
-            out.println("<tr><th>Count</th><th>Reason for failure</th><th>Source</th><th>IDS</th><th>Source Rad</th><th>Source RS</th></tr>");
+            out.println("<tr><th>Count</th><th>Reason for failure</th><th>Source</th><th>IDS</th><th>Source Radical + RS(.0)</th><th>Source RS</th></tr>");
             Output<Set<String>> radChar = new Output<>();
             //System.out.println("Failed to parse: ");
             int count = 0;
@@ -587,7 +727,6 @@ public class Ids {
         }
     }
 
-
     private static List<String> getRS(final String key, Output<Set<String>> radicalChar) {
         final List<String> rs = radicalStroke.get(key);
         if (rs == null) {
@@ -601,8 +740,8 @@ public class Ids {
         return rs;
     }
 
-
     private static void showRadicalCompare() throws IOException {
+
         try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "ids/", "radicalCompare.html");
                 ) {
             showHeader(out);
@@ -612,18 +751,51 @@ public class Ids {
                 final double clean = cleanRadical(key);
                 sorted.put(clean, Row.of(entry.getValue(), rawRadToUnicode.get(key)));
             }
-            out.println("<tr><th>Radical</th><th>CJK_Radicals</th><th>+RSUnicode(.0)</th><th>Name</th></tr>");
+            out.println("<tr><th>Radical#</th>"
+                    + "<th>CJKRadicals.txt:F1</th>"
+                    + "<th>RSUnicode(.0)</th>"
+                    + "<th>CJK_Rad Block?</th>"
+                    + "<th>RSAdobe(.0)</th>"
+                    + "<th>RSAdobe Details</th>"
+                    + "<th>Name</th></tr>");
             int count = 0;
+            Set<String> adobeItems = new TreeSet<>();
+
             for (Entry<Double, R2<Set<String>, Set<String>>> entry : sorted.entrySet()) {
                 ++count;
                 final Double key = entry.getKey();
                 final R2<Set<String>, Set<String>> rad2 = entry.getValue();
-                final Set<String> rad = rad2.get0();
+                Set<String> rad = rad2.get0();
                 final Set<String> raw = rad2.get1();
+                double doubleRadical = key.doubleValue();
+                int intRadical = (int)doubleRadical;
+                final boolean alt = intRadical != doubleRadical;
+                String samples = alt ? "" : getSamples((int)key.doubleValue());
+                String key2 = intRadical + (alt ? "'" : "");
+                final Set<String> cjkRad = alt ? Collections.EMPTY_SET : radToCjkRad.get(intRadical);
+                UnicodeSet RSUnicode = USTROKE.get(intRadical, alt);
+                M3<Integer, Integer, UnicodeSet> adobe = ASTROKE.get(intRadical);
+                adobeItems.clear();
+                if (!alt) {
+                    for (Entry<Integer, Map<Integer, UnicodeSet>> entry2 : adobe) {
+                        Map<Integer, UnicodeSet> remStrokesToSet = entry2.getValue();
+                        UnicodeSet us = remStrokesToSet.get(0);
+                        if (us != null) {
+                            UnicodeSet temp = us;
+                            if (RSUnicode != null) {
+                                temp = new UnicodeSet(us).removeAll(RSUnicode);
+                            }
+                            temp.addAllTo(adobeItems);
+                        }
+                    }
+                }
                 out.println("<tr>"
-                        + "<th style='text-align:right'>" + key + "</th>"
+                        + "<th style='text-align:right'>" + key2 + "</th>"
                         + "<td style='font-size: 24px'>" + raw.iterator().next() + "</td>"
-                        + "<td style='font-size: 24px'>" + SPACE_JOINER.join(rad) + "</td>"
+                        + "<td style='font-size: 24px'>" + (RSUnicode == null ? "" : SPACE_JOINER.join(RSUnicode)) + "</td>"
+                        + "<td style='font-size: 24px'>" + (cjkRad == null ? "" : SPACE_JOINER.join(cjkRad)) + "</td>"
+                        + "<td style='font-size: 24px'>" + SPACE_JOINER.join(adobeItems) + "</td>"
+                        + "<td style='font-size: 24px'>" + samples + "</td>"
                         + "<td>" + UCharacter.getName(raw.iterator().next(), ",") + "</td>"
                         + "</tr>");
             }
@@ -632,13 +804,46 @@ public class Ids {
         }
     }
 
+    private static String getSamples(int radical) {
+        M3<Integer, Integer, UnicodeSet> data = ASTROKE.get(radical);
+        int count = 0;
+        StringBuilder samples = new StringBuilder();
+        for (final Entry<Integer, Map<Integer, UnicodeSet>> entry2 : data) {
+            if (++count != 1) {
+                samples.append("<br>");
+            }
+            final int rstrokes = entry2.getKey();
+            int count2 = 0;
+            for (final Entry<Integer, UnicodeSet> entry3 : entry2.getValue().entrySet()) {
+                if (++count2 > 4) {
+                    samples.append(",…");
+                    break;
+                } else if (count2 != 1) {
+                    samples.append(", ");
+                }
+                final int remaining = entry3.getKey();
+                samples.append(rstrokes).append(':').append(remaining).append("=[");
+                int count3 = 4;
+                for (final String s : entry3.getValue()) {
+                    if (remaining != 0 && --count3 == 0) {
+                        samples.append('…');
+                        break;
+                    }
+                    samples.append(s);
+                }
+                samples.append("]");
+            }
+        }
+        return samples.toString();
+    }
+
     private static void showMainList() throws IOException {
         try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "ids/",
                 "ids.html");
                 ) {
             showHeader(out);
             TreeSet<String> sorted = new TreeSet<>(UNIHAN);
-            System.out.println("IDS_DATA.keySet(): " + IDS_DATA.keySet().size());
+            //System.out.println("IDS_DATA.keySet(): " + IDS_DATA.keySet().size());
             IDS_DATA.keySet().addAllTo(sorted);
             int count = 0;
             out.println("<tr><th>Count</th><th>Source</th><th>IDS App. Pos.</th><th>IDS</th><th>App. Pos.</th></tr>");
@@ -673,10 +878,13 @@ public class Ids {
     private static final class CharacterIds {
         final String idsSource;
         final List<CpPart> parts;
-        public CharacterIds(String idsSource) {
+        final boolean questionable;
+        public CharacterIds(String sourceChar, String idsSource) {
             String x = clean(idsSource);
-            this.idsSource = x; 
-            this.parts = CpPart.parse(this.idsSource);
+            this.idsSource = x;
+            Output<Boolean> questionable = new Output<>();
+            this.parts = CpPart.parse(sourceChar, this.idsSource, questionable);
+            this.questionable = questionable.value;
         }
         @Override
         public String toString() {
@@ -699,14 +907,13 @@ public class Ids {
         String [] biggestCp = new String[50];
         CharacterIds [] biggest = new CharacterIds[50];
         Counter<Integer> counter = new Counter<>();
-        List<String> specials = new ArrayList<>();
 
         for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/ids/", "babelstoneIds.txt")) {
             // U+3FCD 㿍 ⿸疒解
             if (line.startsWith("#")) {
                 line = line.substring(1).trim();
                 if (line.startsWith("{")) {
-                    specials.add(line);
+                    Special.addSpecial(line);
                 }
                 continue;
             }
@@ -718,12 +925,12 @@ public class Ids {
             final String source = parts[1];
             try {
                 if (ids.equals(source)) {
-                    if (cjkRadical.get(ids) == null) {
+                    if (unicodeToRadical.get(ids) == null) {
                         failures.put("Error: no IDS/Radical/Stroke at 0", source, source);
                     }
                     continue;
                 }
-                final CharacterIds chIds = new CharacterIds(ids);
+                final CharacterIds chIds = new CharacterIds(source, ids);
                 IDS_DATA.put(source, chIds);
                 final int size = chIds.parts.size();
                 counter.add(size, 1);
@@ -738,20 +945,19 @@ public class Ids {
         }
         IDS_DATA.freeze();
         for (String s : IDEOGRAPHIC) {
-            if (!IDS_DATA.containsKey(s) && !cjkRadical.containsKey(s)) {
+            if (!IDS_DATA.containsKey(s) && !unicodeToRadical.containsKey(s)) {
                 missing.put("Missing", s, "∅");
             }
         }
-        System.out.println(CRLF_JOINER.join(specials));
 
         System.out.println(counter);
         for (Entry<String, CharacterIds> entry : IDS_DATA.entrySet()) {
             String decomp = getDecomp(entry.getValue().idsSource);
             //System.out.println(entry.getKey() + "\t" + decomp);
             try {
-                IDS_RECURSIVE.put(entry.getKey(), new CharacterIds(decomp));
+                IDS_RECURSIVE.put(entry.getKey(), new CharacterIds(entry.getKey(), decomp));
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                //failures.put(e.getMessage(), entry.getKey(), decomp);
             }
         }
         IDS_RECURSIVE.freeze();
@@ -879,14 +1085,14 @@ public class Ids {
          ⽇  U+2F47 KANGXI RADICAL SUN
          日  U+65E5 CJK UNIFIED IDEOGRAPH-65E5
          曰  U+66F0 CJK UNIFIED IDEOGRAPH-66F0
-         
+
           ⽒     U+2F52 KANGXI RADICAL CLAN
  氏  U+6C0F CJK UNIFIED IDEOGRAPH-6C0F
  氐  U+6C10 CJK UNIFIED IDEOGRAPH-6C10
- 
+
   辶     U+8FB6 CJK UNIFIED IDEOGRAPH-8FB6
  辶  U+FA66 CJK COMPATIBILITY IDEOGRAPH-FA66
- 
+
   ⿈     U+2FC8 KANGXI RADICAL YELLOW
  黃  U+9EC3 CJK UNIFIED IDEOGRAPH-9EC3
  黄  U+9EC4 CJK UNIFIED IDEOGRAPH-9EC4
