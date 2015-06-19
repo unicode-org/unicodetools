@@ -149,8 +149,6 @@ public class UnicodeJsp {
     a.clear();
     try {
       //setA = UnicodeSetUtilities.MyNormalize(setA, Normalizer.NFC);
-      setA = setA.replace("..U+", "-\\u");
-      setA = setA.replace("U+", "\\u");
       a.addAll(UnicodeSetUtilities.parseUnicodeSet(setA));
       a_out = UnicodeUtilities.getPrettySet(a, abbreviate, escape);
     } catch (Exception e) {

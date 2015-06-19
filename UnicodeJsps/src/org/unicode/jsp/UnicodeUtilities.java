@@ -524,7 +524,7 @@ public class UnicodeUtilities {
         public CodePointShower(String grouping, String info, boolean abbreviate, boolean ucdFormat, boolean collate) {
             this.groupingProps = getProps(grouping);
             this.infoProps = getProps(info);
-            this.doTable = !infoProps.isEmpty();
+            this.doTable = true; // !infoProps.isEmpty();
             this.abbreviate = abbreviate;
             this.ucdFormat = ucdFormat;
             this.collate = collate;
@@ -954,12 +954,21 @@ public class UnicodeUtilities {
         }
     }
 
-    static final UnicodeSet NON_ASCII = new UnicodeSet("[^\\u0021-\\u007E]").freeze();
-    static final UnicodeSet WHITESPACE_IGNORABLES_C = new UnicodeSet("[[:C:][:Default_Ignorable_Code_Point:][:patternwhitespace:][:whitespace:]]").freeze();
-    static final UnicodeSet CombiningMarks = new UnicodeSet("[:M:]").freeze();
-    static final UnicodeSet NOBREAKBEFORE = new UnicodeSet(CombiningMarks)
+    public static final char JOINER = '\u200D';
+    public static final UnicodeSet NON_ASCII = new UnicodeSet("[^\\u0021-\\u007E]").freeze();
+    public static final UnicodeSet WHITESPACE_IGNORABLES_C = new UnicodeSet("["
+            + "[:C:]"
+            + "[:Default_Ignorable_Code_Point:]"
+            + "[:patternwhitespace:]"
+            + "[:whitespace:]"
+            + "]").remove(JOINER).remove(0xFF0F).freeze();
+    public static final UnicodeSet CombiningMarks = new UnicodeSet("[:M:]").freeze();
+    public static final UnicodeSet NOBREAKBEFORE = new UnicodeSet(CombiningMarks)
     .addAll(UnicodeSetUtilities.MODIFIERS)
     .addAll(UnicodeSetUtilities.REGIONALS)
+    .add(JOINER)
+    .add('\uFE0F')
+    .add('\uFE0E')
     .freeze();
 
     public static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
@@ -970,10 +979,13 @@ public class UnicodeUtilities {
 
             if (escape) {
                 pp.setToQuote(NON_ASCII);
+                a_out = toHTML(pp.format(a));
             } else {
                 pp.setToQuote(WHITESPACE_IGNORABLES_C);
+                a_out = toHTML(pp.format(a));
+                a_out = a_out.replace("\\u200D", "\u200D"); // hack to not show joiners
+                a_out = a_out.replace("\\uFE0F", "\uFE0F"); // hack to not show joiners
             }
-            a_out = toHTML(pp.format(a));
         } else {
             a.complement().complement();
             a_out = toHTML(a.toPattern(escape));
@@ -983,42 +995,67 @@ public class UnicodeUtilities {
         int oldCp = 0;
         StringBuffer out = new StringBuffer();
         int charCount = 0;
+        Status status = Status.NORMAL;
         for (int i = 0; i < a_out.length(); i+= UTF16.getCharCount(cp)) {
             cp = UTF16.charAt(a_out, i);
             ++charCount;
-            if (charCount > 20) {
-                // add a space, but not in x-y, or \\uXXXX
-                // TODO, don't change {...}
-                if (
-                        // no break before character
-                        cp < 0x80
-                        || cp == '-' 
-                        || cp == '}' 
-                        || NOBREAKBEFORE.contains(cp)
-                        // no break after character
-                        || oldCp == '-' 
-                        || oldCp == '\\' 
-                        || oldCp == '{'
-                        ) {
-                    // do nothing
+            switch (status) {
+            case AFTERSLASH:
+                status = Status.NORMAL;
+                break;
+            case INSTRINGAFTERSLASH:
+                status = Status.INSTRING;
+                break;
+            case INSTRING: 
+                if (cp == '\\') {
+                    status = Status.INSTRINGAFTERSLASH;
+                } else if (cp == '}') {
+                    status = Status.NORMAL;
+                }
+                break;
+            case NORMAL:
+                if (cp == '\\') {
+                    status = Status.AFTERSLASH;
+                } else if (cp == '{') {
+                    status = Status.INSTRING;
                 } else if (cp == ' ') {
                     charCount = 0;
-                } else {
-                    out.append(' ');
-                    charCount = 0;
+                } else if (charCount > 20) {
+                    // add a space, but not in x-y, or \\uXXXX
+                    // TODO, don't change {...}
+                    if (
+                            // no break before character
+                            cp < 0x80
+                            || cp == '-' 
+                            || cp == '}' 
+                            || NOBREAKBEFORE.contains(cp)
+                            // no break after character
+                            || oldCp == '-' 
+                            || oldCp == '\\' 
+                            || oldCp == '{'
+                            ) {
+                        // do nothing
+                    } else if (cp == ' ') {
+                        charCount = 0;
+                    } else {
+                        out.append(' ');
+                        charCount = 0;
+                    }
                 }
+                break;
             }
             UTF16.append(out, cp);
             oldCp = cp;
         }
         return out.toString();
     }
+    enum Status {NORMAL, AFTERSLASH, INSTRING, INSTRINGAFTERSLASH}
 
     public static UnicodeSet  parseSimpleSet(String setA, String[] exceptionMessage) {
         try {
             exceptionMessage[0] = null;
-            setA = setA.replace("..U+", "-\\u");
-            setA = setA.replace("U+", "\\u");
+            //            setA = setA.replace("..U+", "-\\u");
+            //            setA = setA.replace("U+", "\\u");
             return UnicodeSetUtilities.parseUnicodeSet(setA);
         } catch (Exception e) {
             exceptionMessage[0] = e.getMessage();

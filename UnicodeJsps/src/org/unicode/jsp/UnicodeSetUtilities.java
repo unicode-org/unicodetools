@@ -3,6 +3,7 @@ package org.unicode.jsp;
 import java.text.ParsePosition;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.unicode.jsp.UnicodeProperty.PatternMatcher;
 import org.unicode.jsp.UnicodeSetUtilities.ComparisonMatcher.Relation;
@@ -65,8 +66,16 @@ public class UnicodeSetUtilities {
     }
     
     private static UnicodeSet OK_AT_END = new UnicodeSet("[ \\]\t]").freeze();
+    private static Pattern UPLUS = Pattern.compile("U\\+(1?[A-Za-z0-9]{3,5})");
+    private static Pattern DOTDOT = Pattern.compile("\\.\\.");
 
     public static UnicodeSet parseUnicodeSet(String input) {
+        input = UPLUS.matcher(input).replaceAll("\\\\x{$1}");
+        input = DOTDOT.matcher(input).replaceAll("-");
+
+//        setA = setA.replace("..U+", "-\\u");
+//        setA = setA.replace("U+", "\\u");
+
         input = input.trim() + "]]]]]";
         String parseInput = "[" + input + "]]]]]";
         ParsePosition parsePosition = new ParsePosition(0);
