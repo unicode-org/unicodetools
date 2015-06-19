@@ -37,10 +37,50 @@ public class TestUnicodeSet  extends TestFmwk {
         new TestUnicodeSet().run(args);
     }
     
+    public void TestInput() {
+        String[][] tests = {
+                // loose, strict
+                {"U+00A0", "[\u00A0]"},
+                {"U+10FFFE..U+10FFFF", "[\\U0010FFFE\\U0010FFFF]"},
+                {"a..z", "[a-z]"},
+        };
+        for (String[] test : tests) {
+            UnicodeSet source = UnicodeSetUtilities.parseUnicodeSet(test[0]);
+            assertEquals("input unicode set " + test[0], new UnicodeSet(test[1]), source);
+        }
+    }
+    
+    public void TestOutput() {
+        String[][] tests = {
+                // loose, strict
+                {"[\u00A0]", "[\\u00A0]", "abb", "esc"},
+                {"[{👨\u200D👨\u200D👦}]", "[{👨‍👨‍👦}]"},
+                {"[{👨\u200D❤\uFE0F\u200D👨}]", "[{👨‍❤️‍👨}]"},
+        };
+        assertFalse("", UnicodeUtilities.WHITESPACE_IGNORABLES_C.contains(UnicodeUtilities.JOINER));
+        
+        for (String[] test : tests) {
+            boolean abbreviate = false, escape = false;
+            if (test.length > 3) {
+                escape = test[3].startsWith("esc");
+            }
+            if (test.length > 3) {
+                abbreviate = test[2].startsWith("abb");
+            }
+            String a_out = UnicodeUtilities.getPrettySet(new UnicodeSet(test[0]), abbreviate, escape);
+
+            assertEquals("input unicode set " + test[0] + ", " + abbreviate + ", " + escape, test[1], a_out);
+        }
+    }
+    
+
     public void TestEmoji() throws IOException {
         StringBuilder b = new StringBuilder();
-        UnicodeJsp.showSet("scx", UnicodeSetUtilities.TAKES_EMOJI_VS, false, false, b);
-        System.out.println(b);
+        UnicodeJsp.showSet("scx", "", UnicodeSetUtilities.TAKES_EMOJI_VS, false, false, false, b);
+        String bs = UnicodeUtilities.getPrettySet(UnicodeSetUtilities.FACE, false, false);
+        if (bs.contains(" \uFE0F") || bs.contains(" \u200D")) {
+            errln("Fails extra-space insert" + bs);
+        }
     }
 
     public void TestPretty() {
