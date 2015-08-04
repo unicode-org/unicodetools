@@ -1,3 +1,6 @@
+body {
+font-family : "Times New Roman", "Segoe UI Emoji", "Apple Color Emoji", Times, Symbola, Aegyptus, Code2000,  Code2001,  Code2002, Musica, serif, LastResort;
+}
 table {
 border-collapse : collapse;
 border : silver solid 1px;
@@ -22,16 +25,13 @@ font-size : 100%;
 text-align : center;
 min-height : 24px;
 }
-.chars, .symb, .segoe {
+.chars, .symb {
 font-size : 36px;
 text-align : center;
 min-height : 32px;
 }
 .symb {
 font-family : Symbola;
-}
-.segoe {
-font-family : "Segoe UI Symbol", LastResort;
 }
 img {
 width : 64px;

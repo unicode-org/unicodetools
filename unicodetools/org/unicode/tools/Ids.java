@@ -206,7 +206,6 @@ public class Ids {
         for (Entry<String, String> entry : unicodeToRadical.entrySet()) {
             radToUnicode.put(entry.getValue(), entry.getKey());
         }
-        radToUnicode.freeze();
 
         radToCjkRad = Relation.of(new TreeMap(), TreeSet.class);
         for (String line : FileUtilities.in(Ids.class, "idsCjkRadicals.txt")) {
@@ -219,9 +218,13 @@ public class Ids {
             }
             List<String> parts = SEMI_SPLITTER.splitToList(line);
             int cjkRad = Integer.parseInt(parts.get(0), 16);
-            int radNumber = Integer.parseInt(parts.get(1));
+            final String radString = parts.get(1);
+            int radNumber = Integer.parseInt(radString);
             radToCjkRad.put(radNumber, UTF16.valueOf(cjkRad));
+            radToUnicode.put(radString, UTF16.valueOf(cjkRad));
         }
+        
+        radToUnicode.freeze();
     }
 
     private static void fillRadical(UnicodeMap<List<String>> cjkRadicalRaw) {
