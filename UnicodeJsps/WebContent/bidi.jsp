@@ -58,7 +58,7 @@ For more information, see <a target='doc' href='http://cldr.unicode.org/unicode-
       <input id='tab' type="button" value="RLE" onClick="insert(document.myform.a, '\u202B')"/>
       <input id='tab' type="button" value="PDF" onClick="insert(document.myform.a, '\u202C')"/>
       <input id='tab' type="button" value="LRO" onClick="insert(document.myform.a, '\u202D')"/>
-      <input id='tab' type="button" value="RLE" onClick="insert(document.myform.a, '\u202E')"/>
+      <input id='tab' type="button" value="RLO" onClick="insert(document.myform.a, '\u202E')"/>
       </th>
     </tr>
     <tr>
