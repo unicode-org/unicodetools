@@ -104,7 +104,19 @@ public class LoadImage extends Component {
     public static void main(String[] args) throws IOException {
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
         //generatePngsFromFont(outputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"
-        generatePngsFromFont(outputDir, "proposed", "proposed", "UnicodeEmoji", Emoji.U90, 72, false); // "Symbola"
+        //generatePngsFromFont(outputDir, "apple", "apple", "Apple Color Emoji", Emoji.APPLE_MODIFIED, 72, false);
+        for (String s : Emoji.APPLE_COMBOS) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
+        System.out.println(Emoji.APPLE_COMBOS.size());
+        for (String s : Emoji.APPLE_MODIFIED) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
+        System.out.println(Emoji.APPLE_MODIFIED.size());
+
+        //doAnimatedGif(false, 72);
 
         if (true) return;
 
@@ -305,7 +317,7 @@ public class LoadImage extends Component {
     public static void doAnimatedGif(boolean onlySize, int size, Source... ordering) throws IOException {
         final File output = new File(outputDir, "animated-emoji.gif");
         System.out.println(output.getCanonicalPath());
-        List<BufferedImage> list = new ArrayList();
+        List<BufferedImage> list = new ArrayList<>();
         for (Entry<String, Set<String>> entry : GenerateEmoji.ORDERING_TO_CHAR.keyValuesSet()) {
             final String key = entry.getKey();
             System.out.println("\t" + key);
@@ -390,7 +402,7 @@ public class LoadImage extends Component {
             dir = prefix;
         }
         List<BufferedImage> result = new ArrayList<>();
-        Set<String> sorted = unicodeSet.addAllTo(new TreeSet());
+        Set<String> sorted = unicodeSet.addAllTo(new TreeSet<String>());
         int width = height;
         BufferedImage sourceImage = new BufferedImage(width, height, IMAGE_TYPE);
         Graphics2D graphics = sourceImage.createGraphics();
@@ -403,13 +415,10 @@ public class LoadImage extends Component {
                 RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         String originalFont = font;
-        FontMetrics metrics = setFont(font, height, graphics);
-        UnicodeSet firstChars = new UnicodeSet();
+        FontMetrics metrics = font == null ? graphics.getFontMetrics() : setFont(font, height, graphics);
+        //UnicodeSet firstChars = new UnicodeSet();
         String fileDirectory = outputDir + "/" + prefix;
         for (String s : sorted) { //
-            if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
-                continue;
-            }
             if (useFonts) {
                 UnicodeFontData font1 = UnicodeFontData.getFont(s);
                 if (font1 == null) {
@@ -421,11 +430,12 @@ public class LoadImage extends Component {
                 metrics = setFont(font, height, graphics);
             }
             if (graphics.getFont().canDisplayUpTo(s) != -1) {
+                System.out.println("No font for: " + s);
                 continue;
             }
             String core = Emoji.buildFileName(s, "_");
             String filename = prefix + "_" + core;
-            File outputfile = new File(fileDirectory, filename + ".png");
+            //File outputfile = new File(fileDirectory, filename + ".png");
             graphics.clearRect(0, 0, width, height);
             Rectangle2D bounds = metrics.getStringBounds(s, graphics);
             boolean reset = false;

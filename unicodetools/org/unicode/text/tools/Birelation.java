@@ -29,9 +29,9 @@ class Birelation<K,V> {
             Class setCreator1, 
             Class setCreator2, 
             Comparator<V> setComparator1,
-            Comparator<V> setComparator2
+            Comparator<K> setComparator2
             ) {
-        return new Birelation(map1, map2, setCreator1, setCreator2, setComparator1, setComparator2);
+        return new Birelation<K,V>(map1, map2, setCreator1, setCreator2, setComparator1, setComparator2);
     }
     Birelation<K, V> add(K key, V value) {
         keyToValues.put(key, value);
@@ -79,7 +79,7 @@ class Birelation<K,V> {
         return valueToKeys.keySet();
     }
     public Relation<Set<V>,K> getValuesToKeys() {
-        Relation<Set<V>,K> result = Relation.of(new HashMap(), LinkedHashSet.class);
+        Relation<Set<V>,K> result = Relation.of(new HashMap<Set<V>,Set<K>>(), LinkedHashSet.class);
         for (Entry<K, Set<V>> entry : keyToValues.keyValuesSet()) {
             K key = entry.getKey();
             Set<V> values = entry.getValue();
