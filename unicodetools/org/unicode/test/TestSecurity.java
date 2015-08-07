@@ -24,8 +24,11 @@ import org.unicode.cldr.util.LanguageTagParser;
 import org.unicode.cldr.util.StandardCodes;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.PropertyNames;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.test.CheckWholeScript.Status;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.IdentifierInfo.IdentifierStatus;
 import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
@@ -35,12 +38,14 @@ import org.unicode.text.tools.XIDModifications;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Confusables;
+import org.unicode.tools.Confusables.CodepointToConfusables;
 import org.unicode.tools.Confusables.Style;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -55,7 +60,7 @@ public class TestSecurity extends TestFmwkPlus {
 
     static XIDModifications XIDMOD = new XIDModifications(SECURITY_PUBLIC + Settings.latestVersion);
 
-    static Confusables CONFUSABLES = new Confusables(SECURITY_PUBLIC + Settings.latestVersion);
+    public static final Confusables CONFUSABLES = new Confusables(SECURITY_PUBLIC + Settings.latestVersion);
 
     public void TestSpacing() {
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
@@ -78,7 +83,7 @@ public class TestSecurity extends TestFmwkPlus {
         }
         return true;
     }
-    
+
     public void TestIdempotence() {
         for (Entry<String, EnumMap<Style, String>> entry : CONFUSABLES.getChar2data().entrySet()) {
             String code = entry.getKey();
@@ -330,5 +335,95 @@ public class TestSecurity extends TestFmwkPlus {
     //        }
     //        return target;
     //    }
+
+    public void TestWholeScriptData() {
+        for (Script_Values source : Script_Values.values()) {
+            for (Script_Values target : Script_Values.values()) {
+                CodepointToConfusables cpToConfusables = CONFUSABLES.getCharsToConfusables(source, target);
+                if (cpToConfusables == null) {
+                    continue;
+                }
+                logln(source + " => " + target);
+                for (Entry<Integer, UnicodeSet> s : cpToConfusables) {
+                    assertFalse(Utility.hex(s.getKey()), s.getValue().contains(s.getKey()));
+                }
+            }
+        }
+    }
+    public void TestWholeScripts() {
+        //        for (Entry<Script_Values, Map<Script_Values, UnicodeSet>> entry : CONFUSABLES.getScriptToScriptToUnicodeSet().entrySet()) {
+        //            final String name1 = entry.getKey().name();
+        //            for (Entry<Script_Values, UnicodeSet> entry2 : entry.getValue().entrySet()) {
+        //                System.out.println(name1
+        //                        + "\t" + entry2.getKey().name()
+        //                        + "\t" + entry2.getValue().toPattern(false)
+        //                        );
+        //            }
+        //        }
+        UnicodeSet withConfusables = CONFUSABLES.getCharsWithConfusables();
+        String list = withConfusables.toPattern(false);
+        UnicodeSet commonChars = new UnicodeSet(Confusables.CODEPOINT_TO_SCRIPTS.getSet(Collections.singleton(Script_Values.Common)))
+        .removeAll(withConfusables)
+        .removeAll(new UnicodeSet("[[:Z:][:c:]]"));
+        final String commonUnconfusable = commonChars.iterator().next();
+        Object[][] tests = {
+                {"[:any:]"}, // anything goes
+
+
+                {"google", Status.SAME},
+                {"ցօօց1℮", Status.COMMON},
+                {"sex", Status.SAME},
+                {"scope", Status.SAME},
+                {"sef", Status.SAME},
+                {"1", Status.SAME},
+                {"NO", Status.SAME},
+                {"ー", Status.SAME}, // length mark // should be different
+                {"—", Status.SAME}, // em dash
+                {"コー", Status.NONE},
+                {"〳ー", Status.SAME}, // should be different
+                {"乙一", Status.OTHER}, // Hani
+                {"㇠ー", Status.NONE}, // Hiragana
+                {"Aー", Status.NONE},
+                {"カ", Status.NONE}, // KATAKANA LETTER KA // should be added
+                {"⼒", Status.SAME}, // KANGXI RADICAL POWER
+                {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
+                {commonUnconfusable, Status.NONE}, // check that 
+                {"!", Status.NONE},
+
+                {"[[:L:][:M:][:N:]-[:nfkcqc=n:]]"}, // a typical identifier set
+
+                {"google", Status.SAME},
+                {"ցօօց1℮", Status.NONE},
+                {"sex", Status.OTHER},
+                {"scope", Status.OTHER},
+                {"sef", Status.SAME},
+                {"1", Status.SAME},
+                {"NO", Status.OTHER},
+                {"ー", Status.OTHER},
+                {"コー", Status.NONE},
+                {"〳ー", Status.OTHER},
+                {"乙ー", Status.NONE},
+                {"Aー", Status.NONE},
+                // special cases
+                {"[rn]"}, // the identifier set, to check that the identifier matching flattens
+                {"m", Status.SAME},
+        };
+        EnumMap<Script_Values, String> examples = new EnumMap<>(Script_Values.class);
+        UnicodeSet includeOnly = null;
+        for (Object[] test : tests) {
+            String source = (String) test[0];
+            if (test.length < 2) {
+                includeOnly = source == null ? null : new UnicodeSet(source);
+                logln("idSet= " + includeOnly);
+                continue;
+            }
+            Status expected = (Status) test[1];
+            Status actual = CheckWholeScript.hasWholeScriptConfusable(source, includeOnly, examples);
+            assertEquals(
+                    (isVerbose() ? "" : "idSet=" + includeOnly + ",")
+                    + " source= " + source 
+                    + ", examples= " + examples, expected.toString(), actual.toString());
+        }
+    }
 }
 

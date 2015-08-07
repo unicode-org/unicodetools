@@ -76,15 +76,15 @@ public class PropertyNames<T extends Enum> {
                 + "}";
     }
 
-    public static List<Enum> getValues(Class y) {
+    public static <T extends Enum> List<T> getValues(Class<T> y) {
         try {
-            return Arrays.asList((Enum[]) y.getMethod("values").invoke(null));
+            return Arrays.asList((T[]) y.getMethod("values").invoke(null));
         } catch (final Exception e) {
             return null;
         }
     }
 
-    public static NameMatcher getNameToEnums(Class classItem) {
+    public static <T extends Enum> NameMatcher<T> getNameToEnums(Class<T> classItem) {
         return CLASS2NAME2ENUM.get(classItem);
     }
 
@@ -97,7 +97,7 @@ public class PropertyNames<T extends Enum> {
         public NameMatcher(PropertyNames<T> propertyNames) {
             this.propertyNames = propertyNames;
         }
-        T get(String string) {
+        public T get(String string) {
             return string2Enum.get(minimalize(string));
         }
         void put(String s, T value) {
