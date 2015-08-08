@@ -138,3 +138,5 @@ Emoji_Correspondences	; z	 ; Zapf_Dingbats
 Emoji_Correspondences	; a	 ; ARIB	
 Emoji_Correspondences	; x	 ; Other	
 
+sc ; Jpan                             ; Japanese
+sc ; Kore                             ; Korean

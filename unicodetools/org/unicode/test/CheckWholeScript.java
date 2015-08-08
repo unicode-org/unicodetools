@@ -1,19 +1,16 @@
 package org.unicode.test;
 
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
-import org.unicode.tools.Confusables;
 import org.unicode.tools.Confusables.CodepointToConfusables;
-import org.unicode.tools.Confusables.ScriptDetector;
+import org.unicode.tools.ScriptDetector;
 
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
@@ -21,36 +18,45 @@ import com.ibm.icu.util.ICUException;
 
 public class CheckWholeScript {
     static final Normalizer NFD = Default.nfd();
-    static final UnicodeSet COMMON_OR_INHERITED
-    = new UnicodeSet(Confusables.CODEPOINT_TO_SCRIPTS.getSet(Collections.singleton(Script_Values.Common)))
-    .addAll(Confusables.CODEPOINT_TO_SCRIPTS.getSet(Collections.singleton(Script_Values.Inherited)))
-    .freeze();
-    static final Map<Script_Values, Map<Script_Values, UnicodeSet>> SCRIPT_SCRIPT_UNICODESET = TestSecurity.CONFUSABLES.getScriptToScriptToUnicodeSet(); 
-    static final Map<Script_Values, Map<Script_Values, CodepointToConfusables>> SCRIPT_SCRIPT_UNICODESET2 = TestSecurity.CONFUSABLES.getScriptToScriptToCodepointToUnicodeSet(); 
-    static final CodepointToConfusables COMMON_COMMON_UNICODESET2 = SCRIPT_SCRIPT_UNICODESET2.get(Script_Values.Common).get(Script_Values.Common); 
+    static final Map<Script_Values, Map<Script_Values, CodepointToConfusables>> SCRIPT_SCRIPT_UNICODESET2 
+    = TestSecurity.CONFUSABLES.getScriptToScriptToCodepointToUnicodeSet(); 
+    static final CodepointToConfusables COMMON_COMMON_UNICODESET2 
+    = SCRIPT_SCRIPT_UNICODESET2.get(Script_Values.Common).get(Script_Values.Common); 
 
     public enum Status {NONE, OTHER, COMMON, SAME}
+    
+    private final UnicodeSet includeOnly;
+    
+    /**
+     * @return the includeOnly
+     */
+    public UnicodeSet getIncludeOnly() {
+        return includeOnly;
+    }
 
-    public static Status hasWholeScriptConfusable(String source, UnicodeSet includeOnly, EnumMap<Script_Values, String> examples) {
+    /**
+     * @param includeOnly the includeOnly to set
+     */
+    public CheckWholeScript(UnicodeSet includeOnly) {
+        this.includeOnly = includeOnly.freeze();
+    }
+
+    private ScriptDetector scriptDetector;
+
+    public Status hasWholeScriptConfusable(String source, EnumMap<Script_Values, String> examples) {
         String nfd = NFD.normalize(source);
-        //        UnicodeSet givenSet = new UnicodeSet().addAll(nfd);
-        //        givenSet.removeAll(COMMON_OR_INHERITED);
         if (examples != null) {
             examples.clear();
         }
-        ScriptDetector sd = new Confusables.ScriptDetector().set(nfd);
+        scriptDetector = new ScriptDetector();
+        ScriptDetector sd = scriptDetector.set(nfd);
         Status result = Status.NONE;
-        if (sd.size() > 1) { // the original is not a single script
+        Set<Script_Values> set = sd.getSingleSetOrNull();
+        if (set == null) { // not a valid single set
             return result;
         }
-        Set<Script_Values> set = sd.singleScripts.isEmpty() ? sd.combinations.iterator().next() : sd.singleScripts;
         for (Script_Values sourceScript : set) {
-            Status temp;
-            if (includeOnly == null) {
-                temp = hasSimple(nfd, sourceScript);
-            } else {
-                temp = hasRestricted(nfd, sourceScript, includeOnly, examples);
-            }
+            Status temp = hasRestricted(nfd, sourceScript, examples);
             if (temp.compareTo(result) > 0) {
                 result = temp;
             }
@@ -58,21 +64,12 @@ public class CheckWholeScript {
         return result;
     }
 
-    private static Status hasSimple(String nfd, Script_Values sourceScript) {
-        UnicodeSet givenSet = new UnicodeSet().addAll(nfd);
-        Map<Script_Values, UnicodeSet> submap = SCRIPT_SCRIPT_UNICODESET.get(sourceScript);
-        if (submap == null) {
-            return Status.NONE; // fix later
-        }
-        for (Entry<Script_Values, UnicodeSet> entry : submap.entrySet()) {
-            if (entry.getValue().containsAll(givenSet)) {
-                return Status.OTHER; // fix later
-            }
-        }
-        return Status.NONE;
-    }
+//    private static Set<Script_Values> getSingletonSet(ScriptDetector sd) {
+//        Set<Script_Values> set = sd.singleScripts.isEmpty() ? sd.combinations.iterator().next() : sd.singleScripts;
+//        return set;
+//    }
 
-    private static Status hasRestricted(String nfd, Script_Values sourceScript, UnicodeSet includeOnly, EnumMap<Script_Values, String> examples) {
+    private Status hasRestricted(String nfd, Script_Values sourceScript, EnumMap<Script_Values, String> examples) {
         Map<Script_Values, CodepointToConfusables> submap = SCRIPT_SCRIPT_UNICODESET2.get(sourceScript);
         if (submap == null) {
             return Status.NONE;
@@ -82,7 +79,7 @@ public class CheckWholeScript {
 
         boolean hasCommon = false;
         CodepointToConfusables cpToCommonSet = submap.get(Script_Values.Common);
-        if (hasRestricted(Script_Values.Common, cpToCommonSet, nfd, includeOnly, example, cpToCommonSet)) {
+        if (hasRestricted(Script_Values.Common, cpToCommonSet, nfd, example, cpToCommonSet)) {
             result = Status.COMMON;
             if (examples == null) {
                 return result;
@@ -92,7 +89,7 @@ public class CheckWholeScript {
             hasCommon = true;
         }
         CodepointToConfusables cpToSourceSet = submap.get(sourceScript);
-        if (hasRestricted(sourceScript, cpToSourceSet, nfd, includeOnly, example, cpToCommonSet)) {
+        if (hasRestricted(sourceScript, cpToSourceSet, nfd, example, cpToCommonSet)) {
             result = Status.SAME;
             if (examples == null) {
                 return result;
@@ -107,7 +104,7 @@ public class CheckWholeScript {
                     continue;
                 }
                 CodepointToConfusables cpToIdentifierSet = entry.getValue();
-                if (hasRestricted(targetScript, cpToIdentifierSet, nfd, includeOnly, example, cpToCommonSet)) {
+                if (hasRestricted(targetScript, cpToIdentifierSet, nfd, example, cpToCommonSet)) {
                     result = Status.OTHER;
                     if (examples == null) {
                         return result;
@@ -120,11 +117,11 @@ public class CheckWholeScript {
         return result;
     }
 
-    private static boolean hasRestricted(final Script_Values targetScript, CodepointToConfusables cpToIdentifierSet, String nfd, UnicodeSet includeOnly, 
+    private boolean hasRestricted(final Script_Values targetScript, CodepointToConfusables cpToIdentifierSet, String nfd, 
             StringBuilder example, CodepointToConfusables cpToCommonSet) {
         example.setLength(0);
         for (int cp : CharSequences.codePoints(nfd)) { // for all chars in the givenSet
-            if (COMMON_OR_INHERITED.contains(cp) && includeOnly.contains(cp)) {
+            if (ScriptDetector.COMMON_OR_INHERITED.contains(cp) && (includeOnly == null || includeOnly.contains(cp))) {
                 // see if there is an alternate
                 boolean diff = appendDifferentIfPossible(cp, example);
                 continue;
@@ -144,7 +141,8 @@ public class CheckWholeScript {
         }
         // we try to get a different string if at all possible. If there is no other, then we fail.
         // Could optimize to avoid the saving the characters in example:
-        //   Record the number of characters that are the same, using diff. If == number of codepoints, we fail.
+        //   Record the number of characters that are the same, using diff. 
+        //   If == number of codepoints, we fail.
         if (CharSequences.equalsChars(example, nfd)) {
             return false;
         }
@@ -192,4 +190,5 @@ public class CheckWholeScript {
         }
         return false;
     }
+
 }
