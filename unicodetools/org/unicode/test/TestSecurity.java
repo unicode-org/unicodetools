@@ -1,9 +1,13 @@
 package org.unicode.test;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -24,7 +28,6 @@ import org.unicode.cldr.util.LanguageTagParser;
 import org.unicode.cldr.util.StandardCodes;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.PropertyNames;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
@@ -40,8 +43,10 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.Confusables;
 import org.unicode.tools.Confusables.CodepointToConfusables;
 import org.unicode.tools.Confusables.Style;
+import org.unicode.tools.ScriptDetector;
 
 import com.google.common.base.Objects;
+import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
@@ -350,6 +355,53 @@ public class TestSecurity extends TestFmwkPlus {
             }
         }
     }
+    
+    public void TestScriptDetection() {
+        ScriptDetector sd = new ScriptDetector();
+        Set<Set<Script_Values>> expected = new HashSet<>();
+        String[][] tests = {
+                {"℮", "Common"},
+                {"ցօօց1℮", "Armenian"},
+                {"ցօօց1℮ー", "Armenian; Hiragana, Katakana"},
+                {"ー", "Hiragana, Katakana"},
+                {"カー", "Katakana"},
+                {"\u303Cー", "Hiragana, Katakana"},
+                {"\u303C", "Han, Hiragana, Katakana"},
+                {"A\u303C", "Latin; Han, Hiragana, Katakana"},
+                {"\u0300", "Common"},
+                {"\u0300.", "Common"},
+                {"a\u0300", "Latin"},
+                {"ä", "Latin"},
+        };
+        for (String[] test : tests) {
+            String source = test[0];
+            expected.clear();
+            expected.addAll(parseAlternates(test[1]));
+            sd.set(source);
+            assertEquals("", expected, sd.getAll());
+        }
+    }
+    
+    public static Set<Script_Values> parseScripts(String scriptsString) {
+        Set<Script_Values> result = EnumSet.noneOf(Script_Values.class);
+        for (String item : COMMA.split(scriptsString)) {
+                result.add(Script_Values.valueOf(item));
+        }
+        return result;
+    }
+
+    static final Splitter SEMI = Splitter.on(';').trimResults().omitEmptyStrings();
+    static final Splitter COMMA = Splitter.on(',').trimResults().omitEmptyStrings();
+    
+    public static Set<Set<Script_Values>> parseAlternates(String scriptsSetString) {
+        Set<Set<Script_Values>> result = new HashSet<>();
+        for (String item : SEMI.split(scriptsSetString)) {
+            result.add(parseScripts(item));
+        }
+        return result;
+    }
+
+
     public void TestWholeScripts() {
         //        for (Entry<Script_Values, Map<Script_Values, UnicodeSet>> entry : CONFUSABLES.getScriptToScriptToUnicodeSet().entrySet()) {
         //            final String name1 = entry.getKey().name();
@@ -362,7 +414,7 @@ public class TestSecurity extends TestFmwkPlus {
         //        }
         UnicodeSet withConfusables = CONFUSABLES.getCharsWithConfusables();
         String list = withConfusables.toPattern(false);
-        UnicodeSet commonChars = new UnicodeSet(Confusables.CODEPOINT_TO_SCRIPTS.getSet(Collections.singleton(Script_Values.Common)))
+        UnicodeSet commonChars = new UnicodeSet(ScriptDetector.getCharactersForScriptExtensions(ScriptDetector.COMMON_SET))
         .removeAll(withConfusables)
         .removeAll(new UnicodeSet("[[:Z:][:c:]]"));
         final String commonUnconfusable = commonChars.iterator().next();
@@ -382,13 +434,16 @@ public class TestSecurity extends TestFmwkPlus {
                 {"コー", Status.NONE},
                 {"〳ー", Status.SAME}, // should be different
                 {"乙一", Status.OTHER}, // Hani
-                {"㇠ー", Status.NONE}, // Hiragana
+                {"㇠ー", Status.OTHER}, // Hiragana
                 {"Aー", Status.NONE},
                 {"カ", Status.NONE}, // KATAKANA LETTER KA // should be added
                 {"⼒", Status.SAME}, // KANGXI RADICAL POWER
                 {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
                 {commonUnconfusable, Status.NONE}, // check that 
                 {"!", Status.NONE},
+                {"\u0300", Status.NONE},
+                {"a\u0300", Status.SAME},
+                {"ä", Status.SAME},
 
                 {"[[:L:][:M:][:N:]-[:nfkcqc=n:]]"}, // a typical identifier set
 
@@ -410,15 +465,16 @@ public class TestSecurity extends TestFmwkPlus {
         };
         EnumMap<Script_Values, String> examples = new EnumMap<>(Script_Values.class);
         UnicodeSet includeOnly = null;
+        CheckWholeScript checker = null;
         for (Object[] test : tests) {
             String source = (String) test[0];
             if (test.length < 2) {
-                includeOnly = source == null ? null : new UnicodeSet(source);
+                checker = new CheckWholeScript(source == null ? null : new UnicodeSet(source));
                 logln("idSet= " + includeOnly);
                 continue;
             }
             Status expected = (Status) test[1];
-            Status actual = CheckWholeScript.hasWholeScriptConfusable(source, includeOnly, examples);
+            Status actual = checker.hasWholeScriptConfusable(source, examples);
             assertEquals(
                     (isVerbose() ? "" : "idSet=" + includeOnly + ",")
                     + " source= " + source 

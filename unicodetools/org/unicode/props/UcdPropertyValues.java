@@ -1279,7 +1279,9 @@ public class UcdPropertyValues {
         Yi("Yiii"),
         Inherited("Zinh", "Qaai"),
         Common("Zyyy"),
-        Unknown("Zzzz");
+        Unknown("Zzzz"),
+        Japanese("Jpan"),
+        Korean("Kore");
         private final PropertyNames<Script_Values> names;
         private Script_Values (String shortName, String...otherNames) {
             names = new PropertyNames(Script_Values.class, this, shortName, otherNames);

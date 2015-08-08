@@ -1,9 +1,8 @@
 package org.unicode.tools;
 
-import java.util.Collections;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,23 +11,19 @@ import java.util.TreeMap;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
-import org.unicode.props.GenerateEnums;
-import org.unicode.props.IndexUnicodeProperties;
-import org.unicode.props.PropertyNames;
-import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.UcdProperty;
-import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
-import org.unicode.tools.Confusables.CodepointToConfusables;
 
-import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
+import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Freezable;
+import com.ibm.icu.util.ICUException;
 
 public class Confusables {
     public static final Splitter SEMI = Splitter.on(';').trimResults();
@@ -56,23 +51,15 @@ public class Confusables {
     public UnicodeMap<EnumMap<Style, String>> getChar2data() {
         return char2data;
     }
-    /**
-     * @return the scriptToScriptToUnicodeSet
-     */
-    public Map<Script_Values, Map<Script_Values, UnicodeSet>> getScriptToScriptToUnicodeSet() {
-        return scriptToScriptToUnicodeSet;
-    }
 
     final private EnumMap<Style, UnicodeMap<String>> style2map;
     final private UnicodeSet hasConfusable = new UnicodeSet();
     final private UnicodeMap<EnumMap<Style,String>> char2data = new UnicodeMap<EnumMap<Style,String>>();
-    final private Map<Script_Values, Map<Script_Values, UnicodeSet>> scriptToScriptToUnicodeSet;
+
     final private Map<Script_Values, Map<Script_Values, CodepointToConfusables>> scriptToScriptToCodepointToUnicodeSet;
 
-    public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-    public static final UnicodeMap<Script_Values> CODEPOINT_TO_SCRIPT = IUP.loadEnum(UcdProperty.Script, UcdPropertyValues.Script_Values.class);
-    public static final UnicodeMap<Set<Script_Values>> CODEPOINT_TO_SCRIPTS = IUP.loadEnumSet(UcdProperty.Script_Extensions, UcdPropertyValues.Script_Values.class);
-    public static final UnicodeMap<String> CODEPOINT_TO_NAME = IUP.load(UcdProperty.Name);
+    //public static final UnicodeMap<Script_Values> CODEPOINT_TO_SCRIPT = IUP.loadEnum(UcdProperty.Script, UcdPropertyValues.Script_Values.class);
+    public static final UnicodeMap<String> CODEPOINT_TO_NAME = ScriptDetector.IUP.load(UcdProperty.Name);
 
     public Confusables (String directory) {
         try {
@@ -95,10 +82,10 @@ public class Confusables {
                 String target = Utility.fromHex(parts[1]);
                 hasConfusable.add(source);
                 hasConfusable.add(target);
-                
+
                 Style style = Style.valueOf(parts[2]);
                 addConfusable(style, source, target, _style2map);
-                
+
                 if (CharSequences.getSingleCodePoint(target) != Integer.MAX_VALUE) {
                     addConfusable(style, target, source, _style2map);
                 }
@@ -107,83 +94,38 @@ public class Confusables {
             char2data.freeze();
             hasConfusable.freeze();
 
-            Map<Script_Values, Map<Script_Values, UnicodeSet>> _scriptToScriptToUnicodeSet = new TreeMap<>();
-            // 05E1          ; Hebr; Telu; A #      (ס)  HEBREW LETTER SAMEKH
-
-            //            NameMatcher<Script_Values> matcher = PropertyNames.getNameToEnums(Script_Values.class);
-            //            for (String line : FileUtilities.in(directory, "confusablesWholeScript.txt")) {
-            //                if (line.startsWith("\uFEFF")) {
-            //                    line = line.substring(1);
-            //                }
-            //                line = line.trim();
-            //                if (line.isEmpty()) {
-            //                    continue;
-            //                }
-            //                int hashPos = line.indexOf('#');
-            //                line = line.substring(0,hashPos).trim();
-            //                if (line.isEmpty()) {
-            //                    continue;
-            //                }
-            //                String[] parts = line.split("\\s*;\\s*");
-            //                if ("L".equals(parts[3])) {
-            //                    continue; // the L case isn't very useful;
-            //                }
-            //                Script_Values sourceScript = matcher.get(parts[1]);
-            //                Script_Values targetScript = matcher.get(parts[2]);
-            //                UnicodeSet uset = getUnicodeSetIn(_scriptToScriptToUnicodeSet, sourceScript, targetScript);
-            //                String[] sourceRange = parts[0].split("\\.\\.");
-            //                int sourceCharStart = Integer.parseInt(sourceRange[0], 16);
-            //                int sourceCharEnd = sourceRange.length < 2 ? sourceCharStart : Integer.parseInt(sourceRange[1], 16);
-            //                uset.add(sourceCharStart, sourceCharEnd);
-            //            }
-
             // patch, because the file doesn't contain X => common/inherited or the targetSet
-            UnicodeMap<String> map = style2map.get(Style.MA);
+            UnicodeMap<String> codepointToRepresentativeConfusable = style2map.get(Style.MA);
             Map<Script_Values, Map<Script_Values, CodepointToConfusables>> _scriptToScriptToCodepointToUnicodeSet = new EnumMap<>(Script_Values.class);
 
             // get the equivalence classes
-            for (String representative : map.values()) {
-                UnicodeSet equivalents = new UnicodeSet(map.getSet(representative)).add(representative);
+            final ScriptDetector scriptDetector = new ScriptDetector();
+            for (String representative : codepointToRepresentativeConfusable.values()) {
+                UnicodeSet equivalents = new UnicodeSet(codepointToRepresentativeConfusable.getSet(representative))
+                .add(representative);
                 for (String a : equivalents) {
                     for (String b : equivalents) {
-                        if (a.compareTo(b) >= 0) {
-                            continue; // only consider pair once, and skip a,a
+                        if (a.equals(b)) {
+                            continue; // skip a => a
                         }
-                        if ("l".equals(a) || "l".equals(b)) {
-                            @SuppressWarnings("unused")
-                            int debug = 0;
-                        }
-                        // try adding both directions
-                        // but only if the source is a single code point
+                        // only if the source is a single code point
                         int aSingle = getSingleCodePoint(a);
-                        int bSingle = getSingleCodePoint(b);
-                        if (aSingle >= 0) {
-                            tryAdding(aSingle, b, _scriptToScriptToUnicodeSet, _scriptToScriptToCodepointToUnicodeSet);
+                        if (aSingle < 0) { // not valid singleton?
+                            continue;
                         }
-                        if (bSingle >= 0) {
-                            tryAdding(bSingle, a, _scriptToScriptToUnicodeSet, _scriptToScriptToCodepointToUnicodeSet);
+                        Set<Script_Values> aScripts = ScriptDetector.getScriptExtensions(aSingle);
+                        for (Script_Values aScript : aScripts) {
+                            Set<Script_Values> bScripts = scriptDetector.set(b).getSingleSetOrNull();
+                            if (bScripts == null) {
+                                continue; // not a single set of scripts
+                            }
+                            for (Script_Values bScript : bScripts) {
+                                addToMap(aScript, bScript, aSingle, b, _scriptToScriptToCodepointToUnicodeSet);
+                            }
                         }
                     }
                 }
             }
-            if (false) for (Entry<Script_Values, Map<Script_Values, CodepointToConfusables>> scriptToCodepointToUnicodeSet : _scriptToScriptToCodepointToUnicodeSet.entrySet()) {
-                String sourceScript = scriptToCodepointToUnicodeSet.getKey().getShortName();
-                for (Entry<Script_Values, CodepointToConfusables> codepointToUnicodeSet : scriptToCodepointToUnicodeSet.getValue().entrySet()) {
-                    String targetScript = codepointToUnicodeSet.getKey().getShortName();
-                    for (Entry<Integer, UnicodeSet> value : codepointToUnicodeSet.getValue()) {
-                        int codePoint = value.getKey();
-                        UnicodeSet set = value.getValue();
-                        System.out.println(Utility.hex(codePoint) 
-                                + ";\t" + sourceScript
-                                + ";\t" + targetScript
-                                + "; A; " + set.toPattern(false)
-                                + "\t# ( " + UTF16.valueOf(codePoint) + " ) " + CODEPOINT_TO_NAME.get(codePoint)
-                                );
-                    }
-                }
-            }
-
-            scriptToScriptToUnicodeSet = CldrUtility.protectCollection(_scriptToScriptToUnicodeSet);
             scriptToScriptToCodepointToUnicodeSet = CldrUtility.protectCollection(_scriptToScriptToCodepointToUnicodeSet);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -209,28 +151,6 @@ public class Confusables {
         return scriptToScriptToCodepointToUnicodeSet;
     }
 
-    static final Set<Script_Values> COMMON_SET = Collections.singleton(Script_Values.Common);
-    static final Set<Script_Values> INHERITED_SET = Collections.singleton(Script_Values.Inherited);
-
-    private void tryAdding(int aSingle, String b, Map<Script_Values, 
-            Map<Script_Values, UnicodeSet>> _scriptToScriptToUnicodeSet,
-            Map<Script_Values, Map<Script_Values, CodepointToConfusables>> _scriptToScriptToCodepointToUnicodeSet) {
-        final ScriptDetector scriptDetector = new ScriptDetector();
-        Set<Script_Values> aScripts = CODEPOINT_TO_SCRIPTS.get(aSingle);
-        for (Script_Values aScript : aScripts) {
-            if (aScript == Script_Values.Inherited) {
-                aScript = Script_Values.Common;
-            }
-            Set<Script_Values> bScripts = scriptDetector.set(b).getSingleSet();
-            if (bScripts == null) {
-                continue; // not single set of scripts
-            }
-            for (Script_Values bScript : bScripts) {
-                addToMap(_scriptToScriptToUnicodeSet, aSingle, aScript, bScript);
-                addToMap(_scriptToScriptToCodepointToUnicodeSet, aSingle, b, aScript, bScript);
-            }
-        }
-    }
 
     /**
      * Return single code point if a is one; otherwise -1;
@@ -257,9 +177,9 @@ public class Confusables {
         uset.add(aSingle);
     }
 
-    private void addToMap(Map<Script_Values, Map<Script_Values, CodepointToConfusables>> map, 
-            int aSingle, String b, Script_Values sourceScript,
-            Script_Values targetScript) {
+    private void addToMap(Script_Values sourceScript, 
+            Script_Values targetScript, int aSingle, String b,
+            Map<Script_Values, Map<Script_Values, CodepointToConfusables>> map) {
         Map<Script_Values, CodepointToConfusables> map2 = map.get(sourceScript);
         if (map2 == null) {
             map.put(sourceScript, map2 = new EnumMap<>(Script_Values.class));
@@ -296,76 +216,6 @@ public class Confusables {
     //        return result != null ? result : haveCommon ? Script_Values.Common : null;
     //    }
 
-    public static final class ScriptDetector {
-        public static final Joiner JOINER_COMMA_SPACE = Joiner.on(", ");
-        public boolean isCommon;
-        public final EnumSet<Script_Values> singleScripts = EnumSet.noneOf(Script_Values.class);
-        public final HashSet<Set<Script_Values>> combinations = new HashSet<Set<Script_Values>>();
-
-        private final HashSet<Set<Script_Values>> toRemove = new HashSet<Set<Script_Values>>();
-
-        /**
-         * Return the script of the string, (Common if all characters are Common or Inherited)
-         * or null if there is not a unique one
-         * Only uses Script property for now.
-         * @param source
-         * @return
-         */
-        @SuppressWarnings("deprecation")
-        public ScriptDetector set(String source) {
-            singleScripts.clear();
-            combinations.clear();
-            isCommon = false;
-
-            boolean haveCommon = false;
-            for (int codepoint : CharSequences.codePoints(source)) {
-                Set<Script_Values> current = Confusables.CODEPOINT_TO_SCRIPTS.get(codepoint);
-                if (current.size() > 1) {
-                    combinations.add(current); // we know there are not Common or Inherited
-                } else {
-                    Script_Values only = current.iterator().next();
-                    if (only == Script_Values.Common || only == Script_Values.Inherited) {
-                        haveCommon = true;
-                    } else {
-                        singleScripts.add(only);
-                    }
-                }
-            }
-            // Remove redundant combinations
-            if (combinations.size() > 0) {
-                toRemove.clear();
-                for (Set<Script_Values> combo : combinations) {
-                    if (!Collections.disjoint(combo, singleScripts)) {
-                        toRemove.add(combo);
-                    }
-                }
-                combinations.removeAll(toRemove);
-            }
-            if (haveCommon && singleScripts.isEmpty() && combinations.isEmpty()) {
-                singleScripts.add(Script_Values.Common);
-                isCommon = true;
-            }
-            return this;
-        }
-
-        public int size() {
-            return singleScripts.size() + combinations.size();
-        }
-
-        public Set<Script_Values> getSingleSet() {
-            return combinations.isEmpty() ? singleScripts
-                    : !singleScripts.isEmpty() ? null
-                            : combinations.size() > 1 ? null
-                                    : combinations.iterator().next();
-        }
-        @Override
-        public String toString() {
-            return singleScripts.isEmpty() ? JOINER_COMMA_SPACE.join(combinations)
-                    : combinations.isEmpty() ? JOINER_COMMA_SPACE.join(singleScripts)
-                            : JOINER_COMMA_SPACE.join(singleScripts) + ", " + JOINER_COMMA_SPACE.join(combinations);
-        }
-    }
-
     public CodepointToConfusables getCharsToConfusables(Script_Values sourceScript, Script_Values targetScript) {
         Map<Script_Values, CodepointToConfusables> map1 = scriptToScriptToCodepointToUnicodeSet.get(sourceScript);
         if (map1 == null) {
@@ -374,7 +224,7 @@ public class Confusables {
         CodepointToConfusables map2 = map1.get(targetScript);
         return map2;
     }
-    
+
     public static class CodepointToConfusables implements Iterable<Entry<Integer,UnicodeSet>>, Freezable<CodepointToConfusables> {
         boolean isFrozen;
         Map<Integer, UnicodeSet> data = new TreeMap<>();
@@ -422,5 +272,46 @@ public class Confusables {
 
     public UnicodeSet getCharsWithConfusables() {
         return hasConfusable;
+    }
+
+    public void print(Appendable out) {
+        try {
+            for (Entry<Script_Values, Map<Script_Values, CodepointToConfusables>> scriptToCodepointToUnicodeSet : scriptToScriptToCodepointToUnicodeSet.entrySet()) {
+                String sourceScript = scriptToCodepointToUnicodeSet.getKey().getShortName();
+                for (Entry<Script_Values, CodepointToConfusables> codepointToUnicodeSet : scriptToCodepointToUnicodeSet.getValue().entrySet()) {
+                    String targetScript = codepointToUnicodeSet.getKey().getShortName();
+                    UnicodeMap<UnicodeSet> temp = new UnicodeMap<UnicodeSet>();
+                    for (Entry<Integer, UnicodeSet> value : codepointToUnicodeSet.getValue()) {
+                        temp.put(value.getKey(), value.getValue());
+                    }
+                    for (UnicodeSet values : temp.values()) {
+                        UnicodeSet keys = temp.getSet(values);
+                        for (UnicodeSet.EntryRange range : keys.ranges()) {
+                            final boolean single = range.codepointEnd == range.codepoint;
+                            out.append(Utility.hex(range.codepoint) 
+                                    + (single ? "" : ".." + Utility.hex(range.codepointEnd))
+                                    + ";\t" + sourceScript
+                                    + ";\t" + targetScript
+                                    + "; A; " + values.toPattern(false)
+                                    + "\t# ( " + UTF16.valueOf(range.codepoint) + " ) " + CODEPOINT_TO_NAME.get(range.codepoint)
+                                    + (single ? "" : "...")
+                                    + "\n"
+                                    );
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new ICUException(e);
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        final String SECURITY_PUBLIC = Settings.UNICODE_DRAFT_PUBLIC + "security/";
+        final Confusables CONFUSABLES = new Confusables(SECURITY_PUBLIC + Settings.latestVersion);
+        try (PrintWriter pw = BagFormatter.openUTF8Writer(Settings.GEN_UCD_DIR, "confusablesWholeScript.txt")) {
+            CONFUSABLES.print(pw);
+            pw.flush();
+        }
     }
 }
