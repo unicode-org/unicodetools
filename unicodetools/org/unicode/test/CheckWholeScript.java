@@ -1,6 +1,8 @@
 package org.unicode.test;
 
+import java.util.Collections;
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,7 +25,9 @@ public class CheckWholeScript {
     static final CodepointToConfusables COMMON_COMMON_UNICODESET2 
     = SCRIPT_SCRIPT_UNICODESET2.get(Script_Values.Common).get(Script_Values.Common); 
 
-    public enum Status {NONE, OTHER, COMMON, SAME}
+    public enum Status {
+        SAME, COMMON, OTHER
+    }
     
     private final UnicodeSet includeOnly;
     
@@ -38,28 +42,25 @@ public class CheckWholeScript {
      * @param includeOnly the includeOnly to set
      */
     public CheckWholeScript(UnicodeSet includeOnly) {
-        this.includeOnly = includeOnly.freeze();
+        this.includeOnly = includeOnly == null ? null : includeOnly.freeze();
     }
 
     private ScriptDetector scriptDetector;
 
-    public Status hasWholeScriptConfusable(String source, EnumMap<Script_Values, String> examples) {
+    public Set<Status> getConfusables(String source, EnumMap<Script_Values, String> examples) {
         String nfd = NFD.normalize(source);
         if (examples != null) {
             examples.clear();
         }
         scriptDetector = new ScriptDetector();
         ScriptDetector sd = scriptDetector.set(nfd);
-        Status result = Status.NONE;
         Set<Script_Values> set = sd.getSingleSetOrNull();
         if (set == null) { // not a valid single set
-            return result;
+            return Collections.<Status>emptySet();
         }
+        Set<Status> result = EnumSet.noneOf(Status.class);
         for (Script_Values sourceScript : set) {
-            Status temp = hasRestricted(nfd, sourceScript, examples);
-            if (temp.compareTo(result) > 0) {
-                result = temp;
-            }
+            hasRestricted(nfd, sourceScript, examples, result);
         }
         return result;
     }
@@ -69,20 +70,19 @@ public class CheckWholeScript {
 //        return set;
 //    }
 
-    private Status hasRestricted(String nfd, Script_Values sourceScript, EnumMap<Script_Values, String> examples) {
+    private void hasRestricted(String nfd, Script_Values sourceScript, EnumMap<Script_Values, String> examples, Set<Status> result) {
         Map<Script_Values, CodepointToConfusables> submap = SCRIPT_SCRIPT_UNICODESET2.get(sourceScript);
         if (submap == null) {
-            return Status.NONE;
+            return;
         }
         StringBuilder example = new StringBuilder();
-        Status result = Status.NONE;
 
         boolean hasCommon = false;
         CodepointToConfusables cpToCommonSet = submap.get(Script_Values.Common);
         if (hasRestricted(Script_Values.Common, cpToCommonSet, nfd, example, cpToCommonSet)) {
-            result = Status.COMMON;
+            result.add(Status.COMMON);
             if (examples == null) {
-                return result;
+                return;
             } else {
                 examples.put(Script_Values.Common, example.toString());
             }
@@ -90,9 +90,9 @@ public class CheckWholeScript {
         }
         CodepointToConfusables cpToSourceSet = submap.get(sourceScript);
         if (hasRestricted(sourceScript, cpToSourceSet, nfd, example, cpToCommonSet)) {
-            result = Status.SAME;
+            result.add(Status.SAME);
             if (examples == null) {
-                return result;
+                return;
             } else {
                 examples.put(sourceScript, example.toString());
             }
@@ -105,23 +105,22 @@ public class CheckWholeScript {
                 }
                 CodepointToConfusables cpToIdentifierSet = entry.getValue();
                 if (hasRestricted(targetScript, cpToIdentifierSet, nfd, example, cpToCommonSet)) {
-                    result = Status.OTHER;
+                    result.add(Status.OTHER);
                     if (examples == null) {
-                        return result;
+                        return;
                     } else {
                         examples.put(targetScript, example.toString());
                     }
                 }
             }
         }
-        return result;
     }
 
     private boolean hasRestricted(final Script_Values targetScript, CodepointToConfusables cpToIdentifierSet, String nfd, 
             StringBuilder example, CodepointToConfusables cpToCommonSet) {
         example.setLength(0);
         for (int cp : CharSequences.codePoints(nfd)) { // for all chars in the givenSet
-            if (ScriptDetector.COMMON_OR_INHERITED.contains(cp) && (includeOnly == null || includeOnly.contains(cp))) {
+            if (ScriptDetector.getScriptExtensions(cp).equals(ScriptDetector.COMMON_SET) && (includeOnly == null || includeOnly.contains(cp))) {
                 // see if there is an alternate
                 boolean diff = appendDifferentIfPossible(cp, example);
                 continue;
@@ -165,7 +164,7 @@ public class CheckWholeScript {
     /** The containsSomeFlattened is true, and get a sample 
      * @param avoidIfPossible **/
     private static String getSampleFlattened(UnicodeSet a, UnicodeSet b) {
-        UnicodeSet intersect = new UnicodeSet(a).retainAll(b);
+        UnicodeSet intersect = a == null ? b : new UnicodeSet(a).retainAll(b);
         if (!intersect.isEmpty()) {
             final Iterator<String> iterator = intersect.iterator();
             return iterator.next();
@@ -179,7 +178,7 @@ public class CheckWholeScript {
     }
 
     private static boolean containsSomeFlattened(UnicodeSet a, UnicodeSet b) {
-        if (a.containsSome(b)) {
+        if (a == null || a.containsSome(b)) {
             return true;
         }
         // if fails, and b has some strings, try those
