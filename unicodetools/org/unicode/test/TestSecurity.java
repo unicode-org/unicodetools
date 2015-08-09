@@ -348,9 +348,14 @@ public class TestSecurity extends TestFmwkPlus {
                 if (cpToConfusables == null) {
                     continue;
                 }
-                logln(source + " => " + target);
+                UnicodeSet failures = new UnicodeSet();
                 for (Entry<Integer, UnicodeSet> s : cpToConfusables) {
-                    assertFalse(Utility.hex(s.getKey()), s.getValue().contains(s.getKey()));
+                    if (s.getValue().contains(s.getKey())) {
+                        failures.add(s.getKey());
+                    }
+                }
+                if (!failures.isEmpty()) {
+                    assertEquals(source + " => " + target, UnicodeSet.EMPTY, failures);
                 }
             }
         }
@@ -362,12 +367,12 @@ public class TestSecurity extends TestFmwkPlus {
         String[][] tests = {
                 {"℮", "Common"},
                 {"ցօօց1℮", "Armenian"},
-                {"ցօօց1℮ー", "Armenian; Hiragana, Katakana"},
-                {"ー", "Hiragana, Katakana"},
-                {"カー", "Katakana"},
-                {"\u303Cー", "Hiragana, Katakana"},
-                {"\u303C", "Han, Hiragana, Katakana"},
-                {"A\u303C", "Latin; Han, Hiragana, Katakana"},
+                {"ցօօց1℮ー", "Armenian; Japanese"},
+                {"ー", "Japanese"},
+                {"カー", "Japanese"},
+                {"\u303C", "Han, Korean, Japanese"},
+                {"\u303Cー", "Japanese"},
+                {"\u303CA", "Latin; Han, Korean, Japanese"},
                 {"\u0300", "Common"},
                 {"\u0300.", "Common"},
                 {"a\u0300", "Latin"},
@@ -378,7 +383,7 @@ public class TestSecurity extends TestFmwkPlus {
             expected.clear();
             expected.addAll(parseAlternates(test[1]));
             sd.set(source);
-            assertEquals("", expected, sd.getAll());
+            assertEquals(source, expected, sd.getAll());
         }
     }
     
@@ -413,71 +418,79 @@ public class TestSecurity extends TestFmwkPlus {
         //            }
         //        }
         UnicodeSet withConfusables = CONFUSABLES.getCharsWithConfusables();
-        String list = withConfusables.toPattern(false);
+        //String list = withConfusables.toPattern(false);
         UnicodeSet commonChars = new UnicodeSet(ScriptDetector.getCharactersForScriptExtensions(ScriptDetector.COMMON_SET))
         .removeAll(withConfusables)
         .removeAll(new UnicodeSet("[[:Z:][:c:]]"));
         final String commonUnconfusable = commonChars.iterator().next();
         Object[][] tests = {
-                {"[:any:]"}, // anything goes
+                {"idSet", null}, // anything goes
 
-
-                {"google", Status.SAME},
+                {"google", Status.SAME, Status.COMMON},
                 {"ցօօց1℮", Status.COMMON},
-                {"sex", Status.SAME},
-                {"scope", Status.SAME},
-                {"sef", Status.SAME},
-                {"1", Status.SAME},
-                {"NO", Status.SAME},
-                {"ー", Status.SAME}, // length mark // should be different
-                {"—", Status.SAME}, // em dash
-                {"コー", Status.NONE},
-                {"〳ー", Status.SAME}, // should be different
-                {"乙一", Status.OTHER}, // Hani
-                {"㇠ー", Status.OTHER}, // Hiragana
-                {"Aー", Status.NONE},
-                {"カ", Status.NONE}, // KATAKANA LETTER KA // should be added
-                {"⼒", Status.SAME}, // KANGXI RADICAL POWER
-                {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
-                {commonUnconfusable, Status.NONE}, // check that 
-                {"!", Status.NONE},
-                {"\u0300", Status.NONE},
-                {"a\u0300", Status.SAME},
-                {"ä", Status.SAME},
+                {"sex", Status.SAME, Status.COMMON},
+                {"scope", Status.SAME, Status.COMMON},
+                {"sef", Status.SAME, Status.COMMON},
+                {"1", Status.SAME, Status.COMMON},
+                {"NO", Status.SAME, Status.COMMON},
+                {"ー", Status.SAME, Status.COMMON}, // length mark // should be different
+                {"—", Status.SAME, Status.COMMON}, // em dash
+                {"コー"},
+                {"〳ー", Status.SAME, Status.COMMON}, // should be different
+                {"乙一", Status.OTHER, Status.SAME}, // Hani
+                {"㇠ー", Status.OTHER, Status.SAME}, // Hiragana
+                {"Aー"},
+                {"カ"}, // KATAKANA LETTER KA // should be added
+                {"⼒", Status.SAME, Status.OTHER}, // KANGXI RADICAL POWER
+                {"力", Status.SAME, Status.OTHER}, // CJK UNIFIED IDEOGRAPH-529B
+                {commonUnconfusable}, // check that 
+                {"!"},
+                {"\u0300"},
+                {"a\u0300", Status.COMMON, Status.SAME},
+                {"ä", Status.COMMON, Status.SAME},
 
-                {"[[:L:][:M:][:N:]-[:nfkcqc=n:]]"}, // a typical identifier set
+                {"idSet", "[[:L:][:M:][:N:]-[:nfkcqc=n:]]"}, // a typical identifier set
 
                 {"google", Status.SAME},
-                {"ցօօց1℮", Status.NONE},
+                {"ցօօց1℮"},
                 {"sex", Status.OTHER},
                 {"scope", Status.OTHER},
                 {"sef", Status.SAME},
-                {"1", Status.SAME},
+                {"1", Status.SAME, Status.COMMON},
                 {"NO", Status.OTHER},
-                {"ー", Status.OTHER},
-                {"コー", Status.NONE},
-                {"〳ー", Status.OTHER},
-                {"乙ー", Status.NONE},
-                {"Aー", Status.NONE},
+                {"ー", Status.SAME, Status.OTHER},
+                {"コー"},
+                {"〳ー", Status.SAME, Status.OTHER},
+                {"乙ー"},
+                {"Aー"},
+                
                 // special cases
-                {"[rn]"}, // the identifier set, to check that the identifier matching flattens
+                {"idSet", "[rn]"}, // the identifier set, to check that the identifier matching flattens
                 {"m", Status.SAME},
         };
         EnumMap<Script_Values, String> examples = new EnumMap<>(Script_Values.class);
-        UnicodeSet includeOnly = null;
         CheckWholeScript checker = null;
+        Set<Status> expected = EnumSet.noneOf(Status.class);
+        final ScriptDetector scriptDetector = new ScriptDetector();
+
         for (Object[] test : tests) {
             String source = (String) test[0];
-            if (test.length < 2) {
-                checker = new CheckWholeScript(source == null ? null : new UnicodeSet(source));
-                logln("idSet= " + includeOnly);
+            
+            if (source.equals("idSet")) {
+                String op = (String) test[1];
+                checker = new CheckWholeScript(op == null ? null : new UnicodeSet(op));
+                logln("idSet= " + checker.getIncludeOnly());
                 continue;
             }
-            Status expected = (Status) test[1];
-            Status actual = checker.hasWholeScriptConfusable(source, examples);
+            expected.clear();
+            for (int i = 1; i < test.length; ++i) {
+                expected.add((Status) test[i]);
+            }
+            Set<Status> actual = checker.getConfusables(source, examples);
             assertEquals(
-                    (isVerbose() ? "" : "idSet=" + includeOnly + ",")
+                    (isVerbose() ? "" : "idSet=" + checker.getIncludeOnly() + ",")
                     + " source= " + source 
+                    + ", scripts= " + scriptDetector.set(source).getAll() 
                     + ", examples= " + examples, expected.toString(), actual.toString());
         }
     }

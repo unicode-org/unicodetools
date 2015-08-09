@@ -14,21 +14,23 @@ import org.unicode.props.UcdPropertyValues.Script_Values;
 
 import com.google.common.base.Joiner;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 
 public final class ScriptDetector {
     public static final Joiner JOINER_COMMA_SPACE = Joiner.on(", ");
     public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-    private static final UnicodeMap<Set<Script_Values>> _CODEPOINT_TO_SCRIPTS = ScriptDetector.IUP.loadEnumSet(UcdProperty.Script_Extensions, UcdPropertyValues.Script_Values.class);
     public static final Set<Script_Values> INHERITED_SET = Collections.singleton(Script_Values.Inherited);
     public static final Set<Script_Values> COMMON_SET = Collections.singleton(Script_Values.Common);
-    public static final UnicodeSet COMMON_OR_INHERITED
-    = new UnicodeSet(ScriptDetector._CODEPOINT_TO_SCRIPTS.getSet(ScriptDetector.COMMON_SET))
-    .addAll(ScriptDetector._CODEPOINT_TO_SCRIPTS.getSet(ScriptDetector.INHERITED_SET))
-    .freeze();
     
-    
+    private static final UnicodeMap<Set<Script_Values>> FIXED_CODEPOINT_TO_SCRIPTS = fix();
+//    public static final UnicodeSet COMMON_OR_INHERITED
+//    = new UnicodeSet(ScriptDetector._CODEPOINT_TO_SCRIPTS.getSet(ScriptDetector.COMMON_SET))
+//    .addAll(ScriptDetector._CODEPOINT_TO_SCRIPTS.getSet(ScriptDetector.INHERITED_SET))
+//    .freeze();
+
+
     private boolean isCommon;
     private final EnumSet<Script_Values> singleScripts = EnumSet.noneOf(Script_Values.class);
     private final HashSet<Set<Script_Values>> combinations = new HashSet<Set<Script_Values>>();
@@ -88,6 +90,57 @@ public final class ScriptDetector {
         return this;
     }
 
+    private static UnicodeMap<Set<Script_Values>> fix() {
+        final UnicodeMap<Set<Script_Values>> codepointToScripts 
+        = ScriptDetector.IUP.loadEnumSet(UcdProperty.Script_Extensions, UcdPropertyValues.Script_Values.class);
+        final EnumSet<Script_Values> KANA = EnumSet.of(Script_Values.Hangul, Script_Values.Hiragana, Script_Values.Katakana);
+
+        UnicodeMap<Set<Script_Values>>result = new UnicodeMap<>();
+        for (Set<Script_Values> scriptValueSet : codepointToScripts.values()) {
+            UnicodeSet uset = codepointToScripts.getSet(scriptValueSet);
+            for (UnicodeSet.EntryRange range : uset.ranges()) {
+                Set<Script_Values> fixedScriptValueSet = fix(scriptValueSet, KANA);
+                result.putAll(range.codepoint, range.codepointEnd, fixedScriptValueSet);
+            }
+            for (String s : uset.strings()) {
+                Set<Script_Values> fixedScriptValueSet = fix(scriptValueSet, KANA);
+                result.put(s, fixedScriptValueSet);
+            }
+        }
+        return result;
+    }
+
+
+    private static Set<Script_Values> fix(Set<Script_Values> scriptValueSet, Set<Script_Values> KANA) {
+        //      * TODO 
+        //      * scx={...Han...} : add Jpan, Kore, eg => {...Han, Jpan, Kore...}
+        //      * scx={...Hiragana...} : replace by Jpan, eg => {...Hiragana, Jpan...}
+        //      * scx={...Katakana...} : add Jpan, eg => {...Katakana, Jpan...}
+        //      * scx={...Hangul...} : add Kore, eg => {...Han, Kore...}
+
+        EnumSet<Script_Values> temp = null;
+        if (scriptValueSet.equals(ScriptDetector.INHERITED_SET)) {
+            scriptValueSet = ScriptDetector.COMMON_SET;
+        } else if (scriptValueSet.contains(Script_Values.Han)) {
+            temp = EnumSet.of(Script_Values.Japanese, Script_Values.Korean);
+            temp.addAll(scriptValueSet);
+            temp.remove(Script_Values.Bopomofo);
+            temp.removeAll(KANA);
+        } else if (scriptValueSet.contains(Script_Values.Hangul)) {
+            temp = EnumSet.of(Script_Values.Korean);
+            temp.addAll(scriptValueSet);
+            temp.removeAll(KANA);
+        } else if (!Collections.disjoint(scriptValueSet, KANA)) {
+            temp = EnumSet.of(Script_Values.Japanese);
+            temp.addAll(scriptValueSet);
+            temp.removeAll(KANA);
+        }
+        if (temp == null) {
+            return scriptValueSet;
+        }
+        return Collections.unmodifiableSet(temp);
+    }
+
     public int size() {
         return singleScripts.size() + getCombinations().size();
     }
@@ -118,32 +171,11 @@ public final class ScriptDetector {
     }
 
     public static UnicodeSet getCharactersForScriptExtensions(Set<Script_Values> scriptValueSet) {
-        if (scriptValueSet.equals(ScriptDetector.COMMON_SET)) {
-            return ScriptDetector.COMMON_OR_INHERITED;
-        } else if (scriptValueSet.equals(ScriptDetector.INHERITED_SET)) {
-            throw new IllegalArgumentException("Internal Error");
-        } else {
-            UnicodeSet result = ScriptDetector._CODEPOINT_TO_SCRIPTS.getSet(scriptValueSet);
-            return result;
-        }
+        return ScriptDetector.FIXED_CODEPOINT_TO_SCRIPTS.getSet(scriptValueSet);
     }
 
-    /**
-     * TODO 
-     * scx={...Han...} : add Jpan, Kore, eg => {...Han, Jpan, Kore...}
-     * scx={...Hiragana...} : add Jpan, eg => {...Hiragana, Jpan...}
-     * scx={...Katakana...} : add Jpan, eg => {...Katakana, Jpan...}
-     * scx={...Hangul...} : add Kore, eg => {...Han, Kore...}
-     * 
-     * @param codepoint
-     * @return
-     */
     public static Set<Script_Values> getScriptExtensions(int codepoint) {
-        Set<Script_Values> result = ScriptDetector._CODEPOINT_TO_SCRIPTS.get(codepoint);
-        if (result.equals(ScriptDetector.INHERITED_SET)) {
-            result = ScriptDetector.COMMON_SET;
-        }
-        return result;
+        return ScriptDetector.FIXED_CODEPOINT_TO_SCRIPTS.get(codepoint);
     }
 
     /**
