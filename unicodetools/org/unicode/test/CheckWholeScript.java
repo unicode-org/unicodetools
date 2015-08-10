@@ -18,6 +18,10 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
 
+/**
+ * A class for checking the whole-script confusable status of a string. Also returns examples.
+ * @author markdavis
+ */
 public class CheckWholeScript {
     static final Normalizer NFD = Default.nfd();
     static final Map<Script_Values, Map<Script_Values, CodepointToConfusables>> SCRIPT_SCRIPT_UNICODESET2 
@@ -25,21 +29,38 @@ public class CheckWholeScript {
     static final CodepointToConfusables COMMON_COMMON_UNICODESET2 
     = SCRIPT_SCRIPT_UNICODESET2.get(Script_Values.Common).get(Script_Values.Common); 
 
+    /**
+     * The status of a whole-script confusable.
+     * @author markdavis
+     *
+     */
     public enum Status {
-        SAME, COMMON, OTHER
+        /**
+         * There is a same-script confusable, like "google" and "goog1e"
+         */
+        SAME,
+        /**
+         * There is a common-only confusable, like "l" and "1"
+         */
+        COMMON, 
+        /**
+         * There is a different script confusable, like "sex" (Latin) and "ѕех" (Cyrillic)
+         */
+        OTHER
     }
     
     private final UnicodeSet includeOnly;
     
     /**
-     * @return the includeOnly
+     * Returns the set of characters allowed in identifiers, passed in on creation.
      */
     public UnicodeSet getIncludeOnly() {
         return includeOnly;
     }
 
     /**
-     * @param includeOnly the includeOnly to set
+     * Create a checker, with the set of allowed characters. Null means there are no character limits.
+     * @param includeOnly the includeOnly to set. Note that it becomes frozen.
      */
     public CheckWholeScript(UnicodeSet includeOnly) {
         this.includeOnly = includeOnly == null ? null : includeOnly.freeze();
@@ -47,6 +68,17 @@ public class CheckWholeScript {
 
     private ScriptDetector scriptDetector;
 
+    /**
+     * Gets the whole-script confusable status, filling in the examples (if not null).
+     * Example:
+     * <ul>
+     * <li>source = sex (Latin) => [SAME, COMMON], with examples= {Latin=ƽꬲⅹ, Common=𝐬℮×}</li>
+     * <li>source = NO (Latin) => returns [OTHER], with examples= {Coptic=ⲚⲞ, Elbasan=𐔓𐔖, Greek=ΝΟ, Lisu=ꓠꓳ}</li>
+     * </ul>
+     * @param source
+     * @param examples
+     * @return
+     */
     public Set<Status> getConfusables(String source, EnumMap<Script_Values, String> examples) {
         String nfd = NFD.normalize(source);
         if (examples != null) {
