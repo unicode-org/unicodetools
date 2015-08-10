@@ -111,6 +111,7 @@ public class Confusables {
             hasConfusable.freeze();
 
             // patch, because the file doesn't contain X => common/inherited or the targetSet
+            
             UnicodeMap<String> codepointToRepresentativeConfusable = style2map.get(Style.MA);
             Map<Script_Values, Map<Script_Values, CodepointToConfusables>> _scriptToScriptToCodepointToUnicodeSet = new EnumMap<>(Script_Values.class);
 
@@ -308,9 +309,11 @@ public class Confusables {
      */
     public void print(Appendable out) {
         try {
-            for (Entry<Script_Values, Map<Script_Values, CodepointToConfusables>> scriptToCodepointToUnicodeSet : scriptToScriptToCodepointToUnicodeSet.entrySet()) {
+            for (Entry<Script_Values, Map<Script_Values, CodepointToConfusables>> scriptToCodepointToUnicodeSet 
+                    : scriptToScriptToCodepointToUnicodeSet.entrySet()) {
                 String sourceScript = scriptToCodepointToUnicodeSet.getKey().getShortName();
-                for (Entry<Script_Values, CodepointToConfusables> codepointToUnicodeSet : scriptToCodepointToUnicodeSet.getValue().entrySet()) {
+                for (Entry<Script_Values, CodepointToConfusables> codepointToUnicodeSet 
+                        : scriptToCodepointToUnicodeSet.getValue().entrySet()) {
                     String targetScript = codepointToUnicodeSet.getKey().getShortName();
                     UnicodeMap<UnicodeSet> temp = new UnicodeMap<UnicodeSet>();
                     for (Entry<Integer, UnicodeSet> value : codepointToUnicodeSet.getValue()) {
@@ -321,7 +324,7 @@ public class Confusables {
                         for (UnicodeSet.EntryRange range : keys.ranges()) {
                             final boolean single = range.codepointEnd == range.codepoint;
                             out.append(Utility.hex(range.codepoint) 
-                                    + (single ? "" : ".." + Utility.hex(range.codepointEnd))
+                                    + (single ? "\t\t" : ".." + Utility.hex(range.codepointEnd))
                                     + ";\t" + sourceScript
                                     + ";\t" + targetScript
                                     + "; A; " + values.toPattern(false)
@@ -332,6 +335,7 @@ public class Confusables {
                         }
                     }
                 }
+                out.append("\n");
             }
         } catch (IOException e) {
             throw new ICUException(e);

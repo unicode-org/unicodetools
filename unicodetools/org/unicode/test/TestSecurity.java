@@ -360,7 +360,7 @@ public class TestSecurity extends TestFmwkPlus {
             }
         }
     }
-    
+
     public void TestScriptDetection() {
         ScriptDetector sd = new ScriptDetector();
         Set<Set<Script_Values>> expected = new HashSet<>();
@@ -386,18 +386,18 @@ public class TestSecurity extends TestFmwkPlus {
             assertEquals(source, expected, sd.getAll());
         }
     }
-    
+
     public static Set<Script_Values> parseScripts(String scriptsString) {
         Set<Script_Values> result = EnumSet.noneOf(Script_Values.class);
         for (String item : COMMA.split(scriptsString)) {
-                result.add(Script_Values.valueOf(item));
+            result.add(Script_Values.valueOf(item));
         }
         return result;
     }
 
     static final Splitter SEMI = Splitter.on(';').trimResults().omitEmptyStrings();
     static final Splitter COMMA = Splitter.on(',').trimResults().omitEmptyStrings();
-    
+
     public static Set<Set<Script_Values>> parseAlternates(String scriptsSetString) {
         Set<Set<Script_Values>> result = new HashSet<>();
         for (String item : SEMI.split(scriptsSetString)) {
@@ -408,62 +408,53 @@ public class TestSecurity extends TestFmwkPlus {
 
 
     public void TestWholeScripts() {
-        //        for (Entry<Script_Values, Map<Script_Values, UnicodeSet>> entry : CONFUSABLES.getScriptToScriptToUnicodeSet().entrySet()) {
-        //            final String name1 = entry.getKey().name();
-        //            for (Entry<Script_Values, UnicodeSet> entry2 : entry.getValue().entrySet()) {
-        //                System.out.println(name1
-        //                        + "\t" + entry2.getKey().name()
-        //                        + "\t" + entry2.getValue().toPattern(false)
-        //                        );
-        //            }
-        //        }
         UnicodeSet withConfusables = CONFUSABLES.getCharsWithConfusables();
         //String list = withConfusables.toPattern(false);
-        UnicodeSet commonChars = new UnicodeSet(ScriptDetector.getCharactersForScriptExtensions(ScriptDetector.COMMON_SET))
-        .removeAll(withConfusables)
-        .removeAll(new UnicodeSet("[[:Z:][:c:]]"));
-        final String commonUnconfusable = commonChars.iterator().next();
+        final String commonUnconfusable = getUnconfusable(withConfusables, ScriptDetector.COMMON_SET);
+        final String latinUnconfusable = getUnconfusable(withConfusables, EnumSet.of(Script_Values.Latin));
         Object[][] tests = {
                 {"idSet", null}, // anything goes
 
-                {"google", Status.SAME, Status.COMMON},
-                {"ցօօց1℮", Status.COMMON},
-                {"sex", Status.SAME, Status.COMMON},
-                {"scope", Status.SAME, Status.COMMON},
-                {"sef", Status.SAME, Status.COMMON},
-                {"1", Status.SAME, Status.COMMON},
-                {"NO", Status.SAME, Status.COMMON},
-                {"ー", Status.SAME, Status.COMMON}, // length mark // should be different
-                {"—", Status.SAME, Status.COMMON}, // em dash
-                {"コー"},
-                {"〳ー", Status.SAME, Status.COMMON}, // should be different
-                {"乙一", Status.OTHER, Status.SAME}, // Hani
-                {"㇠ー", Status.OTHER, Status.SAME}, // Hiragana
-                {"Aー"},
-                {"カ"}, // KATAKANA LETTER KA // should be added
-                {"⼒", Status.SAME, Status.OTHER}, // KANGXI RADICAL POWER
-                {"力", Status.SAME, Status.OTHER}, // CJK UNIFIED IDEOGRAPH-529B
-                {commonUnconfusable}, // check that 
-                {"!"},
-                {"\u0300"},
-                {"a\u0300", Status.COMMON, Status.SAME},
-                {"ä", Status.COMMON, Status.SAME},
+                {""},
+                {commonUnconfusable}, // check that item with no confusables gets nothing
+                {latinUnconfusable}, // check that item with no confusables gets nothing
+                {"google", Status.SAME, Status.COMMON, Status.OTHER},
+                {"ցօօց1℮", Status.COMMON, Status.OTHER},
+                {"sex", Status.SAME, Status.COMMON, Status.OTHER},
+                {"ѕех", Status.SAME, Status.COMMON, Status.OTHER}, // Cyrillic
+                {"scope", Status.SAME, Status.COMMON, Status.OTHER},
+                {"1", Status.SAME, Status.OTHER},
+                {"NOT", Status.SAME, Status.COMMON, Status.OTHER},
+                {"ー", Status.SAME, Status.COMMON, Status.OTHER}, // length mark // should be different
+                {"—", Status.SAME, Status.OTHER}, // em dash
+                {"コー", Status.SAME},
+                {"〳ー", Status.SAME, Status.COMMON, Status.OTHER}, // should be different
+                {"乙一", Status.SAME}, // Hani
+                {"㇠ー", Status.SAME, Status.OTHER}, // Hiragana
+                {"Aー", Status.SAME},
+                {"カ"}, // KATAKANA LETTER KA // should be confusable with ⼒
+                {"⼒", Status.SAME}, // KANGXI RADICAL POWER
+                {"力", Status.SAME}, // CJK UNIFIED IDEOGRAPH-529B
+                {"!", Status.SAME, Status.OTHER},
+                {"\u0300", Status.SAME, Status.OTHER},
+                {"a\u0300", Status.SAME, Status.COMMON, Status.OTHER},
+                {"ä", Status.SAME, Status.COMMON, Status.OTHER},
 
                 {"idSet", "[[:L:][:M:][:N:]-[:nfkcqc=n:]]"}, // a typical identifier set
 
                 {"google", Status.SAME},
-                {"ցօօց1℮"},
-                {"sex", Status.OTHER},
-                {"scope", Status.OTHER},
+                {"ցօօց1℮", Status.OTHER},
+                {"sex", Status.SAME, Status.OTHER},
+                {"scope", Status.SAME, Status.OTHER},
                 {"sef", Status.SAME},
-                {"1", Status.SAME, Status.COMMON},
-                {"NO", Status.OTHER},
+                {"1", Status.OTHER},
+                {"NO", Status.SAME, Status.OTHER},
                 {"ー", Status.SAME, Status.OTHER},
-                {"コー"},
+                {"コー", Status.SAME},
                 {"〳ー", Status.SAME, Status.OTHER},
-                {"乙ー"},
-                {"Aー"},
-                
+                {"乙ー", Status.SAME, Status.OTHER},
+                {"Aー", Status.SAME},
+
                 // special cases
                 {"idSet", "[rn]"}, // the identifier set, to check that the identifier matching flattens
                 {"m", Status.SAME},
@@ -475,10 +466,10 @@ public class TestSecurity extends TestFmwkPlus {
 
         for (Object[] test : tests) {
             String source = (String) test[0];
-            
+
             if (source.equals("idSet")) {
-                String op = (String) test[1];
-                checker = new CheckWholeScript(op == null ? null : new UnicodeSet(op));
+                UnicodeSet op = test[1] == null ? null : new UnicodeSet((String) test[1]);
+                checker = new CheckWholeScript(op);
                 logln("idSet= " + checker.getIncludeOnly());
                 continue;
             }
@@ -487,12 +478,23 @@ public class TestSecurity extends TestFmwkPlus {
                 expected.add((Status) test[i]);
             }
             Set<Status> actual = checker.getConfusables(source, examples);
-            assertEquals(
+            if (!assertEquals(
                     (isVerbose() ? "" : "idSet=" + checker.getIncludeOnly() + ",")
                     + " source= " + source 
-                    + ", scripts= " + scriptDetector.set(source).getAll() 
-                    + ", examples= " + examples, expected.toString(), actual.toString());
+                    + ", scripts= " + scriptDetector.set(source).getAll(), 
+                    expected.toString(), actual.toString())) {
+                errln("\t\texamples= " + examples);
+            } else {
+                logln("\t\texamples= " + examples); 
+            }
         }
+    }
+    private String getUnconfusable(UnicodeSet withConfusables, Set<Script_Values> scriptSet) {
+        UnicodeSet commonChars = new UnicodeSet(ScriptDetector.getCharactersForScriptExtensions(scriptSet))
+        .removeAll(withConfusables)
+        .removeAll(new UnicodeSet("[[:Z:][:c:]]"));
+        final String commonUnconfusable = commonChars.iterator().next();
+        return commonUnconfusable;
     }
 }
 
