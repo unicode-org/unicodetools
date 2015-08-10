@@ -18,10 +18,21 @@ import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 
+/**
+ * Detect the (fixed) scripts of a character or string. Note that the values are "fixed" from what is in the UCD:
+ * <ul>
+ * <li>All Inherited become Common</li>
+ * <li>All characters with Han add Japanese (Jpan) and Korean (Kore), and remove Bopomofo, Katakana, and Hiragana.</li>
+ * <li>All characters with Hangul add Korean (Kore) and remove Katakana, and Hiragana.</li>
+ * <li>All characters with Katakana or Hiragana add Japanese, and remove Katakana, and Hiragana.</li>
+ * </ul>
+ * @author markdavis
+ *
+ */
 public final class ScriptDetector {
     public static final Joiner JOINER_COMMA_SPACE = Joiner.on(", ");
     public static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-    public static final Set<Script_Values> INHERITED_SET = Collections.singleton(Script_Values.Inherited);
+    private static final Set<Script_Values> INHERITED_SET = Collections.singleton(Script_Values.Inherited);
     public static final Set<Script_Values> COMMON_SET = Collections.singleton(Script_Values.Common);
     
     private static final UnicodeMap<Set<Script_Values>> FIXED_CODEPOINT_TO_SCRIPTS = fix();
@@ -37,9 +48,7 @@ public final class ScriptDetector {
     private final HashSet<Set<Script_Values>> toRemove = new HashSet<Set<Script_Values>>();
 
     /**
-     * Return the script of the string, (Common if all characters are Common or Inherited)
-     * or null if there is not a unique one
-     * Only uses Script property for now.
+     * Sets the source string, which causes it to be analyzed. Afterwards getAll(), size(), etc. can be called.
      * @param source
      * @return
      */
@@ -141,10 +150,17 @@ public final class ScriptDetector {
         return Collections.unmodifiableSet(temp);
     }
 
+    /**
+     * Return the number of items in getAll()—but faster than calling getAll().size().
+     * @return
+     */
     public int size() {
         return singleScripts.size() + getCombinations().size();
     }
 
+    /**
+     * Returns the unique set of script values for the string, or null if there isn't exactly 1.
+     */
     public Set<Script_Values> getSingleSetOrNull() {
         return getCombinations().isEmpty() ? singleScripts
                 : !singleScripts.isEmpty() ? null
@@ -158,6 +174,11 @@ public final class ScriptDetector {
                         : JOINER_COMMA_SPACE.join(singleScripts) + ", " + JOINER_COMMA_SPACE.join(getCombinations());
     }
 
+    /**
+     * Return all of the set of sets of script values in the source string. 
+     * The set is minimized. It will only be empty if the set() value was the empty string.
+     * @return
+     */
     public Set<Set<Script_Values>> getAll() {
         if (singleScripts.isEmpty()) {
             return getCombinations();
@@ -170,10 +191,16 @@ public final class ScriptDetector {
         return result;
     }
 
+    /**
+     * Return the characters having the given script value set.
+     */
     public static UnicodeSet getCharactersForScriptExtensions(Set<Script_Values> scriptValueSet) {
         return ScriptDetector.FIXED_CODEPOINT_TO_SCRIPTS.getSet(scriptValueSet);
     }
 
+    /**
+     * Return the set of script values for the code point.
+     */
     public static Set<Script_Values> getScriptExtensions(int codepoint) {
         return ScriptDetector.FIXED_CODEPOINT_TO_SCRIPTS.get(codepoint);
     }
@@ -186,14 +213,14 @@ public final class ScriptDetector {
     }
 
     /**
-     * @return the singleScripts
+     * Same as getAll, but filters to only singleton sets.
      */
     public EnumSet<Script_Values> getSingleScripts() {
         return singleScripts;
     }
 
     /**
-     * @return the combinations
+     * Same as getAll, but filters out singleton sets.
      */
     public HashSet<Set<Script_Values>> getCombinations() {
         return combinations;

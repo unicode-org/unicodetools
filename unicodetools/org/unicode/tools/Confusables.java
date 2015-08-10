@@ -25,19 +25,28 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Freezable;
 import com.ibm.icu.util.ICUException;
 
+/**
+ * Class that encapsulates the data from confusables.txt. It currently generates its own whole-script confusable data,
+ * because of omissions in the Unicode data file.
+ * @author markdavis
+ *
+ */
 public class Confusables {
     public static final Splitter SEMI = Splitter.on(';').trimResults();
 
+    /** type of confusable data. Only the MA data is used; the rest is deprecated. 
+     * @author markdavis
+     */
     public enum Style {SL, SA, ML, MA}
 
-    public static class Data {
-        final Style style;
-        final String result;
-        public Data(Style style, String result) {
-            this.style = style;
-            this.result = result;
-        }
-    }
+//    private static class Data {
+//        final Style style;
+//        final String result;
+//        public Data(Style style, String result) {
+//            this.style = style;
+//            this.result = result;
+//        }
+//    }
 
     /**
      * @return the style2map
@@ -46,6 +55,7 @@ public class Confusables {
         return style2map;
     }
     /**
+     * Get the mapping from character to representative confusable.
      * @return the char2data
      */
     public UnicodeMap<EnumMap<Style, String>> getChar2data() {
@@ -58,9 +68,15 @@ public class Confusables {
 
     final private Map<Script_Values, Map<Script_Values, CodepointToConfusables>> scriptToScriptToCodepointToUnicodeSet;
 
-    //public static final UnicodeMap<Script_Values> CODEPOINT_TO_SCRIPT = IUP.loadEnum(UcdProperty.Script, UcdPropertyValues.Script_Values.class);
+    /**
+     * Mapping from codepoint to name.
+     */
     public static final UnicodeMap<String> CODEPOINT_TO_NAME = ScriptDetector.IUP.load(UcdProperty.Name);
 
+    /**
+     * Create confusables data from a directory—not cached!
+     * @param directory
+     */
     public Confusables (String directory) {
         try {
             EnumMap<Style, UnicodeMap<String>> _style2map = new EnumMap<Style,UnicodeMap<String>>(Style.class);
@@ -216,6 +232,10 @@ public class Confusables {
     //        return result != null ? result : haveCommon ? Script_Values.Common : null;
     //    }
 
+    /**
+     * Return whole-script confusables data. Augments the Unicode data by adding the set of characters mapped to.
+     * @return null if no match for script1+script2
+     */
     public CodepointToConfusables getCharsToConfusables(Script_Values sourceScript, Script_Values targetScript) {
         Map<Script_Values, CodepointToConfusables> map1 = scriptToScriptToCodepointToUnicodeSet.get(sourceScript);
         if (map1 == null) {
@@ -225,6 +245,10 @@ public class Confusables {
         return map2;
     }
 
+    /**
+     * A map from codepoints to sets of characters. Encapsulated to make it easier to manage.
+     * @author markdavis
+     */
     public static class CodepointToConfusables implements Iterable<Entry<Integer,UnicodeSet>>, Freezable<CodepointToConfusables> {
         boolean isFrozen;
         Map<Integer, UnicodeSet> data = new TreeMap<>();
@@ -234,7 +258,7 @@ public class Confusables {
             return data.entrySet().iterator();
         }
 
-        public void add(int aSingle, String b) {
+        private void add(int aSingle, String b) {
             UnicodeSet uset = data.get(aSingle);
             if (uset == null) {
                 data.put(aSingle, uset = new UnicodeSet());
@@ -270,10 +294,18 @@ public class Confusables {
         }
     }
 
+    /**
+     * Returns all the characters that have some confusable.
+     * @return
+     */
     public UnicodeSet getCharsWithConfusables() {
         return hasConfusable;
     }
 
+    /**
+     * Prints out the whole-script confusable data.
+     * @param out
+     */
     public void print(Appendable out) {
         try {
             for (Entry<Script_Values, Map<Script_Values, CodepointToConfusables>> scriptToCodepointToUnicodeSet : scriptToScriptToCodepointToUnicodeSet.entrySet()) {
@@ -306,6 +338,9 @@ public class Confusables {
         }
     }
 
+    /**
+     * Write out the whole-script confusables data.
+     */
     public static void main(String[] args) throws IOException {
         final String SECURITY_PUBLIC = Settings.UNICODE_DRAFT_PUBLIC + "security/";
         final Confusables CONFUSABLES = new Confusables(SECURITY_PUBLIC + Settings.latestVersion);
