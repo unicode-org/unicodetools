@@ -27,8 +27,11 @@ import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.draft.ComparePinyin.PinyinSource;
 import org.unicode.jsp.FileUtilities.SemiFileReader;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
@@ -48,10 +51,15 @@ import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateUnihanCollators {
+    private static final boolean DEBUG = false;
+
+    private static final IndexUnicodeProperties IUP = IndexUnicodeProperties.make(Settings.latestVersion);
+
     static String version = CldrUtility.getProperty("UVERSION");
     static {
         System.out.println("To make files for a different version of unicode, use -DUVERSION=x.y.z");
@@ -82,23 +90,29 @@ public class GenerateUnihanCollators {
     static final Normalizer                  nfc                 = Default.nfc();
 
     static final UnicodeSet                   PINYIN_LETTERS      = new UnicodeSet("['a-uw-zàáèéìíòóùúüāēěīōūǎǐǒǔǖǘǚǜ]").freeze();
-    
+
     // these should be ok, eve if we are not on an old version
-    
+
     static final UnicodeSet                   NOT_NFC             = new UnicodeSet("[:nfc_qc=no:]").freeze();
     static final UnicodeSet                   NOT_NFD             = new UnicodeSet("[:nfd_qc=no:]").freeze();
     static final UnicodeSet                   NOT_NFKD             = new UnicodeSet("[:nfkd_qc=no:]").freeze();
-    
+
     // specifically restrict this to the set version. Theoretically there could be some variance in ideographic, but it isn't worth worrying about
-    
+
     static final UnicodeSet                   UNIHAN_LATEST         = new UnicodeSet("[[:ideographic:][:script=han:]]")
-                                                                    .removeAll(NOT_NFC)
-                                                                    .freeze();
-    
+    .removeAll(NOT_NFC)
+    .freeze();
     static final UnicodeSet                   UNIHAN                = version == null ? UNIHAN_LATEST
-                                                                    : new UnicodeSet("[:age=" + version + ":]")
-                                                                    .retainAll(UNIHAN_LATEST)
-                                                                    .freeze();
+            : new UnicodeSet("[:age=" + version + ":]")
+    .retainAll(UNIHAN_LATEST)
+    .freeze();
+    static {
+        if (!UNIHAN.contains(0x2B820)) {
+            UnicodeSet foo = new UnicodeSet("[[:ideographic:][:script=han:]]");
+            boolean b = foo.contains(0x2B820);
+            throw new ICUException(Utility.hex(0x2B820) + " not supported");
+        }
+    }
 
     static Matcher                            unicodeCp           = Pattern.compile("^U\\+(2?[0-9A-F]{4})$").matcher("");
     static final HashMap<String, Boolean>     validPinyin         = new HashMap<String, Boolean>();
@@ -125,11 +139,14 @@ public class GenerateUnihanCollators {
 
     static final UnicodeMap<Integer>          bestStrokesS        = new UnicodeMap<Integer>();
     static final UnicodeMap<Integer>          bestStrokesT         = new UnicodeMap<Integer>();
+    static final Splitter ONBAR = Splitter.on('|').trimResults();
+    static final Splitter ONSPACE = Splitter.on(' ').trimResults();
+    static final Splitter ONCOMMA = Splitter.on(',').trimResults();
+
     static {
-        UnicodeMap<String> kTotalStrokes = Default.ucd().getHanValue("kTotalStrokes");
-        Splitter onspace = Splitter.on(' ').trimResults();
+        UnicodeMap<String> kTotalStrokes = IUP.load(UcdProperty.kTotalStrokes);
         for (EntryRange<String> s : kTotalStrokes.entryRanges()) {
-            List<String> parts = onspace.splitToList(s.value);
+            List<String> parts = ONBAR.splitToList(s.value);
             Integer sValue = Integer.parseInt(parts.get(0));
             Integer tValue = parts.size() == 1 ? sValue : Integer.parseInt(parts.get(1));
             if (s.string != null) {
@@ -144,9 +161,9 @@ public class GenerateUnihanCollators {
 
     static UnicodeMap<Row.R2<String, String>> bihuaData           = new UnicodeMap<Row.R2<String, String>>();
 
-    static final UnicodeMap<String>           kRSUnicode          = Default.ucd().getHanValue("kRSUnicode");
-    static final UnicodeMap<String>           kSimplifiedVariant  = Default.ucd().getHanValue("kSimplifiedVariant");
-    static final UnicodeMap<String>           kTraditionalVariant = Default.ucd().getHanValue("kTraditionalVariant");
+    static final UnicodeMap<String>           kRSUnicode          = IUP.load(UcdProperty.kRSUnicode).cloneAsThawed();
+    static final UnicodeMap<String>           kSimplifiedVariant  = IUP.load(UcdProperty.kSimplifiedVariant);
+    static final UnicodeMap<String>           kTraditionalVariant = IUP.load(UcdProperty.kTraditionalVariant);
 
     static final UnicodeMap<String>           kBestStrokes        = new UnicodeMap<String>();
     static final UnicodeMap<Set<String>>      mergedPinyin        = new UnicodeMap<Set<String>>();
@@ -183,16 +200,18 @@ public class GenerateUnihanCollators {
     static final XEquivalenceClass<Integer, Integer> variantEquivalents = new XEquivalenceClass<Integer, Integer>();
     private static final String INDENT = "               ";
 
+
     static {
         System.out.println("kRSUnicode " + kRSUnicode.size());
 
         new BihuaReader().process(GenerateUnihanCollators.class, "bihua-chinese-sorting.txt");
         getBestStrokes();
+        new PatchStrokeReader(bestStrokesS, Pattern.compile("\\t\\s*")).process(GenerateUnihanCollators.class, "ucs-strokes-ext-e.txt");
         RsInfo.addToStrokeInfo(bestStrokesS, true);
 
         bestStrokesT.putAll(bestStrokesS);
         // patch the values for the T strokes
-        new PatchStrokeReader(bestStrokesT).process(GenerateUnihanCollators.class, "patchStrokeT.txt");
+        new PatchStrokeReader(bestStrokesT, SemiFileReader.SPLIT).process(GenerateUnihanCollators.class, "patchStrokeT.txt");
         RsInfo.addToStrokeInfo(bestStrokesT, false);
 
         new MyFileReader().process(GenerateUnihanCollators.class, "CJK_Radicals.csv");
@@ -207,42 +226,49 @@ public class GenerateUnihanCollators {
         // all kHanyuPinlu readings first; then take all kXHC1983; then
         // kHanyuPinyin.
 
-        final UnicodeMap<String> kHanyuPinlu = Default.ucd().getHanValue("kHanyuPinlu");
+        final UnicodeMap<String> kHanyuPinlu = IUP.load(UcdProperty.kHanyuPinlu);
         for (final String s : kHanyuPinlu.keySet()) {
             final String original = kHanyuPinlu.get(s);
             String source = original.replaceAll("\\([0-9]+\\)", "");
             source = fromNumericPinyin.transform(source);
-            addAll(s, original, PinyinSource.l, source.split(" "));
+            addAll(s, original, PinyinSource.l, ONBAR.split(source));
         }
 
         // kXHC1983
         // ^[0-9,.*]+:*[a-zx{FC}x{300}x{301}x{304}x{308}x{30C}]+$
-        final UnicodeMap<String> kXHC1983 = Default.ucd().getHanValue("kXHC1983");
+        final UnicodeMap<String> kXHC1983 = IUP.load(UcdProperty.kXHC1983);
+        System.out.println("UcdProperty.kXHC1983 " + kXHC1983.size());
         for (final String s : kXHC1983.keySet()) {
             final String original = kXHC1983.get(s);
             String source = nfc.normalize(original);
             source = source.replaceAll("([0-9,.*]+:)*", "");
-            addAll(s, original, PinyinSource.x, source.split(" "));
+            addAll(s, original, PinyinSource.x, ONBAR.split(source));
         }
 
-        final UnicodeMap<String> kHanyuPinyin = Default.ucd().getHanValue("kHanyuPinyin");
+        Pattern stuffToRemove = Pattern.compile("(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:");
+        final UnicodeMap<String> kHanyuPinyin = IUP.load(UcdProperty.kHanyuPinyin);
+        System.out.println("UcdProperty.kHanyuPinyin " + kHanyuPinyin.size());
         for (final String s : kHanyuPinyin.keySet()) {
-            final String original = kHanyuPinyin.get(s);
-            String source = nfc.normalize(original);
-            source = source.replaceAll("^\\s*(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:", ""); // ,
-            // only
-            // for
-            // medial
-            source = source.replaceAll("\\s*(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:", ",");
-            addAll(s, original, PinyinSource.p, source.split(","));
+            final String original2 = kHanyuPinyin.get(s);
+            for (String original : ONBAR.split(original2)) {
+                String source = nfc.normalize(original);
+                source = stuffToRemove.matcher(source).replaceAll("");
+                // only
+                // for
+                // medial
+                //source = source.replaceAll("\\s*(\\d{5}\\.\\d{2}0,)*\\d{5}\\.\\d{2}0:", ",");
+                addAll(s, original, PinyinSource.p, ONCOMMA.split(source));
+            }
+
         }
 
-        final UnicodeMap<String> kMandarin = Default.ucd().getHanValue("kMandarin");
+        final UnicodeMap<String> kMandarin = IUP.load(UcdProperty.kMandarin);
+        System.out.println("UcdProperty.kMandarin " + kMandarin.size());
         for (final String s : kMandarin.keySet()) {
             final String original = kMandarin.get(s);
             String source = original.toLowerCase();
             source = fromNumericPinyin.transform(source);
-            addAll(s, original, PinyinSource.m, source.split(" "));
+            addAll(s, original, PinyinSource.m, ONSPACE.split(source));
         }
 
         originalPinyin = mergedPinyin.keySet().freeze();
@@ -400,8 +426,8 @@ public class GenerateUnihanCollators {
         for (final String s : tailored) {
             sorted.add(nfc.normalize(s));
         }
-        final UnicodeMap<String>          kJapaneseKun         = Default.ucd().getHanValue("kJapaneseKun");
-        final UnicodeMap<String>          kJapaneseOn         = Default.ucd().getHanValue("kJapaneseOn");
+        final UnicodeMap<String>          kJapaneseKun         = IUP.load(UcdProperty.kJapaneseKun);
+        final UnicodeMap<String>          kJapaneseOn         = IUP.load(UcdProperty.kJapaneseOn);
 
         final StringBuilder buffer = new StringBuilder();
         out.println("#char; strokes; radical; rem-strokes; reading");
@@ -486,14 +512,14 @@ public class GenerateUnihanCollators {
             if (pinyin.equals(lastPinyin)) {
                 count++;
             } else {
-                System.out.println("\t" + count + "\t"
+                if (DEBUG) System.out.println("\t" + count + "\t"
                         + (progressive.get(lastPinyin) / (double) counter.get(lastPinyin)));
                 count = 1;
                 lastPinyin = pinyin;
                 System.out.print(s + "\t" + pinyin + "\t");
             }
         }
-        System.out.println("\t" + count + "\t"
+        if (DEBUG) System.out.println("\t" + count + "\t"
                 + (progressive.get(lastPinyin) / (double) counter.get(lastPinyin)));
     }
 
@@ -517,7 +543,7 @@ public class GenerateUnihanCollators {
         }
         out.close();
 
-        new PatchStrokeReader(bestStrokesS).process(GenerateUnihanCollators.class, "patchStroke.txt");
+        new PatchStrokeReader(bestStrokesS, SemiFileReader.SPLIT).process(GenerateUnihanCollators.class, "patchStroke.txt");
     }
 
     private static <T> void closeUnderNFKD(String title, UnicodeMap<T> mapping) {
@@ -784,7 +810,7 @@ public class GenerateUnihanCollators {
             if (radicalStrokeStrings == null) {
                 return null;
             }
-            final String radicalStrokeString = radicalStrokeStrings.contains(" ") ? radicalStrokeStrings.split(" ")[0] : radicalStrokeStrings;
+            final String radicalStrokeString = ONBAR.split(radicalStrokeStrings).iterator().next(); // get first
             RsInfo result = RS_INFO_CACHE.get(radicalStrokeString);
             if (result != null) {
                 return result;
@@ -846,11 +872,11 @@ public class GenerateUnihanCollators {
             // compute averages. Lame, but the best we have for now.
             for (final int key : mainStrokesTotal.keySet()) {
                 mainStrokes[key] = (int) Math.round(mainStrokesTotal.get(key) / (double) mainCount.get(key));
-                System.out.println("radical " + key + "\t" + mainStrokes[key]);
+                if (DEBUG) System.out.println("radical " + key + "\t" + mainStrokes[key]);
             }
             for (final int key : alternateStrokesTotal.keySet()) {
                 alternateStrokes[key] = (int) Math.round(alternateStrokesTotal.get(key) / (double) alternateCount.get(key));
-                System.out.println("radical' " + key + "\t" + alternateStrokes[key]);
+                if (DEBUG) System.out.println("radical' " + key + "\t" + alternateStrokes[key]);
             }
             final PrintWriter out = Utility.openPrintWriter(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, "imputedStrokes" + (simplified ? "" : "T") +
                     ".txt", null);
@@ -1165,7 +1191,7 @@ public class GenerateUnihanCollators {
                 continue;
             }
             final int baseCp = s.codePointAt(0);
-            for (final String part : value.split(" ")) {
+            for (final String part : ONBAR.split(value)) {
                 if (!unicodeCp.reset(part).matches()) {
                     throw new IllegalArgumentException();
                 } else {
@@ -1219,15 +1245,17 @@ public class GenerateUnihanCollators {
         return result;
     }
 
-    static void addAll(String han, String original, PinyinSource pinyin, String... pinyinList) {
-        if (pinyinList.length == 0) {
-            throw new IllegalArgumentException();
-        }
+    static void addAll(String han, String original, PinyinSource pinyin, Iterable<String> pinyinList) {
+        int count = 0;
         for (final String source : pinyinList) {
             if (source.length() == 0) {
                 throw new IllegalArgumentException();
             }
             addPinyin(pinyin.toString(), han, source, OverrideItems.keepOld);
+            ++count;
+        }
+        if (count == 0) {
+            throw new IllegalArgumentException();
         }
     }
 
@@ -1239,10 +1267,12 @@ public class GenerateUnihanCollators {
         source = source.intern();
         final String item = bestPinyin.get(han);
         if (item == null || override == OverrideItems.keepNew) {
-            if (item != null) {
-                System.out.println("Overriding Pinyin " + han + "\told: " + item + "\tnew: " + source);
+            if (!source.equals(item)) {
+                if (item != null) {
+                    System.out.println("Overriding Pinyin " + han + "\told: " + item + "\tnew: " + source);
+                }
+                bestPinyin.put(han, source);
             }
-            bestPinyin.put(han, source);
         }
         Set<String> set = mergedPinyin.get(han);
         if (set == null) {
@@ -1371,9 +1401,15 @@ public class GenerateUnihanCollators {
     static final class PatchStrokeReader extends SemiFileReader {
         final UnicodeMap<Integer> target;
         boolean skip = false;
+        private Pattern splitter;
 
-        PatchStrokeReader(UnicodeMap<Integer> target) {
+        PatchStrokeReader(UnicodeMap<Integer> target, Pattern splitter) {
             this.target = target;
+            this.splitter = splitter;
+        }
+
+        protected String[] splitLine(String line) {
+            return splitter.split(line);
         }
 
         @Override
@@ -1393,11 +1429,20 @@ public class GenerateUnihanCollators {
             if (skip) {
                 return true;
             }
-            if (!UNIHAN.contains(items[0])) {
-                throw new IllegalArgumentException("Non-Unihan character: " + items[0]);
+            String codepoint = items[0];
+            if (codepoint.startsWith("U+")) {
+                codepoint = UTF16.valueOf(Integer.parseInt(codepoint.substring(2), 16));
+            }
+            if (!UNIHAN.contains(codepoint)) {
+                throw new IllegalArgumentException("Non-Unihan character: " + codepoint + ", " + Utility.hex(codepoint));
             }
             if (items.length > 1) {
-                target.put(items[0], Integer.parseInt(items[1]));
+                String strokeCount = items[1];
+                int comma = strokeCount.indexOf(',');
+                if (comma >= 0) {
+                    strokeCount = strokeCount.substring(0,comma);
+                }
+                target.put(codepoint, Integer.parseInt(strokeCount));
             }
             return true;
         }
