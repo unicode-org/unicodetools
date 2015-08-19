@@ -121,12 +121,6 @@ public final class ScriptDetector {
 
 
     private static Set<Script_Values> fix(Set<Script_Values> scriptValueSet, Set<Script_Values> KANA) {
-        //      * TODO 
-        //      * scx={...Han...} : add Jpan, Kore, eg => {...Han, Jpan, Kore...}
-        //      * scx={...Hiragana...} : replace by Jpan, eg => {...Hiragana, Jpan...}
-        //      * scx={...Katakana...} : add Jpan, eg => {...Katakana, Jpan...}
-        //      * scx={...Hangul...} : add Kore, eg => {...Han, Kore...}
-
         EnumSet<Script_Values> temp = null;
         if (scriptValueSet.equals(ScriptDetector.INHERITED_SET)) {
             scriptValueSet = ScriptDetector.COMMON_SET;
