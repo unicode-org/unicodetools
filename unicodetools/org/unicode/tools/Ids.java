@@ -26,6 +26,9 @@ import org.unicode.cldr.util.ChainedMap.M4;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.Block_Values;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 
 import com.google.common.base.Joiner;
@@ -42,6 +45,7 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUException;
 import com.ibm.icu.util.Output;
 
 
@@ -57,7 +61,20 @@ public class Ids {
     private static final Joiner CRLF_JOINER = Joiner.on('\n');
 
     private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
+
+    private static final UnicodeMap<General_Category_Values> GC_PROPERTY = iup.loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
+    private static final UnicodeSet UNASSIGNED = GC_PROPERTY.getSet(General_Category_Values.Unassigned);
+
+    private static final UnicodeMap<Block_Values> BLOCK_PROPERTY = iup.loadEnum(UcdProperty.Block, UcdPropertyValues.Block_Values.class);
+    private static final UnicodeSet KANGXI_BLOCK = new UnicodeSet(BLOCK_PROPERTY.getSet(Block_Values.Kangxi_Radicals))
+    .removeAll(UNASSIGNED).freeze();
+    private static final UnicodeSet CJK_Radicals_Supplement_BLOCK = new UnicodeSet(BLOCK_PROPERTY.getSet(Block_Values.CJK_Radicals_Supplement))
+    .removeAll(UNASSIGNED).freeze();
+    private static final UnicodeSet CJK_STROKES_BLOCK = new UnicodeSet(BLOCK_PROPERTY.getSet(Block_Values.CJK_Strokes))
+    .removeAll(UNASSIGNED).freeze();
+
     private static final UnicodeMap<List<String>> radicalStroke = iup.loadList(UcdProperty.kRSUnicode);
+    private static final UnicodeMap<List<String>> kTotalStrokes = iup.loadList(UcdProperty.kTotalStrokes);
     private static final UnicodeMap<Set<String>> adobeRadicalStroke = iup.loadSet(UcdProperty.kRSAdobe_Japan1_6);
     private static final UnicodeMap<Integer> numericRadicalStroke;
     private static final M3<Integer,Boolean,UnicodeSet> USTROKE = ChainedMap.of(new TreeMap(), new TreeMap(), UnicodeSet.class);
@@ -87,6 +104,33 @@ public class Ids {
                 entry3.getValue().freeze();
             }
         }
+
+    }
+
+    static final Map<Integer,UnicodeSet> kRSJapaneseRadicals = loadRS(UcdProperty.kRSJapanese);
+    static final Map<Integer,UnicodeSet> kRSKanWaRadicals = loadRS(UcdProperty.kRSKanWa);
+    static final Map<Integer,UnicodeSet> kRSKoreanRadicals = loadRS(UcdProperty.kRSKorean);
+    static final Map<Integer,UnicodeSet> kRSKangXiRadicals = loadRS(UcdProperty.kRSKangXi);
+
+    private static  Map<Integer,UnicodeSet> loadRS(UcdProperty simpleRadicalStroke) {
+        UnicodeMap<String> rs2 = iup.load(simpleRadicalStroke);
+        Map<Integer,UnicodeSet> result = new TreeMap<Integer,UnicodeSet>();
+        for (EntryRange<String> entry : rs2.entryRanges()) {
+            String rsItem = entry.value;
+            if (rsItem.contains(" ") || rsItem.contains("|")) {
+                throw new IllegalArgumentException(simpleRadicalStroke.toString());
+            }
+            List<String> items = DOT_SPLITTER.splitToList(rsItem);
+            if (Integer.parseInt(items.get(1)) == 0) {
+                int radical = Integer.parseInt(items.get(0));
+                UnicodeSet set = result.get(radical);
+                if (set == null) {
+                    result.put(radical, set = new UnicodeSet());
+                }
+                set.add(entry.codepoint, entry.codepointEnd);
+            }
+        }
+        return Collections.unmodifiableMap(result);
     }
 
     private static final Comparator<String> UNIHAN = new Comparator<String>() {
@@ -124,6 +168,13 @@ public class Ids {
                             }
                         }
                     }
+                    if (KANGXI_BLOCK.contains(cp1)) {
+                        if (!KANGXI_BLOCK.contains(cp2)) {
+                            return -1;
+                        }
+                    } else if (KANGXI_BLOCK.contains(cp2)) {
+                        return 1;
+                    }
                     return cp1 - cp2;
                 }
                 if (cp1 > 0xFFFF) ++i1;
@@ -137,10 +188,11 @@ public class Ids {
 
     static final Pattern ADOBE = Pattern.compile("[CV]\\+[0-9]{1,5}\\+([1-9][0-9]{0,2})\\.([1-9][0-9]?)\\.([0-9]{1,2})");
     /**
+     * http://www.unicode.org/reports/tr38/#kRSAdobe_Japan1_6
      *  radical, rstrokes, remaining => Unicode => remaining
 
      */
-    private static final M4<Integer,Integer,Integer,UnicodeSet> ASTROKE = ChainedMap.of(new TreeMap(), new TreeMap(), new TreeMap(), UnicodeSet.class);
+    private static final M4<Integer,Integer,Integer,UnicodeSet> ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET = ChainedMap.of(new TreeMap(), new TreeMap(), new TreeMap(), UnicodeSet.class);
     static {
         Matcher m = ADOBE.matcher("");
         for (Entry<String, Set<String>> entry : adobeRadicalStroke.entrySet()) {
@@ -152,14 +204,14 @@ public class Ids {
                 int radical = Integer.parseInt(m.group(1));
                 int rstrokes = Integer.parseInt(m.group(2));
                 int remaining = Integer.parseInt(m.group(3));
-                UnicodeSet map = ASTROKE.get(radical, rstrokes, remaining);
+                UnicodeSet map = ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET.get(radical, rstrokes, remaining);
                 if (map == null) {
-                    ASTROKE.put(radical, rstrokes, remaining, map = new UnicodeSet());
+                    ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET.put(radical, rstrokes, remaining, map = new UnicodeSet());
                 }
                 map.add(source);
             }
         }
-        for (Entry<Integer, Map<Integer, Map<Integer, UnicodeSet>>> entry : ASTROKE) {
+        for (Entry<Integer, Map<Integer, Map<Integer, UnicodeSet>>> entry : ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET) {
             for (Entry<Integer, Map<Integer, UnicodeSet>> entry2 : entry.getValue().entrySet()) {
                 for (Entry<Integer, UnicodeSet> entry3 : entry2.getValue().entrySet()) {
                     entry3.getValue().freeze();
@@ -172,6 +224,7 @@ public class Ids {
     private static final Relation<String,String> rawRadToUnicode;
     private static final Relation<String,String> radToUnicode;
     private static final Relation<Integer,String> radToCjkRad;
+    private static final UnicodeMap<UnicodeSet> cjkStrokeToExamples;
     static {
         UnicodeMap<List<String>> unicodeToRadicalRaw = iup.loadList(UcdProperty.CJK_Radical);
 
@@ -183,7 +236,7 @@ public class Ids {
 
         unicodeToRadical = new UnicodeMap<>();
         // Add extra Adobe radicals first
-        for (Entry<Integer, Map<Integer, Map<Integer, UnicodeSet>>> entry : ASTROKE) {
+        for (Entry<Integer, Map<Integer, Map<Integer, UnicodeSet>>> entry : ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET) {
             final int radical = entry.getKey();
             final String radString = String.valueOf(radical);
             for (Entry<Integer, Map<Integer, UnicodeSet>> entry2 : entry.getValue().entrySet()) {
@@ -223,8 +276,23 @@ public class Ids {
             radToCjkRad.put(radNumber, UTF16.valueOf(cjkRad));
             radToUnicode.put(radString, UTF16.valueOf(cjkRad));
         }
-        
         radToUnicode.freeze();
+
+        cjkStrokeToExamples = new UnicodeMap<UnicodeSet>();
+        for (String line : FileUtilities.in(Ids.class, "n3063StrokeExamples.txt")) {
+            int hashPos = line.indexOf('#');
+            if (hashPos >= 0) {
+                line= line.substring(0, hashPos).trim();
+            }
+            if (line.isEmpty()) {
+                continue;
+            }
+            List<String> parts = SEMI_SPLITTER.splitToList(line);
+            int cjkStroke = parts.get(0).codePointAt(0);
+            final UnicodeSet examples = new UnicodeSet().addAll(parts.get(1)).remove(' ').freeze();
+            cjkStrokeToExamples.put(cjkStroke, examples);
+        }
+        cjkStrokeToExamples.freeze();
     }
 
     private static void fillRadical(UnicodeMap<List<String>> cjkRadicalRaw) {
@@ -552,17 +620,17 @@ public class Ids {
     private static final int LARGE = 72;
 
     private static final UnicodeMap<CharacterIds> IDS_RECURSIVE = new UnicodeMap<>();
-    
+
     private static class Special {
         static final Map<Integer, Special> specials = new TreeMap<>();
 
         final String description;
         UnicodeSet samples = new UnicodeSet();
-        
+
         public Special(String description) {
             this.description = description;
         }
-        
+
         public static void addSpecial(int codepoint, String sourceChar, String description) {
             codepoint -= 0xE000;
             Special special = specials.get(codepoint);
@@ -587,7 +655,7 @@ public class Ids {
             Special special = specials.get(codePoint-0xE000);
             special.samples.add(sourceChar);
         }
-        
+
         static void listSpecials() throws IOException {
             try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "ids/",
                     "specials.html");
@@ -616,6 +684,8 @@ public class Ids {
 
     public static void main(String[] args) throws IOException {
         load();
+        showCjkRadicals();
+        showRadicalCompareTxt();
         showRadicalCompare();
         showMainList();
         showParseErrors(failures, "parseFailures.html");
@@ -624,19 +694,26 @@ public class Ids {
         Special.listSpecials();
 
 
-//        for (int i : CharSequences.codePoints(FLIPPED)) {
-//            System.out.println("FLIPPED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) + "\t" + radicalStroke.get(i));
-//        }
-//        for (int i : CharSequences.codePoints(MIRRORED)) {
-//            System.out.println("MIRRORED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) + "\t" + radicalStroke.get(i));
-//        }
-//        for (Entry<String, CharacterIds> entry : IDS_DATA.entrySet()) {
-//            String source = entry.getKey();
-//            final String idsSource = entry.getValue().idsSource;
-//            if (idsSource.contains("↔") || idsSource.contains("↷")) {
-//                System.out.println(source + "\t" + idsSource + "\t" + radicalStroke.get(source));
-//            }
-//        }
+        //        for (int i : CharSequences.codePoints(FLIPPED)) {
+        //            System.out.println("FLIPPED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) + "\t" + radicalStroke.get(i));
+        //        }
+        //        for (int i : CharSequences.codePoints(MIRRORED)) {
+        //            System.out.println("MIRRORED:\t" + UTF16.valueOf(i) + "\t" + IDS_DATA.get(i) + "\t" + radicalStroke.get(i));
+        //        }
+        //        for (Entry<String, CharacterIds> entry : IDS_DATA.entrySet()) {
+        //            String source = entry.getKey();
+        //            final String idsSource = entry.getValue().idsSource;
+        //            if (idsSource.contains("↔") || idsSource.contains("↷")) {
+        //                System.out.println(source + "\t" + idsSource + "\t" + radicalStroke.get(source));
+        //            }
+        //        }
+    }
+
+    private static void showCjkRadicals() {
+        for (String s : CJK_STROKES_BLOCK) {
+            UnicodeSet examples = cjkStrokeToExamples.get(s);
+            System.out.println(s + "\t" + examples.toPattern(false));
+        }
     }
 
     private static void showRadicalMissing() throws IOException {
@@ -777,7 +854,7 @@ public class Ids {
                 String key2 = intRadical + (alt ? "'" : "");
                 final Set<String> cjkRad = alt ? Collections.EMPTY_SET : radToCjkRad.get(intRadical);
                 UnicodeSet RSUnicode = USTROKE.get(intRadical, alt);
-                M3<Integer, Integer, UnicodeSet> adobe = ASTROKE.get(intRadical);
+                M3<Integer, Integer, UnicodeSet> adobe = ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET.get(intRadical);
                 adobeItems.clear();
                 if (!alt) {
                     for (Entry<Integer, Map<Integer, UnicodeSet>> entry2 : adobe) {
@@ -807,8 +884,210 @@ public class Ids {
         }
     }
 
+    private static void showRadicalCompareTxt() throws IOException {
+
+        try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "ids/", "radicalCompare.txt");
+                ) {
+            Map<Double, R2<Set<String>,Set<String>>> sorted = new TreeMap<>();
+            for (Entry<String, Set<String>> entry : radToUnicode.keyValuesSet()) {
+                final String key = entry.getKey();
+                final double clean = cleanRadical(key);
+                sorted.put(clean, Row.of(entry.getValue(), rawRadToUnicode.get(key)));
+            }
+            out.println("# Additional Radical Mappings (beyond CJKRadicals.txt)\n"
+                    + "#\n"
+                    + "# The sources are:\n"
+                    + "#  • CJK_Radicals.txt\n"
+                    + "#  • kRS* with zero remaining strokes;\n"
+                    + "#  • Nameslist annotations (for CJK Radicals Supplement)\n"
+                    + "#  • idsCjkRadicals.txt (*draft* extra items)\n"
+                    + "#\n"
+                    + "# Format:\n"
+                    + "# Code ; Rad. №; Strokes # (char) character-name ;\tsources\n"
+                    + "#"
+                    );
+            int count = 0;
+            Set<String> adobeItems = new TreeSet<>();
+            Set<String> sortedChars = new TreeSet<>(UNIHAN);
+            UnicodeSet missingCjkRadicals = new UnicodeSet(CJK_Radicals_Supplement_BLOCK);
+            Output<String> cjkRadValue = new Output<String>();
+            
+            for (Entry<Double, R2<Set<String>, Set<String>>> entry : sorted.entrySet()) {
+                ++count;
+                Relation<Integer, String> reasonMap = Relation.of(new HashMap(), LinkedHashSet.class);
+                final Double key = entry.getKey();
+                final R2<Set<String>, Set<String>> rad2 = entry.getValue();
+                Set<String> rad = rad2.get0();
+                final Set<String> raw = rad2.get1();
+                double doubleRadical = key.doubleValue();
+                int intRadical = (int)doubleRadical;
+                final boolean alt = intRadical != doubleRadical;
+                String samples = alt ? "" : getSamples((int)key.doubleValue());
+                String key2 = intRadical + (alt ? "'" : "");
+                final Set<String> cjkRad = alt ? Collections.EMPTY_SET : radToCjkRad.get(intRadical);
+                UnicodeSet RSUnicode = USTROKE.get(intRadical, alt);
+                M3<Integer, Integer, UnicodeSet> adobe = ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET.get(intRadical);
+                adobeItems.clear();
+                if (!alt) {
+                    for (Entry<Integer, Map<Integer, UnicodeSet>> entry2 : adobe) {
+                        Map<Integer, UnicodeSet> remStrokesToSet = entry2.getValue();
+                        UnicodeSet us = remStrokesToSet.get(0);
+                        if (us != null) {
+                            UnicodeSet temp = us;
+                            if (RSUnicode != null) {
+                                temp = new UnicodeSet(us).removeAll(RSUnicode);
+                            }
+                            temp.addAllTo(adobeItems);
+                        }
+                    }
+                }
+                sortedChars.clear();
+
+                addItems(raw, "CJKRadicals.txt", sortedChars, reasonMap);
+                addItems(RSUnicode, "kRSUnicode", sortedChars, reasonMap);
+                if (!alt) {
+                    addRadicals(intRadical, kRSKangXiRadicals, sortedChars, "kRSKangXi", reasonMap);
+                }
+                addItems(adobeItems, "kRSAdobe_Japan1_6", sortedChars, reasonMap);
+                addItems(cjkRad, "idsCjkRadicals.txt", sortedChars, reasonMap);
+
+                if (!alt) {
+                    addRadicals(intRadical, kRSJapaneseRadicals, sortedChars, "kRSJapanese", reasonMap);
+                    addRadicals(intRadical, kRSKanWaRadicals, sortedChars, "kRSKanWa", reasonMap);
+                    addRadicals(intRadical, kRSKoreanRadicals, sortedChars, "kRSKorean", reasonMap);
+                }
+
+                missingCjkRadicals.removeAll(sortedChars);
+                //Wikiwand.check(sortedChars);
+                String extra = Nameslist.check(sortedChars, cjkRadValue);
+                if (extra != null) {
+                    sortedChars.add(extra);
+                    reasonMap.put(extra.codePointAt(0), "Nameslist");
+                    sortedChars.add(extra);
+                    reasonMap.put(cjkRadValue.value.codePointAt(0), "Nameslist");
+                }
+                
+                for (String codePoint : sortedChars) {
+                    final Set<String> reasons = reasonMap.get(codePoint.codePointAt(0));
+                    List<String> strokes = kTotalStrokes.get(codePoint);
+                    out.println(Utility.hex(codePoint)
+                            + " ;\t" + key2
+                            + " ; " + (strokes == null ? "?" : CollectionUtilities.join(strokes, ", "))
+                            + " \t# (" + codePoint + ") " + UCharacter.getName(codePoint, ", ")
+                            + " ;\t" + (reasons == null ? "" : CollectionUtilities.join(reasons, ", "))
+                            );
+                }
+                out.println();
+            }
+            System.out.println("items:\t" + count);
+            System.out.println("missing cjk radicals:\t" + missingCjkRadicals);
+        }
+    }
+
+    private static class Wikiwand {
+        static UnicodeMap<String> cjkRadSupToIdeo = new UnicodeMap<>();
+        static {
+            for (String line : FileUtilities.in(Ids.class, "wikiwand.txt")) {
+                if (line.startsWith("#")) {
+                    continue;
+                }
+                List<String> row = SEMI_SPLITTER.splitToList(line);
+                // U+2ED6 (11990) ; ⻖ ; CJK RADICAL MOUND TWO ; CJK-Radikal 170 Hügel, 2. Form (links) = 阝 (U+961D)
+                String cjkRadSup = row.get(1);
+                String target = row.get(3);
+                // = 阝 (
+                int equals = target.lastIndexOf('→');
+                int paren = target.indexOf('(',equals);
+                if (equals == -1 || paren == -1) {
+                    throw new ICUException(target);
+                }
+                String cp = target.substring(equals+1, paren).trim();
+                if (cp.codePointCount(0, cp.length()) != 1) {
+                    throw new ICUException(target);
+                }
+                cjkRadSupToIdeo.put(cjkRadSup, cp);
+            }
+            cjkRadSupToIdeo.freeze();
+        }
+        static boolean check(Set<String> items) {
+            for (String item : items) {
+                String v = cjkRadSupToIdeo.get(item);
+                if (v != null && !items.contains(v)) {
+                    System.out.println("Wikiwand: " + items + " don't contain " + v + " from " + item);
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    static class Nameslist {
+        static UnicodeMap<String> cjkRadSupToIdeo = new UnicodeMap<>();
+        static {
+            for (String line : FileUtilities.in(Ids.class, "cjkRadicalsSupplementAnnotations.txt")) {
+                if (line.startsWith("#")) {
+                    continue;
+                }
+                List<String> row = SEMI_SPLITTER.splitToList(line);
+                // 2E81 ;   ⺁ ; 5382 ;  厂
+                String cjkRadSup = row.get(1);
+                String cp = row.get(3);
+                if (cp.codePointCount(0, cp.length()) != 1) {
+                    throw new ICUException(row.toString());
+                }
+                cjkRadSupToIdeo.put(cjkRadSup, cp);
+            }
+            cjkRadSupToIdeo.freeze();
+        }
+        
+        static String check(Set<String> items, Output<String> cjkRad) {
+            for (String item : items) {
+                String v = cjkRadSupToIdeo.get(item);
+                if (v == null) {
+                    continue;
+                }
+                if (!items.contains(v)) {
+                    System.out.println("Annotations: " + items + " don't contain " + v + " from " + item);
+                }
+                cjkRad.value = item;
+                return v;
+            }
+            return null;
+        }
+    }
+
+
+    private static void addItems(UnicodeSet sourceItems, String reason, Set<String> sortedChars, Relation<Integer, String> reasonMap) {
+        if (sourceItems != null && !sourceItems.isEmpty()) {
+            sourceItems.addAllTo(sortedChars);
+            for (String s : sourceItems) {
+                reasonMap.put(s.codePointAt(0), reason);
+            }
+        }
+    }
+
+    private static void addItems(Set<String> sourceItems, String reason, Set<String> sortedChars, Relation<Integer, String> reasons) {
+        if (sourceItems != null && !sourceItems.isEmpty()) {
+            sortedChars.addAll(sourceItems);
+            for (String s : sourceItems) {
+                reasons.put(s.codePointAt(0), reason);
+            }
+        }
+    }
+
+    private static void addRadicals(int intRadical, Map<Integer, UnicodeSet> radicalSource, 
+            Set<String> sortedChars, String reason, Relation<Integer, String> reasons) {
+        UnicodeSet us = radicalSource.get(intRadical);
+        if (us != null) {
+            us.addAllTo(sortedChars);
+            for (String s : sortedChars) {
+                reasons.put(s.codePointAt(0), reason);
+            }
+        }
+    }
+
     private static String getSamples(int radical) {
-        M3<Integer, Integer, UnicodeSet> data = ASTROKE.get(radical);
+        M3<Integer, Integer, UnicodeSet> data = ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET.get(radical);
         int count = 0;
         StringBuilder samples = new StringBuilder();
         for (final Entry<Integer, Map<Integer, UnicodeSet>> entry2 : data) {
