@@ -1,3 +1,5 @@
+#http://www.wikiwand.com/de/Unicodeblock_CJK-Radikale,_Erg%C3%A4nzung
+2E80;    7 # 二
 2E81;	27 # ⺁ => [⼚, 厂]
 2E82;	5 # ⺂ => [⼄, 乙, 乚, 乛, 𠃉, 𠃊, 𠃋, 𠃌, 𠃍, 𠃎, 𠃑]
 2E83;	5 # ⺃ => [⼄, 乙, 乚, 乛, 𠃉, 𠃊, 𠃋, 𠃌, 𠃍, 𠃎, 𠃑]

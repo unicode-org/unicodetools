@@ -310,7 +310,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         result = new UnicodeMap<>();
         if (prop2.getCardinality() != ValueCardinality.Ordered) {
             throw new UnicodePropertyException("Mismatch in class data,  expected " 
-                    + prop2.getCardinality());
+                    + prop2.getCardinality() + " for " + prop2);
         }
         UnicodeMap<String> m = load(prop2);
         // TODO cache
