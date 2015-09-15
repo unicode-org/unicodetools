@@ -9,1065 +9,1065 @@
 # Format:
 # Code ; Rad. №; Strokes # (char) character-name ;	sources
 #
-2F00 ;	1 ; 1 	# (⼀) KANGXI RADICAL ONE ;	CJKRadicals.txt
-4E00 ;	1 ; 1 	# (一) CJK UNIFIED IDEOGRAPH-4E00 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F01 ;	2 ; 1 	# (⼁) KANGXI RADICAL LINE ;	CJKRadicals.txt
-4E28 ;	2 ; 1 	# (丨) CJK UNIFIED IDEOGRAPH-4E28 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F02 ;	3 ; 1 	# (⼂) KANGXI RADICAL DOT ;	CJKRadicals.txt
-4E36 ;	3 ; 1 	# (丶) CJK UNIFIED IDEOGRAPH-4E36 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F03 ;	4 ; 1 	# (⼃) KANGXI RADICAL SLASH ;	CJKRadicals.txt
-4E3F ;	4 ; 1 	# (丿) CJK UNIFIED IDEOGRAPH-4E3F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-4E40 ;	4 ; 1 	# (乀) CJK UNIFIED IDEOGRAPH-4E40 ;	kRSUnicode, kRSKangXi
-4E41 ;	4 ; 1 	# (乁) CJK UNIFIED IDEOGRAPH-4E41 ;	kRSUnicode, kRSKangXi
-2F802 ;	4 ; 1 	# (乁) CJK COMPATIBILITY IDEOGRAPH-2F802 ;	kRSUnicode
-
-2F04 ;	5 ; 1 	# (⼄) KANGXI RADICAL SECOND ;	CJKRadicals.txt
-2E82 ;	5 ; 1 	# (⺂) CJK RADICAL SECOND ONE ;	idsCjkRadicals.txt, Nameslist
-2E83 ;	5 ; 1 	# (⺃) CJK RADICAL SECOND TWO ;	idsCjkRadicals.txt
-2E84 ;	5 ; 1 	# (⺄) CJK RADICAL SECOND THREE ;	idsCjkRadicals.txt
-4E59 ;	5 ; 1 	# (乙) CJK UNIFIED IDEOGRAPH-4E59 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-4E5A ;	5 ; 1 	# (乚) CJK UNIFIED IDEOGRAPH-4E5A ;	kRSUnicode, kRSKangXi
-4E5B ;	5 ; 1 	# (乛) CJK UNIFIED IDEOGRAPH-4E5B ;	kRSUnicode, kRSKangXi, Nameslist
-200C9 ;	5 ; 1 	# (𠃉) CJK UNIFIED IDEOGRAPH-200C9 ;	kRSUnicode, kRSKangXi
-200CA ;	5 ; 1 	# (𠃊) CJK UNIFIED IDEOGRAPH-200CA ;	kRSUnicode, kRSKangXi
-200CB ;	5 ; 1 	# (𠃋) CJK UNIFIED IDEOGRAPH-200CB ;	kRSUnicode, kRSKangXi
-200CC ;	5 ; 1 	# (𠃌) CJK UNIFIED IDEOGRAPH-200CC ;	kRSUnicode, kRSKangXi
-200CD ;	5 ; 1 	# (𠃍) CJK UNIFIED IDEOGRAPH-200CD ;	kRSUnicode, kRSKangXi
-200CE ;	5 ; 1 	# (𠃎) CJK UNIFIED IDEOGRAPH-200CE ;	kRSUnicode, kRSKangXi
-200D1 ;	5 ; 1 	# (𠃑) CJK UNIFIED IDEOGRAPH-200D1 ;	kRSUnicode, kRSKangXi
-
-2F05 ;	6 ; 1 	# (⼅) KANGXI RADICAL HOOK ;	CJKRadicals.txt
-4E85 ;	6 ; 1 	# (亅) CJK UNIFIED IDEOGRAPH-4E85 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2010C ;	6 ; 1 	# (𠄌) CJK UNIFIED IDEOGRAPH-2010C ;	kRSUnicode, kRSKangXi
-
-2F06 ;	7 ; 2 	# (⼆) KANGXI RADICAL TWO ;	CJKRadicals.txt
-2E80 ;	7 ; 2 	# (⺀) CJK RADICAL REPEAT ;	idsCjkRadicals.txt
-4E8C ;	7 ; 2 	# (二) CJK UNIFIED IDEOGRAPH-4E8C ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2011E ;	7 ; 2 	# (𠄞) CJK UNIFIED IDEOGRAPH-2011E ;	kRSUnicode, kRSKangXi
-2011F ;	7 ; 2 	# (𠄟) CJK UNIFIED IDEOGRAPH-2011F ;	kRSUnicode, kRSKangXi
-20120 ;	7 ; 2 	# (𠄠) CJK UNIFIED IDEOGRAPH-20120 ;	kRSUnicode, kRSKangXi
-
-2F07 ;	8 ; 2 	# (⼇) KANGXI RADICAL LID ;	CJKRadicals.txt
-4EA0 ;	8 ; 2 	# (亠) CJK UNIFIED IDEOGRAPH-4EA0 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F08 ;	9 ; 2 	# (⼈) KANGXI RADICAL MAN ;	CJKRadicals.txt
-2E85 ;	9 ; 2 	# (⺅) CJK RADICAL PERSON ;	idsCjkRadicals.txt, Nameslist
-4EBA ;	9 ; 2 	# (人) CJK UNIFIED IDEOGRAPH-4EBA ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-4EBB ;	9 ; 2 	# (亻) CJK UNIFIED IDEOGRAPH-4EBB ;	kRSUnicode, kRSKangXi, Nameslist
-201A2 ;	9 ; 2 	# (𠆢) CJK UNIFIED IDEOGRAPH-201A2 ;	kRSUnicode, kRSKangXi
-
-2F09 ;	10 ; 2 	# (⼉) KANGXI RADICAL LEGS ;	CJKRadicals.txt
-513F ;	10 ; 2 	# (儿) CJK UNIFIED IDEOGRAPH-513F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F0A ;	11 ; 2 	# (⼊) KANGXI RADICAL ENTER ;	CJKRadicals.txt
-5165 ;	11 ; 2 	# (入) CJK UNIFIED IDEOGRAPH-5165 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F0B ;	12 ; 2 	# (⼋) KANGXI RADICAL EIGHT ;	CJKRadicals.txt
-516B ;	12 ; 2 	# (八) CJK UNIFIED IDEOGRAPH-516B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F0C ;	13 ; 2 	# (⼌) KANGXI RADICAL DOWN BOX ;	CJKRadicals.txt
-2E86 ;	13 ; 2 	# (⺆) CJK RADICAL BOX ;	idsCjkRadicals.txt, Nameslist
-5182 ;	13 ; 2 	# (冂) CJK UNIFIED IDEOGRAPH-5182 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2F0D ;	14 ; 2 	# (⼍) KANGXI RADICAL COVER ;	CJKRadicals.txt
-5196 ;	14 ; 2 	# (冖) CJK UNIFIED IDEOGRAPH-5196 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F0E ;	15 ; 2 	# (⼎) KANGXI RADICAL ICE ;	CJKRadicals.txt
-51AB ;	15 ; 2 	# (冫) CJK UNIFIED IDEOGRAPH-51AB ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F0F ;	16 ; 2 	# (⼏) KANGXI RADICAL TABLE ;	CJKRadicals.txt
-2E87 ;	16 ; 2 	# (⺇) CJK RADICAL TABLE ;	idsCjkRadicals.txt, Nameslist
-51E0 ;	16 ; 2 	# (几) CJK UNIFIED IDEOGRAPH-51E0 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-20627 ;	16 ; 2 	# (𠘧) CJK UNIFIED IDEOGRAPH-20627 ;	kRSUnicode, kRSKangXi
-20628 ;	16 ; 2 	# (𠘨) CJK UNIFIED IDEOGRAPH-20628 ;	kRSUnicode, kRSKangXi
-
-2F10 ;	17 ; 2 	# (⼐) KANGXI RADICAL OPEN BOX ;	CJKRadicals.txt
-51F5 ;	17 ; 2 	# (凵) CJK UNIFIED IDEOGRAPH-51F5 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-20674 ;	17 ; 2 	# (𠙴) CJK UNIFIED IDEOGRAPH-20674 ;	kRSUnicode, kRSKangXi
-2F81D ;	17 ; 2 	# (凵) CJK COMPATIBILITY IDEOGRAPH-2F81D ;	kRSUnicode
-
-2F11 ;	18 ; 2 	# (⼑) KANGXI RADICAL KNIFE ;	CJKRadicals.txt
-2E88 ;	18 ; 2 	# (⺈) CJK RADICAL KNIFE ONE ;	idsCjkRadicals.txt, Nameslist
-2E89 ;	18 ; 2 	# (⺉) CJK RADICAL KNIFE TWO ;	idsCjkRadicals.txt
-5200 ;	18 ; 2 	# (刀) CJK UNIFIED IDEOGRAPH-5200 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-5201 ;	18 ; 2 	# (刁) CJK UNIFIED IDEOGRAPH-5201 ;	kRSUnicode, kRSKangXi
-5202 ;	18 ; 2 	# (刂) CJK UNIFIED IDEOGRAPH-5202 ;	kRSUnicode, kRSKangXi
-206A3 ;	18 ; 2 	# (𠚣) CJK UNIFIED IDEOGRAPH-206A3 ;	kRSUnicode, kRSKangXi
-
-2F12 ;	19 ; 2 	# (⼒) KANGXI RADICAL POWER ;	CJKRadicals.txt
-529B ;	19 ; 2 	# (力) CJK UNIFIED IDEOGRAPH-529B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-F98A ;	19 ; 2 	# (力) CJK COMPATIBILITY IDEOGRAPH-F98A ;	kRSUnicode, kRSKangXi
-
-2F13 ;	20 ; 2 	# (⼓) KANGXI RADICAL WRAP ;	CJKRadicals.txt
-52F9 ;	20 ; 2 	# (勹) CJK UNIFIED IDEOGRAPH-52F9 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F14 ;	21 ; 2 	# (⼔) KANGXI RADICAL SPOON ;	CJKRadicals.txt
-5315 ;	21 ; 2 	# (匕) CJK UNIFIED IDEOGRAPH-5315 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2090E ;	21 ; 2 	# (𠤎) CJK UNIFIED IDEOGRAPH-2090E ;	kRSUnicode, kRSKangXi
-
-2F15 ;	22 ; 2 	# (⼕) KANGXI RADICAL RIGHT OPEN BOX ;	CJKRadicals.txt
-531A ;	22 ; 2 	# (匚) CJK UNIFIED IDEOGRAPH-531A ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2092C ;	22 ; 2 	# (𠤬) CJK UNIFIED IDEOGRAPH-2092C ;	kRSUnicode, kRSKangXi
-
-2F16 ;	23 ; 2 	# (⼖) KANGXI RADICAL HIDING ENCLOSURE ;	CJKRadicals.txt
-5338 ;	23 ; 2 	# (匸) CJK UNIFIED IDEOGRAPH-5338 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F17 ;	24 ; 2 	# (⼗) KANGXI RADICAL TEN ;	CJKRadicals.txt
-5341 ;	24 ; 2 	# (十) CJK UNIFIED IDEOGRAPH-5341 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F18 ;	25 ; 2 	# (⼘) KANGXI RADICAL DIVINATION ;	CJKRadicals.txt
-2E8A ;	25 ; 2 	# (⺊) CJK RADICAL DIVINATION ;	idsCjkRadicals.txt, Nameslist
-535C ;	25 ; 2 	# (卜) CJK UNIFIED IDEOGRAPH-535C ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2F19 ;	26 ; 2/3? 	# (⼙) KANGXI RADICAL SEAL ;	CJKRadicals.txt
-2E8B ;	26 ; 2/3? 	# (⺋) CJK RADICAL SEAL ;	idsCjkRadicals.txt, Nameslist
-5369 ;	26 ; 2 	# (卩) CJK UNIFIED IDEOGRAPH-5369 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-353E ;	26 ; 3 	# (㔾) CJK UNIFIED IDEOGRAPH-353E ;	kRSAdobe_Japan1_6, Nameslist
-
-2F1A ;	27 ; 2 	# (⼚) KANGXI RADICAL CLIFF ;	CJKRadicals.txt
-2E81 ;	27 ; 2 	# (⺁) CJK RADICAL CLIFF ;	idsCjkRadicals.txt, Nameslist
-5382 ;	27 ; 2 	# (厂) CJK UNIFIED IDEOGRAPH-5382 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2F1B ;	28 ; 2 	# (⼛) KANGXI RADICAL PRIVATE ;	CJKRadicals.txt
-53B6 ;	28 ; 2 	# (厶) CJK UNIFIED IDEOGRAPH-53B6 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F1C ;	29 ; 2 	# (⼜) KANGXI RADICAL AGAIN ;	CJKRadicals.txt
-9FB4 ;	29 ; 2 	# (龴) CJK UNIFIED IDEOGRAPH-9FB4 ;	kRSAdobe_Japan1_6
-53C8 ;	29 ; 2 	# (又) CJK UNIFIED IDEOGRAPH-53C8 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F1D ;	30 ; 3 	# (⼝) KANGXI RADICAL MOUTH ;	CJKRadicals.txt
-53E3 ;	30 ; 3 	# (口) CJK UNIFIED IDEOGRAPH-53E3 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F1E ;	31 ; 3 	# (⼞) KANGXI RADICAL ENCLOSURE ;	CJKRadicals.txt
-56D7 ;	31 ; 3 	# (囗) CJK UNIFIED IDEOGRAPH-56D7 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F1F ;	32 ; 3 	# (⼟) KANGXI RADICAL EARTH ;	CJKRadicals.txt
-571F ;	32 ; 3 	# (土) CJK UNIFIED IDEOGRAPH-571F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F20 ;	33 ; 3 	# (⼠) KANGXI RADICAL SCHOLAR ;	CJKRadicals.txt
-58EB ;	33 ; 3 	# (士) CJK UNIFIED IDEOGRAPH-58EB ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F21 ;	34 ; 3 	# (⼡) KANGXI RADICAL GO ;	CJKRadicals.txt
-5902 ;	34 ; 3 	# (夂) CJK UNIFIED IDEOGRAPH-5902 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-21552 ;	34 ; 3 	# (𡕒) CJK UNIFIED IDEOGRAPH-21552 ;	kRSUnicode, kRSKangXi
-
-2F22 ;	35 ; 3 	# (⼢) KANGXI RADICAL GO SLOWLY ;	CJKRadicals.txt
-590A ;	35 ; 3 	# (夊) CJK UNIFIED IDEOGRAPH-590A ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F23 ;	36 ; 3 	# (⼣) KANGXI RADICAL EVENING ;	CJKRadicals.txt
-5915 ;	36 ; 3 	# (夕) CJK UNIFIED IDEOGRAPH-5915 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F24 ;	37 ; 3 	# (⼤) KANGXI RADICAL BIG ;	CJKRadicals.txt
-5927 ;	37 ; 3 	# (大) CJK UNIFIED IDEOGRAPH-5927 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-5928 ;	37 ; 3 	# (夨) CJK UNIFIED IDEOGRAPH-5928 ;	kRSUnicode, kRSKangXi
-
-2F25 ;	38 ; 3 	# (⼥) KANGXI RADICAL WOMAN ;	CJKRadicals.txt
-5973 ;	38 ; 3 	# (女) CJK UNIFIED IDEOGRAPH-5973 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-F981 ;	38 ; 3 	# (女) CJK COMPATIBILITY IDEOGRAPH-F981 ;	kRSUnicode, kRSKangXi
-
-2F26 ;	39 ; 3 	# (⼦) KANGXI RADICAL CHILD ;	CJKRadicals.txt
-5B50 ;	39 ; 3 	# (子) CJK UNIFIED IDEOGRAPH-5B50 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-5B51 ;	39 ; 3 	# (孑) CJK UNIFIED IDEOGRAPH-5B51 ;	kRSUnicode, kRSKangXi
-5B52 ;	39 ; 3 	# (孒) CJK UNIFIED IDEOGRAPH-5B52 ;	kRSUnicode, kRSKangXi
-5B53 ;	39 ; 3 	# (孓) CJK UNIFIED IDEOGRAPH-5B53 ;	kRSUnicode, kRSKangXi
-2193C ;	39 ; 3 	# (𡤼) CJK UNIFIED IDEOGRAPH-2193C ;	kRSUnicode, kRSKangXi
-
-2F27 ;	40 ; 3 	# (⼧) KANGXI RADICAL ROOF ;	CJKRadicals.txt
-5B80 ;	40 ; 3 	# (宀) CJK UNIFIED IDEOGRAPH-5B80 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F28 ;	41 ; 3 	# (⼨) KANGXI RADICAL INCH ;	CJKRadicals.txt
-5BF8 ;	41 ; 3 	# (寸) CJK UNIFIED IDEOGRAPH-5BF8 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F29 ;	42 ; 3 	# (⼩) KANGXI RADICAL SMALL ;	CJKRadicals.txt
-2E8C ;	42 ; 3 	# (⺌) CJK RADICAL SMALL ONE ;	idsCjkRadicals.txt, Nameslist
-2E8D ;	42 ; 3 	# (⺍) CJK RADICAL SMALL TWO ;	idsCjkRadicals.txt
-5C0F ;	42 ; 3 	# (小) CJK UNIFIED IDEOGRAPH-5C0F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-21B54 ;	42 ; 3 	# (𡭔) CJK UNIFIED IDEOGRAPH-21B54 ;	kRSUnicode, kRSKangXi
-
-2F2A ;	43 ; 3/4? 	# (⼪) KANGXI RADICAL LAME ;	CJKRadicals.txt
-2E8E ;	43 ; 3/4? 	# (⺎) CJK RADICAL LAME ONE ;	idsCjkRadicals.txt, Nameslist
-2E8F ;	43 ; 3/4? 	# (⺏) CJK RADICAL LAME TWO ;	idsCjkRadicals.txt
-2E90 ;	43 ; 3/4? 	# (⺐) CJK RADICAL LAME THREE ;	idsCjkRadicals.txt
-2E91 ;	43 ; 3/4? 	# (⺑) CJK RADICAL LAME FOUR ;	idsCjkRadicals.txt
-5140 ;	43 ; 3 	# (兀) CJK UNIFIED IDEOGRAPH-5140 ;	kRSAdobe_Japan1_6
-5C22 ;	43 ; 3 	# (尢) CJK UNIFIED IDEOGRAPH-5C22 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-5C23 ;	43 ; 4 	# (尣) CJK UNIFIED IDEOGRAPH-5C23 ;	kRSUnicode, kRSKangXi
-21BC1 ;	43 ; 3 	# (𡯁) CJK UNIFIED IDEOGRAPH-21BC1 ;	kRSUnicode, kRSKangXi
-21BC2 ;	43 ; 3 	# (𡯂) CJK UNIFIED IDEOGRAPH-21BC2 ;	kRSUnicode, kRSKangXi
-2F875 ;	43 ; 3/4? 	# (尢) CJK COMPATIBILITY IDEOGRAPH-2F875 ;	kRSUnicode
-
-2F2B ;	44 ; 3 	# (⼫) KANGXI RADICAL CORPSE ;	CJKRadicals.txt
-5C38 ;	44 ; 3 	# (尸) CJK UNIFIED IDEOGRAPH-5C38 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-21C23 ;	44 ; 3 	# (𡰣) CJK UNIFIED IDEOGRAPH-21C23 ;	kRSUnicode, kRSKangXi
-
-2F2C ;	45 ; 3 	# (⼬) KANGXI RADICAL SPROUT ;	CJKRadicals.txt
-5C6E ;	45 ; 3 	# (屮) CJK UNIFIED IDEOGRAPH-5C6E ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-FA3C ;	45 ; 3 	# (屮) CJK COMPATIBILITY IDEOGRAPH-FA3C ;	kRSUnicode
-21CFE ;	45 ; 3 	# (𡳾) CJK UNIFIED IDEOGRAPH-21CFE ;	kRSUnicode, kRSKangXi
-2F878 ;	45 ; 3 	# (屮) CJK COMPATIBILITY IDEOGRAPH-2F878 ;	kRSUnicode
-
-2F2D ;	46 ; 3 	# (⼭) KANGXI RADICAL MOUNTAIN ;	CJKRadicals.txt
-5C71 ;	46 ; 3 	# (山) CJK UNIFIED IDEOGRAPH-5C71 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F2E ;	47 ; 2/3? 	# (⼮) KANGXI RADICAL RIVER ;	CJKRadicals.txt
-5DDB ;	47 ; 3 	# (巛) CJK UNIFIED IDEOGRAPH-5DDB ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-5DDC ;	47 ; 2 	# (巜) CJK UNIFIED IDEOGRAPH-5DDC ;	kRSUnicode, kRSKangXi
-5DDD ;	47 ; 3 	# (川) CJK UNIFIED IDEOGRAPH-5DDD ;	kRSUnicode, kRSKangXi
-21FE6 ;	47 ; 3 	# (𡿦) CJK UNIFIED IDEOGRAPH-21FE6 ;	kRSUnicode, kRSKangXi
-21FE8 ;	47 ; 3 	# (𡿨) CJK UNIFIED IDEOGRAPH-21FE8 ;	kRSUnicode, kRSKangXi
-2BDA7 ;	47 ; 2/3? 	# (𫶧) CJK UNIFIED IDEOGRAPH-2BDA7 ;	kRSUnicode
-
-2F2F ;	48 ; 3 	# (⼯) KANGXI RADICAL WORK ;	CJKRadicals.txt
-5DE5 ;	48 ; 3 	# (工) CJK UNIFIED IDEOGRAPH-5DE5 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F30 ;	49 ; 3 	# (⼰) KANGXI RADICAL ONESELF ;	CJKRadicals.txt
-2E92 ;	49 ; 3 	# (⺒) CJK RADICAL SNAKE ;	idsCjkRadicals.txt, Nameslist
-5DF1 ;	49 ; 3 	# (己) CJK UNIFIED IDEOGRAPH-5DF1 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-5DF2 ;	49 ; 3 	# (已) CJK UNIFIED IDEOGRAPH-5DF2 ;	kRSUnicode, kRSKangXi
-5DF3 ;	49 ; 3 	# (巳) CJK UNIFIED IDEOGRAPH-5DF3 ;	kRSUnicode, kRSKangXi, Nameslist
-
-2F31 ;	50 ; 3 	# (⼱) KANGXI RADICAL TURBAN ;	CJKRadicals.txt
-5DFE ;	50 ; 3 	# (巾) CJK UNIFIED IDEOGRAPH-5DFE ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F32 ;	51 ; 3 	# (⼲) KANGXI RADICAL DRY ;	CJKRadicals.txt
-5E72 ;	51 ; 3 	# (干) CJK UNIFIED IDEOGRAPH-5E72 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F33 ;	52 ; 3 	# (⼳) KANGXI RADICAL SHORT THREAD ;	CJKRadicals.txt
-2E93 ;	52 ; 3 	# (⺓) CJK RADICAL THREAD ;	idsCjkRadicals.txt, Nameslist
-4E48 ;	52 ; 3 	# (么) CJK UNIFIED IDEOGRAPH-4E48 ;	kRSAdobe_Japan1_6
-4E61 ;	52 ; 3 	# (乡) CJK UNIFIED IDEOGRAPH-4E61 ;	kRSUnicode, kRSKangXi
-5E7A ;	52 ; 3 	# (幺) CJK UNIFIED IDEOGRAPH-5E7A ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2F34 ;	53 ; 3 	# (⼴) KANGXI RADICAL DOTTED CLIFF ;	CJKRadicals.txt
-5E7F ;	53 ; 3 	# (广) CJK UNIFIED IDEOGRAPH-5E7F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F35 ;	54 ; 2 	# (⼵) KANGXI RADICAL LONG STRIDE ;	CJKRadicals.txt
-5EF4 ;	54 ; 2 	# (廴) CJK UNIFIED IDEOGRAPH-5EF4 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F36 ;	55 ; 3 	# (⼶) KANGXI RADICAL TWO HANDS ;	CJKRadicals.txt
-5EFE ;	55 ; 3 	# (廾) CJK UNIFIED IDEOGRAPH-5EFE ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2232C ;	55 ; 3 	# (𢌬) CJK UNIFIED IDEOGRAPH-2232C ;	kRSUnicode, kRSKangXi
-2F890 ;	55 ; 3 	# (廾) CJK COMPATIBILITY IDEOGRAPH-2F890 ;	kRSUnicode
-
-2F37 ;	56 ; 3 	# (⼷) KANGXI RADICAL SHOOT ;	CJKRadicals.txt
-5F0B ;	56 ; 3 	# (弋) CJK UNIFIED IDEOGRAPH-5F0B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2237A ;	56 ; 3 	# (𢍺) CJK UNIFIED IDEOGRAPH-2237A ;	kRSUnicode, kRSKangXi
-
-2F38 ;	57 ; 3 	# (⼸) KANGXI RADICAL BOW ;	CJKRadicals.txt
-5F13 ;	57 ; 3 	# (弓) CJK UNIFIED IDEOGRAPH-5F13 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-22397 ;	57 ; 3 	# (𢎗) CJK UNIFIED IDEOGRAPH-22397 ;	kRSUnicode, kRSKangXi
-22398 ;	57 ; 3 	# (𢎘) CJK UNIFIED IDEOGRAPH-22398 ;	kRSUnicode, kRSKangXi
-
-2F39 ;	58 ; 3 	# (⼹) KANGXI RADICAL SNOUT ;	CJKRadicals.txt
-2E94 ;	58 ; 3 	# (⺔) CJK RADICAL SNOUT ONE ;	idsCjkRadicals.txt, Nameslist
-2E95 ;	58 ; 3 	# (⺕) CJK RADICAL SNOUT TWO ;	idsCjkRadicals.txt
-5F50 ;	58 ; 3 	# (彐) CJK UNIFIED IDEOGRAPH-5F50 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-5F51 ;	58 ; 3 	# (彑) CJK UNIFIED IDEOGRAPH-5F51 ;	kRSUnicode, kRSKangXi, Nameslist
-
-2F3A ;	59 ; 3 	# (⼺) KANGXI RADICAL BRISTLE ;	CJKRadicals.txt
-5F61 ;	59 ; 3 	# (彡) CJK UNIFIED IDEOGRAPH-5F61 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F3B ;	60 ; 3 	# (⼻) KANGXI RADICAL STEP ;	CJKRadicals.txt
-5F73 ;	60 ; 3 	# (彳) CJK UNIFIED IDEOGRAPH-5F73 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F3C ;	61 ; 3/4/5? 	# (⼼) KANGXI RADICAL HEART ;	CJKRadicals.txt
-2E96 ;	61 ; 3/4/5? 	# (⺖) CJK RADICAL HEART ONE ;	idsCjkRadicals.txt, Nameslist
-2E97 ;	61 ; 3/4/5? 	# (⺗) CJK RADICAL HEART TWO ;	idsCjkRadicals.txt
-5FC3 ;	61 ; 4 	# (心) CJK UNIFIED IDEOGRAPH-5FC3 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-5FC4 ;	61 ; 3 	# (忄) CJK UNIFIED IDEOGRAPH-5FC4 ;	kRSUnicode, kRSKangXi, Nameslist
-225A9 ;	61 ; 3 	# (𢖩) CJK UNIFIED IDEOGRAPH-225A9 ;	kRSUnicode, kRSKangXi
-38FA ;	61 ; 5 	# (㣺) CJK UNIFIED IDEOGRAPH-38FA ;	kRSAdobe_Japan1_6
-
-2F3D ;	62 ; 4 	# (⼽) KANGXI RADICAL HALBERD ;	CJKRadicals.txt
-6208 ;	62 ; 4 	# (戈) CJK UNIFIED IDEOGRAPH-6208 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F3E ;	63 ; 4 	# (⼾) KANGXI RADICAL DOOR ;	CJKRadicals.txt
-6236 ;	63 ; 4 	# (戶) CJK UNIFIED IDEOGRAPH-6236 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-6237 ;	63 ; 4 	# (户) CJK UNIFIED IDEOGRAPH-6237 ;	kRSUnicode, kRSKangXi
-6238 ;	63 ; 4 	# (戸) CJK UNIFIED IDEOGRAPH-6238 ;	kRSUnicode, kRSKangXi
-
-2F3F ;	64 ; 3/4? 	# (⼿) KANGXI RADICAL HAND ;	CJKRadicals.txt
-2E98 ;	64 ; 3/4? 	# (⺘) CJK RADICAL HAND ;	idsCjkRadicals.txt, Nameslist
-624B ;	64 ; 4 	# (手) CJK UNIFIED IDEOGRAPH-624B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-624C ;	64 ; 3 	# (扌) CJK UNIFIED IDEOGRAPH-624C ;	kRSUnicode, kRSKangXi, Nameslist
-624D ;	64 ; 3 	# (才) CJK UNIFIED IDEOGRAPH-624D ;	kRSUnicode, kRSKangXi
-9FB5 ;	64 ; 3 	# (龵) CJK UNIFIED IDEOGRAPH-9FB5 ;	kRSUnicode
-
-2F40 ;	65 ; 4 	# (⽀) KANGXI RADICAL BRANCH ;	CJKRadicals.txt
-652F ;	65 ; 4 	# (支) CJK UNIFIED IDEOGRAPH-652F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F41 ;	66 ; 4 	# (⽁) KANGXI RADICAL RAP ;	CJKRadicals.txt
-2E99 ;	66 ; 4 	# (⺙) CJK RADICAL RAP ;	idsCjkRadicals.txt, Nameslist
-6534 ;	66 ; 4 	# (攴) CJK UNIFIED IDEOGRAPH-6534 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-6535 ;	66 ; 4 	# (攵) CJK UNIFIED IDEOGRAPH-6535 ;	kRSUnicode, kRSKangXi, Nameslist
-
-2F42 ;	67 ; 4 	# (⽂) KANGXI RADICAL SCRIPT ;	CJKRadicals.txt
-6587 ;	67 ; 4 	# (文) CJK UNIFIED IDEOGRAPH-6587 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F43 ;	68 ; 4 	# (⽃) KANGXI RADICAL DIPPER ;	CJKRadicals.txt
-6597 ;	68 ; 4 	# (斗) CJK UNIFIED IDEOGRAPH-6597 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2306C ;	68 ; 4 	# (𣁬) CJK UNIFIED IDEOGRAPH-2306C ;	kRSUnicode, kRSKangXi
-
-2F44 ;	69 ; 4 	# (⽄) KANGXI RADICAL AXE ;	CJKRadicals.txt
-65A4 ;	69 ; 4 	# (斤) CJK UNIFIED IDEOGRAPH-65A4 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-23091 ;	69 ; 4 	# (𣂑) CJK UNIFIED IDEOGRAPH-23091 ;	kRSUnicode, kRSKangXi
-
-2F45 ;	70 ; 4 	# (⽅) KANGXI RADICAL SQUARE ;	CJKRadicals.txt
-65B9 ;	70 ; 4 	# (方) CJK UNIFIED IDEOGRAPH-65B9 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F46 ;	71 ; 4 	# (⽆) KANGXI RADICAL NOT ;	CJKRadicals.txt
-2E9B ;	71 ; 4 	# (⺛) CJK RADICAL CHOKE ;	idsCjkRadicals.txt, Nameslist
-65E0 ;	71 ; 4 	# (无) CJK UNIFIED IDEOGRAPH-65E0 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-65E1 ;	71 ; 4 	# (旡) CJK UNIFIED IDEOGRAPH-65E1 ;	kRSAdobe_Japan1_6, Nameslist
-
-2F47 ;	72 ; 4 	# (⽇) KANGXI RADICAL SUN ;	CJKRadicals.txt
-2E9C ;	72 ; 4 	# (⺜) CJK RADICAL SUN ;	idsCjkRadicals.txt, Nameslist
-65E5 ;	72 ; 4 	# (日) CJK UNIFIED IDEOGRAPH-65E5 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2F48 ;	73 ; 4 	# (⽈) KANGXI RADICAL SAY ;	CJKRadicals.txt
-66F0 ;	73 ; 4 	# (曰) CJK UNIFIED IDEOGRAPH-66F0 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F49 ;	74 ; 4 	# (⽉) KANGXI RADICAL MOON ;	CJKRadicals.txt
-2E9D ;	74 ; 4 	# (⺝) CJK RADICAL MOON ;	idsCjkRadicals.txt, Nameslist
-6708 ;	74 ; 4 	# (月) CJK UNIFIED IDEOGRAPH-6708 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2F4A ;	75 ; 4 	# (⽊) KANGXI RADICAL TREE ;	CJKRadicals.txt
-6728 ;	75 ; 4 	# (木) CJK UNIFIED IDEOGRAPH-6728 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-6729 ;	75 ; 4 	# (朩) CJK UNIFIED IDEOGRAPH-6729 ;	kRSUnicode
-233B3 ;	75 ; 4 	# (𣎳) CJK UNIFIED IDEOGRAPH-233B3 ;	kRSUnicode, kRSKangXi
-233B4 ;	75 ; 4 	# (𣎴) CJK UNIFIED IDEOGRAPH-233B4 ;	kRSUnicode, kRSKangXi
-2C09B ;	75 ; 4 	# (𬂛) CJK UNIFIED IDEOGRAPH-2C09B ;	kRSUnicode
-
-2F4B ;	76 ; 4 	# (⽋) KANGXI RADICAL LACK ;	CJKRadicals.txt
-6B20 ;	76 ; 4 	# (欠) CJK UNIFIED IDEOGRAPH-6B20 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F4C ;	77 ; 4 	# (⽌) KANGXI RADICAL STOP ;	CJKRadicals.txt
-6B62 ;	77 ; 4 	# (止) CJK UNIFIED IDEOGRAPH-6B62 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-9FB0 ;	77 ; 4 	# (龰) CJK UNIFIED IDEOGRAPH-9FB0 ;	kRSUnicode
-23942 ;	77 ; 4 	# (𣥂) CJK UNIFIED IDEOGRAPH-23942 ;	kRSUnicode, kRSKangXi
-
-2F4D ;	78 ; 4/5? 	# (⽍) KANGXI RADICAL DEATH ;	CJKRadicals.txt
-2E9E ;	78 ; 4/5? 	# (⺞) CJK RADICAL DEATH ;	idsCjkRadicals.txt, Nameslist
-6B79 ;	78 ; 4 	# (歹) CJK UNIFIED IDEOGRAPH-6B79 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-FA95 ;	78 ; 4/5? 	# (歹) CJK COMPATIBILITY IDEOGRAPH-FA95 ;	kRSUnicode
-239B5 ;	78 ; 4 	# (𣦵) CJK UNIFIED IDEOGRAPH-239B5 ;	kRSUnicode, kRSKangXi
-239B6 ;	78 ; 4 	# (𣦶) CJK UNIFIED IDEOGRAPH-239B6 ;	kRSUnicode, kRSKangXi
-6B7A ;	78 ; 5 	# (歺) CJK UNIFIED IDEOGRAPH-6B7A ;	Nameslist
-
-2F4E ;	79 ; 4 	# (⽎) KANGXI RADICAL WEAPON ;	CJKRadicals.txt
-6BB3 ;	79 ; 4 	# (殳) CJK UNIFIED IDEOGRAPH-6BB3 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F4F ;	80 ; 4/5? 	# (⽏) KANGXI RADICAL DO NOT ;	CJKRadicals.txt
-2E9F ;	80 ; 4/5? 	# (⺟) CJK RADICAL MOTHER ;	idsCjkRadicals.txt, Nameslist
-6BCB ;	80 ; 4 	# (毋) CJK UNIFIED IDEOGRAPH-6BCB ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-6BCC ;	80 ; 4 	# (毌) CJK UNIFIED IDEOGRAPH-6BCC ;	kRSUnicode, kRSKangXi
-23AEC ;	80 ; 4 	# (𣫬) CJK UNIFIED IDEOGRAPH-23AEC ;	kRSUnicode, kRSKangXi
-6BCD ;	80 ; 5 	# (母) CJK UNIFIED IDEOGRAPH-6BCD ;	kRSAdobe_Japan1_6, Nameslist
-
-2F50 ;	81 ; 4 	# (⽐) KANGXI RADICAL COMPARE ;	CJKRadicals.txt
-6BD4 ;	81 ; 4 	# (比) CJK UNIFIED IDEOGRAPH-6BD4 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F51 ;	82 ; 4 	# (⽑) KANGXI RADICAL FUR ;	CJKRadicals.txt
-6BDB ;	82 ; 4 	# (毛) CJK UNIFIED IDEOGRAPH-6BDB ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-23B1B ;	82 ; 4 	# (𣬛) CJK UNIFIED IDEOGRAPH-23B1B ;	kRSUnicode, kRSKangXi
-
-2F52 ;	83 ; 4/5? 	# (⽒) KANGXI RADICAL CLAN ;	CJKRadicals.txt
-2EA0 ;	83 ; 4/5? 	# (⺠) CJK RADICAL CIVILIAN ;	idsCjkRadicals.txt, Nameslist
-6C0F ;	83 ; 4 	# (氏) CJK UNIFIED IDEOGRAPH-6C0F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-6C11 ;	83 ; 5 	# (民) CJK UNIFIED IDEOGRAPH-6C11 ;	Nameslist
-
-2F53 ;	84 ; 4 	# (⽓) KANGXI RADICAL STEAM ;	CJKRadicals.txt
-6C14 ;	84 ; 4 	# (气) CJK UNIFIED IDEOGRAPH-6C14 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F54 ;	85 ; 3/4/5? 	# (⽔) KANGXI RADICAL WATER ;	CJKRadicals.txt
-2EA1 ;	85 ; 3/4/5? 	# (⺡) CJK RADICAL WATER ONE ;	idsCjkRadicals.txt, Nameslist
-2EA2 ;	85 ; 3/4/5? 	# (⺢) CJK RADICAL WATER TWO ;	idsCjkRadicals.txt
-6C34 ;	85 ; 4 	# (水) CJK UNIFIED IDEOGRAPH-6C34 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-6C35 ;	85 ; 3 	# (氵) CJK UNIFIED IDEOGRAPH-6C35 ;	kRSUnicode, kRSKangXi, Nameslist
-6C3A ;	85 ; 5 	# (氺) CJK UNIFIED IDEOGRAPH-6C3A ;	kRSUnicode
-23C71 ;	85 ; 3 	# (𣱱) CJK UNIFIED IDEOGRAPH-23C71 ;	kRSUnicode, kRSKangXi
-
-2F55 ;	86 ; 4 	# (⽕) KANGXI RADICAL FIRE ;	CJKRadicals.txt
-2EA3 ;	86 ; 4 	# (⺣) CJK RADICAL FIRE ;	idsCjkRadicals.txt, Nameslist
-706B ;	86 ; 4 	# (火) CJK UNIFIED IDEOGRAPH-706B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-706C ;	86 ; 4 	# (灬) CJK UNIFIED IDEOGRAPH-706C ;	kRSUnicode, kRSKangXi, Nameslist
-
-2F56 ;	87 ; 4 	# (⽖) KANGXI RADICAL CLAW ;	CJKRadicals.txt
-2EA4 ;	87 ; 4 	# (⺤) CJK RADICAL PAW ONE ;	idsCjkRadicals.txt, Nameslist
-2EA5 ;	87 ; 4 	# (⺥) CJK RADICAL PAW TWO ;	idsCjkRadicals.txt
-722A ;	87 ; 4 	# (爪) CJK UNIFIED IDEOGRAPH-722A ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-722B ;	87 ; 4 	# (爫) CJK UNIFIED IDEOGRAPH-722B ;	kRSUnicode, kRSKangXi, Nameslist
-FA49 ;	87 ; 4 	# (爫) CJK COMPATIBILITY IDEOGRAPH-FA49 ;	kRSUnicode
-244EF ;	87 ; 4 	# (𤓯) CJK UNIFIED IDEOGRAPH-244EF ;	kRSUnicode, kRSKangXi
-244F0 ;	87 ; 4 	# (𤓰) CJK UNIFIED IDEOGRAPH-244F0 ;	kRSUnicode, kRSKangXi
-
-2F57 ;	88 ; 4 	# (⽗) KANGXI RADICAL FATHER ;	CJKRadicals.txt
-7236 ;	88 ; 4 	# (父) CJK UNIFIED IDEOGRAPH-7236 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F58 ;	89 ; 4 	# (⽘) KANGXI RADICAL DOUBLE X ;	CJKRadicals.txt
-723B ;	89 ; 4 	# (爻) CJK UNIFIED IDEOGRAPH-723B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F59 ;	90 ; 3/4? 	# (⽙) KANGXI RADICAL HALF TREE TRUNK ;	CJKRadicals.txt
-4E2C ;	90 ; 3 	# (丬) CJK UNIFIED IDEOGRAPH-4E2C ;	kRSUnicode
-723F ;	90 ; 4 	# (爿) CJK UNIFIED IDEOGRAPH-723F ;	CJKRadicals.txt, kRSUnicode
-2456A ;	90 ; 4 	# (𤕪) CJK UNIFIED IDEOGRAPH-2456A ;	kRSUnicode
-
-2EA6 ;	90' ; 3 	# (⺦) CJK RADICAL SIMPLIFIED HALF TREE TRUNK ;	CJKRadicals.txt, Nameslist
-4E2C ;	90' ; 3 	# (丬) CJK UNIFIED IDEOGRAPH-4E2C ;	CJKRadicals.txt, Nameslist
-
-2F5A ;	91 ; 4 	# (⽚) KANGXI RADICAL SLICE ;	CJKRadicals.txt
-7247 ;	91 ; 4 	# (片) CJK UNIFIED IDEOGRAPH-7247 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F5B ;	92 ; 4 	# (⽛) KANGXI RADICAL FANG ;	CJKRadicals.txt
-3E26 ;	92 ; 4 	# (㸦) CJK UNIFIED IDEOGRAPH-3E26 ;	kRSUnicode
-7259 ;	92 ; 4 	# (牙) CJK UNIFIED IDEOGRAPH-7259 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F5C ;	93 ; 4 	# (⽜) KANGXI RADICAL COW ;	CJKRadicals.txt
-2EA7 ;	93 ; 4 	# (⺧) CJK RADICAL COW ;	idsCjkRadicals.txt, Nameslist
-725B ;	93 ; 4 	# (牛) CJK UNIFIED IDEOGRAPH-725B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-725C ;	93 ; 4 	# (牜) CJK UNIFIED IDEOGRAPH-725C ;	kRSUnicode, kRSKangXi
-
-2F5D ;	94 ; 3/4? 	# (⽝) KANGXI RADICAL DOG ;	CJKRadicals.txt
-2EA8 ;	94 ; 3/4? 	# (⺨) CJK RADICAL DOG ;	idsCjkRadicals.txt, Nameslist
-72AC ;	94 ; 4 	# (犬) CJK UNIFIED IDEOGRAPH-72AC ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-72AD ;	94 ; 3 	# (犭) CJK UNIFIED IDEOGRAPH-72AD ;	kRSUnicode, kRSKangXi, Nameslist
-
-2F5E ;	95 ; 5 	# (⽞) KANGXI RADICAL PROFOUND ;	CJKRadicals.txt
-7384 ;	95 ; 5 	# (玄) CJK UNIFIED IDEOGRAPH-7384 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-248E5 ;	95 ; 5 	# (𤣥) CJK UNIFIED IDEOGRAPH-248E5 ;	kRSUnicode, kRSKangXi
-
-2F5F ;	96 ; 4/5? 	# (⽟) KANGXI RADICAL JADE ;	CJKRadicals.txt
-2EA9 ;	96 ; 4/5? 	# (⺩) CJK RADICAL JADE ;	idsCjkRadicals.txt, Nameslist
-7389 ;	96 ; 5 	# (玉) CJK UNIFIED IDEOGRAPH-7389 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-738B ;	96 ; 4 	# (王) CJK UNIFIED IDEOGRAPH-738B ;	kRSUnicode, kRSKangXi, Nameslist
-248E9 ;	96 ; 4 	# (𤣩) CJK UNIFIED IDEOGRAPH-248E9 ;	kRSUnicode, kRSKangXi
-2F929 ;	96 ; 4/5? 	# (王) CJK COMPATIBILITY IDEOGRAPH-2F929 ;	kRSUnicode
-738A ;	96 ; 5 	# (玊) CJK UNIFIED IDEOGRAPH-738A ;	kRSKangXi, kRSAdobe_Japan1_6
-
-2F60 ;	97 ; 5 	# (⽠) KANGXI RADICAL MELON ;	CJKRadicals.txt
-74DC ;	97 ; 5 	# (瓜) CJK UNIFIED IDEOGRAPH-74DC ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F61 ;	98 ; 4 	# (⽡) KANGXI RADICAL TILE ;	CJKRadicals.txt
-74E6 ;	98 ; 4 	# (瓦) CJK UNIFIED IDEOGRAPH-74E6 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F62 ;	99 ; 5 	# (⽢) KANGXI RADICAL SWEET ;	CJKRadicals.txt
-7518 ;	99 ; 5 	# (甘) CJK UNIFIED IDEOGRAPH-7518 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-24BBA ;	99 ; 5 	# (𤮺) CJK UNIFIED IDEOGRAPH-24BBA ;	kRSUnicode, kRSKangXi
-
-2F63 ;	100 ; 5 	# (⽣) KANGXI RADICAL LIFE ;	CJKRadicals.txt
-751F ;	100 ; 5 	# (生) CJK UNIFIED IDEOGRAPH-751F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-24BD3 ;	100 ; 5 	# (𤯓) CJK UNIFIED IDEOGRAPH-24BD3 ;	kRSUnicode, kRSKangXi
-
-2F64 ;	101 ; 5 	# (⽤) KANGXI RADICAL USE ;	CJKRadicals.txt
-7528 ;	101 ; 5 	# (用) CJK UNIFIED IDEOGRAPH-7528 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-7529 ;	101 ; 5 	# (甩) CJK UNIFIED IDEOGRAPH-7529 ;	kRSUnicode, kRSKangXi
-
-2F65 ;	102 ; 5 	# (⽥) KANGXI RADICAL FIELD ;	CJKRadicals.txt
-66F1 ;	102 ; 5 	# (曱) CJK UNIFIED IDEOGRAPH-66F1 ;	kRSKangXi
-7530 ;	102 ; 5 	# (田) CJK UNIFIED IDEOGRAPH-7530 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-7531 ;	102 ; 5 	# (由) CJK UNIFIED IDEOGRAPH-7531 ;	kRSUnicode, kRSKangXi
-7532 ;	102 ; 5 	# (甲) CJK UNIFIED IDEOGRAPH-7532 ;	kRSUnicode, kRSKangXi
-7533 ;	102 ; 5 	# (申) CJK UNIFIED IDEOGRAPH-7533 ;	kRSUnicode, kRSKangXi
-7534 ;	102 ; 5 	# (甴) CJK UNIFIED IDEOGRAPH-7534 ;	kRSUnicode, kRSKangXi
-7535 ;	102 ; 5 	# (电) CJK UNIFIED IDEOGRAPH-7535 ;	kRSUnicode
-24C12 ;	102 ; 5 	# (𤰒) CJK UNIFIED IDEOGRAPH-24C12 ;	kRSUnicode, kRSKangXi
-
-2F66 ;	103 ; 5 	# (⽦) KANGXI RADICAL BOLT OF CLOTH ;	CJKRadicals.txt
-2EAA ;	103 ; 5 	# (⺪) CJK RADICAL BOLT OF CLOTH ;	idsCjkRadicals.txt, Nameslist
-758B ;	103 ; 5 	# (疋) CJK UNIFIED IDEOGRAPH-758B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-24D13 ;	103 ; 5 	# (𤴓) CJK UNIFIED IDEOGRAPH-24D13 ;	kRSUnicode, kRSKangXi
-24D14 ;	103 ; 5 	# (𤴔) CJK UNIFIED IDEOGRAPH-24D14 ;	kRSUnicode, kRSKangXi
-
-2F67 ;	104 ; 5 	# (⽧) KANGXI RADICAL SICKNESS ;	CJKRadicals.txt
-7592 ;	104 ; 5 	# (疒) CJK UNIFIED IDEOGRAPH-7592 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F68 ;	105 ; 5 	# (⽨) KANGXI RADICAL DOTTED TENT ;	CJKRadicals.txt
-7676 ;	105 ; 5 	# (癶) CJK UNIFIED IDEOGRAPH-7676 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F69 ;	106 ; 5 	# (⽩) KANGXI RADICAL WHITE ;	CJKRadicals.txt
-767D ;	106 ; 5 	# (白) CJK UNIFIED IDEOGRAPH-767D ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F6A ;	107 ; 5 	# (⽪) KANGXI RADICAL SKIN ;	CJKRadicals.txt
-76AE ;	107 ; 5 	# (皮) CJK UNIFIED IDEOGRAPH-76AE ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F6B ;	108 ; 5 	# (⽫) KANGXI RADICAL DISH ;	CJKRadicals.txt
-76BF ;	108 ; 5 	# (皿) CJK UNIFIED IDEOGRAPH-76BF ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F6C ;	109 ; 5 	# (⽬) KANGXI RADICAL EYE ;	CJKRadicals.txt
-2EAB ;	109 ; 5 	# (⺫) CJK RADICAL EYE ;	idsCjkRadicals.txt, Nameslist
-76EE ;	109 ; 5 	# (目) CJK UNIFIED IDEOGRAPH-76EE ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-7F52 ;	109 ; 5 	# (罒) CJK UNIFIED IDEOGRAPH-7F52 ;	kRSAdobe_Japan1_6
-
-2F6D ;	110 ; 5 	# (⽭) KANGXI RADICAL SPEAR ;	CJKRadicals.txt
-77DB ;	110 ; 5 	# (矛) CJK UNIFIED IDEOGRAPH-77DB ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F6E ;	111 ; 5 	# (⽮) KANGXI RADICAL ARROW ;	CJKRadicals.txt
-77E2 ;	111 ; 5 	# (矢) CJK UNIFIED IDEOGRAPH-77E2 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F6F ;	112 ; 5 	# (⽯) KANGXI RADICAL STONE ;	CJKRadicals.txt
-77F3 ;	112 ; 5 	# (石) CJK UNIFIED IDEOGRAPH-77F3 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F70 ;	113 ; 4/5? 	# (⽰) KANGXI RADICAL SPIRIT ;	CJKRadicals.txt
-2EAC ;	113 ; 4/5? 	# (⺬) CJK RADICAL SPIRIT ONE ;	idsCjkRadicals.txt, Nameslist
-2EAD ;	113 ; 4/5? 	# (⺭) CJK RADICAL SPIRIT TWO ;	idsCjkRadicals.txt
-793A ;	113 ; 5 	# (示) CJK UNIFIED IDEOGRAPH-793A ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-793B ;	113 ; 4 	# (礻) CJK UNIFIED IDEOGRAPH-793B ;	kRSUnicode, kRSKangXi
-25605 ;	113 ; 4 	# (𥘅) CJK UNIFIED IDEOGRAPH-25605 ;	kRSUnicode, kRSKangXi
-
-2F71 ;	114 ; 4 	# (⽱) KANGXI RADICAL TRACK ;	CJKRadicals.txt
-79B8 ;	114 ; 4 	# (禸) CJK UNIFIED IDEOGRAPH-79B8 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F72 ;	115 ; 5 	# (⽲) KANGXI RADICAL GRAIN ;	CJKRadicals.txt
-79BE ;	115 ; 5 	# (禾) CJK UNIFIED IDEOGRAPH-79BE ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2574C ;	115 ; 5 	# (𥝌) CJK UNIFIED IDEOGRAPH-2574C ;	kRSUnicode, kRSKangXi
-
-2F73 ;	116 ; 5 	# (⽳) KANGXI RADICAL CAVE ;	CJKRadicals.txt
-7A74 ;	116 ; 5 	# (穴) CJK UNIFIED IDEOGRAPH-7A74 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-25922 ;	116 ; 5 	# (𥤢) CJK UNIFIED IDEOGRAPH-25922 ;	kRSUnicode, kRSKangXi
-
-2F74 ;	117 ; 5 	# (⽴) KANGXI RADICAL STAND ;	CJKRadicals.txt
-7ACB ;	117 ; 5 	# (立) CJK UNIFIED IDEOGRAPH-7ACB ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-F9F7 ;	117 ; 5 	# (立) CJK COMPATIBILITY IDEOGRAPH-F9F7 ;	kRSUnicode, kRSKangXi
-
-2F75 ;	118 ; 6 	# (⽵) KANGXI RADICAL BAMBOO ;	CJKRadicals.txt
-2EAE ;	118 ; 6 	# (⺮) CJK RADICAL BAMBOO ;	idsCjkRadicals.txt, Nameslist
-7AF9 ;	118 ; 6 	# (竹) CJK UNIFIED IDEOGRAPH-7AF9 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-25AD7 ;	118 ; 6 	# (𥫗) CJK UNIFIED IDEOGRAPH-25AD7 ;	kRSUnicode, kRSKangXi
-
-2F76 ;	119 ; 6 	# (⽶) KANGXI RADICAL RICE ;	CJKRadicals.txt
-7C73 ;	119 ; 6 	# (米) CJK UNIFIED IDEOGRAPH-7C73 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F77 ;	120 ; 6 	# (⽷) KANGXI RADICAL SILK ;	CJKRadicals.txt
-2EAF ;	120 ; 6 	# (⺯) CJK RADICAL SILK ;	idsCjkRadicals.txt, Nameslist
-7CF8 ;	120 ; 6 	# (糸) CJK UNIFIED IDEOGRAPH-7CF8 ;	CJKRadicals.txt, kRSUnicode
-7CF9 ;	120 ; 6 	# (糹) CJK UNIFIED IDEOGRAPH-7CF9 ;	kRSUnicode, Nameslist
-
-2EB0 ;	120' ; 3 	# (⺰) CJK RADICAL C-SIMPLIFIED SILK ;	CJKRadicals.txt, Nameslist
-7E9F ;	120' ; 3 	# (纟) CJK UNIFIED IDEOGRAPH-7E9F ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2F78 ;	121 ; 6 	# (⽸) KANGXI RADICAL JAR ;	CJKRadicals.txt
-7F36 ;	121 ; 6 	# (缶) CJK UNIFIED IDEOGRAPH-7F36 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-26222 ;	121 ; 6 	# (𦈢) CJK UNIFIED IDEOGRAPH-26222 ;	kRSUnicode, kRSKangXi
-
-2F79 ;	122 ; 4/5/6? 	# (⽹) KANGXI RADICAL NET ;	CJKRadicals.txt
-2EB1 ;	122 ; 4/5/6? 	# (⺱) CJK RADICAL NET ONE ;	idsCjkRadicals.txt, Nameslist
-2EB2 ;	122 ; 4/5/6? 	# (⺲) CJK RADICAL NET TWO ;	idsCjkRadicals.txt
-2EB3 ;	122 ; 4/5/6? 	# (⺳) CJK RADICAL NET THREE ;	idsCjkRadicals.txt
-2EB4 ;	122 ; 4/5/6? 	# (⺴) CJK RADICAL NET FOUR ;	idsCjkRadicals.txt
-2EB5 ;	122 ; 4/5/6? 	# (⺵) CJK RADICAL MESH ;	idsCjkRadicals.txt
-2053F ;	122 ; 4 	# (𠔿) CJK UNIFIED IDEOGRAPH-2053F ;	kRSAdobe_Japan1_6
-34C1 ;	122 ; 4 	# (㓁) CJK UNIFIED IDEOGRAPH-34C1 ;	kRSAdobe_Japan1_6
-434F ;	122 ; 5 	# (䍏) CJK UNIFIED IDEOGRAPH-434F ;	kRSUnicode
-7F51 ;	122 ; 6 	# (网) CJK UNIFIED IDEOGRAPH-7F51 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-7F52 ;	122 ; 5 	# (罒) CJK UNIFIED IDEOGRAPH-7F52 ;	kRSUnicode, kRSKangXi
-7F53 ;	122 ; 4 	# (罓) CJK UNIFIED IDEOGRAPH-7F53 ;	kRSUnicode, kRSKangXi, Nameslist
-2626A ;	122 ; 5 	# (𦉪) CJK UNIFIED IDEOGRAPH-2626A ;	kRSUnicode, kRSKangXi
-2626B ;	122 ; 5 	# (𦉫) CJK UNIFIED IDEOGRAPH-2626B ;	kRSUnicode, kRSKangXi
-2626D ;	122 ; 5 	# (𦉭) CJK UNIFIED IDEOGRAPH-2626D ;	kRSUnicode, kRSKangXi
-26270 ;	122 ; 5 	# (𦉰) CJK UNIFIED IDEOGRAPH-26270 ;	kRSUnicode, kRSKangXi
-
-2F7A ;	123 ; 6 	# (⽺) KANGXI RADICAL SHEEP ;	CJKRadicals.txt
-2EB6 ;	123 ; 6 	# (⺶) CJK RADICAL SHEEP ;	idsCjkRadicals.txt, Nameslist
-2EB7 ;	123 ; 6 	# (⺷) CJK RADICAL RAM ;	idsCjkRadicals.txt
-2EB8 ;	123 ; 6 	# (⺸) CJK RADICAL EWE ;	idsCjkRadicals.txt
-7F8A ;	123 ; 6 	# (羊) CJK UNIFIED IDEOGRAPH-7F8A ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-2634B ;	123 ; 6 	# (𦍋) CJK UNIFIED IDEOGRAPH-2634B ;	kRSUnicode, kRSKangXi
-2634C ;	123 ; 6 	# (𦍌) CJK UNIFIED IDEOGRAPH-2634C ;	kRSUnicode, kRSKangXi
-2634D ;	123 ; 6 	# (𦍍) CJK UNIFIED IDEOGRAPH-2634D ;	kRSUnicode, kRSKangXi
-
-2F7B ;	124 ; 6/8? 	# (⽻) KANGXI RADICAL FEATHER ;	CJKRadicals.txt
-7FBD ;	124 ; 6 	# (羽) CJK UNIFIED IDEOGRAPH-7FBD ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-FA1E ;	124 ; 6 	# (羽) CJK COMPATIBILITY IDEOGRAPH-FA1E ;	kRSUnicode, kRSKangXi
-263F2 ;	124 ; 8 	# (𦏲) CJK UNIFIED IDEOGRAPH-263F2 ;	kRSKangXi
-
-2F7C ;	125 ; 4/6? 	# (⽼) KANGXI RADICAL OLD ;	CJKRadicals.txt
-2EB9 ;	125 ; 4/6? 	# (⺹) CJK RADICAL OLD ;	idsCjkRadicals.txt, Nameslist
-8001 ;	125 ; 6 	# (老) CJK UNIFIED IDEOGRAPH-8001 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-8002 ;	125 ; 4 	# (耂) CJK UNIFIED IDEOGRAPH-8002 ;	kRSUnicode, kRSKangXi, Nameslist
-8003 ;	125 ; 6 	# (考) CJK UNIFIED IDEOGRAPH-8003 ;	kRSUnicode, kRSKangXi
-F934 ;	125 ; 6 	# (老) CJK COMPATIBILITY IDEOGRAPH-F934 ;	kRSUnicode, kRSKangXi
-
-2F7D ;	126 ; 6 	# (⽽) KANGXI RADICAL AND ;	CJKRadicals.txt
-800C ;	126 ; 6 	# (而) CJK UNIFIED IDEOGRAPH-800C ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-264D0 ;	126 ; 6 	# (𦓐) CJK UNIFIED IDEOGRAPH-264D0 ;	kRSUnicode, kRSKangXi
-
-2F7E ;	127 ; 6 	# (⽾) KANGXI RADICAL PLOW ;	CJKRadicals.txt
-8012 ;	127 ; 6 	# (耒) CJK UNIFIED IDEOGRAPH-8012 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-264E4 ;	127 ; 6 	# (𦓤) CJK UNIFIED IDEOGRAPH-264E4 ;	kRSUnicode, kRSKangXi
-
-2F7F ;	128 ; 6 	# (⽿) KANGXI RADICAL EAR ;	CJKRadicals.txt
-8033 ;	128 ; 6 	# (耳) CJK UNIFIED IDEOGRAPH-8033 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F80 ;	129 ; 4/6? 	# (⾀) KANGXI RADICAL BRUSH ;	CJKRadicals.txt
-2EBA ;	129 ; 4/6? 	# (⺺) CJK RADICAL BRUSH ONE ;	idsCjkRadicals.txt, Nameslist
-2EBB ;	129 ; 4/6? 	# (⺻) CJK RADICAL BRUSH TWO ;	idsCjkRadicals.txt
-807F ;	129 ; 6 	# (聿) CJK UNIFIED IDEOGRAPH-807F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-8080 ;	129 ; 4 	# (肀) CJK UNIFIED IDEOGRAPH-8080 ;	kRSUnicode, kRSKangXi, Nameslist
-26612 ;	129 ; 6 	# (𦘒) CJK UNIFIED IDEOGRAPH-26612 ;	kRSUnicode, kRSKangXi
-
-2F81 ;	130 ; 6 	# (⾁) KANGXI RADICAL MEAT ;	CJKRadicals.txt
-2EBC ;	130 ; 6 	# (⺼) CJK RADICAL MEAT ;	idsCjkRadicals.txt, Nameslist
-8089 ;	130 ; 6 	# (肉) CJK UNIFIED IDEOGRAPH-8089 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2F82 ;	131 ; 6/7? 	# (⾂) KANGXI RADICAL MINISTER ;	CJKRadicals.txt
-81E3 ;	131 ; 6 	# (臣) CJK UNIFIED IDEOGRAPH-81E3 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-268DE ;	131 ; 6 	# (𦣞) CJK UNIFIED IDEOGRAPH-268DE ;	kRSUnicode, kRSKangXi
-268DD ;	131 ; 7 	# (𦣝) CJK UNIFIED IDEOGRAPH-268DD ;	kRSKangXi, kRSAdobe_Japan1_6
-
-2F83 ;	132 ; 6 	# (⾃) KANGXI RADICAL SELF ;	CJKRadicals.txt
-81EA ;	132 ; 6 	# (自) CJK UNIFIED IDEOGRAPH-81EA ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-268F9 ;	132 ; 6 	# (𦣹) CJK UNIFIED IDEOGRAPH-268F9 ;	kRSUnicode, kRSKangXi
-
-2F84 ;	133 ; 6 	# (⾄) KANGXI RADICAL ARRIVE ;	CJKRadicals.txt
-81F3 ;	133 ; 6 	# (至) CJK UNIFIED IDEOGRAPH-81F3 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-26933 ;	133 ; 6 	# (𦤳) CJK UNIFIED IDEOGRAPH-26933 ;	kRSUnicode, kRSKangXi
-26934 ;	133 ; 6 	# (𦤴) CJK UNIFIED IDEOGRAPH-26934 ;	kRSUnicode, kRSKangXi
-
-2F85 ;	134 ; 6 	# (⾅) KANGXI RADICAL MORTAR ;	CJKRadicals.txt
-2EBD ;	134 ; 6 	# (⺽) CJK RADICAL MORTAR ;	idsCjkRadicals.txt, Nameslist
-81FC ;	134 ; 6 	# (臼) CJK UNIFIED IDEOGRAPH-81FC ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-26951 ;	134 ; 6 	# (𦥑) CJK UNIFIED IDEOGRAPH-26951 ;	kRSUnicode, kRSKangXi
-26952 ;	134 ; 6 	# (𦥒) CJK UNIFIED IDEOGRAPH-26952 ;	kRSUnicode, kRSKangXi
-26953 ;	134 ; 6 	# (𦥓) CJK UNIFIED IDEOGRAPH-26953 ;	kRSUnicode, kRSKangXi
-
-2F86 ;	135 ; 6 	# (⾆) KANGXI RADICAL TONGUE ;	CJKRadicals.txt
-820C ;	135 ; 6 	# (舌) CJK UNIFIED IDEOGRAPH-820C ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F87 ;	136 ; 6 	# (⾇) KANGXI RADICAL OPPOSE ;	CJKRadicals.txt
-821B ;	136 ; 6 	# (舛) CJK UNIFIED IDEOGRAPH-821B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F88 ;	137 ; 6 	# (⾈) KANGXI RADICAL BOAT ;	CJKRadicals.txt
-821F ;	137 ; 6 	# (舟) CJK UNIFIED IDEOGRAPH-821F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-200A8 ;	137 ; 6 	# (𠂨) CJK UNIFIED IDEOGRAPH-200A8 ;	kRSUnicode, kRSKangXi
-
-2F89 ;	138 ; 6 	# (⾉) KANGXI RADICAL STOPPING ;	CJKRadicals.txt
-826E ;	138 ; 6 	# (艮) CJK UNIFIED IDEOGRAPH-826E ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F8A ;	139 ; 6 	# (⾊) KANGXI RADICAL COLOR ;	CJKRadicals.txt
-8272 ;	139 ; 6 	# (色) CJK UNIFIED IDEOGRAPH-8272 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F8B ;	140 ; 3/6? 	# (⾋) KANGXI RADICAL GRASS ;	CJKRadicals.txt
-2EBE ;	140 ; 3/6? 	# (⺾) CJK RADICAL GRASS ONE ;	idsCjkRadicals.txt, Nameslist
-2EBF ;	140 ; 3/6? 	# (⺿) CJK RADICAL GRASS TWO ;	idsCjkRadicals.txt
-2EC0 ;	140 ; 3/6? 	# (⻀) CJK RADICAL GRASS THREE ;	idsCjkRadicals.txt
-4491 ;	140 ; 6 	# (䒑) CJK UNIFIED IDEOGRAPH-4491 ;	kRSUnicode
-8278 ;	140 ; 6 	# (艸) CJK UNIFIED IDEOGRAPH-8278 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-8279 ;	140 ; 3 	# (艹) CJK UNIFIED IDEOGRAPH-8279 ;	kRSUnicode, kRSKangXi, Nameslist
-FA5D ;	140 ; 3/6? 	# (艹) CJK COMPATIBILITY IDEOGRAPH-FA5D ;	kRSUnicode
-FA5E ;	140 ; 3/6? 	# (艹) CJK COMPATIBILITY IDEOGRAPH-FA5E ;	kRSUnicode
-
-2F8C ;	141 ; 6/8? 	# (⾌) KANGXI RADICAL TIGER ;	CJKRadicals.txt
-2EC1 ;	141 ; 6/8? 	# (⻁) CJK RADICAL TIGER ;	idsCjkRadicals.txt, Nameslist
-864D ;	141 ; 6 	# (虍) CJK UNIFIED IDEOGRAPH-864D ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-864E ;	141 ; 8 	# (虎) CJK UNIFIED IDEOGRAPH-864E ;	Nameslist
-
-2F8D ;	142 ; 6 	# (⾍) KANGXI RADICAL INSECT ;	CJKRadicals.txt
-866B ;	142 ; 6 	# (虫) CJK UNIFIED IDEOGRAPH-866B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F8E ;	143 ; 6 	# (⾎) KANGXI RADICAL BLOOD ;	CJKRadicals.txt
-8840 ;	143 ; 6 	# (血) CJK UNIFIED IDEOGRAPH-8840 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F8F ;	144 ; 6 	# (⾏) KANGXI RADICAL WALK ENCLOSURE ;	CJKRadicals.txt
-884C ;	144 ; 6 	# (行) CJK UNIFIED IDEOGRAPH-884C ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-FA08 ;	144 ; 6 	# (行) CJK COMPATIBILITY IDEOGRAPH-FA08 ;	kRSUnicode, kRSKangXi
-
-2F90 ;	145 ; 5/6? 	# (⾐) KANGXI RADICAL CLOTHES ;	CJKRadicals.txt
-2EC2 ;	145 ; 5/6? 	# (⻂) CJK RADICAL CLOTHES ;	idsCjkRadicals.txt, Nameslist
-8863 ;	145 ; 6 	# (衣) CJK UNIFIED IDEOGRAPH-8863 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-8864 ;	145 ; 5 	# (衤) CJK UNIFIED IDEOGRAPH-8864 ;	kRSUnicode, kRSKangXi, Nameslist
-27607 ;	145 ; 5 	# (𧘇) CJK UNIFIED IDEOGRAPH-27607 ;	kRSUnicode, kRSKangXi
-2F9C4 ;	145 ; 5/6? 	# (衣) CJK COMPATIBILITY IDEOGRAPH-2F9C4 ;	kRSUnicode
-
-2F91 ;	146 ; 6 	# (⾑) KANGXI RADICAL WEST ;	CJKRadicals.txt
-2EC3 ;	146 ; 6 	# (⻃) CJK RADICAL WEST ONE ;	idsCjkRadicals.txt, Nameslist
-2EC4 ;	146 ; 6 	# (⻄) CJK RADICAL WEST TWO ;	idsCjkRadicals.txt
-897E ;	146 ; 6 	# (襾) CJK UNIFIED IDEOGRAPH-897E ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-897F ;	146 ; 6 	# (西) CJK UNIFIED IDEOGRAPH-897F ;	kRSUnicode, kRSKangXi
-8980 ;	146 ; 6 	# (覀) CJK UNIFIED IDEOGRAPH-8980 ;	kRSUnicode, kRSKangXi, Nameslist
-
-2F92 ;	147 ; 7 	# (⾒) KANGXI RADICAL SEE ;	CJKRadicals.txt
-898B ;	147 ; 7 	# (見) CJK UNIFIED IDEOGRAPH-898B ;	CJKRadicals.txt, kRSUnicode
-FA0A ;	147 ; 7 	# (見) CJK COMPATIBILITY IDEOGRAPH-FA0A ;	kRSUnicode
-
-2EC5 ;	147' ; 4 	# (⻅) CJK RADICAL C-SIMPLIFIED SEE ;	CJKRadicals.txt, Nameslist
-89C1 ;	147' ; 4 	# (见) CJK UNIFIED IDEOGRAPH-89C1 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2F93 ;	148 ; 7 	# (⾓) KANGXI RADICAL HORN ;	CJKRadicals.txt
-2EC6 ;	148 ; 7 	# (⻆) CJK RADICAL SIMPLIFIED HORN ;	idsCjkRadicals.txt, Nameslist
-2EC7 ;	148 ; 7 	# (⻇) CJK RADICAL HORN ;	idsCjkRadicals.txt
-89D2 ;	148 ; 7 	# (角) CJK UNIFIED IDEOGRAPH-89D2 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-278B2 ;	148 ; 7 	# (𧢲) CJK UNIFIED IDEOGRAPH-278B2 ;	kRSUnicode, kRSKangXi
-
-2F94 ;	149 ; 7 	# (⾔) KANGXI RADICAL SPEECH ;	CJKRadicals.txt
-8A00 ;	149 ; 7 	# (言) CJK UNIFIED IDEOGRAPH-8A00 ;	CJKRadicals.txt, kRSUnicode
-8A01 ;	149 ; 7 	# (訁) CJK UNIFIED IDEOGRAPH-8A01 ;	kRSUnicode
-2795B ;	149 ; 7 	# (𧥛) CJK UNIFIED IDEOGRAPH-2795B ;	kRSUnicode
-2795C ;	149 ; 7 	# (𧥜) CJK UNIFIED IDEOGRAPH-2795C ;	kRSUnicode
-
-2EC8 ;	149' ; 2 	# (⻈) CJK RADICAL C-SIMPLIFIED SPEECH ;	CJKRadicals.txt, Nameslist
-8BA0 ;	149' ; 2 	# (讠) CJK UNIFIED IDEOGRAPH-8BA0 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2F95 ;	150 ; 7 	# (⾕) KANGXI RADICAL VALLEY ;	CJKRadicals.txt
-8C37 ;	150 ; 7 	# (谷) CJK UNIFIED IDEOGRAPH-8C37 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-27BAB ;	150 ; 7 	# (𧮫) CJK UNIFIED IDEOGRAPH-27BAB ;	kRSUnicode, kRSKangXi
-
-2F96 ;	151 ; 7 	# (⾖) KANGXI RADICAL BEAN ;	CJKRadicals.txt
-8C46 ;	151 ; 7 	# (豆) CJK UNIFIED IDEOGRAPH-8C46 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F97 ;	152 ; 7 	# (⾗) KANGXI RADICAL PIG ;	CJKRadicals.txt
-8C55 ;	152 ; 7 	# (豕) CJK UNIFIED IDEOGRAPH-8C55 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-27C27 ;	152 ; 7 	# (𧰧) CJK UNIFIED IDEOGRAPH-27C27 ;	kRSUnicode, kRSKangXi
-27C28 ;	152 ; 7 	# (𧰨) CJK UNIFIED IDEOGRAPH-27C28 ;	kRSUnicode, kRSKangXi
-2F9D2 ;	152 ; 7 	# (豕) CJK COMPATIBILITY IDEOGRAPH-2F9D2 ;	kRSUnicode
-
-2F98 ;	153 ; 7 	# (⾘) KANGXI RADICAL BADGER ;	CJKRadicals.txt
-8C78 ;	153 ; 7 	# (豸) CJK UNIFIED IDEOGRAPH-8C78 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F99 ;	154 ; 7 	# (⾙) KANGXI RADICAL SHELL ;	CJKRadicals.txt
-8C9D ;	154 ; 7 	# (貝) CJK UNIFIED IDEOGRAPH-8C9D ;	CJKRadicals.txt, kRSUnicode
-
-2EC9 ;	154' ; 4 	# (⻉) CJK RADICAL C-SIMPLIFIED SHELL ;	CJKRadicals.txt, Nameslist
-8D1D ;	154' ; 4 	# (贝) CJK UNIFIED IDEOGRAPH-8D1D ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2F9A ;	155 ; 7 	# (⾚) KANGXI RADICAL RED ;	CJKRadicals.txt
-8D64 ;	155 ; 7 	# (赤) CJK UNIFIED IDEOGRAPH-8D64 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2F9B ;	156 ; 6/7? 	# (⾛) KANGXI RADICAL RUN ;	CJKRadicals.txt
-8D70 ;	156 ; 7 	# (走) CJK UNIFIED IDEOGRAPH-8D70 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-8D71 ;	156 ; 6 	# (赱) CJK UNIFIED IDEOGRAPH-8D71 ;	kRSUnicode, kRSKangXi
-27E86 ;	156 ; 7 	# (𧺆) CJK UNIFIED IDEOGRAPH-27E86 ;	kRSUnicode, kRSKangXi
-
-2F9C ;	157 ; 7 	# (⾜) KANGXI RADICAL FOOT ;	CJKRadicals.txt
-2ECA ;	157 ; 7 	# (⻊) CJK RADICAL FOOT ;	idsCjkRadicals.txt, Nameslist
-8DB3 ;	157 ; 7 	# (足) CJK UNIFIED IDEOGRAPH-8DB3 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-27FB7 ;	157 ; 7 	# (𧾷) CJK UNIFIED IDEOGRAPH-27FB7 ;	kRSUnicode, kRSKangXi
-
-2F9D ;	158 ; 7 	# (⾝) KANGXI RADICAL BODY ;	CJKRadicals.txt
-8EAB ;	158 ; 7 	# (身) CJK UNIFIED IDEOGRAPH-8EAB ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2820F ;	158 ; 7 	# (𨈏) CJK UNIFIED IDEOGRAPH-2820F ;	kRSUnicode, kRSKangXi
-28210 ;	158 ; 7 	# (𨈐) CJK UNIFIED IDEOGRAPH-28210 ;	kRSUnicode, kRSKangXi
-28211 ;	158 ; 7 	# (𨈑) CJK UNIFIED IDEOGRAPH-28211 ;	kRSUnicode, kRSKangXi
-
-2F9E ;	159 ; 7 	# (⾞) KANGXI RADICAL CART ;	CJKRadicals.txt
-8ECA ;	159 ; 7 	# (車) CJK UNIFIED IDEOGRAPH-8ECA ;	CJKRadicals.txt, kRSUnicode
-F902 ;	159 ; 7 	# (車) CJK COMPATIBILITY IDEOGRAPH-F902 ;	kRSUnicode
-
-2ECB ;	159' ; 4 	# (⻋) CJK RADICAL C-SIMPLIFIED CART ;	CJKRadicals.txt, Nameslist
-8F66 ;	159' ; 4 	# (车) CJK UNIFIED IDEOGRAPH-8F66 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2F9F ;	160 ; 7 	# (⾟) KANGXI RADICAL BITTER ;	CJKRadicals.txt
-8F9B ;	160 ; 7 	# (辛) CJK UNIFIED IDEOGRAPH-8F9B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2840B ;	160 ; 7 	# (𨐋) CJK UNIFIED IDEOGRAPH-2840B ;	kRSUnicode, kRSKangXi
-
-2FA0 ;	161 ; 7 	# (⾠) KANGXI RADICAL MORNING ;	CJKRadicals.txt
-8FB0 ;	161 ; 7 	# (辰) CJK UNIFIED IDEOGRAPH-8FB0 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-F971 ;	161 ; 7 	# (辰) CJK COMPATIBILITY IDEOGRAPH-F971 ;	kRSUnicode, kRSKangXi
-28443 ;	161 ; 7 	# (𨑃) CJK UNIFIED IDEOGRAPH-28443 ;	kRSUnicode, kRSKangXi
-28444 ;	161 ; 7 	# (𨑄) CJK UNIFIED IDEOGRAPH-28444 ;	kRSUnicode, kRSKangXi
-
-2FA1 ;	162 ; 3/7? 	# (⾡) KANGXI RADICAL WALK ;	CJKRadicals.txt
-2ECD ;	162 ; 3/7? 	# (⻍) CJK RADICAL WALK ONE ;	idsCjkRadicals.txt, Nameslist
-2ECE ;	162 ; 3/7? 	# (⻎) CJK RADICAL WALK TWO ;	idsCjkRadicals.txt
-8FB5 ;	162 ; 7 	# (辵) CJK UNIFIED IDEOGRAPH-8FB5 ;	CJKRadicals.txt, kRSUnicode
-8FB6 ;	162 ; 3 	# (辶) CJK UNIFIED IDEOGRAPH-8FB6 ;	kRSUnicode, Nameslist
-FA66 ;	162 ; 3/7? 	# (辶) CJK COMPATIBILITY IDEOGRAPH-FA66 ;	kRSUnicode
-20507 ;	162 ; 3 	# (𠔇) CJK UNIFIED IDEOGRAPH-20507 ;	kRSUnicode
-
-2ECC ;	162' ; 3 	# (⻌) CJK RADICAL SIMPLIFIED WALK ;	CJKRadicals.txt, Nameslist
-8FB6 ;	162' ; 3 	# (辶) CJK UNIFIED IDEOGRAPH-8FB6 ;	CJKRadicals.txt, Nameslist
-
-2FA2 ;	163 ; 2/7? 	# (⾢) KANGXI RADICAL CITY ;	CJKRadicals.txt
-2ECF ;	163 ; 2/7? 	# (⻏) CJK RADICAL CITY ;	idsCjkRadicals.txt, Nameslist
-9091 ;	163 ; 7 	# (邑) CJK UNIFIED IDEOGRAPH-9091 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-28668 ;	163 ; 2 	# (𨙨) CJK UNIFIED IDEOGRAPH-28668 ;	kRSUnicode, kRSKangXi
-
-2FA3 ;	164 ; 7 	# (⾣) KANGXI RADICAL WINE ;	CJKRadicals.txt
-9149 ;	164 ; 7 	# (酉) CJK UNIFIED IDEOGRAPH-9149 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FA4 ;	165 ; 7 	# (⾤) KANGXI RADICAL DISTINGUISH ;	CJKRadicals.txt
-91C6 ;	165 ; 7 	# (釆) CJK UNIFIED IDEOGRAPH-91C6 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FA5 ;	166 ; 7 	# (⾥) KANGXI RADICAL VILLAGE ;	CJKRadicals.txt
-91CC ;	166 ; 7 	# (里) CJK UNIFIED IDEOGRAPH-91CC ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-F9E9 ;	166 ; 7 	# (里) CJK COMPATIBILITY IDEOGRAPH-F9E9 ;	kRSUnicode, kRSKangXi
-
-2FA6 ;	167 ; 8 	# (⾦) KANGXI RADICAL GOLD ;	CJKRadicals.txt
-91D1 ;	167 ; 8 	# (金) CJK UNIFIED IDEOGRAPH-91D1 ;	CJKRadicals.txt, kRSUnicode
-91D2 ;	167 ; 8 	# (釒) CJK UNIFIED IDEOGRAPH-91D2 ;	kRSUnicode
-F90A ;	167 ; 8 	# (金) CJK COMPATIBILITY IDEOGRAPH-F90A ;	kRSUnicode
-
-2ED0 ;	167' ; 5 	# (⻐) CJK RADICAL C-SIMPLIFIED GOLD ;	CJKRadicals.txt, Nameslist
-9485 ;	167' ; 5 	# (钅) CJK UNIFIED IDEOGRAPH-9485 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FA7 ;	168 ; 7/8? 	# (⾧) KANGXI RADICAL LONG ;	CJKRadicals.txt
-2ED1 ;	168 ; 7/8? 	# (⻑) CJK RADICAL LONG ONE ;	idsCjkRadicals.txt, Nameslist
-2ED2 ;	168 ; 7/8? 	# (⻒) CJK RADICAL LONG TWO ;	idsCjkRadicals.txt
-9577 ;	168 ; 8 	# (長) CJK UNIFIED IDEOGRAPH-9577 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-9578 ;	168 ; 7 	# (镸) CJK UNIFIED IDEOGRAPH-9578 ;	kRSUnicode
-28C57 ;	168 ; 7 	# (𨱗) CJK UNIFIED IDEOGRAPH-28C57 ;	kRSUnicode
-28C58 ;	168 ; 7 	# (𨱘) CJK UNIFIED IDEOGRAPH-28C58 ;	kRSUnicode
-
-2ED3 ;	168' ; 4 	# (⻓) CJK RADICAL C-SIMPLIFIED LONG ;	CJKRadicals.txt, Nameslist
-957F ;	168' ; 4 	# (长) CJK UNIFIED IDEOGRAPH-957F ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FA8 ;	169 ; 3/8? 	# (⾨) KANGXI RADICAL GATE ;	CJKRadicals.txt
-9580 ;	169 ; 8 	# (門) CJK UNIFIED IDEOGRAPH-9580 ;	CJKRadicals.txt, kRSUnicode
-28CC7 ;	169 ; 8 	# (𨳇) CJK UNIFIED IDEOGRAPH-28CC7 ;	kRSUnicode
-28CC8 ;	169 ; 8 	# (𨳈) CJK UNIFIED IDEOGRAPH-28CC8 ;	kRSUnicode
-95E8 ;	169 ; 3 	# (门) CJK UNIFIED IDEOGRAPH-95E8 ;	kRSAdobe_Japan1_6
-
-2ED4 ;	169' ; 3 	# (⻔) CJK RADICAL C-SIMPLIFIED GATE ;	CJKRadicals.txt, Nameslist
-95E8 ;	169' ; 3 	# (门) CJK UNIFIED IDEOGRAPH-95E8 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FA9 ;	170 ; 2/8? 	# (⾩) KANGXI RADICAL MOUND ;	CJKRadicals.txt
-2ED5 ;	170 ; 2/8? 	# (⻕) CJK RADICAL MOUND ONE ;	idsCjkRadicals.txt, Nameslist
-2ED6 ;	170 ; 2/8? 	# (⻖) CJK RADICAL MOUND TWO ;	idsCjkRadicals.txt
-961C ;	170 ; 8 	# (阜) CJK UNIFIED IDEOGRAPH-961C ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-961D ;	170 ; 2 	# (阝) CJK UNIFIED IDEOGRAPH-961D ;	kRSUnicode, kRSKangXi
-28E0F ;	170 ; 2 	# (𨸏) CJK UNIFIED IDEOGRAPH-28E0F ;	kRSUnicode, kRSKangXi, Nameslist
-
-2FAA ;	171 ; 8 	# (⾪) KANGXI RADICAL SLAVE ;	CJKRadicals.txt
-96B6 ;	171 ; 8 	# (隶) CJK UNIFIED IDEOGRAPH-96B6 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FAB ;	172 ; 8 	# (⾫) KANGXI RADICAL SHORT TAILED BIRD ;	CJKRadicals.txt
-96B9 ;	172 ; 8 	# (隹) CJK UNIFIED IDEOGRAPH-96B9 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FAC ;	173 ; 8 	# (⾬) KANGXI RADICAL RAIN ;	CJKRadicals.txt
-2ED7 ;	173 ; 8 	# (⻗) CJK RADICAL RAIN ;	idsCjkRadicals.txt, Nameslist
-96E8 ;	173 ; 8 	# (雨) CJK UNIFIED IDEOGRAPH-96E8 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2FAD ;	174 ; 8 	# (⾭) KANGXI RADICAL BLUE ;	CJKRadicals.txt
-2ED8 ;	174 ; 8 	# (⻘) CJK RADICAL BLUE ;	idsCjkRadicals.txt, Nameslist
-9751 ;	174 ; 8 	# (靑) CJK UNIFIED IDEOGRAPH-9751 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-9752 ;	174 ; 8 	# (青) CJK UNIFIED IDEOGRAPH-9752 ;	kRSUnicode, kRSKangXi, Nameslist
-
-2FAE ;	175 ; 8 	# (⾮) KANGXI RADICAL WRONG ;	CJKRadicals.txt
-975E ;	175 ; 8 	# (非) CJK UNIFIED IDEOGRAPH-975E ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FAF ;	176 ; 8/9? 	# (⾯) KANGXI RADICAL FACE ;	CJKRadicals.txt
-9762 ;	176 ; 9 	# (面) CJK UNIFIED IDEOGRAPH-9762 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-9763 ;	176 ; 8 	# (靣) CJK UNIFIED IDEOGRAPH-9763 ;	kRSUnicode, kRSKangXi
-20691 ;	176 ; 9 	# (𠚑) CJK UNIFIED IDEOGRAPH-20691 ;	kRSUnicode, kRSKangXi
-
-2FB0 ;	177 ; 9 	# (⾰) KANGXI RADICAL LEATHER ;	CJKRadicals.txt
-9769 ;	177 ; 9 	# (革) CJK UNIFIED IDEOGRAPH-9769 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FB1 ;	178 ; 9 	# (⾱) KANGXI RADICAL TANNED LEATHER ;	CJKRadicals.txt
-97CB ;	178 ; 9 	# (韋) CJK UNIFIED IDEOGRAPH-97CB ;	CJKRadicals.txt, kRSUnicode
-
-2ED9 ;	178' ; 4 	# (⻙) CJK RADICAL C-SIMPLIFIED TANNED LEATHER ;	CJKRadicals.txt, Nameslist
-97E6 ;	178' ; 4 	# (韦) CJK UNIFIED IDEOGRAPH-97E6 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FB2 ;	179 ; 9 	# (⾲) KANGXI RADICAL LEEK ;	CJKRadicals.txt
-97ED ;	179 ; 9 	# (韭) CJK UNIFIED IDEOGRAPH-97ED ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FB3 ;	180 ; 9 	# (⾳) KANGXI RADICAL SOUND ;	CJKRadicals.txt
-97F3 ;	180 ; 9 	# (音) CJK UNIFIED IDEOGRAPH-97F3 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FB4 ;	181 ; 9 	# (⾴) KANGXI RADICAL LEAF ;	CJKRadicals.txt
-9801 ;	181 ; 9 	# (頁) CJK UNIFIED IDEOGRAPH-9801 ;	CJKRadicals.txt, kRSUnicode
-2944B ;	181 ; 9 	# (𩑋) CJK UNIFIED IDEOGRAPH-2944B ;	kRSUnicode
-
-2EDA ;	181' ; 6 	# (⻚) CJK RADICAL C-SIMPLIFIED LEAF ;	CJKRadicals.txt, Nameslist
-9875 ;	181' ; 6 	# (页) CJK UNIFIED IDEOGRAPH-9875 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FB5 ;	182 ; 9 	# (⾵) KANGXI RADICAL WIND ;	CJKRadicals.txt
-98A8 ;	182 ; 9 	# (風) CJK UNIFIED IDEOGRAPH-98A8 ;	CJKRadicals.txt, kRSUnicode
-
-2EDB ;	182' ; 4 	# (⻛) CJK RADICAL C-SIMPLIFIED WIND ;	CJKRadicals.txt, Nameslist
-98CE ;	182' ; 4 	# (风) CJK UNIFIED IDEOGRAPH-98CE ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FB6 ;	183 ; 9 	# (⾶) KANGXI RADICAL FLY ;	CJKRadicals.txt
-98DB ;	183 ; 9 	# (飛) CJK UNIFIED IDEOGRAPH-98DB ;	CJKRadicals.txt, kRSUnicode
-29671 ;	183 ; 9 	# (𩙱) CJK UNIFIED IDEOGRAPH-29671 ;	kRSUnicode
-
-2EDC ;	183' ; 3 	# (⻜) CJK RADICAL C-SIMPLIFIED FLY ;	CJKRadicals.txt, Nameslist
-98DE ;	183' ; 3 	# (飞) CJK UNIFIED IDEOGRAPH-98DE ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FB7 ;	184 ; 8/9? 	# (⾷) KANGXI RADICAL EAT ;	CJKRadicals.txt
-2EDD ;	184 ; 8/9? 	# (⻝) CJK RADICAL EAT ONE ;	idsCjkRadicals.txt, Nameslist
-2EDE ;	184 ; 8/9? 	# (⻞) CJK RADICAL EAT TWO ;	idsCjkRadicals.txt
-2EDF ;	184 ; 8/9? 	# (⻟) CJK RADICAL EAT THREE ;	idsCjkRadicals.txt
-98DF ;	184 ; 9 	# (食) CJK UNIFIED IDEOGRAPH-98DF ;	CJKRadicals.txt, kRSUnicode, Nameslist
-98E0 ;	184 ; 8 	# (飠) CJK UNIFIED IDEOGRAPH-98E0 ;	kRSUnicode
-202D1 ;	184 ; 8 	# (𠋑) CJK UNIFIED IDEOGRAPH-202D1 ;	kRSUnicode
-2967F ;	184 ; 8 	# (𩙿) CJK UNIFIED IDEOGRAPH-2967F ;	kRSUnicode
-29680 ;	184 ; 8 	# (𩚀) CJK UNIFIED IDEOGRAPH-29680 ;	kRSUnicode
-29681 ;	184 ; 8 	# (𩚁) CJK UNIFIED IDEOGRAPH-29681 ;	kRSUnicode
-29683 ;	184 ; 8 	# (𩚃) CJK UNIFIED IDEOGRAPH-29683 ;	kRSUnicode
-
-2EE0 ;	184' ; 3 	# (⻠) CJK RADICAL C-SIMPLIFIED EAT ;	CJKRadicals.txt, Nameslist
-9963 ;	184' ; 3 	# (饣) CJK UNIFIED IDEOGRAPH-9963 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FB8 ;	185 ; 9 	# (⾸) KANGXI RADICAL HEAD ;	CJKRadicals.txt
-2EE1 ;	185 ; 9 	# (⻡) CJK RADICAL HEAD ;	idsCjkRadicals.txt, Nameslist
-9996 ;	185 ; 9 	# (首) CJK UNIFIED IDEOGRAPH-9996 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-29810 ;	185 ; 9 	# (𩠐) CJK UNIFIED IDEOGRAPH-29810 ;	kRSUnicode, kRSKangXi, Nameslist
-
-2FB9 ;	186 ; 9 	# (⾹) KANGXI RADICAL FRAGRANT ;	CJKRadicals.txt
-9999 ;	186 ; 9 	# (香) CJK UNIFIED IDEOGRAPH-9999 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FBA ;	187 ; 10 	# (⾺) KANGXI RADICAL HORSE ;	CJKRadicals.txt
-99AC ;	187 ; 10 	# (馬) CJK UNIFIED IDEOGRAPH-99AC ;	CJKRadicals.txt, kRSUnicode
-29867 ;	187 ; 10 	# (𩡧) CJK UNIFIED IDEOGRAPH-29867 ;	kRSUnicode
-2B809 ;	187 ; 10 	# (𫠉) CJK UNIFIED IDEOGRAPH-2B809 ;	kRSUnicode
-
-2EE2 ;	187' ; 3 	# (⻢) CJK RADICAL C-SIMPLIFIED HORSE ;	CJKRadicals.txt, Nameslist
-9A6C ;	187' ; 3 	# (马) CJK UNIFIED IDEOGRAPH-9A6C ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FBB ;	188 ; 9 	# (⾻) KANGXI RADICAL BONE ;	CJKRadicals.txt
-2EE3 ;	188 ; 9 	# (⻣) CJK RADICAL BONE ;	idsCjkRadicals.txt, Nameslist
-9AA8 ;	188 ; 9 	# (骨) CJK UNIFIED IDEOGRAPH-9AA8 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2FBC ;	189 ; 10/11? 	# (⾼) KANGXI RADICAL TALL ;	CJKRadicals.txt
-9AD8 ;	189 ; 10 	# (高) CJK UNIFIED IDEOGRAPH-9AD8 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-9AD9 ;	189 ; 11 	# (髙) CJK UNIFIED IDEOGRAPH-9AD9 ;	kRSUnicode, kRSKangXi
-
-2FBD ;	190 ; 10 	# (⾽) KANGXI RADICAL HAIR ;	CJKRadicals.txt
-9ADF ;	190 ; 10 	# (髟) CJK UNIFIED IDEOGRAPH-9ADF ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FBE ;	191 ; 10 	# (⾾) KANGXI RADICAL FIGHT ;	CJKRadicals.txt
-9B25 ;	191 ; 10 	# (鬥) CJK UNIFIED IDEOGRAPH-9B25 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-29C0A ;	191 ; 10 	# (𩰊) CJK UNIFIED IDEOGRAPH-29C0A ;	kRSUnicode, kRSKangXi
-29C0B ;	191 ; 10 	# (𩰋) CJK UNIFIED IDEOGRAPH-29C0B ;	kRSUnicode, kRSKangXi
-
-2FBF ;	192 ; 10 	# (⾿) KANGXI RADICAL SACRIFICIAL WINE ;	CJKRadicals.txt
-9B2F ;	192 ; 10 	# (鬯) CJK UNIFIED IDEOGRAPH-9B2F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FC0 ;	193 ; 10 	# (⿀) KANGXI RADICAL CAULDRON ;	CJKRadicals.txt
-9B32 ;	193 ; 10 	# (鬲) CJK UNIFIED IDEOGRAPH-9B32 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FC1 ;	194 ; 9 	# (⿁) KANGXI RADICAL GHOST ;	CJKRadicals.txt
-2EE4 ;	194 ; 9 	# (⻤) CJK RADICAL GHOST ;	idsCjkRadicals.txt, Nameslist
-9B3C ;	194 ; 9 	# (鬼) CJK UNIFIED IDEOGRAPH-9B3C ;	CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
-
-2FC2 ;	195 ; 11 	# (⿂) KANGXI RADICAL FISH ;	CJKRadicals.txt
-9B5A ;	195 ; 11 	# (魚) CJK UNIFIED IDEOGRAPH-9B5A ;	CJKRadicals.txt, kRSUnicode
-242F3 ;	195 ; 11 	# (𤋳) CJK UNIFIED IDEOGRAPH-242F3 ;	kRSUnicode
-29D4B ;	195 ; 11 	# (𩵋) CJK UNIFIED IDEOGRAPH-29D4B ;	kRSUnicode
-
-2EE5 ;	195' ; 8 	# (⻥) CJK RADICAL C-SIMPLIFIED FISH ;	CJKRadicals.txt, Nameslist
-9C7C ;	195' ; 8 	# (鱼) CJK UNIFIED IDEOGRAPH-9C7C ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FC3 ;	196 ; 11 	# (⿃) KANGXI RADICAL BIRD ;	CJKRadicals.txt
-9CE5 ;	196 ; 11 	# (鳥) CJK UNIFIED IDEOGRAPH-9CE5 ;	CJKRadicals.txt, kRSUnicode
-2B813 ;	196 ; 11 	# (𫠓) CJK UNIFIED IDEOGRAPH-2B813 ;	kRSUnicode
-
-2EE6 ;	196' ; 5 	# (⻦) CJK RADICAL C-SIMPLIFIED BIRD ;	CJKRadicals.txt, Nameslist
-9E1F ;	196' ; 5 	# (鸟) CJK UNIFIED IDEOGRAPH-9E1F ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FC4 ;	197 ; 11 	# (⿄) KANGXI RADICAL SALT ;	CJKRadicals.txt
-9E75 ;	197 ; 11 	# (鹵) CJK UNIFIED IDEOGRAPH-9E75 ;	CJKRadicals.txt, kRSUnicode
-209F8 ;	197 ; 11 	# (𠧸) CJK UNIFIED IDEOGRAPH-209F8 ;	kRSUnicode
-
-2EE7 ;	197' ; 7 	# (⻧) CJK RADICAL C-SIMPLIFIED SALT ;	CJKRadicals.txt, Nameslist
-5364 ;	197' ; 7 	# (卤) CJK UNIFIED IDEOGRAPH-5364 ;	CJKRadicals.txt, Nameslist
-
-2FC5 ;	198 ; 11 	# (⿅) KANGXI RADICAL DEER ;	CJKRadicals.txt
-9E7F ;	198 ; 11 	# (鹿) CJK UNIFIED IDEOGRAPH-9E7F ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-F940 ;	198 ; 11 	# (鹿) CJK COMPATIBILITY IDEOGRAPH-F940 ;	kRSUnicode, kRSKangXi
-22256 ;	198 ; 11 	# (𢉖) CJK UNIFIED IDEOGRAPH-22256 ;	kRSUnicode, kRSKangXi
-
-2FC6 ;	199 ; 7/11? 	# (⿆) KANGXI RADICAL WHEAT ;	CJKRadicals.txt
-9EA5 ;	199 ; 11 	# (麥) CJK UNIFIED IDEOGRAPH-9EA5 ;	CJKRadicals.txt, kRSUnicode
-9EA6 ;	199 ; 7 	# (麦) CJK UNIFIED IDEOGRAPH-9EA6 ;	kRSAdobe_Japan1_6
-
-2EE8 ;	199' ; 7 	# (⻨) CJK RADICAL SIMPLIFIED WHEAT ;	CJKRadicals.txt, Nameslist
-9EA6 ;	199' ; 7 	# (麦) CJK UNIFIED IDEOGRAPH-9EA6 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FC7 ;	200 ; 11 	# (⿇) KANGXI RADICAL HEMP ;	CJKRadicals.txt
-9EBB ;	200 ; 11 	# (麻) CJK UNIFIED IDEOGRAPH-9EBB ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2FA15 ;	200 ; 11 	# (麻) CJK COMPATIBILITY IDEOGRAPH-2FA15 ;	kRSUnicode
-
-2FC8 ;	201 ; 11/12? 	# (⿈) KANGXI RADICAL YELLOW ;	CJKRadicals.txt
-9EC3 ;	201 ; 12 	# (黃) CJK UNIFIED IDEOGRAPH-9EC3 ;	CJKRadicals.txt, kRSUnicode
-9EC4 ;	201 ; 11 	# (黄) CJK UNIFIED IDEOGRAPH-9EC4 ;	kRSUnicode
-
-2EE9 ;	201' ; 11 	# (⻩) CJK RADICAL SIMPLIFIED YELLOW ;	CJKRadicals.txt, Nameslist
-9EC4 ;	201' ; 11 	# (黄) CJK UNIFIED IDEOGRAPH-9EC4 ;	CJKRadicals.txt, Nameslist
-
-2FC9 ;	202 ; 12 	# (⿉) KANGXI RADICAL MILLET ;	CJKRadicals.txt
-9ECD ;	202 ; 12 	# (黍) CJK UNIFIED IDEOGRAPH-9ECD ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-
-2FCA ;	203 ; 11/12? 	# (⿊) KANGXI RADICAL BLACK ;	CJKRadicals.txt
-9ED1 ;	203 ; 12 	# (黑) CJK UNIFIED IDEOGRAPH-9ED1 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-9ED2 ;	203 ; 11 	# (黒) CJK UNIFIED IDEOGRAPH-9ED2 ;	kRSUnicode, kRSKangXi
-2A417 ;	203 ; 12 	# (𪐗) CJK UNIFIED IDEOGRAPH-2A417 ;	kRSUnicode, kRSKangXi
-
-2FCB ;	204 ; 12 	# (⿋) KANGXI RADICAL EMBROIDERY ;	CJKRadicals.txt
-9EF9 ;	204 ; 12 	# (黹) CJK UNIFIED IDEOGRAPH-9EF9 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2FA17 ;	204 ; 12 	# (黹) CJK COMPATIBILITY IDEOGRAPH-2FA17 ;	kRSUnicode
-
-2FCC ;	205 ; 13 	# (⿌) KANGXI RADICAL FROG ;	CJKRadicals.txt
-9EFD ;	205 ; 13 	# (黽) CJK UNIFIED IDEOGRAPH-9EFD ;	CJKRadicals.txt, kRSUnicode
-
-2EEA ;	205' ; 8 	# (⻪) CJK RADICAL C-SIMPLIFIED FROG ;	CJKRadicals.txt, Nameslist
-9EFE ;	205' ; 8 	# (黾) CJK UNIFIED IDEOGRAPH-9EFE ;	CJKRadicals.txt, kRSUnicode, Nameslist
-2FA18 ;	205' ; 8 	# (黾) CJK COMPATIBILITY IDEOGRAPH-2FA18 ;	kRSUnicode
-
-2FCD ;	206 ; 12 	# (⿍) KANGXI RADICAL TRIPOD ;	CJKRadicals.txt
-9F0E ;	206 ; 12 	# (鼎) CJK UNIFIED IDEOGRAPH-9F0E ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2A502 ;	206 ; 12 	# (𪔂) CJK UNIFIED IDEOGRAPH-2A502 ;	kRSUnicode, kRSKangXi
-
-2FCE ;	207 ; 13 	# (⿎) KANGXI RADICAL DRUM ;	CJKRadicals.txt
-9F13 ;	207 ; 13 	# (鼓) CJK UNIFIED IDEOGRAPH-9F13 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-9F14 ;	207 ; 13 	# (鼔) CJK UNIFIED IDEOGRAPH-9F14 ;	kRSUnicode, kRSKangXi
-21537 ;	207 ; 13 	# (𡔷) CJK UNIFIED IDEOGRAPH-21537 ;	kRSUnicode, kRSKangXi
-
-2FCF ;	208 ; 8/13? 	# (⿏) KANGXI RADICAL RAT ;	CJKRadicals.txt
-9F20 ;	208 ; 13 	# (鼠) CJK UNIFIED IDEOGRAPH-9F20 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-9F21 ;	208 ; 8 	# (鼡) CJK UNIFIED IDEOGRAPH-9F21 ;	kRSUnicode, kRSKangXi
-
-2FD0 ;	209 ; 14 	# (⿐) KANGXI RADICAL NOSE ;	CJKRadicals.txt
-9F3B ;	209 ; 14 	# (鼻) CJK UNIFIED IDEOGRAPH-9F3B ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
-2FA1C ;	209 ; 14 	# (鼻) CJK COMPATIBILITY IDEOGRAPH-2FA1C ;	kRSUnicode
-
-2FD1 ;	210 ; 8/14? 	# (⿑) KANGXI RADICAL EVEN ;	CJKRadicals.txt
-2EEB ;	210 ; 8/14? 	# (⻫) CJK RADICAL J-SIMPLIFIED EVEN ;	idsCjkRadicals.txt, Nameslist
-6589 ;	210 ; 8 	# (斉) CJK UNIFIED IDEOGRAPH-6589 ;	kRSAdobe_Japan1_6, Nameslist
-9F4A ;	210 ; 14 	# (齊) CJK UNIFIED IDEOGRAPH-9F4A ;	CJKRadicals.txt, kRSUnicode
-2A5C4 ;	210 ; 14 	# (𪗄) CJK UNIFIED IDEOGRAPH-2A5C4 ;	kRSUnicode
-2CE71 ;	210 ; 8/14? 	# (𬹱) CJK UNIFIED IDEOGRAPH-2CE71 ;	kRSUnicode
-
-2EEC ;	210' ; 6 	# (⻬) CJK RADICAL C-SIMPLIFIED EVEN ;	CJKRadicals.txt, Nameslist
-9F50 ;	210' ; 6 	# (齐) CJK UNIFIED IDEOGRAPH-9F50 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FD2 ;	211 ; 12/15? 	# (⿒) KANGXI RADICAL TOOTH ;	CJKRadicals.txt
-2EED ;	211 ; 12/15? 	# (⻭) CJK RADICAL J-SIMPLIFIED TOOTH ;	idsCjkRadicals.txt, Nameslist
-6B6F ;	211 ; 12 	# (歯) CJK UNIFIED IDEOGRAPH-6B6F ;	kRSAdobe_Japan1_6, Nameslist
-9F52 ;	211 ; 15 	# (齒) CJK UNIFIED IDEOGRAPH-9F52 ;	CJKRadicals.txt, kRSUnicode
-2398B ;	211 ; 15 	# (𣦋) CJK UNIFIED IDEOGRAPH-2398B ;	kRSUnicode
-
-2EEE ;	211' ; 8 	# (⻮) CJK RADICAL C-SIMPLIFIED TOOTH ;	CJKRadicals.txt, Nameslist
-9F7F ;	211' ; 8 	# (齿) CJK UNIFIED IDEOGRAPH-9F7F ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FD3 ;	212 ; 10/16? 	# (⿓) KANGXI RADICAL DRAGON ;	CJKRadicals.txt
-2EEF ;	212 ; 10/16? 	# (⻯) CJK RADICAL J-SIMPLIFIED DRAGON ;	idsCjkRadicals.txt, Nameslist
-7ADC ;	212 ; 10 	# (竜) CJK UNIFIED IDEOGRAPH-7ADC ;	kRSAdobe_Japan1_6
-9F8D ;	212 ; 16 	# (龍) CJK UNIFIED IDEOGRAPH-9F8D ;	CJKRadicals.txt, kRSUnicode, Nameslist
-F9C4 ;	212 ; 16 	# (龍) CJK COMPATIBILITY IDEOGRAPH-F9C4 ;	kRSUnicode
-
-2EF0 ;	212' ; 5 	# (⻰) CJK RADICAL C-SIMPLIFIED DRAGON ;	CJKRadicals.txt, Nameslist
-9F99 ;	212' ; 5 	# (龙) CJK UNIFIED IDEOGRAPH-9F99 ;	CJKRadicals.txt, kRSUnicode, Nameslist
-
-2FD4 ;	213 ; 11/16/17? 	# (⿔) KANGXI RADICAL TURTLE ;	CJKRadicals.txt
-2EF1 ;	213 ; 11/16/17? 	# (⻱) CJK RADICAL TURTLE ;	idsCjkRadicals.txt, Nameslist
-2EF2 ;	213 ; 11/16/17? 	# (⻲) CJK RADICAL J-SIMPLIFIED TURTLE ;	idsCjkRadicals.txt
-4E80 ;	213 ; 11 	# (亀) CJK UNIFIED IDEOGRAPH-4E80 ;	kRSAdobe_Japan1_6
-9F9C ;	213 ; 17 	# (龜) CJK UNIFIED IDEOGRAPH-9F9C ;	CJKRadicals.txt, kRSUnicode, Nameslist
-F907 ;	213 ; 16 	# (龜) CJK COMPATIBILITY IDEOGRAPH-F907 ;	kRSUnicode
-F908 ;	213 ; 16 	# (龜) CJK COMPATIBILITY IDEOGRAPH-F908 ;	kRSUnicode
-FACE ;	213 ; 11/16/17? 	# (龜) CJK COMPATIBILITY IDEOGRAPH-FACE ;	kRSUnicode
-2A6A6 ;	213 ; 16 	# (𪚦) CJK UNIFIED IDEOGRAPH-2A6A6 ;	kRSUnicode
-2A6C9 ;	213 ; 16 	# (𪛉) CJK UNIFIED IDEOGRAPH-2A6C9 ;	kRSUnicode
-
-2EF3 ;	213' ; 7 	# (⻳) CJK RADICAL C-SIMPLIFIED TURTLE ;	CJKRadicals.txt, Nameslist
-9F9F ;	213' ; 7 	# (龟) CJK UNIFIED IDEOGRAPH-9F9F ;	CJKRadicals.txt, kRSUnicode, Nameslist
-2CE9E ;	213' ; 7 	# (𬺞) CJK UNIFIED IDEOGRAPH-2CE9E ;	kRSUnicode
-
-2FD5 ;	214 ; 17 	# (⿕) KANGXI RADICAL FLUTE ;	CJKRadicals.txt
-9FA0 ;	214 ; 17 	# (龠) CJK UNIFIED IDEOGRAPH-9FA0 ;	CJKRadicals.txt, kRSUnicode, kRSKangXi
+2F00 ;    1 ;        1 # (⼀) KANGXI RADICAL ONE ;                       CJKRadicals.txt
+4E00 ;    1 ;        1 # (一) CJK UNIFIED IDEOGRAPH-4E00 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F01 ;    2 ;        1 # (⼁) KANGXI RADICAL LINE ;                      CJKRadicals.txt
+4E28 ;    2 ;        1 # (丨) CJK UNIFIED IDEOGRAPH-4E28 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F02 ;    3 ;        1 # (⼂) KANGXI RADICAL DOT ;                       CJKRadicals.txt
+4E36 ;    3 ;        1 # (丶) CJK UNIFIED IDEOGRAPH-4E36 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F03 ;    4 ;        1 # (⼃) KANGXI RADICAL SLASH ;                     CJKRadicals.txt
+4E3F ;    4 ;        1 # (丿) CJK UNIFIED IDEOGRAPH-4E3F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+4E40 ;    4 ;        1 # (乀) CJK UNIFIED IDEOGRAPH-4E40 ;               kRSUnicode, kRSKangXi
+4E41 ;    4 ;        1 # (乁) CJK UNIFIED IDEOGRAPH-4E41 ;               kRSUnicode, kRSKangXi
+2F802 ;   4 ;        ? # (乁) CJK COMPATIBILITY IDEOGRAPH-2F802 ;        kRSUnicode
+
+2F04 ;    5 ;        1 # (⼄) KANGXI RADICAL SECOND ;                    CJKRadicals.txt
+2E82 ;    5 ;        1 # (⺂) CJK RADICAL SECOND ONE ;                   idsCjkRadicals.txt, Nameslist
+2E83 ;    5 ;        1 # (⺃) CJK RADICAL SECOND TWO ;                   idsCjkRadicals.txt
+2E84 ;    5 ;        1 # (⺄) CJK RADICAL SECOND THREE ;                 idsCjkRadicals.txt
+4E59 ;    5 ;        1 # (乙) CJK UNIFIED IDEOGRAPH-4E59 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+4E5A ;    5 ;        1 # (乚) CJK UNIFIED IDEOGRAPH-4E5A ;               kRSUnicode, kRSKangXi
+4E5B ;    5 ;        1 # (乛) CJK UNIFIED IDEOGRAPH-4E5B ;               kRSUnicode, kRSKangXi, Nameslist
+200C9 ;   5 ;        1 # (𠃉) CJK UNIFIED IDEOGRAPH-200C9 ;              kRSUnicode, kRSKangXi
+200CA ;   5 ;        1 # (𠃊) CJK UNIFIED IDEOGRAPH-200CA ;              kRSUnicode, kRSKangXi
+200CB ;   5 ;        1 # (𠃋) CJK UNIFIED IDEOGRAPH-200CB ;              kRSUnicode, kRSKangXi
+200CC ;   5 ;        1 # (𠃌) CJK UNIFIED IDEOGRAPH-200CC ;              kRSUnicode, kRSKangXi
+200CD ;   5 ;        1 # (𠃍) CJK UNIFIED IDEOGRAPH-200CD ;              kRSUnicode, kRSKangXi
+200CE ;   5 ;        1 # (𠃎) CJK UNIFIED IDEOGRAPH-200CE ;              kRSUnicode, kRSKangXi
+200D1 ;   5 ;        1 # (𠃑) CJK UNIFIED IDEOGRAPH-200D1 ;              kRSUnicode, kRSKangXi
+
+2F05 ;    6 ;        1 # (⼅) KANGXI RADICAL HOOK ;                      CJKRadicals.txt
+4E85 ;    6 ;        1 # (亅) CJK UNIFIED IDEOGRAPH-4E85 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2010C ;   6 ;        1 # (𠄌) CJK UNIFIED IDEOGRAPH-2010C ;              kRSUnicode, kRSKangXi
+
+2F06 ;    7 ;        2 # (⼆) KANGXI RADICAL TWO ;                       CJKRadicals.txt
+2E80 ;    7 ;        2 # (⺀) CJK RADICAL REPEAT ;                       idsCjkRadicals.txt
+4E8C ;    7 ;        2 # (二) CJK UNIFIED IDEOGRAPH-4E8C ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2011E ;   7 ;        2 # (𠄞) CJK UNIFIED IDEOGRAPH-2011E ;              kRSUnicode, kRSKangXi
+2011F ;   7 ;        2 # (𠄟) CJK UNIFIED IDEOGRAPH-2011F ;              kRSUnicode, kRSKangXi
+20120 ;   7 ;        2 # (𠄠) CJK UNIFIED IDEOGRAPH-20120 ;              kRSUnicode, kRSKangXi
+
+2F07 ;    8 ;        2 # (⼇) KANGXI RADICAL LID ;                       CJKRadicals.txt
+4EA0 ;    8 ;        2 # (亠) CJK UNIFIED IDEOGRAPH-4EA0 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F08 ;    9 ;        2 # (⼈) KANGXI RADICAL MAN ;                       CJKRadicals.txt
+2E85 ;    9 ;        2 # (⺅) CJK RADICAL PERSON ;                       idsCjkRadicals.txt, Nameslist
+4EBA ;    9 ;        2 # (人) CJK UNIFIED IDEOGRAPH-4EBA ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+4EBB ;    9 ;        2 # (亻) CJK UNIFIED IDEOGRAPH-4EBB ;               kRSUnicode, kRSKangXi, Nameslist
+201A2 ;   9 ;        2 # (𠆢) CJK UNIFIED IDEOGRAPH-201A2 ;              kRSUnicode, kRSKangXi
+
+2F09 ;   10 ;        2 # (⼉) KANGXI RADICAL LEGS ;                      CJKRadicals.txt
+513F ;   10 ;        2 # (儿) CJK UNIFIED IDEOGRAPH-513F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F0A ;   11 ;        2 # (⼊) KANGXI RADICAL ENTER ;                     CJKRadicals.txt
+5165 ;   11 ;        2 # (入) CJK UNIFIED IDEOGRAPH-5165 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F0B ;   12 ;        2 # (⼋) KANGXI RADICAL EIGHT ;                     CJKRadicals.txt
+516B ;   12 ;        2 # (八) CJK UNIFIED IDEOGRAPH-516B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F0C ;   13 ;        2 # (⼌) KANGXI RADICAL DOWN BOX ;                  CJKRadicals.txt
+2E86 ;   13 ;        2 # (⺆) CJK RADICAL BOX ;                          idsCjkRadicals.txt, Nameslist
+5182 ;   13 ;        2 # (冂) CJK UNIFIED IDEOGRAPH-5182 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2F0D ;   14 ;        2 # (⼍) KANGXI RADICAL COVER ;                     CJKRadicals.txt
+5196 ;   14 ;        2 # (冖) CJK UNIFIED IDEOGRAPH-5196 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F0E ;   15 ;        2 # (⼎) KANGXI RADICAL ICE ;                       CJKRadicals.txt
+51AB ;   15 ;        2 # (冫) CJK UNIFIED IDEOGRAPH-51AB ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F0F ;   16 ;        2 # (⼏) KANGXI RADICAL TABLE ;                     CJKRadicals.txt
+2E87 ;   16 ;        2 # (⺇) CJK RADICAL TABLE ;                        idsCjkRadicals.txt, Nameslist
+51E0 ;   16 ;        2 # (几) CJK UNIFIED IDEOGRAPH-51E0 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+20627 ;  16 ;        2 # (𠘧) CJK UNIFIED IDEOGRAPH-20627 ;              kRSUnicode, kRSKangXi
+20628 ;  16 ;        2 # (𠘨) CJK UNIFIED IDEOGRAPH-20628 ;              kRSUnicode, kRSKangXi
+
+2F10 ;   17 ;        2 # (⼐) KANGXI RADICAL OPEN BOX ;                  CJKRadicals.txt
+51F5 ;   17 ;        2 # (凵) CJK UNIFIED IDEOGRAPH-51F5 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+20674 ;  17 ;        2 # (𠙴) CJK UNIFIED IDEOGRAPH-20674 ;              kRSUnicode, kRSKangXi
+2F81D ;  17 ;        ? # (凵) CJK COMPATIBILITY IDEOGRAPH-2F81D ;        kRSUnicode
+
+2F11 ;   18 ;        2 # (⼑) KANGXI RADICAL KNIFE ;                     CJKRadicals.txt
+2E88 ;   18 ;        2 # (⺈) CJK RADICAL KNIFE ONE ;                    idsCjkRadicals.txt, Nameslist
+2E89 ;   18 ;        2 # (⺉) CJK RADICAL KNIFE TWO ;                    idsCjkRadicals.txt
+5200 ;   18 ;        2 # (刀) CJK UNIFIED IDEOGRAPH-5200 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+5201 ;   18 ;        2 # (刁) CJK UNIFIED IDEOGRAPH-5201 ;               kRSUnicode, kRSKangXi
+5202 ;   18 ;        2 # (刂) CJK UNIFIED IDEOGRAPH-5202 ;               kRSUnicode, kRSKangXi
+206A3 ;  18 ;        2 # (𠚣) CJK UNIFIED IDEOGRAPH-206A3 ;              kRSUnicode, kRSKangXi
+
+2F12 ;   19 ;        2 # (⼒) KANGXI RADICAL POWER ;                     CJKRadicals.txt
+529B ;   19 ;        2 # (力) CJK UNIFIED IDEOGRAPH-529B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+F98A ;   19 ;        2 # (力) CJK COMPATIBILITY IDEOGRAPH-F98A ;         kRSUnicode, kRSKangXi
+
+2F13 ;   20 ;        2 # (⼓) KANGXI RADICAL WRAP ;                      CJKRadicals.txt
+52F9 ;   20 ;        2 # (勹) CJK UNIFIED IDEOGRAPH-52F9 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F14 ;   21 ;        2 # (⼔) KANGXI RADICAL SPOON ;                     CJKRadicals.txt
+5315 ;   21 ;        2 # (匕) CJK UNIFIED IDEOGRAPH-5315 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2090E ;  21 ;        2 # (𠤎) CJK UNIFIED IDEOGRAPH-2090E ;              kRSUnicode, kRSKangXi
+
+2F15 ;   22 ;        2 # (⼕) KANGXI RADICAL RIGHT OPEN BOX ;            CJKRadicals.txt
+531A ;   22 ;        2 # (匚) CJK UNIFIED IDEOGRAPH-531A ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2092C ;  22 ;        2 # (𠤬) CJK UNIFIED IDEOGRAPH-2092C ;              kRSUnicode, kRSKangXi
+
+2F16 ;   23 ;        2 # (⼖) KANGXI RADICAL HIDING ENCLOSURE ;          CJKRadicals.txt
+5338 ;   23 ;        2 # (匸) CJK UNIFIED IDEOGRAPH-5338 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F17 ;   24 ;        2 # (⼗) KANGXI RADICAL TEN ;                       CJKRadicals.txt
+5341 ;   24 ;        2 # (十) CJK UNIFIED IDEOGRAPH-5341 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F18 ;   25 ;        2 # (⼘) KANGXI RADICAL DIVINATION ;                CJKRadicals.txt
+2E8A ;   25 ;        2 # (⺊) CJK RADICAL DIVINATION ;                   idsCjkRadicals.txt, Nameslist
+535C ;   25 ;        2 # (卜) CJK UNIFIED IDEOGRAPH-535C ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2F19 ;   26 ;      2/3 # (⼙) KANGXI RADICAL SEAL ;                      CJKRadicals.txt
+2E8B ;   26 ;      2/3 # (⺋) CJK RADICAL SEAL ;                         idsCjkRadicals.txt, Nameslist
+5369 ;   26 ;        2 # (卩) CJK UNIFIED IDEOGRAPH-5369 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+353E ;   26 ;        3 # (㔾) CJK UNIFIED IDEOGRAPH-353E ;               kRSAdobe_Japan1_6, Nameslist
+
+2F1A ;   27 ;        2 # (⼚) KANGXI RADICAL CLIFF ;                     CJKRadicals.txt
+2E81 ;   27 ;        2 # (⺁) CJK RADICAL CLIFF ;                        idsCjkRadicals.txt, Nameslist
+5382 ;   27 ;        2 # (厂) CJK UNIFIED IDEOGRAPH-5382 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2F1B ;   28 ;        2 # (⼛) KANGXI RADICAL PRIVATE ;                   CJKRadicals.txt
+53B6 ;   28 ;        2 # (厶) CJK UNIFIED IDEOGRAPH-53B6 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F1C ;   29 ;        2 # (⼜) KANGXI RADICAL AGAIN ;                     CJKRadicals.txt
+9FB4 ;   29 ;        2 # (龴) CJK UNIFIED IDEOGRAPH-9FB4 ;               kRSAdobe_Japan1_6
+53C8 ;   29 ;        2 # (又) CJK UNIFIED IDEOGRAPH-53C8 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F1D ;   30 ;        3 # (⼝) KANGXI RADICAL MOUTH ;                     CJKRadicals.txt
+53E3 ;   30 ;        3 # (口) CJK UNIFIED IDEOGRAPH-53E3 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F1E ;   31 ;        3 # (⼞) KANGXI RADICAL ENCLOSURE ;                 CJKRadicals.txt
+56D7 ;   31 ;        3 # (囗) CJK UNIFIED IDEOGRAPH-56D7 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F1F ;   32 ;        3 # (⼟) KANGXI RADICAL EARTH ;                     CJKRadicals.txt
+571F ;   32 ;        3 # (土) CJK UNIFIED IDEOGRAPH-571F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F20 ;   33 ;        3 # (⼠) KANGXI RADICAL SCHOLAR ;                   CJKRadicals.txt
+58EB ;   33 ;        3 # (士) CJK UNIFIED IDEOGRAPH-58EB ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F21 ;   34 ;        3 # (⼡) KANGXI RADICAL GO ;                        CJKRadicals.txt
+5902 ;   34 ;        3 # (夂) CJK UNIFIED IDEOGRAPH-5902 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+21552 ;  34 ;        3 # (𡕒) CJK UNIFIED IDEOGRAPH-21552 ;              kRSUnicode, kRSKangXi
+
+2F22 ;   35 ;        3 # (⼢) KANGXI RADICAL GO SLOWLY ;                 CJKRadicals.txt
+590A ;   35 ;        3 # (夊) CJK UNIFIED IDEOGRAPH-590A ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F23 ;   36 ;        3 # (⼣) KANGXI RADICAL EVENING ;                   CJKRadicals.txt
+5915 ;   36 ;        3 # (夕) CJK UNIFIED IDEOGRAPH-5915 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F24 ;   37 ;        3 # (⼤) KANGXI RADICAL BIG ;                       CJKRadicals.txt
+5927 ;   37 ;        3 # (大) CJK UNIFIED IDEOGRAPH-5927 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+5928 ;   37 ;        3 # (夨) CJK UNIFIED IDEOGRAPH-5928 ;               kRSUnicode, kRSKangXi
+
+2F25 ;   38 ;        3 # (⼥) KANGXI RADICAL WOMAN ;                     CJKRadicals.txt
+5973 ;   38 ;        3 # (女) CJK UNIFIED IDEOGRAPH-5973 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+F981 ;   38 ;        3 # (女) CJK COMPATIBILITY IDEOGRAPH-F981 ;         kRSUnicode, kRSKangXi
+
+2F26 ;   39 ;        3 # (⼦) KANGXI RADICAL CHILD ;                     CJKRadicals.txt
+5B50 ;   39 ;        3 # (子) CJK UNIFIED IDEOGRAPH-5B50 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+5B51 ;   39 ;        3 # (孑) CJK UNIFIED IDEOGRAPH-5B51 ;               kRSUnicode, kRSKangXi
+5B52 ;   39 ;        3 # (孒) CJK UNIFIED IDEOGRAPH-5B52 ;               kRSUnicode, kRSKangXi
+5B53 ;   39 ;        3 # (孓) CJK UNIFIED IDEOGRAPH-5B53 ;               kRSUnicode, kRSKangXi
+2193C ;  39 ;        3 # (𡤼) CJK UNIFIED IDEOGRAPH-2193C ;              kRSUnicode, kRSKangXi
+
+2F27 ;   40 ;        3 # (⼧) KANGXI RADICAL ROOF ;                      CJKRadicals.txt
+5B80 ;   40 ;        3 # (宀) CJK UNIFIED IDEOGRAPH-5B80 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F28 ;   41 ;        3 # (⼨) KANGXI RADICAL INCH ;                      CJKRadicals.txt
+5BF8 ;   41 ;        3 # (寸) CJK UNIFIED IDEOGRAPH-5BF8 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F29 ;   42 ;        3 # (⼩) KANGXI RADICAL SMALL ;                     CJKRadicals.txt
+2E8C ;   42 ;        3 # (⺌) CJK RADICAL SMALL ONE ;                    idsCjkRadicals.txt, Nameslist
+2E8D ;   42 ;        3 # (⺍) CJK RADICAL SMALL TWO ;                    idsCjkRadicals.txt
+5C0F ;   42 ;        3 # (小) CJK UNIFIED IDEOGRAPH-5C0F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+21B54 ;  42 ;        3 # (𡭔) CJK UNIFIED IDEOGRAPH-21B54 ;              kRSUnicode, kRSKangXi
+
+2F2A ;   43 ;      3/4 # (⼪) KANGXI RADICAL LAME ;                      CJKRadicals.txt
+2E8E ;   43 ;      3/4 # (⺎) CJK RADICAL LAME ONE ;                     idsCjkRadicals.txt, Nameslist
+2E8F ;   43 ;      3/4 # (⺏) CJK RADICAL LAME TWO ;                     idsCjkRadicals.txt
+2E90 ;   43 ;      3/4 # (⺐) CJK RADICAL LAME THREE ;                   idsCjkRadicals.txt
+2E91 ;   43 ;      3/4 # (⺑) CJK RADICAL LAME FOUR ;                    idsCjkRadicals.txt
+5140 ;   43 ;        3 # (兀) CJK UNIFIED IDEOGRAPH-5140 ;               kRSAdobe_Japan1_6
+5C22 ;   43 ;        3 # (尢) CJK UNIFIED IDEOGRAPH-5C22 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+5C23 ;   43 ;        4 # (尣) CJK UNIFIED IDEOGRAPH-5C23 ;               kRSUnicode, kRSKangXi
+21BC1 ;  43 ;        3 # (𡯁) CJK UNIFIED IDEOGRAPH-21BC1 ;              kRSUnicode, kRSKangXi
+21BC2 ;  43 ;        3 # (𡯂) CJK UNIFIED IDEOGRAPH-21BC2 ;              kRSUnicode, kRSKangXi
+2F875 ;  43 ;        ? # (尢) CJK COMPATIBILITY IDEOGRAPH-2F875 ;        kRSUnicode
+
+2F2B ;   44 ;        3 # (⼫) KANGXI RADICAL CORPSE ;                    CJKRadicals.txt
+5C38 ;   44 ;        3 # (尸) CJK UNIFIED IDEOGRAPH-5C38 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+21C23 ;  44 ;        3 # (𡰣) CJK UNIFIED IDEOGRAPH-21C23 ;              kRSUnicode, kRSKangXi
+
+2F2C ;   45 ;        3 # (⼬) KANGXI RADICAL SPROUT ;                    CJKRadicals.txt
+5C6E ;   45 ;        3 # (屮) CJK UNIFIED IDEOGRAPH-5C6E ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+FA3C ;   45 ;        ? # (屮) CJK COMPATIBILITY IDEOGRAPH-FA3C ;         kRSUnicode
+21CFE ;  45 ;        3 # (𡳾) CJK UNIFIED IDEOGRAPH-21CFE ;              kRSUnicode, kRSKangXi
+2F878 ;  45 ;        ? # (屮) CJK COMPATIBILITY IDEOGRAPH-2F878 ;        kRSUnicode
+
+2F2D ;   46 ;        3 # (⼭) KANGXI RADICAL MOUNTAIN ;                  CJKRadicals.txt
+5C71 ;   46 ;        3 # (山) CJK UNIFIED IDEOGRAPH-5C71 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F2E ;   47 ;      2/3 # (⼮) KANGXI RADICAL RIVER ;                     CJKRadicals.txt
+5DDB ;   47 ;        3 # (巛) CJK UNIFIED IDEOGRAPH-5DDB ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+5DDC ;   47 ;        2 # (巜) CJK UNIFIED IDEOGRAPH-5DDC ;               kRSUnicode, kRSKangXi
+5DDD ;   47 ;        3 # (川) CJK UNIFIED IDEOGRAPH-5DDD ;               kRSUnicode, kRSKangXi
+21FE6 ;  47 ;        3 # (𡿦) CJK UNIFIED IDEOGRAPH-21FE6 ;              kRSUnicode, kRSKangXi
+21FE8 ;  47 ;        3 # (𡿨) CJK UNIFIED IDEOGRAPH-21FE8 ;              kRSUnicode, kRSKangXi
+2BDA7 ;  47 ;        ? # (𫶧) CJK UNIFIED IDEOGRAPH-2BDA7 ;              kRSUnicode
+
+2F2F ;   48 ;        3 # (⼯) KANGXI RADICAL WORK ;                      CJKRadicals.txt
+5DE5 ;   48 ;        3 # (工) CJK UNIFIED IDEOGRAPH-5DE5 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F30 ;   49 ;        3 # (⼰) KANGXI RADICAL ONESELF ;                   CJKRadicals.txt
+2E92 ;   49 ;        3 # (⺒) CJK RADICAL SNAKE ;                        idsCjkRadicals.txt, Nameslist
+5DF1 ;   49 ;        3 # (己) CJK UNIFIED IDEOGRAPH-5DF1 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+5DF2 ;   49 ;        3 # (已) CJK UNIFIED IDEOGRAPH-5DF2 ;               kRSUnicode, kRSKangXi
+5DF3 ;   49 ;        3 # (巳) CJK UNIFIED IDEOGRAPH-5DF3 ;               kRSUnicode, kRSKangXi, Nameslist
+
+2F31 ;   50 ;        3 # (⼱) KANGXI RADICAL TURBAN ;                    CJKRadicals.txt
+5DFE ;   50 ;        3 # (巾) CJK UNIFIED IDEOGRAPH-5DFE ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F32 ;   51 ;        3 # (⼲) KANGXI RADICAL DRY ;                       CJKRadicals.txt
+5E72 ;   51 ;        3 # (干) CJK UNIFIED IDEOGRAPH-5E72 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F33 ;   52 ;        3 # (⼳) KANGXI RADICAL SHORT THREAD ;              CJKRadicals.txt
+2E93 ;   52 ;        3 # (⺓) CJK RADICAL THREAD ;                       idsCjkRadicals.txt, Nameslist
+4E48 ;   52 ;        3 # (么) CJK UNIFIED IDEOGRAPH-4E48 ;               kRSAdobe_Japan1_6
+4E61 ;   52 ;        3 # (乡) CJK UNIFIED IDEOGRAPH-4E61 ;               kRSUnicode, kRSKangXi
+5E7A ;   52 ;        3 # (幺) CJK UNIFIED IDEOGRAPH-5E7A ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2F34 ;   53 ;        3 # (⼴) KANGXI RADICAL DOTTED CLIFF ;              CJKRadicals.txt
+5E7F ;   53 ;        3 # (广) CJK UNIFIED IDEOGRAPH-5E7F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F35 ;   54 ;        2 # (⼵) KANGXI RADICAL LONG STRIDE ;               CJKRadicals.txt
+5EF4 ;   54 ;        2 # (廴) CJK UNIFIED IDEOGRAPH-5EF4 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F36 ;   55 ;        3 # (⼶) KANGXI RADICAL TWO HANDS ;                 CJKRadicals.txt
+5EFE ;   55 ;        3 # (廾) CJK UNIFIED IDEOGRAPH-5EFE ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2232C ;  55 ;        3 # (𢌬) CJK UNIFIED IDEOGRAPH-2232C ;              kRSUnicode, kRSKangXi
+2F890 ;  55 ;        ? # (廾) CJK COMPATIBILITY IDEOGRAPH-2F890 ;        kRSUnicode
+
+2F37 ;   56 ;        3 # (⼷) KANGXI RADICAL SHOOT ;                     CJKRadicals.txt
+5F0B ;   56 ;        3 # (弋) CJK UNIFIED IDEOGRAPH-5F0B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2237A ;  56 ;        3 # (𢍺) CJK UNIFIED IDEOGRAPH-2237A ;              kRSUnicode, kRSKangXi
+
+2F38 ;   57 ;        3 # (⼸) KANGXI RADICAL BOW ;                       CJKRadicals.txt
+5F13 ;   57 ;        3 # (弓) CJK UNIFIED IDEOGRAPH-5F13 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+22397 ;  57 ;        3 # (𢎗) CJK UNIFIED IDEOGRAPH-22397 ;              kRSUnicode, kRSKangXi
+22398 ;  57 ;        3 # (𢎘) CJK UNIFIED IDEOGRAPH-22398 ;              kRSUnicode, kRSKangXi
+
+2F39 ;   58 ;        3 # (⼹) KANGXI RADICAL SNOUT ;                     CJKRadicals.txt
+2E94 ;   58 ;        3 # (⺔) CJK RADICAL SNOUT ONE ;                    idsCjkRadicals.txt, Nameslist
+2E95 ;   58 ;        3 # (⺕) CJK RADICAL SNOUT TWO ;                    idsCjkRadicals.txt
+5F50 ;   58 ;        3 # (彐) CJK UNIFIED IDEOGRAPH-5F50 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+5F51 ;   58 ;        3 # (彑) CJK UNIFIED IDEOGRAPH-5F51 ;               kRSUnicode, kRSKangXi, Nameslist
+
+2F3A ;   59 ;        3 # (⼺) KANGXI RADICAL BRISTLE ;                   CJKRadicals.txt
+5F61 ;   59 ;        3 # (彡) CJK UNIFIED IDEOGRAPH-5F61 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F3B ;   60 ;        3 # (⼻) KANGXI RADICAL STEP ;                      CJKRadicals.txt
+5F73 ;   60 ;        3 # (彳) CJK UNIFIED IDEOGRAPH-5F73 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F3C ;   61 ;    3/4/5 # (⼼) KANGXI RADICAL HEART ;                     CJKRadicals.txt
+2E96 ;   61 ;    3/4/5 # (⺖) CJK RADICAL HEART ONE ;                    idsCjkRadicals.txt, Nameslist
+2E97 ;   61 ;    3/4/5 # (⺗) CJK RADICAL HEART TWO ;                    idsCjkRadicals.txt
+5FC3 ;   61 ;        4 # (心) CJK UNIFIED IDEOGRAPH-5FC3 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+5FC4 ;   61 ;        3 # (忄) CJK UNIFIED IDEOGRAPH-5FC4 ;               kRSUnicode, kRSKangXi, Nameslist
+225A9 ;  61 ;        3 # (𢖩) CJK UNIFIED IDEOGRAPH-225A9 ;              kRSUnicode, kRSKangXi
+38FA ;   61 ;        5 # (㣺) CJK UNIFIED IDEOGRAPH-38FA ;               kRSAdobe_Japan1_6
+
+2F3D ;   62 ;        4 # (⼽) KANGXI RADICAL HALBERD ;                   CJKRadicals.txt
+6208 ;   62 ;        4 # (戈) CJK UNIFIED IDEOGRAPH-6208 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F3E ;   63 ;        4 # (⼾) KANGXI RADICAL DOOR ;                      CJKRadicals.txt
+6236 ;   63 ;        4 # (戶) CJK UNIFIED IDEOGRAPH-6236 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+6237 ;   63 ;        4 # (户) CJK UNIFIED IDEOGRAPH-6237 ;               kRSUnicode, kRSKangXi
+6238 ;   63 ;        4 # (戸) CJK UNIFIED IDEOGRAPH-6238 ;               kRSUnicode, kRSKangXi
+
+2F3F ;   64 ;      3/4 # (⼿) KANGXI RADICAL HAND ;                      CJKRadicals.txt
+2E98 ;   64 ;      3/4 # (⺘) CJK RADICAL HAND ;                         idsCjkRadicals.txt, Nameslist
+624B ;   64 ;        4 # (手) CJK UNIFIED IDEOGRAPH-624B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+624C ;   64 ;        3 # (扌) CJK UNIFIED IDEOGRAPH-624C ;               kRSUnicode, kRSKangXi, Nameslist
+624D ;   64 ;        3 # (才) CJK UNIFIED IDEOGRAPH-624D ;               kRSUnicode, kRSKangXi
+9FB5 ;   64 ;        3 # (龵) CJK UNIFIED IDEOGRAPH-9FB5 ;               kRSUnicode
+
+2F40 ;   65 ;        4 # (⽀) KANGXI RADICAL BRANCH ;                    CJKRadicals.txt
+652F ;   65 ;        4 # (支) CJK UNIFIED IDEOGRAPH-652F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F41 ;   66 ;        4 # (⽁) KANGXI RADICAL RAP ;                       CJKRadicals.txt
+2E99 ;   66 ;        4 # (⺙) CJK RADICAL RAP ;                          idsCjkRadicals.txt, Nameslist
+6534 ;   66 ;        4 # (攴) CJK UNIFIED IDEOGRAPH-6534 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+6535 ;   66 ;        4 # (攵) CJK UNIFIED IDEOGRAPH-6535 ;               kRSUnicode, kRSKangXi, Nameslist
+
+2F42 ;   67 ;        4 # (⽂) KANGXI RADICAL SCRIPT ;                    CJKRadicals.txt
+6587 ;   67 ;        4 # (文) CJK UNIFIED IDEOGRAPH-6587 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F43 ;   68 ;        4 # (⽃) KANGXI RADICAL DIPPER ;                    CJKRadicals.txt
+6597 ;   68 ;        4 # (斗) CJK UNIFIED IDEOGRAPH-6597 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2306C ;  68 ;        4 # (𣁬) CJK UNIFIED IDEOGRAPH-2306C ;              kRSUnicode, kRSKangXi
+
+2F44 ;   69 ;        4 # (⽄) KANGXI RADICAL AXE ;                       CJKRadicals.txt
+65A4 ;   69 ;        4 # (斤) CJK UNIFIED IDEOGRAPH-65A4 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+23091 ;  69 ;        4 # (𣂑) CJK UNIFIED IDEOGRAPH-23091 ;              kRSUnicode, kRSKangXi
+
+2F45 ;   70 ;        4 # (⽅) KANGXI RADICAL SQUARE ;                    CJKRadicals.txt
+65B9 ;   70 ;        4 # (方) CJK UNIFIED IDEOGRAPH-65B9 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F46 ;   71 ;        4 # (⽆) KANGXI RADICAL NOT ;                       CJKRadicals.txt
+2E9B ;   71 ;        4 # (⺛) CJK RADICAL CHOKE ;                        idsCjkRadicals.txt, Nameslist
+65E0 ;   71 ;        4 # (无) CJK UNIFIED IDEOGRAPH-65E0 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+65E1 ;   71 ;        4 # (旡) CJK UNIFIED IDEOGRAPH-65E1 ;               kRSAdobe_Japan1_6, Nameslist
+
+2F47 ;   72 ;        4 # (⽇) KANGXI RADICAL SUN ;                       CJKRadicals.txt
+2E9C ;   72 ;        4 # (⺜) CJK RADICAL SUN ;                          idsCjkRadicals.txt, Nameslist
+65E5 ;   72 ;        4 # (日) CJK UNIFIED IDEOGRAPH-65E5 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2F48 ;   73 ;        4 # (⽈) KANGXI RADICAL SAY ;                       CJKRadicals.txt
+66F0 ;   73 ;        4 # (曰) CJK UNIFIED IDEOGRAPH-66F0 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F49 ;   74 ;        4 # (⽉) KANGXI RADICAL MOON ;                      CJKRadicals.txt
+2E9D ;   74 ;        4 # (⺝) CJK RADICAL MOON ;                         idsCjkRadicals.txt, Nameslist
+6708 ;   74 ;        4 # (月) CJK UNIFIED IDEOGRAPH-6708 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2F4A ;   75 ;        4 # (⽊) KANGXI RADICAL TREE ;                      CJKRadicals.txt
+6728 ;   75 ;        4 # (木) CJK UNIFIED IDEOGRAPH-6728 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+6729 ;   75 ;        4 # (朩) CJK UNIFIED IDEOGRAPH-6729 ;               kRSUnicode
+233B3 ;  75 ;        4 # (𣎳) CJK UNIFIED IDEOGRAPH-233B3 ;              kRSUnicode, kRSKangXi
+233B4 ;  75 ;        4 # (𣎴) CJK UNIFIED IDEOGRAPH-233B4 ;              kRSUnicode, kRSKangXi
+2C09B ;  75 ;        ? # (𬂛) CJK UNIFIED IDEOGRAPH-2C09B ;              kRSUnicode
+
+2F4B ;   76 ;        4 # (⽋) KANGXI RADICAL LACK ;                      CJKRadicals.txt
+6B20 ;   76 ;        4 # (欠) CJK UNIFIED IDEOGRAPH-6B20 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F4C ;   77 ;        4 # (⽌) KANGXI RADICAL STOP ;                      CJKRadicals.txt
+6B62 ;   77 ;        4 # (止) CJK UNIFIED IDEOGRAPH-6B62 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+9FB0 ;   77 ;        4 # (龰) CJK UNIFIED IDEOGRAPH-9FB0 ;               kRSUnicode
+23942 ;  77 ;        4 # (𣥂) CJK UNIFIED IDEOGRAPH-23942 ;              kRSUnicode, kRSKangXi
+
+2F4D ;   78 ;      4/5 # (⽍) KANGXI RADICAL DEATH ;                     CJKRadicals.txt
+2E9E ;   78 ;      4/5 # (⺞) CJK RADICAL DEATH ;                        idsCjkRadicals.txt, Nameslist
+6B79 ;   78 ;        4 # (歹) CJK UNIFIED IDEOGRAPH-6B79 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+FA95 ;   78 ;        ? # (歹) CJK COMPATIBILITY IDEOGRAPH-FA95 ;         kRSUnicode
+239B5 ;  78 ;        4 # (𣦵) CJK UNIFIED IDEOGRAPH-239B5 ;              kRSUnicode, kRSKangXi
+239B6 ;  78 ;        4 # (𣦶) CJK UNIFIED IDEOGRAPH-239B6 ;              kRSUnicode, kRSKangXi
+6B7A ;   78 ;        5 # (歺) CJK UNIFIED IDEOGRAPH-6B7A ;               Nameslist
+
+2F4E ;   79 ;        4 # (⽎) KANGXI RADICAL WEAPON ;                    CJKRadicals.txt
+6BB3 ;   79 ;        4 # (殳) CJK UNIFIED IDEOGRAPH-6BB3 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F4F ;   80 ;      4/5 # (⽏) KANGXI RADICAL DO NOT ;                    CJKRadicals.txt
+2E9F ;   80 ;      4/5 # (⺟) CJK RADICAL MOTHER ;                       idsCjkRadicals.txt, Nameslist
+6BCB ;   80 ;        4 # (毋) CJK UNIFIED IDEOGRAPH-6BCB ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+6BCC ;   80 ;        4 # (毌) CJK UNIFIED IDEOGRAPH-6BCC ;               kRSUnicode, kRSKangXi
+23AEC ;  80 ;        4 # (𣫬) CJK UNIFIED IDEOGRAPH-23AEC ;              kRSUnicode, kRSKangXi
+6BCD ;   80 ;        5 # (母) CJK UNIFIED IDEOGRAPH-6BCD ;               kRSAdobe_Japan1_6, Nameslist
+
+2F50 ;   81 ;        4 # (⽐) KANGXI RADICAL COMPARE ;                   CJKRadicals.txt
+6BD4 ;   81 ;        4 # (比) CJK UNIFIED IDEOGRAPH-6BD4 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F51 ;   82 ;        4 # (⽑) KANGXI RADICAL FUR ;                       CJKRadicals.txt
+6BDB ;   82 ;        4 # (毛) CJK UNIFIED IDEOGRAPH-6BDB ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+23B1B ;  82 ;        4 # (𣬛) CJK UNIFIED IDEOGRAPH-23B1B ;              kRSUnicode, kRSKangXi
+
+2F52 ;   83 ;      4/5 # (⽒) KANGXI RADICAL CLAN ;                      CJKRadicals.txt
+2EA0 ;   83 ;      4/5 # (⺠) CJK RADICAL CIVILIAN ;                     idsCjkRadicals.txt, Nameslist
+6C0F ;   83 ;        4 # (氏) CJK UNIFIED IDEOGRAPH-6C0F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+6C11 ;   83 ;        5 # (民) CJK UNIFIED IDEOGRAPH-6C11 ;               Nameslist
+
+2F53 ;   84 ;        4 # (⽓) KANGXI RADICAL STEAM ;                     CJKRadicals.txt
+6C14 ;   84 ;        4 # (气) CJK UNIFIED IDEOGRAPH-6C14 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F54 ;   85 ;    3/4/5 # (⽔) KANGXI RADICAL WATER ;                     CJKRadicals.txt
+2EA1 ;   85 ;    3/4/5 # (⺡) CJK RADICAL WATER ONE ;                    idsCjkRadicals.txt, Nameslist
+2EA2 ;   85 ;    3/4/5 # (⺢) CJK RADICAL WATER TWO ;                    idsCjkRadicals.txt
+6C34 ;   85 ;        4 # (水) CJK UNIFIED IDEOGRAPH-6C34 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+6C35 ;   85 ;        3 # (氵) CJK UNIFIED IDEOGRAPH-6C35 ;               kRSUnicode, kRSKangXi, Nameslist
+6C3A ;   85 ;        5 # (氺) CJK UNIFIED IDEOGRAPH-6C3A ;               kRSUnicode
+23C71 ;  85 ;        3 # (𣱱) CJK UNIFIED IDEOGRAPH-23C71 ;              kRSUnicode, kRSKangXi
+
+2F55 ;   86 ;        4 # (⽕) KANGXI RADICAL FIRE ;                      CJKRadicals.txt
+2EA3 ;   86 ;        4 # (⺣) CJK RADICAL FIRE ;                         idsCjkRadicals.txt, Nameslist
+706B ;   86 ;        4 # (火) CJK UNIFIED IDEOGRAPH-706B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+706C ;   86 ;        4 # (灬) CJK UNIFIED IDEOGRAPH-706C ;               kRSUnicode, kRSKangXi, Nameslist
+
+2F56 ;   87 ;        4 # (⽖) KANGXI RADICAL CLAW ;                      CJKRadicals.txt
+2EA4 ;   87 ;        4 # (⺤) CJK RADICAL PAW ONE ;                      idsCjkRadicals.txt, Nameslist
+2EA5 ;   87 ;        4 # (⺥) CJK RADICAL PAW TWO ;                      idsCjkRadicals.txt
+722A ;   87 ;        4 # (爪) CJK UNIFIED IDEOGRAPH-722A ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+722B ;   87 ;        4 # (爫) CJK UNIFIED IDEOGRAPH-722B ;               kRSUnicode, kRSKangXi, Nameslist
+FA49 ;   87 ;        ? # (爫) CJK COMPATIBILITY IDEOGRAPH-FA49 ;         kRSUnicode
+244EF ;  87 ;        4 # (𤓯) CJK UNIFIED IDEOGRAPH-244EF ;              kRSUnicode, kRSKangXi
+244F0 ;  87 ;        4 # (𤓰) CJK UNIFIED IDEOGRAPH-244F0 ;              kRSUnicode, kRSKangXi
+
+2F57 ;   88 ;        4 # (⽗) KANGXI RADICAL FATHER ;                    CJKRadicals.txt
+7236 ;   88 ;        4 # (父) CJK UNIFIED IDEOGRAPH-7236 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F58 ;   89 ;        4 # (⽘) KANGXI RADICAL DOUBLE X ;                  CJKRadicals.txt
+723B ;   89 ;        4 # (爻) CJK UNIFIED IDEOGRAPH-723B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F59 ;   90 ;      3/4 # (⽙) KANGXI RADICAL HALF TREE TRUNK ;           CJKRadicals.txt
+4E2C ;   90 ;        3 # (丬) CJK UNIFIED IDEOGRAPH-4E2C ;               kRSUnicode
+723F ;   90 ;        4 # (爿) CJK UNIFIED IDEOGRAPH-723F ;               CJKRadicals.txt, kRSUnicode
+2456A ;  90 ;        4 # (𤕪) CJK UNIFIED IDEOGRAPH-2456A ;              kRSUnicode
+
+2EA6 ;  90' ;        3 # (⺦) CJK RADICAL SIMPLIFIED HALF TREE TRUNK ;   CJKRadicals.txt, Nameslist
+4E2C ;  90' ;        3 # (丬) CJK UNIFIED IDEOGRAPH-4E2C ;               CJKRadicals.txt, Nameslist
+
+2F5A ;   91 ;        4 # (⽚) KANGXI RADICAL SLICE ;                     CJKRadicals.txt
+7247 ;   91 ;        4 # (片) CJK UNIFIED IDEOGRAPH-7247 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F5B ;   92 ;        4 # (⽛) KANGXI RADICAL FANG ;                      CJKRadicals.txt
+3E26 ;   92 ;        4 # (㸦) CJK UNIFIED IDEOGRAPH-3E26 ;               kRSUnicode
+7259 ;   92 ;        4 # (牙) CJK UNIFIED IDEOGRAPH-7259 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F5C ;   93 ;        4 # (⽜) KANGXI RADICAL COW ;                       CJKRadicals.txt
+2EA7 ;   93 ;        4 # (⺧) CJK RADICAL COW ;                          idsCjkRadicals.txt, Nameslist
+725B ;   93 ;        4 # (牛) CJK UNIFIED IDEOGRAPH-725B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+725C ;   93 ;        4 # (牜) CJK UNIFIED IDEOGRAPH-725C ;               kRSUnicode, kRSKangXi
+
+2F5D ;   94 ;      3/4 # (⽝) KANGXI RADICAL DOG ;                       CJKRadicals.txt
+2EA8 ;   94 ;      3/4 # (⺨) CJK RADICAL DOG ;                          idsCjkRadicals.txt, Nameslist
+72AC ;   94 ;        4 # (犬) CJK UNIFIED IDEOGRAPH-72AC ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+72AD ;   94 ;        3 # (犭) CJK UNIFIED IDEOGRAPH-72AD ;               kRSUnicode, kRSKangXi, Nameslist
+
+2F5E ;   95 ;        5 # (⽞) KANGXI RADICAL PROFOUND ;                  CJKRadicals.txt
+7384 ;   95 ;        5 # (玄) CJK UNIFIED IDEOGRAPH-7384 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+248E5 ;  95 ;        5 # (𤣥) CJK UNIFIED IDEOGRAPH-248E5 ;              kRSUnicode, kRSKangXi
+
+2F5F ;   96 ;      4/5 # (⽟) KANGXI RADICAL JADE ;                      CJKRadicals.txt
+2EA9 ;   96 ;      4/5 # (⺩) CJK RADICAL JADE ;                         idsCjkRadicals.txt, Nameslist
+7389 ;   96 ;        5 # (玉) CJK UNIFIED IDEOGRAPH-7389 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+738B ;   96 ;        4 # (王) CJK UNIFIED IDEOGRAPH-738B ;               kRSUnicode, kRSKangXi, Nameslist
+248E9 ;  96 ;        4 # (𤣩) CJK UNIFIED IDEOGRAPH-248E9 ;              kRSUnicode, kRSKangXi
+2F929 ;  96 ;        ? # (王) CJK COMPATIBILITY IDEOGRAPH-2F929 ;        kRSUnicode
+738A ;   96 ;        5 # (玊) CJK UNIFIED IDEOGRAPH-738A ;               kRSKangXi, kRSAdobe_Japan1_6
+
+2F60 ;   97 ;        5 # (⽠) KANGXI RADICAL MELON ;                     CJKRadicals.txt
+74DC ;   97 ;        5 # (瓜) CJK UNIFIED IDEOGRAPH-74DC ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F61 ;   98 ;        4 # (⽡) KANGXI RADICAL TILE ;                      CJKRadicals.txt
+74E6 ;   98 ;        4 # (瓦) CJK UNIFIED IDEOGRAPH-74E6 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F62 ;   99 ;        5 # (⽢) KANGXI RADICAL SWEET ;                     CJKRadicals.txt
+7518 ;   99 ;        5 # (甘) CJK UNIFIED IDEOGRAPH-7518 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+24BBA ;  99 ;        5 # (𤮺) CJK UNIFIED IDEOGRAPH-24BBA ;              kRSUnicode, kRSKangXi
+
+2F63 ;  100 ;        5 # (⽣) KANGXI RADICAL LIFE ;                      CJKRadicals.txt
+751F ;  100 ;        5 # (生) CJK UNIFIED IDEOGRAPH-751F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+24BD3 ; 100 ;        5 # (𤯓) CJK UNIFIED IDEOGRAPH-24BD3 ;              kRSUnicode, kRSKangXi
+
+2F64 ;  101 ;        5 # (⽤) KANGXI RADICAL USE ;                       CJKRadicals.txt
+7528 ;  101 ;        5 # (用) CJK UNIFIED IDEOGRAPH-7528 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+7529 ;  101 ;        5 # (甩) CJK UNIFIED IDEOGRAPH-7529 ;               kRSUnicode, kRSKangXi
+
+2F65 ;  102 ;        5 # (⽥) KANGXI RADICAL FIELD ;                     CJKRadicals.txt
+66F1 ;  102 ;        5 # (曱) CJK UNIFIED IDEOGRAPH-66F1 ;               kRSKangXi
+7530 ;  102 ;        5 # (田) CJK UNIFIED IDEOGRAPH-7530 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+7531 ;  102 ;        5 # (由) CJK UNIFIED IDEOGRAPH-7531 ;               kRSUnicode, kRSKangXi
+7532 ;  102 ;        5 # (甲) CJK UNIFIED IDEOGRAPH-7532 ;               kRSUnicode, kRSKangXi
+7533 ;  102 ;        5 # (申) CJK UNIFIED IDEOGRAPH-7533 ;               kRSUnicode, kRSKangXi
+7534 ;  102 ;        5 # (甴) CJK UNIFIED IDEOGRAPH-7534 ;               kRSUnicode, kRSKangXi
+7535 ;  102 ;        5 # (电) CJK UNIFIED IDEOGRAPH-7535 ;               kRSUnicode
+24C12 ; 102 ;        5 # (𤰒) CJK UNIFIED IDEOGRAPH-24C12 ;              kRSUnicode, kRSKangXi
+
+2F66 ;  103 ;        5 # (⽦) KANGXI RADICAL BOLT OF CLOTH ;             CJKRadicals.txt
+2EAA ;  103 ;        5 # (⺪) CJK RADICAL BOLT OF CLOTH ;                idsCjkRadicals.txt, Nameslist
+758B ;  103 ;        5 # (疋) CJK UNIFIED IDEOGRAPH-758B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+24D13 ; 103 ;        5 # (𤴓) CJK UNIFIED IDEOGRAPH-24D13 ;              kRSUnicode, kRSKangXi
+24D14 ; 103 ;        5 # (𤴔) CJK UNIFIED IDEOGRAPH-24D14 ;              kRSUnicode, kRSKangXi
+
+2F67 ;  104 ;        5 # (⽧) KANGXI RADICAL SICKNESS ;                  CJKRadicals.txt
+7592 ;  104 ;        5 # (疒) CJK UNIFIED IDEOGRAPH-7592 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F68 ;  105 ;        5 # (⽨) KANGXI RADICAL DOTTED TENT ;               CJKRadicals.txt
+7676 ;  105 ;        5 # (癶) CJK UNIFIED IDEOGRAPH-7676 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F69 ;  106 ;        5 # (⽩) KANGXI RADICAL WHITE ;                     CJKRadicals.txt
+767D ;  106 ;        5 # (白) CJK UNIFIED IDEOGRAPH-767D ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F6A ;  107 ;        5 # (⽪) KANGXI RADICAL SKIN ;                      CJKRadicals.txt
+76AE ;  107 ;        5 # (皮) CJK UNIFIED IDEOGRAPH-76AE ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F6B ;  108 ;        5 # (⽫) KANGXI RADICAL DISH ;                      CJKRadicals.txt
+76BF ;  108 ;        5 # (皿) CJK UNIFIED IDEOGRAPH-76BF ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F6C ;  109 ;        5 # (⽬) KANGXI RADICAL EYE ;                       CJKRadicals.txt
+2EAB ;  109 ;        5 # (⺫) CJK RADICAL EYE ;                          idsCjkRadicals.txt, Nameslist
+76EE ;  109 ;        5 # (目) CJK UNIFIED IDEOGRAPH-76EE ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+7F52 ;  109 ;        5 # (罒) CJK UNIFIED IDEOGRAPH-7F52 ;               kRSAdobe_Japan1_6
+
+2F6D ;  110 ;        5 # (⽭) KANGXI RADICAL SPEAR ;                     CJKRadicals.txt
+77DB ;  110 ;        5 # (矛) CJK UNIFIED IDEOGRAPH-77DB ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F6E ;  111 ;        5 # (⽮) KANGXI RADICAL ARROW ;                     CJKRadicals.txt
+77E2 ;  111 ;        5 # (矢) CJK UNIFIED IDEOGRAPH-77E2 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F6F ;  112 ;        5 # (⽯) KANGXI RADICAL STONE ;                     CJKRadicals.txt
+77F3 ;  112 ;        5 # (石) CJK UNIFIED IDEOGRAPH-77F3 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F70 ;  113 ;      4/5 # (⽰) KANGXI RADICAL SPIRIT ;                    CJKRadicals.txt
+2EAC ;  113 ;      4/5 # (⺬) CJK RADICAL SPIRIT ONE ;                   idsCjkRadicals.txt, Nameslist
+2EAD ;  113 ;      4/5 # (⺭) CJK RADICAL SPIRIT TWO ;                   idsCjkRadicals.txt
+793A ;  113 ;        5 # (示) CJK UNIFIED IDEOGRAPH-793A ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+793B ;  113 ;        4 # (礻) CJK UNIFIED IDEOGRAPH-793B ;               kRSUnicode, kRSKangXi
+25605 ; 113 ;        4 # (𥘅) CJK UNIFIED IDEOGRAPH-25605 ;              kRSUnicode, kRSKangXi
+
+2F71 ;  114 ;        4 # (⽱) KANGXI RADICAL TRACK ;                     CJKRadicals.txt
+79B8 ;  114 ;        4 # (禸) CJK UNIFIED IDEOGRAPH-79B8 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F72 ;  115 ;        5 # (⽲) KANGXI RADICAL GRAIN ;                     CJKRadicals.txt
+79BE ;  115 ;        5 # (禾) CJK UNIFIED IDEOGRAPH-79BE ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2574C ; 115 ;        5 # (𥝌) CJK UNIFIED IDEOGRAPH-2574C ;              kRSUnicode, kRSKangXi
+
+2F73 ;  116 ;        5 # (⽳) KANGXI RADICAL CAVE ;                      CJKRadicals.txt
+7A74 ;  116 ;        5 # (穴) CJK UNIFIED IDEOGRAPH-7A74 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+25922 ; 116 ;        5 # (𥤢) CJK UNIFIED IDEOGRAPH-25922 ;              kRSUnicode, kRSKangXi
+
+2F74 ;  117 ;        5 # (⽴) KANGXI RADICAL STAND ;                     CJKRadicals.txt
+7ACB ;  117 ;        5 # (立) CJK UNIFIED IDEOGRAPH-7ACB ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+F9F7 ;  117 ;        5 # (立) CJK COMPATIBILITY IDEOGRAPH-F9F7 ;         kRSUnicode, kRSKangXi
+
+2F75 ;  118 ;        6 # (⽵) KANGXI RADICAL BAMBOO ;                    CJKRadicals.txt
+2EAE ;  118 ;        6 # (⺮) CJK RADICAL BAMBOO ;                       idsCjkRadicals.txt, Nameslist
+7AF9 ;  118 ;        6 # (竹) CJK UNIFIED IDEOGRAPH-7AF9 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+25AD7 ; 118 ;        6 # (𥫗) CJK UNIFIED IDEOGRAPH-25AD7 ;              kRSUnicode, kRSKangXi
+
+2F76 ;  119 ;        6 # (⽶) KANGXI RADICAL RICE ;                      CJKRadicals.txt
+7C73 ;  119 ;        6 # (米) CJK UNIFIED IDEOGRAPH-7C73 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F77 ;  120 ;        6 # (⽷) KANGXI RADICAL SILK ;                      CJKRadicals.txt
+2EAF ;  120 ;        6 # (⺯) CJK RADICAL SILK ;                         idsCjkRadicals.txt, Nameslist
+7CF8 ;  120 ;        6 # (糸) CJK UNIFIED IDEOGRAPH-7CF8 ;               CJKRadicals.txt, kRSUnicode
+7CF9 ;  120 ;        6 # (糹) CJK UNIFIED IDEOGRAPH-7CF9 ;               kRSUnicode, Nameslist
+
+2EB0 ; 120' ;        3 # (⺰) CJK RADICAL C-SIMPLIFIED SILK ;            CJKRadicals.txt, Nameslist
+7E9F ; 120' ;        3 # (纟) CJK UNIFIED IDEOGRAPH-7E9F ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2F78 ;  121 ;        6 # (⽸) KANGXI RADICAL JAR ;                       CJKRadicals.txt
+7F36 ;  121 ;        6 # (缶) CJK UNIFIED IDEOGRAPH-7F36 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+26222 ; 121 ;        6 # (𦈢) CJK UNIFIED IDEOGRAPH-26222 ;              kRSUnicode, kRSKangXi
+
+2F79 ;  122 ;    4/5/6 # (⽹) KANGXI RADICAL NET ;                       CJKRadicals.txt
+2EB1 ;  122 ;    4/5/6 # (⺱) CJK RADICAL NET ONE ;                      idsCjkRadicals.txt, Nameslist
+2EB2 ;  122 ;    4/5/6 # (⺲) CJK RADICAL NET TWO ;                      idsCjkRadicals.txt
+2EB3 ;  122 ;    4/5/6 # (⺳) CJK RADICAL NET THREE ;                    idsCjkRadicals.txt
+2EB4 ;  122 ;    4/5/6 # (⺴) CJK RADICAL NET FOUR ;                     idsCjkRadicals.txt
+2EB5 ;  122 ;    4/5/6 # (⺵) CJK RADICAL MESH ;                         idsCjkRadicals.txt
+2053F ; 122 ;        4 # (𠔿) CJK UNIFIED IDEOGRAPH-2053F ;              kRSAdobe_Japan1_6
+34C1 ;  122 ;        4 # (㓁) CJK UNIFIED IDEOGRAPH-34C1 ;               kRSAdobe_Japan1_6
+434F ;  122 ;        5 # (䍏) CJK UNIFIED IDEOGRAPH-434F ;               kRSUnicode
+7F51 ;  122 ;        6 # (网) CJK UNIFIED IDEOGRAPH-7F51 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+7F52 ;  122 ;        5 # (罒) CJK UNIFIED IDEOGRAPH-7F52 ;               kRSUnicode, kRSKangXi
+7F53 ;  122 ;        4 # (罓) CJK UNIFIED IDEOGRAPH-7F53 ;               kRSUnicode, kRSKangXi, Nameslist
+2626A ; 122 ;        5 # (𦉪) CJK UNIFIED IDEOGRAPH-2626A ;              kRSUnicode, kRSKangXi
+2626B ; 122 ;        5 # (𦉫) CJK UNIFIED IDEOGRAPH-2626B ;              kRSUnicode, kRSKangXi
+2626D ; 122 ;        5 # (𦉭) CJK UNIFIED IDEOGRAPH-2626D ;              kRSUnicode, kRSKangXi
+26270 ; 122 ;        5 # (𦉰) CJK UNIFIED IDEOGRAPH-26270 ;              kRSUnicode, kRSKangXi
+
+2F7A ;  123 ;        6 # (⽺) KANGXI RADICAL SHEEP ;                     CJKRadicals.txt
+2EB6 ;  123 ;        6 # (⺶) CJK RADICAL SHEEP ;                        idsCjkRadicals.txt, Nameslist
+2EB7 ;  123 ;        6 # (⺷) CJK RADICAL RAM ;                          idsCjkRadicals.txt
+2EB8 ;  123 ;        6 # (⺸) CJK RADICAL EWE ;                          idsCjkRadicals.txt
+7F8A ;  123 ;        6 # (羊) CJK UNIFIED IDEOGRAPH-7F8A ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+2634B ; 123 ;        6 # (𦍋) CJK UNIFIED IDEOGRAPH-2634B ;              kRSUnicode, kRSKangXi
+2634C ; 123 ;        6 # (𦍌) CJK UNIFIED IDEOGRAPH-2634C ;              kRSUnicode, kRSKangXi
+2634D ; 123 ;        6 # (𦍍) CJK UNIFIED IDEOGRAPH-2634D ;              kRSUnicode, kRSKangXi
+
+2F7B ;  124 ;      6/8 # (⽻) KANGXI RADICAL FEATHER ;                   CJKRadicals.txt
+7FBD ;  124 ;        6 # (羽) CJK UNIFIED IDEOGRAPH-7FBD ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+FA1E ;  124 ;        6 # (羽) CJK COMPATIBILITY IDEOGRAPH-FA1E ;         kRSUnicode, kRSKangXi
+263F2 ; 124 ;        8 # (𦏲) CJK UNIFIED IDEOGRAPH-263F2 ;              kRSKangXi
+
+2F7C ;  125 ;      4/6 # (⽼) KANGXI RADICAL OLD ;                       CJKRadicals.txt
+2EB9 ;  125 ;      4/6 # (⺹) CJK RADICAL OLD ;                          idsCjkRadicals.txt, Nameslist
+8001 ;  125 ;        6 # (老) CJK UNIFIED IDEOGRAPH-8001 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+8002 ;  125 ;        4 # (耂) CJK UNIFIED IDEOGRAPH-8002 ;               kRSUnicode, kRSKangXi, Nameslist
+8003 ;  125 ;        6 # (考) CJK UNIFIED IDEOGRAPH-8003 ;               kRSUnicode, kRSKangXi
+F934 ;  125 ;        6 # (老) CJK COMPATIBILITY IDEOGRAPH-F934 ;         kRSUnicode, kRSKangXi
+
+2F7D ;  126 ;        6 # (⽽) KANGXI RADICAL AND ;                       CJKRadicals.txt
+800C ;  126 ;        6 # (而) CJK UNIFIED IDEOGRAPH-800C ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+264D0 ; 126 ;        6 # (𦓐) CJK UNIFIED IDEOGRAPH-264D0 ;              kRSUnicode, kRSKangXi
+
+2F7E ;  127 ;        6 # (⽾) KANGXI RADICAL PLOW ;                      CJKRadicals.txt
+8012 ;  127 ;        6 # (耒) CJK UNIFIED IDEOGRAPH-8012 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+264E4 ; 127 ;        6 # (𦓤) CJK UNIFIED IDEOGRAPH-264E4 ;              kRSUnicode, kRSKangXi
+
+2F7F ;  128 ;        6 # (⽿) KANGXI RADICAL EAR ;                       CJKRadicals.txt
+8033 ;  128 ;        6 # (耳) CJK UNIFIED IDEOGRAPH-8033 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F80 ;  129 ;      4/6 # (⾀) KANGXI RADICAL BRUSH ;                     CJKRadicals.txt
+2EBA ;  129 ;      4/6 # (⺺) CJK RADICAL BRUSH ONE ;                    idsCjkRadicals.txt, Nameslist
+2EBB ;  129 ;      4/6 # (⺻) CJK RADICAL BRUSH TWO ;                    idsCjkRadicals.txt
+807F ;  129 ;        6 # (聿) CJK UNIFIED IDEOGRAPH-807F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+8080 ;  129 ;        4 # (肀) CJK UNIFIED IDEOGRAPH-8080 ;               kRSUnicode, kRSKangXi, Nameslist
+26612 ; 129 ;        6 # (𦘒) CJK UNIFIED IDEOGRAPH-26612 ;              kRSUnicode, kRSKangXi
+
+2F81 ;  130 ;        6 # (⾁) KANGXI RADICAL MEAT ;                      CJKRadicals.txt
+2EBC ;  130 ;        6 # (⺼) CJK RADICAL MEAT ;                         idsCjkRadicals.txt, Nameslist
+8089 ;  130 ;        6 # (肉) CJK UNIFIED IDEOGRAPH-8089 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2F82 ;  131 ;      6/7 # (⾂) KANGXI RADICAL MINISTER ;                  CJKRadicals.txt
+81E3 ;  131 ;        6 # (臣) CJK UNIFIED IDEOGRAPH-81E3 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+268DE ; 131 ;        6 # (𦣞) CJK UNIFIED IDEOGRAPH-268DE ;              kRSUnicode, kRSKangXi
+268DD ; 131 ;        7 # (𦣝) CJK UNIFIED IDEOGRAPH-268DD ;              kRSKangXi, kRSAdobe_Japan1_6
+
+2F83 ;  132 ;        6 # (⾃) KANGXI RADICAL SELF ;                      CJKRadicals.txt
+81EA ;  132 ;        6 # (自) CJK UNIFIED IDEOGRAPH-81EA ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+268F9 ; 132 ;        6 # (𦣹) CJK UNIFIED IDEOGRAPH-268F9 ;              kRSUnicode, kRSKangXi
+
+2F84 ;  133 ;        6 # (⾄) KANGXI RADICAL ARRIVE ;                    CJKRadicals.txt
+81F3 ;  133 ;        6 # (至) CJK UNIFIED IDEOGRAPH-81F3 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+26933 ; 133 ;        6 # (𦤳) CJK UNIFIED IDEOGRAPH-26933 ;              kRSUnicode, kRSKangXi
+26934 ; 133 ;        6 # (𦤴) CJK UNIFIED IDEOGRAPH-26934 ;              kRSUnicode, kRSKangXi
+
+2F85 ;  134 ;        6 # (⾅) KANGXI RADICAL MORTAR ;                    CJKRadicals.txt
+2EBD ;  134 ;        6 # (⺽) CJK RADICAL MORTAR ;                       idsCjkRadicals.txt, Nameslist
+81FC ;  134 ;        6 # (臼) CJK UNIFIED IDEOGRAPH-81FC ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+26951 ; 134 ;        6 # (𦥑) CJK UNIFIED IDEOGRAPH-26951 ;              kRSUnicode, kRSKangXi
+26952 ; 134 ;        6 # (𦥒) CJK UNIFIED IDEOGRAPH-26952 ;              kRSUnicode, kRSKangXi
+26953 ; 134 ;        6 # (𦥓) CJK UNIFIED IDEOGRAPH-26953 ;              kRSUnicode, kRSKangXi
+
+2F86 ;  135 ;        6 # (⾆) KANGXI RADICAL TONGUE ;                    CJKRadicals.txt
+820C ;  135 ;        6 # (舌) CJK UNIFIED IDEOGRAPH-820C ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F87 ;  136 ;        6 # (⾇) KANGXI RADICAL OPPOSE ;                    CJKRadicals.txt
+821B ;  136 ;        6 # (舛) CJK UNIFIED IDEOGRAPH-821B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F88 ;  137 ;        6 # (⾈) KANGXI RADICAL BOAT ;                      CJKRadicals.txt
+821F ;  137 ;        6 # (舟) CJK UNIFIED IDEOGRAPH-821F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+200A8 ; 137 ;        6 # (𠂨) CJK UNIFIED IDEOGRAPH-200A8 ;              kRSUnicode, kRSKangXi
+
+2F89 ;  138 ;        6 # (⾉) KANGXI RADICAL STOPPING ;                  CJKRadicals.txt
+826E ;  138 ;        6 # (艮) CJK UNIFIED IDEOGRAPH-826E ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F8A ;  139 ;        6 # (⾊) KANGXI RADICAL COLOR ;                     CJKRadicals.txt
+8272 ;  139 ;        6 # (色) CJK UNIFIED IDEOGRAPH-8272 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F8B ;  140 ;      3/6 # (⾋) KANGXI RADICAL GRASS ;                     CJKRadicals.txt
+2EBE ;  140 ;      3/6 # (⺾) CJK RADICAL GRASS ONE ;                    idsCjkRadicals.txt, Nameslist
+2EBF ;  140 ;      3/6 # (⺿) CJK RADICAL GRASS TWO ;                    idsCjkRadicals.txt
+2EC0 ;  140 ;      3/6 # (⻀) CJK RADICAL GRASS THREE ;                  idsCjkRadicals.txt
+4491 ;  140 ;        6 # (䒑) CJK UNIFIED IDEOGRAPH-4491 ;               kRSUnicode
+8278 ;  140 ;        6 # (艸) CJK UNIFIED IDEOGRAPH-8278 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+8279 ;  140 ;        3 # (艹) CJK UNIFIED IDEOGRAPH-8279 ;               kRSUnicode, kRSKangXi, Nameslist
+FA5D ;  140 ;        ? # (艹) CJK COMPATIBILITY IDEOGRAPH-FA5D ;         kRSUnicode
+FA5E ;  140 ;        ? # (艹) CJK COMPATIBILITY IDEOGRAPH-FA5E ;         kRSUnicode
+
+2F8C ;  141 ;      6/8 # (⾌) KANGXI RADICAL TIGER ;                     CJKRadicals.txt
+2EC1 ;  141 ;      6/8 # (⻁) CJK RADICAL TIGER ;                        idsCjkRadicals.txt, Nameslist
+864D ;  141 ;        6 # (虍) CJK UNIFIED IDEOGRAPH-864D ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+864E ;  141 ;        8 # (虎) CJK UNIFIED IDEOGRAPH-864E ;               Nameslist
+
+2F8D ;  142 ;        6 # (⾍) KANGXI RADICAL INSECT ;                    CJKRadicals.txt
+866B ;  142 ;        6 # (虫) CJK UNIFIED IDEOGRAPH-866B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F8E ;  143 ;        6 # (⾎) KANGXI RADICAL BLOOD ;                     CJKRadicals.txt
+8840 ;  143 ;        6 # (血) CJK UNIFIED IDEOGRAPH-8840 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F8F ;  144 ;        6 # (⾏) KANGXI RADICAL WALK ENCLOSURE ;            CJKRadicals.txt
+884C ;  144 ;        6 # (行) CJK UNIFIED IDEOGRAPH-884C ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+FA08 ;  144 ;        6 # (行) CJK COMPATIBILITY IDEOGRAPH-FA08 ;         kRSUnicode, kRSKangXi
+
+2F90 ;  145 ;      5/6 # (⾐) KANGXI RADICAL CLOTHES ;                   CJKRadicals.txt
+2EC2 ;  145 ;      5/6 # (⻂) CJK RADICAL CLOTHES ;                      idsCjkRadicals.txt, Nameslist
+8863 ;  145 ;        6 # (衣) CJK UNIFIED IDEOGRAPH-8863 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+8864 ;  145 ;        5 # (衤) CJK UNIFIED IDEOGRAPH-8864 ;               kRSUnicode, kRSKangXi, Nameslist
+27607 ; 145 ;        5 # (𧘇) CJK UNIFIED IDEOGRAPH-27607 ;              kRSUnicode, kRSKangXi
+2F9C4 ; 145 ;        ? # (衣) CJK COMPATIBILITY IDEOGRAPH-2F9C4 ;        kRSUnicode
+
+2F91 ;  146 ;        6 # (⾑) KANGXI RADICAL WEST ;                      CJKRadicals.txt
+2EC3 ;  146 ;        6 # (⻃) CJK RADICAL WEST ONE ;                     idsCjkRadicals.txt, Nameslist
+2EC4 ;  146 ;        6 # (⻄) CJK RADICAL WEST TWO ;                     idsCjkRadicals.txt
+897E ;  146 ;        6 # (襾) CJK UNIFIED IDEOGRAPH-897E ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+897F ;  146 ;        6 # (西) CJK UNIFIED IDEOGRAPH-897F ;               kRSUnicode, kRSKangXi
+8980 ;  146 ;        6 # (覀) CJK UNIFIED IDEOGRAPH-8980 ;               kRSUnicode, kRSKangXi, Nameslist
+
+2F92 ;  147 ;        7 # (⾒) KANGXI RADICAL SEE ;                       CJKRadicals.txt
+898B ;  147 ;        7 # (見) CJK UNIFIED IDEOGRAPH-898B ;               CJKRadicals.txt, kRSUnicode
+FA0A ;  147 ;        7 # (見) CJK COMPATIBILITY IDEOGRAPH-FA0A ;         kRSUnicode
+
+2EC5 ; 147' ;        4 # (⻅) CJK RADICAL C-SIMPLIFIED SEE ;             CJKRadicals.txt, Nameslist
+89C1 ; 147' ;        4 # (见) CJK UNIFIED IDEOGRAPH-89C1 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2F93 ;  148 ;        7 # (⾓) KANGXI RADICAL HORN ;                      CJKRadicals.txt
+2EC6 ;  148 ;        7 # (⻆) CJK RADICAL SIMPLIFIED HORN ;              idsCjkRadicals.txt, Nameslist
+2EC7 ;  148 ;        7 # (⻇) CJK RADICAL HORN ;                         idsCjkRadicals.txt
+89D2 ;  148 ;        7 # (角) CJK UNIFIED IDEOGRAPH-89D2 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+278B2 ; 148 ;        7 # (𧢲) CJK UNIFIED IDEOGRAPH-278B2 ;              kRSUnicode, kRSKangXi
+
+2F94 ;  149 ;        7 # (⾔) KANGXI RADICAL SPEECH ;                    CJKRadicals.txt
+8A00 ;  149 ;        7 # (言) CJK UNIFIED IDEOGRAPH-8A00 ;               CJKRadicals.txt, kRSUnicode
+8A01 ;  149 ;        7 # (訁) CJK UNIFIED IDEOGRAPH-8A01 ;               kRSUnicode
+2795B ; 149 ;        7 # (𧥛) CJK UNIFIED IDEOGRAPH-2795B ;              kRSUnicode
+2795C ; 149 ;        7 # (𧥜) CJK UNIFIED IDEOGRAPH-2795C ;              kRSUnicode
+
+2EC8 ; 149' ;        2 # (⻈) CJK RADICAL C-SIMPLIFIED SPEECH ;          CJKRadicals.txt, Nameslist
+8BA0 ; 149' ;        2 # (讠) CJK UNIFIED IDEOGRAPH-8BA0 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2F95 ;  150 ;        7 # (⾕) KANGXI RADICAL VALLEY ;                    CJKRadicals.txt
+8C37 ;  150 ;        7 # (谷) CJK UNIFIED IDEOGRAPH-8C37 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+27BAB ; 150 ;        7 # (𧮫) CJK UNIFIED IDEOGRAPH-27BAB ;              kRSUnicode, kRSKangXi
+
+2F96 ;  151 ;        7 # (⾖) KANGXI RADICAL BEAN ;                      CJKRadicals.txt
+8C46 ;  151 ;        7 # (豆) CJK UNIFIED IDEOGRAPH-8C46 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F97 ;  152 ;        7 # (⾗) KANGXI RADICAL PIG ;                       CJKRadicals.txt
+8C55 ;  152 ;        7 # (豕) CJK UNIFIED IDEOGRAPH-8C55 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+27C27 ; 152 ;        7 # (𧰧) CJK UNIFIED IDEOGRAPH-27C27 ;              kRSUnicode, kRSKangXi
+27C28 ; 152 ;        7 # (𧰨) CJK UNIFIED IDEOGRAPH-27C28 ;              kRSUnicode, kRSKangXi
+2F9D2 ; 152 ;        ? # (豕) CJK COMPATIBILITY IDEOGRAPH-2F9D2 ;        kRSUnicode
+
+2F98 ;  153 ;        7 # (⾘) KANGXI RADICAL BADGER ;                    CJKRadicals.txt
+8C78 ;  153 ;        7 # (豸) CJK UNIFIED IDEOGRAPH-8C78 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F99 ;  154 ;        7 # (⾙) KANGXI RADICAL SHELL ;                     CJKRadicals.txt
+8C9D ;  154 ;        7 # (貝) CJK UNIFIED IDEOGRAPH-8C9D ;               CJKRadicals.txt, kRSUnicode
+
+2EC9 ; 154' ;        4 # (⻉) CJK RADICAL C-SIMPLIFIED SHELL ;           CJKRadicals.txt, Nameslist
+8D1D ; 154' ;        4 # (贝) CJK UNIFIED IDEOGRAPH-8D1D ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2F9A ;  155 ;        7 # (⾚) KANGXI RADICAL RED ;                       CJKRadicals.txt
+8D64 ;  155 ;        7 # (赤) CJK UNIFIED IDEOGRAPH-8D64 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2F9B ;  156 ;      6/7 # (⾛) KANGXI RADICAL RUN ;                       CJKRadicals.txt
+8D70 ;  156 ;        7 # (走) CJK UNIFIED IDEOGRAPH-8D70 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+8D71 ;  156 ;        6 # (赱) CJK UNIFIED IDEOGRAPH-8D71 ;               kRSUnicode, kRSKangXi
+27E86 ; 156 ;        7 # (𧺆) CJK UNIFIED IDEOGRAPH-27E86 ;              kRSUnicode, kRSKangXi
+
+2F9C ;  157 ;        7 # (⾜) KANGXI RADICAL FOOT ;                      CJKRadicals.txt
+2ECA ;  157 ;        7 # (⻊) CJK RADICAL FOOT ;                         idsCjkRadicals.txt, Nameslist
+8DB3 ;  157 ;        7 # (足) CJK UNIFIED IDEOGRAPH-8DB3 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+27FB7 ; 157 ;        7 # (𧾷) CJK UNIFIED IDEOGRAPH-27FB7 ;              kRSUnicode, kRSKangXi
+
+2F9D ;  158 ;        7 # (⾝) KANGXI RADICAL BODY ;                      CJKRadicals.txt
+8EAB ;  158 ;        7 # (身) CJK UNIFIED IDEOGRAPH-8EAB ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2820F ; 158 ;        7 # (𨈏) CJK UNIFIED IDEOGRAPH-2820F ;              kRSUnicode, kRSKangXi
+28210 ; 158 ;        7 # (𨈐) CJK UNIFIED IDEOGRAPH-28210 ;              kRSUnicode, kRSKangXi
+28211 ; 158 ;        7 # (𨈑) CJK UNIFIED IDEOGRAPH-28211 ;              kRSUnicode, kRSKangXi
+
+2F9E ;  159 ;        7 # (⾞) KANGXI RADICAL CART ;                      CJKRadicals.txt
+8ECA ;  159 ;        7 # (車) CJK UNIFIED IDEOGRAPH-8ECA ;               CJKRadicals.txt, kRSUnicode
+F902 ;  159 ;        7 # (車) CJK COMPATIBILITY IDEOGRAPH-F902 ;         kRSUnicode
+
+2ECB ; 159' ;        4 # (⻋) CJK RADICAL C-SIMPLIFIED CART ;            CJKRadicals.txt, Nameslist
+8F66 ; 159' ;        4 # (车) CJK UNIFIED IDEOGRAPH-8F66 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2F9F ;  160 ;        7 # (⾟) KANGXI RADICAL BITTER ;                    CJKRadicals.txt
+8F9B ;  160 ;        7 # (辛) CJK UNIFIED IDEOGRAPH-8F9B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2840B ; 160 ;        7 # (𨐋) CJK UNIFIED IDEOGRAPH-2840B ;              kRSUnicode, kRSKangXi
+
+2FA0 ;  161 ;        7 # (⾠) KANGXI RADICAL MORNING ;                   CJKRadicals.txt
+8FB0 ;  161 ;        7 # (辰) CJK UNIFIED IDEOGRAPH-8FB0 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+F971 ;  161 ;        7 # (辰) CJK COMPATIBILITY IDEOGRAPH-F971 ;         kRSUnicode, kRSKangXi
+28443 ; 161 ;        7 # (𨑃) CJK UNIFIED IDEOGRAPH-28443 ;              kRSUnicode, kRSKangXi
+28444 ; 161 ;        7 # (𨑄) CJK UNIFIED IDEOGRAPH-28444 ;              kRSUnicode, kRSKangXi
+
+2FA1 ;  162 ;      3/7 # (⾡) KANGXI RADICAL WALK ;                      CJKRadicals.txt
+2ECD ;  162 ;      3/7 # (⻍) CJK RADICAL WALK ONE ;                     idsCjkRadicals.txt, Nameslist
+2ECE ;  162 ;      3/7 # (⻎) CJK RADICAL WALK TWO ;                     idsCjkRadicals.txt
+8FB5 ;  162 ;        7 # (辵) CJK UNIFIED IDEOGRAPH-8FB5 ;               CJKRadicals.txt, kRSUnicode
+8FB6 ;  162 ;        3 # (辶) CJK UNIFIED IDEOGRAPH-8FB6 ;               kRSUnicode, Nameslist
+FA66 ;  162 ;        ? # (辶) CJK COMPATIBILITY IDEOGRAPH-FA66 ;         kRSUnicode
+20507 ; 162 ;        3 # (𠔇) CJK UNIFIED IDEOGRAPH-20507 ;              kRSUnicode
+
+2ECC ; 162' ;        3 # (⻌) CJK RADICAL SIMPLIFIED WALK ;              CJKRadicals.txt, Nameslist
+8FB6 ; 162' ;        3 # (辶) CJK UNIFIED IDEOGRAPH-8FB6 ;               CJKRadicals.txt, Nameslist
+
+2FA2 ;  163 ;      2/7 # (⾢) KANGXI RADICAL CITY ;                      CJKRadicals.txt
+2ECF ;  163 ;      2/7 # (⻏) CJK RADICAL CITY ;                         idsCjkRadicals.txt, Nameslist
+9091 ;  163 ;        7 # (邑) CJK UNIFIED IDEOGRAPH-9091 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+28668 ; 163 ;        2 # (𨙨) CJK UNIFIED IDEOGRAPH-28668 ;              kRSUnicode, kRSKangXi
+
+2FA3 ;  164 ;        7 # (⾣) KANGXI RADICAL WINE ;                      CJKRadicals.txt
+9149 ;  164 ;        7 # (酉) CJK UNIFIED IDEOGRAPH-9149 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FA4 ;  165 ;        7 # (⾤) KANGXI RADICAL DISTINGUISH ;               CJKRadicals.txt
+91C6 ;  165 ;        7 # (釆) CJK UNIFIED IDEOGRAPH-91C6 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FA5 ;  166 ;        7 # (⾥) KANGXI RADICAL VILLAGE ;                   CJKRadicals.txt
+91CC ;  166 ;        7 # (里) CJK UNIFIED IDEOGRAPH-91CC ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+F9E9 ;  166 ;        7 # (里) CJK COMPATIBILITY IDEOGRAPH-F9E9 ;         kRSUnicode, kRSKangXi
+
+2FA6 ;  167 ;        8 # (⾦) KANGXI RADICAL GOLD ;                      CJKRadicals.txt
+91D1 ;  167 ;        8 # (金) CJK UNIFIED IDEOGRAPH-91D1 ;               CJKRadicals.txt, kRSUnicode
+91D2 ;  167 ;        8 # (釒) CJK UNIFIED IDEOGRAPH-91D2 ;               kRSUnicode
+F90A ;  167 ;        8 # (金) CJK COMPATIBILITY IDEOGRAPH-F90A ;         kRSUnicode
+
+2ED0 ; 167' ;        5 # (⻐) CJK RADICAL C-SIMPLIFIED GOLD ;            CJKRadicals.txt, Nameslist
+9485 ; 167' ;        5 # (钅) CJK UNIFIED IDEOGRAPH-9485 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FA7 ;  168 ;      7/8 # (⾧) KANGXI RADICAL LONG ;                      CJKRadicals.txt
+2ED1 ;  168 ;      7/8 # (⻑) CJK RADICAL LONG ONE ;                     idsCjkRadicals.txt, Nameslist
+2ED2 ;  168 ;      7/8 # (⻒) CJK RADICAL LONG TWO ;                     idsCjkRadicals.txt
+9577 ;  168 ;        8 # (長) CJK UNIFIED IDEOGRAPH-9577 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+9578 ;  168 ;        7 # (镸) CJK UNIFIED IDEOGRAPH-9578 ;               kRSUnicode
+28C57 ; 168 ;        7 # (𨱗) CJK UNIFIED IDEOGRAPH-28C57 ;              kRSUnicode
+28C58 ; 168 ;        7 # (𨱘) CJK UNIFIED IDEOGRAPH-28C58 ;              kRSUnicode
+
+2ED3 ; 168' ;        4 # (⻓) CJK RADICAL C-SIMPLIFIED LONG ;            CJKRadicals.txt, Nameslist
+957F ; 168' ;        4 # (长) CJK UNIFIED IDEOGRAPH-957F ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FA8 ;  169 ;      3/8 # (⾨) KANGXI RADICAL GATE ;                      CJKRadicals.txt
+9580 ;  169 ;        8 # (門) CJK UNIFIED IDEOGRAPH-9580 ;               CJKRadicals.txt, kRSUnicode
+28CC7 ; 169 ;        8 # (𨳇) CJK UNIFIED IDEOGRAPH-28CC7 ;              kRSUnicode
+28CC8 ; 169 ;        8 # (𨳈) CJK UNIFIED IDEOGRAPH-28CC8 ;              kRSUnicode
+95E8 ;  169 ;        3 # (门) CJK UNIFIED IDEOGRAPH-95E8 ;               kRSAdobe_Japan1_6
+
+2ED4 ; 169' ;        3 # (⻔) CJK RADICAL C-SIMPLIFIED GATE ;            CJKRadicals.txt, Nameslist
+95E8 ; 169' ;        3 # (门) CJK UNIFIED IDEOGRAPH-95E8 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FA9 ;  170 ;      2/8 # (⾩) KANGXI RADICAL MOUND ;                     CJKRadicals.txt
+2ED5 ;  170 ;      2/8 # (⻕) CJK RADICAL MOUND ONE ;                    idsCjkRadicals.txt, Nameslist
+2ED6 ;  170 ;      2/8 # (⻖) CJK RADICAL MOUND TWO ;                    idsCjkRadicals.txt
+961C ;  170 ;        8 # (阜) CJK UNIFIED IDEOGRAPH-961C ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+961D ;  170 ;        2 # (阝) CJK UNIFIED IDEOGRAPH-961D ;               kRSUnicode, kRSKangXi
+28E0F ; 170 ;        2 # (𨸏) CJK UNIFIED IDEOGRAPH-28E0F ;              kRSUnicode, kRSKangXi, Nameslist
+
+2FAA ;  171 ;        8 # (⾪) KANGXI RADICAL SLAVE ;                     CJKRadicals.txt
+96B6 ;  171 ;        8 # (隶) CJK UNIFIED IDEOGRAPH-96B6 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FAB ;  172 ;        8 # (⾫) KANGXI RADICAL SHORT TAILED BIRD ;         CJKRadicals.txt
+96B9 ;  172 ;        8 # (隹) CJK UNIFIED IDEOGRAPH-96B9 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FAC ;  173 ;        8 # (⾬) KANGXI RADICAL RAIN ;                      CJKRadicals.txt
+2ED7 ;  173 ;        8 # (⻗) CJK RADICAL RAIN ;                         idsCjkRadicals.txt, Nameslist
+96E8 ;  173 ;        8 # (雨) CJK UNIFIED IDEOGRAPH-96E8 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2FAD ;  174 ;        8 # (⾭) KANGXI RADICAL BLUE ;                      CJKRadicals.txt
+2ED8 ;  174 ;        8 # (⻘) CJK RADICAL BLUE ;                         idsCjkRadicals.txt, Nameslist
+9751 ;  174 ;        8 # (靑) CJK UNIFIED IDEOGRAPH-9751 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+9752 ;  174 ;        8 # (青) CJK UNIFIED IDEOGRAPH-9752 ;               kRSUnicode, kRSKangXi, Nameslist
+
+2FAE ;  175 ;        8 # (⾮) KANGXI RADICAL WRONG ;                     CJKRadicals.txt
+975E ;  175 ;        8 # (非) CJK UNIFIED IDEOGRAPH-975E ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FAF ;  176 ;      8/9 # (⾯) KANGXI RADICAL FACE ;                      CJKRadicals.txt
+9762 ;  176 ;        9 # (面) CJK UNIFIED IDEOGRAPH-9762 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+9763 ;  176 ;        8 # (靣) CJK UNIFIED IDEOGRAPH-9763 ;               kRSUnicode, kRSKangXi
+20691 ; 176 ;        9 # (𠚑) CJK UNIFIED IDEOGRAPH-20691 ;              kRSUnicode, kRSKangXi
+
+2FB0 ;  177 ;        9 # (⾰) KANGXI RADICAL LEATHER ;                   CJKRadicals.txt
+9769 ;  177 ;        9 # (革) CJK UNIFIED IDEOGRAPH-9769 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FB1 ;  178 ;        9 # (⾱) KANGXI RADICAL TANNED LEATHER ;            CJKRadicals.txt
+97CB ;  178 ;        9 # (韋) CJK UNIFIED IDEOGRAPH-97CB ;               CJKRadicals.txt, kRSUnicode
+
+2ED9 ; 178' ;        4 # (⻙) CJK RADICAL C-SIMPLIFIED TANNED LEATHER ;  CJKRadicals.txt, Nameslist
+97E6 ; 178' ;        4 # (韦) CJK UNIFIED IDEOGRAPH-97E6 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FB2 ;  179 ;        9 # (⾲) KANGXI RADICAL LEEK ;                      CJKRadicals.txt
+97ED ;  179 ;        9 # (韭) CJK UNIFIED IDEOGRAPH-97ED ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FB3 ;  180 ;        9 # (⾳) KANGXI RADICAL SOUND ;                     CJKRadicals.txt
+97F3 ;  180 ;        9 # (音) CJK UNIFIED IDEOGRAPH-97F3 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FB4 ;  181 ;        9 # (⾴) KANGXI RADICAL LEAF ;                      CJKRadicals.txt
+9801 ;  181 ;        9 # (頁) CJK UNIFIED IDEOGRAPH-9801 ;               CJKRadicals.txt, kRSUnicode
+2944B ; 181 ;        9 # (𩑋) CJK UNIFIED IDEOGRAPH-2944B ;              kRSUnicode
+
+2EDA ; 181' ;        6 # (⻚) CJK RADICAL C-SIMPLIFIED LEAF ;            CJKRadicals.txt, Nameslist
+9875 ; 181' ;        6 # (页) CJK UNIFIED IDEOGRAPH-9875 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FB5 ;  182 ;        9 # (⾵) KANGXI RADICAL WIND ;                      CJKRadicals.txt
+98A8 ;  182 ;        9 # (風) CJK UNIFIED IDEOGRAPH-98A8 ;               CJKRadicals.txt, kRSUnicode
+
+2EDB ; 182' ;        4 # (⻛) CJK RADICAL C-SIMPLIFIED WIND ;            CJKRadicals.txt, Nameslist
+98CE ; 182' ;        4 # (风) CJK UNIFIED IDEOGRAPH-98CE ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FB6 ;  183 ;        9 # (⾶) KANGXI RADICAL FLY ;                       CJKRadicals.txt
+98DB ;  183 ;        9 # (飛) CJK UNIFIED IDEOGRAPH-98DB ;               CJKRadicals.txt, kRSUnicode
+29671 ; 183 ;        9 # (𩙱) CJK UNIFIED IDEOGRAPH-29671 ;              kRSUnicode
+
+2EDC ; 183' ;        3 # (⻜) CJK RADICAL C-SIMPLIFIED FLY ;             CJKRadicals.txt, Nameslist
+98DE ; 183' ;        3 # (飞) CJK UNIFIED IDEOGRAPH-98DE ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FB7 ;  184 ;      8/9 # (⾷) KANGXI RADICAL EAT ;                       CJKRadicals.txt
+2EDD ;  184 ;      8/9 # (⻝) CJK RADICAL EAT ONE ;                      idsCjkRadicals.txt, Nameslist
+2EDE ;  184 ;      8/9 # (⻞) CJK RADICAL EAT TWO ;                      idsCjkRadicals.txt
+2EDF ;  184 ;      8/9 # (⻟) CJK RADICAL EAT THREE ;                    idsCjkRadicals.txt
+98DF ;  184 ;        9 # (食) CJK UNIFIED IDEOGRAPH-98DF ;               CJKRadicals.txt, kRSUnicode, Nameslist
+98E0 ;  184 ;        8 # (飠) CJK UNIFIED IDEOGRAPH-98E0 ;               kRSUnicode
+202D1 ; 184 ;        8 # (𠋑) CJK UNIFIED IDEOGRAPH-202D1 ;              kRSUnicode
+2967F ; 184 ;        8 # (𩙿) CJK UNIFIED IDEOGRAPH-2967F ;              kRSUnicode
+29680 ; 184 ;        8 # (𩚀) CJK UNIFIED IDEOGRAPH-29680 ;              kRSUnicode
+29681 ; 184 ;        8 # (𩚁) CJK UNIFIED IDEOGRAPH-29681 ;              kRSUnicode
+29683 ; 184 ;        8 # (𩚃) CJK UNIFIED IDEOGRAPH-29683 ;              kRSUnicode
+
+2EE0 ; 184' ;        3 # (⻠) CJK RADICAL C-SIMPLIFIED EAT ;             CJKRadicals.txt, Nameslist
+9963 ; 184' ;        3 # (饣) CJK UNIFIED IDEOGRAPH-9963 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FB8 ;  185 ;        9 # (⾸) KANGXI RADICAL HEAD ;                      CJKRadicals.txt
+2EE1 ;  185 ;        9 # (⻡) CJK RADICAL HEAD ;                         idsCjkRadicals.txt, Nameslist
+9996 ;  185 ;        9 # (首) CJK UNIFIED IDEOGRAPH-9996 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+29810 ; 185 ;        9 # (𩠐) CJK UNIFIED IDEOGRAPH-29810 ;              kRSUnicode, kRSKangXi, Nameslist
+
+2FB9 ;  186 ;        9 # (⾹) KANGXI RADICAL FRAGRANT ;                  CJKRadicals.txt
+9999 ;  186 ;        9 # (香) CJK UNIFIED IDEOGRAPH-9999 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FBA ;  187 ;       10 # (⾺) KANGXI RADICAL HORSE ;                     CJKRadicals.txt
+99AC ;  187 ;       10 # (馬) CJK UNIFIED IDEOGRAPH-99AC ;               CJKRadicals.txt, kRSUnicode
+29867 ; 187 ;       10 # (𩡧) CJK UNIFIED IDEOGRAPH-29867 ;              kRSUnicode
+2B809 ; 187 ;       10 # (𫠉) CJK UNIFIED IDEOGRAPH-2B809 ;              kRSUnicode
+
+2EE2 ; 187' ;        3 # (⻢) CJK RADICAL C-SIMPLIFIED HORSE ;           CJKRadicals.txt, Nameslist
+9A6C ; 187' ;        3 # (马) CJK UNIFIED IDEOGRAPH-9A6C ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FBB ;  188 ;        9 # (⾻) KANGXI RADICAL BONE ;                      CJKRadicals.txt
+2EE3 ;  188 ;        9 # (⻣) CJK RADICAL BONE ;                         idsCjkRadicals.txt, Nameslist
+9AA8 ;  188 ;        9 # (骨) CJK UNIFIED IDEOGRAPH-9AA8 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2FBC ;  189 ;    10/11 # (⾼) KANGXI RADICAL TALL ;                      CJKRadicals.txt
+9AD8 ;  189 ;       10 # (高) CJK UNIFIED IDEOGRAPH-9AD8 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+9AD9 ;  189 ;       11 # (髙) CJK UNIFIED IDEOGRAPH-9AD9 ;               kRSUnicode, kRSKangXi
+
+2FBD ;  190 ;       10 # (⾽) KANGXI RADICAL HAIR ;                      CJKRadicals.txt
+9ADF ;  190 ;       10 # (髟) CJK UNIFIED IDEOGRAPH-9ADF ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FBE ;  191 ;       10 # (⾾) KANGXI RADICAL FIGHT ;                     CJKRadicals.txt
+9B25 ;  191 ;       10 # (鬥) CJK UNIFIED IDEOGRAPH-9B25 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+29C0A ; 191 ;       10 # (𩰊) CJK UNIFIED IDEOGRAPH-29C0A ;              kRSUnicode, kRSKangXi
+29C0B ; 191 ;       10 # (𩰋) CJK UNIFIED IDEOGRAPH-29C0B ;              kRSUnicode, kRSKangXi
+
+2FBF ;  192 ;       10 # (⾿) KANGXI RADICAL SACRIFICIAL WINE ;          CJKRadicals.txt
+9B2F ;  192 ;       10 # (鬯) CJK UNIFIED IDEOGRAPH-9B2F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FC0 ;  193 ;       10 # (⿀) KANGXI RADICAL CAULDRON ;                  CJKRadicals.txt
+9B32 ;  193 ;       10 # (鬲) CJK UNIFIED IDEOGRAPH-9B32 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FC1 ;  194 ;        9 # (⿁) KANGXI RADICAL GHOST ;                     CJKRadicals.txt
+2EE4 ;  194 ;        9 # (⻤) CJK RADICAL GHOST ;                        idsCjkRadicals.txt, Nameslist
+9B3C ;  194 ;        9 # (鬼) CJK UNIFIED IDEOGRAPH-9B3C ;               CJKRadicals.txt, kRSUnicode, kRSKangXi, Nameslist
+
+2FC2 ;  195 ;       11 # (⿂) KANGXI RADICAL FISH ;                      CJKRadicals.txt
+9B5A ;  195 ;       11 # (魚) CJK UNIFIED IDEOGRAPH-9B5A ;               CJKRadicals.txt, kRSUnicode
+242F3 ; 195 ;       11 # (𤋳) CJK UNIFIED IDEOGRAPH-242F3 ;              kRSUnicode
+29D4B ; 195 ;       11 # (𩵋) CJK UNIFIED IDEOGRAPH-29D4B ;              kRSUnicode
+
+2EE5 ; 195' ;        8 # (⻥) CJK RADICAL C-SIMPLIFIED FISH ;            CJKRadicals.txt, Nameslist
+9C7C ; 195' ;        8 # (鱼) CJK UNIFIED IDEOGRAPH-9C7C ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FC3 ;  196 ;       11 # (⿃) KANGXI RADICAL BIRD ;                      CJKRadicals.txt
+9CE5 ;  196 ;       11 # (鳥) CJK UNIFIED IDEOGRAPH-9CE5 ;               CJKRadicals.txt, kRSUnicode
+2B813 ; 196 ;       11 # (𫠓) CJK UNIFIED IDEOGRAPH-2B813 ;              kRSUnicode
+
+2EE6 ; 196' ;        5 # (⻦) CJK RADICAL C-SIMPLIFIED BIRD ;            CJKRadicals.txt, Nameslist
+9E1F ; 196' ;        5 # (鸟) CJK UNIFIED IDEOGRAPH-9E1F ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FC4 ;  197 ;       11 # (⿄) KANGXI RADICAL SALT ;                      CJKRadicals.txt
+9E75 ;  197 ;       11 # (鹵) CJK UNIFIED IDEOGRAPH-9E75 ;               CJKRadicals.txt, kRSUnicode
+209F8 ; 197 ;       11 # (𠧸) CJK UNIFIED IDEOGRAPH-209F8 ;              kRSUnicode
+
+2EE7 ; 197' ;        7 # (⻧) CJK RADICAL C-SIMPLIFIED SALT ;            CJKRadicals.txt, Nameslist
+5364 ; 197' ;        7 # (卤) CJK UNIFIED IDEOGRAPH-5364 ;               CJKRadicals.txt, Nameslist
+
+2FC5 ;  198 ;       11 # (⿅) KANGXI RADICAL DEER ;                      CJKRadicals.txt
+9E7F ;  198 ;       11 # (鹿) CJK UNIFIED IDEOGRAPH-9E7F ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+F940 ;  198 ;       11 # (鹿) CJK COMPATIBILITY IDEOGRAPH-F940 ;         kRSUnicode, kRSKangXi
+22256 ; 198 ;       11 # (𢉖) CJK UNIFIED IDEOGRAPH-22256 ;              kRSUnicode, kRSKangXi
+
+2FC6 ;  199 ;     7/11 # (⿆) KANGXI RADICAL WHEAT ;                     CJKRadicals.txt
+9EA5 ;  199 ;       11 # (麥) CJK UNIFIED IDEOGRAPH-9EA5 ;               CJKRadicals.txt, kRSUnicode
+9EA6 ;  199 ;        7 # (麦) CJK UNIFIED IDEOGRAPH-9EA6 ;               kRSAdobe_Japan1_6
+
+2EE8 ; 199' ;        7 # (⻨) CJK RADICAL SIMPLIFIED WHEAT ;             CJKRadicals.txt, Nameslist
+9EA6 ; 199' ;        7 # (麦) CJK UNIFIED IDEOGRAPH-9EA6 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FC7 ;  200 ;       11 # (⿇) KANGXI RADICAL HEMP ;                      CJKRadicals.txt
+9EBB ;  200 ;       11 # (麻) CJK UNIFIED IDEOGRAPH-9EBB ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2FA15 ; 200 ;        ? # (麻) CJK COMPATIBILITY IDEOGRAPH-2FA15 ;        kRSUnicode
+
+2FC8 ;  201 ;    11/12 # (⿈) KANGXI RADICAL YELLOW ;                    CJKRadicals.txt
+9EC3 ;  201 ;       12 # (黃) CJK UNIFIED IDEOGRAPH-9EC3 ;               CJKRadicals.txt, kRSUnicode
+9EC4 ;  201 ;       11 # (黄) CJK UNIFIED IDEOGRAPH-9EC4 ;               kRSUnicode
+
+2EE9 ; 201' ;       11 # (⻩) CJK RADICAL SIMPLIFIED YELLOW ;            CJKRadicals.txt, Nameslist
+9EC4 ; 201' ;       11 # (黄) CJK UNIFIED IDEOGRAPH-9EC4 ;               CJKRadicals.txt, Nameslist
+
+2FC9 ;  202 ;       12 # (⿉) KANGXI RADICAL MILLET ;                    CJKRadicals.txt
+9ECD ;  202 ;       12 # (黍) CJK UNIFIED IDEOGRAPH-9ECD ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+
+2FCA ;  203 ;    11/12 # (⿊) KANGXI RADICAL BLACK ;                     CJKRadicals.txt
+9ED1 ;  203 ;       12 # (黑) CJK UNIFIED IDEOGRAPH-9ED1 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+9ED2 ;  203 ;       11 # (黒) CJK UNIFIED IDEOGRAPH-9ED2 ;               kRSUnicode, kRSKangXi
+2A417 ; 203 ;       12 # (𪐗) CJK UNIFIED IDEOGRAPH-2A417 ;              kRSUnicode, kRSKangXi
+
+2FCB ;  204 ;       12 # (⿋) KANGXI RADICAL EMBROIDERY ;                CJKRadicals.txt
+9EF9 ;  204 ;       12 # (黹) CJK UNIFIED IDEOGRAPH-9EF9 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2FA17 ; 204 ;        ? # (黹) CJK COMPATIBILITY IDEOGRAPH-2FA17 ;        kRSUnicode
+
+2FCC ;  205 ;       13 # (⿌) KANGXI RADICAL FROG ;                      CJKRadicals.txt
+9EFD ;  205 ;       13 # (黽) CJK UNIFIED IDEOGRAPH-9EFD ;               CJKRadicals.txt, kRSUnicode
+
+2EEA ; 205' ;        8 # (⻪) CJK RADICAL C-SIMPLIFIED FROG ;            CJKRadicals.txt, Nameslist
+9EFE ; 205' ;        8 # (黾) CJK UNIFIED IDEOGRAPH-9EFE ;               CJKRadicals.txt, kRSUnicode, Nameslist
+2FA18 ;205' ;        ? # (黾) CJK COMPATIBILITY IDEOGRAPH-2FA18 ;        kRSUnicode
+
+2FCD ;  206 ;       12 # (⿍) KANGXI RADICAL TRIPOD ;                    CJKRadicals.txt
+9F0E ;  206 ;       12 # (鼎) CJK UNIFIED IDEOGRAPH-9F0E ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2A502 ; 206 ;       12 # (𪔂) CJK UNIFIED IDEOGRAPH-2A502 ;              kRSUnicode, kRSKangXi
+
+2FCE ;  207 ;       13 # (⿎) KANGXI RADICAL DRUM ;                      CJKRadicals.txt
+9F13 ;  207 ;       13 # (鼓) CJK UNIFIED IDEOGRAPH-9F13 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+9F14 ;  207 ;       13 # (鼔) CJK UNIFIED IDEOGRAPH-9F14 ;               kRSUnicode, kRSKangXi
+21537 ; 207 ;       13 # (𡔷) CJK UNIFIED IDEOGRAPH-21537 ;              kRSUnicode, kRSKangXi
+
+2FCF ;  208 ;     8/13 # (⿏) KANGXI RADICAL RAT ;                       CJKRadicals.txt
+9F20 ;  208 ;       13 # (鼠) CJK UNIFIED IDEOGRAPH-9F20 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+9F21 ;  208 ;        8 # (鼡) CJK UNIFIED IDEOGRAPH-9F21 ;               kRSUnicode, kRSKangXi
+
+2FD0 ;  209 ;       14 # (⿐) KANGXI RADICAL NOSE ;                      CJKRadicals.txt
+9F3B ;  209 ;       14 # (鼻) CJK UNIFIED IDEOGRAPH-9F3B ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
+2FA1C ; 209 ;        ? # (鼻) CJK COMPATIBILITY IDEOGRAPH-2FA1C ;        kRSUnicode
+
+2FD1 ;  210 ;     8/14 # (⿑) KANGXI RADICAL EVEN ;                      CJKRadicals.txt
+2EEB ;  210 ;     8/14 # (⻫) CJK RADICAL J-SIMPLIFIED EVEN ;            idsCjkRadicals.txt, Nameslist
+6589 ;  210 ;        8 # (斉) CJK UNIFIED IDEOGRAPH-6589 ;               kRSAdobe_Japan1_6, Nameslist
+9F4A ;  210 ;       14 # (齊) CJK UNIFIED IDEOGRAPH-9F4A ;               CJKRadicals.txt, kRSUnicode
+2A5C4 ; 210 ;       14 # (𪗄) CJK UNIFIED IDEOGRAPH-2A5C4 ;              kRSUnicode
+2CE71 ; 210 ;        ? # (𬹱) CJK UNIFIED IDEOGRAPH-2CE71 ;              kRSUnicode
+
+2EEC ; 210' ;        6 # (⻬) CJK RADICAL C-SIMPLIFIED EVEN ;            CJKRadicals.txt, Nameslist
+9F50 ; 210' ;        6 # (齐) CJK UNIFIED IDEOGRAPH-9F50 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FD2 ;  211 ;    12/15 # (⿒) KANGXI RADICAL TOOTH ;                     CJKRadicals.txt
+2EED ;  211 ;    12/15 # (⻭) CJK RADICAL J-SIMPLIFIED TOOTH ;           idsCjkRadicals.txt, Nameslist
+6B6F ;  211 ;       12 # (歯) CJK UNIFIED IDEOGRAPH-6B6F ;               kRSAdobe_Japan1_6, Nameslist
+9F52 ;  211 ;       15 # (齒) CJK UNIFIED IDEOGRAPH-9F52 ;               CJKRadicals.txt, kRSUnicode
+2398B ; 211 ;       15 # (𣦋) CJK UNIFIED IDEOGRAPH-2398B ;              kRSUnicode
+
+2EEE ; 211' ;        8 # (⻮) CJK RADICAL C-SIMPLIFIED TOOTH ;           CJKRadicals.txt, Nameslist
+9F7F ; 211' ;        8 # (齿) CJK UNIFIED IDEOGRAPH-9F7F ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FD3 ;  212 ;    10/16 # (⿓) KANGXI RADICAL DRAGON ;                    CJKRadicals.txt
+2EEF ;  212 ;    10/16 # (⻯) CJK RADICAL J-SIMPLIFIED DRAGON ;          idsCjkRadicals.txt, Nameslist
+7ADC ;  212 ;       10 # (竜) CJK UNIFIED IDEOGRAPH-7ADC ;               kRSAdobe_Japan1_6
+9F8D ;  212 ;       16 # (龍) CJK UNIFIED IDEOGRAPH-9F8D ;               CJKRadicals.txt, kRSUnicode, Nameslist
+F9C4 ;  212 ;       16 # (龍) CJK COMPATIBILITY IDEOGRAPH-F9C4 ;         kRSUnicode
+
+2EF0 ; 212' ;        5 # (⻰) CJK RADICAL C-SIMPLIFIED DRAGON ;          CJKRadicals.txt, Nameslist
+9F99 ; 212' ;        5 # (龙) CJK UNIFIED IDEOGRAPH-9F99 ;               CJKRadicals.txt, kRSUnicode, Nameslist
+
+2FD4 ;  213 ; 11/16/17 # (⿔) KANGXI RADICAL TURTLE ;                    CJKRadicals.txt
+2EF1 ;  213 ; 11/16/17 # (⻱) CJK RADICAL TURTLE ;                       idsCjkRadicals.txt, Nameslist
+2EF2 ;  213 ; 11/16/17 # (⻲) CJK RADICAL J-SIMPLIFIED TURTLE ;          idsCjkRadicals.txt
+4E80 ;  213 ;       11 # (亀) CJK UNIFIED IDEOGRAPH-4E80 ;               kRSAdobe_Japan1_6
+9F9C ;  213 ;       17 # (龜) CJK UNIFIED IDEOGRAPH-9F9C ;               CJKRadicals.txt, kRSUnicode, Nameslist
+F907 ;  213 ;       16 # (龜) CJK COMPATIBILITY IDEOGRAPH-F907 ;         kRSUnicode
+F908 ;  213 ;       16 # (龜) CJK COMPATIBILITY IDEOGRAPH-F908 ;         kRSUnicode
+FACE ;  213 ;        ? # (龜) CJK COMPATIBILITY IDEOGRAPH-FACE ;         kRSUnicode
+2A6A6 ; 213 ;       16 # (𪚦) CJK UNIFIED IDEOGRAPH-2A6A6 ;              kRSUnicode
+2A6C9 ; 213 ;       16 # (𪛉) CJK UNIFIED IDEOGRAPH-2A6C9 ;              kRSUnicode
+
+2EF3 ; 213' ;        7 # (⻳) CJK RADICAL C-SIMPLIFIED TURTLE ;          CJKRadicals.txt, Nameslist
+9F9F ; 213' ;        7 # (龟) CJK UNIFIED IDEOGRAPH-9F9F ;               CJKRadicals.txt, kRSUnicode, Nameslist
+2CE9E ;213' ;        ? # (𬺞) CJK UNIFIED IDEOGRAPH-2CE9E ;              kRSUnicode
+
+2FD5 ;  214 ;       17 # (⿕) KANGXI RADICAL FLUTE ;                     CJKRadicals.txt
+9FA0 ;  214 ;       17 # (龠) CJK UNIFIED IDEOGRAPH-9FA0 ;               CJKRadicals.txt, kRSUnicode, kRSKangXi
 
