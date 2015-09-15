@@ -3,21 +3,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.ChainedMap;
@@ -29,7 +27,6 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.props.UnicodeRelation;
 import org.unicode.text.utility.Settings;
 
 import com.google.common.base.Joiner;
@@ -1022,6 +1019,13 @@ public class Ids {
             if (strokeCounts == null) {
                 throw new IllegalArgumentException("Must call finish first");
             }
+            Tabber tabber = new Tabber.MonoTabber()
+            .add(8, Tabber.LEFT)
+            .add(5, Tabber.RIGHT)
+            .add(9, Tabber.RIGHT)
+            .add(50, Tabber.LEFT)
+            .add(60, Tabber.LEFT)
+            ;
             try {
                 for (Entry<String, Set<String>> entry : codeToReason.keyValuesSet()) {
                     String codePoint = entry.getKey();
@@ -1029,15 +1033,17 @@ public class Ids {
                     final Set<String> reasons = entry.getValue();
                     //multipleRadicals.put(codePoint, key2);
                     List<Integer> strokes = kTotalStrokes.get(codePoint);
-                    List<Integer> strokes2 = getStrokeCounts();
-                    out.append(Utility.hex(codePoint)
-                            + " ;\t" + radical
-                            + " ; " + (strokes != null ? CollectionUtilities.join(strokes, "/")
-                                    : strokes2 != null ? CollectionUtilities.join(strokes2, "/") + (strokes2.size() == 1 ? "" : "?")
-                                            : "??")
-                                            + " \t# (" + codePoint + ") " + UCharacter.getName(codePoint, ", ")
-                                            + " ;\t" + (reasons == null ? "" : CollectionUtilities.join(reasons, ", "))
-                                            + "\n"
+                    List<Integer> strokes2 = RADICAL.contains(codePoint) ? getStrokeCounts() : null;
+                    out.append(
+                            tabber.process(
+                                    Utility.hex(codePoint)
+                                    + " ;\t" + radical
+                                    + " ;\t" + (strokes != null ? CollectionUtilities.join(strokes, "/")
+                                            : strokes2 != null ? CollectionUtilities.join(strokes2, "/")
+                                                    : "?")
+                                                    + "\t # (" + codePoint + ") " + UCharacter.getName(codePoint, ", ")
+                                                    + " ;\t" + (reasons == null ? "" : CollectionUtilities.join(reasons, ", "))
+                                                    + "\n")
                             );
                 }
                 out.append("\n");
