@@ -6,8 +6,10 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Freezable;
 
@@ -19,6 +21,13 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
     public interface SetMaker<T> {
         Set<T> make();
     }
+
+    public static SetMaker<Comparable> TREESET_MAKER = new SetMaker<Comparable>() {
+        @Override
+        public Set<Comparable> make() {
+            return new TreeSet<Comparable>();
+        }
+    };
 
     public static SetMaker<Object> HASHSET_MAKER = new SetMaker<Object>() {
         @Override
@@ -321,5 +330,13 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
     @Override
     public UnicodeRelation<T>  cloneAsThawed() {
         throw new UnsupportedOperationException();
+    }
+
+    public Iterable<Entry<String, Set<T>>> entrySet() {
+        return data.entrySet();
+    }
+    
+    public Iterable<EntryRange<Set<T>>> entryRanges() {
+        return data.entryRanges();
     }
 }
