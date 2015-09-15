@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -322,6 +323,29 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         return result;
     }
 
+    public UnicodeMap<List<Integer>> loadIntList(UcdProperty prop2) {
+        UnicodeMap<List<Integer>> result = SPECIAL_CACHE.get(prop2);
+        if (result != null) {
+            return result;
+        }
+        result = new UnicodeMap<>();
+        if (prop2.getCardinality() != ValueCardinality.Ordered) {
+            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+                    + prop2.getCardinality() + " for " + prop2);
+        }
+        UnicodeMap<String> m = load(prop2);
+        // TODO cache
+        for (String value : m.values()) {
+            UnicodeSet uset = m.getSet(value);
+            ArrayList<Integer> v = new ArrayList<Integer>();
+            for (String s : SET_SPLITTER.splitToList(value)) {
+                v.add(Integer.parseInt(s));
+            }
+            result.putAll(uset, Collections.unmodifiableList(v));
+        }
+        SPECIAL_CACHE.put(prop2, result.freeze());
+        return result;
+    }
 
     public UnicodeMap<String> load(UcdProperty prop2) {
         if (prop2 == CHECK_PROPERTY) {

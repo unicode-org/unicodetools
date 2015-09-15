@@ -29,6 +29,7 @@ import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.UnicodeRelation;
 import org.unicode.text.utility.Settings;
 
 import com.google.common.base.Joiner;
@@ -46,6 +47,7 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUException;
+import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
 
 
@@ -74,7 +76,7 @@ public class Ids {
     .removeAll(UNASSIGNED).freeze();
 
     private static final UnicodeMap<List<String>> radicalStroke = iup.loadList(UcdProperty.kRSUnicode);
-    private static final UnicodeMap<List<String>> kTotalStrokes = iup.loadList(UcdProperty.kTotalStrokes);
+    private static final UnicodeMap<List<Integer>> kTotalStrokes = iup.loadIntList(UcdProperty.kTotalStrokes);
     private static final UnicodeMap<Set<String>> adobeRadicalStroke = iup.loadSet(UcdProperty.kRSAdobe_Japan1_6);
     private static final UnicodeMap<Integer> numericRadicalStroke;
     private static final M3<Integer,Boolean,UnicodeSet> USTROKE = ChainedMap.of(new TreeMap(), new TreeMap(), UnicodeSet.class);
@@ -908,13 +910,14 @@ public class Ids {
                     );
             int count = 0;
             Set<String> adobeItems = new TreeSet<>();
-            Set<String> sortedChars = new TreeSet<>(UNIHAN);
+            //Set<String> sortedChars = new TreeSet<>(UNIHAN);
             UnicodeSet missingCjkRadicals = new UnicodeSet(CJK_Radicals_Supplement_BLOCK);
             Output<String> cjkRadValue = new Output<String>();
-            
+            Relation<String, String> multipleRadicals = Relation.of(new TreeMap<String,Set<String>>(UNIHAN), TreeSet.class);
+
             for (Entry<Double, R2<Set<String>, Set<String>>> entry : sorted.entrySet()) {
                 ++count;
-                Relation<Integer, String> reasonMap = Relation.of(new HashMap(), LinkedHashSet.class);
+                //Relation<Integer, String> reasonMap = Relation.of(new HashMap(), LinkedHashSet.class);
                 final Double key = entry.getKey();
                 final R2<Set<String>, Set<String>> rad2 = entry.getValue();
                 Set<String> rad = rad2.get0();
@@ -924,6 +927,8 @@ public class Ids {
                 final boolean alt = intRadical != doubleRadical;
                 String samples = alt ? "" : getSamples((int)key.doubleValue());
                 String key2 = intRadical + (alt ? "'" : "");
+                RadicalData radicalData = new RadicalData(key2);
+
                 final Set<String> cjkRad = alt ? Collections.EMPTY_SET : radToCjkRad.get(intRadical);
                 UnicodeSet RSUnicode = USTROKE.get(intRadical, alt);
                 M3<Integer, Integer, UnicodeSet> adobe = ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET.get(intRadical);
@@ -941,46 +946,136 @@ public class Ids {
                         }
                     }
                 }
-                sortedChars.clear();
 
-                addItems(raw, "CJKRadicals.txt", sortedChars, reasonMap);
-                addItems(RSUnicode, "kRSUnicode", sortedChars, reasonMap);
-                if (!alt) {
-                    addRadicals(intRadical, kRSKangXiRadicals, sortedChars, "kRSKangXi", reasonMap);
+                radicalData.addItems(raw, "CJKRadicals.txt");
+                radicalData.addItems(RSUnicode, "kRSUnicode");
+                radToUnicode.get(intRadical+"'");
+                boolean hasAltRadical = USTROKE.get(intRadical, true) != null || radToUnicode.get(intRadical+"'") != null;
+
+                if (!alt && !hasAltRadical) {
+                    radicalData.addRadicals(intRadical, kRSKangXiRadicals, "kRSKangXi");
                 }
-                addItems(adobeItems, "kRSAdobe_Japan1_6", sortedChars, reasonMap);
-                addItems(cjkRad, "idsCjkRadicals.txt", sortedChars, reasonMap);
+                radicalData.addItems(adobeItems, "kRSAdobe_Japan1_6");
+                radicalData.addItems(cjkRad, "idsCjkRadicals.txt");
 
-                if (!alt) {
-                    addRadicals(intRadical, kRSJapaneseRadicals, sortedChars, "kRSJapanese", reasonMap);
-                    addRadicals(intRadical, kRSKanWaRadicals, sortedChars, "kRSKanWa", reasonMap);
-                    addRadicals(intRadical, kRSKoreanRadicals, sortedChars, "kRSKorean", reasonMap);
+                if (!alt && !hasAltRadical) {
+                    radicalData.addRadicals(intRadical, kRSJapaneseRadicals, "kRSJapanese");
+                    radicalData.addRadicals(intRadical, kRSKanWaRadicals, "kRSKanWa");
+                    radicalData.addRadicals(intRadical, kRSKoreanRadicals, "kRSKorean");
                 }
 
-                missingCjkRadicals.removeAll(sortedChars);
+                missingCjkRadicals.removeAll(radicalData.getChars());
                 //Wikiwand.check(sortedChars);
-                String extra = Nameslist.check(sortedChars, cjkRadValue);
+                String extra = Nameslist.check(key2, radicalData.getChars(), cjkRadValue);
                 if (extra != null) {
-                    sortedChars.add(extra);
-                    reasonMap.put(extra.codePointAt(0), "Nameslist");
-                    sortedChars.add(extra);
-                    reasonMap.put(cjkRadValue.value.codePointAt(0), "Nameslist");
+                    radicalData.addItem(extra, "Nameslist");
+                    radicalData.addItem(cjkRadValue.value, "Nameslist");
                 }
-                
-                for (String codePoint : sortedChars) {
-                    final Set<String> reasons = reasonMap.get(codePoint.codePointAt(0));
-                    List<String> strokes = kTotalStrokes.get(codePoint);
-                    out.println(Utility.hex(codePoint)
-                            + " ;\t" + key2
-                            + " ; " + (strokes == null ? "?" : CollectionUtilities.join(strokes, ", "))
-                            + " \t# (" + codePoint + ") " + UCharacter.getName(codePoint, ", ")
-                            + " ;\t" + (reasons == null ? "" : CollectionUtilities.join(reasons, ", "))
-                            );
-                }
-                out.println();
+                radicalData.finish();
+
+                radicalData.print(out);
+                //                for (String codePoint : sortedChars) {
+                //                    multipleRadicals.put(codePoint, key2);
+                //                    final Set<String> reasons = reasonMap.get(codePoint.codePointAt(0));
+                //                    List<String> strokes = kTotalStrokes.get(codePoint);
+                //                    out.println(Utility.hex(codePoint)
+                //                            + " ;\t" + key2
+                //                            + " ; " + (strokes == null ? "?" : CollectionUtilities.join(strokes, ", "))
+                //                            + " \t# (" + codePoint + ") " + UCharacter.getName(codePoint, ", ")
+                //                            + " ;\t" + (reasons == null ? "" : CollectionUtilities.join(reasons, ", "))
+                //                            );
+                //                }
+                //                out.println();
             }
             System.out.println("items:\t" + count);
             System.out.println("missing cjk radicals:\t" + missingCjkRadicals);
+            for (Entry<String, Set<String>> entry : multipleRadicals.keyValuesSet()) {
+                final String codepoint = entry.getKey();
+                final Set<String> radicals = entry.getValue();
+                if (radicals.size() > 1) {
+                    System.out.println(codepoint + " ??? " + radicals);
+                }            
+            }
+        }
+    }
+
+    private static class RadicalData {
+        private final String radical;
+        private List<Integer> strokeCounts;
+        private final Relation<String, String> codeToReason = Relation.of(new TreeMap<String,Set<String>>(UNIHAN), LinkedHashSet.class);
+
+        public RadicalData(String _radical) {
+            radical = _radical;
+        }
+
+        public Set<String> getChars() {
+            return codeToReason.keySet();
+        }
+        public List<Integer> getStrokeCounts() {
+            return strokeCounts;
+        }
+        public void addItem(String string, String reason) {
+            codeToReason.put(string, reason);
+        }
+
+        public void print(Appendable out) {
+            if (strokeCounts == null) {
+                throw new IllegalArgumentException("Must call finish first");
+            }
+            try {
+                for (Entry<String, Set<String>> entry : codeToReason.keyValuesSet()) {
+                    String codePoint = entry.getKey();
+
+                    final Set<String> reasons = entry.getValue();
+                    //multipleRadicals.put(codePoint, key2);
+                    List<Integer> strokes = kTotalStrokes.get(codePoint);
+                    List<Integer> strokes2 = getStrokeCounts();
+                    out.append(Utility.hex(codePoint)
+                            + " ;\t" + radical
+                            + " ; " + (strokes != null ? CollectionUtilities.join(strokes, "/")
+                                    : strokes2 != null ? CollectionUtilities.join(strokes2, "/") + (strokes2.size() == 1 ? "" : "?")
+                                            : "??")
+                                            + " \t# (" + codePoint + ") " + UCharacter.getName(codePoint, ", ")
+                                            + " ;\t" + (reasons == null ? "" : CollectionUtilities.join(reasons, ", "))
+                                            + "\n"
+                            );
+                }
+                out.append("\n");
+            } catch (IOException e) {
+                throw new ICUUncheckedIOException(e);
+            }
+        }
+
+        private void addItems(UnicodeSet sourceItems, String reason) {
+            if (sourceItems != null && !sourceItems.isEmpty()) {
+                codeToReason.putAll(sourceItems.addAllTo(new HashSet<String>()), reason);
+            }
+        }
+
+        private void addItems(Set<String> sourceItems, String reason) {
+            if (sourceItems != null && !sourceItems.isEmpty()) {
+                codeToReason.putAll(sourceItems, reason);
+            }
+        }
+
+        private void addRadicals(int intRadical, Map<Integer, UnicodeSet> radicalSource, String reason) {
+            UnicodeSet us = radicalSource.get(intRadical);
+            if (us != null) {
+                codeToReason.putAll(us.addAllTo(new HashSet<String>()), reason);
+            }
+        }
+
+        public void finish() {
+            codeToReason.freeze();
+            TreeSet<Integer> _strokeCounts = new TreeSet<Integer>();
+            for (Entry<String, Set<String>> entry : codeToReason.keyValuesSet()) {
+                String codePoint = entry.getKey();
+                final List<Integer> strokes = kTotalStrokes.get(codePoint);
+                if (strokes != null) {
+                    _strokeCounts.addAll(strokes);
+                }
+            }
+            strokeCounts = Collections.unmodifiableList(new ArrayList<>(_strokeCounts));
         }
     }
 
@@ -1039,15 +1134,16 @@ public class Ids {
             }
             cjkRadSupToIdeo.freeze();
         }
-        
-        static String check(Set<String> items, Output<String> cjkRad) {
+
+        static String check(String key2, Set<String> items, Output<String> cjkRad) {
             for (String item : items) {
                 String v = cjkRadSupToIdeo.get(item);
                 if (v == null) {
                     continue;
                 }
                 if (!items.contains(v)) {
-                    System.out.println("Annotations: " + items + " don't contain " + v + " from " + item);
+                    System.out.println("Radical " + key2 + ", Nameslist Annotations for " + item + " " + UCharacter.getName(item, ", ")
+                            + ": " + items + " doesn't contain " + v);
                 }
                 cjkRad.value = item;
                 return v;
