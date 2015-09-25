@@ -17,7 +17,7 @@ import org.unicode.cldr.util.ChainedMap.M3;
 import org.unicode.tools.Ids.Nameslist;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.impl.Row.R2;

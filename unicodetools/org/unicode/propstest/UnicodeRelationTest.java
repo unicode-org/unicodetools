@@ -13,7 +13,7 @@ import java.util.Set;
 import org.unicode.props.UnicodeRelation;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.UnicodeSet;
 
 public class UnicodeRelationTest extends TestFmwk{

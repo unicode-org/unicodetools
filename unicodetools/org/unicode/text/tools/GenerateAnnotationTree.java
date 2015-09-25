@@ -10,7 +10,7 @@ import org.unicode.text.tools.UnicodeSetTree.Merger;
 import org.unicode.text.tools.UnicodeSetTree.Node;
 import org.unicode.text.tools.UnicodeSetTree.Visitor;
 
-import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
 
