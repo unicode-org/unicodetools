@@ -19,7 +19,7 @@ import org.unicode.unused.CaseBit.Casing;
 import org.unicode.unused.CaseBit.CasingList;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;

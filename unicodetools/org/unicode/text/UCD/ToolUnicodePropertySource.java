@@ -20,13 +20,13 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.AliasAddAction;
 import com.ibm.icu.dev.util.UnicodeProperty.BaseProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.SimpleProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.StringUCharacterIterator;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.IDNA;
@@ -1527,7 +1527,7 @@ isTitlecase(X) is false.
     }
 
     static List<String> lookup(String valueAlias, String[] main, String[] aux,
-            com.ibm.icu.dev.util.Relation<String, String> aux2, List result) {
+            Relation<String, String> aux2, List result) {
         // System.out.println(valueAlias + "=>");
         // System.out.println("=>" + aux[pos]);
         if (aux != null) {
