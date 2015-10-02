@@ -1,0 +1,13 @@
+# IMPORTANT-when iota-subscript (0345) is uppercased or titlecased,
+#  the result will be incorrect unless the iota-subscript is moved to the end
+#  of any sequence of combining marks. Otherwise, the accents will go on the capital iota.
+#  This process can be achieved by first transforming the text to NFC before casing.
+#  E.g. <alpha><iota_subscript><acute> is uppercased to <ALPHA><acute><IOTA>
+
+# The following cases are already in the UnicodeData.txt file, so are only commented here.
+
+# 0345; 0345; 0345; 0399; # COMBINING GREEK YPOGEGRAMMENI
+
+# All letters with YPOGEGRAMMENI (iota-subscript) or PROSGEGRAMMENI (iota adscript)
+# have special uppercases.
+# Note: characters with PROSGEGRAMMENI are actually titlecase, not uppercase!

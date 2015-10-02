@@ -1,0 +1,814 @@
+#Unicode code point	English annotation
+U+00A9	Copyright sign, Copyright
+U+00AE	Registered sign, Registered
+U+01F004	Mahjong tile, Red Dragon, Dragon, mahjong, tile
+U+01F0CF	Joker card, Joker, playing card, card
+U+01F170	blood type A, type A, blood type, blood, A
+U+01F171	blood type B, type B, blood type, blood, B
+U+01F17E	blood type O, type O, blood type, blood, O
+U+01F17F	parking, parking lot
+U+01F18E	blood type AB, type AB, blood type, blood, AB
+U+01F191	CL, clear, CL sign
+U+01F192	cool, cool sign
+U+01F193	free, free sign, free of charge, sign
+U+01F194	ID, ID sign, identity, sign
+U+01F195	New, New sign, sign
+U+01F196	NG, NG sign, sign
+U+01F197	OK, OK sign
+U+01F198	SOS, SOS sign, Help, sign
+U+01F199	UP!, UP! sign, sign
+U+01F19A	versus, vs, vs sign, sign
+U+01F1E6	Region Letter A, Letter A
+U+01F1E7	Region Letter B, Letter B
+U+01F1E8	Region Letter C, Letter C
+U+01F1E9	Region Letter D, Letter D
+U+01F1EA	Region Letter E, Letter E
+U+01F1EB	Region Letter F, Letter F
+U+01F1EC	Region Letter G, Letter G
+U+01F1ED	Region Letter H, Letter H
+U+01F1EE	Region Letter I, Letter I
+U+01F1EF	Region Letter J, Letter J
+U+01F1F0	Region Letter K, Letter K
+U+01F1F1	Region Letter L, Letter L
+U+01F1F2	Region Letter M, Letter M
+U+01F1F3	Region Letter N, Letter N
+U+01F1F4	Region Letter O, Letter O
+U+01F1F5	Region Letter P, Letter P
+U+01F1F6	Region Letter Q, Letter Q
+U+01F1F7	Region Letter R, Letter R
+U+01F1F8	Region Letter S, Letter S
+U+01F1F9	Region Letter T, Letter T
+U+01F1FA	Region Letter U, Letter U
+U+01F1FB	Region Letter V, Letter V
+U+01F1FC	Region Letter W, Letter W
+U+01F1FD	Region Letter X, Letter X
+U+01F1FE	Region Letter Y, Letter Y
+U+01F1FF	Region Letter Z, Letter Z
+U+01F201	Japanese word
+U+01F202	Japanese word
+U+01F21A	Japanese word
+U+01F22F	Japanese word
+U+01F232	Japanese word
+U+01F233	Chinese word
+U+01F234	Chinese word
+U+01F235	Chinese word
+U+01F236	Japanese word
+U+01F237	Japanese word
+U+01F238	Chinese word
+U+01F239	Japanese word
+U+01F23A	Chinese word
+U+01F250	Japanese word
+U+01F251	Chinese word
+U+01F300	cyclone, typhoon, twister, dizzy
+U+01F301	foggy, fog
+U+01F302	umbrella, rain, rainy
+U+01F303	night stars, stars, night
+U+01F304	sunrise, morning sun, sunrise over mountains,mountain
+U+01F305	sunrise, morning sun
+U+01F306	city at dusk, dusk, evening, sunset, city, building, landscape
+U+01F307	sunset, dusk, sunset over buildings, building
+U+01F308	rainbow
+U+01F309	night bridge, bridge at night, night
+U+01F30A	wave, ocean wave, water wave
+U+01F30B	volcano, volcanic eruption
+U+01F30C	Milky Way, milky
+U+01F30D	globe, earth, Europe, Africa
+U+01F30E	globe, earth, the Americas, America
+U+01F30F	globe, earth, Asia, Australia
+U+01F310	globe, meridians
+U+01F311	new moon, dark moon, dark, new, moon
+U+01F312	crescent moon, crescent, waxing moon, waxing, moon
+U+01F313	quarter moon, first quarter moon, moon, quarter
+U+01F314	waxing moon, waxing, gibbous moon, gibbous, moon
+U+01F315	full moon, full, bright moon, bright, moon
+U+01F316	waning moon, waning, gibbous moon, gibbous, moon
+U+01F317	quarter moon, quarter, last quarter moon, moon
+U+01F318	crescent moon, crescent, waning moon, waning, moon
+U+01F319	crescent moon, crescent, moon
+U+01F31A	new moon face, new moon, new moon with a face, moon, face
+U+01F31B	quarter moon face, quarter moon with a face, moon with a face, first quarter moon, quarter moon, moon, face
+U+01F31C	quarter moon face, quarter moon with a face, moon with a face, last quarter moon, quarter moon, moon, face
+U+01F31D	full moon face, full moon with a face, moon with a face, full moon, full, moon, face
+U+01F31E	sun face, sun, face
+U+01F31F	glowing star, shining, glittery, sparkler, sparkle, shining, star
+U+01F320	shooting star, shooting, falling star, falling, star
+U+01F330	chestnut
+U+01F331	young plant, young, seedling
+U+01F332	evergreen tree, evergreen, tree
+U+01F333	shedding tree, shedding, deciduous, tree
+U+01F334	palm tree, palm, tree
+U+01F335	cactus, plant
+U+01F337	tulip, flower
+U+01F338	cherry blossom, cherry, flower viewing, flower
+U+01F339	rose, flower
+U+01F33A	hibiscus, flower
+U+01F33B	sunflower, flower
+U+01F33C	blossom, flower
+U+01F33D	corn, ear, maize
+U+01F33E	rice plant, ear of rice, rice, ear
+U+01F33F	herb, leaf
+U+01F340	four leaf clover, four, leaf, clover, lucky
+U+01F341	maple leaf, fallen leaf, leaf
+U+01F342	falling leaves, fallen leaves, falling, fallen, leaf, leaves
+U+01F343	leaf in wind, wind blowing, leaf, wind, blowing
+U+01F344	mushroom
+U+01F345	tomato, vegetable
+U+01F346	eggplant, aubergine, vegetable
+U+01F347	grapes, fruit
+U+01F348	melon, fruit
+U+01F349	watermelon, fruit
+U+01F34A	tangerine, orange, fruit
+U+01F34B	lemon, citrus, fruit
+U+01F34C	banana, fruit
+U+01F34D	pineapple, fruit
+U+01F34E	red apple, apple, red, fruit
+U+01F34F	green apple, apple, green, fruit
+U+01F350	pear, fruit
+U+01F351	peach, fruit
+U+01F352	cherry, fruit
+U+01F353	strawberry, berry, fruit
+U+01F354	hamburger, burger, restaurant
+U+01F355	pizza slice, pizza, slice, restaurant
+U+01F356	meat, meat on bone, restaurant
+U+01F357	chicken leg, poultry, leg, restaurant
+U+01F358	rice cracker, rice
+U+01F359	rice ball, onigiri, rice, restaurant
+U+01F35A	cooked rice, rice, restaurant
+U+01F35B	curry and rice, curry, rice, restaurant
+U+01F35C	ramen, bowl of noodles, noodle, steaming, bowl, noodles, restaurant
+U+01F35D	spaghetti, pasta, restaurant
+U+01F35E	bread, loaf of bread, restaurant
+U+01F35F	fries, french fries, restaurant
+U+01F360	roasted potato, sweet potato, roasted sweet potato, sweet, roasted, restaurant
+U+01F361	mochi, mochi balls, mochi balls on stick, dango, restaurant
+U+01F362	oden, seafood on stick, seafood, stick, restaurant
+U+01F363	sushi, restaurant
+U+01F364	fried shrimp, shrimp, restaurant
+U+01F365	fish cake, fish cake with swirl, fish, restaurant
+U+01F366	soft ice cream, ice cream, soft serve, cream, restaurant
+U+01F367	shaved ice, ice, shaved, restaurant
+U+01F368	ice cream, ice, cream, restaurant
+U+01F369	donut, doughnut, restaurant
+U+01F36A	cookie, restaurant
+U+01F36B	chocolate, chocolate bar, bar, restaurant
+U+01F36C	candy, restaurant
+U+01F36D	lollipop, candy, restaurant
+U+01F36E	custard, pudding, restaurant
+U+01F36F	honeypot, honey, pot, restaurant
+U+01F370	shortcake, sliced cake, cake, restaurant
+U+01F371	bento, bento box, box, restaurant
+U+01F372	stew, pot food, restaurant
+U+01F373	frying pan, cooking, restaurant
+U+01F374	fork and knife, fork, knife, restaurant
+U+01F375	teacup, cup of tea, tea, drink
+U+01F376	sake, sake bottle and cup, cup, bottle, drink, restaurant, bar
+U+01F377	wine, glass of wine, wine glass, glass, drink, restaurant, bar
+U+01F378	cocktail, cocktail glass, restaurant, bar
+U+01F379	tropical drink, tropical, drink, restaurant, bar
+U+01F37A	beer, beer mug, mug, restaurant, bar
+U+01F37B	beer mugs, beer, mugs, mug, restaurant, bar
+U+01F37C	baby bottle, milk, bottle, drink
+U+01F380	ribbon, celebration
+U+01F381	gift, present, wrapped present, wrapped, celebration
+U+01F382	birthday cake, birthday, cake, celebration
+U+01F383	jack-o-lantern, jack, lantern, Halloween, pumpkin, celebration
+U+01F384	christmas tree, tree, celebration
+U+01F385	santa, santa claus, father christmas, christmas, celebration
+U+01F386	firework, celebration
+U+01F387	sparkler, firework, firework sparkler, celebration
+U+01F388	balloon, celebration
+U+01F389	party popper, party, popper, celebration
+U+01F38A	confetti, confetti ball, ball, celebration
+U+01F38B	tree and paper strips, Star Festival, tree, paper strips, celebration
+U+01F38C	crossed flags, crossed flags of Japan, crossed, flags, celebration
+U+01F38D	pine decoration, New Year, Japanese, pine, celebration
+U+01F38E	dolls, Dolls Festival, festival, Japanese, celebration
+U+01F38F	carp streamer, streamer, celebration
+U+01F390	wind chime, chime
+U+01F391	moon viewing, moon viewing ceremony, moon, viewing, celebration
+U+01F392	school bag, school satchel, satchel, school
+U+01F393	graduation cap, cap, graduation, celebration
+U+01F3A0	carousel, carousel horse, horse, entertainment
+U+01F3A1	ferris wheel, ferris, wheel, amusement park, entertainment
+U+01F3A2	roller coaster, roller, coaster, amusement park, entertainment
+U+01F3A3	fishing, fishing pole and fish, fish, pole, recreation, entertainment
+U+01F3A4	mic, microphone, Karaoke, entertainment
+U+01F3A5	movie camera, movie, cinema, entertainment
+U+01F3A6	movie, cinema, movie sign, entertainment
+U+01F3A7	headphone, entertainment
+U+01F3A8	paint palette, artist palette, palette, artist, paint, art
+U+01F3A9	top hat, hat, entertainment
+U+01F3AA	circus, circus tent, tent, entertainment
+U+01F3AB	ticket, entertainment
+U+01F3AC	clapperboard, clapper board, clapper, movie, entertainment
+U+01F3AD	face mask, performing art, art, entertainment, performing
+U+01F3AE	video game, game controller, controller, game
+U+01F3AF	bull's eye, direct hit, right on target, target, hit, game
+U+01F3B0	slot machine, slot, game
+U+01F3B1	billiard, eight ball, game
+U+01F3B2	game die, die, dice, game
+U+01F3B3	bowling, bowling ball, ball, game
+U+01F3B4	playing card, flower card, flower, card game, card, game, Hanafuda
+U+01F3B5	musical note, music, note
+U+01F3B6	musical notes, music, note, notes
+U+01F3B7	sax, saxophone, musical instrument, music, instrument
+U+01F3B8	guitar, musical instrument, music, instrument
+U+01F3B9	piano, musical keyboard, keyboard, musical instrument, music, instrument
+U+01F3BA	trumpet, musical instrument, music, instrument
+U+01F3BB	violin, musical instrument, music, instrument
+U+01F3BC	music score, music, score
+U+01F3BD	running shirt, running shirt with sash, running, shirt, sash, sport
+U+01F3BE	tennis, tennis ball, tennis racquet and ball, ball, sport
+U+01F3BF	ski, ski and boot, boot, sport
+U+01F3C0	basketball, basketball hoop, ball, hoop, sport
+U+01F3C1	checkered flag, flag, checkered, racing, sport
+U+01F3C2	snowboarder, snowboarding, snowboard, sport
+U+01F3C3	runner, running, marathon, sport
+U+01F3C4	surfing, surfer, sport
+U+01F3C6	trophy, prize
+U+01F3C7	horse racing, racing horse, jockey, racing, horse, sport
+U+01F3C8	American football, American, ball, sport
+U+01F3C9	soccer, soccer ball, ball, sport
+U+01F3CA	swimmer, swimming, swim, sport
+U+01F3E0	house, building
+U+01F3E1	home, house with a garden, house, garden, building
+U+01F3E2	office building, office, building
+U+01F3E3	post office, Japanese post office, Japanese, post, building
+U+01F3E4	post office, European post office, European, post, building
+U+01F3E5	hospital, building
+U+01F3E6	bank, building
+U+01F3E7	ATM, automated teller, automated, teller
+U+01F3E8	hotel, building
+U+01F3E9	love hotel, love, hotel, building
+U+01F3EA	convenience store, convenience, store, building
+U+01F3EB	school, school building, building
+U+01F3EC	department store, department, store
+U+01F3ED	factory, building
+U+01F3EE	red lantern, red, lantern, izakaya, bar, restaurant
+U+01F3EF	Japanese castle, castle, building
+U+01F3F0	European castle, castle, building
+U+01F400	Rat, animal
+U+01F401	Mouse, animal
+U+01F402	Ox, animal
+U+01F403	water buffalo, water, buffalo, animal
+U+01F404	cow, animal
+U+01F405	tiger, animal
+U+01F406	leopard, animal
+U+01F407	rabbit, bunny, animal
+U+01F408	cat, animal
+U+01F409	dragon, animal
+U+01F40A	crocodile, animal
+U+01F40B	whale, animal
+U+01F40C	snail, animal
+U+01F40D	snake, animal
+U+01F40E	horse, animal
+U+01F40F	ram, animal
+U+01F410	goat, animal
+U+01F411	sheep, animal
+U+01F412	monkey, animal
+U+01F413	rooster, animal
+U+01F414	chicken, animal
+U+01F415	dog, puppy, animal
+U+01F416	pig, animal
+U+01F417	boar, animal
+U+01F418	elephant, animal
+U+01F419	octopus, animal
+U+01F41A	shell, spiral shell, animal
+U+01F41B	bug, centipede, caterpillar, animal
+U+01F41C	ant, animal
+U+01F41D	honeybee, bee, animal
+U+01F41E	lady beetle, ladybug, lady, beetle, animal
+U+01F41F	fish, animal
+U+01F420	tropical fish, fish, animal
+U+01F421	blowfish, fish, animal
+U+01F422	turtle, animal
+U+01F423	hatching chick, baby chick, hatching, baby, chick, chicken, animal
+U+01F424	baby chick, baby, chick, chicken, animal
+U+01F425	baby chick, front facing baby chick, baby, chick, chicken, animal
+U+01F426	bird, animal
+U+01F427	penguin, animal
+U+01F428	koala, koala bear, animal
+U+01F429	poodle, dog, animal
+U+01F42A	one hump camel, hump, camel, dromedary, animal
+U+01F42B	two hump camel, hump, camel, bactrian, animal
+U+01F42C	dolphin, animal
+U+01F42D	mouse face, mouse, face, animal
+U+01F42E	cow face, cow, face, animal
+U+01F42F	tiger face, tiger, animal
+U+01F430	rabbit face, rabbit, face, animal
+U+01F431	cat face, cat, face, animal
+U+01F432	dragon face, dragon, face, animal
+U+01F433	spouting whale, spouting, whale, animal
+U+01F434	horse face, horse, face, animal
+U+01F435	monkey face, monkey, face, animal
+U+01F436	dog face, dog, face, animal
+U+01F437	pig face, pig, face, animal
+U+01F438	frog face, frog, face, animal
+U+01F439	hamster face, hamster, face, animal
+U+01F43A	wolf face, wolf, face, animal
+U+01F43B	bear face, bear, face, animal
+U+01F43C	panda face, panda, face, animal
+U+01F43D	pig nose, nose, pig, face, animal
+U+01F43E	paw, paw print, print, animal
+U+01F440	eyes, face
+U+01F442	ear, body
+U+01F443	nose, face, body
+U+01F444	mouth, lips, face, body
+U+01F445	tongue, face, body
+U+01F446	up finger, finger pointing up, index finger, backhand, finger
+U+01F447	down finger, finger pointing down, index finger, backhand, finger
+U+01F448	left finger, finger pointing left, index finger, backhand, finger
+U+01F449	right finger, finger pointing right, index finger, backhand, finger
+U+01F44A	clenched fist, fist, hand
+U+01F44B	hand waving, hand, waving
+U+01F44C	OK sign, OK hand sign, OK, hand, sign
+U+01F44D	thumbs up, thumbs, up, hand, sign
+U+01F44E	thumbs down, thumbs, down, hand, sign
+U+01F44F	hands clapping, hands, clapping, sign
+U+01F450	open hands, open hands sign, hand, open, sign
+U+01F451	crown, clothing
+U+01F452	woman's hat, hat, clothing
+U+01F453	eyeglasses, glasses, clothing
+U+01F454	necktie, tie, clothing
+U+01F455	T-shirt, shirt, clothing
+U+01F456	trousers, jeans, pants, clothing
+U+01F457	dress, one-piece, clothing
+U+01F458	kimono, dress, clothing
+U+01F459	bikini, bathing suit, clothing
+U+01F45A	woman's clothes, clothes, clothing
+U+01F45B	purse, coin purse, coin, clothing
+U+01F45C	handbag, bag, clothing
+U+01F45D	pouch, bag, clothing
+U+01F45E	man's shoe, shoe, clothing
+U+01F45F	athletic shoe, sneaker, shoe, clothing
+U+01F460	high-heel, shoe, clothing
+U+01F461	woman's sandal, sandal, woman, clothing
+U+01F462	woman's boot, boot, woman, clothing
+U+01F463	footprint, foot, print, body
+U+01F464	bust in silhouette, bust, silhouette, people
+U+01F465	busts in silhouette, bust, silhouette, people
+U+01F466	boy, people
+U+01F467	girl, people
+U+01F468	man, people
+U+01F469	woman, people
+U+01F46A	family, father, mother, child, people
+U+01F46B	man and woman, couple, man and woman holding hands, man, woman, holding hands, people
+U+01F46C	two men, couple, two men holding hands, man, holding hands, people
+U+01F46D	two women, couple, two women holding hands, woman, holding hands, people
+U+01F46E	police officer, police, officer, people
+U+01F46F	bunny girl, bunny ears, girl, woman, people
+U+01F470	bride, bride with a veil, veil, wedding, people
+U+01F471	blond person, blond, people
+U+01F472	man, man with gua pi mao, gua pi mao, people
+U+01F473	man, man with a turban, turban, people
+U+01F474	older man, man, older, people
+U+01F475	older woman, woman, older, people
+U+01F476	baby, people
+U+01F477	construction worker, construction, worker, people
+U+01F478	princess, fairy tale, people
+U+01F479	ogre, monster, oni, fairy tale, Japanese ogre, face
+U+01F47A	goblin, monster, tengu, fairy tale, Japanese goblin, face
+U+01F47B	ghost, fairy tale, face
+U+01F47C	baby angel, angel, fairy tale, face
+U+01F47D	alien, extraterrestrial, UFO, fairy tale, face
+U+01F47E	alien monster, monster, UFO, fairy tale, face
+U+01F47F	imp, little devil, devil, face
+U+01F480	skull, fairy tale, body, face
+U+01F481	information desk, help, information, people
+U+01F482	guardsman, guard, people
+U+01F483	dancer, dance, people
+U+01F484	lipstick, makeup, cosmetics
+U+01F485	nail care, nail, manicure, nail polish, cosmetics
+U+01F486	face massage, massage, salon
+U+01F487	haircut, beauty parlor, beauty, parlor
+U+01F488	barber shop, barber pole, barber, pole
+U+01F489	shot, syringe, needle, medicine, doctor
+U+01F48A	pill, medicine, doctor
+U+01F48B	kiss mark, lips, kiss, romance
+U+01F48C	love letter, mail with a heart, letter, heart, romance
+U+01F48D	ring, romance
+U+01F48E	gem, gem stone, diamond, romance
+U+01F48F	kiss, kissing, people, romance
+U+01F490	bouquet, flower, romance
+U+01F491	couple, couple with a heart, heart, people, romance
+U+01F492	wedding chapel, wedding, chapel, romance
+U+01F493	pulsating heart, pulsating, beating, heart, love, emotion
+U+01F494	heart break, broken heart, break, heart, broken, emotion
+U+01F495	two hearts, lovers, love, emotion
+U+01F496	sparkling heart, excited, sparkling, love, emotion
+U+01F497	growing heart, nervous, excited, heart, love, emotion
+U+01F498	heart and arrow, heart, arrow, love, emotion
+U+01F499	blue heart, blue, heart, emotion
+U+01F49A	green heart, green, heart, emotion
+U+01F49B	yellow heart, yellow, heart, emotion
+U+01F49C	purple heart, purple, heart, emotion
+U+01F49D	heart with ribbon, heart, ribbon, Valentine, emotion
+U+01F49E	revolving hearts, heart, revolving, cute, kawaii, love, adorable, emotion
+U+01F49F	heart decoration, heart
+U+01F4A0	flower petal, cute, flower, diamond shape. diamond, emotion
+U+01F4A1	light bulb, got an idea, electric, light, bulb, comic
+U+01F4A2	anger, anger sign, angry, comic, emotion
+U+01F4A3	bomb, comic, emotion
+U+01F4A4	sleepy, Zzz, sleeping, snoring, comic, emotion
+U+01F4A5	collision, collision symbol, comic, emotion
+U+01F4A6	splashing sweat, sweat, sweaty, comic, emotion
+U+01F4A7	cold sweat, sweat, sweaty, comic
+U+01F4A8	running dash, run away, run, comic, emotion
+U+01F4A9	poop, pile of poo, poo, dung, pile
+U+01F4AA	biceps, muscle flex, muscle, strong, flex, comic
+U+01F4AB	dizzy, seeing stars, stars, comic, emotion
+U+01F4AC	speech balloon, speech bubble, dialog bubble, balloon, bubble, dialog, comic
+U+01F4AD	thought balloon, thought bubble, thought, bubble, comic
+U+01F4AE	flower stamp, well done stamp, flower, stamp
+U+01F4AF	full score, 100 points, 100, score
+U+01F4B0	money bag, dollar bag, money, bag
+U+01F4B1	currency exchange, currency, money, exchange
+U+01F4B2	dollar sign, bold dollar sign, dollar, money
+U+01F4B3	credit card, card, credit
+U+01F4B4	yen note, banknote, yen, money, bill, note
+U+01F4B5	dollar note, banknote, dollar, money, bill, note
+U+01F4B6	Euro note, Euro, banknote, money, bill, note
+U+01F4B7	Pound note, pound, banknote, money
+U+01F4B8	flying money, money with wings, flying banknote, bank, note, money
+U+01F4B9	rising market, upward chart, upward, chart, market
+U+01F4BA	seat, chair
+U+01F4BB	PC, personal computer, computer, personal
+U+01F4BC	briefcase, 
+U+01F4BD	MD, mini disc, disc
+U+01F4BE	floppy disc, floppy, disc
+U+01F4BF	blu-ray, DVD, CD, optical disc, disc
+U+01F4C0	DVD, DVD disc, disc
+U+01F4C1	file folder, file, folder
+U+01F4C2	open folder, open file folder, open, file, folder
+U+01F4C3	document, page with a curl, page
+U+01F4C4	document, page with face up, face up, page
+U+01F4C5	calendar
+U+01F4C6	tear-off calendar, calendar
+U+01F4C7	card index, rolodex, index
+U+01F4C8	upward trend, upward trend chart, chart, graph, upward
+U+01F4C9	downward trend, downward trend chart, chart, graph, downward
+U+01F4CA	bar graph, bar chart, chart
+U+01F4CB	clipboard
+U+01F4CC	pushpin, pin
+U+01F4CD	round pushpin, pushpin, pin
+U+01F4CE	paperclip, clip
+U+01F4CF	straight ruler, ruler
+U+01F4D0	triangle ruler, triangle, set square, ruler
+U+01F4D1	bookmark tabs, marker, tabs, bookmark
+U+01F4D2	ledger, notebook
+U+01F4D3	notebook
+U+01F4D4	decorated notebook, notebook with decoration, notebook, cover
+U+01F4D5	closed book, book
+U+01F4D6	open book, book
+U+01F4D7	green book, book
+U+01F4D8	book, blue book
+U+01F4D9	orange book, book
+U+01F4DA	books, book
+U+01F4DB	name badge, badge, name
+U+01F4DC	scroll, paper scroll
+U+01F4DD	memo, memo book, communication
+U+01F4DE	phone, telephone, phone receiver, communication
+U+01F4DF	pager, communication
+U+01F4E0	fax, fax machine, communication
+U+01F4E1	satellite dish, satellite antenna, antenna, dish, satellite, communication
+U+01F4E2	loudspeaker, public address, hand speaker, communication
+U+01F4E3	megaphone, cheering, communication
+U+01F4E4	sent mail, sent box, mail, sent, box, outbox, tray, communication
+U+01F4E5	Inbox, received mail, mail, received, box, tray, communication
+U+01F4E6	package, parcel, box
+U+01F4E7	email, mail, letter, communication
+U+01F4E8	incoming mail, received mail, incoming, email, mail, letter, envelope, communication
+U+01F4E9	outgoing mail, sent mail, outgoing, email, mail, letter, envelope, communication
+U+01F4EA	mailbox, closed, mailbox with a lowered flag, mail, flag
+U+01F4EB	mailbox, closed, mailbox with a raised flag, mail, flag
+U+01F4EC	mailbox, open, open mailbox with a raised flag, mail, flag
+U+01F4ED	mailbox, open, open mailbox with a lowered flag, mail, flag
+U+01F4EE	postbox
+U+01F4EF	postal horn, postal, horn
+U+01F4F0	newspaper, news, paper
+U+01F4F1	cell phone, mobile phone, phone
+U+01F4F2	cell phone with arrow, make a call, mobile phone, phone
+U+01F4F3	vibration mode, cell phone, mobile, phone, mode
+U+01F4F4	phone off, cell phone off, cell phone, mobile, phone, off
+U+01F4F5	no cell phone, no calls, mobile, phone
+U+01F4F6	mobile signals, antenna with bars, signal strength, signal, antenna, mobile, phone
+U+01F4F7	camera
+U+01F4F9	video cam, camera, video
+U+01F4FA	TV, television
+U+01F4FB	radio
+U+01F4FC	video tape, video, tape
+U+01F500	crossed arrows, crossed right arrows, arrows
+U+01F501	clockwise arrows, clockwise, arrows
+U+01F502	clockwise arrows, clockwise arrows with number 1, clockwise, arrows, number 1
+U+01F503	reload, reload sign, vertical clockwise arrows, arrows
+U+01F504	anti-clockwise arrows, anti-clockwise, arrows
+U+01F505	low brightness, low, dim, low brightness sign, brightness
+U+01F506	high brightness, bright, high brightness sign, brightness
+U+01F507	no speaking, quiet please, quiet, speaker with cancellation mark
+U+01F508	speaker, loudspeaker
+U+01F509	speaker, low volume, low, speaker with low volume
+U+01F50A	speaker, high volume, high, speaker with loud volume
+U+01F50B	battery
+U+01F50C	electric plug, electric
+U+01F50D	magnifying glass, search, left-pointing magnifying glass, left-pointing, glass
+U+01F50E	magnifying glass, search, right-pointing magnifying glass, right-pointing, glass
+U+01F50F	lock, privacy, lock with an ink pen, ink pen
+U+01F510	closed lock, lock with a key, secure
+U+01F511	key, password
+U+01F512	lock, closed lock
+U+01F513	lock, open lock
+U+01F514	bell, chapel
+U+01F515	no bell, no sound, bell with cancellation sign, bell
+U+01F516	bookmark
+U+01F517	link sign, links, two rings
+U+01F518	radio button, button, radio
+U+01F519	back, back arrow, back with left arrow, left arrow, arrow
+U+01F51A	end, end arrow, end with left arrow, left arrow, arrow
+U+01F51B	ON arrow, ON with exclamation mark and arrow, arrow, exclamation mark, exclamation
+U+01F51C	Soon sign, Soon, Soon with right arrow, arrow
+U+01F51D	Top sign, Top, Top with an up arrow, up arrow, up
+U+01F51E	No one under 18, under 18 prohibited, under 18, 18
+U+01F51F	keycap ten, 10
+U+01F520	uppercase letters, input uppercase Latin, uppercase Latin, uppercase, Latin
+U+01F521	lowercase letters, input lowercase Latin, lowercase Latin, lowercase, Latin
+U+01F522	numbers, input numbers
+U+01F523	symbols, input symbols
+U+01F524	Latin Alphabet, input Latin Alphabet, Latin, English, ABC
+U+01F525	fire, flame
+U+01F526	flashlight, light, torch, electric
+U+01F527	wrench, tool
+U+01F528	hammer, tool
+U+01F529	nut and bolt, nut, bolt, tool
+U+01F52A	cooking knife, knife
+U+01F52B	gun, pistol, revolver
+U+01F52C	microscope
+U+01F52D	telescope
+U+01F52E	crystal ball, fortune telling, crystal, ball, fortune
+U+01F52F	six-pointed star, fortune telling, six-pointed, star, fortune
+U+01F530	green and yellow leaf, green and yellow, beginner, Japanese
+U+01F531	trident sign, anchor, trident, emblem
+U+01F532	square button, square, button
+U+01F533	square button, square, button
+U+01F534	large circle, large red circle, red, circle
+U+01F535	large circle, large blue circle, blue, circle
+U+01F536	large diamond, large orange diamond, orange, diamond
+U+01F537	large diamond, large blue diamond, blue, diamond
+U+01F538	small diamond, small orange diamond, orange, diamond
+U+01F539	small diamond, small blue diamond, blue, diamond
+U+01F53A	up triangle, up red triangle, red, triangle
+U+01F53B	down triangle, down red triangle, red, triangle
+U+01F53C	up triangle, up triangle button, triangle, button
+U+01F53D	down triangle, down triangle button, triangle, button
+U+01F550	1 o'clock, clock, one, 1:00
+U+01F551	2 o'clock, clock, two, 2:00
+U+01F552	3 o'clock, clock, three, 3:00
+U+01F553	4 o'clock, clock, four, 4:00
+U+01F554	5 o'clock, clock, five, 5:00
+U+01F555	6 o'clock, clock, six, 6:00
+U+01F556	7 o'clock, clock, seven, 7:00
+U+01F557	8 o'clock, clock, eight, 8:00
+U+01F558	9 o'clock, clock, nine, 9:00
+U+01F559	10 o'clock, clock, ten, 10:00
+U+01F55A	11 o'clock, clock, eleven, 11:00
+U+01F55B	12 o'clock, clock, twelve, 12:00
+U+01F55C	one-thirty, , clock, 1:30
+U+01F55D	two-thirty, clock, 2:30
+U+01F55E	three-thirty,  clock, 3:30
+U+01F55F	four-thirty, clock, 4:30
+U+01F560	five-thirty, clock, 5:30
+U+01F561	six-thirty, clock, 6:30
+U+01F562	seven-thirty, clock, 7:30
+U+01F563	eight-thirty, clock, 8:30
+U+01F564	nine-thirty, clock, 9:30
+U+01F565	ten-thirty, clock, 10:30
+U+01F566	eleven-thirty, clock, 11:30
+U+01F567	twelve-thirty, clock, 12:30
+U+01F5FB	Mt. Fuji, mountain
+U+01F5FC	Tokyo Tower, Tokyo, tower
+U+01F5FD	Statue of Liberty, statue, liberty
+U+01F5FE	Map of Japan, map, Japan
+U+01F5FF	Moyai statue, statue, Moyai
+U+01F600	grin, grinning, grinning face, smiley, face, laugh, lol, funny
+U+01F601	grin, smiling eyes, grinning, smile, smiley, smiling, grinning face with smiling eyes, face, laugh, lol, funny
+U+01F602	tears of joy, joy, tears, face with tears of joy, face
+U+01F603	open mouth smile, smiling, smiley, smiling face with mouth open, face, laugh, lol, funny
+U+01F604	open mouth smile, smile, smiley, open mouth, smiling eyes, laugh, lol, funny
+U+01F605	cold sweat smile, smile but with cold sweat, cold sweat
+U+01F606	open mouth smile, smile with open mouth, smiling face with mouth open, open mouth, face
+U+01F607	smile with a halo, smile, halo, face
+U+01F608	smile with horns, smile, horns, face
+U+01F609	winking face, wink, face
+U+01F60A	smile, smiling eyes, smiling face and eyes, smiling face, smiling eyes, face
+U+01F60B	yummy face, yummy, um um good, smile face, delicious food, face
+U+01F60C	relieved face, relieved, face
+U+01F60D	smiling face, heart eyes, love, adoring, heart, eyes, face
+U+01F60E	cool, joe cool, jane cool, smiling with sunglasses, smiling, sunglasses, face
+U+01F60F	smirk, smirking face. smirking, face
+U+01F610	deadpan face, neutral face, deadpan, neutral, face, no comment
+U+01F611	expressionless, inexpressive face, face, no comment
+U+01F612	unamused, unamused face, unhappy, face
+U+01F613	cold sweat, face with cold sweat, face
+U+01F614	pensive face, dejected, pensive, face
+U+01F615	confused face, confused, face
+U+01F616	confounded face, confounded, face
+U+01F617	kissy face, kissing face, kiss, face
+U+01F618	throwing kisses, face throwing kisses, face
+U+01F619	kiss and smile, kissing face with a smile, face, smile, smiling eyes
+U+01F61A	kissing, kissing with eyes closed, closed eyes, face
+U+01F61B	tongue out, tongue stuck out, face with a sticking tongue, face
+U+01F61C	tongue out, just teasing, tongue stuck out with a wink, wink, joke, face
+U+01F61D	yuck, tongue stuck out with closed eyes, horrible, tongue stuck out, closed eyes, face
+U+01F61E	disappointed, disappointment, disappointed face, face
+U+01F61F	worried, worried face, face
+U+01F620	angry, mad, angry face, face
+U+01F621	pouting, angry, mad, red pouting face, red face, face
+U+01F622	crying, crying face, sad, tears, face
+U+01F623	blew it, i blew it face, persevering face, persevering, face
+U+01F624	look of triumph, i won it face, i won, triumph, face
+U+01F625	whew!, disappointed but relieved, relieved, disappointed, face
+U+01F626	frowning face, frowning with open mouth, frowning, open mouth, face
+U+01F627	anguished, anguished face, suffering, face
+U+01F628	fearful, scared, scared face, face
+U+01F629	weary, tired, weary face, face
+U+01F62A	sleepy, sleepy face, face
+U+01F62B	tired, tired face, face
+U+01F62C	grimace, grimacing face, grimacing, face
+U+01F62D	loudly crying, tears, crying, cry, face
+U+01F62E	open mouth face, open mouth, mouth, face
+U+01F62F	hushed face, stunned, surprised, face
+U+01F630	rushed face, blue face with cold sweat, open mouth, cold sweat, face
+U+01F631	fearful face, screaming in fear, face screaming in fear, fear, fearful, scared, face
+U+01F632	astonished face, astonished, totally shocked, shocked, face
+U+01F633	flushed, flushed face, in a daze, dazed, face
+U+01F634	sleeping, sleeping face, face
+U+01F635	dizzy, dizzy face, face
+U+01F636	no mouth face, no mouth, face
+U+01F637	face with mask, cold, under the weather, medical mask, mask, face
+U+01F638	grinning cat face, grinning, cat face with grin and smiling eyes, cat face, cat, face
+U+01F639	tears of joy, cat face, cat face with tears of joy, cat, face
+U+01F63A	smiling cat face, smiling cat face with open mouth, cat face, open mouth, open. mouth, cat, face
+U+01F63B	smiling cat face, smiling cat with heart-shaped eyes, in love, love, heart, eyes, cat face, cat, face
+U+01F63C	wry cat face, wry, ironic smile, cat face, cat, face
+U+01F63D	kissing cat, eyes closed, kissing, kiss, eyes, closed, cat, face
+U+01F63E	pouting cat face, pouting, cat face, cat, face
+U+01F63F	crying cat face, crying, cry, cat face, cat, face
+U+01F640	weary cat face, oh my god, real surprised, cat, face
+U+01F645	No good gesture, no good, no, prohibited, gesture, face
+U+01F646	OK gesture, all right, gesture, face
+U+01F647	i'm sorry, deeply bowing, sorry, bowing, gesture, person
+U+01F648	see no evil, see no evil monkey, monkey
+U+01F649	hear no evil, hear no evil monkey, monkey
+U+01F64A	speak no evil, speak no evil monkey, monkey
+U+01F64B	happy person, raising hand, person raising hand, happy, person, gesture
+U+01F64C	hooray, raising both hands in celebration, both hands, celebration
+U+01F64D	frowning, frowning person, person, gesture
+U+01F64E	pouting, person pouting, person, gesture
+U+01F64F	folded hands, prayer, praying, pray, hand, gesture
+U+01F680	rocket, vehicle
+U+01F681	helicopter, vehicle
+U+01F682	steam locomotive, locomotive, train, vehicle
+U+01F683	train, electric train, railway car, electric, railway, tram,vehicle
+U+01F684	high-speed train,shinkansen, train, vehicle
+U+01F685	high-speed train,  bullet nose, shinkansen with bullet nose, shinkansen, train, vehicle
+U+01F686	train, railway, vehicle
+U+01F687	subway, metro, vehicle
+U+01F688	light rail, light, rail, vehicle
+U+01F689	train station, train, station
+U+01F68A	tram, vehicle
+U+01F68B	tram car, tram, car, vehicle
+U+01F68C	bus, vehicle
+U+01F68D	oncoming bus, bus, oncoming, vehicle
+U+01F68E	trolleybus, bus, trolley, vehicle
+U+01F68F	bus stop, stop, bus
+U+01F690	minibus, bus, vehicle
+U+01F691	ambulance, vehicle
+U+01F692	fire engine, fire truck, fire, engine, vehicle
+U+01F693	police car, patrol car, police, vehicle
+U+01F694	oncoming police car, police car, police, vehicle
+U+01F695	taxi, vehicle
+U+01F696	oncoming taxi, taxi, vehicle
+U+01F697	car, automobile, vehicle
+U+01F698	oncoming car, oncoming automobile, car, automobile, oncoming, vehicle
+U+01F699	RV, recreational vehicle, car, vehicle
+U+01F69A	delivery truck, truck, vehicle
+U+01F69B	lorry, semi, articulated lorry, truck, trailer, vehicle
+U+01F69C	tractor, vehicle
+U+01F69D	monorail, vehicle
+U+01F69E	mountain railway, mountain cable car, mountain, railway, car, vehicle
+U+01F69F	suspension railway, railway, suspension, vehicle
+U+01F6A0	mountain cableway, mountain cable car, cable, car, mountain, vehicle
+U+01F6A1	cable car, aerial tramway, ropeway, aerial, tramway, gondola, vehicle
+U+01F6A2	ship, vehicle
+U+01F6A3	rowboat, boat, vehicle
+U+01F6A4	speedboat, boat, vehicle
+U+01F6A5	traffic lights, horizontal traffic light, traffic signals, light, traffic
+U+01F6A6	traffic lights, vertical traffic light, traffic signals, light, traffic
+U+01F6A7	under construction, construction sign, construction, sign
+U+01F6A8	revolving light, police light, police beacon, police car
+U+01F6A9	location flag, location info flag, triangular location flag, triangular flag, flag, location
+U+01F6AA	door
+U+01F6AB	No entry sign, No entry, sign
+U+01F6AC	smoking sign,, smoking permitted, smoking, sign
+U+01F6AD	no smoking sign, no smoking, sign
+U+01F6AE	litterbox sign, put litter in its place, litter box, sign
+U+01F6AF	don't litter sign, do not litter, no littering, sign
+U+01F6B0	drinking water, potable water, drinking water sign
+U+01F6B1	non-drinking water, non-potable water, water, non-drinking
+U+01F6B2	bike, bicycle, vehicle
+U+01F6B3	no bike, no bicycle, bicycle not allowed, bike, vehicle
+U+01F6B4	bicyclist, cyclist, bike
+U+01F6B5	mountain bicyclist, bike, cyclist, mountain
+U+01F6B6	pedestrian, walker
+U+01F6B7	no pedestrians, pedestrians not allowed, pedestrian, walker, sign
+U+01F6B8	children crossing, children, crossing, sign
+U+01F6B9	Men sign, Men's room, Men's symbol, sign
+U+01F6BA	Women sign, Women's room, Women's symbol, sign
+U+01F6BB	restroom sign, restroom, lavatory, wc
+U+01F6BC	baby sign, baby on board, baby changing station, baby
+U+01F6BD	toilet
+U+01F6BE	water closet, WC, restroom, lavatory
+U+01F6BF	shower
+U+01F6C0	bath
+U+01F6C1	bathtub
+U+01F6C2	passport control, passport, control
+U+01F6C3	customs
+U+01F6C4	baggage claim, baggage
+U+01F6C5	left luggage, baggage service, luggage, baggage
+U+01F1EFU+01F1F5	flag of Japan, Japan, flag
+U+01F1FAU+01F1F8	flag of the US, the US, USA, flag
+U+01F1EBU+01F1F7	flag of France, France, flag
+U+01F1E9U+01F1EA	flag of Germany, Germany, flag
+U+01F1EEU+01F1F9	flag of Italy, Italy, flag
+U+01F1ECU+01F1E7	flag of Great Britain, Great Britain, flag
+U+01F1EAU+01F1F8	flag of Spain, Spain, flag
+U+01F1F7U+01F1FA	flag of Russia, Russia, flag
+U+01F1E8U+01F1F3	flag of China, China, flag
+U+01F1F0U+01F1F7	flag of Korea, Korea, flag
+U+0FE82C	hash key
+U+0FE82E	keycap 1
+U+0FE82F	keycap 2
+U+0FE830	keycap 3
+U+0FE831	keycap 4
+U+0FE832	keycap 5
+U+0FE833	keycap 6
+U+0FE834	keycap 7
+U+0FE835	keycap 8
+U+0FE836	keycap 9
+U+0FE837	keycap 0
+U+20E3	combining enclosing keycap
+U+2122	trade mark sign, trade mark, sign
+U+231A	watch, clock
+U+231B	hourglass, sand
+U+23E9	fast forward, double right arrow, right, arrow
+U+23EA	rewind, double left arrow, left, arrow
+U+23EB	up arrow, double up arrow, up, arrow
+U+23EC	down arrow, double down arrow, down, arrow
+U+23F0	alarm clock, alarm, clock
+U+23F3	sand timer, sand hourglass, hourglass, timer
+U+2601	cloud, weather
+U+263A	smiling face, smiley, non-filled smiley face, face
+U+2648	Aries, zodiac
+U+2649	Taurus, zodiac
+U+264A	Gemini, zodiac
+U+264B	Cancer, zodiac
+U+264C	Leo, zodiac
+U+264D	Virgo, zodiac
+U+264E	Libra, zodiac
+U+264F	Scorpion, Scorpius, zodiac
+U+2650	Sagittarius, zodiac
+U+2651	Capricorn, zodiac
+U+2652	Aquarius, zodiac
+U+2653	Pisces, zodiac
+U+267B	recycling symbol, solid universal recycling symbol, recycling, universal, sign
+U+267F	wheelchair access, wheelchair, access, wheelchair symbol, sign
+U+2693	anchor, sign
+U+26A0	warning sign, warning, sign
+U+26A1	high voltage, high voltage danger, high voltage sign, danger, high, voltage, sign
+U+26BD	soccer ball, soccer, ball
+U+26BE	baseball
+U+26C4	snowman, snowman without snow, snow
+U+26C5	sun behind clouds, sun with clouds, sun, cloud
+U+26CE	Ophiuchus, zodiac
+U+26D4	No entry sign, No entry, forbidden, no, sign
+U+26EA	church, building
+U+26F2	fountain
+U+26F3	flag in hole, golf, golf flag, hole
+U+26F5	sailboat, boat, yacht, sea resort, resort
+U+26FA	tent, camping
+U+26FD	gas station, fuel pump, fuel, gas, station
+U+2705	check mark, check, heavy check mark
+U+270A	rock, raised fist
+U+270B	paper, raised hand
+U+270C	scissor, victory hand, victory, yeah
+U+2728	sparkles, sparkling stars, sparkler, stars
+U+274C	cross mark, "X"
+U+274E	cross mark, "X" in square
+U+2753	question mark, solid question mark, question
+U+2754	question mark, hollow question mark, question
+U+2755	exclamation mark, hollow exclamation mark, exclamation
+U+2795	plus, heavy plus sign, plus sign, sign
+U+2796	minus, heavy minus sign, minus sign, sign
+U+2797	division, heavy division sign, division sign, sign
+U+27B0	curly loop, turn, loop
+U+27BF	double curly loop, curly loop, Japan, free dial
+U+3030	wavy dash, long sound mark, wavy, dash

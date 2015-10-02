@@ -1,0 +1,172 @@
+﻿# Source file for idnchars/confusables
+# $Revision: 1.6 $
+# $Date: 2006/08/05 22:38:09 $
+#0138; technical symbol (phonetic)
+0180 018D 01AA..01AB 01BA..01BB 01BE; technical symbol (phonetic)
+01C0..01C3; technical symbol (phonetic)
+0250..0252  0255  0258  025A  025C..25F  0261..0262  0264..0267  026A..026E  0270..0271  0273..274  0276..027F  0281..0282  0284..0287  0289  028C..0291  0293  0295..02A2; technical symbol (phonetic)
+02A3..02AB; technical symbol (Latin digraph)
+02AC          ; technical symbol (phonetic) #      (ʬ)  LATIN LETTER BILABIAL PERCUSSIVE
+02AD          ; technical symbol (phonetic) #      (ʭ)  LATIN LETTER BIDENTAL PERCUSSIVE
+
+03F3; presentation form
+0483..0486; archaic
+1100..11FF; archaic (used for ancient Hangul)
+1681..169A; archaic1
+16A0..16EA; archaic1
+17A3..17A4  17A8; deprecated or discouraged
+2800..28FF; Braille patterns
+10300..1031E; archaic1
+10330..1034A; archaic1
+10400..10425  10428..1044D; archaic1
+
+021C; archaic
+021D; archaic
+
+02B9..02C1    ; technical symbol (phonetic) #  [9] (ʹ..ˁ)  MODIFIER LETTER PRIME..MODIFIER LETTER REVERSED GLOTTAL STOP
+02C6..02D1    ; technical symbol (phonetic) # [12] (ˆ..ˑ)  MODIFIER LETTER CIRCUMFLEX ACCENT..MODIFIER LETTER HALF 
+02EE          ; technical symbol (phonetic) #      (ˮ)  MODIFIER LETTER DOUBLE APOSTROPHE
+03D7          ; archaic #      (ϗ)  GREEK KAI SYMBOL
+0559..055A    ; not part of identifers #  [2] (ՙ..՚)  ARMENIAN MODIFIER LETTER LEFT HALF RING..ARMENIAN APOSTROPHE
+058A          ; not part of identifers #      (֊)  ARMENIAN HYPHEN
+05F3..05F4    ; not part of identifers #  [2] (׳..״)  HEBREW PUNCTUATION GERESH..HEBREW PUNCTUATION GERSHAYIM
+0640          ; presentation form #      (ـ)  ARABIC TATWEEL
+#2010          ; not in modern use #      (‐)  HYPHEN
+2027          ; technical #      (‧)  HYPHENATION POINT
+203F..2040    ; technical #  [2] (‿..⁀)  UNDERTIE..CHARACTER TIE
+20D0..20DC    ; technical # [13] (⃐..⃜)  COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
+20E1          ; technical #      (⃡)  COMBINING LEFT RIGHT ARROW ABOVE
+20E5..20EA    ; technical #  [6] (⃥..⃪)  COMBINING REVERSE SOLIDUS OVERLAY..COMBINING LEFTWARDS ARROW OVERLAY
+2118          ; technical symbol (math) #      (℘)  SCRIPT CAPITAL P
+212E          ; technical #      (℮)  ESTIMATED SYMBOL
+2180..2183    ; presentation form #  [4] (ↀ..Ↄ)  ROMAN NUMERAL ONE THOUSAND C D..ROMAN NUMERAL REVERSED ONE 
+3021..302F    ; technical # [15] (〡..〯)  HANGZHOU NUMERAL ONE..HANGUL DOUBLE DOT TONE MARK
+3031..3035    ; presentation form #  [5] (〱..〵)  VERTICAL KANA REPEAT MARK..VERTICAL KANA REPEAT MARK LOWER HALF
+303B..303C    ; presentation form #  [2] (〻..〼)  VERTICAL IDEOGRAPHIC ITERATION MARK..MASU MARK
+30A0          ; technical #      (゠)  KATAKANA-HIRAGANA DOUBLE HYPHEN
+FB1E          ; presentation form #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
+FE20..FE23    ; presentation form #  [4] (︠..︣)  COMBINING LIGATURE LEFT HALF..COMBINING DOUBLE TILDE RIGHT HALF
+FE73          ; presentation form #      (ﹳ)  ARABIC TAIL FRAGMENT
+
+ 01BF          ; archaic #      (ƿ)  LATIN LETTER WYNN
+
+# 04C0; case exception (withheld until case pair added)
+17D3; deprecated
+1D165..1D1AD; technical (musical)
+
+[:script=Tagalog:]; archaic script
+[:script=Hanunoo:]; archaic script
+[:script=Buhid:]; archaic script
+[:script=Tagbanwa:]; archaic script
+[:script=Deseret:]; archaic script
+
+[:script=Shavian:]; archaic script
+[:script=Ogham:]; archaic script
+[:script=Old Italic:]; archaic script
+[:script=Runic:]; archaic script
+[:script=Gothic:]; archaic script
+[:script=Ugaritic:]; archaic script
+[:script=Linear B:]; archaic script
+[:script=Cypriot:]; archaic script
+[:script=Coptic:]; liturgical script
+# [:script=Syriac:]
+[\u0740-\u074A]; technical
+
+[:script=Glagolitic:]; archaic script
+[:script=Glagolitic:]; archaic script
+[:script=Old Persian:]; archaic script
+[:script=Kharoshthi :]; archaic script
+[:script=Osmanya :]; archaic script
+
+[:script=Balinese :]; archaic script
+[:script=Cuneiform :]; archaic script
+[:script=Phoenician :]; archaic script
+[:script=Phags_Pa :]; archaic script
+# [:script=Nko :]; rare usage
+
+[:script=Osmanya :]; archaic script
+
+[:default_ignorable_code_point:]; default-ignorable
+
+03D0..03D1 ; archaic    #  [2] (ϐ..ϑ)  GREEK BETA SYMBOL..GREEK THETA SYMBOL
+03D5..03D6 ; archaic   #  [2] (ϕ..ϖ)  GREEK PHI SYMBOL..GREEK PI SYMBOL
+03D8          ; archaic #      (Ϙ)  GREEK LETTER ARCHAIC KOPPA
+03DA          ; archaic #      (Ϛ)  GREEK LETTER STIGMA
+03DC          ; archaic #      (Ϝ)  GREEK LETTER DIGAMMA
+03DE          ; archaic #      (Ϟ)  GREEK LETTER KOPPA
+03E0          ; archaic #      (Ϡ)  GREEK LETTER SAMPI
+
+0343          ; archaic #      (̓)  COMBINING GREEK KORONIS
+
+018D; obsolete phonetic # LTN SML LTR TURNED DELTA
+029E; obsolete phonetic
+# 019E; obsolete phonetic # LTN SML LTR N W/ LONG RIGHT LEG
+01AA; obsolete phonetic # LTN LTR REVERSED ESH LOOP
+01AB; obsolete phonetic # LTN SML LTR T W/ PALATAL HOOK
+01B9..01BB; obsolete phonetic # LTN SML LTR EZH 
+01BE; archaic phonetic # LTN LTR INVERTED GLOTTAL STOP W/ STROKE
+025F; obsolete phonetic # LTN SML LTR DOTLESS J W/ STROKE (“gy” in Hungarian/voiced palatal stop/form of j)
+03D8..03E1; archaic # GREEK LETTERS
+03F7..03F8; archaic (Bactrian) # GREEK LTR SHO
+03FA..03FB; archaic # GREEK LTR SAN (SML and capital)
+066E..066F; archaic # ARABIC LTR DOTLESS BEH & QAF
+10F1..10F6; archaic # GEORGIAN LETTERS
+2127; archaic unit of conductance # INVERTED OHM SIGN, turned Greek CPTL LTR omega
+3165..318E; archaic # HANGUL
+
+
+#0269; obsoleted by IPA in 1989 # LTN SML LTR IOTA (preferred use is 026A)
+0277; obsoleted by IPA in 1989 # LTN SML LTR CLOSED OMEGA (preferred use is 028A)
+027C; obsoleted by IPA in 1989 # LTN SML LTR R W/ LONG LEG (in current use in Gaelic types, phonetic rep for Czech)
+068E; archaic (Sindhi) # ARABIC LTR DUL (older shape)
+0CDE; archaic # KANNADA LTR FA (name is a mistake for LLLA)
+17A8; archaic ligature for the sequence 17A7 1780 # KHMER INDEPENDENT VOWEL QUK (use of the sequence is now preferred)
+17D1; mostly obsolete # KHMER SIGN VIRIAM 
+17DD; mostly obsolete # KHMER SIGN ATTHACAN
+
+0344; deprecated or discouraged # COMBINING GREEK DIALYTIKA TONOS (0308 0301)
+0F73; deprecated or discouraged # TIBETAN VOWEL SIGN II (0F71 0F72)
+0F75; deprecated or discouraged # TIBETAN VOWEL SIGN UU (0F71 0F74)
+0F77; deprecated or discouraged # TIBETAN VOWEL SIGN VOCALIC RR (0FB2 0F81)
+0F79; deprecated or discouraged # TIBETAN VOWEL SIGN VOCALIC LL (0FB3 0F81)
+0F81; deprecated or discouraged # TIBETAN VOWEL SIGN REVERSED II (0F71 0F80)
+17A3..17A4; deprecated or discouraged # KHMER INDEPENDENT VOWEL QAQ & QAA
+#17B4..17B5; use in other contexts discouraged # KHMER VOWEL INHERENT AQ & AA
+17D3; deprecated or discouraged # KHMER SIGN BATHAMASAT (Only for phonetic transcription)
+17D8; deprecated or discouraged # KHMER SIGN BEYYAL (17D4 179B 17D4)
+2329; deprecated or discouraged # LEFT-POINTING ANGLE BRACKET (3008)
+232A; deprecated or discouraged # RIGHT-POINTING ANGLE BRACKET
+0340; deprecated or discouraged # COMBINING GRAVE TONE MARK (Vietnamese)
+0341; deprecated or discouraged # COMBINING ACUTE TONE MARK (Vietnamese)
+206A..206F; deprecated or discouraged # INHIBIT/ACTIVATE SYMMETRIC SWAPPING, ARABIC SHAPING, ETC.
+
+01BF; archaic # LATIN LETTER WYNN
+301E; mistaken analogue to 201D; 301F preferred # DOUBLE PRIME QUOTATION MARK
+
+#0196          ; case exception (variant of removed character) #      (Ɩ)  LATIN CAPITAL LETTER IOTA
+#01B8          ; case exception (variant of removed character) #      (Ƹ)  LATIN CAPITAL LETTER EZH REVERSED
+#0220          ; case exception (variant of removed character)  #      (Ƞ)  LATIN CAPITAL LETTER N WITH LONG RIGHT LEG
+
+1D400..1D7FF  ; technical symbol (math)
+1D000..1D1DD  ; technical symbol (musical)
+1D242..1D244; technical symbol (musical)
+FB00..FEFC    ; presentation form
+2460..24FF          ; presentation form
+3251..33FF          ; presentation form
+4DC0..4DFF    ; technical
+1D300..1D356  ; technical
+10140..10174; archaic
+03F9; archaic
+1d00..1DBF; non-IPA phonetics
+
+05A2; archaic #HEBREW ACCENT ATNAH HAFUKH
+#05BA; archaic # HEBREW POINT HOLAM HASER FOR VAV
+05C5; archaic # HEBREW MARK LOWER DOT
+05C6; archaic # HEBREW PUNCTUATION NUN HAFUKHA
+05C7; archaic # HEBREW POINT QAMATS QATAN
+1DC0..1DC3; archaic
+A700..A707; archaic
+A708..A716; technical (phonetic used for Chinese tones)
+2E00..2E0D; technical (Editorial Marks for Biblical Text Annotation)
+
+#10A0..10C5 2D00..2D2F; liturigical script (Asomtavruli, Nuskhuri)

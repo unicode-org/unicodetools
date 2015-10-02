@@ -1,0 +1,129 @@
+U+1f47e 
+Change the glyph something like windows or android, instead.
+
+U+1f46f 
+Change the glyph to make it two women dancing, with smaller ears. People far prefer the two women dancing (meaning “party”) rather than the aged (degenerate) Playboy Bunny look. Document that the name is wrong in names list annotation.
+This character resulted from the unification of KDDI sjisF3AF “バニー”=“bunny” i.e. Playboy Bunny (glyph was a blonde female head with bunny ears) and Softbank sjisFB69 “ラインダンス”=“line dance” (animated image was two women seemingly dancing in a chorus line, with smaller catlike ears). These were already cross-mapped by those two vendors. The idea was that it was the general notion of “showgirl” that was being conveyed.
+Notes from emojipedia: “Apple’s version shows two girls dancing, each wearing a leotard and bunny ears...The Apple version appears to be the more popular interpretation, possibly due to the earlier adoption of emoji on iOS than other platforms. Also known as: Dancing Girls Emoji, Tap Dance Emoji, Ballet Emoji, …”
+
+U+1f3b1 
+Change the glyph to show just an 8 ball. Lends itself to more usage. 
+
+U+1f477 
+Change the glyph to not show a +. It should not look like an EMT or other first-aid helmet.
+Annotate that at U+26d1 there is a helmet with a cross, which can be used for EMT, etc.
+
+U+1f4ba 
+Annotate that this is meant to be a reservable / ticketed seat (plane, TGV, movie theater), not arbitrary chair (like a kitchen chair or armchair). 
+ 
+U+1f62f 
+Annotate that it should not use a zipper-mouth on hushed face, like . 
+Note we are likely to add a separate character for zipper-mouth.
+
+U+1f4a9 
+Should have eyes, to match popular expectations.
+
+U+1f64f 
+Add names list description “praying", "bowing" or "thanking” (to make it clear it is not a high-five)
+
+U+1f60c
+The image doesn’t look “relieved”, so has been misinterpreted as “asleep”. Maybe add a hand-wiping-the-brow?
+
+U+1f481 
+Has gained the connotation of “sassy” or “care-free”. Add those meanings to nameslist.
+ 
+U+1f621 
+Image looks angry, when it should be pouting.
+http://www.timsackett.com/wp-content/uploads/2012/01/pouting_kid.jpg 
+
+U+1F63E
+If changes are made from U+1f621 to make the pouting face look less furious and more pouting, make sure the others are aligned.
+
+U+1F64E
+If changes are made from U+1f621 to make the pouting face look less furious and more pouting, make sure the others are aligned.
+
+U+1f645
+Also misinterpreted frequently. Show more of the face, and that it is not angry. Add annotations for what it is to convey: “no deal”, or “not ok”. Reverse of face with ok gesture
+ 
+U+1f640
+Annotate that face should not look horrified, but rather tired.
+ 
+U+1f364
+Change glyph to look like a fried shrimp. More like , but B&W of course.
+ 
+U+1f387 
+Open issue: Fix the glyph or annotation the name? We’ve gotten complaints that a firework sparkler is “Typically a stick held in the hand, not something hanging down”.
+ 
+U+1f516
+Change the glyph to look less like a price tag, and more like a bookmark. Maybe two streamers or a tassel?
+ 
+U+1f62c
+Fix glyph to not look angry, and annotate. Should be more “gritting teeth”.
+
+U+1f635
+Dizzy face. Fix glyph to use “swirly” eyes, as on Android and Windows. It better represents “dizzy”, and less confusion with astonished face.
+
+U+1F624 
+Fix glyph to appear like it is winning, not angry / fed up.
+Is there an language issue in the naming of this as a winning/triumphant, but the glyph (and common usage of this) displaying what appears to be extreme frustration or being fed up.
+
+
+U+1F626
+Fix glyph to appear less shocked, and more frowning.
+A frown with an ‘open mouth’ is difficult to achieve. Twitter achieves a clearer version of this than the glyph.
+
+
+U+1F633
+Fix glyph to appear with eyes open, and a straight mouth, to clarify embarrassment more clearly. Use 1F610 (Neutral Face) and add shading for red cheeks to achieve this.
+This emoji is difficult to use at present due to the wide variety of implementations: Apple (alarmed), Google (resigned), or Microsoft (happy go lucky, but with sheepish eyes)
+
+
+U+1F483
+Fix glyph to use a woman instead of a man dancing.
+Apple’s dancing woman image has become very iconic, and seems to imply a different meaning to the disco-dancing man.
+A gender-neutral image like Android or Windows might be a noble goal, but it removes some aspect of how this is used. Generally as “let’s party” or “let’s forget our worries and have a good time”.
+Add to nameslist annotation: “party” or “partying”
+
+U+1F48F
+Make the glyph be gender-neutral using smiley faces.
+
+U+1F491
+Make the glyph be gender-neutral using smiley faces.
+
+U+1F47B
+Fix glyph to use an identifiable face on the ghost.
+Commonly used for Halloween, and light-hearted matters. The glyph at present is a scarier-looking ghost than most interpretations.
+
+
+U+1F33B
+Fix glyph to include stem and leaves on the sunflower.
+This is how sunflowers are generally drawn, the leaves being an important part of identification. Apple, Windows and Twitter are good examples.
+
+U+1F335
+Fix glyph of cactus to use three-prong cactus (Saguaro), easily identifiable by more people.
+All platforms already use this style.
+
+U+1F35C
+Fix glyph to tilt the bowl to show that the contents are food, and not beverage.
+Makes this distinct from 1F375 Teacup Without Handle.
+
+U+1F373
+Fix glyph to use top-down image of frypan with egg.
+Current glyph is difficult to see.
+
+U+1F69C
+Fix glyph to appear like a modern tractor, without a driver. See the vendor glyphs from the link.​
+
+U+1F4DE
+Fix glyph to flip horizontal orientation of phone receiver. 
+Receiver faces left at present, whereas all platforms except Android show this the opposite way.
+
+U+1F4DC
+Fix glyph to show as a traditional scroll with a roll at the top and bottom, like the Apple or Twitter images.
+
+U+1F4B1
+Fix glyph to appear more similar to iOS, Windows, or Twitter versions with an arrow pointing between currencies. This shows an exchange, whereas the current glyph looks like “multiple currencies” or “money” without any indication of exchange.
+
+U+1F4E7
+Consider using a glyph of an envelope with @ symbol on it, instead of the letter E. Like Google uses in the Android image, or Windows uses. Few people would equate “E” with email more than than @ symbol.
+

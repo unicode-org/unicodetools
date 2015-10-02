@@ -1,0 +1,306 @@
+# =======================================
+# SPECIAL FILE TYPES
+# =======================================
+
+# Special file types that need particular processing.
+# In addition to the following, if the first field starts with U+, the file is tab delimited, NOT semicolon delimited.
+
+# HackField File Type
+# Field 1 is special
+#     Convert two successive lines with field 1 values of /.*First>/ and /.*Last>/ into one line with field0..field0
+#     If field 1 contains "Ideograph", the name is "CJK UNIFIED IDEOGRAPH-" + hex(codepoint,4)
+#     If field 1 contains "Hangul Syllable", the name is computed as in Chapter 3
+#     OW if field 1 contains "<", it has no value.
+# Field 5 is special: remove any prefixed <...>
+
+FileType ; UnicodeData ; HackField
+
+# List File Type
+# Contains exactly one boolean property, with value "Yes"
+
+FileType ; CompositionExclusions ; List
+
+# PropertyValue File Type
+# The value is in field 2, except for binary properties, where the value is "Yes"
+
+FileType ; DerivedCoreProperties ; PropertyValue
+FileType ; DerivedNormalizationProps ; PropertyValue
+FileType ; PropList ; PropertyValue
+FileType ; Unihan_DictionaryIndices ; PropertyValue
+FileType ; Unihan_DictionaryLikeData ; PropertyValue
+FileType ; Unihan_IRGSources ; PropertyValue
+FileType ; Unihan_NumericValues ; PropertyValue
+FileType ; Unihan_OtherMappings ; PropertyValue
+FileType ; Unihan_RadicalStrokeCounts ; PropertyValue
+FileType ; Unihan_Readings ; PropertyValue
+FileType ; Unihan_Variants ; PropertyValue
+
+# NameAliases File Type
+# Contains a multivalued property, where successive values are not in the same line, but are divided out on successive lines with the same code point
+
+FileType ; NameAliases ; NameAliases
+FileType ; NameAliasesProv ; NameAliases
+FileType ; StandardizedVariants ; StandardizedVariants
+
+# CJKRadicals File Type
+
+# The code point is not in field 0, but instead in field 1 and in field 2.
+# The value is in field 1
+
+FileType ; CJKRadicals ; CJKRadicals
+
+# NamedSequences File Type
+# The code point is not in field 0, but instead in field 1.
+# The value is in field 0
+
+FileType ; NamedSequences ; NamedSequences
+FileType ; NamedSequencesProv ; NamedSequences
+
+# an abbreviation of the property value is in field 2
+FileType ; security/*/confusables ; Confusables
+
+# =======================================
+# FILES FOR PROPERTIES
+# Note that in (currently) exactly one property a missing value in a field means an empty string; in others it means "no value"
+# =======================================
+
+# Files where particular properties can be found, and in which field
+# The format is:
+# Field0 : file name
+# Field1 : property name
+# Field2 : field number in file (default is 1)
+# Field3 : special handling
+#   Rational : Value is a rational number
+#   Skip1FT  : Skip line if field 1 is F or T
+#   Skip1ST  : Skip line if field 1 is S or T
+#   SkipAny4 : Skip line if field 4 is not empty
+
+# TODO: use other 'core' files instead of the derived ones
+# Don't do for BIDI, however, since it misses the <reserved...> values.
+# 0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
+UnicodeData; Name ; 1
+UnicodeData; General_Category ; 2
+UnicodeData; Canonical_Combining_Class ; 3
+DerivedBidiClass; Bidi_Class ; 1
+DerivedDecompositionType; Decomposition_Type ; 1
+UnicodeData; Decomposition_Mapping ; 5 
+UnicodeData; Bidi_Mirrored; 9
+DerivedNumericValues; Numeric_Value ; 3 ; Rational
+DerivedNumericType; Numeric_Type
+UnicodeData; Simple_Uppercase_Mapping ; 12
+UnicodeData; Simple_Lowercase_Mapping ; 13
+UnicodeData; Simple_Titlecase_Mapping ; 14
+UnicodeData; Unicode_1_Name ; 10
+UnicodeData; ISO_Comment ; 11
+DerivedJoiningType; Joining_Type
+DerivedJoiningGroup; Joining_Group
+BidiMirroring; Bidi_Mirroring_Glyph;
+Blocks ; Block
+CompositionExclusions ; Composition_Exclusion
+DerivedAge ; Age
+EastAsianWidth ; East_Asian_Width
+HangulSyllableType ; Hangul_Syllable_Type
+IndicPositionalCategory ; Indic_Positional_Category
+IndicSyllabicCategory ; Indic_Syllabic_Category
+Jamo ; Jamo_Short_Name
+LineBreak ; Line_Break
+GraphemeBreakProperty ; Grapheme_Cluster_Break
+SentenceBreakProperty ; Sentence_Break
+WordBreakProperty ; Word_Break
+BidiBrackets ; Bidi_Paired_Bracket ; 1
+BidiBrackets ; Bidi_Paired_Bracket_Type ; 2
+
+#
+NameAliases ; Name_Alias
+#NormalizationCorrections ; used in Decomposition Mappings
+Scripts ; Script
+CaseFolding ; Simple_Case_Folding ; 2 ; Skip1FT
+CaseFolding ; Case_Folding ; 2 ; Skip1ST
+SpecialCasing ; Lowercase_Mapping ; 1 ; SkipAny4
+SpecialCasing ; Titlecase_Mapping ; 2 ; SkipAny4
+SpecialCasing ; Uppercase_Mapping ; 3 ; SkipAny4
+DerivedCoreProperties ; Lowercase
+DerivedCoreProperties ; Uppercase
+DerivedCoreProperties ; Cased
+DerivedCoreProperties ; Case_Ignorable
+DerivedCoreProperties ; Changes_When_Lowercased
+DerivedCoreProperties ; Changes_When_Uppercased
+DerivedCoreProperties ; Changes_When_Titlecased
+DerivedCoreProperties ; Changes_When_Casefolded
+DerivedCoreProperties ; Changes_When_Casemapped
+DerivedCoreProperties ; Alphabetic
+DerivedCoreProperties ; Default_Ignorable_Code_Point
+DerivedCoreProperties ; Grapheme_Base
+DerivedCoreProperties ; Grapheme_Extend
+DerivedCoreProperties ; Grapheme_Link
+DerivedCoreProperties ; Math
+DerivedCoreProperties ; ID_Start
+DerivedCoreProperties ; ID_Continue
+DerivedCoreProperties ; XID_Start
+DerivedCoreProperties ; XID_Continue
+DerivedNormalizationProps ; Full_Composition_Exclusion
+DerivedNormalizationProps ; Expands_On_NFC
+DerivedNormalizationProps ; Expands_On_NFD
+DerivedNormalizationProps ; Expands_On_NFKC
+DerivedNormalizationProps ; Expands_On_NFKD
+DerivedNormalizationProps ; FC_NFKC_Closure
+DerivedNormalizationProps ; NFD_Quick_Check
+DerivedNormalizationProps ; NFKD_Quick_Check
+DerivedNormalizationProps ; NFC_Quick_Check
+DerivedNormalizationProps ; NFKC_Quick_Check
+DerivedNormalizationProps ; NFKC_Casefold
+DerivedNormalizationProps ; Changes_When_NFKC_Casefolded
+PropList ; ASCII_Hex_Digit
+PropList ; Bidi_Control
+PropList ; Dash
+PropList ; Deprecated
+PropList ; Diacritic
+PropList ; Extender
+PropList ; Hex_Digit
+PropList ; Hyphen
+PropList ; Ideographic
+PropList ; IDS_Binary_Operator
+PropList ; IDS_Trinary_Operator
+PropList ; Join_Control
+PropList ; Logical_Order_Exception
+PropList ; Noncharacter_Code_Point
+PropList ; Other_Alphabetic
+PropList ; Other_Default_Ignorable_Code_Point
+PropList ; Other_Grapheme_Extend
+PropList ; Other_ID_Continue
+PropList ; Other_ID_Start
+PropList ; Other_Lowercase
+PropList ; Other_Math
+PropList ; Other_Uppercase
+PropList ; Pattern_Syntax
+PropList ; Pattern_White_Space
+PropList ; Quotation_Mark
+PropList ; Radical
+PropList ; Soft_Dotted
+PropList ; STerm
+PropList ; Terminal_Punctuation
+PropList ; Unified_Ideograph
+PropList ; Variation_Selector
+PropList ; White_Space
+
+Unihan_DictionaryIndices ; kCheungBauerIndex
+Unihan_DictionaryIndices ; kCowles
+Unihan_DictionaryIndices ; kDaeJaweon
+Unihan_DictionaryIndices ; kFennIndex
+Unihan_DictionaryIndices ; kGSR
+Unihan_DictionaryIndices ; kHanYu
+Unihan_DictionaryIndices ; kIRGDaeJaweon
+Unihan_DictionaryIndices ; kIRGDaiKanwaZiten
+Unihan_DictionaryIndices ; kIRGHanyuDaZidian
+Unihan_DictionaryIndices ; kIRGKangXi
+Unihan_DictionaryIndices ; kKangXi
+Unihan_DictionaryIndices ; kKarlgren
+Unihan_DictionaryIndices ; kLau
+Unihan_DictionaryIndices ; kMatthews
+Unihan_DictionaryIndices ; kMeyerWempe
+Unihan_DictionaryIndices ; kMorohashi
+Unihan_DictionaryIndices ; kNelson
+Unihan_DictionaryIndices ; kSBGY
+Unihan_DictionaryLikeData ; kCangjie
+Unihan_DictionaryLikeData ; kCheungBauer
+Unihan_DictionaryLikeData ; kCihaiT
+Unihan_DictionaryLikeData ; kFenn
+Unihan_DictionaryLikeData ; kFourCornerCode
+Unihan_DictionaryLikeData ; kFrequency
+Unihan_DictionaryLikeData ; kGradeLevel
+Unihan_DictionaryLikeData ; kHDZRadBreak
+Unihan_DictionaryLikeData ; kHKGlyph
+Unihan_DictionaryLikeData ; kPhonetic
+Unihan_DictionaryLikeData ; kTotalStrokes
+Unihan_IRGSources ; kIICore
+Unihan_IRGSources ; kIRG_GSource
+Unihan_IRGSources ; kIRG_HSource
+Unihan_IRGSources ; kIRG_JSource
+Unihan_IRGSources ; kIRG_KPSource
+Unihan_IRGSources ; kIRG_KSource
+Unihan_IRGSources ; kIRG_TSource
+Unihan_IRGSources ; kIRG_USource
+Unihan_IRGSources ; kIRG_VSource
+Unihan_IRGSources ; kIRG_MSource
+Unihan_IRGSources ; kRSUnicode
+Unihan_IRGSources ; kCompatibilityVariant
+Unihan_NumericValues ; kAccountingNumeric
+Unihan_NumericValues ; kOtherNumeric
+Unihan_NumericValues ; kPrimaryNumeric
+Unihan_OtherMappings ; kBigFive
+Unihan_OtherMappings ;  kCCCII
+Unihan_OtherMappings ;  kCNS1986
+Unihan_OtherMappings ;  kCNS1992
+Unihan_OtherMappings ;  kEACC
+Unihan_OtherMappings ;  kGB0
+Unihan_OtherMappings ;  kGB1
+Unihan_OtherMappings ;  kGB3
+Unihan_OtherMappings ;  kGB5
+Unihan_OtherMappings ;  kGB7
+Unihan_OtherMappings ;  kGB8
+Unihan_OtherMappings ;  kHKSCS
+Unihan_OtherMappings ;  kIBMJapan
+Unihan_OtherMappings ;  kJa
+Unihan_OtherMappings ;  kJis0
+Unihan_OtherMappings ;  kJis1
+Unihan_OtherMappings ;  kJIS0213
+Unihan_OtherMappings ;  kKPS0
+Unihan_OtherMappings ;  kKPS1
+Unihan_OtherMappings ;  kKSC0
+Unihan_OtherMappings ;  kKSC1
+Unihan_OtherMappings ;  kMainlandTelegraph
+Unihan_OtherMappings ;  kPseudoGB1
+Unihan_OtherMappings ;  kTaiwanTelegraph
+Unihan_OtherMappings ;  kXerox
+Unihan_RadicalStrokeCounts ; kRSAdobe_Japan1_6
+Unihan_RadicalStrokeCounts ;  kRSJapanese
+Unihan_RadicalStrokeCounts ;  kRSKangXi
+Unihan_RadicalStrokeCounts ;  kRSKanWa
+Unihan_RadicalStrokeCounts ;  kRSKorean
+Unihan_RadicalStrokeCounts ; kRSUnicode	; v6.3
+Unihan_Readings ; kCantonese
+Unihan_Readings ; kDefinition
+Unihan_Readings ; kHangul
+Unihan_Readings ; kHanyuPinlu
+Unihan_Readings ; kHanyuPinyin
+Unihan_Readings ; kJapaneseKun
+Unihan_Readings ; kJapaneseOn
+Unihan_Readings ; kKorean
+Unihan_Readings ; kMandarin
+Unihan_Readings ; kTang
+Unihan_Readings ; kVietnamese
+Unihan_Readings ; kXHC1983
+Unihan_Variants ; kCompatibilityVariant	; v6.3
+Unihan_Variants ; kSemanticVariant
+Unihan_Variants ; kSimplifiedVariant
+Unihan_Variants ; kSpecializedSemanticVariant
+Unihan_Variants ; kTraditionalVariant
+Unihan_Variants ; kZVariant
+
+# Extras
+
+ScriptExtensions ; Script_Extensions
+CJKRadicals ; CJK_Radical
+EmojiSources ; Emoji_DCM ; 1
+EmojiSources ; Emoji_KDDI ; 2
+EmojiSources ; Emoji_SB ; 3
+NamedSequences ; Named_Sequences
+NamedSequencesProv ; Named_Sequences_Prov
+StandardizedVariants ; Standardized_Variant
+
+idna/*/IdnaMappingTable; Idn_Status;
+idna/*/IdnaMappingTable; Idn_Mapping; 2
+idna/*/IdnaMappingTable; Idn_2008; 3
+
+security/*/xidmodifications; Identifier_Status;
+security/*/xidmodifications; Identifier_Type; 2
+
+security/*/confusables ; Confusable_SL
+security/*/confusables ; Confusable_SA
+security/*/confusables ; Confusable_ML
+security/*/confusables ; Confusable_MA
+
+emoji/*/emoji-data; Emoji_Default_Style;
+emoji/*/emoji-data; Emoji_Level; 2
+emoji/*/emoji-data; Emoji_Modifier_Status; 3
+emoji/*/emoji-data; Emoji_Correspondences; 4

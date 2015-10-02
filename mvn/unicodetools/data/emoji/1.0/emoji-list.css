@@ -1,0 +1,93 @@
+body {
+font-family : "Times New Roman", "Segoe UI Emoji", "Apple Color Emoji", Times, Symbola, Aegyptus, Code2000,  Code2001,  Code2002, Musica, serif, LastResort;
+}
+table {
+border-collapse : collapse;
+border : silver solid 1px;
+}
+td, th {
+border : silver solid 1px;
+vertical-align: top;
+}
+th {
+text-align : left;
+background-color : #DDD;
+}
+.code {
+font-family : monospace;
+text-align : right;
+}
+.age, .default {
+text-align : center;
+}
+.andr {
+font-size : 100%;
+text-align : center;
+min-height : 24px;
+}
+.chars, .symb {
+font-size : 36px;
+text-align : center;
+min-height : 32px;
+}
+.symb {
+font-family : Symbola;
+}
+img {
+width : 64px;
+height : auto;
+margin-top : 2px;
+margin-bottom : 2px;
+}
+/*
+.imgf {
+border : gray solid 1px;
+height : 22px;
+width : 34px;
+margin-top : 8px;
+margin-bottom : 8px;
+vertical-align: text-bottom;
+}
+*/
+.imga, .imgf {
+width : 36px;
+height : 36px;
+margin-top : 2px;
+margin-bottom : 2px;
+vertical-align: text-bottom;
+}
+.imgs {
+width : 18px;
+height : 18px;
+margin-top : 10px;
+margin-bottom : 2px;
+vertical-align: text-bottom;
+}
+.imgb {
+width : 24px;
+height : 24px;
+margin-top : 1px;
+margin-bottom : 1px;
+vertical-align: text-bottom;
+}
+.miss, .miss7 {
+text-align : center;
+vertical-align: middle;
+margin-top : 3px;
+margin-bottom : 3px;
+color : gray;
+font-style : italic;
+font-size : 75%;
+}
+.miss7 {
+color : silver;
+}
+.lchars {
+text-align : left;
+}
+.cchars {
+text-align : center;
+}
+.rchars {
+text-align : right;
+}

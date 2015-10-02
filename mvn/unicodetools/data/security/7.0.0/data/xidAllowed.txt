@@ -1,0 +1,17 @@
+﻿# Security Profile for General Identifiers
+# File: xidAllowed.txt
+# Version: 7.0.0
+# Generated: 2014-09-09, 13:36:12 GMT
+# Checkin: $Revision: 1.32 $
+#
+# For documentation and usage, see http://www.unicode.org/reports/tr39/
+#
+# XID characters allowed (no uppercase)
+
+
+# Total code points: 0
+
+# XID characters allowed (uppercase)
+
+
+# Total code points: 0

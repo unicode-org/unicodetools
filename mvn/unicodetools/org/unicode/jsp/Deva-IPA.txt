@@ -1,0 +1,336 @@
+# IPA to Devanagari 
+# Author: Cibu Johny 
+# Email: cibu@google.com 
+ 
+# All the rules are just a replication of these basic rule set for rest of the characters: 
+# Modified as per http://en.wiktionary.org/wiki/Appendix:Hindi_pronunciation (but more broad transcription) 
+::nfd (nfc); 
+# preprocessing, with fallbacks
+
+ा ↔ ्आ ; 
+ी ↔ ्इ ; 
+ू ↔ ्उ ; 
+ॢ ↔ ्ऋ ; 
+ॣ ↔ ्ऌ ; 
+  ←  ्अ ; 
+
+ि ↔ ्ई ; 
+ु ↔ ्ऊ ; 
+े ↔ ्ए ; 
+ै ↔ ्ऐ ; 
+ो ↔ ्ओ ; 
+ौ ↔ ्औ ; 
+# ृ ↔ ्ऋ ; # fix later
+#ॄ ↔ ्ऌ ; # fix later
+
+ॅ ↔ ्ऍ ; 
+ॆ ↔ ्ऎ ; 
+ॉ ↔ ्ऑ ; 
+ॊ ↔ ्ऒ ;
+
+ ँ → m ; 
+ ं → m ; 
+ ः → ʡ ; 
+
+ ::NULL; 
+
+# numbers & punctuation 
+ ० ↔ 0 ; 
+ १ ↔ 1 ; 
+ २ ↔ 2 ; 
+ ३ ↔ 3 ; 
+ ४ ↔ 4 ; 
+ ५ ↔ 5 ; 
+ ६ ↔ 6 ; 
+ ७ ↔ 7 ; 
+ ८ ↔ 8 ; 
+ ९ ↔ 9 ; 
+ । ↔ '.' ; 
+ 
+# vowels & semivowels 
+# moved to avoid masking 
+ ऐ ↔ aɪ ;  
+ औ ↔ aʊ ; 
+
+ 
+ अ ↔ ə ; 
+ आ ↔ a ; 
+ इ ↔ ɪ ; 
+ ई ↔ i ; 
+ उ ↔ ʊ ; 
+ ऊ ↔ u ; 
+ ए ↔ e ; 
+ ऒ ↔ ɤ ; 
+ ओ ↔ o ; 
+ 
+ ऋ ↔ ṛ ; 
+ ऌ ↔ ḷ ; 
+ ऎ → ai ; 
+ ऍ → e ; 
+ ऑ → o ; 
+ 
+ ऄ → ɑ;
+# consonants 
+
+ ह | ् ←  ʰ ;
+ 
+ ख | ् ↔ kʰ ; 
+ क | ् ↔ k ; 
+ घ | ् ↔ gʰ ; 
+ ग | ् ↔ g ; 
+ छ | ् ↔ tʃʰ ; 
+ च | ् ↔ tʃ ; 
+ झ | ् ↔ dʒʰ ; 
+ ज | ् ↔ dʒ ; 
+ ञ | ् ↔ ɲ ; 
+ ठ | ् ↔ ʈʰ ; 
+ ट | ् ↔ ʈ ; 
+ ढ | ् ↔ ɖʱ ; 
+ ड | ् ↔ ɖ ; 
+ ण | ् ↔ ɳ ; 
+ थ | ् ↔ tʰ ; 
+ त | ् ↔ t ; 
+ ध | ् ↔ dʰ ; 
+ द | ् ↔ d ; 
+ न | ् ↔ n ; 
+ फ | ् ↔ pʰ ; 
+ प | ् ↔ p ; 
+ भ | ् ↔ bʰ ; 
+ ब | ् ↔ b ; 
+ म | ् ↔ m ; 
+ य | ् ↔ j ; 
+ र | ् ↔ r ; 
+ ल | ् ↔ l ; 
+ व | ् ↔ v ; 
+ ष | ् ↔ ʂ ;
+ स | ् ↔ s ; 
+ ह | ् ↔ h ; 
+ 
+ ङ | ् ↔ ŋ ; 
+ ळ | ् ↔ ɭ ; 
+ ऴ | ् ↔ ɫ ; 
+ श | ् ↔ ʃ ; 
+ # ॠ | ् ↔ xx ; 
+ # ॡ | ् ↔ xx ; 
+ 
+# fallbacks 
+ 
+ ख → kʰə ; 
+ क → kə ; 
+ घ → gʰə ; 
+ ग → gə ; 
+ छ → tʃʰə ; 
+ च → tʃə ; 
+ झ → dʒʰə ; 
+ ज → dʒə ; 
+ ञ → ɲə ; 
+ ठ → ʈʰə ; 
+ ट → ʈə ; 
+ ढ → ɖʱə ; 
+ ड → ɖə ; 
+ ण → ɳə ; 
+ थ → tʰə ; 
+ त → tə ; 
+ ध → dʰə ; 
+ द → də ; 
+ न → nə ; 
+ फ → pʰə ; 
+ प → pə ; 
+ भ → bʰə ; 
+ ब → bə ; 
+ म → mə ; 
+ य → jə ; 
+ र → rə ; 
+ ल → lə ; 
+ व → və ; 
+ ष → ʂ̺ə ; 
+ स → sə ; 
+ ह → hə ; 
+ 
+ ङ → ŋə ; 
+ ळ → ɭə ; 
+ ऴ → ɫə ; 
+ श → ʃə ; 
+ 
+ # Special handling
+  ्अ → ; 
+ ़ → ;
+ ऽ → ;
+ 
+ ::null;
+ 
+ 
+ # Preprocess IPA characters we don't use
+ 
+i ← y ;
+i ← ʏ ; # 028F lax close front rounded
+
+o ← ø ; # 00F8 front close-mid rounded
+o ← ɔ;
+
+o ← œ ; # 0153 front open-mid rounded
+
+a ← æ ; # 00E6 raised open front unrounded
+o ← ɶ ; # 0276 front open rounded
+
+ɪ ← ɨ ; # 0268 close central unrounded
+ɪ ← ʉ ; # 0289 close central rounded
+
+ə ← ɘ ; # 0258 close-mid schwa
+ə ← ɵ ; # 0275 rounded schwa
+e ← ɛ;
+
+ər ← ɚ ; # 025A rhotacized schwa
+ə ← ɜ ; # 025C open-mid central
+ər ← ɝ ; # 025D rhotacized open-mid central
+ə ← ɞ ; # 025E open-mid central rounded
+a ← ɐ ; # 0250 open-mid schwa
+
+v ← ɯ ; # 026F close back unrounded
+
+#v ← ɤ ; # 0264 close-mid back unrounded
+
+ə ← ʌ ; # 028C open-mid back unrounded
+
+a ← ɒ ; # 0252 open back rounded
+a ← ɑ;
+
+# Ligatures
+# This section breaks them apart
+
+dz ← ʣ ; # break apart, and revisit
+ts ← ʦ ; # break apart, and revisit
+dʒ ← ʤ ; # break apart, and revisit
+tʃ ← ʧ ; # break apart, and revisit
+
+# Consonants
+
+b ← ɓ ; # 0253 vd bilabial implosive
+m ← ɱ ; # 0271 vd labiodental nasal
+b ← ʙ ; # 0299 vd bilabial trill
+v ← w ;
+v ← ʷ ; # 02B7 labialized
+
+v ← ɸ ; # 0278 vl bilabial fricative
+v ← β ; # 03B2 vd bilabial fricative
+v ← ʍ ; # 028D vl labial-velar fricative
+v ← f ;
+v ← ʋ ; # 028B vd labiodental approximant
+v ← ɥ ; # 0265 labial-palatal approximant
+
+d ← ɗ ; # 0257 vd alveolar implosive
+n ← ̃ ; # 0303 nasalized
+
+r ← ʴ ; # 02B4 rhotacized
+r ← ˞ ; # 02DE rhotacized
+d ← ɾ ; # 027E vd alveolar tap
+d ← ɺ ; # 027A vd alveolar lateral flap
+d ← ɽ ; # 027D vd retroflex flap
+
+s ← θ ; # 03B8 vl dental fricative
+s ← ð ; # 00F0 vd dental fricative
+
+ʂ ← ʒ ; # 0292 vd postalveolar fricative
+s ← ʐ ; # 0290 vd retroflex fricative
+ʂ ← ɕ ; # 0255 vl alveolopalatal fricative
+s ← ʑ ; # 0291 vd alveolopalatal fricative
+s ← z ;
+
+l ← ɬ ; # 026C vl alveolar lateral fricative
+l ← ɮ ; # 026E vd alveolar lateral fricative
+r ← ɹ ; # 0279 vd (post)alveolar approximant
+r ← ɻ ; # 027B vd retroflex approximant
+
+
+tʃ ← ç ; # 00E7 vl palatal fricative
+
+tʃ ← c ;
+tʃ ← ɟ ; # 025F vd palatal plosive
+tʃ ← ʄ ; # 0284 vd palatal implosive
+dʒ ← ʝ ; # 029D vd palatal fricative
+j ← ʲ ; # 02B2 palatalized
+j ← ʎ ; # 028E vd palatal lateral
+
+g ← ɡ ; # 0261 vd velar plosive
+g ← ɠ ; # 0260 vd velar implosive
+
+kʰ ← x ;
+gʰ ← ɣ ; # 0263 vd velar fricative
+j ← ˠ ; # 02E0 velarized
+j ← ɰ ; # 0270 velar approximant
+j ← ʟ ; # 029F vd velar lateral
+
+k ← q ;
+g ← ɢ ; # 0262 vd uvular plosive
+g ← ʛ ; # 029B vd uvular implosive
+n ← ɴ ; # 0274 vd uvular nasal
+r ← ʀ ; # 0280 vd uvular trill
+kʰ ← χ ; # 03C7 vl uvular fricative 
+kʰ ← ʁ ; # 0281 vd uvular fricative
+
+h ← ħ ; # 0127 vl pharyngeal fricative
+h ← ʕ ; # 0295 vd pharyngeal fricative
+
+h ← ʔ ; # 0294 glottal plosive
+h ← ɦ ; # 0266 vd glottal fricative
+h ← ʰ ; # 02B0 aspirated
+ʰ ← ʱ ; # 02B1 breathy-voice-aspirated
+
+
+h ← ʡ ; # 02A1 vd epiglottal plosive
+h ← ʜ ; # 029C vl epiglottal fricative
+h ← ʢ ; # 02A2 vd epiglottal fricative
+h ← ɧ ; # 0267 vl multiple-place fricative
+
+ 
+ # just remove
+ ← [̲ ̓ ̔ ̃ ̧ ̨ ̐-̒ ̕-̗ ̛ ̡-̣ ̦ ̩ ̫ ̭ ̮ ̱ ̳ ͜ ͡] ;
+ ← ʼ ; # 02BC ejective
+ ← ˤ ; # 02E4 pharyngealized
+ ← ǀ ; # 01C0 dental click
+ ← ǁ ; # 01C1 alveolar lateral click
+ ← ǂ ; # 01C2 alveolar click
+ ← ǃ ; # 01C3 retroflex click
+ ← ʘ ; # 0298 bilabial click
+
+# Diacritics
+
+ ← ̀ ; # 0300 low tone
+ ← ́ ; # 0301 high tone
+ ← ̄ ; # 0304 mid tone
+ ← ̆ ; # 0306 extra-short
+ ← ̈ ; # 0308 centralized
+ ← ̊ ; # 030A voiceless (use if character has descender)
+ ← ̋ ; # 030B extra high tone
+ ← ̏ ; # 030F extra low tone
+ ← ̘ ; # 0318 advanced tongue root
+ ← ̙ ; # 0319 retracted tongue root
+ ← ̚ ; # 031A not audibly released
+ ← ̜ ; # 031C less rounded
+ ← ̝ ; # 031D raised
+ ← ̞ ; # 031E lowered
+ ← ̟ ; # 031F advanced
+ ← ̠ ; # 0320 retracted
+ ← ̤ ; # 0324 breathy voiced
+ ← ̥ ; # 0325 voiceless
+ ← ̪ ; # 032A dental
+ ← ̬ ; # 032C voiced
+ ← ̯ ; # 032F non-syllabic
+ ← ̰ ; # 0330 creaky voiced
+ ← ̴ ; # 0334 velarized or pharyngealized
+ ← ̹ ; # 0339 more rounded
+ ← ̺ ; # 033A apical
+ ← ̻ ; # 033B laminal
+ ← ̼ ; # 033C linguolabial
+ ← ̽ ; # 033D mid-centralized
+ ← ˈ ; # 02C8 (primary) stress mark
+ ← ˌ ; # 02CC secondary stress
+ ← ↑ ; # 2191 upstep
+ ← ↓ ; # 2193 downstep
+ ← ↗ ; # 2197 global rise
+ ← ↘ ; # 2198 global fall
+ ← \u2192 ; 
+ ← ː ; # 02D0 length mark
+ ← ˑ ; # 02D1 half-length
+
+::nfc (nfd);
