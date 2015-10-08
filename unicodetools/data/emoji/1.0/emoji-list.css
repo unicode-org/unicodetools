@@ -91,3 +91,7 @@ text-align : center;
 .rchars {
 text-align : right;
 }
+.plain {
+text-decoration: none;
+color: #ddd;
+}

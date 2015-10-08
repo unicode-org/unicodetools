@@ -102,6 +102,11 @@ public class LoadImage extends Component {
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
     
     public static void main(String[] args) throws IOException {
+        
+        UnicodeSet u9 = new UnicodeSet("[\\U0001F57A \\U0001F5A4 \\U0001F6D1 \\U0001F6D2 \\U0001F6F4-\\U0001F6F6 \\U0001F919-\\U0001F91E \\U0001F920-\\U0001F927 \\U0001F930 \\U0001F933-\\U0001F940 \\U0001F942-\\U0001F949 \\U0001F950-\\U0001F959 \\U0001F960 \\U0001F961 \\U0001F985-\\U0001F98F]");
+        generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 144, false); // "Symbola"
+        if (true) return;
+
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
         //generatePngsFromFont(outputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"
         //generatePngsFromFont(outputDir, "apple", "apple", "Apple Color Emoji", Emoji.APPLE_MODIFIED, 72, false);
@@ -118,7 +123,6 @@ public class LoadImage extends Component {
 
         //doAnimatedGif(false, 72);
 
-        if (true) return;
 
         doRef(inputDir, outputDir);
         doTwitter(inputDir, outputDir);
@@ -430,7 +434,7 @@ public class LoadImage extends Component {
                 metrics = setFont(font, height, graphics);
             }
             if (graphics.getFont().canDisplayUpTo(s) != -1) {
-                System.out.println("No font for: " + s);
+                System.out.println("No font for U+" + Utility.hex(s) + ", " + s);
                 continue;
             }
             String core = Emoji.buildFileName(s, "_");

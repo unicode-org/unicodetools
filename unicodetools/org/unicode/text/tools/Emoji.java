@@ -13,6 +13,7 @@ import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.With;
+import org.unicode.text.tools.GenerateEmoji.Source;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -54,6 +55,8 @@ public class Emoji {
     static final UnicodeSet GITHUB_APPLE_CHARS = new UnicodeSet(
             "[‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌟🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔇🔉-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🚊🚌-🛅{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]")
     .freeze();
+    
+    public static final UnicodeSet SKIP_ANDROID = new UnicodeSet("[♨ ⚠ ▶ ◀ ✉ ✏ ✒ ✂ ⬆ ↗ ➡ ↘ ⬇ ↙ ⬅ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ♻ ☑ ✔ ✖ 〽 ✳ ✴ ❇ ▪ ▫ ◻ ◼ ‼ ⁉ 〰 © ® 🅰 🅱 ℹ Ⓜ 🅾 🅿 ™ 🈂 🈷 ㊗ ㊙]").freeze();
 
     static public String buildFileName(String chars, String separator) {
         StringBuilder result = new StringBuilder();
@@ -80,6 +83,9 @@ public class Emoji {
         String[] parts = DASH_OR_UNDERBAR.split(chars); //chars.split(separator);
         boolean first = true;
         for (String part : parts) {
+            if (part.startsWith("x")) {
+                continue;
+            }
             if (hasPrefix && first) {
                 first = false;
                 continue;
@@ -282,7 +288,7 @@ public class Emoji {
     };
 
     public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts/";
-    public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/1.0/";
+    public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/2.0/";
 
     static final String TR51_OUTPUT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
     static final String IMAGES_OUTPUT_DIR = TR51_OUTPUT_DIR + "images/";
@@ -375,4 +381,16 @@ public class Emoji {
     static final UnicodeSet U90 = new UnicodeSet("[\\x{1F57A} \\x{1F5A4} \\x{1F6D1} \\x{1F6F4} \\x{1F6F5} \\x{1F919} \\x{1F91A} \\x{1F91B} \\x{1F91C} \\x{1F91D} \\x{1F91E} \\x{1F920} \\x{1F921} \\x{1F922} \\x{1F923} \\x{1F924} \\x{1F925} \\x{1F926} \\x{1F930} \\x{1F933} \\x{1F934} \\x{1F935} \\x{1F936} \\x{1F937} \\x{1F940} \\x{1F942} \\x{1F950} \\x{1F951} \\x{1F952} \\x{1F953} \\x{1F954} \\x{1F955} \\x{1F985} \\x{1F986} \\x{1F987} \\x{1F988} \\x{1F989} \\x{1F98A}]").freeze();
     static final UnicodeSet APPLE = new UnicodeSet("[©®‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🛅{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]").freeze();
     static final Transliterator UNESCAPE = Transliterator.getInstance("hex-any/Perl");
+
+    static String getImageFilenameFromChars(GenerateEmoji.Source type, String chars) {
+        if (type == Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
+            return null;
+        }
+        String core = buildFileName(chars, "_");
+        String suffix = ".png";
+        if (type != null && type.isGif()) {
+            suffix = ".gif";
+        }
+        return type + "/" + type + "_" + core + suffix;
+    }
 }

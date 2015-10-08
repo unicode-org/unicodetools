@@ -156,7 +156,7 @@ public class GenerateEmojiFrequency {
     }
 
     private static void showItems(PrintWriter out, Collection<String> items) {
-        GenerateEmoji.displayUnicodeSet(out, items, Style.bestImage, 9999, 1, 1, "../../Public/emoji/1.0/full-emoji-list.html", " s18");
+        GenerateEmoji.displayUnicodeSet(out, items, Style.bestImage, 9999, 1, 1, "../../emoji/charts/full-emoji-list.html", " s18");
     }
 
     final static Splitter ONTAB = Splitter.on('\t').trimResults();
