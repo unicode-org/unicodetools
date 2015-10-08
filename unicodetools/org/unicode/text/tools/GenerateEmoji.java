@@ -187,15 +187,15 @@ public class GenerateEmoji {
                     // features
                     new UTF16.StringComparator(true, false, 0));
 
-//    static final Comparator                CODEPOINT_COMPARE_SHORTER   =
-//            new MultiComparator<String>(
-//                    Emoji.CODEPOINT_LENGTH,
-//                    mp,
-//                    UCA_COLLATOR, // don't
-//                    // need
-//                    // cldr
-//                    // features
-//                    new UTF16.StringComparator(true, false, 0));
+    //    static final Comparator                CODEPOINT_COMPARE_SHORTER   =
+    //            new MultiComparator<String>(
+    //                    Emoji.CODEPOINT_LENGTH,
+    //                    mp,
+    //                    UCA_COLLATOR, // don't
+    //                    // need
+    //                    // cldr
+    //                    // features
+    //                    new UTF16.StringComparator(true, false, 0));
 
     static final Set<String>               SORTED_EMOJI_CHARS_SET;
     static {
@@ -391,7 +391,6 @@ public class GenerateEmoji {
     }
 
     private static final String MISSING_CELL  = "<td class='miss'>missing</td>\n";
-    private static final String MISSING7_CELL = "<td class='miss7'>new 7.0</td>\n";
 
     static class Data implements Comparable<Data> {
         final String                       chars;
@@ -561,9 +560,8 @@ public class GenerateEmoji {
         }
 
         public String toHtmlString(Form form, int item, Stats stats) {
-            String missingCell = VERSION70.containsSome(chars) ? MISSING7_CELL : MISSING_CELL;
-            String core = Emoji.buildFileName(chars, "_");
-            String symbolaCell = getCell(Source.ref, core, missingCell);
+            String missingCell = MISSING_CELL;
+            String symbolaCell = getCell(Source.ref, chars, missingCell);
             // String symbolaCell =
             // Emoji.isRegionalIndicator(chars.codePointAt(0))
             // ? getCell("ref", core, missingCell)
@@ -586,14 +584,14 @@ public class GenerateEmoji {
             // header += ": <i>" + subhead + "</i>";
             // }
 
-            String appleCell = getCell(Source.apple, core, missingCell);
-            String androidCell = getCell(Source.android, core, missingCell);
-            String twitterCell = getCell(Source.twitter, core, missingCell);
-            String windowsCell = getCell(Source.windows, core, missingCell);
-            String gmailCell = getCell(Source.gmail, core, missingCell);
-            String sbCell = getCell(Source.sb, core, missingCell);
-            String dcmCell = getCell(Source.dcm, core, missingCell);
-            String kddiCell = getCell(Source.kddi, core, missingCell);
+            String appleCell = getCell(Source.apple, chars, missingCell);
+            String androidCell = getCell(Source.android, chars, missingCell);
+            String twitterCell = getCell(Source.twitter, chars, missingCell);
+            String windowsCell = getCell(Source.windows, chars, missingCell);
+            String gmailCell = getCell(Source.gmail, chars, missingCell);
+            String sbCell = getCell(Source.sb, chars, missingCell);
+            String dcmCell = getCell(Source.dcm, chars, missingCell);
+            String kddiCell = getCell(Source.kddi, chars, missingCell);
             if (stats != null) {
                 stats.add(chars, Source.apple, appleCell.equals(missingCell));
                 stats.add(chars, Source.android, androidCell.equals(missingCell));
@@ -699,7 +697,9 @@ public class GenerateEmoji {
         }
 
         public String getCell(Source type, String core, String missingCell) {
-            String filename = getImageFilename(type, core);
+            //String core = Emoji.buildFileName(chars, "_");
+
+            String filename = Emoji.getImageFilenameFromChars(type, core);
             String androidCell = missingCell;
             if (filename != null) {
                 // final File file = new File(IMAGES_OUTPUT_DIR, filename);
@@ -764,17 +764,6 @@ public class GenerateEmoji {
                                             ModifierStatus.secondary)
                                             .freeze();
 
-    public static String getImageFilename(Source type, String core) {
-        // if (type == Source.gmail) {
-        // return GmailEmoji.getURL(core);
-        // }
-        String suffix = ".png";
-        if (type != null && type.isGif()) {
-            suffix = ".gif";
-        }
-        return type + "/" + type + "_" + core + suffix;
-    }
-
     static final UnicodeMap<Source> BEST_OVERRIDE = new UnicodeMap<>();
     static {
         BEST_OVERRIDE.putAll(new UnicodeSet("[🕐-🕧🚶🏃💃👪👫👬👭🙍🙎🙅🙆🙇🙋🙌🙏💮]"), Source.android);
@@ -803,8 +792,7 @@ public class GenerateEmoji {
     }
 
     static public String getImage(Source type, String chars, boolean useDataUrl, String extraClasses) {
-        String core = Emoji.buildFileName(chars, "_");
-        String filename = getImageFilename(type, core);
+        String filename = Emoji.getImageFilenameFromChars(type, chars);
         if (filename != null && new File(Emoji.IMAGES_OUTPUT_DIR, filename).exists()) {
             String className = type.getClassAttribute(chars);
             // String className = "imga";
@@ -843,8 +831,7 @@ public class GenerateEmoji {
     }
 
     static public File getImageFile(Source type, String chars) {
-        String core = Emoji.buildFileName(chars, "_");
-        String filename = getImageFilename(type, core);
+        String filename = Emoji.getImageFilenameFromChars(type, chars);
         if (filename != null) {
             File file = new File(Emoji.IMAGES_OUTPUT_DIR, filename);
             if (file.exists()) {
@@ -985,7 +972,7 @@ public class GenerateEmoji {
             writeHeader(out, "Missing", "Missing list of emoji characters.", "border='1'");
             String headerRow = "<tr><th>" + "Type" + "</th>";
             for (Source type : platformsToInclude) {
-                headerRow += "<th width='" + (80.0 / platformsToInclude.size()) + "%'>" + type + "</th>";
+                headerRow += "<th class='cchars' width='" + (80.0 / platformsToInclude.size()) + "%'>" + type + " missing</th>";
             }
             headerRow += "</tr>";
 
@@ -994,12 +981,14 @@ public class GenerateEmoji {
             }
 
             EnumMap<Source, UnicodeSet> familyMap = new EnumMap<>(Source.class);
-            familyMap.put(Source.apple, Emoji.APPLE_COMBOS);
+            familyMap.put(Source.android, Emoji.APPLE_COMBOS);
+            familyMap.put(Source.windows, Emoji.APPLE_COMBOS);
             showDiff(out, headerRow, "families", familyMap);
 
-            //            EnumMap<Source, UnicodeSet> diversityMap = new EnumMap<>(Source.class);
-            //            diversityMap.put(Source.apple, Emoji.APPLE_MODIFIED);
-            //            showDiff(out, headerRow, "skinTone", diversityMap);
+            EnumMap<Source, UnicodeSet> diversityMap = new EnumMap<>(Source.class);
+            diversityMap.put(Source.android, Emoji.APPLE_MODIFIED);
+            diversityMap.put(Source.windows, Emoji.APPLE_MODIFIED);
+            showDiff(out, headerRow, "skinTone", diversityMap);
 
             writeFooter(out);
             out.close();
@@ -1034,17 +1023,22 @@ public class GenerateEmoji {
                 out.print("<tr><th>" + title + " chars</th>");
                 for (Source source : platformsToInclude) {
                     final UnicodeSet us = ifNull(values.get(source), UnicodeSet.EMPTY);
-                    displayUnicodeSet(out, new UnicodeSet(us).removeAll(common), Style.bestImage, 0, 1, 1, null, CODEPOINT_COMPARE);
+                    displayUnicodeSet(out, new UnicodeSet(us).removeAll(common), Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", CODEPOINT_COMPARE);
                 }
                 out.print("</tr>");
             }
             // common
-            out.println("<tr><th>" + sectionLink + " count (common)</th>"
+            out.println("<tr><th>Common</th>"
+                    + "<th class='cchars' colSpan='" + platformsToInclude.size() + "'>"
+                    + "common missing" + "</th></tr>");
+            out.println("<tr><th>" + sectionLink + " count</th>"
                     + "<td class='cchars' colSpan='" + platformsToInclude.size() + "'>"
                     + common.size() + "</td></tr>");
-            out.println("<tr><th>" + title + " (common)</th>");
-            displayUnicodeSet(out, common, Style.bestImage, 0, platformsToInclude.size(), 1, null, CODEPOINT_COMPARE);
-            out.println("</td></tr>");
+            if (common.size() != 0) {
+                out.println("<tr><th>" + title + "</th>");
+                displayUnicodeSet(out, common, Style.bestImage, 0, platformsToInclude.size(), 1, null, CODEPOINT_COMPARE);
+                out.println("</td></tr>");
+            }
         }
     }
 
@@ -1167,8 +1161,7 @@ public class GenerateEmoji {
     }
 
     static String getFlag(String chars, String extraClasses) {
-        String core = Emoji.buildFileName(chars, "_");
-        String filename = getImageFilename(Source.ref, core);
+        String filename = Emoji.getImageFilenameFromChars(Source.ref, chars);
         String cc = getFlagRegionName(chars);
         return cc == null ? null : "<img"
                 + " alt='" + chars + "'"
@@ -1552,6 +1545,9 @@ public class GenerateEmoji {
                 continue;
             }
             String chars = Emoji.parseFileName(true, s);
+            if (chars.isEmpty()) { // resulting from _x codepoints
+                continue;
+            }
             addNewItem(chars, results);
         }
     }
@@ -1681,7 +1677,10 @@ public class GenerateEmoji {
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-style.html");
         writeHeader(out, "Emoji Default Style Values", "This chart provides the default style values for display of emoji characters,"
                 + " and shows the characters that can take variation selectors with the two forms (emoji variant and text variant). "
-                + "Unlike the other charts, the emoji are presented as text, to show the style supplied in your browser.", "border='1'");
+                + "Unlike the other charts, the emoji are presented as text, to show the style supplied in your browser.</p>"
+                + "<p>The text is given a gray color, so as to help distinguish the emoji presentations. "
+                + "For testing, at the end there are two sets of sequences supported by some platforms: "
+                + "<i>emoji <a href='#modifier'>modifier</a> sequences</i>, and <i>emoji <a href='#zwj'>zwj</a> sequences</i>.", "border='1'");
         for (Entry<Style, Set<String>> entry : STYLE_TO_CHARS.keyValuesSet()) {
             Style label = entry.getKey();
             Set<String> set = entry.getValue();
@@ -1703,10 +1702,12 @@ public class GenerateEmoji {
             }
             final Set<String> singletonWord = Collections.singleton(word);
             // xxx
-            displayUnicodeset(out, singletonWord, "", plain, Style.plain, -1, null);
+            displayUnicodeset(out, singletonWord, "all", plain, Style.plain, -1, null);
             displayUnicodeset(out, singletonWord, "with emoji variant", emoji, Style.emoji, -1, null);
             displayUnicodeset(out, singletonWord, "with text variant", text, Style.text, -1, null);
         }
+        displayUnicodeset(out, Collections.singleton("modifier"), "", Emoji.APPLE_MODIFIED, Style.plain, -1, null);
+        displayUnicodeset(out, Collections.singleton("zwj"), "", Emoji.APPLE_COMBOS, Style.plain, -1, null);
         writeFooter(out);
         out.close();
     }
@@ -1756,7 +1757,7 @@ public class GenerateEmoji {
         displayUnicodeset(out, Collections.singleton("joiner sequences"), "", Emoji.APPLE_COMBOS, Style.plain, -1, null);
         displayUnicodeset(out, Collections.singleton("keycaps"), "", Emoji.KEYCAPS, Style.plain, -1, null);
         displayUnicodeset(out, Collections.singleton("flags"), "", Emoji.FLAGS, Style.plain, -1, null);
-        
+
         writeFooter(out);
         out.close();
     }
@@ -1864,7 +1865,7 @@ public class GenerateEmoji {
     private static void showVersionsOnly() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions.html");
         writeHeader(out, "Emoji Versions", "This chart shows when each emoji character first appeared in a Unicode version. "
-                + "The emoji characters are displayed with a chart font (except for flags).", "border='1'");
+                + "The emoji characters are displayed with images from a chart font (except for flags).", "border='1'");
         UnicodeMap<Age_Values> m = new UnicodeMap<>();
         for (String s : Emoji.EMOJI_CHARS) {
             Data data = Data.STRING_TO_DATA.get(s);
@@ -2223,40 +2224,43 @@ public class GenerateEmoji {
                 out.print(" ");
             }
             ++count;
-            if (link != null) {
-                out.print("<a href='" + link + "#" + Emoji.buildFileName(s, "_") + "' target='full'>");
-            }
+            boolean gotTitle = false;
             String cell = null; // getFlag(s, extraClasses);
             if (cell == null) {
                 switch (showEmoji) {
                 case text:
                 case emoji:
                     cell = getEmojiVariant(s, showEmoji == Style.emoji ? Emoji.EMOJI_VARIANT_STRING : Emoji.TEXT_VARIANT_STRING);
-                    cell = "<span title='" +
-                            getHex(s) + " " + getName(s, true) + "'>"
-                            + cell
-                            + "</span>";
                     break;
                 case plain:
-                    cell = "<span title='" +
-                            getHex(s) + " " + getName(s, true) + "'>"
-                            + s
-                            + "</span>";
+                    cell = s;
                     break;
                 case bestImage:
                     cell = getBestImage(s, true, extraClasses);
+                    gotTitle = true;
                     break;
                 case refImage:
                     cell = getImage(Source.ref, s, true, extraClasses);
+                    gotTitle = true;
                     break;
                 }
             }
-            out.print(cell);
             if (link != null) {
-                out.println("</a>");
+                cell = "<a class='plain' href='" + link + "#" + Emoji.buildFileName(s, "_") + "' target='full'>" + cell + "</a>";
             }
+            if (!gotTitle) {
+                cell = addTitle(s, cell);
+            }
+            out.print(cell);
         }
         out.println("</td>");
+    }
+
+    private static String addTitle(String s, String cell) {
+        return "<span title='" +
+                getHex(s) + " " + getName(s, true) + "'>"
+                + cell
+                + "</span>";
     }
 
     public static String getName(String s, boolean tolower) {

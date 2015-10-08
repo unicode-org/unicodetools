@@ -269,7 +269,7 @@ public class EmojiFlagOrder {
     }
 
     static String getFlag(String chars) {
-        String core = Emoji.buildFileName(chars,"_");
+        //String core = Emoji.buildFileName(chars,"_");
         return "<img"
         + " alt='" + chars + "'"
         + " class='big'"
