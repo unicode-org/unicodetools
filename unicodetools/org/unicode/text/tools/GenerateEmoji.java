@@ -1673,15 +1673,15 @@ public class GenerateEmoji {
                         + "For testing, at the end there are two sets of sequences supported by some platforms: "
                         + "<i>emoji <a href='#modifier'>modifier</a> sequences</i>, and <i>emoji <a href='#zwj'>zwj</a> sequences</i>.", "border='1'");
         for (Entry<Style, Set<String>> entry : STYLE_TO_CHARS.keyValuesSet()) {
-            Style label = entry.getKey();
-            Set<String> set = entry.getValue();
-            String word = label.toString();
+            UnicodeSet plain = new UnicodeSet().addAll(entry.getValue());
+            final Set<String> singletonWord = Collections.singleton(entry.getKey().toString());
+            displayUnicodeset(out, singletonWord, "all", plain, Style.plain, -1, null);
+        }
+        for (Entry<Style, Set<String>> entry : STYLE_TO_CHARS.keyValuesSet()) {
             Set<String> values = entry.getValue();
-            UnicodeSet plain = new UnicodeSet();
             UnicodeSet emoji = new UnicodeSet();
             UnicodeSet text = new UnicodeSet();
             for (String value : values) {
-                plain.add(value);
                 String emojiStyle = getEmojiVariant(value, Emoji.EMOJI_VARIANT_STRING);
                 if (!value.equals(emojiStyle)) {
                     emoji.add(value);
@@ -1691,9 +1691,7 @@ public class GenerateEmoji {
                     text.add(value);
                 }
             }
-            final Set<String> singletonWord = Collections.singleton(word);
-            // xxx
-            displayUnicodeset(out, singletonWord, "all", plain, Style.plain, -1, null);
+            final Set<String> singletonWord = Collections.singleton(entry.getKey().toString());
             displayUnicodeset(out, singletonWord, "with emoji variant", emoji, Style.emoji, -1, null);
             displayUnicodeset(out, singletonWord, "with text variant", text, Style.text, -1, null);
         }
