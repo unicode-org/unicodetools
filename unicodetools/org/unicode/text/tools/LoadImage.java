@@ -46,7 +46,7 @@ import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.LocaleIDParser;
-import org.unicode.text.tools.GenerateEmoji.Source;
+import org.unicode.text.tools.Emoji.Source;
 import org.unicode.text.tools.GmailEmoji.Data;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -318,7 +318,7 @@ public class LoadImage extends Component {
         return result;
     }
 
-    public static void doAnimatedGif(boolean onlySize, int size, Source... ordering) throws IOException {
+    public static void doAnimatedGif(boolean onlySize, int size, Emoji.Source... ordering) throws IOException {
         final File output = new File(outputDir, "animated-emoji.gif");
         System.out.println(output.getCanonicalPath());
         List<BufferedImage> list = new ArrayList<>();
