@@ -13,7 +13,7 @@ import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.With;
-import org.unicode.text.tools.GenerateEmoji.Source;
+import org.unicode.text.tools.Emoji.Source;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -24,6 +24,28 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 
 public class Emoji {
+    enum Source {
+        apple, android, twitter, windows, ref, samsung, gmail, sb, dcm, kddi;
+        boolean isGif() {
+            return compareTo(Source.gmail) >= 0;
+        }
+    
+        String getClassAttribute(String chars) {
+            if (isGif()) {
+                return "imgs";
+            }
+            String className = "imga";
+            if (this == Source.ref && GenerateEmoji.getFlagCode(chars) != null) {
+                className = "imgf";
+            }
+            return className;
+        }
+
+        public String getPrefix() {
+            return name();
+        }
+    }
+
     public static final char KEYCAP_MARK = '\u20E3';
     private static final UnicodeSet Unicode8Emoji = new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3FD}\\x{1F3FE}\\x{1F3FF}\\x{1F4FF}\\x{1F54B}\\x{1F54C}\\x{1F54D}"
             +"\\x{1F54E}\\x{1F6D0}\\x{1F32D}\\x{1F32E}\\x{1F32F}\\x{1F37E}\\x{1F37F}\\x{1F983}\\x{1F984}\\x{1F9C0}"
@@ -382,8 +404,8 @@ public class Emoji {
     static final UnicodeSet APPLE = new UnicodeSet("[©®‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🛅{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]").freeze();
     static final Transliterator UNESCAPE = Transliterator.getInstance("hex-any/Perl");
 
-    static String getImageFilenameFromChars(GenerateEmoji.Source type, String chars) {
-        if (type == Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
+    static String getImageFilenameFromChars(Emoji.Source type, String chars) {
+        if (type == Emoji.Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
             return null;
         }
         String core = buildFileName(chars, "_");
@@ -391,6 +413,6 @@ public class Emoji {
         if (type != null && type.isGif()) {
             suffix = ".gif";
         }
-        return type + "/" + type + "_" + core + suffix;
+        return type + "/" + type.getPrefix() + "_" + core + suffix;
     }
 }
