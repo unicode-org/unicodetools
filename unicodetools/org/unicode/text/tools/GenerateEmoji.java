@@ -1662,7 +1662,7 @@ public class GenerateEmoji {
     private static void showDefaultStyle() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-style.html");
         writeHeader(out, "Emoji Default Style Values", 
-                "body {\nfont-family: \"Times New Roman\";\n}",
+                "body {\nfont-family: \"Times New Roman\", \"Segoe UI Emoji\";\n}",
                 "This chart provides the default style values for display of emoji characters,"
                         + " and shows the characters that can take variation selectors with the two forms (emoji variant and text variant). "
                         + "These are only <i>default</i> styles; the environment can change the presentation. "
@@ -1704,7 +1704,9 @@ public class GenerateEmoji {
     /** Main Chart */
     private static void showSequences() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-sequences.html");
-        writeHeader(out, "Emoji Sequences", null, "This chart provides a list of sequences of emoji characters, for checking in browsers. "
+        writeHeader(out, "Emoji Sequences", 
+                "body {\nfont-family: \"Times New Roman\", \"Segoe UI Emoji\";\n}",
+                "This chart provides a list of sequences of emoji characters, for checking in browsers. "
                 + "These include modifier sequences, joiner sequences, and flags. "
                 + "For variation sequences, see <a href='emoji-style.html'>Emoji Default Style Values</a>. "
                 + "Unlike the other charts, the emoji are presented as text, to show the style supplied in your browser.", "border='1'");
