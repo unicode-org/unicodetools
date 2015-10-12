@@ -43,7 +43,9 @@ import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.UCA.UCA;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.tools.Emoji.ModifierStatus;
 import org.unicode.text.tools.EmojiData.EmojiDatum;
+import org.unicode.text.tools.EmojiData.EmojiLevel;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.collect.ComparisonChain;
@@ -75,6 +77,7 @@ import com.ibm.icu.util.VersionInfo;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
+
     private static final boolean           DRAFT                       = false;
 
     private static final boolean SAMSUNG = false;
@@ -99,6 +102,9 @@ public class GenerateEmoji {
 
     static final IndexUnicodeProperties    LATEST                      = IndexUnicodeProperties.make(Default.ucdVersion());
     static final UCA                       UCA_COLLATOR                = UCA.buildCollator(null);
+
+    static final EmojiData emojiData = EmojiData.of(Emoji.VERSION_TO_GENERATE);
+    static int MODIFIER_STATUS;
 
     public static final UnicodeMap<String> STANDARDIZED_VARIANT        = LATEST.load(UcdProperty.Standardized_Variant);
     static {
@@ -393,10 +399,11 @@ public class GenerateEmoji {
     static class Data implements Comparable<Data> {
         final String                       chars;
         final String                       code;
-        final Age_Values age;
+        final Age_Values                   age;
         final Style                        defaultPresentation;
         final Set<Label>                   labels;
         final String                       name;
+
         // static final Relation<Label, Data> LABELS_TO_DATA
         // = Relation.of(new EnumMap(Label.class), TreeSet.class); // , BY_LABEL
 
@@ -439,49 +446,6 @@ public class GenerateEmoji {
             this.name = getName(chars, true);
             DATA_CHARACTERS.add(chars);
         }
-
-        //        public Data(String chars, String code, String age,
-        //                String defaultPresentation, String name) {
-        //            this(chars, code, null, )
-        //            this.chars = chars;
-        //            if (chars.contains(Emoji.EMOJI_VARIANT_STRING) || chars.contains(Emoji.TEXT_VARIANT_STRING)) {
-        //                throw new IllegalArgumentException();
-        //            }
-        //            this.code = code;
-        //            this.age = UcdPropertyValues.Age_Values.valueOf(age.replace('.', '_'));
-        //            this.defaultPresentation = DEFAULT_TEXT_STYLE.contains(chars) ? Style.text : Style.emoji;
-        //            this.labels = storeLabels();
-        //            this.name = getName(chars, true);
-        //            // addWords(chars, name);
-        //            DATA_CHARACTERS.add(chars);
-        //            // for (Label label : labels) {
-        //            // LABELS_TO_DATA.put(label, this);
-        //            // }
-        //            if (!Utility.fromHex(code).equals(chars)) {
-        //                throw new IllegalArgumentException();
-        //            }
-        //        }
-
-        //        public Data(int codepoint) {
-        //            this(new StringBuilder().appendCodePoint(codepoint).toString());
-        //        }
-
-        //        public Data(String s, Style style) {
-        //            this(s,
-        //                    "U+" + Utility.hex(s, " U+"),
-        //                    getNewest(s), // VERSION.get(s.codePointAt(0)).replace("_", "."),
-        //                    "text",
-        //                    Default.ucd().getName(s));
-        //        }
-        //        public Data(String s) {
-        //            //static final <T, C extends Collection<T>> C getValues(String source, UnicodeMap<T> data, C output) {
-        //
-        //            this(s,
-        //                    "U+" + Utility.hex(s, " U+"),
-        //                    getNewest(s), // VERSION.get(s.codePointAt(0)).replace("_", "."),
-        //                    "text",
-        //                    Default.ucd().getName(s));
-        //        }
 
         private Set<Label> storeLabels() {
             Set<Label> labels2 = Label.CHARS_TO_LABELS.getValues(chars); // override
@@ -533,7 +497,6 @@ public class GenerateEmoji {
         //        }
 
         public static void init() {
-            EmojiData emojiData = EmojiData.of(VersionInfo.getInstance(1));
             for (Entry<String, EmojiDatum> item : emojiData.data.entrySet()) {
                 EmojiDatum datum = item.getValue();
                 String cp = item.getKey();
@@ -692,11 +655,11 @@ public class GenerateEmoji {
             // "# Code ;\tDefault Style ;\tLevel ;\tModifier ;\tSources ;\tVersion\t# (Character) Name\n"
 
             String extraString = "";
-            if (level1 != null) {
-                ModifierStatus modifier = MODIFIER_STATUS.get(chars);
-                extraString = " ;\t" + (level1.contains(chars) ? "L1" : "L2")
-                        + " ;\t" + modifier;
-            }
+            final EmojiDatum data = emojiData.getData(chars);
+            ModifierStatus modifier = data.modifierStatus;
+            extraString = " ;\t" + data.level
+                    + " ;\t" + modifier;
+            
             return Utility.hex(chars, " ")
                     + " ;\t" + defaultPresentation
                     + extraString
@@ -783,21 +746,17 @@ public class GenerateEmoji {
         }
     }
 
-    enum ModifierStatus {
-        none, modifier, primary, secondary
-    }
-
-    static final UnicodeMap<ModifierStatus> MODIFIER_STATUS = new UnicodeMap<ModifierStatus>()
-            .putAll(Emoji.EMOJI_CHARS, ModifierStatus.none)
-            .putAll(new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3Fd}\\x{1F3Fe}\\x{1F3Ff}]"),
-                    ModifierStatus.none)
-                    .putAll(new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3Fd}\\x{1F3Fe}\\x{1F3Ff}]"),
-                            ModifierStatus.modifier)
-                            .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS_GROUPS.getValues("fitz-primary")),
-                                    ModifierStatus.primary)
-                                    .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS_GROUPS.getValues("fitz-secondary")),
-                                            ModifierStatus.secondary)
-                                            .freeze();
+    //    static final UnicodeMap<ModifierStatus> MODIFIER_STATUS = new UnicodeMap<ModifierStatus>()
+    //            .putAll(Emoji.EMOJI_CHARS, ModifierStatus.none)
+    //            .putAll(new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3Fd}\\x{1F3Fe}\\x{1F3Ff}]"),
+    //                    ModifierStatus.none)
+    //                    .putAll(new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3Fd}\\x{1F3Fe}\\x{1F3Ff}]"),
+    //                            ModifierStatus.modifier)
+    //                            .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS_GROUPS.getValues("fitz-primary")),
+    //                                    ModifierStatus.primary)
+    //                                    .putAll(new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS_GROUPS.getValues("fitz-secondary")),
+    //                                            ModifierStatus.secondary)
+    //                                            .freeze();
 
     static final UnicodeMap<Emoji.Source> BEST_OVERRIDE = new UnicodeMap<>();
     static {
@@ -1769,7 +1728,7 @@ public class GenerateEmoji {
 
         UnicodeSet modifiers = new UnicodeSet();
         for (String cp : Emoji.EMOJI_CHARS) {
-            ModifierStatus modifier = MODIFIER_STATUS.get(cp);
+            ModifierStatus modifier = emojiData.getData(cp).modifierStatus;
             if (modifier == ModifierStatus.modifier) {
                 modifiers.add(cp);
             }
@@ -1781,7 +1740,7 @@ public class GenerateEmoji {
         UnicodeSet secondaryNonfaces = new UnicodeSet();
 
         for (String cp : Emoji.EMOJI_CHARS) {
-            ModifierStatus modifier = MODIFIER_STATUS.get(cp);
+            ModifierStatus modifier = emojiData.getData(cp).modifierStatus;
             if (modifier == ModifierStatus.primary ) {
                 for (String s : modifiers) {
                     primary.add(cp+s);
