@@ -2,7 +2,7 @@
 #
 # File:    emoji-data.txt
 # Version: 1.0
-# Date:    2015-10-06
+# Date:    2015-08-04
 #
 # Copyright (c) 2015 Unicode, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
