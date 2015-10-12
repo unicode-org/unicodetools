@@ -22,8 +22,27 @@ import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
+import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
+    
+    /**
+     * Change the following once we release
+     */
+    public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(1);
+    public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(2);
+    /**
+     * Change the following for a new version.
+     */
+    public static final VersionInfo VERSION_TO_GENERATE = VERSION_BETA; // VERSION_BETA VERSION_LAST_RELEASED
+    
+    public static final String BETA_DIR = VERSION_TO_GENERATE == VERSION_BETA ? "beta/" : "";
+    public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
+
+    enum ModifierStatus {
+        none, modifier, primary, secondary
+    }
+
     enum Source {
         apple, android, twitter, windows, ref, samsung, gmail, sb, dcm, kddi;
         boolean isGif() {
@@ -45,6 +64,7 @@ public class Emoji {
             return name();
         }
     }
+
 
     public static final char KEYCAP_MARK = '\u20E3';
     private static final UnicodeSet Unicode8Emoji = new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3FD}\\x{1F3FE}\\x{1F3FF}\\x{1F4FF}\\x{1F54B}\\x{1F54C}\\x{1F54D}"
@@ -309,11 +329,12 @@ public class Emoji {
         }
     };
 
-    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts/";
-    public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/2.0/";
+    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts/" + BETA_DIR;
+    public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/" + VERSION_STRING + "/";
 
-    static final String TR51_OUTPUT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
-    static final String IMAGES_OUTPUT_DIR = TR51_OUTPUT_DIR + "images/";
+    public static final String TR51_DRAFT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
+    static final String TR51_OUTPUT_DIR = TR51_DRAFT_DIR + BETA_DIR;
+    static final String IMAGES_OUTPUT_DIR = TR51_DRAFT_DIR + "images/";
 
     public static void main(String[] args) {
         if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {

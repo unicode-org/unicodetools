@@ -14,6 +14,7 @@ import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.text.tools.Emoji.ModifierStatus;
 import org.unicode.text.tools.GenerateEmoji.CharSource;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -25,13 +26,12 @@ import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData {
     public enum DefaultPresentation {text, emoji}
-    public enum Level {L1, L2}
-    public enum ModifierClass {none, primary, secondary, modifier}
+    public enum EmojiLevel {L1, L2}
 
     public static class EmojiDatum {
         public final DefaultPresentation style;
-        public final Level level;
-        public final ModifierClass modifierClass;
+        public final EmojiLevel level;
+        public final ModifierStatus modifierStatus;
         public final Set<CharSource> sources;
 
         /**
@@ -41,23 +41,23 @@ public class EmojiData {
          * @param annotations
          * @param sources
          */
-        private EmojiDatum(DefaultPresentation style, Level level, ModifierClass modifierClass, Set<CharSource> sources) {
+        private EmojiDatum(DefaultPresentation style, EmojiLevel level, ModifierStatus modifierClass, Set<CharSource> sources) {
             this.style = style;
             this.level = level;
-            this.modifierClass = modifierClass;
+            this.modifierStatus = modifierClass;
             this.sources = sources;
         }
 
         @Override
         public String toString() {
-            return "{" + style + ", " + level + ", " + modifierClass + ", " + sources + "}";
+            return "{" + style + ", " + level + ", " + modifierStatus + ", " + sources + "}";
         }
     }
 
     final UnicodeMap<EmojiDatum> data = new UnicodeMap<>();
     final Map<DefaultPresentation, UnicodeSet> defaultPresentationMap;
-    final Map<Level, UnicodeSet> levelMap;
-    final Map<ModifierClass, UnicodeSet> modifierClassMap;
+    final Map<EmojiLevel, UnicodeSet> levelMap;
+    final Map<ModifierStatus, UnicodeSet> modifierClassMap;
     final Map<CharSource, UnicodeSet> charSourceMap;
     final VersionInfo version;
 
@@ -77,8 +77,8 @@ public class EmojiData {
 
     private EmojiData(VersionInfo version) {
         EnumMap<DefaultPresentation, UnicodeSet> _defaultPresentationMap = new EnumMap<>(DefaultPresentation.class);
-        EnumMap<Level, UnicodeSet> _levelMap = new EnumMap<>(Level.class);
-        EnumMap<ModifierClass, UnicodeSet> _modifierClassMap = new EnumMap<>(ModifierClass.class);
+        EnumMap<EmojiLevel, UnicodeSet> _levelMap = new EnumMap<>(EmojiLevel.class);
+        EnumMap<ModifierStatus, UnicodeSet> _modifierClassMap = new EnumMap<>(ModifierStatus.class);
         EnumMap<CharSource, UnicodeSet> _charSourceMap = new EnumMap<>(CharSource.class);
         // /Users/markdavis/workspace/unicode-draft/Public/emoji/2.0/emoji-data.txt
         
@@ -93,8 +93,8 @@ public class EmojiData {
             String codePoint = Utility.fromHex(list.get(0)); // .replace("U+","")
             DefaultPresentation styleIn = DefaultPresentation.valueOf(list.get(1));
 
-            Level levelIn = Level.valueOf(list.get(2));
-            ModifierClass modClass = ModifierClass.valueOf(list.get(3));
+            EmojiLevel levelIn = EmojiLevel.valueOf(list.get(2));
+            ModifierStatus modClass = ModifierStatus.valueOf(list.get(3));
             Set<CharSource> sourcesIn = getSet(_charSourceMap, codePoint, list.get(4));
             data.put(codePoint, new EmojiDatum(styleIn, levelIn, modClass, sourcesIn));
             putUnicodeSetValue(_defaultPresentationMap, codePoint, styleIn);
@@ -125,19 +125,19 @@ public class EmojiData {
         return data.get(codePoint);
     }
 
-    public Set<Level> getLevels() {
+    public Set<EmojiLevel> getLevels() {
         return levelMap.keySet();
     }
 
-    public Set<ModifierClass> getModifierClasses() {
+    public Set<ModifierStatus> getModifierClasses() {
         return modifierClassMap.keySet();
     }
 
-    public UnicodeSet getLevelSet(Level source) {
+    public UnicodeSet getLevelSet(EmojiLevel source) {
         return CldrUtility.ifNull(levelMap.get(source), UnicodeSet.EMPTY);
     }
 
-    public UnicodeSet getModifierClassSet(ModifierClass source) {
+    public UnicodeSet getModifierStatusSet(ModifierStatus source) {
         return CldrUtility.ifNull(modifierClassMap.get(source), UnicodeSet.EMPTY);
     }
 
@@ -212,8 +212,8 @@ public class EmojiData {
 
         EmojiData emojiData = new EmojiData(VersionInfo.getInstance(1));
         show(0x26e9, names, emojiData);
-        System.out.println("L1" + ", " + emojiData.getLevelSet(Level.L1).toPattern(false));
-        System.out.println("modifier" + ", " + emojiData.getModifierClassSet(ModifierClass.modifier).toPattern(false));
+        System.out.println("L1" + ", " + emojiData.getLevelSet(EmojiLevel.L1).toPattern(false));
+        System.out.println("modifier" + ", " + emojiData.getModifierStatusSet(ModifierStatus.modifier).toPattern(false));
         System.out.println(CharSource.WDings  + ", " + emojiData.getCharSourceSet(CharSource.WDings).toPattern(false));
         System.out.println(DefaultPresentation.emoji + ", " + emojiData.getDefaultPresentationSet(DefaultPresentation.emoji).toPattern(false));
         EmojiData emojiData2 = new EmojiData(VersionInfo.getInstance(2));
