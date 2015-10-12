@@ -37,7 +37,7 @@ public class FixEmojiText {
             StringBuilder result = new StringBuilder();
             System.out.println(arg);
             if (arg.startsWith("[")) {
-                Set<String> sorted = new TreeSet<>(EmojiData.EMOJI_COMPARATOR);
+                Set<String> sorted = new TreeSet<>(GenerateEmoji.CODEPOINT_COMPARE);
                 new UnicodeSet(arg).addAllTo(sorted);
                 for (String cp : sorted) {
                     process2(cp, result);

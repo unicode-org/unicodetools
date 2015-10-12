@@ -1,8 +1,11 @@
 package org.unicode.text.tools;
 
+import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.unicode.cldr.util.CldrUtility;
+import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
 import org.unicode.text.UCA.NamesList;
 import org.unicode.text.UCA.NamesList.Comment;
@@ -19,6 +22,9 @@ public class NamesListPrint {
     
     public static void main(String[] args) {
         NamesList nl = new NamesList("NamesList", Settings.latestVersion);
+        for (Entry<Integer, Set<String>> error : nl.errors.keyValuesSet()) {
+            System.err.println(Utility.hex(error.getKey()) + "\t" + error.getValue());
+        }
         NamesList nl2 = new NamesList("NamesList", Settings.lastVersion);
         
         UnicodeMap<String> output = new UnicodeMap();
@@ -43,11 +49,17 @@ public class NamesListPrint {
             UnicodeMap<String> output,
             String sep) {
         UnicodeSet all = new UnicodeSet(a.keySet()).addAll(b.keySet());
+        Set<Pair<String,String>> seen = new HashSet();
         for (String cp : all) {
-            String v1 = a.get(cp);
-            String v2 = b.get(cp);
-            if (v1 == null || v2 == null) continue;
+            String v1 = CldrUtility.ifNull(a.get(cp),"<empty>");
+            String v2 = CldrUtility.ifNull(b.get(cp),"<empty>");
+            //if (v1 == null || v2 == null) continue;
             if (!Objects.equal(v1, v2)) {
+                Pair<String, String> pair = Pair.of(v1, v2);
+                if (seen.contains(pair)) {
+                    continue;
+                }
+                seen.add(pair);
                 String old = output.get(cp);
                 output.put(cp, (old == null ? "" : old + "\n") 
                         + sep + "\t" + v1 

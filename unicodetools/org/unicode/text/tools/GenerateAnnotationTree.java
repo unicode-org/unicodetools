@@ -71,7 +71,7 @@ public class GenerateAnnotationTree {
 
     private static UnicodeSetTree<Set<String>> build() {
         Relation<UnicodeSet,String> data2 = Relation.of(new HashMap<UnicodeSet, Set<String>>(), HashSet.class);
-        for (Entry<String, Set<String>> foo : GenerateEmoji.ANNOTATIONS_TO_CHARS.keyToValues.keyValuesSet()) {
+        for (Entry<String, Set<String>> foo : EmojiAnnotations.ANNOTATIONS_TO_CHARS.keyToValues.keyValuesSet()) {
             data2.put(new UnicodeSet().addAll(foo.getValue()), foo.getKey());
         };
 
