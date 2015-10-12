@@ -1,9 +1,13 @@
 package org.unicode.text.tools;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -21,6 +25,13 @@ public class EmojiAnnotations extends Birelation<String,String> {
             "yugoslav", "tfyr", "autonomous", "rawanda", "da", "rb", "yugoslavia",
             "states", "sar", "people's", "minor",
             "sts."));
+
+    static final EmojiAnnotations          ANNOTATIONS_TO_CHARS        = new EmojiAnnotations(
+            GenerateEmoji.CODEPOINT_COMPARE,
+            "emojiAnnotations.txt",
+            "emojiAnnotationsFlags.txt",
+            "emojiAnnotationsGroups.txt"
+            );
 
     public EmojiAnnotations(Comparator codepointCompare, String... filenames) {
         super(new TreeMap(codepointCompare), 
@@ -65,32 +76,32 @@ public class EmojiAnnotations extends Birelation<String,String> {
         addOther("-apple", Emoji.EMOJI_CHARS);
         addOther("-android", Emoji.EMOJI_CHARS);
         addOther("", Emoji.EMOJI_CHARS);
-        
-//        final Set<String> personAndroid = getValues("person-android");
-//        if (personAndroid != null) {
-//            UnicodeSet temp = new UnicodeSet(Emoji.APPLE)
-//            .removeAll(personAndroid)
-//            .removeAll(getValues("nature-android"))
-//            .removeAll(getValues("object-android"))
-//            .removeAll(getValues("place-android"))
-//            .removeAll(getValues("symbol-android"));
-//            System.out.println(temp.size() + " other-android: " + temp.toPattern(false));
-//            for (String s : temp) {
-//                add("other-android", s);
-//            }
-//        }
-//
-//        UnicodeSet temp = new UnicodeSet(Emoji.EMOJI_CHARS)
-//        .removeAll(getValues("person"))
-//        .removeAll(getValues("nature"))
-//        .removeAll(getValues("object"))
-//        .removeAll(getValues("place"))
-//        .removeAll(getValues("symbol"))
-//        .removeAll(getValues("flag"));
-//        System.out.println(temp.size() + " other: " + temp.toPattern(false));
-//        for (String s : temp) {
-//            add("other", s);
-//        }
+
+        //        final Set<String> personAndroid = getValues("person-android");
+        //        if (personAndroid != null) {
+        //            UnicodeSet temp = new UnicodeSet(Emoji.APPLE)
+        //            .removeAll(personAndroid)
+        //            .removeAll(getValues("nature-android"))
+        //            .removeAll(getValues("object-android"))
+        //            .removeAll(getValues("place-android"))
+        //            .removeAll(getValues("symbol-android"));
+        //            System.out.println(temp.size() + " other-android: " + temp.toPattern(false));
+        //            for (String s : temp) {
+        //                add("other-android", s);
+        //            }
+        //        }
+        //
+        //        UnicodeSet temp = new UnicodeSet(Emoji.EMOJI_CHARS)
+        //        .removeAll(getValues("person"))
+        //        .removeAll(getValues("nature"))
+        //        .removeAll(getValues("object"))
+        //        .removeAll(getValues("place"))
+        //        .removeAll(getValues("symbol"))
+        //        .removeAll(getValues("flag"));
+        //        System.out.println(temp.size() + " other: " + temp.toPattern(false));
+        //        for (String s : temp) {
+        //            add("other", s);
+        //        }
 
 
         //        for (String s : FITZ_MINIMAL) {
@@ -130,11 +141,26 @@ public class EmojiAnnotations extends Birelation<String,String> {
         //            addParts(emoji, name);
         //        }
         freeze();
+        Map<String,UnicodeSet> _TO_UNICODE_SET = new HashMap<>();
+        for (Entry<String, Set<String>> entry : this.keyToValues.keyValuesSet()) {
+            _TO_UNICODE_SET.put(entry.getKey(), new UnicodeSet().addAll(entry.getValue()).freeze());
+        }
+        TO_UNICODE_SET = Collections.unmodifiableMap(_TO_UNICODE_SET);
         UnicodeSet annotationCharacters = new UnicodeSet().addAll(valuesSet());
         if (!annotationCharacters.containsAll(Emoji.EMOJI_CHARS)) {
             UnicodeSet missing = new UnicodeSet().addAll(Emoji.EMOJI_CHARS).removeAll(annotationCharacters);
             throw new IllegalArgumentException("Missing annotations: " + missing.toPattern(false));
         }
+    }
+    
+    final Map<String,UnicodeSet> TO_UNICODE_SET;
+    
+    public UnicodeSet getUnicodeSet(String annotation) {
+        return TO_UNICODE_SET.get(annotation);
+    }
+    
+    public Set<Entry<String, UnicodeSet>> getStringUnicodeSetEntries() {
+        return TO_UNICODE_SET.entrySet();
     }
 
     private void addOther(String suffix, UnicodeSet core) {

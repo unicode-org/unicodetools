@@ -49,7 +49,7 @@ public class WordFrequency {
             info.addFile(arg);
             for (R2<Long, String> entry : info.fileData.getEntrySetSortedByCount(false, null)) {
                 final String item = entry.get1();
-                UnicodeSet us = EmojiData.getAnnotationSet(item);
+                UnicodeSet us = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getUnicodeSet(item);
                 System.out.println(arg + "\t" + item + "\t" + nf.format(entry.get0() / info.total)
                         + "\t" + (us == null || us.size() == 0 ? "" : us.toPattern(false)));
             }
@@ -57,7 +57,7 @@ public class WordFrequency {
     }
 
     static class Info {
-        Counter<String> fileData = new Counter();
+        Counter<String> fileData = new Counter<>();
         double total = 0;
 
         void addFile(String fileName) {
@@ -66,7 +66,7 @@ public class WordFrequency {
             }
         }
 
-        static final Set<String> SKIP = new HashSet(Arrays.asList("love",
+        static final Set<String> SKIP = new HashSet<>(Arrays.asList("love",
                 "open", "water", "baby", "print", "heart", "face",
                 "oh", "nature", "eye", "feet", "lady", "object", "peace",
                 "mouth", "shell", "smile", "romance",
@@ -87,9 +87,9 @@ public class WordFrequency {
                 "forbidden", "hoop", "sash", "checkered"));
         
         public void addCharAnnotations(String arg) {
-            UnicodeSet chars = EmojiData.getAnnotationSet(arg);
+            UnicodeSet chars = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getUnicodeSet(arg);
             for (String cp : chars) {
-                for (String annote : EmojiData.getData(cp).annotations) {
+                for (String annote : EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(cp)) {
                     if (!annote.equals(arg) && !SKIP.contains(annote)) {
                         add(annote);
                     }

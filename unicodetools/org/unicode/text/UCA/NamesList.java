@@ -17,9 +17,8 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -164,7 +163,7 @@ public class NamesList {
                 for (byte caseType = 0; caseType < UCD_Types.LIMIT_CASE ; ++caseType) {
                     String changed = Default.ucd().getCase(codePoint, UCD_Types.FULL, UCD_Types.UPPER);
                     if (changed.equals(trim)) {
-                        System.err.println("Discarding case variant for: " + Utility.hex(codePoint) + " => " + Utility.hex(trim));
+                        System.err.println("Discarding xref variant for: " + Utility.hex(codePoint) + " => " + Utility.hex(trim));
                         return true;
                     }
                 }
@@ -187,6 +186,11 @@ public class NamesList {
                     case xref: 
                         xrefs = CollectionUtilities.join(entry.getValue(), "\n");
                         break;
+                    case canonical:
+                    case compatibility:
+                    case formalAlias:
+                    case variation:
+                        break;
                     }
                 }
                 informalAliases.put(codePoint, alias);
@@ -203,8 +207,8 @@ public class NamesList {
     public UnicodeMap<String> informalComments = new UnicodeMap<>();
     public UnicodeMap<String> informalXrefs = new UnicodeMap<>();
 
-    public UnicodeMap<String> subheads = new UnicodeMap();
-    public UnicodeMap<String> subheadComments = new UnicodeMap();
+    public UnicodeMap<String> subheads = new UnicodeMap<>();
+    public UnicodeMap<String> subheadComments = new UnicodeMap<>();
 
     public Relation<Integer, String> errors = Relation.of(new TreeMap<Integer,Set<String>>(), LinkedHashSet.class);
     public Relation<Integer, String> fileComments = Relation.of(new TreeMap<Integer,Set<String>>(), LinkedHashSet.class);
@@ -213,17 +217,16 @@ public class NamesList {
     Data lastDataItem = new Data();
 
     public NamesList(String file, String ucdVersion) {
-        BufferedReader in = Utility.openUnicodeFile(file, ucdVersion, true, Utility.LATIN1_WINDOWS);
-        int i = 0;
+        //int i = 0;
         String subhead = null;
         String subheadComment = null;
-        try {
+        try (BufferedReader in = Utility.openUnicodeFile(file, ucdVersion, true, Utility.LATIN1_WINDOWS)){
             while (true) {
                 String originalLine = in.readLine();
                 if (originalLine == null) {
                     break;
                 }
-                ++i;
+                //++i;
                 if (originalLine.isEmpty()) {
                     continue;
                 }
@@ -315,28 +318,28 @@ public class NamesList {
             errors.freeze();
             fileComments.freeze();
         } catch (IOException e1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(e1);
         }
     }
 
-    private <T> void close(UnicodeMap<T> subheads2) {
-        T lastValue = null;
-        int lastEnd = -1;
-        UnicodeMap<T> filler = new UnicodeMap<T>();
-        for (EntryRange entryRange : subheads.entryRanges()) {
-            if (entryRange.value == null) {
-                continue;
-            }
-            if (entryRange.value.equals(lastValue)) {
-                filler.putAll(lastEnd+1, entryRange.codepoint-1, lastValue);
-            }
-            lastEnd = entryRange.codepointEnd;
-            lastValue = (T) entryRange.value;
-        }
-        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
-        subheads2.putAll(filler);
-        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
-    }
+//    private <T> void close(UnicodeMap<T> subheads2) {
+//        T lastValue = null;
+//        int lastEnd = -1;
+//        UnicodeMap<T> filler = new UnicodeMap<T>();
+//        for (EntryRange entryRange : subheads.entryRanges()) {
+//            if (entryRange.value == null) {
+//                continue;
+//            }
+//            if (entryRange.value.equals(lastValue)) {
+//                filler.putAll(lastEnd+1, entryRange.codepoint-1, lastValue);
+//            }
+//            lastEnd = entryRange.codepointEnd;
+//            lastValue = (T) entryRange.value;
+//        }
+//        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
+//        subheads2.putAll(filler);
+//        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
+//    }
 
     static final UnicodeSet HEX_AND_SPACE = new UnicodeSet("[0-9A-F\\ ]").freeze();
 

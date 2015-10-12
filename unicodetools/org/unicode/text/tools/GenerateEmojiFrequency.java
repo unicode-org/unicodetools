@@ -30,12 +30,12 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateEmojiFrequency {
 
-    static final EmojiAnnotations ANNOTATIONS_TO_CHARS = new EmojiAnnotations(
-            GenerateEmoji.CODEPOINT_COMPARE, 
-            "emojiAnnotations.txt",
-            "emojiAnnotationsGroups.txt",
-            "emojiAnnotationsFlags.txt"
-            );
+//    static final EmojiAnnotations ANNOTATIONS_TO_CHARS = new EmojiAnnotations(
+//            GenerateEmoji.CODEPOINT_COMPARE, 
+//            "emojiAnnotations.txt",
+//            "emojiAnnotationsGroups.txt",
+//            "emojiAnnotationsFlags.txt"
+//            );
 
     static final Set<String> KEEP_ANNOTATIONS = new LinkedHashSet<>(Arrays.asList(
             "animal",
@@ -97,7 +97,7 @@ public class GenerateEmojiFrequency {
             toRow(out, title, 999, "");
             for (String code : frequency.getKeysetSortedByCount(false)) {
                 Double count = frequency.getCount(code);
-                Set<String> annotations = ANNOTATIONS_TO_CHARS.getKeys(code);
+                Set<String> annotations = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(code);
                 Set<String> keep = new LinkedHashSet<>(annotations);
                 if (keep.contains("clock")) {
                     keep.remove("face");
@@ -216,7 +216,7 @@ public class GenerateEmojiFrequency {
     }
 
     static final UnicodeSet PRIMARILY_TEXT = new UnicodeSet("[© ® ™]").freeze();
-    static final UnicodeSet SYMBOLS = new UnicodeSet().addAll(ANNOTATIONS_TO_CHARS.getValues("symbol")).freeze();
+    static final UnicodeSet SYMBOLS = new UnicodeSet().addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues("symbol")).freeze();
 
     private static double webScale(int cp) {
         return PRIMARILY_TEXT.contains(cp) || GenerateEmoji.STANDARDIZED_VARIANT.get(cp) != null ? 0

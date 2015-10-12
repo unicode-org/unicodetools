@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
+import org.unicode.text.tools.EmojiData.EmojiDatum;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -16,6 +17,7 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 
 public class EmojiFrequency {
     /* <a href="/details/2665" title="BLACK HEART SUIT" data-id="2665"> 
@@ -61,16 +63,19 @@ public class EmojiFrequency {
     public static Long getFrequency(String word) {
         return data.get(word);
     }
+    
+    static final EmojiData EMOJIDATA = EmojiData.of(VersionInfo.getInstance(1));
+    
     public static void main(String[] args) {
         System.out.println("Emoji\tTw. Count\tName\tAnnotations");
         NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
         for (Entry<String, Long> entry : data.entrySet()) {
             final String cp = entry.getKey();
-            EmojiData data = EmojiData.getData(cp);
+            EmojiDatum data = EMOJIDATA.getData(cp);
             System.out.println(cp
                     + "\t" + nf.format(entry.getValue())
                     + "\t" + UCharacter.getName(cp, ", ")
-                    + "\t" + data.annotations
+                    + "\t" + EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(cp)
                     );
         }
         
@@ -81,15 +86,14 @@ public class EmojiFrequency {
         for (String cp : Emoji.EMOJI_CHARS) {
             Long freq = getFrequency(cp);
             if (freq == null) continue;
-            EmojiData data = EmojiData.getData(cp);
-            for (String annotation : data.annotations) {
+            for (String annotation : EmojiAnnotations.ANNOTATIONS_TO_CHARS.keyToValues.keySet()) {
                 annotationToFrequency.add(annotation, freq);
                 annotationToCount.add(annotation, 1);
             }
         }
         for (R2<Long, String> entry : annotationToFrequency.getEntrySetSortedByCount(false, null)) {
             final String annotation = entry.get1();
-            final UnicodeSet us = EmojiData.getAnnotationSet(annotation);
+            final UnicodeSet us = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getUnicodeSet(annotation);
             final Long count = entry.get0();
             System.out.println(
                     annotation

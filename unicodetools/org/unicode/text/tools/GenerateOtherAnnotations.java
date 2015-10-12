@@ -166,7 +166,7 @@ public class GenerateOtherAnnotations {
             } else {
                 result.add(UCharacter.getName(s, "+"));
             }
-            for (String annotation : GenerateEmoji.ANNOTATIONS_TO_CHARS.getKeys(s)) {
+            for (String annotation : EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(s)) {
                 if (SKIP.contains(annotation)) {
                     continue;
                 }
@@ -183,10 +183,10 @@ public class GenerateOtherAnnotations {
                 "objects",
                 "places",                
                 "symbols")) {
-            Set<String> plain = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(label);
+            Set<String> plain = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label);
             missing.removeAll(plain);
-            Set<String> apple = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(label+"-apple");
-            Set<String> android = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(label+"-android");
+            Set<String> apple = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label+"-apple");
+            Set<String> android = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label+"-android");
 
             showDiff(label, "apple", apple, "android", android);
 
@@ -202,9 +202,9 @@ public class GenerateOtherAnnotations {
         System.out.println("missing" + "\t\t" + missing.size() + "\t" + CollectionUtilities.join(missing, " "));
 
 
-        for (String annotation : GenerateEmoji.ANNOTATIONS_TO_CHARS.keySet()) {
+        for (String annotation : EmojiAnnotations.ANNOTATIONS_TO_CHARS.keySet()) {
             Set<String> sorted = new TreeSet<String>(GenerateEmoji.CODEPOINT_COMPARE);
-            sorted.addAll(GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(annotation));
+            sorted.addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(annotation));
             System.out.println(annotation + "\t" + sorted.size() + "\t" + CollectionUtilities.join(sorted, " "));
         }
         return returnResult.freeze();
@@ -212,7 +212,7 @@ public class GenerateOtherAnnotations {
 
 
     private static void showAndRemove(String label, Set<String> missing) {
-        Set<String> plain = GenerateEmoji.ANNOTATIONS_TO_CHARS.getValues(label);
+        Set<String> plain = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label);
         missing.removeAll(plain);
         System.out.println(label + "\t\t" + plain.size() + "\t" + CollectionUtilities.join(plain, " "));
     }

@@ -1,0 +1,1 @@
+This directory contains the draft emoji data files for UTR #51 Unicode Emoji.
