@@ -25,6 +25,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData {
+    private static UnicodeSet SUPPRESS_SECONDARY = new UnicodeSet("[😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 ☺ 🙂 🤗 😇 🤔 😐 😑 😶 🙄 😏 😣 😥 😮 🤐 😯 😪 😫 😴 😌 🤓 😛 😜 😝 ☹ 🙁 😒 😓 😔 😕 😖 🙃 😷 🤒 🤕 🤑 😲 😞 😟 😤 😢 😭 😦 😧 😨 😩 😬 😰 😱 😳 😵 😡 😠 👿 😈]").freeze();
     public enum DefaultPresentation {text, emoji}
     public enum EmojiLevel {L1, L2}
 
@@ -81,7 +82,7 @@ public class EmojiData {
         EnumMap<ModifierStatus, UnicodeSet> _modifierClassMap = new EnumMap<>(ModifierStatus.class);
         EnumMap<CharSource, UnicodeSet> _charSourceMap = new EnumMap<>(CharSource.class);
         // /Users/markdavis/workspace/unicode-draft/Public/emoji/2.0/emoji-data.txt
-        
+
         this.version = version;
         for (String line : FileUtilities.in(Settings.DATA_DIR + "emoji/" + version.getVersionString(2, 4), "emoji-data.txt")) {
             //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
@@ -94,7 +95,9 @@ public class EmojiData {
             DefaultPresentation styleIn = DefaultPresentation.valueOf(list.get(1));
 
             EmojiLevel levelIn = EmojiLevel.valueOf(list.get(2));
-            ModifierStatus modClass = ModifierStatus.valueOf(list.get(3));
+            ModifierStatus modClass = Emoji.IS_BETA && SUPPRESS_SECONDARY.contains(codePoint) 
+                    ? ModifierStatus.none 
+                            : ModifierStatus.valueOf(list.get(3));
             Set<CharSource> sourcesIn = getSet(_charSourceMap, codePoint, list.get(4));
             data.put(codePoint, new EmojiDatum(styleIn, levelIn, modClass, sourcesIn));
             putUnicodeSetValue(_defaultPresentationMap, codePoint, styleIn);
@@ -129,7 +132,7 @@ public class EmojiData {
         return levelMap.keySet();
     }
 
-    public Set<ModifierStatus> getModifierClasses() {
+    public Set<ModifierStatus> getModifierStatuses() {
         return modifierClassMap.keySet();
     }
 
@@ -139,10 +142,6 @@ public class EmojiData {
 
     public UnicodeSet getModifierStatusSet(ModifierStatus source) {
         return CldrUtility.ifNull(modifierClassMap.get(source), UnicodeSet.EMPTY);
-    }
-
-    public UnicodeSet getModifierClassSet(String annotationString) {
-        return CldrUtility.ifNull(levelMap.get(annotationString), UnicodeSet.EMPTY);
     }
 
     public UnicodeSet getDefaultPresentationSet(DefaultPresentation defaultPresentation) {

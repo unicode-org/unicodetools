@@ -25,7 +25,7 @@ import com.ibm.icu.util.Output;
 import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
-    
+
     /**
      * Change the following once we release
      */
@@ -34,9 +34,10 @@ public class Emoji {
     /**
      * Change the following for a new version.
      */
-    public static final VersionInfo VERSION_TO_GENERATE = VERSION_BETA; // VERSION_BETA VERSION_LAST_RELEASED
-    
-    public static final String BETA_DIR = VERSION_TO_GENERATE == VERSION_BETA ? "beta/" : "";
+    public static final VersionInfo VERSION_TO_GENERATE = VERSION_BETA; // VERSION_BETA     VERSION_LAST_RELEASED
+    public static final boolean IS_BETA = VERSION_TO_GENERATE == VERSION_BETA;
+    public static final String TR51_PREFIX = IS_BETA ? "beta-" : "";
+
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
 
     enum ModifierStatus {
@@ -48,7 +49,7 @@ public class Emoji {
         boolean isGif() {
             return compareTo(Source.gmail) >= 0;
         }
-    
+
         String getClassAttribute(String chars) {
             if (isGif()) {
                 return "imgs";
@@ -97,7 +98,7 @@ public class Emoji {
     static final UnicodeSet GITHUB_APPLE_CHARS = new UnicodeSet(
             "[‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌟🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔇🔉-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🚊🚌-🛅{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]")
     .freeze();
-    
+
     public static final UnicodeSet SKIP_ANDROID = new UnicodeSet("[♨ ⚠ ▶ ◀ ✉ ✏ ✒ ✂ ⬆ ↗ ➡ ↘ ⬇ ↙ ⬅ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ♻ ☑ ✔ ✖ 〽 ✳ ✴ ❇ ▪ ▫ ◻ ◼ ‼ ⁉ 〰 © ® 🅰 🅱 ℹ Ⓜ 🅾 🅿 ™ 🈂 🈷 ㊗ ㊙]").freeze();
 
     static public String buildFileName(String chars, String separator) {
@@ -159,7 +160,7 @@ public class Emoji {
         .appendCodePoint(chars.codePointAt(Character.charCount(first)) - FIRST_REGIONAL + 'A')
         .toString();
     }
-    
+
     static final UnicodeSet APPLE_COMBOS = new UnicodeSet("[{👨‍❤️‍👨} {👩‍❤️‍👩} {👨‍👨‍👦‍👦} {👨‍👨‍👦} {👨‍👨‍👧‍👦} {👨‍👨‍👧‍👧} {👨‍👨‍👧} {👨‍👩‍👦‍👦} {👨‍👩‍👦} {👨‍👩‍👧‍👦} {👨‍👩‍👧‍👧} {👨‍👩‍👧} {👩‍👩‍👦‍👦} {👩‍👩‍👦} {👩‍👩‍👧‍👦} {👩‍👩‍👧‍👧} {👩‍👩‍👧} {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}]").freeze();
     public static final UnicodeSet APPLE_MODIFIED = new UnicodeSet("["
             + "{👦🏻} {👦🏼} {👦🏽} {👦🏾} {👦🏿}"
@@ -329,11 +330,11 @@ public class Emoji {
         }
     };
 
-    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts/" + BETA_DIR;
+    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts/" 
+            + (IS_BETA ? "beta/" : "");
     public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/" + VERSION_STRING + "/";
 
     public static final String TR51_DRAFT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
-    static final String TR51_OUTPUT_DIR = TR51_DRAFT_DIR + BETA_DIR;
     static final String IMAGES_OUTPUT_DIR = TR51_DRAFT_DIR + "images/";
 
     public static void main(String[] args) {
