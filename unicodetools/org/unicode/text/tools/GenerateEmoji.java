@@ -286,7 +286,7 @@ public class GenerateEmoji {
     }
 
     enum Style {
-        plain, text, emoji, bestImage, refImage
+        plain, text, emoji, emojiFont, bestImage, refImage
     }
 
     static final Relation<Style, String> STYLE_TO_CHARS = Relation.of(new EnumMap(Style.class), TreeSet.class, CODEPOINT_COMPARE);
@@ -659,7 +659,7 @@ public class GenerateEmoji {
             ModifierStatus modifier = data.modifierStatus;
             extraString = " ;\t" + data.level
                     + " ;\t" + modifier;
-            
+
             return Utility.hex(chars, " ")
                     + " ;\t" + defaultPresentation
                     + extraString
@@ -910,8 +910,8 @@ public class GenerateEmoji {
         }
 
         public void write() throws IOException {
-            PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR,
-                    "missing-emoji-list.html");
+            PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR,
+                    Emoji.TR51_PREFIX + "missing-emoji-list.html");
             UnicodeSet jc = JCARRIERS;
             // new UnicodeSet()
             // .addAll(totalData.get(Source.sb))
@@ -1222,9 +1222,12 @@ public class GenerateEmoji {
         showSequences();
         // showSubhead();
         showAnnotations(Emoji.CHARTS_DIR, "emoji-annotations.html", Emoji.EMOJI_CHARS, null, false);
-        showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-flags.html", Emoji.FLAGS, GROUP_ANNOTATIONS, true);
-        showAnnotations(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-groups.html", Emoji.EMOJI_CHARS, GROUP_ANNOTATIONS, false);
-        showAnnotationsBySize(Emoji.TR51_OUTPUT_DIR, "emoji-annotations-size.html", Emoji.EMOJI_CHARS_WITHOUT_FLAGS);
+        showAnnotations(Emoji.TR51_DRAFT_DIR
+                , Emoji.TR51_PREFIX + "emoji-annotations-flags.html", Emoji.FLAGS, GROUP_ANNOTATIONS, true);
+        showAnnotations(Emoji.TR51_DRAFT_DIR
+                , Emoji.TR51_PREFIX + "emoji-annotations-groups.html", Emoji.EMOJI_CHARS, GROUP_ANNOTATIONS, false);
+        showAnnotationsBySize(Emoji.TR51_DRAFT_DIR
+                , Emoji.TR51_PREFIX + "emoji-annotations-size.html", Emoji.EMOJI_CHARS_WITHOUT_FLAGS);
 
         // showAnnotationsDiff();
         // compareOtherAnnotations();
@@ -1292,12 +1295,13 @@ public class GenerateEmoji {
     .removeAll(JCARRIERS).freeze();
 
     private static void showNewCharacters() throws IOException {
-        Set<String> optional = ANNOTATIONS_TO_CHARS_GROUPS.getValues("fitz-secondary");
-        Set<String> minimal = ANNOTATIONS_TO_CHARS_GROUPS.getValues("fitz-primary");
+        Set<String> optional = emojiData.getModifierStatusSet(ModifierStatus.secondary).addAllTo(new TreeSet<String>(CODEPOINT_COMPARE)); // ANNOTATIONS_TO_CHARS_GROUPS.getValues("fitz-secondary");
+        Set<String> minimal = emojiData.getModifierStatusSet(ModifierStatus.primary).addAllTo(new TreeSet<String>(CODEPOINT_COMPARE));
 
         // Set<String> newChars =
         // ANNOTATIONS_TO_CHARS.getValues("fitz-minimal");
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-count.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
+                , Emoji.TR51_PREFIX + "emoji-count.html");
         writeHeader(out, "Groupings and counts for screenshots and UnicodeJsps", null, "no message", "border='1' width='1200pt'");
         showRow(out, "Primary", minimal, true);
         showRow(out, "Secondary", optional, true);
@@ -1379,7 +1383,8 @@ public class GenerateEmoji {
         }
         defaultText.freeze();
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "text-style.html");
-        PrintWriter out2 = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "text-vs.txt");
+        PrintWriter out2 = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
+                , Emoji.TR51_PREFIX + "text-vs.txt");
         writeHeader(out, "Text vs Emoji", null, "This chart shows the default display style (text vs emoji) by version. "
                 + "The 'Dings' include Dingbats, Webdings, and Wingdings. "
                 + "The label V1.1 ⊖ Dings indicates those characters (except for Dings) that are in Unicode version 1.1. "
@@ -1615,7 +1620,8 @@ public class GenerateEmoji {
     }
 
     private static void showLabels() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-labels.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
+                , Emoji.TR51_PREFIX + "emoji-labels.html");
         writeHeader(out, "Emoji Labels", null, "Main categories for character picking. " +
                 "Characters may occur more than once. " +
                 "Categories could be grouped in the UI.", "border='1'");
@@ -1687,11 +1693,15 @@ public class GenerateEmoji {
                         + "The text is given a gray color, so as to help distinguish the emoji presentations. "
                         + "For testing, at the end there are two sets of sequences supported by some platforms: "
                         + "<i>emoji <a href='#modifier'>modifier</a> sequences</i>, and <i>emoji <a href='#zwj'>zwj</a> sequences</i>.", "border='1'");
+        out.println("<tr><th colSpan='3'>Main</th></tr>");
         for (Entry<Style, Set<String>> entry : STYLE_TO_CHARS.keyValuesSet()) {
             UnicodeSet plain = new UnicodeSet().addAll(entry.getValue());
             final Set<String> singletonWord = Collections.singleton(entry.getKey().toString());
             displayUnicodeset(out, singletonWord, "all", plain, Style.plain, -1, null);
         }
+        displayUnicodeset(out, Collections.singleton("modifier"), "", Emoji.APPLE_MODIFIED, Style.plain, -1, null);
+        displayUnicodeset(out, Collections.singleton("zwj"), "", Emoji.APPLE_COMBOS, Style.plain, -1, null);
+        out.println("<tr><th colSpan='3'>Variations</th></tr>");
         for (Entry<Style, Set<String>> entry : STYLE_TO_CHARS.keyValuesSet()) {
             Set<String> values = entry.getValue();
             UnicodeSet emoji = new UnicodeSet();
@@ -1707,11 +1717,10 @@ public class GenerateEmoji {
                 }
             }
             final Set<String> singletonWord = Collections.singleton(entry.getKey().toString());
+            displayUnicodeset(out, singletonWord, "with emoji font", new UnicodeSet().addAll(values), Style.emojiFont, -1, null);
             displayUnicodeset(out, singletonWord, "with emoji variant", emoji, Style.emoji, -1, null);
             displayUnicodeset(out, singletonWord, "with text variant", text, Style.text, -1, null);
         }
-        displayUnicodeset(out, Collections.singleton("modifier"), "", Emoji.APPLE_MODIFIED, Style.plain, -1, null);
-        displayUnicodeset(out, Collections.singleton("zwj"), "", Emoji.APPLE_COMBOS, Style.plain, -1, null);
         writeFooter(out);
         out.close();
     }
@@ -1757,12 +1766,16 @@ public class GenerateEmoji {
                 }
             }
         }
-        displayUnicodeset(out, Collections.singleton("primary modifier sequences"), "", primary, Style.plain, -1, null);
-        displayUnicodeset(out, Collections.singleton("secondary modifier sequences (non-faces)"), "", secondaryNonfaces, Style.plain, -1, null);
-        displayUnicodeset(out, Collections.singleton("secondary modifier sequences (faces)"), "", secondaryFaces, Style.plain, -1, null);
-        displayUnicodeset(out, Collections.singleton("joiner sequences"), "", Emoji.APPLE_COMBOS, Style.plain, -1, null);
-        displayUnicodeset(out, Collections.singleton("keycaps"), "", Emoji.KEYCAPS, Style.plain, -1, null);
-        displayUnicodeset(out, Collections.singleton("flags"), "", Emoji.FLAGS, Style.plain, -1, null);
+        displayUnicodeset(out, Collections.singleton("primary modifier sequences"), "", primary, Style.emojiFont, -1, null);
+        if (secondaryFaces.isEmpty()) {
+            displayUnicodeset(out, Collections.singleton("secondary modifier sequences"), "", secondaryNonfaces, Style.emojiFont, -1, null);
+        } else {
+            displayUnicodeset(out, Collections.singleton("secondary modifier sequences (non-faces)"), "", secondaryNonfaces, Style.emojiFont, -1, null);
+            displayUnicodeset(out, Collections.singleton("secondary modifier sequences (faces)"), "", secondaryFaces, Style.emojiFont, -1, null);
+        }
+        displayUnicodeset(out, Collections.singleton("joiner sequences"), "", Emoji.APPLE_COMBOS, Style.emojiFont, -1, null);
+        displayUnicodeset(out, Collections.singleton("keycaps"), "", Emoji.KEYCAPS, Style.emojiFont, -1, null);
+        displayUnicodeset(out, Collections.singleton("flags"), "", Emoji.FLAGS, Style.emojiFont, -1, null);
 
         writeFooter(out);
         out.close();
@@ -2111,7 +2124,8 @@ public class GenerateEmoji {
             addSet(labelToUnicodeSet, "Symbol-Other", otherSymbols);
         }
 
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "other-labels.html");
+        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
+                , Emoji.TR51_PREFIX + "other-labels.html");
         writeHeader(out, "Other Labels", null, "Draft categories for other Symbols and Punctuation.", "border='1'");
 
         for (Entry<String, UnicodeSet> entry : labelToUnicodeSet.entrySet()) {
@@ -2231,12 +2245,16 @@ public class GenerateEmoji {
             ++count;
             boolean gotTitle = false;
             String cell = null; // getFlag(s, extraClasses);
+            String classString = " class='plain'";
             if (cell == null) {
                 switch (showEmoji) {
                 case text:
                 case emoji:
                     cell = getEmojiVariant(s, showEmoji == Style.emoji ? Emoji.EMOJI_VARIANT_STRING : Emoji.TEXT_VARIANT_STRING);
                     break;
+                case emojiFont:
+                    classString = " class='charsSmall'";
+                    // fall through
                 case plain:
                     cell = s;
                     break;
@@ -2251,7 +2269,7 @@ public class GenerateEmoji {
                 }
             }
             if (link != null) {
-                cell = "<a class='plain' href='" + link + "#" + Emoji.buildFileName(s, "_") + "' target='full'>" + cell + "</a>";
+                cell = "<a" + classString + " href='" + link + "#" + Emoji.buildFileName(s, "_") + "' target='full'>" + cell + "</a>";
             }
             if (!gotTitle) {
                 cell = addTitle(s, cell);
@@ -2657,13 +2675,15 @@ public class GenerateEmoji {
 
     static void printCollationOrder() throws IOException {
         try (
-                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-ordering-list.txt")) {
+                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
+                        , Emoji.TR51_PREFIX + "emoji-ordering-list.txt")) {
             for (String s : SORTED_EMOJI_CHARS_SET) {
                 outText.println(getCodeAndName2(s));
             }
         }
         try (
-                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-ordering.txt")) {
+                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
+                        , Emoji.TR51_PREFIX + "emoji-ordering.txt")) {
             outText.append("<!-- DRAFT emoji-ordering.txt\n"
                     + "\tFor details about the format and other information, see " + DOC_DATA_FILES + ".\n"
                     + "\thttp://unicode.org/cldr/trac/ticket/7270 -->\n"
@@ -2766,7 +2786,8 @@ public class GenerateEmoji {
 
     private static void printAnnotations() throws IOException {
         try (
-                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-annotations.xml")) {
+                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
+                        , Emoji.TR51_PREFIX + "emoji-annotations.xml")) {
             outText.append(ANNOTATION_HEADER
                     + "\t\t<language type='en'/>\n"
                     + "\t</identity>\n"

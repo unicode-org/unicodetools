@@ -89,7 +89,8 @@ public class GenerateEmojiFrequency {
         pf.setMinimumFractionDigits(2);
         NumberFormat intf = NumberFormat.getIntegerInstance(ULocale.ENGLISH);
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-frequency-all.html")) {
+        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
+                + Emoji.TR51_PREFIX, "emoji-frequency-all.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Frequency", null, "Approximate frequency of emoji characters, gathered from emojiTracker and web stats.", "border='1'");
 
             String title = "%\tCP\tMain Category\tAnnotations";
@@ -131,7 +132,8 @@ public class GenerateEmojiFrequency {
             }
             GenerateEmoji.writeFooter(out);
         }
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_OUTPUT_DIR, "emoji-frequency.html")) {
+        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
+                + Emoji.TR51_PREFIX, "emoji-frequency.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Frequency", null, "Approximate frequency of emoji characters, gathered from emojiTracker and web stats.", "border='1'");
 
             System.out.println(Buckets.BUCKET_TITLE);
