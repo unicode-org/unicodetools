@@ -1,0 +1,111 @@
+When you start to use the data for Radicals and Strokes in IDS, you run up against some problem cases. 
+I propose that we augment the data for these to make them more useful, and use the data to update NamesList.txt and the UCA data.
+
+Problems
+
+ * The CJKRadicals.txt file doesn't cover all of the Radicals.
+ * Some of that information is in the NamesList and UCA, but not in an easily machine-readable form.
+ * The UCA and NamesList mappings are incomplete for the CJK Radicals, based on CJKRadicals.txt 
+ * Moreover, CJKRadicals.txt does not provide stroke data.
+ * The CJKRadicals.txt file is also in a somewhat awkward format. Unlike other UCD files, the source character is not the first field. 
+
+Analysis
+
+The attached data file is an attempt to flesh out the missing data, using some processing from multiple sources.
+
+For example:
+
+2F03;	1;	4;	4E3F	# (⼃ => 丿)	KANGXI RADICAL SLASH;	CJKRadicals.txt, NFKC
+#?  	1;	4;	4E40	# (? => 乀)	?;	kRSUnicode
+#?  	1;	4;	4E41	# (? => 乁)	?;	kRSUnicode
+
+For the data lines, the following fields are used:
+ Field 0: the source code point (radical)
+ Field 2: the number of strokes in F0. This is obtained by looking up total strokes of the target Unified Ideograph (F3)
+ Field 1: the radical number (with '). This is obtained from CJKRadicals.txt where possible, 
+          and otherwise from #http://www.wikiwand.com/de/Unicodeblock_CJK-Radikale,_Erg%C3%A4nzung
+ Field 3: the target Unified Ideograph. This is obtained from various "causes", listed in the comments after ';'
+          CJKRadicals.txt
+          NFKC
+          UCA
+          NamesList
+          kRSUnicode
+          kRSAdobe - according to kRSAdobe, the Unified Ideograph has the radical from F1, and zero remaining strokes
+ Comment: (source => target) name ; causes
+ 
+The kRSUnicode and kRSAdobe data are used to get a target Unified Ideograph by searching for those with a radical, and zero remaining strokes.
+In such cases, the Unified Ideograph represents the radical alone. 
+ 
+In the case of the last two (kRSUnicode, kRSAdobe), the source character (F1) has not been selected from the available
+radicals (pending agreement by experts); instead the line is commented with ? for the source code point and its name.
+
+For example:
+
+2FC6;	11;	199;	9EA5	# (⿆ => 麥)	KANGXI RADICAL WHEAT;	CJKRadicals.txt, NFKC
+#?  	7;	199;	9EA6	# (? => 麦)	?;	kRSAdobe
+
+2EE8;	7;	199';	9EA6	# (⻨ => 麦)	CJK RADICAL SIMPLIFIED WHEAT;	CJKRadicals.txt, UCA, NamesList
+
+The target based on the kRSAdobe is identical to that for 199', and the line should probably just be removed.
+
+There is one outlier among the radicals, one that doesn't have a target Unified Ideograph
+ 
+2E80;	0;	7;		# (⺀ => )	CJK RADICAL REPEAT;
+
+There are some cases where the "main" mapping data appears like it is suboptimal, at least based on my fonts.
+For example, it appears that the best target Unified Ideograph for CJK RADICAL FOOT would be 𧾷 (27FB7), not 足 (8DB3).
+
+2F9C;	7;	157;	8DB3	# (⾜ => 足)	KANGXI RADICAL FOOT;	CJKRadicals.txt, NFKC
+2ECA;	7;	157;	8DB3	# (⻊ => 足)	CJK RADICAL FOOT;	NamesList
+#?  	7;	157;	27FB7	# (? => 𧾷)	?;	kRSUnicode
+
+Experts should review this.
+
+The NamesList mapping appears to be in in error; the better mapping would be to 27FB7 
+(that may not have existed at the time the NameList information was composed)
+
+
+Once we have a complete list for all of the Radicals, I would like to see us make it available in machine-readable form, 
+and update the data in the NamesList and UCA.
+
+It would also be useful to supply the same sort of information, where possible for the CJK Stroke characters. From n3063,
+we have the following information. We should be able to use this data and the IDS data to provide a stroke count and
+in some cases a target Unified Ideograph character, in the same format.
+ 
+# Stroke	;	Examples
+㇐	;	一 三 丁 丞 丈 世 不 上 十 卅 七
+㇀	;	冰 淋 治 冶 冽 暴 氾 录 地 虫
+㇑	;	丩 中 串 讧 乍 上 五 丑
+㇚	;	爭 事 求 水
+㇒	;	乂 爻 禾 毛 乏 乖 釆 衣 八 行
+㇓	;	乃 月 用 齊 几 人 班 大
+㇔	;	丸 义 永 冰 凡 丹 主 求 火 刃
+㇏	;	大 人 天 入 走 边 廷 尺
+㇝	;	尐 八 入 廻
+㇕	;	口 囗 田 品 吕 申 甲 圆 巪
+㇇	;	又 双 叒 今
+㇖	;	疋 了 予 矛 子 字 疏 写 冖
+㇗	;	断 继 山 互 彙 牙 乐 东
+㇘	;	肅嘯蕭簫
+㇄	;	區 亡 妄 四
+㇙	;	食 良 艮 很 狠 鄉 民
+㇜	;	弘 公 翁
+㇛	;	巡 獵 災 甾 女 巛
+㇢	;	乄
+㇁	;	狐 嶽 貓 家 逐
+㇂	;	戈 弋 戰 我
+㇃	;	心 必 沁 惢 蕊
+㇅	;	卍
+㇍	;	殳 投 朵
+㇊	;	讠 计 鳩
+㇆	;	羽 习 包 勻 葡 用 青 甫 勺 月 也 乜
+㇈	;	飞 风 瘋 九 几 气 虱
+㇞	;	亞 鼎 卐 吳 专 𧦮 𤓷 𤦡
+㇟	;	乱 己 已 巳
+㇎	;	凸
+㇋	;	建 及
+㇠	;	乙 氹 乞
+㇌	;	阝 队 邮
+㇉	;	号 亏 弓 强 丐 马 丂
+㇡	;	乃 孕 仍
+㇣	;	〇 㔔 㪳 㫈
