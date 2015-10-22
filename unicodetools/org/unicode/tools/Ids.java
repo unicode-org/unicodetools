@@ -15,12 +15,12 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.ChainedMap;
 import org.unicode.cldr.util.ChainedMap.M3;
 import org.unicode.cldr.util.ChainedMap.M4;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -29,8 +29,6 @@ import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
 import com.google.common.collect.ComparisonChain;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -52,14 +50,6 @@ import com.ibm.icu.util.Output;
 public class Ids {
 
     private static final boolean DEBUG = false;
-
-    private static final Splitter DOT_SPLITTER = Splitter.on('.');
-    private static final Splitter SPACE_SPLITTER = Splitter.onPattern("\\s+");
-    private static final Splitter VBAR_SPLITTER = Splitter.on('|');
-    private static final Splitter TAB_SPLITTER = Splitter.on('\t');
-    private static final Splitter SEMI_SPLITTER = Splitter.on(';').trimResults();
-    private static final Joiner SPACE_JOINER = Joiner.on(' ');
-    private static final Joiner CRLF_JOINER = Joiner.on('\n');
 
     private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Settings.latestVersion);
 
@@ -86,7 +76,7 @@ public class Ids {
         numericRadicalStroke = new UnicodeMap<>();
         for (Entry<String, List<String>> entry : radicalStroke.entrySet()) {
             List<String> items = entry.getValue();
-            List<String> parts = DOT_SPLITTER.splitToList(items.get(0));
+            List<String> parts = Common.DOT_SPLITTER.splitToList(items.get(0));
             String rad = parts.get(0);
             int radInt;
             boolean alt = rad.endsWith("'");
@@ -124,7 +114,7 @@ public class Ids {
             if (rsItem.contains(" ") || rsItem.contains("|")) {
                 throw new IllegalArgumentException(simpleRadicalStroke.toString());
             }
-            List<String> items = DOT_SPLITTER.splitToList(rsItem);
+            List<String> items = Common.DOT_SPLITTER.splitToList(rsItem);
             if (Integer.parseInt(items.get(1)) == 0) {
                 int radical = Integer.parseInt(items.get(0));
                 UnicodeSet set = result.get(radical);
@@ -190,7 +180,6 @@ public class Ids {
     };
     //private static final UnicodeMap<String> totalStrokes = iup.load(UcdProperty.kTotalStrokes);
 
-    static final Pattern ADOBE = Pattern.compile("[CV]\\+[0-9]{1,5}\\+([1-9][0-9]{0,2})\\.([1-9][0-9]?)\\.([0-9]{1,2})");
     /**
      * http://www.unicode.org/reports/tr38/#kRSAdobe_Japan1_6
      *  radical, rstrokes, remaining => Unicode => remaining
@@ -198,7 +187,7 @@ public class Ids {
      */
     static final M4<Integer,Integer,Integer,UnicodeSet> ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET = ChainedMap.of(new TreeMap(), new TreeMap(), new TreeMap(), UnicodeSet.class);
     static {
-        Matcher m = ADOBE.matcher("");
+        Matcher m = Common.ADOBE_RS_MATCHER.matcher("");
         for (Entry<String, Set<String>> entry : adobeRadicalStroke.entrySet()) {
             String source = entry.getKey();
             for (String s : entry.getValue()) {
@@ -227,8 +216,6 @@ public class Ids {
     private static final UnicodeMap<String> unicodeToRadical;
     static final Relation<String,String> rawRadToUnicode;
     static final Relation<String,String> radToUnicode;
-    static final Relation<Integer,String> radToCjkRad;
-    private static final UnicodeMap<UnicodeSet> cjkStrokeToExamples;
     static {
         UnicodeMap<List<String>> unicodeToRadicalRaw = iup.loadList(UcdProperty.CJK_Radical);
 
@@ -264,39 +251,10 @@ public class Ids {
             radToUnicode.put(entry.getValue(), entry.getKey());
         }
 
-        radToCjkRad = Relation.of(new TreeMap(), TreeSet.class);
-        for (String line : FileUtilities.in(Ids.class, "idsCjkRadicals.txt")) {
-            int hashPos = line.indexOf('#');
-            if (hashPos >= 0) {
-                line= line.substring(0, hashPos).trim();
-            }
-            if (line.isEmpty()) {
-                continue;
-            }
-            List<String> parts = SEMI_SPLITTER.splitToList(line);
-            int cjkRad = Integer.parseInt(parts.get(0), 16);
-            final String radString = parts.get(1);
-            int radNumber = Integer.parseInt(radString);
-            radToCjkRad.put(radNumber, UTF16.valueOf(cjkRad));
-            radToUnicode.put(radString, UTF16.valueOf(cjkRad));
+        for (Entry<Integer, String> entry : IdsFileData.radToCjkRad.keyValueSet()) {
+            radToUnicode.put(entry.getKey().toString(), entry.getValue());
         }
         radToUnicode.freeze();
-
-        cjkStrokeToExamples = new UnicodeMap<UnicodeSet>();
-        for (String line : FileUtilities.in(Ids.class, "n3063StrokeExamples.txt")) {
-            int hashPos = line.indexOf('#');
-            if (hashPos >= 0) {
-                line= line.substring(0, hashPos).trim();
-            }
-            if (line.isEmpty()) {
-                continue;
-            }
-            List<String> parts = SEMI_SPLITTER.splitToList(line);
-            int cjkStroke = parts.get(0).codePointAt(0);
-            final UnicodeSet examples = new UnicodeSet().addAll(parts.get(1)).remove(' ').freeze();
-            cjkStrokeToExamples.put(cjkStroke, examples);
-        }
-        cjkStrokeToExamples.freeze();
     }
 
     private static void fillRadical(UnicodeMap<List<String>> cjkRadicalRaw) {
@@ -308,8 +266,8 @@ public class Ids {
                         List<String> rad = cjkRadicalRaw.get(cp);
                         if (rad == null) {
                             rad = new ArrayList<String>();
-                            for (String vb : VBAR_SPLITTER.split(rs)) {
-                                List<String> ds = DOT_SPLITTER.splitToList(vb);
+                            for (String vb : Common.VBAR_SPLITTER.split(rs)) {
+                                List<String> ds = Common.DOT_SPLITTER.splitToList(vb);
                                 if ("0".equals(ds.get(1))) {
                                     rad.add(ds.get(0));
                                 }
@@ -785,9 +743,6 @@ public class Ids {
     static final UnicodeMap<Integer> TO_CONFUSABLE = new UnicodeMap<Integer>();
 
     public static void main(String[] args) throws IOException {
-        buildConfusableRadicals();
-
-        load();
         showCjkRadicals();
         showConfusables();
         showRadicalCompareTxt();
@@ -852,7 +807,7 @@ public class Ids {
 
     private static void showCjkRadicals() {
         for (String s : CJK_STROKES_BLOCK) {
-            UnicodeSet examples = cjkStrokeToExamples.get(s);
+            UnicodeSet examples = IdsFileData.cjkStrokeToExamples.get(s);
             System.out.println(s + "\t" + examples.toPattern(false));
         }
     }
@@ -868,9 +823,14 @@ public class Ids {
                 for (Entry<String, CharacterIds> entry : IDS_RECURSIVE.entrySet()) {
                     //            invert.put(entry.getValue().parts, entry.getKey());
                     final String source = entry.getKey();
-                    String rs = radicalStroke.get(source).get(0);
+                    final List<String> rs2 = radicalStroke.get(source);
+                    if (rs2 == null) {
+                        System.out.println("showRadicalMissing Skipping " + source);
+                        continue;
+                    }
+                    String rs = rs2.get(0);
                     String idsSource = entry.getValue().idsSource;
-                    Set<String> rads = radToUnicode.get(DOT_SPLITTER.splitToList(rs).get(0));
+                    Set<String> rads = radToUnicode.get(Common.DOT_SPLITTER.splitToList(rs).get(0));
                     for (String rad : rads) {
                         if (idsSource.contains(rad)) {
                             continue main;
@@ -888,7 +848,7 @@ public class Ids {
                             + "<th style='text-align:right'>" + ++count + "</th>"
                             + "<td style='font-size: " + LARGE/2 + "px'>" + source + "</td>"
                             + "<td >" + rs + "</td>"
-                            + "<td style='font-size: " + LARGE/2 + "px'>" + SPACE_JOINER.join(rads) + "</td>"
+                            + "<td style='font-size: " + LARGE/2 + "px'>" + Common.SPACE_JOINER.join(rads) + "</td>"
                             + "<td style='font-size: " + LARGE/2 + "px'>" + idsSource + "</td>"
                             + "</tr>");
 
@@ -938,7 +898,7 @@ public class Ids {
                             + "<td>" + entry.getKey() + "</td>"
                             + "<td style='font-size: " + LARGE/2 + "px'>" + key + "</td>"
                             + "<td style='font-size: " + LARGE/2 + "px'>" + entry2.getValue() + "</td>"
-                            + "<td style='font-size: " + LARGE/2 + "px'>" + SPACE_JOINER.join(radChar.value) + "</td>"
+                            + "<td style='font-size: " + LARGE/2 + "px'>" + Common.SPACE_JOINER.join(radChar.value) + "</td>"
                             + "<td>" + rad + "</td>"
                             + "</tr>");
                 }
@@ -955,7 +915,7 @@ public class Ids {
             return Collections.EMPTY_LIST;
         }
         String rs1 = rs.iterator().next();
-        List<String> parts = DOT_SPLITTER.splitToList(rs1);
+        List<String> parts = Common.DOT_SPLITTER.splitToList(rs1);
         Set<String> rad = radToUnicode.get(parts.get(0));
         radicalChar.value = rad;
         return rs;
@@ -993,7 +953,7 @@ public class Ids {
                 final boolean alt = intRadical != doubleRadical;
                 String samples = alt ? "" : getSamples((int)key.doubleValue());
                 String key2 = intRadical + (alt ? "'" : "");
-                final Set<String> cjkRad = alt ? Collections.EMPTY_SET : radToCjkRad.get(intRadical);
+                final Set<String> cjkRad = alt ? Collections.EMPTY_SET : IdsFileData.radToCjkRad.get(intRadical);
                 UnicodeSet RSUnicode = USTROKE.get(intRadical, alt);
                 M3<Integer, Integer, UnicodeSet> adobe = ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET.get(intRadical);
                 adobeItems.clear();
@@ -1013,9 +973,9 @@ public class Ids {
                 out.println("<tr>"
                         + "<th style='text-align:right'>" + key2 + "</th>"
                         + "<td style='font-size: 24px'>" + raw.iterator().next() + "</td>"
-                        + "<td style='font-size: 24px'>" + (RSUnicode == null ? "" : SPACE_JOINER.join(RSUnicode)) + "</td>"
-                        + "<td style='font-size: 24px'>" + (cjkRad == null ? "" : SPACE_JOINER.join(cjkRad)) + "</td>"
-                        + "<td style='font-size: 24px'>" + SPACE_JOINER.join(adobeItems) + "</td>"
+                        + "<td style='font-size: 24px'>" + (RSUnicode == null ? "" : Common.SPACE_JOINER.join(RSUnicode)) + "</td>"
+                        + "<td style='font-size: 24px'>" + (cjkRad == null ? "" : Common.SPACE_JOINER.join(cjkRad)) + "</td>"
+                        + "<td style='font-size: 24px'>" + Common.SPACE_JOINER.join(adobeItems) + "</td>"
                         + "<td style='font-size: 24px'>" + samples + "</td>"
                         + "<td>" + UCharacter.getName(raw.iterator().next(), ",") + "</td>"
                         + "</tr>");
@@ -1054,7 +1014,7 @@ public class Ids {
                 if (line.startsWith("#")) {
                     continue;
                 }
-                List<String> row = SEMI_SPLITTER.splitToList(line);
+                List<String> row = Common.SEMI_SPLITTER.splitToList(line);
                 // U+2ED6 (11990) ; ⻖ ; CJK RADICAL MOUND TWO ; CJK-Radikal 170 Hügel, 2. Form (links) = 阝 (U+961D)
                 String cjkRadSup = row.get(1);
                 String target = row.get(3);
@@ -1085,27 +1045,9 @@ public class Ids {
     }
 
     static class Nameslist {
-        static UnicodeMap<String> cjkRadSupToIdeo = new UnicodeMap<>();
-        static {
-            for (String line : FileUtilities.in(Ids.class, "cjkRadicalsSupplementAnnotations.txt")) {
-                if (line.startsWith("#")) {
-                    continue;
-                }
-                List<String> row = SEMI_SPLITTER.splitToList(line);
-                // 2E81 ;   ⺁ ; 5382 ;  厂
-                String cjkRadSup = row.get(1);
-                String cp = row.get(3);
-                if (cp.codePointCount(0, cp.length()) != 1) {
-                    throw new ICUException(row.toString());
-                }
-                cjkRadSupToIdeo.put(cjkRadSup, cp);
-            }
-            cjkRadSupToIdeo.freeze();
-        }
-
         static String check(String key2, Set<String> items, Output<String> cjkRad) {
             for (String item : items) {
-                String v = cjkRadSupToIdeo.get(item);
+                String v = IdsFileData.cjkRadSupToIdeo.get(item);
                 if (v == null) {
                     continue;
                 }
@@ -1452,7 +1394,7 @@ public class Ids {
                     ) {
                 continue;
             }
-            List<String> parts = SPACE_SPLITTER.splitToList(line);
+            List<String> parts = Common.SPACE_SPLITTER.splitToList(line);
             String base = parts.get(1);
             if (base.equals(parts.get(2)) || RADICAL_OR_STROKE.contains(base)) {
                 // CDP-8DBA    &CDP-8DBA;  &CDP-8DBA;
@@ -1592,4 +1534,8 @@ public class Ids {
  黃  U+9EC3 CJK UNIFIED IDEOGRAPH-9EC3
  黄  U+9EC4 CJK UNIFIED IDEOGRAPH-9EC4
      */
+    static {
+        buildConfusableRadicals();
+        load();
+    }
 }
