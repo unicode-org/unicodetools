@@ -874,7 +874,7 @@ boom, collision	💥
 splashing	💦
 dung, poo, poop	💩
 biceps, flex, muscle	💪
-dialog, speech	💬
+dialog, speech	💬🗨
 thought	💭
 100, hundred	💯
 moneybag	💰

@@ -1235,14 +1235,14 @@ public class GenerateEmoji {
         // oldAnnotationDiff();
         // check twitter glyphs
 
-        if (SHOW) {
-            System.out.println("static final UnicodeSet EMOJI_CHARS = new UnicodeSet(\n\"" + Data.DATA_CHARACTERS.toPattern(false) + "\");");
-            // getUrlCharacters("TWITTER", TWITTER_URL);
-            // getUrlCharacters("APPLE", APPLE_URL);
-            System.out.println(new UnicodeSet(Emoji.GITHUB_APPLE_CHARS).removeAll(APPLE_CHARS).toPattern(false));
-            System.out.println(list(new UnicodeSet(APPLE_CHARS).removeAll(Emoji.GITHUB_APPLE_CHARS)));
-            System.out.println("Apple: " + APPLE_CHARS);
-        }
+//        if (SHOW) {
+//            System.out.println("static final UnicodeSet EMOJI_CHARS = new UnicodeSet(\n\"" + Data.DATA_CHARACTERS.toPattern(false) + "\");");
+//            // getUrlCharacters("TWITTER", TWITTER_URL);
+//            // getUrlCharacters("APPLE", APPLE_URL);
+//            System.out.println(new UnicodeSet(Emoji.GITHUB_APPLE_CHARS).removeAll(APPLE_CHARS).toPattern(false));
+//            System.out.println(list(new UnicodeSet(APPLE_CHARS).removeAll(Emoji.GITHUB_APPLE_CHARS)));
+//            System.out.println("Apple: " + APPLE_CHARS);
+//        }
         System.out.println("DONE");
     }
 

@@ -33,6 +33,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
@@ -46,6 +47,7 @@ import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.LocaleIDParser;
+import org.unicode.cldr.util.With;
 import org.unicode.text.tools.Emoji.Source;
 import org.unicode.text.tools.GmailEmoji.Data;
 import org.unicode.text.utility.Settings;
@@ -59,6 +61,7 @@ import com.ibm.icu.lang.UScript;
 import com.ibm.icu.lang.UScript.ScriptUsage;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
@@ -74,6 +77,43 @@ public class LoadImage extends Component {
     private static final long serialVersionUID = 1L;
 
     BufferedImage img;
+
+    static final Transform<String,String> TWITTER_URL = new Transform<String,String>() {
+        public String transform(String s) {
+            StringBuilder result = new StringBuilder("https://abs.twimg.com/emoji/v1/72x72/");
+            boolean first = true;
+            for (int cp : With.codePointArray(s)) {
+                if (first) {
+                    first = false;
+                } else {
+                    result.append("-");
+                }
+                result.append(Integer.toHexString(cp));
+            }
+            return  result.append(".png").toString();
+        }
+    };
+
+    static final UnicodeSet APPLE_LOCAL = new UnicodeSet("[🌠 🔈 🚋{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]").freeze();
+
+    static final Transform<String,String> APPLE_URL = new Transform<String,String>() {
+        public String transform(String s) {
+            StringBuilder result = 
+                    new StringBuilder(
+                            LoadImage.APPLE_LOCAL.containsAll(s) ? "images/apple-extras/apple-" 
+                                    : "http://emojistatic.github.io/images/64/");
+            boolean first = true;
+            for (int cp : With.codePointArray(s)) {
+                if (first) {
+                    first = false;
+                } else {
+                    result.append("-");
+                }
+                result.append(com.ibm.icu.impl.Utility.hex(cp).toLowerCase(Locale.ENGLISH));
+            }
+            return  result.append(".png").toString();
+        }
+    };
 
     public void paint(Graphics g) {
         g.drawImage(img, 0, 0, null);
@@ -137,7 +177,7 @@ public class LoadImage extends Component {
         doDoCoMo(outputDir);
         doSb(outputDir);
 
-        getAppleNumbers();
+        //getAppleNumbers();
         UnicodeSet dingbats = canDisplay("Zapf Dingbats");
         System.out.println(dingbats);
 
@@ -156,7 +196,7 @@ public class LoadImage extends Component {
             doWindows(inputDir, outputDir);
             doRef(inputDir, outputDir);
             doTwitter(inputDir, outputDir);
-            doGitHub(inputDir, outputDir);
+            //doGitHub(inputDir, outputDir);
             //List<BufferedImage> list = doSymbola(inputDir, outputDir, "Apple Emoji", SYMBOLA, 144); // "Symbola"
             createAnimatedImage(new File(outputDir, "animated-symbola.gif"), list, 1, false);
         }
@@ -247,35 +287,35 @@ public class LoadImage extends Component {
         return sample;
     }
 
-    private static void getAppleNumbers() throws IOException {
-        Set<String> codepointOrder = new TreeSet(new UTF16.StringComparator());
-        UnicodeSet found = new UnicodeSet("[©®🌠🔈🚃🚋🔊🔉{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]")
-        .addAll(Emoji.GITHUB_APPLE_CHARS);
-        for (String s : found) {
-            codepointOrder.add(s);
-        }
-        Set<Integer> skipSet = new HashSet();
-        skipSet.add(129);
-
-        int i = 1;
-        String newDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/AppleEmoji/";
-        final int maxNew = 846;
-        String oldDir = Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/images/apple/";
-        PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images", "checkApple.html");
-        out.println("<html><body><table>");
-        for (String s : codepointOrder) {
-            while (skipSet.contains(i)) {
-                ++i;
-            }
-            writeAppleLine(out, newDir, i, oldDir, s);
-            ++i;
-        }
-        for (;i <= maxNew; ++i) {
-            writeAppleLine(out, newDir, i, oldDir, "");
-        }
-        out.println("</table></body></html>");
-        out.close();
-    }
+//    private static void getAppleNumbers() throws IOException {
+//        Set<String> codepointOrder = new TreeSet(new UTF16.StringComparator());
+//        UnicodeSet found = new UnicodeSet("[©®🌠🔈🚃🚋🔊🔉{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]")
+//        .addAll(Emoji.GITHUB_APPLE_CHARS);
+//        for (String s : found) {
+//            codepointOrder.add(s);
+//        }
+//        Set<Integer> skipSet = new HashSet();
+//        skipSet.add(129);
+//
+//        int i = 1;
+//        String newDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/AppleEmoji/";
+//        final int maxNew = 846;
+//        String oldDir = Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/images/apple/";
+//        PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images", "checkApple.html");
+//        out.println("<html><body><table>");
+//        for (String s : codepointOrder) {
+//            while (skipSet.contains(i)) {
+//                ++i;
+//            }
+//            writeAppleLine(out, newDir, i, oldDir, s);
+//            ++i;
+//        }
+//        for (;i <= maxNew; ++i) {
+//            writeAppleLine(out, newDir, i, oldDir, "");
+//        }
+//        out.println("</table></body></html>");
+//        out.close();
+//    }
 
     static FileSystem dfs = FileSystems.getDefault();
 
@@ -345,16 +385,16 @@ public class LoadImage extends Component {
         System.out.println("Image created");
     }
 
-    public static void doGitHub(String inputDir, String outputDir)
-            throws IOException {
-        for (String s : Emoji.GITHUB_APPLE_CHARS) {
-            String url = Emoji.APPLE_URL.transform(s);
-            String core = Emoji.buildFileName(s, "_");
-            System.out.println(core);
-            BufferedImage sourceImage = ImageIO.read(new URL(url));
-            BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/apple", "apple_" + core, 72);
-        }
-    }
+//    public static void doGitHub(String inputDir, String outputDir)
+//            throws IOException {
+//        for (String s : Emoji.GITHUB_APPLE_CHARS) {
+//            String url = LoadImage.APPLE_URL.transform(s);
+//            String core = Emoji.buildFileName(s, "_");
+//            System.out.println(core);
+//            BufferedImage sourceImage = ImageIO.read(new URL(url));
+//            BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/apple", "apple_" + core, 72);
+//        }
+//    }
 
     final static UnicodeSet NON_SYMBOLA = new UnicodeSet("[🅰🆎🅱🆑🆒🆓🆔🆕🆖🅾🆗🅿🆘🆙🆚🆏🈁🈂🈹🉑🈴🈺🉐🈯🈷🈶🈵🈚🈸🈲🈳]");
 
@@ -455,7 +495,7 @@ public class LoadImage extends Component {
             if (reset) {
                 metrics = setFont(font, height, graphics);
             }
-            String url = Emoji.APPLE_URL.transform(s);
+            String url = LoadImage.APPLE_URL.transform(s);
             BufferedImage targetImage = writeResizedImage(sourceImage, fileDirectory, filename, height);
             result.add(deepCopy(sourceImage));
             System.out.println(core + "\t" + s);
