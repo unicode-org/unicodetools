@@ -26,7 +26,7 @@ import org.unicode.jsp.XPropertyFactory;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.Relation;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.lang.UCharacter;

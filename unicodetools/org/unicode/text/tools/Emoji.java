@@ -10,15 +10,12 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.CLDRConfig;
-import org.unicode.cldr.util.StandardCodes;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.With;
-import org.unicode.text.tools.Emoji.Source;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.impl.Row.R2;
-import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
@@ -83,6 +80,7 @@ public class Emoji {
     .removeAll(new UnicodeSet("[☫☬🎕⚘⸙⎈]"))
     .removeAll(new UnicodeSet("[℗⏴-⏷●◪☙☤☼-☾♩-♯♾⚐⚑⚕⚚ ⚿⛆⛍⛐⛒⛕-⛙⛛⛜⛞-⛡⛨⛼⛾-✀✆✇✑ ❢❦❧🌢🌣🎔🎘🎜🎝🏱🏲🏶📾🔾🔿🕨-🕮🕱🖁-🖆 🖈🖉🖎🖏🖒-🖔🖗-🖣🖦🖧🖩🖮-🖰🖳-🖻🖽-🗁 🗅-🗐🗔-🗛🗟🗠🗤-🗮🗰-🗲🛆-🛈🛦-🛨🛪 🛱🛲]"))
     .removeAll(new UnicodeSet("[🛉 🛊 🖑🗢☏☐☒☚-☜☞☟♲⛇✁✃✄✎✐✕✗✘  ♤  ♡  ♢ ♧❥🆏 ☻ ⛝ 0  1  2  3  4 5  6  7  8  9]"))
+    .add("🗨")
     // .freeze() will freeze later
     ;
     public static final UnicodeSet COMMON_ADDITIONS = new UnicodeSet("[➿🌍🌎🌐🌒🌖-🌘🌚🌜-🌞🌲🌳🍋🍐🍼🏇🏉🏤🐀-🐋🐏🐐🐓🐕🐖🐪👥👬👭💭💶💷📬📭📯📵🔀-🔂🔄-🔉🔕🔬🔭🕜-🕧😀😇😈😎😐😑😕😗😙😛😟😦😧😬😮😯😴😶🚁🚂🚆🚈🚊🚋🚍🚎🚐🚔🚖🚘🚛-🚡🚣🚦🚮-🚱🚳-🚵🚷🚸🚿🛁-🛅]").freeze();
@@ -94,10 +92,6 @@ public class Emoji {
     .addAll(LATIN1_LETTER)
     .freeze();
     static final UnicodeSet KEYCAPS = new UnicodeSet("[{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]").freeze();
-
-    static final UnicodeSet GITHUB_APPLE_CHARS = new UnicodeSet(
-            "[‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌟🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔇🔉-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🚊🚌-🛅{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]")
-    .freeze();
 
     public static final UnicodeSet SKIP_ANDROID = new UnicodeSet("[♨ ⚠ ▶ ◀ ✉ ✏ ✒ ✂ ⬆ ↗ ➡ ↘ ⬇ ↙ ⬅ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ♻ ☑ ✔ ✖ 〽 ✳ ✴ ❇ ▪ ▫ ◻ ◼ ‼ ⁉ 〰 © ® 🅰 🅱 ℹ Ⓜ 🅾 🅿 ™ 🈂 🈷 ㊗ ㊙]").freeze();
 
@@ -161,7 +155,8 @@ public class Emoji {
         .toString();
     }
 
-    static final UnicodeSet APPLE_COMBOS = new UnicodeSet("[{👨‍❤️‍👨} {👩‍❤️‍👩} {👨‍👨‍👦‍👦} {👨‍👨‍👦} {👨‍👨‍👧‍👦} {👨‍👨‍👧‍👧} {👨‍👨‍👧} {👨‍👩‍👦‍👦} {👨‍👩‍👦} {👨‍👩‍👧‍👦} {👨‍👩‍👧‍👧} {👨‍👩‍👧} {👩‍👩‍👦‍👦} {👩‍👩‍👦} {👩‍👩‍👧‍👦} {👩‍👩‍👧‍👧} {👩‍👩‍👧} {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}]").freeze();
+    public static final UnicodeSet APPLE_COMBOS = new UnicodeSet("[{👨‍❤️‍👨} {👩‍❤️‍👩} {👨‍👨‍👦‍👦} {👨‍👨‍👦} {👨‍👨‍👧‍👦} {👨‍👨‍👧‍👧} {👨‍👨‍👧} {👨‍👩‍👦‍👦} {👨‍👩‍👦} {👨‍👩‍👧‍👦} {👨‍👩‍👧‍👧} {👨‍👩‍👧} {👩‍👩‍👦‍👦} {👩‍👩‍👦} {👩‍👩‍👧‍👦} {👩‍👩‍👧‍👧} {👩‍👩‍👧} {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}"
+            + "{\\x{1F441} \u200D \\x{1F5E8}}]").freeze();
     public static final UnicodeSet APPLE_MODIFIED = new UnicodeSet("["
             + "{👦🏻} {👦🏼} {👦🏽} {👦🏾} {👦🏿}"
             + "{👧🏻} {👧🏼} {👧🏽} {👧🏾} {👧🏿} "
@@ -214,8 +209,6 @@ public class Emoji {
             + "{💃🏻}{💃🏼}{💃🏽}{💃🏾}{💃🏿}"
             + "{💅🏻}{💅🏼}{💅🏽}{💅🏾}{💅🏿}"
             + "{💪🏻}{💪🏼}{💪🏽}{💪🏾}{💪🏿}"
-            //+ "{🖐🏻}{🖐🏼}{🖐🏽}{🖐🏾}{🖐🏿}"
-            //+ "{🖕🏻}{🖕🏼}{🖕🏽}{🖕🏾}{🖕🏿}"
             + "{🖖🏻}{🖖🏼}{🖖🏽}{🖖🏾}{🖖🏿}"
             + "{🙌🏻}{🙌🏼}{🙌🏽}{🙌🏾}{🙌🏿}"
             + "{🙏🏻}{🙏🏼}{🙏🏽}{🙏🏾}{🙏🏿}"
@@ -224,7 +217,12 @@ public class Emoji {
             + "{🚵🏻}{🚵🏼}{🚵🏽}{🚵🏾}{🚵🏿}"
             + "{🚶🏻}{🚶🏼}{🚶🏽}{🚶🏾}{🚶🏿}"
             + "{🛀🏻}{🛀🏼}{🛀🏽}{🛀🏾}{🛀🏿}"
-            //+ "{🤘🏻}{🤘🏼}{🤘🏽}{🤘🏾}{🤘🏿}"
+            + "{⛹🏻}{⛹🏼}{⛹🏽}{⛹🏾}{⛹🏿}"
+            + "{✍🏻}{✍🏼}{✍🏽}{✍🏾}{✍🏿}"
+            + "{🏋🏻}{🏋🏼}{🏋🏽}{🏋🏾}{🏋🏿}"
+            + "{🖐🏻}{🖐🏼}{🖐🏽}{🖐🏾}{🖐🏿}"
+            + "{🖕🏻}{🖕🏼}{🖕🏽}{🖕🏾}{🖕🏿}"
+            + "{🤘🏻}{🤘🏼}{🤘🏽}{🤘🏾}{🤘🏿}"
             + "]").freeze();
 
     public static final UnicodeSet FACES = new UnicodeSet("[☺ ☹ 🙁 🙂 😀-😆 😉-😷 😇 😈 👿 🙃 🙄 🤐-🤕 🤗]").freeze();
@@ -282,42 +280,6 @@ public class Emoji {
         EMOJI_CHARS.addAll(FLAGS).freeze();
     }
 
-    static final Transform<String,String> APPLE_URL = new Transform<String,String>() {
-        public String transform(String s) {
-            StringBuilder result = 
-                    new StringBuilder(
-                            Emoji.APPLE_LOCAL.containsAll(s) ? "images/apple-extras/apple-" 
-                                    : "http://emojistatic.github.io/images/64/");
-            boolean first = true;
-            for (int cp : With.codePointArray(s)) {
-                if (first) {
-                    first = false;
-                } else {
-                    result.append("-");
-                }
-                result.append(com.ibm.icu.impl.Utility.hex(cp).toLowerCase(Locale.ENGLISH));
-            }
-            return  result.append(".png").toString();
-        }
-    };
-
-    static final Transform<String,String> TWITTER_URL = new Transform<String,String>() {
-        public String transform(String s) {
-            StringBuilder result = new StringBuilder("https://abs.twimg.com/emoji/v1/72x72/");
-            boolean first = true;
-            for (int cp : With.codePointArray(s)) {
-                if (first) {
-                    first = false;
-                } else {
-                    result.append("-");
-                }
-                result.append(Integer.toHexString(cp));
-            }
-            return  result.append(".png").toString();
-        }
-    };
-    static final UnicodeSet APPLE_LOCAL = new UnicodeSet("[🌠 🔈 🚋{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]").freeze();
-
     public static boolean isRegionalIndicator(int firstCodepoint) {
         return FIRST_REGIONAL <= firstCodepoint && firstCodepoint <= Emoji.LAST_REGIONAL;
     }
@@ -339,6 +301,9 @@ public class Emoji {
 
     public static void main(String[] args) {
         if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {
+            throw new IllegalArgumentException();
+        }
+        if (!EMOJI_CHARS.contains("🗨")) {
             throw new IllegalArgumentException();
         }
         System.out.println("Singletons:\n" + EMOJI_SINGLETONS.toPattern(false));
@@ -423,7 +388,6 @@ public class Emoji {
 
     static final UnicodeSet U80 = new UnicodeSet("[🌭🌮🌯🍾🍿🏏🏐🏑🏒🏓🏸🏹🏺🏻🏼🏽🏾🏿📿🕋🕌🕍🕎🙃🙄🛐🤀🤐🤑🤒🤓🤔🤕🤖🤗🤘🦀🦁🦂🦃🦄🧀]").freeze();
     static final UnicodeSet U90 = new UnicodeSet("[\\x{1F57A} \\x{1F5A4} \\x{1F6D1} \\x{1F6F4} \\x{1F6F5} \\x{1F919} \\x{1F91A} \\x{1F91B} \\x{1F91C} \\x{1F91D} \\x{1F91E} \\x{1F920} \\x{1F921} \\x{1F922} \\x{1F923} \\x{1F924} \\x{1F925} \\x{1F926} \\x{1F930} \\x{1F933} \\x{1F934} \\x{1F935} \\x{1F936} \\x{1F937} \\x{1F940} \\x{1F942} \\x{1F950} \\x{1F951} \\x{1F952} \\x{1F953} \\x{1F954} \\x{1F955} \\x{1F985} \\x{1F986} \\x{1F987} \\x{1F988} \\x{1F989} \\x{1F98A}]").freeze();
-    static final UnicodeSet APPLE = new UnicodeSet("[©®‼⁉™ℹ↔-↙↩↪⌚⌛⏩-⏬⏰⏳Ⓜ▪▫▶◀◻-◾☀☁☎☑☔☕☝☺♈-♓♠♣♥♦♨♻♿⚓⚠⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✂✅✈-✌✏✒✔✖✨✳✴❄❇❌❎❓-❕❗❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌠🌰-🌵🌷-🍼🎀-🎓🎠-🏄🏆-🏊🏠-🏰🐀-🐾👀👂-📷📹-📼🔀-🔽🕐-🕧🗻-🙀🙅-🙏🚀-🛅{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}{🇨🇳}{🇩🇪}{🇪🇸}{🇫🇷}{🇬🇧}{🇮🇹}{🇯🇵}{🇰🇷}{🇷🇺}{🇺🇸}]").freeze();
     static final Transliterator UNESCAPE = Transliterator.getInstance("hex-any/Perl");
 
     static String getImageFilenameFromChars(Emoji.Source type, String chars) {

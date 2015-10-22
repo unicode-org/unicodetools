@@ -1313,3 +1313,4 @@
 1F1FF 1F1E6 ;	emoji ;	L2 ;	none ;	x	# V6.0 (🇿🇦) flag for South Africa
 1F1FF 1F1F2 ;	emoji ;	L2 ;	none ;	x	# V6.0 (🇿🇲) flag for Zambia
 1F1FF 1F1FC ;	emoji ;	L2 ;	none ;	x	# V6.0 (🇿🇼) flag for Zimbabwe
+1F5E8 ; emoji ; L2 ; none ; x #	(🗨) LEFT SPEECH BUBBLE
