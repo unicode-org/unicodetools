@@ -145,7 +145,7 @@ class RadicalData {
             String key2 = intRadical + (alt ? "'" : "");
             RadicalData radicalData = new RadicalData(key2);
 
-            final Set<String> cjkRad = alt ? Collections.EMPTY_SET : Ids.radToCjkRad.get(intRadical);
+            final Set<String> cjkRad = alt ? Collections.EMPTY_SET : IdsFileData.radToCjkRad.get(intRadical);
             UnicodeSet RSUnicode = Ids.USTROKE.get(intRadical, alt);
             M3<Integer, Integer, UnicodeSet> adobe = Ids.ADOBE_RADICAL_STROKESINRADICAL_REMAINDER_USET.get(intRadical);
             adobeItems.clear();
