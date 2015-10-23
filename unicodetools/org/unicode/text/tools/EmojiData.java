@@ -56,6 +56,8 @@ public class EmojiData {
     }
 
     final UnicodeMap<EmojiDatum> data = new UnicodeMap<>();
+    final UnicodeSet charsWithData = new UnicodeSet();
+    final UnicodeSet flatChars = new UnicodeSet();
     final Map<DefaultPresentation, UnicodeSet> defaultPresentationMap;
     final Map<EmojiLevel, UnicodeSet> levelMap;
     final Map<ModifierStatus, UnicodeSet> modifierClassMap;
@@ -112,6 +114,25 @@ public class EmojiData {
         defaultPresentationMap = Collections.unmodifiableMap(_defaultPresentationMap);
         charSourceMap = Collections.unmodifiableMap(_charSourceMap);
         data.freeze();
+        charsWithData.addAll(data.keySet());
+        charsWithData.freeze();
+        flatChars.addAll(charsWithData)
+        .addAll(Emoji.FIRST_REGIONAL,Emoji.LAST_REGIONAL)
+        .removeAll(charsWithData.strings())
+        .addAll(new UnicodeSet("[{*⃣} {#⃣}]"))
+        .add(Emoji.EMOJI_VARIANT)
+        .add(Emoji.TEXT_VARIANT)
+        .add(Emoji.JOINER)
+        .removeAll(new UnicodeSet("[[:L:][:M:][:^nt=none:]+_-]"))
+        .freeze();
+    }
+
+    public UnicodeSet getChars() {
+        return charsWithData;
+    }
+
+    public UnicodeSet getFlatChars() {
+        return charsWithData;
     }
 
     public static void freezeUnicodeSets(Collection<UnicodeSet> collection) {
