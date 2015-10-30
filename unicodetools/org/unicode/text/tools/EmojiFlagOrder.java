@@ -181,7 +181,7 @@ public class EmojiFlagOrder {
         @Override
         public int compareTo(ImageInfo o) {
             return ComparisonChain.start()
-                    .compare(name,o.name, GenerateEmoji.UCA_COLLATOR)
+                    .compare(name,o.name, EmojiOrder.UCA_COLLATOR)
                     .compare(overall, o.overall)
                     .compare(currentOrder, o.currentOrder)
                     .result();

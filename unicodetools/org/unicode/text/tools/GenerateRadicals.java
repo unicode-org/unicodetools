@@ -175,7 +175,7 @@ public class GenerateRadicals {
                     + "\t" + Common.COMMA_JOINER.join(getTotalStrokes(other)) + ";" 
                     + "\t" + radNum + ";" 
                     + "\t" + Utility.hex(other)
-                    + "\t# (" + cp + " => " + other + ")"
+                    + ";\t#\t" + cp + "\t→\t" + other
                     + "\t" + names.get(cp)
                     + ";\t" + cause
                     );
@@ -209,7 +209,7 @@ public class GenerateRadicals {
                     + "\t" + Common.COMMA_JOINER.join(getTotalStrokes(other)) + ";" 
                     + "\t" + radical1 + ";" 
                     + "\t" + Utility.hex(other)
-                    + ";\t# (" + "?" + " => " + other + ")"
+                    + ";\t#\t" + "?" + "\t→\t" + other
                     + "\t" + "?"
                     + ";\t" + cause
                     );
