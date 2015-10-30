@@ -33,6 +33,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
             "emojiAnnotationsGroups.txt"
             );
 
+
     public EmojiAnnotations(Comparator codepointCompare, String... filenames) {
         super(new TreeMap(codepointCompare), 
                 new TreeMap(codepointCompare), 
@@ -41,11 +42,13 @@ public class EmojiAnnotations extends Birelation<String,String> {
                 codepointCompare, 
                 codepointCompare);
 
-        Output<Set<String>> lastLabel = new Output(new TreeSet<String>(codepointCompare));
+        Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>(codepointCompare));
         for (String filename : filenames) {
             int lineCount = 0;
+            int lineNumber = 0;
             for (String line : FileUtilities.in(EmojiAnnotations.class, filename)) {
                 line = line.trim();
+                lineNumber++;
                 if (line.isEmpty() || line.startsWith("#")) {
                     continue;
                 }
@@ -60,7 +63,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                     if (Emoji.ASCII_LETTERS.containsSome(string)) {
                         UnicodeSet overlap = new UnicodeSet().addAll(string).retainAll(Emoji.ASCII_LETTERS);
                         String withPosition = line.replaceAll("("+overlap+")", "###$1");
-                        throw new IllegalArgumentException("Strange line with ASCII emoji: " + overlap + "; "+ withPosition);
+                        throw new IllegalArgumentException(lineNumber + "\tStrange line with ASCII emoji: " + overlap + "; "+ withPosition);
                     }
                     i += string.length();
                     if (Emoji.skipEmojiSequence(string)) {

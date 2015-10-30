@@ -98,7 +98,7 @@ final public class UCA implements Comparator<String>, UCA_Types {
     static final boolean DEBUG = false;
     static final boolean DEBUG_SHOW_LINE = false;
 
-    static final boolean SHOW_STATS = true;
+    static final boolean SHOW_STATS = false;
 
     static final boolean SHOW_CE = false;
     static final boolean CHECK_UNIQUE = false;
@@ -1446,6 +1446,8 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         {0x10FF00, 0x10FFFD},
     };
 
+    private static final boolean VERBOSE = false;
+
     /**
      * Adds the collation elements from a file (or other stream) in the UCA format.
      * Values will override any previous mappings.
@@ -1949,11 +1951,11 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
     public static UCA buildCollator(Remap primaryRemap) {
         try {
-            System.out.println("Building UCA");
+            if (VERBOSE) System.out.println("Building UCA");
             final String file = Utility.searchDirectory(new File(Settings.DATA_DIR + "uca/" + Default.ucdVersion() + "/"), "allkeys", true, ".txt");
             final UCA collator = new UCA(file, Default.ucdVersion(), primaryRemap);
-            System.out.println("Built version " + collator.getDataVersion() + "/ucd: " + collator.getUCDVersion());
-            System.out.println("Building UCD data");
+            if (VERBOSE) System.out.println("Built version " + collator.getDataVersion() + "/ucd: " + collator.getUCDVersion());
+            if (VERBOSE) System.out.println("Building UCD data");
             return collator;
         } catch (final IOException e) {
             throw new IllegalArgumentException(e);
