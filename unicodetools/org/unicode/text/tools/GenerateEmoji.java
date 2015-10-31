@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
+import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
 import org.unicode.jsp.Subheader;
 import org.unicode.props.GenerateEnums;
@@ -145,7 +146,7 @@ public class GenerateEmoji {
     static final String                    REPLACEMENT_CHARACTER       = "\uFFFD";
 
 
-    public static final Comparator<String>         CODEPOINT_COMPARE1           = EmojiOrder.STD_ORDER.codepointCompare;
+
 
     //    static final Comparator                CODEPOINT_COMPARE_SHORTER   =
     //            new MultiComparator<String>(
@@ -159,7 +160,7 @@ public class GenerateEmoji {
 
     static final Set<String>               SORTED_EMOJI_CHARS_SET;
     static {
-        TreeSet<String> temp = new TreeSet<String>(CODEPOINT_COMPARE1);
+        TreeSet<String> temp = new TreeSet<String>(EmojiOrder.STD_ORDER.codepointCompare);
         emojiData.getChars().addAllTo(temp);
         SORTED_EMOJI_CHARS_SET = Collections.unmodifiableSortedSet(temp);
     }
@@ -1597,33 +1598,66 @@ public class GenerateEmoji {
                 null, "This chart shows the default ordering of emoji characters from " + CLDR_DATA_LINK + ". "
                         + "This is designed to improve on the <a target='uca' href='http://unicode.org/charts/collation/'>UCA</a> " +
                         "orderings (shown at the right), by grouping similar items together." +
-                        "The cell divisions are an artifact, simply to help in review. " +
-                        "The left side is an emoji image (* colorful where possible), while the right is black and white.", "border='1'");
+                        "The cell divisions for Emoji Ordering indicate <i>rough</i> categories (of course, a character may fall into many different categories). "
+                        + "The cell divisions for the Default Unicode Collation Order are Unicode code-chart blocks."
+                        , "border='1'");
 
         final Set<Entry<String, Set<String>>> keyValuesSet = EmojiOrder.STD_ORDER.orderingToCharacters.keyValuesSet();
         final int rows = keyValuesSet.size();
-        out.println("<tr><th width='49%'>Emoji Ordering</th>"
-                + "<th rowSpan='" + (rows + 1) + "'>&nbsp;</th>"
+        out.println("<tr>"
+                + "<th width='49%'>Emoji Ordering</th>"
+                + "<th rowSpan='" + (rows + 1)*2 + "'>&nbsp;</th>"
                 //                + "<th width='33%'>With Chart Glyphs</th>"
                 //                + "<th rowSpan='" + (rows + 1) + "'>&nbsp;</th>"
-                + "<th width='49%'>Default Unicode Collation Order</th></tr>");
+                + "<th width='49%'>Default Unicode Collation Order</th>"
+                + "</tr>");
         UnicodeSet all = new UnicodeSet();
         for (Entry<String, Set<String>> entry : keyValuesSet) {
             all.addAll(entry.getValue());
         }
         boolean first = true;
         final int charsPerRow = -1;
+        out.println("<tr><td><table>");
         for (Entry<String, Set<String>> entry : keyValuesSet) {
+            out.println("<tr><th>" + TransliteratorUtilities.toHTML.transform(entry.getKey()) + "</th></tr>");
             out.println("<tr>");
             final UnicodeSet values = new UnicodeSet().addAll(entry.getValue());
             displayUnicodeSet(out, values, Style.bestImage, charsPerRow, 1, 1, null, CODEPOINT_COMPARE);
             // displayUnicodeSet(out, values, Style.refImage, charsPerRow, 1, 1, null, CODEPOINT_COMPARE);
             if (first) {
                 first = false;
-                displayUnicodeSet(out, all, Style.bestImage, charsPerRow, 1, rows, null, EmojiOrder.UCA_COLLATOR);
             }
             out.println("</tr>");
         }
+        out.println("</table></td>");
+
+        final UnicodeMap<Block_Values>        blocks           = LATEST.loadEnum(UcdProperty.Block, UcdPropertyValues.Block_Values.class);
+        TreeSet<String> ucaOrder = new TreeSet<>(EmojiOrder.UCA_COLLATOR);
+        all.addAllTo(ucaOrder);
+        Block_Values lastBlock = null;
+        UnicodeSet current = null;
+        LinkedHashSet<Pair<Block_Values,UnicodeSet>> pairs = new LinkedHashSet<>();
+        for (String s : all) {
+            Block_Values thisBlock = blocks.get(s.codePointAt(0));
+            if (thisBlock != lastBlock) {
+                if (current != null) {
+                    current.freeze();
+                }
+                lastBlock = thisBlock;
+                pairs.add(Pair.of(thisBlock, current = new UnicodeSet()));
+            }
+            current.add(s);
+        }
+
+        out.println("<td><table>");
+        for (Pair<Block_Values, UnicodeSet>  pair : pairs) {
+            out.println("<tr><th>" + TransliteratorUtilities.toHTML.transform(pair.getFirst().toString()) + "</th></tr>");
+            out.println("<tr>");
+            displayUnicodeSet(out, pair.getSecond(), Style.bestImage, charsPerRow, 1, 1, null, EmojiOrder.UCA_COLLATOR);
+            out.println("</tr>");
+        }
+        out.println("</table></td></tr>");
+
         writeFooter(out);
         out.close();
     }

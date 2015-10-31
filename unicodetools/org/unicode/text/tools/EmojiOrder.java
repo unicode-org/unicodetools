@@ -83,6 +83,12 @@ public class EmojiOrder {
     
     public static void main(String[] args) {
 
+        showOrder();
+//        STD_ORDER.show();
+//        ALT_ORDER.show();
+    }
+
+    private static void showOrder() {
         int lastAOrder = -100;
         List<String> current = null;
         List<List<String>> segments = new ArrayList<List<String>>();
@@ -110,12 +116,11 @@ public class EmojiOrder {
                     + "\t" + alt 
                     + "\t" + aOrder 
                     + "\t" + CollectionUtilities.join(segment, " ")
+                    + "\t" + segment.size()
                     + "\t" + "U+" + Utility.hex(first) + continuation
                     + "\t" + UCharacter.getName(first, ",") + continuation
                     );
         }
-//        STD_ORDER.show();
-//        ALT_ORDER.show();
     }
 
     private void show() {

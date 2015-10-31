@@ -362,7 +362,7 @@ public class LoadImage extends Component {
         final File output = new File(outputDir, "animated-emoji.gif");
         System.out.println(output.getCanonicalPath());
         List<BufferedImage> list = new ArrayList<>();
-        for (Entry<String, Set<String>> entry : GenerateEmoji.ORDERING_TO_CHAR.keyValuesSet()) {
+        for (Entry<String, Set<String>> entry : EmojiOrder.STD_ORDER.orderingToCharacters.keyValuesSet()) {
             final String key = entry.getKey();
             System.out.println("\t" + key);
             //if (!key.contains("time")) continue;
