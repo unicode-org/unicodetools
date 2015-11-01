@@ -31,8 +31,9 @@ public class Emoji {
     /**
      * Change the following for a new version.
      */
-    public static final VersionInfo VERSION_TO_GENERATE = VERSION_BETA; // VERSION_BETA     VERSION_LAST_RELEASED
-    public static final boolean IS_BETA = VERSION_TO_GENERATE == VERSION_BETA;
+    public static final boolean IS_BETA = false;
+    
+    public static final VersionInfo VERSION_TO_GENERATE = IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
     public static final String TR51_PREFIX = IS_BETA ? "beta-" : "";
 
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);

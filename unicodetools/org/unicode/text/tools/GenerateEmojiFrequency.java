@@ -18,48 +18,57 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Counter2;
 import org.unicode.draft.CharacterFrequency;
 import org.unicode.text.tools.GenerateEmoji.Style;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateEmojiFrequency {
 
-//    static final EmojiAnnotations ANNOTATIONS_TO_CHARS = new EmojiAnnotations(
-//            GenerateEmoji.CODEPOINT_COMPARE, 
-//            "emojiAnnotations.txt",
-//            "emojiAnnotationsGroups.txt",
-//            "emojiAnnotationsFlags.txt"
-//            );
+    //    static final EmojiAnnotations ANNOTATIONS_TO_CHARS = new EmojiAnnotations(
+    //            GenerateEmoji.CODEPOINT_COMPARE, 
+    //            "emojiAnnotations.txt",
+    //            "emojiAnnotationsGroups.txt",
+    //            "emojiAnnotationsFlags.txt"
+    //            );
 
-    static final Set<String> KEEP_ANNOTATIONS = new LinkedHashSet<>(Arrays.asList(
-            "animal",
-            "sport",
-            "plant",
-            "emotion",
-            "face",
-            "body",
-            "time",
-            "vehicle",
-            "travel",
-            "clothing",
-            "food",
-            "drink",
-            "entertainment",
-            "office",
-            "weather",
+    //    static final Set<String> KEEP_ANNOTATIONS = new LinkedHashSet<>(Arrays.asList(
+    //            "animal",
+    //            "sport",
+    //            "plant",
+    //            "emotion",
+    //            "face",
+    //            "body",
+    //            "time",
+    //            "vehicle",
+    //            "travel",
+    //            "clothing",
+    //            "food",
+    //            "drink",
+    //            "entertainment",
+    //            "office",
+    //            "weather",
+    //
+    //            "person",
+    //            "place",
+    //            "object",
+    //            "symbol",
+    //            "flag",
+    //            "other"));
 
-            "person",
-            "place",
-            "object",
-            "symbol",
-            "flag",
-            "other"));
+    private static final String FIRST_LINE = "Approximate frequency of emoji characters, gathered from emojiTracker and web stats. "
+            + "The figures are approximate, since the frequency may vary considerably by domain and over time. "
+            + "Some data sources don’t count ZWJ sequences, combining sequences, or modifier sequences separately. "
+            + "Note also that many emoji haven't been supported on any platform until very recently, and fall into the Other category. ";
+
 
     static final Set<String> DROP_ANNOTATIONS = new HashSet<>(Arrays.asList(
             "default-text-style",
@@ -78,6 +87,12 @@ public class GenerateEmojiFrequency {
             "other-android"));
 
 
+    static final DecimalFormat pf = (DecimalFormat) NumberFormat.getPercentInstance(ULocale.ENGLISH);
+    static {
+        pf.setMaximumSignificantDigits(2);
+        pf.setMinimumSignificantDigits(2);
+    }
+
     public static void main(String[] args) throws IOException {
         Counter2<String> frequency = getData();
 
@@ -91,7 +106,8 @@ public class GenerateEmojiFrequency {
 
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
                 + Emoji.TR51_PREFIX, "emoji-frequency-all.html")) {
-            GenerateEmoji.writeHeader(out, "Emoji Frequency", null, "Approximate frequency of emoji characters, gathered from emojiTracker and web stats.", "border='1'");
+            GenerateEmoji.writeHeader(out, "Emoji Frequency", null, 
+                    FIRST_LINE, "border='1'");
 
             String title = "%\tCP\tMain Category\tAnnotations";
             System.out.println(title);
@@ -103,18 +119,18 @@ public class GenerateEmojiFrequency {
                 if (keep.contains("clock")) {
                     keep.remove("face");
                 }
-                String main = "?";
-                for (String s : KEEP_ANNOTATIONS) {
-                    if (keep.contains(s)) {
-                        main = s;
-                        break;
-                    }
-                }
+                String main = EmojiOrder.STD_ORDER.charactersToOrdering.get(code);
+                //                for (String s : KEEP_ANNOTATIONS) {
+                //                    if (keep.contains(s)) {
+                //                        main = s;
+                //                        break;
+                //                    }
+                //                }
                 keep.removeAll(DROP_ANNOTATIONS);
                 double percent = count/(double)frequency.getTotal();
                 if (count != 0) {
                     String annotationList = CollectionUtilities.join(keep, ", ");
-                    System.out.println(percent + "\t" + code + "\t" + main + "\t" + annotationList);
+                    System.out.println(pf.format(percent) + "\t" + code + "\t" + main + "\t" + annotationList);
                     out.append("<tr>");
                     out.append("<td>").append(pf.format(percent)).append("</td>");
                     showItems(out, Collections.singleton(code));
@@ -134,21 +150,24 @@ public class GenerateEmojiFrequency {
         }
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
                 + Emoji.TR51_PREFIX, "emoji-frequency.html")) {
-            GenerateEmoji.writeHeader(out, "Emoji Frequency", null, "Approximate frequency of emoji characters, gathered from emojiTracker and web stats.", "border='1'");
+            GenerateEmoji.writeHeader(out, "Emoji Frequency", null, 
+                    FIRST_LINE, "border='1'");
 
             System.out.println(Buckets.BUCKET_TITLE);
-            toRow(out, Buckets.BUCKET_TITLE, 3, " width='12%'");
+            toRow(out, Buckets.BUCKET_TITLE, 4, " width='13%'");
 
             for (String main : mainCount.getKeysetSortedByCount(false)) {
                 Double count = mainCount.getCount(main);
                 double percent = count/(double)mainCount.getTotal();
                 Buckets list = mainList.get(main);
+                final double average = percent/list.getCount();
 
                 System.out.println(main + "\t" + list.getCount() + "\t" + percent + list.toString(main));
                 out.append("<tr>");
                 out.append("<td>").append(main).append("</td>");
                 out.append("<td>").append(intf.format(list.getCount())).append("</td>");
                 out.append("<td>").append(pf.format(percent)).append("</td>");
+                out.append("<td>").append(pf.format(average)).append("</td>");
                 list.toHtml(out, main);
                 out.append("</tr>\n");
             }
@@ -184,37 +203,67 @@ public class GenerateEmojiFrequency {
         Splitter semi = Splitter.on(';').trimResults();
 
 
-        Counter2<String> emojiFrequency = new Counter2<>();
+        Counter2<String> swiftFrequency = new Counter2<>();
+        for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY +
+                "DATA/frequency/", "swiftkey.txt")) {
+            List<String> parts = semi.splitToList(line);
+            String code = Utility.fromHex(parts.get(1));
+            long count = Long.parseLong(parts.get(2));
+            swiftFrequency.add(code, (double)count);
+        }
+
+        showSample("Swift", swiftFrequency);
+
+        Counter2<String> trackerFrequency = new Counter2<>();
         for (String line : FileUtilities.in(GenerateEmojiFrequency.class, "emojiTracker.txt")) {
             List<String> parts = semi.splitToList(line);
             String code = Utility.fromHex(parts.get(0));
             long count = Long.parseLong(parts.get(1));
-            emojiFrequency.add(code, (double)count);
+            trackerFrequency.add(code, (double)count);
         }
+
+        showSample("Tracker", trackerFrequency);
+
 
         Counter2<String> frequency = new Counter2<>();
 
-        // make sure everything is listed, and normalize web vs twitter frequency
-        Counter<Integer> webFrequency = CharacterFrequency.getCodePointCounter("mul", true);
-        double webEmojiTotal = 0;
+        // make sure everything is listed, and normalize frequencies
+        Counter<Integer> totalWebFrequency = CharacterFrequency.getCodePointCounter("mul", true);
+
+        Counter2<String> webFrequency = new Counter2<>();
         for (String s : Emoji.EMOJI_CHARS) {
             int cp = s.codePointAt(0);
             if (s.length() == Character.charCount(cp)) {
-                webEmojiTotal += webScale(cp) * webFrequency.get(cp);
+                webFrequency.add(s, webScale(cp)*(double)totalWebFrequency.get(cp));
             }
         }
+        showSample("Web", webFrequency);
+
+
+        double webFactor = 0.2d;
+        double trackerFactor = (1-webFactor)/2;
+        double swiftFactor = (1-webFactor)/2;
 
         for (String s : Emoji.EMOJI_CHARS) {
-            double value = emojiFrequency.getCount(s) / emojiFrequency.getTotal().doubleValue();
-            int cp = s.codePointAt(0);
-            if (s.length() == Character.charCount(cp)) {
-                double scale = webScale(cp);
-                value += scale * webFrequency.get(cp) / webEmojiTotal;
-                value /= (1 + scale);
-            }
+            double value = 
+                    trackerFactor * trackerFrequency.getCount(s) / trackerFrequency.getTotal().doubleValue()
+                    + swiftFactor * swiftFrequency.getCount(s) / swiftFrequency.getTotal().doubleValue()
+                    + webFactor * webFrequency.getCount(s) / webFrequency.getTotal().doubleValue()
+                    ;
             frequency.add(s, value);
         }
         return frequency;
+    }
+
+    private static void showSample(String string, Counter2<String> swiftFrequency) {
+        int max = 50;
+        System.out.println(string);
+        double total = swiftFrequency.getTotal().doubleValue();
+        for (String s : swiftFrequency.getKeysetSortedByCount(false)) {
+            System.out.println(s + "\t" + pf.format(swiftFrequency.getCount(s)/total) + "\t" + Utility.hex(s) + "\t" + UCharacter.getName(s,"+"));
+            if (--max < 0) break;
+        }
+        System.out.println();
     }
 
     static final UnicodeSet PRIMARILY_TEXT = new UnicodeSet("[© ® ™]").freeze();
@@ -227,45 +276,51 @@ public class GenerateEmojiFrequency {
     }
 
     static class Buckets {
-        static final String BUCKET_TITLE = "Main Category\tCount\tTotal%\tEach≥1%\tEach≥0.1%\tEach≥0.05%\tEach≥0.01%\tEach≥0.005%\tEach>0%\tNo Data Yet";
+        static final String BUCKET_TITLE = "Order Category"
+                + "\tCount"
+                + "\tTotal%"
+                + "\tAve%"
+                + "\tEach≥1%"
+                + "\tEach≥0.1%"
+                + "\tEach≥0.03%"
+                + "\tEach≥0.01%"
+                + "\tEach≥0.003%"
+                + "\tOther";
 
         List<String> L1 = new ArrayList<>();
         List<String> L01 = new ArrayList<>();
         List<String> L005 = new ArrayList<>();
         List<String> L001 = new ArrayList<>();
         List<String> L0005 = new ArrayList<>();
-        List<String> Nonzero = new ArrayList<>();
-        List<String> Zero = new ArrayList<>();
+        List<String> LOther = new ArrayList<>();
 
-        private List<List<String>> bucketList = Arrays.asList(L1, L01, L005, L001, L0005, Nonzero, Zero);
+        private List<List<String>> bucketList = Arrays.asList(L1, L01, L005, L001, L0005, LOther);
 
         public void add(String code, double percent) {
             if (percent >= 0.01) {
                 L1.add(code);
             } else if (percent >= 0.001) {
                 L01.add(code);
-            } else if (percent >= 0.0005) {
+            } else if (percent >= 0.0003) {
                 L005.add(code);
             } else if (percent >= 0.0001) {
                 L001.add(code);
-            } else if (percent >= 0.00005) {
+            } else if (percent >= 0.00003) {
                 L0005.add(code);
-            } else if (percent >0) {
-                Nonzero.add(code);
             } else {
-                Zero.add(code);
+                LOther.add(code);
             }
         }
         public void toHtml(PrintWriter out, String title) {
             for (List<String> cell : bucketList) {
-                if (cell == Zero && title.equals("flag")) {
-                    out.append("<td><i>others</i></td>");
-                    continue;
-                }
+                //                if (cell == LOther && title.equals("flag")) {
+                //                    out.append("<td><i>others</i></td>");
+                //                    continue;
+                //                }
                 showItems(out, cell);
             }
         }
-        
+
         public int getCount() {
             int count = 0;
             for (List<String> cell : bucketList) {
@@ -273,14 +328,14 @@ public class GenerateEmojiFrequency {
             }
             return count;
         }
-        
+
         public String toString(String title) {
             StringBuilder out = new StringBuilder();
             for (List<String> cell : bucketList) {
-                if (cell == Zero && title.equals("flag")) {
-                    out.append("\tothers");
-                    continue;
-                }
+                //                if (cell == LOther && title.equals("flag")) {
+                //                    out.append("\tothers");
+                //                    continue;
+                //                }
                 out.append("\t").append(CollectionUtilities.join(cell, " "));
             }
             return out.toString();

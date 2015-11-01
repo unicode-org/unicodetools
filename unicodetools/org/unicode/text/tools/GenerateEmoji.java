@@ -41,6 +41,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.tools.Emoji.ModifierStatus;
 import org.unicode.text.tools.EmojiData.EmojiDatum;
@@ -48,6 +49,7 @@ import org.unicode.text.tools.EmojiData.EmojiLevel;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.CollectionUtilities.SetComparator;
@@ -460,18 +462,16 @@ public class GenerateEmoji {
         @Override
         public String toString() {
             return code
-                    + "\t" + getVersionAndSources()
+                    + "\t" + showVersionOnly(age)
+                    + "\t" + VersionToAge.getYear(age)
+                    + "\t" + getSources(new StringBuilder(), true) 
                     + "\t" + defaultPresentation
                     + "\t" + chars
                     + "\t" + name;
         }
 
-        private String getVersionAndSources() {
-            return getSources(new StringBuilder(getVersion()), true);
-        }
-
         public String getVersion() {
-            return age.toString().replace('_', '.');
+            return showVersion(age);
         }
 
         public String getSources(StringBuilder suffix, boolean superscript) {
@@ -508,28 +508,6 @@ public class GenerateEmoji {
         public String toHtmlString(Form form, int item, Stats stats) {
             String missingCell = MISSING_CELL;
             String symbolaCell = getCell(Emoji.Source.ref, chars, missingCell);
-            // String symbolaCell =
-            // Emoji.isRegionalIndicator(chars.codePointAt(0))
-            // ? getCell("ref", core, missingCell)
-            // : "<td class='symb'>" + chars + "</td>\n";
-            // getFlag(chars)
-            // if (symbolaChars == null) {
-            // symbolaChars = chars;
-            // }
-            // int firstCodepoint = chars.codePointAt(0);
-            // int firstLen = Character.charCount(firstCodepoint);
-            // int secondCodepoint = firstLen >= chars.length() ? 0 :
-            // chars.codePointAt(firstLen);
-
-            // String header =
-            // Default.ucd().getBlock(firstCodepoint).replace('_', ' ');
-            // String subhead = subheader.getSubheader(firstCodepoint);
-            // if (SKIP_BLOCKS.contains(header)) {
-            // header = "<i>" + subhead + "</i>";
-            // } else if (!header.equalsIgnoreCase(subhead)) {
-            // header += ": <i>" + subhead + "</i>";
-            // }
-
             String appleCell = getCell(Emoji.Source.apple, chars, missingCell);
             String androidCell = getCell(Emoji.Source.android, chars, missingCell);
             String twitterCell = getCell(Emoji.Source.twitter, chars, missingCell);
@@ -569,7 +547,7 @@ public class GenerateEmoji {
             return "<tr>"
             + "<td class='rchars'>" + item + "</td>\n"
             + "<td class='code'>" + getDoubleLink(anchor, code) + "</td>\n"
-            + (form != Form.fullForm && form != Form.extraForm ? symbolaCell
+            + (form != Form.fullForm && form != Form.extraForm ? appleCell
                     : browserCell
                     + symbolaCell
                     + appleCell
@@ -585,7 +563,8 @@ public class GenerateEmoji {
                     // + browserCell
                     + (form.compareTo(Form.shortForm) <= 0 ? "" :
                         "<td class='name'>" + name + "</td>\n")
-                        + "<td class='age'>" + getVersionAndSources() + "</td>\n"
+                        //+ "<td class='age'>" + showVersionOnly(age) + "</td>\n"
+                        + "<td class='age'>" + VersionToAge.getYear(age) + getSources(new StringBuilder(), true) + "</td>\n"
                         + "<td class='default'>" + defaultPresentation + (!textChars.equals(chars) ? "*" : "") + "</td>\n"
                         + (form.compareTo(Form.shortForm) <= 0 ? "" :
                             "<td class='name'>"
@@ -689,7 +668,7 @@ public class GenerateEmoji {
                     // + "<th class='cchars'>Browser</th>\n"
                     + (shortForm ? "" :
                         "<th>Name</th>\n"
-                        + "<th>Version</th>\n"
+                        + "<th>Year</th>\n"
                         + "<th>Default</th>\n"
                         + "<th>Annotations</th>\n"
                         // + "<th>Block: <i>Subhead</i></th>\n"
@@ -1828,7 +1807,7 @@ public class GenerateEmoji {
         }
 
         public String getVersion() {
-            return versionInfo.toString().replace('_', '.');
+            return showVersion(versionInfo);
         }
 
         public String getCharSources() {
@@ -1848,8 +1827,11 @@ public class GenerateEmoji {
         TreeSet<VersionData> sorted = getSortedVersionInfo(m);
         for (VersionData value : sorted) {
             UnicodeSet chars = m.getSet(value);
-            displayUnicodeset(out, Collections.singleton(value.getCharSources()), value.getVersion(),
-                    Collections.singleton(String.valueOf(chars.size())), chars, Style.bestImage, -1, null);
+            displayUnicodeset(out, 
+                    Collections.singleton(value.getCharSources()), 
+                    showVersionOnly(value.versionInfo),
+                    ImmutableSet.of(String.valueOf(VersionToAge.getYear(value.versionInfo)), String.valueOf(chars.size())), 
+                    chars, Style.bestImage, -1, null);
         }
         writeFooter(out);
         out.close();
@@ -1867,8 +1849,7 @@ public class GenerateEmoji {
     /** Main Chart */
     private static void showVersionsOnly() throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions.html");
-        writeHeader(out, "Emoji Versions", null, "This chart shows when each emoji character first appeared in a Unicode version. "
-                + "The emoji characters are displayed with images from a chart font (except for flags).", "border='1'");
+        writeHeader(out, "Emoji Versions", null, "This chart shows when each emoji character first appeared in a Unicode version.", "border='1'");
         UnicodeMap<Age_Values> m = new UnicodeMap<>();
         for (String s : emojiData.getChars()) {
             Data data = Data.STRING_TO_DATA.get(s);
@@ -1877,8 +1858,9 @@ public class GenerateEmoji {
         TreeSet<Age_Values> sorted = new TreeSet<>(m.values());
         for (Age_Values value : sorted) {
             UnicodeSet chars = m.getSet(value);
-            displayUnicodeset(out, Collections.singleton(value.toString().replace("_", ".")), null,
-                    Collections.singleton(String.valueOf(chars.size())), chars, Style.refImage, -1, null);
+            displayUnicodeset(out, Collections.singleton(showVersionOnly(value)), 
+                    VersionToAge.getYear(value)+"",
+                    Collections.singleton(String.valueOf(chars.size())), chars, Style.bestImage, -1, null);
         }
         writeFooter(out);
         out.close();
@@ -2859,4 +2841,13 @@ public class GenerateEmoji {
             return o1.get1().compareTo(o2.get1());
         }
     };
+    
+    public static String showVersion(Age_Values age_Values) {
+        return showVersionOnly(age_Values) + " " + VersionToAge.getYear(age_Values);
+    }
+
+    private static String showVersionOnly(Age_Values age_Values) {
+        return age_Values.toString().replace('_', '.');
+    }
+    
 }

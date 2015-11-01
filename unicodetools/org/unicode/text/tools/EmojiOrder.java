@@ -83,9 +83,46 @@ public class EmojiOrder {
     
     public static void main(String[] args) {
 
-        showOrder();
+        showOrderGroups();
+//        showOrder();
 //        STD_ORDER.show();
 //        ALT_ORDER.show();
+    }
+
+    private static void showOrderGroups() {
+        String lastPair = "";
+        List<String> current = null;
+        List<List<String>> segments = new ArrayList<List<String>>();
+        for (String cp : STD_ORDER.mp.getOrder()) {
+            String std = STD_ORDER.charactersToOrdering.get(cp); 
+            String alt = ALT_ORDER.charactersToOrdering.get(cp); 
+            String pair = std + "/" + alt;
+            
+            if (!pair.equals(lastPair)) {
+                current = new ArrayList<String>();
+                segments.add(current);
+            }
+            current.add(cp);
+            lastPair = pair;
+        }
+
+        for (List<String> segment : segments) {
+            String first = segment.get(0);
+            String std = STD_ORDER.charactersToOrdering.get(first); 
+            String alt = ALT_ORDER.charactersToOrdering.get(first); 
+            int nOrder = STD_ORDER.mp.getNumericOrder(first);
+            int aOrder = ALT_ORDER.mp.getNumericOrder(first);
+            // Unicode subgroup  - Alt Group - Ordered Characters  Count   Hex Name
+            final String continuation = segment.size() > 0 ? "; …" : "";
+            System.out.println(
+                    std 
+                    + "\t" + alt 
+                    + "\t" + CollectionUtilities.join(segment, " ")
+                    + "\t" + segment.size()
+                    + "\t" + "U+" + Utility.hex(first) + continuation
+                    + "\t" + UCharacter.getName(first, ",") + continuation
+                    );
+        }
     }
 
     private static void showOrder() {
