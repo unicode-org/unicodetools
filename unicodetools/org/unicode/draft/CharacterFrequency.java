@@ -19,7 +19,7 @@ import org.unicode.text.utility.Settings;
  * For a program that uses this, see ScriptPopulation
  */
 public class CharacterFrequency {
-    private static final String DATA_DIR = Settings.OTHER_WORKSPACE_DIRECTORY +
+    public static final String DATA_DIR = Settings.OTHER_WORKSPACE_DIRECTORY +
     		"DATA/frequency/languages/";
     private static final String DATA_DIR_RANK = Settings.OTHER_WORKSPACE_DIRECTORY +
     		"DATA/frequency/languages-rank/";
