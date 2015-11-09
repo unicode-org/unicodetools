@@ -42,7 +42,7 @@ public class EmojiOrder {
                         EmojiOrder.UCA_COLLATOR,
                         new UTF16.StringComparator(true, false, 0));
     }
-    
+
     Relation<String, String> getOrdering(String sourceFile, MapComparator<String> mapComparator) {
         Relation<String, String> result = new Relation(new LinkedHashMap<String, Set<String>>(), LinkedHashSet.class);
         Set<String> sorted = new LinkedHashSet<>();
@@ -52,8 +52,8 @@ public class EmojiOrder {
                 continue;
             }
             line = Emoji.getLabelFromLine(lastLabel, line);
+            line = Emoji.UNESCAPE.transform(line);
             for (int i = 0; i < line.length();) {
-                line = Emoji.UNESCAPE.transform(line);
                 String string = Emoji.getEmojiSequence(line, i);
                 i += string.length();
                 if (Emoji.skipEmojiSequence(string)) {
@@ -80,13 +80,14 @@ public class EmojiOrder {
         result.freeze();
         return result;
     }
-    
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        LinkedHashSet<String> foo = Emoji.FLAGS.addAllTo(new LinkedHashSet());
+        System.out.println(CollectionUtilities.join(foo, " "));
         showOrderGroups();
-//        showOrder();
-//        STD_ORDER.show();
-//        ALT_ORDER.show();
+        //        showOrder();
+        //        STD_ORDER.show();
+        //        ALT_ORDER.show();
     }
 
     private static void showOrderGroups() {
@@ -97,7 +98,7 @@ public class EmojiOrder {
             String std = STD_ORDER.charactersToOrdering.get(cp); 
             String alt = ALT_ORDER.charactersToOrdering.get(cp); 
             String pair = std + "/" + alt;
-            
+
             if (!pair.equals(lastPair)) {
                 current = new ArrayList<String>();
                 segments.add(current);

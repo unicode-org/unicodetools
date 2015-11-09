@@ -415,12 +415,12 @@
 1F3BF ;	emoji ;	L1 ;	none ;	j	# V6.0 (🎿) SKI AND SKI BOOT
 1F3C0 ;	emoji ;	L1 ;	none ;	j	# V6.0 (🏀) BASKETBALL AND HOOP
 1F3C1 ;	emoji ;	L1 ;	none ;	j	# V6.0 (🏁) CHEQUERED FLAG
-1F3C2 ;	emoji ;	L1 ;	secondary ;	j w	# V6.0 (🏂) SNOWBOARDER
+1F3C2 ;	emoji ;	L1 ;	none ;	j w	# V6.0 (🏂) SNOWBOARDER
 1F3C3 ;	emoji ;	L1 ;	secondary ;	j	# V6.0 (🏃) RUNNER
 1F3C4 ;	emoji ;	L1 ;	secondary ;	j w	# V6.0 (🏄) SURFER
 1F3C5 ;	emoji ;	L2 ;	none ;	x	# V7.0 (🏅) SPORTS MEDAL
 1F3C6 ;	emoji ;	L1 ;	none ;	j w	# V6.0 (🏆) TROPHY
-1F3C7 ;	emoji ;	L1 ;	secondary ;	x	# V6.0 (🏇) HORSE RACING
+1F3C7 ;	emoji ;	L1 ;	none ;	x	# V6.0 (🏇) HORSE RACING
 1F3C8 ;	emoji ;	L1 ;	none ;	j	# V6.0 (🏈) AMERICAN FOOTBALL
 1F3C9 ;	emoji ;	L1 ;	none ;	x	# V6.0 (🏉) RUGBY FOOTBALL
 1F3CA ;	emoji ;	L1 ;	secondary ;	j w	# V6.0 (🏊) SWIMMER
@@ -825,7 +825,7 @@
 1F570 ;	text ;	L2 ;	none ;	w	# V7.0 (🕰) MANTELPIECE CLOCK
 1F573 ;	text ;	L2 ;	none ;	w	# V7.0 (🕳) HOLE
 1F574 ;	text ;	L2 ;	none ;	w	# V7.0 (🕴) MAN IN BUSINESS SUIT LEVITATING
-1F575 ;	text ;	L2 ;	none ;	w	# V7.0 (🕵) SLEUTH OR SPY
+1F575 ;	text ;	L2 ;	secondary ;	w	# V7.0 (🕵) SLEUTH OR SPY
 1F576 ;	text ;	L2 ;	none ;	w	# V7.0 (🕶) DARK SUNGLASSES
 1F577 ;	text ;	L2 ;	none ;	w	# V7.0 (🕷) SPIDER
 1F578 ;	text ;	L2 ;	none ;	w	# V7.0 (🕸) SPIDER WEB
@@ -1313,4 +1313,4 @@
 1F1FF 1F1E6 ;	emoji ;	L2 ;	none ;	x	# V6.0 (🇿🇦) flag for South Africa
 1F1FF 1F1F2 ;	emoji ;	L2 ;	none ;	x	# V6.0 (🇿🇲) flag for Zambia
 1F1FF 1F1FC ;	emoji ;	L2 ;	none ;	x	# V6.0 (🇿🇼) flag for Zimbabwe
-1F5E8 ; emoji ; L2 ; none ; x #	(🗨) LEFT SPEECH BUBBLE
+1F5E8 ; text ; L2 ; none ; x #	(🗨) LEFT SPEECH BUBBLE

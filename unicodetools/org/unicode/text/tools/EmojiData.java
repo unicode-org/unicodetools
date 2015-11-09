@@ -62,7 +62,9 @@ public class EmojiData {
     final Map<EmojiLevel, UnicodeSet> levelMap;
     final Map<ModifierStatus, UnicodeSet> modifierClassMap;
     final Map<CharSource, UnicodeSet> charSourceMap;
+    final private UnicodeSet modifierBases;
     final VersionInfo version;
+    private UnicodeSet modifierSequences;
 
     static final Splitter semi = Splitter.on(";").trimResults();
     static final Splitter comma = Splitter.on(",").trimResults();
@@ -111,6 +113,18 @@ public class EmojiData {
         freezeUnicodeSets(_charSourceMap.values());
         levelMap = Collections.unmodifiableMap(_levelMap);
         modifierClassMap = Collections.unmodifiableMap(_modifierClassMap);
+        modifierBases = new UnicodeSet()
+        .addAll(modifierClassMap.get(ModifierStatus.primary))
+        .addAll(modifierClassMap.get(ModifierStatus.secondary))
+        .freeze();
+        modifierSequences = new UnicodeSet();
+        for (String base : modifierBases) {
+            for (String mod : modifierClassMap.get(ModifierStatus.modifier)) {
+                modifierSequences.add(base + mod);
+            }
+        }
+        modifierSequences.freeze();
+
         defaultPresentationMap = Collections.unmodifiableMap(_defaultPresentationMap);
         charSourceMap = Collections.unmodifiableMap(_charSourceMap);
         data.freeze();
@@ -164,7 +178,13 @@ public class EmojiData {
     public UnicodeSet getModifierStatusSet(ModifierStatus source) {
         return CldrUtility.ifNull(modifierClassMap.get(source), UnicodeSet.EMPTY);
     }
-
+    
+    public UnicodeSet getModifierBases() {
+        return modifierBases;
+    }
+    public UnicodeSet getModifierSequences() {
+        return modifierSequences;
+    }
     public UnicodeSet getDefaultPresentationSet(DefaultPresentation defaultPresentation) {
         return CldrUtility.ifNull(defaultPresentationMap.get(defaultPresentation),UnicodeSet.EMPTY);
     }

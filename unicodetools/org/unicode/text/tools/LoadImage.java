@@ -143,7 +143,8 @@ public class LoadImage extends Component {
     
     public static void main(String[] args) throws IOException {
         
-        UnicodeSet u9 = new UnicodeSet("[\\U0001F57A \\U0001F5A4 \\U0001F6D1 \\U0001F6D2 \\U0001F6F4-\\U0001F6F6 \\U0001F919-\\U0001F91E \\U0001F920-\\U0001F927 \\U0001F930 \\U0001F933-\\U0001F940 \\U0001F942-\\U0001F949 \\U0001F950-\\U0001F959 \\U0001F960 \\U0001F961 \\U0001F985-\\U0001F98F]");
+        UnicodeSet u9 = new UnicodeSet("[\\U0001F95A \\U0001F95B \\U0001F95C \\U0001F95D \\U0001F95E \\U0001F990 \\U0001F991"
+                + "\\U0001F57A \\U0001F5A4 \\U0001F6D1 \\U0001F6D2 \\U0001F6F4-\\U0001F6F6 \\U0001F919-\\U0001F91E \\U0001F920-\\U0001F927 \\U0001F930 \\U0001F933-\\U0001F940 \\U0001F942-\\U0001F949 \\U0001F950-\\U0001F959 \\U0001F960 \\U0001F961 \\U0001F985-\\U0001F98F]");
         generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 144, false); // "Symbola"
         if (true) return;
 

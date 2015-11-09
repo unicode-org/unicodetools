@@ -31,10 +31,10 @@ public class Emoji {
     /**
      * Change the following for a new version.
      */
-    public static final boolean IS_BETA = false;
+    public static final boolean IS_BETA = true;
     
     public static final VersionInfo VERSION_TO_GENERATE = IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
-    public static final String TR51_PREFIX = IS_BETA ? "beta-" : "";
+    public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
 
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
 
@@ -43,7 +43,7 @@ public class Emoji {
     }
 
     enum Source {
-        apple, android, twitter, windows, ref, samsung, gmail, sb, dcm, kddi;
+        color, apple, android, twitter, windows, ref, samsung, gmail, sb, dcm, kddi;
         boolean isGif() {
             return compareTo(Source.gmail) >= 0;
         }
@@ -156,8 +156,28 @@ public class Emoji {
         .toString();
     }
 
-    public static final UnicodeSet APPLE_COMBOS = new UnicodeSet("[{👨‍❤️‍👨} {👩‍❤️‍👩} {👨‍👨‍👦‍👦} {👨‍👨‍👦} {👨‍👨‍👧‍👦} {👨‍👨‍👧‍👧} {👨‍👨‍👧} {👨‍👩‍👦‍👦} {👨‍👩‍👦} {👨‍👩‍👧‍👦} {👨‍👩‍👧‍👧} {👨‍👩‍👧} {👩‍👩‍👦‍👦} {👩‍👩‍👦} {👩‍👩‍👧‍👦} {👩‍👩‍👧‍👧} {👩‍👩‍👧} {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}"
+    
+    public static final UnicodeSet APPLE_COMBOS = new UnicodeSet(
+            "[{👨‍❤️‍👨} {👩‍❤️‍👩}"
+            + " {👨‍👨‍👦‍👦} {👨‍👨‍👦} {👨‍👨‍👧‍👦} {👨‍👨‍👧‍👧} {👨‍👨‍👧} {👨‍👩‍👦‍👦} {👨‍👩‍👦} {👨‍👩‍👧‍👦} {👨‍👩‍👧‍👧} {👨‍👩‍👧} {👩‍👩‍👦‍👦} {👩‍👩‍👦} {👩‍👩‍👧‍👦} {👩‍👩‍👧‍👧} {👩‍👩‍👧}"
+            + " {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}"
+            + " {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}"
+            + "{\\x{1F468}\\x{200D}\\x{1F469}\\x{200D}\\x{1F466}}"
+            + "{\\x{1F469}\\x{200D}\\x{2764}\\x{FE0F}\\x{200D}\\x{1F468}}"
+            + "{\\x{1F469}\\x{200D}\\x{2764}\\x{FE0F}\\x{200D}\\x{1F48B}\\x{200D}\\x{1F468}}"
             + "{\\x{1F441} \u200D \\x{1F5E8}}]").freeze();
+    
+    public static final UnicodeSet APPLE_COMBOS_WITHOUT_VS = new UnicodeSet();
+    static { 
+        for (String s : APPLE_COMBOS) {
+            String s2 = s.replace("\uFE0F","");
+            if (!s.equals(s2)) {
+                APPLE_COMBOS_WITHOUT_VS.add(s);
+            }
+        }
+        APPLE_COMBOS_WITHOUT_VS.freeze();
+    }
+
     public static final UnicodeSet APPLE_MODIFIED = new UnicodeSet("["
             + "{👦🏻} {👦🏼} {👦🏽} {👦🏾} {👦🏿}"
             + "{👧🏻} {👧🏼} {👧🏽} {👧🏾} {👧🏿} "
@@ -244,9 +264,11 @@ public class Emoji {
 
     static final UnicodeSet FLAGS = new UnicodeSet();
     static final UnicodeSet EMOJI_SINGLETONS = new UnicodeSet(EMOJI_CHARS)
-    .removeAll(new UnicodeSet("[©®™]"))
     .removeAll(EMOJI_CHARS.strings())
     .addAll(FIRST_REGIONAL,LAST_REGIONAL)
+    .addAll('0','9')
+    .add('*')
+    .add('#')
     .freeze();
     static final UnicodeSet EMOJI_CHARS_FLAT = new UnicodeSet(EMOJI_CHARS)
     .addAll(FIRST_REGIONAL,LAST_REGIONAL)
@@ -293,8 +315,8 @@ public class Emoji {
         }
     };
 
-    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/charts/" 
-            + (IS_BETA ? "beta/" : "");
+    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/" 
+            + (IS_BETA ? "beta/" : "charts/");
     public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/" + VERSION_STRING + "/";
 
     public static final String TR51_DRAFT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
@@ -363,9 +385,7 @@ public class Emoji {
     //    };
 
     static String getEmojiSequence(String line, int i) {
-        // it is base + variant? + keycap
-        // or
-        // RI + RI + variant?
+        // take the first character.
         int firstCodepoint = line.codePointAt(i);
         int firstLen = Character.charCount(firstCodepoint);
         if (i + firstLen == line.length()) {
