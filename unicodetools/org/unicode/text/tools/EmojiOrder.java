@@ -1,29 +1,56 @@
 package org.unicode.text.tools;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Map.Entry;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.MapComparator;
 import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Utility;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
 
 public class EmojiOrder {
+    static final ImmutableMap<String,ImmutableList<String>> hack = ImmutableMap.of(
+            "👁", ImmutableList.of("👁‍🗨"),
+            "💏", ImmutableList.of("👩‍❤️‍💋‍👨", "👨‍❤️‍💋‍👨", "👩‍❤️‍💋‍👩"),
+            "💑", ImmutableList.of("👩‍❤️‍👨", "👨‍❤️‍👨", "👩‍❤️‍👩"),
+            "👪", ImmutableList.of(
+                    "👨‍👩‍👦", "👨‍👩‍👧", "👨‍👩‍👦‍👦", "👨‍👩‍👧‍👦", "👨‍👩‍👧‍👧", 
+                    "👨‍👨‍👦", "👨‍👨‍👧", "👨‍👨‍👦‍👦", "👨‍👨‍👧‍👦", "👨‍👨‍👧‍👧",
+                    "👩‍👩‍👦", "👩‍👩‍👧", "👩‍👩‍👦‍👦", "👩‍👩‍👧‍👦", "👩‍👩‍👧‍👧")
+            );
+
+//    static {
+//        for (Entry<String, ImmutableList<String>> entry : hack.entrySet()) {
+//            System.out.println(show(entry.getKey()));
+//            for (String s : entry.getValue()) {
+//                System.out.println("\t" + s + "\t\t" + show(s));
+//            }
+//        }
+//    }
+
     public static final UCA                       UCA_COLLATOR                = UCA.buildCollator(null);
     public static final EmojiOrder ALT_ORDER = new EmojiOrder("altOrder.txt");
     public static final EmojiOrder STD_ORDER = new EmojiOrder("emojiOrdering.txt");
@@ -60,19 +87,26 @@ public class EmojiOrder {
                     continue;
                 }
                 if (!sorted.contains(string)) {
-                    sorted.add(string);
-                    for (String item : lastLabel.value) {
-                        result.put(item, string);
+                    add(result, sorted, lastLabel, string);
+                    ImmutableList<String> list = hack.get(string);
+                    if (list != null) {
+                        for (String string2 : list) {
+                            //System.err.println("Adding " + show(string2));
+                            add(result, sorted, lastLabel, string2); 
+                        }
                     }
-                    charactersToOrdering.put(string, lastLabel.value.iterator().next());
                 }
             }
         }
         Set<String> missing = Emoji.EMOJI_CHARS.addAllTo(new LinkedHashSet<String>());
+        Emoji.APPLE_COMBOS.addAllTo(missing);
         missing.removeAll(sorted);
         if (!missing.isEmpty()) {
             result.putAll("other", missing);
-            //throw new IllegalArgumentException("Missing some orderings: " + new UnicodeSet().addAll(missing));
+            System.err.println("Missing some orderings: ");
+            for (String s : missing) {
+                System.err.println("\t" + s + "\t\t" + show(s));
+            }
         }
         sorted.addAll(missing);
         mapComparator.add(sorted);
@@ -81,9 +115,28 @@ public class EmojiOrder {
         return result;
     }
 
+    private static String show(String key) {
+        StringBuilder b = new StringBuilder();
+        for (int cp : CharSequences.codePoints(key)) {
+            if (b.length() != 0) {
+                b.append(' ');
+            }
+            b.append("U+" + Utility.hex(cp) + " " + UTF16.valueOf(cp));
+        }
+        return b.toString();
+    }
+
+    private void add(Relation<String, String> result, Set<String> sorted, Output<Set<String>> lastLabel, String string) {
+        sorted.add(string);
+        for (String item : lastLabel.value) {
+            result.put(item, string);
+        }
+        charactersToOrdering.put(string, lastLabel.value.iterator().next());
+    }
+
     public static void main(String[] args) {
-        LinkedHashSet<String> foo = Emoji.FLAGS.addAllTo(new LinkedHashSet());
-        System.out.println(CollectionUtilities.join(foo, " "));
+        //LinkedHashSet<String> foo = Emoji.FLAGS.addAllTo(new LinkedHashSet());
+        //System.out.println(CollectionUtilities.join(foo, " "));
         showOrderGroups();
         //        showOrder();
         //        STD_ORDER.show();
@@ -98,6 +151,9 @@ public class EmojiOrder {
             String std = STD_ORDER.charactersToOrdering.get(cp); 
             String alt = ALT_ORDER.charactersToOrdering.get(cp); 
             String pair = std + "/" + alt;
+            if (cp.equals("🕴")) {
+                pair += "🕴";
+            }
 
             if (!pair.equals(lastPair)) {
                 current = new ArrayList<String>();
@@ -113,12 +169,12 @@ public class EmojiOrder {
             String alt = ALT_ORDER.charactersToOrdering.get(first); 
             int nOrder = STD_ORDER.mp.getNumericOrder(first);
             int aOrder = ALT_ORDER.mp.getNumericOrder(first);
-            // Unicode subgroup  - Alt Group - Ordered Characters  Count   Hex Name
+            // Ordered Characters   Unicode subgroup    Apple Group Count   Hex Name
             final String continuation = segment.size() > 0 ? "; …" : "";
             System.out.println(
-                    std 
+                    CollectionUtilities.join(segment, " ")
+                    + "\t" + std 
                     + "\t" + alt 
-                    + "\t" + CollectionUtilities.join(segment, " ")
                     + "\t" + segment.size()
                     + "\t" + "U+" + Utility.hex(first) + continuation
                     + "\t" + UCharacter.getName(first, ",") + continuation
@@ -126,7 +182,7 @@ public class EmojiOrder {
         }
     }
 
-    private static void showOrder() {
+    private static void detailedOrder() {
         int lastAOrder = -100;
         List<String> current = null;
         List<List<String>> segments = new ArrayList<List<String>>();
@@ -175,5 +231,77 @@ public class EmojiOrder {
             }
             System.out.println();
         }
+    }
+
+    public <T extends Appendable> T appendCollationRules(T outText, UnicodeSet... characters) {
+        try {
+            boolean needRelation = true;
+            boolean haveFlags = false;
+            boolean isFirst = true;
+            Set<String> temp = sort(codepointCompare, characters);
+
+            String lastGroup = null;
+            for (String s : temp) {
+                String group = charactersToOrdering.get(s);
+                if (!Objects.equal(group,lastGroup)) {
+                    needRelation = true;
+                    lastGroup = group;
+                }
+                boolean multiCodePoint = s.codePointCount(0, s.length()) > 1;
+                if (isFirst) {
+                    if (multiCodePoint) {
+                        throw new IllegalArgumentException("Cannot have first item with > 1 codepoint: " + s);
+                    }
+                    outText.append("&").append(s);
+                    isFirst = false;
+                    continue;
+                }
+                if (multiCodePoint) { // flags and keycaps
+                    if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
+                        if (!haveFlags) {
+                            // put all the 26 regional indicators in order at
+                            // this point
+                            StringBuilder b = new StringBuilder("\n<*");
+                            for (int i = Emoji.FIRST_REGIONAL; i <= Emoji.LAST_REGIONAL; ++i) {
+                                b.appendCodePoint(i);
+                            }
+                            outText.append(b);
+                            haveFlags = true;
+                        }
+                        continue;
+                    }
+                    // keycaps, zwj sequences, can't use <* syntax
+                    String quoted = s.contains("*") || s.contains("#")? "'" + s + "'" : s;
+                    String quoted2 = quoted.replaceAll(Emoji.EMOJI_VARIANT_STRING, "");
+                    if (!quoted2.equals(quoted)) {
+                        outText.append("\n<").append(quoted);
+                        outText.append(" = ").append(quoted2);
+                    } else {
+                        outText.append("\n<").append(quoted);
+                    }
+                    needRelation = true;
+                } else {
+                    if (needRelation) {
+                        outText.append("\n<*");
+                        needRelation = false;
+                    }
+                    outText.append(s);
+//                    // break arbitrarily (but predictably)
+//                    int bottomBits = s.codePointAt(0) & 0xF;
+//                    needRelation = bottomBits == 0;
+                }
+            }
+        } catch (IOException e) {
+            throw new ICUUncheckedIOException("Internal Error",e);
+        }
+        return outText;
+    }
+
+    public static Set<String> sort(Comparator<String> comparator, UnicodeSet... characters) {
+        TreeSet<String> temp = new TreeSet<String>(comparator);
+        for (UnicodeSet uset : characters) {
+            uset.addAllTo(temp);
+        }
+        return Collections.unmodifiableSortedSet(temp);
     }
 }

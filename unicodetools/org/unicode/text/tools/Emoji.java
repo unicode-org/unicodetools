@@ -172,7 +172,7 @@ public class Emoji {
         for (String s : APPLE_COMBOS) {
             String s2 = s.replace("\uFE0F","");
             if (!s.equals(s2)) {
-                APPLE_COMBOS_WITHOUT_VS.add(s);
+                APPLE_COMBOS_WITHOUT_VS.add(s2);
             }
         }
         APPLE_COMBOS_WITHOUT_VS.freeze();

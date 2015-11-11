@@ -175,7 +175,7 @@ public class GenerateOtherAnnotations {
             returnResult.put(s, CollectionUtilities.join(result, "; "));
         }
 
-        Set<String> missing = new TreeSet<>(GenerateEmoji.CODEPOINT_COMPARE);
+        Set<String> missing = new TreeSet<>(GenerateEmoji.EMOJI_COMPARATOR);
         Emoji.EMOJI_CHARS.addAllTo(missing);
 
         for (String label : Arrays.asList("people",
@@ -203,7 +203,7 @@ public class GenerateOtherAnnotations {
 
 
         for (String annotation : EmojiAnnotations.ANNOTATIONS_TO_CHARS.keySet()) {
-            Set<String> sorted = new TreeSet<String>(GenerateEmoji.CODEPOINT_COMPARE);
+            Set<String> sorted = new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR);
             sorted.addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(annotation));
             System.out.println(annotation + "\t" + sorted.size() + "\t" + CollectionUtilities.join(sorted, " "));
         }
@@ -226,7 +226,7 @@ public class GenerateOtherAnnotations {
 
 
     private static void showDiff2(String label, String a, Set<String> aSet, String b, Set<String> bSet, boolean diff) {
-        Set<String> aMinusB = new TreeSet<String>(GenerateEmoji.CODEPOINT_COMPARE);
+        Set<String> aMinusB = new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR);
         aMinusB.addAll(aSet);
         String rel; 
         if (diff) {

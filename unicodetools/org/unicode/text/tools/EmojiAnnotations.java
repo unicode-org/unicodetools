@@ -27,7 +27,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
             "sts."));
 
     static final EmojiAnnotations          ANNOTATIONS_TO_CHARS        = new EmojiAnnotations(
-            GenerateEmoji.CODEPOINT_COMPARE,
+            GenerateEmoji.EMOJI_COMPARATOR,
             "emojiAnnotations.txt",
             "emojiAnnotationsFlags.txt",
             "emojiAnnotationsGroups.txt"
