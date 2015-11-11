@@ -123,7 +123,7 @@ public class GmailEmoji {
         @Override
         public int compareTo(Data o) {
             return ComparisonChain.start()
-                    .compare(unicode, o.unicode, GenerateEmoji.CODEPOINT_COMPARE)
+                    .compare(unicode, o.unicode, GenerateEmoji.EMOJI_COMPARATOR)
                     .compare(pua, o.pua)
                     .result();
         }
