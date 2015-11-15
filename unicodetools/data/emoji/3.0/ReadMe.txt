@@ -1,0 +1,1 @@
+This directory contains the data files for UTR #51 Unicode Emoji, Version 2.0.

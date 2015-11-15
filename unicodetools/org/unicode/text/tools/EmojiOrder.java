@@ -32,6 +32,7 @@ import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
 
 public class EmojiOrder {
+    static final boolean USE_ORDER = true;
     static final ImmutableMap<String,ImmutableList<String>> hack = ImmutableMap.of(
             "👁", ImmutableList.of("👁‍🗨"),
             "💏", ImmutableList.of("👩‍❤️‍💋‍👨", "👨‍❤️‍💋‍👨", "👩‍❤️‍💋‍👩"),
@@ -42,14 +43,14 @@ public class EmojiOrder {
                     "👩‍👩‍👦", "👩‍👩‍👧", "👩‍👩‍👦‍👦", "👩‍👩‍👧‍👦", "👩‍👩‍👧‍👧")
             );
 
-//    static {
-//        for (Entry<String, ImmutableList<String>> entry : hack.entrySet()) {
-//            System.out.println(show(entry.getKey()));
-//            for (String s : entry.getValue()) {
-//                System.out.println("\t" + s + "\t\t" + show(s));
-//            }
-//        }
-//    }
+    //    static {
+    //        for (Entry<String, ImmutableList<String>> entry : hack.entrySet()) {
+    //            System.out.println(show(entry.getKey()));
+    //            for (String s : entry.getValue()) {
+    //                System.out.println("\t" + s + "\t\t" + show(s));
+    //            }
+    //        }
+    //    }
 
     public static final UCA                       UCA_COLLATOR                = UCA.buildCollator(null);
     public static final EmojiOrder ALT_ORDER = new EmojiOrder("altOrder.txt");
@@ -147,6 +148,9 @@ public class EmojiOrder {
         String lastPair = "";
         List<String> current = null;
         List<List<String>> segments = new ArrayList<List<String>>();
+        int lastNOrder = -1;
+        int lastAOrder = -1;
+        boolean diff = false;
         for (String cp : STD_ORDER.mp.getOrder()) {
             String std = STD_ORDER.charactersToOrdering.get(cp); 
             String alt = ALT_ORDER.charactersToOrdering.get(cp); 
@@ -154,8 +158,18 @@ public class EmojiOrder {
             if (cp.equals("🕴")) {
                 pair += "🕴";
             }
+            if (cp.equals("😈")) {
+                int debug = 0;
+            }
+            if (USE_ORDER) {
+                int nOrder = STD_ORDER.mp.getNumericOrder(cp);
+                int aOrder = ALT_ORDER.mp.getNumericOrder(cp);
+                diff = (nOrder - lastNOrder) != (aOrder-lastAOrder);
+                lastNOrder = nOrder;
+                lastAOrder = aOrder;
+            }
 
-            if (!pair.equals(lastPair)) {
+            if (!pair.equals(lastPair) || diff) {
                 current = new ArrayList<String>();
                 segments.add(current);
             }
@@ -172,7 +186,8 @@ public class EmojiOrder {
             // Ordered Characters   Unicode subgroup    Apple Group Count   Hex Name
             final String continuation = segment.size() > 0 ? "; …" : "";
             System.out.println(
-                    CollectionUtilities.join(segment, " ")
+                    (USE_ORDER ? "\t" + nOrder + "\t" + aOrder + "\t" + (aOrder-nOrder) : "")
+                    + "\t" + CollectionUtilities.join(segment, " ")
                     + "\t" + std 
                     + "\t" + alt 
                     + "\t" + segment.size()
@@ -286,9 +301,9 @@ public class EmojiOrder {
                         needRelation = false;
                     }
                     outText.append(s);
-//                    // break arbitrarily (but predictably)
-//                    int bottomBits = s.codePointAt(0) & 0xF;
-//                    needRelation = bottomBits == 0;
+                    //                    // break arbitrarily (but predictably)
+                    //                    int bottomBits = s.codePointAt(0) & 0xF;
+                    //                    needRelation = bottomBits == 0;
                 }
             }
         } catch (IOException e) {
