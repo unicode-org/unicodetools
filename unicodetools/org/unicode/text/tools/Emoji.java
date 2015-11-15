@@ -26,8 +26,8 @@ public class Emoji {
     /**
      * Change the following once we release
      */
-    public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(1);
-    public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(2);
+    public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(2);
+    public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(3);
     /**
      * Change the following for a new version.
      */
@@ -39,7 +39,11 @@ public class Emoji {
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
 
     enum ModifierStatus {
-        none, modifier, primary, secondary
+        none, modifier, modifier_base;
+        static ModifierStatus fromString(String s) {
+            if (s.equals("primary") || s.equals("secondary")) return modifier_base;
+            return valueOf(s);
+        }
     }
 
     enum Source {
@@ -255,6 +259,7 @@ public class Emoji {
     static final int LAST_REGIONAL = 0x1F1FF;
 
     public static final UnicodeSet REGIONAL_INDICATORS = new UnicodeSet(FIRST_REGIONAL,LAST_REGIONAL).freeze();
+    public static final UnicodeSet DEFECTIVE = new UnicodeSet("[0123456789*#]").addAll(REGIONAL_INDICATORS).freeze();
 
     //    static final UnicodeSet EXCLUDE = new UnicodeSet(
     //    "[🂠-🂮 🂱-🂿 🃁-🃎 🃑-🃵 🀀-🀃 🀅-🀫 〠🕲⍾☸🀰-🂓 🙬 🙭 🙮 🙯🗴🗵🗶🗷🗸🗹★☆⛫\uFFFC⛤-⛧ ⌤⌥⌦⌧⌫⌬⎆⎇⎋⎗⎘⎙⎚⏣⚝⛌⛚⛬⛭⛮⛯⛶⛻✓🆊\\U0001F544-\\U0001F549" +
