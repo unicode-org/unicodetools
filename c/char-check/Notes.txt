@@ -1,0 +1,27 @@
+This code uses ICU to make a UnicodeSet that can be tested for whether a character is encoded, and is one of the valid types for the AAC project.
+
+
+----------------
+
+Mark's notes of things to check for the next update.
+
+The code looks reasonable to me, but it's been a while since I've looked at C code. Presuming that you are handling the swastikas, etc, outside of this.
+
+Minor: 
+
+I think
+
+    if(U_FAILURE(status)) {
+      printf("%04X;VALID\n", c);
+      return 0;
+
+should be
+
+    if(U_FAILURE(status)) {
+      printf("%04X;INVALID\n", c);
+      return 2;
+
+If there is no character name in ICU for a valid character, something is seriously wrong, and we don't want to allow sponsorship.
+
+
+Mark
