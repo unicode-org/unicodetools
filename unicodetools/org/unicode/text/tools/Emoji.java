@@ -47,7 +47,7 @@ public class Emoji {
     }
 
     enum Source {
-        color, apple, android, twitter, windows, ref, samsung, gmail, sb, dcm, kddi;
+        color, apple, android, google, samsung, twitter, windows, ref, gmail, sb, dcm, kddi;
         boolean isGif() {
             return compareTo(Source.gmail) >= 0;
         }
