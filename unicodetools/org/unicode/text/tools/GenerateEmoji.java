@@ -82,7 +82,7 @@ public class GenerateEmoji {
 
     private static final boolean           DRAFT                       = false;
 
-    private static final boolean EXTRA_PLATFORMS = true;
+    private static final boolean EXTRA_PLATFORMS = false;
 
     private static final String            DRAFT_TITLE_PREFIX          = DRAFT ? "Draft " : "";
 
