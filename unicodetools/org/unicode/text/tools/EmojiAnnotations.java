@@ -20,6 +20,8 @@ import com.ibm.icu.util.Output;
 
 public class EmojiAnnotations extends Birelation<String,String> {
 
+    private static final boolean SHOW = false;
+
     static final Set<String> STOP_WORDS = new HashSet<>(Arrays.asList("the", "of", "for", "a", "and", "state", 
             "c�te", "verde▪cape", "dhekelia", "akrotiri", "comros", "pdr", "jamahiriya", "part",
             "yugoslav", "tfyr", "autonomous", "rawanda", "da", "rb", "yugoslavia",
@@ -32,6 +34,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
             "emojiAnnotationsFlags.txt",
             "emojiAnnotationsGroups.txt"
             );
+
 
 
     public EmojiAnnotations(Comparator codepointCompare, String... filenames) {
@@ -74,7 +77,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                     }
                 }
             }
-            System.out.println(lineCount + "\tannotation lines from " + filename);
+            if (SHOW) System.out.println(lineCount + "\tannotation lines from " + filename);
         }
         addOther("-apple", Emoji.EMOJI_CHARS);
         addOther("-android", Emoji.EMOJI_CHARS);
@@ -175,7 +178,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
             .removeAll(getValues("object" + suffix))
             .removeAll(getValues("place" + suffix))
             .removeAll(getValues("symbol" + suffix));
-            System.out.println(temp.size() + " other" + suffix
+            if (SHOW) System.out.println(temp.size() + " other" + suffix
                     + ": " + temp.toPattern(false));
             for (String s : temp) {
                 add("other" + suffix, s);
