@@ -116,7 +116,7 @@ public class GenerateEmoji {
                 HAS_EMOJI_VS.add(s);
             }
         }
-        System.out.println("HAS_EMOJI_VS: " + HAS_EMOJI_VS.toPattern(false));
+        if (SHOW) System.out.println("HAS_EMOJI_VS: " + HAS_EMOJI_VS.toPattern(false));
     }
     static final UnicodeMap<String>        VERSION                     = LATEST.load(UcdProperty.Age);
     static final UnicodeMap<Age_Values>        VERSION_ENUM            = LATEST.loadEnum(UcdProperty.Age, Age_Values.class);
@@ -907,17 +907,17 @@ public class GenerateEmoji {
                 }
             }
 
-            System.out.println("All Emoji\t" + emojiData.getChars().toPattern(false));
+            if (SHOW) System.out.println("All Emoji\t" + emojiData.getChars().toPattern(false));
 
-            System.out.println("needs VS\t" + needsVS.toPattern(false));
+            if (SHOW) System.out.println("needs VS\t" + needsVS.toPattern(false));
 
-            System.out.println("gmail-jc" + "\t"
+            if (SHOW) System.out.println("gmail-jc" + "\t"
                     + new UnicodeSet(totalData.get(Emoji.Source.gmail)).removeAll(jc).toPattern(false));
-            System.out.println("jc-gmail" + "\t"
+            if (SHOW) System.out.println("jc-gmail" + "\t"
                     + new UnicodeSet(jc).removeAll(totalData.get(Emoji.Source.gmail)).toPattern(false));
 
             for (Entry<Emoji.Source, UnicodeSet> entry : totalData.entrySet()) {
-                System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
+                if (SHOW) System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
             }
 
             writeHeader(out, "Missing", null, "Missing list of emoji characters.", "border='1'");
@@ -1164,9 +1164,9 @@ public class GenerateEmoji {
         UnicodeSet newItems63 = new UnicodeSet(newItems).removeAll(newItems70);
         UnicodeSet newItems63flags = getStrings(newItems63);
         newItems63.removeAll(newItems63flags);
-        System.out.println("Other 6.3 Flags:\t" + newItems63flags.size() + "\t" + newItems63flags);
-        System.out.println("Other 6.3:\t" + newItems63.size() + "\t" + newItems63);
-        System.out.println("Other 7.0:\t" + newItems70.size() + "\t" + newItems70);
+        if (SHOW) System.out.println("Other 6.3 Flags:\t" + newItems63flags.size() + "\t" + newItems63flags);
+        if (SHOW) System.out.println("Other 6.3:\t" + newItems63.size() + "\t" + newItems63);
+        if (SHOW) System.out.println("Other 7.0:\t" + newItems70.size() + "\t" + newItems70);
         // Data.missingJSource.removeAll(new
         // UnicodeSet("[\\u2002\\u2003\\u2005]"));
         if (Data.missingJSource.size() > 0) {
@@ -1821,7 +1821,7 @@ public class GenerateEmoji {
             final String bestImage = getBestImage(s, true, "");
             out.println("<td class='andr'>" + bestImage + "</td>");
             if (buffer.length() != 0) {
-                buffer.append(" ");
+                buffer.append(isSingle || s.startsWith("👁")? "<br>" : " ");
             }
             buffer.append(bestImage);
             out.println("<td class='andr'>");
