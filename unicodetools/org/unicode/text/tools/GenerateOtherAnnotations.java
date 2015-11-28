@@ -15,6 +15,7 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
+import org.unicode.text.tools.EmojiData.DefaultPresentation;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
@@ -36,8 +37,52 @@ public class GenerateOtherAnnotations {
         SKIP.add("flag");
     }
 
+    /*
+de:
+U+01F004<tab>🀄<tab>MAHJONG TILE RED DRAGON<tab>Mahjong-Stein, roter Drache, Mahjong<tab><tab>N
+
+as:
+U+00A9<tab>©<tab>COPYRIGHT SIGN<tab>Copyright sign, Copyright<tab><tab>স্বত্বাধিকাৰ চিন, স্বত্বাধিকাৰ<tab>Copyright sign, Copyright<tab>N
+
+Special
+ta.tsv
+pa.tsv
+te.tsv
+or.tsv
+ml.tsv
+kn.tsv
+mr.tsv
+gu.tsv
+hi.tsv
+bn.tsv
+as.tsv
+     */
+
+    static final EmojiData emojiData = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
+
+    static final Set<String> SORTED_EMOJI_CHARS_SET
+    = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, 
+            emojiData.getChars(), 
+            // emojiData.getModifierSequences(),
+            Emoji.APPLE_COMBOS);
+
     public static void main(String[] args) throws IOException {
-        String dir = "/Users/markdavis/Google Drive/workspace/DATA/emoji/";
+        int count = 0;
+        final UnicodeSet textStyle = emojiData.getDefaultPresentationSet(DefaultPresentation.text);
+        for (String s : SORTED_EMOJI_CHARS_SET) {
+            if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
+                continue;
+            }
+            String s2 = GenerateEmoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING);
+            
+            System.out.println(++count
+                    + "\t" + GenerateEmoji.getHex(s)
+                    + "\t" + s2
+                    + "\t" + GenerateEmoji.getName(s, true)
+                    );
+        }
+        if (true) return;
+        String dir = "/Users/markdavis/Google Drive/workspace/DATA/emoji/annotations/";
         Splitter TAB = Splitter.on("\t").trimResults();
         Splitter COMMA = Splitter.on(",").trimResults();
         Splitter SPACE = Splitter.on(" ").trimResults();
@@ -46,6 +91,9 @@ public class GenerateOtherAnnotations {
         UnicodeSet missing = new UnicodeSet();
 
         for (String file : new File(dir).list()) {
+            if (!file.endsWith(".tsv")) {
+                continue;
+            }
             ULocale locale = new ULocale(file.substring(0,file.indexOf('.')));
             LocaleData ld = LocaleData.getInstance(locale);
             LocaleDisplayNames ldn = LocaleDisplayNames.getInstance(locale, DialectHandling.STANDARD_NAMES);
@@ -53,24 +101,45 @@ public class GenerateOtherAnnotations {
             UnicodeMap<String> tts = new UnicodeMap<>();
             Splitter localeSplitter = locale.equals(ULocale.JAPANESE) ? SPACE : COMMA;
 
+            int annotationField = 3;
+            int lineCount = 0;
             for (String line : FileUtilities.in(dir, file)) {
-                // U+00A9   ©   COPYRIGHT SIGN  Copyright-Symbol, Copyright, C      N
+                ++lineCount;
+                if (line.startsWith("Unicode")) {
+                    if (line.contains("guide")) {
+                        annotationField = 5;
+                    }
+                    continue;
+                }
+                if (line.isEmpty() || line.contains("REGIONAL INDICATOR SYMBOL")) {
+                    continue;
+                }
+                //de:
+                //U+01F004<tab>🀄<tab>MAHJONG TILE RED DRAGON<tab>Mahjong-Stein, roter Drache, Mahjong<tab><tab>N
+                //as:
+                //U+00A9<tab>©<tab>COPYRIGHT SIGN<tab>Copyright sign, Copyright<tab><tab>স্বত্বাধিকাৰ চিন, স্বত্বাধিকাৰ<tab>Copyright sign, Copyright<tab>N
                 List<String> parts = TAB.splitToList(line);
                 String chars = parts.get(1);
-                String annotationString = parts.get(3);
+                if (parts.size() <= annotationField || chars.length() == 0) {
+                    System.out.println(locale + " (" + lineCount + "): Line/Chars too short, skipping: " + line);
+                    continue;
+                }
+                String annotationString = parts.get(annotationField);
                 Set<String> annotations = new LinkedHashSet<>(localeSplitter.splitToList(annotationString));
 
                 // the first item is special. It may be a TTS item
                 // use heuristics to remove it from rest
-                Iterator<String> it = annotations.iterator();
-                String firstItem = it.next();
-                tts.put(chars, firstItem);
-                if (it.hasNext() && firstItem.contains(" ")) {
-                    it.remove();
+                if (annotationField == 3) {
+                    Iterator<String> it = annotations.iterator();
+                    String firstItem = it.next();
+                    tts.put(chars, firstItem);
+                    //                    if (it.hasNext() && firstItem.contains(" ")) {
+                    //                        it.remove();
+                    //                    }
                 }
                 map.put(chars, Collections.unmodifiableSet(annotations));
             }
-            try (   PrintWriter outText = BagFormatter.openUTF8Writer(CLDRPaths.COMMON_DIRECTORY + "/annotations/", locale + ".xml")) {
+            try (PrintWriter outText = BagFormatter.openUTF8Writer(CLDRPaths.COMMON_DIRECTORY + "/annotations/", locale + ".xml")) {
                 outText.append(GenerateEmoji.ANNOTATION_HEADER
                         + "\t\t<language type='" + locale + "'/>\n"
                         + "\t</identity>\n"
@@ -80,15 +149,18 @@ public class GenerateOtherAnnotations {
                     if (annotations == null) {
                         annotations = Collections.emptySet();
                     }
-                    if (annotations.isEmpty() && Emoji.isRegionalIndicator(s.codePointAt(0))) {
-                        String regionCode = Emoji.getRegionCodeFromEmoji(s);
-                        String name = ldn.regionDisplayName(regionCode);
-                        if (!name.equals(regionCode)) {
-                            annotations = Collections.singleton(name);
-                        } else {
-                            System.out.println(locale + "\tmissing\t" + regionCode);
-                        }
+                    if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
+                        continue;
                     }
+                    //                    if (annotations.isEmpty() && Emoji.isRegionalIndicator(s.codePointAt(0))) {
+                    //                        String regionCode = Emoji.getRegionCodeFromEmoji(s);
+                    //                        String name = ldn.regionDisplayName(regionCode);
+                    //                        if (!name.equals(regionCode)) {
+                    //                            annotations = Collections.singleton(name);
+                    //                        } else {
+                    //                            System.out.println(locale + "\tmissing\t" + regionCode);
+                    //                        }
+                    //                    }
                     if (annotations.isEmpty()) {
                         missing.add(s);
                         continue;
@@ -112,6 +184,9 @@ public class GenerateOtherAnnotations {
                 }
                 outText.write("\t</annotations>\n"
                         + "</ldml>");
+            }
+            if (missing.isEmpty()) {
+                System.out.println(missing);
             }
         }
 
@@ -154,7 +229,6 @@ public class GenerateOtherAnnotations {
 
     static final LocaleDisplayNames ENGLISH_DISPLAY_NAMES = LocaleDisplayNames.getInstance(new ULocale("en"), DialectHandling.STANDARD_NAMES);
 
-
     private static UnicodeMap<String> getEnglish() {
         UnicodeMap<String> returnResult = new UnicodeMap<>();
         for (String s : Emoji.EMOJI_CHARS) {
@@ -178,25 +252,25 @@ public class GenerateOtherAnnotations {
         Set<String> missing = new TreeSet<>(GenerateEmoji.EMOJI_COMPARATOR);
         Emoji.EMOJI_CHARS.addAllTo(missing);
 
-        for (String label : Arrays.asList("people",
-                "nature",
-                "objects",
-                "places",                
-                "symbols")) {
-            Set<String> plain = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label);
-            missing.removeAll(plain);
-            Set<String> apple = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label+"-apple");
-            Set<String> android = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label+"-android");
-
-            showDiff(label, "apple", apple, "android", android);
-
-            Set<String> joint = new HashSet<String>(apple);
-            joint.addAll(android);
-
-            showDiff(label, "(apple ∪ android)", joint, "plain", plain);
-
-            System.out.println();
-        }
+        //        for (String label : Arrays.asList("people",
+        //                "nature",
+        //                "objects",
+        //                "places",                
+        //                "symbols")) {
+        //            Set<String> plain = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label);
+        //            missing.removeAll(plain);
+        //            Set<String> apple = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label+"-apple");
+        //            Set<String> android = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label+"-android");
+        //
+        //            showDiff(label, "apple", apple, "android", android);
+        //
+        //            Set<String> joint = new HashSet<String>(apple);
+        //            joint.addAll(android);
+        //
+        //            showDiff(label, "(apple ∪ android)", joint, "plain", plain);
+        //
+        //            System.out.println();
+        //        }
         showAndRemove("flag", missing);
 
         System.out.println("missing" + "\t\t" + missing.size() + "\t" + CollectionUtilities.join(missing, " "));
