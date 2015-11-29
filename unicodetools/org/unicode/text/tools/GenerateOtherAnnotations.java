@@ -3,8 +3,6 @@ package org.unicode.text.tools;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,7 +14,6 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.text.tools.EmojiData.DefaultPresentation;
-import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.BagFormatter;
@@ -74,7 +71,7 @@ as.tsv
                 continue;
             }
             String s2 = GenerateEmoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING);
-            
+
             System.out.println(++count
                     + "\t" + GenerateEmoji.getHex(s)
                     + "\t" + s2
@@ -202,6 +199,8 @@ as.tsv
         //                    + "\t" + englishAnn.substring(pos+1).trim());
         //        }
     }
+
+
 
     static final int[] delimiters = {LocaleData.QUOTATION_START, LocaleData.QUOTATION_END};
 
