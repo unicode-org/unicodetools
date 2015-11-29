@@ -1,0 +1,19 @@
+Punctuation-Terminal	 , ⹁ ;⁏ ⸵   : ᛫ ᛬ ᛭ !¡ ?¿ ‽🙹 🙺 🙻 . ⸼
+Punctuation-Quotes	 ‘ ’ ‚ ‛ ❛ ❜ ❝ ❞ ❟ ❠ 🙶
+🙷 🙸 “ ” „ ‟ ⹂ ‹ › « »
+Punctuation-Parens	  ()
+（） ﹙﹚ ⁽⁾ ₍₎  ⦅⦆ ｟  ｠⦇ ⦈ ⦗ ⦘⟬ ⟭ ⟮ ⟯ ❨ ❩ ❪
+❫  ❲ ❳⸦ ⸧ ⸨ ⸩〔  〕 ﹝﹞〘 〙﴾ ﴿⏜ ⏝⏠ ⏡
+Punctuation-Brackets	[ ]［  ］ ⁅ ⁆ ⌈ ⌉ ⌊ ⌋⸢ ⸣ ⸤ ⸥⦋ ⦌ ⦍ ⦎ ⦏ ⦐ ⟦ ⟧ ⸠ ⸡    「 ｢ 」 ｣ 『 』【 】〖 〗〚 〛⎴ ⎵
+Punctuation-Braces	{   } ｛｝ ﹛﹜   ⦃ ⦄❴ ❵⏞ ⏟
+Punctuation-Angles	〈 〉 《 》⧼ ⧽⦉ ⦊⦑ ⦒ ⦓ ⦔ ⦕ ⦖ ⟨ ⟩ ⟪ ⟫❬ ❭ ❮ ❯ ❰ ❱⟅ ⟆ ⸜ ⸝ ⧘ ⧙ ⧚ ⧛ 
+Punctuation-Connector	 _ - － ‐ ‑ ‒ – — ﹘ ― ⸺
+⸻ ‿ ⁔ ⁀ ⸚
+Punctuation-Misc	' " ⁕ * ⁎ ⁑ ⁓ ⹀  ⸘ · ჻  ⸙  § ⸹
+¶ ⁋ ❡   /  % ‰ ‱ † ‡ ⸶ ⸷ ⸸ • ‣ ‧ ⁃ ⁌ ⁍ ‵ ‸ ※ ⁐ ⁁ ⁂ ⸛ ⸞ ⸟ 
+Punctuation-Compat	 ‾ ﹉ ﹊ ﹋ ﹌ ＿ ﹍ ﹎ ﹏ ︳ ︴ ‗ ︲ ︱
+， ﹐ ︐ ﹑ ︑ ; ； ﹔ ︔ ： ﹕ ︓ ！ ﹗ ︕ ？ ﹖ ︖ ⁈ ⁇ ． ․ ﹒ ‥ ︰ … ︙ ︒ · ＇ ＂ ︵ ︶
+﹇ ﹈ ︷ ︸ 〈 ︿ 〉 ﹀ ︽ ︾ ﹁ ﹂ ﹃ ﹄ ︻ ︼ ︹ ︺ ︗ ︘ ＠ ﹫ ＊ ／ ＆ ﹠ ＃ ﹟ ％ ﹪ ⁗ ‶ ‷
+Punctuation-Historic	 ⸗ ⸴ ⸲ ⸮ ⳺ ⳻ ⳹ ⸰ ⸱ ⸳ ⁖ ⁘
+⁙ ⁚ ⁛ ⁜ ⁝ ⁞ ⸪ ⸫ ⸬ ⸭ ⸽ ⳼ 𐄀 𐄁 𐄂 ⸂ ⸃ ⸄ ⸅ ⸉ ⸊ ⸌ ⸍ ⸾ ⸿ ⁊ ⸀ ⸁ ⸆ ⸇ ⸈ ⸋ ⸎
+⸏ ⸐ ⸑ ⸒ ⸓ ⸔ ⸕ ⸖ ⸯ
