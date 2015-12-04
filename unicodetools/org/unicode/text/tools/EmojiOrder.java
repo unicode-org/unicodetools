@@ -27,11 +27,14 @@ import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
 
 public class EmojiOrder {
+    static final EmojiData emojiData = EmojiData.of(Emoji.VERSION_TO_GENERATE);
+    public static final StringComparator PLAIN_STRING_COMPARATOR = new UTF16.StringComparator(true, false, 0);
     static final boolean USE_ORDER = true;
     static final ImmutableMap<String,ImmutableList<String>> hack = ImmutableMap.of(
             "👁", ImmutableList.of("👁‍🗨"),
@@ -68,11 +71,11 @@ public class EmojiOrder {
                 new MultiComparator<String>(
                         mp,
                         EmojiOrder.UCA_COLLATOR,
-                        new UTF16.StringComparator(true, false, 0));
+                        PLAIN_STRING_COMPARATOR);
     }
 
     Relation<String, String> getOrdering(String sourceFile, MapComparator<String> mapComparator) {
-        Relation<String, String> result = new Relation(new LinkedHashMap<String, Set<String>>(), LinkedHashSet.class);
+        Relation<String, String> result = Relation.of(new LinkedHashMap<String, Set<String>>(), LinkedHashSet.class);
         Set<String> sorted = new LinkedHashSet<>();
         Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>());
         for (String line : FileUtilities.in(EmojiOrder.class, sourceFile)) {
@@ -99,8 +102,7 @@ public class EmojiOrder {
                 }
             }
         }
-        Set<String> missing = Emoji.EMOJI_CHARS.addAllTo(new LinkedHashSet<String>());
-        Emoji.APPLE_COMBOS.addAllTo(missing);
+        Set<String> missing = emojiData.getSortingChars().addAllTo(new LinkedHashSet<String>());
         missing.removeAll(sorted);
         if (!missing.isEmpty()) {
             result.putAll("other", missing);
@@ -108,6 +110,7 @@ public class EmojiOrder {
             for (String s : missing) {
                 System.err.println("\t" + s + "\t\t" + show(s));
             }
+            throw new IllegalArgumentException();
         }
         sorted.addAll(missing);
         mapComparator.add(sorted);

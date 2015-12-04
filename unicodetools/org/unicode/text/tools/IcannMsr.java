@@ -38,7 +38,7 @@ import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ULocale;
 
 public class IcannMsr {
-    private static final String ICANN_DIR = "/Users/markdavis/Google Drive/workspace/DATA/icann/";
+    private static final String ICANN_DIR = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/icann/";
     
     // Change these with new versions
     

@@ -10,13 +10,15 @@ import java.nio.file.StandardCopyOption;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.text.utility.Settings;
+
 public class RenameFiles {
     private static final boolean PREVIEW = false;
 
     public static void main(String[] args) throws IOException {
         Matcher m = Pattern.compile("emoji_u(.*)\\.png").matcher(""); 
         //File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/country-flags");
-        File dir = new File("/Users/markdavis/Google Drive/workspace/DATA/emoji/samsung");
+        File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/samsung");
 
         FileSystem dfs = FileSystems.getDefault();
         int count = 0;

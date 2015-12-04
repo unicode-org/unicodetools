@@ -71,6 +71,7 @@ public class EmojiData {
 
     private final UnicodeMap<EmojiDatum> data = new UnicodeMap<>();
     private final UnicodeSet charsWithData = new UnicodeSet();
+    private final UnicodeSet sortingChars;
     private final UnicodeSet flatChars = new UnicodeSet();
     private final Map<DefaultPresentation, UnicodeSet> defaultPresentationMap;
     private final Map<ModifierStatus, UnicodeSet> modifierClassMap;
@@ -103,7 +104,6 @@ public class EmojiData {
         EnumMap<DefaultPresentation, UnicodeSet> _defaultPresentationMap = new EnumMap<>(DefaultPresentation.class);
         EnumMap<ModifierStatus, UnicodeSet> _modifierClassMap = new EnumMap<>(ModifierStatus.class);
         EnumMap<CharSource, UnicodeSet> _charSourceMap = new EnumMap<>(CharSource.class);
-        // /Users/markdavis/workspace/unicode-draft/Public/emoji/2.0/emoji-data.txt
 
         this.version = version;
         final String directory = Settings.DATA_DIR + "emoji/" + version.getVersionString(2, 4);
@@ -213,14 +213,16 @@ public class EmojiData {
         charsWithData.addAll(data.keySet());
         charsWithData.freeze();
         flatChars.addAll(charsWithData)
-        .addAll(Emoji.FIRST_REGIONAL,Emoji.LAST_REGIONAL)
         .removeAll(charsWithData.strings())
-        .addAll(new UnicodeSet("[{*⃣} {#⃣}]"))
-        .add(Emoji.EMOJI_VARIANT)
-        .add(Emoji.TEXT_VARIANT)
-        .add(Emoji.JOINER)
-        .removeAll(new UnicodeSet("[[:L:][:M:][:^nt=none:]+_-]"))
+        .addAll(Emoji.FIRST_REGIONAL,Emoji.LAST_REGIONAL)
+        .addAll(new UnicodeSet("[0-9*#]"))
+//        .add(Emoji.EMOJI_VARIANT)
+//        .add(Emoji.TEXT_VARIANT)
+//        .add(Emoji.JOINER)
+        //.removeAll(new UnicodeSet("[[:L:][:M:][:^nt=none:]+_-]"))
         .freeze();
+        
+        sortingChars = charsWithData;
     }
 
     public UnicodeSet getChars() {
@@ -228,7 +230,7 @@ public class EmojiData {
     }
 
     public UnicodeSet getFlatChars() {
-        return charsWithData;
+        return flatChars;
     }
 
     public static void freezeUnicodeSets(Collection<UnicodeSet> collection) {
@@ -371,5 +373,9 @@ public class EmojiData {
     }
     private static void show(String cp, final UnicodeMap<String> names, EmojiData emojiData) {
         System.out.println(emojiData.version + "\t" + Utility.hex(cp) + ", " + emojiData.getData(cp) + "\t" + names.get(cp));
+    }
+
+    public UnicodeSet getSortingChars() {
+        return sortingChars;
     }
 }

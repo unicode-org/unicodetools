@@ -104,8 +104,7 @@ public class GenerateEmojiFrequency {
         pf.setMinimumFractionDigits(2);
         NumberFormat intf = NumberFormat.getIntegerInstance(ULocale.ENGLISH);
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
-                + Emoji.TR51_PREFIX, "emoji-frequency-all.html")) {
+        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency-all.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Frequency", null, 
                     FIRST_LINE, "border='1'");
 
@@ -148,8 +147,7 @@ public class GenerateEmojiFrequency {
             }
             GenerateEmoji.writeFooter(out);
         }
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_DRAFT_DIR
-                + Emoji.TR51_PREFIX, "emoji-frequency.html")) {
+        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Frequency", null, 
                     FIRST_LINE, "border='1'");
 

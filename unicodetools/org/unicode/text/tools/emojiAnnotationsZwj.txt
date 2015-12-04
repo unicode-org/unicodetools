@@ -1,0 +1,22 @@
+eye, speech, bubble, witness	👁‍🗨
+man, couple, man	👨‍❤️‍👨
+man, kiss, man	👨‍❤️‍💋‍👨
+family, man, man, boy	👨‍👨‍👦
+family, man, man, boy, boy	👨‍👨‍👦‍👦
+family, man, man, girl	👨‍👨‍👧
+family, man, man, girl, boy	👨‍👨‍👧‍👦
+family, man, man, girl, girl	👨‍👨‍👧‍👧
+family, man, woman, boy	👨‍👩‍👦
+family, man, woman, boy, boy	👨‍👩‍👦‍👦
+family, man, woman, girl	👨‍👩‍👧
+family, man, woman, girl, boy	👨‍👩‍👧‍👦
+family, man, woman, girl, girl	👨‍👩‍👧‍👧
+woman, couple, man	👩‍❤️‍👨
+woman, couple, woman	👩‍❤️‍👩
+woman, kiss, man	👩‍❤️‍💋‍👨
+woman, kiss, woman	👩‍❤️‍💋‍👩
+family, woman, woman, boy	👩‍👩‍👦
+family, woman, woman, boy, boy	👩‍👩‍👦‍👦
+family, woman, woman, girl	👩‍👩‍👧
+family, woman, woman, girl, boy	👩‍👩‍👧‍👦
+family, woman, woman, girl, girl	👩‍👩‍👧‍👧

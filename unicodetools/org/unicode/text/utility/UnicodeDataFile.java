@@ -39,7 +39,7 @@ public class UnicodeDataFile {
             out.println(generateDateLine());
             out.println("#");
             out.println("# Unicode Character Database");
-            out.println("# Copyright (c) 1991-" + Default.getYear() + " Unicode, Inc.");
+            out.println("# © 1991-1991-" + Default.getYear() + " Unicode®, Inc.");
             out.println(
                     "# For terms of use, see http://www.unicode.org/terms_of_use.html");
             out.println("# For documentation, see http://www.unicode.org/reports/tr44/");

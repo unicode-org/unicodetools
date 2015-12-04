@@ -56,7 +56,7 @@ public class Ids {
     static final UnicodeSet RADICAL_ID = new UnicodeSet("[:radical:]").addAll(ID).freeze();
 
     static {
-        for (String line : FileUtilities.in("/Users/markdavis/workspace/unicodetools/data/ucd/7.0.0-Update", "CJKRadicals.txt")) {
+        for (String line : FileUtilities.in(Settings.SVN_WORKSPACE_DIRECTORY + "/unicodetools/data/ucd/8.0.0-Update", "CJKRadicals.txt")) {
             if (line.isEmpty() || line.startsWith("#")) {
                 continue;
             }
