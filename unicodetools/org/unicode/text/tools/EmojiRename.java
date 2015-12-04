@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
@@ -12,7 +13,7 @@ import com.ibm.icu.text.Transform;
 
 public class EmojiRename {
     static final boolean NO_ACTION = false;
-    static final File DIR = new File("/Users/markdavis/Google Drive/workspace/DATA/emoji_images_source");
+    static final File DIR = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji_images_source");
     static final Splitter DOT = Splitter.on('.');
     static final Splitter UNDERBAR = Splitter.on('_');
     static final Splitter DASH = Splitter.on('-');

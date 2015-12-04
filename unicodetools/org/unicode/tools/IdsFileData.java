@@ -26,7 +26,7 @@ public class IdsFileData {
     public static final UnicodeMap<List<Integer>> TOTAL_STROKES = new UnicodeMap<>();
 
     static {
-        for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY, "/DATA/ids/ucs-strokes.txt")) { // /Users/markdavis/Google Drive/workspace/DATA/
+        for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY, "/DATA/ids/ucs-strokes.txt")) {
             if (line.isEmpty()) {
                 continue;
             }

@@ -96,7 +96,7 @@ public class GenerateIdnaTest {
         out.println("# " + "IdnaTest"  + Default.ucdVersion() +  ".txt" + "\n" +
                 "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
                 "#\n" +
-                "# Copyright (c) 1991-" + (new Date().getYear()+1900) +
+                "# Copyright © 1991-" + (new Date().getYear()+1900) +
                 " Unicode, Inc.");
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);

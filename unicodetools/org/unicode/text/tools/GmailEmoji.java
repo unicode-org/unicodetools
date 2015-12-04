@@ -174,7 +174,6 @@ U+2711 => U+2712
         final Splitter semi = Splitter.on("\t").trimResults();
         Data google = null;
         Data crab = null;
-        //Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/emoji_images/gmail_emoji.txt
         for (String line : FileUtilities.in(Settings.OTHER_WORKSPACE_DIRECTORY + "/data/emoji_images", "gmail_emoji.txt")) {
             if (line.startsWith("#")) continue;
             List<String> list = semi.splitToList(line);

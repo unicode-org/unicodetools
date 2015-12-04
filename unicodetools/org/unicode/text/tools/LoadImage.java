@@ -533,7 +533,7 @@ public class LoadImage extends Component {
 
     public static void doTwitter(String inputDir, String outputDir)
             throws IOException {
-        String inputDirectory = "/Users/markdavis/twemoji/72x72/";
+        String inputDirectory = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/twemoji/72x72/";
         UnicodeSet twitterChars = new UnicodeSet();
         for (File file : new File(inputDirectory).listFiles()) {
             if (file.isDirectory()) {
@@ -1007,7 +1007,7 @@ public class LoadImage extends Component {
             return null;
         }
         public static void makeTest() throws IOException {
-            PrintWriter out = BagFormatter.openUTF8Writer("/Users/markdavis/workspace/temp/", "tarot.html");
+            PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "temp/", "tarot.html");
             out.println("<html><body><table>");
             for (TarotSuits x : values()) {
                 int counter = x.start;

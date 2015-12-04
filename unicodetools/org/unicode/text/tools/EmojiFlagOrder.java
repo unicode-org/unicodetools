@@ -278,8 +278,6 @@ public class EmojiFlagOrder {
 
 
     public static String getFile(String s) {
-        // /Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/emoji_images/country-flags/ref_1f1e6_1f1e8.png
-        // /Users/markdavis/Google Drive/Backup-2012-10-09/Documents/indigo/DATA/emoji_images/country-flags/ref_1f1e6_1f1e9.png
         String core = Emoji.buildFileName(s,"_");
         return Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji_images/country-flags/ref_" +
         core +

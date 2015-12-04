@@ -24,19 +24,34 @@ import com.ibm.icu.util.VersionInfo;
 public class Emoji {
 
     /**
+     * Change the following for a new version.
+     */
+    public static final boolean IS_BETA = false;
+
+    /**
      * Change the following once we release
      */
     public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(2);
     public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(3);
-    /**
-     * Change the following for a new version.
-     */
-    public static final boolean IS_BETA = true;
-    
-    public static final VersionInfo VERSION_TO_GENERATE = IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
-    public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
+    public static final VersionInfo VERSION_FORMAT1 = VersionInfo.getInstance(1);
 
+    /**
+     * Computed
+     */
+
+    public static final VersionInfo VERSION_TO_GENERATE = IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
+
+    public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
+    //public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
+
+    public static final String TR51_INTERNAL_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/"
+            + (IS_BETA ? "internal-beta/" : "internal/");
+    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/" 
+            + (IS_BETA ? "beta/" : "charts/");
+    public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/" + VERSION_STRING + "/";
+
+    static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
 
     enum ModifierStatus {
         none, modifier, modifier_base;
@@ -160,17 +175,17 @@ public class Emoji {
         .toString();
     }
 
-    
+
     public static final UnicodeSet APPLE_COMBOS = new UnicodeSet(
             "[{👨‍❤️‍👨} {👩‍❤️‍👩}"
-            + " {👨‍👨‍👦‍👦} {👨‍👨‍👦} {👨‍👨‍👧‍👦} {👨‍👨‍👧‍👧} {👨‍👨‍👧} {👨‍👩‍👦‍👦} {👨‍👩‍👦} {👨‍👩‍👧‍👦} {👨‍👩‍👧‍👧} {👨‍👩‍👧} {👩‍👩‍👦‍👦} {👩‍👩‍👦} {👩‍👩‍👧‍👦} {👩‍👩‍👧‍👧} {👩‍👩‍👧}"
-            + " {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}"
-            + " {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}"
-            + "{\\x{1F468}\\x{200D}\\x{1F469}\\x{200D}\\x{1F466}}"
-            + "{\\x{1F469}\\x{200D}\\x{2764}\\x{FE0F}\\x{200D}\\x{1F468}}"
-            + "{\\x{1F469}\\x{200D}\\x{2764}\\x{FE0F}\\x{200D}\\x{1F48B}\\x{200D}\\x{1F468}}"
-            + "{\\x{1F441} \u200D \\x{1F5E8}}]").freeze();
-    
+                    + " {👨‍👨‍👦‍👦} {👨‍👨‍👦} {👨‍👨‍👧‍👦} {👨‍👨‍👧‍👧} {👨‍👨‍👧} {👨‍👩‍👦‍👦} {👨‍👩‍👦} {👨‍👩‍👧‍👦} {👨‍👩‍👧‍👧} {👨‍👩‍👧} {👩‍👩‍👦‍👦} {👩‍👩‍👦} {👩‍👩‍👧‍👦} {👩‍👩‍👧‍👧} {👩‍👩‍👧}"
+                    + " {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}"
+                    + " {👨‍❤️‍💋‍👨} {👩‍❤️‍💋‍👩}"
+                    + "{\\x{1F468}\\x{200D}\\x{1F469}\\x{200D}\\x{1F466}}"
+                    + "{\\x{1F469}\\x{200D}\\x{2764}\\x{FE0F}\\x{200D}\\x{1F468}}"
+                    + "{\\x{1F469}\\x{200D}\\x{2764}\\x{FE0F}\\x{200D}\\x{1F48B}\\x{200D}\\x{1F468}}"
+                    + "{\\x{1F441} \u200D \\x{1F5E8}}]").freeze();
+
     public static final UnicodeSet APPLE_COMBOS_WITHOUT_VS = new UnicodeSet();
     static { 
         for (String s : APPLE_COMBOS) {
@@ -320,12 +335,6 @@ public class Emoji {
         }
     };
 
-    public static final String CHARTS_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "emoji/" 
-            + (IS_BETA ? "beta/" : "charts/");
-    public static final String DATA_DIR = Settings.UNICODE_DRAFT_PUBLIC + "emoji/" + VERSION_STRING + "/";
-
-    public static final String TR51_DRAFT_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
-    static final String IMAGES_OUTPUT_DIR = TR51_DRAFT_DIR + "images/";
 
     public static void main(String[] args) {
         if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {
@@ -347,12 +356,19 @@ public class Emoji {
     static final UnicodeSet ASCII_LETTERS = new UnicodeSet("[A-Za-z]").freeze();
     static final String EMOJI_VARIANT_STRING = String.valueOf(EMOJI_VARIANT);
     static final String TEXT_VARIANT_STRING = String.valueOf(TEXT_VARIANT);
+    static final String JOINER_STRING = String.valueOf(JOINER);
 
     public static boolean skipEmojiSequence(String string) {
         if (string.equals(" ") 
+                || string.equals("\t") 
                 || string.equals(EMOJI_VARIANT_STRING) 
                 || string.equals(TEXT_VARIANT_STRING)
-                || !EMOJI_CHARS.contains(string)) {
+                || string.equals(JOINER_STRING)) {
+            return true;
+        }
+        if (!EMOJI_CHARS.contains(string) 
+                && !APPLE_COMBOS.contains(string)
+                ) {
             return true;
         }
         return false;
@@ -389,7 +405,7 @@ public class Emoji {
     //
     //    };
 
-    static String getEmojiSequence(String line, int i) {
+    public static String getEmojiSequence(String line, int i) {
         // take the first character.
         int firstCodepoint = line.codePointAt(i);
         int firstLen = Character.charCount(firstCodepoint);
@@ -402,6 +418,7 @@ public class Emoji {
                 || (isRegionalIndicator(firstCodepoint) && isRegionalIndicator(secondCodepoint))) {
             return line.substring(i, i+firstLen+secondLen);
         }
+        // ZWJ sequence
         //        if ((secondCodepoint == EMOJI_VARIANT || secondCodepoint == TEXT_VARIANT) && i + firstLen + secondLen < line.length()) {
         //            int codePoint3 = line.codePointAt(i+firstLen+secondLen);
         //            int len3 = Character.charCount(codePoint3);

@@ -932,7 +932,7 @@ public class GenerateUnihanCollators {
             //            final String typeAlt = filename.replace("_", "' alt='");
             //            out.print(
             //                    "<?xml version='1.0' encoding='UTF-8' ?>\n"
-            //                    +"<!DOCTYPE ldml SYSTEM '/Users/markdavis/Documents/workspace/cldr/common/dtd/ldml.dtd'>\n"
+            //                    +"<!DOCTYPE ldml SYSTEM '.../cldr/common/dtd/ldml.dtd'>\n"
             //                    +"<ldml>\n"
             //                    +"    <identity>\n"
             //                    +"        <version number='$Revision: 1.8 $' />\n"

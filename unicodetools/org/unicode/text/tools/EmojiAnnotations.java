@@ -32,10 +32,9 @@ public class EmojiAnnotations extends Birelation<String,String> {
             GenerateEmoji.EMOJI_COMPARATOR,
             "emojiAnnotations.txt",
             "emojiAnnotationsFlags.txt",
-            "emojiAnnotationsGroups.txt"
+            "emojiAnnotationsGroups.txt",
+            "emojiAnnotationsZwj.txt"
             );
-
-
 
     public EmojiAnnotations(Comparator codepointCompare, String... filenames) {
         super(new TreeMap(codepointCompare), 
@@ -45,10 +44,12 @@ public class EmojiAnnotations extends Birelation<String,String> {
                 codepointCompare, 
                 codepointCompare);
 
-        Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>(codepointCompare));
+        //Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>(codepointCompare));
         for (String filename : filenames) {
             int lineCount = 0;
             int lineNumber = 0;
+            EmojiIterator ei = new EmojiIterator(EmojiData.of(Emoji.VERSION_LAST_RELEASED), true);
+            
             for (String line : FileUtilities.in(EmojiAnnotations.class, filename)) {
                 line = line.trim();
                 lineNumber++;
@@ -59,20 +60,16 @@ public class EmojiAnnotations extends Birelation<String,String> {
                     int debug = 0;
                 }
                 lineCount++;
-                line = Emoji.getLabelFromLine(lastLabel, line);
-                    line = Emoji.UNESCAPE.transform(line);
-                for (int i = 0; i < line.length();) {
-                    String string = Emoji.getEmojiSequence(line, i);
+                for (String string : ei.set(line)) {
                     if (Emoji.ASCII_LETTERS.containsSome(string)) {
                         UnicodeSet overlap = new UnicodeSet().addAll(string).retainAll(Emoji.ASCII_LETTERS);
                         String withPosition = line.replaceAll("("+overlap+")", "###$1");
                         throw new IllegalArgumentException(lineNumber + "\tStrange line with ASCII emoji: " + overlap + "; "+ withPosition);
                     }
-                    i += string.length();
                     if (Emoji.skipEmojiSequence(string)) {
                         continue;
                     }
-                    for (String item : lastLabel.value) {
+                    for (String item : ei.newLabel) {
                         add(fixAnnotation(item), string);
                     }
                 }
