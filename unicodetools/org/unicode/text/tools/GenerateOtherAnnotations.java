@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -157,6 +158,18 @@ as.tsv
 
     private static void printText(AnnotationData data) throws IOException {
         try (PrintWriter outText = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/", data.locale + ".tsv")) {
+//#Code Image   TTS English TTS German  Annotations English Annotations German  Comments    INTERNAL
+//U+1F600   =vlookup(A2,Internal!A:B,2,0)   grinning face   Lachender Smiley    face; grin  Lachender Smiley; Gesicht; lustig; lol       
+            int line = 1;
+            outText.println("#Code"
+                    + "\tImage"
+                    + "\tTTS English"
+                    + "\tTTS " + data.locale.getDisplayName(ULocale.ENGLISH)
+                    + "\t=\"TTS? \" & countif(E2:E,\"ERR\")"
+                    + "\tAnnotations English"
+                    + "\tAnnotations" + data.locale.getDisplayName(ULocale.ENGLISH)
+                    + "\tComments"
+                    + "\tINTERNAL");
             for (String s : GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
                 if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                     continue;
@@ -164,13 +177,22 @@ as.tsv
                 String tts = data.tts.get(s);
                 String ttsString = tts == null ? "MISSING" : tts;
                 Set<String> annotations = data.map.get(s);
+                if (annotations == null) {
+                    annotations = Collections.singleton("MISSING");
+                } else if (tts != null) {
+                    annotations = new LinkedHashSet<>(annotations);
+                    annotations.remove(tts);
+                }
                 String annotationString = annotations == null ? "MISSING" : CollectionUtilities.join(annotations, "; ");
                 outText.println("U+" + Utility.hex(s, 4, " U+")
-                        + "\t" + s
+                        + "\t=vlookup(A" + (++line) + ",Internal!A:B,2,0)"
                         + "\t" + english.tts.get(s) 
                         + "\t" + ttsString 
+                        + "\t=if(countif(D:D,D2)=1,\"\",\"ERR\")"
                         + "\t" + CollectionUtilities.join(english.map.get(s), "; ")
                         + "\t" + annotationString
+                        + "\t" // comment
+                        + "\t\u00A0" // comment
                         );
             }
         }

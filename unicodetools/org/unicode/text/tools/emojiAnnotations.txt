@@ -635,7 +635,7 @@ asia, australia	🌏
 meridians	🌐
 glittery, glow, shining	🌟
 shooting	🌠
-tornado	🌪
+tornado, whirlwind	🌪
 frankfurter, hot dog, hotdog, sausage	🌭
 taco	🌮
 burrito	🌯
@@ -846,7 +846,7 @@ goblin	👺
 ghost	👻
 monster	👾👹  👺  👻  💀  ☠  👽  👾  🤖 
 💩
-devil, imp	👿
+devil, imp, demon	👿
 sassy	💁
 guard, guardsman	💂
 lipstick, makeup	💄
@@ -1010,7 +1010,8 @@ liberty	🗽
 japan	🗾
 moyai	🗿
 laugh, satisfied	😆
-halo, innocent	😇
+laugh	😂
+halo, innocent, angel	😇
 blush	😊
 delicious, savouring, um, yum	😋
 smirk	😏
