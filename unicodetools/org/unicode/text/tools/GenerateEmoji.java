@@ -1227,7 +1227,7 @@ public class GenerateEmoji {
             }
         }
         printCollationOrder();
-        printAnnotations();
+        //printAnnotations();
         STYLE_TO_CHARS.freeze();
         showTextStyle();
         showOrdering(Style.bestImage);
@@ -1498,25 +1498,29 @@ public class GenerateEmoji {
     private static void showNames(PrintWriter out, Set<String> minimal, boolean abbreviate) {
         UnicodeSet us = new UnicodeSet().addAll(minimal);
         for (EntryRange r : us.ranges()) {
-            out.print(getCodeAndName2(UTF16.valueOf(r.codepoint)));
+            out.print(getCodeAndName2(UTF16.valueOf(r.codepoint), false));
             if (r.codepoint != r.codepointEnd) {
                 if (abbreviate) {
-                    out.print("<br>\n…" + getCodeAndName2(UTF16.valueOf(r.codepointEnd)));
+                    out.print("<br>\n…" + getCodeAndName2(UTF16.valueOf(r.codepointEnd), false));
                 } else {
                     for (int cp = r.codepoint + 1; cp <= r.codepointEnd; ++cp) {
-                        out.print("<br>\n" + getCodeAndName2(UTF16.valueOf(cp)));
+                        out.print("<br>\n" + getCodeAndName2(UTF16.valueOf(cp), false));
                     }
                 }
             }
             out.println("<br>");
         }
         for (String s : us.strings()) {
-            out.println(getCodeAndName2(s) + "<br>");
+            out.println(getCodeAndName2(s, false) + "<br>");
         }
     }
 
-    private static String getCodeAndName2(String s) {
-        return "U+" + Utility.hex(s, " U+") + " " + getName(s, false);
+    private static String getCodeAndName2(String s, boolean toLower) {
+        return toUHex(s) + " " + getName(s, toLower);
+    }
+
+    private static String toUHex(String s) {
+        return "U+" + Utility.hex(s, " U+");
     }
 
     private static void showExplicitAppleImages(PrintWriter out, Set<String> minimal) {
@@ -2981,7 +2985,7 @@ public class GenerateEmoji {
                 PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
                         , "emoji-ordering-list.txt")) {
             for (String s : SORTED_EMOJI_CHARS_SET) {
-                outText.println(getCodeAndName2(s));
+                outText.println(getCodeAndName2(s, false));
             }
         }
         try (
