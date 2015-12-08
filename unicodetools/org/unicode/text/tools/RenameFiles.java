@@ -7,6 +7,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,9 +17,9 @@ public class RenameFiles {
     private static final boolean PREVIEW = false;
 
     public static void main(String[] args) throws IOException {
-        Matcher m = Pattern.compile("emoji_u(.*)\\.png").matcher(""); 
+        Matcher m = Pattern.compile("google_(.*)\\.png").matcher(""); 
         //File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/country-flags");
-        File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/samsung");
+        File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/google");
 
         FileSystem dfs = FileSystems.getDefault();
         int count = 0;
@@ -30,7 +31,7 @@ public class RenameFiles {
                 throw new IllegalArgumentException(name);
             }
             //Emoji.buildFileName(Emoji.getHexFromFlagCode(m.group(1)), "_")
-            String newName = "samsung_" + m.group(1) + ".png";
+            String newName = "android_" + m.group(1).toLowerCase(Locale.ENGLISH) + ".png";
             System.out.println((count++) + "\t" + f + "\t=> " + newName);
             if (PREVIEW) {
                 continue;

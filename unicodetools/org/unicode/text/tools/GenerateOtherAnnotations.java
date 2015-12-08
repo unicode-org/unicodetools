@@ -164,10 +164,10 @@ as.tsv
             outText.println("#Code"
                     + "\tImage"
                     + "\tTTS English"
-                    + "\tTTS " + data.locale.getDisplayName(ULocale.ENGLISH)
-                    + "\t=\"TTS? \" & countif(E2:E,\"ERR\")"
+                    + "\tTTS: " + data.locale.getDisplayName(ULocale.ENGLISH)
+                    + "\t=\"TTS? \" & countif(E2:E9999,\"ERR\")"
                     + "\tAnnotations English"
-                    + "\tAnnotations" + data.locale.getDisplayName(ULocale.ENGLISH)
+                    + "\tAnnotations " + data.locale.getDisplayName(ULocale.ENGLISH)
                     + "\tComments"
                     + "\tINTERNAL");
             for (String s : GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
@@ -184,11 +184,12 @@ as.tsv
                     annotations.remove(tts);
                 }
                 String annotationString = annotations == null ? "MISSING" : CollectionUtilities.join(annotations, "; ");
+                ++line;
                 outText.println("U+" + Utility.hex(s, 4, " U+")
-                        + "\t=vlookup(A" + (++line) + ",Internal!A:B,2,0)"
+                        + "\t=vlookup(A" + line + ",Internal!A:B,2,0)"
                         + "\t" + english.tts.get(s) 
                         + "\t" + ttsString 
-                        + "\t=if(countif(D:D,D2)=1,\"\",\"ERR\")"
+                        + "\t=if(countif(D:D,D" + line + ")=1,\"\",\"ERR\")"
                         + "\t" + CollectionUtilities.join(english.map.get(s), "; ")
                         + "\t" + annotationString
                         + "\t" // comment

@@ -552,8 +552,7 @@ public class GenerateEmoji {
             String symbolaCell = getCell(Emoji.Source.ref, chars, missingCell);
             String appleCell = getCell(Emoji.Source.apple, chars, missingCell);
             String samsungCell = EXTRA_PLATFORMS ? getCell(Emoji.Source.samsung, chars, missingCell) : missingCell;
-            String androidCell = getCell(Emoji.Source.android, chars, missingCell);
-            String googleCell = EXTRA_PLATFORMS ? getCell(Emoji.Source.google, chars, missingCell) : missingCell;
+            String androidCell = getCell(Emoji.Source.google, chars, missingCell);
             String twitterCell = getCell(Emoji.Source.twitter, chars, missingCell);
             String windowsCell = getCell(Emoji.Source.windows, chars, missingCell);
             String gmailCell = getCell(Emoji.Source.gmail, chars, missingCell);
@@ -563,8 +562,7 @@ public class GenerateEmoji {
             if (stats != null) {
                 stats.add(chars, Emoji.Source.apple, appleCell.equals(missingCell));
                 stats.add(chars, Emoji.Source.samsung, samsungCell.equals(missingCell));
-                stats.add(chars, Emoji.Source.google, googleCell.equals(missingCell));
-                stats.add(chars, Emoji.Source.android, androidCell.equals(missingCell));
+                stats.add(chars, Emoji.Source.google, androidCell.equals(missingCell));
                 stats.add(chars, Emoji.Source.twitter, twitterCell.equals(missingCell));
                 stats.add(chars, Emoji.Source.windows, windowsCell.equals(missingCell));
                 stats.add(chars, Emoji.Source.gmail, gmailCell.equals(missingCell));
@@ -598,7 +596,7 @@ public class GenerateEmoji {
                             : browserCell
                             + symbolaCell
                             + appleCell
-                            + (EXTRA_PLATFORMS ? googleCell + samsungCell : "")
+                            + (EXTRA_PLATFORMS ? samsungCell : "")
                             + androidCell
                             + twitterCell
                             + windowsCell
@@ -714,7 +712,7 @@ public class GenerateEmoji {
                         + (EXTRA_PLATFORMS ? "<th class='cchars'>Sams</th>\n" 
                                 + "<th class='cchars'>Goog</th>\n" 
                                 : "")
-                                + "<th class='cchars'>Andr</th>\n"
+                                + "<th class='cchars'>Goog</th>\n"
                                 + "<th class='cchars'>Twit</th>\n"
                                 + "<th class='cchars'>Wind</th>\n"
                                 + "<th class='cchars'>GMail</th>\n"
@@ -748,7 +746,7 @@ public class GenerateEmoji {
 
     static final UnicodeMap<Emoji.Source> BEST_OVERRIDE = new UnicodeMap<>();
     static {
-        BEST_OVERRIDE.putAll(new UnicodeSet("[🕐-🕧🚶🏃💃👪👫👬👭🙍🙎🙅🙆🙇🙋🙌🙏💮]"), Emoji.Source.android);
+        BEST_OVERRIDE.putAll(new UnicodeSet("[🕐-🕧🚶🏃💃👪👫👬👭🙍🙎🙅🙆🙇🙋🙌🙏💮]"), Emoji.Source.google);
         BEST_OVERRIDE.putAll(new UnicodeSet("[✊-✌ 💅💪👂👃👯" +
                 "👦 👰 👧  👨  👩  👮  👱  👲  👳 👴  👵  👶  👷  👸  💁  💂 👼" +
                 "👈👉☝👆👇👊  👋  👌  👍👎 👏  👐]"), Emoji.Source.twitter);
@@ -907,10 +905,9 @@ public class GenerateEmoji {
             }
         }
 
-        static EnumSet<Emoji.Source> platformsToInclude = EnumSet.of(Source.apple, Source.android, Source.windows);
+        static EnumSet<Emoji.Source> platformsToInclude = EnumSet.of(Source.apple, Source.google, Source.windows);
         static {
             if (EXTRA_PLATFORMS) {
-                platformsToInclude.add(Source.google);    
                 platformsToInclude.add(Source.samsung);    
             }
         }
@@ -964,19 +961,32 @@ public class GenerateEmoji {
                 showDiff(out, outText, headerRow, entry.getKey().toString(), entry.getValue());
             }
 
-            EnumMap<Emoji.Source, UnicodeSet> familyMap = new EnumMap<>(Emoji.Source.class);
-            familyMap.put(Emoji.Source.android, Emoji.APPLE_COMBOS);
-            familyMap.put(Emoji.Source.windows, Emoji.APPLE_COMBOS);
+            EnumMap<Emoji.Source, UnicodeSet> familyMap = addItems(Emoji.APPLE_COMBOS);
             showDiff(out, outText, headerRow, "families", familyMap);
 
-            EnumMap<Emoji.Source, UnicodeSet> diversityMap = new EnumMap<>(Emoji.Source.class);
-            diversityMap.put(Emoji.Source.android, Emoji.APPLE_MODIFIED);
-            diversityMap.put(Emoji.Source.windows, Emoji.APPLE_MODIFIED);
+            EnumMap<Emoji.Source, UnicodeSet> diversityMap = addItems(Emoji.APPLE_MODIFIED);
             showDiff(out, outText, headerRow, "skinTone", diversityMap);
 
             writeFooter(out);
             out.close();
             outText.close();
+        }
+
+        private EnumMap<Emoji.Source, UnicodeSet> addItems(UnicodeSet unicodeSet) {
+            EnumMap<Emoji.Source, UnicodeSet> familyMap = new EnumMap<>(Emoji.Source.class);
+            UnicodeSet androidItems = new UnicodeSet();
+            UnicodeSet windowsItems = new UnicodeSet();
+            for (String s : unicodeSet) {
+                if (getImage(Source.google,s,false,null) == null) {
+                    androidItems.add(s);
+                }
+                if (getImage(Source.windows,s,false,null) == null) {
+                    windowsItems.add(s);
+                }
+            }
+            familyMap.put(Emoji.Source.google, androidItems);
+            familyMap.put(Emoji.Source.windows, windowsItems);
+            return familyMap;
         }
 
         private void showDiff(PrintWriter out, PrintWriter outText, String headerRow, final String title, 
@@ -1264,7 +1274,7 @@ public class GenerateEmoji {
         System.out.println("DONE");
     }
 
-    static Set<Emoji.Source>                  MAIN_SOURCES  = Collections.unmodifiableSet(EnumSet.of(Emoji.Source.apple, Emoji.Source.android, Emoji.Source.twitter, Emoji.Source.windows));
+    static Set<Emoji.Source>                  MAIN_SOURCES  = Collections.unmodifiableSet(EnumSet.of(Emoji.Source.apple, Emoji.Source.google, Emoji.Source.twitter, Emoji.Source.windows));
 
     static final IndexUnicodeProperties latest        = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
     static final UnicodeMap<String>     emojiDCM      = latest.load(UcdProperty.Emoji_DCM);
@@ -1803,17 +1813,21 @@ public class GenerateEmoji {
                         + "</p><p>"
                         + "The Version column shows the first version of Unicode containing "
                         + "the standard variation sequence. "
-                        + "It is not the version when the <i>emoji base</i> is added to Unicode, "
-                        + "but when the <i>emoji variation sequence</i> is first defined. "
-                        + "Note that a version of “9.0*” marks those sequences that will be in "
-                        + "Unicode 9.0, which is to be released in 2016. ", "border='1'");
+                        + "It is not the version in which the <i>emoji base</i> was added to Unicode, "
+                        + "but rather the one in which the <i>emoji variation sequence</i> was first defined. "
+                        + "Note that a version identified as “9.0*” marks those sequences that "
+                        + "will be included in Unicode 9.0, which is to be scheduled for release in June 2016. "
+                        + "Keycap images (those with a * on the Name) are for sequences "
+                        + "followed by U+20E3 COMBINING ENCLOSING KEYCAP. "
+                        , "border='1'");
 
-        UnicodeSet x = HAS_EMOJI_VS; out.println("<tr><th>Code</th>"
-                + "<th style='width:1%'>Sample Text Presentation (+FE0E)</th>"
-                + "<th style='width:1%'>Sample Emoji Presentation (+FE0F)</th>"
+        UnicodeSet x = HAS_EMOJI_VS; 
+        out.println("<tr><th>Code</th>"
+                + "<th class='narrow cchars'>Sample Text (+FE0E)</th>"
+                + "<th class='narrow cchars'>Sample Emoji (+FE0F)</th>"
                 + "<th>Version</th>"
                 + "<th>Name</th></tr>");
-        final String keycapIndicator = "<br><i>images for sequences followed by U+" + Utility.hex(Emoji.KEYCAP_MARK) + " " + UCharacter.getName(Emoji.KEYCAP_MARK) + "</i>";
+        final String keycapIndicator = "*";
         TreeSet<String> sorted = new TreeSet<>(EmojiOrder.PLAIN_STRING_COMPARATOR);
         for (String cp : TO_FIRST_VERSION_FOR_VARIANT.keySet().addAllTo(sorted)) {
             String version = TO_FIRST_VERSION_FOR_VARIANT.get(cp);
@@ -2572,7 +2586,7 @@ public class GenerateEmoji {
             this.description = description
                     + "The ordering of the emoji and the annotations are based on "
                     + CLDR_DATA_LINK + ". This list does not include the <a target='style' href='emoji-sequences.html#modifier_sequences'>320 modifier sequences</a>,"
-                    + " or the <a target='zwj' href='emoji-zwj-sequences.html'>23 ZWJ sequences</a>";
+                    + " or the <a target='zwj' href='emoji-zwj-sequences.html'>23 ZWJ sequences</a>.";
             filePrefix = prefix.isEmpty() ? "" : prefix + "-";
             title = (prefix.isEmpty() ? "" : UCharacter.toTitleCase(prefix, null) + " ")
                     + "Emoji Data";

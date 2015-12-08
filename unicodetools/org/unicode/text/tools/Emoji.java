@@ -62,7 +62,7 @@ public class Emoji {
     }
 
     enum Source {
-        color, apple, android, google, samsung, twitter, windows, ref, gmail, sb, dcm, kddi;
+        color, apple, google, samsung, twitter, windows, ref, gmail, sb, dcm, kddi;
         boolean isGif() {
             return compareTo(Source.gmail) >= 0;
         }
@@ -79,7 +79,7 @@ public class Emoji {
         }
 
         public String getPrefix() {
-            return name();
+            return this == google ? "android" : name();
         }
     }
 
@@ -113,7 +113,7 @@ public class Emoji {
     .freeze();
     static final UnicodeSet KEYCAPS = new UnicodeSet("[{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]").freeze();
 
-    public static final UnicodeSet SKIP_ANDROID = new UnicodeSet("[♨ ⚠ ▶ ◀ ✉ ✏ ✒ ✂ ⬆ ↗ ➡ ↘ ⬇ ↙ ⬅ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ♻ ☑ ✔ ✖ 〽 ✳ ✴ ❇ ▪ ▫ ◻ ◼ ‼ ⁉ 〰 © ® 🅰 🅱 ℹ Ⓜ 🅾 🅿 ™ 🈂 🈷 ㊗ ㊙]").freeze();
+    //public static final UnicodeSet SKIP_ANDROID = new UnicodeSet("[♨ ⚠ ▶ ◀ ✉ ✏ ✒ ✂ ⬆ ↗ ➡ ↘ ⬇ ↙ ⬅ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ ♻ ☑ ✔ ✖ 〽 ✳ ✴ ❇ ▪ ▫ ◻ ◼ ‼ ⁉ 〰 © ® 🅰 🅱 ℹ Ⓜ 🅾 🅿 ™ 🈂 🈷 ㊗ ㊙]").freeze();
 
     static public String buildFileName(String chars, String separator) {
         StringBuilder result = new StringBuilder();
@@ -434,14 +434,14 @@ public class Emoji {
     static final Transliterator UNESCAPE = Transliterator.getInstance("hex-any/Perl");
 
     static String getImageFilenameFromChars(Emoji.Source type, String chars) {
-        if (type == Emoji.Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
-            return null;
-        }
+//        if (type == Emoji.Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
+//            return null;
+//        }
         String core = buildFileName(chars, "_");
         String suffix = ".png";
         if (type != null && type.isGif()) {
             suffix = ".gif";
         }
-        return type + "/" + type.getPrefix() + "_" + core + suffix;
+        return type.getPrefix() + "/" + type.getPrefix() + "_" + core + suffix;
     }
 }
