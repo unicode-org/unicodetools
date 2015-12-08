@@ -1766,7 +1766,9 @@ public class GenerateEmoji {
                         + "The Variation subtables adds the corresponding variation selectors. "
                         + "It does not yet, however, add the variation sequences included in Unicode 9.0. "
                         + "See <a target='variants' href='emoji-variants.html'>Emoji Variation Sequences</a>."
-                        + "</ul>", "border='1'");
+                        + "</ul>"
+                        + "<p>The default presentation choice (colorful vs gray) is discussed in "
+                        + "<a href='http://www.unicode.org/reports/tr51/index.html#Presentation_Style'>Presentation Style</a>.</p>", "border='1'");
 
         out.println("<tr><th colSpan='3'>Plain  (“text” should be all gray; others should all be colorful)</th></tr>");
         outText.println("\uFEFFThis text file provides a listing of characters for testing the display of emoji characters. ");
@@ -1971,8 +1973,8 @@ public class GenerateEmoji {
     private static void displayZwjTD(PrintWriter out, String title, UnicodeSet items) {
         out.println("<tr><th colSpan='6'>" + TransliteratorUtilities.toHTML.transform(title) + "</th></tr>");
         out.println("<tr><th>Count</th><th style='width:10em'>Code Points</th><th>Browser</th><th>Sample Image</th><th>Sample Fallback Images</th><th>Description</th></tr>");
-        StringBuffer name = new StringBuffer();
-        String prefix = "";
+//        StringBuffer name = new StringBuffer();
+//        String prefix = "";
         int i = 0;
         StringBuilder buffer = new StringBuilder();
         for (String s : EmojiOrder.sort(EMOJI_COMPARATOR, items)) {
@@ -1988,25 +1990,25 @@ public class GenerateEmoji {
             }
             buffer.append(bestImage);
             out.println("<td class='andr'>");
-            name.setLength(0);
+//            name.setLength(0);
             for (int item : CharSequences.codePoints(s)) {
                 if (Emoji.EMOJI_CHARS.contains(item)) {
                     String s2 = UTF16.valueOf(item);
                     out.println(getBestImage(s2, true, ""));
-                    if (name.length() != 0) {
-                        name.append(" + ");
-                    }
-                    name.append(getName(s2, true));
+//                    if (name.length() != 0) {
+//                        name.append(" + ");
+//                    }
+//                    name.append(getName(s2, true));
                 }
             }
             out.println("</td>");
-            if (isSingle) {
-                prefix = name + ": <i>";
-            } else {
-                name.insert(0, prefix);
-                name.append("</i>");
-            }
-            out.println("<td>" + name + "</td>");
+//            if (isSingle) {
+//                prefix = name + ": <i>";
+//            } else {
+//                name.insert(0, prefix);
+//                name.append("</i>");
+//            }
+            out.println("<td>" + getName(s, true) + "</td>");
             out.println("</tr>");
         }
         out.println("<tr><th colSpan='6'>Character list for copying</th></tr>");
