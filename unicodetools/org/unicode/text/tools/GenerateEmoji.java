@@ -1873,7 +1873,7 @@ public class GenerateEmoji {
                         , "border='1'");
 
         UnicodeSet x = HAS_EMOJI_VS; 
-        out.println("<tr><th>Code</th>"
+        out.println("<tr><th class='cchars'>Code</th>"
                 + "<th class='narrow cchars'>Sample Text (+FE0E)</th>"
                 + "<th class='narrow cchars'>Sample Emoji (+FE0F)</th>"
                 + "<th>Version</th>"
@@ -1883,7 +1883,7 @@ public class GenerateEmoji {
         for (String cp : TO_FIRST_VERSION_FOR_VARIANT.keySet().addAllTo(sorted)) {
             String version = TO_FIRST_VERSION_FOR_VARIANT.get(cp);
             out.println("<tr>");
-            out.println("<td class='code'>" + getDoubleLink(Utility.hex(cp)) + "</td>");
+            out.println("<td class='code cchars'>" + getDoubleLink(Utility.hex(cp)) + "</td>");
             if (emojiData.getData(cp) == null) {
                 // keycaps, treat specially
                 String cp2 = cp + Emoji.KEYCAP_MARK;
