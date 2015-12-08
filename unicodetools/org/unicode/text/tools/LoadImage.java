@@ -151,16 +151,16 @@ public class LoadImage extends Component {
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
         //generatePngsFromFont(outputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"
         //generatePngsFromFont(outputDir, "apple", "apple", "Apple Color Emoji", Emoji.APPLE_MODIFIED, 72, false);
-        for (String s : Emoji.APPLE_COMBOS) {
-            System.out.print(s + " ");
-        }
-        System.out.println();
-        System.out.println(Emoji.APPLE_COMBOS.size());
-        for (String s : Emoji.APPLE_MODIFIED) {
-            System.out.print(s + " ");
-        }
-        System.out.println();
-        System.out.println(Emoji.APPLE_MODIFIED.size());
+//        for (String s : Emoji.APPLE_COMBOS) {
+//            System.out.print(s + " ");
+//        }
+//        System.out.println();
+//        System.out.println(Emoji.APPLE_COMBOS.size());
+//        for (String s : EmojiData.APPLE_MODIFIED) {
+//            System.out.print(s + " ");
+//        }
+//        System.out.println();
+//        System.out.println(EmojiData.APPLE_MODIFIED.size());
 
         //doAnimatedGif(false, 72);
 
