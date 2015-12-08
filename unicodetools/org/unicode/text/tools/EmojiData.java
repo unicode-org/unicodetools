@@ -7,8 +7,8 @@ import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -19,7 +19,6 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.tools.Emoji.ModifierStatus;
-import org.unicode.text.tools.GenerateEmoji.CharSource;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -36,7 +35,7 @@ public class EmojiData {
     public static class EmojiDatum {
         public final DefaultPresentation style;
         public final ModifierStatus modifierStatus;
-        public final Set<CharSource> sources;
+        public final Set<Emoji.CharSource> sources;
 
         /**
          * Sets must be immutable.
@@ -45,10 +44,10 @@ public class EmojiData {
          * @param annotations
          * @param sources
          */
-        private EmojiDatum(DefaultPresentation style, ModifierStatus modifierClass, Set<CharSource> sources) {
+        private EmojiDatum(DefaultPresentation style, ModifierStatus modifierClass, Set<Emoji.CharSource> sources) {
             this.style = style;
             this.modifierStatus = modifierClass;
-            this.sources = sources == null ? Collections.<CharSource>emptySet() : sources;
+            this.sources = sources == null ? Collections.<Emoji.CharSource>emptySet() : sources;
         }
 
         @Override
@@ -75,11 +74,13 @@ public class EmojiData {
     private final UnicodeSet flatChars = new UnicodeSet();
     private final Map<DefaultPresentation, UnicodeSet> defaultPresentationMap;
     private final Map<ModifierStatus, UnicodeSet> modifierClassMap;
-    private final Map<CharSource, UnicodeSet> charSourceMap;
+    private final Map<Emoji.CharSource, UnicodeSet> charSourceMap;
     private final UnicodeSet modifierBases;
     private final VersionInfo version;
     private final UnicodeSet modifierSequences;
-
+    private final UnicodeSet zwjSequencesNormal = new UnicodeSet();
+    private final UnicodeSet zwjSequencesAll = new UnicodeSet();
+    
     static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
     static final Splitter comma = Splitter.on(",").trimResults();
 
@@ -103,13 +104,13 @@ public class EmojiData {
     private EmojiData(VersionInfo version) {
         EnumMap<DefaultPresentation, UnicodeSet> _defaultPresentationMap = new EnumMap<>(DefaultPresentation.class);
         EnumMap<ModifierStatus, UnicodeSet> _modifierClassMap = new EnumMap<>(ModifierStatus.class);
-        EnumMap<CharSource, UnicodeSet> _charSourceMap = new EnumMap<>(CharSource.class);
+        EnumMap<Emoji.CharSource, UnicodeSet> _charSourceMap = new EnumMap<>(Emoji.CharSource.class);
 
         this.version = version;
         final String directory = Settings.DATA_DIR + "emoji/" + version.getVersionString(2, 4);
         if (version.compareTo(VersionInfo.getInstance(2)) >= 0) {
             UnicodeRelation<EmojiProp> emojiData = new UnicodeRelation<>();
-            UnicodeMap<Set<CharSource>> sourceData = new UnicodeMap<>();
+            UnicodeMap<Set<Emoji.CharSource>> sourceData = new UnicodeMap<>();
 
             for (String line : FileUtilities.in(directory, "emoji-data.txt")) {
                 //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
@@ -134,10 +135,17 @@ public class EmojiData {
                 }
             }
             for (String file : Arrays.asList("emoji-sequences.txt", "emoji-zwj-sequences.txt")) {
+                boolean zwj = file.contains("zwj");
                 for (String line : FileUtilities.in(directory, file)) {
                     if (line.startsWith("#") || line.isEmpty()) continue;
                     List<String> list = semi.splitToList(line);
                     String source = Utility.fromHex(list.get(0));
+                    if (zwj) {
+                        zwjSequencesAll.add(source);
+                        if (!source.contains("\u2764") || source.contains("\uFE0F")) {
+                            zwjSequencesNormal.add(source);
+                        }
+                    }
                     int first = source.codePointAt(0);
                     if (!Emoji.DEFECTIVE.contains(first)) { // HACK
                         continue;
@@ -148,11 +156,14 @@ public class EmojiData {
                     }
                 }
             }
+            zwjSequencesNormal.freeze();
+            zwjSequencesAll.freeze();
+            
             for (String line : FileUtilities.in(EmojiData.class, "emojiSources.txt")) {
                 if (line.startsWith("#") || line.isEmpty()) continue;
                 List<String> list = semi.splitToList(line);
                 String source = Utility.fromHex(list.get(0));
-                Set<CharSource> sourcesIn = getSet(list.get(1));
+                Set<Emoji.CharSource> sourcesIn = getSet(list.get(1));
                 sourceData.put(source, sourcesIn);
             }
             emojiData.freeze();
@@ -164,7 +175,7 @@ public class EmojiData {
                 ModifierStatus modClass = set.contains(EmojiProp.Emoji_Modifier) ? ModifierStatus.modifier
                         : set.contains(EmojiProp.Emoji_Modifier_Base) ? ModifierStatus.modifier_base 
                                 : ModifierStatus.none;
-                Set<CharSource> sources = sourceData.get(key);
+                Set<Emoji.CharSource> sources = sourceData.get(key);
                 data.put(key, new EmojiDatum(styleIn, modClass, sources));
                 putUnicodeSetValue(_defaultPresentationMap, key, styleIn);
                 putUnicodeSetValue(_modifierClassMap, key, modClass);
@@ -185,7 +196,7 @@ public class EmojiData {
                         ? ModifierStatus.none 
                                 : ModifierStatus.fromString(list.get(3));
                 // remap, since we merged 'secondary' into 'primary'
-                Set<CharSource> sourcesIn = getSet(_charSourceMap, codePoint, list.get(4));
+                Set<Emoji.CharSource> sourcesIn = getSet(_charSourceMap, codePoint, list.get(4));
                 data.put(codePoint, new EmojiDatum(styleIn, modClass, sourcesIn));
                 putUnicodeSetValue(_defaultPresentationMap, codePoint, styleIn);
                 putUnicodeSetValue(_modifierClassMap, codePoint, modClass);
@@ -258,14 +269,24 @@ public class EmojiData {
     public UnicodeSet getModifierBases() {
         return modifierBases;
     }
+    
     public UnicodeSet getModifierSequences() {
         return modifierSequences;
     }
+    
+    public UnicodeSet getZwjSequencesNormal() {
+        return zwjSequencesNormal;
+    }
+
+    public UnicodeSet getZwjSequencesAll() {
+        return zwjSequencesAll;
+    }
+
     public UnicodeSet getDefaultPresentationSet(DefaultPresentation defaultPresentation) {
         return CldrUtility.ifNull(defaultPresentationMap.get(defaultPresentation),UnicodeSet.EMPTY);
     }
 
-    public UnicodeSet getCharSourceSet(CharSource charSource) {
+    public UnicodeSet getCharSourceSet(Emoji.CharSource charSource) {
         return CldrUtility.ifNull(charSourceMap.get(charSource), UnicodeSet.EMPTY);
     }
 
@@ -277,12 +298,12 @@ public class EmojiData {
         return data.keySet();
     }
 
-    private static Set<CharSource> getSet(EnumMap<CharSource, UnicodeSet> _defaultPresentationMap, String source, String string) {
+    private static Set<Emoji.CharSource> getSet(EnumMap<Emoji.CharSource, UnicodeSet> _defaultPresentationMap, String source, String string) {
         if (string.isEmpty()) {
             return Collections.emptySet();
         }
-        EnumSet<CharSource> result = EnumSet.noneOf(CharSource.class);
-        for (CharSource cs : CharSource.values()) {
+        EnumSet<Emoji.CharSource> result = EnumSet.noneOf(Emoji.CharSource.class);
+        for (Emoji.CharSource cs : Emoji.CharSource.values()) {
             if (string.contains(cs.letter)) {
                 result.add(cs);
                 putUnicodeSetValue(_defaultPresentationMap, source, cs);
@@ -291,12 +312,12 @@ public class EmojiData {
         return Collections.unmodifiableSet(result);
     }
     
-    private static Set<CharSource> getSet(String list) {
+    private static Set<Emoji.CharSource> getSet(String list) {
         if (list.isEmpty()) {
             return Collections.emptySet();
         }
-        EnumSet<CharSource> result = EnumSet.noneOf(CharSource.class);
-        for (CharSource cs : CharSource.values()) {
+        EnumSet<Emoji.CharSource> result = EnumSet.noneOf(Emoji.CharSource.class);
+        for (Emoji.CharSource cs : Emoji.CharSource.values()) {
             if (list.contains(cs.letter)) {
                 result.add(cs);
             }
@@ -351,7 +372,7 @@ public class EmojiData {
         EmojiData emojiData = new EmojiData(VersionInfo.getInstance(1));
         show(0x26e9, names, emojiData);
         System.out.println("modifier" + ", " + emojiData.getModifierStatusSet(ModifierStatus.modifier).toPattern(false));
-        System.out.println(CharSource.WDings  + ", " + emojiData.getCharSourceSet(CharSource.WDings).toPattern(false));
+        System.out.println(Emoji.CharSource.WDings  + ", " + emojiData.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
         System.out.println(DefaultPresentation.emoji + ", " + emojiData.getDefaultPresentationSet(DefaultPresentation.emoji).toPattern(false));
         EmojiData emojiData2 = new EmojiData(VersionInfo.getInstance(2));
         show(0x1F3CB, names, emojiData);
