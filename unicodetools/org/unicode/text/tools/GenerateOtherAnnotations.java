@@ -157,7 +157,7 @@ as.tsv
     }
 
     private static void printText(AnnotationData data) throws IOException {
-        try (PrintWriter outText = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/", data.locale + ".tsv")) {
+        try (PrintWriter outText = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/tts/", data.locale + ".tsv")) {
 //#Code Image   TTS English TTS German  Annotations English Annotations German  Comments    INTERNAL
 //U+1F600   =vlookup(A2,Internal!A:B,2,0)   grinning face   Lachender Smiley    face; grin  Lachender Smiley; Gesicht; lustig; lol       
             int line = 1;
