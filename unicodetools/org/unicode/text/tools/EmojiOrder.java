@@ -15,6 +15,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.MapComparator;
 import org.unicode.text.UCA.UCA;
+import org.unicode.text.tools.Emoji.ModifierStatus;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
@@ -97,6 +98,11 @@ public class EmojiOrder {
                         for (String string2 : list) {
                             //System.err.println("Adding " + show(string2));
                             add(result, sorted, lastLabel, string2); 
+                        }
+                    }
+                    if (emojiData.getModifierBases().contains(string)) {
+                        for (String string2 : emojiData.getModifierStatusSet(ModifierStatus.modifier)) {
+                            add(result, sorted, lastLabel, string+string2); 
                         }
                     }
                 }

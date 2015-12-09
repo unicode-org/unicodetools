@@ -1329,9 +1329,6 @@ public class GenerateEmoji {
                 + "<th width='49%'>Default Unicode Collation Order</th>"
                 + "</tr>");
         UnicodeSet all = new UnicodeSet();
-        for (Entry<String, Set<String>> entry : keyValuesSet) {
-            all.addAll(entry.getValue());
-        }
         boolean first = true;
         final int charsPerRow = -1;
         int totalSorted = 0;
@@ -1340,6 +1337,8 @@ public class GenerateEmoji {
             out.println("<tr><th>" + TransliteratorUtilities.toHTML.transform(entry.getKey()) + "</th></tr>");
             out.println("<tr>");
             final UnicodeSet values = new UnicodeSet().addAll(entry.getValue());
+            values.removeAll(emojiData.getModifierSequences());
+            all.addAll(values);
             totalSorted += values.size();
             displayUnicodeSet(out, values, Style.bestImage, charsPerRow, 1, 1, null, EMOJI_COMPARATOR);
             // displayUnicodeSet(out, values, Style.refImage, charsPerRow, 1, 1, null, CODEPOINT_COMPARE);
