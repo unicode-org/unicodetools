@@ -165,7 +165,7 @@ as.tsv
                     + "\tImage"
                     + "\tTTS English"
                     + "\tTTS: " + data.locale.getDisplayName(ULocale.ENGLISH)
-                    + "\t=\"TTS? \" & countif(E2:E9999,\"ERR\")"
+                    + "\t=\"DUP \" & countif(E2:E9999,\"DUP\") & \" MISS \" & countif(E2:E9999,\"MISS\")"
                     + "\tAnnotations English"
                     + "\tAnnotations " + data.locale.getDisplayName(ULocale.ENGLISH)
                     + "\tComments"
@@ -189,7 +189,7 @@ as.tsv
                         + "\t=vlookup(A" + line + ",Internal!A:B,2,0)"
                         + "\t" + english.tts.get(s) 
                         + "\t" + ttsString 
-                        + "\t=if(countif(D:D,D" + line + ")=1,\"\",\"ERR\")"
+                        + "\t=if(D2=\"missing\",\"MISS\",if(countif(D:D,D2)=1,\"\",\"DUP\"))"
                         + "\t" + CollectionUtilities.join(english.map.get(s), "; ")
                         + "\t" + annotationString
                         + "\t" // comment
