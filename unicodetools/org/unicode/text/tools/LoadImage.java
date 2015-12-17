@@ -7,8 +7,10 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
+import java.awt.font.GlyphMetrics;
 import java.awt.font.GlyphVector;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -140,27 +142,26 @@ public class LoadImage extends Component {
 
     static String inputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji_images/";
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
-    
+
     public static void main(String[] args) throws IOException {
-        
-        UnicodeSet u9 = new UnicodeSet("[\\U0001F95A \\U0001F95B \\U0001F95C \\U0001F95D \\U0001F95E \\U0001F990 \\U0001F991"
-                + "\\U0001F57A \\U0001F5A4 \\U0001F6D1 \\U0001F6D2 \\U0001F6F4-\\U0001F6F6 \\U0001F919-\\U0001F91E \\U0001F920-\\U0001F927 \\U0001F930 \\U0001F933-\\U0001F940 \\U0001F942-\\U0001F949 \\U0001F950-\\U0001F959 \\U0001F960 \\U0001F961 \\U0001F985-\\U0001F98F]");
+
+        UnicodeSet u9 = new UnicodeSet("[\\U0001F93E\\U0001F57A\\U0001F5A4\\U0001F6D1\\U0001F6D2\\U0001F6F4-\\U0001F6F6\\U0001F919-\\U0001F91E\\U0001F920-\\U0001F927\\U0001F930\\U0001F933-\\U0001F93D\\U0001F940\\U0001F942-\\U0001F94B\\U0001F950-\\U0001F95E\\U0001F985-\\U0001F991]");
         generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 144, false); // "Symbola"
         if (true) return;
 
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
         //generatePngsFromFont(outputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"
         //generatePngsFromFont(outputDir, "apple", "apple", "Apple Color Emoji", Emoji.APPLE_MODIFIED, 72, false);
-//        for (String s : Emoji.APPLE_COMBOS) {
-//            System.out.print(s + " ");
-//        }
-//        System.out.println();
-//        System.out.println(Emoji.APPLE_COMBOS.size());
-//        for (String s : EmojiData.APPLE_MODIFIED) {
-//            System.out.print(s + " ");
-//        }
-//        System.out.println();
-//        System.out.println(EmojiData.APPLE_MODIFIED.size());
+        //        for (String s : Emoji.APPLE_COMBOS) {
+        //            System.out.print(s + " ");
+        //        }
+        //        System.out.println();
+        //        System.out.println(Emoji.APPLE_COMBOS.size());
+        //        for (String s : EmojiData.APPLE_MODIFIED) {
+        //            System.out.print(s + " ");
+        //        }
+        //        System.out.println();
+        //        System.out.println(EmojiData.APPLE_MODIFIED.size());
 
         //doAnimatedGif(false, 72);
 
@@ -182,7 +183,7 @@ public class LoadImage extends Component {
         UnicodeSet dingbats = canDisplay("Zapf Dingbats");
         System.out.println(dingbats);
 
-//        UnicodeSet missing = new UnicodeSet("[🌭🌮🌯🍾🍿🏏🏐🏑🏒🏓🏸🏹🏺🏻🏼🏽🏾🏿📿🕋🕌🕍🕎🙃🙄🛐🤀🤐🤑🤒🤓🤔🤕🤖🤗🤘🦀🦁🦂🦃🦄🧀]");
+        //        UnicodeSet missing = new UnicodeSet("[🌭🌮🌯🍾🍿🏏🏐🏑🏒🏓🏸🏹🏺🏻🏼🏽🏾🏿📿🕋🕌🕍🕎🙃🙄🛐🤀🤐🤑🤒🤓🤔🤕🤖🤗🤘🦀🦁🦂🦃🦄🧀]");
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
         generatePngsFromFont(outputDir, "ref", "ref", "Symbola", Emoji.U80, 144, false); // "Symbola"
         // doAnimatedGif();
@@ -288,35 +289,35 @@ public class LoadImage extends Component {
         return sample;
     }
 
-//    private static void getAppleNumbers() throws IOException {
-//        Set<String> codepointOrder = new TreeSet(new UTF16.StringComparator());
-//        UnicodeSet found = new UnicodeSet("[©®🌠🔈🚃🚋🔊🔉{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]")
-//        .addAll(Emoji.GITHUB_APPLE_CHARS);
-//        for (String s : found) {
-//            codepointOrder.add(s);
-//        }
-//        Set<Integer> skipSet = new HashSet();
-//        skipSet.add(129);
-//
-//        int i = 1;
-//        String newDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/AppleEmoji/";
-//        final int maxNew = 846;
-//        String oldDir = Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/images/apple/";
-//        PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images", "checkApple.html");
-//        out.println("<html><body><table>");
-//        for (String s : codepointOrder) {
-//            while (skipSet.contains(i)) {
-//                ++i;
-//            }
-//            writeAppleLine(out, newDir, i, oldDir, s);
-//            ++i;
-//        }
-//        for (;i <= maxNew; ++i) {
-//            writeAppleLine(out, newDir, i, oldDir, "");
-//        }
-//        out.println("</table></body></html>");
-//        out.close();
-//    }
+    //    private static void getAppleNumbers() throws IOException {
+    //        Set<String> codepointOrder = new TreeSet(new UTF16.StringComparator());
+    //        UnicodeSet found = new UnicodeSet("[©®🌠🔈🚃🚋🔊🔉{#⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]")
+    //        .addAll(Emoji.GITHUB_APPLE_CHARS);
+    //        for (String s : found) {
+    //            codepointOrder.add(s);
+    //        }
+    //        Set<Integer> skipSet = new HashSet();
+    //        skipSet.add(129);
+    //
+    //        int i = 1;
+    //        String newDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/AppleEmoji/";
+    //        final int maxNew = 846;
+    //        String oldDir = Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/images/apple/";
+    //        PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images", "checkApple.html");
+    //        out.println("<html><body><table>");
+    //        for (String s : codepointOrder) {
+    //            while (skipSet.contains(i)) {
+    //                ++i;
+    //            }
+    //            writeAppleLine(out, newDir, i, oldDir, s);
+    //            ++i;
+    //        }
+    //        for (;i <= maxNew; ++i) {
+    //            writeAppleLine(out, newDir, i, oldDir, "");
+    //        }
+    //        out.println("</table></body></html>");
+    //        out.close();
+    //    }
 
     static FileSystem dfs = FileSystems.getDefault();
 
@@ -386,16 +387,16 @@ public class LoadImage extends Component {
         System.out.println("Image created");
     }
 
-//    public static void doGitHub(String inputDir, String outputDir)
-//            throws IOException {
-//        for (String s : Emoji.GITHUB_APPLE_CHARS) {
-//            String url = LoadImage.APPLE_URL.transform(s);
-//            String core = Emoji.buildFileName(s, "_");
-//            System.out.println(core);
-//            BufferedImage sourceImage = ImageIO.read(new URL(url));
-//            BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/apple", "apple_" + core, 72);
-//        }
-//    }
+    //    public static void doGitHub(String inputDir, String outputDir)
+    //            throws IOException {
+    //        for (String s : Emoji.GITHUB_APPLE_CHARS) {
+    //            String url = LoadImage.APPLE_URL.transform(s);
+    //            String core = Emoji.buildFileName(s, "_");
+    //            System.out.println(core);
+    //            BufferedImage sourceImage = ImageIO.read(new URL(url));
+    //            BufferedImage targetImage = writeResizedImage(sourceImage, outputDir + "/apple", "apple_" + core, 72);
+    //        }
+    //    }
 
     final static UnicodeSet NON_SYMBOLA = new UnicodeSet("[🅰🆎🅱🆑🆒🆓🆔🆕🆖🅾🆗🅿🆘🆙🆚🆏🈁🈂🈹🉑🈴🈺🉐🈯🈷🈶🈵🈚🈸🈲🈳]");
 
@@ -439,7 +440,7 @@ public class LoadImage extends Component {
         graphics.drawString(text, xStart, yStart);
         return sourceImage;
     }
-    
+
     public static List<BufferedImage> generatePngsFromFont(String outputDir, String dir, 
             String prefix, String font, UnicodeSet unicodeSet, int height, boolean useFonts)
                     throws IOException { // 🌰-🌵
@@ -463,6 +464,7 @@ public class LoadImage extends Component {
         FontMetrics metrics = font == null ? graphics.getFontMetrics() : setFont(font, height, graphics);
         //UnicodeSet firstChars = new UnicodeSet();
         String fileDirectory = outputDir + "/" + prefix;
+        System.out.println("Writing in: " + fileDirectory);
         for (String s : sorted) { //
             if (useFonts) {
                 UnicodeFontData font1 = UnicodeFontData.getFont(s);
@@ -475,7 +477,7 @@ public class LoadImage extends Component {
                 metrics = setFont(font, height, graphics);
             }
             if (graphics.getFont().canDisplayUpTo(s) != -1) {
-                System.out.println("No font for U+" + Utility.hex(s) + ", " + s);
+                System.out.println("No glyph for U+" + Utility.hex(s) + ", " + s + " in " + graphics.getFont().getName());
                 continue;
             }
             String core = Emoji.buildFileName(s, "_");
@@ -484,11 +486,27 @@ public class LoadImage extends Component {
             graphics.clearRect(0, 0, width, height);
             Rectangle2D bounds = metrics.getStringBounds(s, graphics);
             boolean reset = false;
-            if (bounds.getWidth() > width) {
+            if (bounds.getWidth() > width || metrics.getAscent() + metrics.getDescent() > height) {
                 int height3 = (int)(height*width/bounds.getWidth()+0.5);
+                int height4 = height*height/(metrics.getAscent() + metrics.getDescent());
+                height3 = Math.min(height3, height4);
                 metrics = setFont(font, height3, graphics);
                 bounds = metrics.getStringBounds(s, graphics);
                 reset = true;
+            }
+            FontRenderContext frc = graphics.getFontRenderContext();
+            GlyphVector gv = graphics.getFont().createGlyphVector(frc, s);
+            Rectangle pixelBounds = gv.getPixelBounds(frc, 0, 0);
+            {
+                final int width2 = (int) bounds.getWidth();
+                System.out.println("ascent: " + metrics.getAscent() 
+                        + "; descent: " + metrics.getDescent() 
+                        + "; width: " + width2
+                        + "; lsb: " + pixelBounds.x
+                        + "; rsb: " + (width2 - pixelBounds.width - pixelBounds.x)
+                        + "; pixel ascent: " + -pixelBounds.y
+                        + "; pixel descent: " + (pixelBounds.height + pixelBounds.y)
+                        );
             }
             int xStart = (int)(width - bounds.getWidth()+0.5)/2;
             int yStart = (int)(height - bounds.getHeight() + 0.5)/2 + metrics.getAscent();

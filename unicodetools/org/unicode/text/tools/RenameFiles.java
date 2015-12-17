@@ -12,14 +12,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 
 public class RenameFiles {
+    private static final String PLATFORM = "twitter";
+    private static final String GENERATED_DIR = "DATA/emoji/twitter";
+    private static final String FILE_MATCH = "(.*)\\.png";
     private static final boolean PREVIEW = false;
 
     public static void main(String[] args) throws IOException {
-        Matcher m = Pattern.compile("google_(.*)\\.png").matcher(""); 
+        Matcher m = Pattern.compile(FILE_MATCH).matcher(""); 
         //File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/country-flags");
-        File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/google");
+        File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + GENERATED_DIR);
 
         FileSystem dfs = FileSystems.getDefault();
         int count = 0;
@@ -30,8 +34,12 @@ public class RenameFiles {
             if (!m.reset(name).matches()) {
                 throw new IllegalArgumentException(name);
             }
+            final String oldName = m.group(1).replace('-',' ');
+            String oldHex = Utility.fromHex(oldName, false, 2);
+            String newHex = Utility.hex(oldHex, "_").toLowerCase(Locale.ENGLISH);
+            
             //Emoji.buildFileName(Emoji.getHexFromFlagCode(m.group(1)), "_")
-            String newName = "android_" + m.group(1).toLowerCase(Locale.ENGLISH) + ".png";
+            String newName = PLATFORM + "_" + newHex + ".png";
             System.out.println((count++) + "\t" + f + "\t=> " + newName);
             if (PREVIEW) {
                 continue;

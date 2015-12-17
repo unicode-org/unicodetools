@@ -13,7 +13,7 @@ import com.ibm.icu.text.UTF16;
 public class MakeEmojiTable {
     public static void main(String[] args) throws IOException {
         PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-glyphs.html");
-        GenerateEmoji.writeHeader(out, "recommended glyphs", null, "", "border='1'");
+        GenerateEmoji.writeHeader(out, "recommended glyphs", null, "", "border='1'", true);
         boolean first = true;
         boolean firstText = true;
         out.println("<tr><th>Code</th><th>Ref</th><th>Apple</th><th>Andr.</th><th>Name</th><th>Remarks</th></tr>");
@@ -49,7 +49,7 @@ public class MakeEmojiTable {
                 out.println(line + "</div>");
             }
         }
-        GenerateEmoji.writeFooter(out);
+        GenerateEmoji.writeFooter(out, "");
         out.close();
         System.out.println("DONE");
     }

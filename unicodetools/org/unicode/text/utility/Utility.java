@@ -416,6 +416,10 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static String fromHex(String p, boolean acceptChars) {
+        return fromHex(p,acceptChars,4);
+    }
+    
+    public static String fromHex(String p, boolean acceptChars, int minHex) {
         final StringBuffer output = new StringBuffer();
         int value = 0;
         int count = 0;
@@ -438,7 +442,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                     final int type = Character.getType(ch);
                     if (type != Character.SPACE_SEPARATOR) {
                         if (acceptChars) {
-                            if (count >= 4 && count <= 6) {
+                            if (count >= minHex && count <= 6) {
                                 UTF32.append32(output, value);
                             } else if (count != 0) {
                                 output.append(p.substring(i-count, i)); // TODO fix supplementary characters
@@ -456,7 +460,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
                 case ' ': case ',': case ';': // do SPACE here, just for speed
                     if (count != 0) {
-                        if (count < 4 || count > 6) {
+                        if (count < minHex || count > 6) {
                             if (acceptChars) {
                                 output.append(p.substring(i-count, i));
                             } else {
@@ -480,7 +484,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 count++;
             }
         if (count != 0) {
-            if (count < 4 || count > 6) {
+            if (count < minHex || count > 6) {
                 if (acceptChars) {
                     output.append(p.substring(p.length()-count, p.length()));
                 } else {
