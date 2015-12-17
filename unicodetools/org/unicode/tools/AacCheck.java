@@ -1,7 +1,11 @@
 package org.unicode.tools;
 
+import org.unicode.text.tools.Emoji;
+import org.unicode.text.tools.GenerateEmoji;
+
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.impl.Utility;
 
@@ -22,19 +26,36 @@ public class AacCheck {
      */
     public static void main(String[] args) {
         Output<String> message = new Output<>();
-        int value = process(message, args);
-        System.out.println(message);
-        System.exit(value);
+        if (args.length == 0) {
+            GenerateEmoji.getName("👨", false);
+            for (EntryRange range : ALLOWED.ranges()) {
+                if (range.codepoint == range.codepointEnd) {
+                    System.out.println(Utility.hex(range.codepoint) 
+                            + " ; " + UCharacter.getName(range.codepoint));
+                } else {
+                    System.out.println(Utility.hex(range.codepoint) + ".." + Utility.hex(range.codepointEnd) 
+                            + " ; " + UCharacter.getName(range.codepoint) + ".." + UCharacter.getName(range.codepointEnd));
+                }
+            }
+            for (String cps: ALLOWED.strings()) {
+                System.out.println(Utility.hex(cps) 
+                        + " ; " + GenerateEmoji.getName(cps, false));
+            }
+        } else {
+            int value = process(message, args);
+            System.out.println(message);
+            System.exit(value);
+        }
     }
 
     public static int process(Output<String> messageOut, String... input) {
         StringBuilder filtered = new StringBuilder();
         StringBuilder unfiltered = new StringBuilder();
         int filteredCount = 0;
-        
+
         // process the input to filter out certain code points.
         // we capture both the filtered and unfiltered strings
-        
+
         for (String inputItem : input) {
             String[] args = inputItem.split("\\s+"); // split at spaces
             for (String arg : args) {
@@ -66,7 +87,7 @@ public class AacCheck {
                 break;
             }
         }
-        
+
         // Now we do the real checks
         String filteredString = filtered.toString();
         final String reformattedHex = Utility.hex(filteredString, 4, " ");
@@ -85,13 +106,13 @@ public class AacCheck {
             messageOut.value = ";Not registerable codepoint: <" + reformattedHex + ">";
             return NOT_REGISTRATABLE;
         }
-        
+
         // success!
         String name = UCharacter.getName(filteredString, " + ");
         messageOut.value = reformattedHex + ";" + name;
         return OK;
     }
-    
+
     private static final UnicodeSet EMOJI_VARIATION_SELECTORS = new UnicodeSet("[\uFE0F\uFE0E]")
     .freeze();
 
@@ -99,7 +120,7 @@ public class AacCheck {
     .remove(ZWJ)
     .removeAll(EMOJI_VARIATION_SELECTORS)
     .freeze();
-    
+
     static final UnicodeSet ALLOWED = new UnicodeSet(
             "["
             // singletons, all but C, Z, DI, and initial exclusions
@@ -140,5 +161,5 @@ public class AacCheck {
             + "[{👁‍🗨}{👨‍❤️‍👨}{👨‍❤️‍💋‍👨}{👨‍👨‍👦}{👨‍👨‍👦‍👦}{👨‍👨‍👧}{👨‍👨‍👧‍👦}{👨‍👨‍👧‍👧}{👨‍👩‍👦}{👨‍👩‍👦‍👦}{👨‍👩‍👧}{👨‍👩‍👧‍👦}{👨‍👩‍👧‍👧}{👩‍❤️‍👨}{👩‍❤️‍👩}{👩‍❤️‍💋‍👨}{👩‍❤️‍💋‍👩}{👩‍👩‍👦}{👩‍👩‍👦‍👦}{👩‍👩‍👧}{👩‍👩‍👧‍👦}{👩‍👩‍👧‍👧}]"
             + "]"
             // TODO, add NamedSequences-8.0.0.txt, or at least Tamil
-            );
+            ).freeze();
 }

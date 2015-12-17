@@ -106,7 +106,7 @@ public class GenerateEmojiFrequency {
 
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency-all.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Frequency", null, 
-                    FIRST_LINE, "border='1'");
+                    FIRST_LINE, "border='1'", true);
 
             String title = "%\tCP\tMain Category\tAnnotations";
             System.out.println(title);
@@ -145,11 +145,11 @@ public class GenerateEmojiFrequency {
                 }
                 list.add(code, percent);
             }
-            GenerateEmoji.writeFooter(out);
+            GenerateEmoji.writeFooter(out, "");
         }
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Frequency", null, 
-                    FIRST_LINE, "border='1'");
+                    FIRST_LINE, "border='1'", true);
 
             System.out.println(Buckets.BUCKET_TITLE);
             toRow(out, Buckets.BUCKET_TITLE, 4, " width='13%'");
@@ -169,13 +169,13 @@ public class GenerateEmojiFrequency {
                 list.toHtml(out, main);
                 out.append("</tr>\n");
             }
-            GenerateEmoji.writeFooter(out);
+            GenerateEmoji.writeFooter(out, "");
 
         }
     }
 
     private static void showItems(PrintWriter out, Collection<String> items) {
-        GenerateEmoji.displayUnicodeSet(out, items, Style.bestImage, 9999, 1, 1, "../../emoji/charts/full-emoji-list.html", " s18");
+        GenerateEmoji.displayUnicodeSet(out, items, Style.bestImage, 9999, 1, 1, "../../emoji/charts/full-emoji-list.html", " s18", true);
     }
 
     final static Splitter ONTAB = Splitter.on('\t').trimResults();
