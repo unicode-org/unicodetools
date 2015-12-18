@@ -10,8 +10,8 @@ public class Settings {
     /**
      * Used for the default version.
      */
-    public static final String latestVersion = "8.0.0";
-    public static final String lastVersion = "7.0.0"; // last released version
+    public static final String latestVersion = "9.0.0";
+    public static final String lastVersion = "8.0.0"; // last released version
 
     public static final boolean SKIP_COPYRIGHT = "skip".equalsIgnoreCase(CldrUtility.getProperty("copyright", "skip"));
 
@@ -34,5 +34,4 @@ public class Settings {
     public static final String SRC_DIR = Utility.fixFileName("org/unicode/text") + "/";
     public static final String SRC_UCA_DIR = SRC_DIR + "UCA/";
     public static final String SRC_UCD_DIR = SRC_DIR + "UCD/";
-
 }

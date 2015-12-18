@@ -387,6 +387,13 @@ public final class UCD_Names implements UCD_Types {
         "Multani",
         "Old_Hungarian",
         "SignWriting",  // Sutton SignWriting, in CamelCase without underscore
+        // Unicode 9
+        "Adlam",
+        "Bhaiksuki",
+        "Marchen",
+        "Newa",
+        "Osage",
+        "Tangut",
     };
 
     public static final Relation<String,String> EXTRA_SCRIPT = new Relation(new TreeMap(), LinkedHashSet.class);
@@ -530,6 +537,13 @@ public final class UCD_Names implements UCD_Types {
         "Mult",
         "Hung",
         "Sgnw",
+        // Unicode 9
+        "Adlm",
+        "Bhks",
+        "Marc",
+        "Newa",
+        "Osge",
+        "Tang",
     };
 
     static final String[] SHORT_AGE = {
@@ -551,6 +565,7 @@ public final class UCD_Names implements UCD_Types {
         "6.3",
         "7.0",
         "8.0",
+        "9.0",
     };
 
     static final String[] LONG_AGE = {
@@ -572,6 +587,7 @@ public final class UCD_Names implements UCD_Types {
         "V6_3",
         "V7_0",
         "V8_0",
+        "V9_0",
     };
 
     static final String[] GENERAL_CATEGORY = {
