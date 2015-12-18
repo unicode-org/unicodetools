@@ -426,6 +426,10 @@ public final class ConvertUCD implements UCD_Types {
         }
         boolean showedSemi = false;
         boolean showedShort = false;
+        int minNumFields = labels.length;
+        while (minNumFields > 0 && labels[minNumFields - 1].equals("OMIT")) {
+            --minNumFields;
+        }
         String line = "";
 
         try {
@@ -454,22 +458,13 @@ public final class ConvertUCD implements UCD_Types {
 
                     int count = Utility.split(line,';',parts);
 
-                    if (false && parts[0].equals("2801")) {
-                        System.out.println("debug?");
-                    }
-
                     // fix malformed or simple lists.
 
-                    if (count != labels.length) {
-                        if (count == labels.length + 1 && parts[count-1].equals("")) {
-                            if (!showedSemi) {
-                                System.out.println("Extra semicolon in: " + original);
-                            }
-                            showedSemi = true;
-                        } else if (count == 1) { // fix simple list
+                    if (count < labels.length) {
+                        if (count == 1) { // fix simple list
                             ++count;
                             parts[1] = "Y";
-                        } else if (count < labels.length) {
+                        } else if (count >= minNumFields) {
                             if (!showedShort) {
                                 System.out.println("Line shorter than labels: " + original);
                             }
@@ -478,7 +473,19 @@ public final class ConvertUCD implements UCD_Types {
                                 parts[i] = "";
                             }
                         } else {
-                            throw new ChainException("wrong count: {0}",
+                            System.out.println("Too few fields: " + original);
+                            throw new ChainException("too few fields: {0}",
+                                    new Object[] {new Integer(line), new Integer(count)});
+                        }
+                    } else if (count > labels.length) {
+                        if (count == labels.length + 1 && parts[count-1].equals("")) {
+                            if (!showedSemi) {
+                                System.out.println("Extra semicolon in: " + original);
+                            }
+                            showedSemi = true;
+                        } else {
+                            System.out.println("Too many fields: " + original);
+                            throw new ChainException("too many fields: {0}",
                                     new Object[] {new Integer(line), new Integer(count)});
                         }
                     }

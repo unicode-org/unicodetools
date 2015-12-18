@@ -37,11 +37,10 @@ public class UnicodeDataFile {
         if (!isHTML) {
             out.println("# " + filename + UnicodeDataFile.getFileSuffix(false));
             out.println(generateDateLine());
+            out.println("# © " + Default.getYear() + " Unicode®, Inc.");
+            out.println("# For terms of use, see http://www.unicode.org/terms_of_use.html");
             out.println("#");
             out.println("# Unicode Character Database");
-            out.println("# © 1991-1991-" + Default.getYear() + " Unicode®, Inc.");
-            out.println(
-                    "# For terms of use, see http://www.unicode.org/terms_of_use.html");
             out.println("# For documentation, see http://www.unicode.org/reports/tr44/");
         }
         try {
@@ -70,7 +69,7 @@ public class UnicodeDataFile {
     }
 
     public static String generateDateLine() {
-        return "# Date: " + Default.getDate() + " [MD]";
+        return "# Date: " + Default.getDate();
     }
 
     public static String getHTMLFileSuffix(boolean withDVersion) {

@@ -469,8 +469,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 if (!ucd.isRepresented(cp)) {
                     return null;
                 }
-                if (cp == 0xAB70 || cp == 0x13A0) {
-                    int debug = 0;
+                boolean debug = false;
+                if (cp == -1) {  // change to a real code point for debugging
+                    debug = true;
                 }
                 // lazy eval
                 if (ignorable == null) {
@@ -484,11 +485,21 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 if (equals(cp,b)) {
                     return null;
                 }
+                if (debug) {
+                    System.out.println("NFKC_CF:"
+                            + "\n\tsource:\tU+" + Utility.hex(cp) + "\t" + Default.ucd().getName(cp)
+                            + "\n\tcase1:\tU+" + Utility.hex(case1) + "\t" + Default.ucd().getName(case1));
+                }
                 final String c = trans(b);
                 if (c.equals(b)) {
                     return c;
                 }
-                //System.out.println("NFKC_CF requires multiple passes:\tU+" + Utility.hex(cp) + "\t" + Default.ucd().getName(cp));
+                if (debug) {
+                    System.out.println("NFKC_CF:"
+                            + "\n\tsource:\tU+" + Utility.hex(cp) + "\t" + Default.ucd().getName(cp)
+                            + "\n\tcase1:\tU+" + Utility.hex(case1) + "\t" + Default.ucd().getName(case1)
+                            + "\n\ttrans1:\tU+" + Utility.hex(c) + "\t" + Default.ucd().getName(c));
+                }
                 final String d = trans(c);
                 if (d.equals(c)) {
                     return d;
@@ -1682,10 +1693,17 @@ isTitlecase(X) is false.
         }
     }
 
-    public String removeFrom(String b, UnicodeSet ignorable2) {
+    /**
+     * Removes set elements from the string.
+     * Consider using UnicodeSetSpanner(set).deleteFrom(b).
+     */
+    public String removeFrom(String b, UnicodeSet set) {
+        if (set.containsNone(b)) {
+            return b;
+        }
         final StringBuilder result = new StringBuilder();
         for (int i = 0; i < b.length();) {
-            final int end = ignorable2.matchesAt(b,i);
+            final int end = set.matchesAt(b,i);
             if (end > i) {
                 i = end;
             } else {
