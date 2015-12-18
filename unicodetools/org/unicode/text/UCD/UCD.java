@@ -1319,21 +1319,19 @@ public final class UCD implements UCD_Types {
 
     public static int mapToRepresentative(int ch, int rCompositeVersion) {
         if (ch <= 0xFFFD) {
-            //if (ch <= 0x2800) return ch;
-            //if (ch <= 0x28FF) return 0x2800;    // braille
-            if (ch <= CJK_A_BASE)
+            if (ch < CJK_A_BASE)
             {
-                return ch;         // CJK Ideograph Extension A
+                return ch;
             }
-            if (ch <  CJK_A_LIMIT) {
-                return CJK_A_BASE;
+            if (ch < CJK_A_LIMIT) {
+                return CJK_A_BASE;         // CJK Ideograph Extension A
             }
-            if (ch <= CJK_BASE)
+            if (ch < CJK_BASE)
             {
-                return ch;         // CJK Ideograph
+                return ch;
             }
             if (ch <= 0x9FA5) {
-                return CJK_BASE;
+                return CJK_BASE;         // CJK Ideograph
             }
             if (ch <= 0x9FBB && rCompositeVersion >= 0x40100) {
                 return CJK_BASE;
@@ -1350,12 +1348,11 @@ public final class UCD implements UCD_Types {
             if (ch <= 0x9FD5 && rCompositeVersion >= 0x80000) {
                 return CJK_BASE;
             }
-            if (ch <= 0xAC00)
-            {
-                return ch;         // Hangul Syllable
+            if (ch < 0xAC00) {
+                return ch;
             }
             if (ch <= 0xD7A3) {
-                return 0xAC00;
+                return 0xAC00;         // Hangul Syllable
             }
             if (ch <= 0xD800)
             {
@@ -1388,7 +1385,7 @@ public final class UCD implements UCD_Types {
             if (rCompositeVersion < 0x20105) {
                 if (ch <= 0xF900)
                 {
-                    return ch;         // CJK Compatibility Ideograp
+                    return ch;         // CJK Compatibility Ideograph
                 }
                 if (ch <= 0xFA2D) {
                     return 0xF900;
@@ -1396,15 +1393,24 @@ public final class UCD implements UCD_Types {
             }
             if (ch <  0xFDD0)
             {
-                return ch;         // Noncharacter
+                return ch;
             }
-            if (ch <= 0xFDEF) {
-                return 0xFFFF;
+            if (ch <= 0xFDEF && rCompositeVersion >= 0x30100) {
+                return 0xFFFF;         // Noncharacter
             }
         } else {
             if ((ch & 0xFFFE) == 0xFFFE)
             {
                 return 0xFFFF;         // Noncharacter
+            }
+
+            if (rCompositeVersion >= 0x90000) {
+                if (ch <= TANGUT_BASE) {
+                    return ch;
+                }
+                if (ch < TANGUT_LIMIT) {
+                    return TANGUT_BASE;  // 17000..187EC Tangut Ideograph
+                }
             }
 
             // 20000..2A6DF; CJK Unified Ideographs Extension B
@@ -1446,20 +1452,13 @@ public final class UCD implements UCD_Types {
                 }
             }
 
-            //if (ch <= 0x2F800) return ch;
-            //if (ch <= 0x2FA1D) return 0x2F800;      // compat ideographs
             if (ch < 0xF0000)
             {
-                return ch;       // Plane 15 Private Use
+                return ch;
             }
             if (rCompositeVersion >= 0x20000) {
-                return 0xE000;
+                return 0xE000;       // Plane 15/16 Private Use
             }
-            /*
-            if (ch <= 0xFFFFD) return 0xF0000;       // Plane 16 Private Use
-            if (ch <= 0x100000) return ch;       // Plane 15 Private Use
-            if (ch <= 0x10FFFD) return 0x100000;       // Plane 16 Private Use
-             */
         }
         return ch;
     }
@@ -1603,6 +1602,7 @@ to guarantee identifier closure.
         case 0x2F800: // compat ideos
         case 0x3400: // CJK Ideograph Extension A
         case 0x4E00: // CJK Ideograph
+        case TANGUT_BASE:
         case 0x20000: // Extension B
         case 0x2A700: // Extension C
         case 0x2B740: // Extension D
@@ -1699,6 +1699,12 @@ to guarantee identifier closure.
         case 0x2B820: // Extension E
             if (fixStrings) {
                 constructedName = "CJK UNIFIED IDEOGRAPH-" + Utility.hex(codePoint, 4);
+            }
+            isRemapped = true;
+            break;
+        case TANGUT_BASE:
+            if (fixStrings) {
+                constructedName = "TANGUT IDEOGRAPH-" + Utility.hex(codePoint, 4);
             }
             isRemapped = true;
             break;

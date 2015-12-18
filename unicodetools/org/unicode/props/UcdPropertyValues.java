@@ -1,5 +1,7 @@
 package org.unicode.props;
+
 import org.unicode.props.PropertyNames.Named;
+
 public class UcdPropertyValues {
 
     public enum Binary implements Named {
@@ -7,7 +9,7 @@ public class UcdPropertyValues {
         Yes("Y", "T", "True");
         private final PropertyNames<Binary> names;
         private Binary (String shortName, String...otherNames) {
-            names = new PropertyNames(Binary.class, this, shortName, otherNames);
+            names = new PropertyNames<Binary>(Binary.class, this, shortName, otherNames);
         }
         public PropertyNames<Binary> getNames() {
             return names;
@@ -35,10 +37,11 @@ public class UcdPropertyValues {
         V6_3("6.3"),
         V7_0("7.0"),
         V8_0("8.0"),
+        V9_0("9.0"),
         Unassigned("NA");
         private final PropertyNames<Age_Values> names;
         private Age_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Age_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Age_Values>(Age_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Age_Values> getNames() {
             return names;
@@ -74,7 +77,8 @@ public class UcdPropertyValues {
         White_Space("WS");
         private final PropertyNames<Bidi_Class_Values> names;
         private Bidi_Class_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Bidi_Class_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Bidi_Class_Values>(
+                    Bidi_Class_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Bidi_Class_Values> getNames() {
             return names;
@@ -92,7 +96,8 @@ public class UcdPropertyValues {
         Open("o");
         private final PropertyNames<Bidi_Paired_Bracket_Type_Values> names;
         private Bidi_Paired_Bracket_Type_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Bidi_Paired_Bracket_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Bidi_Paired_Bracket_Type_Values>(
+                    Bidi_Paired_Bracket_Type_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Bidi_Paired_Bracket_Type_Values> getNames() {
             return names;
@@ -102,7 +107,7 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Block_Values implements Named {
+    public enum Block_Values implements Named {
         Aegean_Numbers("Aegean_Numbers"),
         Ahom("Ahom"),
         Alchemical_Symbols("Alchemical"),
@@ -127,6 +132,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bassa_Vah"),
         Batak("Batak"),
         Bengali("Bengali"),
+        Bhaiksuki("Bhaiksuki"),
         Block_Elements("Block_Elements"),
         Bopomofo("Bopomofo"),
         Bopomofo_Extended("Bopomofo_Ext"),
@@ -167,13 +173,15 @@ public class UcdPropertyValues {
         Cyrillic("Cyrillic"),
         Cyrillic_Extended_A("Cyrillic_Ext_A"),
         Cyrillic_Extended_B("Cyrillic_Ext_B"),
+        Cyrillic_Extended_C("Cyrillic_Ext_C"),
         Cyrillic_Supplement("Cyrillic_Sup", "Cyrillic_Supplementary"),
         Deseret("Deseret"),
         Devanagari("Devanagari"),
         Devanagari_Extended("Devanagari_Ext"),
         Combining_Diacritical_Marks("Diacriticals"),
         Combining_Diacritical_Marks_Extended("Diacriticals_Ext"),
-        Combining_Diacritical_Marks_For_Symbols("Diacriticals_For_Symbols", "Combining_Marks_For_Symbols"),
+        Combining_Diacritical_Marks_For_Symbols(
+                "Diacriticals_For_Symbols", "Combining_Marks_For_Symbols"),
         Combining_Diacritical_Marks_Supplement("Diacriticals_Sup"),
         Dingbats("Dingbats"),
         Domino_Tiles("Domino"),
@@ -195,6 +203,7 @@ public class UcdPropertyValues {
         Georgian("Georgian"),
         Georgian_Supplement("Georgian_Sup"),
         Glagolitic("Glagolitic"),
+        Glagolitic_Supplement("Glagolitic_Sup"),
         Gothic("Gothic"),
         Grantha("Grantha"),
         Greek_And_Coptic("Greek"),
@@ -211,6 +220,7 @@ public class UcdPropertyValues {
         High_Surrogates("High_Surrogates"),
         Hiragana("Hiragana"),
         Ideographic_Description_Characters("IDC"),
+        Ideographic_Symbols_And_Punctuation("Ideographic_Symbols"),
         Imperial_Aramaic("Imperial_Aramaic"),
         Common_Indic_Number_Forms("Indic_Number_Forms"),
         Inscriptional_Pahlavi("Inscriptional_Pahlavi"),
@@ -256,6 +266,7 @@ public class UcdPropertyValues {
         Malayalam("Malayalam"),
         Mandaic("Mandaic"),
         Manichaean("Manichaean"),
+        Marchen("Marchen"),
         Mathematical_Alphanumeric_Symbols("Math_Alphanum"),
         Mathematical_Operators("Math_Operators"),
         Meetei_Mayek("Meetei_Mayek"),
@@ -274,6 +285,7 @@ public class UcdPropertyValues {
         Spacing_Modifier_Letters("Modifier_Letters"),
         Modifier_Tone_Letters("Modifier_Tone_Letters"),
         Mongolian("Mongolian"),
+        Mongolian_Supplement("Mongolian_Sup"),
         Mro("Mro"),
         Multani("Multani"),
         Musical_Symbols("Music"),
@@ -297,6 +309,7 @@ public class UcdPropertyValues {
         Old_Turkic("Old_Turkic"),
         Oriya("Oriya"),
         Ornamental_Dingbats("Ornamental_Dingbats"),
+        Osage("Osage"),
         Osmanya("Osmanya"),
         Pahawh_Hmong("Pahawh_Hmong"),
         Palmyrene("Palmyrene"),
@@ -347,6 +360,8 @@ public class UcdPropertyValues {
         Tai_Xuan_Jing_Symbols("Tai_Xuan_Jing"),
         Takri("Takri"),
         Tamil("Tamil"),
+        Tangut("Tangut"),
+        Tangut_Components("Tangut_Components"),
         Telugu("Telugu"),
         Thaana("Thaana"),
         Thai("Thai"),
@@ -368,7 +383,7 @@ public class UcdPropertyValues {
         Yijing_Hexagram_Symbols("Yijing");
         private final PropertyNames<Block_Values> names;
         private Block_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Block_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Block_Values>(Block_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Block_Values> getNames() {
             return names;
@@ -439,7 +454,8 @@ public class UcdPropertyValues {
         Iota_Subscript("240", "IS");
         private final PropertyNames<Canonical_Combining_Class_Values> names;
         private Canonical_Combining_Class_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Canonical_Combining_Class_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Canonical_Combining_Class_Values>(
+                    Canonical_Combining_Class_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Canonical_Combining_Class_Values> getNames() {
             return names;
@@ -476,7 +492,8 @@ public class UcdPropertyValues {
         Wide("Wide", "wide");
         private final PropertyNames<Decomposition_Type_Values> names;
         private Decomposition_Type_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Decomposition_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Decomposition_Type_Values>(
+                    Decomposition_Type_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Decomposition_Type_Values> getNames() {
             return names;
@@ -495,7 +512,8 @@ public class UcdPropertyValues {
         Wide("W");
         private final PropertyNames<East_Asian_Width_Values> names;
         private East_Asian_Width_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(East_Asian_Width_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<East_Asian_Width_Values>(
+                    East_Asian_Width_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<East_Asian_Width_Values> getNames() {
             return names;
@@ -513,7 +531,8 @@ public class UcdPropertyValues {
         Other("x");
         private final PropertyNames<Emoji_Correspondences_Values> names;
         private Emoji_Correspondences_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Emoji_Correspondences_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Emoji_Correspondences_Values>(
+                    Emoji_Correspondences_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Emoji_Correspondences_Values> getNames() {
             return names;
@@ -529,7 +548,8 @@ public class UcdPropertyValues {
         Emoji("emoji");
         private final PropertyNames<Emoji_Default_Style_Values> names;
         private Emoji_Default_Style_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Emoji_Default_Style_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Emoji_Default_Style_Values>(
+                    Emoji_Default_Style_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Emoji_Default_Style_Values> getNames() {
             return names;
@@ -546,7 +566,8 @@ public class UcdPropertyValues {
         None("na");
         private final PropertyNames<Emoji_Level_Values> names;
         private Emoji_Level_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Emoji_Level_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Emoji_Level_Values>(
+                    Emoji_Level_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Emoji_Level_Values> getNames() {
             return names;
@@ -563,7 +584,8 @@ public class UcdPropertyValues {
         NA("na");
         private final PropertyNames<Emoji_Modifier_Status_Values> names;
         private Emoji_Modifier_Status_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Emoji_Modifier_Status_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Emoji_Modifier_Status_Values>(
+                    Emoji_Modifier_Status_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Emoji_Modifier_Status_Values> getNames() {
             return names;
@@ -616,7 +638,8 @@ public class UcdPropertyValues {
         Space_Separator("Zs");
         private final PropertyNames<General_Category_Values> names;
         private General_Category_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(General_Category_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<General_Category_Values>(
+                    General_Category_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<General_Category_Values> getNames() {
             return names;
@@ -642,7 +665,8 @@ public class UcdPropertyValues {
         Other("XX");
         private final PropertyNames<Grapheme_Cluster_Break_Values> names;
         private Grapheme_Cluster_Break_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Grapheme_Cluster_Break_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Grapheme_Cluster_Break_Values>(
+                    Grapheme_Cluster_Break_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Grapheme_Cluster_Break_Values> getNames() {
             return names;
@@ -661,7 +685,8 @@ public class UcdPropertyValues {
         Vowel_Jamo("V");
         private final PropertyNames<Hangul_Syllable_Type_Values> names;
         private Hangul_Syllable_Type_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Hangul_Syllable_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Hangul_Syllable_Type_Values>(
+                    Hangul_Syllable_Type_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Hangul_Syllable_Type_Values> getNames() {
             return names;
@@ -677,7 +702,8 @@ public class UcdPropertyValues {
         Allowed("a");
         private final PropertyNames<Identifier_Status_Values> names;
         private Identifier_Status_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Identifier_Status_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Identifier_Status_Values>(
+                    Identifier_Status_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Identifier_Status_Values> getNames() {
             return names;
@@ -703,7 +729,8 @@ public class UcdPropertyValues {
         recommended("rec");
         private final PropertyNames<Identifier_Type_Values> names;
         private Identifier_Type_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Identifier_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Identifier_Type_Values>(
+                    Identifier_Type_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Identifier_Type_Values> getNames() {
             return names;
@@ -718,7 +745,8 @@ public class UcdPropertyValues {
         na("na");
         private final PropertyNames<Idn_2008_Values> names;
         private Idn_2008_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Idn_2008_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Idn_2008_Values>(
+                    Idn_2008_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Idn_2008_Values> getNames() {
             return names;
@@ -739,7 +767,8 @@ public class UcdPropertyValues {
         disallowed_STD3_mapped("ds3m");
         private final PropertyNames<Idn_Status_Values> names;
         private Idn_Status_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Idn_Status_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Idn_Status_Values>(
+                    Idn_Status_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Idn_Status_Values> getNames() {
             return names;
@@ -766,7 +795,8 @@ public class UcdPropertyValues {
         Visual_Order_Left("Visual_Order_Left");
         private final PropertyNames<Indic_Positional_Category_Values> names;
         private Indic_Positional_Category_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Indic_Positional_Category_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Indic_Positional_Category_Values>(
+                    Indic_Positional_Category_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Indic_Positional_Category_Values> getNames() {
             return names;
@@ -814,7 +844,8 @@ public class UcdPropertyValues {
         Vowel_Independent("Vowel_Independent");
         private final PropertyNames<Indic_Syllabic_Category_Values> names;
         private Indic_Syllabic_Category_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Indic_Syllabic_Category_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Indic_Syllabic_Category_Values>(
+                    Indic_Syllabic_Category_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Indic_Syllabic_Category_Values> getNames() {
             return names;
@@ -879,7 +910,8 @@ public class UcdPropertyValues {
         YU("YU");
         private final PropertyNames<Jamo_Short_Name_Values> names;
         private Jamo_Short_Name_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Jamo_Short_Name_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Jamo_Short_Name_Values>(
+                    Jamo_Short_Name_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Jamo_Short_Name_Values> getNames() {
             return names;
@@ -978,7 +1010,8 @@ public class UcdPropertyValues {
         Zhain("Zhain");
         private final PropertyNames<Joining_Group_Values> names;
         private Joining_Group_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Joining_Group_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Joining_Group_Values>(
+                    Joining_Group_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Joining_Group_Values> getNames() {
             return names;
@@ -997,7 +1030,8 @@ public class UcdPropertyValues {
         Non_Joining("U");
         private final PropertyNames<Joining_Type_Values> names;
         private Joining_Type_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Joining_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Joining_Type_Values>(
+                    Joining_Type_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Joining_Type_Values> getNames() {
             return names;
@@ -1050,7 +1084,8 @@ public class UcdPropertyValues {
         ZWSpace("ZW");
         private final PropertyNames<Line_Break_Values> names;
         private Line_Break_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Line_Break_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Line_Break_Values>(
+                    Line_Break_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Line_Break_Values> getNames() {
             return names;
@@ -1067,7 +1102,8 @@ public class UcdPropertyValues {
         Yes("Y");
         private final PropertyNames<NFC_Quick_Check_Values> names;
         private NFC_Quick_Check_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(NFC_Quick_Check_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<NFC_Quick_Check_Values>(
+                    NFC_Quick_Check_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<NFC_Quick_Check_Values> getNames() {
             return names;
@@ -1082,7 +1118,8 @@ public class UcdPropertyValues {
         Yes("Y");
         private final PropertyNames<NFD_Quick_Check_Values> names;
         private NFD_Quick_Check_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(NFD_Quick_Check_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<NFD_Quick_Check_Values>(
+                    NFD_Quick_Check_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<NFD_Quick_Check_Values> getNames() {
             return names;
@@ -1099,7 +1136,8 @@ public class UcdPropertyValues {
         Yes("Y");
         private final PropertyNames<NFKC_Quick_Check_Values> names;
         private NFKC_Quick_Check_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(NFKC_Quick_Check_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<NFKC_Quick_Check_Values>(
+                    NFKC_Quick_Check_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<NFKC_Quick_Check_Values> getNames() {
             return names;
@@ -1114,7 +1152,8 @@ public class UcdPropertyValues {
         Yes("Y");
         private final PropertyNames<NFKD_Quick_Check_Values> names;
         private NFKD_Quick_Check_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(NFKD_Quick_Check_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<NFKD_Quick_Check_Values>(
+                    NFKD_Quick_Check_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<NFKD_Quick_Check_Values> getNames() {
             return names;
@@ -1128,14 +1167,15 @@ public class UcdPropertyValues {
 		// Name_Alias
 		// Named_Sequences
 		// Named_Sequences_Prov
-	public enum Numeric_Type_Values implements Named {
+    public enum Numeric_Type_Values implements Named {
         Decimal("De"),
         Digit("Di"),
         None("None"),
         Numeric("Nu");
         private final PropertyNames<Numeric_Type_Values> names;
         private Numeric_Type_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Numeric_Type_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Numeric_Type_Values>(
+                    Numeric_Type_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Numeric_Type_Values> getNames() {
             return names;
@@ -1145,8 +1185,9 @@ public class UcdPropertyValues {
         }
     }
 
-		// Numeric_Value
-	public enum Script_Values implements Named {
+        // Numeric_Value
+    public enum Script_Values implements Named {
+        Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
         Ahom("Ahom"),
         Arabic("Arab"),
@@ -1158,6 +1199,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bass"),
         Batak("Batk"),
         Bengali("Beng"),
+        Bhaiksuki("Bhks"),
         Bopomofo("Bopo"),
         Brahmi("Brah"),
         Braille("Brai"),
@@ -1216,6 +1258,7 @@ public class UcdPropertyValues {
         Mahajani("Mahj"),
         Mandaic("Mand"),
         Manichaean("Mani"),
+        Marchen("Marc"),
         Mende_Kikakui("Mend"),
         Meroitic_Cursive("Merc"),
         Meroitic_Hieroglyphs("Mero"),
@@ -1228,11 +1271,13 @@ public class UcdPropertyValues {
         Myanmar("Mymr"),
         Old_North_Arabian("Narb"),
         Nabataean("Nbat"),
+        Newa("Newa"),
         Nko("Nkoo"),
         Ogham("Ogam"),
         Ol_Chiki("Olck"),
         Old_Turkic("Orkh"),
         Oriya("Orya"),
+        Osage("Osge"),
         Osmanya("Osma"),
         Palmyrene("Palm"),
         Pau_Cin_Hau("Pauc"),
@@ -1263,6 +1308,7 @@ public class UcdPropertyValues {
         Tai_Le("Tale"),
         New_Tai_Lue("Talu"),
         Tamil("Taml"),
+        Tangut("Tang"),
         Tai_Viet("Tavt"),
         Telugu("Telu"),
         Tifinagh("Tfng"),
@@ -1284,7 +1330,8 @@ public class UcdPropertyValues {
         Korean("Kore");
         private final PropertyNames<Script_Values> names;
         private Script_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Script_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Script_Values>(
+                    Script_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Script_Values> getNames() {
             return names;
@@ -1295,7 +1342,7 @@ public class UcdPropertyValues {
     }
 
 		// Script_Extensions
-	public enum Sentence_Break_Values implements Named {
+    public enum Sentence_Break_Values implements Named {
         ATerm("AT"),
         Close("CL"),
         CR("CR"),
@@ -1313,7 +1360,8 @@ public class UcdPropertyValues {
         Other("XX");
         private final PropertyNames<Sentence_Break_Values> names;
         private Sentence_Break_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Sentence_Break_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Sentence_Break_Values>(
+                    Sentence_Break_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Sentence_Break_Values> getNames() {
             return names;
@@ -1351,7 +1399,8 @@ public class UcdPropertyValues {
         Other("XX");
         private final PropertyNames<Word_Break_Values> names;
         private Word_Break_Values (String shortName, String...otherNames) {
-            names = new PropertyNames(Word_Break_Values.class, this, shortName, otherNames);
+            names = new PropertyNames<Word_Break_Values>(
+                    Word_Break_Values.class, this, shortName, otherNames);
         }
         public PropertyNames<Word_Break_Values> getNames() {
             return names;

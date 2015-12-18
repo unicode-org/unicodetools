@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 24
+DeltaVersion: 3
 CopyrightYear: 2015
 
 File: extra/ScriptNfkc
@@ -164,6 +164,9 @@ Value:  V7_0
 
 Value:  V8_0
 # Newly assigned in Unicode 8.0.0 (June, 2015)
+
+Value:  V9_0
+# Newly assigned in Unicode 9.0.0 (June, 2016)
 
 File:	extracted/DerivedBidiClass
 Property:	Bidi_Class

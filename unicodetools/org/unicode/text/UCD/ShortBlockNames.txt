@@ -22,6 +22,7 @@ ASCII	;	Basic_Latin
 Bassa_Vah	;	Bassa_Vah
 Batak	;	Batak
 Bengali	;	Bengali
+Bhaiksuki	;	Bhaiksuki
 Block_Elements	;	Block_Elements
 Bopomofo	;	Bopomofo
 Bopomofo_Ext	;	Bopomofo_Extended
@@ -67,6 +68,7 @@ Cypriot_Syllabary	;	Cypriot_Syllabary
 Cyrillic	;	Cyrillic
 Cyrillic_Ext_A	;	Cyrillic_Extended_A
 Cyrillic_Ext_B	;	Cyrillic_Extended_B
+Cyrillic_Ext_C	;	Cyrillic_Extended_C
 Cyrillic_Sup	;	Cyrillic_Supplement
 Deseret	;	Deseret
 Devanagari	;	Devanagari
@@ -92,6 +94,7 @@ Geometric_Shapes_Ext	;	Geometric_Shapes_Extended
 Georgian	;	Georgian
 Georgian_Sup	;	Georgian_Supplement
 Glagolitic	;	Glagolitic
+Glagolitic_Sup	;	Glagolitic_Supplement
 Gothic	;	Gothic
 Grantha	;	Grantha
 Greek	;	Greek_And_Coptic
@@ -111,6 +114,7 @@ High_PU_Surrogates	;	High_Private_Use_Surrogates
 High_Surrogates	;	High_Surrogates
 Hiragana	;	Hiragana
 IDC	;	Ideographic_Description_Characters
+Ideographic_Symbols	;	Ideographic_Symbols_And_Punctuation
 Imperial_Aramaic	;	Imperial_Aramaic
 Inscriptional_Pahlavi	;	Inscriptional_Pahlavi
 Inscriptional_Parthian	;	Inscriptional_Parthian
@@ -152,6 +156,7 @@ Mahjong	;	Mahjong_Tiles
 Malayalam	;	Malayalam
 Mandaic	;	Mandaic
 Manichaean	;	Manichaean
+Marchen	;	Marchen
 Math_Alphanum	;	Mathematical_Alphanumeric_Symbols
 Math_Operators	;	Mathematical_Operators
 Meetei_Mayek	;	Meetei_Mayek
@@ -169,6 +174,7 @@ Misc_Technical	;	Miscellaneous_Technical
 Modi	;	Modi
 Modifier_Tone_Letters	;	Modifier_Tone_Letters
 Mongolian	;	Mongolian
+Mongolian_Sup	;	Mongolian_Supplement
 Mro	;	Mro
 Multani	;	Multani
 Music	;	Musical_Symbols
@@ -192,6 +198,7 @@ Old_Turkic	;	Old_Turkic
 OCR	;	Optical_Character_Recognition
 Oriya	;	Oriya
 Ornamental_Dingbats	;	Ornamental_Dingbats
+Osage	;	Osage
 Osmanya	;	Osmanya
 Pahawh_Hmong	;	Pahawh_Hmong
 Palmyrene	;	Palmyrene
@@ -242,6 +249,8 @@ Tai_Viet	;	Tai_Viet
 Tai_Xuan_Jing	;	Tai_Xuan_Jing_Symbols
 Takri	;	Takri
 Tamil	;	Tamil
+Tangut	;	Tangut
+Tangut_Components	;	Tangut_Components
 Telugu	;	Telugu
 Thaana	;	Thaana
 Thai	;	Thai

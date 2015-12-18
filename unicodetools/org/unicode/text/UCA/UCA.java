@@ -42,8 +42,6 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
-//import org.unicode.text.CollationData.*;
-
 /**
  * UCA is a working version of the UTS #10 Unicode Collation Algorithm,
  * as described on http://www.unicode.org/unicode/reports/tr10/
@@ -73,8 +71,6 @@ characters between scripts with different directions, like French with Arabic or
  */
 
 final public class UCA implements Comparator<String>, UCA_Types {
-
-    public static final int TEST_PRIMARY = 0xFDFC;
 
     public enum CollatorType {ducet, cldr, cldrWithoutFFFx}
 
@@ -1416,7 +1412,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
     }
 
-    static final int[][] SAMPLE_RANGES = {
+    private static final int[][] SAMPLE_RANGES = {
         {0}, // LEAVE EMPTY--Turns into first unassigned character
         {0xFFF0},
         {0xD800},
@@ -1830,9 +1826,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
         boolean variable = line.charAt(start+1) == '*';
         int key1 = Integer.parseInt(line.substring(start+2,start+6),16);
-        if (key1 == TEST_PRIMARY) {
-            key1 = key1; // for debugging
-        }
         final int key2 = Integer.parseInt(line.substring(start+7,start+11),16);
         final int key3 = Integer.parseInt(line.substring(start+12,start+16),16);
         if (key1 == 0 && variable) {
