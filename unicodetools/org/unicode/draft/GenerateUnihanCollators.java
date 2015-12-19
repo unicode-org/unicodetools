@@ -921,7 +921,7 @@ public class GenerateUnihanCollators {
         for (final String s : unicodeMap) {
             //            S newValue = unicodeMap.get(s);
             //            if (newValue == null) continue;
-            if (s.codePointCount(0, s.length()) != 1) {
+            if (UTF16.countCodePoint(s) != 1) {
                 throw new IllegalArgumentException("Wrong length!!");
             }
             rsSorted.add(s);

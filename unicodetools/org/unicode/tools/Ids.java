@@ -1025,7 +1025,7 @@ public class Ids {
                     throw new ICUException(target);
                 }
                 String cp = target.substring(equals+1, paren).trim();
-                if (cp.codePointCount(0, cp.length()) != 1) {
+                if (UTF16.countCodePoint(cp) != 1) {
                     throw new ICUException(target);
                 }
                 cjkRadSupToIdeo.put(cjkRadSup, cp);

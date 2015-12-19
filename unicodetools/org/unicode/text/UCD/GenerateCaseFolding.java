@@ -246,8 +246,8 @@ public class GenerateCaseFolding implements UCD_Types {
                 log.println(s2 + "\t#" + Default.ucd().getName(s2));
 
                 if (UTF16.countCodePoint(s2) == 1) {
-                    repChar.put(UTF32.getCodePointSubstring(s2,0), rep);
-                    charsUsed.set(UTF16.charAt(s2, 0));
+                    repChar.put(s2, rep);
+                    charsUsed.set(s2.codePointAt(0));
                 }
             }
         }

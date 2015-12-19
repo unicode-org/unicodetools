@@ -24,6 +24,7 @@ import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.SpoofChecker;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeCompressor;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
@@ -304,7 +305,7 @@ public class Misc {
 
 
         System.out.println("'" + string + "'"
-                + "\tchars:\t" + string.codePointCount(0, string.length())
+                + "\tchars:\t" + UTF16.countCodePoint(string)
                 + "\tutf8:\t" + utf8.length
                 + "\tscsu:\t" + scsu.length
                 + "\tscsu:\t" + scsu.length

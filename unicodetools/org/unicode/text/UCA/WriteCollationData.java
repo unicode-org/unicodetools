@@ -383,8 +383,8 @@ public class WriteCollationData {
             final CEList ces = cc.getCEs();
 
             int ccc;
-            for (int kk = 0; kk < s.length(); kk += UTF32.count16(ccc)) {
-                ccc = UTF32.char32At(s, kk);
+            for (int kk = 0; kk < s.length(); kk += Character.charCount(ccc)) {
+                ccc = UTF16.charAt(s, kk);
                 final byte cat = Default.ucd().getCategory(ccc);
                 if (cat == UCD_Types.Cf || cat == UCD_Types.Cc || cat == UCD_Types.Zs || cat == UCD_Types.Zl || cat == UCD_Types.Zp) {
                     sortedCodes.add(ces + "\t" + Default.ucd().getCodeAndName(s));

@@ -1832,10 +1832,10 @@ E0020-E007F; [TAGGING CHARACTERS]
                 }
 
                 final String key = Utility.fromHex(parts[0]);
-                if (UTF32.length32(key) != 1) {
+                if (UTF16.countCodePoint(key) != 1) {
                     throw new ChainException("First IDN field not single character: " + line, null);
                 }
-                final int cp = UTF32.char32At(key, 0);
+                final int cp = UTF16.charAt(key, 0);
                 if (!Default.ucd().isAssigned(cp) || Default.ucd().isPUA(cp)) {
                     throw new ChainException("IDN character unassigned or PUA: " + line, null);
                 }
@@ -2053,13 +2053,13 @@ E0020-E007F; [TAGGING CHARACTERS]
     }
 
     static String getCategoryID(String s) {
-        if (UTF32.length32(s) == 1) {
-            return Default.ucd().getCategoryID(UTF32.char32At(s, 0));
+        if (UTF16.countCodePoint(s) == 1) {
+            return Default.ucd().getCategoryID(s.codePointAt(0));
         }
         final StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < s.length(); i += UTF32.count16(cp)) {
-            cp = UTF32.char32At(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = UTF16.charAt(s, i);
             if (i != 0) {
                 result.append(' ');
             }
@@ -2496,8 +2496,8 @@ E0020-E007F; [TAGGING CHARACTERS]
                 }
 
                 final String s = Default.ucd().getDecompositionMapping(i);
-                final int slen = UTF32.length32(s);
-                final int j = UTF32.char32At(s, 0);
+                final int slen = UTF16.countCodePoint(s);
+                final int j = s.codePointAt(0);
                 try {
                     if (q == 0) {
                         check(i, Default.ucd().getCategory(i), Default.ucd().getCategory(j), UCD_Names.GENERAL_CATEGORY, "GeneralCategory");

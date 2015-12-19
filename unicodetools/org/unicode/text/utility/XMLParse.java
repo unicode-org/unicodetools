@@ -31,6 +31,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
 
+import com.ibm.icu.text.UTF16;
+
 public final class XMLParse implements XMLParseTypes {
 
     /** Create a parser.
@@ -297,7 +299,7 @@ public final class XMLParse implements XMLParseTypes {
         final StringBuffer result = new StringBuffer();
         String temp;
         for (int i = 0; i < source.length(); ++i) {
-            final int c = UTF32.char32At(source, i);
+            final int c = UTF16.charAt(source, i);
             if (c > 0xFFFF) {
                 ++i;
             }

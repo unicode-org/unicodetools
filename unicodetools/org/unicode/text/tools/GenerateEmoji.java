@@ -897,7 +897,7 @@ public class GenerateEmoji {
                     emojiData.getModifierSequences(),
                     emojiData.getZwjSequencesNormal()
                     )) {
-                int len = s.codePointCount(0, s.length());
+                int len = UTF16.countCodePoint(s);
                 if (len > 1) {
                     outText.println(Utility.hex(s) + " ; " + getName(s, false));
                 }
@@ -1615,7 +1615,7 @@ public class GenerateEmoji {
         int i = 0;
         StringBuilder buffer = new StringBuilder();
         for (String s : EmojiOrder.sort(EMOJI_COMPARATOR, items)) {
-            boolean isSingle = s.codePointCount(0, s.length()) == 1;
+            boolean isSingle = UTF16.countCodePoint(s) == 1;
             out.println("<tr>");
             out.println("<td class='rchars'>" + (isSingle ? "<i>neutral</i>" : ""+(++i)) + "</td>");
             out.println("<td>U+" + Utility.hex(s, " U+") + "</td>");

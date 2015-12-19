@@ -7,6 +7,7 @@ import org.unicode.jsp.FileUtilities;
 import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.impl.Utility;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 
@@ -622,7 +623,7 @@ public class Uts46 extends Idna {
                 }
             }
             // The length of each label is from 1 to 63.
-            final int labelLength = label.codePointCount(0, label.length());
+            final int labelLength = UTF16.countCodePoint(label);
             if (labelLength > 63 || labelLength < 1 && i != labels.length - 1) { // last
                 // one
                 // can
@@ -641,7 +642,7 @@ public class Uts46 extends Idna {
         // information, see [STD13] and [STD3].
         // The length of the domain name, excluding the root label and its dot,
         // is from 1 to 253.
-        final int labelDomainNameLength = domainName.codePointCount(0, domainName.length());
+        final int labelDomainNameLength = UTF16.countCodePoint(domainName);
         if (labelDomainNameLength < 0 || labelDomainNameLength > 254 || labelDomainNameLength == 254 && !domainName.endsWith(".")) {
             errors.add(Errors.A4_1);
         }

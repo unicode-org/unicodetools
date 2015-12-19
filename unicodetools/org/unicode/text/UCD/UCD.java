@@ -213,8 +213,8 @@ public final class UCD implements UCD_Types {
         }
         final StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < s.length(); i += UTF32.count16(cp)) {
-            cp = UTF32.char32At(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = UTF16.charAt(s, i);
             if (i > 0) {
                 result.append(", ");
             }
@@ -254,8 +254,8 @@ public final class UCD implements UCD_Types {
         }
         final StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < s.length(); i += UTF32.count16(cp)) {
-            cp = UTF32.char32At(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = UTF16.charAt(s, i);
             if (i > 0) {
                 result.append(", ");
             }
@@ -825,16 +825,16 @@ public final class UCD implements UCD_Types {
     static final char APOSTROPHE = '\u2019';
 
     public String getCase(String s, byte simpleVsFull, byte caseType, String condition) {
-        if (UTF32.length32(s) == 1) {
-            return getCase(UTF32.char32At(s, 0), simpleVsFull, caseType);
+        if (UTF16.countCodePoint(s) == 1) {
+            return getCase(s.codePointAt(0), simpleVsFull, caseType);
         }
         final StringBuffer result = new StringBuffer();
         int cp;
         byte currentCaseType = caseType;
         final UCDProperty defaultIgnorable = DerivedProperty.make(UCD_Types.DefaultIgnorable, this);
 
-        for (int i = 0; i < s.length(); i += UTF32.count16(cp)) {
-            cp = UTF32.char32At(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = UTF16.charAt(s, i);
             final String mappedVersion = getCase(cp, simpleVsFull, currentCaseType, condition);
             result.append(mappedVersion);
             if (caseType == TITLE) {    // set the case type for the next character
@@ -998,8 +998,8 @@ public final class UCD implements UCD_Types {
             return result;
         }
         int cp;
-        for (int i = 0; i < s.length(); i += UTF32.count16(cp)) {
-            cp = UTF32.char32At(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = UTF16.charAt(s, i);
             final short script = getScript(cp);
             if (script == INHERITED_SCRIPT) {
                 continue;
@@ -1516,8 +1516,8 @@ public final class UCD implements UCD_Types {
             return false; // at least one!
         }
         int cp;
-        for (int i = 0; i < s.length(); i += UTF32.count16(cp)) {
-            cp = UTF32.char32At(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = UTF16.charAt(s, i);
             if (i == 0) {
                 if (!isIdentifierStart(cp)) {
                     return false;

@@ -14,6 +14,7 @@ import org.unicode.text.UCD.UCD;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
@@ -221,7 +222,7 @@ final class RadicalStroke {
             }
             String radicalChars = radToChars.get(radicalString);
             // All radicals should be BMP characters.
-            assert radicalChars.length() == radicalChars.codePointCount(0, radicalChars.length());
+            assert radicalChars.length() == UTF16.countCodePoint(radicalChars);
             // For the representative radical character,
             // use the one at index 1 which is in the original Unihan block
             // which has good font support,

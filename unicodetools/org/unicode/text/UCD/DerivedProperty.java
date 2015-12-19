@@ -426,8 +426,8 @@ public final class DerivedProperty implements UCD_Types {
                 int status2 = 0;
                 tempBuf.setLength(0);
                 nfkd.normalize(UTF32.valueOf32(cp), tempBuf);
-                for (int i = 0; i < tempBuf.length(); i += UTF32.count16(cp)) {
-                    final int cp2 = UTF32.char32At(tempBuf, i);
+                for (int i = 0; i < tempBuf.length(); i += Character.charCount(cp)) {
+                    final int cp2 = UTF16.charAt(tempBuf, i);
                     if (i == 0) {
                         if (ucdData.isIdentifierStart(cp2)) {
                             status2 = 1;
@@ -995,8 +995,8 @@ of characters, the first of which has a non-zero combining class.
         boolean gotUpper = false;
         boolean gotLower = false;
         boolean gotTitle = false;
-        for (int i = 0; i < norm.length(); i += UTF32.count16(cp2)) {
-            cp2 = UTF32.char32At(norm, i);
+        for (int i = 0; i < norm.length(); i += Character.charCount(cp2)) {
+            cp2 = UTF16.charAt(norm, i);
             final byte catx = ucdData.getCategory(cp2);
             final boolean upx = ucdData.getBinaryProperty(cp, Other_Uppercase);
             final boolean lowx = ucdData.getBinaryProperty(cp, Other_Lowercase);
@@ -1027,10 +1027,10 @@ of characters, the first of which has a non-zero combining class.
             return true;
         }
         final String decomp = ucdData.getDecompositionMapping(cp);
-        if (UTF32.length32(decomp) == 1) {
+        if (UTF16.countCodePoint(decomp) == 1) {
             return true;
         }
-        final int first = UTF32.char32At(decomp,0);
+        final int first = decomp.codePointAt(0);
         if (ucdData.getCombiningClass(first) != 0) {
             return true;
         }

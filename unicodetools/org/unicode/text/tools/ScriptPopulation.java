@@ -84,7 +84,7 @@ public class ScriptPopulation {
             // quick approximate normalization
             int i = UCharacter.foldCase(cp,true);
             String str = NFC.normalize(UTF16.valueOf(i));
-            if (1 == str.codePointCount(0, str.length())) {
+            if (1 == UTF16.countCodePoint(str)) {
                 i = str.codePointAt(0);
             }
 
@@ -629,7 +629,7 @@ public class ScriptPopulation {
             buffer.setLength(0);
             buffer.appendCodePoint(cp);
             String nfkcForm = nfkc.normalize(buffer);
-            if (nfkcForm.codePointCount(0, nfkcForm.length()) == 1) {
+            if (UTF16.countCodePoint(nfkcForm) == 1) {
                 script = getBestScript(nfkcForm.codePointAt(0));
                 if (script != UScript.UNKNOWN && script != UScript.COMMON && script != UScript.INHERITED) {
                     return fixScript(script);
