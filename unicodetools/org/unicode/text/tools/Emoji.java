@@ -64,7 +64,7 @@ public class Emoji {
 
     enum Source {
         // pngs
-        color, apple, twitter, samsung, google, windows, ref, proposed, emojipedia, emojixpress,
+        color, apple, twitter, samsung, google, windows, emojione, ref, proposed, emojipedia, emojixpress,
         // gifs
         gmail, sb, dcm, kddi;
         boolean isGif() {
@@ -261,7 +261,7 @@ public class Emoji {
     static final Comparator<String> CODEPOINT_LENGTH = new Comparator<String>() {
         @Override
         public int compare(String o1, String o2) {
-            return UTF16.countCodePoint(o1) - UTF16.countCodePoint(o2);
+            return o1.codePointCount(0, o1.length()) - o2.codePointCount(0, o2.length());
         }
     };
 
