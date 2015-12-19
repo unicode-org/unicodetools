@@ -15,6 +15,7 @@ import org.unicode.text.UCD.Default;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestScriptMetadata extends TestFmwkPlus{
@@ -46,7 +47,7 @@ public class TestScriptMetadata extends TestFmwkPlus{
                 }
                 Info info0 = ScriptMetadata.getInfo(script);
                 assertEquals(script + " Sample must be single character", 1,
-                        info0.sampleChar.codePointCount(0, info0.sampleChar.length()));
+                        UTF16.countCodePoint(info0.sampleChar));
                 String infoScript = script.equals("Kore") ? "Hang" : script.equals("Japn") ? "Kana" : script;
 
                 UnicodeSet withScript;

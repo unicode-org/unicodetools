@@ -125,7 +125,7 @@ public class CaseBitTest extends TestFmwk {
             regular++;
         }
         for (String s : uca.getContractions()) {
-            if (s.codePointCount(0, s.length()) != 1) { // don't count twice
+            if (UTF16.countCodePoint(s) != 1) { // don't count twice
                 s = Default.nfd().normalize(s);
                 sorted.put(uca.getCEList(s, true), s);
                 contractions++;

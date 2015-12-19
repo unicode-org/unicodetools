@@ -61,7 +61,7 @@ public class PropNormalizationData implements org.unicode.text.UCD.Normalization
             } else {
                 final int first = dmpStr.codePointAt(0);
                 if (ce.getValue(cp).equals("Yes")
-                        || dmpStr.codePointCount(0, dmpStr.length()) == 1
+                        || UTF16.countCodePoint(dmpStr) == 1
                         || canonical.getValue(first) != 0
                         ) {
                     // skip

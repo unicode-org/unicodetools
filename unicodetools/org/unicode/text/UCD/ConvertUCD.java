@@ -34,6 +34,8 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.text.UTF16;
+
 
 /** Simple program to merge UCD files into XML. Not yet documented!!
  * @author Mark Davis
@@ -496,14 +498,14 @@ public final class ConvertUCD implements UCD_Types {
                     int cpStart;
                     final int ddot = parts[0].indexOf(".");
                     if (ddot >= 0) {
-                        cpStart = UTF32.char32At(Utility.fromHex(parts[0].substring(0,ddot)),0);
-                        cpTop = UTF32.char32At(Utility.fromHex(parts[0].substring(ddot+2)),0);
+                        cpStart = UTF16.charAt(Utility.fromHex(parts[0].substring(0,ddot)), 0);
+                        cpTop = UTF16.charAt(Utility.fromHex(parts[0].substring(ddot+2)), 0);
                         // System.out.println(Utility.hex(cpStart) + " ... " + Utility.hex(cpTop));
                     } else {
-                        cpStart = UTF32.char32At(Utility.fromHex(parts[0]),0);
+                        cpStart = UTF16.charAt(Utility.fromHex(parts[0]), 0);
                         cpTop = cpStart;
                         if (labels[1].equals("RANGE")) {
-                            UTF32.char32At(Utility.fromHex(parts[1]),0);
+                            UTF16.charAt(Utility.fromHex(parts[1]), 0);
                         }
                     }
 
@@ -519,7 +521,7 @@ public final class ConvertUCD implements UCD_Types {
                         // END FIX!!
                         properties.add(prop);
                         if (Utility.find(prop, UCD_Names.DeletedProperties, true) == -1) { // only undeleted
-                            int end = UTF32.char32At(Utility.fromHex(parts[1]),0);
+                            int end = UTF16.charAt(Utility.fromHex(parts[1]), 0);
                             if (end == 0) {
                                 end = cpStart;
                             }

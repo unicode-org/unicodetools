@@ -20,6 +20,8 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.ibm.icu.text.UTF16;
+
 
 public class testParser implements XMLParseTypes {
     public static final String BASE_DIR = Settings.UCD_DIR + "/UNIDATA 3.0.1/";
@@ -152,7 +154,7 @@ public class testParser implements XMLParseTypes {
                     }
 
                     // split tables
-                    final int code = UTF32.char32At(ch, 0);
+                    final int code = UTF16.charAt(ch, 0);
                     if ((topByte & ~0x1F) != (code & ~0x1F)) {
                         log.println("</table><br>");
                         log.println(tableHead);
@@ -240,7 +242,7 @@ public class testParser implements XMLParseTypes {
                     lastCat = value;
                 } else if (lastTag.equals("xs") && value.indexOf(prop) >= 0) {
                     lastChar = fixHack(lastChar);
-                    final int ch = UTF32.char32At(lastChar,0);
+                    final int ch = UTF16.charAt(lastChar, 0);
                     if (ch == endChar + 1) {
                         endChar = ch;
                     } else {

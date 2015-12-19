@@ -1123,7 +1123,7 @@ public class UnicodeUtilities {
 
 
         // Now, get the combinations
-        if (nfd.codePointCount(0, nfd.length()) > 1) {
+        if (UTF16.countCodePoint(nfd) > 1) {
             if (confusableString.length() != 0) {
                 confusableString.append(", ");
             }

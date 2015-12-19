@@ -353,8 +353,8 @@ public class XObsoleteGenerateLineBreakTest implements UCD_Types {
         }
         final StringBuffer result = new StringBuffer();
         int cp;
-        for (int i = 0; i < s.length(); i += UTF32.count16(cp)) {
-            cp = UTF32.char32At(s, i);
+        for (int i = 0; i < s.length(); i += Character.charCount(cp)) {
+            cp = UTF16.charAt(s, i);
             if (i > 0) {
                 result.append(" ");
             }

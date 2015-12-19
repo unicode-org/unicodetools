@@ -17,6 +17,7 @@ import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.VersionInfo;
@@ -260,7 +261,7 @@ public class Emoji {
     static final Comparator<String> CODEPOINT_LENGTH = new Comparator<String>() {
         @Override
         public int compare(String o1, String o2) {
-            return o1.codePointCount(0, o1.length()) - o2.codePointCount(0, o2.length());
+            return UTF16.countCodePoint(o1) - UTF16.countCodePoint(o2);
         }
     };
 

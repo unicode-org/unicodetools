@@ -13,6 +13,7 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Transform;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 import com.ibm.icu.util.ULocale;
@@ -80,7 +81,7 @@ public class FindProps {
 
     static Transform<String,String> GET_NAME = new Transform<String,String>() {
         public String transform(String s) {
-            int len = s.codePointCount(0, s.length());
+            int len = UTF16.countCodePoint(s);
             if (len == 1) {
                 return names.get(s);
             }

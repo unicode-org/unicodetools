@@ -10,6 +10,8 @@ package org.unicode.tools;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ibm.icu.text.UTF16;
+
 public abstract class Tabber {
     public static final byte LEFT = 0, CENTER = 1, RIGHT = 2;
     private static final String[] ALIGNMENT_NAMES = {"Left", "Center", "Right"};
@@ -113,7 +115,7 @@ public abstract class Tabber {
             int startPos = getStop(count-1);
             int endPos = getStop(count) - minGap;
             int type = getType(count);
-            final int pieceLength = piece.codePointCount(0, piece.length());
+            final int pieceLength = UTF16.countCodePoint(piece);
             switch (type) {
                 case LEFT: 
                     break;

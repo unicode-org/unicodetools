@@ -28,6 +28,7 @@ import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
@@ -104,9 +105,8 @@ public final class TestNormalization {
                 for (int i = 0; i < splitCount; ++i) {
                     parts[i] = Utility.fromHex(parts[i]);
                 }
-
-                if (UTF32.length32(parts[0]) == 1) {
-                    final int code = UTF32.char32At(parts[0],0);
+                if (UTF16.countCodePoint(parts[0]) == 1) {
+                    final int code = parts[0].codePointAt(0);
                     charsListed.set(code);
                     if ((code & 0x3FF) == 0) {
                         System.out.println("# " + Utility.hex(code));

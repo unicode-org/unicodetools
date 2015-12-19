@@ -296,11 +296,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         final String s = o.toString();
         final StringBuffer result = new StringBuffer();
         int ch;
-        for (int i = 0; i < s.length(); i += UTF32.count16(ch)) {
+        for (int i = 0; i < s.length(); i += Character.charCount(ch)) {
             if (i != 0) {
                 result.append(separator);
             }
-            ch = UTF32.char32At(s, i);
+            ch = UTF16.charAt(s, i);
             result.append(hex(ch));
         }
         return result.toString();
@@ -405,10 +405,10 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static int codePointFromHex(String p) {
         final String temp = Utility.fromHex(p);
-        if (UTF32.length32(temp) != 1) {
+        if (UTF16.countCodePoint(temp) != 1) {
             throw new ChainException("String is not single (UTF32) character: " + p, null);
         }
-        return UTF32.char32At(temp, 0);
+        return temp.codePointAt(0);
     }
 
     public static String fromHex(String p) {
@@ -443,13 +443,13 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                     if (type != Character.SPACE_SEPARATOR) {
                         if (acceptChars) {
                             if (count >= minHex && count <= 6) {
-                                UTF32.append32(output, value);
+                                output.appendCodePoint(value);
                             } else if (count != 0) {
                                 output.append(p.substring(i-count, i)); // TODO fix supplementary characters
                             }
                             count = 0;
                             value = 0;
-                            UTF32.append32(output, ch);
+                            output.appendCodePoint((int) ch);
                             continue main;
                         }
                         throw new ChainException("bad hex value: '{0}' at position {1} in \"{2}\"",
@@ -468,7 +468,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                                         new Object[] {String.valueOf(ch), new Integer(i), p});
                             }
                         } else {
-                            UTF32.append32(output, value);
+                            output.appendCodePoint(value);
                         }
                     }
                     count = 0;
@@ -492,7 +492,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                             new Object[] {"EOS", new Integer(p.length()), p});
                 }
             } else {
-                UTF32.append32(output, value);
+                output.appendCodePoint(value);
             }
         }
         return output.toString();
@@ -667,8 +667,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         default:
             if (c >= 0x20 && c <= 0x7E) {
                 return String.valueOf((char)c);
-            } else if (UTF32.isSupplementary(c)) {
-                return "\\u" + hex(UTF32.getLead(c),4) + "\\u" + hex(UTF32.getTrail(c),4);
+            } else if (Character.isSupplementaryCodePoint(c)) {
+                return "\\u" + hex(Character.highSurrogate(c),4) + "\\u" + hex(Character.lowSurrogate(c),4);
             } else {
                 return "\\u" + hex((char)c,4);
             }
@@ -725,8 +725,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
         final StringBuffer result = new StringBuffer();
         for (int i = 0; i < source.length(); ++i) {
-            final int c = UTF32.char32At(source, i);
-            if (UTF32.isSupplementary(c)) {
+            final int c = UTF16.charAt(source, i);
+            if (Character.isSupplementaryCodePoint(c)) {
                 ++i;
             }
             result.append(quoteXML(c, HTML));

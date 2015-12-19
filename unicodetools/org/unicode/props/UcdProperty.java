@@ -2,6 +2,7 @@
 package org.unicode.props;
 import java.util.EnumSet;
 import java.util.Set;
+
 import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.UcdPropertyValues.*;public enum UcdProperty {
 
@@ -265,7 +266,7 @@ private final PropertyType type;
 	public ValueCardinality getCardinality() {
 		return cardinality;
 	}
-	public Class getEnumClass() {
+	public Class<Enum> getEnumClass() {
 		return enumClass;
 	}
 	public PropertyType getType() {
@@ -289,6 +290,4 @@ private final PropertyType type;
 	public Set<Enum> getEnums() {
 		return enums;
 	}
-
-
 }
