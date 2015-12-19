@@ -35,6 +35,8 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateOtherAnnotations {
 
+    private static final String MISSING = "";
+
     private static final Set<String> SKIP = new HashSet<>(GenerateEmoji.GROUP_ANNOTATIONS);
     static {
         SKIP.add("flag");
@@ -163,37 +165,46 @@ as.tsv
             int line = 1;
             outText.println("#Code"
                     + "\tImage"
-                    + "\tTTS English"
-                    + "\tTTS: " + data.locale.getDisplayName(ULocale.ENGLISH)
-                    + "\t=\"DUP \" & countif(E2:E9999,\"DUP\") & \" MISS \" & countif(E2:E9999,\"MISS\")"
-                    + "\tAnnotations English"
-                    + "\tAnnotations " + data.locale.getDisplayName(ULocale.ENGLISH)
+                    + "\tTTS: English"
+                    + "\tTTS: Native"
+                    + "\tTTS: Fixed"
+                    + "\t=\"DUP \"&countif(F2:F9999,\"DUP\")&\" MISS \"&countif(F2:F9999,\"MISS\")"
+                    + "\tAnnotations: English"
+                    + "\tAnnotations: Native"
+                    + "\tAnnotations: Fixed"
                     + "\tComments"
-                    + "\tINTERNAL");
+                    + "\tOrder"
+                    + "\tINTERNAL"
+                    + "\tTTS: Combined"
+                    );
             for (String s : GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
                 if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                     continue;
                 }
                 String tts = data.tts.get(s);
-                String ttsString = tts == null ? "MISSING" : tts;
+                String ttsString = tts == null ? MISSING : tts;
                 Set<String> annotations = data.map.get(s);
                 if (annotations == null) {
-                    annotations = Collections.singleton("MISSING");
+                    annotations = Collections.singleton(MISSING);
                 } else if (tts != null) {
                     annotations = new LinkedHashSet<>(annotations);
                     annotations.remove(tts);
                 }
-                String annotationString = annotations == null ? "MISSING" : CollectionUtilities.join(annotations, "; ");
+                String annotationString = annotations == null ? MISSING : CollectionUtilities.join(annotations, "; ");
                 ++line;
                 outText.println("U+" + Utility.hex(s, 4, " U+")
                         + "\t=vlookup(A" + line + ",Internal!A:B,2,0)"
                         + "\t" + english.tts.get(s) 
                         + "\t" + ttsString 
-                        + "\t=if(D2=\"missing\",\"MISS\",if(countif(D:D,D2)=1,\"\",\"DUP\"))"
+                        + "\t" + "" 
+                        + "\t=if(ISBLANK(M" + line + "),\"MISS\",if(countif($M$2:$M$1026,M" + line + ")<=1,\"\",\"DUP\"))"
                         + "\t" + CollectionUtilities.join(english.map.get(s), "; ")
                         + "\t" + annotationString
+                        + "\t" // fixed
                         + "\t" // comment
-                        + "\t\u00A0" // comment
+                        + "\t" + (line-1)
+                        + "\t\u00A0" // internal, for line spacing
+                        + "\t=if(not(ISBLANK(E" + line + ")),E" + line + ",D" + line + ")" // internal, for line spacing
                         );
             }
         }
