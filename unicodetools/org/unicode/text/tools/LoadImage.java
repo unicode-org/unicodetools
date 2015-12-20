@@ -144,10 +144,13 @@ public class LoadImage extends Component {
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
 
     public static void main(String[] args) throws IOException {
-
-        UnicodeSet u9 = new UnicodeSet("[\\U0001F93E\\U0001F57A\\U0001F5A4\\U0001F6D1\\U0001F6D2\\U0001F6F4-\\U0001F6F6\\U0001F919-\\U0001F91E\\U0001F920-\\U0001F927\\U0001F930\\U0001F933-\\U0001F93D\\U0001F940\\U0001F942-\\U0001F94B\\U0001F950-\\U0001F95E\\U0001F985-\\U0001F991]");
+        UnicodeSet u9 = new UnicodeSet(
+                "[[\\U0001F6D2\\U0001F6F6\\U0001F927\\U0001F938-\\U0001F93E\\U0001F941\\U0001F943-\\U0001F94B\\U0001F956-\\U0001F959\\U0001F98B-\\U0001F98F]"
+                        + "[\\U0001F95A-\\U0001F95E\\U0001F990\\U0001F991]]");
         generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 144, false); // "Symbola"
+
         if (true) return;
+        doAnimatedGif(false, 72, 250);
 
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
         //generatePngsFromFont(outputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"
@@ -170,10 +173,8 @@ public class LoadImage extends Component {
         doTwitter(inputDir, outputDir);
         doRef(inputDir, outputDir);
         writeCharSamples(true);
-        doAnimatedGif(false, 72);
         EmojiFlagOrder.getFlagOrder();
         TarotSuits.makeTest();
-        doAnimatedGif(false, 72);
         doGmail(outputDir);
         doKddi(outputDir);
         doDoCoMo(outputDir);
@@ -360,7 +361,7 @@ public class LoadImage extends Component {
         return result;
     }
 
-    public static void doAnimatedGif(boolean onlySize, int size, Emoji.Source... ordering) throws IOException {
+    public static void doAnimatedGif(boolean onlySize, int size, int milliGap, Emoji.Source... ordering) throws IOException {
         final File output = new File(outputDir, "animated-emoji.gif");
         System.out.println(output.getCanonicalPath());
         List<BufferedImage> list = new ArrayList<>();
@@ -374,7 +375,7 @@ public class LoadImage extends Component {
                 System.out.println(chars + "\t" + sourceImage.getWidth() + "\t" + sourceImage.getHeight());
                 if (onlySize) continue;
                 BufferedImage targetImage;
-                if (size == sourceImage.getHeight()) {
+                if (false && size == sourceImage.getHeight()) {
                     targetImage = sourceImage;
                 } else {
                     targetImage = resizeImage(sourceImage, size, size, Resizing.DEFAULT);
@@ -383,7 +384,7 @@ public class LoadImage extends Component {
             }
         }
         if (onlySize) return;
-        createAnimatedImage(output, list, 100, true);
+        createAnimatedImage(output, list, milliGap, true);
         System.out.println("Image created");
     }
 
