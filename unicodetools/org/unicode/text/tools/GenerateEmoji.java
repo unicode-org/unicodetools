@@ -1312,7 +1312,7 @@ public class GenerateEmoji {
                         + "The <a target='style' href='emoji-sequences.html#modifier_sequences'>320 modifier sequences</a> are omitted, "
                         + "because they are simply ordered after their emoji modifier bases. "
                         + (showUca ? "The cell divisions for the Default Unicode Collation Order are Unicode code-chart blocks. " : "")
-                        + "To make suggestions for improvements, please file a " + getCldrTicket("collation", "Emoji ordering uggestions") + "."
+                        + "To make suggestions for improvements, please file a " + getCldrTicket("collation", "Emoji ordering suggestions") + "."
                         , "border='1'", true);
 
         final Set<Entry<String, Set<String>>> keyValuesSet = EmojiOrder.STD_ORDER.orderingToCharacters.keyValuesSet();
@@ -3051,9 +3051,12 @@ public class GenerateEmoji {
     static final Splitter TAB = Splitter.on('\t');
     private static final UnicodeMap<String> EXTRA_NAMES = new UnicodeMap<>();
 
+    enum Quarter {Q1, Q2, Q3, Q4}
+    
     static void showCandidates() throws IOException {
         // gather data
         String currentRow = "";
+        UnicodeMap<Quarter> quartersForChars = new UnicodeMap<>();
         // The data file is designed to take the contents of the table, when pasted as plain text, and format it.
         List<String> output = new ArrayList<>();
         UnicodeSet items = new UnicodeSet();
@@ -3062,7 +3065,10 @@ public class GenerateEmoji {
                 output.add("<tr><th width='7em'>Code Point</th>"
                         + "<th width='5em'>Chart Glyph</th>"
                         + "<th width='5em'>Sample Colored Glyph</th>"
-                        + "<th>Name</th></tr>");
+                        + "<th>Q?</th>"
+                        + "<th>Name</th>"
+                        + "</tr>"
+                        );
                 continue;
             }
             if (line.startsWith("•")) { // annotation
@@ -3076,7 +3082,9 @@ public class GenerateEmoji {
             if (line.startsWith("U+")) { // data
                 List<String> parts = TAB.splitToList(line);
                 String source = Utility.fromHex(parts.get(0));
-                final String name = parts.get(3).trim();
+                final String quarter = parts.get(3).trim();
+                quartersForChars.put(source, Quarter.valueOf(quarter));
+                final String name = parts.get(4).trim();
                 EXTRA_NAMES.put(source, name);
                 String blackAndWhite = getImage(Source.proposed, source, true, "");
                 String color = getImage(Source.emojixpress, source, true, "");
@@ -3086,15 +3094,19 @@ public class GenerateEmoji {
                 currentRow = "<tr><td class='code'>" + getDoubleLink(Utility.hex(source).replace(" ", "_"), toUHex(source)) + "</td>"
                         + "<td class='andr'>" + blackAndWhite + "</td>"
                         + "<td class='andr'>" + color + "</td>"
+                        + "<td class='name'>" + quarter + "</td>"
                         + "<td class='name'>" + name;
                 items.add(source);
             } else { // must be category
                 line= line.trim();
-                output.add("<tr><th colspan='4'><a href='#" + line
+                output.add("<tr><th colspan='5'><a href='#" + line
                         + "' name='" + line
                         + "'>" + line
                         + "</a></th></tr>");
             }
+        }
+        for (Quarter q : quartersForChars.values()) {
+            System.out.println(q + "\t" + quartersForChars.getSet(q));
         }
         if (!currentRow.isEmpty()) {
             output.add(currentRow + "</tr>");
@@ -3106,14 +3118,15 @@ public class GenerateEmoji {
                     "<p>The Unicode Technical Committee (UTC) has accepted the following "
                             + items.size()
                             + " characters as candidates for emoji. "
-                            + "At the May 2016 UTC meeting, a final determination will be made for ones to be added to Unicode 9.0, "
+                            + "At the 2016Q2 UTC meeting, a final determination will be made for ones to be added to Unicode 9.0, "
                             + "for release in June 2016. For more information, see the <a href='#notes'>notes</a>.</p>"
                             + "<ul style='color:#CC0000'>\n"
                             + "<li>All of the images are <em>only</em> for illustration. "
                             + "<ul><li>Sample colored glyphs courtesy of Emojipedia.org and EmojiXpress.</li>"
                             + "<li>Sample chart glyphs courtesy of Adobe, Microsoft, and Apple.</li></ul></li>\n"
                             + "<li>Do <em>not</em> deploy any of these yet: they are not yet final! "
-                            + "Candidates may still be removed or their code point, glyph, or name changed.</li></ul>",
+                            + "Candidates may still be removed or their code point, glyph, or name changed.</li>"
+                            + "</ul>",
                             "border='1'", false);
             for (String outputLine : output) {
                 out.println(outputLine);
@@ -3134,7 +3147,9 @@ public class GenerateEmoji {
                     + "variety of different styles to illustrate some possible "
                     + "presentations. However, the actual presentations on phones and "
                     + "other devices are up to vendors, subject to the considerations in " + UTR_LINK
-                    + ".</li></ul>"
+                    + ".</li>"
+                    + "<li>The <b>Q?</b> column indicates the 2015 UTC meeting where each was accepted as a candidate.</li>"
+                    + "</ul>"
                     + "<p>For more information, see <a target='_blank' href='index.html'>Unicode Emoji</a> "
                     + "and the <a target='_blank' href='http://www.unicode.org/faq/emoji_dingbats.html'>Emoji FAQ</a>.</p>\n"
                     );
