@@ -66,8 +66,13 @@ public class EmojiOrder {
     public final Comparator<String>        codepointCompare;
 
     public EmojiOrder(String file) {
-        mp  = new MapComparator<String>().setErrorOnMissing(false);
+        mp  = new MapComparator<String>()
+                .setErrorOnMissing(false)
+                .setSortBeforeOthers(false)
+                .setDoFallback(false)
+                ;
         orderingToCharacters            = getOrdering(file, mp);
+        mp.freeze();
         codepointCompare           =
                 new MultiComparator<String>(
                         mp,
@@ -271,7 +276,7 @@ public class EmojiOrder {
                     needRelation = true;
                     lastGroup = group;
                 }
-                boolean multiCodePoint = UTF16.countCodePoint(s) > 1;
+                boolean multiCodePoint = s.codePointCount(0, s.length()) > 1;
                 if (isFirst) {
                     if (multiCodePoint) {
                         throw new IllegalArgumentException("Cannot have first item with > 1 codepoint: " + s);
