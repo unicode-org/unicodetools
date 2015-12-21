@@ -2983,8 +2983,8 @@ public class GenerateEmoji {
                         : browserCell
                         + symbolaCell
                         + appleCell
-                        + emojioneCell
                         + androidCell
+                        + emojioneCell
                         + (extraPlatforms ? samsungCell : "")
                         + twitterCell
                         + windowsCell
@@ -3025,8 +3025,8 @@ public class GenerateEmoji {
                     "<th class='cchars'>Brow.</th>\n"
                     + "<th class='cchars'>Chart</th>\n"
                     + "<th class='cchars'>Apple</th>\n"
-                    + "<th class='cchars'>Emoj1</th>\n"
                     + "<th class='cchars'>Goog.</th>\n"
+                    + "<th class='cchars'>One</th>\n"
                     + (extraPlatforms ? "<th class='cchars'>Sams.</th>\n" : "")
                     + "<th class='cchars'>Twtr.</th>\n"
                     + "<th class='cchars'>Wind.</th>\n"
