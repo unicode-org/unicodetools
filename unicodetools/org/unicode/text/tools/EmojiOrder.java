@@ -27,6 +27,8 @@ import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.Collator;
+import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
@@ -68,7 +70,7 @@ public class EmojiOrder {
     public EmojiOrder(String file) {
         mp  = new MapComparator<String>()
                 .setErrorOnMissing(false)
-                .setSortBeforeOthers(false)
+                .setSortBeforeOthers(true)
                 .setDoFallback(false)
                 ;
         orderingToCharacters            = getOrdering(file, mp);
@@ -149,13 +151,30 @@ public class EmojiOrder {
         charactersToOrdering.put(string, lastLabel.value.iterator().next());
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        checkRBC();
         //LinkedHashSet<String> foo = Emoji.FLAGS.addAllTo(new LinkedHashSet());
         //System.out.println(CollectionUtilities.join(foo, " "));
         showOrderGroups();
         //        showOrder();
         //        STD_ORDER.show();
         //        ALT_ORDER.show();
+    }
+
+    private static void checkRBC() throws Exception {
+        UnicodeSet APPLE_COMBOS = emojiData.getZwjSequencesNormal();
+        UnicodeSet APPLE_COMBOS_WITHOUT_VS = emojiData.getZwjSequencesAll();
+
+        String rules = EmojiOrder.STD_ORDER.appendCollationRules(new StringBuilder(), 
+                new UnicodeSet(emojiData.getChars()).removeAll(Emoji.DEFECTIVE), 
+                APPLE_COMBOS, 
+                APPLE_COMBOS_WITHOUT_VS)
+                .toString();
+        final RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
+        ruleBasedCollator.setStrength(Collator.IDENTICAL);
+        ruleBasedCollator.freeze();
+        Comparator<String> EMOJI_COMPARATOR = (Comparator<String>) (Comparator) ruleBasedCollator;
+        int x = EMOJI_COMPARATOR.compare("#️⃣","☺️");
     }
 
     private static void showOrderGroups() {
