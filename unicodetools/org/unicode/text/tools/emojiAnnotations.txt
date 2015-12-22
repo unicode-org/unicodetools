@@ -983,7 +983,7 @@ candelabrum, candlestick, menorah	🕎
 12:30	🕧
 candle	🕯
 business	🕴
-sleuth, spy	🕵
+sleuth, spy, detective	🕵
 web	🕸
 joystick	🕹
 ballpoint	🖊

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,10 +16,13 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.CountryCodeConverter;
 
+import com.google.common.base.Splitter;
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 
 public class EmojiAnnotations extends Birelation<String,String> {
+    static final Splitter TAB = Splitter.on("\t").trimResults();
 
     private static final boolean SHOW = false;
 
@@ -49,7 +53,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
             int lineCount = 0;
             int lineNumber = 0;
             EmojiIterator ei = new EmojiIterator(EmojiData.of(Emoji.VERSION_LAST_RELEASED), true);
-            
+
             for (String line : FileUtilities.in(EmojiAnnotations.class, filename)) {
                 line = line.trim();
                 lineNumber++;
@@ -154,14 +158,65 @@ public class EmojiAnnotations extends Birelation<String,String> {
             UnicodeSet missing = new UnicodeSet().addAll(Emoji.EMOJI_CHARS).removeAll(annotationCharacters);
             throw new IllegalArgumentException("Missing annotations: " + missing.toPattern(false));
         }
+
+    }
+
+    static final UnicodeMap<String> TTS = new UnicodeMap<>();
+    static {
+        for (String line : FileUtilities.in(GenerateOtherAnnotations.class, "en-tts.tsv")) {
+            if (line.startsWith("#") || line.isEmpty()) continue;
+            List<String> list = TAB.splitToList(line);
+            String source = org.unicode.text.utility.Utility.fromHex(list.get(0));
+            TTS.put(source, list.get(1));
+        }
+        TTS.freeze();
     }
     
     final Map<String,UnicodeSet> TO_UNICODE_SET;
-    
+
+    static final Set<String> GROUP_ANNOTATIONS = new HashSet<>(Arrays.asList(
+            "default-text-style",
+            "fitz-primary",
+            "fitz-secondary",
+            "nature",
+            "nature-android",
+            "nature-apple",
+            "object",
+            "object-android",
+            "object-apple",
+            "person",
+            "person-android",
+            "person-apple",
+            "place",
+            "place-android",
+            "place-apple",
+            "symbol",
+            "symbol-android",
+            "symbol-apple",
+            "other-android",
+            "flag",
+            "other",
+            "travel",
+            "office",
+            "animal",
+            "sign",
+            "word",
+            "time",
+            "food",
+            "entertainment",
+            "activity",
+            "restaurant",
+            "sound",
+            "sport",
+            "emotion",
+            "communication",
+            "education"
+            ));
+
     public UnicodeSet getUnicodeSet(String annotation) {
         return TO_UNICODE_SET.get(annotation);
     }
-    
+
     public Set<Entry<String, UnicodeSet>> getStringUnicodeSetEntries() {
         return TO_UNICODE_SET.entrySet();
     }
