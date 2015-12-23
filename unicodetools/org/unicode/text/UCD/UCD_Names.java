@@ -160,35 +160,7 @@ public final class UCD_Names implements UCD_Types {
         "PatSyn"
     };
 
-    /*
-    static final String[] BP_OLD = {
-	    "BidiMirrored",
-	    "CompositionExclusion",
-        "White_space",
-        "Non_break",
-	    "Bidi_Control",
-        "Join_Control",
-        "Dash",
-        "Hyphen",
-        "Quotation_Mark",
-        "Terminal_Punctuation",
-        "Math",
-        "Hex_Digit",
-	    "Other_Alphabetic",
-        "Ideographic",
-        "Diacritic",
-        "Extender",
-        "Other_Lowercase",
-        "Other_Uppercase",
-        "Noncharacter_Code_Point",
-        "Other_GraphemeExtend",
-        "GraphemeLink",
-        "IDS_BinaryOperator",
-        "IDS_TrinaryOperator",
-        "Radical",
-        "UnifiedIdeograph"
-    };
-     */
+    public static final int BINARY_UNIFIED_IDEOGRAPH = Utility.lookup("Unified_Ideograph", BP, true);
 
     static final String[] DeletedProperties = {
         "Private_Use",

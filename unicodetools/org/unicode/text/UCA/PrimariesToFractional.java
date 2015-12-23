@@ -1,6 +1,8 @@
 package org.unicode.text.UCA;
 
 import java.util.BitSet;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD_Types;
@@ -40,13 +42,19 @@ public final class PrimariesToFractional {
     /** Maps UCA primaries to PrimaryToFractional objects. */
     private PrimaryToFractional[] primaryProps;
     // Put special properties into slots not used for UCA primaries.
-    private static final int HAN_INDEX = 1;
-    private static final int FFFD_INDEX = 2;
-    // vate static final int FFFE_INDEX = 3;
-    private static final int FFFF_INDEX = 4;
+    private static final int IMPLICIT_RANGES_INDEX = 0x10;
+    private static final int HAN_INDEX = 0x50;
+    private static final int FFFD_INDEX = 0x62;
+    // vate static final int FFFE_INDEX = 0x63;
+    private static final int FFFF_INDEX = 0x64;
+
+    static {
+        assert (HAN_INDEX - IMPLICIT_RANGES_INDEX) >= (Implicit.CJK_BASE - Implicit.RANGES_BASE);
+    }
 
     private static final class ScriptOptions {
         final int reorderCode;
+        Implicit.Range implicitRange;
 
         boolean beginsByte;
         boolean endsByte;
@@ -60,6 +68,7 @@ public final class PrimariesToFractional {
         boolean defaultTwoBytePrimaries;
         boolean defaultTwoBytePunctuation;
         boolean twoBytesIfVariants = true;
+        boolean useMinimalGap3;
 
         /** First UCA primary weight for this script. */
         int firstPrimary;
@@ -114,6 +123,10 @@ public final class PrimariesToFractional {
             defaultTwoBytePunctuation = false;
             return this;
         }
+        ScriptOptions minimalGap3() {
+            useMinimalGap3 = true;
+            return this;
+        }
     }
 
     /**
@@ -132,6 +145,12 @@ public final class PrimariesToFractional {
         private boolean useThreeBytePrimary;
 
         private int fractionalPrimary;
+        /**
+         * Stores fractional primaries for a siniform ideographic range, otherwise null.
+         * Offset by options.implicitRange.startCP. 0 for unassigned code points.
+         */
+        private int[] rangePrimaries;
+
         /**
          * FractionalUCA sets neutralSec and neutralTer to the sec/ter values
          * when secTerToFractional==null and both values are either 0 or neutral.
@@ -201,6 +220,10 @@ public final class PrimariesToFractional {
             return fractionalPrimary;
         }
 
+        public int getSiniformRangeFractionalPrimary(int c) {
+            return rangePrimaries[c - options.implicitRange.startCP];
+        }
+
         /**
          * @return the script-first fractional primary of the reserved range before
          * this primary's script, or 0 if there is none
@@ -266,6 +289,7 @@ public final class PrimariesToFractional {
 
         private int minByte2 = MIN2_UNCOMPRESSED;
         private int maxByte2 = MAX2_UNCOMPRESSED;
+        private int gap3 = GAP3;
 
         // We start the first reordering group at byte1 = 3.
         // The simplest is to initialize byte1 = 1 so that the tailoring gap naturally
@@ -298,7 +322,7 @@ public final class PrimariesToFractional {
                 inc1 = byte2 < maxByte2 ? 1 : 2;
             } else /* lastByteLength == 3 */ {
                 // At least a normal three-byte gap.
-                inc1 = byte2 < maxByte2 || (byte3 + GAP3) <= 0xff ? 1 : 2;
+                inc1 = byte2 < maxByte2 || (byte3 + gap3) <= 0xff ? 1 : 2;
             }
             if(inc1 != 1 && compressibleLeadByte) {
                 ++numErrors;
@@ -318,7 +342,8 @@ public final class PrimariesToFractional {
 
             compressibleLeadByte = options.compressible;
             minByte2 = newMinByte2;
-            maxByte2 = compressibleLeadByte ? MAX2_COMPRESSED : MAX2_UNCOMPRESSED;;
+            maxByte2 = compressibleLeadByte ? MAX2_COMPRESSED : MAX2_UNCOMPRESSED;
+            gap3 = options.useMinimalGap3 ? 1 : GAP3;
             lastByteLength = 3;
             return options.scriptFirstFractional = getIntValue();
         }
@@ -341,13 +366,14 @@ public final class PrimariesToFractional {
                 addTo2(2);
             } else /* lastByteLength == 3 */ {
                 // At least a normal three-byte gap.
-                addTo2((byte3 + GAP3) <= 0xff ? 1 : 2);
+                addTo2((byte3 + gap3) <= 0xff ? 1 : 2);
             }
             // FractionalUCA has groups and scripts starting at least on two-byte boundaries.
             byte3 = MIN_BYTE;
 
             check(oByte1, oByte2, 3, false);
 
+            gap3 = options.useMinimalGap3 ? 1 : GAP3;
             lastByteLength = 3;
             return options.scriptFirstFractional = getIntValue();
         }
@@ -408,7 +434,7 @@ public final class PrimariesToFractional {
                     break;
                 case 3:
                     // Normal three-byte gap.
-                    addTo3(GAP3 + 1);
+                    addTo3(gap3 + 1);
                     break;
                 }
                 break;
@@ -508,6 +534,29 @@ public final class PrimariesToFractional {
         }
     }
 
+    private class SiniformRangeIterator implements Iterator<PrimaryToFractional> {
+        private int rangeIndex = IMPLICIT_RANGES_INDEX;
+
+        @Override
+        public boolean hasNext() {
+            while (rangeIndex < HAN_INDEX) {
+                if (primaryProps[rangeIndex] != null) {
+                    return true;
+                }
+                ++rangeIndex;
+            }
+            return false;
+        }
+
+        @Override
+        public PrimaryToFractional next() {
+            if (hasNext()) {
+                return primaryProps[rangeIndex++];
+            }
+            throw new NoSuchElementException();
+        }
+    }
+
     /**
      * This constructor just performs basic initialization.
      * You must call {@link PrimariesToFractional#assignFractionalPrimaries(StringBuilder)}
@@ -567,7 +616,7 @@ public final class PrimariesToFractional {
         setOptionsForReservedRangeBeforeScript(
                 ReorderCodes.REORDER_RESERVED_BEFORE_LATIN, UCD_Types.LATIN_SCRIPT)
                 .wholeByte().notCompressible();
-        // Latin uses multiple bytes, with single-byte primaries for A-Z.
+        // Latin uses multiple lead bytes, with single-byte primaries for A-Z.
         setOptionsForScript(UCD_Types.LATIN_SCRIPT).wholeByte().notCompressible().twoBytePrimaries();
         setOptionsForReservedRangeBeforeScript(
                 ReorderCodes.REORDER_RESERVED_AFTER_LATIN, UCD_Types.GREEK_SCRIPT)
@@ -576,7 +625,7 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.GREEK_SCRIPT).newByte().twoBytePrimaries();
         // Not a Recommended Script but cased, and easily fits into the same lead byte as Greek.
         setOptionsForScript(UCD_Types.COPTIC).twoBytePrimaries().threeBytePunctuation();
-        // Cyrillic uses one byte, with two-byte primaries for common characters.
+        // Cyrillic uses one lead byte, with two-byte primaries for common characters.
         setOptionsForScript(UCD_Types.CYRILLIC_SCRIPT).wholeByte()
                 .noTwoBytePrimariesIfVariants().twoBytePunctuation();
         // Recommended Script, and cased; avoid lead byte overflow.
@@ -585,7 +634,7 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.ARMENIAN_SCRIPT).newByte().twoBytePrimaries();
         // Recommended Script, few primaries, with active computer/internet usage.
         setOptionsForScript(UCD_Types.HEBREW_SCRIPT).newByte().twoBytePrimaries();
-        // Arabic uses one byte, with two-byte primaries for common characters.
+        // Arabic uses one lead byte, with two-byte primaries for common characters.
         setOptionsForScript(UCD_Types.ARABIC_SCRIPT).wholeByte()
                 .noTwoBytePrimariesIfVariants().twoBytePunctuation();
         // Recommended Script, few primaries.
@@ -623,14 +672,17 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.KHMER_SCRIPT).twoBytePrimaries();
         // Aspirational Use Script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.MONGOLIAN_SCRIPT).newByte();
+        // Limited Use Script, but "extinct" (no native speakers since 2005)
+        // according to Wikipedia 2015. Language revitalization with very few speakers.
+        setOptionsForScript(UCD_Types.Osage).noTwoBytePrimariesIfVariants();
         // Ancient script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.RUNIC_SCRIPT).newByte();
         // Limited Use Script, avoid lead byte overflow.
         setOptionsForScript(UCD_Types.Vai).newByte();
-        // Hangul uses one byte, with two-byte primaries for conjoining Jamo L/V/T.
+        // Hangul uses one lead byte, with two-byte primaries for conjoining Jamo L/V/T.
         setOptionsForScript(UCD_Types.HANGUL_SCRIPT).wholeByte()
                 .noTwoBytePrimariesIfVariants().twoBytePunctuation();
-        // Kana uses one byte.
+        // Kana uses one lead byte.
         setOptionsForScripts(
                 UCD_Types.HIRAGANA_SCRIPT, UCD_Types.KATAKANA_SCRIPT, UCD_Types.KATAKANA_OR_HIRAGANA)
                 .wholeByte().twoBytePrimaries();
@@ -640,7 +692,9 @@ public final class PrimariesToFractional {
         setOptionsForScript(UCD_Types.DESERET_SCRIPT).newByte();
         // Register the scripts as aliases, avoid lead byte overflow.
         setOptionsForScripts(UCD_Types.Meroitic_Cursive, UCD_Types.Meroitic_Hieroglyphs).newByte();
-        // Han uses many bytes, so that tailoring tens of thousands of characters
+        // Larged Excluded Script, minimal gaps.
+        setOptionsForScripts(UCD_Types.Tangut).minimalGap3();
+        // Han uses many lead bytes, so that tailoring tens of thousands of characters
         // can use many two-byte primaries.
         setOptionsForScript(UCD_Types.HAN_SCRIPT).wholeByte().notCompressible().twoBytePunctuation();
 
@@ -702,16 +756,38 @@ public final class PrimariesToFractional {
         boolean previousGroupIsCompressible = false;
         int numPrimaries = 0;
 
-        // Start at 1 so zero stays zero.
-        for (final UCA.Primary up : uca.getRegularPrimaries()) {
-            final int primary = up.primary;
+        // Iterate over regular primaries (excluding 0 so that it maps to itself),
+        // and then over siniform ideographic ranges.
+        final Iterator<UCA.Primary> regularPrimaries = uca.getRegularPrimaries().iterator();
+        final Iterator<PrimaryToFractional> siniformRanges = getSiniformRanges().iterator();
+
+        for (;;) {
+            int primary;
+            int nextPrimary;
+            int representativeCP;
+            PrimaryToFractional props;
+            Implicit.Range implicitRange = null;
+            if (regularPrimaries.hasNext()) {
+                UCA.Primary up = regularPrimaries.next();
+                primary = up.primary;
+                nextPrimary = up.nextPrimary;
+                representativeCP = Character.codePointAt(up.getRepresentative(), 0);
+                props = getOrCreateProps(primary);
+            } else if (siniformRanges.hasNext()) {
+                props = siniformRanges.next();
+                implicitRange = props.options.implicitRange;
+                primary = implicitRange.leadPrimary;
+                nextPrimary = -1;
+                representativeCP = implicitRange.firstCP;
+            } else {
+                break;
+            }
 
             // We need a fractional primary weight for this item.
             // We base it on the last value, and whether we have a 1, 2, or 3-byte weight.
             // If we change lengths, then we have to change the initial segment.
             // We change the first byte as determined before.
 
-            final PrimaryToFractional props = getOrCreateProps(primary);
             if (props.isFirstForScript(primary)) {
                 System.out.println("last weight: " + fractionalPrimary.toString());
 
@@ -722,10 +798,10 @@ public final class PrimariesToFractional {
                 // one or more whole lead bytes must still be moved by a whole-byte offset
                 // (to keep sort key bytes valid and compressible),
                 // and so different parts of the original lead byte
-                // map to different target bytes.
-                // Each time a lead byte is split a reserved byte must be used up.
+                // map to different target lead bytes.
+                // Each time a lead byte is split a reserved lead byte must be used up.
                 //
-                // We reserve bytes before and after Latin so that typical reorderings
+                // We reserve lead bytes before and after Latin so that typical reorderings
                 // can move small scripts there without moving any other scripts.
                 ScriptOptions options = props.options.reservedBefore;
                 if (options != null) {
@@ -804,7 +880,7 @@ public final class PrimariesToFractional {
             }
 
             int currentByteLength = props.getFractionalLength();
-            if (currentByteLength == 3 && fractionalPrimary.lastByteLength <= 2) {
+            if (currentByteLength == 3 && fractionalPrimary.lastByteLength <= 2 && nextPrimary >= 0) {
                 // We slightly optimize the assignment of primary weights:
                 // If a 3-byte primary is surrounded by one-or-two-byte primaries,
                 // then we can shorten the middle one to two bytes as well,
@@ -826,9 +902,8 @@ public final class PrimariesToFractional {
                 //
                 // We do not want to auto-shorten just before the first-script primary weights
                 // because that could increase the gap in between.
-                final int nextPrimary = up.nextPrimary;
                 final PrimaryToFractional nextProps = getProps(nextPrimary);
-                if (0 <= nextPrimary && nextPrimary < UCA_Types.UNSUPPORTED_BASE &&
+                if (nextPrimary < Implicit.START &&
                         nextProps != null && nextProps.getFractionalLength() <= 2 &&
                         !nextProps.isFirstForScript(nextPrimary)) {
                     currentByteLength = 2;
@@ -847,7 +922,20 @@ public final class PrimariesToFractional {
                         currentByteLength
                         + ", " + old
                         + " => " + fractionalPrimary.toString()
-                        + "\t" + Utility.hex(Character.codePointAt(up.getRepresentative(), 0)));
+                        + "\t" + Utility.hex(representativeCP));
+            }
+
+            if (implicitRange != null) {
+                // We only computed the first fractional primary.
+                // Now compute and store the remaining ones.
+                props.rangePrimaries = new int[implicitRange.endCP - implicitRange.startCP + 1];
+                props.rangePrimaries[implicitRange.firstCP - implicitRange.startCP] = props.fractionalPrimary;
+                UnicodeSetIterator iter = new UnicodeSetIterator(implicitRange.set);
+                iter.next();  // Skip the first code point.
+                while (iter.next()) {
+                    props.rangePrimaries[iter.codepoint - implicitRange.startCP] = fractionalPrimary.next(currentByteLength);
+                    ++numPrimaries;
+                }
             }
         }
         System.out.println("last fractional primary weight: " + fractionalPrimary.toString());
@@ -894,6 +982,14 @@ public final class PrimariesToFractional {
         return this;
     }
 
+    Iterable<PrimaryToFractional> getSiniformRanges() {
+        return new Iterable<PrimaryToFractional>() {
+            @Override
+            public Iterator<PrimaryToFractional> iterator() {
+                return new SiniformRangeIterator();
+            }
+        };
+    }
     private static void appendTopByteInfo(StringBuilder topByteInfo, boolean compress,
             int b, int limit, CharSequence groupInfo, int count) {
         final boolean canCompress = (limit - b) == 1;
@@ -937,25 +1033,32 @@ public final class PrimariesToFractional {
     }
 
     private static int pinPrimary(int ucaPrimary) {
-        if (HAN_INDEX <= ucaPrimary && ucaPrimary <= FFFF_INDEX) {
+        if (IMPLICIT_RANGES_INDEX <= ucaPrimary && ucaPrimary <= FFFF_INDEX) {
             throw new IllegalArgumentException(
-                    "no properties for UCA primary used internally: " + ucaPrimary);
+                    "no properties for UCA primary used internally: " + Utility.hex(ucaPrimary));
         }
-        if (ucaPrimary < UCA_Types.UNSUPPORTED_BASE) {
+        if (ucaPrimary < Implicit.RANGES_BASE) {
+            // regular primary
             return ucaPrimary;
         }
-        if (ucaPrimary < UCA_Types.UNSUPPORTED_OTHER_BASE) {
+        if (ucaPrimary < Implicit.CJK_BASE) {
+            // one special index per siniform ideographic range
+            return IMPLICIT_RANGES_INDEX + (ucaPrimary - Implicit.RANGES_BASE);
+        }
+        if (ucaPrimary < Implicit.UNASSIGNED_BASE) {
             return HAN_INDEX;
         }
         if (0xfffd <= ucaPrimary && ucaPrimary <= 0xffff) {
             return FFFD_INDEX + ucaPrimary - 0xfffd;
         }
-        throw new IllegalArgumentException("no properties for unassigned UCA primary " + ucaPrimary);
+        throw new IllegalArgumentException(
+                "no properties for unassigned or trailing UCA primary " + Utility.hex(ucaPrimary));
     }
 
     /**
      * Returns the properties for the UCA primary weight.
-     * Returns the same object for all Han UCA primary lead weights.
+     * Returns the same object for all primary lead weights for each
+     * UCA implicit-weights range (only one for Han).
      * Returns null if there are no data for this primary.
      */
     public PrimaryToFractional getProps(int ucaPrimary) {
@@ -1062,9 +1165,20 @@ public final class PrimariesToFractional {
         }
         System.out.println("Last UCA primary:     \t" + Utility.hex(uca.getLastRegularPrimary()));
 
-        PrimaryToFractional hanProps = getOrCreateProps(UCA_Types.UNSUPPORTED_CJK_BASE);
+        // Iterate over siniform ideographic ranges, start scripts.
+        for (Implicit.Range r : uca.implicit.ranges) {
+            short script = Fractional.getFixedScript(r.firstCP);
+            assert script != UCD_Types.COMMON_SCRIPT && script != UCD_Types.INHERITED_SCRIPT &&
+                    script != UCD_Types.Unknown_Script;
+            PrimaryToFractional props = getOrCreateProps(r.leadPrimary);
+            props.options = getOrCreateOptionsForScript(script);
+            props.options.firstPrimary = r.leadPrimary;
+            props.options.implicitRange = r;
+        }
+
+        PrimaryToFractional hanProps = getOrCreateProps(Implicit.CJK_BASE);
         hanProps.options = getOptionsForScript(UCD_Types.HAN_SCRIPT);
-        hanProps.options.firstPrimary = UCA_Types.UNSUPPORTED_CJK_BASE;
+        hanProps.options.firstPrimary = Implicit.CJK_BASE;
         hanProps.newByte = true;
 
         final char[][] singlePairs = {
@@ -1130,7 +1244,7 @@ public final class PrimariesToFractional {
         final CEList ces = uca.getCEList(UTF16.valueOf(ch), true);
         if (ces != null && ces.length() != 0) {
             final int firstPrimary = CEList.getPrimary(ces.at(0));
-            if (minPrimary <= firstPrimary && firstPrimary < UCA_Types.UNSUPPORTED_BASE) {
+            if (minPrimary <= firstPrimary && firstPrimary < Implicit.CJK_BASE) {
                 // non-Han letter
                 getOrCreateProps(firstPrimary).useTwoBytePrimary = true;
             }

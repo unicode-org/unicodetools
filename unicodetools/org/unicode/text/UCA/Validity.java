@@ -483,22 +483,24 @@ final class Validity {
 
         log.println("<h2>5b. Checking that Unassigned characters have implicit weights</h2>");
         final ToolUnicodePropertySource ups = getToolUnicodeSource();
-        final UnicodeSet di = ups.getSet("gc=cn");
+        final UnicodeSet unassignedSet = ups.getSet("gc=cn");
         final UnicodeSet bad = new UnicodeSet();
-        final int[] output = new int[2];
 
         // the invariants are that there must be exactly 2 ces; the ces will
         // match codepointToImplicit
-        for (final String diChar : di) {
-            final CEList ceList = uca.getCEList(diChar, true);
+        for (final String unassigned : unassignedSet) {
+            final CEList ceList = uca.getCEList(unassigned, true);
             if (ceList.length() != 2) {
-                bad.add(diChar);
+                bad.add(unassigned);
             } else {
-                UCA.UnassignedToImplicit(diChar.codePointAt(0), output);
+                int c = unassigned.codePointAt(0);
+                int implicitPair = uca.implicit.primaryPairForCodePoint(c);
                 final int ce0 = ceList.at(0);
                 final int ce1 = ceList.at(1);
-                if (CEList.getPrimary(ce0) != output[0] || CEList.getPrimary(ce1) != output[1]) {
-                    bad.add(diChar);
+                if (CEList.getPrimary(ce0) != (implicitPair >>> 16) ||
+                        CEList.getPrimary(ce1) != (implicitPair & 0xFFFF) ||
+                        (implicitPair >>> 16) < Implicit.UNASSIGNED_BASE) {
+                    bad.add(unassigned);
                 }
             }
         }
@@ -722,14 +724,13 @@ final class Validity {
                 // IF we are at the start of an implicit, then just check that
                 // the implicit is in range
                 // CHECK implicit
-                if (UCA.isImplicitLeadPrimary(lastPrimary)) {
+                if (Implicit.isImplicitLeadPrimary(lastPrimary)) {
                     try {
                         if (s != 0 || t != 0) {
                             throw new Exception("Second implicit must be [X,0,0]");
                         }
-                        UCA.ImplicitToCodePoint(lastPrimary, p); // throws
-                        // exception
-                        // if bad
+                        // throws exception if bad
+                        uca.implicit.codePointForPrimaryPair(lastPrimary, p);
                     } catch (final Exception e) {
                         log.println("<tr><td>" + (++errorCount) + ". BAD IMPLICIT: " + e.getMessage()
                                 + "</td><td>" + ces
@@ -743,8 +744,8 @@ final class Validity {
 
                 // IF we are in the trailing range, something is wrong.
                 // UCA 6.3+ sets aside primary weights FFFD..FFFF as specials, so those are ok.
-                // See http://www.unicode.org/draft/reports/tr10/tr10.html#Trailing_Weights
-                if (UCA_Types.UNSUPPORTED_LIMIT <= p && p < 0xfffd) {
+                // See http://www.unicode.org/reports/tr10/#Trailing_Weights
+                if (Implicit.LIMIT <= p && p < 0xfffd) {
                     log.println("<tr><td>" + (++errorCount) + ". Unexpected trailing-weight primary"
                             + "</td><td>" + ces
                             + "</td><td>" + Default.ucd().getCodeAndName(str) + "</td></tr>");

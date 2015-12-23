@@ -736,10 +736,11 @@ public class FractionalUCA {
                 if (q != 0) {
                     props = ps2f.getProps(pri);
                 }
-                final int np = props.getFractionalPrimary();
+                int np = props.getFractionalPrimary();
+                int implicitCodePoint = -1;
 
-                // special treatment for unsupported!
-                if (UCA.isImplicitLeadPrimary(pri)) {
+                // special treatment for implicit weights
+                if (Implicit.isImplicitLeadPrimary(pri)) {
                     if (DEBUG) {
                         System.out.println("DEBUG: " + ces
                                 + ", Current: " + q + ", " + Default.ucd().getCodeAndName(chr));
@@ -747,19 +748,22 @@ public class FractionalUCA {
                     ++q;
 
                     final int pri2 = CEList.getPrimary(ces.at(q));
-                    final int implicitCodePoint = UCA.ImplicitToCodePoint(pri, pri2);
+                    implicitCodePoint = uca.implicit.codePointForPrimaryPair(pri, pri2);
                     if (DEBUG) {
-                        System.out.println("Computing Unsupported CP as: "
+                        System.out.println("Implicit weight to code point: "
                                 + Utility.hex(pri)
                                 + ", " + Utility.hex(pri2)
                                 + " => " + Utility.hex(implicitCodePoint));
                     }
 
-                    final int secTer = getFractionalSecAndTer(props, sec, ter);
-                    final int ns = secTer >>> 16;
-                    final int nt = secTer & 0xffff;
-
-                    fractionalStatistics.printAndRecordCodePoint(false, chr, implicitCodePoint, ns, nt, null);
+                    if (pri < Implicit.CJK_BASE) {
+                        // siniform ideograph:
+                        // There is only one props object for the whole range.
+                        // Look up the fractional primary for the specific code point and
+                        // continue like for regular primaries.
+                        np = props.getSiniformRangeFractionalPrimary(implicitCodePoint);
+                        implicitCodePoint = -1;
+                    }
                 } else {
                     // pri is a non-implicit UCA primary.
                     if (isFirst) { // only look at first one
@@ -777,11 +781,16 @@ public class FractionalUCA {
                             fractBackMap.put(key, new Pair(ces.length(), chr));
                         }
                     }
+                }
 
-                    final int secTer = getFractionalSecAndTer(props, sec, ter);
-                    final int ns = secTer >>> 16;
-                    final int nt = secTer & 0xffff;
+                final int secTer = getFractionalSecAndTer(props, sec, ter);
+                final int ns = secTer >>> 16;
+                final int nt = secTer & 0xffff;
 
+                if (implicitCodePoint >= 0) {
+                    // Han implicit or unassigned implicit
+                    fractionalStatistics.printAndRecordCodePoint(false, chr, implicitCodePoint, ns, nt, null);
+                } else {
                     // TODO: add the prefix to the stats?
                     fractionalStatistics.printAndRecord(false, chr, np, ns, nt, null);
 
@@ -805,12 +814,12 @@ public class FractionalUCA {
                     } else if (getCollator().isVariable(ce)) {
                         firstVariable.setValue(np, ns, nt, chr);
                         lastVariable.setValue(np, ns, nt, chr);
-                    } else if (pri > UCA_Types.UNSUPPORTED_LIMIT) {        // Trailing (none currently)
+                    } else if (pri >= Implicit.LIMIT) {  // Trailing (none currently)
                         System.out.println("Trailing: "
                                 + Default.ucd().getCodeAndName(chr) + ", "
                                 + CEList.toString(ce) + ", "
                                 + Utility.hex(pri) + ", "
-                                + Utility.hex(UCA_Types.UNSUPPORTED_LIMIT));
+                                + Utility.hex(Implicit.LIMIT));
                         firstTrailing.setValue(np, ns, nt, chr);
                         lastTrailing.setValue(np, ns, nt, chr);
                     } else {
@@ -1102,7 +1111,7 @@ public class FractionalUCA {
                     }
                     st2f.addUCASecondaryAndTertiary(sec, ter);
                 }
-                if (UCA.isImplicitLeadPrimary(pri)) {
+                if (Implicit.isImplicitLeadPrimary(pri)) {
                     // Skip trailing implicit-weight CEs. See http://www.unicode.org/reports/tr10/#Implicit_Weights
                     ++i;
                 }

@@ -184,6 +184,15 @@ public final class MappingsForFractionalUCA {
             ordered.add(new MappingWithSortKey(uca, s, ucac.getCEs()));
         }
 
+        // Add all mappings for siniform ideographic ranges.
+        // There should not be any decomposable characters.
+        for (Implicit.Range r : uca.implicit.ranges) {
+            for (String s : r.set) {
+                int c = s.codePointAt(0);
+                ordered.add(new MappingWithSortKey(uca, s, uca.getCEListForImplicit(c)));
+            }
+        }
+
         // Add canonically equivalent characters!!
         System.out.println("Start Adding canonical Equivalents2");
         int canCount = 0;

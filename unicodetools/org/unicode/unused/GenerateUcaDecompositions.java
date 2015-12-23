@@ -213,7 +213,8 @@ public class GenerateUcaDecompositions {
             int correspondingCharacter;
             if (UCA.isImplicitLeadCE(ce)) {
                 final int ce2 = ceList.at(++i);
-                correspondingCharacter = UCA.ImplicitToCodePoint(UCA.getPrimary(ce), UCA.getPrimary(ce2));
+                correspondingCharacter = uca.implicit.codePointForPrimaryPair(
+                        UCA.getPrimary(ce), UCA.getPrimary(ce2));
             } else {
                 correspondingCharacter = getCorresponding(cp, ce);
             }

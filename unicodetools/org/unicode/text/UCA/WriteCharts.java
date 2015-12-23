@@ -138,7 +138,7 @@ public class WriteCharts implements UCD_Types {
             final String sortKey = (String) p.first;
             final String s = (String) p.second;
 
-            final int cp = UTF16.charAt(s,0);
+            final int cp = s.codePointAt(0);
 
             short script = Default.ucd().getScript(cp);
             if (cp == 0x1DBF)
@@ -164,11 +164,11 @@ public class WriteCharts implements UCD_Types {
                 script = CURRENCY;
             } else if (primary < high) {
                 script = DIGIT;
-            } else if (UCA.isImplicitLeadPrimary(primary)) {
-                if (primary < UCA_Types.UNSUPPORTED_CJK_AB_BASE) {
+            } else if (Implicit.CJK_BASE <= primary && primary < Implicit.UNASSIGNED_LIMIT) {
+                if (primary < Implicit.CJK_EXTENSIONS_BASE) {
                     script = CJK;
-                } else if (primary < UCA_Types.UNSUPPORTED_OTHER_BASE) {
-                    script = CJK_AB;
+                } else if (primary < Implicit.UNASSIGNED_BASE) {
+                    script = CJK_EXTENSIONS;
                 } else {
                     script = UNSUPPORTED;
                 }
@@ -222,7 +222,7 @@ public class WriteCharts implements UCD_Types {
                 if (w == 0) {
                     break;
                 }
-                if (UCA.isImplicitLeadPrimary(w)) {
+                if (Implicit.isImplicitLeadPrimary(w)) {
                     ++i; // skip next
                 }
                 ++ primaryCount;
@@ -894,7 +894,7 @@ public class WriteCharts implements UCD_Types {
 
     static int getFirstPrimary(String sortKey) {
         final int result = sortKey.charAt(0);
-        if (UCA.isImplicitLeadPrimary(result)) {
+        if (Implicit.isImplicitLeadPrimary(result)) {
             return (result << 16) | sortKey.charAt(1);
         }
         return (result << 16);
@@ -987,8 +987,8 @@ public class WriteCharts implements UCD_Types {
     DIGIT = -1,
     // scripts in here
     CJK = 300,
-    CJK_AB = CJK + 1,
-    UNSUPPORTED = CJK_AB + 1,
+    CJK_EXTENSIONS = CJK + 1,
+    UNSUPPORTED = CJK_EXTENSIONS + 1,
     CAT_OFFSET = UNSUPPORTED + 10,
     // categories in here
     NO_CASE_MAPPING = CAT_OFFSET+50,
@@ -1014,7 +1014,7 @@ public class WriteCharts implements UCD_Types {
         case CURRENCY: return "Currency-Symbol";
         case DIGIT: return "Digits";
         case CJK: return "CJK";
-        case CJK_AB: return "CJK-Extensions";
+        case CJK_EXTENSIONS: return "CJK-Extensions";
         case UNSUPPORTED: return "Unsupported";
         default:
             if (script >= CAT_OFFSET) {

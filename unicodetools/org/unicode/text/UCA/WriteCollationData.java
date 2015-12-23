@@ -37,7 +37,6 @@ import java.util.regex.Pattern;
 
 import org.unicode.text.UCA.UCA.CollatorType;
 import org.unicode.text.UCA.UCA.Remap;
-import org.unicode.text.UCA.UCA_Statistics.RoBitSet;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
@@ -46,7 +45,6 @@ import org.unicode.text.utility.CompactByteArray;
 import org.unicode.text.utility.CompactShortArray;
 import org.unicode.text.utility.IntStack;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeProperty;
@@ -572,12 +570,13 @@ public class WriteCollationData {
     private static PrintWriter log2 = null;
 
     // Called by UCA.Main.
-    static void writeRules(byte option, boolean shortPrint, boolean noCE, CollatorType collatorType2) throws IOException {
+    static void writeRules(byte option, boolean shortPrint, boolean noCE, CollatorType collatorType) throws IOException {
         System.out.println("Sorting");
         final Map<ArrayWrapper, String> backMap = new HashMap<ArrayWrapper, String>();
         final Map<String, String> ordered = new TreeMap<String, String>();
 
-        final UCA.UCAContents cc = getCollator(collatorType2).getContents(SKIP_CANONICAL_DECOMPOSIBLES ? Default.nfd() : null);
+        final UCA uca = getCollator(collatorType);
+        final UCA.UCAContents cc = uca.getContents(SKIP_CANONICAL_DECOMPOSIBLES ? Default.nfd() : null);
 
         final Set<String> alreadyDone = new HashSet<String>();
 
@@ -612,7 +611,7 @@ public class WriteCollationData {
             final String key = String.valueOf(CEList.getPrimary(ces.at(0))) + String.valueOf(CEList.getPrimary(ce2)) + String.valueOf(CEList.getPrimary(ce3))
                     + String.valueOf(CEList.getSecondary(ces.at(0))) + String.valueOf(CEList.getSecondary(ce2)) + String.valueOf(CEList.getSecondary(ce3))
                     + String.valueOf(CEList.getTertiary(ces.at(0))) + String.valueOf(CEList.getTertiary(ce2)) + String.valueOf(CEList.getTertiary(ce3))
-                    + getCollator(collatorType2).getSortKey(s, UCA_Types.NON_IGNORABLE) + '\u0000' + UCA.codePointOrder(s);
+                    + uca.getSortKey(s, UCA_Types.NON_IGNORABLE) + '\u0000' + UCA.codePointOrder(s);
 
             // String.valueOf((char)(ces.at(0]>>>16)) +
             // String.valueOf((char)(ces.at(0] & 0xFFFF))
@@ -700,7 +699,7 @@ public class WriteCollationData {
                 }
 
                 alreadyDone.add(s);
-                final CEList ces = getCollator(collatorType2).getCEList(s, true);
+                final CEList ces = uca.getCEList(s, true);
 
                 log2.println(s + "\t" + ces
                         + "\t" + Default.ucd().getCodeAndName(s) + " from " + Default.ucd().getCodeAndName(i));
@@ -712,7 +711,7 @@ public class WriteCollationData {
         System.out.println("Find Exact Equivalents");
 
         final Set<String> removals = new HashSet<String>();
-        final Map<String,String> equivalentsMap = findExactEquivalents(backMap, ordered, collatorType2, removals);
+        final Map<String,String> equivalentsMap = findExactEquivalents(backMap, ordered, collatorType, removals);
         for (final String s : removals) {
             ordered.remove(s);
         }
@@ -720,7 +719,7 @@ public class WriteCollationData {
         System.out.println("Writing");
 
         String filename = "UCA_Rules";
-        if (collatorType2 == CollatorType.ducet) {
+        if (collatorType == CollatorType.ducet) {
             filename += "_DUCET";
         }
         if (shortPrint) {
@@ -736,7 +735,7 @@ public class WriteCollationData {
         }
 
         final String directory = UCA.getUCA_GEN_DIR() + File.separator
-                + (collatorType2==CollatorType.cldr ? "CollationAuxiliary" : "Ducet");
+                + (collatorType==CollatorType.cldr ? "CollationAuxiliary" : "Ducet");
 
         log = Utility.openPrintWriter(directory, filename, Utility.UTF8_WINDOWS);
 
@@ -752,13 +751,13 @@ public class WriteCollationData {
         if (option == IN_XML) {
             log.println("<collation>");
             log.println("<!--");
-            WriteCollationData.writeVersionAndDate(log, filename, collatorType2==CollatorType.cldr);
+            WriteCollationData.writeVersionAndDate(log, filename, collatorType==CollatorType.cldr);
             log.println("-->");
-            log.println("<base uca='" + getCollator(collatorType2).getDataVersion() + "/" + getCollator(collatorType2).getUCDVersion() + "'/>");
+            log.println("<base uca='" + uca.getDataVersion() + "/" + uca.getUCDVersion() + "'/>");
             log.println("<rules>");
         } else {
             log.write('\uFEFF'); // BOM
-            WriteCollationData.writeVersionAndDate(log, filename, collatorType2==CollatorType.cldr);
+            WriteCollationData.writeVersionAndDate(log, filename, collatorType==CollatorType.cldr);
         }
 
         it = ordered.keySet().iterator();
@@ -843,7 +842,7 @@ public class WriteCollationData {
                 done = true; // make one more pass!!!
             }
 
-            nextCes = getCollator(collatorType2).getCEList(nextChr, true);
+            nextCes = uca.getCEList(nextChr, true);
             nextCE = nextCes.isEmpty() ? 0 : nextCes.at(0);
 
             // skip first (fake) element
@@ -889,13 +888,14 @@ public class WriteCollationData {
             boolean insertVariableTop = false;
             boolean resetToParameter = false;
 
-            final int ceLayout = getCELayout(ce, getCollator(collatorType2));
+            final int ceLayout = getCELayout(ce, uca);
             if (ceLayout == IMPLICIT) {
                 if (relation == PRIMARY_DIFF) {
                     final int primary = CEList.getPrimary(ce);
-                    final int resetCp = UCA.ImplicitToCodePoint(primary, CEList.getPrimary(ces.at(1)));
+                    final int resetCp = uca.implicit.codePointForPrimaryPair(
+                            primary, CEList.getPrimary(ces.at(1)));
 
-                    final CEList ces2 = getCollator(collatorType2).getCEList(UTF16.valueOf(resetCp), true);
+                    final CEList ces2 = uca.getCEList(UTF16.valueOf(resetCp), true);
                     relation = getStrengthDifference(ces, ces.length(), ces2, ces2.length());
 
                     reset = quoteOperand(UTF16.valueOf(resetCp));
@@ -906,7 +906,7 @@ public class WriteCollationData {
                     // UCA.NEUTRAL_TERTIARY);
                 }
                 // lastCJKPrimary = primary;
-            } else if (ceLayout != getCELayout(lastCE, getCollator(collatorType2)) || firstTime) {
+            } else if (ceLayout != getCELayout(lastCE, uca) || firstTime) {
                 resetToParameter = true;
                 switch (ceLayout) {
                 case T_IGNORE:
@@ -1098,7 +1098,7 @@ public class WriteCollationData {
     private static final UnicodeSet SKIP_TIBETAN_EQUIVALENTS = new UnicodeSet("[ྲཱི  ྲཱི ྲཱུ  ྲཱུ ླཱི  ླཱི ླཱུ  ླཱུ]").freeze();
     private static Map<String, String> findExactEquivalents(
             Map<ArrayWrapper, String> backMap, Map<String, String> ordered,
-            CollatorType collatorType2,
+            CollatorType collatorType,
             Set<String> removals) {
         final Map<String, String> equivalentsStrings = new LinkedHashMap<String, String>();
         final IntStack nextCes = new IntStack(10);
@@ -1115,7 +1115,7 @@ public class WriteCollationData {
                 continue;
             }
             nextCes.clear();
-            getCollator(collatorType2).getCEs(string, true, nextCes);
+            getCollator(collatorType).getCEs(string, true, nextCes);
             final int len = nextCes.length();
             if (len < 2) {
                 continue;
@@ -1205,10 +1205,10 @@ public class WriteCollationData {
         if (collator.isVariable(ce)) {
             return VARIABLE;
         }
-        if (primary < UCA_Types.UNSUPPORTED_BASE) {
+        if (primary < Implicit.START) {
             return NON_IGNORE;
         }
-        if (primary < UCA_Types.UNSUPPORTED_LIMIT) {
+        if (primary < Implicit.LIMIT) {
             return IMPLICIT;
         }
         return TRAILING;
@@ -1386,6 +1386,7 @@ public class WriteCollationData {
     }
 
     private static final String getFromBackMap(Map<ArrayWrapper, String> backMap, CEList originalces, int expansionStart, int len, String chr, int[] rel) {
+        final UCA ducet = getCollator(CollatorType.ducet);
         final int[] ces = new int[originalces.length()];
         originalces.appendTo(ces, 0);
 
@@ -1436,7 +1437,7 @@ public class WriteCollationData {
             }
             if (s == null) {
                 do {
-                    if (getCollator(CollatorType.ducet).getHomelessSecondaries().contains(CEList.getSecondary(ces[i]))) {
+                    if (ducet.getHomelessSecondaries().contains(CEList.getSecondary(ces[i]))) {
                         s = "";
                         if (rel[0] > 1) {
                             rel[0] = 1; // HACK
@@ -1448,8 +1449,11 @@ public class WriteCollationData {
 
                     final int probe = ces[i];
                     if (UCA.isImplicitLeadCE(probe)) {
-                        s = UTF16.valueOf(UCA.ImplicitToCodePoint(CEList.getPrimary(probe), CEList.getPrimary(ces[i + 1])));
-                        ++i; // skip over next item!!
+                        int nextCE = ces[i + 1];
+                        int c = ducet.implicit.codePointForPrimaryPair(
+                                CEList.getPrimary(probe), CEList.getPrimary(nextCE));
+                        s = UTF16.valueOf(c);
+                        ++i; // skip over trail primary
                         break;
                     }
 

@@ -106,6 +106,12 @@ final public class UCA implements Comparator<String>, UCA_Types {
 
     private final UCD ucd;
     private final UCA_Data ucaData;
+    public final Implicit implicit;
+
+    /**
+     * Sample characters and strings for charts and conformance tests.
+     */
+    private final UnicodeSet moreSamples;
 
     // =============================================================
     // Main Methods
@@ -189,6 +195,26 @@ final public class UCA implements Comparator<String>, UCA_Types {
         ucdVersion = ucd.getVersion();
 
         ucaData = new UCA_Data(toD, ucd, primaryRemap);
+        implicit = new Implicit(ucd);
+
+        moreSamples = new UnicodeSet();
+        moreSamples.add("\u09C7\u09BE");
+        moreSamples.add("\u09C7\u09D7");
+        moreSamples.add("\u1025\u102E");
+        moreSamples.add("\u0DD9\u0DCF");
+        moreSamples.add("\u0DD9\u0DDF");
+        moreSamples.add("\u1100\u1161");
+        moreSamples.add("\u1100\u1175");
+        moreSamples.add("\u1112\u1161");
+        moreSamples.add("\u1112\u1175");
+        moreSamples.add("\uAC00\u1161");
+        moreSamples.add("\uAC00\u1175");
+        moreSamples.add("\uD788\u1161");
+        moreSamples.add("\uD788\u1175");
+
+        for (UnicodeSet.EntryRange r : implicit.unifiedIdeographSet.ranges()) {
+            moreSamples.add(r.codepoint).add(r.codepointEnd);
+        }
 
         // either get the full sources, or just a demo set
         /*        if (fullData) {
@@ -209,9 +235,9 @@ final public class UCA implements Comparator<String>, UCA_Types {
     }
 
     /**
-     * Returns all non-ignorable, below-Han UCA primary weights.
+     * Returns all non-ignorable, below-implicit UCA primary weights.
      */
-    PrimaryIterable getRegularPrimaries() {
+    Iterable<Primary> getRegularPrimaries() {
         // Start after the ignorable primary 0.
         return new PrimaryIterable(1);
     }
@@ -819,195 +845,9 @@ final public class UCA implements Comparator<String>, UCA_Types {
         return result.toString();
     }
 
-
-    /*
-     * Produces a human-readable string for a collation element.
-     * value is terminated by -1!
-     */
-    /*
-    static public String ceToString(int[] ces, int len) {
-        StringBuffer result = new StringBuffer();
-        for (int i = 0; i < len; ++i) {
-            result.append(ceToString(ces[i]));
-        }
-        return result.toString();
-    }
-    &/
-
-    /*
-     * Produces a human-readable string for a collation element.
-     * value is terminated by -1!
-     */
-    /*
-    static public String ceToString(int[] ces) {
-        StringBuffer result = new StringBuffer();
-        for (int i = 0; ; ++i) {
-            if (ces[i] == TERMINATOR) break;
-            result.append(ceToString(ces[i]));
-        }
-        return result.toString();
-    }
-     */
-
     public static boolean isImplicitLeadCE(int ce) {
-        return isImplicitLeadPrimary(getPrimary(ce));
+        return Implicit.isImplicitLeadPrimary(getPrimary(ce));
     }
-
-    static boolean isImplicitLeadPrimary(int primary) {
-        return primary >= UNSUPPORTED_BASE && primary < UNSUPPORTED_LIMIT;
-    }
-
-    static boolean isImplicitPrimary(int primary) {
-        return primary > 0x7FFF || isImplicitLeadPrimary(primary);
-    }
-
-
-    /*
-The formula from the UCA:
-
-BASE:
-
-FB40 CJK Ideograph
-FB80 CJK Ideograph Extension A/B
-FBC0 Any other code point
-
-AAAA = BASE + (CP >> 15);
-BBBB = (CP & 0x7FFF) | 0x8000;The mapping given to CP is then given by:
-
-CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
-     */
-
-    /**
-     * Returns implicit value
-     */
-
-    public static void CodepointToImplicit(int cp, int[] output) {
-        int base = UNSUPPORTED_OTHER_BASE;
-        if (UCD.isCJK_BASE(cp)) {
-            base = UNSUPPORTED_CJK_BASE;
-        } else if (UCD.isCJK_AB(cp)) {
-            base = UNSUPPORTED_CJK_AB_BASE;
-        }
-        output[0] = base + (cp >>> 15);
-        output[1] = (cp & 0x7FFF) | 0x8000;
-    }
-
-    public static void UnassignedToImplicit(int cp, int[] output) {
-        final int base = UNSUPPORTED_OTHER_BASE;
-        output[0] = base + (cp >>> 15);
-        output[1] = (cp & 0x7FFF) | 0x8000;
-    }
-
-    /**
-     * Takes implicit value
-     */
-
-    public static int ImplicitToCodePoint(int leadImplicit, int trailImplicit) {
-        // could probably optimize all this, but it is not worth it.
-        if (leadImplicit < UNSUPPORTED_BASE || leadImplicit >= UNSUPPORTED_LIMIT) {
-            throw new IllegalArgumentException("Lead implicit out of bounds: " + Utility.hex(leadImplicit));
-        }
-        if ((trailImplicit & 0x8000) == 0) {
-            throw new IllegalArgumentException("Trail implicit out of bounds: " + Utility.hex(trailImplicit));
-        }
-        int base;
-        if (leadImplicit >= UNSUPPORTED_OTHER_BASE) {
-            base = UNSUPPORTED_OTHER_BASE;
-        } else if (leadImplicit >= UNSUPPORTED_CJK_AB_BASE) {
-            base = UNSUPPORTED_CJK_AB_BASE;
-        } else {
-            base = UNSUPPORTED_CJK_BASE;
-        }
-
-        final int result = ((leadImplicit - base) << 15) | (trailImplicit & 0x7FFF);
-
-        if (result > 0x10FFFF) {
-            throw new IllegalArgumentException("Resulting character out of  bounds: "
-                    + Utility.hex(leadImplicit) + ", " + Utility.hex(trailImplicit)
-                    + " => " + result);
-        }
-        return result;
-    }
-
-    /**
-     * Supplies a zero-padded hex representation of an integer (without 0x)
-     */
-    /*
-    static public String hex(int i) {
-        String result = Long.toString(i & 0xFFFFFFFFL, 16).toUpperCase();
-        return "00000000".substring(result.length(),8) + result;
-    }
-     */
-    /**
-     * Supplies a zero-padded hex representation of a Unicode character (without 0x, \\u)
-     */
-    /*
-    static public String hex(char i) {
-        String result = Integer.toString(i, 16).toUpperCase();
-        return "0000".substring(result.length(),4) + result;
-    }
-     */
-    /**
-     * Supplies a zero-padded hex representation of a Unicode character (without 0x, \\u)
-     */
-    /*
-    static public String hex(byte b) {
-        int i = b & 0xFF;
-        String result = Integer.toString(i, 16).toUpperCase();
-        return "00".substring(result.length(),2) + result;
-    }
-     */
-    /**
-     * Supplies a zero-padded hex representation of a Unicode String (without 0x, \\u)
-     *@param sep can be used to give a sequence, e.g. hex("ab", ",") gives "0061,0062"
-     */
-    /*
-    static public String hex(String s, String sep) {
-        StringBuffer result = new StringBuffer();
-        for (int i = 0; i < s.length(); ++i) {
-            if (i != 0) result.append(sep);
-            result.append(hex(s.charAt(i)));
-        }
-        return result.toString();
-    }
-     */
-    /**
-     * Supplies a zero-padded hex representation of a Unicode String (without 0x, \\u)
-     *@param sep can be used to give a sequence, e.g. hex("ab", ",") gives "0061,0062"
-     */
-    /*
-    static public String hex(StringBuffer s, String sep) {
-        StringBuffer result = new StringBuffer();
-        for (int i = 0; i < s.length(); ++i) {
-            if (i != 0) result.append(sep);
-            result.append(hex(s.charAt(i)));
-        }
-        return result.toString();
-    }
-     */
-
-    // =============================================================
-    // Privates
-    // =============================================================
-
-
-    /**
-     * Array used to reorder surrogates to top of 16-bit range, and others down.
-     * Adds 2000 to D800..DFFF, making them F800..FFFF
-     * Subtracts 800 from E000..FFFF, making them D800..F7FF
-     */
-    /* This is for alternate code in appendInCodePointOrder()
-    private static final int[] utf16CodePointOrder = {
-        0, 0, 0, 0,                        // 00, 08, 10, 18
-        0, 0, 0, 0,                        // 20, 28, 30, 38
-        0, 0, 0, 0,                        // 40, 48, 50, 58
-        0, 0, 0, 0,                        // 60, 68, 70, 78
-        0, 0, 0, 0,                        // 80, 88, 90, 98
-        0, 0, 0, 0,                        // A0, A8, B0, B8
-        0, 0, 0, 0x2000,                   // C0, C8, D0, D8
-        -0x800, -0x800, -0x800, -0x800     // E0, E8, F0, F8
-    };
-     */
 
     /**
      * NFD required
@@ -1051,20 +891,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      */
     private final int[] index = new int[1];
 
-    /**
-     * List of files to use for constructing the CE data, used by build()
-     */
-
-    /*    private static final String[] KEYS = {
-        //"D:\\UnicodeData\\testkeys.txt",
-        BASE_DIR + "UCA\\allkeys" + VERSION + ".txt",
-
-        BASE_DIR + "UnicodeData\\Collation\\basekeys" + VERSION + ".txt",
-        BASE_DIR + "UnicodeData\\Collation\\compkeys" + VERSION + ".txt",
-        BASE_DIR + "UnicodeData\\Collation\\ctrckeys" + VERSION + ".txt",
-
-    };
-     */
     /**
      * File buffer size, used to make reads faster.
      */
@@ -1120,8 +946,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
     private final StringBuffer hangulBuffer = new StringBuffer();
 
-    private final int[] implicit = new int[2];
-
     /**
      * Returns the collation elements for the character or substring
      * of the decomposition buffer starting at the index.
@@ -1147,10 +971,14 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         }
 
         index[0] = i + Character.charCount(c);
-        CodepointToImplicit(c, implicit);
-        implicit[0] = makeKey(implicit[0], NEUTRAL_SECONDARY, NEUTRAL_TERTIARY);
-        implicit[1] = makeKey(implicit[1], 0, 0);
-        return new CEList(implicit);
+        return getCEListForImplicit(c);
+    }
+
+    CEList getCEListForImplicit(int c) {
+        int implicitPair = implicit.primaryPairForCodePoint(c);
+        int p = makeKey((implicitPair >>> 16), NEUTRAL_SECONDARY, NEUTRAL_TERTIARY);
+        int q = makeKey((implicitPair & 0xFFFF), 0, 0);
+        return new CEList(p, q);
     }
 
     /**
@@ -1180,30 +1008,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
         return result;
     }
 
-    /**
-     * Fix for Hangul, since the tables are not set up right.
-     * The fix for Hangul is to give different values to the combining initial
-     * Jamo to put them up into the AC00 range, as follows. Each one is put
-     * after the first syllable it begins.
-     *
-    private int fixJamo(char ch, int jamoCe) {
-
-        int result = jamoCe - hangulHackBottom + 0xAC000000; // put into right range
-        if (DEBUG) System.out.println("\tChanging " + hex(ch) + " " + hex(jamoCe) + " => " + hex(result));
-        return result;
-        /*
-        int newPrimary;
-        int LIndex = jamo - LBase;
-        if (LIndex < LCount) {
-            newPrimary = SBase + (LIndex + 1) * VCount * TCount; // multiply to match syllables
-        } else {
-            newPrimary = LastPrimary + (jamo - LastInitial); // just shift up
-        }
-        return makeKey(newPrimary, 0x21, 0x2);  // make secondary difference!
-     * /
-    }
-     */
-
     // =============================================================
     // Building Collation Element Tables
     // =============================================================
@@ -1214,38 +1018,9 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
      */
     private final int[] position = new int[1];
 
-
-    /*public Hashtable getContracting() {
-        return new Hashtable(multiTable);
-    }
-     */
-
-
     public UCAContents getContents(Normalizer skipDecomps) {
         return new UCAContents(skipDecomps, ucdVersion);
     }
-
-
-    private static final UnicodeSet moreSamples = new UnicodeSet();
-    static {
-        moreSamples.add("\u09C7\u09BE");
-        moreSamples.add("\u09C7\u09D7");
-        moreSamples.add("\u1025\u102E");
-        moreSamples.add("\u0DD9\u0DCF");
-        moreSamples.add("\u0DD9\u0DDF");
-        moreSamples.add("\u1100\u1161");
-        moreSamples.add("\u1100\u1175");
-        moreSamples.add("\u1112\u1161");
-        moreSamples.add("\u1112\u1175");
-        moreSamples.add("\uAC00\u1161");
-        moreSamples.add("\uAC00\u1175");
-        moreSamples.add("\uD788\u1161");
-        moreSamples.add("\uD788\u1175");
-    }
-
-    // static UnicodeSet homelessSecondaries = new UnicodeSet(0x0176, 0x0198);
-    //  0x0153..0x017F
-
 
     public class UCAContents {
         private final Iterator<Map.Entry<String, CEList>> iter = ucaData.getSortedMappings().entrySet().iterator();
@@ -1484,6 +1259,21 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                     if (line.startsWith("@version")) {
                         dataVersion = line.substring("@version".length()+1).trim();
                         continue;
+                    } else if (line.startsWith("@implicitweights ")) {
+                        // @implicitweights 17000..18AFF; FB00 # Tangut and Tangut Components
+                        int offset = "@implicitweights ".length();
+                        int dotDot = line.indexOf("..", offset);
+                        int semi = line.indexOf(';', offset);
+                        if (0 <= dotDot && dotDot < semi) {
+                            int start = Integer.parseInt(line.substring(offset, dotDot).trim(), 16);
+                            int end = Integer.parseInt(line.substring(dotDot + 2, semi).trim(), 16);
+                            int leadPrimary = Integer.parseInt(line.substring(semi + 1).trim(), 16);
+                            Implicit.Range r = implicit.addRange(leadPrimary, start, end);
+                            moreSamples.add(r.firstCP);
+                            int lastCP = r.set.charAt(r.set.size() - 1);
+                            moreSamples.add(lastCP);
+                            continue;
+                        }
                     }
 
                     throw new IllegalArgumentException("Illegal @ command: " + line);
@@ -1495,7 +1285,6 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
                 final char value = getChar(line, position);
                 multiChars.append(value);
 
-                //fixSurrogateContraction(value);
                 char value2 = getChar(line, position);
                 // append until we get terminator
                 while (value2 != NOT_A_CHAR) {
@@ -1559,6 +1348,7 @@ CP => [.AAAA.0020.0002.][.BBBB.0000.0000.]
 
             } catch (final RuntimeException e) {
                 System.out.println("Error on line: " + inputLine);
+                System.out.println(e);
                 throw e;
             }
         }

@@ -57,6 +57,16 @@ public final class CEList implements java.lang.Comparable<CEList> {
     }
 
     /**
+     * Constructs a new list from a pair of CEs.
+     */
+    public CEList(int p, int q) {
+        contents = new int[] { p, q };
+        startOffset = 0;
+        endOffset = 2;
+        count = 2;
+    }
+
+    /**
      * Constructs a new list by <i>aliasing</i> source[start:end].
      * @param spare ignored
      */
@@ -427,7 +437,7 @@ public final class CEList implements java.lang.Comparable<CEList> {
             1, 2, 1, 2
             0, 1, 1, 1
          */
-        CEList t1 = new CEList(new int[] {0, 0x02412004});
+        CEList t1 = new CEList(0, 0x02412004);
         t1 = t1.sub(1,2);
         final CEList t2 = new CEList(new int[] {0x0F6B2002});
         System.out.println(t1.compareTo(t2));
@@ -442,7 +452,7 @@ public final class CEList implements java.lang.Comparable<CEList> {
         System.out.println(foo);
         System.out.println(foo.start(2));
         System.out.println(foo.end(1));
-        final CEList fii = new CEList(new int[] {2, 3});
+        final CEList fii = new CEList(2, 3);
         final CEList foo2 = foo.sub(2,4);
         System.out.println(fii.equals(foo2));
         System.out.println(fii.compareTo(foo2));
