@@ -138,7 +138,10 @@ public class UCA_Data {
             final int key1 = CEList.getPrimary(ce);
             final int key2 = CEList.getSecondary(ce);
             final int key3 = CEList.getTertiary(ce);
-            if (!UCA.isImplicitPrimary(key1)) {
+            if (Implicit.isImplicitLeadPrimary(key1)) {
+                // No statistics for the primary weight, and skip the trail unit.
+                ++i;
+            } else {
                 statistics.setPrimary(key1);
                 if (i == 0) {
                     StringBuilder reps = statistics.representativePrimary.get(key1);

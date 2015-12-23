@@ -46,7 +46,6 @@ final class RadicalStroke {
     RadicalStroke(String unicodeVersion) {
         this.unicodeVersion = unicodeVersion;
         UCD ucd = UCD.make(unicodeVersion);
-        @SuppressWarnings("unchecked")
         UnicodeMap<String> rsUnicode = ucd.getHanValue("kRSUnicode");
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(unicodeVersion);
         radToChars = getCJKRadicals(iup);
