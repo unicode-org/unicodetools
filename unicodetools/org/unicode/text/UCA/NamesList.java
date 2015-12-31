@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.props.UnicodeRelation;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
@@ -172,30 +173,26 @@ public class NamesList {
         }
         void storeData() {
             if (codePoint >= 0) {
-                String comment = null;
-                String alias = null;
-                String xrefs = null;
                 for (Entry<Comment, Set<String>> entry : comments.keyValuesSet()) {
                     switch (entry.getKey()) {
                     case comment: 
-                        comment = CollectionUtilities.join(entry.getValue(), "\n");
+                        informalComments.addAll(codePoint, entry.getValue());
                         break;
                     case alias: 
-                        alias = CollectionUtilities.join(entry.getValue(), "\n");
+                        informalAliases.addAll(codePoint, entry.getValue());
                         break;
                     case xref: 
-                        xrefs = CollectionUtilities.join(entry.getValue(), "\n");
+                        informalXrefs.addAll(codePoint, entry.getValue());
+                        break;
+                    case formalAlias:
+                        formalAliases.addAll(codePoint, entry.getValue());
                         break;
                     case canonical:
                     case compatibility:
-                    case formalAlias:
                     case variation:
                         break;
                     }
                 }
-                informalAliases.put(codePoint, alias);
-                informalComments.put(codePoint, comment);
-                informalXrefs.put(codePoint, xrefs);
             }
             comments.clear();
         }
@@ -203,9 +200,10 @@ public class NamesList {
 
     //UnicodeMap<Data> data = new UnicodeMap<>();
 
-    public UnicodeMap<String> informalAliases = new UnicodeMap<>();
-    public UnicodeMap<String> informalComments = new UnicodeMap<>();
-    public UnicodeMap<String> informalXrefs = new UnicodeMap<>();
+    public UnicodeRelation<String> informalAliases = new UnicodeRelation<>();
+    public UnicodeRelation<String> formalAliases = new UnicodeRelation<>();
+    public UnicodeRelation<String> informalComments = new UnicodeRelation<>();
+    public UnicodeRelation<String> informalXrefs = new UnicodeRelation<>();
 
     public UnicodeMap<String> subheads = new UnicodeMap<>();
     public UnicodeMap<String> subheadComments = new UnicodeMap<>();
@@ -311,6 +309,7 @@ public class NamesList {
             }
             lastDataItem.storeData();
             informalAliases.freeze();
+            formalAliases.freeze();
             informalComments.freeze();
             informalXrefs.freeze();
             subheads.freeze();
@@ -343,7 +342,7 @@ public class NamesList {
 
     static final UnicodeSet HEX_AND_SPACE = new UnicodeSet("[0-9A-F\\ ]").freeze();
 
-    public void verifyName(final String originalLine, int pos) {
+    private void verifyName(final String originalLine, int pos) {
         String realName = Default.ucd().getName(lastCodePoint);
         final String namelistName = originalLine.substring(pos+1);
         if (!realName.equals(namelistName)) {
@@ -351,7 +350,7 @@ public class NamesList {
         }
     }
 
-    public void addError(String message, String arg) {
+    private void addError(String message, String arg) {
         errors.put(lastCodePoint, message + ":\t" + arg);
     }
 
@@ -386,7 +385,7 @@ public class NamesList {
         //        }
     }
 
-    public static Matcher match(String string, Matcher... matchers) {
+    private static Matcher match(String string, Matcher... matchers) {
         for (Matcher m : matchers) {
             if (m.reset(string).matches()) {
                 return m;

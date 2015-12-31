@@ -116,6 +116,14 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         }
         return this;
     }
+    
+    public UnicodeRelation<T>  addAll(int key, Collection<T> values) {
+        Set<T> newValues = addValues(data.get(key), values);
+        if (newValues != null) {
+            data.put(key, newValues);
+        }
+        return this;
+    }
 
     public UnicodeRelation<T> addAll(Map<String, T> m) {
         for (Entry<String, T> entry : m.entrySet()) {
@@ -339,4 +347,5 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
     public Iterable<EntryRange<Set<T>>> entryRanges() {
         return data.entryRanges();
     }
+
 }
