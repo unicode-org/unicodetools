@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
 import org.apache.xerces.impl.dv.util.Base64;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.GenerateTransformCharts.CollectionOfComparablesComparator;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
 import org.unicode.jsp.Subheader;
@@ -44,6 +45,7 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.VersionToAge;
+import org.unicode.text.UCA.NamesList;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.tools.Emoji.CharSource;
 import org.unicode.text.tools.Emoji.ModifierStatus;
@@ -55,6 +57,7 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.ImmutableSet;
@@ -416,6 +419,14 @@ public class GenerateEmoji {
     }
 
     public static String getBestImage(String s, boolean useDataURL, String extraClasses, Emoji.Source... doFirst) {
+        String result = getBestImageNothrow(s, useDataURL, extraClasses, doFirst);
+        if (result != null) {
+            return result;
+        }
+        throw new IllegalArgumentException("Can't find image for: " + Utility.hex(s) + " " + getName(s, true) + "\t" + Emoji.buildFileName(s, "_"));
+    }
+
+    private static String getBestImageNothrow(String s, boolean useDataURL, String extraClasses, Emoji.Source... doFirst) {
         for (Emoji.Source source : orderedEnum(doFirst)) {
             String cell = getImage(source, s, useDataURL, extraClasses);
             if (cell != null) {
@@ -433,7 +444,7 @@ public class GenerateEmoji {
                 }
             }
         }
-        throw new IllegalArgumentException("Can't find image for: " + Utility.hex(s) + " " + getName(s, true) + "\t" + Emoji.buildFileName(s, "_"));
+        return null;
     }
 
     private static String fromIntArray(int[] points, int start, int limit) {
@@ -2897,6 +2908,36 @@ public class GenerateEmoji {
         }
         return androidCell;
     }
+    static NamesList NAMESLIST = new NamesList("NamesList", Settings.latestVersion);
+    static final Joiner JOIN_PLUS = Joiner.on(" ⊕ ");
+
+    static String getNamesListInfo(String s) {
+        int cp = CharSequences.getSingleCodePoint(s);
+        if (cp == Integer.MAX_VALUE) {
+            return "";
+        }
+        StringBuilder result = new StringBuilder();
+        addNameslistInfo(NAMESLIST.formalAliases.get(cp), NamesList.Comment.formalAlias.symbol, result);
+        addNameslistInfo(NAMESLIST.informalAliases.get(cp), NamesList.Comment.alias.symbol, result);
+        addNameslistInfo(NAMESLIST.informalComments.get(cp), NamesList.Comment.comment.symbol, result);
+        addNameslistInfo(NAMESLIST.informalXrefs.get(cp), NamesList.Comment.xref.symbol, result);
+        return result.toString();
+    }
+
+    private static void addNameslistInfo(Set<String> formalAliases, String symbol, StringBuilder result) {
+        if (formalAliases != null) {
+            for (String x : formalAliases) {
+                String image = emojiData.isEmoji(x) ? getBestImageNothrow(x, true, " imgb") : null;
+                if (image == null) {
+                    String fixed = TransliteratorUtilities.toHTML.transform(x);
+                    image = UTF16.hasMoreCodePointsThan(x, 1) ? fixed : toUHex(x) + " " + fixed + " " + getName(x, false);
+                } else {
+                    image = toUHex(x) + " " + image + " " + getName(x, false);
+                }
+                result.append("<br>" + symbol + " " + image);
+            }
+        }
+    }
 
     public static String toHtmlString(String chars2, Form form, int item, Stats stats, boolean extraPlatforms) {
         String bestCell = getCell(null, chars2, "andr");
@@ -2929,8 +2970,9 @@ public class GenerateEmoji {
         String name2 = getName(chars2, false);
         String tts = EmojiAnnotations.TTS.get(chars2);
         if (tts != null && !tts.equalsIgnoreCase(name2)) {
-            name2 += "<br>(" + TransliteratorUtilities.toHTML.transform(tts) + ")";
+            name2 += "<br>≊ " + TransliteratorUtilities.toHTML.transform(tts);
         }
+        name2 += getNamesListInfo(chars2);
 
         String textChars = getEmojiVariant(chars2, Emoji.TEXT_VARIANT_STRING);
         Set<String> annotations = new LinkedHashSet<String>(ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2), Collections.EMPTY_SET));
