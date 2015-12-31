@@ -2,7 +2,6 @@
 package org.unicode.props;
 import java.util.EnumSet;
 import java.util.Set;
-
 import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.UcdPropertyValues.*;public enum UcdProperty {
 
@@ -242,7 +241,7 @@ private final PropertyType type;
 	
 	private UcdProperty(PropertyType type, String shortName, String...otherNames) {
 		this.type = type;
-		names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
+		names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);
 		name2enum = null;
 		enums = null;
 		enumClass = null;
@@ -250,7 +249,7 @@ private final PropertyType type;
 	}
 	private UcdProperty(PropertyType type, Class classItem, ValueCardinality _cardinality, String shortName, String...otherNames) {
 		this.type = type;
-		names = new PropertyNames(UcdProperty.class, this, shortName, otherNames);
+		names = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);
 		cardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;
 		if (classItem == null) {
 			name2enum = null;
@@ -290,4 +289,6 @@ private final PropertyType type;
 	public Set<Enum> getEnums() {
 		return enums;
 	}
+
+
 }

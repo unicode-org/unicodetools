@@ -137,7 +137,8 @@ public class GenerateEnums {
         return ";\n"  +
                 "        private final PropertyNames<" + enumName + "> names;\n"+
                 "        private " + enumName + " (String shortName, String...otherNames) {\n"+
-                "            names = new PropertyNames(" + enumName + ".class, this, shortName, otherNames);\n"+
+                "            names = new PropertyNames<" + enumName + ">(\n"
+                + "                " + enumName + ".class, this, shortName, otherNames);\n"+
                 "        }\n"+
                 "        public PropertyNames<" + enumName + "> getNames() {\n"+
                 "            return names;\n"+
@@ -371,7 +372,7 @@ public class GenerateEnums {
                 "\t\n"+
                 "\tprivate UcdProperty(PropertyType type, String shortName, String...otherNames) {\n"+
                 "\t\tthis.type = type;\n"+
-                "\t\tnames = new PropertyNames(UcdProperty.class, this, shortName, otherNames);\n"+
+                "\t\tnames = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"+
                 "\t\tname2enum = null;\n"+
                 "\t\tenums = null;\n"+
                 "\t\tenumClass = null;\n"+
@@ -379,7 +380,7 @@ public class GenerateEnums {
                 "\t}\n"+
                 "\tprivate UcdProperty(PropertyType type, Class classItem, ValueCardinality _cardinality, String shortName, String...otherNames) {\n"+
                 "\t\tthis.type = type;\n"+
-                "\t\tnames = new PropertyNames(UcdProperty.class, this, shortName, otherNames);\n"+
+                "\t\tnames = new PropertyNames<UcdProperty>(UcdProperty.class, this, shortName, otherNames);\n"+
                 "\t\tcardinality = _cardinality == null ? ValueCardinality.Singleton : _cardinality;\n"+
                 "\t\tif (classItem == null) {\n" +
                 "\t\t\tname2enum = null;\n"+
@@ -395,7 +396,7 @@ public class GenerateEnums {
                 "\tpublic ValueCardinality getCardinality() {\n"+
                 "\t\treturn cardinality;\n"+
                 "\t}\n"+
-                "\tpublic Class getEnumClass() {\n"+
+                "\tpublic Class<Enum> getEnumClass() {\n"+
                 "\t\treturn enumClass;\n"+
                 "\t}\n"+
                 "\tpublic PropertyType getType() {\n"+
