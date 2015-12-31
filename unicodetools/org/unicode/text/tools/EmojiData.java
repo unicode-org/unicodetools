@@ -25,6 +25,7 @@ import org.unicode.text.utility.Utility;
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSetSpanner;
 import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData {
@@ -71,6 +72,7 @@ public class EmojiData {
     private final UnicodeMap<EmojiDatum> data = new UnicodeMap<>();
     private final UnicodeSet charsWithData = new UnicodeSet();
     private final UnicodeSet sortingChars;
+    private final UnicodeSet allChars;
     private final UnicodeSet flatChars = new UnicodeSet();
     private final Map<DefaultPresentation, UnicodeSet> defaultPresentationMap;
     private final Map<ModifierStatus, UnicodeSet> modifierClassMap;
@@ -180,6 +182,7 @@ public class EmojiData {
                 putUnicodeSetValue(_defaultPresentationMap, key, styleIn);
                 putUnicodeSetValue(_modifierClassMap, key, modClass);
             }
+            
         } else {
             for (String line : FileUtilities.in(directory, "emoji-data.txt")) {
                 //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
@@ -217,7 +220,7 @@ public class EmojiData {
             }
         }
         modifierSequences.freeze();
-
+        
         defaultPresentationMap = Collections.unmodifiableMap(_defaultPresentationMap);
         charSourceMap = Collections.unmodifiableMap(_charSourceMap);
         data.freeze();
@@ -234,8 +237,17 @@ public class EmojiData {
         .freeze();
         
         sortingChars = charsWithData;
+        allChars = new UnicodeSet(modifierSequences).addAll(sortingChars).addAll(zwjSequencesAll).freeze();
     }
-
+    
+    public boolean isEmoji(String s) {
+        return allChars.contains(s);
+    }
+    
+    public boolean isEmoji(int cp) {
+        return allChars.contains(cp);
+    }
+    
     public UnicodeSet getChars() {
         return charsWithData;
     }
