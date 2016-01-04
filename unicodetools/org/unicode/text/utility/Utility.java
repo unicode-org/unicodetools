@@ -222,6 +222,18 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
          */
     }
 
+    public static int lookup(String value, String[] values, String[] altValues, boolean skeletonize) {
+        int result = Utility.find(value, values, skeletonize);
+        if (result == -1 && altValues != null) {
+            result = Utility.find(value, altValues, skeletonize);
+        }
+        if (result == -1) {
+            throw new ChainException("Could not find \"{0}\" in table [{1}] nor in [{2}]",
+                    new Object [] { value, Arrays.asList(values), Arrays.asList(altValues) });
+        }
+        return result;
+    }
+
     public static byte lookup(String source, String[] target, boolean skeletonize) {
         final int result = Utility.find(source, target, skeletonize);
         if (result != -1) {

@@ -13,6 +13,7 @@ package org.unicode.text.UCD;
 
 import java.util.LinkedHashSet;
 import java.util.Locale;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.unicode.text.utility.Utility;
@@ -113,7 +114,7 @@ public final class UCD_Names implements UCD_Types {
         "Soft_Dotted",
         "Logical_Order_Exception",
         "Other_ID_Start",
-        "STerm",
+        "Sentence_Terminal",
         "Variation_Selector",
         "Other_ID_Continue",
         "Pattern_White_Space",
@@ -368,7 +369,8 @@ public final class UCD_Names implements UCD_Types {
         "Tangut",
     };
 
-    public static final Relation<String,String> EXTRA_SCRIPT = new Relation(new TreeMap(), LinkedHashSet.class);
+    public static final Relation<String,String> EXTRA_SCRIPT =
+            new Relation<String,String>(new TreeMap<String, Set<String>>(), LinkedHashSet.class);
     static {
         EXTRA_SCRIPT.put("Coptic", "Qaac");
         EXTRA_SCRIPT.put("Inherited", "Qaai");
@@ -659,7 +661,8 @@ public final class UCD_Names implements UCD_Types {
         {"LC", "Cased Letter", null, "Ll | Lt | Lu"},
     };
 
-    public static final Relation<String,String> EXTRA_GENERAL_CATEGORY = new Relation(new TreeMap(), LinkedHashSet.class);
+    public static final Relation<String, String> EXTRA_GENERAL_CATEGORY =
+            new Relation<String, String>(new TreeMap<String, Set<String>>(), LinkedHashSet.class);
     static {
         EXTRA_GENERAL_CATEGORY.put("Decimal_Number", "digit");
         EXTRA_GENERAL_CATEGORY.put("Control", "cntrl");

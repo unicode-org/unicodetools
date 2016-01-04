@@ -1,9 +1,9 @@
-# PropertyAliases-8.0.0.txt
-# Date: 2015-02-14, 10:26:09 GMT [MD]
+# PropertyAliases-9.0.0.txt
+# Date: 2015-12-18, 21:21:17 GMT
+# © 2015 Unicode®, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# Copyright (c) 1991-2015 Unicode, Inc.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
 # This file contains aliases for properties used in the UCD.
@@ -174,7 +174,7 @@ Pat_WS                   ; Pattern_White_Space
 QMark                    ; Quotation_Mark
 Radical                  ; Radical
 SD                       ; Soft_Dotted
-STerm                    ; STerm
+STerm                    ; Sentence_Terminal
 Term                     ; Terminal_Punctuation
 UIdeo                    ; Unified_Ideograph
 Upper                    ; Uppercase

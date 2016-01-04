@@ -26,7 +26,7 @@ public class GenerateUcaDecompositions {
     static Normalizer2 nfkcCf = Normalizer2.getNFKCCasefoldInstance();
     static Normalizer2 nfd = Normalizer2.getNFDInstance();
     static Normalizer2 nfkd = Normalizer2.getNFKDInstance();
-    static UCD ucd = UCD.make();
+    static UCD ucd = UCD.makeLatestVersion();
     static Map<Integer,Best> ceToChar = new HashMap();
     static Map<Integer,CEList> char2Ces = new TreeMap();
     static int lastSpecial = '\uE000' - 1;

@@ -84,7 +84,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
          */
     }
 
-    static final ToolUnicodePropertySource unicodePropertySource = ToolUnicodePropertySource.make("");
+    static final ToolUnicodePropertySource unicodePropertySource =
+            ToolUnicodePropertySource.make(Default.ucdVersion());
 
     Set<String> labels = new HashSet<String>();
 

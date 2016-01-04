@@ -3,8 +3,9 @@ package org.unicode.props;
 import java.util.EnumSet;
 import java.util.Set;
 import org.unicode.props.PropertyNames.NameMatcher;
-import org.unicode.props.UcdPropertyValues.*;public enum UcdProperty {
+import org.unicode.props.UcdPropertyValues.*;
 
+public enum UcdProperty {
 		// Numeric
     Numeric_Value(PropertyType.Numeric, "nv"),
     kAccountingNumeric(PropertyType.Numeric, "cjkAccountingNumeric"),
@@ -231,7 +232,7 @@ import org.unicode.props.UcdPropertyValues.*;public enum UcdProperty {
     XID_Start(PropertyType.Binary, Binary.class, null, "XIDS"),
 		;
 
-private final PropertyType type;
+    private final PropertyType type;
 	private final PropertyNames<UcdProperty> names;
 	// for enums
 	private final NameMatcher name2enum;

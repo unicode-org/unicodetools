@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.unicode.text.utility.ChainException;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
@@ -49,7 +48,7 @@ public final class DerivedProperty implements UCD_Types {
 
     ///////////////////////////////////////////////////////////
 
-    static Map cache = new HashMap();
+    static Map<UCD, DerivedProperty> cache = new HashMap<UCD, DerivedProperty>();
     static UCD lastUCD = null;
     static DerivedProperty lastValue = null;
 
@@ -57,7 +56,7 @@ public final class DerivedProperty implements UCD_Types {
         if (ucd.equals(lastUCD)) {
             return lastValue;
         }
-        DerivedProperty dp = (DerivedProperty) cache.get(ucd);
+        DerivedProperty dp = cache.get(ucd);
         if (dp == null) {
             dp = new DerivedProperty(ucd);
             cache.put(ucd, dp);
@@ -241,16 +240,13 @@ public final class DerivedProperty implements UCD_Types {
             type = DERIVED_NORMALIZATION;
             nfx = nf[i];
             name = nfx.getName();
-            String compName = "the character itself";
 
             if (i == NFKC || i == NFD) {
                 name += "-NFC";
                 nfComp = nfc;
-                compName = "NFC for the character";
             } else if (i == NFKD) {
                 name += "-NFD";
                 nfComp = nfd;
-                compName = "NFD for the character";
             }
         }
 
@@ -266,7 +262,7 @@ public final class DerivedProperty implements UCD_Types {
             cacheStr = "";
 
             if (ucdData.getDecompositionType(cp) != NONE) {
-                final String cps = UTF32.valueOf32(cp);
+                final String cps = UTF16.valueOf(cp);
                 String comp = cps;
                 if (nfComp != null) {
                     comp = nfComp.normalize(comp);
@@ -425,7 +421,7 @@ public final class DerivedProperty implements UCD_Types {
                 // else it is nothing
                 int status2 = 0;
                 tempBuf.setLength(0);
-                nfkd.normalize(UTF32.valueOf32(cp), tempBuf);
+                nfkd.normalize(UTF16.valueOf(cp), tempBuf);
                 for (int i = 0; i < tempBuf.length(); i += Character.charCount(cp)) {
                     final int cp2 = UTF16.charAt(tempBuf, i);
                     if (i == 0) {
@@ -686,7 +682,7 @@ of characters, the first of which has a non-zero combining class.
                 shortName = "DI";
             }
 
-            final UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0605 \\u06DD \\u070F\\U000110BD]").freeze();
+            final UnicodeSet removals = new UnicodeSet("[\\u0600-\\u0605 \\u06DD \\u070F \\u08E2 \\U000110BD]").freeze();
 
             /**
                 # Derived Property: Default_Ignorable_Code_Point
@@ -696,7 +692,7 @@ of characters, the first of which has a non-zero combining class.
                 #  + Variation_Selector
                 #  - White_Space
                 #  - FFF9..FFFB (Annotation Characters)
-                #  - 0600..0605, 06DD, 070F, 110BD (exceptional Cf characters that should be visible)
+                #  - 0600..0605, 06DD, 070F, 08E2, 110BD (exceptional Cf characters that should be visible)
              */
             @Override
             public boolean hasValue(int cp) {

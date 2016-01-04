@@ -21,7 +21,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 
@@ -95,10 +94,10 @@ public class GenerateCaseFolding implements UCD_Types {
                 continue;
             }
 
-            final String rFull = (String)fullData.get(UTF32.valueOf32(ch));
-            final String rSimple = (String)simpleData.get(UTF32.valueOf32(ch));
-            final String rFullTurkish = (String)fullDataTurkish.get(UTF32.valueOf32(ch));
-            final String rSimpleTurkish = (String)simpleDataTurkish.get(UTF32.valueOf32(ch));
+            final String rFull = fullData.get(UTF16.valueOf(ch));
+            final String rSimple = simpleData.get(UTF16.valueOf(ch));
+            final String rFullTurkish = fullDataTurkish.get(UTF16.valueOf(ch));
+            final String rSimpleTurkish = simpleDataTurkish.get(UTF16.valueOf(ch));
             if (rFull == null && rSimple == null && rFullTurkish == null && rSimpleTurkish == null) {
                 continue;
             }
@@ -192,7 +191,7 @@ public class GenerateCaseFolding implements UCD_Types {
 
         final Iterator<String> it = data.keySet().iterator();
         while (it.hasNext()) {
-            final String s = (String) it.next();
+            final String s = it.next();
             final Set<String> set = data.get(s);
             show = set.contains(shower);
             if (show) {
@@ -206,7 +205,7 @@ public class GenerateCaseFolding implements UCD_Types {
             int repGood = 0;
             Iterator<String> it2 = set.iterator();
             while (it2.hasNext()) {
-                final String s2 = (String)it2.next();
+                final String s2 = it2.next();
                 final int s2Good = goodness(s2, full, condition);
                 if (s2Good > repGood) {
                     rep = s2;
@@ -238,7 +237,7 @@ public class GenerateCaseFolding implements UCD_Types {
 
             it2 = set.iterator();
             while (it2.hasNext()) {
-                final String s2 = (String)it2.next();
+                final String s2 = it2.next();
                 if (s2.equals(rep)) {
                     continue;
                 }
@@ -351,7 +350,7 @@ public class GenerateCaseFolding implements UCD_Types {
         if (ch == '\u023F') {
             System.out.println("???");
         }
-        final String charStr = UTF32.valueOf32(ch);
+        final String charStr = UTF16.valueOf(ch);
         final String lowerStr = lower(charStr, full, condition);
         final String titleStr = title(charStr, full, condition);
         final String upperStr = upper(charStr, full, condition);
@@ -376,7 +375,7 @@ public class GenerateCaseFolding implements UCD_Types {
             while (true) {
                 final Iterator<String> it = set.iterator();
                 while (it.hasNext()) {
-                    final String s = (String) it.next();
+                    final String s = it.next();
                     // do funny stuff since we can't modify set while iterating
                     // We don't do this because if the source is not normalized, we don't want to normalize
                     if (nfClose) {
@@ -477,7 +476,7 @@ public class GenerateCaseFolding implements UCD_Types {
         final Iterator<String> it2 = set.iterator();
         boolean first = true;
         while (it2.hasNext()) {
-            final String s2 = (String) it2.next();
+            final String s2 = it2.next();
             if (!first) {
                 if (crtab) {
                     result += ";\n\t";
@@ -701,8 +700,8 @@ public class GenerateCaseFolding implements UCD_Types {
         final Iterator<Integer> it = sorted.keySet().iterator();
         int lastOrder = -1;
         while (it.hasNext()) {
-            final Integer key = (Integer) it.next();
-            final String line = (String) sorted.get(key);
+            final Integer key = it.next();
+            final String line = sorted.get(key);
             final int order = key.intValue() >> 24;
                                         if (order != lastOrder) {
                                             lastOrder = order;

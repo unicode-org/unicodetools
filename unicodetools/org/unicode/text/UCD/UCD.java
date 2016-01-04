@@ -49,8 +49,8 @@ public final class UCD implements UCD_Types {
     /**
      * Create singleton instance for default (latest) version
      */
-    public static UCD make() {
-        return make("");
+    public static UCD makeLatestVersion() {
+        return make(Settings.latestVersion);
     }
 
     /**
@@ -58,7 +58,7 @@ public final class UCD implements UCD_Types {
      */
     public static UCD make(String version) {
         if (version == null || version.length() == 0) {
-            version = Settings.latestVersion;
+            throw new IllegalArgumentException("use UCD.makeLatestVersion()");
         }
         if (version.indexOf('.') < 0) {
             throw new IllegalArgumentException("Version must be of form 3.1.1");

@@ -59,16 +59,18 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
     private static UCD[]   ucdCache     = new UCD[UCD_Types.LIMIT_AGE];
 
-    private static HashMap factoryCache = new HashMap();
+    private static HashMap<String, ToolUnicodePropertySource> factoryCache =
+            new HashMap<String, ToolUnicodePropertySource>();
 
     private UCD            ucd;
 
     private Normalizer     nfc, nfd, nfkd, nfkc;
 
-    private final boolean special = false;
-
     public static synchronized ToolUnicodePropertySource make(String version) {
-        ToolUnicodePropertySource result = (ToolUnicodePropertySource) factoryCache.get(version);
+        if (version == null || version.isEmpty()) {
+            throw new IllegalArgumentException("call with explicit version, or Default.ucdVersion()");
+        }
+        ToolUnicodePropertySource result = factoryCache.get(version);
         if (result != null) {
             return result;
         }
@@ -262,7 +264,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             }
 
             @Override
-            protected UnicodeMap _getUnicodeMap() {
+            protected UnicodeMap<String> _getUnicodeMap() {
                 return ucd.blockData;
             }
         }
@@ -290,7 +292,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         // UCD_Names.JAMO_L_TABLE[LIndex] + UCD_Names.JAMO_V_TABLE[VIndex] +
         // UCD_Names.JAMO_T_TABLE[TIndex]
         // LBase = 0x1100, VBase = 0x1161, TBase = 0x11A7
-        final Set tempValues = new LinkedHashSet();
+        final Set<String> tempValues = new LinkedHashSet<String>();
         tempValues.addAll(Arrays.asList(UCD_Names.JAMO_L_TABLE));
         tempValues.addAll(Arrays.asList(UCD_Names.JAMO_V_TABLE));
         tempValues.addAll(Arrays.asList(UCD_Names.JAMO_T_TABLE));
@@ -315,7 +317,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                 }
                 return null;
             }
-        }.setValues(new ArrayList(tempValues)).setMain("Jamo_Short_Name", "JSN", UnicodeProperty.MISC,
+        }.setValues(new ArrayList<String>(tempValues)).setMain("Jamo_Short_Name", "JSN", UnicodeProperty.MISC,
                 version));
 
         add(new UnicodeProperty.SimpleProperty() {
@@ -649,11 +651,11 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         if (DEBUG) {
             System.out.println("Other Properties");
         }
-        final List names = new ArrayList();
+        final List<String> names = new ArrayList<String>();
         UnifiedProperty.getAvailablePropertiesAliases(names, ucd);
-        final Iterator it = names.iterator();
+        final Iterator<String> it = names.iterator();
         while (it.hasNext()) {
-            final String name = (String) it.next();
+            final String name = it.next();
             if (getProperty(name) != null) {
                 if (DEBUG) {
                     System.out.println("Iterated Names: " + name + ", ALREADY PRESENT");
@@ -668,7 +670,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
         final int compositeVersion = ucd.getCompositeVersion();
         if (compositeVersion >= 0x040000) {
-            final UnicodeMap<String> unicodeMap = new UnicodeMap();
+            final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
             unicodeMap.setErrorOnReset(true);
             unicodeMap.put(0xD, "CR");
             unicodeMap.put(0xA, "LF");
@@ -706,7 +708,6 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
 
             // (Currently there are no characters with this value)
-            final String oldValue = unicodeMap.get(0);
             //UnicodeSet graphemePrepend = getProperty("Logical_Order_Exception").getSet(UCD_Names.YES);
             //            unicodeMap.setErrorOnReset(false);
             //            unicodeMap.put(0, "Prepend");
@@ -748,7 +749,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         if (compositeVersion >= 0x040000) {
             add(new UnicodeProperty.UnicodeMapProperty() {
                 {
-                    unicodeMap = new UnicodeMap();
+                    unicodeMap = new UnicodeMap<String>();
                     unicodeMap.setErrorOnReset(true);
                     final UnicodeProperty cat = getProperty("General_Category");
                     final UnicodeProperty script = getProperty("Script");
@@ -846,7 +847,7 @@ U+FF1A ( ： ) FULLWIDTH COLON
         if (compositeVersion >= 0x040000) {
             add(new UnicodeProperty.UnicodeMapProperty() {
                 {
-                    unicodeMap = new UnicodeMap();
+                    unicodeMap = new UnicodeMap<String>();
                     unicodeMap.setErrorOnReset(true);
                     unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
                     unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
@@ -1106,7 +1107,7 @@ isTitlecase(X) is false.
         }
 
         @Override
-        protected List _getNameAliases(List result) {
+        protected List<String> _getNameAliases(List<String> result) {
             addUnique(ucdProperty.getName(UCD_Types.SHORT), result);
             final String name = getName();
             addUnique(name, result);
@@ -1117,7 +1118,7 @@ isTitlecase(X) is false.
         }
 
         @Override
-        protected List _getValueAliases(String valueAlias, List result) {
+        protected List<String> _getValueAliases(String valueAlias, List<String> result) {
             if (isType(BINARY_MASK)) {
                 lookup(valueAlias, UCD_Names.YN_TABLE_LONG, UCD_Names.YN_TABLE, YNTF, result);
                 // if (valueAlias.equals(UCD_Names.YES)) {
@@ -1146,7 +1147,7 @@ isTitlecase(X) is false.
         }
 
         @Override
-        protected List _getAvailableValues(List result) {
+        protected List<String> _getAvailableValues(List<String> result) {
             if (isType(BINARY_MASK)) {
                 addUnique(UCD_Names.YES, result);
                 addUnique(UCD_Names.NO, result);
@@ -1174,7 +1175,7 @@ isTitlecase(X) is false.
      */
 
     private static final Relation<String, String> ALIAS_JOINING_GROUP
-    = new Relation(new HashMap(), LinkedHashSet.class);
+    = new Relation<String, String>(new HashMap<String, Set<String>>(), LinkedHashSet.class);
     static {
         ALIAS_JOINING_GROUP.put("Teh_Marbuta_Goal", "Hamza_On_Heh_Goal");
         ALIAS_JOINING_GROUP.freeze();
@@ -1182,11 +1183,7 @@ isTitlecase(X) is false.
 
     private class ToolUnicodeProperty extends UnicodeProperty {
         org.unicode.text.UCD.UCDProperty up;
-
         int                              propMask;
-
-        static final int                 EXTRA_START = 0x10000;
-
 
         private ToolUnicodeProperty(String propertyAlias) {
             propMask = UnifiedProperty.getPropmask(propertyAlias, ucd);
@@ -1538,7 +1535,7 @@ isTitlecase(X) is false.
     }
 
     static List<String> lookup(String valueAlias, String[] main, String[] aux,
-            Relation<String, String> aux2, List result) {
+            Relation<String, String> aux2, List<String> result) {
         // System.out.println(valueAlias + "=>");
         // System.out.println("=>" + aux[pos]);
         if (aux != null) {
@@ -1584,7 +1581,7 @@ isTitlecase(X) is false.
             OK, DELETED, ILLEGAL, REMAPPED
         };
 
-        private final UCD                      ucdIdna = UCD.make();                      // latest
+        private final UCD                      ucdIdna = UCD.makeLatestVersion();
         private final StringPrep               namePrep;
         private final StringUCharacterIterator uci     = new StringUCharacterIterator("");
 
@@ -1633,8 +1630,8 @@ isTitlecase(X) is false.
         return WELL_FORMED_LANGUAGE_TAG.matcher(tag).matches();
     }
 
-    public static final Relation<String, String> YNTF                     = new Relation(
-            new TreeMap(),
+    public static final Relation<String, String> YNTF = new Relation<String, String>(
+            new TreeMap<String, Set<String>>(),
             LinkedHashSet.class);
     static {
         YNTF.putAll("Yes", Arrays.asList(YES_VALUES));

@@ -1,6 +1,6 @@
 Generate: .*
-DeltaVersion: 3
-CopyrightYear: 2015
+DeltaVersion: 5
+CopyrightYear: 2016
 
 File: extra/ScriptNfkc
 Property: SPECIAL

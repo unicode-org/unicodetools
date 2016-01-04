@@ -6,6 +6,8 @@ import java.util.TimeZone;
 
 import org.unicode.text.utility.Settings;
 
+import com.ibm.icu.util.VersionInfo;
+
 
 public final class Default implements UCD_Types {
 
@@ -60,6 +62,10 @@ public final class Default implements UCD_Types {
             setUCD();
         }
         return ucdVersion;
+    }
+
+    public static VersionInfo ucdVersionInfo() {
+        return VersionInfo.getInstance(ucdVersion());
     }
 
     public static UCD ucd() {
