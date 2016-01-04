@@ -22,6 +22,7 @@ import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.VersionInfo;
 
 public final class GenerateStandardizedVariants implements UCD_Types {
 
@@ -52,7 +53,10 @@ public final class GenerateStandardizedVariants implements UCD_Types {
 #	If more than one is present, there are spaces between them.
      */
     static public void generate() throws IOException {
-
+        if (Default.ucdVersionInfo().compareTo(VersionInfo.getInstance(9)) >= 0) {
+            // StandardizedVariants.html is obsolete since Unicode 9.0.
+            return;
+        }
 
         // read the data and compose the table
 
@@ -76,8 +80,8 @@ public final class GenerateStandardizedVariants implements UCD_Types {
                 continue;
             }
 
-            final int count = Utility.split(line, ';', splits);
-            final int codeCount = Utility.split(splits[0], ' ', codes);
+            //nal int count = Utility.split(line, ';', splits);
+            //nal int codeCount = Utility.split(splits[0], ' ', codes);
             final int code = Utility.codePointFromHex(codes[0]);
             if (uiSet.contains(code)) {
                 continue;
@@ -124,14 +128,10 @@ public final class GenerateStandardizedVariants implements UCD_Types {
 
         // now write out the results
 
-        final String directory = MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY;
-        final String filename = directory + "StandardizedVariants" + UnicodeDataFile.getHTMLFileSuffix(true);
         final UnicodeDataFile outfile = UnicodeDataFile.openHTMLAndWriteHeader(MakeUnicodeFiles.MAIN_OUTPUT_DIRECTORY, "StandardizedVariants")
                 .setSkipCopyright(Settings.SKIP_COPYRIGHT);
 
-        final PrintWriter out = outfile.out; // Utility.openPrintWriter(filename, Utility.LATIN1_UNIX);
-        //String[] batName = {""};
-        //String mostRecent = UnicodeDataFile.generateBat(directory, filename, UnicodeDataFile.getFileSuffix(true), batName);
+        final PrintWriter out = outfile.out;
 
         final String version = Default.ucd().getVersion();
         final String lastVersion = Utility.getPreviousUcdVersion(version);
@@ -172,7 +172,7 @@ public final class GenerateStandardizedVariants implements UCD_Types {
         outfile.close();
     }
 
-    static Map<String,String> FIX_GLYPH_PART = new HashMap();
+    static Map<String,String> FIX_GLYPH_PART = new HashMap<String,String>();
     static {
         final String[][] HACKS = {
                 {"refglyph?24-25FB", "varglyph?24-25FB-FE0E"},

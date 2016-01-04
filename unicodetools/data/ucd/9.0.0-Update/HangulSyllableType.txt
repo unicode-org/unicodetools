@@ -1,9 +1,9 @@
-# HangulSyllableType-8.0.0.txt
-# Date: 2014-12-16, 23:07:45 GMT [MD]
+# HangulSyllableType-9.0.0.txt
+# Date: 2015-12-18, 21:21:11 GMT
+# © 2015 Unicode®, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# Copyright (c) 1991-2014 Unicode, Inc.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
 # ================================================

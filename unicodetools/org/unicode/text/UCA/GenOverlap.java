@@ -42,7 +42,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
 
     public static void validateUCA(UCA collatorIn) throws Exception {
         collator = collatorIn;
-        ucd = UCD.make();
+        ucd = UCD.makeLatestVersion();
 
         nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
         nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
@@ -77,7 +77,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         System.out.println("# Overlap");
         System.out.println("# Generated: " + WriteCollationData.getNormalDate());
 
-        ucd = UCD.make();
+        ucd = UCD.makeLatestVersion();
 
         nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
         nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
@@ -363,7 +363,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         System.out.println("# Generate");
         System.out.println("# Generated: " + WriteCollationData.getNormalDate());
 
-        ucd = UCD.make();
+        ucd = UCD.makeLatestVersion();
 
         nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
         nfkd = new Normalizer(UCD_Types.NFKD, collatorIn.getUCDVersion());
@@ -565,7 +565,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         System.out.println("# Check Hash");
         System.out.println("# Generated: " + WriteCollationData.getNormalDate());
 
-        ucd = UCD.make();
+        ucd = UCD.makeLatestVersion();
 
         //nfd = new Normalizer(Normalizer.NFD);
         //nfkd = new Normalizer(Normalizer.NFKD);
@@ -752,7 +752,7 @@ public class GenOverlap implements UCD_Types, UCA_Types {
         final PrintWriter log = Utility.openPrintWriter(UCA.getUCA_GEN_DIR(), "ListCyrillic.txt", Utility.UTF8_WINDOWS);
         final Set set = new TreeSet(collatorIn);
         final Set set2 = new TreeSet(collatorIn);
-        ucd = UCD.make();
+        ucd = UCD.makeLatestVersion();
 
         nfd = new Normalizer(UCD_Types.NFD, collatorIn.getUCDVersion());
 

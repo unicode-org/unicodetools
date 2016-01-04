@@ -31,7 +31,6 @@ import java.util.TreeSet;
 
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;
@@ -100,8 +99,8 @@ public final class ConvertUCD implements UCD_Types {
         /*
         //*/
     };
-    static HashMap isHex = new HashMap();
-    static HashMap defaults = new HashMap();
+    static HashMap<String, String> isHex = new HashMap<String, String>();
+    static HashMap<String, String> defaults = new HashMap<String, String>();
 
     static {
         for (final String[] element : labelList) {
@@ -325,10 +324,10 @@ public final class ConvertUCD implements UCD_Types {
             readSemi(labelList[0]); // TESTING ONLY
         }
 
-        final Iterator it = charData.keySet().iterator();
+        final Iterator<Integer> it = charData.keySet().iterator();
         while (it.hasNext()) {
-            final Object key = it.next();
-            final UData value = (UData) charData.get(key);
+            final Integer key = it.next();
+            final UData value = charData.get(key);
             value.compact();
         }
 
@@ -625,11 +624,11 @@ public final class ConvertUCD implements UCD_Types {
         //printValues("JOINING_GROUP", jgSet);
     }
 
-    static void printValues(String title, Set s) {
-        Iterator it = s.iterator();
+    static void printValues(String title, Set<String> s) {
+        Iterator<String> it = s.iterator();
         System.out.println("public static String[] " + title + " = {");
         while (it.hasNext()) {
-            final String value = (String) it.next();
+            final String value = it.next();
             System.out.println("    \"" + value + "\",");
         }
         System.out.println("};");
@@ -637,14 +636,14 @@ public final class ConvertUCD implements UCD_Types {
         System.out.println("public static byte ");
         int count = 0;
         while (it.hasNext()) {
-            final String value = (String) it.next();
+            final String value = it.next();
             System.out.println("    " + value.replace(' ', '-').toUpperCase() + " = " + (count++) + ",");
         }
         System.out.println("    LIMIT_" + title + " = " + count);
         System.out.println(";");
     }
 
-    Map charData = new TreeMap();
+    Map<Integer, UData> charData = new TreeMap<Integer, UData>();
 
     /*
     static void writeXML() throws IOException {
@@ -709,7 +708,7 @@ public final class ConvertUCD implements UCD_Types {
       */
 
     void writeJavaData() throws IOException {
-        final Iterator it = charData.keySet().iterator();
+        final Iterator<Integer> it = charData.keySet().iterator();
         final int codePoint = -1;
         System.out.println("Writing " + dataFilePrefix + version);
         final DataOutputStream dataOut = new DataOutputStream(
@@ -773,7 +772,7 @@ public final class ConvertUCD implements UCD_Types {
             return getEntryUData;
         }
         final Integer cc = new Integer(cp);
-        final UData charEntry = (UData) charData.get(cc);
+        final UData charEntry = charData.get(cc);
         if (charEntry == null) {
             return null;
         }
@@ -789,7 +788,7 @@ public final class ConvertUCD implements UCD_Types {
             return getEntryUData;
         }
         final Integer cc = new Integer(cp);
-        UData charEntry = (UData) charData.get(cc);
+        UData charEntry = charData.get(cc);
         if (charEntry == null) {
             charEntry = new UData(cp);
             charData.put(cc, charEntry);
@@ -808,19 +807,9 @@ public final class ConvertUCD implements UCD_Types {
     }
 
     void appendCharProperties(int cp, String key) {
-        int ind;
-        //if (true || NEWPROPS) {
-        ind = Utility.lookup(key, UCD_Names.BP, true);
-        /*} else {
-            ind = Utility.lookup(key, UCD_Names.BP_OLD);
-        }
-         */
-        //charEntry.binaryProperties |= (1 << ind);
+        int ind = Utility.lookup(key, UCD_Names.BP, UCD_Names.SHORT_BP, true);
         setBinaryProperty(cp, ind);
     }
-
-    Set jtSet = new TreeSet();
-    Set jgSet = new TreeSet();
 
     /** Adds the character data. Signals duplicates with an exception
      */

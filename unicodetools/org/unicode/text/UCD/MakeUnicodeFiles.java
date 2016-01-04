@@ -48,24 +48,6 @@ public class MakeUnicodeFiles {
 
     public static int dVersion = -1; // change to fix the generated file D version. If less than zero, no "d"
 
-    /*static String[] hackNameList = {
-   "noBreak", "Arabic_Presentation_Forms-A", "Arabic_Presentation_Forms-B",
-   "CJK_Symbols_and_Punctuation", "Combining_Diacritical_Marks_for_Symbols",
-   "Enclosed_CJK_Letters_and_Months", "Greek_and_Coptic",
-   "Halfwidth_and_Fullwidth_Forms", "Latin-1_Supplement", "Latin_Extended-A",
-   "Latin_Extended-B", "Miscellaneous_Mathematical_Symbols-A",
-   "Miscellaneous_Mathematical_Symbols-B", "Miscellaneous_Symbols_and_Arrows",
-   "Superscripts_and_Subscripts", "Supplemental_Arrows-A", "Supplemental_Arrows-B",
-   "Supplementary_Private_Use_Area-A", "Supplementary_Private_Use_Area-B",
-   "Canadian-Aboriginal", "Old-Italic"
-   };
-   static {
-   for (int i = 0; i < hackNameList.length; ++i) {
-   System.out.println("HackName:\t" + hackNameList[i]);
-   }
-   }
-     */
-
     static boolean DEBUG = false;
 
     public static void main(String[] args) throws IOException {
@@ -92,28 +74,6 @@ public class MakeUnicodeFiles {
         private Format(){
             build();
         }
-        /*
-     static String[] FILE_OPTIONS = {
-     "Script            nameStyle=none makeUppercase skipUnassigned=Common hackValues",
-     "Age               nameStyle=none noLabel skipValue=unassigned",
-     "Numeric_Type      nameStyle=none makeFirstLetterLowercase skipValue=None",
-     "General_Category  nameStyle=none valueStyle=short noLabel",
-     "Line_Break        nameStyle=none valueStyle=short skipUnassigned=Unknown",
-     "Joining_Type      nameStyle=none valueStyle=short skipValue=Non_Joining",
-     "Joining_Group     nameStyle=none skipValue=No_Joining_Group makeUppercase",
-     "East_Asian_Width      nameStyle=none valueStyle=short skipUnassigned=Neutral",
-     "Decomposition_Type    nameStyle=none skipValue=None makeFirstLetterLowercase hackValues",
-     "Bidi_Class        nameStyle=none valueStyle=short skipUnassigned=Left_To_Right",
-     "Block             nameStyle=none noLabel valueList",
-     "Canonical_Combining_Class     nameStyle=none valueStyle=short skipUnassigned=Not_Reordered longValueHeading=ccc",
-     "Hangul_Syllable_Type  nameStyle=none valueStyle=short skipValue=Not_Applicable",
-     "NFD_Quick_Check   nameStyle=short valueStyle=short skipValue=Yes",
-     "NFC_Quick_Check   nameStyle=short valueStyle=short skipValue=Yes",
-     "NFKC_Quick_Check  nameStyle=short valueStyle=short skipValue=Yes",
-     "NFKD_Quick_Check  nameStyle=short valueStyle=short skipValue=Yes",
-     "FC_NFKC_Closure   nameStyle=short"
-     };
-         */
 
         void printFileComments(PrintWriter pw, String filename) {
             final String fileComments = fileToComments.get(filename);
@@ -234,13 +194,6 @@ public class MakeUnicodeFiles {
                 return result;
             }
         }
-        /*
-     static {
-     for (int i = 0; i < FILE_OPTIONS.length; ++i) {
-     PrintStyle.add(FILE_OPTIONS[i]);
-     }
-     }
-         */
 
         void addValueComments(String property, String value, String comments) {
             if (DEBUG) {
@@ -301,30 +254,7 @@ public class MakeUnicodeFiles {
             return "";
         }
 
-        /*private void add(String name, String[] properties) {
-     fileToPropertySet.put(name, properties);
-     }*/
-
         private void build() {
-            /*
-       for (int i = 0; i < hackNameList.length; ++i) {
-       String item = hackNameList[i];
-       String regularItem = UnicodeProperty.regularize(item,true);
-       hackMap.put(regularItem, item);
-       }
-             */
-
-            /*
-       for (int i = 0; i < UCD_Names.UNIFIED_PROPERTIES.length; ++i) {
-       String name = Utility.getUnskeleton(UCD_Names.UNIFIED_PROPERTIES[i], false);
-       valueComments.add(name, "*", "# " + UCD_Names.UNIFIED_PROPERTY_HEADERS[i]);
-       System.out.println();
-       System.out.println(name);
-       System.out.println("# " + UCD_Names.UNIFIED_PROPERTY_HEADERS[i]);
-       }
-       // HACK
-        valueComments.add("Bidi_Mirroring", "*", "# " + UCD_Names.UNIFIED_PROPERTY_HEADERS[9]);
-             */
             BufferedReader br = null;
             try {
                 br = Utility.openReadFile(Settings.SRC_UCD_DIR + "MakeUnicodeFiles.txt", Utility.UTF8);
@@ -394,7 +324,6 @@ public class MakeUnicodeFiles {
                     }
                 }
             } catch (final IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
                 throw new IllegalArgumentException("File missing");
             } finally {
@@ -406,73 +335,11 @@ public class MakeUnicodeFiles {
                 }
             }
             hackMapFilter = new UnicodeProperty.MapFilter(hackMap);
-            /*
-       add("PropertyValueAliases", null);
-       add("PropertyAliases", null);
-       add("SpecialCasing", null);
-       add("NormalizationTest", null);
-       add("StandardizedVariants", null);
-       add("CaseFolding", null);
-       add("DerivedAge", new String[] {"Age"});
-       add("Scripts", new String[] {"Script"});
-       add("HangulSyllableType", new String[] {"HangulSyllableType"});
-       add("DerivedBidiClass", new String[] {"BidiClass"});
-       add("DerivedBinaryProperties", new String[] {"BidiMirrored"});
-       add("DerivedCombiningClass", new String[] {"CanonicalCombiningClass"});
-       add("DerivedDecompositionType", new String[] {"DecompositionType"});
-       add("DerivedEastAsianWidth", new String[] {"EastAsianWidth"});
-       add("DerivedGeneralCategory", new String[] {"GeneralCategory"});
-       add("DerivedJoiningGroup", new String[] {"JoiningGroup"});
-       add("DerivedJoiningType", new String[] {"JoiningType"});
-       add("DerivedLineBreak", new String[] {"LineBreak"});
-       add("DerivedNumericType", new String[] {"NumericType"});
-       add("DerivedNumericValues", new String[] {"NumericValue"});
-       add("PropList", new String[] {
-       "White_Space", "Bidi_Control", "Join_Control",
-       "Dash", "Hyphen", "Quotation_Mark",
-       "Terminal_Punctuation", "Other_Math",
-       "Hex_Digit", "ASCII_Hex_Digit",
-       "Other_Alphabetic",
-       "Ideographic",
-       "Diacritic", "Extender",
-       "Other_Lowercase", "Other_Uppercase",
-       "Noncharacter_Code_Point",
-       "Other_Grapheme_Extend",
-       "Grapheme_Link",
-       "IDS_Binary_Operator", "IDS_Trinary_Operator",
-       "Radical", "Unified_Ideograph",
-       "Other_Default_Ignorable_Code_Point",
-       "Deprecated", "Soft_Dotted",
-       "Logical_Order_Exception",
-       "Other_ID_Start"
-       });
-       add("DerivedCoreProperties", new String[] {
-       "Math", "Alphabetic", "Lowercase", "Uppercase",
-       "ID_Start", "ID_Continue",
-       "XID_Start", "XID_Continue",
-       "Default_Ignorable_Code_Point",
-       "Grapheme_Extend", "Grapheme_Base"
-       });
-       add("DerivedNormalizationProps", new String[] {
-       "FC_NFKC_Closure",
-       "Full_Composition_Exclusion",
-       "NFD_QuickCheck", "NFC_QuickCheck", "NFKD_QuickCheck", "NFKC_QuickCheck",
-       "Expands_On_NFD", "Expands_On_NFC", "Expands_On_NFKD", "Expands_On_NFKC"
-       });
-             */
             write();
         }
 
         private void write() {
             final TreeMap<String, String> fileoptions = new TreeMap<String, String>();
-            /*for (int i = 0; i < FILE_OPTIONS.length; ++i) {
-       String s = FILE_OPTIONS[i];
-       int pos = s.indexOf(' ');
-       String name = s.substring(0,pos);
-       String options = s.substring(pos).trim();
-       fileoptions.put(name, options);
-       }
-             */
             for (final Iterator<String> it = fileToPropertySet.keySet().iterator(); it.hasNext();) {
                 final String key = it.next();
                 if (DEBUG) {
@@ -534,8 +401,7 @@ public class MakeUnicodeFiles {
 
     public static void generateFile() throws IOException {
         for (final String element : Format.theFormat.filesToDo) {
-            final String fileNamePattern =
-                    element.trim(); // .toLowerCase(Locale.ENGLISH);
+            final String fileNamePattern = element.trim();
             final Matcher matcher = Pattern.compile(fileNamePattern, Pattern.CASE_INSENSITIVE).matcher("");
             final Iterator<String> it = Format.theFormat.getFiles().iterator();
             boolean gotOne = false;
@@ -544,7 +410,6 @@ public class MakeUnicodeFiles {
                 if (!matcher.reset(propname).find()) {
                     continue;
                 }
-                //if (!propname.toLowerCase(Locale.ENGLISH).startsWith(fileName)) continue;
                 generateFile(propname);
                 gotOne = true;
             }
@@ -922,7 +787,6 @@ public class MakeUnicodeFiles {
                     for (final Iterator<String> it3 = l.iterator(); it3.hasNext();) {
                         buffer.append("\t; \t" + it3.next());
                     }
-                    //Character.codePointAt(seq, index)
 
                     sortedSet.add(mt.process(buffer.toString()));
                 }
