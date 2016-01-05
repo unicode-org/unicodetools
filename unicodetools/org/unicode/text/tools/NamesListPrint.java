@@ -29,9 +29,9 @@ public class NamesListPrint {
         NamesList nl2 = new NamesList("NamesList", Settings.lastVersion);
 
         UnicodeMap<String> output = new UnicodeMap();
-        compare(nl.informalAliases, nl2.informalAliases, output, Comment.alias.symbol);
-        compare(nl.informalComments, nl2.informalComments, output, Comment.comment.symbol);
-        compare(nl.informalXrefs, nl2.informalXrefs, output, Comment.xref.symbol);
+        compare(nl.informalAliases, nl2.informalAliases, output, Comment.alias.displaySymbol);
+        compare(nl.informalComments, nl2.informalComments, output, Comment.comment.displaySymbol);
+        compare(nl.informalXrefs, nl2.informalXrefs, output, Comment.xref.displaySymbol);
         compare(nl.subheads, nl2.subheads, output, "??");
         compare(nl.subheadComments, nl2.subheadComments, output, "?*");
 
@@ -166,12 +166,12 @@ public class NamesListPrint {
                 if (alias == Comment.xref) {
                     for (int cp : With.codePointArray(value)) {
                         String realName = Default.ucd().getName(cp);
-                        System.out.println("\t\t\t" + alias.symbol + "\t" 
+                        System.out.println("\t\t\t" + alias.displaySymbol + "\t" 
                                 + Utility.hex(cp) + " " + NamesList.CODE.transform(UTF16.valueOf(cp)) + " " + realName);
                     }
                 } else {
                     for (String s : value.split("\n")) {
-                        System.out.println("\t\t\t" + alias.symbol + "\t" + s);
+                        System.out.println("\t\t\t" + alias.displaySymbol + "\t" + s);
                     }
                 }
             }

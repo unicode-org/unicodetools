@@ -17,7 +17,6 @@ import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.Transform;
@@ -43,17 +42,19 @@ public class NamesList {
     ;
 
     public enum Comment {
-        comment("•", true), 
-        formalAlias("※", false),
-        alias("=", true), 
-        xref("→", true),
-        variation("➲", false),
-        canonical("≡", false),
-        compatibility("≈", false);
-        public final String symbol;
+        comment("•", '*', true), 
+        formalAlias("※", '%', false),
+        alias("=", '=', true), 
+        xref("→", 'x', true),
+        variation("~", '~', false),
+        canonical("≡", ':', false),
+        compatibility("≈", '#', false);
+        public final String displaySymbol;
+        public final char inputSymbol;
         public final boolean keep;
-        Comment(String symbol, boolean keep) {
-            this.symbol = symbol;
+        Comment(String displaySymbol, char inputSymbol, boolean keep) {
+            this.displaySymbol = displaySymbol;
+            this.inputSymbol = inputSymbol;
             this.keep = false;
         }
     }
@@ -123,7 +124,7 @@ public class NamesList {
                         x = Utility.hex(x) + " " + CODE.transform(x) + " " + realName;
                     }
                     b.append(sep)
-                    .append(entry.getKey().symbol)
+                    .append(entry.getKey().displaySymbol)
                     .append(sep2)
                     .append(x)
                     .append(sep3)
@@ -350,9 +351,9 @@ public class NamesList {
         }
     }
 
-    private void addError(String message, String arg) {
-        errors.put(lastCodePoint, message + ":\t" + arg);
-    }
+//    private void addError(String message, String arg) {
+//        errors.put(lastCodePoint, message + ":\t" + arg);
+//    }
 
     static final Pattern BLOCK = Pattern.compile("([A-F0-9]{4,6})\\s+(.*?)\\s+([A-F0-9]{4,6})");
 
