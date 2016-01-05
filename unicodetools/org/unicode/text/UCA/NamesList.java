@@ -42,13 +42,14 @@ public class NamesList {
     ;
 
     public enum Comment {
-        comment("•", '*', true), 
         formalAlias("※", '%', false),
         alias("=", '=', true), 
+        comment("•", '*', true), 
         xref("→", 'x', true),
-        variation("~", '~', false),
         canonical("≡", ':', false),
-        compatibility("≈", '#', false);
+        compatibility("≈", '#', false),
+        variation("~", '~', false),
+        ;
         public final String displaySymbol;
         public final char inputSymbol;
         public final boolean keep;

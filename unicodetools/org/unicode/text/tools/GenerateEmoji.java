@@ -2917,10 +2917,10 @@ public class GenerateEmoji {
             return "";
         }
         StringBuilder result = new StringBuilder();
-        addNameslistInfo(NAMESLIST.formalAliases.get(cp), NamesList.Comment.formalAlias.symbol, result);
-        addNameslistInfo(NAMESLIST.informalAliases.get(cp), NamesList.Comment.alias.symbol, result);
-        addNameslistInfo(NAMESLIST.informalComments.get(cp), NamesList.Comment.comment.symbol, result);
-        addNameslistInfo(NAMESLIST.informalXrefs.get(cp), NamesList.Comment.xref.symbol, result);
+        addNameslistInfo(NAMESLIST.formalAliases.get(cp), NamesList.Comment.formalAlias.displaySymbol, result);
+        addNameslistInfo(NAMESLIST.informalAliases.get(cp), NamesList.Comment.alias.displaySymbol, result);
+        addNameslistInfo(NAMESLIST.informalComments.get(cp), NamesList.Comment.comment.displaySymbol, result);
+        addNameslistInfo(NAMESLIST.informalXrefs.get(cp), NamesList.Comment.xref.displaySymbol, result);
         return result.toString();
     }
 
