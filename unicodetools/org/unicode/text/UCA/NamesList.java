@@ -150,7 +150,7 @@ public class NamesList {
                 }
             } else {
                 if (trim.startsWith("uppercase is ") || trim.startsWith("lowercase is ")) {
-                    System.err.println("Discarding case variant for: " + Utility.hex(codePoint) + " => " + trim);  
+                    //System.err.println("Discarding case variant for: " + Utility.hex(codePoint) + " => " + trim);  
                     return;
                 }
                 if (fixCodePoints) {
@@ -164,7 +164,7 @@ public class NamesList {
                 for (byte caseType = 0; caseType < UCD_Types.LIMIT_CASE ; ++caseType) {
                     String changed = Default.ucd().getCase(codePoint, UCD_Types.FULL, UCD_Types.UPPER);
                     if (changed.equals(trim)) {
-                        System.err.println("Discarding xref variant for: " + Utility.hex(codePoint) + " => " + Utility.hex(trim));
+                        //System.err.println("Discarding xref variant for: " + Utility.hex(codePoint) + " => " + Utility.hex(trim));
                         return true;
                     }
                 }

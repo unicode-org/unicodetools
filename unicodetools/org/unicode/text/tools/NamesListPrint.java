@@ -7,6 +7,7 @@ import java.util.Set;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
+import org.unicode.props.UnicodeRelation;
 import org.unicode.text.UCA.NamesList;
 import org.unicode.text.UCA.NamesList.Comment;
 import org.unicode.text.UCD.Default;
@@ -19,21 +20,21 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class NamesListPrint {
-    
+
     public static void main(String[] args) {
         NamesList nl = new NamesList("NamesList", Settings.latestVersion);
         for (Entry<Integer, Set<String>> error : nl.errors.keyValuesSet()) {
             System.err.println(Utility.hex(error.getKey()) + "\t" + error.getValue());
         }
         NamesList nl2 = new NamesList("NamesList", Settings.lastVersion);
-        
+
         UnicodeMap<String> output = new UnicodeMap();
         compare(nl.informalAliases, nl2.informalAliases, output, Comment.alias.symbol);
         compare(nl.informalComments, nl2.informalComments, output, Comment.comment.symbol);
         compare(nl.informalXrefs, nl2.informalXrefs, output, Comment.xref.symbol);
         compare(nl.subheads, nl2.subheads, output, "??");
         compare(nl.subheadComments, nl2.subheadComments, output, "?*");
-        
+
         for (String k : output) {
             System.out.println(Utility.hex(k) + "\t" + k + "\t" + Default.ucd().getName(k) + "\n" + output.getValue(k));
         }
@@ -44,15 +45,15 @@ public class NamesListPrint {
     }
 
     private static void compare(
-            UnicodeMap<String> a,
-            UnicodeMap<String> b, 
+            UnicodeRelation<String> subheads,
+            UnicodeRelation<String> subheads2, 
             UnicodeMap<String> output,
             String sep) {
-        UnicodeSet all = new UnicodeSet(a.keySet()).addAll(b.keySet());
+        UnicodeSet all = new UnicodeSet(subheads.keySet()).addAll(subheads2.keySet());
         Set<Pair<String,String>> seen = new HashSet();
         for (String cp : all) {
-            String v1 = CldrUtility.ifNull(a.get(cp),"<empty>");
-            String v2 = CldrUtility.ifNull(b.get(cp),"<empty>");
+            String v1 = CldrUtility.ifNull(subheads.get(cp),"<empty>").toString();
+            String v2 = CldrUtility.ifNull(subheads2.get(cp),"<empty>").toString();
             //if (v1 == null || v2 == null) continue;
             if (!Objects.equal(v1, v2)) {
                 Pair<String, String> pair = Pair.of(v1, v2);
@@ -68,6 +69,33 @@ public class NamesListPrint {
             }
         }
     }
+
+    private static void compare(
+            UnicodeMap<String> subheads,
+            UnicodeMap<String> subheads2, 
+            UnicodeMap<String> output,
+            String sep) {
+        UnicodeSet all = new UnicodeSet(subheads.keySet()).addAll(subheads2.keySet());
+        Set<Pair<String,String>> seen = new HashSet();
+        for (String cp : all) {
+            String v1 = CldrUtility.ifNull(subheads.get(cp),"<empty>").toString();
+            String v2 = CldrUtility.ifNull(subheads2.get(cp),"<empty>").toString();
+            //if (v1 == null || v2 == null) continue;
+            if (!Objects.equal(v1, v2)) {
+                Pair<String, String> pair = Pair.of(v1, v2);
+                if (seen.contains(pair)) {
+                    continue;
+                }
+                seen.add(pair);
+                String old = output.get(cp);
+                output.put(cp, (old == null ? "" : old + "\n") 
+                        + sep + "\t" + v1 
+                        + "\n≠" 
+                        + sep + "\t" + v2);
+            }
+        }
+    }
+
 
     public static void print(NamesList nl) {
         String lastSubheadComment = null;
@@ -105,8 +133,8 @@ public class NamesListPrint {
 
 
             System.out.println(Utility.hex(key) + "\t" + NamesList.CODE.transform(key) + "\t" + realName);
-            String informalComment = nl.informalComments.get(key);
-            String informalXref = nl.informalXrefs.get(key);
+            Set<String> informalComment = nl.informalComments.get(key);
+            Set<String> informalXref = nl.informalXrefs.get(key);
             display(key, nl.informalAliases, Comment.alias);
             display(key, nl.informalComments, Comment.comment);
             display(key, nl.informalXrefs, Comment.xref);
@@ -131,18 +159,20 @@ public class NamesListPrint {
         }
     }
 
-    private static void display(String key, UnicodeMap<String> data, Comment alias) {
-        String value = data.get(key);
-        if (value != null) {
-            if (alias == Comment.xref) {
-                for (int cp : With.codePointArray(value)) {
-                String realName = Default.ucd().getName(cp);
-                System.out.println("\t\t\t" + alias.symbol + "\t" 
-                + Utility.hex(cp) + " " + NamesList.CODE.transform(UTF16.valueOf(cp)) + " " + realName);
-                }
-            } else {
-                for (String s : value.split("\n")) {
-                    System.out.println("\t\t\t" + alias.symbol + "\t" + s);
+    private static void display(String key, UnicodeRelation<String> informalAliases, Comment alias) {
+        Set<String> values = informalAliases.get(key);
+        if (values != null) {
+            for (String value : values) {
+                if (alias == Comment.xref) {
+                    for (int cp : With.codePointArray(value)) {
+                        String realName = Default.ucd().getName(cp);
+                        System.out.println("\t\t\t" + alias.symbol + "\t" 
+                                + Utility.hex(cp) + " " + NamesList.CODE.transform(UTF16.valueOf(cp)) + " " + realName);
+                    }
+                } else {
+                    for (String s : value.split("\n")) {
+                        System.out.println("\t\t\t" + alias.symbol + "\t" + s);
+                    }
                 }
             }
         }

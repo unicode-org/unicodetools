@@ -1,20 +1,23 @@
 package org.unicode.text.tools;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Composite;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
-import java.awt.font.GlyphMetrics;
 import java.awt.font.GlyphVector;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
+import java.awt.image.RescaleOp;
 import java.awt.image.WritableRaster;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -50,7 +53,6 @@ import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.LocaleIDParser;
 import org.unicode.cldr.util.With;
-import org.unicode.text.tools.Emoji.Source;
 import org.unicode.text.tools.GmailEmoji.Data;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -144,13 +146,13 @@ public class LoadImage extends Component {
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
 
     public static void main(String[] args) throws IOException {
+        doAnimatedGif(false, 72, 100);
+
+        if (true) return;
         UnicodeSet u9 = new UnicodeSet(
                 "[[\\U0001F6D2\\U0001F6F6\\U0001F927\\U0001F938-\\U0001F93E\\U0001F941\\U0001F943-\\U0001F94B\\U0001F956-\\U0001F959\\U0001F98B-\\U0001F98F]"
                         + "[\\U0001F95A-\\U0001F95E\\U0001F990\\U0001F991]]");
         generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 144, false); // "Symbola"
-
-        if (true) return;
-        doAnimatedGif(false, 72, 250);
 
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
         //generatePngsFromFont(outputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"
@@ -365,6 +367,8 @@ public class LoadImage extends Component {
         final File output = new File(outputDir, "animated-emoji.gif");
         System.out.println(output.getCanonicalPath());
         List<BufferedImage> list = new ArrayList<>();
+        BufferedImage lastTargetImage = null;
+        BufferedImage firstTargetImage = null;
         for (Entry<String, Set<String>> entry : EmojiOrder.STD_ORDER.orderingToCharacters.keyValuesSet()) {
             final String key = entry.getKey();
             System.out.println("\t" + key);
@@ -380,12 +384,42 @@ public class LoadImage extends Component {
                 } else {
                     targetImage = resizeImage(sourceImage, size, size, Resizing.DEFAULT);
                 }
+                if (lastTargetImage != null) {
+                    mix(lastTargetImage, targetImage, list);
+                }
+                lastTargetImage = targetImage;
+                if (firstTargetImage == null) {
+                    firstTargetImage = targetImage;
+                }
                 list.add(targetImage);
             }
         }
+        mix(lastTargetImage, firstTargetImage, list);
         if (onlySize) return;
         createAnimatedImage(output, list, milliGap, true);
         System.out.println("Image created");
+    }
+
+    private static void mix(BufferedImage image, BufferedImage overlay, List<BufferedImage> list) {
+        // create the new image, canvas size is the max. of both image sizes
+        int w = Math.max(image.getWidth(), overlay.getWidth());
+        int h = Math.max(image.getHeight(), overlay.getHeight());
+        int rule = AlphaComposite.SRC_OVER;
+        for (int i = 2; i > 0; --i) {
+            BufferedImage combined = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+            //        float[] scales = { 1f, 1f, 1f, 0.5f };
+            //        float[] offsets = new float[4];
+            //        RescaleOp rop = new RescaleOp(scales, offsets, null);
+
+            // paint both images, preserving the alpha channels
+            Graphics2D g = (Graphics2D) combined.getGraphics();
+            //g.drawImage(foo , rop, 0, 0);
+            g.drawImage(image, 0, 0, null);
+            Composite comp2 = AlphaComposite.getInstance(rule , (float)((3-i)/3.0) );
+            g.setComposite(comp2);
+            g.drawImage(overlay, 0, 0, null);
+            list.add(combined);
+        }
     }
 
     //    public static void doGitHub(String inputDir, String outputDir)
