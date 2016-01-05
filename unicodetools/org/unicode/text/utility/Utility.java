@@ -222,12 +222,15 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
          */
     }
 
-    public static int lookup(String value, String[] values, String[] altValues, boolean skeletonize) {
+    public static int lookup(String value, String[] values, String[] altValues, boolean skeletonize, int maxValue) {
+        if ((values.length - 1) > maxValue || (altValues != null && (altValues.length - 1) > maxValue)) {
+            throw new IllegalArgumentException("values or altValues too long for maxValue " + maxValue);
+        }
         int result = Utility.find(value, values, skeletonize);
-        if (result == -1 && altValues != null) {
+        if (result < 0 && altValues != null) {
             result = Utility.find(value, altValues, skeletonize);
         }
-        if (result == -1) {
+        if (result < 0) {
             throw new ChainException("Could not find \"{0}\" in table [{1}] nor in [{2}]",
                     new Object [] { value, Arrays.asList(values), Arrays.asList(altValues) });
         }
@@ -235,21 +238,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static byte lookup(String source, String[] target, boolean skeletonize) {
-        final int result = Utility.find(source, target, skeletonize);
-        if (result != -1) {
-            assert Byte.MIN_VALUE <= result && result <= Byte.MAX_VALUE;
-            return (byte)result;
-        }
-        throw new ChainException("Could not find \"{0}\" in table [{1}]", new Object [] {source, Arrays.asList(target)});
+        return (byte)lookup(source, target, null, skeletonize, Byte.MAX_VALUE);
     }
 
     public static short lookupShort(String source, String[] target, boolean skeletonize) {
-        final int result = Utility.find(source, target, skeletonize);
-        if (result != -1) {
-            assert Short.MIN_VALUE <= result && result <= Short.MAX_VALUE;
-            return (short)result;
-        }
-        throw new ChainException("Could not find \"{0}\" in table [{1}]", new Object [] {source, Arrays.asList(target)});
+        return (short)lookup(source, target, null, skeletonize, Short.MAX_VALUE);
     }
 
     /**

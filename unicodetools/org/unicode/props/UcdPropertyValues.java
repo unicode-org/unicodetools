@@ -922,6 +922,9 @@ public class UcdPropertyValues {
     }
 
 	public enum Joining_Group_Values implements Named {
+        African_Feh("African Feh"),
+        African_Noon("African Noon"),
+        African_Qaf("African Qaf"),
         Ain("Ain"),
         Alaph("Alaph"),
         Alef("Alef"),

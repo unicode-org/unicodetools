@@ -1,9 +1,9 @@
-# DerivedDecompositionType-8.0.0.txt
-# Date: 2015-02-13, 13:47:11 GMT [MD]
+# DerivedDecompositionType-9.0.0.txt
+# Date: 2016-01-04, 22:59:28 GMT
+# © 2016 Unicode®, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# Copyright (c) 1991-2015 Unicode, Inc.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 
 # ================================================

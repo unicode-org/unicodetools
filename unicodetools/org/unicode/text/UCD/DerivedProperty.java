@@ -692,7 +692,7 @@ of characters, the first of which has a non-zero combining class.
                 #  + Variation_Selector
                 #  - White_Space
                 #  - FFF9..FFFB (Annotation Characters)
-                #  - 0600..0605, 06DD, 070F, 08E2, 110BD (exceptional Cf characters that should be visible)
+                #  - <list of code points, see & update MakeUnicodeFiles.txt> (exceptional Cf characters that should be visible)
              */
             @Override
             public boolean hasValue(int cp) {
@@ -711,7 +711,7 @@ of characters, the first of which has a non-zero combining class.
                 }
 
                 final byte cat = ucdData.getCategory(cp);
-                if (cat == Cf /*|| cat == Cs || cat == Cc */) {
+                if (cat == Cf) {
                     return true;
                 }
 
@@ -719,14 +719,9 @@ of characters, the first of which has a non-zero combining class.
                     return false;
                 }
 
-                //if (cp >= 0xFFF9 && cp <= 0xFFFB) return false;
-                //if (0x2060 <= cp && cp <= 0x206F || 0xFFF0 <= cp && cp <= 0xFFFB || 0xE0000 <= cp && cp <= 0xE0FFF) return true;
-                //if (0x0600 <= cp && cp <= 0x0603 || 0x06DD == cp || 0x070F == cp) return false;
-
                 if (ucdData.getBinaryProperty(cp, Variation_Selector)) {
                     return true;
                 }
-                //if (ucdData.getBinaryProperty(cp, Noncharacter_Code_Point)) return true;
                 return false;
             }
 
