@@ -665,7 +665,11 @@ public interface UCD_Types {
     MANICHAEAN_WAW= 84,
     MANICHAEAN_YODH= 85,
     MANICHAEAN_ZAYIN= 86,
-    LIMIT_JOINING_GROUP = MANICHAEAN_ZAYIN+1;
+    // Unicode 9:
+    AFRICAN_FEH = 87,
+    AFRICAN_QAF = 88,
+    AFRICAN_NOON = 89,
+    LIMIT_JOINING_GROUP = 90;
 
     static final byte NFD = 0, NFC = 1, NFKD = 2, NFKC = 3;
     public static final int

@@ -1003,7 +1003,10 @@ public final class UCD_Names implements UCD_Types {
         "MANICHAEAN_WAW",
         "MANICHAEAN_YODH",
         "MANICHAEAN_ZAYIN",
-        // BURUSHASHKI YEH BARREE
+        // Unicode 9:
+        "AFRICAN FEH",
+        "AFRICAN QAF",
+        "AFRICAN NOON",
     };
     static {
         fixArray(JOINING_GROUP);

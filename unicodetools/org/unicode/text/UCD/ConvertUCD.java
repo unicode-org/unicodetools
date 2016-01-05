@@ -807,7 +807,7 @@ public final class ConvertUCD implements UCD_Types {
     }
 
     void appendCharProperties(int cp, String key) {
-        int ind = Utility.lookup(key, UCD_Names.BP, UCD_Names.SHORT_BP, true);
+        int ind = Utility.lookup(key, UCD_Names.BP, UCD_Names.SHORT_BP, true, Integer.MAX_VALUE);
         setBinaryProperty(cp, ind);
     }
 
@@ -967,13 +967,8 @@ public final class ConvertUCD implements UCD_Types {
             } else if (fieldName.equals("jt")) {
                 uData.joiningType = Utility.lookup(fieldValue, UCD_Names.JOINING_TYPE, true);
             } else if (fieldName.equals("jg")) {
-                final byte temp = (byte)Utility.find(fieldValue, UCD_Names.OLD_JOINING_GROUP, true);
-                if (temp != -1) {
-                    uData.joiningGroup = temp;
-                } else {
-                    uData.joiningGroup = Utility.lookup(fieldValue, UCD_Names.JOINING_GROUP, true);
-                }
-
+                uData.joiningGroup = (byte)Utility.lookup(fieldValue,
+                        UCD_Names.OLD_JOINING_GROUP, UCD_Names.JOINING_GROUP, true, Byte.MAX_VALUE);
             } else if (fieldName.equals("nv")) {
                 if (major < 2) {
                     if (fieldValue.equals("-")) {

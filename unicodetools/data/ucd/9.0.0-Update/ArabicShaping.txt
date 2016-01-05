@@ -1,11 +1,10 @@
-# ArabicShaping-8.0.0.txt
-# Date: 2015-02-17, 23:33:00 GMT [RP]
+# ArabicShaping-9.0.0.txt
+# Date: 2016-01-04, 19:47:00 GMT [KW]
+# © 2016 Unicode®, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # This file is a normative contributory data file in the
 # Unicode Character Database.
-#
-# Copyright (c) 1991-2014 Unicode, Inc.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # This file defines the Joining_Type and Joining_Group property
 # values for Arabic, Syriac, N'Ko, Mandaic, and Manichaean positional
@@ -436,6 +435,15 @@
 08B2; REH WITH DOT AND INVERTED V ABOVE; R; REH
 08B3; AIN WITH 3 DOTS BELOW; D; AIN
 08B4; KAF WITH DOT BELOW; D; KAF
+08B6; BEH WITH MEEM ABOVE; D; BEH
+08B7; DOTLESS BEH WITH 3 DOTS BELOW AND MEEM ABOVE; D; BEH
+08B8; DOTLESS BEH WITH TEH ABOVE; D; BEH
+08B9; REH WITH NOON ABOVE; R; REH
+08BA; YEH WITH NOON ABOVE; D; YEH
+08BB; AFRICAN FEH; D; AFRICAN FEH
+08BC; AFRICAN QAF; D; AFRICAN QAF
+08BD; AFRICAN NOON; D; AFRICAN NOON
+08E2; ARABIC DISPUTED END OF AYAH; U; No_Joining_Group
 
 # Mongolian Characters
 
