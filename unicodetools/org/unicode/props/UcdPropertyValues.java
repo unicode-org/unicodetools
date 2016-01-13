@@ -1,5 +1,6 @@
 package org.unicode.props;
 import org.unicode.props.PropertyNames.Named;
+
 public class UcdPropertyValues {
 
     public enum Binary implements Named {
@@ -132,6 +133,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bassa_Vah"),
         Batak("Batak"),
         Bengali("Bengali"),
+        Bhaiksuki("Bhaiksuki"),
         Block_Elements("Block_Elements"),
         Bopomofo("Bopomofo"),
         Bopomofo_Extended("Bopomofo_Ext"),
@@ -172,6 +174,7 @@ public class UcdPropertyValues {
         Cyrillic("Cyrillic"),
         Cyrillic_Extended_A("Cyrillic_Ext_A"),
         Cyrillic_Extended_B("Cyrillic_Ext_B"),
+        Cyrillic_Extended_C("Cyrillic_Ext_C"),
         Cyrillic_Supplement("Cyrillic_Sup", "Cyrillic_Supplementary"),
         Deseret("Deseret"),
         Devanagari("Devanagari"),
@@ -200,6 +203,7 @@ public class UcdPropertyValues {
         Georgian("Georgian"),
         Georgian_Supplement("Georgian_Sup"),
         Glagolitic("Glagolitic"),
+        Glagolitic_Supplement("Glagolitic_Sup"),
         Gothic("Gothic"),
         Grantha("Grantha"),
         Greek_And_Coptic("Greek"),
@@ -216,6 +220,7 @@ public class UcdPropertyValues {
         High_Surrogates("High_Surrogates"),
         Hiragana("Hiragana"),
         Ideographic_Description_Characters("IDC"),
+        Ideographic_Symbols_And_Punctuation("Ideographic_Symbols"),
         Imperial_Aramaic("Imperial_Aramaic"),
         Common_Indic_Number_Forms("Indic_Number_Forms"),
         Inscriptional_Pahlavi("Inscriptional_Pahlavi"),
@@ -261,6 +266,7 @@ public class UcdPropertyValues {
         Malayalam("Malayalam"),
         Mandaic("Mandaic"),
         Manichaean("Manichaean"),
+        Marchen("Marchen"),
         Mathematical_Alphanumeric_Symbols("Math_Alphanum"),
         Mathematical_Operators("Math_Operators"),
         Meetei_Mayek("Meetei_Mayek"),
@@ -279,6 +285,7 @@ public class UcdPropertyValues {
         Spacing_Modifier_Letters("Modifier_Letters"),
         Modifier_Tone_Letters("Modifier_Tone_Letters"),
         Mongolian("Mongolian"),
+        Mongolian_Supplement("Mongolian_Sup"),
         Mro("Mro"),
         Multani("Multani"),
         Musical_Symbols("Music"),
@@ -302,6 +309,7 @@ public class UcdPropertyValues {
         Old_Turkic("Old_Turkic"),
         Oriya("Oriya"),
         Ornamental_Dingbats("Ornamental_Dingbats"),
+        Osage("Osage"),
         Osmanya("Osmanya"),
         Pahawh_Hmong("Pahawh_Hmong"),
         Palmyrene("Palmyrene"),
@@ -352,6 +360,8 @@ public class UcdPropertyValues {
         Tai_Xuan_Jing_Symbols("Tai_Xuan_Jing"),
         Takri("Takri"),
         Tamil("Tamil"),
+        Tangut("Tangut"),
+        Tangut_Components("Tangut_Components"),
         Telugu("Telugu"),
         Thaana("Thaana"),
         Thai("Thai"),
@@ -370,16 +380,7 @@ public class UcdPropertyValues {
         Warang_Citi("Warang_Citi"),
         Yi_Radicals("Yi_Radicals"),
         Yi_Syllables("Yi_Syllables"),
-        Yijing_Hexagram_Symbols("Yijing"),
-        Cyrillic_Extended_C("Cyrillic_Ext_C"),
-        Osage("Osage"),
-        Mongolian_Supplement("Mongolian_Sup"),
-        Bhaiksuki("Bhaiksuki"),
-        Marchen("Marchen"),
-        Ideographic_Symbols_And_Punctuation("Ideographic_Symbols"),
-        Tangut("Tangut"),
-        Tangut_Components("Tangut_Components"),
-        Glagolitic_Supplement("Glagolitic_Sup");
+        Yijing_Hexagram_Symbols("Yijing");
         private final PropertyNames<Block_Values> names;
         private Block_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Block_Values>(
@@ -922,9 +923,6 @@ public class UcdPropertyValues {
     }
 
 	public enum Joining_Group_Values implements Named {
-        African_Feh("African Feh"),
-        African_Noon("African Noon"),
-        African_Qaf("African Qaf"),
         Ain("Ain"),
         Alaph("Alaph"),
         Alef("Alef"),
@@ -1190,6 +1188,7 @@ public class UcdPropertyValues {
 
 		// Numeric_Value
 	public enum Script_Values implements Named {
+        Adlam("Adlm"),
         Caucasian_Albanian("Aghb"),
         Ahom("Ahom"),
         Arabic("Arab"),
@@ -1201,6 +1200,7 @@ public class UcdPropertyValues {
         Bassa_Vah("Bass"),
         Batak("Batk"),
         Bengali("Beng"),
+        Bhaiksuki("Bhks"),
         Bopomofo("Bopo"),
         Brahmi("Brah"),
         Braille("Brai"),
@@ -1259,6 +1259,7 @@ public class UcdPropertyValues {
         Mahajani("Mahj"),
         Mandaic("Mand"),
         Manichaean("Mani"),
+        Marchen("Marc"),
         Mende_Kikakui("Mend"),
         Meroitic_Cursive("Merc"),
         Meroitic_Hieroglyphs("Mero"),
@@ -1271,11 +1272,13 @@ public class UcdPropertyValues {
         Myanmar("Mymr"),
         Old_North_Arabian("Narb"),
         Nabataean("Nbat"),
+        Newa("Newa"),
         Nko("Nkoo"),
         Ogham("Ogam"),
         Ol_Chiki("Olck"),
         Old_Turkic("Orkh"),
         Oriya("Orya"),
+        Osage("Osge"),
         Osmanya("Osma"),
         Palmyrene("Palm"),
         Pau_Cin_Hau("Pauc"),
@@ -1306,6 +1309,7 @@ public class UcdPropertyValues {
         Tai_Le("Tale"),
         New_Tai_Lue("Talu"),
         Tamil("Taml"),
+        Tangut("Tang"),
         Tai_Viet("Tavt"),
         Telugu("Telu"),
         Tifinagh("Tfng"),
@@ -1323,12 +1327,6 @@ public class UcdPropertyValues {
         Inherited("Zinh", "Qaai"),
         Common("Zyyy"),
         Unknown("Zzzz"),
-        Osage("Osge"),
-        Bhaiksuki("Bhks"),
-        Marchen("Marc"),
-        Tangut("Tang"),
-        Adlam("Adlm"),
-        Newa("Newa"),
         Japanese("Jpan"),
         Korean("Kore");
         private final PropertyNames<Script_Values> names;

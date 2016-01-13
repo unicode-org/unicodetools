@@ -6,6 +6,7 @@ import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.UcdPropertyValues.*;
 
 public enum UcdProperty {
+
 		// Numeric
     Numeric_Value(PropertyType.Numeric, "nv"),
     kAccountingNumeric(PropertyType.Numeric, "cjkAccountingNumeric"),
@@ -221,7 +222,7 @@ public enum UcdProperty {
     Pattern_White_Space(PropertyType.Binary, Binary.class, null, "Pat_WS"),
     Quotation_Mark(PropertyType.Binary, Binary.class, null, "QMark"),
     Radical(PropertyType.Binary, Binary.class, null, "Radical"),
-    STerm(PropertyType.Binary, Binary.class, null, "STerm"),
+    Sentence_Terminal(PropertyType.Binary, Binary.class, null, "STerm"),
     Soft_Dotted(PropertyType.Binary, Binary.class, null, "SD"),
     Terminal_Punctuation(PropertyType.Binary, Binary.class, null, "Term"),
     Unified_Ideograph(PropertyType.Binary, Binary.class, null, "UIdeo"),
@@ -232,7 +233,7 @@ public enum UcdProperty {
     XID_Start(PropertyType.Binary, Binary.class, null, "XIDS"),
 		;
 
-    private final PropertyType type;
+private final PropertyType type;
 	private final PropertyNames<UcdProperty> names;
 	// for enums
 	private final NameMatcher name2enum;

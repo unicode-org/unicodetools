@@ -151,7 +151,9 @@ public class GenerateEnums {
 
     public static void writeValueEnumFile(Map<PropName, List<String[]>> values) throws IOException {
         final PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
-        output.println("package org.unicode.props;\nimport org.unicode.props.PropertyNames.Named;\npublic class UcdPropertyValues {");
+        output.println("package org.unicode.props;\n"
+                + "import org.unicode.props.PropertyNames.Named;\n\n"
+                + "public class UcdPropertyValues {");
 
         //[Alpha, N, No, F, False]
         addPropertyValueAliases(values, FileUtilities.in("", Utility.getMostRecentUnicodeDataFile("PropertyValueAliases", ENUM_VERSION, true, true))); 
@@ -290,7 +292,7 @@ public class GenerateEnums {
                         "import java.util.EnumSet;\n" +
                         "import java.util.Set;\n"+
                         "import org.unicode.props.PropertyNames.NameMatcher;\n" +
-                        "import org.unicode.props.UcdPropertyValues.*;"
+                        "import org.unicode.props.UcdPropertyValues.*;\n\n"
                 );
         //        "\tpublic enum PropertyType {");
         //        for (PropertyType pt : PropertyType.values()) {

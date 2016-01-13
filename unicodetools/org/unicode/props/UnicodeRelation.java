@@ -22,21 +22,21 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         Set<T> make();
     }
 
-    public static SetMaker<Comparable> TREESET_MAKER = new SetMaker<Comparable>() {
+    public static SetMaker TREESET_MAKER = new SetMaker<Comparable>() {
         @Override
         public Set<Comparable> make() {
             return new TreeSet<Comparable>();
         }
     };
 
-    public static SetMaker<Object> HASHSET_MAKER = new SetMaker<Object>() {
+    public static SetMaker HASHSET_MAKER = new SetMaker<Object>() {
         @Override
         public Set<Object> make() {
             return new HashSet<Object>();
         }
     };
 
-    public static final SetMaker<Object> LINKED_HASHSET_MAKER = new SetMaker<Object>() {
+    public static final SetMaker LINKED_HASHSET_MAKER = new SetMaker<Object>() {
         public Set<Object> make() {
             return new LinkedHashSet<Object>();
         }
