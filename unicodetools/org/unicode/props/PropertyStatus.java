@@ -66,7 +66,7 @@ public enum PropertyStatus {
             UcdProperty.Script,
             UcdProperty.Script_Extensions,
             UcdProperty.Sentence_Break,
-            UcdProperty.STerm,
+            UcdProperty.Sentence_Terminal,
             UcdProperty.Terminal_Punctuation,
             UcdProperty.Titlecase_Mapping,
             UcdProperty.Unicode_1_Name,
