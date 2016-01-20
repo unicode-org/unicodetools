@@ -2,8 +2,10 @@ package org.unicode.text.UCA;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -11,8 +13,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.props.UnicodeRelation;
+import org.unicode.text.UCA.NamesList.Comment;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -175,6 +180,7 @@ public class NamesList {
         }
         void storeData() {
             if (codePoint >= 0) {
+                codePoints.add(codePoint);
                 for (Entry<Comment, Set<String>> entry : comments.keyValuesSet()) {
                     switch (entry.getKey()) {
                     case comment: 
@@ -201,14 +207,16 @@ public class NamesList {
     }
 
     //UnicodeMap<Data> data = new UnicodeMap<>();
+    public UnicodeSet codePoints = new UnicodeSet();
 
-    public UnicodeRelation<String> informalAliases = new UnicodeRelation<>();
-    public UnicodeRelation<String> formalAliases = new UnicodeRelation<>();
-    public UnicodeRelation<String> informalComments = new UnicodeRelation<>();
-    public UnicodeRelation<String> informalXrefs = new UnicodeRelation<>();
+    public UnicodeRelation<String> informalAliases = new UnicodeRelation<>((UnicodeRelation.SetMaker<String>)UnicodeRelation.LINKED_HASHSET_MAKER);
+    public UnicodeRelation<String> formalAliases = new UnicodeRelation<>((UnicodeRelation.SetMaker<String>)UnicodeRelation.LINKED_HASHSET_MAKER);
+    public UnicodeRelation<String> informalComments = new UnicodeRelation<>((UnicodeRelation.SetMaker<String>)UnicodeRelation.LINKED_HASHSET_MAKER);
+    public UnicodeRelation<String> informalXrefs = new UnicodeRelation<>((UnicodeRelation.SetMaker<String>)UnicodeRelation.LINKED_HASHSET_MAKER);
 
     public UnicodeMap<String> subheads = new UnicodeMap<>();
     public UnicodeMap<String> subheadComments = new UnicodeMap<>();
+    public UnicodeMap<String> blockTitles = new UnicodeMap<>();
 
     public Relation<Integer, String> errors = Relation.of(new TreeMap<Integer,Set<String>>(), LinkedHashSet.class);
     public Relation<Integer, String> fileComments = Relation.of(new TreeMap<Integer,Set<String>>(), LinkedHashSet.class);
@@ -216,45 +224,51 @@ public class NamesList {
     int lastCodePoint = -1;
     Data lastDataItem = new Data();
 
+    private final Normalizer nfd;
+    private final Normalizer nfkd;
+    private final UCD ucd;
+
     public NamesList(String file, String ucdVersion) {
+        ucd = UCD.make(ucdVersion);
+        nfd = new org.unicode.text.UCD.Normalizer(UCD_Types.NFD, ucdVersion);
+        nfkd = new org.unicode.text.UCD.Normalizer(UCD_Types.NFD, ucdVersion);
         //int i = 0;
         String subhead = null;
         String subheadComment = null;
+        String blockTitle = null;
         try (BufferedReader in = Utility.openUnicodeFile(file, ucdVersion, true, Utility.LATIN1_WINDOWS)){
             while (true) {
                 String originalLine = in.readLine();
                 if (originalLine == null) {
                     break;
                 }
-                //++i;
                 if (originalLine.isEmpty()) {
                     continue;
                 }
                 try {
                     boolean fixCodePoints = true;
-                    if (originalLine.startsWith("@+")) {
-                        fixCodePoints = false;
-                        originalLine = originalLine.substring(2);
-                    }
+                    //                    if (originalLine.startsWith("@+")) {
+                    //                        fixCodePoints = false;
+                    //                        originalLine = originalLine.substring(2);
+                    //                    }
                     if (originalLine.startsWith("@")) {
-                        final String line = originalLine.substring(1);
-                        if (line.equals("@+")) {
+                        final String line = originalLine.trim();
+                        if (line.equals("@@+") || line.startsWith("@@@")) {
                             // skip
-                        } else if (line.startsWith("+")) {
-                            String temp = line.substring(1).trim();
+                        } else if (line.startsWith("@+")) {
+                            String temp = line.substring(2).trim();
                             if (!temp.startsWith("*")) {
                                 subheadComment = temp;
                             } else {
-                                lastDataItem.addComment(Comment.comment, temp.substring(1), fixCodePoints);
+                                lastDataItem.addComment(Comment.comment, temp.substring(2), fixCodePoints);
                             }
-                        } else if (line.startsWith("@@")) {
-                            // title
-                        } else if (line.startsWith("@")) {
-                            verifyBlock(line.substring(1).trim());
-                            subheadComment = null;
+                        } else if (line.startsWith("@@@")) {
+                            blockTitle = verifyBlock(line.trim());
                             subhead = null;
+                            subheadComment = null;
                         } else {
                             subhead = line.substring(1).trim();
+                            subheadComment = null;
                         }
                     } else {
                         if (originalLine.startsWith("\t")) {
@@ -301,6 +315,7 @@ public class NamesList {
                             subheads.put(lastCodePoint, subhead);
                             lastDataItem.storeData();
                             subheadComments.put(lastCodePoint, subheadComment);
+                            blockTitles.put(lastCodePoint, blockTitle);
                             lastDataItem.set(lastCodePoint);
                             verifyName(originalLine, pos);                  
                         }
@@ -323,24 +338,24 @@ public class NamesList {
         }
     }
 
-//    private <T> void close(UnicodeMap<T> subheads2) {
-//        T lastValue = null;
-//        int lastEnd = -1;
-//        UnicodeMap<T> filler = new UnicodeMap<T>();
-//        for (EntryRange entryRange : subheads.entryRanges()) {
-//            if (entryRange.value == null) {
-//                continue;
-//            }
-//            if (entryRange.value.equals(lastValue)) {
-//                filler.putAll(lastEnd+1, entryRange.codepoint-1, lastValue);
-//            }
-//            lastEnd = entryRange.codepointEnd;
-//            lastValue = (T) entryRange.value;
-//        }
-//        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
-//        subheads2.putAll(filler);
-//        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
-//    }
+    //    private <T> void close(UnicodeMap<T> subheads2) {
+    //        T lastValue = null;
+    //        int lastEnd = -1;
+    //        UnicodeMap<T> filler = new UnicodeMap<T>();
+    //        for (EntryRange entryRange : subheads.entryRanges()) {
+    //            if (entryRange.value == null) {
+    //                continue;
+    //            }
+    //            if (entryRange.value.equals(lastValue)) {
+    //                filler.putAll(lastEnd+1, entryRange.codepoint-1, lastValue);
+    //            }
+    //            lastEnd = entryRange.codepointEnd;
+    //            lastValue = (T) entryRange.value;
+    //        }
+    //        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
+    //        subheads2.putAll(filler);
+    //        System.out.println("size: " + subheads.getRangeCount() + "\n" + subheads2);
+    //    }
 
     static final UnicodeSet HEX_AND_SPACE = new UnicodeSet("[0-9A-F\\ ]").freeze();
 
@@ -352,17 +367,20 @@ public class NamesList {
         }
     }
 
-//    private void addError(String message, String arg) {
-//        errors.put(lastCodePoint, message + ":\t" + arg);
-//    }
+    //    private void addError(String message, String arg) {
+    //        errors.put(lastCodePoint, message + ":\t" + arg);
+    //    }
 
-    static final Pattern BLOCK = Pattern.compile("([A-F0-9]{4,6})\\s+(.*?)\\s+([A-F0-9]{4,6})");
+    //static final Pattern BLOCK = Pattern.compile("([A-F0-9]{4,6})\\s+(.*?)\\s+([A-F0-9]{4,6})");
+    static final Matcher BLOCK_MATCHER = Pattern.compile("@@\t\\p{XDigit}{4,6}\t(.*)\t\\p{XDigit}{4,6}").matcher("");
 
-    private void verifyBlock(String string) {
-        final Matcher m = BLOCK.matcher(string);
-        if (!m.matches()) {
-            System.err.println("Bad Match: " + string);
+
+
+    private String verifyBlock(String string) {
+        if (!BLOCK_MATCHER.reset(string).matches()) {
+            throw new IllegalArgumentException("bad blockLine: " + string);
         }
+        return BLOCK_MATCHER.group(1);
         //errors.put(lastCodePoint, "Bad compat decomp:\t" + string);
         // <font> 0073 latin small letter s
     }
@@ -403,5 +421,38 @@ public class NamesList {
         //            System.err.println("Failed to read: x " + string);
         //        }
         return null;
+    }
+
+    public Set<String> getItem(Comment comment, String item) {
+        String value = null;
+        Set<String> valueSet = null;
+        switch (comment) {
+        case formalAlias: valueSet = formalAliases.get(item); break;
+        case alias: valueSet = informalAliases.get(item); break;
+        case xref: valueSet = display(informalXrefs.get(item)); break;
+        
+        case comment: valueSet = informalComments.get(item); break;
+        
+        case canonical: value = nfd.isNormalized(item) ? null : nfd.normalize(item); break;
+        case compatibility: value = nfkd.isNormalized(item) ? null : nfkd.normalize(item); break;
+        
+        case variation: break; // get variation sequence;
+        }
+        if (valueSet != null) {
+            return valueSet;
+        } else if (value != null) {
+            return Collections.singleton(value);
+        } else {
+            return null;
+        }
+    }
+
+    private Set<String> display(Set<String> set) {
+        if (set == null) return set;
+       Set<String> result = new LinkedHashSet<>();
+       for (String item : set) {
+           result.add(Utility.hex(item) + " " + item + " " + ucd.getName(item).toLowerCase(Locale.ROOT));
+       }
+        return result;
     }
 }

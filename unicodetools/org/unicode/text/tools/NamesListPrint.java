@@ -11,11 +11,14 @@ import org.unicode.props.UnicodeRelation;
 import org.unicode.text.UCA.NamesList;
 import org.unicode.text.UCA.NamesList.Comment;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -23,12 +26,16 @@ public class NamesListPrint {
 
     public static void main(String[] args) {
         NamesList nl = new NamesList("NamesList", Settings.latestVersion);
+        if (true) {
+            printall(nl, 1000);
+            return;
+        }
         for (Entry<Integer, Set<String>> error : nl.errors.keyValuesSet()) {
             System.err.println(Utility.hex(error.getKey()) + "\t" + error.getValue());
         }
         NamesList nl2 = new NamesList("NamesList", Settings.lastVersion);
 
-        UnicodeMap<String> output = new UnicodeMap();
+        UnicodeMap<String> output = new UnicodeMap<>();
         compare(nl.informalAliases, nl2.informalAliases, output, Comment.alias.displaySymbol);
         compare(nl.informalComments, nl2.informalComments, output, Comment.comment.displaySymbol);
         compare(nl.informalXrefs, nl2.informalXrefs, output, Comment.xref.displaySymbol);
@@ -42,6 +49,42 @@ public class NamesListPrint {
             return;
         }
         print(nl);
+    }
+
+
+    private static void printall(NamesList nl, int max) {
+        String lastBlock = null;
+        String lastSubhead = null;
+        String lastSubheadComments = null;
+        int count = 0;
+        for (String item : nl.codePoints) {
+            if (count++ > max) break;
+            lastBlock = showValue(nl.blockTitles.get(item), lastBlock, item);
+            lastSubhead = showValue(nl.subheads.get(item), lastSubhead, item);
+            lastSubheadComments = showValue(nl.subheadComments.get(item), lastSubheadComments, item);
+            System.out.println(Utility.hex(item)
+                    + "\t" + item
+                    + "\t" + Default.ucd().getName(item)
+                    );
+            for (Comment comment : Comment.values()) {
+                Set<String> commentLines = nl.getItem(comment, item);
+                if (commentLines != null) {
+                    for (String commentLine : commentLines) {
+                        System.out.println("\t\t" + comment.displaySymbol + "\t" + commentLine);
+                    }
+                }
+            }
+            
+        }
+    }
+
+    private static String showValue(String newValue, String lastBlock, String item) {
+        if (!Objects.equal(lastBlock, newValue)) {
+            if (newValue != null) {
+                System.out.println(newValue);
+            }
+        }
+        return newValue;
     }
 
     private static void compare(

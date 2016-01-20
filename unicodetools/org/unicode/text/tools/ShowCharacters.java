@@ -8,12 +8,19 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.With;
+import org.unicode.props.GenerateEnums;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeProperty.RegexMatcher;
 import com.ibm.icu.impl.Row;
@@ -24,7 +31,47 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
 public class ShowCharacters {
+    static IndexUnicodeProperties iup = IndexUnicodeProperties.make("9.0");
+    static UnicodeMap<String> names = iup.load(UcdProperty.Name);
+    static UnicodeMap<Age_Values> ages = iup.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
+    static CandidateData CD = CandidateData.getInstance();
+    
     public static void main(String[] args) {
+        show("New", CD.keySet());
+        System.out.println();
+        show("Gendered", new UnicodeSet("[👲 👳 💂 🎅 👯 👰 🕴 ☃ ⛄ \\U0001F57A \\U0001F934 \\U0001F936 \\U0001F935]"));
+        
+        show("Emoji_Gender_Base", new UnicodeSet("[👲 👳 👸 💂 🎅 👯 💃 🕴 ☃ ⛄ 👶 👱 👮 👼 🕵 💆"
+                + " 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🗣 👤 👥 🙇 🚶 🏃 🚴 🚵 🚣 🛀 🏄 🏊 ⛹ 🏋 \\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E]"));
+        show("Emoji_Hair_Base", new UnicodeSet("[👶 👮 👲 👳 👸 🕵 👼 💆 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🙇 "
+                + "🚶 🏃 💃 🚣 🛀 🏄 🏊 ⛹ 🏋 🚴 🚵"
+                + "👦 👧 👨 👩 👴 👵  "
+                + "\\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E"
+                + "\\U0001F934 \\U0001F936 \\U0001F57A \\U0001F930]"));
+        show("Emoji_Direction_Base", new UnicodeSet("[🚶 🏃 👋 👏 💨🎷🔫 🚬"
+                + "\\U0001F93A \\U0001F93D \\U0001F93E \\U0001F946]"));
+    }
+    
+    private static void show(String prop, UnicodeSet unicodeSet) {
+        for (String s : unicodeSet) {
+            System.out.println(Utility.hex(s) + " ;\t" + prop 
+                    + "\t# " + getAge(s)
+                    + " (" + s + ") " 
+                    + getName(s));
+        }
+        System.out.println("# total:\t" + unicodeSet.size() + "\n# uset: \t" + unicodeSet.toPattern(false) + "\n");
+    }
+
+    private static String getAge(String s) {
+        final Age_Values ageValue = ages.get(s);
+        return ageValue == Age_Values.Unassigned ? "9.0" : ageValue.getShortName();
+    }
+
+    private static String getName(String s) {
+        return CldrUtility.ifNull(CD.getName(s),names.get(s));
+    }
+    
+    public void test(String[] args) {
         final ToolUnicodePropertySource pSource = ToolUnicodePropertySource.make(null);
         final Map<R5<String, String, String, String, String>,UnicodeSet> data = new TreeMap();
         final UnicodeProperty subhead = pSource.getProperty("subhead");

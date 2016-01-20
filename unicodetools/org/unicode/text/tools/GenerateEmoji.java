@@ -2694,13 +2694,12 @@ public class GenerateEmoji {
         }
     }
 
-    static final String      ANNOTATION_HEADER = "<?xml version='1.0' encoding='UTF-8' ?>\n"
+    static final String ANNOTATION_HEADER = "<?xml version='1.0' encoding='UTF-8' ?>\n"
             + "<!DOCTYPE ldml SYSTEM '../../common/dtd/ldml.dtd'>\n"
-            + "<!-- Copyright © 1991-2015 Unicode®, Inc. emoji-annotations.txt For \n"
-            + " details about the format and other information, see /../../../reports/tr51/index.html#Data_Files. \n"
-            + " http://unicode.org/cldr/trac/ticket/8019 CLDR data files are interpreted \n"
-            + " according to the LDML specification (http://unicode.org/reports/tr35/) For \n"
-            + " terms of use, see http://www.unicode.org/copyright.html \n"
+            + "<!-- © 1991-2015 Unicode®, Inc.\n"
+            + " Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.\n"
+            + " For terms of use, see http://www.unicode.org/copyright.html\n\n"
+            + " CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)\n"
             // +
             // " This is still under development, and will be refined before release. \n"
             // +
@@ -2712,51 +2711,51 @@ public class GenerateEmoji {
             //+ "\t\t<generation date='$Date: 2014-06-19 06:23:55 +0200 (Thu, 19 Jun 2014) $' />\n"
             ;
 
-    private static void printAnnotations() throws IOException {
-        try (
-                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
-                        , "emoji-annotations.xml")) {
-            outText.append(ANNOTATION_HEADER
-                    + "\t\t<language type='en'/>\n"
-                    + "\t</identity>\n"
-                    + "\t<annotations>\n");
-            Set<Row.R2<Set<String>, UnicodeSet>> sorted = new TreeSet<>(PAIR_SORT);
-            for (String s : emojiData.getChars()) {
-                Set<String> annotations = getAnnotations(s);
-                annotations.removeAll(EmojiAnnotations.GROUP_ANNOTATIONS);
-                if (annotations.isEmpty()) {
-                    throw new IllegalArgumentException("Missing annotation: " + s
-                            + "\t" + EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(s));
-                }
-            }
-            //            for (Entry<Set<String>, Set<String>> s : EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValuesToKeys().keyValuesSet()) {
-            //                UnicodeSet chars = new UnicodeSet().addAll(s.getKey());
-            //                Set<String> annotations = new LinkedHashSet<>(s.getValue());
-            //                annotations.removeAll(GROUP_ANNOTATIONS);
-            //                if (annotations.isEmpty()) {
-            //                    continue;
-            //                }
-            //                sorted.add(Row.of(annotations, chars));
-            //            }
-            //for (R2<Set<String>, UnicodeSet> s : sorted) {
-            UnicodeSet chars = new UnicodeSet();
-            for (String cp : EmojiOrder.STD_ORDER.orderingToCharacters.values()) {
-                Set<String> annotationSet = getAnnotations(cp);
-                annotationSet.removeAll(EmojiAnnotations.GROUP_ANNOTATIONS);
-                String annotations = CollectionUtilities.join(annotationSet, "; ");
-                chars.clear().add(cp);
-                outText.append("\t\t<annotation cp='")
-                .append(chars.toPattern(false))
-                .append("'")
-                //.append(" draft='provisional'")
-                .append(">")
-                .append(annotations)
-                .append("</annotation>\n");
-            }
-            outText.write("\t</annotations>\n"
-                    + "</ldml>");
-        }
-    }
+//    private static void printAnnotations() throws IOException {
+//        try (
+//                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
+//                        , "emoji-annotations.xml")) {
+//            outText.append(ANNOTATION_HEADER
+//                    + "\t\t<language type='en'/>\n"
+//                    + "\t</identity>\n"
+//                    + "\t<annotations>\n");
+//            Set<Row.R2<Set<String>, UnicodeSet>> sorted = new TreeSet<>(PAIR_SORT);
+//            for (String s : emojiData.getChars()) {
+//                Set<String> annotations = getAnnotations(s);
+//                annotations.removeAll(EmojiAnnotations.GROUP_ANNOTATIONS);
+//                if (annotations.isEmpty()) {
+//                    throw new IllegalArgumentException("Missing annotation: " + s
+//                            + "\t" + EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(s));
+//                }
+//            }
+//            //            for (Entry<Set<String>, Set<String>> s : EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValuesToKeys().keyValuesSet()) {
+//            //                UnicodeSet chars = new UnicodeSet().addAll(s.getKey());
+//            //                Set<String> annotations = new LinkedHashSet<>(s.getValue());
+//            //                annotations.removeAll(GROUP_ANNOTATIONS);
+//            //                if (annotations.isEmpty()) {
+//            //                    continue;
+//            //                }
+//            //                sorted.add(Row.of(annotations, chars));
+//            //            }
+//            //for (R2<Set<String>, UnicodeSet> s : sorted) {
+//            UnicodeSet chars = new UnicodeSet();
+//            for (String cp : EmojiOrder.STD_ORDER.orderingToCharacters.values()) {
+//                Set<String> annotationSet = getAnnotations(cp);
+//                annotationSet.removeAll(EmojiAnnotations.GROUP_ANNOTATIONS);
+//                String annotations = CollectionUtilities.join(annotationSet, "; ");
+//                chars.clear().add(cp);
+//                outText.append("\t\t<annotation cp='")
+//                .append(chars.toPattern(false))
+//                .append("'")
+//                //.append(" draft='provisional'")
+//                .append(">")
+//                .append(annotations)
+//                .append("</annotation>\n");
+//            }
+//            outText.write("\t</annotations>\n"
+//                    + "</ldml>");
+//        }
+//    }
 
     private static Set<String> getAnnotations(String string) {
         if (!string.contains("\u200D")) {

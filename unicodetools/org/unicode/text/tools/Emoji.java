@@ -54,7 +54,7 @@ public class Emoji {
 
     static final String IMAGES_OUTPUT_DIR = TR51_SVN_DIR + "images/";
 
-    enum ModifierStatus {
+    public enum ModifierStatus {
         none, modifier, modifier_base;
         static ModifierStatus fromString(String s) {
             if (s.equals("primary") || s.equals("secondary")) return modifier_base;
@@ -62,7 +62,7 @@ public class Emoji {
         }
     }
 
-    enum Source {
+    public enum Source {
         // pngs
         color, apple, twitter, samsung, google, windows, emojione, ref, proposed, emojipedia, emojixpress,
         // gifs

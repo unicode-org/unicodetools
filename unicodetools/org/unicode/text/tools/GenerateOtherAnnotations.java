@@ -59,7 +59,7 @@ as.tsv
 
 
     static final AnnotationData english = AnnotationData.getEnglish();
-    
+
     static final Set<String> SORTED_EMOJI_CHARS_SET
     = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, english.map.keySet());
 
@@ -94,7 +94,6 @@ as.tsv
         //        }
     }
 
-
     private static void showSimple() {
         int count = 0;
         final UnicodeSet textStyle = emojiData.getDefaultPresentationSet(DefaultPresentation.text);
@@ -114,8 +113,8 @@ as.tsv
 
     private static void printText(AnnotationData data) throws IOException {
         try (PrintWriter outText = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/tts/", data.locale + ".tsv")) {
-//#Code Image   TTS English TTS German  Annotations English Annotations German  Comments    INTERNAL
-//U+1F600   =vlookup(A2,Internal!A:B,2,0)   grinning face   Lachender Smiley    face; grin  Lachender Smiley; Gesicht; lustig; lol       
+            //#Code Image   TTS English TTS German  Annotations English Annotations German  Comments    INTERNAL
+            //U+1F600   =vlookup(A2,Internal!A:B,2,0)   grinning face   Lachender Smiley    face; grin  Lachender Smiley; Gesicht; lustig; lol       
             int line = 1;
             outText.println("#Code"
                     + "\tImage"
@@ -163,13 +162,18 @@ as.tsv
             }
         }
     }
-    
+
     private static LocaleData printXml(AnnotationData data, UnicodeSet missing) throws IOException {
         final boolean isEnglish = data.locale.equals(ULocale.ENGLISH);
         LocaleData ld = LocaleData.getInstance(data.locale);
+        String language = data.locale.getLanguage();
+        String script = data.locale.getScript();
+        String territory = data.locale.getCountry();
         try (PrintWriter outText = BagFormatter.openUTF8Writer(CLDRPaths.COMMON_DIRECTORY + "/annotations/", data.locale + ".xml")) {
             outText.append(GenerateEmoji.ANNOTATION_HEADER
-                    + "\t\t<language type='" + data.locale + "'/>\n"
+                    + "\t\t<language type='" + language + "'/>\n"
+                    + (script.isEmpty() ? "" : "\t\t<script type='" + script + "'/>\n")
+                    + (territory.isEmpty() ? "" : "\t\t<territory type='" + territory + "'/>\n")
                     + "\t</identity>\n"
                     + "\t<annotations>\n");
             for (String s : GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
@@ -212,9 +216,9 @@ as.tsv
                 outText.append("'"
                         + (isEnglish ? "" : " draft='provisional'")
                         + ">")
-                .append(fix(annotationString, ld))
-                .append("</annotation>\n")
-                ;
+                        .append(fix(annotationString, ld))
+                        .append("</annotation>\n")
+                        ;
             }
             outText.write("\t</annotations>\n"
                     + "</ldml>");
