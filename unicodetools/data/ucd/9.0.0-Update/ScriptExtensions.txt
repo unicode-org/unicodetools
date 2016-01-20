@@ -1,6 +1,6 @@
 # ScriptExtensions-9.0.0.txt
-# Date: 2016-01-01, 21:24:00 GMT [RP]
-# © 2015 Unicode®, Inc.
+# Date: 2016-01-05, 21:07:52 GMT
+# © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
