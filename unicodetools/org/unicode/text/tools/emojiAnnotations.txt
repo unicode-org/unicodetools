@@ -945,7 +945,7 @@ flame	🔥
 flashlight, torch	🔦
 bolt, nut	🔩
 hocho	🔪
-gun, pistol, revolver	🔫
+gun, pistol, revolver, handgun	🔫
 microscope	🔬
 telescope	🔭
 crystal	🔮

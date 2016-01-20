@@ -22,6 +22,7 @@ public class CheckHan {
     static final UnicodeMap<Set<Script_Values>> scx = IUP.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
     final static UnicodeSet unifiedIdeograph = IUP.loadEnum(UcdProperty.Unified_Ideograph, Binary.class).getSet(Binary.Yes);
     final static UnicodeSet ideographic = IUP.loadEnum(UcdProperty.Ideographic, Binary.class).getSet(Binary.Yes);
+    final static UnicodeMap<String> kTotalStrokes = IUP.load(UcdProperty.kTotalStrokes);
 
     final static UnicodeSet nameIdeographic = getIdeographNames(IUP);
     final static UnicodeSet scxHan = getHanScript(IUP);
@@ -36,6 +37,8 @@ public class CheckHan {
         diff("ideographic", ideographic, "unifiedIdeograph", unifiedIdeograph);
         diff("scxHan", scxHan, "ideographic", ideographic);
         diff("nameIdeograhic", nameIdeographic, "scxHan", scxHan);  
+        
+        diff("unifiedIdeograph", unifiedIdeograph, "has kTotalStrokes", kTotalStrokes.keySet());  
     }
 
     private static void show(String string) {
