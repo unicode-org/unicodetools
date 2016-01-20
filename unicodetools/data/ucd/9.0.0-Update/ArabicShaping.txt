@@ -1,5 +1,5 @@
 # ArabicShaping-9.0.0.txt
-# Date: 2016-01-04, 19:47:00 GMT [KW]
+# Date: 2016-01-05, 20:38:00 GMT [RP]
 # © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -586,6 +586,7 @@
 
 200C; ZERO WIDTH NON-JOINER; U; No_Joining_Group
 200D; ZERO WIDTH JOINER; C; No_Joining_Group
+202F; NARROW NO-BREAK SPACE; U; No_Joining_Group
 2066; LEFT-TO-RIGHT ISOLATE; U; No_Joining_Group
 2067; RIGHT-TO-LEFT ISOLATE; U; No_Joining_Group
 2068; FIRST STRONG ISOLATE; U; No_Joining_Group

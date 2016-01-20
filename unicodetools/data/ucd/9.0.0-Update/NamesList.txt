@@ -1,25 +1,21 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 9.0.0
-@@@+	U90M151120.lst
-	Unicode 9.0.0 names list, first delta.
-	Roll-up of post-publication fixes to the 8.0.0 list.
-	New repertoire added from FDAM 2 to 4th edition.
+@@@+	U90M160111.lst
+	Unicode 9.0.0 names list, second delta.
 	Repertoire synched with UnicodeData-9.0.0d1.txt
-	Corrected spelling in subhead at 1F3D4.
-	Removed stray extra spaces at EOL for some annotations.
-	Updated annotations for 0478, 0479.
-	Updated xrefs for 0484.
-	Updated annotation for 04A5.
-	Added annotation for 0966.
-	Updated annotations and aliases for 1F3BD, 1F3F9, 1F40E, 1F422, 1F52B, 1F647.
-	Tweaked annotation for 1107F.
+	Updated annotations for 08BB - 08BD based on L2/14-207R.
+	Added notes indicating that parenthesized Latin letters do not have case mappings.
+	Further annotations for 0238 - 0240.
+	Added annotations for FD3E, FD3F, FDFD.
+	Added compatibility decomposition for 0385 in annotation.
+	Added xrefs between 10FB and 2056.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
 	for this process are aimed at readability for the human reader,
 	at the expense of some details; therefore, this file should not
 	be parsed for machine-readable information.
-@+		© 1991-2015 Unicode, Inc.
+@+		© 2016 Unicode®, Inc.
 	For terms of use, see http://www.unicode.org/terms_of_use.html
 @@	0000	C0 Controls and Basic Latin (Basic Latin)	007F
 @@+
@@ -1679,30 +1675,33 @@
 0234	LATIN SMALL LETTER L WITH CURL
 0235	LATIN SMALL LETTER N WITH CURL
 0236	LATIN SMALL LETTER T WITH CURL
-@		Miscellaneous additions
+@		Miscellaneous addition
 0237	LATIN SMALL LETTER DOTLESS J
 	x (mathematical italic small dotless j - 1D6A5)
+@		Additions for Africanist linguistics
 0238	LATIN SMALL LETTER DB DIGRAPH
-	* used in Africanist linguistics
 0239	LATIN SMALL LETTER QP DIGRAPH
-	* used in Africanist linguistics
+@		Additions for Sencoten
 023A	LATIN CAPITAL LETTER A WITH STROKE
-	* Sencoten
 	* lowercase is 2C65
 023B	LATIN CAPITAL LETTER C WITH STROKE
-	* Sencoten
 023C	LATIN SMALL LETTER C WITH STROKE
-	* used in Americanist linguistics
+	* also used in Americanist linguistics
 023D	LATIN CAPITAL LETTER L WITH BAR
-	* Sencoten
 	* lowercase is 019A
 023E	LATIN CAPITAL LETTER T WITH DIAGONAL STROKE
-	* Sencoten
 	* lowercase is 2C66
+@		Additions for Africanist linguistics
+@+		These letters were used in a Shona orthography from 1931 to 1955.
 023F	LATIN SMALL LETTER S WITH SWASH TAIL
+	* voiceless labio-alveolar fricative
 	* uppercase is 2C7E
+	x (latin small letter s with hook - 0282)
 0240	LATIN SMALL LETTER Z WITH SWASH TAIL
+	* voiced labio-alveolar fricative
 	* uppercase is 2C7F
+	x (latin small letter z with retroflex hook - 0290)
+@		Miscellaneous additions
 0241	LATIN CAPITAL LETTER GLOTTAL STOP
 0242	LATIN SMALL LETTER GLOTTAL STOP
 	* casing use in Chipewyan, Dogrib, Slavey (Canadian aboriginal orthographies)
@@ -2662,6 +2661,7 @@
 	x (combining vertical line above - 030D)
 	# 0020 0301
 0385	GREEK DIALYTIKA TONOS
+	* compatibility decomposition (NFKD) is 0020 0308 0301
 	: 00A8 0301
 @		Letter
 0386	GREEK CAPITAL LETTER ALPHA WITH TONOS
@@ -4681,10 +4681,20 @@
 08B8	ARABIC LETTER TEH WITH SMALL TEH ABOVE
 08B9	ARABIC LETTER REH WITH SMALL NOON ABOVE
 08BA	ARABIC LETTER YEH WITH TWO DOTS BELOW AND SMALL NOON ABOVE
-@		Arabic letters for West Africa
+@		Arabic letters for Warsh orthography
+@+		The Warsh orthography is the most widespread tradition for the Arabic script in North and West Africa.
 08BB	ARABIC LETTER AFRICAN FEH
+	* initial and medial forms have one dot below 
+	x (arabic letter dotless feh - 06A1)
+	x (arabic letter feh with dot moved below - 06A2)
 08BC	ARABIC LETTER AFRICAN QAF
+	* initial and medial forms have one dot above
+	x (arabic letter dotless qaf - 066F)
+	x (arabic letter qaf with dot above - 06A7)
 08BD	ARABIC LETTER AFRICAN NOON
+	* initial and medial forms have one dot above
+	x (arabic letter noon ghunna - 06BA)
+	x (arabic letter noon - 0646) 
 @		Pakistani Quranic marks
 08D4	ARABIC SMALL HIGH WORD AR-RUB
 08D5	ARABIC SMALL HIGH SAD
@@ -7132,6 +7142,7 @@
 10FA	GEORGIAN LETTER AIN
 @		Punctuation
 10FB	GEORGIAN PARAGRAPH SEPARATOR
+	x (three dot punctuation - 2056)
 @		Modifier letter
 10FC	MODIFIER LETTER GEORGIAN NAR
 	# <super> 10DC
@@ -12509,6 +12520,7 @@
 	x (heavy eight teardrop-spoked propeller asterisk - 274B)
 @		Archaic punctuation
 2056	THREE DOT PUNCTUATION
+	x (georgian paragraph separator - 10FB)
 @		General punctuation
 2057	QUADRUPLE PRIME
 	# 2032 2032 2032 2032
@@ -14687,7 +14699,7 @@
 249B	NUMBER TWENTY FULL STOP
 	# 0032 0030 002E
 @		Parenthesized Latin letters
-@+		See also the uppercase set starting at 1F100.
+@+		See also the uppercase set starting at 1F100. Parenthesized Latin letters do not have case mappings.
 249C	PARENTHESIZED LATIN SMALL LETTER A
 	# 0028 0061 0029
 249D	PARENTHESIZED LATIN SMALL LETTER B
@@ -27194,6 +27206,7 @@ FD3D	ARABIC LIGATURE ALEF WITH FATHATAN ISOLATED FORM
 	# <isolated> 0627 064B
 @		Punctuation
 @+		For legacy reasons, these parentheses do not mirror in bidirectional display and do not have the Bidi_Paired_Bracket property.
+@+		These parentheses also do not have compatibility decompositions and should not be considered presentation forms.
 FD3E	ORNATE LEFT PARENTHESIS
 FD3F	ORNATE RIGHT PARENTHESIS
 @		Ligatures (three elements)
@@ -27496,6 +27509,7 @@ FDFB	ARABIC LIGATURE JALLAJALALOUHOU
 FDFC	RIAL SIGN
 	# <isolated> 0631 06CC 0627 0644
 @		Symbol
+@+		The bismillah is treated as an atomic symbol, rather than as a word ligature. It has no decomposition.
 FDFD	ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM
 @@	FE00	Variation Selectors	FE0F
 @		Variation selectors
@@ -29537,7 +29551,7 @@ FFFF	<not a character>
 104E4	OSAGE SMALL LETTER KA
 104E5	OSAGE SMALL LETTER EHKA
 104E6	OSAGE SMALL LETTER KYA
-104E7	OSAGE SMALL LETTER LA (104BF)
+104E7	OSAGE SMALL LETTER LA
 104E8	OSAGE SMALL LETTER MA
 104E9	OSAGE SMALL LETTER NA
 104EA	OSAGE SMALL LETTER O
@@ -43713,7 +43727,7 @@ FFFF	<not a character>
 1F10B	DINGBAT CIRCLED SANS-SERIF DIGIT ZERO
 1F10C	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
 @		Parenthesized Latin letters
-@+		This set provides uppercase versions of the set starting at 249C.
+@+		This set provides uppercase versions of the set starting at 249C. Parenthesized Latin letters do not have case mappings.
 1F110	PARENTHESIZED LATIN CAPITAL LETTER A
 	# 0028 0041 0029
 1F111	PARENTHESIZED LATIN CAPITAL LETTER B

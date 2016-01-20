@@ -1,5 +1,5 @@
 # DerivedCoreProperties-9.0.0.txt
-# Date: 2016-01-04, 22:59:26 GMT
+# Date: 2016-01-05, 21:07:29 GMT
 # © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -9278,7 +9278,7 @@ E0100..E01EF  ; XID_Continue # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTO
 #  + Variation_Selector
 #  - White_Space
 #  - FFF9..FFFB (Annotation Characters)
-#  - 0600..0605, 06DD, 070F, 110BD (exceptional Cf characters that should be visible)
+#  - 0600..0605, 06DD, 070F, 08E2, 110BD (exceptional Cf characters that should be visible)
 
 00AD          ; Default_Ignorable_Code_Point # Cf       SOFT HYPHEN
 034F          ; Default_Ignorable_Code_Point # Mn       COMBINING GRAPHEME JOINER

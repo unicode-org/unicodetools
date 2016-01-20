@@ -1,6 +1,6 @@
 # NormalizationTest-9.0.0.txt
-# Date: 2015-12-18, 21:21:13 GMT
-# © 2015 Unicode®, Inc.
+# Date: 2016-01-05, 21:07:37 GMT
+# © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
