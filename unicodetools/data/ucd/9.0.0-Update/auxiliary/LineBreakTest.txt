@@ -1,9 +1,9 @@
-# LineBreakTest-8.0.0.txt
-# Date: 2015-04-30, 09:40:15 GMT [MD]
+# LineBreakTest-9.0.0.txt
+# Date: 2016-01-20, 22:05:23 GMT
+# © 2016 Unicode®, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# Copyright (c) 1991-2015 Unicode, Inc.
-# For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
 # Default Line Break Test

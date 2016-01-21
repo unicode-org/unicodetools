@@ -1579,12 +1579,20 @@ public class MakeUnicodeFiles {
      */
 
     // quick and dirty fractionator
-    public static String dumbFraction(String toolValue) {
+    private static String dumbFraction(String toolValue) {
+        if (toolValue.indexOf('.') < 0) {
+            return toolValue;
+        }
         if (toolValue.equals("0.0")) {
             return "0";
         }
+        if (toolValue.endsWith(".0")) {
+            return toolValue.substring(0, toolValue.length() - 2);
+        }
         final double value = Double.parseDouble(toolValue);
-        for (int i = 1; i < 20; ++i) {
+        for (int i : new int[] {
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+                12, 16, 20, 32, 40, 64, 80, 128, 160, 320 }) {
             final double numerator = value * i;
             final long rounded = Math.round(numerator);
             if (Math.abs(numerator - rounded) < 0.000001d) {
