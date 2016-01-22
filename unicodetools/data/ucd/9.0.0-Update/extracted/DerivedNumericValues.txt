@@ -1,5 +1,5 @@
 # DerivedNumericValues-9.0.0.txt
-# Date: 2016-01-04, 22:59:32 GMT
+# Date: 2016-01-21, 22:33:44 GMT
 # © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -113,25 +113,25 @@ FF10          ; 0.0 ; ; 0 # Nd       FULLWIDTH DIGIT ZERO
 
 # ================================================
 
-0D58          ; 0.00625 ; ; 0.00625 # No       MALAYALAM FRACTION ONE ONE-HUNDRED-AND-SIXTIETH
+0D58          ; 0.00625 ; ; 1/160 # No       MALAYALAM FRACTION ONE ONE-HUNDRED-AND-SIXTIETH
 
 # Total code points: 1
 
 # ================================================
 
-0D59          ; 0.025 ; ; 0.025 # No       MALAYALAM FRACTION ONE FORTIETH
+0D59          ; 0.025 ; ; 1/40 # No       MALAYALAM FRACTION ONE FORTIETH
 
 # Total code points: 1
 
 # ================================================
 
-0D5A          ; 0.0375 ; ; 0.0375 # No       MALAYALAM FRACTION THREE EIGHTIETHS
+0D5A          ; 0.0375 ; ; 3/80 # No       MALAYALAM FRACTION THREE EIGHTIETHS
 
 # Total code points: 1
 
 # ================================================
 
-0D5B          ; 0.05 ; ; 0.05 # No       MALAYALAM FRACTION ONE TWENTIETH
+0D5B          ; 0.05 ; ; 1/20 # No       MALAYALAM FRACTION ONE TWENTIETH
 
 # Total code points: 1
 
@@ -182,7 +182,7 @@ A834          ; 0.125 ; ; 1/8 # No       NORTH INDIC FRACTION ONE EIGHTH
 
 # ================================================
 
-0D5D          ; 0.15 ; ; 0.15 # No       MALAYALAM FRACTION THREE TWENTIETHS
+0D5D          ; 0.15 ; ; 3/20 # No       MALAYALAM FRACTION THREE TWENTIETHS
 
 # Total code points: 1
 
