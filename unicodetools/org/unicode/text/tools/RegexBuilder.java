@@ -1,6 +1,6 @@
 package org.unicode.text.tools;
 
-import java.util.Set;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,20 +8,71 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 public class RegexBuilder {
     public enum Style {CODEPOINT_REGEX, CHAR_REGEX}
+    public static final UnicodeSet NEEDS_ESCAPE = new UnicodeSet("[[:di:][:Me:][:Mn:][:c:]]").add(0x1F1E6,0x1F1FF).freeze();
+    private static final String U20E0Q = showChar(0x20e0, new StringBuilder()) + "?";
+
+    public static StringBuilder showSet(UnicodeSet us, StringBuilder output) {
+        if (us.size() == 1) {
+            showString(us.iterator().next(), output);
+        } else {
+            output.append('[');
+            for (EntryRange e : us.ranges()) {
+                showChar(e.codepoint, output);
+                int count = e.codepointEnd - e.codepoint;
+                if (count > 0) {
+                    if (count != 1) {
+                        output.append('-');
+                    };
+                    showChar(e.codepointEnd, output);
+                }
+            }
+            for (String s : us.strings()) {
+                showString(s, output);
+            }
+            output.append(']');
+        }
+        return output;
+    }
+
+    public static StringBuilder showString(String s, StringBuilder output) {
+        final int[] codePoints = CharSequences.codePoints(s);
+        if (codePoints.length == 1) {
+            showChar(codePoints[0], output);
+        } else {
+            output.append('{');
+            for (int cp : codePoints) {
+                showChar(cp, output);
+            }
+            output.append('}');
+        }
+        return output;
+    }
+
+    public static StringBuilder showChar(int cp, StringBuilder output) {
+        if (NEEDS_ESCAPE.contains(cp)) {
+            output.append("\\x{")
+            .append(Integer.toHexString(cp).toUpperCase(Locale.ROOT))
+            .append("}");
+        } else {
+            output.appendCodePoint(cp);
+        }
+        return output;
+    }
 
     private static class Node {
         UnicodeMap<Node> continues = new UnicodeMap<>();
         UnicodeSet finals = new UnicodeSet();
     }
-    
+
     private class NodeF {
         final UnicodeSet plainSet;
         final UnicodeMap<NodeF> plainMap;
         final UnicodeMap<NodeF> optionalMap;
-        
+
         public String toString() {
             return "〔" + plainSet + "/" + plainMap + "/" + optionalMap + "〕";
         };
@@ -30,7 +81,7 @@ public class RegexBuilder {
             UnicodeSet finals = source.finals;
             UnicodeMap<NodeF> continues = deepCopy(source.continues);
             UnicodeSet multiKeys = continues.keySet();
-            
+
             plainSet = new UnicodeSet(finals).removeAll(multiKeys).freeze();
             optionalMap = new UnicodeMap<NodeF>().putAll(continues).retainAll(finals).freeze();
             plainMap = new UnicodeMap<NodeF>().putAll(continues).removeAll(finals).freeze();
@@ -59,7 +110,7 @@ public class RegexBuilder {
             }
             return result;
         }
-        
+
         UnicodeMap<NodeF> deepCopy(UnicodeMap<Node> continues) {
             UnicodeMap<NodeF> result = new UnicodeMap<>();
             for (Node n : continues.values()) {
@@ -67,21 +118,21 @@ public class RegexBuilder {
             }
             return result.freeze();
         }
-        
+
         private StringBuilder print(int depth, boolean showLevel, boolean optional, StringBuilder output) {
 
             int mapItemCount = countItems(plainMap)
                     + countItems(optionalMap);
             int setCount = plainSet.isEmpty() ? 0 : 1;
             final boolean needsParen = (mapItemCount + setCount) > 1 || optional && mapItemCount != 0;
-            
+
             if (needsParen) {
                 output.append('(');
             }
             boolean first = true;
             if (!plainSet.isEmpty()) {
                 first = false;
-                output.append(showSet(plainSet));
+                showSet(plainSet, output);
             }
             if (!plainMap.isEmpty()) {
                 first = print(plainMap, depth, showLevel, output, first, false);
@@ -109,19 +160,15 @@ public class RegexBuilder {
                     output.append('|');
                 }
                 UnicodeSet us = plainMap.getSet(n);
-                output.append(showSet(us));
+                showSet(us, output);
                 n.print(depth+1, false, optional, output);
             }
             return first;
         }
 
-        private String showSet(UnicodeSet us) {
-            return us.size() != 1 ? us.toPattern(style == Style.CHAR_REGEX) 
-                    : style != Style.CHAR_REGEX ? us.iterator().next() 
-                            : "\\u" + Utility.hex(us.iterator().next()); // fix
-        }
 
     }
+
 
     // TODO fix hashcode
     // TODO make strings be empty not null
@@ -187,41 +234,67 @@ public class RegexBuilder {
 
     public static void main(String[] args) {
         EmojiData edata = EmojiData.of(Emoji.VERSION_TO_GENERATE);
-        UnicodeSet testSet = new UnicodeSet()
+        final UnicodeSet fullSet = new UnicodeSet()
         .addAll(edata.getChars())
         .addAll(edata.getModifierSequences())
         .addAll(edata.getZwjSequencesNormal())
         .freeze();
-        RegexBuilder b = new RegexBuilder(RegexBuilder.Style.CHAR_REGEX)
-        .addAll(testSet)
-        .finish();
-        String result = b.toString(true) + "\\u20E0?";
-        System.out.println(result);
-        result = b.toString(false) + "\\u20E0?";
-        Pattern check = Pattern.compile(result);
-        Matcher checkMatcher = check.matcher("");
-        UnicodeSet others = new UnicodeSet(0,0x10FFFF);
-        for (String s : testSet) {
-            if (!checkMatcher.reset(s).matches()) {
-                System.out.println("FAILS: " + s);
-            }
-            if (!checkMatcher.reset(s+'\u20E0').matches()) {
-                System.out.println("FAILS: " + s);
-            }
-            others.remove(s);
+        final UnicodeSet flatSet = new UnicodeSet(fullSet).removeAll(fullSet.strings());
+        for (String s : fullSet.strings()) {
+            flatSet.addAll(s);
         }
-        for (String s : others) {
-            if (checkMatcher.reset(s).matches()) {
-                System.out.println("Doesn't FAIL (but should): " + s);
+        flatSet.add(0x20E0);
+        flatSet.freeze();
+        for (Style style : Style.values()) {
+            System.out.println("\n" + style);
+            for (int i = 0; i < 2; ++i) {
+                UnicodeSet setToDisplay;
+                if (i == 0) {
+                    System.out.println("\nFlat Set");
+                    setToDisplay = flatSet;
+                } else {
+                    System.out.println("\nValid Set");
+                    setToDisplay = fullSet;
+                }
+                RegexBuilder b = new RegexBuilder(style);
+                b.addAll(setToDisplay);
+                b.finish();
+
+                String result = b.toString(true);
+                if (i == 1) result += U20E0Q;
+                System.out.println(result);
+                // check values
+                if (style != style.CODEPOINT_REGEX) {
+                    continue;
+                }
+                result = b.toString(false);
+                if (i == 1) result += U20E0Q;
+
+                Pattern check = Pattern.compile(result);
+                Matcher checkMatcher = check.matcher("");
+                UnicodeSet others = new UnicodeSet(0,0x10FFFF);
+                for (String s : setToDisplay) {
+                    if (!checkMatcher.reset(s).matches()) {
+                        System.out.println("FAILS: " + s);
+                    }
+                    if (!checkMatcher.reset(s+'\u20E0').matches()) {
+                        System.out.println("FAILS: " + s);
+                    }
+                    others.remove(s);
+                }
+                for (String s : others) {
+                    if (checkMatcher.reset(s).matches()) {
+                        System.out.println("Doesn't FAIL (but should): " + s);
+                    }
+                }
+
+                //        b = new RegexBuilder(RegexBuilder.Style.CHAR_REGEX)
+                //        .addAll(edata.getChars())
+                //        .addAll(edata.getModifierSequences())
+                //        .addAll(edata.getZwjSequencesNormal())
+                //        .finish();
+                //        System.out.println(b.toString(true));
             }
         }
-
-        //        b = new RegexBuilder(RegexBuilder.Style.CHAR_REGEX)
-        //        .addAll(edata.getChars())
-        //        .addAll(edata.getModifierSequences())
-        //        .addAll(edata.getZwjSequencesNormal())
-        //        .finish();
-        //        System.out.println(b.toString(true));
-
     }
 }
