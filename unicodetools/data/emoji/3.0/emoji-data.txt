@@ -158,6 +158,80 @@
 1F980..1F984  ; Emoji                #   [5] (🦀..🦄)    CRAB..UNICORN FACE
 1F9C0         ; Emoji                #   [1] (🧀)       CHEESE WEDGE
 
+1F920 ;	Emoji	# FACE WITH COWBOY HAT
+1F921 ;	Emoji	# CLOWN FACE
+1F922 ;	Emoji	# NAUSEATED FACE
+1F923 ;	Emoji	# ROLLING ON THE FLOOR LAUGHING
+1F924 ;	Emoji	# DROOLING FACE
+1F925 ;	Emoji	# LYING FACE
+1F927 ;	Emoji	# SNEEZING FACE 
+1F934 ;	Emoji	# PRINCE
+1F935 ;	Emoji	# MAN IN TUXEDO
+1F936 ;	Emoji	# MOTHER CHRISTMAS
+1F926 ;	Emoji	# FACE PALM
+1F937 ;	Emoji	# SHRUG
+1F930 ;	Emoji	# PREGNANT WOMAN
+1F933 ;	Emoji	# SELFIE
+1F57A ;	Emoji	# MAN DANCING
+1F919 ;	Emoji	# CALL ME HAND
+1F91A ;	Emoji	# RAISED BACK OF HAND
+1F91B ;	Emoji	# LEFT-FACING FIST
+1F91C ;	Emoji	# RIGHT-FACING FIST
+1F91D ;	Emoji	# HANDSHAKE
+1F91E ;	Emoji	# HAND WITH INDEX AND MIDDLE FINGERS CROSSED
+1F5A4 ;	Emoji	# BLACK HEART
+1F98A ;	Emoji	# FOX FACE
+1F98C ;	Emoji	# DEER
+1F98D ;	Emoji	# GORILLA
+1F98F ;	Emoji	# RHINOCEROS
+1F987 ;	Emoji	# BAT
+1F985 ;	Emoji	# EAGLE
+1F986 ;	Emoji	# DUCK
+1F989 ;	Emoji	# OWL
+1F98E ;	Emoji	# LIZARD
+1F98B ;	Emoji	# BUTTERFLY
+1F988 ;	Emoji	# SHARK
+1F990 ;	Emoji	# SHRIMP
+1F991 ;	Emoji	# SQUID
+1F940 ;	Emoji	# WILTED FLOWER
+1F950 ;	Emoji	# CROISSANT
+1F951 ;	Emoji	# AVOCADO
+1F952 ;	Emoji	# CUCUMBER 
+1F953 ;	Emoji	# BACON
+1F954 ;	Emoji	# POTATO
+1F955 ;	Emoji	# CARROT
+1F956 ;	Emoji	# BAGUETTE BREAD 
+1F957 ;	Emoji	# GREEN SALAD
+1F958 ;	Emoji	# SHALLOW PAN OF FOOD 
+1F959 ;	Emoji	# STUFFED FLATBREAD 
+1F95A ;	Emoji	# EGG
+1F95B ;	Emoji	# GLASS OF MILK
+1F95C ;	Emoji	# PEANUTS
+1F95D ;	Emoji	# KIWIFRUIT
+1F95E ;	Emoji	# PANCAKES
+1F942 ;	Emoji	# CLINKING GLASSES
+1F943 ;	Emoji	# TUMBLER GLASS 
+1F944 ;	Emoji	# SPOON 
+1F6D1 ;	Emoji	# OCTAGONAL SIGN
+1F6D2 ;	Emoji	# SHOPPING TROLLEY 
+1F6F4 ;	Emoji	# SCOOTER
+1F6F5 ;	Emoji	# MOTOR SCOOTER
+1F6F6 ;	Emoji	# CANOE
+1F938 ;	Emoji	# PERSON DOING CARTWHEEL 
+1F939 ;	Emoji	# JUGGLING
+1F93A ;	Emoji	# FENCER
+1F93B ;	Emoji	# MODERN PENTATHLON
+1F93C ;	Emoji	# WRESTLERS
+1F93D ;	Emoji	# WATER POLO
+1F93E ;	Emoji	# HANDBALL
+1F945 ;	Emoji	# GOAL NET
+1F946 ;	Emoji	# RIFLE 
+1F94A ;	Emoji	# BOXING GLOVE
+1F94B ;	Emoji	# MARTIAL ARTS UNIFORM 
+1F947 ;	Emoji	# FIRST PLACE MEDAL 
+1F948 ;	Emoji	# SECOND PLACE MEDAL 
+1F949 ;	Emoji	# THIRD PLACE MEDAL 
+1F941 ;	Emoji	# DRUM WITH DRUMSTICKS
 # Total code points: 1051
 
 # ================================================
@@ -233,6 +307,82 @@
 1F980..1F984  ; Emoji_Presentation   #   [5] (🦀..🦄)    CRAB..UNICORN FACE
 1F9C0         ; Emoji_Presentation   #   [1] (🧀)       CHEESE WEDGE
 
+
+1F920 ;	Emoji_Presentation	# FACE WITH COWBOY HAT
+1F921 ;	Emoji_Presentation	# CLOWN FACE
+1F922 ;	Emoji_Presentation	# NAUSEATED FACE
+1F923 ;	Emoji_Presentation	# ROLLING ON THE FLOOR LAUGHING
+1F924 ;	Emoji_Presentation	# DROOLING FACE
+1F925 ;	Emoji_Presentation	# LYING FACE
+1F927 ;	Emoji_Presentation	# SNEEZING FACE 
+1F934 ;	Emoji_Presentation	# PRINCE
+1F935 ;	Emoji_Presentation	# MAN IN TUXEDO
+1F936 ;	Emoji_Presentation	# MOTHER CHRISTMAS
+1F926 ;	Emoji_Presentation	# FACE PALM
+1F937 ;	Emoji_Presentation	# SHRUG
+1F930 ;	Emoji_Presentation	# PREGNANT WOMAN
+1F933 ;	Emoji_Presentation	# SELFIE
+1F57A ;	Emoji_Presentation	# MAN DANCING
+1F919 ;	Emoji_Presentation	# CALL ME HAND
+1F91A ;	Emoji_Presentation	# RAISED BACK OF HAND
+1F91B ;	Emoji_Presentation	# LEFT-FACING FIST
+1F91C ;	Emoji_Presentation	# RIGHT-FACING FIST
+1F91D ;	Emoji_Presentation	# HANDSHAKE
+1F91E ;	Emoji_Presentation	# HAND WITH INDEX AND MIDDLE FINGERS CROSSED
+1F5A4 ;	Emoji_Presentation	# BLACK HEART
+1F98A ;	Emoji_Presentation	# FOX FACE
+1F98C ;	Emoji_Presentation	# DEER
+1F98D ;	Emoji_Presentation	# GORILLA
+1F98F ;	Emoji_Presentation	# RHINOCEROS
+1F987 ;	Emoji_Presentation	# BAT
+1F985 ;	Emoji_Presentation	# EAGLE
+1F986 ;	Emoji_Presentation	# DUCK
+1F989 ;	Emoji_Presentation	# OWL
+1F98E ;	Emoji_Presentation	# LIZARD
+1F98B ;	Emoji_Presentation	# BUTTERFLY
+1F988 ;	Emoji_Presentation	# SHARK
+1F990 ;	Emoji_Presentation	# SHRIMP
+1F991 ;	Emoji_Presentation	# SQUID
+1F940 ;	Emoji_Presentation	# WILTED FLOWER
+1F950 ;	Emoji_Presentation	# CROISSANT
+1F951 ;	Emoji_Presentation	# AVOCADO
+1F952 ;	Emoji_Presentation	# CUCUMBER 
+1F953 ;	Emoji_Presentation	# BACON
+1F954 ;	Emoji_Presentation	# POTATO
+1F955 ;	Emoji_Presentation	# CARROT
+1F956 ;	Emoji_Presentation	# BAGUETTE BREAD 
+1F957 ;	Emoji_Presentation	# GREEN SALAD
+1F958 ;	Emoji_Presentation	# SHALLOW PAN OF FOOD 
+1F959 ;	Emoji_Presentation	# STUFFED FLATBREAD 
+1F95A ;	Emoji_Presentation	# EGG
+1F95B ;	Emoji_Presentation	# GLASS OF MILK
+1F95C ;	Emoji_Presentation	# PEANUTS
+1F95D ;	Emoji_Presentation	# KIWIFRUIT
+1F95E ;	Emoji_Presentation	# PANCAKES
+1F942 ;	Emoji_Presentation	# CLINKING GLASSES
+1F943 ;	Emoji_Presentation	# TUMBLER GLASS 
+1F944 ;	Emoji_Presentation	# SPOON 
+1F6D1 ;	Emoji_Presentation	# OCTAGONAL SIGN
+1F6D2 ;	Emoji_Presentation	# SHOPPING TROLLEY 
+1F6F4 ;	Emoji_Presentation	# SCOOTER
+1F6F5 ;	Emoji_Presentation	# MOTOR SCOOTER
+1F6F6 ;	Emoji_Presentation	# CANOE
+1F938 ;	Emoji_Presentation	# PERSON DOING CARTWHEEL 
+1F939 ;	Emoji_Presentation	# JUGGLING
+1F93A ;	Emoji_Presentation	# FENCER
+1F93B ;	Emoji_Presentation	# MODERN PENTATHLON
+1F93C ;	Emoji_Presentation	# WRESTLERS
+1F93D ;	Emoji_Presentation	# WATER POLO
+1F93E ;	Emoji_Presentation	# HANDBALL
+1F945 ;	Emoji_Presentation	# GOAL NET
+1F946 ;	Emoji_Presentation	# RIFLE 
+1F94A ;	Emoji_Presentation	# BOXING GLOVE
+1F94B ;	Emoji_Presentation	# MARTIAL ARTS UNIFORM 
+1F947 ;	Emoji_Presentation	# FIRST PLACE MEDAL 
+1F948 ;	Emoji_Presentation	# SECOND PLACE MEDAL 
+1F949 ;	Emoji_Presentation	# THIRD PLACE MEDAL 
+1F941 ;	Emoji_Presentation	# DRUM WITH DRUMSTICKS
+
 # Total code points: 838
 
 # ================================================
@@ -273,5 +423,27 @@
 1F6B4..1F6B6  ; Emoji_Modifier_Base  #   [3] (🚴..🚶)    BICYCLIST..PEDESTRIAN
 1F6C0         ; Emoji_Modifier_Base  #   [1] (🛀)       BATH
 1F918         ; Emoji_Modifier_Base  #   [1] (🤘)       SIGN OF THE HORNS
+
+1F934 ;	Emoji_Modifier_Base	# PRINCE
+1F935 ;	Emoji_Modifier_Base	# MAN IN TUXEDO
+1F936 ;	Emoji_Modifier_Base	# MOTHER CHRISTMAS
+1F926 ;	Emoji_Modifier_Base	# FACE PALM
+1F937 ;	Emoji_Modifier_Base	# SHRUG
+1F930 ;	Emoji_Modifier_Base	# PREGNANT WOMAN
+1F933 ;	Emoji_Modifier_Base	# SELFIE
+1F57A ;	Emoji_Modifier_Base	# MAN DANCING
+1F919 ;	Emoji_Modifier_Base	# CALL ME HAND
+1F91A ;	Emoji_Modifier_Base	# RAISED BACK OF HAND
+1F91B ;	Emoji_Modifier_Base	# LEFT-FACING FIST
+1F91C ;	Emoji_Modifier_Base	# RIGHT-FACING FIST
+1F91D ;	Emoji_Modifier_Base	# HANDSHAKE
+1F91E ;	Emoji_Modifier_Base	# HAND WITH INDEX AND MIDDLE FINGERS CROSSED
+1F938 ;	Emoji_Modifier_Base	# PERSON DOING CARTWHEEL 
+1F939 ;	Emoji_Modifier_Base	# JUGGLING
+1F93B ;	Emoji_Modifier_Base	# MODERN PENTATHLON
+1F93C ;	Emoji_Modifier_Base	# WRESTLERS
+1F93D ;	Emoji_Modifier_Base	# WATER POLO
+1F93E ;	Emoji_Modifier_Base	# HANDBALL
+
 
 # Total code points: 64

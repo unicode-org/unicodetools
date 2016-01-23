@@ -89,6 +89,7 @@ import com.ibm.icu.util.ULocale;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
+    private static final boolean SHOW_NAMES_LIST = false;
 
     private static final String INTERNAL_OUTPUT_DIR = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/";
 
@@ -112,7 +113,7 @@ public class GenerateEmoji {
             "symbol",
             "sign", "for", "of", "black"));
 
-    static final IndexUnicodeProperties    LATEST                      = IndexUnicodeProperties.make(Default.ucdVersion());
+    static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(Emoji.VERSION_TO_GENERATE_UNICODE);
     static final EmojiData emojiData = EmojiData.of(Emoji.VERSION_TO_GENERATE);
 
     private static final UnicodeSet MODIFIERS = emojiData.getModifierStatusSet(ModifierStatus.modifier);
@@ -216,7 +217,6 @@ public class GenerateEmoji {
     static final Comparator<String> EMOJI_COMPARATOR;
     static {
         try {
-
             String rules = EmojiOrder.STD_ORDER.appendCollationRules(new StringBuilder(), 
                     new UnicodeSet(emojiData.getChars()).removeAll(Emoji.DEFECTIVE), 
                     GenerateEmoji.APPLE_COMBOS, GenerateEmoji.APPLE_COMBOS_WITHOUT_VS)
@@ -241,7 +241,7 @@ public class GenerateEmoji {
     // static final EmojiAnnotations ANNOTATIONS_TO_CHARS_NEW = new
     // EmojiAnnotations(CODEPOINT_COMPARE, "emojiAnnotationsNew.txt");
 
-    static final Subheader                 subheader                   = new Subheader(Settings.SVN_WORKSPACE_DIRECTORY + "unicodetools/data/ucd/7.0.0-Update/");
+    //private static final Subheader                 subheader                   = new Subheader(Settings.SVN_WORKSPACE_DIRECTORY + "unicodetools/data/ucd/7.0.0-Update/");
     static final Set<String>               SKIP_BLOCKS                 = new HashSet(Arrays.asList("Miscellaneous Symbols",
             "Enclosed Alphanumeric Supplement",
             "Miscellaneous Symbols And Pictographs",
@@ -1761,35 +1761,35 @@ public class GenerateEmoji {
         out.close();
     }
 
-    private static void showSubhead() throws IOException {
-        Map<String, UnicodeSet> subheadToChars = new TreeMap();
-        for (String s : GenerateEmoji.emojiData.getChars()) {
-            int firstCodepoint = s.codePointAt(0);
-            String header = Default.ucd().getBlock(firstCodepoint).replace('_', ' ');
-            String subhead = subheader.getSubheader(firstCodepoint);
-            if (subhead == null) {
-                subhead = "UNNAMED";
-            }
-            header = header.contains(subhead) ? header : header + ": " + subhead;
-            UnicodeSet uset = subheadToChars.get(header);
-            if (uset == null) {
-                subheadToChars.put(header, uset = new UnicodeSet());
-            }
-            uset.add(s);
-        }
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-subhead.html");
-        writeHeader(out, "Emoji Subhead", null, "Unicode Subhead mapping.", "border='1'", true);
-        for (Entry<String, UnicodeSet> entry : subheadToChars.entrySet()) {
-            String label = entry.getKey();
-            UnicodeSet uset = entry.getValue();
-            if (label.equalsIgnoreCase("exclude")) {
-                continue;
-            }
-            displayUnicodesetTD(out, Collections.singleton(label), null, Collections.<String> emptySet(), uset, Style.emoji, 16, null);
-        }
-        writeFooter(out, "");
-        out.close();
-    }
+//    private static void showSubhead() throws IOException {
+//        Map<String, UnicodeSet> subheadToChars = new TreeMap();
+//        for (String s : GenerateEmoji.emojiData.getChars()) {
+//            int firstCodepoint = s.codePointAt(0);
+//            String header = Default.ucd().getBlock(firstCodepoint).replace('_', ' ');
+//            String subhead = subheader.getSubheader(firstCodepoint);
+//            if (subhead == null) {
+//                subhead = "UNNAMED";
+//            }
+//            header = header.contains(subhead) ? header : header + ": " + subhead;
+//            UnicodeSet uset = subheadToChars.get(header);
+//            if (uset == null) {
+//                subheadToChars.put(header, uset = new UnicodeSet());
+//            }
+//            uset.add(s);
+//        }
+//        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-subhead.html");
+//        writeHeader(out, "Emoji Subhead", null, "Unicode Subhead mapping.", "border='1'", true);
+//        for (Entry<String, UnicodeSet> entry : subheadToChars.entrySet()) {
+//            String label = entry.getKey();
+//            UnicodeSet uset = entry.getValue();
+//            if (label.equalsIgnoreCase("exclude")) {
+//                continue;
+//            }
+//            displayUnicodesetTD(out, Collections.singleton(label), null, Collections.<String> emptySet(), uset, Style.emoji, 16, null);
+//        }
+//        writeFooter(out, "");
+//        out.close();
+//    }
 
     /** Main charts */
     private static void showAnnotations(String dir, String filename, UnicodeSet filterOut, Set<String> retainAnnotations, boolean removeInsteadOf)
@@ -2683,7 +2683,7 @@ public class GenerateEmoji {
         try (
                 PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
                         , "emoji-ordering.txt")) {
-            outText.append("<!-- DRAFT emoji-ordering.txt\n"
+            outText.append("<!-- emoji-ordering.txt\n"
                     + "\tFor details about the format and other information, see " + DOC_DATA_FILES + ".\n"
                     + "\thttp://unicode.org/cldr/trac/ticket/7270 -->\n"
                     + "<collation type='emoji'>\n"
@@ -2693,23 +2693,6 @@ public class GenerateEmoji {
             outText.write("\n]]></cr>\n</collation>");
         }
     }
-
-    static final String ANNOTATION_HEADER = "<?xml version='1.0' encoding='UTF-8' ?>\n"
-            + "<!DOCTYPE ldml SYSTEM '../../common/dtd/ldml.dtd'>\n"
-            + "<!-- © 1991-2015 Unicode®, Inc.\n"
-            + " Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.\n"
-            + " For terms of use, see http://www.unicode.org/copyright.html\n\n"
-            + " CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)\n"
-            // +
-            // " This is still under development, and will be refined before release. \n"
-            // +
-            // " In particular, the annotations like 'person-apple' are only present during development, and will be withdrawn for the release.\n"
-            + " -->\n"
-            + "<ldml>\n"
-            + "\t<identity>\n"
-            + "\t\t<version number='$Revision: 10585 $' />\n"
-            //+ "\t\t<generation date='$Date: 2014-06-19 06:23:55 +0200 (Thu, 19 Jun 2014) $' />\n"
-            ;
 
 //    private static void printAnnotations() throws IOException {
 //        try (
@@ -2907,8 +2890,9 @@ public class GenerateEmoji {
         }
         return androidCell;
     }
-    static NamesList NAMESLIST = new NamesList("NamesList", Settings.latestVersion);
+    static NamesList NAMESLIST = new NamesList("NamesList", Emoji.VERSION_TO_GENERATE_UNICODE.getVersionString(3,3));
     static final Joiner JOIN_PLUS = Joiner.on(" ⊕ ");
+
 
     static String getNamesListInfo(String s) {
         int cp = CharSequences.getSingleCodePoint(s);
@@ -2971,7 +2955,9 @@ public class GenerateEmoji {
         if (tts != null && !tts.equalsIgnoreCase(name2)) {
             name2 += "<br>≊ " + TransliteratorUtilities.toHTML.transform(tts);
         }
-        name2 += getNamesListInfo(chars2);
+        if (SHOW_NAMES_LIST) {
+            name2 += getNamesListInfo(chars2);
+        }
 
         String textChars = getEmojiVariant(chars2, Emoji.TEXT_VARIANT_STRING);
         Set<String> annotations = new LinkedHashSet<String>(ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2), Collections.EMPTY_SET));

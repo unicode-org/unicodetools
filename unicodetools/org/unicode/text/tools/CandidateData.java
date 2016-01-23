@@ -1,6 +1,7 @@
 package org.unicode.text.tools;
 
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import org.unicode.text.utility.Utility;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -55,7 +57,7 @@ public class CandidateData {
         annotations.freeze();
         quarters.freeze();
     }
-    
+
     public static CandidateData getInstance() {
         return SINGLE;
     }
@@ -75,7 +77,7 @@ public class CandidateData {
     public Quarter getQuarter(String source) {
         return quarters.get(source);
     }
-    
+
     public String getName(int source) {
         return names.get(source);
     }
@@ -88,21 +90,37 @@ public class CandidateData {
     public Quarter getQuarter(int source) {
         return quarters.get(source);
     }
-    
+
     public List<Integer> getOrder() {
         return order;
     }
-    
+
     public static void main(String[] args) {
         CandidateData cd = CandidateData.getInstance();
         String oldCat = "";
+        UnicodeSet last = new UnicodeSet();
+        UnicodeSet total = new UnicodeSet();
         for (int s : cd.getOrder()) {
             String cat = cd.getCategory(s);
             if (!cat.equals(oldCat)) {
+                if (!last.isEmpty()) {
+                    showLast(last);
+                }
                 System.out.println("\n" + cat + "\n");
                 oldCat = cat;
             }
+            last.add(s);
+            total.add(s);
             System.out.println(Utility.hex(s) + "\t" + cd.getQuarter(s) + "\t" + cd.getName(s) + "\t" + cd.getAnnotations(s));
         }
+        showLast(last);
+        showLast(total);
+    }
+
+    private static void showLast(UnicodeSet last) {
+        System.out.println("# Total: " + last.size());
+        System.out.println("# USet: " + CollectionUtilities.join(
+                last.addAllTo(new LinkedHashSet<>())," ") + "\n");
+        last.clear();
     }
 }
