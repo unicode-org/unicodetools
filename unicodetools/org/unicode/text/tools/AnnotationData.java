@@ -7,8 +7,11 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -20,6 +23,11 @@ import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 
 public class AnnotationData {
+    private static final ULocale NORWEGIAN_NB = new ULocale("nb");
+    private static final ULocale NORWEGIAN_NO = new ULocale("no");
+    private static final ULocale HEBREW = new ULocale("he");
+    private static final ULocale HEBREW_OLD = new ULocale("iw");
+    private static final ULocale ZHTW = new ULocale("zh_TW");
     private static final Set<String> SKIP = new HashSet<>(EmojiAnnotations.GROUP_ANNOTATIONS);
     static {
         SKIP.add("flag");
@@ -31,7 +39,20 @@ public class AnnotationData {
     final UnicodeMap<Set<String>> map = new UnicodeMap<>();
     final UnicodeMap<String> tts = new UnicodeMap<>();
     AnnotationData(String file) {
-        this(new ULocale(file.substring(0,file.indexOf('.'))));
+        this(fixLocale(file));
+    }
+    
+    private static ULocale fixLocale(String file) {
+        String locale = file.substring(0,file.indexOf('.'));
+        ULocale ulocale = new ULocale(locale);
+        if (ulocale.equals(ZHTW)) {
+            ulocale = ULocale.TRADITIONAL_CHINESE;
+        } else if (ulocale.equals(HEBREW_OLD)) {
+            ulocale = HEBREW;
+        } else if (ulocale.equals(NORWEGIAN_NO)) {
+            ulocale = NORWEGIAN_NB;
+        }
+        return ULocale.minimizeSubtags(ulocale);
     }
     public AnnotationData(ULocale inLocale) {
         locale = inLocale;
@@ -58,10 +79,28 @@ public class AnnotationData {
         return this;
     }
     
-    static AnnotationData load(String dir, String file) {
+    static final Pattern FILENAME = Pattern.compile("(.*\\s-\\s)?(.*)"); // Emoji Annotations Project- Tier 1 - de.tsv
+    
+    static final Splitter SEMISPACE = Splitter.on(";").trimResults();
+            
+    static AnnotationData load(String dir, String infile) {
+        // New file structure
+        // "Emoji Annotations Project- Tier 1 - de.tsv"
+        final Matcher matcher = FILENAME.matcher(infile);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("Bad file name: " + infile);
+        }
+        String baseName = matcher.group(2);
+        boolean newStyle = matcher.group(1).startsWith("Emoji");
+        if (newStyle) {
+            return loadNew(dir, infile, baseName);
+        }
+        String file = infile + ".tsv";
+        
         AnnotationData data = new AnnotationData(file);
         //LocaleData ld = LocaleData.getInstance(data.locale);
-        Splitter localeSplitter = data.locale.equals(ULocale.JAPANESE) ? GenerateOtherAnnotations.SPACE : GenerateOtherAnnotations.COMMA;
+        Splitter localeSplitter = data.locale.equals(ULocale.JAPANESE) ? GenerateOtherAnnotations.SPACE 
+                        : GenerateOtherAnnotations.COMMA;
         //LocaleDisplayNames ldn = LocaleDisplayNames.getInstance(data.locale, DialectHandling.STANDARD_NAMES);
         int annotationField = 3;
         int lineCount = 0;
@@ -103,6 +142,48 @@ public class AnnotationData {
         }
         return data;
     }
+    
+    static AnnotationData loadNew(String dir, String file, String baseName) {
+        AnnotationData data = new AnnotationData(baseName);
+        Splitter localeSplitter = SEMISPACE;
+        int fieldTtsNative = 3;
+        int fieldTtsFixed = 4;
+        int fieldAnnotationNative = 7;
+        int fieldAnnotationFixed = 8;
+        int lineCount = 0;
+        for (String line : FileUtilities.in(dir, file)) {
+            ++lineCount;
+            if (line.startsWith("#") || line.isEmpty()) {
+                continue;
+            }
+            List<String> parts = GenerateOtherAnnotations.TAB.splitToList(line);
+            if (parts.size() <= fieldAnnotationFixed) {
+                System.out.println(data.locale + " (" + lineCount + "): Line/Chars too short, skipping: " + parts);
+                continue;
+            }
+            String chars;
+            try {
+                chars = Utility.fromHex(parts.get(0));
+            } catch (Exception e) {
+                System.out.println(data.locale + " (" + lineCount + "): Bad hex value: " + parts);
+                continue;
+            }
+            String ttsString = parts.get(fieldTtsFixed);
+            if (ttsString.isEmpty()) {
+                ttsString = parts.get(fieldTtsNative);
+            }
+            data.tts.put(chars, ttsString);
+            String annotationString = parts.get(fieldAnnotationFixed);
+            if (annotationString.isEmpty()) {
+                annotationString = parts.get(fieldAnnotationNative);
+            }
+            Set<String> annotations = new LinkedHashSet<>(localeSplitter.splitToList(annotationString));
+            annotations.remove(ttsString);
+            data.map.put(chars, Collections.unmodifiableSet(annotations));
+        }
+        return data;
+    }
+
     
     static AnnotationData getEnglish() {
         AnnotationData data = new AnnotationData(ULocale.ENGLISH);
@@ -162,7 +243,7 @@ public class AnnotationData {
         for (String annotation : EmojiAnnotations.ANNOTATIONS_TO_CHARS.keySet()) {
             Set<String> sorted = new TreeSet<String>(GenerateEmoji.EMOJI_COMPARATOR);
             sorted.addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(annotation));
-            System.out.println(annotation + "\t" + sorted.size() + "\t" + CollectionUtilities.join(sorted, " "));
+            // System.out.println(annotation + "\t" + sorted.size() + "\t" + CollectionUtilities.join(sorted, " "));
         }
         return data.freeze();
     }

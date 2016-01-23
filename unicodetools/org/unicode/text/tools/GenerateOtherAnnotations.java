@@ -3,15 +3,14 @@ package org.unicode.text.tools;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.invoke.MethodHandles;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
+import org.unicode.cldr.util.DtdType;
 import org.unicode.text.tools.EmojiData.DefaultPresentation;
 import org.unicode.text.utility.Settings;
 
@@ -20,8 +19,6 @@ import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.LocaleDisplayNames;
-import com.ibm.icu.text.LocaleDisplayNames.DialectHandling;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
@@ -29,28 +26,7 @@ import com.ibm.icu.util.ULocale;
 public class GenerateOtherAnnotations {
 
     private static final String MISSING = "";
-
-    /*
-de:
-U+01F004<tab>🀄<tab>MAHJONG TILE RED DRAGON<tab>Mahjong-Stein, roter Drache, Mahjong<tab><tab>N
-
-as:
-U+00A9<tab>©<tab>COPYRIGHT SIGN<tab>Copyright sign, Copyright<tab><tab>স্বত্বাধিকাৰ চিন, স্বত্বাধিকাৰ<tab>Copyright sign, Copyright<tab>N
-
-Special
-ta.tsv
-pa.tsv
-te.tsv
-or.tsv
-ml.tsv
-kn.tsv
-mr.tsv
-gu.tsv
-hi.tsv
-bn.tsv
-as.tsv
-     */
-
+    
     static final EmojiData emojiData = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
 
     static final Splitter TAB = Splitter.on("\t").trimResults();
@@ -78,7 +54,7 @@ as.tsv
             }
             AnnotationData data = AnnotationData.load(dir, file);
             printXml(data, missing);
-            printText(data);
+            //printText(data);
         }
 
         //        for (String s: GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
@@ -170,7 +146,9 @@ as.tsv
         String script = data.locale.getScript();
         String territory = data.locale.getCountry();
         try (PrintWriter outText = BagFormatter.openUTF8Writer(CLDRPaths.COMMON_DIRECTORY + "/annotations/", data.locale + ".xml")) {
-            outText.append(GenerateEmoji.ANNOTATION_HEADER
+            outText.append(DtdType.ldml.header(MethodHandles.lookup().lookupClass())
+                    + "\t<identity>\n"
+                    + "\t\t<version number=\"$Revision" /*hack to stop SVN changing this*/ + "$\"/>\n"
                     + "\t\t<language type='" + language + "'/>\n"
                     + (script.isEmpty() ? "" : "\t\t<script type='" + script + "'/>\n")
                     + (territory.isEmpty() ? "" : "\t\t<territory type='" + territory + "'/>\n")
@@ -214,7 +192,7 @@ as.tsv
                     .append(fix(ttsString, ld));
                 }
                 outText.append("'"
-                        + (isEnglish ? "" : " draft='provisional'")
+                        //+ (isEnglish ? "" : " draft='provisional'")
                         + ">")
                         .append(fix(annotationString, ld))
                         .append("</annotation>\n")

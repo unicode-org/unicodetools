@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.With;
+import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -27,13 +28,17 @@ public class Emoji {
     /**
      * Change the following for a new version.
      */
-    public static final boolean IS_BETA = false;
+    public static final boolean IS_BETA = true;
 
     /**
      * Change the following once we release
      */
     public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(2);
+    public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = VersionInfo.getInstance(8);
+    
     public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(3);
+    public static final VersionInfo VERSION_BETA_UNICODE = VersionInfo.getInstance(9);
+    
     public static final VersionInfo VERSION_FORMAT1 = VersionInfo.getInstance(1);
 
     /**
@@ -42,6 +47,11 @@ public class Emoji {
 
     public static final VersionInfo VERSION_TO_GENERATE = IS_BETA ? VERSION_BETA : VERSION_LAST_RELEASED;
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
+
+    public static final VersionInfo VERSION_TO_GENERATE_UNICODE = IS_BETA ? VERSION_BETA_UNICODE : VERSION_LAST_RELEASED_UNICODE;
+    static {
+        Default.setUCD(VERSION_TO_GENERATE_UNICODE.getVersionString(3, 3));
+    }
 
     public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
     //public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
@@ -123,6 +133,11 @@ public class Emoji {
     .add("🗨")
     // .freeze() will freeze later
     ;
+    static {
+        if (IS_BETA) {
+            EMOJI_CHARS.addAll("[🕺 🖤 🛑 🛒 🛴 🛵 🛶 🤙 🤚 🤛 🤜 🤝 🤞 🤠 🤡 🤢 🤣 🤤 🤥 🤦 🤧 🤰 🤳 🤴 🤵 🤶 🤷 🤸 🤹 🤺 🤻 🤼 🤽 🤾 🥀 🥁 🥂 🥃 🥄 🥅 🥆 🥇 🥈 🥉 🥊 🥋 🥐 🥑 🥒 🥓 🥔 🥕 🥖 🥗 🥘 🥙 🥚 🥛 🥜 🥝 🥞 🦅 🦆 🦇 🦈 🦉 🦊 🦋 🦌 🦍 🦎 🦏 🦐 🦑]");
+        }
+    }
     public static final UnicodeSet COMMON_ADDITIONS = new UnicodeSet("[➿🌍🌎🌐🌒🌖-🌘🌚🌜-🌞🌲🌳🍋🍐🍼🏇🏉🏤🐀-🐋🐏🐐🐓🐕🐖🐪👥👬👭💭💶💷📬📭📯📵🔀-🔂🔄-🔉🔕🔬🔭🕜-🕧😀😇😈😎😐😑😕😗😙😛😟😦😧😬😮😯😴😶🚁🚂🚆🚈🚊🚋🚍🚎🚐🚔🚖🚘🚛-🚡🚣🚦🚮-🚱🚳-🚵🚷🚸🚿🛁-🛅]").freeze();
     static final UnicodeSet ASCII_LETTER_HYPHEN = new UnicodeSet('-', '-', 'A', 'Z', 'a', 'z', '’', '’').freeze();
     static final UnicodeSet LATIN1_LETTER = new UnicodeSet("[[:L:]&[\\x{0}-\\x{FF}}]]").freeze();

@@ -2,6 +2,7 @@ package org.unicode.text.tools;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -83,6 +84,7 @@ public class EmojiOrder {
     }
 
     Relation<String, String> getOrdering(String sourceFile, MapComparator<String> mapComparator) {
+        //System.out.println(sourceFile);
         Relation<String, String> result = Relation.of(new LinkedHashMap<String, Set<String>>(), LinkedHashSet.class);
         Set<String> sorted = new LinkedHashSet<>();
         Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>());
@@ -90,6 +92,7 @@ public class EmojiOrder {
             if (line.isEmpty() || line.startsWith("#")) {
                 continue;
             }
+            System.out.println(line);
             line = Emoji.getLabelFromLine(lastLabel, line);
             line = Emoji.UNESCAPE.transform(line);
             for (int i = 0; i < line.length();) {
@@ -99,6 +102,7 @@ public class EmojiOrder {
                     continue;
                 }
                 if (!sorted.contains(string)) {
+                    //System.out.println("Adding: " + Utility.hex(string) + "\t" + string);
                     add(result, sorted, lastLabel, string);
                     ImmutableList<String> list = hack.get(string);
                     if (list != null) {
@@ -117,7 +121,7 @@ public class EmojiOrder {
         }
         Set<String> missing = emojiData.getSortingChars().addAllTo(new LinkedHashSet<String>());
         missing.removeAll(sorted);
-        if (!missing.isEmpty()) {
+        if (!missing.isEmpty() && !sourceFile.startsWith("alt")) {
             result.putAll("other", missing);
             System.err.println("Missing some orderings: ");
             for (String s : missing) {
@@ -195,8 +199,11 @@ public class EmojiOrder {
                 int debug = 0;
             }
             if (USE_ORDER) {
-                int nOrder = STD_ORDER.mp.getNumericOrder(cp);
-                int aOrder = ALT_ORDER.mp.getNumericOrder(cp);
+                Integer nOrder = STD_ORDER.mp.getNumericOrder(cp);
+                Integer aOrder = ALT_ORDER.mp.getNumericOrder(cp);
+                if (aOrder == null) {
+                    continue;
+                }
                 diff = (nOrder - lastNOrder) != (aOrder-lastAOrder);
                 lastNOrder = nOrder;
                 lastAOrder = aOrder;
@@ -319,7 +326,7 @@ public class EmojiOrder {
                         continue;
                     }
                     // keycaps, zwj sequences, can't use <* syntax
-                    String quoted = s.contains("*") || s.contains("#")? "'" + s + "'" : s;
+                    String quoted = quoteSyntax(s);
                     String quoted2 = quoted.replaceAll(Emoji.EMOJI_VARIANT_STRING, "");
                     if (!quoted2.equals(quoted)) {
                         outText.append("\n<").append(quoted);
@@ -343,6 +350,15 @@ public class EmojiOrder {
             throw new ICUUncheckedIOException("Internal Error",e);
         }
         return outText;
+    }
+
+    private String quoteSyntax(String source) {
+        for (String s : Arrays.asList("*", "#", "\u20E3", "\u20E0")) {
+            if (source.contains(s)) {
+                source = source.replace(s, "\\u" + Utility.hex(s));
+            }
+        }
+        return source;
     }
 
     public static Set<String> sort(Comparator<String> comparator, UnicodeSet... characters) {
