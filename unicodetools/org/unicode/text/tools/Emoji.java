@@ -28,7 +28,7 @@ public class Emoji {
     /**
      * Change the following for a new version.
      */
-    public static final boolean IS_BETA = true;
+    public static final boolean IS_BETA = false;
 
     /**
      * Change the following once we release
@@ -312,7 +312,7 @@ public class Emoji {
             return true;
         }
         if (!EMOJI_CHARS.contains(string) 
-                && !GenerateEmoji.APPLE_COMBOS.contains(string)
+                && !GenerateEmoji.EMOJI_DATA.getZwjSequencesNormal().contains(string)
                 ) {
             return true;
         }
