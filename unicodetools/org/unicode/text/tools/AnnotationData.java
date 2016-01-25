@@ -194,7 +194,7 @@ public class AnnotationData {
             data.tts.put(source, list.get(1));
         }
 
-        for (String s : new UnicodeSet(Emoji.EMOJI_CHARS).addAll(GenerateEmoji.APPLE_COMBOS)) {
+        for (String s : new UnicodeSet(Emoji.EMOJI_CHARS).addAll(GenerateEmoji.EMOJI_DATA.getZwjSequencesNormal())) {
             LinkedHashSet<String> result = new LinkedHashSet<>();
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 String regionCode = Emoji.getRegionCodeFromEmoji(s);
