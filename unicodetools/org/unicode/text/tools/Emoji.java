@@ -312,7 +312,7 @@ public class Emoji {
             return true;
         }
         if (!EMOJI_CHARS.contains(string) 
-                && !GenerateEmoji.EMOJI_DATA.getZwjSequencesNormal().contains(string)
+                && !EmojiData.EMOJI_DATA.getZwjSequencesNormal().contains(string)
                 ) {
             return true;
         }

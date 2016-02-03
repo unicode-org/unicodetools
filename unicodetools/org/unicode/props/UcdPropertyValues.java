@@ -524,78 +524,8 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Emoji_Correspondences_Values implements Named {
-        Japanese_Carriers("j"),
-        Wing_Webdings("w"),
-        Zapf_Dingbats("z"),
-        ARIB("a"),
-        Other("x");
-        private final PropertyNames<Emoji_Correspondences_Values> names;
-        private Emoji_Correspondences_Values (String shortName, String...otherNames) {
-            names = new PropertyNames<Emoji_Correspondences_Values>(
-                Emoji_Correspondences_Values.class, this, shortName, otherNames);
-        }
-        public PropertyNames<Emoji_Correspondences_Values> getNames() {
-            return names;
-        }
-        public String getShortName() {
-            return names.getShortName();
-        }
-    }
-
 		// Emoji_DCM
-	public enum Emoji_Default_Style_Values implements Named {
-        Text("text"),
-        Emoji("emoji");
-        private final PropertyNames<Emoji_Default_Style_Values> names;
-        private Emoji_Default_Style_Values (String shortName, String...otherNames) {
-            names = new PropertyNames<Emoji_Default_Style_Values>(
-                Emoji_Default_Style_Values.class, this, shortName, otherNames);
-        }
-        public PropertyNames<Emoji_Default_Style_Values> getNames() {
-            return names;
-        }
-        public String getShortName() {
-            return names.getShortName();
-        }
-    }
-
 		// Emoji_KDDI
-	public enum Emoji_Level_Values implements Named {
-        Level1("L1"),
-        Level2("L2"),
-        None("na");
-        private final PropertyNames<Emoji_Level_Values> names;
-        private Emoji_Level_Values (String shortName, String...otherNames) {
-            names = new PropertyNames<Emoji_Level_Values>(
-                Emoji_Level_Values.class, this, shortName, otherNames);
-        }
-        public PropertyNames<Emoji_Level_Values> getNames() {
-            return names;
-        }
-        public String getShortName() {
-            return names.getShortName();
-        }
-    }
-
-	public enum Emoji_Modifier_Status_Values implements Named {
-        Modifier("m"),
-        Primary("p", "minimal"),
-        Secondary("s", "optional"),
-        NA("na");
-        private final PropertyNames<Emoji_Modifier_Status_Values> names;
-        private Emoji_Modifier_Status_Values (String shortName, String...otherNames) {
-            names = new PropertyNames<Emoji_Modifier_Status_Values>(
-                Emoji_Modifier_Status_Values.class, this, shortName, otherNames);
-        }
-        public PropertyNames<Emoji_Modifier_Status_Values> getNames() {
-            return names;
-        }
-        public String getShortName() {
-            return names.getShortName();
-        }
-    }
-
 		// Emoji_SB
 		// FC_NFKC_Closure
 	public enum General_Category_Values implements Named {
@@ -923,6 +853,9 @@ public class UcdPropertyValues {
     }
 
 	public enum Joining_Group_Values implements Named {
+        African_Feh("African_Feh"),
+        African_Noon("African_Noon"),
+        African_Qaf("African_Qaf"),
         Ain("Ain"),
         Alaph("Alaph"),
         Alef("Alef"),
@@ -1328,7 +1261,8 @@ public class UcdPropertyValues {
         Common("Zyyy"),
         Unknown("Zzzz"),
         Japanese("Jpan"),
-        Korean("Kore");
+        Korean("Kore"),
+        Han_with_Bopomofo("Hanb");
         private final PropertyNames<Script_Values> names;
         private Script_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Script_Values>(

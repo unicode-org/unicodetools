@@ -3,7 +3,6 @@ package org.unicode.propstest;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Locale;
@@ -11,46 +10,32 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.unicode.cldr.draft.ScriptMetadata;
-import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
-import org.unicode.cldr.draft.ScriptMetadata.Info;
-import org.unicode.cldr.util.CLDRConfig;
-import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Counter;
-import org.unicode.cldr.util.DtdType;
-import org.unicode.cldr.util.Factory;
-import org.unicode.cldr.util.Level;
-import org.unicode.cldr.util.PathHeader;
-import org.unicode.cldr.util.SupplementalDataInfo;
-import org.unicode.cldr.util.VettingViewer;
-import org.unicode.cldr.util.VettingViewer.MissingStatus;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
-import org.unicode.props.UcdPropertyValues.Emoji_Correspondences_Values;
-import org.unicode.props.UcdPropertyValues.Emoji_Default_Style_Values;
-import org.unicode.props.UcdPropertyValues.Emoji_Level_Values;
-import org.unicode.props.UcdPropertyValues.Emoji_Modifier_Status_Values;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
+import org.unicode.text.tools.Emoji.ModifierStatus;
+import org.unicode.text.tools.EmojiData;
+import org.unicode.text.tools.EmojiData.DefaultPresentation;
 
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transform;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
+import com.ibm.icu.util.VersionInfo;
 
 public class TestProperties extends TestFmwk {
 
@@ -71,42 +56,55 @@ public class TestProperties extends TestFmwk {
 
 
     public void TestAAEmoji() {
-        UnicodeMap<Emoji_Default_Style_Values> style = iup.loadEnum(
-                UcdProperty.Emoji_Default_Style, Emoji_Default_Style_Values.class);
-        showByValue(UcdProperty.Emoji_Default_Style, style, ValueCardinality.Singleton);
+        EmojiData emojiData = EmojiData.of(VersionInfo.getInstance(3));
+        {
+            UnicodeMap<Binary> emoji = iup.loadEnum(UcdProperty.Emoji, Binary.class);
+            assertSameContents("Emoji", emojiData.getSingletons(), emoji.getSet(Binary.Yes));
+        }{
+            UnicodeMap<Binary> presentation = iup.loadEnum(UcdProperty.Emoji_Presentation, Binary.class);
+            assertSameContents("Emoji_Presentation", emojiData.getDefaultPresentationSet(DefaultPresentation.emoji), 
+                    presentation.getSet(Binary.Yes));
+        }{
+            UnicodeMap<Binary> modifiers = iup.loadEnum(UcdProperty.Emoji_Modifier, Binary.class);
+            assertSameContents("Emoji_Modifier", emojiData.getModifierStatusSet(ModifierStatus.modifier), 
+                    modifiers.getSet(Binary.Yes));
+        }{
+            UnicodeMap<Binary> bases = iup.loadEnum(UcdProperty.Emoji_Modifier_Base, Binary.class);
+            assertSameContents("Emoji_Modifier_Base", emojiData.getModifierBases(), 
+                    bases.getSet(Binary.Yes));
+        }
+    }
 
-        UnicodeMap<Emoji_Level_Values> levels = iup.loadEnum(
-                UcdProperty.Emoji_Level, Emoji_Level_Values.class);
-        showByValue(UcdProperty.Emoji_Level, levels, ValueCardinality.Singleton);
-
-        UnicodeMap<Emoji_Modifier_Status_Values> modifiers = iup.loadEnum(
-                UcdProperty.Emoji_Modifier_Status, Emoji_Modifier_Status_Values.class);
-        showByValue(UcdProperty.Emoji_Modifier_Status, modifiers, ValueCardinality.Singleton);
-
-        UnicodeMap<Set<Emoji_Correspondences_Values>> correspondences = iup.loadEnumSet(
-                UcdProperty.Emoji_Correspondences, Emoji_Correspondences_Values.class);
-        showByValue(UcdProperty.Emoji_Correspondences, correspondences, ValueCardinality.Unordered);
+    private void assertSameContents(String string, UnicodeSet a, UnicodeSet b) {
+        if (!a.equals(b)) {
+            assertEquals(string + " (missing)", "[]", new UnicodeSet(a).removeAll(b).toPattern(false));
+            assertEquals(string + " (extra)", "[]", new UnicodeSet(b).removeAll(a).toPattern(false));
+        } else {
+            logln(string + " OK:\t" + a.toPattern(false));
+        }
     }
 
     private <T> void showByValue(UcdProperty prop, UnicodeMap<T> emojiStyle, ValueCardinality cardinality) {
-        logln(prop + ":\t" + emojiStyle.size());
         TreeSet<T> sorted = cardinality == ValueCardinality.Singleton ? new TreeSet<T>() : new TreeSet<T>(new SetComparator());
         sorted.addAll(emojiStyle.values());
         for (T value : sorted) {
+            if (value == Binary.No) {
+                continue;
+            }
             UnicodeSet us = emojiStyle.getSet(value);
             logln("\t" + value + ":\t" + us.size() + "\t" +  us.toPattern(false));
         }
     }
-    
-//    public static <T extends Comparable, U extends Set<T>> int compare(U o1, U o2) {
-//        int diff = o1.size() - o2.size();
-//        if (diff != 0) {
-//            return diff;
-//        }
-//        Collection<T> x1 = SortedSet.class.isInstance(o1) ? o1 : new TreeSet<T>(o1);
-//        Collection<T> x2 = SortedSet.class.isInstance(o2) ? o2 : new TreeSet<T>(o2);
-//        return CollectionUtilities.compare(x1, x2);
-//    }
+
+    //    public static <T extends Comparable, U extends Set<T>> int compare(U o1, U o2) {
+    //        int diff = o1.size() - o2.size();
+    //        if (diff != 0) {
+    //            return diff;
+    //        }
+    //        Collection<T> x1 = SortedSet.class.isInstance(o1) ? o1 : new TreeSet<T>(o1);
+    //        Collection<T> x2 = SortedSet.class.isInstance(o2) ? o2 : new TreeSet<T>(o2);
+    //        return CollectionUtilities.compare(x1, x2);
+    //    }
 
     public static class SetComparator<T extends Comparable> 
     implements Comparator<Set<T>> {
@@ -324,7 +322,7 @@ public class TestProperties extends TestFmwk {
     }
 
 
-    
+
     public String getCodeAndName(String cp) {
         return Utility.hex(cp) + " (" + cp + ") " + nameMap.get(cp);
     }
