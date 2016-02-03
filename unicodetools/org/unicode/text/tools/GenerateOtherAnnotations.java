@@ -25,6 +25,12 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateOtherAnnotations {
 
+    private static final Set<String> ANNOTATED_CHARS = new UnicodeSet(EmojiData.EMOJI_DATA.getSortingChars())
+    .removeAll(EmojiData.EMOJI_DATA.getModifierSequences())
+    .removeAll(EmojiData.EMOJI_DATA.getFlagSequences())
+    .removeAll(EmojiData.EMOJI_DATA.getZwjSequencesAll())
+    .addAllTo(new TreeSet<String>(EmojiOrder.STD_ORDER.codepointCompare));
+
     private static final String MISSING = "";
     
     static final EmojiData emojiData = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
@@ -106,10 +112,7 @@ public class GenerateOtherAnnotations {
                     + "\tINTERNAL"
                     + "\tTTS: Combined"
                     );
-            for (String s : GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
-                if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
-                    continue;
-                }
+            for (String s : ANNOTATED_CHARS) {
                 String tts = data.tts.get(s);
                 String ttsString = tts == null ? MISSING : tts;
                 Set<String> annotations = data.map.get(s);
@@ -119,7 +122,8 @@ public class GenerateOtherAnnotations {
                     annotations = new LinkedHashSet<>(annotations);
                     annotations.remove(tts);
                 }
-                String annotationString = annotations == null ? MISSING : CollectionUtilities.join(annotations, "; ");
+                final String englishAnnotationString = CollectionUtilities.join(english.map.get(s), "; ");
+                final String annotationString = annotations == null ? MISSING : CollectionUtilities.join(annotations, "; ");
                 ++line;
                 outText.println("U+" + Utility.hex(s, 4, " U+")
                         + "\t=vlookup(A" + line + ",Internal!A:B,2,0)"
@@ -127,7 +131,7 @@ public class GenerateOtherAnnotations {
                         + "\t" + ttsString 
                         + "\t" + "" 
                         + "\t=if(ISBLANK(M" + line + "),\"MISS\",if(countif($M$2:$M$1026,M" + line + ")<=1,\"\",\"DUP\"))"
-                        + "\t" + CollectionUtilities.join(english.map.get(s), "; ")
+                        + "\t" + englishAnnotationString
                         + "\t" + annotationString
                         + "\t" // fixed
                         + "\t" // comment
@@ -154,13 +158,10 @@ public class GenerateOtherAnnotations {
                     + (territory.isEmpty() ? "" : "\t\t<territory type='" + territory + "'/>\n")
                     + "\t</identity>\n"
                     + "\t<annotations>\n");
-            for (String s : GenerateEmoji.SORTED_EMOJI_CHARS_SET) {
+            for (String s : ANNOTATED_CHARS) {
                 Set<String> annotations = data.map.get(s);
                 if (annotations == null) {
                     annotations = Collections.emptySet();
-                }
-                if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
-                    continue;
                 }
                 //                    if (annotations.isEmpty() && Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 //                        String regionCode = Emoji.getRegionCodeFromEmoji(s);

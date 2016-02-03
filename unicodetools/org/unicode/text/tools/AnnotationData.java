@@ -23,6 +23,9 @@ import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.ULocale;
 
 public class AnnotationData {
+
+    private static final boolean NEWSTYLE = true;
+
     private static final ULocale NORWEGIAN_NB = new ULocale("nb");
     private static final ULocale NORWEGIAN_NO = new ULocale("no");
     private static final ULocale HEBREW = new ULocale("he");
@@ -41,7 +44,7 @@ public class AnnotationData {
     AnnotationData(String file) {
         this(fixLocale(file));
     }
-    
+
     private static ULocale fixLocale(String file) {
         String locale = file.substring(0,file.indexOf('.'));
         ULocale ulocale = new ULocale(locale);
@@ -78,29 +81,30 @@ public class AnnotationData {
         tts.freeze();
         return this;
     }
-    
+
     static final Pattern FILENAME = Pattern.compile("(.*\\s-\\s)?(.*)"); // Emoji Annotations Project- Tier 1 - de.tsv
-    
+
     static final Splitter SEMISPACE = Splitter.on(";").trimResults();
-            
+
     static AnnotationData load(String dir, String infile) {
         // New file structure
         // "Emoji Annotations Project- Tier 1 - de.tsv"
+        // or
+        // de.tsv
         final Matcher matcher = FILENAME.matcher(infile);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("Bad file name: " + infile);
         }
         String baseName = matcher.group(2);
-        boolean newStyle = matcher.group(1).startsWith("Emoji");
-        if (newStyle) {
+        if (NEWSTYLE) {
             return loadNew(dir, infile, baseName);
         }
         String file = infile + ".tsv";
-        
+
         AnnotationData data = new AnnotationData(file);
         //LocaleData ld = LocaleData.getInstance(data.locale);
         Splitter localeSplitter = data.locale.equals(ULocale.JAPANESE) ? GenerateOtherAnnotations.SPACE 
-                        : GenerateOtherAnnotations.COMMA;
+                : GenerateOtherAnnotations.COMMA;
         //LocaleDisplayNames ldn = LocaleDisplayNames.getInstance(data.locale, DialectHandling.STANDARD_NAMES);
         int annotationField = 3;
         int lineCount = 0;
@@ -142,7 +146,7 @@ public class AnnotationData {
         }
         return data;
     }
-    
+
     static AnnotationData loadNew(String dir, String file, String baseName) {
         AnnotationData data = new AnnotationData(baseName);
         Splitter localeSplitter = SEMISPACE;
@@ -172,10 +176,32 @@ public class AnnotationData {
             if (ttsString.isEmpty()) {
                 ttsString = parts.get(fieldTtsNative);
             }
+            boolean hasSemi = ttsString.contains(";");
+            if (ttsString.contains(",")) {
+                System.err.println(data.locale 
+                        + "\t" + parts.get(0) 
+                        + "\thas commas "
+                        + (hasSemi ? "or semicolons " : "")
+                        + "in the TTS string. Should be a single name."
+                        + "\t" + ttsString);
+            } else if (hasSemi) {
+                System.err.println(data.locale 
+                        + "\t" + parts.get(0) 
+                        + "\thas semicolons in the TTS string. Should be a single name."
+                        + "\t" + ttsString);
+            }
+
             data.tts.put(chars, ttsString);
             String annotationString = parts.get(fieldAnnotationFixed);
             if (annotationString.isEmpty()) {
                 annotationString = parts.get(fieldAnnotationNative);
+            }
+            if (annotationString.contains(",")) {
+                System.err.println(data.locale 
+                        + "\t" + parts.get(0) 
+                        + "\thas commas in the annotation string, converting to semicolons:"
+                        + "\t" + annotationString);
+                annotationString = annotationString.replace(",", ";");
             }
             Set<String> annotations = new LinkedHashSet<>(localeSplitter.splitToList(annotationString));
             annotations.remove(ttsString);
@@ -184,7 +210,7 @@ public class AnnotationData {
         return data;
     }
 
-    
+
     static AnnotationData getEnglish() {
         AnnotationData data = new AnnotationData(ULocale.ENGLISH);
         for (String line : FileUtilities.in(GenerateOtherAnnotations.class, "en-tts.tsv")) {
@@ -194,7 +220,7 @@ public class AnnotationData {
             data.tts.put(source, list.get(1));
         }
 
-        for (String s : new UnicodeSet(Emoji.EMOJI_CHARS).addAll(GenerateEmoji.EMOJI_DATA.getZwjSequencesNormal())) {
+        for (String s : new UnicodeSet(Emoji.EMOJI_CHARS).addAll(EmojiData.EMOJI_DATA.getZwjSequencesNormal())) {
             LinkedHashSet<String> result = new LinkedHashSet<>();
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 String regionCode = Emoji.getRegionCodeFromEmoji(s);
@@ -247,7 +273,7 @@ public class AnnotationData {
         }
         return data.freeze();
     }
-    
+
     private static void showAndRemove(String label, Set<String> missing) {
         Set<String> plain = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues(label);
         missing.removeAll(plain);

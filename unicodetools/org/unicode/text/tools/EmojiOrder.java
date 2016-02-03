@@ -37,7 +37,7 @@ import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
 
 public class EmojiOrder {
-    static final EmojiData emojiData = EmojiData.of(Emoji.VERSION_TO_GENERATE);
+    static final EmojiData emojiData = EmojiData.EMOJI_DATA;
     public static final StringComparator PLAIN_STRING_COMPARATOR = new UTF16.StringComparator(true, false, 0);
     static final boolean USE_ORDER = true;
     static final ImmutableMap<String,ImmutableList<String>> hack = ImmutableMap.of(

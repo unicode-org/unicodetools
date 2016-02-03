@@ -112,31 +112,11 @@ idtype	; rec	; recommended
 # @-missing: 0000..10FFFF; Confusable_ML    	; <code point>		
 # @-missing: 0000..10FFFF; Confusable_MA    	; <code point>		
 
-# @-missing: 0000..10FFFF; Emoji_Default_Style  	; text
-
-Emoji_Default_Style	; text	 ; Text			
-Emoji_Default_Style	; emoji	 ; Emoji				
-
-# @-missing: 0000..10FFFF; Emoji_Level  	; na
-
-Emoji_Level	; L1	 ; Level1			
-Emoji_Level	; L2	 ; Level2				
-Emoji_Level	; na	 ; None	
-
-# @-missing: 0000..10FFFF; Emoji_Modifier_Status  	; na
-
-Emoji_Modifier_Status	; m	 ; Modifier			
-Emoji_Modifier_Status	; p	 ; Primary		; minimal		
-Emoji_Modifier_Status	; s	 ; Secondary	; optional
-Emoji_Modifier_Status	; na	 ; NA	
-
-# @-missing: 0000..10FFFF; Emoji_Correspondences  	; x
-
-Emoji_Correspondences	; j	 ; Japanese_Carriers			
-Emoji_Correspondences	; w	 ; Wing_Webdings				
-Emoji_Correspondences	; z	 ; Zapf_Dingbats	
-Emoji_Correspondences	; a	 ; ARIB	
-Emoji_Correspondences	; x	 ; Other	
+# @-missing: 0000..10FFFF; Emoji  	; No
+# @-missing: 0000..10FFFF; Emoji_Presentation  	; No
+# @-missing: 0000..10FFFF; Emoji_Modifier  	; No
+# @-missing: 0000..10FFFF; Emoji_Modifier_Base  	; No
 
 sc ; Jpan                             ; Japanese
 sc ; Kore                             ; Korean
+sc ; Hanb                             ; Han_with_Bopomofo

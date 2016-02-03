@@ -56,8 +56,6 @@ FileType ; CJKRadicals ; CJKRadicals
 FileType ; NamedSequences ; NamedSequences
 FileType ; NamedSequencesProv ; NamedSequences
 
-# an abbreviation of the property value is in field 2
-FileType ; security/*/confusables ; Confusables
 
 # =======================================
 # FILES FOR PROPERTIES
@@ -295,12 +293,17 @@ idna/*/IdnaMappingTable; Idn_2008; 3
 security/*/xidmodifications; Identifier_Status;
 security/*/xidmodifications; Identifier_Type; 2
 
+# an abbreviation of the property value is in field 2
+FileType ; security/*/confusables ; Confusables
+
 security/*/confusables ; Confusable_SL
 security/*/confusables ; Confusable_SA
 security/*/confusables ; Confusable_ML
 security/*/confusables ; Confusable_MA
 
-emoji/*/emoji-data; Emoji_Default_Style;
-emoji/*/emoji-data; Emoji_Level; 2
-emoji/*/emoji-data; Emoji_Modifier_Status; 3
-emoji/*/emoji-data; Emoji_Correspondences; 4
+FileType ; emoji/*/emoji-data ; PropertyValue
+
+emoji/*/emoji-data; Emoji
+emoji/*/emoji-data; Emoji_Presentation
+emoji/*/emoji-data; Emoji_Modifier
+emoji/*/emoji-data; Emoji_Modifier_Base

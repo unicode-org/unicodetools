@@ -1,11 +1,15 @@
 # ================================================
-# Enumerated Properties
+# Binary Properties
 # ================================================
 
-EDS ; Emoji_Default_Style
-EL ; Emoji_Level
-EMS ; Emoji_Modifier_Status
-EC ; Emoji_Correspondences # Emoji_Source
+EM ; Emoji
+EMP ; Emoji_Presentation
+EMM ; Emoji_Modifier
+EMB ; Emoji_Modifier_Base
+
+# ================================================
+# Enumerated Properties
+# ================================================
 
 idstatus ; Identifier_Status
 idtype ; Identifier_Type

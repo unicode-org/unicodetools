@@ -412,7 +412,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
      * @return
      */
     private UnicodeMap<String> getCachedMap(UcdProperty prop2, String sourceFileName) {
-        FileInputStream fis;
         File cacheFile;
         try {
             final String cacheFileName = Settings.BIN_DIR + getUcdVersion() + "/" + prop2 + ".bin";
@@ -424,14 +423,13 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
                     return null;
                 }
             }
-            fis = new FileInputStream(cacheFile);
             cacheFileSize.put(prop2, cacheFile.length());
         } catch (final Exception e) {
             return null;
         }
-        try {
-            final InputStream gs = GZIP ? new GZIPInputStream(fis) : fis;
-            final DataInputStream in = new DataInputStream(gs);
+        try (final FileInputStream fis = new FileInputStream(cacheFile);
+                final InputStream gs = GZIP ? new GZIPInputStream(fis) : fis;
+                final DataInputStream in = new DataInputStream(gs);) {
             final ItemReader<String> stringReader = new UnicodeDataInput.StringReader();
             UnicodeMap<String> newItem;
             if (SIMPLE_COMPRESSION) {
@@ -440,9 +438,6 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             } else {
                 newItem = UnicodeDataInput.readUnicodeMap(stringReader, in);
             }
-            in.close();
-            gs.close();
-            fis.close();
             cacheFileSize.put(prop2, cacheFile.length());
             return newItem.freeze();
         } catch (final IOException e) {
@@ -450,7 +445,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
     }
 
-    
+
 
     // # @missing: 0000..10FFFF; cjkIRG_KPSource; <none>
     // # @missing: 0000..10FFFF; Other

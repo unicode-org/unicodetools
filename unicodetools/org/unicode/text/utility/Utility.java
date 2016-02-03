@@ -1268,11 +1268,12 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 // check the idna directory
                 String[] parts = filename.split("/");
                 String base = parts[0];
-                if (base.equals("security")) {
-                    // TODO fix versions
-                    // element = "6.3.0";//"revision-06";
-                } else if (base.equals("emoji")) {
-                    element = "1.0";
+//                if (base.equals("security")) {
+//                    // TODO fix versions
+//                    // element = "6.3.0";//"revision-06";
+//                } else 
+                if (base.equals("emoji")) {
+                    element = getEmojiVersion(element);
                 }
                 String directoryName = Settings.DATA_DIR + base + "/" + element + "/";
                 result = directoryName + parts[2] + fileType;
@@ -1293,6 +1294,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                     + File.separator + filename + "*" + fileType + "'");
         }
         return result;
+    }
+
+    private static String getEmojiVersion(String element) {
+        return element.startsWith("9") ? "3.0" 
+                : "2.0";
     }
 
     public static Set getDirectoryContentsLastFirst(File directory) {
