@@ -169,7 +169,9 @@ public class GenerateNormalizeForMatch {
                         break subloop;
                     }
 
-                    // decomposition type = squared, fraction → Map to NFKC, with separators if more than one cp
+                    // decomposition type = squared, fraction → Map to NFKC
+                    // if the target ends with a digit, and there are no other digits, superscript the last
+                    // if there is more than one cp in the target, surround by separators.
                     if (SEPARATE_DECOMP_TYPES.contains(cp)) {
                         target = nfkccf.normalize(source);
                         reason = "DT_SQUARE_FRACTION";
