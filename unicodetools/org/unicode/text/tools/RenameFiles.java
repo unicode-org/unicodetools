@@ -15,9 +15,9 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class RenameFiles {
-    private static final String PLATFORM = "twitter";
-    private static final String GENERATED_DIR = "DATA/emoji/twitter";
-    private static final String FILE_MATCH = "(.*)\\.png";
+    private static final String PLATFORM = "emojixpress";
+    private static final String GENERATED_DIR = "DATA/emoji/emojixpress";
+    private static final String FILE_MATCH = ".*_x?(.*)\\.png";
     private static final boolean PREVIEW = false;
 
     public static void main(String[] args) throws IOException {

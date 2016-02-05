@@ -74,7 +74,7 @@ public class Emoji {
 
     public enum Source {
         // pngs
-        color, apple, twitter, samsung, google, windows, emojione, ref, proposed, emojipedia, emojixpress,
+        color, apple, twitter, samsung, google, windows, emojione, ref, proposed, emojipedia, emojixpress, sample,
         // gifs
         gmail, sb, dcm, kddi;
         boolean isGif() {
