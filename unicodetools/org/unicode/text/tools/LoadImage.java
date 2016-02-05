@@ -144,13 +144,14 @@ public class LoadImage extends Component {
     static String outputDir = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images/";
 
     public static void main(String[] args) throws IOException {
-        doAnimatedGif(false, 72, 50);
+//        doAnimatedGif(false, 72, 50);
 
-        if (true) return;
         UnicodeSet u9 = new UnicodeSet(
                 "[[\\U0001F6D2\\U0001F6F6\\U0001F927\\U0001F938-\\U0001F93E\\U0001F941\\U0001F943-\\U0001F94B\\U0001F956-\\U0001F959\\U0001F98B-\\U0001F98F]"
                         + "[\\U0001F95A-\\U0001F95E\\U0001F990\\U0001F991]]");
-        generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 144, false); // "Symbola"
+        generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 72, false); // "Symbola"
+        if (true) return;
+
 
         //UnicodeSet missing = new UnicodeSet("[✊ ✋ ✨  ✅ ❌ ❎ ➕ ➖ ➗ ➰ ➿  ❓ ❔ ❕]");
         //generatePngsFromFont(outputDir, outputDir, "ref", "ref", "Symbola", Emoji.U80, 72, true); // "Symbola"

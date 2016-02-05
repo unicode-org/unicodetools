@@ -94,7 +94,8 @@ public class GenerateNormalizeForMatch {
                 .put("ß", "ß")
                 .put("ẞ", "ß")
                 .put("İ", "i")
-                .put("⁄", "/")
+                .put("\u2044", "/")
+                .put("\u2215", "/")
                 .freeze();
 
         final UnicodeSet CN_CS_CO = new UnicodeSet("[[:Cn:]&[:Cs:]&[:Co:]-[:di:]]").freeze();
@@ -149,9 +150,6 @@ public class GenerateNormalizeForMatch {
                 String source = UTF16.valueOf(cp);
                 String target = source;
                 String reason = "";
-                if (target.equals(source) == false) {
-                    reason = "Fraction-Slash";
-                }
 
                 subloop: {
                     // Special cases

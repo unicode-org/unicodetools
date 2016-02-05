@@ -2461,7 +2461,15 @@ public class GenerateEmoji {
                 + "<br><a href='http://www.unicode.org/unicode/copyright.html'>"
                 + "<img src='http://www.unicode.org/img/hb_notice.gif' style='border-style: none; width: 216px; height=50px;' alt='Access to Copyright and terms of use'>"
                 + "</a><br><script language='Javascript' type='text/javascript' src='http://www.unicode.org/webscripts/lastModified.js'></script>"
-                + "</div></body></html>");
+                + "</div><script>\n"
+                + "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){"
+                + "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),"
+                + "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)"
+                + "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');"
+                + "  ga('create', 'UA-19876713-1', 'auto');"
+                + "  ga('send', 'pageview');"
+                + "</script>"
+                + "</body></html>");
     }
 
     public static void writeHeader(PrintWriter out, String title, String styles, String firstLine, String tableAttrs, boolean showGeneralComments) {
@@ -3043,21 +3051,39 @@ public class GenerateEmoji {
     static final Splitter TAB = Splitter.on('\t');
     private static final UnicodeMap<String> EXTRA_NAMES = new UnicodeMap<>();
 
-    enum Quarter {Q1, Q2, Q3, Q4}
-
+    enum Quarter {
+        _2015Q1, _2015Q2, _2015Q3, _2015Q4,
+        _2016Q1;
+        static Quarter fromString(String item) {
+            return valueOf('_'+item);
+        }
+        public String toString() {
+            return name().substring(1);
+        }
+    }
+    static final Joiner SPACE_JOINER = Joiner.on(' ').skipNulls();
+    
     static void showCandidates() throws IOException {
         // gather data
         String currentRow = "";
+        EmojiData betaEmojiData = EmojiData.of(Emoji.VERSION_BETA);
+        UnicodeSet modBase = betaEmojiData.getModifierStatusSet(ModifierStatus.modifier_base);
+        UnicodeSet pres = betaEmojiData.getDefaultPresentationSet(DefaultPresentation.emoji);
         UnicodeMap<Quarter> quartersForChars = new UnicodeMap<>();
         // The data file is designed to take the contents of the table, when pasted as plain text, and format it.
         List<String> output = new ArrayList<>();
         UnicodeSet items = new UnicodeSet();
+        int count = 0;
         for (String line : FileUtilities.in(GenerateEmoji.class, "candidateData.txt")) {
             if (line.startsWith("Code")) { // title line
-                output.add("<tr><th width='7em'>Code Point</th>"
-                        + "<th width='5em'>Chart Glyph</th>"
-                        + "<th width='5em'>Sample Colored Glyph</th>"
-                        + "<th>Q?</th>"
+                output.add("<tr>"
+                        + "<th>№</th>"
+                        + "<th width='7em'>Code Point</th>"
+                        + "<th width='5em'>Draft Chart Glyph</th>"
+                        + "<th>Sample Colored Glyphs</th>"
+                        + "<th>Date</th>"
+                        + "<th>EMP</th>"
+                        + "<th>EMB</th>"
                         + "<th>Name</th>"
                         + "</tr>"
                         );
@@ -3075,26 +3101,28 @@ public class GenerateEmoji {
                 List<String> parts = TAB.splitToList(line);
                 String source = Utility.fromHex(parts.get(0));
                 final String quarter = parts.get(3).trim();
-                quartersForChars.put(source, Quarter.valueOf(quarter));
+                quartersForChars.put(source, Quarter.fromString(quarter));
                 final String name = parts.get(4).trim();
                 EXTRA_NAMES.put(source, name);
                 String blackAndWhite = getImage(Source.proposed, source, true, "");
-                String color = getImage(Source.emojixpress, source, true, "");
-                if (color == null) {
-                    color = getImage(Source.emojipedia, source, true, "");
-                }
-                currentRow = "<tr><td class='code'>" + getDoubleLink(Utility.hex(source).replace(" ", "_"), toUHex(source)) + "</td>"
+                String color1 = getImage(Source.emojixpress, source, true, "");
+                String color2 = getImage(Source.emojipedia, source, true, "");
+                String sample = getImage(Source.sample, source, true, "");
+                String color = SPACE_JOINER.join(color1, color2, sample);
+                currentRow = "<tr>"
+                        + "<td class='rchars'>" + ++count + "</td>"
+                        + "<td class='code'>" + getDoubleLink(Utility.hex(source).replace(" ", "_"), toUHex(source)) + "</td>"
                         + "<td class='andr'>" + blackAndWhite + "</td>"
-                        + "<td class='andr'>" + color + "</td>"
-                        + "<td class='name'>" + quarter + "</td>"
-                        + "<td class='name'>" + name;
+                        + "<td class='default'>" + color + "</td>"
+                        + "<td class='default'>" + quarter + "</td>"
+                        + "<td class='default'>" + (pres.contains(source) ? "P" : "")
+                        + "<td class='default'>" + (modBase.contains(source) ? "B" : "")
+                        + "<td class='name'>" + name
+                        ;
                 items.add(source);
             } else { // must be category
                 line= line.trim();
-                output.add("<tr><th colspan='5'><a href='#" + line
-                        + "' name='" + line
-                        + "'>" + line
-                        + "</a></th></tr>");
+                output.add("<tr><th colspan='8'>" + getDoubleLink(line) + "</th></tr>");
             }
         }
         for (Quarter q : quartersForChars.values()) {
@@ -3111,13 +3139,15 @@ public class GenerateEmoji {
                             + items.size()
                             + " characters as candidates for emoji. "
                             + "At the 2016Q2 UTC meeting, a final determination will be made for ones to be added to Unicode 9.0, "
-                            + "for release in June 2016. For more information, see the <a href='#notes'>notes</a>.</p>"
+                            + "for release in June, 2016. "
+                            + "The candidates for 9.0 are limited to those accepted in 2015.</p>"
+                            + "<p>The ones accepted in 2016 are candidates for Unicode 10.0, for release in June, 2017. "
+                            + "For more information on the timeline, see "
+                            + "<a href='http://unicode.org/emoji/selection.html#timeline'>Process and Timeline</a>. "
+                            + "For information on the format of this chart, see the <a href='#notes'>notes</a>.</p>"
                             + "<ul style='color:#CC0000'>\n"
-                            + "<li>All of the images are <em>only</em> for illustration. "
-                            + "<ul><li>Sample colored glyphs courtesy of Emojipedia.org and EmojiXpress.</li>"
-                            + "<li>Sample chart glyphs courtesy of Adobe, Microsoft, and Apple.</li></ul></li>\n"
-                            + "<li>Do <em>not</em> deploy any of these yet: they are not yet final! "
-                            + "Candidates may still be removed or their code point, glyph, or name changed.</li>"
+                            + "<li>Do <em>not</em> deploy any of these yet: they are not yet final!</li>"
+                            + "<li>Candidates may still be removed or their code point, glyph, or name changed.</li>"
                             + "</ul>",
                             "border='1'", false);
             for (String outputLine : output) {
@@ -3128,19 +3158,27 @@ public class GenerateEmoji {
                     + "Subcommittee and Unicode members, and selected on the basis of the "
                     + "Emoji <i>Selection Factors</i> in "
                     + "<a target='_blank' href='../../emoji/selection.html'>Submitting Emoji Character Proposals</a>. "
-                    + "To file a proposal for a new emoji, see the instructions there.</p>\n"
-                    + "<ul><li>The bulleted items are clarifications or comments. Some of these may end "
-                    + "up being reflected in Unicode chart annotations.</li>\n"
-                    + "<li>All of the images are only for illustration.</li>\n"
-                    + "<li>The black and white <strong>Chart Glyphs</strong> are drafts for the Unicode charts. "
-                    + "They may change. Vendors that support emoji would provide a colorful appearance for each of these "
-                    + "characters.</li>\n"
+                    + "Anyone can file a proposal for a new emoji: see the instructions there.</p>\n"
+                    + "<ul>"
+                    + "<li>All of the images are <em>only</em> for illustration.</li>\n"
+                    + "<li>The draft black and white <strong>Chart Glyphs</strong> are drafts for the Unicode charts. "
+                    + "They may change. "
+                    + "These drafts are courtesy of Adobe, Microsoft, Apple, and proposers."
+                    + "</li>\n"
                     + "<li>The <strong>Sample Colored Glyphs</strong> column use a "
                     + "variety of different styles to illustrate some possible "
                     + "presentations. However, the actual presentations on phones and "
                     + "other devices are up to vendors, subject to the considerations in " + UTR_LINK
-                    + ".</li>"
-                    + "<li>The <b>Q?</b> column indicates the 2015 UTC meeting where each was accepted as a candidate.</li>"
+                    + ". These samples are courtesy of EmojiXpress, Emojipedia.org, and proposers.</li>"
+                    + "<li>The <b>Date</b> column indicates the UTC meeting where each was accepted as a candidate.</li>"
+                    + "<li>The <b>EMP</b> column has P when the draft Emoji_Presentation property specifies "
+                    + "that the presentation should be colorful by default.</li>"
+                    + "<li>The <b>EMB</b> column has B when the draft Emoji_Modifier_Base property specifies "
+                    + "that the emoji can be used with a skin-tone modifier.</li>"
+                    + "<li>The <b>Name</b> column has the draft Unicode name. "
+                    + "The bulleted items below the nameare clarifications or comments. "
+                    + "Some of these may end "
+                    + "up being reflected in Unicode chart annotations.</li>\n"
                     + "</ul>"
                     + "<p>For more information, see <a target='_blank' href='index.html'>Unicode Emoji</a> "
                     + "and the <a target='_blank' href='http://www.unicode.org/faq/emoji_dingbats.html'>Emoji FAQ</a>.</p>\n"
