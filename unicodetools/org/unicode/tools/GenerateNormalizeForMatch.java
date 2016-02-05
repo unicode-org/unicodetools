@@ -3,6 +3,9 @@ package org.unicode.tools;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
@@ -10,10 +13,14 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.With;
 
 import com.google.common.base.Objects;
+import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMap.Builder;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
@@ -28,10 +35,12 @@ import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateNormalizeForMatch {
+    private static final String FINAL_STRING = " FINAL ";
     private static final String DEBUG_PRINT = UTF16.valueOf(0xE0FDF);
     private static final String dir = "/Users/markdavis/Google Drive/workspace/DATA/frequency/";
     private static final String GOOGLE_FOLDING_TXT = "google_folding.txt";
@@ -54,12 +63,136 @@ public class GenerateNormalizeForMatch {
     private static final UnicodeMap<String> REASONS = new UnicodeMap<>();
     private static final UnicodeMap<String> ADDITIONS_TO_NFKCCF = new UnicodeMap<>();
 
+    static final UnicodeSet HANGUL_COMPAT = new UnicodeSet("[\\p{Block=Hangul Compatibility Jamo}-[:di:]-[:cn:]]").freeze();
+
+    static final Map<String,String> NAME_TO_CP;
+    static {
+        Builder<String,String> builder = ImmutableMap.builder();
+        for (EntryRange entry : new UnicodeSet("[^[:c:][:UnifiedIdeograph:]]").ranges()) {
+            for (int cp = entry.codepoint; cp < entry.codepointEnd; ++cp) {
+                final String name = UCharacter.getName(cp);
+                final String decomp = UTF16.valueOf(cp);
+                builder.put(name, decomp);
+                if (name.startsWith("CIRCLED NUMBER ")) {
+                    final String decompHack = nfkccf.normalize(decomp);
+                    final String nameHack = name.substring("CIRCLED ".length());
+                    builder.put(nameHack, decompHack);
+                }
+            }
+        }
+        // add fake numbers that aren't handled with the number hack above
+        // see also http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:name = / NUMBER /:]&[:scx=common:]
+        builder.put("NUMBER SIXTY", "60");
+        builder.put("NUMBER SEVENTY", "70");
+        builder.put("NUMBER EIGHTY", "80");
+
+        NAME_TO_CP = builder.build();
+    }
+
     public static void main(String[] args) throws IOException {
         gatherData();
+        computeXFile();
+        if (true) return;
         computeTrial();
         //printData();
         showSimpleData();
         //showItemsIn(new UnicodeSet(N4M.keySet()).addAll(TRIAL.keySet()));
+    }
+
+    static final Splitter SPACE_SPLITTER = Splitter.on(' ').trimResults();
+
+    static UnicodeMap<String> X_FILE = new UnicodeMap<String>();
+    static final String TEST_NAME_START = "NEGATIVE CIRCLED NUMBER";
+
+
+    private static void computeXFile() {
+        for (Entry<String, String> entry : NAME_TO_CP.entrySet()) {
+            final String name = entry.getKey();
+            final String cp = entry.getValue();
+
+            if (TEST_NAME_START != null && name.startsWith(TEST_NAME_START)) {
+                int debug = 0;
+            }
+            removeString(name, cp, false, " FINAL ");
+            removeString(name, cp, false, " WIDE FINAL ");
+            removeString(name, cp, false, "HALFWIDTH ");
+            removeString(name, cp, true, "CIRCLED ");
+            removeString(name, cp, true, "SQUARED ");
+            removeString(name, cp, false, "NEGATIVE CIRCLED ");
+            removeString(name, cp, false, "DINGBAT CIRCLED SANS-SERIF ");
+            removeString(name, cp, false, "DINGBAT NEGATIVE CIRCLED ");
+            removeString(name, cp, false, "DINGBAT NEGATIVE CIRCLED SANS-SERIF ");
+            removeString(name, cp, true, "NEGATIVE SQUARED ");
+            removeString(name, cp, false, "CROSSED NEGATIVE SQUARED ");
+            removeString(name, cp, false, "CIRCLED ", " ON BLACK SQUARE");
+            removeString(name, cp, false, "DOUBLE CIRCLED ");
+            
+        }
+        X_FILE.freeze();
+
+        Counter<Status> total = new Counter<>();
+        UnicodeSet items = new UnicodeSet(X_FILE.keySet())
+        .addAll(ADDITIONS_TO_NFKCCF.keySet())
+        .freeze();
+
+        System.out.println("#Source\tNew Vers.\tOld Vers.\tGC\tSrc\tNew\tOld\tSource\tNew\tOld\tStatus");
+        for (Status checkStatus : Status.values()) {
+            for (String source : items) {
+                final String oldTarget = ADDITIONS_TO_NFKCCF.get(source);
+                final String newTarget = X_FILE.get(source);
+
+                final Status status = Status.get(source, oldTarget, newTarget);
+                if (status != checkStatus) continue;
+
+                total.add(status, 1);
+                System.out.println(
+                        Utility.hex(source)
+                        + ";\t" + (newTarget == null ? "source" : Utility.hex(newTarget))
+                        + ";\t" + (oldTarget == null ? "source" : Utility.hex(oldTarget))
+                        + ";\t" + UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, UCharacter.getType(source.codePointAt(0)), NameChoice.SHORT)
+                        + ";\t" + source 
+                        + ";\t" + newTarget 
+                        + ";\t" + oldTarget 
+                        + ";\t" + UCharacter.getName(source, ", ") 
+                        + ";\t" + (newTarget == null ? "source" : UCharacter.getName(newTarget, ", "))
+                        + ";\t" + (oldTarget == null ? "source" : UCharacter.getName(oldTarget, ", "))
+                        + ";\t" + status
+                        );
+            }
+        }
+        System.out.println(total);
+    }
+
+    enum Status {
+        different, missing, extra, same;
+        static Status get(String source, String oldTarget, String newTarget) {
+            return oldTarget == null ? Status.extra
+                    : newTarget == null ? Status.missing
+                            : oldTarget.equals(newTarget) ? Status.same
+                                    : Status.different;
+        }
+    }
+
+    private static void removeString(final String name, String cp, boolean hack, final String... stringsToFind) {
+        int finalPos = name.indexOf(stringsToFind[0]);
+        if (finalPos >= 0) {
+            String newName = name;
+            for (String s : stringsToFind) {
+                newName = newName.replace(s, " ").trim().replace("  ", " ");
+            }
+            String otherCode = NAME_TO_CP.get(newName);
+            if (otherCode != null) {
+                final String target = HANGUL_COMPAT.contains(otherCode) ? otherCode : nfkccf.normalize(otherCode);
+                if (!nfkccf.normalize(cp).equals(target)) {
+                    X_FILE.put(cp, target);
+                }
+            } else {
+                // hack for SQUARED OK, NEGATIVE SQUARED IC
+                if (hack && !newName.contains(" ")) {
+                    X_FILE.put(cp, newName.toLowerCase(Locale.ROOT));
+                }
+            }
+        }
     }
 
     private static void showSimpleData() {
@@ -94,12 +227,12 @@ public class GenerateNormalizeForMatch {
                 .put("ß", "ß")
                 .put("ẞ", "ß")
                 .put("İ", "i")
-                .put("\u2044", "/")
+                .put("\u2044", "/") // decimal and fraction slash
                 .put("\u2215", "/")
+                .put("\u0640", "") // tatweel
                 .freeze();
 
-        final UnicodeSet CN_CS_CO = new UnicodeSet("[[:Cn:]&[:Cs:]&[:Co:]-[:di:]]").freeze();
-        final UnicodeSet HANGUL_COMPAT = new UnicodeSet("[\\p{Block=Hangul Compatibility Jamo}-[:di:]-[:cn:]]").freeze();
+        final UnicodeSet CN_CS_CO = new UnicodeSet("[[:Cn:][:Cs:][:Co:]-[:di:]]").freeze();
         final UnicodeSet HANGUL_HALFWIDTH = new UnicodeSet("[[:dt=narrow:]&[:script=Hang:]]").freeze();
         //final UnicodeSet DEPRECATED = new UnicodeSet("\\p{deprecated}").freeze();
         final UnicodeSet SEPARATE_DECOMP_TYPES = new UnicodeSet("["
