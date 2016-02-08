@@ -270,3 +270,5 @@ Warang_Citi	;	Warang_Citi
 Yi_Radicals	;	Yi_Radicals
 Yi_Syllables	;	Yi_Syllables
 Yijing	;	Yijing_Hexagram_Symbols
+Newa	;	Newa
+Adlam	;	Adlam
