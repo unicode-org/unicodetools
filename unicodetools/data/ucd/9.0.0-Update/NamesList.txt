@@ -1,14 +1,15 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 9.0.0
-@@@+	U90M160111.lst
-	Unicode 9.0.0 names list, second delta.
-	Repertoire synched with UnicodeData-9.0.0d1.txt
-	Updated annotations for 08BB - 08BD based on L2/14-207R.
-	Added notes indicating that parenthesized Latin letters do not have case mappings.
-	Further annotations for 0238 - 0240.
-	Added annotations for FD3E, FD3F, FDFD.
-	Added compatibility decomposition for 0385 in annotation.
-	Added xrefs between 10FB and 2056.
+@@@+	U90M160205.lst
+	Unicode 9.0.0 names list, third delta.
+	Repertoire synched with UnicodeData-9.0.0d5.txt
+	Repertoire additions from CD2: Newa, Adlam, ARIB, Emoji
+	Fixed annotations re casing for 00D0 and 00F0.
+	Added notice about casing difficulties to top of Greek and Coptic block.
+	Added notice in Mongolian block to explain use of xrefs for Cyrillic transliteration.
+	Added annotation for 0D02.
+	Added notice about exceptional pairing of brackets with ticks.
+	Undeprecated U+E007F CANCEL TAG.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -674,7 +675,7 @@
 00CF	LATIN CAPITAL LETTER I WITH DIAERESIS
 	: 0049 0308
 00D0	LATIN CAPITAL LETTER ETH
-	x (latin small letter eth - 00F0)
+	* lowercase is 00F0
 	x (latin capital letter d with stroke - 0110)
 	x (latin capital letter african d - 0189)
 00D1	LATIN CAPITAL LETTER N WITH TILDE
@@ -712,9 +713,9 @@
 	= Eszett
 	* German
 	* uppercase is "SS"
+	* nonstandard uppercase is 1E9E
 	* typographically the glyph for this character can be based on a ligature of 017F with either 0073 or with an old-style glyph for 007A (the latter similar in appearance to 0292). Both forms exist interchangeably today.
 	x (greek small letter beta - 03B2)
-	x (latin capital letter sharp s - 1E9E)
 00E0	LATIN SMALL LETTER A WITH GRAVE
 	: 0061 0300
 00E1	LATIN SMALL LETTER A WITH ACUTE
@@ -756,7 +757,7 @@
 	: 0069 0308
 00F0	LATIN SMALL LETTER ETH
 	* Icelandic, Faroese, Old English, IPA
-	x (latin capital letter eth - 00D0)
+	* uppercase is 00D0
 	x (greek small letter delta - 03B4)
 	x (partial differential - 2202)
 00F1	LATIN SMALL LETTER N WITH TILDE
@@ -2616,6 +2617,7 @@
 036E	COMBINING LATIN SMALL LETTER V
 036F	COMBINING LATIN SMALL LETTER X
 @@	0370	Greek and Coptic	03FF
+@+		Casing relationships between Greek letters are complex and not self-evident from inspection of the charts. See the core specification for details.
 @		Archaic letters
 0370	GREEK CAPITAL LETTER HETA
 	x (latin capital letter half h - 2C75)
@@ -5843,6 +5845,7 @@
 @		Various signs
 0D01	MALAYALAM SIGN CANDRABINDU
 0D02	MALAYALAM SIGN ANUSVARA
+	* used in Prakrit language texts to indicate gemination of the following consonant
 0D03	MALAYALAM SIGN VISARGA
 @		Independent vowels
 0D05	MALAYALAM LETTER A
@@ -9258,6 +9261,7 @@
 1818	MONGOLIAN DIGIT EIGHT
 1819	MONGOLIAN DIGIT NINE
 @		Basic letters
+@+		Cross-references show commonly used Cyrillic transliterations.
 1820	MONGOLIAN LETTER A
 	x (cyrillic small letter a - 0430)
 	~ 1820 180B second form (isolate)
@@ -11173,6 +11177,9 @@
 1DF4	COMBINING LATIN SMALL LETTER U WITH DIAERESIS
 @		Diacritic for American lexicography
 1DF5	COMBINING UP TACK ABOVE
+@		Miscellaneous mark
+1DFB	COMBINING DELETION MARK
+	* used for "mhusaa" in Newa scribal tradition
 @		Double diacritic mark for UPA
 1DFC	COMBINING DOUBLE INVERTED BREVE BELOW
 @		Miscellaneous mark
@@ -15618,6 +15625,7 @@
 	x (heavy black heart - 2764)
 	x (heart with tip on the left - 1F394)
 	x (blue heart - 1F499)
+	x (black heart - 1F5A4)
 	~ 2665 FE0E text style
 	~ 2665 FE0F emoji style
 2666	BLACK DIAMOND SUIT
@@ -17065,10 +17073,13 @@
 298A	Z NOTATION RIGHT BINDING BRACKET
 298B	LEFT SQUARE BRACKET WITH UNDERBAR
 298C	RIGHT SQUARE BRACKET WITH UNDERBAR
+@		Brackets with ticks
+@+		For bidirectional processing, the brackets with ticks are paired on the basis of their left/right symmetric glyphs, rather than on the basis of an open/close pairing inferred from code point order.
 298D	LEFT SQUARE BRACKET WITH TICK IN TOP CORNER
 298E	RIGHT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
 298F	LEFT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
 2990	RIGHT SQUARE BRACKET WITH TICK IN TOP CORNER
+@		Brackets
 2991	LEFT ANGLE BRACKET WITH DOT
 2992	RIGHT ANGLE BRACKET WITH DOT
 2993	LEFT ARC LESS-THAN BRACKET
@@ -32385,8 +32396,140 @@ FFFF	<not a character>
 11372	COMBINING GRANTHA LETTER NA
 11373	COMBINING GRANTHA LETTER VI
 11374	COMBINING GRANTHA LETTER PA
+@@	11400	Newa	1147F
+@+		This script is also known as Nepaalalipi, Nepalakshar, Newah Akhah, Pachumol, Prachalit, and other names.
+@		Independent vowels
+@+		Some of the vowels are only used for Sanskrit, and are not needed for Nepal Bhasa.
+11400	NEWA LETTER A
+11401	NEWA LETTER AA
+11402	NEWA LETTER I
+11403	NEWA LETTER II
+11404	NEWA LETTER U
+11405	NEWA LETTER UU
+11406	NEWA LETTER VOCALIC R
+11407	NEWA LETTER VOCALIC RR
+11408	NEWA LETTER VOCALIC L
+11409	NEWA LETTER VOCALIC LL
+1140A	NEWA LETTER E
+1140B	NEWA LETTER AI
+1140C	NEWA LETTER O
+1140D	NEWA LETTER AU
+@		Consonants
+@+		Six consonant letters involving ha are encoded for the representation of murmured resonants in Nepal Bhasa, a Tibeto-Burman language. Those letters are not used for the representation of Sanskrit in the Newa script.
+1140E	NEWA LETTER KA
+1140F	NEWA LETTER KHA
+11410	NEWA LETTER GA
+11411	NEWA LETTER GHA
+11412	NEWA LETTER NGA
+11413	NEWA LETTER NGHA
+	* murmured nasal for Nepal Bhasa language
+11414	NEWA LETTER CA
+11415	NEWA LETTER CHA
+11416	NEWA LETTER JA
+11417	NEWA LETTER JHA
+11418	NEWA LETTER NYA
+11419	NEWA LETTER NYHA
+	* murmured nasal for Nepal Bhasa language
+1141A	NEWA LETTER TTA
+1141B	NEWA LETTER TTHA
+1141C	NEWA LETTER DDA
+1141D	NEWA LETTER DDHA
+1141E	NEWA LETTER NNA
+1141F	NEWA LETTER TA
+11420	NEWA LETTER THA
+11421	NEWA LETTER DA
+11422	NEWA LETTER DHA
+11423	NEWA LETTER NA
+11424	NEWA LETTER NHA
+	* murmured nasal for Nepal Bhasa language
+11425	NEWA LETTER PA
+11426	NEWA LETTER PHA
+11427	NEWA LETTER BA
+11428	NEWA LETTER BHA
+11429	NEWA LETTER MA
+1142A	NEWA LETTER MHA
+	* murmured nasal for Nepal Bhasa language
+1142B	NEWA LETTER YA
+1142C	NEWA LETTER RA
+1142D	NEWA LETTER RHA
+	* murmured tap for Nepal Bhasa language
+1142E	NEWA LETTER LA
+1142F	NEWA LETTER LHA
+	* murmured lateral for Nepal Bhasa language
+11430	NEWA LETTER WA
+11431	NEWA LETTER SHA
+11432	NEWA LETTER SSA
+11433	NEWA LETTER SA
+11434	NEWA LETTER HA
+@		Dependent vowel signs
+@+		Some of the vowel signs are only used for Sanskrit, and are not needed for Nepal Bhasa.
+11435	NEWA VOWEL SIGN AA
+11436	NEWA VOWEL SIGN I
+11437	NEWA VOWEL SIGN II
+11438	NEWA VOWEL SIGN U
+11439	NEWA VOWEL SIGN UU
+1143A	NEWA VOWEL SIGN VOCALIC R
+1143B	NEWA VOWEL SIGN VOCALIC RR
+1143C	NEWA VOWEL SIGN VOCALIC L
+1143D	NEWA VOWEL SIGN VOCALIC LL
+1143E	NEWA VOWEL SIGN E
+1143F	NEWA VOWEL SIGN AI
+11440	NEWA VOWEL SIGN O
+11441	NEWA VOWEL SIGN AU
+@		Various signs
+11442	NEWA SIGN VIRAMA
+	= tutisaalaa
+11443	NEWA SIGN CANDRABINDU
+	= milaaphuti
+11444	NEWA SIGN ANUSVARA
+	= sinhaphuti
+11445	NEWA SIGN VISARGA
+	= liphuti
+11446	NEWA SIGN NUKTA
+11447	NEWA SIGN AVAGRAHA
+	= sulaa
+11448	NEWA SIGN FINAL ANUSVARA
+	= baadipu
+@		Invocation signs
+11449	NEWA OM
+1144A	NEWA SIDDHI
+@		Punctuation
+1144B	NEWA DANDA
+	= dipu
+1144C	NEWA DOUBLE DANDA
+1144D	NEWA COMMA
+	= jhaasu
+1144E	NEWA GAP FILLER
+	= thaayjaayekaa
+1144F	NEWA ABBREVIATION SIGN
+@		Digits
+11450	NEWA DIGIT ZERO
+	= guli
+11451	NEWA DIGIT ONE
+	= chi
+11452	NEWA DIGIT TWO
+	= nasi
+11453	NEWA DIGIT THREE
+	= swa
+11454	NEWA DIGIT FOUR
+	= pi
+11455	NEWA DIGIT FIVE
+	= njaa
+11456	NEWA DIGIT SIX
+	= khu
+11457	NEWA DIGIT SEVEN
+	= nhasa
+11458	NEWA DIGIT EIGHT
+	= cyaa
+11459	NEWA DIGIT NINE
+	= gu
+@		Various signs
+1145B	NEWA PLACEHOLDER MARK
+	= jaayekaa
+1145D	NEWA INSERTION SIGN
+	= tansaa
 @@	11480	Tirhuta	114DF
-@+		The Tirhuta script is also known by the names 'Mithilakshara' and 'Maithili'.
+@+		The Tirhuta script is also known by the names Mithilakshara and Maithili.
 @		Sign
 11480	TIRHUTA ANJI
 @		Independent vowels
@@ -43039,6 +43182,102 @@ FFFF	<not a character>
 1E8D4	MENDE KIKAKUI COMBINING NUMBER TEN THOUSANDS
 1E8D5	MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
 1E8D6	MENDE KIKAKUI COMBINING NUMBER MILLIONS
+@@	1E900	Adlam	1E95F
+@		Capital letters
+1E900	ADLAM CAPITAL LETTER ALIF
+1E901	ADLAM CAPITAL LETTER DAALI
+1E902	ADLAM CAPITAL LETTER LAAM
+1E903	ADLAM CAPITAL LETTER MIIM
+1E904	ADLAM CAPITAL LETTER BA
+1E905	ADLAM CAPITAL LETTER SINNYIIYHE
+1E906	ADLAM CAPITAL LETTER PE
+1E907	ADLAM CAPITAL LETTER BHE
+1E908	ADLAM CAPITAL LETTER RA
+1E909	ADLAM CAPITAL LETTER E
+1E90A	ADLAM CAPITAL LETTER FA
+1E90B	ADLAM CAPITAL LETTER I
+1E90C	ADLAM CAPITAL LETTER O
+1E90D	ADLAM CAPITAL LETTER DHA
+1E90E	ADLAM CAPITAL LETTER YHE
+1E90F	ADLAM CAPITAL LETTER WAW
+1E910	ADLAM CAPITAL LETTER NUN
+1E911	ADLAM CAPITAL LETTER KAF
+1E912	ADLAM CAPITAL LETTER YA
+1E913	ADLAM CAPITAL LETTER U
+1E914	ADLAM CAPITAL LETTER JIIM
+1E915	ADLAM CAPITAL LETTER CHI
+1E916	ADLAM CAPITAL LETTER HA
+1E917	ADLAM CAPITAL LETTER QAAF
+1E918	ADLAM CAPITAL LETTER GA
+1E919	ADLAM CAPITAL LETTER NYA
+1E91A	ADLAM CAPITAL LETTER TU
+1E91B	ADLAM CAPITAL LETTER NHA
+@		Supplementary capital letters
+1E91C	ADLAM CAPITAL LETTER VA
+1E91D	ADLAM CAPITAL LETTER KHA
+1E91E	ADLAM CAPITAL LETTER GBE
+1E91F	ADLAM CAPITAL LETTER ZAL
+1E920	ADLAM CAPITAL LETTER KPO
+1E921	ADLAM CAPITAL LETTER SHA
+@		Small letters
+1E922	ADLAM SMALL LETTER ALIF
+1E923	ADLAM SMALL LETTER DAALI
+1E924	ADLAM SMALL LETTER LAAM
+1E925	ADLAM SMALL LETTER MIIM
+1E926	ADLAM SMALL LETTER BA
+1E927	ADLAM SMALL LETTER SINNYIIYHE
+1E928	ADLAM SMALL LETTER PE
+1E929	ADLAM SMALL LETTER BHE
+1E92A	ADLAM SMALL LETTER RA
+1E92B	ADLAM SMALL LETTER E
+1E92C	ADLAM SMALL LETTER FA
+1E92D	ADLAM SMALL LETTER I
+1E92E	ADLAM SMALL LETTER O
+1E92F	ADLAM SMALL LETTER DHA
+1E930	ADLAM SMALL LETTER YHE
+1E931	ADLAM SMALL LETTER WAW
+1E932	ADLAM SMALL LETTER NUN
+1E933	ADLAM SMALL LETTER KAF
+1E934	ADLAM SMALL LETTER YA
+1E935	ADLAM SMALL LETTER U
+1E936	ADLAM SMALL LETTER JIIM
+1E937	ADLAM SMALL LETTER CHI
+1E938	ADLAM SMALL LETTER HA
+1E939	ADLAM SMALL LETTER QAAF
+1E93A	ADLAM SMALL LETTER GA
+1E93B	ADLAM SMALL LETTER NYA
+1E93C	ADLAM SMALL LETTER TU
+1E93D	ADLAM SMALL LETTER NHA
+@		Supplementary small letters
+1E93E	ADLAM SMALL LETTER VA
+1E93F	ADLAM SMALL LETTER KHA
+1E940	ADLAM SMALL LETTER GBE
+1E941	ADLAM SMALL LETTER ZAL
+1E942	ADLAM SMALL LETTER KPO
+1E943	ADLAM SMALL LETTER SHA
+@		Diacritical marks
+1E944	ADLAM ALIF LENGTHENER
+1E945	ADLAM VOWEL LENGTHENER
+1E946	ADLAM GEMINATION MARK
+1E947	ADLAM HAMZA
+1E948	ADLAM CONSONANT MODIFIER
+1E949	ADLAM GEMINATE CONSONANT MODIFIER
+1E94A	ADLAM NUKTA
+	* called hoortobbhere when drawn above and lestobbhere when drawn below the base character
+@		Digits
+1E950	ADLAM DIGIT ZERO
+1E951	ADLAM DIGIT ONE
+1E952	ADLAM DIGIT TWO
+1E953	ADLAM DIGIT THREE
+1E954	ADLAM DIGIT FOUR
+1E955	ADLAM DIGIT FIVE
+1E956	ADLAM DIGIT SIX
+1E957	ADLAM DIGIT SEVEN
+1E958	ADLAM DIGIT EIGHT
+1E959	ADLAM DIGIT NINE
+@		Punctuation
+1E95E	ADLAM INITIAL EXCLAMATION MARK
+1E95F	ADLAM INITIAL QUESTION MARK
 @@	1EE00	Arabic Mathematical Alphabetic Symbols	1EEFF
 @		Isolated symbols
 1EE00	ARABIC MATHEMATICAL ALEF
@@ -44014,6 +44253,32 @@ FFFF	<not a character>
 	= new information, update
 1F19A	SQUARED VS
 	= versus
+@		Squared Latin letter sequences from ARIB STD B62
+1F19B	SQUARED THREE D
+1F19C	SQUARED SECOND SCREEN
+1F19D	SQUARED TWO K
+1F19E	SQUARED FOUR K
+1F19F	SQUARED EIGHT K
+1F1A0	SQUARED FIVE POINT ONE
+1F1A1	SQUARED SEVEN POINT ONE
+1F1A2	SQUARED TWENTY-TWO POINT TWO
+1F1A3	SQUARED SIXTY P
+1F1A4	SQUARED ONE HUNDRED TWENTY P
+1F1A5	SQUARED LATIN SMALL LETTER D
+	= data
+1F1A6	SQUARED HC
+	= hybrid cast
+1F1A7	SQUARED HDR
+	= high dynamic range
+1F1A8	SQUARED HI-RES
+	= high resolution
+1F1A9	SQUARED LOSSLESS
+1F1AA	SQUARED SHV
+	= super high vision
+1F1AB	SQUARED UHD
+	= ultra-high definition
+1F1AC	SQUARED VOD
+	= video on demand
 @		Regional indicator symbols
 @+		These characters can be used in pairs to represent regional codes. In some emoji implementations, certain pairs may be recognized and displayed by alternate means; for instance, an implementation might recognize F + R and display this combination with a symbol representing the flag of France.
 1F1E6	REGIONAL INDICATOR SYMBOL LETTER A
@@ -44200,6 +44465,9 @@ FFFF	<not a character>
 1F23A	SQUARED CJK UNIFIED IDEOGRAPH-55B6
 	= in business sign
 	# <square> 55B6
+1F23B	SQUARED CJK UNIFIED IDEOGRAPH-914D
+	= program delivery over network (ARIB STD B62)
+	# <square> 914D
 @		Ideographs with tortoise shell brackets from ARIB STD B24
 1F240	TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C
 	= home run
@@ -44446,6 +44714,7 @@ FFFF	<not a character>
 1F37A	BEER MUG
 1F37B	CLINKING BEER MUGS
 	= cheers
+	x (clinking glasses - 1F942)
 1F37C	BABY BOTTLE
 @		Accommodation symbol
 1F37D	FORK AND KNIFE WITH PLATE
@@ -44956,6 +45225,7 @@ FFFF	<not a character>
 1F46F	WOMAN WITH BUNNY EARS
 	* most popularly depicted as two women dancing
 1F470	BRIDE WITH VEIL
+	x (man in tuxedo - 1F935)
 1F471	PERSON WITH BLOND HAIR
 1F472	MAN WITH GUA PI MAO
 1F473	MAN WITH TURBAN
@@ -44968,6 +45238,7 @@ FFFF	<not a character>
 	x (helmet with white cross - 26D1)
 @		Fairy tale symbols
 1F478	PRINCESS
+	x (prince - 1F934)
 1F479	JAPANESE OGRE
 1F47A	JAPANESE GOBLIN
 1F47B	GHOST
@@ -44984,6 +45255,8 @@ FFFF	<not a character>
 1F482	GUARDSMAN
 1F483	DANCER
 	* also used for "let's party"
+	* may be depicted as gender neutral
+	x (man dancing - 1F57A)
 @		Personal care symbols
 1F484	LIPSTICK
 1F485	NAIL POLISH
@@ -45443,6 +45716,10 @@ FFFF	<not a character>
 1F579	JOYSTICK
 	~ 1F579 FE0E text style
 	~ 1F579 FE0F emoji style
+@		Role symbol
+1F57A	MAN DANCING
+	* forms a gender pair with 1F483
+	x (dancer - 1F483)
 @		Communication symbols
 1F57B	LEFT HAND TELEPHONE RECEIVER
 	x (telephone receiver - 1F4DE)
@@ -45543,6 +45820,10 @@ FFFF	<not a character>
 	x (white up pointing backhand index - 1F446)
 1F5A3	BLACK DOWN POINTING BACKHAND INDEX
 	x (white down pointing backhand index - 1F447)
+@		Heart symbol
+1F5A4	BLACK HEART
+	* unequivocally represented as black in all variants
+	x (black heart suit - 2665)
 @		Computer symbols
 1F5A5	DESKTOP COMPUTER
 	= tower computer
@@ -46082,8 +46363,14 @@ FFFF	<not a character>
 1F6CF	BED
 	~ 1F6CF FE0E text style
 	~ 1F6CF FE0F emoji style
-@		Signage
+@		Signage and other symbols
 1F6D0	PLACE OF WORSHIP
+1F6D1	OCTAGONAL SIGN
+	= stop sign
+	* may contain text indicating stop
+	x (heavy white down-pointing triangle - 26DB)
+1F6D2	SHOPPING TROLLEY
+	= shopping cart
 @		Miscellaneous symbols
 1F6E0	HAMMER AND WRENCH
 	= tools, repair facility
@@ -46141,6 +46428,9 @@ FFFF	<not a character>
 	x (ship - 1F6A2)
 	~ 1F6F3 FE0E text style
 	~ 1F6F3 FE0F emoji style
+1F6F4	SCOOTER
+1F6F5	MOTOR SCOOTER
+1F6F6	CANOE
 @~	!
 @@	1F700	Alchemical Symbols	1F77F
 @		Symbols for Aristotelian elements
@@ -46705,8 +46995,83 @@ FFFF	<not a character>
 1F916	ROBOT FACE
 	x (alien monster - 1F47E)
 1F917	HUGGING FACE
-@		Hand symbol
+@		Hand symbols
 1F918	SIGN OF THE HORNS
+1F919	CALL ME HAND
+1F91A	RAISED BACK OF HAND
+1F91B	LEFT-FACING FIST
+1F91C	RIGHT-FACING FIST
+1F91D	HANDSHAKE
+1F91E	HAND WITH INDEX AND MIDDLE FINGERS CROSSED
+@		Faces
+1F920	FACE WITH COWBOY HAT
+1F921	CLOWN FACE
+1F922	NAUSEATED FACE
+1F923	ROLLING ON THE FLOOR LAUGHING
+1F924	DROOLING FACE
+1F925	LYING FACE
+1F926	FACE PALM
+	= frustration, disbelief
+1F927	SNEEZING FACE
+	= gesundheit
+@		Portrait and role symbols
+1F930	PREGNANT WOMAN
+1F933	SELFIE
+1F934	PRINCE
+	x (princess - 1F478)
+1F935	MAN IN TUXEDO
+	* appearance for groom, may be paired with 1F470
+	x (bride with veil - 1F470)
+1F936	MOTHER CHRISTMAS
+1F937	SHRUG
+1F938	PERSON DOING CARTWHEEL
+1F939	JUGGLING
+1F93A	FENCER
+1F93B	MODERN PENTATHLON
+1F93C	WRESTLERS
+1F93D	WATER POLO
+1F93E	HANDBALL
+@		Miscellaneous symbols
+1F940	WILTED FLOWER
+1F941	DRUM WITH DRUMSTICKS
+1F942	CLINKING GLASSES
+	= celebration, formal toasting
+	x (clinking beer mugs - 1F37B)
+1F943	TUMBLER GLASS
+	= whisky
+	* typically shown with ice
+1F944	SPOON
+1F945	GOAL NET
+1F946	RIFLE
+	= marksmanship, shooting, hunting
+1F947	FIRST PLACE MEDAL
+	= gold medal
+1F948	SECOND PLACE MEDAL
+	= silver medal
+1F949	THIRD PLACE MEDAL
+	= bronze medal
+1F94A	BOXING GLOVE
+1F94B	MARTIAL ARTS UNIFORM
+@		Food symbols
+1F950	CROISSANT
+1F951	AVOCADO
+1F952	CUCUMBER
+1F953	BACON
+1F954	POTATO
+1F955	CARROT
+1F956	BAGUETTE BREAD
+	= French bread
+1F957	GREEN SALAD
+1F958	SHALLOW PAN OF FOOD
+	= paella, casserole
+1F959	STUFFED FLATBREAD
+1F95A	EGG
+	= chicken egg
+1F95B	GLASS OF MILK
+	= milk
+1F95C	PEANUTS
+1F95D	KIWIFRUIT
+1F95E	PANCAKES
 @		Animal symbols
 1F980	CRAB
 	* used for Cancer
@@ -46719,6 +47084,19 @@ FFFF	<not a character>
 	x (scorpius - 264F)
 1F983	TURKEY
 1F984	UNICORN FACE
+1F985	EAGLE
+1F986	DUCK
+1F987	BAT
+1F988	SHARK
+1F989	OWL
+1F98A	FOX FACE
+1F98B	BUTTERFLY
+1F98C	DEER
+1F98D	GORILLA
+1F98E	LIZARD
+1F98F	RHINOCEROS
+1F990	SHRIMP
+1F991	SQUID
 @		Food symbol
 1F9C0	CHEESE WEDGE
 @@	1FF80	Unassigned	1FFFF
@@ -47991,7 +48369,6 @@ E007D	TAG RIGHT CURLY BRACKET
 E007E	TAG TILDE
 @		Stateful tag terminator
 E007F	CANCEL TAG
-	* This character is deprecated, and its use is strongly discouraged.
 @@	E0100	Variation Selectors Supplement	E01EF
 @+		These complete the set started at FE00 to FE0F
 @		Variation selectors
