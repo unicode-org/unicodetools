@@ -1,5 +1,5 @@
 # PropList-9.0.0.txt
-# Date: 2016-01-04, 22:59:36 GMT
+# Date: 2016-02-09, 18:49:17 GMT
 # © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -193,6 +193,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 111DE..111DF  ; Terminal_Punctuation # Po   [2] SHARADA SECTION MARK-1..SHARADA SECTION MARK-2
 11238..1123C  ; Terminal_Punctuation # Po   [5] KHOJKI DANDA..KHOJKI DOUBLE SECTION MARK
 112A9         ; Terminal_Punctuation # Po       MULTANI SECTION MARK
+1144B..1144D  ; Terminal_Punctuation # Po   [3] NEWA DANDA..NEWA COMMA
 115C2..115C5  ; Terminal_Punctuation # Po   [4] SIDDHAM DANDA..SIDDHAM SEPARATOR BAR
 115C9..115D7  ; Terminal_Punctuation # Po  [15] SIDDHAM END OF TEXT MARK..SIDDHAM SECTION MARK WITH CIRCLES AND FOUR ENCLOSURES
 11641..11642  ; Terminal_Punctuation # Po   [2] MODI DANDA..MODI DOUBLE DANDA
@@ -207,9 +208,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Terminal_Punctuation # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-1144B..1144D  ; Terminal_Punctuation
-
-# Total code points: 241
+# Total code points: 244
 
 # ================================================
 
@@ -562,6 +561,7 @@ FF41..FF46    ; Hex_Digit # L&   [6] FULLWIDTH LATIN SMALL LETTER A..FULLWIDTH L
 17BE..17C5    ; Other_Alphabetic # Mc   [8] KHMER VOWEL SIGN OE..KHMER VOWEL SIGN AU
 17C6          ; Other_Alphabetic # Mn       KHMER SIGN NIKAHIT
 17C7..17C8    ; Other_Alphabetic # Mc   [2] KHMER SIGN REAHMUK..KHMER SIGN YUUKALEAPINTU
+1885..1886    ; Other_Alphabetic # Mn   [2] MONGOLIAN LETTER ALI GALI BALUDA..MONGOLIAN LETTER ALI GALI THREE BALUDA
 18A9          ; Other_Alphabetic # Mn       MONGOLIAN LETTER ALI GALI DAGALGA
 1920..1922    ; Other_Alphabetic # Mn   [3] LIMBU VOWEL SIGN A..LIMBU VOWEL SIGN U
 1923..1926    ; Other_Alphabetic # Mc   [4] LIMBU VOWEL SIGN EE..LIMBU VOWEL SIGN AU
@@ -691,6 +691,11 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1134B..1134C  ; Other_Alphabetic # Mc   [2] GRANTHA VOWEL SIGN OO..GRANTHA VOWEL SIGN AU
 11357         ; Other_Alphabetic # Mc       GRANTHA AU LENGTH MARK
 11362..11363  ; Other_Alphabetic # Mc   [2] GRANTHA VOWEL SIGN VOCALIC L..GRANTHA VOWEL SIGN VOCALIC LL
+11435..11437  ; Other_Alphabetic # Mc   [3] NEWA VOWEL SIGN AA..NEWA VOWEL SIGN II
+11438..1143F  ; Other_Alphabetic # Mn   [8] NEWA VOWEL SIGN U..NEWA VOWEL SIGN AI
+11440..11441  ; Other_Alphabetic # Mc   [2] NEWA VOWEL SIGN O..NEWA VOWEL SIGN AU
+11443..11444  ; Other_Alphabetic # Mn   [2] NEWA SIGN CANDRABINDU..NEWA SIGN ANUSVARA
+11445         ; Other_Alphabetic # Mc       NEWA SIGN VISARGA
 114B0..114B2  ; Other_Alphabetic # Mc   [3] TIRHUTA VOWEL SIGN AA..TIRHUTA VOWEL SIGN II
 114B3..114B8  ; Other_Alphabetic # Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
 114B9         ; Other_Alphabetic # Mc       TIRHUTA VOWEL SIGN E
@@ -740,16 +745,12 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1E01B..1E021  ; Other_Alphabetic # Mn   [7] COMBINING GLAGOLITIC LETTER SHTA..COMBINING GLAGOLITIC LETTER YATI
 1E023..1E024  ; Other_Alphabetic # Mn   [2] COMBINING GLAGOLITIC LETTER YU..COMBINING GLAGOLITIC LETTER SMALL YUS
 1E026..1E02A  ; Other_Alphabetic # Mn   [5] COMBINING GLAGOLITIC LETTER YO..COMBINING GLAGOLITIC LETTER FITA
+1E947         ; Other_Alphabetic # Mn       ADLAM HAMZA
 1F130..1F149  ; Other_Alphabetic # So  [26] SQUARED LATIN CAPITAL LETTER A..SQUARED LATIN CAPITAL LETTER Z
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-1885..1886  ; Other_Alphabetic
-11435..11441  ; Other_Alphabetic
-11443..11445  ; Other_Alphabetic
-1E947  ; Other_Alphabetic
-
-# Total code points: 1220
+# Total code points: 1239
 
 # ================================================
 
@@ -939,6 +940,8 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1134D         ; Diacritic # Mc       GRANTHA SIGN VIRAMA
 11366..1136C  ; Diacritic # Mn   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Diacritic # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
+11442         ; Diacritic # Mn       NEWA SIGN VIRAMA
+11446         ; Diacritic # Mn       NEWA SIGN NUKTA
 114C2..114C3  ; Diacritic # Mn   [2] TIRHUTA SIGN VIRAMA..TIRHUTA SIGN NUKTA
 115BF..115C0  ; Diacritic # Mn   [2] SIDDHAM SIGN VIRAMA..SIDDHAM SIGN NUKTA
 1163F         ; Diacritic # Mn       MODI SIGN VIRAMA
@@ -955,13 +958,10 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1D185..1D18B  ; Diacritic # Mn   [7] MUSICAL SYMBOL COMBINING DOIT..MUSICAL SYMBOL COMBINING TRIPLE TONGUE
 1D1AA..1D1AD  ; Diacritic # Mn   [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 1E8D0..1E8D6  ; Diacritic # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
+1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
+1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-11442  ; Diacritic
-11446  ; Diacritic
-1E944..1E946  ; Diacritic
-1E948..1E94A  ; Diacritic
-
-# Total code points: 776
+# Total code points: 784
 
 # ================================================
 
@@ -992,10 +992,9 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 115C6..115C8  ; Extender # Po   [3] SIDDHAM REPETITION MARK-1..SIDDHAM REPETITION MARK-3
 16B42..16B43  ; Extender # Lm   [2] PAHAWH HMONG SIGN VOS NRUA..PAHAWH HMONG SIGN IB YAM
 16FE0         ; Extender # Lm       TANGUT ITERATION MARK
+1E944..1E946  ; Extender # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 
-1E944..1E946  ; Extender
-
-# Total code points: 39
+# Total code points: 42
 
 # ================================================
 
@@ -1149,7 +1148,7 @@ E01F0..E0FFF  ; Other_Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>.
 232A          ; Deprecated # Pe       RIGHT-POINTING ANGLE BRACKET
 E0001         ; Deprecated # Cf       LANGUAGE TAG
 
-# Total code points: 16
+# Total code points: 15
 
 # ================================================
 
@@ -1201,13 +1200,12 @@ AABB..AABC    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL AUE..TAI VIET 
 
 # ================================================
 
+1885..1886    ; Other_ID_Start # Mn   [2] MONGOLIAN LETTER ALI GALI BALUDA..MONGOLIAN LETTER ALI GALI THREE BALUDA
 2118          ; Other_ID_Start # Sm       SCRIPT CAPITAL P
 212E          ; Other_ID_Start # So       ESTIMATED SYMBOL
 309B..309C    ; Other_ID_Start # Sk   [2] KATAKANA-HIRAGANA VOICED SOUND MARK..KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
 
-1885..1886    ; Other_ID_Start
-
-# Total code points: 4
+# Total code points: 6
 
 # ================================================
 
@@ -1274,6 +1272,7 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 11238..11239  ; Sentence_Terminal # Po   [2] KHOJKI DANDA..KHOJKI DOUBLE DANDA
 1123B..1123C  ; Sentence_Terminal # Po   [2] KHOJKI SECTION MARK..KHOJKI DOUBLE SECTION MARK
 112A9         ; Sentence_Terminal # Po       MULTANI SECTION MARK
+1144B..1144C  ; Sentence_Terminal # Po   [2] NEWA DANDA..NEWA DOUBLE DANDA
 115C2..115C3  ; Sentence_Terminal # Po   [2] SIDDHAM DANDA..SIDDHAM DOUBLE DANDA
 115C9..115D7  ; Sentence_Terminal # Po  [15] SIDDHAM END OF TEXT MARK..SIDDHAM SECTION MARK WITH CIRCLES AND FOUR ENCLOSURES
 11641..11642  ; Sentence_Terminal # Po   [2] MODI DANDA..MODI DOUBLE DANDA
@@ -1285,9 +1284,7 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
 
-1144B..1144C  ; Sentence_Terminal
-
-# Total code points: 120
+# Total code points: 122
 
 # ================================================
 
@@ -1568,9 +1565,13 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 2760
 
-0600..0605 ; Prepended_Concatenation_Mark
-06DD ; Prepended_Concatenation_Mark
-070F ; Prepended_Concatenation_Mark
-110BD ; Prepended_Concatenation_Mark
+# ================================================
+
+0600..0605    ; Prepended_Concatenation_Mark # Cf   [6] ARABIC NUMBER SIGN..ARABIC NUMBER MARK ABOVE
+06DD          ; Prepended_Concatenation_Mark # Cf       ARABIC END OF AYAH
+070F          ; Prepended_Concatenation_Mark # Cf       SYRIAC ABBREVIATION MARK
+110BD         ; Prepended_Concatenation_Mark # Cf       KAITHI NUMBER SIGN
+
+# Total code points: 9
 
 # EOF
