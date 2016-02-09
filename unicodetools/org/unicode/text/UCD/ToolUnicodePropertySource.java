@@ -737,6 +737,10 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             { "Prepend", "PP" }, { "Control", "CN" }, { "Extend", "EX" },
                             { "Other", "XX" }, { "SpacingMark", "SM" },
                             { "Regional_Indicator", "RI" },
+                            { "E_Base", "EB" },
+                            { "E_Modifier", "EM" },
+                            { "Glue_After_Zwj", "GAZ" },
+                            { "ZWJ", "ZWJ" }
                     }, AliasAddAction.ADD_MAIN_ALIAS)
                     .swapFirst2ValueAliases())
                     ;
@@ -841,7 +845,11 @@ U+FF1A ( ： ) FULLWIDTH COLON
                             { "Double_Quote", "DQ" },
                             { "Single_Quote", "SQ" },
                             { "Hebrew_Letter", "HL" },
-                    }, AliasAddAction.REQUIRE_MAIN_ALIAS).swapFirst2ValueAliases());
+                            { "E_Base", "EB" },
+                            { "E_Modifier", "EM" },
+                            { "Glue_After_Zwj", "GAZ" },
+                            { "ZWJ", "ZWJ" }
+                    }, AliasAddAction.ADD_MAIN_ALIAS).swapFirst2ValueAliases());
         }
 
         if (compositeVersion >= 0x040000) {
