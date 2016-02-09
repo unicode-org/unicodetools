@@ -108,7 +108,8 @@ public class UcdPropertyValues {
         }
     }
 
-	public enum Block_Values implements Named {
+    public enum Block_Values implements Named {
+        Adlam("Adlam"),
         Aegean_Numbers("Aegean_Numbers"),
         Ahom("Ahom"),
         Alchemical_Symbols("Alchemical"),
@@ -294,6 +295,7 @@ public class UcdPropertyValues {
         Myanmar_Extended_B("Myanmar_Ext_B"),
         Nabataean("Nabataean"),
         No_Block("NB"),
+        Newa("Newa"),
         New_Tai_Lue("New_Tai_Lue"),
         NKo("NKo"),
         Number_Forms("Number_Forms"),

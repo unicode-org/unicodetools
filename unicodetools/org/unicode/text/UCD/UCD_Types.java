@@ -252,7 +252,8 @@ public interface UCD_Types {
     Other_ID_Continue = 34,
     Pattern_White_Space = 35,
     Pattern_Syntax = 36,
-    LIMIT_BINARY_PROPERTIES = 37;
+    Prepended_Concatenation_Mark = 37,
+    LIMIT_BINARY_PROPERTIES = 38;
 
     /*
     static final int

@@ -614,7 +614,7 @@ public final class ConvertUCD implements UCD_Types {
                     //System.err.println(e.getMessage());
                 }
             }
-        } catch (final Exception e) {
+        } catch (final Throwable e) {
             System.out.println("Exception at: " + line + ", " + e.getMessage());
             throw e;
         } finally {

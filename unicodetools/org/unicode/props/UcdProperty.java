@@ -220,6 +220,7 @@ public enum UcdProperty {
     Other_Uppercase(PropertyType.Binary, Binary.class, null, "OUpper"),
     Pattern_Syntax(PropertyType.Binary, Binary.class, null, "Pat_Syn"),
     Pattern_White_Space(PropertyType.Binary, Binary.class, null, "Pat_WS"),
+    Prepended_Concatenation_Mark(PropertyType.Binary, Binary.class, null, "PCM"),
     Quotation_Mark(PropertyType.Binary, Binary.class, null, "QMark"),
     Radical(PropertyType.Binary, Binary.class, null, "Radical"),
     Sentence_Terminal(PropertyType.Binary, Binary.class, null, "STerm"),
