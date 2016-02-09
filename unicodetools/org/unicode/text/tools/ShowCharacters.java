@@ -40,19 +40,27 @@ public class ShowCharacters {
         show("New", CD.keySet());
         System.out.println();
         show("Gendered", new UnicodeSet("[👲 👳 💂 🎅 👯 👰 🕴 ☃ ⛄ \\U0001F57A \\U0001F934 \\U0001F936 \\U0001F935]"));
+
+        show("Emoji_Flag_Base", new UnicodeSet("[\\U0001F3F3]"));
         
-        show("Emoji_Gender_Base", new UnicodeSet("[👲 👳 👸 💂 🎅 👯 💃 🕴 ☃ ⛄ 👶 👱 👮 👼 🕵 💆"
-                + " 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🗣 👤 👥 🙇 🚶 🏃 🚴 🚵 🚣 🛀 🏄 🏊 ⛹ 🏋 \\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E]"));
+        show("Emoji_Gender_Base", new UnicodeSet("[👲 👳  💂  👯  🕴   👱 👮  🕵 💆"
+                + " 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🗣 👤 👥 🙇 🚶 🏃 🚴 🚵 🚣 🛀 🏄 🏊 ⛹ 🏋"
+                + " \\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E]"));
+
         show("Emoji_Hair_Base", new UnicodeSet("[👶 👮 👲 👳 👸 🕵 👼 💆 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🙇 "
-                + "🚶 🏃 💃 🚣 🛀 🏄 🏊 ⛹ 🏋 🚴 🚵"
-                + "👦 👧 👨 👩 👴 👵  "
+                + "🚶 🏃 💃 🚣  🏄 🏊 ⛹ 🏋 "
+                + "👦 👧  👩 👴 👵  "
                 + "\\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E"
                 + "\\U0001F934 \\U0001F936 \\U0001F57A \\U0001F930]"));
-        show("Emoji_Direction_Base", new UnicodeSet("[🚶 🏃 👋 👏 💨🎷🔫 🚬"
+
+        show("Emoji_Direction_Base", new UnicodeSet(
+                "[😘 🚶 🏃 ✌ ✋ 👋-👍 👏 💪 👀 🤘 💨 ✈ 🎷 🎺 🔨 ⛏ 🗡 🔫 🚬 "
                 + "\\U0001F93A \\U0001F93D \\U0001F93E \\U0001F946]"));
     }
     
     private static void show(String prop, UnicodeSet unicodeSet) {
+        System.out.println("# All omitted code points have " + prop + "=No\n"
+                + "# @missing: 0000..10FFFF  ; " + prop + " ; No\n");
         for (String s : unicodeSet) {
             System.out.println(Utility.hex(s) + " ;\t" + prop 
                     + "\t# " + getAge(s)

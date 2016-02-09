@@ -105,8 +105,7 @@ public class GenerateEmojiFrequency {
         NumberFormat intf = NumberFormat.getIntegerInstance(ULocale.ENGLISH);
 
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency-all.html")) {
-            GenerateEmoji.writeHeader(out, "Emoji Frequency", null, 
-                    FIRST_LINE, "border='1'", true);
+            GenerateEmoji.writeHeader(out, "Emoji Frequency", null, "<p>" + FIRST_LINE + "</p>\n", "border='1'", true);
 
             String title = "%\tCP\tMain Category\tAnnotations";
             System.out.println(title);
@@ -148,8 +147,7 @@ public class GenerateEmojiFrequency {
             GenerateEmoji.writeFooter(out, "");
         }
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency.html")) {
-            GenerateEmoji.writeHeader(out, "Emoji Frequency", null, 
-                    FIRST_LINE, "border='1'", true);
+            GenerateEmoji.writeHeader(out, "Emoji Frequency", null, "<p>" + FIRST_LINE + "</p>\n", "border='1'", true);
 
             System.out.println(Buckets.BUCKET_TITLE);
             toRow(out, Buckets.BUCKET_TITLE, 4, " width='13%'");

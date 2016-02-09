@@ -56,7 +56,7 @@ public class CheckEmojiProps {
         showSet("Modifier_Bases", data.getModifierBases());
         showSet("After_Joiners", zwjs);
         
-        final UnicodeSet others = new UnicodeSet(data.getFlatChars())
+        final UnicodeSet others = new UnicodeSet(data.getSingletonsWithDefectives())
         .removeAll(specials)
         .removeAll(flags)
         .removeAll(data.getModifierStatusSet(ModifierStatus.modifier))

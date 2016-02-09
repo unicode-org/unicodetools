@@ -1,6 +1,9 @@
 package org.unicode.text.tools;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -412,5 +415,35 @@ public class Emoji {
         // return null;
         // }
         return cc;
+    }
+
+    static public File getImageFile(Source type, String chars) {
+        String filename = getImageFilenameFromChars(type, chars);
+        if (filename != null) {
+            File file = new File(IMAGES_OUTPUT_DIR, filename);
+            if (file.exists()) {
+                return file;
+            }
+        }
+        return null;
+    }
+
+    public static File getBestFile(String s, Source... doFirst) {
+        for (Source source : Emoji.orderedEnum(doFirst)) {
+            File file = getImageFile(source, s);
+            if (file != null) {
+                return file;
+            }
+        }
+        return null;
+    }
+
+    public static Iterable<Source> orderedEnum(Source... doFirst) {
+        if (doFirst.length == 0) {
+            return Arrays.asList(Source.values());
+        }
+        LinkedHashSet<Source> ordered = new LinkedHashSet<>(Arrays.asList(doFirst));
+        ordered.addAll(Arrays.asList(Source.values()));
+        return ordered;
     }
 }
