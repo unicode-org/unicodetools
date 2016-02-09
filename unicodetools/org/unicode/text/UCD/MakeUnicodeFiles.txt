@@ -1,5 +1,5 @@
 Generate: .*
-DeltaVersion: 10
+DeltaVersion: 11
 CopyrightYear: 2016
 
 File: extra/ScriptNfkc
@@ -667,6 +667,7 @@ Property:	STerm
 Property:	Variation_Selector
 Property:	Pattern_White_Space
 Property:	Pattern_Syntax
+Property:	Prepended_Concatenation_Mark
 
 
 File:	PropertyAliases

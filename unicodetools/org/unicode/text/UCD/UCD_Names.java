@@ -118,7 +118,8 @@ public final class UCD_Names implements UCD_Types {
         "Variation_Selector",
         "Other_ID_Continue",
         "Pattern_White_Space",
-        "Pattern_Syntax"
+        "Pattern_Syntax",
+        "Prepended_Concatenation_Mark"
     };
 
     static final String[] SHORT_BP = {
@@ -158,7 +159,8 @@ public final class UCD_Names implements UCD_Types {
         "VS",
         "OIDC",
         "PatWS",
-        "PatSyn"
+        "PatSyn",
+        "PCM"
     };
 
     public static final int BINARY_UNIFIED_IDEOGRAPH = Utility.lookup("Unified_Ideograph", BP, true);

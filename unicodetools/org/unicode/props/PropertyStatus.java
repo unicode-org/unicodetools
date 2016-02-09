@@ -62,6 +62,7 @@ public enum PropertyStatus {
             UcdProperty.Lowercase_Mapping,
             UcdProperty.Math,
             UcdProperty.NFKC_Casefold,
+            UcdProperty.Prepended_Concatenation_Mark,
             UcdProperty.Quotation_Mark,
             UcdProperty.Script,
             UcdProperty.Script_Extensions,

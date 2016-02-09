@@ -207,6 +207,8 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Terminal_Punctuation # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
+1144B..1144D  ; Terminal_Punctuation
+
 # Total code points: 241
 
 # ================================================
@@ -742,6 +744,10 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
+11435..11441  ; Other_Alphabetic
+11443..11445  ; Other_Alphabetic
+1E947  ; Other_Alphabetic
+
 # Total code points: 1220
 
 # ================================================
@@ -949,6 +955,11 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1D1AA..1D1AD  ; Diacritic # Mn   [4] MUSICAL SYMBOL COMBINING DOWN BOW..MUSICAL SYMBOL COMBINING SNAP PIZZICATO
 1E8D0..1E8D6  ; Diacritic # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
+11442  ; Diacritic
+11446  ; Diacritic
+1E944..1E946  ; Diacritic
+1E948..1E94A  ; Diacritic
+
 # Total code points: 776
 
 # ================================================
@@ -980,6 +991,8 @@ FF70          ; Extender # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND 
 115C6..115C8  ; Extender # Po   [3] SIDDHAM REPETITION MARK-1..SIDDHAM REPETITION MARK-3
 16B42..16B43  ; Extender # Lm   [2] PAHAWH HMONG SIGN VOS NRUA..PAHAWH HMONG SIGN IB YAM
 16FE0         ; Extender # Lm       TANGUT ITERATION MARK
+
+1E944..1E946  ; Extender
 
 # Total code points: 39
 
@@ -1134,7 +1147,6 @@ E01F0..E0FFF  ; Other_Default_Ignorable_Code_Point # Cn [3600] <reserved-E01F0>.
 2329          ; Deprecated # Ps       LEFT-POINTING ANGLE BRACKET
 232A          ; Deprecated # Pe       RIGHT-POINTING ANGLE BRACKET
 E0001         ; Deprecated # Cf       LANGUAGE TAG
-E007F         ; Deprecated # Cf       CANCEL TAG
 
 # Total code points: 16
 
@@ -1191,6 +1203,8 @@ AABB..AABC    ; Logical_Order_Exception # Lo   [2] TAI VIET VOWEL AUE..TAI VIET 
 2118          ; Other_ID_Start # Sm       SCRIPT CAPITAL P
 212E          ; Other_ID_Start # So       ESTIMATED SYMBOL
 309B..309C    ; Other_ID_Start # Sk   [2] KATAKANA-HIRAGANA VOICED SOUND MARK..KATAKANA-HIRAGANA SEMI-VOICED SOUND MARK
+
+1885..1886    ; Other_ID_Start
 
 # Total code points: 4
 
@@ -1269,6 +1283,8 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 16B44         ; Sentence_Terminal # Po       PAHAWH HMONG SIGN XAUS
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
+
+1144B..1144C  ; Sentence_Terminal
 
 # Total code points: 120
 
@@ -1550,5 +1566,10 @@ FD3F          ; Pattern_Syntax # Ps       ORNATE RIGHT PARENTHESIS
 FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 
 # Total code points: 2760
+
+0600..0605 ; Prepended_Concatenation_Mark
+06DD ; Prepended_Concatenation_Mark
+070F ; Prepended_Concatenation_Mark
+110BD ; Prepended_Concatenation_Mark
 
 # EOF

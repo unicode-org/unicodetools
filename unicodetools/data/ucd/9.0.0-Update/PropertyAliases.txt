@@ -171,6 +171,7 @@ OMath                    ; Other_Math
 OUpper                   ; Other_Uppercase
 Pat_Syn                  ; Pattern_Syntax
 Pat_WS                   ; Pattern_White_Space
+PCM                      ; Prepended_Concatenation_Mark
 QMark                    ; Quotation_Mark
 Radical                  ; Radical
 SD                       ; Soft_Dotted
