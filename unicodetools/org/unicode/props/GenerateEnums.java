@@ -25,6 +25,7 @@ import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEnums {
@@ -131,6 +132,9 @@ public class GenerateEnums {
         for (final String s : WARNINGS) {
             System.out.println(s);
         }
+        
+        System.out.println("lookupMain: " + lookupMain.size());
+        System.out.println(CollectionUtilities.join(lookupMain.values(), "\n"));
     }
 
     public static String getNameStuff2(final String enumName) {

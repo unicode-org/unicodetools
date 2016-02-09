@@ -18,19 +18,29 @@ import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 
 public class CandidateData {
-    public enum Quarter {Q1, Q2, Q3, Q4}
+
+    enum Quarter {
+        _2015Q1, _2015Q2, _2015Q3, _2015Q4,
+        _2016Q1;
+        static Quarter fromString(String item) {
+            return valueOf('_'+item);
+        }
+        public String toString() {
+            return name().substring(1);
+        }
+    }
 
     private final List<Integer> order;
     private final UnicodeMap<String> categories = new UnicodeMap<>();
     private final UnicodeMap<String> names = new UnicodeMap<>();
     private final UnicodeRelation<String> annotations = new UnicodeRelation<>();
-    private final UnicodeMap<Quarter> quarters = new UnicodeMap<>();
+    private final UnicodeMap<CandidateData.Quarter> quarters = new UnicodeMap<>();
 
     static final Splitter TAB = Splitter.on('\t');
     static final CandidateData SINGLE = new CandidateData();
 
     private CandidateData() {
-        UnicodeMap<Quarter> quartersForChars = quarters;
+        UnicodeMap<CandidateData.Quarter> quartersForChars = quarters;
         String category = null;
         String source = null;
         Builder<Integer> _order = ImmutableList.builder();
@@ -42,7 +52,7 @@ public class CandidateData {
                 source = Utility.fromHex(parts.get(0));
                 _order.add(source.codePointAt(0));
                 final String quarter = parts.get(3).trim();
-                quartersForChars.put(source, Quarter.valueOf(quarter));
+                quartersForChars.put(source, CandidateData.Quarter.fromString(quarter));
                 final String name = parts.get(4).trim();
                 names.put(source, name);
                 categories.put(source, category);
@@ -74,7 +84,7 @@ public class CandidateData {
     public Set<String> getAnnotations(String source) {
         return CldrUtility.ifNull(annotations.get(source), Collections.<String>emptySet());
     }
-    public Quarter getQuarter(String source) {
+    public CandidateData.Quarter getQuarter(String source) {
         return quarters.get(source);
     }
 
@@ -87,7 +97,7 @@ public class CandidateData {
     public Set<String> getAnnotations(int source) {
         return CldrUtility.ifNull(annotations.get(source), Collections.<String>emptySet());
     }
-    public Quarter getQuarter(int source) {
+    public CandidateData.Quarter getQuarter(int source) {
         return quarters.get(source);
     }
 

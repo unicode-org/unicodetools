@@ -59,7 +59,7 @@ public class TestProperties extends TestFmwk {
         EmojiData emojiData = EmojiData.of(VersionInfo.getInstance(3));
         {
             UnicodeMap<Binary> emoji = iup.loadEnum(UcdProperty.Emoji, Binary.class);
-            assertSameContents("Emoji", emojiData.getSingletons(), emoji.getSet(Binary.Yes));
+            assertSameContents("Emoji", emojiData.getSingletonsWithoutDefectives(), emoji.getSet(Binary.Yes));
         }{
             UnicodeMap<Binary> presentation = iup.loadEnum(UcdProperty.Emoji_Presentation, Binary.class);
             assertSameContents("Emoji_Presentation", emojiData.getDefaultPresentationSet(DefaultPresentation.emoji), 

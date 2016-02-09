@@ -373,7 +373,7 @@ public class LoadImage extends Component {
             System.out.println("\t" + key);
             //if (!key.contains("time")) continue;
             for (String chars : entry.getValue()) {
-                File file = GenerateEmoji.getBestFile(chars, ordering);
+                File file = Emoji.getBestFile(chars, ordering);
                 BufferedImage sourceImage = ImageIO.read(file);
                 System.out.println(chars + "\t" + sourceImage.getWidth() + "\t" + sourceImage.getHeight());
                 if (onlySize) continue;
