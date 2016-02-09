@@ -201,10 +201,8 @@ public final class UCD_Names implements UCD_Types {
         "NL",
         "WJ", "JL", "JV", "JT", "H2", "H3",
         "CP", "HL", "CJ",
-        "RI"
-        //"JL",
-        //"JV",
-        //"JT",
+        "RI",
+        "EB", "EM", "ZWJ"
 
     };
 
@@ -221,10 +219,8 @@ public final class UCD_Names implements UCD_Types {
         "Close_Parenthesis",
         "Hebrew_Letter",
         "Conditional_Japanese_Starter",
-        "Regional_Indicator"
-        //"Leading_Jamo",
-        //"Vowel_Jamo",
-        //"Trailing_Jamo",
+        "Regional_Indicator",
+        "E_Base", "E_Modifier", "ZWJ"
     };
 
     public static final String[] LONG_SCRIPT = {

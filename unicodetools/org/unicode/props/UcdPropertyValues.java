@@ -585,7 +585,10 @@ public class UcdPropertyValues {
 	public enum Grapheme_Cluster_Break_Values implements Named {
         Control("CN"),
         CR("CR"),
+        E_Base("EB"),
+        E_Modifier("EM"),
         Extend("EX"),
+        Glue_After_Zwj("GAZ"),
         L("L"),
         LF("LF"),
         LV("LV"),
@@ -595,7 +598,9 @@ public class UcdPropertyValues {
         SpacingMark("SM"),
         T("T"),
         V("V"),
-        Other("XX");
+        Other("XX"),
+        ZWJ("ZWJ");
+
         private final PropertyNames<Grapheme_Cluster_Break_Values> names;
         private Grapheme_Cluster_Break_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Grapheme_Cluster_Break_Values>(
@@ -990,6 +995,8 @@ public class UcdPropertyValues {
         Combining_Mark("CM"),
         Close_Parenthesis("CP"),
         Carriage_Return("CR"),
+        E_Base("EB"),
+        E_Modifier("EM"),
         Exclamation("EX"),
         Glue("GL"),
         H2("H2"),
@@ -1017,7 +1024,9 @@ public class UcdPropertyValues {
         Break_Symbols("SY"),
         Word_Joiner("WJ"),
         Unknown("XX"),
-        ZWSpace("ZW");
+        ZWSpace("ZW"),
+        ZWJ("ZWJ");
+
         private final PropertyNames<Line_Break_Values> names;
         private Line_Break_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Line_Break_Values>(
@@ -1319,9 +1328,12 @@ public class UcdPropertyValues {
 	public enum Word_Break_Values implements Named {
         CR("CR"),
         Double_Quote("DQ"),
+        E_Base("EB"),
+        E_Modifier("EM"),
         ExtendNumLet("EX"),
         Extend("Extend"),
         Format("FO"),
+        Glue_After_Zwj("GAZ"),
         Hebrew_Letter("HL"),
         Katakana("KA"),
         ALetter("LE"),
@@ -1333,7 +1345,9 @@ public class UcdPropertyValues {
         Numeric("NU"),
         Regional_Indicator("RI"),
         Single_Quote("SQ"),
-        Other("XX");
+        Other("XX"),
+        ZWJ("ZWJ");
+
         private final PropertyNames<Word_Break_Values> names;
         private Word_Break_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Word_Break_Values>(

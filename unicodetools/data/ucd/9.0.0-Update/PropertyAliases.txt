@@ -1,5 +1,5 @@
 # PropertyAliases-9.0.0.txt
-# Date: 2016-01-04, 22:59:38 GMT
+# Date: 2016-02-09, 07:41:25 GMT
 # © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -189,6 +189,6 @@ XO_NFKC                  ; Expands_On_NFKC
 XO_NFKD                  ; Expands_On_NFKD
 
 # ================================================
-# Total:    117
+# Total:    118
 
 # EOF
