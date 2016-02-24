@@ -17,6 +17,7 @@ import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
+import org.unicode.text.tools.EmojiData.DefaultPresentation;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -41,21 +42,21 @@ public class ShowCharacters {
         System.out.println();
         show("Gendered", new UnicodeSet("[👲 👳 💂 🎅 👯 👰 🕴 ☃ ⛄ \\U0001F57A \\U0001F934 \\U0001F936 \\U0001F935]"));
 
-        show("Emoji_Flag_Base", new UnicodeSet("[\\U0001F3F3]"));
+        // use same definition as for data files, but generate simpler list
+        show("Emoji_Flag_Base", GenerateEmojiData.flagBase);
+        show("Emoji_Gender_Base", GenerateEmojiData.genderBase);
+        show("Emoji_Hair_Base", GenerateEmojiData.hairBase);
+        show("Emoji_Direction_Base", GenerateEmojiData.directionBase);
         
-        show("Emoji_Gender_Base", new UnicodeSet("[👲 👳  💂  👯  🕴   👱 👮  🕵 💆"
-                + " 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🗣 👤 👥 🙇 🚶 🏃 🚴 🚵 🚣 🛀 🏄 🏊 ⛹ 🏋"
-                + " \\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E]"));
+        UnicodeSet mods = EmojiData.EMOJI_DATA.getModifierBases();
+        UnicodeSet modsWithVS = new UnicodeSet(mods).retainAll(Emoji.HAS_EMOJI_VS);
+        UnicodeSet modsWithVSAndDefaultEmoji = new UnicodeSet(modsWithVS)
+        .removeAll(EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
+        show("basesWithVSAndDefaultEmoji", modsWithVSAndDefaultEmoji);
 
-        show("Emoji_Hair_Base", new UnicodeSet("[👶 👮 👲 👳 👸 🕵 👼 💆 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🙇 "
-                + "🚶 🏃 💃 🚣  🏄 🏊 ⛹ 🏋 "
-                + "👦 👧  👩 👴 👵  "
-                + "\\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E"
-                + "\\U0001F934 \\U0001F936 \\U0001F57A \\U0001F930]"));
-
-        show("Emoji_Direction_Base", new UnicodeSet(
-                "[😘 🚶 🏃 ✌ ✋ 👋-👍 👏 💪 👀 🤘 💨 ✈ 🎷 🎺 🔨 ⛏ 🗡 🔫 🚬 "
-                + "\\U0001F93A \\U0001F93D \\U0001F93E \\U0001F946]"));
+        UnicodeSet modsWithVSAndDefaultText = new UnicodeSet(modsWithVS)
+        .retainAll(EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
+        show("basesWithVSAndDefaultText", modsWithVSAndDefaultText);
     }
     
     private static void show(String prop, UnicodeSet unicodeSet) {

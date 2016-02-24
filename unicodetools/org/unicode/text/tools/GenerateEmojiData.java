@@ -21,6 +21,21 @@ import com.ibm.icu.util.ULocale;
 public class GenerateEmojiData {
 
     static final boolean TURN_OFF_SEQUENCE_TITLE = true;
+    
+    // get this from the data file in the future
+
+    public static final UnicodeSet flagBase = new UnicodeSet("[\\U0001F3F3]").freeze();
+    public static final UnicodeSet genderBase = new UnicodeSet("[👲 👳  💂  👯  🕴   👱 👮  🕵 💆"
+            + " 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🗣 👤 👥 🙇 🚶 🏃 🚴 🚵 🚣 🛀 🏄 🏊 ⛹ 🏋"
+            + " \\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E]").freeze();
+    public static final UnicodeSet hairBase = new UnicodeSet("[👶 👮 👲 👳 👸 🕵 👼 💆 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🙇 "
+            + "🚶 🏃 💃 🚣  🏄 🏊 ⛹ 🏋 "
+            + "👦 👧  👩 👴 👵  "
+            + "\\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E"
+            + "\\U0001F934 \\U0001F936 \\U0001F57A \\U0001F930]").freeze();
+    public static final UnicodeSet directionBase = new UnicodeSet(
+            "[😘 🚶 🏃 ✌ ✋ 👋-👍 👏 💪 👀 🤘 💨 ✈ 🎷 🎺 🔨 ⛏ 🗡 🔫 🚬 "
+                    + "\\U0001F93A \\U0001F93D \\U0001F93E \\U0001F946]").freeze();
 
     public static void main(String[] args) throws IOException {
         printData(null);
@@ -82,24 +97,6 @@ public class GenerateEmojiData {
                     Math.max("Emoji_Flag_Base".length(), 
                             Math.max("Emoji_Gender_Base".length(), 
                                     Math.max("Emoji_Hair_Base".length(),"Emoji_Direction_Base".length())));
-
-            // get this from the data file in the future
-
-            UnicodeSet flagBase = new UnicodeSet("[\\U0001F3F3]");
-
-            UnicodeSet genderBase = new UnicodeSet("[👲 👳  💂  👯  🕴   👱 👮  🕵 💆"
-                    + " 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🗣 👤 👥 🙇 🚶 🏃 🚴 🚵 🚣 🛀 🏄 🏊 ⛹ 🏋"
-                    + " \\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E]");
-
-            UnicodeSet hairBase = new UnicodeSet("[👶 👮 👲 👳 👸 🕵 👼 💆 💇 👰 🙍 🙎 🙅 🙆 💁 🙋 🙇 "
-                    + "🚶 🏃 💃 🚣  🏄 🏊 ⛹ 🏋 "
-                    + "👦 👧  👩 👴 👵  "
-                    + "\\U0001F935 \\U0001F926 \\U0001F937 \\U0001F938 \\U0001F93B \\U0001F93C \\U0001F93D \\U0001F93E"
-                    + "\\U0001F934 \\U0001F936 \\U0001F57A \\U0001F930]");
-
-            UnicodeSet directionBase = new UnicodeSet(
-                    "[😘 🚶 🏃 ✌ ✋ 👋-👍 👏 💪 👀 🤘 💨 ✈ 🎷 🎺 🔨 ⛏ 🗡 🔫 🚬 "
-                            + "\\U0001F93A \\U0001F93D \\U0001F93E \\U0001F946]");
 
             out.println("# Format: ");
             out.println("# codepoint(s) ; property(=Yes) # version [count] name(s)");
