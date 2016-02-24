@@ -244,7 +244,7 @@ public class EmojiFlagOrder {
                 }
                 //                File file = getFile(codePoints);
                 out.print("<tr><td>" + codePoints 
-                        + "</td><td>" + GenerateEmoji.getFlagRegionName(codePoints)
+                        + "</td><td>" + Emoji.getFlagRegionName(codePoints)
                         + "</td><td padding='2px'>" + getFlag(codePoints)
                         + "</td><td>" + percent2.format(info.overall/base)
                         + "</td>");

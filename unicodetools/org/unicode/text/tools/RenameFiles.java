@@ -15,15 +15,23 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 public class RenameFiles {
-    private static final String PLATFORM = "emojixpress";
-    private static final String GENERATED_DIR = "DATA/emoji/emojixpress";
-    private static final String FILE_MATCH = ".*_x?(.*)\\.png";
-    private static final boolean PREVIEW = false;
+    
+    // Set PREVIEW to true.
+    // Modify the dir, regex, and output-platform as needed
+    // Run, and verify prospective outcome
+    // Set PREVIEW to false, and run for real
+    
+    private static final boolean PREVIEW_ONLY = false;
+    
+    private static final String DIR_OF_FILES_TO_CHANGE = "DATA/emoji/flags";
+    private static final String FILE_MATCH = "emoji_u(.*)\\.png";
+
+    private static final String OUTPUT_PLATFORM_PREFIX = "ref";
 
     public static void main(String[] args) throws IOException {
         Matcher m = Pattern.compile(FILE_MATCH).matcher(""); 
         //File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/country-flags");
-        File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + GENERATED_DIR);
+        File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + DIR_OF_FILES_TO_CHANGE);
 
         FileSystem dfs = FileSystems.getDefault();
         int count = 0;
@@ -34,14 +42,14 @@ public class RenameFiles {
             if (!m.reset(name).matches()) {
                 throw new IllegalArgumentException(name);
             }
-            final String oldName = m.group(1).replace('-',' ');
+            final String oldName = m.group(1).replaceAll("[-_]", " ");
             String oldHex = Utility.fromHex(oldName, false, 2);
             String newHex = Utility.hex(oldHex, "_").toLowerCase(Locale.ENGLISH);
             
             //Emoji.buildFileName(Emoji.getHexFromFlagCode(m.group(1)), "_")
-            String newName = PLATFORM + "_" + newHex + ".png";
+            String newName = OUTPUT_PLATFORM_PREFIX + "_" + newHex + ".png";
             System.out.println((count++) + "\t" + f + "\t=> " + newName);
-            if (PREVIEW) {
+            if (PREVIEW_ONLY) {
                 continue;
             }
             Path oldPath = dfs.getPath(path);            

@@ -266,7 +266,7 @@ public class GenerateEmojiFrequency {
     static final UnicodeSet SYMBOLS = new UnicodeSet().addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getValues("symbol")).freeze();
 
     private static double webScale(int cp) {
-        return PRIMARILY_TEXT.contains(cp) || GenerateEmoji.STANDARDIZED_VARIANT.get(cp) != null ? 0
+        return PRIMARILY_TEXT.contains(cp) || Emoji.STANDARDIZED_VARIANT.get(cp) != null ? 0
                 : SYMBOLS.contains(cp) ? 0.01
                         : 1;
     }

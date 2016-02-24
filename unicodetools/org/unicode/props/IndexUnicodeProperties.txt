@@ -180,6 +180,7 @@ PropList ; Terminal_Punctuation
 PropList ; Unified_Ideograph
 PropList ; Variation_Selector
 PropList ; White_Space
+PropList ; Prepended_Concatenation_Mark
 
 Unihan_DictionaryIndices ; kCheungBauerIndex
 Unihan_DictionaryIndices ; kCowles

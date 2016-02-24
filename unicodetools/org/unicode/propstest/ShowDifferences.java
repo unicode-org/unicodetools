@@ -125,7 +125,7 @@ public class ShowDifferences {
         }
         return result;
     }
-    // should be method on UnicodeMap
+    // TODO call method on UnicodeMap.
     private <T> UnicodeSet findDifferences(UnicodeMap<T> m1,
             UnicodeMap<T> m2) {
         if (m1.size() == 0) {
@@ -136,8 +136,8 @@ public class ShowDifferences {
         UnicodeSet result = new UnicodeSet();
         Iterator<EntryRange<T>> it1 = m1.entryRanges().iterator();
         Iterator<EntryRange<T>> it2 = m2.entryRanges().iterator();
-        EntryRange er1 = it1.next();
-        EntryRange er2 = it2.next();
+        EntryRange<T> er1 = it1.next();
+        EntryRange<T> er2 = it2.next();
         while (true) {
             if (er1.string != null || er2.string != null) {
                 throw new UnsupportedOperationException(); // don't handle yet
@@ -207,7 +207,7 @@ public class ShowDifferences {
         // now add the remainders. 
         Iterator<EntryRange<T>> remainder = it2.hasNext() ? it2 : it1;
         while (remainder.hasNext()) {
-            EntryRange er = remainder.next();
+            EntryRange<T> er = remainder.next();
             result.add(er.codepoint, er.codepointEnd);
         }
         return result;

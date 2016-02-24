@@ -17,6 +17,8 @@ import org.unicode.cldr.util.CldrUtility;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.tools.Emoji.ModifierStatus;
 import org.unicode.text.utility.Settings;
@@ -405,9 +407,18 @@ public class EmojiData {
     //
     public static void main(String[] args) {
         final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+        System.out.println("Version " + GenerateEnums.ENUM_VERSION);
         final UnicodeMap<String> names = latest.load(UcdProperty.Name);
-
+        final UnicodeMap<Age_Values> ages = latest.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
         EmojiData emojiData = new EmojiData(VersionInfo.getInstance(3));
+
+        UnicodeSet overlap = new UnicodeSet(emojiData.getModifierBases()).retainAll(emojiData.getDefaultPresentationSet(DefaultPresentation.text));
+        System.out.println("ModifierBase + TextPresentation: " + overlap.size() + "\t" + overlap.toPattern(false));
+        for (String s : overlap) {
+            System.out.println(Utility.hex(s) + "\t" + s + "\t" + ages.get(s) + "\t" +  names.get(s));
+        }
+
+
         System.out.println("SingletonsWithDefectives " + emojiData.getSingletonsWithDefectives().size());
         System.out.println("Defectives " + -(emojiData.getSingletonsWithDefectives().size() - emojiData.getSingletonsWithoutDefectives().size()));
         System.out.println("Keycap Sequences " + emojiData.getKeycapSequences().size());
@@ -446,6 +457,7 @@ public class EmojiData {
     }
     
     public static final EmojiData EMOJI_DATA = of(Emoji.VERSION_TO_GENERATE);
+    public static final UnicodeSet MODIFIERS = EMOJI_DATA.getModifierStatusSet(ModifierStatus.modifier);
 
     public UnicodeSet getFlagSequences() {
         return flagSequences;

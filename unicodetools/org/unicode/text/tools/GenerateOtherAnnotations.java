@@ -83,12 +83,12 @@ public class GenerateOtherAnnotations {
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 continue;
             }
-            String s2 = GenerateEmoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING);
+            String s2 = Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING);
 
             System.out.println(++count
                     + "\t" + GenerateEmoji.getHex(s)
                     + "\t" + s2
-                    + "\t" + GenerateEmoji.getName(s, true)
+                    + "\t" + Emoji.getName(s, true, GenerateEmoji.EXTRA_NAMES)
                     );
         }
     }

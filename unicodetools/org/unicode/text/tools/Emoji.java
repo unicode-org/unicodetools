@@ -2,6 +2,8 @@ package org.unicode.text.tools;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -13,17 +15,26 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.CLDRConfig;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.cldr.util.With;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.tools.EmojiData.EmojiDatum;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
+import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
+import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class Emoji {
@@ -31,7 +42,7 @@ public class Emoji {
     /**
      * Change the following for a new version.
      */
-    public static final boolean IS_BETA = false;
+    public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", false);
 
     /**
      * Change the following once we release
@@ -445,5 +456,139 @@ public class Emoji {
         LinkedHashSet<Source> ordered = new LinkedHashSet<>(Arrays.asList(doFirst));
         ordered.addAll(Arrays.asList(Source.values()));
         return ordered;
+    }
+
+    static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
+
+    public static String getEmojiVariant(String browserChars, String variant) {
+        int first = browserChars.codePointAt(0);
+        String probe = new StringBuilder()
+        .appendCodePoint(first)
+        .append(variant).toString();
+        if (Emoji.STANDARDIZED_VARIANT.get(probe) != null) {
+            browserChars = probe + browserChars.substring(Character.charCount(first));
+        }
+        return browserChars;
+    }
+
+
+    public static final UnicodeMap<String> STANDARDIZED_VARIANT = LATEST.load(UcdProperty.Standardized_Variant);
+    public static final UnicodeSet HAS_EMOJI_VS = new UnicodeSet();
+    
+    static {
+        for (String vs : Emoji.STANDARDIZED_VARIANT.keySet()) {
+            if (vs.contains(Emoji.TEXT_VARIANT_STRING)) {
+                Emoji.HAS_EMOJI_VS.add(vs.codePointAt(0));
+            }
+        }
+        Emoji.HAS_EMOJI_VS.freeze();
+    }
+
+    static String addEmojiVariant(String s) {
+        return getEmojiVariant(s, EMOJI_VARIANT_STRING);
+    }
+
+    static final UnicodeMap<Age_Values>        VERSION_ENUM            = LATEST.loadEnum(UcdProperty.Age, Age_Values.class);
+
+    public static String getName(String s, boolean tolower, UnicodeMap<String> extraNames) {
+        String flag = Emoji.getFlagRegionName(s);
+        if (flag != null) {
+            String result = Emoji.LOCALE_DISPLAY.regionDisplayName(flag);
+            if (result.endsWith(" SAR China")) {
+                result = result.substring(0, result.length() - " SAR China".length());
+            }
+            return (tolower ? "flag for " : "Flag for ") + result;
+        }
+        final int firstCodePoint = s.codePointAt(0);
+        String name = Emoji.NAME.get(firstCodePoint);
+        if (name == null && extraNames != null) {
+            name = extraNames.get(s);
+        }
+        if (s.indexOf(ENCLOSING_KEYCAP) >= 0) {
+            name = "Keycap " + name;
+            return (tolower ? name.toLowerCase(Locale.ENGLISH) : name);
+        }
+        final int firstCount = Character.charCount(firstCodePoint);
+        if (s.length() > firstCount) {
+            int cp2 = s.codePointAt(firstCount);
+            final EmojiDatum edata = EmojiData.EMOJI_DATA.getData(cp2);
+            if (edata != null && ModifierStatus.modifier == edata.modifierStatus) {
+                name += ", " + Emoji.shortName(cp2);
+            } else {
+                StringBuffer nameBuffer = new StringBuffer();
+                boolean sep = false;
+                if (s.indexOf(JOINER) >= 0) {
+                    String title = "";
+                    if (s.indexOf(0x1F48B) >= 0) { // KISS MARK
+                        title = "Kiss: ";
+                    } else if (s.indexOf(0x2764) >= 0) { // HEART
+                        title = "Couple with heart: ";
+                    } else if (s.indexOf(0x1F441) < 0) { // !EYE
+                        title = "Family: ";
+                    }
+                    nameBuffer.append(title);
+                }
+                for (int cp : CharSequences.codePoints(s)) {
+                    if (cp == JOINER || cp == EMOJI_VARIANT || cp == 0x2764 || cp == 0x1F48B) { // heart, kiss
+                        continue;
+                    }
+                    if (sep) {
+                        nameBuffer.append(", ");
+                    } else {
+                        sep = true;
+                    }
+                    nameBuffer.append(Emoji.NAME.get(cp));
+    
+                    //                    nameBuffer.append(cp == Emoji.JOINER ? "zwj" 
+                    //                            : cp == Emoji.EMOJI_VARIANT ? "emoji-vs" 
+                    //                                    : NAME.get(cp));
+                }
+                name = nameBuffer.toString();
+            }
+        }
+        return name == null ? "UNNAMED" : (tolower ? name.toLowerCase(Locale.ENGLISH) : name);
+    }
+
+    static String shortName(int cp2) {
+        return Emoji.NAME.get(cp2).substring("emoji modifier fitzpatrick ".length());
+    }
+
+    public static String getFlagRegionName(String s) {
+        String result = getFlagCode(s);
+        if (result != null) {
+            result = Emoji.LOCALE_DISPLAY.regionDisplayName(result);
+            if (result.endsWith(" SAR China")) {
+                result = result.substring(0, result.length() - " SAR China".length());
+            } else if (result.contains("(")) {
+                result = result.substring(0, result.indexOf('(')) + result.substring(result.lastIndexOf(')') + 1);
+            }
+            result = result.replaceAll("\\s\\s+", " ").trim();
+        }
+        return result;
+    }
+
+    static final UnicodeMap<String>        NAME                        = LATEST.load(UcdProperty.Name);
+
+    static final LocaleDisplayNames        LOCALE_DISPLAY              = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
+
+    static final transient Collection<Age_Values> output = new TreeSet(Collections.reverseOrder());
+
+    static Age_Values getNewest(String s) {
+        synchronized (Emoji.output) {
+            Emoji.output.clear();
+            Emoji.getValues(s, VERSION_ENUM, Emoji.output);
+            return Emoji.output.iterator().next();
+        }
+    }
+
+    // should be method on UnicodeMap
+    static final <T, C extends Collection<T>> C getValues(String source, UnicodeMap<T> data, C output) {
+        for (int cp : CharSequences.codePoints(source)) {
+            T datum = data.get(cp);
+            if (datum != null) {
+                output.add(datum);
+            }
+        }
+        return output;
     }
 }
