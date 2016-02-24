@@ -108,7 +108,7 @@ public class UcdPropertyValues {
         }
     }
 
-    public enum Block_Values implements Named {
+	public enum Block_Values implements Named {
         Adlam("Adlam"),
         Aegean_Numbers("Aegean_Numbers"),
         Ahom("Ahom"),
@@ -295,8 +295,8 @@ public class UcdPropertyValues {
         Myanmar_Extended_B("Myanmar_Ext_B"),
         Nabataean("Nabataean"),
         No_Block("NB"),
-        Newa("Newa"),
         New_Tai_Lue("New_Tai_Lue"),
+        Newa("Newa"),
         NKo("NKo"),
         Number_Forms("Number_Forms"),
         Optical_Character_Recognition("OCR"),
@@ -600,7 +600,6 @@ public class UcdPropertyValues {
         V("V"),
         Other("XX"),
         ZWJ("ZWJ");
-
         private final PropertyNames<Grapheme_Cluster_Break_Values> names;
         private Grapheme_Cluster_Break_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Grapheme_Cluster_Break_Values>(
@@ -1026,7 +1025,6 @@ public class UcdPropertyValues {
         Unknown("XX"),
         ZWSpace("ZW"),
         ZWJ("ZWJ");
-
         private final PropertyNames<Line_Break_Values> names;
         private Line_Break_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Line_Break_Values>(
@@ -1347,7 +1345,6 @@ public class UcdPropertyValues {
         Single_Quote("SQ"),
         Other("XX"),
         ZWJ("ZWJ");
-
         private final PropertyNames<Word_Break_Values> names;
         private Word_Break_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Word_Break_Values>(

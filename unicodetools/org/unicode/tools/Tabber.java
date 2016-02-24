@@ -10,7 +10,9 @@ package org.unicode.tools;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UTF16;
+import com.ibm.icu.text.UnicodeSet;
 
 public abstract class Tabber {
     public static final byte LEFT = 0, CENTER = 1, RIGHT = 2;
@@ -115,7 +117,7 @@ public abstract class Tabber {
             int startPos = getStop(count-1);
             int endPos = getStop(count) - minGap;
             int type = getType(count);
-            final int pieceLength = UTF16.countCodePoint(piece);
+            final int pieceLength = getMonospaceWidth(piece);
             switch (type) {
                 case LEFT: 
                     break;
@@ -127,10 +129,22 @@ public abstract class Tabber {
                     break;
             }
 
-            int gap = startPos - output.codePointCount(0, output.length());
+            int gap = startPos - getMonospaceWidth(output);
             if (count != 0 && gap < minGap) gap = minGap;
             if (gap > 0) output.append(repeat(" ", gap));
             output.append(piece);
+        }
+
+        static final UnicodeSet IGNOREABLE = new UnicodeSet("[:di:]");
+        
+        private int getMonospaceWidth(CharSequence piece) {
+            int len = 0;
+            for (int cp : CharSequences.codePoints(piece)) {
+                if (!IGNOREABLE.contains(cp)) {
+                    ++len;
+                }
+            }
+            return len;
         }
     }
     

@@ -35,7 +35,7 @@ public class MakeEmojiTable {
                         + "<td><img class='imgb' alt='" + chars + "' src='images/ref/ref_" + hexLower + ".png'></td>"
                         + "<td><img class='imgb' alt='" + chars + "' src='images/apple/apple_" + hexLower + ".png'></td>"
                         + "<td><img class='imgb' alt='" + chars + "' src='images/android/android_" + hexLower + ".png'></td>"
-                        + "<td>" + GenerateEmoji.getName(chars, false) + "</td>"
+                        + "<td>" + Emoji.getName(chars, false, GenerateEmoji.EXTRA_NAMES) + "</td>"
                         + "<td>"
                         );
                 firstText = true;

@@ -462,8 +462,14 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                     break;
                 }
                 case PropertyValue: {
-                    final PropertyParsingInfo propInfo = PropertyParsingInfo.property2PropertyInfo.get(UcdProperty.forString(parts[1]));
-                    final UnicodeMap<String> data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
+                    PropertyParsingInfo propInfo;
+                    final UnicodeMap<String> data;
+                    try {
+                        propInfo = PropertyParsingInfo.property2PropertyInfo.get(UcdProperty.forString(parts[1]));
+                        data = indexUnicodeProperties.property2UnicodeMap.get(propInfo.property);
+                    } catch (Exception e) {
+                        throw new IllegalArgumentException(Arrays.asList(parts).toString(), e);
+                    }
                     //                    if (!propInfoSet.contains(propInfo)) {
                     //                        throw new UnicodePropertyException("Property not listed for file: " + propInfo);
                     //                    }
