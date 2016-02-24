@@ -603,6 +603,8 @@ public class GenerateEmoji {
 
             // per source
             String sectionLink = getDoubleLink(title);
+            final GenerateEmojiData.PropPrinter propPrinter = new GenerateEmojiData.PropPrinter().set(EXTRA_NAMES);
+            
             if (!skipSeparate) {
                 out.println(headerRow);
                 outText.println(title);
@@ -619,7 +621,7 @@ public class GenerateEmoji {
                     final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
                     displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", EMOJI_COMPARATOR, true);
                     outText.println(source + "\t" + missing.size());
-                    GenerateEmojiData.show(outText, source+"", 14, 14, us, true, GenerateEmoji.EXTRA_NAMES);
+                    propPrinter.show(outText, source+"", 14, 14, us, true);
                 }
                 out.print("</tr>");
             }
@@ -635,7 +637,7 @@ public class GenerateEmoji {
                 displayUnicodeSet(out, common, Style.bestImage, 0, platforms2.size(), 1, null, EMOJI_COMPARATOR, true);
                 out.println("</td></tr>");
                 outText.println("common \t" + common.size());
-                GenerateEmojiData.show(outText, "common", 14, 14, common, true, GenerateEmoji.EXTRA_NAMES);
+                propPrinter.show(outText, "common", 14, 14, common, true);
             }
         }
 
