@@ -41,10 +41,10 @@ public class GenerateEmojiData {
             outText2.println("# Warning: the format has changed from Version 1.0");
             outText2.println("# Format: ");
             outText2.println("# codepoint(s) ; property(=Yes) # version [count] name(s) ");
-            show(outText2, "Emoji", width, 14, emoji, extraNames );
-            show(outText2, "Emoji_Presentation", width, 14, emoji_presentation, extraNames);
-            show(outText2, "Emoji_Modifier", width, 14, emoji_modifiers, extraNames);
-            show(outText2, "Emoji_Modifier_Base", width, 14, emoji_modifier_bases, extraNames);
+            show(outText2, "Emoji", width, 14, emoji, true, extraNames );
+            show(outText2, "Emoji_Presentation", width, 14, emoji_presentation, true, extraNames);
+            show(outText2, "Emoji_Modifier", width, 14, emoji_modifiers, true, extraNames);
+            show(outText2, "Emoji_Modifier_Base", width, 14, emoji_modifier_bases, true, extraNames);
             outText2.println("\n#EOF");
         }
 
@@ -56,9 +56,9 @@ public class GenerateEmojiData {
             out.println("# Format: ");
             out.println(width == 0 ? "# codepoint(s) # version [count] name(s) " : "# codepoint(s) ; property(=Yes) # version [count] name(s) ");
             
-            show(out, "Combining_Sequences", width, 14, Emoji.KEYCAPS, extraNames);
-            show(out, "Flag_Sequences", width, 14, Emoji.FLAGS, extraNames);
-            show(out, "Modifier_Sequences", width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), extraNames);
+            show(out, "Combining_Sequences", width, 14, Emoji.KEYCAPS, true, extraNames);
+            show(out, "Flag_Sequences", width, 14, Emoji.FLAGS, true, extraNames);
+            show(out, "Modifier_Sequences", width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), false, extraNames);
             out.println("\n#EOF");
         }
 
@@ -68,12 +68,13 @@ public class GenerateEmojiData {
             
             out.println("# Format: ");
             out.println(width == 0 ? "# codepoint(s) # version [count] name(s) " : "# codepoint(s) ; property(=Yes) # version [count] name(s) ");
-            show(out, "ZWJ_Sequences", width, 44, EmojiData.EMOJI_DATA.getZwjSequencesNormal(), extraNames);
+            show(out, "ZWJ_Sequences", width, 44, EmojiData.EMOJI_DATA.getZwjSequencesNormal(), false, extraNames);
             out.println("\n#EOF");
         }
     }
 
-    static void show(PrintWriter out, String title, int maxTitleWidth, int maxCodepointWidth, UnicodeSet emojiChars, UnicodeMap<String> extraNames) {
+    static void show(PrintWriter out, String title, int maxTitleWidth, int maxCodepointWidth, UnicodeSet emojiChars, 
+            boolean addVariants, UnicodeMap<String> extraNames) {
         Tabber tabber = new Tabber.MonoTabber()
         .add(maxCodepointWidth, Tabber.LEFT)
         .add(maxTitleWidth + 4, Tabber.LEFT)
@@ -120,7 +121,7 @@ public class GenerateEmojiData {
                         + "\t#"
                         + "\t" + range.value.getShortName()
                         + "\t[1] "
-                        + "\t(" + Emoji.addEmojiVariant(s) + ")"
+                        + "\t(" + addEmojiVariant(s, addVariants) + ")"
                         + "\t" + Emoji.getName(s, false, extraNames)));
             } else {
                 final String e = UTF16.valueOf(range.codepointEnd);
@@ -130,7 +131,7 @@ public class GenerateEmojiData {
                         + "\t#"
                         + "\t" + range.value.getShortName()
                         + "\t["+ (range.codepointEnd - range.codepoint + 1) + "] "
-                        + "\t(" + Emoji.addEmojiVariant(s) + ".." + Emoji.addEmojiVariant(e) + ")"
+                        + "\t(" + addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
                         + "\t" + Emoji.getName(s, false, extraNames) + ".." + Emoji.getName(e, false, extraNames)));
             }
         }
@@ -191,4 +192,11 @@ public class GenerateEmojiData {
         return df.format(new Date());
     }
 
+    static String addEmojiVariant(String s, boolean addVariants) {
+        if (!addVariants) {
+            return s;
+        }
+        // hack to add VS to v2.0 to make comparison easier.
+        return Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING, EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
+    }
 }

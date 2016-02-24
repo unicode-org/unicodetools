@@ -461,18 +461,22 @@ public class Emoji {
     static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
 
     public static String getEmojiVariant(String browserChars, String variant) {
+        return getEmojiVariant(browserChars, variant, null);
+    }
+    
+    public static String getEmojiVariant(String browserChars, String variant, UnicodeSet extraVariants) {
         int first = browserChars.codePointAt(0);
         String probe = new StringBuilder()
         .appendCodePoint(first)
         .append(variant).toString();
-        if (Emoji.STANDARDIZED_VARIANT.get(probe) != null) {
+        if (Emoji.STANDARDIZED_VARIANT.get(probe) != null || extraVariants != null && extraVariants.contains(first)) {
             browserChars = probe + browserChars.substring(Character.charCount(first));
         }
         return browserChars;
     }
 
-
     public static final UnicodeMap<String> STANDARDIZED_VARIANT = LATEST.load(UcdProperty.Standardized_Variant);
+    
     public static final UnicodeSet HAS_EMOJI_VS = new UnicodeSet();
     
     static {
@@ -482,10 +486,6 @@ public class Emoji {
             }
         }
         Emoji.HAS_EMOJI_VS.freeze();
-    }
-
-    static String addEmojiVariant(String s) {
-        return getEmojiVariant(s, EMOJI_VARIANT_STRING);
     }
 
     static final UnicodeMap<Age_Values>        VERSION_ENUM            = LATEST.loadEnum(UcdProperty.Age, Age_Values.class);
