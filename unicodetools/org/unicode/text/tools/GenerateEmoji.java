@@ -482,8 +482,8 @@ public class GenerateEmoji {
             String chars = entry.getKey();
             Set<String> oldAnnotations = entry.getValue();
 
-            Set<String> newAnnotations = new TreeSet(ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars), Collections.EMPTY_SET));
-            Set<Label> labels = ifNull(Label.CHARS_TO_LABELS.getValues(chars), Collections.EMPTY_SET);
+            Set<String> newAnnotations = new TreeSet(Utility.ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars), Collections.EMPTY_SET));
+            Set<Label> labels = Utility.ifNull(Label.CHARS_TO_LABELS.getValues(chars), Collections.EMPTY_SET);
             for (Label label : labels) {
                 newAnnotations.add(label.toString());
             }
@@ -912,9 +912,7 @@ public class GenerateEmoji {
         }
     }
 
-    static <U> U ifNull(U keys, U defaultValue) {
-        return keys == null ? defaultValue : keys;
-    }
+    
 
     //    public static void addFileCodepoints(File imagesOutputDir, Map<String, Data> results) {
     //        for (File file : imagesOutputDir.listFiles()) {
@@ -2402,7 +2400,7 @@ public class GenerateEmoji {
         }
 
         String textChars = Emoji.getEmojiVariant(chars2, Emoji.TEXT_VARIANT_STRING);
-        Set<String> annotations = new LinkedHashSet<String>(ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2), Collections.EMPTY_SET));
+        Set<String> annotations = new LinkedHashSet<String>(Utility.ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2), Collections.EMPTY_SET));
         annotations.removeAll(GenerateEmoji.SUPPRESS_ANNOTATIONS);
         StringBuilder annotationString = new StringBuilder();
         if (!annotations.isEmpty()) {

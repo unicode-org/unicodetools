@@ -191,17 +191,17 @@ class EmojiStats {
             }
         }
 
-        if (GenerateEmoji.SHOW) System.out.println("All Emoji\t" + EmojiData.EMOJI_DATA.getChars().toPattern(false));
+        if (SHOW) System.out.println("All Emoji\t" + EmojiData.EMOJI_DATA.getChars().toPattern(false));
 
-        if (GenerateEmoji.SHOW) System.out.println("needs VS\t" + needsVS.toPattern(false));
+        if (SHOW) System.out.println("needs VS\t" + needsVS.toPattern(false));
 
-        if (GenerateEmoji.SHOW) System.out.println("gmail-jc\t"
+        if (SHOW) System.out.println("gmail-jc\t"
                 + new UnicodeSet(totalData.get(Emoji.Source.gmail)).removeAll(jc).toPattern(false));
-        if (GenerateEmoji.SHOW) System.out.println("jc-gmail\t"
+        if (SHOW) System.out.println("jc-gmail\t"
                 + new UnicodeSet(jc).removeAll(totalData.get(Emoji.Source.gmail)).toPattern(false));
 
         for (Entry<Emoji.Source, UnicodeSet> entry : totalData.entrySet()) {
-            if (GenerateEmoji.SHOW) System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
+            if (SHOW) System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
         }
 
         GenerateEmoji.writeHeader(out, "Missing", null, "<p>Missing list of emoji characters.</p>\n", "border='1'", true);
@@ -250,7 +250,7 @@ class EmojiStats {
         boolean skipSeparate = true;
         for (Emoji.Source source : platforms2) {
             final UnicodeSet uset = values.get(source);
-            final UnicodeSet us = GenerateEmoji.ifNull(uset, UnicodeSet.EMPTY);
+            final UnicodeSet us = org.unicode.text.utility.Utility.ifNull(uset, UnicodeSet.EMPTY);
             if (common == null) {
                 common = new UnicodeSet(us);
             } else if (!common.equals(us)) {
@@ -269,13 +269,13 @@ class EmojiStats {
             out.print("<tr><th>" + sectionLink + " count</th>");
             sectionLink = title;
             for (Emoji.Source source : platforms2) {
-                final UnicodeSet us = GenerateEmoji.ifNull(values.get(source), UnicodeSet.EMPTY);
+                final UnicodeSet us = org.unicode.text.utility.Utility.ifNull(values.get(source), UnicodeSet.EMPTY);
                 out.print("<td class='centerTop'>" + (us.size() - common.size()) + "</td>");
             }
             out.print("</tr>");
             out.print("<tr><th>" + title + " chars</th>");
             for (Emoji.Source source : platforms2) {
-                final UnicodeSet us = GenerateEmoji.ifNull(values.get(source), UnicodeSet.EMPTY);
+                final UnicodeSet us = org.unicode.text.utility.Utility.ifNull(values.get(source), UnicodeSet.EMPTY);
                 final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
                 GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, true);
                 outText.println(source + "\t" + missing.size());

@@ -1616,4 +1616,8 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
         return result;
     }
+
+    public static <U> U ifNull(U keys, U defaultValue) {
+        return keys == null ? defaultValue : keys;
+    }
 }
