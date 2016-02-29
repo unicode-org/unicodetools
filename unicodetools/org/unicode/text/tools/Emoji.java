@@ -88,7 +88,7 @@ public class Emoji {
 
     public enum Source {
         // pngs
-        color, apple, twitter, samsung, google, windows, emojione, ref, proposed, emojipedia, emojixpress, sample,
+        color, apple, google, emojione, samsung, twitter, windows, ref, proposed, emojipedia, emojixpress, sample,
         // gifs
         gmail, sb, dcm, kddi;
         boolean isGif() {
@@ -317,23 +317,6 @@ public class Emoji {
     static final String TEXT_VARIANT_STRING = String.valueOf(TEXT_VARIANT);
     static final String JOINER_STRING = String.valueOf(JOINER);
 
-    public static boolean skipEmojiSequence(String string) {
-        if (string.equals(" ") 
-                || string.equals("\t") 
-                || string.equals(EMOJI_VARIANT_STRING) 
-                || string.equals(TEXT_VARIANT_STRING)
-                || string.equals(JOINER_STRING)) {
-            return true;
-        }
-        if (!EMOJI_CHARS.contains(string) 
-                && !EmojiData.EMOJI_DATA.getZwjSequencesNormal().contains(string)
-                ) {
-            return true;
-        }
-        return false;
-    }
-
-
     public static String getLabelFromLine(Output<Set<String>> newLabel, String line) {
         line = line.replace(EMOJI_VARIANT_STRING, "").replace(TEXT_VARIANT_STRING, "").trim();
         int tabPos = line.indexOf('\t');
@@ -459,6 +442,7 @@ public class Emoji {
     }
 
     static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
+    static final IndexUnicodeProperties    BETA  = IndexUnicodeProperties.make(VERSION_BETA_UNICODE);
 
     public static String getEmojiVariant(String browserChars, String variant) {
         return getEmojiVariant(browserChars, variant, null);
@@ -488,7 +472,7 @@ public class Emoji {
         Emoji.HAS_EMOJI_VS.freeze();
     }
 
-    static final UnicodeMap<Age_Values>        VERSION_ENUM            = LATEST.loadEnum(UcdProperty.Age, Age_Values.class);
+    static final UnicodeMap<Age_Values>        VERSION_ENUM            = BETA.loadEnum(UcdProperty.Age, Age_Values.class);
 
     public static String getName(String s, boolean tolower, UnicodeMap<String> extraNames) {
         String flag = Emoji.getFlagRegionName(s);
@@ -567,7 +551,7 @@ public class Emoji {
         return result;
     }
 
-    static final UnicodeMap<String>        NAME                        = LATEST.load(UcdProperty.Name);
+    static final UnicodeMap<String>        NAME                        = BETA.load(UcdProperty.Name);
 
     static final LocaleDisplayNames        LOCALE_DISPLAY              = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
 
