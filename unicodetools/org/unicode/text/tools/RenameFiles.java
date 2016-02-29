@@ -23,15 +23,20 @@ public class RenameFiles {
     
     private static final boolean PREVIEW_ONLY = false;
     
-    private static final String DIR_OF_FILES_TO_CHANGE = "DATA/emoji/flags";
-    private static final String FILE_MATCH = "emoji_u(.*)\\.png";
+    private static final String DIR_OF_FILES_TO_CHANGE = Settings.UNICODE_DRAFT_DIRECTORY 
+            + "/reports/tr51/images/samsung"
+            // Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/flags"
+            ;
+    private static final String FILE_MATCH = "samsung_u(.*)\\.png";
 
-    private static final String OUTPUT_PLATFORM_PREFIX = "ref";
+    private static final String OUTPUT_PLATFORM_PREFIX = "samsung";
 
     public static void main(String[] args) throws IOException {
         Matcher m = Pattern.compile(FILE_MATCH).matcher(""); 
-        //File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/country-flags");
-        File dir = new File(Settings.OTHER_WORKSPACE_DIRECTORY + DIR_OF_FILES_TO_CHANGE);
+        File dir = new File(DIR_OF_FILES_TO_CHANGE);
+        if (!dir.exists()) {
+            throw new IllegalArgumentException("Missing dir: " + dir);
+        }
 
         FileSystem dfs = FileSystems.getDefault();
         int count = 0;

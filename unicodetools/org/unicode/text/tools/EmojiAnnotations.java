@@ -70,7 +70,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                         String withPosition = line.replaceAll("("+overlap+")", "###$1");
                         throw new IllegalArgumentException(lineNumber + "\tStrange line with ASCII emoji: " + overlap + "; "+ withPosition);
                     }
-                    if (Emoji.skipEmojiSequence(string)) {
+                    if (EmojiData.EMOJI_DATA.skipEmojiSequence(string)) {
                         continue;
                     }
                     for (String item : ei.newLabel) {
