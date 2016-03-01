@@ -1,15 +1,10 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 9.0.0
-@@@+	U90M160205.lst
-	Unicode 9.0.0 names list, third delta.
+@@@+	U90M160224.lst
+	Unicode 9.0.0 names list, fifth delta.
 	Repertoire synched with UnicodeData-9.0.0d5.txt
-	Repertoire additions from CD2: Newa, Adlam, ARIB, Emoji
-	Fixed annotations re casing for 00D0 and 00F0.
-	Added notice about casing difficulties to top of Greek and Coptic block.
-	Added notice in Mongolian block to explain use of xrefs for Cyrillic transliteration.
-	Added annotation for 0D02.
-	Added notice about exceptional pairing of brackets with ticks.
-	Undeprecated U+E007F CANCEL TAG.
+	Corrected extra blank for one xref at 08BD.
+	More tweaking of Mongolian variants output.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -4696,7 +4691,7 @@
 08BD	ARABIC LETTER AFRICAN NOON
 	* initial and medial forms have one dot above
 	x (arabic letter noon ghunna - 06BA)
-	x (arabic letter noon - 0646) 
+	x (arabic letter noon - 0646)
 @		Pakistani Quranic marks
 08D4	ARABIC SMALL HIGH WORD AR-RUB
 08D5	ARABIC SMALL HIGH SAD
@@ -9264,31 +9259,54 @@
 @+		Cross-references show commonly used Cyrillic transliterations.
 1820	MONGOLIAN LETTER A
 	x (cyrillic small letter a - 0430)
+	~ 1820 ALT1 first form (initial)
+	~ 1820 ALT1 first form (medial)
+	~ 1820 ALT1 first form (final)
 	~ 1820 180B second form (isolate)
 	~ 1820 180B second form (medial)
 	~ 1820 180B second form (final)
 	~ 1820 180C third form (medial)
 1821	MONGOLIAN LETTER E
 	x (cyrillic small letter e - 044D)
+	~ 1821 ALT1 first form (initial)
+	~ 1821 ALT1 first form (medial)
+	~ 1821 ALT1 first form (final)
 	~ 1821 180B second form (initial)
 	~ 1821 180B second form (final)
 1822	MONGOLIAN LETTER I
 	x (cyrillic small letter i - 0438)
+	~ 1822 ALT1 first form (initial)
+	~ 1822 ALT1 first form (medial)
+	~ 1822 ALT1 first form (final)
 	~ 1822 180B second form (medial)
 1823	MONGOLIAN LETTER O
 	x (cyrillic small letter o - 043E)
+	~ 1823 ALT1 first form (initial)
+	~ 1823 ALT1 first form (medial)
+	~ 1823 ALT1 first form (final)
 	~ 1823 180B second form (medial)
 	~ 1823 180B second form (final)
 1824	MONGOLIAN LETTER U
 	x (cyrillic small letter u - 0443)
+	~ 1824 ALT1 first form (isolate)
+	~ 1824 ALT1 first form (initial)
+	~ 1824 ALT1 first form (medial)
+	~ 1824 ALT1 first form (final)
 	~ 1824 180B second form (medial)
 1825	MONGOLIAN LETTER OE
 	x (cyrillic small letter barred o - 04E9)
+	~ 1825 ALT1 first form (initial)
+	~ 1825 ALT1 first form (medial)
+	~ 1825 ALT1 first form (final)
 	~ 1825 180B second form (medial)
 	~ 1825 180B second form (final)
 	~ 1825 180C third form (medial)
 1826	MONGOLIAN LETTER UE
 	x (cyrillic small letter straight u - 04AF)
+	~ 1826 ALT1 first form (isolate)
+	~ 1826 ALT1 first form (initial)
+	~ 1826 ALT1 first form (medial)
+	~ 1826 ALT1 first form (final)
 	~ 1826 180B second form (isolate)
 	~ 1826 180B second form (medial)
 	~ 1826 180B second form (final)
@@ -9296,6 +9314,9 @@
 1827	MONGOLIAN LETTER EE
 1828	MONGOLIAN LETTER NA
 	x (cyrillic small letter en - 043D)
+	~ 1828 ALT1 first form (initial)
+	~ 1828 ALT1 first form (medial)
+	~ 1828 ALT1 first form (final)
 	~ 1828 180B second form (initial)
 	~ 1828 180B second form (medial)
 	~ 1828 180C third form (medial)
@@ -9303,11 +9324,17 @@
 1829	MONGOLIAN LETTER ANG
 182A	MONGOLIAN LETTER BA
 	x (cyrillic small letter be - 0431)
+	~ 182A ALT1 first form (initial)
+	~ 182A ALT1 first form (medial)
+	~ 182A ALT1 first form (final)
 	~ 182A 180B alternative form (final)
 182B	MONGOLIAN LETTER PA
 	x (cyrillic small letter pe - 043F)
 182C	MONGOLIAN LETTER QA
 	x (cyrillic small letter ha - 0445)
+	~ 182C ALT1 first form (initial)
+	~ 182C ALT1 first form (medial)
+	~ 182C ALT1 first form (final)
 	~ 182C 180B second form (initial)
 	~ 182C 180B second form (medial)
 	~ 182C 180B feminine second form (isolate)
@@ -9315,6 +9342,9 @@
 	~ 182C 180D fourth form (medial)
 182D	MONGOLIAN LETTER GA
 	x (cyrillic small letter ghe - 0433)
+	~ 182D ALT1 first form (initial)
+	~ 182D ALT1 first form (medial)
+	~ 182D ALT1 first form (final)
 	~ 182D 180B second form (initial)
 	~ 182D 180B second form (medial)
 	~ 182D 180B feminine form (final)
@@ -9326,15 +9356,24 @@
 	x (cyrillic small letter el - 043B)
 1830	MONGOLIAN LETTER SA
 	x (cyrillic small letter es - 0441)
+	~ 1830 ALT1 first form (initial)
+	~ 1830 ALT1 first form (medial)
+	~ 1830 ALT1 first form (final)
 	~ 1830 180B second form (final)
 	~ 1830 180C third form (final)
 1831	MONGOLIAN LETTER SHA
 	x (cyrillic small letter sha - 0448)
 1832	MONGOLIAN LETTER TA
 	x (cyrillic small letter te - 0442)
+	~ 1832 ALT1 first form (initial)
+	~ 1832 ALT1 first form (medial)
+	~ 1832 ALT1 first form (final)
 	~ 1832 180B second form (medial)
 1833	MONGOLIAN LETTER DA
 	x (cyrillic small letter de - 0434)
+	~ 1833 ALT1 first form (initial)
+	~ 1833 ALT1 first form (medial)
+	~ 1833 ALT1 first form (final)
 	~ 1833 180B second form (initial)
 	~ 1833 180B second form (medial)
 	~ 1833 180B second form (final)
@@ -9342,9 +9381,15 @@
 	x (cyrillic small letter che - 0447)
 1835	MONGOLIAN LETTER JA
 	x (cyrillic small letter zhe - 0436)
+	~ 1835 ALT1 first form (initial)
+	~ 1835 ALT1 first form (medial)
+	~ 1835 ALT1 first form (final)
 	~ 1835 180B second form (medial)
 1836	MONGOLIAN LETTER YA
 	x (cyrillic small letter short i - 0439)
+	~ 1836 ALT1 first form (initial)
+	~ 1836 ALT1 first form (medial)
+	~ 1836 ALT1 first form (final)
 	~ 1836 180B second form (initial)
 	~ 1836 180B second form (medial)
 	~ 1836 180C third form (medial)
@@ -9352,6 +9397,9 @@
 	x (cyrillic small letter er - 0440)
 1838	MONGOLIAN LETTER WA
 	x (cyrillic small letter ve - 0432)
+	~ 1838 ALT1 first form (initial)
+	~ 1838 ALT1 first form (medial)
+	~ 1838 ALT1 first form (final)
 	~ 1838 180B second form (final)
 1839	MONGOLIAN LETTER FA
 	x (cyrillic small letter ef - 0444)
@@ -9373,28 +9421,52 @@
 @		Todo letters
 1843	MONGOLIAN LETTER TODO LONG VOWEL SIGN
 1844	MONGOLIAN LETTER TODO E
+	~ 1844 ALT1 first form (initial)
+	~ 1844 ALT1 first form (medial)
+	~ 1844 ALT1 first form (final)
 	~ 1844 180B second form (medial)
 1845	MONGOLIAN LETTER TODO I
+	~ 1845 ALT1 first form (initial)
+	~ 1845 ALT1 first form (medial)
+	~ 1845 ALT1 first form (final)
 	~ 1845 180B second form (medial)
 1846	MONGOLIAN LETTER TODO O
+	~ 1846 ALT1 first form (initial)
+	~ 1846 ALT1 first form (medial)
+	~ 1846 ALT1 first form (final)
 	~ 1846 180B second form (medial)
 1847	MONGOLIAN LETTER TODO U
+	~ 1847 ALT1 first form (initial)
+	~ 1847 ALT1 first form (medial)
+	~ 1847 ALT1 first form (final)
 	~ 1847 180B second form (isolate)
 	~ 1847 180B second form (medial)
 	~ 1847 180B second form (final)
 	~ 1847 180C third form (medial)
 1848	MONGOLIAN LETTER TODO OE
+	~ 1848 ALT1 first form (initial)
+	~ 1848 ALT1 first form (medial)
+	~ 1848 ALT1 first form (final)
 	~ 1848 180B second form (medial)
 1849	MONGOLIAN LETTER TODO UE
+	~ 1849 ALT1 first form (initial)
+	~ 1849 ALT1 first form (medial)
+	~ 1849 ALT1 first form (final)
 	~ 1849 180B second form (isolate)
 	~ 1849 180B second form (medial)
 184A	MONGOLIAN LETTER TODO ANG
 184B	MONGOLIAN LETTER TODO BA
 184C	MONGOLIAN LETTER TODO PA
 184D	MONGOLIAN LETTER TODO QA
+	~ 184D ALT1 first form (initial)
+	~ 184D ALT1 first form (medial)
+	~ 184D ALT1 first form (final)
 	~ 184D 180B feminine form (initial)
 	~ 184D 180B feminine form (medial)
 184E	MONGOLIAN LETTER TODO GA
+	~ 184E ALT1 first form (initial)
+	~ 184E ALT1 first form (medial)
+	~ 184E ALT1 first form (final)
 	~ 184E 180B second form (medial)
 184F	MONGOLIAN LETTER TODO MA
 1850	MONGOLIAN LETTER TODO TA
@@ -9412,30 +9484,48 @@
 185C	MONGOLIAN LETTER TODO DZA
 @		Sibe letters
 185D	MONGOLIAN LETTER SIBE E
+	~ 185D ALT1 first form (initial)
+	~ 185D ALT1 first form (medial)
+	~ 185D ALT1 first form (final)
 	~ 185D 180B second form (medial)
 	~ 185D 180B second form (final)
 185E	MONGOLIAN LETTER SIBE I
+	~ 185E ALT1 first form (initial)
+	~ 185E ALT1 first form (medial)
+	~ 185E ALT1 first form (final)
 	~ 185E 180B second form (medial)
 	~ 185E 180B second form (final)
 	~ 185E 180C third form (medial)
 	~ 185E 180C third form (final)
 185F	MONGOLIAN LETTER SIBE IY
 1860	MONGOLIAN LETTER SIBE UE
+	~ 1860 ALT1 first form (initial)
+	~ 1860 ALT1 first form (medial)
+	~ 1860 ALT1 first form (final)
 	~ 1860 180B second form (medial)
 	~ 1860 180B second form (final)
 1861	MONGOLIAN LETTER SIBE U
 1862	MONGOLIAN LETTER SIBE ANG
 1863	MONGOLIAN LETTER SIBE KA
+	~ 1863 ALT1 first form (initial)
+	~ 1863 ALT1 first form (medial)
+	~ 1863 ALT1 first form (final)
 	~ 1863 180B second form (medial)
 1864	MONGOLIAN LETTER SIBE GA
 1865	MONGOLIAN LETTER SIBE HA
 1866	MONGOLIAN LETTER SIBE PA
 1867	MONGOLIAN LETTER SIBE SHA
 1868	MONGOLIAN LETTER SIBE TA
+	~ 1868 ALT1 first form (initial)
+	~ 1868 ALT1 first form (medial)
+	~ 1868 ALT1 first form (final)
 	~ 1868 180B second form (initial)
 	~ 1868 180B second form (medial)
 	~ 1868 180C third form (medial)
 1869	MONGOLIAN LETTER SIBE DA
+	~ 1869 ALT1 first form (initial)
+	~ 1869 ALT1 first form (medial)
+	~ 1869 ALT1 first form (final)
 	~ 1869 180B second form (initial)
 	~ 1869 180B second form (medial)
 186A	MONGOLIAN LETTER SIBE JA
@@ -9444,6 +9534,9 @@
 186D	MONGOLIAN LETTER SIBE HAA
 186E	MONGOLIAN LETTER SIBE TSA
 186F	MONGOLIAN LETTER SIBE ZA
+	~ 186F ALT1 first form (initial)
+	~ 186F ALT1 first form (medial)
+	~ 186F ALT1 first form (final)
 	~ 186F 180B second form (initial)
 	~ 186F 180B second form (medial)
 1870	MONGOLIAN LETTER SIBE RAA
@@ -9451,12 +9544,18 @@
 1872	MONGOLIAN LETTER SIBE ZHA
 @		Manchu letters
 1873	MONGOLIAN LETTER MANCHU I
+	~ 1873 ALT1 first form (initial)
+	~ 1873 ALT1 first form (medial)
+	~ 1873 ALT1 first form (final)
 	~ 1873 180B second form (medial)
 	~ 1873 180B second form (final)
 	~ 1873 180C third form (medial)
 	~ 1873 180C third form (final)
 	~ 1873 180D fourth form (medial)
 1874	MONGOLIAN LETTER MANCHU KA
+	~ 1874 ALT1 first form (initial)
+	~ 1874 ALT1 first form (medial)
+	~ 1874 ALT1 first form (final)
 	~ 1874 180B second form (medial)
 	~ 1874 180B feminine first final form (final)
 	~ 1874 180C feminine first medial form (medial)
@@ -9464,6 +9563,9 @@
 	~ 1874 180D feminine second medial form (medial)
 1875	MONGOLIAN LETTER MANCHU RA
 1876	MONGOLIAN LETTER MANCHU FA
+	~ 1876 ALT1 first form (initial)
+	~ 1876 ALT1 first form (medial)
+	~ 1876 ALT1 first form (final)
 	~ 1876 180B second form (initial)
 	~ 1876 180B second form (medial)
 1877	MONGOLIAN LETTER MANCHU ZHA
@@ -9483,14 +9585,23 @@
 	x (tibetan mark paluta - 0F85)
 1886	MONGOLIAN LETTER ALI GALI THREE BALUDA
 1887	MONGOLIAN LETTER ALI GALI A
+	~ 1887 ALT1 first form (initial)
+	~ 1887 ALT1 first form (medial)
+	~ 1887 ALT1 first form (final)
 	~ 1887 180B second form (isolate)
 	~ 1887 180B second form (final)
 	~ 1887 180C third form (final)
 	~ 1887 180D fourth form (final)
 1888	MONGOLIAN LETTER ALI GALI I
+	~ 1888 ALT1 first form (initial)
+	~ 1888 ALT1 first form (medial)
+	~ 1888 ALT1 first form (final)
 	~ 1888 180B second form (final)
 1889	MONGOLIAN LETTER ALI GALI KA
 188A	MONGOLIAN LETTER ALI GALI NGA
+	~ 188A ALT1 first form (initial)
+	~ 188A ALT1 first form (medial)
+	~ 188A ALT1 first form (final)
 	~ 188A 180B second form (initial)
 	~ 188A 180B second form (medial)
 188B	MONGOLIAN LETTER ALI GALI CA
@@ -9525,7 +9636,7 @@
 18A8	MONGOLIAN LETTER MANCHU ALI GALI BHA
 18A9	MONGOLIAN LETTER ALI GALI DAGALGA
 18AA	MONGOLIAN LETTER MANCHU ALI GALI LHA
-@~	Standardized Variation Sequences
+@@@~	Contextual Variants and Standardized Variation Sequences
 @+		Unlike other blocks, these variation sequences use the script-specific variation selectors for Mongolian.
 @@	18B0	Unified Canadian Aboriginal Syllabics Extended	18FF
 @		Syllables for Moose Cree
@@ -14494,7 +14605,10 @@
 	~ 23FA FE0F emoji style
 @		Power symbols from ISO 7000:2012
 23FB	POWER SYMBOL
+@+	* IEC 5009 standby symbol
+@+	* IEEE 1621 power symbol
 23FC	POWER ON-OFF SYMBOL
+@+	* IEC 5010 power on-off symbol
 23FD	POWER ON SYMBOL
 	* use 2B58 for power off symbol
 	x (heavy circle - 2B58)
@@ -15730,6 +15844,7 @@
 	~ 2693 FE0F emoji style
 2694	CROSSED SWORDS
 	= military term, battleground (on maps), killed in action
+	x (fencer - 1F93A)
 	~ 2694 FE0E text style
 	~ 2694 FE0F emoji style
 2695	STAFF OF AESCULAPIUS
@@ -15779,6 +15894,7 @@
 	x (three rays right - 1F5E7)
 @		Miscellaneous symbols
 26A0	WARNING SIGN
+	x (octagonal sign - 1F6D1)
 	~ 26A0 FE0E text style
 	~ 26A0 FE0F emoji style
 26A1	HIGH VOLTAGE SIGN
@@ -15854,6 +15970,7 @@
 26B8	BLACK MOON LILITH
 26B9	SEXTILE
 	x (asterisk - 002A)
+	x (six pointed black star - 2736)
 	x (alchemical symbol for sal-ammoniac - 1F739)
 26BA	SEMISEXTILE
 	x (xor - 22BB)
@@ -16198,7 +16315,7 @@
 2735	EIGHT POINTED PINWHEEL STAR
 	x (heavy eight pointed pinwheel star - 1F7D1)
 2736	SIX POINTED BLACK STAR
-	= sextile
+	x (sextile - 26B9)
 2737	EIGHT POINTED RECTILINEAR BLACK STAR
 	x (medium eight pointed black star - 1F7CE)
 2738	HEAVY EIGHT POINTED RECTILINEAR BLACK STAR
@@ -44625,6 +44742,7 @@ FFFF	<not a character>
 	x (flower - 2698)
 1F338	CHERRY BLOSSOM
 1F339	ROSE
+	x (wilted flower - 1F940)
 1F33A	HIBISCUS
 1F33B	SUNFLOWER
 1F33C	BLOSSOM
@@ -44701,6 +44819,7 @@ FFFF	<not a character>
 	* glyph may show a fork and spoon
 	* glyph may show a crossed fork and knife
 	x (fork and knife with plate - 1F37D)
+	x (spoon - 1F944)
 @		Beverage symbols
 1F375	TEACUP WITHOUT HANDLE
 	x (hot beverage - 2615)
@@ -44710,6 +44829,7 @@ FFFF	<not a character>
 1F378	COCKTAIL GLASS
 	= lounge
 	x (couch and lamp - 1F6CB)
+	x (tumbler glass - 1F943)
 1F379	TROPICAL DRINK
 1F37A	BEER MUG
 1F37B	CLINKING BEER MUGS
@@ -44735,6 +44855,7 @@ FFFF	<not a character>
 1F384	CHRISTMAS TREE
 1F385	FATHER CHRISTMAS
 	= Santa Claus
+	x (mother christmas - 1F936)
 1F386	FIREWORKS
 1F387	FIREWORK SPARKLER
 	* long, stick-like firework that looks like a burning incense stick
@@ -44888,6 +45009,7 @@ FFFF	<not a character>
 1F3C4	SURFER
 	= surfing
 1F3C5	SPORTS MEDAL
+	x (first place medal - 1F947)
 1F3C6	TROPHY
 1F3C7	HORSE RACING
 1F3C8	AMERICAN FOOTBALL
@@ -46115,7 +46237,6 @@ FFFF	<not a character>
 1F634	SLEEPING FACE
 1F635	DIZZY FACE
 1F636	FACE WITHOUT MOUTH
-	* used for the South Wind in some Mahjong annotation
 	x (white circle with two dots - 2687)
 1F637	FACE WITH MEDICAL MASK
 @		Cat faces
@@ -46368,6 +46489,7 @@ FFFF	<not a character>
 1F6D1	OCTAGONAL SIGN
 	= stop sign
 	* may contain text indicating stop
+	x (warning sign - 26A0)
 	x (heavy white down-pointing triangle - 26DB)
 1F6D2	SHOPPING TROLLEY
 	= shopping cart
@@ -47017,22 +47139,30 @@ FFFF	<not a character>
 @		Portrait and role symbols
 1F930	PREGNANT WOMAN
 1F933	SELFIE
+	* typically used with face or human figure on the left
 1F934	PRINCE
 	x (princess - 1F478)
 1F935	MAN IN TUXEDO
 	* appearance for groom, may be paired with 1F470
 	x (bride with veil - 1F470)
 1F936	MOTHER CHRISTMAS
+	= Mrs. Claus
+	x (father christmas - 1F385)
 1F937	SHRUG
 1F938	PERSON DOING CARTWHEEL
+	= gymnastics
 1F939	JUGGLING
 1F93A	FENCER
+	= fencing
+	x (crossed swords - 2694)
 1F93B	MODERN PENTATHLON
 1F93C	WRESTLERS
+	= wrestling
 1F93D	WATER POLO
 1F93E	HANDBALL
 @		Miscellaneous symbols
 1F940	WILTED FLOWER
+	x (rose - 1F339)
 1F941	DRUM WITH DRUMSTICKS
 1F942	CLINKING GLASSES
 	= celebration, formal toasting
@@ -47040,22 +47170,28 @@ FFFF	<not a character>
 1F943	TUMBLER GLASS
 	= whisky
 	* typically shown with ice
+	x (cocktail glass - 1F378)
 1F944	SPOON
+	x (fork and knife - 1F374)
 1F945	GOAL NET
 1F946	RIFLE
 	= marksmanship, shooting, hunting
 1F947	FIRST PLACE MEDAL
 	= gold medal
+	x (sports medal - 1F3C5)
 1F948	SECOND PLACE MEDAL
 	= silver medal
 1F949	THIRD PLACE MEDAL
 	= bronze medal
 1F94A	BOXING GLOVE
+	= boxing
 1F94B	MARTIAL ARTS UNIFORM
+	= judo, karate, taekwondo
 @		Food symbols
 1F950	CROISSANT
 1F951	AVOCADO
 1F952	CUCUMBER
+	= pickle
 1F953	BACON
 1F954	POTATO
 1F955	CARROT
@@ -47065,6 +47201,7 @@ FFFF	<not a character>
 1F958	SHALLOW PAN OF FOOD
 	= paella, casserole
 1F959	STUFFED FLATBREAD
+	= döner kebab, falafel, gyro, shawarma
 1F95A	EGG
 	= chicken egg
 1F95B	GLASS OF MILK
@@ -47072,6 +47209,8 @@ FFFF	<not a character>
 1F95C	PEANUTS
 1F95D	KIWIFRUIT
 1F95E	PANCAKES
+	= hotcakes, crêpes, blini
+	* sweet or savory
 @		Animal symbols
 1F980	CRAB
 	* used for Cancer

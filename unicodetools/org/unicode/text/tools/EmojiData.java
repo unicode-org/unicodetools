@@ -26,6 +26,7 @@ import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 
@@ -89,6 +90,7 @@ public class EmojiData {
     private final UnicodeSet modifierSequences;
     private final UnicodeSet zwjSequencesNormal = new UnicodeSet();
     private final UnicodeSet zwjSequencesAll = new UnicodeSet();
+    private final UnicodeSet afterZwj = new UnicodeSet();
     private final UnicodeSet flagSequences = new UnicodeSet();
     private final UnicodeSet keycapSequences = new UnicodeSet();
     
@@ -158,6 +160,14 @@ public class EmojiData {
                         if (!source.contains("\u2764") || source.contains("\uFE0F")) {
                             zwjSequencesNormal.add(source);
                         }
+                        
+                        boolean isAfterZwj = false;
+                        for (int cp : CharSequences.codePoints(source)) {
+                            if (isAfterZwj) {
+                                afterZwj.add(cp);
+                            }
+                            isAfterZwj = cp == 0x200D;
+                        }
                     } else {
                         if (Emoji.isRegionalIndicator(first)) {
                             flagSequences.add(source);
@@ -176,6 +186,7 @@ public class EmojiData {
             }
             zwjSequencesNormal.freeze();
             zwjSequencesAll.freeze();
+            afterZwj.freeze();
             flagSequences.freeze();
             keycapSequences.freeze();
             
@@ -318,12 +329,20 @@ public class EmojiData {
         return modifierSequences;
     }
     
+    public UnicodeSet getModifiers() {
+        return modifierClassMap.get(ModifierStatus.modifier);
+    }
+    
     public UnicodeSet getZwjSequencesNormal() {
         return zwjSequencesNormal;
     }
 
     public UnicodeSet getZwjSequencesAll() {
         return zwjSequencesAll;
+    }
+
+    public UnicodeSet getAfterZwj() {
+        return afterZwj;
     }
 
     public UnicodeSet getDefaultPresentationSet(DefaultPresentation defaultPresentation) {
@@ -497,4 +516,11 @@ public class EmojiData {
         return false;
     }
 
+    private static final VersionInfo UCD9 = VersionInfo.getInstance(9,0);
+    private static final VersionInfo Emoji3 = VersionInfo.getInstance(3,0);
+    private static final VersionInfo Emoji2 = VersionInfo.getInstance(2,0);
+    
+    public static EmojiData forUcd(VersionInfo versionInfo) {
+        return EmojiData.of(versionInfo.equals(UCD9) ? Emoji3 : Emoji2);
+    }
 }
