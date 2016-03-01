@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.text.tools.EmojiData;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -36,6 +37,7 @@ import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 
 /**
  * Class that provides all of the properties for formatting in the Unicode
@@ -94,6 +96,24 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         nfd = new Normalizer(UCD_Types.NFD, ucd.getVersion());
         nfkc = new Normalizer(UCD_Types.NFKC, ucd.getVersion());
         nfkd = new Normalizer(UCD_Types.NFKD, ucd.getVersion());
+
+        // emoji support
+
+        UnicodeSet tags = new UnicodeSet(0xE0020,0xE007f).freeze();
+        VersionInfo versionInfo = VersionInfo.getInstance(version);
+
+        EmojiData emojiData = EmojiData.forUcd(versionInfo);
+        final UnicodeSet E_Modifier = emojiData.getModifiers();
+
+        UnicodeSet _E_Base = emojiData.getModifierBases();
+        UnicodeSet _Glue_After_Zwj = emojiData.getAfterZwj();
+
+        // break apart overlaps
+        final UnicodeSet Glue_After_Zwj_And_E_Base = new UnicodeSet(_Glue_After_Zwj).retainAll(_E_Base).freeze();
+        final UnicodeSet Glue_After_Zwj = new UnicodeSet(_Glue_After_Zwj).removeAll(Glue_After_Zwj_And_E_Base).freeze();
+        final UnicodeSet E_Base = new UnicodeSet(_E_Base).removeAll(Glue_After_Zwj_And_E_Base).freeze();
+
+        UnicodeSet Zwj = new UnicodeSet(0x200D,0x200D).freeze();
 
         version = ucd.getVersion(); // regularize
 
@@ -671,7 +691,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         final int compositeVersion = ucd.getCompositeVersion();
         if (compositeVersion >= 0x040000) {
             final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
-            unicodeMap.setErrorOnReset(true);
+            unicodeMap.setErrorOnReset(true); // will cause exception if we try assigning 2 different values
+
             unicodeMap.put(0xD, "CR");
             unicodeMap.put(0xA, "LF");
             final UnicodeProperty cat = getProperty("General_Category");
@@ -693,7 +714,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     .remove(0xD)
                     .remove(0xA)
                     .remove(0x200C)
-                    .remove(0x200D);
+                    .remove(0x200D)
+                    .removeAll(tags)
+                    ;
             final UnicodeSet diff = new UnicodeSet(temp).retainAll(graphemeExtend);
             if (diff.size() != 0) {
                 temp.removeAll(diff);
@@ -702,7 +725,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             }
             unicodeMap.putAll(temp, "Control");
 
-            unicodeMap.putAll(new UnicodeSet(graphemeExtend), "Extend");
+            unicodeMap.putAll(new UnicodeSet(graphemeExtend).remove(0x200d), "Extend");
             unicodeMap.putAll(new UnicodeSet("[[\u0E31 \u0E34-\u0E3A \u0EB1 \u0EB4-\u0EB9 \u0EBB \u0EBA]-[:cn:]]"), "Extend");
 
             unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
@@ -728,6 +751,20 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             unicodeMap.putAll(hangul.getSet("T"), "T");
             unicodeMap.putAll(hangul.getSet("LV"), "LV");
             unicodeMap.putAll(hangul.getSet("LVT"), "LVT");
+
+            // emoji support
+            unicodeMap.putAll(tags, "Extend");
+
+            unicodeMap.putAll(E_Base, "E_Base");
+            unicodeMap.putAll(E_Modifier, "E_Modifier");
+
+            unicodeMap.putAll(Zwj, "ZWJ");
+            unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
+            unicodeMap.putAll(Glue_After_Zwj_And_E_Base, "Glue_After_Zwj_And_E_Base");
+
+            // note: during development it is easier to put new properties at the top.
+            // that way you find out which other values overlap.
+
             unicodeMap.setMissing("Other");
             add(new UnicodeProperty.UnicodeMapProperty()
             .set(unicodeMap)
@@ -740,6 +777,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             { "E_Base", "EB" },
                             { "E_Modifier", "EM" },
                             { "Glue_After_Zwj", "GAZ" },
+                            { "Glue_After_Zwj_And_E_Base", "GAZEB" },
                             { "ZWJ", "ZWJ" }
                     }, AliasAddAction.ADD_MAIN_ALIAS)
                     .swapFirst2ValueAliases())
@@ -751,58 +789,63 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         }
 
         if (compositeVersion >= 0x040000) {
-            add(new UnicodeProperty.UnicodeMapProperty() {
-                {
-                    unicodeMap = new UnicodeMap<String>();
-                    unicodeMap.setErrorOnReset(true);
-                    final UnicodeProperty cat = getProperty("General_Category");
-                    final UnicodeProperty script = getProperty("Script");
-                    //unicodeMap.put(0x200B, "Other");
+            final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
+            unicodeMap.setErrorOnReset(true); // disallow multiple values for code point
 
-                    unicodeMap.putAll(new UnicodeSet("[\"]"), "Double_Quote");
-                    unicodeMap.putAll(new UnicodeSet("[']"), "Single_Quote");
-                    unicodeMap.putAll(
-                            new UnicodeSet(cat.getSet("Other_Letter")
-                                    .retainAll(script.getSet("Hebrew"))),
-                            "Hebrew_Letter");
+            final UnicodeProperty cat = getProperty("General_Category");
+            final UnicodeProperty script = getProperty("Script");
+            //unicodeMap.put(0x200B, "Other");
 
-                    unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
-                    unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
-                    unicodeMap.putAll(new UnicodeSet("[\\u0085\\u000B\\u000C\\u000C\\u2028\\u2029]"),
-                            "Newline");
-                    unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(
-                            cat.getSet("Spacing_Mark")), "Extend");
+            unicodeMap.putAll(new UnicodeSet("[\"]"), "Double_Quote");
+            unicodeMap.putAll(new UnicodeSet("[']"), "Single_Quote");
+            unicodeMap.putAll(
+                    new UnicodeSet(cat.getSet("Other_Letter")
+                            .retainAll(script.getSet("Hebrew"))),
+                    "Hebrew_Letter");
 
-                    unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
+            unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
+            unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
+            unicodeMap.putAll(new UnicodeSet("[\\u0085\\u000B\\u000C\\u000C\\u2028\\u2029]"),
+                    "Newline");
+            unicodeMap.putAll(getProperty("Grapheme_Extend")
+                    .getSet(UCD_Names.YES)
+                    .addAll(cat.getSet("Spacing_Mark"))
+                    .removeAll(Zwj), "Extend");
 
-                    unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D).remove(0x200B), "Format");
-                    unicodeMap
-                    .putAll(
-                            script
-                            .getSet("Katakana")
-                            .addAll(
-                                    new UnicodeSet(
-                                            "[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70]")),
-                            "Katakana"); // \uFF9E\uFF9F
-                    final Object foo = unicodeMap.keySet("Katakana");
-                    // UnicodeSet graphemeExtend =
-                    // getProperty("Grapheme_Extend").getSet(UCD_Names.YES).remove(0xFF9E,0xFF9F);
-                    final UnicodeProperty lineBreak = getProperty("Line_Break");
-                    unicodeMap.putAll(getProperty("Alphabetic").getSet(UCD_Names.YES).add(0x05F3).removeAll(
-                            getProperty("Ideographic").getSet(UCD_Names.YES))
-                            .removeAll(unicodeMap.keySet("Katakana"))
-                            // .removeAll(script.getSet("Thai"))
-                            // .removeAll(script.getSet("Lao"))
-                            .removeAll(lineBreak.getSet("SA")).removeAll(script.getSet("Hiragana"))
-                            .removeAll(unicodeMap.keySet("Extend"))
-                            .removeAll(unicodeMap.keySet("Hebrew_Letter")),
-                            "ALetter");
-                    unicodeMap
-                    .putAll(new UnicodeSet(
-                            "[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A\\u02D7]"),
-                            "MidLetter");
-/*
- * ? \\u02D7 U+02D7 ( ˗ ) MODIFIER LETTER MINUS SIGN
+            unicodeMap.putAll(0x1F1E6, 0x1F1FF, "Regional_Indicator");
+
+            unicodeMap.putAll(cat.getSet("Format")
+                    .remove(0x200C)
+                    .remove(0x200D)
+                    .remove(0x200B)
+                    .removeAll(tags), "Format");
+            unicodeMap
+            .putAll(
+                    script
+                    .getSet("Katakana")
+                    .addAll(
+                            new UnicodeSet(
+                                    "[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70]")),
+                    "Katakana"); // \uFF9E\uFF9F
+            final Object foo = unicodeMap.keySet("Katakana");
+            // UnicodeSet graphemeExtend =
+            // getProperty("Grapheme_Extend").getSet(UCD_Names.YES).remove(0xFF9E,0xFF9F);
+            final UnicodeProperty lineBreak = getProperty("Line_Break");
+            unicodeMap.putAll(getProperty("Alphabetic").getSet(UCD_Names.YES).add(0x05F3).removeAll(
+                    getProperty("Ideographic").getSet(UCD_Names.YES))
+                    .removeAll(unicodeMap.keySet("Katakana"))
+                    // .removeAll(script.getSet("Thai"))
+                    // .removeAll(script.getSet("Lao"))
+                    .removeAll(lineBreak.getSet("SA")).removeAll(script.getSet("Hiragana"))
+                    .removeAll(unicodeMap.keySet("Extend"))
+                    .removeAll(unicodeMap.keySet("Hebrew_Letter")),
+                    "ALetter");
+            unicodeMap
+            .putAll(new UnicodeSet(
+                    "[\\u00B7\\u0387\\u05F4\\u2027\\u003A\\uFE13\\uFE55\\uFF1A\\u02D7]"),
+                    "MidLetter");
+            /*
+             * ? \\u02D7 U+02D7 ( ˗ ) MODIFIER LETTER MINUS SIGN
 U+00B7 ( · ) MIDDLE DOT
 U+0387 ( · ) GREEK ANO TELEIA
 U+05F4 ( ״ ) HEBREW PUNCTUATION GERSHAYIM
@@ -812,31 +855,48 @@ U+003A ( : ) COLON (used in Swedish)
 U+FE13 ( ︓ ) PRESENTATION FORM FOR VERTICAL COLON
 U+FE55 ( ﹕ ) SMALL COLON
 U+FF1A ( ： ) FULLWIDTH COLON
- */
-                    /*
-                     * 0387 ( · ) GREEK ANO TELEIA FE13 ( ︓ ) PRESENTATION FORM FOR
-                     * VERTICAL COLON FE55 ( ﹕ ) SMALL COLON FF1A ( ： ) FULLWIDTH COLON
-                     */
-                    unicodeMap.putAll(lineBreak.getSet("Infix_Numeric").add(0x066C).add(0xFE50).add(0xFE54)
-                            .add(0xFF0C).add(0xFF1B).remove(0x002E).remove(0x003A).remove(0xFE13), "MidNum");
-                    /*
-                     * 066C ( ٬ ) ARABIC THOUSANDS SEPARATOR
-                     * 
-                     * FE50 ( ﹐ ) SMALL COMMA FE54 ( ﹔ ) SMALL SEMICOLON FF0C ( ， )
-                     * FULLWIDTH COMMA FF1B ( ； ) FULLWIDTH SEMICOLON
-                     */
-                    unicodeMap.putAll(new UnicodeSet(
-                            "[\\u002E\\u2018\\u2019\\u2024\\uFE52\\uFF07\\uFF0E]"), "MidNumLet");
+             */
+            /*
+             * 0387 ( · ) GREEK ANO TELEIA FE13 ( ︓ ) PRESENTATION FORM FOR
+             * VERTICAL COLON FE55 ( ﹕ ) SMALL COLON FF1A ( ： ) FULLWIDTH COLON
+             */
+            unicodeMap.putAll(lineBreak.getSet("Infix_Numeric").add(0x066C).add(0xFE50).add(0xFE54)
+                    .add(0xFF0C).add(0xFF1B).remove(0x002E).remove(0x003A).remove(0xFE13), "MidNum");
+            /*
+             * 066C ( ٬ ) ARABIC THOUSANDS SEPARATOR
+             * 
+             * FE50 ( ﹐ ) SMALL COMMA FE54 ( ﹔ ) SMALL SEMICOLON FF0C ( ， )
+             * FULLWIDTH COMMA FF1B ( ； ) FULLWIDTH SEMICOLON
+             */
+            unicodeMap.putAll(new UnicodeSet(
+                    "[\\u002E\\u2018\\u2019\\u2024\\uFE52\\uFF07\\uFF0E]"), "MidNumLet");
 
-                    unicodeMap.putAll(new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C), "Numeric"); // .remove(0x387)
-                    unicodeMap.putAll(cat.getSet("Connector_Punctuation").remove(0x30FB).remove(0xFF65),
-                            "ExtendNumLet");
-                    // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
-                    // of the above touch it.
-                    unicodeMap.setMissing("Other");
-                    // 0387 Wordbreak = Other → MidLetter
-                }
-            }.setMain("Word_Break", "WB", UnicodeProperty.ENUMERATED, version).addValueAliases(
+            unicodeMap.putAll(new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C), "Numeric"); // .remove(0x387)
+            unicodeMap.putAll(cat.getSet("Connector_Punctuation").remove(0x30FB).remove(0xFF65),
+                    "ExtendNumLet");
+            // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
+            // of the above touch it.
+
+            // emoji support
+            unicodeMap.putAll(tags, "Extend");
+
+            unicodeMap.putAll(E_Base, "E_Base");
+            unicodeMap.putAll(E_Modifier, "E_Modifier");
+
+            unicodeMap.putAll(Zwj, "ZWJ");
+            unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
+            unicodeMap.putAll(Glue_After_Zwj_And_E_Base, "Glue_After_Zwj_And_E_Base");
+
+            // note: during development it is easier to put new properties at the top.
+            // that way you find out which other values overlap.
+
+            unicodeMap.setMissing("Other");
+            // 0387 Wordbreak = Other → MidLetter
+
+            add(new UnicodeProperty.UnicodeMapProperty()
+            .set(unicodeMap)
+            .setMain("Word_Break", "WB", UnicodeProperty.ENUMERATED, version)
+            .addValueAliases(
                     new String[][] { { "Format", "FO" }, { "Katakana", "KA" }, { "ALetter", "LE" },
                             { "MidLetter", "ML" }, { "MidNum", "MN" }, { "MidNumLet", "MB" },
                             { "MidNumLet", "MB" }, { "Numeric", "NU" }, { "ExtendNumLet", "EX" },
@@ -848,59 +908,61 @@ U+FF1A ( ： ) FULLWIDTH COLON
                             { "E_Base", "EB" },
                             { "E_Modifier", "EM" },
                             { "Glue_After_Zwj", "GAZ" },
+                            { "Glue_After_Zwj_And_E_Base", "GAZEB" },
                             { "ZWJ", "ZWJ" }
                     }, AliasAddAction.ADD_MAIN_ALIAS).swapFirst2ValueAliases());
         }
 
         if (compositeVersion >= 0x040000) {
-            add(new UnicodeProperty.UnicodeMapProperty() {
-                {
-                    unicodeMap = new UnicodeMap<String>();
-                    unicodeMap.setErrorOnReset(true);
-                    unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
-                    unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
-                    final UnicodeProperty cat = getProperty("General_Category");
-                    unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(
-                            cat.getSet("Spacing_Mark")), "Extend");
-                    unicodeMap.putAll(new UnicodeSet("[\\u0085\\u2028\\u2029]"), "Sep");
-                    unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
-                    unicodeMap.putAll(getProperty("Whitespace").getSet(UCD_Names.YES).removeAll(
-                            unicodeMap.keySet("Sep")).removeAll(unicodeMap.keySet("CR")).removeAll(
-                                    unicodeMap.keySet("LF")), "Sp");
-                    final UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
-                    unicodeMap.putAll(getProperty("Lowercase").getSet(UCD_Names.YES)
-                            .removeAll(graphemeExtend), "Lower");
-                    unicodeMap.putAll(getProperty("Uppercase").getSet(UCD_Names.YES).addAll(
-                            cat.getSet("Titlecase_Letter")), "Upper");
-                    final UnicodeSet temp = getProperty("Alphabetic").getSet(UCD_Names.YES)
-                            // .add(0x00A0)
-                            .add(0x05F3).removeAll(unicodeMap.keySet("Lower")).removeAll(
-                                    unicodeMap.keySet("Upper")).removeAll(unicodeMap.keySet("Extend"));
-                    unicodeMap.putAll(temp, "OLetter");
-                    final UnicodeProperty lineBreak = getProperty("Line_Break");
-                    unicodeMap.putAll(lineBreak.getSet("Numeric"), "Numeric");
-                    unicodeMap.putAll(new UnicodeSet("[\\u002E\\u2024\\uFE52\\uFF0E]"), "ATerm");
-                    unicodeMap.putAll(getProperty("STerm").getSet(UCD_Names.YES).removeAll(
-                            unicodeMap.keySet("ATerm")), "STerm");
-                    unicodeMap.putAll(cat.getSet("Open_Punctuation").addAll(cat.getSet("Close_Punctuation"))
-                            .addAll(lineBreak.getSet("Quotation")).remove(0x05F3).removeAll(
-                                    unicodeMap.keySet("ATerm")).removeAll(unicodeMap.keySet("STerm")),
-                            "Close");
-                    unicodeMap.putAll(new UnicodeSet("[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C"
-                            + "\\uFE50\\uFF64\\uFE51\\uFE51\\u055D\\u060C\\u060D\\u07F8\\u1802\\u1808" + // new
-                            // from
-                            // L2/08-029
-                            "\\u003A\\uFE13\\uFF1A" + "\\uFE55" + // new from L2/08-029
-                            // "\\u003B\\uFE14\\uFF1B" +
-                            "\\u2014\\uFE31\\u002D\\uFF0D" + "\\u2013\\uFE32\\uFE58\\uFE63" + // new
-                            // from
-                            // L2/08-029
-                            "]"), "SContinue");
-                    // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
-                    // of the above touch it.
-                    unicodeMap.setMissing("Other");
-                }
-            }.setMain("Sentence_Break", "SB", UnicodeProperty.ENUMERATED, version).addValueAliases(
+            final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
+            unicodeMap.setErrorOnReset(true);
+            unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
+            unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
+            final UnicodeProperty cat = getProperty("General_Category");
+            unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(
+                    cat.getSet("Spacing_Mark")), "Extend");
+            unicodeMap.putAll(new UnicodeSet("[\\u0085\\u2028\\u2029]"), "Sep");
+            unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
+            unicodeMap.putAll(getProperty("Whitespace").getSet(UCD_Names.YES).removeAll(
+                    unicodeMap.keySet("Sep")).removeAll(unicodeMap.keySet("CR")).removeAll(
+                            unicodeMap.keySet("LF")), "Sp");
+            final UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
+            unicodeMap.putAll(getProperty("Lowercase").getSet(UCD_Names.YES)
+                    .removeAll(graphemeExtend), "Lower");
+            unicodeMap.putAll(getProperty("Uppercase").getSet(UCD_Names.YES).addAll(
+                    cat.getSet("Titlecase_Letter")), "Upper");
+            final UnicodeSet temp = getProperty("Alphabetic").getSet(UCD_Names.YES)
+                    // .add(0x00A0)
+                    .add(0x05F3).removeAll(unicodeMap.keySet("Lower")).removeAll(
+                            unicodeMap.keySet("Upper")).removeAll(unicodeMap.keySet("Extend"));
+            unicodeMap.putAll(temp, "OLetter");
+            final UnicodeProperty lineBreak = getProperty("Line_Break");
+            unicodeMap.putAll(lineBreak.getSet("Numeric"), "Numeric");
+            unicodeMap.putAll(new UnicodeSet("[\\u002E\\u2024\\uFE52\\uFF0E]"), "ATerm");
+            unicodeMap.putAll(getProperty("STerm").getSet(UCD_Names.YES).removeAll(
+                    unicodeMap.keySet("ATerm")), "STerm");
+            unicodeMap.putAll(cat.getSet("Open_Punctuation").addAll(cat.getSet("Close_Punctuation"))
+                    .addAll(lineBreak.getSet("Quotation")).remove(0x05F3).removeAll(
+                            unicodeMap.keySet("ATerm")).removeAll(unicodeMap.keySet("STerm")),
+                    "Close");
+            unicodeMap.putAll(new UnicodeSet("[\\u002C\\u3001\\uFE10\\uFE11\\uFF0C"
+                    + "\\uFE50\\uFF64\\uFE51\\uFE51\\u055D\\u060C\\u060D\\u07F8\\u1802\\u1808" + // new
+                    // from
+                    // L2/08-029
+                    "\\u003A\\uFE13\\uFF1A" + "\\uFE55" + // new from L2/08-029
+                    // "\\u003B\\uFE14\\uFF1B" +
+                    "\\u2014\\uFE31\\u002D\\uFF0D" + "\\u2013\\uFE32\\uFE58\\uFE63" + // new
+                    // from
+                    // L2/08-029
+                    "]"), "SContinue");
+            // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
+            // of the above touch it.
+            unicodeMap.setMissing("Other");
+
+            add(new UnicodeProperty.UnicodeMapProperty()
+            .set(unicodeMap)
+            .setMain("Sentence_Break", "SB", UnicodeProperty.ENUMERATED, version)
+            .addValueAliases(
                     new String[][] { { "Sep", "SE" }, { "Format", "FO" }, { "Sp", "SP" },
                             { "Lower", "LO" }, { "Upper", "UP" }, { "OLetter", "LE" }, { "Numeric", "NU" },
                             { "ATerm", "AT" }, { "STerm", "ST" }, { "Extend", "EX" }, { "SContinue", "SC" },
@@ -1226,76 +1288,76 @@ isTitlecase(X) is false.
             } else if (type == ENUMERATED || type == CATALOG) {
                 final byte style = UCD_Types.LONG;
                 final int prop = propMask >> 8;
-                String temp = null;
-                boolean titlecase = false;
-                for (short i = 0; i < 256; ++i) {
-                    final boolean check = false;
-                    try {
-                        switch (prop) {
-                        case UCD_Types.CATEGORY >> 8:
-                            temp = (UCD.getCategoryID_fromIndex(i, style));
-                            break;
-                        case UCD_Types.COMBINING_CLASS >> 8:
-                            temp = (UCD.getCombiningClassID_fromIndex(i, style));
-                            break;
-                        case UCD_Types.BIDI_CLASS >> 8:
-                            temp = (UCD.getBidiClassID_fromIndex(i, style));
-                            break;
-                        case UCD_Types.DECOMPOSITION_TYPE >> 8:
-                            temp = (UCD.getDecompositionTypeID_fromIndex(i, style));
-                            // check = temp != null;
-                            break;
-                        case UCD_Types.NUMERIC_TYPE >> 8:
-                            temp = (UCD.getNumericTypeID_fromIndex(i, style));
-                            titlecase = true;
-                            break;
-                        case UCD_Types.EAST_ASIAN_WIDTH >> 8:
-                            temp = (UCD.getEastAsianWidthID_fromIndex(i, style));
-                            break;
-                        case UCD_Types.LINE_BREAK >> 8:
-                            temp = (UCD.getLineBreakID_fromIndex(i, style));
-                            break;
-                        case UCD_Types.JOINING_TYPE >> 8:
-                            temp = (UCD.getJoiningTypeID_fromIndex(i, style));
-                            break;
-                        case UCD_Types.JOINING_GROUP >> 8:
-                            temp = (UCD.getJoiningGroupID_fromIndex(i, style));
-                            break;
-                        case UCD_Types.SCRIPT >> 8:
-                            temp = (UCD.getScriptID_fromIndex(i, style));
-                            titlecase = true;
-                            if (UnicodeProperty.UNUSED.equals(temp)) {
-                                continue;
-                            }
-                            if (temp != null) {
-                                temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
-                            }
-                            break;
-                        case UCD_Types.AGE >> 8:
-                            temp = (UCD.getAgeID_fromIndex(i, style));
-                            break;
-                        case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
-                            temp = (UCD.getHangulSyllableTypeID_fromIndex(i, style));
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Internal Error: " + prop);
-                    }
-                } catch (final ArrayIndexOutOfBoundsException e) {
-                    continue;
-                }
-                if (check) {
-                    System.out.println("Value: " + temp);
-                }
-                if (temp != null && temp.length() != 0 && !temp.equals(UNUSED)) {
-                    result.add(Utility.getUnskeleton(temp, titlecase));
-                }
-                if (check) {
-                    System.out.println("Value2: " + temp);
-                }
+    String temp = null;
+    boolean titlecase = false;
+    for (short i = 0; i < 256; ++i) {
+        final boolean check = false;
+        try {
+            switch (prop) {
+            case UCD_Types.CATEGORY >> 8:
+                temp = (UCD.getCategoryID_fromIndex(i, style));
+    break;
+    case UCD_Types.COMBINING_CLASS >> 8:
+        temp = (UCD.getCombiningClassID_fromIndex(i, style));
+    break;
+    case UCD_Types.BIDI_CLASS >> 8:
+        temp = (UCD.getBidiClassID_fromIndex(i, style));
+    break;
+    case UCD_Types.DECOMPOSITION_TYPE >> 8:
+        temp = (UCD.getDecompositionTypeID_fromIndex(i, style));
+    // check = temp != null;
+    break;
+    case UCD_Types.NUMERIC_TYPE >> 8:
+        temp = (UCD.getNumericTypeID_fromIndex(i, style));
+    titlecase = true;
+    break;
+    case UCD_Types.EAST_ASIAN_WIDTH >> 8:
+        temp = (UCD.getEastAsianWidthID_fromIndex(i, style));
+    break;
+    case UCD_Types.LINE_BREAK >> 8:
+        temp = (UCD.getLineBreakID_fromIndex(i, style));
+    break;
+    case UCD_Types.JOINING_TYPE >> 8:
+        temp = (UCD.getJoiningTypeID_fromIndex(i, style));
+    break;
+    case UCD_Types.JOINING_GROUP >> 8:
+        temp = (UCD.getJoiningGroupID_fromIndex(i, style));
+    break;
+    case UCD_Types.SCRIPT >> 8:
+        temp = (UCD.getScriptID_fromIndex(i, style));
+    titlecase = true;
+    if (UnicodeProperty.UNUSED.equals(temp)) {
+        continue;
+    }
+    if (temp != null) {
+        temp = UCharacter.toTitleCase(Locale.ENGLISH, temp, null);
+    }
+    break;
+    case UCD_Types.AGE >> 8:
+        temp = (UCD.getAgeID_fromIndex(i, style));
+    break;
+    case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
+        temp = (UCD.getHangulSyllableTypeID_fromIndex(i, style));
+    break;
+    default:
+        throw new IllegalArgumentException("Internal Error: " + prop);
             }
-            // if (prop == (UCD_Types.DECOMPOSITION_TYPE>>8)) result.add("none");
-            // if (prop == (UCD_Types.JOINING_TYPE>>8)) result.add("Non_Joining");
-            // if (prop == (UCD_Types.NUMERIC_TYPE>>8)) result.add("None");
+        } catch (final ArrayIndexOutOfBoundsException e) {
+            continue;
+        }
+        if (check) {
+            System.out.println("Value: " + temp);
+        }
+        if (temp != null && temp.length() != 0 && !temp.equals(UNUSED)) {
+            result.add(Utility.getUnskeleton(temp, titlecase));
+        }
+        if (check) {
+            System.out.println("Value2: " + temp);
+        }
+    }
+    // if (prop == (UCD_Types.DECOMPOSITION_TYPE>>8)) result.add("none");
+    // if (prop == (UCD_Types.JOINING_TYPE>>8)) result.add("Non_Joining");
+    // if (prop == (UCD_Types.NUMERIC_TYPE>>8)) result.add("None");
             }
             return result;
         }
@@ -1335,47 +1397,47 @@ isTitlecase(X) is false.
                         case UCD_Types.CATEGORY >> 8:
                             return lookup(valueAlias, UCD_Names.LONG_GENERAL_CATEGORY,
                                     UCD_Names.GENERAL_CATEGORY, UCD_Names.EXTRA_GENERAL_CATEGORY, result);
-                        case UCD_Types.COMBINING_CLASS >> 8:
-                            addUnique(String.valueOf(Utility.lookupShort(valueAlias,
-                                    UCD_Names.LONG_COMBINING_CLASS, true)), result);
-                        return lookup(valueAlias, UCD_Names.LONG_COMBINING_CLASS,
-                                UCD_Names.COMBINING_CLASS, null, result);
-                        case UCD_Types.BIDI_CLASS >> 8:
-                            return lookup(valueAlias, UCD_Names.LONG_BIDI_CLASS, UCD_Names.BIDI_CLASS, null,
-                                    result);
-                        case UCD_Types.DECOMPOSITION_TYPE >> 8:
-                            lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE, FIXED_DECOMPOSITION_TYPE,
-                                    null, result);
-                        return lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE,
-                                UCD_Names.DECOMPOSITION_TYPE, null, result);
-                        case UCD_Types.NUMERIC_TYPE >> 8:
-                            return lookup(valueAlias, UCD_Names.LONG_NUMERIC_TYPE, UCD_Names.NUMERIC_TYPE,
-                                    null, result);
-                        case UCD_Types.EAST_ASIAN_WIDTH >> 8:
-                            return lookup(valueAlias, UCD_Names.LONG_EAST_ASIAN_WIDTH,
-                                    UCD_Names.EAST_ASIAN_WIDTH, null, result);
-                        case UCD_Types.LINE_BREAK >> 8:
-                            lookup(valueAlias, UCD_Names.LONG_LINE_BREAK, UCD_Names.LINE_BREAK, null, result);
-                            if (valueAlias.equals("Inseparable")) {
-                                addUnique("Inseperable", result);
-                            }
-                            // Inseparable; Inseperable
-                            return result;
-                        case UCD_Types.JOINING_TYPE >> 8:
-                            return lookup(valueAlias, UCD_Names.LONG_JOINING_TYPE, UCD_Names.JOINING_TYPE,
-                                    null, result);
-                        case UCD_Types.JOINING_GROUP >> 8:
-                            return lookup(valueAlias, UCD_Names.JOINING_GROUP, UCD_Names.JOINING_GROUP, ALIAS_JOINING_GROUP, result);
-                        case UCD_Types.SCRIPT >> 8:
-                            return lookup(valueAlias, UCD_Names.LONG_SCRIPT, UCD_Names.SCRIPT,
-                                    UCD_Names.EXTRA_SCRIPT, result);
-                        case UCD_Types.AGE >> 8:
-                            return lookup(valueAlias, UCD_Names.LONG_AGE, UCD_Names.SHORT_AGE, null, result);
-                        case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
-                            return lookup(valueAlias, UCD_Names.LONG_HANGUL_SYLLABLE_TYPE,
-                                    UCD_Names.HANGUL_SYLLABLE_TYPE, null, result);
-                        default:
-                            throw new IllegalArgumentException("Internal Error: " + prop);
+                case UCD_Types.COMBINING_CLASS >> 8:
+                    addUnique(String.valueOf(Utility.lookupShort(valueAlias,
+                            UCD_Names.LONG_COMBINING_CLASS, true)), result);
+                return lookup(valueAlias, UCD_Names.LONG_COMBINING_CLASS,
+                        UCD_Names.COMBINING_CLASS, null, result);
+                case UCD_Types.BIDI_CLASS >> 8:
+                    return lookup(valueAlias, UCD_Names.LONG_BIDI_CLASS, UCD_Names.BIDI_CLASS, null,
+                            result);
+                case UCD_Types.DECOMPOSITION_TYPE >> 8:
+                    lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE, FIXED_DECOMPOSITION_TYPE,
+                            null, result);
+                return lookup(valueAlias, UCD_Names.LONG_DECOMPOSITION_TYPE,
+                        UCD_Names.DECOMPOSITION_TYPE, null, result);
+                case UCD_Types.NUMERIC_TYPE >> 8:
+                    return lookup(valueAlias, UCD_Names.LONG_NUMERIC_TYPE, UCD_Names.NUMERIC_TYPE,
+                            null, result);
+                case UCD_Types.EAST_ASIAN_WIDTH >> 8:
+                    return lookup(valueAlias, UCD_Names.LONG_EAST_ASIAN_WIDTH,
+                            UCD_Names.EAST_ASIAN_WIDTH, null, result);
+                case UCD_Types.LINE_BREAK >> 8:
+                    lookup(valueAlias, UCD_Names.LONG_LINE_BREAK, UCD_Names.LINE_BREAK, null, result);
+                if (valueAlias.equals("Inseparable")) {
+                    addUnique("Inseperable", result);
+                }
+                // Inseparable; Inseperable
+                return result;
+                case UCD_Types.JOINING_TYPE >> 8:
+                    return lookup(valueAlias, UCD_Names.LONG_JOINING_TYPE, UCD_Names.JOINING_TYPE,
+                            null, result);
+                case UCD_Types.JOINING_GROUP >> 8:
+                    return lookup(valueAlias, UCD_Names.JOINING_GROUP, UCD_Names.JOINING_GROUP, ALIAS_JOINING_GROUP, result);
+                case UCD_Types.SCRIPT >> 8:
+                    return lookup(valueAlias, UCD_Names.LONG_SCRIPT, UCD_Names.SCRIPT,
+                            UCD_Names.EXTRA_SCRIPT, result);
+                case UCD_Types.AGE >> 8:
+                    return lookup(valueAlias, UCD_Names.LONG_AGE, UCD_Names.SHORT_AGE, null, result);
+                case UCD_Types.HANGUL_SYLLABLE_TYPE >> 8:
+                    return lookup(valueAlias, UCD_Names.LONG_HANGUL_SYLLABLE_TYPE,
+                            UCD_Names.HANGUL_SYLLABLE_TYPE, null, result);
+                default:
+                    throw new IllegalArgumentException("Internal Error: " + prop);
                         }
                     } catch (final ArrayIndexOutOfBoundsException e) {
                         continue;

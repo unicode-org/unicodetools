@@ -1,9 +1,9 @@
-# IndicPositionalCategory-8.0.0.txt
-# Date: 2015-05-12, 10:00:00 GMT [RP, KW, LI]
-#
-# Unicode Character Database
-# Copyright (c) 1991-2015 Unicode, Inc.
+# IndicPositionalCategory-9.0.0.txt
+# Date: 2016-02-25, 00:48:00 GMT [RP]
+# © 2016 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
+#
 # For documentation, see UAX #44: Unicode Character Database,
 # at http://www.unicode.org/reports/tr44/
 #
@@ -56,13 +56,13 @@
 # in the structural sense used for the Indic_Positional_Category are the
 # following:
 #
-# Ahom, Balinese, Batak, Bengali, Brahmi, Buginese, Buhid, Chakma,
-# Cham, Devanagari, Grantha, Gujarati, Gurmukhi, Hanunoo, Javanese,
-# Kaithi, Kannada, Kharoshthi, Khmer, Khojki, Khudawadi, Lao, Lepcha,
-# Limbu, Malayalam, Meetei Mayek, Modi, Myanmar, New Tai Lue, Oriya,
-# Rejang, Saurashtra, Sharada, Siddham, Sinhala, Sundanese, Syloti
-# Nagri, Tagalog, Tagbanwa, Tai Tham, Tai Viet, Takri, Tamil, Telugu,
-# Thai, Tibetan, and Tirhuta.
+# Ahom, Balinese, Batak, Bengali, Bhaiksuki, Brahmi, Buginese, Buhid,
+# Chakma, Cham, Devanagari, Grantha, Gujarati, Gurmukhi, Hanunoo,
+# Javanese, Kaithi, Kannada, Kharoshthi, Khmer, Khojki, Khudawadi,
+# Lao, Lepcha, Limbu, Malayalam, Marchen, Meetei Mayek, Modi,
+# Myanmar, Newa, New Tai Lue, Oriya, Rejang, Saurashtra, Sharada,
+# Siddham, Sinhala, Sundanese, Syloti Nagri, Tagalog, Tagbanwa, Tai
+# Tham, Tai Viet, Takri, Tamil, Telugu, Thai, Tibetan, and Tirhuta.
 #
 # All characters for all other scripts not in that list
 # take the default value for this property.
@@ -216,6 +216,10 @@ ABEC          ; Right # Mc       MEETEI MAYEK LUM IYEK
 1134D         ; Right # Mc       GRANTHA SIGN VIRAMA
 11357         ; Right # Mc       GRANTHA AU LENGTH MARK
 11362..11363  ; Right # Mc   [2] GRANTHA VOWEL SIGN VOCALIC L..GRANTHA VOWEL SIGN VOCALIC LL
+11435         ; Right # Mc       NEWA VOWEL SIGN AA
+11437         ; Right # Mc       NEWA VOWEL SIGN II
+11440..11441  ; Right # Mc   [2] NEWA VOWEL SIGN O..NEWA VOWEL SIGN AU
+11445         ; Right # Mc       NEWA SIGN VISARGA
 114B0         ; Right # Mc       TIRHUTA VOWEL SIGN AA
 114B2         ; Right # Mc       TIRHUTA VOWEL SIGN II
 114BD         ; Right # Mc       TIRHUTA VOWEL SIGN SHORT O
@@ -230,6 +234,10 @@ ABEC          ; Right # Mc       MEETEI MAYEK LUM IYEK
 116AF         ; Right # Mc       TAKRI VOWEL SIGN II
 116B6         ; Right # Mc       TAKRI SIGN VIRAMA
 11720..11721  ; Right # Mc   [2] AHOM VOWEL SIGN A..AHOM VOWEL SIGN AA
+11C2F         ; Right # Mc       BHAIKSUKI VOWEL SIGN AA
+#11C3E         ; Right # Mc       BHAIKSUKI SIGN VISARGA
+11CA9         ; Right # Mc       MARCHEN SUBJOINED LETTER YA
+11CB4         ; Right # Mc       MARCHEN VOWEL SIGN O
 
 # Indic_Positional_Category=Left
 
@@ -265,12 +273,14 @@ AAEE          ; Left # Mc       MEETEI MAYEK VOWEL SIGN AU
 111B4         ; Left # Mc       SHARADA VOWEL SIGN I
 112E1         ; Left # Mc       KHUDAWADI VOWEL SIGN I
 11347..11348  ; Left # Mc   [2] GRANTHA VOWEL SIGN EE..GRANTHA VOWEL SIGN AI
+11436         ; Left # Mc       NEWA VOWEL SIGN I
 114B1         ; Left # Mc       TIRHUTA VOWEL SIGN I
 114B9         ; Left # Mc       TIRHUTA VOWEL SIGN E
 115B0         ; Left # Mc       SIDDHAM VOWEL SIGN I
 115B8         ; Left # Mc       SIDDHAM VOWEL SIGN E
 116AE         ; Left # Mc       TAKRI VOWEL SIGN I
 11726         ; Left # Mc       AHOM VOWEL SIGN E
+11CB1         ; Left # Mc       MARCHEN VOWEL SIGN I
 
 # Indic_Positional_Category=Visual_Order_Left
 
@@ -397,6 +407,7 @@ AABB..AABC    ; Visual_Order_Left # Lo   [2] TAI VIET VOWEL AUE..TAI VIET VOWEL 
 1CDA..1CDB    ; Top # Mn   [2] VEDIC TONE DOUBLE SVARITA..VEDIC TONE TRIPLE SVARITA
 1CE0          ; Top # Mn       VEDIC TONE RIGVEDIC KASHMIRI INDEPENDENT SVARITA
 1CF4          ; Top # Mn       VEDIC TONE CANDRA ABOVE
+1DFB          ; Top # Mn       COMBINING DELETION MARK
 A806          ; Top # Mn       SYLOTI NAGRI SIGN HASANTA
 A80B          ; Top # Mn       SYLOTI NAGRI SIGN ANUSVARA
 A826          ; Top # Mn       SYLOTI NAGRI VOWEL SIGN E
@@ -407,6 +418,7 @@ A980..A982    ; Top # Mn   [3] JAVANESE SIGN PANYANGGA..JAVANESE SIGN LAYAR
 A9B3          ; Top # Mn       JAVANESE SIGN CECAK TELU
 A9B6..A9B7    ; Top # Mn   [2] JAVANESE VOWEL SIGN WULU..JAVANESE VOWEL SIGN WULU MELIK
 A9BC          ; Top # Mn       JAVANESE VOWEL SIGN PEPET
+A8C5          ; Top # Mn       SAURASHTRA SIGN CANDRABINDU
 A9E5          ; Top # Mn       MYANMAR SIGN SHAN SAW
 AA29..AA2C    ; Top # Mn   [4] CHAM VOWEL SIGN AA..CHAM VOWEL SIGN EI
 AA2E          ; Top # Mn       CHAM VOWEL SIGN OE
@@ -440,12 +452,15 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11230..11231  ; Top # Mn   [2] KHOJKI VOWEL SIGN E..KHOJKI VOWEL SIGN AI
 11234         ; Top # Mn       KHOJKI SIGN ANUSVARA
 11236..11237  ; Top # Mn   [2] KHOJKI SIGN NUKTA..KHOJKI SIGN SHADDA
+1123E         ; Top # Mn       KHOJKI SIGN SUKUN
 112DF         ; Top # Mn       KHUDAWADI SIGN ANUSVARA
 112E5..112E8  ; Top # Mn   [4] KHUDAWADI VOWEL SIGN E..KHUDAWADI VOWEL SIGN AU
 11301         ; Top # Mn       GRANTHA SIGN CANDRABINDU
 11340         ; Top # Mn       GRANTHA VOWEL SIGN II
 11366..1136C  ; Top # Mn   [7] COMBINING GRANTHA DIGIT ZERO..COMBINING GRANTHA DIGIT SIX
 11370..11374  ; Top # Mn   [5] COMBINING GRANTHA LETTER A..COMBINING GRANTHA LETTER PA
+1143E..1143F  ; Top # Mn   [2] NEWA VOWEL SIGN E..NEWA VOWEL SIGN AI
+11443..11444  ; Top # Mn   [2] NEWA SIGN CANDRABINDU..NEWA SIGN ANUSVARA
 114BA         ; Top # Mn       TIRHUTA VOWEL SIGN SHORT E
 114BF..114C0  ; Top # Mn   [2] TIRHUTA SIGN CANDRABINDU..TIRHUTA SIGN ANUSVARA
 115BC..115BD  ; Top # Mn   [2] SIDDHAM SIGN CANDRABINDU..SIDDHAM SIGN ANUSVARA
@@ -459,6 +474,10 @@ ABE5          ; Top # Mn       MEETEI MAYEK VOWEL SIGN ANAP
 11722..11723  ; Top # Mn   [2] AHOM VOWEL SIGN I..AHOM VOWEL SIGN II
 11727         ; Top # Mn       AHOM VOWEL SIGN AW
 11729..1172B  ; Top # Mn   [3] AHOM VOWEL SIGN AI..AHOM SIGN KILLER
+11C30..11C31  ; Top # Mn   [2] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN II
+11C38..11C3D  ; Top # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
+11CB3         ; Top # Mn       MARCHEN VOWEL SIGN E
+11CB5..11CB6  ; Top # Mn   [2] MARCHEN SIGN ANUSVARA..MARCHEN SIGN CANDRABINDU
 
 # Indic_Positional_Category=Bottom
 
@@ -563,6 +582,9 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 1122F         ; Bottom # Mn       KHOJKI VOWEL SIGN U
 112E3..112E4  ; Bottom # Mn   [2] KHUDAWADI VOWEL SIGN U..KHUDAWADI VOWEL SIGN UU
 112E9..112EA  ; Bottom # Mn   [2] KHUDAWADI SIGN NUKTA..KHUDAWADI SIGN VIRAMA
+11438..1143D  ; Bottom # Mn   [6] NEWA VOWEL SIGN U..NEWA VOWEL SIGN VOCALIC LL
+11442         ; Bottom # Mn       NEWA SIGN VIRAMA
+11446         ; Bottom # Mn       NEWA SIGN VISARGA
 114B3..114B8  ; Bottom # Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
 114C2..114C3  ; Bottom # Mn   [2] TIRHUTA SIGN VIRAMA..TIRHUTA SIGN NUKTA
 115B2..115B5  ; Bottom # Mn   [4] SIDDHAM VOWEL SIGN U..SIDDHAM VOWEL SIGN VOCALIC RR
@@ -575,6 +597,11 @@ ABED          ; Bottom # Mn       MEETEI MAYEK APUN IYEK
 1171D         ; Bottom # Mn       AHOM CONSONANT SIGN MEDIAL LA
 11724..11725  ; Bottom # Mn   [2] AHOM VOWEL SIGN U..AHOM VOWEL SIGN UU
 11728         ; Bottom # Mn       AHOM VOWEL SIGN O
+11C32..11C36  ; Bottom # Mn   [5] BHAIKSUKI VOWEL SIGN U..BHAIKSUKI VOWEL SIGN VOCALIC L
+11C3E         ; Bottom # Mn       BHAIKSUKI SIGN VISARGA
+11C92..11CA7  ; Bottom # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
+11CAA..11CB0  ; Bottom # Mn   [7] MARCHEN SUBJOINED LETTER RA..MARCHEN VOWEL SIGN AA
+11CB2         ; Bottom # Mn       MARCHEN VOWEL SIGN U
 
 # Indic_Positional_Category=Top_And_Bottom
 

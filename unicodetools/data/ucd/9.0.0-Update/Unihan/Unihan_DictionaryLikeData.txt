@@ -1,10 +1,10 @@
 #
 # Unihan_DictionaryLikeData.txt
-# Date: 2015-04-30 18:38:20 GMT [JHJ]
-# Unicode version: 8.0.0
+# Date: 2016-02-26 19:01:28 GMT [JHJ]
+# Unicode version: 9.0.0
 #
 # Unicode Character Database
-# Copyright (c) 1991-2015 Unicode, Inc.
+# © 1991-2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -129845,7 +129845,7 @@ U+2386A	kTotalStrokes	26
 U+2386B	kTotalStrokes	26
 U+2386C	kTotalStrokes	26
 U+2386D	kTotalStrokes	26
-U+2386E	kTotalStrokes	26
+U+2386E	kTotalStrokes	25
 U+2386F	kTotalStrokes	26
 U+23870	kTotalStrokes	26
 U+23871	kTotalStrokes	26
@@ -156969,8 +156969,8 @@ U+29C06	kTotalStrokes	28
 U+29C07	kTotalStrokes	28
 U+29C08	kTotalStrokes	31
 U+29C09	kTotalStrokes	32
-U+29C0A	kTotalStrokes	10
-U+29C0B	kTotalStrokes	10
+U+29C0A	kTotalStrokes	5
+U+29C0B	kTotalStrokes	5
 U+29C0C	kTotalStrokes	13
 U+29C0D	kTotalStrokes	14
 U+29C0E	kTotalStrokes	14
