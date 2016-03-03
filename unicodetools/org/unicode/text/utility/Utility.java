@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
 
@@ -423,7 +424,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     public static String fromHex(String p, boolean acceptChars) {
         return fromHex(p,acceptChars,4);
     }
-    
+
     public static String fromHex(String p, boolean acceptChars, int minHex) {
         final StringBuffer output = new StringBuffer();
         int value = 0;
@@ -1268,10 +1269,10 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 // check the idna directory
                 String[] parts = filename.split("/");
                 String base = parts[0];
-//                if (base.equals("security")) {
-//                    // TODO fix versions
-//                    // element = "6.3.0";//"revision-06";
-//                } else 
+                //                if (base.equals("security")) {
+                //                    // TODO fix versions
+                //                    // element = "6.3.0";//"revision-06";
+                //                } else 
                 if (base.equals("emoji")) {
                     element = getEmojiVersion(element);
                 }
@@ -1619,5 +1620,18 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
 
     public static <U> U ifNull(U keys, U defaultValue) {
         return keys == null ? defaultValue : keys;
+    }
+
+    public static String generateDateLine() {
+        return "# Date: " + Default.getDate();
+    }
+
+    public static String getDataHeader(String filename) {
+        return "# " + filename 
+                + "\n" + generateDateLine() 
+                + "\n# © " + Default.getYear() + " Unicode®, Inc." 
+                + "\n# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries."
+                + "\n# For terms of use, see http://www.unicode.org/terms_of_use.html"
+                ;
     }
 }

@@ -109,9 +109,9 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
         UnicodeSet _Glue_After_Zwj = emojiData.getAfterZwj();
 
         // break apart overlaps
-        final UnicodeSet Glue_After_Zwj_And_E_Base = new UnicodeSet(_Glue_After_Zwj).retainAll(_E_Base).freeze();
-        final UnicodeSet Glue_After_Zwj = new UnicodeSet(_Glue_After_Zwj).removeAll(Glue_After_Zwj_And_E_Base).freeze();
-        final UnicodeSet E_Base = new UnicodeSet(_E_Base).removeAll(Glue_After_Zwj_And_E_Base).freeze();
+        final UnicodeSet E_Base_GAZ = new UnicodeSet(_Glue_After_Zwj).retainAll(_E_Base).freeze();
+        final UnicodeSet Glue_After_Zwj = new UnicodeSet(_Glue_After_Zwj).removeAll(E_Base_GAZ).freeze();
+        final UnicodeSet E_Base = new UnicodeSet(_E_Base).removeAll(E_Base_GAZ).freeze();
 
         UnicodeSet Zwj = new UnicodeSet(0x200D,0x200D).freeze();
 
@@ -693,6 +693,8 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
             final UnicodeMap<String> unicodeMap = new UnicodeMap<String>();
             unicodeMap.setErrorOnReset(true); // will cause exception if we try assigning 2 different values
 
+            final UnicodeSet prepend = new UnicodeSet("[\\u0600-\\u0605\\u06DD\\u070F\\U000110BD \\u0D4E \\U000111C2 \\U000111C3]");
+            unicodeMap.putAll(prepend, "Prepend");
             unicodeMap.put(0xD, "CR");
             unicodeMap.put(0xA, "LF");
             final UnicodeProperty cat = getProperty("General_Category");
@@ -716,6 +718,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                     .remove(0x200C)
                     .remove(0x200D)
                     .removeAll(tags)
+                    .removeAll(prepend)
                     ;
             final UnicodeSet diff = new UnicodeSet(temp).retainAll(graphemeExtend);
             if (diff.size() != 0) {
@@ -760,7 +763,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
 
             unicodeMap.putAll(Zwj, "ZWJ");
             unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
-            unicodeMap.putAll(Glue_After_Zwj_And_E_Base, "Glue_After_Zwj_And_E_Base");
+            unicodeMap.putAll(E_Base_GAZ, "E_Base_GAZ");
 
             // note: during development it is easier to put new properties at the top.
             // that way you find out which other values overlap.
@@ -777,7 +780,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             { "E_Base", "EB" },
                             { "E_Modifier", "EM" },
                             { "Glue_After_Zwj", "GAZ" },
-                            { "Glue_After_Zwj_And_E_Base", "GAZEB" },
+                            { "E_Base_GAZ", "EBG" },
                             { "ZWJ", "ZWJ" }
                     }, AliasAddAction.ADD_MAIN_ALIAS)
                     .swapFirst2ValueAliases())
@@ -885,7 +888,7 @@ U+FF1A ( ： ) FULLWIDTH COLON
 
             unicodeMap.putAll(Zwj, "ZWJ");
             unicodeMap.putAll(Glue_After_Zwj, "Glue_After_Zwj");
-            unicodeMap.putAll(Glue_After_Zwj_And_E_Base, "Glue_After_Zwj_And_E_Base");
+            unicodeMap.putAll(E_Base_GAZ, "E_Base_GAZ");
 
             // note: during development it is easier to put new properties at the top.
             // that way you find out which other values overlap.
@@ -908,7 +911,7 @@ U+FF1A ( ： ) FULLWIDTH COLON
                             { "E_Base", "EB" },
                             { "E_Modifier", "EM" },
                             { "Glue_After_Zwj", "GAZ" },
-                            { "Glue_After_Zwj_And_E_Base", "GAZEB" },
+                            { "E_Base_GAZ", "EBG" },
                             { "ZWJ", "ZWJ" }
                     }, AliasAddAction.ADD_MAIN_ALIAS).swapFirst2ValueAliases());
         }

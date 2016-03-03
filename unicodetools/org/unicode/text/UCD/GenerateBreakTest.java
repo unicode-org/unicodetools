@@ -29,6 +29,8 @@ import java.util.regex.Matcher;
 
 import org.unicode.cldr.util.Segmenter;
 import org.unicode.cldr.util.Segmenter.Builder;
+import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
@@ -506,12 +508,12 @@ abstract public class GenerateBreakTest implements UCD_Types {
             printLine(out, extraSingleSamples.get(ii), true, false, rulesFound);
             ++counter;
         }
-        
+
         for (String extraTestSample : extraTestSamples) {
             printLine(out, extraTestSample, true, false, rulesFound);
             ++counter;
         }
-        
+
         out.println("#");
         out.println("# Lines: " + counter);
         out.println("#");
@@ -805,7 +807,9 @@ abstract public class GenerateBreakTest implements UCD_Types {
             out.println("</table>");
         }
         Set<Double> numbers = getMissing(fileName, rulesFound);
-        System.out.println("***Rules missing from SAMPLES for " + fileName + ": " + numbers);
+        if (!numbers.isEmpty()) {
+            System.err.println("***Rules missing from SAMPLES for " + fileName + ": " + numbers);
+        }
     }
 
     Set<Double> getRuleNumbers() {
@@ -1063,14 +1067,13 @@ abstract public class GenerateBreakTest implements UCD_Types {
             sampleMap = map;
             this.extraSamples.addAll(Arrays.asList(extraSamples));
 
-            this.extraSingleSamples.addAll(Arrays.asList(extraSingleSamples));
             this.extraSingleSamples.addAll(Arrays.asList(
-                    "\uD83C\uDDE6\uD83C\uDDE7\uD83C\uDDE8",
-                    "\uD83C\uDDE6\u200D\uD83C\uDDE7\uD83C\uDDE8",
-                    "\uD83C\uDDE6\uD83C\uDDE7\u200D\uD83C\uDDE8",
+                    "\r\na\n\u0308",
+                    "a\u0308",
                     " \u200D\u0646",
                     "\u0646\u200D "
                     ));
+            this.extraSingleSamples.addAll(Arrays.asList(extraSingleSamples));
         }
 
         @Override
@@ -1098,21 +1101,55 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
     }
 
+    static class Sampler {
+        final UnicodeProperty prop;
+        Sampler(String propName) {
+            prop = unicodePropertySource.getProperty(propName);
+        }
+        String get(String value) {
+            return get(value,1);
+        }
+        String get(String value, int count) {
+            for (String s : prop.getSet(value)) {
+                if (--count == 0) {
+                    return s;
+                }
+            }
+            throw new IllegalArgumentException(prop.getName() + ":" + value 
+                    + " doesn't have " + count + " values");
+        }
+    }
+
     static class GenerateGraphemeBreakTest extends XGenerateBreakTest {
         public GenerateGraphemeBreakTest(UCD ucd) {
-            super(ucd, Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()),"GraphemeClusterBreak"), "aa", "Grapheme",
-                    new String[]{
-                unicodePropertySource.getSet("GC=Cn").iterator().next(),
-                "\uD800"
-            },
-            new String[]{
-                // U+1F1E6 = base RI
-                "a\uD83C\uDDE6b",
-                "\uD83C\uDDF7\uD83C\uDDFA",
-                "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8",
-                "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8\uD83C\uDDEA",
-                "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
-            });
+            super(ucd, 
+                    Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()),"GraphemeClusterBreak"), 
+                    "aa", 
+                    "Grapheme",
+                    new String[]{unicodePropertySource.getSet("GC=Cn").iterator().next(), "\uD800"},
+                    new String[]{});
+
+            Sampler GCB = new Sampler("GCB");
+            this.extraSingleSamples.addAll(Arrays.asList(
+                    GCB.get("L") + GCB.get("L"),
+                    GCB.get("LV") + GCB.get("T") + GCB.get("L"),
+                    GCB.get("LVT") + GCB.get("T") + GCB.get("L"),
+                    GCB.get("RI") + GCB.get("RI",2) + GCB.get("RI",3) + "b",
+                    "a" + GCB.get("RI") + GCB.get("RI",2) + GCB.get("RI",3) + "b",
+                    "a" + GCB.get("RI") + GCB.get("RI",2) + GCB.get("ZWJ") + GCB.get("RI",3) + "b",
+                    "a" + GCB.get("RI") + GCB.get("ZWJ") + GCB.get("RI",2) + GCB.get("RI",3) + "b",
+                    "a" + GCB.get("RI") + GCB.get("RI",2) + GCB.get("RI",3) + GCB.get("RI",4) + "b",
+                    "a" + GCB.get("ZWJ"),
+                    "a" + "\u0308" + "b",
+                    "a" + GCB.get("SpacingMark") + "b",
+                    "a" + GCB.get("Prepend") + "b",
+                    GCB.get("E_Base") + GCB.get("E_Modifier") + GCB.get("E_Base"),
+                    GCB.get("EBG") + GCB.get("E_Modifier"),
+                    GCB.get("ZWJ") + GCB.get("EBG") + GCB.get("E_Modifier"),
+                    GCB.get("ZWJ") + GCB.get("Glue_After_Zwj"),
+                    GCB.get("ZWJ") + GCB.get("EBG"),
+                    GCB.get("EBG") + GCB.get("EBG")
+                    ));
         }
     }
 
@@ -1412,7 +1449,10 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
     static class GenerateWordBreakTest extends XGenerateBreakTest {
         public GenerateWordBreakTest(UCD ucd) {
-            super(ucd, Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()),"WordBreak"), "aa", "Word",
+            super(ucd, 
+                    Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()),"WordBreak"), 
+                    "aa", 
+                    "Word",
                     new String[] {
                 /*"\uFF70", "\uFF65", "\u30FD", */ "a\u2060",
                 "a:",
@@ -1424,16 +1464,38 @@ abstract public class GenerateBreakTest implements UCD_Types {
                 "1,",
                 "1.\u2060",
             },
-
-            add(getExtraSamples(),
-                    // U+1F1E6 = base RI
-                    "a\uD83C\uDDE6b",
-                    "\uD83C\uDDF7\uD83C\uDDFA",
-                    "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8",
-                    "\uD83C\uDDF7\uD83C\uDDFA\uD83C\uDDF8\uD83C\uDDEA",
-                    "\uD83C\uDDF7\uD83C\uDDFA\u200B\uD83C\uDDF8\uD83C\uDDEA",
-                    "\u05D0\"\u05D0"
+            new String[]{}
+            );
+            System.out.println();
+            Sampler WB = new Sampler("WB");
+            this.extraSingleSamples.addAll(Arrays.asList(
+                    WB.get("ALetter") + WB.get("ALetter") + WB.get("ALetter"),
+                    WB.get("ALetter") + WB.get("MidLetter") + WB.get("ALetter"),
+                    WB.get("ALetter") + WB.get("MidLetter") + WB.get("MidLetter") + WB.get("ALetter"),
+                    WB.get("Hebrew_Letter") + WB.get("Single_Quote") + WB.get("Hebrew_Letter"),
+                    WB.get("Hebrew_Letter") + WB.get("Double_Quote") + WB.get("Hebrew_Letter"),
+                    WB.get("ALetter") + WB.get("Numeric") + WB.get("Numeric") + WB.get("ALetter"),
+                    WB.get("Numeric") + WB.get("MidNum") + WB.get("Numeric"),
+                    WB.get("Numeric") + WB.get("MidNum") + WB.get("MidNum") + WB.get("Numeric"),
+                    WB.get("Katakana") + WB.get("Katakana"),
+                    WB.get("ALetter") + WB.get("ExtendNumLet") 
+                    + WB.get("Numeric") + WB.get("ExtendNumLet") 
+                    + WB.get("Katakana") + WB.get("ExtendNumLet"),
+                    WB.get("ALetter") + WB.get("ExtendNumLet") + WB.get("ExtendNumLet") + WB.get("ALetter"),
+                    WB.get("RI") + WB.get("RI",2) + WB.get("RI",3) + "b",
+                    "a" + WB.get("RI") + WB.get("RI",2) + WB.get("RI",3) + "b",
+                    "a" + WB.get("RI") + WB.get("RI",2) + WB.get("ZWJ") + WB.get("RI",3) + "b",
+                    "a" + WB.get("RI") + WB.get("ZWJ") + WB.get("RI",2) + WB.get("RI",3) + "b",
+                    "a" + WB.get("RI") + WB.get("RI",2) + WB.get("RI",3) + WB.get("RI",4) + "b",
+                    WB.get("E_Base") + WB.get("E_Modifier") + WB.get("E_Base"),
+                    WB.get("EBG") + WB.get("E_Modifier"),
+                    WB.get("ZWJ") + WB.get("EBG") + WB.get("E_Modifier"),
+                    WB.get("ZWJ") + WB.get("Glue_After_Zwj"),
+                    WB.get("ZWJ") + WB.get("EBG"),
+                    WB.get("EBG") + WB.get("EBG"),
+                    "a" + "\u0308" + WB.get("ZWJ") + "\u0308" + "b"
                     ));
+
             // 1. ÷ (Numeric|ALetter) ÷ (MidLetter|MidNum|MidNumLet) ÷ (MidLetter|MidNum|MidNumLet) ÷ (Numeric|ALetter) ÷
             // 2. ÷ (Numeric|ALetter) × ExtendNumLet × (Numeric|ALetter) ÷ (MidLetter|MidNum|MidNumLet) ÷ (MidLetter|MidNum|MidNumLet) ÷ (Numeric|ALetter) ÷
             for (String numLet : Arrays.asList("1", "a")) {
@@ -2638,5 +2700,18 @@ abstract public class GenerateBreakTest implements UCD_Types {
         final ArrayList<String> result = new ArrayList<String>(Arrays.asList(strings1));
         result.addAll(Arrays.asList(strings2));
         return result.toArray(new String[strings1.length + strings2.length]);
+    }
+
+    public String getSample(UnicodeProperty prop2, String value) {
+        return getSample(prop2, value, 1);
+    }
+    public String getSample(UnicodeProperty prop2, String value, int count) {
+        UnicodeSet us = prop2.getSet(value);
+        for (String s : us) {
+            if (--count <= 0) {
+                return s;
+            }
+        }
+        throw new IllegalArgumentException();
     }
 }

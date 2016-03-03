@@ -1,5 +1,5 @@
 # PropList-9.0.0.txt
-# Date: 2016-02-09, 18:49:17 GMT
+# Date: 2016-03-01, 13:44:57 GMT
 # © 2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
@@ -53,7 +53,7 @@
 2E1A          ; Dash # Pd       HYPHEN WITH DIAERESIS
 2E3A..2E3B    ; Dash # Pd   [2] TWO-EM DASH..THREE-EM DASH
 2E40          ; Dash # Pd       DOUBLE HYPHEN
-2E43          ; Dash # Po       DASH WITH LEFT UPTURN
+#2E43          ; Dash # Po       DASH WITH LEFT UPTURN
 301C          ; Dash # Pd       WAVE DASH
 3030          ; Dash # Pd       WAVY DASH
 30A0          ; Dash # Pd       KATAKANA-HIRAGANA DOUBLE HYPHEN
@@ -730,9 +730,10 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11C38..11C3B  ; Other_Alphabetic # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
 11C3C..11C3D  ; Other_Alphabetic # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
 11C3E         ; Other_Alphabetic # Mc       BHAIKSUKI SIGN VISARGA
-11C3F         ; Other_Alphabetic # Mn       BHAIKSUKI SIGN VIRAMA
+#11C3F         ; Other_Alphabetic # Mn       BHAIKSUKI SIGN VIRAMA
 11C92..11CA7  ; Other_Alphabetic # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
-11CA9..11CB0  ; Other_Alphabetic # Mn   [8] MARCHEN SUBJOINED LETTER YA..MARCHEN VOWEL SIGN AA
+11CA9         ; Other_Alphabetic # Mc       MARCHEN SUBJOINED LETTER YA
+11CAA..11CB0  ; Other_Alphabetic # Mn   [7] MARCHEN SUBJOINED LETTER RA..MARCHEN VOWEL SIGN AA
 11CB1         ; Other_Alphabetic # Mc       MARCHEN VOWEL SIGN I
 11CB2..11CB3  ; Other_Alphabetic # Mn   [2] MARCHEN VOWEL SIGN U..MARCHEN VOWEL SIGN E
 11CB4         ; Other_Alphabetic # Mc       MARCHEN VOWEL SIGN O
@@ -815,7 +816,7 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 07EB..07F3    ; Diacritic # Mn   [9] NKO COMBINING SHORT HIGH TONE..NKO COMBINING DOUBLE DOT ABOVE
 07F4..07F5    ; Diacritic # Lm   [2] NKO HIGH TONE APOSTROPHE..NKO LOW TONE APOSTROPHE
 0818..0819    ; Diacritic # Mn   [2] SAMARITAN MARK OCCLUSION..SAMARITAN MARK DAGESH
-08E0..08E1    ; Diacritic # Mn   [2] ARABIC SMALL HIGH FOOTNOTE MARKER..ARABIC SMALL HIGH SIGN SAFHA
+# 08E0..08E1    ; Diacritic # Mn   [2] ARABIC SMALL HIGH FOOTNOTE MARKER..ARABIC SMALL HIGH SIGN SAFHA
 08E3..08FE    ; Diacritic # Mn  [28] ARABIC TURNED DAMMA BELOW..ARABIC DAMMA WITH DOT
 093C          ; Diacritic # Mn       DEVANAGARI SIGN NUKTA
 094D          ; Diacritic # Mn       DEVANAGARI SIGN VIRAMA
@@ -1575,3 +1576,8 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 # Total code points: 9
 
 # EOF
+
+1145B ; Terminal_Punctuation # NEWA PLACEHOLDER MARK
+11C43 ; Terminal_Punctuation # BHAIKSUKI WORD SEPARATOR
+ 
+11C41..11C42 ; Sentence_Terminal # BHAIKSUKI DANDA..DOUBLE DANDA

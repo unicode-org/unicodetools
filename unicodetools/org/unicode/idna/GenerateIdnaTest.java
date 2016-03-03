@@ -25,6 +25,7 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.BagFormatter;
@@ -93,11 +94,7 @@ public class GenerateIdnaTest {
     int generateTests(int lines) throws IOException {
         final String filename = "IdnaTest.txt";
         final PrintWriter out = BagFormatter.openUTF8Writer(GenerateIdna.DIR, filename);
-        out.println("# " + "IdnaTest"  + Default.ucdVersion() +  ".txt" + "\n" +
-                "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
-                "#\n" +
-                "# Copyright © 1991-" + (new Date().getYear()+1900) +
-                " Unicode, Inc.");
+        out.println(Utility.getDataHeader(filename));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);
         //        out.println(

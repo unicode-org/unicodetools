@@ -378,23 +378,11 @@ public class GenerateIdna {
         final String unversionedFileName = "IdnaMappingTable.txt";
         final PrintWriter writer = BagFormatter.openUTF8Writer(DIR, unversionedFileName);
 
-        writer.println("# " + filename + "\n" +
-                "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +
+        writer.println(Utility.getDataHeader(filename));
+        writer.println(
                 "#\n" +
                 "# Unicode IDNA Compatible Preprocessing (UTS #46)\n" +
-                "# Copyright © 1991-" +
-                (new Date().getYear()+1900) +
-                " Unicode®, Inc.\n" +
-                "# For terms of use, see http://www.unicode.org/terms_of_use.html\n" +
                 "# For documentation, see http://www.unicode.org/reports/tr46/\n");
-
-        //    # IdnaMappingTable-5.1.0.txt - DRAFT
-        //    # Date: 2009-11-14 08:10:42 GMT [MD]
-        //    #
-        //    # Unicode IDNA Compatible Preprocessing (UTS #46)
-        //    # Copyright (c) 1991-2009 Unicode, Inc.
-        //    # For terms of use, see http://www.unicode.org/terms_of_use.html
-        //    # For documentation, see http://www.unicode.org/reports/tr46/
 
         final UnicodeProperty ASSIGNED = new UnicodeProperty.SimpleProperty() {
             @Override
