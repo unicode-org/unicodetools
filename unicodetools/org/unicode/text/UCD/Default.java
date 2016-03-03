@@ -41,6 +41,7 @@ public final class Default implements UCD_Types {
         inRecursiveCall = false;
     }
 
+    //static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     static DateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd', 'HH:mm:ss' GMT'");
     static DateFormat yearFormat = new SimpleDateFormat("yyyy");
 

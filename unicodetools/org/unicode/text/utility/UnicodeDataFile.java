@@ -35,13 +35,9 @@ public class UnicodeDataFile {
         this.filename = filename;
 
         if (!isHTML) {
-            out.println("# " + filename + UnicodeDataFile.getFileSuffix(false));
-            out.println(generateDateLine());
-            out.println("# © " + Default.getYear() + " Unicode®, Inc.");
-            out.println("# For terms of use, see http://www.unicode.org/terms_of_use.html");
-            out.println("#");
-            out.println("# Unicode Character Database");
-            out.println("# For documentation, see http://www.unicode.org/reports/tr44/");
+            out.println(Utility.getDataHeader(filename + UnicodeDataFile.getFileSuffix(false)));
+            out.println("#\n# Unicode Character Database"
+                    + "\n#   For documentation, see http://www.unicode.org/reports/tr44/");
         }
         try {
             Utility.appendFile(Settings.SRC_UCD_DIR + filename + "Header" + fileType, Utility.UTF8_UNIX, out);
@@ -66,10 +62,6 @@ public class UnicodeDataFile {
         }
         out.close();
         Utility.renameIdentical(mostRecent, Utility.getOutputName(newFile), null, skipCopyright);
-    }
-
-    public static String generateDateLine() {
-        return "# Date: " + Default.getDate();
     }
 
     public static String getHTMLFileSuffix(boolean withDVersion) {

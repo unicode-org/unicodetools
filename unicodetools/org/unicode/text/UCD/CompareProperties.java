@@ -435,7 +435,7 @@ public class CompareProperties implements UCD_Types {
         final PrintWriter output = Utility.openPrintWriterGenDir("PropertyDifferences" + UnicodeDataFile.getFileSuffix(true), Utility.LATIN1_UNIX);
         output.println("# Listing of relationships among properties, suitable for analysis by spreadsheet");
         output.println("# Generated for " + Default.ucd().getVersion());
-        output.println(UnicodeDataFile.generateDateLine());
+        output.println(Utility.generateDateLine());
         output.println("# P1	P2	R(P1,P2)	C(P1&P2)	C(P1-P2)	C(P2-P1)");
 
 

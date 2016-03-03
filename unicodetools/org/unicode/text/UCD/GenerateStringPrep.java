@@ -1,8 +1,3 @@
-/*
- * Created on May 3, 2005
- * Copyright (C) 2004-2005, Unicode, Inc., International Business Machines Corporation, and others.
- * For terms of use, see http://www.unicode.org/terms_of_use.html
- */
 package org.unicode.text.UCD;
 
 import java.io.BufferedReader;

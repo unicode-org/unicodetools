@@ -209,46 +209,42 @@ public class GenerateEmojiData {
      * @return the baseDataHeader
      */
     static String getBaseDataHeader(int trNumber, String title, String filename) {
-        return "# " + title + " for UTR #" + trNumber
-                + "\n"
-                + "#\n"
-                + "# File:    " + filename + ".txt\n"
-                + "# Version: "  + Emoji.VERSION_STRING + "\n"
-                + "# Date:    " + getDate() + "\n"
-                + "#\n"
-                + "# © 1991-2016 Unicode®, Inc.\n"
-                + "# For terms of use, see http://www.unicode.org/terms_of_use.html\n"
-                + "# For documentation and usage, see http://www.unicode.org/reports/tr51/\n"
-                + "#\n";
+        return Utility.getDataHeader(filename) 
+                + "\n#"
+                + "\n# " + title + " for UTR #" + trNumber
+                + "\n# Version: "  + Emoji.VERSION_STRING
+                + "\n#\n"
+                + "\n# For documentation and usage, see http://www.unicode.org/reports/tr" + trNumber
+                + "\n#";
     }
 
-    static String dataHeader() {
-        return getBaseDataHeader(51, "Emoji Data", "emoji-data")
-                + "# Format: Code ; Default_Emoji_Style ; Emoji_Level ; Emoji_Modifier_Status ; Emoji_Sources # Comment\n"
-                + "#\n"
-                + "#   Field 1 — Default_Emoji_Style:\n"
-                + "#             text:      default text presentation\n"
-                + "#             emoji:     default emoji presentation\n"
-                + "#   Field 2 — Emoji_Level:\n"
-                + "#             L1:        level 1 emoji\n"
-                + "#             L2:        level 2 emoji\n"
-                + "#             NA:        not applicable\n"
-                + "#   Field 3 — Emoji_Modifier_Status:\n"
-                + "#             modifier:  an emoji modifier\n"
-                + "#             primary:   a primary emoji modifier base\n"
-                + "#             secondary: a secondary emoji modifier base\n"
-                + "#             none:      not applicable\n"
-                + "#   Field 4 — Emoji_Sources:\n"
-                + "#             one or more values from {z, a, j, w, x}\n"
-                + "#             see the key in http://unicode.org/reports/tr51#Major_Sources\n"
-                + "#             NA:        not applicable\n"
-                + "#   Comment — currently contains the version where the character was first encoded,\n"
-                + "#             followed by:\n"
-                + "#             - a character name in uppercase (for a single character),\n"
-                + "#             - a keycap name,\n"
-                + "#             - an associated flag, where is associated with value unicode region code\n"
-                + "#";
-    }
+//    static String dataHeader() {
+//        return getBaseDataHeader(51, "Emoji Data", "emoji-data")
+//                + "# Format: Code ; Default_Emoji_Style ; Emoji_Level ; Emoji_Modifier_Status ; Emoji_Sources # Comment\n"
+//                + "#\n"
+//                + "#   Field 1 — Default_Emoji_Style:\n"
+//                + "#             text:      default text presentation\n"
+//                + "#             emoji:     default emoji presentation\n"
+//                + "#   Field 2 — Emoji_Level:\n"
+//                + "#             L1:        level 1 emoji\n"
+//                + "#             L2:        level 2 emoji\n"
+//                + "#             NA:        not applicable\n"
+//                + "#   Field 3 — Emoji_Modifier_Status:\n"
+//                + "#             modifier:  an emoji modifier\n"
+//                + "#             primary:   a primary emoji modifier base\n"
+//                + "#             secondary: a secondary emoji modifier base\n"
+//                + "#             none:      not applicable\n"
+//                + "#   Field 4 — Emoji_Sources:\n"
+//                + "#             one or more values from {z, a, j, w, x}\n"
+//                + "#             see the key in http://unicode.org/reports/tr51#Major_Sources\n"
+//                + "#             NA:        not applicable\n"
+//                + "#   Comment — currently contains the version where the character was first encoded,\n"
+//                + "#             followed by:\n"
+//                + "#             - a character name in uppercase (for a single character),\n"
+//                + "#             - a keycap name,\n"
+//                + "#             - an associated flag, where is associated with value unicode region code\n"
+//                + "#";
+//    }
 
     static String getDate() {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd", ULocale.ENGLISH);
