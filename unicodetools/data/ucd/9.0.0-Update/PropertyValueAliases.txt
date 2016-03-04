@@ -1,10 +1,11 @@
 # PropertyValueAliases-9.0.0.txt
-# Date: 2016-02-09, 18:49:19 GMT
+# Date: 2016-03-02, 18:55:05 GMT
 # © 2016 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see http://www.unicode.org/reports/tr44/
+#   For documentation, see http://www.unicode.org/reports/tr44/
 #
 # This file contains aliases for property values used in the UCD.
 # These names can be used for XML formats of UCD data, for regular-expression
@@ -663,6 +664,7 @@ Gr_Base; Y                            ; Yes                              ; T    
 GCB; CN                               ; Control
 GCB; CR                               ; CR
 GCB; EB                               ; E_Base
+GCB; EBG                              ; E_Base_GAZ
 GCB; EM                               ; E_Modifier
 GCB; EX                               ; Extend
 GCB; GAZ                              ; Glue_After_Zwj
@@ -1365,6 +1367,7 @@ WSpace; Y                             ; Yes                              ; T    
 WB ; CR                               ; CR
 WB ; DQ                               ; Double_Quote
 WB ; EB                               ; E_Base
+WB ; EBG                              ; E_Base_GAZ
 WB ; EM                               ; E_Modifier
 WB ; EX                               ; ExtendNumLet
 WB ; Extend                           ; Extend

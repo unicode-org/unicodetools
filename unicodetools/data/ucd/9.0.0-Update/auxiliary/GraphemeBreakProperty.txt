@@ -1,10 +1,11 @@
 # GraphemeBreakProperty-9.0.0.txt
-# Date: 2016-02-08, 10:26:24 GMT
+# Date: 2016-03-03, 12:43:52 GMT
 # © 2016 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see http://www.unicode.org/reports/tr44/
+#   For documentation, see http://www.unicode.org/reports/tr44/
 
 # ================================================
 
@@ -14,6 +15,17 @@
 #  have the value Other (XX).
 
 # @missing: 0000..10FFFF; Other
+
+# ================================================
+
+0600..0605    ; Prepend # Cf   [6] ARABIC NUMBER SIGN..ARABIC NUMBER MARK ABOVE
+06DD          ; Prepend # Cf       ARABIC END OF AYAH
+070F          ; Prepend # Cf       SYRIAC ABBREVIATION MARK
+0D4E          ; Prepend # Lo       MALAYALAM LETTER DOT REPH
+110BD         ; Prepend # Cf       KAITHI NUMBER SIGN
+111C2..111C3  ; Prepend # Lo   [2] SHARADA SIGN JIHVAMULIYA..SHARADA SIGN UPADHMANIYA
+
+# Total code points: 12
 
 # ================================================
 
@@ -34,10 +46,7 @@
 000E..001F    ; Control # Cc  [18] <control-000E>..<control-001F>
 007F..009F    ; Control # Cc  [33] <control-007F>..<control-009F>
 00AD          ; Control # Cf       SOFT HYPHEN
-0600..0605    ; Control # Cf   [6] ARABIC NUMBER SIGN..ARABIC NUMBER MARK ABOVE
 061C          ; Control # Cf       ARABIC LETTER MARK
-06DD          ; Control # Cf       ARABIC END OF AYAH
-070F          ; Control # Cf       SYRIAC ABBREVIATION MARK
 08E2          ; Control # Cf       ARABIC DISPUTED END OF AYAH
 180E          ; Control # Cf       MONGOLIAN VOWEL SEPARATOR
 200B          ; Control # Cf       ZERO WIDTH SPACE
@@ -52,17 +61,15 @@ D800..DFFF    ; Control # Cs [2048] <surrogate-D800>..<surrogate-DFFF>
 FEFF          ; Control # Cf       ZERO WIDTH NO-BREAK SPACE
 FFF0..FFF8    ; Control # Cn   [9] <reserved-FFF0>..<reserved-FFF8>
 FFF9..FFFB    ; Control # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTATION TERMINATOR
-110BD         ; Control # Cf       KAITHI NUMBER SIGN
 1BCA0..1BCA3  ; Control # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; Control # Cf   [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 E0000         ; Control # Cn       <reserved-E0000>
 E0001         ; Control # Cf       LANGUAGE TAG
 E0002..E001F  ; Control # Cn  [30] <reserved-E0002>..<reserved-E001F>
-E0020..E007F  ; Control # Cf  [96] TAG SPACE..CANCEL TAG
 E0080..E00FF  ; Control # Cn [128] <reserved-E0080>..<reserved-E00FF>
 E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 6031
+# Total code points: 5926
 
 # ================================================
 
@@ -238,7 +245,7 @@ E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 1CF8..1CF9    ; Extend # Mn   [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 1DC0..1DF5    ; Extend # Mn  [54] COMBINING DOTTED GRAVE ACCENT..COMBINING UP TACK ABOVE
 1DFB..1DFF    ; Extend # Mn   [5] COMBINING DELETION MARK..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
-200C..200D    ; Extend # Cf   [2] ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
+200C          ; Extend # Cf       ZERO WIDTH NON-JOINER
 20D0..20DC    ; Extend # Mn  [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0    ; Extend # Me   [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1          ; Extend # Mn       COMBINING LEFT RIGHT ARROW ABOVE
@@ -350,7 +357,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11C3C..11C3D  ; Extend # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
 11C3F         ; Extend # Mn       BHAIKSUKI SIGN VIRAMA
 11C92..11CA7  ; Extend # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
-11CA9..11CB0  ; Extend # Mn   [8] MARCHEN SUBJOINED LETTER YA..MARCHEN VOWEL SIGN AA
+11CAA..11CB0  ; Extend # Mn   [7] MARCHEN SUBJOINED LETTER RA..MARCHEN VOWEL SIGN AA
 11CB2..11CB3  ; Extend # Mn   [2] MARCHEN VOWEL SIGN U..MARCHEN VOWEL SIGN E
 11CB5..11CB6  ; Extend # Mn   [2] MARCHEN SIGN ANUSVARA..MARCHEN SIGN CANDRABINDU
 16AF0..16AF4  ; Extend # Mn   [5] BASSA VAH COMBINING HIGH TONE..BASSA VAH COMBINING HIGH-LOW TONE
@@ -377,9 +384,10 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 1E026..1E02A  ; Extend # Mn   [5] COMBINING GLAGOLITIC LETTER YO..COMBINING GLAGOLITIC LETTER FITA
 1E8D0..1E8D6  ; Extend # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 1E944..1E94A  ; Extend # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
+E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1730
+# Total code points: 1824
 
 # ================================================
 
@@ -524,13 +532,14 @@ ABEC          ; SpacingMark # Mc       MEETEI MAYEK LUM IYEK
 11C2F         ; SpacingMark # Mc       BHAIKSUKI VOWEL SIGN AA
 11C38..11C3B  ; SpacingMark # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
 11C3E         ; SpacingMark # Mc       BHAIKSUKI SIGN VISARGA
+11CA9         ; SpacingMark # Mc       MARCHEN SUBJOINED LETTER YA
 11CB1         ; SpacingMark # Mc       MARCHEN VOWEL SIGN I
 11CB4         ; SpacingMark # Mc       MARCHEN VOWEL SIGN O
 16F51..16F7E  ; SpacingMark # Mc  [46] MIAO SIGN ASPIRATION..MIAO VOWEL SIGN NG
 1D166         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
 1D16D         ; SpacingMark # Mc       MUSICAL SYMBOL COMBINING AUGMENTATION DOT
 
-# Total code points: 344
+# Total code points: 345
 
 # ================================================
 
@@ -1360,5 +1369,64 @@ D76D..D787    ; LVT # Lo  [27] HANGUL SYLLABLE HYIG..HANGUL SYLLABLE HYIH
 D789..D7A3    ; LVT # Lo  [27] HANGUL SYLLABLE HIG..HANGUL SYLLABLE HIH
 
 # Total code points: 10773
+
+# ================================================
+
+261D          ; E_Base # So       WHITE UP POINTING INDEX
+26F9          ; E_Base # So       PERSON WITH BALL
+270A..270D    ; E_Base # So   [4] RAISED FIST..WRITING HAND
+1F385         ; E_Base # So       FATHER CHRISTMAS
+1F3C3..1F3C4  ; E_Base # So   [2] RUNNER..SURFER
+1F3CA..1F3CB  ; E_Base # So   [2] SWIMMER..WEIGHT LIFTER
+1F442..1F443  ; E_Base # So   [2] EAR..NOSE
+1F446..1F450  ; E_Base # So  [11] WHITE UP POINTING BACKHAND INDEX..OPEN HANDS SIGN
+1F46E         ; E_Base # So       POLICE OFFICER
+1F470..1F478  ; E_Base # So   [9] BRIDE WITH VEIL..PRINCESS
+1F47C         ; E_Base # So       BABY ANGEL
+1F481..1F483  ; E_Base # So   [3] INFORMATION DESK PERSON..DANCER
+1F485..1F487  ; E_Base # So   [3] NAIL POLISH..HAIRCUT
+1F4AA         ; E_Base # So       FLEXED BICEPS
+1F575         ; E_Base # So       SLEUTH OR SPY
+1F57A         ; E_Base # So       MAN DANCING
+1F590         ; E_Base # So       RAISED HAND WITH FINGERS SPLAYED
+1F595..1F596  ; E_Base # So   [2] REVERSED HAND WITH MIDDLE FINGER EXTENDED..RAISED HAND WITH PART BETWEEN MIDDLE AND RING FINGERS
+1F645..1F647  ; E_Base # So   [3] FACE WITH NO GOOD GESTURE..PERSON BOWING DEEPLY
+1F64B..1F64F  ; E_Base # So   [5] HAPPY PERSON RAISING ONE HAND..PERSON WITH FOLDED HANDS
+1F6A3         ; E_Base # So       ROWBOAT
+1F6B4..1F6B6  ; E_Base # So   [3] BICYCLIST..PEDESTRIAN
+1F6C0         ; E_Base # So       BATH
+1F918..1F91E  ; E_Base # So   [7] SIGN OF THE HORNS..HAND WITH INDEX AND MIDDLE FINGERS CROSSED
+1F926         ; E_Base # So       FACE PALM
+1F930         ; E_Base # So       PREGNANT WOMAN
+1F933..1F939  ; E_Base # So   [7] SELFIE..JUGGLING
+1F93B..1F93E  ; E_Base # So   [4] MODERN PENTATHLON..HANDBALL
+
+# Total code points: 80
+
+# ================================================
+
+1F3FB..1F3FF  ; E_Modifier # Sk   [5] EMOJI MODIFIER FITZPATRICK TYPE-1-2..EMOJI MODIFIER FITZPATRICK TYPE-6
+
+# Total code points: 5
+
+# ================================================
+
+200D          ; ZWJ # Cf       ZERO WIDTH JOINER
+
+# Total code points: 1
+
+# ================================================
+
+2764          ; Glue_After_Zwj # So       HEAVY BLACK HEART
+1F48B         ; Glue_After_Zwj # So       KISS MARK
+1F5E8         ; Glue_After_Zwj # So       LEFT SPEECH BUBBLE
+
+# Total code points: 3
+
+# ================================================
+
+1F466..1F469  ; E_Base_GAZ # So   [4] BOY..WOMAN
+
+# Total code points: 4
 
 # EOF

@@ -1,10 +1,11 @@
 # WordBreakProperty-9.0.0.txt
-# Date: 2016-02-08, 10:26:33 GMT
+# Date: 2016-03-02, 18:55:13 GMT
 # © 2016 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see http://www.unicode.org/reports/tr44/
+#   For documentation, see http://www.unicode.org/reports/tr44/
 
 # ================================================
 
@@ -312,7 +313,7 @@ FB46..FB4F    ; Hebrew_Letter # Lo  [10] HEBREW LETTER TSADI WITH DAGESH..HEBREW
 1CF8..1CF9    ; Extend # Mn   [2] VEDIC TONE RING ABOVE..VEDIC TONE DOUBLE RING ABOVE
 1DC0..1DF5    ; Extend # Mn  [54] COMBINING DOTTED GRAVE ACCENT..COMBINING UP TACK ABOVE
 1DFB..1DFF    ; Extend # Mn   [5] COMBINING DELETION MARK..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
-200C..200D    ; Extend # Cf   [2] ZERO WIDTH NON-JOINER..ZERO WIDTH JOINER
+200C          ; Extend # Cf       ZERO WIDTH NON-JOINER
 20D0..20DC    ; Extend # Mn  [13] COMBINING LEFT HARPOON ABOVE..COMBINING FOUR DOTS ABOVE
 20DD..20E0    ; Extend # Me   [4] COMBINING ENCLOSING CIRCLE..COMBINING ENCLOSING CIRCLE BACKSLASH
 20E1          ; Extend # Mn       COMBINING LEFT RIGHT ARROW ABOVE
@@ -481,7 +482,8 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11C3E         ; Extend # Mc       BHAIKSUKI SIGN VISARGA
 11C3F         ; Extend # Mn       BHAIKSUKI SIGN VIRAMA
 11C92..11CA7  ; Extend # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
-11CA9..11CB0  ; Extend # Mn   [8] MARCHEN SUBJOINED LETTER YA..MARCHEN VOWEL SIGN AA
+11CA9         ; Extend # Mc       MARCHEN SUBJOINED LETTER YA
+11CAA..11CB0  ; Extend # Mn   [7] MARCHEN SUBJOINED LETTER RA..MARCHEN VOWEL SIGN AA
 11CB1         ; Extend # Mc       MARCHEN VOWEL SIGN I
 11CB2..11CB3  ; Extend # Mn   [2] MARCHEN VOWEL SIGN U..MARCHEN VOWEL SIGN E
 11CB4         ; Extend # Mc       MARCHEN VOWEL SIGN O
@@ -511,9 +513,10 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 1E026..1E02A  ; Extend # Mn   [5] COMBINING GLAGOLITIC LETTER YO..COMBINING GLAGOLITIC LETTER FITA
 1E8D0..1E8D6  ; Extend # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 1E944..1E94A  ; Extend # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
+E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2101
+# Total code points: 2196
 
 # ================================================
 
@@ -540,9 +543,8 @@ FFF9..FFFB    ; Format # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANN
 1BCA0..1BCA3  ; Format # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; Format # Cf   [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 E0001         ; Format # Cf       LANGUAGE TAG
-E0020..E007F  ; Format # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 148
+# Total code points: 52
 
 # ================================================
 
@@ -1209,6 +1211,7 @@ ABF0..ABF9    ; Numeric # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT N
 11136..1113F  ; Numeric # Nd  [10] CHAKMA DIGIT ZERO..CHAKMA DIGIT NINE
 111D0..111D9  ; Numeric # Nd  [10] SHARADA DIGIT ZERO..SHARADA DIGIT NINE
 112F0..112F9  ; Numeric # Nd  [10] KHUDAWADI DIGIT ZERO..KHUDAWADI DIGIT NINE
+11450..11459  ; Numeric # Nd  [10] NEWA DIGIT ZERO..NEWA DIGIT NINE
 114D0..114D9  ; Numeric # Nd  [10] TIRHUTA DIGIT ZERO..TIRHUTA DIGIT NINE
 11650..11659  ; Numeric # Nd  [10] MODI DIGIT ZERO..MODI DIGIT NINE
 116C0..116C9  ; Numeric # Nd  [10] TAKRI DIGIT ZERO..TAKRI DIGIT NINE
@@ -1218,8 +1221,9 @@ ABF0..ABF9    ; Numeric # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT N
 16A60..16A69  ; Numeric # Nd  [10] MRO DIGIT ZERO..MRO DIGIT NINE
 16B50..16B59  ; Numeric # Nd  [10] PAHAWH HMONG DIGIT ZERO..PAHAWH HMONG DIGIT NINE
 1D7CE..1D7FF  ; Numeric # Nd  [50] MATHEMATICAL BOLD DIGIT ZERO..MATHEMATICAL MONOSPACE DIGIT NINE
+1E950..1E959  ; Numeric # Nd  [10] ADLAM DIGIT ZERO..ADLAM DIGIT NINE
 
-# Total code points: 551
+# Total code points: 571
 
 # ================================================
 
@@ -1231,5 +1235,64 @@ FE4D..FE4F    ; ExtendNumLet # Pc   [3] DASHED LOW LINE..WAVY LOW LINE
 FF3F          ; ExtendNumLet # Pc       FULLWIDTH LOW LINE
 
 # Total code points: 10
+
+# ================================================
+
+261D          ; E_Base # So       WHITE UP POINTING INDEX
+26F9          ; E_Base # So       PERSON WITH BALL
+270A..270D    ; E_Base # So   [4] RAISED FIST..WRITING HAND
+1F385         ; E_Base # So       FATHER CHRISTMAS
+1F3C3..1F3C4  ; E_Base # So   [2] RUNNER..SURFER
+1F3CA..1F3CB  ; E_Base # So   [2] SWIMMER..WEIGHT LIFTER
+1F442..1F443  ; E_Base # So   [2] EAR..NOSE
+1F446..1F450  ; E_Base # So  [11] WHITE UP POINTING BACKHAND INDEX..OPEN HANDS SIGN
+1F46E         ; E_Base # So       POLICE OFFICER
+1F470..1F478  ; E_Base # So   [9] BRIDE WITH VEIL..PRINCESS
+1F47C         ; E_Base # So       BABY ANGEL
+1F481..1F483  ; E_Base # So   [3] INFORMATION DESK PERSON..DANCER
+1F485..1F487  ; E_Base # So   [3] NAIL POLISH..HAIRCUT
+1F4AA         ; E_Base # So       FLEXED BICEPS
+1F575         ; E_Base # So       SLEUTH OR SPY
+1F57A         ; E_Base # So       MAN DANCING
+1F590         ; E_Base # So       RAISED HAND WITH FINGERS SPLAYED
+1F595..1F596  ; E_Base # So   [2] REVERSED HAND WITH MIDDLE FINGER EXTENDED..RAISED HAND WITH PART BETWEEN MIDDLE AND RING FINGERS
+1F645..1F647  ; E_Base # So   [3] FACE WITH NO GOOD GESTURE..PERSON BOWING DEEPLY
+1F64B..1F64F  ; E_Base # So   [5] HAPPY PERSON RAISING ONE HAND..PERSON WITH FOLDED HANDS
+1F6A3         ; E_Base # So       ROWBOAT
+1F6B4..1F6B6  ; E_Base # So   [3] BICYCLIST..PEDESTRIAN
+1F6C0         ; E_Base # So       BATH
+1F918..1F91E  ; E_Base # So   [7] SIGN OF THE HORNS..HAND WITH INDEX AND MIDDLE FINGERS CROSSED
+1F926         ; E_Base # So       FACE PALM
+1F930         ; E_Base # So       PREGNANT WOMAN
+1F933..1F939  ; E_Base # So   [7] SELFIE..JUGGLING
+1F93B..1F93E  ; E_Base # So   [4] MODERN PENTATHLON..HANDBALL
+
+# Total code points: 80
+
+# ================================================
+
+1F3FB..1F3FF  ; E_Modifier # Sk   [5] EMOJI MODIFIER FITZPATRICK TYPE-1-2..EMOJI MODIFIER FITZPATRICK TYPE-6
+
+# Total code points: 5
+
+# ================================================
+
+200D          ; ZWJ # Cf       ZERO WIDTH JOINER
+
+# Total code points: 1
+
+# ================================================
+
+2764          ; Glue_After_Zwj # So       HEAVY BLACK HEART
+1F48B         ; Glue_After_Zwj # So       KISS MARK
+1F5E8         ; Glue_After_Zwj # So       LEFT SPEECH BUBBLE
+
+# Total code points: 3
+
+# ================================================
+
+1F466..1F469  ; E_Base_GAZ # So   [4] BOY..WOMAN
+
+# Total code points: 4
 
 # EOF
