@@ -1,10 +1,11 @@
 # DerivedCoreProperties-9.0.0.txt
-# Date: 2016-03-01, 13:44:51 GMT
+# Date: 2016-03-02, 18:54:57 GMT
 # © 2016 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see http://www.unicode.org/reports/tr44/
+#   For documentation, see http://www.unicode.org/reports/tr44/
 
 # ================================================
 
@@ -1122,7 +1123,6 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 11C38..11C3B  ; Alphabetic # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
 11C3C..11C3D  ; Alphabetic # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
 11C3E         ; Alphabetic # Mc       BHAIKSUKI SIGN VISARGA
-11C3F         ; Alphabetic # Mn       BHAIKSUKI SIGN VIRAMA
 11C40         ; Alphabetic # Lo       BHAIKSUKI SIGN AVAGRAHA
 11C72..11C8F  ; Alphabetic # Lo  [30] MARCHEN LETTER KA..MARCHEN LETTER A
 11C92..11CA7  ; Alphabetic # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
@@ -1238,7 +1238,7 @@ FFDA..FFDC    ; Alphabetic # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANG
 2B820..2CEA1  ; Alphabetic # Lo [5762] CJK UNIFIED IDEOGRAPH-2B820..CJK UNIFIED IDEOGRAPH-2CEA1
 2F800..2FA1D  ; Alphabetic # Lo [542] CJK COMPATIBILITY IDEOGRAPH-2F800..CJK COMPATIBILITY IDEOGRAPH-2FA1D
 
-# Total code points: 118241
+# Total code points: 118240
 
 # ================================================
 

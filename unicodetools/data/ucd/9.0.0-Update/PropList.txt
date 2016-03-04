@@ -1,10 +1,11 @@
 # PropList-9.0.0.txt
-# Date: 2016-03-01, 13:44:57 GMT
+# Date: 2016-03-02, 18:55:03 GMT
 # © 2016 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
-# For documentation, see http://www.unicode.org/reports/tr44/
+#   For documentation, see http://www.unicode.org/reports/tr44/
 
 # ================================================
 
@@ -53,7 +54,6 @@
 2E1A          ; Dash # Pd       HYPHEN WITH DIAERESIS
 2E3A..2E3B    ; Dash # Pd   [2] TWO-EM DASH..THREE-EM DASH
 2E40          ; Dash # Pd       DOUBLE HYPHEN
-#2E43          ; Dash # Po       DASH WITH LEFT UPTURN
 301C          ; Dash # Pd       WAVE DASH
 3030          ; Dash # Pd       WAVY DASH
 30A0          ; Dash # Pd       KATAKANA-HIRAGANA DOUBLE HYPHEN
@@ -62,7 +62,7 @@ FE58          ; Dash # Pd       SMALL EM DASH
 FE63          ; Dash # Pd       SMALL HYPHEN-MINUS
 FF0D          ; Dash # Pd       FULLWIDTH HYPHEN-MINUS
 
-# Total code points: 29
+# Total code points: 28
 
 # ================================================
 
@@ -194,11 +194,12 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 11238..1123C  ; Terminal_Punctuation # Po   [5] KHOJKI DANDA..KHOJKI DOUBLE SECTION MARK
 112A9         ; Terminal_Punctuation # Po       MULTANI SECTION MARK
 1144B..1144D  ; Terminal_Punctuation # Po   [3] NEWA DANDA..NEWA COMMA
+1145B         ; Terminal_Punctuation # Po       NEWA PLACEHOLDER MARK
 115C2..115C5  ; Terminal_Punctuation # Po   [4] SIDDHAM DANDA..SIDDHAM SEPARATOR BAR
 115C9..115D7  ; Terminal_Punctuation # Po  [15] SIDDHAM END OF TEXT MARK..SIDDHAM SECTION MARK WITH CIRCLES AND FOUR ENCLOSURES
 11641..11642  ; Terminal_Punctuation # Po   [2] MODI DANDA..MODI DOUBLE DANDA
 1173C..1173E  ; Terminal_Punctuation # Po   [3] AHOM SIGN SMALL SECTION..AHOM SIGN RULAI
-11C41..11C42  ; Terminal_Punctuation # Po   [2] BHAIKSUKI DANDA..BHAIKSUKI DOUBLE DANDA
+11C41..11C43  ; Terminal_Punctuation # Po   [3] BHAIKSUKI DANDA..BHAIKSUKI WORD SEPARATOR
 11C71         ; Terminal_Punctuation # Po       MARCHEN MARK SHAD
 12470..12474  ; Terminal_Punctuation # Po   [5] CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER..CUNEIFORM PUNCTUATION SIGN DIAGONAL QUADCOLON
 16A6E..16A6F  ; Terminal_Punctuation # Po   [2] MRO DANDA..MRO DOUBLE DANDA
@@ -208,7 +209,7 @@ FF64          ; Terminal_Punctuation # Po       HALFWIDTH IDEOGRAPHIC COMMA
 1BC9F         ; Terminal_Punctuation # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA87..1DA8A  ; Terminal_Punctuation # Po   [4] SIGNWRITING COMMA..SIGNWRITING COLON
 
-# Total code points: 244
+# Total code points: 246
 
 # ================================================
 
@@ -730,7 +731,6 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11C38..11C3B  ; Other_Alphabetic # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
 11C3C..11C3D  ; Other_Alphabetic # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
 11C3E         ; Other_Alphabetic # Mc       BHAIKSUKI SIGN VISARGA
-#11C3F         ; Other_Alphabetic # Mn       BHAIKSUKI SIGN VIRAMA
 11C92..11CA7  ; Other_Alphabetic # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
 11CA9         ; Other_Alphabetic # Mc       MARCHEN SUBJOINED LETTER YA
 11CAA..11CB0  ; Other_Alphabetic # Mn   [7] MARCHEN SUBJOINED LETTER RA..MARCHEN VOWEL SIGN AA
@@ -751,7 +751,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 1F150..1F169  ; Other_Alphabetic # So  [26] NEGATIVE CIRCLED LATIN CAPITAL LETTER A..NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
 1F170..1F189  ; Other_Alphabetic # So  [26] NEGATIVE SQUARED LATIN CAPITAL LETTER A..NEGATIVE SQUARED LATIN CAPITAL LETTER Z
 
-# Total code points: 1239
+# Total code points: 1238
 
 # ================================================
 
@@ -816,7 +816,6 @@ FA70..FAD9    ; Ideographic # Lo [106] CJK COMPATIBILITY IDEOGRAPH-FA70..CJK COM
 07EB..07F3    ; Diacritic # Mn   [9] NKO COMBINING SHORT HIGH TONE..NKO COMBINING DOUBLE DOT ABOVE
 07F4..07F5    ; Diacritic # Lm   [2] NKO HIGH TONE APOSTROPHE..NKO LOW TONE APOSTROPHE
 0818..0819    ; Diacritic # Mn   [2] SAMARITAN MARK OCCLUSION..SAMARITAN MARK DAGESH
-# 08E0..08E1    ; Diacritic # Mn   [2] ARABIC SMALL HIGH FOOTNOTE MARKER..ARABIC SMALL HIGH SIGN SAFHA
 08E3..08FE    ; Diacritic # Mn  [28] ARABIC TURNED DAMMA BELOW..ARABIC DAMMA WITH DOT
 093C          ; Diacritic # Mn       DEVANAGARI SIGN NUKTA
 094D          ; Diacritic # Mn       DEVANAGARI SIGN VIRAMA
@@ -962,7 +961,7 @@ FFE3          ; Diacritic # Sk       FULLWIDTH MACRON
 1E944..1E946  ; Diacritic # Mn   [3] ADLAM ALIF LENGTHENER..ADLAM GEMINATION MARK
 1E948..1E94A  ; Diacritic # Mn   [3] ADLAM CONSONANT MODIFIER..ADLAM NUKTA
 
-# Total code points: 784
+# Total code points: 782
 
 # ================================================
 
@@ -1278,6 +1277,7 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 115C9..115D7  ; Sentence_Terminal # Po  [15] SIDDHAM END OF TEXT MARK..SIDDHAM SECTION MARK WITH CIRCLES AND FOUR ENCLOSURES
 11641..11642  ; Sentence_Terminal # Po   [2] MODI DANDA..MODI DOUBLE DANDA
 1173C..1173E  ; Sentence_Terminal # Po   [3] AHOM SIGN SMALL SECTION..AHOM SIGN RULAI
+11C41..11C42  ; Sentence_Terminal # Po   [2] BHAIKSUKI DANDA..BHAIKSUKI DOUBLE DANDA
 16A6E..16A6F  ; Sentence_Terminal # Po   [2] MRO DANDA..MRO DOUBLE DANDA
 16AF5         ; Sentence_Terminal # Po       BASSA VAH FULL STOP
 16B37..16B38  ; Sentence_Terminal # Po   [2] PAHAWH HMONG SIGN VOS THOM..PAHAWH HMONG SIGN VOS TSHAB CEEB
@@ -1285,7 +1285,7 @@ FF61          ; Sentence_Terminal # Po       HALFWIDTH IDEOGRAPHIC FULL STOP
 1BC9F         ; Sentence_Terminal # Po       DUPLOYAN PUNCTUATION CHINOOK FULL STOP
 1DA88         ; Sentence_Terminal # Po       SIGNWRITING FULL STOP
 
-# Total code points: 122
+# Total code points: 124
 
 # ================================================
 
@@ -1576,8 +1576,3 @@ FE45..FE46    ; Pattern_Syntax # Po   [2] SESAME DOT..WHITE SESAME DOT
 # Total code points: 9
 
 # EOF
-
-1145B ; Terminal_Punctuation # NEWA PLACEHOLDER MARK
-11C43 ; Terminal_Punctuation # BHAIKSUKI WORD SEPARATOR
- 
-11C41..11C42 ; Sentence_Terminal # BHAIKSUKI DANDA..DOUBLE DANDA
