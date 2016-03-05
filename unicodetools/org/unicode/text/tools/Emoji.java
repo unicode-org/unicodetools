@@ -21,7 +21,6 @@ import org.unicode.cldr.util.With;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Age_Values;
-import org.unicode.text.UCD.Default;
 import org.unicode.text.tools.EmojiData.EmojiDatum;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -31,7 +30,6 @@ import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.Transliterator;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
@@ -63,9 +61,6 @@ public class Emoji {
     public static final String VERSION_STRING = VERSION_TO_GENERATE.getVersionString(2, 4);
 
     public static final VersionInfo VERSION_TO_GENERATE_UNICODE = IS_BETA ? VERSION_BETA_UNICODE : VERSION_LAST_RELEASED_UNICODE;
-    static {
-        Default.setUCD(VERSION_TO_GENERATE_UNICODE.getVersionString(3, 3));
-    }
 
     public static final String TR51_SVN_DIR = Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr51/";
     //public static final String TR51_PREFIX = IS_BETA ? "internal-beta/" : "internal/";
