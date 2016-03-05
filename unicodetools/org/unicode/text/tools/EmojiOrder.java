@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map.Entry;
@@ -12,31 +13,46 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.MapComparator;
-import org.unicode.text.UCA.UCA;
+//import org.unicode.text.UCA.UCA;
 import org.unicode.text.tools.Emoji.ModifierStatus;
+import org.unicode.text.tools.Emoji.Source;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.Output;
+import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
 public class EmojiOrder {
     private static final boolean DEBUG = false;
 
-    static final EmojiData emojiData = EmojiData.of(Emoji.VERSION_BETA);
+    public enum MajorGroup {
+        Smileys_and_People,
+        Animals_and_Nature,
+        Food_and_Drink,
+        Travel_and_Places,
+        Activities,
+        Objects,
+        Symbols,
+        Flags;
+        public String toString() {
+            return name().replace("_and_", " & ").replace('_', ' ');
+        };
+    }
+
     //static final EmojiData emojiDataLast = EmojiData.of(Emoji.VERSION_LAST_RELEASED);
     public static final StringComparator PLAIN_STRING_COMPARATOR = new UTF16.StringComparator(true, false, 0);
     static final boolean USE_ORDER = true;
@@ -59,16 +75,19 @@ public class EmojiOrder {
     //        }
     //    }
 
-    public static final UCA                       UCA_COLLATOR                = UCA.buildCollator(null);
-    //public static final EmojiOrder ALT_ORDER = new EmojiOrder(Emoji.VERSION_BETA"altOrder.txt");
+    public static final Comparator<String> UCA_COLLATOR = (Comparator<String>)(Comparator)Collator.getInstance(ULocale.ROOT);
+    //public static final EmojiOrder ALT_ORDER = new EmojiOrder(Emoji.VERSION_BETA, "altOrder.txt");
     public static final EmojiOrder STD_ORDER = new EmojiOrder(Emoji.VERSION_BETA, "emojiOrdering.txt");
 
     public final MapComparator<String>     mp;
     public final Relation<String, String>  orderingToCharacters;
     public final UnicodeMap<String>  charactersToOrdering = new UnicodeMap<>();
     public final Comparator<String>        codepointCompare;
+    public final UnicodeMap<MajorGroup>  majorGroupings = new UnicodeMap<>(); 
+    private final EmojiData emojiData;
 
     public EmojiOrder(VersionInfo version, String file) {
+        emojiData = EmojiData.of(version);
         mp  = new MapComparator<String>()
                 .setErrorOnMissing(false)
                 .setSortBeforeOthers(true)
@@ -76,6 +95,7 @@ public class EmojiOrder {
                 ;
         orderingToCharacters            = getOrdering(version, file, mp);
         mp.freeze();
+        majorGroupings.freeze();
         codepointCompare           =
                 new MultiComparator<String>(
                         mp,
@@ -88,12 +108,17 @@ public class EmojiOrder {
         Relation<String, String> result = Relation.of(new LinkedHashMap<String, Set<String>>(), LinkedHashSet.class);
         Set<String> sorted = new LinkedHashSet<>();
         Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>());
+        MajorGroup majorGroup = null;
         for (String line : FileUtilities.in(Settings.DATA_DIR + "/emoji/" + version.getVersionString(2, 2) + "/source",
                 sourceFile)) {
             if (line.isEmpty() || line.startsWith("#")) {
                 continue;
             }
             if (DEBUG) System.out.println(line);
+            if (line.startsWith("@")) {
+                majorGroup = MajorGroup.valueOf(line.substring(1).trim());
+                continue;
+            }
             line = Emoji.getLabelFromLine(lastLabel, line);
             line = Emoji.UNESCAPE.transform(line);
             for (int i = 0; i < line.length();) {
@@ -102,27 +127,29 @@ public class EmojiOrder {
                 if (emojiData.skipEmojiSequence(string)) {
                     continue;
                 }
-                if (!sorted.contains(string)) {
-                    //System.out.println("Adding: " + Utility.hex(string) + "\t" + string);
-                    add(result, sorted, lastLabel, string);
-                    ImmutableList<String> list = hack.get(string);
-                    if (list != null) {
-                        for (String string2 : list) {
-                            //System.err.println("Adding " + show(string2));
-                            add(result, sorted, lastLabel, string2); 
-                        }
+                if (sorted.contains(string)) {
+                    continue;
+                }
+                //System.out.println("Adding: " + Utility.hex(string) + "\t" + string);
+                add(result, sorted, majorGroup, lastLabel, string);
+                ImmutableList<String> list = hack.get(string);
+                if (list != null) {
+                    for (String string2 : list) {
+                        //System.err.println("Adding " + show(string2));
+                        add(result, sorted, majorGroup, lastLabel, string2); 
                     }
-                    if (emojiData.getModifierBases().contains(string)) {
-                        for (String string2 : emojiData.getModifierStatusSet(ModifierStatus.modifier)) {
-                            add(result, sorted, lastLabel, string+string2); 
-                        }
+                }
+                if (emojiData.getModifierBases().contains(string)) {
+                    for (String string2 : emojiData.getModifierStatusSet(ModifierStatus.modifier)) {
+                        add(result, sorted, majorGroup, lastLabel, string+string2); 
                     }
                 }
             }
         }
+
         Set<String> missing = new UnicodeSet(emojiData.getSortingChars())
-                .removeAll(emojiData.getModifierSequences())
-                .addAllTo(new LinkedHashSet<String>());
+        .removeAll(emojiData.getModifierSequences())
+        .addAllTo(new LinkedHashSet<String>());
         missing.removeAll(sorted);
         if (!missing.isEmpty() && !sourceFile.startsWith("alt")) {
             result.putAll("other", missing);
@@ -131,7 +158,7 @@ public class EmojiOrder {
                 System.err.print(s + " ");
             }
             System.err.println();
-            
+
             for (String s : missing) {
                 System.err.println("\t" + s + "\t\t" + show(s));
             }
@@ -155,7 +182,8 @@ public class EmojiOrder {
         return b.toString();
     }
 
-    private void add(Relation<String, String> result, Set<String> sorted, Output<Set<String>> lastLabel, String string) {
+    private void add(Relation<String, String> result, Set<String> sorted, MajorGroup majorGroup, Output<Set<String>> lastLabel, String string) {
+        majorGroupings.put(string, majorGroup);
         sorted.add(string);
         for (String item : lastLabel.value) {
             result.put(item, string);
@@ -164,154 +192,97 @@ public class EmojiOrder {
     }
 
     public static void main(String[] args) throws Exception {
-        STD_ORDER.showLines();
-        checkRBC();
+        STD_ORDER.showLines(true, null);
+//        checkRBC();
         //LinkedHashSet<String> foo = Emoji.FLAGS.addAllTo(new LinkedHashSet());
         //System.out.println(CollectionUtilities.join(foo, " "));
-//        showOrderGroups();
+        //        showOrderGroups();
         //        showOrder();
         //        STD_ORDER.show();
         //        ALT_ORDER.show();
     }
 
-    private static void checkRBC() throws Exception {
-        UnicodeSet APPLE_COMBOS = emojiData.getZwjSequencesNormal();
-        UnicodeSet APPLE_COMBOS_WITHOUT_VS = emojiData.getZwjSequencesAll();
+//    private static void checkRBC() throws Exception {
+//        UnicodeSet APPLE_COMBOS = emojiData.getZwjSequencesNormal();
+//        UnicodeSet APPLE_COMBOS_WITHOUT_VS = emojiData.getZwjSequencesAll();
+//
+//        String rules = EmojiOrder.STD_ORDER.appendCollationRules(new StringBuilder(), 
+//                new UnicodeSet(emojiData.getChars()).removeAll(Emoji.DEFECTIVE), 
+//                APPLE_COMBOS, 
+//                APPLE_COMBOS_WITHOUT_VS)
+//                .toString();
+//        final RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
+//        ruleBasedCollator.setStrength(Collator.IDENTICAL);
+//        ruleBasedCollator.freeze();
+//        Comparator<String> EMOJI_COMPARATOR = (Comparator<String>) (Comparator) ruleBasedCollator;
+//        int x = EMOJI_COMPARATOR.compare("#️⃣","☺️");
+//    }
 
-        String rules = EmojiOrder.STD_ORDER.appendCollationRules(new StringBuilder(), 
-                new UnicodeSet(emojiData.getChars()).removeAll(Emoji.DEFECTIVE), 
-                APPLE_COMBOS, 
-                APPLE_COMBOS_WITHOUT_VS)
-                .toString();
-        final RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
-        ruleBasedCollator.setStrength(Collator.IDENTICAL);
-        ruleBasedCollator.freeze();
-        Comparator<String> EMOJI_COMPARATOR = (Comparator<String>) (Comparator) ruleBasedCollator;
-        int x = EMOJI_COMPARATOR.compare("#️⃣","☺️");
-    }
 
-//    private static void showOrderGroups() {
-//        String lastPair = "";
-//        List<String> current = null;
-//        List<List<String>> segments = new ArrayList<List<String>>();
-//        int lastNOrder = -1;
-//        int lastAOrder = -1;
-//        boolean diff = false;
-//        for (String cp : STD_ORDER.mp.getOrder()) {
-//            String std = STD_ORDER.charactersToOrdering.get(cp); 
-//            String alt = ALT_ORDER.charactersToOrdering.get(cp); 
-//            String pair = std + "/" + alt;
-//            if (cp.equals("🕴")) {
-//                pair += "🕴";
-//            }
-//            if (cp.equals("😈")) {
-//                int debug = 0;
-//            }
-//            if (USE_ORDER) {
-//                Integer nOrder = STD_ORDER.mp.getNumericOrder(cp);
-//                Integer aOrder = ALT_ORDER.mp.getNumericOrder(cp);
-//                if (aOrder == null) {
-//                    continue;
+//    private void show() {
+//        for (Entry<String, Set<String>> labelToSet : orderingToCharacters.keyValuesSet()) {
+//            String label = labelToSet.getKey();
+//            System.out.print(label + "\t");
+//            int count = label.length();
+//            for (String cp : labelToSet.getValue()) {
+//                if (++count > 32) {
+//                    count = 0;
+//                    System.out.println();
 //                }
-//                diff = (nOrder - lastNOrder) != (aOrder-lastAOrder);
-//                lastNOrder = nOrder;
-//                lastAOrder = aOrder;
+//                System.out.print(cp + " ");
 //            }
-//
-//            if (!pair.equals(lastPair) || diff) {
-//                current = new ArrayList<String>();
-//                segments.add(current);
-//            }
-//            current.add(cp);
-//            lastPair = pair;
-//        }
-//
-//        for (List<String> segment : segments) {
-//            String first = segment.get(0);
-//            String std = STD_ORDER.charactersToOrdering.get(first); 
-//            String alt = ALT_ORDER.charactersToOrdering.get(first); 
-//            int nOrder = STD_ORDER.mp.getNumericOrder(first);
-//            int aOrder = ALT_ORDER.mp.getNumericOrder(first);
-//            // Ordered Characters   Unicode subgroup    Apple Group Count   Hex Name
-//            final String continuation = segment.size() > 0 ? "; …" : "";
-//            System.out.println(
-//                    (USE_ORDER ? "\t" + nOrder + "\t" + aOrder + "\t" + (aOrder-nOrder) : "")
-//                    + "\t" + CollectionUtilities.join(segment, " ")
-//                    + "\t" + std 
-//                    + "\t" + alt 
-//                    + "\t" + segment.size()
-//                    + "\t" + "U+" + Utility.hex(first) + continuation
-//                    + "\t" + UCharacter.getName(first, ",") + continuation
-//                    );
-//        }
-//    }
-//
-//    private static void detailedOrder() {
-//        int lastAOrder = -100;
-//        List<String> current = null;
-//        List<List<String>> segments = new ArrayList<List<String>>();
-//        for (String cp : STD_ORDER.mp.getOrder()) {
-//            int aOrder = ALT_ORDER.mp.getNumericOrder(cp);
-//            if (aOrder - lastAOrder != 1) {
-//                current = new ArrayList<String>();
-//                segments.add(current);
-//            }
-//            current.add(cp);
-//            lastAOrder = aOrder;
-//        }
-//
-//        for (List<String> segment : segments) {
-//            String first = segment.get(0);
-//            String std = STD_ORDER.charactersToOrdering.get(first); 
-//            String alt = ALT_ORDER.charactersToOrdering.get(first); 
-//            int nOrder = STD_ORDER.mp.getNumericOrder(first);
-//            int aOrder = ALT_ORDER.mp.getNumericOrder(first);
-//
-//            final String continuation = segment.size() > 0 ? "; …" : "";
-//            System.out.println(
-//                    nOrder 
-//                    + "\t" + std 
-//                    + "\t" + alt 
-//                    + "\t" + aOrder 
-//                    + "\t" + CollectionUtilities.join(segment, " ")
-//                    + "\t" + segment.size()
-//                    + "\t" + "U+" + Utility.hex(first) + continuation
-//                    + "\t" + UCharacter.getName(first, ",") + continuation
-//                    );
+//            System.out.println();
 //        }
 //    }
 
-    private void show() {
+    private void showLines(boolean spreadsheet, Source source) {
+        Set<String> filter = source == null ? null : Collections.unmodifiableSet(
+                EmojiStats.totalMissingData.get(source).addAllTo(new HashSet<String>()));
+        MajorGroup lastMajorGroup = null;
+        int i = 0;
+        System.out.println("#Main group\tCharacters in order\tInternal subgroup");
         for (Entry<String, Set<String>> labelToSet : orderingToCharacters.keyValuesSet()) {
-            String label = labelToSet.getKey();
-            System.out.print(label + "\t");
-            int count = label.length();
-            for (String cp : labelToSet.getValue()) {
-                if (++count > 32) {
-                    count = 0;
-                    System.out.println();
+            boolean isFirst = true;
+            final String label = labelToSet.getKey();
+            final Set<String> list = labelToSet.getValue();
+            MajorGroup majorGroup = getMajorGroup(list); // majorGroupings.get(list.iterator().next());
+            if (spreadsheet) {
+                LinkedHashSet<String> filtered = new LinkedHashSet<>(list);
+                if (filter != null) {
+                    filtered.retainAll(filter);
                 }
-                System.out.print(cp + " ");
+                if (!filtered.isEmpty()) {
+                    System.out.println(majorGroup + "\t" + CollectionUtilities.join(filtered, " ") + "\t" + label);
+                }
+                continue;
             }
-            System.out.println();
-        }
-    }
-
-    private void showLines() {
-        for (Entry<String, Set<String>> labelToSet : orderingToCharacters.keyValuesSet()) {
-            String label = labelToSet.getKey();
-            System.out.println(label);
-            int i = 0;
-            for (String cp : labelToSet.getValue()) {
+            for (String cp : list) {
                 if (emojiData.getModifierSequences().contains(cp)) {
                     continue;
                 }
-                System.out.println(++i
-                        + "\t" + Utility.hex(cp) 
-                        + "\t" + cp 
-                        + "\t" + Emoji.getNewest(cp).getShortName() 
-                        + "\t" + Emoji.getName(cp, false, null));
+                ++i;
+                if (majorGroup != lastMajorGroup) {
+                    if (lastMajorGroup != null) {
+                        System.out.println("# " + lastMajorGroup + " count:\t" + i);
+                        i = 0;
+                    }
+                    System.out.println("####################");
+                    System.out.println("# " + majorGroup);
+                    System.out.println("####################");
+                    lastMajorGroup = majorGroup;
+                }
+                if (isFirst) {
+                    System.out.println("# " + label);
+                    isFirst = false;
+                }
+                System.out.println(Utility.hex(cp) 
+                        + " ; " + Emoji.getNewest(cp).getShortName() 
+                        + " # " + cp 
+                        + " " + Emoji.getName(cp, false, null));
             }
+        }
+        if (!spreadsheet) {
+            System.out.println("# " + lastMajorGroup + " count:\t" + i);
         }
     }
 
@@ -394,5 +365,15 @@ public class EmojiOrder {
             uset.addAllTo(temp);
         }
         return Collections.unmodifiableSortedSet(temp);
+    }
+
+    public MajorGroup getMajorGroup(Iterable<String> values) {
+        for (String s : values) {
+            MajorGroup result = majorGroupings.get(s);
+            if (result != null) {
+                return result;
+            }
+        }
+        throw new IllegalArgumentException();
     }
 }

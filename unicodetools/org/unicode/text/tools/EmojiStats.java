@@ -20,7 +20,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 class EmojiStats {
     enum Type {
-        carriers(GenerateEmoji.JCARRIERS),
+        carriers(EmojiData.JCARRIERS),
         commonAdditions(Emoji.COMMON_ADDITIONS),
         flags(Emoji.FLAGS),
         other(UnicodeSet.EMPTY),
@@ -48,20 +48,20 @@ class EmojiStats {
     // static final UnicodeSet CARDS = new UnicodeSet("[🂠-🃵]");
     // static final UnicodeSet MAHJONG = new UnicodeSet("[🀀-🀫]");
     static final Map<EmojiStats.Type, Map<Emoji.Source, UnicodeSet>> data;
-    static final Map<Emoji.Source, UnicodeSet> totalData;
+    static final Map<Emoji.Source, UnicodeSet> totalMissingData;
     static final Map<Emoji.Source, UnicodeSet> extraData;
     private static final boolean SHOW = false;
 
     static {
-        Map<Source, UnicodeSet> _totalData = new EnumMap<>(Emoji.Source.class);
+        Map<Source, UnicodeSet> _totalMissingData = new EnumMap<>(Emoji.Source.class);
         Map<Source, UnicodeSet> _extraData = new EnumMap<>(Emoji.Source.class);
         Map<Type, UnicodeSet> _allTypes = new EnumMap<>(Type.class);
         Map<EmojiStats.Type, Map<Emoji.Source, UnicodeSet>> _data = new EnumMap<>(EmojiStats.Type.class);
         for (Emoji.Source s : Emoji.Source.values()) {
-            _totalData.put(s, new UnicodeSet());
+            _totalMissingData.put(s, new UnicodeSet());
             _extraData.put(s, new UnicodeSet());
         }
-        totalData = Collections.unmodifiableMap(_totalData);
+        totalMissingData = Collections.unmodifiableMap(_totalMissingData);
         extraData = Collections.unmodifiableMap(_extraData);
         for (Type t : Type.values()) {
             _allTypes.put(t, new UnicodeSet());
@@ -85,7 +85,7 @@ class EmojiStats {
                 if (SHOW) System.out.println("Skipping directory file " + platformString);
                 continue;
             }
-            UnicodeSet us = _totalData.get(source);
+            UnicodeSet us = _totalMissingData.get(source);
             UnicodeSet extras = _extraData.get(source);
 
             Matcher matcher = Pattern.compile(platformString + "_(.*).(png|gif)").matcher("");
@@ -123,6 +123,7 @@ class EmojiStats {
             us.freeze();
             extras.freeze();
         }
+
         for (Type t : Type.values()) {
             Map<Source, UnicodeSet> subdata = _data.get(t);
             UnicodeSet allTypes = _allTypes.get(t);
@@ -167,11 +168,11 @@ class EmojiStats {
 
     public void write(Set<Source> platforms2) throws IOException {
         final boolean extraPlatforms = false;
-        PrintWriter out = BagFormatter.openUTF8Writer(extraPlatforms ? GenerateEmoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR,
+        PrintWriter out = BagFormatter.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR,
                 "missing-emoji-list.html");
-        PrintWriter outText = BagFormatter.openUTF8Writer(extraPlatforms ? GenerateEmoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR,
+        PrintWriter outText = BagFormatter.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR,
                 "missing-emoji-list.txt");
-        UnicodeSet jc = GenerateEmoji.JCARRIERS;
+        UnicodeSet jc = EmojiData.JCARRIERS;
         // new UnicodeSet()
         // .addAll(totalData.get(Source.sb))
         // .addAll(totalData.get(Source.kddi))
@@ -196,11 +197,11 @@ class EmojiStats {
         if (SHOW) System.out.println("needs VS\t" + needsVS.toPattern(false));
 
         if (SHOW) System.out.println("gmail-jc\t"
-                + new UnicodeSet(totalData.get(Emoji.Source.gmail)).removeAll(jc).toPattern(false));
+                + new UnicodeSet(totalMissingData.get(Emoji.Source.gmail)).removeAll(jc).toPattern(false));
         if (SHOW) System.out.println("jc-gmail\t"
-                + new UnicodeSet(jc).removeAll(totalData.get(Emoji.Source.gmail)).toPattern(false));
+                + new UnicodeSet(jc).removeAll(totalMissingData.get(Emoji.Source.gmail)).toPattern(false));
 
-        for (Entry<Emoji.Source, UnicodeSet> entry : totalData.entrySet()) {
+        for (Entry<Emoji.Source, UnicodeSet> entry : totalMissingData.entrySet()) {
             if (SHOW) System.out.println(entry.getKey() + "\t" + entry.getValue().toPattern(false));
         }
 
@@ -310,7 +311,7 @@ class EmojiStats {
         
         final UnicodeSet missingSamsung = new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
         .removeAll(EmojiData.EMOJI_DATA.getModifierSequences())
-        .removeAll(totalData.get(Source.samsung));
+        .removeAll(totalMissingData.get(Source.samsung));
         System.out.println("\nSamsung missing: " + missingSamsung.size() + "\t" + missingSamsung.toPattern(false) + "\n");
         for (String cp : missingSamsung) {
             show(Source.samsung, cp);
@@ -320,6 +321,10 @@ class EmojiStats {
         System.out.println("\nSamsung extras: " + samsungExtras.size() + "\t" + samsungExtras.toPattern(false) + "\n");
         for (String cp : samsungExtras) {
             show(Source.samsung, cp);
+        }
+        
+        for (String cp : totalMissingData.get(Source.google)) {
+            show(Source.google, cp);
         }
     }
 

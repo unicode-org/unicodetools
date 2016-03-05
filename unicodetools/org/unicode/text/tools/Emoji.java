@@ -28,6 +28,7 @@ import org.unicode.text.utility.Utility;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UnicodeSet;
@@ -83,9 +84,18 @@ public class Emoji {
 
     public enum Source {
         // pngs
-        color, apple, google, emojione, samsung, twitter, windows, ref, proposed, emojipedia, emojixpress, sample,
-        // gifs
-        gmail, sb, dcm, kddi;
+        color, apple, twitter("Twtr."), emojione("One"), google("Goog."), samsung("Sams."), windows("Wind."), ref, proposed, emojipedia, emojixpress, sample,
+        // gifs; don't change order!
+        gmail("GMail"), sb, dcm, kddi;
+
+        private final String shortName;
+        private Source(String shortName) {
+            this.shortName = shortName;
+        }
+        private Source() {
+            this.shortName = UCharacter.toTitleCase(name(), null);
+        }
+        
         boolean isGif() {
             return compareTo(Source.gmail) >= 0;
         }
@@ -103,6 +113,10 @@ public class Emoji {
 
         public String getPrefix() {
             return this == google ? "android" : name();
+        }
+
+        public String shortName() {
+            return shortName;
         }
     }
 
@@ -454,7 +468,7 @@ public class Emoji {
         return browserChars;
     }
 
-    public static final UnicodeMap<String> STANDARDIZED_VARIANT = LATEST.load(UcdProperty.Standardized_Variant);
+    public static final UnicodeMap<String> STANDARDIZED_VARIANT = BETA.load(UcdProperty.Standardized_Variant);
     
     public static final UnicodeSet HAS_EMOJI_VS = new UnicodeSet();
     
@@ -570,4 +584,6 @@ public class Emoji {
         }
         return output;
     }
+
+    static final String INTERNAL_OUTPUT_DIR = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/";
 }

@@ -209,11 +209,11 @@ public class GenerateEmojiData {
      * @return the baseDataHeader
      */
     static String getBaseDataHeader(int trNumber, String title, String filename) {
-        return Utility.getDataHeader(filename) 
+        return Utility.getDataHeader(filename + ".txt") 
                 + "\n#"
                 + "\n# " + title + " for UTR #" + trNumber
                 + "\n# Version: "  + Emoji.VERSION_STRING
-                + "\n#\n"
+                + "\n#"
                 + "\n# For documentation and usage, see http://www.unicode.org/reports/tr" + trNumber
                 + "\n#";
     }

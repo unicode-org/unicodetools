@@ -1,3 +1,4 @@
+@Smileys_and_People
 face-happy	😀 😁 😂 🤣 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 ☺ 🙂 🤗  
 face-role	😇 🤠 🤡  🤥🤓
 face-neutral	🤔 😐 😑 😶 🙄 😏 😣 😥 
@@ -23,6 +24,7 @@ emotion	💋 💘 ❤ 💓 💔 💕 💖 💗 💙 💚 💛 💜
 🗨 🗯 💭 🕳 
 clothing	👓 🕶 👔 👕 👖 👗 👘 👙 👚 👛 👜 👝 🛍 🎒 👞 👟 👠 👡 👢 👑 👒 🎩 🎓 📿 
 💄 💍 💎 
+@Animals_and_Nature
 animal-mammal	🐵 🐒 🦍 🐶 🐕 🐩 🐺 🦊 🐱 🐈 🦁 🐯 🐅 🐆 🐴 🐎 🦌 🦄 🐮 🐂 🐃 🐄 🐷 🐖 🐗 🐽 
 🐏 🐑 🐐 🐪 🐫 🐘 🦏 🐭 🐁 🐀 🐹 🐰 🐇 🐿  🦇 🐻 🐨 🐼 🐾
 animal-bird	🦃 🐔 🐓 🐣 🐤 🐥 🐦 🐧 🕊 🦅 🦆 🦉
@@ -33,6 +35,7 @@ animal-bug	🦋 🐌 🐛 🐜 🐝 🐞 🕷 🕸 🦂
 plant-flower	💐 🌸 💮 🏵 🌹 🥀
 🌺 🌻 🌼 🌷 
 plant-other	🌱 🌲 🌳 🌴 🌵 🌾 🌿 ☘ 🍀 🍁 🍂 🍃 
+@Food_and_Drink
 food-fruit	🍇 🍈 🍉 🍊 🍋 🍌 🍍 🍎 🍏 🍐 🍑 🍒 🍓 🍅 🥝
 food-vegetable	🥑 🍆🥔 🥕 🌽 🌶🥒 🍄 🥜 🌰 
 food-prepared	🍞 🥐 🥖    🥞 🧀 🍖 🍗 🥓 🍔 🍟 🍕 🌭 🌮 
@@ -42,6 +45,7 @@ food-asian	🍱 🍘 🍙 🍚 🍛 🍜 🍝 🍠 🍢 🍣 🍤 🍥 🍡
 food-sweet	🍦 🍧 🍨 🍩 🍪 🎂 🍰 🍫 🍬 🍭 🍮 🍯 
 drink	🍼 🥛 ☕ 🍵 🍶 🍾 🍷 🍸 🍹 🍺 🍻 🥂 🥃
 dishes	🍽 🍴 🥄 🔪 🏺
+@Travel_and_Places
 place-map	🌍 🌎 🌏 🌐 🗺 🗾 
 place-geographic	🏔 ⛰ 🌋 🗻 🏕 🏖 🏜 🏝 🏞 
 place-building	🏟 🏛 🏗 🏘 🏙 🏚 🏠 🏡
@@ -59,12 +63,14 @@ time	⌛ ⏳ ⌚ ⏰ ⏱ ⏲ 🕰 🕛 🕧 🕐 🕜 🕑 🕝 🕒 🕞 🕓 �
 🕥 🕚 🕦 
 sky & weather	🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌙 🌚 🌛 🌜 🌡 ☀ 🌝 🌞 ⭐ 🌟🌠 ☁ ⛅ ⛈ 🌤 🌥 🌦 🌧 🌨 🌩 🌪 🌫 🌬 🌀 
 🌈 🌂 ☂ ☔ ⛱⚡ ❄ ☃ ⛄   ☄ 🔥 💧 🌊
+@Activities
 event	🎃 🎄 🎆 🎇 ✨ 🎈 🎉 🎊 🎋 🎌 🎍 🎎 🎏 🎐 🎑   🎀 🎁  🎗 🎞 🎟 🎫 🏷 
 award-medal	🎖 🏆 🏅 🥇 🥈 🥉 
 sports	⚽ ⚾ 🏀🏐 🏈 🏉 🎾 🎱 🎳🏏  🏑 🏒 🏓 🏸 🥊 🥋 ⛳ 🏌 ⛸ 🎣 🎽 🎿 ⛷ 🏂 🏄 🏇 🏊 ⛹ 🏋 🚴 🚵 🏎 🏍
 🤸 🤻 🤼 🤽 🤾🤺  🥅
  🤹 🎯
 game	 🎮 🕹 🎲 ♠ ♥ ♦ ♣ 🃏 🀄 🎴
+@Objects
 sound	🔇 🔈 🔉 🔊 📢 📣 📯 🔔 🔕
 music	🎼 🎵 🎶 🎙 🎚 🎛 🎤 🎧 📻 
 musical-instrument	🎷 🎸 🎹 🎺 🎻 🥁
@@ -81,6 +87,7 @@ tool	🔨 ⛏ ⚒ 🛠 🗡  ⚔ 🤺 🔫 🥆  🏹 🛡 🔧 🔩 ⚙ 🗜 �
 medical	💉 💊
 flag	🏁 🏳 🏴 🚩 
 other-object	🚬 ⚰ ⚱ 🗿🛢 🔮🛒
+@Symbols
 transport-signs	🏧 🚮  🚰  ♿ 🚹 🚺 🚻 🚼 
 🚾 🛂 🛃 🛄 🛅 
 warning	⚠🚸 ⛔ 🚫🚳 🚭 🚯 🚱 🚷 ☢ ☣
@@ -95,6 +102,7 @@ keycaps	#⃣ *⃣ 0⃣ 1⃣ 2⃣ 3⃣ 4⃣ 5⃣ 6⃣ 7⃣ 8⃣ 9⃣ 🔟
 alphanum	💯 🔞 🔠 🔡 🔢 🔣 🔤 🅰 🆎 🅱 🆑 🆒 🆓 ℹ 🆔 Ⓜ 🆕 🆖 🅾 🆗 🅿 🆘 🆙 🆚 
 🈁 🈂 🈷 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 ㊗ ㊙ 🈺 🈵 
 geometric	▪ ▫ ◻ ◼ ◽ ◾ ⬛ ⬜ 🔶 🔷 🔸 🔹 🔺 🔻 💠 🔘 🔲 🔳 ⚪ ⚫ 🔴 🔵 
+@Flags
 country-flag	🇦🇨 🇦🇩 🇦🇪 🇦🇫 🇦🇬 🇦🇮 🇦🇱 🇦🇲 🇦🇴 🇦🇶 🇦🇷 🇦🇸 🇦🇹 🇦🇺 🇦🇼 🇦🇽 🇦🇿 🇧🇦 🇧🇧 🇧🇩 🇧🇪 🇧🇫 🇧🇬 
 🇧🇭 🇧🇮 🇧🇯 🇧🇱 🇧🇲 🇧🇳 🇧🇴 🇧🇶 🇧🇷 🇧🇸 🇧🇹 🇧🇻 🇧🇼 🇧🇾 🇧🇿 🇨🇦 🇨🇨 🇨🇩 🇨🇫 🇨🇬 🇨🇭 🇨🇮 🇨🇰 🇨🇱 🇨🇲 🇨🇳 🇨🇴 🇨🇵 
 🇨🇷 🇨🇺 🇨🇻 🇨🇼 🇨🇽 🇨🇾 🇨🇿 🇩🇪 🇩🇬 🇩🇯 🇩🇰 🇩🇲 🇩🇴 🇩🇿 🇪🇦 🇪🇨 🇪🇪 🇪🇬 🇪🇭 🇪🇷 🇪🇸 🇪🇹 🇪🇺 🇫🇮 🇫🇯 🇫🇰 🇫🇲 🇫🇴 
@@ -105,4 +113,3 @@ country-flag	🇦🇨 🇦🇩 🇦🇪 🇦🇫 🇦🇬 🇦🇮 🇦🇱 🇦
 🇵🇾 🇶🇦 🇷🇪 🇷🇴 🇷🇸 🇷🇺 🇷🇼 🇸🇦 🇸🇧 🇸🇨 🇸🇩 🇸🇪 🇸🇬 🇸🇭 🇸🇮 🇸🇯 🇸🇰 🇸🇱 🇸🇲 🇸🇳 🇸🇴 🇸🇷 🇸🇸 🇸🇹 🇸🇻 🇸🇽 🇸🇾 🇸🇿 
 🇹🇦 🇹🇨 🇹🇩 🇹🇫 🇹🇬 🇹🇭 🇹🇯 🇹🇰 🇹🇱 🇹🇲 🇹🇳 🇹🇴 🇹🇷 🇹🇹 🇹🇻 🇹🇼 🇹🇿 🇺🇦 🇺🇬 🇺🇲 🇺🇸 🇺🇾 🇺🇿 🇻🇦 🇻🇨 🇻🇪 🇻🇬 🇻🇮 
 🇻🇳 🇻🇺 🇼🇫 🇼🇸 🇽🇰 🇾🇪 🇾🇹 🇿🇦 🇿🇲 🇿🇼
-missing		🥚		U+1F95A 🥚
