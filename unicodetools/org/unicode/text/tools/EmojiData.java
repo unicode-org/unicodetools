@@ -19,6 +19,7 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.tools.Emoji.ModifierStatus;
 import org.unicode.text.utility.Settings;
@@ -31,6 +32,8 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 
 public class EmojiData {
+    static final IndexUnicodeProperties latest        = IndexUnicodeProperties.make(Emoji.VERSION_BETA_UNICODE);
+
     private static UnicodeSet SUPPRESS_SECONDARY = new UnicodeSet("[😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 ☺ 🙂 🤗 😇 🤔 😐 😑 😶 🙄 😏 😣 😥 😮 🤐 😯 😪 😫 😴 😌 🤓 😛 😜 😝 ☹ 🙁 😒 😓 😔 😕 😖 🙃 😷 🤒 🤕 🤑 😲 😞 😟 😤 😢 😭 😦 😧 😨 😩 😬 😰 😱 😳 😵 😡 😠 👿 😈]").freeze();
 
     public enum DefaultPresentation {text, emoji}
@@ -81,7 +84,7 @@ public class EmojiData {
     private final UnicodeSet charsWithData = new UnicodeSet();
     private final UnicodeSet allEmojiWithoutDefectives;
     private final UnicodeSet allEmojiWithDefectives;
-    
+
     private final Map<DefaultPresentation, UnicodeSet> defaultPresentationMap;
     private final Map<ModifierStatus, UnicodeSet> modifierClassMap;
     private final Map<Emoji.CharSource, UnicodeSet> charSourceMap;
@@ -93,7 +96,8 @@ public class EmojiData {
     private final UnicodeSet afterZwj = new UnicodeSet();
     private final UnicodeSet flagSequences = new UnicodeSet();
     private final UnicodeSet keycapSequences = new UnicodeSet();
-    
+    private final UnicodeSet keycapBases = new UnicodeSet();
+
     static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
     static final Splitter comma = Splitter.on(",").trimResults();
 
@@ -115,6 +119,9 @@ public class EmojiData {
     // 261D          ; Emoji_Modifier_Base  #   [1] (☝️)      WHITE UP POINTING INDEX
 
     private EmojiData(VersionInfo version) {
+        final UnicodeMap<General_Category_Values> gc = latest.loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
+        UnicodeSet NSM = gc.getSet(UcdPropertyValues.General_Category_Values.Nonspacing_Mark);
+        UnicodeSet EM = gc.getSet(UcdPropertyValues.General_Category_Values.Enclosing_Mark);
         EnumMap<DefaultPresentation, UnicodeSet> _defaultPresentationMap = new EnumMap<>(DefaultPresentation.class);
         EnumMap<ModifierStatus, UnicodeSet> _modifierClassMap = new EnumMap<>(ModifierStatus.class);
         EnumMap<Emoji.CharSource, UnicodeSet> _charSourceMap = new EnumMap<>(Emoji.CharSource.class);
@@ -160,7 +167,7 @@ public class EmojiData {
                         if (!source.contains("\u2764") || source.contains("\uFE0F")) {
                             zwjSequencesNormal.add(source);
                         }
-                        
+
                         boolean isAfterZwj = false;
                         for (int cp : CharSequences.codePoints(source)) {
                             if (isAfterZwj) {
@@ -171,17 +178,20 @@ public class EmojiData {
                     } else {
                         if (Emoji.isRegionalIndicator(first)) {
                             flagSequences.add(source);
-                        } else if (Emoji.DEFECTIVE.contains(first)) {
+                        } else if (EM.containsSome(source) || NSM.containsSome(source)) {
                             keycapSequences.add(source);
+                            keycapBases.add(source.codePointAt(0));
+                        } else if (Emoji.DEFECTIVE.contains(first)) {
+                            throw new IllegalArgumentException("Unexpected");
                         }
                     }
                     if (!Emoji.DEFECTIVE.contains(first)) { // HACK
                         continue;
                     }
                     emojiData.add(source, EmojiProp.Emoji);
-//                    if (Emoji.REGIONAL_INDICATORS.contains(first)) {
-//                        emojiData.add(source, EmojiProp.Emoji_Presentation);
-//                    }
+                    //                    if (Emoji.REGIONAL_INDICATORS.contains(first)) {
+                    //                        emojiData.add(source, EmojiProp.Emoji_Presentation);
+                    //                    }
                 }
             }
             zwjSequencesNormal.freeze();
@@ -189,7 +199,8 @@ public class EmojiData {
             afterZwj.freeze();
             flagSequences.freeze();
             keycapSequences.freeze();
-            
+            keycapBases.freeze();
+
             for (String line : FileUtilities.in(EmojiData.class, "emojiSources.txt")) {
                 if (line.startsWith("#") || line.isEmpty()) continue;
                 List<String> list = semi.splitToList(line);
@@ -213,7 +224,7 @@ public class EmojiData {
                 putUnicodeSetValue(_defaultPresentationMap, key, styleIn);
                 putUnicodeSetValue(_modifierClassMap, key, modClass);
             }
-            
+
         } else {
             for (String line : FileUtilities.in(directory, "emoji-data.txt")) {
                 //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
@@ -251,50 +262,50 @@ public class EmojiData {
             }
         }
         modifierSequences.freeze();
-        
+
         defaultPresentationMap = Collections.unmodifiableMap(_defaultPresentationMap);
         charSourceMap = Collections.unmodifiableMap(_charSourceMap);
         data.freeze();
         charsWithData.addAll(data.keySet());
         charsWithData.freeze();
-//        flatChars.addAll(singletonsWithDefectives)
-//        .removeAll(charsWithData.strings())
-//        .addAll(Emoji.FIRST_REGIONAL,Emoji.LAST_REGIONAL)
-//        .addAll(new UnicodeSet("[0-9*#]"))
-////        .add(Emoji.EMOJI_VARIANT)
-////        .add(Emoji.TEXT_VARIANT)
-////        .add(Emoji.JOINER)
-//        //.removeAll(new UnicodeSet("[[:L:][:M:][:^nt=none:]+_-]"))
-//        .freeze();
-        
+        //        flatChars.addAll(singletonsWithDefectives)
+        //        .removeAll(charsWithData.strings())
+        //        .addAll(Emoji.FIRST_REGIONAL,Emoji.LAST_REGIONAL)
+        //        .addAll(new UnicodeSet("[0-9*#]"))
+        ////        .add(Emoji.EMOJI_VARIANT)
+        ////        .add(Emoji.TEXT_VARIANT)
+        ////        .add(Emoji.JOINER)
+        //        //.removeAll(new UnicodeSet("[[:L:][:M:][:^nt=none:]+_-]"))
+        //        .freeze();
+
         allEmojiWithDefectives = new UnicodeSet(singletonsWithDefectives)
         .addAll(flagSequences)
         .addAll(keycapSequences)
         .addAll(modifierSequences)
         .addAll(zwjSequencesNormal)
         .freeze();
-        
+
         allEmojiWithoutDefectives = new UnicodeSet(allEmojiWithDefectives)
         .removeAll(Emoji.DEFECTIVE)
         .freeze();
     }
-    
+
     public UnicodeSet getSingletonsWithDefectives() {
         return singletonsWithDefectives;
     }
-    
+
     public UnicodeSet getAllEmojiWithDefectives() {
         return allEmojiWithDefectives;
     }
-    
+
     public UnicodeSet getAllEmojiWithoutDefectives() {
         return allEmojiWithoutDefectives;
     }
-    
+
     public UnicodeSet getSingletonsWithoutDefectives() {
         return singletonsWithoutDefectives;
     }
-    
+
     public UnicodeSet getChars() {
         return charsWithData;
     }
@@ -324,15 +335,15 @@ public class EmojiData {
     public UnicodeSet getModifierBases() {
         return modifierBases;
     }
-    
+
     public UnicodeSet getModifierSequences() {
         return modifierSequences;
     }
-    
+
     public UnicodeSet getModifiers() {
         return modifierClassMap.get(ModifierStatus.modifier);
     }
-    
+
     public UnicodeSet getZwjSequencesNormal() {
         return zwjSequencesNormal;
     }
@@ -374,7 +385,7 @@ public class EmojiData {
         }
         return Collections.unmodifiableSet(result);
     }
-    
+
     private static Set<Emoji.CharSource> getSet(String list) {
         if (list.isEmpty()) {
             return Collections.emptySet();
@@ -450,7 +461,7 @@ public class EmojiData {
         System.out.println("Flag Sequences " + emojiData3.getFlagSequences().size());
         System.out.println("ModiferSequences " + emojiData3.getModifierSequences().size());
         System.out.println("Zwj Sequences " + emojiData3.getZwjSequencesNormal().size());
-        
+
         show(0x26e9, names, emojiData3);
         System.out.println("modifier" + ", " + emojiData3.getModifierStatusSet(ModifierStatus.modifier).toPattern(false));
         System.out.println(Emoji.CharSource.WDings  + ", " + emojiData3.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
@@ -488,7 +499,7 @@ public class EmojiData {
     public UnicodeSet getSortingChars() {
         return allEmojiWithoutDefectives;
     }
-    
+
     public static final EmojiData EMOJI_DATA = of(Emoji.VERSION_TO_GENERATE);
     public static final UnicodeSet MODIFIERS = EMOJI_DATA.getModifierStatusSet(ModifierStatus.modifier);
 
@@ -499,7 +510,11 @@ public class EmojiData {
         return keycapSequences;
     }
 
-    public  boolean skipEmojiSequence(String string) {
+    public UnicodeSet getKeycapBases() {
+        return keycapBases;
+    }
+
+    public boolean skipEmojiSequence(String string) {
         EmojiData emojiData = this;
         if (string.equals(" ") 
                 || string.equals("\t") 
@@ -519,8 +534,16 @@ public class EmojiData {
     private static final VersionInfo UCD9 = VersionInfo.getInstance(9,0);
     private static final VersionInfo Emoji3 = VersionInfo.getInstance(3,0);
     private static final VersionInfo Emoji2 = VersionInfo.getInstance(2,0);
-    
+
     public static EmojiData forUcd(VersionInfo versionInfo) {
         return EmojiData.of(versionInfo.equals(UCD9) ? Emoji3 : Emoji2);
     }
+
+    static final UnicodeSet             JCARRIERS     = new UnicodeSet()
+    .addAll(latest.load(UcdProperty.Emoji_DCM).keySet())
+    .addAll(latest.load(UcdProperty.Emoji_KDDI).keySet())
+    .addAll(latest.load(UcdProperty.Emoji_SB).keySet())
+    .removeAll(new UnicodeSet("[:whitespace:]"))
+    .freeze();
+
 }
