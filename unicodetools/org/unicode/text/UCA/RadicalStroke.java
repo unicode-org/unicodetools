@@ -287,6 +287,11 @@ final class RadicalStroke {
      */
     private static int parseInt(String s, int start, int limit) {
         assert start < limit;
+        if (s.charAt(start) == '-') {
+            // Unicode 9 UAX #38 kDefaultSortKey:
+            // If the number of residual strokes is negative, 0 is used instead.
+            return 0;
+        }
         int result = 0;
         int i = start;
         do {

@@ -936,7 +936,7 @@ final class Validity {
 
     private static final String[] alternateName = { "SHIFTED", "ZEROED", "NON_IGNORABLE", "SHIFTED_TRIMMED" };
 
-    private static final ToolUnicodePropertySource propertySource = ToolUnicodePropertySource.make(null);
+    private static final ToolUnicodePropertySource propertySource = ToolUnicodePropertySource.make(Default.ucdVersion());
     private static final UnicodeProperty gc = propertySource.getProperty("gc");
 
     private static final UnicodeSet WHITESPACE = propertySource.getSet("whitespace=true")
