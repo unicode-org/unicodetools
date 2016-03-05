@@ -1,16 +1,11 @@
 package org.unicode.text.tools;
 
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
-import com.ibm.icu.impl.Relation;
-import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
 
 public class UnicodeSetTree<T> {

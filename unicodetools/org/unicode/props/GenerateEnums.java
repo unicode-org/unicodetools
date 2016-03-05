@@ -29,7 +29,7 @@ import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.util.VersionInfo;
 
 public class GenerateEnums {
-    public static final String ENUM_VERSION = Default.ucdVersion();
+    public static final String ENUM_VERSION = Settings.latestVersion;
     public static final VersionInfo ENUM_VERSION_INFO = VersionInfo.getInstance(GenerateEnums.ENUM_VERSION);
 
     public static final String PROPERTY_FILE_OUTPUT = Settings.UNICODETOOLS_DIRECTORY + "/org/unicode/props/UcdProperty.java";

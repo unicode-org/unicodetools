@@ -18,8 +18,9 @@ import java.util.regex.Pattern;
 
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.text.tools.EmojiData;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
@@ -1067,7 +1068,7 @@ isTitlecase(X) is false.
 
         add(new UnicodeProperty.UnicodeSetProperty().set("[\\u0000-\\u007F]").setMain("ASCII", "ASCII", UnicodeProperty.EXTENDED_BINARY, ""));
 
-        final String x = Utility.getMostRecentUnicodeDataFile("ScriptExtensions", Default.ucdVersion(), true, true);
+        final String x = Utility.getMostRecentUnicodeDataFile("ScriptExtensions", Settings.latestVersion, true, true);
         if (x == null) {
             System.out.println("ScriptExtensions not available for version");
         } else {

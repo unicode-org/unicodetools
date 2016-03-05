@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.unicode.cldr.util.CLDRConfig;
-import org.unicode.cldr.util.ChainedMap;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Counter2;
 import org.unicode.cldr.util.Pair;
@@ -16,6 +15,7 @@ import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.draft.CharacterFrequency;
 import org.unicode.text.tools.ScriptPopulation.Category.Extra;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.Emoji;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;

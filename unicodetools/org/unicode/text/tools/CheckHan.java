@@ -1,7 +1,6 @@
 package org.unicode.text.tools;
 
 import java.util.EnumSet;
-import java.util.List;
 import java.util.Set;
 
 import org.unicode.props.IndexUnicodeProperties;

@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Set;
 
-import org.unicode.text.tools.Emoji;
-import org.unicode.text.tools.EmojiData;
-import org.unicode.text.tools.EmojiOrder;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiData;
+import org.unicode.tools.emoji.EmojiOrder;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.lang.UCharacter;

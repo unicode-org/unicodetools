@@ -1,4 +1,4 @@
-package org.unicode.text.tools;
+package org.unicode.tools.emoji;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -51,9 +51,10 @@ import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.LocaleIDParser;
 import org.unicode.cldr.util.With;
-import org.unicode.text.tools.GmailEmoji.Data;
+import org.unicode.text.tools.GifSequenceWriter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.GmailEmoji.Data;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.BagFormatter;

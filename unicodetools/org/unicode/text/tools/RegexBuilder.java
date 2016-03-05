@@ -4,6 +4,9 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiData;
+
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.CharSequences;

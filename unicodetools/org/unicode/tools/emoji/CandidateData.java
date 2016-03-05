@@ -1,4 +1,4 @@
-package org.unicode.text.tools;
+package org.unicode.tools.emoji;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -19,7 +19,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class CandidateData {
 
-    enum Quarter {
+    public enum Quarter {
         _2015Q1, _2015Q2, _2015Q3, _2015Q4,
         _2016Q1;
         static Quarter fromString(String item) {

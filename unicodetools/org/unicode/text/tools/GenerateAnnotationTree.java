@@ -3,12 +3,14 @@ package org.unicode.text.tools;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.unicode.text.tools.UnicodeSetTree.Merger;
 import org.unicode.text.tools.UnicodeSetTree.Node;
 import org.unicode.text.tools.UnicodeSetTree.Visitor;
+import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiAnnotations;
 
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Utility;
@@ -71,7 +73,7 @@ public class GenerateAnnotationTree {
 
     private static UnicodeSetTree<Set<String>> build() {
         Relation<UnicodeSet,String> data2 = Relation.of(new HashMap<UnicodeSet, Set<String>>(), HashSet.class);
-        for (Entry<String, Set<String>> foo : EmojiAnnotations.ANNOTATIONS_TO_CHARS.keyToValues.keyValuesSet()) {
+        for (Entry<String, Set<String>> foo : EmojiAnnotations.ANNOTATIONS_TO_CHARS.keyValuesSet()) {
             data2.put(new UnicodeSet().addAll(foo.getValue()), foo.getKey());
         };
 

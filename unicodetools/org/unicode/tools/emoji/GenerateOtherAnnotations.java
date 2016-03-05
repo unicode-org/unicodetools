@@ -1,4 +1,4 @@
-package org.unicode.text.tools;
+package org.unicode.tools.emoji;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +11,8 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.DtdType;
-import org.unicode.text.tools.EmojiData.DefaultPresentation;
 import org.unicode.text.utility.Settings;
+import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.BagFormatter;
