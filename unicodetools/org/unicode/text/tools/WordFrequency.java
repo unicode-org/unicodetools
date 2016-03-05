@@ -12,6 +12,7 @@ import java.util.Set;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Settings;
+import org.unicode.tools.emoji.EmojiAnnotations;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.impl.Row.R2;

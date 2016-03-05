@@ -1,4 +1,4 @@
-package org.unicode.text.tools;
+package org.unicode.tools.emoji;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,7 +7,6 @@ import java.util.Locale;
 
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -19,7 +18,7 @@ import com.ibm.icu.text.UnicodeSet;
 
 public class CarrierGlyphs {
     static final IndexUnicodeProperties LATEST = IndexUnicodeProperties
-            .make(Default.ucdVersion());
+            .make(Emoji.VERSION_BETA_UNICODE);
     static final UnicodeMap<String> Emoji_SB = LATEST
             .load(UcdProperty.Emoji_SB);
     static final UnicodeMap<String> Emoji_DCM = LATEST

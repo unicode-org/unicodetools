@@ -10,16 +10,19 @@ import java.util.TreeMap;
 
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.With;
-import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.tools.EmojiData.DefaultPresentation;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.CandidateData;
+import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiData;
+import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
+import org.unicode.tools.emoji.GenerateEmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;

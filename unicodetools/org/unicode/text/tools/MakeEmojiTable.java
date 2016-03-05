@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.util.Locale;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.GenerateEmoji;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.impl.Utility;

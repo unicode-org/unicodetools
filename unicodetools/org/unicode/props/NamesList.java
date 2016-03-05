@@ -1,4 +1,4 @@
-package org.unicode.text.UCA;
+package org.unicode.props;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,8 +12,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.props.UnicodeRelation;
-import org.unicode.text.UCA.NamesList.Comment;
+import org.unicode.props.NamesList.Comment;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
@@ -23,17 +22,22 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 
 public class NamesList {
 
     private static final String DOTTED_BOX = "⬚";
     private static final String DOTTED_CIRCLE = "◌";
 
-    static final ToolUnicodePropertySource US = ToolUnicodePropertySource.make(Settings.latestVersion);
+    static final IndexUnicodeProperties US = IndexUnicodeProperties.make(VersionInfo.getInstance(Settings.latestVersion));
+    // TODO rewrite to use enums
     static final UnicodeSet TO_SUPPRESS = new UnicodeSet(US.getProperty("Default_Ignorable_Code_Point").getSet("True"))
     .addAll(US.getProperty("GC").getSet("Cc"))
     .addAll(US.getProperty("GC").getSet("Zs"))
@@ -169,7 +173,8 @@ public class NamesList {
         private boolean discardXref(String trim) {
             for (byte width = 0; width < 2; ++width) {
                 for (byte caseType = 0; caseType < UCD_Types.LIMIT_CASE ; ++caseType) {
-                    String changed = Default.ucd().getCase(codePoint, UCD_Types.FULL, UCD_Types.UPPER);
+                    String changed = UCharacter.toUpperCase(ULocale.ENGLISH, UTF16.valueOf(codePoint));
+                    // TODO Support case folding with UnicodeProperty directly, instead of Default.ucd().getCase(codePoint, UCD_Types.FULL, UCD_Types.UPPER);
                     if (changed.equals(trim)) {
                         //System.err.println("Discarding xref variant for: " + Utility.hex(codePoint) + " => " + Utility.hex(trim));
                         return true;
@@ -360,11 +365,11 @@ public class NamesList {
     static final UnicodeSet HEX_AND_SPACE = new UnicodeSet("[0-9A-F\\ ]").freeze();
 
     private void verifyName(final String originalLine, int pos) {
-        String realName = Default.ucd().getName(lastCodePoint);
+        String realName = US.getResolvedValue(UcdProperty.Name, lastCodePoint);
         final String namelistName = originalLine.substring(pos+1);
-        if (!realName.equals(namelistName)) {
-            //addError("Bad name:", namelistName);
-        }
+//        if (!realName.equals(namelistName)) {
+//            //addError("Bad name:", namelistName);
+//        }
     }
 
     //    private void addError(String message, String arg) {

@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.Emoji;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;

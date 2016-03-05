@@ -1,4 +1,4 @@
-package org.unicode.text.tools;
+package org.unicode.tools.emoji;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,9 +17,8 @@ import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.LocaleDisplayNames;
-import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.LocaleDisplayNames.DialectHandling;
-import com.ibm.icu.util.LocaleData;
+import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class AnnotationData {

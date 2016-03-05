@@ -1,4 +1,4 @@
-package org.unicode.text.tools;
+package org.unicode.text.utility;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -9,11 +9,11 @@ import java.util.Set;
 
 import com.ibm.icu.impl.Relation;
 
-class Birelation<K,V> {
-    final Relation<K,V> keyToValues;
-    final Relation<V,K> valueToKeys;
+public class Birelation<K,V> {
+    private final Relation<K,V> keyToValues;
+    private final Relation<V,K> valueToKeys;
 
-    Birelation(Map<K, Set<V>> map1, 
+    public Birelation(Map<K, Set<V>> map1, 
             Map<V, Set<K>> map2, 
             Class valueSetCreator, 
             Class keySetCreator, 
@@ -33,13 +33,13 @@ class Birelation<K,V> {
             ) {
         return new Birelation<K,V>(map1, map2, setCreator1, setCreator2, setComparator1, setComparator2);
     }
-    Birelation<K, V> add(K key, V value) {
+    public Birelation<K, V> add(K key, V value) {
         keyToValues.put(key, value);
         valueToKeys.put(value, key);
         return this;
     }
 
-    Birelation<K, V> remove(K key, V value) {
+    public Birelation<K, V> remove(K key, V value) {
         keyToValues.remove(key, value);
         valueToKeys.remove(value, key);
         return this;

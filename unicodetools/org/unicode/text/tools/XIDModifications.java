@@ -1,11 +1,10 @@
 package org.unicode.text.tools;
 
 import org.unicode.cldr.draft.FileUtilities;
-
-import com.ibm.icu.dev.util.UnicodeMap;
-
 import org.unicode.text.UCD.IdentifierInfo.IdentifierStatus;
 import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
+
+import com.ibm.icu.dev.util.UnicodeMap;
 
 public class XIDModifications {
     private UnicodeMap<IdentifierStatus> identifierStatus = new UnicodeMap<>();

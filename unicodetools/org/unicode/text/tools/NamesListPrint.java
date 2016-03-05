@@ -7,18 +7,15 @@ import java.util.Set;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
+import org.unicode.props.NamesList;
 import org.unicode.props.UnicodeRelation;
-import org.unicode.text.UCA.NamesList;
-import org.unicode.text.UCA.NamesList.Comment;
+import org.unicode.props.NamesList.Comment;
 import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 

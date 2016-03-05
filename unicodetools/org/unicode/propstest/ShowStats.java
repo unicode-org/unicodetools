@@ -159,7 +159,7 @@ public class ShowStats {
             if (ideographic == Binary.Yes) {
                 catGroup = Bucket.Ideographic;
             }
-            if (org.unicode.text.tools.Emoji.EMOJI_CHARS.contains(i)) {
+            if (org.unicode.tools.emoji.Emoji.EMOJI_CHARS.contains(i)) {
                 catGroup = Bucket.Emoji;
             }
             Age_Values ageValue = Age_Values.valueOf(age.get(i));
@@ -176,7 +176,7 @@ public class ShowStats {
                     continue;
                 }
                 addScript(scriptCounter, ageV, scriptValue);
-                if (org.unicode.text.tools.Emoji.EMOJI_CHARS.contains(i)) {
+                if (org.unicode.tools.emoji.Emoji.EMOJI_CHARS.contains(i)) {
 //                    emojis.add(ageV, 1);
                 }
             }

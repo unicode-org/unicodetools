@@ -1,4 +1,4 @@
-package org.unicode.text.tools;
+package org.unicode.tools.emoji;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

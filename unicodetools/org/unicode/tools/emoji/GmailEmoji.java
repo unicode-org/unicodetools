@@ -1,4 +1,4 @@
-package org.unicode.text.tools;
+package org.unicode.tools.emoji;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
-import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -25,7 +24,7 @@ import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 
 public class GmailEmoji {
-    static final IndexUnicodeProperties LATEST = IndexUnicodeProperties.make(Default.ucdVersion());
+    static final IndexUnicodeProperties LATEST = IndexUnicodeProperties.make(Emoji.VERSION_BETA_UNICODE);
     static final UnicodeMap<String> Emoji_SB = LATEST.load(UcdProperty.Emoji_SB);
     static final UnicodeMap<String> Emoji_DCM = LATEST.load(UcdProperty.Emoji_DCM);
     static final UnicodeMap<String> Emoji_KDDI = LATEST.load(UcdProperty.Emoji_KDDI);
