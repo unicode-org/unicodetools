@@ -7,10 +7,10 @@ import java.util.Set;
 import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
-import org.unicode.props.NamesList;
 import org.unicode.props.UnicodeRelation;
-import org.unicode.props.NamesList.Comment;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.NamesList;
+import org.unicode.text.UCD.NamesList.Comment;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 

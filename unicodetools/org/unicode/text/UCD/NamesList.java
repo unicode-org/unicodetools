@@ -1,4 +1,4 @@
-package org.unicode.props;
+package org.unicode.text.UCD;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,12 +12,11 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.props.NamesList.Comment;
-import org.unicode.text.UCD.Default;
-import org.unicode.text.UCD.Normalizer;
-import org.unicode.text.UCD.ToolUnicodePropertySource;
-import org.unicode.text.UCD.UCD;
-import org.unicode.text.UCD.UCD_Types;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UnicodeRelation;
+import org.unicode.props.UnicodeRelation.SetMaker;
+import org.unicode.text.UCD.NamesList.Comment;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 

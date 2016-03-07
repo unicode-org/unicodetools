@@ -11,8 +11,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.util.Log;
-import org.unicode.cldr.util.Segmenter;
-import org.unicode.cldr.util.Segmenter.Builder;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
@@ -20,6 +18,8 @@ import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Names;
 import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
+import org.unicode.tools.Segmenter;
+import org.unicode.tools.Segmenter.Builder;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.Tabber;
