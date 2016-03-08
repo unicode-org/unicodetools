@@ -35,8 +35,10 @@ import java.util.BitSet;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
@@ -146,11 +148,19 @@ public class LoadImage extends Component {
 
     public static void main(String[] args) throws IOException {
 //        doAnimatedGif(false, 72, 50);
-
-        UnicodeSet u9 = new UnicodeSet(
-                "[[\\U0001F6D2\\U0001F6F6\\U0001F927\\U0001F938-\\U0001F93E\\U0001F941\\U0001F943-\\U0001F94B\\U0001F956-\\U0001F959\\U0001F98B-\\U0001F98F]"
-                        + "[\\U0001F95A-\\U0001F95E\\U0001F990\\U0001F991]]");
-        generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 72, false); // "Symbola"
+        final CandidateData candidateData = CandidateData.getInstance();
+        UnicodeSet u9 = candidateData.getCharacters();
+//        UnicodeSet u9 = new UnicodeSet(
+//                "[[\\U0001F6D2\\U0001F6F6\\U0001F927\\U0001F938-\\U0001F93E\\U0001F941\\U0001F943-\\U0001F94B\\U0001F956-\\U0001F959\\U0001F98B-\\U0001F98F]"
+//                        + "[\\U0001F95A-\\U0001F95E\\U0001F990\\U0001F991]]");
+        Map<String, BufferedImage> generated = generatePngsFromFont(outputDir, "proposed", "proposed", "Source Emoji", u9, 72, false); // "Symbola"
+        System.out.println("Characters");
+        for (String u : u9) {
+            System.out.println(Utility.hex(u) 
+                    + "\t" + u 
+                    + "\t" + (generated.containsKey(u) ? "✔" :  "❌")
+                    + "\t" + Emoji.getName(u, false, candidateData.namesMap()));
+        }
         if (true) return;
 
 
@@ -196,7 +206,7 @@ public class LoadImage extends Component {
             System.out.println(result.toPattern(false));
             List<BufferedImage> list;
             UnicodeSet s = new UnicodeSet("[▫◻◼◽◾☀⚪⚫❗⤴⤵⬅⬆⬇⬛⬜⭐⭕〽]");
-            list = generatePngsFromFont(outputDir, null, "android", "AndroidEmoji", s, 144, false); // "Symbola"
+            Map<String, BufferedImage> map = generatePngsFromFont(outputDir, null, "android", "AndroidEmoji", s, 144, false); // "Symbola"
             list = doAndroid(inputDir, outputDir);
             doWindows(inputDir, outputDir);
             doRef(inputDir, outputDir);
@@ -435,6 +445,8 @@ public class LoadImage extends Component {
 
     final static UnicodeSet NON_SYMBOLA = new UnicodeSet("[🅰🆎🅱🆑🆒🆓🆔🆕🆖🅾🆗🅿🆘🆙🆚🆏🈁🈂🈹🉑🈴🈺🉐🈯🈷🈶🈵🈚🈸🈲🈳]");
 
+    private static final boolean DEBUG = false;
+
     //private static final UnicodeSet SYMBOLA = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(NON_SYMBOLA).freeze();
 
     private static void writeTextAnimatedImage(File output, int height, int width, int margin, Iterable<String> textList, int millisBetween) throws IOException {
@@ -476,13 +488,13 @@ public class LoadImage extends Component {
         return sourceImage;
     }
 
-    public static List<BufferedImage> generatePngsFromFont(String outputDir, String dir, 
+    public static Map<String, BufferedImage> generatePngsFromFont(String outputDir, String dir, 
             String prefix, String font, UnicodeSet unicodeSet, int height, boolean useFonts)
                     throws IOException { // 🌰-🌵
         if (dir == null) {
             dir = prefix;
         }
-        List<BufferedImage> result = new ArrayList<>();
+        HashMap<String, BufferedImage> result = new LinkedHashMap<>();
         Set<String> sorted = unicodeSet.addAllTo(new TreeSet<String>());
         int width = height;
         BufferedImage sourceImage = new BufferedImage(width, height, IMAGE_TYPE);
@@ -500,7 +512,7 @@ public class LoadImage extends Component {
         //UnicodeSet firstChars = new UnicodeSet();
         String fileDirectory = outputDir + "/" + prefix;
         System.out.println("Writing in: " + fileDirectory);
-        for (String s : sorted) { //
+        for (final String s : sorted) { //
             if (useFonts) {
                 UnicodeFontData font1 = UnicodeFontData.getFont(s);
                 if (font1 == null) {
@@ -534,7 +546,7 @@ public class LoadImage extends Component {
             Rectangle pixelBounds = gv.getPixelBounds(frc, 0, 0);
             {
                 final int width2 = (int) bounds.getWidth();
-                System.out.println("ascent: " + metrics.getAscent() 
+                if (DEBUG) System.out.println("ascent: " + metrics.getAscent() 
                         + "; descent: " + metrics.getDescent() 
                         + "; width: " + width2
                         + "; lsb: " + pixelBounds.x
@@ -551,7 +563,7 @@ public class LoadImage extends Component {
             }
             String url = LoadImage.APPLE_URL.transform(s);
             BufferedImage targetImage = writeResizedImage(sourceImage, fileDirectory, filename, height);
-            result.add(deepCopy(sourceImage));
+            result.put(s, deepCopy(sourceImage));
             System.out.println(core + "\t" + s);
         }
         return result;

@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
@@ -84,7 +86,16 @@ public class EmojiOrder {
     public final UnicodeMap<String>  charactersToOrdering = new UnicodeMap<>();
     public final Comparator<String>        codepointCompare;
     public final UnicodeMap<MajorGroup>  majorGroupings = new UnicodeMap<>(); 
+    public final Map<String, Integer>  groupOrder; 
     private final EmojiData emojiData;
+    private final Map<String, MajorGroup> categoryToMajor;
+
+    /**
+     * @return the categoryToMajor
+     */
+    public MajorGroup getMajorGroupFromCategory(String group) {
+        return categoryToMajor.get(group);
+    }
 
     public EmojiOrder(VersionInfo version, String file) {
         emojiData = EmojiData.of(version);
@@ -93,9 +104,13 @@ public class EmojiOrder {
                 .setSortBeforeOthers(true)
                 .setDoFallback(false)
                 ;
-        orderingToCharacters            = getOrdering(version, file, mp);
+        HashMap<String, Integer> _groupOrder = new LinkedHashMap<String,Integer>();
+        Map<String, MajorGroup> _categoryToMajor = new LinkedHashMap<>();
+        orderingToCharacters = getOrdering(version, file, mp, _groupOrder, _categoryToMajor);
         mp.freeze();
         majorGroupings.freeze();
+        groupOrder = Collections.unmodifiableMap(_groupOrder);
+        categoryToMajor = Collections.unmodifiableMap(_categoryToMajor);
         codepointCompare           =
                 new MultiComparator<String>(
                         mp,
@@ -103,7 +118,10 @@ public class EmojiOrder {
                         PLAIN_STRING_COMPARATOR);
     }
 
-    Relation<String, String> getOrdering(VersionInfo version, String sourceFile, MapComparator<String> mapComparator) {
+    Relation<String, String> getOrdering(VersionInfo version, String sourceFile, 
+            MapComparator<String> mapComparator, 
+            Map<String, Integer> _groupOrder, 
+            Map<String, MajorGroup> _categoryToMajor) {
         //System.out.println(sourceFile);
         Relation<String, String> result = Relation.of(new LinkedHashMap<String, Set<String>>(), LinkedHashSet.class);
         Set<String> sorted = new LinkedHashSet<>();
@@ -120,6 +138,17 @@ public class EmojiOrder {
                 continue;
             }
             line = Emoji.getLabelFromLine(lastLabel, line);
+            for (String item : lastLabel.value) {
+                if (!_groupOrder.containsKey(item)) {
+                    _groupOrder.put(item, _groupOrder.size());
+                }
+                MajorGroup major = _categoryToMajor.get(item);
+                if (major == null) {
+                    _categoryToMajor.put(item, majorGroup);
+                } else if (major != majorGroup) {
+                    throw new IllegalArgumentException("Conflicting major categories");
+                }
+            }
             line = Emoji.UNESCAPE.transform(line);
             for (int i = 0; i < line.length();) {
                 String string = Emoji.getEmojiSequence(line, i);
@@ -375,5 +404,9 @@ public class EmojiOrder {
             }
         }
         throw new IllegalArgumentException();
+    }
+
+    public int getGroupOrder(String cat1) {
+        return groupOrder.get(cat1);
     }
 }

@@ -119,16 +119,15 @@ U+1F949			2015Q3	THIRD PLACE MEDAL
 • see SPORTS MEDAL
 Music
 U+1F941			2015Q3	DRUM WITH DRUMSTICKS
-Post-9.0 Candidates
-Faces¹
+face-neutral
 U+1F928			2016Q1	FACE WITH ONE EYEBROW RAISED
-Food¹
+food-prepared
 U+1F95F			2016Q1	DUMPLING
 • typically stuffed
 • potsticker, gyōza (餃子), jiaozi (餃子/饺子), pierogi, empanada, …
 U+1F960			2016Q1	FORTUNE COOKIE
+dishware
 U+1F961			2016Q1	TAKEOUT BOX
 • oyster pail 
-Food Items¹
 U+1F962			2016Q1	CHOPSTICKS
 • also kuaizi (筷子), hashi (箸), jeotgarak (젓가락)
