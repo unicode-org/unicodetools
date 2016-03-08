@@ -2471,71 +2471,76 @@ public class GenerateEmoji {
 
     static void showCandidates() throws IOException {
         // gather data
-        String currentRow = "";
         EmojiData betaEmojiData = EmojiData.of(Emoji.VERSION_BETA);
         UnicodeSet modBase = betaEmojiData.getModifierStatusSet(ModifierStatus.modifier_base);
         UnicodeSet pres = betaEmojiData.getDefaultPresentationSet(DefaultPresentation.emoji);
         UnicodeMap<CandidateData.Quarter> quartersForChars = new UnicodeMap<>();
         // The data file is designed to take the contents of the table, when pasted as plain text, and format it.
         List<String> output = new ArrayList<>();
-        UnicodeSet items = new UnicodeSet();
+        CandidateData cd = CandidateData.getInstance();        
+        Set<String> sorted = cd.getCharacters().addAllTo(new TreeSet<String>(cd.comparator));
+        String lastCategory = null;
+        MajorGroup lastMajorGroup = null;
+        String header = "<tr>"
+                + "<th>№</th>"
+                + "<th width='7em'>Code Point</th>"
+                + "<th width='5em'>Draft Chart Glyph</th>"
+                + "<th>Sample Colored Glyphs</th>"
+                + "<th>Date</th>"
+                + "<th>EMP</th>"
+                + "<th>EMB</th>"
+                + "<th>Name</th>"
+                + "</tr>";
+
         int count = 0;
-        for (String line : FileUtilities.in(GenerateEmoji.class, "candidateData.txt")) {
-            if (line.startsWith("Code")) { // title line
-                output.add("<tr>"
-                        + "<th>№</th>"
-                        + "<th width='7em'>Code Point</th>"
-                        + "<th width='5em'>Draft Chart Glyph</th>"
-                        + "<th>Sample Colored Glyphs</th>"
-                        + "<th>Date</th>"
-                        + "<th>EMP</th>"
-                        + "<th>EMB</th>"
-                        + "<th>Name</th>"
-                        + "</tr>"
-                        );
-                continue;
+        boolean isCurrent = true;
+        String futureSuffix = "";
+        output.add("<tr><th colspan='8' class='bighead2'>" + getDoubleLink("U9.0 Candidates") + "</th></tr>");
+        output.add(header);
+        for (String source : sorted) {
+            String category = cd.getCategory(source);
+            MajorGroup majorGroup = cd.getMajorGroup(source);
+            if (majorGroup == null) {
+                cd.getMajorGroup(source);  
             }
-            if (line.startsWith("•")) { // annotation
-                currentRow += "<br> " + line;
-                continue;
+            if (isCurrent && CandidateData.Quarter.FUTURE.contains(cd.getQuarter(source))) {
+                output.add("<tr><th colspan='8' class='bighead2'>" + getDoubleLink("Post U9.0 Candidates*") + "</th></tr>");
+                output.add(header);
+                isCurrent = false;
+                futureSuffix = "*";
             }
-            if (!currentRow.isEmpty()) {
-                output.add(currentRow + "</tr>");
-                currentRow = "";
+            if (majorGroup != lastMajorGroup) {
+                output.add("<tr><th colspan='8' class='bighead'>" + getDoubleLink(majorGroup.toString() + futureSuffix) + "</th></tr>");
+                lastMajorGroup = majorGroup; 
             }
-            if (line.startsWith("U+")) { // data
-                List<String> parts = TAB.splitToList(line);
-                String source = Utility.fromHex(parts.get(0));
-                final String quarter = parts.get(3).trim();
-                quartersForChars.put(source, CandidateData.Quarter.fromString(quarter));
-                final String name = parts.get(4).trim();
-                EXTRA_NAMES.put(source, name);
-                String blackAndWhite = getImage(Source.proposed, source, true, "");
-                String color1 = getImage(Source.emojixpress, source, true, "");
-                String color2 = getImage(Source.emojipedia, source, true, "");
-                String sample = getImage(Source.sample, source, true, "");
-                String color = SPACE_JOINER.join(color1, color2, sample);
-                currentRow = "<tr>"
-                        + "<td class='rchars'>" + ++count + "</td>"
-                        + "<td class='code'>" + getDoubleLink(Utility.hex(source).replace(" ", "_"), toUHex(source)) + "</td>"
-                        + "<td class='andr'>" + blackAndWhite + "</td>"
-                        + "<td class='default'>" + color + "</td>"
-                        + "<td class='default'>" + quarter + "</td>"
-                        + "<td class='default'>" + (pres.contains(source) ? "P" : "")
-                        + "<td class='default'>" + (modBase.contains(source) ? "B" : "")
-                        + "<td class='name'>" + name
-                        ;
-                items.add(source);
-            } else { // must be category
-                line= line.trim();
-                output.add("<tr><th colspan='8'>" + getDoubleLink(line) + "</th></tr>");
+            if (!Objects.equals(category,lastCategory)) {
+                output.add("<tr><th colspan='8'>" + getDoubleLink(category + futureSuffix) + "</th></tr>");
+                lastCategory = category; 
             }
+            String blackAndWhite = getImage(Source.proposed, source, true, "");
+            String color1 = getImage(Source.emojixpress, source, true, "");
+            String color2 = getImage(Source.emojipedia, source, true, "");
+            String sample = getImage(Source.sample, source, true, "");
+            String color = SPACE_JOINER.join(color1, color2, sample);
+            String currentRow = "<tr>"
+                    + "<td class='rchars'>" + ++count + "</td>"
+                    + "<td class='code'>" + getDoubleLink(Utility.hex(source).replace(" ", "_"), toUHex(source)) + "</td>"
+                    + "<td class='andr'>" + blackAndWhite + "</td>"
+                    + "<td class='default'>" + color + "</td>"
+                    + "<td class='default'>" + cd.getQuarter(source) + "</td>"
+                    + "<td class='default'>" + (pres.contains(source) ? "P" : "")
+                    + "<td class='default'>" + (modBase.contains(source) ? "B" : "")
+                    + "<td class='name'>" + cd.getName(source)
+                    ;
+            for (String annotation :  cd.getAnnotations(source)) {
+                currentRow += "<br> • " + annotation;
+            }
+            output.add(currentRow + "</tr>");
         }
+        UnicodeSet items = cd.getCharacters();
+
         for (CandidateData.Quarter q : quartersForChars.values()) {
             System.out.println(q + "\t" + quartersForChars.getSet(q));
-        }
-        if (!currentRow.isEmpty()) {
-            output.add(currentRow + "</tr>");
         }
         System.out.println(items.toString().replace("\\", "\\\\"));
         // now print
@@ -2564,6 +2569,8 @@ public class GenerateEmoji {
                     + "<a target='_blank' href='../../emoji/selection.html'>Submitting Emoji Character Proposals</a>. "
                     + "Anyone can file a proposal for a new emoji: see the instructions there.</p>\n"
                     + "<ul>"
+                    + "<li>The cell-divisions (like <a href='#face-happy'>face-happy</a>) are as "
+                    + "in <a href='emoji-ordering.html'>Emoji Ordering</a></li>\n"
                     + "<li>All of the images are <em>only</em> for illustration.</li>\n"
                     + "<li>The draft black and white <strong>Chart Glyphs</strong> are drafts for the Unicode charts. "
                     + "They may change. "
