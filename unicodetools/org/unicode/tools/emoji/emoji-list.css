@@ -12,9 +12,15 @@ th {
 	text-align: left;
 	background-color: #EEE;
 }
+
 .bighead {
 	background-color: #DDD;
 	font-size: 125%;
+}
+
+.bighead2 {
+	background-color: #FCC;
+	font-size: 150%;
 }
 
 .code {
