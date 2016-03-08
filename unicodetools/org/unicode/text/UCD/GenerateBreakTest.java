@@ -1472,7 +1472,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     WB.get("ALetter") + WB.get("ALetter") + WB.get("ALetter"),
                     WB.get("ALetter") + WB.get("MidLetter") + WB.get("ALetter"),
                     WB.get("ALetter") + WB.get("MidLetter") + WB.get("MidLetter") + WB.get("ALetter"),
-                    WB.get("Hebrew_Letter") + WB.get("Single_Quote") + WB.get("Hebrew_Letter"),
+                    WB.get("Hebrew_Letter") + WB.get("Single_Quote"),
                     WB.get("Hebrew_Letter") + WB.get("Double_Quote") + WB.get("Hebrew_Letter"),
                     WB.get("ALetter") + WB.get("Numeric") + WB.get("Numeric") + WB.get("ALetter"),
                     WB.get("Numeric") + WB.get("MidNum") + WB.get("Numeric"),
