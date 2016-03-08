@@ -1068,9 +1068,9 @@ public class GenerateEmoji {
             MajorGroup majorGroup = EmojiOrder.STD_ORDER.getMajorGroup(values);
             if (majorGroup != lastMajorGroup) {
                 lastMajorGroup = majorGroup;
-                out.println("<tr><th class='bighead'>" + TransliteratorUtilities.toHTML.transform(majorGroup.toString()) + "</th></tr>");
+                out.println("<tr><th class='bighead'>" + getDoubleLink(majorGroup.toString()) + "</th></tr>");
             }
-            out.println("<tr><th>" + TransliteratorUtilities.toHTML.transform(entry.getKey()) + "</th></tr>");
+            out.println("<tr><th>" + getDoubleLink(entry.getKey()) + "</th></tr>");
             out.println("<tr>");
             all.addAll(values);
             totalSorted += values.size();
@@ -2570,7 +2570,7 @@ public class GenerateEmoji {
                     + "Anyone can file a proposal for a new emoji: see the instructions there.</p>\n"
                     + "<ul>"
                     + "<li>The cell-divisions (like <a href='#face-happy'>face-happy</a>) are as "
-                    + "in <a href='emoji-ordering.html'>Emoji Ordering</a></li>\n"
+                    + "in <a href='emoji-ordering.html' target='order'>Emoji Ordering</a>.</li>\n"
                     + "<li>All of the images are <em>only</em> for illustration.</li>\n"
                     + "<li>The draft black and white <strong>Chart Glyphs</strong> are drafts for the Unicode charts. "
                     + "They may change. "
