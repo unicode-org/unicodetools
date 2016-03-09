@@ -1,5 +1,5 @@
 Generate: linebreak
-DeltaVersion: 21
+DeltaVersion: 22
 CopyrightYear: 2016
 
 File: extra/ScriptNfkc

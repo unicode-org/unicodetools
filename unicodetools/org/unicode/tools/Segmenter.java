@@ -774,8 +774,8 @@ public class Segmenter {
             
             "$EB=\\p{Line_Break=E_Base}",
             "$EM=\\p{Line_Break=E_Modifier}",
-            "$ZWJ=\\p{Line_Break=ZWJ}",
             "$ZWJ_O=\\p{Line_Break=ZWJ}",
+            "$ZWJ=\\p{Line_Break=ZWJ}",
             
             // macro
             "$CM=[$CM1 $ZWJ]",
@@ -857,7 +857,7 @@ public class Segmenter {
             "# LB 8  Break before any character following a zero-width space, even if one or more spaces intervene.",
             "8) $ZW $SP* \u00F7",
             "# LB 8a  Don't break between ZWJ and IDs (for use in Emoji ZWJ sequences)",
-            "8.1) $ZWJ_O × $ID",
+            "8.1) $ZWJ_O × ($ID | $EB | $EM)",
             "# LB 9  Do not break a combining character sequence; treat it as if it has the LB class of the base character",
             "# in all of the following rules. (Where X is any line break class except SP, BK, CR, LF, NL or ZW.)",
             "9) $Spec2_ \u00D7 $CM",
