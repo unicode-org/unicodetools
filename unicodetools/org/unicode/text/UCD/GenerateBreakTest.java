@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -37,8 +38,10 @@ import org.unicode.text.utility.UtilityBase;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder;
 
+import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
+import com.ibm.icu.text.Transliterator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -450,7 +453,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
     }
 
     private void generateTest(boolean shortVersion, String fileName, String propertyName) throws IOException {
-        Set<Double> rulesFound = new TreeSet<>();
+        TreeMap<Double,String> rulesFound = new TreeMap<>();
 
         final List<String> testCases = new ArrayList<String>();
         // do main test
@@ -525,11 +528,14 @@ abstract public class GenerateBreakTest implements UCD_Types {
                     + "You will need to add samples that trigger those rules. "
                     + "See https://sites.google.com/site/unicodetools/home/changing-ucd-properties#TOC-Adding-Segmentation-Sample-Strings");
         }
+        for (Entry<Double, String> entry : rulesFound.entrySet()) {
+            System.out.println("\"" + escaper.transform(entry.getValue()) + "\",\t\t//" + entry.getKey());
+        }
     }
 
-    private Set<Double> getMissing(String fileName, Set<Double> rulesFound) {
+    private Set<Double> getMissing(String fileName, Map<Double, String> rulesFound) {
         Set<Double> numbers = getRuleNumbers();
-        numbers.removeAll(rulesFound);
+        numbers.removeAll(rulesFound.keySet());
         if (fileName.equals("Grapheme")) {
             numbers.remove(9.2d); // Prepend is optional, and by default empty
         } else if (fileName.equals("Line")) {
@@ -787,7 +793,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
         out.println("</table>");
         //out.println("</ul>");
 
-        Set<Double> rulesFound = new TreeSet<>();
+        Map<Double, String> rulesFound = new TreeMap<>();
 
         if (extraSingleSamples.size() > 0) {
             out.println("<h3>" + linkAndAnchor("samples", "Sample Strings") + "</h3>");
@@ -830,12 +836,12 @@ abstract public class GenerateBreakTest implements UCD_Types {
     static final String BREAK = "\u00F7";
     static final String NOBREAK = "\u00D7";
 
-    public void printLine(PrintWriter out, String source, boolean comments, boolean html, Set<Double> rules) {
+    public void printLine(PrintWriter out, String source, boolean comments, boolean html, Map<Double, String> rulesFound) {
         int cp;
         final StringBuffer string = new StringBuffer();
         final StringBuffer comment = new StringBuffer("\t# ");
         boolean hasBreak = isBreak(source, 0);
-        addToRules(rules, hasBreak);
+        addToRules(rulesFound, source, hasBreak);
 
         String status;
         if (html) {
@@ -851,7 +857,7 @@ abstract public class GenerateBreakTest implements UCD_Types {
 
             cp = UTF16.charAt(source, offset);
             hasBreak = isBreak(source, offset + UTF16.getCharCount(cp));
-            addToRules(rules, hasBreak);
+            addToRules(rulesFound, source, hasBreak);
 
             if (html) {
                 status = hasBreak ? " style='border-right: 1px solid blue'" : "";
@@ -885,10 +891,16 @@ abstract public class GenerateBreakTest implements UCD_Types {
         }
     }
 
-    private void addToRules(Set<Double> rules, boolean hasBreak) {
-        rules.add(Double.parseDouble(getRule()));
+    private void addToRules(Map<Double, String> rulesFound, String source, boolean hasBreak) {
+        final String rule = getRule();
+        final double key = Double.parseDouble(rule);
+        String last = rulesFound.get(key);
+        if (last != null && last.length() < source.length()) {
+            return; // use the shortest sample
+        }
+        rulesFound.put(key, source);
         if (!hasBreak) {
-            rules.add(999d);
+            rulesFound.put(999d, "final");
         }
     }
 
@@ -1158,7 +1170,39 @@ abstract public class GenerateBreakTest implements UCD_Types {
             super(ucd, Segmenter.make(ToolUnicodePropertySource.make(ucd.getVersion()),"LineBreak"), "aa", "Line",
                     new String[]{}, 
                     new String[]{
-                "can't", "can\u2019t",
+                "\\u000Bぁ",     //4.0
+                "\\u000Dぁ",     //5.02
+                "\\u0085ぁ",     //5.04
+                "\\u200D☝",     //8.1
+                "ぁ\\u2060",     //11.01
+                "\\u2060ぁ",     //11.02
+                "ぁ̈ ",      //12.2
+                "\\u200D ",     //12.3
+                "\\u200D/",     //13.04
+                "——",       //17.0
+                "ぁ￼",       //20.01
+                "￼ぁ",       //20.02
+                "ぁ-",       //21.02
+                "ก․",       //22.01
+                "!․",       //22.02
+                "․․",       //22.04
+                "0․",       //22.05
+                "☝%",       //23.01
+                "ก0",       //23.02
+                "$☝",       //24.01
+                "$ก",       //24.02
+                "%ก",       //24.03
+                "ᄀ\\u1160",     //26.01
+                "\\u1160\\u1160",       //26.02
+                "ᆨᆨ",       //26.03
+                "\\u1160․",     //27.01
+                "\\u1160%",     //27.02
+                "$\\u1160",     //27.03
+                "☝🏻",      //30.2
+                "final",        //999.0
+
+                "can't", 
+                "can\u2019t",
                 "'can' not",
                 "can 'not'",
                 "bug(s)     ",
@@ -2568,6 +2612,8 @@ abstract public class GenerateBreakTest implements UCD_Types {
     //}
 
     static final boolean DEBUG_GRAPHEMES = false;
+    static final Transliterator escaper = Transliterator.createFromRules(
+            "escape", "::[[:di:][:c:]] any-hex/c;", Transliterator.FORWARD);
 
     static class MyBreakIterator {
         int offset = 0;
