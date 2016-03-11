@@ -303,7 +303,7 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
         return string;
     }
     public String checkEnum(String string) {
-        final Enum item = property.getEnum(string);
+        final Enum item = string == null ? null : property.getEnum(string);
         if (item == null) {
             final String errorMessage = property + "\tBad enum value:\t" + string;
             IndexUnicodeProperties.getDataLoadingErrors().put(property, errorMessage);
