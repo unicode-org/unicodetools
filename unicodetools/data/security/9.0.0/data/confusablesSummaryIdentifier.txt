@@ -1,7 +1,7 @@
 ﻿# Summary: Recommended confusable mapping for IDN
 # File: confusablesSummaryIdentifier.txt
-# Version: 8.0.0
-# Generated: 2015-05-17, 03:09:04 GMT
+# Version: 9.0.0
+# Generated: 2016-03-11, 14:35:00 GMT
 # Checkin: $Revision: 1.32 $
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr39/
@@ -32,8 +32,9 @@
 ←	(‎ ٠ ‎)	0660	 ARABIC-INDIC DIGIT ZERO
 ←	(‎ ۰ ‎)	06F0	 EXTENDED ARABIC-INDIC DIGIT ZERO	# →‎٠‎→
 
-#	/	丿
+#	/	ノ	丿
 	(‎ / ‎)	002F	 SOLIDUS
+←	(‎ ノ ‎)	30CE	 KATAKANA LETTER NO	# →⼃→
 ←	(‎ 丿 ‎)	4E3F	 CJK UNIFIED IDEOGRAPH-4E3F	# →⼃→
 
 #	O	0	০	ଠ	୦	ഠ	〇	Ο	О	Օ
@@ -1550,6 +1551,47 @@
 	(‎ ー ‎)	30FC	 KATAKANA-HIRAGANA PROLONGED SOUND MARK
 ←	(‎ 一 ‎)	4E00	 CJK UNIFIED IDEOGRAPH-4E00
 
+#	く	𡿨
+	(‎ く ‎)	304F	 HIRAGANA LETTER KU
+←	(‎ 𡿨 ‎)	21FE8	 CJK UNIFIED IDEOGRAPH-21FE8	# →㇛→
+
+#	イ	亻
+	(‎ イ ‎)	30A4	 KATAKANA LETTER I
+←	(‎ 亻 ‎)	4EBB	 CJK UNIFIED IDEOGRAPH-4EBB	# →⺅→
+
+#	ニ	二
+	(‎ ニ ‎)	30CB	 KATAKANA LETTER NI
+←	(‎ 二 ‎)	4E8C	 CJK UNIFIED IDEOGRAPH-4E8C
+
+#	ハ	八
+	(‎ ハ ‎)	30CF	 KATAKANA LETTER HA
+←	(‎ 八 ‎)	516B	 CJK UNIFIED IDEOGRAPH-516B
+
+#	カ	力
+	(‎ カ ‎)	30AB	 KATAKANA LETTER KA
+←	(‎ 力 ‎)	529B	 CJK UNIFIED IDEOGRAPH-529B	# →⼒→
+
+#	ト	卜
+	(‎ ト ‎)	30C8	 KATAKANA LETTER TO
+←	(‎ 卜 ‎)	535C	 CJK UNIFIED IDEOGRAPH-535C	# →⼘→
+
+#	ロ	口	囗
+	(‎ ロ ‎)	30ED	 KATAKANA LETTER RO
+←	(‎ 口 ‎)	53E3	 CJK UNIFIED IDEOGRAPH-53E3	# →⼝→→⼞→
+←	(‎ 囗 ‎)	56D7	 CJK UNIFIED IDEOGRAPH-56D7	# →⼞→
+
+#	土	士
+	(‎ 土 ‎)	571F	 CJK UNIFIED IDEOGRAPH-571F
+←	(‎ 士 ‎)	58EB	 CJK UNIFIED IDEOGRAPH-58EB	# →⼠→→⼟→
+
+#	タ	夕
+	(‎ タ ‎)	30BF	 KATAKANA LETTER TA
+←	(‎ 夕 ‎)	5915	 CJK UNIFIED IDEOGRAPH-5915	# →⼣→
+
+#	エ	工
+	(‎ エ ‎)	30A8	 KATAKANA LETTER E
+←	(‎ 工 ‎)	5DE5	 CJK UNIFIED IDEOGRAPH-5DE5	# →⼯→
+
 #	戶	戸
 	(‎ 戶 ‎)	6236	 CJK UNIFIED IDEOGRAPH-6236
 ←	(‎ 戸 ‎)	6238	 CJK UNIFIED IDEOGRAPH-6238	# →⼾→
@@ -1742,5 +1784,5 @@
 	(‎ 鹂 ‎)	9E42	 CJK UNIFIED IDEOGRAPH-9E42
 ←	(‎ 鹃 ‎)	9E43	 CJK UNIFIED IDEOGRAPH-9E43
 
-# total : 607
+# total : 619
 

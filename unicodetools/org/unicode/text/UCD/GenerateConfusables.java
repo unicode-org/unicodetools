@@ -73,7 +73,7 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateConfusables {
 
-    private static final String REFERENCE_VERSION = "6.3.0"; // Change to lastVersion once we are well past 7.0
+    private static final String REFERENCE_VERSION = "8.0.0"; // Change to lastVersion once we are well past 7.0
 
     static final Normalizer NFKD = Default.nfkd();
     private static final ToolUnicodeTransformFactory TOOL_FACTORY = new ToolUnicodeTransformFactory();
