@@ -14,6 +14,9 @@ EMB ; Emoji_Modifier_Base
 idstatus ; Identifier_Status
 idtype ; Identifier_Type
 
+idns ; Idn_Status
+idn8 ; Idn_2008
+
 # ================================================
 # Miscellaneous Properties
 # ================================================
@@ -104,9 +107,7 @@ cjkSpecializedSemanticVariant ; kSpecializedSemanticVariant
 cjkTraditionalVariant ; kTraditionalVariant
 cjkZVariant ; kZVariant
 
-idns ; Idn_Status
 idnm ; Idn_Mapping
-idn8 ; Idn_2008
 
 ConfSL ; Confusable_SL
 ConfSA ; Confusable_SA
