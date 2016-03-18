@@ -2,7 +2,6 @@ package org.unicode.propstest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -17,14 +16,15 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyStatus;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
+import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
-import org.unicode.props.UcdPropertyValues.*;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.impl.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestInvariants extends TestFmwkPlus{

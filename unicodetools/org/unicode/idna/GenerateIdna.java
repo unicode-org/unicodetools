@@ -3,7 +3,6 @@ package org.unicode.idna;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.TreeSet;
 
 import org.unicode.idna.Idna.IdnaType;

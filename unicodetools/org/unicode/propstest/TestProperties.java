@@ -22,8 +22,8 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
-import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.Emoji.ModifierStatus;
+import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 
 import com.ibm.icu.dev.test.TestFmwk;

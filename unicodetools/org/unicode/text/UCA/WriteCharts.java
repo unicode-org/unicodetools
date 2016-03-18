@@ -1048,7 +1048,7 @@ public class WriteCharts implements UCD_Types {
         gotOne = doIndexItem("Normalization&nbsp;Charts", "normalization", choice, NORMALIZATION, gotOne, indexFile);
         gotOne = doIndexItem("Case&nbsp;Charts", "case", choice, CASE, gotOne, indexFile);
         gotOne = doIndexItem("Script&nbsp;Charts", "script", choice, SCRIPT, gotOne, indexFile);
-        gotOne = doIndexItem("Name&nbsp;Index&nbsp;Charts", "name", choice, NAME, gotOne, indexFile);
+        //gotOne = doIndexItem("Name&nbsp;Index&nbsp;Charts", "name", choice, NAME, gotOne, indexFile);
         gotOne = doIndexItem("Names&nbsp;List&nbsp;Charts", "nameslist", choice, NAMELIST, gotOne, indexFile);
         //        if (choice != NORMALIZATION) {
         //            if (gotOne && doBreak) indexFile.println("<br>");

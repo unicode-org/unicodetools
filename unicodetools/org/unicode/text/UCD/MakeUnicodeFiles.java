@@ -21,7 +21,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.unicode.cldr.util.CldrUtility;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateSentenceBreakTest;

@@ -14,7 +14,6 @@ package org.unicode.text.UCD;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.text.UTF16;

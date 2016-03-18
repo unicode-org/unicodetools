@@ -1,6 +1,5 @@
 package org.unicode.propstest;
 
-import org.unicode.cldr.draft.UnicodeSetFormat;
 import org.unicode.cldr.util.With;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;

@@ -447,6 +447,7 @@ public class EmojiData {
         final UnicodeMap<String> names = latest.load(UcdProperty.Name);
         final UnicodeMap<Age_Values> ages = beta.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
         EmojiData emojiData3 = new EmojiData(VersionInfo.getInstance(3));
+        EmojiData emojiData2 = new EmojiData(VersionInfo.getInstance(2));
 
         UnicodeSet overlap = new UnicodeSet(emojiData3.getModifierBases()).retainAll(emojiData3.getDefaultPresentationSet(DefaultPresentation.text));
         System.out.println("ModifierBase + TextPresentation: " + overlap.size() + "\t" + overlap.toPattern(false));
@@ -454,8 +455,11 @@ public class EmojiData {
             System.out.println(Utility.hex(s) + "\t" + s + "\t" + ages.get(s) + "\t" +  names.get(s));
         }
 
+        System.out.println("v2 SingletonsWithDefectives " + emojiData2.getSingletonsWithDefectives().size() 
+                + "\t" + emojiData2.getSingletonsWithDefectives());
 
-        System.out.println("SingletonsWithDefectives " + emojiData3.getSingletonsWithDefectives().size());
+        System.out.println("SingletonsWithDefectives " + emojiData3.getSingletonsWithDefectives().size() 
+                + "\t" + emojiData3.getSingletonsWithDefectives());
         System.out.println("Defectives " + -(emojiData3.getSingletonsWithDefectives().size() - emojiData3.getSingletonsWithoutDefectives().size()));
         System.out.println("Keycap Sequences " + emojiData3.getKeycapSequences().size());
         System.out.println("Flag Sequences " + emojiData3.getFlagSequences().size());
@@ -466,7 +470,6 @@ public class EmojiData {
         System.out.println("modifier" + ", " + emojiData3.getModifierStatusSet(ModifierStatus.modifier).toPattern(false));
         System.out.println(Emoji.CharSource.WDings  + ", " + emojiData3.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
         System.out.println(DefaultPresentation.emoji + ", " + emojiData3.getDefaultPresentationSet(DefaultPresentation.emoji).toPattern(false));
-        EmojiData emojiData2 = new EmojiData(VersionInfo.getInstance(2));
         show(0x1F3CB, names, emojiData3);
         show(0x1F3CB, names, emojiData2);
         UnicodeSet keys = new UnicodeSet(emojiData3.keySet()).addAll(emojiData2.keySet());

@@ -5,11 +5,11 @@ import java.util.Set;
 
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
+import org.unicode.cldr.util.CLDRFile.DraftStatus;
+import org.unicode.cldr.util.CLDRFile.WinningChoice;
 import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.LanguageTagParser;
 import org.unicode.cldr.util.SupplementalDataInfo;
-import org.unicode.cldr.util.CLDRFile.DraftStatus;
-import org.unicode.cldr.util.CLDRFile.WinningChoice;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;

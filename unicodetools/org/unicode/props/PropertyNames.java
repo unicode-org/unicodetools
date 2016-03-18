@@ -17,13 +17,13 @@ import com.ibm.icu.dev.util.CollectionUtilities;
  * @param <T>
  */
 public class PropertyNames<T extends Enum> {
-    
+
     public interface Named {
-//        public PropertyNames getName();
-//        public PropertyNames getShortName();
+        //        public PropertyNames getName();
+        //        public PropertyNames getShortName();
         public PropertyNames getNames();
     }
-    
+
     final static Map<Class, NameMatcher> CLASS2NAME2ENUM = new HashMap<Class, NameMatcher>();
 
     private final NameMatcher                  name2enum;

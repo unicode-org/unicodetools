@@ -9,8 +9,8 @@ import org.unicode.props.UcdProperty;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
+import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;

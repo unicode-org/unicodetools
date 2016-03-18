@@ -2,8 +2,36 @@
 package org.unicode.props;
 import java.util.EnumSet;
 import java.util.Set;
+
 import org.unicode.props.PropertyNames.NameMatcher;
-import org.unicode.props.UcdPropertyValues.*;
+import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.Bidi_Class_Values;
+import org.unicode.props.UcdPropertyValues.Bidi_Paired_Bracket_Type_Values;
+import org.unicode.props.UcdPropertyValues.Binary;
+import org.unicode.props.UcdPropertyValues.Block_Values;
+import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
+import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
+import org.unicode.props.UcdPropertyValues.East_Asian_Width_Values;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
+import org.unicode.props.UcdPropertyValues.Hangul_Syllable_Type_Values;
+import org.unicode.props.UcdPropertyValues.Identifier_Status_Values;
+import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
+import org.unicode.props.UcdPropertyValues.Idn_2008_Values;
+import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
+import org.unicode.props.UcdPropertyValues.Indic_Positional_Category_Values;
+import org.unicode.props.UcdPropertyValues.Indic_Syllabic_Category_Values;
+import org.unicode.props.UcdPropertyValues.Joining_Group_Values;
+import org.unicode.props.UcdPropertyValues.Joining_Type_Values;
+import org.unicode.props.UcdPropertyValues.Line_Break_Values;
+import org.unicode.props.UcdPropertyValues.NFC_Quick_Check_Values;
+import org.unicode.props.UcdPropertyValues.NFD_Quick_Check_Values;
+import org.unicode.props.UcdPropertyValues.NFKC_Quick_Check_Values;
+import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
+import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
+import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.props.UcdPropertyValues.Sentence_Break_Values;
+import org.unicode.props.UcdPropertyValues.Word_Break_Values;
 
 public enum UcdProperty {
 

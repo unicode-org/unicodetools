@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public abstract class Tabber {

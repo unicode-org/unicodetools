@@ -6,7 +6,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
-import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 

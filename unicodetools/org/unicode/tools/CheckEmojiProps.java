@@ -6,8 +6,8 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji;
-import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.Emoji.ModifierStatus;
+import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;

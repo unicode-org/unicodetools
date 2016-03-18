@@ -28,17 +28,13 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 
-import org.unicode.props.UcdPropertyValues;
-import org.unicode.props.UcdPropertyValues.Grapheme_Cluster_Break_Values;
 import org.unicode.text.utility.Settings;
-import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 import org.unicode.text.utility.UtilityBase;
 import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder;
 
-import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.Transliterator;

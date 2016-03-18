@@ -19,7 +19,6 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
-import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 

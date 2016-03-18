@@ -1,6 +1,5 @@
 package org.unicode.temp;
 
-import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.util.ULocale;

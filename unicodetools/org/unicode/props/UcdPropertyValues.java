@@ -1,4 +1,5 @@
 package org.unicode.props;
+import org.unicode.props.PropertyNames.NameMatcher;
 import org.unicode.props.PropertyNames.Named;
 
 public class UcdPropertyValues {
@@ -1283,6 +1284,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        public static final NameMatcher<Script_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Script_Values.class);
+        public static Script_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 

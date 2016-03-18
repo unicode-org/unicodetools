@@ -27,8 +27,8 @@ import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UTF16.StringComparator;
+import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
 public class CollatorEquivalences {
