@@ -2,7 +2,10 @@ package org.unicode.tools.emoji;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Utility;
@@ -10,7 +13,9 @@ import org.unicode.tools.Tabber;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 
 import com.ibm.icu.dev.util.BagFormatter;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.UTF16;
@@ -20,8 +25,6 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateEmojiData {
 
-    static final boolean TURN_OFF_SEQUENCE_TITLE = true;
-    
     // get this from the data file in the future
 
     public static final UnicodeSet flagBase = new UnicodeSet("[\\U0001F3F3]").freeze();
@@ -59,54 +62,78 @@ public class GenerateEmojiData {
             outText2.println("# Warning: the format has changed from Version 1.0");
             outText2.println("# Format: ");
             outText2.println("# codepoint(s) ; property(=Yes) # version [count] name(s) ");
-            printer.show(outText2, "Emoji", width, 14, emoji, true );
-            printer.show(outText2, "Emoji_Presentation", width, 14, emoji_presentation, true);
-            printer.show(outText2, "Emoji_Modifier", width, 14, emoji_modifiers, true);
-            printer.show(outText2, "Emoji_Modifier_Base", width, 14, emoji_modifier_bases, true);
+            printer.show(outText2, "Emoji", width, 14, emoji, true, true );
+            printer.show(outText2, "Emoji_Presentation", width, 14, emoji_presentation, true, true);
+            printer.show(outText2, "Emoji_Modifier", width, 14, emoji_modifiers, true, true);
+            printer.show(outText2, "Emoji_Modifier_Base", width, 14, emoji_modifier_bases, true, true);
             outText2.println("\n#EOF");
         }
 
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-sequences.txt")) {
             out.println(getBaseDataHeader(51, "Emoji Sequence Data", "emoji-sequences"));
-            int width = TURN_OFF_SEQUENCE_TITLE ? 0 : Math.max("Combining_Sequences".length(), 
-                    Math.max("Flag_Sequences".length(),
-                            "Modifier_Sequences".length()));
-            out.println("# Format: ");
-            out.println(width == 0 ? "# codepoint(s) # version [count] name(s) " : "# codepoint(s) ; property(=Yes) # version [count] name(s) ");
+            List<String> type_fields = Arrays.asList(
+                    "Emoji_Combining_Sequence", 
+                    "Emoji_Flag_Sequence", 
+                    "Emoji_Modifier_Sequences");
+            int width = maxLength(type_fields);
+            showTypeFieldsMessage(out, type_fields);
 
-            printer.show(out, "Combining_Sequences", width, 14, Emoji.KEYCAPS, true);
-            printer.show(out, "Flag_Sequences", width, 14, Emoji.FLAGS, true);
-            printer.show(out, "Modifier_Sequences", width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), false);
+            printer.show(out, "Emoji_Combining_Sequence", width, 14, Emoji.KEYCAPS, true, false);
+            printer.show(out, "Emoji_Flag_Sequence", width, 14, Emoji.FLAGS, true, false);
+            printer.show(out, "Emoji_Modifier_Sequence", width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), false, false);
             out.println("\n#EOF");
         }
 
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-zwj-sequences.txt")) {
             out.println(getBaseDataHeader(51, "Emoji ZWJ Sequence Catalog", "emoji-zwj-sequences"));
-            int width = TURN_OFF_SEQUENCE_TITLE ? 0 : "ZWJ_Sequences".length(); 
+            List<String> type_fields = Arrays.asList(
+                    "Emoji_ZWJ_Sequence");
+            int width = maxLength(type_fields);
 
-            out.println("# Format: ");
-            out.println(width == 0 ? "# codepoint(s) # version [count] name(s) " : "# codepoint(s) ; property(=Yes) # version [count] name(s) ");
-            printer.show(out, "ZWJ_Sequences", width, 44, EmojiData.EMOJI_DATA.getZwjSequencesNormal(), false);
+            showTypeFieldsMessage(out, type_fields);
+            printer.show(out, "Emoji_ZWJ_Sequence", width, 44, EmojiData.EMOJI_DATA.getZwjSequencesNormal(), false, false);
             out.println("\n#EOF");
         }
 
         printer.setFlat(true);
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-tags.txt")) {
             out.println(getBaseDataHeader(52, "Emoji Data", "emoji-tags"));
-            int width = 
-                    Math.max("Emoji_Flag_Base".length(), 
-                            Math.max("Emoji_Gender_Base".length(), 
-                                    Math.max("Emoji_Hair_Base".length(),"Emoji_Direction_Base".length())));
+            List<String> type_fields = Arrays.asList("Emoji_Flag_Base", "Emoji_Gender_Base", 
+                    "Emoji_Hair_Base", "Emoji_Direction_Base");
+            int width = maxLength(type_fields);
+            showTypeFieldsMessage(out, type_fields);
 
-            out.println("# Format: ");
-            out.println("# codepoint(s) ; property(=Yes) # version [count] name(s)");
-
-            printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false);
-            printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false);
-            printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false);
-            printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false);
+            printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true);
+            printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true);
+            printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true);
+            printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true);
             out.println("\n#EOF");
         }
+        System.out.println("Regional_Indicators ; " + Emoji.REGIONAL_INDICATORS.toPattern(false));
+        System.out.println("Emoji Combining Bases ; " + EmojiData.EMOJI_DATA.getKeycapBases().toPattern(false));
+        System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
+    }
+
+    private static void showTypeFieldsMessage(PrintWriter out, Collection<String> type_fields) {
+        out.println("# Format: ");
+        out.println("# code_point(s) ; type_field # version [count] name(s) ");
+        out.println("#   code_point(s): one or more code points in hex format, separated by spaces");
+                out.println("#   type_field: "
+                        + (type_fields.size() != 1 ? "any of {" + CollectionUtilities.join(type_fields, ", ") + "}"
+                               : type_fields.iterator().next())
+                               + ".\n"
+                + "#     The type_field is a convenience for parsing the emoji sequence files, "
+                + "and is not intended to be maintained as a property.");
+    }
+
+    private static int maxLength(Iterable<String> type_fields) {
+        int max = 0;
+        for (String item : type_fields) {
+            if (item.length() > max) {
+                max = item.length();
+            }
+        }
+        return max;
     }
 
     static class PropPrinter {
@@ -114,7 +141,7 @@ public class GenerateEmojiData {
         private boolean flat;
 
         void show(PrintWriter out, String title, int maxTitleWidth, int maxCodepointWidth, UnicodeSet emojiChars, 
-                boolean addVariants) {
+                boolean addVariants, boolean showMissingLine) {
             Tabber tabber = new Tabber.MonoTabber()
             .add(maxCodepointWidth, Tabber.LEFT)
             .add(maxTitleWidth + 4, Tabber.LEFT)
@@ -128,8 +155,8 @@ public class GenerateEmojiData {
             // 0009..000D    ; White_Space # Cc   [5] <control-0009>..<control-000D>
             out.println("\n# ================================================\n");
             int totalCount = 0;
-            if (maxTitleWidth == 0) {
-                out.println("# " + title);
+            if (!showMissingLine) {
+                out.println("# " + title.replace('_', ' ') + "\n");
             } else {
                 out.println("# All omitted code points have " + title + "=No ");
                 out.println("# @missing: 0000..10FFFF  ; " + title + " ; No\n");
@@ -189,7 +216,30 @@ public class GenerateEmojiData {
             }
             out.println();
             out.println("# UnicodeSet: " + emojiChars.toPattern(false));
-            out.println("# Total code points: " + totalCount);
+            out.println("# Total elements: " + totalCount);
+            UnicodeSet needsEvs = EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text);
+            for (String s : emojiChars) {
+                String sMinus = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
+                final int[] codePoints = CharSequences.codePoints(sMinus);
+                if (codePoints.length == 1) {
+                    continue;
+                }
+                StringBuilder b = new StringBuilder();
+                for (int i : codePoints) {
+                    b.appendCodePoint(i);
+                    if (needsEvs.contains(i)) {
+                        b.append(Emoji.EMOJI_VARIANT);
+                    }
+                }
+                String sPlus = b.toString();
+                if (!sPlus.equals(s) || !sMinus.equals(s)) {
+                    System.out.println(title 
+                            + "\t" + Utility.hex(s) 
+                            + "\t" + (sMinus.equals(s) ? "≣" : Utility.hex(sMinus))
+                            + "\t" + (sPlus.equals(s) ? "≣" : Utility.hex(sPlus))
+                            );
+                }
+            }
         }
 
         
@@ -217,34 +267,6 @@ public class GenerateEmojiData {
                 + "\n# For documentation and usage, see http://www.unicode.org/reports/tr" + trNumber
                 + "\n#";
     }
-
-//    static String dataHeader() {
-//        return getBaseDataHeader(51, "Emoji Data", "emoji-data")
-//                + "# Format: Code ; Default_Emoji_Style ; Emoji_Level ; Emoji_Modifier_Status ; Emoji_Sources # Comment\n"
-//                + "#\n"
-//                + "#   Field 1 — Default_Emoji_Style:\n"
-//                + "#             text:      default text presentation\n"
-//                + "#             emoji:     default emoji presentation\n"
-//                + "#   Field 2 — Emoji_Level:\n"
-//                + "#             L1:        level 1 emoji\n"
-//                + "#             L2:        level 2 emoji\n"
-//                + "#             NA:        not applicable\n"
-//                + "#   Field 3 — Emoji_Modifier_Status:\n"
-//                + "#             modifier:  an emoji modifier\n"
-//                + "#             primary:   a primary emoji modifier base\n"
-//                + "#             secondary: a secondary emoji modifier base\n"
-//                + "#             none:      not applicable\n"
-//                + "#   Field 4 — Emoji_Sources:\n"
-//                + "#             one or more values from {z, a, j, w, x}\n"
-//                + "#             see the key in http://unicode.org/reports/tr51#Major_Sources\n"
-//                + "#             NA:        not applicable\n"
-//                + "#   Comment — currently contains the version where the character was first encoded,\n"
-//                + "#             followed by:\n"
-//                + "#             - a character name in uppercase (for a single character),\n"
-//                + "#             - a keycap name,\n"
-//                + "#             - an associated flag, where is associated with value unicode region code\n"
-//                + "#";
-//    }
 
     static String getDate() {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd", ULocale.ENGLISH);

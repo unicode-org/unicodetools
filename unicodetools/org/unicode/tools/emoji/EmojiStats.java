@@ -136,36 +136,6 @@ class EmojiStats {
         }
     }
 
-    //    public void add(
-    //            String chars,
-    //            Emoji.Source source,
-    //            String missingCell) {
-    //        if (missingCell.contains("miss")) {
-    //
-    //            // per type
-    //            EmojiStats.Type type = Type.getType(chars);
-    //            // VERSION70.containsAll(chars) ? Type.v70
-    //            // :
-    //            // getFlagCode(chars) != null ? Type.countries
-    //            // : DOMINOS.containsAll(chars) ? Type.dominos
-    //            // : CARDS.containsAll(chars) ? Type.cards
-    //            // : MAHJONG.containsAll(chars) ? Type.majong
-    //            // : Type.misc;
-    //            EnumMap<Emoji.Source, UnicodeSet> counter = data.get(type);
-    //            if (counter == null) {
-    //                data.put(type, counter = new EnumMap<Emoji.Source, UnicodeSet>(Emoji.Source.class));
-    //            }
-    //            UnicodeSet us = counter.get(source);
-    //            if (us == null) {
-    //                counter.put(source, us = new UnicodeSet());
-    //            }
-    //            us.add(chars);
-    //        } else {
-    //            // total data
-    //            totalData.get(source).add(chars);
-    //        }
-    //    }
-
     public void write(Set<Source> platforms2) throws IOException {
         final boolean extraPlatforms = false;
         PrintWriter out = BagFormatter.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR,
@@ -216,33 +186,10 @@ class EmojiStats {
             showDiff(out, outText, headerRow, entry.getKey().toString(), entry.getValue(), platforms2);
         }
 
-        //            if (!extraPlatforms) {
-        //                EnumMap<Emoji.Source, UnicodeSet> familyMap = addItems(GenerateEmoji.APPLE_COMBOS, platforms2);
-        //                showDiff(out, outText, headerRow, "families", familyMap, platforms2);
-        //
-        //                EnumMap<Emoji.Source, UnicodeSet> diversityMap = addItems(GenerateEmoji.emojiData.getModifierSequences(), platforms2);
-        //                showDiff(out, outText, headerRow, "skinTone", diversityMap, platforms2);
-        //            }
         GenerateEmoji.writeFooter(out, "");
         out.close();
         outText.close();
     }
-
-    //    private EnumMap<Emoji.Source, UnicodeSet> addItems(UnicodeSet unicodeSet, Set<Source> platforms2) {
-    //        EnumMap<Emoji.Source, UnicodeSet> familyMap = new EnumMap<>(Emoji.Source.class);
-    //        for (String s : unicodeSet) {
-    //            for (Source platform : platforms2) {
-    //                if (GenerateEmoji.getImage(platform,s,false,null) == null) {
-    //                    UnicodeSet set = familyMap.get(platform);
-    //                    if (set == null) {
-    //                        familyMap.put(platform, set = new UnicodeSet());
-    //                    }
-    //                    set.add(s);
-    //                }
-    //            }
-    //        }
-    //        return familyMap;
-    //    }
 
     private void showDiff(PrintWriter out, PrintWriter outText, String headerRow, final String title, 
             final Map<Emoji.Source, UnicodeSet> values, Set<Source> platforms2) {
@@ -280,7 +227,7 @@ class EmojiStats {
                 final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
                 GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, true);
                 outText.println(source + "\t" + missing.size());
-                propPrinter.show(outText, source+"", 14, 14, us, true);
+                propPrinter.show(outText, source+"", 14, 14, us, true, false);
             }
             out.print("</tr>");
         }
@@ -296,18 +243,10 @@ class EmojiStats {
             GenerateEmoji.displayUnicodeSet(out, common, Style.bestImage, 0, platforms2.size(), 1, null, GenerateEmoji.EMOJI_COMPARATOR, true);
             out.println("</td></tr>");
             outText.println("common \t" + common.size());
-            propPrinter.show(outText, "common", 14, 14, common, true);
+            propPrinter.show(outText, "common", 14, 14, common, true, false);
         }
     }
     public static void main(String[] args) {
-//        for (Entry<Source, UnicodeSet> entry : totalData.entrySet()) {
-//            System.out.println(entry.getKey() + "\t" + entry.getValue());
-//        }
-//        for (Entry<Type, Map<Source, UnicodeSet>> entry : data.entrySet()) {
-//            for (Entry<Source, UnicodeSet> entry2 : entry.getValue().entrySet()) {
-//                System.out.println(entry.getKey() + "\t" + entry2.getKey() + "\t" + entry2.getValue());
-//            }
-//        }
         
         final UnicodeSet missingSamsung = new UnicodeSet(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives())
         .removeAll(EmojiData.EMOJI_DATA.getModifierSequences())
