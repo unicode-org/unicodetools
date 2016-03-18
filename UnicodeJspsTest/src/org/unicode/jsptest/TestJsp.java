@@ -179,7 +179,7 @@ public class TestJsp  extends TestFmwk {
         String mapping;
     }
 
-    public void TestIdnaAndIcu() {
+    public void oldTestIdnaAndIcu() {
         StringBuffer inbuffer = new StringBuffer();
         TypeAndMap typeAndMapIcu = new TypeAndMap();
         UnicodeMap<String> errors = new UnicodeMap<String>();

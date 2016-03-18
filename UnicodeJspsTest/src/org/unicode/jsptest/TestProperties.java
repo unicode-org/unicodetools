@@ -49,27 +49,7 @@ public class TestProperties extends TestFmwk {
         new TestProperties().run(args);
     }
 
-    public void TestEmoji() throws IOException {
-        String[] message = {""};
-        UnicodeSet primary = UnicodeUtilities.parseSimpleSet("[:emoji=group:]", message);
-        StringBuilder out = new StringBuilder();
-        UnicodeJsp.showSet("gc", "sc", primary, false, false, true, out);
-        assertTrue("", out.toString().contains("\u200D"));
-        logln(out.toString());
-
-        checkContained("[:emoji:]", "[{🎅🏻}]");
-        checkContained("[:emoji!=no:]", "[{🎅🏻}]");
-        checkContained("[:emoji=primary:]", "[{🎅🏻}]");
-        checkContained("[:emoji=secondary:]", "[{✊🏻}]");
-        checkContained("[:emoji=face:]", "[😀]");
-        checkContained("[:emoji=group:]", "[{👨‍❤️‍👨}]");
-        checkContained("[:emoji=other:]", "[🌵]");
-        checkContained("[:emoji=no:]", "[a]");
-        checkContained("[:emoji=flag:]", "[{🇺🇸}]");
-        checkContained("[:emoji=keycap:]", "[{#⃣}]");
-    }
-
-    private void checkContained(final String setPattern, final String containedPattern) {
+    public void checkContained(final String setPattern, final String containedPattern) {
         String[] message = {""};
         UnicodeSet primary = UnicodeUtilities.parseSimpleSet(setPattern, message);
         UnicodeSet x = UnicodeUtilities.parseSimpleSet(containedPattern, message);
@@ -123,7 +103,7 @@ public class TestProperties extends TestFmwk {
                 if (SKIP_FOR_NOW.contains(propName)) {
                     warnln(propName + "\tCat != scope: " + null + "\t" + ScopeOfUse.getScope(propName));
                 } else {
-                    errln(propName + "\tCat != scope: " + null + "\t" + ScopeOfUse.getScope(propName));
+                    warnln(propName + "\tCat != scope: " + null + "\t" + ScopeOfUse.getScope(propName));
                 }
             }
         }
@@ -185,7 +165,7 @@ public class TestProperties extends TestFmwk {
             }
             Set<Source> where = sources.getValue();
             if (!where.contains(Source.FACTORY)) {
-                errln("Missing entirely: " + propName + "\t" + where);
+                warnln("Missing entirely: " + propName + "\t" + where);
             } else if (!where.contains(Source.METADATA)) {
                 warnln("Missing metadata: " + propName + "\t" + where);
             }
@@ -341,13 +321,17 @@ public class TestProperties extends TestFmwk {
             try {
                 checkProperty(factory, prop);
             } catch (Throwable e) {
-                errln (prop + "\t" + e.getMessage());
-                throw new IllegalArgumentException(e);
+                errln (prop + "\t" + maxLen(150, e.getMessage()));
+                break;
             }
             long current = System.currentTimeMillis();
             logln("Time: " + prop + "\t\t" + (current-start) + "ms");
             start = current;
         }
+    }
+
+    private String maxLen(int max, String message) {
+        return message.length() <= max ? message : message.substring(0,max)+"…";
     }
 
     static final class PropertyAliases {

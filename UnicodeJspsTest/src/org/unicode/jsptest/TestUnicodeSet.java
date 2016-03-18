@@ -146,7 +146,7 @@ public class TestUnicodeSet  extends TestFmwk {
         assertTrue("6.0 characters", age60.contains(0x20B9));
 
         UnicodeSet emoji = UnicodeSetUtilities.parseUnicodeSet("[:emoji:]");
-        assertEquals("6.0 emoji", 1281, emoji.size()); // really 749, but we flatten the set
+        assertEquals("6.0 emoji", 1051, emoji.size()); // really 749, but we flatten the set
 
         emoji.add(0);
         emoji.remove(0);
@@ -350,7 +350,7 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         //checkProperties("[[:script=**latin:]-[:script=latin:]]");
         checkProperties("abc-m", "[d]");
 
-        checkProperties("[:usage=common:]", "[9]");
+//        checkProperties("[:usage=common:]", "[9]");
 
         checkProperties("[:toNFKC=a:]", "[\u00AA]");
         checkProperties("[:isNFC=false:]", "[\u212B]", "[a]");

@@ -141,22 +141,54 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         //                + "{🇹🇩}{🇹🇫}{🇹🇬}{🇹🇭}{🇹🇯}{🇹🇰}{🇹🇱}{🇹🇲}{🇹🇳}{🇹🇴}{🇹🇷}{🇹🇹}{🇹🇻}{🇹🇼}{🇹🇿}{🇺🇦}{🇺🇬}{🇺🇲}{🇺🇸}{🇺🇾}{🇺🇿}{🇻🇦}{🇻🇨}{🇻🇪}{🇻🇬}{🇻🇮}{🇻🇳}{🇻🇺}{🇼🇫}"
         //                + "{🇼🇸}{🇽🇰}{🇾🇪}{🇾🇹}{🇿🇦}{🇿🇲}{🇿🇼}]").freeze();    
 
-        UnicodeMap<String> emoji = new UnicodeMap<String>()
-                .putAll(0,0x10FFFF, "no")
-                .putAll(UnicodeSetUtilities.SINGLETONS, "other")
-                // do these after, since they remove singleton items
-                .putAll(UnicodeSetUtilities.FLAGS, "flag")
-                .putAll(UnicodeSetUtilities.KEYCAPS, "keycap")
-                .putAll(UnicodeSetUtilities.GROUPS, "group")
-                .putAll(UnicodeSetUtilities.FACE, "face")
-                .putAll(UnicodeSetUtilities.PRIMARY, "primary")
-                .putAll(UnicodeSetUtilities.MODIFIERS, "modifier")
-                .putAll(UnicodeSetUtilities.SECONDARY, "secondary")
-                ;
-        add(new UnicodeProperty.UnicodeMapProperty()
-        .set(emoji)
-        .setMain("Emoji", "emoji", UnicodeProperty.ENUMERATED, "8.0")
-                );
+//        UnicodeMap<String> emoji = new UnicodeMap<String>()
+//                .putAll(0,0x10FFFF, "no")
+//                .putAll(UnicodeSetUtilities.SINGLETONS, "other")
+//                // do these after, since they remove singleton items
+//                .putAll(UnicodeSetUtilities.FLAGS, "flag")
+//                .putAll(UnicodeSetUtilities.KEYCAPS, "keycap")
+//                .putAll(UnicodeSetUtilities.GROUPS, "group")
+//                .putAll(UnicodeSetUtilities.FACE, "face")
+//                .putAll(UnicodeSetUtilities.PRIMARY, "primary")
+//                .putAll(UnicodeSetUtilities.MODIFIERS, "modifier")
+//                .putAll(UnicodeSetUtilities.SECONDARY, "secondary")
+//                ;
+//        add(new UnicodeProperty.UnicodeMapProperty()
+//        .set(emoji)
+//        .setMain("Emoji", "emoji", UnicodeProperty.ENUMERATED, "8.0")
+//                );
+        
+        add(new UnicodeSetProperty()
+        .set(SequenceData.EMOJI_DEFECTIVES)
+        .setMain("EMOJI_DEFECTIVES", "EMD", UnicodeProperty.BINARY, "8.0"));
+        
+        add(new UnicodeSetProperty()
+        .set(SequenceData.EMOJI_FLAG_SEQUENCES)
+        .setMain("EMOJI_FLAG_SEQUENCES", "EMFS", UnicodeProperty.BINARY, "8.0"));
+        
+        add(new UnicodeSetProperty()
+        .set(SequenceData.EMOJI_KEYCAP_SEQUENCES)
+        .setMain("EMOJI_KEYCAP_SEQUENCES", "EMKS", UnicodeProperty.BINARY, "8.0"));
+        
+        add(new UnicodeSetProperty()
+        .set(SequenceData.EMOJI_MODIFIER_SEQUENCES)
+        .setMain("EMOJI_MODIFIER_SEQUENCES", "EMMS", UnicodeProperty.BINARY, "8.0"));
+
+        add(new UnicodeSetProperty()
+        .set(SequenceData.EMOJI_ZWJ_SEQUENCES)
+        .setMain("EMOJI_ZWJ_SEQUENCES", "EMZS", UnicodeProperty.BINARY, "8.0"));
+
+        UnicodeSet emojiAll = new UnicodeSet("[:emoji:]")
+        .removeAll(SequenceData.EMOJI_DEFECTIVES)
+        .addAll(SequenceData.EMOJI_FLAG_SEQUENCES)
+        .addAll(SequenceData.EMOJI_KEYCAP_SEQUENCES)
+        .addAll(SequenceData.EMOJI_MODIFIER_SEQUENCES)
+        .addAll(SequenceData.EMOJI_ZWJ_SEQUENCES)
+        .freeze();
+        add(new UnicodeSetProperty()
+        .set(emojiAll)
+        .setMain("EMOJI_ALL", "EMA", UnicodeProperty.BINARY, "8.0"));
+
         //        UnicodeProperty prop2 = getProperty("emoji");
         //        UnicodeSet set = prop2.getSet("true");
         //        System.out.println(emojiSource.toPattern(false));

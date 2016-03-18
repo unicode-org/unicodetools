@@ -19,6 +19,11 @@ import com.ibm.icu.util.ULocale;
 
 public class UnicodeSetUtilities {
 
+    public static final UnicodeSet EMOJI = new UnicodeSet("[:emoji:]");
+    public static final UnicodeSet Emoji_Presentation = new UnicodeSet("[:Emoji_Presentation:]");
+    public static final UnicodeSet Emoji_Modifier = new UnicodeSet("[:Emoji_Modifier:]");
+    public static final UnicodeSet Emoji_Modifier_Base = new UnicodeSet("[:Emoji_Modifier_Base:]");
+
     public static final UnicodeSet SINGLETONS = new UnicodeSet("[©®‼⁉™ℹ↔-↙↩↪⌚⌛⌨⏏⏩-⏳⏸-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎☑☔☕☘☝☠☢☣☦☪☮☯☸-☺♈-♓♠♣♥♦♨♻♿⚒-⚔⚖⚗⚙⚛⚜⚠⚡"
             + "⚪⚫⚰⚱⚽⚾⛄⛅⛈⛎⛏⛑⛓⛔⛩⛪⛰-⛵⛷-⛺⛽✂✅✈-✍✏✒✔✖✝✡✨✳✴❄❇❌❎❓-❕❗❣❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🈁🈂🈚🈯🈲-🈺"
             + "🉐🉑🌀-🌡🌤-🎓🎖🎗🎙-🎛🎞-🏰🏳-🏵🏷-📽📿-🔽🕉-🕎🕐-🕧🕯🕰🕳-🕹🖇🖊-🖍🖐🖕🖖🖥🖨🖱🖲🖼🗂-🗄🗑-🗓🗜-🗞🗡🗣🗯🗳🗺-🙏🚀-🛅🛋-🛐🛠-🛥🛩🛫🛬🛰🛳🤐-🤘🦀-🦄🧀]").freeze();    
