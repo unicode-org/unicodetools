@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -25,6 +26,7 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData.EmojiDatum;
 
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.CharSequences;
@@ -84,10 +86,14 @@ public class Emoji {
 
     public enum Source {
         // pngs
-        color, apple, twitter("Twtr."), emojione("One"), google("Goog."), samsung("Sams."), windows("Wind."), ref, proposed, emojipedia, emojixpress, sample,
+        color, apple, twitter("Twtr."), emojione("One"), google("Goog."), 
+        samsung("Sams."), windows("Wind."), ref, proposed, emojipedia, emojixpress, sample,
         // gifs; don't change order!
         gmail("GMail"), sb, dcm, kddi;
-
+        
+        static final Set<Source> OLD_SOURCES = ImmutableSet.of(gmail, sb, dcm, kddi);
+        static final Set<Source> VENDOR_SOURCES = ImmutableSet.of(apple, twitter, emojione, google, samsung, windows);
+        
         private final String shortName;
         private Source(String shortName) {
             this.shortName = shortName;

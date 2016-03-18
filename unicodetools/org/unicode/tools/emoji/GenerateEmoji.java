@@ -588,7 +588,7 @@ public class GenerateEmoji {
         for (boolean extraPlatforms : Arrays.asList(true, false)) {
             EmojiStats stats = new EmojiStats();
             print(Form.fullForm, stats, extraPlatforms);
-            stats.write(extraPlatforms ? platformsToIncludeExtra : platformsToIncludeNormal);
+            stats.write(Source.VENDOR_SOURCES);
             if (Emoji.IS_BETA) {
                 GenerateEmojiData.printData(GenerateEmoji.EXTRA_NAMES);
             }
