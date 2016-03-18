@@ -18,8 +18,8 @@ import java.util.TreeMap;
 
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.impl.Relation;
 import com.ibm.icu.dev.util.UnicodeProperty;
+import com.ibm.icu.impl.Relation;
 
 
 public final class UCD_Names implements UCD_Types {

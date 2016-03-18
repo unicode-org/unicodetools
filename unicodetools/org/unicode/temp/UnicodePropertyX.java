@@ -6,35 +6,11 @@
  */
 package org.unicode.temp;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.text.ParsePosition;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.regex.Pattern;
 
-import org.unicode.props.UnicodeLabel;
-
-import com.ibm.icu.dev.util.BagFormatter;
-import com.ibm.icu.dev.util.CollectionUtilities.InverseMatcher;
-import com.ibm.icu.dev.util.CollectionUtilities.ObjectMatcher;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.SymbolTable;
-import com.ibm.icu.text.UFormat;
-import com.ibm.icu.text.UTF16;
-import com.ibm.icu.text.UnicodeMatcher;
 import com.ibm.icu.text.UnicodeSet;
-import com.ibm.icu.text.UnicodeSetIterator;
 
 public abstract class UnicodePropertyX<T> extends UnicodeProperty {
 

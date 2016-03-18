@@ -3,11 +3,11 @@ package org.unicode.tools;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.GenerateEmoji;
 
+import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 import com.ibm.icu.util.Output;
-import com.ibm.icu.impl.Utility;
 
 public class AacCheck {
     // Error messages

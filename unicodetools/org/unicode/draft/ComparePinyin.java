@@ -19,10 +19,10 @@ import java.util.TreeSet;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.impl.Relation;
 import com.ibm.icu.dev.util.Tabber;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.IterableComparator;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.Transform;

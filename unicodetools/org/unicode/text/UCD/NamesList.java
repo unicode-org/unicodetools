@@ -15,13 +15,10 @@ import java.util.regex.Pattern;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UnicodeRelation;
-import org.unicode.props.UnicodeRelation.SetMaker;
-import org.unicode.text.UCD.NamesList.Comment;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Transform;

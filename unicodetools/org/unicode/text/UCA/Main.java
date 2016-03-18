@@ -37,7 +37,7 @@ public class Main {
         "scriptChart",
         "normalizationChart",
         "caseChart",
-        "indexChart",
+//        "indexChart",
         "nameslistChart"
     };
 
@@ -89,8 +89,8 @@ public class Main {
                 WriteCharts.normalizationChart();
             } else if (arg.equalsIgnoreCase("caseChart")) {
                 WriteCharts.caseChart();
-            } else if (arg.equalsIgnoreCase("indexChart")) {
-                WriteCharts.indexChart();
+//            } else if (arg.equalsIgnoreCase("indexChart")) {
+//                WriteCharts.indexChart();
             } else if (arg.equalsIgnoreCase("nameslistChart")) {
                 MakeNamesChart.main(null);
             } else if (arg.equalsIgnoreCase("special")) {
