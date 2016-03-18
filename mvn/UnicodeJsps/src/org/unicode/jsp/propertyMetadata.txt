@@ -139,10 +139,10 @@ Line_Break ; UCD ;    Enumerated ; Shaping and Rendering
 Sentence_Break ; UCD ;    Enumerated ; Shaping and Rendering
 Word_Break ; UCD ;    Enumerated ; Shaping and Rendering
 
-#Bidi_Paired_Bracket ; UCD ;    String ; Bidirectional
+Bidi_Paired_Bracket ; UCD ;    String ; Bidirectional
 Bidi_Paired_Bracket_Type ; UCD ;    Enumerated ; Bidirectional
-#Indic_Positional_Category ; UCD ;    Enumerated ; Miscellaneous
-#Indic_Syllabic_Category ; UCD ;    Enumerated ; Miscellaneous
+Indic_Positional_Category ; UCD ;    Enumerated ; Miscellaneous
+Indic_Syllabic_Category ; UCD ;    Enumerated ; Miscellaneous
 Name ; UCD ;    String ; General
 #Name_Alias ; UCD ;    String ; General
 Script_Extensions ; UCD ;    String ; General
