@@ -9,7 +9,7 @@ import org.unicode.jsp.XPropertyFactory;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.text.UnicodeSet;
 
-public class TestEmoji extends TestFmwk{
+public class TestEmoji extends TestFmwk2 {
     public static void main(String[] args) {
         new TestEmoji().run(args);
     }
@@ -60,19 +60,5 @@ public class TestEmoji extends TestFmwk{
         checkContained("[:emoji_all:]", "[{👁‍🗨}]");
     }
 
-    public void checkContained(final String setPattern, final String containedPattern) {
-        checkContained(setPattern, containedPattern, true);
-    }
-
-    public void checkContained(final String setPattern, final String containedPattern, boolean expected) {
-        String[] message = {""};
-        UnicodeSet primary = UnicodeUtilities.parseSimpleSet(setPattern, message);
-        UnicodeSet x = UnicodeUtilities.parseSimpleSet(containedPattern, message);
-        if (primary.containsAll(x) != expected) {
-            errln(primary.toPattern(false) + " doesn't contain " + x.toPattern(false));
-        } else {
-            logln(primary.toPattern(false) + " contains " + x.toPattern(false));
-        }
-    }
 
 }

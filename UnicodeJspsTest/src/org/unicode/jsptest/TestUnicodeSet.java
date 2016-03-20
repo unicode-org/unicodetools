@@ -20,23 +20,28 @@ import org.unicode.jsp.UnicodeSetUtilities;
 import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
 
+import com.google.common.base.Objects;
 import com.ibm.icu.dev.test.AbstractTestLog;
 import com.ibm.icu.dev.test.TestFmwk;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Utility;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
+import com.ibm.icu.text.BreakIterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;
 import com.ibm.icu.util.TimeZone;
+import com.ibm.icu.util.ULocale;
 import com.ibm.icu.util.VersionInfo;
 
-public class TestUnicodeSet  extends TestFmwk {
+public class TestUnicodeSet  extends TestFmwk2 {
     public static void main(String[] args) throws Exception {
         new TestUnicodeSet().run(args);
     }
-    
+
     public void TestInput() {
         String[][] tests = {
                 // loose, strict
@@ -49,7 +54,7 @@ public class TestUnicodeSet  extends TestFmwk {
             assertEquals("input unicode set " + test[0], new UnicodeSet(test[1]), source);
         }
     }
-    
+
     public void TestOutput() {
         String[][] tests = {
                 // loose, strict
@@ -58,7 +63,7 @@ public class TestUnicodeSet  extends TestFmwk {
                 {"[{👨\u200D❤\uFE0F\u200D👨}]", "[{👨‍❤️‍👨}]"},
         };
         assertFalse("", UnicodeUtilities.WHITESPACE_IGNORABLES_C.contains(UnicodeUtilities.JOINER));
-        
+
         for (String[] test : tests) {
             boolean abbreviate = false, escape = false;
             if (test.length > 3) {
@@ -72,7 +77,7 @@ public class TestUnicodeSet  extends TestFmwk {
             assertEquals("input unicode set " + test[0] + ", " + abbreviate + ", " + escape, test[1], a_out);
         }
     }
-    
+
 
     public void TestEmoji() throws IOException {
         StringBuilder b = new StringBuilder();
@@ -103,34 +108,34 @@ public class TestUnicodeSet  extends TestFmwk {
             }
         }
         String test = "[[[:age=4.1:]&" +
-        		"[:toNFM!=@toNFKC_CF@:]]-[[:age=4.1:]&" +
-        		"[[:dt=circle:]" +
-        		"[:dt=sub:]" +
-        		"[:dt=super:]" +
-        		"[:dt=small:]" +
-        		"[:dt=square:]" +
-        		"[:dt=vertical:]" +
-        		"[[:block=Kangxi_Radicals:]-[:cn:]]" +
-        		"[[:toNFKC=/[ ().0-9/°]/:]-[:toNFKC=/^.$/:]]" +
-        		"[[:defaultignorablecodepoint:]&[:cn:]]" +
-        		"[:block=Hangul Compatibility Jamo:]" +
-        		"[[:block=Halfwidth_And_Fullwidth_Forms:]&[:sc=Hang:]]" +
-        		"[:block=tags:]" +
-        		"]]]";
+                "[:toNFM!=@toNFKC_CF@:]]-[[:age=4.1:]&" +
+                "[[:dt=circle:]" +
+                "[:dt=sub:]" +
+                "[:dt=super:]" +
+                "[:dt=small:]" +
+                "[:dt=square:]" +
+                "[:dt=vertical:]" +
+                "[[:block=Kangxi_Radicals:]-[:cn:]]" +
+                "[[:toNFKC=/[ ().0-9/°]/:]-[:toNFKC=/^.$/:]]" +
+                "[[:defaultignorablecodepoint:]&[:cn:]]" +
+                "[:block=Hangul Compatibility Jamo:]" +
+                "[[:block=Halfwidth_And_Fullwidth_Forms:]&[:sc=Hang:]]" +
+                "[:block=tags:]" +
+                "]]]";
         UnicodeSet source = UnicodeSetUtilities.parseUnicodeSet(test);
         String derived = UnicodeUtilities.getPrettySet(source, false, false);
         assertTrue ("contains 00A0", derived.contains("00A0"));
         logln(derived);
     }
 
-//    public void TestAExemplars() {
-//        checkProperties("[:exemplars_en:]", "[a]", "[\u0350]");
-//    }
+    //    public void TestAExemplars() {
+    //        checkProperties("[:exemplars_en:]", "[a]", "[\u0350]");
+    //    }
 
-//    public void TestAEncodings() {
-//        checkProperties("[:isEncSJIS:]", "[\\u00B0]", "[\u0350]");
-//        checkProperties("[:isEncEUCKR:]", "[\\u00B0]", "[\u0350]");
-//    }
+    //    public void TestAEncodings() {
+    //        checkProperties("[:isEncSJIS:]", "[\\u00B0]", "[\u0350]");
+    //        checkProperties("[:isEncEUCKR:]", "[\\u00B0]", "[\u0350]");
+    //    }
 
     public void TestU60 () {
         logln("ICU Version: " + VersionInfo.ICU_VERSION.toString());
@@ -152,28 +157,23 @@ public class TestUnicodeSet  extends TestFmwk {
         emoji.remove(0);
         logln(emoji.toString());
     }
-    
+
     public void TestUCA () {
-        UnicodeSet uca = UnicodeSetUtilities.parseUnicodeSet("[:uca=0DEC 5E:]").complement().complement();
-        logln(uca.toPattern(false));
+        checkUca("[:uca=0304:]", "[\t]");
+        checkUca("[:uca2=05 9E:]", "[Øø]");
+        checkUca("[:uca2.5=81 81 01:]", "[ǄǢ]");
+        checkUca("[:uca3=05:]", "[a]");
+    }
 
-        assertEquals("uca", 1, uca.size());
-
-        UnicodeSet uca2 = UnicodeSetUtilities.parseUnicodeSet("[:uca2=A7:]").complement().complement();
-        logln(uca2.toPattern(false));
-
-        assertEquals("uca2", 1, uca2.size()); // really 749, but we flatten the set
-
-        UnicodeSet uca25 = UnicodeSetUtilities.parseUnicodeSet("[:uca2.5=81 81 01:]").complement().complement();
-        logln(uca25.toPattern(false));
-
-        assertEquals("uca2.5", 18, uca25.size()); // really 749, but we flatten the set
-        
-        UnicodeSet uca3 = UnicodeSetUtilities.parseUnicodeSet("[:uca3=27:]").complement().complement();
-        logln(uca3.toPattern(false));
-
-        assertEquals("uca3", 117, uca3.size()); // really 749, but we flatten the set
-}
+    private void checkUca(String ucaPropValue, String containedItemsString) {
+        try {
+            UnicodeSet containedItems = new UnicodeSet(containedItemsString);
+            UnicodeSet uca = UnicodeSetUtilities.parseUnicodeSet(ucaPropValue);
+            assertContains(ucaPropValue, containedItems, uca);
+        } catch (Exception e) {
+            errln("Can't parse: " + ucaPropValue + "\t" + e.getMessage());
+        }
+    }
 
     public void TestICUEnums() {
         UnicodeSet nonchars = UnicodeSetUtilities.parseUnicodeSet("\\p{noncharactercodepoint}");
@@ -185,6 +185,78 @@ public class TestUnicodeSet  extends TestFmwk {
         }
         for (int propEnum = UProperty.BINARY_START; propEnum < UProperty.BINARY_LIMIT; ++propEnum) {
             checkProperty(factory, propEnum);
+        }
+
+    }
+
+    public void TestICUStringProps() {
+        XPropertyFactory factory = XPropertyFactory.make();
+        BreakIterator titleIter = BreakIterator.getWordInstance(ULocale.ROOT);
+        for (int propEnum = UProperty.STRING_START; propEnum < UProperty.STRING_LIMIT; ++propEnum) {
+            String propName = UCharacter.getPropertyName(propEnum, NameChoice.SHORT);
+            String propNameLong = UCharacter.getPropertyName(propEnum, NameChoice.LONG);
+            UnicodeProperty prop3 = factory.getProperty(propName);
+            logln(Utility.hex(propEnum) + "\t" + propName + "\t" + propNameLong);
+            int errorCount = 0;
+            for (int i = 0; i <= 0x10ffff; ++i) {
+                if (i == 'ß') {
+                    int debug = 0;
+                }
+                String icuValue;
+                try {
+                    switch (propEnum) {
+                    case UProperty.BIDI_PAIRED_BRACKET:
+                        icuValue = UTF16.valueOf(UCharacter.getBidiPairedBracket(i));
+                        break;
+                    case UProperty.CASE_FOLDING: 
+                        icuValue = UCharacter.foldCase(UTF16.valueOf(i), true);
+                        break;
+                    case UProperty.LOWERCASE_MAPPING:
+                        icuValue = UCharacter.toLowerCase(UTF16.valueOf(i));
+                        break;
+                    case UProperty.TITLECASE_MAPPING:
+                        icuValue = UCharacter.toTitleCase(UTF16.valueOf(i), titleIter);
+                        break;
+                    case UProperty.UPPERCASE_MAPPING:
+                        icuValue = UCharacter.toUpperCase(UTF16.valueOf(i));
+                        break;
+                    default:
+                        icuValue = UCharacter.getStringPropertyValue(propEnum, i, NameChoice.SHORT);
+                        if (propEnum == UProperty.AGE) {
+                            icuValue = icuValue.equals("0.0.0.0") ? "unassigned" 
+                                    : VersionInfo.getInstance(icuValue).getVersionString(2, 2);
+                        }
+                    }
+                } catch (Exception e) {
+                    errln(propNameLong + "\t" + e.getMessage());
+                    if (++errorCount > 5) break; else continue;
+                }
+                String propValue = prop3.getValue(i);
+                if (!Objects.equal(icuValue, propValue)) { // do to avoid verbose mode being every character
+                    assertEquals("string value", icuValue, propValue);
+                    if (++errorCount > 5) break; else continue;
+                }
+            }
+        }
+    }
+
+
+    public void TestICUDoubleProps() {
+        XPropertyFactory factory = XPropertyFactory.make();
+        // currently only one double property
+        assertEquals("only 1 double property", 1, UProperty.DOUBLE_LIMIT - UProperty.DOUBLE_START);
+        String propName = UCharacter.getPropertyName(UProperty.NUMERIC_VALUE, NameChoice.SHORT);
+        UnicodeProperty prop3 = factory.getProperty(propName);
+        for (int i = 0; i <= 0x10ffff; ++i) {
+            Double icuValue = UCharacter.getUnicodeNumericValue(i);
+            if (icuValue == UCharacter.NO_NUMERIC_VALUE) {
+                icuValue = Double.NaN;
+            }
+            String propString = prop3.getValue(i);
+            Double propValue = propString == null ? Double.NaN : Double.parseDouble(propString);
+            if (!icuValue.equals(propValue)) { // do to avoid verbose mode being every character
+                assertEquals("double value", icuValue, propValue);
+            }
         }
     }
 
@@ -211,6 +283,9 @@ public class TestUnicodeSet  extends TestFmwk {
                 }
                 UnicodeSet toolSet = prop3.getSet(valueName);
                 try {
+                    if (valueName.equals("Sutton_SignWriting")) {
+                        int debug = 0;
+                    }
                     List<String> namesFound = prop3.getValueAliases(valueName);
                     toolValues.removeAll(namesFound);
                 } catch (Exception e) {
@@ -221,25 +296,27 @@ public class TestUnicodeSet  extends TestFmwk {
             if (propName.equals("gc")) {
                 toolValues.removeAll(Arrays.asList("Cased_Letter, Letter, Mark, Number, Other, Punctuation, Separator, Symbol".split(", ")));
             }
-            assertEquals(propName + " missing values", Collections.EMPTY_SET, toolValues);
+            if (!assertEquals(propName + " should have no extra values: ", Collections.EMPTY_SET, toolValues)) {
+                int debug = 0;
+            }
         } catch (Exception e) {
             throw new IllegalArgumentException("PropEnum: " + propEnum, e);
         }
     }
 
-//    public void TestEncodingProp() {
-//
-//        XPropertyFactory factory = XPropertyFactory.make();
-//        UnicodeProperty prop = factory.getProperty("enc_Latin1");
-//        UnicodeProperty prop2 = factory.getProperty("enc_Latin2");
-//        UnicodeMap<String> map = prop.getUnicodeMap();
-//        UnicodeMap<String> map2 = prop2.getUnicodeMap();
-//        for (String value : Builder.with(new TreeSet<String>()).addAll(map.values()).addAll(map2.values()).get()) {
-//            logln(value + "\t" + map.getSet(value) + "\t" + map2.getSet(value));
-//        }
-//        UnicodeSet set = UnicodeSetUtilities.parseUnicodeSet("[:enc_Latin1=/61/:]");
-//        assertNotEquals("Latin1", 0, set.size());
-//    }
+    //    public void TestEncodingProp() {
+    //
+    //        XPropertyFactory factory = XPropertyFactory.make();
+    //        UnicodeProperty prop = factory.getProperty("enc_Latin1");
+    //        UnicodeProperty prop2 = factory.getProperty("enc_Latin2");
+    //        UnicodeMap<String> map = prop.getUnicodeMap();
+    //        UnicodeMap<String> map2 = prop2.getUnicodeMap();
+    //        for (String value : Builder.with(new TreeSet<String>()).addAll(map.values()).addAll(map2.values()).get()) {
+    //            logln(value + "\t" + map.getSet(value) + "\t" + map2.getSet(value));
+    //        }
+    //        UnicodeSet set = UnicodeSetUtilities.parseUnicodeSet("[:enc_Latin1=/61/:]");
+    //        assertNotEquals("Latin1", 0, set.size());
+    //    }
 
     public void TestPerMill() {
         SortedMap<String, Charset> charsets = Charset.availableCharsets();
@@ -350,7 +427,7 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
         //checkProperties("[[:script=**latin:]-[:script=latin:]]");
         checkProperties("abc-m", "[d]");
 
-//        checkProperties("[:usage=common:]", "[9]");
+        //        checkProperties("[:usage=common:]", "[9]");
 
         checkProperties("[:toNFKC=a:]", "[\u00AA]");
         checkProperties("[:isNFC=false:]", "[\u212B]", "[a]");
@@ -472,24 +549,4 @@ gc ; Z         ; Separator                        # Zl | Zp | Zs
 
 
 
-    public static boolean assertEquals(AbstractTestLog testFmwk, String test, UnicodeSet expected, UnicodeSet actual) {
-        if (!expected.equals(actual)) {
-            UnicodeSet inExpected = new UnicodeSet(expected).removeAll(actual);
-            UnicodeSet inActual = new UnicodeSet(actual).removeAll(expected);
-            testFmwk.errln(test + " - MISSING: " + inExpected + ", EXTRA: " + inActual);
-            return false;
-        } else {
-            testFmwk.logln("OK\t\t" + test);
-            return true;
-        }
-    }
-
-    public static void assertContains(AbstractTestLog testFmwk, String test, UnicodeSet expectedSubset, UnicodeSet actual) {
-        if (!actual.containsAll(expectedSubset)) {
-            UnicodeSet inExpected = new UnicodeSet(expectedSubset).removeAll(actual);
-            testFmwk.errln(test + " - MISSING: " + inExpected);
-        } else {
-            testFmwk.logln("OK\t\t" + test);
-        }
-    }
 }
