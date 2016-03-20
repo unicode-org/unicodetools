@@ -141,8 +141,8 @@ Word_Break ; UCD ;    Enumerated ; Shaping and Rendering
 
 Bidi_Paired_Bracket ; UCD ;    String ; Bidirectional
 Bidi_Paired_Bracket_Type ; UCD ;    Enumerated ; Bidirectional
-Indic_Positional_Category ; UCD ;    Enumerated ; Miscellaneous
-Indic_Syllabic_Category ; UCD ;    Enumerated ; Miscellaneous
+#Indic_Positional_Category ; UCD ;    Enumerated ; Miscellaneous
+#Indic_Syllabic_Category ; UCD ;    Enumerated ; Miscellaneous
 Name ; UCD ;    String ; General
 #Name_Alias ; UCD ;    String ; General
 Script_Extensions ; UCD ;    String ; General
@@ -150,10 +150,21 @@ Script_Extensions ; UCD ;    String ; General
 ANY ; UTS ;    Binary ; X-Regex
 ASCII ; UTS ;    Binary ; X-Regex
 bmp ; UTS ;    Binary ; X-Regex
-emoji ; UTR ;    Enumerated ; X-Emoji
 idna2008 ; UTS ;    Binary ; X-IDNA
 uca ; UTS ;    Binary ; X-UCA
 uca2 ; UTS ;    Binary ; X-UCA
 uca2.5 ; UTS ;    Binary ; X-UCA
 uca3 ; UTS ;    Binary ; X-UCA
 #Subheader ; UCD ;    String ; X-NamesList
+
+Emoji ; UTR ;    Binary ; X-Emoji
+Emoji_Modifier ; UTR ;    Binary ; X-Emoji
+Emoji_Modifier_Base ; UTR ;    Binary ; X-Emoji
+Emoji_Presentation ; UTR ;    Binary ; X-Emoji
+
+Emoji_All ; UTR ;    Binary ; X-Emoji
+Emoji_Defectives ; UTR ;    Binary ; X-Emoji
+Emoji_Flag_Sequences ; UTR ;    Binary ; X-Emoji
+Emoji_Keycap_Sequences ; UTR ;    Binary ; X-Emoji
+Emoji_Modifier_Sequences ; UTR ;    Binary ; X-Emoji
+Emoji_Zwj_Sequences ; UTR ;    Binary ; X-Emoji

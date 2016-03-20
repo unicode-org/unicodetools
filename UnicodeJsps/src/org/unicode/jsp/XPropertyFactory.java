@@ -11,6 +11,7 @@ import org.unicode.jsp.UnicodeProperty.BaseProperty;
 import org.unicode.jsp.UnicodeProperty.SimpleProperty;
 
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
@@ -110,6 +111,15 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
 
         add(new StringTransformProperty(new StringTransform() {
             public String transform(String source) {
+                StringBuilder b = new StringBuilder();
+                for (int cp : CharSequences.codePoints(source)) {
+                    b.appendCodePoint(UCharacter.getBidiPairedBracket(cp));
+                }
+                return b.toString();
+            }}, false).setMain("Bidi_Paired_Bracket", "bpb", UnicodeProperty.STRING, "7.0"));
+
+        add(new StringTransformProperty(new StringTransform() {
+            public String transform(String source) {
                 String result = NFM.nfm.get(source);
                 return result == null ? source : result;
             }}, false).setMain("toNFM", "toNFM", UnicodeProperty.STRING, "1.1"));
@@ -141,42 +151,42 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         //                + "{🇹🇩}{🇹🇫}{🇹🇬}{🇹🇭}{🇹🇯}{🇹🇰}{🇹🇱}{🇹🇲}{🇹🇳}{🇹🇴}{🇹🇷}{🇹🇹}{🇹🇻}{🇹🇼}{🇹🇿}{🇺🇦}{🇺🇬}{🇺🇲}{🇺🇸}{🇺🇾}{🇺🇿}{🇻🇦}{🇻🇨}{🇻🇪}{🇻🇬}{🇻🇮}{🇻🇳}{🇻🇺}{🇼🇫}"
         //                + "{🇼🇸}{🇽🇰}{🇾🇪}{🇾🇹}{🇿🇦}{🇿🇲}{🇿🇼}]").freeze();    
 
-//        UnicodeMap<String> emoji = new UnicodeMap<String>()
-//                .putAll(0,0x10FFFF, "no")
-//                .putAll(UnicodeSetUtilities.SINGLETONS, "other")
-//                // do these after, since they remove singleton items
-//                .putAll(UnicodeSetUtilities.FLAGS, "flag")
-//                .putAll(UnicodeSetUtilities.KEYCAPS, "keycap")
-//                .putAll(UnicodeSetUtilities.GROUPS, "group")
-//                .putAll(UnicodeSetUtilities.FACE, "face")
-//                .putAll(UnicodeSetUtilities.PRIMARY, "primary")
-//                .putAll(UnicodeSetUtilities.MODIFIERS, "modifier")
-//                .putAll(UnicodeSetUtilities.SECONDARY, "secondary")
-//                ;
-//        add(new UnicodeProperty.UnicodeMapProperty()
-//        .set(emoji)
-//        .setMain("Emoji", "emoji", UnicodeProperty.ENUMERATED, "8.0")
-//                );
-        
+        //        UnicodeMap<String> emoji = new UnicodeMap<String>()
+        //                .putAll(0,0x10FFFF, "no")
+        //                .putAll(UnicodeSetUtilities.SINGLETONS, "other")
+        //                // do these after, since they remove singleton items
+        //                .putAll(UnicodeSetUtilities.FLAGS, "flag")
+        //                .putAll(UnicodeSetUtilities.KEYCAPS, "keycap")
+        //                .putAll(UnicodeSetUtilities.GROUPS, "group")
+        //                .putAll(UnicodeSetUtilities.FACE, "face")
+        //                .putAll(UnicodeSetUtilities.PRIMARY, "primary")
+        //                .putAll(UnicodeSetUtilities.MODIFIERS, "modifier")
+        //                .putAll(UnicodeSetUtilities.SECONDARY, "secondary")
+        //                ;
+        //        add(new UnicodeProperty.UnicodeMapProperty()
+        //        .set(emoji)
+        //        .setMain("Emoji", "emoji", UnicodeProperty.ENUMERATED, "8.0")
+        //                );
+
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_DEFECTIVES)
-        .setMain("EMOJI_DEFECTIVES", "EMD", UnicodeProperty.BINARY, "8.0"));
-        
+        .setMain("Emoji_Defectives", "EMD", UnicodeProperty.BINARY, "8.0"));
+
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_FLAG_SEQUENCES)
-        .setMain("EMOJI_FLAG_SEQUENCES", "EMFS", UnicodeProperty.BINARY, "8.0"));
-        
+        .setMain("Emoji_Flag_Sequences", "EMFS", UnicodeProperty.BINARY, "8.0"));
+
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_KEYCAP_SEQUENCES)
-        .setMain("EMOJI_KEYCAP_SEQUENCES", "EMKS", UnicodeProperty.BINARY, "8.0"));
-        
+        .setMain("Emoji_Keycap_Sequences", "EMKS", UnicodeProperty.BINARY, "8.0"));
+
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_MODIFIER_SEQUENCES)
-        .setMain("EMOJI_MODIFIER_SEQUENCES", "EMMS", UnicodeProperty.BINARY, "8.0"));
+        .setMain("Emoji_Modifier_Sequences", "EMMS", UnicodeProperty.BINARY, "8.0"));
 
         add(new UnicodeSetProperty()
         .set(SequenceData.EMOJI_ZWJ_SEQUENCES)
-        .setMain("EMOJI_ZWJ_SEQUENCES", "EMZS", UnicodeProperty.BINARY, "8.0"));
+        .setMain("Emoji_Zwj_Sequences", "EMZS", UnicodeProperty.BINARY, "8.0"));
 
         UnicodeSet emojiAll = new UnicodeSet("[:emoji:]")
         .removeAll(SequenceData.EMOJI_DEFECTIVES)
@@ -187,19 +197,20 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         .freeze();
         add(new UnicodeSetProperty()
         .set(emojiAll)
-        .setMain("EMOJI_ALL", "EMA", UnicodeProperty.BINARY, "8.0"));
+        .setMain("Emoji_All", "EMA", UnicodeProperty.BINARY, "8.0"));
 
         //        UnicodeProperty prop2 = getProperty("emoji");
         //        UnicodeSet set = prop2.getSet("true");
         //        System.out.println(emojiSource.toPattern(false));
         //        System.out.println(set.toPattern(false));
 
-        add(new UnicodeSetProperty().set(new UnicodeSet("[\\u0000-\\uFFFF]")).setMain("bmp", "bmp", UnicodeProperty.BINARY, "6.0"));
+        add(new UnicodeSetProperty().set(new UnicodeSet("[\\u0000-\\uFFFF]"))
+                .setMain("bmp", "bmp", UnicodeProperty.BINARY, "6.0"));
 
         addCollationProperty();
 
         //add(new IcuBidiPairedBracket());
-        add(new IcuEnumProperty(UProperty.BIDI_PAIRED_BRACKET_TYPE));
+        //        add(new IcuEnumProperty(UProperty.BIDI_PAIRED_BRACKET_TYPE));
 
         // set up the special script property
         UnicodeProperty scriptProp = base.getProperty("sc");
@@ -323,10 +334,14 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         //        System.out.println(collationMap1.values().size());
         //        System.out.println(collationMap2.values().size());
         //        System.out.println(collationMap3.values().size());
-        add(new UnicodeProperty.UnicodeMapProperty().set(collationMap0).setMain("uca", "uca1", UnicodeProperty.ENUMERATED, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(collationMap1).setMain("uca2", "uca2", UnicodeProperty.ENUMERATED, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(collationMap2).setMain("uca2.5", "uca2.5", UnicodeProperty.ENUMERATED, "1.1"));
-        add(new UnicodeProperty.UnicodeMapProperty().set(collationMap3).setMain("uca3", "uca3", UnicodeProperty.ENUMERATED, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty()
+        .set(collationMap0).setMain("uca", "uca1", UnicodeProperty.ENUMERATED, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty()
+        .set(collationMap1).setMain("uca2", "uca2", UnicodeProperty.ENUMERATED, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty()
+        .set(collationMap2).setMain("uca2.5", "uca2.5", UnicodeProperty.ENUMERATED, "1.1"));
+        add(new UnicodeProperty.UnicodeMapProperty()
+        .set(collationMap3).setMain("uca3", "uca3", UnicodeProperty.ENUMERATED, "1.1"));
     }
 
     private void addBytes(StringBuilder builder, int bytes) {
@@ -512,54 +527,54 @@ public class XPropertyFactory extends UnicodeProperty.Factory {
         }
     }
 
-//    private static class IcuBidiPairedBracket extends SimpleProperty {
-//        final int propNum;
-//        public IcuBidiPairedBracket() {
-//            setName(UCharacter.getPropertyName(UProperty.BIDI_PAIRED_BRACKET, NameChoice.LONG));
-//            this.propNum = UProperty.BIDI_PAIRED_BRACKET;
-//        }
-//        @Override
-//        public List _getNameAliases(List result) {
-//            return Arrays.asList(UCharacter.getPropertyName(propNum, NameChoice.LONG), UCharacter.getPropertyName(propNum, NameChoice.SHORT));
-//        }
-//
-//        @Override
-//        protected String _getValue(int codepoint) {
-//            return UTF16.valueOf(UCharacter.getBidiPairedBracket(codepoint));
-//        }
-//        @Override
-//        protected UnicodeMap _getUnicodeMap() {
-//            // TODO Auto-generated method stub
-//            return super._getUnicodeMap();
-//        }
-//    }
+    //    private static class IcuBidiPairedBracket extends SimpleProperty {
+    //        final int propNum;
+    //        public IcuBidiPairedBracket() {
+    //            setName(UCharacter.getPropertyName(UProperty.BIDI_PAIRED_BRACKET, NameChoice.LONG));
+    //            this.propNum = UProperty.BIDI_PAIRED_BRACKET;
+    //        }
+    //        @Override
+    //        public List _getNameAliases(List result) {
+    //            return Arrays.asList(UCharacter.getPropertyName(propNum, NameChoice.LONG), UCharacter.getPropertyName(propNum, NameChoice.SHORT));
+    //        }
+    //
+    //        @Override
+    //        protected String _getValue(int codepoint) {
+    //            return UTF16.valueOf(UCharacter.getBidiPairedBracket(codepoint));
+    //        }
+    //        @Override
+    //        protected UnicodeMap _getUnicodeMap() {
+    //            // TODO Auto-generated method stub
+    //            return super._getUnicodeMap();
+    //        }
+    //    }
 
-//    private static class Usage extends XEnumUnicodeProperty {
-//        enum UsageValues {common, historic, deprecated, liturgical, limited, symbol, punctuation, na;
-//        public static UsageValues getValue(int codepoint) {
-//            if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
-//            if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
-//            if (UnicodeUtilities.LITURGICAL.contains(codepoint)) return liturgical;
-//            //if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
-//            //if (UnicodeUtilities.LIM.contains(codepoint)) return archaic;
-//            if (UnicodeUtilities.COMMON_USE_SCRIPTS.contains(codepoint)) {
-//                if (UnicodeUtilities.SYMBOL.contains(codepoint)) return symbol;
-//                if (UnicodeUtilities.PUNCTUATION.contains(codepoint)) return punctuation;
-//                return common;
-//            }
-//            return limited;
-//        }
-//        }
-//        public Usage() {
-//            super("Usage", UsageValues.values());
-//            setType(UnicodeProperty.EXTENDED_ENUMERATED);
-//        }
-//
-//        @Override
-//        protected String _getValue(int codepoint) {
-//            return UsageValues.getValue(codepoint).toString();
-//        }
-//    }
+    //    private static class Usage extends XEnumUnicodeProperty {
+    //        enum UsageValues {common, historic, deprecated, liturgical, limited, symbol, punctuation, na;
+    //        public static UsageValues getValue(int codepoint) {
+    //            if (UnicodeProperty.SPECIALS.contains(codepoint)) return na;
+    //            if (UnicodeUtilities.DEPRECATED.contains(codepoint)) return deprecated;
+    //            if (UnicodeUtilities.LITURGICAL.contains(codepoint)) return liturgical;
+    //            //if (ScriptCategoriesCopy.ARCHAIC.contains(codepoint)) return historic;
+    //            //if (UnicodeUtilities.LIM.contains(codepoint)) return archaic;
+    //            if (UnicodeUtilities.COMMON_USE_SCRIPTS.contains(codepoint)) {
+    //                if (UnicodeUtilities.SYMBOL.contains(codepoint)) return symbol;
+    //                if (UnicodeUtilities.PUNCTUATION.contains(codepoint)) return punctuation;
+    //                return common;
+    //            }
+    //            return limited;
+    //        }
+    //        }
+    //        public Usage() {
+    //            super("Usage", UsageValues.values());
+    //            setType(UnicodeProperty.EXTENDED_ENUMERATED);
+    //        }
+    //
+    //        @Override
+    //        protected String _getValue(int codepoint) {
+    //            return UsageValues.getValue(codepoint).toString();
+    //        }
+    //    }
 
     static class HanType extends XEnumUnicodeProperty {
         enum HanTypeValues {na, Hans, Hant, Han}

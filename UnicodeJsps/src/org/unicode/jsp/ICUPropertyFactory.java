@@ -180,8 +180,11 @@ public class ICUPropertyFactory extends UnicodeProperty.Factory {
         newValue = value;
         if (propEnum == UProperty.JOINING_GROUP) {
           newValue = newValue == null ? null : newValue.toLowerCase(Locale.ENGLISH);
-        } 
+        }
         newValue = regularize(newValue, true);
+        if (propEnum == UProperty.BLOCK && newValue.equals("Sutton_Sign_Writing")) {
+            newValue = "Sutton_SignWriting";
+        } 
         fixSkeleton.put(value, newValue);
       }
       return newValue;
