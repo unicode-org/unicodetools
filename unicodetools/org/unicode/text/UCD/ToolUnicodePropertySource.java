@@ -876,7 +876,9 @@ U+FF1A ( ： ) FULLWIDTH COLON
                     "[\\u002E\\u2018\\u2019\\u2024\\uFE52\\uFF07\\uFF0E]"), "MidNumLet");
 
             unicodeMap.putAll(new UnicodeSet(lineBreak.getSet("Numeric")).remove(0x066C), "Numeric"); // .remove(0x387)
-            unicodeMap.putAll(cat.getSet("Connector_Punctuation").remove(0x30FB).remove(0xFF65),
+            unicodeMap.putAll(cat.getSet("Connector_Punctuation")
+                    .remove(0x30FB).remove(0xFF65)
+                    .add(0x202F), // action 144a067
                     "ExtendNumLet");
             // unicodeMap.putAll(graphemeExtend, "Other"); // to verify that none
             // of the above touch it.
@@ -927,9 +929,12 @@ U+FF1A ( ： ) FULLWIDTH COLON
                     cat.getSet("Spacing_Mark")), "Extend");
             unicodeMap.putAll(new UnicodeSet("[\\u0085\\u2028\\u2029]"), "Sep");
             unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
-            unicodeMap.putAll(getProperty("Whitespace").getSet(UCD_Names.YES).removeAll(
-                    unicodeMap.keySet("Sep")).removeAll(unicodeMap.keySet("CR")).removeAll(
-                            unicodeMap.keySet("LF")), "Sp");
+            unicodeMap.putAll(getProperty("Whitespace").getSet(UCD_Names.YES)
+                    .removeAll(unicodeMap.keySet("Sep"))
+                    .removeAll(unicodeMap.keySet("CR"))
+                    .removeAll(unicodeMap.keySet("LF"))
+                    .remove(0x202F) // action 144a067
+                    , "Sp");
             final UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
             unicodeMap.putAll(getProperty("Lowercase").getSet(UCD_Names.YES)
                     .removeAll(graphemeExtend), "Lower");
