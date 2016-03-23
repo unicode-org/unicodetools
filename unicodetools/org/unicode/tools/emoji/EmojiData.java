@@ -549,4 +549,29 @@ public class EmojiData {
     .removeAll(new UnicodeSet("[:whitespace:]"))
     .freeze();
 
+    /**
+     * Add EVS to sequences where needed (and remove where not)
+     * @param source
+     * @return
+     */
+    public String addEmojiVariants(String source, char variant) {
+        StringBuilder result = new StringBuilder();
+        int[] sequences = CharSequences.codePoints(source);
+        for (int i = 0; i < sequences.length; ++i) {
+            int cp = sequences[i];
+            // remove VS so we start with a clean slate
+            if (Emoji.EMOJI_VARIANTS.contains(cp)) {
+                continue;
+            }
+            result.appendCodePoint(cp);
+            if (singletonsWithDefectives.contains(cp) 
+                    && !defaultPresentationMap.get(DefaultPresentation.emoji).contains(cp)) {
+                if (i == sequences.length - 1 
+                        || !MODIFIERS.contains(sequences[i+1])) {
+                    result.appendCodePoint(variant);
+                }
+            }
+        }
+        return result.toString();
+    }
 }

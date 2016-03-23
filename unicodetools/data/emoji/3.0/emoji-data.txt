@@ -307,6 +307,8 @@
 1F980..1F984  ; Emoji_Presentation   #   [5] (🦀..🦄)    CRAB..UNICORN FACE
 1F9C0         ; Emoji_Presentation   #   [1] (🧀)       CHEESE WEDGE
 
+1F441         ; Emoji_Presentation
+1F5E8         ; Emoji_Presentation
 
 1F920 ;	Emoji_Presentation	# FACE WITH COWBOY HAT
 1F921 ;	Emoji_Presentation	# CLOWN FACE
