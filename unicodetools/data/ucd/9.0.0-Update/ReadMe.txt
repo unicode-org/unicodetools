@@ -1,6 +1,7 @@
 # Unicode Character Database
-# Date: 2015-11-20, 22:49:00 GMT [KW]
-# © 1991-2015 Unicode®, Inc.
+# Date: 2016-03-10, 23:18:00 GMT [KW]
+# © 2016 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # For documentation, see the following:
@@ -10,5 +11,5 @@
 #
 # The UAXes can be accessed at http://www.unicode.org/versions/Unicode9.0.0/
 
-This directory contains PRELIMINARY data files in preparation for beta review
+This directory contains data files for beta review
 for the Unicode Character Database, for Version 9.0.0 of the Unicode Standard.

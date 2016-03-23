@@ -94,9 +94,9 @@
 1B80          ; Bindu # Mn       SUNDANESE SIGN PANYECEK
 1C34..1C35    ; Bindu # Mc   [2] LEPCHA CONSONANT SIGN NYIN-DO..LEPCHA CONSONANT SIGN KANG
 A80B          ; Bindu # Mn       SYLOTI NAGRI SIGN ANUSVARA
-A8C5          ; Bindu # Mn       SAURASHTRA SIGN CANDRABINDU
 A873          ; Bindu # Lo       PHAGS-PA LETTER CANDRABINDU
 A880          ; Bindu # Mc       SAURASHTRA SIGN ANUSVARA
+A8C5          ; Bindu # Mn       SAURASHTRA SIGN CANDRABINDU
 A980..A981    ; Bindu # Mn   [2] JAVANESE SIGN PANYANGGA..JAVANESE SIGN CECAK
 10A0E         ; Bindu # Mn       KHAROSHTHI SIGN ANUSVARA
 11000         ; Bindu # Mc       BRAHMI SIGN CANDRABINDU
@@ -189,7 +189,7 @@ AAF5          ; Visarga # Mc       MEETEI MAYEK VOWEL SIGN VISARGA
 # Nukta (diacritic for borrowed consonants or other consonant
 # modifications)
 
-# [Derivation: (ccc=7) + 0F39 + 10A38..10A3A - 1037]
+# [Derivation: (ccc=7) + 0F39 + 10A38..10A3A - 1037 - 1E94A]
 
 093C          ; Nukta # Mn       DEVANAGARI SIGN NUKTA
 09BC          ; Nukta # Mn       BENGALI SIGN NUKTA
@@ -366,14 +366,14 @@ ABD1          ; Vowel_Independent # Lo       MEETEI MAYEK LETTER ATIYA
 1130F..11310  ; Vowel_Independent # Lo   [2] GRANTHA LETTER EE..GRANTHA LETTER AI
 11313..11314  ; Vowel_Independent # Lo   [2] GRANTHA LETTER OO..GRANTHA LETTER AU
 11360..11361  ; Vowel_Independent # Lo   [2] GRANTHA LETTER VOCALIC RR..GRANTHA LETTER VOCALIC LL
-11400..1140D  ; Vowel_Independent # Lo  [13] NEWA LETTER A..NEWA LETTER AU
+11400..1140D  ; Vowel_Independent # Lo  [14] NEWA LETTER A..NEWA LETTER AU
 11481..1148E  ; Vowel_Independent # Lo  [14] TIRHUTA LETTER A..TIRHUTA LETTER AU
 11580..1158D  ; Vowel_Independent # Lo  [14] SIDDHAM LETTER A..SIDDHAM LETTER AU
 115D8..115DB  ; Vowel_Independent # Lo   [4] SIDDHAM LETTER THREE-CIRCLE ALTERNATE I..SIDDHAM LETTER ALTERNATE U
 11600..1160D  ; Vowel_Independent # Lo  [14] MODI LETTER A..MODI LETTER AU
 11680..11689  ; Vowel_Independent # Lo  [10] TAKRI LETTER A..TAKRI LETTER AU
 11C00..11C08  ; Vowel_Independent # Lo   [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
-11C0A..11C0D  ; Vowel_Independent # Lo   [4] BHAIKSUKI LETTER E..BHAIKSUKI LETTER VOCALIC AU
+11C0A..11C0D  ; Vowel_Independent # Lo   [4] BHAIKSUKI LETTER E..BHAIKSUKI LETTER AU
 
 # ================================================
 
@@ -595,7 +595,7 @@ ABE9..ABEA    ; Vowel_Dependent # Mc   [2] MEETEI MAYEK VOWEL SIGN CHEINAP..MEET
 11727..1172A  ; Vowel_Dependent # Mn   [4] AHOM VOWEL SIGN AW..AHOM VOWEL SIGN AM
 11C2F         ; Vowel_Dependent # Mc       BHAIKSUKI VOWEL SIGN AA
 11C30..11C36  ; Vowel_Dependent # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
-11C38..11C3B  ; Vowel_Dependent # Mn   [4] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
+11C38..11C3B  ; Vowel_Dependent # Mn   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
 11CB0         ; Vowel_Dependent # Mn       MARCHEN VOWEL SIGN AA
 11CB1         ; Vowel_Dependent # Mc       MARCHEN VOWEL SIGN I
 11CB2..11CB3  ; Vowel_Dependent # Mn   [2] MARCHEN VOWEL SIGN U..MARCHEN VOWEL SIGN E
