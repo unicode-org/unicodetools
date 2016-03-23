@@ -195,12 +195,12 @@ public class GenerateEmojiData {
                     }
                 } else if (rangeCount == 1) {
                     out.println(tabber.process(
-                            Utility.hex(s) 
+                            Utility.hex(addEmojiVariant(s, range.string != null))
                             + "\t" + titleField 
                             + "\t#"
                             + "\t" + range.value.getShortName()
                             + "\t[1] "
-                            + "\t(" + addEmojiVariant(s, addVariants) + ")"
+                            + "\t(" + addEmojiVariant(s, addVariants || range.string != null) + ")"
                             + "\t" + Emoji.getName(s, false, extraNames)));
                 } else  {
                     final String e = UTF16.valueOf(range.codepointEnd);
@@ -278,7 +278,8 @@ public class GenerateEmojiData {
         if (!addVariants) {
             return s;
         }
+        return EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT);
         // hack to add VS to v2.0 to make comparison easier.
-        return Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING, EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
+        //return Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING, EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
     }
 }

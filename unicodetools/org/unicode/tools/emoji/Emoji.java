@@ -240,8 +240,11 @@ public class Emoji {
     }
 
     public static final UnicodeSet FACES = new UnicodeSet("[☺ ☹ 🙁 🙂 😀-😆 😉-😷 😇 😈 👿 🙃 🙄 🤐-🤕 🤗]").freeze();
+    
     public static final char EMOJI_VARIANT = '\uFE0F';
     public static final char TEXT_VARIANT = '\uFE0E';
+    public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet().add(EMOJI_VARIANT).add(TEXT_VARIANT).freeze();
+    
     public static final char JOINER = '\u200D';
 
     static final int FIRST_REGIONAL = 0x1F1E6;
