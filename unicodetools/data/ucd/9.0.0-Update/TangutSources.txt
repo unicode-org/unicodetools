@@ -1,6 +1,7 @@
 # TangutSources-9.0.0.txt
-# Date: 2016-01-21, 21:37:00 GMT [MS, KW]
+# Date: 2016-03-21, 23:40:00 GMT [MS, KW]
 # © 2016 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Unicode Character Database
@@ -28,6 +29,24 @@
 #
 #	Tangut Merged source: kTGT_MergedSrc
 #	Radical-Stroke indexes: kRSTUnicode
+#
+# The following abbreviations are used in kTGT_MergedSrc:
+#
+# H2004 = Hán Xiǎománg (韓小忙), 西夏文正字研究 (Xīxiàwén Zhèngzì Yánjiū)
+#	      [Research into the Correct Forms of Tangut Characters]. 2004.
+# L1986 = Lǐ Fànwén (李範文), 同音研究 (Tóngyīn Yánjiū) 
+#	      [Study of the Homophones]. Yinchuan. 1986
+# L1997 = Lǐ Fànwén (李範文), 夏漢字典 (Xià-Hàn Zìdiàn)
+#	      [Tangut-Chinese Dictionary]. Beijing. 1997.
+# L2006 = Lǐ Fànwén (李範文), 《五音切韵》与《文海宝韵》比较研究 (Wǔyīn Qiēyùn yǔ Wénhǎi Bǎoyùn bǐjiào yánjiū).
+#	      In 西夏研究 (Xīxià Yánjiū) [Western Xia Studies] no.2. Beijing. 2006
+# L2008 = Lǐ Fànwén (李範文). 夏漢字典 (Xià-Hàn Zìdiàn)
+#         [Tangut-Chinese Dictionary]. Beijing, 2008.
+# N1966 = Nishida Tatsuo (西田龍雄), 西夏文小字典 (Seikabun Shōjiten)
+#         [Little Dictionary of Tangut]. 
+#	      In 西夏語の研 究 (Seikago no kenkyū) [A Study of the Hsi-Hsia Language] (1964-1966) vol.2. Tokyo, 1966.
+# S1968 = Sofronov M. V. (М. В. Софронов), Грамматика тангутского языка (Grammatika tangutskogo jazyka) 
+#	      [Grammar of the Tangut Language]. Moscow, 1968.
 #
 #	For more information, see Section 18.10, Tangut, of the
 #	core specification.
@@ -12282,3 +12301,5 @@ U+187EB	kTGT_MergedSrc	L2008-5205
 U+187EB	kRSTUnicode	755.19
 U+187EC	kTGT_MergedSrc	L2008-5203
 U+187EC	kRSTUnicode	755.20
+
+# EOF
