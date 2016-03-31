@@ -1,5 +1,5 @@
 # WordBreakTest-9.0.0.txt
-# Date: 2016-03-03, 12:44:04 GMT
+# Date: 2016-03-23, 11:24:55 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1950,7 +1950,7 @@
 ÷ 0041 × 0041 × 0041 ÷	#  ÷ [0.2] LATIN CAPITAL LETTER A (ALetter) × [5.0] LATIN CAPITAL LETTER A (ALetter) × [5.0] LATIN CAPITAL LETTER A (ALetter) ÷ [0.3]
 ÷ 0041 × 003A × 0041 ÷	#  ÷ [0.2] LATIN CAPITAL LETTER A (ALetter) × [6.0] COLON (MidLetter) × [7.0] LATIN CAPITAL LETTER A (ALetter) ÷ [0.3]
 ÷ 0041 ÷ 003A ÷ 003A ÷ 0041 ÷	#  ÷ [0.2] LATIN CAPITAL LETTER A (ALetter) ÷ [999.0] COLON (MidLetter) ÷ [999.0] COLON (MidLetter) ÷ [999.0] LATIN CAPITAL LETTER A (ALetter) ÷ [0.3]
-÷ 05D0 × 0027 × 05D0 ÷	#  ÷ [0.2] HEBREW LETTER ALEF (Hebrew_Letter) × [6.0] APOSTROPHE (Single_Quote) × [7.0] HEBREW LETTER ALEF (Hebrew_Letter) ÷ [0.3]
+÷ 05D0 × 0027 ÷	#  ÷ [0.2] HEBREW LETTER ALEF (Hebrew_Letter) × [7.1] APOSTROPHE (Single_Quote) ÷ [0.3]
 ÷ 05D0 × 0022 × 05D0 ÷	#  ÷ [0.2] HEBREW LETTER ALEF (Hebrew_Letter) × [7.2] QUOTATION MARK (Double_Quote) × [7.3] HEBREW LETTER ALEF (Hebrew_Letter) ÷ [0.3]
 ÷ 0041 × 0030 × 0030 × 0041 ÷	#  ÷ [0.2] LATIN CAPITAL LETTER A (ALetter) × [9.0] DIGIT ZERO (Numeric) × [8.0] DIGIT ZERO (Numeric) × [10.0] LATIN CAPITAL LETTER A (ALetter) ÷ [0.3]
 ÷ 0030 × 002C × 0030 ÷	#  ÷ [0.2] DIGIT ZERO (Numeric) × [12.0] COMMA (MidNum) × [11.0] DIGIT ZERO (Numeric) ÷ [0.3]
