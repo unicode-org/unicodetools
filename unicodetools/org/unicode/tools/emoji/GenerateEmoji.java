@@ -47,6 +47,7 @@ import org.unicode.tools.emoji.Emoji.ModifierStatus;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 import org.unicode.tools.emoji.EmojiData.EmojiDatum;
+import org.unicode.tools.emoji.EmojiData.VariantHandling;
 import org.unicode.tools.emoji.EmojiOrder.MajorGroup;
 
 import com.google.common.base.Joiner;
@@ -443,7 +444,7 @@ public class GenerateEmoji {
                     : " class='imga'"
                     ) +
                     " src='" + (useDataUrl ? getDataUrl(filename) : "../images/" + filename) + "'" +
-                    " title='" + getCodeAndName(chars, " ") + "'" +
+                    " title='" + getCodeCharsAndName(chars, " ") + "'" +
                     ">";
         }
         return null;
@@ -506,7 +507,7 @@ public class GenerateEmoji {
                 newNotOld.removeAll(oldAnnotations);
                 TreeSet both = new TreeSet(newAnnotations);
                 both.retainAll(oldAnnotations);
-                System.out.println(getCodeAndName(chars, "\t")
+                System.out.println(getCodeCharsAndName(chars, "\t")
                         + "\t" + CollectionUtilities.join(oldNotNew, ", ")
                         + "\t" + CollectionUtilities.join(newNotOld, ", ")
                         + "\t" + CollectionUtilities.join(both, ", ")
@@ -563,7 +564,7 @@ public class GenerateEmoji {
         return cc == null ? null : "<img"
                 + " alt='" + chars + "'"
                 + " class='imgf" + extraClasses + "'"
-                + " title='" + getCodeAndName(chars, " ") + "'"
+                + " title='" + getCodeCharsAndName(chars, " ") + "'"
                 + " src='" + getDataUrl(filename) + "'>";
     }
 
@@ -895,11 +896,7 @@ public class GenerateEmoji {
     }
 
     private static String getCodeAndName2(String s, boolean toLower) {
-        return toUHex(s) + " " + Emoji.getName(s, toLower, GenerateEmoji.EXTRA_NAMES);
-    }
-
-    private static String toUHex(String s) {
-        return "U+" + Utility.hex(s, " U+");
+        return Emoji.toUHex(s) + " " + Emoji.getName(s, toLower, GenerateEmoji.EXTRA_NAMES);
     }
 
     private static void showExplicitAppleImages(PrintWriter out, Set<String> minimal) {
@@ -1828,18 +1825,17 @@ public class GenerateEmoji {
     }
 
     private static String addTitle(String s, String cell) {
-        return "<span title='" +
-                getHex(s) + " " + Emoji.getName(s, true, GenerateEmoji.EXTRA_NAMES) + "'>"
+        String chars2WithVS = EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
+        return "<span title='" 
+                + getCodeAndName2(chars2WithVS, true)
+                //Emoji.toUHex(s) + " " + Emoji.getName(s, true, GenerateEmoji.EXTRA_NAMES)
+                + "'>"
                 + cell
                 + "</span>";
     }
 
-    public static String getHex(String theChars) {
-        return toUHex(theChars);
-    }
-
-    public static String getCodeAndName(String chars1, String separator) {
-        return getHex(chars1) + separator + chars1 + separator + Emoji.getName(chars1, true, GenerateEmoji.EXTRA_NAMES);
+    public static String getCodeCharsAndName(String chars1, String separator) {
+        return Emoji.toUHex(chars1) + separator + chars1 + separator + Emoji.getName(chars1, true, GenerateEmoji.EXTRA_NAMES);
     }
 
     static final UnicodeSet SPECIAL_INCLUSIONS = new UnicodeSet("[#*0-9 ⃣]").addAll(Emoji.REGIONAL_INDICATORS).freeze();
@@ -2128,7 +2124,7 @@ public class GenerateEmoji {
                 PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
                         , "emoji-ordering-list.txt")) {
             for (String s : SORTED_ALL_EMOJI_CHARS_SET) {
-                outText.println(toUHex(s) 
+                outText.println(Emoji.toUHex(s) 
                         + " ; " + Emoji.getNewest(s).getShortName() 
                         + " # " + s 
                         + " " + Emoji.getName(s, false, GenerateEmoji.EXTRA_NAMES));
@@ -2366,9 +2362,9 @@ public class GenerateEmoji {
                 String image = EmojiData.EMOJI_DATA.getAllEmojiWithDefectives().contains(x) ? getBestImageNothrow(x, true, " imgb") : null;
                 if (image == null) {
                     String fixed = TransliteratorUtilities.toHTML.transform(x);
-                    image = UTF16.hasMoreCodePointsThan(x, 1) ? fixed : toUHex(x) + " " + fixed + " " + Emoji.getName(x, false, GenerateEmoji.EXTRA_NAMES);
+                    image = UTF16.hasMoreCodePointsThan(x, 1) ? fixed : Emoji.toUHex(x) + " " + fixed + " " + Emoji.getName(x, false, GenerateEmoji.EXTRA_NAMES);
                 } else {
-                    image = toUHex(x) + " " + image + " " + Emoji.getName(x, false, GenerateEmoji.EXTRA_NAMES);
+                    image = Emoji.toUHex(x) + " " + image + " " + Emoji.getName(x, false, GenerateEmoji.EXTRA_NAMES);
                 }
                 result.append("<br>" + symbol + " " + image);
             }
@@ -2414,12 +2410,13 @@ public class GenerateEmoji {
                 annotationString.append(getLink("emoji-annotations.html#" + annotation, annotation, "annotate"));
             }
         }
-        String anchor = getAnchor(toUHex(chars2));
+        String chars2WithVS = EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
+        String anchor = getAnchor(Emoji.toUHex(chars2WithVS));
         final boolean shortForm = form != Form.fullForm && form != Form.extraForm;
         EmojiDatum emojiDatum = EmojiData.EMOJI_DATA.getData(chars2);
         return "<tr>"
         + "<td class='rchars'>" + item + "</td>\n"
-        + "<td class='code'>" + getDoubleLink(anchor, toUHex(chars2)) + "</td>\n"
+        + "<td class='code'>" + getDoubleLink(anchor, Emoji.toUHex(chars2WithVS)) + "</td>\n"
         + altClass(browserCell)
         + (shortForm ?  altClass(bestCell) : 
             altClass(symbolaCell)
@@ -2524,7 +2521,7 @@ public class GenerateEmoji {
             String color = SPACE_JOINER.join(color1, color2, sample);
             String currentRow = "<tr>"
                     + "<td class='rchars'>" + ++count + "</td>"
-                    + "<td class='code'>" + getDoubleLink(Utility.hex(source).replace(" ", "_"), toUHex(source)) + "</td>"
+                    + "<td class='code'>" + getDoubleLink(Utility.hex(source).replace(" ", "_"), Emoji.toUHex(source)) + "</td>"
                     + "<td class='andr'>" + blackAndWhite + "</td>"
                     + "<td class='default'>" + color + "</td>"
                     + "<td class='default'>" + cd.getQuarter(source) + "</td>"
