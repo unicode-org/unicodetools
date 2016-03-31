@@ -1,5 +1,5 @@
 # SentenceBreakProperty-9.0.0.txt
-# Date: 2016-03-02, 18:55:13 GMT
+# Date: 2016-03-23, 11:24:55 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -521,11 +521,10 @@ E0020..E007F  ; Format # Cf  [96] TAG SPACE..CANCEL TAG
 00A0          ; Sp # Zs       NO-BREAK SPACE
 1680          ; Sp # Zs       OGHAM SPACE MARK
 2000..200A    ; Sp # Zs  [11] EN QUAD..HAIR SPACE
-202F          ; Sp # Zs       NARROW NO-BREAK SPACE
 205F          ; Sp # Zs       MEDIUM MATHEMATICAL SPACE
 3000          ; Sp # Zs       IDEOGRAPHIC SPACE
 
-# Total code points: 20
+# Total code points: 19
 
 # ================================================
 

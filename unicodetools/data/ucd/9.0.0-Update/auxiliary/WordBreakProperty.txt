@@ -1,5 +1,5 @@
 # WordBreakProperty-9.0.0.txt
-# Date: 2016-03-02, 18:55:13 GMT
+# Date: 2016-03-23, 11:24:55 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1228,13 +1228,14 @@ ABF0..ABF9    ; Numeric # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DIGIT N
 # ================================================
 
 005F          ; ExtendNumLet # Pc       LOW LINE
+202F          ; ExtendNumLet # Zs       NARROW NO-BREAK SPACE
 203F..2040    ; ExtendNumLet # Pc   [2] UNDERTIE..CHARACTER TIE
 2054          ; ExtendNumLet # Pc       INVERTED UNDERTIE
 FE33..FE34    ; ExtendNumLet # Pc   [2] PRESENTATION FORM FOR VERTICAL LOW LINE..PRESENTATION FORM FOR VERTICAL WAVY LOW LINE
 FE4D..FE4F    ; ExtendNumLet # Pc   [3] DASHED LOW LINE..WAVY LOW LINE
 FF3F          ; ExtendNumLet # Pc       FULLWIDTH LOW LINE
 
-# Total code points: 10
+# Total code points: 11
 
 # ================================================
 
