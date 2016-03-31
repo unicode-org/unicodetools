@@ -86,7 +86,7 @@ public class GenerateOtherAnnotations {
             String s2 = Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING);
 
             System.out.println(++count
-                    + "\t" + GenerateEmoji.getHex(s)
+                    + "\t" + Emoji.toUHex(s)
                     + "\t" + s2
                     + "\t" + Emoji.getName(s, true, GenerateEmoji.EXTRA_NAMES)
                     );

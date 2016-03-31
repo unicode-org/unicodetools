@@ -28,6 +28,7 @@ import org.unicode.tools.emoji.Emoji.ModifierStatus;
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 
@@ -549,12 +550,20 @@ public class EmojiData {
     .removeAll(new UnicodeSet("[:whitespace:]"))
     .freeze();
 
+    public enum VariantHandling {sequencesOnly, all}
+    
     /**
      * Add EVS to sequences where needed (and remove where not)
      * @param source
+     * @param variantHandling TODO
      * @return
      */
-    public String addEmojiVariants(String source, char variant) {
+    public String addEmojiVariants(String source, char variant, VariantHandling variantHandling) {
+        if (variantHandling == VariantHandling.sequencesOnly) {
+            if (!UTF16.hasMoreCodePointsThan(source, 1)) {
+                return source;
+            }
+        } 
         StringBuilder result = new StringBuilder();
         int[] sequences = CharSequences.codePoints(source);
         for (int i = 0; i < sequences.length; ++i) {
@@ -564,6 +573,7 @@ public class EmojiData {
                 continue;
             }
             result.appendCodePoint(cp);
+            // TODO fix so that this works with string of characters containing emoji and others.
             if (singletonsWithDefectives.contains(cp) 
                     && !defaultPresentationMap.get(DefaultPresentation.emoji).contains(cp)) {
                 if (i == sequences.length - 1 

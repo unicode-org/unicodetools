@@ -11,6 +11,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
+import org.unicode.tools.emoji.EmojiData.VariantHandling;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -278,7 +279,7 @@ public class GenerateEmojiData {
         if (!addVariants) {
             return s;
         }
-        return EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT);
+        return EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
         // hack to add VS to v2.0 to make comparison easier.
         //return Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING, EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text));
     }
