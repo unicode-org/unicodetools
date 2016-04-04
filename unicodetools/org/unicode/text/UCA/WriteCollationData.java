@@ -284,10 +284,9 @@ public class WriteCollationData {
     }
 
     static void writeVersionAndDate(PrintWriter log, String filename, boolean auxiliary) {
-        log.println("# File:        " + filename);
+        log.println(Utility.getDataHeader(filename));
         log.println("# UCA Version: " + getCollator(CollatorType.ducet).getDataVersion());
         log.println("# UCD Version: " + getCollator(CollatorType.ducet).getDataVersion());
-        log.println("# Generated:   " + getNormalDate());
         if (auxiliary) {
             log.println("# For a description of the format and usage, see\n" +
                     "# http://www.unicode.org/reports/tr35/tr35-collation.html#Root_Data_Files");

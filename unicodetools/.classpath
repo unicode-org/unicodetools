@@ -7,7 +7,7 @@
 	<classpathentry exported="true" kind="lib" path="/cldr-tools/libs/utilities.jar" sourcepath="/cldr-tools/libs/utilities-src.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/cldr-unittest"/>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="lib" path="/cldr/tools/java/libs/guava-sources.jar"/>
-	<classpathentry kind="lib" path="/cldr/tools/java/libs/guava.jar"/>
+	<classpathentry kind="lib" path="/cldr-tools/libs/guava-sources.jar"/>
+	<classpathentry kind="lib" path="/cldr-tools/libs/guava.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
