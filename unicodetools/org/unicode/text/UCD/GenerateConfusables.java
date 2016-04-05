@@ -55,11 +55,13 @@ import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.dev.util.UnicodeTransform;
 import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.dev.util.XEquivalenceClass.Linkage;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Transform;
@@ -73,7 +75,7 @@ import com.ibm.icu.util.ULocale;
 
 public class GenerateConfusables {
 
-    private static final String REFERENCE_VERSION = "8.0.0"; // Change to lastVersion once we are well past 7.0
+    private static final String REFERENCE_VERSION = Settings.lastVersion; // Change to lastVersion once we are well past 7.0
 
     static final Normalizer NFKD = Default.nfkd();
     private static final ToolUnicodeTransformFactory TOOL_FACTORY = new ToolUnicodeTransformFactory();
@@ -89,12 +91,24 @@ public class GenerateConfusables {
     //            + REFERENCE_VERSION
     //            + "/xidmodifications.txt");
 
-    static final UnicodeSet OLD_CONFUSABLE_TARGETS = new UnicodeSet();
+    //static final UnicodeSet OLD_CONFUSABLE_TARGETS = new UnicodeSet();
+    static final Counter<String> LAST_COUNT = new Counter<String>();
+
     static {
         Confusables REFERENCE_VALUES = new Confusables(Settings.UNICODETOOLS_DIRECTORY + "data/security/"
             + REFERENCE_VERSION);
-        OLD_CONFUSABLE_TARGETS.addAll(REFERENCE_VALUES.getStyle2map().get(Confusables.Style.MA).values()).freeze();
-        System.out.println(OLD_CONFUSABLE_TARGETS.toPattern(false));
+        for (EntryRange<String> entry : REFERENCE_VALUES.getStyle2map().get(Confusables.Style.MA).entryRanges()) {
+            if (entry.string != null) {
+                LAST_COUNT.add(entry.value, 1);
+            } else {
+                LAST_COUNT.add(entry.value, entry.codepointEnd - entry.codepoint + 1);
+            }
+        }
+//        OLD_CONFUSABLE_TARGETS.addAll(REFERENCE_VALUES.getStyle2map().get(Confusables.Style.MA).values()).freeze();
+//        System.out.println(OLD_CONFUSABLE_TARGETS.toPattern(false));
+        for (String s : LAST_COUNT.getKeysetSortedByCount(false)) {
+            System.out.println(LAST_COUNT.get(s) + "\t" + s + "\tU+" + Utility.hex(s) + "\t" + Default.ucd().getName(s));
+        }
     }
 
     static final String indir = reformatedInternal + "source/";
@@ -2109,7 +2123,7 @@ public class GenerateConfusables {
         total.writeSummary(reformatedInternal, "confusablesSummaryIdentifier.txt", true, null);
         //total.writeSummary(outdir, "confusablesSummaryCyrillic.txt", true,
         //		new UnicodeSet("[[:script=Cyrillic:][:script=common:][:script=inherited:]]"));
-        total.writeWholeScripts(draftDir, "confusablesWholeScript.txt");
+        //total.writeWholeScripts(draftDir, "confusablesWholeScript.txt");
         total.writeSourceOrder(draftDir, "confusables.txt", false, false);
         //DataSet clean = total.clean();
         //clean.write(outdir, "confusables.txt", true);
@@ -2258,7 +2272,7 @@ public class GenerateConfusables {
     private static boolean isXid(String x) {
         return  XID.containsAll(x);
     }
-
+    
     private static class _BetterTargetIsLess implements Comparator<String> {
         IdentifierInfo info = IdentifierInfo.getIdentifierInfo();
         private boolean favorNeutral;
@@ -2279,6 +2293,15 @@ public class GenerateConfusables {
             if (ca != cb)  {
                 return ca > cb ? -1 : 1;
             }
+            
+            // favor item with higher old last value, if there is one.
+            
+            long lasta = LAST_COUNT.get(a);
+            long lastb = LAST_COUNT.get(b);
+            long ldiff = lasta - lastb;
+            if (ldiff != 0) {
+                return ldiff < 0 ? 1 : -1; // bigger count is less!!
+            };
 
             if (favorNeutral) {
                 boolean isCommonA = COMMON_OR_INHERITED.containsAll(a);
@@ -2415,14 +2438,16 @@ public class GenerateConfusables {
     static PrintWriter openAndWriteHeader(String dir, String filename, String title) throws IOException {
         final PrintWriter out = BagFormatter.openUTF8Writer(dir, filename);
         out.print('\uFEFF');
-        out.println("# " + title);
-        out.println("# File: " + filename);
-        out.println("# Version: " + version);
-        out.println("# Generated: " + Default.getDate());
-        out.println("# Checkin: $Revision: 1.32 $");
-        out.println("#");
-        out.println("# For documentation and usage, see http://www.unicode.org/reports/tr39/");
-        out.println("#");
+        //int trNumber, String title, String filename, String version
+        out.println(Utility.getBaseDataHeader(filename, 39, "Unicode Security Mechanisms", version));
+//        out.println("# " + title);
+//        out.println("# File: " + filename);
+//        out.println("# Version: " + version);
+//        out.println("# Generated: " + Default.getDate());
+//        out.println("# Checkin: $Revision: 1.32 $");
+//        out.println("#");
+//        out.println("# For documentation and usage, see http://www.unicode.org/reports/tr39/");
+//        out.println("#");
         return out;
     }
 

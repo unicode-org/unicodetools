@@ -4,10 +4,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -21,6 +26,7 @@ import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
+import com.ibm.icu.dev.util.BagFormatter.NameLabel;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
@@ -63,6 +69,7 @@ public class IdentifierInfo {
     private final UnicodeMap<String> additions = new UnicodeMap();
     private final UnicodeMap<String> remap = new UnicodeMap();
     private final UnicodeMap<IdentifierInfo.IdentifierType> removals = new UnicodeMap<IdentifierInfo.IdentifierType>();
+    private final UnicodeMap<Set<IdentifierInfo.IdentifierType>> identifierTypesMap = new UnicodeMap<>();
     private final UnicodeMap<String> recastRemovals = new UnicodeMap<String>();
 
     private UnicodeMap reviews, removals2;
@@ -266,8 +273,8 @@ public class IdentifierInfo {
                 //rawReason = GenerateConfusables.recommended_scripts;
             } else if (rawReason.equals("historic")) {
                 return IdentifierType.obsolete;
-//            } else if (rawReason.equals("limited_use")) {
-//                return IdentifierType.uncommon_use;
+                //            } else if (rawReason.equals("limited_use")) {
+                //                return IdentifierType.uncommon_use;
             }
             return valueOf(rawReason);
         }
@@ -355,8 +362,12 @@ public class IdentifierInfo {
                 }
                 // removals.putAll(sources, reasons);
                 // in case of conflict, we only replace the old reason if the new one is worse
+
                 for (String s : sources) {
                     IdentifierType oldReason = removals.get(s);
+
+                    addToRemovalSets(s, reasons);
+
                     if (oldReason == IdentifierType.inclusion 
                             || oldReason == reasons) {
                         continue; // always ok
@@ -426,6 +437,7 @@ public class IdentifierInfo {
                     if (hasRecommendedScript.contains(s)) {
                         continue; // skip those that have at least one recommended script
                     }
+                    addToRemovalSets(s, status);
                     final IdentifierInfo.IdentifierType old = removals.get(s);
                     if (old == null) {
                         removals.put(s, status);
@@ -444,6 +456,7 @@ public class IdentifierInfo {
             System.out.println("*Removal Collision\t" + value + "\n\t" + removalCollision.getSet(value).toPattern(false));
         }
         removals.freeze();
+        identifierTypesMap.freeze();
         //removals.putAll(getNonIICore(), PROHIBITED + "~IICore");
         br.close();
 
@@ -480,6 +493,19 @@ public class IdentifierInfo {
 
     }
 
+
+    private void addToRemovalSets(String codepoint, final IdentifierInfo.IdentifierType identifierType) {
+        Set<IdentifierType> oldSet = identifierTypesMap.get(codepoint);
+        if (oldSet == null || identifierType == IdentifierType.recommended) {
+            identifierTypesMap.put(codepoint, Collections.singleton(identifierType));
+        } else if (identifierType == IdentifierType.inclusion && !oldSet.contains(IdentifierType.recommended)) {
+            identifierTypesMap.put(codepoint, Collections.singleton(identifierType));
+        } else if (!oldSet.contains(identifierType)) {
+            EnumSet<IdentifierType> newSet = EnumSet.copyOf(oldSet);
+            newSet.add(identifierType);
+            identifierTypesMap.put(codepoint, Collections.unmodifiableSet(newSet));
+        }
+    }
 
     void printIDNStuff() throws IOException {
         final PrintWriter out;
@@ -616,6 +642,9 @@ public class IdentifierInfo {
      * 
      */
     private void printIDModifications() throws IOException {
+        printIdentifierTypes();
+        printIdentifierStatus();
+        
         final BagFormatter bf = GenerateConfusables.makeFormatter();
         bf.setLabelSource(null);
         bf.setShowLiteral(GenerateConfusables.EXCAPE_FUNNY);
@@ -789,4 +818,92 @@ public class IdentifierInfo {
         }
         out.close();
     }
+
+
+    private void printIdentifierTypes() throws IOException {
+        final UnicodeMap<String> tempMap = new UnicodeMap<String>();
+        final Map<String,Set<IdentifierType>> sortingMap = new HashMap<>();
+        for (Set<IdentifierType> value : identifierTypesMap.values()) {
+            if (value.contains(IdentifierType.recommended)) {
+                continue;
+            }
+            UnicodeSet set = identifierTypesMap.getSet(value);
+            String valueString = CollectionUtilities.join(value, " ");
+            sortingMap.put(valueString, value);
+            tempMap.putAll(set, valueString);
+        }
+        final Comparator<String> tempComp = new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                Set<IdentifierType> set0 = sortingMap.get(o1);
+                Set<IdentifierType> set1 = sortingMap.get(o2);
+                return CollectionUtilities.compare(set0.iterator(), set1.iterator());
+            }
+            
+        };
+        final BagFormatter bf2 = GenerateConfusables.makeFormatter();
+        bf2.setMergeRanges(true);
+        final ToolUnicodePropertySource properties = ToolUnicodePropertySource.make(Default.ucdVersion());
+        final UnicodeProperty age = properties.getProperty("age");
+        bf2.setLabelSource(age);
+        
+        final String propName = "IdentifierType";
+        try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, 
+                "identifierType.txt", "Security Profile for General Identifiers: "
+                        + propName)) {
+            out2.println("# Any missing values have the value: "
+                    + propName
+                    + "={Recommended}");
+            bf2.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
+            }).set(tempMap).setMain(propName, "IDT",
+                    UnicodeProperty.EXTENDED_MISC, "1.0"));
+            TreeSet<String> sorted = new TreeSet<>(tempComp);
+            sorted.addAll(tempMap.values());
+            for (String value : sorted) {
+                out2.println("");
+                out2.println("#\t"
+                        + propName
+                        + ":\t" + value);
+                out2.println("");
+                bf2.showSetNames(out2, tempMap.getSet(value));                
+            }
+        }
+    }
+    
+    private void printIdentifierStatus() throws IOException {
+        final UnicodeMap<String> tempMap = new UnicodeMap<String>();
+        tempMap.putAll(0, 0x10FFFF, IdentifierStatus.allowed.toString());
+        for (Set<IdentifierType> value : identifierTypesMap.values()) {
+            if (!value.contains(IdentifierType.recommended) && !value.contains(IdentifierType.inclusion)) {
+                UnicodeSet set = identifierTypesMap.getSet(value);
+                tempMap.putAll(set, IdentifierStatus.restricted.toString());
+            }
+        }
+        
+        final BagFormatter bf2 = GenerateConfusables.makeFormatter();
+        bf2.setMergeRanges(true);
+        final ToolUnicodePropertySource properties = ToolUnicodePropertySource.make(Default.ucdVersion());
+        final UnicodeProperty age = properties.getProperty("age");
+        bf2.setLabelSource(age);
+        
+        final String propName = "IdentifierStatus";
+        try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, 
+                "identifierStatus.txt", "Security Profile for General Identifiers: " + propName)) {
+            out2.println("# Any missing values have the value: " + propName + "=Restricted");
+            bf2.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
+            }).set(tempMap).setMain(propName, "IDS",
+                    UnicodeProperty.EXTENDED_MISC, "1.0"));
+            
+            for (IdentifierStatus value : IdentifierStatus.values()) {
+                if (value == IdentifierStatus.restricted) {
+                    continue;
+                }
+                out2.println("");
+                out2.println("#\t" + propName + ":\t" + value);
+                out2.println("");
+                bf2.showSetNames(out2, tempMap.getSet(value.toString()));                
+            }
+        }
+    }
+
 }

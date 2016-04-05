@@ -1634,4 +1634,17 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 + "\n# For terms of use, see http://www.unicode.org/terms_of_use.html"
                 ;
     }
+
+    public static String getBaseDataHeader(String filename, int trNumber, String title, String version) {
+        if (!filename.endsWith(".txt")) {
+            filename = filename + ".txt";
+        }
+        return getDataHeader(filename) 
+                + "\n#"
+                + "\n# " + title + " for UTR #" + trNumber
+                + "\n# Version: "  + version
+                + "\n#"
+                + "\n# For documentation and usage, see http://www.unicode.org/reports/tr" + trNumber
+                + "\n#";
+    }
 }
