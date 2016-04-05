@@ -1026,8 +1026,9 @@ public class GenerateData implements UCD_Types {
         "E\u0304\u0300",
         "E\u0300\u0304",
         "\u05B8\u05B9\u05B1\u0591\u05C3\u05B0\u05AC\u059F",
-        "\u0592\u05B7\u05BC\u05A5\u05B0\u05C0\u05C4\u05AD"
-
+        "\u0592\u05B7\u05BC\u05A5\u05B0\u05C0\u05C4\u05AD",
+        "\u1100\uAC00\u11A8",
+        "\u1100\uAC00\u11A8\u11A8",
     };
     /*
     static final void backwardsCompat(String directory, String filename, int[] list) throws IOException {

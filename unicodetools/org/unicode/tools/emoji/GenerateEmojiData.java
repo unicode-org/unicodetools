@@ -54,7 +54,7 @@ public class GenerateEmojiData {
             UnicodeSet emoji_presentation = new UnicodeSet(EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.emoji));
             UnicodeSet emoji_modifiers = EmojiData.MODIFIERS;
             UnicodeSet emoji_modifier_bases = EmojiData.EMOJI_DATA.getModifierBases();
-            outText2.println(getBaseDataHeader(51, "Emoji Data", "emoji-data"));
+            outText2.println(Utility.getBaseDataHeader("emoji-data", 51, "Emoji Data", Emoji.VERSION_STRING));
             int width = Math.max("Emoji".length(),
                     Math.max("Emoji_Presentation".length(), 
                             Math.max("Emoji_Modifier".length(),
@@ -71,7 +71,7 @@ public class GenerateEmojiData {
         }
 
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-sequences.txt")) {
-            out.println(getBaseDataHeader(51, "Emoji Sequence Data", "emoji-sequences"));
+            out.println(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING));
             List<String> type_fields = Arrays.asList(
                     "Emoji_Combining_Sequence", 
                     "Emoji_Flag_Sequence", 
@@ -86,7 +86,7 @@ public class GenerateEmojiData {
         }
 
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-zwj-sequences.txt")) {
-            out.println(getBaseDataHeader(51, "Emoji ZWJ Sequence Catalog", "emoji-zwj-sequences"));
+            out.println(Utility.getBaseDataHeader("emoji-zwj-sequences", 51, "Emoji ZWJ Sequence Catalog", Emoji.VERSION_STRING));
             List<String> type_fields = Arrays.asList(
                     "Emoji_ZWJ_Sequence");
             int width = maxLength(type_fields);
@@ -98,7 +98,7 @@ public class GenerateEmojiData {
 
         printer.setFlat(true);
         try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-tags.txt")) {
-            out.println(getBaseDataHeader(52, "Emoji Data", "emoji-tags"));
+            out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", Emoji.VERSION_STRING));
             List<String> type_fields = Arrays.asList("Emoji_Flag_Base", "Emoji_Gender_Base", 
                     "Emoji_Hair_Base", "Emoji_Direction_Base");
             int width = maxLength(type_fields);
@@ -252,21 +252,6 @@ public class GenerateEmojiData {
             this.flat = flat;
             return this;
         }
-    }
-    /**
-     * @param trNumber TODO
-     * @param title TODO
-     * @param filename TODO
-     * @return the baseDataHeader
-     */
-    static String getBaseDataHeader(int trNumber, String title, String filename) {
-        return Utility.getDataHeader(filename + ".txt") 
-                + "\n#"
-                + "\n# " + title + " for UTR #" + trNumber
-                + "\n# Version: "  + Emoji.VERSION_STRING
-                + "\n#"
-                + "\n# For documentation and usage, see http://www.unicode.org/reports/tr" + trNumber
-                + "\n#";
     }
 
     static String getDate() {
