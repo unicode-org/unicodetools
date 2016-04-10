@@ -18,6 +18,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Binary> NAME_MATCHER = PropertyNames.getNameToEnums(Binary.class);
+        public static Binary forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 	public enum Age_Values implements Named {
@@ -50,6 +54,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Age_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Age_Values.class);
+        public static Age_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -88,6 +96,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Bidi_Class_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Bidi_Class_Values.class);
+        public static Bidi_Class_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 		// Bidi_Mirroring_Glyph
@@ -106,6 +118,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Bidi_Paired_Bracket_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Bidi_Paired_Bracket_Type_Values.class);
+        public static Bidi_Paired_Bracket_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -395,6 +411,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Block_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Block_Values.class);
+        public static Block_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 		// CJK_Radical
@@ -467,6 +487,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Canonical_Combining_Class_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Canonical_Combining_Class_Values.class);
+        public static Canonical_Combining_Class_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 		// Case_Folding
@@ -505,6 +529,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Decomposition_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Decomposition_Type_Values.class);
+        public static Decomposition_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 	public enum East_Asian_Width_Values implements Named {
@@ -524,6 +552,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<East_Asian_Width_Values> NAME_MATCHER = PropertyNames.getNameToEnums(East_Asian_Width_Values.class);
+        public static East_Asian_Width_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -581,6 +613,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<General_Category_Values> NAME_MATCHER = PropertyNames.getNameToEnums(General_Category_Values.class);
+        public static General_Category_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 	public enum Grapheme_Cluster_Break_Values implements Named {
@@ -613,6 +649,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Grapheme_Cluster_Break_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Grapheme_Cluster_Break_Values.class);
+        public static Grapheme_Cluster_Break_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 	public enum Hangul_Syllable_Type_Values implements Named {
@@ -633,6 +673,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Hangul_Syllable_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Hangul_Syllable_Type_Values.class);
+        public static Hangul_Syllable_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 		// ISO_Comment
@@ -649,6 +693,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Identifier_Status_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Identifier_Status_Values.class);
+        public static Identifier_Status_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -677,6 +725,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Identifier_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Identifier_Type_Values.class);
+        public static Identifier_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 	public enum Idn_2008_Values implements Named {
@@ -692,6 +744,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Idn_2008_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Idn_2008_Values.class);
+        public static Idn_2008_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -714,6 +770,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Idn_Status_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Idn_Status_Values.class);
+        public static Idn_Status_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -742,6 +802,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Indic_Positional_Category_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Indic_Positional_Category_Values.class);
+        public static Indic_Positional_Category_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -791,6 +855,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Indic_Syllabic_Category_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Indic_Syllabic_Category_Values.class);
+        public static Indic_Syllabic_Category_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -857,6 +925,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Jamo_Short_Name_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Jamo_Short_Name_Values.class);
+        public static Jamo_Short_Name_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -961,6 +1033,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Joining_Group_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Joining_Group_Values.class);
+        public static Joining_Group_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 	public enum Joining_Type_Values implements Named {
@@ -980,6 +1056,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Joining_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Joining_Type_Values.class);
+        public static Joining_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -1038,6 +1118,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<Line_Break_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Line_Break_Values.class);
+        public static Line_Break_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 		// Lowercase_Mapping
@@ -1056,6 +1140,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<NFC_Quick_Check_Values> NAME_MATCHER = PropertyNames.getNameToEnums(NFC_Quick_Check_Values.class);
+        public static NFC_Quick_Check_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 	public enum NFD_Quick_Check_Values implements Named {
@@ -1071,6 +1159,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<NFD_Quick_Check_Values> NAME_MATCHER = PropertyNames.getNameToEnums(NFD_Quick_Check_Values.class);
+        public static NFD_Quick_Check_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -1090,6 +1182,10 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
+        private static final NameMatcher<NFKC_Quick_Check_Values> NAME_MATCHER = PropertyNames.getNameToEnums(NFKC_Quick_Check_Values.class);
+        public static NFKC_Quick_Check_Values forName(String name) {
+            return NAME_MATCHER.get(name);
+        }
     }
 
 	public enum NFKD_Quick_Check_Values implements Named {
@@ -1105,6 +1201,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<NFKD_Quick_Check_Values> NAME_MATCHER = PropertyNames.getNameToEnums(NFKD_Quick_Check_Values.class);
+        public static NFKD_Quick_Check_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -1127,6 +1227,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Numeric_Type_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Numeric_Type_Values.class);
+        public static Numeric_Type_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -1273,7 +1377,11 @@ public class UcdPropertyValues {
         Unknown("Zzzz"),
         Japanese("Jpan"),
         Korean("Kore"),
-        Han_with_Bopomofo("Hanb");
+        Han_with_Bopomofo("Hanb"),
+        Math_Symbols("Zmth"),
+        Emoji_Symbols("Zsye"),
+        Other_Symbols("Zsym"),
+        Unwritten("Zxxx");
         private final PropertyNames<Script_Values> names;
         private Script_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Script_Values>(
@@ -1285,7 +1393,7 @@ public class UcdPropertyValues {
         public String getShortName() {
             return names.getShortName();
         }
-        public static final NameMatcher<Script_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Script_Values.class);
+        private static final NameMatcher<Script_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Script_Values.class);
         public static Script_Values forName(String name) {
             return NAME_MATCHER.get(name);
         }
@@ -1318,6 +1426,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Sentence_Break_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Sentence_Break_Values.class);
+        public static Sentence_Break_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 
@@ -1362,6 +1474,10 @@ public class UcdPropertyValues {
         }
         public String getShortName() {
             return names.getShortName();
+        }
+        private static final NameMatcher<Word_Break_Values> NAME_MATCHER = PropertyNames.getNameToEnums(Word_Break_Values.class);
+        public static Word_Break_Values forName(String name) {
+            return NAME_MATCHER.get(name);
         }
     }
 

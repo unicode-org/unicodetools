@@ -149,13 +149,19 @@ public class GenerateEnums {
                 "        public String getShortName() {\n" +
                 "            return names.getShortName();\n" +
                 "        }\n" +
+                "        private static final NameMatcher<" + enumName + "> NAME_MATCHER = PropertyNames.getNameToEnums(" + enumName + ".class);\n" +
+                "        public static " + enumName + " forName(String name) {\n" +
+                "            return NAME_MATCHER.get(name);\n" +
+                "        }\n" +
                 "    }\n";
     }
 
     public static void writeValueEnumFile(Map<PropName, List<String[]>> values) throws IOException {
         final PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
         output.println("package org.unicode.props;\n"
-                + "import org.unicode.props.PropertyNames.Named;\n\n"
+                + "import org.unicode.props.PropertyNames.NameMatcher;\n"
+                + "import org.unicode.props.PropertyNames.Named;\n"
+                + "\n"
                 + "public class UcdPropertyValues {");
 
         //[Alpha, N, No, F, False]
@@ -294,27 +300,30 @@ public class GenerateEnums {
                         "package org.unicode.props;\n" +
                         "import java.util.EnumSet;\n" +
                         "import java.util.Set;\n"+
-                        "import org.unicode.props.PropertyNames.NameMatcher;\n" +
-                        "import org.unicode.props.UcdPropertyValues.*;\n\n"
+                        "import org.unicode.props.PropertyNames.NameMatcher;\n"
+                        //"import org.unicode.props.UcdPropertyValues.*;\n\n"
                 );
-        //        "\tpublic enum PropertyType {");
-        //        for (PropertyType pt : PropertyType.values()) {
-        //            output.print(pt + ", ");
-        //        }
-        //        output.println("}\n");
-        //
-        //        output.println(
-        //                "\tprivate static <T> void addNames(LinkedHashMap<String, T> map, String[] otherNames, T item) {\n" +
-        //                "\t\tmap.put(item.toString(), item);\n" +
-        //                "\t\tfor (String other : otherNames) {\n" +
-        //                "\t\t\tmap.put(other, item);\n" +
-        //                "\t\t}\n" +
-        //                "\t}\n"
-        //        );
-        //
-        //
-        //        output.println("\tprivate static final LinkedHashMap<String," + "UcdProperty" + "> " + "UcdProperty" + "_Names = new LinkedHashMap<String," + "UcdProperty" + ">();\n");
-
+        output.println("import org.unicode.props.UcdPropertyValues.Binary;");
+        TreeSet<String> imports = new TreeSet<>();
+        for (final Entry<String, PropName> i : lookupMain.entrySet()) {
+            final PropName pname = i.getValue();
+            switch (pname.propertyType) {
+            case Enumerated:
+            case Catalog:
+                final String longName = pname.longName;
+                final ValueCardinality cardinality = NAME2CARD.get(longName.toLowerCase(Locale.ENGLISH));
+                if (cardinality == null || cardinality == ValueCardinality.Singleton) {
+                    imports.add(longName);
+                }
+                break;
+            default:
+                break;
+            }
+        }
+        for (String s : imports) {
+            output.println("import org.unicode.props.UcdPropertyValues." + s + "_Values;");
+        }
+        output.println();
         output.println("public enum " + "UcdProperty" + " {");
         Set<String> missingCardinality = new TreeSet<>();
         Set<String> extraCardinality = new TreeSet<>(NAME2CARD.keySet());

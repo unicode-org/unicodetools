@@ -1,13 +1,14 @@
 package org.unicode.props;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import com.google.common.collect.ImmutableList;
 import com.ibm.icu.dev.util.CollectionUtilities;
 
 /**
@@ -61,11 +62,11 @@ public class PropertyNames<T extends Enum> {
     }
 
     public List<String> getAllNames() {
-        final ArrayList<String> result = new ArrayList<String>();
+        final LinkedHashSet<String> result = new LinkedHashSet<String>();
         result.add(enumItem.toString());
         result.add(shortName);
         result.addAll(otherNames);
-        return result;
+        return ImmutableList.copyOf(result);
     }
 
     @Override
