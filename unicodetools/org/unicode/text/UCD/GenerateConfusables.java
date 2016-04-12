@@ -94,6 +94,8 @@ public class GenerateConfusables {
     //static final UnicodeSet OLD_CONFUSABLE_TARGETS = new UnicodeSet();
     static final Counter<String> LAST_COUNT = new Counter<String>();
 
+    static final boolean DEBUG = false;
+
     static {
         Confusables REFERENCE_VALUES = new Confusables(Settings.UNICODETOOLS_DIRECTORY + "data/security/"
             + REFERENCE_VERSION);
@@ -107,7 +109,7 @@ public class GenerateConfusables {
 //        OLD_CONFUSABLE_TARGETS.addAll(REFERENCE_VALUES.getStyle2map().get(Confusables.Style.MA).values()).freeze();
 //        System.out.println(OLD_CONFUSABLE_TARGETS.toPattern(false));
         for (String s : LAST_COUNT.getKeysetSortedByCount(false)) {
-            System.out.println(LAST_COUNT.get(s) + "\t" + s + "\tU+" + Utility.hex(s) + "\t" + Default.ucd().getName(s));
+            if (DEBUG) System.out.println(LAST_COUNT.get(s) + "\t" + s + "\tU+" + Utility.hex(s) + "\t" + Default.ucd().getName(s));
         }
     }
 
@@ -202,7 +204,7 @@ public class GenerateConfusables {
     private static void generateAsciify() throws IOException {
         BufferedReader in = BagFormatter.openUTF8Reader(indir, "asciify.txt");
         final StringBuilder builder = new StringBuilder();
-        System.out.println("String rules = \"\"");
+        if (DEBUG) System.out.println("String rules = \"\"");
         while (true) {
             String line = in.readLine();
             if (line == null) {
@@ -213,23 +215,23 @@ public class GenerateConfusables {
                 continue;
             }
             builder.append(line).append('\n');
-            System.out.println(" + \"" + com.ibm.icu.impl.Utility.escape(line) + "\\n\"");
+            if (DEBUG) System.out.println(" + \"" + com.ibm.icu.impl.Utility.escape(line) + "\\n\"");
         }
-        System.out.println(";");
+        if (DEBUG) System.out.println(";");
         in.close();
         final String rules = builder.toString();
         final Transliterator asciify = Transliterator.createFromRules("asciify", rules, Transliterator.FORWARD);
         in = BagFormatter.openUTF8Reader(indir, "asciify_examples.txt");
-        System.out.println("String[][] translitTestCases = {");
-        System.out.println("//{\"" + "SAMPLE" + "\", \"" + "EXPECTED TRANSFORM" + "\"},");
+        if (DEBUG) System.out.println("String[][] translitTestCases = {");
+        if (DEBUG) System.out.println("//{\"" + "SAMPLE" + "\", \"" + "EXPECTED TRANSFORM" + "\"},");
         while (true) {
             final String line = Utility.readDataLine(in);
             if (line == null) {
                 break;
             }
-            System.out.println("{\"" + com.ibm.icu.impl.Utility.escape(line) + "\", \"" + asciify.transform(line) + "\"},");
+            if (DEBUG) System.out.println("{\"" + com.ibm.icu.impl.Utility.escape(line) + "\", \"" + asciify.transform(line) + "\"},");
         }
-        System.out.println("};");
+        if (DEBUG) System.out.println("};");
         in.close();
     }
 
@@ -267,7 +269,7 @@ public class GenerateConfusables {
             if (new UnicodeSet().addAll(Default.nfd().normalize(target)).removeAll(MARKS_AND_ASCII).size() > 0) {
                 reason += " XXX";
             }
-            System.out.println(source + "\t→\t" + target +
+            if (DEBUG) System.out.println(source + "\t→\t" + target +
                     " ; #" + reason + "\t" + DEFAULT_UCD.getCodeAndName(source) + "\t→\t" + DEFAULT_UCD.getCodeAndName(target));
 
         }
@@ -300,7 +302,7 @@ public class GenerateConfusables {
 
                 final String old = mapping.get(source);
                 if (old!=null) {
-                    System.out.println("Overriding " + source + "=>" + old + " with " + target);
+                    if (DEBUG) System.out.println("Overriding " + source + "=>" + old + " with " + target);
                 }
 
                 // skip NFKC forms
@@ -388,7 +390,7 @@ public class GenerateConfusables {
     //      _Non_IICore.removeAll(UNASSIGNED); // remove unassigned
     //      // stuff to restore
     //      UnicodeMap um = DEFAULT_UCD.getHanValue("kIICore");
-    //      System.out.println("IICORE SIZE:\t" + um.keySet().size());
+    //      if (DEBUG) System.out.println("IICORE SIZE:\t" + um.keySet().size());
     //      um.put(0x34E4, "2.1");
     //      um.put(0x3007, "2.1");
     //      _Non_IICore.removeAll(um.keySet("2.1"));
@@ -427,7 +429,7 @@ public class GenerateConfusables {
     //    //		for (Iterator it = um.getAvailableValues().iterator(); it.hasNext();) {
     //    //			Object value = it.next();
     //    //			UnicodeSet set = um.getSet(value);
-    //    //			System.out.println(value + "\t" + set);
+    //    //			if (DEBUG) System.out.println(value + "\t" + set);
     //    //		}
     //  }
 
@@ -682,8 +684,8 @@ public class GenerateConfusables {
                 String kmapped = getModifiedNKFC(source);
                 if (!kmapped.equals(source) && !kmapped.equals(nfc)) {
                     if (kmapped.startsWith(" ") || kmapped.startsWith("\u0640")) {
-                        System.out.println("?? " + DEFAULT_UCD.getCodeAndName(cp));
-                        System.out.println("\t" + DEFAULT_UCD.getCodeAndName(kmapped));
+                        if (DEBUG) System.out.println("?? " + DEFAULT_UCD.getCodeAndName(cp));
+                        if (DEBUG) System.out.println("\t" + DEFAULT_UCD.getCodeAndName(kmapped));
                         kmapped = getModifiedNKFC(source); // for debugging
                     }
                     nfkcMap.put(cp,kmapped);
@@ -751,7 +753,7 @@ public class GenerateConfusables {
         if (false) {
             for (final Iterator it = gatheredNFKD.keySet().iterator(); it.hasNext();) {
                 final String source = (String)it.next();
-                System.out.println(DEFAULT_UCD.getCodeAndName(source)
+                if (DEBUG) System.out.println(DEFAULT_UCD.getCodeAndName(source)
                         + " => " + DEFAULT_UCD.getCodeAndName((String)gatheredNFKD.get(source)));
             }
         }
@@ -943,7 +945,7 @@ public class GenerateConfusables {
                             final String mapped = mapString(item, reasons, lower == 1, sameScript == 1);
                             if (!isEquivalent(item, mapped)) {
                                 if (addCheck(item, mapped, reasons.toString())) {
-                                    // System.out.println("Closing: " + DEFAULT_UCD.getCodeAndName(item) + " => " + DEFAULT_UCD.getCodeAndName(mapped));
+                                    // if (DEBUG) System.out.println("Closing: " + DEFAULT_UCD.getCodeAndName(item) + " => " + DEFAULT_UCD.getCodeAndName(mapped));
                                     addedItem = true;
                                 }
                             }
@@ -957,7 +959,7 @@ public class GenerateConfusables {
          * 
          */
         private String mapString(String item, StringBuffer reasons, boolean onlyLowercase, boolean onlySameScript) {
-            if (false && item.startsWith("\u03D2")) {
+            if (DEBUG && item.startsWith("\u03D2")) {
                 System.out.println("foo");
             }
             final StringBuffer result = new StringBuffer();
@@ -1144,7 +1146,7 @@ public class GenerateConfusables {
             //type += ":" + lineCount;
 
             final String combined = source + target;
-            if (combined.indexOf("\u0430") >= 0) {
+            if (DEBUG && combined.indexOf("\u0430") >= 0) {
                 System.out.println(DEFAULT_UCD.getCodeAndName(combined));
             }
             final boolean isLowercase = combined.equals(DEFAULT_UCD.getCase(combined, UCD_Types.FULL, UCD_Types.FOLD));
@@ -1220,7 +1222,7 @@ public class GenerateConfusables {
                     }
                     final String[] pieces = Utility.split(line,';');
                     if (pieces.length < 2) {
-                        System.out.println("Error on: (" + count + ")\t" + line);
+                        System.err.println("Error on: (" + count + ")\t" + line);
                         continue;
                     }
                     final String type = filename;
@@ -1228,7 +1230,7 @@ public class GenerateConfusables {
                     final String targetString = INVISIBLES.stripFrom(pieces[1].trim(), true);
 
                     if (!targetString.equals(pieces[1].trim())) {
-                        System.out.println("**\t" + Utility.hex(pieces[0].trim()) + ";\t" + Utility.hex(targetString));
+                        if (DEBUG) System.out.println("**\t" + Utility.hex(pieces[0].trim()) + ";\t" + Utility.hex(targetString));
                     }
                     if (kind==FOLDING) {
                         final String target = fromHexOld(targetString);
@@ -1333,7 +1335,7 @@ public class GenerateConfusables {
                     }
                 }
                 for (Set<String> entry : counter) {
-                    System.out.println(counter.get(entry) + "\t" + entry + "\t" + examples.get(entry));
+                    if (DEBUG) System.out.println(counter.get(entry) + "\t" + entry + "\t" + examples.get(entry));
                 }
                 //            } else {
                 //                writeSourceOrder(out, dataSingleLowercase, "SL", "Single-Script, Lowercase Confusables", skipNFKEquivs, false, false);
@@ -1459,7 +1461,7 @@ public class GenerateConfusables {
         private void checkChar(String string) {
             // debug
             final Set<String> test = getEquivalences(string);
-            System.out.println(test);
+            if (DEBUG) System.out.println(test);
         }
 
         public Set<String> getEquivalences(String string) {
@@ -1605,7 +1607,7 @@ public class GenerateConfusables {
             final MyEquivalenceClass data = dataMixedAnycase;
             final Set items = data.getOrderedExplicitItems();
             //			for (Iterator it = items.iterator(); it.hasNext();) {
-            //				System.out.println(DEFAULT_UCD.getCodeAndName((String)it.next()));
+            //				if (DEBUG) System.out.println(DEFAULT_UCD.getCodeAndName((String)it.next()));
             //			}
             int count = 0;
             final UnicodeSet preferredID = getIdentifierSet();
@@ -1997,7 +1999,7 @@ public class GenerateConfusables {
                 continue;
             }
             final String reason = getReasonFromFilename(names[i]);
-            System.out.println(names[i]);
+            if (DEBUG) System.out.println(names[i]);
             final BufferedReader in = BagFormatter.openUTF8Reader(indir, names[i]);
             String line;
             count[0] = 0;
@@ -2011,7 +2013,7 @@ public class GenerateConfusables {
                 }
                 final String[] pieces = Utility.split(line,';');
                 if (pieces.length < 2) {
-                    System.out.println("Error on: " + line);
+                    System.err.println("Error on: " + line);
                     continue;
                 }
                 String source = fromHexOld(pieces[0]);
@@ -2067,7 +2069,7 @@ public class GenerateConfusables {
             if (!names[i].startsWith("confusables-")) {
                 continue;
             }
-            System.out.println(names[i]);
+            if (DEBUG) System.out.println(names[i]);
             final DataSet ds = new DataSet();
             ds.addFile(indir, names[i]);
             String newName = null;
@@ -2105,10 +2107,10 @@ public class GenerateConfusables {
 
         total.checkChar("ſ");
         ds = new DataSet();
-        System.out.println(nfkcMap.get('ſ'));
+        if (DEBUG) System.out.println(nfkcMap.get('ſ'));
 
         ds.addUnicodeMap(nfkcMap, "nfkc", "nfkc");
-        //System.out.println(ds);
+        //if (DEBUG) System.out.println(ds);
         ds.checkChar("ſ");
         ds.close("*");
         ds.checkChar("ſ");
@@ -2138,7 +2140,7 @@ public class GenerateConfusables {
 			if (line.length() == 0) continue;
 			String[] pieces = Utility.split(line,';');
 			if (pieces.length < 2) {
-				System.out.println("Error on: " + line);
+				if (DEBUG) System.out.println("Error on: " + line);
 				continue;
 			}
 			String source = Utility.fromHex(pieces[0].trim());
@@ -2160,7 +2162,7 @@ public class GenerateConfusables {
 			if (line == null) break;
 			String[] pieces = Utility.split(line,';');
 			if (pieces.length < 3) {
-				System.out.println("Error on: " + line);
+				if (DEBUG) System.out.println("Error on: " + line);
 				continue;
 			}
 			int codepoint = Integer.parseInt(pieces[1], 16);
@@ -2186,7 +2188,7 @@ public class GenerateConfusables {
 			if (line.startsWith("@")) continue;
 			String[] pieces = Utility.split(line,';');
 			if (pieces.length < 2) {
-				System.out.println("Error on: " + line);
+				if (DEBUG) System.out.println("Error on: " + line);
 				continue;
 			}
 			String source = pieces[0].trim();
@@ -2229,7 +2231,7 @@ public class GenerateConfusables {
 		}
 
 		out.close();
-		System.out.println("Done");
+		if (DEBUG) System.out.println("Done");
 	}
 	/**
      * 
@@ -2255,9 +2257,9 @@ public class GenerateConfusables {
 		Data2 other = (Data2) m.get(source);
 		if (other != null) {
 			if (target.equals(other.target)) return;
-			System.out.println("conflict");
-			System.out.println(formatLine(source, target, count));
-			System.out.println(formatLine(source, other.target, other.count));
+			if (DEBUG) System.out.println("conflict");
+			if (DEBUG) System.out.println(formatLine(source, target, count));
+			if (DEBUG) System.out.println(formatLine(source, other.target, other.count));
 			// skip adding this, and instead add result -> other.target
 			add(m, target, other.target, count);
 		} else {
@@ -2455,7 +2457,7 @@ public class GenerateConfusables {
         String result = Utility.fromHex(targetString.trim(),true);
         final String result2 = fromHexLenient(targetString);
         if (!result.equals(result2)) {
-            System.out.println("Changing hex\t" + targetString + "\t=>old\t" + result + "\t=>new\t" + result2);
+            if (DEBUG) System.out.println("Changing hex\t" + targetString + "\t=>old\t" + result + "\t=>new\t" + result2);
             result = result2;
         }
         return result;
@@ -2471,7 +2473,7 @@ public class GenerateConfusables {
         }
         final String result2 = fromHexLenient(hexOrChars);
         if (!result.equals(result2)) {
-            System.out.println("Changing hex\t" + hexOrChars + "\t=>old\t" + result + "\t=>new\t" + result2);
+            if (DEBUG) System.out.println("Changing hex\t" + hexOrChars + "\t=>old\t" + result + "\t=>new\t" + result2);
             result = result2;
         }
         return result;

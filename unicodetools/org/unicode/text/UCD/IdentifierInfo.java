@@ -138,7 +138,7 @@ public class IdentifierInfo {
             final String ss = usi.getString();
             final String nss = GenerateConfusables.getModifiedNKFC(ss);
             final String cf = GenerateConfusables.DEFAULT_UCD.getCase(ss, UCD_Types.FULL, UCD_Types.FOLD);
-            if (usi.codepoint == 0x2126 || usi.codepoint == 0x212B) {
+            if (GenerateConfusables.DEBUG && (usi.codepoint == 0x2126 || usi.codepoint == 0x212B)) {
                 System.out.println("check");
             }
             //> > 2126 ; retained-input-only-CF # (?) OHM SIGN
@@ -319,7 +319,7 @@ public class IdentifierInfo {
             if (line.length() == 0) {
                 continue;
             }
-            if (false) {
+            if (GenerateConfusables.DEBUG) {
                 System.out.println(line);
             }
             try {
@@ -378,7 +378,7 @@ public class IdentifierInfo {
                             || reasons == IdentifierType.inclusion) {
                         removals.put(s, reasons);
                     } else {
-                        System.out.println("Skipping: " + Utility.hex(s) + " " + s + ", old: " + oldReason + " new: " + reasons);
+                        if (GenerateConfusables.DEBUG) System.out.println("Skipping: " + Utility.hex(s) + " " + s + ", old: " + oldReason + " new: " + reasons);
                     }
                 }
                 //                    if (reasons == Reason.recommended) {
@@ -453,7 +453,7 @@ public class IdentifierInfo {
             }
         }
         for (final String value : removalCollision.values()) {
-            System.out.println("*Removal Collision\t" + value + "\n\t" + removalCollision.getSet(value).toPattern(false));
+            if (GenerateConfusables.DEBUG) System.out.println("*Removal Collision\t" + value + "\n\t" + removalCollision.getSet(value).toPattern(false));
         }
         removals.freeze();
         identifierTypesMap.freeze();
@@ -477,7 +477,7 @@ public class IdentifierInfo {
         //                    pieces[2].trim(), 16)));
         //          } else {
         //            if (XIDContinueSet.contains(code)) {
-        //              System.out.println("Already in XID continue: "
+        //              if (GenerateConfusables.DEBUG) System.out.println("Already in XID continue: "
         //                      + line);
         //              continue;
         //            }
@@ -634,7 +634,7 @@ public class IdentifierInfo {
                     fixed.add(it.codepoint);
                 }
             }
-            System.out.println(bf.showSetNames(fixed));
+            if (GenerateConfusables.DEBUG) System.out.println(bf.showSetNames(fixed));
         }
     }
 
@@ -678,7 +678,7 @@ public class IdentifierInfo {
         final Set<String> fullListing = new HashSet<String>(Arrays.asList("technical limited-use historic discouraged obsolete".split("\\s+")));
         //        final Set<String> sortedValues = new TreeSet<String>(GenerateConfusables.UCAComparator);
         //        sortedValues.addAll(recastRemovals.values());
-        //        System.out.println("Restriction Values: " + sortedValues);
+        //        if (GenerateConfusables.DEBUG) System.out.println("Restriction Values: " + sortedValues);
         for (IdentifierType value : IdentifierType.values()) {
             if (value == IdentifierType.not_chars) {
                 continue;
@@ -796,13 +796,13 @@ public class IdentifierInfo {
                 bf.setValueSource(reason1);
                 final UnicodeSet keySet = someRemovals.keySet(reason1);
                 if (reason1.contains("recommended")) {
-                    System.out.println("Recommended: " + keySet.toPattern(false));
+                    if (GenerateConfusables.DEBUG) System.out.println("Recommended: " + keySet.toPattern(false));
                     UnicodeSet current = GenerateConfusables.AGE.getSet(GenerateConfusables.VERSION_PROP_VALUE);
-                    System.out.println("Current: " + current.toPattern(false));
+                    if (GenerateConfusables.DEBUG) System.out.println("Current: " + current.toPattern(false));
                     UnicodeSet newRecommended = new UnicodeSet(keySet).retainAll(current);
                     for (String s : newRecommended) {
                         // [:script=Phag:] ; historic # UAX31 T4 #     Phags Pa
-                        System.out.println(Utility.hex(s) 
+                        if (GenerateConfusables.DEBUG) System.out.println(Utility.hex(s) 
                                 + "\t;\thistoric\t#\t" 
                                 + GenerateConfusables.DEFAULT_UCD.getName(s));
                     }
