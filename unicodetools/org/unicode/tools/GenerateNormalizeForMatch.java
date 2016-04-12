@@ -101,6 +101,7 @@ public class GenerateNormalizeForMatch {
 
     static UnicodeMap<String> X_FILE = new UnicodeMap<String>();
     static final String TEST_NAME_START = "NEGATIVE CIRCLED NUMBER";
+    private static final boolean SIMPLE = true;
 
 
     private static void computeXFile() {
@@ -136,14 +137,31 @@ public class GenerateNormalizeForMatch {
         System.out.println("#Source\tNew Vers.\tOld Vers.\tGC\tSrc\tNew\tOld\tSource\tNew\tOld\tStatus");
         for (Status checkStatus : Status.values()) {
             for (String source : items) {
-                final String oldTarget = ADDITIONS_TO_NFKCCF.get(source);
-                final String newTarget = X_FILE.get(source);
+                String oldTarget = ADDITIONS_TO_NFKCCF.get(source);
+                String newTarget = X_FILE.get(source);
 
+
+                if (SIMPLE) {
+                    String nfkccf2 = nfkccf.normalize(source);
+                    oldTarget = oldTarget == null ? "" : oldTarget;
+                    if (nfkccf2.equals(oldTarget)) {
+                        continue;
+                    }
+                    System.out.println(
+                            Utility.hex(source)
+                            + ";\t" + (oldTarget.isEmpty() ? "" : Utility.hex(oldTarget))
+                            + "#\t" + source 
+                            + " →\t" + oldTarget 
+                            + ",\t" + UCharacter.getName(source, ", ") 
+                            + " →\t" + UCharacter.getName(oldTarget, ", ") 
+                            );
+                    continue;
+                }
                 final Status status = Status.get(source, oldTarget, newTarget);
                 if (status != checkStatus) continue;
-
                 total.add(status, 1);
-                System.out.println(
+
+                    System.out.println(
                         Utility.hex(source)
                         + ";\t" + (newTarget == null ? "source" : Utility.hex(newTarget))
                         + ";\t" + (oldTarget == null ? "source" : Utility.hex(oldTarget))
@@ -202,12 +220,9 @@ public class GenerateNormalizeForMatch {
             if (source.contains(DEBUG_PRINT)) {
                 int debug = 0;
             }
-            final String sourceName = UCharacter.getName(source, "+");
             System.out.println(Utility.hex(source) + ";\t" + Utility.hex(target, 4, " ") 
-                    + (sourceName == null || sourceName.equals("null") ? ";\t\t" 
-                            : ";\t # ( " + source + " → " + target + " )\t"
-                            + sourceName + " → " + UCharacter.getName(target,"+")
-                            )
+                    + "\t # ( " + source + " → " + target + " )\t"
+                            + UCharacter.getName(source, "+") + " → " + UCharacter.getName(target,"+")
                             + "\t" + reason);
         }
     }
