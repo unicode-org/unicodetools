@@ -2,7 +2,9 @@ package org.unicode.propstest;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Locale;
@@ -14,11 +16,13 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.props.GenerateEnums;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.PropertyNames;
+import org.unicode.props.PropertyValueSets;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.props.UcdPropertyValues.Numeric_Type_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.props.ValueCardinality;
@@ -54,7 +58,41 @@ public class TestProperties extends TestFmwk {
     private static final UnicodeSet newChars = iup.load(UcdProperty.Age).getSet(UcdPropertyValues.Age_Values.V7_0.name());
     private static final  UnicodeMap<String> nameMap = iup.load(UcdProperty.Name);
 
-
+    public void TestPropertyValuesSetCoverage() {
+        EnumSet<General_Category_Values> all = EnumSet.allOf(General_Category_Values.class);
+        all.removeAll(PropertyValueSets.CONTROL);
+        all.removeAll(PropertyValueSets.LETTER);
+        all.removeAll(PropertyValueSets.MARK);
+        all.removeAll(PropertyValueSets.NUMBER);
+        all.removeAll(PropertyValueSets.PUNCTUATION);
+        all.removeAll(PropertyValueSets.SEPARATOR);
+        all.removeAll(PropertyValueSets.SYMBOL);
+        all.removeAll(EnumSet.of(
+                General_Category_Values.Other, 
+                General_Category_Values.Letter, 
+                General_Category_Values.Cased_Letter, 
+                General_Category_Values.Mark, 
+                General_Category_Values.Number,
+                General_Category_Values.Punctuation,
+                General_Category_Values.Separator,
+                General_Category_Values.Symbol
+                ));
+        assertEquals("", Collections.EMPTY_SET, all);
+    }
+    public void TestNames() {
+        for (Binary value : Binary.values()) {
+            PropertyNames<Binary> propNames = value.getNames();
+            for (String name : propNames.getAllNames()) {
+                assertEquals("", value, Binary.forName(name));
+            }
+        }
+        for (Line_Break_Values value : Line_Break_Values.values()) {
+            PropertyNames<Line_Break_Values> propValueNames = value.getNames();
+            for (String name : propValueNames.getAllNames()) {
+                assertEquals(name, value, Line_Break_Values.forName(name));
+            }
+        }
+    }
     public void TestAAEmoji() {
         EmojiData emojiData = EmojiData.of(VersionInfo.getInstance(3));
         {
