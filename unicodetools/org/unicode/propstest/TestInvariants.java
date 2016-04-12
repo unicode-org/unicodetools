@@ -48,30 +48,43 @@ public class TestInvariants extends TestFmwkPlus{
         }
     }
     
+    static final UnicodeMap<String> totalStrokes = iup.load(UcdProperty.kTotalStrokes);
+    static final UnicodeMap<String> mandarin = iup.load(UcdProperty.kMandarin);
+    static final UnicodeMap<String> radicalStroke = iup.load(UcdProperty.kRSUnicode);
+    static final UnicodeMap<String> hanyuPinyin = iup.load(UcdProperty.kHanyuPinyin);
+    static final UnicodeMap<Binary> ideographic = iup.loadEnum(UcdProperty.Ideographic, Binary.class);
+    static final UnicodeMap<String> haveDecomps = iup.load(UcdProperty.Decomposition_Mapping);
+    static final UnicodeSet ideographicSet = ideographic.getSet(Binary.Yes);
+    static final UnicodeSet DECOMPOSABLE = haveDecomps.keySet();
+
     public void TestHanCompleteness() {
-        final UnicodeMap<String> totalStrokes = iup.load(UcdProperty.kTotalStrokes);
-        final UnicodeMap<String> mandarin = iup.load(UcdProperty.kMandarin);
-        final UnicodeMap<String> radicalStroke = iup.load(UcdProperty.kRSUnicode);
-        final UnicodeMap<String> hanyuPinyin = iup.load(UcdProperty.kHanyuPinyin);
-        final UnicodeMap<Binary> ideographic = iup.loadEnum(UcdProperty.Ideographic, Binary.class);
-        final UnicodeMap<String> haveDecomps = iup.load(UcdProperty.Decomposition_Mapping);
-        UnicodeSet ideographicSet = ideographic.getSet(Binary.Yes);
+        
         UnicodeSet missing;
         
         final UnicodeSet rs = radicalStroke.keySet();
         missing = new UnicodeSet(ideographicSet).removeAll(rs);
-        assertEquals(UcdProperty.kRSUnicode.toString(), UnicodeSet.EMPTY, missing);
+        showMissing("In Ideographic but no kRSUnicode value: ", UcdProperty.kRSUnicode, missing);
 
-        UnicodeSet comparison = new UnicodeSet(rs).removeAll(haveDecomps.keySet());
+        UnicodeSet comparison = new UnicodeSet(rs).removeAll(DECOMPOSABLE);
         missing = new UnicodeSet(comparison).removeAll(totalStrokes.keySet());
-        assertEquals(UcdProperty.kTotalStrokes.toString(), UnicodeSet.EMPTY, missing);
-        
+        showMissing("Has kRSUnicode value but no kTotalStrokes value: ", UcdProperty.kTotalStrokes, missing);
+
         missing = new UnicodeSet(comparison).removeAll(mandarin.keySet());
-        assertEquals(UcdProperty.kMandarin.toString(), UnicodeSet.EMPTY, missing);
-        
+        showMissing("Has kRSUnicode value but no kMandarin value: ", UcdProperty.kMandarin, missing);
+
         missing.retainAll(hanyuPinyin.keySet());
         assertEquals("Could be added from hanyuPinyin", UnicodeSet.EMPTY, missing);
 
+    }
+
+    private void showMissing(String title, final UcdProperty prop, UnicodeSet missing) {
+        if (!assertEquals(prop.toString(), UnicodeSet.EMPTY, missing)) {
+            System.out.println(title + missing.size() + ", " + missing.toPattern(false));
+            if (DECOMPOSABLE.containsSome(missing)) {
+                missing.removeAll(DECOMPOSABLE);
+                System.out.println("After removing decomps, " + title + missing.size() + ", " + missing.toPattern(false));
+            }
+        }
     }
 
     public void TestUniformUnassigned() {
