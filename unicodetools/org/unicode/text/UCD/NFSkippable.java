@@ -1,9 +1,9 @@
 package org.unicode.text.UCD;
 import java.io.PrintWriter;
 
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -280,7 +280,7 @@ public final class NFSkippable extends UCDProperty {
         if (true) {
             rSet = result.toPattern(false);
         } else {
-            final PrettyPrinter pp = new PrettyPrinter()
+            final UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter()
             .setOrdering(Collator.getInstance(ULocale.ROOT))
             .setSpaceComparator(Collator.getInstance(ULocale.ROOT)
                     .setStrength2(Collator.PRIMARY))

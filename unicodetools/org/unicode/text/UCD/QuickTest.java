@@ -32,11 +32,11 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CaseIterator;
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.dev.util.Tabber;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;
@@ -749,7 +749,7 @@ public class QuickTest implements UCD_Types {
         //System.out.println("Test: " + fixTransRule("\\u0061"));
         final UnicodeSet s = new UnicodeSet("[^[:script=common:][:script=inherited:]]");
         final UnicodeSet quoting = new UnicodeSet("[[:Mn:][:Me:]]");
-        final String ss = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY)).setToQuote(quoting).format(s);
+        final String ss = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY)).setToQuote(quoting).format(s);
         System.out.println("test: " + ss);
     }
 
@@ -995,7 +995,7 @@ public class QuickTest implements UCD_Types {
             }
         }
 
-        final PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
+        final UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
 
         showDifferences(pp, "hasFrom", hasFrom, "hasTo", hasTo, "xxx", new UnicodeSet());
 
@@ -1055,7 +1055,7 @@ public class QuickTest implements UCD_Types {
         //		}
     }
 
-    private static void showDifferences(PrettyPrinter pp,
+    private static void showDifferences(UnicodeSetPrettyPrinter pp,
             String lowercaseTitle, UnicodeSet LowercaseProperty,
             String funcLowerTitle, UnicodeSet isLower,
             String lowercaseCatTitle, UnicodeSet LowercaseCategory) {

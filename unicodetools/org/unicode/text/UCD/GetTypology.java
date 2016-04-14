@@ -10,12 +10,12 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -184,7 +184,7 @@ public class GetTypology {
     }
 
     static final UnicodeSet TO_QUOTE = new UnicodeSet("[[:z:][:me:][:mn:][:di:][:c:]-[\u0020]]").freeze();
-    static final PrettyPrinter pp = new PrettyPrinter().setToQuote(TO_QUOTE);
+    static final UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setToQuote(TO_QUOTE);
 
     private static void showPrefixes(Map<String, Map<String, UnicodeSet>> labelToPrefixes, PrintWriter out, boolean singles) {
         int count = 0;
