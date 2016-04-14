@@ -3,11 +3,11 @@ package org.unicode.text.UCD;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;
@@ -26,7 +26,7 @@ public class IDNTester {
     static UnicodeSet IDOutput32 = new UnicodeSet();
     static UnicodeSet IDInputOnly50 = new UnicodeSet();
     static UnicodeSet IDOutput50 = new UnicodeSet();
-    static PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
+    static UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
     static PrintWriter pw;
 
     public static void main(String[] args) throws IOException {

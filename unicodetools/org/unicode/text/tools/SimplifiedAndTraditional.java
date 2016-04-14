@@ -10,10 +10,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.text.Collator;
@@ -65,7 +65,7 @@ public class SimplifiedAndTraditional {
         System.out.println(PRETTY.format(biggest));
     }
 
-    static     PrettyPrinter PRETTY = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
+    static     UnicodeSetPrettyPrinter PRETTY = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
 
     private void showSimpVsTrad(String[] args) {
 

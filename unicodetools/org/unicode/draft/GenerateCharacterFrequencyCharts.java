@@ -16,13 +16,13 @@ import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.SupplementalDataInfo;
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
@@ -259,7 +259,7 @@ public class GenerateCharacterFrequencyCharts {
 
 
     private static class CharacterSamples {
-        static PrettyPrinter pp = new PrettyPrinter();
+        static UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter();
         static final UnicodeSet DIGITS = new UnicodeSet("[:nd:]").freeze();
 
         List<String> indexChars = new ArrayList<String>();

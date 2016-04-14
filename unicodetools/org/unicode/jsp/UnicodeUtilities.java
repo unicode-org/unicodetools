@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
+import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.idna.GenerateIdnaTest;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
@@ -31,7 +32,6 @@ import org.unicode.idna.IdnaTypes;
 import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
 
-import com.ibm.icu.dev.util.PrettyPrinter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Row.R4;
@@ -746,7 +746,7 @@ public class UnicodeUtilities {
             return getLiteral(trans.transform(sample)).replace("\n", "<br>");
         }
 
-        final PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY)).setSpaceComparator(new Comparator<String>() {
+        final UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY)).setSpaceComparator(new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
                 return 1;
@@ -890,7 +890,7 @@ public class UnicodeUtilities {
     static String getPrettySet(UnicodeSet a, boolean abbreviate, boolean escape) {
         String a_out;
         if (a.size() < 10000 && !abbreviate) {
-            final PrettyPrinter pp = new PrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
+            final UnicodeSetPrettyPrinter pp = new UnicodeSetPrettyPrinter().setOrdering(Collator.getInstance(ULocale.ROOT)).setSpaceComparator(Collator.getInstance(ULocale.ROOT).setStrength2(Collator.PRIMARY));
             if (escape) {
                 pp.setToQuote(new UnicodeSet("[^\\u0021-\\u007E]"));
             }
