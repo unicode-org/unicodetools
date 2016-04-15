@@ -24,7 +24,6 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.FileUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -89,7 +88,7 @@ public class GenerateIdnaTest {
 
     int generateTests(int lines) throws IOException {
         final String filename = "IdnaTest.txt";
-        final PrintWriter out = BagFormatter.openUTF8Writer(GenerateIdna.DIR, filename);
+        final PrintWriter out = org.unicode.cldr.draft.FileUtilities.openUTF8Writer(GenerateIdna.DIR, filename);
         out.println(Utility.getDataHeader(filename));
 
         FileUtilities.appendFile(this.getClass().getResource("IdnaTestHeader.txt").toString().substring(5), "UTF-8", out);

@@ -12,10 +12,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
@@ -37,7 +37,7 @@ public class HanFrequencies {
     }
 
     private static void generateReadings() throws IOException {
-        final BufferedReader freq = BagFormatter.openUTF8Reader(Settings.GEN_DIR + "/hanfrequency", "unifiedZh.txt");
+        final BufferedReader freq = FileUtilities.openUTF8Reader(Settings.GEN_DIR + "/hanfrequency", "unifiedZh.txt");
         final UnicodeMap<Integer> rank = new UnicodeMap<Integer>();
         int count = 0;
         while (true) {
@@ -50,7 +50,7 @@ public class HanFrequencies {
             rank.put(parts[0], ++count);
         }
         freq.close();
-        final BufferedReader readings = BagFormatter.openUTF8Reader(Settings.DATA_DIR + "/frequency", "han-reading-diff.txt");
+        final BufferedReader readings = FileUtilities.openUTF8Reader(Settings.DATA_DIR + "/frequency", "han-reading-diff.txt");
         final Set<R2<Integer, Map<ReadingRows,String>>> ordered = new TreeSet<R2<Integer,Map<ReadingRows,String>>>();
         while (true) {
             String line = readings.readLine();
@@ -100,7 +100,7 @@ public class HanFrequencies {
         }
         readings.close();
 
-        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/hanfrequency", "han-reading-diff.html");
+        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/hanfrequency", "han-reading-diff.html");
         //PrintStream out = System.out;
         final ReadingRows[] values = ReadingRows.values();
         out.println("<html><body><table>");

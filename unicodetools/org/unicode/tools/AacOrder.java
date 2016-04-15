@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Set;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiData;
 import org.unicode.tools.emoji.EmojiOrder;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.lang.UCharacter;
 
 public class AacOrder {
@@ -30,8 +30,8 @@ public class AacOrder {
             throw new IllegalArgumentException("Bad size");
         }
         String outputDir = args.length == 1 ? args[0] : Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/";
-        try (PrintWriter out = BagFormatter.openUTF8Writer(outputDir, "aac-order-ranges.txt");
-                PrintWriter out2 = BagFormatter.openUTF8Writer(outputDir, "aac-order.txt")
+        try (PrintWriter out = FileUtilities.openUTF8Writer(outputDir, "aac-order-ranges.txt");
+                PrintWriter out2 = FileUtilities.openUTF8Writer(outputDir, "aac-order.txt")
                 ) {
             Range range = new Range(out, true);
             Range rangeNone = new Range(out2, false);

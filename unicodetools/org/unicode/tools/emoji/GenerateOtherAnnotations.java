@@ -9,13 +9,13 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.DtdType;
 import org.unicode.text.utility.Settings;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.impl.Utility;
@@ -94,7 +94,7 @@ public class GenerateOtherAnnotations {
     }
 
     private static void printText(AnnotationData data) throws IOException {
-        try (PrintWriter outText = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/tts/", data.locale + ".tsv")) {
+        try (PrintWriter outText = FileUtilities.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/tts/", data.locale + ".tsv")) {
             //#Code Image   TTS English TTS German  Annotations English Annotations German  Comments    INTERNAL
             //U+1F600   =vlookup(A2,Internal!A:B,2,0)   grinning face   Lachender Smiley    face; grin  Lachender Smiley; Gesicht; lustig; lol       
             int line = 1;
@@ -149,7 +149,7 @@ public class GenerateOtherAnnotations {
         String language = data.locale.getLanguage();
         String script = data.locale.getScript();
         String territory = data.locale.getCountry();
-        try (PrintWriter outText = BagFormatter.openUTF8Writer(CLDRPaths.COMMON_DIRECTORY + "/annotations/", data.locale + ".xml")) {
+        try (PrintWriter outText = FileUtilities.openUTF8Writer(CLDRPaths.COMMON_DIRECTORY + "/annotations/", data.locale + ".xml")) {
             outText.append(DtdType.ldml.header(MethodHandles.lookup().lookupClass())
                     + "\t<identity>\n"
                     + "\t\t<version number=\"$Revision" /*hack to stop SVN changing this*/ + "$\"/>\n"

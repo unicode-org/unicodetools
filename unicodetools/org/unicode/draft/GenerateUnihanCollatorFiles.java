@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.dev.util.BagFormatter;
+import org.unicode.cldr.draft.FileUtilities;
 
 public class GenerateUnihanCollatorFiles {
 
@@ -30,8 +30,8 @@ public class GenerateUnihanCollatorFiles {
         final Matcher start_autogen = START_AUTOGEN.matcher("");
         final Matcher end_autogen = END_AUTOGEN.matcher("");
         int count = 0;
-        try (final PrintWriter newFile = BagFormatter.openUTF8Writer(OUTPUT_DIRECTORY_REPLACE, fileName);
-                final BufferedReader oldFile = BagFormatter.openUTF8Reader(inputDirectory, fileName)) {
+        try (final PrintWriter newFile = FileUtilities.openUTF8Writer(OUTPUT_DIRECTORY_REPLACE, fileName);
+                final BufferedReader oldFile = FileUtilities.openUTF8Reader(inputDirectory, fileName)) {
             while (true) {
 
                 // copy up to the first autogen comment, including the comment line
@@ -50,7 +50,7 @@ public class GenerateUnihanCollatorFiles {
                         : choice;
 
                 // copy the file to be inserted
-                try (final BufferedReader insertFile = BagFormatter.openUTF8Reader(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, replacementFile)) {
+                try (final BufferedReader insertFile = FileUtilities.openUTF8Reader(GenerateUnihanCollatorFiles.OUTPUT_DIRECTORY, replacementFile)) {
                     CldrUtility.copyUpTo(insertFile, (Matcher)null, newFile, true); // copy to end
                     newFile.flush();
                 }

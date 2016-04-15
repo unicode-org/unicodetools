@@ -560,7 +560,7 @@ public class Globe {
                 new InputStreamReader(
                         new FileInputStream(globe),
                         "UTF-8"));
-        // BagFormatter.openUTF8Reader("classes/jsp/", "Globe.txt");
+        // FileUtilities.openUTF8Reader("classes/jsp/", "Globe.txt");
         final String pat = "([^;]+) \\s* [;] \\s* "
                 + "([0-9.]+) [°]* \\s* ([0-9.]+)? [']* \\s* ([0-9.]+)? [\"]* \\s* "
                 + "([NS]) \\s* "

@@ -255,7 +255,7 @@ public class BranchStringPrepData {
     //      Matcher mapLine = MAP_LINE.matcher("");
     //      Matcher setLine = SET_LINE.matcher("");
     //      BufferedReader in = FileUtilities.openFile(StringPrepData.class, "nameprep.txt");
-    //      //BufferedReader in = BagFormatter.openUTF8Reader(UCD_Types.BASE_DIR + "idna/", "nameprep.txt");
+    //      //BufferedReader in = FileUtilities.openUTF8Reader(UCD_Types.BASE_DIR + "idna/", "nameprep.txt");
     //      StringPrepData.Idna2003Table table = null;
     //      boolean inTable = false;
     //      boolean isMapping = false;

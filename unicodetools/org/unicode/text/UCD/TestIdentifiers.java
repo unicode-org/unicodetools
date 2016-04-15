@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.lang.UCharacter;
@@ -132,8 +132,7 @@ public class TestIdentifiers {
     UnicodeSet nonstarting = new UnicodeSet();
 
     void loadIdentifiers() throws IOException {
-        final BufferedReader br = BagFormatter.openUTF8Reader(indir,
-                "idnchars.txt");
+        final BufferedReader br = FileUtilities.openUTF8Reader(indir, "idnchars.txt");
         String line = null;
         try {
             while (true) {
@@ -175,8 +174,7 @@ public class TestIdentifiers {
     Map type_equivalences;
 
     void loadConfusables() throws IOException {
-        final BufferedReader br = BagFormatter.openUTF8Reader(indir,
-                "confusables.txt");
+        final BufferedReader br = FileUtilities.openUTF8Reader(indir, "confusables.txt");
         String line = null;
         type_equivalences = new HashMap();
         try {
@@ -226,8 +224,7 @@ public class TestIdentifiers {
         for (int i = 0; i < UScript.CODE_LIMIT; ++i) {
             script_script_set[i] = new UnicodeSet[UScript.CODE_LIMIT];
         }
-        final BufferedReader br = BagFormatter.openUTF8Reader(indir,
-                "confusablesWholeScript.txt");
+        final BufferedReader br = FileUtilities.openUTF8Reader(indir, "confusablesWholeScript.txt");
         String line = null;
         try {
             while (true) {

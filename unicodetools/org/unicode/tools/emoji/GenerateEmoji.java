@@ -55,7 +55,6 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.CollectionUtilities.SetComparator;
 import com.ibm.icu.dev.util.TransliteratorUtilities;
@@ -219,7 +218,7 @@ public class GenerateEmoji {
             final RuleBasedCollator ruleBasedCollator = new RuleBasedCollator(rules);
             ruleBasedCollator.setStrength(Collator.IDENTICAL);
             ruleBasedCollator.freeze();
-            EMOJI_COMPARATOR = (Comparator<String>) (Comparator) ruleBasedCollator;
+            EMOJI_COMPARATOR = (Comparator) ruleBasedCollator;
             int x = EMOJI_COMPARATOR.compare("#️⃣","☺️");
         } catch (Exception e) {
             throw new ICUUncheckedIOException("Internal Error", e);
@@ -640,8 +639,7 @@ public class GenerateEmoji {
     }
 
     private static void showConstructedNames() throws IOException {
-        try (PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR,
-                "constructedNames.txt")) {
+        try (PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "constructedNames.txt")) {
             for (String s : Iterables.concat(
                     EmojiData.EMOJI_DATA.getChars(), 
                     EmojiData.EMOJI_DATA.getModifierSequences(),
@@ -699,8 +697,7 @@ public class GenerateEmoji {
 
         // Set<String> newChars =
         // ANNOTATIONS_TO_CHARS.getValues("fitz-minimal");
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
-                , "emoji-count.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-count.html");
         writeHeader(out, "Groupings and counts for screenshots and UnicodeJsps", null, "<p>no message</p>\n", "border='1' width='1200pt'", true);
         showRow(out, "Modifier Base", minimal, true);
         //        UnicodeSet modifierBase = new UnicodeSet().addAll(minimal).addAll(optional);
@@ -782,9 +779,8 @@ public class GenerateEmoji {
         //                    + new UnicodeSet(DEFAULT_TEXT_STYLE).removeAll(defaultText));
         //        }
         defaultText.freeze();
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "text-style.html");
-        PrintWriter out2 = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
-                , "text-vs.txt");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "text-style.html");
+        PrintWriter out2 = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "text-vs.txt");
         writeHeader(out, "Text vs Emoji", null, "<p>This chart shows the default display style (text vs emoji) by version. "
                 + "It does not include emoji sequences. "
                 + "The 'Dings' include Dingbats, Webdings, and Wingdings. "
@@ -999,8 +995,7 @@ public class GenerateEmoji {
     }
 
     private static void showLabels() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
-                , "emoji-labels.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-labels.html");
         writeHeader(out, "Emoji Labels", null, "<p>Main categories for character picking. " +
                 "Characters may occur more than once. " +
                 "Categories could be grouped in the UI.</p>\n", "border='1'", true);
@@ -1021,8 +1016,7 @@ public class GenerateEmoji {
      * @param internalForCopy TODO
      * @param showUca TODO*/
     private static void showOrdering(Style style, boolean internalForCopy, boolean showUca) throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(internalForCopy ? Emoji.TR51_INTERNAL_DIR : Emoji.CHARTS_DIR,
-                (style == Style.bestImage ? "" : "ref-") + "emoji-ordering.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(internalForCopy ? Emoji.TR51_INTERNAL_DIR : Emoji.CHARTS_DIR, (style == Style.bestImage ? "" : "ref-") + "emoji-ordering.html");
         writeHeader(out, "Emoji Ordering", null, "<p>This chart shows the default ordering of emoji characters from " + CLDR_DATA_LINK + ". "
                 + "This is designed to improve on the <a target='uca' href='http://unicode.org/charts/collation/'>UCA</a> orderings"
                 + (showUca ? " (shown at the right)" : "")
@@ -1116,8 +1110,8 @@ public class GenerateEmoji {
 
     /** Main Chart */
     private static void showDefaultStyle() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-style.html");
-        PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-style.txt");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-style.html");
+        PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-style.txt");
         writeHeader(out, "Emoji Default Style Values", null, "<p>This chart provides a listing of characters for testing the display of emoji characters. "
                 + "Unlike the other charts, the emoji are presented as text rather than images, to show the style supplied in your browser. "
                 + "The text is given a gray color, so as to help distinguish the emoji presentation from a plain text presentation. "
@@ -1214,7 +1208,7 @@ public class GenerateEmoji {
     }
 
     private static void showVariationSequences() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-variants.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-variants.html");
         writeHeader(out, "Emoji Variation Sequences", "", "<p>This chart specifies the exact list of Unicode standardized variation sequences known "
                 + "as as <i>emoji variation sequences</i>. "
                 + "These sequences consist of an <i>emoji base</i> followed either by the "
@@ -1267,7 +1261,7 @@ public class GenerateEmoji {
 
     /** Main Chart */
     private static void showSequences() throws IOException {
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-sequences.html")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-sequences.html")) {
             writeHeader(out, "Emoji Sequences", null, "<p>This chart provides a list of sequences of emoji characters, "
                     + "including <a href='#keycaps'>keycap sequences</a>, "
                     + "<a href='#flags'>flags</a>, and "
@@ -1282,7 +1276,7 @@ public class GenerateEmoji {
             writeFooter(out, "");
         }
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-zwj-sequences.html")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-zwj-sequences.html")) {
             writeHeader(out, "Emoji ZWJ Sequences Catalog", null, "<p>For interoperability, this page catalogs emoji zwj sequences that are supported on at least one commonly available platform, "
                     + "so that other vendors can choose whether or not to support them as well. "
                     + "</p><p>The U+200D ZERO WIDTH JOINER (ZWJ) can be used between the elements of a sequence of characters to indicate that a single glyph should be presented if available. "
@@ -1400,7 +1394,7 @@ public class GenerateEmoji {
 
     /** Main Chart */
     private static void showVersions() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions-sources.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions-sources.html");
         writeHeader(out, "Emoji Versions &amp; Sources", null, "<p>This chart shows when each emoji code point first appeared in a Unicode version, "
                 + "and which "
                 + "sources the character corresponds to. It does not include the emoji sequences. "
@@ -1431,7 +1425,7 @@ public class GenerateEmoji {
 
     /** Main Chart */
     private static void showVersionsOnly() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-versions.html");
         writeHeader(out, "Emoji Versions", null, "<p>This chart shows when each emoji character first appeared in a Unicode version.</p>\n", "border='1'", true);
         UnicodeMap<Age_Values> m = new UnicodeMap<>();
         for (String s : EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives()) {
@@ -1464,7 +1458,7 @@ public class GenerateEmoji {
     //            }
     //            uset.add(s);
     //        }
-    //        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-subhead.html");
+    //        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-subhead.html");
     //        writeHeader(out, "Emoji Subhead", null, "Unicode Subhead mapping.", "border='1'", true);
     //        for (Entry<String, UnicodeSet> entry : subheadToChars.entrySet()) {
     //            String label = entry.getKey();
@@ -1481,7 +1475,7 @@ public class GenerateEmoji {
     /** Main charts */
     private static void showAnnotations(String dir, String filename, UnicodeSet filterOut, Set<String> retainAnnotations, boolean removeInsteadOf)
             throws IOException {
-        try (PrintWriter out = BagFormatter.openUTF8Writer(dir, filename)) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(dir, filename)) {
             writeHeader(out, "Emoji Annotations", null, "<p>This chart shows the English emoji character annotations based on " + CLDR_DATA_LINK + ". "
                     + "To make suggestions for improvements, "
                     + "please file a " + getCldrTicket("annotations", "Emoji annotation suggestions") + ".</p>\n", "border='1'", true);
@@ -1539,7 +1533,7 @@ public class GenerateEmoji {
     }
 
     private static void showAnnotationsBySize(String dir, String filename, UnicodeSet retainSet) throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(dir, filename);
+        PrintWriter out = FileUtilities.openUTF8Writer(dir, filename);
         writeHeader(out, "Emoji Annotations", null, "<p>Finer-grained character annotations. </p>\n", "border='1'", true);
         TreeSet<Row.R3<Integer, UnicodeSet, String>> sorted = new TreeSet<>();
         Relation<UnicodeSet, String> usToAnnotations = Relation.of(new HashMap(), TreeSet.class, EmojiOrder.UCA_COLLATOR);
@@ -1573,7 +1567,7 @@ public class GenerateEmoji {
     }
 
     // private static void showAnnotationsDiff() throws IOException {
-    // PrintWriter out = BagFormatter.openUTF8Writer(Emoji.OUTPUT_DIR,
+    // PrintWriter out = FileUtilities.openUTF8Writer(Emoji.OUTPUT_DIR,
     // "emoji-annotations-diff.html");
     // writeHeader(out, "Emoji Annotations Diff",
     // "Finer-grained character annotations. " +
@@ -1674,8 +1668,7 @@ public class GenerateEmoji {
             addSet(labelToUnicodeSet, "Symbol-Other", otherSymbols);
         }
 
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
-                , "other-labels.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "other-labels.html");
         writeHeader(out, "Other Labels", null, "<p>Draft categories for other Symbols and Punctuation.</p>\n", "border='1'", true);
 
         for (Entry<String, UnicodeSet> entry : labelToUnicodeSet.entrySet()) {
@@ -1870,9 +1863,8 @@ public class GenerateEmoji {
     /** Main charts 
      * @param extraPlatforms TODO*/
     public static <T> void print(Form form, EmojiStats stats, boolean extraPlatforms) throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.CHARTS_DIR,
-                form.filePrefix + "emoji-list" + (form != Form.fullForm ? "" : extraPlatforms ? "-extra" : "")
-                + ".html");
+        PrintWriter out = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.CHARTS_DIR, form.filePrefix + "emoji-list" + (form != Form.fullForm ? "" : extraPlatforms ? "-extra" : "")
+        + ".html");
         PrintWriter outText = null;
         PrintWriter outText2 = null;
         int order = 0;
@@ -1944,7 +1936,7 @@ public class GenerateEmoji {
     static boolean CHECKFACE = false;
 
     static void oldAnnotationDiff() throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-diff.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-diff.html");
         writeHeader(out, "Diff List", null, "<p>Differences from other categories.</p>\n", "border='1'", true);
 
         UnicodeSet AnimalPlantFood = new UnicodeSet("[☕ 🌰-🌵 🌷-🍼 🎂 🐀-🐾]");
@@ -2121,8 +2113,7 @@ public class GenerateEmoji {
 
     static void printCollationOrder() throws IOException {
         try (
-                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
-                        , "emoji-ordering-list.txt")) {
+                PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-ordering-list.txt")) {
             for (String s : SORTED_ALL_EMOJI_CHARS_SET) {
                 outText.println(Emoji.toUHex(s) 
                         + " ; " + Emoji.getNewest(s).getShortName() 
@@ -2131,8 +2122,7 @@ public class GenerateEmoji {
             }
         }
         try (
-                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
-                        , "emoji-ordering.txt")) {
+                PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-ordering.txt")) {
             outText.append("<!-- emoji-ordering.txt\n"
                     + "\tFor details about the format and other information, see " + DOC_DATA_FILES + ".\n"
                     + "\thttp://unicode.org/cldr/trac/ticket/7270 -->\n"
@@ -2148,7 +2138,7 @@ public class GenerateEmoji {
 
     //    private static void printAnnotations() throws IOException {
     //        try (
-    //                PrintWriter outText = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
+    //                PrintWriter outText = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR
     //                        , "emoji-annotations.xml")) {
     //            outText.append(ANNOTATION_HEADER
     //                    + "\t\t<language type='en'/>\n"
@@ -2225,7 +2215,7 @@ public class GenerateEmoji {
 
         public int compare(R2<Set<String>, UnicodeSet> o1, R2<Set<String>, UnicodeSet> o2) {
             int diff = compareX(o1.get0().iterator(), o2.get0().iterator(),
-                    (Comparator<String>) EmojiOrder.UCA_COLLATOR);
+                    EmojiOrder.UCA_COLLATOR);
             if (diff != 0) {
                 return diff;
             }
@@ -2541,7 +2531,7 @@ public class GenerateEmoji {
         }
         System.out.println(items.toString().replace("\\", "\\\\"));
         // now print
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-candidates.html");) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-candidates.html");) {
             writeHeader(out, "Emoji Candidates", null, "<p>The Unicode Technical Committee (UTC) has accepted the following "
                     + items.size()
                     + " characters as candidates for emoji. "
@@ -2600,7 +2590,7 @@ public class GenerateEmoji {
         }
     }
     //    static void showCopyingList() throws IOException {
-    //        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-copying.html")) {
+    //        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-copying.html")) {
     //            PrintWriter outText = null;
     //            int order = 0;
     //            UnicodeSet level1 = null;

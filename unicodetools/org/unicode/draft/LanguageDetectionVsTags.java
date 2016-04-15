@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.ConvertLanguageData.InverseComparator;
 import org.unicode.cldr.tool.LikelySubtags;
 import org.unicode.cldr.util.CLDRPaths;
@@ -18,7 +19,6 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.LanguageTagParser;
 import org.unicode.cldr.util.SupplementalDataInfo;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.text.NumberFormat;
@@ -32,7 +32,7 @@ public class LanguageDetectionVsTags {
     enum LineFormat {L1, http, meta, lang, xmllang, detected, occurrences, documents, navboost, pagerank, lang2, enc, url};
 
     public static void main(String[] args) throws IOException {
-        final BufferedReader in = BagFormatter.openUTF8Reader("/Users/markdavis/Documents/Data/", "lang78.txt");
+        final BufferedReader in = FileUtilities.openUTF8Reader("/Users/markdavis/Documents/Data/", "lang78.txt");
         final Map<String,Counter<String>> detectedToCountAndTag = new TreeMap<String,Counter<String>>();
         final Counter<String> detectedToCount = new Counter<String>();
         final Counter<String> taggedToCount = new Counter<String>();

@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
@@ -302,7 +303,7 @@ public class IdentifierInfo {
         BufferedReader br;
         String line;
         // get all the removals.
-        br = BagFormatter.openUTF8Reader(GenerateConfusables.indir, "removals.txt");
+        br = FileUtilities.openUTF8Reader(GenerateConfusables.indir, "removals.txt");
         removals.putAll(0,0x10FFFF, // new UnicodeSet("[^[:gc=cn:][:gc=co:][:gc=cs:][:gc=cc:]-[:whitespace:]]"),
                 IdentifierType.recommended);
 
@@ -461,7 +462,7 @@ public class IdentifierInfo {
         br.close();
 
         //      // get the word chars
-        //      br = BagFormatter.openUTF8Reader(indir,
+        //      br = FileUtilities.openUTF8Reader(indir,
         //      "wordchars.txt");
         //      try {
         //        while (true) {
@@ -526,7 +527,7 @@ public class IdentifierInfo {
                 .setMergeRanges(true);
 
         final PrintWriter out = GenerateConfusables.openAndWriteHeader(GenerateConfusables.reformatedInternal, "review.txt", "Review List for IDN");
-        //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, "review.txt");
+        //			PrintWriter out = FileUtilities.openUTF8Writer(outdir, "review.txt");
         //reviews.putAll(UNASSIGNED, "");
         //			out.print("\uFEFF");
         //			out.println("# Review List for IDN");
@@ -651,7 +652,7 @@ public class IdentifierInfo {
         bf.setMergeRanges(true);
 
         PrintWriter out = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, "xidmodifications.txt", "Security Profile for General Identifiers");
-        /* PrintWriter out = BagFormatter.openUTF8Writer(outdir, "xidmodifications.txt");
+        /* PrintWriter out = FileUtilities.openUTF8Writer(outdir, "xidmodifications.txt");
 
 		out.println("# Security Profile for General Identifiers");
 		out.println("# $Revision: 1.32 $");
@@ -757,7 +758,7 @@ public class IdentifierInfo {
         someRemovals.putAll(new UnicodeSet(xidPlus).complement(), "~Unicode Identifier");
         someRemovals.putAll(GenerateConfusables.UNASSIGNED, null); // clear extras
         //someRemovals = removals;
-        out = BagFormatter.openUTF8Writer(GenerateConfusables.reformatedInternal, "draft-restrictions.txt");
+        out = FileUtilities.openUTF8Writer(GenerateConfusables.reformatedInternal, "draft-restrictions.txt");
         out.println("# Characters restricted in domain names");
         out.println("# $Revision: 1.32 $");
         out.println("# $Date: 2010-06-19 00:29:21 $");

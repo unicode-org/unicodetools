@@ -154,7 +154,7 @@ public class TestGenerate{
 
     //  private void writeIdnaDataFile(final UnicodeMap<String> hex_results, BagFormatter bf, String normalizationForm2, String filenameStem) throws IOException {
     //    String filename = filenameStem + "-" + AGE + ".0.txt";
-    //    PrintWriter writer = BagFormatter.openUTF8Writer(Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/", filename);
+    //    PrintWriter writer = FileUtilities.openUTF8Writer(Utility.WORKSPACE_DIRECTORY + "draft/reports/tr46/", filename);
     //    String normalizationForm = normalizationForm2;
     //    writer.println("# " + filename + "- DRAFT\n" +
     //            "# Date: " + dateFormat.format(new Date()) + " [MD]\n" +

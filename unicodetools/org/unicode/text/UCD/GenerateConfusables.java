@@ -35,6 +35,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.With;
@@ -202,7 +203,7 @@ public class GenerateConfusables {
     }
 
     private static void generateAsciify() throws IOException {
-        BufferedReader in = BagFormatter.openUTF8Reader(indir, "asciify.txt");
+        BufferedReader in = FileUtilities.openUTF8Reader(indir, "asciify.txt");
         final StringBuilder builder = new StringBuilder();
         if (DEBUG) System.out.println("String rules = \"\"");
         while (true) {
@@ -221,7 +222,7 @@ public class GenerateConfusables {
         in.close();
         final String rules = builder.toString();
         final Transliterator asciify = Transliterator.createFromRules("asciify", rules, Transliterator.FORWARD);
-        in = BagFormatter.openUTF8Reader(indir, "asciify_examples.txt");
+        in = FileUtilities.openUTF8Reader(indir, "asciify_examples.txt");
         if (DEBUG) System.out.println("String[][] translitTestCases = {");
         if (DEBUG) System.out.println("//{\"" + "SAMPLE" + "\", \"" + "EXPECTED TRANSFORM" + "\"},");
         while (true) {
@@ -277,7 +278,7 @@ public class GenerateConfusables {
 
     private static void addLatin(Map<String, String> mapping, String fileName) throws IOException {
 
-        final BufferedReader in = BagFormatter.openUTF8Reader(indir, fileName);
+        final BufferedReader in = FileUtilities.openUTF8Reader(indir, fileName);
         while (true) {
             String line = Utility.readDataLine(in);
             if (line == null) {
@@ -400,7 +401,7 @@ public class GenerateConfusables {
     //        UnicodeSet cjk_nic = new UnicodeSet();
     //        String line = null;
     //        try {
-    //          BufferedReader br = BagFormatter.openUTF8Reader(indir, "cjk_nic.txt");
+    //          BufferedReader br = FileUtilities.openUTF8Reader(indir, "cjk_nic.txt");
     //          while (true) {
     //            line = Utility.readDataLine(br);
     //            if (line == null) break;
@@ -537,7 +538,7 @@ public class GenerateConfusables {
      * 
      */
     static void generateDecompFile() throws IOException {
-        final PrintWriter out = BagFormatter.openUTF8Writer(reformatedInternal, "decomps.txt");
+        final PrintWriter out = FileUtilities.openUTF8Writer(reformatedInternal, "decomps.txt");
         final UnicodeProperty dt = ups.getProperty("Decomposition_Type");
         for (final Iterator it = dt.getAvailableValues().iterator(); it.hasNext();) {
             final String value = (String) it.next();
@@ -746,7 +747,7 @@ public class GenerateConfusables {
      * 
      */
     private static void generateConfusables() throws IOException {
-        log = BagFormatter.openUTF8Writer(reformatedInternal, "log.txt");
+        log = FileUtilities.openUTF8Writer(reformatedInternal, "log.txt");
         //fixMichel(indir, outdir);
         generateConfusables(indir, reformatedInternal, DRAFT_OUT);
         log.close();
@@ -1042,7 +1043,7 @@ public class GenerateConfusables {
                     filteredSet.add(other);
                 }
             //            }
-            return (String) CollectionUtilities.getBest(filteredSet, 
+            return CollectionUtilities.getBest(filteredSet, 
                     // onlyLowercase || onlySameScript ? betterTargetIsLessFavorNeutral : 
                         betterTargetIsLess, -1);
         }
@@ -1198,7 +1199,7 @@ public class GenerateConfusables {
             String line = null;
             int count = 0;
             try {
-                final BufferedReader in = BagFormatter.openUTF8Reader(directory, filename);
+                final BufferedReader in = FileUtilities.openUTF8Reader(directory, filename);
                 int kind = NORMAL;
                 if (filename.indexOf("Folding") >= 0) {
                     kind = FOLDING;
@@ -1292,7 +1293,7 @@ public class GenerateConfusables {
 
         public void writeSource(String directory, String filename) throws IOException {
             final PrintWriter out = openAndWriteHeader(directory, filename, "Source File for IDN Confusables");
-            //			PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
+            //			PrintWriter out = FileUtilities.openUTF8Writer(directory, filename);
             //			out.println("# Source File for IDN Confusables");
             //			out.println("# $ Revision: 1.32 $");
             //			out.println("# $ Date: 2010-06-19 00:29:21 $");
@@ -1303,7 +1304,7 @@ public class GenerateConfusables {
 
         public void writeSourceOrder(String directory, String filename, boolean appendFile, boolean skipNFKEquivs) throws IOException {
             final PrintWriter out = openAndWriteHeader(directory, filename, "Recommended confusable mapping for IDN");
-            //            PrintWriter out = BagFormatter.openUTF8Writer(directory, filename);
+            //            PrintWriter out = FileUtilities.openUTF8Writer(directory, filename);
             //			out.println("# Recommended confusable mapping for IDN");
             //			out.println("# $ Revision: 1.32 $");
             //			out.println("# $ Date: 2010-06-19 00:29:21 $");
@@ -1597,7 +1598,7 @@ public class GenerateConfusables {
          */
         public void writeSummary(String outdir, String filename, boolean outputOnly, UnicodeSet script) throws IOException {
             final PrintWriter out = openAndWriteHeader(outdir, filename, "Summary: Recommended confusable mapping for IDN");
-            //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
+            //			PrintWriter out = FileUtilities.openUTF8Writer(outdir, filename);
             //			out.print('\uFEFF');
             //			out.println("# Summary: Recommended confusable mapping for IDN");
             //			out.println("# $ Revision: 1.32 $");
@@ -1741,7 +1742,7 @@ public class GenerateConfusables {
                 wsLower.addEquivalents(equivalents);
             }
             final PrintWriter out = openAndWriteHeader(outdir, filename, "Summary: Whole-Script Confusables");
-            //			PrintWriter out = BagFormatter.openUTF8Writer(outdir, filename);
+            //			PrintWriter out = FileUtilities.openUTF8Writer(outdir, filename);
             //			out.print('\uFEFF');
             //			out.println("# Summary: Whole-Script Confusables");
             //			out.println("# $ Revision: 1.32 $");
@@ -1960,8 +1961,8 @@ public class GenerateConfusables {
      * 
      */
     //    private static void fixMichel(String indir, String outdir) throws IOException {
-    //        final BufferedReader in = BagFormatter.openUTF8Reader(indir + "michel/", "tr36comments-annex.txt");
-    //        final PrintWriter out = BagFormatter.openUTF8Writer(outdir, "new-tr36comments-annex.txt");
+    //        final BufferedReader in = FileUtilities.openUTF8Reader(indir + "michel/", "tr36comments-annex.txt");
+    //        final PrintWriter out = FileUtilities.openUTF8Writer(outdir, "new-tr36comments-annex.txt");
     //        while (true) {
     //            final String line = Utility.readDataLine(in);
     //            if (line == null) {
@@ -2000,7 +2001,7 @@ public class GenerateConfusables {
             }
             final String reason = getReasonFromFilename(names[i]);
             if (DEBUG) System.out.println(names[i]);
-            final BufferedReader in = BagFormatter.openUTF8Reader(indir, names[i]);
+            final BufferedReader in = FileUtilities.openUTF8Reader(indir, names[i]);
             String line;
             count[0] = 0;
             while (true) {
@@ -2050,7 +2051,7 @@ public class GenerateConfusables {
             }
             in.close();
         }
-        final PrintWriter out = BagFormatter.openUTF8Writer(reformatedInternal, "confusableSource.txt");
+        final PrintWriter out = FileUtilities.openUTF8Writer(reformatedInternal, "confusableSource.txt");
         for (final Iterator it = sources.iterator(); it.hasNext();) {
             final String[] sourceItem = (String[]) it.next();
             writeSourceTargetLine(out, sourceItem[0], null, sourceItem[1], null, ARROW);
@@ -2131,7 +2132,7 @@ public class GenerateConfusables {
         //clean.write(outdir, "confusables.txt", true);
     }
     /*
-		BufferedReader in = BagFormatter.openUTF8Reader(Utility.BASE_DIR + "confusables/", "DiacriticFolding.txt");
+		BufferedReader in = FileUtilities.openUTF8Reader(Utility.BASE_DIR + "confusables/", "DiacriticFolding.txt");
 		Set set = new TreeSet(new ArrayComparator(new Comparator[] {new UTF16.StringComparator(),
 				new UTF16.StringComparator()}));
 		while (true) {
@@ -2156,7 +2157,7 @@ public class GenerateConfusables {
 	}
 	private static void gen() throws IOException {
 		Map m = new TreeMap();
-		BufferedReader in = BagFormatter.openUTF8Reader(Utility.BASE_DIR + "confusables/", "confusables.txt");
+		BufferedReader in = FileUtilities.openUTF8Reader(Utility.BASE_DIR + "confusables/", "confusables.txt");
 		while (true) {
 			String line = in.readLine();
 			if (line == null) break;
@@ -2177,7 +2178,7 @@ public class GenerateConfusables {
 		}
 		in.close();
 
-		in = BagFormatter.openUTF8Reader(Utility.BASE_DIR + "confusables/", "confusables2.txt");
+		in = FileUtilities.openUTF8Reader(Utility.BASE_DIR + "confusables/", "confusables2.txt");
 		while (true) {
 			String line = in.readLine();
 			if (line == null) break;
@@ -2220,7 +2221,7 @@ public class GenerateConfusables {
 			s.add(new Data(source, data.target, data.count));
 		}
 		// write it out
-		PrintWriter out = BagFormatter.openUTF8Writer(Utility.GEN_DIR, "confusables.txt");
+		PrintWriter out = FileUtilities.openUTF8Writer(Utility.GEN_DIR, "confusables.txt");
 		String[] replacements = {"%date%", Default.getDate()};
 		Utility.appendFile(Settings.SRC_UCD_DIR + "confusablesHeader.txt",
 				Utility.UTF8_WINDOWS, out, replacements);
@@ -2438,7 +2439,7 @@ public class GenerateConfusables {
     }
 
     static PrintWriter openAndWriteHeader(String dir, String filename, String title) throws IOException {
-        final PrintWriter out = BagFormatter.openUTF8Writer(dir, filename);
+        final PrintWriter out = FileUtilities.openUTF8Writer(dir, filename);
         out.print('\uFEFF');
         //int trNumber, String title, String filename, String version
         out.println(Utility.getBaseDataHeader(filename, 39, "Unicode Security Mechanisms", version));

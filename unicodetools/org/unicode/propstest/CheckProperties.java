@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Timer;
 import org.unicode.cldr.util.With;
 import org.unicode.draft.UnicodeDataOutput;
@@ -30,8 +31,6 @@ import org.unicode.props.UnicodeSetUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-//import com.ibm.icu.text.UTF16;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.ICUPropertyFactory;
 import com.ibm.icu.dev.util.Tabber;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -86,9 +85,9 @@ public class CheckProperties {
                 continue;
             } catch (final Exception e) {}
             if (arg.equals("file")) {
-                out = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "CheckProperties.txt");
-                outCJK = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "CheckPropertiesCJK.txt");
-                outLog = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "CheckPropertiesLog.txt");
+                out = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "CheckProperties.txt");
+                outCJK = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "CheckPropertiesCJK.txt");
+                outLog = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "CheckPropertiesLog.txt");
                 LIMIT_CHANGES = Integer.MAX_VALUE;
                 NAME_LIMIT = Integer.MAX_VALUE;
                 continue;

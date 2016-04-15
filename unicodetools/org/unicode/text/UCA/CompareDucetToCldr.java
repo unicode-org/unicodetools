@@ -20,7 +20,6 @@ import org.unicode.cldr.util.With;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.UCharacter;
@@ -116,7 +115,7 @@ public class CompareDucetToCldr {
     }
 
     public static void writeValues(Birelation<WeightList, String> cldr, String filename, boolean showWeights) throws IOException {
-        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "uca_COMP/", filename);
+        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "uca_COMP/", filename);
         out.println("#Date: " + DATE);
         for (final Entry<WeightList, Set<String>> kvs : cldr.keyValuesSet()) {
             final WeightList weights = kvs.getKey();

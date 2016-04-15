@@ -18,7 +18,6 @@ import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.ComparisonChain;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UnicodeSet;
@@ -196,7 +195,7 @@ U+2711 => U+2712
     }
 
     public static void main(String[] args) throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, "gmail-emoji.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "gmail-emoji.html");
         out.println("<html><head>\n" +
         		"<style>\n" +
         		"table, th, td {border: 1px solid silver;}</style>\n"

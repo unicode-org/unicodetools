@@ -1,4 +1,5 @@
 package org.unicode.text.UCD;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Settings;
 
@@ -113,7 +115,7 @@ public class TestUnicodeInvariants {
 
     public static void testInvariants(String outputFile, boolean doRange) throws IOException {
         boolean showScript = false;
-        try (final PrintWriter out2 = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
+        try (final PrintWriter out2 = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "UnicodeTestResults." + (doHtml ? "html" : "txt"))) {
             final StringWriter writer = new StringWriter();
             try (PrintWriter out3 = new PrintWriter(writer)) {
                 out = out3;
@@ -132,7 +134,7 @@ public class TestUnicodeInvariants {
                 } else {
                     out3.write('\uFEFF'); // BOM
                 }
-                try (final BufferedReader in = BagFormatter.openUTF8Reader(Settings.SRC_UCD_DIR, outputFile)) {
+                try (final BufferedReader in = FileUtilities.openUTF8Reader(Settings.SRC_UCD_DIR, outputFile)) {
                     final HTMLTabber tabber = new Tabber.HTMLTabber();
 
                     errorLister = new BagFormatter()

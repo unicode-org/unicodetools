@@ -17,7 +17,6 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.UTF16;
@@ -348,7 +347,7 @@ public class Confusables {
     public static void main(String[] args) throws IOException {
         final String SECURITY_PUBLIC = Settings.UNICODE_DRAFT_PUBLIC + "security/";
         final Confusables CONFUSABLES = new Confusables(SECURITY_PUBLIC + Settings.latestVersion);
-        try (PrintWriter pw = BagFormatter.openUTF8Writer(Settings.GEN_UCD_DIR, "confusablesWholeScript.txt")) {
+        try (PrintWriter pw = FileUtilities.openUTF8Writer(Settings.GEN_UCD_DIR, "confusablesWholeScript.txt")) {
             CONFUSABLES.print(pw);
             pw.flush();
         }

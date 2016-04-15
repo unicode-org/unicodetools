@@ -36,7 +36,8 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.dev.util.BagFormatter;
+import org.unicode.cldr.draft.FileUtilities;
+
 import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.DateFormat;
@@ -395,7 +396,7 @@ public class CldrUtility {
                     f.delete();
                 }
             } else if (!areFileIdentical(fullSource, fullTarget, failureLines, lineComparer)) {
-                final PrintWriter bat = BagFormatter.openUTF8Writer(batDir, batName);
+                final PrintWriter bat = FileUtilities.openUTF8Writer(batDir, batName);
                 try {
                     bat.println(COMPARE_PROGRAM + " " +
                             new File(fullSource).getCanonicalPath() + " " +
@@ -412,7 +413,7 @@ public class CldrUtility {
                     f.delete();
                 }
                 f = new File(fullTarget);
-                if (BagFormatter.SHOW_FILES) {
+                if (FileUtilities.SHOW_FILES) {
                     System.out.println("*Deleting old:\t" + f.getCanonicalPath());
                 }
                 f.delete();
@@ -910,7 +911,7 @@ public class CldrUtility {
             //    .initCause(cnf);
         } catch (final java.util.MissingResourceException mre) {
             // try file
-            return BagFormatter.openUTF8Reader(CldrUtility.UTIL_DATA_DIR + File.separator, name);
+            return FileUtilities.openUTF8Reader(CldrUtility.UTIL_DATA_DIR + File.separator, name);
         }
         return new java.io.BufferedReader(   new java.io.InputStreamReader(is,"UTF-8") );
     }
@@ -992,7 +993,7 @@ public class CldrUtility {
 
     public static String getText(String dir, String filename) {
         try {
-            final BufferedReader br = BagFormatter.openUTF8Reader(dir, filename);
+            final BufferedReader br = FileUtilities.openUTF8Reader(dir, filename);
             final StringBuffer buffer = new StringBuffer();
             while (true) {
                 String line = br.readLine();

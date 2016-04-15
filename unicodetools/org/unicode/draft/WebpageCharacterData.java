@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.tool.LanguageCodeConverter;
 import org.unicode.cldr.util.Counter;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.text.UnicodeSet;
 
 /**
@@ -71,10 +71,8 @@ public class WebpageCharacterData {
     }
 
     static public void doData() throws IOException {
-        final BufferedReader in = BagFormatter.openUTF8Reader(
-                Settings.OTHER_WORKSPACE_DIRECTORY +
-                "DATA/frequency/",
-                SOURCE_DATA);
+        final BufferedReader in = FileUtilities.openUTF8Reader(
+                Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/frequency/", SOURCE_DATA);
         int lineCounter = 0;
         final int zeroCountLines = 0;
         final HashMap<String, String> langSeen = new HashMap<String,String>();
@@ -127,7 +125,7 @@ public class WebpageCharacterData {
         for (final Entry<String, Counter<Integer>> entry : map.entrySet()) {
             final String lang = entry.getKey();
             final Counter<Integer> counter = entry.getValue();
-            final PrintWriter out = BagFormatter.openUTF8Writer(directory, lang + ".txt");
+            final PrintWriter out = FileUtilities.openUTF8Writer(directory, lang + ".txt");
             long totalCount = 0;
             long totalChars = 0;
             for (final Integer cp : counter.getKeysetSortedByCount(false)) {
