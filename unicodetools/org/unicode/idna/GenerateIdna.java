@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
@@ -375,7 +376,7 @@ public class GenerateIdna {
     private static void writeDataFile(UnicodeMap<String> mappingTable) throws IOException {
         final String filename = "IdnaMappingTable-" + Default.ucdVersion() + ".txt";
         final String unversionedFileName = "IdnaMappingTable.txt";
-        final PrintWriter writer = BagFormatter.openUTF8Writer(DIR, unversionedFileName);
+        final PrintWriter writer = FileUtilities.openUTF8Writer(DIR, unversionedFileName);
 
         writer.println(Utility.getDataHeader(filename));
         writer.println(

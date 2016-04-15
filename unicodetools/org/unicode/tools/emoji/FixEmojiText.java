@@ -7,11 +7,11 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.With;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
@@ -31,7 +31,7 @@ public class FixEmojiText {
 
     private static void process(String arg) {
         try (
-                PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY, "Generated/images/listing.html")
+                PrintWriter out = FileUtilities.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY, "Generated/images/listing.html")
                 ) {
             out.println("<html><body><p>");
             StringBuilder result = new StringBuilder();

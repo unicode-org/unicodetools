@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.UCD.TestData.RegexMatcher;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -128,9 +129,9 @@ class GenerateStringPrep implements UCD_Types {
         System.out.println(bf.showSetNames(hasNoUpper));
 
         Utility.fixDot();
-        final PrintWriter htmlOut = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "idn-chars.html");
-        final PrintWriter htmlOut2 = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "script-chars.html");
-        PrintWriter textOut = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "idn-chars.txt");
+        final PrintWriter htmlOut = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "idn-chars.html");
+        final PrintWriter htmlOut2 = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "script-chars.html");
+        PrintWriter textOut = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "idn-chars.txt");
         textOut.println('\uFEFF');
         textOut.println("For documentation, see idn-chars.html");
 
@@ -188,7 +189,7 @@ class GenerateStringPrep implements UCD_Types {
             bf.showSetNames(textOut, suspect.keySet(value));
         }
         textOut.close();
-        textOut = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "idn_vs_cfnfkcid.txt");
+        textOut = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "idn_vs_cfnfkcid.txt");
         bf = new BagFormatter();
         bf.setUnicodePropertyFactory(ups);
         textOut.println();
@@ -439,7 +440,7 @@ class GenerateStringPrep implements UCD_Types {
      */
     private UnicodeMap getPositions() throws IOException {
         final UnicodeMap result = new UnicodeMap();
-        final BufferedReader in = BagFormatter.openUTF8Reader(Settings.DATA_DIR + "confusables/", "positions.txt");
+        final BufferedReader in = FileUtilities.openUTF8Reader(Settings.DATA_DIR + "confusables/", "positions.txt");
         String type="Undetermined";
         while (true) {
             final String line = Utility.readDataLine(in);

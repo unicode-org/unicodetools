@@ -29,6 +29,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
 import org.unicode.text.utility.Settings;
@@ -610,7 +611,7 @@ public class TestData implements UCD_Types {
     static PrintWriter log;
 
     public static void checkShaping() throws IOException {
-        log = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "checklog.txt");
+        log = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "checklog.txt");
         checkProperty("Joining_Type", "Non_Joining", "Joining_Type", "Transparent");
         checkProperty("Joining_Group", "No_Joining_Group", "Joining_Type", "Transparent");
         checkProperty("Line_Break", "Unknown", "Line_Break", "Combining_Mark");
@@ -703,7 +704,7 @@ public class TestData implements UCD_Types {
         if (s2 == null) {
             s2 = upf.getSet(p2, matcher, null);
         }
-        bf.showSetDifferences(BagFormatter.CONSOLE,p1,s1,p2,s2);
+        bf.showSetDifferences(FileUtilities.CONSOLE, p1, s1, p2, s2);
     }
 
     static private UnicodeSet getSetForName(String regexPattern) {

@@ -8,13 +8,12 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.GenerateEmoji;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 
 public class MakeEmojiTable {
     public static void main(String[] args) throws IOException {
-        PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-glyphs.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-glyphs.html");
         GenerateEmoji.writeHeader(out, "recommended glyphs", null, "<p>" + "" + "</p>\n", "border='1'", true);
         boolean first = true;
         boolean firstText = true;

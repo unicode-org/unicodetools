@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.text.Transliterator;
 
@@ -21,7 +21,7 @@ public class UseTransliterator {
             final File f = new File(filename);
             final String fileContents = TransliteratorUtilities.getFileContents(f.getParent() + File.separator, f.getName());
             final String newContents = t.transliterate(fileContents);
-            final PrintWriter pw = BagFormatter.openUTF8Writer(f.getParent() + File.separator, "new-" + f.getName());
+            final PrintWriter pw = FileUtilities.openUTF8Writer(f.getParent() + File.separator, "new-" + f.getName());
             pw.write(newContents);
             pw.close();
         } finally {

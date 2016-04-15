@@ -1,4 +1,5 @@
 package org.unicode.draft;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,7 +9,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import com.ibm.icu.dev.util.BagFormatter;
+import org.unicode.cldr.draft.FileUtilities;
+
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 
@@ -16,7 +18,7 @@ import com.ibm.icu.impl.Row;
 public class LanguageQuadgrams {
 
     public static void main(String[] args) throws IOException {
-        final BufferedReader in = BagFormatter.openUTF8Reader("/Users/markdavis/Downloads/", "languageQuadgrams.txt");
+        final BufferedReader in = FileUtilities.openUTF8Reader("/Users/markdavis/Downloads/", "languageQuadgrams.txt");
         while (true) {
             final String line = in.readLine();
             if (line == null) {

@@ -11,10 +11,10 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji.Source;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
 
@@ -138,10 +138,8 @@ class EmojiStats {
 
     public void write(Set<Source> platforms2) throws IOException {
         final boolean extraPlatforms = false;
-        PrintWriter out = BagFormatter.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR,
-                "missing-emoji-list.html");
-        PrintWriter outText = BagFormatter.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR,
-                "missing-emoji-list.txt");
+        PrintWriter out = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR, "missing-emoji-list.html");
+        PrintWriter outText = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.TR51_INTERNAL_DIR, "missing-emoji-list.txt");
         UnicodeSet jc = EmojiData.JCARRIERS;
         // new UnicodeSet()
         // .addAll(totalData.get(Source.sb))

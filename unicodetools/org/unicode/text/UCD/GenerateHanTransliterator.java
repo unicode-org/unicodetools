@@ -10,6 +10,7 @@
  */
 
 package org.unicode.text.UCD;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,12 +27,12 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Pair;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.Replaceable;
@@ -307,7 +308,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             s.add(it.codepoint);
         }
         final String filename = "Raw_Transliterator_Han_Latin.txt";
-        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR, filename);
+        final PrintWriter out = FileUtilities.openUTF8Writer((String) Settings.GEN_DIR, (String) filename);
         for (final Iterator it = outmap.keySet().iterator(); it.hasNext();) {
             final String pinyin = (String) it.next();
             final UnicodeSet uset = (UnicodeSet) outmap.get(pinyin);
@@ -526,7 +527,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
     }
 
     static void addField(String dir, String file, int hexCodeFieldNumber, int valueNumber, UnicodeMap result) throws IOException {
-        final BufferedReader br = BagFormatter.openUTF8Reader(dir, file);
+        final BufferedReader br = FileUtilities.openUTF8Reader((String) dir, (String) file);
         while (true) {
             String line = br.readLine();
             if (line == null) {
@@ -614,7 +615,7 @@ public final class GenerateHanTransliterator implements UCD_Types {
             log.println();
             log.println("@Unihan Data");
             log.println();
-            out2 = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "unihan_kmandarinDump.txt");
+            out2 = FileUtilities.openUTF8Writer((String) Settings.GEN_DIR, (String) "unihan_kmandarinDump.txt");
 
             readUnihanData(key);
 

@@ -33,7 +33,8 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.dev.util.BagFormatter;
+import org.unicode.cldr.draft.FileUtilities;
+
 import com.ibm.icu.dev.util.Tabber.HTMLTabber;
 import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -91,7 +92,7 @@ public class CheckSystemFonts {
 
     private static void loadSkipShapes() {
         try {
-            BufferedReader in = BagFormatter.openUTF8Reader(outputDirectoryName, "skip_fonts.txt");
+            BufferedReader in = FileUtilities.openUTF8Reader(outputDirectoryName, "skip_fonts.txt");
             while (true) {
                 String line = in.readLine();
                 if (line == null) break;
@@ -169,7 +170,7 @@ public class CheckSystemFonts {
 
     private static void showFullCoverage(UnicodeMap<Set<String>> map, Map<Set<String>, String> toShortName) throws IOException {
         System.out.println("\n***COVERAGE:\t" + map.keySet().size() + "\n");
-        PrintWriter out = BagFormatter.openUTF8Writer(outputDirectoryName, "coverage.txt");
+        PrintWriter out = FileUtilities.openUTF8Writer(outputDirectoryName, "coverage.txt");
 
         for (UnicodeMapIterator<String> it = new UnicodeMapIterator<String>(map); it.nextRange();) {
             String codes = "U+" + Utility.hex(it.codepoint);
@@ -209,7 +210,7 @@ public class CheckSystemFonts {
 
     private static Map<Set<String>, String> showRawCoverage(UnicodeMap<Set<String>> map) throws IOException {
         System.out.println("\n***COMBO NAMES\n");
-        PrintWriter out = BagFormatter.openUTF8Writer(outputDirectoryName, "combo_names.txt");
+        PrintWriter out = FileUtilities.openUTF8Writer(outputDirectoryName, "combo_names.txt");
 
         int count = 0;
         Map<Set<String>, String> toShortName = new HashMap<Set<String>, String>();
@@ -236,7 +237,7 @@ public class CheckSystemFonts {
 
     private static void showRawCoverage(Map<UnicodeSet, Set<String>> data) throws IOException {
         System.out.println("\n***RAW COVERAGE (bridging unassigned)\n");
-        PrintWriter out = BagFormatter.openUTF8Writer(outputDirectoryName, "raw_coverage.txt");
+        PrintWriter out = FileUtilities.openUTF8Writer(outputDirectoryName, "raw_coverage.txt");
 
         for (Entry<UnicodeSet, Set<String>> entry : data.entrySet()) {
             UnicodeSet s = entry.getKey();
@@ -250,7 +251,7 @@ public class CheckSystemFonts {
 
     private static UnicodeMap<Set<String>> showEquivalentCoverage(Map<UnicodeSet, Set<String>> data) throws IOException {
         System.out.println("\n***EQUIVALENT COVERAGE\n");
-        PrintWriter out = BagFormatter.openUTF8Writer(outputDirectoryName, "equiv_coverage.txt");
+        PrintWriter out = FileUtilities.openUTF8Writer(outputDirectoryName, "equiv_coverage.txt");
 
         UnicodeMap<Set<String>> map = new UnicodeMap<Set<String>>();
 
@@ -280,8 +281,8 @@ public class CheckSystemFonts {
 
     private static void showSameGlyphs() throws IOException {
         System.out.println("\n***Visual Equivalences");
-        PrintWriter out = BagFormatter.openUTF8Writer(outputDirectoryName, "same_glyphs.txt");
-        PrintWriter out2 = BagFormatter.openUTF8Writer(outputDirectoryName, "same_glyphs.html");
+        PrintWriter out = FileUtilities.openUTF8Writer(outputDirectoryName, "same_glyphs.txt");
+        PrintWriter out2 = FileUtilities.openUTF8Writer(outputDirectoryName, "same_glyphs.html");
         out2.println("<html><head>");
         out2.println("<meta content=\"text/html; charset=utf-8\" http-equiv=Content-Type></HEAD>");
         out2.println("<link rel='stylesheet' href='index.css' type='text/css'>");
@@ -342,7 +343,7 @@ public class CheckSystemFonts {
 
     private static void showInvisibles() throws IOException {
         System.out.println("\n***Invisibles Equivalences");
-        PrintWriter out = BagFormatter.openUTF8Writer(outputDirectoryName, "invisibles.txt");
+        PrintWriter out = FileUtilities.openUTF8Writer(outputDirectoryName, "invisibles.txt");
         for (String sample : invisibles) {
             String reasons = invisibles.get(sample).toString();
             if (reasons.length() > 100) reasons = reasons.substring(0,100) + "...";

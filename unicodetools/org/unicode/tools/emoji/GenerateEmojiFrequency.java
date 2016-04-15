@@ -22,7 +22,6 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DecimalFormat;
@@ -103,7 +102,7 @@ public class GenerateEmojiFrequency {
         pf.setMinimumFractionDigits(2);
         NumberFormat intf = NumberFormat.getIntegerInstance(ULocale.ENGLISH);
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency-all.html")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency-all.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Frequency", null, "<p>" + FIRST_LINE + "</p>\n", "border='1'", true);
 
             String title = "%\tCP\tMain Category\tAnnotations";
@@ -145,7 +144,7 @@ public class GenerateEmojiFrequency {
             }
             GenerateEmoji.writeFooter(out, "");
         }
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency.html")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.TR51_INTERNAL_DIR, "emoji-frequency.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Frequency", null, "<p>" + FIRST_LINE + "</p>\n", "border='1'", true);
 
             System.out.println(Buckets.BUCKET_TITLE);
@@ -229,7 +228,7 @@ public class GenerateEmojiFrequency {
         for (String s : Emoji.EMOJI_CHARS) {
             int cp = s.codePointAt(0);
             if (s.length() == Character.charCount(cp)) {
-                webFrequency.add(s, webScale(cp)*(double)totalWebFrequency.get(cp));
+                webFrequency.add(s, webScale(cp)*totalWebFrequency.get(cp));
             }
         }
         showSample("Web", webFrequency);

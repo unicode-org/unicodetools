@@ -8,6 +8,7 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD_Types;
@@ -110,8 +111,7 @@ public class VerifyIdna {
     }
 
     private static UnicodeMap getPatriksMapping() throws IOException {
-        final BufferedReader in = BagFormatter.openReader(Settings.DATA_DIR + "/IDN/",
-                "draft-faltstrom-idnabis-tables-05.txt", "ascii");
+        final BufferedReader in = FileUtilities.openReader(Settings.DATA_DIR + "/IDN/", "draft-faltstrom-idnabis-tables-05.txt", "ascii");
         boolean inTable = false;
         final UnicodeMap patrik = new UnicodeMap();
         int count = 0;

@@ -31,6 +31,7 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.text.utility.Settings;
@@ -468,7 +469,7 @@ public class QuickTest implements UCD_Types {
         //proposed = status.getSet("Px");
         System.out.println(proposed);
         //showStatus(status);
-        final PrintWriter pw = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "bidimirroring_chars.txt");
+        final PrintWriter pw = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "bidimirroring_chars.txt");
         showStatus(pw, status);
         pw.close();
     }

@@ -13,13 +13,13 @@ import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.collect.ComparisonChain;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.NumberFormat;
@@ -231,8 +231,7 @@ public class EmojiFlagOrder {
         NumberFormat percent2 = NumberFormat.getPercentInstance();
         double base = -1;
         StringBuilder emojiList = new StringBuilder();
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.CHARTS_DIR, 
-                "flag-emoji-list.html")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "flag-emoji-list.html")) {
             GenerateEmoji.writeHeader(out, "Emoji Flags", null, "<p>" + "Flag list. " + "</p>\n", "border='1'", true);
             out.println("<html><body><table border='1px'>");
             for (Pair<ImageInfo, String> colorChar : sorted) {

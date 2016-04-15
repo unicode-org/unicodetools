@@ -5,12 +5,12 @@ import java.io.PrintWriter;
 import java.util.Comparator;
 import java.util.Locale;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Transform;
@@ -46,7 +46,7 @@ public class CarrierGlyphs {
         carrier.addAll(Emoji_KDDI.keySet());
         carrier.addAll(Emoji_DCM.keySet());
         carrier.addAll(Emoji_SB.keySet());
-        PrintWriter out = BagFormatter.openUTF8Writer(Settings.SVN_WORKSPACE_DIRECTORY
+        PrintWriter out = FileUtilities.openUTF8Writer(Settings.SVN_WORKSPACE_DIRECTORY
                 + "/reports/tr51/", "carrier-emoji.html");
         out.println("<html>\n" +
                 "<head>\n" +

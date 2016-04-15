@@ -13,9 +13,9 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.Collator;
@@ -41,7 +41,7 @@ public class Cmudict {
         final Set<String> ipaWithoutStress = new TreeSet<String>(col);
         final Relation<String,String> ipaDifferingByStress = new Relation(new TreeMap(col), TreeSet.class);
 
-        final BufferedReader in = BagFormatter.openUTF8Reader(BASE_DIR, "cmudict.0.7a.txt");
+        final BufferedReader in = FileUtilities.openUTF8Reader(BASE_DIR, "cmudict.0.7a.txt");
         while (true) {
             String line = in.readLine();
             if (line == null) {
@@ -148,7 +148,7 @@ public class Cmudict {
             System.out.println("Missing?\t" + entry);
         }
 
-        PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/translit/", "cmudict.txt") ;
+        PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/translit/", "cmudict.txt") ;
         for (final Entry<String, Set<String>> entry : toIPA.keyValuesSet()) {
             final String word = entry.getKey();
             final Set<String> values = entry.getValue();
@@ -156,7 +156,7 @@ public class Cmudict {
         }
         out.close();
 
-        out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/translit/", "homonyms.txt") ;
+        out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/translit/", "homonyms.txt") ;
         final Set<String> temp = new TreeSet(col);
         for (final Entry<String, Set<String>> entry : fromIpa.keyValuesSet()) {
             final Set<String> values = entry.getValue();
@@ -204,7 +204,7 @@ public class Cmudict {
             reverseIpa.put(reversedRespelledKey, ipa);
         }
 
-        out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/translit/", "reversed.txt");
+        out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/translit/", "reversed.txt");
         for (final Entry<String, String> reversed_normal : reverseIpa.entrySet()) {
             final String original = reversed_normal.getValue();
             out.println(CollectionUtilities.join(fromIpa.get(original), ", ") + "\t{"
@@ -264,7 +264,7 @@ public class Cmudict {
 
     public static Transliterator getTransliteratorFromFile(String ID, String dir, String file) {
         try {
-            final BufferedReader br = BagFormatter.openUTF8Reader(dir, file);
+            final BufferedReader br = FileUtilities.openUTF8Reader(dir, file);
             final StringBuffer input = new StringBuffer();
             while (true) {
                 String line = br.readLine();

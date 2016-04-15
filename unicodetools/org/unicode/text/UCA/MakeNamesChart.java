@@ -25,7 +25,6 @@ import org.unicode.text.UCD.UCD_Types;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
@@ -96,7 +95,7 @@ public class MakeNamesChart {
             nameList.add(firstLine);
             //            System.out.println();
             //            System.out.println("file: " + chartPrefix + fileName);
-            //PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", chartPrefix + fileName);
+            //PrintWriter out = FileUtilities.openUTF8Writer("C:/DATA/GEN/charts/namelist/", chartPrefix + fileName);
             PrintWriter out = Utility.openPrintWriter(NAMESLIST_DIR, chartPrefix + fileName, Utility.UTF8_WINDOWS);
             final String heading = TransliteratorUtilities.toHTML.transliterate(getHeading(lineParts[2]));
                         
@@ -188,7 +187,7 @@ public class MakeNamesChart {
                 }
             }
             out.close();
-            //out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", namePrefix + fileName);
+            //out = FileUtilities.openUTF8Writer("C:/DATA/GEN/charts/namelist/", namePrefix + fileName);
             out = Utility.openPrintWriter(NAMESLIST_DIR, namePrefix + fileName, Utility.UTF8_WINDOWS);
             out.println("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
                     "<html>\n" +
@@ -299,7 +298,7 @@ public class MakeNamesChart {
             out.close();
         }
         blockInfo.in.close();
-        // PrintWriter out = BagFormatter.openUTF8Writer("C:/DATA/GEN/charts/namelist/", "mainList.html");
+        // PrintWriter out = FileUtilities.openUTF8Writer("C:/DATA/GEN/charts/namelist/", "mainList.html");
         final PrintWriter out = Utility.openPrintWriter(NAMESLIST_DIR, "mainList.html", Utility.UTF8_WINDOWS);
         FileUtilities.appendFile(WriteCharts.class, "nameslist_chart_header.html", out);
         //		out.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'>" +
@@ -319,7 +318,7 @@ public class MakeNamesChart {
         WriteCharts.closeIndexFile(out, "", WriteCharts.NAMELIST, true);
 
         //out.close();
-        final BagFormatter bf = new BagFormatter();
+        //final BagFormatter bf = new BagFormatter();
         //System.out.println(bf.showSetDifferences("Has name in decomps", hasName, "Has no name in decomps", hasNoName));
         System.out.println("Name differences: Canonical");
         showNameDifferences(hasNameCan, hasNoNameCan);
@@ -660,7 +659,7 @@ CROSS_REF:  TAB "x" SP CHAR SP LCNAME LF
         String lastLine;
         BlockInfo (String version, String filename) throws IOException {
             in = Utility.openUnicodeFile(filename, version, true, Utility.LATIN1_WINDOWS);
-            //in = BagFormatter.openUTF8Reader(dir, filename);
+            //in = FileUtilities.openUTF8Reader(dir, filename);
         }
         boolean next(List inout) throws IOException {
             inout.clear();

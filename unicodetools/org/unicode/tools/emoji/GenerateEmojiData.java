@@ -7,13 +7,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 import org.unicode.tools.emoji.EmojiData.VariantHandling;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
@@ -49,7 +49,7 @@ public class GenerateEmojiData {
         
         PropPrinter printer = new PropPrinter().set(extraNames);
 
-        try (PrintWriter outText2 = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-data.txt")) {
+        try (PrintWriter outText2 = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-data.txt")) {
             UnicodeSet emoji = EmojiData.EMOJI_DATA.getSingletonsWithDefectives();
             UnicodeSet emoji_presentation = new UnicodeSet(EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.emoji));
             UnicodeSet emoji_modifiers = EmojiData.MODIFIERS;
@@ -70,7 +70,7 @@ public class GenerateEmojiData {
             outText2.println("\n#EOF");
         }
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-sequences.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-sequences.txt")) {
             out.println(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING));
             List<String> type_fields = Arrays.asList(
                     "Emoji_Combining_Sequence", 
@@ -85,7 +85,7 @@ public class GenerateEmojiData {
             out.println("\n#EOF");
         }
 
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-zwj-sequences.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-zwj-sequences.txt")) {
             out.println(Utility.getBaseDataHeader("emoji-zwj-sequences", 51, "Emoji ZWJ Sequence Catalog", Emoji.VERSION_STRING));
             List<String> type_fields = Arrays.asList(
                     "Emoji_ZWJ_Sequence");
@@ -97,7 +97,7 @@ public class GenerateEmojiData {
         }
 
         printer.setFlat(true);
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Emoji.DATA_DIR, "emoji-tags.txt")) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-tags.txt")) {
             out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", Emoji.VERSION_STRING));
             List<String> type_fields = Arrays.asList("Emoji_Flag_Base", "Emoji_Gender_Base", 
                     "Emoji_Hair_Base", "Emoji_Direction_Base");

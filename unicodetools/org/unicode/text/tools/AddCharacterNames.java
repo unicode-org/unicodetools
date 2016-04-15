@@ -9,9 +9,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.UCD.Default;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.text.StringTransform;
 
 public class AddCharacterNames {
@@ -21,8 +21,8 @@ public class AddCharacterNames {
         final File inputFile = new File(input);
         final String parent = inputFile.getParent();
         final String filename = inputFile.getName();
-        final BufferedReader in = BagFormatter.openUTF8Reader(parent, filename);
-        final PrintWriter out = BagFormatter.openUTF8Writer(parent, "XXX_" + filename);
+        final BufferedReader in = FileUtilities.openUTF8Reader(parent, filename);
+        final PrintWriter out = FileUtilities.openUTF8Writer(parent, "XXX_" + filename);
         for (int lineCount = 1; ; ++lineCount) {
             final String line = in.readLine();
             if (line == null) {

@@ -3,11 +3,11 @@ package org.unicode.text.UCD;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.StringPrepParseException;
@@ -31,7 +31,7 @@ public class IDNTester {
 
     public static void main(String[] args) throws IOException {
         initialize();
-        pw = BagFormatter.openUTF8Writer(Settings.GEN_DIR, "idnCount.html");
+        pw = FileUtilities.openUTF8Writer(Settings.GEN_DIR, "idnCount.html");
         pw.println("<html><body>");
         showSet("IDN InputOnly: ", IDNInputOnly);
         showSet("IDN Output: ", IDNOutput);

@@ -27,7 +27,6 @@ import org.unicode.text.UCD.IdentifierInfo.IdentifierType;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -238,7 +237,7 @@ public class IcannMsr {
     }
 
     private static <T> void showValues(String file, UnicodeRelation<T> remap2, T skipValue) {
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "icann/", file)) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "icann/", file)) {
             TreeSet<T> sorted = new TreeSet<T>(remap2.values());
             for (T value : sorted) {
                 UnicodeSet set = remap2.getKeys(value);
@@ -316,7 +315,7 @@ public class IcannMsr {
     }
 
     private static void showValues(String file, UnicodeMap<Pair<IdentifierType, IdentifierType>> diff) {
-        try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "icann/", file)) {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "icann/", file)) {
             Set<Pair<IdentifierType, IdentifierType>> sorted = new TreeSet<>(IDPAIR);
             sorted.addAll(diff.values());
 

@@ -48,6 +48,7 @@ import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
 import javax.imageio.stream.MemoryCacheImageOutputStream;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.Factory;
@@ -59,7 +60,6 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.GmailEmoji.Data;
 
 import com.google.common.base.Objects;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;
@@ -316,7 +316,7 @@ public class LoadImage extends Component {
     //        String newDir = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/AppleEmoji/";
     //        final int maxNew = 846;
     //        String oldDir = Settings.SVN_WORKSPACE_DIRECTORY + "/reports/tr51/images/apple/";
-    //        PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images", "checkApple.html");
+    //        PrintWriter out = FileUtilities.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/images", "checkApple.html");
     //        out.println("<html><body><table>");
     //        for (String s : codepointOrder) {
     //            while (skipSet.contains(i)) {
@@ -1072,7 +1072,7 @@ public class LoadImage extends Component {
             return null;
         }
         public static void makeTest() throws IOException {
-            PrintWriter out = BagFormatter.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "temp/", "tarot.html");
+            PrintWriter out = FileUtilities.openUTF8Writer(Settings.OTHER_WORKSPACE_DIRECTORY + "temp/", "tarot.html");
             out.println("<html><body><table>");
             for (TarotSuits x : values()) {
                 int counter = x.start;

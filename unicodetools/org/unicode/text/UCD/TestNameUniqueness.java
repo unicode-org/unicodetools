@@ -17,10 +17,10 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeProperty;
 
 public class TestNameUniqueness implements UCD_Types {
@@ -55,7 +55,7 @@ public class TestNameUniqueness implements UCD_Types {
                     }
                     if (line == null) {
                         fileCount++;
-                        br = BagFormatter.openReader(files[fileCount][0], files[fileCount][1], "ISO-8859-1");
+                        br = FileUtilities.openReader(files[fileCount][0], files[fileCount][1], "ISO-8859-1");
                         line = br.readLine();
                     }
                 } catch (final IOException e) {}

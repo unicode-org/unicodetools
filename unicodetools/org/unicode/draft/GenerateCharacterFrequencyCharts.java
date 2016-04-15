@@ -1,4 +1,5 @@
 package org.unicode.draft;
+
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ExemplarInfo;
 import org.unicode.cldr.draft.ExemplarInfo.Status;
 import org.unicode.cldr.tool.TablePrinter;
@@ -21,7 +23,6 @@ import org.unicode.cldr.util.SupplementalDataInfo.PopulationData;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -133,7 +134,7 @@ public class GenerateCharacterFrequencyCharts {
             // open files for writing, create table
             final DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(Settings.GEN_DIR + "/frequency/" + language + ".txt"));
             final CompressedDataOutput out = new CompressedDataOutput().set(dataOutputStream);
-            final PrintWriter html = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/frequency-html", htmlFilename);
+            final PrintWriter html = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/frequency-html", htmlFilename);
             html.println("<html><head><meta charset='UTF-8'>\n" +
                     "<link rel='stylesheet' type='text/css' href='index.css' media='screen'/>\n" +
                     "</head><body>\n" +
@@ -248,7 +249,7 @@ public class GenerateCharacterFrequencyCharts {
     }
 
     private void printIndex(TablePrinter indexTable, String file) throws IOException {
-        final PrintWriter index = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/frequency-html", file);
+        final PrintWriter index = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/frequency-html", file);
         index.println("<html><head><meta charset='UTF-8'>\n" +
                 "<link rel='stylesheet' type='text/css' href='index.css' media='screen'/>\n" +
                 "</head><body>\n");

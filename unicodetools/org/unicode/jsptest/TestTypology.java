@@ -14,13 +14,13 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.jsp.Subheader;
 import org.unicode.jsp.Typology;
 import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
@@ -71,8 +71,8 @@ public class TestTypology extends TestFmwk {
             System.out.println(list);
         }
 
-        final PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/categories", "CategoryLabels.txt");
-        final PrintWriter html = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "/categories", "CategoryLabels.html");
+        final PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/categories", "CategoryLabels.txt");
+        final PrintWriter html = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "/categories", "CategoryLabels.html");
         final String fontList = "Georgia, 'Times New Roman', Times, Symbola, Aegyptus, Aegean, Akkadian, Analecta, Musica, Code2000,  Code2001,  Code2002, serif";
         html.println(
                 "<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>\n" +

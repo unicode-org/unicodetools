@@ -23,7 +23,6 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.util.VersionInfo;
 
@@ -157,7 +156,7 @@ public class GenerateEnums {
     }
 
     public static void writeValueEnumFile(Map<PropName, List<String[]>> values) throws IOException {
-        final PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
+        final PrintWriter output = FileUtilities.openUTF8Writer("", PROPERTY_VALUE_OUTPUT);
         output.println("package org.unicode.props;\n"
                 + "import org.unicode.props.PropertyNames.NameMatcher;\n"
                 + "import org.unicode.props.PropertyNames.Named;\n"
@@ -293,7 +292,7 @@ public class GenerateEnums {
     }
 
     public static void writeMainUcdFile() throws IOException {
-        final PrintWriter output = BagFormatter.openUTF8Writer("", PROPERTY_FILE_OUTPUT);
+        final PrintWriter output = FileUtilities.openUTF8Writer("", PROPERTY_FILE_OUTPUT);
 
         output.print(
                 "//Machine generated: GenerateEnums.java\n" +
