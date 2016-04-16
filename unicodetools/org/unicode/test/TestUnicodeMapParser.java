@@ -3,6 +3,7 @@ package org.unicode.test;
 import java.text.ParsePosition;
 
 import org.unicode.cldr.unittest.TestFmwkPlus;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.UnicodeMapParser;
 import org.unicode.text.UCD.UnicodeMapParser.ValueParser;
@@ -11,7 +12,6 @@ import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.UnicodeSet;
 
 public class TestUnicodeMapParser extends TestFmwkPlus{

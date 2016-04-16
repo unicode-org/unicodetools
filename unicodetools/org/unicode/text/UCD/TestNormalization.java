@@ -22,12 +22,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.unicode.cldr.util.BagFormatter;
 import org.unicode.text.utility.ChainException;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.UTF32;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;

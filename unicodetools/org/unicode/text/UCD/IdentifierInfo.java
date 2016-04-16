@@ -20,14 +20,14 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.draft.ScriptMetadata;
 import org.unicode.cldr.draft.ScriptMetadata.IdUsage;
 import org.unicode.cldr.draft.ScriptMetadata.Info;
+import org.unicode.cldr.util.BagFormatter;
+import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.BagFormatter.NameLabel;
 import org.unicode.text.UCD.GenerateConfusables.FakeBreak;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.dev.util.BagFormatter.NameLabel;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;

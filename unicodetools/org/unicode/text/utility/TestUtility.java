@@ -32,14 +32,14 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.ICUPropertyFactory;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 
 import com.ibm.icu.dev.util.DataInputCompressor;
 import com.ibm.icu.dev.util.DataOutputCompressor;
-import com.ibm.icu.dev.util.ICUPropertyFactory;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMapIterator;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;

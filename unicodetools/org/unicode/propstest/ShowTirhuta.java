@@ -5,10 +5,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.UCD.Default;
 
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Transform;

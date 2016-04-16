@@ -15,15 +15,15 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.ICUPropertyFactory;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.XMLFileReader;
 import org.unicode.cldr.util.XPathParts;
+import org.unicode.cldr.util.UnicodeProperty.Factory;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.ICUPropertyFactory;
-import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.Factory;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

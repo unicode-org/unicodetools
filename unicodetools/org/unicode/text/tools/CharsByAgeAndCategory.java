@@ -4,12 +4,11 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.UCD;
 import org.unicode.text.UCD.UCD_Types;
-
-import com.ibm.icu.dev.util.UnicodeProperty;
 
 public class CharsByAgeAndCategory {
     public static void main(String[] args) {

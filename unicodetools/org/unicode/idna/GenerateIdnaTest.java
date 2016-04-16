@@ -10,6 +10,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.UnicodePropertySymbolTable;
 import org.unicode.idna.Idna2008.Idna2008Type;
 import org.unicode.idna.Uts46.Errors;
 import org.unicode.idna.Uts46.IdnaChoice;
@@ -25,10 +28,7 @@ import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.FileUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.dev.util.UnicodePropertySymbolTable;
 import com.ibm.icu.dev.util.UnicodeTransform;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;

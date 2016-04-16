@@ -24,6 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.draft.CldrUtility.VariableReplacer;
 import org.unicode.draft.UnicodeDataInput;
 import org.unicode.draft.UnicodeDataInput.ItemReader;
@@ -37,7 +38,6 @@ import org.unicode.text.utility.Utility;
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transform;

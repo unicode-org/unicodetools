@@ -16,7 +16,9 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.ICUPropertyFactory;
 import org.unicode.cldr.util.Timer;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.With;
 import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
@@ -31,11 +33,9 @@ import org.unicode.props.UnicodeSetUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.ICUPropertyFactory;
 import com.ibm.icu.dev.util.Tabber;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;

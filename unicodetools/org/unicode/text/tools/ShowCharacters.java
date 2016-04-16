@@ -9,7 +9,9 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.unicode.cldr.util.CldrUtility;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.With;
+import org.unicode.cldr.util.UnicodeProperty.RegexMatcher;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
@@ -25,8 +27,6 @@ import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 import org.unicode.tools.emoji.GenerateEmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.RegexMatcher;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
 import com.ibm.icu.impl.Row.R5;

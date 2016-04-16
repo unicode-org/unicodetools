@@ -12,12 +12,12 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.DtdType;
+import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Settings;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.LocaleData;

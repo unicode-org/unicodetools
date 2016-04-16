@@ -8,17 +8,17 @@ import java.util.SortedMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.ICUPropertyFactory;
+import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.UnicodeProperty.AliasAddAction;
+import org.unicode.cldr.util.UnicodeProperty.SimpleProperty;
+import org.unicode.cldr.util.UnicodeProperty.UnicodeSetProperty;
 import org.unicode.idna.Idna.IdnaType;
 import org.unicode.idna.Idna2003;
 import org.unicode.idna.Idna2008;
 import org.unicode.idna.Uts46;
 
-import com.ibm.icu.dev.util.ICUPropertyFactory;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.AliasAddAction;
-import com.ibm.icu.dev.util.UnicodeProperty.SimpleProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.UnicodeSetProperty;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty.NameChoice;
 import com.ibm.icu.text.Collator;

@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.tool.TablePrinter;
 import org.unicode.cldr.util.Predicate;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.idna.GenerateIdnaTest;
 import org.unicode.idna.Idna.IdnaType;
@@ -33,7 +34,6 @@ import org.unicode.idna.Punycode;
 import org.unicode.idna.Uts46;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Row.R4;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;

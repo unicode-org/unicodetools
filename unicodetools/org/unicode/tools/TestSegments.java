@@ -15,12 +15,12 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.util.CLDRPaths;
 import org.unicode.cldr.util.CldrUtility;
+import org.unicode.cldr.util.ICUPropertyFactory;
 import org.unicode.cldr.util.Log;
 import org.unicode.cldr.util.RandomStringGenerator;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.tools.Segmenter.Rule.Breaks;
 
-import com.ibm.icu.dev.util.ICUPropertyFactory;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.BreakIterator;
 import com.ibm.icu.text.RuleBasedBreakIterator;
 import com.ibm.icu.text.UTF16;
