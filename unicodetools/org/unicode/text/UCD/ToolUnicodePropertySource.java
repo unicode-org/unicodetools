@@ -16,6 +16,11 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
+import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.UnicodeProperty.AliasAddAction;
+import org.unicode.cldr.util.UnicodeProperty.BaseProperty;
+import org.unicode.cldr.util.UnicodeProperty.SimpleProperty;
+import org.unicode.cldr.util.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.text.utility.Settings;
@@ -23,11 +28,6 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.AliasAddAction;
-import com.ibm.icu.dev.util.UnicodeProperty.BaseProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.SimpleProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.UnicodeMapProperty;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.StringUCharacterIterator;
 import com.ibm.icu.lang.UCharacter;

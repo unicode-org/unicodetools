@@ -34,9 +34,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.TransliteratorUtilities;
 
 import com.ibm.icu.dev.util.Tabber.HTMLTabber;
-import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.Composer;
 import com.ibm.icu.dev.util.UnicodeMapIterator;

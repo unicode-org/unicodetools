@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.text.Transliterator;
 
 public class UseTransliterator {

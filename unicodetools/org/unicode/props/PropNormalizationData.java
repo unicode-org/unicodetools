@@ -3,12 +3,12 @@ package org.unicode.props;
 import java.util.BitSet;
 import java.util.HashMap;
 
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.props.UcdPropertyValues.Canonical_Combining_Class_Values;
 import org.unicode.text.UCD.NormalizationData;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 

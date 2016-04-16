@@ -14,19 +14,19 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.BagFormatter;
+import org.unicode.cldr.util.ICUPropertyFactory;
+import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.UnicodeProperty.Factory;
+import org.unicode.cldr.util.UnicodeProperty.PatternMatcher;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.tool.UOption;
-import com.ibm.icu.dev.util.BagFormatter;
-import com.ibm.icu.dev.util.ICUPropertyFactory;
 import com.ibm.icu.dev.util.Tabber;
 import com.ibm.icu.dev.util.Tabber.HTMLTabber;
 import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
-import com.ibm.icu.dev.util.UnicodeProperty.Factory;
-import com.ibm.icu.dev.util.UnicodeProperty.PatternMatcher;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.Transliterator;

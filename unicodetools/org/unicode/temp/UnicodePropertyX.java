@@ -8,8 +8,9 @@ package org.unicode.temp;
 
 import java.util.List;
 
+import org.unicode.cldr.util.UnicodeProperty;
+
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.text.UnicodeSet;
 
 public abstract class UnicodePropertyX<T> extends UnicodeProperty {

@@ -21,12 +21,12 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import org.unicode.cldr.util.RegexUtilities;
+import org.unicode.cldr.util.TransliteratorUtilities;
+import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.tools.Segmenter.Rule.Breaks;
 
-import com.ibm.icu.dev.util.TransliteratorUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.Composer;
-import com.ibm.icu.dev.util.UnicodeProperty;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
