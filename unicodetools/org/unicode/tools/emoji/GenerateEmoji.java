@@ -77,13 +77,13 @@ import com.ibm.icu.util.ULocale;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
+    static boolean                 SHOW                        = false;
     private static final boolean SHOW_NAMES_LIST = false;
 
     private static final boolean           DRAFT                       = false;
 
     private static final String            DRAFT_TITLE_PREFIX          = DRAFT ? "Draft " : "";
 
-    static boolean                 SHOW                        = false;
 
     private static final boolean           DATAURL                     = true;
     private static final int               RESIZE_IMAGE                = -1;
@@ -154,7 +154,7 @@ public class GenerateEmoji {
     }
     static final UnicodeMap<String>        VERSION                     = Emoji.LATEST.load(UcdProperty.Age);
     static {
-        System.out.println("🤧, " + Emoji.VERSION_ENUM.get("🤧"));
+        if (SHOW) System.out.println("🤧, " + Emoji.VERSION_ENUM.get("🤧"));
     }
     static final UnicodeMap<String>        WHITESPACE                  = Emoji.LATEST.load(UcdProperty.White_Space);
     static final UnicodeMap<String>        GENERAL_CATEGORY            = Emoji.LATEST.load(UcdProperty.General_Category);
@@ -406,6 +406,18 @@ public class GenerateEmoji {
             if (cell != null) {
                 return cell;
             }
+            if (s.contains(Emoji.TEXT_VARIANT_STRING)) {
+                cell = getImage(source, s.replace(Emoji.TEXT_VARIANT_STRING, ""), useDataURL, extraClasses);
+                if (cell != null) {
+                    return cell;
+                }
+            }
+            if (s.contains(Emoji.EMOJI_VARIANT_STRING)) {
+                cell = getImage(source, s.replace(Emoji.EMOJI_VARIANT_STRING, ""), useDataURL, extraClasses);
+                if (cell != null) {
+                    return cell;
+                }
+            }
         }
 
         if (EmojiData.MODIFIERS.containsSome(s) && !EmojiData.MODIFIERS.contains(s) && s.length() > 2) {
@@ -573,7 +585,7 @@ public class GenerateEmoji {
         showOrdering(Style.bestImage, true, false);
         showCandidates();
         // show data
-        System.out.println("Total Emoji:\t" + EmojiData.EMOJI_DATA.getChars().size());
+        if (SHOW) System.out.println("Total Emoji:\t" + EmojiData.EMOJI_DATA.getChars().size());
         UnicodeSet newItems = new UnicodeSet();
         newItems.addAll(EmojiData.EMOJI_DATA.getChars());
         newItems.removeAll(JSOURCES);
@@ -1072,7 +1084,7 @@ public class GenerateEmoji {
             }
             out.println("</tr>");
         }
-        System.out.println(totalSorted);
+        if (SHOW) System.out.println(totalSorted);
         if (showUca) {
             out.println("</table></td>");
             final UnicodeMap<Block_Values>        blocks           = Emoji.LATEST.loadEnum(UcdProperty.Block, UcdPropertyValues.Block_Values.class);
@@ -2456,6 +2468,7 @@ public class GenerateEmoji {
 
     static final Joiner SPACE_JOINER = Joiner.on(' ').skipNulls();
 
+
     static void showCandidates() throws IOException {
         // gather data
         EmojiData betaEmojiData = EmojiData.of(Emoji.VERSION_BETA);
@@ -2507,8 +2520,9 @@ public class GenerateEmoji {
             String blackAndWhite = getImage(Source.proposed, source, true, "");
             String color1 = getImage(Source.emojixpress, source, true, "");
             String color2 = getImage(Source.emojipedia, source, true, "");
+            String color3 = getImage(Source.google, source, true, "");
             String sample = getImage(Source.sample, source, true, "");
-            String color = SPACE_JOINER.join(color1, color2, sample);
+            String color = SPACE_JOINER.join(color1, color2, sample, color3);
             String currentRow = "<tr>"
                     + "<td class='rchars'>" + ++count + "</td>"
                     + "<td class='code'>" + getDoubleLink(Utility.hex(source).replace(" ", "_"), Emoji.toUHex(source)) + "</td>"
@@ -2527,9 +2541,9 @@ public class GenerateEmoji {
         UnicodeSet items = cd.getCharacters();
 
         for (CandidateData.Quarter q : quartersForChars.values()) {
-            System.out.println(q + "\t" + quartersForChars.getSet(q));
+            if (SHOW) System.out.println(q + "\t" + quartersForChars.getSet(q));
         }
-        System.out.println(items.toString().replace("\\", "\\\\"));
+        if (SHOW) System.out.println(items.toString().replace("\\", "\\\\"));
         // now print
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-candidates.html");) {
             writeHeader(out, "Emoji Candidates", null, "<p>The Unicode Technical Committee (UTC) has accepted the following "

@@ -9,6 +9,7 @@
 	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/xercesImpl.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/UnicodeJsps"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/cldr-tools"/>
-	<classpathentry kind="lib" path="/cldr-tools/libs/guava-18.0.jar" sourcepath="/cldr-tools/libs/guava-18.0-sources.jar"/>
+	<classpathentry kind="lib" path="/cldr/tools/java/libs/guava-sources.jar"/>
+	<classpathentry kind="lib" path="/cldr-tools/libs/guava.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

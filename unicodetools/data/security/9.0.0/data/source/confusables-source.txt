@@ -541,8 +541,8 @@
 0D14 ;  0D12 0D57   # ( ഔ → ഒൗ) MALAYALAM LETTER AU → MALAYALAM LETTER O, MALAYALAM AU LENGTH MARK
 0D19 ;  0D0C    # ( ങ → ഌ) MALAYALAM LETTER NGA → MALAYALAM LETTER VOCALIC L
 0D1C ;  0B9C    # ( ജ → ஜ) MALAYALAM LETTER JA → TAMIL LETTER JA
-0D20 ;  0030    # ( ഠ → 0) MALAYALAM LETTER TTHA → DIGIT ZERO
-0D20 ;  004F    # ( ഠ → O) MALAYALAM LETTER TTHA → LATIN CAPITAL LETTER O
+0D20 ;  o    # ( ഠ → 0) MALAYALAM LETTER TTHA → DIGIT ZERO
+0D20 ;  o    # ( ഠ → O) MALAYALAM LETTER TTHA → LATIN CAPITAL LETTER O
 # 0D20 ;  0BE6    # ( ഠ → ௦) MALAYALAM LETTER TTHA → TAMIL DIGIT ZERO
 0D23 ;  0BA3    # ( ണ → ண) MALAYALAM LETTER NNA → TAMIL LETTER NNA
 0D31 ;  0D30    # ( റ → ര) MALAYALAM LETTER RRA → MALAYALAM LETTER RA
@@ -560,7 +560,7 @@
 0D6B ;  0D26 0D4D 0D30  # ( ൫ → ദ്ര) MALAYALAM DIGIT FIVE → MALAYALAM LETTER DA, MALAYALAM SIGN VIRAMA, MALAYALAM LETTER RA
 0D6E ;  0D35 0D4D   # ( ൮ → വ്) MALAYALAM DIGIT EIGHT → MALAYALAM LETTER VA, MALAYALAM SIGN VIRAMA
 0D6F ;  0D28 0D4D   # ( ൯ → ന്) MALAYALAM DIGIT NINE → MALAYALAM LETTER NA, MALAYALAM SIGN VIRAMA
-0D8C ;  0D28 0D4D 0D28  # ( ඌ → ന്ന) SINHALA LETTER UUYANNA → MALAYALAM LETTER NA, MALAYALAM SIGN VIRAMA, MALAYALAM LETTER NA
+0D6C ;  0D28 0D4D 0D28  # ( ඌ → ന്ന) SINHALA LETTER UUYANNA → MALAYALAM LETTER NA, MALAYALAM SIGN VIRAMA, MALAYALAM LETTER NA
 0E03 ;  0E02    # ( ฃ → ข) THAI CHARACTER KHO KHUAT → THAI CHARACTER KHO KHAI
 0E0B ;  0E0A    # ( ซ → ช) THAI CHARACTER SO SO → THAI CHARACTER CHO CHANG
 0E0F ;  0E0E    # ( ฏ → ฎ) THAI CHARACTER TO PATAK → THAI CHARACTER DO CHADA
@@ -4892,7 +4892,7 @@ A7AB ; 3
 A7F7 ; —
 10412 ; A79A
 1043A ; A79B
-025E ; A79D
+# 025E ; A79D mirrors
 ; A79C
 ꓤ ; A79E
 ∸ ; ﬩
@@ -5127,6 +5127,133 @@ AB60 ; 0459
 
 # For Unicode 9.0
 # From 138-A039
-#23FB ; 23FC
-#23FD; I
-#23FE  ; ☾
+23FB ; 23FC
+23FD; I
+23FE  ; ☾
+
+
+# Fraction 1/16 is confusable with HA+VIRAMA+MA
+0D76; 0D39 0D4D 0D2E # 0D76;MALAYALAM FRACTION ONE SIXTEENTH => 0D39;MALAYALAM LETTER HA + 0D4D;MALAYALAM SIGN VIRAMA + 0D2E;MALAYALAM LETTER MA
+
+# Fraction 3/80 is confusable with NA+VIRAMA+MA
+0D5A; 0D28 0D4D 0D2E # 0D5A;MALAYALAM FRACTION THREE EIGHTIETHS => 0D28;MALAYALAM LETTER NA + 0D4D;MALAYALAM SIGN VIRAMA + 0D2E;MALAYALAM LETTER MA
+
+# Archaic II is confusable with ANUSVARA+RA+ANUSVARA
+0D5F; 0D02 0D30 0D02 # 0D5F;MALAYALAM LETTER ARCHAIC II => 0D02;MALAYALAM SIGN ANUSVARA + 0D30;MALAYALAM LETTER RA + 0D02;MALAYALAM SIGN ANUSVARA
+
+11413 ; 11434 11442 11412 # newa letter ngha => ha virama nga
+11419 ; 11434 11442 11418 # newa letter nyha => ha virama nya
+11424 ; 11434 11442 11423 # newa letter nha => ha virama na
+1142A ; 11434 11442 11429 # newa letter mha => ha virama ma
+1142D ; 11434 11442 1142C # newa letter rha => ha virama ra
+1142F ; 11434 11442 1142E # newa letter lha => ha virama la
+# Add if we extend to matching sequences
+#11413 ; 11412 11442 11434 # newa letter ngha => nga virama ha
+#11419 ; 11418 11442 11434 # newa letter nyha => nya virama ha
+#11424 ; 11423 11442 11434 # newa letter nha => na virama ha
+#1142A ; 11429 11442 11434 # newa letter mha => ma virama ha
+#1142D ; 1142C 11442 11434 # newa letter rha => ra virama ha
+#1142F ; 1142E 11442 11434 # newa letter lha => la virama ha
+
+#Suggestions (after review)
+ꦝ	;	ꦣ
+؏	;	𞺏
+ꬿ	;	ɔ̸
+ꞝ	;	ʚ
+ꞏ	;	·
+Ꚛ	;	⊕
+ꚡ	;	Ͷ
+ꚰ	;	ᚹ
+ꚱ	;	Ͱ
+꛴	;	꛳꛳
+ꛟ	;	V
+ꛎ	;	Λ
+ꛍ	;	ʡ
+ꛛ	;	Π
+ꛫ	;	ʔ
+ꛯ	;	Ƨ
+꛰	;	̂
+꛱	;	̄
+ꝰ	;	⁹
+꠰	;	।
+ⰿ	;	ꦒ
+🜁	;	Ꙙ
+𝉅	;	∩
+𝈂	;	Ӿ
+𝈋	;	Ͷ
+𝈍	;	V
+𝈏	;	\
+𝈒	;	7
+𝈓	;	Ϝ
+𝈔	;	▽
+𝈕	;	⅂
+𝈖	;	R
+𝈗	;	Ɐ
+𝈚	;	Ꝋ
+𝈛	;	⅄
+𝈜	;	Ʇ
+𝈆	;	3
+𝈡	;	Ɛ
+𝈢	;	Ѡ
+𝈪	;	L
+𝈫	;	𝈕
+𝈰	;	ꟻ
+𝈶	;	<
+𝈷	;	>
+𝈸	;	⊏
+𝈹	;	⊐
+𝈺	;	/
+𝈻	;	𝈏
+𝈿	;	ᛋ
+꙯	;	⃩
+# ꭢ	;	ɔe # doesn't look similar
+# ꭣ	;	uo # doesn't look similar
+ꭁ	;	ǝø
+ꭂ	;	ǝɵ
+# ⷪ	;	ͦ		# different positioning
+# ⷬ	;	ᷮ	# different positioning
+# ⷭ	;	ͨ	# different positioning
+# ⷯ	;	ͯ	# different positioning
+# ⷶ	;	ͣ	# different positioning
+# ⷷ	;	ͤ	# different positioning
+Ѽ	;	Ѡ҃
+ѽ	;	ѡ҃
+Ѽ	;	Ѡ҆҇
+ѽ	;	ѡ҆҇
+Ꙑ	;	ЪІ
+ꙑ	;	ъı
+U+3013	;	U+003D
+$	;	＄
+%	;	％
+&	;	＆
+(	;	（
+)	;	）
+*	;	＊
++	;	＋
+,	;	，
+.	;	．
+/	;	／
+/	;	／
+/	;	／
+/	;	／
+
+# Asmus
+ሀ	;	Ս
+ሆ	;	Մ
+ሣ	;	պ
+ቀ	;	Փ
+በ	;	Ո
+ቡ	;	Ռ
+ኔ	;	ձ
+ኮ	;	Ի
+ዐ	;	Օ
+ጣ	;	Պ
+
+# Cibu (may be dups)
+ ൦ ; ഠ # U+0D66 MALAYALAM DIGIT ZERO ; U+0D20 MALAYALAM LETTER TTHA
+ ൪ ; ർ # U+0D6A MALAYALAM DIGIT FOUR; U+0D7C MALAYALAM LETTER CHILLU RR
+ ൫ ; ദ ് ര # U+0D6B MALAYALAM DIGIT FIVE ; U+0D26 MALAYALAM LETTER DA + U+0D4D MALAYALAM SIGN VIRAMA + U+0D30 MALAYALAM LETTER RA
+ ൭ ; 9 # U+0D6D MALAYALAM DIGIT SEVEN ; 9
+ ൮ ; വ ് ര # U+0D6E MALAYALAM DIGIT EIGHT; U+0D35 MALAYALAM LETTER VA + U+0D4D MALAYALAM SIGN VIRAMA + U+0D30 MALAYALAM LETTER RA
+ ൯ ; ൻ # U+0D6F MALAYALAM DIGIT NINE ; U+0D7B MALAYALAM LETTER CHILLU N
+ ൹ ; ന ു # U+0D79 MALAYALAM DATE MARK ; U+0D28 MALAYALAM LETTER NA + U+0D41 MALAYALAM VOWEL SIGN U

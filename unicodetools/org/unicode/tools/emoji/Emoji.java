@@ -86,7 +86,7 @@ public class Emoji {
 
     public enum Source {
         // pngs
-        color, apple, twitter("Twtr."), emojione("One"), google("Goog."), 
+        color, apple, twitter("Twtr."), emojione("One"), google("Googᵈ"), 
         samsung("Sams."), windows("Wind."), ref, proposed, emojipedia, emojixpress, sample,
         // gifs; don't change order!
         gmail("GMail"), sb, dcm, kddi;
@@ -144,6 +144,7 @@ public class Emoji {
 
 
     public static final char KEYCAP_MARK = '\u20E3';
+    public static final String KEYCAP_MARK_STRING = String.valueOf(KEYCAP_MARK);
     private static final UnicodeSet Unicode8Emoji = new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3FD}\\x{1F3FE}\\x{1F3FF}\\x{1F4FF}\\x{1F54B}\\x{1F54C}\\x{1F54D}"
             +"\\x{1F54E}\\x{1F6D0}\\x{1F32D}\\x{1F32E}\\x{1F32F}\\x{1F37E}\\x{1F37F}\\x{1F983}\\x{1F984}\\x{1F9C0}"
             +"\\x{1F3CF}\\x{1F3D0}\\x{1F3D1}\\x{1F3D2}\\x{1F3D3}\\x{1F3F8}\\x{1F3F9}\\x{1F3FA}\\x{1F643}"

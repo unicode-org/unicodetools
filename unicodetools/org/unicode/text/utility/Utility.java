@@ -1100,6 +1100,24 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
             output.println(line);
         }
     }
+    
+    /** If contents(newFile) ≠ contents(oldFile), rename newFile to old. Otherwise delete newfile. Return true if replaced. **/
+    public static boolean replaceDifferentOrDelete(String oldFile, String newFile, boolean skipCopyright) throws IOException {
+        final String lines[] = new String[2];
+        final boolean identical = filesAreIdentical(oldFile, newFile, skipCopyright, lines);
+        if (identical) {
+            new File(newFile).delete();
+            return false;
+        } else {
+            System.out.println("Found difference in : " + oldFile + ", " + newFile);
+            final int diff = compare(lines[0], lines[1]);
+            System.out.println(" File1: '" + lines[0].substring(0,diff) + "', '" + lines[0].substring(diff) + "'");
+            System.out.println(" File2: '" + lines[1].substring(0,diff) + "', '" + lines[1].substring(diff) + "'");
+            new File(newFile).renameTo(new File(oldFile));
+            return true;
+        }
+    }
+
 
     public static boolean renameIdentical(String file1, String file2, String batFile, boolean skipCopyright) throws IOException {
         if (file1 == null) {
@@ -1125,6 +1143,11 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     }
 
     public static boolean filesAreIdentical(String file1, String file2, boolean skipCopyright, String[] lines) throws IOException {
+        if (file1 == null) {
+            lines[0] = null;
+            lines[1] = null;
+            return false;
+        }
         final BufferedReader br1 = new BufferedReader(new FileReader(file1), 32*1024);
         final BufferedReader br2 = new BufferedReader(new FileReader(file2), 32*1024);
         String line1 = "";

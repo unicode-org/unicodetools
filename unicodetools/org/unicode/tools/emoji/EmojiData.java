@@ -84,6 +84,7 @@ public class EmojiData {
     private final UnicodeSet singletonsWithoutDefectives = new UnicodeSet();
     private final UnicodeSet charsWithData = new UnicodeSet();
     private final UnicodeSet allEmojiWithoutDefectives;
+    private final UnicodeSet sortingCharacters;
     private final UnicodeSet allEmojiWithDefectives;
 
     private final Map<DefaultPresentation, UnicodeSet> defaultPresentationMap;
@@ -97,6 +98,7 @@ public class EmojiData {
     private final UnicodeSet afterZwj = new UnicodeSet();
     private final UnicodeSet flagSequences = new UnicodeSet();
     private final UnicodeSet keycapSequences = new UnicodeSet();
+    private final UnicodeSet keycapSequenceExtras = new UnicodeSet();
     private final UnicodeSet keycapBases = new UnicodeSet();
 
     static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
@@ -126,6 +128,11 @@ public class EmojiData {
         EnumMap<DefaultPresentation, UnicodeSet> _defaultPresentationMap = new EnumMap<>(DefaultPresentation.class);
         EnumMap<ModifierStatus, UnicodeSet> _modifierClassMap = new EnumMap<>(ModifierStatus.class);
         EnumMap<Emoji.CharSource, UnicodeSet> _charSourceMap = new EnumMap<>(Emoji.CharSource.class);
+
+        String[] ADD_VARIANT_KEYCAPS = {
+                Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING,
+                Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING,
+        };
 
         this.version = version;
         final String directory = Settings.DATA_DIR + "emoji/" + version.getVersionString(2, 4);
@@ -180,8 +187,12 @@ public class EmojiData {
                         if (Emoji.isRegionalIndicator(first)) {
                             flagSequences.add(source);
                         } else if (EM.containsSome(source) || NSM.containsSome(source)) {
-                            keycapSequences.add(source);
-                            keycapBases.add(source.codePointAt(0));
+                            final String firstString = source.substring(0,1);
+                            keycapSequences.add(firstString + Emoji.KEYCAP_MARK_STRING);
+                            for (String s : ADD_VARIANT_KEYCAPS) {
+                                keycapSequenceExtras.add(firstString + s);
+                            }
+                            keycapBases.add(firstString);
                         } else if (Emoji.DEFECTIVE.contains(first)) {
                             throw new IllegalArgumentException("Unexpected");
                         }
@@ -200,6 +211,7 @@ public class EmojiData {
             afterZwj.freeze();
             flagSequences.freeze();
             keycapSequences.freeze();
+            keycapSequenceExtras.freeze();
             keycapBases.freeze();
 
             for (String line : FileUtilities.in(EmojiData.class, "emojiSources.txt")) {
@@ -284,9 +296,15 @@ public class EmojiData {
         .addAll(keycapSequences)
         .addAll(modifierSequences)
         .addAll(zwjSequencesNormal)
+        .addAll(keycapSequenceExtras)
         .freeze();
 
         allEmojiWithoutDefectives = new UnicodeSet(allEmojiWithDefectives)
+        .removeAll(Emoji.DEFECTIVE)
+        .removeAll(keycapSequenceExtras)
+        .freeze();
+        
+        sortingCharacters = new UnicodeSet(allEmojiWithDefectives)
         .removeAll(Emoji.DEFECTIVE)
         .freeze();
     }
@@ -484,6 +502,9 @@ public class EmojiData {
                 //show(key, ages, betaNames, emojiData2);
             }
         }
+        System.out.println("Keycap0 " + emojiData3.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
+        System.out.println("KeycapE " + emojiData3.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+        System.out.println("KeycapT " + emojiData3.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
     }
 
     private static void show(int cp, final UnicodeMap<String> names, EmojiData emojiData) {
@@ -491,7 +512,7 @@ public class EmojiData {
     }
     private static void show(String cp, UnicodeMap<Age_Values> ages, final UnicodeMap<String> names, EmojiData emojiData) {
         System.out.println(
-                ages.get(cp).getShortName()
+                Emoji.getNewest(cp).getShortName()
                 + ";\temojiVersion=" + emojiData.version.getVersionString(2, 2) 
                 + ";\t" + Utility.hex(cp) 
                 + ";\t" + cp
@@ -501,7 +522,7 @@ public class EmojiData {
     }
 
     public UnicodeSet getSortingChars() {
-        return allEmojiWithoutDefectives;
+        return sortingCharacters;
     }
 
     public static final EmojiData EMOJI_DATA = of(Emoji.VERSION_TO_GENERATE);
@@ -551,7 +572,7 @@ public class EmojiData {
     .freeze();
 
     public enum VariantHandling {sequencesOnly, all}
-    
+
     /**
      * Add EVS to sequences where needed (and remove where not)
      * @param source

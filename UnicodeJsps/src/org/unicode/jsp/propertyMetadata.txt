@@ -21,7 +21,7 @@ Simple_Titlecase_Mapping ;   UCD ;    String ; Case
 Simple_Uppercase_Mapping ;   UCD ;    String ; Case
 Titlecase_Mapping ;  UCD ;    String ; Case
 Uppercase_Mapping ;  UCD ;    String ; Case
-Case_Sensitive ; X-ICU ;    Binary ; Case
+Case_Sensitive ; ICU ;    Binary ; Case
 isUppercase ;    Unicode ;    Binary ; Case
 isTitlecase ;    Unicode ;    Binary ; Case
 isLowercase ;    Unicode ;    Binary ; Case
@@ -71,19 +71,19 @@ Hangul_Syllable_Type ;   UCD ;    Enumerated ; General
 Identifier_Status ; UTS ;    Enumerated ; X-Security
 Identifier_Type ; UTS ;    Enumerated ; X-Security
 confusable ; UTS ;    Enumerated ; X-Security
-subhead ;    UCD ;    String ; General
+subhead ;    Nameslist ;    String ; General
 ID_Continue ;    UCD ;    Binary ; Identifiers
 ID_Start ;   UCD ;    Binary ; Identifiers
 Pattern_Syntax ; UCD ;    Binary ; Identifiers
 Pattern_White_Space ;    UCD ;    Binary ; Identifiers
 XID_Continue ;   UCD ;    Binary ; Identifiers
 XID_Start ;  UCD ;    Binary ; Identifiers
-uts46 ;  UTS ;    Enumerated ; X-IDNA
-idna2008c ;  UTS ;    Enumerated ; X-IDNA
-idna2003 ;   UTS ;    Enumerated ; X-IDNA
-toUts46t ;   UTS ;    String ; X-IDNA
-toUts46n ;   UTS ;    String ; X-IDNA
-toIdna2003 ; UTS ;    String ; X-IDNA
+uts46 ;  UTS ;    Enumerated ; IDNA
+idna2008c ;  UTS ;    Enumerated ; IDNA
+idna2003 ;   UTS ;    Enumerated ; IDNA
+toUts46t ;   UTS ;    String ; IDNA
+toUts46n ;   UTS ;    String ; IDNA
+toIdna2003 ; UTS ;    String ; IDNA
 Dash ;   UCD ;    Binary ; Miscellaneous
 Diacritic ;  UCD ;    Binary ; Miscellaneous
 Extender ;   UCD ;    Binary ; Miscellaneous
@@ -99,10 +99,10 @@ ISO_Comment ;    UCD ;    Miscellaneous ;  Miscellaneous
 Unicode_1_Name ; UCD ;    Miscellaneous ;  Miscellaneous
 Changes_When_NFKC_Casefolded ;   UCD ;    Binary ; Normalization
 Full_Composition_Exclusion ; UCD ;    Binary ; Normalization
-NFKD_Inert ; X-ICU ;    Binary ; Normalization
-NFKC_Inert ; X-ICU ;    Binary ; Normalization
-NFD_Inert ;  X-ICU ;    Binary ; Normalization
-NFC_Inert ;  X-ICU ;    Binary ; Normalization
+NFKD_Inert ; ICU ;    Binary ; Normalization
+NFKC_Inert ; ICU ;    Binary ; Normalization
+NFD_Inert ;  ICU ;    Binary ; Normalization
+NFC_Inert ;  ICU ;    Binary ; Normalization
 isNFKD ; Unicode ;    Binary ; Normalization
 isNFKC ; Unicode ;    Binary ; Normalization
 isNFD ;  Unicode ;    Binary ; Normalization
@@ -113,8 +113,8 @@ NFC_Quick_Check ;    UCD ;    Enumerated ; Normalization
 NFD_Quick_Check ;    UCD ;    Enumerated ; Normalization
 NFKC_Quick_Check ;   UCD ;    Enumerated ; Normalization
 NFKD_Quick_Check ;   UCD ;    Enumerated ; Normalization
-Trail_Canonical_Combining_Class ;    X-ICU ;    Enumerated ; Normalization
-Lead_Canonical_Combining_Class ; X-ICU ;    Enumerated ; Normalization
+Trail_Canonical_Combining_Class ;    ICU ;    Enumerated ; Normalization
+Lead_Canonical_Combining_Class ; ICU ;    Enumerated ; Normalization
 NFKC_Casefold ;  UCD ;    String ; Normalization
 toNfkd ; Unicode ;    String ; Normalization
 toNfkc ; Unicode ;    String ; Normalization
@@ -124,13 +124,13 @@ ASCII_Hex_Digit ;    UCD ;    Binary ; Numeric
 Hex_Digit ;  UCD ;    Binary ; Numeric
 Numeric_Type ;   UCD ;    Enumerated ; Numeric
 Numeric_Value ;  UCD ;    Numeric ;    Numeric
-xdigit ; UTS ;    Binary ; X-Regex
-print ;  UTS ;    Binary ; X-Regex
-graph ;  UTS ;    Binary ; X-Regex
-blank ;  UTS ;    Binary ; X-Regex
-alnum ;  UTS ;    Binary ; X-Regex
+xdigit ; UTS ;    Binary ; Regex
+print ;  UTS ;    Binary ; Regex
+graph ;  UTS ;    Binary ; Regex
+blank ;  UTS ;    Binary ; Regex
+alnum ;  UTS ;    Binary ; Regex
 Join_Control ;   UCD ;    Binary ; Shaping and Rendering
-Segment_Starter ;    X-ICU ;   Binary ; Shaping and Rendering
+Segment_Starter ;    ICU ;   Binary ; Shaping and Rendering
 East_Asian_Width ;   UCD ;    Enumerated ; Shaping and Rendering
 Grapheme_Cluster_Break ; UCD ;    Enumerated ; Shaping and Rendering
 Joining_Group ;  UCD ;    Enumerated ; Shaping and Rendering
@@ -147,24 +147,23 @@ Name ; UCD ;    String ; General
 #Name_Alias ; UCD ;    String ; General
 Script_Extensions ; UCD ;    String ; General
 
-ANY ; UTS ;    Binary ; X-Regex
-ASCII ; UTS ;    Binary ; X-Regex
-bmp ; UTS ;    Binary ; X-Regex
-idna2008 ; UTS ;    Binary ; X-IDNA
-uca ; UTS ;    Binary ; X-UCA
-uca2 ; UTS ;    Binary ; X-UCA
-uca2.5 ; UTS ;    Binary ; X-UCA
-uca3 ; UTS ;    Binary ; X-UCA
-#Subheader ; UCD ;    String ; X-NamesList
+ANY ; UTS ;    Binary ; Regex
+ASCII ; UTS ;    Binary ; Regex
+bmp ; UTS ;    Binary ; Regex
+idna2008 ; UTS ;    Binary ; IDNA
+uca ; UTS ;    Binary ; UCA
+uca2 ; UTS ;    Binary ; UCA
+uca2.5 ; UTS ;    Binary ; UCA
+uca3 ; UTS ;    Binary ; UCA
 
-Emoji ; UTR ;    Binary ; X-Emoji
-Emoji_Modifier ; UTR ;    Binary ; X-Emoji
-Emoji_Modifier_Base ; UTR ;    Binary ; X-Emoji
-Emoji_Presentation ; UTR ;    Binary ; X-Emoji
+Emoji ; UTR ;    Binary ; Emoji
+Emoji_Modifier ; UTR ;    Binary ; Emoji
+Emoji_Modifier_Base ; UTR ;    Binary ; Emoji
+Emoji_Presentation ; UTR ;    Binary ; Emoji
 
-Emoji_All ; UTR ;    Binary ; X-Emoji
-Emoji_Defectives ; UTR ;    Binary ; X-Emoji
-Emoji_Flag_Sequences ; UTR ;    Binary ; X-Emoji
-Emoji_Keycap_Sequences ; UTR ;    Binary ; X-Emoji
-Emoji_Modifier_Sequences ; UTR ;    Binary ; X-Emoji
-Emoji_Zwj_Sequences ; UTR ;    Binary ; X-Emoji
+Emoji_All ; UTR ;    Binary ; Emoji
+Emoji_Defectives ; UTR ;    Binary ; Emoji
+Emoji_Flag_Sequences ; UTR ;    Binary ; Emoji
+Emoji_Keycap_Sequences ; UTR ;    Binary ; Emoji
+Emoji_Modifier_Sequences ; UTR ;    Binary ; Emoji
+Emoji_Zwj_Sequences ; UTR ;    Binary ; Emoji

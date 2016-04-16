@@ -1,5 +1,8 @@
 package org.unicode.tools;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -23,6 +26,7 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.props.UnicodeLabel;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.UnicodeSetParser;
@@ -31,6 +35,7 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
+import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Transform;
@@ -50,6 +55,7 @@ public class FixedProps {
     private static final UnicodeMap<String> name = iup.load(UcdProperty.Name);
     private static final UnicodeMap<Binary> emoji = iup.loadEnum(UcdProperty.Emoji, Binary.class);
     private static final UnicodeMap<Decomposition_Type_Values> dt = iup.loadEnum(UcdProperty.Decomposition_Type, Decomposition_Type_Values.class);
+    private static final UnicodeMap<General_Category_Values> gc = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
     private static final Splitter semi = Splitter.on(';').trimResults();
     private static final Splitter hash = Splitter.on('#').trimResults();
 
@@ -59,6 +65,7 @@ public class FixedProps {
     public static final class FixedNfkd {
         private static final Normalizer nfkd = new Normalizer(Normalizer.NFKD, VERSION);
         private static final UnicodeMap<String> fixNfkd = new UnicodeMap<>();
+        private static final UnicodeMap<Decomposition_Type_Values> fixDt = new UnicodeMap<>();
         private static final UnicodeSet changes = new UnicodeSet();
         static {
 
@@ -66,7 +73,7 @@ public class FixedProps {
             UnicodeSet sourceRanges = new UnicodeSet();
             StringBuilder targetString = new StringBuilder();
 
-            for (String line : FileUtilities.in(FixedProps.class, "FixedNfkd.txt")) {
+            for (String line : FileUtilities.in(FixedProps.class, "FixedNfkdExceptions.txt")) {
                 if (line.isEmpty()) {
                     continue;
                 }
@@ -76,24 +83,45 @@ public class FixedProps {
                     continue;
                 }
                 List<String> parts = semi.splitToList(line);
-                if (parts.size() != 2) {
+                if (parts.size() != 3) {
                     throw new IllegalArgumentException(line);
                 }
                 hp.parse(parts.get(0), sourceRanges);
                 final String result = hp.parseString(parts.get(1), targetString).toString();
-                fixNfkd.putAll(sourceRanges, result);
-                changes.addAll(sourceRanges);
-            }
-            for (int i = 0; i < 0x10FFFF; ++i) {
-                if (!nfkd.isNormalized(i)) {
-                    changes.add(i);
+                for (String s : sourceRanges) {
+                    fixNfkd.put(s, result);
+                    Decomposition_Type_Values dtv = Decomposition_Type_Values.forName(parts.get(2));
+                    fixDt.put(s, dtv);
+                    changes.add(s);
                 }
             }
+            // close the set
+            UnicodeSet include = new UnicodeSet(0,0x10ffff)
+            .removeAll(gc.getSet(General_Category_Values.Unassigned))
+            .removeAll(gc.getSet(General_Category_Values.Surrogate))
+            .removeAll(gc.getSet(General_Category_Values.Private_Use))
+            ;
+            boolean madeChange;
+            do {
+                madeChange = false; // have to repeat?
+                for (String s : include) {
+                    String nfkdString = nfkd.normalize(s);
+                    String nfkdx = fixNfkd.transform(nfkdString);
+                    if (!nfkdx.equals(nfkdString) && !nfkdx.equals(fixNfkd.get(s))) {
+                        fixNfkd.put(s, nfkdx);
+                        changes.add(s);
+                        fixDt.put(s, Decomposition_Type_Values.Compat);
+                        madeChange = true;
+                    }
+                }
+            } while (madeChange);
             changes.freeze();
             fixNfkd.freeze();
+            fixDt.freeze();
         }
         public static String normalize(String source) {
-            return fixNfkd.transform(nfkd.normalize(source));
+            String result = fixNfkd.transform(source);
+            return result != null ? result : nfkd.normalize(source);
         }
         public static boolean isNormalized(int source) {
             return !changes.contains(source);
@@ -104,7 +132,6 @@ public class FixedProps {
         static final UnicodeMap<General_Category_Values> generalCategoryRev = new UnicodeMap<>();
         private static final UnicodeSet changes = new UnicodeSet();
         static {
-            final UnicodeMap<General_Category_Values> gc = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
             generalCategoryRev.putAll(gc);
             EnumSet<General_Category_Values> temp = EnumSet.noneOf(General_Category_Values.class);
             UnicodeSet allButOther = new UnicodeSet(0,0x10FFFF);
@@ -153,6 +180,7 @@ public class FixedProps {
     public static final class FixedScriptExceptions {
         static final UnicodeMap<Set<Script_Values>> scriptRev = new UnicodeMap<>();
         static final UnicodeMap<String> reasons = new UnicodeMap<>();
+        static final UnicodeSet changes = new UnicodeSet();
         static {
             Splitter semi = Splitter.on(';').trimResults();
             scriptRev.putAll(scx);
@@ -184,10 +212,11 @@ public class FixedProps {
                         && !scripts.equals(scriptRev.get(s))) {
                     scriptRev.put(s, singleton(scripts));
                     reasons.put(s, "ScriptDecomp");
+                    changes.add(s);
                 }
             }
 
-            for (String line : FileUtilities.in(FixedProps.class, "FixedScriptSource.txt")) {
+            for (String line : FileUtilities.in(FixedProps.class, "FixedScriptExceptions.txt")) {
                 if (line.isEmpty()) {
                     continue;
                 }
@@ -204,7 +233,7 @@ public class FixedProps {
                 final String scriptCodeName = parts.get(1);
                 Script_Values scriptValue = Script_Values.forName(scriptCodeName);
                 Set<Script_Values> old = scriptRev.get(cp);
-                
+
                 if (!old.equals(SINGLETON_COMMON) 
                         && !old.equals(SINGLETON_INHERITED)) {
                     continue;
@@ -213,12 +242,14 @@ public class FixedProps {
                 if (!old.equals(scriptSingleton)) {
                     reasons.put(cp, "Exception");
                     scriptRev.put(cp, scriptSingleton);
+                    changes.add(cp);
                 }
             }
             // scriptRev.putAll(new UnicodeSet("[µ𝛍𝜇𝝁𝝻𝞵]"), singleton(Script_Values.Greek));
             // scriptRev.putAll(new UnicodeSet("[฿]"), singleton("Zsym"));
             scriptRev.freeze();
             reasons.freeze();
+            changes.freeze();
         }
         public static Set<Script_Values> get(String source) {
             return scriptRev.get(source);
@@ -306,20 +337,38 @@ public class FixedProps {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("\n# Fixed Nfkd.\n");
         {
             final Normalizer nfkd = new Normalizer(Normalizer.NFKD, VERSION);
             UnicodeMap<String> diff = new UnicodeMap<>();
+            UnicodeMap<String> literalDiff = new UnicodeMap<>();
+            UnicodeMap<String> temp = new UnicodeMap<String>();
+            UnicodeMap<String> literalTemp = new UnicodeMap<String>();
             for (String s : FixedNfkd.changes) {
                 String newValue = FixedNfkd.normalize(s);
-                if (!nfkd.normalize(s).equals(newValue)) {
-                    diff.put(s, newValue);
+                final String oldValue = nfkd.normalize(s);
+                if (!oldValue.equals(newValue)) {
+                    diff.put(s, Utility.hex(oldValue) + "\t≠\t" + Utility.hex(newValue));
+                    literalDiff.put(s, oldValue + "\t≠\t" + newValue);
                 }
+                final String hex = Utility.hex(newValue);
+                Decomposition_Type_Values dtv = FixedNfkd.fixDt.get(s);
+                if (dtv == null) {
+                    dtv = dt.get(s);
+                }
+                temp.put(s, hex + "\t;\t" + dtv.getShortName());
+                literalTemp.put(s, newValue + "\t;\t" + dtv.getShortName());
+           }
+
+            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedNfkd.txt")) {
+                showmap(out, FixedNfkd.changes, temp, literalTemp);
             }
-            showMap(diff);
+            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedNfkdDiff.txt")) {
+                showmap(out, diff.keySet(), diff, literalDiff);
+            }
         }
-        
+
         System.out.println("\n# Fixed GC.\n");
         {
             final UnicodeMap<General_Category_Values> gc = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
@@ -328,29 +377,39 @@ public class FixedProps {
                 final General_Category_Values oldValue = gc.get(s);
                 final General_Category_Values newValue = FixedGeneralCategory.get(s);
                 if (!newValue.equals(oldValue)) {
-                    diff.put(s, oldValue.getShortName() + "; " + newValue.getShortName());
+                    diff.put(s, oldValue.getShortName() + "\t≠\t" + newValue.getShortName());
                 }
             }
-            showMap(diff);
+            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedGc.txt")) {
+                showmap(out, FixedGeneralCategory.changes, FixedGeneralCategory.generalCategoryRev, FixedGeneralCategory.generalCategoryRev);
+            }
+            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedGcDiff.txt")) {
+                showmap(out, diff.keySet(), diff, diff);
+            }
         }
 
         System.out.println("\n# Fixed Script.\n");
         {
             final UnicodeMap<Set<Script_Values>> scx = iup.loadEnumSet(UcdProperty.Script_Extensions, Script_Values.class);
             UnicodeMap<String> diff = new UnicodeMap<>();
-            for (String s : FixedScriptExceptions.reasons.keySet()) {
+            for (String s : FixedScriptExceptions.changes) {
                 final Set<Script_Values> oldValue = scx.get(s);
                 final Set<Script_Values> newValue = FixedScriptExceptions.get(s);
                 if (!newValue.equals(oldValue)) {
-                    diff.put(s, oldValue + "; " + newValue);
+                    diff.put(s, oldValue + "\t≠\t" + newValue);
                 }
             }
-            showMap(diff);
+            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedScx.txt")) {
+                showmap(out, FixedScriptExceptions.changes, FixedScriptExceptions.scriptRev, FixedScriptExceptions.scriptRev);
+            }
+            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedScxDiff.txt")) {
+                showmap(out, diff.keySet(), diff, diff);
+            }
         }
 
 
-//        System.out.println("\n# Changed by Ken's data.\n");
-//        showMap(FixedScriptExceptions.kensRev);
+        //        System.out.println("\n# Changed by Ken's data.\n");
+        //        showMap(FixedScriptExceptions.kensRev);
 
         //showOld();
         //showGrowthTable();
@@ -363,7 +422,7 @@ public class FixedProps {
             System.out.println("\t" + us.toPattern(false));
         }
 
-//        showMap(FixedScriptExceptions.diff);
+        //        showMap(FixedScriptExceptions.diff);
 
         System.out.println("\n# Remaining Common+Inherited - spaces, controls, etc.\n");
         UnicodeSet us = new UnicodeSet(FixedScriptExceptions.getSet(SINGLETON_COMMON))
@@ -412,7 +471,7 @@ public class FixedProps {
                 s.add(us);
             }
         }
-        
+
         System.out.print("Script\tID Usage");
         for (Age_Values av : Age_Values.values()){
             if (av == av.Unassigned) {
@@ -469,33 +528,48 @@ public class FixedProps {
             showSet(value, us);
         }
     }
-
-    private static <T> void showMap(UnicodeMap<T> unicodeMap) {
-        int len = 0;
-        for (String value : unicodeMap) {
-            if (len < value.length()) {
-                len = value.length();
+    
+    private static <T> void showmap(PrintWriter printWriter, UnicodeSet inclusion, UnicodeMap<T> unicodeMap, UnicodeMap<T> literalMap) {
+        Splitter tabSplitter = Splitter.on('\t');
+        if (literalMap == null) {
+            literalMap = unicodeMap;
+        }
+        ArrayList<String> temp = new ArrayList<String>(unicodeMap.size());
+        int[] max = new int[32];
+        int maxItems = -1;
+        for (String key : inclusion) {
+            T value = unicodeMap.get(key);
+            T literalValue = literalMap.get(key);
+            String line = getLineValues(key, value, literalValue);
+            temp.add(line);
+            int offset = 0;
+            for (String item : tabSplitter.splitToList(line)) {
+                if (max[offset] < item.length()) {
+                    max[offset] = item.length();
+                }
+                ++offset;
+            }
+            if (maxItems < offset) {
+                maxItems = offset;
             }
         }
-        Tabber tabber = new Tabber.MonoTabber()
-        .add(19, Tabber.LEFT)
-        .add(len + 1, Tabber.LEFT)
-        ;
-        for (Entry<String, T> entry : unicodeMap.entrySet()) {
-            final String key = entry.getKey();
-            final T value = entry.getValue();
-            showLine(tabber, key, value);
+        Tabber tabber = new Tabber.MonoTabber();
+        for (int i = 0; i < maxItems; ++i) {
+            tabber.add(max[i]+1, Tabber.LEFT);
         }
-        System.out.println("# total: " + unicodeMap.size());
-        System.out.println("# uset:  " + unicodeMap.keySet().toPattern(false));
+        for (String line : temp) {
+            printWriter.println(tabber.process(line));
+        }
+        printWriter.println("# total: " + unicodeMap.size());
+        printWriter.println("# uset:  " + unicodeMap.keySet().toPattern(false));
+        printWriter.flush();
     }
 
-    private static <T> void showLine(Tabber tabber, final String key, final T value) {
-        System.out.println(tabber.process(
-                "U+" + Utility.hex(key) 
-                + " ;\t" + value
-                + "\t # (" +  key + "→" + value + ") " 
-                + name.get(key)));
+    private static <T> String getLineValues(final String key, final T value, final T literalValue) {
+        return Utility.hex(key) 
+                + "\t;\t" + value
+                + "\t # (" + key + " → " + literalValue.toString().replace('\t',' ') + ")\t" 
+                + name.get(key);
     }
 
     private static void showSet(String value, UnicodeSet us) {

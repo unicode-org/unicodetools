@@ -1,10 +1,13 @@
-﻿# Security Profile for General Identifiers
-# File: xidAllowed.txt
-# Version: 9.0.0
-# Generated: 2016-03-11, 14:35:01 GMT
-# Checkin: $Revision: 1.32 $
+﻿# xidAllowed.txt
+# Date: 2016-04-05, 11:47:13 GMT
+# © 2016 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
 #
-# For documentation and usage, see http://www.unicode.org/reports/tr39/
+# Unicode Security Mechanisms for UTR #39
+# Version: 9.0.0
+#
+# For documentation and usage, see http://www.unicode.org/reports/tr39
 #
 # XID characters allowed (no uppercase)
 
