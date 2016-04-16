@@ -37,7 +37,7 @@ public class CharacterCategories {
     static {
         String currentLabel = null;
         UnicodeSet currentSet = null;
-        UnicodeSet ASCII_ID = new UnicodeSet("[_:A-Za-z0-9]").freeze();
+        UnicodeSet ASCII_ID = new UnicodeSet("[_:/\\&A-Za-z0-9]").freeze();
         UnicodeSet UNASSIGNED = new UnicodeSet("[:cn:]").freeze();
         
         for (String line : FileUtilities.in(CharacterCategories.class, "characterCategories.txt")) {
@@ -64,10 +64,10 @@ public class CharacterCategories {
                 currentSet.addAll(line.replace(" ", ""));
             }
         }
-        data.put("Symbols:Whitespace", new UnicodeSet("[:Whitespace:]"));
-        data.put("Symbols:Format", new UnicodeSet("[[:Cf:][:Variation_Selector:][:block=Ideographic_Description_Characters:]]"));
+        data.put("Format_&_Whitespace:Whitespace", new UnicodeSet("[:Whitespace:]"));
+        data.put("Format_&_Whitespace:Format", new UnicodeSet("[[:Cf:][:di:][:Variation_Selector:][:block=Ideographic_Description_Characters:]-[:Whitespace:]]"));
         data.put("Symbols:Emoji", new UnicodeSet("[:emoji:]"));
-        data.put("Symbols:Currency", new UnicodeSet(FixedProps.FixedGeneralCategory.getSet(General_Category_Values.Currency_Symbol))); // "[:sc:]"
+        data.put("Symbols:Currency_Symbols", new UnicodeSet(FixedProps.FixedGeneralCategory.getSet(General_Category_Values.Currency_Symbol))); // "[:sc:]"
         data.put("Symbols:Non-Spacing", new UnicodeSet(nonspacing));
 
         UnicodeSet common = FixedProps.FixedScriptExceptions.getSet(Collections.singleton(Script_Values.Common));
@@ -76,8 +76,6 @@ public class CharacterCategories {
         UnicodeSet punctuation = FixedProps.FixedGeneralCategory.getSet(PropertyValueSets.PUNCTUATION);
         UnicodeSet missing = new UnicodeSet(common).addAll(inherited).removeAll(control).removeAll(punctuation);
         
-        CollationKey x;
-
 //                "["
 //                + "[:scx=common:]"
 //                + "[:scx=inherited:]"

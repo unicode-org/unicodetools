@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
 <%@ include file="header.jsp" %>
 <title>Unicode Utilities: Character Property Index</title>
@@ -22,9 +22,10 @@ th           { text-align: left }
 		UnicodeJsp.showPropsTable(out, propForValues, "properties.jsp");
 %>
 <h2>Key</h2>
-<p>The Categories are from <a target='_blank' href='http://www.unicode.org/reports/tr44#Property_Summary'>UCD Table 8. Property Summary Table</a>, with some extended categories:
-X-Encoding, X-IDNA, X-Regex, and X-Security.</p>
-<p>The Datatypes are from <a target='_blank' href='http://www.unicode.org/reports/tr44#Property_Table'>UCD Table 5. Property Type Key</a>.</p>
+<p>The Categories are from <a target='_blank' href='http://www.unicode.org/reports/tr44#Property_Index'>UCD
+Table 8. Property Summary Table</a>, with some extended categories:
+Emoji, IDNA, Regex, Security, and UCA.</p>
+<p>The Datatypes are from <a target='_blank' href='http://www.unicode.org/reports/tr44#Type_Key_Table'>UCD Table 5. Property Type Key</a>.</p>
 <p>The Sources are:
 <ul>
 <li>UCD - <a target='_blank' href='http://www.unicode.org/reports/tr44/'>Unicode Character Database</a></li>

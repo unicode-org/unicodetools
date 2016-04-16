@@ -104,6 +104,8 @@ public class UnicodeSetUtilities {
     private static class MySymbolTable extends UnicodeSet.XSymbolTable {
         UnicodeRegex unicodeRegex;
         XPropertyFactory factory;
+        private UnicodeProperty gcProp;
+        private UnicodeProperty scProp;
 
         public MySymbolTable() {
             unicodeRegex = new UnicodeRegex().setSymbolTable(this);
@@ -127,6 +129,11 @@ public class UnicodeSetUtilities {
                 String propertyValue, UnicodeSet result) {
             boolean status = false;
             boolean invert = false;
+            if (factory == null) {
+                factory = XPropertyFactory.make();
+                gcProp = factory.getProperty("gc");
+                scProp = factory.getProperty("sc");
+            }
             int posNotEqual = propertyName.indexOf('\u2260');
             int posColon = propertyName.indexOf(':');
             if (posNotEqual >= 0 || posColon >= 0) {
@@ -144,23 +151,30 @@ public class UnicodeSetUtilities {
                 propertyName = propertyName.substring(0, propertyName.length() - 1);
                 invert = !invert;
             }
-            propertyValue = propertyValue.trim();
+            UnicodeProperty prop = factory.getProperty(propertyName);
             if (propertyValue.length() != 0) {
-                status = applyPropertyAlias0(propertyName, propertyValue, result, invert);
+                if (prop == null) {
+                    propertyValue = propertyValue.trim();
+                } else if (prop.isTrimable()) {
+                    propertyValue = propertyValue.trim();
+                } else {
+                    int debug = 0;
+                }
+                status = applyPropertyAlias0(prop, propertyValue, result, invert);
             } else {
                 try {
-                    status = applyPropertyAlias0("gc", propertyName, result, invert);
+                    status = applyPropertyAlias0(gcProp, propertyName, result, invert);
                 } catch (Exception e) {};
                 if (!status) {
                     try {
-                        status = applyPropertyAlias0("sc", propertyName, result, invert);
+                        status = applyPropertyAlias0(scProp, propertyName, result, invert);
                     } catch (Exception e) {};
                     if (!status) {
                         try {
-                            status = applyPropertyAlias0(propertyName, "No", result, !invert);
+                            status = applyPropertyAlias0(prop, "No", result, !invert);
                         } catch (Exception e) {};
                         if (!status) {
-                            status = applyPropertyAlias0(propertyName, "", result, invert);
+                            status = applyPropertyAlias0(prop, "", result, invert);
                         }
                     }
                 }
@@ -168,22 +182,20 @@ public class UnicodeSetUtilities {
             return status;
         }
 
-
-        public boolean applyPropertyAlias0(String propertyName,
+        private boolean applyPropertyAlias0(UnicodeProperty prop, 
                 String propertyValue, UnicodeSet result, boolean invert) {
             result.clear();
+            String propertyName = prop.getName();
+            String trimmedPropertyValue = propertyValue.trim();
             PatternMatcher patternMatcher = null;
-            if (propertyValue.length() > 1 && propertyValue.startsWith("/") && propertyValue.endsWith("/")) {
-                String fixedRegex = unicodeRegex.transform(propertyValue.substring(1, propertyValue.length() - 1));
+            if (trimmedPropertyValue.length() > 1 && trimmedPropertyValue.startsWith("/") && trimmedPropertyValue.endsWith("/")) {
+                String fixedRegex = unicodeRegex.transform(trimmedPropertyValue.substring(1, trimmedPropertyValue.length() - 1));
                 patternMatcher = new UnicodeProperty.RegexMatcher().set(fixedRegex);
-            }
-            if (factory == null) {
-                factory = XPropertyFactory.make();
             }
             UnicodeProperty otherProperty = null;
             boolean testCp = false;
-            if (propertyValue.length() > 1 && propertyValue.startsWith("@") && propertyValue.endsWith("@")) {
-                String otherPropName = propertyValue.substring(1, propertyValue.length() - 1).trim();
+            if (trimmedPropertyValue.length() > 1 && trimmedPropertyValue.startsWith("@") && trimmedPropertyValue.endsWith("@")) {
+                String otherPropName = trimmedPropertyValue.substring(1, trimmedPropertyValue.length() - 1).trim();
                 if ("cp".equalsIgnoreCase(otherPropName)) {
                     testCp = true;
                 } else {
@@ -191,7 +203,6 @@ public class UnicodeSetUtilities {
                 }
             }
             boolean isAge = UnicodeProperty.equalNames("age", propertyName);
-            UnicodeProperty prop = factory.getProperty(propertyName);
             if (prop != null) {
                 UnicodeSet set;
                 if (testCp) {

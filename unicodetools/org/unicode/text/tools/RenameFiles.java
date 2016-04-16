@@ -23,13 +23,13 @@ public class RenameFiles {
     
     private static final boolean PREVIEW_ONLY = false;
     
-    private static final String DIR_OF_FILES_TO_CHANGE = Settings.UNICODE_DRAFT_DIRECTORY 
-            + "/reports/tr51/images/samsung"
-            // Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/flags"
+    private static final String DIR_OF_FILES_TO_CHANGE = 
+            //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/samsung"
+            Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/google"
             ;
-    private static final String FILE_MATCH = "samsung_u(.*)\\.png";
+    private static final String FILE_MATCH = "emoji_u(.*)\\.png";
 
-    private static final String OUTPUT_PLATFORM_PREFIX = "samsung";
+    private static final String OUTPUT_PLATFORM_PREFIX = "android";
 
     public static void main(String[] args) throws IOException {
         Matcher m = Pattern.compile(FILE_MATCH).matcher(""); 

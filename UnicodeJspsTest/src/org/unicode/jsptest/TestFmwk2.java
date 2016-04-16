@@ -32,7 +32,7 @@ public class TestFmwk2 extends TestFmwk {
         if (!expected.equals(actual)) {
             UnicodeSet inExpected = new UnicodeSet(expected).removeAll(actual);
             UnicodeSet inActual = new UnicodeSet(actual).removeAll(expected);
-            testFmwk.errln(test + " - MISSING: " + inExpected + ", EXTRA: " + inActual);
+            testFmwk.errln(test + " — \tMISSING: " + inExpected + ", \tEXTRA: " + inActual);
             return false;
         } else {
             testFmwk.logln("OK\t\t" + test);

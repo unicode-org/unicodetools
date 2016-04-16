@@ -450,6 +450,37 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         return result;
     }
 
+    UnicodeSet sameValueRanges = null;
+    
+    private UnicodeSet getSameValueRanges(boolean uniformUnassigned) {
+        if (sameValueRanges == null) {
+            sameValueRanges = new UnicodeSet();
+            int startRange = -1;
+            String lastValue = null;
+            for (int i = 0; i <= 0x10FFFF; ++i) {
+                String current = _getValue(i);
+                if (!current.equals(lastValue)) {
+                    if (startRange >= 0) {
+                        int last = i-1;
+                        if (last - startRange > 1) {
+                            sameValueRanges.add(startRange, last);
+                        }
+                    }
+                    startRange = i;
+                    lastValue = current;
+                }
+            }
+            if (startRange >= 0) {
+                int last = 0x10FFFF;
+                if (last - startRange > 1) {
+                    sameValueRanges.add(startRange, last);
+                }
+            }
+            sameValueRanges.freeze();
+        }
+        return sameValueRanges;
+    }
+
     private static UnicodeSetIterator getStuffToTest(boolean uniformUnassigned) {
         return new UnicodeSetIterator(uniformUnassigned ? STUFF_TO_TEST : STUFF_TO_TEST_WITH_UNASSIGNED);
     }
@@ -1435,6 +1466,9 @@ public abstract class UnicodeProperty extends UnicodeLabel {
         this.hasUniformUnassigned = hasUniformUnassigned;
         return this;
     }
-    
+
+    public boolean isTrimable() {
+        return !isType(STRING_OR_MISC_MASK);
+    }
 }
 

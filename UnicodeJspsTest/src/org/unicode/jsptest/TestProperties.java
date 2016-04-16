@@ -25,10 +25,10 @@ import org.unicode.jsp.UnicodeUtilities;
 import org.unicode.jsp.XPropertyFactory;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.impl.Relation;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row.R4;
+import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UProperty.NameChoice;
@@ -38,7 +38,7 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
 
-public class TestProperties extends TestFmwk {
+public class TestProperties extends TestFmwk2 {
     static XPropertyFactory factory = XPropertyFactory.make();
     static Collator col = Collator.getInstance(ULocale.ROOT);
     static {
@@ -59,7 +59,7 @@ public class TestProperties extends TestFmwk {
             logln(primary.toPattern(false) + " contains " + x.toPattern(false));
         }
     }
-    
+
     public static final Set<String> SKIP_CJK = Collections.unmodifiableSet(new HashSet<String>(Arrays.asList(
             "kAccountingNumeric",
             "kCompatibilityVariant",
@@ -267,13 +267,24 @@ public class TestProperties extends TestFmwk {
         TestUnicodeSet.assertEquals(this, test, expected, actual);
     }
 
+    static final UnicodeSet END_BRACES = new UnicodeSet("[\\}\\uFE38\\uFE5C\\uFF5D]").freeze();
+
     private void checkProperty(XPropertyFactory factory, String prop) {
         UnicodeProperty property = factory.getProperty(prop);
         System.out.println("Testing " + prop + "\t\t" + property.getTypeName());
         List<String> values = property.getAvailableValues();
         for (String value : values) {
+            //HashSet<String> seen = new HashSet<String>();
+            //        for (int i = 0; i <= 0x10FFFF; ++i) {
+            //            String value = property.getValue(i);
+            //            if (seen.contains(value)) {
+            //                continue;
+            //            }
+            //            seen.add(value);
+
             UnicodeSet expectedRegex = property.getSet(value);
             UnicodeSet expectedNormal = expectedRegex;
+
             if (UnicodeProperty.equalNames("age", prop)) {
                 expectedNormal = new UnicodeSet(expectedNormal);
                 for (String other : values) {
@@ -283,23 +294,33 @@ public class TestProperties extends TestFmwk {
                 }
                 expectedRegex = expectedNormal;
             }
+            if (expectedRegex.contains("}")) {
+                //              int debug = 0;
+                continue;
+            };
             List<String> alts = property.getValueAliases(value);
             if (!alts.contains(value)) {
                 errln(value + " not in " + alts + " for " + prop);
             }
             for (String alt : alts) {
-                String test = "\\p{" + prop + "=" + alt + "}";
+                String test = 
+                        // END_BRACES.containsSome(alt) ? "[:" + prop + "=" + alt + ":]" : 
+                        "\\p{" + prop + "=" + alt + "}";
                 UnicodeSet actual = UnicodeSetUtilities.parseUnicodeSet(test);
-                if (!TestUnicodeSet.assertEquals(this, test, expectedNormal, actual)) {
+                if (!assertEquals(Utility.hex(value) + " " + test, expectedNormal, actual)) {
+                    UnicodeSetUtilities.parseUnicodeSet(test);
                     return;
                 }
-                if ("}".equals(alt)) {
+                if (alt.contains("}")) {
                     logKnownIssue("x", "Can't parse } even with \\Q");
                     continue;
                 }
-                test = "\\p{" + prop + "=/^\\Q" + alt + "\\E$/}";
+                test = 
+                        // END_BRACES.containsSome(alt) ? "[:" + prop + "=/^\\Q" + alt + "\\E$/:]" : 
+                        "\\p{" + prop + "=/^\\Q" + alt + "\\E$/}";
                 actual = UnicodeSetUtilities.parseUnicodeSet(test);
-                if (!TestUnicodeSet.assertEquals(this, test, expectedRegex, actual)) {
+                if (!assertEquals(Utility.hex(value) + " " + test, expectedRegex, actual)) {
+                    UnicodeSetUtilities.parseUnicodeSet(test);
                     return;
                 }
             }
@@ -309,8 +330,8 @@ public class TestProperties extends TestFmwk {
     public void TestAllProperties() {
         UnicodeProperty foo;
         XPropertyFactory factory = XPropertyFactory.make();
-        checkProperty(factory, "NFKC_Casefold");
-        checkProperty(factory, "Age");
+//        checkProperty(factory, "NFKC_Casefold");
+//        checkProperty(factory, "Age");
 
         //////    checkProperty(factory, "Lead_Canonical_Combining_Class");
         //////    checkProperty(factory, "Joining_Group");

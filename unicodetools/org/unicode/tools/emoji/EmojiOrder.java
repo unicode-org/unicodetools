@@ -20,6 +20,7 @@ import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.Emoji.ModifierStatus;
 import org.unicode.tools.emoji.Emoji.Source;
+import org.unicode.tools.emoji.EmojiData.VariantHandling;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
@@ -172,6 +173,21 @@ public class EmojiOrder {
                     for (String string2 : emojiData.getModifierStatusSet(ModifierStatus.modifier)) {
                         add(result, sorted, majorGroup, lastLabel, string+string2); 
                     }
+                }
+                if (emojiData.getKeycapBases().contains(string.charAt(0))) { 
+                    // add variant form, since it is interior
+                    String string2 = emojiData.addEmojiVariants(string, Emoji.EMOJI_VARIANT, VariantHandling.all);
+                    if (!string2.equals(string)) {
+                        add(result, sorted, majorGroup, lastLabel, string2); 
+                    }
+                    string2 = emojiData.addEmojiVariants(string, Emoji.TEXT_VARIANT, VariantHandling.all);
+                    if (!string2.equals(string)) {
+                        add(result, sorted, majorGroup, lastLabel, string2); 
+                    }
+//                    string2 = string.replace(Emoji.EMOJI_VARIANT_STRING, "");
+//                    if (!string2.equals(string)) {
+//                        add(result, sorted, majorGroup, lastLabel, string2); 
+//                    }
                 }
             }
         }

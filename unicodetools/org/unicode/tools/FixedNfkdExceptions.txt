@@ -1,0 +1,273 @@
+214D  ; A/S      ; Com  # (⅍ → a/s ; Com)   AKTIESELSKAB
+24EB  ; 0031 0031           ; Enc  # (⓫ → 11 ; Enc)    NEGATIVE CIRCLED NUMBER ELEVEN
+24EC  ; 0031 0032           ; Enc  # (⓬ → 12 ; Enc)    NEGATIVE CIRCLED NUMBER TWELVE
+24ED  ; 0031 0033           ; Enc  # (⓭ → 13 ; Enc)    NEGATIVE CIRCLED NUMBER THIRTEEN
+24EE  ; 0031 0034           ; Enc  # (⓮ → 14 ; Enc)    NEGATIVE CIRCLED NUMBER FOURTEEN
+24EF  ; 0031 0035           ; Enc  # (⓯ → 15 ; Enc)    NEGATIVE CIRCLED NUMBER FIFTEEN
+24F0  ; 0031 0036           ; Enc  # (⓰ → 16 ; Enc)    NEGATIVE CIRCLED NUMBER SIXTEEN
+24F1  ; 0031 0037           ; Enc  # (⓱ → 17 ; Enc)    NEGATIVE CIRCLED NUMBER SEVENTEEN
+24F2  ; 0031 0038           ; Enc  # (⓲ → 18 ; Enc)    NEGATIVE CIRCLED NUMBER EIGHTEEN
+24F3  ; 0031 0039           ; Enc  # (⓳ → 19 ; Enc)    NEGATIVE CIRCLED NUMBER NINETEEN
+24F4  ; 0032 0030           ; Enc  # (⓴ → 20 ; Enc)    NEGATIVE CIRCLED NUMBER TWENTY
+24F5  ; 0031                ; Enc  # (⓵ → 1 ; Enc)     DOUBLE CIRCLED DIGIT ONE
+24F6  ; 0032                ; Enc  # (⓶ → 2 ; Enc)     DOUBLE CIRCLED DIGIT TWO
+24F7  ; 0033                ; Enc  # (⓷ → 3 ; Enc)     DOUBLE CIRCLED DIGIT THREE
+24F8  ; 0034                ; Enc  # (⓸ → 4 ; Enc)     DOUBLE CIRCLED DIGIT FOUR
+24F9  ; 0035                ; Enc  # (⓹ → 5 ; Enc)     DOUBLE CIRCLED DIGIT FIVE
+24FA  ; 0036                ; Enc  # (⓺ → 6 ; Enc)     DOUBLE CIRCLED DIGIT SIX
+24FB  ; 0037                ; Enc  # (⓻ → 7 ; Enc)     DOUBLE CIRCLED DIGIT SEVEN
+24FC  ; 0038                ; Enc  # (⓼ → 8 ; Enc)     DOUBLE CIRCLED DIGIT EIGHT
+24FD  ; 0039                ; Enc  # (⓽ → 9 ; Enc)     DOUBLE CIRCLED DIGIT NINE
+24FE  ; 0031 0030           ; Enc  # (⓾ → 10 ; Enc)    DOUBLE CIRCLED NUMBER TEN
+24FF  ; 0030                ; Enc  # (⓿ → 0 ; Enc)     NEGATIVE CIRCLED DIGIT ZERO
+2776  ; 0031                ; Enc  # (❶ → 1 ; Enc)     DINGBAT NEGATIVE CIRCLED DIGIT ONE
+2777  ; 0032                ; Enc  # (❷ → 2 ; Enc)     DINGBAT NEGATIVE CIRCLED DIGIT TWO
+2778  ; 0033                ; Enc  # (❸ → 3 ; Enc)     DINGBAT NEGATIVE CIRCLED DIGIT THREE
+2779  ; 0034                ; Enc  # (❹ → 4 ; Enc)     DINGBAT NEGATIVE CIRCLED DIGIT FOUR
+277A  ; 0035                ; Enc  # (❺ → 5 ; Enc)     DINGBAT NEGATIVE CIRCLED DIGIT FIVE
+277B  ; 0036                ; Enc  # (❻ → 6 ; Enc)     DINGBAT NEGATIVE CIRCLED DIGIT SIX
+277C  ; 0037                ; Enc  # (❼ → 7 ; Enc)     DINGBAT NEGATIVE CIRCLED DIGIT SEVEN
+277D  ; 0038                ; Enc  # (❽ → 8 ; Enc)     DINGBAT NEGATIVE CIRCLED DIGIT EIGHT
+277E  ; 0039                ; Enc  # (❾ → 9 ; Enc)     DINGBAT NEGATIVE CIRCLED DIGIT NINE
+277F  ; 0031 0030           ; Enc  # (❿ → 10 ; Enc)    DINGBAT NEGATIVE CIRCLED NUMBER TEN
+2780  ; 0031                ; Enc  # (➀ → 1 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT ONE
+2781  ; 0032                ; Enc  # (➁ → 2 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT TWO
+2782  ; 0033                ; Enc  # (➂ → 3 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT THREE
+2783  ; 0034                ; Enc  # (➃ → 4 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT FOUR
+2784  ; 0035                ; Enc  # (➄ → 5 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT FIVE
+2785  ; 0036                ; Enc  # (➅ → 6 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT SIX
+2786  ; 0037                ; Enc  # (➆ → 7 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT SEVEN
+2787  ; 0038                ; Enc  # (➇ → 8 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT EIGHT
+2788  ; 0039                ; Enc  # (➈ → 9 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT NINE
+2789  ; 0031 0030           ; Enc  # (➉ → 10 ; Enc)    DINGBAT CIRCLED SANS-SERIF NUMBER TEN
+278A  ; 0031                ; Enc  # (➊ → 1 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ONE
+278B  ; 0032                ; Enc  # (➋ → 2 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT TWO
+278C  ; 0033                ; Enc  # (➌ → 3 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT THREE
+278D  ; 0034                ; Enc  # (➍ → 4 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FOUR
+278E  ; 0035                ; Enc  # (➎ → 5 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FIVE
+278F  ; 0036                ; Enc  # (➏ → 6 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SIX
+2790  ; 0037                ; Enc  # (➐ → 7 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SEVEN
+2791  ; 0038                ; Enc  # (➑ → 8 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT EIGHT
+2792  ; 0039                ; Enc  # (➒ → 9 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT NINE
+2793  ; 0031 0030           ; Enc  # (➓ → 10 ; Enc)    DINGBAT NEGATIVE CIRCLED SANS-SERIF NUMBER TEN
+2E82  ; 4E5B                ; Com  # (⺂ → 乛 ; Com)     CJK RADICAL SECOND ONE
+2E83  ; 4E5A                ; Com  # (⺃ → 乚 ; Com)     CJK RADICAL SECOND TWO
+2E85  ; 4EBB                ; Com  # (⺅ → 亻 ; Com)     CJK RADICAL PERSON
+2E89  ; 5202                ; Com  # (⺉ → 刂 ; Com)     CJK RADICAL KNIFE TWO
+2E8F  ; 5C23                ; Com  # (⺏ → 尣 ; Com)     CJK RADICAL LAME TWO
+2E90  ; 5C22                ; Com  # (⺐ → 尢 ; Com)     CJK RADICAL LAME THREE
+2E92  ; 5DF3                ; Com  # (⺒ → 巳 ; Com)     CJK RADICAL SNAKE
+2E93  ; 5E7A                ; Com  # (⺓ → 幺 ; Com)     CJK RADICAL THREAD
+2E94  ; 5F51                ; Com  # (⺔ → 彑 ; Com)     CJK RADICAL SNOUT ONE
+2E96  ; 5FC4                ; Com  # (⺖ → 忄 ; Com)     CJK RADICAL HEART ONE
+2E98  ; 624C                ; Com  # (⺘ → 扌 ; Com)     CJK RADICAL HAND
+2E99  ; 6535                ; Com  # (⺙ → 攵 ; Com)     CJK RADICAL RAP
+2E9B  ; 65E1                ; Com  # (⺛ → 旡 ; Com)     CJK RADICAL CHOKE
+2EA0  ; 6C11                ; Com  # (⺠ → 民 ; Com)     CJK RADICAL CIVILIAN
+2EA1  ; 6C35                ; Com  # (⺡ → 氵 ; Com)     CJK RADICAL WATER ONE
+2EA2  ; 6C3A                ; Com  # (⺢ → 氺 ; Com)     CJK RADICAL WATER TWO
+2EA3  ; 706C                ; Com  # (⺣ → 灬 ; Com)     CJK RADICAL FIRE
+2EA4  ; 722B                ; Com  # (⺤ → 爫 ; Com)     CJK RADICAL PAW ONE
+2EA6  ; 4E2C                ; Com  # (⺦ → 丬 ; Com)     CJK RADICAL SIMPLIFIED HALF TREE TRUNK
+2EA8  ; 72AD                ; Com  # (⺨ → 犭 ; Com)     CJK RADICAL DOG
+2EAD  ; 793B                ; Com  # (⺭ → 礻 ; Com)     CJK RADICAL SPIRIT TWO
+2EAF  ; 7CF9                ; Com  # (⺯ → 糹 ; Com)     CJK RADICAL SILK
+2EB0  ; 7E9F                ; Com  # (⺰ → 纟 ; Com)     CJK RADICAL C-SIMPLIFIED SILK
+2EB1  ; 7F53                ; Com  # (⺱ → 罓 ; Com)     CJK RADICAL NET ONE
+2EB2  ; 7F52                ; Com  # (⺲ → 罒 ; Com)     CJK RADICAL NET TWO
+2EB8  ; 7F8B                ; Com  # (⺸ → 羋 ; Com)     CJK RADICAL EWE
+2EB9  ; 8002                ; Com  # (⺹ → 耂 ; Com)     CJK RADICAL OLD
+2EBA  ; 8080                ; Com  # (⺺ → 肀 ; Com)     CJK RADICAL BRUSH ONE
+2EBE  ; 8279                ; Com  # (⺾ → 艹 ; Com)     CJK RADICAL GRASS ONE
+2EC1  ; 864E                ; Com  # (⻁ → 虎 ; Com)     CJK RADICAL TIGER
+2EC2  ; 8864                ; Com  # (⻂ → 衤 ; Com)     CJK RADICAL CLOTHES
+2EC3  ; 8980                ; Com  # (⻃ → 覀 ; Com)     CJK RADICAL WEST ONE
+2EC4  ; 897F                ; Com  # (⻄ → 西 ; Com)     CJK RADICAL WEST TWO
+2EC5  ; 89C1                ; Com  # (⻅ → 见 ; Com)     CJK RADICAL C-SIMPLIFIED SEE
+2EC6  ; 89D2                ; Com  # (⻆ → 角 ; Com)     CJK RADICAL SIMPLIFIED HORN
+2EC8  ; 8BA0                ; Com  # (⻈ → 讠 ; Com)     CJK RADICAL C-SIMPLIFIED SPEECH
+2EC9  ; 8D1D                ; Com  # (⻉ → 贝 ; Com)     CJK RADICAL C-SIMPLIFIED SHELL
+2ECB  ; 8F66                ; Com  # (⻋ → 车 ; Com)     CJK RADICAL C-SIMPLIFIED CART
+2ECC  ; 8FB6                ; Com  # (⻌ → 辶 ; Com)     CJK RADICAL SIMPLIFIED WALK
+2ED0  ; 9485                ; Com  # (⻐ → 钅 ; Com)     CJK RADICAL C-SIMPLIFIED GOLD
+2ED1  ; 9577                ; Com  # (⻑ → 長 ; Com)     CJK RADICAL LONG ONE
+2ED2  ; 9578                ; Com  # (⻒ → 镸 ; Com)     CJK RADICAL LONG TWO
+2ED3  ; 957F                ; Com  # (⻓ → 长 ; Com)     CJK RADICAL C-SIMPLIFIED LONG
+2ED4  ; 95E8                ; Com  # (⻔ → 门 ; Com)     CJK RADICAL C-SIMPLIFIED GATE
+2ED6  ; 961D                ; Com  # (⻖ → 阝 ; Com)     CJK RADICAL MOUND TWO
+2ED8  ; 9752                ; Com  # (⻘ → 青 ; Com)     CJK RADICAL BLUE
+2ED9  ; 97E6                ; Com  # (⻙ → 韦 ; Com)     CJK RADICAL C-SIMPLIFIED TANNED LEATHER
+2EDA  ; 9875                ; Com  # (⻚ → 页 ; Com)     CJK RADICAL C-SIMPLIFIED LEAF
+2EDB  ; 98CE                ; Com  # (⻛ → 风 ; Com)     CJK RADICAL C-SIMPLIFIED WIND
+2EDC  ; 98DE                ; Com  # (⻜ → 飞 ; Com)     CJK RADICAL C-SIMPLIFIED FLY
+2EDD  ; 98DF                ; Com  # (⻝ → 食 ; Com)     CJK RADICAL EAT ONE
+2EDF  ; 98E0                ; Com  # (⻟ → 飠 ; Com)     CJK RADICAL EAT THREE
+2EE0  ; 9963                ; Com  # (⻠ → 饣 ; Com)     CJK RADICAL C-SIMPLIFIED EAT
+2EE2  ; 9A6C                ; Com  # (⻢ → 马 ; Com)     CJK RADICAL C-SIMPLIFIED HORSE
+2EE5  ; 9C7C                ; Com  # (⻥ → 鱼 ; Com)     CJK RADICAL C-SIMPLIFIED FISH
+2EE6  ; 9E1F                ; Com  # (⻦ → 鸟 ; Com)     CJK RADICAL C-SIMPLIFIED BIRD
+2EE7  ; 5364                ; Com  # (⻧ → 卤 ; Com)     CJK RADICAL C-SIMPLIFIED SALT
+2EE8  ; 9EA6                ; Com  # (⻨ → 麦 ; Com)     CJK RADICAL SIMPLIFIED WHEAT
+2EE9  ; 9EC4                ; Com  # (⻩ → 黄 ; Com)     CJK RADICAL SIMPLIFIED YELLOW
+2EEA  ; 9EFE                ; Com  # (⻪ → 黾 ; Com)     CJK RADICAL C-SIMPLIFIED FROG
+2EEC  ; 9F50                ; Com  # (⻬ → 齐 ; Com)     CJK RADICAL C-SIMPLIFIED EVEN
+2EEE  ; 9F7F                ; Com  # (⻮ → 齿 ; Com)     CJK RADICAL C-SIMPLIFIED TOOTH
+2EF0  ; 9F99                ; Com  # (⻰ → 龙 ; Com)     CJK RADICAL C-SIMPLIFIED DRAGON
+3014  ; 2772                ; Com  # (〔 → ❲ ; Com)     LEFT TORTOISE SHELL BRACKET
+3015  ; 2773                ; Com  # (〕 → ❳ ; Com)     RIGHT TORTOISE SHELL BRACKET
+3018  ; 27EC                ; Com  # (〘 → ⟬ ; Com)     LEFT WHITE TORTOISE SHELL BRACKET
+3019  ; 27ED                ; Com  # (〙 → ⟭ ; Com)     RIGHT WHITE TORTOISE SHELL BRACKET
+3032  ; 3031 3099           ; Com  # (〲 → 〱゙ ; Com)    VERTICAL KANA REPEAT WITH VOICED SOUND MARK
+3034  ; 3033 3099           ; Com  # (〴 → 〳゙ ; Com)    VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF
+3248  ; 0031 0030           ; Sqr  # (㉈ → 10 ; Sqr)    CIRCLED NUMBER TEN ON BLACK SQUARE
+3249  ; 0032 0030           ; Sqr  # (㉉ → 20 ; Sqr)    CIRCLED NUMBER TWENTY ON BLACK SQUARE
+324A  ; 0033 0030           ; Sqr  # (㉊ → 30 ; Sqr)    CIRCLED NUMBER THIRTY ON BLACK SQUARE
+324B  ; 0034 0030           ; Sqr  # (㉋ → 40 ; Sqr)    CIRCLED NUMBER FORTY ON BLACK SQUARE
+324C  ; 0035 0030           ; Sqr  # (㉌ → 50 ; Sqr)    CIRCLED NUMBER FIFTY ON BLACK SQUARE
+324D  ; 0036 0030           ; Sqr  # (㉍ → 60 ; Sqr)    CIRCLED NUMBER SIXTY ON BLACK SQUARE
+324E  ; 0037 0030           ; Sqr  # (㉎ → 70 ; Sqr)    CIRCLED NUMBER SEVENTY ON BLACK SQUARE
+324F  ; 0038 0030           ; Sqr  # (㉏ → 80 ; Sqr)    CIRCLED NUMBER EIGHTY ON BLACK SQUARE
+FE39  ; 2772                ; Com  # (︹ → ❲ ; Com)     PRESENTATION FORM FOR VERTICAL LEFT TORTOISE SHELL BRACKET
+FE3A  ; 2773                ; Com  # (︺ → ❳ ; Com)     PRESENTATION FORM FOR VERTICAL RIGHT TORTOISE SHELL BRACKET
+FE5D  ; 2772                ; Com  # (﹝ → ❲ ; Com)     SMALL LEFT TORTOISE SHELL BRACKET
+FE5E  ; 2773                ; Com  # (﹞ → ❳ ; Com)     SMALL RIGHT TORTOISE SHELL BRACKET
+FFA1  ; 3131                ; Com  # (ﾡ → ㄱ ; Com)     HALFWIDTH HANGUL LETTER KIYEOK
+FFA2  ; 3132                ; Com  # (ﾢ → ㄲ ; Com)     HALFWIDTH HANGUL LETTER SSANGKIYEOK
+FFA3  ; 3133                ; Com  # (ﾣ → ㄳ ; Com)     HALFWIDTH HANGUL LETTER KIYEOK-SIOS
+FFA4  ; 3134                ; Com  # (ﾤ → ㄴ ; Com)     HALFWIDTH HANGUL LETTER NIEUN
+FFA5  ; 3135                ; Com  # (ﾥ → ㄵ ; Com)     HALFWIDTH HANGUL LETTER NIEUN-CIEUC
+FFA6  ; 3136                ; Com  # (ﾦ → ㄶ ; Com)     HALFWIDTH HANGUL LETTER NIEUN-HIEUH
+FFA7  ; 3137                ; Com  # (ﾧ → ㄷ ; Com)     HALFWIDTH HANGUL LETTER TIKEUT
+FFA8  ; 3138                ; Com  # (ﾨ → ㄸ ; Com)     HALFWIDTH HANGUL LETTER SSANGTIKEUT
+FFA9  ; 3139                ; Com  # (ﾩ → ㄹ ; Com)     HALFWIDTH HANGUL LETTER RIEUL
+FFAA  ; 313A                ; Com  # (ﾪ → ㄺ ; Com)     HALFWIDTH HANGUL LETTER RIEUL-KIYEOK
+FFAB  ; 313B                ; Com  # (ﾫ → ㄻ ; Com)     HALFWIDTH HANGUL LETTER RIEUL-MIEUM
+FFAC  ; 313C                ; Com  # (ﾬ → ㄼ ; Com)     HALFWIDTH HANGUL LETTER RIEUL-PIEUP
+FFAD  ; 313D                ; Com  # (ﾭ → ㄽ ; Com)     HALFWIDTH HANGUL LETTER RIEUL-SIOS
+FFAE  ; 313E                ; Com  # (ﾮ → ㄾ ; Com)     HALFWIDTH HANGUL LETTER RIEUL-THIEUTH
+FFAF  ; 313F                ; Com  # (ﾯ → ㄿ ; Com)     HALFWIDTH HANGUL LETTER RIEUL-PHIEUPH
+FFB0  ; 3140                ; Com  # (ﾰ → ㅀ ; Com)     HALFWIDTH HANGUL LETTER RIEUL-HIEUH
+FFB1  ; 3141                ; Com  # (ﾱ → ㅁ ; Com)     HALFWIDTH HANGUL LETTER MIEUM
+FFB2  ; 3142                ; Com  # (ﾲ → ㅂ ; Com)     HALFWIDTH HANGUL LETTER PIEUP
+FFB3  ; 3143                ; Com  # (ﾳ → ㅃ ; Com)     HALFWIDTH HANGUL LETTER SSANGPIEUP
+FFB4  ; 3144                ; Com  # (ﾴ → ㅄ ; Com)     HALFWIDTH HANGUL LETTER PIEUP-SIOS
+FFB5  ; 3145                ; Com  # (ﾵ → ㅅ ; Com)     HALFWIDTH HANGUL LETTER SIOS
+FFB6  ; 3146                ; Com  # (ﾶ → ㅆ ; Com)     HALFWIDTH HANGUL LETTER SSANGSIOS
+FFB7  ; 3147                ; Com  # (ﾷ → ㅇ ; Com)     HALFWIDTH HANGUL LETTER IEUNG
+FFB8  ; 3148                ; Com  # (ﾸ → ㅈ ; Com)     HALFWIDTH HANGUL LETTER CIEUC
+FFB9  ; 3149                ; Com  # (ﾹ → ㅉ ; Com)     HALFWIDTH HANGUL LETTER SSANGCIEUC
+FFBA  ; 314A                ; Com  # (ﾺ → ㅊ ; Com)     HALFWIDTH HANGUL LETTER CHIEUCH
+FFBB  ; 314B                ; Com  # (ﾻ → ㅋ ; Com)     HALFWIDTH HANGUL LETTER KHIEUKH
+FFBC  ; 314C                ; Com  # (ﾼ → ㅌ ; Com)     HALFWIDTH HANGUL LETTER THIEUTH
+FFBD  ; 314D                ; Com  # (ﾽ → ㅍ ; Com)     HALFWIDTH HANGUL LETTER PHIEUPH
+FFBE  ; 314E                ; Com  # (ﾾ → ㅎ ; Com)     HALFWIDTH HANGUL LETTER HIEUH
+FFC2  ; 314F                ; Com  # (ￂ → ㅏ ; Com)     HALFWIDTH HANGUL LETTER A
+FFC3  ; 3150                ; Com  # (ￃ → ㅐ ; Com)     HALFWIDTH HANGUL LETTER AE
+FFC4  ; 3151                ; Com  # (ￄ → ㅑ ; Com)     HALFWIDTH HANGUL LETTER YA
+FFC5  ; 3152                ; Com  # (ￅ → ㅒ ; Com)     HALFWIDTH HANGUL LETTER YAE
+FFC6  ; 3153                ; Com  # (ￆ → ㅓ ; Com)     HALFWIDTH HANGUL LETTER EO
+FFC7  ; 3154                ; Com  # (ￇ → ㅔ ; Com)     HALFWIDTH HANGUL LETTER E
+FFCA  ; 3155                ; Com  # (ￊ → ㅕ ; Com)     HALFWIDTH HANGUL LETTER YEO
+FFCB  ; 3156                ; Com  # (ￋ → ㅖ ; Com)     HALFWIDTH HANGUL LETTER YE
+FFCC  ; 3157                ; Com  # (ￌ → ㅗ ; Com)     HALFWIDTH HANGUL LETTER O
+FFCD  ; 3158                ; Com  # (ￍ → ㅘ ; Com)     HALFWIDTH HANGUL LETTER WA
+FFCE  ; 3159                ; Com  # (ￎ → ㅙ ; Com)     HALFWIDTH HANGUL LETTER WAE
+FFCF  ; 315A                ; Com  # (ￏ → ㅚ ; Com)     HALFWIDTH HANGUL LETTER OE
+FFD2  ; 315B                ; Com  # (ￒ → ㅛ ; Com)     HALFWIDTH HANGUL LETTER YO
+FFD3  ; 315C                ; Com  # (ￓ → ㅜ ; Com)     HALFWIDTH HANGUL LETTER U
+FFD4  ; 315D                ; Com  # (ￔ → ㅝ ; Com)     HALFWIDTH HANGUL LETTER WEO
+FFD5  ; 315E                ; Com  # (ￕ → ㅞ ; Com)     HALFWIDTH HANGUL LETTER WE
+FFD6  ; 315F                ; Com  # (ￖ → ㅟ ; Com)     HALFWIDTH HANGUL LETTER WI
+FFD7  ; 3160                ; Com  # (ￗ → ㅠ ; Com)     HALFWIDTH HANGUL LETTER YU
+FFDA  ; 3161                ; Com  # (ￚ → ㅡ ; Com)     HALFWIDTH HANGUL LETTER EU
+FFDB  ; 3162                ; Com  # (ￛ → ㅢ ; Com)     HALFWIDTH HANGUL LETTER YI
+FFDC  ; 3163                ; Com  # (ￜ → ㅣ ; Com)     HALFWIDTH HANGUL LETTER I
+1F10B ; 0030                ; Enc  # (🄋 → 0 ; Enc)     DINGBAT CIRCLED SANS-SERIF DIGIT ZERO
+1F10C ; 0030                ; Enc  # (🄌 → 0 ; Enc)     DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
+1F12A ; 2772 0053 2773      ; Com  # (🄪 → ❲S❳ ; Com)   TORTOISE SHELL BRACKETED LATIN CAPITAL LETTER S
+1F12D ; 0043 0044           ; Enc  # (🄭 → CD ; Enc)    CIRCLED CD
+1F14A ; 0048 0056           ; Sqr  # (🅊 → HV ; Sqr)    SQUARED HV
+1F14B ; 004D 0056           ; Sqr  # (🅋 → MV ; Sqr)    SQUARED MV
+1F14C ; 0053 0044           ; Sqr  # (🅌 → SD ; Sqr)    SQUARED SD
+1F14D ; 0053 0053           ; Sqr  # (🅍 → SS ; Sqr)    SQUARED SS
+1F14E ; 0050 0050 0056      ; Sqr  # (🅎 → PPV ; Sqr)   SQUARED PPV
+1F14F ; 0057 0043           ; Sqr  # (🅏 → WC ; Sqr)    SQUARED WC
+1F150 ; 0041                ; Enc  # (🅐 → A ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER A
+1F151 ; 0042                ; Enc  # (🅑 → B ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER B
+1F152 ; 0043                ; Enc  # (🅒 → C ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER C
+1F153 ; 0044                ; Enc  # (🅓 → D ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER D
+1F154 ; 0045                ; Enc  # (🅔 → E ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER E
+1F155 ; 0046                ; Enc  # (🅕 → F ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER F
+1F156 ; 0047                ; Enc  # (🅖 → G ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER G
+1F157 ; 0048                ; Enc  # (🅗 → H ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER H
+1F158 ; 0049                ; Enc  # (🅘 → I ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER I
+1F159 ; 004A                ; Enc  # (🅙 → J ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER J
+1F15A ; 004B                ; Enc  # (🅚 → K ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER K
+1F15B ; 004C                ; Enc  # (🅛 → L ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER L
+1F15C ; 004D                ; Enc  # (🅜 → M ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER M
+1F15D ; 004E                ; Enc  # (🅝 → N ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER N
+1F15E ; 004F                ; Enc  # (🅞 → O ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER O
+1F15F ; 0050                ; Enc  # (🅟 → P ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER P
+1F160 ; 0051                ; Enc  # (🅠 → Q ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER Q
+1F161 ; 0052                ; Enc  # (🅡 → R ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER R
+1F162 ; 0053                ; Enc  # (🅢 → S ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER S
+1F163 ; 0054                ; Enc  # (🅣 → T ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER T
+1F164 ; 0055                ; Enc  # (🅤 → U ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER U
+1F165 ; 0056                ; Enc  # (🅥 → V ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER V
+1F166 ; 0057                ; Enc  # (🅦 → W ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER W
+1F167 ; 0058                ; Enc  # (🅧 → X ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER X
+1F168 ; 0059                ; Enc  # (🅨 → Y ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER Y
+1F169 ; 005A                ; Enc  # (🅩 → Z ; Enc)     NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
+1F170 ; 0041                ; Sqr  # (🅰 → A ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER A
+1F171 ; 0042                ; Sqr  # (🅱 → B ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER B
+1F172 ; 0043                ; Sqr  # (🅲 → C ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER C
+1F173 ; 0044                ; Sqr  # (🅳 → D ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER D
+1F174 ; 0045                ; Sqr  # (🅴 → E ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER E
+1F175 ; 0046                ; Sqr  # (🅵 → F ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER F
+1F176 ; 0047                ; Sqr  # (🅶 → G ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER G
+1F177 ; 0048                ; Sqr  # (🅷 → H ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER H
+1F178 ; 0049                ; Sqr  # (🅸 → I ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER I
+1F179 ; 004A                ; Sqr  # (🅹 → J ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER J
+1F17A ; 004B                ; Sqr  # (🅺 → K ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER K
+1F17B ; 004C                ; Sqr  # (🅻 → L ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER L
+1F17C ; 004D                ; Sqr  # (🅼 → M ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER M
+1F17D ; 004E                ; Sqr  # (🅽 → N ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER N
+1F17E ; 004F                ; Sqr  # (🅾 → O ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER O
+1F17F ; 0050                ; Sqr  # (🅿 → P ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER P
+1F180 ; 0051                ; Sqr  # (🆀 → Q ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER Q
+1F181 ; 0052                ; Sqr  # (🆁 → R ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER R
+1F182 ; 0053                ; Sqr  # (🆂 → S ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER S
+1F183 ; 0054                ; Sqr  # (🆃 → T ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER T
+1F184 ; 0055                ; Sqr  # (🆄 → U ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER U
+1F185 ; 0056                ; Sqr  # (🆅 → V ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER V
+1F186 ; 0057                ; Sqr  # (🆆 → W ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER W
+1F187 ; 0058                ; Sqr  # (🆇 → X ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER X
+1F188 ; 0059                ; Sqr  # (🆈 → Y ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER Y
+1F189 ; 005A                ; Sqr  # (🆉 → Z ; Sqr)     NEGATIVE SQUARED LATIN CAPITAL LETTER Z
+1F18A ; 0050                ; Sqr  # (🆊 → P ; Sqr)     CROSSED NEGATIVE SQUARED LATIN CAPITAL LETTER P
+1F18B ; 0049 0043           ; Sqr  # (🆋 → IC ; Sqr)    NEGATIVE SQUARED IC
+1F18C ; 0050 0041           ; Sqr  # (🆌 → PA ; Sqr)    NEGATIVE SQUARED PA
+1F18D ; 0053 0041           ; Sqr  # (🆍 → SA ; Sqr)    NEGATIVE SQUARED SA
+1F18E ; 0041 0042           ; Sqr  # (🆎 → AB ; Sqr)    NEGATIVE SQUARED AB
+1F18F ; 0057 0043           ; Sqr  # (🆏 → WC ; Sqr)    NEGATIVE SQUARED WC
+1F191 ; 0043 004C           ; Sqr  # (🆑 → CL ; Sqr)    SQUARED CL
+1F192 ; 0043 004F 004F 004C ; Sqr  # (🆒 → COOL ; Sqr)  SQUARED COOL
+1F193 ; 0046 0052 0045 0045 ; Sqr  # (🆓 → FREE ; Sqr)  SQUARED FREE
+1F194 ; 0049 0044           ; Sqr  # (🆔 → ID ; Sqr)    SQUARED ID
+1F195 ; 004E 0045 0057      ; Sqr  # (🆕 → NEW ; Sqr)   SQUARED NEW
+1F196 ; 004E 0047           ; Sqr  # (🆖 → NG ; Sqr)    SQUARED NG
+1F197 ; 004F 004B           ; Sqr  # (🆗 → OK ; Sqr)    SQUARED OK
+1F198 ; 0053 004F 0053      ; Sqr  # (🆘 → SOS ; Sqr)   SQUARED SOS
+1F199 ; 0055 0050 0021      ; Sqr  # (🆙 → UP! ; Sqr)   SQUARED UP WITH EXCLAMATION MARK
+1F19A ; 0056 0053           ; Sqr  # (🆚 → VS ; Sqr)    SQUARED VS
+1F240 ; 2772 672C 2773      ; Com  # (🉀 → ❲本❳ ; Com)   TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C
+1F241 ; 2772 4E09 2773      ; Com  # (🉁 → ❲三❳ ; Com)   TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-4E09
+1F242 ; 2772 4E8C 2773      ; Com  # (🉂 → ❲二❳ ; Com)   TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-4E8C
+1F243 ; 2772 5B89 2773      ; Com  # (🉃 → ❲安❳ ; Com)   TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-5B89
+1F244 ; 2772 70B9 2773      ; Com  # (🉄 → ❲点❳ ; Com)   TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-70B9
+1F245 ; 2772 6253 2773      ; Com  # (🉅 → ❲打❳ ; Com)   TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6253
+1F246 ; 2772 76D7 2773      ; Com  # (🉆 → ❲盗❳ ; Com)   TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-76D7
+1F247 ; 2772 52DD 2773      ; Com  # (🉇 → ❲勝❳ ; Com)   TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-52DD
+1F248 ; 2772 6557 2773      ; Com  # (🉈 → ❲敗❳ ; Com)   TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
+# total: 271
+# uset:  [⅍⓫-⓿❶-➓⺂⺃⺅⺉⺏⺐⺒-⺔⺖⺘⺙⺛⺠-⺤⺦⺨⺭⺯-⺲⺸-⺺⺾⻁-⻆⻈⻉⻋⻌⻐-⻔⻖⻘-⻝⻟⻠⻢⻥-⻪⻬⻮⻰〔〕〘〙〲〴㉈-㉏︹︺﹝﹞ﾡ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ🄋🄌🄪🄭🅊-🅩🅰-🆏🆑-🆚🉀-🉈]

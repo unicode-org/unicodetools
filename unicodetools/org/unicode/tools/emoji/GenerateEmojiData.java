@@ -40,6 +40,7 @@ public class GenerateEmojiData {
     public static final UnicodeSet directionBase = new UnicodeSet(
             "[😘 🚶 🏃 ✌ ✋ 👋-👍 👏 💪 👀 🤘 💨 ✈ 🎷 🎺 🔨 ⛏ 🗡 🔫 🚬 "
                     + "\\U0001F93A \\U0001F93D \\U0001F93E \\U0001F946]").freeze();
+    private static final boolean SHOW = false;
 
     public static void main(String[] args) throws IOException {
         printData(null);
@@ -110,9 +111,9 @@ public class GenerateEmojiData {
             printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true);
             out.println("\n#EOF");
         }
-        System.out.println("Regional_Indicators ; " + Emoji.REGIONAL_INDICATORS.toPattern(false));
-        System.out.println("Emoji Combining Bases ; " + EmojiData.EMOJI_DATA.getKeycapBases().toPattern(false));
-        System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
+        if (SHOW) System.out.println("Regional_Indicators ; " + Emoji.REGIONAL_INDICATORS.toPattern(false));
+        if (SHOW) System.out.println("Emoji Combining Bases ; " + EmojiData.EMOJI_DATA.getKeycapBases().toPattern(false));
+        if (SHOW) System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
     }
 
     private static void showTypeFieldsMessage(PrintWriter out, Collection<String> type_fields) {
@@ -183,6 +184,9 @@ public class GenerateEmojiData {
                 }
                 totalCount += rangeCount;
                 if (flat) {
+                    if (range.string != null) {
+                        throw new IllegalArgumentException("internal error");
+                    }
                     for (int cp = range.codepoint; cp <= range.codepointEnd; ++cp) {
                         s = UTF16.valueOf(cp);
                         out.println(tabber.process(
@@ -234,7 +238,7 @@ public class GenerateEmojiData {
                 }
                 String sPlus = b.toString();
                 if (!sPlus.equals(s) || !sMinus.equals(s)) {
-                    System.out.println(title 
+                    if (SHOW) System.out.println(title 
                             + "\t" + Utility.hex(s) 
                             + "\t" + (sMinus.equals(s) ? "≣" : Utility.hex(sMinus))
                             + "\t" + (sPlus.equals(s) ? "≣" : Utility.hex(sPlus))

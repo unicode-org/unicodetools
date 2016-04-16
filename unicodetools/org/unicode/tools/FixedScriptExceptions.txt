@@ -1,0 +1,29 @@
+U+0374 ;           Greek # (ʹ→Greek) GREEK NUMERAL SIGN
+U+037E ;           Greek # (;→Greek) GREEK QUESTION MARK
+U+0385 ;           Greek # (΅→Greek) GREEK DIALYTIKA TONOS
+U+0387 ;           Greek # (·→Greek) GREEK ANO TELEIA
+U+0605 ;           Arabic # (؅→Arabic) ARABIC NUMBER MARK ABOVE
+U+061C ;           Arabic # (؜→Arabic) ARABIC LETTER MARK
+U+06DD ;           Arabic # (۝→Arabic) ARABIC END OF AYAH
+U+08E2 ;           Arabic # (࣢→Arabic) ARABIC DISPUTED END OF AYAH
+U+16EB ;           Runic # (᛫→Runic) RUNIC SINGLE PUNCTUATION
+U+16EC ;           Runic # (᛬→Runic) RUNIC MULTIPLE PUNCTUATION
+U+16ED ;           Runic # (᛭→Runic) RUNIC CROSS PUNCTUATION
+U+3382 ;           Latin # (㎂→Latin) SQUARE MU A
+U+338C ;           Latin # (㎌→Latin) SQUARE MU F
+U+338D ;           Latin # (㎍→Latin) SQUARE MU G
+U+3395 ;           Latin # (㎕→Latin) SQUARE MU L
+U+339B ;           Latin # (㎛→Latin) SQUARE MU M
+U+33B2 ;           Latin # (㎲→Latin) SQUARE MU S
+U+33B6 ;           Latin # (㎶→Latin) SQUARE MU V
+U+33BC ;           Latin # (㎼→Latin) SQUARE MU W
+U+33C0 ;           Latin # (㏀→Latin) SQUARE K OHM
+U+33C1 ;           Latin # (㏁→Latin) SQUARE M OHM
+U+A720 ;           Latin # (꜠→Latin) MODIFIER LETTER STRESS AND HIGH TONE
+U+A721 ;           Latin # (꜡→Latin) MODIFIER LETTER STRESS AND LOW TONE
+U+A788 ;           Latin # (ꞈ→Latin) MODIFIER LETTER LOW CIRCUMFLEX ACCENT
+U+A789 ;           Latin # (꞉→Latin) MODIFIER LETTER COLON
+U+A78A ;           Latin # (꞊→Latin) MODIFIER LETTER SHORT EQUALS SIGN
+U+AB5B ;           Latin # (꭛→Latin) MODIFIER BREVE WITH INVERTED BREVE
+U+FD3E ;           Arabic # (﴾→Arabic) ORNATE LEFT PARENTHESIS
+U+FD3F ;           Arabic # (﴿→Arabic) ORNATE RIGHT PARENTHESIS

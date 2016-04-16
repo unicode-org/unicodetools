@@ -20,6 +20,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Idn_Status_Values;
+import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -52,18 +53,25 @@ public class TestInvariants extends TestFmwkPlus{
     static final UnicodeMap<String> mandarin = iup.load(UcdProperty.kMandarin);
     static final UnicodeMap<String> radicalStroke = iup.load(UcdProperty.kRSUnicode);
     static final UnicodeMap<String> hanyuPinyin = iup.load(UcdProperty.kHanyuPinyin);
-    static final UnicodeMap<Binary> ideographic = iup.loadEnum(UcdProperty.Ideographic, Binary.class);
+    static final UnicodeSet ideographic = iup.loadEnum(UcdProperty.Ideographic, Binary.class).getSet(Binary.Yes);
+    static final UnicodeSet unified_Ideograph = iup.loadEnum(UcdProperty.Unified_Ideograph, Binary.class).getSet(Binary.Yes);
     static final UnicodeMap<String> haveDecomps = iup.load(UcdProperty.Decomposition_Mapping);
-    static final UnicodeSet ideographicSet = ideographic.getSet(Binary.Yes);
+    static final UnicodeSet ideographicSet = unified_Ideograph;
     static final UnicodeSet DECOMPOSABLE = haveDecomps.keySet();
 
     public void TestHanCompleteness() {
         
         UnicodeSet missing;
         
+        UnicodeSet ideoMinusTangut = new UnicodeSet(ideographic)
+        .removeAll(iup.loadEnum(UcdProperty.Script, Script_Values.class).getSet(Script_Values.Tangut));
+        missing = new UnicodeSet(ideoMinusTangut).removeAll(ideographicSet);
+
+        showMissing("In Ideograph-Tangut but not Unified_Ideograph: ", UcdProperty.Unified_Ideograph, missing);
+
         final UnicodeSet rs = radicalStroke.keySet();
         missing = new UnicodeSet(ideographicSet).removeAll(rs);
-        showMissing("In Ideographic but no kRSUnicode value: ", UcdProperty.kRSUnicode, missing);
+        showMissing("In unified_Ideograph but no kRSUnicode value: ", UcdProperty.kRSUnicode, missing);
 
         UnicodeSet comparison = new UnicodeSet(rs).removeAll(DECOMPOSABLE);
         missing = new UnicodeSet(comparison).removeAll(totalStrokes.keySet());
@@ -78,7 +86,7 @@ public class TestInvariants extends TestFmwkPlus{
     }
 
     private void showMissing(String title, final UcdProperty prop, UnicodeSet missing) {
-        if (!assertEquals(prop.toString(), UnicodeSet.EMPTY, missing)) {
+        if (!assertEquals(title, UnicodeSet.EMPTY, missing)) {
             System.out.println(title + missing.size() + ", " + missing.toPattern(false));
             if (DECOMPOSABLE.containsSome(missing)) {
                 missing.removeAll(DECOMPOSABLE);
