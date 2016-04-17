@@ -2,14 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/icu4j-src.jar"/>
-	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/icu4j.jar" sourcepath="/UnicodeJsps/WebContent/WEB-INF/lib/icu4j-src.jar"/>
-	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/utilities-src.jar"/>
-	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/utilities.jar" sourcepath="/UnicodeJsps/WebContent/WEB-INF/lib/utilities-src.jar"/>
-	<classpathentry kind="lib" path="/Users/markdavis/workspace/cldr/tools/java/libs/xercesImpl.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/UnicodeJsps"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/cldr-tools"/>
-	<classpathentry kind="lib" path="/cldr/tools/java/libs/guava-sources.jar"/>
-	<classpathentry kind="lib" path="/cldr-tools/libs/guava.jar"/>
+	<classpathentry kind="lib" path="/UnicodeJsps/WebContent/WEB-INF/lib/cldr.jar"/>
+	<classpathentry kind="lib" path="/UnicodeJsps/WebContent/WEB-INF/lib/guava-sources.jar"/>
+	<classpathentry kind="lib" path="/UnicodeJsps/WebContent/WEB-INF/lib/guava.jar"/>
+	<classpathentry kind="lib" path="/UnicodeJsps/WebContent/WEB-INF/lib/icu4j-src.jar"/>
+	<classpathentry kind="lib" path="/UnicodeJsps/WebContent/WEB-INF/lib/icu4j.jar"/>
+	<classpathentry kind="lib" path="/UnicodeJsps/WebContent/WEB-INF/lib/utilities-src.jar"/>
+	<classpathentry kind="lib" path="/UnicodeJsps/WebContent/WEB-INF/lib/utilities.jar"/>
+	<classpathentry kind="lib" path="/UnicodeJsps/WebContent/WEB-INF/lib/xercesImpl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
