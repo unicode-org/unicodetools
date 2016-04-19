@@ -67,7 +67,7 @@ public class TestInvariants extends TestFmwkPlus{
         .removeAll(iup.loadEnum(UcdProperty.Script, Script_Values.class).getSet(Script_Values.Tangut));
         missing = new UnicodeSet(ideoMinusTangut).removeAll(ideographicSet);
 
-        showMissing("In Ideograph-Tangut but not Unified_Ideograph: ", UcdProperty.Unified_Ideograph, missing);
+        showMissing("In Ideograph (minus Tangut) but not Unified_Ideograph: ", UcdProperty.Unified_Ideograph, missing);
 
         final UnicodeSet rs = radicalStroke.keySet();
         missing = new UnicodeSet(ideographicSet).removeAll(rs);

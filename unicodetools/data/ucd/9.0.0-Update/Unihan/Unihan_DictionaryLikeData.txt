@@ -1,6 +1,6 @@
 #
 # Unihan_DictionaryLikeData.txt
-# Date: 2016-04-12 18:00:34 GMT [JHJ]
+# Date: 2016-04-12 20:25:34 GMT [JHJ]
 # Unicode version: 9.0.0
 #
 # Unicode Character Database
@@ -113807,6 +113807,15 @@ U+9FC9	kTotalStrokes	7
 U+9FCA	kTotalStrokes	11
 U+9FCB	kTotalStrokes	17
 U+9FCC	kTotalStrokes	12
+U+9FCD	kTotalStrokes	9
+U+9FCE	kTotalStrokes	11
+U+9FCF	kTotalStrokes	12
+U+9FD0	kTotalStrokes	21
+U+9FD1	kTotalStrokes	7
+U+9FD2	kTotalStrokes	9
+U+9FD3	kTotalStrokes	12
+U+9FD4	kTotalStrokes	15
+U+9FD5	kTotalStrokes	12
 U+F900	kTotalStrokes	10
 U+F901	kTotalStrokes	7
 U+F902	kTotalStrokes	7
