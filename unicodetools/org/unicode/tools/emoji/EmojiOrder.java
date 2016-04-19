@@ -79,6 +79,11 @@ public class EmojiOrder {
     //    }
 
     public static final Comparator<String> UCA_COLLATOR = (Comparator<String>)(Comparator)Collator.getInstance(ULocale.ROOT);
+    public static final Comparator<String> FULL_COMPARATOR =
+            new MultiComparator<String>(
+                    EmojiOrder.UCA_COLLATOR,
+                    PLAIN_STRING_COMPARATOR);
+
     //public static final EmojiOrder ALT_ORDER = new EmojiOrder(Emoji.VERSION_BETA, "altOrder.txt");
     public static final EmojiOrder STD_ORDER = new EmojiOrder(Emoji.VERSION_BETA, "emojiOrdering.txt");
 
