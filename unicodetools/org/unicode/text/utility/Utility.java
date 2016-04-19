@@ -307,7 +307,7 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
                 result.append(separator);
             }
             ch = UTF16.charAt(s, i);
-            result.append(hex(ch));
+            result.append(hex(ch, places));
         }
         return result.toString();
     }
