@@ -11,7 +11,7 @@
 
 package org.unicode.text.utility;
 
-import com.ibm.icu.impl.Differ;
+import org.unicode.cldr.util.Differ;
 
 
 public class DifferTest {
