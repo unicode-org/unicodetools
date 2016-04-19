@@ -1,6 +1,6 @@
 #
 # Unihan_Variants.txt
-# Date: 2016-04-12 18:00:34 GMT [JHJ]
+# Date: 2016-04-12 20:25:34 GMT [JHJ]
 # Unicode version: 9.0.0
 #
 # Unicode Character Database
