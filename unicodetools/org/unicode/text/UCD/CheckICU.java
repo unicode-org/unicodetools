@@ -13,11 +13,11 @@ import java.util.TreeSet;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.ICUPropertyFactory;
+import org.unicode.cldr.util.UnicodeLabel;
 import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;

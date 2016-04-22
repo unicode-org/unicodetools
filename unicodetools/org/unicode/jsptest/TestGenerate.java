@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.TreeSet;
 
 import org.unicode.cldr.util.BagFormatter;
+import org.unicode.cldr.util.UnicodeLabel;
 import org.unicode.cldr.util.UnicodePropertySymbolTable;
 import org.unicode.idna.Idna;
 import org.unicode.idna.Idna.IdnaType;
@@ -15,7 +16,6 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
