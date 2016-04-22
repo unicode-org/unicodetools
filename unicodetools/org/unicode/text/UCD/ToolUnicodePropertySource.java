@@ -29,7 +29,6 @@ import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
-import com.ibm.icu.impl.StringUCharacterIterator;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.IDNA;
 import com.ibm.icu.text.NumberFormat;
@@ -831,7 +830,7 @@ public class ToolUnicodePropertySource extends UnicodeProperty.Factory {
                             new UnicodeSet(
                                     "[\u3031\u3032\u3033\u3034\u3035\u309B\u309C\u30A0\u30FC\uFF70]")),
                     "Katakana"); // \uFF9E\uFF9F
-            final Object foo = unicodeMap.keySet("Katakana");
+            // final Object foo = unicodeMap.keySet("Katakana");
             // UnicodeSet graphemeExtend =
             // getProperty("Grapheme_Extend").getSet(UCD_Names.YES).remove(0xFF9E,0xFF9F);
             final UnicodeProperty lineBreak = getProperty("Line_Break");
@@ -1662,7 +1661,6 @@ isTitlecase(X) is false.
 
         private final UCD                      ucdIdna = UCD.makeLatestVersion();
         private final StringPrep               namePrep;
-        private final StringUCharacterIterator uci     = new StringUCharacterIterator("");
 
         IdnaInfo() throws IOException {
             namePrep = StringPrep.getInstance(StringPrep.RFC3491_NAMEPREP);
@@ -1680,18 +1678,16 @@ isTitlecase(X) is false.
                 return IdnaType.OK;
             }
             final String source = UTF16.valueOf(cp);
-            uci.setText(source);
-            StringBuffer outbuffer = null;
             try {
-                outbuffer = namePrep.prepare(uci, IDNA.DEFAULT);
+                String result = namePrep.prepare(source, IDNA.DEFAULT);
+                if (!source.equals(result)) {
+                    return IdnaType.REMAPPED;
+                }
             } catch (final StringPrepParseException e) {
                 return IdnaType.ILLEGAL;
             } catch (final Exception e) {
                 System.out.println("Failure at: " + Utility.hex(cp));
                 return IdnaType.ILLEGAL;
-            }
-            if (!TestData.equals(source, outbuffer)) {
-                return IdnaType.REMAPPED;
             }
             return IdnaType.OK;
         }
