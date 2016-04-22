@@ -39,6 +39,7 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.Pair;
+import org.unicode.cldr.util.UnicodeLabel;
 import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.With;
 import org.unicode.idna.Idna.IdnaType;
@@ -55,7 +56,6 @@ import org.unicode.tools.Confusables;
 
 import com.ibm.icu.dev.util.ArrayComparator;
 import com.ibm.icu.dev.util.CollectionUtilities;
-import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.dev.util.UnicodeTransform;

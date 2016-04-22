@@ -13,6 +13,7 @@ import java.util.TreeSet;
 import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.Log;
 import org.unicode.cldr.util.TransliteratorUtilities;
+import org.unicode.cldr.util.UnicodeLabel;
 import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
@@ -25,7 +26,6 @@ import org.unicode.tools.Segmenter;
 import org.unicode.tools.Segmenter.Builder;
 
 import com.ibm.icu.dev.util.Tabber;
-import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

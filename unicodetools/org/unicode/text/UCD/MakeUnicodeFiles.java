@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.BagFormatter;
+import org.unicode.cldr.util.UnicodeLabel;
 import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateGraphemeBreakTest;
 import org.unicode.text.UCD.GenerateBreakTest.GenerateLineBreakTest;
@@ -35,7 +36,6 @@ import org.unicode.text.utility.UnicodeDataFile;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.Tabber;
-import com.ibm.icu.dev.util.UnicodeLabel;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R3;
