@@ -35,12 +35,12 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
+import org.unicode.cldr.util.Tabber.HTMLTabber;
+import org.unicode.cldr.util.XEquivalenceClass.SetMaker;
 
-import com.ibm.icu.dev.util.Tabber.HTMLTabber;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.Composer;
 import com.ibm.icu.dev.util.UnicodeMapIterator;
-import com.ibm.icu.dev.util.XEquivalenceClass.SetMaker;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Utility;

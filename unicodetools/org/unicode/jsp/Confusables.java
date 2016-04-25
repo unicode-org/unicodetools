@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.jsp.AlternateIterator.Builder;
 import org.unicode.jsp.ScriptTester.CompatibilityLevel;
 import org.unicode.jsp.ScriptTester.ScriptSpecials;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.Normalizer;
 import com.ibm.icu.text.Normalizer.Mode;

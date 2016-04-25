@@ -35,11 +35,11 @@ import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.CaseIterator;
 import org.unicode.cldr.util.Counter;
+import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.cldr.util.UnicodeProperty.UnicodeMapProperty;
 import org.unicode.text.utility.Settings;
 
-import com.ibm.icu.dev.util.Tabber;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;

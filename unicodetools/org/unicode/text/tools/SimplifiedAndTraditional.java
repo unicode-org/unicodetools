@@ -11,11 +11,11 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
+import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;

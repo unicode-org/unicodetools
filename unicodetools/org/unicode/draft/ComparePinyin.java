@@ -16,10 +16,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.util.Tabber;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.utility.Utility;
 
-import com.ibm.icu.dev.util.Tabber;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.IterableComparator;
 import com.ibm.icu.impl.Relation;

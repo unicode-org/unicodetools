@@ -11,10 +11,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.text.Normalizer;
