@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
-import com.ibm.icu.dev.util.BagFormatter;
+import org.unicode.cldr.draft.FileUtilities;
 
 public class TempPrintWriter extends PrintWriter {
     final String filename;
@@ -19,9 +19,8 @@ public class TempPrintWriter extends PrintWriter {
 
     private static BufferedWriter getBuffer(String dirString, String filename, String encoding) throws IOException {
         File file = File.createTempFile(filename, null, new File(dirString));
-        if (BagFormatter.SHOW_FILES) {
-            System.out.println("Creating File: "
-                    + file.getCanonicalPath());
+        if (FileUtilities.SHOW_FILES) {
+            System.out.println("Creating File: " + file.getCanonicalPath());
         }
         String parentName = file.getParent();
         if (parentName != null) {

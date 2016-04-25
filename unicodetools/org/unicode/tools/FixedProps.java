@@ -26,19 +26,15 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
-import org.unicode.props.UnicodeLabel;
 import org.unicode.props.VersionToAge;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.UnicodeSetParser;
-import org.unicode.text.utility.LengthFirstComparator;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Splitter;
-import com.ibm.icu.dev.util.BagFormatter;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
@@ -361,10 +357,10 @@ public class FixedProps {
                 literalTemp.put(s, newValue + "\t;\t" + dtv.getShortName());
            }
 
-            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedNfkd.txt")) {
+            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedNfkd.txt")) {
                 showmap(out, FixedNfkd.changes, temp, literalTemp);
             }
-            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedNfkdDiff.txt")) {
+            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedNfkdDiff.txt")) {
                 showmap(out, diff.keySet(), diff, literalDiff);
             }
         }
@@ -380,10 +376,10 @@ public class FixedProps {
                     diff.put(s, oldValue.getShortName() + "\t≠\t" + newValue.getShortName());
                 }
             }
-            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedGc.txt")) {
+            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedGc.txt")) {
                 showmap(out, FixedGeneralCategory.changes, FixedGeneralCategory.generalCategoryRev, FixedGeneralCategory.generalCategoryRev);
             }
-            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedGcDiff.txt")) {
+            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedGcDiff.txt")) {
                 showmap(out, diff.keySet(), diff, diff);
             }
         }
@@ -399,10 +395,10 @@ public class FixedProps {
                     diff.put(s, oldValue + "\t≠\t" + newValue);
                 }
             }
-            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedScx.txt")) {
+            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedScx.txt")) {
                 showmap(out, FixedScriptExceptions.changes, FixedScriptExceptions.scriptRev, FixedScriptExceptions.scriptRev);
             }
-            try (PrintWriter out = BagFormatter.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedScxDiff.txt")) {
+            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "fixed/", "FixedScxDiff.txt")) {
                 showmap(out, diff.keySet(), diff, diff);
             }
         }
