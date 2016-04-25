@@ -18,6 +18,7 @@ import java.util.regex.Matcher;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.ChainedMap;
+import org.unicode.cldr.util.XEquivalenceClass;
 import org.unicode.cldr.util.ChainedMap.M3;
 import org.unicode.cldr.util.ChainedMap.M4;
 import org.unicode.cldr.util.Counter;
@@ -32,7 +33,6 @@ import com.google.common.collect.ComparisonChain;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
-import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;

@@ -16,16 +16,16 @@ import java.util.TreeMap;
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.ICUPropertyFactory;
+import org.unicode.cldr.util.Tabber;
 import org.unicode.cldr.util.UnicodeLabel;
 import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.cldr.util.Tabber.HTMLTabber;
 import org.unicode.cldr.util.UnicodeProperty.Factory;
 import org.unicode.cldr.util.UnicodeProperty.PatternMatcher;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.tool.UOption;
-import com.ibm.icu.dev.util.Tabber;
-import com.ibm.icu.dev.util.Tabber.HTMLTabber;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.NumberFormat;
