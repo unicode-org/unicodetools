@@ -35,9 +35,9 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.ICUPropertyFactory;
 import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.text.UCD.Default;
+import org.unicode.unused.DataInputCompressor;
+import org.unicode.unused.DataOutputCompressor;
 
-import com.ibm.icu.dev.util.DataInputCompressor;
-import com.ibm.icu.dev.util.DataOutputCompressor;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.dev.util.UnicodeMapIterator;
 import com.ibm.icu.text.UTF16;
