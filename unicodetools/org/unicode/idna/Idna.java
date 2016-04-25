@@ -3,9 +3,10 @@ package org.unicode.idna;
 
 import java.util.regex.Pattern;
 
+import org.unicode.text.utility.UnicodeTransform;
+import org.unicode.text.utility.UnicodeTransform.Type;
+
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeTransform;
-import com.ibm.icu.dev.util.UnicodeTransform.Type;
 import com.ibm.icu.text.StringPrepParseException;
 import com.ibm.icu.text.StringTransform;
 import com.ibm.icu.text.UnicodeSet;

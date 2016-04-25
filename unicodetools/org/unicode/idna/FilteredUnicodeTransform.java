@@ -1,6 +1,7 @@
 package org.unicode.idna;
 
-import com.ibm.icu.dev.util.UnicodeTransform;
+import org.unicode.text.utility.UnicodeTransform;
+
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.SpanCondition;
 

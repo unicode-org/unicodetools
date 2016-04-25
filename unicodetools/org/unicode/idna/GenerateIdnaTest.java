@@ -24,12 +24,12 @@ import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.ToolUnicodePropertySource;
 import org.unicode.text.UCD.ToolUnicodeTransformFactory;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UnicodeTransform;
 import org.unicode.text.utility.Utility;
 
 import com.google.common.base.Objects;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeTransform;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;

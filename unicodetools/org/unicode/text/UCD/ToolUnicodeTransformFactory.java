@@ -1,7 +1,7 @@
 package org.unicode.text.UCD;
 
-import com.ibm.icu.dev.util.UnicodeTransform;
-import com.ibm.icu.dev.util.UnicodeTransform.Type;
+import org.unicode.text.utility.UnicodeTransform;
+import org.unicode.text.utility.UnicodeTransform.Type;
 
 public class ToolUnicodeTransformFactory implements UnicodeTransform.Factory {
 

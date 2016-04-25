@@ -56,12 +56,12 @@ import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.NFKD_Quick_Check_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.utility.Settings;
+import org.unicode.text.utility.UnicodeTransform;
 import org.unicode.text.utility.Utility;
 
 import com.ibm.icu.dev.util.ArrayComparator;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeTransform;
 import com.ibm.icu.dev.util.XEquivalenceClass;
 import com.ibm.icu.dev.util.XEquivalenceClass.Linkage;
 import com.ibm.icu.impl.Relation;
