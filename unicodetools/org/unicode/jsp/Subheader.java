@@ -19,7 +19,8 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ibm.icu.impl.MultiComparator;
+import org.unicode.cldr.util.MultiComparator;
+
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;

@@ -15,13 +15,13 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.MultiComparator;
 import org.unicode.cldr.util.UnicodeSetPrettyPrinter;
 import org.unicode.jsp.Subheader;
 import org.unicode.jsp.Typology;
 import org.unicode.text.utility.Settings;
 
 import com.ibm.icu.dev.test.TestFmwk;
-import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R3;

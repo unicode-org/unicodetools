@@ -470,7 +470,7 @@ public class GenerateConfusables {
     private static UnicodeMap nfkcMap;
 
     private static Comparator codepointComparator = new UTF16.StringComparator(true,false,0);
-    static Comparator UCAComparator = new com.ibm.icu.impl.MultiComparator(new Comparator[] {
+    static Comparator UCAComparator = new org.unicode.cldr.util.MultiComparator(new Comparator[] {
             Collator.getInstance(ULocale.ROOT), 
             //UCA.buildCollator(null),
             codepointComparator});

@@ -15,6 +15,7 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.MapComparator;
+import org.unicode.cldr.util.MultiComparator;
 //import org.unicode.text.UCA.UCA;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
@@ -27,7 +28,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Collator;
