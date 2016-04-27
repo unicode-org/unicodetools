@@ -7,8 +7,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.unicode.cldr.util.MultiComparator;
+
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.CollationElementIterator;

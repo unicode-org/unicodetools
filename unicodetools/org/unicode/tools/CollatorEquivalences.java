@@ -14,10 +14,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.unicode.cldr.util.MultiComparator;
 import org.unicode.cldr.util.With;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.MultiComparator;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.lang.UCharacter;
