@@ -2,10 +2,12 @@ package org.unicode.props;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.unicode.props.UcdPropertyValues.Age_Values;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSortedMap;
 
 public class VersionToAge {
     private static Map<Age_Values, Long> versionToDate 
@@ -30,7 +32,7 @@ public class VersionToAge {
     .put(Age_Values.V1_1, getDate(1995, 7))
     .put(Age_Values.Unassigned, Long.MAX_VALUE)
     .build();
-    private static Long getDate(int year, int month) {
+    public static Long getDate(int year, int month) {
         return new Date(year-1900, month-1, 1).getTime();
     }
     public static Date getDate(Age_Values version) {
@@ -39,7 +41,22 @@ public class VersionToAge {
     public static int getYear(Age_Values versionInfo) {
         return getDate(versionInfo).getYear()+1900;
     }
+    public static Age_Values getAge(long requestedDate) {
+        //System.out.println("req-date=" + new Date(requestedDate));
+        Age_Values best = Age_Values.V1_1;
+        // Find the latest version that is at or before requestedDate
+        for (Entry<Age_Values, Long> entry : versionToDate.entrySet()) {
+            //System.out.println("entry-date=" + new Date(entry.getValue()));
+            if (entry.getValue() <= requestedDate
+                    && entry.getKey().compareTo(best) > 0) {
+                best = entry.getKey();
+            }
+        }
+        return best;
+    }
     public static void main(String[] args) {
+        Age_Values age = getAge(new Date(2015-1900,11,31,23,59,59).getTime());
+        System.out.println(age);
         for (Age_Values x : Age_Values.values()) {
             System.out.println(x + "\t" + getYear(x));
         }
