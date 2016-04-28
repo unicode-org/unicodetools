@@ -8,6 +8,8 @@
 
 package org.unicode.tools;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,9 +22,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.cldr.util.RegexUtilities;
 import org.unicode.cldr.util.TransliteratorUtilities;
 import org.unicode.cldr.util.UnicodeProperty;
+import org.unicode.text.utility.Settings;
 import org.unicode.tools.Segmenter.Rule.Breaks;
 
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -209,8 +213,8 @@ public class Segmenter {
                 // Format: Unclosed character class near index 927
                 int index = e.getIndex();
                 throw (RuntimeException) new IllegalArgumentException("On <" + line + ">, Can't parse: "
-                    + parsing.substring(0, index)
-                    + "<<<>>>" + parsing.substring(index))
+                        + parsing.substring(0, index)
+                        + "<<<>>>" + parsing.substring(index))
                 .initCause(e);
             } catch (RuntimeException e) {
                 // Unclosed character class near index 927
@@ -219,7 +223,7 @@ public class Segmenter {
             }
             name = line;
             resolved = Utility.escape(before) + (result == Breaks.NO_BREAK ? " \u00D7 " : " \u00F7 ")
-                + Utility.escape(after);
+                    + Utility.escape(after);
             // COMMENTS allows whitespace
         }
 
@@ -399,7 +403,7 @@ public class Segmenter {
                 breaks = Segmenter.Rule.Breaks.NO_BREAK;
             }
             addRule(order, line.substring(0, relationPosition).trim(), breaks, line.substring(relationPosition + 1)
-                .trim(), line);
+                    .trim(), line);
             return true;
         }
 
@@ -433,7 +437,7 @@ public class Segmenter {
                 lastComments.clear();
             }
             rawVariables.add("<variable id=\"" + name + "\">"
-                + TransliteratorUtilities.toXML.transliterate(value) + "</variable>");
+                    + TransliteratorUtilities.toXML.transliterate(value) + "</variable>");
             if (!identifierMatcher.reset(name).matches()) {
                 String show = RegexUtilities.showMismatch(identifierMatcher, name);
                 throw new IllegalArgumentException("Variable name must be $id: '" + name + "' — " + show);
@@ -446,7 +450,7 @@ public class Segmenter {
                     if (parsePosition.getIndex() != value.length()) {
                         if (SHOW_SAMPLES)
                             System.out.println(parsePosition.getIndex() + ", " + value.length()
-                                + " -- No samples for: " + name + " = " + value);
+                                    + " -- No samples for: " + name + " = " + value);
                     } else if (valueSet.size() == 0) {
                         if (SHOW_SAMPLES)
                             System.out.println("Empty -- No samples for: " + name + " = " + value);
@@ -479,7 +483,7 @@ public class Segmenter {
         }
 
         public static UnicodeMap<String> composeWith(UnicodeMap<String> target, UnicodeSet set, String value,
-            Composer<String> composer) {
+                Composer<String> composer) {
             for (UnicodeSetIterator it = new UnicodeSetIterator(set); it.next();) {
                 int i = it.codepoint;
                 String v1 = target.getValue(i);
@@ -525,14 +529,14 @@ public class Segmenter {
                 lastComments.clear();
             }
             if (htmlRules.containsKey(order)
-                || xmlRules.containsKey(order)
-                || rules.containsKey(order)) {
+                    || xmlRules.containsKey(order)
+                    || rules.containsKey(order)) {
                 throw new IllegalArgumentException("Duplicate numbers for rules: " + order);
             }
             htmlRules.put(order, TransliteratorUtilities.toHTML.transliterate(line));
             xmlRules.put(order, "<rule id=\"" + Segmenter.nf.format(order) + "\""
-                // + (flagItems.reset(line).find() ? " normative=\"true\"" : "")
-                + "> " + TransliteratorUtilities.toXML.transliterate(line) + " </rule>");
+                    // + (flagItems.reset(line).find() ? " normative=\"true\"" : "")
+                    + "> " + TransliteratorUtilities.toXML.transliterate(line) + " </rule>");
             if (after.contains("[^$OLetter")) {
                 System.out.println("!@#$31 Debug");
             }
@@ -631,15 +635,15 @@ public class Segmenter {
         }
 
         static UnicodeSet JavaRegex_uxxx = new UnicodeSet(
-            "[[[:White_Space:][:defaultignorablecodepoint:]#]&[\\u0000-\\uFFFF]]"); // hack to fix # in Java
+                "[[[:White_Space:][:defaultignorablecodepoint:]#]&[\\u0000-\\uFFFF]]"); // hack to fix # in Java
         static UnicodeSet JavaRegex_slash = new UnicodeSet("[[:Pattern_White_Space:]" +
-            "\\[\\]\\-\\^\\&\\\\\\{\\}\\$\\:]");
+                "\\[\\]\\-\\^\\&\\\\\\{\\}\\$\\:]");
         static CodePointShower JavaRegexShower = new CodePointShower() {
             public String show(int codePoint) {
                 if (JavaRegex_uxxx.contains(codePoint)) {
                     if (codePoint > 0xFFFF) {
                         return "\\u" + Utility.hex(UTF16.getLeadSurrogate(codePoint))
-                            + "\\u" + Utility.hex(UTF16.getTrailSurrogate(codePoint));
+                                + "\\u" + Utility.hex(UTF16.getTrailSurrogate(codePoint));
                     }
                     return "\\u" + Utility.hex(codePoint);
                 }
@@ -705,28 +709,36 @@ public class Segmenter {
             "$LV=\\p{Grapheme_Cluster_Break=LV}",
             "$LVT=\\p{Grapheme_Cluster_Break=LVT}",
             "$RI=\\p{Grapheme_Cluster_Break=Regional_Indicator}",
-            
+
             "$E_Base=\\p{Grapheme_Cluster_Break=E_Base}",
             "$E_Modifier=\\p{Grapheme_Cluster_Break=E_Modifier}",
             "$ZWJ=\\p{Grapheme_Cluster_Break=ZWJ}",
             "$Glue_After_Zwj=\\p{Grapheme_Cluster_Break=Glue_After_Zwj}",
             "$EBG=\\p{Grapheme_Cluster_Break=E_Base_GAZ}",
 
+            "# Rules",
+            "# Break at the start and end of text, unless the text is empty.",
+            "# Do not break between a CR and LF. Otherwise, break before and after controls.",
             "3) $CR  	\u00D7  	$LF",
             "4) ( $Control | $CR | $LF ) 	\u00F7",
             "5) \u00F7 	( $Control | $CR | $LF )",
+            "# Do not break Hangul syllable sequences.",
             "6) $L 	\u00D7 	( $L | $V | $LV | $LVT )",
             "7) ( $LV | $V ) 	\u00D7 	( $V | $T )",
             "8) ( $LVT | $T)    \u00D7  $T",
-            "# GB8  Break between two Regional Indicators if and only if there is an even number of them before the point being considered.",
+            "# Do not break within emoji flag sequences. That is, do not break between regional indicator (RI) symbols if there is an odd number of RI characters before the break point..",
             "8.11) ^ ($RI $RI)* $RI × $RI",
             "8.12) [^$RI] ($RI $RI)* $RI × $RI",
             "8.13) $RI ÷ $RI",
+            "# Do not break before extending characters or ZWJ.",
             "9) \u00D7 	($Extend | $ZWJ)",
+            "# Only for extended grapheme clusters: Do not break before SpacingMarks, or after Prepend characters.",
             "9.1) \u00D7 	$SpacingMark",
             "9.2) $Prepend  \u00D7",
-            "9.3) ($E_Base | $EBG) × $E_Modifier",
-            "9.4) $ZWJ × ($Glue_After_Zwj | $EBG)",
+            "# Do not break before extending characters or ZWJ.",
+            "10) ($E_Base | $EBG) × $E_Modifier",
+            "11) $ZWJ × ($Glue_After_Zwj | $EBG)",
+            "# Otherwise, break everywhere.",
         },
         {
             "LineBreak",
@@ -771,13 +783,13 @@ public class Segmenter {
             "$ZW=\\p{Line_Break=ZWSpace}",
             "$CJ=\\p{Line_Break=Conditional_Japanese_Starter}",
             "$RI=\\p{Line_Break=Regional_Indicator}",
-            
+
             "$EB=\\p{Line_Break=E_Base}",
             "$EM=\\p{Line_Break=E_Modifier}",
             "$ZWJ_O=\\p{Line_Break=ZWJ}",
             "$ZWJ=\\p{Line_Break=ZWJ}",
-            
-            // macro
+
+            "# Macros",
             "$CM=[$CM1 $ZWJ]",
 
             "# LB 1  Assign a line breaking class to each code point of the input. ",
@@ -792,7 +804,7 @@ public class Segmenter {
             "# Treat X (CM|ZWJ* as if it were X.",
             "# Where X is any line break class except SP, BK, CR, LF, NL or ZW.",
             "$X=$CM*",
-            // Special rules
+            "# Macros",
             "$Spec1_=[$SP $BK $CR $LF $NL $ZW]",
             "$Spec2_=[^ $SP $BK $CR $LF $NL $ZW]",
             "$Spec3a_=[^ $SP $BA $HY $CM]",
@@ -833,7 +845,7 @@ public class Segmenter {
             "$WJ=($WJ $X)",
             "$XX=($XX $X)",
             "$RI=($RI $X)",
-            
+
             "$EB=($EB $X)",
             "$EM=($EM $X)",
             "$ZWJ=($ZWJ $X)",
@@ -841,6 +853,8 @@ public class Segmenter {
             "# OUT OF ORDER ON PURPOSE",
             "# LB 10  Treat any remaining combining mark as AL.",
             "$AL=($AL | ^ $CM | (?<=$Spec1_) $CM)",
+
+            "# Rules",
 
             "# LB 4  Always break after hard line breaks (but never between CR and LF).",
             "4) $BK \u00F7",
@@ -977,7 +991,7 @@ public class Segmenter {
 
             "# WARNING: For Rule 5, now add format and extend to everything but Sep, Format, and Extend",
             "$FE=[$Format $Extend]",
-            // Special Rules
+            "# Special rules",
             "$NotPreLower_=[^ $OLetter $Upper $Lower $Sep $CR $LF $STerm $ATerm]",
             // "$NotSep_=[^ $Sep $CR $LF]",
 
@@ -992,30 +1006,32 @@ public class Segmenter {
             "$Close=($Close $FE*)",
             "$SContinue=($SContinue $FE*)",
 
-            // macros
+            "# Macros",
             "$ParaSep = ($Sep | $CR | $LF)",
             "$SATerm = ($STerm | $ATerm)",
 
-            "# Do not break within CRLF",
+            "# Rules",
+            "# Break at the start and end of text, unless the text is empty.",
+            "# Do not break within CRLF.",
             "3) $CR  	\u00D7  	$LF",
             "# Break after paragraph separators.",
             "4) $ParaSep  	\u00F7",
             // "3.4) ( $Control | $CR | $LF ) 	\u00F7",
             // "3.5) \u00F7 	( $Control | $CR | $LF )",
-            "# Ignore Format and Extend characters, except when they appear at the beginning of a region of text.",
-            "# (See Section 6.2 Grapheme Cluster and Format Rules.)",
+            "# Ignore Format and Extend characters, except after sot, ParaSep, and within CRLF. (See Section 6.2, Replacing Ignore Rules.) This also has the effect of: Any × (Format | Extend)",
             "# WARNING: Implemented as don't break before format (except after linebreaks),",
             "# AND add format and extend in all variables definitions that appear after this point!",
             // "3.91) [^$Control | $CR | $LF] \u00D7 	$Extend",
             "5) \u00D7 [$Format $Extend]",
-            "# Do not break after ambiguous terminators like period, if immediately followed by a number or lowercase letter,",
+            "# Do not break after full stop in certain contexts. [See note below.]",
+            "Do not break after ambiguous terminators like period, if immediately followed by a number or lowercase letter,",
             "# is between uppercase letters, or if the first following letter (optionally after certain punctuation) is lowercase.",
             "# For example, a period may be an abbreviation or numeric period, and not mark the end of a sentence.",
             "6) $ATerm 	\u00D7 	$Numeric",
             "7) ($Upper | $Lower) $ATerm 	\u00D7 	$Upper",
             "8) $ATerm $Close* $Sp* 	\u00D7 	$NotPreLower_* $Lower",
             "8.1) $SATerm $Close* $Sp* 	\u00D7 	($SContinue | $SATerm)",
-            "#Break after sentence terminators, but include closing punctuation, trailing spaces, and (optionally) a paragraph separator.",
+            "# Break after sentence terminators, but include closing punctuation, trailing spaces, and any paragraph separator. [See note below.] Include closing punctuation, trailing spaces, and (optionally) a paragraph separator.",
             "9) $SATerm $Close* 	\u00D7 	( $Close | $Sp | $ParaSep )",
             "# Note the fix to $Sp*, $Sep?",
             "10) $SATerm $Close* $Sp* 	\u00D7 	( $Sp | $ParaSep )",
@@ -1044,7 +1060,7 @@ public class Segmenter {
             "$Hebrew_Letter=\\p{Word_Break=Hebrew_Letter}",
             "$Double_Quote=\\p{Word_Break=Double_Quote}",
             "$Single_Quote=\\p{Word_Break=Single_Quote}",
-            
+
             "$E_Base=\\p{Word_Break=E_Base}",
             "$E_Modifier=\\p{Word_Break=E_Modifier}",
             "$ZWJ=\\p{Word_Break=ZWJ}",
@@ -1056,7 +1072,7 @@ public class Segmenter {
             // "$Control=[$Control-$Format]",
             "# Add format and extend to everything",
             "$FE=[$Format $Extend $ZWJ]",
-            // Special rules
+            "# Special rules",
             "$NotBreak_=[^ $Newline $CR $LF ]",
             // "$FE= ($Extend | $Format)*",
             "$Katakana=($Katakana $FE*)",
@@ -1077,46 +1093,87 @@ public class Segmenter {
             "$Glue_After_Zwj=($Glue_After_Zwj $FE*)",
             "$EBG=($EBG $FE*)",
 
-            // macros
+            "# Macros",
 
             "$AHLetter=($ALetter | $Hebrew_Letter)",
             "$MidNumLetQ=($MidNumLet | $Single_Quote)",
 
-            // "# Do not break within CRLF",
+            "# Rules",
+
+            "# Break at the start and end of text, unless the text is empty.",
+            "# Do not break within CRLF.",
             "3) $CR  	\u00D7  	$LF",
+            "# Otherwise break before and after Newlines (including CR and LF)",
             "3.1) ($Newline | $CR | $LF)	\u00F7",
             "3.2) \u00F7    ($Newline | $CR | $LF)",
+            "# Do not break within emoji zwj sequences.",
             "3.3) $ZWJ × ($Glue_After_Zwj | $EBG)",
             // "3.4) ( $Control | $CR | $LF ) 	\u00F7",
             // "3.5) \u00F7 	( $Control | $CR | $LF )",
             // "3.9) \u00D7 	$Extend",
             // "3.91) [^$Control | $CR | $LF] \u00D7 	$Extend",
-            "# Ignore Format and Extend characters, except when they appear at the beginning of a region of text.",
-            "# (See Section 6.2 Grapheme Cluster and Format Rules.)",
+            "# Ignore Format and Extend characters, except after sot, CR, LF, and Newline. (See Section 6.2, Replacing Ignore Rules.) This also has the effect of: Any × (Format | Extend)",
             "# WARNING: Implemented as don't break before format (except after linebreaks),",
             "# AND add format and extend in all variables definitions that appear after this point!",
             // "4) \u00D7 [$Format $Extend]",
             "4) $NotBreak_ \u00D7 [$Format $Extend $ZWJ]",
             "# Vanilla rules",
-            "5)$AHLetter  	\u00D7  	$AHLetter",
-            "6)$AHLetter 	\u00D7 	($MidLetter | $MidNumLetQ) $AHLetter",
-            "7)$AHLetter ($MidLetter | $MidNumLetQ) 	\u00D7 	$AHLetter",
+            "# Do not break between most letters.",
+            "5) $AHLetter  	\u00D7  	$AHLetter",
+            "# Do not break letters across certain punctuation.",
+            "6) $AHLetter 	\u00D7 	($MidLetter | $MidNumLetQ) $AHLetter",
+            "7) $AHLetter ($MidLetter | $MidNumLetQ) 	\u00D7 	$AHLetter",
             "7.1) $Hebrew_Letter × $Single_Quote",
             "7.2) $Hebrew_Letter × $Double_Quote $Hebrew_Letter",
             "7.3) $Hebrew_Letter $Double_Quote × $Hebrew_Letter",
-            "8)$Numeric 	\u00D7 	$Numeric",
-            "9)$AHLetter 	\u00D7 	$Numeric",
-            "10)$Numeric 	\u00D7 	$AHLetter",
-            "11)$Numeric ($MidNum | $MidNumLetQ) 	\u00D7 	$Numeric",
-            "12)$Numeric 	\u00D7 	($MidNum | $MidNumLetQ) $Numeric",
-            "13)$Katakana 	\u00D7 	$Katakana",
-            "13.1)($AHLetter | $Numeric | $Katakana | $ExtendNumLet) 	\u00D7 	$ExtendNumLet",
-            "13.2)$ExtendNumLet 	\u00D7 	($AHLetter | $Numeric | $Katakana)",
+            "# Do not break within sequences of digits, or digits adjacent to letters (“3a”, or “A3”).",
+            "8) $Numeric 	\u00D7 	$Numeric",
+            "9) $AHLetter 	\u00D7 	$Numeric",
+            "10) $Numeric 	\u00D7 	$AHLetter",
+            "# Do not break within sequences, such as “3.2” or “3,456.789”.",
+            "11) $Numeric ($MidNum | $MidNumLetQ) 	\u00D7 	$Numeric",
+            "12) $Numeric 	\u00D7 	($MidNum | $MidNumLetQ) $Numeric",
+            "# Do not break between Katakana.",
+            "13) $Katakana 	\u00D7 	$Katakana",
+            "# Do not break from extenders.",
+            "13.1) ($AHLetter | $Numeric | $Katakana | $ExtendNumLet) 	\u00D7 	$ExtendNumLet",
+            "13.2) $ExtendNumLet 	\u00D7 	($AHLetter | $Numeric | $Katakana)",
             
-            "# WB13c  Break between two Regional Indicators if and only if there is an even number of them before the point being considered.",
-            "13.31) ^ ($RI $RI)* $RI × $RI",
-            "13.32) [^$RI] ($RI $RI)* $RI × $RI",
-            "13.33) $RI ÷ $RI",
-            "13.4) ($E_Base | $EBG) × $E_Modifier",
+            "# Do not break within emoji modifier sequences.",
+            "14) ($E_Base | $EBG) × $E_Modifier",
+
+            "# Do not break within emoji flag sequences. That is, do not break between regional indicator (RI) symbols if there is an odd number of RI characters before the break point.",
+            "15) ^ ($RI $RI)* $RI × $RI",
+            "16) [^$RI] ($RI $RI)* $RI × $RI",
+            "17) $RI ÷ $RI",
+            "# Otherwise, break everywhere (including around ideographs).",
         } };
+
+    public static void main(String[] args) throws IOException {
+        for (int i = 0; i < cannedRules.length; ++i) {
+            String type = cannedRules[i][0];
+            boolean hadHash = false;
+            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "segmentation/", type + "Rules.txt")) {
+                out.println("# Segmentation rules for " + type);
+                out.println("#");
+                out.println("# Character Classes");
+                out.println("#");
+                for (int j = 1; j < cannedRules[i].length; ++j) {
+                    String cannedRule = cannedRules[i][j].trim();
+                    if (cannedRule.equals("#")) {
+                        continue;
+                    }
+                    boolean hasHash = cannedRule.startsWith("#");
+                    if (hasHash && !hadHash) {
+                        out.println("#");
+                    }
+                    out.println(cannedRule);
+                    if (hasHash) {
+                        out.println("#");
+                    }
+                    hadHash = hasHash;
+                }
+            }
+        }
+    }
 }
