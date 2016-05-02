@@ -9,6 +9,7 @@ import java.util.TreeSet;
 
 import org.unicode.cldr.util.Counter;
 
+import com.ibm.icu.impl.ICUData;
 import com.ibm.icu.impl.ICUResourceBundle;
 import com.ibm.icu.impl.Utility;
 import com.ibm.icu.text.NumberFormat;
@@ -37,13 +38,11 @@ public class CheckResources {
     // Ugly hack to get base names
     static Collection<String> getBaseNames() {
         return new LinkedHashSet<String>(Arrays.asList(new String[] {
-                ICUResourceBundle.ICU_BASE_NAME,
-                ICUResourceBundle.ICU_BRKITR_BASE_NAME,
-                //ICUResourceBundle.ICU_BRKITR_NAME,
-                //ICUResourceBundle.ICU_BUNDLE,
-                ICUResourceBundle.ICU_COLLATION_BASE_NAME,
-                ICUResourceBundle.ICU_RBNF_BASE_NAME,
-                ICUResourceBundle.ICU_TRANSLIT_BASE_NAME
+                ICUData.ICU_BASE_NAME,
+                ICUData.ICU_BRKITR_BASE_NAME,
+                ICUData.ICU_COLLATION_BASE_NAME,
+                ICUData.ICU_RBNF_BASE_NAME,
+                ICUData.ICU_TRANSLIT_BASE_NAME
         }));
     }
 
@@ -131,9 +130,8 @@ public class CheckResources {
         long uniqueUtf8Size = 0;
         long savedUtf8Size = 0;
         long savedUtf8SingleSize = 0;
-        final long intSize = 0;
 
-        final Counter<Character> charCount = new Counter();
+        final Counter<Character> charCount = new Counter<Character>();
 
         final Set<String> count_key = new TreeSet<String>(REVERSE);
         count_key.addAll(counter2.keySet());
