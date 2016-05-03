@@ -14,7 +14,7 @@
 <table class="header">
   <tbody><tr>
     <td class="icon"><a href="http://www.unicode.org">
-    <img alt="[Unicode]" src="http://www.unicode.org/webscripts/logo60s2.gif" align="middle" border="0" height="33" width="34"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/reports/tr10/">Unicode 
+    <img alt="[Unicode]" src="http://www.unicode.org/webscripts/logo60s2.gif" align="middle" border="0" height="33" width="34"></a>&nbsp;&nbsp;<a class="bar" href="http://www.unicode.org/reports/tr10/">Unicode
     Collation Algorithm</a></td>
   </tr>
   <tr>
@@ -22,10 +22,10 @@
   </tr>
 </tbody></table>
 <div class="body">
-  <h1>UCA Conformance Tests</h1>
-  <h2 align="center" class="changed">Version 9.0.0<br>2016-03-08</h2>
-<p>The following files provide conformance tests for the Unicode Collation Algorithm (<a href="http://www.unicode.org/reports/tr10/tr10-33.html">UTS 
-  #10: Unicode Collation Algorithm</a>).</p>
+  <h1><span class="removed">UCA</span> <span class="changed">Unicode® Collation Algorithm</span><br>Conformance Tests</h1>
+  <h2 align="center" class="changed">Version 9.0.0<br>2016-04-04</h2>
+<p>The following files provide conformance tests for the Unicode Collation Algorithm
+  (<a href="http://www.unicode.org/reports/tr10/tr10-33.html">UTS #10: Unicode Collation Algorithm</a>).</p>
   <ul>
     <li>CollationTest_SHIFTED.txt</li>
     <li>CollationTest_NON_IGNORABLE.txt</li>
@@ -64,7 +64,9 @@
   <h2>Testing</h2>
   <p>The files are designed so each line in the file will order as being greater than or equal to 
   the previous one, when using the UCA and the
-  <a href="http://www.unicode.org/reports/tr10/tr10-33.html#Default_Unicode_Collation_Element_Table">Default Unicode Collation Element Table</a>. A test program can read in each line, compare it to 
+  <a href="http://www.unicode.org/reports/tr10/tr10-33.html#Default_Unicode_Collation_Element_Table">Default
+  Unicode Collation Element Table</a>.
+  A test program can read in each line, compare it to 
   the last line, and signal an error if order is not correct. The exact comparison that should be 
   used is as follows:</p>
   <ol>
@@ -76,7 +78,9 @@
     <li>Continue to the next line (step 1).</li>
   </ol>
   <p>If there are any errors, then the UCA implementation is not compliant. </p>
-  <p>These files contain test cases that include ill-formed strings, with surrogate code points. Implementations that do not weight surrogate code points the same way as  reserved code points may filter out such lines lines in the test cases, before testing for conformance.</p>
+  <p>These files contain test cases that include ill-formed strings, with surrogate code points.
+  Implementations that do not weight surrogate code points the same way as reserved code points
+  may filter out such lines lines in the test cases, before testing for conformance.</p>
   <blockquote>
     <p><b>Note:</b> This test is only valid for an untailored DUCET table.</p>
   </blockquote>
@@ -117,6 +121,18 @@
 
   <p>See “Also note that the Algorithm employs two distinct contraction matching methods:”
   at the end of <i>Section 4.2, <a href="http://www.unicode.org/reports/tr10/tr10-33.html#Step_2">Produce Array</a></i>.</p>
+
+  <hr width="50%">
+  <p class="copyright changed">© 2016 Unicode, Inc. All Rights Reserved.
+  The Unicode Consortium makes no expressed or implied warranty 
+  of any kind, and assumes no liability for errors or omissions. No liability 
+  is assumed for incidental and consequential damages in connection with or arising 
+  out of the use of the information or programs contained or accompanying this 
+  technical report. The Unicode
+  <a href="http://www.unicode.org/copyright.html">Terms of Use</a> apply.
+  </p>
+  <p class="copyright changed">Unicode and the Unicode logo are trademarks 
+  of Unicode, Inc., and are registered in some jurisdictions.</p>
 </div>
 
 </body></html>
