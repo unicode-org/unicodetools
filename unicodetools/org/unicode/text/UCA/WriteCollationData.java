@@ -1716,8 +1716,8 @@ public class WriteCollationData {
     private static UCA buildCldrCollator(boolean addFFFx) {
         final PrintWriter fractionalLog = Utility.openPrintWriter(UCA.getUCA_GEN_DIR() + File.separator + "log", "FractionalRemap.txt", Utility.UTF8_WINDOWS);
         // hack to reorder elements
-        final UCA oldCollator = getCollator(CollatorType.ducet);
-        final CEList ceListForA = oldCollator.getCEList("a", true);
+        final UCA ducet = getCollator(CollatorType.ducet);
+        final CEList ceListForA = ducet.getCEList("a", true);
         final int firstForA = ceListForA.at(0);
         final int firstScriptPrimary = CEList.getPrimary(firstForA);
         final Remap primaryRemap = new Remap();
@@ -1728,20 +1728,24 @@ public class WriteCollationData {
         final UnicodeSet currencySymbols = new UnicodeSet();
         final UnicodeSet numbers = new UnicodeSet();
 
-        final int oldVariableHigh = CEList.getPrimary(oldCollator.getVariableHighCE());
+        final int oldVariableHigh = CEList.getPrimary(ducet.getVariableHighCE());
         int firstDucetNonVariable = -1;
 
-        for (final UCA.Primary up : oldCollator.getRegularPrimaries()) {
-            final int i = up.primary;
-            if (firstDucetNonVariable < 0 && i > oldVariableHigh) {
-                firstDucetNonVariable = i;
+        for (final UCA.Primary up : ducet.getRegularPrimaries()) {
+            final int ducetPrimary = up.primary;
+            if (ducetPrimary == 0xFFFD) {
+                // Do not remap the REPLACEMENT CHARACTER which has the special FFFD primary.
+                continue;
+            }
+            if (firstDucetNonVariable < 0 && ducetPrimary > oldVariableHigh) {
+                firstDucetNonVariable = ducetPrimary;
             }
 
             final String repChar = up.getRepresentative();
             CharSequence rep2 = filter(repChar);
             if (rep2 == null) {
                 rep2 = repChar;
-                fractionalLog.println("# Warning - No NFKD primary with:\t" + Utility.hex(i)
+                fractionalLog.println("# Warning - No NFKD primary with:\t" + Utility.hex(ducetPrimary)
                         + "\t" + repChar
                         + "\t" + Default.ucd().getCodeAndName(repChar.toString()));
                 //continue;
@@ -1751,34 +1755,34 @@ public class WriteCollationData {
             final int cat = Default.ucd().getCategory(firstChar);
             switch (cat) {
             case UCD_Types.SPACE_SEPARATOR: case UCD_Types.LINE_SEPARATOR: case UCD_Types.PARAGRAPH_SEPARATOR: case UCD_Types.CONTROL:
-                spaces.add(i);
+                spaces.add(ducetPrimary);
                 break;
             case UCD_Types.DASH_PUNCTUATION: case UCD_Types.START_PUNCTUATION: case UCD_Types.END_PUNCTUATION: case UCD_Types.CONNECTOR_PUNCTUATION:
             case UCD_Types.OTHER_PUNCTUATION: case UCD_Types.INITIAL_PUNCTUATION: case UCD_Types.FINAL_PUNCTUATION:
-                punctuation.add(i);
+                punctuation.add(ducetPrimary);
                 break;
             case UCD_Types.DECIMAL_DIGIT_NUMBER:
-                numbers.add(i);
+                numbers.add(ducetPrimary);
                 break;
             case UCD_Types.LETTER_NUMBER: case UCD_Types.OTHER_NUMBER:
-                if (i >= firstScriptPrimary) {
+                if (ducetPrimary >= firstScriptPrimary) {
                     break;
                 }
-                numbers.add(i);
+                numbers.add(ducetPrimary);
                 break;
             case UCD_Types.CURRENCY_SYMBOL:
-                currencySymbols.add(i);
+                currencySymbols.add(ducetPrimary);
                 break;
             case UCD_Types.MATH_SYMBOL: case UCD_Types.MODIFIER_SYMBOL: case UCD_Types.OTHER_SYMBOL:
-                generalSymbols.add(i);
+                generalSymbols.add(ducetPrimary);
                 break;
             case UCD_Types.UNASSIGNED: case UCD_Types.UPPERCASE_LETTER: case UCD_Types.LOWERCASE_LETTER: case UCD_Types.TITLECASE_LETTER: case UCD_Types.MODIFIER_LETTER:
             case UCD_Types.OTHER_LETTER: case UCD_Types.NON_SPACING_MARK: case UCD_Types.ENCLOSING_MARK: case UCD_Types.COMBINING_SPACING_MARK:
             case UCD_Types.FORMAT:
-                if (i >= firstScriptPrimary) {
+                if (ducetPrimary >= firstScriptPrimary) {
                     break;
                 }
-                generalSymbols.add(i);
+                generalSymbols.add(ducetPrimary);
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -1801,8 +1805,8 @@ public class WriteCollationData {
 
         fractionalLog.println("# Remapped primaries");
 
-        for (final UCA.Primary up : oldCollator.getIgnorableAndRegularPrimaries()) {
-            final int i = up.primary;
+        for (final UCA.Primary up : ducet.getIgnorableAndRegularPrimaries()) {
+            final int ducetPrimary = up.primary;
             final String repChar = up.getRepresentative();
             final CharSequence rep2 = repChar;
             //                        filter(repChar);
@@ -1813,18 +1817,18 @@ public class WriteCollationData {
             // FractionalUCA.GeneralCategoryTransform.transform(repChar);
             //String scriptInfo = FractionalUCA.ScriptTransform.transform(repChar);
 
-            final Integer remap = primaryRemap.getRemappedPrimary(i);
+            final Integer remap = primaryRemap.getRemappedPrimary(ducetPrimary);
             if (remap == null) {
                 if (!SHOW_NON_MAPPED) {
                     continue;
                 }
             }
-            final int remap2 = remap == null ? i : remap;
+            final int remap2 = remap == null ? ducetPrimary : remap;
             fractionalLog.println(
                     (remap == null ? "#" : "")
-                    + "\t" + i
+                    + "\t" + ducetPrimary
                     + "\t" + remap2
-                    + "\tx" + Utility.hex(i)
+                    + "\tx" + Utility.hex(ducetPrimary)
                     + "\tx" + Utility.hex(remap2)
                     + "\t" + gcInfo
                     + "\t" + excelQuote(rep2)
