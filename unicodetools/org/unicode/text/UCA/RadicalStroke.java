@@ -3,9 +3,6 @@ package org.unicode.text.UCA;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Map;
-import java.util.TreeMap;
 
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
@@ -18,7 +15,8 @@ import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSetIterator;
 
-final class RadicalStroke {
+public final class RadicalStroke {
+    private static final int MAX_RADICAL_NUMBER = 214;
     /**
      * The Unicode 1.1 Unihan block was U+4E00..U+9FA5.
      * The ideographs there were allocated in radical-stroke order,
@@ -29,8 +27,26 @@ final class RadicalStroke {
     private static final boolean DEBUG = false;
 
     private String unicodeVersion;
+    /**
+     * Han character data in code point order.
+     */
+    private long[] rawHan;
+    /**
+     * Han character data in UCA radical-stroke order.
+     */
     private long[] orderedHan;
-    private Map<String, String> radToChars;
+    /**
+     * Maps radicalNumberAndSimplified to the radical character.
+     */
+    private String[] radToChar = new String[(MAX_RADICAL_NUMBER + 1) * 2];
+    /**
+     * Maps radicalNumberAndSimplified to the radical character and its ideograph sibling.
+     */
+    private String[] radToChars = new String[(MAX_RADICAL_NUMBER + 1) * 2];
+    /**
+     * Radical strings. Avoid constructing them over and over.
+     */
+    private String[] radicalStrings = new String[(MAX_RADICAL_NUMBER + 1) * 2];
     /**
      * Han characters for which code point order == radical-stroke order.
      * Hand-picked exceptions that are hard to detect optimally
@@ -43,16 +59,16 @@ final class RadicalStroke {
             .remove(0x9824).remove(0x9825);
     private UnicodeSet hanNotInCPOrder;
 
-    RadicalStroke(String unicodeVersion) {
+    public RadicalStroke(String unicodeVersion) {
         this.unicodeVersion = unicodeVersion;
         UCD ucd = UCD.make(unicodeVersion);
         UnicodeMap<String> rsUnicode = ucd.getHanValue("kRSUnicode");
         IndexUnicodeProperties iup = IndexUnicodeProperties.make(unicodeVersion);
-        radToChars = getCJKRadicals(iup);
+        getCJKRadicals(iup);
         ToolUnicodePropertySource propSource = ToolUnicodePropertySource.make(unicodeVersion);
         final UnicodeSet hanSet = propSource.getProperty("Unified_Ideograph").getSet("True");
         final UnicodeSetIterator hanIter = new UnicodeSetIterator(hanSet);
-        orderedHan = new long[hanSet.size()];
+        rawHan = new long[hanSet.size()];
         int i = 0;
         long prevPrevOrder = 0;
         long prevOrder = 0;
@@ -62,7 +78,7 @@ final class RadicalStroke {
             int extension = (0x4E00 <= c && c <= 0xFFFF) ? 0 : 1;  // see UCA implicit weights BASE FB40 vs. FB80
             String rs = rsUnicode.get(c);
             if (rs == null) {
-                rs = "999.0";
+                rs = "214'.63";
             }
             // Use only the first radical-stroke value if there are multiple.
             int delim = rs.indexOf(' ');
@@ -78,10 +94,10 @@ final class RadicalStroke {
                 --radicalNumberLimit;
             }
             int radicalNumber = parseInt(rs, 0, radicalNumberLimit);
+            int radicalNumberAndSimplified = (radicalNumber << 1) | simplified;
             int residualStrokeCount = parseInt(rs, dot + 1, delim);
             long order =
-                    ((long)radicalNumber << 32) |
-                    (simplified << 30) |
+                    ((long)radicalNumberAndSimplified << 31) |
                     (residualStrokeCount << 24) |
                     (extension << 23) |
                     c;
@@ -89,7 +105,7 @@ final class RadicalStroke {
                 String radical = rs.substring(0, dot);
                 System.out.println("U+" + Utility.hex(c) + " -> " + Long.toHexString(order) +
                         "  rad " + radical +
-                        " chars " + radToChars.get(radical) +
+                        " chars " + radToChars[radicalNumberAndSimplified] +
                         "  residual " + residualStrokeCount);
             }
             if (extension == 0 && 0x4E00 <= c && c <= LAST_UNIHAN_11) {
@@ -126,9 +142,10 @@ final class RadicalStroke {
                     prevOrder = order;
                 }
             }
-            orderedHan[i++] = order;
+            rawHan[i++] = order;
         }
-        assert i == orderedHan.length;
+        assert i == rawHan.length;
+        orderedHan = rawHan.clone();
         Arrays.sort(orderedHan);
         hanInCPOrder.freeze();
         System.out.println("hanInCPOrder = " + hanInCPOrder.toPattern(false));
@@ -161,13 +178,10 @@ final class RadicalStroke {
         }
         StringBuilder sb = new StringBuilder("[radical ");
         long order = orderedHan[pos];
-        int radicalNumberAndSimplified = (int)(order >> 30);
-        String radicalString = Integer.toString(radicalNumberAndSimplified >> 2);
-        if ((radicalNumberAndSimplified & 1) != 0) {
-            radicalString += '\'';
-        }
-        String radicalChars = radToChars.get(radicalString);
-        sb.append(radicalString).append('=').append(radicalChars).append(':');
+        int radicalNumberAndSimplified = (int)(order >> 31);
+        String radicalChars = radToChars[radicalNumberAndSimplified];
+        sb.append(getRadicalStringFromShortData(getShortData(order))).append('=').
+                append(radicalChars).append(':');
         int start = 0;
         int prev = 0;
         do {
@@ -190,7 +204,7 @@ final class RadicalStroke {
                 break;
             }
             order = orderedHan[pos];
-        } while ((int)(order >> 30) == radicalNumberAndSimplified);
+        } while ((int)(order >> 31) == radicalNumberAndSimplified);
         if (start < prev) {
             // Finish the last range.
             if ((start + 2) <= prev) {  // at least 3 code points
@@ -214,12 +228,8 @@ final class RadicalStroke {
         for (int pos = 0;;) {
             long order = orderedHan[pos];
             int c = (int)order & 0x1fffff;  // First code point for the radical.
-            int radicalNumberAndSimplified = (int)(order >> 30);
-            String radicalString = Integer.toString(radicalNumberAndSimplified >> 2);
-            if ((radicalNumberAndSimplified & 1) != 0) {
-                radicalString += '\'';
-            }
-            String radicalChars = radToChars.get(radicalString);
+            int radicalNumberAndSimplified = (int)(order >> 31);
+            String radicalChars = radToChars[radicalNumberAndSimplified];
             // All radicals should be BMP characters.
             assert radicalChars.length() == UTF16.countCodePoint(radicalChars);
             // For the representative radical character,
@@ -228,14 +238,15 @@ final class RadicalStroke {
             // rather than the one at index 0 which is in the radicals block.
             sb.replace(0, sb.length(), "&").appendCodePoint(c).
                     append("=\\uFDD0").append(radicalChars.charAt(1)).
-                    append(" # radical ").append(radicalString).append('\n');
+                    append(" # radical ").
+                    append(getRadicalStringFromShortData(getShortData(order))).append('\n');
             writer.append(sb);
             do {
                 if (++pos == orderedHan.length) {
                     return;
                 }
                 order = orderedHan[pos];
-            } while ((int)(order >> 30) == radicalNumberAndSimplified);
+            } while ((int)(order >> 31) == radicalNumberAndSimplified);
         }
     }
 
@@ -253,32 +264,116 @@ final class RadicalStroke {
         return hanNotInCPOrder;
     }
 
-    private static Map<String, String> getCJKRadicals(IndexUnicodeProperties iup) {
+    /**
+     * Returns a long for the UCA order of ideographs, including the code point tie-breaker.
+     * Returns 0 for non-ideographs.
+     */
+    public long getLongOrder(int cp) {
+        return getData(cp);
+    }
+
+    /**
+     * Returns data in bit sets: 15..8=radicalNumber, 7=simplified, 6..0=residualStrokes.
+     * Returns 0 for non-ideographs.
+     */
+    public int getShortData(int cp) {
+        return getShortData(getData(cp));
+    }
+
+    public static int getRadicalNumberFromShortData(int data) {
+        assert data != 0;
+        return data >> 8;
+    }
+
+    public static int getSimplifiedFromShortData(int data) {
+        assert data != 0;
+        return (data >> 7) & 1;
+    }
+
+    public static boolean isSimplifiedFromShortData(int data) {
+        assert data != 0;
+        return (data & 0x80) != 0;
+    }
+
+    public static int getResidualStrokesFromShortData(int data) {
+        assert data != 0;
+        return data & 0x3f;
+    }
+
+    /**
+     * Returns the radical character for its number and simplified-ness.
+     */
+    public String getRadicalCharFromShortData(int data) {
+        int radicalNumberAndSimplified = data >> 7;
+        assert radicalNumberAndSimplified >= 2;
+        return radicalNumberAndSimplified < radToChar.length ?
+                radToChar[radicalNumberAndSimplified] : null;
+    }
+
+    /**
+     * Returns a string like "90" or "90'".
+     */
+    public String getRadicalStringFromShortData(int data) {
+        int radicalNumberAndSimplified = data >> 7;
+        assert radicalNumberAndSimplified >= 2;
+        return radicalNumberAndSimplified < radicalStrings.length ?
+                radicalStrings[radicalNumberAndSimplified] : null;
+    }
+
+    private long getData(int cp) {
+        // There is no Arrays.binarySearch(long[], ...) that takes a Comparator.
+        int start = 0;
+        int limit = rawHan.length;
+        while (start < limit) {
+            int i = (start + limit) / 2;
+            int midCP = (int)(rawHan[i] & 0x1fffff);
+            if (cp < midCP) {
+                limit = i;
+            } else if (cp > midCP) {
+                start = i + 1;
+            } else /* == */ {
+                return rawHan[i];
+            }
+        }
+        return 0;  // not found
+    }
+
+    private static int getShortData(long order) {
+        return (int)(order >> 24);
+    }
+
+    private void getCJKRadicals(IndexUnicodeProperties iup) {
         UnicodeMap<String> cjkr = iup.load(UcdProperty.CJK_Radical);
         // cjkr maps from each radical code point to the radical string.
-        // We invert it and return a map from radical to the two code points.
-        Map<String, String> map = new TreeMap<String, String>();
-        map.put("999", "??");  // dummy entry for characters without RS data
         for (UnicodeMap.EntryRange<String> range : cjkr.entryRanges()) {
             String radicalString = range.value;
             if (radicalString == null) {
                 continue;
             }
+            int simplified = 0;
+            int radicalNumberLimit = radicalString.length();
+            if (radicalString.charAt(radicalNumberLimit - 1) == '\'') {
+                simplified = 1;
+                --radicalNumberLimit;
+            }
+            int radicalNumber = parseInt(radicalString, 0, radicalNumberLimit);
+            int radicalNumberAndSimplified = (radicalNumber << 1) | simplified;
+            radicalStrings[radicalNumberAndSimplified] = radicalString;
             int c = range.codepoint;
             assert c >= 0;
-            String oldValue = map.get(radicalString);
+            String oldValue = radToChar[radicalNumberAndSimplified];
             if (oldValue == null) {
                 assert c < 0x3000;  // should be a radical code point
-                map.put(radicalString, Character.toString((char)c));
+                radToChar[radicalNumberAndSimplified] = radToChars[radicalNumberAndSimplified] =
+                        Character.toString((char)c);
             } else {
                 assert 0x4e00 <= c && c <= LAST_UNIHAN_11;
                 int oldCodePoint = oldValue.codePointAt(0);
                 assert oldCodePoint < 0x3000;
-                assert oldValue.length() == 1;
-                map.put(radicalString, oldValue + (char)c);
+                assert oldValue == radToChars[radicalNumberAndSimplified];
+                radToChars[radicalNumberAndSimplified] = oldValue + (char)c;
             }
         }
-        return Collections.unmodifiableMap(map);
     }
 
     /**
