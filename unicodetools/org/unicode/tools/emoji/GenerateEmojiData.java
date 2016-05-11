@@ -97,20 +97,20 @@ public class GenerateEmojiData {
             out.println("\n#EOF");
         }
 
-        printer.setFlat(true);
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-tags.txt")) {
-            out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", Emoji.VERSION_STRING));
-            List<String> type_fields = Arrays.asList("Emoji_Flag_Base", "Emoji_Gender_Base", 
-                    "Emoji_Hair_Base", "Emoji_Direction_Base");
-            int width = maxLength(type_fields);
-            showTypeFieldsMessage(out, type_fields);
-
-            printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true);
-            printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true);
-            printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true);
-            printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true);
-            out.println("\n#EOF");
-        }
+//        printer.setFlat(true);
+//        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-tags.txt")) {
+//            out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", Emoji.VERSION_STRING));
+//            List<String> type_fields = Arrays.asList("Emoji_Flag_Base", "Emoji_Gender_Base", 
+//                    "Emoji_Hair_Base", "Emoji_Direction_Base");
+//            int width = maxLength(type_fields);
+//            showTypeFieldsMessage(out, type_fields);
+//
+//            printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true);
+//            printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true);
+//            printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true);
+//            printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true);
+//            out.println("\n#EOF");
+//        }
         if (SHOW) System.out.println("Regional_Indicators ; " + Emoji.REGIONAL_INDICATORS.toPattern(false));
         if (SHOW) System.out.println("Emoji Combining Bases ; " + EmojiData.EMOJI_DATA.getKeycapBases().toPattern(false));
         if (SHOW) System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
@@ -138,6 +138,7 @@ public class GenerateEmojiData {
         return max;
     }
 
+    static final String EXCEPTION_ZWJ = new StringBuilder().appendCodePoint(0x1F441).appendCodePoint(0x200D).appendCodePoint(0x1F5E8).toString();
     static class PropPrinter {
         private UnicodeMap<String> extraNames;
         private boolean flat;
@@ -199,13 +200,14 @@ public class GenerateEmojiData {
                                 + "\t" + Emoji.getName(s, false, extraNames)));
                     }
                 } else if (rangeCount == 1) {
+                    final boolean isException = !s.equals(EXCEPTION_ZWJ);
                     out.println(tabber.process(
-                            Utility.hex(addEmojiVariant(s, range.string != null))
+                            Utility.hex(addEmojiVariant(s, isException && range.string != null))
                             + "\t" + titleField 
                             + "\t#"
                             + "\t" + range.value.getShortName()
                             + "\t[1] "
-                            + "\t(" + addEmojiVariant(s, addVariants || range.string != null) + ")"
+                            + "\t(" + addEmojiVariant(s, isException && (addVariants || range.string != null)) + ")"
                             + "\t" + Emoji.getName(s, false, extraNames)));
                 } else  {
                     final String e = UTF16.valueOf(range.codepointEnd);
@@ -220,7 +222,7 @@ public class GenerateEmojiData {
                 }
             }
             out.println();
-            out.println("# UnicodeSet: " + emojiChars.toPattern(false));
+            //out.println("# UnicodeSet: " + emojiChars.toPattern(false));
             out.println("# Total elements: " + totalCount);
             UnicodeSet needsEvs = EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text);
             for (String s : emojiChars) {
