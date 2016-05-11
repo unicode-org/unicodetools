@@ -19,6 +19,7 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.Binary;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UnicodeRelation;
 import org.unicode.text.utility.Settings;
@@ -102,6 +103,8 @@ public class EmojiData {
     private final UnicodeSet keycapBases = new UnicodeSet();
 
     static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
+    static final Splitter semiOnly = Splitter.onPattern(";").trimResults();
+    static final Splitter hashOnly = Splitter.onPattern("#").trimResults();
     static final Splitter comma = Splitter.on(",").trimResults();
 
     static final ConcurrentHashMap<VersionInfo, EmojiData> cache = new ConcurrentHashMap<>();
@@ -144,9 +147,14 @@ public class EmojiData {
                 //# Code ;  Default Style ; Ordering ;  Annotations ;   Sources #Version Char Name
                 // U+263A ;    text ;  0 ; face, human, outlined, relaxed, smile, smiley, smiling ;    jw  # V1.1 (☺) white smiling face
                 if (line.startsWith("#") || line.isEmpty()) continue;
-                List<String> list = semi.splitToList(line);
+                List<String> coreList = hashOnly.splitToList(line);
+                List<String> list = semi.splitToList(coreList.get(0));
                 final String f0 = list.get(0);
                 final EmojiProp prop = EmojiProp.valueOf(list.get(1));
+                Binary propValue = Binary.Yes;
+                if (list.size() > 2) {
+                    propValue = Binary.valueOf(list.get(2));
+                }
                 int codePoint, codePointEnd;
                 int pos = f0.indexOf("..");
                 if (pos < 0) {
@@ -156,13 +164,26 @@ public class EmojiData {
                     codePointEnd = Integer.parseInt(f0.substring(pos+2), 16);
                 }
                 for (int cp = codePoint; cp <= codePointEnd; ++cp) {
-                    singletonsWithDefectives.add(cp);
-                    if (!Emoji.DEFECTIVE.contains(cp)) {
-                        singletonsWithoutDefectives.add(cp);
+                    if (propValue == Binary.No) {
+                        emojiData.remove(cp, prop);
+                    } else {
+                        emojiData.add(cp, prop);
                     }
-                    emojiData.add(cp, prop);
                 }
             }
+            // check consistency, fix "with defectives"
+            for (Entry<String, Set<EmojiProp>> entry : emojiData.entrySet()) {
+                final String cp = entry.getKey();
+                final Set<EmojiProp> set = entry.getValue();
+                if (!set.contains(EmojiProp.Emoji)) {
+                    System.err.println("**\t" + cp + "\t" + set);
+                }
+                singletonsWithDefectives.add(cp);
+                if (!Emoji.DEFECTIVE.contains(cp)) {
+                    singletonsWithoutDefectives.add(cp);
+                }
+            }
+
             for (String file : Arrays.asList("emoji-sequences.txt", "emoji-zwj-sequences.txt")) {
                 boolean zwj = file.contains("zwj");
                 for (String line : FileUtilities.in(directory, file)) {
@@ -468,6 +489,9 @@ public class EmojiData {
         EmojiData emojiData3 = new EmojiData(VersionInfo.getInstance(3));
         EmojiData emojiData2 = new EmojiData(VersionInfo.getInstance(2));
 
+        show(0x1f946, names, emojiData3);
+        show(0x1f93b, names, emojiData3);
+        
         UnicodeSet overlap = new UnicodeSet(emojiData3.getModifierBases()).retainAll(emojiData3.getDefaultPresentationSet(DefaultPresentation.text));
         System.out.println("ModifierBase + TextPresentation: " + overlap.size() + "\t" + overlap.toPattern(false));
         for (String s : overlap) {
@@ -485,7 +509,6 @@ public class EmojiData {
         System.out.println("ModiferSequences " + emojiData3.getModifierSequences().size());
         System.out.println("Zwj Sequences " + emojiData3.getZwjSequencesNormal().size());
 
-        show(0x26e9, names, emojiData3);
         System.out.println("modifier" + ", " + emojiData3.getModifierStatusSet(ModifierStatus.modifier).toPattern(false));
         System.out.println(Emoji.CharSource.WDings  + ", " + emojiData3.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
         System.out.println(DefaultPresentation.emoji + ", " + emojiData3.getDefaultPresentationSet(DefaultPresentation.emoji).toPattern(false));

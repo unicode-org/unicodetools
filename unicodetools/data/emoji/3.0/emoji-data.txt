@@ -226,6 +226,9 @@
 1F985..1F991  ; Emoji                # 9.0 [13] (🦅..🦑)    EAGLE..SQUID
 1F9C0         ; Emoji                # 8.0  [1] (🧀)       CHEESE WEDGE
 
+1f946 ; Emoji ; No
+1f93b ; Emoji ; No
+
 # UnicodeSet: [#*0-9©®‼⁉™ℹ↔-↙↩↪⌚⌛⌨⏏⏩-⏳⏸-⏺Ⓜ▪▫▶◀◻-◾☀-☄☎☑☔☕☘☝☠☢☣☦☪☮☯☸-☺♈-♓♠♣♥♦♨♻♿⚒-⚔⚖⚗⚙⚛⚜⚠⚡⚪⚫⚰⚱⚽⚾⛄⛅⛈⛎⛏⛑⛓⛔⛩⛪⛰-⛵⛷-⛺⛽✂✅✈-✍✏✒✔✖✝✡✨✳✴❄❇❌❎❓-❕❗❣❤➕-➗➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆑-🆚🇦-🇿🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌡🌤-🎓🎖🎗🎙-🎛🎞-🏰🏳-🏵🏷-📽📿-🔽🕉-🕎🕐-🕧🕯🕰🕳-🕺🖇🖊-🖍🖐🖕🖖🖤🖥🖨🖱🖲🖼🗂-🗄🗑-🗓🗜-🗞🗡🗣🗨🗯🗳🗺-🙏🚀-🛅🛋-🛒🛠-🛥🛩🛫🛬🛰🛳-🛶🤐-🤞🤠-🤧🤰🤳-🤾🥀-🥋🥐-🥞🦀-🦑🧀]
 # Total elements: 1125
 
@@ -348,6 +351,12 @@
 1F985..1F991  ; Emoji_Presentation   # 9.0 [13] (🦅..🦑)    EAGLE..SQUID
 1F9C0         ; Emoji_Presentation   # 8.0  [1] (🧀)       CHEESE WEDGE
 
+1f946 ; Emoji_Presentation ; No
+1f93b ; Emoji_Presentation ; No
+1F441 ; Emoji_Presentation ; No
+1F5E8 ; Emoji_Presentation ; No
+
+
 # UnicodeSet: [⌚⌛⏩-⏬⏰⏳◽◾☔☕♈-♓♿⚓⚡⚪⚫⚽⚾⛄⛅⛎⛔⛪⛲⛳⛵⛺⛽✅✊✋✨❌❎❓-❕❗➕-➗➰➿⬛⬜⭐⭕🀄🃏🆎🆑-🆚🇦-🇿🈁🈚🈯🈲-🈶🈸-🈺🉐🉑🌀-🌠🌭-🌵🌷-🍼🍾-🎓🎠-🏊🏏-🏓🏠-🏰🏴🏸-🐾👀-📼📿-🔽🕋-🕎🕐-🕧🕺🖕🖖🖤🗨🗻-🙏🚀-🛅🛌🛐-🛒🛫🛬🛴-🛶🤐-🤞🤠-🤧🤰🤳-🤾🥀-🥋🥐-🥞🦀-🦑🧀]
 # Total elements: 914
 
@@ -398,6 +407,9 @@
 1F930         ; Emoji_Modifier_Base  # 9.0  [1] (🤰)       PREGNANT WOMAN
 1F933..1F939  ; Emoji_Modifier_Base  # 9.0  [7] (🤳..🤹)    SELFIE..JUGGLING
 1F93B..1F93E  ; Emoji_Modifier_Base  # 9.0  [4] (🤻..🤾)    MODERN PENTATHLON..HANDBALL
+
+1f946 ; Emoji_Modifier_Base ; No
+1f93b ; Emoji_Modifier_Base ; No
 
 # UnicodeSet: [☝⛹✊-✍🎅🏃🏄🏊🏋👂👃👆-👐👦-👩👮👰-👸👼💁-💃💅-💇💪🕵🕺🖐🖕🖖🙅-🙇🙋-🙏🚣🚴-🚶🛀🤘-🤞🤦🤰🤳-🤹🤻-🤾]
 # Total elements: 84

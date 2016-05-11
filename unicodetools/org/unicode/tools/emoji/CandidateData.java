@@ -53,7 +53,9 @@ public class CandidateData {
         String source = null;
         Builder<Integer> _order = ImmutableList.builder();
         for (String line : FileUtilities.in(CandidateData.class, "candidateData.txt")) {
-            if (line.startsWith("•")) { // annotation
+            if (line.startsWith("#")) { // annotation
+                continue;
+            } else if (line.startsWith("•")) { // annotation
                 annotations.add(source,line.substring(1).trim());
             } else if (line.startsWith("U+")) { // data
                 List<String> parts = TAB.splitToList(line);
