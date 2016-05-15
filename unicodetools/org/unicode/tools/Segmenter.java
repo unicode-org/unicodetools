@@ -1024,7 +1024,7 @@ public class Segmenter {
             // "3.91) [^$Control | $CR | $LF] \u00D7 	$Extend",
             "5) \u00D7 [$Format $Extend]",
             "# Do not break after full stop in certain contexts. [See note below.]",
-            "Do not break after ambiguous terminators like period, if immediately followed by a number or lowercase letter,",
+            "# Do not break after ambiguous terminators like period, if immediately followed by a number or lowercase letter,",
             "# is between uppercase letters, or if the first following letter (optionally after certain punctuation) is lowercase.",
             "# For example, a period may be an abbreviation or numeric period, and not mark the end of a sentence.",
             "6) $ATerm 	\u00D7 	$Numeric",
