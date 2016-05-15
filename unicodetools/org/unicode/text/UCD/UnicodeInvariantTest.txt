@@ -527,6 +527,10 @@ Let $Annotations = [\uFFF9-\uFFFB]
 \p{Other_Default_Ignorable_Code_Point} = [\p{Default_Ignorable_Code_Point} - [\p{GC=Cf} \p{Variation_Selector} - [\p{White_Space} $Annotations]]]
 \p{Other_Grapheme_Extend} = [\p{Grapheme_Extend} - [\p{GC=Me} \p{GC=Mn}]]
 
+\p{GCB=Extend} = \p{Grapheme_Extend}
+\p{WB=Extend} = [\p{Grapheme_Extend} \p{GC=Mc} - [\u200D]]
+\p{SB=Extend} = [\p{Grapheme_Extend} \p{GC=Mc}]
+
 ##########################
 # POSIX Compatibility Properties (UTS#18)
 # http://www.opengroup.org/onlinepubs/007904975/basedefs/xbd_chap07.html
