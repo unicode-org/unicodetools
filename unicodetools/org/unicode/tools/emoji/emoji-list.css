@@ -11,15 +11,19 @@ td, th {
 th {
 	text-align: left;
 	background-color: #EEE;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }
 
 .bighead {
 	background-color: #DDD;
-	font-size: 125%;
+	font-size: 120%;
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 .bighead2 {
-	background-color: #FCC;
+	background-color: #CCC;
 	font-size: 150%;
 }
 
@@ -210,5 +214,6 @@ H1 {
     FONT-SIZE: 150%;
 }
 H2 {
-    FONT-SIZE: 120%;
+    FONT-SIZE: 125%;
+    margin-top:2em;
 }

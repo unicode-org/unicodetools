@@ -1832,11 +1832,11 @@ public class GenerateEmoji {
     private static String addTitle(String s, String cell) {
         String chars2WithVS = EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
         return "<span title='" 
-                + getCodeAndName2(chars2WithVS, true)
-                //Emoji.toUHex(s) + " " + Emoji.getName(s, true, GenerateEmoji.EXTRA_NAMES)
-                + "'>"
-                + cell
-                + "</span>";
+        + getCodeAndName2(chars2WithVS, true)
+        //Emoji.toUHex(s) + " " + Emoji.getName(s, true, GenerateEmoji.EXTRA_NAMES)
+        + "'>"
+        + cell
+        + "</span>";
     }
 
     public static String getCodeCharsAndName(String chars1, String separator) {
@@ -1876,7 +1876,7 @@ public class GenerateEmoji {
      * @param extraPlatforms TODO*/
     public static <T> void print(Form form, EmojiStats stats, boolean extraPlatforms) throws IOException {
         PrintWriter out = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.CHARTS_DIR, form.filePrefix + "emoji-list" + (form != Form.fullForm ? "" : extraPlatforms ? "-extra" : "")
-        + ".html");
+                + ".html");
         PrintWriter outText = null;
         PrintWriter outText2 = null;
         int order = 0;
@@ -2495,7 +2495,6 @@ public class GenerateEmoji {
         int count = 0;
         boolean isCurrent = true;
         String futureSuffix = "";
-        output.add("<tr><th colspan='8' class='bighead2'>" + getDoubleLink("U9.0 Candidates") + "</th></tr>");
         output.add(header);
         for (String source : sorted) {
             String category = cd.getCategory(source);
@@ -2503,9 +2502,8 @@ public class GenerateEmoji {
             if (majorGroup == null) {
                 cd.getMajorGroup(source);  
             }
-            if (isCurrent && CandidateData.Quarter.FUTURE.contains(cd.getQuarter(source))) {
-                output.add("<tr><th colspan='8' class='bighead2'>" + getDoubleLink("Post U9.0 Candidates*") + "</th></tr>");
-                output.add(header);
+            if (isCurrent && cd.getQuarter(source).isFuture()) {
+                output.add("POST");
                 isCurrent = false;
                 futureSuffix = "*";
             }
@@ -2518,14 +2516,26 @@ public class GenerateEmoji {
                 lastCategory = category; 
             }
             String blackAndWhite = getImage(Source.proposed, source, true, "");
+            if (blackAndWhite == null) {
+                blackAndWhite = "<i>n/a</i>";
+            }
             String color1 = getImage(Source.emojixpress, source, true, "");
             String color2 = getImage(Source.emojipedia, source, true, "");
             String color3 = getImage(Source.google, source, true, "");
             String sample = getImage(Source.sample, source, true, "");
             String color = SPACE_JOINER.join(color1, color2, sample, color3);
+            if (color.isEmpty()) {
+                color = "<i>n/a</i>";
+            }
+            String href = Utility.hex(source).replace(" ", "_");
+            String anchor = Emoji.toUHex(source);
+            int special = source.codePointAt(0) - 0x100000;
+            if (special >= 0) {
+                href = anchor = "X" + Utility.hex(special,5);
+            }
             String currentRow = "<tr>"
                     + "<td class='rchars'>" + ++count + "</td>"
-                    + "<td class='code'>" + getDoubleLink(Utility.hex(source).replace(" ", "_"), Emoji.toUHex(source)) + "</td>"
+                    + "<td class='code'>" + getDoubleLink(href, anchor) + "</td>"
                     + "<td class='andr'>" + blackAndWhite + "</td>"
                     + "<td class='default'>" + color + "</td>"
                     + "<td class='default'>" + cd.getQuarter(source) + "</td>"
@@ -2548,8 +2558,8 @@ public class GenerateEmoji {
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-candidates.html");) {
             writeHeader(out, "Emoji Candidates", null, "<p>The Unicode Technical Committee (UTC) has accepted the following "
                     + items.size()
-                    + " characters as candidates for emoji. "
-                    + "At the 2016Q2 UTC meeting, a final determination will be made for ones to be added to Unicode 9.0, "
+                    + " characters as candidates for emoji.</p>"
+                    + "<p>At the 2016Q2 UTC meeting, a final determination was made of the 72 to be added to Unicode 9.0, "
                     + "for release in June, 2016. "
                     + "The candidates for 9.0 are limited to those accepted in 2015.</p>\n"
                     + "<p>The ones accepted in 2016 are candidates for Unicode 10.0, for release in June, 2017. "
@@ -2560,16 +2570,26 @@ public class GenerateEmoji {
                     + "<li>Do <em>not</em> deploy any of these yet: they are not yet final!</li>\n"
                     + "<li>Candidates may still be removed or their code point, glyph, or name changed. </li>\n"
                     + "</ul>\n", "border='1'", false);
+            out.println("<h2>" + getDoubleLink("U9.0 Candidates") + "</h2>");
             for (String outputLine : output) {
-                out.println(outputLine);
+                if (outputLine.equals("POST")) {
+                    out.println("</table>");
+                    out.println("<h2>" + getDoubleLink("U10.0 Candidates*") + "</h2>");
+                    out.println("<table border='1'>");
+                    out.println(header);
+                } else {
+                    out.println(outputLine);
+                }
             }
-            writeFooter(out, "<h3><a href='#notes' name='notes'>Notes</a></h3>"
+            writeFooter(out, "<h2><a href='#notes' name='notes'>Notes</a></h2>"
                     + "<p>These candidates were based on proposals received by the Emoji "
                     + "Subcommittee and Unicode members, and selected on the basis of the "
                     + "Emoji <i>Selection Factors</i> in "
                     + "<a target='_blank' href='../../emoji/selection.html'>Submitting Emoji Character Proposals</a>. "
                     + "Anyone can file a proposal for a new emoji: see the instructions there.</p>\n"
                     + "<ul>"
+                    + "<li>The Code Points are provisional until released. Values of the form X000xx are where even provisional code points "
+                    + "have not yet been assigned.</li>\n"
                     + "<li>The cell-divisions (like <a href='#face-happy'>face-happy</a>) are as "
                     + "in <a href='emoji-ordering.html' target='order'>Emoji Ordering</a>.</li>\n"
                     + "<li>All of the images are <em>only</em> for illustration.</li>\n"
