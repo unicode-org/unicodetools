@@ -121,6 +121,8 @@ Music
 U+1F941			2015Q3	DRUM WITH DRUMSTICKS
 face-neutral
 U+1F928			2016Q1	FACE WITH ONE EYEBROW RAISED
+emotion
+U+100000			2016Q2	ORANGE HEART
 food-prepared
 U+1F95F			2016Q1	DUMPLING
 • typically stuffed
@@ -131,3 +133,6 @@ U+1F961			2016Q1	TAKEOUT BOX
 • oyster pail 
 U+1F962			2016Q1	CHOPSTICKS
 • also kuaizi (筷子), hashi (箸), jeotgarak (젓가락)
+sports
+U+100001			2016Q2	SLED
+U+100002			2016Q2	CURLING STONE

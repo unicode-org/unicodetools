@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
@@ -97,20 +98,22 @@ public class GenerateEmojiData {
             out.println("\n#EOF");
         }
 
-//        printer.setFlat(true);
-//        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-tags.txt")) {
-//            out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", Emoji.VERSION_STRING));
-//            List<String> type_fields = Arrays.asList("Emoji_Flag_Base", "Emoji_Gender_Base", 
-//                    "Emoji_Hair_Base", "Emoji_Direction_Base");
-//            int width = maxLength(type_fields);
-//            showTypeFieldsMessage(out, type_fields);
-//
-//            printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true);
-//            printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true);
-//            printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true);
-//            printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true);
-//            out.println("\n#EOF");
-//        }
+        printer.setFlat(true);
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr52/", "emoji-tags.txt")) {
+            out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", Emoji.VERSION_STRING));
+            List<String> type_fields = Arrays.asList(
+                    "Emoji_Flag_Base", "Emoji_Gender_Base", 
+                    "Emoji_Hair_Base", "Emoji_Direction_Base");
+            int width = maxLength(type_fields);
+            showTypeFieldsMessage(out, type_fields);
+
+            printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true);
+            printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true);
+            printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true);
+            printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true);
+            out.println("\n#EOF");
+        }
+        
         if (SHOW) System.out.println("Regional_Indicators ; " + Emoji.REGIONAL_INDICATORS.toPattern(false));
         if (SHOW) System.out.println("Emoji Combining Bases ; " + EmojiData.EMOJI_DATA.getKeycapBases().toPattern(false));
         if (SHOW) System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));

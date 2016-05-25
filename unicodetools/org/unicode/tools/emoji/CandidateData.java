@@ -1,5 +1,6 @@
 package org.unicode.tools.emoji;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
@@ -27,8 +28,11 @@ public class CandidateData {
     public enum Quarter {
         _RELEASED,
         _2015Q1, _2015Q2, _2015Q3, _2015Q4,
-        _2016Q1;
-        public static final Set<Quarter> FUTURE = ImmutableSet.of(_2016Q1);
+        _2016Q1, _2016Q2, _2016Q3, _2016Q4,
+        ;
+        public boolean isFuture() {
+            return compareTo(_2016Q1) >= 0;
+        }
         static Quarter fromString(String item) {
             return valueOf('_'+item);
         }
@@ -85,8 +89,8 @@ public class CandidateData {
             if (o1 == o2) {
                 return 0;
             }
-            boolean f1 = Quarter.FUTURE.contains(quarters.get(o1));
-            boolean f2 = Quarter.FUTURE.contains(quarters.get(o2));
+            boolean f1 = quarters.get(o1).isFuture();
+            boolean f2 = quarters.get(o2).isFuture();
             if (f1 != f2) {
                 return f1 ? 1 : -1;
             }
@@ -167,7 +171,8 @@ public class CandidateData {
     public static void main(String[] args) {
         CandidateData cd = CandidateData.getInstance();        
         System.out.println("Code Point\tChart\tGlyph\tSample\tColored Glyph\tName");
-        Set<String> sorted = cd.getCharacters().addAllTo(new TreeSet<String>(cd.comparator));
+        final UnicodeSet chars2 = cd.getCharacters();
+        List<String> sorted = new ArrayList<>(chars2.addAllTo(new TreeSet<String>(cd.comparator)));
         String lastCategory = null;
         MajorGroup lastMajorGroup = null;
         for (String s : sorted) {
