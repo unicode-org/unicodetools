@@ -1,5 +1,5 @@
 ﻿# review.txt
-# Date: 2016-04-05, 11:47:14 GMT
+# Date: 2016-05-27, 00:32:58 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1438,7 +1438,7 @@
 063D          ; output                         #      (ؽ)  ARABIC LETTER FARSI YEH WITH INVERTED V
 063E          ; output                         #      (ؾ)  ARABIC LETTER FARSI YEH WITH TWO DOTS ABOVE
 063F          ; output                         #      (ؿ)  ARABIC LETTER FARSI YEH WITH THREE DOTS ABOVE
-0640          ; Restricted ; Exclusion         #      (ـ)  ARABIC TATWEEL
+0640          ; Restricted ; Obsolete          #      (ـ)  ARABIC TATWEEL
 0641          ; output                         #      (ف)  ARABIC LETTER FEH
 0642          ; output                         #      (ق)  ARABIC LETTER QAF
 0643          ; output                         #      (ك)  ARABIC LETTER KAF
@@ -1630,7 +1630,8 @@
 06FE          ; output                         #      (۾)  ARABIC SIGN SINDHI POSTPOSITION MEN
 06FF          ; output                         #      (ۿ)  ARABIC LETTER HEH WITH INVERTED V
 0700..070D    ; Restricted ; Not_XID           # [14] (܀..܍)  SYRIAC END OF PARAGRAPH..SYRIAC HARKLEAN ASTERISCUS
-0710..074A    ; Restricted ; Limited_Use       # [59] (ܐ..݊)  SYRIAC LETTER ALAPH..SYRIAC BARREKH
+0710..073F    ; Restricted ; Limited_Use       # [48] (ܐ..ܿ)  SYRIAC LETTER ALAPH..SYRIAC RWAHA
+0740..074A    ; Restricted ; Technical         # [11] (݀..݊)  SYRIAC FEMININE DOT..SYRIAC BARREKH
 074D..074F    ; Restricted ; Limited_Use       #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
 0750          ; output                         #      (ݐ)  ARABIC LETTER BEH WITH THREE DOTS HORIZONTALLY BELOW
 0751          ; output                         #      (ݑ)  ARABIC LETTER BEH WITH DOT BELOW AND THREE DOTS ABOVE
@@ -1770,9 +1771,9 @@
 07E5          ; Restricted ; Limited_Use       #      (ߥ)  NKO LETTER WA
 07E6          ; Restricted ; Limited_Use       #      (ߦ)  NKO LETTER YA
 07E7          ; Restricted ; Limited_Use       #      (ߧ)  NKO LETTER NYA WOLOSO
-07E8          ; Restricted ; Limited_Use       #      (ߨ)  NKO LETTER JONA JA
-07E9          ; Restricted ; Limited_Use       #      (ߩ)  NKO LETTER JONA CHA
-07EA          ; Restricted ; Limited_Use       #      (ߪ)  NKO LETTER JONA RA
+07E8          ; Restricted ; Obsolete          #      (ߨ)  NKO LETTER JONA JA
+07E9          ; Restricted ; Obsolete          #      (ߩ)  NKO LETTER JONA CHA
+07EA          ; Restricted ; Obsolete          #      (ߪ)  NKO LETTER JONA RA
 07EB          ; Restricted ; Limited_Use       #      (߫)  NKO COMBINING SHORT HIGH TONE
 07EC          ; Restricted ; Limited_Use       #      (߬)  NKO COMBINING SHORT LOW TONE
 07ED          ; Restricted ; Limited_Use       #      (߭)  NKO COMBINING SHORT RISING TONE
@@ -3581,9 +3582,9 @@
 1401..166C    ; Restricted ; Aspirational      # [620] (ᐁ..ᙬ)  CANADIAN SYLLABICS E..CANADIAN SYLLABICS CARRIER TTSA
 166D..166E    ; Restricted ; Not_XID           #  [2] (᙭..᙮)  CANADIAN SYLLABICS CHI SIGN..CANADIAN SYLLABICS FULL STOP
 166F..167F    ; Restricted ; Aspirational      # [17] (ᙯ..ᙿ)  CANADIAN SYLLABICS QAI..CANADIAN SYLLABICS BLACKFOOT W
-1681..169A    ; Restricted ; Exclusion         # [26] (ᚁ..ᚚ)  OGHAM LETTER BEITH..OGHAM LETTER PEITH
+1681..169A    ; Restricted ; Obsolete          # [26] (ᚁ..ᚚ)  OGHAM LETTER BEITH..OGHAM LETTER PEITH
 169B..169C    ; Restricted ; Not_XID           #  [2] (᚛..᚜)  OGHAM FEATHER MARK..OGHAM REVERSED FEATHER MARK
-16A0..16EA    ; Restricted ; Exclusion         # [75] (ᚠ..ᛪ)  RUNIC LETTER FEHU FEOH FE F..RUNIC LETTER X
+16A0..16EA    ; Restricted ; Obsolete          # [75] (ᚠ..ᛪ)  RUNIC LETTER FEHU FEOH FE F..RUNIC LETTER X
 16EB          ; Restricted ; Not_XID           #      (᛫)  RUNIC SINGLE PUNCTUATION
 16EC          ; Restricted ; Not_XID           #      (᛬)  RUNIC MULTIPLE PUNCTUATION
 16ED          ; Restricted ; Not_XID           #      (᛭)  RUNIC CROSS PUNCTUATION
@@ -3859,7 +3860,7 @@
 18A6          ; Restricted ; Aspirational      #      (ᢦ)  MONGOLIAN LETTER ALI GALI HALF U
 18A7          ; Restricted ; Aspirational      #      (ᢧ)  MONGOLIAN LETTER ALI GALI HALF YA
 18A8          ; Restricted ; Aspirational      #      (ᢨ)  MONGOLIAN LETTER MANCHU ALI GALI BHA
-18A9          ; Restricted ; Aspirational      #      (ᢩ)  MONGOLIAN LETTER ALI GALI DAGALGA
+18A9          ; Restricted ; Uncommon_Use      #      (ᢩ)  MONGOLIAN LETTER ALI GALI DAGALGA
 18AA          ; Restricted ; Aspirational      #      (ᢪ)  MONGOLIAN LETTER MANCHU ALI GALI LHA
 18B0..18F5    ; Restricted ; Aspirational      # [70] (ᢰ..ᣵ)  CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
 1900          ; Restricted ; Limited_Use       #      (ᤀ)  LIMBU VOWEL-CARRIER LETTER
@@ -8142,7 +8143,9 @@
 2C7D          ; Restricted ; Not_NFKC          #      (ⱽ)  MODIFIER LETTER CAPITAL V
 2C7E          ; Restricted ; Obsolete          #      (Ȿ)  LATIN CAPITAL LETTER S WITH SWASH TAIL
 2C7F          ; Restricted ; Obsolete          #      (Ɀ)  LATIN CAPITAL LETTER Z WITH SWASH TAIL
-2C80..2CE4    ; Restricted ; Exclusion         # [101] (Ⲁ..ⳤ)  COPTIC CAPITAL LETTER ALFA..COPTIC SYMBOL KAI
+2C80..2CB1    ; Restricted ; Exclusion         # [50] (Ⲁ..ⲱ)  COPTIC CAPITAL LETTER ALFA..COPTIC SMALL LETTER OOU
+2CB2..2CE3    ; Restricted ; Obsolete          # [50] (Ⲳ..ⳣ)  COPTIC CAPITAL LETTER DIALECT-P ALEF..COPTIC SMALL LETTER OLD NUBIAN WAU
+2CE4          ; Restricted ; Exclusion         #      (ⳤ)  COPTIC SYMBOL KAI
 2CE5..2CEA    ; Restricted ; Not_XID           #  [6] (⳥..⳪)  COPTIC SYMBOL MI RO..COPTIC SYMBOL SHIMA SIMA
 2CEB..2CF3    ; Restricted ; Exclusion         #  [9] (Ⳬ..ⳳ)  COPTIC CAPITAL LETTER CRYPTOGRAMMIC SHEI..COPTIC SMALL LETTER BOHAIRIC KHEI
 2CF9..2CFF    ; Restricted ; Not_XID           #  [7] (⳹..⳿)  COPTIC OLD NUBIAN FULL STOP..COPTIC MORPHOLOGICAL DIVIDER
@@ -9515,9 +9518,9 @@ A60C          ; Restricted ; Limited_Use       #      (ꘌ)  VAI SYLLABLE LENGTH
 A60D          ; Restricted ; Not_XID           #      (꘍)  VAI COMMA
 A60E          ; Restricted ; Not_XID           #      (꘎)  VAI FULL STOP
 A60F          ; Restricted ; Not_XID           #      (꘏)  VAI QUESTION MARK
-A610          ; Restricted ; Limited_Use       #      (ꘐ)  VAI SYLLABLE NDOLE FA
-A611          ; Restricted ; Limited_Use       #      (ꘑ)  VAI SYLLABLE NDOLE KA
-A612          ; Restricted ; Limited_Use       #      (ꘒ)  VAI SYLLABLE NDOLE SOO
+A610          ; Restricted ; Obsolete          #      (ꘐ)  VAI SYLLABLE NDOLE FA
+A611          ; Restricted ; Obsolete          #      (ꘑ)  VAI SYLLABLE NDOLE KA
+A612          ; Restricted ; Obsolete          #      (ꘒ)  VAI SYLLABLE NDOLE SOO
 A613          ; Restricted ; Limited_Use       #      (ꘓ)  VAI SYMBOL FEENG
 A614          ; Restricted ; Limited_Use       #      (ꘔ)  VAI SYMBOL KEENG
 A615          ; Restricted ; Limited_Use       #      (ꘕ)  VAI SYMBOL TING
@@ -9541,8 +9544,8 @@ A626          ; Restricted ; Limited_Use       #      (꘦)  VAI DIGIT SIX
 A627          ; Restricted ; Limited_Use       #      (꘧)  VAI DIGIT SEVEN
 A628          ; Restricted ; Limited_Use       #      (꘨)  VAI DIGIT EIGHT
 A629          ; Restricted ; Limited_Use       #      (꘩)  VAI DIGIT NINE
-A62A          ; Restricted ; Limited_Use       #      (ꘪ)  VAI SYLLABLE NDOLE MA
-A62B          ; Restricted ; Limited_Use       #      (ꘫ)  VAI SYLLABLE NDOLE DO
+A62A          ; Restricted ; Obsolete          #      (ꘪ)  VAI SYLLABLE NDOLE MA
+A62B          ; Restricted ; Obsolete          #      (ꘫ)  VAI SYLLABLE NDOLE DO
 A640          ; Restricted ; Obsolete          #      (Ꙁ)  CYRILLIC CAPITAL LETTER ZEMLYA
 A641          ; Restricted ; Obsolete          #      (ꙁ)  CYRILLIC SMALL LETTER ZEMLYA
 A642          ; Restricted ; Obsolete          #      (Ꙃ)  CYRILLIC CAPITAL LETTER DZELO
@@ -11815,9 +11818,10 @@ FFEE          ; Restricted ; Not_NFKC          #      (￮)  HALFWIDTH WHITE CIR
 102F9         ; Restricted ; Not_XID           #      (𐋹)  COPTIC EPACT NUMBER SEVEN HUNDRED
 102FA         ; Restricted ; Not_XID           #      (𐋺)  COPTIC EPACT NUMBER EIGHT HUNDRED
 102FB         ; Restricted ; Not_XID           #      (𐋻)  COPTIC EPACT NUMBER NINE HUNDRED
-10300..1031F  ; Restricted ; Exclusion         # [32] (𐌀..𐌟)  OLD ITALIC LETTER A..OLD ITALIC LETTER ESS
+10300..1031E  ; Restricted ; Obsolete          # [31] (𐌀..𐌞)  OLD ITALIC LETTER A..OLD ITALIC LETTER UU
+1031F         ; Restricted ; Exclusion         #      (𐌟)  OLD ITALIC LETTER ESS
 10320..10323  ; Restricted ; Not_XID           #  [4] (𐌠..𐌣)  OLD ITALIC NUMERAL ONE..OLD ITALIC NUMERAL FIFTY
-10330..1034A  ; Restricted ; Exclusion         # [27] (𐌰..𐍊)  GOTHIC LETTER AHSA..GOTHIC LETTER NINE HUNDRED
+10330..1034A  ; Restricted ; Obsolete          # [27] (𐌰..𐍊)  GOTHIC LETTER AHSA..GOTHIC LETTER NINE HUNDRED
 10350         ; Restricted ; Exclusion         #      (𐍐)  OLD PERMIC LETTER AN
 10351         ; Restricted ; Exclusion         #      (𐍑)  OLD PERMIC LETTER BUR
 10352         ; Restricted ; Exclusion         #      (𐍒)  OLD PERMIC LETTER GAI
@@ -11867,7 +11871,10 @@ FFEE          ; Restricted ; Not_NFKC          #      (￮)  HALFWIDTH WHITE CIR
 103C8..103CF  ; Restricted ; Exclusion         #  [8] (𐏈..𐏏)  OLD PERSIAN SIGN AURAMAZDAA..OLD PERSIAN SIGN BUUMISH
 103D0         ; Restricted ; Not_XID           #      (𐏐)  OLD PERSIAN WORD DIVIDER
 103D1..103D5  ; Restricted ; Exclusion         #  [5] (𐏑..𐏕)  OLD PERSIAN NUMBER ONE..OLD PERSIAN NUMBER HUNDRED
-10400..1049D  ; Restricted ; Exclusion         # [158] (𐐀..𐒝)  DESERET CAPITAL LETTER LONG I..OSMANYA LETTER OO
+10400..10425  ; Restricted ; Obsolete          # [38] (𐐀..𐐥)  DESERET CAPITAL LETTER LONG I..DESERET CAPITAL LETTER ENG
+10426..10427  ; Restricted ; Exclusion         #  [2] (𐐦..𐐧)  DESERET CAPITAL LETTER OI..DESERET CAPITAL LETTER EW
+10428..1044D  ; Restricted ; Obsolete          # [38] (𐐨..𐑍)  DESERET SMALL LETTER LONG I..DESERET SMALL LETTER ENG
+1044E..1049D  ; Restricted ; Exclusion         # [80] (𐑎..𐒝)  DESERET SMALL LETTER OI..OSMANYA LETTER OO
 104A0..104A9  ; Restricted ; Exclusion         # [10] (𐒠..𐒩)  OSMANYA DIGIT ZERO..OSMANYA DIGIT NINE
 104B0         ; Restricted ; Limited_Use       #      (𐒰)  OSAGE CAPITAL LETTER A
 104B1         ; Restricted ; Limited_Use       #      (𐒱)  OSAGE CAPITAL LETTER AI
