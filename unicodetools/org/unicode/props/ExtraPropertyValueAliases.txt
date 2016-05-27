@@ -99,13 +99,14 @@ idtype	; di	; Default_Ignorable
 idtype	; nn	; Not_NFKC				
 idtype	; nx	; Not_XID		
 idtype	; o		; Obsolete				
-idtype	; t		; Technical				
 idtype	; ex	; Exclusion		
+idtype	; t		; Technical				
 idtype	; uu	; Uncommon_Use
+# idtype	; h		; Historic		
 idtype	; lu	; Limited_Use			
-idtype	; h		; historic				
-idtype	; inc	; inclusion				
-idtype	; rec	; recommended	
+idtype	; a		; Aspirational		
+idtype	; inc	; Inclusion				
+idtype	; rec	; Recommended	
 
 # @-missing: 0000..10FFFF; Confusable_SL    	; <code point>		
 # @-missing: 0000..10FFFF; Confusable_SA    	; <code point>		

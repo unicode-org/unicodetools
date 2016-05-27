@@ -23,6 +23,10 @@ import org.unicode.cldr.draft.ScriptMetadata.Info;
 import org.unicode.cldr.util.BagFormatter;
 import org.unicode.cldr.util.UnicodeProperty;
 import org.unicode.cldr.util.BagFormatter.NameLabel;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
+import org.unicode.props.UcdPropertyValues.Identifier_Type_Values;
 import org.unicode.text.UCD.GenerateConfusables.FakeBreak;
 import org.unicode.text.utility.Utility;
 
@@ -54,6 +58,12 @@ public class IdentifierInfo {
     private static Integer MARK_OUTPUT = new Integer(10);
     private static Integer MARK_ASCII = new Integer(10);
     static final String NOT_IN_XID = "not in XID+";
+    
+    static final IndexUnicodeProperties LATEST = IndexUnicodeProperties
+            .make(Default.ucdVersion());
+
+    private static final UnicodeSet NON_CHARACTERS = LATEST.loadEnum(UcdProperty.General_Category, General_Category_Values.class)
+            .getSet(General_Category_Values.Unassigned);
 
 
     //        private final boolean mergeRanges = true;
@@ -244,26 +254,28 @@ public class IdentifierInfo {
     }
 
     public enum IdentifierType {
-        recommended("Recommended", IdentifierStatus.allowed),
-        inclusion("Inclusion", IdentifierStatus.allowed),
-        uncommon_use("Uncommon_Use", IdentifierStatus.restricted),
-        technical("Technical", IdentifierStatus.restricted),
-        obsolete("Obsolete", IdentifierStatus.restricted),
-        aspirational("Aspirational", IdentifierStatus.restricted),
-        limited_use("Limited_Use", IdentifierStatus.restricted),
-        exclusion("Exclusion", IdentifierStatus.restricted),
-        not_xid("Not_XID", IdentifierStatus.restricted),
-        not_nfkc("Not_NFKC", IdentifierStatus.restricted),
-        default_ignorable("Default_Ignorable", IdentifierStatus.restricted),
-        deprecated("Deprecated", IdentifierStatus.restricted),
-        not_chars("Not_Characters", IdentifierStatus.restricted),
+        recommended(Identifier_Type_Values.Recommended, IdentifierStatus.allowed),
+        inclusion(Identifier_Type_Values.Inclusion, IdentifierStatus.allowed),
+        aspirational(Identifier_Type_Values.Aspirational, IdentifierStatus.restricted),
+        limited_use(Identifier_Type_Values.Limited_Use, IdentifierStatus.restricted),
+        uncommon_use(Identifier_Type_Values.Uncommon_Use, IdentifierStatus.restricted),
+        technical(Identifier_Type_Values.Technical, IdentifierStatus.restricted),
+        exclusion(Identifier_Type_Values.Exclusion, IdentifierStatus.restricted),
+        obsolete(Identifier_Type_Values.Obsolete, IdentifierStatus.restricted),
+        not_xid(Identifier_Type_Values.Not_XID, IdentifierStatus.restricted),
+        not_nfkc(Identifier_Type_Values.Not_NFKC, IdentifierStatus.restricted),
+        default_ignorable(Identifier_Type_Values.Default_Ignorable, IdentifierStatus.restricted),
+        deprecated(Identifier_Type_Values.Deprecated, IdentifierStatus.restricted),
+        not_chars(Identifier_Type_Values.Not_Character, IdentifierStatus.restricted),
         ;
 
+        public final Identifier_Type_Values type;
         public final String name;
         public final IdentifierStatus identifierStatus;
 
-        private IdentifierType(String name, IdentifierStatus identifierStatus) {
-            this.name = name;
+        private IdentifierType(Identifier_Type_Values type, IdentifierStatus identifierStatus) {
+            this.type = type;
+            this.name = type.toString();
             this.identifierStatus = identifierStatus;
         }
 
@@ -457,6 +469,8 @@ public class IdentifierInfo {
             if (GenerateConfusables.DEBUG) System.out.println("*Removal Collision\t" + value + "\n\t" + removalCollision.getSet(value).toPattern(false));
         }
         removals.freeze();
+        identifierTypesMap.putAll(NON_CHARACTERS, Collections.singleton(IdentifierType.not_chars));
+        identifierTypesMap.putAll(identifierTypesMap.getSet(null), Collections.singleton(IdentifierType.recommended));
         identifierTypesMap.freeze();
         //removals.putAll(getNonIICore(), PROHIBITED + "~IICore");
         br.close();
@@ -825,7 +839,7 @@ public class IdentifierInfo {
         final UnicodeMap<String> tempMap = new UnicodeMap<String>();
         final Map<String,Set<IdentifierType>> sortingMap = new HashMap<>();
         for (Set<IdentifierType> value : identifierTypesMap.values()) {
-            if (value.contains(IdentifierType.recommended)) {
+            if (value.contains(IdentifierType.not_chars)) {
                 continue;
             }
             UnicodeSet set = identifierTypesMap.getSet(value);
@@ -850,16 +864,21 @@ public class IdentifierInfo {
         
         final String propName = "IdentifierType";
         try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, 
-                "identifierType.txt", "Security Profile for General Identifiers: "
+                "IdentifierType.txt", "Security Profile for General Identifiers: "
                         + propName)) {
-            out2.println("# Any missing values have the value: "
-                    + propName
-                    + "={Recommended}");
+            out2.println("# Format"
+                    + "\n#"
+                    + "\n# Field 0: code point"
+                    + "\n# Field 1: set of IdentifierType values (see Table 1 of http://www.unicode.org/reports/tr39)"
+                    + "\n#"
+                    + "\n# Any missing code points have the " + propName + " value Not_Character");
+            
             bf2.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
             }).set(tempMap).setMain(propName, "IDT",
                     UnicodeProperty.EXTENDED_MISC, "1.0"));
             TreeSet<String> sorted = new TreeSet<>(tempComp);
             sorted.addAll(tempMap.values());
+            
             for (String value : sorted) {
                 out2.println("");
                 out2.println("#\t"
@@ -889,8 +908,14 @@ public class IdentifierInfo {
         
         final String propName = "IdentifierStatus";
         try (PrintWriter out2 = GenerateConfusables.openAndWriteHeader(GenerateConfusables.DRAFT_OUT, 
-                "identifierStatus.txt", "Security Profile for General Identifiers: " + propName)) {
-            out2.println("# Any missing values have the value: " + propName + "=Restricted");
+                "IdentifierStatus.txt", "Security Profile for General Identifiers: " + propName)) {
+            out2.println("# Format"
+                    + "\n#"
+                    + "\n# Field 0: code point"
+                    + "\n# Field 1: IdentifierStatus value (see Table 1 of http://www.unicode.org/reports/tr39)"
+                    + "\n#"
+                    + "\n# Any missing code points have the " + propName + " value Restricted");
+
             bf2.setValueSource((new UnicodeProperty.UnicodeMapProperty() {
             }).set(tempMap).setMain(propName, "IDS",
                     UnicodeProperty.EXTENDED_MISC, "1.0"));

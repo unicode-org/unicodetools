@@ -169,7 +169,6 @@
 18A6          ;  ; Aspirational #      (ᢦ)  MONGOLIAN LETTER ALI GALI HALF U
 18A7          ;  ; Aspirational #      (ᢧ)  MONGOLIAN LETTER ALI GALI HALF YA
 18A8          ;  ; Aspirational #      (ᢨ)  MONGOLIAN LETTER MANCHU ALI GALI BHA
-18A9          ;  ; Aspirational #      (ᢩ)  MONGOLIAN LETTER ALI GALI DAGALGA
 18AA          ;  ; Aspirational #      (ᢪ)  MONGOLIAN LETTER MANCHU ALI GALI LHA
 18B0..18F5    ;  ; Aspirational # [70] (ᢰ..ᣵ)  CANADIAN SYLLABICS OY..CANADIAN SYLLABICS CARRIER DENTAL S
 2D30          ;  ; Aspirational #      (ⴰ)  TIFINAGH LETTER YA
@@ -364,7 +363,7 @@ A000..A48C    ;  ; Aspirational # [1165] (ꀀ..ꒌ)  YI SYLLABLE IT..YI SYLLABLE
 16F9E         ;  ; Aspirational #      (𖾞)  MIAO LETTER REFORMED TONE-6
 16F9F         ;  ; Aspirational #      (𖾟)  MIAO LETTER REFORMED TONE-8
 
-# Total code points: 2203
+# Total code points: 2202
 
 034F          ;  ; Default_Ignorable #      (U+034F)  COMBINING GRAPHEME JOINER
 180B..180D    ;  ; Default_Ignorable #  [3] (U+180B..U+180D)  MONGOLIAN FREE VARIATION SELECTOR ONE..MONGOLIAN FREE VARIATION SELECTOR THREE
@@ -380,7 +379,6 @@ E0100..E01EF  ;  ; Default_Ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELEC
 # Total code points: 3
 
 03E2..03EF    ;  ; Exclusion # [14] (Ϣ..ϯ)  COPTIC CAPITAL LETTER SHEI..COPTIC SMALL LETTER DEI
-0640          ;  ; Exclusion #      (ـ)  ARABIC TATWEEL
 07FA          ;  ; Exclusion #      (ߺ)  NKO LAJANYALAN
 0800          ;  ; Exclusion #      (ࠀ)  SAMARITAN LETTER ALAF
 0801          ;  ; Exclusion #      (ࠁ)  SAMARITAN LETTER BIT
@@ -428,8 +426,6 @@ E0100..E01EF  ;  ; Default_Ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELEC
 082B          ;  ; Exclusion #      (ࠫ)  SAMARITAN VOWEL SIGN O
 082C          ;  ; Exclusion #      (ࠬ)  SAMARITAN VOWEL SIGN SUKUN
 082D          ;  ; Exclusion #      (࠭)  SAMARITAN MARK NEQUDAA
-1681..169A    ;  ; Exclusion # [26] (ᚁ..ᚚ)  OGHAM LETTER BEITH..OGHAM LETTER PEITH
-16A0..16EA    ;  ; Exclusion # [75] (ᚠ..ᛪ)  RUNIC LETTER FEHU FEOH FE F..RUNIC LETTER X
 16EE..16F8    ;  ; Exclusion # [11] (ᛮ..ᛸ)  RUNIC ARLAUG SYMBOL..RUNIC LETTER FRANKS CASKET AESC
 1700..170C    ;  ; Exclusion # [13] (ᜀ..ᜌ)  TAGALOG LETTER A..TAGALOG LETTER YA
 170E..1714    ;  ; Exclusion #  [7] (ᜎ..᜔)  TAGALOG LETTER LA..TAGALOG SIGN VIRAMA
@@ -494,7 +490,8 @@ E0100..E01EF  ;  ; Default_Ignorable # [240] (U+E0100..U+E01EF)  VARIATION SELEC
 20F0          ;  ; Exclusion #      (⃰)  COMBINING ASTERISK ABOVE
 2C00..2C2E    ;  ; Exclusion # [47] (Ⰰ..Ⱞ)  GLAGOLITIC CAPITAL LETTER AZU..GLAGOLITIC CAPITAL LETTER LATINATE MYSLITE
 2C30..2C5E    ;  ; Exclusion # [47] (ⰰ..ⱞ)  GLAGOLITIC SMALL LETTER AZU..GLAGOLITIC SMALL LETTER LATINATE MYSLITE
-2C80..2CE4    ;  ; Exclusion # [101] (Ⲁ..ⳤ)  COPTIC CAPITAL LETTER ALFA..COPTIC SYMBOL KAI
+2C80..2CB1    ;  ; Exclusion # [50] (Ⲁ..ⲱ)  COPTIC CAPITAL LETTER ALFA..COPTIC SMALL LETTER OOU
+2CE4          ;  ; Exclusion #      (ⳤ)  COPTIC SYMBOL KAI
 2CEB..2CF3    ;  ; Exclusion #  [9] (Ⳬ..ⳳ)  COPTIC CAPITAL LETTER CRYPTOGRAMMIC SHEI..COPTIC SMALL LETTER BOHAIRIC KHEI
 A840          ;  ; Exclusion #      (ꡀ)  PHAGS-PA LETTER KA
 A841          ;  ; Exclusion #      (ꡁ)  PHAGS-PA LETTER KHA
@@ -671,8 +668,7 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 102CE         ;  ; Exclusion #      (𐋎)  CARIAN LETTER LD2
 102CF         ;  ; Exclusion #      (𐋏)  CARIAN LETTER E2
 102D0         ;  ; Exclusion #      (𐋐)  CARIAN LETTER UUU3
-10300..1031F  ;  ; Exclusion # [32] (𐌀..𐌟)  OLD ITALIC LETTER A..OLD ITALIC LETTER ESS
-10330..1034A  ;  ; Exclusion # [27] (𐌰..𐍊)  GOTHIC LETTER AHSA..GOTHIC LETTER NINE HUNDRED
+1031F         ;  ; Exclusion #      (𐌟)  OLD ITALIC LETTER ESS
 10350         ;  ; Exclusion #      (𐍐)  OLD PERMIC LETTER AN
 10351         ;  ; Exclusion #      (𐍑)  OLD PERMIC LETTER BUR
 10352         ;  ; Exclusion #      (𐍒)  OLD PERMIC LETTER GAI
@@ -720,7 +716,8 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 103A0..103C3  ;  ; Exclusion # [36] (𐎠..𐏃)  OLD PERSIAN SIGN A..OLD PERSIAN SIGN HA
 103C8..103CF  ;  ; Exclusion #  [8] (𐏈..𐏏)  OLD PERSIAN SIGN AURAMAZDAA..OLD PERSIAN SIGN BUUMISH
 103D1..103D5  ;  ; Exclusion #  [5] (𐏑..𐏕)  OLD PERSIAN NUMBER ONE..OLD PERSIAN NUMBER HUNDRED
-10400..1049D  ;  ; Exclusion # [158] (𐐀..𐒝)  DESERET CAPITAL LETTER LONG I..OSMANYA LETTER OO
+10426..10427  ;  ; Exclusion #  [2] (𐐦..𐐧)  DESERET CAPITAL LETTER OI..DESERET CAPITAL LETTER EW
+1044E..1049D  ;  ; Exclusion # [80] (𐑎..𐒝)  DESERET SMALL LETTER OI..OSMANYA LETTER OO
 104A0..104A9  ;  ; Exclusion # [10] (𐒠..𐒩)  OSMANYA DIGIT ZERO..OSMANYA DIGIT NINE
 10500         ;  ; Exclusion #      (𐔀)  ELBASAN LETTER A
 10501         ;  ; Exclusion #      (𐔁)  ELBASAN LETTER BE
@@ -13267,9 +13264,9 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 1E8D5         ;  ; Exclusion #      (𞣕)  MENDE KIKAKUI COMBINING NUMBER HUNDRED THOUSANDS
 1E8D6         ;  ; Exclusion #      (𞣖)  MENDE KIKAKUI COMBINING NUMBER MILLIONS
 
-# Total code points: 14012
+# Total code points: 13726
 
-0710..074A    ;  ; Limited_Use # [59] (ܐ..݊)  SYRIAC LETTER ALAPH..SYRIAC BARREKH
+0710..073F    ;  ; Limited_Use # [48] (ܐ..ܿ)  SYRIAC LETTER ALAPH..SYRIAC RWAHA
 074D..074F    ;  ; Limited_Use #  [3] (ݍ..ݏ)  SYRIAC LETTER SOGDIAN ZHAIN..SYRIAC LETTER SOGDIAN FE
 07C0          ;  ; Limited_Use #      (߀)  NKO DIGIT ZERO
 07C1          ;  ; Limited_Use #      (߁)  NKO DIGIT ONE
@@ -13311,9 +13308,6 @@ A9CF          ;  ; Exclusion #      (ꧏ)  JAVANESE PANGRANGKEP
 07E5          ;  ; Limited_Use #      (ߥ)  NKO LETTER WA
 07E6          ;  ; Limited_Use #      (ߦ)  NKO LETTER YA
 07E7          ;  ; Limited_Use #      (ߧ)  NKO LETTER NYA WOLOSO
-07E8          ;  ; Limited_Use #      (ߨ)  NKO LETTER JONA JA
-07E9          ;  ; Limited_Use #      (ߩ)  NKO LETTER JONA CHA
-07EA          ;  ; Limited_Use #      (ߪ)  NKO LETTER JONA RA
 07EB          ;  ; Limited_Use #      (߫)  NKO COMBINING SHORT HIGH TONE
 07EC          ;  ; Limited_Use #      (߬)  NKO COMBINING SHORT LOW TONE
 07ED          ;  ; Limited_Use #      (߭)  NKO COMBINING SHORT RISING TONE
@@ -14376,9 +14370,6 @@ A609          ;  ; Limited_Use #      (ꘉ)  VAI SYLLABLE NE
 A60A          ;  ; Limited_Use #      (ꘊ)  VAI SYLLABLE NYE
 A60B          ;  ; Limited_Use #      (ꘋ)  VAI SYLLABLE NG
 A60C          ;  ; Limited_Use #      (ꘌ)  VAI SYLLABLE LENGTHENER
-A610          ;  ; Limited_Use #      (ꘐ)  VAI SYLLABLE NDOLE FA
-A611          ;  ; Limited_Use #      (ꘑ)  VAI SYLLABLE NDOLE KA
-A612          ;  ; Limited_Use #      (ꘒ)  VAI SYLLABLE NDOLE SOO
 A613          ;  ; Limited_Use #      (ꘓ)  VAI SYMBOL FEENG
 A614          ;  ; Limited_Use #      (ꘔ)  VAI SYMBOL KEENG
 A615          ;  ; Limited_Use #      (ꘕ)  VAI SYMBOL TING
@@ -14402,8 +14393,6 @@ A626          ;  ; Limited_Use #      (꘦)  VAI DIGIT SIX
 A627          ;  ; Limited_Use #      (꘧)  VAI DIGIT SEVEN
 A628          ;  ; Limited_Use #      (꘨)  VAI DIGIT EIGHT
 A629          ;  ; Limited_Use #      (꘩)  VAI DIGIT NINE
-A62A          ;  ; Limited_Use #      (ꘪ)  VAI SYLLABLE NDOLE MA
-A62B          ;  ; Limited_Use #      (ꘫ)  VAI SYLLABLE NDOLE DO
 A6A0          ;  ; Limited_Use #      (ꚠ)  BAMUM LETTER A
 A6A1          ;  ; Limited_Use #      (ꚡ)  BAMUM LETTER KA
 A6A2          ;  ; Limited_Use #      (ꚢ)  BAMUM LETTER U
@@ -15760,7 +15749,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1E958         ;  ; Limited_Use #      (𞥘)  ADLAM DIGIT EIGHT
 1E959         ;  ; Limited_Use #      (𞥙)  ADLAM DIGIT NINE
 
-# Total code points: 2702
+# Total code points: 2683
 
 018D          ;  ; Obsolete #      (ƍ)  LATIN SMALL LETTER TURNED DELTA
 01AA          ;  ; Obsolete #      (ƪ)  LATIN LETTER REVERSED ESH LOOP
@@ -15858,9 +15847,13 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 05A2          ;  ; Obsolete #      (֢)  HEBREW ACCENT ATNAH HAFUKH
 05C5          ;  ; Obsolete #      (ׅ)  HEBREW MARK LOWER DOT
 05C7          ;  ; Obsolete #      (ׇ)  HEBREW POINT QAMATS QATAN
+0640          ;  ; Obsolete #      (ـ)  ARABIC TATWEEL
 066E          ;  ; Obsolete #      (ٮ)  ARABIC LETTER DOTLESS BEH
 066F          ;  ; Obsolete #      (ٯ)  ARABIC LETTER DOTLESS QAF
 068E          ;  ; Obsolete #      (ڎ)  ARABIC LETTER DUL
+07E8          ;  ; Obsolete #      (ߨ)  NKO LETTER JONA JA
+07E9          ;  ; Obsolete #      (ߩ)  NKO LETTER JONA CHA
+07EA          ;  ; Obsolete #      (ߪ)  NKO LETTER JONA RA
 08AD          ;  ; Obsolete #      (ࢭ)  ARABIC LETTER LOW ALEF
 08AE          ;  ; Obsolete #      (ࢮ)  ARABIC LETTER DAL WITH THREE DOTS BELOW
 08AF          ;  ; Obsolete #      (ࢯ)  ARABIC LETTER SAD WITH THREE DOTS BELOW
@@ -15898,6 +15891,8 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 1100..115E    ;  ; Obsolete # [95] (ᄀ..ᅞ)  HANGUL CHOSEONG KIYEOK..HANGUL CHOSEONG TIKEUT-RIEUL
 1161..11FF    ;  ; Obsolete # [159] (ᅡ..ᇿ)  HANGUL JUNGSEONG A..HANGUL JONGSEONG SSANGNIEUN
 1369..1371    ;  ; Obsolete #  [9] (፩..፱)  ETHIOPIC DIGIT ONE..ETHIOPIC DIGIT NINE
+1681..169A    ;  ; Obsolete # [26] (ᚁ..ᚚ)  OGHAM LETTER BEITH..OGHAM LETTER PEITH
+16A0..16EA    ;  ; Obsolete # [75] (ᚠ..ᛪ)  RUNIC LETTER FEHU FEOH FE F..RUNIC LETTER X
 17A8          ;  ; Obsolete #      (ឨ)  KHMER INDEPENDENT VOWEL QUK
 17D1          ;  ; Obsolete #      (៑)  KHMER SIGN VIRIAM
 17D3          ;  ; Obsolete #      (៓)  KHMER SIGN BATHAMASAT
@@ -16000,6 +15995,7 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 2C75          ;  ; Obsolete #      (Ⱶ)  LATIN CAPITAL LETTER HALF H
 2C76          ;  ; Obsolete #      (ⱶ)  LATIN SMALL LETTER HALF H
 2C7E..2C7F    ;  ; Obsolete #  [2] (Ȿ..Ɀ)  LATIN CAPITAL LETTER S WITH SWASH TAIL..LATIN CAPITAL LETTER Z WITH SWASH TAIL
+2CB2..2CE3    ;  ; Obsolete # [50] (Ⲳ..ⳣ)  COPTIC CAPITAL LETTER DIALECT-P ALEF..COPTIC SMALL LETTER OLD NUBIAN WAU
 2D00          ;  ; Obsolete #      (ⴀ)  GEORGIAN SMALL LETTER AN
 2D01          ;  ; Obsolete #      (ⴁ)  GEORGIAN SMALL LETTER BAN
 2D02          ;  ; Obsolete #      (ⴂ)  GEORGIAN SMALL LETTER GAN
@@ -16072,6 +16068,11 @@ ABF9          ;  ; Limited_Use #      (꯹)  MEETEI MAYEK DIGIT NINE
 2DFF          ;  ; Obsolete #      (ⷿ)  COMBINING CYRILLIC LETTER IOTIFIED BIG YUS
 302E          ;  ; Obsolete #      (〮)  HANGUL SINGLE DOT TONE MARK
 302F          ;  ; Obsolete #      (〯)  HANGUL DOUBLE DOT TONE MARK
+A610          ;  ; Obsolete #      (ꘐ)  VAI SYLLABLE NDOLE FA
+A611          ;  ; Obsolete #      (ꘑ)  VAI SYLLABLE NDOLE KA
+A612          ;  ; Obsolete #      (ꘒ)  VAI SYLLABLE NDOLE SOO
+A62A          ;  ; Obsolete #      (ꘪ)  VAI SYLLABLE NDOLE MA
+A62B          ;  ; Obsolete #      (ꘫ)  VAI SYLLABLE NDOLE DO
 A640          ;  ; Obsolete #      (Ꙁ)  CYRILLIC CAPITAL LETTER ZEMLYA
 A641          ;  ; Obsolete #      (ꙁ)  CYRILLIC SMALL LETTER ZEMLYA
 A642          ;  ; Obsolete #      (Ꙃ)  CYRILLIC CAPITAL LETTER DZELO
@@ -16446,10 +16447,14 @@ D7FA          ;  ; Obsolete #      (ퟺ)  HANGUL JONGSEONG PHIEUPH-SIOS
 D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 10140..10174  ;  ; Obsolete # [53] (𐅀..𐅴)  GREEK ACROPHONIC ATTIC ONE QUARTER..GREEK ACROPHONIC STRATIAN FIFTY MNAS
 102E0         ;  ; Obsolete #      (𐋠)  COPTIC EPACT THOUSANDS MARK
+10300..1031E  ;  ; Obsolete # [31] (𐌀..𐌞)  OLD ITALIC LETTER A..OLD ITALIC LETTER UU
+10330..1034A  ;  ; Obsolete # [27] (𐌰..𐍊)  GOTHIC LETTER AHSA..GOTHIC LETTER NINE HUNDRED
+10400..10425  ;  ; Obsolete # [38] (𐐀..𐐥)  DESERET CAPITAL LETTER LONG I..DESERET CAPITAL LETTER ENG
+10428..1044D  ;  ; Obsolete # [38] (𐐨..𐑍)  DESERET SMALL LETTER LONG I..DESERET SMALL LETTER ENG
 1B000         ;  ; Obsolete #      (𛀀)  KATAKANA LETTER ARCHAIC E
 1B001         ;  ; Obsolete #      (𛀁)  HIRAGANA LETTER ARCHAIC YE
 
-# Total code points: 1007
+# Total code points: 1301
 
 0180          ;  ; Technical #      (ƀ)  LATIN SMALL LETTER B WITH STROKE
 01C0          ;  ; Technical #      (ǀ)  LATIN LETTER DENTAL CLICK
@@ -16605,6 +16610,7 @@ D7FB          ;  ; Obsolete #      (ퟻ)  HANGUL JONGSEONG PHIEUPH-THIEUTH
 0362          ;  ; Technical #      (͢)  COMBINING DOUBLE RIGHTWARDS ARROW BELOW
 03CF          ;  ; Technical #      (Ϗ)  GREEK CAPITAL KAI SYMBOL
 03D7          ;  ; Technical #      (ϗ)  GREEK KAI SYMBOL
+0740..074A    ;  ; Technical # [11] (݀..݊)  SYRIAC FEMININE DOT..SYRIAC BARREKH
 0953          ;  ; Technical #      (॓)  DEVANAGARI GRAVE ACCENT
 0954          ;  ; Technical #      (॔)  DEVANAGARI ACUTE ACCENT
 0D8F          ;  ; Technical #      (ඏ)  SINHALA LETTER ILUYANNA
@@ -16809,7 +16815,7 @@ FB1E          ;  ; Technical #      (ﬞ)  HEBREW POINT JUDEO-SPANISH VARIKA
 FE20..FE2F    ;  ; Technical # [16] (︠..︯)  COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
 FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 
-# Total code points: 374
+# Total code points: 385
 
 0181..0182    ;  ; Uncommon_Use #  [2] (Ɓ..Ƃ)  LATIN CAPITAL LETTER B WITH HOOK..LATIN CAPITAL LETTER B WITH TOPBAR
 0183          ;  ; Uncommon_Use #      (ƃ)  LATIN SMALL LETTER B WITH TOPBAR
@@ -17052,6 +17058,7 @@ FE73          ;  ; Technical #      (ﹳ)  ARABIC TAIL FRAGMENT
 0D62          ;  ; Uncommon_Use #      (ൢ)  MALAYALAM VOWEL SIGN VOCALIC L
 0D63          ;  ; Uncommon_Use #      (ൣ)  MALAYALAM VOWEL SIGN VOCALIC LL
 0F39          ;  ; Uncommon_Use #      (༹)  TIBETAN MARK TSA -PHRU
+18A9          ;  ; Uncommon_Use #      (ᢩ)  MONGOLIAN LETTER ALI GALI DAGALGA
 2054          ;  ; Uncommon_Use #      (⁔)  INVERTED UNDERTIE
 2C67          ;  ; Uncommon_Use #      (Ⱨ)  LATIN CAPITAL LETTER H WITH DESCENDER
 2C68          ;  ; Uncommon_Use #      (ⱨ)  LATIN SMALL LETTER H WITH DESCENDER
@@ -17075,7 +17082,7 @@ AB61          ;  ; Uncommon_Use #      (ꭡ)  LATIN SMALL LETTER IOTIFIED E
 AB62          ;  ; Uncommon_Use #      (ꭢ)  LATIN SMALL LETTER OPEN OE
 AB63          ;  ; Uncommon_Use #      (ꭣ)  LATIN SMALL LETTER UO
 
-# Total code points: 283
+# Total code points: 284
 
 00B7          ; Allowed ; Inclusion #      (·)  MIDDLE DOT
 

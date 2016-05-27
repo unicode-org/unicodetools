@@ -707,13 +707,13 @@ public class UcdPropertyValues {
         Not_NFKC("nn"),
         Not_XID("nx"),
         Obsolete("o"),
-        Technical("t"),
         Exclusion("ex"),
+        Technical("t"),
         Uncommon_Use("uu"),
         Limited_Use("lu"),
-        historic("h"),
-        inclusion("inc"),
-        recommended("rec");
+        Aspirational("a"),
+        Inclusion("inc"),
+        Recommended("rec");
         private final PropertyNames<Identifier_Type_Values> names;
         private Identifier_Type_Values (String shortName, String...otherNames) {
             names = new PropertyNames<Identifier_Type_Values>(
