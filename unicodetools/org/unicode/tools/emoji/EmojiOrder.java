@@ -243,6 +243,7 @@ public class EmojiOrder {
 
     public static void main(String[] args) throws Exception {
         STD_ORDER.showLines(true, null);
+        //STD_ORDER.showLines(false, null);
 //        checkRBC();
         //LinkedHashSet<String> foo = Emoji.FLAGS.addAllTo(new LinkedHashSet());
         //System.out.println(CollectionUtilities.join(foo, " "));
@@ -290,7 +291,7 @@ public class EmojiOrder {
                 EmojiStats.totalMissingData.get(source).addAllTo(new HashSet<String>()));
         MajorGroup lastMajorGroup = null;
         int i = 0;
-        System.out.println("#Main group\tCharacters in order\tInternal subgroup");
+        System.out.println("#Main group\tInternal subgroup\tCharacters in order");
         for (Entry<String, Set<String>> labelToSet : orderingToCharacters.keyValuesSet()) {
             boolean isFirst = true;
             final String label = labelToSet.getKey();
@@ -302,7 +303,7 @@ public class EmojiOrder {
                     filtered.retainAll(filter);
                 }
                 if (!filtered.isEmpty()) {
-                    System.out.println(majorGroup + "\t" + CollectionUtilities.join(filtered, " ") + "\t" + label);
+                    System.out.println(majorGroup + ";\t" + label + ";\t" + CollectionUtilities.join(filtered, " "));
                 }
                 continue;
             }
@@ -430,4 +431,5 @@ public class EmojiOrder {
     public int getGroupOrder(String cat1) {
         return groupOrder.get(cat1);
     }
+    
 }
