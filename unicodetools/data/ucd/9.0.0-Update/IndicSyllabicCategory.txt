@@ -1,5 +1,5 @@
 # IndicSyllabicCategory-9.0.0.txt
-# Date: 2016-02-25, 00:48:00 GMT [RP]
+# Date: 2016-05-21, 02:46:00 GMT [RP]
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -636,6 +636,7 @@ A926..A92A    ; Vowel # Mn   [5] KAYAH LI VOWEL UE..KAYAH LI VOWEL O
 1900          ; Consonant_Placeholder # Lo       LIMBU VOWEL-CARRIER LETTER
 2010..2014    ; Consonant_Placeholder # Pd   [5] HYPHEN..EM DASH
 25CC          ; Consonant_Placeholder # So       DOTTED CIRCLE
+AA74..AA76    ; Consonant_Placeholder # Lo   [3] MYANMAR LOGOGRAM KHAMTI OAY..MYANMAR LOGOGRAM KHAMTI HM
 
 # ================================================
 
@@ -1038,6 +1039,7 @@ A8E0..A8F1    ; Cantillation_Mark # Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..CO
 17CB          ; Syllable_Modifier # Mn       KHMER SIGN BANTOC
 17CE..17D0    ; Syllable_Modifier # Mn   [3] KHMER SIGN KAKABAT..KHMER SIGN SAMYOK SANNYA
 17D3          ; Syllable_Modifier # Mn       KHMER SIGN BATHAMASAT
+17DD          ; Syllable_Modifier # Mn       KHMER SIGN ATTHACAN
 193B          ; Syllable_Modifier # Mn       LIMBU SIGN SA-I
 1A7A..1A7C    ; Syllable_Modifier # Mn   [3] TAI THAM SIGN RA HAAM..TAI THAM SIGN KHUEN-LUE KARAN
 1A7F          ; Syllable_Modifier # Mn       TAI THAM COMBINING CRYPTOGRAMMIC DOT
