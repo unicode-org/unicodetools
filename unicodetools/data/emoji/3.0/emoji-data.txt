@@ -296,7 +296,7 @@
 1F3F8..1F3FF  ; Emoji_Presentation   # 8.0  [8] (🏸..🏿)    BADMINTON RACQUET AND SHUTTLECOCK..EMOJI MODIFIER FITZPATRICK TYPE-6
 1F400..1F43E  ; Emoji_Presentation   # 6.0 [63] (🐀..🐾)    RAT..PAW PRINTS
 1F440         ; Emoji_Presentation   # 6.0  [1] (👀)       EYES
-1F441         ; Emoji_Presentation   # 7.0  [1] (👁)       EYE
+#1F441         ; Emoji_Presentation   # 7.0  [1] (👁)       EYE
 1F442..1F4F7  ; Emoji_Presentation   # 6.0[182] (👂..📷)    EAR..CAMERA
 1F4F8         ; Emoji_Presentation   # 7.0  [1] (📸)       CAMERA WITH FLASH
 1F4F9..1F4FC  ; Emoji_Presentation   # 6.0  [4] (📹..📼)    VIDEO CAMERA..VIDEOCASSETTE
@@ -307,7 +307,7 @@
 1F57A         ; Emoji_Presentation   # 9.0  [1] (🕺)       MAN DANCING
 1F595..1F596  ; Emoji_Presentation   # 7.0  [2] (🖕..🖖)    REVERSED HAND WITH MIDDLE FINGER EXTENDED..RAISED HAND WITH PART BETWEEN MIDDLE AND RING FINGERS
 1F5A4         ; Emoji_Presentation   # 9.0  [1] (🖤)       BLACK HEART
-1F5E8         ; Emoji_Presentation   # 7.0  [1] (🗨)       LEFT SPEECH BUBBLE
+#1F5E8         ; Emoji_Presentation   # 7.0  [1] (🗨)       LEFT SPEECH BUBBLE
 1F5FB..1F5FF  ; Emoji_Presentation   # 6.0  [5] (🗻..🗿)    MOUNT FUJI..MOYAI
 1F600         ; Emoji_Presentation   # 6.1  [1] (😀)       GRINNING FACE
 1F601..1F610  ; Emoji_Presentation   # 6.0 [16] (😁..😐)    GRINNING FACE WITH SMILING EYES..NEUTRAL FACE
