@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.text.utility.Utility;
+import org.unicode.tools.emoji.Emoji;
 
 import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -17,7 +18,7 @@ public class NotoCoverage {
                 )
         .removeAll(new UnicodeSet("[:M:]")), "Emoji-Color");
         Splitter lineSplitter = Splitter.onPattern("\\.\\.|;").trimResults();
-        for (String line : FileUtilities.in(NotoCoverage.class, "notoCoverage.txt")) {
+        for (String line : FileUtilities.in(Emoji.class, "notoCoverage.txt")) {
             // 2F83B ;  NotoSansCJKjp-Black
             // 2F83F..2F840 ;  NotoSansCJKjp-Black
             List<String> items = lineSplitter.splitToList(line);

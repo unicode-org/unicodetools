@@ -924,15 +924,20 @@ U+FF1A ( ： ) FULLWIDTH COLON
             unicodeMap.putAll(new UnicodeSet("[\\u000D]"), "CR");
             unicodeMap.putAll(new UnicodeSet("[\\u000A]"), "LF");
             final UnicodeProperty cat = getProperty("General_Category");
-            unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES).addAll(
-                    cat.getSet("Spacing_Mark")), "Extend");
+            unicodeMap.putAll(getProperty("Grapheme_Extend").getSet(UCD_Names.YES)
+                    .addAll(cat.getSet("Spacing_Mark"))
+                    .add(0x200D)
+                    .add(0xE0020,0xE007F), "Extend");
             unicodeMap.putAll(new UnicodeSet("[\\u0085\\u2028\\u2029]"), "Sep");
-            unicodeMap.putAll(cat.getSet("Format").remove(0x200C).remove(0x200D), "Format");
+            unicodeMap.putAll(cat.getSet("Format")
+                    .remove(0x200C)
+                    .remove(0x200D)
+                    .remove(0xE0020,0xE007F), "Format");
             unicodeMap.putAll(getProperty("Whitespace").getSet(UCD_Names.YES)
                     .removeAll(unicodeMap.keySet("Sep"))
                     .removeAll(unicodeMap.keySet("CR"))
                     .removeAll(unicodeMap.keySet("LF"))
-                    .remove(0x202F) // action 144a067
+                    //.remove(0x202F) // action 144a067, reversed by 147A027
                     , "Sp");
             final UnicodeSet graphemeExtend = getProperty("Grapheme_Extend").getSet(UCD_Names.YES);
             unicodeMap.putAll(getProperty("Lowercase").getSet(UCD_Names.YES)

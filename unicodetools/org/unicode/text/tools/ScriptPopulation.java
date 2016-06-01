@@ -3,9 +3,7 @@ package org.unicode.text.tools;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
-import java.util.TreeMap;
 
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.Counter;
@@ -14,27 +12,25 @@ import org.unicode.cldr.util.Pair;
 import org.unicode.cldr.util.SupplementalDataInfo;
 import org.unicode.draft.CharacterFrequency;
 import org.unicode.text.tools.ScriptPopulation.Category.Extra;
-import org.unicode.text.utility.Utility;
-import org.unicode.tools.emoji.Emoji;
+import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
 import com.ibm.icu.lang.UScript;
 import com.ibm.icu.lang.UScript.ScriptUsage;
 import com.ibm.icu.text.DecimalFormat;
-import com.ibm.icu.text.IdentifierInfo;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.NumberFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ULocale;
+import com.ibm.icu.util.VersionInfo;
 
 /**
  * See CharacterFrequency for the base data
  */
-public class ScriptPopulation {
+class ScriptPopulation {
     static CLDRConfig testInfo = CLDRConfig.getInstance();
     static SupplementalDataInfo supplemental = testInfo.getSupplementalDataInfo();
     static final boolean SHOW_FREQ = false;
@@ -42,13 +38,19 @@ public class ScriptPopulation {
     static final Normalizer2 NFC = Normalizer2.getNFCInstance();
     private static final boolean SHOW_DECTILES = false;
 
+    static final EmojiData EMOJI_DATA = EmojiData.forUcd(VersionInfo.getInstance(8));
+    private static final UnicodeSet SINGLETONS_WITHOUT_DEFECTIVES = new UnicodeSet()
+    .addAll(EMOJI_DATA.getSingletonsWithoutDefectives())
+    .removeAll("©®♥™")
+    .freeze();
+
     // define a category to be:
     // explicit script
     // main general category
 
     public static void main(String[] args) {
-        checkCommon();
-        if (true) return;
+//        checkCommon();
+//        if (true) return;
         //    getLanguageInfo();
         //    LanguageTagParser ltp = new LanguageTagParser();
         //    LikelySubtags likely = new LikelySubtags(supplemental);
@@ -57,7 +59,7 @@ public class ScriptPopulation {
         Counter<Integer> scriptCount = new Counter<>();
         Counter2<Pair<Boolean,Integer>> notoScriptFrequency = new Counter2<>();
         Counter<Pair<Boolean,Integer>> notoScriptCount = new Counter<>();
-        Counter2<Integer> rawScriptFrequency = new Counter2<>();
+//        Counter2<Integer> rawScriptFrequency = new Counter2<>();
         Counter<Integer> freq = CharacterFrequency.getCodePointCounter("mul", true);
 
         @SuppressWarnings("unchecked")
@@ -79,7 +81,7 @@ public class ScriptPopulation {
 
         for (int cp = 0; cp <= 0x10FFFF; ++cp){
             long frequency = freq.get(cp);
-            rawScriptFrequency.add(UScript.getScript(cp), (double) frequency);
+            //rawScriptFrequency.add(UScript.getScript(cp), (double) frequency);
 
             // quick approximate normalization
             int i = UCharacter.foldCase(cp,true);
@@ -89,9 +91,9 @@ public class ScriptPopulation {
             }
 
             int scriptNum = Category.getCategory(i);
-            if (scriptNum == Category.Extra.Private.ordinal()) {
-                continue;
-            }
+//            if (scriptNum == Category.Extra.Private.ordinal()) {
+//                continue;
+//            }
             scriptFrequency.add(scriptNum, (double)frequency);
             scriptCount.add(scriptNum, 1);
             categoryToTopItems[scriptNum].add(i, (double)frequency);
@@ -129,7 +131,7 @@ public class ScriptPopulation {
             }
             Double frequ = scriptFrequency.getCount(category);
             System.out.print(++count
-                    + (true ? "\t" + nf.format(Math.log(totalFreq/frequ)) : "")
+                    + (true ? "\t" + nf.format(Math.log10(totalFreq/frequ)) : "")
                     + "\t" + scriptCount.get(category)
                     + "\t" + Category.getName(category)  + "\t" + Category.getUsageName(category));
             int max = 20;
@@ -274,7 +276,7 @@ public class ScriptPopulation {
         //    showScripts(fixedScripts);
     }
 
-    static final Map<String,String> REMAP_SCRIPT = new HashMap<>();
+    private static final Map<String,String> REMAP_SCRIPT = new HashMap<>();
     static {
         REMAP_SCRIPT.put("Hant","Hani");
         REMAP_SCRIPT.put("Hans","Hani");
@@ -284,190 +286,190 @@ public class ScriptPopulation {
     }
 
 
-    private static void checkCommon() {
-        Counter<Integer>[] scriptToOthers = new Counter[UScript.CODE_LIMIT];
-        Counter<Integer> totalScriptFrequency = new Counter<>();
-        Map<Integer,Counter<Integer>> cpToScriptFrequency = new TreeMap<>();
-        for (String lang : CharacterFrequency.getLanguagesWithCounter()) {
-            if (lang.equals("mul")) continue;
-            ULocale max = ULocale.addLikelySubtags(new ULocale(lang));
-            String script = max.getScript();
-            String temp = REMAP_SCRIPT.get(script);
-            if (temp != null) {
-                script = temp;
-            }
-
-            int scriptCode = UScript.getCodeFromName(script);
-            //System.out.println(lang + "\t=>\t" + max + "\t" + scriptCode + "\t" + UScript.getName(scriptCode));
-            if (scriptCode == UScript.KAITHI) continue;
-            Counter<Integer> data = scriptToOthers[scriptCode];
-            if (data == null) {
-                scriptToOthers[scriptCode] = data = new Counter<Integer>();
-            }
-
-            Counter<Integer> freq = CharacterFrequency.getCodePointCounter(lang, true);
-            for (int cp : freq.keySet()) {
-                long value = freq.get(cp);
-                int cpScript = getScript(cp);
-                data.add(cpScript, value);
-
-                // data per language-script
-                totalScriptFrequency.add(scriptCode, value);
-                
-                Extra extra = getGeneralCategory(cp);
-                if (extra != Extra.Punctuation && extra != Extra.Letter && extra != Extra.Mark) continue;
-                if (cpScript == UScript.COMMON || cpScript == UScript.INHERITED) {
-                    Counter<Integer> counter = cpToScriptFrequency.get(cp);
-                    if (counter == null) {
-                        cpToScriptFrequency.put(cp, counter = new Counter<Integer>());
-                    }
-                    counter.add(scriptCode, value);
-                }
-            }
-        }
-        // normalize
-        Map<Integer, Counter2<Integer>> normcpToScriptFrequency = new TreeMap<Integer, Counter2<Integer>>();
-        for (Entry<Integer, Counter<Integer>> entry : cpToScriptFrequency.entrySet()) {
-            Counter<Integer> scriptFrequency = entry.getValue();
-            Counter2<Integer> normscriptFrequency = new Counter2<Integer>();
-            normcpToScriptFrequency.put(entry.getKey(), normscriptFrequency);
-            for (R2<Long, Integer> x : scriptFrequency.getEntrySetSortedByCount(false, null)) {
-                int script = x.get1();
-                double count = x.get0();
-                normscriptFrequency.add(script, count/totalScriptFrequency.get(script));
-            }
-        }
-        if (false) for (Extra extra : Extra.values()) {
-            for (Entry<Integer, Counter<Integer>> entry : cpToScriptFrequency.entrySet()) {
-                int cp = entry.getKey();
-                if (getGeneralCategory(cp) != extra) continue;
-                System.out.print(extra + "\tU+" + Utility.hex(cp) + "\t" + UCharacter.getName(cp));
-                int max = 5;
-                Counter<Integer> scriptFrequency = entry.getValue();
-                double total = scriptFrequency.getTotal();
-                for (R2<Long, Integer> x : scriptFrequency.getEntrySetSortedByCount(false, null)) {
-                    if (--max < 0) break;
-                    int script = x.get1();
-                    long count = x.get0();
-                    double proportion = count/total;
-                    System.out.print("\t" + UScript.getShortName(script) 
-                            + "\t" + proportion);
-                }
-                System.out.println();
-            }
-        }
-        System.out.println("\nNormalized\n");
-        for (Extra extra : Extra.values()) {
-            for (Entry<Integer, Counter2<Integer>> entry : normcpToScriptFrequency.entrySet()) {
-                int cp = entry.getKey();
-                if (getGeneralCategory(cp) != extra) continue;
-                System.out.print(extra + "\tU+" + Utility.hex(cp) + "\t" + UCharacter.getName(cp));
-                int max = 5;
-                Counter2<Integer> scriptFrequency = entry.getValue();
-                double total = scriptFrequency.getTotal().doubleValue();
-                for (Integer script : scriptFrequency.getKeysetSortedByCount(false, null)) {
-                    if (--max < 0) break;
-                    double count = scriptFrequency.getCount(script);
-                    double proportion = count/total;
-                    System.out.print("\t" + UScript.getShortName(script) 
-                            + "\t" + proportion);
-                }
-                System.out.println();
-            }
-        }
-
-
-//        for (int value : remapped.values()) {
-//            System.out.println(UScript.getName(value) + "\t" + remapped.getSet(value).toPattern(false));
+//    private static void checkCommon() {
+//        Counter<Integer>[] scriptToOthers = new Counter[UScript.CODE_LIMIT];
+//        Counter<Integer> totalScriptFrequency = new Counter<>();
+//        Map<Integer,Counter<Integer>> cpToScriptFrequency = new TreeMap<>();
+//        for (String lang : CharacterFrequency.getLanguagesWithCounter()) {
+//            if (lang.equals("mul")) continue;
+//            ULocale max = ULocale.addLikelySubtags(new ULocale(lang));
+//            String script = max.getScript();
+//            String temp = REMAP_SCRIPT.get(script);
+//            if (temp != null) {
+//                script = temp;
+//            }
+//
+//            int scriptCode = UScript.getCodeFromName(script);
+//            //System.out.println(lang + "\t=>\t" + max + "\t" + scriptCode + "\t" + UScript.getName(scriptCode));
+//            if (scriptCode == UScript.KAITHI) continue;
+//            Counter<Integer> data = scriptToOthers[scriptCode];
+//            if (data == null) {
+//                scriptToOthers[scriptCode] = data = new Counter<Integer>();
+//            }
+//
+//            Counter<Integer> freq = CharacterFrequency.getCodePointCounter(lang, true);
+//            for (int cp : freq.keySet()) {
+//                long value = freq.get(cp);
+//                int cpScript = getScript(cp);
+//                data.add(cpScript, value);
+//
+//                // data per language-script
+//                totalScriptFrequency.add(scriptCode, value);
+//                
+//                Extra extra = getGeneralCategory(cp);
+//                if (extra != Extra.Punctuation && extra != Extra.Letter && extra != Extra.Mark) continue;
+//                if (cpScript == UScript.COMMON || cpScript == UScript.INHERITED) {
+//                    Counter<Integer> counter = cpToScriptFrequency.get(cp);
+//                    if (counter == null) {
+//                        cpToScriptFrequency.put(cp, counter = new Counter<Integer>());
+//                    }
+//                    counter.add(scriptCode, value);
+//                }
+//            }
 //        }
-
-        // filter out those below threshold
-        BitSet keep = new BitSet();
-        double threshold = 0.00001;
-        for (int scriptCode = 0 ; scriptCode < scriptToOthers.length; ++scriptCode) {
-            Counter<Integer> data = scriptToOthers[scriptCode];
-            if (data == null) {
-                continue;
-            }
-            double total = data.getTotal();
-            for (int scriptCode2 = 0 ; scriptCode2 < scriptToOthers.length; ++scriptCode2) {
-                if (data.get(scriptCode2)/total > threshold) {
-                    keep.set(scriptCode2);
-                }
-            }
-        }
-
-        System.out.print("\t");
-        for (int scriptCode = 0 ; scriptCode < scriptToOthers.length; ++scriptCode) {
-            if (!keep.get(scriptCode)) continue;
-            System.out.print("\t" + UScript.getShortName(scriptCode));
-        }
-        System.out.println();
-
-        for (int scriptCode = 0 ; scriptCode < scriptToOthers.length; ++scriptCode) {
-            Counter<Integer> data = scriptToOthers[scriptCode];
-            if (data == null) {
-                continue;
-            }
-            double total = data.getTotal();
-            System.out.print(UScript.getShortName(scriptCode) + "\t" + total);
-            for (int scriptCode2 = 0 ; scriptCode2 < scriptToOthers.length; ++scriptCode2) {
-                if (!keep.get(scriptCode2)) continue;
-                System.out.print("\t" + (data.get(scriptCode2)/total));
-            }
-            System.out.println();
-        }
-    }
+//        // normalize
+//        Map<Integer, Counter2<Integer>> normcpToScriptFrequency = new TreeMap<Integer, Counter2<Integer>>();
+//        for (Entry<Integer, Counter<Integer>> entry : cpToScriptFrequency.entrySet()) {
+//            Counter<Integer> scriptFrequency = entry.getValue();
+//            Counter2<Integer> normscriptFrequency = new Counter2<Integer>();
+//            normcpToScriptFrequency.put(entry.getKey(), normscriptFrequency);
+//            for (R2<Long, Integer> x : scriptFrequency.getEntrySetSortedByCount(false, null)) {
+//                int script = x.get1();
+//                double count = x.get0();
+//                normscriptFrequency.add(script, count/totalScriptFrequency.get(script));
+//            }
+//        }
+//        if (false) for (Extra extra : Extra.values()) {
+//            for (Entry<Integer, Counter<Integer>> entry : cpToScriptFrequency.entrySet()) {
+//                int cp = entry.getKey();
+//                if (getGeneralCategory(cp) != extra) continue;
+//                System.out.print(extra + "\tU+" + Utility.hex(cp) + "\t" + UCharacter.getName(cp));
+//                int max = 5;
+//                Counter<Integer> scriptFrequency = entry.getValue();
+//                double total = scriptFrequency.getTotal();
+//                for (R2<Long, Integer> x : scriptFrequency.getEntrySetSortedByCount(false, null)) {
+//                    if (--max < 0) break;
+//                    int script = x.get1();
+//                    long count = x.get0();
+//                    double proportion = count/total;
+//                    System.out.print("\t" + UScript.getShortName(script) 
+//                            + "\t" + proportion);
+//                }
+//                System.out.println();
+//            }
+//        }
+//        System.out.println("\nNormalized\n");
+//        for (Extra extra : Extra.values()) {
+//            for (Entry<Integer, Counter2<Integer>> entry : normcpToScriptFrequency.entrySet()) {
+//                int cp = entry.getKey();
+//                if (getGeneralCategory(cp) != extra) continue;
+//                System.out.print(extra + "\tU+" + Utility.hex(cp) + "\t" + UCharacter.getName(cp));
+//                int max = 5;
+//                Counter2<Integer> scriptFrequency = entry.getValue();
+//                double total = scriptFrequency.getTotal().doubleValue();
+//                for (Integer script : scriptFrequency.getKeysetSortedByCount(false, null)) {
+//                    if (--max < 0) break;
+//                    double count = scriptFrequency.getCount(script);
+//                    double proportion = count/total;
+//                    System.out.print("\t" + UScript.getShortName(script) 
+//                            + "\t" + proportion);
+//                }
+//                System.out.println();
+//            }
+//        }
+//
+//
+////        for (int value : remapped.values()) {
+////            System.out.println(UScript.getName(value) + "\t" + remapped.getSet(value).toPattern(false));
+////        }
+//
+//        // filter out those below threshold
+//        BitSet keep = new BitSet();
+//        double threshold = 0.00001;
+//        for (int scriptCode = 0 ; scriptCode < scriptToOthers.length; ++scriptCode) {
+//            Counter<Integer> data = scriptToOthers[scriptCode];
+//            if (data == null) {
+//                continue;
+//            }
+//            double total = data.getTotal();
+//            for (int scriptCode2 = 0 ; scriptCode2 < scriptToOthers.length; ++scriptCode2) {
+//                if (data.get(scriptCode2)/total > threshold) {
+//                    keep.set(scriptCode2);
+//                }
+//            }
+//        }
+//
+//        System.out.print("\t");
+//        for (int scriptCode = 0 ; scriptCode < scriptToOthers.length; ++scriptCode) {
+//            if (!keep.get(scriptCode)) continue;
+//            System.out.print("\t" + UScript.getShortName(scriptCode));
+//        }
+//        System.out.println();
+//
+//        for (int scriptCode = 0 ; scriptCode < scriptToOthers.length; ++scriptCode) {
+//            Counter<Integer> data = scriptToOthers[scriptCode];
+//            if (data == null) {
+//                continue;
+//            }
+//            double total = data.getTotal();
+//            System.out.print(UScript.getShortName(scriptCode) + "\t" + total);
+//            for (int scriptCode2 = 0 ; scriptCode2 < scriptToOthers.length; ++scriptCode2) {
+//                if (!keep.get(scriptCode2)) continue;
+//                System.out.print("\t" + (data.get(scriptCode2)/total));
+//            }
+//            System.out.println();
+//        }
+//    }
 
 
     // NOT THREADSAFE
-    static IdentifierInfo identifierInfo = new IdentifierInfo();
+//    static IdentifierInfo identifierInfo = new IdentifierInfo();
     static final StringBuilder buffer = new StringBuilder();
     static UnicodeMap<Integer> remapped = new UnicodeMap<>();
 
-    private static int getScript(int cp) {
-        int cpScript = UScript.getScript(cp);
-        if (cpScript == UScript.HIRAGANA) {
-            cpScript = UScript.KATAKANA;
-        }
-        if (cpScript == UScript.COMMON || cpScript == UScript.INHERITED) {
-            Integer cached = remapped.get(cp);
-            if (cached != null) {
-                return cached;
-            }
-
-            buffer.setLength(0);
-            buffer.appendCodePoint(cp);
-            String normalized = nfkc.normalize(buffer);
-            identifierInfo.setIdentifier(normalized);
-            BitSet scripts = identifierInfo.getScripts();
-            scripts.clear(UScript.UNKNOWN); // ignore
-
-            // favor Latin
-            int temp;
-            if (scripts.get(UScript.LATIN)) {
-                temp = UScript.LATIN;
-            } else {
-                temp = scripts.nextSetBit(0);
-                if (temp < 0) {
-                    for (BitSet alternates : identifierInfo.getAlternates()) {
-                        if (scripts.get(UScript.LATIN)) {
-                            temp = UScript.LATIN;
-                            break;
-                        } else {
-                            temp = scripts.nextSetBit(0);
-                            break;
-                        }
-                    }
-                }
-            }
-            if (temp > 0) {
-                cpScript = temp;
-            }
-            remapped.put(cp, cpScript);
-        }
-        return cpScript;
-    }
+//    private static int getScript(int cp) {
+//        int cpScript = UScript.getScript(cp);
+//        if (cpScript == UScript.HIRAGANA) {
+//            cpScript = UScript.KATAKANA;
+//        }
+//        if (cpScript == UScript.COMMON || cpScript == UScript.INHERITED) {
+//            Integer cached = remapped.get(cp);
+//            if (cached != null) {
+//                return cached;
+//            }
+//
+//            buffer.setLength(0);
+//            buffer.appendCodePoint(cp);
+//            String normalized = nfkc.normalize(buffer);
+//            identifierInfo.setIdentifier(normalized);
+//            BitSet scripts = identifierInfo.getScripts();
+//            scripts.clear(UScript.UNKNOWN); // ignore
+//
+//            // favor Latin
+//            int temp;
+//            if (scripts.get(UScript.LATIN)) {
+//                temp = UScript.LATIN;
+//            } else {
+//                temp = scripts.nextSetBit(0);
+//                if (temp < 0) {
+//                    for (BitSet alternates : identifierInfo.getAlternates()) {
+//                        if (scripts.get(UScript.LATIN)) {
+//                            temp = UScript.LATIN;
+//                            break;
+//                        } else {
+//                            temp = scripts.nextSetBit(0);
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//            if (temp > 0) {
+//                cpScript = temp;
+//            }
+//            remapped.put(cp, cpScript);
+//        }
+//        return cpScript;
+//    }
 
     private static void showTop(int max, Counter2<Integer> topItems, Double frequ) {
         Set<Integer> sorted = topItems.getKeysetSortedByCount(false, null);
@@ -583,12 +585,12 @@ public class ScriptPopulation {
 
         static final BitSet temp = new BitSet();
         static final StringBuilder buffer = new StringBuilder();
-
+        
         public static int getCategory(int cp) {
             if (UCharacter.isWhitespace(cp)) {
                 return Extra.Whitespace.ordinal();
             }
-            if (Emoji.EMOJI_SINGLETONS.contains(cp)) {
+            if (SINGLETONS_WITHOUT_DEFECTIVES.contains(cp)) {
                 return Extra.Emoji.ordinal();
             }
             int defaultIgnorable = UCharacter.getIntPropertyValue(cp, UProperty.DEFAULT_IGNORABLE_CODE_POINT);
@@ -746,7 +748,7 @@ public class ScriptPopulation {
     //  }
 
     private static Extra getGeneralCategory(int cp) {
-        if (Emoji.EMOJI_SINGLETONS.contains(cp)) {
+        if (SINGLETONS_WITHOUT_DEFECTIVES.contains(cp)) {
             return Extra.Emoji;
         }
 
