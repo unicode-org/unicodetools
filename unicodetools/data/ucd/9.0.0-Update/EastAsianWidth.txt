@@ -1,5 +1,5 @@
 # EastAsianWidth-9.0.0.txt
-# Date: 2016-02-25, 22:30:00 GMT [KW, LI]
+# Date: 2016-05-27, 17:00:00 GMT [KW, LI]
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -17,22 +17,18 @@
 # Field 1: East_Asian_Width property, consisting of one of the following values:
 #         "A", "F", "H", "N", "Na", "W"
 #  - All code points, assigned or unassigned, that are not listed
-#         explicitly are given the value "N".
-# The unassigned code points that default to "W" include ranges in the
-# following blocks:
-#     CJK Unified Ideographs Extension A:       U+3400..U+4DBF
-#     CJK Unified Ideographs:                   U+4E00..U+9FFF
-#     CJK Compatibility Ideographs:             U+F900..U+FAFF
-#     CJK Unified Ideographs Extension B:      U+20000..U+2A6DF
-#     CJK Unified Ideographs Extension C:      U+2A700..U+2B73F
-#     CJK Unified Ideographs Extension D:      U+2B740..U+2B81F
-#     CJK Unified Ideographs Extension E:      U+2B820..U+2CEAF
-#     CJK Compatibility Ideographs Supplement: U+2F800..U+2FA1F
-#     and any other reserved code points on
-#         Planes 2 and 3:                      U+20000..U+2FFFD
-#                                              U+30000..U+3FFFD
-#  - Character ranges are specified as for other property files in
-#         the Unicode Character Database.
+#      explicitly are given the value "N".
+#  - The unassigned code points in the following blocks default to "W":
+#         CJK Unified Ideographs Extension A: U+3400..U+4DBF
+#         CJK Unified Ideographs:             U+4E00..U+9FFF
+#         CJK Compatibility Ideographs:       U+F900..U+FAFF
+#  - All undesignated code points in Planes 2 and 3, whether inside or
+#      outside of allocated blocks, default to "W":
+#         Plane 2:                            U+20000..U+2FFFD
+#         Plane 3:                            U+30000..U+3FFFD
+#
+# Character ranges are specified as for other property files in the
+# Unicode Character Database.
 #
 # For legacy reasons, there are no spaces before or after the semicolon
 # which separates the two fields. The comments following the number sign
@@ -2059,8 +2055,7 @@ FFFD;A           # So         REPLACEMENT CHARACTER
 11C0A..11C2E;N   # Lo    [37] BHAIKSUKI LETTER E..BHAIKSUKI LETTER HA
 11C2F;N          # Mc         BHAIKSUKI VOWEL SIGN AA
 11C30..11C36;N   # Mn     [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
-11C38..11C3B;N   # Mc     [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
-11C3C..11C3D;N   # Mn     [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
+11C38..11C3D;N   # Mn     [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
 11C3E;N          # Mc         BHAIKSUKI SIGN VISARGA
 11C3F;N          # Mn         BHAIKSUKI SIGN VIRAMA
 11C40;N          # Lo         BHAIKSUKI SIGN AVAGRAHA

@@ -1,5 +1,5 @@
 # SentenceBreakProperty-9.0.0.txt
-# Date: 2016-03-23, 11:24:55 GMT
+# Date: 2016-05-28, 17:52:55 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -477,9 +477,10 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 1E026..1E02A  ; Extend # Mn   [5] COMBINING GLAGOLITIC LETTER YO..COMBINING GLAGOLITIC LETTER FITA
 1E8D0..1E8D6  ; Extend # Mn   [7] MENDE KIKAKUI COMBINING NUMBER TEENS..MENDE KIKAKUI COMBINING NUMBER MILLIONS
 1E944..1E94A  ; Extend # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
+E0020..E007F  ; Extend # Cf  [96] TAG SPACE..CANCEL TAG
 E0100..E01EF  ; Extend # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 2101
+# Total code points: 2197
 
 # ================================================
 
@@ -509,9 +510,8 @@ FFF9..FFFB    ; Format # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANN
 1BCA0..1BCA3  ; Format # Cf   [4] SHORTHAND FORMAT LETTER OVERLAP..SHORTHAND FORMAT UP STEP
 1D173..1D17A  ; Format # Cf   [8] MUSICAL SYMBOL BEGIN BEAM..MUSICAL SYMBOL END PHRASE
 E0001         ; Format # Cf       LANGUAGE TAG
-E0020..E007F  ; Format # Cf  [96] TAG SPACE..CANCEL TAG
 
-# Total code points: 149
+# Total code points: 53
 
 # ================================================
 
@@ -521,10 +521,11 @@ E0020..E007F  ; Format # Cf  [96] TAG SPACE..CANCEL TAG
 00A0          ; Sp # Zs       NO-BREAK SPACE
 1680          ; Sp # Zs       OGHAM SPACE MARK
 2000..200A    ; Sp # Zs  [11] EN QUAD..HAIR SPACE
+202F          ; Sp # Zs       NARROW NO-BREAK SPACE
 205F          ; Sp # Zs       MEDIUM MATHEMATICAL SPACE
 3000          ; Sp # Zs       IDEOGRAPHIC SPACE
 
-# Total code points: 19
+# Total code points: 20
 
 # ================================================
 
