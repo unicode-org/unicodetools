@@ -1,5 +1,5 @@
 # SentenceBreakProperty-9.0.0.txt
-# Date: 2016-05-28, 17:52:55 GMT
+# Date: 2016-06-01, 10:34:38 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -441,8 +441,7 @@ FF9E..FF9F    ; Extend # Lm   [2] HALFWIDTH KATAKANA VOICED SOUND MARK..HALFWIDT
 11727..1172B  ; Extend # Mn   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 11C2F         ; Extend # Mc       BHAIKSUKI VOWEL SIGN AA
 11C30..11C36  ; Extend # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
-11C38..11C3B  ; Extend # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
-11C3C..11C3D  ; Extend # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
+11C38..11C3D  ; Extend # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
 11C3E         ; Extend # Mc       BHAIKSUKI SIGN VISARGA
 11C3F         ; Extend # Mn       BHAIKSUKI SIGN VIRAMA
 11C92..11CA7  ; Extend # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA

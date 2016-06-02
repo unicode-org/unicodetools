@@ -1,5 +1,5 @@
 # DerivedLineBreak-9.0.0.txt
-# Date: 2016-03-02, 18:54:59 GMT
+# Date: 2016-06-01, 10:34:26 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -24,8 +24,8 @@ E000..F8FF    ; XX # Co [6400] <private-use-E000>..<private-use-F8FF>
 F0000..FFFFD  ; XX # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; XX # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
-# The above property value applies to 768568 code points not listed here.
-# Total code points: 906036
+# The above property value applies to 766379 code points not listed here.
+# Total code points: 903847
 
 # ================================================
 
@@ -1554,15 +1554,29 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 18800..18AF2  ; ID # Lo [755] TANGUT COMPONENT-001..TANGUT COMPONENT-755
 1B000..1B001  ; ID # Lo   [2] KATAKANA LETTER ARCHAIC E..HIRAGANA LETTER ARCHAIC YE
 1F000..1F02B  ; ID # So  [44] MAHJONG TILE EAST WIND..MAHJONG TILE BACK
+1F02C..1F02F  ; ID # Cn   [4] <reserved-1F02C>..<reserved-1F02F>
 1F030..1F093  ; ID # So [100] DOMINO TILE HORIZONTAL BACK..DOMINO TILE VERTICAL-06-06
+1F094..1F09F  ; ID # Cn  [12] <reserved-1F094>..<reserved-1F09F>
 1F0A0..1F0AE  ; ID # So  [15] PLAYING CARD BACK..PLAYING CARD KING OF SPADES
+1F0AF..1F0B0  ; ID # Cn   [2] <reserved-1F0AF>..<reserved-1F0B0>
 1F0B1..1F0BF  ; ID # So  [15] PLAYING CARD ACE OF HEARTS..PLAYING CARD RED JOKER
+1F0C0         ; ID # Cn       <reserved-1F0C0>
 1F0C1..1F0CF  ; ID # So  [15] PLAYING CARD ACE OF DIAMONDS..PLAYING CARD BLACK JOKER
+1F0D0         ; ID # Cn       <reserved-1F0D0>
 1F0D1..1F0F5  ; ID # So  [37] PLAYING CARD ACE OF CLUBS..PLAYING CARD TRUMP-21
+1F0F6..1F0FF  ; ID # Cn  [10] <reserved-1F0F6>..<reserved-1F0FF>
+1F10D..1F10F  ; ID # Cn   [3] <reserved-1F10D>..<reserved-1F10F>
+1F12F         ; ID # Cn       <reserved-1F12F>
+1F16C..1F16F  ; ID # Cn   [4] <reserved-1F16C>..<reserved-1F16F>
+1F1AD..1F1E5  ; ID # Cn  [57] <reserved-1F1AD>..<reserved-1F1E5>
 1F200..1F202  ; ID # So   [3] SQUARE HIRAGANA HOKA..SQUARED KATAKANA SA
+1F203..1F20F  ; ID # Cn  [13] <reserved-1F203>..<reserved-1F20F>
 1F210..1F23B  ; ID # So  [44] SQUARED CJK UNIFIED IDEOGRAPH-624B..SQUARED CJK UNIFIED IDEOGRAPH-914D
+1F23C..1F23F  ; ID # Cn   [4] <reserved-1F23C>..<reserved-1F23F>
 1F240..1F248  ; ID # So   [9] TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-672C..TORTOISE SHELL BRACKETED CJK UNIFIED IDEOGRAPH-6557
+1F249..1F24F  ; ID # Cn   [7] <reserved-1F249>..<reserved-1F24F>
 1F250..1F251  ; ID # So   [2] CIRCLED IDEOGRAPH ADVANTAGE..CIRCLED IDEOGRAPH ACCEPT
+1F252..1F2FF  ; ID # Cn [174] <reserved-1F252>..<reserved-1F2FF>
 1F300..1F384  ; ID # So [133] CYCLONE..CHRISTMAS TREE
 1F386..1F39B  ; ID # So  [22] FIREWORKS..CONTROL KNOBS
 1F39E..1F3B4  ; ID # So  [23] FILM FRAMES..FLOWER PLAYING CARDS
@@ -1599,16 +1613,34 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 1F6A4..1F6B3  ; ID # So  [16] SPEEDBOAT..NO BICYCLES
 1F6B7..1F6BF  ; ID # So   [9] NO PEDESTRIANS..SHOWER
 1F6C1..1F6D2  ; ID # So  [18] BATHTUB..SHOPPING TROLLEY
+1F6D3..1F6DF  ; ID # Cn  [13] <reserved-1F6D3>..<reserved-1F6DF>
 1F6E0..1F6EC  ; ID # So  [13] HAMMER AND WRENCH..AIRPLANE ARRIVING
+1F6ED..1F6EF  ; ID # Cn   [3] <reserved-1F6ED>..<reserved-1F6EF>
 1F6F0..1F6F6  ; ID # So   [7] SATELLITE..CANOE
+1F6F7..1F6FF  ; ID # Cn   [9] <reserved-1F6F7>..<reserved-1F6FF>
+1F774..1F77F  ; ID # Cn  [12] <reserved-1F774>..<reserved-1F77F>
+1F7D5..1F7FF  ; ID # Cn  [43] <reserved-1F7D5>..<reserved-1F7FF>
+1F80C..1F80F  ; ID # Cn   [4] <reserved-1F80C>..<reserved-1F80F>
+1F848..1F84F  ; ID # Cn   [8] <reserved-1F848>..<reserved-1F84F>
+1F85A..1F85F  ; ID # Cn   [6] <reserved-1F85A>..<reserved-1F85F>
+1F888..1F88F  ; ID # Cn   [8] <reserved-1F888>..<reserved-1F88F>
+1F8AE..1F90F  ; ID # Cn  [98] <reserved-1F8AE>..<reserved-1F90F>
 1F910..1F917  ; ID # So   [8] ZIPPER-MOUTH FACE..HUGGING FACE
+1F91F         ; ID # Cn       <reserved-1F91F>
 1F920..1F925  ; ID # So   [6] FACE WITH COWBOY HAT..LYING FACE
 1F927         ; ID # So       SNEEZING FACE
-1F93A         ; ID # So       FENCER
+1F928..1F92F  ; ID # Cn   [8] <reserved-1F928>..<reserved-1F92F>
+1F931..1F932  ; ID # Cn   [2] <reserved-1F931>..<reserved-1F932>
+1F93A..1F93B  ; ID # So   [2] FENCER..MODERN PENTATHLON
+1F93F         ; ID # Cn       <reserved-1F93F>
 1F940..1F94B  ; ID # So  [12] WILTED FLOWER..MARTIAL ARTS UNIFORM
+1F94C..1F94F  ; ID # Cn   [4] <reserved-1F94C>..<reserved-1F94F>
 1F950..1F95E  ; ID # So  [15] CROISSANT..PANCAKES
+1F95F..1F97F  ; ID # Cn  [33] <reserved-1F95F>..<reserved-1F97F>
 1F980..1F991  ; ID # So  [18] CRAB..SQUID
+1F992..1F9BF  ; ID # Cn  [46] <reserved-1F992>..<reserved-1F9BF>
 1F9C0         ; ID # So       CHEESE WEDGE
+1F9C1..1FFFD  ; ID # Cn [1597] <reserved-1F9C1>..<reserved-1FFFD>
 20000..2A6D6  ; ID # Lo [42711] CJK UNIFIED IDEOGRAPH-20000..CJK UNIFIED IDEOGRAPH-2A6D6
 2A6D7..2A6FF  ; ID # Cn  [41] <reserved-2A6D7>..<reserved-2A6FF>
 2A700..2B734  ; ID # Lo [4149] CJK UNIFIED IDEOGRAPH-2A700..CJK UNIFIED IDEOGRAPH-2B734
@@ -1621,7 +1653,7 @@ FFE4          ; ID # So       FULLWIDTH BROKEN BAR
 2FA1E..2FFFD  ; ID # Cn [1504] <reserved-2FA1E>..<reserved-2FFFD>
 30000..3FFFD  ; ID # Cn [65534] <reserved-30000>..<reserved-3FFFD>
 
-# Total code points: 169943
+# Total code points: 172133
 
 # ================================================
 
@@ -2005,8 +2037,7 @@ FFF9..FFFB    ; CM # Cf   [3] INTERLINEAR ANNOTATION ANCHOR..INTERLINEAR ANNOTAT
 116B7         ; CM # Mn       TAKRI SIGN NUKTA
 11C2F         ; CM # Mc       BHAIKSUKI VOWEL SIGN AA
 11C30..11C36  ; CM # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
-11C38..11C3B  ; CM # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
-11C3C..11C3D  ; CM # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
+11C38..11C3D  ; CM # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
 11C3E         ; CM # Mc       BHAIKSUKI SIGN VISARGA
 11C3F         ; CM # Mn       BHAIKSUKI SIGN VIRAMA
 11C92..11CA7  ; CM # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
@@ -3455,9 +3486,9 @@ FF70          ; CJ # Lm       HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
 1F926         ; EB # So       FACE PALM
 1F930         ; EB # So       PREGNANT WOMAN
 1F933..1F939  ; EB # So   [7] SELFIE..JUGGLING
-1F93B..1F93E  ; EB # So   [4] MODERN PENTATHLON..HANDBALL
+1F93C..1F93E  ; EB # So   [3] WRESTLERS..HANDBALL
 
-# Total code points: 84
+# Total code points: 83
 
 # ================================================
 

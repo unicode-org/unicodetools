@@ -1,5 +1,5 @@
 # Scripts-9.0.0.txt
-# Date: 2016-03-02, 18:55:13 GMT
+# Date: 2016-06-01, 10:34:37 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -2573,8 +2573,7 @@ ABF0..ABF9    ; Meetei_Mayek # Nd  [10] MEETEI MAYEK DIGIT ZERO..MEETEI MAYEK DI
 11C0A..11C2E  ; Bhaiksuki # Lo  [37] BHAIKSUKI LETTER E..BHAIKSUKI LETTER HA
 11C2F         ; Bhaiksuki # Mc       BHAIKSUKI VOWEL SIGN AA
 11C30..11C36  ; Bhaiksuki # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
-11C38..11C3B  ; Bhaiksuki # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
-11C3C..11C3D  ; Bhaiksuki # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
+11C38..11C3D  ; Bhaiksuki # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
 11C3E         ; Bhaiksuki # Mc       BHAIKSUKI SIGN VISARGA
 11C3F         ; Bhaiksuki # Mn       BHAIKSUKI SIGN VIRAMA
 11C40         ; Bhaiksuki # Lo       BHAIKSUKI SIGN AVAGRAHA

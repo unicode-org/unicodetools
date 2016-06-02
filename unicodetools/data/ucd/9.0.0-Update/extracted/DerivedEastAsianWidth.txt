@@ -1,5 +1,5 @@
 # DerivedEastAsianWidth-9.0.0.txt
-# Date: 2016-03-02, 18:54:58 GMT
+# Date: 2016-06-01, 10:34:25 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -1559,8 +1559,7 @@ FFFC          ; N # So       OBJECT REPLACEMENT CHARACTER
 11C0A..11C2E  ; N # Lo  [37] BHAIKSUKI LETTER E..BHAIKSUKI LETTER HA
 11C2F         ; N # Mc       BHAIKSUKI VOWEL SIGN AA
 11C30..11C36  ; N # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
-11C38..11C3B  ; N # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
-11C3C..11C3D  ; N # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
+11C38..11C3D  ; N # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
 11C3E         ; N # Mc       BHAIKSUKI SIGN VISARGA
 11C3F         ; N # Mn       BHAIKSUKI SIGN VIRAMA
 11C40         ; N # Lo       BHAIKSUKI SIGN AVAGRAHA
