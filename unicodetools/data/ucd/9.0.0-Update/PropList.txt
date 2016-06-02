@@ -1,5 +1,5 @@
 # PropList-9.0.0.txt
-# Date: 2016-05-28, 17:52:45 GMT
+# Date: 2016-06-01, 10:34:30 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -728,8 +728,7 @@ FB1E          ; Other_Alphabetic # Mn       HEBREW POINT JUDEO-SPANISH VARIKA
 11727..1172A  ; Other_Alphabetic # Mn   [4] AHOM VOWEL SIGN AW..AHOM VOWEL SIGN AM
 11C2F         ; Other_Alphabetic # Mc       BHAIKSUKI VOWEL SIGN AA
 11C30..11C36  ; Other_Alphabetic # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
-11C38..11C3B  ; Other_Alphabetic # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
-11C3C..11C3D  ; Other_Alphabetic # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
+11C38..11C3D  ; Other_Alphabetic # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
 11C3E         ; Other_Alphabetic # Mc       BHAIKSUKI SIGN VISARGA
 11C92..11CA7  ; Other_Alphabetic # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
 11CA9         ; Other_Alphabetic # Mc       MARCHEN SUBJOINED LETTER YA

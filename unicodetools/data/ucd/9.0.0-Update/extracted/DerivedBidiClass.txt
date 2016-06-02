@@ -1,5 +1,5 @@
 # DerivedBidiClass-9.0.0.txt
-# Date: 2016-03-02, 18:54:55 GMT
+# Date: 2016-06-01, 10:34:22 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -866,7 +866,6 @@ FFDA..FFDC    ; L # Lo   [3] HALFWIDTH HANGUL LETTER EU..HALFWIDTH HANGUL LETTER
 11C00..11C08  ; L # Lo   [9] BHAIKSUKI LETTER A..BHAIKSUKI LETTER VOCALIC L
 11C0A..11C2E  ; L # Lo  [37] BHAIKSUKI LETTER E..BHAIKSUKI LETTER HA
 11C2F         ; L # Mc       BHAIKSUKI VOWEL SIGN AA
-11C38..11C3B  ; L # Mc   [4] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI VOWEL SIGN AU
 11C3E         ; L # Mc       BHAIKSUKI SIGN VISARGA
 11C3F         ; L # Mn       BHAIKSUKI SIGN VIRAMA
 11C40         ; L # Lo       BHAIKSUKI SIGN AVAGRAHA
@@ -981,7 +980,7 @@ F0000..FFFFD  ; L # Co [65534] <private-use-F0000>..<private-use-FFFFD>
 100000..10FFFD; L # Co [65534] <private-use-100000>..<private-use-10FFFD>
 
 # The above property value applies to 841609 code points not listed here.
-# Total code points: 1097284
+# Total code points: 1097280
 
 # ================================================
 
@@ -2068,7 +2067,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 11722..11725  ; NSM # Mn   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
 11727..1172B  ; NSM # Mn   [5] AHOM VOWEL SIGN AW..AHOM SIGN KILLER
 11C30..11C36  ; NSM # Mn   [7] BHAIKSUKI VOWEL SIGN I..BHAIKSUKI VOWEL SIGN VOCALIC L
-11C3C..11C3D  ; NSM # Mn   [2] BHAIKSUKI SIGN CANDRABINDU..BHAIKSUKI SIGN ANUSVARA
+11C38..11C3D  ; NSM # Mn   [6] BHAIKSUKI VOWEL SIGN E..BHAIKSUKI SIGN ANUSVARA
 11C92..11CA7  ; NSM # Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
 11CAA..11CB0  ; NSM # Mn   [7] MARCHEN SUBJOINED LETTER RA..MARCHEN VOWEL SIGN AA
 11CB2..11CB3  ; NSM # Mn   [2] MARCHEN VOWEL SIGN U..MARCHEN VOWEL SIGN E
@@ -2097,7 +2096,7 @@ FE20..FE2F    ; NSM # Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC 
 1E944..1E94A  ; NSM # Mn   [7] ADLAM ALIF LENGTHENER..ADLAM NUKTA
 E0100..E01EF  ; NSM # Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
 
-# Total code points: 1696
+# Total code points: 1700
 
 # ================================================
 
