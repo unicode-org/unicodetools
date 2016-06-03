@@ -102,10 +102,10 @@ public class EmojiData {
     private final UnicodeSet keycapSequenceExtras = new UnicodeSet();
     private final UnicodeSet keycapBases = new UnicodeSet();
 
-    static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
-    static final Splitter semiOnly = Splitter.onPattern(";").trimResults();
-    static final Splitter hashOnly = Splitter.onPattern("#").trimResults();
-    static final Splitter comma = Splitter.on(",").trimResults();
+    public static final Splitter semi = Splitter.onPattern("[;#]").trimResults();
+    public static final Splitter semiOnly = Splitter.onPattern(";").trimResults();
+    public static final Splitter hashOnly = Splitter.onPattern("#").trimResults();
+    public static final Splitter comma = Splitter.on(",").trimResults();
 
     static final ConcurrentHashMap<VersionInfo, EmojiData> cache = new ConcurrentHashMap<>();
 

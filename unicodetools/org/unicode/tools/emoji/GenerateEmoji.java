@@ -1290,17 +1290,19 @@ public class GenerateEmoji {
         }
 
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-zwj-sequences.html")) {
-            writeHeader(out, "Emoji ZWJ Sequences Catalog", null, "<p>For interoperability, this page catalogs emoji zwj sequences that are supported on at least one commonly available platform, "
-                    + "so that other vendors can choose whether or not to support them as well. "
-                    + "</p><p>The U+200D ZERO WIDTH JOINER (ZWJ) can be used between the elements of a sequence of characters to indicate that a single glyph should be presented if available. "
-                    + "An implementation may use this mechanism to handle such an emoji zwj sequence as a single glyph, "
-                    + "with a palette or keyboard that generates the appropriate sequences for the glyphs shown. "
-                    + "So to the user, these would behave like single emoji characters, even though internally they are sequences. "
-                    + "</p><p>When an emoji zwj sequence is sent to a system that does not have a corresponding single glyph, "
-                    + "the ZWJ characters would be ignored and a fallback sequence of separate emoji would be displayed. "
-                    + "Thus an emoji zwj sequence should only be supported where the fallback sequence would also make sense to a recipient. "
-                    + "Note that the emoji variation selector (U+FE0F) is not required in the sequence, per UTR #51, Unicode Emoji, "
-                    + "when there is at least one character in the sequence with a default emoji presentation. </p>\n", "border='1'", true);
+            writeHeader(out, "Emoji ZWJ Sequences Catalog", null, 
+                    "<p>For interoperability, this page catalogs emoji zwj sequences that are supported on at least one commonly available platform, "
+                            + "so that other vendors can choose whether or not to support them as well. "
+                            + "</p><p>The U+200D ZERO WIDTH JOINER (ZWJ) can be used between the elements of a sequence of characters to indicate that a single glyph should be presented if available. "
+                            + "An implementation may use this mechanism to handle such an emoji zwj sequence as a single glyph, "
+                            + "with a palette or keyboard that generates the appropriate sequences for the glyphs shown. "
+                            + "So to the user, these would behave like single emoji characters, even though internally they are sequences. "
+                            + "</p><p>When an emoji zwj sequence is sent to a system that does not have a corresponding single glyph, "
+                            + "the ZWJ characters would be ignored and a fallback sequence of separate emoji would be displayed. "
+                            + "Thus an emoji zwj sequence should only be supported where the fallback sequence would also make sense to a recipient. "
+                            + "Note that the emoji variation selector (U+FE0F) should be used after any emoji character for which Emoji_Presentation=No "
+                            + "(in current practice there is one exception to this, the ZWJ sequence for EYE + LEFT SPEECH BUBBLE)."
+                            + "</p>\n", "border='1'", true);
             displayZwjTD(out, "ZWJ sequences", new UnicodeSet("[💏💑👪]").addAll(EmojiData.EMOJI_DATA.getZwjSequencesNormal()));
             //displayZwjTD(out, "ZWJ sequences: No VS", Emoji.APPLE_COMBOS_WITHOUT_VS);
 
@@ -1852,8 +1854,7 @@ public class GenerateEmoji {
         shortForm("short", " short form"),
         noImages("", " with single image and annotations. (See also the <a target='full' href='full-emoji-list.html'>full list</a>.) "
                 + "The ordering of the emoji and the annotations are based on "
-                + CLDR_DATA_LINK + ". This list does not include the <a target='style' href='emoji-sequences.html#modifier_sequences'>320 modifier sequences</a>,"
-                + " or the <a target='zwj' href='emoji-zwj-sequences.html'>23 ZWJ sequences</a>."),
+                + CLDR_DATA_LINK + ". Emoji sequences have more than one code point in the <b>Code</b> column."),
                 fullForm("full", "with images from different vendors, version and source information, default style, and annotations. "
                         + "The ordering of the emoji and the annotations are based on "
                         + CLDR_DATA_LINK + ". This list does  include the <a target='style' href='emoji-sequences.html#modifier_sequences'>320 modifier sequences</a>,"
@@ -1885,12 +1886,22 @@ public class GenerateEmoji {
         writeHeader(out, form.title, null, "<p>This chart provides a list of the Unicode emoji characters, " + form.description + "</p>\n", "border='1'", false);
         final String htmlHeaderString = GenerateEmoji.toHtmlHeaderString(form, extraPlatforms);
         int item = 0;
+        String lastOrderingGroup = "";
+        int headerGroupCount = 0;
         for (String s : SORTED_ALL_EMOJI_CHARS_SET // form == Form.fullForm ? SORTED_ALL_EMOJI_CHARS_SET : SORTED_EMOJI_CHARS_SET
                 ) {
-            if ((item % 25) == 0) {
+            String orderingGroup = EmojiOrder.STD_ORDER.charactersToOrdering.get(s);
+            if (!orderingGroup.equals(lastOrderingGroup)) {
+                lastOrderingGroup = orderingGroup;
                 out.println(htmlHeaderString);
+                headerGroupCount = 0;
+            } else if (headerGroupCount > 19) {
+                out.println(htmlHeaderString);
+                headerGroupCount = 0;
             }
             out.println(toHtmlString(s, form, ++item, stats, extraPlatforms));
+            ++headerGroupCount;
+
             if (outText != null) {
                 outText.println(toSemiString(s, order++, null));
                 outText2.println(toSemiString(s, order++, level1));
@@ -1939,9 +1950,10 @@ public class GenerateEmoji {
                 //+ "<p><b>" + chartIndex + "</b></p>\n"
                 + firstLine
                 + "<p>For information about the images used in these charts, see <a href='../images.html'>Emoji Images and Rights</a>. "
-                + "For details about the format and fields, see " + chartIndex + " and " + UTR_LINK + ". " 
+                + "For details about the format and fields, see " + chartIndex + ". "
+                + "Support of emoji is not required for conformance to the Unicode Standard — for more information about emoji, see " + UTR_LINK + ". " 
                 + (showGeneralComments ? HOVER_INSTRUCTIONS : "")
-                + " See also <a target='submitting-emoji' href='../../emoji/selection.html'>Submitting Emoji Character Proposals</a>."
+                + " To propose a new emoji, see <a target='submitting-emoji' href='../../emoji/selection.html'>Submitting Emoji Character Proposals</a>."
                 + "</p>\n"
                 + "<table " + tableAttrs + ">");
     }
@@ -2486,10 +2498,11 @@ public class GenerateEmoji {
                 + "<th width='5em'>Chart Glyph</th>"
                 + "<th>Sample Colored Glyphs</th>"
                 + (future ? "<th>Date</th>"
-                + "<th>EMB</th>" : "")
-                + "<th>Name</th>"
-                + "</tr>" 
-                ;
+                        //+ "<th>EMB</th>" 
+                        : "")
+                        + "<th>Name</th>"
+                        + "</tr>" 
+                        ;
 
         List<String> output = new ArrayList<>();
         int count = 0;
@@ -2535,9 +2548,10 @@ public class GenerateEmoji {
                     + "<td class='andr'>" + blackAndWhite + "</td>"
                     + "<td class='default'>" + color + "</td>"
                     + (future ? "<td class='default'>" + cd.getQuarter(source) + "</td>"
-                    + "<td class='default'>" + (modBase.contains(source) ? "Yes" : "") : "")
-                    + "<td class='name'>" + cd.getName(source)
-                    ;
+                            // + "<td class='default'>" + (modBase.contains(source) ? "Yes" : "") 
+                            : "")
+                            + "<td class='name'>" + cd.getName(source)
+                            ;
             for (String annotation :  cd.getAnnotations(source)) {
                 currentRow += "<br> • " + annotation;
             }
@@ -2552,73 +2566,82 @@ public class GenerateEmoji {
         // now print
         String topHeader = "<p>The Unicode Technical Committee (UTC) has accepted the following "
                 + count
-                + " characters as <i>candidates</i> for emoji.</p>"
-                + "<blockquote style='color:#CC0000'>Candidates are tentative: they may be removed or their code point, glyph, or name changed.\n"
-                + "Do <em>not</em> deploy any of these yet.\n"
-                + "</blockquote>\n";
+                + " characters as <i>candidates</i> for emoji. "
+                + "At the 2016Q4 UTC meeting, a final determination will be made of the emoji characters to be added to Unicode 10.0, "
+                + "for release in June, 2017. "
+                + "See also the <a target='released' href='emoji-released.html'>Emoji Recently Added</a>.</p>"
+                + "<blockquote style='color:#CC0000'>Candidates are tentative: they may be removed or their code point, glyph, or name changed. "
+                + "No code point values for candidates are final, until (and if) the candidates are included as characters in a version of Unicode.\n"
+                + "Do <em>not</em> deploy any of these.\n"
+                + "</blockquote>\n"
+                ;
         String footer = "<p style='top-margin:3em'>These candidates were based on proposals received by the Emoji "
                 + "Subcommittee and Unicode members, and selected on the basis of the "
                 + "Emoji <i>Selection Factors</i> in "
                 + "<a target='_blank' href='../../emoji/selection.html'>Submitting Emoji Character Proposals</a>. "
-                + "Anyone can file a proposal for a new emoji: see the instructions on that page.</p>\n"
-                + "<p>At the 2017Q2 UTC meeting, a final determination will be made for characters to be added to Unicode 10.0, "
-                + "for release in June, 2017. "
+                + "Anyone can file a proposal for a new emoji: see the instructions on that page. </p>\n"
+                + "<p>Candidates have placeholder code points (like X00000) until the UTC meeting in Q4 of each year. "
+                + "After prioritization at that Q4 UTC meeting, some candidates will then be given final code points (like U+1F939), "
+                + "and appear in the Unicode Standard in Q2 of the next year. "
+                + "The process was different before 2016Q2, so candidates from 2016Q1 had already been given provisional code points. "
+                + "This does not necessarily mean that they will be in the 2017 version of Unicode. "
                 + "For more information on the timeline, see "
                 + "<a href='http://unicode.org/emoji/selection.html#timeline'>Process and Timeline</a>.</p>\n";
-
-//        "<h2><a href='#notes' name='notes'>Notes</a></h2>"
-//                + "<ul>"
-//                + "<li>The Code Points are provisional until released. Values of the form X000xx are where not even provisional code points "
-//                + "have yet been assigned.</li>\n"
-//                + "<li>The cell-divisions (like <a href='#face-happy'>face-happy</a>) are as "
-//                + "in <a href='emoji-ordering.html' target='order'>Emoji Ordering</a>.</li>\n"
-//                + "<li>All of the images are <em>only</em> for illustration.</li>\n"
-//                + "<li>The draft black and white <strong>Chart Glyphs</strong> are drafts for the Unicode charts. "
-//                + "They may change. "
-//                + "These drafts are courtesy of Adobe, Microsoft, Apple, and proposers "
-//                + "(2016Q1 images from Yiying Lu and Maximilian Merz).</li>\n"
-//                + "<li>The <strong>Sample Colored Glyphs</strong> column use a "
-//                + "variety of different styles to illustrate some possible "
-//                + "presentations. However, the actual presentations on phones and "
-//                + "other devices are up to vendors, subject to the considerations in " + UTR_LINK + ". "
-//                + "These samples are courtesy of EmojiXpress, Emojipedia.org, and proposers "
-//                + "(2016Q1 images from Yiying Lu and Maximilian Merz).</li>\n"
-//                + "<li>The <b>Date</b> column indicates the UTC meeting where each was accepted as a candidate.</li>\n"
-//                + "<li>The <b>EMP</b> column has P when the draft Emoji_Presentation property specifies "
-//                + "that the presentation should be colorful by default.</li>\n"
-//                + "<li>The <b>EMB</b> column has B when the draft Emoji_Modifier_Base property specifies "
-//                + "that the emoji can be used with a skin-tone modifier.</li>\n"
-//                + "<li>The <b>Name</b> column has the draft Unicode name. "
-//                + "The bulleted items below the name are clarifications or comments. "
-//                + "Some of these may end "
-//                + "up being reflected in Unicode chart annotations.</li>\n"
-//                + "<li>The <b>Category</b>, such as "
-//                + "<b><a href='http://www.unicode.org/emoji/charts/emoji-candidates.html#faces'>Faces</a></b>, "
-//                + "is used as a basic grouping for later generation of the emoji sort order in "
-//                + "<a href='http://cldr.unicode.org/'>CLDR</a>. "
-//                + "There is a superscript ¹ on the characters that are not candidates for the upcoming release.</li>\n"
-//                + "</ul>\n"
-//                + "<p>For more information, see <a target='_blank' href='index.html'>Unicode Emoji</a> "
-//                + "and the <a target='_blank' href='http://www.unicode.org/faq/emoji_dingbats.html'>Emoji FAQ</a>.</p>\n";
         String title = "Emoji Candidates";
         if (!future) {
-            topHeader = "The charts on this page show the emoji that have been added to the most recent version of the Unicode Standard.";
+            topHeader = "<p>The charts on this page show the emoji that have been added to the most recent version of the Unicode Standard. "
+                    + "See also the <a target='candidates' href='emoji-candidates.html'>Emoji Candidates</a>.</p>";
             footer = "";
             title = "Emoji Recently Added";
         }
+
+        //        "<h2><a href='#notes' name='notes'>Notes</a></h2>"
+        //                + "<ul>"
+        //                + "<li>The Code Points are provisional until released. Values of the form X000xx are where not even provisional code points "
+        //                + "have yet been assigned.</li>\n"
+        //                + "<li>The cell-divisions (like <a href='#face-happy'>face-happy</a>) are as "
+        //                + "in <a href='emoji-ordering.html' target='order'>Emoji Ordering</a>.</li>\n"
+        //                + "<li>All of the images are <em>only</em> for illustration.</li>\n"
+        //                + "<li>The draft black and white <strong>Chart Glyphs</strong> are drafts for the Unicode charts. "
+        //                + "They may change. "
+        //                + "These drafts are courtesy of Adobe, Microsoft, Apple, and proposers "
+        //                + "(2016Q1 images from Yiying Lu and Maximilian Merz).</li>\n"
+        //                + "<li>The <strong>Sample Colored Glyphs</strong> column use a "
+        //                + "variety of different styles to illustrate some possible "
+        //                + "presentations. However, the actual presentations on phones and "
+        //                + "other devices are up to vendors, subject to the considerations in " + UTR_LINK + ". "
+        //                + "These samples are courtesy of EmojiXpress, Emojipedia.org, and proposers "
+        //                + "(2016Q1 images from Yiying Lu and Maximilian Merz).</li>\n"
+        //                + "<li>The <b>Date</b> column indicates the UTC meeting where each was accepted as a candidate.</li>\n"
+        //                + "<li>The <b>EMP</b> column has P when the draft Emoji_Presentation property specifies "
+        //                + "that the presentation should be colorful by default.</li>\n"
+        //                + "<li>The <b>EMB</b> column has B when the draft Emoji_Modifier_Base property specifies "
+        //                + "that the emoji can be used with a skin-tone modifier.</li>\n"
+        //                + "<li>The <b>Name</b> column has the draft Unicode name. "
+        //                + "The bulleted items below the name are clarifications or comments. "
+        //                + "Some of these may end "
+        //                + "up being reflected in Unicode chart annotations.</li>\n"
+        //                + "<li>The <b>Category</b>, such as "
+        //                + "<b><a href='http://www.unicode.org/emoji/charts/emoji-candidates.html#faces'>Faces</a></b>, "
+        //                + "is used as a basic grouping for later generation of the emoji sort order in "
+        //                + "<a href='http://cldr.unicode.org/'>CLDR</a>. "
+        //                + "There is a superscript ¹ on the characters that are not candidates for the upcoming release.</li>\n"
+        //                + "</ul>\n"
+        //                + "<p>For more information, see <a target='_blank' href='index.html'>Unicode Emoji</a> "
+        //                + "and the <a target='_blank' href='http://www.unicode.org/faq/emoji_dingbats.html'>Emoji FAQ</a>.</p>\n";
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, filename);) {
             writeHeader(out, title, null, topHeader, "border='1'", false);
             //out.println("<h2>" + getDoubleLink("U9.0 Candidates") + "</h2>");
             for (String outputLine : output) {
                 out.println(outputLine);
-//                if (outputLine.equals("POST")) {
-//                    out.println("</table>");
-//                    out.println("<h2>" + getDoubleLink("U10.0 Candidates*") + "</h2>");
-//                    out.println("<table border='1'>");
-//                    out.println(header);
-//                } else {
-//                    out.println(outputLine);
-//                }
+                //                if (outputLine.equals("POST")) {
+                //                    out.println("</table>");
+                //                    out.println("<h2>" + getDoubleLink("U10.0 Candidates*") + "</h2>");
+                //                    out.println("<table border='1'>");
+                //                    out.println(header);
+                //                } else {
+                //                    out.println(outputLine);
+                //                }
             }
             writeFooter(out, footer);
         }
