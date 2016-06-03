@@ -7,13 +7,11 @@ import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
 import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
-import org.unicode.props.UcdPropertyValues.Line_Break_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.dev.util.UnicodeMap.EntryRange;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.VersionInfo;
 
@@ -25,6 +23,7 @@ public class Quick {
     static final EmojiData emojiData = EmojiData.forUcd(VersionInfo.getInstance(9));
     static final UnicodeMap<General_Category_Values> gencat = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
     static final UnicodeSet Cn = gencat.getSet(General_Category_Values.Unassigned);
+    
     public static void main(String[] args) {
         Set<Block_Values> emojiBlocks = EnumSet.noneOf(Block_Values.class);
         UnicodeSet emoji = emojiData.getSingletonsWithoutDefectives();
@@ -33,9 +32,9 @@ public class Quick {
             emojiBlocks.add(block);
         }
 
-        System.out.println();
+        System.out.println(GlueAfterZwj.HEADER);
         for (Block_Values block : emojiBlocks) {
-            System.out.println("\n# " + block);
+            System.out.println("# " + block);
             
             UnicodeSet blockSet = blocks.getSet(block);
             UnicodeSet emojiInBlock = new UnicodeSet(blockSet).retainAll(emoji);
@@ -46,15 +45,22 @@ public class Quick {
             UnicodeSet otherInBlock = new UnicodeSet(blockSet).removeAll(emojiInBlock).removeAll(cnInBlock).removeAll(gazInBlock);
 
             showNonEmpty("emoji", emojiInBlock, true);
-            showRanges(gazInBlockNoCn, true);
-            showRanges(gazInBlockCn, false);
+            showNonEmpty("gaz", gazInBlock, true);
+            showNonEmpty("other", otherInBlock, true);
+            if (!gazInBlock.isEmpty()) {
+                if (block != Block_Values.No_Block) {
+                    showNonEmpty("otherCn", cnInBlock, false);
+                }
+                System.out.println();
+                showRanges(gazInBlockNoCn, true);
+                showRanges(gazInBlockCn, false);
+            }
 
             showNonEmpty("count", gazInBlock, false);
-            showNonEmpty("other", otherInBlock, true);
-            if (block != Block_Values.No_Block) {
-                showNonEmpty("otherCn", cnInBlock, false);
-            }
+            System.out.println();
         }
+        showNonEmpty("total_count", GlueAfterZwj.GLUE_AFTER_ZWJ, false);
+        System.out.println("# EOF");
     }
 
     private static void showRanges(UnicodeSet gazInBlock, boolean includeSetName) {
