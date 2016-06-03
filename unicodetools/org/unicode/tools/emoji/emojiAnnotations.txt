@@ -1103,7 +1103,78 @@ rock-on	🤘
 turkey	🦃
 unicorn	🦄
 cheese	🧀🍕
-
+floor, laugh, rolling, face, ROFL, LOL	🤣
+cowboy, face, hat, cowgirl	🤠
+clown, face	🤡
+face, lie, pinocchio	🤥
+drooling, face	🤤
+face, nauseated, vomit	🤢
+face, gesundheit, sneeze	🤧
+prince	🤴
+Mrs. Claus, christmas, mother	🤶
+groom, man, tuxedo	🤵
+shrug, doubt, ignorance, indifference	🤷
+face, palm, disbelief, exasperation	🤦
+pregnant, woman	🤰
+dance, man	🕺
+selfie, camera, phone	🤳
+cross, finger, hand, luck	🤞
+call, hand	🤙
+fist, leftwards	🤛
+fist, rightwards	🤜
+backhand, raised	🤚
+handshake, agreement, meeting, shake, hand	🤝
+black, heart, evil, wicked	🖤
+gorilla, animal	🦍
+face, fox, animal	🦊
+deer, animal	🦌
+rhinoceros, animal	🦏
+bat, vampire, animal	🦇
+eagle, bird	🦅
+duck, bird	🦆
+owl, wise, bird	🦉
+lizard, reptile	🦎
+shark, fish	🦈
+shrimp, small, shellfish, food	🦐
+squid, molusc, food	🦑
+butterfly, insect, pretty	🦋
+flower, wilted	🥀
+kiwi, fruit, food	🥝
+avocado, fruit, food	🥑
+potato, vegetable, food	🥔
+carrot, vegetable, food	🥕
+cucumber, pickle, vegetable, food	🥒
+peanut, nut, food, vegetable	🥜
+croissant, crescent roll, french, food, bread	🥐
+baguette, bread, french, food	🥖
+hotcake, crêpe, pancake, food	🥞
+bacon, meat, food	🥓
+kebab, falafel, gyro, flatbread, stuffed, food	🥙
+egg, food	🥚
+paella, casserole, pan, shallow, food	🥘
+green, salad, food	🥗
+glass, milk, drink	🥛
+clink, glass, drink, celebrate	🥂
+glass, tumbler, whisky, liquor, shot	🥃
+spoon, tableware	🥄
+octagonal, sign, stop	🛑
+scooter, kick	🛴
+motor, scooter	🛵
+canoe, boat	🛶
+first, gold, medal	🥇
+medal, second, silver	🥈
+bronze, medal, third	🥉
+boxing, glove, sport	🥊
+judo, karate, taekwondo, martial arts, uniform, sport	🥋
+cartwheel, gymnastics, person, sport	🤸
+wrestler, wrestle, sport, person	🤼
+polo, water, person, sport	🤽
+handball, ball, sport, person	🤾
+fencer, fencing, sword, sport, person	🤺
+goal, net, sport	🥅
+juggle, multitask, balance, skill	🤹
+drum, drumsticks, music	🥁
+shopping, cart, trolley, shopping	🛒
 
 
 

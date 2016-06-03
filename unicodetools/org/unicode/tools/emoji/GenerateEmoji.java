@@ -225,12 +225,12 @@ public class GenerateEmoji {
         }
     }
 
-    static final EmojiAnnotations          ANNOTATIONS_TO_CHARS_GROUPS = new EmojiAnnotations(EMOJI_COMPARATOR,
-            "emojiAnnotationsGroupsSpecial.txt"
-            );
-    static final UnicodeSet                DEFAULT_TEXT_STYLE          = new UnicodeSet()
-    .addAll(ANNOTATIONS_TO_CHARS_GROUPS.getValues("default-text-style"))
-    .freeze();
+//    private static final EmojiAnnotations          ANNOTATIONS_TO_CHARS_GROUPS = new EmojiAnnotations(EMOJI_COMPARATOR,
+//            "emojiAnnotationsGroupsSpecial.txt"
+//            );
+//    private static final UnicodeSet                DEFAULT_TEXT_STYLE          = new UnicodeSet()
+//    .addAll(ANNOTATIONS_TO_CHARS_GROUPS.getValues("default-text-style"))
+//    .freeze();
 
     // static final EmojiAnnotations ANNOTATIONS_TO_CHARS_NEW = new
     // EmojiAnnotations(CODEPOINT_COMPARE, "emojiAnnotationsNew.txt");
@@ -489,7 +489,7 @@ public class GenerateEmoji {
 
     static final UnicodeSet                 VERSION70                = VERSION.getSet(UcdPropertyValues.Age_Values.V7_0.toString());
 
-    static final Birelation<String, String> OLD_ANNOTATIONS_TO_CHARS = new Birelation(
+    private static final Birelation<String, String> OLD_ANNOTATIONS_TO_CHARS = new Birelation(
             new TreeMap(EMOJI_COMPARATOR),
             new TreeMap(EMOJI_COMPARATOR),
             TreeSet.class,
@@ -500,32 +500,32 @@ public class GenerateEmoji {
         addOldAnnotations();
     }
 
-    private static void compareOtherAnnotations() {
-        for (Entry<String, Set<String>> entry : OLD_ANNOTATIONS_TO_CHARS.valueKeysSet()) {
-            String chars = entry.getKey();
-            Set<String> oldAnnotations = entry.getValue();
-
-            Set<String> newAnnotations = new TreeSet(Utility.ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars), Collections.EMPTY_SET));
-            Set<Label> labels = Utility.ifNull(Label.CHARS_TO_LABELS.getValues(chars), Collections.EMPTY_SET);
-            for (Label label : labels) {
-                newAnnotations.add(label.toString());
-            }
-
-            if (!Objects.equals(newAnnotations, oldAnnotations)) {
-                TreeSet oldNotNew = new TreeSet(oldAnnotations);
-                oldNotNew.removeAll(newAnnotations);
-                TreeSet newNotOld = new TreeSet(newAnnotations);
-                newNotOld.removeAll(oldAnnotations);
-                TreeSet both = new TreeSet(newAnnotations);
-                both.retainAll(oldAnnotations);
-                System.out.println(getCodeCharsAndName(chars, "\t")
-                        + "\t" + CollectionUtilities.join(oldNotNew, ", ")
-                        + "\t" + CollectionUtilities.join(newNotOld, ", ")
-                        + "\t" + CollectionUtilities.join(both, ", ")
-                        );
-            }
-        }
-    }
+//    private static void compareOtherAnnotations() {
+//        for (Entry<String, Set<String>> entry : OLD_ANNOTATIONS_TO_CHARS.valueKeysSet()) {
+//            String chars = entry.getKey();
+//            Set<String> oldAnnotations = entry.getValue();
+//
+//            Set<String> newAnnotations = new TreeSet(Utility.ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars), Collections.EMPTY_SET));
+//            Set<Label> labels = Utility.ifNull(Label.CHARS_TO_LABELS.getValues(chars), Collections.EMPTY_SET);
+//            for (Label label : labels) {
+//                newAnnotations.add(label.toString());
+//            }
+//
+//            if (!Objects.equals(newAnnotations, oldAnnotations)) {
+//                TreeSet oldNotNew = new TreeSet(oldAnnotations);
+//                oldNotNew.removeAll(newAnnotations);
+//                TreeSet newNotOld = new TreeSet(newAnnotations);
+//                newNotOld.removeAll(oldAnnotations);
+//                TreeSet both = new TreeSet(newAnnotations);
+//                both.retainAll(oldAnnotations);
+//                System.out.println(getCodeCharsAndName(chars, "\t")
+//                        + "\t" + CollectionUtilities.join(oldNotNew, ", ")
+//                        + "\t" + CollectionUtilities.join(newNotOld, ", ")
+//                        + "\t" + CollectionUtilities.join(both, ", ")
+//                        );
+//            }
+//        }
+//    }
 
     private static void addOldAnnotations() {
         for (String line : FileUtilities.in(GenerateEmoji.class, "oldEmojiAnnotations.txt")) {
@@ -2474,7 +2474,7 @@ public class GenerateEmoji {
                         + "</tr>";
     }
 
-    private static final Set<String> SUPPRESS_ANNOTATIONS = new HashSet<>(Arrays.asList("default-text-style"));
+    private static final Set<String> SUPPRESS_ANNOTATIONS = new HashSet<>(Arrays.asList("default-text-style", "other"));
 
     static final Splitter TAB = Splitter.on('\t');
     public static final UnicodeMap<String> EXTRA_NAMES = new UnicodeMap<>();
