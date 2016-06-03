@@ -81,455 +81,259 @@
 # =====
 # DATA (generated)
 
-U+2605	; Glue_After_Zwj # 	★	BLACK STAR
-U+2607	; Glue_After_Zwj # 	☇	LIGHTNING
-U+2608	; Glue_After_Zwj # 	☈	THUNDERSTORM
-U+2609	; Glue_After_Zwj # 	☉	SUN
-U+260A	; Glue_After_Zwj # 	☊	ASCENDING NODE
-U+260B	; Glue_After_Zwj # 	☋	DESCENDING NODE
-U+260C	; Glue_After_Zwj # 	☌	CONJUNCTION
-U+260D	; Glue_After_Zwj # 	☍	OPPOSITION
-U+260F	; Glue_After_Zwj # 	☏	WHITE TELEPHONE
-U+2610	; Glue_After_Zwj # 	☐	BALLOT BOX
-U+2612	; Glue_After_Zwj # 	☒	BALLOT BOX WITH X
-U+2616	; Glue_After_Zwj # 	☖	WHITE SHOGI PIECE
-U+2617	; Glue_After_Zwj # 	☗	BLACK SHOGI PIECE
-U+2619	; Glue_After_Zwj # 	☙	REVERSED ROTATED FLORAL HEART BULLET
-U+261A	; Glue_After_Zwj # 	☚	BLACK LEFT POINTING INDEX
-U+261B	; Glue_After_Zwj # 	☛	BLACK RIGHT POINTING INDEX
-U+261C	; Glue_After_Zwj # 	☜	WHITE LEFT POINTING INDEX
-U+261E	; Glue_After_Zwj # 	☞	WHITE RIGHT POINTING INDEX
-U+261F	; Glue_After_Zwj # 	☟	WHITE DOWN POINTING INDEX
-U+2621	; Glue_After_Zwj # 	☡	CAUTION SIGN
-U+2624	; Glue_After_Zwj # 	☤	CADUCEUS
-U+2625	; Glue_After_Zwj # 	☥	ANKH
-U+2627	; Glue_After_Zwj # 	☧	CHI RHO
-U+2628	; Glue_After_Zwj # 	☨	CROSS OF LORRAINE
-U+2629	; Glue_After_Zwj # 	☩	CROSS OF JERUSALEM
-U+262B	; Glue_After_Zwj # 	☫	FARSI SYMBOL
-U+262C	; Glue_After_Zwj # 	☬	ADI SHAKTI
-U+262D	; Glue_After_Zwj # 	☭	HAMMER AND SICKLE
-U+263B	; Glue_After_Zwj # 	☻	BLACK SMILING FACE
-U+263C	; Glue_After_Zwj # 	☼	WHITE SUN WITH RAYS
-U+263D	; Glue_After_Zwj # 	☽	FIRST QUARTER MOON
-U+263E	; Glue_After_Zwj # 	☾	LAST QUARTER MOON
-U+263F	; Glue_After_Zwj # 	☿	MERCURY
-U+2640	; Glue_After_Zwj # 	♀	FEMALE SIGN
-U+2641	; Glue_After_Zwj # 	♁	EARTH
-U+2642	; Glue_After_Zwj # 	♂	MALE SIGN
-U+2643	; Glue_After_Zwj # 	♃	JUPITER
-U+2644	; Glue_After_Zwj # 	♄	SATURN
-U+2645	; Glue_After_Zwj # 	♅	URANUS
-U+2646	; Glue_After_Zwj # 	♆	NEPTUNE
-U+2647	; Glue_After_Zwj # 	♇	PLUTO
-U+2654	; Glue_After_Zwj # 	♔	WHITE CHESS KING
-U+2655	; Glue_After_Zwj # 	♕	WHITE CHESS QUEEN
-U+2656	; Glue_After_Zwj # 	♖	WHITE CHESS ROOK
-U+2657	; Glue_After_Zwj # 	♗	WHITE CHESS BISHOP
-U+2658	; Glue_After_Zwj # 	♘	WHITE CHESS KNIGHT
-U+2659	; Glue_After_Zwj # 	♙	WHITE CHESS PAWN
-U+265A	; Glue_After_Zwj # 	♚	BLACK CHESS KING
-U+265B	; Glue_After_Zwj # 	♛	BLACK CHESS QUEEN
-U+265C	; Glue_After_Zwj # 	♜	BLACK CHESS ROOK
-U+265D	; Glue_After_Zwj # 	♝	BLACK CHESS BISHOP
-U+265E	; Glue_After_Zwj # 	♞	BLACK CHESS KNIGHT
-U+265F	; Glue_After_Zwj # 	♟	BLACK CHESS PAWN
-U+2661	; Glue_After_Zwj # 	♡	WHITE HEART SUIT
-U+2662	; Glue_After_Zwj # 	♢	WHITE DIAMOND SUIT
-U+2664	; Glue_After_Zwj # 	♤	WHITE SPADE SUIT
-U+2667	; Glue_After_Zwj # 	♧	WHITE CLUB SUIT
-U+2669	; Glue_After_Zwj # 	♩	QUARTER NOTE
-U+266A	; Glue_After_Zwj # 	♪	EIGHTH NOTE
-U+266B	; Glue_After_Zwj # 	♫	BEAMED EIGHTH NOTES
-U+266C	; Glue_After_Zwj # 	♬	BEAMED SIXTEENTH NOTES
-U+2670	; Glue_After_Zwj # 	♰	WEST SYRIAC CROSS
-U+2671	; Glue_After_Zwj # 	♱	EAST SYRIAC CROSS
-U+2672	; Glue_After_Zwj # 	♲	UNIVERSAL RECYCLING SYMBOL
-U+2673	; Glue_After_Zwj # 	♳	RECYCLING SYMBOL FOR TYPE-1 PLASTICS
-U+2674	; Glue_After_Zwj # 	♴	RECYCLING SYMBOL FOR TYPE-2 PLASTICS
-U+2675	; Glue_After_Zwj # 	♵	RECYCLING SYMBOL FOR TYPE-3 PLASTICS
-U+2676	; Glue_After_Zwj # 	♶	RECYCLING SYMBOL FOR TYPE-4 PLASTICS
-U+2677	; Glue_After_Zwj # 	♷	RECYCLING SYMBOL FOR TYPE-5 PLASTICS
-U+2678	; Glue_After_Zwj # 	♸	RECYCLING SYMBOL FOR TYPE-6 PLASTICS
-U+2679	; Glue_After_Zwj # 	♹	RECYCLING SYMBOL FOR TYPE-7 PLASTICS
-U+267A	; Glue_After_Zwj # 	♺	RECYCLING SYMBOL FOR GENERIC MATERIALS
-U+267C	; Glue_After_Zwj # 	♼	RECYCLED PAPER SYMBOL
-U+267D	; Glue_After_Zwj # 	♽	PARTIALLY-RECYCLED PAPER SYMBOL
-U+267E	; Glue_After_Zwj # 	♾	PERMANENT PAPER SIGN
-U+2680	; Glue_After_Zwj # 	⚀	DIE FACE-1
-U+2681	; Glue_After_Zwj # 	⚁	DIE FACE-2
-U+2682	; Glue_After_Zwj # 	⚂	DIE FACE-3
-U+2683	; Glue_After_Zwj # 	⚃	DIE FACE-4
-U+2684	; Glue_After_Zwj # 	⚄	DIE FACE-5
-U+2685	; Glue_After_Zwj # 	⚅	DIE FACE-6
-U+2686	; Glue_After_Zwj # 	⚆	WHITE CIRCLE WITH DOT RIGHT
-U+2687	; Glue_After_Zwj # 	⚇	WHITE CIRCLE WITH TWO DOTS
-U+2688	; Glue_After_Zwj # 	⚈	BLACK CIRCLE WITH WHITE DOT RIGHT
-U+2689	; Glue_After_Zwj # 	⚉	BLACK CIRCLE WITH TWO WHITE DOTS
-U+2690	; Glue_After_Zwj # 	⚐	WHITE FLAG
-U+2691	; Glue_After_Zwj # 	⚑	BLACK FLAG
-U+2695	; Glue_After_Zwj # 	⚕	STAFF OF AESCULAPIUS
-U+2698	; Glue_After_Zwj # 	⚘	FLOWER
-U+269A	; Glue_After_Zwj # 	⚚	STAFF OF HERMES
-U+269D	; Glue_After_Zwj # 	⚝	OUTLINED WHITE STAR
-U+269E	; Glue_After_Zwj # 	⚞	THREE LINES CONVERGING RIGHT
-U+269F	; Glue_After_Zwj # 	⚟	THREE LINES CONVERGING LEFT
-U+26A2	; Glue_After_Zwj # 	⚢	DOUBLED FEMALE SIGN
-U+26A3	; Glue_After_Zwj # 	⚣	DOUBLED MALE SIGN
-U+26A4	; Glue_After_Zwj # 	⚤	INTERLOCKED FEMALE AND MALE SIGN
-U+26A5	; Glue_After_Zwj # 	⚥	MALE AND FEMALE SIGN
-U+26A6	; Glue_After_Zwj # 	⚦	MALE WITH STROKE SIGN
-U+26A7	; Glue_After_Zwj # 	⚧	MALE WITH STROKE AND MALE AND FEMALE SIGN
-U+26A8	; Glue_After_Zwj # 	⚨	VERTICAL MALE WITH STROKE SIGN
-U+26A9	; Glue_After_Zwj # 	⚩	HORIZONTAL MALE WITH STROKE SIGN
-U+26AC	; Glue_After_Zwj # 	⚬	MEDIUM SMALL WHITE CIRCLE
-U+26AD	; Glue_After_Zwj # 	⚭	MARRIAGE SYMBOL
-U+26AE	; Glue_After_Zwj # 	⚮	DIVORCE SYMBOL
-U+26AF	; Glue_After_Zwj # 	⚯	UNMARRIED PARTNERSHIP SYMBOL
-U+26B2	; Glue_After_Zwj # 	⚲	NEUTER
-U+26B3	; Glue_After_Zwj # 	⚳	CERES
-U+26B4	; Glue_After_Zwj # 	⚴	PALLAS
-U+26B5	; Glue_After_Zwj # 	⚵	JUNO
-U+26B6	; Glue_After_Zwj # 	⚶	VESTA
-U+26B7	; Glue_After_Zwj # 	⚷	CHIRON
-U+26B8	; Glue_After_Zwj # 	⚸	BLACK MOON LILITH
-U+26B9	; Glue_After_Zwj # 	⚹	SEXTILE
-U+26BA	; Glue_After_Zwj # 	⚺	SEMISEXTILE
-U+26BB	; Glue_After_Zwj # 	⚻	QUINCUNX
-U+26BC	; Glue_After_Zwj # 	⚼	SESQUIQUADRATE
-U+26BF	; Glue_After_Zwj # 	⚿	SQUARED KEY
-U+26C0	; Glue_After_Zwj # 	⛀	WHITE DRAUGHTS MAN
-U+26C1	; Glue_After_Zwj # 	⛁	WHITE DRAUGHTS KING
-U+26C2	; Glue_After_Zwj # 	⛂	BLACK DRAUGHTS MAN
-U+26C3	; Glue_After_Zwj # 	⛃	BLACK DRAUGHTS KING
-U+26C6	; Glue_After_Zwj # 	⛆	RAIN
-U+26C7	; Glue_After_Zwj # 	⛇	BLACK SNOWMAN
-U+26C9	; Glue_After_Zwj # 	⛉	TURNED WHITE SHOGI PIECE
-U+26CA	; Glue_After_Zwj # 	⛊	TURNED BLACK SHOGI PIECE
-U+26CB	; Glue_After_Zwj # 	⛋	WHITE DIAMOND IN SQUARE
-U+26CC	; Glue_After_Zwj # 	⛌	CROSSING LANES
-U+26CD	; Glue_After_Zwj # 	⛍	DISABLED CAR
-U+26D0	; Glue_After_Zwj # 	⛐	CAR SLIDING
-U+26D2	; Glue_After_Zwj # 	⛒	CIRCLED CROSSING LANES
-U+26D5	; Glue_After_Zwj # 	⛕	ALTERNATE ONE-WAY LEFT WAY TRAFFIC
-U+26D6	; Glue_After_Zwj # 	⛖	BLACK TWO-WAY LEFT WAY TRAFFIC
-U+26D7	; Glue_After_Zwj # 	⛗	WHITE TWO-WAY LEFT WAY TRAFFIC
-U+26D8	; Glue_After_Zwj # 	⛘	BLACK LEFT LANE MERGE
-U+26D9	; Glue_After_Zwj # 	⛙	WHITE LEFT LANE MERGE
-U+26DA	; Glue_After_Zwj # 	⛚	DRIVE SLOW SIGN
-U+26DB	; Glue_After_Zwj # 	⛛	HEAVY WHITE DOWN-POINTING TRIANGLE
-U+26DC	; Glue_After_Zwj # 	⛜	LEFT CLOSED ENTRY
-U+26DD	; Glue_After_Zwj # 	⛝	SQUARED SALTIRE
-U+26DE	; Glue_After_Zwj # 	⛞	FALLING DIAGONAL IN WHITE CIRCLE IN BLACK SQUARE
-U+26DF	; Glue_After_Zwj # 	⛟	BLACK TRUCK
-U+26E0	; Glue_After_Zwj # 	⛠	RESTRICTED LEFT ENTRY-1
-U+26E1	; Glue_After_Zwj # 	⛡	RESTRICTED LEFT ENTRY-2
-U+26E2	; Glue_After_Zwj # 	⛢	ASTRONOMICAL SYMBOL FOR URANUS
-U+26E3	; Glue_After_Zwj # 	⛣	HEAVY CIRCLE WITH STROKE AND TWO DOTS ABOVE
-U+26E4	; Glue_After_Zwj # 	⛤	PENTAGRAM
-U+26E5	; Glue_After_Zwj # 	⛥	RIGHT-HANDED INTERLACED PENTAGRAM
-U+26E6	; Glue_After_Zwj # 	⛦	LEFT-HANDED INTERLACED PENTAGRAM
-U+26E7	; Glue_After_Zwj # 	⛧	INVERTED PENTAGRAM
-U+26E8	; Glue_After_Zwj # 	⛨	BLACK CROSS ON SHIELD
-U+26EB	; Glue_After_Zwj # 	⛫	CASTLE
-U+26EC	; Glue_After_Zwj # 	⛬	HISTORIC SITE
-U+26ED	; Glue_After_Zwj # 	⛭	GEAR WITHOUT HUB
-U+26EE	; Glue_After_Zwj # 	⛮	GEAR WITH HANDLES
-U+26EF	; Glue_After_Zwj # 	⛯	MAP SYMBOL FOR LIGHTHOUSE
-U+26F6	; Glue_After_Zwj # 	⛶	SQUARE FOUR CORNERS
-U+26FB	; Glue_After_Zwj # 	⛻	JAPANESE BANK SYMBOL
-U+26FC	; Glue_After_Zwj # 	⛼	HEADSTONE GRAVEYARD SYMBOL
-U+26FE	; Glue_After_Zwj # 	⛾	CUP ON BLACK SQUARE
-U+26FF	; Glue_After_Zwj # 	⛿	WHITE FLAG WITH HORIZONTAL MIDDLE BLACK STRIPE
-U+270E	; Glue_After_Zwj # 	✎	LOWER RIGHT PENCIL
-U+2710	; Glue_After_Zwj # 	✐	UPPER RIGHT PENCIL
-U+2765	; Glue_After_Zwj # 	❥	ROTATED HEAVY BLACK HEART BULLET
-U+268A	; Glue_After_Zwj # 	⚊	MONOGRAM FOR YANG
-U+268B	; Glue_After_Zwj # 	⚋	MONOGRAM FOR YIN
-U+268C	; Glue_After_Zwj # 	⚌	DIGRAM FOR GREATER YANG
-U+268D	; Glue_After_Zwj # 	⚍	DIGRAM FOR LESSER YIN
-U+268E	; Glue_After_Zwj # 	⚎	DIGRAM FOR LESSER YANG
-U+268F	; Glue_After_Zwj # 	⚏	DIGRAM FOR GREATER YIN
-U+2630	; Glue_After_Zwj # 	☰	TRIGRAM FOR HEAVEN
-U+2631	; Glue_After_Zwj # 	☱	TRIGRAM FOR LAKE
-U+2632	; Glue_After_Zwj # 	☲	TRIGRAM FOR FIRE
-U+2633	; Glue_After_Zwj # 	☳	TRIGRAM FOR THUNDER
-U+2634	; Glue_After_Zwj # 	☴	TRIGRAM FOR WIND
-U+2635	; Glue_After_Zwj # 	☵	TRIGRAM FOR WATER
-U+2636	; Glue_After_Zwj # 	☶	TRIGRAM FOR MOUNTAIN
-U+2637	; Glue_After_Zwj # 	☷	TRIGRAM FOR EARTH
-U+266D	; Glue_After_Zwj # 	♭	MUSIC FLAT SIGN
-U+266E	; Glue_After_Zwj # 	♮	MUSIC NATURAL SIGN
-U+266F	; Glue_After_Zwj # 	♯	MUSIC SHARP SIGN
-U+1F000	; Glue_After_Zwj # 	🀀	MAHJONG TILE EAST WIND
-U+1F001	; Glue_After_Zwj # 	🀁	MAHJONG TILE SOUTH WIND
-U+1F002	; Glue_After_Zwj # 	🀂	MAHJONG TILE WEST WIND
-U+1F003	; Glue_After_Zwj # 	🀃	MAHJONG TILE NORTH WIND
-U+1F005	; Glue_After_Zwj # 	🀅	MAHJONG TILE GREEN DRAGON
-U+1F006	; Glue_After_Zwj # 	🀆	MAHJONG TILE WHITE DRAGON
-U+1F007	; Glue_After_Zwj # 	🀇	MAHJONG TILE ONE OF CHARACTERS
-U+1F008	; Glue_After_Zwj # 	🀈	MAHJONG TILE TWO OF CHARACTERS
-U+1F009	; Glue_After_Zwj # 	🀉	MAHJONG TILE THREE OF CHARACTERS
-U+1F00A	; Glue_After_Zwj # 	🀊	MAHJONG TILE FOUR OF CHARACTERS
-U+1F00B	; Glue_After_Zwj # 	🀋	MAHJONG TILE FIVE OF CHARACTERS
-U+1F00C	; Glue_After_Zwj # 	🀌	MAHJONG TILE SIX OF CHARACTERS
-U+1F00D	; Glue_After_Zwj # 	🀍	MAHJONG TILE SEVEN OF CHARACTERS
-U+1F00E	; Glue_After_Zwj # 	🀎	MAHJONG TILE EIGHT OF CHARACTERS
-U+1F00F	; Glue_After_Zwj # 	🀏	MAHJONG TILE NINE OF CHARACTERS
-U+1F010	; Glue_After_Zwj # 	🀐	MAHJONG TILE ONE OF BAMBOOS
-U+1F011	; Glue_After_Zwj # 	🀑	MAHJONG TILE TWO OF BAMBOOS
-U+1F012	; Glue_After_Zwj # 	🀒	MAHJONG TILE THREE OF BAMBOOS
-U+1F013	; Glue_After_Zwj # 	🀓	MAHJONG TILE FOUR OF BAMBOOS
-U+1F014	; Glue_After_Zwj # 	🀔	MAHJONG TILE FIVE OF BAMBOOS
-U+1F015	; Glue_After_Zwj # 	🀕	MAHJONG TILE SIX OF BAMBOOS
-U+1F016	; Glue_After_Zwj # 	🀖	MAHJONG TILE SEVEN OF BAMBOOS
-U+1F017	; Glue_After_Zwj # 	🀗	MAHJONG TILE EIGHT OF BAMBOOS
-U+1F018	; Glue_After_Zwj # 	🀘	MAHJONG TILE NINE OF BAMBOOS
-U+1F019	; Glue_After_Zwj # 	🀙	MAHJONG TILE ONE OF CIRCLES
-U+1F01A	; Glue_After_Zwj # 	🀚	MAHJONG TILE TWO OF CIRCLES
-U+1F01B	; Glue_After_Zwj # 	🀛	MAHJONG TILE THREE OF CIRCLES
-U+1F01C	; Glue_After_Zwj # 	🀜	MAHJONG TILE FOUR OF CIRCLES
-U+1F01D	; Glue_After_Zwj # 	🀝	MAHJONG TILE FIVE OF CIRCLES
-U+1F01E	; Glue_After_Zwj # 	🀞	MAHJONG TILE SIX OF CIRCLES
-U+1F01F	; Glue_After_Zwj # 	🀟	MAHJONG TILE SEVEN OF CIRCLES
-U+1F020	; Glue_After_Zwj # 	🀠	MAHJONG TILE EIGHT OF CIRCLES
-U+1F021	; Glue_After_Zwj # 	🀡	MAHJONG TILE NINE OF CIRCLES
-U+1F022	; Glue_After_Zwj # 	🀢	MAHJONG TILE PLUM
-U+1F023	; Glue_After_Zwj # 	🀣	MAHJONG TILE ORCHID
-U+1F024	; Glue_After_Zwj # 	🀤	MAHJONG TILE BAMBOO
-U+1F025	; Glue_After_Zwj # 	🀥	MAHJONG TILE CHRYSANTHEMUM
-U+1F026	; Glue_After_Zwj # 	🀦	MAHJONG TILE SPRING
-U+1F027	; Glue_After_Zwj # 	🀧	MAHJONG TILE SUMMER
-U+1F028	; Glue_After_Zwj # 	🀨	MAHJONG TILE AUTUMN
-U+1F029	; Glue_After_Zwj # 	🀩	MAHJONG TILE WINTER
-U+1F02A	; Glue_After_Zwj # 	🀪	MAHJONG TILE JOKER
-U+1F02B	; Glue_After_Zwj # 	🀫	MAHJONG TILE BACK
-U+1F322	; Glue_After_Zwj # 	🌢	BLACK DROPLET
-U+1F323	; Glue_After_Zwj # 	🌣	WHITE SUN
-U+1F394	; Glue_After_Zwj # 	🎔	HEART WITH TIP ON THE LEFT
-U+1F395	; Glue_After_Zwj # 	🎕	BOUQUET OF FLOWERS
-U+1F398	; Glue_After_Zwj # 	🎘	MUSICAL KEYBOARD WITH JACKS
-U+1F39C	; Glue_After_Zwj # 	🎜	BEAMED ASCENDING MUSICAL NOTES
-U+1F39D	; Glue_After_Zwj # 	🎝	BEAMED DESCENDING MUSICAL NOTES
-U+1F3F1	; Glue_After_Zwj # 	🏱	WHITE PENNANT
-U+1F3F2	; Glue_After_Zwj # 	🏲	BLACK PENNANT
-U+1F3F6	; Glue_After_Zwj # 	🏶	BLACK ROSETTE
-U+1F4FE	; Glue_After_Zwj # 	📾	PORTABLE STEREO
-U+1F53E	; Glue_After_Zwj # 	🔾	LOWER RIGHT SHADOWED WHITE CIRCLE
-U+1F53F	; Glue_After_Zwj # 	🔿	UPPER RIGHT SHADOWED WHITE CIRCLE
-U+1F540	; Glue_After_Zwj # 	🕀	CIRCLED CROSS POMMEE
-U+1F541	; Glue_After_Zwj # 	🕁	CROSS POMMEE WITH HALF-CIRCLE BELOW
-U+1F542	; Glue_After_Zwj # 	🕂	CROSS POMMEE
-U+1F543	; Glue_After_Zwj # 	🕃	NOTCHED LEFT SEMICIRCLE WITH THREE DOTS
-U+1F544	; Glue_After_Zwj # 	🕄	NOTCHED RIGHT SEMICIRCLE WITH THREE DOTS
-U+1F545	; Glue_After_Zwj # 	🕅	SYMBOL FOR MARKS CHAPTER
-U+1F546	; Glue_After_Zwj # 	🕆	WHITE LATIN CROSS
-U+1F547	; Glue_After_Zwj # 	🕇	HEAVY LATIN CROSS
-U+1F548	; Glue_After_Zwj # 	🕈	CELTIC CROSS
-U+1F568	; Glue_After_Zwj # 	🕨	RIGHT SPEAKER
-U+1F569	; Glue_After_Zwj # 	🕩	RIGHT SPEAKER WITH ONE SOUND WAVE
-U+1F56A	; Glue_After_Zwj # 	🕪	RIGHT SPEAKER WITH THREE SOUND WAVES
-U+1F56B	; Glue_After_Zwj # 	🕫	BULLHORN
-U+1F56C	; Glue_After_Zwj # 	🕬	BULLHORN WITH SOUND WAVES
-U+1F56D	; Glue_After_Zwj # 	🕭	RINGING BELL
-U+1F56E	; Glue_After_Zwj # 	🕮	BOOK
-U+1F571	; Glue_After_Zwj # 	🕱	BLACK SKULL AND CROSSBONES
-U+1F572	; Glue_After_Zwj # 	🕲	NO PIRACY
-U+1F57B	; Glue_After_Zwj # 	🕻	LEFT HAND TELEPHONE RECEIVER
-U+1F57C	; Glue_After_Zwj # 	🕼	TELEPHONE RECEIVER WITH PAGE
-U+1F57D	; Glue_After_Zwj # 	🕽	RIGHT HAND TELEPHONE RECEIVER
-U+1F57E	; Glue_After_Zwj # 	🕾	WHITE TOUCHTONE TELEPHONE
-U+1F57F	; Glue_After_Zwj # 	🕿	BLACK TOUCHTONE TELEPHONE
-U+1F580	; Glue_After_Zwj # 	🖀	TELEPHONE ON TOP OF MODEM
-U+1F581	; Glue_After_Zwj # 	🖁	CLAMSHELL MOBILE PHONE
-U+1F582	; Glue_After_Zwj # 	🖂	BACK OF ENVELOPE
-U+1F583	; Glue_After_Zwj # 	🖃	STAMPED ENVELOPE
-U+1F584	; Glue_After_Zwj # 	🖄	ENVELOPE WITH LIGHTNING
-U+1F585	; Glue_After_Zwj # 	🖅	FLYING ENVELOPE
-U+1F586	; Glue_After_Zwj # 	🖆	PEN OVER STAMPED ENVELOPE
-U+1F588	; Glue_After_Zwj # 	🖈	BLACK PUSHPIN
-U+1F589	; Glue_After_Zwj # 	🖉	LOWER LEFT PENCIL
-U+1F58E	; Glue_After_Zwj # 	🖎	LEFT WRITING HAND
-U+1F58F	; Glue_After_Zwj # 	🖏	TURNED OK HAND SIGN
-U+1F591	; Glue_After_Zwj # 	🖑	REVERSED RAISED HAND WITH FINGERS SPLAYED
-U+1F592	; Glue_After_Zwj # 	🖒	REVERSED THUMBS UP SIGN
-U+1F593	; Glue_After_Zwj # 	🖓	REVERSED THUMBS DOWN SIGN
-U+1F594	; Glue_After_Zwj # 	🖔	REVERSED VICTORY HAND
-U+1F597	; Glue_After_Zwj # 	🖗	WHITE DOWN POINTING LEFT HAND INDEX
-U+1F598	; Glue_After_Zwj # 	🖘	SIDEWAYS WHITE LEFT POINTING INDEX
-U+1F599	; Glue_After_Zwj # 	🖙	SIDEWAYS WHITE RIGHT POINTING INDEX
-U+1F59A	; Glue_After_Zwj # 	🖚	SIDEWAYS BLACK LEFT POINTING INDEX
-U+1F59B	; Glue_After_Zwj # 	🖛	SIDEWAYS BLACK RIGHT POINTING INDEX
-U+1F59C	; Glue_After_Zwj # 	🖜	BLACK LEFT POINTING BACKHAND INDEX
-U+1F59D	; Glue_After_Zwj # 	🖝	BLACK RIGHT POINTING BACKHAND INDEX
-U+1F59E	; Glue_After_Zwj # 	🖞	SIDEWAYS WHITE UP POINTING INDEX
-U+1F59F	; Glue_After_Zwj # 	🖟	SIDEWAYS WHITE DOWN POINTING INDEX
-U+1F5A0	; Glue_After_Zwj # 	🖠	SIDEWAYS BLACK UP POINTING INDEX
-U+1F5A1	; Glue_After_Zwj # 	🖡	SIDEWAYS BLACK DOWN POINTING INDEX
-U+1F5A2	; Glue_After_Zwj # 	🖢	BLACK UP POINTING BACKHAND INDEX
-U+1F5A3	; Glue_After_Zwj # 	🖣	BLACK DOWN POINTING BACKHAND INDEX
-U+1F5A6	; Glue_After_Zwj # 	🖦	KEYBOARD AND MOUSE
-U+1F5A7	; Glue_After_Zwj # 	🖧	THREE NETWORKED COMPUTERS
-U+1F5A9	; Glue_After_Zwj # 	🖩	POCKET CALCULATOR
-U+1F5AA	; Glue_After_Zwj # 	🖪	BLACK HARD SHELL FLOPPY DISK
-U+1F5AB	; Glue_After_Zwj # 	🖫	WHITE HARD SHELL FLOPPY DISK
-U+1F5AC	; Glue_After_Zwj # 	🖬	SOFT SHELL FLOPPY DISK
-U+1F5AD	; Glue_After_Zwj # 	🖭	TAPE CARTRIDGE
-U+1F5AE	; Glue_After_Zwj # 	🖮	WIRED KEYBOARD
-U+1F5AF	; Glue_After_Zwj # 	🖯	ONE BUTTON MOUSE
-U+1F5B0	; Glue_After_Zwj # 	🖰	TWO BUTTON MOUSE
-U+1F5B3	; Glue_After_Zwj # 	🖳	OLD PERSONAL COMPUTER
-U+1F5B4	; Glue_After_Zwj # 	🖴	HARD DISK
-U+1F5B5	; Glue_After_Zwj # 	🖵	SCREEN
-U+1F5B6	; Glue_After_Zwj # 	🖶	PRINTER ICON
-U+1F5B7	; Glue_After_Zwj # 	🖷	FAX ICON
-U+1F5B8	; Glue_After_Zwj # 	🖸	OPTICAL DISC ICON
-U+1F5B9	; Glue_After_Zwj # 	🖹	DOCUMENT WITH TEXT
-U+1F5BA	; Glue_After_Zwj # 	🖺	DOCUMENT WITH TEXT AND PICTURE
-U+1F5BB	; Glue_After_Zwj # 	🖻	DOCUMENT WITH PICTURE
-U+1F5BD	; Glue_After_Zwj # 	🖽	FRAME WITH TILES
-U+1F5BE	; Glue_After_Zwj # 	🖾	FRAME WITH AN X
-U+1F5BF	; Glue_After_Zwj # 	🖿	BLACK FOLDER
-U+1F5C0	; Glue_After_Zwj # 	🗀	FOLDER
-U+1F5C1	; Glue_After_Zwj # 	🗁	OPEN FOLDER
-U+1F5C5	; Glue_After_Zwj # 	🗅	EMPTY NOTE
-U+1F5C6	; Glue_After_Zwj # 	🗆	EMPTY NOTE PAGE
-U+1F5C7	; Glue_After_Zwj # 	🗇	EMPTY NOTE PAD
-U+1F5C8	; Glue_After_Zwj # 	🗈	NOTE
-U+1F5C9	; Glue_After_Zwj # 	🗉	NOTE PAGE
-U+1F5CA	; Glue_After_Zwj # 	🗊	NOTE PAD
-U+1F5CB	; Glue_After_Zwj # 	🗋	EMPTY DOCUMENT
-U+1F5CC	; Glue_After_Zwj # 	🗌	EMPTY PAGE
-U+1F5CD	; Glue_After_Zwj # 	🗍	EMPTY PAGES
-U+1F5CE	; Glue_After_Zwj # 	🗎	DOCUMENT
-U+1F5CF	; Glue_After_Zwj # 	🗏	PAGE
-U+1F5D0	; Glue_After_Zwj # 	🗐	PAGES
-U+1F5D4	; Glue_After_Zwj # 	🗔	DESKTOP WINDOW
-U+1F5D5	; Glue_After_Zwj # 	🗕	MINIMIZE
-U+1F5D6	; Glue_After_Zwj # 	🗖	MAXIMIZE
-U+1F5D7	; Glue_After_Zwj # 	🗗	OVERLAP
-U+1F5D8	; Glue_After_Zwj # 	🗘	CLOCKWISE RIGHT AND LEFT SEMICIRCLE ARROWS
-U+1F5D9	; Glue_After_Zwj # 	🗙	CANCELLATION X
-U+1F5DA	; Glue_After_Zwj # 	🗚	INCREASE FONT SIZE SYMBOL
-U+1F5DB	; Glue_After_Zwj # 	🗛	DECREASE FONT SIZE SYMBOL
-U+1F5DF	; Glue_After_Zwj # 	🗟	PAGE WITH CIRCLED TEXT
-U+1F5E0	; Glue_After_Zwj # 	🗠	STOCK CHART
-U+1F5E2	; Glue_After_Zwj # 	🗢	LIPS
-U+1F5E4	; Glue_After_Zwj # 	🗤	THREE RAYS ABOVE
-U+1F5E5	; Glue_After_Zwj # 	🗥	THREE RAYS BELOW
-U+1F5E6	; Glue_After_Zwj # 	🗦	THREE RAYS LEFT
-U+1F5E7	; Glue_After_Zwj # 	🗧	THREE RAYS RIGHT
-U+1F5E9	; Glue_After_Zwj # 	🗩	RIGHT SPEECH BUBBLE
-U+1F5EA	; Glue_After_Zwj # 	🗪	TWO SPEECH BUBBLES
-U+1F5EB	; Glue_After_Zwj # 	🗫	THREE SPEECH BUBBLES
-U+1F5EC	; Glue_After_Zwj # 	🗬	LEFT THOUGHT BUBBLE
-U+1F5ED	; Glue_After_Zwj # 	🗭	RIGHT THOUGHT BUBBLE
-U+1F5EE	; Glue_After_Zwj # 	🗮	LEFT ANGER BUBBLE
-U+1F5F0	; Glue_After_Zwj # 	🗰	MOOD BUBBLE
-U+1F5F1	; Glue_After_Zwj # 	🗱	LIGHTNING MOOD BUBBLE
-U+1F5F2	; Glue_After_Zwj # 	🗲	LIGHTNING MOOD
-U+1F5F4	; Glue_After_Zwj # 	🗴	BALLOT SCRIPT X
-U+1F5F5	; Glue_After_Zwj # 	🗵	BALLOT BOX WITH SCRIPT X
-U+1F5F6	; Glue_After_Zwj # 	🗶	BALLOT BOLD SCRIPT X
-U+1F5F7	; Glue_After_Zwj # 	🗷	BALLOT BOX WITH BOLD SCRIPT X
-U+1F5F8	; Glue_After_Zwj # 	🗸	LIGHT CHECK MARK
-U+1F5F9	; Glue_After_Zwj # 	🗹	BALLOT BOX WITH BOLD CHECK
-U+1F6C6	; Glue_After_Zwj # 	🛆	TRIANGLE WITH ROUNDED CORNERS
-U+1F6C7	; Glue_After_Zwj # 	🛇	PROHIBITED SIGN
-U+1F6C8	; Glue_After_Zwj # 	🛈	CIRCLED INFORMATION SOURCE
-U+1F6C9	; Glue_After_Zwj # 	🛉	BOYS SYMBOL
-U+1F6CA	; Glue_After_Zwj # 	🛊	GIRLS SYMBOL
-U+1F6E6	; Glue_After_Zwj # 	🛦	UP-POINTING MILITARY AIRPLANE
-U+1F6E7	; Glue_After_Zwj # 	🛧	UP-POINTING AIRPLANE
-U+1F6E8	; Glue_After_Zwj # 	🛨	UP-POINTING SMALL AIRPLANE
-U+1F6EA	; Glue_After_Zwj # 	🛪	NORTHEAST-POINTING AIRPLANE
-U+1F6F1	; Glue_After_Zwj # 	🛱	ONCOMING FIRE ENGINE
-U+1F6F2	; Glue_After_Zwj # 	🛲	DIESEL LOCOMOTIVE
-U+02388	; Glue_After_Zwj # 	⎈	HELM SYMBOL
-U+02700	; Glue_After_Zwj # 	✀	BLACK SAFETY SCISSORS
-U+02701	; Glue_After_Zwj # 	✁	UPPER BLADE SCISSORS
-U+02703	; Glue_After_Zwj # 	✃	LOWER BLADE SCISSORS
-U+02704	; Glue_After_Zwj # 	✄	WHITE SCISSORS
-U+02711	; Glue_After_Zwj # 	✑	WHITE NIB
-U+02766	; Glue_After_Zwj # 	❦	FLORAL HEART
-U+02767	; Glue_After_Zwj # 	❧	ROTATED FLORAL HEART BULLET
-U+1F54F	; Glue_After_Zwj # 	🕏	BOWL OF HYGIEIA
-U+1F030..U+1F093	; Glue_After_Zwj # 	🀰	DOMINO TILE HORIZONTAL BACK... [100 characters]
-U+1F0A0..U+1F0F5	; Glue_After_Zwj # 	🂠	PLAYING CARD BACK.. [81 characters, some gaps]
+# Alchemical_Symbols
+# gaz=12	: [🝴-🝿]
+# other=116	: [🜀-🝳]
 
-# Future-proofing for likely not-yet-assigned emoji
-# Draft, based on changes to LB=ID union GC=Cn in Unicode 9.0
+U+1F774..U+1F77F	; Glue_After_Zwj #	GC=Cn
+# count=12
 
-U+1F02C..U+1F02F	; Glue_After_Zwj #	Mahjong_Tiles
+# Arrows
+# emoji=8	: [↔-↙↩↪]
+# other=104	: [←-↓↚-↨↫-⇿]
 
-U+1F094..U+1F09F	; Glue_After_Zwj #	Domino_Tiles
+# CJK_Symbols_And_Punctuation
+# emoji=2	: [〰〽]
+# other=62	: [　-〯〱-〼〾〿]
 
-U+1F0AF..U+1F0B0	; Glue_After_Zwj #	Playing_Cards
-U+1F0C0	; Glue_After_Zwj #	Playing_Cards
-U+1F0D0	; Glue_After_Zwj #	Playing_Cards
-U+1F0F6..U+1F0FF	; Glue_After_Zwj #	Playing_Cards
+# Dingbats
+# emoji=33	: [✂✅✈-✍✏✒✔✖✝✡✨✳✴❄❇❌❎❓-❕❗❣❤➕-➗➡➰➿]
+# gaz=10	: [✀✁✃✄✎✐✑❥-❧]
+# other=149	: [✆✇✓✕✗-✜✞-✠✢-✧✩-✲✵-❃❅❆❈-❋❍❏-❒❖❘-❢❨-➔➘-➠➢-➯➱-➾]
 
-U+1F10D..U+1F10F	; Glue_After_Zwj #	Enclosed_Alphanumeric_Supplement
-U+1F12F	; Glue_After_Zwj #	Enclosed_Alphanumeric_Supplement
-U+1F16C..U+1F16F	; Glue_After_Zwj #	Enclosed_Alphanumeric_Supplement
-U+1F1AD..U+1F1E5	; Glue_After_Zwj #	Enclosed_Alphanumeric_Supplement
+U+2700..U+2701	; Glue_After_Zwj #	[✀✁]	BLACK SAFETY SCISSORS .. UPPER BLADE SCISSORS
+U+2703..U+2704	; Glue_After_Zwj #	[✃✄]	LOWER BLADE SCISSORS .. WHITE SCISSORS
+U+270E	; Glue_After_Zwj #	[✎]	LOWER RIGHT PENCIL
+U+2710..U+2711	; Glue_After_Zwj #	[✐✑]	UPPER RIGHT PENCIL .. WHITE NIB
+U+2765..U+2767	; Glue_After_Zwj #	[❥-❧]	ROTATED HEAVY BLACK HEART BULLET .. ROTATED FLORAL HEART BULLET
+# count=10
 
-U+1F203..U+1F20F	; Glue_After_Zwj #	Enclosed_Ideographic_Supplement
-U+1F23C..U+1F23F	; Glue_After_Zwj #	Enclosed_Ideographic_Supplement
-U+1F249..U+1F24F	; Glue_After_Zwj #	Enclosed_Ideographic_Supplement
-U+1F252..U+1F2FF	; Glue_After_Zwj #	Enclosed_Ideographic_Supplement
+# Domino_Tiles
+# gaz=112	: [🀰-🂟]
 
-U+1F6D3..U+1F6DF	; Glue_After_Zwj #	Transport_And_Map_Symbols
-U+1F6ED..U+1F6EF	; Glue_After_Zwj #	Transport_And_Map_Symbols
-U+1F6F7..U+1F6FF	; Glue_After_Zwj #	Transport_And_Map_Symbols
+U+1F030..U+1F093	; Glue_After_Zwj #	[🀰-🂓]	DOMINO TILE HORIZONTAL BACK .. DOMINO TILE VERTICAL-06-06
+U+1F094..U+1F09F	; Glue_After_Zwj #	GC=Cn
+# count=112
 
-U+1F774..U+1F77F	; Glue_After_Zwj #	Alchemical_Symbols
+# Emoticons
+# emoji=80	: [😀-🙏]
 
-U+1F7D5..U+1F7FF	; Glue_After_Zwj #	Geometric_Shapes_Extended
+# Enclosed_Alphanumerics
+# emoji=1	: [Ⓜ]
+# other=159	: [①-ⓁⓃ-⓿]
 
-U+1F80C..U+1F80F	; Glue_After_Zwj #	Supplemental_Arrows_C
-U+1F848..U+1F84F	; Glue_After_Zwj #	Supplemental_Arrows_C
-U+1F85A..U+1F85F	; Glue_After_Zwj #	Supplemental_Arrows_C
-U+1F888..U+1F88F	; Glue_After_Zwj #	Supplemental_Arrows_C
-U+1F8AE..U+1F8FF	; Glue_After_Zwj #	Supplemental_Arrows_C
+# Enclosed_Alphanumeric_Supplement
+# emoji=15	: [🅰🅱🅾🅿🆎🆑-🆚]
+# gaz=65	: [🄍-🄏🄯🅬-🅯🆭-🇥]
+# other=176	: [🄀-🄌🄐-🄮🄰-🅫🅲-🅽🆀-🆍🆏🆐🆛-🆬🇦-🇿]
 
-U+1F900..U+1F90F	; Glue_After_Zwj #	Supplemental_Symbols_And_Pictographs
-U+1F91F	; Glue_After_Zwj #	Supplemental_Symbols_And_Pictographs
-U+1F928..U+1F92F	; Glue_After_Zwj #	Supplemental_Symbols_And_Pictographs
-U+1F931..U+1F932	; Glue_After_Zwj #	Supplemental_Symbols_And_Pictographs
-U+1F93F	; Glue_After_Zwj #	Supplemental_Symbols_And_Pictographs
-U+1F94C..U+1F94F	; Glue_After_Zwj #	Supplemental_Symbols_And_Pictographs
-U+1F95F..U+1F97F	; Glue_After_Zwj #	Supplemental_Symbols_And_Pictographs
-U+1F992..U+1F9BF	; Glue_After_Zwj #	Supplemental_Symbols_And_Pictographs
-U+1F9C1..U+1F9FF	; Glue_After_Zwj #	Supplemental_Symbols_And_Pictographs
+U+1F10D..U+1F10F	; Glue_After_Zwj #	GC=Cn
+U+1F12F	; Glue_After_Zwj #	GC=Cn
+U+1F16C..U+1F16F	; Glue_After_Zwj #	GC=Cn
+U+1F1AD..U+1F1E5	; Glue_After_Zwj #	GC=Cn
+# count=65
 
-U+1FA00..U+1FFFD	; Glue_After_Zwj #	No_Block (rest of plane)
+# Enclosed_CJK_Letters_And_Months
+# emoji=2	: [㊗㊙]
+# other=252	: [㈀-㈞㈠-㊖㊘㊚-㋾]
 
-# Review note: the following are blocks with at least one emoji
-# Only one of them is all emoji
+# Enclosed_Ideographic_Supplement
+# emoji=15	: [🈁🈂🈚🈯🈲-🈺🉐🉑]
+# gaz=198	: [🈃-🈏🈼-🈿🉉-🉏🉒-🋿]
+# other=43	: [🈀🈐-🈙🈛-🈮🈰🈱🈻🉀-🉈]
 
-# Arrows ; emoji=8 : [↔-↙↩↪] ; other=104 : [←-↓↚-↨↫-⇿]
-# CJK_Symbols_And_Punctuation ; emoji=2 : [〰〽] ; other=62 : [　-〯〱-〼〾〿]
-# Dingbats ; emoji=33 : [✂✅✈-✍✏✒✔✖✝✡✨✳✴❄❇❌❎❓-❕❗❣❤➕-➗➡➰➿] ; other=159 : [✀✁✃✄✆✇✎✐✑✓✕✗-✜✞-✠✢-✧✩-✲✵-❃❅❆❈-❋❍❏-❒❖❘-❢❥-➔➘-➠➢-➯➱-➾]
-# Emoticons ; emoji=80 : [😀-🙏] ; other=0 : []
-# Enclosed_Alphanumerics ; emoji=1 : [Ⓜ] ; other=159 : [①-ⓁⓃ-⓿]
-# Enclosed_Alphanumeric_Supplement ; emoji=15 : [🅰🅱🅾🅿🆎🆑-🆚] ; other=176 : [🄀-🄌🄐-🄮🄰-🅫🅲-🅽🆀-🆍🆏🆐🆛-🆬🇦-🇿] ; unass=65
-# Enclosed_CJK_Letters_And_Months ; emoji=2 : [㊗㊙] ; other=252 : [㈀-㈞㈠-㊖㊘㊚-㋾] ; unass=2
-# Enclosed_Ideographic_Supplement ; emoji=15 : [🈁🈂🈚🈯🈲-🈺🉐🉑] ; other=43 : [🈀🈐-🈙🈛-🈮🈰🈱🈻🉀-🉈] ; unass=198
-# Geometric_Shapes ; emoji=8 : [▪▫▶◀◻-◾] ; other=88 : [■-▩▬-▵▷-▿◁-◺◿]
-# Latin_1_Supplement ; emoji=2 : [©®] ; other=126 : [-¨ª-­¯-ÿ]
-# Letterlike_Symbols ; emoji=2 : [™ℹ] ; other=78 : [℀-℡℣-ℸ℺-⅏]
-# Mahjong_Tiles ; emoji=1 : [🀄] ; other=43 : [🀀-🀃🀅-🀫] ; unass=4
-# Miscellaneous_Symbols_And_Arrows ; emoji=7 : [⬅-⬇⬛⬜⭐⭕] ; other=199 : [⬀-⬄⬈-⬚⬝-⭏⭑-⭔⭖-⭳⭶-⮕⮘-⮹⮽-⯈⯊-⯑?-?] ; unass=50
-# Miscellaneous_Symbols_And_Pictographs ; emoji=637 : [🌀-🌡🌤-🎓🎖🎗🎙-🎛🎞-🏰🏳-🏵🏷-📽📿-🔽🕉-🕎🕐-🕧🕯🕰🕳-🕺🖇🖊-🖍🖐🖕🖖🖤🖥🖨🖱🖲🖼🗂-🗄🗑-🗓🗜-🗞🗡🗣🗨🗯🗳🗺-🗿] ; other=131 : [🌢🌣🎔🎕🎘🎜🎝🏱🏲🏶📾🔾-🕈🕏🕨-🕮🕱🕲🕻-🖆🖈🖉🖎🖏🖑-🖔🖗-🖣🖦🖧🖩-🖰🖳-🖻🖽-🗁🗅-🗐🗔-🗛🗟🗠🗢🗤-🗧🗩-🗮🗰-🗲🗴-🗹]
-# Miscellaneous_Symbols ; emoji=77 : [☀-☄☎☑☔☕☘☝☠☢☣☦☪☮☯☸-☺♈-♓♠♣♥♦♨♻♿⚒-⚔⚖⚗⚙⚛⚜⚠⚡⚪⚫⚰⚱⚽⚾⛄⛅⛈⛎⛏⛑⛓⛔⛩⛪⛰-⛵⛷-⛺⛽] ; other=179 : [★-☍☏☐☒☓☖☗☙-☜☞☟☡☤☥☧-☩☫-☭☰-☷☻-♇♔-♟♡♢♤♧♩-♺♼-♾⚀-⚑⚕⚘⚚⚝-⚟⚢-⚩⚬-⚯⚲-⚼⚿-⛃⛆⛇⛉-⛍⛐⛒⛕-⛨⛫-⛯⛶⛻⛼⛾⛿]
-# Miscellaneous_Technical ; emoji=18 : [⌚⌛⌨⏏⏩-⏳⏸-⏺] ; other=237 : [⌀-⌙⌜-⌧〈-⏎⏐-⏨⏴-⏷?-?] ; unass=1
-# Playing_Cards ; emoji=1 : [🃏] ; other=81 : [🂠-🂮🂱-🂿🃁-🃎🃑-🃵] ; unass=14
-# General_Punctuation ; emoji=2 : [‼⁉] ; other=109 : [ -※‽-⁈⁊-⁤⁦-⁯] ; unass=1
-# Supplemental_Arrows_B ; emoji=2 : [⤴⤵] ; other=126 : [⤀-⤳⤶-⥿]
-# Supplemental_Symbols_And_Pictographs ; emoji=80 : [🤐-🤞🤠-🤧🤰🤳-🤺🤼-🤾🥀-🥅🥇-🥋🥐-🥞🦀-🦑🧀] ; other=2 : [🤻🥆] ; unass=174
-# Transport_And_Map_Symbols ; emoji=92 : [🚀-🛅🛋-🛒🛠-🛥🛩🛫🛬🛰🛳-🛶] ; other=11 : [🛆-🛊🛦-🛨🛪🛱🛲] ; unass=25
+U+1F203..U+1F20F	; Glue_After_Zwj #	GC=Cn
+U+1F23C..U+1F23F	; Glue_After_Zwj #	GC=Cn
+U+1F249..U+1F24F	; Glue_After_Zwj #	GC=Cn
+U+1F252..U+1F2FF	; Glue_After_Zwj #	GC=Cn
+# count=198
 
+# Geometric_Shapes
+# emoji=8	: [▪▫▶◀◻-◾]
+# other=88	: [■-▩▬-▵▷-▿◁-◺◿]
 
+# Geometric_Shapes_Extended
+# gaz=43	: [🟕-🟿]
+# other=85	: [🞀-🟔]
 
+U+1F7D5..U+1F7FF	; Glue_After_Zwj #	GC=Cn
+# count=43
 
+# Latin_1_Supplement
+# emoji=2	: [©®]
+# other=126	: [-¨ª-­¯-ÿ]
+
+# Letterlike_Symbols
+# emoji=2	: [™ℹ]
+# other=78	: [℀-℡℣-ℸ℺-⅏]
+
+# Mahjong_Tiles
+# emoji=1	: [🀄]
+# gaz=47	: [🀀-🀃🀅-🀯]
+
+U+1F000..U+1F003	; Glue_After_Zwj #	[🀀-🀃]	MAHJONG TILE EAST WIND .. MAHJONG TILE NORTH WIND
+U+1F005..U+1F02B	; Glue_After_Zwj #	[🀅-🀫]	MAHJONG TILE GREEN DRAGON .. MAHJONG TILE BACK
+U+1F02C..U+1F02F	; Glue_After_Zwj #	GC=Cn
+# count=47
+
+# Miscellaneous_Symbols_And_Arrows
+# emoji=7	: [⬅-⬇⬛⬜⭐⭕]
+# other=199	: [⬀-⬄⬈-⬚⬝-⭏⭑-⭔⭖-⭳⭶-⮕⮘-⮹⮽-⯈⯊-⯑⯬-⯯]
+
+# Miscellaneous_Symbols_And_Pictographs
+# emoji=637	: [🌀-🌡🌤-🎓🎖🎗🎙-🎛🎞-🏰🏳-🏵🏷-📽📿-🔽🕉-🕎🕐-🕧🕯🕰🕳-🕺🖇🖊-🖍🖐🖕🖖🖤🖥🖨🖱🖲🖼🗂-🗄🗑-🗓🗜-🗞🗡🗣🗨🗯🗳🗺-🗿]
+# gaz=131	: [🌢🌣🎔🎕🎘🎜🎝🏱🏲🏶📾🔾-🕈🕏🕨-🕮🕱🕲🕻-🖆🖈🖉🖎🖏🖑-🖔🖗-🖣🖦🖧🖩-🖰🖳-🖻🖽-🗁🗅-🗐🗔-🗛🗟🗠🗢🗤-🗧🗩-🗮🗰-🗲🗴-🗹]
+
+U+1F322..U+1F323	; Glue_After_Zwj #	[🌢🌣]	BLACK DROPLET .. WHITE SUN
+U+1F394..U+1F395	; Glue_After_Zwj #	[🎔🎕]	HEART WITH TIP ON THE LEFT .. BOUQUET OF FLOWERS
+U+1F398	; Glue_After_Zwj #	[🎘]	MUSICAL KEYBOARD WITH JACKS
+U+1F39C..U+1F39D	; Glue_After_Zwj #	[🎜🎝]	BEAMED ASCENDING MUSICAL NOTES .. BEAMED DESCENDING MUSICAL NOTES
+U+1F3F1..U+1F3F2	; Glue_After_Zwj #	[🏱🏲]	WHITE PENNANT .. BLACK PENNANT
+U+1F3F6	; Glue_After_Zwj #	[🏶]	BLACK ROSETTE
+U+1F4FE	; Glue_After_Zwj #	[📾]	PORTABLE STEREO
+U+1F53E..U+1F548	; Glue_After_Zwj #	[🔾-🕈]	LOWER RIGHT SHADOWED WHITE CIRCLE .. CELTIC CROSS
+U+1F54F	; Glue_After_Zwj #	[🕏]	BOWL OF HYGIEIA
+U+1F568..U+1F56E	; Glue_After_Zwj #	[🕨-🕮]	RIGHT SPEAKER .. BOOK
+U+1F571..U+1F572	; Glue_After_Zwj #	[🕱🕲]	BLACK SKULL AND CROSSBONES .. NO PIRACY
+U+1F57B..U+1F586	; Glue_After_Zwj #	[🕻-🖆]	LEFT HAND TELEPHONE RECEIVER .. PEN OVER STAMPED ENVELOPE
+U+1F588..U+1F589	; Glue_After_Zwj #	[🖈🖉]	BLACK PUSHPIN .. LOWER LEFT PENCIL
+U+1F58E..U+1F58F	; Glue_After_Zwj #	[🖎🖏]	LEFT WRITING HAND .. TURNED OK HAND SIGN
+U+1F591..U+1F594	; Glue_After_Zwj #	[🖑-🖔]	REVERSED RAISED HAND WITH FINGERS SPLAYED .. REVERSED VICTORY HAND
+U+1F597..U+1F5A3	; Glue_After_Zwj #	[🖗-🖣]	WHITE DOWN POINTING LEFT HAND INDEX .. BLACK DOWN POINTING BACKHAND INDEX
+U+1F5A6..U+1F5A7	; Glue_After_Zwj #	[🖦🖧]	KEYBOARD AND MOUSE .. THREE NETWORKED COMPUTERS
+U+1F5A9..U+1F5B0	; Glue_After_Zwj #	[🖩-🖰]	POCKET CALCULATOR .. TWO BUTTON MOUSE
+U+1F5B3..U+1F5BB	; Glue_After_Zwj #	[🖳-🖻]	OLD PERSONAL COMPUTER .. DOCUMENT WITH PICTURE
+U+1F5BD..U+1F5C1	; Glue_After_Zwj #	[🖽-🗁]	FRAME WITH TILES .. OPEN FOLDER
+U+1F5C5..U+1F5D0	; Glue_After_Zwj #	[🗅-🗐]	EMPTY NOTE .. PAGES
+U+1F5D4..U+1F5DB	; Glue_After_Zwj #	[🗔-🗛]	DESKTOP WINDOW .. DECREASE FONT SIZE SYMBOL
+U+1F5DF..U+1F5E0	; Glue_After_Zwj #	[🗟🗠]	PAGE WITH CIRCLED TEXT .. STOCK CHART
+U+1F5E2	; Glue_After_Zwj #	[🗢]	LIPS
+U+1F5E4..U+1F5E7	; Glue_After_Zwj #	[🗤-🗧]	THREE RAYS ABOVE .. THREE RAYS RIGHT
+U+1F5E9..U+1F5EE	; Glue_After_Zwj #	[🗩-🗮]	RIGHT SPEECH BUBBLE .. LEFT ANGER BUBBLE
+U+1F5F0..U+1F5F2	; Glue_After_Zwj #	[🗰-🗲]	MOOD BUBBLE .. LIGHTNING MOOD
+U+1F5F4..U+1F5F9	; Glue_After_Zwj #	[🗴-🗹]	BALLOT SCRIPT X .. BALLOT BOX WITH BOLD CHECK
+# count=131
+
+# Miscellaneous_Symbols
+# emoji=77	: [☀-☄☎☑☔☕☘☝☠☢☣☦☪☮☯☸-☺♈-♓♠♣♥♦♨♻♿⚒-⚔⚖⚗⚙⚛⚜⚠⚡⚪⚫⚰⚱⚽⚾⛄⛅⛈⛎⛏⛑⛓⛔⛩⛪⛰-⛵⛷-⛺⛽]
+# gaz=177	: [★☇-☍☏☐☒☖☗☙-☜☞☟☡☤☥☧-☩☫-☭☰-☷☻-♇♔-♟♡♢♤♧♩-♺♼-♾⚀-⚑⚕⚘⚚⚝-⚟⚢-⚩⚬-⚯⚲-⚼⚿-⛃⛆⛇⛉-⛍⛐⛒⛕-⛨⛫-⛯⛶⛻⛼⛾⛿]
+# other=2	: [☆☓]
+
+U+2605	; Glue_After_Zwj #	[★]	BLACK STAR
+U+2607..U+260D	; Glue_After_Zwj #	[☇-☍]	LIGHTNING .. OPPOSITION
+U+260F..U+2610	; Glue_After_Zwj #	[☏☐]	WHITE TELEPHONE .. BALLOT BOX
+U+2612	; Glue_After_Zwj #	[☒]	BALLOT BOX WITH X
+U+2616..U+2617	; Glue_After_Zwj #	[☖☗]	WHITE SHOGI PIECE .. BLACK SHOGI PIECE
+U+2619..U+261C	; Glue_After_Zwj #	[☙-☜]	REVERSED ROTATED FLORAL HEART BULLET .. WHITE LEFT POINTING INDEX
+U+261E..U+261F	; Glue_After_Zwj #	[☞☟]	WHITE RIGHT POINTING INDEX .. WHITE DOWN POINTING INDEX
+U+2621	; Glue_After_Zwj #	[☡]	CAUTION SIGN
+U+2624..U+2625	; Glue_After_Zwj #	[☤☥]	CADUCEUS .. ANKH
+U+2627..U+2629	; Glue_After_Zwj #	[☧-☩]	CHI RHO .. CROSS OF JERUSALEM
+U+262B..U+262D	; Glue_After_Zwj #	[☫-☭]	FARSI SYMBOL .. HAMMER AND SICKLE
+U+2630..U+2637	; Glue_After_Zwj #	[☰-☷]	TRIGRAM FOR HEAVEN .. TRIGRAM FOR EARTH
+U+263B..U+2647	; Glue_After_Zwj #	[☻-♇]	BLACK SMILING FACE .. PLUTO
+U+2654..U+265F	; Glue_After_Zwj #	[♔-♟]	WHITE CHESS KING .. BLACK CHESS PAWN
+U+2661..U+2662	; Glue_After_Zwj #	[♡♢]	WHITE HEART SUIT .. WHITE DIAMOND SUIT
+U+2664	; Glue_After_Zwj #	[♤]	WHITE SPADE SUIT
+U+2667	; Glue_After_Zwj #	[♧]	WHITE CLUB SUIT
+U+2669..U+267A	; Glue_After_Zwj #	[♩-♺]	QUARTER NOTE .. RECYCLING SYMBOL FOR GENERIC MATERIALS
+U+267C..U+267E	; Glue_After_Zwj #	[♼-♾]	RECYCLED PAPER SYMBOL .. PERMANENT PAPER SIGN
+U+2680..U+2691	; Glue_After_Zwj #	[⚀-⚑]	DIE FACE-1 .. BLACK FLAG
+U+2695	; Glue_After_Zwj #	[⚕]	STAFF OF AESCULAPIUS
+U+2698	; Glue_After_Zwj #	[⚘]	FLOWER
+U+269A	; Glue_After_Zwj #	[⚚]	STAFF OF HERMES
+U+269D..U+269F	; Glue_After_Zwj #	[⚝-⚟]	OUTLINED WHITE STAR .. THREE LINES CONVERGING LEFT
+U+26A2..U+26A9	; Glue_After_Zwj #	[⚢-⚩]	DOUBLED FEMALE SIGN .. HORIZONTAL MALE WITH STROKE SIGN
+U+26AC..U+26AF	; Glue_After_Zwj #	[⚬-⚯]	MEDIUM SMALL WHITE CIRCLE .. UNMARRIED PARTNERSHIP SYMBOL
+U+26B2..U+26BC	; Glue_After_Zwj #	[⚲-⚼]	NEUTER .. SESQUIQUADRATE
+U+26BF..U+26C3	; Glue_After_Zwj #	[⚿-⛃]	SQUARED KEY .. BLACK DRAUGHTS KING
+U+26C6..U+26C7	; Glue_After_Zwj #	[⛆⛇]	RAIN .. BLACK SNOWMAN
+U+26C9..U+26CD	; Glue_After_Zwj #	[⛉-⛍]	TURNED WHITE SHOGI PIECE .. DISABLED CAR
+U+26D0	; Glue_After_Zwj #	[⛐]	CAR SLIDING
+U+26D2	; Glue_After_Zwj #	[⛒]	CIRCLED CROSSING LANES
+U+26D5..U+26E8	; Glue_After_Zwj #	[⛕-⛨]	ALTERNATE ONE-WAY LEFT WAY TRAFFIC .. BLACK CROSS ON SHIELD
+U+26EB..U+26EF	; Glue_After_Zwj #	[⛫-⛯]	CASTLE .. MAP SYMBOL FOR LIGHTHOUSE
+U+26F6	; Glue_After_Zwj #	[⛶]	SQUARE FOUR CORNERS
+U+26FB..U+26FC	; Glue_After_Zwj #	[⛻⛼]	JAPANESE BANK SYMBOL .. HEADSTONE GRAVEYARD SYMBOL
+U+26FE..U+26FF	; Glue_After_Zwj #	[⛾⛿]	CUP ON BLACK SQUARE .. WHITE FLAG WITH HORIZONTAL MIDDLE BLACK STRIPE
+# count=177
+
+# Miscellaneous_Technical
+# emoji=18	: [⌚⌛⌨⏏⏩-⏳⏸-⏺]
+# gaz=1	: [⎈]
+# other=236	: [⌀-⌙⌜-⌧〈-⎇⎉-⏎⏐-⏨⏴-⏷⏻-⏾]
+# otherCn=1
+
+U+2388	; Glue_After_Zwj #	[⎈]	HELM SYMBOL
+# count=1
+
+# No_Block
+# gaz=1534	: [🨀-🿽]
+
+U+1FA00..U+1FFFD	; Glue_After_Zwj #	GC=Cn
+# count=1534
+
+# Playing_Cards
+# emoji=1	: [🃏]
+# gaz=96	: [🂠-🃿]
+
+U+1F0A0..U+1F0AE	; Glue_After_Zwj #	[🂠-🂮]	PLAYING CARD BACK .. PLAYING CARD KING OF SPADES
+U+1F0B1..U+1F0BF	; Glue_After_Zwj #	[🂱-🂿]	PLAYING CARD ACE OF HEARTS .. PLAYING CARD RED JOKER
+U+1F0C1..U+1F0CF	; Glue_After_Zwj #	[🃁-🃏]	PLAYING CARD ACE OF DIAMONDS .. PLAYING CARD BLACK JOKER
+U+1F0D1..U+1F0F5	; Glue_After_Zwj #	[🃑-🃵]	PLAYING CARD ACE OF CLUBS .. PLAYING CARD TRUMP-21
+U+1F0AF..U+1F0B0	; Glue_After_Zwj #	GC=Cn
+U+1F0C0	; Glue_After_Zwj #	GC=Cn
+U+1F0D0	; Glue_After_Zwj #	GC=Cn
+U+1F0F6..U+1F0FF	; Glue_After_Zwj #	GC=Cn
+# count=96
+
+# General_Punctuation
+# emoji=2	: [‼⁉]
+# other=109	: [ -※‽-⁈⁊-⁤⁦-⁯]
+
+# Supplemental_Arrows_B
+# emoji=2	: [⤴⤵]
+# other=126	: [⤀-⤳⤶-⥿]
+
+# Supplemental_Arrows_C
+# gaz=108	: [🠌-🠏🡈-🡏🡚-🡟🢈-🢏🢮-🣿]
+# other=148	: [🠀-🠋🠐-🡇🡐-🡙🡠-🢇🢐-🢭]
+
+U+1F80C..U+1F80F	; Glue_After_Zwj #	GC=Cn
+U+1F848..U+1F84F	; Glue_After_Zwj #	GC=Cn
+U+1F85A..U+1F85F	; Glue_After_Zwj #	GC=Cn
+U+1F888..U+1F88F	; Glue_After_Zwj #	GC=Cn
+U+1F8AE..U+1F8FF	; Glue_After_Zwj #	GC=Cn
+# count=108
+
+# Supplemental_Symbols_And_Pictographs
+# emoji=80	: [🤐-🤞🤠-🤧🤰🤳-🤺🤼-🤾🥀-🥅🥇-🥋🥐-🥞🦀-🦑🧀]
+# gaz=174	: [🤀-🤏🤟🤨-🤯🤱🤲🤿🥌-🥏🥟-🥿🦒-🦿🧁-🧿]
+# other=2	: [🤻🥆]
+
+U+1F900..U+1F90F	; Glue_After_Zwj #	GC=Cn
+U+1F91F	; Glue_After_Zwj #	GC=Cn
+U+1F928..U+1F92F	; Glue_After_Zwj #	GC=Cn
+U+1F931..U+1F932	; Glue_After_Zwj #	GC=Cn
+U+1F93F	; Glue_After_Zwj #	GC=Cn
+U+1F94C..U+1F94F	; Glue_After_Zwj #	GC=Cn
+U+1F95F..U+1F97F	; Glue_After_Zwj #	GC=Cn
+U+1F992..U+1F9BF	; Glue_After_Zwj #	GC=Cn
+U+1F9C1..U+1F9FF	; Glue_After_Zwj #	GC=Cn
+# count=174
+
+# Transport_And_Map_Symbols
+# emoji=92	: [🚀-🛅🛋-🛒🛠-🛥🛩🛫🛬🛰🛳-🛶]
+# gaz=36	: [🛆-🛊🛓-🛟🛦-🛨🛪🛭-🛯🛱🛲🛷-🛿]
+
+U+1F6C6..U+1F6CA	; Glue_After_Zwj #	[🛆-🛊]	TRIANGLE WITH ROUNDED CORNERS .. GIRLS SYMBOL
+U+1F6E6..U+1F6E8	; Glue_After_Zwj #	[🛦-🛨]	UP-POINTING MILITARY AIRPLANE .. UP-POINTING SMALL AIRPLANE
+U+1F6EA	; Glue_After_Zwj #	[🛪]	NORTHEAST-POINTING AIRPLANE
+U+1F6F1..U+1F6F2	; Glue_After_Zwj #	[🛱🛲]	ONCOMING FIRE ENGINE .. DIESEL LOCOMOTIVE
+U+1F6D3..U+1F6DF	; Glue_After_Zwj #	GC=Cn
+U+1F6ED..U+1F6EF	; Glue_After_Zwj #	GC=Cn
+U+1F6F7..U+1F6FF	; Glue_After_Zwj #	GC=Cn
+# count=36
+
+# total_count=2744
+# EOF
