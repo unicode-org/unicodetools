@@ -7,67 +7,33 @@
 #
 # Glue_After_Zwj is a binary property used to customize segmentation (UAX #29 and UAX #14)
 # so that possible future emoji zwj sequences will not break grapheme clusters, words, or lines.
-# For users, the bad effects from breaking too much around ZWJ are far worse than those from
-# breaking too little around ZWJ. So while the rules here may be overly inclusive, that is not
-# expected to cause any real problems for users.
-#
-# For Unicode 9.0, the minimal changes were made for the current ZWJ sequences.
-# However, it is expected that many more ZWJ sequences may be encoded;
-# it was too late for Unicode 9.0 to be adjusted to compensate.
 #
 # =====
-# USAGE
-#
-# Implementations may use this file to adjust segmentation by customizing the following rules:
-#
-# OLD (Unicode 9.0)
-#
-#	GB11	ZWJ	×	(Glue_After_Zwj | EBG)
-#	WB3c	ZWJ	×	(Glue_After_Zwj | EBG)
-#	LB8a	ZWJ	×	(ID | EB | EM)
-#
-# CUSTOMIZATION
-#
-#	let Glue_After_Zwj be defined as in this file
-#	let Emoji = \p{Emoji=Yes}
-#
-#	GB11′	ZWJ	×	(Glue_After_Zwj | Emoji)
-#	WB3c′	ZWJ	×	(Glue_After_Zwj | Emoji)
-#	LB8a′	ZWJ	×	(ID | Glue_After_Zwj | Emoji)
+# USAGE: see https://goo.gl/cluFCn (for now)
 #
 # =====
 # Review Notes 
-# 1. More conservative implementations could use the following, more restrictive rules:
+# The files contain additional comments to aid with review of the draft property.
 #
-#	let Precontext = (Glue_After_Zwj | Emoji) emoji_variation_selector? non_spacing_mark*
-#	let PrecontextID = (ID | Glue_After_Zwj | Emoji) emoji_variation_selector? non_spacing_mark*
+# 1. Blocks are included if they contain any emoji characters, even if there are no GAZ characters.
 #
-#	GB11′	Precontext ZWJ	×	(Glue_After_Zwj | Emoji)
-#	WB3c′	Precontext ZWJ	×	(Glue_After_Zwj | Emoji)
-#	LB8a′	PrecontextID ZWJ	× (ID | Glue_After_Zwj | Emoji)
+# 2. GAZ code points may include unassigned values. Those are based on the Line_Break assignments that
+#    were added in Unicode 9.0 to future-proof ZWJ linebreak behavior. 
 #
-# 2. The ID is retained in LB8a′. The main reason for its inclusion was to encompass as many Emoji
-#    characters as possible. So it could be removed from LB8a′. It is only retained here to
-#    allow for as much compatibility with Unicode 9.0 as possible.
-#
-# 3. There are some additional comments added for now, to aid with review of the DRAFT. For example:
+# 3. Comment lines are included to describe the content of the blocks for comparison. For example:
 #    emoji=33	: [✂✅✈-✍✏✒✔✖✝✡✨✳✴❄❇❌❎❓-❕❗❣❤➕-➗➡➰➿]
 #    gaz=10	: [✀✁✃✄✎✐✑❥-❧]
 #    other=149	: [✆✇✓✕✗-✜✞-✠✢-✧✩-✲✵-❃❅❆❈-❋❍❏-❒❖❘-❢❨-➔➘-➠➢-➯➱-➾]
 #    otherCn=2
 #
-#    The characters can be listed out in detail by using http://unicode.org/cldr/utility/list-unicodeset.jsp
-#
-#    These review comments indicate
+#    Meaning
 #    • emoji:   the number of Emoji=Yes characters in that block,
 #    • gaz:     the number of Glue_After_Zwj in the block (with details below), and
 #    • other:   the number of other characters in the block (non-Emoji, non-GAZ),
 #    • otherCn: the number of other code points in the block (non-Emoji, non-GAZ, not characters).
 #
+#    The characters can be listed out in detail by using http://unicode.org/cldr/utility/list-unicodeset.jsp
 #    The lines are omitted if empty: for example, Transport_And_Map_Symbols have no "other" characters.
-#    Blocks are included if they contain any emoji characters, even if there are no GAZ characters.
-#    GAZ code points may include unassigned values. Those are based on the Line_Break assignments that
-#    were added in Unicode 9.0 to future-proof ZWJ linebreak behavior. 
 #    
 # =====
 # Format
@@ -75,8 +41,6 @@
 # This file follows the format used for UCD files. 
 # Field 1 indicates that the character(s) listed in Field 0 have the value Glue_After_Zwj=Yes
 # All other characters have the value Glue_After_Zwj=No
-#
-# Future-proofing based on current vendor usage, related characters
 #
 # =====
 # DATA (generated)
