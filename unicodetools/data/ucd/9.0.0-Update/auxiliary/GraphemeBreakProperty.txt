@@ -1,5 +1,5 @@
 # GraphemeBreakProperty-9.0.0.txt
-# Date: 2016-06-01, 10:34:27 GMT
+# Date: 2016-06-03, 22:23:55 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
@@ -21,11 +21,12 @@
 0600..0605    ; Prepend # Cf   [6] ARABIC NUMBER SIGN..ARABIC NUMBER MARK ABOVE
 06DD          ; Prepend # Cf       ARABIC END OF AYAH
 070F          ; Prepend # Cf       SYRIAC ABBREVIATION MARK
+08E2          ; Prepend # Cf       ARABIC DISPUTED END OF AYAH
 0D4E          ; Prepend # Lo       MALAYALAM LETTER DOT REPH
 110BD         ; Prepend # Cf       KAITHI NUMBER SIGN
 111C2..111C3  ; Prepend # Lo   [2] SHARADA SIGN JIHVAMULIYA..SHARADA SIGN UPADHMANIYA
 
-# Total code points: 12
+# Total code points: 13
 
 # ================================================
 
@@ -47,7 +48,6 @@
 007F..009F    ; Control # Cc  [33] <control-007F>..<control-009F>
 00AD          ; Control # Cf       SOFT HYPHEN
 061C          ; Control # Cf       ARABIC LETTER MARK
-08E2          ; Control # Cf       ARABIC DISPUTED END OF AYAH
 180E          ; Control # Cf       MONGOLIAN VOWEL SEPARATOR
 200B          ; Control # Cf       ZERO WIDTH SPACE
 200E..200F    ; Control # Cf   [2] LEFT-TO-RIGHT MARK..RIGHT-TO-LEFT MARK
@@ -69,7 +69,7 @@ E0002..E001F  ; Control # Cn  [30] <reserved-E0002>..<reserved-E001F>
 E0080..E00FF  ; Control # Cn [128] <reserved-E0080>..<reserved-E00FF>
 E01F0..E0FFF  ; Control # Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
 
-# Total code points: 5926
+# Total code points: 5925
 
 # ================================================
 
