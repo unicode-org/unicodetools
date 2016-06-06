@@ -462,7 +462,8 @@ public class GenerateEmoji {
     }
 
     private static final EnumSet<Emoji.Source> platformsToIncludeNormal = EnumSet.of(
-            Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung,
+            Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung, 
+            Source.facebook,
             Source.gmail, Source.dcm, Source.kddi, Source.sb
             );
     private static final EnumSet<Emoji.Source> platformsToIncludeExtra = EnumSet.noneOf(Source.class);
@@ -2474,7 +2475,21 @@ public class GenerateEmoji {
                         + "</tr>";
     }
 
-    private static final Set<String> SUPPRESS_ANNOTATIONS = new HashSet<>(Arrays.asList("default-text-style", "other"));
+    private static final Set<String> SUPPRESS_ANNOTATIONS = ImmutableSet.of("default-text-style", 
+            "other", "nature", "object", "person", "place", "symbol",             
+            "travel",
+            "office",
+            "animal",
+            "sign",
+            "word",
+            "time",
+            "food",
+            "restaurant",
+            "sound",
+            "sport",
+            "emotion",
+            "education"
+            );
 
     static final Splitter TAB = Splitter.on('\t');
     public static final UnicodeMap<String> EXTRA_NAMES = new UnicodeMap<>();

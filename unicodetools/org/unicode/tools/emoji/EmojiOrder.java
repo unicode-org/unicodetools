@@ -107,7 +107,7 @@ public class EmojiOrder {
         emojiData = EmojiData.of(version);
         mp  = new MapComparator<String>()
                 .setErrorOnMissing(false)
-                .setSortBeforeOthers(true)
+                .setSortBeforeOthers(false)
                 .setDoFallback(false)
                 ;
         HashMap<String, Integer> _groupOrder = new LinkedHashMap<String,Integer>();
