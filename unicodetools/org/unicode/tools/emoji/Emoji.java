@@ -27,6 +27,7 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData.EmojiDatum;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableSortedSet;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.lang.CharSequences;
@@ -41,12 +42,7 @@ import com.ibm.icu.util.VersionInfo;
 public class Emoji {
 
     /**
-     * Change the following for a new version.
-     */
-    public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", false);
-
-    /**
-     * Change the following once we release
+     * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
      */
     public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(2);
     public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = VersionInfo.getInstance(8);
@@ -54,7 +50,13 @@ public class Emoji {
     public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(3);
     public static final VersionInfo VERSION_BETA_UNICODE = VersionInfo.getInstance(9);
     
-    public static final VersionInfo VERSION_FORMAT1 = VersionInfo.getInstance(1);
+    /**
+     * Change the following according to whether we are generating the beta version of files, or the new version.
+     * We support generating the last version in order to make improvements to the charts.
+     */
+    public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", false);
+
+    //public static final VersionInfo VERSION_FORMAT1 = VersionInfo.getInstance(1);
 
     /**
      * Computed
@@ -86,13 +88,18 @@ public class Emoji {
 
     public enum Source {
         // pngs
-        color, apple, twitter("Twtr."), emojione("One"), google("Googᵈ"), 
-        samsung("Sams."), windows("Wind."), ref, proposed, emojipedia, emojixpress, sample,
+        // order is important
+        color, 
+        apple, google("Googᵈ"), twitter("Twtr."), emojione("One"), // more complete
+        facebook("FB"), samsung("Sams."), windows("Wind."),
+        ref, proposed, emojipedia, emojixpress, sample,
         // gifs; don't change order!
         gmail("GMail"), sb, dcm, kddi;
         
-        static final Set<Source> OLD_SOURCES = ImmutableSet.of(gmail, sb, dcm, kddi);
-        static final Set<Source> VENDOR_SOURCES = ImmutableSet.of(apple, twitter, emojione, google, samsung, windows);
+        static final Set<Source> OLD_SOURCES = ImmutableSet.copyOf(
+                EnumSet.of(gmail, sb, dcm, kddi)); // do this to get same order as Source
+        static final Set<Source> VENDOR_SOURCES = ImmutableSet.copyOf(
+                EnumSet.of(apple, google, twitter, emojione, samsung, facebook, windows)); // do this to get same order as Source
         
         private final String shortName;
         private Source(String shortName) {
