@@ -103,7 +103,7 @@ U+1F93D			2015Q3	WATER POLO
 U+1F93E			2015Q3	HANDBALL
 U+1F945			2015Q3	GOAL NET
 #U+1F946			2015Q3	RIFLE 
-• marksmanship, sport shooting, hunting
+#• marksmanship, sport shooting, hunting
 U+1F94A			2015Q3	BOXING GLOVE
 • boxing sport
 U+1F94B			2015Q3	MARTIAL ARTS UNIFORM 
