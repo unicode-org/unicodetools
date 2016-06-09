@@ -83,7 +83,8 @@ public class GenerateOtherAnnotations {
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 continue;
             }
-            String s2 = Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING);
+            String s2 = EmojiData.EMOJI_DATA.addEmojiVariants(s, Emoji.EMOJI_VARIANT, null);
+            // Emoji.getEmojiVariant(s, Emoji.EMOJI_VARIANT_STRING);
 
             System.out.println(++count
                     + "\t" + Emoji.toUHex(s)

@@ -1,11 +1,11 @@
 # emoji-zwj-sequences.txt
-# Date: 2016-05-15, 02:41:03 GMT
+# Date: 2016-06-07, 13:34:35 GMT
 # © 2016 Unicode®, Inc.
 # Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 #
 # Emoji ZWJ Sequence Catalog for UTR #51
-# Version: 3.0
+# Version: 4.0
 #
 # For documentation and usage, see http://www.unicode.org/reports/tr51
 #
@@ -19,112 +19,107 @@
 
 # Emoji ZWJ Sequence
 
-1F441 200D 1F5E8                            ; Emoji_ZWJ_Sequence  # 7.0  [1] (👁‍🗨)      EYE, LEFT SPEECH BUBBLE
-1F468 200D 2764 FE0F 200D 1F468             ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍❤️‍👨)     Couple with heart: MAN, MAN
-1F468 200D 2764 FE0F 200D 1F48B 200D 1F468  ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍❤️‍💋‍👨)    Kiss: MAN, MAN
-1F468 200D 1F468 200D 1F466                 ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👨‍👦)     Family: MAN, MAN, BOY
-1F468 200D 1F468 200D 1F466 200D 1F466      ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👨‍👦‍👦)    Family: MAN, MAN, BOY, BOY
-1F468 200D 1F468 200D 1F467                 ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👨‍👧)     Family: MAN, MAN, GIRL
-1F468 200D 1F468 200D 1F467 200D 1F466      ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👨‍👧‍👦)    Family: MAN, MAN, GIRL, BOY
-1F468 200D 1F468 200D 1F467 200D 1F467      ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👨‍👧‍👧)    Family: MAN, MAN, GIRL, GIRL
-1F468 200D 1F469 200D 1F466                 ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👩‍👦)     Family: MAN, WOMAN, BOY
-1F468 200D 1F469 200D 1F466 200D 1F466      ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👩‍👦‍👦)    Family: MAN, WOMAN, BOY, BOY
-1F468 200D 1F469 200D 1F467                 ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👩‍👧)     Family: MAN, WOMAN, GIRL
-1F468 200D 1F469 200D 1F467 200D 1F466      ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👩‍👧‍👦)    Family: MAN, WOMAN, GIRL, BOY
-1F468 200D 1F469 200D 1F467 200D 1F467      ; Emoji_ZWJ_Sequence  # 6.0  [1] (👨‍👩‍👧‍👧)    Family: MAN, WOMAN, GIRL, GIRL
-1F469 200D 2764 FE0F 200D 1F468             ; Emoji_ZWJ_Sequence  # 6.0  [1] (👩‍❤️‍👨)     Couple with heart: WOMAN, MAN
-1F469 200D 2764 FE0F 200D 1F469             ; Emoji_ZWJ_Sequence  # 6.0  [1] (👩‍❤️‍👩)     Couple with heart: WOMAN, WOMAN
-1F469 200D 2764 FE0F 200D 1F48B 200D 1F468  ; Emoji_ZWJ_Sequence  # 6.0  [1] (👩‍❤️‍💋‍👨)    Kiss: WOMAN, MAN
-1F469 200D 2764 FE0F 200D 1F48B 200D 1F469  ; Emoji_ZWJ_Sequence  # 6.0  [1] (👩‍❤️‍💋‍👩)    Kiss: WOMAN, WOMAN
-1F469 200D 1F469 200D 1F466                 ; Emoji_ZWJ_Sequence  # 6.0  [1] (👩‍👩‍👦)     Family: WOMAN, WOMAN, BOY
-1F469 200D 1F469 200D 1F466 200D 1F466      ; Emoji_ZWJ_Sequence  # 6.0  [1] (👩‍👩‍👦‍👦)    Family: WOMAN, WOMAN, BOY, BOY
-1F469 200D 1F469 200D 1F467                 ; Emoji_ZWJ_Sequence  # 6.0  [1] (👩‍👩‍👧)     Family: WOMAN, WOMAN, GIRL
-1F469 200D 1F469 200D 1F467 200D 1F466      ; Emoji_ZWJ_Sequence  # 6.0  [1] (👩‍👩‍👧‍👦)    Family: WOMAN, WOMAN, GIRL, BOY
-1F469 200D 1F469 200D 1F467 200D 1F467      ; Emoji_ZWJ_Sequence  # 6.0  [1] (👩‍👩‍👧‍👧)    Family: WOMAN, WOMAN, GIRL, GIRL
+26F9 FE0F 200D 2640                         ; Emoji_ZWJ_Sequence  ; Woman with ball                                 # 5.2  [1] (⛹️‍♀)
+26F9 FE0F 200D 2642                         ; Emoji_ZWJ_Sequence  ; Man with ball                                   # 5.2  [1] (⛹️‍♂)
+1F3C3 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female runner                                  # 6.0  [1] (🏃‍♀)
+1F3C3 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male runner                                    # 6.0  [1] (🏃‍♂)
+1F3C4 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female surfer                                  # 6.0  [1] (🏄‍♀)
+1F3C4 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male surfer                                    # 6.0  [1] (🏄‍♂)
+1F3CA 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female swimmer                                 # 6.0  [1] (🏊‍♀)
+1F3CA 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male swimmer                                   # 6.0  [1] (🏊‍♂)
+1F3CB FE0F 200D 2640                        ; Emoji_ZWJ_Sequence  ; Female weight lifter                           # 7.0  [1] (🏋️‍♀)
+1F3CB FE0F 200D 2642                        ; Emoji_ZWJ_Sequence  ; Male weight lifter                             # 7.0  [1] (🏋️‍♂)
+1F3CC FE0F 200D 2640                        ; Emoji_ZWJ_Sequence  ; Female golfer                                  # 7.0  [1] (🏌️‍♀)
+1F3CC FE0F 200D 2642                        ; Emoji_ZWJ_Sequence  ; Male golfer                                    # 7.0  [1] (🏌️‍♂)
+1F441 200D 1F5E8                            ; Emoji_ZWJ_Sequence  ; Witness                                         # 7.0  [1] (👁‍🗨)
+1F468 200D 2695 FE0F                        ; Emoji_ZWJ_Sequence  ; Male health worker                              # 6.0  [1] (👨‍⚕)
+1F468 200D 2764 FE0F 200D 1F468             ; Emoji_ZWJ_Sequence  ; Couple with heart: man, man                     # 6.0  [1] (👨‍❤️‍👨)
+1F468 200D 2764 FE0F 200D 1F48B 200D 1F468  ; Emoji_ZWJ_Sequence  ; Kiss: man, man                                  # 6.0  [1] (👨‍❤️‍💋‍👨)
+1F468 200D 1F33E                            ; Emoji_ZWJ_Sequence  ; Male farmer                                     # 6.0  [1] (👨‍🌾)
+1F468 200D 1F373                            ; Emoji_ZWJ_Sequence  ; Male cook                                       # 6.0  [1] (👨‍🍳)
+1F468 200D 1F393                            ; Emoji_ZWJ_Sequence  ; Male student                                    # 6.0  [1] (👨‍🎓)
+1F468 200D 1F3A4                            ; Emoji_ZWJ_Sequence  ; Male singer                                     # 6.0  [1] (👨‍🎤)
+1F468 200D 1F3EB                            ; Emoji_ZWJ_Sequence  ; Male teacher                                    # 6.0  [1] (👨‍🏫)
+1F468 200D 1F3ED                            ; Emoji_ZWJ_Sequence  ; Male factory worker                             # 6.0  [1] (👨‍🏭)
+1F468 200D 1F468 200D 1F466                 ; Emoji_ZWJ_Sequence  ; Family: man, man, boy                           # 6.0  [1] (👨‍👨‍👦)
+1F468 200D 1F468 200D 1F466 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: man, man, boy, boy                      # 6.0  [1] (👨‍👨‍👦‍👦)
+1F468 200D 1F468 200D 1F467                 ; Emoji_ZWJ_Sequence  ; Family: man, man, girl                          # 6.0  [1] (👨‍👨‍👧)
+1F468 200D 1F468 200D 1F467 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: man, man, girl, boy                     # 6.0  [1] (👨‍👨‍👧‍👦)
+1F468 200D 1F468 200D 1F467 200D 1F467      ; Emoji_ZWJ_Sequence  ; Family: man, man, girl, girl                    # 6.0  [1] (👨‍👨‍👧‍👧)
+1F468 200D 1F469 200D 1F466                 ; Emoji_ZWJ_Sequence  ; Family: man, woman, boy                         # 6.0  [1] (👨‍👩‍👦)
+1F468 200D 1F469 200D 1F466 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: man, woman, boy, boy                    # 6.0  [1] (👨‍👩‍👦‍👦)
+1F468 200D 1F469 200D 1F467                 ; Emoji_ZWJ_Sequence  ; Family: man, woman, girl                        # 6.0  [1] (👨‍👩‍👧)
+1F468 200D 1F469 200D 1F467 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: man, woman, girl, boy                   # 6.0  [1] (👨‍👩‍👧‍👦)
+1F468 200D 1F469 200D 1F467 200D 1F467      ; Emoji_ZWJ_Sequence  ; Family: man, woman, girl, girl                  # 6.0  [1] (👨‍👩‍👧‍👧)
+1F468 200D 1F4BB                            ; Emoji_ZWJ_Sequence  ; Male technologist                               # 6.0  [1] (👨‍💻)
+1F468 200D 1F4BC                            ; Emoji_ZWJ_Sequence  ; Male office worker                              # 6.0  [1] (👨‍💼)
+1F468 200D 1F527                            ; Emoji_ZWJ_Sequence  ; Male mechanic                                   # 6.0  [1] (👨‍🔧)
+1F468 200D 1F52C                            ; Emoji_ZWJ_Sequence  ; Male scientist                                  # 6.0  [1] (👨‍🔬)
+1F469 200D 2695 FE0F                        ; Emoji_ZWJ_Sequence  ; Female health worker                            # 6.0  [1] (👩‍⚕)
+1F469 200D 2764 FE0F 200D 1F468             ; Emoji_ZWJ_Sequence  ; Couple with heart: woman, man                   # 6.0  [1] (👩‍❤️‍👨)
+1F469 200D 2764 FE0F 200D 1F469             ; Emoji_ZWJ_Sequence  ; Couple with heart: woman, woman                 # 6.0  [1] (👩‍❤️‍👩)
+1F469 200D 2764 FE0F 200D 1F48B 200D 1F468  ; Emoji_ZWJ_Sequence  ; Kiss: woman, man                                # 6.0  [1] (👩‍❤️‍💋‍👨)
+1F469 200D 2764 FE0F 200D 1F48B 200D 1F469  ; Emoji_ZWJ_Sequence  ; Kiss: woman, woman                              # 6.0  [1] (👩‍❤️‍💋‍👩)
+1F469 200D 1F33E                            ; Emoji_ZWJ_Sequence  ; Female farmer                                   # 6.0  [1] (👩‍🌾)
+1F469 200D 1F373                            ; Emoji_ZWJ_Sequence  ; Female cook                                     # 6.0  [1] (👩‍🍳)
+1F469 200D 1F393                            ; Emoji_ZWJ_Sequence  ; Female student                                  # 6.0  [1] (👩‍🎓)
+1F469 200D 1F3A4                            ; Emoji_ZWJ_Sequence  ; Female singer                                   # 6.0  [1] (👩‍🎤)
+1F469 200D 1F3EB                            ; Emoji_ZWJ_Sequence  ; Female teacher                                  # 6.0  [1] (👩‍🏫)
+1F469 200D 1F3ED                            ; Emoji_ZWJ_Sequence  ; Female factory worker                           # 6.0  [1] (👩‍🏭)
+1F469 200D 1F469 200D 1F466                 ; Emoji_ZWJ_Sequence  ; Family: woman, woman, boy                       # 6.0  [1] (👩‍👩‍👦)
+1F469 200D 1F469 200D 1F466 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: woman, woman, boy, boy                  # 6.0  [1] (👩‍👩‍👦‍👦)
+1F469 200D 1F469 200D 1F467                 ; Emoji_ZWJ_Sequence  ; Family: woman, woman, girl                      # 6.0  [1] (👩‍👩‍👧)
+1F469 200D 1F469 200D 1F467 200D 1F466      ; Emoji_ZWJ_Sequence  ; Family: woman, woman, girl, boy                 # 6.0  [1] (👩‍👩‍👧‍👦)
+1F469 200D 1F469 200D 1F467 200D 1F467      ; Emoji_ZWJ_Sequence  ; Family: woman, woman, girl, girl                # 6.0  [1] (👩‍👩‍👧‍👧)
+1F469 200D 1F4BB                            ; Emoji_ZWJ_Sequence  ; Female technologist                             # 6.0  [1] (👩‍💻)
+1F469 200D 1F4BC                            ; Emoji_ZWJ_Sequence  ; Female office worker                            # 6.0  [1] (👩‍💼)
+1F469 200D 1F527                            ; Emoji_ZWJ_Sequence  ; Female mechanic                                 # 6.0  [1] (👩‍🔧)
+1F469 200D 1F52C                            ; Emoji_ZWJ_Sequence  ; Female scientist                                # 6.0  [1] (👩‍🔬)
+1F46E 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female police officer                          # 6.0  [1] (👮‍♀)
+1F46E 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male police officer                            # 6.0  [1] (👮‍♂)
+1F477 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female construction worker                     # 6.0  [1] (👷‍♀)
+1F477 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male construction worker                       # 6.0  [1] (👷‍♂)
+1F481 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female information desk person                 # 6.0  [1] (💁‍♀)
+1F481 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male information desk person                   # 6.0  [1] (💁‍♂)
+1F486 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female getting face massage                            # 6.0  [1] (💆‍♀)
+1F486 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male getting face massage                              # 6.0  [1] (💆‍♂)
+1F487 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female getting haircut                                 # 6.0  [1] (💇‍♀)
+1F487 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male getting haircut                                   # 6.0  [1] (💇‍♂)
+1F575 FE0F 200D 2640                        ; Emoji_ZWJ_Sequence  ; Female sleuth                           # 7.0  [1] (🕵️‍♀)
+1F575 FE0F 200D 2642                        ; Emoji_ZWJ_Sequence  ; Male sleuth                             # 7.0  [1] (🕵️‍♂)
+1F645 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female gesturing no good               # 6.0  [1] (🙅‍♀)
+1F645 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male gesturing no good                 # 6.0  [1] (🙅‍♂)
+1F646 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female gesturing ok                    # 6.0  [1] (🙆‍♀)
+1F646 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male gesturing ok                      # 6.0  [1] (🙆‍♂)
+1F647 200D 2640                             ; Emoji_ZWJ_Sequence  ; Woman bowing deeply                             # 6.0  [1] (🙇‍♀)
+1F647 200D 2642                             ; Emoji_ZWJ_Sequence  ; Man bowing deeply                               # 6.0  [1] (🙇‍♂)
+1F64B 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female raising one hand           # 6.0  [1] (🙋‍♀)
+1F64B 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male raising one hand             # 6.0  [1] (🙋‍♂)
+1F64D 200D 2640                             ; Emoji_ZWJ_Sequence  ; Woman frowning                                  # 6.0  [1] (🙍‍♀)
+1F64D 200D 2642                             ; Emoji_ZWJ_Sequence  ; Man frowning                                    # 6.0  [1] (🙍‍♂)
+1F64E 200D 2640                             ; Emoji_ZWJ_Sequence  ; Woman pouting                         # 6.0  [1] (🙎‍♀)
+1F64E 200D 2642                             ; Emoji_ZWJ_Sequence  ; Man pouting                           # 6.0  [1] (🙎‍♂)
+1F6A3 200D 2640                             ; Emoji_ZWJ_Sequence  ; Woman rowing boat                               # 6.0  [1] (🚣‍♀)
+1F6A3 200D 2642                             ; Emoji_ZWJ_Sequence  ; Man rowing boat                                 # 6.0  [1] (🚣‍♂)
+1F6B4 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female biking                               # 6.0  [1] (🚴‍♀)
+1F6B4 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male biking                                 # 6.0  [1] (🚴‍♂)
+1F6B5 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female mountain biking                      # 6.0  [1] (🚵‍♀)
+1F6B5 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male mountain biking                        # 6.0  [1] (🚵‍♂)
+1F6B6 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female walking                              # 6.0  [1] (🚶‍♀)
+1F6B6 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male walking                                # 6.0  [1] (🚶‍♂)
+1F926 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female with face palm                               # 9.0  [1] (🤦‍♀)
+1F926 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male with face palm                                 # 9.0  [1] (🤦‍♂)
+1F937 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female shrugging                                   # 9.0  [1] (🤷‍♀)
+1F937 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male shrugging                                     # 9.0  [1] (🤷‍♂)
+1F938 200D 2640                             ; Emoji_ZWJ_Sequence  ; Woman doing cartwheel                           # 9.0  [1] (🤸‍♀)
+1F938 200D 2642                             ; Emoji_ZWJ_Sequence  ; Man doing cartwheel                             # 9.0  [1] (🤸‍♂)
+1F93C 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female wrestlers                               # 9.0  [1] (🤼‍♀)
+1F93C 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male wrestlers                                 # 9.0  [1] (🤼‍♂)
+1F93D 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female playing water polo                              # 9.0  [1] (🤽‍♀)
+1F93D 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male playing water polo                                # 9.0  [1] (🤽‍♂)
+1F93E 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female playing handball                                # 9.0  [1] (🤾‍♀)
+1F93E 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male playing handball                                  # 9.0  [1] (🤾‍♂)
 
-1F46E 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (👮) POLICE OFFICER
-1F575 200D 2640 ; Emoji_ZWJ_Sequence  # 7.0 (🕵) SLEUTH OR SPY
-1F477 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (👷) CONSTRUCTION WORKER
-1F481 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (💁) INFORMATION DESK PERSON
-1F486 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (💆) FACE MASSAGE
-1F487 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (💇) HAIRCUT
-1F645 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🙅) FACE WITH NO GOOD GESTURE
-1F646 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🙆) FACE WITH OK GESTURE
-1F647 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🙇) PERSON BOWING DEEPLY
-1F64B 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🙋) HAPPY PERSON RAISING ONE HAND
-1F64D 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🙍) PERSON FROWNING
-1F64E 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🙎) PERSON WITH POUTING FACE
-1F926 200D 2640 ; Emoji_ZWJ_Sequence  # 9.0 (🤦) FACE PALM
-1F937 200D 2640 ; Emoji_ZWJ_Sequence  # 9.0 (🤷) SHRUG
-
-1F6B6 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🚶) PEDESTRIAN
-1F3C3 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🏃) RUNNER
-1F3CC 200D 2640 ; Emoji_ZWJ_Sequence  # 7.0 (🏌) GOLFER
-26F9  200D 2640 ; Emoji_ZWJ_Sequence  # 5.2 (⛹) PERSON WITH BALL
-1F3C4 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🏄) SURFER
-1F3CA 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🏊) SWIMMER
-1F3CB 200D 2640 ; Emoji_ZWJ_Sequence  # 7.0 (🏋) WEIGHT LIFTER
-1F6A3 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🚣) ROWBOAT
-1F6B4 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🚴) BICYCLIST
-1F6B5 200D 2640 ; Emoji_ZWJ_Sequence  # 6.0 (🚵) MOUNTAIN BICYCLIST
-1F938 200D 2640 ; Emoji_ZWJ_Sequence  # 9.0 (🤸) PERSON DOING CARTWHEEL
-1F93C 200D 2640 ; Emoji_ZWJ_Sequence  # 9.0 (🤼) WRESTLERS
-1F93D 200D 2640 ; Emoji_ZWJ_Sequence  # 9.0 (🤽) WATER POLO
-1F93E 200D 2640 ; Emoji_ZWJ_Sequence  # 9.0 (🤾) HANDBALL
-
-1F46E 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (👮) POLICE OFFICER
-1F575 200D 2642 ; Emoji_ZWJ_Sequence  # 7.0 (🕵) SLEUTH OR SPY
-1F477 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (👷) CONSTRUCTION WORKER
-1F481 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (💁) INFORMATION DESK PERSON
-1F486 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (💆) FACE MASSAGE
-1F487 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (💇) HAIRCUT
-1F645 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🙅) FACE WITH NO GOOD GESTURE
-1F646 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🙆) FACE WITH OK GESTURE
-1F647 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🙇) PERSON BOWING DEEPLY
-1F64B 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🙋) HAPPY PERSON RAISING ONE HAND
-1F64D 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🙍) PERSON FROWNING
-1F64E 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🙎) PERSON WITH POUTING FACE
-1F926 200D 2642 ; Emoji_ZWJ_Sequence  # 9.0 (🤦) FACE PALM
-1F937 200D 2642 ; Emoji_ZWJ_Sequence  # 9.0 (🤷) SHRUG
-
-1F6B6 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🚶) PEDESTRIAN
-1F3C3 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🏃) RUNNER
-1F3CC 200D 2642 ; Emoji_ZWJ_Sequence  # 7.0 (🏌) GOLFER
-26F9  200D 2642 ; Emoji_ZWJ_Sequence  # 5.2 (⛹) PERSON WITH BALL
-1F3C4 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🏄) SURFER
-1F3CA 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🏊) SWIMMER
-1F3CB 200D 2642 ; Emoji_ZWJ_Sequence  # 7.0 (🏋) WEIGHT LIFTER
-1F6A3 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🚣) ROWBOAT
-1F6B4 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🚴) BICYCLIST
-1F6B5 200D 2642 ; Emoji_ZWJ_Sequence  # 6.0 (🚵) MOUNTAIN BICYCLIST
-1F938 200D 2642 ; Emoji_ZWJ_Sequence  # 9.0 (🤸) PERSON DOING CARTWHEEL
-1F93C 200D 2642 ; Emoji_ZWJ_Sequence  # 9.0 (🤼) WRESTLERS
-1F93D 200D 2642 ; Emoji_ZWJ_Sequence  # 9.0 (🤽) WATER POLO
-1F93E 200D 2642 ; Emoji_ZWJ_Sequence  # 9.0 (🤾) HANDBALL
-
-1F469 200D 1F4BC ; Emoji_ZWJ_Sequence  # Business
-1F469 200D 2695 ; Emoji_ZWJ_Sequence  # Healthcare
-1F469 200D 1F52C ; Emoji_ZWJ_Sequence  # Science
-1F469 200D 1F393 ; Emoji_ZWJ_Sequence  # Education
-1F469 200D 1F4BB ; Emoji_ZWJ_Sequence  # Technology
-1F469 200D 1F3ED ; Emoji_ZWJ_Sequence  # Industry
-1F469 200D 1F33E ; Emoji_ZWJ_Sequence  # Farming
-1F469 200D 1F373 ; Emoji_ZWJ_Sequence  # Food service
-1F469 200D 1F3EB ; Emoji_ZWJ_Sequence  # Education
-1F469 200D 1F3A4 ; Emoji_ZWJ_Sequence  # Music
-1F469 200D 1F527 ; Emoji_ZWJ_Sequence  # Mechanic
-
-1F468 200D 1F4BC ; Emoji_ZWJ_Sequence  # Business
-1F468 200D 2695 ; Emoji_ZWJ_Sequence  # Healthcare
-1F468 200D 1F52C ; Emoji_ZWJ_Sequence  # Science
-1F468 200D 1F393 ; Emoji_ZWJ_Sequence  # Education
-1F468 200D 1F4BB ; Emoji_ZWJ_Sequence  # Technology
-1F468 200D 1F3ED ; Emoji_ZWJ_Sequence  # Industry
-1F468 200D 1F33E ; Emoji_ZWJ_Sequence  # Farming
-1F468 200D 1F373 ; Emoji_ZWJ_Sequence  # Food service
-1F468 200D 1F3EB ; Emoji_ZWJ_Sequence  # Education
-1F468 200D 1F3A4 ; Emoji_ZWJ_Sequence  # Music
-1F468 200D 1F527 ; Emoji_ZWJ_Sequence  # Mechanic
-
+# Total elements: 100
 
 #EOF
