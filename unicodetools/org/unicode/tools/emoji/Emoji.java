@@ -44,10 +44,10 @@ public class Emoji {
     /**
      * Change each following once we release. That is, VERSION_LAST_RELEASED* becomes VERSION_BETA*, and both the latter increment.
      */
-    public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(2);
-    public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = VersionInfo.getInstance(8);
+    public static final VersionInfo VERSION_LAST_RELEASED = VersionInfo.getInstance(3);
+    public static final VersionInfo VERSION_LAST_RELEASED_UNICODE = VersionInfo.getInstance(9);
     
-    public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(3);
+    public static final VersionInfo VERSION_BETA = VersionInfo.getInstance(4);
     public static final VersionInfo VERSION_BETA_UNICODE = VersionInfo.getInstance(9);
     
     /**
@@ -85,28 +85,45 @@ public class Emoji {
             return valueOf(s);
         }
     }
+    
+    // HACK
+    static final UnicodeSet GENDER_BASE = new UnicodeSet("[⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶\\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
+    .freeze();
+    static final UnicodeSet PROFESSION_OBJECT = new UnicodeSet("[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬]")
+    .freeze();
 
     public enum Source {
-        // pngs
+        // for accessing pngs
         // order is important
         color, 
         apple, google("Googᵈ"), twitter("Twtr."), emojione("One"), // more complete
-        facebook("FB"), samsung("Sams."), windows("Wind."),
+        fbm("FBM", "Messenger (Facebook)"), windows("Wind."), samsung("Sams."), 
         ref, proposed, emojipedia, emojixpress, sample,
         // gifs; don't change order!
-        gmail("GMail"), sb, dcm, kddi;
+        gmail("GMail"), sb("SB", "SoftBank"), dcm("DCM", "DoCoMo"), kddi("KDDI", "KDDI");
         
         static final Set<Source> OLD_SOURCES = ImmutableSet.copyOf(
                 EnumSet.of(gmail, sb, dcm, kddi)); // do this to get same order as Source
         static final Set<Source> VENDOR_SOURCES = ImmutableSet.copyOf(
-                EnumSet.of(apple, google, twitter, emojione, samsung, facebook, windows)); // do this to get same order as Source
-        
+                EnumSet.of(apple, google, twitter, emojione, samsung, fbm, windows)); // do this to get same order as Source
+        static final Set<Emoji.Source> platformsToIncludeNormal = ImmutableSet.copyOf(EnumSet.of(
+                Source.apple, Source.google, Source.windows, Source.twitter, Source.emojione, Source.samsung, 
+                Source.fbm,
+                Source.gmail, Source.dcm, Source.kddi, Source.sb
+                ));
+
         private final String shortName;
-        private Source(String shortName) {
-            this.shortName = shortName;
-        }
+        private final String longName;
+        
         private Source() {
-            this.shortName = UCharacter.toTitleCase(name(), null);
+            this(null, null);
+        }
+        private Source(String shortName) {
+            this(shortName, null);
+        }
+        private Source(String shortName, String longName) {
+            this.shortName = shortName != null ? shortName : UCharacter.toTitleCase(name(), null);
+            this.longName = longName != null ? longName : UCharacter.toTitleCase(name(), null);
         }
         
         boolean isGif() {
@@ -130,6 +147,11 @@ public class Emoji {
 
         public String shortName() {
             return shortName;
+        }
+        
+        @Override
+        public String toString() {
+            return longName;
         }
     }
 
@@ -198,7 +220,7 @@ public class Emoji {
             }
             result.append(Utility.hex(cp).toLowerCase(Locale.ENGLISH));
         }
-        return  result.toString();
+        return result.toString();
     }
 
     static Pattern DASH_OR_UNDERBAR = Pattern.compile("[-_]");
@@ -322,21 +344,6 @@ public class Emoji {
     };
 
 
-    public static void main(String[] args) {
-        if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {
-            throw new IllegalArgumentException();
-        }
-        if (!EMOJI_CHARS.contains("🗨")) {
-            throw new IllegalArgumentException();
-        }
-        System.out.println("Singletons:\n" + EMOJI_SINGLETONS.toPattern(false));
-        System.out.println("Without flags:\n" + EMOJI_CHARS_WITHOUT_FLAGS.toPattern(false));
-        System.out.println("Flags:\n" + FLAGS.toPattern(false));
-        System.out.println("With flags:\n" + EMOJI_CHARS.toPattern(false));
-        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(false));
-        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(true));
-    }
-
     //    private static final UnicodeSet FITZ_OPTIONAL = new UnicodeSet("[\\u261D \\u261F \\u2639-\\u263B \\u270A-\\u270D \\U0001F3C2-\\U0001F3C4 \\U0001F3C7 \\U0001F3CA \\U0001F440-\\U0001F450 \\U0001F47F \\U0001F483 \\U0001F485 \\U0001F48B \\U0001F4AA \\U0001F58E-\\U0001F597 \\U0001F59E-\\U0001F5A3 \\U0001F5E2 \\U0001F600-\\U0001F637 \\U0001F641 \\U0001F642 \\U0001F64C \\U0001F64F \\U0001F6A3 \\U0001F6B4-\\U0001F6B6 \\U0001F6C0]");
     //    private static final UnicodeSet FITZ_MINIMAL = new UnicodeSet("[\\U0001F385 \\U0001F466- \\U0001F478 \\U0001F47C \\U0001F481 \\U0001F482 \\U0001F486 \\U0001F487 \\U0001F48F \\U0001F491 \\U0001F645- \\U0001F647 \\U0001F64B \\U0001F64D \\U0001F64E]");
     static final UnicodeSet ASCII_LETTERS = new UnicodeSet("[A-Za-z]").freeze();
@@ -387,14 +394,12 @@ public class Emoji {
                 || (isRegionalIndicator(firstCodepoint) && isRegionalIndicator(secondCodepoint))) {
             return line.substring(i, i+firstLen+secondLen);
         }
-        // ZWJ sequence
-        //        if ((secondCodepoint == EMOJI_VARIANT || secondCodepoint == TEXT_VARIANT) && i + firstLen + secondLen < line.length()) {
-        //            int codePoint3 = line.codePointAt(i+firstLen+secondLen);
-        //            int len3 = Character.charCount(codePoint3);
-        //            if (codePoint3 == ENCLOSING_KEYCAP) {
-        //                return line.substring(i, i+firstLen+secondLen+len3);
-        //            }
-        //        }
+        if (i+firstLen+secondLen == line.length()) {
+            return line.substring(i, i+firstLen);
+        }
+        if (secondCodepoint == Emoji.JOINER) {
+            return line.substring(i, i+firstLen+secondLen) + getEmojiSequence(line, i+firstLen+secondLen);
+        }
         return line.substring(i, i+firstLen);
     }
 
@@ -445,6 +450,17 @@ public class Emoji {
             if (file.exists()) {
                 return file;
             }
+            // hack for now
+            if (chars.contains(Emoji.EMOJI_VARIANT_STRING)) {
+                chars = chars.replace(Emoji.EMOJI_VARIANT_STRING,"");
+                filename = getImageFilenameFromChars(type, chars);
+                if (filename != null) {
+                    file = new File(IMAGES_OUTPUT_DIR, filename);
+                    if (file.exists()) {
+                        return file;
+                    }
+                }
+            }
         }
         return null;
     }
@@ -471,20 +487,20 @@ public class Emoji {
     static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
     static final IndexUnicodeProperties    BETA  = IndexUnicodeProperties.make(VERSION_BETA_UNICODE);
 
-    public static String getEmojiVariant(String browserChars, String variant) {
-        return getEmojiVariant(browserChars, variant, null);
-    }
+//    public static String getEmojiVariant(String browserChars, String variant) {
+//        return getEmojiVariant(browserChars, variant, null);
+//    }
     
-    public static String getEmojiVariant(String browserChars, String variant, UnicodeSet extraVariants) {
-        int first = browserChars.codePointAt(0);
-        String probe = new StringBuilder()
-        .appendCodePoint(first)
-        .append(variant).toString();
-        if (Emoji.STANDARDIZED_VARIANT.get(probe) != null || extraVariants != null && extraVariants.contains(first)) {
-            browserChars = probe + browserChars.substring(Character.charCount(first));
-        }
-        return browserChars;
-    }
+//    public static String getEmojiVariant(String browserChars, String variant, UnicodeSet extraVariants) {
+//        int first = browserChars.codePointAt(0);
+//        String probe = new StringBuilder()
+//        .appendCodePoint(first)
+//        .append(variant).toString();
+//        if (Emoji.STANDARDIZED_VARIANT.get(probe) != null || extraVariants != null && extraVariants.contains(first)) {
+//            browserChars = probe + browserChars.substring(Character.charCount(first));
+//        }
+//        return browserChars;
+//    }
 
     public static final UnicodeMap<String> STANDARDIZED_VARIANT = BETA.load(UcdProperty.Standardized_Variant);
     
@@ -501,81 +517,8 @@ public class Emoji {
 
     static final UnicodeMap<Age_Values>        VERSION_ENUM            = BETA.loadEnum(UcdProperty.Age, Age_Values.class);
 
-    public static String getName(String s, boolean tolower, UnicodeMap<String> extraNames) {
-        String flag = Emoji.getFlagRegionName(s);
-        if (flag != null) {
-            String result = Emoji.LOCALE_DISPLAY.regionDisplayName(flag);
-            if (result.endsWith(" SAR China")) {
-                result = result.substring(0, result.length() - " SAR China".length());
-            }
-            return (tolower ? "flag for " : "Flag for ") + result;
-        }
-        final int firstCodePoint = s.codePointAt(0);
-        String name = Emoji.NAME.get(firstCodePoint);
-        if (name == null && extraNames != null) {
-            name = extraNames.get(s);
-        }
-        if (s.indexOf(ENCLOSING_KEYCAP) >= 0) {
-            name = "Keycap " + name;
-            return (tolower ? name.toLowerCase(Locale.ENGLISH) : name);
-        }
-        final int firstCount = Character.charCount(firstCodePoint);
-        if (s.length() > firstCount) {
-            int cp2 = s.codePointAt(firstCount);
-            final EmojiDatum edata = EmojiData.EMOJI_DATA.getData(cp2);
-            if (edata != null && ModifierStatus.modifier == edata.modifierStatus) {
-                name += ", " + Emoji.shortName(cp2);
-            } else {
-                StringBuffer nameBuffer = new StringBuffer();
-                boolean sep = false;
-                if (s.indexOf(JOINER) >= 0) {
-                    String title = "";
-                    if (s.indexOf(0x1F48B) >= 0) { // KISS MARK
-                        title = "Kiss: ";
-                    } else if (s.indexOf(0x2764) >= 0) { // HEART
-                        title = "Couple with heart: ";
-                    } else if (s.indexOf(0x1F441) < 0) { // !EYE
-                        title = "Family: ";
-                    }
-                    nameBuffer.append(title);
-                }
-                for (int cp : CharSequences.codePoints(s)) {
-                    if (cp == JOINER || cp == EMOJI_VARIANT || cp == 0x2764 || cp == 0x1F48B) { // heart, kiss
-                        continue;
-                    }
-                    if (sep) {
-                        nameBuffer.append(", ");
-                    } else {
-                        sep = true;
-                    }
-                    nameBuffer.append(Emoji.NAME.get(cp));
-    
-                    //                    nameBuffer.append(cp == Emoji.JOINER ? "zwj" 
-                    //                            : cp == Emoji.EMOJI_VARIANT ? "emoji-vs" 
-                    //                                    : NAME.get(cp));
-                }
-                name = nameBuffer.toString();
-            }
-        }
-        return name == null ? "UNNAMED" : (tolower ? name.toLowerCase(Locale.ENGLISH) : name);
-    }
-
-    static String shortName(int cp2) {
-        return Emoji.NAME.get(cp2).substring("emoji modifier fitzpatrick ".length());
-    }
-
-    public static String getFlagRegionName(String s) {
-        String result = getFlagCode(s);
-        if (result != null) {
-            result = Emoji.LOCALE_DISPLAY.regionDisplayName(result);
-            if (result.endsWith(" SAR China")) {
-                result = result.substring(0, result.length() - " SAR China".length());
-            } else if (result.contains("(")) {
-                result = result.substring(0, result.indexOf('(')) + result.substring(result.lastIndexOf(')') + 1);
-            }
-            result = result.replaceAll("\\s\\s+", " ").trim();
-        }
-        return result;
+    public static String getName(String s, boolean toLower, UnicodeMap<String> extraNames) {
+        return EmojiData.EMOJI_DATA.getName(s, toLower);
     }
 
     // Certain resources we always load from latest.
@@ -609,5 +552,35 @@ public class Emoji {
 
     public static String toUHex(String s) {
         return "U+" + Utility.hex(s, " U+");
+    }
+    
+    public static String getFlagRegionName(String s) {
+        String result = Emoji.getFlagCode(s);
+        if (result != null) {
+            result = Emoji.LOCALE_DISPLAY.regionDisplayName(result);
+            if (result.endsWith(" SAR China")) {
+                result = result.substring(0, result.length() - " SAR China".length());
+            } else if (result.contains("(")) {
+                result = result.substring(0, result.indexOf('(')) + result.substring(result.lastIndexOf(')') + 1);
+            }
+            result = result.replaceAll("\\s\\s+", " ").trim();
+        }
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {
+            throw new IllegalArgumentException();
+        }
+        if (!EMOJI_CHARS.contains("🗨")) {
+            throw new IllegalArgumentException();
+        }
+        System.out.println(Source.fbm + " " + Source.fbm.shortName());
+        System.out.println("Singletons:\n" + EMOJI_SINGLETONS.toPattern(false));
+        System.out.println("Without flags:\n" + EMOJI_CHARS_WITHOUT_FLAGS.toPattern(false));
+        System.out.println("Flags:\n" + FLAGS.toPattern(false));
+        System.out.println("With flags:\n" + EMOJI_CHARS.toPattern(false));
+        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(false));
+        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(true));
     }
 }

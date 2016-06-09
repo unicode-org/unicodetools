@@ -44,7 +44,7 @@ public class GenerateEmojiData {
     private static final boolean SHOW = false;
 
     public static void main(String[] args) throws IOException {
-        printData(null);
+        printData(EmojiData.EMOJI_DATA.getRawNames());
     }
 
     public static <T> void printData(UnicodeMap<String> extraNames) throws IOException {
@@ -65,10 +65,10 @@ public class GenerateEmojiData {
             outText2.println("# Warning: the format has changed from Version 1.0");
             outText2.println("# Format: ");
             outText2.println("# codepoint(s) ; property(=Yes) # version [count] name(s) ");
-            printer.show(outText2, "Emoji", width, 14, emoji, true, true );
-            printer.show(outText2, "Emoji_Presentation", width, 14, emoji_presentation, true, true);
-            printer.show(outText2, "Emoji_Modifier", width, 14, emoji_modifiers, true, true);
-            printer.show(outText2, "Emoji_Modifier_Base", width, 14, emoji_modifier_bases, true, true);
+            printer.show(outText2, "Emoji", width, 14, emoji, true, true, false );
+            printer.show(outText2, "Emoji_Presentation", width, 14, emoji_presentation, true, true, false);
+            printer.show(outText2, "Emoji_Modifier", width, 14, emoji_modifiers, true, true, false);
+            printer.show(outText2, "Emoji_Modifier_Base", width, 14, emoji_modifier_bases, true, true, false);
             outText2.println("\n#EOF");
         }
 
@@ -81,9 +81,9 @@ public class GenerateEmojiData {
             int width = maxLength(type_fields);
             showTypeFieldsMessage(out, type_fields);
 
-            printer.show(out, "Emoji_Combining_Sequence", width, 14, Emoji.KEYCAPS, true, false);
-            printer.show(out, "Emoji_Flag_Sequence", width, 14, Emoji.FLAGS, true, false);
-            printer.show(out, "Emoji_Modifier_Sequence", width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), false, false);
+            printer.show(out, "Emoji_Combining_Sequence", width, 14, Emoji.KEYCAPS, true, false, false);
+            printer.show(out, "Emoji_Flag_Sequence", width, 14, Emoji.FLAGS, true, false, false);
+            printer.show(out, "Emoji_Modifier_Sequence", width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), false, false, false);
             out.println("\n#EOF");
         }
 
@@ -94,7 +94,7 @@ public class GenerateEmojiData {
             int width = maxLength(type_fields);
 
             showTypeFieldsMessage(out, type_fields);
-            printer.show(out, "Emoji_ZWJ_Sequence", width, 44, EmojiData.EMOJI_DATA.getZwjSequencesNormal(), false, false);
+            printer.show(out, "Emoji_ZWJ_Sequence", width, 44, EmojiData.EMOJI_DATA.getZwjSequencesNormal(), false, false, true);
             out.println("\n#EOF");
         }
 
@@ -107,10 +107,10 @@ public class GenerateEmojiData {
             int width = maxLength(type_fields);
             showTypeFieldsMessage(out, type_fields);
 
-            printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true);
-            printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true);
-            printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true);
-            printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true);
+            printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true, false);
+            printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true, false);
+            printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true, false);
+            printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true, false);
             out.println("\n#EOF");
         }
         
@@ -147,11 +147,14 @@ public class GenerateEmojiData {
         private boolean flat;
 
         void show(PrintWriter out, String title, int maxTitleWidth, int maxCodepointWidth, UnicodeSet emojiChars, 
-                boolean addVariants, boolean showMissingLine) {
+                boolean addVariants, boolean showMissingLine, boolean showName) {
             Tabber tabber = new Tabber.MonoTabber()
             .add(maxCodepointWidth, Tabber.LEFT)
-            .add(maxTitleWidth + 4, Tabber.LEFT)
-            .add(2, Tabber.LEFT) // hash
+            .add(maxTitleWidth + 4, Tabber.LEFT);
+            if (showName) {
+                tabber.add(50, Tabber.LEFT);
+            }
+            tabber.add(2, Tabber.LEFT) // hash
             .add(3, Tabber.RIGHT) // version
             .add(6, Tabber.RIGHT) // count
             .add(10, Tabber.LEFT) // character
@@ -196,32 +199,35 @@ public class GenerateEmojiData {
                         out.println(tabber.process(
                                 Utility.hex(s) 
                                 + "\t" + titleField 
+                                + (showName ? "\t;" + Emoji.getName(s, false, extraNames) + " " : "")
                                 + "\t#"
                                 + "\t" + range.value.getShortName()
                                 + "\t"
                                 + "\t(" + addEmojiVariant(s, addVariants) + ")"
-                                + "\t" + Emoji.getName(s, false, extraNames)));
+                                + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames))));
                     }
                 } else if (rangeCount == 1) {
                     final boolean isException = !s.equals(EXCEPTION_ZWJ);
                     out.println(tabber.process(
                             Utility.hex(addEmojiVariant(s, isException && range.string != null))
                             + "\t" + titleField 
+                            + (showName ? "\t; " + Emoji.getName(s, false, extraNames) + " " : "")
                             + "\t#"
                             + "\t" + range.value.getShortName()
                             + "\t[1] "
                             + "\t(" + addEmojiVariant(s, isException && (addVariants || range.string != null)) + ")"
-                            + "\t" + Emoji.getName(s, false, extraNames)));
+                            + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames))));
                 } else  {
                     final String e = UTF16.valueOf(range.codepointEnd);
                     out.println(tabber.process(
                             Utility.hex(range.codepoint) + ".." + Utility.hex(range.codepointEnd)
                             + "\t" + titleField 
+                            + (showName ? "\t; " + Emoji.getName(s, false, extraNames) + " " : "")
                             + "\t#"
                             + "\t" + range.value.getShortName()
                             + "\t["+ (range.codepointEnd - range.codepoint + 1) + "] "
                             + "\t(" + addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
-                            + "\t" + Emoji.getName(s, false, extraNames) + ".." + Emoji.getName(e, false, extraNames)));
+                            + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames) + ".." + Emoji.getName(e, false, extraNames))));
                 }
             }
             out.println();

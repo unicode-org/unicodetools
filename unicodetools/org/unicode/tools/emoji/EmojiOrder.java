@@ -156,6 +156,7 @@ public class EmojiOrder {
                 }
             }
             line = Emoji.UNESCAPE.transform(line);
+            line = line.replace(Emoji.TEXT_VARIANT_STRING, "").replace(Emoji.TEXT_VARIANT_STRING, "");
             for (int i = 0; i < line.length();) {
                 String string = Emoji.getEmojiSequence(line, i);
                 i += string.length();
@@ -169,30 +170,26 @@ public class EmojiOrder {
                 add(result, sorted, majorGroup, lastLabel, string);
                 ImmutableList<String> list = hack.get(string);
                 if (list != null) {
+                    addVariants(result, sorted, majorGroup, lastLabel, string);
                     for (String string2 : list) {
                         //System.err.println("Adding " + show(string2));
                         add(result, sorted, majorGroup, lastLabel, string2); 
+                        addVariants(result, sorted, majorGroup, lastLabel, string2);
                     }
                 }
+                if (Emoji.GENDER_BASE.contains(string)) {
+                    addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2640"); 
+                    addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2642"); 
+                }
+                // add all modifier variants
                 if (emojiData.getModifierBases().contains(string)) {
                     for (String string2 : emojiData.getModifierStatusSet(ModifierStatus.modifier)) {
                         add(result, sorted, majorGroup, lastLabel, string+string2); 
                     }
                 }
-                if (emojiData.getKeycapBases().contains(string.charAt(0))) { 
-                    // add variant form, since it is interior
-                    String string2 = emojiData.addEmojiVariants(string, Emoji.EMOJI_VARIANT, VariantHandling.all);
-                    if (!string2.equals(string)) {
-                        add(result, sorted, majorGroup, lastLabel, string2); 
-                    }
-                    string2 = emojiData.addEmojiVariants(string, Emoji.TEXT_VARIANT, VariantHandling.all);
-                    if (!string2.equals(string)) {
-                        add(result, sorted, majorGroup, lastLabel, string2); 
-                    }
-//                    string2 = string.replace(Emoji.EMOJI_VARIANT_STRING, "");
-//                    if (!string2.equals(string)) {
-//                        add(result, sorted, majorGroup, lastLabel, string2); 
-//                    }
+                // add/remove all variant strings
+                if (string.contains(Emoji.JOINER_STRING) || emojiData.getKeycapBases().contains(string.charAt(0))) { 
+                    addVariants(result, sorted, majorGroup, lastLabel, string);
                 }
             }
         }
@@ -221,6 +218,31 @@ public class EmojiOrder {
         return result;
     }
 
+    /**
+     * Add the string, with all emoji variants either present or missing.
+     * @param result
+     * @param sorted
+     * @param majorGroup
+     * @param lastLabel
+     * @param string
+     */
+    private void addVariants(Relation<String, String> result, Set<String> sorted, MajorGroup majorGroup, Output<Set<String>> lastLabel, String string) {
+        // add variant form, since it is interior
+        String withEmojiVariant = emojiData.addEmojiVariants(string, Emoji.EMOJI_VARIANT, VariantHandling.all);
+        if (!string.equals(withEmojiVariant)) {
+            add(result, sorted, majorGroup, lastLabel, withEmojiVariant);
+            if (withEmojiVariant.endsWith(Emoji.EMOJI_VARIANT_STRING)) {
+                add(result, sorted, majorGroup, lastLabel, withEmojiVariant.substring(0,withEmojiVariant.length()-Emoji.EMOJI_VARIANT_STRING.length())); 
+            }
+        }
+        String noVariant = string.replace(Emoji.EMOJI_VARIANT_STRING,"");
+        add(result, sorted, majorGroup, lastLabel, noVariant);
+//        noVariant = emojiData.addEmojiVariants(string, Emoji.TEXT_VARIANT, VariantHandling.all);
+//        if (!noVariant.equals(string)) {
+//            add(result, sorted, majorGroup, lastLabel, noVariant); 
+//        }
+    }
+
     private static String show(String key) {
         StringBuilder b = new StringBuilder();
         for (int cp : CharSequences.codePoints(key)) {
@@ -233,6 +255,13 @@ public class EmojiOrder {
     }
 
     private void add(Relation<String, String> result, Set<String> sorted, MajorGroup majorGroup, Output<Set<String>> lastLabel, String string) {
+        if (sorted.contains(string)) {
+            return; // already done.
+        }
+        // System.out.println(string + "\t" + Utility.hex(string));
+        if (string.equals("👁‍🗨")) {
+            int debug = 0;
+        }
         majorGroupings.put(string, majorGroup);
         sorted.add(string);
         for (String item : lastLabel.value) {
