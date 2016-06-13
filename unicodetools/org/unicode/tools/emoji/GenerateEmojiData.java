@@ -26,6 +26,7 @@ import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateEmojiData {
+    private static final boolean DO_TAGS = false;
 
     // get this from the data file in the future
 
@@ -48,7 +49,7 @@ public class GenerateEmojiData {
     }
 
     public static <T> void printData(UnicodeMap<String> extraNames) throws IOException {
-        
+
         PropPrinter printer = new PropPrinter().set(extraNames);
 
         try (PrintWriter outText2 = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-data.txt")) {
@@ -98,22 +99,24 @@ public class GenerateEmojiData {
             out.println("\n#EOF");
         }
 
-        printer.setFlat(true);
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr52/", "emoji-tags.txt")) {
-            out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", Emoji.VERSION_STRING));
-            List<String> type_fields = Arrays.asList(
-                    "Emoji_Flag_Base", "Emoji_Gender_Base", 
-                    "Emoji_Hair_Base", "Emoji_Direction_Base");
-            int width = maxLength(type_fields);
-            showTypeFieldsMessage(out, type_fields);
+        if (DO_TAGS) {
+            printer.setFlat(true);
+            try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.UNICODE_DRAFT_DIRECTORY + "reports/tr52/", "emoji-tags.txt")) {
+                out.println(Utility.getBaseDataHeader("emoji-tags", 52, "Emoji Data", Emoji.VERSION_STRING));
+                List<String> type_fields = Arrays.asList(
+                        "Emoji_Flag_Base", "Emoji_Gender_Base", 
+                        "Emoji_Hair_Base", "Emoji_Direction_Base");
+                int width = maxLength(type_fields);
+                showTypeFieldsMessage(out, type_fields);
 
-            printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true, false);
-            printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true, false);
-            printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true, false);
-            printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true, false);
-            out.println("\n#EOF");
+                printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true, false);
+                printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true, false);
+                printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true, false);
+                printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true, false);
+                out.println("\n#EOF");
+            }
         }
-        
+
         if (SHOW) System.out.println("Regional_Indicators ; " + Emoji.REGIONAL_INDICATORS.toPattern(false));
         if (SHOW) System.out.println("Emoji Combining Bases ; " + EmojiData.EMOJI_DATA.getKeycapBases().toPattern(false));
         if (SHOW) System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
@@ -123,12 +126,12 @@ public class GenerateEmojiData {
         out.println("# Format: ");
         out.println("# code_point(s) ; type_field # version [count] name(s) ");
         out.println("#   code_point(s): one or more code points in hex format, separated by spaces");
-                out.println("#   type_field: "
-                        + (type_fields.size() != 1 ? "any of {" + CollectionUtilities.join(type_fields, ", ") + "}"
-                               : type_fields.iterator().next())
-                               + ".\n"
-                + "#     The type_field is a convenience for parsing the emoji sequence files, "
-                + "and is not intended to be maintained as a property.");
+        out.println("#   type_field: "
+                + (type_fields.size() != 1 ? "any of {" + CollectionUtilities.join(type_fields, ", ") + "}"
+                        : type_fields.iterator().next())
+                        + ".\n"
+                        + "#     The type_field is a convenience for parsing the emoji sequence files, "
+                        + "and is not intended to be maintained as a property.");
     }
 
     private static int maxLength(Iterable<String> type_fields) {
@@ -258,7 +261,7 @@ public class GenerateEmojiData {
             }
         }
 
-        
+
         public PropPrinter set(UnicodeMap<String> extraNames) {
             this.extraNames = extraNames;
             return this;

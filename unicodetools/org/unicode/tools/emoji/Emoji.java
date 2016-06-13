@@ -408,6 +408,7 @@ public class Emoji {
     public static final Transliterator UNESCAPE = Transliterator.getInstance("hex-any/Perl");
 
     static String getImageFilenameFromChars(Emoji.Source type, String chars) {
+        chars = chars.replace(Emoji.EMOJI_VARIANT_STRING,"");
 //        if (type == Emoji.Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
 //            return null;
 //        }
@@ -444,22 +445,12 @@ public class Emoji {
     }
 
     static public File getImageFile(Source type, String chars) {
+        chars = chars.replace(Emoji.EMOJI_VARIANT_STRING,"");
         String filename = getImageFilenameFromChars(type, chars);
         if (filename != null) {
             File file = new File(IMAGES_OUTPUT_DIR, filename);
             if (file.exists()) {
                 return file;
-            }
-            // hack for now
-            if (chars.contains(Emoji.EMOJI_VARIANT_STRING)) {
-                chars = chars.replace(Emoji.EMOJI_VARIANT_STRING,"");
-                filename = getImageFilenameFromChars(type, chars);
-                if (filename != null) {
-                    file = new File(IMAGES_OUTPUT_DIR, filename);
-                    if (file.exists()) {
-                        return file;
-                    }
-                }
             }
         }
         return null;
@@ -484,8 +475,8 @@ public class Emoji {
         return ordered;
     }
 
-    static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
-    static final IndexUnicodeProperties    BETA  = IndexUnicodeProperties.make(VERSION_BETA_UNICODE);
+    public static final IndexUnicodeProperties    LATEST  = IndexUnicodeProperties.make(VERSION_TO_GENERATE_UNICODE);
+    public static final IndexUnicodeProperties    BETA  = IndexUnicodeProperties.make(VERSION_BETA_UNICODE);
 
 //    public static String getEmojiVariant(String browserChars, String variant) {
 //        return getEmojiVariant(browserChars, variant, null);
