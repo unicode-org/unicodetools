@@ -448,7 +448,7 @@ public class GenerateEmoji {
     static public String getImage(Emoji.Source type, String chars, boolean useDataUrl, String extraClasses) {
         return getImage(type, chars, chars, useDataUrl, extraClasses);
     }
-    
+
     static public String getImage(Emoji.Source type, String charsForFile, String chars, boolean useDataUrl, String extraClasses) {
         String filename = Emoji.getImageFilenameFromChars(type, charsForFile);
         if (filename != null && new File(Emoji.IMAGES_OUTPUT_DIR, filename).exists()) {
@@ -597,15 +597,14 @@ public class GenerateEmoji {
         if (SHOW) System.out.println("Other 6.3:\t" + newItems63.size() + "\t" + newItems63);
         if (SHOW) System.out.println("Other 7.0:\t" + newItems70.size() + "\t" + newItems70);
 
-        for (boolean extraPlatforms : Arrays.asList(true, false)) {
-            EmojiStats stats = new EmojiStats();
-            print(Form.fullForm, stats, extraPlatforms);
-            stats.write(Source.VENDOR_SOURCES);
-            if (Emoji.IS_BETA) {
-                GenerateEmojiData.printData(GenerateEmoji.EXTRA_NAMES);
-            }
+        EmojiStats stats = new EmojiStats();
+        print(Form.fullForm, stats);
+        stats.write(Source.VENDOR_SOURCES);
+        if (Emoji.IS_BETA) {
+            GenerateEmojiData.printData(GenerateEmoji.EXTRA_NAMES);
         }
-        print(Form.noImages, null, false);
+        
+        print(Form.noImages, null);
         // print(Form.extraForm, missingMap, null);
         showNewCharacters();
         for (String e : EmojiData.EMOJI_DATA.getChars()) {
@@ -1859,8 +1858,9 @@ public class GenerateEmoji {
                 + CLDR_DATA_LINK + ". Emoji sequences have more than one code point in the <b>Code</b> column."),
                 fullForm("full", "with images from different vendors, version and source information, default style, and annotations. "
                         + "The ordering of the emoji and the annotations are based on "
-                        + CLDR_DATA_LINK + ". This list does  include the <a target='style' href='emoji-sequences.html#modifier_sequences'>320 modifier sequences</a>,"
-                        + " and the <a target='zwj' href='emoji-zwj-sequences.html'>23 ZWJ sequences</a>."),
+                        + CLDR_DATA_LINK + ". This list does  include the "
+                        + "<a target='style' href='emoji-sequences.html#modifier_sequences'>emoji modifier sequences</a>, "
+                        + "and the <a target='zwj' href='emoji-zwj-sequences.html'>emoji zwj sequences</a>."),
                         extraForm("extra", " with images; have icons but are not including");
 
         final String filePrefix;
@@ -1878,15 +1878,12 @@ public class GenerateEmoji {
 
     /** Main charts 
      * @param extraPlatforms TODO*/
-    public static <T> void print(Form form, EmojiStats stats, boolean extraPlatforms) throws IOException {
-        PrintWriter out = FileUtilities.openUTF8Writer(extraPlatforms ? Emoji.INTERNAL_OUTPUT_DIR : Emoji.CHARTS_DIR, form.filePrefix + "emoji-list" + (form != Form.fullForm ? "" : extraPlatforms ? "-extra" : "")
-                + ".html");
-        PrintWriter outText = null;
-        PrintWriter outText2 = null;
+    public static <T> void print(Form form, EmojiStats stats) throws IOException {
+        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, form.filePrefix + "emoji-list" + ".html");
         int order = 0;
         UnicodeSet level1 = null;
         writeHeader(out, form.title, null, "<p>This chart provides a list of the Unicode emoji characters, " + form.description + "</p>\n", "border='1'", false);
-        final String htmlHeaderString = GenerateEmoji.toHtmlHeaderString(form, extraPlatforms);
+        final String htmlHeaderString = GenerateEmoji.toHtmlHeaderString(form);
         int item = 0;
         String lastOrderingGroup = "";
         int headerGroupCount = 0;
@@ -1901,13 +1898,8 @@ public class GenerateEmoji {
                 out.println(htmlHeaderString);
                 headerGroupCount = 0;
             }
-            out.println(toHtmlString(s, form, ++item, stats, extraPlatforms));
+            out.println(toHtmlString(s, form, ++item, stats));
             ++headerGroupCount;
-
-            if (outText != null) {
-                outText.println(toSemiString(s, order++, null));
-                outText2.println(toSemiString(s, order++, level1));
-            }
         }
         writeFooter(out, "");
         out.close();
@@ -2396,7 +2388,7 @@ public class GenerateEmoji {
 
     static final String ALT_COLUMN = "%%%";
 
-    public static String toHtmlString(String chars2, Form form, int item, EmojiStats stats, boolean extraPlatforms) {
+    public static String toHtmlString(String chars2, Form form, int item, EmojiStats stats) {
         String bestCell = getCell(null, chars2, ALT_COLUMN);
         String symbolaCell = getCell(Emoji.Source.ref, chars2, ALT_COLUMN);
 
@@ -2451,7 +2443,7 @@ public class GenerateEmoji {
                 + "</tr>";
     }
 
-    public static String toHtmlHeaderString(Form form, boolean extraPlatforms) {
+    public static String toHtmlHeaderString(Form form) {
         boolean shortForm = form.compareTo(Form.shortForm) <= 0;
         final boolean shortForm2 = form != Form.fullForm && form != Form.extraForm;
         StringBuilder otherCells = new StringBuilder();
@@ -2473,7 +2465,7 @@ public class GenerateEmoji {
                 // + "<th class='cchars'>Browser</th>\n"
                 + (shortForm ? "" :
                     "<th>Name</th>\n"
-                    + (shortForm2 ? "" : "<th>Year</th>\n"
+                    + (shortForm2 ? "" : "<th>Date</th>\n"
                             + "<th>Default</th>\n")
                             + "<th>Annotations</th>\n"
                             // + "<th>Block: <i>Subhead</i></th>\n"
