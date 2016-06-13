@@ -78,6 +78,7 @@ import com.ibm.icu.util.ULocale;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
     static boolean                 SHOW                        = false;
+    private static final boolean DEBUG = false;
     private static final boolean SHOW_NAMES_LIST = false;
 
     private static final boolean           DRAFT                       = false;
@@ -205,8 +206,13 @@ public class GenerateEmoji {
     static final Set<String> SORTED_ALL_EMOJI_CHARS_SET
     = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, 
             EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives());
+
+
     static {
-        System.out.println(SORTED_ALL_EMOJI_CHARS_SET);
+        if (DEBUG) {
+            System.out.println("{"+CollectionUtilities.join(EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().strings(), "}{")+"}");
+            System.out.println(CollectionUtilities.join(SORTED_ALL_EMOJI_CHARS_SET,""));
+        }
     }
 
     //public static final UnicodeSet APPLE_COMBOS_WITHOUT_VS = EmojiData.EMOJI_DATA.getZwjSequencesAll();
@@ -603,7 +609,7 @@ public class GenerateEmoji {
         if (Emoji.IS_BETA) {
             GenerateEmojiData.printData(GenerateEmoji.EXTRA_NAMES);
         }
-        
+
         print(Form.noImages, null);
         // print(Form.extraForm, missingMap, null);
         showNewCharacters();
@@ -2330,8 +2336,7 @@ public class GenerateEmoji {
         }
 
         String filename = Emoji.getImageFilenameFromChars(type, core);
-        String androidCell = "<td class='"+ cellClass
-                + " miss'>missing</td>\n";
+        String androidCell = "<td class='"+ cellClass + " miss'>—</td>\n";
         if (filename != null) {
             String fullName = getDataUrl(filename);
             if (fullName == null && Emoji.IS_BETA && type == Source.ref) {
@@ -2398,8 +2403,8 @@ public class GenerateEmoji {
             otherCells.append(altClass(getCell(s, chars2, ALT_COLUMN)));
         }
 
-        String browserCell = "<td class='chars'>" + 
-                EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, null)
+        String browserCell = "<td class='chars'>" + chars2
+                //EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, null)
                 //Emoji.getEmojiVariant(chars2, Emoji.EMOJI_VARIANT_STRING)
                 + "</td>\n";
         String name2 = Emoji.getName(chars2, false, GenerateEmoji.EXTRA_NAMES);
@@ -2424,7 +2429,7 @@ public class GenerateEmoji {
                 annotationString.append(getLink("emoji-annotations.html#" + annotation, annotation, "annotate"));
             }
         }
-        String chars2WithVS = EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
+        String chars2WithVS = chars2; // EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
         String anchor = getAnchor(Emoji.toUHex(chars2WithVS));
         final boolean shortForm = form != Form.fullForm && form != Form.extraForm;
         EmojiDatum emojiDatum = EmojiData.EMOJI_DATA.getData(chars2);

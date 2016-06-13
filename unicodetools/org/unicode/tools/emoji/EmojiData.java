@@ -517,56 +517,7 @@ public class EmojiData {
     //        }       
     //    };
     //
-    public static void main(String[] args) {
-        final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
-        System.out.println("Version " + GenerateEnums.ENUM_VERSION);
-        final IndexUnicodeProperties beta = IndexUnicodeProperties.make(Age_Values.V9_0);
-        final UnicodeMap<String> betaNames = beta.load(UcdProperty.Name);
-        final UnicodeMap<String> names = latest.load(UcdProperty.Name);
-        final UnicodeMap<Age_Values> ages = beta.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
-        EmojiData emojiData3 = new EmojiData(VersionInfo.getInstance(3));
-        EmojiData emojiData2 = new EmojiData(VersionInfo.getInstance(2));
 
-        show(0x1f946, names, emojiData3);
-        show(0x1f93b, names, emojiData3);
-
-        UnicodeSet overlap = new UnicodeSet(emojiData3.getModifierBases()).retainAll(emojiData3.getDefaultPresentationSet(DefaultPresentation.text));
-        System.out.println("ModifierBase + TextPresentation: " + overlap.size() + "\t" + overlap.toPattern(false));
-        for (String s : overlap) {
-            System.out.println(Utility.hex(s) + "\t" + s + "\t" + ages.get(s) + "\t" +  names.get(s));
-        }
-
-        System.out.println("v2 SingletonsWithDefectives " + emojiData2.getSingletonsWithDefectives().size() 
-                + "\t" + emojiData2.getSingletonsWithDefectives());
-
-        System.out.println("SingletonsWithDefectives " + emojiData3.getSingletonsWithDefectives().size() 
-                + "\t" + emojiData3.getSingletonsWithDefectives());
-        System.out.println("Defectives " + -(emojiData3.getSingletonsWithDefectives().size() - emojiData3.getSingletonsWithoutDefectives().size()));
-        System.out.println("Keycap Sequences " + emojiData3.getKeycapSequences().size());
-        System.out.println("Flag Sequences " + emojiData3.getFlagSequences().size());
-        System.out.println("ModiferSequences " + emojiData3.getModifierSequences().size());
-        System.out.println("Zwj Sequences " + emojiData3.getZwjSequencesNormal().size());
-
-        System.out.println("modifier" + ", " + emojiData3.getModifierStatusSet(ModifierStatus.modifier).toPattern(false));
-        System.out.println(Emoji.CharSource.WDings  + ", " + emojiData3.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
-        System.out.println(DefaultPresentation.emoji + ", " + emojiData3.getDefaultPresentationSet(DefaultPresentation.emoji).toPattern(false));
-        show(0x1F3CB, names, emojiData3);
-        show(0x1F3CB, names, emojiData2);
-        UnicodeSet keys = new UnicodeSet(emojiData3.keySet()).addAll(emojiData2.keySet());
-        System.out.println("Diffs");
-        for (String key : keys) {
-            EmojiDatum datum = emojiData2.data.get(key);
-            EmojiDatum other = emojiData3.data.get(key);
-            if (!Objects.equals(datum, other)) {
-                //System.out.println("\n" + key + "\t" + Utility.hex(key) + "\t" + names.get(key));
-                show(key, ages, betaNames, emojiData3);
-                //show(key, ages, betaNames, emojiData2);
-            }
-        }
-        System.out.println("Keycap0 " + emojiData3.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
-        System.out.println("KeycapE " + emojiData3.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
-        System.out.println("KeycapT " + emojiData3.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
-    }
 
     private static void show(int cp, final UnicodeMap<String> names, EmojiData emojiData) {
         System.out.println(emojiData.version + "\t" + Utility.hex(cp) + ", " + emojiData.getData(cp) + "\t" + names.get(cp));
@@ -763,5 +714,56 @@ public class EmojiData {
 
     static String shortName(int cp2) {
         return Emoji.NAME.get(cp2).substring("emoji modifier fitzpatrick ".length());
+    }
+    
+    public static void main(String[] args) {
+        final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
+        System.out.println("Version " + GenerateEnums.ENUM_VERSION);
+        final IndexUnicodeProperties beta = IndexUnicodeProperties.make(Age_Values.V9_0);
+        final UnicodeMap<String> betaNames = beta.load(UcdProperty.Name);
+        final UnicodeMap<String> names = latest.load(UcdProperty.Name);
+        final UnicodeMap<Age_Values> ages = beta.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
+        EmojiData emojiData3 = new EmojiData(VersionInfo.getInstance(3));
+        EmojiData emojiData2 = new EmojiData(VersionInfo.getInstance(2));
+
+        show(0x1f946, names, emojiData3);
+        show(0x1f93b, names, emojiData3);
+
+        UnicodeSet overlap = new UnicodeSet(emojiData3.getModifierBases()).retainAll(emojiData3.getDefaultPresentationSet(DefaultPresentation.text));
+        System.out.println("ModifierBase + TextPresentation: " + overlap.size() + "\t" + overlap.toPattern(false));
+        for (String s : overlap) {
+            System.out.println(Utility.hex(s) + "\t" + s + "\t" + ages.get(s) + "\t" +  names.get(s));
+        }
+
+        System.out.println("v2 SingletonsWithDefectives " + emojiData2.getSingletonsWithDefectives().size() 
+                + "\t" + emojiData2.getSingletonsWithDefectives());
+
+        System.out.println("SingletonsWithDefectives " + emojiData3.getSingletonsWithDefectives().size() 
+                + "\t" + emojiData3.getSingletonsWithDefectives());
+        System.out.println("Defectives " + -(emojiData3.getSingletonsWithDefectives().size() - emojiData3.getSingletonsWithoutDefectives().size()));
+        System.out.println("Flag Sequences " + emojiData3.getFlagSequences().size());
+        System.out.println("ModiferSequences " + emojiData3.getModifierSequences().size());
+        System.out.println("Keycap Sequences " + emojiData3.getKeycapSequences().size() + "\t" + emojiData3.getKeycapSequences().toPattern(false));
+        System.out.println("Zwj Sequences " + emojiData3.getZwjSequencesNormal().size() + "\t" + emojiData3.getZwjSequencesNormal().toPattern(false));
+
+        System.out.println("modifier" + ", " + emojiData3.getModifierStatusSet(ModifierStatus.modifier).toPattern(false));
+        System.out.println(Emoji.CharSource.WDings  + ", " + emojiData3.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
+        System.out.println(DefaultPresentation.emoji + ", " + emojiData3.getDefaultPresentationSet(DefaultPresentation.emoji).toPattern(false));
+        show(0x1F3CB, names, emojiData3);
+        show(0x1F3CB, names, emojiData2);
+        UnicodeSet keys = new UnicodeSet(emojiData3.keySet()).addAll(emojiData2.keySet());
+        System.out.println("Diffs");
+        for (String key : keys) {
+            EmojiDatum datum = emojiData2.data.get(key);
+            EmojiDatum other = emojiData3.data.get(key);
+            if (!Objects.equals(datum, other)) {
+                //System.out.println("\n" + key + "\t" + Utility.hex(key) + "\t" + names.get(key));
+                show(key, ages, betaNames, emojiData3);
+                //show(key, ages, betaNames, emojiData2);
+            }
+        }
+        System.out.println("Keycap0 " + emojiData3.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
+        System.out.println("KeycapE " + emojiData3.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+        System.out.println("KeycapT " + emojiData3.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
     }
 }

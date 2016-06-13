@@ -27,7 +27,7 @@ public class TempPrintWriter extends Writer {
         try {
             File tempFile;
             do {
-                tempFile = new File(parentFile, rand.nextInt() + "-" + file.getName());
+                tempFile = new File(parentFile, (0x7FFFFFFF & rand.nextInt()) + "-" + file.getName());
             } while (tempFile.exists());
             tempName = tempFile.toString();
             tempPrintWriter = FileUtilities.openUTF8Writer(parentFile, tempFile.getName());
