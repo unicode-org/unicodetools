@@ -2,6 +2,7 @@ package org.unicode.tools.emoji;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -22,6 +23,7 @@ import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
+import com.ibm.icu.util.ICUUncheckedIOException;
 import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 
@@ -52,7 +54,7 @@ public class GenerateEmojiData {
 
         PropPrinter printer = new PropPrinter().set(extraNames);
 
-        try (PrintWriter outText2 = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-data.txt")) {
+        try (TempPrintWriter outText2 = new TempPrintWriter(Emoji.DATA_DIR, "emoji-data.txt")) {
             UnicodeSet emoji = EmojiData.EMOJI_DATA.getSingletonsWithDefectives();
             UnicodeSet emoji_presentation = new UnicodeSet(EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.emoji));
             UnicodeSet emoji_modifiers = EmojiData.MODIFIERS;
@@ -73,8 +75,8 @@ public class GenerateEmojiData {
             outText2.println("\n#EOF");
         }
 
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-sequences.txt")) {
-            out.println(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING));
+        try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-sequences.txt")) {
+            out.write(Utility.getBaseDataHeader("emoji-sequences", 51, "Emoji Sequence Data", Emoji.VERSION_STRING) + "\n");
             List<String> type_fields = Arrays.asList(
                     "Emoji_Combining_Sequence", 
                     "Emoji_Flag_Sequence", 
@@ -85,18 +87,18 @@ public class GenerateEmojiData {
             printer.show(out, "Emoji_Combining_Sequence", width, 14, Emoji.KEYCAPS, true, false, false);
             printer.show(out, "Emoji_Flag_Sequence", width, 14, Emoji.FLAGS, true, false, false);
             printer.show(out, "Emoji_Modifier_Sequence", width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), false, false, false);
-            out.println("\n#EOF");
+            out.write("\n#EOF\n");
         }
 
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.DATA_DIR, "emoji-zwj-sequences.txt")) {
-            out.println(Utility.getBaseDataHeader("emoji-zwj-sequences", 51, "Emoji ZWJ Sequence Catalog", Emoji.VERSION_STRING));
+        try (Writer out = new TempPrintWriter(Emoji.DATA_DIR, "emoji-zwj-sequences.txt")) {
+            out.write(Utility.getBaseDataHeader("emoji-zwj-sequences", 51, "Emoji ZWJ Sequence Catalog", Emoji.VERSION_STRING) + "\n");
             List<String> type_fields = Arrays.asList(
                     "Emoji_ZWJ_Sequence");
             int width = maxLength(type_fields);
 
             showTypeFieldsMessage(out, type_fields);
             printer.show(out, "Emoji_ZWJ_Sequence", width, 44, EmojiData.EMOJI_DATA.getZwjSequencesNormal(), false, false, true);
-            out.println("\n#EOF");
+            out.write("\n#EOF\n");
         }
 
         if (DO_TAGS) {
@@ -122,16 +124,16 @@ public class GenerateEmojiData {
         if (SHOW) System.out.println("Emoji All ; " + EmojiData.EMOJI_DATA.getAllEmojiWithoutDefectives().toPattern(false));
     }
 
-    private static void showTypeFieldsMessage(PrintWriter out, Collection<String> type_fields) {
-        out.println("# Format: ");
-        out.println("# code_point(s) ; type_field # version [count] name(s) ");
-        out.println("#   code_point(s): one or more code points in hex format, separated by spaces");
-        out.println("#   type_field: "
+    private static void showTypeFieldsMessage(Writer out, Collection<String> type_fields) throws IOException {
+        out.write("# Format: \n");
+        out.write("# code_point(s) ; type_field # version [count] name(s) \n");
+        out.write("#   code_point(s): one or more code points in hex format, separated by spaces\n");
+        out.write("#   type_field: "
                 + (type_fields.size() != 1 ? "any of {" + CollectionUtilities.join(type_fields, ", ") + "}"
                         : type_fields.iterator().next())
                         + ".\n"
                         + "#     The type_field is a convenience for parsing the emoji sequence files, "
-                        + "and is not intended to be maintained as a property.");
+                        + "and is not intended to be maintained as a property.\n");
     }
 
     private static int maxLength(Iterable<String> type_fields) {
@@ -145,122 +147,130 @@ public class GenerateEmojiData {
     }
 
     static final String EXCEPTION_ZWJ = new StringBuilder().appendCodePoint(0x1F441).appendCodePoint(0x200D).appendCodePoint(0x1F5E8).toString();
+
     static class PropPrinter {
         private UnicodeMap<String> extraNames;
         private boolean flat;
 
-        void show(PrintWriter out, String title, int maxTitleWidth, int maxCodepointWidth, UnicodeSet emojiChars, 
+        void show(Writer out, String title, int maxTitleWidth, int maxCodepointWidth, UnicodeSet emojiChars, 
                 boolean addVariants, boolean showMissingLine, boolean showName) {
-            Tabber tabber = new Tabber.MonoTabber()
-            .add(maxCodepointWidth, Tabber.LEFT)
-            .add(maxTitleWidth + 4, Tabber.LEFT);
-            if (showName) {
-                tabber.add(50, Tabber.LEFT);
-            }
-            tabber.add(2, Tabber.LEFT) // hash
-            .add(3, Tabber.RIGHT) // version
-            .add(6, Tabber.RIGHT) // count
-            .add(10, Tabber.LEFT) // character
-            ;
-
-            // # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
-            // 0009..000D    ; White_Space # Cc   [5] <control-0009>..<control-000D>
-            out.println("\n# ================================================\n");
-            int totalCount = 0;
-            if (!showMissingLine) {
-                out.println("# " + title.replace('_', ' ') + "\n");
-            } else {
-                out.println("# All omitted code points have " + title + "=No ");
-                out.println("# @missing: 0000..10FFFF  ; " + title + " ; No\n");
-            }
-
-            String titleField = maxTitleWidth == 0 ? "" : "; " + title;
-
-            // associated ages (newest for sequence)
-            UnicodeMap<Age_Values> emojiCharsWithAge = new UnicodeMap<Age_Values>();
-            for (String s : emojiChars) {
-                emojiCharsWithAge.put(s, Emoji.getNewest(s));
-            }
-
-            for (UnicodeMap.EntryRange<Age_Values> range : emojiCharsWithAge.entryRanges()) {
-                String s;
-                final int rangeCount;
-                if (range.string != null) {
-                    s = range.string;
-                    rangeCount = 1;
-                } else {
-                    s = UTF16.valueOf(range.codepoint);
-                    rangeCount = range.codepointEnd - range.codepoint + 1;
+            try {
+                Tabber tabber = new Tabber.MonoTabber()
+                .add(maxCodepointWidth, Tabber.LEFT)
+                .add(maxTitleWidth + 4, Tabber.LEFT);
+                if (showName) {
+                    tabber.add(50, Tabber.LEFT);
                 }
-                totalCount += rangeCount;
-                if (flat) {
+                tabber.add(2, Tabber.LEFT) // hash
+                .add(3, Tabber.RIGHT) // version
+                .add(6, Tabber.RIGHT) // count
+                .add(10, Tabber.LEFT) // character
+                ;
+
+                // # @missing: 0000..10FFFF; Bidi_Mirroring_Glyph; <none>
+                // 0009..000D    ; White_Space # Cc   [5] <control-0009>..<control-000D>
+                out.write("\n# ================================================\n\n");
+                int totalCount = 0;
+                if (!showMissingLine) {
+                    out.write("# " + title.replace('_', ' ') + "\n\n");
+                } else {
+                    out.write("# All omitted code points have " + title + "=No \n");
+                    out.write("# @missing: 0000..10FFFF  ; " + title + " ; No\n\n");
+                }
+
+                String titleField = maxTitleWidth == 0 ? "" : "; " + title;
+
+                // associated ages (newest for sequence)
+                UnicodeMap<Age_Values> emojiCharsWithAge = new UnicodeMap<Age_Values>();
+                for (String s : emojiChars) {
+                    emojiCharsWithAge.put(s, Emoji.getNewest(s));
+                }
+
+                for (UnicodeMap.EntryRange<Age_Values> range : emojiCharsWithAge.entryRanges()) {
+                    String s;
+                    final int rangeCount;
                     if (range.string != null) {
-                        throw new IllegalArgumentException("internal error");
+                        s = range.string;
+                        rangeCount = 1;
+                    } else {
+                        s = UTF16.valueOf(range.codepoint);
+                        rangeCount = range.codepointEnd - range.codepoint + 1;
                     }
-                    for (int cp = range.codepoint; cp <= range.codepointEnd; ++cp) {
-                        s = UTF16.valueOf(cp);
-                        out.println(tabber.process(
-                                Utility.hex(s) 
+                    totalCount += rangeCount;
+                    if (flat) {
+                        if (range.string != null) {
+                            throw new IllegalArgumentException("internal error");
+                        }
+                        for (int cp = range.codepoint; cp <= range.codepointEnd; ++cp) {
+                            s = UTF16.valueOf(cp);
+                            out.write(tabber.process(
+                                    Utility.hex(s) 
+                                    + "\t" + titleField 
+                                    + (showName ? "\t;" + Emoji.getName(s, false, extraNames) + " " : "")
+                                    + "\t#"
+                                    + "\t" + range.value.getShortName()
+                                    + "\t"
+                                    + "\t(" + addEmojiVariant(s, addVariants) + ")"
+                                    + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames)))
+                                    + "\n");
+                        }
+                    } else if (rangeCount == 1) {
+                        final boolean isException = !s.equals(EXCEPTION_ZWJ);
+                        out.write(tabber.process(
+                                Utility.hex(addEmojiVariant(s, isException && range.string != null))
                                 + "\t" + titleField 
-                                + (showName ? "\t;" + Emoji.getName(s, false, extraNames) + " " : "")
+                                + (showName ? "\t; " + Emoji.getName(s, false, extraNames) + " " : "")
                                 + "\t#"
                                 + "\t" + range.value.getShortName()
-                                + "\t"
-                                + "\t(" + addEmojiVariant(s, addVariants) + ")"
-                                + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames))));
-                    }
-                } else if (rangeCount == 1) {
-                    final boolean isException = !s.equals(EXCEPTION_ZWJ);
-                    out.println(tabber.process(
-                            Utility.hex(addEmojiVariant(s, isException && range.string != null))
-                            + "\t" + titleField 
-                            + (showName ? "\t; " + Emoji.getName(s, false, extraNames) + " " : "")
-                            + "\t#"
-                            + "\t" + range.value.getShortName()
-                            + "\t[1] "
-                            + "\t(" + addEmojiVariant(s, isException && (addVariants || range.string != null)) + ")"
-                            + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames))));
-                } else  {
-                    final String e = UTF16.valueOf(range.codepointEnd);
-                    out.println(tabber.process(
-                            Utility.hex(range.codepoint) + ".." + Utility.hex(range.codepointEnd)
-                            + "\t" + titleField 
-                            + (showName ? "\t; " + Emoji.getName(s, false, extraNames) + " " : "")
-                            + "\t#"
-                            + "\t" + range.value.getShortName()
-                            + "\t["+ (range.codepointEnd - range.codepoint + 1) + "] "
-                            + "\t(" + addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
-                            + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames) + ".." + Emoji.getName(e, false, extraNames))));
-                }
-            }
-            out.println();
-            //out.println("# UnicodeSet: " + emojiChars.toPattern(false));
-            out.println("# Total elements: " + totalCount);
-            UnicodeSet needsEvs = EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text);
-            for (String s : emojiChars) {
-                String sMinus = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
-                final int[] codePoints = CharSequences.codePoints(sMinus);
-                if (codePoints.length == 1) {
-                    continue;
-                }
-                StringBuilder b = new StringBuilder();
-                for (int i : codePoints) {
-                    b.appendCodePoint(i);
-                    if (needsEvs.contains(i)) {
-                        b.append(Emoji.EMOJI_VARIANT);
+                                + "\t[1] "
+                                + "\t(" + addEmojiVariant(s, isException && (addVariants || range.string != null)) + ")"
+                                + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames)))
+                                + "\n");
+                    } else  {
+                        final String e = UTF16.valueOf(range.codepointEnd);
+                        out.write(tabber.process(
+                                Utility.hex(range.codepoint) + ".." + Utility.hex(range.codepointEnd)
+                                + "\t" + titleField 
+                                + (showName ? "\t; " + Emoji.getName(s, false, extraNames) + " " : "")
+                                + "\t#"
+                                + "\t" + range.value.getShortName()
+                                + "\t["+ (range.codepointEnd - range.codepoint + 1) + "] "
+                                + "\t(" + addEmojiVariant(s, addVariants) + ".." + addEmojiVariant(e, addVariants) + ")"
+                                + (showName ? "" : "\t" + Emoji.getName(s, false, extraNames) + ".." + Emoji.getName(e, false, extraNames)))
+                                + "\n");
                     }
                 }
-                String sPlus = b.toString();
-                if (!sPlus.equals(s) || !sMinus.equals(s)) {
-                    if (SHOW) System.out.println(title 
-                            + "\t" + Utility.hex(s) 
-                            + "\t" + (sMinus.equals(s) ? "≣" : Utility.hex(sMinus))
-                            + "\t" + (sPlus.equals(s) ? "≣" : Utility.hex(sPlus))
-                            );
+                out.write("\n");
+                //out.println("# UnicodeSet: " + emojiChars.toPattern(false));
+                out.write("# Total elements: " + totalCount
+                        + "\n");
+                UnicodeSet needsEvs = EmojiData.EMOJI_DATA.getDefaultPresentationSet(DefaultPresentation.text);
+                for (String s : emojiChars) {
+                    String sMinus = s.replace(Emoji.EMOJI_VARIANT_STRING, "");
+                    final int[] codePoints = CharSequences.codePoints(sMinus);
+                    if (codePoints.length == 1) {
+                        continue;
+                    }
+                    StringBuilder b = new StringBuilder();
+                    for (int i : codePoints) {
+                        b.appendCodePoint(i);
+                        if (needsEvs.contains(i)) {
+                            b.append(Emoji.EMOJI_VARIANT);
+                        }
+                    }
+                    String sPlus = b.toString();
+                    if (!sPlus.equals(s) || !sMinus.equals(s)) {
+                        if (SHOW) System.out.println(title 
+                                + "\t" + Utility.hex(s) 
+                                + "\t" + (sMinus.equals(s) ? "≣" : Utility.hex(sMinus))
+                                + "\t" + (sPlus.equals(s) ? "≣" : Utility.hex(sPlus))
+                                );
+                    }
                 }
+            } catch (IOException e) {
+                throw new ICUUncheckedIOException(e);
             }
         }
-
 
         public PropPrinter set(UnicodeMap<String> extraNames) {
             this.extraNames = extraNames;

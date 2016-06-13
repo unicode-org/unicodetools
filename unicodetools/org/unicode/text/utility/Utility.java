@@ -1118,7 +1118,6 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
         }
     }
 
-
     public static boolean renameIdentical(String file1, String file2, String batFile, boolean skipCopyright) throws IOException {
         if (file1 == null) {
             System.out.println("Null file");
