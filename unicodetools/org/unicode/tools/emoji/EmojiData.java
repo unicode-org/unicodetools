@@ -210,6 +210,7 @@ public class EmojiData {
                     
                     List<String> list = semi.splitToList(line);
                     String source = Utility.fromHex(list.get(0));
+
                     String withoutEmojiVariant = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
                     if (!withoutEmojiVariant.equals(source)) {
                         toNormalizedVariant.put(withoutEmojiVariant, source);
@@ -595,6 +596,10 @@ public class EmojiData {
     .freeze();
 
     public enum VariantHandling {sequencesOnly, all}
+    
+    public static final UnicodeSet TAKES_NO_VARIANT = new UnicodeSet(Emoji.EMOJI_VARIANTS_JOINER)
+    .addAll(new UnicodeSet("[[:M:][:Variation_Selector:]]"))
+    .freeze();
 
     /**
      * Add EVS to sequences where needed (and remove where not)
@@ -619,7 +624,8 @@ public class EmojiData {
             result.appendCodePoint(cp);
             // TODO fix so that this works with string of characters containing emoji and others.
             if (!defaultPresentationMap.get(DefaultPresentation.emoji).contains(cp)
-                    && (!emojiDefectives.contains(cp) || cp == 0x2695)) {
+                    && !TAKES_NO_VARIANT.contains(cp)) {
+                // items followed by skin-tone modifiers don't use variation selector.
                 if (i == sequences.length - 1 
                         || !MODIFIERS.contains(sequences[i+1])) {
                     result.appendCodePoint(variant);
@@ -739,53 +745,67 @@ public class EmojiData {
     }
     
     public static void main(String[] args) {
+        EmojiData betaData = new EmojiData(Emoji.VERSION_BETA);
+        EmojiData lastReleasedData = new EmojiData(Emoji.VERSION_LAST_RELEASED);
+        String test = Utility.fromHex("1F482 200D 2640");
+        betaData.addEmojiVariants(test, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
+        for (String s : betaData.getZwjSequencesNormal()) {
+            if ("👁‍🗨".equals(s)) {
+                continue;
+            }
+            String newS = betaData.addEmojiVariants(s, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly); // 👁‍🗨
+            if (!newS.equals(s)) {
+                throw new IllegalArgumentException(Utility.hex(s) + "\t" + Utility.hex(newS));
+            } else {
+                //System.out.println(Utility.hex(s));
+            }
+        }
+
         final IndexUnicodeProperties latest = IndexUnicodeProperties.make(GenerateEnums.ENUM_VERSION);
         System.out.println("Version " + GenerateEnums.ENUM_VERSION);
         final IndexUnicodeProperties beta = IndexUnicodeProperties.make(Age_Values.V9_0);
         final UnicodeMap<String> betaNames = beta.load(UcdProperty.Name);
         final UnicodeMap<String> names = latest.load(UcdProperty.Name);
         final UnicodeMap<Age_Values> ages = beta.loadEnum(UcdProperty.Age, UcdPropertyValues.Age_Values.class);
-        EmojiData emojiData3 = new EmojiData(VersionInfo.getInstance(3));
-        EmojiData emojiData2 = new EmojiData(VersionInfo.getInstance(2));
 
-        show(0x1f946, names, emojiData3);
-        show(0x1f93b, names, emojiData3);
+        show(0x1f946, names, betaData);
+        show(0x1f93b, names, betaData);
 
-        UnicodeSet overlap = new UnicodeSet(emojiData3.getModifierBases()).retainAll(emojiData3.getDefaultPresentationSet(DefaultPresentation.text));
+        UnicodeSet overlap = new UnicodeSet(betaData.getModifierBases()).retainAll(betaData.getDefaultPresentationSet(DefaultPresentation.text));
         System.out.println("ModifierBase + TextPresentation: " + overlap.size() + "\t" + overlap.toPattern(false));
         for (String s : overlap) {
             System.out.println(Utility.hex(s) + "\t" + s + "\t" + ages.get(s) + "\t" +  names.get(s));
         }
 
-        System.out.println("v2 SingletonsWithDefectives " + emojiData2.getSingletonsWithDefectives().size() 
-                + "\t" + emojiData2.getSingletonsWithDefectives());
+        System.out.println("v2 SingletonsWithDefectives " + lastReleasedData.getSingletonsWithDefectives().size() 
+                + "\t" + lastReleasedData.getSingletonsWithDefectives());
 
-        System.out.println("SingletonsWithDefectives " + emojiData3.getSingletonsWithDefectives().size() 
-                + "\t" + emojiData3.getSingletonsWithDefectives());
-        System.out.println("Defectives " + -(emojiData3.getSingletonsWithDefectives().size() - emojiData3.getSingletonsWithoutDefectives().size()));
-        System.out.println("Flag Sequences " + emojiData3.getFlagSequences().size());
-        System.out.println("ModiferSequences " + emojiData3.getModifierSequences().size());
-        System.out.println("Keycap Sequences " + emojiData3.getKeycapSequences().size() + "\t" + emojiData3.getKeycapSequences().toPattern(false));
-        System.out.println("Zwj Sequences " + emojiData3.getZwjSequencesNormal().size() + "\t" + emojiData3.getZwjSequencesNormal().toPattern(false));
+        System.out.println("SingletonsWithDefectives " + betaData.getSingletonsWithDefectives().size() 
+                + "\t" + betaData.getSingletonsWithDefectives());
+        System.out.println("Defectives " + -(betaData.getSingletonsWithDefectives().size() - betaData.getSingletonsWithoutDefectives().size()));
+        System.out.println("Flag Sequences " + betaData.getFlagSequences().size());
+        System.out.println("ModiferSequences " + betaData.getModifierSequences().size());
+        System.out.println("Keycap Sequences " + betaData.getKeycapSequences().size() + "\t" + betaData.getKeycapSequences().toPattern(false));
+        System.out.println("Zwj Sequences " + betaData.getZwjSequencesNormal().size() + "\t" + betaData.getZwjSequencesNormal().toPattern(false));
 
-        System.out.println("modifier" + ", " + emojiData3.getModifierStatusSet(ModifierStatus.modifier).toPattern(false));
-        System.out.println(Emoji.CharSource.WDings  + ", " + emojiData3.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
-        System.out.println(DefaultPresentation.emoji + ", " + emojiData3.getDefaultPresentationSet(DefaultPresentation.emoji).toPattern(false));
-        show(0x1F3CB, names, emojiData3);
-        show(0x1F3CB, names, emojiData2);
-        UnicodeSet keys = new UnicodeSet(emojiData3.keySet()).addAll(emojiData2.keySet());
+        System.out.println("modifier" + ", " + betaData.getModifierStatusSet(ModifierStatus.modifier).toPattern(false));
+        System.out.println(Emoji.CharSource.WDings  + ", " + betaData.getCharSourceSet(Emoji.CharSource.WDings).toPattern(false));
+        System.out.println(DefaultPresentation.emoji + ", " + betaData.getDefaultPresentationSet(DefaultPresentation.emoji).toPattern(false));
+        show(0x1F3CB, names, betaData);
+        show(0x1F3CB, names, lastReleasedData);
+        UnicodeSet keys = new UnicodeSet(betaData.keySet()).addAll(lastReleasedData.keySet());
         System.out.println("Diffs");
         for (String key : keys) {
-            EmojiDatum datum = emojiData2.data.get(key);
-            EmojiDatum other = emojiData3.data.get(key);
+            EmojiDatum datum = lastReleasedData.data.get(key);
+            EmojiDatum other = betaData.data.get(key);
             if (!Objects.equals(datum, other)) {
                 //System.out.println("\n" + key + "\t" + Utility.hex(key) + "\t" + names.get(key));
-                show(key, ages, betaNames, emojiData3);
+                show(key, ages, betaNames, betaData);
                 //show(key, ages, betaNames, emojiData2);
             }
         }
-        System.out.println("Keycap0 " + emojiData3.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
-        System.out.println("KeycapE " + emojiData3.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
-        System.out.println("KeycapT " + emojiData3.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+        System.out.println("Keycap0 " + betaData.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
+        System.out.println("KeycapE " + betaData.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+        System.out.println("KeycapT " + betaData.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
     }
 }
