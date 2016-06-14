@@ -87,7 +87,7 @@ public class Emoji {
     }
     
     // HACK
-    static final UnicodeSet GENDER_BASE = new UnicodeSet("[⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶\\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
+    static final UnicodeSet GENDER_BASE = new UnicodeSet("[💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶\\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
     .freeze();
     static final UnicodeSet PROFESSION_OBJECT = new UnicodeSet("[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬]")
     .freeze();
@@ -271,11 +271,19 @@ public class Emoji {
 
     public static final UnicodeSet FACES = new UnicodeSet("[☺ ☹ 🙁 🙂 😀-😆 😉-😷 😇 😈 👿 🙃 🙄 🤐-🤕 🤗]").freeze();
     
+    public static final char JOINER = '\u200D';
+
     public static final char EMOJI_VARIANT = '\uFE0F';
     public static final char TEXT_VARIANT = '\uFE0E';
-    public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet().add(EMOJI_VARIANT).add(TEXT_VARIANT).freeze();
+    public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet()
+    .add(EMOJI_VARIANT)
+    .add(TEXT_VARIANT)
+    .freeze();
     
-    public static final char JOINER = '\u200D';
+    public static final UnicodeSet EMOJI_VARIANTS_JOINER = new UnicodeSet(EMOJI_VARIANTS)
+    .add(JOINER)
+    .freeze();
+
 
     static final int FIRST_REGIONAL = 0x1F1E6;
     static final int LAST_REGIONAL = 0x1F1FF;

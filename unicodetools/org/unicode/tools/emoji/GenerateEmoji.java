@@ -1338,14 +1338,17 @@ public class GenerateEmoji {
             out.println("<td class='andr'>");
             //            name.setLength(0);
             for (int item : CharSequences.codePoints(s)) {
-                if (Emoji.EMOJI_CHARS.contains(item)) {
+                if (Emoji.EMOJI_VARIANTS_JOINER.contains(item)) {
+                    continue;
+                }
+                //if (Emoji.EMOJI_CHARS.contains(item)) {
                     String s2 = UTF16.valueOf(item);
                     out.println(getBestImage(s2, true, ""));
                     //                    if (name.length() != 0) {
                     //                        name.append();
                     //                    }
                     //                    name.append(getName(s2, true));
-                }
+                //}
             }
             out.println("</td>");
             //            if (isSingle) {
@@ -2418,17 +2421,7 @@ public class GenerateEmoji {
 
         String textChars = EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.TEXT_VARIANT, null);
         // Emoji.getEmojiVariant(chars2, Emoji.TEXT_VARIANT_STRING);
-        Set<String> annotations = new LinkedHashSet<String>(Utility.ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2), Collections.EMPTY_SET));
-        annotations.removeAll(GenerateEmoji.SUPPRESS_ANNOTATIONS);
-        StringBuilder annotationString = new StringBuilder();
-        if (!annotations.isEmpty()) {
-            for (String annotation : annotations) {
-                if (annotationString.length() != 0) {
-                    annotationString.append(", ");
-                }
-                annotationString.append(getLink("emoji-annotations.html#" + annotation, annotation, "annotate"));
-            }
-        }
+
         String chars2WithVS = chars2; // EmojiData.EMOJI_DATA.addEmojiVariants(chars2, Emoji.EMOJI_VARIANT, VariantHandling.sequencesOnly);
         String anchor = getAnchor(Emoji.toUHex(chars2WithVS));
         final boolean shortForm = form != Form.fullForm && form != Form.extraForm;
@@ -2444,8 +2437,22 @@ public class GenerateEmoji {
             + (shortForm ? "" : 
                 "<td class='age'>" + VersionToAge.getYear(Emoji.getNewest(chars2)) + getSources(chars2, new StringBuilder(), true) + "</td>\n"
                 + "<td class='default'>" + (emojiDatum == null ? "n/a" : emojiDatum.style) + (!textChars.equals(chars2) ? "*" : "") + "</td>\n")
-                + "<td class='name'>" + annotationString + "</td>\n"
+                + "<td class='name'>" + getAnnotationsString(chars2) + "</td>\n"
                 + "</tr>";
+    }
+    private static StringBuilder getAnnotationsString(String chars2) {
+        Set<String> annotations = new LinkedHashSet<String>(Utility.ifNull(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2), Collections.EMPTY_SET));
+        annotations.removeAll(GenerateEmoji.SUPPRESS_ANNOTATIONS);
+        StringBuilder annotationString = new StringBuilder();
+        if (!annotations.isEmpty()) {
+            for (String annotation : annotations) {
+                if (annotationString.length() != 0) {
+                    annotationString.append(", ");
+                }
+                annotationString.append(getLink("emoji-annotations.html#" + annotation, annotation, "annotate"));
+            }
+        }
+        return annotationString;
     }
 
     public static String toHtmlHeaderString(Form form) {
@@ -2453,26 +2460,26 @@ public class GenerateEmoji {
         final boolean shortForm2 = form != Form.fullForm && form != Form.extraForm;
         StringBuilder otherCells = new StringBuilder();
         for (Source s : Emoji.Source.platformsToIncludeNormal) {
-            otherCells.append("<th class='cchars'>" + s.shortName() + "</th>\n");
+            otherCells.append("<th class='cchars'><a target='text' href='index.html#col-vendor'>" + s.shortName() + "</a></th>\n");
         }
 
         return "<tr>"
-        + "<th class='rchars'>№</th>\n"
-        + "<th class='rchars'>Code</th>\n"
+        + "<th class='rchars'><a target='text' href='index.html#col-num'>№</a></th>\n"
+        + "<th class='rchars'><a target='text' href='index.html#col-code'>Code</a></th>\n"
         + (shortForm2
-                ? "<th class='cchars'>Browser</th>\n"
-                + "<th class='cchars'>Sample</th>\n"
+                ? "<th class='cchars'><a target='text' href='index.html#col-browser'>Browser</a></th>\n"
+                + "<th class='cchars'><a target='text' href='index.html#col-vendor'>Sample</a></th>\n"
                 :
-                    "<th class='cchars'>Brow.</th>\n"
-                    + "<th class='cchars'>Chart</th>\n"
+                    "<th class='cchars'><a target='text' href='index.html#col-browser'>Brow.</a></th>\n"
+                    + "<th class='cchars'><a target='text' href='index.html#col-chart'>Chart</a></th>\n"
                     + otherCells
                 )
                 // + "<th class='cchars'>Browser</th>\n"
                 + (shortForm ? "" :
-                    "<th>Name</th>\n"
-                    + (shortForm2 ? "" : "<th>Date</th>\n"
-                            + "<th>Default</th>\n")
-                            + "<th>Annotations</th>\n"
+                    "<th><a target='text' href='index.html#col-name'>Name</a></th>\n"
+                    + (shortForm2 ? "" : "<th><a target='text' href='index.html#col-data'>Date</a></th>\n"
+                            + "<th><a target='text' href='index.html#col-default'>Default</a></th>\n")
+                            + "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>\n"
                             // + "<th>Block: <i>Subhead</i></th>\n"
                         )
                         + "</tr>";
@@ -2511,14 +2518,15 @@ public class GenerateEmoji {
         String lastCategory = null;
         MajorGroup lastMajorGroup = null;
         String header = "<tr>"
-                + "<th>№</th>"
-                + "<th width='7em'>Code</th>"
-                + "<th width='5em'>Chart Glyph</th>"
-                + "<th>Sample Colored Glyphs</th>"
-                + (future ? "<th>Date</th>"
+                + "<th><a target='text' href='index.html#col-num'>№</a></th>"
+                + "<th width='7em'><a target='text' href='index.html#col-code'>Code</a></th>"
+                + "<th width='5em'><a target='text' href='index.html#col-chart'>Chart Glyph</a></th>"
+                + "<th><a target='text' href='index.html#col-vendor'>Sample Colored Glyphs</a></th>"
+                + "<th><a target='text' href='index.html#col-name'>Name</a></th>"
+                + "<th><a target='text' href='index.html#col-annotations'>Keywords</a></th>"
+                + (future ? "<th><a target='text' href='index.html#col-data'>Date</a></th>"
                         //+ "<th>EMB</th>" 
                         : "")
-                        + "<th>Name</th>"
                         + "</tr>" 
                         ;
 
@@ -2560,20 +2568,23 @@ public class GenerateEmoji {
             if (special >= 0) {
                 href = anchor = "X" + Utility.hex(special,5);
             }
-            String currentRow = "<tr>"
-                    + "<td class='rchars'>" + ++count + "</td>"
-                    + "<td class='code'>" + getDoubleLink(href, anchor) + "</td>"
-                    + "<td class='andr'>" + blackAndWhite + "</td>"
-                    + "<td class='default'>" + color + "</td>"
-                    + (future ? "<td class='default'>" + cd.getQuarter(source) + "</td>"
-                            // + "<td class='default'>" + (modBase.contains(source) ? "Yes" : "") 
-                            : "")
-                            + "<td class='name'>" + cd.getName(source)
-                            ;
+            String currentRow = "<tr>\n"
+                    + " <td class='rchars'>" + ++count + "</td>\n"
+                    + " <td class='code'>" + getDoubleLink(href, anchor) + "</td>\n"
+                    + " <td class='andr'>" + blackAndWhite + "</td>\n"
+                    + " <td class='default'>" + color + "</td>\n"
+                    + " <td class='name'>" + cd.getName(source)
+                    ;
             for (String annotation :  cd.getAnnotations(source)) {
                 currentRow += "<br> • " + annotation;
             }
-            output.add(currentRow + "</tr>");
+            currentRow += "</td>\n"
+                    + " <td class='name'>" + getAnnotationsString(source) + "</td>\n";
+            currentRow +=  (future ? " <td class='default'>" + cd.getQuarter(source) + "</td>\n"
+                    // + "<td class='default'>" + (modBase.contains(source) ? "Yes" : "") 
+                    : "")
+                    + "</tr>\n";
+            output.add(currentRow);
         }
         UnicodeSet items = cd.getCharacters();
 
