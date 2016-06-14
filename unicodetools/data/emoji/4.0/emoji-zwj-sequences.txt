@@ -119,6 +119,13 @@
 1F93D 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male playing water polo                                # 9.0  [1] (🤽‍♂)
 1F93E 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female playing handball                                # 9.0  [1] (🤾‍♀)
 1F93E 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male playing handball                                  # 9.0  [1] (🤾‍♂)
+1F482 200D 2640                             ; Emoji_ZWJ_Sequence  ; Female guard # 💂♀	
+1F482 200D 2642                             ; Emoji_ZWJ_Sequence  ; Male guard # 💂♂	
+1F473 200D 2640                             ; Emoji_ZWJ_Sequence  ; Woman with turban #👳♀	
+1F473 200D 2642                             ; Emoji_ZWJ_Sequence  ; Man with turban # 👳♂	
+1F471 200D 2640                             ; Emoji_ZWJ_Sequence  ; Blonde woman # 👱♀	
+1F471 200D 2642                             ; Emoji_ZWJ_Sequence  ; Blond man # 👱♂	
+1F3F3 FE0F 200D 1F308                             ; Emoji_ZWJ_Sequence  ; Rainbow flag # 🏳‍🌈 	
 
 # Total elements: 100
 

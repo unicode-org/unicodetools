@@ -72,6 +72,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
                     if (EmojiData.EMOJI_DATA.skipEmojiSequence(string)) {
                         continue;
                     }
+                    string = EmojiData.EMOJI_DATA.normalizeVariant(string);
                     for (String item : ei.newLabel) {
                         add(fixAnnotation(item), string);
                     }

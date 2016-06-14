@@ -104,6 +104,7 @@ public class EmojiData {
     private final UnicodeSet keycapSequenceAll = new UnicodeSet();
     private final UnicodeSet keycapBases = new UnicodeSet();
     private final UnicodeSet emojiDefectives = new UnicodeSet();
+    private final UnicodeMap<String> toNormalizedVariant = new UnicodeMap<String>();
     
     private final UnicodeMap<String> names = new UnicodeMap<>();
 
@@ -209,6 +210,10 @@ public class EmojiData {
                     
                     List<String> list = semi.splitToList(line);
                     String source = Utility.fromHex(list.get(0));
+                    String withoutEmojiVariant = source.replace(Emoji.EMOJI_VARIANT_STRING, "");
+                    if (!withoutEmojiVariant.equals(source)) {
+                        toNormalizedVariant.put(withoutEmojiVariant, source);
+                    }
                     emojiDefectives.addAll(source);
                     int first = source.codePointAt(0);
                     if (zwj) {
@@ -714,6 +719,23 @@ public class EmojiData {
 
     static String shortName(int cp2) {
         return Emoji.NAME.get(cp2).substring("emoji modifier fitzpatrick ".length());
+    }
+    
+    public String normalizeVariant(String emojiSequence) {
+        String result = toNormalizedVariant.get(emojiSequence);
+        if (result != null) {
+            return result;
+        }
+        if (emojiSequence.contains(Emoji.EMOJI_VARIANT_STRING)) {
+            String trial = emojiSequence.replace(Emoji.EMOJI_VARIANT_STRING, "");
+            result = toNormalizedVariant.get(trial);
+            if (result != null) {
+                return result;
+            } else {
+                return trial;
+            }
+        }
+        return emojiSequence;
     }
     
     public static void main(String[] args) {
