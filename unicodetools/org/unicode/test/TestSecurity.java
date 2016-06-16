@@ -136,12 +136,12 @@ public class TestSecurity extends TestFmwkPlus {
         System.out.println(ucd.getVersion());
 
         for (String s : ScriptMetadata.getScripts()) {
-            if (s.equals("Jpan") || s.equals("Kore") || s.equals("Hans") || s.equals("Hant")) {
+            if (s.equals("Jpan") || s.equals("Kore") || s.equals("Hans") || s.equals("Hant") || s.equals("Hanb") || s.equals("Jamo")) {
                 continue;
             }
             Info info = ScriptMetadata.getInfo(s);
             if (info.idUsage == IdUsage.RECOMMENDED) {
-                //System.out.println(s + "\t" + info);
+                System.out.println(s + "\t" + info);
                 short currentScriptNumber = Utility.lookupShort(s, UCD_Names.SCRIPT, true);
                 boolean first = true;
                 UnicodeSet all = new UnicodeSet();

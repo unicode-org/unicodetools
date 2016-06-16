@@ -165,7 +165,7 @@ public class GenerateIdnaTest {
     }
 
     int generateLine(String source, PrintWriter out) {
-        if (source.contains("🌱")) {
+        if (source.contains(".𐋱₂")) {
             int debug = 0;
         }
         if (alreadyDone(source)) {
