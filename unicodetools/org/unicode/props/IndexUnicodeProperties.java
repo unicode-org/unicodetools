@@ -109,7 +109,7 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     //static final Joiner JOIN = new Joiner(FIELD_SEPARATOR);
 
-    static Map<VersionInfo, IndexUnicodeProperties> version2IndexUnicodeProperties = new HashMap<>();
+    static Map<VersionInfo, IndexUnicodeProperties> version2IndexUnicodeProperties = new ConcurrentHashMap<>();
 
     private IndexUnicodeProperties(VersionInfo ucdVersion2) {
         ucdVersion = ucdVersion2;

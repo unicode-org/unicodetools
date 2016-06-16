@@ -641,3 +641,18 @@ Map {\m{kMandarin}-[\U0002B851\u4E07\u4E37\u4E44\u4E67\u4EA3\u4EBD\u4EE9\u4EEE\u
 #    - added to both maps 612 characters whose readings changed in 9.0: see 143-C25, 143-A86
 #    - added 8968 to both maps; its kMandarin reading changed in 9.0: see 147-A63
 #      (the second character in 147-A63 was 8B75, already among the 612 added above)
+
+# Ideographic invariants
+
+Let $ideohack = [〆 〇 〡-〩]
+
+[\p{ideographic}-\p{sc=tangut}-\p{nfkcqc=n}-$ideohack] = \p{Unified_Ideograph}
+
+# Following don't work yet. Tested independently in TestInvariants
+# \p{Unified_Ideograph} ⊇ \P{kRSUnicode=∅}
+
+# \p{Unified_Ideograph} = \P{kRSUnicode=∅}
+
+# \P{kRSUnicode=∅} = \P{kTotalStrokes=∅}
+
+# \P{kHanyuPinyin=∅} ⊇ \P{kMandarin=∅}

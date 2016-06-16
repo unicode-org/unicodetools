@@ -817,6 +817,10 @@ public class TestUnicodeInvariants {
                 ? ICUPropertyFactory.make()
                         : ToolUnicodePropertySource.make(version);
     }
+    
+    private static Factory getIndexedProperties(String version2) {
+        return IndexUnicodeProperties.make(version2);
+    }
 
     static class ChainedSymbolTable extends UnicodeSet.XSymbolTable {
 
@@ -919,11 +923,15 @@ public class TestUnicodeInvariants {
             propSource = getProperties(version);
             property = propSource.getProperty(xPropertyName);
             if (property == null) {
-                throw new IllegalArgumentException("Can't create property from name: " + propertyName + " and version: " + version);
+                propSource = getIndexedProperties(version);
+                property = propSource.getProperty(xPropertyName);
+                if (property == null) {
+                    throw new IllegalArgumentException("Can't create property from name: " + propertyName + " and version: " + version);
+                }
             }
             return this;
         }
-
+        
         public UnicodeSet getSet(String propertyValue) {
             UnicodeSet set;
             if (propertyValue.length() == 0) {
@@ -941,12 +949,25 @@ public class TestUnicodeInvariants {
                 }
                 matcher.set(body);
                 set = property.getSet(matcher);
+            } else if (propertyValue.equals("∅")){
+                set = property.getSet(NULL_MATCHER, null);
             } else {
                 set = property.getSet(propertyValue);
             }
             return set;
         }
     }
+    
+    static final UnicodeProperty.PatternMatcher NULL_MATCHER = new UnicodeProperty.PatternMatcher() {
+        @Override
+        public boolean matches(Object o) {
+            return o == null || "".equals(o);
+        }
+        @Override
+        public PatternMatcher set(String pattern) {
+            return this;
+        }
+    };
 
     public static UnicodeSet parseUnicodeSet(String line, ParsePosition pp) {
         return new UnicodeSet(line, pp, symbolTable);
