@@ -2554,11 +2554,13 @@ public class GenerateEmoji {
             if (blackAndWhite == null) {
                 blackAndWhite = "<i>n/a</i>";
             }
-            String color1 = getImage(Source.emojixpress, source, true, "");
-            String color2 = getImage(Source.emojipedia, source, true, "");
-            String color3 = getImage(Source.google, source, true, "");
-            String sample = getImage(Source.sample, source, true, "");
-            String color = SPACE_JOINER.join(color1, color2, sample, color3);
+            String color = SPACE_JOINER.join(
+                    getImage(Source.google, source, true, ""),
+                    getImage(Source.emojione, source, true, ""),
+                    getImage(Source.emojixpress, source, true, ""), 
+                    getImage(Source.emojipedia, source, true, ""), 
+                    getImage(Source.sample, source, true, "")
+                    );
             if (color.isEmpty()) {
                 color = "<i>n/a</i>";
             }
