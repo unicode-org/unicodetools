@@ -126,6 +126,13 @@
 1F471 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Blonde woman  # 👱♀	
 1F471 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Blond man   # 👱♂	
 1F3F3 FE0F 200D 1F308                             ; Emoji_ZWJ_Sequence  ; Rainbow flag   # 🏳‍🌈 	
+1F939 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Woman juggling  # 👱♀	
+1F939 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Man juggling   # 👱♂	
+1F471 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Blonde woman  # 👱♀	
+1F471 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Blond man   # 👱♂	
+1F471 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Blonde woman  # 👱♀	
+1F471 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Blond man   # 👱♂	
+
 
 # Total elements: 100
 

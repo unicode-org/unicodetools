@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -87,42 +88,34 @@ public class TestSecurity extends TestFmwkPlus {
     }
 
     public void TestIdempotence() {
-        for (Entry<String, EnumMap<Style, String>> entry : CONFUSABLES.getChar2data().entrySet()) {
-            String code = entry.getKey();
-            EnumMap<Style, String> map = entry.getValue();
-            for (Entry<Style, String> codeToValue : map.entrySet()) {
-                Style style = codeToValue.getKey();
-                boolean warningOnly = style != Style.MA;
+        // We want to test that map(map(code)) = map(code)
 
-                UnicodeMap<String> transformMap = CONFUSABLES.getStyle2map().get(style);
-                String value = codeToValue.getValue();
-                String value2 = transformMap.transform(value);
-                if (!value2.equals(value)) {
-                    final String message = style
-                            + "\tU+" + Utility.hex(code)+ " ( " + code + " ) "  + Default.ucd().getName(code)
-                            + "\t\texpect:\tU+" + Utility.hex(value2, "U+") + " ( " + value2 + " ) " + Default.ucd().getName(value2)
-                            + "\t\tactual:\tU+" + Utility.hex(value, "U+") + " ( " + value + " ) " + " " + Default.ucd().getName(value)
-                            ;
-                    if (warningOnly) {
-                        warnln(message);
-                    } else { 
-                        errln(message); 
-                    }
-                }
+        UnicodeMap<String> transformMap = CONFUSABLES.getRawMapToRepresentative(Style.MA);
+        for (Entry<String, String> entry : transformMap.entrySet()) {
+            String source = entry.getKey();
+            String value = entry.getValue();
+            String map_map = transformMap.get(value);
+            if (map_map == null) {
+                map_map = value;
+            }
+            if (!value.equals(map_map)) {
+                errln("U+" + Utility.hex(source)+ " ( " + source + " ) "  + Default.ucd().getName(source)
+                        + "\t\tmap(source):\tU+" + Utility.hex(value, "U+") + " ( " + value + " ) " + Default.ucd().getName(value)
+                        + "\t\tmap(map(source)):\tU+" + Utility.hex(map_map, "U+") + " ( " + map_map + " ) " + " " + Default.ucd().getName(map_map));
             }
         }
     }
 
     public void TestConfusables() {
         Confusables confusablesOld = new Confusables(SECURITY + Settings.lastVersion);
-        showDiff("Confusable", confusablesOld.getStyle2map().get(Style.MA), CONFUSABLES.getStyle2map().get(Style.MA), new UTF16.StringComparator(), getLogPrintWriter());
+        showDiff("Confusable", confusablesOld.getRawMapToRepresentative(Style.MA), CONFUSABLES.getRawMapToRepresentative(Style.MA), new UTF16.StringComparator(), getLogPrintWriter());
     }
 
     public void TestXidMod() {
         XIDModifications xidModOld = new XIDModifications(SECURITY + Settings.lastVersion);
         UnicodeMap<IdentifierStatus> newStatus = XIDMOD.getStatus();
         showDiff("Status", xidModOld.getStatus(), newStatus, new EnumComparator<IdentifierStatus>(), getLogPrintWriter());
-        showDiff("Type", xidModOld.getType(), XIDMOD.getType(), new EnumComparator<IdentifierType>(), getLogPrintWriter());
+        showDiff("Type", xidModOld.getType(), XIDMOD.getType(), new EnumSetComparator<Set<IdentifierType>>() , getLogPrintWriter());
 
         UnicodeSet newRecommended = newStatus.getSet(IdentifierStatus.allowed);
         UnicodeSet oldRecommended = xidModOld.getStatus().getSet(IdentifierStatus.allowed);
@@ -141,7 +134,7 @@ public class TestSecurity extends TestFmwkPlus {
             }
             Info info = ScriptMetadata.getInfo(s);
             if (info.idUsage == IdUsage.RECOMMENDED) {
-                System.out.println(s + "\t" + info);
+                logln(s + "\t" + info);
                 short currentScriptNumber = Utility.lookupShort(s, UCD_Names.SCRIPT, true);
                 boolean first = true;
                 UnicodeSet all = new UnicodeSet();
@@ -160,14 +153,14 @@ public class TestSecurity extends TestFmwkPlus {
                     all.add(i);
                 }
                 if (s.equals("Hani")) {
-                    System.out.println(all + "; uncommon-use");
+                    logln(all + "; uncommon-use");
                 } else {
                     for (String i : all) {
                         if (first) {
                             System.out.println("# " + s);
                             first = false;
                         }
-                        System.out.println(Utility.hex(i) + "; uncommon-use" + " # " + ucd.getName(i));
+                        logln(Utility.hex(i) + "; uncommon-use" + " # " + ucd.getName(i));
                     }
                 }
             }
@@ -181,35 +174,38 @@ public class TestSecurity extends TestFmwkPlus {
     }
 
     public void TestCldrConsistency() {
+        System.out.println("\nIgnore TestCldrConsistency for now: Need to fix exemplars.closeOver(UnicodeSet.CASE) before this is useful");
         UnicodeMap<Set<String>> fromCLDR = getCLDRCharacters();
         UnicodeSet vi = new UnicodeSet();
         for (String s : fromCLDR) {
             if (s.equals("ə")) {
-                System.out.println("ə" + fromCLDR.get('ə'));
+                logln("ə" + fromCLDR.get('ə'));
             }
-            IdentifierType item = XIDMOD.getType().get(s);
-            switch (item) {
-            case obsolete:
-            case technical:
-            case uncommon_use:
-                IdUsage idUsage = getScriptUsage(s.codePointAt(0));
-                Set<String> locales = fromCLDR.get(s);
-                System.out.println("?Overriding with CLDR: "
-                        + Utility.hex(s, "+")
-                        + "; " + s 
-                        + "; " + UCharacter.getName(s," ") 
-                        + "; " + item 
-                        + " => " + idUsage + "; "
-                        + locales);
-                if (locales.contains("vi")) {
-                    vi.add(s);
+            Set<IdentifierType> itemSet = XIDMOD.getType().get(s);
+            for (IdentifierType item : itemSet) {
+                switch (item) {
+                case obsolete:
+                case technical:
+                case uncommon_use:
+                    IdUsage idUsage = getScriptUsage(s.codePointAt(0));
+                    Set<String> locales = fromCLDR.get(s);
+                    warnln("?Overriding with CLDR: "
+                            + Utility.hex(s, "+")
+                            + "; " + s 
+                            + "; " + UCharacter.getName(s," ") 
+                            + "; " + item 
+                            + " => " + idUsage + "; "
+                            + locales);
+                    if (locales.contains("vi")) {
+                        vi.add(s);
+                    }
+                    break;
+                default: 
+                    break;
                 }
-                break;
-            default: 
-                break;
             }
         }
-        System.out.println("vi: " + vi.toPattern(false));
+//        System.out.println("vi: " + vi.toPattern(false));
     }
 
     public static UnicodeMap<Set<String>> getCLDRCharacters() {
@@ -267,6 +263,25 @@ public class TestSecurity extends TestFmwkPlus {
         @Override
         public int compare(T o1, T o2) {
             return o1.ordinal() - o2.ordinal();
+        }
+    }
+
+    public class EnumSetComparator<T extends Set<IdentifierType>> implements Comparator<T> {
+        @Override
+        public int compare(T o1, T o2) {
+            Iterator<IdentifierType> it1 = o1.iterator();
+            Iterator<IdentifierType> it2 = o2.iterator();
+            while (it1.hasNext() && it2.hasNext()) {
+                Enum<?> item1 = it1.next();
+                Enum<?> item2 = it2.next();
+                int diff = item1.ordinal() - item2.ordinal();
+                if (diff != 0) {
+                    return diff;
+                }
+            }
+            if (it1.hasNext()) return 1;
+            if (it2.hasNext()) return -1;
+            return 0;
         }
     }
 
@@ -339,6 +354,7 @@ public class TestSecurity extends TestFmwkPlus {
     //    }
 
     public void TestWholeScriptData() {
+        System.out.println("\nIgnore TestWholeScriptData for now: Not yet compete");
         for (Script_Values source : Script_Values.values()) {
             for (Script_Values target : Script_Values.values()) {
                 CodepointToConfusables cpToConfusables = CONFUSABLES.getCharsToConfusables(source, target);

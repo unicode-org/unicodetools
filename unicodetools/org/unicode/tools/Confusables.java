@@ -36,7 +36,11 @@ public class Confusables {
     /** type of confusable data. Only the MA data is used; the rest is deprecated. 
      * @author markdavis
      */
-    public enum Style {SL, SA, ML, MA}
+    public enum Style {
+//        SL, 
+//        SA, 
+//        ML, 
+        MA}
 
 //    private static class Data {
 //        final Style style;
@@ -47,12 +51,14 @@ public class Confusables {
 //        }
 //    }
 
+    
     /**
      * @return the style2map
      */
-    public EnumMap<Style, UnicodeMap<String>> getStyle2map() {
-        return style2map;
+    public UnicodeMap<String> getRawMapToRepresentative(Style style) {
+        return style2RawMapToRepresentative.get(style);
     }
+
     /**
      * Get the mapping from character to representative confusable.
      * @return the char2data
@@ -61,7 +67,7 @@ public class Confusables {
         return char2data;
     }
 
-    final private EnumMap<Style, UnicodeMap<String>> style2map;
+    final private EnumMap<Style, UnicodeMap<String>> style2RawMapToRepresentative;
     final private UnicodeSet hasConfusable = new UnicodeSet();
     final private UnicodeMap<EnumMap<Style,String>> char2data = new UnicodeMap<EnumMap<Style,String>>();
 
@@ -78,7 +84,7 @@ public class Confusables {
      */
     public Confusables (String directory) {
         try {
-            EnumMap<Style, UnicodeMap<String>> _style2map = new EnumMap<Style,UnicodeMap<String>>(Style.class);
+            EnumMap<Style, UnicodeMap<String>> _style2RawMapToRepresentative = new EnumMap<Style,UnicodeMap<String>>(Style.class);
             for (String line : FileUtilities.in(directory, "confusables.txt")) {
                 if (line.startsWith("\uFEFF")) {
                     line = line.substring(1);
@@ -99,19 +105,19 @@ public class Confusables {
                 hasConfusable.add(target);
 
                 Style style = Style.valueOf(parts[2]);
-                addConfusable(style, source, target, _style2map);
+                addConfusable(style, source, target, _style2RawMapToRepresentative);
 
-                if (CharSequences.getSingleCodePoint(target) != Integer.MAX_VALUE) {
-                    addConfusable(style, target, source, _style2map);
-                }
+//                if (CharSequences.getSingleCodePoint(target) != Integer.MAX_VALUE) {
+//                    addConfusable(style, target, source, _style2RawMapToRepresentative);
+//                }
             }
-            style2map = CldrUtility.protectCollection(_style2map);
+            style2RawMapToRepresentative = CldrUtility.protectCollection(_style2RawMapToRepresentative);
             char2data.freeze();
             hasConfusable.freeze();
 
             // patch, because the file doesn't contain X => common/inherited or the targetSet
             
-            UnicodeMap<String> codepointToRepresentativeConfusable = style2map.get(Style.MA);
+            UnicodeMap<String> codepointToRepresentativeConfusable = style2RawMapToRepresentative.get(Style.MA);
             Map<Script_Values, Map<Script_Values, CodepointToConfusables>> _scriptToScriptToCodepointToUnicodeSet = new EnumMap<>(Script_Values.class);
 
             // get the equivalence classes
