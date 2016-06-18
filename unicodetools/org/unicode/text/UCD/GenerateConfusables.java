@@ -100,7 +100,7 @@ public class GenerateConfusables {
     static {
         Confusables REFERENCE_VALUES = new Confusables(Settings.UNICODETOOLS_DIRECTORY + "data/security/"
             + REFERENCE_VERSION);
-        for (EntryRange<String> entry : REFERENCE_VALUES.getStyle2map().get(Confusables.Style.MA).entryRanges()) {
+        for (EntryRange<String> entry : REFERENCE_VALUES.getRawMapToRepresentative(Confusables.Style.MA).entryRanges()) {
             if (entry.string != null) {
                 LAST_COUNT.add(entry.value, 1);
             } else {

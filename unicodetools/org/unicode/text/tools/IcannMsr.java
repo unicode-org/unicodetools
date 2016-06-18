@@ -185,14 +185,15 @@ public class IcannMsr {
         showValues("values.txt", DATA2TYPE, IdentifierType.recommended);
 
         XIDModifications xidModOld = new XIDModifications(SECURITY + Settings.latestVersion);
-        UnicodeMap<IdentifierType> xidMod = xidModOld.getType();
+        UnicodeMap<Set<IdentifierType>> xidMod = xidModOld.getType();
 
         UnicodeMap<Set<String>> cldrChars = TestSecurity.getCLDRCharacters();
 
         UnicodeMap<Pair<IdentifierType, IdentifierType>> diff = new UnicodeMap<>();
         for (EntryRange x : new UnicodeSet("[[:age=6.3:]-[[:nd:][:cn:][:co:][:cs:][:cwcf:]]]").ranges()) {
             for (int i = x.codepoint; i <= x.codepointEnd; ++i) {
-                IdentifierType unicode = xidMod.get(i);
+                Set<IdentifierType> unicodeSet = xidMod.get(i);
+                IdentifierType unicode = unicodeSet.iterator().next();
                 IdentifierStatus unicodeStatus = unicode.identifierStatus;
                 Set<IdentifierType> icann = DATA2TYPE.get(i);
                 IdentifierStatus icannStatus = icann == null ? IdentifierStatus.restricted : icann.iterator().next().identifierStatus;
