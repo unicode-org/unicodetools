@@ -1,10 +1,7 @@
 ; charset=UTF-8
 @@@	The Unicode Standard 9.0.0
-@@@+	U90M160224.lst
-	Unicode 9.0.0 names list, fifth delta.
-	Repertoire synched with UnicodeData-9.0.0d5.txt
-	Corrected extra blank for one xref at 08BD.
-	More tweaking of Mongolian variants output.
+@@@+	U90M160615.lst
+	Unicode 9.0.0 final names list.
 	This file is semi-automatically derived from UnicodeData.txt and
 	a set of manually created annotations using a script to select
 	or suppress information from the data file. The rules used
@@ -620,16 +617,15 @@
 	* usually closing, sometimes opening
 	x (much greater-than - 226B)
 	x (right double angle bracket - 300B)
+@		Vulgar fractions
+@+		The fraction bar for these may be rendered horizontally or at a slant. For other fraction characters, see 2150-215E.
 00BC	VULGAR FRACTION ONE QUARTER
-	* bar may be horizontal or slanted
-	* other fraction characters: 2153-215E
 	# <fraction> 0031 2044 0034
 00BD	VULGAR FRACTION ONE HALF
-	* bar may be horizontal or slanted
 	# <fraction> 0031 2044 0032
 00BE	VULGAR FRACTION THREE QUARTERS
-	* bar may be horizontal or slanted
 	# <fraction> 0033 2044 0034
+@		Punctuation
 00BF	INVERTED QUESTION MARK
 	= turned question mark
 	* Spanish
@@ -650,7 +646,7 @@
 	x (angstrom sign - 212B)
 	: 0041 030A
 00C6	LATIN CAPITAL LETTER AE
-	= latin capital ligature ae (1.0)
+	= latin capital ligature ae (1.1)
 00C7	LATIN CAPITAL LETTER C WITH CEDILLA
 	: 0043 0327
 00C8	LATIN CAPITAL LETTER E WITH GRAVE
@@ -726,7 +722,7 @@
 	* Danish, Norwegian, Swedish, Walloon
 	: 0061 030A
 00E6	LATIN SMALL LETTER AE
-	= latin small ligature ae (1.0)
+	= latin small ligature ae (1.1)
 	= ash (from Old English æsc)
 	* Danish, Norwegian, Icelandic, Faroese, Old English, French, IPA
 	x (latin small ligature oe - 0153)
@@ -802,7 +798,7 @@
 	x (runic letter thurisaz thurs thorn - 16A6)
 00FF	LATIN SMALL LETTER Y WITH DIAERESIS
 	* French, medieval Hungarian orthography
-	x (latin capital letter y with diaeresis - 0178)
+	* uppercase is 0178
 	: 0079 0308
 @~	!
 @@	0100	Latin Extended-A	017F
@@ -1139,7 +1135,7 @@
 	: 0079 0302
 0178	LATIN CAPITAL LETTER Y WITH DIAERESIS
 	* French, Igbo
-	x (latin small letter y with diaeresis - 00FF)
+	* lowercase is 00FF
 	: 0059 0308
 0179	LATIN CAPITAL LETTER Z WITH ACUTE
 	: 005A 0301
@@ -3110,6 +3106,7 @@
 	* despite its name, this character does not have a titlo, nor is it composed of an omega plus a diacritic
 	x (cyrillic capital letter broad omega - A64C)
 047D	CYRILLIC SMALL LETTER OMEGA WITH TITLO
+	x (greek small letter omega with psili and perispomeni - 1F66)
 047E	CYRILLIC CAPITAL LETTER OT
 047F	CYRILLIC SMALL LETTER OT
 0480	CYRILLIC CAPITAL LETTER KOPPA
@@ -3117,7 +3114,7 @@
 @		Historic miscellaneous
 0482	CYRILLIC THOUSANDS SIGN
 0483	COMBINING CYRILLIC TITLO
-	* not used with letter titlos
+	* not used with titlo letters
 	x (combining cyrillic vzmet - A66F)
 0484	COMBINING CYRILLIC PALATALIZATION
 	* not used for kamora
@@ -3128,7 +3125,7 @@
 0486	COMBINING CYRILLIC PSILI PNEUMATA
 	x (combining comma above - 0313)
 0487	COMBINING CYRILLIC POKRYTIE
-	* used only with letter titlos
+	* used only with titlo letters
 	* also attested in Glagolitic
 	x (combining inverted breve - 0311)
 	x (combining cyrillic vzmet - A66F)
@@ -3884,7 +3881,7 @@
 @		Archaic letters
 066E	ARABIC LETTER DOTLESS BEH
 066F	ARABIC LETTER DOTLESS QAF
-@		Point
+@		Tashkil
 0670	ARABIC LETTER SUPERSCRIPT ALEF
 	* actually a vowel sign, despite the name
 @		Extended Arabic letters
@@ -4201,6 +4198,7 @@
 0709	SYRIAC SUBLINEAR COLON SKEWED RIGHT
 	% SYRIAC SUBLINEAR COLON SKEWED LEFT
 	* marks the end of a real or rhetorical question
+	* character name is a misnomer
 070A	SYRIAC CONTRACTION
 	* a contraction mark, mostly used in East Syriac
 	* placed at the end of an incomplete word
@@ -4681,7 +4679,7 @@
 @		Arabic letters for Warsh orthography
 @+		The Warsh orthography is the most widespread tradition for the Arabic script in North and West Africa.
 08BB	ARABIC LETTER AFRICAN FEH
-	* initial and medial forms have one dot below 
+	* initial and medial forms have one dot below
 	x (arabic letter dotless feh - 06A1)
 	x (arabic letter feh with dot moved below - 06A2)
 08BC	ARABIC LETTER AFRICAN QAF
@@ -13072,7 +13070,7 @@
 2120	SERVICE MARK
 	# <super> 0053 004D
 2121	TELEPHONE SIGN
-	* typical forms for this symbol may use lower case, small caps or superscripted letter shapes
+	* typical forms for this symbol may use lowercase, small caps or superscripted letter shapes
 	x (black telephone - 260E)
 	x (telephone location sign - 2706)
 	x (telephone receiver - 1F4DE)
@@ -13168,7 +13166,7 @@
 213A	ROTATED CAPITAL Q
 	* a binding signature mark
 213B	FACSIMILE SIGN
-	* typical forms for this symbol may use lower case, small caps or superscripted letter shapes
+	* typical forms for this symbol may use lowercase, small caps or superscripted letter shapes
 	x (telephone sign - 2121)
 	x (fax machine - 1F4E0)
 	# 0046 0041 0058
@@ -13663,7 +13661,7 @@
 @		Miscellaneous mathematical symbol
 221E	INFINITY
 @		Angles
-@+	Other angle symbols are found at 299B-29AF.
+@+		Other angle symbols are found at 299B-29AF.
 221F	RIGHT ANGLE
 2220	ANGLE
 	x (acute angle - 299F)
@@ -13703,11 +13701,7 @@
 @		Integrals
 222B	INTEGRAL
 	x (latin small letter esh - 0283)
-;experimenting with variant syntax
-;	~ 222B ALT1 slanted style
 222C	DOUBLE INTEGRAL
-;experimenting with variant syntax
-;	~ 222C ALT1 slanted style
 	# 222B 222B
 222D	TRIPLE INTEGRAL
 	x (quadruple integral operator - 2A0C)
@@ -14681,7 +14675,7 @@
 	= unique asterisk
 	x (bowtie - 22C8)
 @		MICR
-@+		These magnetic ink character recognition symbols are used on checks. The are derived from the E-13B font and are standardized in ISO 1004:1995. The Unicode character names include several misnomers.
+@+		These magnetic ink character recognition symbols are used on checks. They are derived from the E-13B font and are standardized in ISO 1004:1995. The Unicode character names include several misnomers.
 2446	OCR BRANCH BANK IDENTIFICATION
 	= transit
 2447	OCR AMOUNT OF CHECK
@@ -18366,9 +18360,9 @@
 	# <super> 0056
 @		Additions for Shona
 2C7E	LATIN CAPITAL LETTER S WITH SWASH TAIL
-	* lower case is 023F
+	* lowercase is 023F
 2C7F	LATIN CAPITAL LETTER Z WITH SWASH TAIL
-	* lower case is 0240
+	* lowercase is 0240
 @@	2C80	Coptic	2CFF
 @+		Other Coptic letters derived from Demotic are encoded in the Greek and Coptic block.
 @		Bohairic Coptic letters
@@ -23807,7 +23801,7 @@ A78E	LATIN SMALL LETTER L WITH RETROFLEX HOOK AND BELT
 	* used to transcribe Toda
 @		Transliteration letter
 A78F	LATIN LETTER SINOLOGICAL DOT
-	* used for transliteration for Phags-Pa and phonetic transcription for Tangut
+	* used in transliteration of Phags-Pa and in phonetic transcription of Tangut
 	x (middle dot - 00B7)
 @		Additional letters
 A790	LATIN CAPITAL LETTER N WITH DESCENDER
@@ -23875,7 +23869,7 @@ A7B2	LATIN CAPITAL LETTER J WITH CROSSED-TAIL
 	* lowercase is 029D
 @		Letter for German dialectology
 A7B3	LATIN CAPITAL LETTER CHI
-	* lower case is AB53
+	* lowercase is AB53
 	x (greek capital letter chi - 03A7)
 @		Letters for African languages
 A7B4	LATIN CAPITAL LETTER BETA
@@ -27620,6 +27614,8 @@ FDF3	ARABIC LIGATURE AKBAR ISOLATED FORM
 FDF4	ARABIC LIGATURE MOHAMMAD ISOLATED FORM
 	# <isolated> 0645 062D 0645 062F
 FDF5	ARABIC LIGATURE SALAM ISOLATED FORM
+	* common abbreviation for sallallahou alayhe wasallam
+	x (arabic ligature sallallahou alayhe wasallam - FDFA)
 	# <isolated> 0635 0644 0639 0645
 FDF6	ARABIC LIGATURE RASOUL ISOLATED FORM
 	# <isolated> 0631 0633 0648 0644
@@ -27723,6 +27719,7 @@ FE2D	COMBINING CONJOINING MACRON BELOW
 @+		These are used for supralineation in Church Slavonic texts.
 FE2E	COMBINING CYRILLIC TITLO LEFT HALF
 FE2F	COMBINING CYRILLIC TITLO RIGHT HALF
+	x (combining cyrillic titlo - 0483)
 @@	FE30	CJK Compatibility Forms	FE4F
 @		Glyphs for vertical variants
 FE30	PRESENTATION FORM FOR VERTICAL TWO DOT LEADER
@@ -32408,6 +32405,7 @@ FFFF	<not a character>
 112F8	KHUDAWADI DIGIT EIGHT
 112F9	KHUDAWADI DIGIT NINE
 @@	11300	Grantha	1137F
+@+		The Grantha script uses digits from the Tamil block.
 @		Various signs
 11300	GRANTHA SIGN COMBINING ANUSVARA ABOVE
 	* used in Prakrit language Jain texts for the linguistic anusvara
@@ -36506,7 +36504,7 @@ FFFF	<not a character>
 14537	ANATOLIAN HIEROGLYPH A276
 	= frater2
 14538	ANATOLIAN HIEROGLYPH A277
-	=  iudex.la, iudex+la
+	= iudex.la, iudex+la
 14539	ANATOLIAN HIEROGLYPH A278
 	= syllabic li
 1453A	ANATOLIAN HIEROGLYPH A279
@@ -37965,7 +37963,7 @@ FFFF	<not a character>
 16F33	MIAO LETTER SHA
 16F34	MIAO LETTER SSA
 16F35	MIAO LETTER ZHA
-	* used in Black Yi 
+	* used in Black Yi
 16F36	MIAO LETTER ZSHA
 	* used in Black Yi
 16F37	MIAO LETTER TSA
@@ -46309,7 +46307,7 @@ FFFF	<not a character>
 1F668	HOLLOW QUILT SQUARE ORNAMENT
 1F669	HOLLOW QUILT SQUARE ORNAMENT IN BLACK SQUARE
 1F66A	SOLID QUILT SQUARE ORNAMENT
-	=  fourfold knot ornament
+	= fourfold knot ornament
 1F66B	SOLID QUILT SQUARE ORNAMENT IN BLACK SQUARE
 	= inverse fourfold knot ornament
 @		Rocket ornaments
@@ -46321,7 +46319,7 @@ FFFF	<not a character>
 1F66F	DOWNWARDS ROCKET
 @		Ampersand and ligature et ornaments
 1F670	SCRIPT LIGATURE ET ORNAMENT
-	= italic ampersand lower case
+	= italic ampersand lowercase
 	x (tironian sign et - 204A)
 1F671	HEAVY SCRIPT LIGATURE ET ORNAMENT
 1F672	LIGATURE OPEN ET ORNAMENT
@@ -47125,11 +47123,12 @@ FFFF	<not a character>
 1F91C	RIGHT-FACING FIST
 1F91D	HANDSHAKE
 1F91E	HAND WITH INDEX AND MIDDLE FINGERS CROSSED
-@		Faces
+@		Emoticon faces
 1F920	FACE WITH COWBOY HAT
 1F921	CLOWN FACE
 1F922	NAUSEATED FACE
 1F923	ROLLING ON THE FLOOR LAUGHING
+	= rofl, rotfl
 1F924	DROOLING FACE
 1F925	LYING FACE
 1F926	FACE PALM
