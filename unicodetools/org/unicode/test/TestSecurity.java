@@ -88,21 +88,34 @@ public class TestSecurity extends TestFmwkPlus {
     }
 
     public void TestIdempotence() {
-        // We want to test that map(map(code)) = map(code)
+        // Ensure that map(map(code)) = map(code)
+        // Also, if map(code) = A+B (multiple characters), then map(map(code)) = map(A)+map(B)
 
         UnicodeMap<String> transformMap = CONFUSABLES.getRawMapToRepresentative(Style.MA);
         for (Entry<String, String> entry : transformMap.entrySet()) {
             String source = entry.getKey();
             String value = entry.getValue();
-            String map_map = transformMap.get(value);
-            if (map_map == null) {
-                map_map = value;
+            if (source.equals(value)) {
+                warnln("Not an error, but data not minimal: " + "U+" + Utility.hex(source)+ " ( " + source + " ) "  + Default.ucd().getName(source));
             }
-            if (!value.equals(map_map)) {
-                errln("U+" + Utility.hex(source)+ " ( " + source + " ) "  + Default.ucd().getName(source)
-                        + "\t\tmap(source):\tU+" + Utility.hex(value, "U+") + " ( " + value + " ) " + Default.ucd().getName(value)
-                        + "\t\tmap(map(source)):\tU+" + Utility.hex(map_map, "U+") + " ( " + map_map + " ) " + " " + Default.ucd().getName(map_map));
+            checkTransform(transformMap, source, value);
+            if (value.codePointCount(0, value.length()) > 1) {
+                for (int cp : CharSequences.codePoints(value)) {
+                    String v = UTF16.valueOf(cp);
+                    checkTransform(transformMap, value, v);
+                }
             }
+        }
+    }
+    private void checkTransform(UnicodeMap<String> transformMap, String source, String value) {
+        String map_map = transformMap.get(value);
+        if (map_map == null) {
+            map_map = value;
+        }
+        if (!value.equals(map_map)) {
+            errln("U+" + Utility.hex(source)+ " ( " + source + " ) "  + Default.ucd().getName(source)
+                    + "\t\tmap(source):\tU+" + Utility.hex(value, "U+") + " ( " + value + " ) " + Default.ucd().getName(value)
+                    + "\t\tmap(map(source)):\tU+" + Utility.hex(map_map, "U+") + " ( " + map_map + " ) " + " " + Default.ucd().getName(map_map));
         }
     }
 
