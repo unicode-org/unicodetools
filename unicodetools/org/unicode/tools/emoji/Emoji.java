@@ -87,7 +87,7 @@ public class Emoji {
     }
     
     // HACK
-    static final UnicodeSet GENDER_BASE = new UnicodeSet("[💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶\\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
+    static final UnicodeSet GENDER_BASE = new UnicodeSet("[💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹 \\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
     .freeze();
     static final UnicodeSet PROFESSION_OBJECT = new UnicodeSet("[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬]")
     .freeze();
