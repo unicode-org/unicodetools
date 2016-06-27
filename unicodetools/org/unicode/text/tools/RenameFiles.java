@@ -33,13 +33,14 @@ public class RenameFiles {
     private static final boolean RECURSIVE = true;
 
     private static final String DIR_OF_FILES_TO_CHANGE = 
-            Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/"
+            "/Users/markdavis/Downloads/PNG 2"
+            //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/"
             //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/proposed"
             //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/samsung"
             // Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/staging"
             ;
     private static final String FILE_MATCH = 
-            "([a-z]+)_(?:x)?(.*)\\.png"
+            "([a-zA-Z]+)_(?:x)?(.*)\\.png"
             //"proposed_(?:x)?(.*)\\.png";
             // U+270C,U+1F3FC_256.png
             ;

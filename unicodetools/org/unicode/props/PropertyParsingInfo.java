@@ -509,8 +509,26 @@ public class PropertyParsingInfo implements Comparable<PropertyParsingInfo>{
                         intRange.start = lastCodepoint + 1;
                     }
                     if (parts[1].startsWith("<")) {
-                        if (parts[1].contains("Ideograph")) {
+                        /*
+ * 4DB5;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;; 
+ * 9FD5;<CJK Ideograph, Last>;Lo;0;L;;;;;N;;;;; 
+ * D7A3;<Hangul Syllable, Last>;Lo;0;L;;;;;N;;;;; 
+ * DB7F;<Non Private Use High Surrogate, Last>;Cs;0;L;;;;;N;;;;; 
+ * DBFF;<Private Use High Surrogate, Last>;Cs;0;L;;;;;N;;;;; 
+ * DFFF;<Low Surrogate, Last>;Cs;0;L;;;;;N;;;;; 
+ * F8FF;<Private Use, Last>;Co;0;L;;;;;N;;;;; 
+ * 187EC;<Tangut Ideograph, Last>;Lo;0;L;;;;;N;;;;; 
+ * 2A6D6;<CJK Ideograph Extension B, Last>;Lo;0;L;;;;;N;;;;; 
+ * 2B734;<CJK Ideograph Extension C, Last>;Lo;0;L;;;;;N;;;;; 
+ * 2B81D;<CJK Ideograph Extension D, Last>;Lo;0;L;;;;;N;;;;; 
+ * 2CEA1;<CJK Ideograph Extension E, Last>;Lo;0;L;;;;;N;;;;; 
+ * FFFFD;<Plane 15 Private Use, Last>;Co;0;L;;;;;N;;;;; 
+ * 10FFFD;<Plane 16 Private Use, Last>;Co;0;L;;;;;N;;;;; 
+                         */
+                        if (parts[1].contains("CJK Ideograph")) {
                             parts[1] = "CJK UNIFIED IDEOGRAPH-#";
+                        } else if (parts[1].contains("Tangut Ideograph")) {
+                            parts[1] = "TANGUT IDEOGRAPH-#";
                         } else if (parts[1].contains("Hangul Syllable")) {
                             parts[1] = PropertyParsingInfo.CONSTRUCTED_NAME;
                             hackHangul = true;

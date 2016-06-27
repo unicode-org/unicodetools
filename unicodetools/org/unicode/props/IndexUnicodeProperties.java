@@ -39,6 +39,7 @@ import com.google.common.base.Splitter;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
+import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.Transliterator;
@@ -472,6 +473,29 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             return value.substring(0,value.length()-1) + Utility.hex(codepoint);
         }
         return value;
+    }
+
+    UnicodeMap<String> nameMap;
+
+    public String getName(String cps, String separator) {
+        StringBuffer result = new StringBuffer();
+        if (nameMap == null) {
+            nameMap = load(UcdProperty.Name);
+        }
+        for (int cp : CharSequences.codePoints(cps)) {
+            if (result.length() != 0) {
+                result.append(separator);
+            }
+            String name = nameMap.get(cp);
+            if (name == null) {
+                result.append("<reserved-"+Utility.hex(cp));
+            } else if (name.endsWith("-#")) {
+                result.append(name.substring(0,name.length()-1) + Utility.hex(cp));
+            } else {
+                result.append(name);
+            }
+        }
+        return result.toString();
     }
 
     public static DefaultValueType getResolvedDefaultValueType(UcdProperty prop) {
