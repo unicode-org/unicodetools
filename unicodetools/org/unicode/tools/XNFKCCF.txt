@@ -1,4 +1,6 @@
-#Source; 	Target; 	Reason(s); 	Comments
+# Result of using algorithm + curated values.
+# To get the full mapping, you need NFKC_CF; these are just overrides of that data.
+# Source; 	Target; 	Reason(s); 	Comments
 
 #03. remapped exceptions
 
@@ -248,6 +250,27 @@ FFDC;	3163;	04+. fixed_NFKC	 # ( ￜ → ㅣ )	HALFWIDTH HANGUL LETTER I → HAN
 1F198;	0073 006F 0073;	04+. missing_NFKC	 # ( 🆘 → sos )	SQUARED SOS → LATIN SMALL LETTER S + LATIN SMALL LETTER O + LATIN SMALL LETTER S
 1F199;	0075 0070 0021;	04+. missing_NFKC	 # ( 🆙 → up! )	SQUARED UP WITH EXCLAMATION MARK → LATIN SMALL LETTER U + LATIN SMALL LETTER P + EXCLAMATION MARK
 1F19A;	0076 0073;	04+. missing_NFKC	 # ( 🆚 → vs )	SQUARED VS → LATIN SMALL LETTER V + LATIN SMALL LETTER S
+1F1A0;	0020 0035 002E 0031 0020;	04+. missing_NFKC	 # ( 🆠 →  5.1  )	null → SPACE + DIGIT FIVE + FULL STOP + DIGIT ONE + SPACE
+1F1A1;	0020 0037 002E 0031 0020;	04+. missing_NFKC	 # ( 🆡 →  7.1  )	null → SPACE + DIGIT SEVEN + FULL STOP + DIGIT ONE + SPACE
+1F1A2;	0020 0032 0032 002E 0032 0020;	04+. missing_NFKC	 # ( 🆢 →  22.2  )	null → SPACE + DIGIT TWO + DIGIT TWO + FULL STOP + DIGIT TWO + SPACE
+1F1A5;	0020 0064 0020;	04+. missing_NFKC	 # ( 🆥 →  d  )	null → SPACE + LATIN SMALL LETTER D + SPACE
+
+#04+. missing_NFKC + recursion
+
+1F19B;	0020 0033 0064 0020;	04+. missing_NFKC + recursion	 # ( 🆛 →  3d  )	null → SPACE + DIGIT THREE + LATIN SMALL LETTER D + SPACE
+1F19C;	0020 0032 006E 0064 0020 0073 0063 0072 0020;	04+. missing_NFKC + recursion	 # ( 🆜 →  2nd scr  )	null → SPACE + DIGIT TWO + LATIN SMALL LETTER N + LATIN SMALL LETTER D + SPACE + LATIN SMALL LETTER S + LATIN SMALL LETTER C + LATIN SMALL LETTER R + SPACE
+1F19D;	0020 0032 006B 0020;	04+. missing_NFKC + recursion	 # ( 🆝 →  2k  )	null → SPACE + DIGIT TWO + LATIN SMALL LETTER K + SPACE
+1F19E;	0020 0034 006B 0020;	04+. missing_NFKC + recursion	 # ( 🆞 →  4k  )	null → SPACE + DIGIT FOUR + LATIN SMALL LETTER K + SPACE
+1F19F;	0020 0038 006B 0020;	04+. missing_NFKC + recursion	 # ( 🆟 →  8k  )	null → SPACE + DIGIT EIGHT + LATIN SMALL LETTER K + SPACE
+1F1A3;	0020 0036 0030 0070 0020;	04+. missing_NFKC + recursion	 # ( 🆣 →  60p  )	null → SPACE + DIGIT SIX + DIGIT ZERO + LATIN SMALL LETTER P + SPACE
+1F1A4;	0020 0031 0032 0030 0070 0020;	04+. missing_NFKC + recursion	 # ( 🆤 →  120p  )	null → SPACE + DIGIT ONE + DIGIT TWO + DIGIT ZERO + LATIN SMALL LETTER P + SPACE
+1F1A6;	0020 0068 0063 0020;	04+. missing_NFKC + recursion	 # ( 🆦 →  hc  )	null → SPACE + LATIN SMALL LETTER H + LATIN SMALL LETTER C + SPACE
+1F1A7;	0020 0068 0064 0072 0020;	04+. missing_NFKC + recursion	 # ( 🆧 →  hdr  )	null → SPACE + LATIN SMALL LETTER H + LATIN SMALL LETTER D + LATIN SMALL LETTER R + SPACE
+1F1A8;	0020 0068 0069 002D 0072 0065 0073 0020;	04+. missing_NFKC + recursion	 # ( 🆨 →  hi-res  )	null → SPACE + LATIN SMALL LETTER H + LATIN SMALL LETTER I + HYPHEN-MINUS + LATIN SMALL LETTER R + LATIN SMALL LETTER E + LATIN SMALL LETTER S + SPACE
+1F1A9;	0020 006C 006F 0073 0073 006C 0065 0073 0073 0020;	04+. missing_NFKC + recursion	 # ( 🆩 →  lossless  )	null → SPACE + LATIN SMALL LETTER L + LATIN SMALL LETTER O + LATIN SMALL LETTER S + LATIN SMALL LETTER S + LATIN SMALL LETTER L + LATIN SMALL LETTER E + LATIN SMALL LETTER S + LATIN SMALL LETTER S + SPACE
+1F1AA;	0020 0073 0068 0076 0020;	04+. missing_NFKC + recursion	 # ( 🆪 →  shv  )	null → SPACE + LATIN SMALL LETTER S + LATIN SMALL LETTER H + LATIN SMALL LETTER V + SPACE
+1F1AB;	0020 0075 0068 0064 0020;	04+. missing_NFKC + recursion	 # ( 🆫 →  uhd  )	null → SPACE + LATIN SMALL LETTER U + LATIN SMALL LETTER H + LATIN SMALL LETTER D + SPACE
+1F1AC;	0020 0076 006F 0064 0020;	04+. missing_NFKC + recursion	 # ( 🆬 →  vod  )	null → SPACE + LATIN SMALL LETTER V + LATIN SMALL LETTER O + LATIN SMALL LETTER D + SPACE
 
 #04+. radical
 
