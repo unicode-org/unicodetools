@@ -20,3 +20,14 @@ family, woman, woman, boy, boy	👩‍👩‍👦‍👦
 family, woman, woman, girl	👩‍👩‍👧
 family, woman, woman, girl, boy	👩‍👩‍👧‍👦
 family, woman, woman, girl, girl	👩‍👩‍👧‍👧
+cook, chef, cooking		👩‍🍳 👨‍🍳
+industrial worker, assembly worker, factory worker, manufacturing	👩‍🏭 👨‍🏭
+farmer, farm worker, rancher, gardener, farming	👩‍🌾👨‍🌾
+healthcare professional, doctor, nurse, therapist,...	👩‍⚕ 👨‍⚕
+tradesperson, mechanic, plumber, electrician	👩‍🔧 👨‍🔧
+office worker, business person, financial analyst, manager, architect, white-collar worker	👩‍💼 👨‍💼
+scientist, technologist, STEM professional, chemist, physicist, biologist, mathematician	👩‍🔬 👨‍🔬
+singer, entertainer, rock star	👩‍🎤 👨‍🎤
+student	👩‍🎓👨‍🎓
+teacher, professor, instructor	👩‍🏫 👨‍🏫
+technology professional, coder, software developer, engineer, inventor	👩‍💻 👨‍💻

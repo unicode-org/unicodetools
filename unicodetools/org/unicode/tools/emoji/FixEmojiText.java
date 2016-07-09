@@ -22,7 +22,7 @@ public class FixEmojiText {
     public static void main(String[] args) {
         if (args.length == 0) {
             SHOW_NAME = true;
-            args = new String[] {Emoji.EMOJI_CHARS.toString()};
+            args = new String[] {EmojiData.EMOJI_DATA.getChars().toString()};
         }
         for (String arg : args) {
             process(arg);
@@ -57,7 +57,7 @@ public class FixEmojiText {
     static final String DATA_SOURCE = Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji_images/";
 
     private static void process2(String cp, StringBuilder result) {
-        if (Emoji.EMOJI_CHARS.contains(cp)) {
+        if (EmojiData.EMOJI_DATA.getChars().contains(cp)) {
             String hex = Utility.hex(cp);
             String ID = Utility.hex(cp,"_").toLowerCase(Locale.ENGLISH) + ".png";
             String fileName = DATA_SOURCE + "AppleEmoji/apple_" + ID;

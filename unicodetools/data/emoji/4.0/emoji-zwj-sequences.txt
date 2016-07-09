@@ -31,7 +31,7 @@
 1F3CB FE0F 200D 2642 FE0F                        ; Emoji_ZWJ_Sequence  ; Male weight lifter                             # 7.0  [1] (🏋️‍♂)
 1F3CC FE0F 200D 2640 FE0F                        ; Emoji_ZWJ_Sequence  ; Female golfer                                  # 7.0  [1] (🏌️‍♀)
 1F3CC FE0F 200D 2642 FE0F                        ; Emoji_ZWJ_Sequence  ; Male golfer                                    # 7.0  [1] (🏌️‍♂)
-1F441 200D 1F5E8                            ; Emoji_ZWJ_Sequence  ; Witness                                         # 7.0  [1] (👁‍🗨)
+1F441 FE0F 200D 1F5E8 FE0F                            ; Emoji_ZWJ_Sequence  ; Witness                                         # 7.0  [1] (👁‍🗨)
 1F468 200D 2695 FE0F                        ; Emoji_ZWJ_Sequence  ; Male health worker                              # 6.0  [1] (👨‍⚕)
 1F468 200D 2764 FE0F 200D 1F468             ; Emoji_ZWJ_Sequence  ; Couple with heart: man, man                     # 6.0  [1] (👨‍❤️‍👨)
 1F468 200D 2764 FE0F 200D 1F48B 200D 1F468  ; Emoji_ZWJ_Sequence  ; Kiss: man, man                                  # 6.0  [1] (👨‍❤️‍💋‍👨)

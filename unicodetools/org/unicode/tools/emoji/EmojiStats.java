@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
 import org.unicode.tools.emoji.Emoji.Source;
+import org.unicode.tools.emoji.EmojiData.EmojiDatum;
 import org.unicode.tools.emoji.GenerateEmoji.Style;
 
 import com.ibm.icu.impl.Utility;
@@ -22,7 +23,7 @@ class EmojiStats {
     enum Type {
         carriers(EmojiData.JCARRIERS),
         commonAdditions(Emoji.COMMON_ADDITIONS),
-        flags(Emoji.FLAGS),
+        flags(EmojiData.EMOJI_DATA.getFlagSequences()),
         other(UnicodeSet.EMPTY),
         modifierSequences(EmojiData.EMOJI_DATA.getModifierSequences()),
         zwjSequences(EmojiData.EMOJI_DATA.getZwjSequencesNormal()),
@@ -148,7 +149,8 @@ class EmojiStats {
         // .freeze();
         UnicodeSet textStyle = new UnicodeSet();
         for (String s : EmojiData.EMOJI_DATA.getChars()) {
-            if (Style.valueOf(EmojiData.EMOJI_DATA.getData(s).style) == Style.text) {
+            final EmojiDatum data2 = EmojiData.EMOJI_DATA.getData(s);
+            if (data2 == null || Style.valueOf(data2.style) == Style.text) {
                 textStyle.add(s);
             }
         }

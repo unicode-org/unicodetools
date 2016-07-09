@@ -219,7 +219,7 @@ public class AnnotationData {
             data.tts.put(source, list.get(1));
         }
 
-        for (String s : new UnicodeSet(Emoji.EMOJI_CHARS).addAll(EmojiData.EMOJI_DATA.getZwjSequencesNormal())) {
+        for (String s : new UnicodeSet(EmojiData.EMOJI_DATA.getChars()).addAll(EmojiData.EMOJI_DATA.getZwjSequencesNormal())) {
             LinkedHashSet<String> result = new LinkedHashSet<>();
             if (Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 String regionCode = Emoji.getRegionCodeFromEmoji(s);
@@ -239,7 +239,7 @@ public class AnnotationData {
         }
 
         Set<String> missing = new TreeSet<>(GenerateEmoji.EMOJI_COMPARATOR);
-        Emoji.EMOJI_CHARS.addAllTo(missing);
+        EmojiData.EMOJI_DATA.getChars().addAllTo(missing);
 
         //        for (String label : Arrays.asList("people",
         //                "nature",

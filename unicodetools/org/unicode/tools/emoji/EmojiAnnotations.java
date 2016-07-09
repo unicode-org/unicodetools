@@ -39,13 +39,13 @@ public class EmojiAnnotations extends Birelation<String,String> {
             "emojiAnnotationsZwj.txt"
             );
 
-    public EmojiAnnotations(Comparator codepointCompare, String... filenames) {
-        super(new TreeMap(codepointCompare), 
+    public EmojiAnnotations(Comparator<String> codepointCompare, String... filenames) {
+        super(new TreeMap(EmojiOrder.FULL_COMPARATOR), 
                 new TreeMap(codepointCompare), 
                 TreeSet.class, 
                 TreeSet.class, 
                 codepointCompare, 
-                codepointCompare);
+                EmojiOrder.FULL_COMPARATOR);
 
         //Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>(codepointCompare));
         for (String filename : filenames) {
@@ -80,9 +80,9 @@ public class EmojiAnnotations extends Birelation<String,String> {
             }
             if (SHOW) System.out.println(lineCount + "\tannotation lines from " + filename);
         }
-        addOther("-apple", Emoji.EMOJI_CHARS);
-        addOther("-android", Emoji.EMOJI_CHARS);
-        addOther("", Emoji.EMOJI_CHARS);
+        addOther("-apple", EmojiData.EMOJI_DATA.getChars());
+        addOther("-android", EmojiData.EMOJI_DATA.getChars());
+        addOther("", EmojiData.EMOJI_DATA.getChars());
 
         //        final Set<String> personAndroid = getValues("person-android");
         //        if (personAndroid != null) {
@@ -127,7 +127,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
         for (int cp1 = Emoji.FIRST_REGIONAL; cp1 <= Emoji.LAST_REGIONAL; ++cp1) {
             for (int cp2 = Emoji.FIRST_REGIONAL; cp2 <= Emoji.LAST_REGIONAL; ++cp2) {
                 String emoji = new StringBuilder().appendCodePoint(cp1).appendCodePoint(cp2).toString();
-                if (Emoji.EMOJI_CHARS.contains(emoji)) {
+                if (EmojiData.EMOJI_DATA.getChars().contains(emoji)) {
                     add("flag", emoji);
                 }
                 //String regionCode = GenerateEmoji.getFlagCode(emoji);
@@ -154,8 +154,8 @@ public class EmojiAnnotations extends Birelation<String,String> {
         }
         TO_UNICODE_SET = Collections.unmodifiableMap(_TO_UNICODE_SET);
         UnicodeSet annotationCharacters = new UnicodeSet().addAll(valuesSet());
-        if (!annotationCharacters.containsAll(Emoji.EMOJI_CHARS)) {
-            UnicodeSet missing = new UnicodeSet().addAll(Emoji.EMOJI_CHARS).removeAll(annotationCharacters);
+        if (!annotationCharacters.containsAll(EmojiData.EMOJI_DATA.getChars())) {
+            UnicodeSet missing = new UnicodeSet().addAll(EmojiData.EMOJI_DATA.getChars()).removeAll(annotationCharacters);
             throw new IllegalArgumentException("Missing annotations: " + missing.toPattern(false));
         }
 

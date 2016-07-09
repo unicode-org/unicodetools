@@ -225,7 +225,7 @@ public class GenerateEmojiFrequency {
         Counter<Integer> totalWebFrequency = CharacterFrequency.getCodePointCounter("mul", true);
 
         Counter2<String> webFrequency = new Counter2<>();
-        for (String s : Emoji.EMOJI_CHARS) {
+        for (String s : EmojiData.EMOJI_DATA.getChars()) {
             int cp = s.codePointAt(0);
             if (s.length() == Character.charCount(cp)) {
                 webFrequency.add(s, webScale(cp)*totalWebFrequency.get(cp));
@@ -238,7 +238,7 @@ public class GenerateEmojiFrequency {
         double trackerFactor = (1-webFactor)/2;
         double swiftFactor = (1-webFactor)/2;
 
-        for (String s : Emoji.EMOJI_CHARS) {
+        for (String s : EmojiData.EMOJI_DATA.getChars()) {
             double value = 
                     trackerFactor * trackerFrequency.getCount(s) / trackerFrequency.getTotal().doubleValue()
                     + swiftFactor * swiftFrequency.getCount(s) / swiftFrequency.getTotal().doubleValue()

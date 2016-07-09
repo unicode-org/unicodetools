@@ -85,7 +85,7 @@ public class GenerateEmojiData {
             showTypeFieldsMessage(out, type_fields);
 
             printer.show(out, "Emoji_Combining_Sequence", width, 14, Emoji.KEYCAPS, true, false, false);
-            printer.show(out, "Emoji_Flag_Sequence", width, 14, Emoji.FLAGS, true, false, false);
+            printer.show(out, "Emoji_Flag_Sequence", width, 14, EmojiData.EMOJI_DATA.getFlagSequences(), true, false, false);
             printer.show(out, "Emoji_Modifier_Sequence", width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), false, false, false);
             out.write("\n#EOF\n");
         }

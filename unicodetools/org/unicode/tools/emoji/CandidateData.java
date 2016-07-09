@@ -99,7 +99,7 @@ public class CandidateData {
             if (catOrder1 != catOrder2) {
                 return catOrder1 > catOrder2 ? 1 : -1;
             }
-            return EmojiOrder.STD_ORDER.codepointCompare.compare(o1, o2);
+            return EmojiOrder.FULL_COMPARATOR.compare(o1, o2);
         }
     };
 

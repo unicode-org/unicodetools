@@ -91,7 +91,7 @@ class UnicodeFontData {
                 if (q.getRangeStart(0) != r.getRangeStart(0)) {
                     UnicodeSet missing = new UnicodeSet(q.getRangeStart(0),
                             q.getRangeStart(0) + (r.getRangeEnd(0)-r.getRangeStart(0)));
-                    if (Emoji.EMOJI_CHARS.containsSome(missing)
+                    if (EmojiData.EMOJI_DATA.getChars().containsSome(missing)
                             || Emoji.U80.containsSome(missing)
                             ) {
                         System.err.println("Couldn't get code points from: " + line);
@@ -102,7 +102,7 @@ class UnicodeFontData {
                 i = r;
             }
             for (String s : i) {
-                if (!Emoji.EMOJI_CHARS.contains(s) && !Emoji.U80.contains(s)) {
+                if (!EmojiData.EMOJI_DATA.getChars().contains(s) && !Emoji.U80.contains(s)) {
                     continue;
                 }
                 if (s.equals("\u231A")) {
@@ -119,7 +119,7 @@ class UnicodeFontData {
             UnicodeSet keys = FONT_DATA.getSet(value);
             System.out.println(keys.size() + "\t" + value + "\t" + keys);
         }
-        UnicodeSet keys = new UnicodeSet(Emoji.EMOJI_CHARS).removeAll(FONT_DATA.keySet());
+        UnicodeSet keys = new UnicodeSet(EmojiData.EMOJI_DATA.getChars()).removeAll(FONT_DATA.keySet());
         System.out.println(keys.size() + "\t" + "Missing" + "\t" + keys);
         keys = new UnicodeSet(Emoji.U80).removeAll(FONT_DATA.keySet());
         System.out.println(keys.size() + "\t" + "Missing U80" + "\t" + keys);

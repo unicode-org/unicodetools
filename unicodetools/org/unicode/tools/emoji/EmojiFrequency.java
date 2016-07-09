@@ -44,7 +44,7 @@ public class EmojiFrequency {
                     cp += UTF16.valueOf(cp2);
                 }
                 
-                if (!Emoji.EMOJI_CHARS.contains(cp)) {
+                if (!EmojiData.EMOJI_DATA.getChars().contains(cp)) {
                     throw new IllegalArgumentException(Utility.hex(cp) + UCharacter.getName(cp, ", "));
                 }
                 long score = Long.parseLong(scoreString);
@@ -83,7 +83,7 @@ public class EmojiFrequency {
         System.out.println("Annotation\tTw. Count\tTw. Count Ave.\tSet");
         Counter<String> annotationToFrequency = new Counter<String>();
         Counter<String> annotationToCount = new Counter<String>();
-        for (String cp : Emoji.EMOJI_CHARS) {
+        for (String cp : EmojiData.EMOJI_DATA.getChars()) {
             Long freq = getFrequency(cp);
             if (freq == null) continue;
             for (String annotation : EmojiAnnotations.ANNOTATIONS_TO_CHARS.keySet()) {
