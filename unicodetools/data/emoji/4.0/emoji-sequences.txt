@@ -295,6 +295,7 @@
 1F1FF 1F1E6   ; Emoji_Flag_Sequence       # 6.0  [1] (🇿🇦)      Flag for South Africa
 1F1FF 1F1F2   ; Emoji_Flag_Sequence       # 6.0  [1] (🇿🇲)      Flag for Zambia
 1F1FF 1F1FC   ; Emoji_Flag_Sequence       # 6.0  [1] (🇿🇼)      Flag for Zimbabwe
+1F1FA 1F1F3   ; Emoji_Flag_Sequence       #      Flag for United Nations
 
 # Total elements: 257
 

@@ -18,7 +18,7 @@ public class TestEmojiData extends TestFmwkPlus {
         new TestEmojiData().run(args);
     }
     public void TestFlags() {
-        UnicodeSet shouldBeFlagEmoji = new UnicodeSet();
+        UnicodeSet shouldBeFlagEmoji = new UnicodeSet().add(Emoji.getHexFromFlagCode("EU")).add(Emoji.getHexFromFlagCode("UN"));
         Validity validity = Validity.getInstance();
         Map<Status, Set<String>> regionData = validity.getData().get(LstrType.region);
         for (Entry<Status, Set<String>> e : regionData.entrySet()) {
@@ -34,12 +34,14 @@ public class TestEmojiData extends TestFmwkPlus {
         for (String s : Emoji.REGIONAL_INDICATORS) {
             for (String t : Emoji.REGIONAL_INDICATORS) {
                 final String regionalPair = s+t;
-                if (shouldNOTBeFlagEmoji.contains(regionalPair)) {
+                if (!shouldBeFlagEmoji.contains(regionalPair)) {
                     shouldNOTBeFlagEmoji.add(regionalPair);
                 }
             }
         }
-        assertRelation("Contains all regions", true, EmojiData.EMOJI_DATA.getChars(), TestFmwkPlus.CONTAINS_US, shouldBeFlagEmoji);
-        assertRelation("Contains all regions", false, EmojiData.EMOJI_DATA.getChars(), TestFmwkPlus.CONTAINS_US, shouldNOTBeFlagEmoji);
+        logln("Should be flags: " + shouldBeFlagEmoji.toPattern(false));
+        assertEquals("Contains all good regions", UnicodeSet.EMPTY, new UnicodeSet(shouldBeFlagEmoji).removeAll(EmojiData.EMOJI_DATA.getChars()));
+        logln("Should not be flags: " + shouldNOTBeFlagEmoji.toPattern(false));
+        assertEquals("Contains no bad regions", UnicodeSet.EMPTY, new UnicodeSet(shouldNOTBeFlagEmoji).retainAll(EmojiData.EMOJI_DATA.getChars()));
     }
 }
