@@ -34,6 +34,7 @@ import com.ibm.icu.lang.CharSequences;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.LocaleDisplayNames;
 import com.ibm.icu.text.Transliterator;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.Output;
 import com.ibm.icu.util.ULocale;
@@ -87,7 +88,7 @@ public class Emoji {
     }
     
     // HACK
-    static final UnicodeSet GENDER_BASE = new UnicodeSet("[💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹 \\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
+    static final UnicodeSet GENDER_BASE = new UnicodeSet("[👯💂👳👱⛹🏃🏄🏊-🏌👮👷💁💆💇🕵🙅-🙇🙋🙍🙎🚣 🚴-🚶🤹 \\U0001F926\\U0001F937\\U0001F938\\U0001F93C-\\U0001F93E]")
     .freeze();
     static final UnicodeSet PROFESSION_OBJECT = new UnicodeSet("[⚕🌾🍳🎓🎤🏫🏭💻💼🔧🔬]")
     .freeze();
@@ -174,29 +175,29 @@ public class Emoji {
 
     public static final char KEYCAP_MARK = '\u20E3';
     public static final String KEYCAP_MARK_STRING = String.valueOf(KEYCAP_MARK);
-    private static final UnicodeSet Unicode8Emoji = new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3FD}\\x{1F3FE}\\x{1F3FF}\\x{1F4FF}\\x{1F54B}\\x{1F54C}\\x{1F54D}"
-            +"\\x{1F54E}\\x{1F6D0}\\x{1F32D}\\x{1F32E}\\x{1F32F}\\x{1F37E}\\x{1F37F}\\x{1F983}\\x{1F984}\\x{1F9C0}"
-            +"\\x{1F3CF}\\x{1F3D0}\\x{1F3D1}\\x{1F3D2}\\x{1F3D3}\\x{1F3F8}\\x{1F3F9}\\x{1F3FA}\\x{1F643}"
-            +"\\x{1F644}\\x{1F910}\\x{1F911}\\x{1F912}\\x{1F913}\\x{1F914}\\x{1F915}\\x{1F916}\\x{1F917}"
-            +"\\x{1F918}\\x{1F980}\\x{1F981}\\x{1F982}]").freeze();
-    public static final UnicodeSet EMOJI_CHARS = new UnicodeSet(
-            "[🕉 ✡ ☸ ☯ ✝ ☦ ⛩ ☪ ⚛ 0-9©®‼⁉℗™ℹ↔-↙↩↪⌚⌛⌨⎈⏏⏩-⏺Ⓜ▪▫▶◀●◪◻-◾☀-☄☎-☒☔☕☘-☠☢-☤☦🕉☦ ☪ ☬ ☸ ✝ 🕉☪-☬☮☯☹-☾♈-♓♠-♯♲"
-                    + "♻♾♿⚐-⚜⚠⚡⚪⚫⚰⚱⚽-⚿⛄-⛈⛍-⛙⛛-⛡⛨-⛪⛰-⛵⛷-⛺⛼-✒✔-✘✝✨✳✴❄❇❌❎❓-❕❗❢-❧➕-➗"
-                    + "➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕⸙〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆏🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌬🌰-🍽🎀-🏎"
-                    + "🏔-🏷🐀-📾🔀-🔿🕊🕐-🕱🕳-🕹🖁-🖣🖥-🖩🖮-🗳🗺-🙂🙅-🙏🚀-🛏🛠-🛬🛰-🛳"
-                    + "{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]")
-    .addAll(Unicode8Emoji)
-    .removeAll(new UnicodeSet("[☫☬🎕⚘⸙⎈]"))
-    .removeAll(new UnicodeSet("[℗⏴-⏷●◪☙☤☼-☾♩-♯♾⚐⚑⚕⚚ ⚿⛆⛍⛐⛒⛕-⛙⛛⛜⛞-⛡⛨⛼⛾-✀✆✇✑ ❢❦❧🌢🌣🎔🎘🎜🎝🏱🏲🏶📾🔾🔿🕨-🕮🕱🖁-🖆 🖈🖉🖎🖏🖒-🖔🖗-🖣🖦🖧🖩🖮-🖰🖳-🖻🖽-🗁 🗅-🗐🗔-🗛🗟🗠🗤-🗮🗰-🗲🛆-🛈🛦-🛨🛪 🛱🛲]"))
-    .removeAll(new UnicodeSet("[🛉 🛊 🖑🗢☏☐☒☚-☜☞☟♲⛇✁✃✄✎✐✕✗✘  ♤  ♡  ♢ ♧❥🆏 ☻ ⛝ 0  1  2  3  4 5  6  7  8  9]"))
-    .add("🗨")
-    // .freeze() will freeze later
-    ;
-    static {
-        if (IS_BETA) {
-            EMOJI_CHARS.addAll("[🕺 🖤 🛑 🛒 🛴 🛵 🛶 🤙 🤚 🤛 🤜 🤝 🤞 🤠 🤡 🤢 🤣 🤤 🤥 🤦 🤧 🤰 🤳 🤴 🤵 🤶 🤷 🤸 🤹 🤺 🤻 🤼 🤽 🤾 🥀 🥁 🥂 🥃 🥄 🥅 🥆 🥇 🥈 🥉 🥊 🥋 🥐 🥑 🥒 🥓 🥔 🥕 🥖 🥗 🥘 🥙 🥚 🥛 🥜 🥝 🥞 🦅 🦆 🦇 🦈 🦉 🦊 🦋 🦌 🦍 🦎 🦏 🦐 🦑]");
-        }
-    }
+//    private static final UnicodeSet Unicode8Emoji = new UnicodeSet("[\\x{1F3FB}\\x{1F3FC}\\x{1F3FD}\\x{1F3FE}\\x{1F3FF}\\x{1F4FF}\\x{1F54B}\\x{1F54C}\\x{1F54D}"
+//            +"\\x{1F54E}\\x{1F6D0}\\x{1F32D}\\x{1F32E}\\x{1F32F}\\x{1F37E}\\x{1F37F}\\x{1F983}\\x{1F984}\\x{1F9C0}"
+//            +"\\x{1F3CF}\\x{1F3D0}\\x{1F3D1}\\x{1F3D2}\\x{1F3D3}\\x{1F3F8}\\x{1F3F9}\\x{1F3FA}\\x{1F643}"
+//            +"\\x{1F644}\\x{1F910}\\x{1F911}\\x{1F912}\\x{1F913}\\x{1F914}\\x{1F915}\\x{1F916}\\x{1F917}"
+//            +"\\x{1F918}\\x{1F980}\\x{1F981}\\x{1F982}]").freeze();
+    //            new UnicodeSet(
+//            "[🕉 ✡ ☸ ☯ ✝ ☦ ⛩ ☪ ⚛ 0-9©®‼⁉℗™ℹ↔-↙↩↪⌚⌛⌨⎈⏏⏩-⏺Ⓜ▪▫▶◀●◪◻-◾☀-☄☎-☒☔☕☘-☠☢-☤☦🕉☦ ☪ ☬ ☸ ✝ 🕉☪-☬☮☯☹-☾♈-♓♠-♯♲"
+//                    + "♻♾♿⚐-⚜⚠⚡⚪⚫⚰⚱⚽-⚿⛄-⛈⛍-⛙⛛-⛡⛨-⛪⛰-⛵⛷-⛺⛼-✒✔-✘✝✨✳✴❄❇❌❎❓-❕❗❢-❧➕-➗"
+//                    + "➡➰➿⤴⤵⬅-⬇⬛⬜⭐⭕⸙〰〽㊗㊙🀄🃏🅰🅱🅾🅿🆎🆏🆑-🆚🈁🈂🈚🈯🈲-🈺🉐🉑🌀-🌬🌰-🍽🎀-🏎"
+//                    + "🏔-🏷🐀-📾🔀-🔿🕊🕐-🕱🕳-🕹🖁-🖣🖥-🖩🖮-🗳🗺-🙂🙅-🙏🚀-🛏🛠-🛬🛰-🛳"
+//                    + "{#⃣}{*⃣}{0⃣}{1⃣}{2⃣}{3⃣}{4⃣}{5⃣}{6⃣}{7⃣}{8⃣}{9⃣}]")
+//    .addAll(Unicode8Emoji)
+//    .removeAll(new UnicodeSet("[☫☬🎕⚘⸙⎈]"))
+//    .removeAll(new UnicodeSet("[℗⏴-⏷●◪☙☤☼-☾♩-♯♾⚐⚑⚕⚚ ⚿⛆⛍⛐⛒⛕-⛙⛛⛜⛞-⛡⛨⛼⛾-✀✆✇✑ ❢❦❧🌢🌣🎔🎘🎜🎝🏱🏲🏶📾🔾🔿🕨-🕮🕱🖁-🖆 🖈🖉🖎🖏🖒-🖔🖗-🖣🖦🖧🖩🖮-🖰🖳-🖻🖽-🗁 🗅-🗐🗔-🗛🗟🗠🗤-🗮🗰-🗲🛆-🛈🛦-🛨🛪 🛱🛲]"))
+//    .removeAll(new UnicodeSet("[🛉 🛊 🖑🗢☏☐☒☚-☜☞☟♲⛇✁✃✄✎✐✕✗✘  ♤  ♡  ♢ ♧❥🆏 ☻ ⛝ 0  1  2  3  4 5  6  7  8  9]"))
+//    .add("🗨")
+//    // .freeze() will freeze later
+//    ;
+//    static {
+//        if (IS_BETA) {
+//            EMOJI_CHARS.addAll("[🕺 🖤 🛑 🛒 🛴 🛵 🛶 🤙 🤚 🤛 🤜 🤝 🤞 🤠 🤡 🤢 🤣 🤤 🤥 🤦 🤧 🤰 🤳 🤴 🤵 🤶 🤷 🤸 🤹 🤺 🤻 🤼 🤽 🤾 🥀 🥁 🥂 🥃 🥄 🥅 🥆 🥇 🥈 🥉 🥊 🥋 🥐 🥑 🥒 🥓 🥔 🥕 🥖 🥗 🥘 🥙 🥚 🥛 🥜 🥝 🥞 🦅 🦆 🦇 🦈 🦉 🦊 🦋 🦌 🦍 🦎 🦏 🦐 🦑]");
+//        }
+//    }
     public static final UnicodeSet COMMON_ADDITIONS = new UnicodeSet("[➿🌍🌎🌐🌒🌖-🌘🌚🌜-🌞🌲🌳🍋🍐🍼🏇🏉🏤🐀-🐋🐏🐐🐓🐕🐖🐪👥👬👭💭💶💷📬📭📯📵🔀-🔂🔄-🔉🔕🔬🔭🕜-🕧😀😇😈😎😐😑😕😗😙😛😟😦😧😬😮😯😴😶🚁🚂🚆🚈🚊🚋🚍🚎🚐🚔🚖🚘🚛-🚡🚣🚦🚮-🚱🚳-🚵🚷🚸🚿🛁-🛅]").freeze();
     static final UnicodeSet ASCII_LETTER_HYPHEN = new UnicodeSet('-', '-', 'A', 'Z', 'a', 'z', '’', '’').freeze();
     static final UnicodeSet LATIN1_LETTER = new UnicodeSet("[[:L:]&[\\x{0}-\\x{FF}}]]").freeze();
@@ -297,47 +298,30 @@ public class Emoji {
     //    "]").freeze();
     //    // 🖫🕾🕿🕻🕼🕽🕾🕿🖀🖪🖬🖭
 
-    // TODO Remove EMOJI_CHARS and all that depend on them; change to use EmojiData.
-    public static final UnicodeSet FLAGS = new UnicodeSet();
-    public static final UnicodeSet EMOJI_SINGLETONS = new UnicodeSet(EMOJI_CHARS)
-    .removeAll(EMOJI_CHARS.strings())
-    .addAll(FIRST_REGIONAL,LAST_REGIONAL)
-    .addAll('0','9')
-    .add('*')
-    .add('#')
-    .freeze();
-    static final UnicodeSet EMOJI_CHARS_FLAT = new UnicodeSet(EMOJI_CHARS)
-    .addAll(FIRST_REGIONAL,LAST_REGIONAL)
-    .removeAll(EMOJI_CHARS.strings())
-    .addAll(new UnicodeSet("[{*⃣} {#⃣}]"))
-    .add(EMOJI_VARIANT)
-    .add(TEXT_VARIANT)
-    .add(JOINER)
-    .removeAll(new UnicodeSet("[[:L:][:M:][:^nt=none:]+_-]"))
-    .freeze();
+    
 
-    static final UnicodeSet EMOJI_CHARS_WITHOUT_FLAGS = new UnicodeSet(EMOJI_CHARS).freeze();
-    static {
-        CLDRConfig config = CLDRConfig.getInstance();
-        //StandardCodes sc = config.getStandardCodes();
-        SupplementalDataInfo sdi = config.getSupplementalDataInfo();
-        Set<String> container = new TreeSet<>();
-        Set<String> contained = new TreeSet<>();
-        for (Entry<String, String> territoryToContained : sdi.getTerritoryToContained().entrySet()) {
-            container.add(territoryToContained.getKey());
-            contained.add(territoryToContained.getValue());
-        }
-        contained.removeAll(container);
-        contained.add("EU"); // special case
-        Map<String, R2<List<String>, String>> aliasInfo = sdi.getLocaleAliasInfo().get("territory");
-        contained.removeAll(aliasInfo.keySet());
-        for (String s: contained) {
-            //System.out.println(s + "\t" + config.getEnglish().getName("territory", s));
-            FLAGS.add(getHexFromFlagCode(s));
-        }
-        FLAGS.freeze();
-        EMOJI_CHARS.addAll(FLAGS).freeze();
-    }
+//    static final UnicodeSet EMOJI_CHARS_WITHOUT_FLAGS = new UnicodeSet(EMOJI_CHARS).freeze();
+//    static {
+//        CLDRConfig config = CLDRConfig.getInstance();
+//        //StandardCodes sc = config.getStandardCodes();
+//        SupplementalDataInfo sdi = config.getSupplementalDataInfo();
+//        Set<String> container = new TreeSet<>();
+//        Set<String> contained = new TreeSet<>();
+//        for (Entry<String, String> territoryToContained : sdi.getTerritoryToContained().entrySet()) {
+//            container.add(territoryToContained.getKey());
+//            contained.add(territoryToContained.getValue());
+//        }
+//        contained.removeAll(container);
+//        contained.add("EU"); // special case
+//        Map<String, R2<List<String>, String>> aliasInfo = sdi.getLocaleAliasInfo().get("territory");
+//        contained.removeAll(aliasInfo.keySet());
+//        for (String s: contained) {
+//            //System.out.println(s + "\t" + config.getEnglish().getName("territory", s));
+//            FLAGS.add(getHexFromFlagCode(s));
+//        }
+//        FLAGS.freeze();
+//        EMOJI_CHARS.addAll(FLAGS).freeze();
+//    }
 
     public static boolean isRegionalIndicator(int firstCodepoint) {
         return FIRST_REGIONAL <= firstCodepoint && firstCodepoint <= Emoji.LAST_REGIONAL;
@@ -567,19 +551,30 @@ public class Emoji {
         return result;
     }
     
-    public static void main(String[] args) {
-        if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {
-            throw new IllegalArgumentException();
+//    public static void main(String[] args) {
+//        if (!EMOJI_CHARS.containsAll(Unicode8Emoji)) {
+//            throw new IllegalArgumentException();
+//        }
+//        if (!EMOJI_CHARS.contains("🗨")) {
+//            throw new IllegalArgumentException();
+//        }
+//        System.out.println(Source.fbm + " " + Source.fbm.shortName());
+//        System.out.println("Singletons:\n" + EMOJI_SINGLETONS.toPattern(false));
+//        System.out.println("Without flags:\n" + EMOJI_CHARS_WITHOUT_FLAGS.toPattern(false));
+//        System.out.println("Flags:\n" + FLAGS.toPattern(false));
+//        System.out.println("With flags:\n" + EMOJI_CHARS.toPattern(false));
+//        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(false));
+//        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(true));
+//    }
+
+    public static String show(String key) {
+        StringBuilder b = new StringBuilder();
+        for (int cp : CharSequences.codePoints(key)) {
+            if (b.length() != 0) {
+                b.append(' ');
+            }
+            b.append("U+" + Utility.hex(cp) + " " + UTF16.valueOf(cp));
         }
-        if (!EMOJI_CHARS.contains("🗨")) {
-            throw new IllegalArgumentException();
-        }
-        System.out.println(Source.fbm + " " + Source.fbm.shortName());
-        System.out.println("Singletons:\n" + EMOJI_SINGLETONS.toPattern(false));
-        System.out.println("Without flags:\n" + EMOJI_CHARS_WITHOUT_FLAGS.toPattern(false));
-        System.out.println("Flags:\n" + FLAGS.toPattern(false));
-        System.out.println("With flags:\n" + EMOJI_CHARS.toPattern(false));
-        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(false));
-        System.out.println("FLAT:\n" + EMOJI_CHARS_FLAT.toPattern(true));
+        return b.toString();
     }
 }

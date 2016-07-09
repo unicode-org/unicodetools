@@ -206,7 +206,7 @@ public class EmojiFlagOrder {
     static void getFlagOrder() throws IOException {
         Set<Pair<ImageInfo,String>> sorted = new TreeSet<>();
         LocaleDisplayNames localeDisplayNames = LocaleDisplayNames.getInstance(ULocale.ENGLISH);
-        for (String s : Emoji.EMOJI_CHARS) {
+        for (String s : EmojiData.EMOJI_DATA.getChars()) {
             if (!Emoji.isRegionalIndicator(s.codePointAt(0))) {
                 continue;
             }

@@ -1175,6 +1175,7 @@ goal, net, sport	🥅
 juggle, multitask, balance, skill	🤹
 drum, drumsticks, music	🥁
 shopping, cart, trolley, shopping	🛒
+constable	👮
 
 
 

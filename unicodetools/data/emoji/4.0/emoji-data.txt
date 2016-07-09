@@ -228,6 +228,10 @@
 1F985..1F991  ; Emoji                # 9.0 [13] (🦅..🦑)    EAGLE..SQUID
 1F9C0         ; Emoji                # 8.0  [1] (🧀)       CHEESE WEDGE
 
+2640; Emoji # FEMALE SIGN
+2642; Emoji # MALE SIGN
+2695; Emoji # STAFF OF AESCULAPIUS 
+
 # Total elements: 1123
 
 # ================================================

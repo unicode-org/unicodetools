@@ -9,8 +9,8 @@ import java.util.Set;
 import org.unicode.text.tools.UnicodeSetTree.Merger;
 import org.unicode.text.tools.UnicodeSetTree.Node;
 import org.unicode.text.tools.UnicodeSetTree.Visitor;
-import org.unicode.tools.emoji.Emoji;
 import org.unicode.tools.emoji.EmojiAnnotations;
+import org.unicode.tools.emoji.EmojiData;
 
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Utility;
@@ -89,7 +89,7 @@ public class GenerateAnnotationTree {
 
         UnicodeSetTree<Set<String>> sample = new UnicodeSetTree<>(merger);
         for (Entry<UnicodeSet, Set<String>> entry : data2.keyValuesSet()) {
-            UnicodeSet set = new UnicodeSet(entry.getKey()).removeAll(Emoji.FLAGS);
+            UnicodeSet set = new UnicodeSet(entry.getKey()).removeAll(EmojiData.EMOJI_DATA.getFlagSequences());
             if (set.isEmpty()) {
                 continue;
             }

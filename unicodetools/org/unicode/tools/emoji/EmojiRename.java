@@ -40,7 +40,7 @@ public class EmojiRename {
                 return;
             }
             int cp = Integer.parseInt(m.group(1),16);
-            if (!Emoji.EMOJI_CHARS.contains(cp)) {
+            if (!EmojiData.EMOJI_DATA.getChars().contains(cp)) {
                 continue;
             }
             String newName = targetPattern.replace("$1", Utility.hex(cp,4).toLowerCase());
@@ -116,7 +116,7 @@ public class EmojiRename {
             StringBuilder b = new StringBuilder();
             String hexes = prefix.substring(WINDOWS_PREFIX.length());
             int cp = Integer.parseInt(hexes,16);
-            if (!Emoji.EMOJI_CHARS.contains(cp)) {
+            if (!EmojiData.EMOJI_DATA.getChars().contains(cp)) {
                 return null; // don't change
             }
             b.appendCodePoint(cp);

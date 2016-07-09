@@ -923,7 +923,7 @@ public class LoadImage extends Component {
     static UnicodeSet canDisplay(String fontName) {
         Font f = new Font("Zapf Dingbats", 0, 24);
         UnicodeSet result = new UnicodeSet();
-        for (String s : Emoji.EMOJI_CHARS) {
+        for (String s : EmojiData.EMOJI_DATA.getChars()) {
             if (canDisplay(f,s)) {
                 result.add(s);
             }
