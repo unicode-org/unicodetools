@@ -227,7 +227,7 @@ class EmojiStats {
                 final UnicodeSet missing = new UnicodeSet(us).removeAll(common);
                 GenerateEmoji.displayUnicodeSet(out, missing, Style.bestImage, 0, 1, 1, "../../emoji/charts/full-emoji-list.html", GenerateEmoji.EMOJI_COMPARATOR, true);
                 outText.println(source + "\t" + missing.size());
-                propPrinter.show(outText, source+"", 14, 14, us, true, false, false);
+                propPrinter.show(outText, source+"", null, 14, 14, us, true, false, false);
             }
             out.print("</tr>");
         }
@@ -243,7 +243,7 @@ class EmojiStats {
             GenerateEmoji.displayUnicodeSet(out, common, Style.bestImage, 0, platforms2.size(), 1, null, GenerateEmoji.EMOJI_COMPARATOR, true);
             out.println("</td></tr>");
             outText.println("common \t" + common.size());
-            propPrinter.show(outText, "common", 14, 14, common, true, false, false);
+            propPrinter.show(outText, "common", null, 14, 14, common, true, false, false);
         }
     }
     public static void main(String[] args) {

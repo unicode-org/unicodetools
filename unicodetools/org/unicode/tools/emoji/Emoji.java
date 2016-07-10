@@ -276,6 +276,11 @@ public class Emoji {
 
     public static final char EMOJI_VARIANT = '\uFE0F';
     public static final char TEXT_VARIANT = '\uFE0E';
+    public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(0x2640).add(0x2642).freeze();
+    public static final UnicodeSet FAMILY_MARKERS = new UnicodeSet().add(0x1F466,0x1F469);
+    public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[\u26F9 \\U0001F3C4 \\U0001F3CA \\U0001F3CB \\U0001F3CC 👯 🗣 🚣 🚴 🚵 \\U0001F938 \\U0001F939 \\U0001F93C-\\U0001F93E 👤 👥 🚶 🏃 💃 🕴 \\U0001F57A \\U0001F926 \\U0001F930 \\U0001F937]");
+    public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[👱 👮 👳 👷 💂 🕵]");
+    
     public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet()
     .add(EMOJI_VARIANT)
     .add(TEXT_VARIANT)

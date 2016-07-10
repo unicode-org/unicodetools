@@ -50,6 +50,8 @@ public class GenerateEmojiData {
         printData(EmojiData.EMOJI_DATA.getRawNames());
     }
 
+    enum ZwjType {family, role, activity, gestures, other}
+    
     public static <T> void printData(UnicodeMap<String> extraNames) throws IOException {
 
         PropPrinter printer = new PropPrinter().set(extraNames);
@@ -67,11 +69,12 @@ public class GenerateEmojiData {
 
             outText2.println("# Warning: the format has changed from Version 1.0");
             outText2.println("# Format: ");
-            outText2.println("# codepoint(s) ; property(=Yes) # version [count] name(s) ");
-            printer.show(outText2, "Emoji", width, 14, emoji, true, true, false );
-            printer.show(outText2, "Emoji_Presentation", width, 14, emoji_presentation, true, true, false);
-            printer.show(outText2, "Emoji_Modifier", width, 14, emoji_modifiers, true, true, false);
-            printer.show(outText2, "Emoji_Modifier_Base", width, 14, emoji_modifier_bases, true, true, false);
+            outText2.println("# codepoint(s) ; property(=Yes) # comments ");
+            outText2.println("# Sequences are listed in code point order. For a more natural order, see the CLDR collation order for Emoji.\n");
+            printer.show(outText2, "Emoji", null, width, 14, emoji, true, true, false );
+            printer.show(outText2, "Emoji_Presentation", null, width, 14, emoji_presentation, true, true, false);
+            printer.show(outText2, "Emoji_Modifier", null, width, 14, emoji_modifiers, true, true, false);
+            printer.show(outText2, "Emoji_Modifier_Base", null, width, 14, emoji_modifier_bases, true, true, false);
             outText2.println("\n#EOF");
         }
 
@@ -84,9 +87,10 @@ public class GenerateEmojiData {
             int width = maxLength(type_fields);
             showTypeFieldsMessage(out, type_fields);
 
-            printer.show(out, "Emoji_Combining_Sequence", width, 14, Emoji.KEYCAPS, true, false, false);
-            printer.show(out, "Emoji_Flag_Sequence", width, 14, EmojiData.EMOJI_DATA.getFlagSequences(), true, false, false);
-            printer.show(out, "Emoji_Modifier_Sequence", width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), false, false, false);
+            printer.show(out, "Emoji_Combining_Sequence", null, width, 14, Emoji.KEYCAPS, true, false, true);
+            printer.show(out, "Emoji_Flag_Sequence", "This list does not include deprecated or macroregion flags, except for UN and EU.\n"
+                    + "See Annex B of TR51 for more information.", width, 14, EmojiData.EMOJI_DATA.getFlagSequences(), true, false, true);
+            printer.show(out, "Emoji_Modifier_Sequence", null, width, 14, EmojiData.EMOJI_DATA.getModifierSequences(), false, false, true);
             out.write("\n#EOF\n");
         }
 
@@ -97,7 +101,26 @@ public class GenerateEmojiData {
             int width = maxLength(type_fields);
 
             showTypeFieldsMessage(out, type_fields);
-            printer.show(out, "Emoji_ZWJ_Sequence", width, 44, EmojiData.EMOJI_DATA.getZwjSequencesNormal(), false, false, true);
+            UnicodeMap<ZwjType> types = new UnicodeMap<>();
+            for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
+                ZwjType zwjType = ZwjType.other;
+                int[] cps = CharSequences.codePoints(s);
+                if (Emoji.FAMILY_MARKERS.contains(cps[cps.length-1])) {
+                    zwjType = ZwjType.family;
+                } else if (Emoji.ACTIVITY_MARKER.containsSome(s)) {
+                    zwjType = ZwjType.activity;
+                } else if (Emoji.ROLE_MARKER.containsSome(s) || Emoji.FAMILY_MARKERS.containsSome(s)) {
+                    zwjType = ZwjType.role;
+                } else if (Emoji.GENDER_MARKERS.containsSome(s)) {
+                    zwjType = ZwjType.gestures;
+                }
+                types.put(s, zwjType);
+            }
+            printer.show(out, "Emoji_ZWJ_Sequence", "Family", width, 44, types.getSet(ZwjType.family), false, false, true);
+            printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Professional / Role", width, 44, types.getSet(ZwjType.role), false, false, true);
+            printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Activity", width, 44, types.getSet(ZwjType.activity), false, false, true);
+            printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Gestures", width, 44, types.getSet(ZwjType.gestures), false, false, true);
+            printer.show(out, "Emoji_ZWJ_Sequence", "Other", width, 44, types.getSet(ZwjType.other), false, false, true);
             out.write("\n#EOF\n");
         }
 
@@ -111,10 +134,10 @@ public class GenerateEmojiData {
                 int width = maxLength(type_fields);
                 showTypeFieldsMessage(out, type_fields);
 
-                printer.show(out, "Emoji_Flag_Base", width, 6, flagBase, false, true, false);
-                printer.show(out, "Emoji_Gender_Base", width, 6, genderBase, false, true, false);
-                printer.show(out, "Emoji_Hair_Base", width, 6, hairBase, false, true, false);
-                printer.show(out, "Emoji_Direction_Base", width, 6, directionBase, false, true, false);
+                printer.show(out, "Emoji_Flag_Base", null, width, 6, flagBase, false, true, false);
+                printer.show(out, "Emoji_Gender_Base", null, width, 6, genderBase, false, true, false);
+                printer.show(out, "Emoji_Hair_Base", null, width, 6, hairBase, false, true, false);
+                printer.show(out, "Emoji_Direction_Base", null, width, 6, directionBase, false, true, false);
                 out.println("\n#EOF");
             }
         }
@@ -125,15 +148,18 @@ public class GenerateEmojiData {
     }
 
     private static void showTypeFieldsMessage(Writer out, Collection<String> type_fields) throws IOException {
-        out.write("# Format: \n");
-        out.write("# code_point(s) ; type_field # version [count] name(s) \n");
+        out.write("# Format:\n");
+        out.write("#   code_point(s) ; type_field ; description # comments \n");
+        out.write("# Fields:\n");
         out.write("#   code_point(s): one or more code points in hex format, separated by spaces\n");
         out.write("#   type_field: "
                 + (type_fields.size() != 1 ? "any of {" + CollectionUtilities.join(type_fields, ", ") + "}"
                         : type_fields.iterator().next())
-                        + ".\n"
+                        + "\n"
                         + "#     The type_field is a convenience for parsing the emoji sequence files, "
                         + "and is not intended to be maintained as a property.\n");
+        out.write("#   description: (optional) short description of sequence.\n");
+        out.write("# Sequences are listed in code point order. For a more natural order, see the CLDR collation order for Emoji.\n");
     }
 
     private static int maxLength(Iterable<String> type_fields) {
@@ -152,14 +178,14 @@ public class GenerateEmojiData {
         private UnicodeMap<String> extraNames;
         private boolean flat;
 
-        void show(Writer out, String title, int maxTitleWidth, int maxCodepointWidth, UnicodeSet emojiChars, 
-                boolean addVariants, boolean showMissingLine, boolean showName) {
+        void show(Writer out, String title, String comments, int maxTitleWidth, int maxCodepointWidth, 
+                UnicodeSet emojiChars, boolean addVariants, boolean showMissingLine, boolean showName) {
             try {
                 Tabber tabber = new Tabber.MonoTabber()
                 .add(maxCodepointWidth, Tabber.LEFT)
                 .add(maxTitleWidth + 4, Tabber.LEFT);
                 if (showName) {
-                    tabber.add(50, Tabber.LEFT);
+                    tabber.add(65, Tabber.LEFT);
                 }
                 tabber.add(2, Tabber.LEFT) // hash
                 .add(3, Tabber.RIGHT) // version
@@ -172,7 +198,12 @@ public class GenerateEmojiData {
                 out.write("\n# ================================================\n\n");
                 int totalCount = 0;
                 if (!showMissingLine) {
-                    out.write("# " + title.replace('_', ' ') + "\n\n");
+                    out.write("# " + title.replace('_', ' ') + "\n");
+                    if (comments != null) {
+                        out.write("#\n"
+                                + "#   " + comments.replace("\n","\n#   ") + "\n");
+                    }
+                    out.write("\n");
                 } else {
                     out.write("# All omitted code points have " + title + "=No \n");
                     out.write("# @missing: 0000..10FFFF  ; " + title + " ; No\n\n");

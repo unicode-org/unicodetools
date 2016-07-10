@@ -708,7 +708,7 @@ public class EmojiData {
         final int firstCodePoint = s.codePointAt(0);
         String name = Emoji.NAME.get(firstCodePoint);
         if (s.indexOf(Emoji.ENCLOSING_KEYCAP) >= 0) {
-            return "Keycap " + name;
+            return "Keycap " + name.toLowerCase(Locale.ENGLISH);
         }
         final int firstCount = Character.charCount(firstCodePoint);
         main:
@@ -717,6 +717,8 @@ public class EmojiData {
                 final EmojiDatum edata = getData(cp2);
                 if (edata != null && ModifierStatus.modifier == edata.modifierStatus) {
                     name += ", " + shortName(cp2);
+                } else if (Emoji.REGIONAL_INDICATORS.contains(firstCodePoint)) {
+                    name = "Flag for " + Emoji.getFlagRegionName(s);
                 } else {
                     StringBuffer nameBuffer = new StringBuffer();
                     boolean sep = false;
@@ -754,7 +756,7 @@ public class EmojiData {
                         //                            : cp == Emoji.EMOJI_VARIANT ? "emoji-vs" 
                         //                                    : NAME.get(cp));
                     }
-                    name = nameBuffer.toString();
+                    name = nameBuffer.toString(); // handle first character
                 }
             }
         return name == null ? "UNNAMED" : name;
