@@ -811,7 +811,10 @@ public class GenerateEmoji {
                 + "It does not include emoji sequences. "
                 + "The 'Dings' include Dingbats, Webdings, and Wingdings. "
                 + "The label V1.1 ⊖ Dings indicates those characters (except for Dings) that are in Unicode version 1.1. "
-                + "The lable V1.1 ∩ Dings indicates those Ding characters that are in Unicode version 1.1.</p>\n", "border='1'", true);
+                + "The label V1.1 ∩ Dings indicates those Ding characters that are in Unicode version 1.1.</p>\n"
+                + "<p>The <a target='style' href='emoji-sequences.html#modifier_sequences'>modifier sequences</a> are <i>omitted</i> for brevity, "
+                + "because they are simply ordered after their emoji modifier bases.</p>\n"
+                , "border='1'", true);
         out.println("<tr><th>Version</th>"
                 + "<th width='25%'>Default Text Style; no VS in U8.0</th>"
                 + "<th width='25%'>Default Text Style; has VSs</th>"
@@ -1051,9 +1054,9 @@ public class GenerateEmoji {
                 + (showUca ? "for Emoji Ordering " : "")
                 + "indicate the rough categories that are used to organize related characters together. "
                 + "The categories are rough, and any character can fit in multiple categories: "
-                + "<i>they may change at any time, and should not be used in production.</i> "
-                + "The <a target='style' href='emoji-sequences.html#modifier_sequences'>320 modifier sequences</a> are omitted, "
-                + "because they are simply ordered after their emoji modifier bases. "
+                + "<i>they may change at any time, and should not be used in production.</i></p>"
+                + "<p>The <a target='style' href='emoji-sequences.html#modifier_sequences'>modifier sequences</a> are <i>omitted</i> for brevity, "
+                + "because they are simply ordered after their emoji modifier bases. Emoji without available images are shown as ✘; hovering with a mouse will show the name."
                 + (showUca ? "The cell divisions for the Default Unicode Collation Order are Unicode code-chart blocks. " : "")
                 + "To make suggestions for improvements, please file a " + getCldrTicket("collation", "Emoji ordering suggestions") + ".</p>\n", "border='1'", true);
 

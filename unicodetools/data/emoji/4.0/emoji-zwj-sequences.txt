@@ -93,8 +93,8 @@
 1F646 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Man gesturing ok                      # 6.0  [1] (🙆‍♂)
 1F647 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Woman bowing deeply                             # 6.0  [1] (🙇‍♀)
 1F647 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Man bowing deeply                               # 6.0  [1] (🙇‍♂)
-1F64B 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Woman raising one hand           # 6.0  [1] (🙋‍♀)
-1F64B 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Man raising one hand             # 6.0  [1] (🙋‍♂)
+1F64B 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Woman raising hand           # 6.0  [1] (🙋‍♀)
+1F64B 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Man raising hand             # 6.0  [1] (🙋‍♂)
 1F64D 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Woman frowning                                  # 6.0  [1] (🙍‍♀)
 1F64D 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Man frowning                                    # 6.0  [1] (🙍‍♂)
 1F64E 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Woman pouting                         # 6.0  [1] (🙎‍♀)
@@ -131,6 +131,7 @@
 1F471 200D 2640 FE0F                             ; Emoji_ZWJ_Sequence  ; Blonde woman  # 👱♀	
 1F471 200D 2642 FE0F                             ; Emoji_ZWJ_Sequence  ; Blond man   # 👱♂	
 
-
+1F46F 200D 2640 FE0F; Emoji_ZWJ_Sequence  ;Women partying
+1F46F 200D 2642 FE0F; Emoji_ZWJ_Sequence  ;Men partying
 
 #EOF

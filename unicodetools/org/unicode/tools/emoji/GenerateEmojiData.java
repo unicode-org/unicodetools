@@ -160,6 +160,9 @@ public class GenerateEmojiData {
                         + "and is not intended to be maintained as a property.\n");
         out.write("#   description: (optional) short description of sequence.\n");
         out.write("# Sequences are listed in code point order. For a more natural order, see the CLDR collation order for Emoji.\n");
+        if (type_fields.contains("Emoji_ZWJ_Sequence")) {
+            out.write("# In display and processing, sequences should be supported both with and without FE0F.\n");
+        }
     }
 
     private static int maxLength(Iterable<String> type_fields) {
