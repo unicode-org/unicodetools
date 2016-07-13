@@ -1103,19 +1103,21 @@ public final class Utility implements UCD_Types {    // COMMON UTILITIES
     
     /** If contents(newFile) ≠ contents(oldFile), rename newFile to old. Otherwise delete newfile. Return true if replaced. **/
     public static boolean replaceDifferentOrDelete(String oldFile, String newFile, boolean skipCopyright) throws IOException {
+        final File oldFile2 = new File(oldFile);
+        if (oldFile2.exists()) {
         final String lines[] = new String[2];
         final boolean identical = filesAreIdentical(oldFile, newFile, skipCopyright, lines);
         if (identical) {
             new File(newFile).delete();
             return false;
-        } else {
+        }
             System.out.println("Found difference in : " + oldFile + ", " + newFile);
             final int diff = compare(lines[0], lines[1]);
             System.out.println(" File1: '" + lines[0].substring(0,diff) + "', '" + lines[0].substring(diff) + "'");
             System.out.println(" File2: '" + lines[1].substring(0,diff) + "', '" + lines[1].substring(diff) + "'");
-            new File(newFile).renameTo(new File(oldFile));
-            return true;
         }
+        new File(newFile).renameTo(oldFile2);
+        return true;
     }
 
     public static boolean renameIdentical(String file1, String file2, String batFile, boolean skipCopyright) throws IOException {

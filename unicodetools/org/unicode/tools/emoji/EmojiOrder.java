@@ -26,6 +26,7 @@ import org.unicode.tools.emoji.EmojiData.VariantHandling;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
@@ -85,7 +86,7 @@ public class EmojiOrder {
                     PLAIN_STRING_COMPARATOR);
 
     //public static final EmojiOrder ALT_ORDER = new EmojiOrder(Emoji.VERSION_BETA, "altOrder.txt");
-    public static final EmojiOrder STD_ORDER = new EmojiOrder(Emoji.VERSION_BETA, "emojiOrdering.txt");
+    public static final EmojiOrder STD_ORDER = new EmojiOrder(Emoji.VERSION_TO_GENERATE, "emojiOrdering.txt");
 
     public final MapComparator<String>     mp;
     public final Relation<String, String>  orderingToCharacters;
@@ -163,15 +164,7 @@ public class EmojiOrder {
             line = Emoji.UNESCAPE.transform(line);
             line = line.replace(Emoji.TEXT_VARIANT_STRING, "").replace(Emoji.EMOJI_VARIANT_STRING, "");
             for (String string : ei.set(line)) {
-//            for (int i = 0; i < line.length();) {
-//                String string = Emoji.getEmojiSequence(line, i);
-//                i += string.length();
-                //                if (string.contains("⚕")) {
-                //                    System.out.println(string);
-                //                }
-//                if (emojiData.skipEmojiSequence(string)) {
-//                    continue;
-//                }
+                // NOTE: all emoji variant selectors have been removed at this point
                 if (sorted.contains(string)) {
                     continue;
                 }
@@ -297,6 +290,8 @@ public class EmojiOrder {
         Set<String> foo = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, 
                 EmojiData.EMOJI_DATA.getChars());
         STD_ORDER.showLines(true);
+        
+        showDiff(EmojiData.EMOJI_DATA.getChars(), STD_ORDER.emojiData.getSortingChars());
         //STD_ORDER.showLines(false, null);
         //        checkRBC();
         //LinkedHashSet<String> foo = Emoji.FLAGS.addAllTo(new LinkedHashSet());
@@ -340,8 +335,14 @@ public class EmojiOrder {
     //        }
     //    }
 
+    private static void showDiff(UnicodeSet chars, UnicodeSet sortingChars) {
+        System.out.println(new UnicodeSet(chars).removeAll(sortingChars));
+        System.out.println(new UnicodeSet(sortingChars).removeAll(chars));
+    }
+
     private void showLines(boolean spreadsheet) {
-        Set<String> retain = emojiData.getSortingChars().addAllTo(new HashSet<String>());
+        Set<String> retain = ImmutableSet.copyOf(emojiData.getSortingChars().addAllTo(new HashSet<String>()));
+        UnicodeSet allCharacters = new UnicodeSet();
         MajorGroup lastMajorGroup = null;
         int i = 0;
         System.out.println("#Main group\tInternal subgroup\tCount\tCharacters in order");
@@ -363,6 +364,7 @@ public class EmojiOrder {
                     System.out.println(majorGroup + ";\t" + label + ";\t" + filtered.size() + ";\t" + CollectionUtilities.join(filtered, " "));
                     total += filtered.size();
                 }
+                allCharacters.add(filtered);
                 continue;
             }
             for (String cp : list) {
@@ -392,6 +394,14 @@ public class EmojiOrder {
         }
         if (spreadsheet) {
             System.out.println("# total:\t\t" + total);
+            if (!allCharacters.equals(new UnicodeSet().addAll(retain))) {
+                System.out.println(
+                        retain.size() 
+                        + "\t" + allCharacters.size() 
+                        + "\t" + new UnicodeSet().addAll(retain).removeAll(allCharacters)
+                        + "\t" + new UnicodeSet().addAll(allCharacters).removeAll(retain)
+                        );
+            }
         } else {
             System.out.println("# " + lastMajorGroup + " count:\t" + i);
         }
