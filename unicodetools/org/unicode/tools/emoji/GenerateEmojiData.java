@@ -50,8 +50,24 @@ public class GenerateEmojiData {
         printData(EmojiData.EMOJI_DATA.getRawNames());
     }
 
-    enum ZwjType {family, role, activity, gestures, other}
-    
+    enum ZwjType {
+        family, role, genderRole, activity, gestures, other;
+        static ZwjType getType(String s) {
+            int[] cps = CharSequences.codePoints(s);
+            ZwjType zwjType = ZwjType.other;
+            if (Emoji.FAMILY_MARKERS.contains(cps[cps.length-1])) {
+                zwjType = ZwjType.family;
+            } else if (Emoji.ACTIVITY_MARKER.containsSome(s)) {
+                zwjType = ZwjType.activity;
+            } else if (Emoji.ROLE_MARKER.containsSome(s) || Emoji.FAMILY_MARKERS.containsSome(s)) {
+                zwjType = Emoji.GENDER_MARKERS.containsSome(s) ? ZwjType.genderRole: ZwjType.role;
+            } else if (Emoji.GENDER_MARKERS.containsSome(s)) {
+                zwjType = ZwjType.gestures;
+            }
+            return zwjType;
+        }
+    }
+
     public static <T> void printData(UnicodeMap<String> extraNames) throws IOException {
 
         PropPrinter printer = new PropPrinter().set(extraNames);
@@ -70,7 +86,7 @@ public class GenerateEmojiData {
             outText2.println("# Warning: the format has changed from Version 1.0");
             outText2.println("# Format: ");
             outText2.println("# codepoint(s) ; property(=Yes) # comments ");
-            outText2.println("# Sequences are listed in code point order. For a more natural order, see the CLDR collation order for Emoji.\n");
+            outText2.println("# Sequences are listed in code point order. For a more natural order, see the CLDR collation order for Emoji.");
             printer.show(outText2, "Emoji", null, width, 14, emoji, true, true, false );
             printer.show(outText2, "Emoji_Presentation", null, width, 14, emoji_presentation, true, true, false);
             printer.show(outText2, "Emoji_Modifier", null, width, 14, emoji_modifiers, true, true, false);
@@ -103,21 +119,12 @@ public class GenerateEmojiData {
             showTypeFieldsMessage(out, type_fields);
             UnicodeMap<ZwjType> types = new UnicodeMap<>();
             for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
-                ZwjType zwjType = ZwjType.other;
-                int[] cps = CharSequences.codePoints(s);
-                if (Emoji.FAMILY_MARKERS.contains(cps[cps.length-1])) {
-                    zwjType = ZwjType.family;
-                } else if (Emoji.ACTIVITY_MARKER.containsSome(s)) {
-                    zwjType = ZwjType.activity;
-                } else if (Emoji.ROLE_MARKER.containsSome(s) || Emoji.FAMILY_MARKERS.containsSome(s)) {
-                    zwjType = ZwjType.role;
-                } else if (Emoji.GENDER_MARKERS.containsSome(s)) {
-                    zwjType = ZwjType.gestures;
-                }
+                ZwjType zwjType = ZwjType.getType(s);
                 types.put(s, zwjType);
             }
             printer.show(out, "Emoji_ZWJ_Sequence", "Family", width, 44, types.getSet(ZwjType.family), false, false, true);
-            printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Professional / Role", width, 44, types.getSet(ZwjType.role), false, false, true);
+            printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Role, with object", width, 44, types.getSet(ZwjType.role), false, false, true);
+            printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Role", width, 44, types.getSet(ZwjType.genderRole), false, false, true);
             printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Activity", width, 44, types.getSet(ZwjType.activity), false, false, true);
             printer.show(out, "Emoji_ZWJ_Sequence", "Gendered Gestures", width, 44, types.getSet(ZwjType.gestures), false, false, true);
             printer.show(out, "Emoji_ZWJ_Sequence", "Other", width, 44, types.getSet(ZwjType.other), false, false, true);
@@ -201,12 +208,11 @@ public class GenerateEmojiData {
                 out.write("\n# ================================================\n\n");
                 int totalCount = 0;
                 if (!showMissingLine) {
-                    out.write("# " + title.replace('_', ' ') + "\n");
+                    out.write("# " + title.replace('_', ' '));
                     if (comments != null) {
-                        out.write("#\n"
-                                + "#   " + comments.replace("\n","\n#   ") + "\n");
+                        out.write(": " + comments);
                     }
-                    out.write("\n");
+                    out.write("\n\n");
                 } else {
                     out.write("# All omitted code points have " + title + "=No \n");
                     out.write("# @missing: 0000..10FFFF  ; " + title + " ; No\n\n");

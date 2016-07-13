@@ -17,6 +17,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -32,6 +33,7 @@ import org.unicode.draft.UnicodeDataOutput;
 import org.unicode.draft.UnicodeDataOutput.ItemWriter;
 import org.unicode.props.PropertyNames.Named;
 import org.unicode.props.PropertyUtilities.Merge;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 
@@ -476,11 +478,13 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     UnicodeMap<String> nameMap;
+    UnicodeMap<General_Category_Values> gcMap;
 
     public String getName(String cps, String separator) {
         StringBuffer result = new StringBuffer();
         if (nameMap == null) {
             nameMap = load(UcdProperty.Name);
+            gcMap = loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
         }
         for (int cp : CharSequences.codePoints(cps)) {
             if (result.length() != 0) {
@@ -488,7 +492,9 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
             }
             String name = nameMap.get(cp);
             if (name == null) {
-                result.append("<reserved-"+Utility.hex(cp));
+                final General_Category_Values gcv = gcMap.get(cp);
+                result.append("<" + (gcv == General_Category_Values.Unassigned ? "reserved" : gcv.name().toLowerCase(Locale.ENGLISH))
+                        + "-" + Utility.hex(cp) + ">");
             } else if (name.endsWith("-#")) {
                 result.append(name.substring(0,name.length()-1) + Utility.hex(cp));
             } else {
