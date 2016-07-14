@@ -50,19 +50,22 @@ public class GenerateEmojiData {
         printData(EmojiData.EMOJI_DATA.getRawNames());
     }
 
-    enum ZwjType {
-        family, role, genderRole, activity, gestures, other;
-        static ZwjType getType(String s) {
+    public enum ZwjType {
+        family, role, genderRole, activity, gestures, other, na;
+        public static ZwjType getType(String s) {
+            if (!s.contains(Emoji.JOINER_STRING)) {
+                return na;
+            }
             int[] cps = CharSequences.codePoints(s);
             ZwjType zwjType = ZwjType.other;
             if (Emoji.FAMILY_MARKERS.contains(cps[cps.length-1])) {
-                zwjType = ZwjType.family;
+                zwjType = family;
             } else if (Emoji.ACTIVITY_MARKER.containsSome(s)) {
-                zwjType = ZwjType.activity;
+                zwjType = activity;
             } else if (Emoji.ROLE_MARKER.containsSome(s) || Emoji.FAMILY_MARKERS.containsSome(s)) {
-                zwjType = Emoji.GENDER_MARKERS.containsSome(s) ? ZwjType.genderRole: ZwjType.role;
+                zwjType = Emoji.GENDER_MARKERS.containsSome(s) ? genderRole: role;
             } else if (Emoji.GENDER_MARKERS.containsSome(s)) {
-                zwjType = ZwjType.gestures;
+                zwjType = gestures;
             }
             return zwjType;
         }
