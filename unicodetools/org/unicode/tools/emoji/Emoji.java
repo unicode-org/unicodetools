@@ -278,7 +278,7 @@ public class Emoji {
     public static final char TEXT_VARIANT = '\uFE0E';
     public static final UnicodeSet GENDER_MARKERS = new UnicodeSet().add(0x2640).add(0x2642).freeze();
     public static final UnicodeSet FAMILY_MARKERS = new UnicodeSet().add(0x1F466,0x1F469);
-    public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[\u26F9 \\U0001F3C4 \\U0001F3CA \\U0001F3CB \\U0001F3CC 👯 🗣 🚣 🚴 🚵 \\U0001F938 \\U0001F939 \\U0001F93C-\\U0001F93E 👤 👥 🚶 🏃 💃 🕴 \\U0001F57A \\U0001F926 \\U0001F930 \\U0001F937]");
+    public static final UnicodeSet ACTIVITY_MARKER = new UnicodeSet("[\\U0001F487 \\U0001F486 \u26F9 \\U0001F3C4 \\U0001F3CA \\U0001F3CB \\U0001F3CC 👯 🗣 🚣 🚴 🚵 \\U0001F938 \\U0001F939 \\U0001F93C-\\U0001F93E 👤 👥 🚶 🏃 💃 🕴 \\U0001F57A \\U0001F930]");
     public static final UnicodeSet ROLE_MARKER = new UnicodeSet("[👱 👮 👳 👷 💂 🕵]");
     
     public static final UnicodeSet EMOJI_VARIANTS = new UnicodeSet()
@@ -341,8 +341,6 @@ public class Emoji {
     };
 
 
-    //    private static final UnicodeSet FITZ_OPTIONAL = new UnicodeSet("[\\u261D \\u261F \\u2639-\\u263B \\u270A-\\u270D \\U0001F3C2-\\U0001F3C4 \\U0001F3C7 \\U0001F3CA \\U0001F440-\\U0001F450 \\U0001F47F \\U0001F483 \\U0001F485 \\U0001F48B \\U0001F4AA \\U0001F58E-\\U0001F597 \\U0001F59E-\\U0001F5A3 \\U0001F5E2 \\U0001F600-\\U0001F637 \\U0001F641 \\U0001F642 \\U0001F64C \\U0001F64F \\U0001F6A3 \\U0001F6B4-\\U0001F6B6 \\U0001F6C0]");
-    //    private static final UnicodeSet FITZ_MINIMAL = new UnicodeSet("[\\U0001F385 \\U0001F466- \\U0001F478 \\U0001F47C \\U0001F481 \\U0001F482 \\U0001F486 \\U0001F487 \\U0001F48F \\U0001F491 \\U0001F645- \\U0001F647 \\U0001F64B \\U0001F64D \\U0001F64E]");
     static final UnicodeSet ASCII_LETTERS = new UnicodeSet("[A-Za-z]").freeze();
     static final String EMOJI_VARIANT_STRING = String.valueOf(EMOJI_VARIANT);
     static final String TEXT_VARIANT_STRING = String.valueOf(TEXT_VARIANT);

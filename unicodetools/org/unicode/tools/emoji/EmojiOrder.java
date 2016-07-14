@@ -183,8 +183,8 @@ public class EmojiOrder {
                 //                }
 
                 if (Emoji.GENDER_BASE.contains(string)) {
-                    addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2640"); 
                     addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2642"); 
+                    addVariants(result, sorted, majorGroup, lastLabel, string + "\u200d\u2640"); 
                 }
                 //                // add/remove all variant strings
                 //                if (string.contains(Emoji.JOINER_STRING) || emojiData.getKeycapBases().contains(string.charAt(0))) { 
