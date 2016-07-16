@@ -15,6 +15,7 @@ import org.unicode.text.utility.Utility;
 import org.unicode.tools.Tabber;
 import org.unicode.tools.emoji.EmojiData.DefaultPresentation;
 import org.unicode.tools.emoji.EmojiData.VariantHandling;
+import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
@@ -28,6 +29,23 @@ import com.ibm.icu.util.TimeZone;
 import com.ibm.icu.util.ULocale;
 
 public class GenerateEmojiData {
+    private static final String ORDERING_NOTE 
+    = "#\n"
+            + "# Characters and sequences are listed in code point order. Users should be shown a more natural order.\n"
+            + "# See the CLDR collation order for Emoji.\n";
+
+    public static final String SV_WARNING
+    = "Three characters used in emoji zwj sequences with the emoji variation selector (VS16 = FE0F) do not yet appear in StandardizedVariants.txt.\n"
+            + "Implementations fully supporting these three characters as emoji will need to allow for FE0F, by the following addition to that file:";
+
+    public static final String SV_CHARS
+    = "2640 FE0E; text style; # FEMALE SIGN\n"
+            + "2640 FE0F; emoji style; # FEMALE SIGN\n"
+            + "2642 FE0E; text style;  # MALE SIGN\n"
+            + "2642 FE0F; emoji style; # MALE SIGN\n"
+            + "2695 FE0E; text style;  # STAFF OF AESCULAPIUS\n"
+            + "2695 FE0F; emoji style; # STAFF OF AESCULAPIUS\n";
+
     private static final boolean DO_TAGS = false;
 
     // get this from the data file in the future
@@ -47,6 +65,13 @@ public class GenerateEmojiData {
     private static final boolean SHOW = false;
 
     public static void main(String[] args) throws IOException {
+        UnicodeSet bases = new UnicodeSet();
+        for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
+            if (ZwjType.getType(s) != ZwjType.family && ZwjType.getType(s) != ZwjType.other) {
+                bases.add(s.codePointAt(0));
+            }
+        }
+        System.out.println(bases.toPattern(false));
         printData(EmojiData.EMOJI_DATA.getRawNames());
     }
 
@@ -89,7 +114,7 @@ public class GenerateEmojiData {
             outText2.println("# Warning: the format has changed from Version 1.0");
             outText2.println("# Format: ");
             outText2.println("# codepoint(s) ; property(=Yes) # comments ");
-            outText2.println("# Sequences are listed in code point order. For a more natural order, see the CLDR collation order for Emoji.");
+            outText2.println(ORDERING_NOTE);
             printer.show(outText2, "Emoji", null, width, 14, emoji, true, true, false );
             printer.show(outText2, "Emoji_Presentation", null, width, 14, emoji_presentation, true, true, false);
             printer.show(outText2, "Emoji_Modifier", null, width, 14, emoji_modifiers, true, true, false);
@@ -169,9 +194,14 @@ public class GenerateEmojiData {
                         + "#     The type_field is a convenience for parsing the emoji sequence files, "
                         + "and is not intended to be maintained as a property.\n");
         out.write("#   description: (optional) short description of sequence.\n");
-        out.write("# Sequences are listed in code point order. For a more natural order, see the CLDR collation order for Emoji.\n");
+        out.write(ORDERING_NOTE);
         if (type_fields.contains("Emoji_ZWJ_Sequence")) {
-            out.write("# In display and processing, sequences should be supported both with and without FE0F.\n");
+            out.write("#\n"
+                    + "# In display and processing, sequences should be supported both with and without FE0F."
+                    + "\n# " + SV_WARNING.replace("\n", "\n# ")
+                    + "\n#"
+                    + "\n# " +  SV_CHARS.replace("\n", "\n# ")
+                    );
         }
     }
 
