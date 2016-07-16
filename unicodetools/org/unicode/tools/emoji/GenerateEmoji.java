@@ -1349,19 +1349,22 @@ public class GenerateEmoji {
             buffer.append(bestImage);
             out.println("<td class='andr'>");
             //            name.setLength(0);
-            for (int item : CharSequences.codePoints(s)) {
-                if (Emoji.EMOJI_VARIANTS_JOINER.contains(item)) {
-                    continue;
-                }
-                //if (Emoji.EMOJI_CHARS.contains(item)) {
-                    String s2 = UTF16.valueOf(item);
-                    out.println(getBestImage(s2, true, ""));
-                    //                    if (name.length() != 0) {
-                    //                        name.append();
-                    //                    }
-                    //                    name.append(getName(s2, true));
-                //}
+            for (String part : s.replace(Emoji.EMOJI_VARIANT_STRING,"").split(Emoji.JOINER_STRING)) {
+                out.println(getBestImage(part, true, ""));
             }
+//            for (int item : CharSequences.codePoints(s)) {
+//                if (Emoji.EMOJI_VARIANTS_JOINER.contains(item)) {
+//                    continue;
+//                }
+//                //if (Emoji.EMOJI_CHARS.contains(item)) {
+//                    String s2 = UTF16.valueOf(item);
+//                    out.println(getBestImage(s2, true, ""));
+//                    //                    if (name.length() != 0) {
+//                    //                        name.append();
+//                    //                    }
+//                    //                    name.append(getName(s2, true));
+//                //}
+//            }
             out.println("</td>");
             //            if (isSingle) {
             //                prefix = name + ": <i>";

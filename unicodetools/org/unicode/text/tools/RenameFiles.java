@@ -33,20 +33,22 @@ public class RenameFiles {
     private static final boolean RECURSIVE = true;
 
     private static final String DIR_OF_FILES_TO_CHANGE = 
-            "/Users/markdavis/Downloads/PNG 2"
+            Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/android"
+            //"/Users/markdavis/Downloads/PNG 2"
             //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/"
             //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/proposed"
             //Settings.UNICODE_DRAFT_DIRECTORY + "/reports/tr51/images/samsung"
             // Settings.OTHER_WORKSPACE_DIRECTORY + "DATA/emoji/staging"
             ;
     private static final String FILE_MATCH = 
-            "([a-zA-Z]+)_(?:x)?(.*)\\.png"
+            "([a-zA-Z]+)_(?:[xu])?(.*)\\.png"
             //"proposed_(?:x)?(.*)\\.png";
             // U+270C,U+1F3FC_256.png
             ;
 
     private static final String OUTPUT_PLATFORM_PREFIX = 
-            null // null means use old prefix
+            "android"
+            //null // null means use old prefix
             // "ref";
             ;
 
