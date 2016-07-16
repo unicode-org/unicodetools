@@ -5,12 +5,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -26,8 +24,6 @@ import org.unicode.tools.emoji.EmojiData.VariantHandling;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
-import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Relation;
 import com.ibm.icu.text.Collator;
@@ -94,7 +90,7 @@ public class EmojiOrder {
     public final Comparator<String>        codepointCompare;
     public final UnicodeMap<MajorGroup>  majorGroupings = new UnicodeMap<>(); 
     public final Map<String, Integer>  groupOrder; 
-    private final EmojiData emojiData;
+    final EmojiData emojiData;
     private final Map<String, MajorGroup> categoryToMajor;
 
     /**
@@ -285,22 +281,6 @@ public class EmojiOrder {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        boolean foo2 = EmojiData.EMOJI_DATA.getChars().contains(EmojiData.SAMPLE_WITHOUT_TRAILING_EVS);
-        Set<String> foo = EmojiOrder.sort(EmojiOrder.STD_ORDER.codepointCompare, 
-                EmojiData.EMOJI_DATA.getChars());
-        STD_ORDER.showLines(true);
-        
-        showDiff(EmojiData.EMOJI_DATA.getChars(), STD_ORDER.emojiData.getSortingChars());
-        //STD_ORDER.showLines(false, null);
-        //        checkRBC();
-        //LinkedHashSet<String> foo = Emoji.FLAGS.addAllTo(new LinkedHashSet());
-        //System.out.println(CollectionUtilities.join(foo, " "));
-        //        showOrderGroups();
-        //        showOrder();
-        //        STD_ORDER.show();
-        //        ALT_ORDER.show();
-    }
 
     //    private static void checkRBC() throws Exception {
     //        UnicodeSet APPLE_COMBOS = emojiData.getZwjSequencesNormal();
@@ -334,78 +314,6 @@ public class EmojiOrder {
     //            System.out.println();
     //        }
     //    }
-
-    private static void showDiff(UnicodeSet chars, UnicodeSet sortingChars) {
-        System.out.println(new UnicodeSet(chars).removeAll(sortingChars));
-        System.out.println(new UnicodeSet(sortingChars).removeAll(chars));
-    }
-
-    private void showLines(boolean spreadsheet) {
-        Set<String> retain = ImmutableSet.copyOf(emojiData.getSortingChars().addAllTo(new HashSet<String>()));
-        UnicodeSet allCharacters = new UnicodeSet();
-        MajorGroup lastMajorGroup = null;
-        int i = 0;
-        System.out.println("#Main group\tInternal subgroup\tCount\tCharacters in order");
-        int total = 0;
-        for (Entry<String, Set<String>> labelToSet : orderingToCharacters.keyValuesSet()) {
-            boolean isFirst = true;
-            final String label = labelToSet.getKey();
-            final Set<String> list = labelToSet.getValue();
-            if (list.contains("👮")) {
-                int debug = 0;
-            }
-            MajorGroup majorGroup = getMajorGroup(list); // majorGroupings.get(list.iterator().next());
-            if (spreadsheet) {
-                LinkedHashSet<String> filtered = new LinkedHashSet<>(list);
-                if (retain != null) {
-                    filtered.retainAll(retain);
-                }
-                if (!filtered.isEmpty()) {
-                    System.out.println(majorGroup + ";\t" + label + ";\t" + filtered.size() + ";\t" + CollectionUtilities.join(filtered, " "));
-                    total += filtered.size();
-                }
-                allCharacters.add(filtered);
-                continue;
-            }
-            for (String cp : list) {
-                if (emojiData.getModifierSequences().contains(cp)) {
-                    continue;
-                }
-                ++i;
-                if (majorGroup != lastMajorGroup) {
-                    if (lastMajorGroup != null) {
-                        System.out.println("# " + lastMajorGroup + " count:\t" + i);
-                        i = 0;
-                    }
-                    System.out.println("####################");
-                    System.out.println("# " + majorGroup);
-                    System.out.println("####################");
-                    lastMajorGroup = majorGroup;
-                }
-                if (isFirst) {
-                    System.out.println("# " + label);
-                    isFirst = false;
-                }
-                System.out.println(Utility.hex(cp) 
-                        + " ; " + Emoji.getNewest(cp).getShortName() 
-                        + " # " + cp 
-                        + " " + Emoji.getName(cp, false, null));
-            }
-        }
-        if (spreadsheet) {
-            System.out.println("# total:\t\t" + total);
-            if (!allCharacters.equals(new UnicodeSet().addAll(retain))) {
-                System.out.println(
-                        retain.size() 
-                        + "\t" + allCharacters.size() 
-                        + "\t" + new UnicodeSet().addAll(retain).removeAll(allCharacters)
-                        + "\t" + new UnicodeSet().addAll(allCharacters).removeAll(retain)
-                        );
-            }
-        } else {
-            System.out.println("# " + lastMajorGroup + " count:\t" + i);
-        }
-    }
 
     public <T extends Appendable> T appendCollationRules(T outText, UnicodeSet... characters) {
         try {

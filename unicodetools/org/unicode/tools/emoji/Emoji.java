@@ -55,7 +55,7 @@ public class Emoji {
      * Change the following according to whether we are generating the beta version of files, or the new version.
      * We support generating the last version in order to make improvements to the charts.
      */
-    public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", false);
+    public static final boolean IS_BETA = CldrUtility.getProperty("emoji-beta", true); // default to true
 
     //public static final VersionInfo VERSION_FORMAT1 = VersionInfo.getInstance(1);
 
