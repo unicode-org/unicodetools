@@ -25,6 +25,7 @@ import org.unicode.props.UcdPropertyValues.Age_Values;
 import org.unicode.text.utility.Settings;
 import org.unicode.text.utility.Utility;
 import org.unicode.tools.emoji.EmojiData.EmojiDatum;
+import org.unicode.tools.emoji.GenerateEmojiData.ZwjType;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
@@ -96,6 +97,7 @@ public class Emoji {
     public enum Source {
         // for accessing pngs
         // order is important
+        charOverride,
         color, 
         apple, google("Googᵈ"), twitter("Twtr."), emojione("One"), // more complete
         fbm("FBM", "Messenger (Facebook)"), windows("Wind."), samsung("Sams."), 
@@ -407,6 +409,18 @@ public class Emoji {
 //        if (type == Emoji.Source.android && Emoji.SKIP_ANDROID.contains(chars)) { // hack to exclude certain android
 //            return null;
 //        }
+        if (type == Source.charOverride) { 
+            Source overrideSource = BEST_OVERRIDE.get(chars);
+            if (overrideSource != null) {
+                type = overrideSource;
+            } else if (ZwjType.getType(chars) != ZwjType.family) {
+                overrideSource = BEST_OVERRIDE.get(UTF16.valueOf(chars.codePointAt(0)));
+                if (overrideSource != null) {
+                    type = overrideSource;
+                }
+            }
+        }
+
         String core = buildFileName(chars, "_");
         String suffix = ".png";
         if (type != null && type.isGif()) {
@@ -450,9 +464,26 @@ public class Emoji {
         }
         return null;
     }
+    
+    static final UnicodeMap<Emoji.Source> BEST_OVERRIDE = new UnicodeMap<>();
+    static {
+        BEST_OVERRIDE.putAll(new UnicodeSet("[⛹🏃🏄🏊-🏌👨👩👮👯👱👳👷💁💂💆💇🕵🙅-🙇🙋🙍🙎🚣🚴-🚶🤦🤷-🤹🤼-🤾]"), Emoji.Source.google);
+        BEST_OVERRIDE.freeze();
+    }
 
     public static File getBestFile(String s, Source... doFirst) {
         for (Source source : Emoji.orderedEnum(doFirst)) {
+            if (source == Source.charOverride) { 
+                Source overrideSource = BEST_OVERRIDE.get(s);
+                if (overrideSource != null) {
+                    source = overrideSource;
+                } else if (ZwjType.getType(s) != ZwjType.family) {
+                    overrideSource = BEST_OVERRIDE.get(s);
+                    if (overrideSource != null) {
+                        source = overrideSource;
+                    }
+                }
+            }
             File file = getImageFile(source, s);
             if (file != null) {
                 return file;
