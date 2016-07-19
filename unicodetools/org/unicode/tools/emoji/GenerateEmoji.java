@@ -399,7 +399,7 @@ public class GenerateEmoji {
         }
         return result;
     }
-    
+
     private static String getBestImageNothrow(String stringForFile, String s, boolean useDataURL, String extraClasses, Emoji.Source... doFirst) {
         if (s.equals("👦🏻")) {
             int debug = 0;
@@ -618,10 +618,10 @@ public class GenerateEmoji {
         showSequences();
         // showSubhead();
         showAnnotations(Emoji.CHARTS_DIR, "emoji-annotations.html", EmojiData.EMOJI_DATA.getChars(), null, false);
-        showAnnotations(Emoji.TR51_INTERNAL_DIR
-                , "emoji-annotations-flags.html", EmojiData.EMOJI_DATA.getFlagSequences(), EmojiAnnotations.GROUP_ANNOTATIONS, true);
-        showAnnotations(Emoji.TR51_INTERNAL_DIR
-                , "emoji-annotations-groups.html", EmojiData.EMOJI_DATA.getChars(), EmojiAnnotations.GROUP_ANNOTATIONS, false);
+        //        showAnnotations(Emoji.TR51_INTERNAL_DIR
+        //                , "emoji-annotations-flags.html", EmojiData.EMOJI_DATA.getFlagSequences(), AnnotationData.GROUP_ANNOTATIONS, true);
+        //        showAnnotations(Emoji.TR51_INTERNAL_DIR
+        //                , "emoji-annotations-groups.html", EmojiData.EMOJI_DATA.getChars(), AnnotationData.GROUP_ANNOTATIONS, false);
         //        showAnnotationsBySize(Emoji.TR51_INTERNAL_DIR
         //                , "emoji-annotations-size.html", new UnicodeSet(EmojiData.EMOJI_DATA.getChars()).removeAll(EmojiData.EMOJI_DATA.getFlagSequences()));
 
@@ -1143,8 +1143,8 @@ public class GenerateEmoji {
         out.println("<tr><th colSpan='3'>Emoji Font (should all be colorful)</th></tr>");
         showText(out, null, Style.emojiFont);
 
-//        out.println("<tr><th colSpan='3'>Emoji Locale (should all be colorful)</th></tr>");
-//        showText(out, null, Style.plain);
+        //        out.println("<tr><th colSpan='3'>Emoji Locale (should all be colorful)</th></tr>");
+        //        showText(out, null, Style.plain);
 
         //sr-Latn-u-em-emoji
 
@@ -2201,18 +2201,18 @@ public class GenerateEmoji {
     //        }
     //    }
 
-    private static Set<String> getAnnotations(String string) {
-        if (!string.contains("\u200D")) {
-            return new LinkedHashSet<>(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(string));
-        }
-        Set<String> result = new LinkedHashSet<>();
-        for (int cp : CharSequences.codePoints(string)) {
-            if (cp != 0x200D && cp != 0xFE0F) {
-                result.addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(UTF16.valueOf(cp)));
-            }
-        }
-        return result;
-    }
+    //    private static Set<String> getAnnotations(String string) {
+    //        if (!string.contains("\u200D")) {
+    //            return new LinkedHashSet<>(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(string));
+    //        }
+    //        Set<String> result = new LinkedHashSet<>();
+    //        for (int cp : CharSequences.codePoints(string)) {
+    //            if (cp != 0x200D && cp != 0xFE0F) {
+    //                result.addAll(EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(UTF16.valueOf(cp)));
+    //            }
+    //        }
+    //        return result;
+    //    }
 
     public static <T> int compareX(Iterator<T> iterator1, Iterator<T> iterator2, Comparator<T> comparator) {
         int diff;
@@ -2402,7 +2402,7 @@ public class GenerateEmoji {
                 //Emoji.getEmojiVariant(chars2, Emoji.EMOJI_VARIANT_STRING)
                 + "</td>\n";
         String name2 = Emoji.getName(chars2, false, GenerateEmoji.EXTRA_NAMES);
-        String tts = EmojiAnnotations.TTS.get(chars2);
+        String tts = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getShortName(chars2);
         if (tts != null && !tts.equalsIgnoreCase(name2)) {
             name2 += "<br>≊ " + TransliteratorUtilities.toHTML.transform(tts);
         }
@@ -2432,17 +2432,23 @@ public class GenerateEmoji {
                 + "</tr>";
     }
     private static StringBuilder getAnnotationsString(String chars2) {
-        Set<String> plainAnnotations = CandidateData.getInstance().getAnnotations(chars2);
-        if (plainAnnotations == null) {
-            plainAnnotations = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2);
+        Set<String> plainAnnotations = null;
+        try { // HACK
+                plainAnnotations = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2);
+        } catch (Exception e) {}
+        
+        if (plainAnnotations == null || plainAnnotations.isEmpty()) {
+            plainAnnotations = CandidateData.getInstance().getAnnotations(chars2);
+            
         }
+        
         Set<String> annotations = new LinkedHashSet<String>(Utility.ifNull(plainAnnotations, Collections.EMPTY_SET));
-        annotations.removeAll(GenerateEmoji.SUPPRESS_ANNOTATIONS);
+//        annotations.removeAll(GenerateEmoji.SUPPRESS_ANNOTATIONS);
         StringBuilder annotationString = new StringBuilder();
         if (!annotations.isEmpty()) {
             for (String annotation : annotations) {
                 if (annotationString.length() != 0) {
-                    annotationString.append(", ");
+                    annotationString.append(" | ");
                 }
                 annotationString.append(getLink("emoji-annotations.html#" + annotation, annotation, "annotate"));
             }
@@ -2480,7 +2486,8 @@ public class GenerateEmoji {
                         + "</tr>";
     }
 
-    private static final Set<String> SUPPRESS_ANNOTATIONS = ImmutableSet.of("default-text-style", 
+    private static final Set<String> SUPPRESS_ANNOTATIONS = ImmutableSet.of(
+            "default-text-style", 
             "other", "nature", "object", "person", "place", "symbol",             
             "travel",
             "office",

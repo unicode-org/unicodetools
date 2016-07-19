@@ -1,11 +1,9 @@
 package org.unicode.tools.emoji;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,30 +11,47 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.Annotations;
+import org.unicode.cldr.util.CLDRConfig;
+import org.unicode.cldr.util.CLDRFile;
 import org.unicode.text.utility.Birelation;
 
-import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableSet;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.lang.CharSequences;
+import com.ibm.icu.lang.UCharacter;
+import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UnicodeSet;
 
 public class EmojiAnnotations extends Birelation<String,String> {
-    static final Splitter TAB = Splitter.on("\t").trimResults();
 
-    private static final boolean SHOW = false;
+    final Map<String,UnicodeSet> TO_UNICODE_SET;
 
-    static final Set<String> STOP_WORDS = new HashSet<>(Arrays.asList("the", "of", "for", "a", "and", "state", 
-            "c�te", "verde▪cape", "dhekelia", "akrotiri", "comros", "pdr", "jamahiriya", "part",
-            "yugoslav", "tfyr", "autonomous", "rawanda", "da", "rb", "yugoslavia",
-            "states", "sar", "people's", "minor",
-            "sts."));
+    final private UnicodeMap<String> shortNames = new UnicodeMap<>();
+    
+    // Add to CLDR
+    static final UnicodeSet MALE_SET = new UnicodeSet("[👦  👨  👴 🎅   🤴  🤵  👲🕴 🕺]");
+    static final UnicodeSet FEMALE_SET = new UnicodeSet("[ 👧  👩  👵 🤶👸👰🤰💃]");
+
+
+    //    private static final Splitter TAB = Splitter.on("\t").trimResults();
+    //
+    //    private static final boolean SHOW = false;
+
+    //    private static final Set<String> STOP_WORDS = new HashSet<>(Arrays.asList("the", "of", "for", "a", "and", "state", 
+    //            "c�te", "verde▪cape", "dhekelia", "akrotiri", "comros", "pdr", "jamahiriya", "part",
+    //            "yugoslav", "tfyr", "autonomous", "rawanda", "da", "rb", "yugoslavia",
+    //            "states", "sar", "people's", "minor",
+    //            "sts."));
 
     public static final EmojiAnnotations          ANNOTATIONS_TO_CHARS        = new EmojiAnnotations(
-            GenerateEmoji.EMOJI_COMPARATOR,
-            "emojiAnnotations.txt",
-            "emojiAnnotationsFlags.txt",
-            "emojiAnnotationsGroups.txt",
-            "emojiAnnotationsZwj.txt"
+            GenerateEmoji.EMOJI_COMPARATOR
+            //,
+            //            "emojiAnnotations.txt",
+            //            "emojiAnnotationsFlags.txt",
+            //            "emojiAnnotationsGroups.txt",
+            //            "emojiAnnotationsZwj.txt"
             );
 
     public EmojiAnnotations(Comparator<String> codepointCompare, String... filenames) {
@@ -47,42 +62,71 @@ public class EmojiAnnotations extends Birelation<String,String> {
                 codepointCompare, 
                 EmojiOrder.FULL_COMPARATOR);
 
-        //Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>(codepointCompare));
-        for (String filename : filenames) {
-            int lineCount = 0;
-            int lineNumber = 0;
-            EmojiIterator ei = new EmojiIterator(EmojiData.of(Emoji.VERSION_LAST_RELEASED), true);
-
-            for (String line : FileUtilities.in(EmojiAnnotations.class, filename)) {
-                line = line.trim();
-                lineNumber++;
-                if (line.isEmpty() || line.startsWith("#")) {
-                    continue;
-                }
-                if (line.contains("closed")) {
-                    int debug = 0;
-                }
-                lineCount++;
-                for (String string : ei.set(line)) {
-                    if (Emoji.ASCII_LETTERS.containsSome(string)) {
-                        UnicodeSet overlap = new UnicodeSet().addAll(string).retainAll(Emoji.ASCII_LETTERS);
-                        String withPosition = line.replaceAll("("+overlap+")", "###$1");
-                        throw new IllegalArgumentException(lineNumber + "\tStrange line with ASCII emoji: " + overlap + "; "+ withPosition);
-                    }
-                    if (EmojiData.EMOJI_DATA.skipEmojiSequence(string)) {
-                        continue;
-                    }
-                    string = EmojiData.EMOJI_DATA.normalizeVariant(string);
-                    for (String item : ei.newLabel) {
-                        add(fixAnnotation(item), string);
-                    }
-                }
+        //        for (String s : sorted) {
+        //            Set<String> plainAnnotations = CandidateData.getInstance().getAnnotations(s);
+        //            if (plainAnnotations.isEmpty()) {
+        //                plainAnnotations = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(s);
+        //            }
+        //            System.out.println(s + "\t" + CollectionUtilities.join(plainAnnotations, " | "));
+        //        }
+        UnicodeMap<Annotations> data = Annotations.getData("en");
+        CLDRFile english = CLDRConfig.getInstance().getEnglish();
+        final Set<String> keywords = new LinkedHashSet<>();
+        for (String s : EmojiData.EMOJI_DATA.getChars()) {
+            keywords.clear();
+            String shortName = getNameAndAnnotations(s, english, data, keywords);
+            if (shortName == null) {
+                continue;
             }
-            if (SHOW) System.out.println(lineCount + "\tannotation lines from " + filename);
+            for (String annotation : keywords) {
+                add(annotation, s);
+            }
+            shortNames.put(s, shortName);
         }
-        addOther("-apple", EmojiData.EMOJI_DATA.getChars());
-        addOther("-android", EmojiData.EMOJI_DATA.getChars());
-        addOther("", EmojiData.EMOJI_DATA.getChars());
+        shortNames.freeze();
+
+        //        CandidateData candidateData = CandidateData.getInstance();
+        //        for (String s : candidateData.getCharacters()) {
+        //            for (String annotation : candidateData.getAnnotations(s)) {
+        //                add(annotation, s);
+        //            }
+        //        }
+        //Output<Set<String>> lastLabel = new Output<Set<String>>(new TreeSet<String>(codepointCompare));
+        //        for (String filename : filenames) {
+        //            int lineCount = 0;
+        //            int lineNumber = 0;
+        //            EmojiIterator ei = new EmojiIterator(EmojiData.of(Emoji.VERSION_LAST_RELEASED), true);
+        //
+        //            for (String line : FileUtilities.in(EmojiAnnotations.class, filename)) {
+        //                line = line.trim();
+        //                lineNumber++;
+        //                if (line.isEmpty() || line.startsWith("#")) {
+        //                    continue;
+        //                }
+        //                if (line.contains("closed")) {
+        //                    int debug = 0;
+        //                }
+        //                lineCount++;
+        //                for (String string : ei.set(line)) {
+        //                    if (Emoji.ASCII_LETTERS.containsSome(string)) {
+        //                        UnicodeSet overlap = new UnicodeSet().addAll(string).retainAll(Emoji.ASCII_LETTERS);
+        //                        String withPosition = line.replaceAll("("+overlap+")", "###$1");
+        //                        throw new IllegalArgumentException(lineNumber + "\tStrange line with ASCII emoji: " + overlap + "; "+ withPosition);
+        //                    }
+        //                    if (EmojiData.EMOJI_DATA.skipEmojiSequence(string)) {
+        //                        continue;
+        //                    }
+        //                    string = EmojiData.EMOJI_DATA.normalizeVariant(string);
+        //                    for (String item : ei.newLabel) {
+        //                        add(fixAnnotation(item), string);
+        //                    }
+        //                }
+        //            }
+        //            if (SHOW) System.out.println(lineCount + "\tannotation lines from " + filename);
+        //        }
+        //        addOther("-apple", EmojiData.EMOJI_DATA.getChars());
+        //        addOther("-android", EmojiData.EMOJI_DATA.getChars());
+        //        addOther("", EmojiData.EMOJI_DATA.getChars());
 
         //        final Set<String> personAndroid = getValues("person-android");
         //        if (personAndroid != null) {
@@ -124,15 +168,15 @@ public class EmojiAnnotations extends Birelation<String,String> {
         //                ANNOTATIONS_TO_CHARS.add("mark", s);
         //            }
         //        }
-        for (int cp1 = Emoji.FIRST_REGIONAL; cp1 <= Emoji.LAST_REGIONAL; ++cp1) {
-            for (int cp2 = Emoji.FIRST_REGIONAL; cp2 <= Emoji.LAST_REGIONAL; ++cp2) {
-                String emoji = new StringBuilder().appendCodePoint(cp1).appendCodePoint(cp2).toString();
-                if (EmojiData.EMOJI_DATA.getChars().contains(emoji)) {
-                    add("flag", emoji);
-                }
-                //String regionCode = GenerateEmoji.getFlagCode(emoji);
-            }
-        }
+        //        for (int cp1 = Emoji.FIRST_REGIONAL; cp1 <= Emoji.LAST_REGIONAL; ++cp1) {
+        //            for (int cp2 = Emoji.FIRST_REGIONAL; cp2 <= Emoji.LAST_REGIONAL; ++cp2) {
+        //                String emoji = new StringBuilder().appendCodePoint(cp1).appendCodePoint(cp2).toString();
+        //                if (EmojiData.EMOJI_DATA.getChars().contains(emoji)) {
+        //                    add("flag", emoji);
+        //                }
+        //                //String regionCode = GenerateEmoji.getFlagCode(emoji);
+        //            }
+        //        }
         // get extra names
         //        for (String name : CountryCodeConverter.names()) {
         //            String regionCode = CountryCodeConverter.getCodeFromName(name);
@@ -158,60 +202,18 @@ public class EmojiAnnotations extends Birelation<String,String> {
             UnicodeSet missing = new UnicodeSet().addAll(EmojiData.EMOJI_DATA.getChars()).removeAll(annotationCharacters);
             throw new IllegalArgumentException("Missing annotations: " + missing.toPattern(false));
         }
-
     }
 
-    static final UnicodeMap<String> TTS = new UnicodeMap<>();
-    static {
-        for (String line : FileUtilities.in(GenerateOtherAnnotations.class, "en-tts.tsv")) {
-            if (line.startsWith("#") || line.isEmpty()) continue;
-            List<String> list = TAB.splitToList(line);
-            String source = org.unicode.text.utility.Utility.fromHex(list.get(0));
-            TTS.put(source, list.get(1));
-        }
-        TTS.freeze();
-    }
-    
-    final Map<String,UnicodeSet> TO_UNICODE_SET;
-
-    static final Set<String> GROUP_ANNOTATIONS = new HashSet<>(Arrays.asList(
-            "default-text-style",
-            "fitz-primary",
-            "fitz-secondary",
-            "nature",
-            "nature-android",
-            "nature-apple",
-            "object",
-            "object-android",
-            "object-apple",
-            "person",
-            "person-android",
-            "person-apple",
-            "place",
-            "place-android",
-            "place-apple",
-            "symbol",
-            "symbol-android",
-            "symbol-apple",
-            "other-android",
-            "flag",
-            "other",
-            "travel",
-            "office",
-            "animal",
-            "sign",
-            "word",
-            "time",
-            "food",
-            "entertainment",
-            "activity",
-            "restaurant",
-            "sound",
-            "sport",
-            "emotion",
-            "communication",
-            "education"
-            ));
+    //    static final UnicodeMap<String> TTS = new UnicodeMap<>();
+    //    static {
+    //        for (String line : FileUtilities.in(GenerateOtherAnnotations.class, "en-tts.tsv")) {
+    //            if (line.startsWith("#") || line.isEmpty()) continue;
+    //            List<String> list = TAB.splitToList(line);
+    //            String source = org.unicode.text.utility.Utility.fromHex(list.get(0));
+    //            TTS.put(source, list.get(1));
+    //        }
+    //        TTS.freeze();
+    //    }
 
     public UnicodeSet getUnicodeSet(String annotation) {
         return TO_UNICODE_SET.get(annotation);
@@ -221,29 +223,29 @@ public class EmojiAnnotations extends Birelation<String,String> {
         return TO_UNICODE_SET.entrySet();
     }
 
-    private void addOther(String suffix, UnicodeSet core) {
-        final Set<String> personApple = getValues("person" + suffix);
-        if (personApple != null) {
-            UnicodeSet temp = new UnicodeSet(core)
-            .removeAll(personApple)
-            .removeAll(getValues("nature" + suffix))
-            .removeAll(getValues("object" + suffix))
-            .removeAll(getValues("place" + suffix))
-            .removeAll(getValues("symbol" + suffix));
-            if (SHOW) System.out.println(temp.size() + " other" + suffix
-                    + ": " + temp.toPattern(false));
-            for (String s : temp) {
-                add("other" + suffix, s);
-            }
-        }
-    }
-
-    private String fixAnnotation(String item) {
-        String result = item.toLowerCase(Locale.ENGLISH);
-        return result
-                .replace("minimal", "primary")
-                .replace("optional", "secondary");
-    }
+    //    private void addOther(String suffix, UnicodeSet core) {
+    //        final Set<String> personApple = getValues("person" + suffix);
+    //        if (personApple != null) {
+    //            UnicodeSet temp = new UnicodeSet(core)
+    //            .removeAll(personApple)
+    //            .removeAll(getValues("nature" + suffix))
+    //            .removeAll(getValues("object" + suffix))
+    //            .removeAll(getValues("place" + suffix))
+    //            .removeAll(getValues("symbol" + suffix));
+    //            if (SHOW) System.out.println(temp.size() + " other" + suffix
+    //                    + ": " + temp.toPattern(false));
+    //            for (String s : temp) {
+    //                add("other" + suffix, s);
+    //            }
+    //        }
+    //    }
+    //
+    //    private String fixAnnotation(String item) {
+    //        String result = item.toLowerCase(Locale.ENGLISH);
+    //        return result
+    //                .replace("minimal", "primary")
+    //                .replace("optional", "secondary");
+    //    }
 
     //    public void addParts(String emoji, String name) {
     //        name = name.toLowerCase(Locale.ENGLISH);
@@ -257,4 +259,144 @@ public class EmojiAnnotations extends Birelation<String,String> {
     //            add(namePart, emoji);
     //        }
     //    }
+    
+
+    public static String getNameAndAnnotations(String s, CLDRFile english, UnicodeMap<Annotations> data, final Set<String> keywords) {
+        String shortName = null;
+        switch(s) {
+        // put into CLDR
+        case Emoji.MALE:
+            shortName = "male sign"; 
+            keywords.add("male");
+            keywords.add("man");
+            return shortName;
+        case Emoji.FEMALE:
+            shortName = "female sign"; 
+            keywords.add("female");
+            keywords.add("woman");
+            return shortName;
+        case Emoji.HEALTHCARE:
+            shortName = "medical symbol"; 
+            keywords.add("staff");
+            keywords.add("aesculapius");
+            return shortName;
+        case Emoji.UN:
+            shortName = "United Nations"; 
+            keywords.add("UN");
+            return shortName;
+        case "🌾":
+            addString(keywords, "farmer, rancher, gardener");
+            break;
+        }
+        Annotations datum = data.get(s);
+        if (datum != null) {
+            shortName = datum.tts;
+            keywords.addAll(datum.annotations);
+        } else if (Emoji.REGIONAL_INDICATORS.containsAll(s)) {
+            String countryCode = Emoji.getFlagCode(s);
+            shortName = english.getName(CLDRFile.TERRITORY_NAME, countryCode);
+            keywords.addAll(Collections.singleton("flag"));
+        } else if (s.contains(Emoji.KEYCAP_MARK_STRING)) {
+            shortName = "keycap " + UCharacter.getName(s.codePointAt(0)).toLowerCase(Locale.ENGLISH);
+            keywords.addAll(ImmutableSet.of("keycap", UCharacter.getName(s.codePointAt(0)).toLowerCase(Locale.ENGLISH)));
+        } else if (EmojiData.MODIFIERS.containsSome(s)) {
+            String rem = EmojiData.MODIFIERS.stripFrom(s, false);
+            String type = EmojiData.shortModName(rem.codePointAt(0)).toLowerCase(Locale.ENGLISH);
+            s = EmojiData.MODIFIERS.stripFrom(s, true);
+            shortName = getNameAndAnnotations(s, english, data, keywords) + ", " + type;
+            if (shortName != null) {
+                keywords.add(type);
+            }
+        } else if (s.contains(Emoji.JOINER_STRING)) {
+            shortName = EmojiData.EMOJI_DATA.getName(s, true);
+            for (int cp : CharSequences.codePoints(s)) {
+                switch (cp) {
+                case Emoji.EMOJI_VARIANT:
+                case Emoji.JOINER:
+                    continue;
+                case 0x1F33E:
+                    addString(keywords, "farmer, rancher, gardener");
+                    break;
+                case 0x1F373:
+                    addString(keywords, "cook, chef");
+                    break;
+                case 0x1F3ED:
+                    addString(keywords, "industrial, assembly, factory, worker");
+                    break;
+                case 0x2695:
+                    addString(keywords, "healthcare, doctor, nurse, therapist");
+                    break;
+                case 0x1F527:
+                    addString(keywords, "tradesperson, mechanic, plumber, electrician");
+                    break;
+                case 0x1F4BC:
+                    addString(keywords, "office, business, manager, architect, white-collar");
+                    break;
+                case 0x1F52C:
+                    addString(keywords, "scientist, engineer, mathematician, chemist, physicist, biologist");
+                    break;
+                case 0x1F3A4:
+                    addString(keywords, "singer, entertainer, rock, star, actor");
+                    break;
+                case 0x1F393:
+                    addString(keywords, "student, graduate");
+                    break;
+                case 0x1F3EB:
+                    addString(keywords, "professor, instructor, teacher");
+                    break;
+                case 0x1F4BB:
+                    addString(keywords, "technologist, coder, software, developer, inventor");
+                    break;
+                }
+                getNameAndAnnotations(UTF16.valueOf(cp), english, data, keywords);
+            }
+        }
+        if (MALE_SET.contains(s)) {
+            keywords.add("male");
+        } else if (FEMALE_SET.contains(s)) {
+            keywords.add("female");
+        }
+        return shortName;
+    }
+    
+
+    private static void addString(Set<String> keywords, String string) {
+        for (String s : string.split(",")) {
+            keywords.add(s.trim());
+        }
+    }
+
+    public String getShortName(String s) {
+        return shortNames.get(s);
+    }
+
+    public static void main(String[] args) {
+        TreeSet<String> sorted = new TreeSet<>(EmojiOrder.STD_ORDER.codepointCompare);
+        EmojiData.EMOJI_DATA.getChars().addAllTo(sorted);
+        //        for (String s : sorted) {
+        //            Set<String> plainAnnotations = CandidateData.getInstance().getAnnotations(s);
+        //            if (plainAnnotations.isEmpty()) {
+        //                plainAnnotations = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(s);
+        //            }
+        //            System.out.println(s + "\t" + CollectionUtilities.join(plainAnnotations, " | "));
+        //        }
+        //        UnicodeMap<Annotations> data = Annotations.getData("en");
+        //        CLDRFile english = CLDRConfig.getInstance().getEnglish();
+        //        final Set<String> keywords = new LinkedHashSet<>();
+
+        LinkedHashSet<String> missing = new LinkedHashSet<>();
+
+        for (String s : sorted) {
+            //            keywords.clear();
+            //            String shortName = getNameAndAnnotations(s, english, data, keywords);
+            String shortName = EmojiAnnotations.ANNOTATIONS_TO_CHARS.shortNames.get(s);
+            Set<String> keywords = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(s);
+            if (shortName == null) {
+                missing.add(s);
+                continue;
+            }
+            System.out.println(s + "\t" + shortName + "\t" + CollectionUtilities.join(keywords, " | "));
+        }
+        System.out.println("Missing: " + missing);
+    }
 }

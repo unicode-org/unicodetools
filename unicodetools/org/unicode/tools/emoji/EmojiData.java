@@ -383,7 +383,7 @@ public class EmojiData {
         .addAll(modSeq)
         .retainAll(getModifierStatusSet(ModifierStatus.modifier))
         .getRangeStart(0);
-        return shortName(first).toLowerCase(Locale.ENGLISH);
+        return shortModName(first).toLowerCase(Locale.ENGLISH);
     }
 
     private void addName(List<String> lineParts, final String addOn, final String noVariantSource) {
@@ -716,7 +716,7 @@ public class EmojiData {
                 int cp2 = s.codePointAt(firstCount);
                 final EmojiDatum edata = getData(cp2);
                 if (edata != null && ModifierStatus.modifier == edata.modifierStatus) {
-                    name += ", " + shortName(cp2);
+                    name += ", " + shortModName(cp2);
                 } else if (Emoji.REGIONAL_INDICATORS.contains(firstCodePoint)) {
                     name = "Flag for " + Emoji.getFlagRegionName(s);
                 } else {
@@ -762,7 +762,7 @@ public class EmojiData {
         return name == null ? "UNNAMED" : name;
     }
 
-    static String shortName(int cp2) {
+    static String shortModName(int cp2) {
         return Emoji.NAME.get(cp2).substring("emoji modifier fitzpatrick ".length());
     }
 
