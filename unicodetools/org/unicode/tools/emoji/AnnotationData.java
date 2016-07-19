@@ -1,5 +1,6 @@
 package org.unicode.tools.emoji;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -30,7 +31,7 @@ public class AnnotationData {
     private static final ULocale HEBREW = new ULocale("he");
     private static final ULocale HEBREW_OLD = new ULocale("iw");
     private static final ULocale ZHTW = new ULocale("zh_TW");
-    private static final Set<String> SKIP = new HashSet<>(EmojiAnnotations.GROUP_ANNOTATIONS);
+    private static final Set<String> SKIP = new HashSet<>(AnnotationData.GROUP_ANNOTATIONS);
     static {
         SKIP.add("flag");
     }
@@ -40,6 +41,45 @@ public class AnnotationData {
     final ULocale locale;
     final UnicodeMap<Set<String>> map = new UnicodeMap<>();
     final UnicodeMap<String> tts = new UnicodeMap<>();
+
+    static final Set<String> GROUP_ANNOTATIONS = new HashSet<>(Arrays.asList(
+    "default-text-style",
+    "fitz-primary",
+    "fitz-secondary",
+    "nature",
+    "nature-android",
+    "nature-apple",
+    "object",
+    "object-android",
+    "object-apple",
+    "person",
+    "person-android",
+    "person-apple",
+    "place",
+    "place-android",
+    "place-apple",
+    "symbol",
+    "symbol-android",
+    "symbol-apple",
+    "other-android",
+    "flag",
+    "other",
+    "travel",
+    "office",
+    "animal",
+    "sign",
+    "word",
+    "time",
+    "food",
+    "entertainment",
+    "activity",
+    "restaurant",
+    "sound",
+    "sport",
+    "emotion",
+    "communication",
+    "education"
+    ));
     AnnotationData(String file) {
         this(fixLocale(file));
     }

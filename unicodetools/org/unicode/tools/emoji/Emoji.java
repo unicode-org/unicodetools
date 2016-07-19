@@ -566,6 +566,10 @@ public class Emoji {
     }
 
     static final String INTERNAL_OUTPUT_DIR = Settings.OTHER_WORKSPACE_DIRECTORY + "Generated/emoji/";
+    public static final String MALE = "\u2642";
+    public static final String FEMALE = "\u2640";
+    public static final String HEALTHCARE = "⚕";
+    public static final String UN = "🇺🇳";
 
     public static String toUHex(String s) {
         return "U+" + Utility.hex(s, " U+");
