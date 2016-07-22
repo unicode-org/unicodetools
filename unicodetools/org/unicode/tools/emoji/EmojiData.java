@@ -107,6 +107,8 @@ public class EmojiData {
     private final UnicodeSet keycapSequences = new UnicodeSet();
     private final UnicodeSet keycapSequenceAll = new UnicodeSet();
     private final UnicodeSet keycapBases = new UnicodeSet();
+    private final UnicodeSet genderBases = new UnicodeSet();
+    
     private final UnicodeSet emojiDefectives = new UnicodeSet();
     private final UnicodeMap<String> toNormalizedVariant = new UnicodeMap<String>();
     private final UnicodeMap<String> fromNormalizedVariant = new UnicodeMap<String>();
@@ -327,6 +329,13 @@ public class EmojiData {
             keycapBases.freeze();
             toNormalizedVariant.freeze();
             fromNormalizedVariant.freeze();
+            
+            for (String s : zwjSequencesNormal) {
+                if (s.contains("♀️") && !EmojiData.MODIFIERS.containsSome(s)) {
+                    genderBases.add(s.codePointAt(0));
+                }
+            }
+            genderBases.freeze();
 
             for (String line : FileUtilities.in(EmojiData.class, "emojiSources.txt")) {
                 if (line.startsWith("#") || line.isEmpty()) continue;

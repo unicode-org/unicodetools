@@ -15,6 +15,7 @@ import org.unicode.cldr.util.Annotations;
 import org.unicode.cldr.util.CLDRConfig;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.text.utility.Birelation;
+import org.unicode.text.utility.Utility;
 
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.dev.util.CollectionUtilities;
@@ -29,7 +30,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
     final Map<String,UnicodeSet> TO_UNICODE_SET;
 
     final private UnicodeMap<String> shortNames = new UnicodeMap<>();
-    
+
     // Add to CLDR
     static final UnicodeSet MALE_SET = new UnicodeSet("[👦  👨  👴 🎅   🤴  🤵  👲🕴 🕺]");
     static final UnicodeSet FEMALE_SET = new UnicodeSet("[ 👧  👩  👵 🤶👸👰🤰💃]");
@@ -259,7 +260,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
     //            add(namePart, emoji);
     //        }
     //    }
-    
+
 
     public static String getNameAndAnnotations(String s, CLDRFile english, UnicodeMap<Annotations> data, final Set<String> keywords) {
         String shortName = null;
@@ -267,18 +268,15 @@ public class EmojiAnnotations extends Birelation<String,String> {
         // put into CLDR
         case Emoji.MALE:
             shortName = "male sign"; 
-            keywords.add("male");
-            keywords.add("man");
+            addString(keywords, "male, man");
             return shortName;
         case Emoji.FEMALE:
             shortName = "female sign"; 
-            keywords.add("female");
-            keywords.add("woman");
+            addString(keywords, "female, woman");
             return shortName;
         case Emoji.HEALTHCARE:
             shortName = "medical symbol"; 
-            keywords.add("staff");
-            keywords.add("aesculapius");
+            addString(keywords, "staff, aesculapius");
             return shortName;
         case Emoji.UN:
             shortName = "United Nations"; 
@@ -290,7 +288,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
         }
         Annotations datum = data.get(s);
         if (datum != null) {
-            shortName = datum.tts;
+            shortName = fix(s, datum.tts);
             keywords.addAll(datum.annotations);
         } else if (Emoji.REGIONAL_INDICATORS.containsAll(s)) {
             String countryCode = Emoji.getFlagCode(s);
@@ -305,6 +303,7 @@ public class EmojiAnnotations extends Birelation<String,String> {
             s = EmojiData.MODIFIERS.stripFrom(s, true);
             shortName = getNameAndAnnotations(s, english, data, keywords) + ", " + type;
             if (shortName != null) {
+                shortName = shortName.toLowerCase(Locale.ENGLISH);
                 keywords.add(type);
             }
         } else if (s.contains(Emoji.JOINER_STRING)) {
@@ -358,7 +357,79 @@ public class EmojiAnnotations extends Birelation<String,String> {
         }
         return shortName;
     }
-    
+
+    private static String fix(String s, String tts) {
+        switch(s) { // add to CLDR
+        case "👮":
+            return "police officer";
+        case "🕵":
+            return "sleuth";
+        case "💂":
+            return "guard";
+        case "👷":
+            return "construction worker";
+        case "👳":
+            return "person with turban";
+        case "👱":
+            return "blond person";
+        case "🙍":
+            return "person frowning";
+        case "🙎":
+            return "person pouting";
+        case "🙅":
+            return "person gesturing not ok";
+        case "🙆":
+            return "person gesturing ok";
+        case "💁":
+            return "person tipping hand";
+        case "🙋":
+            return "person raising hand";
+        case "🙇":
+            return "person bowing";
+        case "🤦":
+            return "person facepalming";
+        case "🤷":
+            return "person shrugging";
+        case "💆":
+            return "person getting face massage";
+        case "💇":
+            return "person getting haircut";
+        case "🚶":
+            return "person walking";
+        case "🏃":
+            return "person running";
+        case "👯":
+            return "people partying";
+        case "🏌":
+            return "person golfing";
+        case "🏄":
+            return "person surfing";
+        case "🚣":
+            return "person rowing boat";
+        case "🏊":
+            return "person swimming";
+        case "⛹":
+            return "person with ball";
+        case "🏋":
+            return "person weight lifting";
+        case "🚴":
+            return "person biking";
+        case "🚵":
+            return "person mountain biking";
+        case "🤸":
+            return "person doing cartwheel";
+        case "🤼":
+            return "people wrestling";
+        case "🤽":
+            return "person playing water polo";
+        case "🤾":
+            return "person playing handball";
+        case "🤹":
+            return "person juggling";
+        default:         
+            return tts;
+        }
+    }
 
     private static void addString(Set<String> keywords, String string) {
         for (String s : string.split(",")) {
@@ -395,6 +466,16 @@ public class EmojiAnnotations extends Birelation<String,String> {
                 missing.add(s);
                 continue;
             }
+            //            if (s.endsWith("♀️") && !s.equals("♀️") && !EmojiData.MODIFIERS.containsSome(s)) {
+            //                int first = s.codePointAt(0);
+            //                System.out.println("case \"" + UTF16.valueOf(first) + "\": return \""
+            //                        + shortName.replace("woman", "person")
+            //                        .replace("women", "people")
+            //                        .replace("female", "person")
+            //                        + "\";");
+            //                //             case "👮": return "police officer";
+            //
+            //            }
             System.out.println(s + "\t" + shortName + "\t" + CollectionUtilities.join(keywords, " | "));
         }
         System.out.println("Missing: " + missing);

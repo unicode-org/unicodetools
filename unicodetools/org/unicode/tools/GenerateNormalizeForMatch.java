@@ -3,6 +3,7 @@ package org.unicode.tools;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,8 +13,12 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
+import org.unicode.cldr.util.CldrUtility;
 import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.With;
+import org.unicode.props.IndexUnicodeProperties;
+import org.unicode.props.UcdProperty;
+import org.unicode.text.UCD.Default;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
@@ -93,6 +98,9 @@ public class GenerateNormalizeForMatch {
     }
 
     public static void main(String[] args) throws IOException {
+        findExtraCaps();
+        if (true) return;
+
         //        gatherData();
         computeTrial();
         compareTrial();
@@ -102,6 +110,37 @@ public class GenerateNormalizeForMatch {
         if (true) return;
         //printData();
         //showItemsIn(new UnicodeSet(N4M.keySet()).addAll(TRIAL.keySet()));
+    }
+
+    private static void findExtraCaps() {
+        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucdVersion());
+        UnicodeMap<String> cpToNFKCCF = iup.load(UcdProperty.NFKC_Casefold);
+        UnicodeMap<String> cpToLower = iup.load(UcdProperty.Lowercase_Mapping);
+        UnicodeMap<String> cpToSimpleLower = iup.load(UcdProperty.Simple_Lowercase_Mapping);
+        UnicodeMap<String> cpToName = iup.load(UcdProperty.Name);
+        HashMap<String, UnicodeSet> nameToCp = cpToName.addInverseTo(new HashMap<String,UnicodeSet>());
+        for (Entry<String, String> entry : cpToName.entrySet()) {
+            String cp = entry.getKey();
+            String lower = cpToSimpleLower.get(cp);
+            lower = lower != null ? lower : cpToLower.get(cp);
+            String name = entry.getValue();
+            if (lower == null && name.contains("CAPITAL") && !name.startsWith("TAG LATIN ")) {
+                String lowName = name.replace("CAPITAL", "SMALL");
+                UnicodeSet other = nameToCp.get(lowName);
+                if (other != null) {
+                    int otherFirst = other.getRangeStart(0);
+                    final String otherCp = UTF16.valueOf(otherFirst);
+                    System.out.println(cp 
+                            + "\t" + Utility.hex(cp, 4, " ") 
+                            + "\t" + otherCp 
+                            + "\t" + Utility.hex(otherCp, 4, " ") 
+                            + "\t" + CldrUtility.ifNull(cpToNFKCCF.get(cp), cp)
+                            + "\t" + CldrUtility.ifNull(cpToNFKCCF.get(otherCp), otherCp)
+                            + "\t" + name 
+                            + "\t" + cpToName.get(otherFirst));
+                }
+            }
+        }
     }
 
     private static void compareTrial() {
