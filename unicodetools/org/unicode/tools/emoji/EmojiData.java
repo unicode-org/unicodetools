@@ -331,7 +331,7 @@ public class EmojiData {
             fromNormalizedVariant.freeze();
             
             for (String s : zwjSequencesNormal) {
-                if (s.contains("♀️") && !EmojiData.MODIFIERS.containsSome(s)) {
+                if (s.contains("♀️") && !getModifierStatusSet(ModifierStatus.modifier).containsSome(s)) {
                     genderBases.add(s.codePointAt(0));
                 }
             }
@@ -907,5 +907,9 @@ public class EmojiData {
         System.out.println("Keycap0 " + betaData.getSortingChars().contains("0" + Emoji.KEYCAP_MARK_STRING));
         System.out.println("KeycapE " + betaData.getSortingChars().contains("0" + Emoji.EMOJI_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
         System.out.println("KeycapT " + betaData.getSortingChars().contains("0" + Emoji.TEXT_VARIANT_STRING + Emoji.KEYCAP_MARK_STRING));
+    }
+
+    public UnicodeSet getGenderBases() {
+        return genderBases;
     }
 }

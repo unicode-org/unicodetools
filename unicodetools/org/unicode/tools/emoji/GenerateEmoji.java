@@ -78,6 +78,7 @@ import com.ibm.icu.util.ULocale;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class GenerateEmoji {
     static boolean                 SHOW                        = false;
+    static boolean                 DO_SPECIALS                        = false;
     private static final boolean DEBUG = false;
     private static final boolean SHOW_NAMES_LIST = false;
 
@@ -598,20 +599,13 @@ public class GenerateEmoji {
         stats.write(Source.VENDOR_SOURCES);
 
         print(Form.noImages, null, null, null);
-        UnicodeSet filtered = new UnicodeSet();
-        final UnicodeSet male = new UnicodeSet("[👮  🕵 💂 👷 👳 👱 🙇 🚶 🏃🏌🏄🚣🏊⛹🏋🚴🚵🤼🤽🤾🤹]");
-        print(Form.fullForm, null, male, "male-");
-        final UnicodeSet female = new UnicodeSet("[🙍 🙎  🙅 🙆  💁  🙋  🤦 🤷 💆  💇  👯🤸]");
-        print(Form.fullForm, null, female, "female-");
-        UnicodeSet genderbases = new UnicodeSet();
-        for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
-            if (s.contains("♀️") 
-                    && !EmojiData.MODIFIERS.containsSome(s)) {
-                genderbases.add(s.codePointAt(0));
-            }
+        if (DO_SPECIALS) {
+            final UnicodeSet male = new UnicodeSet("[👮  🕵 💂 👷 👳 👱 🙇 🚶 🏃🏌🏄🚣🏊⛹🏋🚴🚵🤼🤽🤾🤹]");
+            print(Form.fullForm, null, male, "male-");
+            final UnicodeSet female = new UnicodeSet("[🙍 🙎  🙅 🙆  💁  🙋  🤦 🤷 💆  💇  👯🤸]");
+            print(Form.fullForm, null, female, "female-");
+            print(Form.fullForm, null, new UnicodeSet(EmojiData.EMOJI_DATA.getGenderBases()).removeAll(male).removeAll(female), "missing-");
         }
-        genderbases.freeze();
-        print(Form.fullForm, null, new UnicodeSet(genderbases).removeAll(male).removeAll(female), "missing-");
 
         // print(Form.extraForm, missingMap, null);
         //showNewCharacters();
@@ -1508,6 +1502,7 @@ public class GenerateEmoji {
             throws IOException {
         try (PrintWriter out = FileUtilities.openUTF8Writer(dir, filename)) {
             writeHeader(out, "Emoji Annotations", null, "<p>This chart shows the English emoji character annotations based on " + CLDR_DATA_LINK + ". "
+                    + "It does not include the annotations or short names that are algorithmically generated for sequences, such as flags. "
                     + "To make suggestions for improvements, "
                     + "please file a " + getCldrTicket("annotations", "Emoji annotation suggestions") + ".</p>\n", "border='1'", true);
 

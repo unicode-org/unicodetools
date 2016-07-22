@@ -28,6 +28,8 @@ import com.ibm.icu.text.UnicodeSet;
 public class EmojiAnnotations extends Birelation<String,String> {
 
     final Map<String,UnicodeSet> TO_UNICODE_SET;
+    static LinkedHashSet<String> CAPTURE = new LinkedHashSet<>();
+
 
     final private UnicodeMap<String> shortNames = new UnicodeMap<>();
 
@@ -266,25 +268,25 @@ public class EmojiAnnotations extends Birelation<String,String> {
         String shortName = null;
         switch(s) {
         // put into CLDR
-        case Emoji.MALE:
-            shortName = "male sign"; 
-            addString(keywords, "male, man");
-            return shortName;
-        case Emoji.FEMALE:
-            shortName = "female sign"; 
-            addString(keywords, "female, woman");
-            return shortName;
-        case Emoji.HEALTHCARE:
-            shortName = "medical symbol"; 
-            addString(keywords, "staff, aesculapius");
-            return shortName;
+        //                case Emoji.MALE:
+        //                    shortName = "male sign"; 
+        //                    addString(keywords, "male, man");
+        //                    return shortName;
+        //                case Emoji.FEMALE:
+        //                    shortName = "female sign"; 
+        //                    addString(keywords, "female, woman");
+        //                    return shortName;
+        //                case Emoji.HEALTHCARE:
+        //                    shortName = "medical symbol"; 
+        //                    addString(keywords, "staff, aesculapius");
+        //                    return shortName;
+        //                case "🌾":
+        //                    addString(keywords, "farmer, rancher, gardener");
+        //                    break;
         case Emoji.UN:
             shortName = "United Nations"; 
             keywords.add("UN");
             return shortName;
-        case "🌾":
-            addString(keywords, "farmer, rancher, gardener");
-            break;
         }
         Annotations datum = data.get(s);
         if (datum != null) {
@@ -308,46 +310,52 @@ public class EmojiAnnotations extends Birelation<String,String> {
             }
         } else if (s.contains(Emoji.JOINER_STRING)) {
             shortName = EmojiData.EMOJI_DATA.getName(s, true);
+            boolean special = false;
             for (int cp : CharSequences.codePoints(s)) {
                 switch (cp) {
                 case Emoji.EMOJI_VARIANT:
                 case Emoji.JOINER:
                     continue;
-                case 0x1F33E:
-                    addString(keywords, "farmer, rancher, gardener");
-                    break;
-                case 0x1F373:
-                    addString(keywords, "cook, chef");
-                    break;
-                case 0x1F3ED:
-                    addString(keywords, "industrial, assembly, factory, worker");
-                    break;
-                case 0x2695:
-                    addString(keywords, "healthcare, doctor, nurse, therapist");
-                    break;
-                case 0x1F527:
-                    addString(keywords, "tradesperson, mechanic, plumber, electrician");
-                    break;
-                case 0x1F4BC:
-                    addString(keywords, "office, business, manager, architect, white-collar");
-                    break;
-                case 0x1F52C:
-                    addString(keywords, "scientist, engineer, mathematician, chemist, physicist, biologist");
-                    break;
-                case 0x1F3A4:
-                    addString(keywords, "singer, entertainer, rock, star, actor");
-                    break;
-                case 0x1F393:
-                    addString(keywords, "student, graduate");
-                    break;
-                case 0x1F3EB:
-                    addString(keywords, "professor, instructor, teacher");
-                    break;
-                case 0x1F4BB:
-                    addString(keywords, "technologist, coder, software, developer, inventor");
-                    break;
+                    //                case 0x1F33E:
+                    //                    addString(keywords, "farmer, rancher, gardener");
+                    //                    break;
+                    //                case 0x1F373:
+                    //                    special = addString(keywords, "cook, chef");
+                    //                    break;
+                    //                case 0x1F3ED:
+                    //                    special = addString(keywords, "industrial, assembly, factory, worker");
+                    //                    break;
+                    //                case 0x2695:
+                    //                    special = addString(keywords, "healthcare, doctor, nurse, therapist");
+                    //                    break;
+                    //                case 0x1F527:
+                    //                    special = addString(keywords, "tradesperson, mechanic, plumber, electrician");
+                    //                    break;
+                    //                case 0x1F4BC:
+                    //                    special = addString(keywords, "office, business, manager, architect, white-collar");
+                    //                    break;
+                    //                case 0x1F52C:
+                    //                    special = addString(keywords, "scientist, engineer, mathematician, chemist, physicist, biologist");
+                    //                    break;
+                    //                case 0x1F3A4:
+                    //                    special = addString(keywords, "singer, entertainer, rock, star, actor");
+                    //                    break;
+                    //                case 0x1F393:
+                    //                    special = addString(keywords, "student, graduate");
+                    //                    break;
+                    //                case 0x1F3EB:
+                    //                    special = addString(keywords, "professor, instructor, teacher");
+                    //                    break;
+                    //                case 0x1F4BB:
+                    //                    special = addString(keywords, "technologist, coder, software, developer, inventor");
+                    //                    break;
                 }
-                getNameAndAnnotations(UTF16.valueOf(cp), english, data, keywords);
+                final String cps = UTF16.valueOf(cp);
+                if (special) {
+                    CAPTURE.add("<annotation cp=\"" + s + "\" type=\"tts\">" + CollectionUtilities.join(keywords, " | ") + "</annotation>");
+                    CAPTURE.add("<annotation cp=\"" + s + "\">" + shortName + "</annotation>");
+                }
+                getNameAndAnnotations(cps, english, data, keywords);
             }
         }
         if (MALE_SET.contains(s)) {
@@ -360,81 +368,83 @@ public class EmojiAnnotations extends Birelation<String,String> {
 
     private static String fix(String s, String tts) {
         switch(s) { // add to CLDR
-        case "👮":
-            return "police officer";
-        case "🕵":
-            return "sleuth";
-        case "💂":
-            return "guard";
-        case "👷":
-            return "construction worker";
-        case "👳":
-            return "person with turban";
-        case "👱":
-            return "blond person";
-        case "🙍":
-            return "person frowning";
-        case "🙎":
-            return "person pouting";
-        case "🙅":
-            return "person gesturing not ok";
-        case "🙆":
-            return "person gesturing ok";
-        case "💁":
-            return "person tipping hand";
-        case "🙋":
-            return "person raising hand";
-        case "🙇":
-            return "person bowing";
-        case "🤦":
-            return "person facepalming";
-        case "🤷":
-            return "person shrugging";
-        case "💆":
-            return "person getting face massage";
-        case "💇":
-            return "person getting haircut";
-        case "🚶":
-            return "person walking";
-        case "🏃":
-            return "person running";
-        case "👯":
-            return "people partying";
-        case "🏌":
-            return "person golfing";
-        case "🏄":
-            return "person surfing";
-        case "🚣":
-            return "person rowing boat";
-        case "🏊":
-            return "person swimming";
-        case "⛹":
-            return "person with ball";
-        case "🏋":
-            return "person weight lifting";
-        case "🚴":
-            return "person biking";
-        case "🚵":
-            return "person mountain biking";
-        case "🤸":
-            return "person doing cartwheel";
-        case "🤼":
-            return "people wrestling";
-        case "🤽":
-            return "person playing water polo";
-        case "🤾":
-            return "person playing handball";
-        case "🤹":
-            return "person juggling";
+        //        case "👮":
+        //            return "police officer";
+        //        case "🕵":
+        //            return "sleuth";
+        //        case "💂":
+        //            return "guard";
+        //        case "👷":
+        //            return "construction worker";
+        //        case "👳":
+        //            return "person with turban";
+        //        case "👱":
+        //            return "blond person";
+        //        case "🙍":
+        //            return "person frowning";
+        //        case "🙎":
+        //            return "person pouting";
+        //        case "🙅":
+        //            return "person gesturing not ok";
+        //        case "🙆":
+        //            return "person gesturing ok";
+        //        case "💁":
+        //            return "person tipping hand";
+        //        case "🙋":
+        //            return "person raising hand";
+        //        case "🙇":
+        //            return "person bowing";
+        //        case "🤦":
+        //            return "person facepalming";
+        //        case "🤷":
+        //            return "person shrugging";
+        //        case "💆":
+        //            return "person getting face massage";
+        //        case "💇":
+        //            return "person getting haircut";
+        //        case "🚶":
+        //            return "person walking";
+        //        case "🏃":
+        //            return "person running";
+        //        case "👯":
+        //            return "people partying";
+        //        case "🏌":
+        //            return "person golfing";
+        //        case "🏄":
+        //            return "person surfing";
+        //        case "🚣":
+        //            return "person rowing boat";
+        //        case "🏊":
+        //            return "person swimming";
+        //        case "⛹":
+        //            return "person with ball";
+        //        case "🏋":
+        //            return "person weight lifting";
+        //        case "🚴":
+        //            return "person biking";
+        //        case "🚵":
+        //            return "person mountain biking";
+        //        case "🤸":
+        //            return "person doing cartwheel";
+        //        case "🤼":
+        //            return "people wrestling";
+        //        case "🤽":
+        //            return "person playing water polo";
+        //        case "🤾":
+        //            return "person playing handball";
+        //        case "🤹":
+        //            return "person juggling";
         default:         
             return tts;
         }
     }
 
-    private static void addString(Set<String> keywords, String string) {
+    private static boolean addString(Set<String> keywords, String string) {
+        boolean result = false;
         for (String s : string.split(",")) {
-            keywords.add(s.trim());
+            result |= keywords.add(s.trim());
         }
+        return result;
     }
 
     public String getShortName(String s) {
@@ -479,5 +489,8 @@ public class EmojiAnnotations extends Birelation<String,String> {
             System.out.println(s + "\t" + shortName + "\t" + CollectionUtilities.join(keywords, " | "));
         }
         System.out.println("Missing: " + missing);
+        for (String s : CAPTURE) {
+            System.out.println(s);
+        }
     }
 }
