@@ -32,7 +32,11 @@ public class GenerateEmojiKeyboard {
     }
 
     public static void showLines(EmojiOrder emojiOrder, boolean spreadsheet) throws IOException {
-        Set<String> retain = ImmutableSet.copyOf(emojiOrder.emojiData.getSortingChars().addAllTo(new HashSet<String>()));
+        Set<String> retain = ImmutableSet.copyOf(
+                new UnicodeSet(emojiOrder.emojiData
+                .getSortingChars())
+                .removeAll(EmojiData.MODIFIERS)
+                .addAllTo(new HashSet<String>()));
         UnicodeSet allCharacters = new UnicodeSet();
         EmojiOrder.MajorGroup lastMajorGroup = null;
         TempPrintWriter out = null;

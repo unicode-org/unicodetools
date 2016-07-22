@@ -81,7 +81,8 @@ public class GenerateEmoji {
     private static final boolean DEBUG = false;
     private static final boolean SHOW_NAMES_LIST = false;
 
-    private static final String            BETA_TITLE_AFFIX          = Emoji.IS_BETA ? " — <i>Beta</i>" : "";
+    private static final String            BETA_TITLE_AFFIX          = Emoji.IS_BETA ? " — Beta" : "";
+    private static final String            BETA_HEADER_AFFIX          = Emoji.IS_BETA ? " — <i>Beta</i>" : "";
 
     private static final boolean           DATAURL                     = true;
     private static final int               RESIZE_IMAGE                = -1;
@@ -593,10 +594,25 @@ public class GenerateEmoji {
         if (SHOW) System.out.println("Other 7.0:\t" + newItems70.size() + "\t" + newItems70);
 
         EmojiStats stats = new EmojiStats();
-        print(Form.fullForm, stats);
+        print(Form.fullForm, stats, null, null);
         stats.write(Source.VENDOR_SOURCES);
 
-        print(Form.noImages, null);
+        print(Form.noImages, null, null, null);
+        UnicodeSet filtered = new UnicodeSet();
+        final UnicodeSet male = new UnicodeSet("[👮  🕵 💂 👷 👳 👱 🙇 🚶 🏃🏌🏄🚣🏊⛹🏋🚴🚵🤼🤽🤾🤹]");
+        print(Form.fullForm, null, male, "male-");
+        final UnicodeSet female = new UnicodeSet("[🙍 🙎  🙅 🙆  💁  🙋  🤦 🤷 💆  💇  👯🤸]");
+        print(Form.fullForm, null, female, "female-");
+        UnicodeSet genderbases = new UnicodeSet();
+        for (String s : EmojiData.EMOJI_DATA.getZwjSequencesNormal()) {
+            if (s.contains("♀️") 
+                    && !EmojiData.MODIFIERS.containsSome(s)) {
+                genderbases.add(s.codePointAt(0));
+            }
+        }
+        genderbases.freeze();
+        print(Form.fullForm, null, new UnicodeSet(genderbases).removeAll(male).removeAll(female), "missing-");
+
         // print(Form.extraForm, missingMap, null);
         //showNewCharacters();
         for (String e : EmojiData.EMOJI_DATA.getChars()) {
@@ -1279,7 +1295,8 @@ public class GenerateEmoji {
 
         try (PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, "emoji-zwj-sequences.html")) {
             writeHeader(out, "Emoji ZWJ Sequences Catalog", null, 
-                    "<p>For interoperability, this page catalogs emoji zwj sequences that are supported on at least one commonly available platform, "
+                    "<p>For interoperability, this page catalogs emoji zwj sequences that are or will soon be "
+                            + "supported on at least one commonly available platform, "
                             + "so that other vendors can choose whether or not to support them as well. "
                             + "</p><p>The U+200D ZERO WIDTH JOINER (ZWJ) can be used between the elements of a sequence of characters to indicate that a single glyph should be presented if available. "
                             + "An implementation may use this mechanism to handle such an emoji zwj sequence as a single glyph, "
@@ -1876,9 +1893,17 @@ public class GenerateEmoji {
     }
 
     /** Main charts 
+     * @param filter TODO
+     * @param filteredName TODO
      * @param extraPlatforms TODO*/
-    public static <T> void print(Form form, EmojiStats stats) throws IOException {
-        PrintWriter out = FileUtilities.openUTF8Writer(Emoji.CHARTS_DIR, form.filePrefix + "emoji-list" + ".html");
+    public static <T> void print(Form form, EmojiStats stats, UnicodeSet filter, String filteredName) throws IOException {
+        String chartsDir = Emoji.CHARTS_DIR;
+        String filename = form.filePrefix + "emoji-list" + ".html";
+        if (filter != null) {
+            chartsDir = Emoji.INTERNAL_OUTPUT_DIR;
+            filename = filteredName + form.filePrefix + "emoji-list" + ".html";
+        }
+        PrintWriter out = FileUtilities.openUTF8Writer(chartsDir, filename);
         int order = 0;
         UnicodeSet level1 = null;
         writeHeader(out, form.title, null, "<p>This chart provides a list of the Unicode emoji characters, " + form.description + "</p>\n", "border='1'", false);
@@ -1888,6 +1913,9 @@ public class GenerateEmoji {
         int headerGroupCount = 0;
         for (String s : SORTED_ALL_EMOJI_CHARS_SET // form == Form.fullForm ? SORTED_ALL_EMOJI_CHARS_SET : SORTED_EMOJI_CHARS_SET
                 ) {
+            if (filter != null && !filter.contains(s)) {
+                continue;
+            }
             String orderingGroup = EmojiOrder.STD_ORDER.charactersToOrdering.get(s);
             if (!orderingGroup.equals(lastOrderingGroup)) {
                 lastOrderingGroup = orderingGroup;
@@ -1928,19 +1956,19 @@ public class GenerateEmoji {
 
     public static void writeHeader(PrintWriter out, String title, String styles, String firstLine, String tableAttrs, boolean showGeneralComments) {
         final String chartIndex = "<a target='text' href='index.html'>Emoji Chart Index</a>";
-        final String fullTitle = title + " v" + Emoji.VERSION_STRING + BETA_TITLE_AFFIX ;
+        final String fullTitle = title + " v" + Emoji.VERSION_STRING ;
         out.println("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n" +
                 "<html>\n" +
                 "<head>\n" +
                 "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n" +
                 "<link rel='stylesheet' type='text/css' href='emoji-list.css'>\n" +
-                "<title>" + fullTitle + "</title>\n" +
+                "<title>" + fullTitle + BETA_TITLE_AFFIX + "</title>\n" +
                 (styles == null ? "" : "<style>\n" + styles + "\n</style>\n") +
                 "</head>\n" +
                 "<body>\n"
                 + UNICODE_HEADER
                 + getButton()
-                + "<h1>" + fullTitle + "</h1>\n"
+                + "<h1>" + fullTitle + BETA_HEADER_AFFIX + "</h1>\n"
                 //+ "<p><b>" + chartIndex + "</b></p>\n"
                 + firstLine
                 + "<p>For information about the images used in these charts, see <a href='../images.html'>Emoji Images and Rights</a>. "
@@ -2434,16 +2462,16 @@ public class GenerateEmoji {
     private static StringBuilder getAnnotationsString(String chars2) {
         Set<String> plainAnnotations = null;
         try { // HACK
-                plainAnnotations = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2);
+            plainAnnotations = EmojiAnnotations.ANNOTATIONS_TO_CHARS.getKeys(chars2);
         } catch (Exception e) {}
-        
+
         if (plainAnnotations == null || plainAnnotations.isEmpty()) {
             plainAnnotations = CandidateData.getInstance().getAnnotations(chars2);
-            
+
         }
-        
+
         Set<String> annotations = new LinkedHashSet<String>(Utility.ifNull(plainAnnotations, Collections.EMPTY_SET));
-//        annotations.removeAll(GenerateEmoji.SUPPRESS_ANNOTATIONS);
+        //        annotations.removeAll(GenerateEmoji.SUPPRESS_ANNOTATIONS);
         StringBuilder annotationString = new StringBuilder();
         if (!annotations.isEmpty()) {
             for (String annotation : annotations) {
