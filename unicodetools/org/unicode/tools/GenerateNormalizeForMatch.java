@@ -51,7 +51,7 @@ public class GenerateNormalizeForMatch {
     private static final Pattern SPACES = Pattern.compile("[,\\s]+");
 
     static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucdVersion());
-    
+
     static final UnicodeMap<String> cpToNFKCCF = iup.load(UcdProperty.NFKC_Casefold);
     static final UnicodeMap<String> cpToLower = iup.load(UcdProperty.Lowercase_Mapping);
     static final UnicodeMap<String> cpToSimpleLower = iup.load(UcdProperty.Simple_Lowercase_Mapping);
@@ -80,14 +80,14 @@ public class GenerateNormalizeForMatch {
             return transform(source);
         }
     }
-    
+
     private static final Normalizer3 NFKCCF = new Normalizer3() {
         @Override
         public String transform(String source) {
             return Default.nfc().normalize(NFKC_Casefold.transform(source));
         }
     };
-    
+
     private static final UnicodeSet NFKCCF_SET = new UnicodeSet("[:Changes_When_NFKC_Casefolded:]").freeze();
     private static final Normalizer nfc = Default.nfc();
 
@@ -125,8 +125,8 @@ public class GenerateNormalizeForMatch {
     }
 
     public static void main(String[] args) throws IOException {
-//        findExtraCaps();
-//        if (true) return;
+        //        findExtraCaps();
+        //        if (true) return;
 
         //        gatherData();
         computeTrial();
@@ -171,7 +171,8 @@ public class GenerateNormalizeForMatch {
     private static void compareTrial() {
         UnicodeSet interest = new UnicodeSet(N4M.keySet())
         .addAll(TRIAL.keySet())
-        .addAll(NFKCCF_SET);
+        .addAll(NFKCCF_SET)
+        .removeAll(GC.getSet(General_Category_Values.Unassigned));
         //System.out.println("ICU: " + VersionInfo.ICU_VERSION);
         System.out.println("#Code\tAge\tGC\tDT\tName\tN4M\tTrial\tNFKCCF\tUCA\tΔ\tΔ\tΔ\tΔ\tN4M Hex\tTrial Hex\tNFKCCF Hex\tUCA Hex\tTrial Reasons");
         for (String s : interest) {
@@ -395,19 +396,8 @@ public class GenerateNormalizeForMatch {
      */
     private static void computeTrial() {
 
-        final UnicodeMap<String> SPECIAL_CASES = new UnicodeMap<String>()
-                .put("ß", "ß")
-                .put("ẞ", "ß")
-                .put("İ", "i")
-                .put("\u2044", "/") // decimal and fraction slash
-                .put("\u2215", "/")
-                .put("\u0640", "") // tatweel
-                .freeze();
-
-        final UnicodeSet CN_CS_CO_minus_DI = new UnicodeSet("[[:Cn:][:Cs:][:Co:]-[:di:]]").freeze();
-        final UnicodeSet HANGUL_HALFWIDTH = new UnicodeSet("[[:dt=narrow:]&[:script=Hang:]]").freeze();
-        //final UnicodeSet DEPRECATED = new UnicodeSet("\\p{deprecated}").freeze();
-        final UnicodeSet SEPARATE_DECOMP_TYPES = new UnicodeSet("["
+        final UnicodeSet CN_CS_CO = new UnicodeSet("[[:Cn:][:Cs:][:Co:]]").freeze(); // -[:di:]
+        final UnicodeSet SPECIAL_DECOMP_TYPES = new UnicodeSet("["
                 + "[:dt=Square:]"
                 + "[:dt=Fraction:]"
                 + "]")
@@ -415,11 +405,7 @@ public class GenerateNormalizeForMatch {
         final UnicodeSet NOCHANGE_DECOMP_TYPES = new UnicodeSet("["
                 + "[:dt=Super:]"
                 + "[:dt=Sub:]"
-                + "]")
-        .freeze();
-
-        final UnicodeSet SUPER = new UnicodeSet("["
-                + "[:dt=Super:]"
+                + "[:dt=Vertical:]"
                 + "]")
         .freeze();
 
@@ -441,40 +427,28 @@ public class GenerateNormalizeForMatch {
 
         main:
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
+                if (cp==0x1F12A) {
+                    int debug = 0;
+                }
                 String source = UTF16.valueOf(cp);
-
                 String nfkccf = NFKCCF.normalize(source);
-                //                if (!CharSequences.equals(cp, nfkccf)) {
-                //                    NFKCCF_SET.add(cp);
-                //                }
 
                 String reason = "";
 
-                // Unassigned but not Default_Ignorable_Code_Point → no change
+                // Unassigned or strange Cx → no change
 
-                if (CN_CS_CO_minus_DI.contains(cp) 
-                        && !ADDITIONS_TO_NFKCCF.getSourceToTarget().containsKey(cp)) { // Hack until ICU supports new version of Unicode
+                if (CN_CS_CO.contains(cp)) { 
                     reason = "01. Cn or Cs or Co";
                     continue main;
                 }
                 if (HANGUL_COMPAT_minus_DI_CN.contains(cp)) {
-                    reason = ("02. Cn or Cs or Co");
+                    reason = ("02. Skip Hangul Compat");
                     continue main;
                 }
                 String target = source.replace('⁄', '/'); 
 
                 subloop: {
-                    // Special cases
-                    String remapped = SPECIAL_CASES.get(cp);
-                    if (remapped != null) {
-                        target = remapped;
-                        reason = ("03. remapped exceptions");
-                        break subloop;
-                    }
-                    // Decorated numbers: (⓿→0),... // origin, UCA
-                    if (source.equals(ADDITIONS_TO_NFKCCF.TEST)) {
-                        int debug = 0;
-                    }
+                    String remapped = null;
                     remapped = ADDITIONS_TO_NFKCCF.getSourceToTarget().get(source);
                     if (remapped != null) {
                         target = remapped;
@@ -485,7 +459,7 @@ public class GenerateNormalizeForMatch {
                     // decomposition type = squared, fraction → Map to NFKC
                     // if the target ends with a digit, and there are no other digits, superscript the last
                     // if there is more than one cp in the target, surround by separators.
-                    if (SEPARATE_DECOMP_TYPES.contains(cp)) {
+                    if (SPECIAL_DECOMP_TYPES.contains(cp)) {
                         target = NFKCCF.normalize(source);
                         reason = "07. DT_SQUARE_FRACTION";
                         int lastCp = target.codePointBefore(target.length());
@@ -494,31 +468,20 @@ public class GenerateNormalizeForMatch {
                             String prefix = target.substring(0,target.length() - Character.charCount(lastCp));
                             if (DIGITS.containsNone(prefix)) {
                                 target = prefix + mod;
+//                                System.out.println(Utility.hex(source) + "; " + Utility.hex(target, 4, " ") + " # " + source + " → " + target);
                                 reason += " for superscript-numbers";
                             }
                         }
-                        if (target.codePointCount(0, target.length()) > 1) {
-                            target = SEPARATOR + target + SEPARATOR;
-                            reason += " with separator";
-                        }
                         break subloop;
                     }
-                    //                    // decomposition type = super, sub → do not map, stop
-                    //                    if (NOCHANGE_DECOMP_TYPES.contains(cp)) {
-                    //                        reason = "9 skip certain types";
-                    //                        break subloop;
-                    //                    }
-                    // Get NFKC_CF mapping
-                    target = nfkccf;
-                    // #13
-
-                    // HANGUL_HALFWIDTH
-                    if (HANGUL_HALFWIDTH.contains(cp)) {
-                        if (!target.isEmpty()) { // exclude filler
-                            reason = ("TBD: map to Hangul Compat Jamo");
-                            break subloop;
-                        }
+                    // decomposition type = super, sub → do not map, stop
+                    if (NOCHANGE_DECOMP_TYPES.contains(cp)) {
+                        reason = "9 skip certain types";
+                        break subloop;
                     }
+                    // Get NFKC_CF mapping
+                    
+                    target = nfkccf;
 
                     // length(value) ≠1 && contains any of  " ",  "(",  ".",  ",",  "〔" → no change (discard mapping)
 
@@ -533,12 +496,20 @@ public class GenerateNormalizeForMatch {
                     }
                     // if we don't have a reason, it is because of NFKC_CF, so add that reason.
                     if (!REASONS.containsKey(cp)) {
-//                        int dti = UCharacter.getIntPropertyValue(cp, UProperty.DECOMPOSITION_TYPE);
-//                        String suffix = dti == 0 ? "Other" : UCharacter.getPropertyValueName(UProperty.DECOMPOSITION_TYPE, dti, NameChoice.SHORT);
                         reason = "16. NFKC_CF-" + DT.get(cp);
                     }
                 }
-                target = target.replace('⁄', '/'); // fraction slash #15
+                if (target.contains("⁄")) {
+                    target = target.replace('⁄', '/'); // fraction slash #15
+                    reason += " fix fraction slash";
+                }
+
+                if (!target.equals("/") && target.contains("/")) {
+                    target = SEPARATOR + target + SEPARATOR;
+                    //System.out.println("«" + target + "»");
+                    reason += " add separator";
+                }
+
                 target = nfc.normalize(target); // just in case!!
                 if (!source.equals(target)) {
                     TRIAL.put(cp, target);
