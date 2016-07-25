@@ -8,7 +8,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
@@ -18,51 +17,79 @@ import org.unicode.cldr.util.Counter;
 import org.unicode.cldr.util.With;
 import org.unicode.props.IndexUnicodeProperties;
 import org.unicode.props.UcdProperty;
+import org.unicode.props.UcdPropertyValues.Age_Values;
+import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
+import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.text.UCD.Default;
+import org.unicode.text.UCD.Normalizer;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.ibm.icu.dev.util.UnicodeMap;
-import com.ibm.icu.impl.Relation;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Row.R2;
 import com.ibm.icu.impl.Row.R5;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.lang.CharSequences;
-import com.ibm.icu.lang.UCharacter;
-import com.ibm.icu.lang.UProperty;
-import com.ibm.icu.lang.UProperty.NameChoice;
-import com.ibm.icu.text.Collator;
-import com.ibm.icu.text.Normalizer2;
+import com.ibm.icu.text.Transform;
+//import com.ibm.icu.lang.UCharacter;
+//import com.ibm.icu.lang.UProperty;
+//import com.ibm.icu.lang.UProperty.NameChoice;
+//import com.ibm.icu.text.Collator;
+//import com.ibm.icu.text.Normalizer2;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
-import com.ibm.icu.util.ULocale;
-import com.ibm.icu.util.VersionInfo;
 
 public class GenerateNormalizeForMatch {
     private static final String FINAL_STRING = " FINAL ";
     private static final String DEBUG_PRINT = UTF16.valueOf(0xE0FDF);
     private static final String dir = "/Users/markdavis/Google Drive/workspace/DATA/frequency/";
     private static final String GOOGLE_FOLDING_TXT = "google_folding.txt";
-    static final Pattern SPACES = Pattern.compile("[,\\s]+");
+    private static final Pattern SPACES = Pattern.compile("[,\\s]+");
+
+    static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucdVersion());
+    
+    static final UnicodeMap<String> cpToNFKCCF = iup.load(UcdProperty.NFKC_Casefold);
+    static final UnicodeMap<String> cpToLower = iup.load(UcdProperty.Lowercase_Mapping);
+    static final UnicodeMap<String> cpToSimpleLower = iup.load(UcdProperty.Simple_Lowercase_Mapping);
+    static final UnicodeMap<String> cpToName = iup.load(UcdProperty.Name);
+    static final UnicodeMap<General_Category_Values> GC = iup.loadEnum(UcdProperty.General_Category, General_Category_Values.class);
+    static final UnicodeMap<Decomposition_Type_Values> DT = iup.loadEnum(UcdProperty.Decomposition_Type, Decomposition_Type_Values.class);
+    static final UnicodeMap<Age_Values> AGE = iup.loadEnum(UcdProperty.Age, Age_Values.class);
+    static final UnicodeMap<String> NFKC_Casefold = iup.load(UcdProperty.NFKC_Casefold);
+
+    static {
+        UnicodeSet.setDefaultXSymbolTable(iup.getXSymbolTable());
+    }
 
 
     private static final Comparator<String> CODEPOINT = new StringComparator(true, false, StringComparator.FOLD_CASE_DEFAULT);
     private static final Comparator<String> UCA;
 
     static {
-        final Collator uca_raw = Collator.getInstance(ULocale.ROOT);
-        uca_raw.setDecomposition(Collator.CANONICAL_DECOMPOSITION);
+        org.unicode.text.UCA.UCA uca_raw = org.unicode.text.UCA.UCA.buildCollator(null);
+        //        uca_raw.setDecomposition(Collator.CANONICAL_DECOMPOSITION);
         UCA = new MultiComparator<String>((Comparator<String>)(Comparator<?>) uca_raw, CODEPOINT);
     }
 
-    private static final Normalizer2 NFKCCF = Normalizer2.getNFKCCasefoldInstance();
+    static abstract class Normalizer3 implements Transform<String, String> {
+        public String normalize(String source) {
+            return transform(source);
+        }
+    }
+    
+    private static final Normalizer3 NFKCCF = new Normalizer3() {
+        @Override
+        public String transform(String source) {
+            return Default.nfc().normalize(NFKC_Casefold.transform(source));
+        }
+    };
+    
     private static final UnicodeSet NFKCCF_SET = new UnicodeSet("[:Changes_When_NFKC_Casefolded:]").freeze();
-    private static final Normalizer2 nfc = Normalizer2.getNFCInstance();
+    private static final Normalizer nfc = Default.nfc();
 
     // Results
     private static final UnicodeMap<String> N4M = gatherData();
@@ -78,7 +105,7 @@ public class GenerateNormalizeForMatch {
         Builder<String,String> builder = ImmutableMap.builder();
         for (EntryRange entry : new UnicodeSet("[^[:c:][:UnifiedIdeograph:]]").ranges()) {
             for (int cp = entry.codepoint; cp < entry.codepointEnd; ++cp) {
-                final String name = UCharacter.getName(cp);
+                final String name = iup.getName(UTF16.valueOf(cp), " + ");
                 final String decomp = UTF16.valueOf(cp);
                 builder.put(name, decomp);
                 if (name.startsWith("CIRCLED NUMBER ")) {
@@ -98,8 +125,8 @@ public class GenerateNormalizeForMatch {
     }
 
     public static void main(String[] args) throws IOException {
-        findExtraCaps();
-        if (true) return;
+//        findExtraCaps();
+//        if (true) return;
 
         //        gatherData();
         computeTrial();
@@ -113,11 +140,6 @@ public class GenerateNormalizeForMatch {
     }
 
     private static void findExtraCaps() {
-        IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucdVersion());
-        UnicodeMap<String> cpToNFKCCF = iup.load(UcdProperty.NFKC_Casefold);
-        UnicodeMap<String> cpToLower = iup.load(UcdProperty.Lowercase_Mapping);
-        UnicodeMap<String> cpToSimpleLower = iup.load(UcdProperty.Simple_Lowercase_Mapping);
-        UnicodeMap<String> cpToName = iup.load(UcdProperty.Name);
         HashMap<String, UnicodeSet> nameToCp = cpToName.addInverseTo(new HashMap<String,UnicodeSet>());
         for (Entry<String, String> entry : cpToName.entrySet()) {
             String cp = entry.getKey();
@@ -130,12 +152,15 @@ public class GenerateNormalizeForMatch {
                 if (other != null) {
                     int otherFirst = other.getRangeStart(0);
                     final String otherCp = UTF16.valueOf(otherFirst);
-                    System.out.println(cp 
+                    final String cpNkfccf = CldrUtility.ifNull(cpToNFKCCF.get(cp), cp);
+                    final String otherCpNfkccf = CldrUtility.ifNull(cpToNFKCCF.get(otherCp), otherCp);
+                    System.out.println((cpNkfccf.equals(otherCpNfkccf) ? "=" : "≠")
+                            + "\t" + cp 
                             + "\t" + Utility.hex(cp, 4, " ") 
                             + "\t" + otherCp 
                             + "\t" + Utility.hex(otherCp, 4, " ") 
-                            + "\t" + CldrUtility.ifNull(cpToNFKCCF.get(cp), cp)
-                            + "\t" + CldrUtility.ifNull(cpToNFKCCF.get(otherCp), otherCp)
+                            + "\t" + cpNkfccf
+                            + "\t" + otherCpNfkccf
                             + "\t" + name 
                             + "\t" + cpToName.get(otherFirst));
                 }
@@ -169,9 +194,9 @@ public class GenerateNormalizeForMatch {
             String reasons = REASONS.get(s);
             final int cp = s.codePointAt(0);
             System.out.println("'" + Utility.hex(s) 
-                    + "\t'" + UCharacter.getAge(cp).getVersionString(2, 2)
-                    + "\t'" + UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, UCharacter.getType(cp), NameChoice.SHORT)
-                    + "\t'" + UCharacter.getPropertyValueName(UProperty.DECOMPOSITION_TYPE, UCharacter.getIntPropertyValue(cp, UProperty.DECOMPOSITION_TYPE), NameChoice.SHORT)
+                    + "\t'" + AGE.get(cp).getShortName() // UCharacter.getAge(cp).getVersionString(2, 2)
+                    + "\t'" + GC.get(cp).getNames().getShortName()
+                    + "\t'" + DT.get(cp).getNames().getShortName()
                     + "\t" + getName(s) 
                     + "\t'" + showEmpty(n4m)
                     + "\t'" + showEmpty(trial)
@@ -191,7 +216,7 @@ public class GenerateNormalizeForMatch {
     }
 
     private static String getName(String s) {
-        String result = UCharacter.getName(s, " + ");
+        String result = iup.getName(s, " + ");
         return result == null ? "n/a" : result;
     }
 
@@ -253,8 +278,8 @@ public class GenerateNormalizeForMatch {
                             + ";\t" + (oldTarget.isEmpty() ? "" : Utility.hex(oldTarget, 4, " ", true, new StringBuilder()))
                             + "#\t" + source 
                             + " →\t" + oldTarget 
-                            + ",\t" + UCharacter.getName(source, ", ") 
-                            + " →\t" + UCharacter.getName(oldTarget, ", ") 
+                            + ",\t" + iup.getName(source, ", ") 
+                            + " →\t" + iup.getName(oldTarget, ", ") 
                             );
                     continue;
                 }
@@ -267,13 +292,13 @@ public class GenerateNormalizeForMatch {
                         Utility.hex(source)
                         + ";\t" + (newTarget == null ? "source" : Utility.hex(newTarget))
                         + ";\t" + (oldTarget == null ? "source" : Utility.hex(oldTarget))
-                        + ";\t" + UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, UCharacter.getType(source.codePointAt(0)), NameChoice.SHORT)
+                        + ";\t" + GC.get(source).getNames().getShortName()
                         + ";\t" + source 
                         + ";\t" + newTarget 
                         + ";\t" + oldTarget 
-                        + ";\t" + UCharacter.getName(source, ", ") 
-                        + ";\t" + (newTarget == null ? "source" : UCharacter.getName(newTarget, ", "))
-                        + ";\t" + (oldTarget == null ? "source" : UCharacter.getName(oldTarget, ", "))
+                        + ";\t" + iup.getName(source, ", ") 
+                        + ";\t" + (newTarget == null ? "source" : iup.getName(newTarget, ", "))
+                        + ";\t" + (oldTarget == null ? "source" : iup.getName(oldTarget, ", "))
                         + ";\t" + status
                         );
             }
@@ -417,11 +442,11 @@ public class GenerateNormalizeForMatch {
         main:
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
                 String source = UTF16.valueOf(cp);
-                
+
                 String nfkccf = NFKCCF.normalize(source);
-//                if (!CharSequences.equals(cp, nfkccf)) {
-//                    NFKCCF_SET.add(cp);
-//                }
+                //                if (!CharSequences.equals(cp, nfkccf)) {
+                //                    NFKCCF_SET.add(cp);
+                //                }
 
                 String reason = "";
 
@@ -508,9 +533,9 @@ public class GenerateNormalizeForMatch {
                     }
                     // if we don't have a reason, it is because of NFKC_CF, so add that reason.
                     if (!REASONS.containsKey(cp)) {
-                        int dti = UCharacter.getIntPropertyValue(cp, UProperty.DECOMPOSITION_TYPE);
-                        String suffix = dti == 0 ? "Other" : UCharacter.getPropertyValueName(UProperty.DECOMPOSITION_TYPE, dti, NameChoice.SHORT);
-                        reason = "16. NFKC_CF-" + suffix;
+//                        int dti = UCharacter.getIntPropertyValue(cp, UProperty.DECOMPOSITION_TYPE);
+//                        String suffix = dti == 0 ? "Other" : UCharacter.getPropertyValueName(UProperty.DECOMPOSITION_TYPE, dti, NameChoice.SHORT);
+                        reason = "16. NFKC_CF-" + DT.get(cp);
                     }
                 }
                 target = target.replace('⁄', '/'); // fraction slash #15
@@ -590,7 +615,7 @@ public class GenerateNormalizeForMatch {
 
     private static final String SEP = "\t";
 
-    private static void showMapping(NormalizeForMatch sourceMap, Normalizer2 nfkccf2) {
+    private static void showMapping(NormalizeForMatch sourceMap, Normalizer3 nfkccf2) {
         UnicodeSet changed = new UnicodeSet();
         System.out.println("#source ; target ; nfkccf (if ≠) ; uca equiv (if ≠) # (source→target) names");
         for (Entry<String, String> x : sourceMap.getSourceToTarget().entrySet()) {
@@ -664,20 +689,20 @@ public class GenerateNormalizeForMatch {
             if (b.length() > 0) {
                 b.append(separator);
             }
-            b.append(UCharacter.getExtendedName(cp));
+            b.append(iup.getName(UTF16.valueOf(cp), " + "));
         }
         return b.toString();
     }
 
     private static void showItemsIn(UnicodeSet combined) {
 
-        Set<Row.R5<Age, Difference, Integer, Integer, String>> sorted = new TreeSet<>();
+        Set<Row.R5<Age, Difference, Decomposition_Type_Values, General_Category_Values, String>> sorted = new TreeSet<>();
         Counter<Row.R2<Age, Difference>> counter = new Counter<>();
         for (String source : combined) {
             // Skip anything ≥ Unicode 8.0
             int sourceCodePoint = source.codePointAt(0);
-            final VersionInfo ageValue = UCharacter.getAge(sourceCodePoint);
-            if (ageValue.compareTo(VersionInfo.UNICODE_8_0) >= 0) {
+            final Age_Values ageValue = AGE.get(sourceCodePoint);
+            if (ageValue.compareTo(Age_Values.V8_0) >= 0) {
                 continue;
             }
 
@@ -688,10 +713,10 @@ public class GenerateNormalizeForMatch {
             }
 
             String reason = REASONS.get(source);
-            int generalCategory = UCharacter.getIntPropertyValue(sourceCodePoint, UProperty.GENERAL_CATEGORY);
-            int decompType = UCharacter.getIntPropertyValue(sourceCodePoint, UProperty.DECOMPOSITION_TYPE);
+            General_Category_Values generalCategory = GC.get(sourceCodePoint); // UCharacter.getIntPropertyValue(sourceCodePoint, UProperty.GENERAL_CATEGORY);
+            Decomposition_Type_Values decompType = DT.get(sourceCodePoint); // int decompType = UCharacter.getIntPropertyValue(sourceCodePoint, UProperty.DECOMPOSITION_TYPE);
 
-            Age age = ageValue.compareTo(VersionInfo.UNICODE_5_1) >= 0 ? Age.from51to70
+            Age age = ageValue.compareTo(Age_Values.V5_1) >= 0 ? Age.from51to70
                     : Age.before51;
 
             Difference difference = n4mValue == null ? Difference.trial_only 
@@ -702,16 +727,18 @@ public class GenerateNormalizeForMatch {
             if (nfkccfValue.equals(source)) {
                 nfkccfValue = null; // below, null means no change
             }
-            sorted.add(Row.of(age, difference, decompType, generalCategory, 
-                    ageValue.getVersionString(2, 2)
+            final R5<Age, Difference, Decomposition_Type_Values, General_Category_Values, String> row 
+            = Row.of(age, difference, decompType, generalCategory, ageValue.getShortName()
+                    // ageValue.getVersionString(2, 2)
                     + SEP + source
                     + SEP + hex(source) 
                     + SEP + hex(n4mValue)
                     + SEP + hex(trialValue)
                     + SEP + (Objects.equal(nfkccfValue,trialValue) ? "≣" : hex(nfkccfValue))
                     + SEP + (reason == null ? "" : reason)
-                    + SEP + UCharacter.getExtendedName(sourceCodePoint)
-                    ));
+                    + SEP + iup.getName(UTF16.valueOf(sourceCodePoint), " + ")
+                    );
+            sorted.add(row);
             counter.add(Row.of(age,difference), 1);
         }
 
@@ -731,13 +758,11 @@ public class GenerateNormalizeForMatch {
                 + SEP + "Name of Source"
                 );
 
-        for (R5<Age, Difference, Integer, Integer, String> item : sorted) {
+        for (R5<Age, Difference, Decomposition_Type_Values, General_Category_Values, String> item : sorted) {
             final Age age = item.get0();
             final Difference difference = item.get1();
-            final String decompType = UCharacter.getPropertyValueName(
-                    UProperty.DECOMPOSITION_TYPE, item.get2(), UProperty.NameChoice.LONG);
-            final String cat = UCharacter.getPropertyValueName(
-                    UProperty.GENERAL_CATEGORY, item.get3(), UProperty.NameChoice.LONG);
+            final String decompType = item.get2().name();
+            final String cat = item.get3().name();
             final String info = item.get4();
             if (age != lastAge || difference != lastDifference) {
                 System.out.println("\n#" + age + ", " + difference + "\n");
