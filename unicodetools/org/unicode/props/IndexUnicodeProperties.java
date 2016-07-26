@@ -234,15 +234,31 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
     }
 
     public <T extends Enum<T>> UnicodeMap<T> loadEnum(UcdProperty prop2, Class<T> classIn) {
+        if (classIn != prop2.getEnumClass()) {
+            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+                    + prop2.getEnumClass());
+        }
+//        UnicodeMap<T> result = SPECIAL_CACHE.get(prop2);
+//        if (result != null) {
+//            return result;
+//        }
+//        result = new UnicodeMap<>();
+//        UnicodeMap<String> m = load(prop2);
+//        for (String value : m.values()) {
+//            T enumv = (T) prop2.getEnum(value);
+//            UnicodeSet uset = m.getSet(value);
+//            result.putAll(uset, enumv);
+//        }
+//        SPECIAL_CACHE.put(prop2, result.freeze());
+        return loadEnum(prop2);
+    }
+    
+    public <T extends Enum<T>> UnicodeMap<T> loadEnum(UcdProperty prop2) {
         UnicodeMap<T> result = SPECIAL_CACHE.get(prop2);
         if (result != null) {
             return result;
         }
         result = new UnicodeMap<>();
-        if (classIn != prop2.getEnumClass()) {
-            throw new UnicodePropertyException("Mismatch in class data,  expected " 
-                    + prop2.getEnumClass());
-        }
         UnicodeMap<String> m = load(prop2);
         for (String value : m.values()) {
             T enumv = (T) prop2.getEnum(value);
@@ -251,6 +267,15 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
         }
         SPECIAL_CACHE.put(prop2, result.freeze());
         return result;
+    }
+    
+    public UnicodeSet loadEnumSet(UcdProperty prop2, Enum value) {
+        if (value.getClass() != prop2.getEnumClass()) {
+            throw new UnicodePropertyException("Mismatch in class data,  expected " 
+                    + prop2.getEnumClass());
+        }
+        UnicodeMap map = loadEnum(prop2);
+        return map.getSet(value);
     }
 
     static final Splitter SET_SPLITTER = Splitter.on(SET_SEPARATOR);

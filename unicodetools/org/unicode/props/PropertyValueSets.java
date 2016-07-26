@@ -6,6 +6,8 @@ import java.util.Set;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 
 import com.google.common.collect.ImmutableSortedSet;
+import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.text.UnicodeSet;
 
 public class PropertyValueSets {
 
@@ -54,4 +56,21 @@ public class PropertyValueSets {
             General_Category_Values.Paragraph_Separator,
             General_Category_Values.Space_Separator
             ));
+    
+    public static <T> UnicodeSet getSet(UnicodeMap<T> map, T... values) {
+        UnicodeSet result = new UnicodeSet();
+        for (T value : values) {
+            result.addAll(map.getSet(value));
+        }
+        return result.freeze();
+    }
+    
+    public static <T> UnicodeSet getSet(UnicodeMap<T> map, Iterable<T> values) {
+        UnicodeSet result = new UnicodeSet();
+        for (T value : values) {
+            result.addAll(map.getSet(value));
+        }
+        return result.freeze();
+    }
+
 }
