@@ -111,6 +111,7 @@ public class CollatorEquivalences {
     static final UnicodeSet LETTER = new UnicodeSet("[:L:]").freeze();
     static final UnicodeSet KATAKANA = new UnicodeSet("[:sc=Katakana:]").freeze();
     static final UnicodeSet KATAKANA_SMALL = new UnicodeSet("[ァィゥェォッャュョヮヵヶㇰ-ㇿｧ-ｯ]").freeze();
+    static final UnicodeSet ChangesWithNfkccf = new UnicodeSet("[:Changes_When_NFKC_Casefolded:]").freeze();
 
     static {
         RuleBasedCollator temp = (RuleBasedCollator) Collator.getInstance(ULocale.ROOT);
@@ -134,6 +135,14 @@ public class CollatorEquivalences {
                 return (LETTER.containsAll(o1) ? 0 : 1) - (LETTER.containsAll(o2) ? 0 : 1);
             }
         };
+        
+        Comparator<String> NFKCCF_FIRST = new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return (ChangesWithNfkccf.containsNone(o1) ? 0 : 1) - (ChangesWithNfkccf.containsNone(o2) ? 0 : 1);
+            }
+        };
+
         Comparator<String> KANA_FIRST = new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
@@ -153,6 +162,7 @@ public class CollatorEquivalences {
         BEST_IS_LEAST = new MultiComparator<String>(
                 LONGER_FIRST, 
                 KANA_FIRST,
+                //NFKCCF_FIRST,
                 (Comparator<String>)(Comparator<?>) temp2, 
                 REGULAR_FIRST, 
                 CODEPOINT);

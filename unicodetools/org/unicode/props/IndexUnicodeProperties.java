@@ -507,26 +507,30 @@ public class IndexUnicodeProperties extends UnicodeProperty.Factory {
 
     public String getName(String cps, String separator) {
         StringBuffer result = new StringBuffer();
-        if (nameMap == null) {
-            nameMap = load(UcdProperty.Name);
-            gcMap = loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
-        }
         for (int cp : CharSequences.codePoints(cps)) {
             if (result.length() != 0) {
                 result.append(separator);
             }
-            String name = nameMap.get(cp);
-            if (name == null) {
-                final General_Category_Values gcv = gcMap.get(cp);
-                result.append("<" + (gcv == General_Category_Values.Unassigned ? "reserved" : gcv.name().toLowerCase(Locale.ENGLISH))
-                        + "-" + Utility.hex(cp) + ">");
-            } else if (name.endsWith("-#")) {
-                result.append(name.substring(0,name.length()-1) + Utility.hex(cp));
-            } else {
-                result.append(name);
-            }
+            String name = getName(cp);
+            result.append(name);
         }
         return result.toString();
+    }
+
+    private String getName(int cp) {
+        if (nameMap == null) {
+            nameMap = load(UcdProperty.Name);
+            gcMap = loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
+        }
+        String name = nameMap.get(cp);
+        if (name == null) {
+            final General_Category_Values gcv = gcMap.get(cp);
+            name = "<" + (gcv == General_Category_Values.Unassigned ? "reserved" : gcv.name().toLowerCase(Locale.ENGLISH))
+                    + "-" + Utility.hex(cp) + ">";
+        } else if (name.endsWith("-#")) {
+            name = name.substring(0,name.length()-1) + Utility.hex(cp);
+        }
+        return name;
     }
 
     public static DefaultValueType getResolvedDefaultValueType(UcdProperty prop) {

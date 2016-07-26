@@ -1,6 +1,8 @@
 package org.unicode.tools;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
@@ -24,21 +26,22 @@ import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
+import org.unicode.text.utility.Settings;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.ibm.icu.dev.util.UnicodeMap;
+import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Utility;
-import com.ibm.icu.text.Transform;
 import com.ibm.icu.text.UTF16;
 import com.ibm.icu.text.UTF16.StringComparator;
 import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.text.UnicodeSet.EntryRange;
 
 public class GenerateNormalizeForMatch {
-    
+
     private static final String dir = "/Users/markdavis/Google Drive/workspace/DATA/frequency/";
     private static final String GOOGLE_FOLDING_TXT = "google_folding.txt";
     private static final Pattern SPACES = Pattern.compile("[,\\s]+");
@@ -54,7 +57,7 @@ public class GenerateNormalizeForMatch {
     private static final UnicodeMap<String> COLLATION_MAP = CollatorEquivalences.COLLATION_MAP;
 
     private static final IndexUnicodeProperties iup = IndexUnicodeProperties.make(Default.ucdVersion());
-    
+
     static UnicodeSet.XSymbolTable NO_PROPS = new UnicodeSet.XSymbolTable() {
         @Override
         public boolean applyPropertyAlias(String propertyName, String propertyValue, UnicodeSet result) {
@@ -78,20 +81,6 @@ public class GenerateNormalizeForMatch {
     private static final UnicodeSet UNASSIGNED = GC.getSet(General_Category_Values.Unassigned);
     private static final UnicodeMap<Decomposition_Type_Values> DT = iup.loadEnum(UcdProperty.Decomposition_Type, Decomposition_Type_Values.class);
     private static final UnicodeMap<Age_Values> AGE = iup.loadEnum(UcdProperty.Age, Age_Values.class);
-    private static final UnicodeMap<String> NFKC_Casefold = iup.load(UcdProperty.NFKC_Casefold);
-
-    static abstract class Normalizer3 implements Transform<String, String> {
-        public String normalize(String source) {
-            return transform(source);
-        }
-    }
-
-    private static final Normalizer3 NFKCCF = new Normalizer3() {
-        @Override
-        public String transform(String source) {
-            return Default.nfc().normalize(NFKC_Casefold.transform(source));
-        }
-    };
 
     private static final UnicodeSet NFKCCF_SET = iup.loadEnumSet(UcdProperty.Changes_When_NFKC_Casefolded, Binary.Yes);
     private static final Normalizer nfc = Default.nfc();
@@ -155,7 +144,7 @@ public class GenerateNormalizeForMatch {
                 final String decomp = UTF16.valueOf(cp);
                 builder.put(name, decomp);
                 if (name.startsWith("CIRCLED NUMBER ")) {
-                    final String decompHack = NFKCCF.normalize(decomp);
+                    final String decompHack = Normalizer3.NFKCCF.normalize(decomp);
                     final String nameHack = name.substring("CIRCLED ".length());
                     builder.put(nameHack, decompHack);
                 }
@@ -177,12 +166,12 @@ public class GenerateNormalizeForMatch {
         //        gatherData();
         computeTrial();
         compareTrial();
-        //showSimpleData();
+        showSimpleData();
         if (true) return;
         computeXFile();
         if (true) return;
-        //printData();
-        //showItemsIn(new UnicodeSet(N4M.keySet()).addAll(TRIAL.keySet()));
+        printData();
+        //        showItemsIn(new UnicodeSet(N4M.keySet()).addAll(TRIAL.keySet()));
     }
 
     private static void findExtraCaps() {
@@ -214,51 +203,67 @@ public class GenerateNormalizeForMatch {
         }
     }
 
-    private static void compareTrial() {
-        UnicodeSet interest = new UnicodeSet(N4M.keySet())
-        .addAll(TRIAL.keySet())
-        .addAll(NFKCCF_SET)
-        .removeAll(UNASSIGNED);
-        //System.out.println("ICU: " + VersionInfo.ICU_VERSION);
-        System.out.println("#Code\tAge\tGC\tDT\tName\tN4M\tTrial\tNFKCCF\tUCA\tΔ\tΔ\tΔ\tΔ\tN4M Hex\tTrial Hex\tNFKCCF Hex\tUCA Hex\tTrial Reasons");
-        for (String s : interest) {
-            String nfkccf = NFKCCF.normalize(s);
-            String n4m = N4M.get(s);
-            if (n4m == null) {
-                n4m = s;
+    private static void compareTrial() throws IOException {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "n4m/", "XNFKCCF.txt")) {
+            UnicodeSet interest = new UnicodeSet(N4M.keySet())
+            .addAll(TRIAL.keySet())
+            .addAll(NFKCCF_SET)
+            .addAll(COLLATION_MAP.keySet())
+            .retainAll(new UnicodeSet(0,0x10FFFF))
+            .removeAll(UNASSIGNED);
+
+            out.println("#Code\tAge\tGC\tDT\tName\tN4M\tTrial\tNFKCCF\tUCA\tΔ\tΔ\tΔ\tN4M Hex\tTrial Hex\tNFKCCF Hex\tUCA Hex\tTrial Reasons");
+            TreeSet<Row.R4<Integer, Decomposition_Type_Values, String, String>> sorted = new TreeSet<>();
+            for (String s : interest) {
+                String nfkccf = Normalizer3.NFKCCF.normalize(s);
+                String n4m = N4M.get(s);
+                if (n4m == null) {
+                    n4m = s;
+                }
+                String trial = TRIAL.get(s);
+                if (trial == null) {
+                    trial = s;
+                }
+                String colEquiv = COLLATION_MAP.get(s);
+                if (colEquiv == null) {
+                    colEquiv = s;
+                }
+                if (Objects.equal(n4m, trial) && Objects.equal(trial, nfkccf)
+//                        && Objects.equal(trial, colEquiv)
+                        ) {
+                    continue;
+                }
+                String reasons = REASONS.get(s);
+                final int cp = s.codePointAt(0);
+                String line = "'" + Utility.hex(s) 
+                        + "\t'" + AGE.get(cp).getShortName() // UCharacter.getAge(cp).getVersionString(2, 2)
+                        + "\t'" + GC.get(cp).getNames().getShortName()
+                        + "\t'" + DT.get(cp).getNames().getShortName()
+                        + "\t" + getName(s) 
+                        + "\t'" + showEmpty(n4m)
+                        + "\t'" + showEmpty(trial)
+                        + "\t'" + showEmpty(nfkccf)
+                        + "\t'" + showEmpty(colEquiv)
+                        + "\t" + (Objects.equal(n4m, trial) ? "" : "Tr≠N4M") 
+                        + "\t" + (Objects.equal(trial,nfkccf) ? "" : "Tr≠NF") 
+                        + "\t" + (Objects.equal(trial, colEquiv) ? "" : "Tr≠UCA")
+                        + "\t'" + Utility.hex(n4m, 4, " ")
+                        + "\t'" + Utility.hex(trial, 4, " ")
+                        + "\t'" + Utility.hex(nfkccf, 4, " ")
+                        + "\t'" + Utility.hex(colEquiv, 4, " ")
+                        + "\t" + (reasons == null ? "" : reasons);
+                Row.R4<Integer, Decomposition_Type_Values, String, String> row = Row.of(
+                        100-GC.get(cp).ordinal(), 
+                        DT.get(cp), 
+                        (Objects.equal(n4m, trial) ? "a" : "b") +  
+                        (Objects.equal(trial,nfkccf) ? "a" : "b") + 
+                        (Objects.equal(trial, colEquiv) ? "a" : "b"),
+                        line);
+                sorted.add(row);
             }
-            String trial = TRIAL.get(s);
-            if (trial == null) {
-                trial = s;
+            for (Row.R4<Integer, Decomposition_Type_Values, String, String> row : sorted) {
+                out.println(row.get3());
             }
-            String colEquiv = COLLATION_MAP.get(s);
-            if (colEquiv == null) {
-                colEquiv = s;
-            }
-            if (Objects.equal(n4m, trial) && Objects.equal(trial, nfkccf) && Objects.equal(nfkccf, n4m)) {
-                continue;
-            }
-            String reasons = REASONS.get(s);
-            final int cp = s.codePointAt(0);
-            System.out.println("'" + Utility.hex(s) 
-                    + "\t'" + AGE.get(cp).getShortName() // UCharacter.getAge(cp).getVersionString(2, 2)
-                    + "\t'" + GC.get(cp).getNames().getShortName()
-                    + "\t'" + DT.get(cp).getNames().getShortName()
-                    + "\t" + getName(s) 
-                    + "\t'" + showEmpty(n4m)
-                    + "\t'" + showEmpty(trial)
-                    + "\t'" + showEmpty(nfkccf)
-                    + "\t'" + showEmpty(colEquiv)
-                    + "\t" + (Objects.equal(n4m, trial) ? "" : "N4≠Tr") 
-                    + "\t" + (Objects.equal(trial,nfkccf) ? "" : "Tr≠NF") 
-                    + "\t" + (Objects.equal(nfkccf, n4m) ? "" : "NF≠N4")
-                    + "\t" + (Objects.equal(trial, colEquiv) ? "" : "Tr≠UCA")
-                    + "\t'" + Utility.hex(n4m, 4, " ")
-                    + "\t'" + Utility.hex(trial, 4, " ")
-                    + "\t'" + Utility.hex(nfkccf, 4, " ")
-                    + "\t'" + Utility.hex(colEquiv, 4, " ")
-                    + "\t" + (reasons == null ? "" : reasons)
-                    );
         }
     }
 
@@ -315,7 +320,7 @@ public class GenerateNormalizeForMatch {
                 String oldTarget = ADDITIONS_TO_NFKCCF.getSourceToTarget().get(source);
 
                 if (SIMPLE) {
-                    String nfkccf2 = NFKCCF.normalize(source);
+                    String nfkccf2 = Normalizer3.NFKCCF.normalize(source);
                     oldTarget = oldTarget == null ? "" : oldTarget;
                     if (nfkccf2.equals(oldTarget)) {
                         continue;
@@ -372,8 +377,8 @@ public class GenerateNormalizeForMatch {
             }
             String otherCode = NAME_TO_CP.get(newName);
             if (otherCode != null) {
-                final String target = HANGUL_COMPAT_minus_DI_CN.contains(otherCode) ? otherCode : NFKCCF.normalize(otherCode);
-                if (!NFKCCF.normalize(cp).equals(target)) {
+                final String target = HANGUL_COMPAT_minus_DI_CN.contains(otherCode) ? otherCode : Normalizer3.NFKCCF.normalize(otherCode);
+                if (!Normalizer3.NFKCCF.normalize(cp).equals(target)) {
                     X_FILE.put(cp, target);
                 }
             } else {
@@ -385,34 +390,39 @@ public class GenerateNormalizeForMatch {
         }
     }
 
-    private static void showSimpleData() {
-        System.out.println("# Result of using algorithm + curated values."
-                + "\n# To get the full mapping, you need NFKC_CF; these are just overrides of that data.");
-        System.out.println("# Source; \tTarget; \tReason(s); \tComments");
-        UnicodeSet trialWithoutReason = new UnicodeSet(TRIAL.keySet()).removeAll(REASONS.keySet());
-        if (!trialWithoutReason.isEmpty()) {
-            System.out.println("difference between TRIAL and REASONS: " + trialWithoutReason);
-        }
-        TreeSet<String> sorted = new TreeSet<>();
-        sorted.addAll(REASONS.values());
-        for (String reason : sorted) {
-            UnicodeSet set = REASONS.getSet(reason);
-            boolean first = true;
-            for (String source : set) {
-                String target = TRIAL.get(source);
-                String plainNfkccf = NFKCCF.normalize(source);
-                if (plainNfkccf.equals(target)) {
-                    continue;
+    private static void showSimpleData() throws IOException {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "n4m/", "XNFKCCF-delta.txt")) {
+            out.println("# Result of using algorithm + curated values."
+                    + "\n# To get the full mapping, you need NFKC_CF; these are just overrides of that data.");
+            out.println("# Source; \tTarget; \tReason(s); \tComments");
+            UnicodeSet trialWithoutReason = new UnicodeSet(TRIAL.keySet()).removeAll(REASONS.keySet());
+            if (!trialWithoutReason.isEmpty()) {
+                System.out.println("Unexplained difference between TRIAL and REASONS: " + trialWithoutReason);
+            }
+            TreeSet<String> sorted = new TreeSet<>();
+            sorted.addAll(REASONS.values());
+            for (String reason : sorted) {
+                UnicodeSet set = REASONS.getSet(reason);
+                boolean first = true;
+                for (String source : set) {
+                    String target = TRIAL.get(source);
+                    if (target == null) {
+                        target = source;
+                    }
+                    String plainNfkccf = Normalizer3.NFKCCF.normalize(source);
+                    if (plainNfkccf.equals(target)) {
+                        continue;
+                    }
+                    if (first) {
+                        out.println("\n#" + reason + "\n");
+                        first = false;
+                    }
+                    out.println(Utility.hex(source) 
+                            + ";\t" + Utility.hex(target, 4, " ") 
+                            + ";\t" + reason
+                            + "\t # ( " + source + " → " + target + " )\t"
+                            + getName(source) + " → " + getName(target));
                 }
-                if (first) {
-                    System.out.println("\n#" + reason + "\n");
-                    first = false;
-                }
-                System.out.println(Utility.hex(source) 
-                        + ";\t" + Utility.hex(target, 4, " ") 
-                        + ";\t" + reason
-                        + "\t # ( " + source + " → " + target + " )\t"
-                        + getName(source) + " → " + getName(target));
             }
         }
         //        for (Entry<String, String> entry : TRIAL.entrySet()) {
@@ -434,7 +444,7 @@ public class GenerateNormalizeForMatch {
     }
 
     private static void printData() {
-        showMapping(ADDITIONS_TO_NFKCCF, NFKCCF);
+        showMapping(ADDITIONS_TO_NFKCCF, Normalizer3.NFKCCF);
     }
 
     /**
@@ -442,12 +452,11 @@ public class GenerateNormalizeForMatch {
      */
     private static void computeTrial() {
 
-
         UnicodeSet skipIfInMultiCodepointDecomp = new UnicodeSet("[\\u0020<>]");
 
         UnicodeMap<String> toSuper = new UnicodeMap<>();
         for (String s : DT.getSet(Decomposition_Type_Values.Super)) { // new UnicodeSet("[:dt=Super:]")
-            String normal = NFKCCF.normalize(s);
+            String normal = Normalizer3.NFKCCF.normalize(s);
             if (Nd.contains(normal)) {
                 toSuper.put(normal, s);
             }
@@ -458,27 +467,28 @@ public class GenerateNormalizeForMatch {
 
         main:
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-                if (cp==0x1F12A) {
+                if (cp==0xA7B6) {
                     int debug = 0;
                 }
                 String source = UTF16.valueOf(cp);
-                String nfkccf = NFKCCF.normalize(source);
+                String nfkccf = Normalizer3.NFKCCF.normalize(source);
 
-                String reason = "";
 
                 // Unassigned or strange Cx → no change
 
                 if (CN_CS_CO.contains(cp)) { 
-                    reason = "01. Cn or Cs or Co";
                     continue main;
                 }
-                if (HANGUL_COMPAT_minus_DI_CN.contains(cp)) {
-                    reason = ("02. Skip Hangul Compat");
-                    continue main;
-                }
-                String target = source.replace('⁄', '/'); 
+
+                String target = source;
+                String reason = "??";
 
                 subloop: {
+                    if (HANGUL_COMPAT_minus_DI_CN.contains(cp)) {
+                        reason = ("02. Skip Hangul Compat");
+                        break subloop;
+                    }
+
                     String remapped = null;
                     remapped = ADDITIONS_TO_NFKCCF.getSourceToTarget().get(source);
                     if (remapped != null) {
@@ -491,7 +501,7 @@ public class GenerateNormalizeForMatch {
                     // if the target ends with a digit, and there are no other digits, superscript the last
                     // if there is more than one cp in the target, surround by separators.
                     if (SPECIAL_DECOMP_TYPES.contains(cp)) {
-                        target = NFKCCF.normalize(source);
+                        target = Normalizer3.NFKCCF.normalize(source);
                         reason = "07. DT_SQUARE_FRACTION";
                         int lastCp = target.codePointBefore(target.length());
                         String mod = toSuper.get(lastCp);
@@ -529,20 +539,20 @@ public class GenerateNormalizeForMatch {
                 }
                 if (target.contains("⁄")) {
                     target = target.replace('⁄', '/'); // fraction slash #15
-                    reason += " fix fraction slash";
+                    reason += " + fix fraction slash";
                 }
 
                 if (!target.equals("/") && target.contains("/")) {
                     target = SEPARATOR + target + SEPARATOR;
                     //System.out.println("«" + target + "»");
-                    reason += " add separator";
+                    reason += " + add separator";
                 }
 
                 target = nfc.normalize(target); // just in case!!
                 if (!source.equals(target)) {
                     TRIAL.put(cp, target);
-                    REASONS.put(cp, reason);
                 }
+                REASONS.put(cp, reason);
             }
         NFKCCF_SET.freeze();
         // TODO Recurse on trial
@@ -573,28 +583,6 @@ public class GenerateNormalizeForMatch {
 
     private static UnicodeMap<String> gatherData() {
         UnicodeMap<String> N4M = new UnicodeMap<>();
-        //        // get extended mapping
-        //        Relation<String,String> XNFKCCF2 = Relation.of(new TreeMap<String,Set<String>>(UCA), TreeSet.class);
-        //        NormalizeForMatch.SpecialReason overrideReason = null;
-        //        for (String line : FileUtilities.in(GenerateNormalizeForMatch.class, "XNFKCCF-Curated.txt")) {
-        //            if (line.startsWith("@")) {
-        //                overrideReason = NormalizeForMatch.SpecialReason.valueOf(line.split("=")[1]);
-        //                continue;
-        //            }
-        //            String[] parts = FileUtilities.cleanSemiFields(line);
-        //            if (parts == null) continue;
-        //            String source = Utility.fromHex(parts[0], 1, SPACES);
-        //            String target = parts.length < 2 || parts[1].isEmpty() ? "" : Utility.fromHex(parts[1], 0, SPACES);
-        //            NormalizeForMatch.SpecialReason reason = parts.length > 2 ? NormalizeForMatch.SpecialReason.valueOf(parts[2]) : overrideReason;
-        //            target = nfc.normalize(target); // since NFC is applied afterwards
-        //            ADDITIONS_TO_NFKCCF.put(source, target);
-        //            ADDITIONS_TO_NFKCCF_REASONS.put(source, reason);
-        //            XNFKCCF2.put(target, source);
-        //        }
-        //        ADDITIONS_TO_NFKCCF.freeze();
-        //        ADDITIONS_TO_NFKCCF_REASONS.freeze();
-        //        XNFKCCF2.freeze();
-
         for (String line : FileUtilities.in(dir, GOOGLE_FOLDING_TXT)) {
             String[] parts = FileUtilities.cleanSemiFields(line);
             if (parts == null) continue;
@@ -608,11 +596,6 @@ public class GenerateNormalizeForMatch {
     }
 
     // The following is just used to print out differences
-
-    enum Difference {trial_only, n4m_only, different}
-    enum Age {before51, from51to70}
-
-    private static final String SEP = "\t";
 
     private static void showMapping(NormalizeForMatch sourceMap, Normalizer3 nfkccf2) {
         UnicodeSet changed = new UnicodeSet();
