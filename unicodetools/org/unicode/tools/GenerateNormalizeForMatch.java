@@ -500,21 +500,22 @@ public class GenerateNormalizeForMatch {
                     // decomposition type = squared, fraction → Map to NFKC
                     // if the target ends with a digit, and there are no other digits, superscript the last
                     // if there is more than one cp in the target, surround by separators.
-                    if (SPECIAL_DECOMP_TYPES.contains(cp)) {
-                        target = Normalizer3.NFKCCF.normalize(source);
-                        reason = "07. DT_SQUARE_FRACTION";
-                        int lastCp = target.codePointBefore(target.length());
-                        String mod = toSuper.get(lastCp);
-                        if (mod != null) {
-                            String prefix = target.substring(0,target.length() - Character.charCount(lastCp));
-                            if (Nd.containsNone(prefix)) {
-                                target = prefix + mod;
-                                //                                System.out.println(Utility.hex(source) + "; " + Utility.hex(target, 4, " ") + " # " + source + " → " + target);
-                                reason += " for superscript-numbers";
-                            }
-                        }
-                        break subloop;
-                    }
+//                    if (SPECIAL_DECOMP_TYPES.contains(cp)) {
+//                        target = nfkccf;
+//                        reason = "07. DT_SQUARE_FRACTION";
+//                        int lastCp = target.codePointBefore(target.length());
+//                        String mod = toSuper.get(lastCp);
+//                        if (mod != null) {
+//                            String prefix = target.substring(0,target.length() - Character.charCount(lastCp));
+//                            if (Nd.containsNone(prefix)) {
+//                                target = prefix + mod;
+//                                //                                System.out.println(Utility.hex(source) + "; " + Utility.hex(target, 4, " ") + " # " + source + " → " + target);
+//                                reason += " for superscript-numbers";
+//                            }
+//                        }
+//                        break subloop;
+//                    }
+                    
                     // decomposition type = super, sub → do not map, stop
                     if (NOCHANGE_DECOMP_TYPES.contains(cp)) {
                         reason = "9 skip certain types";
