@@ -53,12 +53,13 @@ public class NormalizeForMatch {
                 if (line == null) {
                     break;
                 }
-                String clean = HASH.split(line).iterator().next();
-                if (clean.isEmpty()) {
+                if (line.startsWith("#@")) {
+                    overrideReason = SpecialReason.valueOf(line.split("=")[1]);
                     continue;
                 }
-                if (clean.startsWith("@")) {
-                    overrideReason = SpecialReason.valueOf(line.split("=")[1]);
+                
+                String clean = HASH.split(line).iterator().next();
+                if (clean.isEmpty()) {
                     continue;
                 }
 

@@ -1,15 +1,15 @@
-@override reason=final_form
+#@override reason=final_form
 05DA;	05DB	 # ( ך → כ )	HEBREW LETTER FINAL KAF → HEBREW LETTER KAF	#4+. final
 05DD;	05DE	 # ( ם → מ )	HEBREW LETTER FINAL MEM → HEBREW LETTER MEM	#4+. final
 05DF;	05E0	 # ( ן → נ )	HEBREW LETTER FINAL NUN → HEBREW LETTER NUN	#4+. final
 05E3;	05E4	 # ( ף → פ )	HEBREW LETTER FINAL PE → HEBREW LETTER PE	#4+. final
 05E5;	05E6	 # ( ץ → צ )	HEBREW LETTER FINAL TSADI → HEBREW LETTER TSADI	#4+. final
-@override reason=digraph
+#@override reason=digraph
 05F0;	05D5 05D5	 # ( װ → וו )	HEBREW LIGATURE YIDDISH DOUBLE VAV → HEBREW LETTER VAV + HEBREW LETTER VAV	#4+. digraph
 05F1;	05D5 05D9	 # ( ױ → וי )	HEBREW LIGATURE YIDDISH VAV YOD → HEBREW LETTER VAV + HEBREW LETTER YOD	#4+. digraph
 05F2;	05D9 05D9	 # ( ײ → יי )	HEBREW LIGATURE YIDDISH DOUBLE YOD → HEBREW LETTER YOD + HEBREW LETTER YOD	#4+. digraph
 1EFA;	006C 006C	 # ( Ỻ → ll )	LATIN CAPITAL LETTER MIDDLE-WELSH LL → LATIN SMALL LETTER L + LATIN SMALL LETTER L	#4+. digraph
-@override reason=missing_NFKC
+#@override reason=missing_NFKC
 214D;	0061 002F 0073	 # ( ⅍ → A/S )	AKTIESELSKAB → LATIN SMALL LETTER A + SOLIDUS + LATIN SMALL LETTER S	#4+. missing NFKC
 24EB;	0031 0031	 # ( ⓫ → 11 )	NEGATIVE CIRCLED NUMBER ELEVEN → DIGIT ONE + DIGIT ONE	#4+. missing NFKC
 24EC;	0031 0032	 # ( ⓬ → 12 )	NEGATIVE CIRCLED NUMBER TWELVE → DIGIT ONE + DIGIT TWO	#4+. missing NFKC
@@ -62,7 +62,7 @@
 2791;	0038	 # ( ➑ → 8 )	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT EIGHT → DIGIT EIGHT	#4+. curated
 2792;	0039	 # ( ➒ → 9 )	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT NINE → DIGIT NINE	#4+. curated
 2793;	0031 0030	 # ( ➓ → 10 )	DINGBAT NEGATIVE CIRCLED SANS-SERIF NUMBER TEN → DIGIT ONE + DIGIT ZERO	#4+. curated
-@override reason=radical
+#@override reason=radical
 2E82;	4E5B	 # ( ⺂ → 乛 )	CJK RADICAL SECOND ONE → CJK UNIFIED IDEOGRAPH-4E5B	#4+. curated
 2E83;	4E5A	 # ( ⺃ → 乚 )	CJK RADICAL SECOND TWO → CJK UNIFIED IDEOGRAPH-4E5A	#4+. curated
 2E85;	4EBB	 # ( ⺅ → 亻 )	CJK RADICAL PERSON → CJK UNIFIED IDEOGRAPH-4EBB	#4+. curated
@@ -126,7 +126,7 @@
 2EEC;	9F50	 # ( ⻬ → 齐 )	CJK RADICAL C-SIMPLIFIED EVEN → CJK UNIFIED IDEOGRAPH-9F50	#4+. curated
 2EEE;	9F7F	 # ( ⻮ → 齿 )	CJK RADICAL C-SIMPLIFIED TOOTH → CJK UNIFIED IDEOGRAPH-9F7F	#4+. curated
 2EF0;	9F99	 # ( ⻰ → 龙 )	CJK RADICAL C-SIMPLIFIED DRAGON → CJK UNIFIED IDEOGRAPH-9F99	#4+. curated
-@override reason=missing_NFKC
+#@override reason=missing_NFKC
 3248;	0031 0030	 # ( ㉈ → 10 )	CIRCLED NUMBER TEN ON BLACK SQUARE → DIGIT ONE + DIGIT ZERO	#4+. curated
 3249;	0032 0030	 # ( ㉉ → 20 )	CIRCLED NUMBER TWENTY ON BLACK SQUARE → DIGIT TWO + DIGIT ZERO	#4+. curated
 324A;	0033 0030	 # ( ㉊ → 30 )	CIRCLED NUMBER THIRTY ON BLACK SQUARE → DIGIT THREE + DIGIT ZERO	#4+. curated
@@ -135,11 +135,11 @@
 324D;	0036 0030	 # ( ㉍ → 60 )	CIRCLED NUMBER SIXTY ON BLACK SQUARE → DIGIT SIX + DIGIT ZERO	#4+. curated
 324E;	0037 0030	 # ( ㉎ → 70 )	CIRCLED NUMBER SEVENTY ON BLACK SQUARE → DIGIT SEVEN + DIGIT ZERO	#4+. curated
 324F;	0038 0030	 # ( ㉏ → 80 )	CIRCLED NUMBER EIGHTY ON BLACK SQUARE → DIGIT EIGHT + DIGIT ZERO	#4+. curated
-@override reason=final_form
+#@override reason=final_form
 FB26;	05DE	 # ( ﬦ → מ )	HEBREW LETTER WIDE FINAL MEM → HEBREW LETTER MEM	#4+. curated
 FB3A;	05DB 05BC	 # ( ךּ → כּ )	HEBREW LETTER FINAL KAF WITH DAGESH → HEBREW LETTER KAF + HEBREW POINT DAGESH OR MAPIQ	#4+. curated
 FB43;	05E4 05BC	 # ( ףּ → פּ )	HEBREW LETTER FINAL PE WITH DAGESH → HEBREW LETTER PE + HEBREW POINT DAGESH OR MAPIQ	#4+. curated
-@override reason=fixed_NFKC
+#@override reason=fixed_NFKC
 FFA1;	3131	 # ( ﾡ → ㄱ )	HALFWIDTH HANGUL LETTER KIYEOK → HANGUL LETTER KIYEOK	#4+. curated
 FFA2;	3132	 # ( ﾢ → ㄲ )	HALFWIDTH HANGUL LETTER SSANGKIYEOK → HANGUL LETTER SSANGKIYEOK	#4+. curated
 FFA3;	3133	 # ( ﾣ → ㄳ )	HALFWIDTH HANGUL LETTER KIYEOK-SIOS → HANGUL LETTER KIYEOK-SIOS	#4+. curated
@@ -191,7 +191,7 @@ FFD7;	3160	 # ( ￗ → ㅠ )	HALFWIDTH HANGUL LETTER YU → HANGUL LETTER YU	#4
 FFDA;	3161	 # ( ￚ → ㅡ )	HALFWIDTH HANGUL LETTER EU → HANGUL LETTER EU	#4+. curated
 FFDB;	3162	 # ( ￛ → ㅢ )	HALFWIDTH HANGUL LETTER YI → HANGUL LETTER YI	#4+. curated
 FFDC;	3163	 # ( ￜ → ㅣ )	HALFWIDTH HANGUL LETTER I → HANGUL LETTER I	#4+. curated
-@override reason=missing_NFKC
+#@override reason=missing_NFKC
 1F10B;	0030	 # ( 🄋 → 0 )	DINGBAT CIRCLED SANS-SERIF DIGIT ZERO → DIGIT ZERO	#4+. curated
 1F10C;	0030	 # ( 🄌 → 0 )	DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO → DIGIT ZERO	#4+. curated
 1F150;	0061	 # ( 🅐 → a )	NEGATIVE CIRCLED LATIN CAPITAL LETTER A → LATIN SMALL LETTER A	#4+. curated
@@ -263,7 +263,7 @@ FFDC;	3163	 # ( ￜ → ㅣ )	HALFWIDTH HANGUL LETTER I → HANGUL LETTER I	#4+.
 1F199;	0075 0070 0021	 # ( 🆙 → up! )	SQUARED UP WITH EXCLAMATION MARK → LATIN SMALL LETTER U + LATIN SMALL LETTER P + EXCLAMATION MARK	#4+. curated
 1F19A;	0076 0073	 # ( 🆚 → vs )	SQUARED VS → LATIN SMALL LETTER V + LATIN SMALL LETTER S	#4+. curated
 
-@override reason=missing_NFKC
+#@override reason=missing_NFKC
 1F19B; 0033 0044 # SQUARED THREE D 
 1F19C; 0032 006E 0064 0020 0053 0063 0072 # SQUARED SECOND SCREEN 
 1F19D; 0020 0032 004B # SQUARED TWO K 
@@ -286,17 +286,17 @@ FFDC;	3163	 # ( ￜ → ㅣ )	HALFWIDTH HANGUL LETTER I → HANGUL LETTER I	#4+.
 1F520; 0061 0062 0063 0064 #	🔠	🔡	INPUT SYMBOL FOR LATIN CAPITAL LETTERS	=> INPUT SYMBOL FOR LATIN SMALL LETTERS => abcd
 1F521; 0061 0062 0063 0064 #
 
-@override reason=missing_NFKC
+#@override reason=missing_NFKC
 1E9E ; 00DF # "ẞ", "ß"
 
-@override reason=fixed_NFKC
+#@override reason=fixed_NFKC
 00DF ; 00DF	# "ß", "ß"
 0130 ; 0069 # "İ", "i"
 2044 ; 002F # "⁄", "/" decimal and fraction slash
 2215 ; 002F # "∕", "/"
 0640 ;  # "‎ـ‎", "" tatweel
 
-@override reason=fixed_superscript
+#@override reason=fixed_superscript
 3378;	0064 006D 00B2 # ( ㍸ → dm² )	SQUARE DM SQUARED → LATIN SMALL LETTER D + LATIN SMALL LETTER M + SUPERSCRIPT TWO
 3379;	0064 006D 00B3 # ( ㍹ → dm³ )	SQUARE DM CUBED → LATIN SMALL LETTER D + LATIN SMALL LETTER M + SUPERSCRIPT THREE
 339F;	006D 006D 00B2 # ( ㎟ → mm² )	SQUARE MM SQUARED → LATIN SMALL LETTER M + LATIN SMALL LETTER M + SUPERSCRIPT TWO
