@@ -20,7 +20,7 @@ import com.ibm.icu.text.UnicodeSet;
 import com.ibm.icu.util.ICUUncheckedIOException;
 
 public class NormalizeForMatch {
-    public enum SpecialReason {digraph, final_form, missing_NFKC, fixed_NFKC, radical}
+    public enum SpecialReason {digraph, final_form, missing_NFKC, fixed_NFKC, fixed_superscript, radical}
 
     public static final Splitter SEMI = Splitter.on(";").trimResults();
     public static final Splitter HASH = Splitter.on("#").trimResults();
