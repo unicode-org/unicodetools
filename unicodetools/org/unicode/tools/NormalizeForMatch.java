@@ -80,32 +80,39 @@ public class NormalizeForMatch {
         return new NormalizeForMatch(sourceToTarget, sourceToReason);
     }
 
-    public static void main(String[] args) {
-        NormalizeForMatch curated = NormalizeForMatch.load("XNFKCCF-Curated.txt");
-        IndexUnicodeProperties latest = IndexUnicodeProperties.make(Age_Values.V9_0);
-        UnicodeSet newCharsOnly = latest.loadEnum(UcdProperty.Age, Age_Values.class).getSet(Age_Values.V9_0);
-        UnicodeMap<String> NFKC_Casefold = latest.load(UcdProperty.NFKC_Casefold);
-        UnicodeMap<General_Category_Values> gc = latest.loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
-        for (General_Category_Values gcv : UcdPropertyValues.General_Category_Values.values()) {
-            boolean first = true;
-            for (String s : newCharsOnly) {
-                if (gc.get(s) != gcv) {
-                    continue;
-                }
-                if (s.equals(TEST)) {
-                    boolean debug = true;
-                }
-
-                if (first) {
-                    System.out.println("\n# GC=" + gcv);
-                    first = false;
-                }
-                String target = curated.getSourceToTarget().get(s);
-                //String target = NFKC_Casefold.get(s);            
-                System.out.println(Utility.hex(s) + "; " + latest.getName(s, " + ")
-                        + (target == null ? "" : "; " + Utility.hex(target, " ")
-                                + "; " + latest.getName(target, " + ")));
-            }
-        }
-    }
+//    public static void main(String[] args) {
+//        IndexUnicodeProperties latest = IndexUnicodeProperties.make(Age_Values.V9_0);
+//        NormalizeForMatch curated = NormalizeForMatch.load("XNFKCCF-Curated.txt");
+//        for (SpecialReason reason : SpecialReason.values()) {
+//            curated.getSourceToReason().getSet(reason);
+//          System.out.println(Utility.hex(s) + "; " + latest.getName(s, " + ")
+//          + (target == null ? "" : "; " + Utility.hex(target, " ")
+//                  + "; " + latest.getName(target, " + ")));
+//        }
+//        UnicodeSet newCharsOnly = latest.loadEnum(UcdProperty.Age, Age_Values.class).getSet(Age_Values.V9_0);
+//        UnicodeMap<String> NFKC_Casefold = latest.load(UcdProperty.NFKC_Casefold);
+//        UnicodeMap<General_Category_Values> gc = latest.loadEnum(UcdProperty.General_Category, UcdPropertyValues.General_Category_Values.class);
+        
+//        for (General_Category_Values gcv : UcdPropertyValues.General_Category_Values.values()) {
+//            boolean first = true;
+//            for (String s : newCharsOnly) {
+//                if (gc.get(s) != gcv) {
+//                    continue;
+//                }
+//                if (s.equals(TEST)) {
+//                    boolean debug = true;
+//                }
+//
+//                if (first) {
+//                    System.out.println("\n# GC=" + gcv);
+//                    first = false;
+//                }
+//                String target = curated.getSourceToTarget().get(s);
+//                //String target = NFKC_Casefold.get(s);            
+//                System.out.println(Utility.hex(s) + "; " + latest.getName(s, " + ")
+//                        + (target == null ? "" : "; " + Utility.hex(target, " ")
+//                                + "; " + latest.getName(target, " + ")));
+//            }
+//        }
+//    }
 }
