@@ -27,6 +27,7 @@ import org.unicode.props.UcdPropertyValues.Script_Values;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.Settings;
+import org.unicode.tools.NormalizeForMatch.SpecialReason;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
@@ -166,7 +167,10 @@ public class GenerateNormalizeForMatch {
         //        gatherData();
         computeTrial();
         compareTrial();
-        showSimpleData();
+        showSimpleData(TRIAL, REASONS, "XNFKCCF-NFKCCF.txt", "# Cases where XNFKCCF differs from NFKCCF.", cpToNFKCCF);
+        showSimpleData(N4M, REASONS, "N4M-XNFKCCF.txt", "# Cases where N4M differs from XNFKCCF", TRIAL);
+        NormalizeForMatch curated = NormalizeForMatch.load("XNFKCCF-Curated.txt");
+        showSimpleData(curated.getSourceToTarget(), curated.getSourceToReason(), "XNFKCCF-Curated.txt", "# Curated file of exceptions", null);
         if (true) return;
         computeXFile();
         if (true) return;
@@ -229,7 +233,7 @@ public class GenerateNormalizeForMatch {
                     colEquiv = s;
                 }
                 if (Objects.equal(n4m, trial) && Objects.equal(trial, nfkccf)
-//                        && Objects.equal(trial, colEquiv)
+                        //                        && Objects.equal(trial, colEquiv)
                         ) {
                     continue;
                 }
@@ -390,39 +394,23 @@ public class GenerateNormalizeForMatch {
         }
     }
 
-    private static void showSimpleData() throws IOException {
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "n4m/", "XNFKCCF-delta.txt")) {
-            out.println("# Result of using algorithm + curated values."
-                    + "\n# To get the full mapping, you need NFKC_CF; these are just overrides of that data.");
+    private static <T> void showSimpleData(UnicodeMap<String> mapping, UnicodeMap<T> reasons2, String filename, String header, 
+            UnicodeMap<String> skipIfSame) throws IOException {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "n4m/", filename)) {
+            out.println(header);
             out.println("# Source; \tTarget; \tReason(s); \tComments");
-            UnicodeSet trialWithoutReason = new UnicodeSet(TRIAL.keySet()).removeAll(REASONS.keySet());
+            UnicodeSet trialWithoutReason = new UnicodeSet(mapping.keySet()).removeAll(reasons2.keySet());
             if (!trialWithoutReason.isEmpty()) {
-                System.out.println("Unexplained difference between TRIAL and REASONS: " + trialWithoutReason);
+                throw new IllegalArgumentException("Unexplained difference between TRIAL and REASONS: " + trialWithoutReason);
             }
-            TreeSet<String> sorted = new TreeSet<>();
-            sorted.addAll(REASONS.values());
-            for (String reason : sorted) {
-                UnicodeSet set = REASONS.getSet(reason);
-                boolean first = true;
-                for (String source : set) {
-                    String target = TRIAL.get(source);
-                    if (target == null) {
-                        target = source;
-                    }
-                    String plainNfkccf = Normalizer3.NFKCCF.normalize(source);
-                    if (plainNfkccf.equals(target)) {
-                        continue;
-                    }
-                    if (first) {
-                        out.println("\n#" + reason + "\n");
-                        first = false;
-                    }
-                    out.println(Utility.hex(source) 
-                            + ";\t" + Utility.hex(target, 4, " ") 
-                            + ";\t" + reason
-                            + "\t # ( " + source + " → " + target + " )\t"
-                            + getName(source) + " → " + getName(target));
-                }
+            TreeSet<T> sorted = new TreeSet<>();
+            sorted.addAll(reasons2.values());
+            for (T reason : sorted) {
+                UnicodeSet set = reasons2.getSet(reason);
+                showSimpleSet(out, set, mapping, reason.toString(), skipIfSame);
+            }
+            if (skipIfSame != null) {
+                showSimpleSet(out, new UnicodeSet(mapping.keySet()).complement(), mapping, "other", skipIfSame);
             }
         }
         //        for (Entry<String, String> entry : TRIAL.entrySet()) {
@@ -441,6 +429,36 @@ public class GenerateNormalizeForMatch {
         //                    + UCharacter.getName(source, " + ") + " → " + UCharacter.getName(target, " + ")
         //                    + "\t" + reason);
         //        }
+    }
+
+    private static <T> void showSimpleSet(PrintWriter out, UnicodeSet set, UnicodeMap<String> mapping, String reason, UnicodeMap<String> skipIfSame) {
+        boolean first = true;
+        for (String source : set) {
+            String target = mapping.get(source);
+            if (target == null) {
+                target = source;
+            }
+            String toFilterIfSame = null;
+            if (skipIfSame != null) {
+                toFilterIfSame = skipIfSame.get(source);
+                if (toFilterIfSame == null) {
+                    toFilterIfSame = source;
+                }
+                if (toFilterIfSame.equals(target)) {
+                    continue;
+                }
+            }
+            if (first) {
+                out.println("\n#@override reason=" + reason + "\n");
+                first = false;
+            }
+            out.println(Utility.hex(source) 
+                    + ";\t" + Utility.hex(target, 4, " ") 
+                    + (skipIfSame == null ? "" : ";\t" + Utility.hex(toFilterIfSame, 4, " "))
+                    + ";\t" + reason
+                    + "\t # ( " + source + " → " + target + " )\t"
+                    + getName(source) + " → " + getName(target));
+        }
     }
 
     private static void printData() {
@@ -500,22 +518,22 @@ public class GenerateNormalizeForMatch {
                     // decomposition type = squared, fraction → Map to NFKC
                     // if the target ends with a digit, and there are no other digits, superscript the last
                     // if there is more than one cp in the target, surround by separators.
-//                    if (SPECIAL_DECOMP_TYPES.contains(cp)) {
-//                        target = nfkccf;
-//                        reason = "07. DT_SQUARE_FRACTION";
-//                        int lastCp = target.codePointBefore(target.length());
-//                        String mod = toSuper.get(lastCp);
-//                        if (mod != null) {
-//                            String prefix = target.substring(0,target.length() - Character.charCount(lastCp));
-//                            if (Nd.containsNone(prefix)) {
-//                                target = prefix + mod;
-//                                //                                System.out.println(Utility.hex(source) + "; " + Utility.hex(target, 4, " ") + " # " + source + " → " + target);
-//                                reason += " for superscript-numbers";
-//                            }
-//                        }
-//                        break subloop;
-//                    }
-                    
+                    //                    if (SPECIAL_DECOMP_TYPES.contains(cp)) {
+                    //                        target = nfkccf;
+                    //                        reason = "07. DT_SQUARE_FRACTION";
+                    //                        int lastCp = target.codePointBefore(target.length());
+                    //                        String mod = toSuper.get(lastCp);
+                    //                        if (mod != null) {
+                    //                            String prefix = target.substring(0,target.length() - Character.charCount(lastCp));
+                    //                            if (Nd.containsNone(prefix)) {
+                    //                                target = prefix + mod;
+                    //                                //                                System.out.println(Utility.hex(source) + "; " + Utility.hex(target, 4, " ") + " # " + source + " → " + target);
+                    //                                reason += " for superscript-numbers";
+                    //                            }
+                    //                        }
+                    //                        break subloop;
+                    //                    }
+
                     // decomposition type = super, sub → do not map, stop
                     if (NOCHANGE_DECOMP_TYPES.contains(cp)) {
                         reason = "9 skip certain types";
