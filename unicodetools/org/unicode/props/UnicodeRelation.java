@@ -348,4 +348,7 @@ public class UnicodeRelation<T> implements Freezable<UnicodeRelation<T>> {
         return data.entryRanges();
     }
 
+    public UnicodeMap<Set<T>> asUnicodeMap() {
+        return data;
+    }
 }

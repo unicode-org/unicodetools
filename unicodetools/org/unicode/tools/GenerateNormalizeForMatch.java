@@ -3,12 +3,15 @@ package org.unicode.tools;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.unicode.cldr.draft.FileUtilities;
@@ -24,6 +27,7 @@ import org.unicode.props.UcdPropertyValues.Block_Values;
 import org.unicode.props.UcdPropertyValues.Decomposition_Type_Values;
 import org.unicode.props.UcdPropertyValues.General_Category_Values;
 import org.unicode.props.UcdPropertyValues.Script_Values;
+import org.unicode.props.UnicodeRelation;
 import org.unicode.text.UCD.Default;
 import org.unicode.text.UCD.Normalizer;
 import org.unicode.text.utility.Settings;
@@ -33,6 +37,7 @@ import com.google.common.base.Objects;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
+import com.ibm.icu.dev.util.CollectionUtilities;
 import com.ibm.icu.dev.util.UnicodeMap;
 import com.ibm.icu.impl.Row;
 import com.ibm.icu.impl.Utility;
@@ -172,10 +177,9 @@ public class GenerateNormalizeForMatch {
         showSimpleData(N4M, REASONS, "N4M-XNFKCCF.txt", "# Cases where N4M differs from XNFKCCF", TRIAL);
         NormalizeForMatch curated = NormalizeForMatch.load("XNFKCCF-Curated.txt");
         showSimpleData(curated.getSourceToTarget(), curated.getSourceToReason(), "XNFKCCF-Curated.txt", "# Curated file of exceptions", null);
-        if (true) return;
-        computeXFile();
-        if (true) return;
-        printData();
+        computeCandidateFile(Age_Values.V9_0);
+        //if (true) return;
+        //        printData();
         //        showItemsIn(new UnicodeSet(N4M.keySet()).addAll(TRIAL.keySet()));
     }
 
@@ -292,78 +296,41 @@ public class GenerateNormalizeForMatch {
     private static final boolean SIMPLE = true;
 
 
-    private static void computeXFile() {
-        for (Entry<String, String> entry : NAME_TO_CP.entrySet()) {
-            final String name = entry.getKey();
-            final String cp = entry.getValue();
-
-            if (TEST_NAME_START != null && name.startsWith(TEST_NAME_START)) {
-                int debug = 0;
-            }
-            removeString(name, cp, false, " FINAL ");
-            removeString(name, cp, false, " WIDE FINAL ");
-            removeString(name, cp, false, "HALFWIDTH ");
-            removeString(name, cp, true, "CIRCLED ");
-            removeString(name, cp, true, "SQUARED ");
-            removeString(name, cp, false, "NEGATIVE CIRCLED ");
-            removeString(name, cp, false, "DINGBAT CIRCLED SANS-SERIF ");
-            removeString(name, cp, false, "DINGBAT NEGATIVE CIRCLED ");
-            removeString(name, cp, false, "DINGBAT NEGATIVE CIRCLED SANS-SERIF ");
-            removeString(name, cp, true, "NEGATIVE SQUARED ");
-            removeString(name, cp, false, "CROSSED NEGATIVE SQUARED ");
-            removeString(name, cp, false, "CIRCLED ", " ON BLACK SQUARE");
-            removeString(name, cp, false, "DOUBLE CIRCLED ");
-
-        }
-        X_FILE.freeze();
-
-        Counter<Status> total = new Counter<>();
-        UnicodeSet items = new UnicodeSet(X_FILE.keySet())
-        .addAll(ADDITIONS_TO_NFKCCF.getSourceToTarget().keySet())
-        .freeze();
-
-        System.out.println("#Source\tNew Vers.\tOld Vers.\tGC\tSrc\tNew\tOld\tSource\tNew\tOld\tStatus");
-        for (Status checkStatus : Status.values()) {
-            for (String source : items) {
-                String oldTarget = ADDITIONS_TO_NFKCCF.getSourceToTarget().get(source);
-
-                if (SIMPLE) {
-                    String nfkccf2 = Normalizer3.NFKCCF.normalize(source);
-                    oldTarget = oldTarget == null ? "" : oldTarget;
-                    if (nfkccf2.equals(oldTarget)) {
-                        continue;
-                    }
-                    System.out.println(
-                            Utility.hex(source)
-                            + ";\t" + (oldTarget.isEmpty() ? "" : Utility.hex(oldTarget, 4, " ", true, new StringBuilder()))
-                            + "#\t" + source 
-                            + " →\t" + oldTarget 
-                            + ",\t" + iup.getName(source, ", ") 
-                            + " →\t" + iup.getName(oldTarget, ", ") 
-                            );
-                    continue;
+    private static void computeCandidateFile(Age_Values age) throws IOException {
+        UnicodeMap<String> setToCheck  = new UnicodeMap<>();
+        UnicodeRelation<String> reasons = new UnicodeRelation<>();
+        Matcher nameCheck = Pattern.compile(
+                "FINAL|MEDIAL|INITIAL"
+                        + "|WIDE|WIDTH|NARROW|CIRCLE"
+                        + "|SQUARE|CUBE|CAPITAL|OVER|NEGATIVE"
+                        + "|RADICAL|INPUT SYMBOL"
+                        + "|PARENTHESIS|PARENTHESIZED|BRACKET").matcher("");
+        for (String source : AGE.getSet(age)) {
+            String nfkccf = Normalizer3.NFKCCF.normalize(source);
+            if (!source.equals(nfkccf)) {
+                setToCheck.put(source, nfkccf);
+                reasons.add(source, "NFKCCF");
+                if (nfkccf.startsWith(" ")) {
+                    reasons.add(source, "space");
                 }
-                String newTarget = X_FILE.get(source);
-                final Status status = Status.get(source, oldTarget, newTarget);
-                if (status != checkStatus) continue;
-                total.add(status, 1);
-
-                System.out.println(
-                        Utility.hex(source)
-                        + ";\t" + (newTarget == null ? "source" : Utility.hex(newTarget, 4, " "))
-                        + ";\t" + (oldTarget == null ? "source" : Utility.hex(oldTarget, 4, " "))
-                        + ";\t" + GC.get(source).getNames().getShortName()
-                        + ";\t" + source 
-                        + ";\t" + newTarget 
-                        + ";\t" + oldTarget 
-                        + ";\t" + iup.getName(source, ", ") 
-                        + ";\t" + (newTarget == null ? "source" : iup.getName(newTarget, ", "))
-                        + ";\t" + (oldTarget == null ? "source" : iup.getName(oldTarget, ", "))
-                        + ";\t" + status
-                        );
+            } else {
+                String uca = COLLATION_MAP.get(source);
+                if (uca != null && !source.equals(uca)) {
+                    setToCheck.put(source, uca);
+                    reasons.add(source, "UCA");
+                }
+            }
+            String name = cpToName.get(source);
+            if (nameCheck.reset(name).find()) {
+                if (!setToCheck.containsKey(source)) {
+                    setToCheck.put(source, "?");
+                }
+                reasons.add(source, "name");
             }
         }
-        System.out.println(total);
+        setToCheck.freeze();
+        reasons.freeze();
+        showSimpleData(setToCheck, reasons.asUnicodeMap(), "Candidates.txt", "", null);
     }
 
     enum Status {
@@ -407,8 +374,13 @@ public class GenerateNormalizeForMatch {
             if (!trialWithoutReason.isEmpty()) {
                 throw new IllegalArgumentException("Unexplained difference between TRIAL and REASONS: " + trialWithoutReason);
             }
-            TreeSet<T> sorted = new TreeSet<>();
-            sorted.addAll(reasons2.values());
+            final Set<T> values = reasons2.values();
+            Comparator<T> comp = null;
+            if (values.iterator().next() instanceof Collection) {
+                comp = new CollectionUtilities.CollectionComparator();
+            }
+            Set<T> sorted = comp == null ? new TreeSet<>() : new TreeSet<>(comp);
+            sorted.addAll(values);
             for (T reason : sorted) {
                 UnicodeSet set = reasons2.getSet(reason);
                 showSimpleSet(out, set, mapping, reason.toString(), skipIfSame);
@@ -494,11 +466,11 @@ public class GenerateNormalizeForMatch {
                 if (CN_CS_CO.contains(cp)) { 
                     continue main;
                 }
-                
+
                 if (cp==0x33A7) {
                     int debug = 0;
                 }
-                
+
                 String source = UTF16.valueOf(cp);
                 String nfkccf = Normalizer3.NFKCCF.normalize(source);
                 String target = source;
