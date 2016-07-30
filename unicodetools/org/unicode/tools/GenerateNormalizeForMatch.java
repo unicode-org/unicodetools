@@ -166,7 +166,8 @@ public class GenerateNormalizeForMatch {
 
         //        gatherData();
         computeTrial();
-        compareTrial();
+        compareTrial(false);
+        compareTrial(true);
         showSimpleData(TRIAL, REASONS, "XNFKCCF-NFKCCF.txt", "# Cases where XNFKCCF differs from NFKCCF.", cpToNFKCCF);
         showSimpleData(N4M, REASONS, "N4M-XNFKCCF.txt", "# Cases where N4M differs from XNFKCCF", TRIAL);
         NormalizeForMatch curated = NormalizeForMatch.load("XNFKCCF-Curated.txt");
@@ -207,8 +208,9 @@ public class GenerateNormalizeForMatch {
         }
     }
 
-    private static void compareTrial() throws IOException {
-        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "n4m/", "XNFKCCF.txt")) {
+    private static void compareTrial(boolean ucaOnly) throws IOException {
+        try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "n4m/", "XNFKCCF" + (ucaOnly ? "-comp-uca" : "-comp")
+                + ".txt")) {
             UnicodeSet interest = new UnicodeSet(N4M.keySet())
             .addAll(TRIAL.keySet())
             .addAll(NFKCCF_SET)
@@ -232,9 +234,11 @@ public class GenerateNormalizeForMatch {
                 if (colEquiv == null) {
                     colEquiv = s;
                 }
-                if (Objects.equal(n4m, trial) && Objects.equal(trial, nfkccf)
-                        //                        && Objects.equal(trial, colEquiv)
-                        ) {
+                final boolean trial_n4m_nfkccfEqual = Objects.equal(trial, n4m) && Objects.equal(trial, nfkccf);
+                if (trial_n4m_nfkccfEqual && Objects.equal(trial, colEquiv)) { // all equal, we don't care
+                    continue;
+                }
+                if (ucaOnly != trial_n4m_nfkccfEqual) {
                     continue;
                 }
                 String reasons = REASONS.get(s);
@@ -398,7 +402,7 @@ public class GenerateNormalizeForMatch {
             UnicodeMap<String> skipIfSame) throws IOException {
         try (PrintWriter out = FileUtilities.openUTF8Writer(Settings.GEN_DIR + "n4m/", filename)) {
             out.println(header);
-            out.println("# Source; \tTarget; \tReason(s); \tComments");
+            out.println("# Source; \tTarget; \tOther; \tReason(s); \tComments");
             UnicodeSet trialWithoutReason = new UnicodeSet(mapping.keySet()).removeAll(reasons2.keySet());
             if (!trialWithoutReason.isEmpty()) {
                 throw new IllegalArgumentException("Unexplained difference between TRIAL and REASONS: " + trialWithoutReason);
@@ -485,19 +489,18 @@ public class GenerateNormalizeForMatch {
 
         main:
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
-                if (cp==0xA7B6) {
-                    int debug = 0;
-                }
-                String source = UTF16.valueOf(cp);
-                String nfkccf = Normalizer3.NFKCCF.normalize(source);
-
-
                 // Unassigned or strange Cx → no change
 
                 if (CN_CS_CO.contains(cp)) { 
                     continue main;
                 }
-
+                
+                if (cp==0x33A7) {
+                    int debug = 0;
+                }
+                
+                String source = UTF16.valueOf(cp);
+                String nfkccf = Normalizer3.NFKCCF.normalize(source);
                 String target = source;
                 String reason = "??";
 
@@ -556,8 +559,8 @@ public class GenerateNormalizeForMatch {
                         reason = "16. NFKC_CF-" + DT.get(cp);
                     }
                 }
-                if (target.contains("⁄")) {
-                    target = target.replace('⁄', '/'); // fraction slash #15
+                if (target.contains("\u2044") || target.contains("\u2215")) {
+                    target = target.replace('\u2044', '/').replace('\u2215', '/'); // fraction slash #15
                     reason += " + fix fraction slash";
                 }
 
@@ -581,7 +584,7 @@ public class GenerateNormalizeForMatch {
             for (Entry<String, String> entry : TRIAL.entrySet()) {
                 String source = entry.getKey();
                 String oldTarget = entry.getValue();
-                String newTarget = TRIAL.transform(oldTarget);
+                String newTarget = nfc.normalize(TRIAL.transform(oldTarget));
                 if (!newTarget.equals(oldTarget)) {
                     if (newTarget.equals(source)) { // just in case
                         removals.add(source);
