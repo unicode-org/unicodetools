@@ -87,6 +87,8 @@ public class GenerateNormalizeForMatch {
     private static final UnicodeSet UNASSIGNED = GC.getSet(General_Category_Values.Unassigned);
     private static final UnicodeMap<Decomposition_Type_Values> DT = iup.loadEnum(UcdProperty.Decomposition_Type, Decomposition_Type_Values.class);
     private static final UnicodeMap<Age_Values> AGE = iup.loadEnum(UcdProperty.Age, Age_Values.class);
+    private static final UnicodeMap<Block_Values> BLOCK = iup.loadEnum(UcdProperty.Block, Block_Values.class);
+    private static final UnicodeSet TAGS = BLOCK.getSet(Block_Values.Tags);
 
     private static final UnicodeSet NFKCCF_SET = iup.loadEnumSet(UcdProperty.Changes_When_NFKC_Casefolded, Binary.Yes);
     private static final Normalizer nfc = Default.nfc();
@@ -458,7 +460,7 @@ public class GenerateNormalizeForMatch {
         toSuper.freeze();
 
         final char SEPARATOR = ' ';
-
+        long out = System.nanoTime();
         main:
             for (int cp = 0; cp <= 0x10FFFF; ++cp) {
                 // Unassigned or strange Cx → no change
@@ -467,7 +469,7 @@ public class GenerateNormalizeForMatch {
                     continue main;
                 }
 
-                if (cp==0x33A7) {
+                if (cp==0x33AE) {
                     int debug = 0;
                 }
 
@@ -510,7 +512,7 @@ public class GenerateNormalizeForMatch {
                     //                    }
 
                     // decomposition type = super, sub → do not map, stop
-                    if (NOCHANGE_DECOMP_TYPES.contains(cp)) {
+                    if (NOCHANGE_DECOMP_TYPES.contains(cp) || TAGS.contains(cp)) {
                         reason = "9 skip certain types";
                         break subloop;
                     }
@@ -573,6 +575,8 @@ public class GenerateNormalizeForMatch {
         }
         TRIAL.freeze();
         REASONS.freeze();
+        long out2 = System.nanoTime();
+        System.out.println((out2-out)/1000000000.0 + " sec");
     }
 
     private static UnicodeMap<String> gatherData() {
