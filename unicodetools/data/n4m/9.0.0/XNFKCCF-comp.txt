@@ -1065,16 +1065,16 @@
 '1F16B	'6.1	'So	'Sup	RAISED MD SIGN	'🅫	'🅫	'md	'md		Tr≠NF	Tr≠UCA	'1F16B	'1F16B	'006D 0064	'006D 0064	9 skip certain types
 '2120	'1.1	'So	'Sup	SERVICE MARK	'℠	'℠	'sm	'sm		Tr≠NF	Tr≠UCA	'2120	'2120	'0073 006D	'0073 006D	9 skip certain types
 '2122	'1.1	'So	'Sup	TRADE MARK SIGN	'™	'™	'tm	'tm		Tr≠NF	Tr≠UCA	'2122	'2122	'0074 006D	'0074 006D	9 skip certain types
-'3196	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION TOP MARK	'㆖	'㆖	'上	'上		Tr≠NF	Tr≠UCA	'3196	'3196	'4E0A	'4E0A	9 skip certain types
-'3197	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION MIDDLE MARK	'㆗	'㆗	'中	'中		Tr≠NF	Tr≠UCA	'3197	'3197	'4E2D	'4E2D	9 skip certain types
-'3198	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION BOTTOM MARK	'㆘	'㆘	'下	'下		Tr≠NF	Tr≠UCA	'3198	'3198	'4E0B	'4E0B	9 skip certain types
-'3199	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION FIRST MARK	'㆙	'㆙	'甲	'甲		Tr≠NF	Tr≠UCA	'3199	'3199	'7532	'7532	9 skip certain types
-'319A	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION SECOND MARK	'㆚	'㆚	'乙	'乙		Tr≠NF	Tr≠UCA	'319A	'319A	'4E59	'4E59	9 skip certain types
-'319B	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION THIRD MARK	'㆛	'㆛	'丙	'丙		Tr≠NF	Tr≠UCA	'319B	'319B	'4E19	'4E19	9 skip certain types
-'319C	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION FOURTH MARK	'㆜	'㆜	'丁	'丁		Tr≠NF	Tr≠UCA	'319C	'319C	'4E01	'4E01	9 skip certain types
-'319D	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION HEAVEN MARK	'㆝	'㆝	'天	'天		Tr≠NF	Tr≠UCA	'319D	'319D	'5929	'5929	9 skip certain types
-'319E	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION EARTH MARK	'㆞	'㆞	'地	'地		Tr≠NF	Tr≠UCA	'319E	'319E	'5730	'5730	9 skip certain types
-'319F	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION MAN MARK	'㆟	'㆟	'人	'人		Tr≠NF	Tr≠UCA	'319F	'319F	'4EBA	'4EBA	9 skip certain types
+'3196	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION TOP MARK	'㆖	'㆖	'上	'上		Tr≠NF	Tr≠UCA	'3196	'3196	'4E0A	'4E0A	04+. fixed_NFKC
+'3197	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION MIDDLE MARK	'㆗	'㆗	'中	'中		Tr≠NF	Tr≠UCA	'3197	'3197	'4E2D	'4E2D	04+. fixed_NFKC
+'3198	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION BOTTOM MARK	'㆘	'㆘	'下	'下		Tr≠NF	Tr≠UCA	'3198	'3198	'4E0B	'4E0B	04+. fixed_NFKC
+'3199	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION FIRST MARK	'㆙	'㆙	'甲	'甲		Tr≠NF	Tr≠UCA	'3199	'3199	'7532	'7532	04+. fixed_NFKC
+'319A	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION SECOND MARK	'㆚	'㆚	'乙	'乙		Tr≠NF	Tr≠UCA	'319A	'319A	'4E59	'4E59	04+. fixed_NFKC
+'319B	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION THIRD MARK	'㆛	'㆛	'丙	'丙		Tr≠NF	Tr≠UCA	'319B	'319B	'4E19	'4E19	04+. fixed_NFKC
+'319C	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION FOURTH MARK	'㆜	'㆜	'丁	'丁		Tr≠NF	Tr≠UCA	'319C	'319C	'4E01	'4E01	04+. fixed_NFKC
+'319D	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION HEAVEN MARK	'㆝	'㆝	'天	'天		Tr≠NF	Tr≠UCA	'319D	'319D	'5929	'5929	04+. fixed_NFKC
+'319E	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION EARTH MARK	'㆞	'㆞	'地	'地		Tr≠NF	Tr≠UCA	'319E	'319E	'5730	'5730	04+. fixed_NFKC
+'319F	'1.1	'So	'Sup	IDEOGRAPHIC ANNOTATION MAN MARK	'㆟	'㆟	'人	'人		Tr≠NF	Tr≠UCA	'319F	'319F	'4EBA	'4EBA	04+. fixed_NFKC
 '2ADC	'3.2	'Sm	'Can	FORKING	'⫝̸	'⫝̸	'⫝̸	'⫝̸	Tr≠N4M			'2ADC	'2ADD 0338	'2ADD 0338	'2ADD 0338	16. NFKC_CF-Canonical
 '222C	'1.1	'Sm	'Com	DOUBLE INTEGRAL	'∬	'∫∫	'∫∫	'∫∫	Tr≠N4M			'222C	'222B 222B	'222B 222B	'222B 222B	16. NFKC_CF-Compat
 '222D	'1.1	'Sm	'Com	TRIPLE INTEGRAL	'∭	'∫∫∫	'∫∫∫	'∫∫∫	Tr≠N4M			'222D	'222B 222B 222B	'222B 222B 222B	'222B 222B 222B	16. NFKC_CF-Compat
@@ -1199,15 +1199,15 @@
 'FE68	'1.1	'Po	'Sml	SMALL REVERSE SOLIDUS	'﹨	'\	'\	'\	Tr≠N4M			'FE68	'005C	'005C	'005C	16. NFKC_CF-Small
 'FE6A	'1.1	'Po	'Sml	SMALL PERCENT SIGN	'﹪	'%	'%	'%	Tr≠N4M			'FE6A	'0025	'0025	'0025	16. NFKC_CF-Small
 'FE6B	'1.1	'Po	'Sml	SMALL COMMERCIAL AT	'﹫	'@	'@	'@	Tr≠N4M			'FE6B	'0040	'0040	'0040	16. NFKC_CF-Small
-'FE10	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL COMMA	'︐	'︐	',	',		Tr≠NF	Tr≠UCA	'FE10	'FE10	'002C	'002C	9 skip certain types
-'FE11	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA	'︑	'︑	'、	'、		Tr≠NF	Tr≠UCA	'FE11	'FE11	'3001	'3001	9 skip certain types
-'FE12	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP	'︒	'︒	'。	'。		Tr≠NF	Tr≠UCA	'FE12	'FE12	'3002	'3002	9 skip certain types
-'FE13	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL COLON	'︓	'︓	':	':		Tr≠NF	Tr≠UCA	'FE13	'FE13	'003A	'003A	9 skip certain types
-'FE14	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL SEMICOLON	'︔	'︔	';	';		Tr≠NF	Tr≠UCA	'FE14	'FE14	'003B	'003B	9 skip certain types
-'FE15	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL EXCLAMATION MARK	'︕	'︕	'!	'!		Tr≠NF	Tr≠UCA	'FE15	'FE15	'0021	'0021	9 skip certain types
-'FE16	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL QUESTION MARK	'︖	'︖	'?	'?		Tr≠NF	Tr≠UCA	'FE16	'FE16	'003F	'003F	9 skip certain types
 'FE19	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL HORIZONTAL ELLIPSIS	'︙	'︙	'...	'...		Tr≠NF	Tr≠UCA	'FE19	'FE19	'002E 002E 002E	'002E 002E 002E	9 skip certain types
 'FE30	'1.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL TWO DOT LEADER	'︰	'︰	'..	'..		Tr≠NF	Tr≠UCA	'FE30	'FE30	'002E 002E	'002E 002E	9 skip certain types
+'FE10	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL COMMA	'︐	',	',	',	Tr≠N4M			'FE10	'002C	'002C	'002C	04+. fixed_NFKC
+'FE11	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC COMMA	'︑	'、	'、	'、	Tr≠N4M			'FE11	'3001	'3001	'3001	04+. fixed_NFKC
+'FE12	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL IDEOGRAPHIC FULL STOP	'︒	'。	'。	'。	Tr≠N4M			'FE12	'3002	'3002	'3002	04+. fixed_NFKC
+'FE13	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL COLON	'︓	':	':	':	Tr≠N4M			'FE13	'003A	'003A	'003A	04+. fixed_NFKC
+'FE14	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL SEMICOLON	'︔	';	';	';	Tr≠N4M			'FE14	'003B	'003B	'003B	04+. fixed_NFKC
+'FE15	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL EXCLAMATION MARK	'︕	'!	'!	'!	Tr≠N4M			'FE15	'0021	'0021	'0021	04+. fixed_NFKC
+'FE16	'4.1	'Po	'Vert	PRESENTATION FORM FOR VERTICAL QUESTION MARK	'︖	'?	'?	'?	Tr≠N4M			'FE16	'003F	'003F	'003F	04+. fixed_NFKC
 '232A	'1.1	'Pe	'Can	RIGHT-POINTING ANGLE BRACKET	'〉	'〉	'〉	'〉	Tr≠N4M		Tr≠UCA	'232A	'3009	'3009	'232A	16. NFKC_CF-Canonical
 'FF63	'1.1	'Pe	'Nar	HALFWIDTH RIGHT CORNER BRACKET	'｣	'」	'」	'」	Tr≠N4M			'FF63	'300D	'300D	'300D	16. NFKC_CF-Narrow
 'FE5A	'1.1	'Pe	'Sml	SMALL RIGHT PARENTHESIS	'﹚	')	')	')	Tr≠N4M			'FE5A	'0029	'0029	'0029	16. NFKC_CF-Small
@@ -1458,10 +1458,10 @@
 '2077	'1.1	'No	'Sup	SUPERSCRIPT SEVEN	'⁷	'⁷	'7	'7		Tr≠NF	Tr≠UCA	'2077	'2077	'0037	'0037	9 skip certain types
 '2078	'1.1	'No	'Sup	SUPERSCRIPT EIGHT	'⁸	'⁸	'8	'8		Tr≠NF	Tr≠UCA	'2078	'2078	'0038	'0038	9 skip certain types
 '2079	'1.1	'No	'Sup	SUPERSCRIPT NINE	'⁹	'⁹	'9	'9		Tr≠NF	Tr≠UCA	'2079	'2079	'0039	'0039	9 skip certain types
-'3192	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION ONE MARK	'㆒	'㆒	'一	'一		Tr≠NF	Tr≠UCA	'3192	'3192	'4E00	'4E00	9 skip certain types
-'3193	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION TWO MARK	'㆓	'㆓	'二	'二		Tr≠NF	Tr≠UCA	'3193	'3193	'4E8C	'4E8C	9 skip certain types
-'3194	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION THREE MARK	'㆔	'㆔	'三	'三		Tr≠NF	Tr≠UCA	'3194	'3194	'4E09	'4E09	9 skip certain types
-'3195	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION FOUR MARK	'㆕	'㆕	'四	'四		Tr≠NF	Tr≠UCA	'3195	'3195	'56DB	'56DB	9 skip certain types
+'3192	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION ONE MARK	'㆒	'㆒	'一	'一		Tr≠NF	Tr≠UCA	'3192	'3192	'4E00	'4E00	04+. fixed_NFKC
+'3193	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION TWO MARK	'㆓	'㆓	'二	'二		Tr≠NF	Tr≠UCA	'3193	'3193	'4E8C	'4E8C	04+. fixed_NFKC
+'3194	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION THREE MARK	'㆔	'㆔	'三	'三		Tr≠NF	Tr≠UCA	'3194	'3194	'4E09	'4E09	04+. fixed_NFKC
+'3195	'1.1	'No	'Sup	IDEOGRAPHIC ANNOTATION FOUR MARK	'㆕	'㆕	'四	'四		Tr≠NF	Tr≠UCA	'3195	'3195	'56DB	'56DB	04+. fixed_NFKC
 '2160	'1.1	'Nl	'Com	ROMAN NUMERAL ONE	'ⅰ	'i	'i	'i	Tr≠N4M			'2170	'0069	'0069	'0069	16. NFKC_CF-Compat
 '2161	'1.1	'Nl	'Com	ROMAN NUMERAL TWO	'ⅱ	'ii	'ii	'ii	Tr≠N4M			'2171	'0069 0069	'0069 0069	'0069 0069	16. NFKC_CF-Compat
 '2162	'1.1	'Nl	'Com	ROMAN NUMERAL THREE	'ⅲ	'iii	'iii	'iii	Tr≠N4M			'2172	'0069 0069 0069	'0069 0069 0069	'0069 0069 0069	16. NFKC_CF-Compat
@@ -1494,7 +1494,7 @@
 '217D	'1.1	'Nl	'Com	SMALL ROMAN NUMERAL ONE HUNDRED	'ⅽ	'c	'c	'c	Tr≠N4M			'217D	'0063	'0063	'0063	16. NFKC_CF-Compat
 '217E	'1.1	'Nl	'Com	SMALL ROMAN NUMERAL FIVE HUNDRED	'ⅾ	'd	'd	'd	Tr≠N4M			'217E	'0064	'0064	'0064	16. NFKC_CF-Compat
 '217F	'1.1	'Nl	'Com	SMALL ROMAN NUMERAL ONE THOUSAND	'ⅿ	'm	'm	'm	Tr≠N4M			'217F	'006D	'006D	'006D	16. NFKC_CF-Compat
-'034F	'3.2	'Mn	'None	COMBINING GRAPHEME JOINER	'͏	'∅	'∅	'∅	Tr≠N4M			'034F	'	'	'	16. NFKC_CF-None
+'034F	'3.2	'Mn	'None	COMBINING GRAPHEME JOINER	'͏	'͏	'∅	'∅		Tr≠NF	Tr≠UCA	'034F	'034F	'	'	04+. fixed_NFKC
 '17B4	'3.0	'Mn	'None	KHMER VOWEL INHERENT AQ	'឴	'∅	'∅	'∅	Tr≠N4M			'17B4	'	'	'	16. NFKC_CF-None
 '17B5	'3.0	'Mn	'None	KHMER VOWEL INHERENT AA	'឵	'∅	'∅	'∅	Tr≠N4M			'17B5	'	'	'	16. NFKC_CF-None
 '0130	'1.1	'Lu	'Can	LATIN CAPITAL LETTER I WITH DOT ABOVE	'i	'i	'i̇	'i̇		Tr≠NF	Tr≠UCA	'0069	'0069	'0069 0307	'0069 0307	04+. fixed_NFKC
@@ -1570,7 +1570,6 @@
 '1E920	'9.0	'Lu	'None	ADLAM CAPITAL LETTER KPO	'𞤠	'𞥂	'𞥂	'𞤠	Tr≠N4M		Tr≠UCA	'1E920	'1E942	'1E942	'1E920	16. NFKC_CF-None
 '1E921	'9.0	'Lu	'None	ADLAM CAPITAL LETTER SHA	'𞤡	'𞥃	'𞥃	'𞤡	Tr≠N4M		Tr≠UCA	'1E921	'1E943	'1E943	'1E921	16. NFKC_CF-None
 'A7AE	'9.0	'Lu	'None	LATIN CAPITAL LETTER SMALL CAPITAL I	'Ɪ	'ɪ	'ɪ	'Ɪ	Tr≠N4M		Tr≠UCA	'A7AE	'026A	'026A	'A7AE	16. NFKC_CF-None
-'1EFA	'5.1	'Lu	'None	LATIN CAPITAL LETTER MIDDLE-WELSH LL	'ỻ	'll	'ỻ	'll	Tr≠N4M	Tr≠NF		'1EFB	'006C 006C	'1EFB	'006C 006C	04+. digraph
 'FB1F	'1.1	'Lo	'Can	HEBREW LIGATURE YIDDISH YOD YOD PATAH	'ייַ	'ייַ	'ײַ	'ײַ		Tr≠NF	Tr≠UCA	'05D9 05D9 05B7	'05D9 05D9 05B7	'05F2 05B7	'05F2 05B7	16. NFKC_CF-Canonical + recursion
 'FA2E	'6.1	'Lo	'Can	CJK COMPATIBILITY IDEOGRAPH-FA2E	'郞	'郞	'郞	'郞	Tr≠N4M			'FA2E	'90DE	'90DE	'90DE	16. NFKC_CF-Canonical
 'FA2F	'6.1	'Lo	'Can	CJK COMPATIBILITY IDEOGRAPH-FA2F	'隷	'隷	'隷	'隷	Tr≠N4M			'FA2F	'96B7	'96B7	'96B7	16. NFKC_CF-Canonical
@@ -1896,15 +1895,15 @@
 '05F0	'1.1	'Lo	'None	HEBREW LIGATURE YIDDISH DOUBLE VAV	'וו	'וו	'װ	'וו		Tr≠NF		'05D5 05D5	'05D5 05D5	'05F0	'05D5 05D5	04+. digraph
 '05F1	'1.1	'Lo	'None	HEBREW LIGATURE YIDDISH VAV YOD	'וי	'וי	'ױ	'וי		Tr≠NF		'05D5 05D9	'05D5 05D9	'05F1	'05D5 05D9	04+. digraph
 '05F2	'1.1	'Lo	'None	HEBREW LIGATURE YIDDISH DOUBLE YOD	'יי	'יי	'ײ	'יי		Tr≠NF		'05D9 05D9	'05D9 05D9	'05F2	'05D9 05D9	04+. digraph
+'0D7A	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU NN	'ണ്	'ണ്	'ൺ	'ണ്		Tr≠NF		'0D23 0D4D	'0D23 0D4D	'0D7A	'0D23 0D4D	04+. fixed_NFKC
+'0D7B	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU N	'ന്	'ന്	'ൻ	'ന്		Tr≠NF		'0D28 0D4D	'0D28 0D4D	'0D7B	'0D28 0D4D	04+. fixed_NFKC
+'0D7C	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU RR	'ര്	'ര്	'ർ	'ര്		Tr≠NF		'0D30 0D4D	'0D30 0D4D	'0D7C	'0D30 0D4D	04+. fixed_NFKC
+'0D7D	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU L	'ല്	'ല്	'ൽ	'ല്		Tr≠NF		'0D32 0D4D	'0D32 0D4D	'0D7D	'0D32 0D4D	04+. fixed_NFKC
+'0D7E	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU LL	'ള്	'ള്	'ൾ	'ള്		Tr≠NF		'0D33 0D4D	'0D33 0D4D	'0D7E	'0D33 0D4D	04+. fixed_NFKC
+'0D7F	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU K	'ക്	'ക്	'ൿ	'ക്		Tr≠NF		'0D15 0D4D	'0D15 0D4D	'0D7F	'0D15 0D4D	04+. fixed_NFKC
 'FE73	'3.2	'Lo	'None	ARABIC TAIL FRAGMENT	'∅	'∅	'ﹳ	'∅		Tr≠NF		'	'	'FE73	'	04+. fixed_NFKC
 '115F	'1.1	'Lo	'None	HANGUL CHOSEONG FILLER	'ᅟ	'∅	'∅	'∅	Tr≠N4M			'115F	'	'	'	16. NFKC_CF-None
 '1160	'1.1	'Lo	'None	HANGUL JUNGSEONG FILLER	'ᅠ	'∅	'∅	'∅	Tr≠N4M			'1160	'	'	'	16. NFKC_CF-None
-'0D7A	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU NN	'ണ്	'ൺ	'ൺ	'ണ്	Tr≠N4M		Tr≠UCA	'0D23 0D4D	'0D7A	'0D7A	'0D23 0D4D	16. NFKC_CF-None
-'0D7B	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU N	'ന്	'ൻ	'ൻ	'ന്	Tr≠N4M		Tr≠UCA	'0D28 0D4D	'0D7B	'0D7B	'0D28 0D4D	16. NFKC_CF-None
-'0D7C	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU RR	'ര്	'ർ	'ർ	'ര്	Tr≠N4M		Tr≠UCA	'0D30 0D4D	'0D7C	'0D7C	'0D30 0D4D	16. NFKC_CF-None
-'0D7D	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU L	'ല്	'ൽ	'ൽ	'ല്	Tr≠N4M		Tr≠UCA	'0D32 0D4D	'0D7D	'0D7D	'0D32 0D4D	16. NFKC_CF-None
-'0D7E	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU LL	'ള്	'ൾ	'ൾ	'ള്	Tr≠N4M		Tr≠UCA	'0D33 0D4D	'0D7E	'0D7E	'0D33 0D4D	16. NFKC_CF-None
-'0D7F	'5.1	'Lo	'None	MALAYALAM LETTER CHILLU K	'ക്	'ൿ	'ൿ	'ക്	Tr≠N4M		Tr≠UCA	'0D15 0D4D	'0D7F	'0D7F	'0D15 0D4D	16. NFKC_CF-None
 '05DA	'1.1	'Lo	'None	HEBREW LETTER FINAL KAF	'ך	'כ	'ך	'כ	Tr≠N4M	Tr≠NF		'05DA	'05DB	'05DA	'05DB	04+. final_form
 '05DD	'1.1	'Lo	'None	HEBREW LETTER FINAL MEM	'ם	'מ	'ם	'מ	Tr≠N4M	Tr≠NF		'05DD	'05DE	'05DD	'05DE	04+. final_form
 '05DF	'1.1	'Lo	'None	HEBREW LETTER FINAL NUN	'ן	'נ	'ן	'נ	Tr≠N4M	Tr≠NF		'05DF	'05E0	'05DF	'05E0	04+. final_form
@@ -2067,9 +2066,116 @@
 '1C86	'9.0	'Ll	'None	CYRILLIC SMALL LETTER TALL HARD SIGN	'ᲆ	'ъ	'ъ	'ᲆ	Tr≠N4M		Tr≠UCA	'1C86	'044A	'044A	'1C86	16. NFKC_CF-None
 '1C87	'9.0	'Ll	'None	CYRILLIC SMALL LETTER TALL YAT	'ᲇ	'ѣ	'ѣ	'ᲇ	Tr≠N4M		Tr≠UCA	'1C87	'0463	'0463	'1C87	16. NFKC_CF-None
 '1C88	'9.0	'Ll	'None	CYRILLIC SMALL LETTER UNBLENDED UK	'ᲈ	'ꙋ	'ꙋ	'ᲈ	Tr≠N4M		Tr≠UCA	'1C88	'A64B	'A64B	'1C88	16. NFKC_CF-None
+'180E	'3.0	'Cf	'None	MONGOLIAN VOWEL SEPARATOR	'᠎	'᠎	'∅	'∅		Tr≠NF	Tr≠UCA	'180E	'180E	'	'	04+. fixed_NFKC
+'200B	'1.1	'Cf	'None	ZERO WIDTH SPACE	'​	'​	'∅	'∅		Tr≠NF	Tr≠UCA	'200B	'200B	'	'	04+. fixed_NFKC
+'2061	'3.2	'Cf	'None	FUNCTION APPLICATION	'⁡	'⁡	'∅	'∅		Tr≠NF	Tr≠UCA	'2061	'2061	'	'	04+. fixed_NFKC
+'2062	'3.2	'Cf	'None	INVISIBLE TIMES	'⁢	'⁢	'∅	'∅		Tr≠NF	Tr≠UCA	'2062	'2062	'	'	04+. fixed_NFKC
+'2063	'3.2	'Cf	'None	INVISIBLE SEPARATOR	'⁣	'⁣	'∅	'∅		Tr≠NF	Tr≠UCA	'2063	'2063	'	'	04+. fixed_NFKC
+'2064	'5.1	'Cf	'None	INVISIBLE PLUS	'⁤	'⁤	'∅	'∅		Tr≠NF	Tr≠UCA	'2064	'2064	'	'	04+. fixed_NFKC
+'2066	'6.3	'Cf	'None	LEFT-TO-RIGHT ISOLATE	'⁦	'⁦	'∅	'∅		Tr≠NF	Tr≠UCA	'2066	'2066	'	'	04+. fixed_NFKC
+'2067	'6.3	'Cf	'None	RIGHT-TO-LEFT ISOLATE	'⁧	'⁧	'∅	'∅		Tr≠NF	Tr≠UCA	'2067	'2067	'	'	04+. fixed_NFKC
+'2068	'6.3	'Cf	'None	FIRST STRONG ISOLATE	'⁨	'⁨	'∅	'∅		Tr≠NF	Tr≠UCA	'2068	'2068	'	'	04+. fixed_NFKC
+'2069	'6.3	'Cf	'None	POP DIRECTIONAL ISOLATE	'⁩	'⁩	'∅	'∅		Tr≠NF	Tr≠UCA	'2069	'2069	'	'	04+. fixed_NFKC
+'E0001	'3.1	'Cf	'None	LANGUAGE TAG	'󠀁	'󠀁	'∅	'∅		Tr≠NF	Tr≠UCA	'E0001	'E0001	'	'	9 skip certain types
+'E0020	'3.1	'Cf	'None	TAG SPACE	'󠀠	'󠀠	'∅	'∅		Tr≠NF	Tr≠UCA	'E0020	'E0020	'	'	9 skip certain types
+'E0021	'3.1	'Cf	'None	TAG EXCLAMATION MARK	'󠀡	'󠀡	'∅	'∅		Tr≠NF	Tr≠UCA	'E0021	'E0021	'	'	9 skip certain types
+'E0022	'3.1	'Cf	'None	TAG QUOTATION MARK	'󠀢	'󠀢	'∅	'∅		Tr≠NF	Tr≠UCA	'E0022	'E0022	'	'	9 skip certain types
+'E0023	'3.1	'Cf	'None	TAG NUMBER SIGN	'󠀣	'󠀣	'∅	'∅		Tr≠NF	Tr≠UCA	'E0023	'E0023	'	'	9 skip certain types
+'E0024	'3.1	'Cf	'None	TAG DOLLAR SIGN	'󠀤	'󠀤	'∅	'∅		Tr≠NF	Tr≠UCA	'E0024	'E0024	'	'	9 skip certain types
+'E0025	'3.1	'Cf	'None	TAG PERCENT SIGN	'󠀥	'󠀥	'∅	'∅		Tr≠NF	Tr≠UCA	'E0025	'E0025	'	'	9 skip certain types
+'E0026	'3.1	'Cf	'None	TAG AMPERSAND	'󠀦	'󠀦	'∅	'∅		Tr≠NF	Tr≠UCA	'E0026	'E0026	'	'	9 skip certain types
+'E0027	'3.1	'Cf	'None	TAG APOSTROPHE	'󠀧	'󠀧	'∅	'∅		Tr≠NF	Tr≠UCA	'E0027	'E0027	'	'	9 skip certain types
+'E0028	'3.1	'Cf	'None	TAG LEFT PARENTHESIS	'󠀨	'󠀨	'∅	'∅		Tr≠NF	Tr≠UCA	'E0028	'E0028	'	'	9 skip certain types
+'E0029	'3.1	'Cf	'None	TAG RIGHT PARENTHESIS	'󠀩	'󠀩	'∅	'∅		Tr≠NF	Tr≠UCA	'E0029	'E0029	'	'	9 skip certain types
+'E002A	'3.1	'Cf	'None	TAG ASTERISK	'󠀪	'󠀪	'∅	'∅		Tr≠NF	Tr≠UCA	'E002A	'E002A	'	'	9 skip certain types
+'E002B	'3.1	'Cf	'None	TAG PLUS SIGN	'󠀫	'󠀫	'∅	'∅		Tr≠NF	Tr≠UCA	'E002B	'E002B	'	'	9 skip certain types
+'E002C	'3.1	'Cf	'None	TAG COMMA	'󠀬	'󠀬	'∅	'∅		Tr≠NF	Tr≠UCA	'E002C	'E002C	'	'	9 skip certain types
+'E002D	'3.1	'Cf	'None	TAG HYPHEN-MINUS	'󠀭	'󠀭	'∅	'∅		Tr≠NF	Tr≠UCA	'E002D	'E002D	'	'	9 skip certain types
+'E002E	'3.1	'Cf	'None	TAG FULL STOP	'󠀮	'󠀮	'∅	'∅		Tr≠NF	Tr≠UCA	'E002E	'E002E	'	'	9 skip certain types
+'E002F	'3.1	'Cf	'None	TAG SOLIDUS	'󠀯	'󠀯	'∅	'∅		Tr≠NF	Tr≠UCA	'E002F	'E002F	'	'	9 skip certain types
+'E0030	'3.1	'Cf	'None	TAG DIGIT ZERO	'󠀰	'󠀰	'∅	'∅		Tr≠NF	Tr≠UCA	'E0030	'E0030	'	'	9 skip certain types
+'E0031	'3.1	'Cf	'None	TAG DIGIT ONE	'󠀱	'󠀱	'∅	'∅		Tr≠NF	Tr≠UCA	'E0031	'E0031	'	'	9 skip certain types
+'E0032	'3.1	'Cf	'None	TAG DIGIT TWO	'󠀲	'󠀲	'∅	'∅		Tr≠NF	Tr≠UCA	'E0032	'E0032	'	'	9 skip certain types
+'E0033	'3.1	'Cf	'None	TAG DIGIT THREE	'󠀳	'󠀳	'∅	'∅		Tr≠NF	Tr≠UCA	'E0033	'E0033	'	'	9 skip certain types
+'E0034	'3.1	'Cf	'None	TAG DIGIT FOUR	'󠀴	'󠀴	'∅	'∅		Tr≠NF	Tr≠UCA	'E0034	'E0034	'	'	9 skip certain types
+'E0035	'3.1	'Cf	'None	TAG DIGIT FIVE	'󠀵	'󠀵	'∅	'∅		Tr≠NF	Tr≠UCA	'E0035	'E0035	'	'	9 skip certain types
+'E0036	'3.1	'Cf	'None	TAG DIGIT SIX	'󠀶	'󠀶	'∅	'∅		Tr≠NF	Tr≠UCA	'E0036	'E0036	'	'	9 skip certain types
+'E0037	'3.1	'Cf	'None	TAG DIGIT SEVEN	'󠀷	'󠀷	'∅	'∅		Tr≠NF	Tr≠UCA	'E0037	'E0037	'	'	9 skip certain types
+'E0038	'3.1	'Cf	'None	TAG DIGIT EIGHT	'󠀸	'󠀸	'∅	'∅		Tr≠NF	Tr≠UCA	'E0038	'E0038	'	'	9 skip certain types
+'E0039	'3.1	'Cf	'None	TAG DIGIT NINE	'󠀹	'󠀹	'∅	'∅		Tr≠NF	Tr≠UCA	'E0039	'E0039	'	'	9 skip certain types
+'E003A	'3.1	'Cf	'None	TAG COLON	'󠀺	'󠀺	'∅	'∅		Tr≠NF	Tr≠UCA	'E003A	'E003A	'	'	9 skip certain types
+'E003B	'3.1	'Cf	'None	TAG SEMICOLON	'󠀻	'󠀻	'∅	'∅		Tr≠NF	Tr≠UCA	'E003B	'E003B	'	'	9 skip certain types
+'E003C	'3.1	'Cf	'None	TAG LESS-THAN SIGN	'󠀼	'󠀼	'∅	'∅		Tr≠NF	Tr≠UCA	'E003C	'E003C	'	'	9 skip certain types
+'E003D	'3.1	'Cf	'None	TAG EQUALS SIGN	'󠀽	'󠀽	'∅	'∅		Tr≠NF	Tr≠UCA	'E003D	'E003D	'	'	9 skip certain types
+'E003E	'3.1	'Cf	'None	TAG GREATER-THAN SIGN	'󠀾	'󠀾	'∅	'∅		Tr≠NF	Tr≠UCA	'E003E	'E003E	'	'	9 skip certain types
+'E003F	'3.1	'Cf	'None	TAG QUESTION MARK	'󠀿	'󠀿	'∅	'∅		Tr≠NF	Tr≠UCA	'E003F	'E003F	'	'	9 skip certain types
+'E0040	'3.1	'Cf	'None	TAG COMMERCIAL AT	'󠁀	'󠁀	'∅	'∅		Tr≠NF	Tr≠UCA	'E0040	'E0040	'	'	9 skip certain types
+'E0041	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER A	'󠁁	'󠁁	'∅	'∅		Tr≠NF	Tr≠UCA	'E0041	'E0041	'	'	9 skip certain types
+'E0042	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER B	'󠁂	'󠁂	'∅	'∅		Tr≠NF	Tr≠UCA	'E0042	'E0042	'	'	9 skip certain types
+'E0043	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER C	'󠁃	'󠁃	'∅	'∅		Tr≠NF	Tr≠UCA	'E0043	'E0043	'	'	9 skip certain types
+'E0044	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER D	'󠁄	'󠁄	'∅	'∅		Tr≠NF	Tr≠UCA	'E0044	'E0044	'	'	9 skip certain types
+'E0045	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER E	'󠁅	'󠁅	'∅	'∅		Tr≠NF	Tr≠UCA	'E0045	'E0045	'	'	9 skip certain types
+'E0046	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER F	'󠁆	'󠁆	'∅	'∅		Tr≠NF	Tr≠UCA	'E0046	'E0046	'	'	9 skip certain types
+'E0047	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER G	'󠁇	'󠁇	'∅	'∅		Tr≠NF	Tr≠UCA	'E0047	'E0047	'	'	9 skip certain types
+'E0048	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER H	'󠁈	'󠁈	'∅	'∅		Tr≠NF	Tr≠UCA	'E0048	'E0048	'	'	9 skip certain types
+'E0049	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER I	'󠁉	'󠁉	'∅	'∅		Tr≠NF	Tr≠UCA	'E0049	'E0049	'	'	9 skip certain types
+'E004A	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER J	'󠁊	'󠁊	'∅	'∅		Tr≠NF	Tr≠UCA	'E004A	'E004A	'	'	9 skip certain types
+'E004B	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER K	'󠁋	'󠁋	'∅	'∅		Tr≠NF	Tr≠UCA	'E004B	'E004B	'	'	9 skip certain types
+'E004C	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER L	'󠁌	'󠁌	'∅	'∅		Tr≠NF	Tr≠UCA	'E004C	'E004C	'	'	9 skip certain types
+'E004D	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER M	'󠁍	'󠁍	'∅	'∅		Tr≠NF	Tr≠UCA	'E004D	'E004D	'	'	9 skip certain types
+'E004E	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER N	'󠁎	'󠁎	'∅	'∅		Tr≠NF	Tr≠UCA	'E004E	'E004E	'	'	9 skip certain types
+'E004F	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER O	'󠁏	'󠁏	'∅	'∅		Tr≠NF	Tr≠UCA	'E004F	'E004F	'	'	9 skip certain types
+'E0050	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER P	'󠁐	'󠁐	'∅	'∅		Tr≠NF	Tr≠UCA	'E0050	'E0050	'	'	9 skip certain types
+'E0051	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER Q	'󠁑	'󠁑	'∅	'∅		Tr≠NF	Tr≠UCA	'E0051	'E0051	'	'	9 skip certain types
+'E0052	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER R	'󠁒	'󠁒	'∅	'∅		Tr≠NF	Tr≠UCA	'E0052	'E0052	'	'	9 skip certain types
+'E0053	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER S	'󠁓	'󠁓	'∅	'∅		Tr≠NF	Tr≠UCA	'E0053	'E0053	'	'	9 skip certain types
+'E0054	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER T	'󠁔	'󠁔	'∅	'∅		Tr≠NF	Tr≠UCA	'E0054	'E0054	'	'	9 skip certain types
+'E0055	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER U	'󠁕	'󠁕	'∅	'∅		Tr≠NF	Tr≠UCA	'E0055	'E0055	'	'	9 skip certain types
+'E0056	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER V	'󠁖	'󠁖	'∅	'∅		Tr≠NF	Tr≠UCA	'E0056	'E0056	'	'	9 skip certain types
+'E0057	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER W	'󠁗	'󠁗	'∅	'∅		Tr≠NF	Tr≠UCA	'E0057	'E0057	'	'	9 skip certain types
+'E0058	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER X	'󠁘	'󠁘	'∅	'∅		Tr≠NF	Tr≠UCA	'E0058	'E0058	'	'	9 skip certain types
+'E0059	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER Y	'󠁙	'󠁙	'∅	'∅		Tr≠NF	Tr≠UCA	'E0059	'E0059	'	'	9 skip certain types
+'E005A	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER Z	'󠁚	'󠁚	'∅	'∅		Tr≠NF	Tr≠UCA	'E005A	'E005A	'	'	9 skip certain types
+'E005B	'3.1	'Cf	'None	TAG LEFT SQUARE BRACKET	'󠁛	'󠁛	'∅	'∅		Tr≠NF	Tr≠UCA	'E005B	'E005B	'	'	9 skip certain types
+'E005C	'3.1	'Cf	'None	TAG REVERSE SOLIDUS	'󠁜	'󠁜	'∅	'∅		Tr≠NF	Tr≠UCA	'E005C	'E005C	'	'	9 skip certain types
+'E005D	'3.1	'Cf	'None	TAG RIGHT SQUARE BRACKET	'󠁝	'󠁝	'∅	'∅		Tr≠NF	Tr≠UCA	'E005D	'E005D	'	'	9 skip certain types
+'E005E	'3.1	'Cf	'None	TAG CIRCUMFLEX ACCENT	'󠁞	'󠁞	'∅	'∅		Tr≠NF	Tr≠UCA	'E005E	'E005E	'	'	9 skip certain types
+'E005F	'3.1	'Cf	'None	TAG LOW LINE	'󠁟	'󠁟	'∅	'∅		Tr≠NF	Tr≠UCA	'E005F	'E005F	'	'	9 skip certain types
+'E0060	'3.1	'Cf	'None	TAG GRAVE ACCENT	'󠁠	'󠁠	'∅	'∅		Tr≠NF	Tr≠UCA	'E0060	'E0060	'	'	9 skip certain types
+'E0061	'3.1	'Cf	'None	TAG LATIN SMALL LETTER A	'󠁡	'󠁡	'∅	'∅		Tr≠NF	Tr≠UCA	'E0061	'E0061	'	'	9 skip certain types
+'E0062	'3.1	'Cf	'None	TAG LATIN SMALL LETTER B	'󠁢	'󠁢	'∅	'∅		Tr≠NF	Tr≠UCA	'E0062	'E0062	'	'	9 skip certain types
+'E0063	'3.1	'Cf	'None	TAG LATIN SMALL LETTER C	'󠁣	'󠁣	'∅	'∅		Tr≠NF	Tr≠UCA	'E0063	'E0063	'	'	9 skip certain types
+'E0064	'3.1	'Cf	'None	TAG LATIN SMALL LETTER D	'󠁤	'󠁤	'∅	'∅		Tr≠NF	Tr≠UCA	'E0064	'E0064	'	'	9 skip certain types
+'E0065	'3.1	'Cf	'None	TAG LATIN SMALL LETTER E	'󠁥	'󠁥	'∅	'∅		Tr≠NF	Tr≠UCA	'E0065	'E0065	'	'	9 skip certain types
+'E0066	'3.1	'Cf	'None	TAG LATIN SMALL LETTER F	'󠁦	'󠁦	'∅	'∅		Tr≠NF	Tr≠UCA	'E0066	'E0066	'	'	9 skip certain types
+'E0067	'3.1	'Cf	'None	TAG LATIN SMALL LETTER G	'󠁧	'󠁧	'∅	'∅		Tr≠NF	Tr≠UCA	'E0067	'E0067	'	'	9 skip certain types
+'E0068	'3.1	'Cf	'None	TAG LATIN SMALL LETTER H	'󠁨	'󠁨	'∅	'∅		Tr≠NF	Tr≠UCA	'E0068	'E0068	'	'	9 skip certain types
+'E0069	'3.1	'Cf	'None	TAG LATIN SMALL LETTER I	'󠁩	'󠁩	'∅	'∅		Tr≠NF	Tr≠UCA	'E0069	'E0069	'	'	9 skip certain types
+'E006A	'3.1	'Cf	'None	TAG LATIN SMALL LETTER J	'󠁪	'󠁪	'∅	'∅		Tr≠NF	Tr≠UCA	'E006A	'E006A	'	'	9 skip certain types
+'E006B	'3.1	'Cf	'None	TAG LATIN SMALL LETTER K	'󠁫	'󠁫	'∅	'∅		Tr≠NF	Tr≠UCA	'E006B	'E006B	'	'	9 skip certain types
+'E006C	'3.1	'Cf	'None	TAG LATIN SMALL LETTER L	'󠁬	'󠁬	'∅	'∅		Tr≠NF	Tr≠UCA	'E006C	'E006C	'	'	9 skip certain types
+'E006D	'3.1	'Cf	'None	TAG LATIN SMALL LETTER M	'󠁭	'󠁭	'∅	'∅		Tr≠NF	Tr≠UCA	'E006D	'E006D	'	'	9 skip certain types
+'E006E	'3.1	'Cf	'None	TAG LATIN SMALL LETTER N	'󠁮	'󠁮	'∅	'∅		Tr≠NF	Tr≠UCA	'E006E	'E006E	'	'	9 skip certain types
+'E006F	'3.1	'Cf	'None	TAG LATIN SMALL LETTER O	'󠁯	'󠁯	'∅	'∅		Tr≠NF	Tr≠UCA	'E006F	'E006F	'	'	9 skip certain types
+'E0070	'3.1	'Cf	'None	TAG LATIN SMALL LETTER P	'󠁰	'󠁰	'∅	'∅		Tr≠NF	Tr≠UCA	'E0070	'E0070	'	'	9 skip certain types
+'E0071	'3.1	'Cf	'None	TAG LATIN SMALL LETTER Q	'󠁱	'󠁱	'∅	'∅		Tr≠NF	Tr≠UCA	'E0071	'E0071	'	'	9 skip certain types
+'E0072	'3.1	'Cf	'None	TAG LATIN SMALL LETTER R	'󠁲	'󠁲	'∅	'∅		Tr≠NF	Tr≠UCA	'E0072	'E0072	'	'	9 skip certain types
+'E0073	'3.1	'Cf	'None	TAG LATIN SMALL LETTER S	'󠁳	'󠁳	'∅	'∅		Tr≠NF	Tr≠UCA	'E0073	'E0073	'	'	9 skip certain types
+'E0074	'3.1	'Cf	'None	TAG LATIN SMALL LETTER T	'󠁴	'󠁴	'∅	'∅		Tr≠NF	Tr≠UCA	'E0074	'E0074	'	'	9 skip certain types
+'E0075	'3.1	'Cf	'None	TAG LATIN SMALL LETTER U	'󠁵	'󠁵	'∅	'∅		Tr≠NF	Tr≠UCA	'E0075	'E0075	'	'	9 skip certain types
+'E0076	'3.1	'Cf	'None	TAG LATIN SMALL LETTER V	'󠁶	'󠁶	'∅	'∅		Tr≠NF	Tr≠UCA	'E0076	'E0076	'	'	9 skip certain types
+'E0077	'3.1	'Cf	'None	TAG LATIN SMALL LETTER W	'󠁷	'󠁷	'∅	'∅		Tr≠NF	Tr≠UCA	'E0077	'E0077	'	'	9 skip certain types
+'E0078	'3.1	'Cf	'None	TAG LATIN SMALL LETTER X	'󠁸	'󠁸	'∅	'∅		Tr≠NF	Tr≠UCA	'E0078	'E0078	'	'	9 skip certain types
+'E0079	'3.1	'Cf	'None	TAG LATIN SMALL LETTER Y	'󠁹	'󠁹	'∅	'∅		Tr≠NF	Tr≠UCA	'E0079	'E0079	'	'	9 skip certain types
+'E007A	'3.1	'Cf	'None	TAG LATIN SMALL LETTER Z	'󠁺	'󠁺	'∅	'∅		Tr≠NF	Tr≠UCA	'E007A	'E007A	'	'	9 skip certain types
+'E007B	'3.1	'Cf	'None	TAG LEFT CURLY BRACKET	'󠁻	'󠁻	'∅	'∅		Tr≠NF	Tr≠UCA	'E007B	'E007B	'	'	9 skip certain types
+'E007C	'3.1	'Cf	'None	TAG VERTICAL LINE	'󠁼	'󠁼	'∅	'∅		Tr≠NF	Tr≠UCA	'E007C	'E007C	'	'	9 skip certain types
+'E007D	'3.1	'Cf	'None	TAG RIGHT CURLY BRACKET	'󠁽	'󠁽	'∅	'∅		Tr≠NF	Tr≠UCA	'E007D	'E007D	'	'	9 skip certain types
+'E007E	'3.1	'Cf	'None	TAG TILDE	'󠁾	'󠁾	'∅	'∅		Tr≠NF	Tr≠UCA	'E007E	'E007E	'	'	9 skip certain types
+'E007F	'3.1	'Cf	'None	CANCEL TAG	'󠁿	'󠁿	'∅	'∅		Tr≠NF	Tr≠UCA	'E007F	'E007F	'	'	9 skip certain types
+'FEFF	'1.1	'Cf	'None	ZERO WIDTH NO-BREAK SPACE	'﻿	'﻿	'∅	'∅		Tr≠NF	Tr≠UCA	'FEFF	'FEFF	'	'	04+. fixed_NFKC
 '00AD	'1.1	'Cf	'None	SOFT HYPHEN	'­	'∅	'∅	'∅	Tr≠N4M			'00AD	'	'	'	16. NFKC_CF-None
 '061C	'6.3	'Cf	'None	ARABIC LETTER MARK	'؜	'∅	'∅	'∅	Tr≠N4M			'061C	'	'	'	16. NFKC_CF-None
-'180E	'3.0	'Cf	'None	MONGOLIAN VOWEL SEPARATOR	'᠎	'∅	'∅	'∅	Tr≠N4M			'180E	'	'	'	16. NFKC_CF-None
 '1BCA0	'7.0	'Cf	'None	SHORTHAND FORMAT LETTER OVERLAP	'𛲠	'∅	'∅	'∅	Tr≠N4M			'1BCA0	'	'	'	16. NFKC_CF-None
 '1BCA1	'7.0	'Cf	'None	SHORTHAND FORMAT CONTINUING OVERLAP	'𛲡	'∅	'∅	'∅	Tr≠N4M			'1BCA1	'	'	'	16. NFKC_CF-None
 '1BCA2	'7.0	'Cf	'None	SHORTHAND FORMAT DOWN STEP	'𛲢	'∅	'∅	'∅	Tr≠N4M			'1BCA2	'	'	'	16. NFKC_CF-None
@@ -2082,117 +2188,10 @@
 '1D178	'3.1	'Cf	'None	MUSICAL SYMBOL END SLUR	'𝅸	'∅	'∅	'∅	Tr≠N4M			'1D178	'	'	'	16. NFKC_CF-None
 '1D179	'3.1	'Cf	'None	MUSICAL SYMBOL BEGIN PHRASE	'𝅹	'∅	'∅	'∅	Tr≠N4M			'1D179	'	'	'	16. NFKC_CF-None
 '1D17A	'3.1	'Cf	'None	MUSICAL SYMBOL END PHRASE	'𝅺	'∅	'∅	'∅	Tr≠N4M			'1D17A	'	'	'	16. NFKC_CF-None
-'200B	'1.1	'Cf	'None	ZERO WIDTH SPACE	'​	'∅	'∅	'∅	Tr≠N4M			'200B	'	'	'	16. NFKC_CF-None
 '2060	'3.2	'Cf	'None	WORD JOINER	'⁠	'∅	'∅	'∅	Tr≠N4M			'2060	'	'	'	16. NFKC_CF-None
-'2061	'3.2	'Cf	'None	FUNCTION APPLICATION	'⁡	'∅	'∅	'∅	Tr≠N4M			'2061	'	'	'	16. NFKC_CF-None
-'2062	'3.2	'Cf	'None	INVISIBLE TIMES	'⁢	'∅	'∅	'∅	Tr≠N4M			'2062	'	'	'	16. NFKC_CF-None
-'2063	'3.2	'Cf	'None	INVISIBLE SEPARATOR	'⁣	'∅	'∅	'∅	Tr≠N4M			'2063	'	'	'	16. NFKC_CF-None
-'2064	'5.1	'Cf	'None	INVISIBLE PLUS	'⁤	'∅	'∅	'∅	Tr≠N4M			'2064	'	'	'	16. NFKC_CF-None
-'2066	'6.3	'Cf	'None	LEFT-TO-RIGHT ISOLATE	'⁦	'∅	'∅	'∅	Tr≠N4M			'2066	'	'	'	16. NFKC_CF-None
-'2067	'6.3	'Cf	'None	RIGHT-TO-LEFT ISOLATE	'⁧	'∅	'∅	'∅	Tr≠N4M			'2067	'	'	'	16. NFKC_CF-None
-'2068	'6.3	'Cf	'None	FIRST STRONG ISOLATE	'⁨	'∅	'∅	'∅	Tr≠N4M			'2068	'	'	'	16. NFKC_CF-None
-'2069	'6.3	'Cf	'None	POP DIRECTIONAL ISOLATE	'⁩	'∅	'∅	'∅	Tr≠N4M			'2069	'	'	'	16. NFKC_CF-None
 '206A	'1.1	'Cf	'None	INHIBIT SYMMETRIC SWAPPING	'⁪	'∅	'∅	'∅	Tr≠N4M			'206A	'	'	'	16. NFKC_CF-None
 '206B	'1.1	'Cf	'None	ACTIVATE SYMMETRIC SWAPPING	'⁫	'∅	'∅	'∅	Tr≠N4M			'206B	'	'	'	16. NFKC_CF-None
 '206C	'1.1	'Cf	'None	INHIBIT ARABIC FORM SHAPING	'⁬	'∅	'∅	'∅	Tr≠N4M			'206C	'	'	'	16. NFKC_CF-None
 '206D	'1.1	'Cf	'None	ACTIVATE ARABIC FORM SHAPING	'⁭	'∅	'∅	'∅	Tr≠N4M			'206D	'	'	'	16. NFKC_CF-None
 '206E	'1.1	'Cf	'None	NATIONAL DIGIT SHAPES	'⁮	'∅	'∅	'∅	Tr≠N4M			'206E	'	'	'	16. NFKC_CF-None
 '206F	'1.1	'Cf	'None	NOMINAL DIGIT SHAPES	'⁯	'∅	'∅	'∅	Tr≠N4M			'206F	'	'	'	16. NFKC_CF-None
-'E0001	'3.1	'Cf	'None	LANGUAGE TAG	'󠀁	'∅	'∅	'∅	Tr≠N4M			'E0001	'	'	'	16. NFKC_CF-None
-'E0020	'3.1	'Cf	'None	TAG SPACE	'󠀠	'∅	'∅	'∅	Tr≠N4M			'E0020	'	'	'	16. NFKC_CF-None
-'E0021	'3.1	'Cf	'None	TAG EXCLAMATION MARK	'󠀡	'∅	'∅	'∅	Tr≠N4M			'E0021	'	'	'	16. NFKC_CF-None
-'E0022	'3.1	'Cf	'None	TAG QUOTATION MARK	'󠀢	'∅	'∅	'∅	Tr≠N4M			'E0022	'	'	'	16. NFKC_CF-None
-'E0023	'3.1	'Cf	'None	TAG NUMBER SIGN	'󠀣	'∅	'∅	'∅	Tr≠N4M			'E0023	'	'	'	16. NFKC_CF-None
-'E0024	'3.1	'Cf	'None	TAG DOLLAR SIGN	'󠀤	'∅	'∅	'∅	Tr≠N4M			'E0024	'	'	'	16. NFKC_CF-None
-'E0025	'3.1	'Cf	'None	TAG PERCENT SIGN	'󠀥	'∅	'∅	'∅	Tr≠N4M			'E0025	'	'	'	16. NFKC_CF-None
-'E0026	'3.1	'Cf	'None	TAG AMPERSAND	'󠀦	'∅	'∅	'∅	Tr≠N4M			'E0026	'	'	'	16. NFKC_CF-None
-'E0027	'3.1	'Cf	'None	TAG APOSTROPHE	'󠀧	'∅	'∅	'∅	Tr≠N4M			'E0027	'	'	'	16. NFKC_CF-None
-'E0028	'3.1	'Cf	'None	TAG LEFT PARENTHESIS	'󠀨	'∅	'∅	'∅	Tr≠N4M			'E0028	'	'	'	16. NFKC_CF-None
-'E0029	'3.1	'Cf	'None	TAG RIGHT PARENTHESIS	'󠀩	'∅	'∅	'∅	Tr≠N4M			'E0029	'	'	'	16. NFKC_CF-None
-'E002A	'3.1	'Cf	'None	TAG ASTERISK	'󠀪	'∅	'∅	'∅	Tr≠N4M			'E002A	'	'	'	16. NFKC_CF-None
-'E002B	'3.1	'Cf	'None	TAG PLUS SIGN	'󠀫	'∅	'∅	'∅	Tr≠N4M			'E002B	'	'	'	16. NFKC_CF-None
-'E002C	'3.1	'Cf	'None	TAG COMMA	'󠀬	'∅	'∅	'∅	Tr≠N4M			'E002C	'	'	'	16. NFKC_CF-None
-'E002D	'3.1	'Cf	'None	TAG HYPHEN-MINUS	'󠀭	'∅	'∅	'∅	Tr≠N4M			'E002D	'	'	'	16. NFKC_CF-None
-'E002E	'3.1	'Cf	'None	TAG FULL STOP	'󠀮	'∅	'∅	'∅	Tr≠N4M			'E002E	'	'	'	16. NFKC_CF-None
-'E002F	'3.1	'Cf	'None	TAG SOLIDUS	'󠀯	'∅	'∅	'∅	Tr≠N4M			'E002F	'	'	'	16. NFKC_CF-None
-'E0030	'3.1	'Cf	'None	TAG DIGIT ZERO	'󠀰	'∅	'∅	'∅	Tr≠N4M			'E0030	'	'	'	16. NFKC_CF-None
-'E0031	'3.1	'Cf	'None	TAG DIGIT ONE	'󠀱	'∅	'∅	'∅	Tr≠N4M			'E0031	'	'	'	16. NFKC_CF-None
-'E0032	'3.1	'Cf	'None	TAG DIGIT TWO	'󠀲	'∅	'∅	'∅	Tr≠N4M			'E0032	'	'	'	16. NFKC_CF-None
-'E0033	'3.1	'Cf	'None	TAG DIGIT THREE	'󠀳	'∅	'∅	'∅	Tr≠N4M			'E0033	'	'	'	16. NFKC_CF-None
-'E0034	'3.1	'Cf	'None	TAG DIGIT FOUR	'󠀴	'∅	'∅	'∅	Tr≠N4M			'E0034	'	'	'	16. NFKC_CF-None
-'E0035	'3.1	'Cf	'None	TAG DIGIT FIVE	'󠀵	'∅	'∅	'∅	Tr≠N4M			'E0035	'	'	'	16. NFKC_CF-None
-'E0036	'3.1	'Cf	'None	TAG DIGIT SIX	'󠀶	'∅	'∅	'∅	Tr≠N4M			'E0036	'	'	'	16. NFKC_CF-None
-'E0037	'3.1	'Cf	'None	TAG DIGIT SEVEN	'󠀷	'∅	'∅	'∅	Tr≠N4M			'E0037	'	'	'	16. NFKC_CF-None
-'E0038	'3.1	'Cf	'None	TAG DIGIT EIGHT	'󠀸	'∅	'∅	'∅	Tr≠N4M			'E0038	'	'	'	16. NFKC_CF-None
-'E0039	'3.1	'Cf	'None	TAG DIGIT NINE	'󠀹	'∅	'∅	'∅	Tr≠N4M			'E0039	'	'	'	16. NFKC_CF-None
-'E003A	'3.1	'Cf	'None	TAG COLON	'󠀺	'∅	'∅	'∅	Tr≠N4M			'E003A	'	'	'	16. NFKC_CF-None
-'E003B	'3.1	'Cf	'None	TAG SEMICOLON	'󠀻	'∅	'∅	'∅	Tr≠N4M			'E003B	'	'	'	16. NFKC_CF-None
-'E003C	'3.1	'Cf	'None	TAG LESS-THAN SIGN	'󠀼	'∅	'∅	'∅	Tr≠N4M			'E003C	'	'	'	16. NFKC_CF-None
-'E003D	'3.1	'Cf	'None	TAG EQUALS SIGN	'󠀽	'∅	'∅	'∅	Tr≠N4M			'E003D	'	'	'	16. NFKC_CF-None
-'E003E	'3.1	'Cf	'None	TAG GREATER-THAN SIGN	'󠀾	'∅	'∅	'∅	Tr≠N4M			'E003E	'	'	'	16. NFKC_CF-None
-'E003F	'3.1	'Cf	'None	TAG QUESTION MARK	'󠀿	'∅	'∅	'∅	Tr≠N4M			'E003F	'	'	'	16. NFKC_CF-None
-'E0040	'3.1	'Cf	'None	TAG COMMERCIAL AT	'󠁀	'∅	'∅	'∅	Tr≠N4M			'E0040	'	'	'	16. NFKC_CF-None
-'E0041	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER A	'󠁁	'∅	'∅	'∅	Tr≠N4M			'E0041	'	'	'	16. NFKC_CF-None
-'E0042	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER B	'󠁂	'∅	'∅	'∅	Tr≠N4M			'E0042	'	'	'	16. NFKC_CF-None
-'E0043	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER C	'󠁃	'∅	'∅	'∅	Tr≠N4M			'E0043	'	'	'	16. NFKC_CF-None
-'E0044	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER D	'󠁄	'∅	'∅	'∅	Tr≠N4M			'E0044	'	'	'	16. NFKC_CF-None
-'E0045	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER E	'󠁅	'∅	'∅	'∅	Tr≠N4M			'E0045	'	'	'	16. NFKC_CF-None
-'E0046	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER F	'󠁆	'∅	'∅	'∅	Tr≠N4M			'E0046	'	'	'	16. NFKC_CF-None
-'E0047	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER G	'󠁇	'∅	'∅	'∅	Tr≠N4M			'E0047	'	'	'	16. NFKC_CF-None
-'E0048	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER H	'󠁈	'∅	'∅	'∅	Tr≠N4M			'E0048	'	'	'	16. NFKC_CF-None
-'E0049	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER I	'󠁉	'∅	'∅	'∅	Tr≠N4M			'E0049	'	'	'	16. NFKC_CF-None
-'E004A	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER J	'󠁊	'∅	'∅	'∅	Tr≠N4M			'E004A	'	'	'	16. NFKC_CF-None
-'E004B	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER K	'󠁋	'∅	'∅	'∅	Tr≠N4M			'E004B	'	'	'	16. NFKC_CF-None
-'E004C	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER L	'󠁌	'∅	'∅	'∅	Tr≠N4M			'E004C	'	'	'	16. NFKC_CF-None
-'E004D	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER M	'󠁍	'∅	'∅	'∅	Tr≠N4M			'E004D	'	'	'	16. NFKC_CF-None
-'E004E	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER N	'󠁎	'∅	'∅	'∅	Tr≠N4M			'E004E	'	'	'	16. NFKC_CF-None
-'E004F	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER O	'󠁏	'∅	'∅	'∅	Tr≠N4M			'E004F	'	'	'	16. NFKC_CF-None
-'E0050	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER P	'󠁐	'∅	'∅	'∅	Tr≠N4M			'E0050	'	'	'	16. NFKC_CF-None
-'E0051	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER Q	'󠁑	'∅	'∅	'∅	Tr≠N4M			'E0051	'	'	'	16. NFKC_CF-None
-'E0052	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER R	'󠁒	'∅	'∅	'∅	Tr≠N4M			'E0052	'	'	'	16. NFKC_CF-None
-'E0053	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER S	'󠁓	'∅	'∅	'∅	Tr≠N4M			'E0053	'	'	'	16. NFKC_CF-None
-'E0054	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER T	'󠁔	'∅	'∅	'∅	Tr≠N4M			'E0054	'	'	'	16. NFKC_CF-None
-'E0055	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER U	'󠁕	'∅	'∅	'∅	Tr≠N4M			'E0055	'	'	'	16. NFKC_CF-None
-'E0056	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER V	'󠁖	'∅	'∅	'∅	Tr≠N4M			'E0056	'	'	'	16. NFKC_CF-None
-'E0057	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER W	'󠁗	'∅	'∅	'∅	Tr≠N4M			'E0057	'	'	'	16. NFKC_CF-None
-'E0058	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER X	'󠁘	'∅	'∅	'∅	Tr≠N4M			'E0058	'	'	'	16. NFKC_CF-None
-'E0059	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER Y	'󠁙	'∅	'∅	'∅	Tr≠N4M			'E0059	'	'	'	16. NFKC_CF-None
-'E005A	'3.1	'Cf	'None	TAG LATIN CAPITAL LETTER Z	'󠁚	'∅	'∅	'∅	Tr≠N4M			'E005A	'	'	'	16. NFKC_CF-None
-'E005B	'3.1	'Cf	'None	TAG LEFT SQUARE BRACKET	'󠁛	'∅	'∅	'∅	Tr≠N4M			'E005B	'	'	'	16. NFKC_CF-None
-'E005C	'3.1	'Cf	'None	TAG REVERSE SOLIDUS	'󠁜	'∅	'∅	'∅	Tr≠N4M			'E005C	'	'	'	16. NFKC_CF-None
-'E005D	'3.1	'Cf	'None	TAG RIGHT SQUARE BRACKET	'󠁝	'∅	'∅	'∅	Tr≠N4M			'E005D	'	'	'	16. NFKC_CF-None
-'E005E	'3.1	'Cf	'None	TAG CIRCUMFLEX ACCENT	'󠁞	'∅	'∅	'∅	Tr≠N4M			'E005E	'	'	'	16. NFKC_CF-None
-'E005F	'3.1	'Cf	'None	TAG LOW LINE	'󠁟	'∅	'∅	'∅	Tr≠N4M			'E005F	'	'	'	16. NFKC_CF-None
-'E0060	'3.1	'Cf	'None	TAG GRAVE ACCENT	'󠁠	'∅	'∅	'∅	Tr≠N4M			'E0060	'	'	'	16. NFKC_CF-None
-'E0061	'3.1	'Cf	'None	TAG LATIN SMALL LETTER A	'󠁡	'∅	'∅	'∅	Tr≠N4M			'E0061	'	'	'	16. NFKC_CF-None
-'E0062	'3.1	'Cf	'None	TAG LATIN SMALL LETTER B	'󠁢	'∅	'∅	'∅	Tr≠N4M			'E0062	'	'	'	16. NFKC_CF-None
-'E0063	'3.1	'Cf	'None	TAG LATIN SMALL LETTER C	'󠁣	'∅	'∅	'∅	Tr≠N4M			'E0063	'	'	'	16. NFKC_CF-None
-'E0064	'3.1	'Cf	'None	TAG LATIN SMALL LETTER D	'󠁤	'∅	'∅	'∅	Tr≠N4M			'E0064	'	'	'	16. NFKC_CF-None
-'E0065	'3.1	'Cf	'None	TAG LATIN SMALL LETTER E	'󠁥	'∅	'∅	'∅	Tr≠N4M			'E0065	'	'	'	16. NFKC_CF-None
-'E0066	'3.1	'Cf	'None	TAG LATIN SMALL LETTER F	'󠁦	'∅	'∅	'∅	Tr≠N4M			'E0066	'	'	'	16. NFKC_CF-None
-'E0067	'3.1	'Cf	'None	TAG LATIN SMALL LETTER G	'󠁧	'∅	'∅	'∅	Tr≠N4M			'E0067	'	'	'	16. NFKC_CF-None
-'E0068	'3.1	'Cf	'None	TAG LATIN SMALL LETTER H	'󠁨	'∅	'∅	'∅	Tr≠N4M			'E0068	'	'	'	16. NFKC_CF-None
-'E0069	'3.1	'Cf	'None	TAG LATIN SMALL LETTER I	'󠁩	'∅	'∅	'∅	Tr≠N4M			'E0069	'	'	'	16. NFKC_CF-None
-'E006A	'3.1	'Cf	'None	TAG LATIN SMALL LETTER J	'󠁪	'∅	'∅	'∅	Tr≠N4M			'E006A	'	'	'	16. NFKC_CF-None
-'E006B	'3.1	'Cf	'None	TAG LATIN SMALL LETTER K	'󠁫	'∅	'∅	'∅	Tr≠N4M			'E006B	'	'	'	16. NFKC_CF-None
-'E006C	'3.1	'Cf	'None	TAG LATIN SMALL LETTER L	'󠁬	'∅	'∅	'∅	Tr≠N4M			'E006C	'	'	'	16. NFKC_CF-None
-'E006D	'3.1	'Cf	'None	TAG LATIN SMALL LETTER M	'󠁭	'∅	'∅	'∅	Tr≠N4M			'E006D	'	'	'	16. NFKC_CF-None
-'E006E	'3.1	'Cf	'None	TAG LATIN SMALL LETTER N	'󠁮	'∅	'∅	'∅	Tr≠N4M			'E006E	'	'	'	16. NFKC_CF-None
-'E006F	'3.1	'Cf	'None	TAG LATIN SMALL LETTER O	'󠁯	'∅	'∅	'∅	Tr≠N4M			'E006F	'	'	'	16. NFKC_CF-None
-'E0070	'3.1	'Cf	'None	TAG LATIN SMALL LETTER P	'󠁰	'∅	'∅	'∅	Tr≠N4M			'E0070	'	'	'	16. NFKC_CF-None
-'E0071	'3.1	'Cf	'None	TAG LATIN SMALL LETTER Q	'󠁱	'∅	'∅	'∅	Tr≠N4M			'E0071	'	'	'	16. NFKC_CF-None
-'E0072	'3.1	'Cf	'None	TAG LATIN SMALL LETTER R	'󠁲	'∅	'∅	'∅	Tr≠N4M			'E0072	'	'	'	16. NFKC_CF-None
-'E0073	'3.1	'Cf	'None	TAG LATIN SMALL LETTER S	'󠁳	'∅	'∅	'∅	Tr≠N4M			'E0073	'	'	'	16. NFKC_CF-None
-'E0074	'3.1	'Cf	'None	TAG LATIN SMALL LETTER T	'󠁴	'∅	'∅	'∅	Tr≠N4M			'E0074	'	'	'	16. NFKC_CF-None
-'E0075	'3.1	'Cf	'None	TAG LATIN SMALL LETTER U	'󠁵	'∅	'∅	'∅	Tr≠N4M			'E0075	'	'	'	16. NFKC_CF-None
-'E0076	'3.1	'Cf	'None	TAG LATIN SMALL LETTER V	'󠁶	'∅	'∅	'∅	Tr≠N4M			'E0076	'	'	'	16. NFKC_CF-None
-'E0077	'3.1	'Cf	'None	TAG LATIN SMALL LETTER W	'󠁷	'∅	'∅	'∅	Tr≠N4M			'E0077	'	'	'	16. NFKC_CF-None
-'E0078	'3.1	'Cf	'None	TAG LATIN SMALL LETTER X	'󠁸	'∅	'∅	'∅	Tr≠N4M			'E0078	'	'	'	16. NFKC_CF-None
-'E0079	'3.1	'Cf	'None	TAG LATIN SMALL LETTER Y	'󠁹	'∅	'∅	'∅	Tr≠N4M			'E0079	'	'	'	16. NFKC_CF-None
-'E007A	'3.1	'Cf	'None	TAG LATIN SMALL LETTER Z	'󠁺	'∅	'∅	'∅	Tr≠N4M			'E007A	'	'	'	16. NFKC_CF-None
-'E007B	'3.1	'Cf	'None	TAG LEFT CURLY BRACKET	'󠁻	'∅	'∅	'∅	Tr≠N4M			'E007B	'	'	'	16. NFKC_CF-None
-'E007C	'3.1	'Cf	'None	TAG VERTICAL LINE	'󠁼	'∅	'∅	'∅	Tr≠N4M			'E007C	'	'	'	16. NFKC_CF-None
-'E007D	'3.1	'Cf	'None	TAG RIGHT CURLY BRACKET	'󠁽	'∅	'∅	'∅	Tr≠N4M			'E007D	'	'	'	16. NFKC_CF-None
-'E007E	'3.1	'Cf	'None	TAG TILDE	'󠁾	'∅	'∅	'∅	Tr≠N4M			'E007E	'	'	'	16. NFKC_CF-None
-'E007F	'3.1	'Cf	'None	CANCEL TAG	'󠁿	'∅	'∅	'∅	Tr≠N4M			'E007F	'	'	'	16. NFKC_CF-None
-'FEFF	'1.1	'Cf	'None	ZERO WIDTH NO-BREAK SPACE	'﻿	'∅	'∅	'∅	Tr≠N4M			'FEFF	'	'	'	16. NFKC_CF-None
